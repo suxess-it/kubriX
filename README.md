@@ -19,7 +19,15 @@ grafana
 
 ### 2. log in to argocd
 
+in your favorite browser:  http://argocd-127-0-0-1.nip.io:8666/
+
+Username: `admin`
+Passwort: `kubectl get secret -n argocd argocd-initial-admin-secret -o jsonpath='{.data.password}' | base64 -d`
+
 vlt sowas wie https://github.com/jkleinlercher/argocd-suxess-example?tab=readme-ov-file#argocd-aufrufen
+
+
+### TODOs
 
 #TODO: maybe we will add some extensions also like in
 https://raw.githubusercontent.com/akuity/kargo/main/hack/quickstart/k3d.sh
