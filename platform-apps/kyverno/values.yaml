@@ -1,0 +1,40 @@
+kyverno:
+  admissionController:
+    replicas: 1
+    container:
+      securityContext: null
+      resources:
+        limits:
+          memory: 1Gi
+    initContainer:
+      securityContext: null
+    serviceMonitor:
+      enabled: true
+  backgroundController:
+    replicas: 1
+    serviceMonitor:
+      enabled: true
+  cleanupController:
+    replicas: 1
+    serviceMonitor:
+      enabled: true
+  reportsController:
+    replicas: 1
+    serviceMonitor:
+      enabled: true
+    resources:
+      limits:
+        memory: 512Mi
+  config:
+    webhooks:
+      - namespaceSelector:
+          matchExpressions:
+                  - key: kubernetes.io/metadata.name
+                    operator: NotIn
+                    values:
+                      - suxess-it-kyverno
+                  - key: openshift.io/run-level
+                    operator: NotIn
+                    values:
+                      - "0"
+                      - "1"
