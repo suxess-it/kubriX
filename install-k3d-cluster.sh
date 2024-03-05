@@ -2,6 +2,9 @@
 
 set -x
 
+# do we need to set this always? I had DNS issues on the train
+export K3D_FIX_DNS=1
+
 k3d cluster create cnp-local-demo \
   -p "8666:80@loadbalancer" \
   --agents 2 \
