@@ -29,3 +29,10 @@ Passwort: `kubectl get secret -n argocd argocd-initial-admin-secret -o jsonpath=
 
 vlt sowas wie https://github.com/jkleinlercher/argocd-suxess-example?tab=readme-ov-file#argocd-aufrufen
 
+
+### delete k3d cluster
+
+```
+k3d cluster stop cnp-local-demo
+k3d cluster delete cnp-local-demo
+```
