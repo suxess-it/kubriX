@@ -15,4 +15,3 @@ kubectl create namespace argocd
 
 kubectl apply -f https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml -n argocd 
 kubectl apply -f https://raw.githubusercontent.com/jkleinlercher/cnp-local-demo/main/bootstrap-app.yaml -n argocd
-kubectl rollout restart deployment argocd-server -n argocd
