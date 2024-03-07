@@ -12,6 +12,9 @@ the platform stack will be installed automatically
 
 backstage
 argocd (managed by argocd)
+argo-rollouts
+kargo
+cert-manager
 crossplane
 kyverno
 prometheus
@@ -26,10 +29,3 @@ Passwort: `kubectl get secret -n argocd argocd-initial-admin-secret -o jsonpath=
 
 vlt sowas wie https://github.com/jkleinlercher/argocd-suxess-example?tab=readme-ov-file#argocd-aufrufen
 
-
-### TODOs
-
-#TODO: maybe we will add some extensions also like in
-https://raw.githubusercontent.com/akuity/kargo/main/hack/quickstart/k3d.sh
-
-(especially argo-rollouts extension) --> or lets do this in the argocd app
