@@ -1,0 +1,13 @@
+argo-cd:
+  global:
+    domain: argocd-127-0-0-1.nip.io
+  server:
+    ingress:
+      enabled: true
+      annotations: 
+        ingress.kubernetes.io/ssl-redirect: "false"
+    extensions:
+      enabled: true
+      contents:
+        - name: argo-rollouts
+          url: https://github.com/argoproj-labs/rollout-extension/releases/download/v0.3.4/extension.tar
