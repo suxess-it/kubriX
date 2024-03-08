@@ -44,22 +44,15 @@ wait until all apps are synced and healthy
 kubectl get applications -n argocd
 ```
 
-Known Problem: in the first couple of minutes the sx-bootstrap-app gets a compare error:
-
-```
-      message: 'Failed to load target state: failed to generate manifest for source
-        1 of 1: rpc error: code = Unavailable desc = connection error: desc = "transport:
-        Error while dialing: dial tcp 10.43.244.1:8081: connect: connection refused"'
-```
-
-Verbindung zum argocd-repo-server Service.
-
-
-
-
 ### 2. log in to argocd
 
 in your favorite browser:  http://argocd-127-0-0-1.nip.io:8666/
+
+if argocd says "server.secretkey" is missing, try
+
+```
+kubectl rollout restart deploy/argocd-server -n argocd
+```
 
 Username: `admin`
 Passwort: `kubectl get secret -n argocd argocd-initial-admin-secret -o jsonpath='{.data.password}' | base64 -d`
