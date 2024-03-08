@@ -44,7 +44,7 @@ wait until all apps are synced and healthy
 kubectl get applications -n argocd
 ```
 
-### 2. log in to argocd
+### 3. log in to argocd
 
 in your favorite browser:  http://argocd-127-0-0-1.nip.io:8666/
 
@@ -57,8 +57,14 @@ kubectl rollout restart deploy/argocd-server -n argocd
 Username: `admin`
 Passwort: `kubectl get secret -n argocd argocd-initial-admin-secret -o jsonpath='{.data.password}' | base64 -d`
 
-vlt sowas wie https://github.com/jkleinlercher/argocd-suxess-example?tab=readme-ov-file#argocd-aufrufen
+### 4. Example App deployen
 
+- Normal über git
+- Über Backstage
+
+### 5. Promote über die Stages
+
+mit kargo
 
 ### delete k3d cluster
 
