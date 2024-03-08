@@ -13,5 +13,15 @@ k3d cluster create cnp-local-demo \
 # boostrap with argocd and the bootstrap-app
 kubectl create namespace argocd
 
-kubectl apply -f https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml -n argocd 
+# create argocd with helm chart not with install.yaml
+# because afterwards argocd is also managed by itself with the helm-chart
+
+helm install argocd argo-cd \
+  --repo https://argoproj.github.io/argo-helm \
+  --version 6.4.0 \
+  --namespace argocd \
+  --create-namespace \
+  --set additionalLabels."app\.kubernetes\.io/instance"=argocd \
+  --wait
+
 kubectl apply -f https://raw.githubusercontent.com/jkleinlercher/cnp-local-demo/main/bootstrap-app.yaml -n argocd
