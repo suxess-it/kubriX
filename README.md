@@ -72,3 +72,17 @@ mit kargo
 k3d cluster stop cnp-local-demo
 k3d cluster delete cnp-local-demo
 ```
+
+
+### Build suXess backstage container image and push it to our registry
+
+build could take 1300 seconds and push could also take a lot of time
+#TODO: image is very very big
+
+```
+git clone https://github.com/suxess-it/sx-backstage.git
+cd sx-backstage
+docker build -t sx-backstage:latest .
+docker tag sx-backstage:latest ghcr.io/jkleinlercher/sx-backstage:latest
+docker push ghcr.io/jkleinlercher/sx-backstage:latest
+```
