@@ -28,11 +28,11 @@ spec:
             - packages/backend
           env:
             - name: APP_CONFIG_app_baseUrl
-              value: http://{{ .Values.backstage.hostname }}
+              value: http://{{ .Values.backstage.hostname }}:8666
             - name: APP_CONFIG_backend_baseUrl
-              value: http://{{ .Values.backstage.hostname }}
+              value: http://{{ .Values.backstage.hostname }}:8666
             - name: APP_CONFIG_backend_cors_origin
-              value: http://{{ .Values.backstage.hostname }}
+              value: http://{{ .Values.backstage.hostname }}:8666
           ports:
             - name: backend
               containerPort: 7007
