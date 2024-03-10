@@ -24,7 +24,6 @@ spec:
           terminationMessagePath: /dev/termination-log
           name: backstage-backend
           command:
-            - NODE_DEBUG=cluster,net,http,fs,tls,module,timers
             - node
             - packages/backend
           env:
