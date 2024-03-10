@@ -3,16 +3,11 @@ apiVersion: networking.k8s.io/v1
 metadata:
   annotations:
     nginx.ingress.kubernetes.io/backend-protocol: HTTPS
-    route.openshift.io/termination: edge
   name: {{ .Values.name }}-ingress
   generation: 1
   labels:
     app: {{ .Values.name }}
 spec:
-  tls:
-    - hosts:
-        - {{ .Values.backstage.hostname }}
-      secretName: {{ .Values.name }}-certificate
   defaultBackend:
     service:
       name: {{ .Values.name }}-service
