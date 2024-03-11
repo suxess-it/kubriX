@@ -55,7 +55,18 @@ kubectl rollout restart deploy/argocd-server -n argocd
 ```
 
 Username: `admin`
-Passwort: `kubectl get secret -n argocd argocd-initial-admin-secret -o jsonpath='{.data.password}' | base64 -d`
+Password: `kubectl get secret -n argocd argocd-initial-admin-secret -o jsonpath='{.data.password}' | base64 -d`
+
+### 4. log in to kargo
+
+in your favorite browser:  http://kargo-127-0-0-1.nip.io:8666
+
+Password: 'admin'
+
+### 5. log in to backstage
+
+in your favorite browser:  http://backstage-127-0-0-1.nip.io:8666
+
 
 ### 4. Example App deployen
 
