@@ -56,7 +56,7 @@ kubectl get applications -n argocd
 
 ### 3. log in to argocd
 
-in your favorite browser:  http://argocd-127-0-0-1.nip.io:8666/
+in your favorite browser:  https://argocd-127-0-0-1.nip.io:8667/
 
 if argocd says "server.secretkey" is missing, try
 

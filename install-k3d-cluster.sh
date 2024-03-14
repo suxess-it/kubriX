@@ -29,5 +29,6 @@ kubectl apply -f https://raw.githubusercontent.com/jkleinlercher/cnp-local-demo/
 
 mkcert -cert-file argocd-cert.pem -key-file argocd-key.pem nip.io argocd-127-0-0-1.nip.io
 kubectl create secret tls argocd-server-tls -n argocd --cert=argocd-cert.pem --key=argocd-key.pem
+rm argocd-cert.pem argocd-key.pem
 
 
