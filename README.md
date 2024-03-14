@@ -7,6 +7,16 @@
 k3d installed
 kubectl installed
 
+mkcert
+
+```
+curl -L -O https://github.com/FiloSottile/mkcert/releases/download/v1.4.4/mkcert-v1.4.4-linux-amd64
+mv mkcert-v1.4.4-linux-amd64 ~/bin/mkcert
+chmod u+x ~/bin/mkcert
+```
+
+
+
 ### 1. create k3d cluster
 
 ```
