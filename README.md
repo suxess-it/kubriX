@@ -18,6 +18,8 @@ chmod u+x ~/bin/mkcert
 install the CA of mkcert in your OS truststore: https://docs.kubefirst.io/k3d/quick-start/install#install-the-ca-certificate-authority-of-mkcert-in-your-trusted-store
 
 
+create OAuth App on Github for Backstage login: https://backstage.io/docs/auth/github/provider/
+
 
 ### 1. create k3d cluster
 
