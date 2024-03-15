@@ -42,6 +42,8 @@ spec:
           envFrom:
             - secretRef:
                 name: {{ .Values.name }}-secret
+            - secretRef:
+                name: manual-secret
           image: >-
             {{ .Values.backstage.registry }}/sx-backstage:latest
       restartPolicy: Always

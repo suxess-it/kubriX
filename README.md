@@ -15,6 +15,8 @@ mv mkcert-v1.4.4-linux-amd64 ~/bin/mkcert
 chmod u+x ~/bin/mkcert
 ```
 
+install the CA of mkcert in your OS truststore: https://docs.kubefirst.io/k3d/quick-start/install#install-the-ca-certificate-authority-of-mkcert-in-your-trusted-store
+
 
 
 ### 1. create k3d cluster
@@ -74,6 +76,10 @@ in your favorite browser:  http://kargo-127-0-0-1.nip.io:8666
 Password: 'admin'
 
 ### 5. log in to backstage
+
+create some secrets manually first, which I didn't want to put in git
+
+kubectl create secret generic -n backstage manual-secret --from-literal=GITHUB_CLIENTSECRET=TBD --from-literal=GITHUB_CLIENTID=TBD
 
 in your favorite browser:  http://backstage-127-0-0-1.nip.io:8666
 
