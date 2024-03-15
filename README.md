@@ -79,7 +79,9 @@ Password: 'admin'
 
 create some secrets manually first, which I didn't want to put in git
 
+```
 kubectl create secret generic -n backstage manual-secret --from-literal=GITHUB_CLIENTSECRET=TBD --from-literal=GITHUB_CLIENTID=TBD
+```
 
 in your favorite browser:  http://backstage-127-0-0-1.nip.io:8666
 
