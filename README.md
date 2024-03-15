@@ -79,10 +79,15 @@ Password: 'admin'
 
 ### 5. log in to backstage
 
-create some secrets manually first, which I didn't want to put in git
+create some secrets manually first, which I didn't want to put in git.
+
+- GITHUB_CLIENTSECRET and GITHUB_CLIENTID from your Github OAuth App
+
 
 ```
-kubectl create secret generic -n backstage manual-secret --from-literal=GITHUB_CLIENTSECRET=TBD --from-literal=GITHUB_CLIENTID=TBD
+export GITHUB_CLIENTSECRET=tbd
+export GITHUB_CLIENTID=tbd
+kubectl create secret generic -n backstage manual-secret --from-literal=GITHUB_CLIENTSECRET=${GITHUB_CLIENTSECRET} --from-literal=GITHUB_CLIENTID=${GITHUB_CLIENTID}
 ```
 
 in your favorite browser:  https://backstage-127-0-0-1.nip.io:8667
