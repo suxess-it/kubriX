@@ -103,6 +103,7 @@ build could take 1300 seconds and push could also take a lot of time
 ```
 git clone https://github.com/suxess-it/sx-backstage.git
 cd sx-backstage
+git switch feat/cnp-local-demo-jokl
 docker build -t sx-backstage:latest .
 docker tag sx-backstage:latest ghcr.io/jkleinlercher/sx-backstage:latest
 docker push ghcr.io/jkleinlercher/sx-backstage:latest
