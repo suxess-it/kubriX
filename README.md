@@ -21,7 +21,7 @@ install the CA of mkcert in your OS truststore: https://docs.kubefirst.io/k3d/qu
 ### 1. create k3d cluster
 
 ```
-curl -L https://raw.githubusercontent.com/jkleinlercher/cnp-local-demo/main/install-k3d-cluster.sh | sh
+curl -L https://raw.githubusercontent.com/suxess-it/sx-cnp-oss/main/install-k3d-cluster.sh | sh
 ```
 
 With this command a new k3d cluster gets created.
@@ -132,6 +132,6 @@ git clone https://github.com/suxess-it/sx-backstage.git
 cd sx-backstage
 git switch feat/cnp-local-demo-jokl
 docker build -t sx-backstage:latest .
-docker tag sx-backstage:latest ghcr.io/jkleinlercher/sx-backstage:latest
-docker push ghcr.io/jkleinlercher/sx-backstage:latest
+docker tag sx-backstage:latest ghcr.io/suxess-it/sx-backstage:latest
+docker push ghcr.io/suxess-it/sx-backstage:latest
 ```
