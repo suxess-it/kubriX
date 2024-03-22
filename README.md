@@ -96,7 +96,7 @@ kubectl rollout restart deploy/argocd-server -n argocd
 
 ### 5. log in to kargo
 
-in your favorite browser:  http://kargo-127-0-0-1.nip.io:8666
+in your favorite browser:  https://kargo-127-0-0-1.nip.io:8667
 
 Password: 'admin'
 
