@@ -104,6 +104,12 @@ Password: 'admin'
 
 in your favorite browser:  https://backstage-127-0-0-1.nip.io:8667
 
+### 7. log in to grafana
+
+in your favorite browser:  https://grafana-127-0-0-1.nip.io:8667
+
+- Username: `admin`
+- Password: `prom-operator`
 
 ### 4. Example App deployen
 

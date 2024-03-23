@@ -978,7 +978,7 @@ kube-prometheus-stack:
     ingress:
       ## If true, Grafana Ingress will be created
       ##
-      enabled: false
+      enabled: true
 
       ## IngressClassName for Grafana Ingress.
       ## Should be provided if Ingress is enable.
@@ -1000,7 +1000,7 @@ kube-prometheus-stack:
       ##
       # hosts:
       #   - grafana.domain.com
-      hosts: []
+      hosts: [grafana-127-0-0-1.nip.io]
 
       ## Path for grafana ingress
       path: /
