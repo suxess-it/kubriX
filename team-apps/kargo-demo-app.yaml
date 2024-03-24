@@ -24,9 +24,9 @@ metadata:
   name: test
   namespace: kargo-demo-app
 spec:
-  promotionMechanisms:
   subscriptions:
     warehouse: demo-app-warehouse
+  promotionMechanisms:
     gitRepoUpdates:
     - repoURL: https://github.com/suxess-it/sx-cnp-oss-demo-app
       writeBranch: stages/test
@@ -40,10 +40,10 @@ metadata:
   name: qa
   namespace: kargo-demo-app
 spec:
-  promotionMechanisms:
   subscriptions:
-    stages:
+    upstreamStages:
     - test
+  promotionMechanisms:
     gitRepoUpdates:
     - repoURL: https://github.com/suxess-it/sx-cnp-oss-demo-app
       writeBranch: stages/qa
@@ -57,10 +57,10 @@ metadata:
   name: prod
   namespace: kargo-demo-app
 spec:
-  promotionMechanisms:
   subscriptions:
-    stages:
+    upstreamStages:
     - qa
+  promotionMechanisms:
     gitRepoUpdates:
     - repoURL: https://github.com/suxess-it/sx-cnp-oss-demo-app
       writeBranch: stages/prod
