@@ -124,8 +124,11 @@ in your favorite browser:  https://grafana-127-0-0-1.nip.io:8667
 
 ### 4. Example App deployen
 
-- Normal über git
-- Über Backstage
+Beim Bootstrapping werden automatisch vom gitops-Repo `https://github.com/suxess-it/sx-cnp-oss-demo-app`
+3 Stages deployed: test, qa, prod
+
+Außerdem wird ein Kargo-Projekt und entsprechende Stages erstellt, die über
+`https://kargo-127-0-0-1.nip.io:8667/project/kargo-demo-app` aufgerufen werden können.
 
 ### 5. Promote über die Stages
 
