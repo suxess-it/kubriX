@@ -80,6 +80,16 @@ Restart backstage pod:
 kubectl rollout restart deploy/sx-cnp -n backstage
 ```
 
+### 4. create GIT secret for kargo manually
+
+kargo needs to write to your gitops repo to promote changed from one stage to another. in this demo we use the [suxess-it demo-app](https://github.com/suxess-it/sx-cnp-oss-demo-app).
+
+```
+export GITHUB_USERNAME=<your github handle>
+export GITHUB_PAT=<your personal access token>
+kubectl create secret generic git-demo-app -n kargo-demo-app --from-literal=type=git --from-literal=url=https://github.com/suxess-it/sx-cnp-oss-demo-app --from-literal=username=${GITHUB_USERNAME} --from-literal=password=${GITHUB_PAT}
+```
+
 
 ### 4. log in to argocd
 
