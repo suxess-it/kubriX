@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: demo-app
+  name: test-demo-app
   namespace: argocd
   finalizers:
   - resources-finalizer.argocd.argoproj.io
@@ -9,12 +9,14 @@ spec:
   project: default
   source:
     repoURL: https://github.com/suxess-it/sx-cnp-oss-demo-app
-    targetRevision: main
+    targetRevision: test
     path: .
   destination:
-    namespace: demo-app
+    namespace: test-demo-app
     server: 'https://kubernetes.default.svc'
   syncPolicy:
     automated:
       prune: true
       selfHeal: true
+    syncOptions:
+    - CreateNamespace=true
