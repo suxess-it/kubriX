@@ -13,7 +13,6 @@ spec:
   template:
     metadata:
       name: {{stage}}-demo-app
-      namespace: argocd
       annotations:
         kargo.akuity.io/authorized-stage: kargo-demo-app:{{stage}}
     spec:
