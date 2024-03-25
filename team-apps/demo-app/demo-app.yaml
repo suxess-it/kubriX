@@ -12,7 +12,7 @@ spec:
       - stage: prod
   template:
     metadata:
-      name: {{stage}}-demo-app
+      name: '{{stage}}-demo-app'
       annotations:
         kargo.akuity.io/authorized-stage: kargo-demo-app:{{stage}}
     spec:
@@ -22,8 +22,8 @@ spec:
         targetRevision: stages/{{stage}}
         path: .
       destination:
-        namespace: {{stage}}-demo-app
-        server: 'https://kubernetes.default.svc'
+        server: https://kubernetes.default.svc
+        namespace: '{{stage}}-demo-app'
       syncPolicy:
         automated:
           prune: true
