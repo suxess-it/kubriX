@@ -127,6 +127,12 @@ kubectl create secret generic git-demo-app -n kargo-demo-app --from-literal=type
 kubectl label secret git-demo-app -n kargo-demo-app kargo.akuity.io/secret-type=repository
 ```
 
+URLs for stages:
+
+- test: http://test-demo-app-127-0-0-1.nip.io:8666/
+- qa: http://qa-demo-app-127-0-0-1.nip.io:8666/
+- prod: http://prod-demo-app-127-0-0-1.nip.io:8666/
+
 ### 5. Promote über die Stages
 
 mit kargo
