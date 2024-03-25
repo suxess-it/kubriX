@@ -80,18 +80,6 @@ Restart backstage pod:
 kubectl rollout restart deploy/sx-cnp -n backstage
 ```
 
-### 4. create GIT secret for kargo manually
-
-kargo needs to write to your gitops repo to promote changed from one stage to another. in this demo we use the [suxess-it demo-app](https://github.com/suxess-it/sx-cnp-oss-demo-app).
-
-```
-export GITHUB_USERNAME=<your github handle>
-export GITHUB_PAT=<your personal access token>
-kubectl create secret generic git-demo-app -n kargo-demo-app --from-literal=type=git --from-literal=url=https://github.com/suxess-it/sx-cnp-oss-demo-app --from-literal=username=${GITHUB_USERNAME} --from-literal=password=${GITHUB_PAT}
-kubectl label secret git-demo-app -n kargo-demo-app kargo.akuity.io/secret-type=repository
-```
-
-
 ### 4. log in to argocd
 
 in your favorite browser:  https://argocd-127-0-0-1.nip.io:8667/
@@ -129,6 +117,15 @@ Create a demo-app and kargo pipeline for this demo app:
 
 The demo-app gitops-repo is in `https://github.com/suxess-it/sx-cnp-oss-demo-app`
 Via an appset 3 stages get deployed and are managed in a Kargo-Project: `https://kargo-127-0-0-1.nip.io:8667/project/kargo-demo-app`
+
+kargo needs to write to your gitops repo to promote changed from one stage to another. in this demo we use the [suxess-it demo-app](https://github.com/suxess-it/sx-cnp-oss-demo-app).
+
+```
+export GITHUB_USERNAME=<your github handle>
+export GITHUB_PAT=<your personal access token>
+kubectl create secret generic git-demo-app -n kargo-demo-app --from-literal=type=git --from-literal=url=https://github.com/suxess-it/sx-cnp-oss-demo-app --from-literal=username=${GITHUB_USERNAME} --from-literal=password=${GITHUB_PAT}
+kubectl label secret git-demo-app -n kargo-demo-app kargo.akuity.io/secret-type=repository
+```
 
 ### 5. Promote über die Stages
 
