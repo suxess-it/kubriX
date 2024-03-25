@@ -14,8 +14,8 @@ spec:
     metadata:
       name: {{stage}}-demo-app
       namespace: argocd
-    annotations:
-      kargo.akuity.io/authorized-stage: kargo-demo-app:{{stage}}
+      annotations:
+        kargo.akuity.io/authorized-stage: kargo-demo-app:{{stage}}
     spec:
       project: default
       source:
