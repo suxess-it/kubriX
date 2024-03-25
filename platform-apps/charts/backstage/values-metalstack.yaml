@@ -1,0 +1,31 @@
+name: sx-cnp
+
+cert:
+  # create own cert - not necessary if wildcard cert is used on openshift
+  enabled: false
+  issuerRef: letsencrypt-prod
+  dnsNames: backstage-127-0-0-1.nip.io
+
+eso:
+  # external Secret Operator installed?
+  enabled: true
+
+vault:
+  # hashicorp vault installed?
+  enabled: true
+  # role is assigned during vault setup https://github.com/suxess-it/charts/blob/2b9ed204df0efc2b75084dc3de83b19191368591/secret/values.yaml#L316
+  role: policy-read
+  # keystore is assigned during vault setup https://github.com/suxess-it/charts/blob/2b9ed204df0efc2b75084dc3de83b19191368591/secret/values.yaml#L322
+  keystore: sx-kv
+  serviceAccount: default
+  url: https://sx-secret-suxess-it-vault.apps.cluster1.mcp.pitagora.at
+
+vaultconfig:
+  namespace: suxess-it-backstage
+
+backstage:
+  instances: 1
+  hostname: backstage-127-0-0-1.nip.io
+  registry: ghcr.io/suxess-it
+  port: 7007
+  backend: backend

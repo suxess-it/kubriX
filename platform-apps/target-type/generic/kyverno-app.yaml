@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: sx-kargo
+  name: sx-kyverno
   namespace: argocd
   finalizers:
   - resources-finalizer.argocd.argoproj.io
@@ -10,9 +10,9 @@ spec:
   source:
     repoURL: https://github.com/suxess-it/sx-cnp-oss
     targetRevision: main
-    path: platform-apps/kargo
+    path: platform-apps/charts/kyverno
   destination:
-    namespace: kargo
+    namespace: kyverno
     server: 'https://kubernetes.default.svc'
   syncPolicy:
     automated:
@@ -20,3 +20,4 @@ spec:
       selfHeal: true
     syncOptions:
     - CreateNamespace=true
+    - Replace=true

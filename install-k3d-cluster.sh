@@ -25,7 +25,7 @@ helm install argocd argo-cd \
   --set additionalLabels."app\.kubernetes\.io/instance"=argocd \
   --wait
 
-kubectl apply -f https://raw.githubusercontent.com/suxess-it/sx-cnp-oss/main/bootstrap-app.yaml -n argocd
+kubectl apply -f https://raw.githubusercontent.com/suxess-it/sx-cnp-oss/main/bootstrap-app-k3d.yaml -n argocd
 
 mkcert -cert-file argocd-cert.pem -key-file argocd-key.pem nip.io argocd-127-0-0-1.nip.io
 kubectl create secret tls argocd-server-tls -n argocd --cert=argocd-cert.pem --key=argocd-key.pem

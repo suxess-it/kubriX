@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: sx-crossplane
+  name: argocd
   namespace: argocd
   finalizers:
   - resources-finalizer.argocd.argoproj.io
@@ -10,13 +10,16 @@ spec:
   source:
     repoURL: https://github.com/suxess-it/sx-cnp-oss
     targetRevision: main
-    path: platform-apps/crossplane
+    path: platform-apps/charts/argocd
+    helm:
+      valueFiles:
+      - values-k3d.yaml
   destination:
-    namespace: crossplane
+    namespace: argocd
     server: 'https://kubernetes.default.svc'
   syncPolicy:
     automated:
       prune: true
       selfHeal: true
     syncOptions:
-    - CreateNamespace=true
+    - Replace=true

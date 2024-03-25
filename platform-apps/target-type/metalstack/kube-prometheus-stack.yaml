@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: sx-bootstrap-app
+  name: sx-kube-prometheus-stack
   namespace: argocd
   finalizers:
   - resources-finalizer.argocd.argoproj.io
@@ -10,11 +10,14 @@ spec:
   source:
     repoURL: https://github.com/suxess-it/sx-cnp-oss
     targetRevision: main
-    path: platform-apps
+    path: platform-apps/charts/kube-prometheus-stack
   destination:
-    namespace: argocd
+    namespace: monitoring
     server: 'https://kubernetes.default.svc'
   syncPolicy:
     automated:
       prune: true
       selfHeal: true
+    syncOptions:
+    - CreateNamespace=true
+    - ServerSideApply=true

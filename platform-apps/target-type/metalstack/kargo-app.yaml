@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: argocd
+  name: sx-kargo
   namespace: argocd
   finalizers:
   - resources-finalizer.argocd.argoproj.io
@@ -10,13 +10,16 @@ spec:
   source:
     repoURL: https://github.com/suxess-it/sx-cnp-oss
     targetRevision: main
-    path: platform-apps/argocd
+    path: platform-apps/charts/kargo
+    helm:
+      valueFiles:
+      - values-metalstack.yaml
   destination:
-    namespace: argocd
+    namespace: kargo
     server: 'https://kubernetes.default.svc'
   syncPolicy:
     automated:
       prune: true
       selfHeal: true
     syncOptions:
-    - Replace=true
+    - CreateNamespace=true

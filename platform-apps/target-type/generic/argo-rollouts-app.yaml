@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: sx-cert-manager
+  name: sx-argo-rollouts
   namespace: argocd
   finalizers:
   - resources-finalizer.argocd.argoproj.io
@@ -10,9 +10,9 @@ spec:
   source:
     repoURL: https://github.com/suxess-it/sx-cnp-oss
     targetRevision: main
-    path: platform-apps/cert-manager
+    path: platform-apps/charts/argo-rollouts
   destination:
-    namespace: cert-manager
+    namespace: argo-rollouts
     server: 'https://kubernetes.default.svc'
   syncPolicy:
     automated:

@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: sx-argo-rollouts
+  name: sx-kube-prometheus-stack
   namespace: argocd
   finalizers:
   - resources-finalizer.argocd.argoproj.io
@@ -10,9 +10,12 @@ spec:
   source:
     repoURL: https://github.com/suxess-it/sx-cnp-oss
     targetRevision: main
-    path: platform-apps/argo-rollouts
+    path: platform-apps/charts/kube-prometheus-stack
+    helm:
+      valueFiles:
+      - values-k3d.yaml
   destination:
-    namespace: argo-rollouts
+    namespace: monitoring
     server: 'https://kubernetes.default.svc'
   syncPolicy:
     automated:
@@ -20,3 +23,4 @@ spec:
       selfHeal: true
     syncOptions:
     - CreateNamespace=true
+    - ServerSideApply=true

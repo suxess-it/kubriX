@@ -1,18 +1,21 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: sx-kyverno
+  name: sx-backstage
   namespace: argocd
   finalizers:
-  - resources-finalizer.argocd.argoproj.io
+  - resources-finalizer.argocd.argoproj.io  
 spec:
   project: default
   source:
     repoURL: https://github.com/suxess-it/sx-cnp-oss
     targetRevision: main
-    path: platform-apps/kyverno
+    path: platform-apps/charts/backstage
+    helm:
+      valueFiles:
+      - values-k3d.yaml
   destination:
-    namespace: kyverno
+    namespace: backstage
     server: 'https://kubernetes.default.svc'
   syncPolicy:
     automated:
@@ -20,4 +23,3 @@ spec:
       selfHeal: true
     syncOptions:
     - CreateNamespace=true
-    - Replace=true

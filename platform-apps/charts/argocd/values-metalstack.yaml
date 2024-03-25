@@ -1,0 +1,24 @@
+argo-cd:
+  global:
+    domain: argocd-127-0-0-1.nip.io
+
+  configs:
+    params:
+      server.insecure: true
+
+  server:
+    ingress:
+      enabled: true
+      annotations: 
+        nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
+        nginx.ingress.kubernetes.io/backend-protocol: "HTTP"
+      extraTls:
+        - hosts:
+          - argocd-127-0-0-1.nip.io
+          # Based on the ingress controller used secret might be optional
+          secretName: argocd-server-tls
+    extensions:
+      enabled: true
+      contents:
+        - name: argo-rollouts
+          url: https://github.com/argoproj-labs/rollout-extension/releases/download/v0.3.4/extension.tar
