@@ -124,11 +124,11 @@ in your favorite browser:  https://grafana-127-0-0-1.nip.io:8667
 
 ### 4. Example App deployen
 
-Beim Bootstrapping werden automatisch vom gitops-Repo `https://github.com/suxess-it/sx-cnp-oss-demo-app`
-3 Stages deployed: test, qa, prod
+Create a demo-app and kargo pipeline for this demo app:
+`kubectl apply -f https://raw.githubusercontent.com/suxess-it/sx-cnp-oss/main/team-apps/team-apps.yaml -n argocd`
 
-Außerdem wird ein Kargo-Projekt und entsprechende Stages erstellt, die über
-`https://kargo-127-0-0-1.nip.io:8667/project/kargo-demo-app` aufgerufen werden können.
+The demo-app gitops-repo is in `https://github.com/suxess-it/sx-cnp-oss-demo-app`
+Via an appset 3 stages get deployed and are managed in a Kargo-Project: `https://kargo-127-0-0-1.nip.io:8667/project/kargo-demo-app`
 
 ### 5. Promote über die Stages
 
