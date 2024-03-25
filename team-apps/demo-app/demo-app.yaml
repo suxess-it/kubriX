@@ -21,6 +21,9 @@ spec:
         repoURL: https://github.com/suxess-it/sx-cnp-oss-demo-app
         targetRevision: stages/{{stage}}
         path: .
+        helm:
+          valueFiles:
+          - values-{{stage}}.yaml
       destination:
         server: https://kubernetes.default.svc
         namespace: '{{stage}}-demo-app'
