@@ -9,5 +9,5 @@ spec:
     name: {{ .Values.cert.issuerRef }}
     kind: ClusterIssuer
   dnsNames:
-    - {{ .Values.ingress.host }}
+    - {{ .Values.backstage.ingress.host }}
 {{- end }}
