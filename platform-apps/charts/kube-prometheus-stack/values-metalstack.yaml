@@ -1,3 +1,8 @@
+cert:
+  enabled: true
+  issuerRef: letsencrypt-prod
+  dnsName: grafana-metalstack.platform-engineer.cloud
+
 kube-prometheus-stack:
   # Default values for kube-prometheus-stack.
   # This is a YAML-formatted file.
@@ -1008,7 +1013,10 @@ kube-prometheus-stack:
       ## TLS configuration for grafana Ingress
       ## Secret must be manually created in the namespace
       ##
-      tls: []
+      tls:
+        - secretName: grafana-tls
+          hosts:
+          - grafana-metalstack.platform-engineer.cloud
       # - secretName: grafana-general-tls
       #   hosts:
       #   - grafana.example.com
