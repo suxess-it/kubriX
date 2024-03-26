@@ -2,12 +2,12 @@
 apiVersion: cert-manager.io/v1
 kind: Certificate
 metadata:
-  name: {{ .Values.name }}-certificate
+  name: backstage-certificate
 spec:
-  secretName: {{ .Values.name }}-certificate
+  secretName: backstage-tls
   issuerRef:
     name: {{ .Values.cert.issuerRef }}
     kind: ClusterIssuer
   dnsNames:
-    - {{ .Values.cert.dnsNames }}
+    - {{ .Values.ingress.host }}
 {{- end }}

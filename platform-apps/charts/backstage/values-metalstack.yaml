@@ -1,33 +1,8 @@
-name: sx-cnp
-
-ingressClassName: nginx
-
-cert:
-  # create own cert - not necessary if wildcard cert is used on openshift
+ingress:
   enabled: true
-  issuerRef: letsencrypt-prod
-  dnsNames: portal-metalstack.platform-engineer.cloud
+  className: nginx
+  host: portal-metalstack.platform-engineer.cloud
+  tls:
+    enabled: true
+    secretName: "backstage-tls"
 
-eso:
-  # external Secret Operator installed?
-  enabled: true
-
-vault:
-  # hashicorp vault installed?
-  enabled: true
-  # role is assigned during vault setup https://github.com/suxess-it/charts/blob/2b9ed204df0efc2b75084dc3de83b19191368591/secret/values.yaml#L316
-  role: policy-read
-  # keystore is assigned during vault setup https://github.com/suxess-it/charts/blob/2b9ed204df0efc2b75084dc3de83b19191368591/secret/values.yaml#L322
-  keystore: sx-kv
-  serviceAccount: default
-  url: https://sx-secret-suxess-it-vault.apps.cluster1.mcp.pitagora.at
-
-vaultconfig:
-  namespace: suxess-it-backstage
-
-backstage:
-  instances: 1
-  hostname: portal-metalstack.platform-engineer.cloud
-  registry: ghcr.io/suxess-it
-  port: 7007
-  backend: backend
