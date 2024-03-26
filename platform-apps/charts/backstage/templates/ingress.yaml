@@ -18,3 +18,8 @@ spec:
                 name:  {{ .Values.name }}-service
                 port:
                   number: {{ .Values.backstage.port }}
+  tls:
+  - hosts:
+      - {{ .Values.backstage.hostname }}
+    secretName: {{ .Values.name }}-certificate
+
