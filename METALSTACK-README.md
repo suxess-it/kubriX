@@ -117,6 +117,33 @@ in your favorite browser:  https://grafana-metalstack.platform-engineer.cloud
 - Username: `admin`
 - Password: `prom-operator`
 
+### 4. Example App deployen
+
+Create a demo-app and kargo pipeline for this demo app:
+`kubectl apply -f https://raw.githubusercontent.com/suxess-it/sx-cnp-oss/main/team-apps/team-apps.yaml -n argocd`
+
+The demo-app gitops-repo is in `https://github.com/suxess-it/sx-cnp-oss-demo-app`
+Via an appset 3 stages get deployed and are managed in a Kargo-Project: `https://kargo-127-0-0-1.nip.io:8667/project/kargo-demo-app`
+
+kargo needs to write to your gitops repo to promote changed from one stage to another. in this demo we use the [suxess-it demo-app](https://github.com/suxess-it/sx-cnp-oss-demo-app).
+
+```
+export GITHUB_USERNAME=<your github handle>
+export GITHUB_PAT=<your personal access token>
+kubectl create secret generic git-demo-app -n kargo-demo-app --from-literal=type=git --from-literal=url=https://github.com/suxess-it/sx-cnp-oss-demo-app --from-literal=username=${GITHUB_USERNAME} --from-literal=password=${GITHUB_PAT}
+kubectl label secret git-demo-app -n kargo-demo-app kargo.akuity.io/secret-type=repository
+```
+
+URLs for stages (need to be registered in aws route53):
+
+- test: http://test-demo-app-metalstack.platform-engineer.cloud
+- qa: http://qa-demo-app-metalstack.platform-engineer.cloud
+- prod: http://prod-demo-metalstack.platform-engineer.cloud
+
+### 5. Promote über die Stages
+
+mit kargo
+
 
 
 
