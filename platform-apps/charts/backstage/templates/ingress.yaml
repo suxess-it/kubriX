@@ -5,11 +5,9 @@ metadata:
   labels:
     app: {{ .Values.name }}
 spec:
-  defaultBackend:
-    service:
-      name: {{ .Values.name }}-service
-      port:
-        number: {{ .Values.backstage.port }}
+  {{- with .Values.ingressClassName }}
+  ingressClassName: {{ . }}
+  {{- end }}
   rules:
     - host:  {{ .Values.backstage.hostname }}
       http:
