@@ -25,8 +25,35 @@ kubectl apply -f https://raw.githubusercontent.com/suxess-it/sx-cnp-oss/main/boo
 kubectl port-forward svc/argocd-server -n argocd 8080:80
 
 
+### 2. set IP address of hostnames to ingress IP of metalstack LB in aws route53 hosted zone
+
 Backstage: portal-metalstack.platform-engineer.cloud
 ArgoCD: argocd-metalstack.platform-engineer.cloud
 Kargo: kargo-metalstack.platform-engineer.cloud
 Grafana: grafana-metalstack.platform-engineer.cloud
+
+### 3. create GITHUB secret manually
+
+create some secrets manually first, which I didn't want to put in git.
+
+create OAuth App on Github for Backstage login: https://backstage.io/docs/auth/github/provider/
+
+- Homepage URL: https://portal-metalstack.platform-engineer.cloud/
+- Authorization callback URL: https://portal-metalstack.platform-engineer.cloud/
+
+use GITHUB_CLIENTSECRET and GITHUB_CLIENTID from your Github OAuth App for the following environment variables.
+
+```
+export METALSTACK_GITHUB_CLIENTID=<value from steps above>
+export METALSTACK_GITHUB_CLIENTSECRET=<value from steps above>
+kubectl create secret generic -n backstage manual-secret --from-literal=GITHUB_CLIENTSECRET=${METALSTACK_GITHUB_CLIENTSECRET} --from-literal=GITHUB_CLIENTID=${METALSTACK_GITHUB_CLIENTID}
+```
+
+Restart backstage pod:
+
+```
+kubectl rollout restart deploy/sx-cnp -n backstage
+```
+
+
 
