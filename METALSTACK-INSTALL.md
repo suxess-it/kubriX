@@ -25,4 +25,8 @@ kubectl apply -f https://raw.githubusercontent.com/suxess-it/sx-cnp-oss/main/boo
 kubectl port-forward svc/argocd-server -n argocd 8080:80
 
 
-# ingress hostname ???
+Backstage: portal-metalstack.platform-engineer.cloud
+ArgoCD: argocd-metalstack.platform-engineer.cloud
+Kargo: kargo-metalstack.platform-engineer.cloud
+Grafana: grafana-metalstack.platform-engineer.cloud
+

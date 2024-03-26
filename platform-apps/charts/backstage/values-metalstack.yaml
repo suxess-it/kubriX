@@ -2,9 +2,9 @@ name: sx-cnp
 
 cert:
   # create own cert - not necessary if wildcard cert is used on openshift
-  enabled: false
+  enabled: true
   issuerRef: letsencrypt-prod
-  dnsNames: backstage-127-0-0-1.nip.io
+  dnsNames: portal-metalstack.platform-engineer.cloud
 
 eso:
   # external Secret Operator installed?
@@ -25,7 +25,7 @@ vaultconfig:
 
 backstage:
   instances: 1
-  hostname: backstage-127-0-0-1.nip.io
+  hostname: portal-metalstack.platform-engineer.cloud
   registry: ghcr.io/suxess-it
   port: 7007
   backend: backend
