@@ -17,16 +17,6 @@ helm install argocd argo-cd \
   --set additionalLabels."app\.kubernetes\.io/instance"=argocd \
   --wait
 
-# since there is no ingress controller installed out-of-the-box we need to install on (not part of platform-apps yet)
-
-helm upgrade --install ingress-nginx ingress-nginx \
-  --repo https://kubernetes.github.io/ingress-nginx \
-  --namespace ingress-nginx \
-  --create-namespace \
-  --wait
-
-
-
 # install a bootstrap app which then installs the whole stack automagically
 
 kubectl apply -f https://raw.githubusercontent.com/suxess-it/sx-cnp-oss/main/bootstrap-app-metalstack.yaml -n argocd
