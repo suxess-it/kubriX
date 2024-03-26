@@ -15,11 +15,11 @@ spec:
       valueFiles:
       - values-metalstack.yaml
   destination:
-    namespace: argocd
+    namespace: ingress-nginx
     server: 'https://kubernetes.default.svc'
   syncPolicy:
     automated:
       prune: true
       selfHeal: true
     syncOptions:
-    - Replace=true
+    - CreateNamespace=true
