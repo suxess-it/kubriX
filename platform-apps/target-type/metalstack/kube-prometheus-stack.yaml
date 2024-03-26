@@ -11,6 +11,9 @@ spec:
     repoURL: https://github.com/suxess-it/sx-cnp-oss
     targetRevision: main
     path: platform-apps/charts/kube-prometheus-stack
+    helm:
+      valueFiles:
+      - values-metalstack.yaml
   destination:
     namespace: monitoring
     server: 'https://kubernetes.default.svc'
