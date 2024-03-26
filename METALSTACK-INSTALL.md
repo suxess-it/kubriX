@@ -21,5 +21,8 @@ helm install argocd argo-cd \
 
 kubectl apply -f https://raw.githubusercontent.com/suxess-it/sx-cnp-oss/main/bootstrap-app-metalstack.yaml -n argocd
 
+# if anything stucks or ingress is not working, use port-forwarding for accessing argocd console
+kubectl port-forward svc/argocd-server -n argocd 8080:80
+
 
 # ingress hostname ???
