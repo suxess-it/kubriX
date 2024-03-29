@@ -134,7 +134,7 @@ Create a demo-app and kargo pipeline for this demo app:
 `kubectl apply -f https://raw.githubusercontent.com/suxess-it/sx-cnp-oss/main/team-apps/team-apps-metalstack.yaml -n argocd`
 
 The demo-app gitops-repo is in `https://github.com/suxess-it/sx-cnp-oss-demo-app`
-Via an appset 3 stages get deployed and are managed in a Kargo-Project: `https://kargo-127-0-0-1.nip.io:8667/project/kargo-demo-app`
+Via an appset 3 stages get deployed and are managed in a Kargo-Project: `https://kargo-metalstack.platform-engineer.cloud/project/kargo-demo-app`
 
 kargo needs to write to your gitops repo to promote changed from one stage to another. in this demo we use the [suxess-it demo-app](https://github.com/suxess-it/sx-cnp-oss-demo-app).
 
