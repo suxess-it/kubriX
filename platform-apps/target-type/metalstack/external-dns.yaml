@@ -1,0 +1,25 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: sx-external-dns
+  namespace: argocd
+  finalizers:
+  - resources-finalizer.argocd.argoproj.io
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/suxess-it/sx-cnp-oss
+    targetRevision: main
+    path: platform-apps/charts/external-dns
+    helm:
+      valueFiles:
+      - values-metalstack.yaml
+  destination:
+    namespace: external-dns
+    server: 'https://kubernetes.default.svc'
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+    - CreateNamespace=true

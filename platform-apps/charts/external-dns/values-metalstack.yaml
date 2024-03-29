@@ -1,0 +1,8 @@
+external-dns:
+  env:
+    - name: AWS_SHARED_CREDENTIALS_FILE
+      value: /.aws/credentials
+
+  secretConfiguration:
+    enabled: true
+    mountPath: /.aws
