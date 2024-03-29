@@ -1,7 +1,6 @@
-  ## Default values for kargo.
-  ## A human-readable version can be found in the chart README.
-  ## This is a YAML-formatted file.
-  ## Declare variables to be passed into your templates.
+cert:
+  enabled: true
+  issuerRef: letsencrypt-prod
 
 kargo:
   ## @section Image Parameters
@@ -102,7 +101,7 @@ kargo:
       ingressClassName: nginx
       tls:
         ## @param api.ingress.tls.enabled Whether to enable TLS for the ingress. All other settings in this section will be ignored when this is set to `false`.
-        enabled: false
+        enabled: true
         ## @param api.ingress.tls.selfSignedCert Whether to generate a self-signed certificate for use with the API server's Ingress resource. If `true`, `cert-manager` CRDs **must** be present in the cluster. Kargo will create and use its own namespaced issuer. If `false`, a cert secret named `kargo-api-ingress-cert` **must** be provided in the same namespace as Kargo.
         selfSignedCert: false
       ## @param api.ingress.pathType You may want to use `Prefix` for some controllers (like AWS LoadBalancer Ingress controller), which don't support `/` as wildcard path when pathType is set to `ImplementationSpecific`

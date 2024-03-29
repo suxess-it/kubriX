@@ -1,0 +1,13 @@
+{{- if .Values.cert.enabled }}
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: kargo-certificate
+spec:
+  secretName: kargo-api-ingress-cert
+  issuerRef:
+    name: {{ .Values.cert.issuerRef }}
+    kind: ClusterIssuer
+  dnsNames:
+    - {{ .Values.kargo.api.host }}
+{{- end }}
