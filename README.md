@@ -113,7 +113,7 @@ in your favorite browser:  https://grafana-127-0-0-1.nip.io:8667
 ### 4. Example App deployen
 
 Create a demo-app and kargo pipeline for this demo app:
-`kubectl apply -f https://raw.githubusercontent.com/suxess-it/sx-cnp-oss/main/team-apps/team-apps.yaml -n argocd`
+`kubectl apply -f https://raw.githubusercontent.com/suxess-it/sx-cnp-oss/main/team-apps/team-apps-k3d.yaml -n argocd`
 
 The demo-app gitops-repo is in `https://github.com/suxess-it/sx-cnp-oss-demo-app`
 Via an appset 3 stages get deployed and are managed in a Kargo-Project: `https://kargo-127-0-0-1.nip.io:8667/project/kargo-demo-app`
