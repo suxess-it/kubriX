@@ -8,6 +8,8 @@ backstage:
     enabled: true
     className: nginx
     host: portal-metalstack.platform-engineer.cloud
+    annotations:
+      external-dns.alpha.kubernetes.io/ttl: 60
     tls:
       enabled: true
       secretName: backstage-tls
