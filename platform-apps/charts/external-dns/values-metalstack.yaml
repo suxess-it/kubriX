@@ -3,6 +3,13 @@ external-dns:
     - name: AWS_SHARED_CREDENTIALS_FILE
       value: /.aws/credentials
 
-  secretConfiguration:
-    enabled: true
-    mountPath: /.aws
+  extraVolumeMounts:
+    - name: aws-credentials
+      mountPath: /.aws
+      readOnly: true
+
+  extraVolumes:
+    - name: aws-credentials
+      secret:
+        secretName: sx-external-dns
+
