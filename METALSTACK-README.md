@@ -52,16 +52,7 @@ The platform stack will be installed automagically ;)
 * prometheus
 * grafana
 
-### 2. create DNS entries
-
-Set the DNS Records in AWS Route53 to the Loadbalancer IP-Address of the K8s Cluster. The IP address is under "IP addresses" in the metalstack console.
-
-- portal-metalstack.platform-engineer.cloud
-- argocd-metalstack.platform-engineer.cloud
-- kargo-metalstack.platform-engineer.cloud
-- grafana-metalstack.platform-engineer.cloud
-
-### 3. wait until everything except backstage is app and running
+### 2. wait until everything except backstage is app and running
 
 wait until all pods are started:
 
@@ -77,7 +68,7 @@ watch kubectl get applications -n argocd
 
 backstage is still progressing. 
 
-### 4. create GITHUB secret manually
+### 3. create GITHUB secret manually
 
 create some secrets manually first, which I didn't want to put in git.
 
@@ -96,7 +87,7 @@ kubectl create secret generic -n backstage manual-secret --from-literal=GITHUB_C
 
 Restart backstage pod:
 ```
-kubectl rollout restart deploy/sx-cnp -n backstage
+kubectl rollout restart deploy/sx-backstage -n backstage
 ```
 
 ### 5. log in to argocd
