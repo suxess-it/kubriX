@@ -10,6 +10,26 @@ After creating a K8s cluster on https://console.metalstack.cloud/, copy the KUBE
 export KUBECONFIG=~/.kube/metalstack-config 
 ```
 
+if you manage your DNS-Names in AWS Route53 with external-dns:
+create IAM policy on AWS for AWS Route53: https://kubernetes-sigs.github.io/external-dns/v0.14.1/tutorials/aws/#iam-policy
+
+then create User and static credentials based on https://kubernetes-sigs.github.io/external-dns/v0.14.1/tutorials/aws/#static-credentials
+#TODO: i created the user in console, because I was too confused with logging into with aws cli. I need to understand and document this.
+
+create a file `credentials` where "Access key" and "Secret access key" are stored like this:
+
+```
+[default]
+aws_access_key_id = <access key>
+aws_secret_access_key = <secret access key>
+```
+create namespace and secret and delete local credentials file for security reasons:
+```
+kubectl create ns external-dns
+kubectl create secret generic -n external-dns sx-external-dns --from-file credentials
+rm credentials
+```
+
 ### 1. install the platform stack as follows
 
 ```
@@ -146,5 +166,20 @@ mit kargo
 
 
 
+# AWS helpful things (DRAFT)
 
+install aws cli:
+```
+curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+unzip awscliv2.zip
+./aws/install -i ~/bin/aws-cli -b ~/bin
+rm -rf aws
+rm -rf awscliv2.zip
+```
+configure aws cli: https://docs.aws.amazon.com/cli/latest/userguide/getting-started-quickstart.html
+
+create IAM policy:
+```
+aws iam create-policy --policy-name "AllowExternalDNSUpdates" --policy-document file://aws-resources/route53-iam-policy.json
+```
 
