@@ -77,7 +77,7 @@ kubectl create secret generic -n backstage manual-secret --from-literal=GITHUB_C
 Restart backstage pod:
 
 ```
-kubectl rollout restart deploy/sx-cnp -n backstage
+kubectl rollout restart deploy/sx-backstage -n backstage
 ```
 
 ### 4. log in to argocd
