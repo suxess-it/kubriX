@@ -72,7 +72,7 @@ backstage:
         #   target: 'https://example.com'
         #   changeOrigin: true
         "/argocd/api":
-          target: https://${ARGOCD_URL}/api/v1/
+          target: https://argocd-127-0-0-1.nip.io:8667/api/v1/
           changeOrigin: true
           secure: false
           headers:
@@ -81,37 +81,19 @@ backstage:
 
         '/grafana/api':
           # May be a public or an internal DNS
-          target: https://grafana.apps.cluster1.mcp.pitagora.at
+          target: https://grafana-127-0-0-1.nip.io:8667
           headers:
             Authorization: Bearer ${GRAFANA_TOKEN}
 
-        '/openshift-image-registry/api':
-          target: https://${RH_IMAGE_REGISTRY_URL}
-          headers:
-            X-Requested-With: 'XMLHttpRequest'
-            Authorization: Bearer ${RH_IMAGE_REGISTRY_TOKEN}
-          changeOrigin: true
-          # Change to "false" in case of using self hosted OpenShift cluster with a self-signed certificate
-          secure: false
-
-        '/jira/api':
-          target: ${JIRA_URL}
-          headers:
-            Authorization: "Basic ${JIRA_TOKEN}"
-            Accept: 'application/json'
-            Content-Type: 'application/json'
-            X-Atlassian-Token: 'nocheck'
-            User-Agent: "test"
-
       argocd:
-        baseUrl: https://${ARGOCD_URL}
-        username: ${ARGOCD_USERNAME}
-        password: ${ARGOCD_PASSWORD}
+        baseUrl: https://argocd-127-0-0-1.nip.io:8667/
+        username: admin
+        password: admin
         appLocatorMethods:
           - type: 'config'
             instances:
               - name: main
-                url: https://${ARGOCD_URL_LE}
+                url: https://argocd-127-0-0-1.nip.io:8667/
 
       # Reference documentation http://backstage.io/docs/features/techdocs/configuration
       # Note: After experimenting with basic setup, use CI/CD to generate docs
@@ -182,7 +164,7 @@ backstage:
       
       grafana:
         # Publicly accessible domain
-        domain: https://grafana.apps.cluster1.mcp.pitagora.at
+        domain: https://grafana-127-0-0-1.nip.io:8667
 
         # Is unified alerting enabled in Grafana?
         # See: https://grafana.com/blog/2021/06/14/the-new-unified-alerting-system-for-grafana-everything-you-need-to-know/
