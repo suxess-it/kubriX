@@ -71,7 +71,9 @@ use GITHUB_CLIENTSECRET and GITHUB_CLIENTID from your Github OAuth App for the f
 ```
 export GITHUB_CLIENTSECRET=<value from steps above>
 export GITHUB_CLIENTID=<value from steps above>
-kubectl create secret generic -n backstage manual-secret --from-literal=GITHUB_CLIENTSECRET=${GITHUB_CLIENTSECRET} --from-literal=GITHUB_CLIENTID=${GITHUB_CLIENTID}
+export GITHUB_ORG=<your github handle>
+export GITHUB_TOKEN=<your personal access token>
+kubectl create secret generic -n backstage manual-secret --from-literal=GITHUB_CLIENTSECRET=${GITHUB_CLIENTSECRET} --from-literal=GITHUB_CLIENTID=${GITHUB_CLIENTID} --from-literal=GITHUB_ORG=${GITHUB_ORG} --from-literal=GITHUB_TOKEN=${GITHUB_TOKEN}
 ```
 
 Restart backstage pod:
