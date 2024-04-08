@@ -147,12 +147,12 @@ backstage:
             apiVersion: 'v1alpha1'
             plural: 'configauditreports'
         serviceLocatorMethod:
-          type: multiTenant
+          type: singleTenant
         clusterLocatorMethods:
           - type: config
             clusters:
-              - url: https://${K8S_API_URL}
-                name: openshift
+              - url: https://kubernetes.default.svc
+                name: k3d-local
                 authProvider: serviceAccount
                 skipTLSVerify: true
                 skipMetricsLookup: true
