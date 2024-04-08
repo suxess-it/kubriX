@@ -6,10 +6,8 @@ argo-cd:
     params:
       server.insecure: true
     secret:
-      argocdServerAdminPassword: "$2a$10$u/pIDG1quutGOWfVWOHMnOPiYcl5S79z/MYdxMTi8tcPZhBCwaDvK"
-      extra:
-        # TODO: not secure, but due to https://github.com/suxess-it/sx-cnp-oss/issues/48
-        server.secretkey: 0g3Z0b3lrm7FbF0Nnnm7JNt/nJEhLwcAD/Uzo+PjDDM=
+      createSecret: false
+
     cm:
       accounts.backstage: apiKey
 
