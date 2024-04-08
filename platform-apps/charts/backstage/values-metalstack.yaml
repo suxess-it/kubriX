@@ -78,7 +78,7 @@ backstage:
         #   target: 'https://example.com'
         #   changeOrigin: true
         "/argocd/api":
-          target: https://${ARGOCD_URL}/api/v1/
+          target: https://argocd-metalstack.platform-engineer.cloud/api/v1/
           changeOrigin: true
           secure: false
           headers:
@@ -91,33 +91,15 @@ backstage:
           headers:
             Authorization: Bearer ${GRAFANA_TOKEN}
 
-        '/openshift-image-registry/api':
-          target: https://${RH_IMAGE_REGISTRY_URL}
-          headers:
-            X-Requested-With: 'XMLHttpRequest'
-            Authorization: Bearer ${RH_IMAGE_REGISTRY_TOKEN}
-          changeOrigin: true
-          # Change to "false" in case of using self hosted OpenShift cluster with a self-signed certificate
-          secure: false
-
-        '/jira/api':
-          target: ${JIRA_URL}
-          headers:
-            Authorization: "Basic ${JIRA_TOKEN}"
-            Accept: 'application/json'
-            Content-Type: 'application/json'
-            X-Atlassian-Token: 'nocheck'
-            User-Agent: "test"
-
       argocd:
         baseUrl: https://argocd-metalstack.platform-engineer.cloud
-        username: ${ARGOCD_USERNAME}
-        password: ${ARGOCD_PASSWORD}
+        username: admin
+        password: admin
         appLocatorMethods:
           - type: 'config'
             instances:
               - name: main
-                url: https://${ARGOCD_URL_LE}
+                url: https://argocd-metalstack.platform-engineer.cloud
 
       # Reference documentation http://backstage.io/docs/features/techdocs/configuration
       # Note: After experimenting with basic setup, use CI/CD to generate docs
@@ -175,8 +157,8 @@ backstage:
         clusterLocatorMethods:
           - type: config
             clusters:
-              - url: https://${K8S_API_URL}
-                name: openshift
+              - url: https://kubernetes.default.svc
+                name: metalstack
                 authProvider: serviceAccount
                 skipTLSVerify: true
                 skipMetricsLookup: true
@@ -265,5 +247,3 @@ backstage:
         # Add it in case your JIRA instance is connected to Confluence, in order to filter those activities
         # confluenceActivityFilter: wiki@uuid
         # Defaults to latest and can be omitted if you want to use the latest version of the api
-
-
