@@ -68,13 +68,24 @@ create OAuth App on Github for Backstage login: https://backstage.io/docs/auth/g
 
 use GITHUB_CLIENTSECRET and GITHUB_CLIENTID from your Github OAuth App for the following environment variables.
 
+create ArgoCD Token for backstage account:
+
+```
+argocd login argocd-127-0-0-1.nip.io:8667
+argocd account get --account backstage
+argocd account generate-token --account backstage
+
+use output in variable
+export ARGOCD_AUTH_TOKEN="argocd.token=<output from above>"
+```
+
 ```
 export GITHUB_CLIENTSECRET=<value from steps above>
 export GITHUB_CLIENTID=<value from steps above>
 export GITHUB_ORG=<your github handle>
 export GITHUB_TOKEN=<your personal access token>
 export K8S_SA_TOKEN=$( kubectl get secret backstage-locator -n backstage  -o jsonpath='{.data.token}' | base64 -d )
-kubectl create secret generic -n backstage manual-secret --from-literal=GITHUB_CLIENTSECRET=${GITHUB_CLIENTSECRET} --from-literal=GITHUB_CLIENTID=${GITHUB_CLIENTID} --from-literal=GITHUB_ORG=${GITHUB_ORG} --from-literal=GITHUB_TOKEN=${GITHUB_TOKEN} --from-literal=K8S_SA_TOKEN=${K8S_SA_TOKEN}
+kubectl create secret generic -n backstage manual-secret --from-literal=GITHUB_CLIENTSECRET=${GITHUB_CLIENTSECRET} --from-literal=GITHUB_CLIENTID=${GITHUB_CLIENTID} --from-literal=GITHUB_ORG=${GITHUB_ORG} --from-literal=GITHUB_TOKEN=${GITHUB_TOKEN} --from-literal=K8S_SA_TOKEN=${K8S_SA_TOKEN} --from-literal=ARGOCD_AUTH_TOKEN=${ARGOCD_AUTH_TOKEN}
 ```
 
 Restart backstage pod:
