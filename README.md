@@ -100,6 +100,9 @@ create secret
 
 # TODO: not secure, but due to https://github.com/suxess-it/sx-cnp-oss/issues/48
 kubectl create secret generic argocd-secret -n argocd --from-literal=argocdServerAdminPassword="$2a$10$u/pIDG1quutGOWfVWOHMnOPiYcl5S79z/MYdxMTi8tcPZhBCwaDvK" --from-literal=server.secretkey=0g3Z0b3lrm7FbF0Nnnm7JNt/nJEhLwcAD/Uzo+PjDDM=
+kubectl label secret argocd-secret -n argocd app.kubernetes.io/name=argocd-secret app.kubernetes.io/part-of=argocd
+
+
 
 in your favorite browser:  https://argocd-127-0-0-1.nip.io:8667/
 
