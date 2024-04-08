@@ -72,7 +72,8 @@ backstage:
         #   target: 'https://example.com'
         #   changeOrigin: true
         "/argocd/api":
-          target: https://argocd-127-0-0-1.nip.io:8667/api/v1/
+          # use k8s internal service name because argocd-127-0-0-1.nip.io resolves to 127.0.0.1 in container, too
+          target: http://argocd-server.argocd:80/api/v1/api/v1/
           changeOrigin: true
           secure: false
           headers:
