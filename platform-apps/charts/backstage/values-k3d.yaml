@@ -132,13 +132,6 @@ backstage:
               - allow: [Template]
 
       kubernetes:
-        customResources:
-          - group: 'core.k8sgpt.ai'
-            apiVersion: 'v1alpha1'
-            plural: 'results'
-          - group: 'aquasecurity.github.io'
-            apiVersion: 'v1alpha1'
-            plural: 'configauditreports'
         serviceLocatorMethod:
           type: multiTenant
         clusterLocatorMethods:
