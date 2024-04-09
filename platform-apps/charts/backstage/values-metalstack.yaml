@@ -131,27 +131,13 @@ backstage:
           - allow: [Component, System, API, Resource, Location, Template, Domain, User, Group ]
         locations:
           - type: url
-            target: https://github.com/phac008/backstage-sx/blob/main/catalog-entities/all.yaml
-
-          - type: url
-            target: https://github.com/phac008/backstage-sx/blob/main/catalog-entities/acme-corp.yaml
-
-          - type: url
-            target: https://github.com/phac008/my-kubernetes-component/blob/main/catalog-info.yaml
-
+            target: https://github.com/suxess-it/sx-cnp-oss-demo-app/blob/main/catalog-info.yaml
           - type: url
             target: https://github.com/phac008/software-templates/blob/main/showcase-templates.yaml
             rules:
               - allow: [Template]
 
       kubernetes:
-        customResources:
-          - group: 'core.k8sgpt.ai'
-            apiVersion: 'v1alpha1'
-            plural: 'results'
-          - group: 'aquasecurity.github.io'
-            apiVersion: 'v1alpha1'
-            plural: 'configauditreports'
         serviceLocatorMethod:
           type: multiTenant
         clusterLocatorMethods:
