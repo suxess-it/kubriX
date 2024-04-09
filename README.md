@@ -98,10 +98,11 @@ kubectl rollout restart deploy/sx-backstage -n backstage
 
 create secret
 
-# TODO: not secure, but due to https://github.com/suxess-it/sx-cnp-oss/issues/48
-# I apply a file because the bcrypt value with "kubectl create secret ... --from-literal" gets messed up
+TODO: not secure, but due to https://github.com/suxess-it/sx-cnp-oss/issues/48
+I apply a file because the bcrypt value with "kubectl create secret ... --from-literal" gets messed up
+```
 kubectl apply -f https://raw.githubusercontent.com/suxess-it/sx-cnp-oss/main/platform-apps/charts/argocd/manual-secret/argocd-secret.yaml
-
+```
 
 in your favorite browser:  https://argocd-127-0-0-1.nip.io:8667/
 
