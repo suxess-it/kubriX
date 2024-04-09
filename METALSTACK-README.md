@@ -68,7 +68,25 @@ watch kubectl get applications -n argocd
 
 backstage is still progressing. 
 
-### 3. create GITHUB secret manually
+### 3. log in to argocd
+
+create secret
+
+TODO: not secure, but due to https://github.com/suxess-it/sx-cnp-oss/issues/48
+I apply a file because the bcrypt value with "kubectl create secret ... --from-literal" gets messed up
+```
+kubectl apply -f https://raw.githubusercontent.com/suxess-it/sx-cnp-oss/main/platform-apps/charts/argocd/manual-secret/argocd-secret.yaml
+```
+
+If ingress is not working, use port-forwarding for accessing argocd console and investigate what is wrong
+```
+kubectl port-forward svc/argocd-server -n argocd 8080:80
+```
+
+- Username: `admin`
+- Password: `admin`
+
+### 4. create Backstage secret manually
 
 create some secrets manually first, which I didn't want to put in git.
 
@@ -79,10 +97,24 @@ create OAuth App on Github for Backstage login: https://backstage.io/docs/auth/g
 
 use GITHUB_CLIENTSECRET and GITHUB_CLIENTID from your Github OAuth App for the following environment variables.
 
+create ArgoCD Token for backstage account:
+
+```
+argocd login argocd-metalstack.platform-engineer.cloud
+argocd account get --account backstage
+argocd account generate-token --account backstage
+
+use output in variable
+export ARGOCD_AUTH_TOKEN="argocd.token=<output from above>"
+```
+
 ```
 export METALSTACK_GITHUB_CLIENTID=<value from steps above>
 export METALSTACK_GITHUB_CLIENTSECRET=<value from steps above>
-kubectl create secret generic -n backstage manual-secret --from-literal=GITHUB_CLIENTSECRET=${METALSTACK_GITHUB_CLIENTSECRET} --from-literal=GITHUB_CLIENTID=${METALSTACK_GITHUB_CLIENTID}
+export GITHUB_ORG=<your github handle>
+export GITHUB_TOKEN=<your personal access token>
+export K8S_SA_TOKEN=$( kubectl get secret backstage-locator -n backstage  -o jsonpath='{.data.token}' | base64 -d )
+kubectl create secret generic -n backstage manual-secret --from-literal=GITHUB_CLIENTSECRET=${METALSTACK_GITHUB_CLIENTSECRET} --from-literal=GITHUB_CLIENTID=${METALSTACK_GITHUB_CLIENTID} --from-literal=GITHUB_ORG=${GITHUB_ORG} --from-literal=GITHUB_TOKEN=${GITHUB_TOKEN} --from-literal=K8S_SA_TOKEN=${K8S_SA_TOKEN} --from-literal=ARGOCD_AUTH_TOKEN=${ARGOCD_AUTH_TOKEN}
 ```
 
 Restart backstage pod:
@@ -90,26 +122,9 @@ Restart backstage pod:
 kubectl rollout restart deploy/sx-backstage -n backstage
 ```
 
-### 5. log in to argocd
+### 5. log in to backstage
 
-in your favorite browser:  https://argocd-metalstack.platform-engineer.cloud/
-
-from latest experiences it takes a long time that cert-manager creates the correct certificate and secret.
-we need to investigate why this happens.
-
-if argocd says "server.secretkey" is missing, try
-
-```
-kubectl rollout restart deploy/argocd-server -n argocd
-```
-
-If ingress is not working, use port-forwarding for accessing argocd console and investigate what is wrong
-```
-kubectl port-forward svc/argocd-server -n argocd 8080:80
-```
-
-- Username: `admin`
-- Password: `kubectl get secret -n argocd argocd-initial-admin-secret -o jsonpath='{.data.password}' | base64 -d`
+in your favorite browser:  https://portal-metalstack.platform-engineer.cloud
 
 ### 6. log in to kargo
 
@@ -117,18 +132,14 @@ in your favorite browser:  https://kargo-metalstack.platform-engineer.cloud/
 
 Password: 'admin'
 
-### 7. log in to backstage
-
-in your favorite browser:  https://portal-metalstack.platform-engineer.cloud
-
-### 8. log in to grafana
+### 7. log in to grafana
 
 in your favorite browser:  https://grafana-metalstack.platform-engineer.cloud
 
 - Username: `admin`
 - Password: `prom-operator`
 
-### 4. Example App deployen
+### 8. Example App deployen
 
 Create a demo-app and kargo pipeline for this demo app:
 `kubectl apply -f https://raw.githubusercontent.com/suxess-it/sx-cnp-oss/main/team-apps/team-apps-metalstack.yaml -n argocd`
@@ -151,7 +162,7 @@ URLs for stages (need to be registered in aws route53):
 - qa: http://qa-demo-app-metalstack.platform-engineer.cloud
 - prod: http://prod-demo-metalstack.platform-engineer.cloud
 
-### 5. Promote über die Stages
+### 9. Promote über die Stages
 
 mit kargo
 

@@ -10,6 +10,15 @@ argo-cd:
   configs:
     params:
       server.insecure: true
+    secret:
+      createSecret: false
+
+    cm:
+      accounts.backstage: apiKey
+
+    rbac:
+      policy.csv: |
+        p, backstage, applications, get, */*, allow
 
   server:
     ingress:

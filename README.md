@@ -132,7 +132,7 @@ in your favorite browser:  https://grafana-127-0-0-1.nip.io:8667
 - Username: `admin`
 - Password: `prom-operator`
 
-### 4. Example App deployen
+### 8. Example App deployen
 
 Create a demo-app and kargo pipeline for this demo app:
 `kubectl apply -f https://raw.githubusercontent.com/suxess-it/sx-cnp-oss/main/team-apps/team-apps-k3d.yaml -n argocd`
@@ -155,7 +155,7 @@ URLs for stages:
 - qa: http://qa-demo-app-127-0-0-1.nip.io:8666/
 - prod: http://prod-demo-app-127-0-0-1.nip.io:8666/
 
-### 5. Promote über die Stages
+### 9. Promote über die Stages
 
 mit kargo
 
