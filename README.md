@@ -57,7 +57,28 @@ watch kubectl get applications -n argocd
 
 backstage is still progressing. 
 
-### 3. create Backstage secret manually
+### 3. log in to argocd
+
+create secret
+
+TODO: not secure, but due to https://github.com/suxess-it/sx-cnp-oss/issues/48
+I apply a file because the bcrypt value with "kubectl create secret ... --from-literal" gets messed up
+```
+kubectl apply -f https://raw.githubusercontent.com/suxess-it/sx-cnp-oss/main/platform-apps/charts/argocd/manual-secret/argocd-secret.yaml
+```
+
+in your favorite browser:  https://argocd-127-0-0-1.nip.io:8667/
+
+if argocd says "server.secretkey" is missing, try
+
+```
+kubectl rollout restart deploy/argocd-server -n argocd
+```
+
+- Username: `admin`
+- Password: `admin`
+
+### 4. create Backstage secret manually
 
 create some secrets manually first, which I didn't want to put in git.
 
@@ -94,35 +115,15 @@ Restart backstage pod:
 kubectl rollout restart deploy/sx-backstage -n backstage
 ```
 
-### 4. log in to argocd
+### 5. log in to backstage
 
-create secret
+in your favorite browser:  https://backstage-127-0-0-1.nip.io:8667
 
-# TODO: not secure, but due to https://github.com/suxess-it/sx-cnp-oss/issues/48
-# I apply a file because the bcrypt value with "kubectl create secret ... --from-literal" gets messed up
-kubectl apply -f https://raw.githubusercontent.com/suxess-it/sx-cnp-oss/main/platform-apps/charts/argocd/manual-secret/argocd-secret.yaml
-
-
-in your favorite browser:  https://argocd-127-0-0-1.nip.io:8667/
-
-if argocd says "server.secretkey" is missing, try
-
-```
-kubectl rollout restart deploy/argocd-server -n argocd
-```
-
-- Username: `admin`
-- Password: `admin`
-
-### 5. log in to kargo
+### 6. log in to kargo
 
 in your favorite browser:  https://kargo-127-0-0-1.nip.io:8667
 
 Password: 'admin'
-
-### 6. log in to backstage
-
-in your favorite browser:  https://backstage-127-0-0-1.nip.io:8667
 
 ### 7. log in to grafana
 
