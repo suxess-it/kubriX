@@ -115,15 +115,15 @@ Restart backstage pod:
 kubectl rollout restart deploy/sx-backstage -n backstage
 ```
 
-### 5. log in to kargo
+### 5. log in to backstage
+
+in your favorite browser:  https://backstage-127-0-0-1.nip.io:8667
+
+### 6. log in to kargo
 
 in your favorite browser:  https://kargo-127-0-0-1.nip.io:8667
 
 Password: 'admin'
-
-### 6. log in to backstage
-
-in your favorite browser:  https://backstage-127-0-0-1.nip.io:8667
 
 ### 7. log in to grafana
 
