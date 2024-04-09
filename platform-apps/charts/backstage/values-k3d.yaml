@@ -81,8 +81,8 @@ backstage:
               $env: ARGOCD_AUTH_TOKEN
 
         '/grafana/api':
-          # May be a public or an internal DNS
-          target: https://grafana-127-0-0-1.nip.io:8667
+          # use k8s internal service name because grafana-127-0-0-1.nip.io resolves to 127.0.0.1 in container, too
+          target: http://sx-kube-prometheus-stack-grafana.monitoring:80
           headers:
             Authorization: Bearer ${GRAFANA_TOKEN}
 
