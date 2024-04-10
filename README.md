@@ -102,9 +102,9 @@ export ARGOCD_AUTH_TOKEN="argocd.token=<output from above>"
 create Grafana ServiceAccount token for backstage:
 
 ```
-curl -k -X POST https://grafana-127-0-0-1.nip.io:8667/api/serviceaccounts --user 'admin:prom-operator' -H "Content-Type: application/json" -d '{"name": "backstage","role": "Viewer","isDisabled": false}'
+ID=$( curl -k -X POST https://grafana-127-0-0-1.nip.io:8667/api/serviceaccounts --user 'admin:prom-operator' -H "Content-Type: application/json" -d '{"name": "backstage","role": "Viewer","isDisabled": false}' | jq -r .id )
 
-GRAFANA_TOKEN=$(curl -k -X POST https://grafana-127-0-0-1.nip.io:8667/api/serviceaccounts/2/tokens --user 'admin:prom-operator' -H "Content-Type: application/json" -d '{"name": "backstage"}' | jq .key)
+export GRAFANA_TOKEN=$(curl -k -X POST https://grafana-127-0-0-1.nip.io:8667/api/serviceaccounts/${ID}/tokens --user 'admin:prom-operator' -H "Content-Type: application/json" -d '{"name": "backstage"}' | jq -r .key)
 ```
 
 
