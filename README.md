@@ -89,8 +89,7 @@ create OAuth App on Github for Backstage login: https://backstage.io/docs/auth/g
 
 use GITHUB_CLIENTSECRET and GITHUB_CLIENTID from your Github OAuth App for the following environment variables.
 
-create ArgoCD Token for backstage account:
-
+create ArgoCD Token for backstage:
 ```
 argocd login argocd-127-0-0-1.nip.io:8667
 argocd account get --account backstage
@@ -100,13 +99,22 @@ use output in variable
 export ARGOCD_AUTH_TOKEN="argocd.token=<output from above>"
 ```
 
+create Grafana ServiceAccount token for backstage:
+
+```
+curl -k -X POST https://grafana-127-0-0-1.nip.io:8667/api/serviceaccounts --user 'admin:prom-operator' -H "Content-Type: application/json" -d '{"name": "backstage","role": "Viewer","isDisabled": false}'
+
+GRAFANA_TOKEN=$(curl -k -X POST https://grafana-127-0-0-1.nip.io:8667/api/serviceaccounts/2/tokens --user 'admin:prom-operator' -H "Content-Type: application/json" -d '{"name": "backstage"}' | jq .key)
+```
+
+
 ```
 export GITHUB_CLIENTSECRET=<value from steps above>
 export GITHUB_CLIENTID=<value from steps above>
 export GITHUB_ORG=<your github handle>
 export GITHUB_TOKEN=<your personal access token>
 export K8S_SA_TOKEN=$( kubectl get secret backstage-locator -n backstage  -o jsonpath='{.data.token}' | base64 -d )
-kubectl create secret generic -n backstage manual-secret --from-literal=GITHUB_CLIENTSECRET=${GITHUB_CLIENTSECRET} --from-literal=GITHUB_CLIENTID=${GITHUB_CLIENTID} --from-literal=GITHUB_ORG=${GITHUB_ORG} --from-literal=GITHUB_TOKEN=${GITHUB_TOKEN} --from-literal=K8S_SA_TOKEN=${K8S_SA_TOKEN} --from-literal=ARGOCD_AUTH_TOKEN=${ARGOCD_AUTH_TOKEN}
+kubectl create secret generic -n backstage manual-secret --from-literal=GITHUB_CLIENTSECRET=${GITHUB_CLIENTSECRET} --from-literal=GITHUB_CLIENTID=${GITHUB_CLIENTID} --from-literal=GITHUB_ORG=${GITHUB_ORG} --from-literal=GITHUB_TOKEN=${GITHUB_TOKEN} --from-literal=K8S_SA_TOKEN=${K8S_SA_TOKEN} --from-literal=ARGOCD_AUTH_TOKEN=${ARGOCD_AUTH_TOKEN} --from-literal=GRAFANA_TOKEN=${GRAFANA_TOKEN}
 ```
 
 Restart backstage pod:
