@@ -40,6 +40,8 @@ The platform stack will be installed automagically ;)
 * kyverno
 * prometheus
 * grafana
+* promtail
+* loki
 
 ### 2. wait until everything except backstage is app and running
 
