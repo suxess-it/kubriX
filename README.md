@@ -67,7 +67,7 @@ I apply a file because the bcrypt value with "kubectl create secret ... --from-l
 kubectl apply -f https://raw.githubusercontent.com/suxess-it/sx-cnp-oss/main/platform-apps/charts/argocd/manual-secret/argocd-secret.yaml
 ```
 
-in your favorite browser:  https://argocd-127-0-0-1.nip.io:8667/
+in your favorite browser:  https://argocd-127-0-0-1.nip.io/
 
 if argocd says "server.secretkey" is missing, try
 
@@ -84,14 +84,14 @@ create some secrets manually first, which I didn't want to put in git.
 
 create OAuth App on Github for Backstage login: https://backstage.io/docs/auth/github/provider/
 
-- Homepage URL: https://backstage-127-0-0-1.nip.io:8667/
-- Authorization callback URL: https://backstage-127-0-0-1.nip.io:8667/api/auth/github
+- Homepage URL: https://backstage-127-0-0-1.nip.io
+- Authorization callback URL: https://backstage-127-0-0-1.nip.io/api/auth/github
 
 use GITHUB_CLIENTSECRET and GITHUB_CLIENTID from your Github OAuth App for the following environment variables.
 
 create ArgoCD Token for backstage:
 ```
-argocd login argocd-127-0-0-1.nip.io:8667
+argocd login argocd-127-0-0-1.nip.io
 argocd account get --account backstage
 argocd account generate-token --account backstage
 
@@ -102,9 +102,9 @@ export ARGOCD_AUTH_TOKEN="argocd.token=<output from above>"
 create Grafana ServiceAccount token for backstage:
 
 ```
-ID=$( curl -k -X POST https://grafana-127-0-0-1.nip.io:8667/api/serviceaccounts --user 'admin:prom-operator' -H "Content-Type: application/json" -d '{"name": "backstage","role": "Viewer","isDisabled": false}' | jq -r .id )
+ID=$( curl -k -X POST https://grafana-127-0-0-1.nip.io/api/serviceaccounts --user 'admin:prom-operator' -H "Content-Type: application/json" -d '{"name": "backstage","role": "Viewer","isDisabled": false}' | jq -r .id )
 
-export GRAFANA_TOKEN=$(curl -k -X POST https://grafana-127-0-0-1.nip.io:8667/api/serviceaccounts/${ID}/tokens --user 'admin:prom-operator' -H "Content-Type: application/json" -d '{"name": "backstage"}' | jq -r .key)
+export GRAFANA_TOKEN=$(curl -k -X POST https://grafana-127-0-0-1.nip.io/api/serviceaccounts/${ID}/tokens --user 'admin:prom-operator' -H "Content-Type: application/json" -d '{"name": "backstage"}' | jq -r .key)
 ```
 
 
@@ -125,17 +125,17 @@ kubectl rollout restart deploy/sx-backstage -n backstage
 
 ### 5. log in to backstage
 
-in your favorite browser:  https://backstage-127-0-0-1.nip.io:8667
+in your favorite browser:  https://backstage-127-0-0-1.nip.io
 
 ### 6. log in to kargo
 
-in your favorite browser:  https://kargo-127-0-0-1.nip.io:8667
+in your favorite browser:  https://kargo-127-0-0-1.nip.io
 
 Password: 'admin'
 
 ### 7. log in to grafana
 
-in your favorite browser:  https://grafana-127-0-0-1.nip.io:8667
+in your favorite browser:  https://grafana-127-0-0-1.nip.io
 
 - Username: `admin`
 - Password: `prom-operator`
@@ -146,7 +146,7 @@ Create a demo-app and kargo pipeline for this demo app:
 `kubectl apply -f https://raw.githubusercontent.com/suxess-it/sx-cnp-oss/main/team-apps/team-apps-k3d.yaml -n argocd`
 
 The demo-app gitops-repo is in `https://github.com/suxess-it/sx-cnp-oss-demo-app`
-Via an appset 3 stages get deployed and are managed in a Kargo-Project: `https://kargo-127-0-0-1.nip.io:8667/project/kargo-demo-app`
+Via an appset 3 stages get deployed and are managed in a Kargo-Project: `https://kargo-127-0-0-1.nip.io/project/kargo-demo-app`
 
 kargo needs to write to your gitops repo to promote changed from one stage to another. in this demo we use the [suxess-it demo-app](https://github.com/suxess-it/sx-cnp-oss-demo-app).
 
@@ -159,9 +159,9 @@ kubectl label secret git-demo-app -n kargo-demo-app kargo.akuity.io/secret-type=
 
 URLs for stages:
 
-- test: http://test-demo-app-127-0-0-1.nip.io:8666/
-- qa: http://qa-demo-app-127-0-0-1.nip.io:8666/
-- prod: http://prod-demo-app-127-0-0-1.nip.io:8666/
+- test: http://test-demo-app-127-0-0-1.nip.io
+- qa: http://qa-demo-app-127-0-0-1.nip.io
+- prod: http://prod-demo-app-127-0-0-1.nip.io
 
 ### 9. Promote über die Stages
 

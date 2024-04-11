@@ -19,7 +19,7 @@ backstage:
     appConfig:
       app:
         title: sX CNP App
-        baseUrl: https://backstage-127-0-0-1.nip.io:8667
+        baseUrl: https://backstage-127-0-0-1.nip.io
 
       organization:
         name: sX CNP
@@ -31,18 +31,18 @@ backstage:
         # auth:
         #   keys:
         #     - secret: ${BACKEND_SECRET}
-        baseUrl: https://backstage-127-0-0-1.nip.io:8667
+        baseUrl: https://backstage-127-0-0-1.nip.io
         listen:
           port: 7007
           # Uncomment the following host directive to bind to specific interfaces
           # host: 127.0.0.1
         csp:
           connect-src: ["'self'", 'http:', 'https:']
-          frame-src: ['*.nip.io:8667']
+          frame-src: ['*.nip.io']
           # Content-Security-Policy directives follow the Helmet format: https://helmetjs.github.io/#reference
           # Default Helmet Content-Security-Policy values can be removed by setting the key to false
         cors:
-          origin: https://backstage-127-0-0-1.nip.io:8667
+          origin: https://backstage-127-0-0-1.nip.io
           methods: [GET, HEAD, PATCH, POST, PUT, DELETE]
           credentials: true
         # This is for local development only, it is not recommended to use this in production
@@ -87,14 +87,14 @@ backstage:
             Authorization: Bearer ${GRAFANA_TOKEN}
 
       argocd:
-        baseUrl: https://argocd-127-0-0-1.nip.io:8667/
+        baseUrl: https://argocd-127-0-0-1.nip.io/
         username: admin
         password: admin
         appLocatorMethods:
           - type: 'config'
             instances:
               - name: main
-                url: https://argocd-127-0-0-1.nip.io:8667/
+                url: https://argocd-127-0-0-1.nip.io/
 
       # Reference documentation http://backstage.io/docs/features/techdocs/configuration
       # Note: After experimenting with basic setup, use CI/CD to generate docs
@@ -151,7 +151,7 @@ backstage:
       
       grafana:
         # Publicly accessible domain
-        domain: https://grafana-127-0-0-1.nip.io:8667
+        domain: https://grafana-127-0-0-1.nip.io
 
         # Is unified alerting enabled in Grafana?
         # See: https://grafana.com/blog/2021/06/14/the-new-unified-alerting-system-for-grafana-everything-you-need-to-know/

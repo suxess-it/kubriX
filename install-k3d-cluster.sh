@@ -6,8 +6,8 @@ set -x
 export K3D_FIX_DNS=1
 
 k3d cluster create cnp-local-demo \
-  -p "8666:80@loadbalancer" \
-  -p "8667:443@loadbalancer" \
+  -p "80:80@loadbalancer" \
+  -p "443:443@loadbalancer" \
   --agents 2 \
   --wait
 
