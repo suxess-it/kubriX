@@ -1,4 +1,3 @@
----
 loki:
   commonConfig:
     replication_factor: 1
@@ -19,19 +18,6 @@ loki:
   querier:
     # Default is 4, if you have enough memory and CPU you can increase, reduce if OOMing
     max_concurrent: 2
-
-#gateway:
-#  ingress:
-#    enabled: true
-#    hosts:
-#      - host: loki-127-0-0-1.nip.io
-#        paths:
-#          - path: /
-#            pathType: Prefix
-#    tls:
-#      - hosts:
-#        - loki-127-0-0-1.nip.io
-#      - secretName: loki-gateway-tls
 
 deploymentMode: SingleBinary
 singleBinary:
