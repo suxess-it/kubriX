@@ -25,20 +25,6 @@ appVersion: "1.0.0"
 
 dependencies:
   - name: loki
-    version: 6.1.0
+    alias: loki
+    version: 6.2.0
     repository: https://grafana.github.io/helm-charts
-  - name: minio
-    alias: minio
-    version: 4.0.15
-    repository: https://charts.min.io/
-    condition: minio.enabled
-  - name: grafana-agent-operator
-    alias: grafana-agent-operator
-    version: 0.3.15
-    repository: https://grafana.github.io/helm-charts
-    condition: monitoring.selfMonitoring.grafanaAgent.installOperator
-  - name: rollout-operator
-    alias: rollout_operator
-    repository: https://grafana.github.io/helm-charts
-    version: 0.13.0
-    condition: rollout_operator.enabled
