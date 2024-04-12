@@ -15,7 +15,7 @@ k3d cluster create cnp-local-demo \
 for namespace in backstage kargo grafana argocd ; do
   kubectl create namespace ${namespace}
   mkcert -cert-file ${namespace}-cert.pem -key-file ${namespace}-key.pem ${namespace}-127-0-0-1.nip.io
-  kubectl create secret tls ${namespace}-server-tls -n argocd --cert=${namespace}-cert.pem --key=${namespace}-key.pem
+  kubectl create secret tls ${namespace}-server-tls -n ${namespace} --cert=${namespace}-cert.pem --key=${namespace}-key.pem
   rm ${namespace}-cert.pem ${namespace}-key.pem
 done
 
