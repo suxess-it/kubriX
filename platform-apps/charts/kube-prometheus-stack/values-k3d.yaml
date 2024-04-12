@@ -1116,7 +1116,10 @@ kube-prometheus-stack:
 
     ## Configure additional grafana datasources (passed through tpl)
     ## ref: http://docs.grafana.org/administration/provisioning/#datasources
-    additionalDataSources: []
+    additionalDataSources: 
+    - name: LokiDS
+      type: loki
+      url: http://sx-loki:3100
     # - name: prometheus-sample
     #   access: proxy
     #   basicAuth: true
