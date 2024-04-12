@@ -8,9 +8,9 @@ data:
   datasource.yaml: |-
     apiVersion: 1
     datasources:
-    - name: loki2
+    - name: loki
       type: loki
-      uid: loki2
+      uid: loki
       basicAuth: false
       url: http://{{ template "loki.fullname" .Subcharts.loki }}:3100
       access: proxy
