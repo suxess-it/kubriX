@@ -16,7 +16,7 @@ for namespace in backstage kargo monitoring argocd ; do
   kubectl create namespace ${namespace}
   mkcert -cert-file ${namespace}-cert.pem -key-file ${namespace}-key.pem ${namespace}-127-0-0-1.nip.io
   # kargo needs a special secret name according to its helm chart
-  if [[ "${namespace}" = "kargo" ]]; then
+  if [ "${namespace}" = "kargo" ]; then
     kubectl create secret tls kargo-api-ingress-cert -n ${namespace} --cert=${namespace}-cert.pem --key=${namespace}-key.pem
   else
     kubectl create secret tls ${namespace}-server-tls -n ${namespace} --cert=${namespace}-cert.pem --key=${namespace}-key.pem
