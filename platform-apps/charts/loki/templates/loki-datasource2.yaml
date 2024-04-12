@@ -3,7 +3,7 @@ kind: ConfigMap
 metadata:
   name: {{ template "loki.fullname" .Subcharts.loki }}-datasource2
   labels:
-    grafana_datasource: "true"
+    grafana_datasource: "1"
 data:
   datasource.yaml: |-
     apiVersion: 1
