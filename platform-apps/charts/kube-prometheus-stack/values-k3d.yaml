@@ -1019,10 +1019,10 @@ kube-prometheus-stack:
       ## TLS configuration for grafana Ingress
       ## Secret must be manually created in the namespace
       ##
-      tls: []
-      # - secretName: grafana-general-tls
-      #   hosts:
-      #   - grafana.example.com
+      tls:
+        - secretName: monitoring-server-tls
+          hosts:
+          - grafana-127-0-0-1.nip.io
 
     # # To make Grafana persistent (Using Statefulset)
     # #
