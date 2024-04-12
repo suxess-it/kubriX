@@ -42,6 +42,7 @@ The platform stack will be installed automagically ;)
 * grafana
 * promtail
 * loki
+* tempo
 
 ### 2. wait until everything except backstage is app and running
 
