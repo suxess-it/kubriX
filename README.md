@@ -189,4 +189,5 @@ git switch feat/cnp-local-demo-jokl
 docker build -t sx-backstage:latest .
 docker tag sx-backstage:latest ghcr.io/suxess-it/sx-backstage:latest
 docker push ghcr.io/suxess-it/sx-backstage:latest
+kubectl rollout restart deploy/sx-backstage -n backstage
 ```
