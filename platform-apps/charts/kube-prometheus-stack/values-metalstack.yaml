@@ -950,6 +950,14 @@ kube-prometheus-stack:
   ##
   grafana:
     enabled: true
+
+    # set cookies for backstage plugin integration
+    grafana.ini:
+      security:
+        allow_embedding: 'true'
+        cookie_samesite: none
+        cookie_secure: 'true'
+        
     namespaceOverride: ""
 
     ## ForceDeployDatasources Create datasource configmap even if grafana deployment has been disabled
