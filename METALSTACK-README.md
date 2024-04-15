@@ -140,7 +140,9 @@ kubectl rollout restart deploy/sx-backstage -n backstage
 ### 7. Example App deployen
 
 Create a demo-app and kargo pipeline for this demo app:
-`kubectl apply -f https://raw.githubusercontent.com/suxess-it/sx-cnp-oss/main/team-apps/team-apps-metalstack.yaml -n argocd`
+```
+kubectl apply -f https://raw.githubusercontent.com/suxess-it/sx-cnp-oss/main/team-apps/team-apps-metalstack.yaml -n argocd
+```
 
 The demo-app gitops-repo is in `https://github.com/suxess-it/sx-cnp-oss-demo-app`
 Via an appset 3 stages get deployed and are managed in a Kargo-Project: `https://kargo-metalstack.platform-engineer.cloud/project/kargo-demo-app`
