@@ -72,27 +72,20 @@ watch kubectl get applications -n argocd
 
 backstage is still progressing. 
 
-### 5. log in to argocd
+### 5. Create some secrets manually
 
-create secret
+This should get fixed in the future because it is obviously not secure (maybe with ESO, some secrets manager, crossplane, ...)
 
-TODO: not secure, but due to https://github.com/suxess-it/sx-cnp-oss/issues/48
-I apply a file because the bcrypt value with "kubectl create secret ... --from-literal" gets messed up
+#### argocd
+
+create argocd secret for admin user and mitigate server.secretkey issue to https://github.com/suxess-it/sx-cnp-oss/issues/48
+
 ```
 kubectl apply -f https://raw.githubusercontent.com/suxess-it/sx-cnp-oss/main/platform-apps/charts/argocd/manual-secret/argocd-secret.yaml
 ```
+Info: I apply a file because the bcrypt value with "kubectl create secret ... --from-literal" gets messed up
 
-If ingress is not working, use port-forwarding for accessing argocd console and investigate what is wrong
-```
-kubectl port-forward svc/argocd-server -n argocd 8080:80
-```
-
-- Username: `admin`
-- Password: `admin`
-
-### 6. create Backstage secret manually
-
-create some secrets manually first, which I didn't want to put in git.
+#### backstage
 
 create OAuth App on Github for Backstage login: https://backstage.io/docs/auth/github/provider/
 
@@ -134,24 +127,17 @@ Restart backstage pod:
 kubectl rollout restart deploy/sx-backstage -n backstage
 ```
 
-### 7. log in to backstage
+### 6. log in to the tools
 
-in your favorite browser:  https://portal-metalstack.platform-engineer.cloud
+| Tool    | URL | Username | Password |
+| -------- | ------- | ------- | ------- |
+| Backstage  | https://portal-metalstack.platform-engineer.cloud  | via github | via github |
+| ArgoCD | https://argocd-metalstack.platform-engineer.cloud/ | admin | admin |
+| Kargo | https://kargo-metalstack.platform-engineer.cloud/     | admin | - |
+| Grafana    | https://grafana-metalstack.platform-engineer.cloud   | admin | prom-operator |
 
-### 8. log in to kargo
 
-in your favorite browser:  https://kargo-metalstack.platform-engineer.cloud/
-
-Password: 'admin'
-
-### 9. log in to grafana
-
-in your favorite browser:  https://grafana-metalstack.platform-engineer.cloud
-
-- Username: `admin`
-- Password: `prom-operator`
-
-### 10. Example App deployen
+### 7. Example App deployen
 
 Create a demo-app and kargo pipeline for this demo app:
 `kubectl apply -f https://raw.githubusercontent.com/suxess-it/sx-cnp-oss/main/team-apps/team-apps-metalstack.yaml -n argocd`
@@ -179,6 +165,16 @@ URLs for stages (need to be registered in aws route53):
 mit kargo
 
 
+
+# Troubleshooting
+
+If argocd ingress is not working, use port-forwarding for accessing argocd console and investigate what is wrong
+```
+kubectl port-forward svc/argocd-server -n argocd 8080:80
+```
+
+- Username: `admin`
+- Password: `admin`
 
 # AWS helpful things (DRAFT)
 
