@@ -131,10 +131,10 @@ kubectl rollout restart deploy/sx-backstage -n backstage
 
 | Tool    | URL | Username | Password |
 | -------- | ------- | ------- | ------- |
-| Backstage  | https://portal-metalstack.platform-engineer.cloud  | via github | via github |
+| Backstage  | https://portal-metalstack.platform-engineer.cloud/  | via github | via github |
 | ArgoCD | https://argocd-metalstack.platform-engineer.cloud/ | admin | admin |
 | Kargo | https://kargo-metalstack.platform-engineer.cloud/     | admin | - |
-| Grafana    | https://grafana-metalstack.platform-engineer.cloud   | admin | prom-operator |
+| Grafana    | https://grafana-metalstack.platform-engineer.cloud/   | admin | prom-operator |
 
 
 ### 7. Example App deployen
