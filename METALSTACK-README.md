@@ -4,12 +4,6 @@
 
 ### prereqs
 
-After creating a K8s cluster on https://console.metalstack.cloud/, copy the KUBECONFIG to your local machine to `~/.kube/metalstack-config ` and set the KUBECONFIG to this file.
-
-```
-export KUBECONFIG=~/.kube/metalstack-config 
-```
-
 if you manage your DNS-Names in AWS Route53 with external-dns:
 create IAM policy on AWS for AWS Route53: https://kubernetes-sigs.github.io/external-dns/v0.14.1/tutorials/aws/#iam-policy
 
@@ -23,6 +17,16 @@ create a file `credentials` where "Access key" and "Secret access key" are store
 aws_access_key_id = <access key>
 aws_secret_access_key = <secret access key>
 ```
+
+### 1. create metalstack cluster
+
+Create a K8s cluster on https://console.metalstack.cloud/, copy the KUBECONFIG to your local machine to `~/.kube/metalstack-config ` and set the KUBECONFIG to this file.
+
+```
+export KUBECONFIG=~/.kube/metalstack-config 
+```
+
+### 2. create AWS secret for external-dns 
 create namespace and secret and delete local credentials file for security reasons:
 ```
 kubectl create ns external-dns
@@ -30,7 +34,7 @@ kubectl create secret generic -n external-dns sx-external-dns --from-file creden
 rm credentials
 ```
 
-### 1. install the platform stack as follows
+### 3. install the platform stack as follows
 
 ```
 curl -L https://raw.githubusercontent.com/suxess-it/sx-cnp-oss/main/install-metalstack-cluster.sh | sh
@@ -52,7 +56,7 @@ The platform stack will be installed automagically ;)
 * prometheus
 * grafana
 
-### 2. wait until everything except backstage is app and running
+### 4. wait until everything except backstage is app and running
 
 wait until all pods are started:
 
@@ -68,7 +72,7 @@ watch kubectl get applications -n argocd
 
 backstage is still progressing. 
 
-### 3. log in to argocd
+### 5. log in to argocd
 
 create secret
 
@@ -86,7 +90,7 @@ kubectl port-forward svc/argocd-server -n argocd 8080:80
 - Username: `admin`
 - Password: `admin`
 
-### 4. create Backstage secret manually
+### 6. create Backstage secret manually
 
 create some secrets manually first, which I didn't want to put in git.
 
@@ -130,24 +134,24 @@ Restart backstage pod:
 kubectl rollout restart deploy/sx-backstage -n backstage
 ```
 
-### 5. log in to backstage
+### 7. log in to backstage
 
 in your favorite browser:  https://portal-metalstack.platform-engineer.cloud
 
-### 6. log in to kargo
+### 8. log in to kargo
 
 in your favorite browser:  https://kargo-metalstack.platform-engineer.cloud/
 
 Password: 'admin'
 
-### 7. log in to grafana
+### 9. log in to grafana
 
 in your favorite browser:  https://grafana-metalstack.platform-engineer.cloud
 
 - Username: `admin`
 - Password: `prom-operator`
 
-### 8. Example App deployen
+### 10. Example App deployen
 
 Create a demo-app and kargo pipeline for this demo app:
 `kubectl apply -f https://raw.githubusercontent.com/suxess-it/sx-cnp-oss/main/team-apps/team-apps-metalstack.yaml -n argocd`
@@ -170,7 +174,7 @@ URLs for stages (need to be registered in aws route53):
 - qa: http://qa-demo-app-metalstack.platform-engineer.cloud
 - prod: http://prod-demo-metalstack.platform-engineer.cloud
 
-### 9. Promote über die Stages
+### 11. Promote über die Stages
 
 mit kargo
 
