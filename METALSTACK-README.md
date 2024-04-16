@@ -55,6 +55,8 @@ The platform stack will be installed automagically ;)
 * kyverno
 * prometheus
 * grafana
+* kubevirt
+* kubevirt-manager
 
 ### 4. wait until everything except backstage is app and running
 
@@ -135,6 +137,7 @@ kubectl rollout restart deploy/sx-backstage -n backstage
 | ArgoCD | https://argocd-metalstack.platform-engineer.cloud/ | admin | admin |
 | Kargo | https://kargo-metalstack.platform-engineer.cloud/     | admin | - |
 | Grafana    | https://grafana-metalstack.platform-engineer.cloud/   | admin | prom-operator |
+| Kubevirt-Manager    | https://kubevirt-manager-metalstack.platform-engineer.cloud/   | - | - |
 
 
 ### 7. Example App deployen
