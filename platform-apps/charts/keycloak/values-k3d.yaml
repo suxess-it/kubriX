@@ -1,0 +1,45 @@
+# Postgres account data, web server certificates, and keycloak admin user
+secrets:
+  postgres:
+    name: postgres-credentials
+    admin:
+      name: postgres
+      password: postgres
+  tls:
+    name: keycloak-server-tls
+  keycloak:
+    name: keycloak-secrets
+    admin:
+      name: admin
+      password: admin
+
+# Postgres, Keycloak and Ingress deployments
+deployments:
+  securePort: 443
+  postgres:
+    image:
+      name: postgres:latest
+    db:
+      name: keycloak
+    service:
+      name: postgres
+      port: 5432
+    volume:
+      name: postgres-storage
+      path: /var/lib/postgresql/data
+  keycloak:
+    version: latest
+    service:
+      name: keycloak
+    ports:
+      containerPort: 8080
+  ingress:
+    host: keycloak-127-0-0-1.nip.io
+
+# PersistenVolume / PersistenVolumeClaims
+pv:
+  name: postgres-pv
+  size: 1Gi
+pvc:
+  name: postgres-pvc
+  size: 1Gi
