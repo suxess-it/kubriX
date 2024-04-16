@@ -1,0 +1,25 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: sx-kubevirt-manager
+  namespace: argocd
+  finalizers:
+  - resources-finalizer.argocd.argoproj.io
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/suxess-it/sx-cnp-oss
+    targetRevision: main
+    path: platform-apps/charts/kubevirt-manager
+    helm:
+      valueFiles:
+      - values-metalstack.yaml
+  destination:
+    namespace: kubevirt-manager
+    server: 'https://kubernetes.default.svc'
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+    - CreateNamespace=true

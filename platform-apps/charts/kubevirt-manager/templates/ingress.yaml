@@ -1,0 +1,22 @@
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: "{{ .Values.deployment.service.name }}"
+spec:
+  ingressClassName: nginx
+  tls:
+    - hosts:
+        - "{{ .Values.deployment.ingress.host }}"
+      secretName: "{{ .Values.deployment.tls.name }}"
+  rules:
+    - host: "{{ .Values.deployment.ingress.host }}"
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: "{{ .Values.deployment.service.name }}"
+                port:
+                  number: {{.Values.deployment.service.port}}
