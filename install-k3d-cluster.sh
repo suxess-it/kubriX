@@ -12,7 +12,7 @@ k3d cluster create cnp-local-demo \
   --wait
 
 # create mkcert certs in alle namespaces with ingress
-for namespace in backstage kargo monitoring argocd keycloak ; do
+for namespace in backstage kargo monitoring argocd keycloak kubecost; do
   kubectl create namespace ${namespace}
   # for grafana the namespace is not the same as the ingress hostname
   if [ "${namespace}" = "monitoring" ]; then

@@ -1,0 +1,25 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: sx-kubecost
+  namespace: argocd
+  finalizers:
+  - resources-finalizer.argocd.argoproj.io
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/suxess-it/sx-cnp-oss
+    targetRevision: main
+    path: platform-apps/charts/kubecost
+    helm:
+      valueFiles:
+      - values-k3d.yaml
+  destination:
+    namespace: kubecost
+    server: 'https://kubernetes.default.svc'
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+    - CreateNamespace=true
