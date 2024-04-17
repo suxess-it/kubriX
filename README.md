@@ -171,6 +171,10 @@ URLs for stages:
 
 mit kargo
 
+### 10. kubecost
+
+initialization need some minutes until values are visible in UI - https://kubecost-127-0-0-1.nip.io/overview
+
 ### delete k3d cluster
 
 ```
