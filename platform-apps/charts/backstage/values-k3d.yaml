@@ -17,9 +17,6 @@ backstage:
     extraEnvVarsSecrets:
       - sx-cnp-secret
       - manual-secret
-    extraAppConfig:
-      - filename: github-app-backstage-suxess-it-credentials.yaml
-        secretRef: gh-secret
     appConfig:
       app:
         title: sX CNP App
@@ -61,12 +58,8 @@ backstage:
       integrations:
         github:
           - host: github.com
-            apps:
-              appId: ${appId}
-              clientId: ${clientId}
-              clientSecret: ${clientSecret}
-              webhookSecret: ${webhookSecret}
-              privateKey: ${privateKey}
+            token: ${GITHUB_TOKEN}
+
           ### Example for how to add your GitHub Enterprise instance using the API:
           # - host: ghe.example.net
           #   apiBaseUrl: https://ghe.example.net/api/v3
@@ -119,8 +112,8 @@ backstage:
         providers:
           github:
             development:
-              clientId: ${clientId}
-              clientSecret: ${clientSecret}
+              clientId: ${GITHUB_CLIENTID}
+              clientSecret: ${GITHUB_CLIENTSECRET}
 
       scaffolder:
         # see https://backstage.io/docs/features/software-templates/configuration for software template options
