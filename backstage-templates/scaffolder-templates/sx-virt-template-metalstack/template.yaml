@@ -1,0 +1,159 @@
+apiVersion: scaffolder.backstage.io/v1beta3
+kind: Template
+metadata:
+  name: sx-kubevirt-template-metalstack
+  title: sX kubevirt Template for metalstack cloud
+  description: Run Demo VM in ArgoCD namespace
+  tags:
+    - virtualization
+    - metalstack
+spec:
+  owner: user:philipp.achmueller
+  type: system
+  
+  parameters:
+    - title: Provide information on this application
+      required:
+        - application_id
+        - owner
+        - environments
+        - description
+        - cores
+        - memory
+        - disk
+        - os
+        - initpwd
+      properties:
+        application_id:
+          title: Name
+          type: string
+          description: Unique name of this vm
+        description:
+          title: Description
+          type: string
+          description: Help others understand what this vm is for.
+        owner:
+          title: Owner
+          type: string
+          description: Owner of this vm
+          ui:field: OwnerPicker
+          ui:options:
+            allowedKinds: 
+              - Group
+              - User
+        cores:
+          title: Number of Cores
+          type: string       
+          default: '1'
+        memory:
+          title: Size of Memory in Gi
+          type: string       
+          default: '4Gi'
+        environments:
+          title: Environments
+          type: array
+          description: Environments needed by this vm
+          items:
+            type: string
+            enum: 
+              - prod
+              - test
+              - qa
+          uniqueItems: true
+          ui:widget: checkboxes
+        disk:
+          title: Storage size of VM
+          type: string
+          default: '30Gi'
+        initpwd:
+          title: initial init pwd
+          type: string
+          default: 'testcnppwd'
+        os:
+          title: OS Type
+          type: string
+          description: OS used  by this vm
+          default: kubevirt/fedora-cloud-container-disk-demo
+          enum: 
+            - kubevirt/fedora-cloud-container-disk-demo
+            - cirrus
+    - title: Choose a location
+      required:
+        - repoUrl
+      properties:
+        repoUrl:
+          title: Repository Location
+          type: string
+          ui:field: RepoUrlPicker
+          ui:options:
+            allowedHosts:
+              - github.com
+  steps:
+    - id: template-applicationsetup
+      name: Fetch Namespacesetup Skeleton + Template
+      action: fetch:template
+      input:
+        url: ./skeleton/applicationsetup
+        copyWithoutRender: []
+        values:
+          application_id: ${{ parameters.application_id }}
+          description: ${{ parameters.description }}
+          repoUrl: ${{ parameters.repoUrl }}
+          repoUrlowner: ${{ (parameters.repoUrl | parseRepoUrl).owner }}
+          environments: ${{ parameters.environments }}
+
+    - id: pull-request-applicationsetup
+      name: make a pr to approved-application repo with additional applicationsetup
+      action: publish:github:pull-request
+      input:
+        repoUrl: github.com?repo=approved-application&owner=suxess-it
+        branchName: ${{ parameters.application_id }}
+        title: argoapps and system config for ${{ parameters.application_id }}
+        description: argoapps and system config for ${{ parameters.application_id }}
+
+# TODO: generate values.yaml file, apply variables from values.yaml to template files ...       
+    - id: template-gitops
+      name: Fetch Skeleton + Template
+      action: fetch:template
+      input:
+        url: ./kubevirt-gitops
+        copyWithoutRender: []
+        values:
+          application_id: ${{ parameters.application_id }}
+          description: ${{ parameters.description }}
+          owner: ${{ parameters.owner }}
+          environments: ${{ parameters.environments }}
+          cores: ${{ parameters.cores }}
+          memory: ${{ parameters.memory }}
+          os: ${{ parameters.os }}
+          disk: ${{ parameters.disk }}
+          initpwd: ${{ parameters.initpwd }}
+        targetPath: ./kubevirt-gitops
+
+    - id: publish-gitopsreposetup
+      name: Publish Template Gitops Repo
+      action: publish:github
+      input:
+        allowedHosts: ['github.com']
+        description: This is ${{ parameters.application_id }}
+        repoUrl: github.com?repo=${{ (parameters.repoUrl | parseRepoUrl).repo }}&owner=${{ (parameters.repoUrl | parseRepoUrl).owner }}
+        #repoUrl: ${{ parameters.repoUrl }}
+        repoVisibility: public
+        sourcePath: ./kubevirt-gitops
+        deleteBranchOnMerge: true
+        protectDefaultBranch: false
+
+    - id: register
+      name: Register
+      action: catalog:register
+      input:
+        repoContentsUrl: ${{ steps["publish-gitopsreposetup"].output.repoContentsUrl }}
+        catalogInfoPath: '/catalog-info.yaml'
+  
+  output:
+    links:
+      - title: Repository
+        url: ${{ steps["publish-gitopsreposetup"].output.remoteUrl }}
+      - title: Open in catalog
+        icon: catalog
+        entityRef: ${{ steps.register.output.entityRef }}
