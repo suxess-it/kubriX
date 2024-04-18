@@ -58,9 +58,8 @@ backstage:
       integrations:
         github:
           - host: github.com
-            # This is a Personal Access Token or PAT from GitHub. You can find out how to generate this token, and more information
-            # about setting up the GitHub integration here: https://backstage.io/docs/getting-started/configuration#setting-up-a-github-integration
-            token: ${GITHUB_TOKEN}
+            apps:
+              - $include: github-app-backstage-suxess-it-credentials.yaml
           ### Example for how to add your GitHub Enterprise instance using the API:
           # - host: ghe.example.net
           #   apiBaseUrl: https://ghe.example.net/api/v3
@@ -113,8 +112,8 @@ backstage:
         providers:
           github:
             development:
-              clientId: ${GITHUB_CLIENTID}
-              clientSecret: ${GITHUB_CLIENTSECRET}
+              clientId: ${clientId}
+              clientSecret: ${clientSecret}
 
       scaffolder:
         # see https://backstage.io/docs/features/software-templates/configuration for software template options
@@ -211,9 +210,13 @@ backstage:
             rate: 5.5
 
       kubecost:
-        baseUrl: https://kubecost-cost-analyzer-route-sx-kubecost.apps.cluster1.mcp.pitagora.at
-        sharedNamespaces: openshift-logging,openshift-monitoring
+        baseUrl: https://kubecost-127-0-0-1.nip.io
+        sharedNamespaces: kube-system
         queryframes: week,yesterday,month,today,lastweek
+        annotationDeploymentName: 'backstage.io/kubernetes-id'
+        shareTenancyCosts: true
+        aggregate: true
+        showDashboardLink: true
         # unitprefix: '$'
 
       vault:
