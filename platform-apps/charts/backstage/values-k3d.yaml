@@ -1,4 +1,4 @@
-cer:
+cert:
   enabled: false
 
 backstage:
@@ -17,7 +17,9 @@ backstage:
     extraEnvVarsSecrets:
       - sx-cnp-secret
       - manual-secret
-      - gh-secret
+    extraAppConfig:
+      - filename: github-app-backstage-suxess-it-credentials.yaml
+        secretRef: gh-secret
     appConfig:
       app:
         title: sX CNP App
