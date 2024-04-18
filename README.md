@@ -61,30 +61,20 @@ watch kubectl get applications -n argocd
 
 backstage is still progressing. 
 
-### 3. log in to argocd
+### 3. Create some secrets manually
 
-create secret
+This should get fixed in the future because it is obviously not secure (maybe with ESO, some secrets manager, crossplane, ...)
 
-TODO: not secure, but due to https://github.com/suxess-it/sx-cnp-oss/issues/48
-I apply a file because the bcrypt value with "kubectl create secret ... --from-literal" gets messed up
+#### argocd
+
+create argocd secret for admin user and mitigate server.secretkey issue to https://github.com/suxess-it/sx-cnp-oss/issues/48
+
 ```
 kubectl apply -f https://raw.githubusercontent.com/suxess-it/sx-cnp-oss/main/platform-apps/charts/argocd/manual-secret/argocd-secret.yaml
 ```
+Info: I apply a file because the bcrypt value with "kubectl create secret ... --from-literal" gets messed up
 
-in your favorite browser:  https://argocd-127-0-0-1.nip.io/
-
-if argocd says "server.secretkey" is missing, try
-
-```
-kubectl rollout restart deploy/argocd-server -n argocd
-```
-
-- Username: `admin`
-- Password: `admin`
-
-### 4. create Backstage secret manually
-
-create some secrets manually first, which I didn't want to put in git.
+#### backstage
 
 create OAuth App on Github for Backstage login: https://backstage.io/docs/auth/github/provider/
 
@@ -127,27 +117,22 @@ Restart backstage pod:
 kubectl rollout restart deploy/sx-backstage -n backstage
 ```
 
-### 5. log in to backstage
+### 4. log in to the tools
 
-in your favorite browser:  https://backstage-127-0-0-1.nip.io
+| Tool    | URL | Username | Password |
+| -------- | ------- | ------- | ------- |
+| Backstage  | https://backstage-127-0-0-1.nip.io | via github | via github |
+| ArgoCD | https://argocd-127-0-0-1.nip.io/ | admin | admin |
+| Kargo | https://kargo-127-0-0-1.nip.io     | admin | - |
+| Grafana    | https://grafana-127-0-0-1.nip.io | admin | prom-operator |
+| Kubevirt-Manager    | https://kubevirt-manager-metalstack.platform-engineer.cloud/   | - | - |
 
-### 6. log in to kargo
-
-in your favorite browser:  https://kargo-127-0-0-1.nip.io
-
-Password: 'admin'
-
-### 7. log in to grafana
-
-in your favorite browser:  https://grafana-127-0-0-1.nip.io
-
-- Username: `admin`
-- Password: `prom-operator`
-
-### 8. Example App deployen
+### 5. Example App deployen
 
 Create a demo-app and kargo pipeline for this demo app:
-`kubectl apply -f https://raw.githubusercontent.com/suxess-it/sx-cnp-oss/main/team-apps/team-apps-k3d.yaml -n argocd`
+```
+kubectl apply -f https://raw.githubusercontent.com/suxess-it/sx-cnp-oss/main/team-apps/team-apps-k3d.yaml -n argocd
+```
 
 The demo-app gitops-repo is in `https://github.com/suxess-it/sx-cnp-oss-demo-app`
 Via an appset 3 stages get deployed and are managed in a Kargo-Project: `https://kargo-127-0-0-1.nip.io/project/kargo-demo-app`
@@ -167,11 +152,11 @@ URLs for stages:
 - qa: http://qa-demo-app-127-0-0-1.nip.io
 - prod: http://prod-demo-app-127-0-0-1.nip.io
 
-### 9. Promote über die Stages
+### 6. Promote über die Stages
 
 mit kargo
 
-### 10. kubecost
+### 7. kubecost
 
 initialization need some minutes until values are visible in UI - https://kubecost-127-0-0-1.nip.io/overview
 
@@ -192,6 +177,7 @@ build could take 1300 seconds and push could also take a lot of time
 git clone https://github.com/suxess-it/sx-backstage.git
 cd sx-backstage
 git switch feat/cnp-local-demo-jokl
+# modify code, test, commit
 docker build -t sx-backstage:latest .
 docker tag sx-backstage:latest ghcr.io/suxess-it/sx-backstage:latest
 docker push ghcr.io/suxess-it/sx-backstage:latest
