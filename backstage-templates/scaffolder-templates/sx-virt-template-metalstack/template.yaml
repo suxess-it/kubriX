@@ -136,8 +136,7 @@ spec:
       input:
         allowedHosts: ['github.com']
         description: This is ${{ parameters.application_id }}
-        repoUrl: github.com?repo=${{ (parameters.repoUrl | parseRepoUrl).repo }}&owner=${{ (parameters.repoUrl | parseRepoUrl).owner }}
-        #repoUrl: ${{ parameters.repoUrl }}
+        repoUrl: ${{ parameters.repoUrl }}
         repoVisibility: public
         sourcePath: ./kubevirt-gitops
         deleteBranchOnMerge: true
