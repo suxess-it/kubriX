@@ -125,7 +125,6 @@ kubectl rollout restart deploy/sx-backstage -n backstage
 | ArgoCD | https://argocd-127-0-0-1.nip.io/ | admin | admin |
 | Kargo | https://kargo-127-0-0-1.nip.io     | admin | - |
 | Grafana    | https://grafana-127-0-0-1.nip.io | admin | prom-operator |
-| Kubevirt-Manager    | https://kubevirt-manager-metalstack.platform-engineer.cloud/   | - | - |
 
 ### 5. Example App deployen
 
