@@ -86,6 +86,8 @@ spec:
           type: string
           ui:field: RepoUrlPicker
           ui:options:
+            requestUserCredentials:
+              secretsKey: USER_OAUTH_TOKEN
             allowedHosts:
               - github.com
   steps:
@@ -137,6 +139,7 @@ spec:
         allowedHosts: ['github.com']
         description: This is ${{ parameters.application_id }}
         repoUrl: ${{ parameters.repoUrl }}
+        token: ${{ secrets.USER_OAUTH_TOKEN }}
         repoVisibility: public
         sourcePath: ./kubevirt-gitops
         deleteBranchOnMerge: true
