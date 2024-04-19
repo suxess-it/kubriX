@@ -215,9 +215,13 @@ backstage:
             rate: 5.5
 
       kubecost:
-        baseUrl: https://kubecost-cost-analyzer-route-sx-kubecost.apps.cluster1.mcp.pitagora.at
-        sharedNamespaces: openshift-logging,openshift-monitoring
+        baseUrl: https://kubecost-metalstack.platform-engineer.cloud/
+        sharedNamespaces: kube-system
         queryframes: week,yesterday,month,today,lastweek
+        annotationDeploymentName: 'backstage.io/kubernetes-id'
+        shareTenancyCosts: true
+        aggregate: true
+        showDashboardLink: true
         # unitprefix: '$'
 
       vault:
