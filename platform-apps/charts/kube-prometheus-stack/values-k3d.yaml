@@ -98,7 +98,8 @@ kube-prometheus-stack:
     annotations: {}
 
     ## Additional labels for PrometheusRule alerts
-    additionalRuleLabels: {}
+    additionalRuleLabels:
+      cluster: sx-loki
 
     ## Additional annotations for PrometheusRule alerts
     additionalRuleAnnotations: {}
@@ -1377,6 +1378,12 @@ kube-prometheus-stack:
         - action: replace
           sourceLabels: [__metrics_path__]
           targetLabel: metrics_path
+        - action: replace
+          replacement: sx-loki
+          targetLabel: cluster
+        - targetLabel: "instance"
+          sourceLabels:
+            - "node"
       # - sourceLabels: [__meta_kubernetes_pod_node_name]
       #   separator: ;
       #   regex: ^(.*)$
@@ -2055,7 +2062,13 @@ kube-prometheus-stack:
         ## RelabelConfigs to apply to samples before scraping
         ## ref: https://github.com/prometheus-operator/prometheus-operator/blob/main/Documentation/api.md#relabelconfig
         ##
-        relabelings: []
+        relabelings:
+          - action: replace
+            replacement: sx-loki
+            targetLabel: cluster
+          - targetLabel: "instance"
+            sourceLabels:
+              - "__meta_kubernetes_pod_node_name"
         # - sourceLabels: [__meta_kubernetes_pod_node_name]
         #   separator: ;
         #   regex: ^(.*)$
@@ -2145,7 +2158,13 @@ kube-prometheus-stack:
         ## RelabelConfigs to apply to samples before scraping
         ## ref: https://github.com/prometheus-operator/prometheus-operator/blob/main/Documentation/api.md#relabelconfig
         ##
-        relabelings: []
+        relabelings:
+          - action: replace
+            replacement: sx-loki
+            targetLabel: cluster
+          - targetLabel: "instance"
+            sourceLabels:
+              - "__meta_kubernetes_pod_node_name"
         # - sourceLabels: [__meta_kubernetes_pod_node_name]
         #   separator: ;
         #   regex: ^(.*)$
@@ -3286,7 +3305,10 @@ kube-prometheus-stack:
 
       #   relabel configs to apply to samples before ingestion.
       ##
-      relabelings: []
+      relabelings:
+        - action: replace
+          replacement: sx-loki
+          targetLabel: cluster
       # - sourceLabels: [__meta_kubernetes_pod_node_name]
       #   separator: ;
       #   regex: ^(.*)$
