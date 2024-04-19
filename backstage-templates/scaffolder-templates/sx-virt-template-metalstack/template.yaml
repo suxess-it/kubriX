@@ -104,6 +104,15 @@ spec:
           repoUrlowner: ${{ (parameters.repoUrl | parseRepoUrl).owner }}
           environments: ${{ parameters.environments }}
 
+    - id: pull-request-applicationsetup
+      name: make a pr to approved-application repo with additional applicationsetup
+      action: publish:github:pull-request
+      input:
+        repoUrl: github.com?repo=approved-application&owner=suxess-it
+        branchName: ${{ parameters.application_id }}
+        title: argoapps and system config for ${{ parameters.application_id }}
+        description: argoapps and system config for ${{ parameters.application_id }}
+
 # TODO: generate values.yaml file, apply variables from values.yaml to template files ...       
     - id: template-gitops
       name: Fetch Skeleton + Template
@@ -135,15 +144,6 @@ spec:
         sourcePath: ./kubevirt-gitops
         deleteBranchOnMerge: true
         protectDefaultBranch: false
-
-    - id: pull-request-applicationsetup
-      name: make a pr to approved-application repo with additional applicationsetup
-      action: publish:github:pull-request
-      input:
-        repoUrl: github.com?repo=approved-application&owner=suxess-it
-        branchName: ${{ parameters.application_id }}
-        title: argoapps and system config for ${{ parameters.application_id }}
-        description: argoapps and system config for ${{ parameters.application_id }}
 
     - id: register
       name: Register
