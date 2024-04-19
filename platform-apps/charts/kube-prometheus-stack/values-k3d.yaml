@@ -1381,7 +1381,8 @@ kube-prometheus-stack:
         - action: replace
           replacement: sx-loki
           targetLabel: cluster
-        - targetLabel: "instance"
+        - action: replace
+          targetLabel: "instance"
           sourceLabels:
             - "node"
       # - sourceLabels: [__meta_kubernetes_pod_node_name]
@@ -2066,7 +2067,8 @@ kube-prometheus-stack:
           - action: replace
             replacement: sx-loki
             targetLabel: cluster
-          - targetLabel: "instance"
+          - action: replace
+            targetLabel: "instance"
             sourceLabels:
               - "__meta_kubernetes_pod_node_name"
         # - sourceLabels: [__meta_kubernetes_pod_node_name]
@@ -2162,7 +2164,8 @@ kube-prometheus-stack:
           - action: replace
             replacement: sx-loki
             targetLabel: cluster
-          - targetLabel: "instance"
+          - action: replace
+            targetLabel: "instance"
             sourceLabels:
               - "__meta_kubernetes_pod_node_name"
         # - sourceLabels: [__meta_kubernetes_pod_node_name]
