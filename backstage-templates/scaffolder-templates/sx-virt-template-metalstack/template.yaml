@@ -88,6 +88,10 @@ spec:
           ui:options:
             requestUserCredentials:
               secretsKey: USER_OAUTH_TOKEN
+              additionalScopes:
+                github: 
+                  - workflow
+                  - user
             allowedHosts:
               - github.com
   steps:
@@ -139,6 +143,7 @@ spec:
         allowedHosts: ['github.com']
         description: This is ${{ parameters.application_id }}
         repoUrl: ${{ parameters.repoUrl }}
+        repoUrlowner: ${{ parameters.repoUrlowner }}
         token: ${{ secrets.USER_OAUTH_TOKEN }}
         repoVisibility: public
         sourcePath: ./kubevirt-gitops
