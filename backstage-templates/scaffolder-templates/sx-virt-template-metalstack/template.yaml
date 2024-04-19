@@ -101,7 +101,7 @@ spec:
           application_id: ${{ parameters.application_id }}
           description: ${{ parameters.description }}
           repoUrl: ${{ parameters.repoUrl }}
-          repoUrlowner: ${{ (parameters.repoUrl | parseRepoUrl).owner }}
+          repoUrlowner: ${{ parameters.repoUrl | parseRepoUrl | pick('owner') }}
           environments: ${{ parameters.environments }}
 
     - id: pull-request-applicationsetup
