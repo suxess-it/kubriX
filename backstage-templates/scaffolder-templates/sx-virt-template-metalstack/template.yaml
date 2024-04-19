@@ -105,7 +105,7 @@ spec:
           application_id: ${{ parameters.application_id }}
           description: ${{ parameters.description }}
           repoUrl: ${{ parameters.repoUrl }}
-          repoUrlowner: ${{ parameters.repoUrl | parseRepoUrl | pick('owner') }}
+          repoUrlowner: ${{ (parameters.repoUrl | parseRepoUrl)["owner"] }}
           environments: ${{ parameters.environments }}
 
     - id: pull-request-applicationsetup
@@ -134,6 +134,8 @@ spec:
           os: ${{ parameters.os }}
           disk: ${{ parameters.disk }}
           initpwd: ${{ parameters.initpwd }}
+          repoUrl: ${{ parameters.repoUrl }}
+          repoUrlowner: ${{ (parameters.repoUrl | parseRepoUrl)["owner"] }}
         targetPath: ./kubevirt-gitops
 
     - id: publish-gitopsreposetup
@@ -143,7 +145,6 @@ spec:
         allowedHosts: ['github.com']
         description: This is ${{ parameters.application_id }}
         repoUrl: ${{ parameters.repoUrl }}
-        repoUrlowner: ${{ parameters.repoUrlowner }}
         token: ${{ secrets.USER_OAUTH_TOKEN }}
         repoVisibility: public
         sourcePath: ./kubevirt-gitops
