@@ -441,8 +441,8 @@ cost-analyzer:
   # by the cost-model. This pod is designed to remain active and decoupled from the cost-model itself.
   # However, disabling this service/pod deployment will flag the cost-model to emit the metrics instead.
   kubecostMetrics:
-    emitPodAnnotations: true
-    emitNamespaceAnnotations: true
+    # emitPodAnnotations: false
+    # emitNamespaceAnnotations: false
     # emitKsmV1Metrics: true # emit all KSM metrics in KSM v1.
     # emitKsmV1MetricsOnly: false # emit only the KSM metrics missing from KSM v2. Advanced users only.
 
@@ -452,7 +452,7 @@ cost-analyzer:
     # from the cost-model. If the deployment is not enabled, the metrics will continue to be emitted from
     # the cost-model.
     exporter:
-      enabled: true
+      enabled: false
       port: 9005
       # Adds the default Prometheus scrape annotations to the metrics exporter service.
       # Set to false and use service.annotations (below) to set custom scrape annotations.
@@ -476,7 +476,7 @@ cost-analyzer:
 
       # Service Monitor for Kubecost Metrics
       serviceMonitor:  # the kubecost included prometheus uses scrapeConfigs and does not support service monitors. The following options assume an existing prometheus that supports serviceMonitors.
-        enabled: true
+        enabled: false
         additionalLabels: {}
         metricRelabelings: []
         relabelings: []
@@ -847,7 +847,7 @@ cost-analyzer:
       # to use as unique cluster ID in kubecost cost-analyzer deployment.
       # This overrides the cluster_id set in prometheus.server.global.external_labels.
       # NOTE: This does not affect the external_labels set in prometheus config.
-      clusterIDConfigmap: sx-cnp-oss
+      # clusterIDConfigmap: cluster-id-configmap
 
       ## Provide a full name override for the Prometheus server.
       # fullnameOverride: ""
@@ -2749,19 +2749,19 @@ cost-analyzer:
     # googleAnalyticsTag: G-XXXXXXXXX
 
   serviceMonitor:  # the kubecost included prometheus uses scrapeConfigs and does not support service monitors. The following options assume an existing prometheus that supports serviceMonitors.
-    enabled: true
+    enabled: false
     additionalLabels: {}
     metricRelabelings: []
     relabelings: []
     networkCosts:
-      enabled: true
+      enabled: false
       scrapeTimeout: 10s
       additionalLabels: {}
       metricRelabelings: []
       relabelings: []
 
   prometheusRule:
-    enabled: true
+    enabled: false
     additionalLabels: {}
 
   supportNFS: false
