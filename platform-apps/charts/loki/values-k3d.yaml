@@ -97,6 +97,9 @@ loki:
     # scrape configs to scrape its own logs with the labels expected by the included dashboards.
     selfMonitoring:
       enabled: true
+      grafanaAgent:
+        installOperator: true
+
     # The Loki canary pushes logs to and queries from this loki installation to test
     # that it's working correctly
     lokiCanary:
