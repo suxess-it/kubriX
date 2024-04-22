@@ -88,6 +88,10 @@ spec:
           ui:options:
             requestUserCredentials:
               secretsKey: USER_OAUTH_TOKEN
+              additionalScopes:
+                github: 
+                  - workflow
+                  - user
             allowedHosts:
               - github.com
   steps:
@@ -101,7 +105,7 @@ spec:
           application_id: ${{ parameters.application_id }}
           description: ${{ parameters.description }}
           repoUrl: ${{ parameters.repoUrl }}
-          repoUrlowner: ${{ (parameters.repoUrl | parseRepoUrl).owner }}
+          repoUrlowner: ${{ (parameters.repoUrl | parseRepoUrl)["owner"] }}
           environments: ${{ parameters.environments }}
 
     - id: pull-request-applicationsetup
@@ -130,6 +134,8 @@ spec:
           os: ${{ parameters.os }}
           disk: ${{ parameters.disk }}
           initpwd: ${{ parameters.initpwd }}
+          repoUrl: ${{ parameters.repoUrl }}
+          repoUrlowner: ${{ (parameters.repoUrl | parseRepoUrl)["owner"] }}
         targetPath: ./kubevirt-gitops
 
     - id: publish-gitopsreposetup

@@ -57,6 +57,7 @@ The platform stack will be installed automagically ;)
 * grafana
 * kubevirt
 * kubevirt-manager
+* kubecost
 
 ### 4. wait until everything except backstage is app and running
 

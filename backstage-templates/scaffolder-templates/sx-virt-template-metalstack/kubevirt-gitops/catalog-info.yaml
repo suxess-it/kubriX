@@ -27,3 +27,6 @@ spec:
   system: vm:${{values.application_id}}
   dependsOn:
     - resource:argocd
+    - resource:kubevirt
+    - resource:kubecost
+    - resource:grafana
