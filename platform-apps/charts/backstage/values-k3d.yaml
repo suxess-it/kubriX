@@ -114,9 +114,74 @@ backstage:
             development:
               clientId: ${GITHUB_CLIENTID}
               clientSecret: ${GITHUB_CLIENTSECRET}
+              signIn:
+                resolvers:
+                  - resolver: usernameMatchingUserEntityName
+          guest: {}
 
-      scaffolder:
+      scaffolder: {}
         # see https://backstage.io/docs/features/software-templates/configuration for software template options
+
+      explore:
+        tools:
+          - title: New Relic
+            description: new relic plugin
+            url: /newrelic
+            image: https://i.imgur.com/L37ikrX.jpg
+            tags:
+              - newrelic
+              - proxy
+              - nerdGraph
+          - title: Announcements
+            description: Updates for your Employees
+            url: /announcement
+            image: /homepage/images/announcements.jpg
+            tags:
+              - Announcement
+              - Employee
+              - noHashtag
+          - title: Central Monitoring
+            description: Central Monitoring
+            url: /monitoring
+            image: /homepage/images/monitoring.jpg
+            tags:
+              - Monitoring
+              - notReallyavailable
+          - title: Platforms
+            description: Discover other companies platforms
+            url: /platforms
+            image: /homepage/images/platforms.jpg
+            tags:
+              - platforms
+              - notReallyavailable
+          - title: Infrastructure
+            description: Recommended products for Platform Missions
+            url: /infrastructure
+            image: /homepage/images/infrastructure.jpg
+            tags:
+              - infrastructure
+              - notReallyavailable
+          - title: Client SDKs
+            description: corporate building blocks
+            url: /cliendsdk
+            image: /homepage/images/sdk.jpg
+            tags:
+              - clientSDK
+              - notReallyavailable
+          - title: Hubs
+            description: User experiences arount specific domains of interest
+            url: /hubs
+            image: /homepage/images/hubs.jpg
+            tags:
+              - hubs
+              - notReallyavailable
+          - title: Apps
+            description: Official sX Apps
+            url: /hubs
+            image: /homepage/images/apps.jpg
+            tags:
+              - apps
+              - notReallyavailable
 
       catalog:
         import:
@@ -131,6 +196,8 @@ backstage:
             target: https://github.com/suxess-it/software-templates/blob/main/showcase-templates.yaml
             rules:
               - allow: [Template]
+          - type: file
+            target: ../../catalog-entities/gh-user.yaml
 
       kubernetes:
         serviceLocatorMethod:
@@ -148,7 +215,6 @@ backstage:
       scorecards:
         jsonDataUrl: https://raw.githubusercontent.com/Oriflame/backstage-plugins/main/plugins/score-card/sample-data/
 
-      
       grafana:
         # Publicly accessible domain
         domain: https://grafana-127-0-0-1.nip.io
