@@ -1,0 +1,64 @@
+# required user for demo environment https://github.com/suxess-it/sx-cnp-oss/issues/87
+# until user management set up properly
+apiVersion: backstage.io/v1alpha1
+kind: User
+metadata:
+  name: phac008
+spec:
+  profile:
+    displayName: phac008
+    email: guest@example.com
+    picture: https://avatars.dicebear.com/api/avataaars/guest@example.com.svg?background=%23fff
+  memberOf: [sx-cnp-oss]
+---
+apiVersion: backstage.io/v1alpha1
+kind: User
+metadata:
+  name: jkleinlercher
+spec:
+  profile:
+    displayName: jkleinlercher
+    email: guest@example.com
+    picture: https://api.dicebear.com/7.x/avataaars/svg?seed=Midnight&backgroundColor=transparent
+  memberOf: [sx-cnp-os]
+---
+apiVersion: backstage.io/v1alpha1
+kind: Group
+metadata:
+  name: sx-cnp-oss
+  description: Super Team
+spec:
+  type: team
+  profile:
+    # Intentional no displayName for testing
+    email: sx-cnp-oss@example.com
+    picture: https://api.dicebear.com/7.x/identicon/svg?seed=Fluffy&backgroundType=solid,gradientLinear&backgroundColor=ffd5dc,b6e3f4
+  parent: backstage
+  children: []
+---
+# This user is added as an example, to make it more easy for the "Guest"
+# sign-in option to demonstrate some entities being owned. In a regular org,
+# a guest user would probably not be registered like this.
+apiVersion: backstage.io/v1alpha1
+kind: User
+metadata:
+  name: guest
+spec:
+  profile:
+    displayName: Guest User
+    email: guest@example.com
+  memberOf: [team-a]
+---
+apiVersion: backstage.io/v1alpha1
+kind: Group
+metadata:
+  name: team-a
+  description: Team A
+spec:
+  type: team
+  profile:
+    # Intentional no displayName for testing
+    email: team-a@example.com
+    picture: https://api.dicebear.com/7.x/identicon/svg?seed=Fluffy&backgroundType=solid,gradientLinear&backgroundColor=ffd5dc,b6e3f4
+  parent: backstage
+  children: []

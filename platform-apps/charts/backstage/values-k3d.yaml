@@ -17,6 +17,9 @@ backstage:
     extraEnvVarsSecrets:
       - sx-cnp-secret
       - manual-secret
+    extraEnvVars:
+      - name: NODE_OPTIONS
+        value: "--no-node-snapshot"
     appConfig:
       app:
         title: sX CNP App
@@ -193,11 +196,11 @@ backstage:
           - type: url
             target: https://github.com/suxess-it/sx-cnp-oss-demo-app/blob/main/catalog-info.yaml
           - type: url
-            target: https://github.com/suxess-it/software-templates/blob/main/showcase-templates.yaml
+            target: https://github.com/suxess-it/sx-cnp-oss/blob/main/backstage-resources/templates/showcase-templates.yaml
             rules:
               - allow: [Template]
-          - type: file
-            target: ../../catalog-entities/gh-user.yaml
+          - type: url
+            target: https://github.com/suxess-it/sx-cnp-oss/blob/main/backstage-resources/entities/all.yaml
 
       kubernetes:
         serviceLocatorMethod:

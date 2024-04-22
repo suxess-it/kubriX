@@ -1,0 +1,61 @@
+apiVersion: kubevirt.io/v1
+kind: VirtualMachine
+metadata:
+  annotations:
+    description: {{ .Values.description }}
+    backstage.io/kubernetes-id: {{ .Values.application_id }}
+  name: {{ .Values.application_id }}
+  namespace: {{ .Values.environments }}-demo-kubevirt
+  labels:
+    app: {{ .Values.application_id }}
+    kubevirt.io/dynamic-credentials-support: 'true'
+    vm.kubevirt.io/template:  server-small #to get default values
+    vm.kubevirt.io/template.namespace: openshift
+spec:
+  running: true
+  template:
+    metadata:
+      annotations:
+        vm.kubevirt.io/os: {{ .Values.os }} # min. 1 annotation needed
+        backstage.io/kubernetes-id: {{ .Values.application_id }}
+      creationTimestamp: null
+      labels:
+        kubevirt.io/size: small
+        kubevirt.io/domain: {{ .Values.application_id }}
+        app: {{ .Values.application_id }}
+    spec:
+      architecture: amd64
+      domain:
+        cpu:
+          cores: {{ .Values.cores }}
+        devices:
+          disks:
+            - disk:
+                bus: virtio
+              name: rootdisk
+            - disk:
+                bus: virtio
+              name: cloudinitdisk
+          interfaces:
+            - masquerade: {}
+              model: virtio
+              name: default
+          networkInterfaceMultiqueue: true
+        memory:
+          guest: {{ .Values.memory }}
+      networks:
+        - name: default
+          pod: {}
+      terminationGracePeriodSeconds: 180
+      volumes:
+        - name: containerdisk
+          containerDisk:
+            image:  {{ .Values.os }}
+          name: rootdisk
+        - cloudInitConfigDrive:
+            userData: |-
+              #cloud-config
+              user: cloud-user
+              password: {{ .Values.initpwd }}
+              chpasswd: { expire: False }
+          name: cloudinitdisk
