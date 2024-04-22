@@ -85,9 +85,9 @@ use GITHUB_CLIENTSECRET and GITHUB_CLIENTID from your Github OAuth App for the f
 
 create ArgoCD Token for backstage:
 ```
-argocd login argocd-127-0-0-1.nip.io
-argocd account get --account backstage
-argocd account generate-token --account backstage
+argocd login argocd-127-0-0-1.nip.io --grpc-web
+argocd account get --account backstage --grpc-web
+argocd account generate-token --account backstage --grpc-web
 
 use output in variable
 export ARGOCD_AUTH_TOKEN="argocd.token=<output from above>"
