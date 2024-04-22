@@ -51,12 +51,6 @@ loki:
     dashboards:
       # -- If enabled, create configmap with dashboards for monitoring Loki
       enabled: true
-      # -- Annotations for the dashboards ConfigMap
-      annotations:
-        k8s-sidecar-target-directory: "Loki"
-      # -- Labels for the dashboards ConfigMap
-      labels:
-        grafana_dashboard: "1"
     # Recording rules for monitoring Loki, required for some dashboards
     rules:
       # -- If enabled, create PrometheusRule resource with Loki recording rules
@@ -77,19 +71,6 @@ loki:
     serviceMonitor:
       # -- If enabled, ServiceMonitor resources for Prometheus Operator are created
       enabled: true
-      # -- ServiceMonitor scrape interval
-      # Default is 15s because included recording rules use a 1m rate, and scrape interval needs to be at
-      # least 1/4 rate interval.
-      interval: 15s
-      # -- ServiceMonitor relabel configs to apply to samples before scraping
-      # https://github.com/prometheus-operator/prometheus-operator/blob/master/Documentation/api.md#relabelconfig
-      relabelings:
-        - sourceLabels: [__meta_kubernetes_pod_node_name]
-          targetLabel: instance
-      # -- If defined, will create a MetricsInstance for the Grafana Agent Operator.
-      metricsInstance:
-        # -- If enabled, MetricsInstance resources for Grafana Agent Operator are created
-        enabled: true
     # Self monitoring determines whether Loki should scrape its own logs.
     # This feature currently relies on the Grafana Agent Operator being installed,
     # which is installed by default using the grafana-agent-operator sub-chart.
@@ -100,18 +81,6 @@ loki:
       grafanaAgent:
         installOperator: true
 
-    # The Loki canary pushes logs to and queries from this loki installation to test
-    # that it's working correctly
-    lokiCanary:
-      enabled: true
-      extraArgs:
-        - -wait=2m0s
-      tolerations:
-        - effect: "NoSchedule"
-          operator: "Exists"
-        - effect: "NoExecute"
-          operator: "Exists"  
-
   # Zero out replica counts of other deployment modes
   backend:
     replicas: 0
@@ -119,7 +88,7 @@ loki:
     replicas: 0
   write:
     replicas: 0
-  
+
   ingester:
     replicas: 0
   querier:
@@ -138,3 +107,4 @@ loki:
     replicas: 0
   bloomGateway:
     replicas: 0
+
