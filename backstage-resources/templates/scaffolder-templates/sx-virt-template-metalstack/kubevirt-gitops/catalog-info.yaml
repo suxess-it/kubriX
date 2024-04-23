@@ -13,7 +13,7 @@ metadata:
       icon: web
   annotations:
     github.com/project-slug: ${{values.repoUrlowner}}/${{values.application_id}}
-    backstage.io/kubernetes-id: app.kubernetes.io/instance=${{values.application_id}}
+    backstage.io/kubernetes-label-selector: 'app.kubernetes.io/instance=${{values.application_id}}'
     kubecost.com/deployment-name: ${{values.application_id}}
     argocd/app-name: ${{values.application_id}}-${{values.environments}}
     backstage.io/kubernetes-namespace: ${{values.environments}}-demo-kubevirt
