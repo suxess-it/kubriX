@@ -165,6 +165,8 @@ spec:
     links:
       - title: Repository
         url: ${{ steps["publish-gitopsreposetup"].output.remoteUrl }}
+      - title: Approved-Apps PR
+        url: ${{ steps["pull-request-applicationsetup"].output.remoteUrl }}
       - title: Open in catalog
         icon: catalog
         entityRef: ${{ steps.register.output.entityRef }}
