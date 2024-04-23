@@ -169,9 +169,12 @@ k3d cluster delete cnp-local-demo
 
 ### Build suXess backstage container image and push it to our registry
 
-build could take 1300 seconds and push could also take a lot of time
-#TODO: image is very very big
+#### automatically with Github Actions
 
+Workflow-File: https://github.com/suxess-it/sx-backstage/blob/feat/cnp-local-demo-jokl/.github/workflows/docker-image.yaml
+
+#### manually on local machine
+build could take 1300 seconds and push could also take a lot of time
 ```
 git clone https://github.com/suxess-it/sx-backstage.git
 cd sx-backstage
