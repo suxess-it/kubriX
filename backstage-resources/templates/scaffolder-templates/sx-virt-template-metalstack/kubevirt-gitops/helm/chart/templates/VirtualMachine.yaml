@@ -3,10 +3,10 @@ kind: VirtualMachine
 metadata:
   annotations:
     description: {{ .Values.description }}
-    backstage.io/kubernetes-id: {{ .Values.application_id }}
   name: {{ .Values.application_id }}
   namespace: {{ .Values.environments }}-demo-kubevirt
   labels:
+    backstage.io/kubernetes-id: {{ .Values.application_id }}
     app: {{ .Values.application_id }}
     kubevirt.io/dynamic-credentials-support: 'true'
     vm.kubevirt.io/template:  server-small #to get default values
@@ -17,12 +17,12 @@ spec:
     metadata:
       annotations:
         vm.kubevirt.io/os: {{ .Values.os }} # min. 1 annotation needed
-        backstage.io/kubernetes-id: {{ .Values.application_id }}
       creationTimestamp: null
       labels:
         kubevirt.io/size: small
         kubevirt.io/domain: {{ .Values.application_id }}
         app: {{ .Values.application_id }}
+        backstage.io/kubernetes-id: {{ .Values.application_id }}
     spec:
       architecture: amd64
       domain:
