@@ -95,12 +95,12 @@ spec:
             allowedHosts:
               - github.com
   steps:
-
     - id: template-gitops
       name: Fetch Skeleton + Template
       action: fetch:template
       input:
         url: ./kubevirt-gitops
+        targetPath: ./kubevirt-gitops
         copyWithoutRender: []
         values:
           application_id: ${{ parameters.application_id }}
@@ -114,18 +114,18 @@ spec:
           initpwd: ${{ parameters.initpwd }}
           repoUrl: ${{ parameters.repoUrl }}
           repoUrlowner: ${{ (parameters.repoUrl | parseRepoUrl)["owner"] }}
-        targetPath: ./kubevirt-gitops
+
 
     - id: publish-gitopsreposetup
       name: Publish Template Gitops Repo
       action: publish:github
       input:
+        sourcePath: ./kubevirt-gitops
         allowedHosts: ['github.com']
         description: This is ${{ parameters.application_id }}
         repoUrl: ${{ parameters.repoUrl }}
         token: ${{ secrets.USER_OAUTH_TOKEN }}
         repoVisibility: public
-        sourcePath: ./kubevirt-gitops
         deleteBranchOnMerge: true
         protectDefaultBranch: false
         
@@ -134,6 +134,7 @@ spec:
       action: fetch:template
       input:
         url: ./skeleton/applicationsetup
+        targetPath: ./applicationsetup
         copyWithoutRender: []
         values:
           application_id: ${{ parameters.application_id }}
@@ -146,10 +147,12 @@ spec:
       name: make a pr to approved-application repo with additional applicationsetup
       action: publish:github:pull-request
       input:
+        sourcePath: ./applicationsetup
+        targetPath: '.'
         repoUrl: github.com?repo=approved-application&owner=suxess-it
         branchName: ${{ parameters.application_id }}
         title: argoapps and system config for ${{ parameters.application_id }}
-        description: argoapps and system config for ${{ parameters.application_id }} 
+        description: argoapps and system config for ${{ parameters.application_id }}
 
     - id: register
       name: Register
