@@ -125,6 +125,8 @@ spec:
         description: This is ${{ parameters.application_id }}
         repoUrl: ${{ parameters.repoUrl }}
         token: ${{ secrets.USER_OAUTH_TOKEN }}
+        gitAuthorName: ${{ user.entity.metadata.name }}
+        gitAuthorEmail: ${{ user.entity.spec.profile.email }}
         repoVisibility: public
         deleteBranchOnMerge: true
         protectDefaultBranch: false
@@ -153,6 +155,9 @@ spec:
         branchName: ${{ parameters.application_id }}
         title: argoapps and system config for ${{ parameters.application_id }}
         description: argoapps and system config for ${{ parameters.application_id }}
+        token: ${{ secrets.USER_OAUTH_TOKEN }}
+        gitAuthorName: ${{ user.entity.metadata.name }}
+        gitAuthorEmail: ${{ user.entity.spec.profile.email }}
 
     - id: register
       name: Register
