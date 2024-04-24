@@ -79,3 +79,20 @@ spec:
   lifecycle: production
   owner: sx-cnp-oss
   system: sx-cnp-oss
+
+---
+# locations
+apiVersion: backstage.io/v1alpha1
+kind: Location
+metadata:
+  name: generic-location
+  description: A collection of all Backstage entities for all type of k8s clusters
+spec:
+  targets:
+    - ./generic/backstage-info.yaml
+    - ./generic/cert-manager-info.yaml
+    - ./generic/kubevirt-info.yaml
+    - ./generic/kyverno-info.yaml
+    - ./generic/loki-info.yaml
+    - ./generic/tempo-info.yaml
+
