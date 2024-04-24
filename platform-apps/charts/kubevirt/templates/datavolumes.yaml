@@ -1,0 +1,36 @@
+{{- if .Values.datasources.enabled }}
+{{- range $sources := .Values.datasources.sources }}
+---
+apiVersion: cdi.kubevirt.io/v1beta1
+kind: DataVolume
+metadata:
+  name: {{ $sources.name }}
+  namespace: kubevirt
+spec:
+  source:
+    http:
+      url: "{{ $sources.url }}"
+  pvc:
+    accessModes:
+      - ReadWriteOnce
+    resources:
+      requests:
+        storage: {{ $sources.storage }}
+---
+apiVersion: backstage.io/v1alpha1
+kind: Resource
+metadata:
+  name: {{ $sources.name }}
+  title: {{ $sources.name }}
+  description: {{ $sources.description }}
+  links:
+    - url: {{ $sources.url }}
+      title: Official Repolink
+      icon: web
+spec:
+  type: datasource
+  lifecycle: production
+  owner: sx-cnp-oss
+  system: sx-cnp-oss
+{{ end }}
+{{- end }}
