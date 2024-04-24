@@ -62,3 +62,20 @@ spec:
     picture: https://api.dicebear.com/7.x/identicon/svg?seed=Fluffy&backgroundType=solid,gradientLinear&backgroundColor=ffd5dc,b6e3f4
   parent: backstage
   children: []
+---
+# dummy for templating
+apiVersion: backstage.io/v1alpha1
+kind: Resource
+metadata:
+  name: fedora-cloud-
+  namespace: default
+  description: fedoa cloud v40.1.14 Base Image
+  links:
+    - url: https://download.fedoraproject.org/pub/fedora/linux/releases/40/Cloud/x86_64/images/Fedora-Cloud-Base-Generic.x86_64-40-1.14.qcow2
+      title: Official Repolink
+      icon: web
+spec:
+  type: datasource
+  lifecycle: production
+  owner: sx-cnp-oss
+  system: sx-cnp-oss
