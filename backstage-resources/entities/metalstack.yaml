@@ -1,0 +1,14 @@
+---
+# locations
+apiVersion: backstage.io/v1alpha1
+kind: Location
+metadata:
+  name: metalstack-location
+  description: A collection of all Backstage entities for metalstack clusters
+spec:
+  targets:
+    - ./metalstack/argocd-info.yaml
+    - ./metalstack/kube-prometheus-stack-info.yaml
+    - ./metalstack/kubecost-info.yaml
+    - ./metalstack/kubevirt-manager-info.yaml
+
