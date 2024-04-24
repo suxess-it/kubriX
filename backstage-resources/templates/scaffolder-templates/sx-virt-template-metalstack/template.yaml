@@ -1,14 +1,14 @@
 apiVersion: scaffolder.backstage.io/v1beta3
 kind: Template
 metadata:
-  name: sx-kubevirt-template-metalstack
-  title: sX kubevirt Template for metalstack cloud
-  description: Run Demo VM in ArgoCD namespace
+  name: sx-cnp-oss-kubevirt-template-metalstack
+  title: sx-cnp-oss kubevirt Template for metalstack cloud
+  description: Run Demo VM provisoned with ArgoCD
   tags:
     - virtualization
     - metalstack
 spec:
-  owner: user:philipp.achmueller
+  owner: user:phac008
   type: system
   
   parameters:
@@ -39,7 +39,6 @@ spec:
           ui:field: OwnerPicker
           ui:options:
             allowedKinds: 
-              - Group
               - User
         cores:
           title: Number of Cores
@@ -62,21 +61,27 @@ spec:
           uniqueItems: true
           ui:widget: checkboxes
         disk:
-          title: Storage size of VM
+          title: Disk size of VM
           type: string
-          default: '30Gi'
+          default: '10Gi'
         initpwd:
           title: initial init pwd
           type: string
-          default: 'testcnppwd'
+          default: 'admin'
         os:
           title: OS Type
           type: string
-          description: OS used  by this vm
-          default: kubevirt/fedora-cloud-container-disk-demo
-          enum: 
-            - kubevirt/fedora-cloud-container-disk-demo
-            - cirrus
+          description: Select OS for vm
+          ui:field: EntityPicker
+          ui:options:
+            allowArbitraryValues: false
+            catalogFilter:
+              - kind: Resource
+                spec.type: datasource
+        sshkey:
+          title: single ssh-key
+          type: string
+          description: ssh-key for vmlogin
     - title: Choose a location
       required:
         - repoUrl
@@ -95,6 +100,12 @@ spec:
             allowedHosts:
               - github.com
   steps:
+    - id: catalogFetch
+      name: Fetch Context
+      action: catalog:fetch
+      input:
+        entityRef: ${{ parameters.os }}
+        
     - id: template-gitops
       name: Fetch Skeleton + Template
       action: fetch:template
@@ -109,12 +120,12 @@ spec:
           environments: ${{ parameters.environments }}
           cores: ${{ parameters.cores }}
           memory: ${{ parameters.memory }}
-          os: ${{ parameters.os }}
+          os: ${{ steps['catalogFetch'].output.entity.metadata.name }}
           disk: ${{ parameters.disk }}
           initpwd: ${{ parameters.initpwd }}
           repoUrl: ${{ parameters.repoUrl }}
           repoUrlowner: ${{ (parameters.repoUrl | parseRepoUrl)["owner"] }}
-
+          sshkey: ${{ parameters.sshkey }}
 
     - id: publish-gitopsreposetup
       name: Publish Template Gitops Repo
@@ -160,12 +171,19 @@ spec:
         gitAuthorEmail: ${{ user.entity.spec.profile.email }}
 
     - id: register
-      name: Register
+      name: Register Catalog
       action: catalog:register
       input:
         repoContentsUrl: ${{ steps["publish-gitopsreposetup"].output.repoContentsUrl }}
         catalogInfoPath: '/catalog-info.yaml'
   
+    - id: register2
+      name: Register system
+      action: catalog:register
+      input:
+        repoContentsUrl: ${{ steps["publish-gitopsreposetup"].output.repoContentsUrl }}
+        catalogInfoPath: '/system-info.yaml'
+        
   output:
     links:
       - title: Repository
