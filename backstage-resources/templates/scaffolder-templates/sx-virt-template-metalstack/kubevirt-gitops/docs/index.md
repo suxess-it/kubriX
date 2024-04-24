@@ -1,6 +1,8 @@
 ## test
 
 ${{values.application_id}}
+# Base Information
+- VM will start by default after approval from platform team
 
 ## Getting started
 
