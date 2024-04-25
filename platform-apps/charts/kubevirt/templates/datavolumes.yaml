@@ -6,6 +6,8 @@ kind: DataVolume
 metadata:
   name: {{ $sources.name }}
   namespace: kubevirt
+  annotations:
+    argocd.argoproj.io/sync-wave: "3"
 spec:
   source:
     http:
