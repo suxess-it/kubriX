@@ -10,7 +10,6 @@ metadata:
     app: {{ .Values.application_id }}
     kubevirt.io/dynamic-credentials-support: 'true'
     vm.kubevirt.io/template:  server-small #to get default values
-    vm.kubevirt.io/template.namespace: openshift
 spec:
   running: true
   template:
@@ -19,20 +18,25 @@ spec:
         vm.kubevirt.io/os: {{ .Values.os }} # min. 1 annotation needed
       creationTimestamp: null
       labels:
-        kubevirt.io/size: small
+#        kubevirt.io/size: small
         kubevirt.io/domain: {{ .Values.application_id }}
         app: {{ .Values.application_id }}
         backstage.io/kubernetes-id: {{ .Values.application_id }}
     spec:
       architecture: amd64
       domain:
+        clock:
+          utc: {}
+        features:
+          acpi: {}
+          apic: {}
         cpu:
           cores: {{ .Values.cores }}
         devices:
           disks:
-            - disk:
+            - name: root-disk
+              disk:
                 bus: virtio
-              name: rootdisk
             - disk:
                 bus: virtio
               name: cloudinitdisk
@@ -42,20 +46,42 @@ spec:
               name: default
           networkInterfaceMultiqueue: true
         memory:
-          guest: {{ .Values.memory }}
+          requests:
+            memory: {{ .Values.memory }}
       networks:
         - name: default
           pod: {}
       terminationGracePeriodSeconds: 180
       volumes:
-        - name: containerdisk
-          containerDisk:
-            image:  {{ .Values.os }}
-          name: rootdisk
-        - cloudInitConfigDrive:
-            userData: |-
-              #cloud-config
-              user: cloud-user
-              password: {{ .Values.initpwd }}
-              chpasswd: { expire: False }
-          name: cloudinitdisk
+      - dataVolume:
+          name: {{ .Values.application_id }}
+        name: root-disk
+      - name: cloudinitdisk
+        cloudInitConfigDrive:
+          userData: |-
+            #cloud-config
+            user: cloud-user
+            password: {{ .Values.initpwd }}
+            chpasswd: { expire: False }
+            ssh_pwauth: 1
+            {{- if .Values.sshkey }}
+            ssh_authorized_keys:
+              - .Values.sshkey
+            {{- end }}
+            locale: de_DE
+            keyboard:
+              layout: de
+  dataVolumeTemplates:
+  - metadata:
+      name: {{ .Values.application_id }}
+    spec:
+      storage:
+        accessModes:
+        - ReadWriteOnce
+        resources:
+          requests:
+            storage: {{ .Values.disk }}
+      source:
+        pvc:
+          namespace: kubevirt
+          name: {{ .Values.os }}
