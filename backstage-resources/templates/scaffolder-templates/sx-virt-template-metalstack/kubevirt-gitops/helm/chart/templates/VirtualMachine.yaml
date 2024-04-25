@@ -45,8 +45,7 @@ spec:
               model: virtio
               name: default
           networkInterfaceMultiqueue: true
-        memory:
-          guest: {{ .Values.memory }}
+        resources:
           requests:
             memory: {{ .Values.memory }}
       networks:
