@@ -67,18 +67,42 @@ spec:
 apiVersion: backstage.io/v1alpha1
 kind: Resource
 metadata:
-  name: fedora-cloud
-  namespace: default
   description: fedoa cloud v40.1.14 Base Image
+  labels:
+    argocd.argoproj.io/instance: sx-kubevirt
   links:
-    - url: https://download.fedoraproject.org/pub/fedora/linux/releases/40/Cloud/x86_64/images/Fedora-Cloud-Base-Generic.x86_64-40-1.14.qcow2
+    - icon: web
       title: Official Repolink
-      icon: web
+      url: >-
+        https://download.fedoraproject.org/pub/fedora/linux/releases/40/Cloud/x86_64/images/Fedora-Cloud-Base-Generic.x86_64-40-1.14.qcow2
+  name: fedora-cloud-base
+  namespace: kubevirt
+  title: fedora-cloud-base
 spec:
-  type: datasource
   lifecycle: production
   owner: sx-cnp-oss
   system: sx-cnp-oss
+  type: datasource
+---
+apiVersion: backstage.io/v1alpha1
+kind: Resource
+metadata:
+  description: ubuntu 22.02 Base Image
+  labels:
+    argocd.argoproj.io/instance: sx-kubevirt
+  links:
+    - icon: web
+      title: Official Repolink
+      url: >-
+        http://cloud-images.ubuntu.com/jammy/current/jammy-server-cloudimg-amd64.img
+  name: ubuntu-jammy-server
+  namespace: kubevirt
+  title: ubuntu-jammy-server
+spec:
+  lifecycle: production
+  owner: sx-cnp-oss
+  system: sx-cnp-oss
+  type: datasource
 
 ---
 # locations

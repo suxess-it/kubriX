@@ -16,21 +16,5 @@ spec:
     resources:
       requests:
         storage: {{ $sources.storage }}
----
-apiVersion: backstage.io/v1alpha1
-kind: Resource
-metadata:
-  name: {{ $sources.name }}
-  title: {{ $sources.name }}
-  description: {{ $sources.description }}
-  links:
-    - url: {{ $sources.url }}
-      title: Official Repolink
-      icon: web
-spec:
-  type: datasource
-  lifecycle: production
-  owner: sx-cnp-oss
-  system: sx-cnp-oss
 {{ end }}
 {{- end }}
