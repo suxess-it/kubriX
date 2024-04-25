@@ -7,21 +7,20 @@ rules:
 - apiGroups: ["cdi.kubevirt.io"]
   resources: ["volumeclonesources"]
   verbs: ["get","update","list","watch"]
-
+{{- range $sources := .Values.datasources.clientnamespaces }}
 ---
 apiVersion: rbac.authorization.k8s.io/v1
 kind: RoleBinding
 metadata:
-  name: allow-clone-to-clientnamespace-sa-default
+  name: allow-clone-to-clientnamespace-sa-default-{{ $sources }}
   namespace: kubevirt
 subjects:
-{{- range $sources := .Values.datasources.clientnamespaces }}
 - kind: ServiceAccount
   name: default
   namespace: {{ $sources }}
-{{- end }}
 roleRef:
   kind: ClusterRole
   name: kubevirt-datavolume-permission
   apiGroup: rbac.authorization.k8s.io
+{{- end }}
 {{- end }}
