@@ -73,7 +73,7 @@ wait until all apps are synced and healthy
 watch kubectl get applications -n argocd
 ```
 
-backstage is still progressing. 
+only backstage should still be progressing because of a missing secret which gets created in the next step.
 
 ### 5. Create some secrets manually
 
