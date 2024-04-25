@@ -4,6 +4,10 @@ cdi:
   version: v1.59.0
 datasources:
   enabled: true
+  clientnamespaces:
+    - prod-demo-kubevirt
+    - test-demo-kubevirt
+    - qa-demo-kubevirt
   sources:
     - name: ubuntu-jammy-server
       url: http://cloud-images.ubuntu.com/jammy/current/jammy-server-cloudimg-amd64.img
