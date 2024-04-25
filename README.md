@@ -76,7 +76,7 @@ Info: I apply a file because the bcrypt value with "kubectl create secret ... --
 
 #### backstage
 
-create OAuth App on Github for Backstage login: https://backstage.io/docs/auth/github/provider/
+create OAuth App in your Github Organization for Backstage login: https://backstage.io/docs/auth/github/provider/
 
 - Homepage URL: https://backstage-127-0-0-1.nip.io
 - Authorization callback URL: https://backstage-127-0-0-1.nip.io/api/auth/github
@@ -105,7 +105,6 @@ export GRAFANA_TOKEN=$(curl -k -X POST https://grafana-127-0-0-1.nip.io/api/serv
 ```
 export GITHUB_CLIENTSECRET=<value from steps above>
 export GITHUB_CLIENTID=<value from steps above>
-export GITHUB_ORG=<your github handle>
 export GITHUB_TOKEN=<your personal access token>
 export K8S_SA_TOKEN=$( kubectl get secret backstage-locator -n backstage  -o jsonpath='{.data.token}' | base64 -d )
 kubectl create secret generic -n backstage manual-secret --from-literal=GITHUB_CLIENTSECRET=${GITHUB_CLIENTSECRET} --from-literal=GITHUB_CLIENTID=${GITHUB_CLIENTID} --from-literal=GITHUB_ORG=${GITHUB_ORG} --from-literal=GITHUB_TOKEN=${GITHUB_TOKEN} --from-literal=K8S_SA_TOKEN=${K8S_SA_TOKEN} --from-literal=ARGOCD_AUTH_TOKEN=${ARGOCD_AUTH_TOKEN} --from-literal=GRAFANA_TOKEN=${GRAFANA_TOKEN}
