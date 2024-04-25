@@ -46,6 +46,7 @@ spec:
               name: default
           networkInterfaceMultiqueue: true
         memory:
+          guest: {{ .Values.memory }}
           requests:
             memory: {{ .Values.memory }}
       networks:
