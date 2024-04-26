@@ -3,8 +3,8 @@ kind: ConfigMap
 metadata:
   labels:
     grafana_dashboard: "1"
-  name: new-dashboard
-  namespace: monitoring
+  name: kubevirt-grafana-dashboard
+  namespace: kubevirt
 data:
   new-dashboard.json: |-
 {{ .Files.Get "dashboard-files/dashboard.json" | indent 4 }}
