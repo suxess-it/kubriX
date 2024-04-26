@@ -2,7 +2,7 @@
 apiVersion: cert-manager.io/v1
 kind: Certificate
 metadata:
-  name: backstage-certificate
+  name: kubevirt-certificate
 spec:
   secretName: {{ .Values.deployment.tls.name }}
   issuerRef:
