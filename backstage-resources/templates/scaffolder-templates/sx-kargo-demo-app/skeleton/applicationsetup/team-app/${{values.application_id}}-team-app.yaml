@@ -1,0 +1,23 @@
+# TODO Array for environments 
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: ${{values.application_id}}-team-app
+  namespace: argocd
+  finalizers:
+  - resources-finalizer.argocd.argoproj.io
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/${{values.repoUrlowner}}/${{values.repoUrlRepo}}.git
+    targetRevision: HEAD
+    path: team-app
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: argocd
+  syncPolicy:
+    automated: 
+      prune: true
+      selfHeal: true
+
+

@@ -1,0 +1,36 @@
+
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: ${{values.application_id}}
+  namespace: argocd
+spec:
+  generators:
+  - list:
+      elements:
+      - stage: test
+      - stage: qa
+      - stage: prod
+  template:
+    metadata:
+      name: '{{stage}}-${{values.application_id}}'
+      annotations:
+        kargo.akuity.io/authorized-stage: kargo-${{values.application_id}}:{{stage}}
+    spec:
+      project: default
+      source:
+        repoURL: https://github.com/${{values.repoUrlowner}}/${{values.repoUrlRepo}}.git
+        targetRevision: stages/{{stage}}
+        path: helm/chart
+        helm:
+          valueFiles:
+          - values-{{stage}}.yaml
+      destination:
+        server: https://kubernetes.default.svc
+        namespace: '{{stage}}-${{values.application_id}}'
+      syncPolicy:
+        automated:
+          prune: true
+          selfHeal: true
+        syncOptions:
+        - CreateNamespace=true
