@@ -2,7 +2,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: approved-application-argoapps
+  name: approved-application-team-app
   namespace: argocd
   annotations:
     argocd.argoproj.io/sync-wave: "10"
@@ -20,7 +20,7 @@ spec:
   project: default
   source:
     directory:
-      include: 'argoapps/*.yaml'
+      include: 'team-app/*.yaml'
       jsonnet: {}
       recurse: true
     path: .

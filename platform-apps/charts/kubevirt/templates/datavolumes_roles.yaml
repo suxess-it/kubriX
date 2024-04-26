@@ -1,12 +1,12 @@
 {{- if .Values.datasources.enabled }}
 apiVersion: rbac.authorization.k8s.io/v1
-kind: Role
+kind: ClusterRole
 metadata:
   name: kubevirt-datavolume-permission
 rules:
 - apiGroups: ["cdi.kubevirt.io"]
-  resources: ["volumeclonesources"]
-  verbs: ["get","update","list","watch"]
+  resources: ["datavolumes/source"]
+  verbs: ["*"]
 {{- range $sources := .Values.datasources.clientnamespaces }}
 ---
 apiVersion: rbac.authorization.k8s.io/v1
