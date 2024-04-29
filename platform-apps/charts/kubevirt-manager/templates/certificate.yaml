@@ -6,7 +6,7 @@ metadata:
 spec:
   secretName: {{ .Values.deployment.tls.name }}
   issuerRef:
-    name: letsencrypt-prod
+    name: letsencrypt-staging
     kind: ClusterIssuer
   dnsNames:
     - {{ .Values.deployment.ingress.host }}
