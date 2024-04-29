@@ -91,6 +91,7 @@ backstage:
         '/grafana/api':
           # May be a public or an internal DNS
           target: https://grafana-metalstack.platform-engineer.cloud
+          secure: false
           headers:
             Authorization: Bearer ${GRAFANA_TOKEN}
 
