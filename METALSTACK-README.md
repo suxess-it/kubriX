@@ -102,27 +102,32 @@ create OAuth App in your Github Organization for Backstage login: https://backst
 - Authorization callback URL: https://portal-metalstack.platform-engineer.cloud/
 
 use GITHUB_CLIENTSECRET and GITHUB_CLIENTID from your Github OAuth App for the following environment variables.
+```
+export METALSTACK_GITHUB_CLIENTID=<value from steps above>
+export METALSTACK_GITHUB_CLIENTSECRET=<value from steps above>
+export GITHUB_TOKEN=<your personal access token>
+```
 
 create ArgoCD Token for backstage account:
-
 ```
 argocd login argocd-metalstack.platform-engineer.cloud --grpc-web
 export ARGOCD_AUTH_TOKEN="argocd.token=$( argocd account generate-token --account backstage --grpc-web )"
 ```
 
 create Grafana ServiceAccount token for backstage:
-
 ```
 ID=$( curl -k -X POST https://grafana-metalstack.platform-engineer.cloud/api/serviceaccounts --user 'admin:prom-operator' -H "Content-Type: application/json" -d '{"name": "backstage","role": "Viewer","isDisabled": false}' | jq -r .id )
 
 export GRAFANA_TOKEN=$(curl -k -X POST https://grafana-metalstack.platform-engineer.cloud/api/serviceaccounts/${ID}/tokens --user 'admin:prom-operator' -H "Content-Type: application/json" -d '{"name": "backstage"}' | jq -r .key)
 ```
 
+export service auth token for backstage-locator, which pulls kubernetes data for backstage entities
 ```
-export METALSTACK_GITHUB_CLIENTID=<value from steps above>
-export METALSTACK_GITHUB_CLIENTSECRET=<value from steps above>
-export GITHUB_TOKEN=<your personal access token>
 export K8S_SA_TOKEN=$( kubectl get secret backstage-locator -n backstage  -o jsonpath='{.data.token}' | base64 -d )
+```
+
+create secret in backstage namespace with all the variables from above:
+```
 kubectl create secret generic -n backstage manual-secret --from-literal=GITHUB_CLIENTSECRET=${METALSTACK_GITHUB_CLIENTSECRET} --from-literal=GITHUB_CLIENTID=${METALSTACK_GITHUB_CLIENTID} --from-literal=GITHUB_ORG=${GITHUB_ORG} --from-literal=GITHUB_TOKEN=${GITHUB_TOKEN} --from-literal=K8S_SA_TOKEN=${K8S_SA_TOKEN} --from-literal=ARGOCD_AUTH_TOKEN=${ARGOCD_AUTH_TOKEN} --from-literal=GRAFANA_TOKEN=${GRAFANA_TOKEN}
 ```
 
