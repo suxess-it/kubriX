@@ -124,6 +124,7 @@ spec:
           disk: ${{ parameters.disk }}
           initpwd: ${{ parameters.initpwd }}
           repoUrl: ${{ parameters.repoUrl }}
+          repoUrlRepo: ${{ (parameters.repoUrl | parseRepoUrl)["repo"] }}
           repoUrlowner: ${{ (parameters.repoUrl | parseRepoUrl)["owner"] }}
           sshkey: ${{ parameters.sshkey }}
 
