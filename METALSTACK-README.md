@@ -4,6 +4,8 @@
 
 ### prereqs
 
+#### aws route53 credentials
+
 if you manage your DNS-Names in AWS Route53 with external-dns:
 create IAM policy on AWS for AWS Route53: https://kubernetes-sigs.github.io/external-dns/v0.14.1/tutorials/aws/#iam-policy
 
@@ -17,6 +19,10 @@ create a file `credentials` where "Access key" and "Secret access key" are store
 aws_access_key_id = <access key>
 aws_secret_access_key = <secret access key>
 ```
+
+#### letsencrypt staging root certs
+
+Currently we issue our certificates automatically with letsencrypt. However, due to some limits we don't use the production but the staging letsencrypt API. So you need to put those two root certs in your truststore: https://letsencrypt.org/docs/staging-environment/#root-certificates
 
 ### 1. create metalstack cluster
 
