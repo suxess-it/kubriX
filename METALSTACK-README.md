@@ -170,7 +170,7 @@ URLs for stages (need to be registered in aws route53):
 
 - test: http://test-demo-app-metalstack.platform-engineer.cloud
 - qa: http://qa-demo-app-metalstack.platform-engineer.cloud
-- prod: http://prod-demo-metalstack.platform-engineer.cloud
+- prod: http://prod-demo-app-metalstack.platform-engineer.cloud
 
 ### 11. Promote über die Stages
 
