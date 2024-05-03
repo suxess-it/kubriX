@@ -17,6 +17,12 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+
+      - name: show files
+        shell: bash
+        run: |
+          pwd
+          find ${GITHUB_WORKSPACE}
   
       - name: Create k8s Kind Cluster
         uses: helm/kind-action@v1
