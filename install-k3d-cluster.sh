@@ -55,7 +55,6 @@ end=$((SECONDS+600))
 argocd_apps="argocd sx-loki sx-kubecost sx-keycloak sx-promtail sx-tempo sx-crossplane sx-bootstrap-app sx-kargo approved-application-team-app sx-cert-manager sx-argo-rollouts sx-external-secrets sx-kyverno sx-kube-prometheus-stack"
 
 while [ $SECONDS -lt $end ]; do
-  kubectl get application -n argocd
   all_apps_synced="true"
   for app in ${argocd_apps} ; do
     kubectl get application -n argocd ${app} | grep "Synced.*Healthy"
@@ -68,6 +67,7 @@ while [ $SECONDS -lt $end ]; do
     echo "all apps are synced! you are ready to take off!"
     break
   fi
+  kubectl get application -n argocd
   sleep 10
 done
 
