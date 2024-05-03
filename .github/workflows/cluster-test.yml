@@ -27,6 +27,11 @@ jobs:
           chmod +x mkcert-v*-linux-amd64
           sudo cp mkcert-v*-linux-amd64 /usr/local/bin/mkcert
 
+      - name: install nginx
+        shell: bash
+        run: |
+          kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/main/deploy/static/provider/kind/deploy.yaml
+
       - name: install sx-cnp-oss stack 
         env:
           # renovate: datasource=github-releases depName=cert-manager/cert-manager
