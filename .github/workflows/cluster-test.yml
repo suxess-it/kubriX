@@ -41,6 +41,7 @@ jobs:
           curl -L https://raw.githubusercontent.com/suxess-it/sx-cnp-oss/main/install-k3d-cluster.sh | bash
 
       - name: mustgather data for troubleshooting
+        if: ${{ failure() }}
         shell: bash
         run: |
           kubectl get application -n argocd -o yaml
