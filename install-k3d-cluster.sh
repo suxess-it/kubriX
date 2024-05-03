@@ -5,11 +5,14 @@ set -x
 # do we need to set this always? I had DNS issues on the train
 export K3D_FIX_DNS=1
 
-k3d cluster create cnp-local-demo \
-  -p "80:80@loadbalancer" \
-  -p "443:443@loadbalancer" \
-  --agents 2 \
-  --wait
+# in github workflows we use the same script but don't want the k3d cluster to get installed
+IF [ "${INSTALL_K3D_CLUSTER}" != "false" ] ; then
+  k3d cluster create cnp-local-demo \
+    -p "80:80@loadbalancer" \
+    -p "443:443@loadbalancer" \
+    --agents 2 \
+    --wait
+fi
 
 # create mkcert certs in alle namespaces with ingress
 for namespace in backstage kargo monitoring argocd keycloak kubecost; do
