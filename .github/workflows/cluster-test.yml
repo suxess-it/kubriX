@@ -19,3 +19,12 @@ jobs:
         uses: helm/kind-action@v1
         with:
           cluster_name: sx-cnp-oss-cluster
+
+      - name: install sx-cnp-oss stack 
+        env:
+          # renovate: datasource=github-releases depName=cert-manager/cert-manager
+          INSTALL_K3D_CLUSTER: "false"
+          INSTALL_MKCERTS: "false"
+        shell: bash
+        run: |
+          curl -L https://raw.githubusercontent.com/suxess-it/sx-cnp-oss/main/install-k3d-cluster.sh | sh
