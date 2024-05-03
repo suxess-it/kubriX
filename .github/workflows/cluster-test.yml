@@ -28,7 +28,7 @@ jobs:
         uses: helm/kind-action@v1
         with:
           cluster_name: sx-cnp-oss-cluster
-          config: /home/runner/work/sx-cnp-oss/sx-cnp-oss/.github/kind-config.yaml
+          config: ${{ github.workspace }}/.github/kind-config.yaml
 
       - name: install mkcert
         shell: bash
