@@ -34,9 +34,13 @@ jobs:
 
       - name: install sx-cnp-oss stack 
         env:
-          # renovate: datasource=github-releases depName=cert-manager/cert-manager
           INSTALL_K3D_CLUSTER: "false"
           INSTALL_MKCERTS: "false"
         shell: bash
         run: |
           curl -L https://raw.githubusercontent.com/suxess-it/sx-cnp-oss/main/install-k3d-cluster.sh | bash
+
+      - name: mustgather data for troubleshooting
+        shell: bash
+        run: |
+          kubectl get application -n argocd -o yaml
