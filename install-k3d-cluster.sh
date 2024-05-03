@@ -51,7 +51,7 @@ kubectl apply -f https://raw.githubusercontent.com/suxess-it/sx-cnp-oss/main/boo
 
 
 # max wait for 10 minutes
-end=$((SECONDS+1200))
+end=$((SECONDS+600))
 argocd_apps="argocd sx-loki sx-kubecost sx-keycloak sx-promtail sx-tempo sx-crossplane sx-bootstrap-app sx-kargo approved-application-team-app sx-cert-manager sx-argo-rollouts sx-external-secrets sx-kyverno sx-kube-prometheus-stack"
 
 all_apps_synced="true"
