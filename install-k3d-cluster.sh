@@ -51,11 +51,11 @@ kubectl apply -f https://raw.githubusercontent.com/suxess-it/sx-cnp-oss/main/boo
 
 
 # max wait for 10 minutes
-end=$((SECONDS+600))
+end=$((SECONDS+1200))
 argocd_apps="argocd sx-loki sx-kubecost sx-keycloak sx-promtail sx-tempo sx-crossplane sx-bootstrap-app sx-kargo approved-application-team-app sx-cert-manager sx-argo-rollouts sx-external-secrets sx-kyverno sx-kube-prometheus-stack"
 
+all_apps_synced="true"
 while [ $SECONDS -lt $end ]; do
-  all_apps_synced="true"
   for app in ${argocd_apps} ; do
     kubectl get application -n argocd ${app} | grep "Synced.*Healthy"
     exit_code=$?
@@ -70,5 +70,9 @@ while [ $SECONDS -lt $end ]; do
   kubectl get application -n argocd
   sleep 10
 done
+if [ ${all_apps_synced} != "true" ] ; then
+ echo "not all apps synced and healthy after 1200 seconds"
+ exit 1
+fi
 
 echo "app 'sx-backstage' is not checked because there we need to manually apply secrets"
