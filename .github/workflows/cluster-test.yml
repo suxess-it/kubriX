@@ -4,10 +4,8 @@ name: test sx-cnp-oss k3d stack on kind cluster
 
 # Controls when the workflow will run
 on:
-  # Triggers the workflow on push or pull request events but only for the "main" branch
+  # at he moment this action only works when pushed to main because all references in the scripts and argocd apps use the main branch
   push:
-    branches: [ "main" ]
-  pull_request:
     branches: [ "main" ]
 
   # Allows you to run this workflow manually from the Actions tab
