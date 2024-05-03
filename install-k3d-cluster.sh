@@ -1,7 +1,6 @@
 #!/bin/bash
 
 set -x
-set -e
 
 # do we need to set this always? I had DNS issues on the train
 export K3D_FIX_DNS=1
