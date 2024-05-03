@@ -6,7 +6,7 @@ set -x
 export K3D_FIX_DNS=1
 
 # in github workflows we use the same script but don't want the k3d cluster to get installed
-IF [ "${INSTALL_K3D_CLUSTER}" != "false" ] ; then
+if [ "${INSTALL_K3D_CLUSTER}" != "false" ] ; then
   k3d cluster create cnp-local-demo \
     -p "80:80@loadbalancer" \
     -p "443:443@loadbalancer" \
