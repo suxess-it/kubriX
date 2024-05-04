@@ -43,7 +43,6 @@ jobs:
         shell: bash
         run: |
           curl -L https://raw.githubusercontent.com/suxess-it/sx-cnp-oss/main/install-k3d-cluster.sh | bash
-          kubectl apply -f https://raw.githubusercontent.com/suxess-it/sx-cnp-oss/main/platform-apps/charts/argocd/manual-secret/argocd-secret.yaml
 
       - name: argocd login
         if: ${{ failure() }}
