@@ -2,11 +2,9 @@ apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
   annotations:
-    argocd.argoproj.io/sync-wave: "3"
+    argocd.argoproj.io/compare-options: ServerSideDiff=true
   name: sx-loki
   namespace: argocd
-  annotations:
-    argocd.argoproj.io/compare-options: ServerSideDiff=true
   finalizers:
   - resources-finalizer.argocd.argoproj.io
 spec:

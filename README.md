@@ -21,7 +21,7 @@ install the CA of mkcert in your OS truststore: https://docs.kubefirst.io/k3d/qu
 ### 1. create k3d cluster
 
 ```
-curl -L https://raw.githubusercontent.com/suxess-it/sx-cnp-oss/main/install-k3d-cluster.sh | sh
+curl -L https://raw.githubusercontent.com/suxess-it/sx-cnp-oss/main/install-k3d-cluster.sh | bash
 ```
 
 With this command a new k3d cluster gets created.
