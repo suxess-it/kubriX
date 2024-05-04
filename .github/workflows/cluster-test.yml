@@ -55,3 +55,9 @@ jobs:
         shell: bash
         run: |
           kubectl get application -n argocd -o yaml
+
+      - name: mustgather logs for troubleshooting
+        if: ${{ failure() }}
+        shell: bash
+        run: |
+          kubectl logs -n argocd -f -l app.kubernetes.io/instance=argocd  --all-containers=true
