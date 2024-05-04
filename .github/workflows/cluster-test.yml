@@ -17,13 +17,7 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-
-      - name: show files
-        shell: bash
-        run: |
-          pwd
-          find ${GITHUB_WORKSPACE}
-  
+ 
       - name: Create k8s Kind Cluster
         uses: helm/kind-action@v1
         with:
@@ -50,6 +44,25 @@ jobs:
         run: |
           curl -L https://raw.githubusercontent.com/suxess-it/sx-cnp-oss/main/install-k3d-cluster.sh | bash
 
+      - name: argocd login
+        if: ${{ failure() }}
+        uses: clowdhaus/argo-cd-action/@main
+        env:
+          # Only required for first step in job where API is called
+          # All subsequent setps in a job will not re-download the CLI
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          command: login argocd-127-0-0-1.nip.io 
+          options: --grpc-web --insecure --username admin --password admin
+
+      - name: argocd diff
+        if: ${{ failure() }}
+        env:
+          APPS: "argocd sx-loki sx-kubecost sx-keycloak sx-promtail sx-tempo sx-crossplane sx-bootstrap-app sx-kargo approved-application-team-app sx-cert-manager sx-argo-rollouts sx-external-secrets sx-kyverno sx-kube-prometheus-stack"
+        shell: bash
+        run: |
+          for app in ${APPS} ; do echo "$app diff" ; /home/github/argocd app diff $app --grpc-web
+          
       - name: mustgather data for troubleshooting
         if: ${{ failure() }}
         shell: bash
@@ -60,4 +73,5 @@ jobs:
         if: ${{ failure() }}
         shell: bash
         run: |
-          kubectl logs -n argocd -l app.kubernetes.io/instance=argocd  --all-containers=true
+          kubectl logs -n argocd statefulset/argocd-application-controller
+          kubectl logs -n argocd deployment/argocd-repo-server
