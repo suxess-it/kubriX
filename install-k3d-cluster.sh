@@ -44,6 +44,7 @@ helm install argocd argo-cd \
   --namespace argocd \
   --create-namespace \
   --set additionalLabels."app\.kubernetes\.io/instance"=argocd \
+  -f https://raw.githubusercontent.com/suxess-it/sx-cnp-oss/main/bootstrap-argocd-values.yaml \
   --wait
 
 kubectl apply -f https://raw.githubusercontent.com/suxess-it/sx-cnp-oss/main/bootstrap-app-k3d.yaml -n argocd
