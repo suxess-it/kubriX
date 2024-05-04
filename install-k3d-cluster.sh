@@ -70,10 +70,14 @@ while [ $SECONDS -lt $end ]; do
   kubectl get application -n argocd
   sleep 10
 done
+
+# apply argocd-secret to set admin user and password
+kubectl apply -f https://raw.githubusercontent.com/suxess-it/sx-cnp-oss/main/platform-apps/charts/argocd/manual-secret/argocd-secret.yaml
+
 echo "status of all pods"
 kubectl get pods -A
 if [ ${all_apps_synced} != "true" ] ; then
- echo "not all apps synced and healthy after 1200 seconds"
+ echo "not all apps synced and healthy after 6ßß seconds"
  exit 1
 fi
 
