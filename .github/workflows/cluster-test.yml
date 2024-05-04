@@ -60,4 +60,4 @@ jobs:
         if: ${{ failure() }}
         shell: bash
         run: |
-          kubectl logs -n argocd -f -l app.kubernetes.io/instance=argocd  --all-containers=true
+          kubectl logs -n argocd -l app.kubernetes.io/instance=argocd  --all-containers=true
