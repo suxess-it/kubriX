@@ -72,6 +72,7 @@ jobs:
         if: ${{ failure() }}
         shell: bash
         run: |
+          kubectl get nodes -o yaml
           kubectl get application -n argocd -o yaml
 
       - name: analyze with k8sgpt
