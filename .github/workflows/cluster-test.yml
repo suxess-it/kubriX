@@ -72,7 +72,13 @@ jobs:
         if: ${{ failure() }}
         shell: bash
         run: |
+          echo "===== node describe ======"
+          kubectl describe node sx-cnp-oss-cluster-control-plane
+          echo "===== node top  ======"
+          kubectl top node
+          echo "===== node yaml ======"
           kubectl get nodes -o yaml
+          echo "===== yaml output of all applications ======"
           kubectl get application -n argocd -o yaml
 
       - name: analyze with k8sgpt
