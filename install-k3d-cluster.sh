@@ -72,12 +72,15 @@ done
 # apply argocd-secret to set admin user and password
 kubectl apply -f https://raw.githubusercontent.com/suxess-it/sx-cnp-oss/main/platform-apps/charts/argocd/manual-secret/argocd-secret.yaml
 
-argocd login argocd-127-0-0-1.nip.io --grpc-web --insecure --username admin --password admin
+# download argocd
+curl -kL -o argocd https://argocd-127-0-0-1.nip.io/download/argocd-linux-amd64
+chmod u+x argocd
+          
+./argocd login argocd-127-0-0-1.nip.io --grpc-web --insecure --username admin --password admin
 export ARGOCD_AUTH_TOKEN="argocd.token=$( argocd account generate-token --account backstage --grpc-web )"
 
 ID=$( curl -k -X POST https://grafana-127-0-0-1.nip.io/api/serviceaccounts --user 'admin:prom-operator' -H "Content-Type: application/json" -d '{"name": "backstage","role": "Viewer","isDisabled": false}' | jq -r .id )
 export GRAFANA_TOKEN=$(curl -k -X POST https://grafana-127-0-0-1.nip.io/api/serviceaccounts/${ID}/tokens --user 'admin:prom-operator' -H "Content-Type: application/json" -d '{"name": "backstage"}' | jq -r .key)
-
 
 # max wait for 3 minutes
 end=$((SECONDS+180))
