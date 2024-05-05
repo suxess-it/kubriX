@@ -47,8 +47,8 @@ helm install argocd argo-cd \
 kubectl apply -f https://raw.githubusercontent.com/suxess-it/sx-cnp-oss/main/bootstrap-app-k3d.yaml -n argocd
 
 
-# max wait for 3 minutes
-end=$((SECONDS+180))
+# max wait for 4 minutes
+end=$((SECONDS+240))
 argocd_apps="argocd sx-kube-prometheus-stack"
 
 all_apps_synced="true"
