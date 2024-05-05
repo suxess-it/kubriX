@@ -55,7 +55,7 @@ jobs:
         run: |
           curl -L https://raw.githubusercontent.com/suxess-it/sx-cnp-oss/main/install-k3d-cluster.sh | bash
 
-      - name: argocd login
+      - name: argocd show diff
         if: ${{ failure() }}
         env:
           APPS: "argocd sx-loki sx-kubecost sx-keycloak sx-promtail sx-tempo sx-crossplane sx-bootstrap-app sx-kargo approved-application-team-app sx-cert-manager sx-argo-rollouts sx-external-secrets sx-kyverno sx-kube-prometheus-stack"
@@ -73,6 +73,11 @@ jobs:
         shell: bash
         run: |
           kubectl get application -n argocd -o yaml
+
+      - name: analyze with k8sgpt
+        shell: bash
+        run: |
+          k8sgpt analyze
 
       - name: mustgather logs for troubleshooting
         if: ${{ failure() }}
