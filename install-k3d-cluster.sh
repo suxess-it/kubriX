@@ -32,9 +32,6 @@ for namespace in backstage kargo monitoring argocd keycloak kubecost; do
   rm ${namespace}-cert.pem ${namespace}-key.pem
 done
 
-
-
-
 # create argocd with helm chart not with install.yaml
 # because afterwards argocd is also managed by itself with the helm-chart
 
@@ -48,6 +45,42 @@ helm install argocd argo-cd \
   --wait
 
 kubectl apply -f https://raw.githubusercontent.com/suxess-it/sx-cnp-oss/main/bootstrap-app-k3d.yaml -n argocd
+
+
+# max wait for 3 minutes
+end=$((SECONDS+180))
+argocd_apps="argocd sx-kube-prometheus-stack"
+
+all_apps_synced="true"
+while [ $SECONDS -lt $end ]; do
+  all_apps_synced="true"
+  for app in ${argocd_apps} ; do
+    kubectl get application -n argocd ${app} | grep "Synced.*Healthy"
+    exit_code=$?
+    if [[ $exit_code -ne 0 ]]; then
+      all_apps_synced="false"	
+    fi
+  done
+  if [ ${all_apps_synced} = "true" ] ; then
+    echo "first apps are synced"
+    break
+  fi
+  kubectl get application -n argocd
+  sleep 10
+done
+
+# apply argocd-secret to set admin user and password
+kubectl apply -f https://raw.githubusercontent.com/suxess-it/sx-cnp-oss/main/platform-apps/charts/argocd/manual-secret/argocd-secret.yaml
+
+argocd login argocd-127-0-0-1.nip.io --grpc-web --insecure --username admin --password admin
+export ARGOCD_AUTH_TOKEN="argocd.token=$( argocd account generate-token --account backstage --grpc-web )"
+
+ID=$( curl -k -X POST https://grafana-127-0-0-1.nip.io/api/serviceaccounts --user 'admin:prom-operator' -H "Content-Type: application/json" -d '{"name": "backstage","role": "Viewer","isDisabled": false}' | jq -r .id )
+export GRAFANA_TOKEN=$(curl -k -X POST https://grafana-127-0-0-1.nip.io/api/serviceaccounts/${ID}/tokens --user 'admin:prom-operator' -H "Content-Type: application/json" -d '{"name": "backstage"}' | jq -r .key)
+
+export K8S_SA_TOKEN=$( kubectl get secret backstage-locator -n backstage  -o jsonpath='{.data.token}' | base64 -d )
+kubectl create secret generic -n backstage manual-secret --from-literal=GITHUB_CLIENTSECRET=${GITHUB_CLIENTSECRET} --from-literal=GITHUB_CLIENTID=${GITHUB_CLIENTID} --from-literal=GITHUB_ORG=${GITHUB_ORG} --from-literal=GITHUB_TOKEN=${GITHUB_TOKEN} --from-literal=K8S_SA_TOKEN=${K8S_SA_TOKEN} --from-literal=ARGOCD_AUTH_TOKEN=${ARGOCD_AUTH_TOKEN} --from-literal=GRAFANA_TOKEN=${GRAFANA_TOKEN}
+kubectl rollout restart deploy/sx-backstage -n backstage
 
 # max wait for 10 minutes
 end=$((SECONDS+600))
@@ -71,8 +104,6 @@ while [ $SECONDS -lt $end ]; do
   sleep 10
 done
 
-# apply argocd-secret to set admin user and password
-kubectl apply -f https://raw.githubusercontent.com/suxess-it/sx-cnp-oss/main/platform-apps/charts/argocd/manual-secret/argocd-secret.yaml
 
 echo "status of all pods"
 kubectl get pods -A
