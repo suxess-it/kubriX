@@ -51,16 +51,17 @@ jobs:
         env:
           INSTALL_K3D_CLUSTER: "false"
           INSTALL_MKCERTS: "false"
+          GITHUB_CLIENTSECRET: "dummy"
+          GITHUB_CLIENTID: "dummy"
+          GITHUB_TOKEN: "dummy"
         shell: bash
         run: |
-          kubectl create ns backstage
-          kubectl create secret generic -n backstage manual-secret --from-literal=GITHUB_CLIENTSECRET=dummy --from-literal=GITHUB_CLIENTID=dummy --from-literal=GITHUB_TOKEN=dummy --from-literal=K8S_SA_TOKEN=dummy --from-literal=ARGOCD_AUTH_TOKEN=dummy --from-literal=GRAFANA_TOKEN=dummy
           curl -L https://raw.githubusercontent.com/suxess-it/sx-cnp-oss/main/install-k3d-cluster.sh | bash
 
       - name: argocd show diff
-        if: ${{ failure() }}
+        if: always()
         env:
-          APPS: "argocd sx-loki sx-kubecost sx-keycloak sx-promtail sx-tempo sx-crossplane sx-bootstrap-app sx-kargo approved-application-team-app sx-cert-manager sx-argo-rollouts sx-external-secrets sx-kyverno sx-kube-prometheus-stack"
+          APPS: "argocd sx-backstage sx-loki sx-kubecost sx-keycloak sx-promtail sx-tempo sx-crossplane sx-bootstrap-app sx-kargo approved-application-team-app sx-cert-manager sx-argo-rollouts sx-external-secrets sx-kyverno sx-kube-prometheus-stack"
         shell: bash
         run: |
           pwd
@@ -69,6 +70,12 @@ jobs:
           ls -l
           ./argocd login argocd-127-0-0-1.nip.io --grpc-web --insecure --username admin --password admin
           for app in ${APPS} ; do echo "$app diff" ; ./argocd app diff $app --grpc-web ; done         
+
+      - name: analyze with k8sgpt
+        if: always()
+        shell: bash
+        run: |
+          k8sgpt analyze
           
       - name: mustgather data for troubleshooting
         if: ${{ failure() }}
@@ -82,12 +89,6 @@ jobs:
           kubectl get nodes -o yaml
           echo "===== yaml output of all applications ======"
           kubectl get application -n argocd -o yaml
-
-      - name: analyze with k8sgpt
-        if: ${{ failure() }}
-        shell: bash
-        run: |
-          k8sgpt analyze
 
       - name: mustgather logs for troubleshooting
         if: ${{ failure() }}
