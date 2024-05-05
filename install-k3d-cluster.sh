@@ -57,6 +57,7 @@ argocd_apps="argocd sx-loki sx-kubecost sx-keycloak sx-promtail sx-tempo sx-cros
 
 all_apps_synced="true"
 while [ $SECONDS -lt $end ]; do
+  all_apps_synced="true"
   for app in ${argocd_apps} ; do
     kubectl get application -n argocd ${app} | grep "Synced.*Healthy"
     exit_code=$?
