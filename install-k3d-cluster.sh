@@ -77,7 +77,7 @@ curl -kL -o argocd https://argocd-127-0-0-1.nip.io/download/argocd-linux-amd64
 chmod u+x argocd
           
 ./argocd login argocd-127-0-0-1.nip.io --grpc-web --insecure --username admin --password admin
-export ARGOCD_AUTH_TOKEN="argocd.token=$( argocd account generate-token --account backstage --grpc-web )"
+export ARGOCD_AUTH_TOKEN="argocd.token=$( ./argocd account generate-token --account backstage --grpc-web )"
 
 ID=$( curl -k -X POST https://grafana-127-0-0-1.nip.io/api/serviceaccounts --user 'admin:prom-operator' -H "Content-Type: application/json" -d '{"name": "backstage","role": "Viewer","isDisabled": false}' | jq -r .id )
 export GRAFANA_TOKEN=$(curl -k -X POST https://grafana-127-0-0-1.nip.io/api/serviceaccounts/${ID}/tokens --user 'admin:prom-operator' -H "Content-Type: application/json" -d '{"name": "backstage"}' | jq -r .key)
