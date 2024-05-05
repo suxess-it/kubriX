@@ -75,6 +75,7 @@ jobs:
           kubectl get application -n argocd -o yaml
 
       - name: analyze with k8sgpt
+        if: ${{ failure() }}
         shell: bash
         run: |
           k8sgpt analyze
