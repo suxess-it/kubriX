@@ -47,8 +47,8 @@ helm install argocd argo-cd \
 kubectl apply -f https://raw.githubusercontent.com/suxess-it/sx-cnp-oss/main/bootstrap-app-k3d.yaml -n argocd
 
 
-# max wait for 4 minutes
-end=$((SECONDS+240))
+# max wait for 5 minutes
+end=$((SECONDS+300))
 argocd_apps="argocd sx-kube-prometheus-stack"
 
 all_apps_synced="true"
@@ -62,7 +62,7 @@ while [ $SECONDS -lt $end ]; do
     fi
   done
   if [ ${all_apps_synced} = "true" ] ; then
-    echo "first apps are synced"
+    echo "${argocd_apps} apps are synced"
     break
   fi
   kubectl get application -n argocd
@@ -97,7 +97,7 @@ while [ $SECONDS -lt $end ]; do
     fi
   done
   if [ ${all_apps_synced} = "true" ] ; then
-    echo "backstage app is synced"
+    echo "${argocd_apps} apps are synced"
     break
   fi
   kubectl get application -n argocd
@@ -108,8 +108,8 @@ export K8S_SA_TOKEN=$( kubectl get secret backstage-locator -n backstage  -o jso
 kubectl create secret generic -n backstage manual-secret --from-literal=GITHUB_CLIENTSECRET=${GITHUB_CLIENTSECRET} --from-literal=GITHUB_CLIENTID=${GITHUB_CLIENTID} --from-literal=GITHUB_ORG=${GITHUB_ORG} --from-literal=GITHUB_TOKEN=${GITHUB_TOKEN} --from-literal=K8S_SA_TOKEN=${K8S_SA_TOKEN} --from-literal=ARGOCD_AUTH_TOKEN=${ARGOCD_AUTH_TOKEN} --from-literal=GRAFANA_TOKEN=${GRAFANA_TOKEN}
 kubectl rollout restart deploy/sx-backstage -n backstage
 
-# max wait for 10 minutes
-end=$((SECONDS+600))
+# max wait for 15 minutes
+end=$((SECONDS+900))
 argocd_apps="argocd sx-backstage sx-loki sx-kubecost sx-keycloak sx-promtail sx-tempo sx-crossplane sx-bootstrap-app sx-kargo approved-application-team-app sx-cert-manager sx-argo-rollouts sx-external-secrets sx-kyverno sx-kube-prometheus-stack"
 
 all_apps_synced="true"
@@ -123,17 +123,18 @@ while [ $SECONDS -lt $end ]; do
     fi
   done
   if [ ${all_apps_synced} = "true" ] ; then
-    echo "all apps are synced! you are ready to take off!"
+    echo "${argocd_apps} apps are synced"
     break
   fi
   kubectl get application -n argocd
   sleep 10
 done
 
-
 echo "status of all pods"
 kubectl get pods -A
 if [ ${all_apps_synced} != "true" ] ; then
- echo "not all apps synced and healthy after 6ßß seconds"
- exit 1
+  echo "not all apps synced and healthy after limit reached :("
+  exit 1
+else
+  echo "all apps are synced. ready for take off :)"
 fi
