@@ -30,16 +30,7 @@ jobs:
           curl -JLO "https://dl.filippo.io/mkcert/latest?for=linux/amd64"
           chmod +x mkcert-v*-linux-amd64
           sudo cp mkcert-v*-linux-amd64 /usr/local/bin/mkcert
-
-      - name: install nginx
-        shell: bash
-        run: |
-          kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/main/deploy/static/provider/kind/deploy.yaml
-          kubectl wait --namespace ingress-nginx \
-            --for=condition=ready pod \
-            --selector=app.kubernetes.io/component=controller \
-            --timeout=90s
-
+    
       - name: install k8sgpt
         shell: bash
         run: |
@@ -49,7 +40,7 @@ jobs:
 
       - name: install sx-cnp-oss stack 
         env:
-          INSTALL_K3D_CLUSTER: "false"
+          TARGET_TYPE: "KIND"
           GITHUB_CLIENTSECRET: "dummy"
           GITHUB_CLIENTID: "dummy"
           GITHUB_TOKEN: "dummy"
