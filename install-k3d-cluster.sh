@@ -2,11 +2,10 @@
 
 set -x
 
-# do we need to set this always? I had DNS issues on the train
-export K3D_FIX_DNS=1
-
-# in github workflows we use the same script but don't want the k3d cluster to get installed
-if [ "${INSTALL_K3D_CLUSTER}" != "false" ] ; then
+if [ "${TARGET_TYPE}" == "K3D" ] ; then
+  # do we need to set this always? I had DNS issues on the train
+  export K3D_FIX_DNS=1
+  
   k3d cluster create cnp-local-demo \
     -p "80:80@loadbalancer" \
     -p "443:443@loadbalancer" \
@@ -14,6 +13,7 @@ if [ "${INSTALL_K3D_CLUSTER}" != "false" ] ; then
     --wait
 fi
 
+if [ "${TARGET_TYPE}" == "K3D" ] || [ "${TARGET_TYPE}" == "KIND" ] ; then
 # create mkcert certs in alle namespaces with ingress
 for namespace in backstage kargo monitoring argocd keycloak kubecost; do
   kubectl create namespace ${namespace}
@@ -31,6 +31,15 @@ for namespace in backstage kargo monitoring argocd keycloak kubecost; do
   fi
   rm ${namespace}-cert.pem ${namespace}-key.pem
 done
+fi
+
+if [ "${TARGET_TYPE}" == "KIND" ] ; then
+  kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/main/deploy/static/provider/kind/deploy.yaml
+  kubectl wait --namespace ingress-nginx \
+    --for=condition=ready pod \
+    --selector=app.kubernetes.io/component=controller \
+    --timeout=90s
+fi
 
 # create argocd with helm chart not with install.yaml
 # because afterwards argocd is also managed by itself with the helm-chart
@@ -44,8 +53,11 @@ helm install argocd argo-cd \
   -f https://raw.githubusercontent.com/suxess-it/sx-cnp-oss/main/bootstrap-argocd-values.yaml \
   --wait
 
-kubectl apply -f https://raw.githubusercontent.com/suxess-it/sx-cnp-oss/main/bootstrap-app-k3d.yaml -n argocd
-
+if [ "${TARGET_TYPE}" == "METALSTACK" ] ; then
+  kubectl apply -f https://raw.githubusercontent.com/suxess-it/sx-cnp-oss/main/bootstrap-app-metalstack.yaml -n argocd
+else
+  kubectl apply -f https://raw.githubusercontent.com/suxess-it/sx-cnp-oss/main/bootstrap-app-k3d.yaml -n argocd
+fi
 
 # max wait for 5 minutes
 end=$((SECONDS+300))
@@ -72,11 +84,19 @@ done
 # apply argocd-secret to set admin user and password
 kubectl apply -f https://raw.githubusercontent.com/suxess-it/sx-cnp-oss/main/platform-apps/charts/argocd/manual-secret/argocd-secret.yaml
 
+if [ "${TARGET_TYPE}" == "METALSTACK" ] ; then
+  ARGOCD_HOSTNAME=argocd-metalstack.platform-engineer.cloud
+  GRAFANA_HOSTNAME=grafana-metalstack.platform-engineer.cloud
+else
+  GRAFANA_HOSTNAME=grafana-127-0-0-1.nip.io
+  ARGOCD_HOSTNAME=argocd-127-0-0-1.nip.io
+fi
+
 # download argocd
-curl -kL -o argocd https://argocd-127-0-0-1.nip.io/download/argocd-linux-amd64
+curl -kL -o argocd https://${ARGOCD_HOSTNAME}/download/argocd-linux-amd64
 chmod u+x argocd
-          
-./argocd login argocd-127-0-0-1.nip.io --grpc-web --insecure --username admin --password admin
+
+./argocd login ${ARGOCD_HOSTNAME} --grpc-web --insecure --username admin --password admin
 export ARGOCD_AUTH_TOKEN="argocd.token=$( ./argocd account generate-token --account backstage --grpc-web )"
 
 ID=$( curl -k -X POST https://grafana-127-0-0-1.nip.io/api/serviceaccounts --user 'admin:prom-operator' -H "Content-Type: application/json" -d '{"name": "backstage","role": "Viewer","isDisabled": false}' | jq -r .id )
