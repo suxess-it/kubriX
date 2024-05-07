@@ -39,11 +39,7 @@ jobs:
             done
             cd -
           done
-          echo "hallo"
-          pwd
-          diff -r out/pr out/target || true
-          echo "bla"
-          ls
+          diff -r out/pr out/target > out/diff.txt || true
 
       - name: PR comment with file
         uses: thollander/actions-comment-pull-request@v2
