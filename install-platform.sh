@@ -80,6 +80,13 @@ while [ $SECONDS -lt $end ]; do
   kubectl get application -n argocd
   sleep 10
 done
+if [ ${all_apps_synced} != "true" ] ; then
+  echo "not all apps synced and healthy after limit reached :("
+  kubectl get pods -A
+  exit 1
+else
+  echo "all apps are synced. ready for take off :)"
+fi
 
 # apply argocd-secret to set admin user and password
 kubectl apply -f https://raw.githubusercontent.com/suxess-it/sx-cnp-oss/main/platform-apps/charts/argocd/manual-secret/argocd-secret.yaml
@@ -123,6 +130,13 @@ while [ $SECONDS -lt $end ]; do
   kubectl get application -n argocd
   sleep 10
 done
+if [ ${all_apps_synced} != "true" ] ; then
+  echo "not all apps synced and healthy after limit reached :("
+  kubectl get pods -A
+  exit 1
+else
+  echo "all apps are synced. ready for take off :)"
+fi
 
 export K8S_SA_TOKEN=$( kubectl get secret backstage-locator -n backstage  -o jsonpath='{.data.token}' | base64 -d )
 kubectl create secret generic -n backstage manual-secret --from-literal=GITHUB_CLIENTSECRET=${GITHUB_CLIENTSECRET} --from-literal=GITHUB_CLIENTID=${GITHUB_CLIENTID} --from-literal=GITHUB_ORG=${GITHUB_ORG} --from-literal=GITHUB_TOKEN=${GITHUB_TOKEN} --from-literal=K8S_SA_TOKEN=${K8S_SA_TOKEN} --from-literal=ARGOCD_AUTH_TOKEN=${ARGOCD_AUTH_TOKEN} --from-literal=GRAFANA_TOKEN=${GRAFANA_TOKEN}
