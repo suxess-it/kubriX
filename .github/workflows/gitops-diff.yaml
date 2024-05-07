@@ -24,9 +24,9 @@ jobs:
           for chart in $( ls charts/ ); do
             echo ${chart}
             echo "build"
-            helm dependency build ${chart}
+            helm dependency build ${chart}/
             echo "update"
-            helm dependency update ${chart}
+            helm dependency update ${chart}/
             echo "template"
             cd ${chart}
             helm template . -f values-k3d.yaml
