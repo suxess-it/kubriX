@@ -18,7 +18,6 @@ jobs:
       - name: diff charts
         shell: bash
         run: |
-          set -x
           pwd
           ls
           for chart in $( ls platform-apps/charts/ ); do
