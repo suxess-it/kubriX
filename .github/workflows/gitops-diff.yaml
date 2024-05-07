@@ -25,6 +25,7 @@ jobs:
       - name: diff charts
         shell: bash
         run: |
+          wget https://raw.githubusercontent.com/suxess-it/sx-cnp-oss/main/.github/Pr-diff-template.txt
           mkdir -p out/pr
           mkdir -p out/target
           for env in pr target; do
@@ -40,10 +41,12 @@ jobs:
             cd -
           done
           diff -U 7 -r out/pr out/target > out/diff.txt || true
+          sed  's/DESCRIPTION_HERE/Changes/g' Pr-diff-template.txt > out/comment-diff.txt
+          sed  -e "/DIFF_HERE/{r out/diff.txt" -e "d}" out/comment-diff.txt > out/comment-result.txt
 
       - name: PR comment with file
         uses: thollander/actions-comment-pull-request@v2
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          filePath: out/diff.txt
+          filePath: out/comment-result.txt
