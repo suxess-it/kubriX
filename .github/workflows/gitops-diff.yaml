@@ -14,13 +14,15 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-        
-      - name: install mkcert
+
+      - name: diff charts
         shell: bash
         run: |
+          set -x
           pwd
           ls
           for chart in $( ls platform-apps/charts/ ); do
+            echo ${chart}
             cd platform-apps/charts/${chart}
             helm dependency build .
             helm dependency update .
@@ -28,3 +30,4 @@ jobs:
             helm template. -f values-metalstack.yaml
             cd -
           done
+        
