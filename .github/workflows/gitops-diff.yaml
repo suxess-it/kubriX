@@ -12,19 +12,41 @@ jobs:
   diff:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
+      - name: Checkout PR
         uses: actions/checkout@v4
-        
-      - name: install mkcert
+        with:
+         path: pr
+      - name: Checkout Target of PR
+        uses: actions/checkout@v4
+        with:
+          path: target
+          ref: ${{ github.event.pull_request.base.ref }}
+
+      - name: diff charts
         shell: bash
         run: |
-          pwd
-          ls
-          for chart in $( ls platform-apps/charts/ ); do
-            cd platform-apps/charts/${chart}
-            helm dependency build .
-            helm dependency update .
-            helm template. -f values-k3d.yaml
-            helm template. -f values-metalstack.yaml
+          wget https://raw.githubusercontent.com/suxess-it/sx-cnp-oss/main/.github/Pr-diff-template.txt
+          mkdir -p out/pr
+          mkdir -p out/target
+          for env in pr target; do
+            cd ${env}/platform-apps/charts
+            for chart in $( ls ); do
+              echo ${chart}
+              helm dependency update ${chart}
+              for value in $( find ${chart} -type f -name "values*" ); do
+                valuefile=$( basename ${value} )
+                helm template ${chart} -f ${value} > ../../../out/${env}/${chart}_${valuefile}.out
+              done
+            done
             cd -
           done
+          diff -U 7 -r out/pr out/target > out/diff.txt || true
+          sed  's/DESCRIPTION_HERE/Changes/g' Pr-diff-template.txt > out/comment-diff.txt
+          sed  -e "/DIFF_HERE/{r out/diff.txt" -e "d}" out/comment-diff.txt > out/comment-result.txt
+
+      - name: PR comment with file
+        uses: thollander/actions-comment-pull-request@v2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          filePath: out/comment-result.txt
