@@ -41,7 +41,7 @@ jobs:
           done
           echo "hallo"
           pwd
-          diff -r out/pr out/target > diff.txt
+          diff -r out/pr out/target > out/diff.txt
           ls
 
       - name: PR comment with file
@@ -49,4 +49,4 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          filePath: diff.txt
+          filePath: out/diff.txt
