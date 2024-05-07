@@ -24,7 +24,22 @@ aws_secret_access_key = <secret access key>
 
 Currently we issue our certificates automatically with letsencrypt. However, due to some limits we don't use the production but the staging letsencrypt API. So you need to put those two root certs in your truststore: https://letsencrypt.org/docs/staging-environment/#root-certificates
 
-### 1. create metalstack cluster
+#### create OAuth App in your Github Organization for Backstage login: https://backstage.io/docs/auth/github/provider/
+
+- Homepage URL: https://portal-metalstack.platform-engineer.cloud/
+- Authorization callback URL: https://portal-metalstack.platform-engineer.cloud/
+
+use GITHUB_CLIENTSECRET and GITHUB_CLIENTID from your Github OAuth App for the following environment variables in step 1
+
+### 1. define some variables so the platform can access github
+
+```
+export GITHUB_CLIENTSECRET=<value from steps above>
+export GITHUB_CLIENTID=<value from steps above>
+export GITHUB_TOKEN=<your personal access token>
+```
+
+### 2. create metalstack cluster
 
 Create a K8s cluster on https://console.metalstack.cloud/, copy the KUBECONFIG to your local machine to `~/.kube/metalstack-config ` and set the KUBECONFIG to this file.
 
@@ -32,7 +47,7 @@ Create a K8s cluster on https://console.metalstack.cloud/, copy the KUBECONFIG t
 export KUBECONFIG=~/.kube/metalstack-config 
 ```
 
-### 2. create AWS secret for external-dns 
+### 3. create AWS secret for external-dns 
 create namespace and secret and delete local credentials file for security reasons:
 ```
 kubectl create ns external-dns
@@ -40,13 +55,15 @@ kubectl create secret generic -n external-dns sx-external-dns --from-file creden
 rm credentials
 ```
 
-### 3. install the platform stack as follows
+### 4. install platform on metalstack cluster
 
 ```
-curl -L https://raw.githubusercontent.com/suxess-it/sx-cnp-oss/main/install-metalstack-cluster.sh | sh
+export TARGET_TYPE=METALSTACK
+curl -L https://raw.githubusercontent.com/suxess-it/sx-cnp-oss/main/install-platform.sh | bash
 ```
 
-With this command a "bootstrap argocd" get's installed via helm.
+With this command a new k3d cluster gets created.
+A "bootstrap argocd" get's installed via helm.
 A "boostrap-app" gets installed which references all other apps in the plattform-stack (app-of-apps pattern)
 ArgoCD itself is also then managed by an argocd app.
 
@@ -61,82 +78,12 @@ The platform stack will be installed automagically ;)
 * kyverno
 * prometheus
 * grafana
-* kubevirt
-* kubevirt-manager
+* promtail
+* loki
+* tempo
 * kubecost
 
-### 4. wait until everything except backstage is app and running
-
-wait until all pods are started:
-
-```
-watch kubectl get pods -A
-```
-
-wait until all apps are synced and healthy
-
-```
-watch kubectl get applications -n argocd
-```
-
-only backstage should still be progressing because of a missing secret which gets created in the next step.
-
-### 5. Create some secrets manually
-
-This should get fixed in the future because it is obviously not secure (maybe with ESO, some secrets manager, crossplane, ...)
-
-#### argocd
-
-create argocd secret for admin user and mitigate server.secretkey issue to https://github.com/suxess-it/sx-cnp-oss/issues/48
-
-```
-kubectl apply -f https://raw.githubusercontent.com/suxess-it/sx-cnp-oss/main/platform-apps/charts/argocd/manual-secret/argocd-secret.yaml
-```
-Info: I apply a file because the bcrypt value with "kubectl create secret ... --from-literal" gets messed up
-
-#### backstage
-
-create OAuth App in your Github Organization for Backstage login: https://backstage.io/docs/auth/github/provider/
-
-- Homepage URL: https://portal-metalstack.platform-engineer.cloud/
-- Authorization callback URL: https://portal-metalstack.platform-engineer.cloud/
-
-use GITHUB_CLIENTSECRET and GITHUB_CLIENTID from your Github OAuth App for the following environment variables.
-```
-export METALSTACK_GITHUB_CLIENTID=<value from steps above>
-export METALSTACK_GITHUB_CLIENTSECRET=<value from steps above>
-export GITHUB_TOKEN=<your personal access token>
-```
-
-create ArgoCD Token for backstage account:
-```
-argocd login argocd-metalstack.platform-engineer.cloud --grpc-web
-export ARGOCD_AUTH_TOKEN="argocd.token=$( argocd account generate-token --account backstage --grpc-web )"
-```
-
-create Grafana ServiceAccount token for backstage:
-```
-ID=$( curl -k -X POST https://grafana-metalstack.platform-engineer.cloud/api/serviceaccounts --user 'admin:prom-operator' -H "Content-Type: application/json" -d '{"name": "backstage","role": "Viewer","isDisabled": false}' | jq -r .id )
-
-export GRAFANA_TOKEN=$(curl -k -X POST https://grafana-metalstack.platform-engineer.cloud/api/serviceaccounts/${ID}/tokens --user 'admin:prom-operator' -H "Content-Type: application/json" -d '{"name": "backstage"}' | jq -r .key)
-```
-
-export service auth token for backstage-locator, which pulls kubernetes data for backstage entities
-```
-export K8S_SA_TOKEN=$( kubectl get secret backstage-locator -n backstage  -o jsonpath='{.data.token}' | base64 -d )
-```
-
-create secret in backstage namespace with all the variables from above:
-```
-kubectl create secret generic -n backstage manual-secret --from-literal=GITHUB_CLIENTSECRET=${METALSTACK_GITHUB_CLIENTSECRET} --from-literal=GITHUB_CLIENTID=${METALSTACK_GITHUB_CLIENTID} --from-literal=GITHUB_ORG=${GITHUB_ORG} --from-literal=GITHUB_TOKEN=${GITHUB_TOKEN} --from-literal=K8S_SA_TOKEN=${K8S_SA_TOKEN} --from-literal=ARGOCD_AUTH_TOKEN=${ARGOCD_AUTH_TOKEN} --from-literal=GRAFANA_TOKEN=${GRAFANA_TOKEN}
-```
-
-Restart backstage pod:
-```
-kubectl rollout restart deploy/sx-backstage -n backstage
-```
-
-### 6. log in to the tools
+### 5. log in to the tools
 
 | Tool    | URL | Username | Password |
 | -------- | ------- | ------- | ------- |
@@ -147,7 +94,7 @@ kubectl rollout restart deploy/sx-backstage -n backstage
 | Kubevirt-Manager    | https://kubevirt-manager-metalstack.platform-engineer.cloud/   | - | - |
 
 
-### 7. Example App deployen
+### 6. Example App deployen
 
 Create a demo-app and kargo pipeline for this demo app:
 ```
@@ -172,7 +119,7 @@ URLs for stages (need to be registered in aws route53):
 - qa: http://qa-demo-app-metalstack.platform-engineer.cloud
 - prod: http://prod-demo-app-metalstack.platform-engineer.cloud
 
-### 11. Promote über die Stages
+### 7. Promote über die Stages
 
 mit kargo
 

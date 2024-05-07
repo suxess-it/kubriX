@@ -46,7 +46,7 @@ jobs:
           GITHUB_TOKEN: "dummy"
         shell: bash
         run: |
-          curl -L https://raw.githubusercontent.com/suxess-it/sx-cnp-oss/main/install-k3d-cluster.sh | bash
+          curl -L https://raw.githubusercontent.com/suxess-it/sx-cnp-oss/main/install-platform.sh | bash
 
       - name: argocd show diff
         if: always()

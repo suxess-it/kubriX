@@ -17,12 +17,10 @@ chmod u+x ~/bin/mkcert
 
 install the CA of mkcert in your OS truststore: https://docs.kubefirst.io/k3d/quick-start/install#install-the-ca-certificate-authority-of-mkcert-in-your-trusted-store
 
-
 #### create OAuth App in your Github Organization for Backstage login: https://backstage.io/docs/auth/github/provider/
 
 - Homepage URL: https://backstage-127-0-0-1.nip.io
 - Authorization callback URL: https://backstage-127-0-0-1.nip.io/api/auth/github
-
 
 use GITHUB_CLIENTSECRET and GITHUB_CLIENTID from your Github OAuth App for the following environment variables in step 1
 
@@ -37,7 +35,10 @@ export GITHUB_TOKEN=<your personal access token>
 ### 2. create k3d cluster
 
 ```
-curl -L https://raw.githubusercontent.com/suxess-it/sx-cnp-oss/main/install-k3d-cluster.sh | bash
+export TARGET_TYPE=K3D
+# if you use a KIND cluster you should set:
+# export TARGET_TYPE=KIND
+curl -L https://raw.githubusercontent.com/suxess-it/sx-cnp-oss/main/install-platform.sh | bash
 ```
 
 With this command a new k3d cluster gets created.
