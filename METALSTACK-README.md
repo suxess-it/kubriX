@@ -29,17 +29,9 @@ Currently we issue our certificates automatically with letsencrypt. However, due
 - Homepage URL: https://portal-metalstack.platform-engineer.cloud/
 - Authorization callback URL: https://portal-metalstack.platform-engineer.cloud/
 
-use GITHUB_CLIENTSECRET and GITHUB_CLIENTID from your Github OAuth App for the following environment variables in step 1
+use GITHUB_CLIENTSECRET and GITHUB_CLIENTID from your Github OAuth App for the following environment variables in step 3
 
-### 1. define some variables so the platform can access github
-
-```
-export GITHUB_CLIENTSECRET=<value from steps above>
-export GITHUB_CLIENTID=<value from steps above>
-export GITHUB_TOKEN=<your personal access token>
-```
-
-### 2. create metalstack cluster
+### 1. create metalstack cluster
 
 Create a K8s cluster on https://console.metalstack.cloud/, copy the KUBECONFIG to your local machine to `~/.kube/metalstack-config ` and set the KUBECONFIG to this file.
 
@@ -47,12 +39,20 @@ Create a K8s cluster on https://console.metalstack.cloud/, copy the KUBECONFIG t
 export KUBECONFIG=~/.kube/metalstack-config 
 ```
 
-### 3. create AWS secret for external-dns 
+### 2. create AWS secret for external-dns 
 create namespace and secret and delete local credentials file for security reasons:
 ```
 kubectl create ns external-dns
 kubectl create secret generic -n external-dns sx-external-dns --from-file credentials
 rm credentials
+```
+
+### 3. define some variables so the platform can access github
+
+```
+export GITHUB_CLIENTSECRET=<value from steps above>
+export GITHUB_CLIENTID=<value from steps above>
+export GITHUB_TOKEN=<your personal access token>
 ```
 
 ### 4. install platform on metalstack cluster
