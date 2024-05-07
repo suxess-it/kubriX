@@ -33,8 +33,9 @@ jobs:
             for chart in $( ls ); do
               echo ${chart}
               helm dependency update ${chart}
-              helm template ${chart} -f ${chart}/values-k3d.yaml > ../../../${chart}_k3d.out
-              helm template ${chart} -f ${chart}/values-metalstack.yaml > ../../../${chart}_metalstack.out
+              for value in $( find ${chart} -type f -name "values*" ); do
+                helm template ${chart} -f ${chart}/${value} > ../../../${env}_${chart}_${value}
+              done
             done
             cd -
           done
