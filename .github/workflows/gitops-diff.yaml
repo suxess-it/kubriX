@@ -39,7 +39,7 @@ jobs:
             done
             cd -
           done
-          diff -r out/pr out/target > out/diff.txt || true
+          diff -U 7 -r out/pr out/target > out/diff.txt || true
 
       - name: PR comment with file
         uses: thollander/actions-comment-pull-request@v2
