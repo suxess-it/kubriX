@@ -20,16 +20,17 @@ jobs:
         run: |
           pwd
           ls
-          for chart in $( ls platform-apps/charts/ ); do
+          cd platform-apps
+          for chart in $( ls charts/ ); do
             echo ${chart}
-            cd platform-apps/charts/${chart}
             echo "build"
-            helm dependency build .
+            helm dependency build ${chart}
             echo "update"
-            helm dependency update .
+            helm dependency update ${chart}
             echo "template"
-            helm template. -f values-k3d.yaml
-            helm template. -f values-metalstack.yaml
+            cd ${chart}
+            helm template . -f values-k3d.yaml
+            helm template . -f values-metalstack.yaml
             cd -
           done
         
