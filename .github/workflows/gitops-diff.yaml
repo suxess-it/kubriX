@@ -1,0 +1,30 @@
+on:
+  pull_request:
+    types: [opened, synchronize]
+
+permissions:
+  contents: read
+  pull-requests: write
+
+name: Diff GitOps
+
+jobs:
+  diff:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        
+      - name: install mkcert
+        shell: bash
+        run: |
+          pwd
+          ls
+          for chart in $( ls platform-apps/charts/ ); do
+            cd platform-apps/charts/${chart}
+            helm dependency build .
+            helm dependency update .
+            helm template. -f values-k3d.yaml
+            helm template. -f values-metalstack.yaml
+            cd -
+          done
