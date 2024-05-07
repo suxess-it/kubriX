@@ -35,9 +35,10 @@ jobs:
               helm dependency update ${chart}
               for value in $( find ${chart} -type f -name "values*" ); do
                 valuefile=$( basename ${value} )
-                helm template ${chart} -f ${value} > ../../../${env}_${chart}_${valuefile}
+                helm template ${chart} -f ${value} > ../../../${env}_${chart}_${valuefile}.out
               done
             done
             cd -
           done
+          ls
         
