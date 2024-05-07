@@ -27,6 +27,8 @@ jobs:
         run: |
           pwd
           ls
+          mkdir -p out/pr
+          mkdir -p out/target
           for env in pr target; do
             cd ${env}/platform-apps/charts
             pwd
@@ -35,10 +37,11 @@ jobs:
               helm dependency update ${chart}
               for value in $( find ${chart} -type f -name "values*" ); do
                 valuefile=$( basename ${value} )
-                helm template ${chart} -f ${value} > ../../../${env}_${chart}_${valuefile}.out
+                helm template ${chart} -f ${value} > ../../../out/${env}/${chart}_${valuefile}.out
               done
             done
             cd -
           done
           ls
+          diff -r pr target
         
