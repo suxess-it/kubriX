@@ -41,7 +41,8 @@ jobs:
           done
           echo "hallo"
           pwd
-          diff -r out/pr out/target > out/diff.txt
+          diff -r out/pr out/target
+          echo "bla"
           ls
 
       - name: PR comment with file
