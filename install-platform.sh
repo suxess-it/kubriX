@@ -61,9 +61,9 @@ fi
 
 # wait for all apps to be synced and health
 if [ "${TARGET_TYPE}" == "METALSTACK" ] ; then
- argocd_apps="argocd sx-kubecost sx-crossplane sx-bootstrap-app sx-kargo approved-application-team-app sx-cert-manager sx-argo-rollouts sx-kyverno sx-kube-prometheus-stack"
+ argocd_apps="argocd sx-kubecost sx-crossplane sx-kargo approved-application-team-app sx-cert-manager sx-argo-rollouts sx-kyverno sx-kube-prometheus-stack"
 else
- argocd_apps="argocd sx-loki sx-kubecost sx-keycloak sx-promtail sx-tempo sx-crossplane sx-bootstrap-app sx-kargo approved-application-team-app sx-cert-manager sx-argo-rollouts sx-external-secrets sx-kyverno sx-kube-prometheus-stack"
+ argocd_apps="argocd sx-kubecost sx-crossplane sx-kargo approved-application-team-app sx-cert-manager sx-argo-rollouts sx-kyverno sx-kube-prometheus-stack sx-external-secrets sx-loki sx-keycloak sx-promtail sx-tempo"
 fi
 
 # max wait for 15 minutes
