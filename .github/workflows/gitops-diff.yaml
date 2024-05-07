@@ -39,7 +39,10 @@ jobs:
             done
             cd -
           done
+          echo "hallo"
+          pwd
           diff -r out/pr out/target > diff.txt
+          ls
 
       - name: PR comment with file
         uses: thollander/actions-comment-pull-request@v2
