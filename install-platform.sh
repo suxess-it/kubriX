@@ -66,8 +66,8 @@ else
  argocd_apps="argocd sx-kubecost sx-crossplane sx-kargo approved-application-team-app sx-cert-manager sx-argo-rollouts sx-kyverno sx-kube-prometheus-stack sx-external-secrets sx-loki sx-keycloak sx-promtail sx-tempo"
 fi
 
-# max wait for 15 minutes
-end=$((SECONDS+900))
+# max wait for 20 minutes
+end=$((SECONDS+1200))
 
 all_apps_synced="true"
 while [ $SECONDS -lt $end ]; do
