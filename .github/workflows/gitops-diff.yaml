@@ -41,9 +41,9 @@ jobs:
           done
           diff -r out/pr out/target > diff.txt
 
-      - name: comment PR
-        uses: machine-learning-apps/pr-comment@master
+      - name: PR comment with file
+        uses: thollander/actions-comment-pull-request@v2
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          path: diff.txt
+          filePath: diff.txt
