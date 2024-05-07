@@ -23,8 +23,11 @@ jobs:
           for chart in $( ls platform-apps/charts/ ); do
             echo ${chart}
             cd platform-apps/charts/${chart}
+            echo "build"
             helm dependency build .
+            echo "update"
             helm dependency update .
+            echo "template"
             helm template. -f values-k3d.yaml
             helm template. -f values-metalstack.yaml
             cd -
