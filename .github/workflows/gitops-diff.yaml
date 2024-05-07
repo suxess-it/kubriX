@@ -11,23 +11,32 @@ name: Diff GitOps
 jobs:
   diff:
     runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
+  
+   steps:
+      - name: Checkout PR
         uses: actions/checkout@v4
+        with:
+         path: pr
+      - name: Checkout Target of PR
+        uses: actions/checkout@v4
+        with:
+          path: target
+          ref: ${{ github.event.pull_request.base.ref }}
 
       - name: diff charts
         shell: bash
         run: |
           pwd
           ls
-          cd platform-apps/charts
-          for chart in $( ls ); do
-            echo ${chart}
-            helm dependency update ${chart}
-            echo "template"
-            cd ${chart}
-            helm template . -f values-k3d.yaml
-            helm template . -f values-metalstack.yaml
+          for env in pr target; do
+            cd ${env}/platform-apps/charts
+            pwd
+            for chart in $( ls ); do
+              echo ${chart}
+              helm dependency update ${chart}
+              helm template ${chart} -f ${chart}/values-k3d.yaml > ../../../${chart}_k3d.out
+              helm template ${chart} -f ${chart}/values-metalstack.yaml > ../../../${chart}_metalstack.out
+            done
             cd -
           done
         
