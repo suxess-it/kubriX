@@ -23,10 +23,7 @@ jobs:
           cd platform-apps/charts
           for chart in $( ls ); do
             echo ${chart}
-            echo "build"
             helm dependency update ${chart}
-            echo "update"
-            helm dependency build ${chart}
             echo "template"
             cd ${chart}
             helm template . -f values-k3d.yaml
