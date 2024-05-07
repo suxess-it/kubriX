@@ -25,13 +25,10 @@ jobs:
       - name: diff charts
         shell: bash
         run: |
-          pwd
-          ls
           mkdir -p out/pr
           mkdir -p out/target
           for env in pr target; do
             cd ${env}/platform-apps/charts
-            pwd
             for chart in $( ls ); do
               echo ${chart}
               helm dependency update ${chart}
@@ -42,6 +39,11 @@ jobs:
             done
             cd -
           done
-          ls
-          diff -r out/pr out/target
-        
+          diff -r out/pr out/target > diff.txt
+
+      - name: comment PR
+        uses: machine-learning-apps/pr-comment@master
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          path: diff.txt
