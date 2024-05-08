@@ -52,7 +52,7 @@ jobs:
           sed  -e "/DIFF_HERE/{r out/default-values-diff.txt" -e "d}" out/comment-diff-default-values.txt > out/comment-default-values-result.txt
 
       - name: PR comment rendered chart with file
-        uses: thollander/actions-comment-pull-request@v2
+        uses: pass-culture-github-actions/comment-pull-request@v1.0.0
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
@@ -60,7 +60,7 @@ jobs:
 
 
       - name: PR comment default values with file
-        uses: thollander/actions-comment-pull-request@v2
+        uses: pass-culture-github-actions/comment-pull-request@v1.0.0
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
