@@ -28,6 +28,8 @@ jobs:
           wget https://raw.githubusercontent.com/suxess-it/sx-cnp-oss/main/.github/Pr-diff-template.txt
           mkdir -p out/pr
           mkdir -p out/target
+          mkdir -p out-default-values/pr
+          mkdir -p out-default-values/target
           for env in pr target; do
             cd ${env}/platform-apps/charts
             for chart in $( ls ); do
@@ -37,16 +39,29 @@ jobs:
                 valuefile=$( basename ${value} )
                 helm template ${chart} -f ${value} > ../../../out/${env}/${chart}_${valuefile}.out
               done
+              # get default values of subchart
+              helm show values ${chart}/charts/* > ../../../out-default-values/${env}/${chart}_default-values.out || true
             done
             cd -
           done
-          diff -U 7 -r out/pr out/target > out/diff.txt || true
-          sed  's/DESCRIPTION_HERE/Changes/g' Pr-diff-template.txt > out/comment-diff.txt
+          diff -U 7 -r out-default-values/target out-default-values/pr > out/default-values-diff.txt || true
+          diff -U 7 -r out/target out/pr > out/diff.txt || true
+          sed  's/DESCRIPTION_HERE/Changes Rendered Chart/g' Pr-diff-template.txt > out/comment-diff.txt
           sed  -e "/DIFF_HERE/{r out/diff.txt" -e "d}" out/comment-diff.txt > out/comment-result.txt
+          sed  's/DESCRIPTION_HERE/Changes Default Values/g' Pr-diff-template.txt > out/comment-diff-default-values.txt
+          sed  -e "/DIFF_HERE/{r out/default-values-diff.txt" -e "d}" out/comment-diff-default-values.txt > out/comment-default-values-result.txt
 
-      - name: PR comment with file
+      - name: PR comment rendered chart with file
         uses: thollander/actions-comment-pull-request@v2
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           filePath: out/comment-result.txt
+
+
+      - name: PR comment default values with file
+        uses: thollander/actions-comment-pull-request@v2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          filePath: out/comment-default-values-result.txt
