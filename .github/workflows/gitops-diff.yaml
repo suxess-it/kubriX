@@ -30,6 +30,7 @@ jobs:
           mkdir -p out/target
           mkdir -p out-default-values/pr
           mkdir -p out-default-values/target
+          mkdir -p comment-files
           for env in pr target; do
             cd ${env}/platform-apps/charts
             for chart in $( ls ); do
@@ -47,23 +48,21 @@ jobs:
           diff -U 7 -r out-default-values/target out-default-values/pr > out/default-values-diff.txt || true
           diff -U 7 -r out/target out/pr > out/diff.txt || true
           sed  's/DESCRIPTION_HERE/Changes Rendered Chart/g' Pr-diff-template.txt > out/comment-diff.txt
-          sed  -e "/DIFF_HERE/{r out/diff.txt" -e "d}" out/comment-diff.txt > out/comment-result.txt
+          sed  -e "/DIFF_HERE/{r out/diff.txt" -e "d}" out/comment-diff.txt > comment-files/comment-result.txt
           sed  's/DESCRIPTION_HERE/Changes Default Values/g' Pr-diff-template.txt > out/comment-diff-default-values.txt
-          sed  -e "/DIFF_HERE/{r out/default-values-diff.txt" -e "d}" out/comment-diff-default-values.txt > out/comment-default-values-result.txt
+          sed  -e "/DIFF_HERE/{r out/default-values-diff.txt" -e "d}" out/comment-diff-default-values.txt > comment-files/comment-default-values-result.txt
+          # cat test | split -b 1 - COMMENT
 
       - name: PR comment rendered chart with file
-        uses: pass-culture-github-actions/comment-pull-request@v1.0.0
+        uses: thollander/actions-comment-pull-request@v2
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          cutDelimiter: '<details><summary>continue</summary>```diff'
           filePath: out/comment-result.txt
 
-
       - name: PR comment default values with file
-        uses: pass-culture-github-actions/comment-pull-request@v1.0.0
+        uses: thollander/actions-comment-pull-request@v2
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          cutDelimiter: '<details><summary>continue</summary>```diff'
           filePath: out/comment-default-values-result.txt
