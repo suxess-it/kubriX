@@ -38,7 +38,7 @@ jobs:
                 helm template ${chart} -f ${value} > ../../../out/${env}/${chart}_${valuefile}.out
               done
               # get default values of subchart
-              helm show values ${chart}/charts/* > ../../../out/${env}/${chart}_default-values.out
+              helm show values ${chart}/charts/* > ../../../out/${env}/${chart}_default-values.out || true
             done
             cd -
           done
