@@ -40,7 +40,7 @@ jobs:
             done
             cd -
           done
-          diff -U 7 -r out/pr out/target > out/diff.txt || true
+          diff -U 7 -r out/target out/pr > out/diff.txt || true
           sed  's/DESCRIPTION_HERE/Changes/g' Pr-diff-template.txt > out/comment-diff.txt
           sed  -e "/DIFF_HERE/{r out/diff.txt" -e "d}" out/comment-diff.txt > out/comment-result.txt
 
