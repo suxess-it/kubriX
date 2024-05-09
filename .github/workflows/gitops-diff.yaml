@@ -32,6 +32,7 @@ jobs:
       runs-on: ubuntu-latest
       strategy:
         matrix: ${{fromJSON(needs.diff.outputs.matrix)}}
+        max-parallel: 1
       steps:
       - uses: thollander/actions-comment-pull-request@v2
         env:
