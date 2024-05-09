@@ -30,6 +30,11 @@ jobs:
         run: |
           bash pr/.github/create-pr-comment-file.sh
 
+      - uses: actions/upload-artifact@v4
+        with:
+          name: comment-files-artifact
+          path: comment-files/
+
   create-pr-comment:
       needs: diff
       runs-on: ubuntu-latest
@@ -37,6 +42,12 @@ jobs:
         matrix: ${{fromJSON(needs.diff.outputs.matrix)}}
         max-parallel: 1
       steps:
+
+      - uses: actions/download-artifact@v4
+        with:
+          name: comment-files-artifact
+          path: comment-files/
+
       - uses: thollander/actions-comment-pull-request@v2
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
