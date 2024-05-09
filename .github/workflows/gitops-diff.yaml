@@ -11,6 +11,8 @@ name: Diff GitOps
 jobs:
   diff:
     runs-on: ubuntu-latest
+    outputs:
+      matrix: ${{ steps.diffStep.outputs.matrix }}
     steps:
       - name: Checkout PR
         uses: actions/checkout@v4
@@ -23,6 +25,7 @@ jobs:
           ref: ${{ github.event.pull_request.base.ref }}
 
       - name: diff charts
+        id: diffStep
         shell: bash
         run: |
           bash pr/.github/create-pr-comment-file.sh
