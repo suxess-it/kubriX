@@ -48,12 +48,8 @@ jobs:
           diff -U 7 -r out-default-values/target out-default-values/pr > out/default-values-diff.txt || true
           diff -U 7 -r out/target out/pr > out/diff.txt || true
           csplit -f comment-files/comment out/diff.txt --elide-empty-files /---/ '{*}'
-          ls -l comment-files
-          echo "" > merged-comment-0
-          i=0
-          for file in $( find comment-files -type f ); do
-            if 
-          done
+          bash pr/.github/create-pr-comment-file.sh $( ls comment-files )
+          ls
           sed  's/DESCRIPTION_HERE/Changes Rendered Chart/g' Pr-diff-template.txt > out/comment-diff.txt
           sed  -e "/DIFF_HERE/{r out/diff.txt" -e "d}" out/comment-diff.txt > comment-files/comment-result.txt
           sed  's/DESCRIPTION_HERE/Changes Default Values/g' Pr-diff-template.txt > out/comment-diff-default-values.txt
