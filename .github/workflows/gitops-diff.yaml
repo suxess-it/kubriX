@@ -25,47 +25,23 @@ jobs:
       - name: diff charts
         shell: bash
         run: |
-          wget https://raw.githubusercontent.com/suxess-it/sx-cnp-oss/main/.github/Pr-diff-template.txt
-          mkdir -p out/pr
-          mkdir -p out/target
-          mkdir -p out-default-values/pr
-          mkdir -p out-default-values/target
-          mkdir -p comment-files
-          for env in pr target; do
-            cd ${env}/platform-apps/charts
-            for chart in $( ls ); do
-              echo ${chart}
-              helm dependency update ${chart}
-              for value in $( find ${chart} -type f -name "values*" ); do
-                valuefile=$( basename ${value} )
-                helm template ${chart} -f ${value} > ../../../out/${env}/${chart}_${valuefile}.out
-              done
-              # get default values of subchart
-              helm show values ${chart}/charts/* > ../../../out-default-values/${env}/${chart}_default-values.out || true
-            done
-            cd -
-          done
-          diff -U 7 -r out-default-values/target out-default-values/pr > out/default-values-diff.txt || true
-          diff -U 7 -r out/target out/pr > out/diff.txt || true
-          csplit -f comment-files/comment out/diff.txt --elide-empty-files /---/ '{*}'
-          bash pr/.github/create-pr-comment-file.sh $( find comment-files -type f | sort )
-          ls
-          sed  's/DESCRIPTION_HERE/Changes Rendered Chart/g' Pr-diff-template.txt > out/comment-diff.txt
-          sed  -e "/DIFF_HERE/{r out/diff.txt" -e "d}" out/comment-diff.txt > comment-files/comment-result.txt
-          sed  's/DESCRIPTION_HERE/Changes Default Values/g' Pr-diff-template.txt > out/comment-diff-default-values.txt
-          sed  -e "/DIFF_HERE/{r out/default-values-diff.txt" -e "d}" out/comment-diff-default-values.txt > comment-files/comment-default-values-result.txt
-          
+          bash pr/.github/create-pr-comment-file.sh
 
-      - name: PR comment rendered chart with file
-        uses: thollander/actions-comment-pull-request@v2
+  create-pr-comment:
+      needs: diff
+      runs-on: ubuntu-latest
+      strategy:
+        matrix: ${{fromJSON(needs.diff.outputs.matrix)}}
+      steps:
+      - uses: thollander/actions-comment-pull-request@v2
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          filePath: out/comment-result.txt
+          filePath: ${{matrix.comment-files}}
 
       - name: PR comment default values with file
         uses: thollander/actions-comment-pull-request@v2
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          filePath: out/comment-default-values-result.txt
+          filePath: comment-files/comment-default-values-result.txt
