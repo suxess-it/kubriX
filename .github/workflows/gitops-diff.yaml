@@ -35,7 +35,7 @@ jobs:
           name: comment-files-artifact
           path: comment-files/
 
-  create-pr-comment:
+  create-template-render-diff-comment:
       needs: diff
       runs-on: ubuntu-latest
       strategy:
@@ -53,6 +53,16 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           filePath: ${{matrix.comment-files}}
+
+
+  create-default-value-diff-comment:
+    runs-on: ubuntu-latest
+    steps:
+
+      - uses: actions/download-artifact@v4
+        with:
+          name: comment-files-artifact
+          path: comment-files/
 
       - name: PR comment default values with file
         uses: thollander/actions-comment-pull-request@v2
