@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Define the maximum size in bytes
-MAX_SIZE=10485760  # 10 MB
+MAX_SIZE=65536
 
 # Initialize output file counter and base name
 OUTPUT_BASE_NAME="combined_file"
