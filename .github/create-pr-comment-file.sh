@@ -81,5 +81,5 @@ sed  -e "/DIFF_HERE/{r out/default-values-diff.txt" -e "d}" out/comment-diff-def
 
 
 # output for matrix build
-echo "matrix={\"comment-files\": $( jq -n '$ARGS.positional' --args $( ls comment-files/comment-result-* ))}" >> $GITHUB_OUTPUT
+echo "matrix={\"comment-files\": $( jq -n '$ARGS.positional' --args $( ls comment-files/comment-result-* ) | tr "\n" " ")}" >> $GITHUB_OUTPUT
 
