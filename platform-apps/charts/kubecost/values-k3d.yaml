@@ -3,11 +3,7 @@ cost-analyzer:
     # zone: cluster.local (use only if your DNS server doesn't live in the same zone as kubecost)
     prometheus:
       enabled: true  # If false, Prometheus will not be installed -- Warning: Before changing this setting, please read to understand this setting https://docs.kubecost.com/install-and-configure/install/custom-prom
-      fqdn: http://sx-kube-prometheus-stack-prometheus.monitoring:9090/  # example address of a prometheus to connect to. Include protocol (http:// or https://) Ignored if enabled: true
-      server:
-        global:
-          external_labels:
-            cluster_id: sx-cnp-oss  
+      fqdn: http://sx-kube-prometheus-stack-prometheus.monitoring:9090/  # example address of a prometheus to connect to. Include protocol (http:// or https://) Ignored if enabled: 
 
     grafana:
       enabled: false  # If false, Grafana will not be installed
@@ -46,6 +42,12 @@ cost-analyzer:
   grafana:
     namespace_datasources: monitoring # override the default namespace here
     namespace_dashboards: monitoring # override the default namespace here
+ 
+  prometheus:
+    server:
+      global:
+        external_labels:
+          cluster_id: sx-cnp-oss  
 
   kubecostProductConfigs:
     customPricesEnabled: true
