@@ -19,10 +19,10 @@ and describe which one fits to which purpose with pros and cons.
 Be aware that there are many different gitops solutions,
 because your whole solution includes:
 
-- operator deployment pattern: https://cloudogu.com/en/blog/gitops-repository-patterns-part-2-operator-deployment-patterns
-- repository pattern: https://cloudogu.com/en/blog/gitops-repository-patterns-part-3-repository-patterns
-- promotion pattern: https://cloudogu.com/en/blog/gitops-repository-patterns-part-4-promotion-patterns
-- wiring pattern: https://cloudogu.com/en/blog/gitops-repository-patterns-part-4-promotion-patterns
+- [operator deployment pattern](https://cloudogu.com/en/blog/gitops-repository-patterns-part-2-operator-deployment-patterns)
+- [repository pattern](https://cloudogu.com/en/blog/gitops-repository-patterns-part-3-repository-patterns)
+- [promotion pattern](https://cloudogu.com/en/blog/gitops-repository-patterns-part-4-promotion-patterns)
+- [wiring pattern](https://cloudogu.com/en/blog/gitops-repository-patterns-part-5-wiring-patterns)
 
 Maybe this proposal (or ADR) focuses more on the [wiring](https://cloudogu.com/en/blog/gitops-repository-patterns-part-4-promotion-patterns) part, especially how new teams and apps can be onboarded.
 
@@ -30,9 +30,119 @@ And maybe there are also some mixed solutions possible with some variants. Lets 
 
 Maybe this document ends in a decision tree where you come to your perfect solution based on some decisions down the road.
 
-# team-onboarding via platform-repo, application onboarding self-service/automatically
 
-## implementation technology
+# Overview
+
+there are so many different approaches with lots of variantes and each have their cons and pros.
+therefore it probably makes sense to look at it from a problem perspective rather from a solution perspective.
+
+- Which problems do I want to solve?
+- Which requirements do I have from a platform consumer and platform provider perspective.
+
+And maybe we can use also this categories for proposing solutions.
+TODO: currently it is not clear if solutions in those categories are independent from each other
+or if they depend each other.
+
+- operator deployment
+- repository structure
+- promotion
+- wiring (bootstrapping, creating app-definitions)
+
+## User Stories
+
+These user stories a ordered by expertise of the platform consumers.
+- little skills and knowledge - high standardization and governance
+- medium skills and knowledge - high standardization, governance, but more flexibility and insights
+- high skills and knowledge - very flexible, still some governance where needed and lots of insights
+
+Disclaimer: as always, enabling and "skill-up" dev-teams is always an advantages.
+Still, some dev-teams are not able to skill them up or don't have enough resources.
+Maybe, when this dev-teams get more experience their requirements towards more insights and flexibility
+and less governance changes.
+Also, maybe insights (which kubernetes-manifests are created, where do we have problems) are always helpful.
+Then not so experienced teams can learn from the insights they get.
+On the other way, also for experienced teams the platform should be easy to use, but not limiting in solutions.
+That is all about golden paths instead of golden cages.
+
+As a 
+**dev-team without deep knowledge in argocd, kustomize, helm and kubernetes manifest**
+I want to onboard my app with a very slim and easy API and as much sane defaults as possible
+and strong governance to prevent any problems because of limited knowledge.
+
+
+**Solutions**
+
+- option 1: platform-team creates an app namespace for the app workload. sets a minimum of policies in this namespace (limit-ranges, quotas, network-policies, kyverno-policies, roles/bindings) and creates argo project with restrictions where  needed.
+platform-team creates an application-set per team with static argo project reference.
+dev-team create their gitops-repos with highly simplified "deployment descriptor".
+The additional K8s manifests are stored in a different place (helm repo, git repo) managed by the platform team.
+Dev-team has no option to define which K8s manifests and cannot add them.
+
+- option 2: as option 1, but a Parent-Helm-Chart just with a values-File and Sub-Chart is specified, Parent-Chart is maintained by platform-team. dev-team knows what other manifests get created and can specify the version of the chart (renovate helps with updates)
+
+- option 3: as option 1, but in the dev-teams gitops-repo a config.json with definitions for helm repo, chart and version can be placed (todo: can this be implemented as optional with the same appset of option 1 or is it then mandatory).<br>
+implementation: https://github.com/thschue/gitops-demo/tree/main/demo
+
+
+TODO: are there also Kustomize implementations for this approaches?
+What advantages has a helmfile instead of a parent-chart).
+https://helmfile.readthedocs.io/en/latest/
+
+
+
+As a
+**dev-team with lots of knowledge in kubernetes, argocd, kustome and helm**
+I want to onboard my app with high flexibility and with less governance as possible
+to make use of any configuration mgmt tools and kubernetes manifests which are possible.
+Still, I want a platform-team responsible for the cluster and the cluster is used by multiple dev-teams,
+not just dedicated for one dev-team.
+
+**Solutions**
+
+- option 1: platform-team creates an app namespace for the app workload. sets a minimum of policies in this namespace (limit-ranges, quotas, network-policies, kyverno-policies, roles/bindings) and creates argo project with restrictions where  needed.
+dev-team creates app-definition in argocd namespace via PR in gitops-repo which represents the argocd apps.
+platform-team needs to check in the PR review for every app definition if the correct argo project is referenced.<br>
+additional variations: platform-team can create some convenience in their gitops-repo with helm or kustomize to create argo project, namespace, app, namespace, policies with templating, as long as the flexibility and insights for the dev-team still exists and are not abstracted away too far.
+dev-team creates also its own kargo CRs if promotion with kargo is needed for the dev-team.
+
+- option 2 (beta but less platform-team involvement): with [apps-in-any-namespace](https://argo-cd.readthedocs.io/en/stable/operator-manual/app-any-namespace/) the platform-team can define the argo project ones and define a namespace where the dev-team can create the app-definitions in without review of the platform team. all apps in this custom namespace need to reference the correct argo project, otherwise argocd doesn't create the app. 
+
+- option 3: dev-team gets its own namespaced-scoped argocd instance. namespaced-scoped argocd instance can be configured by central cluster-scoped argocd via gitops. if this argocd instance should also manage some additional namespaces we need additional configs/roles/bindings which is probably best managed with argocd operator (or openshift gitops operator on openshift). dev-team can create their argo projects by themselves or use default project since it is limited by the scope of the namespace-scoped instance. pros: higher isolation between teams concerning configurations, auth backend, permissions, resources and scalability, cons: higher resource consumption, higher management overhead, higher deployment complexity.
+
+Example implementations:
+
+https://developers.redhat.com/articles/2022/04/13/manage-namespaces-multitenant-clusters-argo-cd-kustomize-and-helm
+
+
+TODO: what about application-set in any namespace so dev-teams can create application-sets?
+
+As a
+**dev-team with lots of knowledge in kubernetes, argocd, kustome and helm**
+I want to onboard my app with high flexibility and with less governance as possible
+to make use of any configuration mgmt tools and kubernetes manifests which are possible.
+The cluster is dedicated for my team, but I still want a platform-team which is responsible for the cluster-mgmt.
+
+**Solutions**
+
+- <tbd>
+
+
+As a
+**dev-team with lots of knowledge in kubernetes, argocd, kustome and helm**
+I want to onboard my app with high flexibility and with less governance as possible
+to make use of any configuration mgmt tools and kubernetes manifests which are possible.
+The cluster is dedicated for my team and I take full responsibility for this cluster.
+I use or copy some basic configurations from a platform-team but treat them more as a good practice which I can use or not.
+
+**Solutions**
+
+- <tbd>
+
+
+
+# centrally controlled team-onboarding, self-service app onboarding 
+
+team-onboarding via platform-repo, application onboarding self-service/automatically
 
 applicationsets  and argo project per team
 
