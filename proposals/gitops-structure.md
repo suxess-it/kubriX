@@ -64,6 +64,9 @@ Then not so experienced teams can learn from the insights they get.
 On the other way, also for experienced teams the platform should be easy to use, but not limiting in solutions.
 That is all about golden paths instead of golden cages.
 
+
+### User Story 1
+
 As a 
 **dev-team without deep knowledge in argocd, kustomize, helm and kubernetes manifest**
 I want to onboard my app with a very slim and easy API and as much sane defaults as possible
@@ -83,12 +86,24 @@ Dev-team has no option to define which K8s manifests and cannot add them.
 - option 3: as option 1, but in the dev-teams gitops-repo a config.json with definitions for helm repo, chart and version can be placed (todo: can this be implemented as optional with the same appset of option 1 or is it then mandatory).<br>
 implementation: https://github.com/thschue/gitops-demo/tree/main/demo
 
+- option 4 (beta but less platform-team involvement):  as option 1, 2 or 3, but namespace creation is a self-service. this can be established with [apps-in-any-namespace](https://argo-cd.readthedocs.io/en/stable/operator-manual/app-any-namespace/). While onboarding a new team the platform-team
+  - extends the [value application.namespaces](https://github.com/argoproj/argo-helm/blob/3174f52ffcfe3bb0d2ad6118411eacbaf20b0c7d/charts/argo-cd/values.yaml#L276) with a "app-definition namespace" for this team (e.g. "team1-app-definitions" )
+  - creates this "app-definition namespace" for this team (e.g. "team1-app-definitions" )
+  - creates an argo project for this team (e.g. team1-project), references the "app-definition namespace" in the projects sourceNamespaces attribute, sets the destinations in the project to valid "workload namespaces", like "team1-*" and sets clusterResourceWhitelist to "kind: Namespace".
+  - creates some mutating kyverno-policies to create some [multi-tenancy policies](https://kyverno.io/policies/?policytypes=Multi-Tenancy) automatically for new namespaces
+
+  Then the dev-team can create new apps by their own in their "app-definition namespace" and set the sync option "CreateNamespace". As long as the namespace name matches the valid destinations in the argo project (team1-*) the namespace gets created and kyverno creates limit-ranges, quoatas, deny-all network-policies etc. es defined in the policies.
+  Additionally [Namespace Metadata](https://argo-cd.readthedocs.io/en/stable/user-guide/sync-options/#namespace-metadata) can be used to apply different kyverno policies based on some labels or annotations.
+
+
 
 TODO: are there also Kustomize implementations for this approaches?
 What advantages has a helmfile instead of a parent-chart).
 https://helmfile.readthedocs.io/en/latest/
 
 
+
+### User Story 2
 
 As a
 **dev-team with lots of knowledge in kubernetes, argocd, kustome and helm**
@@ -105,7 +120,16 @@ platform-team needs to check in the PR review for every app definition if the co
 additional variations: platform-team can create some convenience in their gitops-repo with helm or kustomize to create argo project, namespace, app, namespace, policies with templating, as long as the flexibility and insights for the dev-team still exists and are not abstracted away too far.
 dev-team creates also its own kargo CRs if promotion with kargo is needed for the dev-team.
 
-- option 2 (beta but less platform-team involvement): with [apps-in-any-namespace](https://argo-cd.readthedocs.io/en/stable/operator-manual/app-any-namespace/) the platform-team can define the argo project ones and define a namespace where the dev-team can create the app-definitions in without review of the platform team. all apps in this custom namespace need to reference the correct argo project, otherwise argocd doesn't create the app. 
+- option 2 (beta but less platform-team involvement):  as option 1, but namespace creation is a self-service. this can be established with [apps-in-any-namespace](https://argo-cd.readthedocs.io/en/stable/operator-manual/app-any-namespace/). While onboarding a new team the platform-team
+  - extends the [value application.namespaces](https://github.com/argoproj/argo-helm/blob/3174f52ffcfe3bb0d2ad6118411eacbaf20b0c7d/charts/argo-cd/values.yaml#L276) with a "app-definition namespace" for this team (e.g. "team1-app-definitions" )
+  - creates this "app-definition namespace" for this team (e.g. "team1-app-definitions" )
+  - creates an argo project for this team (e.g. team1-project), references the "app-definition namespace" in the projects sourceNamespaces attribute, sets the destinations in the project to valid "workload namespaces", like "team1-*" and sets clusterResourceWhitelist to "kind: Namespace".
+  - creates some mutating kyverno-policies to create some [multi-tenancy policies](https://kyverno.io/policies/?policytypes=Multi-Tenancy) automatically for new namespaces
+  
+  Then the dev-team can create new apps by their own in their "app-definition namespace" and set the sync option "CreateNamespace". As long as the namespace name matches the valid destinations in the argo project (team1-*) the namespace gets created and kyverno creates limit-ranges, quoatas, deny-all network-policies etc. es defined in the policies.
+  Additionally [Namespace Metadata](https://argo-cd.readthedocs.io/en/stable/user-guide/sync-options/#namespace-metadata) can be used to apply different kyverno policies based on some labels or annotations.
+
+  TODO: what about application-set in any namespace so dev-teams can create application-sets?
 
 - option 3: dev-team gets its own namespaced-scoped argocd instance. namespaced-scoped argocd instance can be configured by central cluster-scoped argocd via gitops. if this argocd instance should also manage some additional namespaces we need additional configs/roles/bindings which is probably best managed with argocd operator (or openshift gitops operator on openshift). dev-team can create their argo projects by themselves or use default project since it is limited by the scope of the namespace-scoped instance. pros: higher isolation between teams concerning configurations, auth backend, permissions, resources and scalability, cons: higher resource consumption, higher management overhead, higher deployment complexity.
 
@@ -114,7 +138,7 @@ Example implementations:
 https://developers.redhat.com/articles/2022/04/13/manage-namespaces-multitenant-clusters-argo-cd-kustomize-and-helm
 
 
-TODO: what about application-set in any namespace so dev-teams can create application-sets?
+
 
 As a
 **dev-team with lots of knowledge in kubernetes, argocd, kustome and helm**
@@ -144,7 +168,9 @@ I use or copy some basic configurations from a platform-team but treat them more
 
 team-onboarding via platform-repo, application onboarding self-service/automatically
 
-applicationsets  and argo project per team
+Seems to be like
+- User Story 1, option 4
+- User Story 2, option 2 
 
 ## environemnt
 
