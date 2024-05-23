@@ -90,7 +90,7 @@ implementation: https://github.com/thschue/gitops-demo/tree/main/demo
   - extends the [value application.namespaces](https://github.com/argoproj/argo-helm/blob/3174f52ffcfe3bb0d2ad6118411eacbaf20b0c7d/charts/argo-cd/values.yaml#L276) with a "app-definition namespace" for this team (e.g. "team1-app-definitions" )
   - creates this "app-definition namespace" for this team (e.g. "team1-app-definitions" )
   - creates an argo project for this team (e.g. team1-project), references the "app-definition namespace" in the projects sourceNamespaces attribute, sets the destinations in the project to valid "workload namespaces", like "team1-*" and sets clusterResourceWhitelist to "kind: Namespace".
-  - creates some mutating kyverno-policies to create some [multi-tenancy policies](https://kyverno.io/policies/?policytypes=Multi-Tenancy) automatically for new namespaces
+  - creates some [generate kyverno-policies](...) to create some [multi-tenancy policies](https://kyverno.io/policies/?policytypes=Multi-Tenancy) automatically for new namespaces
 
   Then the dev-team can create new apps by their own in their "app-definition namespace" and set the sync option "CreateNamespace". As long as the namespace name matches the valid destinations in the argo project (team1-*) the namespace gets created and kyverno creates limit-ranges, quoatas, deny-all network-policies etc. es defined in the policies.
   Additionally [Namespace Metadata](https://argo-cd.readthedocs.io/en/stable/user-guide/sync-options/#namespace-metadata) can be used to apply different kyverno policies based on some labels or annotations.
