@@ -2,11 +2,17 @@ teams:
   - name: team1
     sourceRepos:
       - '*'
-    appOfAppsRepo: https://github.com/suxess-it/approved-application
+    appOfAppsRepo:
+      repoURL: https://github.com/suxess-it/team1-apps
+      path: k3d-apps
+      revision: main
   - name: team2
     sourceRepos:
       - '*'
-    appOfAppsRepo: https://github.com/suxess-it/approved-application
+    appOfAppsRepo:
+      repoURL: https://github.com/suxess-it/team2-apps
+      path: k3d-apps
+      revision: main
     # in the future maybe also some attributes for an scm / git application-set instead of appOfApps possible
     scmAppSet: ~
     gitAppSet: ~
