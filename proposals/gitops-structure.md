@@ -2,6 +2,20 @@
 
 # alternative title "gitops process and repos"
 
+
+# TODO reminder
+
+break the user-stories in two parts:
+
+- team-onboarding
+  - platform-team creates ns in central repo
+  - apps-in-any-namespace approach
+- application-onboarding
+  - App-Of-Apps
+  - ApplicationSets (with already mentioned variants)
+
+
+
 # articles and resources
 
 https://github.com/cloudogu/gitops-patterns
