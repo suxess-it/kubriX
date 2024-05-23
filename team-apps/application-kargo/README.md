@@ -9,3 +9,14 @@ a team-jokl project with
 # create apps
 
 helm template --namespace team-jokl-app-mgmt . | kubectl apply -f -
+
+
+# TODOS
+
+if kargo projects need their own namespace we could overwrite the namespace for this resources (or maybe build a subchart for kargo resources and overwrite it there), like this:
+
+```
+{{- define "argo-cd.namespace" -}}
+{{- default .Release.Namespace .Values.namespaceOverride | trunc 63 | trimSuffix "-" -}}
+{{- end }}
+```
