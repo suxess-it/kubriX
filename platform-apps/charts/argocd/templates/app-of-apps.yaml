@@ -1,0 +1,22 @@
+{{- range .Values.teams }}
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: {{ .name }}-app-of-apps
+  namespace: {{ .name }}-app-definitions
+  finalizers:
+  - resources-finalizer.argocd.argoproj.io
+spec:
+  destination:
+    namespace: {{ .name }}-app-definitions
+    server: https://kubernetes.default.svc
+  project: {{ .name }}-project
+  sources:
+  - path:  {{ .appOfAppsRepo.path }}
+    repoURL: {{ .appOfAppsRepo.repoURL }}
+    targetRevision:  {{ .appOfAppsRepo.revision }}
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+{{- end }}
