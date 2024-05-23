@@ -1,3 +1,11 @@
+teams:
+  - name: team1
+    sourceRepos:
+      - '*'
+  - name: team2
+    sourceRepos:
+      - '*'
+
 argo-cd:
   global:
     domain: argocd-127-0-0-1.nip.io
@@ -5,6 +13,7 @@ argo-cd:
   configs:
     params:
       server.insecure: true
+      application.namespaces: "team1-app-definitions,team2-app-definitions"
     secret:
       createSecret: false
 
