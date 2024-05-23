@@ -1,0 +1,20 @@
+{{- range .Values.stages }}
+apiVersion: kargo.akuity.io/v1alpha1
+kind: Stage
+metadata:
+  name: {{ .name }}
+  namespace: {{ $.Release.Namespace }}
+spec:
+{{- with .subscriptions }}
+  subscriptions:
+  {{- toYaml . | nindent 4 }}
+{{- end }}
+  promotionMechanisms:
+    gitRepoUpdates:
+    - repoURL: {{ $.Values.repoUrl }}
+      writeBranch: stages/{{ .name }}
+    argoCDAppUpdates:
+    - appName: {{ $.Values.appName }}-{{ .name }}
+      appNamespace: {{ $.Release.Namespace }}
+---
+{{- end }}

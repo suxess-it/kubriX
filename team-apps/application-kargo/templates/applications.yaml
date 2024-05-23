@@ -1,0 +1,26 @@
+{{- range .Values.stages }}
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: {{ $.Values.appName }}-{{ .name }}
+  namespace: {{ $.Release.Namespace }}
+  annotations:
+    kargo.akuity.io/authorized-stage: {{ $.Release.Namespace }}:{{ .name }}
+spec:
+  project: {{ $.Values.appProject }}
+  source:
+    repoURL: {{ $.Values.repoUrl }}
+    targetRevision: stages/{{ .name }}
+    path: .
+    helm:
+      valueFiles:
+      - values-{{ .name }}.yaml
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: {{ $.Values.appName }}-{{ .name }}
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+---
+{{- end }}
