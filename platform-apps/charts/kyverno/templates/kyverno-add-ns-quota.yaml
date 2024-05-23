@@ -17,6 +17,7 @@ metadata:
 spec:
   rules:
   - name: generate-resourcequota
+    skipBackgroundRequests: true
     match:
       any:
       - resources:
@@ -36,6 +37,7 @@ spec:
             limits.cpu: '4'
             limits.memory: '16Gi'
   - name: generate-limitrange
+    skipBackgroundRequests: true
     match:
       any:
       - resources:
