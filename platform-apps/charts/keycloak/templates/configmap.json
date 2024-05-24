@@ -1,9 +1,0 @@
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: {{ .Release.Name }}-configmap
-data:
-  sx-cnp-oss.realm.json: |-
-{{ .Files.Get "sx-cnp-oss.realm.json" | indent 4}}
-  poststart.sh: |-
-{{ .Files.Get "poststart.sh" | indent 4}}
