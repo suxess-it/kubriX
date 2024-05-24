@@ -4,7 +4,7 @@ metadata:
   name: keycloak-configmap
 data:
   sx-cnp-oss.realm.json: |-
-{{ .Files.Get "sx-cnp-oss.realm.json" | indent 4}}
+{{ .Files.Get "realmsettings/sx-cnp-oss.realm.json" | indent 4}}
   poststart.sh:  |-
     #!/bin/bash
     #
