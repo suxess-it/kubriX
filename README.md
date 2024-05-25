@@ -89,8 +89,8 @@ kargo needs to write to your gitops repo to promote changed from one stage to an
 ```
 export GITHUB_USERNAME=<your github handle>
 export GITHUB_PAT=<your personal access token>
-kubectl create secret generic git-demo-app -n kargo-demo-app --from-literal=type=git --from-literal=url=https://github.com/suxess-it/sx-cnp-oss-demo-app --from-literal=username=${GITHUB_USERNAME} --from-literal=password=${GITHUB_PAT}
-kubectl label secret git-demo-app -n kargo-demo-app kargo.akuity.io/secret-type=repository
+kubectl create secret generic git-demo-app -n kargo-demo-app --from-literal=repoURL=https://github.com/suxess-it/sx-cnp-oss-demo-app --from-literal=username=${GITHUB_USERNAME} --from-literal=password=${GITHUB_PAT}
+kubectl label secret git-demo-app -n kargo-demo-app kargo.akuity.io/cred-type=git
 ```
 
 URLs for stages:
