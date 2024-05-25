@@ -7,8 +7,7 @@ spec:
   sourceNamespaces:
   - {{ .name }}-app-definitions
   clusterResourceWhitelist:
-  - group: ""
-    kind: Namespace
+{{ toYaml .clusterResourceWhitelist | indent 2 }}
   destinations:
   - name: in-cluster
     namespace: {{ .name }}-*
