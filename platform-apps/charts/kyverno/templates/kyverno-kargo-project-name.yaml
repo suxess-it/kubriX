@@ -1,0 +1,65 @@
+apiVersion: kyverno.io/v1
+kind: ClusterPolicy
+metadata:
+  name: kargo-project-name-validation
+  annotations:
+    policies.kyverno.io/title: Kargo Project Name Validation
+    policies.kyverno.io/category: Kargo
+    policies.kyverno.io/severity: medium
+    policies.kyverno.io/subject: Kargo Project
+    kyverno.io/kyverno-version: 1.6.0
+    policies.kyverno.io/minversion: 1.6.0
+    kyverno.io/kubernetes-version: "1.23"
+    policies.kyverno.io/description: >-
+      This policy checks if the Kargo Project Name matches with the allowed destinations
+      in the corresponding ArgoCD Project.
+spec:
+  validationFailureAction: audit
+  background: true
+  rules:
+  - name: check-kargo-project-name
+    match:
+      any:
+      - resources:
+          kinds:
+          - Project
+    context:
+    - name: app_namespace
+      variable:
+        jmesPath: request.object.metadata.labels."argocd.argoproj.io/instance" |  split(@, '_') | [0]
+    - name: app
+      variable:
+        jmesPath: request.object.metadata.labels."argocd.argoproj.io/instance" |  split(@, '_') | [1]
+    - name: argocd_project
+      apiCall:
+        urlPath: "/apis/argoproj.io/v1alpha1/namespaces/{{app_namespace}}/applications/{{app}}"
+        jmesPath: spec.project
+    - name: allowed_destination
+      apiCall:
+        urlPath: "/apis/argoproj.io/v1alpha1/namespaces/argocd/appprojects/{{argocd_project}}"
+        jmesPath: spec.destinations[].namespace
+    validate:
+      message: >-
+        Kyverno policy /{{request.object.metadata.name}} doesn't match the
+        destination /{{allowed_destination}}
+        of the project /{{argocd_project}}
+        referenced in application /{{app}} 
+        in namespace /{{app_namespace}}
+      deny:
+        conditions:
+          all:
+#          - key: "{{app_namespace}}"
+#            operator: Equals
+#            value: "team1-app-definitions"
+#          - key: "{{app}}"
+#            operator: Equals
+#            value: "team1-app-of-apps"
+#          - key: "{{argocd_project}}"
+#            operator: Equals
+#            value: "team1-project"
+#          - key: "{{allowed_destination}}"
+#            operator: AnyIn
+#            value: "team1-*"
+          - key: "{{request.object.metadata.name}}"
+            operator: AnyIn
+            value: "{{allowed_destination}}"
