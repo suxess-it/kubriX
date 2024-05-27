@@ -20,16 +20,13 @@ backstage:
     extraEnvVars:
       - name: NODE_OPTIONS
         value: "--no-node-snapshot"
-      - name: NODE_TLS_REJECT_UNAUTHORIZED
-        value: "0"
+#      - name: NODE_TLS_REJECT_UNAUTHORIZED
+#        value: "0"
 
     appConfig:
       app:
         title: sX CNP App
         baseUrl: https://backstage-127-0-0-1.nip.io
-        listen:
-          host: 0.0.0.0
-          port: 3000
 
       organization:
         name: sX CNP
@@ -118,7 +115,7 @@ backstage:
 
       auth:
         session:
-          secret: supersecret # free sessionsecret      
+          secret: supersecret # free sessionsecret
         environment: development
         providers:
           github:
@@ -136,18 +133,17 @@ backstage:
           #guest: {}
           oidc:
             development:
-              # NOTE: Here you provide the URL to the Keycloak
               metadataUrl: https://keycloak-127-0-0-1.nip.io/realms/sx-cnp-oss/.well-known/openid-configuration
-              clientId: backstage
-              clientSecret: demosecret
-              scope: 'openid profile email groups'
-              prompt: auto
-              # https://github.com/backstage/backstage/blob/master/plugins/auth-backend-module-oidc-provider/src/resolvers.ts
-              signIn:
-                resolvers:
-                  - resolver: emailLocalPartMatchingUserEntityName
-                  - resolver: emailMatchingUserEntityProfileEmail
-
+          #    clientId: backstage
+          #    clientSecret: demosecret
+          #    scope: 'openid profile email groups'
+          #    prompt: auto
+          #    callbackUrl: https://backstage-127-0-0-1.nip.io/api/auth/oidc/handler/frame
+          #    # https://github.com/backstage/backstage/blob/master/plugins/auth-backend-module-oidc-provider/src/resolvers.ts
+          #    signIn:
+          #      resolvers:
+          #        - resolver: emailLocalPartMatchingUserEntityName
+          #        - resolver: emailMatchingUserEntityProfileEmail
       scaffolder: {}
         # see https://backstage.io/docs/features/software-templates/configuration for software template options
 
