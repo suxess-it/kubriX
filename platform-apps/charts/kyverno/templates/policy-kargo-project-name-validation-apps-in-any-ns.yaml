@@ -1,7 +1,8 @@
+{{ if has "kargo-project-name-validation-apps-in-any-ns" .Values.kyvernoPolicies }}
 apiVersion: kyverno.io/v1
 kind: ClusterPolicy
 metadata:
-  name: kargo-project-name-validation
+  name: kargo-project-name-validation-apps-in-any-ns
   annotations:
     policies.kyverno.io/title: Kargo Project Name Validation
     policies.kyverno.io/category: Kargo
@@ -62,3 +63,4 @@ spec:
           - key: "{{`{{request.object.metadata.name}}`}}"
             operator: AnyNotIn
             value: "{{`{{allowed_destination}}`}}"
+{{- end }}
