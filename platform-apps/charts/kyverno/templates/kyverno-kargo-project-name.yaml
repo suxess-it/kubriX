@@ -48,18 +48,6 @@ spec:
       deny:
         conditions:
           all:
-#          - key: "{{app_namespace}}"
-#            operator: Equals
-#            value: "team1-app-definitions"
-#          - key: "{{app}}"
-#            operator: Equals
-#            value: "team1-app-of-apps"
-#          - key: "{{argocd_project}}"
-#            operator: Equals
-#            value: "team1-project"
-#          - key: "{{allowed_destination}}"
-#            operator: AnyIn
-#            value: "team1-*"
           - key: "{{`{{request.object.metadata.name}}`}}"
             operator: AnyIn
             value: "{{`{{allowed_destination}}`}}"
