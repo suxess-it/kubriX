@@ -43,14 +43,14 @@ spec:
         jmesPath: spec.destinations[].namespace
     validate:
       message: >-
-        Kyverno policy /{{`{{request.object.metadata.name}}`}} doesn't match the
-        destination /{{`{{allowed_destination}}`}}
-        of the project /{{`{{argocd_project}}`}}
-        referenced in application /{{`{{app}}`}}
-        in namespace /{{`{{app_namespace}}`}}
+        Kyverno project '{{`{{request.object.metadata.name}}`}}' doesn't match the
+        allowed destination '{{`{{allowed_destination}}`}}'
+        of the argocd project '{{`{{argocd_project}}`}}''
+        referenced in application '{{`{{app}}`}}'
+        in namespace '{{`{{app_namespace}}`}}'
       deny:
         conditions:
           all:
           - key: "{{`{{request.object.metadata.name}}`}}"
-            operator: AnyIn
+            operator: AnyNotIn
             value: "{{`{{allowed_destination}}`}}"
