@@ -18,6 +18,7 @@ spec:
   background: true
   rules:
   - name: check-kargo-project-name
+    skipBackgroundRequests: true
     match:
       any:
       - resources:
@@ -32,10 +33,12 @@ spec:
         jmesPath: request.object.metadata.labels."argocd.argoproj.io/instance" |  split(@, '_') | [1]
     - name: argocd_project
       apiCall:
+        method: GET
         urlPath: "/apis/argoproj.io/v1alpha1/namespaces/{{`{{app_namespace}}`}}/applications/{{`{{app}}`}}"
         jmesPath: spec.project
     - name: allowed_destination
       apiCall:
+        method: GET
         urlPath: "/apis/argoproj.io/v1alpha1/namespaces/argocd/appprojects/{{`{{argocd_project}}`}}"
         jmesPath: spec.destinations[].namespace
     validate:
