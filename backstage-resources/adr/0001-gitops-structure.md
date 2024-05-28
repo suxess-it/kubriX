@@ -1,6 +1,4 @@
-# gitops structure
-
-# alternative title "gitops process and repos"
+# gitops process and repos
 
 
 # TODO reminder
@@ -13,8 +11,6 @@ break the user-stories in two parts:
 - application-onboarding
   - App-Of-Apps
   - ApplicationSets (with already mentioned variants)
-
-
 
 # articles and resources
 
@@ -38,31 +34,177 @@ because your whole solution includes:
 - [promotion pattern](https://cloudogu.com/en/blog/gitops-repository-patterns-part-4-promotion-patterns)
 - [wiring pattern](https://cloudogu.com/en/blog/gitops-repository-patterns-part-5-wiring-patterns)
 
-Maybe this proposal (or ADR) focuses more on the [wiring](https://cloudogu.com/en/blog/gitops-repository-patterns-part-4-promotion-patterns) part, especially how new teams and apps can be onboarded.
+Maybe this ADR focuses more on the [wiring](https://cloudogu.com/en/blog/gitops-repository-patterns-part-4-promotion-patterns) part, especially how new teams and apps can be onboarded.
 
 And maybe there are also some mixed solutions possible with some variants. Lets see where it brings us.
-
 Maybe this document ends in a decision tree where you come to your perfect solution based on some decisions down the road.
 
-
-# Overview
-
-there are so many different approaches with lots of variantes and each have their cons and pros.
-therefore it probably makes sense to look at it from a problem perspective rather from a solution perspective.
-
-- Which problems do I want to solve?
-- Which requirements do I have from a platform consumer and platform provider perspective.
-
-And maybe we can use also this categories for proposing solutions.
 TODO: currently it is not clear if solutions in those categories are independent from each other
 or if they depend each other.
 
-- operator deployment
-- repository structure
-- promotion
-- wiring (bootstrapping, creating app-definitions)
+
+
+# Onboarding teams
+
+## Context and Problem Statement
+
+As a
+***platform-team***
+I want a mechanism where I can onboard new teams and applications to a cluster with all required policies
+so that stability/security of the platform is still guaranteed and no negative effects to other teams and applications arise.
+
+Normally onboarding includes creating:
+  - argocd app-project with restrictions (source-Repos, destinations, clusterResourceWhitelist, namespaceResourceBlacklist, ...) and roles if needed
+  - argocd app
+  - app namespaces
+  - default configuration inside namespaces (limit-ranges, quotas, deny-all network-policies, kyverno-policies, roles/bindings, ...)
+
+Depending on the solution some of this parts are done by the platform-team, by the dev-team, or automatically.
+
+**Options**
+
+***Option 1***
+
+The dev-team creates a ticket for onboarding to the platform-team. platform-team creates the configurations by themselves without a possibility for devs to create PRs.
+
+***Option 2***
+
+The platform-team has a gitops-repo with helm or kustomize. dev-teams create PRs to this gitops-repo and the platform-team reviews this PRs and merges them (maybe some additional automatic checks/pipelines help with reviewing the PR).
+
+***Option 3***
+
+The platform-team onboards just the team by creating an argocd app-project for this team and a dedicated app-definition-namespace for this app-project. 
+  The dev-team can then create new apps and app-namespace by themselves without interacting with the platform-team. This can be established with [apps-in-any-namespace](https://argo-cd.readthedocs.io/en/stable/operator-manual/app-any-namespace/). <br>
+  To onboard a new dev-team, the platform-team
+  - extends the [value application.namespaces](https://github.com/argoproj/argo-helm/blob/3174f52ffcfe3bb0d2ad6118411eacbaf20b0c7d/charts/argo-cd/values.yaml#L276) with a "app-definition namespace" for this team (e.g. "team1-app-definitions" )
+  - creates this "app-definition namespace" for this team (e.g. "team1-app-definitions")
+  - creates an argocd app-project for this team (e.g. team1-project), references the "app-definition namespace" in the projects sourceNamespaces attribute, sets the destinations in the project to valid "workload namespaces", like "team1-*" and sets clusterResourceWhitelist to "kind: Namespace".
+  - creates some mutating kyverno-policies to create some [multi-tenancy policies](https://kyverno.io/policies/?policytypes=Multi-Tenancy) automatically for new namespaces
+
+  For onboarding the apps there are again some different options, therefore we discuss this app-onboarding options in the next section:
+
+# Onboarding apps
+
+## Context and Problem Statement
+
+As a
+***dev-team***
+I want to onboard and maintain my app as a self-service without high friction and wait times.
+Still, I want to apply all platfprm-requirements and restriction with as much automation as possible.
+
+**Options**
+
+
+***option 1***
+
+For onboarding a new app, the dev-team creates a new argocd app definition in their app-of-apps gitops-repo.
+The platform-team therefore needs to define a app-of-apps definition upfront which points to this gitops-repo.
+
+This option is only secure with "Onboarding teams - option 3", because otherwise the child-app in the app-of-apps repo can use any argocd app-project in this argocd instance and can deploy in any namespace (see https://github.com/argoproj/argo-cd/issues/2785)
+
+An example for this solution is in https://github.com/suxess-it/sx-cnp-oss/blob/12883d99657732d145d2992afa21b554403abd37/platform-apps/charts/argocd/values-k3d.yaml#L14
+
+So the dev-team can create new apps by their own in their "app-definition namespace" and set the sync option "CreateNamespace".
+As long as the namespace name matches the valid destinations in the argo project (team1-*) the namespace gets created.
+As described in "Onboarding teams - option 3" kyverno policies create some default-configurations for this namespace, to be multi-tenant-aware.
+Additionally [Namespace Metadata](https://argo-cd.readthedocs.io/en/stable/user-guide/sync-options/#namespace-metadata) can be used to apply different kyverno policies based on some labels or annotations.
+
+Application-sets-in-any-namespace are also possible with some restrictions: https://github.com/suxess-it/sx-cnp-oss/issues/181
+So Dev-Teams can create their own ApplicationSets without a platform-team. Without "Apps-in-any-Namespace" ApplicationSets were also only safe when platform-teams defined them, otherwise dev-teams could use any argocd app-project.
+
+Kargo Projects are possible with a special kyverno policy which checks the [kargo project name against the allowed argocd app-project destinations](https://github.com/suxess-it/sx-cnp-oss/blob/main/platform-apps/charts/kyverno/templates/policy-kargo-project-name-validation-apps-in-any-ns.yaml).
+
+
+***option 2***
+
+platform-team creates an application-set per team during team-onboarding with static argo project reference.
+dev-team create their gitops-repos with highly simplified "deployment descriptor".
+The additional K8s manifests are stored in a different place (helm repo, git repo) managed by the platform team.
+Dev-team has no option to define which K8s manifests and cannot add them.
+
+
+***option 3***
+
+dev-team creates a gitops-repo containing a parent-helm-chart just with a values-File and referenced Sub-Chart, which is maintained by the platform-team.
+dev-team knows what other manifests get created and can specify the version of the chart (renovate helps with updates)
+
+
+***option 4***
+
+dev-team creates a gitops-repo containing a config.json with definitions for helm repo, chart and version can be placed (todo: can this be implemented as optional with the same appset of option 1 or is it then mandatory).<br>
+implementation: https://github.com/thschue/gitops-demo/tree/main/demo
+
+in option 2,3 and 4 not so much argocd, kustomize, helm or kubernetes manifest knowledge is needed. more knowledge, more flexibility.
+
+As a 
+**dev-team without deep knowledge in argocd, kustomize, helm and kubernetes manifest**
+I want to onboard my app with a very slim and easy API and as much sane defaults as possible
+and strong governance to prevent any problems because of limited knowledge.
+
+TODO: are there also Kustomize implementations for this approaches?
+What advantages has a helmfile instead of a parent-chart).
+https://helmfile.readthedocs.io/en/latest/
+
+***option 5*** 
+
+dev-team creates app-definition in argocd namespace via PR in gitops-repo which represents the argocd apps.
+platform-team needs to review the PR for every app definition if the correct argo project is referenced.
+
+
+***option 6***
+
+dev-team gets its own namespaced-scoped argocd instance. namespaced-scoped argocd instance can be configured by central cluster-scoped argocd via gitops. if this argocd instance should also manage some additional namespaces we need additional configs/roles/bindings which is probably best managed with argocd operator (or openshift gitops operator on openshift). dev-team can create their argo projects by themselves or use default project since it is limited by the scope of the namespace-scoped instance. pros: higher isolation between teams concerning configurations, auth backend, permissions, resources and scalability, cons: higher resource consumption, higher management overhead, higher deployment complexity.
+
+Example implementations:
+
+https://developers.redhat.com/articles/2022/04/13/manage-namespaces-multitenant-clusters-argo-cd-kustomize-and-helm
+
+
+Option 5 and Option 6 are for dev teams with this user story:
+
+As a
+**dev-team with lots of knowledge in kubernetes, argocd, kustome and helm**
+I want to onboard my app with high flexibility and with less governance as possible
+to make use of any configuration mgmt tools and kubernetes manifests which are possible.
+Still, I want a platform-team responsible for the cluster and the cluster is used by multiple dev-teams,
+not just dedicated for one dev-team.
+
+
+***option 7***
+
+As a
+**dev-team with lots of knowledge in kubernetes, argocd, kustome and helm**
+I want to onboard my app with high flexibility and with less governance as possible
+to make use of any configuration mgmt tools and kubernetes manifests which are possible.
+The cluster is dedicated for my team, but I still want a platform-team which is responsible for the cluster-mgmt.
+
+***option 8***
+
+As a
+**dev-team with lots of knowledge in kubernetes, argocd, kustome and helm**
+I want to onboard my app with high flexibility and with less governance as possible
+to make use of any configuration mgmt tools and kubernetes manifests which are possible.
+The cluster is dedicated for my team and I take full responsibility for this cluster.
+I use or copy some basic configurations from a platform-team but treat them more as a good practice which I can use or not.
+
+
+
+
+
+
+
+
+
+
+# Old Content, maybe we integrate that later
+
+
+
+
 
 ## User Stories
+
+TODO: maybe those are some pros/cons for the different approaches
 
 These user stories a ordered by expertise of the platform consumers:
 
@@ -84,114 +226,6 @@ Then not so experienced teams can learn from the insights they get.
 On the other way, also for experienced teams the platform should be easy to use, but not limiting in solutions.
 That is all about golden paths instead of golden cages.
 
-### User Story 1 - onboarding teams
-
-As a
-***platform-team***
-I want a mechanism where I can onboard new teams and applications to a cluster with all required policies
-so that stability/security of the platform is still guaranteed and no negative effects to other teams and applications arise.
-
-**Solutions**
-
-- option 1: dev-team creates a ticket for onboarding to the platform-team. platform-team creates an argocd app-project with restrictions if needed, an app namespace for the app workload of this team and sets policies in this namespace (limit-ranges, quotas, network-policies, kyverno-policies, roles/bindings).
-
-- option 2: platform-team has a gitops-repo with helm or kustomize to create namespace, policies, argocd app-project and apps with templating. dev-teams create PRs to this gitops-repo and the platform-team reviews this PRs and merges them (maybe some additional automatic checks/pipelines help with reviewing the PR).
-
-- option 3: platform-team onboards a team by creating an argocd app-project for this team, an app-definition-namespace for this team and kyverno policies so new namespaces automatically have some multi-tenancy configuration in place. app creation and app-namespace creation is a complete self-service for the dev-team. this can be established with [apps-in-any-namespace](https://argo-cd.readthedocs.io/en/stable/operator-manual/app-any-namespace/). While onboarding a new team the platform-team
-  - extends the [value application.namespaces](https://github.com/argoproj/argo-helm/blob/3174f52ffcfe3bb0d2ad6118411eacbaf20b0c7d/charts/argo-cd/values.yaml#L276) with a "app-definition namespace" for this team (e.g. "team1-app-definitions" )
-  - creates this "app-definition namespace" for this team (e.g. "team1-app-definitions")
-  - creates an argo project for this team (e.g. team1-project), references the "app-definition namespace" in the projects sourceNamespaces attribute, sets the destinations in the project to valid "workload namespaces", like "team1-*" and sets clusterResourceWhitelist to "kind: Namespace".
-  - creates some mutating kyverno-policies to create some [multi-tenancy policies](https://kyverno.io/policies/?policytypes=Multi-Tenancy) automatically for new namespaces
-  
-  Then the dev-team can create new apps by their own in their "app-definition namespace" and set the sync option "CreateNamespace". As long as the namespace name matches the valid destinations in the argo project (team1-*) the namespace gets created and kyverno creates limit-ranges, quoatas, deny-all network-policies etc. es defined in the policies.
-  Additionally [Namespace Metadata](https://argo-cd.readthedocs.io/en/stable/user-guide/sync-options/#namespace-metadata) can be used to apply different kyverno policies based on some labels or annotations.
-
-  application-sets-in-any-namespace are possible with some restrictions: https://github.com/suxess-it/sx-cnp-oss/issues/181
-
-
-### User Story 2 - onboarding apps
-
-As a 
-**dev-team without deep knowledge in argocd, kustomize, helm and kubernetes manifest**
-I want to onboard my app with a very slim and easy API and as much sane defaults as possible
-and strong governance to prevent any problems because of limited knowledge.
-
-**Prereq**
-
-User Story 1 - onboarding teams
-
-
-**Solutions**
-
-- option 1: platform-team creates an application-set per team during team-onboarding with static argo project reference.
-dev-team create their gitops-repos with highly simplified "deployment descriptor".
-The additional K8s manifests are stored in a different place (helm repo, git repo) managed by the platform team.
-Dev-team has no option to define which K8s manifests and cannot add them.
-
-- option 2: dev-team creates a gitops-repo containing a parent-helm-chart just with a values-File and referenced Sub-Chart, which is maintained by the platform-team. dev-team knows what other manifests get created and can specify the version of the chart (renovate helps with updates)
-
-- option 3: dev-team creates a gitops-repo containing a config.json with definitions for helm repo, chart and version can be placed (todo: can this be implemented as optional with the same appset of option 1 or is it then mandatory).<br>
-implementation: https://github.com/thschue/gitops-demo/tree/main/demo
-
-TODO: are there also Kustomize implementations for this approaches?
-What advantages has a helmfile instead of a parent-chart).
-https://helmfile.readthedocs.io/en/latest/
-
-
-
-### User Story 2
-
-# TODO: maybe this user story should get merged in the user story above 
-
-As a
-**dev-team with lots of knowledge in kubernetes, argocd, kustome and helm**
-I want to onboard my app with high flexibility and with less governance as possible
-to make use of any configuration mgmt tools and kubernetes manifests which are possible.
-Still, I want a platform-team responsible for the cluster and the cluster is used by multiple dev-teams,
-not just dedicated for one dev-team.
-
-**Prereq**
-
-User Story 1 - onboarding teams
-
-**Solutions**
-
-- option 1: dev-team creates app-definition in argocd namespace via PR in gitops-repo which represents the argocd apps.
-platform-team needs to review the PR for every app definition if the correct argo project is referenced.
-
-- option 2 (beta but less platform-team involvement):  as option 1, but 
-
-- option 3: dev-team gets its own namespaced-scoped argocd instance. namespaced-scoped argocd instance can be configured by central cluster-scoped argocd via gitops. if this argocd instance should also manage some additional namespaces we need additional configs/roles/bindings which is probably best managed with argocd operator (or openshift gitops operator on openshift). dev-team can create their argo projects by themselves or use default project since it is limited by the scope of the namespace-scoped instance. pros: higher isolation between teams concerning configurations, auth backend, permissions, resources and scalability, cons: higher resource consumption, higher management overhead, higher deployment complexity.
-
-Example implementations:
-
-https://developers.redhat.com/articles/2022/04/13/manage-namespaces-multitenant-clusters-argo-cd-kustomize-and-helm
-
-
-
-
-
-As a
-**dev-team with lots of knowledge in kubernetes, argocd, kustome and helm**
-I want to onboard my app with high flexibility and with less governance as possible
-to make use of any configuration mgmt tools and kubernetes manifests which are possible.
-The cluster is dedicated for my team, but I still want a platform-team which is responsible for the cluster-mgmt.
-
-**Solutions**
-
-- <tbd>
-
-
-As a
-**dev-team with lots of knowledge in kubernetes, argocd, kustome and helm**
-I want to onboard my app with high flexibility and with less governance as possible
-to make use of any configuration mgmt tools and kubernetes manifests which are possible.
-The cluster is dedicated for my team and I take full responsibility for this cluster.
-I use or copy some basic configurations from a platform-team but treat them more as a good practice which I can use or not.
-
-**Solutions**
-
-- <tbd>
 
 
 # TODO: maintaining / changing apps is different in each options above, we should highlight how this works then
