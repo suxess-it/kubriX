@@ -27,6 +27,11 @@ spec:
       - resources:
           kinds:
           - kargo.akuity.io/*/Project
+    preconditions:
+      any:
+      - key: "{{ request.operation }}"
+        operator: NotEquals
+        value: DELETE
     context:
     - name: app_namespace
       variable:
