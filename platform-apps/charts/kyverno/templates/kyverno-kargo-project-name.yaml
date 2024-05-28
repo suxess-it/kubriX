@@ -29,7 +29,7 @@ spec:
           - kargo.akuity.io/*/Project
     preconditions:
       any:
-      - key: "{{ request.operation }}"
+      - key: "{{`{{ request.operation }}`}}"
         operator: NotEquals
         value: DELETE
     context:
