@@ -23,6 +23,11 @@ jobs:
         with:
           cluster_name: sx-cnp-oss-cluster
           config: ${{ github.workspace }}/.github/kind-config.yaml
+          
+      - name: temp-sc
+        shell: bash
+        run: |
+          kubectl get storageclass -o yaml
 
       - name: install mkcert
         shell: bash
