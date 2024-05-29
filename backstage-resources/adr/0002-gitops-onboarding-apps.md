@@ -1,4 +1,4 @@
-# Onboarding apps
+# Onboarding apps in a gitops way
 
 * Status: DRAFT
 * Deciders: sX CNP oss Team
