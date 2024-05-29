@@ -63,6 +63,8 @@ The platform stack will be installed automagically ;)
 * loki
 * tempo
 * kubecost
+* keycloak
+* external-secret-operator
 * falco
 
 ### 3. log in to the tools
@@ -73,6 +75,7 @@ The platform stack will be installed automagically ;)
 | ArgoCD | https://argocd-127-0-0-1.nip.io/ | admin | admin |
 | Kargo | https://kargo-127-0-0-1.nip.io     | admin | - |
 | Grafana    | https://grafana-127-0-0-1.nip.io | admin | prom-operator |
+| Keycloak    | https://keycloak-127-0-0-1.nip.io | admin | admin |
 | FalcoUI    | https://falco-127-0-0-1.nip.io | admin | admin |
 
 ### 4. Example App deployen
