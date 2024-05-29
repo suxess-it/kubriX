@@ -1,4 +1,8 @@
-# gitops onboarding-process and repos
+# Onboarding teams in a gitops way
+
+* Status: DRAFT
+* Deciders: sX CNP oss Team
+* Date: 2023-05-29
 
 ## Introduction
 
@@ -20,7 +24,8 @@ This ADR focuses more on the [wiring](https://cloudogu.com/en/blog/gitops-reposi
 
 Some of the options below effect the patterns above and some don't. Maybe we can explore that in a next step.
 
-# Onboarding teams
+This ADR depends also on ADR "002-gitops-onboarding-apps".
+
 
 ## Context and Problem Statement
 
@@ -29,10 +34,6 @@ As a
 I want a mechanism where I can onboard new teams and applications to a cluster with all required policies and standards
 so that stability/security of the platform is still guaranteed and no negative effects to other teams and applications arise.
 
-As a
-***dev-team***
-I want to onboard and maintain my app as a self-service without high friction and wait times.
-Still, I want to apply all platform-requirements and restriction with as much automation as possible.
 
 Normally onboarding teams and apps includes creating:
   - argocd app-project with restrictions (source-Repos, destinations, clusterResourceWhitelist, namespaceResourceBlacklist, ...) and roles if needed
@@ -288,147 +289,12 @@ pros:
 cons:
 - new namespaces is not a self-service (compared to app-in-any-namespace)
 
-# articles and resources
+# More information
+
+## articles and resources
 
 https://github.com/cloudogu/gitops-patterns
 https://github.com/akuity/awesome-argo
 https://cloudogu.com/en/blog/gitops-repository-patterns-part-1-introduction
 
 
-
-
-
-
-
-
-# TODO: Old Content, maybe we integrate that later or delete it
-
-
-# Considered options for different use-cases
-
-Which options are for these user-stories?
-
-As a
-**dev-team with lots of knowledge in kubernetes, argocd, kustome and helm**
-I want to onboard my app with high flexibility and with less governance as possible
-to make use of any configuration mgmt tools and kubernetes manifests which are possible.
-Still, I want a platform-team responsible for the cluster and the cluster is used by multiple dev-teams,
-not just dedicated for one dev-team.
-
-
-***option 7***
-
-As a
-**dev-team with lots of knowledge in kubernetes, argocd, kustome and helm**
-I want to onboard my app with high flexibility and with less governance as possible
-to make use of any configuration mgmt tools and kubernetes manifests which are possible.
-The cluster is dedicated for my team, but I still want a platform-team which is responsible for the cluster-mgmt.
-
-***option 8***
-
-As a
-**dev-team with lots of knowledge in kubernetes, argocd, kustome and helm**
-I want to onboard my app with high flexibility and with less governance as possible
-to make use of any configuration mgmt tools and kubernetes manifests which are possible.
-The cluster is dedicated for my team and I take full responsibility for this cluster.
-I use or copy some basic configurations from a platform-team but treat them more as a good practice which I can use or not.
-
-
-
-## User Stories
-
-TODO: maybe those are some pros/cons for the different approaches
-
-These user stories a ordered by expertise of the platform consumers:
-
-- little skills and knowledge - high standardization and governance
-- medium skills and knowledge - high standardization, governance, but more flexibility and insights
-- high skills and knowledge - very flexible, still some governance where needed and lots of insights
-
-and the self-service capability of the platform
-
-- namespace / project / tenant as a service
-- ticket / PRs to platform-team and reviews required per app
-
-Disclaimer: as always, enabling and "skill-up" dev-teams is always an advantages.
-Still, some dev-teams are not able to skill them up or don't have enough resources.
-Maybe, when this dev-teams get more experience their requirements towards more insights and flexibility
-and less governance changes.
-Also, maybe insights (which kubernetes-manifests are created, where do we have problems) are always helpful.
-Then not so experienced teams can learn from the insights they get.
-On the other way, also for experienced teams the platform should be easy to use, but not limiting in solutions.
-That is all about golden paths instead of golden cages.
-
-
-
-# TODO: maintaining / changing apps is different in each options above, we should highlight how this works then
-
-# centrally controlled team-onboarding, self-service app onboarding 
-
-team-onboarding via platform-repo, application onboarding self-service/automatically
-
-Seems to be like
-- User Story 1, option 4
-- User Story 2, option 2 
-
-## environemnt
-
-Can be applied on the operator deployment pattern "Instance per Cluster" or "Hub and Spoke"
-
-With the "instance per namespace" pattern this solution is probably not so useful,
-because there the team-isolation is more on per-argocd-instance then on per-argo-project.
-However, the app onboarding via applicationsets can be applied also on this pattern. 
-
-## process
-
-1. when onboarding the new team, the platform-team creates
-    1. an argo project, so resource whitelists / blacklists / rbac can be defined by platform team
-    2. applicationset with 
-[SCM Provider generator](https://argo-cd.readthedocs.io/en/stable/operator-manual/applicationset/Generators-SCM-Provider/) or [Git generator](https://argo-cd.readthedocs.io/en/stable/operator-manual/applicationset/Generators-Git/) (depending of your repository pattern)
-and using the defined argo project in step 1
-
-    since this is also done via gitops, the dev-team could also create a PR in a central platform-repo for this
-
-2. dev-teams create their gitops-repo based on the pattern defined in the applicationset in step 1.2 and the new application is automatically created
-
-## pros
-
-- new applications which match the applicationset pattern are automatically created without any review of a central platform team
-- dev-team doesn't need to know the application definition
-
-## cons
-
-- platform-team needs to be fine with onboarding new applications without review. so some governance need to be in place (default policies in namespace, kyverno, netpol, resource-quotas, limit-ranges)
-- since applicationsets are templates every application in this applicationset has very similar attributes or attributes need to be imported by config files per gitops-repo
-
-## examples
-
-
-## further implementation variations
-
-- multiple sources so dev-teams only need to have some values in their repo and the chart is placed at some other place - see 'multiple sources' solution
-
-- not only automatically app creation, but also kargo resources, namespace with some default resources, ... 
-
-
-# team and application onboarding in central platform-repo, simple values, renders additional resources
-
-like ARZ solution: 
-
-simple values in central repo
-not only automatically app creation, but also kargo resources, namespace with some default resources, ... 
-
-be aware that those value files can be really big and onboarding new value files (corresponds to onbarding new teams) also needs a good implementation.(or values-patterns if that is possible now, e.g. values-team-*)
-
-
-# application in different namespaces
-
-# multiple sources
-
-## examples
-
-https://github.com/jkleinlercher/just-one-yaml-deployment/blob/main/argocd-config/just-one-yaml-applicationset.yaml
-
-# helmfiles
-
-# self-service and governance
