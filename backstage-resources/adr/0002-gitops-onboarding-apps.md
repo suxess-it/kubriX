@@ -54,6 +54,8 @@ As a
 I want to onboard my app with a very slim and easy API and as much sane defaults as possible
 and strong governance to prevent any problems because of limited knowledge.
 
+suggested options: tbd
+
 As a
 **dev-team with lots of knowledge in kubernetes, argocd, kustome and helm**
 I want to onboard my app with high flexibility and with less governance as possible
@@ -61,11 +63,15 @@ to make use of any configuration mgmt tools and kubernetes manifests which are p
 Still, I want a platform-team responsible for the cluster and the cluster is used by multiple dev-teams,
 not just dedicated for one dev-team.
 
+suggested options: tbd
+
 As a
 **dev-team with lots of knowledge in kubernetes, argocd, kustome and helm**
 I want to onboard my app with high flexibility and with less governance as possible
 to make use of any configuration mgmt tools and kubernetes manifests which are possible.
 The cluster is dedicated for my team, but I still want a platform-team which is responsible for the cluster-mgmt.
+
+suggested options: tbd
 
 As a
 **dev-team with lots of knowledge in kubernetes, argocd, kustome and helm**
@@ -73,6 +79,8 @@ I want to onboard my app with high flexibility and with less governance as possi
 to make use of any configuration mgmt tools and kubernetes manifests which are possible.
 The cluster is dedicated for my team and I take full responsibility for this cluster.
 I use or copy some basic configurations from a platform-team but treat them more as a good practice which I can use or not.
+
+suggested options: tbd
 
 
 ### Consequences
