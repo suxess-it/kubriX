@@ -1,0 +1,29 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  annotations:
+    argocd.argoproj.io/compare-options: ServerSideDiff=true
+  name: sx-falco
+  namespace: argocd
+  finalizers:
+  - resources-finalizer.argocd.argoproj.io
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/suxess-it/sx-cnp-oss
+    targetRevision: main
+    path: platform-apps/charts/falco
+    helm:
+      skipCrds: true
+      valueFiles:
+      - values-k3d.yaml
+  destination:
+    namespace: falco
+    server: 'https://kubernetes.default.svc'
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+    - CreateNamespace=true
+    - ServerSideApply=true
