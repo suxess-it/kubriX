@@ -5,7 +5,7 @@ metadata:
   name: {{ $.Values.appName }}-{{ .name }}
   namespace: {{ $.Release.Namespace }}
   annotations:
-    kargo.akuity.io/authorized-stage: {{ $.Release.Namespace }}:{{ .name }}
+    kargo.akuity.io/authorized-stage: {{ tpl $.Values.kargoProject $ }}:{{ .name }}
 spec:
   project: {{ $.Values.appProject }}
   source:
@@ -22,5 +22,9 @@ spec:
     automated:
       prune: true
       selfHeal: true
+{{- if $.Values.createAppNamespace }}
+    syncOptions:
+    - CreateNamespace=true
+{{- end }}
 ---
 {{- end }}

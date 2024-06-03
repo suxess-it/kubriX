@@ -3,7 +3,7 @@ apiVersion: kargo.akuity.io/v1alpha1
 kind: Stage
 metadata:
   name: {{ .name }}
-  namespace: {{ $.Release.Namespace }}
+  namespace: {{ tpl $.Values.kargoProject $ }}
 spec:
 {{- with .subscriptions }}
   subscriptions:
