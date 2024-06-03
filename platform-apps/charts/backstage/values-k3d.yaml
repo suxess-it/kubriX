@@ -20,6 +20,9 @@ backstage:
     extraEnvVars:
       - name: NODE_OPTIONS
         value: "--no-node-snapshot"
+#      - name: NODE_TLS_REJECT_UNAUTHORIZED
+#        value: "0"
+
     appConfig:
       app:
         title: sX CNP App
@@ -111,6 +114,8 @@ backstage:
           type: 'local' # Alternatives - 'googleGcs' or 'awsS3'. Read documentation for using alternatives.
 
       auth:
+        session:
+          secret: supersecret # free sessionsecret
         environment: development
         providers:
           github:
@@ -120,8 +125,25 @@ backstage:
               signIn:
                 resolvers:
                   - resolver: usernameMatchingUserEntityName
+                #  - resolver: emailMatchingUserEntityProfileEmail
+                #  - resolver: emailLocalPartMatchingUserEntityName
+              schedule:
+                frequency: PT30M
+                timeout: PT3M
           #guest: {}
-
+          # oidc:
+          #  development:
+          #    metadataUrl: https://keycloak-127-0-0-1.nip.io/realms/sx-cnp-oss/.well-known/openid-configuration
+          #    clientId: backstage
+          #    clientSecret: demosecret
+          #    scope: 'openid profile email groups'
+          #    prompt: auto
+          #    callbackUrl: https://backstage-127-0-0-1.nip.io/api/auth/oidc/handler/frame
+          #    # https://github.com/backstage/backstage/blob/master/plugins/auth-backend-module-oidc-provider/src/resolvers.ts
+          #    signIn:
+          #      resolvers:
+          #        - resolver: emailLocalPartMatchingUserEntityName
+          #        - resolver: emailMatchingUserEntityProfileEmail
       scaffolder: {}
         # see https://backstage.io/docs/features/software-templates/configuration for software template options
 
@@ -195,6 +217,20 @@ backstage:
             target: https://github.com/suxess-it/sx-cnp-oss/blob/main/backstage-resources/entities/all.yaml
           - type: url
             target: https://github.com/suxess-it/sx-cnp-oss/blob/main/backstage-resources/entities/k3d.yaml
+        providers:
+          keycloakOrg:
+            default:
+              baseUrl: https://keycloak-127-0-0-1.nip.io
+              loginRealm: sx-cnp-oss
+              realm: sx-cnp-oss
+              clientId: backstage
+              clientSecret: 'demosecret'
+              schedule: # Mandatory; same options as in TaskScheduleDefinition
+                # supports cron, ISO duration, "human duration" as used in code
+                frequency: { minutes: 30 } # Customize this to fit your needs
+                # supports ISO duration, "human duration" as used in code
+                timeout: { minutes: 3 } # Customize this to fit your needs
+                initialDelay: { seconds: 30 } # Customize this to fit your needs
 
       kubernetes:
         serviceLocatorMethod:

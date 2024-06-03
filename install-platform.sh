@@ -15,7 +15,7 @@ fi
 
 if [ "${TARGET_TYPE}" == "K3D" ] || [ "${TARGET_TYPE}" == "KIND" ] ; then
 # create mkcert certs in alle namespaces with ingress
-for namespace in backstage kargo monitoring argocd keycloak kubecost; do
+for namespace in backstage kargo monitoring argocd keycloak kubecost falco; do
   kubectl create namespace ${namespace}
   # for grafana the namespace is not the same as the ingress hostname
   if [ "${namespace}" = "monitoring" ]; then
@@ -34,7 +34,6 @@ done
 fi
 
 if [ "${TARGET_TYPE}" == "KIND" ] ; then
-  kubectl apply -f https://raw.githubusercontent.com/rancher/local-path-provisioner/v0.0.26/deploy/local-path-storage.yaml
   kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/main/deploy/static/provider/kind/deploy.yaml
   kubectl wait --namespace ingress-nginx \
     --for=condition=ready pod \

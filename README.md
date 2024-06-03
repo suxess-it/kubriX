@@ -17,7 +17,9 @@ chmod u+x ~/bin/mkcert
 
 install the CA of mkcert in your OS truststore: https://docs.kubefirst.io/k3d/quick-start/install#install-the-ca-certificate-authority-of-mkcert-in-your-trusted-store
 
-#### create OAuth App in your Github Organization for Backstage login: https://backstage.io/docs/auth/github/provider/
+#### create GitHub OAuth App 
+
+in your Github Organization for Backstage login: https://backstage.io/docs/auth/github/provider/
 
 - Homepage URL: https://backstage-127-0-0-1.nip.io
 - Authorization callback URL: https://backstage-127-0-0-1.nip.io/api/auth/github
@@ -61,7 +63,9 @@ The platform stack will be installed automagically ;)
 * loki
 * tempo
 * kubecost
-
+* keycloak
+* external-secret-operator
+* falco
 
 ### 3. log in to the tools
 
@@ -71,6 +75,8 @@ The platform stack will be installed automagically ;)
 | ArgoCD | https://argocd-127-0-0-1.nip.io/ | admin | admin |
 | Kargo | https://kargo-127-0-0-1.nip.io     | admin | - |
 | Grafana    | https://grafana-127-0-0-1.nip.io | admin | prom-operator |
+| Keycloak    | https://keycloak-127-0-0-1.nip.io | admin | admin |
+| FalcoUI    | https://falco-127-0-0-1.nip.io | admin | admin |
 
 ### 4. Example App deployen
 
@@ -87,8 +93,8 @@ kargo needs to write to your gitops repo to promote changed from one stage to an
 ```
 export GITHUB_USERNAME=<your github handle>
 export GITHUB_PAT=<your personal access token>
-kubectl create secret generic git-demo-app -n kargo-demo-app --from-literal=type=git --from-literal=url=https://github.com/suxess-it/sx-cnp-oss-demo-app --from-literal=username=${GITHUB_USERNAME} --from-literal=password=${GITHUB_PAT}
-kubectl label secret git-demo-app -n kargo-demo-app kargo.akuity.io/secret-type=repository
+kubectl create secret generic git-demo-app -n kargo-demo-app --from-literal=repoURL=https://github.com/suxess-it/sx-cnp-oss-demo-app --from-literal=username=${GITHUB_USERNAME} --from-literal=password=${GITHUB_PAT}
+kubectl label secret git-demo-app -n kargo-demo-app kargo.akuity.io/cred-type=git
 ```
 
 URLs for stages:

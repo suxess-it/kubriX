@@ -6,9 +6,10 @@ metadata:
     app: "{{ .Values.deployments.keycloak.service.name }}"
 spec:
   ports:
-    - name: https
-      port: {{.Values.deployments.securePort}}
-      targetPort: {{.Values.deployments.keycloak.ports.containerPort}}
+    - name: "{{ .Values.deployments.keycloak.service.name }}"
+      port: {{.Values.deployments.keycloak.ports.containerPort}}
+#      port: {{.Values.deployments.securePort}}
+#      targetPort: {{.Values.deployments.keycloak.ports.containerPort}}
   selector:
     app: "{{ .Values.deployments.keycloak.service.name }}"
   type: ClusterIP
@@ -56,6 +57,8 @@ spec:
               value: INFO
             - name: DB_VENDOR
               value: POSTGRES
+            - name: KC_PORT
+              value: "{{.Values.deployments.keycloak.ports.containerPort}}"
             - name: DB_ADDR
               value: "{{ .Values.deployments.postgres.service.name }}"
             - name: DB_DATABASE
@@ -77,6 +80,10 @@ spec:
             - name: http
               containerPort:
                 {{.Values.deployments.keycloak.ports.containerPort}}
+          lifecycle:
+            postStart:
+              exec:
+                command: ["/bin/bash", "-c", "cd /opt/keycloak/bin; ./poststart.sh > /tmp/poststart.log"]
           readinessProbe:
             httpGet:
               path: /health/ready
@@ -96,3 +103,15 @@ spec:
             requests:
               memory: 256Mi
               cpu: "0.2"
+          volumeMounts:
+            - mountPath: /opt/keycloak/bin/poststart.sh
+              name: keycloak-hookvolume
+              subPath: poststart.sh
+            - mountPath: /tmp/sx-cnp-oss.realm.json
+              subPath: sx-cnp-oss.realm.json
+              name: keycloak-hookvolume
+      volumes:
+      - configMap:
+          defaultMode: 493
+          name: keycloak-configmap
+        name: keycloak-hookvolume
