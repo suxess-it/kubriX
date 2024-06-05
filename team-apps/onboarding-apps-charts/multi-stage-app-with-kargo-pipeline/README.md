@@ -33,7 +33,7 @@ just define these values and all needed argocd app resources and kargo resources
 | kargoProject        | the kargo project where the kargo resources get created for this app | `{{ .Values.appName }}-kargo-project` | -
 | createAppNamespace  | if the namespaces for this apps get created automatically, the namespaces will have the same name as the apps | `true` | `true`
 | stages              | an array of kargo stages with subscriptions attributes | `[]` | <code>- name: "test"<br>&nbsp;&nbsp;subscriptions:<br>&nbsp;&nbsp;&nbsp;&nbsp;warehouse: "warehouse-{{ .Values.appName }}"<br>- name: "qa"<br>&nbsp;&nbsp;subscriptions:<br>&nbsp;&nbsp;&nbsp;&nbsp;upstreamStages:<br>&nbsp;&nbsp;&nbsp;&nbsp;- name: test<br>- name: "prod"<br>&nbsp;&nbsp;subscriptions:<br>&nbsp;&nbsp;&nbsp;&nbsp;upstreamStages:<br>&nbsp;&nbsp;&nbsp;&nbsp;- name: qa
-<code>
+</code>
 
 # promotion
 
