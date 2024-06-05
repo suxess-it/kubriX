@@ -1,22 +1,9 @@
-appProject: team1-project
-appName: team1-demo-app
-repoUrl: https://github.com/suxess-it/sx-cnp-oss-demo-app
+appProject: ~
+appName: ~
+repoUrl: ~
 # maybe also the kargo project is something implicit which we don't need to specify here
 #  it depends if some apps need to share a kargoProject or not,
 #  but currently it seems to be a 1:1 relation between appName and kargoProject
 kargoProject: "{{ .Values.appName }}-kargo-project"
 createAppNamespace: true
-stages:
-  - name: "test"
-    subscriptions: 
-      # maybe the warehouse is some implicit thing which we don't need to define here.
-      # maybe in the future we just say "warehouse" without a name, because the name is some internal thing
-      warehouse: "warehouse-{{ .Values.appName }}"
-  - name: "qa"
-    subscriptions: 
-      upstreamStages:
-      - name: test
-  - name: "prod"
-    subscriptions: 
-      upstreamStages:
-      - name: qa
+stages: []
