@@ -1,0 +1,9 @@
+apiVersion: kargo.akuity.io/v1alpha1
+kind: Warehouse
+metadata:
+  name: warehouse-{{ .Values.appName }}
+  namespace: {{ tpl .Values.kargoProject . }}
+spec:
+  subscriptions:
+  - git:
+      repoURL: {{ .Values.repoUrl }}
