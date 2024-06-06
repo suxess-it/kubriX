@@ -113,7 +113,7 @@ The platform-team onboards just the team by creating an argocd app-project for t
   The dev-team can then create new apps and app-namespace by themselves without interacting with the platform-team. This can be established with [apps-in-any-namespace](https://argo-cd.readthedocs.io/en/stable/operator-manual/app-any-namespace/). <br>
   To onboard a new dev-team, the platform-team
   - extends the [value application.namespaces](https://github.com/argoproj/argo-helm/blob/3174f52ffcfe3bb0d2ad6118411eacbaf20b0c7d/charts/argo-cd/values.yaml#L276) with an "app-definition namespace" for this team (e.g. "team1-app-definitions" )
-  - creates this "app-definition namespace" for this team (e.g. "team1-app-definitions")
+  - creates this "app-definition namespace" for this team (e.g. "team1-apps")
   - creates an argocd app-project for this team (e.g. team1-project), references the "app-definition namespace" in the projects sourceNamespaces attribute, sets the destinations in the project to valid "workload namespace pattern", like "team1-*" and sets clusterResourceWhitelist to "kind: Namespace".
 
 The dev-team can 
@@ -134,9 +134,12 @@ pros:
 - gitops-repo of the platform-team keeps quite manageable, because not every app-definition needs to be in this central gitops-repo
 
 cons:
-- apps-in-any-namespace is still beta, although it seems very stable
+- applicationsets-in-any-namespace is still beta
 - applicationsets then have some restrictions (also when used by the platform team), see https://github.com/suxess-it/sx-cnp-oss/issues/181
 
+consider:
+- application names get longer (\<namespace\>/\<name\>). Be sure to have a good naming concept and consider https://argo-cd.readthedocs.io/en/latest/operator-manual/app-any-namespace/#switch-resource-tracking-method . 
+- read through https://argo-cd.readthedocs.io/en/latest/operator-manual/app-any-namespace/ and understand what you do. misconfiguration could lead to potential security issues.
 
 ### seperate namespace-scoped argocd instance for every team
 
