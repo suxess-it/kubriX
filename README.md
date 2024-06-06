@@ -78,34 +78,20 @@ The platform stack will be installed automagically ;)
 | Keycloak    | https://keycloak-127-0-0-1.nip.io | admin | admin |
 | FalcoUI    | https://falco-127-0-0-1.nip.io | admin | admin |
 
-### 4. Example App deployen
+### 4. kubecost
 
-Create a demo-app and kargo pipeline for this demo app:
+initialization need some minutes until values are visible in UI - https://kubecost-127-0-0-1.nip.io/overview
+
+### 5. Onboard teams and applications
+
+In our [Onboarding-Documentation](https://github.com/suxess-it/sx-cnp-oss/blob/main/ONBOARDING.md) we explain how new teams and apps get onboarded in a gitops way.
+
+Of course, in this demo environment you can also add new apps in an imperativ way just with kubectl as an admin, just to try things out:
+
 ```
 kubectl apply -f https://raw.githubusercontent.com/suxess-it/sx-cnp-oss/main/team-apps/team-apps-k3d.yaml -n argocd
 ```
 
-The demo-app gitops-repo is in `https://github.com/suxess-it/sx-cnp-oss-demo-app`
-Via an appset 3 stages get deployed and are managed in a Kargo-Project: `https://kargo-127-0-0-1.nip.io/project/kargo-demo-app`
-
-kargo needs to write to your gitops repo to promote changed from one stage to another. in this demo we use the [suxess-it demo-app](https://github.com/suxess-it/sx-cnp-oss-demo-app).
-
-```
-export GITHUB_USERNAME=<your github handle>
-export GITHUB_PAT=<your personal access token>
-kubectl create secret generic git-demo-app -n kargo-demo-app --from-literal=repoURL=https://github.com/suxess-it/sx-cnp-oss-demo-app --from-literal=username=${GITHUB_USERNAME} --from-literal=password=${GITHUB_PAT}
-kubectl label secret git-demo-app -n kargo-demo-app kargo.akuity.io/cred-type=git
-```
-
-URLs for stages:
-
-- test: http://test-demo-app-127-0-0-1.nip.io
-- qa: http://qa-demo-app-127-0-0-1.nip.io
-- prod: http://prod-demo-app-127-0-0-1.nip.io
-
-### 5. Promote über die Stages
-
-mit kargo
 
 ### 6. kubecost
 
