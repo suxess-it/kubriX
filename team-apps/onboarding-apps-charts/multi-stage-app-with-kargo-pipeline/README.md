@@ -58,10 +58,10 @@ apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
   name: team1-multi-stage-apps
-  namespace: team1-app-definitions
+  namespace: team1-apps
 spec:
   destination:
-    namespace: team1-app-definitions
+    namespace: team1-apps
     server: https://kubernetes.default.svc
   project: team1-project
   source:
@@ -70,10 +70,9 @@ spec:
     path: team-apps/onboarding-apps-charts/multi-stage-app-with-kargo-pipeline
     helm:
       values: |
-        appProject: team1-project
-        appName: team1-multi-stage-app
+        teamName: team1
+        appName: multi-stage-app
         repoUrl: https://github.com/suxess-it/sx-cnp-oss-demo-app
-        kargoProject: "{{ .Values.appName }}-kargo-project"
         createAppNamespace: true
         stages:
           - name: "test"
