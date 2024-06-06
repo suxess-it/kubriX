@@ -40,6 +40,10 @@ Then apps for each stage in the app-stage.yaml get created, and a corresponding 
 
 This approach does lots of things out-of-the-box and is good, as long as you are fine with the standards the ApplicationSet and the [Application-Helm-Chart](https://github.com/suxess-it/sx-cnp-oss/blob/main/team-apps/onboarding-apps-charts/multi-stage-app-with-kargo-pipeline/README.md#applicationset-with-scm-provider) define.
 
+### use some platform helm-chart as a source for an applicationset
+
+the same Application-Helm-Chart as in the option before can also be used directly in an ApplicationSet which the dev-team just creates in ins team-app-of-apps-repo, like https://github.com/suxess-it/team1-apps/blob/main/k3d-apps/example-multi-stage-app-with-kargo.yaml.
+
 ### deploy applications as you want
 
 just deploy an argocd app definition and other K8s resources in your [team-app-of-apps-repo](https://github.com/suxess-it/team1-apps/tree/main/k3d-apps) as defined in the team-onboarding attribute "teams.[].appOfAppsRepo".
