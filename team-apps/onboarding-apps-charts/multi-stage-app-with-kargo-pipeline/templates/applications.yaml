@@ -17,7 +17,7 @@ spec:
       - values-{{ .name }}.yaml
   destination:
     server: https://kubernetes.default.svc
-    namespace: {{ $.Values.appName }}-{{ .name }}
+    namespace: {{ $.Values.teamName }}-{{ $.Values.appName }}-{{ .name }}
   syncPolicy:
     automated:
       prune: true
