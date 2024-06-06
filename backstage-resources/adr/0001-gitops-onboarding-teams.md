@@ -177,8 +177,8 @@ Example implementations:
 
 ## articles and resources
 
-https://github.com/cloudogu/gitops-patterns
-https://github.com/akuity/awesome-argo
-https://cloudogu.com/en/blog/gitops-repository-patterns-part-1-introduction
+- https://github.com/cloudogu/gitops-patterns
+- https://github.com/akuity/awesome-argo
+- https://cloudogu.com/en/blog/gitops-repository-patterns-part-1-introduction
 
 
