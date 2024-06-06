@@ -4,7 +4,11 @@ This chart creates an argocd app per stage and a kargo project with specific sta
 
 # restrictions
 
-## Flexibility
+## naming
+
+The chart and the sane default values work well if you follow the naming concepts of the [app-in-any-namespace option of the team-onboarding adr](https://github.com/suxess-it/sx-cnp-oss/blob/main/backstage-resources/adr/0001-gitops-onboarding-teams.md#apps-in-any-namespace-and-multi-tenant-kyverno-policies) 
+
+## flexibility
 
 Currently this chart is just a proof-of-concept and very limited in terms of flexibility. PromotionMechnism is hard coded for example.
 
@@ -27,7 +31,8 @@ just define these values and all needed argocd app resources and kargo resources
 
 |                     | description | default | example
 | ------------------- | ----------- | ------- | -------|
-| appProject          | the argocd app project this app belongs to | ~ | team1-project
+| teamName            | the name of the team this app belongs to | ~ | team1
+| appProject          | the argocd app project this app belongs to | `{{ .Values.teamName }}-project` | -
 | appName             | the base name of the apps, the stage name will be appened to     |  ~ | team1-demo-app
 | repoUrl             | the gitops repo for this apps | ~ | https://github.com/suxess-it/sx-cnp-oss-demo-app
 | kargoProject        | the kargo project where the kargo resources get created for this app | `{{ .Values.appName }}-kargo-project` | -
