@@ -128,7 +128,10 @@ The Helm-Chart is stored in a different place (helm repo, git repo) managed by t
 The Helm-Chart is very flexible configurable via the values file and has lots of sane defaults.
 If you are fine with the sane defaults, you have a small values file, if you need special things, you have a bigger values file.
 
-Example: [just-one-deployment-yaml](https://github.com/jkleinlercher/just-one-yaml-deployment/blob/main/argocd-config/just-one-yaml-applicationset.yaml)
+Example:
+
+- [ApplicationSet with SCM-Provider](https://github.com/suxess-it/sx-cnp-oss/blob/main/team-apps/onboarding-apps-charts/multi-stage-app-with-kargo-pipeline/README.md#applicationset-with-scm-provider)
+- [gitops-repos with simple deployment file (which also creates multi-stage apps and kargo resources)](https://github.com/suxess-it/team1-demo-app1/blob/main/app-stages.yaml)
 
 pros:
 - Dev-team only need a very simple value file. With sane defaults the value files content can be pretty small
