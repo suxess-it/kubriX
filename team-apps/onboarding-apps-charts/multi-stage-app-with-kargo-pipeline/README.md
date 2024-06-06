@@ -161,6 +161,7 @@ spec:
           selfHeal: true
           prune: true
 ```
+or look at this [example](https://github.com/suxess-it/sx-cnp-oss/blob/main/team-apps/onboarding-apps-charts/multi-stage-app-with-kargo-pipeline/applicationSet-example.yaml)
 
 And in each app-gitops-repo you create an `app-staging.yaml` which defines the values from above.
 
