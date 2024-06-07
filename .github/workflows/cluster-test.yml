@@ -50,7 +50,7 @@ jobs:
           GITHUB_CLIENTSECRET: "dummy"
           GITHUB_CLIENTID: "dummy"
           GITHUB_TOKEN: "dummy"
-          APPSET_GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_APPSET_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         shell: bash
         run: |
           curl -L https://raw.githubusercontent.com/suxess-it/sx-cnp-oss/main/install-platform.sh | bash

@@ -53,6 +53,7 @@ rm credentials
 export GITHUB_CLIENTSECRET=<value from steps above>
 export GITHUB_CLIENTID=<value from steps above>
 export GITHUB_TOKEN=<your personal access token>
+export GITHUB_APPSET_TOKEN=<github-pat-for-argocd-appsets-only-read-permissions-needed>
 ```
 
 ### 4. install platform on metalstack cluster

@@ -57,7 +57,7 @@ helm install argocd argo-cd \
 # see https://github.com/suxess-it/sx-cnp-oss/issues/214 for a sustainable solution
 for ns in team1-apps team2-apps; do
   kubectl create namespace ${ns}
-  kubectl create secret generic appset-github-token --from-literal=token=${APPSET_GITHUB_TOKEN} -n ${ns}
+  kubectl create secret generic appset-github-token --from-literal=token=${GITHUB_APPSET_TOKEN} -n ${ns}
 done
 
 if [ "${TARGET_TYPE}" == "METALSTACK" ] ; then
