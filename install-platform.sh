@@ -74,7 +74,7 @@ else
 fi
 
 # max wait for 20 minutes
-end=$((SECONDS+1200))
+end=$((SECONDS+1800))
 
 all_apps_synced="true"
 while [ $SECONDS -lt $end ]; do
