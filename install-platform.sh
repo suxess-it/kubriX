@@ -53,6 +53,12 @@ helm install argocd argo-cd \
   -f https://raw.githubusercontent.com/suxess-it/sx-cnp-oss/main/bootstrap-argocd-values.yaml \
   --wait
 
+# create secret for scm applicationset in team app definition namespaces
+# see https://github.com/suxess-it/sx-cnp-oss/issues/214 for a sustainable solution
+for ns in team1-apps team2-apps; do
+  kubectl create secret generic appset-github-token --from-literal=token=${APPSET_GITHUB_TOKEN} -n ${ns}
+done
+
 if [ "${TARGET_TYPE}" == "METALSTACK" ] ; then
   kubectl apply -f https://raw.githubusercontent.com/suxess-it/sx-cnp-oss/main/bootstrap-app-metalstack.yaml -n argocd
 else
