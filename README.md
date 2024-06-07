@@ -32,6 +32,7 @@ use GITHUB_CLIENTSECRET and GITHUB_CLIENTID from your Github OAuth App for the f
 export GITHUB_CLIENTSECRET=<value from steps above>
 export GITHUB_CLIENTID=<value from steps above>
 export GITHUB_TOKEN=<your personal access token>
+export APPSET_GITHUB_TOKEN=<github-pat-for-argocd-appsets-only-read-permissions-needed>
 ```
 
 ### 2. create k3d cluster
