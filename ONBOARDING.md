@@ -96,23 +96,3 @@ Then (again) the platform does everything it is build for and
 
 This approach uses App-Of-Apps instead of ApplicationSets to onboard new apps in a gitops-way.
 It is up to you or your dev-teams what they like more. The good thing is, each dev-team can decide for themselves how they want to onboard their apps.
-
-
-## more informations
-
-just for testing:
-
-kargo needs to write to your gitops repo to promote changed from one stage to another. in this demo we use the [suxess-it demo-app](https://github.com/suxess-it/sx-cnp-oss-demo-app). this needs to get customized for the team-apps and kargo projects above
-
-```
-export GITHUB_USERNAME=<your github handle>
-export GITHUB_PAT=<your personal access token>
-kubectl create secret generic git-demo-app -n kargo-demo-app --from-literal=repoURL=https://github.com/suxess-it/sx-cnp-oss-demo-app --from-literal=username=${GITHUB_USERNAME} --from-literal=password=${GITHUB_PAT}
-kubectl label secret git-demo-app -n kargo-demo-app kargo.akuity.io/cred-type=git
-```
-
-URLs for stages (not true anymore):
-
-- test: http://test-demo-app-127-0-0-1.nip.io
-- qa: http://qa-demo-app-127-0-0-1.nip.io
-- prod: http://prod-demo-app-127-0-0-1.nip.io
