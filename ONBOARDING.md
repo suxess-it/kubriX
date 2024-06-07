@@ -28,7 +28,11 @@ currently there is just a limitrange and resourcequota resource generated, netwo
 
 ## onboarding new apps
 
-As a dev-team you then can add new applications in two ways
+As a dev-team you then can add new applications in different ways now depending on the knowledge and flexibility of your dev-team.
+
+### one simple deployment-descriptor with appset and base-chart provided by platform-team automatically
+
+tbd .. with an "all-in-one-flexible-helm-chart", an appset with multi-source app and a simple deployment-descriptor like https://github.com/jkleinlercher/just-one-yaml-deployment/blob/main/apps/my-aspnetapp/deployit.yaml you can automatically generate new apps.
 
 ### one simple deployment-descriptor for multi-stage app with kargo project
 
@@ -43,6 +47,10 @@ This approach does lots of things out-of-the-box and is good, as long as you are
 ### use some platform helm-chart as a source for an applicationset
 
 the same Application-Helm-Chart as in the option before can also be used directly in an ApplicationSet which the dev-team just creates in ins team-app-of-apps-repo, like https://github.com/suxess-it/team1-apps/blob/main/k3d-apps/example-multi-stage-app-with-kargo.yaml.
+
+describe in
+- https://github.com/suxess-it/sx-cnp-oss/blob/main/backstage-resources/adr/0002-gitops-onboarding-apps.md#applicationset-with-parent-helm-chart
+- or in https://github.com/suxess-it/sx-cnp-oss/blob/main/backstage-resources/adr/0002-gitops-onboarding-apps.md#applicationset-with-configjson-representing-a-parent-helm-chart
 
 ### deploy applications as you want
 
