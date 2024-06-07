@@ -85,18 +85,11 @@ initialization need some minutes until values are visible in UI - https://kubeco
 
 ### 5. Onboard teams and applications
 
-In our [Onboarding-Documentation](https://github.com/suxess-it/sx-cnp-oss/blob/main/ONBOARDING.md) we explain how new teams and apps get onboarded in a gitops way.
+In our [Onboarding-Documentation](https://github.com/suxess-it/sx-cnp-oss/blob/main/ONBOARDING.md) we explain how new teams and apps get onboarded on the platform in a gitops way.
 
-Of course, in this demo environment you can also add new apps in an imperativ way just with kubectl as an admin, just to try things out:
+### 6. Promote apps with Kargo
 
-```
-kubectl apply -f https://raw.githubusercontent.com/suxess-it/sx-cnp-oss/main/team-apps/team-apps-k3d.yaml -n argocd
-```
-
-
-### 6. kubecost
-
-initialization need some minutes until values are visible in UI - https://kubecost-127-0-0-1.nip.io/overview
+tbd
 
 ### delete k3d cluster
 
