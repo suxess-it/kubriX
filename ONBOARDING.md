@@ -57,6 +57,10 @@ describe in
 just deploy an argocd app definition and other K8s resources in your [team-app-of-apps-repo](https://github.com/suxess-it/team1-apps/tree/main/k3d-apps) as defined in the team-onboarding attribute "teams.[].appOfAppsRepo".
 
 
+## big picture
+
+![image](https://github.com/suxess-it/sx-cnp-oss/assets/11465610/8edf7545-f95e-4404-b884-734a7a414bcf)
+
 
 
 
