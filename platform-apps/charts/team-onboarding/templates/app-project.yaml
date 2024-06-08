@@ -12,6 +12,9 @@ spec:
   - name: in-cluster
     namespace: {{ .name }}-*
     server: https://kubernetes.default.svc
+  - name: in-cluster
+    namespace: adn-{{ .name }}
+    server: https://kubernetes.default.svc
   sourceRepos:
 {{- range .sourceRepos }}
   - {{ quote . }}
