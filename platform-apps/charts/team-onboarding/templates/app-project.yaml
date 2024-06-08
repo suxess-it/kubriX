@@ -5,7 +5,7 @@ metadata:
   name: {{ .name }}-project
 spec:
   sourceNamespaces:
-  - {{ .name }}-apps
+  - adn-{{ .name }}
   clusterResourceWhitelist:
 {{ toYaml .clusterResourceWhitelist | indent 2 }}
   destinations:
