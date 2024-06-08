@@ -102,7 +102,7 @@ ApplicationSets-in-any-namespace are also possible with some restrictions: https
 So Dev-Teams can create their own ApplicationSets without a platform-team. Without "Apps-in-any-Namespace" ApplicationSets were also only safe when platform-teams defined them, otherwise dev-teams could use any argocd app-project.
 
 Example:
-https://github.com/suxess-it/sx-cnp-oss/blob/12883d99657732d145d2992afa21b554403abd37/platform-apps/charts/argocd/values-k3d.yaml#L13-L16
+https://github.com/suxess-it/sx-cnp-oss/blob/ee5d680e315a5b054b9b1833194fbe70826d2585/platform-apps/charts/team-onboarding/values-k3d.yaml#L13-L16
 and https://github.com/suxess-it/team1-apps/tree/main/k3d-apps 
 
 pros:
