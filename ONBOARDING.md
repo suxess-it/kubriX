@@ -4,9 +4,45 @@ According to the ADR [Onboarding teams in a gitops way](https://github.com/suxes
 
 For detailed explanations how this approach works, please read through the ADR.
 
-So here are the steps to onboard new teams in this approach:
+## Overview - Onboarding teams and apps with ApplicationSets
 
-## onboarding new teams
+![image](https://github.com/suxess-it/sx-cnp-oss/assets/11465610/6430c1a5-2e24-4286-abc7-986e3513dee7)
+
+While this picture seems to be complex, it actually shows that onboarding teams and apps is just as easy as follows:
+
+1. dev-team creates a PR to the argocd gitops-repo with some team-information
+2. platform-team reviewes this PR and merges it
+3. dev-team then creates its own app gitops-repo
+
+that is actually everything what people need to do!
+
+The internal operators, controllers and a little bit of love and magic then
+
+4. creates the new namespace for this new app
+5. kyverno generate rules create some resources to avoid some noisy neighbors like resourcequotas, limitranges and deny-all-network-policies
+6. and all kubernetes resources for this new app get applied in this namespace
+
+## Overview - Onboarding teams and apps with App-Of-Apps
+
+![image](https://github.com/suxess-it/sx-cnp-oss/assets/11465610/9bc5dcad-8c18-4479-ab5e-5230f3d39fc3)
+
+Also this picture is probably a little bit overwhelming in the first place, but in the end there is just one additional step here
+
+1. dev-team creates a PR to the argocd gitops-repo with some team-information
+2. platform-team reviewes this PR and merges it
+3. dev-team then creates its own app-of-apps gitops-repo <--- this step is added in this scenario
+4. dev-team then creates its own app gitops-repo which is referenced in an app-definition in step 3
+
+Then (again) the platform does everything it is build for and 
+
+4. creates the new namespace for this new app
+5. kyverno generate rules create some resources to avoid some noisy neighbors like resourcequotas, limitranges and deny-all-network-policies
+6. and all kubernetes resources for this new app get applied in this namespace
+
+This approach uses App-Of-Apps instead of ApplicationSets to onboard new apps in a gitops-way.
+It is up to you or your dev-teams what they like more. The good thing is, each dev-team can decide for themselves how they want to onboard their apps.
+
+## Details for onboarding new teams
 
 ### add new team and configuration in team-onboarding chart
 
@@ -23,7 +59,7 @@ we set them in [kyverno-policies array](https://github.com/suxess-it/sx-cnp-oss/
 
 currently there is just a limitrange and resourcequota resource generated, networkpolicies and others will follow.
 
-## onboarding new apps
+## Details for onboarding new apps
 
 As a dev-team you then can add new applications in different ways now depending on the knowledge and flexibility of your dev-team.
 
@@ -54,42 +90,5 @@ describe in
 just deploy an argocd app definition and other K8s resources in your [team-app-of-apps-repo](https://github.com/suxess-it/team1-apps/tree/main/k3d-apps) as defined in the team-onboarding attribute "teams.[].appOfAppsRepo".
 
 
-## big picture 
 
-### with SCM-provider applicationset
 
-![image](https://github.com/suxess-it/sx-cnp-oss/assets/11465610/17f45dba-f074-4b24-8839-e7390f171f1e)
-
-While this picture seems to be complex, it just shows that onboarding teams and apps is just as easy as follows:
-
-1. dev-team creates a PR to the argocd gitops-repo with some team-information
-2. platform-team reviewes this PR and merges it
-3. dev-team then creates its own app gitops-repo
-
-that is actually everything what people need to do!
-
-The internal operators, controllers and a little bit of love and magic then
-
-4. creates the new namespace for this new app
-5. kyverno generate rules create some resources to avoid some noisy neighbors like resourcequotas, limitranges and deny-all-network-policies
-6. and all kubernetes resources for this new app get applied in this namespace
-
-### with Team App-Of-Apps repo
-
-![image](https://github.com/suxess-it/sx-cnp-oss/assets/11465610/ca92cdcc-e262-457b-9302-192b1877d3b5)
-
-Also this picture is probably a little bit overwhelming in the first place, but in the end there is just one additional step here
-
-1. dev-team creates a PR to the argocd gitops-repo with some team-information
-2. platform-team reviewes this PR and merges it
-3. dev-team then creates its own app-of-apps gitops-repo <--- this step is added in this scenario
-4. dev-team then creates its own app gitops-repo which is referenced in an app-definition in step 3
-
-Then (again) the platform does everything it is build for and 
-
-4. creates the new namespace for this new app
-5. kyverno generate rules create some resources to avoid some noisy neighbors like resourcequotas, limitranges and deny-all-network-policies
-6. and all kubernetes resources for this new app get applied in this namespace
-
-This approach uses App-Of-Apps instead of ApplicationSets to onboard new apps in a gitops-way.
-It is up to you or your dev-teams what they like more. The good thing is, each dev-team can decide for themselves how they want to onboard their apps.
