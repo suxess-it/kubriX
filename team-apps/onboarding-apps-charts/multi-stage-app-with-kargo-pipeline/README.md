@@ -66,7 +66,7 @@ metadata:
   namespace: team1-apps
 spec:
   destination:
-    namespace: team1-apps
+    namespace: adn-team1
     server: https://kubernetes.default.svc
   project: team1-project
   source:
@@ -102,10 +102,10 @@ or look at this [example](https://github.com/suxess-it/team1-apps/blob/main/k3d-
 ## applicationset with SCM provider
 
 Also, you could create an applicationset once for all apps for the team.
-Per default this applicationset needs to be created by the platform team.
-However, we prefer enabling [applicationset-in-any-namespaces](https://argo-cd.readthedocs.io/en/latest/operator-manual/applicationset/Appset-Any-Namespace/) so the dev-team can create the appset in their namespace by themselves.
+Per default this applicationset could be created by the platform team.
+Also, the dev-team could create AppSets by themselves when enabling [applicationset-in-any-namespaces](https://argo-cd.readthedocs.io/en/latest/operator-manual/applicationset/Appset-Any-Namespace/).
 
-Still, it could be a feature that with team-onboarding this appset gets created automatically via values in https://github.com/suxess-it/sx-cnp-oss/blob/32ca1e8ffe9fc49f8aa2a4d28a140e173c57c76f/platform-apps/charts/argocd/values-k3d.yaml#L1
+Still, it could be a feature that with team-onboarding this appset gets created automatically via values in https://github.com/suxess-it/sx-cnp-oss/blob/d2edfc78fe31109f3b33dcd4071a5247ab4abad1/platform-apps/charts/team-onboarding/values-k3d.yaml#L1
 
 ### Steps to create this appset
 
@@ -121,7 +121,7 @@ apiVersion: argoproj.io/v1alpha1
 kind: ApplicationSet
 metadata:
   name: team1-appset
-  namespace: team1-apps
+  namespace: adn-team1
 spec:
   goTemplate: true
   goTemplateOptions: ["missingkey=error"]
@@ -155,7 +155,7 @@ spec:
         ref: values
       destination:
         server: https://kubernetes.default.svc
-        namespace: team1-apps
+        namespace: adn-team1
       syncPolicy:
         automated:
           selfHeal: true
