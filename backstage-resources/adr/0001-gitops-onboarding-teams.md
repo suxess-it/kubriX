@@ -116,7 +116,6 @@ Example implementation:
 The platform-team onboards just the team by creating an argocd app-project for this team and a dedicated app-definition-namespace for this app-project. 
   The dev-team can then create new apps and app-namespace by themselves without interacting with the platform-team. This can be established with [apps-in-any-namespace](https://argo-cd.readthedocs.io/en/stable/operator-manual/app-any-namespace/). <br>
   To onboard a new dev-team, the platform-team
-  - extends the [value application.namespaces](https://github.com/argoproj/argo-helm/blob/3174f52ffcfe3bb0d2ad6118411eacbaf20b0c7d/charts/argo-cd/values.yaml#L276) with an "app-definition namespace" once all teams (e.g. "adn-*" )
   - creates this "app-definition namespace" for this team (e.g. "adn-team1")
   - creates an argocd app-project for this team (e.g. team1-project), references the "app-definition namespace" in the projects sourceNamespaces attribute, sets the destinations in the project to valid "workload namespace pattern", like "team1-*" and sets clusterResourceWhitelist to "kind: Namespace".
 
@@ -129,6 +128,8 @@ To create some default configurations automatically during namespace creation,
 the platform team creates some kyverno [generate multi-tenancy policies](https://kyverno.io/policies/?policytypes=Multi-Tenancy).
 Additionally [Namespace Metadata](https://argo-cd.readthedocs.io/en/stable/user-guide/sync-options/#namespace-metadata) can be used to apply different kyverno policies based on some labels or annotations.
 
+In ArgoCD we need to set [application.namespaces](https://github.com/argoproj/argo-helm/blob/3174f52ffcfe3bb0d2ad6118411eacbaf20b0c7d/charts/argo-cd/values.yaml#L276) to allow some "app-definition namespace" (e.g. "adn-*" ).
+
 Kargo Projects are also possible as a self-service - even though they are cluster-scoped ressources - with a special kyverno policy which checks the [kargo project name against the allowed argocd app-project destinations](https://github.com/suxess-it/sx-cnp-oss/blob/main/platform-apps/charts/kyverno/templates/policy-kargo-project-name-validation-apps-in-any-ns.yaml).
 
 pros:
@@ -139,7 +140,6 @@ pros:
 
 cons:
 - applicationsets-in-any-namespace is still beta
-- applicationsets then have some restrictions (also when used by the platform team), see https://github.com/suxess-it/sx-cnp-oss/issues/181
 
 consider:
 - application names get longer (\<namespace\>/\<name\>). Be sure to have a good naming concept and consider https://argo-cd.readthedocs.io/en/latest/operator-manual/app-any-namespace/#switch-resource-tracking-method . 
@@ -147,9 +147,9 @@ consider:
 
 Example implementation: 
 
-- [App-In-Any-Namespace-Config](https://github.com/suxess-it/sx-cnp-oss/blob/2339bb194461a88106e2396ce9cd29810f94b61b/platform-apps/charts/argocd/values-k3d.yaml#L40-L41)
-- [App-Definition-Namespace](https://github.com/suxess-it/sx-cnp-oss/blob/main/platform-apps/charts/argocd/templates/app-definition-ns.yaml)
-- [team project](https://github.com/suxess-it/sx-cnp-oss/blob/main/platform-apps/charts/argocd/templates/app-project.yaml)
+- [App-In-Any-Namespace-Config](https://github.com/suxess-it/sx-cnp-oss/blob/ab3b44880a9936bddd781a2bf312e9f3e4d57a93/platform-apps/charts/argocd/values-k3d.yaml#L8-L9)
+- [App-Definition-Namespace](https://github.com/suxess-it/sx-cnp-oss/blob/main/platform-apps/charts/team-onboarding/templates/app-definition-ns.yaml)
+- [team project](https://github.com/suxess-it/sx-cnp-oss/blob/main/platform-apps/charts/team-onboarding/templates/app-project.yaml)
 - [Generate Kyverno-Policies for new namespaces](https://github.com/suxess-it/sx-cnp-oss/blob/main/platform-apps/charts/kyverno/templates/policy-add-ns-quota.yaml)
 
 
