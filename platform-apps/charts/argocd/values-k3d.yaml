@@ -5,8 +5,8 @@ argo-cd:
   configs:
     params:
       server.insecure: true
-      application.namespaces: "team1-apps,team2-apps"
-      applicationsetcontroller.namespaces: "team1-apps,team2-apps"
+      application.namespaces: "adn-*"
+      applicationsetcontroller.namespaces: "adn-*"
       applicationsetcontroller.allowed.scm.providers: https://github.com/
     secret:
       createSecret: false
