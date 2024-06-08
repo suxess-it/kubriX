@@ -4,6 +4,8 @@ According to the ADR [Onboarding teams in a gitops way](https://github.com/suxes
 
 For detailed explanations how this approach works, please read through the ADR.
 
+Here we want to give you a good overview how this approach works and what platform-teams and dev-teams need to do.
+
 ## Overview - Onboarding teams and apps with ApplicationSets
 
 ![image](https://github.com/suxess-it/sx-cnp-oss/assets/11465610/6430c1a5-2e24-4286-abc7-986e3513dee7)
