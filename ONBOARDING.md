@@ -8,17 +8,14 @@ So here are the steps to onboard new teams in this approach:
 
 ## onboarding new teams
 
-### add new team and configuration in argocd chart
+### add new team and configuration in team-onboarding chart
 
-add a new team in this [teams-array](https://github.com/suxess-it/sx-cnp-oss/blob/98f8990c888b60283f3c3f51ac19c505b71e8141/platform-apps/charts/argocd/values-k3d.yaml#L1-L18) with the corresponding attributes.
+add a new team in this [teams-array](https://github.com/suxess-it/sx-cnp-oss/blob/d2edfc78fe31109f3b33dcd4071a5247ab4abad1/platform-apps/charts/team-onboarding/values-k3d.yaml#L1-L18) with the corresponding attributes.
 
 #### app-onboarding options
-with [appOfAppsRepo](https://github.com/suxess-it/sx-cnp-oss/blob/98f8990c888b60283f3c3f51ac19c505b71e8141/platform-apps/charts/argocd/values-k3d.yaml#L13-L16) we define a gitops-repo where the dev-team can create its own application definitions. Still, it is automatically restricted that these applications can only belong to the teams argocd app-project.
+with [appOfAppsRepo](https://github.com/suxess-it/sx-cnp-oss/blob/d2edfc78fe31109f3b33dcd4071a5247ab4abad1/platform-apps/charts/team-onboarding/values-k3d.yaml#L13-L16) we define a gitops-repo where the dev-team can create its own application definitions. Still, it is automatically restricted that these applications can only belong to the teams argocd app-project.
 
-with [multiStageKargoAppSet](https://github.com/suxess-it/sx-cnp-oss/blob/98f8990c888b60283f3c3f51ac19c505b71e8141/platform-apps/charts/argocd/values-k3d.yaml#L17C5-L18) and ApplicationSet is automatically created in the <team>-apps which constantly searches for corresponding gitops-repos and adds new applications automatically in the <team>-apps namespace. This special ApplicationSet creates an application per stage defined in an `app-stages.yaml` like this [example](https://github.com/suxess-it/team1-demo-app1/blob/main/app-stages.yaml) and adds kargo project, warehouse and stages to the cluster.
-
-### add new app-definition namespace
-add the name team app-definition namespace in [application.namespaces](https://github.com/suxess-it/sx-cnp-oss/blob/98f8990c888b60283f3c3f51ac19c505b71e8141/platform-apps/charts/argocd/values-k3d.yaml#L42) and [applicationsetcontroller.namespaces](https://github.com/suxess-it/sx-cnp-oss/blob/98f8990c888b60283f3c3f51ac19c505b71e8141/platform-apps/charts/argocd/values-k3d.yaml#L43).
+with [multiStageKargoAppSet](https://github.com/suxess-it/sx-cnp-oss/blob/d2edfc78fe31109f3b33dcd4071a5247ab4abad1/platform-apps/charts/team-onboarding/values-k3d.yaml#L17-L18) an ApplicationSet is automatically created in the adn-<team> namespace which constantly searches for corresponding gitops-repos and adds new applications automatically in the adn-<team> namespace. This special ApplicationSet creates an application per stage defined in an `app-stages.yaml` like this [example](https://github.com/suxess-it/team1-demo-app1/blob/main/app-stages.yaml) and adds kargo project, warehouse and stages to the cluster.
 
 ### check if multi-tenant kyverno-policies get applied
 
