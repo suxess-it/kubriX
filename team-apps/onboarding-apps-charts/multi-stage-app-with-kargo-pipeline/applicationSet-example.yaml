@@ -2,7 +2,7 @@ apiVersion: argoproj.io/v1alpha1
 kind: ApplicationSet
 metadata:
   name: team1-appset
-  namespace: team1-apps
+  namespace: adn-team1
 spec:
   goTemplate: true
   goTemplateOptions: ["missingkey=error"]
@@ -36,7 +36,7 @@ spec:
         ref: values
       destination:
         server: https://kubernetes.default.svc
-        namespace: team1-apps
+        namespace: adn-team1
       syncPolicy:
         automated:
           selfHeal: true
