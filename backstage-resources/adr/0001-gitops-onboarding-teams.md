@@ -116,8 +116,8 @@ Example implementation:
 The platform-team onboards just the team by creating an argocd app-project for this team and a dedicated app-definition-namespace for this app-project. 
   The dev-team can then create new apps and app-namespace by themselves without interacting with the platform-team. This can be established with [apps-in-any-namespace](https://argo-cd.readthedocs.io/en/stable/operator-manual/app-any-namespace/). <br>
   To onboard a new dev-team, the platform-team
-  - extends the [value application.namespaces](https://github.com/argoproj/argo-helm/blob/3174f52ffcfe3bb0d2ad6118411eacbaf20b0c7d/charts/argo-cd/values.yaml#L276) with an "app-definition namespace" for this team (e.g. "team1-apps" )
-  - creates this "app-definition namespace" for this team (e.g. "team1-apps")
+  - extends the [value application.namespaces](https://github.com/argoproj/argo-helm/blob/3174f52ffcfe3bb0d2ad6118411eacbaf20b0c7d/charts/argo-cd/values.yaml#L276) with an "app-definition namespace" once all teams (e.g. "adn-*" )
+  - creates this "app-definition namespace" for this team (e.g. "adn-team1")
   - creates an argocd app-project for this team (e.g. team1-project), references the "app-definition namespace" in the projects sourceNamespaces attribute, sets the destinations in the project to valid "workload namespace pattern", like "team1-*" and sets clusterResourceWhitelist to "kind: Namespace".
 
 The dev-team can 
