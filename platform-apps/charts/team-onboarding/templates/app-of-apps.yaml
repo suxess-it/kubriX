@@ -3,12 +3,12 @@ apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
   name: {{ .name }}-app-of-apps
-  namespace: {{ .name }}-apps
+  namespace: adn-{{ .name }}
   finalizers:
   - resources-finalizer.argocd.argoproj.io
 spec:
   destination:
-    namespace: {{ .name }}-apps
+    namespace: adn-{{ .name }}
     server: https://kubernetes.default.svc
   project: {{ .name }}-project
   sources:
