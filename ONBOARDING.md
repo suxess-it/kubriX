@@ -37,9 +37,9 @@ Also this picture is probably a little bit overwhelming in the first place, but 
 
 Then (again) the platform does everything it is build for and 
 
-4. creates the new namespace for this new app
-5. kyverno generate rules create some resources to avoid some noisy neighbors like resourcequotas, limitranges and deny-all-network-policies
-6. and all kubernetes resources for this new app get applied in this namespace
+5. creates the new namespace for this new app
+6. kyverno generate rules create some resources to avoid some noisy neighbors like resourcequotas, limitranges and deny-all-network-policies
+7. and all kubernetes resources for this new app get applied in this namespace
 
 This approach uses App-Of-Apps instead of ApplicationSets to onboard new apps in a gitops-way.
 It is up to you or your dev-teams what they like more. The good thing is, each dev-team can decide for themselves how they want to onboard their apps.
