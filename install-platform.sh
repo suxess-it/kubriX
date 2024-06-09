@@ -46,10 +46,11 @@ fi
 
 helm install argocd argo-cd \
   --repo https://argoproj.github.io/argo-helm \
-  --version 6.4.0 \
+  --version 7.1.3 \
   --namespace argocd \
   --create-namespace \
   --set additionalLabels."app\.kubernetes\.io/instance"=argocd \
+  --set configs.cm.application.resourceTrackingMethod=annotation \
   -f https://raw.githubusercontent.com/suxess-it/sx-cnp-oss/main/bootstrap-argocd-values.yaml \
   --wait
 
