@@ -94,37 +94,13 @@ The platform stack will be installed automagically ;)
 | Grafana    | https://grafana-metalstack.platform-engineer.cloud/   | admin | prom-operator |
 | Kubevirt-Manager    | https://kubevirt-manager-metalstack.platform-engineer.cloud/   | - | - |
 
+### 6. Onboard teams and applications
 
-### 6. Example App deployen
+In our [Onboarding-Documentation](https://github.com/suxess-it/sx-cnp-oss/blob/main/ONBOARDING.md) we explain how new teams and apps get onboarded on the platform in a gitops way.
 
-Create a demo-app and kargo pipeline for this demo app:
-```
-kubectl apply -f https://raw.githubusercontent.com/suxess-it/sx-cnp-oss/main/team-apps/team-apps-metalstack.yaml -n argocd
-```
+### 7. Promote apps with Kargo
 
-The demo-app gitops-repo is in `https://github.com/suxess-it/sx-cnp-oss-demo-app`
-Via an appset 3 stages get deployed and are managed in a Kargo-Project: `https://kargo-metalstack.platform-engineer.cloud/project/kargo-demo-app`
-
-kargo needs to write to your gitops repo to promote changed from one stage to another. in this demo we use the [suxess-it demo-app](https://github.com/suxess-it/sx-cnp-oss-demo-app).
-
-```
-export GITHUB_USERNAME=<your github handle>
-export GITHUB_PAT=<your personal access token>
-kubectl create secret generic git-demo-app -n kargo-demo-app --from-literal=type=git --from-literal=url=https://github.com/suxess-it/sx-cnp-oss-demo-app --from-literal=username=${GITHUB_USERNAME} --from-literal=password=${GITHUB_PAT}
-kubectl label secret git-demo-app -n kargo-demo-app kargo.akuity.io/secret-type=repository
-```
-
-URLs for stages (need to be registered in aws route53):
-
-- test: http://test-demo-app-metalstack.platform-engineer.cloud
-- qa: http://qa-demo-app-metalstack.platform-engineer.cloud
-- prod: http://prod-demo-app-metalstack.platform-engineer.cloud
-
-### 7. Promote über die Stages
-
-mit kargo
-
-
+tbd
 
 # Troubleshooting
 
