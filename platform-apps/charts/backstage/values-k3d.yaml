@@ -220,7 +220,10 @@ backstage:
         providers:
           keycloakOrg:
             default:
-              baseUrl: https://keycloak-127-0-0-1.nip.io
+              # real baseUrl -> local cluster lead to "ECONNREFUSED 127.0.0.1:443"
+              #baseUrl: https://keycloak-127-0-0-1.nip.io
+              # workaround
+              baseUrl: http://keycloak-service.keycloak.svc.cluster.local:8080
               loginRealm: sx-cnp-oss
               realm: sx-cnp-oss
               clientId: backstage
