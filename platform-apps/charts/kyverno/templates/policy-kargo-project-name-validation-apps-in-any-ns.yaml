@@ -17,6 +17,7 @@ metadata:
       Since the kargo project automatically creates a corresponding namespace,
       with this policy we can prevent that a namespace gets created
       which doesn't match the allowed destinations of the argocd project.
+      It only works if argocd "application.resourceTrackingMethod: annotation" is set
 spec:
   validationFailureAction: Enforce
   background: true
@@ -36,10 +37,10 @@ spec:
     context:
     - name: app_namespace
       variable:
-        jmesPath: request.object.metadata.labels."argocd.argoproj.io/instance" |  split(@, '_') | [0]
+        jmesPath: request.object.metadata.annotations."argocd.argoproj.io/tracking-id" |  split(@, ':') | [0] | split(@, '_') | [0]
     - name: app
       variable:
-        jmesPath: request.object.metadata.labels."argocd.argoproj.io/instance" |  split(@, '_') | [1]
+        jmesPath: request.object.metadata.annotations."argocd.argoproj.io/tracking-id" |  split(@, ':') | [0] | split(@, '_') | [1]
     - name: argocd_project
       apiCall:
         method: GET

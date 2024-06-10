@@ -1,0 +1,47 @@
+{{- range .Values.teams }}
+{{- if .multiStageKargoAppSet }}
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: {{ .name }}-appset
+  namespace: adn-{{ .name }}
+spec:
+  goTemplate: true
+  goTemplateOptions: ["missingkey=error"]
+  generators:
+  - scmProvider:
+      cloneProtocol: https
+      github:
+        # The GitHub organization to scan.
+        organization: {{ .multiStageKargoAppSet.organization }}
+        tokenRef:
+          secretName: appset-github-token
+          key: token
+      filters:
+      - repositoryMatch: ^{{ .name }}
+        pathsExist: [app-stages.yaml]
+  template:
+    metadata:
+      name: '{{`{{ .repository }}`}}'
+    spec:
+      project: "team1-project"
+      sources:
+      - repoURL: https://github.com/suxess-it/sx-cnp-oss
+        targetRevision: HEAD
+        path: team-apps/onboarding-apps-charts/multi-stage-app-with-kargo-pipeline
+        helm:
+          valueFiles:
+          - $values/app-stages.yaml
+      - repoURL: '{{`{{ .url }}`}}'
+        targetRevision: main
+        ref: values
+      destination:
+        server: https://kubernetes.default.svc
+        namespace: adn-{{ .name }}
+      syncPolicy:
+        automated:
+          selfHeal: true
+          prune: true
+---
+{{- end }}
+{{- end }}

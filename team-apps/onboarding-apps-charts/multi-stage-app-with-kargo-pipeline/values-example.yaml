@@ -1,0 +1,24 @@
+teamName: team1
+appProject: "{{ .Values.teamName }}-project"
+appName: multi-stage-app
+repoUrl: https://github.com/suxess-it/sx-cnp-oss-demo-app
+# since a kargo project is a cluster-scoped resource it needs a unique name
+# however, in a app-in-any-namespace feature the appName doesn't need to be unique in the cluster
+# so we add the team as an extra prefix to get a unique name
+kargoProject: "{{ .Values.teamName }}-{{ .Values.appName }}-kargo-project"
+createAppNamespace: true
+stages:
+  - name: "test"
+    subscriptions: 
+      # be aware that you MUST currently name the warehouse "warehouse-{{ .Values.appName }}"
+      # because it gets created with this name implicitly.
+      # todo: give the user the option to define the warehouse as he likes it
+      warehouse: "warehouse-{{ .Values.appName }}"
+  - name: "qa"
+    subscriptions: 
+      upstreamStages:
+      - name: test
+  - name: "prod"
+    subscriptions: 
+      upstreamStages:
+      - name: qa

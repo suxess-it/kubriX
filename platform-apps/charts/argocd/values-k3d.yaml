@@ -1,35 +1,3 @@
-teams:
-  - name: team1
-    sourceRepos:
-      - '*'
-    clusterResourceWhitelist:
-      - group: ""
-        kind: Namespace
-      # also allow kargo Project cluster resource,
-      # all details why is documented currently in
-      # https://github.com/akuity/kargo/issues/2058
-      - group: kargo.akuity.io
-        kind: Project
-    appOfAppsRepo:
-      repoURL: https://github.com/suxess-it/team1-apps
-      path: k3d-apps
-      revision: main
-  - name: team2
-    sourceRepos:
-      - '*'
-    clusterResourceWhitelist:
-      - group: ""
-        kind: Namespace
-      - group: kargo.akuity.io
-        kind: Project
-    appOfAppsRepo:
-      repoURL: https://github.com/suxess-it/team2-apps
-      path: k3d-apps
-      revision: main
-    # in the future maybe also some attributes for an scm / git application-set instead of appOfApps possible
-    scmAppSet: ~
-    gitAppSet: ~
-
 argo-cd:
   global:
     domain: argocd-127-0-0-1.nip.io
@@ -37,13 +5,14 @@ argo-cd:
   configs:
     params:
       server.insecure: true
-      application.namespaces: "team1-app-definitions,team2-app-definitions"
-      applicationsetcontroller.namespaces: "team1-app-definitions,team2-app-definitions"
-      applicationsetcontroller.enable.scm.providers: false
+      application.namespaces: "adn-*"
+      applicationsetcontroller.namespaces: "adn-*"
+      applicationsetcontroller.allowed.scm.providers: https://github.com/
     secret:
       createSecret: false
 
     cm:
+      application.resourceTrackingMethod: annotation
       accounts.backstage: apiKey
 
       resource.customizations: |

@@ -10,10 +10,14 @@ argo-cd:
   configs:
     params:
       server.insecure: true
+      application.namespaces: "adn-*"
+      applicationsetcontroller.namespaces: "adn-*"
+      applicationsetcontroller.allowed.scm.providers: https://github.com/
     secret:
       createSecret: false
 
     cm:
+      application.resourceTrackingMethod: annotation
       accounts.backstage: apiKey
 
       resource.customizations: |
@@ -43,7 +47,6 @@ argo-cd:
       annotations: 
         nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
         nginx.ingress.kubernetes.io/backend-protocol: "HTTP"
-        external-dns.alpha.kubernetes.io/ttl: "60"
       extraTls:
         - hosts:
           - argocd-metalstack.platform-engineer.cloud
@@ -54,3 +57,6 @@ argo-cd:
       contents:
         - name: argo-rollouts
           url: https://github.com/argoproj-labs/rollout-extension/releases/download/v0.3.4/extension.tar
+
+  applicationSet:
+    allowAnyNamespace: true

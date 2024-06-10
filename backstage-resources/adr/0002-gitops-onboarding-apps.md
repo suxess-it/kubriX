@@ -102,7 +102,7 @@ ApplicationSets-in-any-namespace are also possible with some restrictions: https
 So Dev-Teams can create their own ApplicationSets without a platform-team. Without "Apps-in-any-Namespace" ApplicationSets were also only safe when platform-teams defined them, otherwise dev-teams could use any argocd app-project.
 
 Example:
-https://github.com/suxess-it/sx-cnp-oss/blob/12883d99657732d145d2992afa21b554403abd37/platform-apps/charts/argocd/values-k3d.yaml#L13-L16
+https://github.com/suxess-it/sx-cnp-oss/blob/ee5d680e315a5b054b9b1833194fbe70826d2585/platform-apps/charts/team-onboarding/values-k3d.yaml#L13-L16
 and https://github.com/suxess-it/team1-apps/tree/main/k3d-apps 
 
 pros:
@@ -128,7 +128,10 @@ The Helm-Chart is stored in a different place (helm repo, git repo) managed by t
 The Helm-Chart is very flexible configurable via the values file and has lots of sane defaults.
 If you are fine with the sane defaults, you have a small values file, if you need special things, you have a bigger values file.
 
-Example: [just-one-deployment-yaml](https://github.com/jkleinlercher/just-one-yaml-deployment/blob/main/argocd-config/just-one-yaml-applicationset.yaml)
+Example:
+
+- [ApplicationSet with SCM-Provider](https://github.com/suxess-it/sx-cnp-oss/blob/main/team-apps/onboarding-apps-charts/multi-stage-app-with-kargo-pipeline/README.md#applicationset-with-scm-provider)
+- [gitops-repos with simple deployment file (which also creates multi-stage apps and kargo resources)](https://github.com/suxess-it/team1-demo-app1/blob/main/app-stages.yaml)
 
 pros:
 - Dev-team only need a very simple value file. With sane defaults the value files content can be pretty small

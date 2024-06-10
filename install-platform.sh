@@ -46,12 +46,20 @@ fi
 
 helm install argocd argo-cd \
   --repo https://argoproj.github.io/argo-helm \
-  --version 6.4.0 \
+  --version 7.1.3 \
   --namespace argocd \
   --create-namespace \
   --set additionalLabels."app\.kubernetes\.io/instance"=argocd \
+  --set configs.cm.application.resourceTrackingMethod=annotation \
   -f https://raw.githubusercontent.com/suxess-it/sx-cnp-oss/main/bootstrap-argocd-values.yaml \
   --wait
+
+# create secret for scm applicationset in team app definition namespaces
+# see https://github.com/suxess-it/sx-cnp-oss/issues/214 for a sustainable solution
+for ns in adn-team1 adn-team2; do
+  kubectl create namespace ${ns}
+  kubectl create secret generic appset-github-token --from-literal=token=${GITHUB_APPSET_TOKEN} -n ${ns}
+done
 
 if [ "${TARGET_TYPE}" == "METALSTACK" ] ; then
   kubectl apply -f https://raw.githubusercontent.com/suxess-it/sx-cnp-oss/main/bootstrap-app-metalstack.yaml -n argocd
@@ -67,7 +75,7 @@ else
 fi
 
 # max wait for 20 minutes
-end=$((SECONDS+1200))
+end=$((SECONDS+1800))
 
 all_apps_synced="true"
 while [ $SECONDS -lt $end ]; do
