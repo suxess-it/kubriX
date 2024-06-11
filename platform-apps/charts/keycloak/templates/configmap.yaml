@@ -37,10 +37,9 @@ data:
     }
 
     ###### MAIN ######################
-    sleepSeconds="${1:-30}"
+    sleepSeconds="${1:-60}"
     echo "going to wait for initialization/stabilization of server, sleeping for $sleepSeconds"
     sleep $sleepSeconds
-    #sleep 60
 
     cd /opt/keycloak/bin
 
