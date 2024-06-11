@@ -28,13 +28,10 @@ deployments:
       name: postgres-storage
       path: /var/lib/postgresql/data
   keycloak:
-    version: 24.0.4
+    version: 24.0.5
     service:
       name: keycloak-service
     ports:
-      #operator
-      #containerPort: 8443
-      #dev
       containerPort: 8080
   ingress:
     host: keycloak-127-0-0-1.nip.io

@@ -57,8 +57,10 @@ spec:
               value: INFO
             - name: DB_VENDOR
               value: POSTGRES
-            - name: KC_PORT
+            - name: KC_HTTP_PORT
               value: "{{.Values.deployments.keycloak.ports.containerPort}}"
+            - name: KC_HTTPS_PORT
+              value: "{{.Values.deployments.securePort}}"
             - name: DB_ADDR
               value: "{{ .Values.deployments.postgres.service.name }}"
             - name: DB_DATABASE
@@ -80,6 +82,9 @@ spec:
             - name: http
               containerPort:
                 {{.Values.deployments.keycloak.ports.containerPort}}
+            - name: https
+              containerPort:
+                {{.Values.deployments.securePort}}
           lifecycle:
             postStart:
               exec:
