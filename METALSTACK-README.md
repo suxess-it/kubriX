@@ -96,7 +96,7 @@ The platform stack will be installed automagically ;)
 
 ### 6. Onboard teams and applications
 
-In our [Onboarding-Documentation](https://github.com/suxess-it/sx-cnp-oss/blob/main/ONBOARDING.md) we explain how new teams and apps get onboarded on the platform in a gitops way.
+In our [Onboarding-Documentation](https://github.com/suxess-it/sx-cnp-oss/blob/main/backstage-resources/docs/ONBOARDING.md) we explain how new teams and apps get onboarded on the platform in a gitops way.
 
 ### 7. Promote apps with Kargo
 

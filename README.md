@@ -85,7 +85,7 @@ initialization need some minutes until values are visible in UI - https://kubeco
 
 ### 5. Onboard teams and applications
 
-In our [Onboarding-Documentation](https://github.com/suxess-it/sx-cnp-oss/blob/main/ONBOARDING.md) we explain how new teams and apps get onboarded on the platform in a gitops way.
+In our [Onboarding-Documentation](https://github.com/suxess-it/sx-cnp-oss/blob/main/backstage-resources/docs/ONBOARDING.md) we explain how new teams and apps get onboarded on the platform in a gitops way.
 
 ### 6. Promote apps with Kargo
 
