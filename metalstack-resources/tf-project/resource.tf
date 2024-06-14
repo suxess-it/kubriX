@@ -1,5 +1,5 @@
-resource "metal_cluster" "jo-cluster" {
-  name       = "jo-cluster"
+resource "metal_cluster" "sx-cluster" {
+  name       = "sx-cluster"
   kubernetes = "1.28.10"
   partition  = "eqx-mu4"
   workers = [

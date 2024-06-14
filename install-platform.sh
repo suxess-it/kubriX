@@ -9,6 +9,8 @@ if [ "${TARGET_TYPE}" == "K3D" ] ; then
   k3d cluster create cnp-local-demo \
     -p "80:80@loadbalancer" \
     -p "443:443@loadbalancer" \
+    --k3s-arg '--cluster-init@server:0' \
+    --k3s-arg '--etcd-expose-metrics=true@server:0' \
     --agents 2 \
     --wait
 fi
