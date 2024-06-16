@@ -1,0 +1,36 @@
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: "{{ .Release.Name }}-initial-passwords"
+type: Opaque
+stringData:
+  {{- range $user := $.Values.deployments.keycloak.realm.users }}
+  {{$user.name}}: {{$user.password}}
+  {{- end }}
+
+{{- range $user := .Values.deployments.keycloak.realm.users }}
+---
+apiVersion: user.keycloak.crossplane.io/v1alpha1
+kind: User
+metadata:
+  name: {{ $user.name }}
+spec:
+  forProvider:
+    realmId: {{ $.Values.deployments.keycloak.realm.realmid }}
+    username: {{ $user.name }}
+    enabled: true
+    emailVerified: true
+    firstName: {{ $user.firstName }} 
+    lastName: {{ $user.lastName }} 
+    email: {{ $user.email }} 
+    initialPassword:
+      - valueSecretRef:
+          name: "{{ $.Release.Name }}-initial-passwords"
+          key: {{ $user.name }}
+          namespace: {{ $.Release.Namespace }}
+        temporary: false # should be set to true in production
+  deletionPolicy: "Delete"
+  providerConfigRef:
+    name: "{{ $.Release.Name }}-config"
+{{- end }}

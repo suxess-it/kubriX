@@ -1,0 +1,18 @@
+---
+apiVersion: realm.keycloak.crossplane.io/v1alpha1
+kind: Realm
+metadata:
+  name: {{ .Values.deployments.keycloak.realm.realmid }}
+  labels:
+    kc_realm: {{ .Release.Name }}
+  annotations:
+    link.argocd.argoproj.io/external-link: https://{{ .Values.deployments.ingress.host }}/admin/master/console/#/{{ .Values.deployments.keycloak.realm.realmid }}
+spec:
+  forProvider:
+    realm: {{ .Values.deployments.keycloak.realm.realmid }}
+    displayName: {{ .Values.deployments.keycloak.realm.realmid }}
+    attributes:
+      frontendUrl: https://{{ .Values.deployments.ingress.host }}
+  deletionPolicy: "Delete"
+  providerConfigRef:
+    name: "{{ .Release.Name }}-config"

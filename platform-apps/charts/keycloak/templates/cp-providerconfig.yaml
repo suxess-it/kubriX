@@ -1,0 +1,15 @@
+---
+apiVersion: keycloak.crossplane.io/v1beta1
+kind: ProviderConfig
+metadata:
+  name: "{{ .Release.Name }}-config"
+  namespace: "{{ .Release.Namespace }}"
+  annotations:
+    argocd.argoproj.io/sync-wave: "-10"
+spec:
+  credentials:
+    source: Secret
+    secretRef:
+      name: "{{ .Release.Name }}-credentials"
+      key: keycloak-credentials
+      namespace: "{{ .Release.Namespace }}"

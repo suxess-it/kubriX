@@ -1,0 +1,26 @@
+{{- range $group := .Values.deployments.keycloak.realm.groups }}
+---
+apiVersion: group.keycloak.crossplane.io/v1alpha1
+kind: Group
+metadata:
+  name: {{ $group.name }}
+spec:
+  forProvider:
+    realmId: {{ $.Values.deployments.keycloak.realm.realmid }}
+    name: {{ $group.name }}
+  deletionPolicy: "Delete"
+  providerConfigRef:
+    name: "{{ $.Release.Name }}-config"
+{{- end }}
+#---
+#apiVersion: group.keycloak.crossplane.io/v1alpha1
+#kind: Group
+#metadata:
+#  name: crossplane-admin
+#spec:
+#  forProvider:
+#    realmId: master
+#    name: crossplane-admin
+#  deletionPolicy: "Delete"
+#  providerConfigRef:
+#    name: "{{ $.Release.Name }}-config"

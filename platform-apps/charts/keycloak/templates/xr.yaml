@@ -1,0 +1,46 @@
+# Example for Master Realm
+#apiVersion: keycloak.crossplane.io/v1alpha1
+#kind: XBuiltinObjects
+#metadata:
+#  name: keycloak-builtin-objects-master
+#  annotations:
+#    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+#spec:
+#  providerConfigName: sx-keycloak-config
+#  providerSecretName: keycloak-credentials-cp
+#  realm: master
+#  builtinClients: 
+#    - account
+#    - account-console
+#    - admin-cli
+#    - broker
+#    - master-realm
+#    - security-admin-console
+#  builtinRealmRoles:
+#    - offline_access
+#    - uma_authorization
+#    - admin
+#    - create-realm
+#---
+# Example for a custom realm (custom realms have different builtin clients/roles than the master realm)
+apiVersion: keycloak.crossplane.io/v1alpha1
+kind: XBuiltinObjects
+metadata:
+  name: keycloak-builtin-objects-{{ .Values.deployments.keycloak.realm.realmid }}
+  annotations:
+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+spec:
+  providerConfigName: sx-keycloak-config
+  providerSecretName: keycloak-credentials-cp
+  realm: {{ .Values.deployments.keycloak.realm.realmid }}
+  builtinClients: 
+    - account
+    - account-console
+    - admin-cli
+    - broker
+    - realm-management
+    - security-admin-console
+  builtinRealmRoles:
+    - offline_access
+    - uma_authorization
+

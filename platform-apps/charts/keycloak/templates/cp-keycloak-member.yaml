@@ -1,0 +1,34 @@
+apiVersion: group.keycloak.crossplane.io/v1alpha1
+kind: Memberships
+metadata:
+  name: {{ .Values.deployments.keycloak.client.config.clientID }}-admin-memberships
+spec:
+  forProvider:
+    groupIdRef:
+      name: {{ .Values.deployments.keycloak.client.config.clientID }}-admin
+    members:
+      - service-account-{{ .Values.deployments.keycloak.client.config.clientID }}
+    realmId: {{ .Values.deployments.keycloak.realm.realmid }}
+  providerConfigRef:
+    name: "{{ .Release.Name }}-config"
+---
+{{- range $group := .Values.deployments.keycloak.realm.groups }}
+{{- if $group.members }}
+apiVersion: group.keycloak.crossplane.io/v1alpha1
+kind: Memberships
+metadata:
+  name: {{ $.Values.deployments.keycloak.client.config.clientID }}-{{ $group.name }}-users-memberships
+spec:
+  forProvider:
+    groupIdRef:
+      name: {{ $group.name }}
+    members:
+{{- range $member := $group.members }}
+      - {{ $member }}
+{{- end }}
+    realmId: {{ $.Values.deployments.keycloak.realm.realmid }}
+  providerConfigRef:
+    name: "{{ $.Release.Name }}-config"
+---
+{{- end }}
+{{- end }}

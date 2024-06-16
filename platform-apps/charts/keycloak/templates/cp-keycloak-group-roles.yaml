@@ -1,0 +1,24 @@
+apiVersion: group.keycloak.crossplane.io/v1alpha1
+kind: Roles
+metadata:
+  name: {{ .Values.deployments.keycloak.client.config.clientID }}-default-group-roles
+spec:
+  deletionPolicy: Delete
+  forProvider:
+    groupIdRef:
+      name: {{ .Values.deployments.keycloak.client.config.clientID }}-admin
+    realmIdRef: 
+      name: {{ .Values.deployments.keycloak.realm.realmid }}
+    roleIdsRefs:
+      - name: builtin-{{ .Values.deployments.keycloak.realm.realmid }}-realm-management-view-users
+      - name: builtin-{{ .Values.deployments.keycloak.realm.realmid }}-realm-management-query-groups
+      - name: builtin-{{ .Values.deployments.keycloak.realm.realmid }}-realm-management-query-users
+    roleIdsSelector:
+      matchLabels:
+        defaultRole: 'true'
+        realmName: {{ .Values.deployments.keycloak.realm.realmid }}
+  initProvider: {}
+  managementPolicies:
+    - '*'
+  providerConfigRef:
+    name: sx-keycloak-config
