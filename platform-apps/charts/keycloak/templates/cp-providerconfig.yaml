@@ -5,7 +5,7 @@ metadata:
   name: "{{ .Release.Name }}-config"
   namespace: "{{ .Release.Namespace }}"
   annotations:
-    argocd.argoproj.io/sync-wave: "-10"
+    argocd.argoproj.io/sync-wave: "-8"
 spec:
   credentials:
     source: Secret
