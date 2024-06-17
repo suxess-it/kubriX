@@ -165,3 +165,43 @@ export K8S_SA_TOKEN=$( kubectl get secret backstage-locator -n backstage  -o jso
 kubectl create secret generic -n backstage manual-secret --from-literal=GITHUB_CLIENTSECRET=${GITHUB_CLIENTSECRET} --from-literal=GITHUB_CLIENTID=${GITHUB_CLIENTID} --from-literal=GITHUB_ORG=${GITHUB_ORG} --from-literal=GITHUB_TOKEN=${GITHUB_TOKEN} --from-literal=K8S_SA_TOKEN=${K8S_SA_TOKEN} --from-literal=ARGOCD_AUTH_TOKEN=${ARGOCD_AUTH_TOKEN} --from-literal=GRAFANA_TOKEN=${GRAFANA_TOKEN}
 
 kubectl rollout restart deploy/sx-backstage -n backstage
+
+
+# finally wait for all apps backstage included to be synced and health
+if [ "${TARGET_TYPE}" == "METALSTACK" ] ; then
+ argocd_apps="sx-argocd sx-backstage sx-kubecost sx-crossplane sx-kargo sx-cert-manager sx-argo-rollouts sx-kyverno sx-kube-prometheus-stack"
+else
+ argocd_apps="sx-argocd sx-backstage sx-kubecost sx-crossplane sx-kargo sx-cert-manager sx-argo-rollouts sx-kyverno sx-kube-prometheus-stack sx-external-secrets sx-loki sx-keycloak sx-promtail sx-tempo"
+fi
+
+# max wait for 20 minutes
+end=$((SECONDS+300))
+
+all_apps_synced="true"
+while [ $SECONDS -lt $end ]; do
+  all_apps_synced="true"
+  for app in ${argocd_apps} ; do
+    kubectl get application -n argocd ${app} | grep "Synced.*Healthy"
+    exit_code=$?
+    if [[ $exit_code -ne 0 ]]; then
+      all_apps_synced="false"	
+    fi
+  done
+  if [ ${all_apps_synced} = "true" ] ; then
+    echo "${argocd_apps} apps are synced"
+    break
+  fi
+  kubectl get application -n argocd
+  echo "timer: $SECONDS"
+  echo "end: $end"
+  sleep 10
+done
+
+echo "status of all pods"
+kubectl get pods -A
+if [ ${all_apps_synced} != "true" ] ; then
+  echo "not all apps synced and healthy after limit reached :("
+  exit 1
+else
+  echo "all apps are synced. ready for take off :)"
+fi
