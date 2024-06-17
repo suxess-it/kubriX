@@ -94,6 +94,8 @@ while [ $SECONDS -lt $end ]; do
     break
   fi
   kubectl get application -n argocd
+  echo "timer: $SECONDS"
+  echo "end: $end"
   sleep 10
 done
 
@@ -127,8 +129,38 @@ export ARGOCD_AUTH_TOKEN="argocd.token=$( ./argocd account generate-token --acco
 ID=$( curl -k -X POST https://grafana-127-0-0-1.nip.io/api/serviceaccounts --user 'admin:prom-operator' -H "Content-Type: application/json" -d '{"name": "backstage","role": "Viewer","isDisabled": false}' | jq -r .id )
 export GRAFANA_TOKEN=$(curl -k -X POST https://grafana-127-0-0-1.nip.io/api/serviceaccounts/${ID}/tokens --user 'admin:prom-operator' -H "Content-Type: application/json" -d '{"name": "backstage"}' | jq -r .key)
 
+
+# check if backstage is already synced (it will still be degraded because of the missing secret we create in the next step)
+# max wait for 5 minutes
+argocd_apps="sx-backstage"
+
+end=$((SECONDS+300))
+
+all_apps_synced="true"
+while [ $SECONDS -lt $end ]; do
+  all_apps_synced="true"
+  for app in ${argocd_apps} ; do
+    kubectl get application -n argocd ${app} | grep "Synced"
+    exit_code=$?
+    if [[ $exit_code -ne 0 ]]; then
+      all_apps_synced="false"
+    fi
+  done
+  if [ ${all_apps_synced} = "true" ] ; then
+    echo "${argocd_apps} apps are synced"
+    break
+  fi
+  kubectl get application -n argocd
+  echo "timer: $SECONDS"
+  echo "end: $end"
+  sleep 10
+done
+
+
+
 export K8S_SA_TOKEN=$( kubectl get secret backstage-locator -n backstage  -o jsonpath='{.data.token}' | base64 -d )
 
 # create manual-secret secret with all tokens for backstage
 kubectl create secret generic -n backstage manual-secret --from-literal=GITHUB_CLIENTSECRET=${GITHUB_CLIENTSECRET} --from-literal=GITHUB_CLIENTID=${GITHUB_CLIENTID} --from-literal=GITHUB_ORG=${GITHUB_ORG} --from-literal=GITHUB_TOKEN=${GITHUB_TOKEN} --from-literal=K8S_SA_TOKEN=${K8S_SA_TOKEN} --from-literal=ARGOCD_AUTH_TOKEN=${ARGOCD_AUTH_TOKEN} --from-literal=GRAFANA_TOKEN=${GRAFANA_TOKEN}
+
 kubectl rollout restart deploy/sx-backstage -n backstage
