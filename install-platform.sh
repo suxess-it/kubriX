@@ -62,10 +62,11 @@ for ns in adn-team1 adn-team2; do
   kubectl create secret generic appset-github-token --from-literal=token=${GITHUB_APPSET_TOKEN} -n ${ns}
 done
 
+CURRENT_BRANCH_SED=$( echo ${CURRENT_BRANCH} | sed 's/\//\\\//g' )
 if [ "${TARGET_TYPE}" == "METALSTACK" ] ; then
-  kubectl apply -f https://raw.githubusercontent.com/suxess-it/sx-cnp-oss/${CURRENT_BRANCH}/bootstrap-app-metalstack.yaml -n argocd
+  curl -L https://raw.githubusercontent.com/suxess-it/sx-cnp-oss/${CURRENT_BRANCH}/bootstrap-app-metalstack.yaml | sed "s/targetRevision: main/targetRevision: ${CURRENT_BRANCH_SED}/g" | kubectl apply -f -n argocd -
 else
-  kubectl apply -f https://raw.githubusercontent.com/suxess-it/sx-cnp-oss/${CURRENT_BRANCH}/bootstrap-app-k3d.yaml -n argocd
+  curl -L https://raw.githubusercontent.com/suxess-it/sx-cnp-oss/${CURRENT_BRANCH}/bootstrap-app-k3d.yaml | sed "s/targetRevision: main/targetRevision: ${CURRENT_BRANCH_SED}/g" | kubectl apply -f -n argocd -
 fi
 
 # wait for all apps to be synced and health
