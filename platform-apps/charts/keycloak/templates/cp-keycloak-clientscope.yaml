@@ -1,0 +1,19 @@
+apiVersion: openidclient.keycloak.crossplane.io/v1alpha1
+kind: ClientScope
+metadata:
+  annotations:
+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+  labels:
+    platform-engineer.cloud/clientscope: groups
+  name: openid-client-scope-groups
+spec:
+  forProvider:
+    description: When requested, this scope will map a user's group memberships to a claim
+    guiOrder: 1
+    consentScreenText: "groups"
+    includeInTokenScope: true
+    name: groups
+    realmIdRef:
+      name: {{ $.Values.deployments.keycloak.realm.realmid }}
+  providerConfigRef:
+    name: "{{ .Release.Name }}-config"

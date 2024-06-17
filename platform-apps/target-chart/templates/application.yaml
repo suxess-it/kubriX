@@ -1,0 +1,47 @@
+{{- range .Values.applications }}
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  {{- with .annotations }}
+  annotations:
+    {{- toYaml . | nindent 4 }}
+  {{- end }}
+  name: sx-{{ .name }}
+  namespace: argocd
+  finalizers:
+  - resources-finalizer.argocd.argoproj.io
+spec:
+  project: default
+  source:
+    repoURL: {{ $.Values.default.repoURL }}
+    targetRevision: {{ $.Values.default.targetRevision }}
+    path: platform-apps/charts/{{ .name }}
+    helm:
+      {{- with .helmOptions }}
+        {{- toYaml . | nindent 6 }}
+      {{- end }}
+      {{- if .valueFiles }}
+      valueFiles:
+        {{- toYaml .valueFiles | nindent 6 }} 
+      {{- else }}
+      valueFiles:
+        {{- toYaml $.Values.default.valueFiles | nindent 6}}      
+      {{- end }}
+  destination:
+    {{- if .destinationNamespaceOverwrite }}
+    namespace: {{ .destinationNamespaceOverwrite }}
+    {{- else }}
+    namespace: {{ .name }}
+    {{- end }}
+    server: 'https://kubernetes.default.svc'
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
+      {{- with .syncOptions }}
+        {{- toYaml . | nindent 6 }}
+      {{- end }}
+---
+{{- end }}

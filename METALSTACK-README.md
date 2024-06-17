@@ -60,7 +60,9 @@ export GITHUB_APPSET_TOKEN=<github-pat-for-argocd-appsets-only-read-permissions-
 
 ```
 export TARGET_TYPE=METALSTACK
-curl -L https://raw.githubusercontent.com/suxess-it/sx-cnp-oss/main/install-platform.sh | bash
+# if you want to test another branch, specify something else than main
+export CURRENT_BRANCH=main
+curl -L https://raw.githubusercontent.com/suxess-it/sx-cnp-oss/${CURRENT_BRANCH}/install-platform.sh | bash
 ```
 
 With this command a new k3d cluster gets created.
