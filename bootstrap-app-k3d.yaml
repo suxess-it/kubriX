@@ -7,13 +7,18 @@ metadata:
   - resources-finalizer.argocd.argoproj.io
 spec:
   project: default
-  sources:
-    - repoURL: https://github.com/suxess-it/sx-cnp-oss
-      targetRevision: main
-      path: platform-apps/target-type/generic
-    - repoURL: https://github.com/suxess-it/sx-cnp-oss
-      targetRevision: main
-      path: platform-apps/target-type/k3d
+  source:
+    repoURL: https://github.com/suxess-it/sx-cnp-oss
+    targetRevision: main
+    path: platform-apps/target-chart
+    helm:
+      valueFiles:
+        - values-k3d.yaml
+      parameters:
+        - name: default.repoURL
+          value: $ARGOCD_APP_SOURCE_REPO_URL
+        - name: default.targetRevision
+          value: $ARGOCD_APP_SOURCE_TARGET_REVISION
   destination:
     namespace: argocd
     server: 'https://kubernetes.default.svc'
