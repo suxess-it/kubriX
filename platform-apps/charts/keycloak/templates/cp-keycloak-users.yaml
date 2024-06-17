@@ -15,6 +15,8 @@ apiVersion: user.keycloak.crossplane.io/v1alpha1
 kind: User
 metadata:
   name: {{ $user.name }}
+  annotations:
+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
 spec:
   forProvider:
     realmId: {{ $.Values.deployments.keycloak.realm.realmid }}

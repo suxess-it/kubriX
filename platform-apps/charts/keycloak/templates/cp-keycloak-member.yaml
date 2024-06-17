@@ -2,6 +2,8 @@ apiVersion: group.keycloak.crossplane.io/v1alpha1
 kind: Memberships
 metadata:
   name: {{ .Values.deployments.keycloak.client.config.clientID }}-admin-memberships
+  annotations:
+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
 spec:
   forProvider:
     groupIdRef:
