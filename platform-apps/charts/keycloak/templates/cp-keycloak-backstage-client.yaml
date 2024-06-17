@@ -14,6 +14,7 @@ metadata:
   name: {{ .Values.deployments.keycloak.client.config.clientID }}
   annotations:
     argocd.argoproj.io/sync-wave: "-5"
+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
 spec:
   deletionPolicy: Delete
   forProvider:

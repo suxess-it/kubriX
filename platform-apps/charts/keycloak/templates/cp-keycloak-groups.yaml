@@ -4,6 +4,8 @@ apiVersion: group.keycloak.crossplane.io/v1alpha1
 kind: Group
 metadata:
   name: {{ $group.name }}
+  annotations:
+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
 spec:
   forProvider:
     realmId: {{ $.Values.deployments.keycloak.realm.realmid }}

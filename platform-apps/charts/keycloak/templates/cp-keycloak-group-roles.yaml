@@ -2,6 +2,8 @@ apiVersion: group.keycloak.crossplane.io/v1alpha1
 kind: Roles
 metadata:
   name: {{ .Values.deployments.keycloak.client.config.clientID }}-default-group-roles
+  annotations:
+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
 spec:
   deletionPolicy: Delete
   forProvider:
