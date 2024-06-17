@@ -68,7 +68,8 @@ jobs:
           curl -kL -o argocd https://argocd-127-0-0-1.nip.io/download/argocd-linux-amd64
           chmod u+x argocd
           ls -l
-          ./argocd login argocd-127-0-0-1.nip.io --grpc-web --insecure --username admin --password admin
+          INITIAL_ARGOCD_PASSWORD=$( kubectl get secret -n argocd argocd-initial-admin-secret -o=jsonpath={'.data.password'} | base64 -d )
+          ./argocd login argocd-127-0-0-1.nip.io --grpc-web --insecure --username admin --password ${INITIAL_ARGOCD_PASSWORD}
           for app in ${APPS} ; do echo "$app diff" ; ./argocd app diff $app --grpc-web ; done         
 
       - name: analyze with k8sgpt

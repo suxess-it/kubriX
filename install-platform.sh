@@ -108,7 +108,7 @@ else
   echo "all apps are synced. ready for take off :)"
 fi
 
-# apply argocd-secret to set admin user and password
+# apply argocd-secret to set a secretKey
 kubectl apply -f https://raw.githubusercontent.com/suxess-it/sx-cnp-oss/${CURRENT_BRANCH}/platform-apps/charts/argocd/manual-secret/argocd-secret.yaml
 
 if [ "${TARGET_TYPE}" == "METALSTACK" ] ; then
@@ -123,7 +123,8 @@ fi
 curl -kL -o argocd https://${ARGOCD_HOSTNAME}/download/argocd-linux-amd64
 chmod u+x argocd
 
-./argocd login ${ARGOCD_HOSTNAME} --grpc-web --insecure --username admin --password admin
+INITIAL_ARGOCD_PASSWORD=$( kubectl get secret -n argocd argocd-initial-admin-secret -o=jsonpath={'.data.password'} | base64 -d )
+./argocd login ${ARGOCD_HOSTNAME} --grpc-web --insecure --username admin --password ${INITIAL_ARGOCD_PASSWORD}
 export ARGOCD_AUTH_TOKEN="argocd.token=$( ./argocd account generate-token --account backstage --grpc-web )"
 
 ID=$( curl -k -X POST https://grafana-127-0-0-1.nip.io/api/serviceaccounts --user 'admin:prom-operator' -H "Content-Type: application/json" -d '{"name": "backstage","role": "Viewer","isDisabled": false}' | jq -r .id )
