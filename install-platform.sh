@@ -46,14 +46,13 @@ fi
 # create argocd with helm chart not with install.yaml
 # because afterwards argocd is also managed by itself with the helm-chart
 
-helm install argocd argo-cd \
+helm install sx-argocd argo-cd \
   --repo https://argoproj.github.io/argo-helm \
   --version 7.1.3 \
   --namespace argocd \
   --create-namespace \
-  --set additionalLabels."app\.kubernetes\.io/instance"=argocd \
   --set configs.cm.application.resourceTrackingMethod=annotation \
-  -f https://raw.githubusercontent.com/suxess-it/sx-cnp-oss/main/bootstrap-argocd-values.yaml \
+  -f https://raw.githubusercontent.com/suxess-it/sx-cnp-oss/${CURRENT_BRANCH}/bootstrap-argocd-values.yaml \
   --wait
 
 # create secret for scm applicationset in team app definition namespaces
@@ -63,17 +62,18 @@ for ns in adn-team1 adn-team2; do
   kubectl create secret generic appset-github-token --from-literal=token=${GITHUB_APPSET_TOKEN} -n ${ns}
 done
 
+CURRENT_BRANCH_SED=$( echo ${CURRENT_BRANCH} | sed 's/\//\\\//g' )
 if [ "${TARGET_TYPE}" == "METALSTACK" ] ; then
-  kubectl apply -f https://raw.githubusercontent.com/suxess-it/sx-cnp-oss/main/bootstrap-app-metalstack.yaml -n argocd
+  curl -L https://raw.githubusercontent.com/suxess-it/sx-cnp-oss/${CURRENT_BRANCH}/bootstrap-app-metalstack.yaml | sed "s/targetRevision: main/targetRevision: ${CURRENT_BRANCH_SED}/g" | kubectl apply -n argocd -f -
 else
-  kubectl apply -f https://raw.githubusercontent.com/suxess-it/sx-cnp-oss/main/bootstrap-app-k3d.yaml -n argocd
+  curl -L https://raw.githubusercontent.com/suxess-it/sx-cnp-oss/${CURRENT_BRANCH}/bootstrap-app-k3d.yaml | sed "s/targetRevision: main/targetRevision: ${CURRENT_BRANCH_SED}/g" | kubectl apply -n argocd -f -
 fi
 
 # wait for all apps to be synced and health
 if [ "${TARGET_TYPE}" == "METALSTACK" ] ; then
- argocd_apps="argocd sx-kubecost sx-crossplane sx-kargo sx-cert-manager sx-argo-rollouts sx-kyverno sx-kube-prometheus-stack"
+ argocd_apps="sx-argocd sx-kubecost sx-crossplane sx-kargo sx-cert-manager sx-argo-rollouts sx-kyverno sx-kube-prometheus-stack"
 else
- argocd_apps="argocd sx-kubecost sx-crossplane sx-kargo sx-cert-manager sx-argo-rollouts sx-kyverno sx-kube-prometheus-stack sx-external-secrets sx-loki sx-keycloak sx-promtail sx-tempo"
+ argocd_apps="sx-argocd sx-kubecost sx-crossplane sx-kargo sx-cert-manager sx-argo-rollouts sx-kyverno sx-kube-prometheus-stack sx-external-secrets sx-loki sx-keycloak sx-promtail sx-tempo"
 fi
 
 # max wait for 20 minutes
@@ -94,6 +94,8 @@ while [ $SECONDS -lt $end ]; do
     break
   fi
   kubectl get application -n argocd
+  echo "timer: $SECONDS"
+  echo "end: $end"
   sleep 10
 done
 
@@ -106,8 +108,8 @@ else
   echo "all apps are synced. ready for take off :)"
 fi
 
-# apply argocd-secret to set admin user and password
-kubectl apply -f https://raw.githubusercontent.com/suxess-it/sx-cnp-oss/main/platform-apps/charts/argocd/manual-secret/argocd-secret.yaml
+# apply argocd-secret to set a secretKey
+kubectl apply -f https://raw.githubusercontent.com/suxess-it/sx-cnp-oss/${CURRENT_BRANCH}/platform-apps/charts/argocd/manual-secret/argocd-secret.yaml
 
 if [ "${TARGET_TYPE}" == "METALSTACK" ] ; then
   ARGOCD_HOSTNAME=argocd-metalstack.platform-engineer.cloud
@@ -121,14 +123,45 @@ fi
 curl -kL -o argocd https://${ARGOCD_HOSTNAME}/download/argocd-linux-amd64
 chmod u+x argocd
 
-./argocd login ${ARGOCD_HOSTNAME} --grpc-web --insecure --username admin --password admin
+INITIAL_ARGOCD_PASSWORD=$( kubectl get secret -n argocd argocd-initial-admin-secret -o=jsonpath={'.data.password'} | base64 -d )
+./argocd login ${ARGOCD_HOSTNAME} --grpc-web --insecure --username admin --password ${INITIAL_ARGOCD_PASSWORD}
 export ARGOCD_AUTH_TOKEN="argocd.token=$( ./argocd account generate-token --account backstage --grpc-web )"
 
 ID=$( curl -k -X POST https://grafana-127-0-0-1.nip.io/api/serviceaccounts --user 'admin:prom-operator' -H "Content-Type: application/json" -d '{"name": "backstage","role": "Viewer","isDisabled": false}' | jq -r .id )
 export GRAFANA_TOKEN=$(curl -k -X POST https://grafana-127-0-0-1.nip.io/api/serviceaccounts/${ID}/tokens --user 'admin:prom-operator' -H "Content-Type: application/json" -d '{"name": "backstage"}' | jq -r .key)
 
+
+# check if backstage is already synced (it will still be degraded because of the missing secret we create in the next step)
+# max wait for 5 minutes
+argocd_apps="sx-backstage"
+
+end=$((SECONDS+300))
+
+all_apps_synced="true"
+while [ $SECONDS -lt $end ]; do
+  all_apps_synced="true"
+  for app in ${argocd_apps} ; do
+    kubectl get application -n argocd ${app} | grep "Synced"
+    exit_code=$?
+    if [[ $exit_code -ne 0 ]]; then
+      all_apps_synced="false"
+    fi
+  done
+  if [ ${all_apps_synced} = "true" ] ; then
+    echo "${argocd_apps} apps are synced"
+    break
+  fi
+  kubectl get application -n argocd
+  echo "timer: $SECONDS"
+  echo "end: $end"
+  sleep 10
+done
+
+
+
 export K8S_SA_TOKEN=$( kubectl get secret backstage-locator -n backstage  -o jsonpath='{.data.token}' | base64 -d )
 
 # create manual-secret secret with all tokens for backstage
 kubectl create secret generic -n backstage manual-secret --from-literal=GITHUB_CLIENTSECRET=${GITHUB_CLIENTSECRET} --from-literal=GITHUB_CLIENTID=${GITHUB_CLIENTID} --from-literal=GITHUB_ORG=${GITHUB_ORG} --from-literal=GITHUB_TOKEN=${GITHUB_TOKEN} --from-literal=K8S_SA_TOKEN=${K8S_SA_TOKEN} --from-literal=ARGOCD_AUTH_TOKEN=${ARGOCD_AUTH_TOKEN} --from-literal=GRAFANA_TOKEN=${GRAFANA_TOKEN}
+
 kubectl rollout restart deploy/sx-backstage -n backstage
