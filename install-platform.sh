@@ -36,7 +36,7 @@ done
 fi
 
 if [ "${TARGET_TYPE}" == "KIND" ] ; then
-  kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/${CURRENT_BRANCH}/deploy/static/provider/kind/deploy.yaml
+  kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/main/deploy/static/provider/kind/deploy.yaml
   kubectl wait --namespace ingress-nginx \
     --for=condition=ready pod \
     --selector=app.kubernetes.io/component=controller \
