@@ -75,7 +75,7 @@ The platform stack will be installed automagically ;)
 | Tool    | URL | Username | Password |
 | -------- | ------- | ------- | ------- |
 | Backstage  | https://backstage-127-0-0-1.nip.io | via github | via github |
-| ArgoCD | https://argocd-127-0-0-1.nip.io/ | admin | admin |
+| ArgoCD | https://argocd-127-0-0-1.nip.io/ | admin | `kubectl get secret -n argocd argocd-initial-admin-secret '-o=jsonpath={.data.password}'` |
 | Kargo | https://kargo-127-0-0-1.nip.io     | admin | - |
 | Grafana    | https://grafana-127-0-0-1.nip.io | admin | prom-operator |
 | Keycloak    | https://keycloak-127-0-0-1.nip.io | admin | admin |
