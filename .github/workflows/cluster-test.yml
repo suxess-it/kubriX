@@ -72,7 +72,7 @@ jobs:
           ./argocd login argocd-127-0-0-1.nip.io --grpc-web --insecure --username admin --password ${INITIAL_ARGOCD_PASSWORD}
           for app in ${APPS} ; do echo "$app diff" ; ./argocd app diff $app --grpc-web ; done         
           
-    - name: kubectl get applications
+      - name: kubectl get applications
         if: always()
         shell: bash
         run: |
