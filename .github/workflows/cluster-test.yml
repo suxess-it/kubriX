@@ -94,6 +94,6 @@ jobs:
         if: ${{ failure() }}
         shell: bash
         run: |
-          kubectl logs -n argocd statefulset/argocd-application-controller
-          kubectl logs -n argocd deployment/argocd-repo-server
-          kubectl logs -n argocd deployment/argocd-applicationset-controller
+          kubectl logs -n argocd statefulset/sx-argocd-application-controller
+          kubectl logs -n argocd deployment/sx-argocd-repo-server
+          kubectl logs -n argocd deployment/sx-argocd-applicationset-controller
