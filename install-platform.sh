@@ -46,7 +46,7 @@ fi
 # create argocd with helm chart not with install.yaml
 # because afterwards argocd is also managed by itself with the helm-chart
 
-helm install argocd argo-cd \
+helm install sx-argocd argo-cd \
   --repo https://argoproj.github.io/argo-helm \
   --version 7.1.3 \
   --namespace argocd \
