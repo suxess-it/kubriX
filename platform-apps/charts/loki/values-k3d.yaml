@@ -19,6 +19,14 @@ loki:
     querier:
       # Default is 4, if you have enough memory and CPU you can increase, reduce if OOMing
       max_concurrent: 2
+
+  resultsCache:
+    resources:
+      limits:
+        memory: 512Mi
+      requests:
+        cpu: 250m
+        memory: 512Mi
   
   deploymentMode: SingleBinary
   singleBinary:
