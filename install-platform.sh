@@ -36,7 +36,7 @@ done
 fi
 
 if [ "${TARGET_TYPE}" == "KIND" ] ; then
-  kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/main/deploy/static/provider/kind/deploy.yaml
+  kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/${CURRENT_BRANCH}/deploy/static/provider/kind/deploy.yaml
   kubectl wait --namespace ingress-nginx \
     --for=condition=ready pod \
     --selector=app.kubernetes.io/component=controller \
@@ -51,9 +51,8 @@ helm install argocd argo-cd \
   --version 7.1.3 \
   --namespace argocd \
   --create-namespace \
-  --set additionalLabels."app\.kubernetes\.io/instance"=argocd \
   --set configs.cm.application.resourceTrackingMethod=annotation \
-  -f https://raw.githubusercontent.com/suxess-it/sx-cnp-oss/main/bootstrap-argocd-values.yaml \
+  -f https://raw.githubusercontent.com/suxess-it/sx-cnp-oss/${CURRENT_BRANCH}/bootstrap-argocd-values.yaml \
   --wait
 
 # create secret for scm applicationset in team app definition namespaces
@@ -64,16 +63,16 @@ for ns in adn-team1 adn-team2; do
 done
 
 if [ "${TARGET_TYPE}" == "METALSTACK" ] ; then
-  kubectl apply -f https://raw.githubusercontent.com/suxess-it/sx-cnp-oss/main/bootstrap-app-metalstack.yaml -n argocd
+  kubectl apply -f https://raw.githubusercontent.com/suxess-it/sx-cnp-oss/${CURRENT_BRANCH}/bootstrap-app-metalstack.yaml -n argocd
 else
-  kubectl apply -f https://raw.githubusercontent.com/suxess-it/sx-cnp-oss/main/bootstrap-app-k3d.yaml -n argocd
+  kubectl apply -f https://raw.githubusercontent.com/suxess-it/sx-cnp-oss/${CURRENT_BRANCH}/bootstrap-app-k3d.yaml -n argocd
 fi
 
 # wait for all apps to be synced and health
 if [ "${TARGET_TYPE}" == "METALSTACK" ] ; then
- argocd_apps="argocd sx-kubecost sx-crossplane sx-kargo sx-cert-manager sx-argo-rollouts sx-kyverno sx-kube-prometheus-stack"
+ argocd_apps="sx-argocd sx-kubecost sx-crossplane sx-kargo sx-cert-manager sx-argo-rollouts sx-kyverno sx-kube-prometheus-stack"
 else
- argocd_apps="argocd sx-kubecost sx-crossplane sx-kargo sx-cert-manager sx-argo-rollouts sx-kyverno sx-kube-prometheus-stack sx-external-secrets sx-loki sx-keycloak sx-promtail sx-tempo"
+ argocd_apps="sx-argocd sx-kubecost sx-crossplane sx-kargo sx-cert-manager sx-argo-rollouts sx-kyverno sx-kube-prometheus-stack sx-external-secrets sx-loki sx-keycloak sx-promtail sx-tempo"
 fi
 
 # max wait for 20 minutes
@@ -107,7 +106,7 @@ else
 fi
 
 # apply argocd-secret to set admin user and password
-kubectl apply -f https://raw.githubusercontent.com/suxess-it/sx-cnp-oss/main/platform-apps/charts/argocd/manual-secret/argocd-secret.yaml
+kubectl apply -f https://raw.githubusercontent.com/suxess-it/sx-cnp-oss/${CURRENT_BRANCH}/platform-apps/charts/argocd/manual-secret/argocd-secret.yaml
 
 if [ "${TARGET_TYPE}" == "METALSTACK" ] ; then
   ARGOCD_HOSTNAME=argocd-metalstack.platform-engineer.cloud

@@ -1,0 +1,56 @@
+default:
+  valueFiles:
+  - values-metalstack.yaml
+
+applications:
+
+  - name: cert-manager
+    annotations:
+      argocd.argoproj.io/sync-wave: "-3"
+    valueFiles:
+      - values.yaml
+
+  - name: ingress-nginx
+    annotations:
+      argocd.argoproj.io/sync-wave: "-2"
+
+  - name: external-dns
+    annotations:
+      argocd.argoproj.io/sync-wave: "-2" 
+
+  - name: argocd
+    annotations:
+      argocd.argoproj.io/sync-wave: "-2"
+
+  - name: kube-prometheus-stack
+    destinationNamespaceOverwrite: monitoring
+    annotations:
+      argocd.argoproj.io/compare-options: ServerSideDiff=true
+      argocd.argoproj.io/sync-wave: "-1"
+    syncOptions:
+      - ServerSideApply=true
+
+  - name: kargo
+
+  - name: kubecost
+
+  - name: team-onboarding
+    destinationNamespaceOverwrite: argocd
+
+  - name: argo-rollouts
+    valueFiles:
+      - values.yaml
+
+  - name: crossplane
+    valueFiles:
+      - values.yaml
+
+  - name: kyverno
+    valueFiles:
+      - values.yaml
+    syncOptions:
+      - ServerSideApply=true
+      
+  - name: backstage
+    annotations:
+      argocd.argoproj.io/sync-wave: "10"
