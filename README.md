@@ -85,11 +85,15 @@ The platform stack will be installed automagically ;)
 
 initialization need some minutes until values are visible in UI - https://kubecost-127-0-0-1.nip.io/overview
 
-### 5. Onboard teams and applications
+### 5. keycloak
+
+depending on Hardare initialization need some minutes until keycloak is running 
+
+### 6. Onboard teams and applications
 
 In our [Onboarding-Documentation](https://github.com/suxess-it/sx-cnp-oss/blob/main/backstage-resources/docs/ONBOARDING.md) we explain how new teams and apps get onboarded on the platform in a gitops way.
 
-### 6. Promote apps with Kargo
+### 7. Promote apps with Kargo
 
 tbd
 
@@ -105,10 +109,10 @@ k3d cluster delete cnp-local-demo
 
 #### automatically with Github Actions
 
-Workflow-File: https://github.com/suxess-it/sx-backstage/blob/feat/cnp-local-demo-jokl/.github/workflows/docker-image.yaml
+Workflow-File: https://github.com/suxess-it/sx-backstage/blob/feat/cnp-local-demo-jokl/.github/workflows/ci.yaml
 
 #### manually on local machine
-build could take 1300 seconds and push could also take a lot of time
+dual arch build, x86 and arm64, arm64 build could take up to 50 minutes 
 ```
 git clone https://github.com/suxess-it/sx-backstage.git
 cd sx-backstage
