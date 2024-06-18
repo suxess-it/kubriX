@@ -1,0 +1,4 @@
+# Test for the platform
+
+This document should describe which automatic tests are implemented, how changes walk through our platform-pipeline and how we want to ensure quality in our platform stack.
+Still tbd and should reflect things of https://github.com/suxess-it/sx-cnp-oss/issues/232 and https://github.com/suxess-it/sx-cnp-oss/issues/231
