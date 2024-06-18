@@ -1,0 +1,167 @@
+apiVersion: scaffolder.backstage.io/v1beta3
+kind: Template
+metadata:
+  name: sx-cnp-oss--template-metalstack
+  title: sx-cnp-oss Cluster Template for metalstack cloud
+  description: Start metalstack.cloud cluster with ArgoCD
+  tags:
+    - cloud
+    - metalstack
+    - baremetal
+spec:
+  owner: user:phac008
+  type: system
+  
+  parameters:
+    - title: Provide information on this application
+      required:
+        - cluster_id
+        - description
+        - owner
+        - instances
+        - type
+        - environments
+      properties:
+        cluster_id:
+          title: Name
+          type: string
+          description: Unique name of cluster (max. 11 signs)
+        description:
+          title: Description
+          type: string
+          description: Help others understand what this cluster is for.
+        owner:
+          title: Owner
+          type: string
+          description: Owner of this cluster
+          ui:field: OwnerPicker
+          ui:options:
+            allowedKinds: 
+              - User
+        instances:
+          title: Number of Nodes (max. 3)
+          type: string       
+          default: '1'
+        type:
+          title: MachineType
+          type: array
+          description: Machine Type for worker nodes
+          items:
+            type: string
+            enum: 
+              - n1-medium-x86
+          uniqueItems: true
+          ui:widget: checkboxes
+        environments:
+          title: Environments
+          type: array
+          description: Environments needed by this vm
+          items:
+            type: string
+            enum:
+              - prod
+              - test
+              - qa
+## TODO: Maintenancewindow
+    - title: Choose a location
+      required:
+        - repoUrl
+      properties:
+        repoUrl:
+          title: Repository Location
+          type: string
+          ui:field: RepoUrlPicker
+          ui:options:
+            requestUserCredentials:
+              secretsKey: USER_OAUTH_TOKEN
+              additionalScopes:
+                github: 
+                  - workflow
+                  - user
+            allowedHosts:
+              - github.com
+  steps:
+    - id: template-gitops
+      name: Fetch Skeleton + Template
+      action: fetch:template
+      input:
+        url: ./metalstack-gitops
+        targetPath: ./metalstack-gitops
+        copyWithoutRender: []
+        values:
+          cluster_id: ${{ parameters.cluster_id }}
+          description: ${{ parameters.description }}
+          owner: ${{ parameters.owner }}
+          instances: ${{ parameters.instances }}
+          type: ${{ parameters.type }}
+          environments: ${{ parameters.environments }}
+          repoUrl: ${{ parameters.repoUrl }}
+          repoUrlRepo: ${{ (parameters.repoUrl | parseRepoUrl)["repo"] }}
+          repoUrlowner: ${{ (parameters.repoUrl | parseRepoUrl)["owner"] }}
+
+    - id: publish-gitopsreposetup
+      name: Publish Template Gitops Repo
+      action: publish:github
+      input:
+        sourcePath: ./metalstack-gitops
+        allowedHosts: ['github.com']
+        description: This is ${{ parameters.cluster_id }}
+        repoUrl: ${{ parameters.repoUrl }}
+        token: ${{ secrets.USER_OAUTH_TOKEN }}
+        gitAuthorName: ${{ user.entity.metadata.name }}
+        gitAuthorEmail: ${{ user.entity.spec.profile.email }}
+        repoVisibility: public
+        deleteBranchOnMerge: true
+        protectDefaultBranch: false
+        
+    - id: template-applicationsetup
+      name: Fetch Namespacesetup Skeleton + Template
+      action: fetch:template
+      input:
+        url: ./skeleton/applicationsetup
+        targetPath: ./applicationsetup
+        copyWithoutRender: []
+        values:
+          cluster_id: ${{ parameters.cluster_id }}
+          description: ${{ parameters.description }}
+          repoUrlRepo: ${{ (parameters.repoUrl | parseRepoUrl)["repo"] }}
+          repoUrlowner: ${{ (parameters.repoUrl | parseRepoUrl)["owner"] }}
+          environments: ${{ parameters.environments }}
+
+    - id: pull-request-applicationsetup
+      name: make a pr to approved-application repo with additional applicationsetup
+      action: publish:github:pull-request
+      input:
+        sourcePath: ./applicationsetup
+        targetPath: '.'
+        repoUrl: github.com?repo=approved-application&owner=suxess-it
+        branchName: ${{ parameters.cluster_id }}
+        title: argoapps and system config for ${{ parameters.cluster_id }}
+        description: argoapps and system config for ${{ parameters.cluster_id }}
+        token: ${{ secrets.USER_OAUTH_TOKEN }}
+        gitAuthorName: ${{ user.entity.metadata.name }}
+        gitAuthorEmail: ${{ user.entity.spec.profile.email }}
+
+    - id: register
+      name: Register Catalog
+      action: catalog:register
+      input:
+        repoContentsUrl: ${{ steps["publish-gitopsreposetup"].output.repoContentsUrl }}
+        catalogInfoPath: '/catalog-info.yaml'
+  
+    - id: register2
+      name: Register system
+      action: catalog:register
+      input:
+        repoContentsUrl: ${{ steps["publish-gitopsreposetup"].output.repoContentsUrl }}
+        catalogInfoPath: '/system-info.yaml'
+        
+  output:
+    links:
+      - title: Repository
+        url: ${{ steps["publish-gitopsreposetup"].output.remoteUrl }}
+      - title: Approved-Apps PR
+        url: ${{ steps["pull-request-applicationsetup"].output.remoteUrl }}
+      - title: Open in catalog
+        icon: catalog
+        entityRef: ${{ steps.register.output.entityRef }}
