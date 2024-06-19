@@ -91,7 +91,7 @@ The platform stack will be installed automagically ;)
 | Tool    | URL | Username | Password |
 | -------- | ------- | ------- | ------- |
 | Backstage  | https://portal-metalstack.platform-engineer.cloud/  | via github | via github |
-| ArgoCD | https://argocd-metalstack.platform-engineer.cloud/ | admin | admin |
+| ArgoCD | https://argocd-metalstack.platform-engineer.cloud/ | admin | `kubectl get secret -n argocd argocd-initial-admin-secret -o=jsonpath='{.data.password}' \| base64 -d` |
 | Kargo | https://kargo-metalstack.platform-engineer.cloud/     | admin | - |
 | Grafana    | https://grafana-metalstack.platform-engineer.cloud/   | admin | prom-operator |
 | Kubevirt-Manager    | https://kubevirt-manager-metalstack.platform-engineer.cloud/   | - | - |
