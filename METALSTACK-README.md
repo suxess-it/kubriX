@@ -108,11 +108,11 @@ tbd
 
 If argocd ingress is not working, use port-forwarding for accessing argocd console and investigate what is wrong
 ```
-kubectl port-forward svc/argocd-server -n argocd 8080:80
+kubectl port-forward svc/sx-argocd-server -n argocd 8080:80
 ```
 
 - Username: `admin`
-- Password: `admin`
+- Password: `kubectl get secret -n argocd argocd-initial-admin-secret -o=jsonpath='{.data.password}' | base64 -d`
 
 # AWS helpful things (DRAFT)
 
