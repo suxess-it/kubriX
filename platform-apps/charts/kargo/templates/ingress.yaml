@@ -13,10 +13,10 @@ spec:
   ingressClassName: nginx
   tls:
     - hosts:
-        - "{{ .Values.gardenercert.dnsnames }}"
+        - "kargo.{{ .Values.gardenercert.dnsnames }}"
       secretName: kargo-api-ingress-cert
   rules:
-    - host: "{{ .Values.gardenercert.dnsnames }}"
+    - host: "kargo.{{ .Values.gardenercert.dnsnames }}"
       http:
         paths:
           - path: /
