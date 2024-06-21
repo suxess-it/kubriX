@@ -1,18 +1,18 @@
 cert:
   enabled: false
 
+gardenercert:
+  enabled: true
+  dnsnames: kargo.lab.suxessit.k8s.cloud.uibk.ac.at
+
 kargo:
   api:
    ## @param api.host The domain name where Kargo's API server will be accessible. When applicable, this is used for generation of an Ingress resource, certificates, and the OpenID Connect issuer and callback URLs. Note: The value in this field MAY include a port number and MUST NOT specify the protocol (http vs https), which is automatically inferred from other configuration options.
     host: kargo.lab.suxessit.k8s.cloud.uibk.ac.at
     ingress:
       ## @param api.ingress.enabled Whether to enable ingress. By default, this is disabled. Enabling ingress is advanced usage.
-      enabled: true
-      annotations:
-        cert.gardener.cloud/purpose: managed
-        dns.gardener.cloud/class: garden
-        dns.gardener.cloud/dnsnames: kargo.lab.suxessit.k8s.cloud.uibk.ac.at
-        dns.gardener.cloud/ttl: "180"
+      ## will be setup by gardener
+      enabled: false
       ingressClassName: nginx
       tls:
         enabled: true
