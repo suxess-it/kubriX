@@ -3,7 +3,7 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: backstage-ingress
+  name: falco-ingress
   annotations:
     cert.gardener.cloud/purpose: managed
     dns.gardener.cloud/class: garden
@@ -25,5 +25,5 @@ spec:
               service:
                 name: falco-ui
                 port:
-                  number: http
+                  name: http
 {{- end }}
