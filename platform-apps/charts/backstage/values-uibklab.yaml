@@ -1,9 +1,13 @@
 cert:
   enabled: false
 
+gardenercert:
+  enabled: true
+  dnsnames: backstage.lab.suxessit.k8s.cloud.uibk.ac.at
+
 backstage:
   ingress:
-    enabled: true
+    enabled: false
     host: backstage.lab.suxessit.k8s.cloud.uibk.ac.at
     ingressClassName: nginx
     annotations:
