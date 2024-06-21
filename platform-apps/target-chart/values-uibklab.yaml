@@ -40,8 +40,24 @@ applications:
 
   - name: argo-rollouts
 
+  - name: keycloak
+
   - name: loki
     destinationNamespaceOverwrite: monitoring
+    annotations:
+      argocd.argoproj.io/compare-options: ServerSideDiff=true
+    helmOptions:
+      skipCrds: true
+    syncOptions:
+      - ServerSideApply=true
+
+  - name: promtail
+    destinationNamespaceOverwrite: monitoring
+
+  - name: tempo
+    destinationNamespaceOverwrite: monitoring
+
+  - name: falco
     annotations:
       argocd.argoproj.io/compare-options: ServerSideDiff=true
     helmOptions:
