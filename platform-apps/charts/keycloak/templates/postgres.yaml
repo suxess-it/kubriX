@@ -41,6 +41,7 @@ spec:
           volumeMounts:
             - name: "{{ .Values.deployments.postgres.volume.name }}"
               mountPath: "{{ .Values.deployments.postgres.volume.path }}"
+              subpath: postgres
           resources:
             limits:
               memory: 512Mi
