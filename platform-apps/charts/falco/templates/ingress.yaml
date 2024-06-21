@@ -16,7 +16,7 @@ spec:
         - "{{ .Values.gardenercert.dnsnames }}"
       secretName: falco-server-tls
   rules:
-    - host: {{ .Values.gardenercert.dnsnames }}"
+    - host: "{{ .Values.gardenercert.dnsnames }}"
       http:
         paths:
           - path: /
