@@ -41,6 +41,13 @@ applications:
   - name: argo-rollouts
 
   - name: loki
+    destinationNamespaceOverwrite: monitoring
+    annotations:
+      argocd.argoproj.io/compare-options: ServerSideDiff=true
+    helmOptions:
+      skipCrds: true
+    syncOptions:
+      - ServerSideApply=true
 
   - name: crossplane
 
