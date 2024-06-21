@@ -11,8 +11,8 @@ spec:
   dnsNames:
     - {{ .Values.kargo.api.host }}
 {{- end }}
----
 {{- if .Values.gardenercert.enabled }}
+---
 apiVersion: cert.gardener.cloud/v1alpha1
 kind: Certificate
 metadata:
