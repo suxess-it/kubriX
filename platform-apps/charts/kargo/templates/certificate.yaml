@@ -11,3 +11,18 @@ spec:
   dnsNames:
     - {{ .Values.kargo.api.host }}
 {{- end }}
+---
+{{- if .Values.gardenercert.enabled }}
+apiVersion: cert.gardener.cloud/v1alpha1
+kind: Certificate
+metadata:
+  name: kargo-webhooks-server
+spec:
+  commonName: kargo-webhooks-server.{{ .Release.Namespace }}.svc
+  secretRef:
+    name: kargo-webhooks-server-cert
+    namespace: kargo
+  # Optionnal if using the default issuer
+  issuerRef:
+    name: garden
+{{- end }}
