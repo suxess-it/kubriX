@@ -9,11 +9,11 @@ spec:
   project: default
   source:
     repoURL: https://github.com/suxess-it/sx-cnp-oss
-    targetRevision: lab
+    targetRevision: uibklab
     path: platform-apps/target-chart
     helm:
       valueFiles:
-        - values-lab.yaml
+        - values-uibklab.yaml
       parameters:
         - name: default.repoURL
           value: $ARGOCD_APP_SOURCE_REPO_URL
