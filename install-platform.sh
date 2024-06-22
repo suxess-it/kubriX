@@ -69,7 +69,7 @@ curl -L https://raw.githubusercontent.com/suxess-it/sx-cnp-oss/${CURRENT_BRANCH}
 
 # create app list
 # special case for KIND/K3S ... tbd if values-kind.yaml in every chart?
-if [ ${TARGET_TYPE} == "KIND" ] ; then TARGET_TYPE=K3S ; fi
+if [ ${TARGET_TYPE} == "KIND" ] ; then TARGET_TYPE=K3D ; fi
 URL=https://raw.githubusercontent.com/suxess-it/sx-cnp-oss/${CURRENT_BRANCH}/platform-apps/target-chart/values-$(echo ${TARGET_TYPE} | awk '{print tolower($0)}').yaml
 argocd_apps=$(curl -L $URL | grep -v backstage | awk '/^  - name:/ { printf "%s", "sx-"$3" "}' )
 
