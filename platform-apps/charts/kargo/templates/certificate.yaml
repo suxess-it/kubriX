@@ -18,7 +18,9 @@ kind: Certificate
 metadata:
   name: kargo-webhooks-server
 spec:
-  commonName: kargo-webhooks-server.{{ .Values.gardenercert.dnsnames }}
+  commonName: kargo-webhooks-server.{{ .Values.gardenercert.domain }}
+  dnsNames:
+    - kargo-webhooks-server.{{ .Values.gardenercert.domain }}
   secretRef:
     name: kargo-webhooks-server-cert
     namespace: kargo
