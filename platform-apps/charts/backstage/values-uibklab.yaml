@@ -1,18 +1,19 @@
 cert:
   enabled: false
 
-gardenercert:
-  enabled: true
-  dnsnames: backstage.lab.suxessit.k8s.cloud.uibk.ac.at
-
 backstage:
   ingress:
-    enabled: false
+    enabled: true
     host: backstage.lab.suxessit.k8s.cloud.uibk.ac.at
+    className: nginx
+    annotations:
+      cert.gardener.cloud/purpose: managed
+      dns.gardener.cloud/class: garden
+      dns.gardener.cloud/dnsnames: argocd.lab.suxessit.k8s.cloud.uibk.ac.at
+      dns.gardener.cloud/ttl: "180"      
     tls:
-      enabled: false
+      enabled: true
       secretName: backstage-server-tls
-
   backstage:
     image:
       registry: ghcr.io/suxess-it
