@@ -107,6 +107,8 @@ fi
 kubectl apply -f https://raw.githubusercontent.com/suxess-it/sx-cnp-oss/${CURRENT_BRANCH}/platform-apps/charts/argocd/manual-secret/argocd-secret.yaml
 
 # get hostnames
+# special case for KIND/K3S ... tbd if values-kind.yaml in every chart?
+if [ ${TARGET_TYPE} == "KIND" ] ; then TARGET_TYPE=K3S ; fi
 export ARGOCD_HOSTNAME=$(curl -L https://raw.githubusercontent.com/suxess-it/sx-cnp-oss/${CURRENT_BRANCH}/platform-apps/charts/argocd/values-$(echo ${TARGET_TYPE} | awk '{print tolower($0)}').yaml | grep domain | awk -F" " '{print $2}')
 export GRAFANA_HOSTNAME=$(curl -L https://raw.githubusercontent.com/suxess-it/sx-cnp-oss/${CURRENT_BRANCH}/platform-apps/charts/kube-prometheus-stack/values-$(echo ${TARGET_TYPE} | awk '{print tolower($0)}').yaml | awk -F'[:\\[\\], ]+' '/hosts/ {print $3}')
 
