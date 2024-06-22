@@ -64,14 +64,8 @@ done
 
 CURRENT_BRANCH_SED=$( echo ${CURRENT_BRANCH} | sed 's/\//\\\//g' )
 
-case "${TARGET_TYPE}" in
-KIND)
-  curl -L https://raw.githubusercontent.com/suxess-it/sx-cnp-oss/${CURRENT_BRANCH}/bootstrap-app-k3d.yaml | sed "s/targetRevision: main/targetRevision: ${CURRENT_BRANCH_SED}/g" | kubectl apply -n argocd -f -
-;;
-*)
-  curl -L https://raw.githubusercontent.com/suxess-it/sx-cnp-oss/${CURRENT_BRANCH}/bootstrap-app-$(echo ${TARGET_TYPE} | awk '{print tolower($0)}').yaml | sed "s/targetRevision: main/targetRevision: ${CURRENT_BRANCH_SED}/g" | kubectl apply -n argocd -f -
-;;
-esac
+# bootstrap-app
+curl -L https://raw.githubusercontent.com/suxess-it/sx-cnp-oss/${CURRENT_BRANCH}/bootstrap-app-$(echo ${TARGET_TYPE} | awk '{print tolower($0)}').yaml | sed "s/targetRevision: main/targetRevision: ${CURRENT_BRANCH_SED}/g" | kubectl apply -n argocd -f -
 
 # create app list
 URL=https://raw.githubusercontent.com/suxess-it/sx-cnp-oss/${CURRENT_BRANCH}/platform-apps/target-chart/values-$(echo ${TARGET_TYPE} | awk '{print tolower($0)}').yaml
