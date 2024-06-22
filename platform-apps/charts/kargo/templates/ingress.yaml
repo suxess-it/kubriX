@@ -7,16 +7,16 @@ metadata:
   annotations:
     cert.gardener.cloud/purpose: managed
     dns.gardener.cloud/class: garden
-    dns.gardener.cloud/dnsnames: kargo.{{ .Values.gardenercert.dnsnames }}
+    dns.gardener.cloud/dnsnames: kargo.{{ .Values.gardenercert.domain }}
     dns.gardener.cloud/ttl: "180"
 spec:
   ingressClassName: nginx
   tls:
     - hosts:
-        - "kargo.{{ .Values.gardenercert.dnsnames }}"
+        - "kargo.{{ .Values.gardenercert.domain }}"
       secretName: kargo-api-ingress-cert
   rules:
-    - host: "kargo.{{ .Values.gardenercert.dnsnames }}"
+    - host: "kargo.{{ .Values.gardenercert.domain }}"
       http:
         paths:
           - path: /
