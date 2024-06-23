@@ -161,7 +161,7 @@ kubectl rollout restart deploy/sx-backstage -n backstage
 
 
 # finally wait for all apps backstage included to be synced and health
-argocd_apps=$(curl -L $URL | awk '{print tolower($0)}').yaml |awk '/^  - name:/ { printf "%s", "sx-"$3" "}' )
+argocd_apps=$(curl -L $URL | awk '/^  - name:/ { printf "%s", "sx-"$3" "}' )
 
 # max wait for 20 minutes
 end=$((SECONDS+300))
