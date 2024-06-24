@@ -70,8 +70,17 @@ curl -L https://raw.githubusercontent.com/suxess-it/sx-cnp-oss/${CURRENT_BRANCH}
 # create app list
 # special case for KIND/K3S ... tbd if values-kind.yaml in every chart?
 if [ ${TARGET_TYPE} == "KIND" ] ; then TARGET_TYPE=K3D ; fi
-URL=https://raw.githubusercontent.com/suxess-it/sx-cnp-oss/${CURRENT_BRANCH}/platform-apps/target-chart/values-$(echo ${TARGET_TYPE} | awk '{print tolower($0)}').yaml
-argocd_apps=$(curl -L $URL | grep -v backstage | awk '/^  - name:/ { printf "%s", "sx-"$3" "}' )
+# case for KIND, remove above line
+case "${TARGET_TYPE}" in
+KIND)
+  URL=https://raw.githubusercontent.com/suxess-it/sx-cnp-oss/${CURRENT_BRANCH}/platform-apps/target-chart/values-k3d.yaml
+  argocd_apps=$(curl -L $URL | grep -v backstage | awk '/^  - name:/ { printf "%s", "sx-"$3" "}' )
+;;
+*)
+  URL=https://raw.githubusercontent.com/suxess-it/sx-cnp-oss/${CURRENT_BRANCH}/platform-apps/target-chart/values-$(echo ${TARGET_TYPE} | awk '{print tolower($0)}').yaml
+  argocd_apps=$(curl -L $URL | grep -v backstage | awk '/^  - name:/ { printf "%s", "sx-"$3" "}' )
+;;
+esac
 
 # max wait for 20 minutes
 end=$((SECONDS+1800))
@@ -109,8 +118,9 @@ fi
 kubectl apply -f https://raw.githubusercontent.com/suxess-it/sx-cnp-oss/${CURRENT_BRANCH}/platform-apps/charts/argocd/manual-secret/argocd-secret.yaml
 
 # get hostnames
-export ARGOCD_HOSTNAME=$(curl -L https://raw.githubusercontent.com/suxess-it/sx-cnp-oss/${CURRENT_BRANCH}/platform-apps/charts/argocd/values-$(echo ${TARGET_TYPE} | awk '{print tolower($0)}').yaml | grep domain | awk -F" " '{print $2}')
-export GRAFANA_HOSTNAME=$(curl -L https://raw.githubusercontent.com/suxess-it/sx-cnp-oss/${CURRENT_BRANCH}/platform-apps/charts/kube-prometheus-stack/values-$(echo ${TARGET_TYPE} | awk '{print tolower($0)}').yaml | awk -F'[:\\[\\], ]+' '/hosts/ {print $3}')
+# gethostnames from ingress - to remove TARGET_TYPE 
+export ARGOCD_HOSTNAME=$(kubectl get ingress -o jsonpath='{.items[*].spec.rules[*].host}' -n argocd)
+export GRAFANA_HOSTNAME=$(kubectl get ingress -o jsonpath='{.items[*].spec.rules[*].host}' -n monitoring)
 
 # download argocd
 curl -kL -o argocd https://${ARGOCD_HOSTNAME}/download/argocd-linux-amd64
