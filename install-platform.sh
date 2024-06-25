@@ -68,9 +68,6 @@ CURRENT_BRANCH_SED=$( echo ${CURRENT_BRANCH} | sed 's/\//\\\//g' )
 curl -L https://raw.githubusercontent.com/suxess-it/sx-cnp-oss/${CURRENT_BRANCH}/bootstrap-app-$(echo ${TARGET_TYPE} | awk '{print tolower($0)}').yaml | sed "s/targetRevision: main/targetRevision: ${CURRENT_BRANCH_SED}/g" | kubectl apply -n argocd -f -
 
 # create app list
-# special case for KIND/K3S ... tbd if values-kind.yaml in every chart?
-if [ ${TARGET_TYPE} == "KIND" ] ; then TARGET_TYPE=K3D ; fi
-# case for KIND, remove above line
 case "${TARGET_TYPE}" in
 KIND)
   URL=https://raw.githubusercontent.com/suxess-it/sx-cnp-oss/${CURRENT_BRANCH}/platform-apps/target-chart/values-k3d.yaml
