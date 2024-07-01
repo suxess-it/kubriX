@@ -28,6 +28,10 @@ applications:
     syncOptions:
       - ServerSideApply=true
 
+  - name: crossplane
+    annotations:
+      argocd.argoproj.io/sync-wave: "-1"
+      
   - name: kargo
 
   - name: kubecost
@@ -61,9 +65,7 @@ applications:
       skipCrds: true
     syncOptions:
       - ServerSideApply=true
-
-  - name: crossplane
-
+      
   - name: komoplane
 
   - name: kyverno
