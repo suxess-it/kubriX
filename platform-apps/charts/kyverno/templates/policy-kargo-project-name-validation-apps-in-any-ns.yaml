@@ -4,6 +4,7 @@ kind: ClusterPolicy
 metadata:
   name: kargo-project-name-validation-apps-in-any-ns
   annotations:
+    argocd.argoproj.io/sync-wave: "1"
     policies.kyverno.io/title: Kargo Project Name Validation
     policies.kyverno.io/category: Kargo
     policies.kyverno.io/severity: medium
