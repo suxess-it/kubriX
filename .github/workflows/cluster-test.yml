@@ -109,4 +109,4 @@ jobs:
         shell: bash
         run: |
           kubectl delete application sx-bootstrap-app -n argocd &
-          watch kubectl get applications -n argocd
+          while true ; do kubectl get applications -n argocd ; if [[ $? != 0 ]]; then break ; fi ; sleep 5 ;done
