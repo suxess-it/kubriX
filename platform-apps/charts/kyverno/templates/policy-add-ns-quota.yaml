@@ -4,6 +4,7 @@ kind: ClusterPolicy
 metadata:
   name: add-ns-quota
   annotations:
+    argocd.argoproj.io/sync-wave: "1"
     policies.kyverno.io/title: Add Quota
     policies.kyverno.io/category: Multi-Tenancy, EKS Best Practices
     policies.kyverno.io/subject: ResourceQuota, LimitRange
