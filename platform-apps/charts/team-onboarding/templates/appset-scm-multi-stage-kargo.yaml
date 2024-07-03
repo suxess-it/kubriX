@@ -24,7 +24,7 @@ spec:
     metadata:
       name: '{{`{{ .repository }}`}}'
     spec:
-      project: "team1-project"
+      project: {{ .name }}-project
       sources:
       - repoURL: https://github.com/suxess-it/sx-cnp-oss
         targetRevision: HEAD
