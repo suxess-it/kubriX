@@ -77,8 +77,8 @@ spec:
           #repoUrl: ${{ parameters.repoUrl }}
           #repoUrlRepo: ${{ (parameters.repoUrl | parseRepoUrl)["repo"] }}
           #repoUrlowner: ${{ (parameters.repoUrl | parseRepoUrl)["owner"] }}
-          repoUrlRepo: suxess-it
-          repoUrlowner: ${{ parameters.team }}-demo-${{ parameters.owner }}
+          repoUrlRepo: ${{ parameters.team }}-demo-${{ parameters.owner }}
+          repoUrlowner: suxess-it
     - id: publish-gitopsreposetup
       name: Publish Template Gitops Repo
       action: publish:github
@@ -87,6 +87,7 @@ spec:
         allowedHosts: ['github.com']
         description: This is Kargo Demo App ${{ parameters.application_id }}
         #repoUrl: ${{ parameters.repoUrl }}
+        repoUrl: github.com?repo=${{ parameters.team }}-demo-${{ parameters.owner }}&owner=suxess-it
         token: ${{ secrets.USER_OAUTH_TOKEN }}
         fqdn: ${{ parameters.fqdn }}
         team: ${{ parameters.team }}
