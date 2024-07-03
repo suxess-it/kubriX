@@ -30,13 +30,10 @@ spec:
           type: string
           description: Help others understand what this app is for.
         owner:
-          title: Owner
+          title: Team
           type: string
-          description: Owner of this vm
-          ui:field: OwnerPicker
-          ui:options:
-            allowedKinds: 
-              - Group
+          description: Team to onboard
+
         fqdn:
           title: FQDN
           type: string       
@@ -71,11 +68,11 @@ spec:
           application_id: ${{ parameters.application_id }}
           description: ${{ parameters.description }}
           fqdn: ${{ parameters.fqdn }}
-          team: ${{ parameters.owner | replace(\"group:.*/\", \"\") }}
+          team: ${{ parameters.owner }}
           #repoUrl: ${{ parameters.repoUrl }}
           #repoUrlRepo: ${{ (parameters.repoUrl | parseRepoUrl)["repo"] }}
           #repoUrlowner: ${{ (parameters.repoUrl | parseRepoUrl)["owner"] }}
-          repoUrlRepo: ${{ parameters.owner | replace(\"group:.*/\", \"\") }}-demo-${{ parameters.application_id }}
+          repoUrlRepo: ${{ parameters.owner }}-demo-${{ parameters.application_id }}
           repoUrlowner: suxess-it
     - id: publish-gitopsreposetup
       name: Publish Template Gitops Repo
@@ -85,10 +82,10 @@ spec:
         allowedHosts: ['github.com']
         description: This is Kargo Demo App ${{ parameters.application_id }}
         #repoUrl: ${{ parameters.repoUrl }}
-        repoUrl: github.com?repo=${{ parameters.owner | replace(\"group:.*/\", \"\") }}-demo-${{ parameters.application_id }}&owner=suxess-it
+        repoUrl: github.com?repo=${{ parameters.owner }}-demo-${{ parameters.application_id }}&owner=suxess-it
         token: ${{ secrets.USER_OAUTH_TOKEN }}
         fqdn: ${{ parameters.fqdn }}
-        team: ${{ parameters.owner | replace(\"group:.*/\", \"\") }}
+        team: ${{ parameters.owner }}
         repoVisibility: public
         deleteBranchOnMerge: true
         protectDefaultBranch: false
