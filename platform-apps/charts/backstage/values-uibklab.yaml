@@ -52,7 +52,7 @@ backstage:
           # host: 127.0.0.1
         csp:
           connect-src: ["'self'", 'http:', 'https:']
-          frame-src: ['*.nip.io']
+          frame-src: ['*.lab.suxessit.k8s.cloud.uibk.ac.at']
           # Content-Security-Policy directives follow the Helmet format: https://helmetjs.github.io/#reference
           # Default Helmet Content-Security-Policy values can be removed by setting the key to false
         cors:
@@ -253,7 +253,7 @@ backstage:
           - type: config
             clusters:
               - url: https://kubernetes.default.svc
-                name: k3d-local
+                name: uibk-lab
                 authProvider: serviceAccount
                 skipTLSVerify: true
                 skipMetricsLookup: true
