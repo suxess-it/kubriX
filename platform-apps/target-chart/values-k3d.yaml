@@ -7,8 +7,6 @@ applications:
   - name: cert-manager
     annotations:
       argocd.argoproj.io/sync-wave: "-3"
-    valueFiles:
-      - values.yaml
 
   - name: argocd
     annotations:
@@ -21,6 +19,10 @@ applications:
       argocd.argoproj.io/sync-wave: "-1"
     syncOptions:
       - ServerSideApply=true
+
+  - name: crossplane
+    annotations:
+      argocd.argoproj.io/sync-wave: "-1"
 
   - name: loki
     destinationNamespaceOverwrite: monitoring
@@ -57,16 +59,8 @@ applications:
     destinationNamespaceOverwrite: argocd
 
   - name: argo-rollouts
-    valueFiles:
-      - values.yaml
-
-  - name: crossplane
-    valueFiles:
-      - values.yaml
-
+      
   - name: kyverno
-    valueFiles:
-      - values.yaml
     syncOptions:
       - ServerSideApply=true
       
