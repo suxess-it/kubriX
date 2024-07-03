@@ -1,0 +1,68 @@
+apiVersion: scaffolder.backstage.io/v1beta3
+kind: Template
+metadata:
+  name: update-yaml-file
+  title: Request new Team
+  description: Opens a PR for Platform Team, to add new Team to configuration
+  tags:
+    - onboarding
+    - kargo
+
+spec:
+  owner: user:phac008
+  type: example
+  parameters:
+    - title: Provide Team Name
+      required: ['team']
+      properties:
+        team:
+          title: Team Name
+          type: string
+          description: Add your team name for onboarding
+
+  steps:
+
+    - id: fetchPlain
+      name: Fetch the actual team configuration File from Github
+      action: fetch:plain:file
+      input:
+        url: https://github.com/suxess-it/sx-cnp-oss/blob/uibklab/platform-apps/charts/team-onboarding/values-uibklab.yaml
+        targetPath: values-uibklab.yaml
+
+    - id: update
+      name: Update File with new Team Information
+      action: roadiehq:utils:fs:append
+      input:
+        path: values-uibklab.yaml
+        content: >
+          # new team stanza for team ${{parameters.team}}
+            - name:  ${{parameters.team}}
+              sourceRepos:
+              - '*'
+              clusterResourceWhitelist:
+                - group: ""
+                  kind: Namespace
+                - group: kargo.akuity.io
+                  kind: Project
+              appOfAppsRepo:
+                repoURL: https://github.com/suxess-it/${{parameters.team}}-apps
+                path: k3d-apps
+                revision: main
+              multiStageKargoAppSet:
+                organization: suxess-it
+
+    - id: publish
+      name: Publish to Github
+      action: publish:github:pull-request
+      input:
+        repoUrl: github.com?repo=sx-cnp-oss&owner=suxess-it
+        title: Update for team ${{parameters.team}}
+        description: update for team ${{parameters.team}} onboarding
+        targetPath: platform-apps/charts/team-onboarding
+        branchName: update-team-config-${{parameters.team}}
+
+  output:
+    remoteUrl: '{{ steps.publish.output.remoteUrl }}'
+    links:
+      - title: Repository
+        url: ${{ steps.publish.output.remoteUrl }}
