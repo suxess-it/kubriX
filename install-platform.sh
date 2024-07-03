@@ -158,7 +158,7 @@ while [ $SECONDS -lt $end ]; do
 done
 
 # create kargo credentials secret so kargo can do git promotion
-kubectl create secret generic -n kargo github-creds --from-literal=password=${GITHUB_TOKEN} --from-literal=username=dummy --from-literal=repoURL='^http://github.com/suxess-it' --from-literal=repoURLIsRegex=true
+kubectl create secret generic -n kargo github-creds --from-literal=password=${GITHUB_TOKEN} --from-literal=username=jkleinlercher --from-literal=repoURL="^https://github.com/suxess-it" --from-literal=repoURLIsRegex=true
 kubectl label secret github-creds -n kargo kargo.akuity.io/cred-type=git
 
 # get backstage-locator token for backstage secret
