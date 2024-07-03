@@ -42,23 +42,23 @@ spec:
           title: FQDN
           type: string       
           default: 'lab.suxessit.k8s.cloud.uibk.ac.at'
-    - title: Choose a location
-      required:
-        - repoUrl
-      properties:
-        repoUrl:
-          title: Repository Location
-          type: string
-          ui:field: RepoUrlPicker
-          ui:options:
-            requestUserCredentials:
-              secretsKey: USER_OAUTH_TOKEN
-              additionalScopes:
-                github: 
-                  - workflow
-                  - user
-            allowedHosts:
-              - github.com
+#    - title: Choose a location
+#      required:
+#        - repoUrl
+#      properties:
+#        repoUrl:
+#          title: Repository Location
+#          type: string
+#          ui:field: RepoUrlPicker
+#          ui:options:
+#            requestUserCredentials:
+#              secretsKey: USER_OAUTH_TOKEN
+#              additionalScopes:
+#                github: 
+#                  - workflow
+#                  - user
+#            allowedHosts:
+#              - github.com
   steps:
     - id: template-gitops
       name: Fetch Skeleton + Template
@@ -74,10 +74,11 @@ spec:
           owner: ${{ parameters.owner }}
           fqdn: ${{ parameters.fqdn }}
           team: ${{ parameters.team }}
-          repoUrl: ${{ parameters.repoUrl }}
-          repoUrlRepo: ${{ (parameters.repoUrl | parseRepoUrl)["repo"] }}
-          repoUrlowner: ${{ (parameters.repoUrl | parseRepoUrl)["owner"] }}
-
+          #repoUrl: ${{ parameters.repoUrl }}
+          #repoUrlRepo: ${{ (parameters.repoUrl | parseRepoUrl)["repo"] }}
+          #repoUrlowner: ${{ (parameters.repoUrl | parseRepoUrl)["owner"] }}
+          repoUrlRepo: suxess-it
+          repoUrlowner: ${{ parameters.team }}-demo-${{ parameters.owner }}
     - id: publish-gitopsreposetup
       name: Publish Template Gitops Repo
       action: publish:github
@@ -85,7 +86,7 @@ spec:
         sourcePath: ./kargo-gitops
         allowedHosts: ['github.com']
         description: This is Kargo Demo App ${{ parameters.application_id }}
-        repoUrl: ${{ parameters.repoUrl }}
+        #repoUrl: ${{ parameters.repoUrl }}
         token: ${{ secrets.USER_OAUTH_TOKEN }}
         fqdn: ${{ parameters.fqdn }}
         team: ${{ parameters.team }}
