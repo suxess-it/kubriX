@@ -1,0 +1,16 @@
+teamName: ${{values.team}}
+appName: demo-${{values.application_id}}
+repoUrl: https://github.com/suxess-it/${{values.team}}-demo-${{values.application_id}}
+createAppNamespace: true
+stages:
+  - name: "test"
+    subscriptions: 
+      warehouse: "warehouse-{{ .Values.appName }}"
+  - name: "qa"
+    subscriptions: 
+      upstreamStages:
+      - name: test
+  - name: "prod"
+    subscriptions: 
+      upstreamStages:
+      - name: qa

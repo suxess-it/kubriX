@@ -7,6 +7,7 @@ metadata:
   tags:
     - kargo
     - metalstack
+    - kubex
 spec:
   owner: user:phac008
   type: system
@@ -23,6 +24,7 @@ spec:
           title: Name
           type: string
           description: Unique name of this app
+          default: 'myappnamexx'
         description:
           title: Description
           type: string
@@ -35,10 +37,11 @@ spec:
           ui:options:
             allowedKinds: 
               - User
+              - Group
         fqdn:
           title: FQDN
           type: string       
-          default: '127-0-0-1.nip.io'
+          default: 'lab.suxessit.k8s.cloud.uibk.ac.at'
     - title: Choose a location
       required:
         - repoUrl
@@ -70,6 +73,7 @@ spec:
           description: ${{ parameters.description }}
           owner: ${{ parameters.owner }}
           fqdn: ${{ parameters.fqdn }}
+          team: ${{ parameters.team }}
           repoUrl: ${{ parameters.repoUrl }}
           repoUrlRepo: ${{ (parameters.repoUrl | parseRepoUrl)["repo"] }}
           repoUrlowner: ${{ (parameters.repoUrl | parseRepoUrl)["owner"] }}
@@ -84,36 +88,11 @@ spec:
         repoUrl: ${{ parameters.repoUrl }}
         token: ${{ secrets.USER_OAUTH_TOKEN }}
         fqdn: ${{ parameters.fqdn }}
+        team: ${{ parameters.team }}
         repoVisibility: public
         deleteBranchOnMerge: true
         protectDefaultBranch: false
         defaultBranch: main
-        
-    - id: template-applicationsetup
-      name: Fetch Namespacesetup Skeleton + Template
-      action: fetch:template
-      input:
-        url: ./skeleton/applicationsetup
-        targetPath: ./applicationsetup
-        copyWithoutRender: []
-        values:
-          application_id: ${{ parameters.application_id }}
-          description: ${{ parameters.description }}
-          repoUrlRepo: ${{ (parameters.repoUrl | parseRepoUrl)["repo"] }}
-          repoUrlowner: ${{ (parameters.repoUrl | parseRepoUrl)["owner"] }}
-          environments: ${{ parameters.environments }}
-
-    - id: pull-request-applicationsetup
-      name: make a pr to approved-application repo with additional applicationsetup
-      action: publish:github:pull-request
-      input:
-        sourcePath: ./applicationsetup
-        targetPath: '.'
-        repoUrl: github.com?repo=approved-application&owner=suxess-it
-        branchName: ${{ parameters.application_id }}
-        token: ${{ secrets.USER_OAUTH_TOKEN }}
-        title: team app for ${{ parameters.application_id }}
-        description: team app for ${{ parameters.application_id }}
 
     - id: register
       name: Register catalog
@@ -126,8 +105,6 @@ spec:
     links:
       - title: Repository
         url: ${{ steps["publish-gitopsreposetup"].output.remoteUrl }}
-      - title: Approved-Apps PR
-        url: ${{ steps["pull-request-applicationsetup"].output.remoteUrl }}
       - title: Open in catalog
         icon: catalog
         entityRef: ${{ steps.register.output.entityRef }}
