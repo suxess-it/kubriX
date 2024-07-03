@@ -8,10 +8,13 @@ data:
   datasource.yaml: |-
     apiVersion: 1
     datasources:
-    - name: kubecost-preometheus-datasource
+    - name: kubecost-prometheus-datasource
       type: prometheus
       uid: kubecost
-      basicAuth: false
       url: http://sx-kubecost-prometheus-server.kubecost:80/
       access: proxy
       isDefault: false
+      jsonData:
+        httpMethod: POST
+        timeInterval: 30s
+
