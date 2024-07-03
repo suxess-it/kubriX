@@ -18,10 +18,13 @@ spec:
         team:
           title: Team Name
           type: string
-          description: Add your team name for onboarding
+          description: Select your team name for onboarding
+          ui:field: OwnerPicker
+          ui:options:
+            allowedKinds: 
+              - Group
 
   steps:
-
     - id: fetchPlain
       name: Fetch the actual team configuration File from Github
       action: fetch:plain:file
