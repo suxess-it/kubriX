@@ -13,7 +13,9 @@ metadata:
 #    nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
 #    nginx.ingress.kubernetes.io/proxy-buffer-size: "128k"
 spec:
-  ingressClassName: nginx
+  {{- if .Values.deployments.ingress.className }}
+  ingressClassName: {{ .Values.deployments.ingress.className | quote }}
+  {{- end }}
   tls:
     - hosts:
         - "{{ .Values.deployments.ingress.host }}"

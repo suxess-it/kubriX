@@ -32,6 +32,7 @@ deployments:
       name: postgres-storage
       path: /var/lib/postgresql/data
   ingress:
+    className: nginx
     host: keycloak.lab.suxessit.k8s.cloud.uibk.ac.at
   keycloak:
     version: 24.0.5
