@@ -101,14 +101,13 @@ backstage:
 
       argocd:
         baseUrl: https://argocd.lab.suxessit.k8s.cloud.uibk.ac.at
-        username: admin
-        password: MrvNPSR-miB2frvn
         namespacedApps: true
         appLocatorMethods:
           - type: 'config'
             instances:
               - name: uibklab
                 url: https://argocd.lab.suxessit.k8s.cloud.uibk.ac.at
+                token: ${ARGOCD_AUTH_TOKEN}
       
       # Reference documentation http://backstage.io/docs/features/techdocs/configuration
       # Note: After experimenting with basic setup, use CI/CD to generate docs
