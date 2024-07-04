@@ -10,7 +10,7 @@ metadata:
     - kubex
 spec:
   owner: user:phac008
-  type: system
+  type: onboarding
   
   parameters:
     - title: Provide information on this application
@@ -90,7 +90,7 @@ spec:
           #repoUrlRepo: ${{ (parameters.repoUrl | parseRepoUrl)["repo"] }}
           #repoUrlowner: ${{ (parameters.repoUrl | parseRepoUrl)["owner"] }}
           repoUrlRepo: ${{ steps['catalogFetch'].output.entity.metadata.name }}-demo-${{ parameters.application_id }}
-          repoUrlowner: phac008
+          repoUrlowner: suxess-it
     - id: publish-gitopsreposetup
       name: Publish Template Gitops Repo
       action: publish:github
@@ -99,7 +99,7 @@ spec:
         allowedHosts: ['github.com']
         description: This is Kargo Demo App ${{ parameters.application_id }}
         #repoUrl: ${{ parameters.repoUrl }}
-        repoUrl: github.com?repo=${{ steps['catalogFetch'].output.entity.metadata.name }}-demo-${{ parameters.application_id }}&owner=phac008
+        repoUrl: github.com?repo=${{ steps['catalogFetch'].output.entity.metadata.name }}-demo-${{ parameters.application_id }}&owner=suxess-it
         token: ${{ secrets.USER_OAUTH_TOKEN }}
         fqdn: ${{ parameters.fqdn }}
         #team: ${{ parameters.owner }}
