@@ -104,7 +104,8 @@ spec:
         fqdn: ${{ parameters.fqdn }}
         #team: ${{ parameters.owner }}
         team: ${{ steps['catalogFetch'].output.entity.metadata.name }}
-
+        gitAuthorName: ${{ user.entity.metadata.name }}
+        gitAuthorEmail: ${{ user.entity.spec.profile.email }}
         repoVisibility: public
         deleteBranchOnMerge: true
         protectDefaultBranch: false
