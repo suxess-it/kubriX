@@ -93,7 +93,7 @@ spec:
             httpGet:
               path: /health/ready
               port: {{.Values.deployments.keycloak.ports.containerPort}}
-            initialDelaySeconds: 250
+            initialDelaySeconds: 120
             periodSeconds: 10
           livenessProbe:
             httpGet:
