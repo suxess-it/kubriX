@@ -1,7 +1,7 @@
 apiVersion: scaffolder.backstage.io/v1beta3
 kind: Template
 metadata:
-  name: sx-cnp-oss-kargo-demo-app-template
+  name: kargo-demo-app-template
   title: Template for Kargo Demo App
   description: Run Kargo driven Demo App provisoned with ArgoCD
   tags:
@@ -32,30 +32,45 @@ spec:
         owner:
           title: Team
           type: string
-          description: Team to onboard
-
+          description: Repoowner Teamname
+          ui:field: EntityPicker
+          ui:options:
+            allowArbitraryValues: false
+            catalogFilter:
+              - kind: Group
         fqdn:
           title: FQDN
           type: string       
           default: 'lab.suxessit.k8s.cloud.uibk.ac.at'
-#    - title: Choose a location
-#      required:
-#        - repoUrl
-#      properties:
-#        repoUrl:
-#          title: Repository Location
-#          type: string
-#          ui:field: RepoUrlPicker
-#          ui:options:
-#            requestUserCredentials:
-#              secretsKey: USER_OAUTH_TOKEN
-#              additionalScopes:
-#                github: 
-#                  - workflow
-#                  - user
-#            allowedHosts:
-#              - github.com
+    - title: Choose a location
+      required:
+        - repoUrl
+      properties:
+        repoUrl:
+          title: Repository Information
+          type: string
+          ui:field: RepoUrlPicker
+          ui:options:
+            allowedHosts:
+              - github.com
+            allowedOwners:
+              - suxess-it
+            requestUserCredentials:
+              secretsKey: USER_OAUTH_TOKEN
+              additionalScopes:
+                github: 
+                  - workflow
+                  - user
+            allowedRepos:
+              - will-be-autocomplete-by-template
+
   steps:
+    - id: catalogFetch
+      name: Fetch component details
+      action: catalog:fetch
+      input:
+        entityRef: ${{ parameters.owner }}
+
     - id: template-gitops
       name: Fetch Skeleton + Template
       action: fetch:template
@@ -68,12 +83,14 @@ spec:
           application_id: ${{ parameters.application_id }}
           description: ${{ parameters.description }}
           fqdn: ${{ parameters.fqdn }}
-          team: ${{ parameters.owner }}
+          team: ${{ steps['catalogFetch'].output.entity.metadata.name }}
+          #team: ${{ parameters.owner }}
+          # multi owner
           #repoUrl: ${{ parameters.repoUrl }}
           #repoUrlRepo: ${{ (parameters.repoUrl | parseRepoUrl)["repo"] }}
           #repoUrlowner: ${{ (parameters.repoUrl | parseRepoUrl)["owner"] }}
-          repoUrlRepo: ${{ parameters.owner }}-demo-${{ parameters.application_id }}
-          repoUrlowner: suxess-it
+          repoUrlRepo: ${{ steps['catalogFetch'].output.entity.metadata.name }}-demo-${{ parameters.application_id }}
+          repoUrlowner: phac008
     - id: publish-gitopsreposetup
       name: Publish Template Gitops Repo
       action: publish:github
@@ -82,10 +99,12 @@ spec:
         allowedHosts: ['github.com']
         description: This is Kargo Demo App ${{ parameters.application_id }}
         #repoUrl: ${{ parameters.repoUrl }}
-        repoUrl: github.com?repo=${{ parameters.owner }}-demo-${{ parameters.application_id }}&owner=suxess-it
+        repoUrl: github.com?repo=${{ steps['catalogFetch'].output.entity.metadata.name }}-demo-${{ parameters.application_id }}&owner=phac008
         token: ${{ secrets.USER_OAUTH_TOKEN }}
         fqdn: ${{ parameters.fqdn }}
-        team: ${{ parameters.owner }}
+        #team: ${{ parameters.owner }}
+        team: ${{ steps['catalogFetch'].output.entity.metadata.name }}
+
         repoVisibility: public
         deleteBranchOnMerge: true
         protectDefaultBranch: false
