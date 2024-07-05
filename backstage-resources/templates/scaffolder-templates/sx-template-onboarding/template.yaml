@@ -24,6 +24,27 @@ spec:
             catalogFilter:
               - kind: Group
 
+    - title: Choose a location
+      required:
+        - repoUrl
+      properties:
+        repoUrl:
+          title: Repository Information
+          type: string
+          ui:field: RepoUrlPicker
+          ui:options:
+            allowedHosts:
+              - github.com
+            allowedOwners:
+              - suxess-it
+            requestUserCredentials:
+              secretsKey: USER_OAUTH_TOKEN
+              additionalScopes:
+                github: 
+                  - workflow
+                  - user
+            allowedRepos:
+              - sx-cnp-oss
   steps:
     - id: catalogFetch
       name: Fetch component details
