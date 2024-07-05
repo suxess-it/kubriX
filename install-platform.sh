@@ -57,7 +57,7 @@ helm install sx-argocd argo-cd \
 
 # create secret for scm applicationset in team app definition namespaces
 # see https://github.com/suxess-it/sx-cnp-oss/issues/214 for a sustainable solution
-for ns in adn-team1 adn-team2; do
+for ns in adn-team1 adn-team2 adn-team-a; do
   kubectl create namespace ${ns}
   kubectl create secret generic appset-github-token --from-literal=token=${GITHUB_APPSET_TOKEN} -n ${ns}
 done
