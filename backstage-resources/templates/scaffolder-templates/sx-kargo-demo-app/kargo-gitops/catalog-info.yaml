@@ -1,39 +1,3 @@
-# main
-apiVersion: backstage.io/v1alpha1
-kind: Component
-metadata:
-  name: "${{values.team}}-demo-${{values.application_id}}"
-  description: "${{values.team}}-demo-${{values.application_id}}"
-  tags:
-    - sx-cnp-oss
-    - template
-    - kargo
-    - metalstack
-    - kubex
-  annotations:
-    github.com/project-slug: ${{values.repoUrlowner}}/${{values.repoUrlRepo}}
-    backstage.io/kubernetes-label-selector: 'app.kubernetes.io/instance=demo-${{values.application_id}}'
-    argocd/app-namespace: adn-${{values.team}}
-    argocd/app-name: demo-${{values.application_id}}
-    backstage.io/techdocs-ref: dir:.
-    kargo-project: "https://kargo.${{values.fqdn}}/project/${{values.team}}-demo-${{values.application_id}}-kargo-project"
-    grafana/dashboard-selector: "(tags @> 'suXess')"
-  #  grafana/overview-dashboard: "https://grafana.${{values.fqdn}}/d/a87fb0d919ec0ea5f6543124e16c42a5/kubernetes-compute-resources-namespace-workloads?orgId=1&refresh=10s&var-datasource=default&var-cluster=sx-loki&var-namespace=${{values.team}}-demo-${{values.application_id}}-prod&var-type=All"
-spec:
-  type: service
-  lifecycle: experimental
-  owner: "${{values.team}}"
-  system: ${{values.application_id}}
-  dependsOn:
-    - resource:argocd
-    - resource:kubecost
-    - resource:grafana
-    - resource:metalstack
-    - resource:loki
-    - resource:kyverno
-    - resource:tempo
-    - resource:backstage
----
 # prod
 apiVersion: backstage.io/v1alpha1
 kind: Component
@@ -156,4 +120,40 @@ spec:
     - resource:tempo
     - resource:backstage
   subcomponentOf: ${{values.team}}-demo-${{values.application_id}}
+---
+# main, at the end of catalog-info.yaml so that register link is on main component
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: "${{values.team}}-demo-${{values.application_id}}"
+  description: "${{values.team}}-demo-${{values.application_id}}"
+  tags:
+    - sx-cnp-oss
+    - template
+    - kargo
+    - metalstack
+    - kubex
+  annotations:
+    github.com/project-slug: ${{values.repoUrlowner}}/${{values.repoUrlRepo}}
+    backstage.io/kubernetes-label-selector: 'app.kubernetes.io/instance=demo-${{values.application_id}}'
+    argocd/app-namespace: adn-${{values.team}}
+    argocd/app-name: demo-${{values.application_id}}
+    backstage.io/techdocs-ref: dir:.
+    kargo-project: "https://kargo.${{values.fqdn}}/project/${{values.team}}-demo-${{values.application_id}}-kargo-project"
+    grafana/dashboard-selector: "(tags @> 'suXess')"
+  #  grafana/overview-dashboard: "https://grafana.${{values.fqdn}}/d/a87fb0d919ec0ea5f6543124e16c42a5/kubernetes-compute-resources-namespace-workloads?orgId=1&refresh=10s&var-datasource=default&var-cluster=sx-loki&var-namespace=${{values.team}}-demo-${{values.application_id}}-prod&var-type=All"
+spec:
+  type: service
+  lifecycle: experimental
+  owner: "${{values.team}}"
+  system: ${{values.application_id}}
+  dependsOn:
+    - resource:argocd
+    - resource:kubecost
+    - resource:grafana
+    - resource:metalstack
+    - resource:loki
+    - resource:kyverno
+    - resource:tempo
+    - resource:backstage
 ---
