@@ -133,6 +133,10 @@ metadata:
     - kargo
     - metalstack
     - kubex
+  links:
+    - url: https://argocd.${{values.fqdn}}/applications/adn-${{values.team}}/${{values.team}}-demo-${{values.application_id}}?resource=
+      title: ArgoCD Application Information of ${{values.team}}-demo-${{values.application_id}}
+      icon: web
   annotations:
     github.com/project-slug: ${{values.repoUrlowner}}/${{values.repoUrlRepo}}
     backstage.io/kubernetes-label-selector: 'app.kubernetes.io/instance=demo-${{values.application_id}}'
