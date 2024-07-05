@@ -118,13 +118,6 @@ spec:
         repoContentsUrl: ${{ steps["publish-gitopsreposetup"].output.repoContentsUrl }}
         catalogInfoPath: '/catalog-info.yaml'
 
-    - id: register2
-      name: Register Resources
-      action: catalog:register
-      input:
-        repoContentsUrl: ${{ steps["publish-gitopsreposetup"].output.repoContentsUrl }}
-        catalogInfoPath: '/resource-info.yaml'
-
   output:
     links:
       - title: Repository
