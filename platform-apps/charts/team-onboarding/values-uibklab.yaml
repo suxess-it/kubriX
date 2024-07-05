@@ -13,3 +13,18 @@ teams:
       revision: main
     multiStageKargoAppSet:
       organization: suxess-it
+# new team stanza for team sx-cnp-oss
+  - name:  sx-cnp-oss
+    sourceRepos:
+    - '*'
+    clusterResourceWhitelist:
+      - group: ""
+        kind: Namespace
+      - group: kargo.akuity.io
+        kind: Project
+    appOfAppsRepo:
+      repoURL: https://github.com/suxess-it/sx-cnp-oss-apps
+      path: k3d-apps
+      revision: main
+    multiStageKargoAppSet:
+      organization: suxess-it
