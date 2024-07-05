@@ -11,9 +11,9 @@ metadata:
     - kubex
   annotations:
     github.com/project-slug: ${{values.repoUrlowner}}/${{values.repoUrlRepo}}
-    backstage.io/kubernetes-label-selector: 'app.kubernetes.io/instance=prod-${{values.application_id}}'
+    backstage.io/kubernetes-label-selector: 'app.kubernetes.io/instance=demo-${{values.application_id}}-prod'
     argocd/app-namespace: adn-${{values.team}}
-    argocd/app-name: prod-${{values.application_id}}
+    argocd/app-name: demo-${{values.application_id}}-prod
     backstage.io/techdocs-ref: dir:.
     kargo-project: "https://kargo.${{values.fqdn}}/project/kargo-${{values.application_id}}"
     grafana/dashboard-selector: "(tags @> 'suXess')"
@@ -25,7 +25,6 @@ spec:
   system: ${{values.application_id}}
   dependsOn:
     - resource:argocd
-    - resource:kubevirt
     - resource:kubecost
     - resource:grafana
     - resource:metalstack

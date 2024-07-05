@@ -18,12 +18,19 @@ spec:
           title: Team Name
           type: string
           description: Select your team name for onboarding
-          ui:field: OwnerPicker
+          ui:field: EntityPicker
           ui:options:
-            allowedKinds: 
-              - Group
+            allowArbitraryValues: false
+            catalogFilter:
+              - kind: Group
 
   steps:
+      - id: catalogFetch
+      name: Fetch component details
+      action: catalog:fetch
+      input:
+        entityRef: ${{ parameters.team }}
+
     - id: fetchPlain
       name: Fetch the actual team configuration File from Github
       action: fetch:plain:file
@@ -37,8 +44,8 @@ spec:
       input:
         path: values-uibklab.yaml
         content: >
-          # new team stanza for team ${{parameters.team}}
-            - name:  ${{parameters.team}}
+          # new team stanza for team ${{ steps['catalogFetch'].output.entity.metadata.name }}
+            - name:  ${{ steps['catalogFetch'].output.entity.metadata.name }}
               sourceRepos:
               - '*'
               clusterResourceWhitelist:
@@ -47,7 +54,7 @@ spec:
                 - group: kargo.akuity.io
                   kind: Project
               appOfAppsRepo:
-                repoURL: https://github.com/suxess-it/${{parameters.team}}-apps
+                repoURL: https://github.com/suxess-it/${{ steps['catalogFetch'].output.entity.metadata.name }}-apps
                 path: k3d-apps
                 revision: main
               multiStageKargoAppSet:
@@ -58,10 +65,10 @@ spec:
       action: publish:github:pull-request
       input:
         repoUrl: github.com?repo=sx-cnp-oss&owner=suxess-it
-        title: Update for team ${{parameters.team}}
-        description: update for team ${{parameters.team}} onboarding
+        title: Update for team ${{ steps['catalogFetch'].output.entity.metadata.name }}
+        description: update for team ${{ steps['catalogFetch'].output.entity.metadata.name }} onboarding
         targetPath: platform-apps/charts/team-onboarding
-        branchName: update-team-config-${{parameters.team}}
+        branchName: update-team-config-${{ steps['catalogFetch'].output.entity.metadata.name }}
         targetBranchName: uibklab
         token: ${{ secrets.USER_OAUTH_TOKEN }}
         gitAuthorName: ${{ user.entity.metadata.name }}
