@@ -73,8 +73,7 @@ spec:
     - resource:kyverno
     - resource:tempo
     - resource:backstage
-  subcomponentOf:
-    - component:${{values.team}}-demo-${{values.application_id}}
+  subcomponentOf: ${{values.team}}-demo-${{values.application_id}}
 ---
 #qa
 apiVersion: backstage.io/v1alpha1
@@ -115,8 +114,7 @@ spec:
     - resource:kyverno
     - resource:tempo
     - resource:backstage
-  subcomponentOf:
-    - component:${{values.team}}-demo-${{values.application_id}}
+  subcomponentOf: ${{values.team}}-demo-${{values.application_id}}
 ---
 # test
 apiVersion: backstage.io/v1alpha1
@@ -157,6 +155,5 @@ spec:
     - resource:kyverno
     - resource:tempo
     - resource:backstage
-  subcomponentOf:
-    - component:${{values.team}}-demo-${{values.application_id}}
+  subcomponentOf: ${{values.team}}-demo-${{values.application_id}}
 ---
