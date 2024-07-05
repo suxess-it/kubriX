@@ -1,7 +1,7 @@
 apiVersion: scaffolder.backstage.io/v1beta3
 kind: Template
 metadata:
-  name: update-yaml-file
+  name: Team-Onboarding
   title: Team-Onboarding
   description: Onboarding a new stream-aligned-team via PR for the platform-team
   tags:
@@ -89,10 +89,10 @@ spec:
       action: publish:github:pull-request
       input:
         repoUrl: github.com?repo=sx-cnp-oss&owner=suxess-it
-        title: Update for team ${{ steps['catalogFetch'].output.entity.metadata.name }}
-        description: update for team ${{ steps['catalogFetch'].output.entity.metadata.name }} onboarding
+        title: Onboarding team ${{ steps['catalogFetch'].output.entity.metadata.name }}
+        description: Onboarding team ${{ steps['catalogFetch'].output.entity.metadata.name }} onboarding
         targetPath: platform-apps/charts/team-onboarding
-        branchName: update-team-config-${{ steps['catalogFetch'].output.entity.metadata.name }}
+        branchName: onboarding-team-${{ steps['catalogFetch'].output.entity.metadata.name }}
         targetBranchName: uibklab
         token: ${{ secrets.USER_OAUTH_TOKEN }}
         gitAuthorName: ${{ user.entity.metadata.name }}
@@ -101,5 +101,5 @@ spec:
   output:
     remoteUrl: '{{ steps.publish.output.remoteUrl }}'
     links:
-      - title: Repository
+      - title: Open Pull-Request
         url: ${{ steps.publish.output.remoteUrl }}
