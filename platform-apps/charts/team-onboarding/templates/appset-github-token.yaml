@@ -1,7 +1,6 @@
 {{- range .Values.teams }}
 apiVersion: v1
 kind: Secret
-type: Opaque
 metadata:
   name: appset-github-token
   namespace: adn-{{ .name }}
