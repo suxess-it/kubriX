@@ -90,7 +90,7 @@ spec:
           #repoUrl: ${{ parameters.repoUrl }}
           #repoUrlRepo: ${{ (parameters.repoUrl | parseRepoUrl)["repo"] }}
           #repoUrlowner: ${{ (parameters.repoUrl | parseRepoUrl)["owner"] }}
-          repoUrlRepo: ${{ steps['catalogFetch'].output.entity.metadata.name }}-${{ parameters.application_id }}
+          repoUrlRepo: ${{ steps['catalogFetch'].output.entity.metadata.name }}-demo-${{ parameters.application_id }}
           repoUrlowner: suxess-it
     - id: publish-gitopsreposetup
       name: Publish Template Gitops Repo
@@ -100,7 +100,7 @@ spec:
         allowedHosts: ['github.com']
         description: This is Kargo Demo App ${{ parameters.application_id }}
         #repoUrl: ${{ parameters.repoUrl }}
-        repoUrl: github.com?repo=${{ steps['catalogFetch'].output.entity.metadata.name }}-${{ parameters.application_id }}&owner=suxess-it
+        repoUrl: github.com?repo=${{ steps['catalogFetch'].output.entity.metadata.name }}-demo-${{ parameters.application_id }}&owner=suxess-it
         token: ${{ secrets.USER_OAUTH_TOKEN }}
         fqdn: ${{ parameters.fqdn }}
         #team: ${{ parameters.owner }}
