@@ -8,7 +8,7 @@ Here we want to give you a good overview how this approach works and what platfo
 
 ## Overview - Onboarding teams and apps with ApplicationSets
 
-![image](https://github.com/suxess-it/sx-cnp-oss/assets/11465610/6430c1a5-2e24-4286-abc7-986e3513dee7)
+![image](https://github.com/suxess-it/sx-cnp-oss/backstage-resources/docs/img/onboarding-teams-with-appset.png)
 
 While this picture seems to be complex, it actually shows that onboarding teams and apps is just as easy as follows:
 
@@ -26,7 +26,7 @@ The internal operators, controllers and a little bit of love and magic then
 
 ## Overview - Onboarding teams and apps with App-Of-Apps
 
-![image](https://github.com/suxess-it/sx-cnp-oss/assets/11465610/9bc5dcad-8c18-4479-ab5e-5230f3d39fc3)
+![image](https://github.com/suxess-it/sx-cnp-oss/backstage-resources/docs/img/onboarding-teams-with-appofapps.png)
 
 Also this picture is probably a little bit overwhelming in the first place, but in the end there is just one additional step here
 
