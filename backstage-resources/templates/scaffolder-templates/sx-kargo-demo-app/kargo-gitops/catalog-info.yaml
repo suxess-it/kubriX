@@ -16,9 +16,9 @@ metadata:
       icon: web
   annotations:
     github.com/project-slug: ${{values.repoUrlowner}}/${{values.repoUrlRepo}}
-    backstage.io/kubernetes-label-selector: 'app.kubernetes.io/instance=demo-${{values.application_id}}-prod'
+    backstage.io/kubernetes-label-selector: 'app.kubernetes.io/instance=${{values.application_id}}-prod'
     argocd/app-namespace: adn-${{values.team}}
-    argocd/app-name: demo-${{values.application_id}}-prod
+    argocd/app-name: ${{values.application_id}}-prod
     backstage.io/techdocs-ref: dir:.
     kargo-project: "https://kargo.${{values.fqdn}}/project/${{values.team}}-${{values.application_id}}-kargo-project"
     grafana/dashboard-selector: "(tags @> 'suXess')"
@@ -57,9 +57,9 @@ metadata:
       icon: web
   annotations:
     github.com/project-slug: ${{values.repoUrlowner}}/${{values.repoUrlRepo}}
-    backstage.io/kubernetes-label-selector: 'app.kubernetes.io/instance=demo-${{values.application_id}}-qa'
+    backstage.io/kubernetes-label-selector: 'app.kubernetes.io/instance=${{values.application_id}}-qa'
     argocd/app-namespace: adn-${{values.team}}
-    argocd/app-name: demo-${{values.application_id}}-qa
+    argocd/app-name: ${{values.application_id}}-qa
     backstage.io/techdocs-ref: dir:.
     kargo-project: "https://kargo.${{values.fqdn}}/project/${{values.team}}-${{values.application_id}}-kargo-project"
     grafana/dashboard-selector: "(tags @> 'suXess')"
@@ -98,9 +98,9 @@ metadata:
       icon: web
   annotations:
     github.com/project-slug: ${{values.repoUrlowner}}/${{values.repoUrlRepo}}
-    backstage.io/kubernetes-label-selector: 'app.kubernetes.io/instance=demo-${{values.application_id}}-test'
+    backstage.io/kubernetes-label-selector: 'app.kubernetes.io/instance=${{values.application_id}}-test'
     argocd/app-namespace: adn-${{values.team}}
-    argocd/app-name: demo-${{values.application_id}}-test
+    argocd/app-name: ${{values.application_id}}-test
     backstage.io/techdocs-ref: dir:.
     kargo-project: "https://kargo.${{values.fqdn}}/project/${{values.team}}-${{values.application_id}}-kargo-project"
     grafana/dashboard-selector: "(tags @> 'suXess')"
