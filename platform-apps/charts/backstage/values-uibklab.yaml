@@ -141,9 +141,9 @@ backstage:
           oidc:
             development:
               # real metadataUrl -> local cluster lead to "ECONNREFUSED 127.0.0.1:443" - #24935
-              metadataUrl: https://keycloak.lab.suxessit.k8s.cloud.uibk.ac.at/realms/sx-cnp-oss #.well-known/openid-configuration can be ommited
+              #metadataUrl: https://keycloak.lab.suxessit.k8s.cloud.uibk.ac.at/realms/sx-cnp-oss #.well-known/openid-configuration can be ommited
               # workaround -> also set frontendUrl in keycloak realm
-              #metadataUrl: http://keycloak-service.keycloak.svc.cluster.local:8080/realms/sx-cnp-oss #.well-known/openid-configuration can be ommited
+              metadataUrl: http://keycloak-service.keycloak.svc.cluster.local:8080/realms/sx-cnp-oss #.well-known/openid-configuration can be ommited
               callbackUrl: https://backstage.lab.suxessit.k8s.cloud.uibk.ac.at/api/auth/oidc/handler/frame
               clientId: backstage
               clientSecret: demosecret
@@ -232,9 +232,9 @@ backstage:
           keycloakOrg:
             default:
               # real baseUrl -> local cluster lead to "ECONNREFUSED 127.0.0.1:443"
-              baseUrl: https://keycloak.lab.suxessit.k8s.cloud.uibk.ac.at
+              #baseUrl: https://keycloak.lab.suxessit.k8s.cloud.uibk.ac.at
               # workaround
-              #baseUrl: http://keycloak-service.keycloak.svc.cluster.local:8080
+              baseUrl: http://keycloak-service.keycloak.svc.cluster.local:8080
               loginRealm: sx-cnp-oss
               realm: sx-cnp-oss
               clientId: backstage
