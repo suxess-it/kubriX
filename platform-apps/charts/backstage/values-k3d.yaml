@@ -1,6 +1,9 @@
 cert:
   enabled: false
 
+gardenercert:
+  enabled: false
+
 backstage:
   ingress:
     enabled: true
@@ -81,7 +84,7 @@ backstage:
         #   changeOrigin: true
         "/argocd/api":
           # use k8s internal service name because argocd-127-0-0-1.nip.io resolves to 127.0.0.1 in container, too
-          target: http://argocd-server.argocd:80/api/v1/
+          target: http://sx-argocd-server.argocd:80/api/v1/
           changeOrigin: true
           secure: false
           headers:
@@ -96,13 +99,13 @@ backstage:
 
       argocd:
         baseUrl: https://argocd-127-0-0-1.nip.io/
-        username: admin
-        password: admin
+        namespacedApps: true
         appLocatorMethods:
           - type: 'config'
             instances:
-              - name: main
+              - name: k3d
                 url: https://argocd-127-0-0-1.nip.io/
+                token: ${ARGOCD_AUTH_TOKEN}
 
       # Reference documentation http://backstage.io/docs/features/techdocs/configuration
       # Note: After experimenting with basic setup, use CI/CD to generate docs
