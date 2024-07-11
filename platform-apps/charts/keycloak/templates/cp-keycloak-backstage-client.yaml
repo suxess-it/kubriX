@@ -28,7 +28,7 @@ spec:
 #    managementPolicies: ["Observe"]
     validRedirectUris:
       - "http://localhost:7007/api/auth/oidc/handler/frame"
-      - "https://{{ .Values.deployments.ingress.host }}/api/auth/oidc/handler/frame"
+      - "https://backstage{{ .Values.deployments.ingress.fqdn }}/api/auth/oidc/handler/frame"
     clientSecretSecretRef:
       key: {{ .Values.deployments.keycloak.client.config.clientID }}
       name: "{{ .Release.Name }}-client-{{ .Values.deployments.keycloak.client.config.clientID }}-password"

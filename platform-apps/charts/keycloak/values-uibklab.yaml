@@ -33,7 +33,7 @@ deployments:
       path: /var/lib/postgresql/data
   ingress:
     className: nginx
-    host: keycloak.lab.suxessit.k8s.cloud.uibk.ac.at
+    fqdn: .lab.suxessit.k8s.cloud.uibk.ac.at # add to prefix keycloak in templates
   keycloak:
     version: 24.0.5
     service:

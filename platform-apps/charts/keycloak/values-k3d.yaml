@@ -31,7 +31,7 @@ deployments:
       name: postgres-storage
       path: /var/lib/postgresql/data
   ingress:
-    host: keycloak-127-0-0-1.nip.io
+    fqdn: -127-0-0-1.nip.io # add to prefix keycloak in templates
   keycloak:
     version: 24.0.5
     service:
