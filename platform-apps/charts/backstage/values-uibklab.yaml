@@ -147,8 +147,7 @@ backstage:
               callbackUrl: https://backstage.lab.suxessit.k8s.cloud.uibk.ac.at/api/auth/oidc/handler/frame
               clientId: backstage
               clientSecret: demosecret
-              scope: 'openid profile email groups'
-              #scope: 'openid profile email'
+              additionalScopes: 'groups'
               prompt: auto
               signIn:
                 resolvers:

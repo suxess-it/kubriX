@@ -6,7 +6,7 @@ metadata:
 {{- if .Values.gardenercert.enabled }}
     cert.gardener.cloud/purpose: managed
     dns.gardener.cloud/class: garden
-    dns.gardener.cloud/dnsnames: {{ .Values.deployments.ingress.host }}
+    dns.gardener.cloud/dnsnames: keycloak{{ .Values.deployments.ingress.fqdn }}
     dns.gardener.cloud/ttl: "180"
 {{- end }}
     nginx.ingress.kubernetes.io/backend-protocol: HTTP
@@ -18,10 +18,10 @@ spec:
   {{- end }}
   tls:
     - hosts:
-        - "{{ .Values.deployments.ingress.host }}"
+        - "keycloak{{ .Values.deployments.ingress.fqdn }}"
       secretName: "{{ .Values.secrets.tls.name }}"
   rules:
-    - host: "{{ .Values.deployments.ingress.host }}"
+    - host: "keycloak{{ .Values.deployments.ingress.fqdn }}"
       http:
         paths:
           - path: /

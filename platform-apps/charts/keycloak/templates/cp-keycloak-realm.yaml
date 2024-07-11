@@ -14,7 +14,7 @@ spec:
     realm: {{ .Values.deployments.keycloak.realm.realmid }}
     displayName: {{ .Values.deployments.keycloak.realm.realmid }}
     attributes:
-      frontendUrl: https://{{ .Values.deployments.ingress.host }}
+      frontendUrl: https://keycloak{{ .Values.deployments.ingress.fqdn }}
   deletionPolicy: "Delete"
   providerConfigRef:
     name: "{{ .Release.Name }}-config"
