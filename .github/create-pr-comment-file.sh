@@ -10,7 +10,7 @@ for env in pr target; do
   for chart in $( ls ); do
     echo ${chart}
     helm dependency update ${chart}
-    for value in $( find ${chart} -type f -name "values-*" ); do
+    for value in $( find ${chart} -type f -name "values*" ); do
       valuefile=$( basename ${value} )
       mkdir -p ../../../out/${env}/${chart}/${valuefile}
       helm template ${chart} -f ${value} --output-dir ../../../out/${env}/${chart}/${valuefile}
