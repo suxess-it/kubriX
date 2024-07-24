@@ -4,7 +4,6 @@ metadata:
   labels:
     grafana_dashboard: "1"
   name: argocd-dashboard-169
-  namespace: monitoring
 data:
   argocd-dashboard-169.json: |-
 {{ .Files.Get "dashboard-files/argocd-dashboard-169.json" | indent 4 }}
