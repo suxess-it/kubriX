@@ -35,6 +35,30 @@ argo-cd:
       policy.csv: |
         p, backstage, applications, get, */*, allow
 
+  controller:
+    metrics:
+      enabled: true
+      serviceMonitor: 
+        enabled: true
+        additionalLabels:
+          release: kube-prometheus-stack        
+
+  dex:
+    metrics:
+      enabled: true
+      serviceMonitor: 
+        enabled: true
+        additionalLabels:
+          release: kube-prometheus-stack        
+
+  redis:
+    metrics:
+      enabled: true
+      serviceMonitor: 
+        enabled: true
+        additionalLabels:
+          release: kube-prometheus-stack      
+
   server:
     ingress:
       enabled: true
@@ -51,6 +75,34 @@ argo-cd:
       contents:
         - name: argo-rollouts
           url: https://github.com/argoproj-labs/rollout-extension/releases/download/v0.3.4/extension.tar
+    metrics:
+      enabled: true
+      serviceMonitor: 
+        enabled: true
+        additionalLabels:
+          release: kube-prometheus-stack        
 
   applicationSet:
     allowAnyNamespace: true
+    metrics:
+      enabled: true
+      serviceMonitor: 
+        enabled: true
+        additionalLabels:
+          release: kube-prometheus-stack        
+
+  repoServer:
+    metrics:
+      enabled: true
+      serviceMonitor: 
+        enabled: true
+        additionalLabels:
+          release: kube-prometheus-stack        
+
+  notifications:
+    metrics:
+      enabled: true
+      serviceMonitor: 
+        enabled: true
+        additionalLabels:
+          release: kube-prometheus-stack      
