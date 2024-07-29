@@ -20,6 +20,10 @@ applications:
     syncOptions:
       - ServerSideApply=true
 
+  - name: mimir
+    annotations:
+      argocd.argoproj.io/sync-wave: "-1"
+
   - name: crossplane
     annotations:
       argocd.argoproj.io/sync-wave: "-1"
