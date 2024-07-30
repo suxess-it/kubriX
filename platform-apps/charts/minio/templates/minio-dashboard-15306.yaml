@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  labels:
+    grafana_dashboard: "1"
+  name: minio-dashboard-15306
+data:
+  minio-dashboard-15306.json: |-
+{{ .Files.Get "dashboard-files/minio-dashboard-15306.json" | indent 4 }}
