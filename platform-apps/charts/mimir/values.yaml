@@ -1,0 +1,10 @@
+mimir:
+  metaMonitoring:
+    serviceMonitor:
+      enabled: true
+    grafanaAgent:
+      enabled: true
+      installOperator: true
+      metrics:
+        additionalRemoteWriteConfigs:
+          - url: "http://sx-mimir-nginx.mimir.svc:80/api/v1/push"
