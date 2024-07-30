@@ -35,6 +35,12 @@ kube-prometheus-stack:
       finalizers:
         - kubernetes.io/pvc-protection
 
+    sidecar:
+      datasources:
+        searchNamespace:
+          - monitoring
+          - mimir
+
 
   kubelet:
     serviceMonitor:
