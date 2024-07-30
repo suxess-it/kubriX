@@ -2,7 +2,7 @@
 
 set -x
 
-if [ "${TARGET_TYPE}" == "K3D" ] ; then
+if [ "${TARGET_TYPE}" == "K3D" ] || [ "${TARGET_TYPE}" == "K3D-OBSERVABILITY-STACK" ] ; then
   # do we need to set this always? I had DNS issues on the train
   export K3D_FIX_DNS=1
   
@@ -15,7 +15,7 @@ if [ "${TARGET_TYPE}" == "K3D" ] ; then
     --wait
 fi
 
-if [ "${TARGET_TYPE}" == "K3D" ] || [ "${TARGET_TYPE}" == "KIND" ] ; then
+if [ "${TARGET_TYPE}" == "K3D" ] || [ "${TARGET_TYPE}" == "KIND" ] || [ "${TARGET_TYPE}" == "K3D-OBSERVABILITY-STACK" ] ; then
 # create mkcert certs in alle namespaces with ingress
 for namespace in backstage kargo monitoring argocd keycloak kubecost falco; do
   kubectl create namespace ${namespace}
