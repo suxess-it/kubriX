@@ -1,0 +1,10 @@
+mimir:
+  nginx:
+    ingress:
+      enabled: true
+      hosts:
+        - host: metrics-monitoring.lab.suxessit.k8s.cloud.uibk.ac.at
+          paths:
+            - path: /
+              pathType: Prefix
+      tls: ""

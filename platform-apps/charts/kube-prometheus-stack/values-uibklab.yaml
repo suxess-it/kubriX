@@ -41,6 +41,11 @@ kube-prometheus-stack:
       finalizers:
         - kubernetes.io/pvc-protection
 
+    sidecar:
+      datasources:
+        searchNamespace:
+          - monitoring
+          - mimir
 
   kubelet:
     serviceMonitor:
@@ -111,3 +116,8 @@ kube-prometheus-stack:
       ## which will also match the servicemonitors created
       ##        
       serviceMonitorSelectorNilUsesHelmValues: false
+
+      # remote write to Grafana Mimir instance for central monitoring
+      remoteWrite:
+        - url: http://metrics-monitoring.lab.suxessit.k8s.cloud.uibk.ac.at/api/v1/push
+          name: kubeX-observability
