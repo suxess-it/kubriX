@@ -1,0 +1,37 @@
+default:
+  valueFiles:
+  - values-k3d.yaml
+
+applications:
+
+  - name: argocd
+    annotations:
+      argocd.argoproj.io/sync-wave: "-2"
+
+  - name: kube-prometheus-stack
+    destinationNamespaceOverwrite: monitoring
+    annotations:
+      argocd.argoproj.io/compare-options: ServerSideDiff=true
+      argocd.argoproj.io/sync-wave: "-1"
+    syncOptions:
+      - ServerSideApply=true
+
+  - name: mimir
+    annotations:
+      argocd.argoproj.io/sync-wave: "-1"
+
+  - name: loki
+    destinationNamespaceOverwrite: monitoring
+    annotations:
+      argocd.argoproj.io/compare-options: ServerSideDiff=true
+    helmOptions:
+      skipCrds: true
+    syncOptions:
+      - ServerSideApply=true
+
+  - name: promtail
+    destinationNamespaceOverwrite: monitoring
+    
+  - name: tempo
+    destinationNamespaceOverwrite: monitoring
+
