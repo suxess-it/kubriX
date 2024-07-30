@@ -2,7 +2,7 @@
 
 set -x
 
-if [ "${TARGET_TYPE}" == "K3D" ] || [ "${TARGET_TYPE}" == "K3D-OBSERVABILITY-STACK" ] ; then
+if [[ "${TARGET_TYPE}" =~ ^K3D.* ]] ; then
   # do we need to set this always? I had DNS issues on the train
   export K3D_FIX_DNS=1
   
@@ -15,9 +15,9 @@ if [ "${TARGET_TYPE}" == "K3D" ] || [ "${TARGET_TYPE}" == "K3D-OBSERVABILITY-STA
     --wait
 fi
 
-if [ "${TARGET_TYPE}" == "K3D" ] || [ "${TARGET_TYPE}" == "KIND" ] || [ "${TARGET_TYPE}" == "K3D-OBSERVABILITY-STACK" ] ; then
+if [[ "${TARGET_TYPE}" =~ ^K3D.* ]] || [[ "${TARGET_TYPE}" =~ ^KIND.* ]] ; then
 # create mkcert certs in alle namespaces with ingress
-for namespace in backstage kargo monitoring argocd keycloak kubecost falco; do
+for namespace in backstage kargo monitoring argocd keycloak komoplane kubecost falco minio velero vault; do
   kubectl create namespace ${namespace}
   # for grafana the namespace is not the same as the ingress hostname
   if [ "${namespace}" = "monitoring" ]; then
@@ -31,11 +31,16 @@ for namespace in backstage kargo monitoring argocd keycloak kubecost falco; do
   else
     kubectl create secret tls ${namespace}-server-tls -n ${namespace} --cert=${namespace}-cert.pem --key=${namespace}-key.pem
   fi
+  # minioconsole needs additional secret
+  if [ "${namespace}" = "minio" ]; then
+    mkcert -cert-file ${namespace}-console-cert.pem -key-file ${namespace}-console-key.pem minio-console-127-0-0-1.nip.io
+    kubectl create secret tls minio-console-tls -n ${namespace} --cert=${namespace}-console-cert.pem --key=${namespace}-console-key.pem
+  fi
   rm ${namespace}-cert.pem ${namespace}-key.pem
 done
 fi
 
-if [ "${TARGET_TYPE}" == "KIND" ] ; then
+if [[ "${TARGET_TYPE}" =~ ^KIND.* ]] ; then
   kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/main/deploy/static/provider/kind/deploy.yaml
   kubectl wait --namespace ingress-nginx \
     --for=condition=ready pod \
@@ -69,7 +74,7 @@ curl -L https://raw.githubusercontent.com/suxess-it/sx-cnp-oss/${CURRENT_BRANCH}
 
 # create app list
 case "${TARGET_TYPE}" in
-KIND)
+KIND*)
   URL=https://raw.githubusercontent.com/suxess-it/sx-cnp-oss/${CURRENT_BRANCH}/platform-apps/target-chart/values-k3d.yaml
   argocd_apps=$(curl -L $URL | grep -v backstage | awk '/^  - name:/ { printf "%s", "sx-"$3" "}' )
 ;;

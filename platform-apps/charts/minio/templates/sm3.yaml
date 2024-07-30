@@ -1,0 +1,29 @@
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  generation: 1
+  labels:
+    app: minio
+    release: kube-prometheus-stack
+  name: sx-minio-resource
+  namespace: minio
+spec:
+  endpoints:
+  - path: /minio/v2/metrics/resource
+    port: https
+    scheme: https
+    tlsConfig:
+      ca:
+        secret:
+          key: tls.crt
+          name: minio-server-tls
+      serverName: sx-minio
+      insecureSkipVerify: true
+  namespaceSelector:
+    matchNames:
+    - minio
+  selector:
+    matchLabels:
+      app: minio
+      monitoring: "true"
+      release: sx-minio
