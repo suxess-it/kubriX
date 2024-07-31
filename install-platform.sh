@@ -35,20 +35,25 @@ if [[ "${TARGET_TYPE}" =~ ^KIND.* ]] ; then
     if [ "${namespace}" = "minio" ]; then
       mkcert -cert-file ${namespace}-console-cert.pem -key-file ${namespace}-console-key.pem minio-console-127-0-0-1.nip.io
       kubectl create secret tls minio-console-tls -n ${namespace} --cert=${namespace}-console-cert.pem --key=${namespace}-console-key.pem
+      rm ${namespace}-console-cert.pem ${namespace}-console-key.pem
     fi
     rm ${namespace}-cert.pem ${namespace}-key.pem
   done
 
-  # and install nginx ingress-controller
-  kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/main/deploy/static/provider/kind/deploy.yaml
-  kubectl wait --namespace ingress-nginx \
-    --for=condition=ready pod \
-    --selector=app.kubernetes.io/component=controller \
-    --timeout=90s
+  # do not install kind nginx-controller and metrics-server on k3d cluster
+  # since kind nginx only works on kind cluster and metrics-server is already installed on k3d
+  if [[ ${CREATE_K3D_CLUSTER} != true ]] ; then
+    # and install nginx ingress-controller
+    kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/main/deploy/static/provider/kind/deploy.yaml
+    kubectl wait --namespace ingress-nginx \
+      --for=condition=ready pod \
+      --selector=app.kubernetes.io/component=controller \
+      --timeout=90s
 
-  helm repo add metrics-server https://kubernetes-sigs.github.io/metrics-server/
-  helm repo update
-  helm upgrade --install --set args={--kubelet-insecure-tls} metrics-server metrics-server/metrics-server --namespace kube-system
+    helm repo add metrics-server https://kubernetes-sigs.github.io/metrics-server/
+    helm repo update
+    helm upgrade --install --set args={--kubelet-insecure-tls} metrics-server metrics-server/metrics-server --namespace kube-system
+  fi
 fi
 
 # create argocd with helm chart not with install.yaml
