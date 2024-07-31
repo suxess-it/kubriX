@@ -45,6 +45,10 @@ if [[ "${TARGET_TYPE}" =~ ^KIND.* ]] ; then
     --for=condition=ready pod \
     --selector=app.kubernetes.io/component=controller \
     --timeout=90s
+
+  helm repo add metrics-server https://kubernetes-sigs.github.io/metrics-server/
+  helm repo update
+  helm upgrade --install --set args={--kubelet-insecure-tls} metrics-server metrics-server/metrics-server --namespace kube-system
 fi
 
 # create argocd with helm chart not with install.yaml
