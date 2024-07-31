@@ -24,7 +24,7 @@ promtail:
     # Must be reference in `config.file` to configure `clients`
     # @default -- See `values.yaml`
     clients:
-      - url: http://sx-loki-gateway/loki/api/v1/push
+      - url: https://logs-monitoring.lab.suxessit.k8s.cloud.uibk.ac.at/loki/api/v1/push
     
     scrape_configs:
     - job_name: system
