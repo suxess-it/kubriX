@@ -4,10 +4,6 @@ default:
 
 applications:
 
-  - name: cert-manager
-    annotations:
-      argocd.argoproj.io/sync-wave: "-3"
-
   - name: argocd
     annotations:
       argocd.argoproj.io/sync-wave: "-2"
@@ -20,11 +16,9 @@ applications:
     syncOptions:
       - ServerSideApply=true
 
-  - name: crossplane
+  - name: mimir
     annotations:
       argocd.argoproj.io/sync-wave: "-1"
-
-  - name: mimir
 
   - name: loki
     destinationNamespaceOverwrite: monitoring
@@ -41,31 +35,3 @@ applications:
   - name: tempo
     destinationNamespaceOverwrite: monitoring
 
-  - name: falco
-    annotations:
-      argocd.argoproj.io/compare-options: ServerSideDiff=true
-    helmOptions:
-      skipCrds: true
-    syncOptions:
-      - ServerSideApply=true
-
-  - name: external-secrets
-
-  - name: keycloak
-
-  - name: kargo
-
-  - name: kubecost
-
-  - name: team-onboarding
-    destinationNamespaceOverwrite: argocd
-
-  - name: argo-rollouts
-      
-  - name: kyverno
-    syncOptions:
-      - ServerSideApply=true
-      
-  - name: backstage
-    annotations:
-      argocd.argoproj.io/sync-wave: "10"

@@ -1,0 +1,25 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ template "mimir.fullname" .Subcharts.mimir }}-metamonitoring-datasource
+  labels:
+    grafana_datasource: "1"
+data:
+  datasource.yaml: |-
+    apiVersion: 1
+    datasources:
+    - name: mimir-metamonitoring
+      type: prometheus
+      typeName: prometheus
+      uid: mimir-metamonitoring
+      basicAuth: false
+      url: http://{{ template "mimir.fullname" .Subcharts.mimir }}-nginx.{{ .Release.Namespace }}.svc:80/prometheus
+      access: proxy
+      isDefault: false
+      jsonData:
+        httpHeaderName1: "X-Scope-OrgID"
+        httpMethod: "POST"
+        prometheusType: "Mimir"
+        prometheusVersion: "2.9.1"
+      secureJsonData:
+        httpHeaderValue1: "metamonitoring"

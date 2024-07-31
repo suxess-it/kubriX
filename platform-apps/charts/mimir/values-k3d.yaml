@@ -1,0 +1,10 @@
+mimir:
+  nginx:
+    ingress:
+      enabled: true
+      hosts:
+        - host: metrics-monitoring-127-0-0-1.nip.io
+          paths:
+            - path: /
+              pathType: Prefix
+      tls: ""

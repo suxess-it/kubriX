@@ -35,6 +35,12 @@ kube-prometheus-stack:
       finalizers:
         - kubernetes.io/pvc-protection
 
+    sidecar:
+      datasources:
+        searchNamespace:
+          - monitoring
+          - mimir
+
 
   kubelet:
     serviceMonitor:
@@ -105,3 +111,11 @@ kube-prometheus-stack:
       ## which will also match the servicemonitors created
       ##        
       serviceMonitorSelectorNilUsesHelmValues: false
+
+      # remote write to Grafana Mimir instance for central monitoring
+      # since this prometheus instance lives in the same cluster as mimir, we cannot set the ingress hostname
+      # since this points to 127.0.0.1 in the container.
+      # so we set the internal service name
+      remoteWrite:
+        - url: http://sx-mimir-nginx.mimir.svc/api/v1/push
+          name: kubeX-observability

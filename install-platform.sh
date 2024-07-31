@@ -2,7 +2,7 @@
 
 set -x
 
-if [ "${TARGET_TYPE}" == "K3D" ] ; then
+if [[ "${TARGET_TYPE}" =~ ^K3D.* ]] ; then
   # do we need to set this always? I had DNS issues on the train
   export K3D_FIX_DNS=1
   
@@ -15,7 +15,7 @@ if [ "${TARGET_TYPE}" == "K3D" ] ; then
     --wait
 fi
 
-if [ "${TARGET_TYPE}" == "K3D" ] || [[ "${TARGET_TYPE}" =~ ^KIND.* ]] ; then
+if [[ "${TARGET_TYPE}" =~ ^K3D.* ]] || [[ "${TARGET_TYPE}" =~ ^KIND.* ]] ; then
 # create mkcert certs in alle namespaces with ingress
 for namespace in backstage kargo monitoring argocd keycloak komoplane kubecost falco minio velero vault; do
   kubectl create namespace ${namespace}
