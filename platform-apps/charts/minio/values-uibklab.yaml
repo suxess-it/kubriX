@@ -1,0 +1,58 @@
+minio:
+  enabled: true
+  replicas: 1
+  mode: standalone  
+  persistence:
+    size: 20Gi
+  resources:
+    requests:
+      memory: 1Gi
+  buckets:
+    - name: velero
+      policy: public
+      purge: false
+  metrics:
+    serviceMonitor:
+      enabled: true
+      includeNode: true
+      #additionalLabels:
+      #  release: kube-prometheus-stack
+  users:
+    - accessKey: minio
+      secretKey: minio123
+      policy: consoleAdmin
+  tls:
+    enabled: false
+    certSecret: "minio-server-tls"
+    publicCrt: tls.crt
+    privateKey: tls.key
+  consoleIngress:
+    enabled: true
+    ingressClassName: nginx
+    annotations:
+      cert.gardener.cloud/purpose: managed
+      dns.gardener.cloud/class: garden
+      dns.gardener.cloud/dnsnames: minio-console.lab.suxessit.k8s.cloud.uibk.ac.at
+      dns.gardener.cloud/ttl: "180"
+    path: /
+    hosts:
+      - minio-console.lab.suxessit.k8s.cloud.uibk.ac.at
+    tls: 
+      - secretName: minio-console-tls
+        hosts:
+          - minio-console.lab.suxessit.k8s.cloud.uibk.ac.at
+  ingress:
+    enabled: true
+    ingressClassName: nginx
+    annotations:
+      cert.gardener.cloud/purpose: managed
+      dns.gardener.cloud/class: garden
+      dns.gardener.cloud/dnsnames: minio.lab.suxessit.k8s.cloud.uibk.ac.at
+      dns.gardener.cloud/ttl: "180"
+    path: /
+    hosts:
+      - minio.lab.suxessit.k8s.cloud.uibk.ac.at
+    tls: 
+      - secretName: minio-server-tls
+        hosts:
+          - minio.lab.suxessit.k8s.cloud.uibk.ac.at
