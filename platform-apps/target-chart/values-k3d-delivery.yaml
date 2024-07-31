@@ -1,0 +1,24 @@
+default:
+  valueFiles:
+  - values-k3d.yaml
+
+applications:
+
+  - name: argocd
+    annotations:
+      argocd.argoproj.io/sync-wave: "-2"
+
+  - name: crossplane
+    annotations:
+      argocd.argoproj.io/sync-wave: "-1"
+
+  - name: kargo
+
+  - name: team-onboarding
+    destinationNamespaceOverwrite: argocd
+
+  - name: argo-rollouts
+      
+
+
+
