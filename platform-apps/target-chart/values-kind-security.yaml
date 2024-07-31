@@ -12,6 +12,18 @@ applications:
     annotations:
       argocd.argoproj.io/sync-wave: "-2"
 
+  - name: crossplane
+    annotations:
+      argocd.argoproj.io/sync-wave: "-1"
+
+  - name: kube-prometheus-stack
+    destinationNamespaceOverwrite: monitoring
+    annotations:
+      argocd.argoproj.io/compare-options: ServerSideDiff=true
+      argocd.argoproj.io/sync-wave: "-1"
+    syncOptions:
+      - ServerSideApply=true
+
   - name: falco
     annotations:
       argocd.argoproj.io/compare-options: ServerSideDiff=true

@@ -9,14 +9,28 @@ on:
     branches: [ "main" ]
   pull_request:
     types: [opened, synchronize]
-
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  CURRENT_BRANCH: ${{ github.head_ref || github.ref_name }}
 
 jobs:
   create-cluster:
     runs-on: ubuntu-latest
     permissions: read-all
+    strategy:
+      matrix:
+        target-type:
+          - KIND-DELIVERY
+          - KIND-OBSERVABILITY
+          - KIND-SECURITY
+          - KIND-PORTAL
+
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -27,11 +41,6 @@ jobs:
           cluster_name: sx-cnp-oss-cluster
           config: ${{ github.workspace }}/.github/kind-config.yaml
           
-      - name: temp-sc
-        shell: bash
-        run: |
-          kubectl get storageclass -o yaml
-
       - name: install mkcert
         shell: bash
         run: |
@@ -46,36 +55,35 @@ jobs:
           sudo dpkg -i k8sgpt_amd64.deb
           k8sgpt analyze
 
-      - name: install sx-cnp-oss stack 
+      - name: install sx-cnp-oss full stack 
         env:
-          TARGET_TYPE: "KIND"
+          TARGET_TYPE: ${{ matrix.target-type }}
           GITHUB_CLIENTSECRET: "dummy"
           GITHUB_CLIENTID: "dummy"
           GITHUB_TOKEN: "dummy"
           GITHUB_APPSET_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          CURRENT_BRANCH: ${{ github.head_ref || github.ref_name }}
         shell: bash
         run: |
           curl -L https://raw.githubusercontent.com/suxess-it/sx-cnp-oss/${CURRENT_BRANCH}/install-platform.sh | bash
 
       - name: argocd show diff
         if: always()
-        env:
-          APPS: "sx-argocd sx-backstage sx-loki sx-kubecost sx-keycloak sx-promtail sx-tempo sx-crossplane sx-bootstrap-app sx-kargo sx-cert-manager sx-argo-rollouts sx-external-secrets sx-kyverno sx-kube-prometheus-stack"
         shell: bash
         run: |
-          pwd
+          URL=https://raw.githubusercontent.com/suxess-it/sx-cnp-oss/${CURRENT_BRANCH}/platform-apps/target-chart/values-$(echo ${TARGET_TYPE} | awk '{print tolower($0)}').yaml
+          argocd_apps=$(curl -L $URL | awk '/^  - name:/ { printf "%s", "sx-"$3" "}' )
           curl -kL -o argocd https://argocd-127-0-0-1.nip.io/download/argocd-linux-amd64
           chmod u+x argocd
           ls -l
           INITIAL_ARGOCD_PASSWORD=$( kubectl get secret -n argocd argocd-initial-admin-secret -o=jsonpath={'.data.password'} | base64 -d )
           ./argocd login argocd-127-0-0-1.nip.io --grpc-web --insecure --username admin --password ${INITIAL_ARGOCD_PASSWORD}
-          for app in ${APPS} ; do echo "$app diff" ; ./argocd app diff $app --grpc-web ; done         
+          for app in ${argocd_apps} ; do echo "$app diff" ; ./argocd app diff $app --grpc-web ; done         
           
       - name: kubectl get applications
         if: always()
         shell: bash
         run: |
+          kubectl get applications -n argocd
           kubectl get applications -n argocd -o yaml
           
       - name: analyze with k8sgpt

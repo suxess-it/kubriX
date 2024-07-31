@@ -1,4 +1,5 @@
 {{ if has "kargo-project-name-validation-apps-in-any-ns" .Values.kyvernoPolicies }}
+{{- if .Capabilities.APIVersions.Has "kargo.akuity.io/v1alpha1/Project" }}
 apiVersion: kyverno.io/v1
 kind: ClusterPolicy
 metadata:
@@ -65,4 +66,5 @@ spec:
           - key: "{{`{{request.object.metadata.name}}`}}"
             operator: AnyNotIn
             value: "{{`{{allowed_destination}}`}}"
+{{- end }}
 {{- end }}

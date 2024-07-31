@@ -13,7 +13,7 @@ for env in pr target; do
     for value in $( find ${chart} -type f -name "values*" ); do
       valuefile=$( basename ${value} )
       mkdir -p ../../../out/${env}/${chart}/${valuefile}
-      helm template ${chart} -f ${value} --output-dir ../../../out/${env}/${chart}/${valuefile}
+      helm template  --include-crds ${chart} -f ${value} --output-dir ../../../out/${env}/${chart}/${valuefile}
     done
     # get default values of subchart
     helm show values ${chart}/charts/* > ../../../out-default-values/${env}/${chart}_default-values.out || true
