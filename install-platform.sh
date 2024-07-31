@@ -76,13 +76,14 @@ curl -L https://raw.githubusercontent.com/suxess-it/sx-cnp-oss/${CURRENT_BRANCH}
 case "${TARGET_TYPE}" in
 KIND*)
   URL=https://raw.githubusercontent.com/suxess-it/sx-cnp-oss/${CURRENT_BRANCH}/platform-apps/target-chart/values-k3d.yaml
-  argocd_apps=$(curl -L $URL | grep -v backstage | awk '/^  - name:/ { printf "%s", "sx-"$3" "}' )
 ;;
 *)
   URL=https://raw.githubusercontent.com/suxess-it/sx-cnp-oss/${CURRENT_BRANCH}/platform-apps/target-chart/values-$(echo ${TARGET_TYPE} | awk '{print tolower($0)}').yaml
-  argocd_apps=$(curl -L $URL | grep -v backstage | awk '/^  - name:/ { printf "%s", "sx-"$3" "}' )
 ;;
 esac
+
+argocd_apps=$(curl -L $URL | awk '/^  - name:/ { printf "%s", "sx-"$3" "}' )
+argocd_apps_without_backstage=$(curl -L $URL | grep -v backstage | awk '/^  - name:/ { printf "%s", "sx-"$3" "}' )
 
 # max wait for 20 minutes
 end=$((SECONDS+1800))
@@ -90,7 +91,7 @@ end=$((SECONDS+1800))
 all_apps_synced="true"
 while [ $SECONDS -lt $end ]; do
   all_apps_synced="true"
-  for app in ${argocd_apps} ; do
+  for app in ${argocd_apps_without_backstage} ; do
     kubectl get application -n argocd ${app} | grep "Synced.*Healthy"
     exit_code=$?
     if [[ $exit_code -ne 0 ]]; then
@@ -98,7 +99,7 @@ while [ $SECONDS -lt $end ]; do
     fi
   done
   if [ ${all_apps_synced} = "true" ] ; then
-    echo "${argocd_apps} apps are synced"
+    echo "${argocd_apps_without_backstage} apps are synced"
     break
   fi
   kubectl get application -n argocd
@@ -119,93 +120,95 @@ fi
 # apply argocd-secret to set a secretKey
 kubectl apply -f https://raw.githubusercontent.com/suxess-it/sx-cnp-oss/${CURRENT_BRANCH}/platform-apps/charts/argocd/manual-secret/argocd-secret.yaml
 
-# get hostnames
-# gethostnames from ingress - to remove TARGET_TYPE 
-export ARGOCD_HOSTNAME=$(kubectl get ingress -o jsonpath='{.items[*].spec.rules[*].host}' -n argocd)
-export GRAFANA_HOSTNAME=$(kubectl get ingress -o jsonpath='{.items[*].spec.rules[*].host}' -n monitoring)
-
-# download argocd
-curl -kL -o argocd https://${ARGOCD_HOSTNAME}/download/argocd-linux-amd64
-chmod u+x argocd
-
-INITIAL_ARGOCD_PASSWORD=$( kubectl get secret -n argocd argocd-initial-admin-secret -o=jsonpath={'.data.password'} | base64 -d )
-./argocd login ${ARGOCD_HOSTNAME} --grpc-web --insecure --username admin --password ${INITIAL_ARGOCD_PASSWORD}
-export ARGOCD_AUTH_TOKEN="$( ./argocd account generate-token --account backstage --grpc-web )"
-
-ID=$( curl -k -X POST https://${GRAFANA_HOSTNAME}/api/serviceaccounts --user 'admin:prom-operator' -H "Content-Type: application/json" -d '{"name": "backstage","role": "Viewer","isDisabled": false}' | jq -r .id )
-export GRAFANA_TOKEN=$(curl -k -X POST https://${GRAFANA_HOSTNAME}/api/serviceaccounts/${ID}/tokens --user 'admin:prom-operator' -H "Content-Type: application/json" -d '{"name": "backstage"}' | jq -r .key)
-
-
-# check if backstage is already synced (it will still be degraded because of the missing secret we create in the next step)
-# max wait for 5 minutes
-argocd_apps="sx-backstage"
-
-end=$((SECONDS+300))
-
-all_apps_synced="true"
-while [ $SECONDS -lt $end ]; do
-  all_apps_synced="true"
-  for app in ${argocd_apps} ; do
-    kubectl get application -n argocd ${app} | grep "Synced"
-    exit_code=$?
-    if [[ $exit_code -ne 0 ]]; then
-      all_apps_synced="false"
-    fi
-  done
-  if [ ${all_apps_synced} = "true" ] ; then
-    echo "${argocd_apps} apps are synced"
-    break
-  fi
-  kubectl get application -n argocd
-  echo "timer: $SECONDS"
-  echo "end: $end"
-  sleep 10
-done
 
 # create kargo credentials secret so kargo can do git promotion
 kubectl create secret generic -n kargo github-creds --from-literal=password=${GITHUB_TOKEN} --from-literal=username=jkleinlercher --from-literal=repoURL="^https://github.com/suxess-it" --from-literal=repoURLIsRegex=true
 kubectl label secret github-creds -n kargo kargo.akuity.io/cred-type=git
 
-# get backstage-locator token for backstage secret
-export K8S_SA_TOKEN=$( kubectl get secret backstage-locator -n backstage  -o jsonpath='{.data.token}' | base64 -d )
+# if backstage is part of this stack, create the manual secret for backstage
+if [[ $( echo $argocd_apps | grep sx-backstage ) ]] ; then
 
-# create manual-secret secret with all tokens for backstage
-kubectl create secret generic -n backstage manual-secret --from-literal=GITHUB_CLIENTSECRET=${GITHUB_CLIENTSECRET} --from-literal=GITHUB_CLIENTID=${GITHUB_CLIENTID} --from-literal=GITHUB_ORG=${GITHUB_ORG} --from-literal=GITHUB_TOKEN=${GITHUB_TOKEN} --from-literal=K8S_SA_TOKEN=${K8S_SA_TOKEN} --from-literal=ARGOCD_AUTH_TOKEN=${ARGOCD_AUTH_TOKEN} --from-literal=GRAFANA_TOKEN=${GRAFANA_TOKEN}
+  # get hostnames
+  # gethostnames from ingress - to remove TARGET_TYPE 
+  export ARGOCD_HOSTNAME=$(kubectl get ingress -o jsonpath='{.items[*].spec.rules[*].host}' -n argocd)
+  export GRAFANA_HOSTNAME=$(kubectl get ingress -o jsonpath='{.items[*].spec.rules[*].host}' -n monitoring)
 
-kubectl rollout restart deploy/sx-backstage -n backstage
+  # download argocd
+  curl -kL -o argocd https://${ARGOCD_HOSTNAME}/download/argocd-linux-amd64
+  chmod u+x argocd
 
+  INITIAL_ARGOCD_PASSWORD=$( kubectl get secret -n argocd argocd-initial-admin-secret -o=jsonpath={'.data.password'} | base64 -d )
+  ./argocd login ${ARGOCD_HOSTNAME} --grpc-web --insecure --username admin --password ${INITIAL_ARGOCD_PASSWORD}
+  export ARGOCD_AUTH_TOKEN="$( ./argocd account generate-token --account backstage --grpc-web )"
 
-# finally wait for all apps backstage included to be synced and health
-argocd_apps=$(curl -L $URL | awk '/^  - name:/ { printf "%s", "sx-"$3" "}' )
+  ID=$( curl -k -X POST https://${GRAFANA_HOSTNAME}/api/serviceaccounts --user 'admin:prom-operator' -H "Content-Type: application/json" -d '{"name": "backstage","role": "Viewer","isDisabled": false}' | jq -r .id )
+  export GRAFANA_TOKEN=$(curl -k -X POST https://${GRAFANA_HOSTNAME}/api/serviceaccounts/${ID}/tokens --user 'admin:prom-operator' -H "Content-Type: application/json" -d '{"name": "backstage"}' | jq -r .key)
 
-# max wait for 20 minutes
-end=$((SECONDS+300))
+  # check if backstage is already synced (it will still be degraded because of the missing secret we create in the next step)
+  # max wait for 5 minutes
+  argocd_app_backstage="sx-backstage"
 
-all_apps_synced="true"
-while [ $SECONDS -lt $end ]; do
+  end=$((SECONDS+900))
+
   all_apps_synced="true"
-  for app in ${argocd_apps} ; do
-    kubectl get application -n argocd ${app} | grep "Synced.*Healthy"
-    exit_code=$?
-    if [[ $exit_code -ne 0 ]]; then
-      all_apps_synced="false"	
+  while [ $SECONDS -lt $end ]; do
+    all_apps_synced="true"
+    for app in ${argocd_app_backstage} ; do
+      kubectl get application -n argocd ${app} | grep "Synced.*Degraded"
+      exit_code=$?
+      if [[ $exit_code -ne 0 ]]; then
+        all_apps_synced="false"
+      fi
+    done
+    if [ ${all_apps_synced} = "true" ] ; then
+      echo "${argocd_app_backstage} apps are synced"
+      break
     fi
+    kubectl get application -n argocd
+    echo "timer: $SECONDS"
+    echo "end: $end"
+    sleep 10
   done
-  if [ ${all_apps_synced} = "true" ] ; then
-    echo "${argocd_apps} apps are synced"
-    break
-  fi
-  kubectl get application -n argocd
-  echo "timer: $SECONDS"
-  echo "end: $end"
-  sleep 10
-done
 
-echo "status of all pods"
-kubectl get pods -A
-if [ ${all_apps_synced} != "true" ] ; then
-  echo "not all apps synced and healthy after limit reached :("
-  exit 1
-else
-  echo "all apps are synced. ready for take off :)"
+  # get backstage-locator token for backstage secret
+  export K8S_SA_TOKEN=$( kubectl get secret backstage-locator -n backstage  -o jsonpath='{.data.token}' | base64 -d )
+
+  # create manual-secret secret with all tokens for backstage
+  kubectl create secret generic -n backstage manual-secret --from-literal=GITHUB_CLIENTSECRET=${GITHUB_CLIENTSECRET} --from-literal=GITHUB_CLIENTID=${GITHUB_CLIENTID} --from-literal=GITHUB_ORG=${GITHUB_ORG} --from-literal=GITHUB_TOKEN=${GITHUB_TOKEN} --from-literal=K8S_SA_TOKEN=${K8S_SA_TOKEN} --from-literal=ARGOCD_AUTH_TOKEN=${ARGOCD_AUTH_TOKEN} --from-literal=GRAFANA_TOKEN=${GRAFANA_TOKEN}
+
+  kubectl rollout restart deploy/sx-backstage -n backstage
+
+  # finally wait for all apps including backstage to be synced and health
+
+  # max wait for 20 minutes
+  end=$((SECONDS+300))
+
+  all_apps_synced="true"
+  while [ $SECONDS -lt $end ]; do
+    all_apps_synced="true"
+    for app in ${argocd_apps} ; do
+      kubectl get application -n argocd ${app} | grep "Synced.*Healthy"
+      exit_code=$?
+      if [[ $exit_code -ne 0 ]]; then
+        all_apps_synced="false"	
+      fi
+    done
+    if [ ${all_apps_synced} = "true" ] ; then
+      echo "${argocd_apps} apps are synced"
+      break
+    fi
+    kubectl get application -n argocd
+    echo "timer: $SECONDS"
+    echo "end: $end"
+    sleep 10
+  done
+
+  echo "status of all pods"
+  kubectl get pods -A
+  if [ ${all_apps_synced} != "true" ] ; then
+    echo "not all apps synced and healthy after limit reached :("
+    exit 1
+  else
+    echo "all apps are synced. ready for take off :)"
+  fi
 fi

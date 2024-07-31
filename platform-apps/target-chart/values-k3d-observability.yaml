@@ -17,8 +17,6 @@ applications:
       - ServerSideApply=true
 
   - name: mimir
-    annotations:
-      argocd.argoproj.io/sync-wave: "-1"
 
   - name: loki
     destinationNamespaceOverwrite: monitoring
