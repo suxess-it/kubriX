@@ -121,10 +121,11 @@ fi
 # apply argocd-secret to set a secretKey
 kubectl apply -f https://raw.githubusercontent.com/suxess-it/sx-cnp-oss/${CURRENT_BRANCH}/platform-apps/charts/argocd/manual-secret/argocd-secret.yaml
 
-
-# create kargo credentials secret so kargo can do git promotion
-kubectl create secret generic -n kargo github-creds --from-literal=password=${GITHUB_TOKEN} --from-literal=username=jkleinlercher --from-literal=repoURL="^https://github.com/suxess-it" --from-literal=repoURLIsRegex=true
-kubectl label secret github-creds -n kargo kargo.akuity.io/cred-type=git
+# if kargo is part of this stack, create kargo credentials secret so kargo can do git promotion
+if [[ $( echo $argocd_apps | grep sx-kargo ) ]] ; then
+  kubectl create secret generic -n kargo github-creds --from-literal=password=${GITHUB_TOKEN} --from-literal=username=jkleinlercher --from-literal=repoURL="^https://github.com/suxess-it" --from-literal=repoURLIsRegex=true
+  kubectl label secret github-creds -n kargo kargo.akuity.io/cred-type=git
+fi
 
 # if backstage is part of this stack, create the manual secret for backstage
 if [[ $( echo $argocd_apps | grep sx-backstage ) ]] ; then
