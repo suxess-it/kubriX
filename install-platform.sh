@@ -83,7 +83,7 @@ KIND*)
 esac
 
 argocd_apps=$(curl -L $URL | awk '/^  - name:/ { printf "%s", "sx-"$3" "}' )
-argocd_apps_without_backstage=$( echo ${argocd_apps} | grep -v backstage )
+argocd_apps_without_backstage=$(curl -L $URL | grep -v backstage | awk '/^  - name:/ { printf "%s", "sx-"$3" "}' )
 
 # max wait for 20 minutes
 end=$((SECONDS+1800))
