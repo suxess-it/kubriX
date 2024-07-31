@@ -33,6 +33,7 @@ loki:
         - host: logs-monitoring.lab.suxessit.k8s.cloud.uibk.ac.at
           paths:
             - path: /
+              pathType: Prefix
       tls:
         - secretName: loki-gateway-tls
           hosts:
