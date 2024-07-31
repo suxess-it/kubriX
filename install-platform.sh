@@ -87,7 +87,9 @@ argocd_apps=$(curl -L $URL | awk '/^  - name:/ { printf "%s", "sx-"$3" "}' )
 argocd_apps_without_backstage=$(curl -L $URL | grep -v backstage | awk '/^  - name:/ { printf "%s", "sx-"$3" "}' )
 
 # max wait for 20 minutes
-end=$((SECONDS+1800))
+max_wait_time=1200
+start=$SECONDS
+end=$((SECONDS+${max_wait_time}))
 
 all_apps_synced="true"
 while [ $SECONDS -lt $end ]; do
@@ -104,8 +106,9 @@ while [ $SECONDS -lt $end ]; do
     break
   fi
   kubectl get application -n argocd
-  echo "timer: $SECONDS"
-  echo "end: $end"
+  elapsed_time=$((SECONDS-${start}))
+  echo "elapsed time: ${elapsed_time} seconds"
+  echo "max wait time: ${max_wait_time} seconds"
   sleep 10
 done
 
@@ -150,7 +153,9 @@ if [[ $( echo $argocd_apps | grep sx-backstage ) ]] ; then
   # max wait for 5 minutes
   argocd_app_backstage="sx-backstage"
 
-  end=$((SECONDS+900))
+  max_wait_time=900
+  start=$SECONDS
+  end=$((SECONDS+${max_wait_time}))
 
   all_apps_synced="true"
   while [ $SECONDS -lt $end ]; do
@@ -167,8 +172,9 @@ if [[ $( echo $argocd_apps | grep sx-backstage ) ]] ; then
       break
     fi
     kubectl get application -n argocd
-    echo "timer: $SECONDS"
-    echo "end: $end"
+    elapsed_time=$((SECONDS-${start}))
+    echo "elapsed time: ${elapsed_time} seconds"
+    echo "max wait time: ${max_wait_time} seconds"
     sleep 10
   done
 
@@ -182,8 +188,9 @@ if [[ $( echo $argocd_apps | grep sx-backstage ) ]] ; then
 
   # finally wait for all apps including backstage to be synced and health
 
-  # max wait for 20 minutes
-  end=$((SECONDS+300))
+  max_wait_time=300
+  start=$SECONDS
+  end=$((SECONDS+${max_wait_time}))
 
   all_apps_synced="true"
   while [ $SECONDS -lt $end ]; do
@@ -200,8 +207,9 @@ if [[ $( echo $argocd_apps | grep sx-backstage ) ]] ; then
       break
     fi
     kubectl get application -n argocd
-    echo "timer: $SECONDS"
-    echo "end: $end"
+    elapsed_time=$((SECONDS-${start}))
+    echo "elapsed time: ${elapsed_time} seconds"
+    echo "max wait time: ${max_wait_time} seconds"
     sleep 10
   done
 
