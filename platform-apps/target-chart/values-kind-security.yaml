@@ -12,6 +12,10 @@ applications:
     annotations:
       argocd.argoproj.io/sync-wave: "-2"
 
+  - name: crossplane
+    annotations:
+      argocd.argoproj.io/sync-wave: "-1"
+
   - name: falco
     annotations:
       argocd.argoproj.io/compare-options: ServerSideDiff=true
