@@ -23,14 +23,10 @@ jobs:
     strategy:
       matrix:
         target-type:
-          - name: delivery
-            env: TARGET_TYPE="KIND-DELIVERY"
-          - name: observability
-            env: TARGET_TYPE="KIND-OBSERVABILITY"
-          - name: portal
-            env: TARGET_TYPE="KIND-PORTAL"
-          - name: security
-            env: TARGET_TYPE="KIND-SECURITY"
+          - KIND-DELIVERY
+          - KIND-OBSERVABILITY
+          - KIND-SECURITY
+          - KIND-PORTAL
 
     steps:
       - name: Checkout
@@ -58,6 +54,7 @@ jobs:
 
       - name: install sx-cnp-oss full stack 
         env:
+          TARGET_TYPE: ${{ matrix.target-type }}
           GITHUB_CLIENTSECRET: "dummy"
           GITHUB_CLIENTID: "dummy"
           GITHUB_TOKEN: "dummy"
