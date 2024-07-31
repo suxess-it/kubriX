@@ -1,10 +1,12 @@
+{{- range $stage, $values := .Values }}
+---
 apiVersion: kubevirt.io/v1
 kind: VirtualMachine
 metadata:
   annotations:
     description: {{ .Values.description }}
   name: {{ .Values.application_id }}
-  namespace: {{ .Values.environments }}-demo-kubevirt
+  namespace: {{ $stage }}-demo-kubevirt
   labels:
     backstage.io/kubernetes-id: {{ .Values.application_id }}
     app: {{ .Values.application_id }}
@@ -85,3 +87,4 @@ spec:
         pvc:
           namespace: kubevirt
           name: {{ .Values.os }}
+  {{- end }}
