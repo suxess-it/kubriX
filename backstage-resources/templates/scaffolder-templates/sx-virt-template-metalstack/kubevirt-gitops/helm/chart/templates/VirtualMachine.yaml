@@ -4,12 +4,12 @@ apiVersion: kubevirt.io/v1
 kind: VirtualMachine
 metadata:
   annotations:
-    description: {{ .Values.description }}
-  name: {{ .Values.application_id }}
+    description: {{ $values.description }}
+  name: {{ $values.application_id }}
   namespace: {{ $stage }}-demo-kubevirt
   labels:
-    backstage.io/kubernetes-id: {{ .Values.application_id }}
-    app: {{ .Values.application_id }}
+    backstage.io/kubernetes-id: {{ $values.application_id }}
+    app: {{ $values.application_id }}
     kubevirt.io/dynamic-credentials-support: 'true'
     vm.kubevirt.io/template:  server-small #to get default values
 spec:
@@ -17,13 +17,13 @@ spec:
   template:
     metadata:
       annotations:
-        vm.kubevirt.io/os: {{ .Values.os }} # min. 1 annotation needed
+        vm.kubevirt.io/os: {{ $values.os }} # min. 1 annotation needed
       creationTimestamp: null
       labels:
 #        kubevirt.io/size: small
-        kubevirt.io/domain: {{ .Values.application_id }}
-        app: {{ .Values.application_id }}
-        backstage.io/kubernetes-id: {{ .Values.application_id }}
+        kubevirt.io/domain: {{ $values.application_id }}
+        app: {{ $values.application_id }}
+        backstage.io/kubernetes-id: {{ $values.application_id }}
     spec:
       architecture: amd64
       domain:
@@ -33,7 +33,7 @@ spec:
           acpi: {}
           apic: {}
         cpu:
-          cores: {{ .Values.cores }}
+          cores: {{ $values.cores }}
         devices:
           disks:
             - name: root-disk
@@ -49,42 +49,42 @@ spec:
           networkInterfaceMultiqueue: true
         resources:
           requests:
-            memory: {{ .Values.memory }}
+            memory: {{ $values.memory }}
       networks:
         - name: default
           pod: {}
       terminationGracePeriodSeconds: 180
       volumes:
       - dataVolume:
-          name: {{ .Values.application_id }}
+          name: {{ $values.application_id }}
         name: root-disk
       - name: cloudinitdisk
         cloudInitConfigDrive:
           userData: |-
             #cloud-config
             user: cloud-user
-            password: {{ .Values.initpwd }}
+            password: {{ $values.initpwd }}
             chpasswd: { expire: False }
             ssh_pwauth: 1
-            {{- if .Values.sshkey }}
+            {{- if $values.sshkey }}
             ssh_authorized_keys:
-              - .Values.sshkey
+              - $values.sshkey
             {{- end }}
             locale: de_DE
             keyboard:
               layout: de
   dataVolumeTemplates:
   - metadata:
-      name: {{ .Values.application_id }}
+      name: {{ $values.application_id }}
     spec:
       storage:
         accessModes:
         - ReadWriteOnce
         resources:
           requests:
-            storage: {{ .Values.disk }}
+            storage: {{ $values.disk }}
       source:
         pvc:
           namespace: kubevirt
-          name: {{ .Values.os }}
+          name: {{ $values.os }}
   {{- end }}
