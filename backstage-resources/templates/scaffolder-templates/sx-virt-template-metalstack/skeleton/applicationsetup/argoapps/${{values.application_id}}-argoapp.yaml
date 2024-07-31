@@ -14,10 +14,10 @@ spec:
     path: helm/chart
     helm:
       valueFiles:
-        - ../value-files/values-${{values.environments}}.yaml
+        - values.yaml
   destination:
     server: https://kubernetes.default.svc
-    namespace: ${{values.environments}}-demo-kubevirt
+    namespace: default
   syncPolicy:
     automated: 
       prune: true
