@@ -154,16 +154,18 @@ vault:
                   vault auth enable kubernetes
                   vault write auth/kubernetes/config kubernetes_host=https://kubernetes.default.svc:443 
                   vault write auth/kubernetes/role/policy-admin bound_service_account_names=default bound_service_account_namespaces=vault policies=sx-cnp-oss-vault ttl=1h
+                  vault auth enable oidc
                   cat << EOF | vault policy write vault-admin -
                     path "/*" {
                       capabilities = ["create", "read", "update", "delete", "list","sudo"]
                     }
           EOF
+                  vault write auth/oidc/role/default allowed_redirect_uris="https://vault.lab.suxessit.k8s.cloud.uibk.ac.at/ui/vault/auth/oidc/oidc/callback" user_claim="sub" policies="vault-admin"
                   vault secrets enable --path=sx-cnp-oss-kv kv-v2
                   vault kv put sx-cnp-oss-kv/demo/deploydev 'username=something' 'password=NjPC14rDJvc'
                   cat << EOF | vault kv put sx-cnp-oss-kv/demo/asdf -
                   {
-                    "VAULT_ADDR": "vault-127-0-0-1.nip.io",
+                    "VAULT_ADDR": "vault.lab.suxessit.k8s.cloud.uibk.ac.at",
                     "VAULT_TOKEN": "securedemo"
                   }
           EOF
