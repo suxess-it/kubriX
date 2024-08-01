@@ -183,7 +183,7 @@ spec:
       action: catalog:register
       input:
         repoContentsUrl: ${{ steps["publish-gitopsreposetup"].output.repoContentsUrl }}
-        catalogInfoPath: '/system-info.yaml'
+        catalogInfoPath: '/${{ parameters.application_id }}-system.yaml'
         
   output:
     links:
