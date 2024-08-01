@@ -155,8 +155,8 @@ vault:
                   vault write auth/kubernetes/config kubernetes_host=https://kubernetes.default.svc:443 
                   vault write auth/kubernetes/role/policy-admin bound_service_account_names=default bound_service_account_namespaces=vault policies=sx-cnp-oss-vault ttl=1h
                   vault auth enable oidc
-                  vault write auth/oidc/config oidc_discovery_url="https://keycloak.lab.suxessit.k8s.cloud.uibk.ac.at/realms/sx-cnp-oss" oidc_client_id="vault" oidc_client_secret="demosecret" default_role="vault-admin"
-                  vault 
+                  vault write auth/oidc/config oidc_discovery_url="https://keycloak.lab.suxessit.k8s.cloud.uibk.ac.at/realms/sx-cnp-oss" oidc_client_id="vault" oidc_client_secret="demosecret" default_role="default"
+                  vault auth tune -default-lease-ttl=72h oidc
                   cat << EOF | vault policy write vault-admin -
                     path "/*" {
                       capabilities = ["create", "read", "update", "delete", "list","sudo"]
