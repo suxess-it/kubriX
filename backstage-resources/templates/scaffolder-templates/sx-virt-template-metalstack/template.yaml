@@ -178,12 +178,13 @@ spec:
         repoContentsUrl: ${{ steps["publish-gitopsreposetup"].output.repoContentsUrl }}
         catalogInfoPath: '/catalog-info.yaml'
   
-    - id: register2
-      name: Register system
-      action: catalog:register
-      input:
-        repoContentsUrl: ${{ steps["publish-gitopsreposetup"].output.repoContentsUrl }}
-        catalogInfoPath: '/${{ parameters.application_id }}-system.yaml'
+#    - id: register2
+#      name: Register system
+#      action: catalog:register
+#      input:
+#        repoContentsUrl: ${{ steps["publish-gitopsreposetup"].output.repoContentsUrl }}
+#        catalogInfoPath: '/${{ parameters.application_id }}-system.yaml'
+
         
   output:
     links:
