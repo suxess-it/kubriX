@@ -22,16 +22,17 @@ spec:
     clientId: {{ .Values.deployments.keycloak.vaultclient.config.clientID }}
     name: {{ .Values.deployments.keycloak.vaultclient.config.clientID }}
     realmId: {{ .Values.deployments.keycloak.realm.realmid }}
+    adminUrl: "https://vault{{ .Values.deployments.ingress.fqdn }}"
+    rootUrl: "https://vault{{ .Values.deployments.ingress.fqdn }}"
     directAccessGrantsEnabled: false
     standardFlowEnabled: true
     serviceAccountsEnabled: true
 #    managementPolicies: ["Observe"]
     validRedirectUris:
-      - "http://localhost:7007/api/auth/oidc/handler/frame"
-      - "https://backstage{{ .Values.deployments.ingress.fqdn }}/api/auth/oidc/handler/frame"
+      - "https://vault{{ .Values.deployments.ingress.fqdn }}/ui/vault/auth/oidc/oidc/callback"
     clientSecretSecretRef:
       key: {{ .Values.deployments.keycloak.vaultclient.config.clientID }}
-      name: "{{ .Release.Name }}-client-{{ .Values.deployments.keycloak.vault.client.config.clientID }}-password"
+      name: "{{ .Release.Name }}-client-{{ .Values.deployments.keycloak.vaultclient.config.clientID }}-password"
       namespace: {{ .Release.Namespace }}
     loginTheme: keycloak
   providerConfigRef:
