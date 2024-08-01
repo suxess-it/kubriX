@@ -10,7 +10,7 @@ spec:
     groupIdRef:
       name: {{ .Values.deployments.keycloak.backstageclient.config.clientID }}-admin
     members:
-      - service-account-{{ .Values.deployments.keycloak.client.config.clientID }}
+      - service-account-{{ .Values.deployments.keycloak.backstageclient.config.clientID }}
     realmId: {{ .Values.deployments.keycloak.realm.realmid }}
   providerConfigRef:
     name: "{{ .Release.Name }}-config"
