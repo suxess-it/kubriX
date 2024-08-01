@@ -77,11 +77,15 @@ deployments:
             - jokl
         - name: backstage-admin # for service-account permission workaround
     # backstage client
-    client:
+    backstageclient:
       config:
         clientID: backstage
         clientSecret: demosecret
-
+    # vault client
+    vaultclient:
+      config:
+        clientID: vault
+        clientSecret: demosecret
 # PersistenVolume / PersistenVolumeClaims
 pv:
   name: postgres-pv

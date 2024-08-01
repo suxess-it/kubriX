@@ -1,7 +1,7 @@
 apiVersion: group.keycloak.crossplane.io/v1alpha1
 kind: Roles
 metadata:
-  name: {{ .Values.deployments.keycloak.client.config.clientID }}-default-group-roles
+  name: {{ .Values.deployments.keycloak.backstageclient.config.clientID }}-default-group-roles
   annotations:
     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
     argocd.argoproj.io/sync-wave: "1"
@@ -9,7 +9,7 @@ spec:
   deletionPolicy: Delete
   forProvider:
     groupIdRef:
-      name: {{ .Values.deployments.keycloak.client.config.clientID }}-admin
+      name: {{ .Values.deployments.keycloak.backstageclient.config.clientID }}-admin
     realmIdRef: 
       name: {{ .Values.deployments.keycloak.realm.realmid }}
     roleIdsRefs:
