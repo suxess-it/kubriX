@@ -6,7 +6,7 @@ metadata:
   name: ${{values.application_id}}
   description: ${{values.description}}
   labels:
-    environments: ${{values.environment}}
+    stage: {{ $environment }}
 spec:
   owner: ${{values.owner}}
 {%- endfor %}
