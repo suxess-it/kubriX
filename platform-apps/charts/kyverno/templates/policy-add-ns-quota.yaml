@@ -30,6 +30,9 @@ spec:
       name: default-resourcequota
       synchronize: true
       namespace: "{{`{{request.object.metadata.name}}`}}"
+      metadata:
+        labels:
+          velero.io/exclude-from-backup: "true"
       data:
         spec:
           hard:
@@ -50,6 +53,9 @@ spec:
       name: default-limitrange
       synchronize: true
       namespace: "{{`{{request.object.metadata.name}}`}}"
+      metadata:
+        labels:
+          velero.io/exclude-from-backup: "true"
       data:
         spec:
           limits:
