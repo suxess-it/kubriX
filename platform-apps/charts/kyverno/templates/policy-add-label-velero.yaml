@@ -1,0 +1,32 @@
+apiVersion: kyverno.io/v1
+kind: ClusterPolicy
+metadata:
+  name: add-labels-to-cm-velero
+  annotations:
+    policies.kyverno.io/title: Add Labels for velero exclude
+    policies.kyverno.io/category: sx-cnp-oss
+    policies.kyverno.io/minversion: 1.6.0
+    policies.kyverno.io/severity: low
+    policies.kyverno.io/subject: ConfigMap
+    policies.kyverno.io/description: >-
+      add exclude label velero.io/exclude-from-backup so that restore works without problems
+spec:
+  mutateExistingOnPolicyUpdate: true
+  rules:
+  - name: add-labels-to-cm-velero
+    match:
+      any:
+      - resources:
+          kinds:
+          - ConfigMap
+          names:
+          - kube-root-ca.crt
+    mutate:
+      targets:
+        - apiVersion: v1
+          kind: ConfigMap
+          name: kube-root-ca.crt
+      patchStrategicMerge:
+        metadata:
+          labels:
+            velero.io/exclude-from-backup: "true"
