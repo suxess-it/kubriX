@@ -17,7 +17,7 @@ fi
 
 if [[ "${TARGET_TYPE}" =~ ^KIND.* ]] ; then
   # create mkcert certs in alle namespaces with ingress
-  for namespace in backstage kargo monitoring argocd keycloak komoplane kubecost falco minio velero vault; do
+  for namespace in backstage kargo monitoring argocd keycloak komoplane kubecost falco minio velero velero-ui vault; do
     kubectl create namespace ${namespace}
     # for grafana the namespace is not the same as the ingress hostname
     if [ "${namespace}" = "monitoring" ]; then
