@@ -28,6 +28,8 @@ vault:
             chmod +x kubectl
             curl -L -o jq https://github.com/stedolan/jq/releases/download/jq-1.7.1/jq-linux64
             chmod +x jq
+            curl -L -o curl https://github.com/moparisthebest/static-curl/releases/download/v8.7.1/curl-amd64
+            chmod +x curl
         volumeMounts:
           - name: plugins
             mountPath: /usr/local/libexec/vault
