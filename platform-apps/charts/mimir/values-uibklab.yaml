@@ -17,3 +17,7 @@ mimir:
         - secretName: mimir-nginx-tls
           hosts:
             - metrics-monitoring.lab.suxessit.k8s.cloud.uibk.ac.at
+  mimir:
+    structuredConfig:
+      limits:
+        max_global_series_per_user: 300000

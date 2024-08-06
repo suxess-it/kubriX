@@ -8,3 +8,8 @@ mimir:
             - path: /
               pathType: Prefix
       tls: ""
+  mimir:
+    structuredConfig:
+      limits:
+        max_global_series_per_user: 300000
+  
