@@ -158,15 +158,43 @@ vault:
                       capabilities = ["create", "read", "update", "delete", "list","sudo"]
                     }
           EOF
-                  vault write auth/oidc/role/default allowed_redirect_uris="https://vault-127-0-0-1.nip.io/ui/vault/auth/oidc/oidc/callback" user_claim="sub" policies="vault-admin"
+                  vault write auth/oidc/role/default allowed_redirect_uris="https://vault-127-0-0-1.nip.io/ui/vault/auth/oidc/oidc/callback" allowed_redirect_uris="http://localhost:8250/oidc/callback" user_claim="sub" groups_claim="groups" token_policies=default token_no_default_policy=true token_type=service policies="default" verbose_oidc_logging=true oidc_scopes=groups
                   vault secrets enable --path=sx-cnp-oss-kv kv-v2
+                  vault kv put sx-cnp-oss-kv/users 'usersdata=testdata' 
+                  vault kv put sx-cnp-oss-kv/group1 'group1data=testdata' 
                   vault kv put sx-cnp-oss-kv/demo/deploydev 'username=something' 'password=NjPC14rDJvc'
+                  cat << EOF | vault policy write users -
+                    path "sx-cnp-oss-kv/data/users" {
+                      capabilities = ["read","list","create","update",]
+                    }
+                    path "sx-cnp-oss-kv/*" {
+                      "capabilities" = ["list"]
+                    }
+          EOF
+                  cat << EOF | vault policy write group1 -
+                    path "sx-cnp-oss-kv/data/group1" {
+                      capabilities = ["read","list","create","update",]
+                    }
+                    path "sx-cnp-oss-kv/*" {
+                      "capabilities" = ["list"]
+                    }
+          EOF
                   cat << EOF | vault kv put sx-cnp-oss-kv/demo/asdf -
                   {
                     "VAULT_ADDR": "vault-127-0-0-1.nip.io",
                     "VAULT_TOKEN": "securedemo"
                   }
           EOF
+                  ACC=$(vault auth list -format=json | /usr/local/libexec/vault/jq -r '.["oidc/"].accessor')
+                  vault write identity/group name="admins" policies=vault-admin type=external
+                  ID=$(vault read "/identity/group/name/admins" -format=json | /usr/local/libexec/vault/jq -r ."data.id")
+                  vault write /identity/group-alias name="admins" mount_accessor="$ACC" canonical_id="$ID"
+                  vault write identity/group name="users" policies=users type=external
+                  ID=$(vault read "/identity/group/name/users" -format=json | /usr/local/libexec/vault/jq -r ."data.id")
+                  vault write /identity/group-alias name="users" mount_accessor="$ACC" canonical_id="$ID"
+                  vault write identity/group name="group1" policies=group1 type=external
+                  ID=$(vault read "/identity/group/name/group1" -format=json | /usr/local/libexec/vault/jq -r ."data.id")
+                  vault write /identity/group-alias name="group1" mount_accessor="$ACC" canonical_id="$ID"
                 else 
                   echo vault admin already configured, just updating kubernetes config
                   vault write auth/kubernetes/config token_reviewer_jwt=@/var/run/secrets/kubernetes.io/serviceaccount/token kubernetes_host=https://kubernetes.default.svc:443 kubernetes_ca_cert=@/var/run/secrets/kubernetes.io/serviceaccount/ca.crt 
