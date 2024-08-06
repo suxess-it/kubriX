@@ -68,6 +68,8 @@ jobs:
 
       - name: argocd show diff
         if: always()
+        env:
+          TARGET_TYPE: ${{ matrix.target-type }}
         shell: bash
         run: |
           URL=https://raw.githubusercontent.com/suxess-it/sx-cnp-oss/${CURRENT_BRANCH}/platform-apps/target-chart/values-$(echo ${TARGET_TYPE} | awk '{print tolower($0)}').yaml
