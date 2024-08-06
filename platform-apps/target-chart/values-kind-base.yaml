@@ -50,6 +50,8 @@ applications:
   - name: external-secrets
 
   - name: keycloak
+    annotations:
+      argocd.argoproj.io/sync-wave: "1"
 
 #  - name: kargo
 
@@ -72,9 +74,13 @@ applications:
 #      argocd.argoproj.io/sync-wave: "10"
 
   - name: vault
+    annotations:
+      argocd.argoproj.io/sync-wave: "2"
 
   - name: velero
 
   - name: velero-ui
 
   - name: minio
+    annotations:
+      argocd.argoproj.io/sync-wave: "3"
