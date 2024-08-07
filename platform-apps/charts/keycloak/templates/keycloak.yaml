@@ -91,14 +91,13 @@ spec:
                 command: ["/bin/bash", "-c", "cd /opt/keycloak/bin; ./poststart.sh > /tmp/poststart.log"]
           readinessProbe:
             httpGet:
-              path: /health/ready
+              path: /realms/master
               port: {{.Values.deployments.keycloak.ports.containerPort}}
             initialDelaySeconds: 120
             periodSeconds: 10
           livenessProbe:
-            httpGet:
-              path: /health/live
-              port: {{.Values.deployments.keycloak.ports.containerPort}}
+            tcpSocket:
+              port: http
             initialDelaySeconds: 500
             periodSeconds: 30
           resources:
