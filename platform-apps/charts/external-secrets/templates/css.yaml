@@ -1,0 +1,16 @@
+apiVersion: external-secrets.io/v1beta1
+kind: ClusterSecretStore
+metadata:
+  name: vault-backend
+spec:
+  provider:
+    vault:
+      server: "https://vault.lab.suxessit.k8s.cloud.uibk.ac.at/"
+      path: "sx-cnp-oss-kv"
+      version: "v2"
+      namespace: vault
+      auth:
+        tokenSecretRef:
+          name: "vault-init"
+          key: "root_token"
+          namespace: vault
