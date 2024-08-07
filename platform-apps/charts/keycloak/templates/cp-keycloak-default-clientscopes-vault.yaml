@@ -1,0 +1,22 @@
+apiVersion: openidclient.keycloak.crossplane.io/v1alpha1
+kind: ClientDefaultScopes
+metadata:
+  annotations:
+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+    argocd.argoproj.io/sync-wave: "1"
+  name: client-default-scopes-vault
+spec:
+  forProvider:
+    clientIdRef:
+      name: {{ .Values.deployments.keycloak.vaultclient.config.clientID }}
+    defaultScopes:
+    - profile
+    - email
+    - roles
+    - web-origins
+    - groups
+    - acr
+    realmIdRef:
+      name: {{ $.Values.deployments.keycloak.realm.realmid }}
+  providerConfigRef:
+    name: "{{ .Release.Name }}-config"
