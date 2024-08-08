@@ -279,8 +279,8 @@ vault:
           
           service_registration "kubernetes" {}
           plugin_directory = "/usr/local/libexec/vault"
-    serverTelemetry:
-      serviceMonitor:
-        enabled: true
-    prometheusRules:
+  serverTelemetry:
+    serviceMonitor:
       enabled: true
+  prometheusRules:
+    enabled: true
