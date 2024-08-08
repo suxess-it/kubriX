@@ -164,7 +164,8 @@ vault:
                   vault secrets enable --path=sx-cnp-oss-kv kv-v2
                   vault kv put sx-cnp-oss-kv/users 'usersdata=testdata' 
                   vault kv put sx-cnp-oss-kv/group1 'group1data=testdata' 
-                  vault kv put sx-cnp-oss-kv/demo/deploydev 'username=something' 'password=NjPC14rDJvc'
+                  vault kv put sx-cnp-oss-kv/demo/loginuser 'username=admin' 'password=admin'
+                  vault kv put sx-cnp-oss-kv/demo/minio 'username=minio' 'password=minio123'
                   cat << EOF | vault policy write users -
                     path "sx-cnp-oss-kv/data/users" {
                       capabilities = ["read","list","create","update",]
@@ -197,6 +198,9 @@ vault:
                   vault write identity/group name="group1" policies=group1 type=external
                   ID=$(vault read "/identity/group/name/group1" -format=json | /usr/local/libexec/vault/jq -r ."data.id")
                   vault write /identity/group-alias name="group1" mount_accessor="$ACC" canonical_id="$ID"
+                  # audit enable
+                  vault audit enable file file_path=/vault/audit/audit.log
+                  
                 else 
                   echo vault admin already configured, just updating kubernetes config
                   vault write auth/kubernetes/config token_reviewer_jwt=@/var/run/secrets/kubernetes.io/serviceaccount/token kubernetes_host=https://kubernetes.default.svc:443 kubernetes_ca_cert=@/var/run/secrets/kubernetes.io/serviceaccount/ca.crt 
