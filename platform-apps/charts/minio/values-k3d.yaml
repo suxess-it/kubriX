@@ -21,10 +21,10 @@ minio:
     - accessKey: minio
       secretKey: minio123
       policy: consoleAdmin
-  #  - accessKey: minio
-  #    existingSecret: minio-admin-secret
-  #    existingSecretKey: secretKey
-  #    policy: consoleAdmin
+    - accessKey: miniotest
+      existingSecret: minio-admin-secret
+      existingSecretKey: secretKey
+      policy: consoleAdmin
   tls:
     enabled: true
     certSecret: "minio-server-tls"
