@@ -18,13 +18,13 @@ minio:
       #additionalLabels:
       #  release: kube-prometheus-stack
   users:
-  #  - accessKey: minio
-  #    secretKey: minio123
-  #    policy: consoleAdmin
     - accessKey: minio
-      existingSecret: minio-admin-secret
-      existingSecretKey: secretKey
+      secretKey: minio123
       policy: consoleAdmin
+  #  - accessKey: minio
+  #    existingSecret: minio-admin-secret
+  #    existingSecretKey: secretKey
+  #    policy: consoleAdmin
   tls:
     enabled: true
     certSecret: "minio-server-tls"
