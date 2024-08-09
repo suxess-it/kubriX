@@ -1,0 +1,64 @@
+apiVersion: vault.vault.upbound.io/v1alpha1
+kind: Policy
+metadata:
+  name: crossplane
+spec:
+  providerConfigRef:
+    name: vault-crossplane-providerconfig
+  forProvider:
+    name: crossplane
+    policy: |
+      path "sx-cnp-oss-kv/data/*" {
+        capabilities = ["read","list","create","update",]
+      }
+      path "sx-cnp-oss-kv/metadata/*" {
+        capabilities = ["read","list","create","update",]
+      }  
+---
+apiVersion: vault.vault.upbound.io/v1alpha1
+kind: Policy
+metadata:
+  name: vault-admin
+spec:
+  providerConfigRef:
+    name: vault-crossplane-providerconfig
+  forProvider:
+    name: vault-admin
+    policy: |
+      path "/*" {
+        capabilities = ["create", "read", "update", "delete", "list","sudo"]
+      }
+---
+apiVersion: vault.vault.upbound.io/v1alpha1
+kind: Policy
+metadata:
+  name: users
+spec:
+  providerConfigRef:
+    name: vault-crossplane-providerconfig
+  forProvider:
+    name: users
+    policy: |
+      path "sx-cnp-oss-kv/data/users" {
+        capabilities = ["read","list","create","update",]
+      }
+      path "sx-cnp-oss-kv/*" {
+        capabilities = ["list"]
+      }
+---
+apiVersion: vault.vault.upbound.io/v1alpha1
+kind: Policy
+metadata:
+  name: group1
+spec:
+  providerConfigRef:
+    name: vault-crossplane-providerconfig
+  forProvider:
+    name: group1
+    policy: |
+      path "sx-cnp-oss-kv/data/group1" {
+        capabilities = ["read","list","create","update",]
+      }
+      path "sx-cnp-oss-kv/*" {
+        capabilities = ["list"]
+      }

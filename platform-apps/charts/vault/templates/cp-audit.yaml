@@ -1,0 +1,11 @@
+apiVersion: vault.vault.upbound.io/v1alpha1
+kind: Audit
+metadata:
+  name: audit
+spec:
+  providerConfigRef:
+    name: vault-crossplane-providerconfig
+  forProvider:
+    options:
+      file_path: /vault/audit/audit.log
+    type: file
