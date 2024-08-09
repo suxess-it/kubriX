@@ -6,6 +6,8 @@ metadata:
     argocd.argoproj.io/sync-wave: "1"
   name: oidc
 spec:
+  providerConfigRef:
+    name: vault-crossplane-providerconfig
   forProvider:
     type: oidc
     path: oidc
