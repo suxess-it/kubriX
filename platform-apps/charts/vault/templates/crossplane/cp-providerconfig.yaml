@@ -5,7 +5,7 @@ metadata:
   name: "vault-crossplane-providerconfig"
   namespace: "{{ .Release.Namespace }}"
   annotations:
-    argocd.argoproj.io/sync-wave: "-5"
+    argocd.argoproj.io/sync-wave: "-8"
     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
 spec:
   address: http://sx-vault-active.vault.svc.cluster.local:8200
