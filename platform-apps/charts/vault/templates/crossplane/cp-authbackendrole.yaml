@@ -1,0 +1,21 @@
+apiVersion: kubernetes.vault.upbound.io/v1alpha1
+kind: AuthBackendRole
+metadata:
+  name: policy-admin
+  annotations:
+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+    argocd.argoproj.io/sync-wave: "1"
+spec:
+  providerConfigRef:
+    name: vault-crossplane-providerconfig
+  forProvider:
+    audience: vault
+    backend: kubernetes
+    boundServiceAccountNames:
+    - default
+    boundServiceAccountNamespaces:
+    - vault
+    roleName: policy-admin
+    tokenPolicies:
+    - sx-cnp-oss-vault
+    tokenTtl: 60
