@@ -74,6 +74,7 @@ vault:
                 else
                   echo "Vault Initialized"
                   sleep 5
+                  exit 0
                 fi 
               done   
             done
@@ -119,6 +120,7 @@ vault:
                   fi
                 else  
                   echo vault already unsealed
+                  exit 0
                 fi
               else  
                 echo Vault not initialized yet
@@ -152,7 +154,7 @@ vault:
               export VAULT_TOKEN=$(cat /vault-root-token/root_token)
               VAULT_STATUS=$(vault status)
               if echo "$VAULT_STATUS" | grep -q "Sealed.*false"; then
-                if [ ! $(vault auth list | grep oidc) ]; then
+                if [ ! $(vault read identity/group/name/admins) ]; then
 
                   # kubernetes
                   vault auth enable kubernetes
@@ -165,14 +167,18 @@ vault:
                   vault write auth/kubernetes/role/crossplane bound_service_account_names="*" bound_service_account_namespaces=crossplane policies=crossplane ttl=24h        
 
                 else 
-                  echo vault admin already configured, just updating group aliases
-                  ACC=$(vault auth list -format=json | /usr/local/libexec/vault/jq -r '.["oidc/"].accessor')
-                  ID=$(vault read "/identity/group/name/admins" -format=json | /usr/local/libexec/vault/jq -r ."data.id")
-                  vault write /identity/group-alias name="admins" mount_accessor="$ACC" canonical_id="$ID"
-                  ID=$(vault read "/identity/group/name/users" -format=json | /usr/local/libexec/vault/jq -r ."data.id")
-                  vault write /identity/group-alias name="users" mount_accessor="$ACC" canonical_id="$ID"
-                  ID=$(vault read "/identity/group/name/group1" -format=json | /usr/local/libexec/vault/jq -r ."data.id")
-                  vault write /identity/group-alias name="group1" mount_accessor="$ACC" canonical_id="$ID"
+                  # workaround due to #422
+                  if [ ! $(vault list identity/group-alias/id) ]; then
+                    echo vault admins group configured, just updating group aliases
+                    vault list identity/group/name
+                    acc=$(vault auth list -format=json | /usr/local/libexec/vault/jq -r '.["oidc/"].accessor')
+                    vault list identity/group/name |grep -A10 -- '----' |tail -n +2 | while read groupname ; do 
+                      id=$(vault read "/identity/group/name/$groupname" -format=json | /usr/local/libexec/vault/jq -r ."data.id") 
+                      vault write identity/group-alias name="$groupname" mount_accessor="$acc" canonical_id="$id"
+                    echo group-alias created
+                    done
+                  fi
+                  # end #422
                   echo creating accessor configmap
                   accessor=$(vault auth list -detailed | grep kubernetes | awk '{print $3}')
                   if /usr/local/libexec/vault/kubectl get configmap kubeauth-accessor -n vault; then
@@ -181,6 +187,8 @@ vault:
                     /usr/local/libexec/vault/kubectl create configmap kubeauth-accessor -n vault --from-literal=accessor=${accessor}
                   fi  
                   sleep 5
+                  echo setup complete :)
+                  exit 0
                 fi      
               else
                 echo vault still sealed
