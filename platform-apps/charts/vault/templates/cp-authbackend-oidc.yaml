@@ -2,6 +2,9 @@ apiVersion: jwt.vault.upbound.io/v1alpha1
 kind: AuthBackend
 metadata:
   name: oidc-backend
+  annotations:
+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+    argocd.argoproj.io/sync-wave: "1"
 spec:
   providerConfigRef:
     name: vault-crossplane-providerconfig
@@ -39,4 +42,4 @@ spec:
     - groups
     roleType: oidc
     backend: oidc
-    policies: default
+   # policies: default #needed?

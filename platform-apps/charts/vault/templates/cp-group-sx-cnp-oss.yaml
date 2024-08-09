@@ -12,7 +12,39 @@ spec:
     policies:
     - vault.admin
     type: external
-#                  ACC=$(vault auth list -format=json | /usr/local/libexec/vault/jq -r '.["oidc/"].accessor')
- #                 vault write identity/group name="admins" policies=vault-admin type=external
-  #                ID=$(vault read "/identity/group/name/admins" -format=json | /usr/local/libexec/vault/jq -r ."data.id")
-   #               vault write /identity/group-alias name="admins" mount_accessor="$ACC" canonical_id="$ID"
+---
+apiVersion: identity.vault.upbound.io/v1alpha1
+kind: Group
+metadata:
+  name: users
+  annotations:
+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+    argocd.argoproj.io/sync-wave: "1"
+spec:
+  providerConfigRef:
+    name: vault-crossplane-providerconfig
+  forProvider:
+    metadata:
+      version: "2"
+    name: users
+    policies:
+    - users
+    type: external
+---
+apiVersion: identity.vault.upbound.io/v1alpha1
+kind: Group
+metadata:
+  name: group1
+  annotations:
+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+    argocd.argoproj.io/sync-wave: "1"
+spec:
+  providerConfigRef:
+    name: vault-crossplane-providerconfig
+  forProvider:
+    metadata:
+      version: "2"
+    name: group1
+    policies:
+    - group1
+    type: external

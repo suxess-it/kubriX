@@ -2,6 +2,9 @@ apiVersion: vault.vault.upbound.io/v1alpha1
 kind: Policy
 metadata:
   name: crossplane
+  annotations:
+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+    argocd.argoproj.io/sync-wave: "1"
 spec:
   providerConfigRef:
     name: vault-crossplane-providerconfig
@@ -19,6 +22,9 @@ apiVersion: vault.vault.upbound.io/v1alpha1
 kind: Policy
 metadata:
   name: vault-admin
+  annotations:
+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+    argocd.argoproj.io/sync-wave: "1"
 spec:
   providerConfigRef:
     name: vault-crossplane-providerconfig
@@ -33,6 +39,9 @@ apiVersion: vault.vault.upbound.io/v1alpha1
 kind: Policy
 metadata:
   name: users
+  annotations:
+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+    argocd.argoproj.io/sync-wave: "1"
 spec:
   providerConfigRef:
     name: vault-crossplane-providerconfig
@@ -50,6 +59,9 @@ apiVersion: vault.vault.upbound.io/v1alpha1
 kind: Policy
 metadata:
   name: group1
+  annotations:
+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+    argocd.argoproj.io/sync-wave: "1"
 spec:
   providerConfigRef:
     name: vault-crossplane-providerconfig
