@@ -2,6 +2,9 @@ apiVersion: identity.vault.upbound.io/v1alpha1
 kind: Group
 metadata:
   name: admins
+  annotations:
+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+    argocd.argoproj.io/sync-wave: "2" # last item - for initcontainer check, until accessor id is available via crossplane plugin
 spec:
   providerConfigRef:
     name: vault-crossplane-providerconfig
