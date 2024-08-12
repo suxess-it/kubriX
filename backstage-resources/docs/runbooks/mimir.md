@@ -30,26 +30,21 @@ When increasing the PVC and syncing via ArgoCD the following sync error happens:
 one or more objects failed to apply, reason: error when patching "/dev/shm/2228869740": StatefulSet.apps "sx-mimir-ingester-zone-a" is invalid: spec: Forbidden: updates to statefulset spec for fields other than 'replicas', 'ordinals', 'template', 'updateStrategy', 'persistentVolumeClaimRetentionPolicy' and 'minReadySeconds' are forbidden,error when patching "/dev/shm/2372432679": StatefulSet.apps "sx-mimir-ingester-zone-b" is invalid: spec: Forbidden: updates to statefulset spec for fields other than 'replicas', 'ordinals', 'template', 'updateStrategy', 'persistentVolumeClaimRetentionPolicy' and 'minReadySeconds' are forbidden,error when patching "/dev/shm/657813136": StatefulSet.apps "sx-mimir-ingester-zone-c" is invalid: spec: Forbidden: updates to statefulset spec for fields other than 'replicas', 'ordinals', 'template', 'updateStrategy', 'persistentVolumeClaimRetentionPolicy' and 'minReadySeconds' are forbidden. Retrying attempt #2 at 6:43AM.
 ```
 
-This could help: https://github.com/argoproj/argo-cd/issues/6666
-In our environment: disable first the bootstrap app auto sync, then the mimir auto-sync
+How it worked in our environment with the example sts `sx-mimir-ingester-zone-c` (works the same for every other ingester of course).
+
+1. disable auto-sync in bootstrap app and mimir app
+2. resize pvc with `kubectl patch pvc -n mimir storage-sx-mimir-ingester-zone-c-0 -p '{"spec": {"resources": {"requests": {"storage": "'20Gi'"}}}}'`
+3. after some time this pvc should have the new size. check with `kubectl get pvc -n mimir storage-sx-mimir-ingester-zone-c-0`
+4. also the underlying pv should have the new size. check with: `kubectl get pv |grep storage-sx-mimir-ingester-zone-c-0`
+5. orphan delete sts `sx-mimir-ingester-zone-c`
+![image](https://github.com/user-attachments/assets/1fb576ca-3c1e-4a9f-a38a-b2c26baec9f2)
+
+6. sync ingester sts `sx-mimir-ingester-zone-c`
+![image](https://github.com/user-attachments/assets/1d0c39b1-b13a-4b9d-aabf-6636fd134105)
 
 Matches with this (even though it is for Tempo) except that it doesn't explain the ArgoCD part: https://grafana.com/docs/tempo/latest/operations/ingester_pvcs/
 
-
-Also interesting: https://github.com/grafana/mimir/discussions/8302
-
-TBD: we definitly need to minitor the ingester PVCs!
-
-How it worked in our environment:
-
-1. disable auto-sync in bootstrap app and mimir app
-2. orphan delete sts `sx-mimir-ingester-zone-b`
-3. resize pvc with `kubectl patch pvc -n mimir storage-sx-mimir-ingester-zone-b-0 -p '{"spec": {"resources": {"requests": {"storage": "'20Gi'"}}}}'`
-4. after some time this pvc should have the new size. check with `kubectl get pvc -n mimir storage-sx-mimir-ingester-zone-b-0`
-5. also the underlying pv should have the new size. check with: `kubectl get pv |grep storage-sx-mimir-ingester-zone-b-0`
-6. delete pod of sts: `kubectl delete pod sx-mimir-ingester-zone-b-0 -n mimir`
-7. 
-
+TBD: we definitly need to monitor the ingester PVCs!
 
 
 
