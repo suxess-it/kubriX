@@ -148,6 +148,7 @@ vault:
         - /bin/sh
         - -c
         - | 
+          set -x
           while true; do
             sleep 5
             if [ -f /vault-root-token/root_token ]; then
