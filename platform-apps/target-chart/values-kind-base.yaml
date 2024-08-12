@@ -6,23 +6,23 @@ applications:
 
   - name: cert-manager
     annotations:
-      argocd.argoproj.io/sync-wave: "-3"
+      argocd.argoproj.io/sync-wave: "-10"
 
   - name: argocd
     annotations:
-      argocd.argoproj.io/sync-wave: "-2"
+      argocd.argoproj.io/sync-wave: "-9"
 
-#  - name: kube-prometheus-stack
-#    destinationNamespaceOverwrite: monitoring
-#    annotations:
-#      argocd.argoproj.io/compare-options: ServerSideDiff=true
-#      argocd.argoproj.io/sync-wave: "-1"
-#    syncOptions:
-#      - ServerSideApply=true
+  - name: kube-prometheus-stack
+    destinationNamespaceOverwrite: monitoring
+    annotations:
+      argocd.argoproj.io/compare-options: ServerSideDiff=true
+      argocd.argoproj.io/sync-wave: "-8"
+    syncOptions:
+      - ServerSideApply=true
 
   - name: crossplane
     annotations:
-      argocd.argoproj.io/sync-wave: "-1"
+      argocd.argoproj.io/sync-wave: "-8"
 
 #  - name: loki
 #    destinationNamespaceOverwrite: monitoring
@@ -48,17 +48,18 @@ applications:
 #      - ServerSideApply=true
 
   - name: external-secrets
+    annotations:
+      argocd.argoproj.io/sync-wave: "-8"
 
   - name: keycloak
     annotations:
-      argocd.argoproj.io/sync-wave: "1"
+      argocd.argoproj.io/sync-wave: "-7"
 
 #  - name: kargo
 
-  - name: komoplane
+#  - name: komoplane
 
 #  - name: kubecost
-
 
 #  - name: team-onboarding
 #    destinationNamespaceOverwrite: argocd
@@ -75,12 +76,13 @@ applications:
 
   - name: vault
     annotations:
-      argocd.argoproj.io/sync-wave: "2"
+      argocd.argoproj.io/sync-wave: "-7"
 
   - name: velero
-
-  - name: velero-ui
+    annotations:
+      argocd.argoproj.io/sync-wave: "5"
+#  - name: velero-ui
 
   - name: minio
     annotations:
-      argocd.argoproj.io/sync-wave: "3"
+      argocd.argoproj.io/sync-wave: "-6"
