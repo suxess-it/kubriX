@@ -57,7 +57,6 @@ vault:
         - /bin/sh
         - -c
         - | 
-            set -x
             while true; do
               while [ -z $UNSEAL_KEY ]; do
                 sleep 5
@@ -101,7 +100,6 @@ vault:
         - /bin/sh
         - -c
         - | 
-            set -x
             while true; do
               sleep 5
               VAULT_STATUS=$(vault status)
@@ -148,7 +146,6 @@ vault:
         - /bin/sh
         - -c
         - | 
-          set -x
           while true; do
             sleep 5
             if [ -f /vault-root-token/root_token ]; then
@@ -187,7 +184,7 @@ vault:
                   else  
                     /usr/local/libexec/vault/kubectl create configmap kubeauth-accessor -n vault --from-literal=accessor=${accessor}
                   fi  
-                  sleep 5
+                  sleep 30
                   echo setup complete 
                   #exit 0
                 fi      
