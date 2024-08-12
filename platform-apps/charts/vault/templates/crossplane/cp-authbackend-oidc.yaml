@@ -1,17 +1,17 @@
-apiVersion: auth.vault.upbound.io/v1alpha1
-kind: Backend
-metadata:
-  annotations:
-    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
-    argocd.argoproj.io/sync-wave: "1"
-  name: oidc
-spec:
-  providerConfigRef:
-    name: vault-crossplane-providerconfig
-  forProvider:
-    type: oidc
-    path: oidc
----
+#apiVersion: auth.vault.upbound.io/v1alpha1
+#kind: Backend
+#metadata:
+#  annotations:
+#    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+#    argocd.argoproj.io/sync-wave: "1"
+#  name: oidc
+#spec:
+#  providerConfigRef:
+#    name: vault-crossplane-providerconfig
+#  forProvider:
+#    type: oidc
+#    path: oidc
+#---
 apiVersion: jwt.vault.upbound.io/v1alpha1
 kind: AuthBackend
 metadata:
