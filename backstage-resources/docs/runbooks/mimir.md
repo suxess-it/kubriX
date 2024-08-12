@@ -40,6 +40,16 @@ Also interesting: https://github.com/grafana/mimir/discussions/8302
 
 TBD: we definitly need to minitor the ingester PVCs!
 
+How it worked in our environment:
+
+1. disable auto-sync in bootstrap app and mimir app
+2. orphan delete sts `sx-mimir-ingester-zone-b`
+3. resize pvc with `kubectl patch pvc -n mimir storage-sx-mimir-ingester-zone-b-0 -p '{"spec": {"resources": {"requests": {"storage": "'20Gi'"}}}}'`
+4. after some time this pvc should have the new size. check with `kubectl get pvc -n mimir storage-sx-mimir-ingester-zone-b-0`
+5. also the underlying pv should have the new size. check with: `kubectl get pv |grep storage-sx-mimir-ingester-zone-b-0`
+6. delete pod of sts: `kubectl delete pod sx-mimir-ingester-zone-b-0 -n mimir`
+7. 
+
 
 
 
