@@ -26,3 +26,10 @@ mimir:
       limits:
         cpu: 3.5
         memory: 6Gi
+  ingester:
+    resources:
+      limits:
+        cpu: 5
+        memory: 12Gi
+    persistentVolume:
+      size: 20Gi
