@@ -36,6 +36,9 @@ In our environment: disable first the bootstrap app auto sync, then the mimir au
 Matches with this (even though it is for Tempo) except that it doesn't explain the ArgoCD part: https://grafana.com/docs/tempo/latest/operations/ingester_pvcs/
 
 
+Also interesting: https://github.com/grafana/mimir/discussions/8302
+
+TBD: we definitly need to minitor the ingester PVCs!
 
 
 
