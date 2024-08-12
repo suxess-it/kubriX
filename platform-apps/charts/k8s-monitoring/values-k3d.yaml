@@ -25,7 +25,7 @@ k8s-monitoring:
 
   extraConfig: |
     mimir.rules.kubernetes "rules" {
-      address = nonsensitive(remote.kubernetes.secret.metrics_service.data["host"])
+      address = "http://just-a-fake"
       tenant_id = nonsensitive(remote.kubernetes.secret.metrics_service.data["tenantId"])
 
       rule_namespace_selector {
