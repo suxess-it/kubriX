@@ -27,6 +27,9 @@ k8s-monitoring:
   metrics:
     apiserver:
       enabled: true
+      metricsTuning:
+        includeMetrics:
+          - apiserver_requested_deprecated_apis
     kube-state-metrics:
       metricsTuning:
         includeMetrics:
