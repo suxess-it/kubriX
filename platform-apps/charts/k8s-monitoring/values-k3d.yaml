@@ -37,7 +37,10 @@ k8s-monitoring:
 
       rule_namespace_selector {
           match_labels = {
-              name = "k8s-monitoring",
+            "kubernetes.io/metadata.name" = "k8s-monitoring",
           }
+      }
+      rule_selector {
+          match_labels = {}
       }
     }
