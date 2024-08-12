@@ -45,7 +45,7 @@ spec:
     name: vault-crossplane-providerconfig
   forProvider:
     allowedRedirectUris: 
-    - "{{ .Values.eso.callbackUri }}"/ui/vault/auth/oidc/oidc/callback
+    - {{ .Values.eso.callbackUri }}/ui/vault/auth/oidc/oidc/callback
     - http://localhost:8250/oidc/callback
     roleName: default
     userClaim: sub
