@@ -31,6 +31,7 @@ one or more objects failed to apply, reason: error when patching "/dev/shm/22288
 ```
 
 This could help: https://github.com/argoproj/argo-cd/issues/6666
+In our environment: disable first the bootstrap app auto sync, then the mimir auto-sync
 
 Matches with this (even though it is for Tempo) except that it doesn't explain the ArgoCD part: https://grafana.com/docs/tempo/latest/operations/ingester_pvcs/
 
