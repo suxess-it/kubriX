@@ -24,7 +24,15 @@ see https://community.grafana.com/t/mimir-ingesters-failing-on-no-space-left-on-
 
 solution: increase ingester persistentVolume, like https://github.com/grafana/mimir/blob/fefa35e43bcc36c58f8baa3b1de0171b5f590b28/operations/helm/charts/mimir-distributed/capped-small.yaml#L62C3-L63
 
+When increasing the PVC and syncing via ArgoCD the following sync error happens:
 
+```
+one or more objects failed to apply, reason: error when patching "/dev/shm/2228869740": StatefulSet.apps "sx-mimir-ingester-zone-a" is invalid: spec: Forbidden: updates to statefulset spec for fields other than 'replicas', 'ordinals', 'template', 'updateStrategy', 'persistentVolumeClaimRetentionPolicy' and 'minReadySeconds' are forbidden,error when patching "/dev/shm/2372432679": StatefulSet.apps "sx-mimir-ingester-zone-b" is invalid: spec: Forbidden: updates to statefulset spec for fields other than 'replicas', 'ordinals', 'template', 'updateStrategy', 'persistentVolumeClaimRetentionPolicy' and 'minReadySeconds' are forbidden,error when patching "/dev/shm/657813136": StatefulSet.apps "sx-mimir-ingester-zone-c" is invalid: spec: Forbidden: updates to statefulset spec for fields other than 'replicas', 'ordinals', 'template', 'updateStrategy', 'persistentVolumeClaimRetentionPolicy' and 'minReadySeconds' are forbidden. Retrying attempt #2 at 6:43AM.
+```
+
+This could help: https://github.com/argoproj/argo-cd/issues/6666
+
+Matches with this (even though it is for Tempo) except that it doesn't explain the ArgoCD part: https://grafana.com/docs/tempo/latest/operations/ingester_pvcs/
 
 
 
