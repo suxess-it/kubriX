@@ -23,7 +23,7 @@ spec:
   providerConfigRef:
     name: vault-crossplane-providerconfig
   forProvider:
-    oidcDiscoveryUrl: https://keycloak-127-0-0-1.nip.io/realms/sx-cnp-oss
+    oidcDiscoveryUrl: "{{ .Values.eso.oidcDiscoveryUrl }}"
     oidcClientId: vault
     defaultRole: default
     oidcClientSecretSecretRef:
@@ -45,7 +45,7 @@ spec:
     name: vault-crossplane-providerconfig
   forProvider:
     allowedRedirectUris: 
-    - https://vault-127-0-0-1.nip.io/ui/vault/auth/oidc/oidc/callback
+    - "{{ .Values.eso.callbackUri }}"/ui/vault/auth/oidc/oidc/callback
     - http://localhost:8250/oidc/callback
     roleName: default
     userClaim: sub
