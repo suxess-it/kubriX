@@ -17,14 +17,9 @@ fi
 
 if [[ "${TARGET_TYPE}" =~ ^KIND.* ]] ; then
   # create mkcert certs in alle namespaces with ingress
-  for namespace in backstage kargo monitoring argocd keycloak komoplane kubecost falco minio velero velero-ui vault; do
+  for namespace in backstage kargo grafana argocd keycloak komoplane kubecost falco minio velero velero-ui vault; do
     kubectl create namespace ${namespace}
-    # for grafana the namespace is not the same as the ingress hostname
-    if [ "${namespace}" = "monitoring" ]; then
-      mkcert -cert-file ${namespace}-cert.pem -key-file ${namespace}-key.pem grafana-127-0-0-1.nip.io
-    else
-      mkcert -cert-file ${namespace}-cert.pem -key-file ${namespace}-key.pem ${namespace}-127-0-0-1.nip.io
-    fi
+    mkcert -cert-file ${namespace}-cert.pem -key-file ${namespace}-key.pem ${namespace}-127-0-0-1.nip.io
     # kargo needs a special secret name according to its helm chart
     if [ "${namespace}" = "kargo" ]; then
       kubectl create secret tls kargo-api-ingress-cert -n ${namespace} --cert=${namespace}-cert.pem --key=${namespace}-key.pem
