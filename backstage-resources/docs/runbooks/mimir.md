@@ -10,6 +10,19 @@ Follow the steps in https://medium.com/@dotdc/how-to-find-unused-prometheus-metr
 Then follow https://medium.com/@dotdc/prometheus-performance-and-cardinality-in-practice-74d5d9cd6230 to drop unused metrics.
 
 
+## err-mimir-tenant-max-ingestion-rate
+???
+
+
+## write to WAL - no space left on device
+
+```
+ts=2024-08-12T06:25:31.119841738Z caller=grpc_logging.go:76 level=warn method=/cortex.Ingester/Push duration=4.881001ms msg=gRPC err="user=gardener: write to WAL: log samples: write /data/tsdb/gardener/wal/00000727: no space left on device"
+```
+
+see https://community.grafana.com/t/mimir-ingesters-failing-on-no-space-left-on-device/66493/2
+
+solution: increase ingester persistentVolume, like https://github.com/grafana/mimir/blob/fefa35e43bcc36c58f8baa3b1de0171b5f590b28/operations/helm/charts/mimir-distributed/capped-small.yaml#L62C3-L63
 
 
 
