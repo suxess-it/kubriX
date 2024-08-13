@@ -4,6 +4,10 @@ default:
 
 applications:
 
+  - name: ingress-nginx
+    annotations:
+      argocd.argoproj.io/sync-wave: "-2"
+
   - name: argocd
     annotations:
       argocd.argoproj.io/sync-wave: "-2"
