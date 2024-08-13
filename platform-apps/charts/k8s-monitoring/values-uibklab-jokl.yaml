@@ -56,3 +56,27 @@ k8s-monitoring:
           match_labels = {}
       }
     }
+
+    discovery.relabel "coredns" {
+      targets = discovery.kubernetes.pods.targets
+      rule {
+        source_labels = ["__meta_kubernetes_pod_label_k8s_app"]
+        regex = "kube-dns"
+        action = "keep"
+      }
+      rule {
+        source_labels = ["__meta_kubernetes_pod_container_port_number"]
+        regex = "9153"
+        action = "keep"
+      }
+      rule {
+        source_labels = ["__meta_kubernetes_pod_name"]
+        target_label = "instance"
+      }
+    }
+    prometheus.scrape "coredns" {
+      job_name     = "integrations/coredns"
+      targets      = discovery.relabel.coredns.output
+      honor_labels = true
+      forward_to   = [prometheus.relabel.metrics_service.receiver]
+    }
