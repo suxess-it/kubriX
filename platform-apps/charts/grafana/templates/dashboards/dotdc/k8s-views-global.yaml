@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  labels:
+    grafana_dashboard: "1"
+  name: k8s-views-global
+data:
+  k8s-views-global.json: |-
+{{ .Files.Get "dashboard-files/k8s-views-global.json" | indent 4 }}
