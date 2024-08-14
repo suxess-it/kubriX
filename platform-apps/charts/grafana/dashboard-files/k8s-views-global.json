@@ -153,7 +153,7 @@
           "editorMode": "code",
           "exemplar": true,
           "expr": "avg(sum by (instance, cpu) (rate(node_cpu_seconds_total{mode!~\"idle|iowait|steal\", cluster=\"$cluster\", job=\"$job\"}[$__rate_interval])))",
-          "interval": "",
+          "interval": "2m",
           "legendFormat": "Real Linux",
           "range": true,
           "refId": "Real Linux"
