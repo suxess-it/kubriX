@@ -95,7 +95,7 @@ backstage:
 
         '/grafana/api':
           # use k8s internal service name because grafana-127-0-0-1.nip.io resolves to 127.0.0.1 in container, too
-          target: http://sx-kube-prometheus-stack-grafana.monitoring:80
+          target: http://sx-grafana.grafana:80
           headers:
             Authorization: Bearer ${GRAFANA_TOKEN}
 
