@@ -55,6 +55,10 @@ k8s-monitoring:
           - kube_secret_info
           - kube_networkpolicy_labels
           - kube_node_info
+    kubelet:
+      metricsTuning:
+        includeMetrics:
+          - machine_cpu_cores
 
   extraConfig: |
     mimir.rules.kubernetes "rules" {
