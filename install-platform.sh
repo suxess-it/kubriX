@@ -131,7 +131,7 @@ if [[ $( echo $argocd_apps | grep sx-backstage ) ]] ; then
   # get hostnames
   # gethostnames from ingress - to remove TARGET_TYPE 
   export ARGOCD_HOSTNAME=$(kubectl get ingress -o jsonpath='{.items[*].spec.rules[*].host}' -n argocd)
-  export GRAFANA_HOSTNAME=$(kubectl get ingress -o jsonpath='{.items[*].spec.rules[*].host}' -n monitoring)
+  export GRAFANA_HOSTNAME=$(kubectl get ingress -o jsonpath='{.items[*].spec.rules[*].host}' -n grafana)
 
   # download argocd
   curl -kL -o argocd https://${ARGOCD_HOSTNAME}/download/argocd-linux-amd64

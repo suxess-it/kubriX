@@ -52,7 +52,7 @@ falco:
       enabled: true
     config:
       loki:
-        hostport: "http://sx-loki.monitoring.svc.cluster.local:3100"
+        hostport: "http://sx-loki.loki.svc.cluster.local:3100"
 
 falco-exporter:
   falco:
@@ -65,7 +65,7 @@ falco-exporter:
       release: kube-prometheus-stack
   grafanaDashboard:
     enabled: true
-    namespace: monitoring
+    namespace: falco
 
   prometheusRules:
     enabled: true
@@ -81,4 +81,4 @@ k8s-metacollector:
       configMaps:
         collector:
           name: k8s-metacollector-grafana-dashboard
-          namespace: "monitoring"
+          namespace: "falco"
