@@ -69,6 +69,10 @@ k8s-monitoring:
       metricsTuning:
         includeMetrics:
           - kubelet_volume_stats_used_bytes
+    node-exporter:
+      metricsTuning:
+        includeMetrics:
+          - node_uname_info
 
   extraConfig: |
     mimir.rules.kubernetes "rules" {
