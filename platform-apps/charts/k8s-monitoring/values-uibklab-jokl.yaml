@@ -91,7 +91,11 @@ k8s-monitoring:
           - node_netstat_Tcp_CurrEstab
           - node_nf_conntrack_entries
           - node_nf_conntrack_entries_limit
-
+          - node_disk_read_bytes_total
+          - node_disk_written_bytes_total
+          - node_disk_reads_completed_total
+          - node_disk_writes_completed_total
+          - node_disk_io_now
   extraConfig: |
     mimir.rules.kubernetes "rules" {
       address = nonsensitive(remote.kubernetes.secret.metrics_service.data["host"])
