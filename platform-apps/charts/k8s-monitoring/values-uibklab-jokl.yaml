@@ -59,6 +59,7 @@ k8s-monitoring:
       metricsTuning:
         includeMetrics:
           - machine_cpu_cores
+          - container_oom_events_total
 
   extraConfig: |
     mimir.rules.kubernetes "rules" {
