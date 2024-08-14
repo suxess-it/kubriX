@@ -66,17 +66,17 @@ spec:
             - name: DB_DATABASE
               valueFrom:
                 secretKeyRef:
-                  name: "{{ .Values.secrets.postgres.name }}"
+                  name: "psql-kc-secret"
                   key: POSTGRES_DB
             - name: DB_USER
               valueFrom:
                 secretKeyRef:
-                  name: "{{ .Values.secrets.postgres.name }}"
+                  name: "psql-kc-secret"
                   key: POSTGRES_USER
             - name: DB_PASSWORD
               valueFrom:
                 secretKeyRef:
-                  name: "{{ .Values.secrets.postgres.name }}"
+                  name: "psql-kc-secret"
                   key: POSTGRES_PASSWORD
           ports:
             - name: http

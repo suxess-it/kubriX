@@ -39,7 +39,7 @@ spec:
           name: "{{ .Values.deployments.postgres.service.name }}"
           envFrom:
             - secretRef:
-                name: "{{ .Values.secrets.postgres.name }}"
+                name: "psql-kc-secret"
           ports:
             - containerPort: {{.Values.deployments.postgres.service.port}}
               name: "{{ .Values.deployments.postgres.service.name }}"
