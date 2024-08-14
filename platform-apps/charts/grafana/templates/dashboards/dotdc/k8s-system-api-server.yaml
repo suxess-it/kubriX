@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  labels:
+    grafana_dashboard: "1"
+  name: k8s-system-api-server
+data:
+  k8s-system-api-server.json: |-
+{{ .Files.Get "dashboard-files/k8s-system-api-server.json" | indent 4 }}
