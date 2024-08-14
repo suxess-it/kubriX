@@ -155,7 +155,7 @@
           "exemplar": false,
           "expr": "sum(rate(container_cpu_usage_seconds_total{namespace=~\"$namespace\", image!=\"\", cluster=\"$cluster\"}[$__rate_interval])) / sum(machine_cpu_cores{cluster=\"$cluster\"})",
           "instant": true,
-          "interval": "",
+          "interval": "1m",
           "legendFormat": "",
           "range": false,
           "refId": "A"
