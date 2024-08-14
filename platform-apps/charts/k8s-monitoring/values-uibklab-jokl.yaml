@@ -73,6 +73,8 @@ k8s-monitoring:
       metricsTuning:
         includeMetrics:
           - node_uname_info
+          - node_time_seconds
+          - node_boot_time_seconds
 
   extraConfig: |
     mimir.rules.kubernetes "rules" {
