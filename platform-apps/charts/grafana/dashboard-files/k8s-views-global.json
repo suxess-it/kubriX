@@ -810,10 +810,10 @@
           "editorMode": "code",
           "exemplar": true,
           "expr": "sum(rate(node_cpu_seconds_total{mode!~\"idle|iowait|steal\", cluster=\"$cluster\", job=\"$job\"}[$__rate_interval]))",
-          "interval": "",
-          "legendFormat": "Real Linux",
+          "interval": "2m",
+          "legendFormat": "Real",
           "range": true,
-          "refId": "Real Linux"
+          "refId": "Real"
         },
         {
           "datasource": {
@@ -869,6 +869,7 @@
       "title": "CPU Usage",
       "transformations": [
         {
+          "disabled": true,
           "id": "calculateField",
           "options": {
             "alias": "Real",
@@ -883,6 +884,7 @@
           }
         },
         {
+          "disabled": true,
           "id": "organize",
           "options": {
             "excludeByName": {
