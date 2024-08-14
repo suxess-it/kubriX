@@ -47,6 +47,12 @@ Matches with this (even though it is for Tempo) except that it doesn't explain t
 TBD: we definitly need to monitor the ingester PVCs!
 
 
+## Grafana - No data because scrapeInterval is 60 seconds
+
+Set Min Step of 2 minutes if you use `$__rate_interval` and k8s-monitoring chart has default scrapeInterval of 60 seconds
+
+see https://grafana.com/blog/2020/09/28/new-in-grafana-7.2-__rate_interval-for-prometheus-rate-queries-that-just-work/
+
 
 ### old documentation - DRAFT
 
