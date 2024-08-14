@@ -1961,7 +1961,7 @@
           "editorMode": "code",
           "exemplar": true,
           "expr": "sum(rate(container_cpu_cfs_throttled_seconds_total{image!=\"\", cluster=\"$cluster\"}[$__rate_interval])) by (namespace) > 0",
-          "interval": "1m",
+          "interval": "$resolution",
           "legendFormat": "{{ namespace }}",
           "range": true,
           "refId": "A"
