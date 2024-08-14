@@ -65,6 +65,10 @@ k8s-monitoring:
           - machine_cpu_cores
           - container_oom_events_total
           - container_cpu_cfs_throttled_seconds_total
+    kubelet:
+      metricsTuning:
+        includeMetrics:
+          - kubelet_volume_stats_used_byteskubelet_volume_stats_used_bytes
 
   extraConfig: |
     mimir.rules.kubernetes "rules" {
