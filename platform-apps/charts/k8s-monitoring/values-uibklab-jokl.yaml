@@ -75,6 +75,22 @@ k8s-monitoring:
           - node_uname_info
           - node_time_seconds
           - node_boot_time_seconds
+          - node_load1
+          - node_load5
+          - node_load15
+          - node_context_switches_total
+          - node_intr_total
+          - node_filefd_maximum
+          - node_filefd_allocated
+          - node_timex_estimated_error_seconds
+          - node_timex_maxerror_seconds
+          - node_network_receive_errs_total
+          - node_network_transmit_errs_total
+          - node_network_receive_packets_total
+          - node_network_transmit_packets_total
+          - node_netstat_Tcp_CurrEstab
+          - node_nf_conntrack_entries
+          - node_nf_conntrack_entries_limit
 
   extraConfig: |
     mimir.rules.kubernetes "rules" {

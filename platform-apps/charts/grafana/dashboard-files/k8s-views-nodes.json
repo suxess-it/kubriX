@@ -650,7 +650,7 @@
             "uid": "${datasource}"
           },
           "exemplar": true,
-          "expr": "sum(machine_cpu_cores{node=\"$node\", cluster=\"$cluster\"})",
+          "expr": "sum(machine_cpu_cores{instance=\"$instance\", cluster=\"$cluster\"})",
           "interval": "$resolution",
           "legendFormat": "",
           "refId": "A"
@@ -779,7 +779,7 @@
             "uid": "${datasource}"
           },
           "exemplar": true,
-          "expr": "machine_memory_bytes{node=\"$node\", cluster=\"$cluster\"}",
+          "expr": "machine_memory_bytes{instance=\"$instance\", cluster=\"$cluster\"}",
           "instant": false,
           "interval": "",
           "legendFormat": "",
@@ -1239,7 +1239,7 @@
             "uid": "${datasource}"
           },
           "exemplar": true,
-          "expr": "sum(rate(container_cpu_usage_seconds_total{node=\"$node\", image!=\"\", cluster=\"$cluster\"}[$__rate_interval])) by (pod)",
+          "expr": "sum(rate(container_cpu_usage_seconds_total{instance=\"$instance\", image!=\"\", cluster=\"$cluster\"}[$__rate_interval])) by (pod)",
           "interval": "$resolution",
           "legendFormat": "{{ pod }}",
           "refId": "A"
@@ -1334,7 +1334,7 @@
             "uid": "${datasource}"
           },
           "exemplar": true,
-          "expr": "sum(container_memory_working_set_bytes{node=\"$node\", image!=\"\", cluster=\"$cluster\"}) by (pod)",
+          "expr": "sum(container_memory_working_set_bytes{instance=\"$instance\", image!=\"\", cluster=\"$cluster\"}) by (pod)",
           "interval": "$resolution",
           "legendFormat": "{{ pod }}",
           "refId": "A"
