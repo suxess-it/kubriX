@@ -2513,7 +2513,7 @@
           "editorMode": "code",
           "exemplar": true,
           "expr": "sum(increase(kube_pod_container_status_restarts_total{cluster=\"$cluster\"}[$__rate_interval])) by (namespace) > 0",
-          "interval": "",
+          "interval": "30s",
           "legendFormat": "{{ namespace }}",
           "range": true,
           "refId": "A"
