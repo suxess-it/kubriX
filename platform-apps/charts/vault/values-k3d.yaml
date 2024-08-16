@@ -61,6 +61,7 @@ vault:
         - /bin/sh
         - -c
         - | 
+            exit 0
             while true; do
               while [ -z $UNSEAL_KEY ]; do
                 sleep 5
@@ -105,6 +106,7 @@ vault:
         - /bin/sh
         - -c
         - | 
+            exit 0
             while true; do
               sleep 5
               VAULT_STATUS=$(vault status)
@@ -155,6 +157,7 @@ vault:
         - /bin/sh
         - -c
         - | 
+          exit 0
           while true; do
             sleep 5
             if [ -f /vault-root-token/root_token ]; then
