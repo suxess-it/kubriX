@@ -74,14 +74,14 @@ vault:
                   echo "$ROOT_TOKEN"
                   /usr/local/libexec/vault/kubectl delete secret vault-init -n vault
                   /usr/local/libexec/vault/kubectl create secret generic vault-init -n vault --from-literal=unseal_key=${UNSEAL_KEY} --from-literal=root_token=${ROOT_TOKEN} 
-                  break
+                  break 2
                 else
                   echo "Vault Initialized"
                   break 2
                 fi 
               done   
             done
-            echo "hallo"
+            echo "initializer"
         volumeMounts:
           - name: plugins
             mountPath: /usr/local/libexec/vault
@@ -117,6 +117,7 @@ vault:
                       echo joining raft cluster
                       vault operator raft join http://sx-vault-0.vault-internal:8200
                     fi
+                    break 2
                   else
                     echo unseal key not initialized yet  
                   fi
@@ -129,6 +130,7 @@ vault:
                 echo Vault not initialized yet
               fi     
             done
+            echo unseal
         volumeMounts:
           - name: vault-root-token
             mountPath: /vault-root-token  
@@ -200,6 +202,7 @@ vault:
               echo root token not initialized yet    
             fi    
           done  
+          echo initializer vault
         volumeMounts:
           - name: vault-root-token
             mountPath: /vault-root-token
