@@ -77,13 +77,13 @@ vault:
                   /usr/local/libexec/vault/kubectl create secret generic vault-init -n vault --from-literal=unseal_key=${UNSEAL_KEY} --from-literal=root_token=${ROOT_TOKEN} 
                 else
                   echo "Vault Initialized"
-                  sleep 5
-                  exit 0
+                  break 2
                 fi 
               done   
              echo "demo"
              sleep 10
             done
+            echo "hallo"
         volumeMounts:
           - name: plugins
             mountPath: /usr/local/libexec/vault
