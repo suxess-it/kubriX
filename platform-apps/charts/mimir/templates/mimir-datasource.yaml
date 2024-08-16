@@ -15,7 +15,7 @@ data:
       basicAuth: false
       url: http://{{ template "mimir.fullname" .Subcharts.mimir }}-nginx.{{ .Release.Namespace }}.svc:80/prometheus
       access: proxy
-      isDefault: false
+      isDefault: true
       jsonData:
         httpMethod: "POST"
         prometheusType: "Mimir"

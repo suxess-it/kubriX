@@ -1,8 +1,12 @@
 default:
   valueFiles:
-  - values-k3d.yaml
+  - values-uibklab-jokl.yaml
 
 applications:
+
+  - name: ingress-nginx
+    annotations:
+      argocd.argoproj.io/sync-wave: "-2"
 
   - name: argocd
     annotations:
