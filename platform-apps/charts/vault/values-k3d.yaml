@@ -74,7 +74,7 @@ vault:
                   echo "$ROOT_TOKEN"
                   /usr/local/libexec/vault/kubectl delete secret vault-init -n vault
                   /usr/local/libexec/vault/kubectl create secret generic vault-init -n vault --from-literal=unseal_key=${UNSEAL_KEY} --from-literal=root_token=${ROOT_TOKEN} 
-		  break
+                  break
                 else
                   echo "Vault Initialized"
                   break 2
