@@ -145,7 +145,7 @@ data:
           },
           "targets": [
             {
-              "expr": "{namespace=~\"$namespace\", stream=~\"$stream\", container =~\"$container\"} |= \"$query\"",
+              "expr": "{cluster=~\"$cluster\", namespace=~\"$namespace\", stream=~\"$stream\", container =~\"$container\"} |= \"$query\"",
               "refId": "A"
             }
           ],
@@ -182,6 +182,34 @@ data:
             "query": "",
             "skipUrlSync": false,
             "type": "textbox"
+          },
+          {
+            "current": {
+              "isNone": true,
+              "selected": false,
+              "text": "None",
+              "value": ""
+            },
+            "datasource": {
+              "type": "prometheus",
+              "uid": "${datasource}"
+            },
+            "definition": "label_values(kube_node_info,cluster)",
+            "hide": 0,
+            "includeAll": false,
+            "multi": false,
+            "name": "cluster",
+            "options": [],
+            "query": {
+              "qryType": 1,
+              "query": "label_values(kube_node_info,cluster)",
+              "refId": "PrometheusVariableQueryEditor-VariableQuery"
+            },
+            "refresh": 1,
+            "regex": "",
+            "skipUrlSync": false,
+            "sort": 1,
+            "type": "query"
           },
           {
             "allValue": ".+",
