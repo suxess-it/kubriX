@@ -61,8 +61,6 @@ vault:
         - /bin/sh
         - -c
         - | 
-            set -x
-            exit 0
             while true; do
               while [ -z $UNSEAL_KEY ]; do
                 sleep 5
@@ -76,15 +74,12 @@ vault:
                   echo "$ROOT_TOKEN"
                   /usr/local/libexec/vault/kubectl delete secret vault-init -n vault
                   /usr/local/libexec/vault/kubectl create secret generic vault-init -n vault --from-literal=unseal_key=${UNSEAL_KEY} --from-literal=root_token=${ROOT_TOKEN} 
-                  break 2
                 else
                   echo "Vault Initialized"
-                  break 2
                 fi 
               done   
             done
             echo "initializer"
-            exit 0
         volumeMounts:
           - name: plugins
             mountPath: /usr/local/libexec/vault
@@ -107,8 +102,6 @@ vault:
         - /bin/sh
         - -c
         - | 
-            set -x
-            exit 0
             while true; do
               sleep 5
               VAULT_STATUS=$(vault status)
@@ -122,21 +115,18 @@ vault:
                       echo joining raft cluster
                       vault operator raft join http://sx-vault-0.vault-internal:8200
                     fi
-                    break 2
                   else
                     echo unseal key not initialized yet  
                   fi
                 else  
                   echo vault already unsealed
                   #exit 0
-                  break 2
                 fi
               else  
                 echo Vault not initialized yet
               fi     
             done
             echo unseal
-            exit 0
         volumeMounts:
           - name: vault-root-token
             mountPath: /vault-root-token  
@@ -159,8 +149,6 @@ vault:
         - /bin/sh
         - -c
         - | 
-          set -x
-          exit 0
           while true; do
             sleep 5
             if [ -f /vault-root-token/root_token ]; then
@@ -201,7 +189,6 @@ vault:
                   fi  
                   sleep 10
                   echo setup complete 
-                  break 3
                 fi      
               else
                 echo vault still sealed
@@ -211,7 +198,6 @@ vault:
             fi    
           done  
           echo initializer vault
-          exit 0
         volumeMounts:
           - name: vault-root-token
             mountPath: /vault-root-token
