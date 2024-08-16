@@ -62,6 +62,7 @@ vault:
         - -c
         - | 
             while true; do
+              sleep 10
               while [ -z $UNSEAL_KEY ]; do
                 sleep 5
                 VAULT_STATUS=$(vault status)
@@ -76,8 +77,6 @@ vault:
                   /usr/local/libexec/vault/kubectl create secret generic vault-init -n vault --from-literal=unseal_key=${UNSEAL_KEY} --from-literal=root_token=${ROOT_TOKEN} 
                 else
                   echo "Vault Initialized"
-                  sleep 5
-                  exit 0
                 fi 
               done   
             done
@@ -105,7 +104,7 @@ vault:
         - -c
         - | 
             while true; do
-              sleep 5
+              sleep 10
               VAULT_STATUS=$(vault status)
               if echo "$VAULT_STATUS" | grep -q "Initialized.*true"; then
                 if echo "$VAULT_STATUS" | grep -q "Sealed.*true"; then
@@ -122,7 +121,6 @@ vault:
                   fi
                 else  
                   echo vault already unsealed
-                  #exit 0
                 fi
               else  
                 echo Vault not initialized yet
@@ -151,7 +149,7 @@ vault:
         - -c
         - | 
           while true; do
-            sleep 5
+            sleep 10
             if [ -f /vault-root-token/root_token ]; then
               export VAULT_TOKEN=$(cat /vault-root-token/root_token)
               VAULT_STATUS=$(vault status)
@@ -188,9 +186,7 @@ vault:
                   else  
                     /usr/local/libexec/vault/kubectl create configmap kubeauth-accessor -n vault --from-literal=accessor=${accessor}
                   fi  
-                  sleep 30
                   echo setup complete 
-                  #exit 0
                 fi      
               else
                 echo vault still sealed
