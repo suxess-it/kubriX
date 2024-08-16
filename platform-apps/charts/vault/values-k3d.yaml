@@ -79,8 +79,6 @@ vault:
                   break 2
                 fi 
               done   
-             echo "demo"
-             sleep 10
             done
             echo "hallo"
         volumeMounts:
@@ -230,6 +228,8 @@ vault:
     auditStorage:
       enabled: true
       size: 1Gi
+    readinessProbe:
+    enabled: false
     ha:
       enabled: true
       replicas: 1
