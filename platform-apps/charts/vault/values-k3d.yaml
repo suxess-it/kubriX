@@ -61,6 +61,7 @@ vault:
         - /bin/sh
         - -c
         - | 
+            set -x
             exit 0
             while true; do
               while [ -z $UNSEAL_KEY ]; do
@@ -106,6 +107,7 @@ vault:
         - /bin/sh
         - -c
         - | 
+            set -x
             exit 0
             while true; do
               sleep 5
@@ -157,6 +159,7 @@ vault:
         - /bin/sh
         - -c
         - | 
+          set -x
           exit 0
           while true; do
             sleep 5
