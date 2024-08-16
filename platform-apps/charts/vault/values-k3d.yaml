@@ -61,6 +61,7 @@ vault:
         - /bin/sh
         - -c
         - | 
+            set -x
             while true; do
               while [ -z $UNSEAL_KEY ]; do
                 sleep 5
