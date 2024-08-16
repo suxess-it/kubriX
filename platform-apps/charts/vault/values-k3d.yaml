@@ -94,7 +94,6 @@ vault:
             - ALL
           privileged: false
           runAsNonRoot: true
-
       - name: auto-unsealer
         image: hashicorp/vault:1.16.1
         env: 
@@ -126,6 +125,7 @@ vault:
                 else  
                   echo vault already unsealed
                   #exit 0
+                  break 2
                 fi
               else  
                 echo Vault not initialized yet
@@ -191,9 +191,9 @@ vault:
                   else  
                     /usr/local/libexec/vault/kubectl create configmap kubeauth-accessor -n vault --from-literal=accessor=${accessor}
                   fi  
-                  sleep 30
+                  sleep 10
                   echo setup complete 
-                  #exit 0
+                  break 2
                 fi      
               else
                 echo vault still sealed
