@@ -228,7 +228,12 @@ data:
             "multi": true,
             "name": "namespace",
             "options": [],
-            "query": "label_values(namespace)",
+            "query": {
+              "label": "namespace",
+              "refId": "LokiVariableQueryEditor-VariableQuery",
+              "stream": "{cluster=\"$cluster\"}",
+              "type": 1
+            },
             "refresh": 1,
             "regex": "",
             "skipUrlSync": false,
@@ -274,7 +279,12 @@ data:
             "multi": true,
             "name": "container",
             "options": [],
-            "query": "label_values(container)",
+            "query": {
+              "label": "container",
+              "refId": "LokiVariableQueryEditor-VariableQuery",
+              "stream": "{cluster=\"$cluster\", namespace=\"$namespace\"}",
+              "type": 1
+            },
             "refresh": 1,
             "regex": "",
             "skipUrlSync": false,
