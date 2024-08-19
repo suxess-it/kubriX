@@ -87,6 +87,8 @@ velero:
     uploaderType: kopia # kopia when using datamover, alternative: restic
     features: EnableCSI
     defaultVolumesToFsBackup: false # false when using datamover
+    repositoryMaintenanceJob:
+      latestJobsCount:
   serviceAccount:
     server:
       create: true
