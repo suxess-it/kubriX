@@ -156,7 +156,7 @@ if [[ $( echo $argocd_apps | grep sx-backstage ) ]] ; then
   while [ $SECONDS -lt $end ]; do
     all_apps_synced="true"
     for app in ${argocd_app_backstage} ; do
-      kubectl get application -n argocd ${app} | grep "Synced.*Degraded"
+      kubectl get application -n argocd ${app} | grep "Synced.*"
       exit_code=$?
       if [[ $exit_code -ne 0 ]]; then
         all_apps_synced="false"
@@ -178,8 +178,6 @@ if [[ $( echo $argocd_apps | grep sx-backstage ) ]] ; then
 
   # create manual-secret secret with all tokens for backstage
   kubectl create secret generic -n backstage manual-secret --from-literal=GITHUB_CLIENTSECRET=${GITHUB_CLIENTSECRET} --from-literal=GITHUB_CLIENTID=${GITHUB_CLIENTID} --from-literal=GITHUB_ORG=${GITHUB_ORG} --from-literal=GITHUB_TOKEN=${GITHUB_TOKEN} --from-literal=K8S_SA_TOKEN=${K8S_SA_TOKEN} --from-literal=ARGOCD_AUTH_TOKEN=${ARGOCD_AUTH_TOKEN} --from-literal=GRAFANA_TOKEN=${GRAFANA_TOKEN}
-
-  kubectl rollout restart deploy/sx-backstage -n backstage
 
   # finally wait for all apps including backstage to be synced and health
 
