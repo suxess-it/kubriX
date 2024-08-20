@@ -62,7 +62,7 @@ falco-exporter:
       release: kube-prometheus-stack
   grafanaDashboard:
     enabled: true
-    namespace: monitoring
+    namespace: falco
 
   prometheusRules:
     enabled: true
@@ -78,4 +78,4 @@ k8s-metacollector:
       configMaps:
         collector:
           name: k8s-metacollector-grafana-dashboard
-          namespace: "monitoring"
+          namespace: falco
