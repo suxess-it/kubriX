@@ -43,8 +43,6 @@ falco:
     replicaCount: 1
     serviceMonitor:
       enabled: true
-      additionalLabels:
-        release: kube-prometheus-stack
     prometheusRules:
       enabled: true
     config:
@@ -58,11 +56,9 @@ falco-exporter:
 
   serviceMonitor:
     enabled: true
-    additionalLabels:
-      release: kube-prometheus-stack
   grafanaDashboard:
     enabled: true
-    namespace: monitoring
+    namespace: falco
 
   prometheusRules:
     enabled: true
@@ -70,12 +66,10 @@ falco-exporter:
 k8s-metacollector:
   serviceMonitor:
     create: true
-    labels:
-      release: "kube-prometheus-stack"
   grafana:
     dashboards:
       enabled: true
       configMaps:
         collector:
           name: k8s-metacollector-grafana-dashboard
-          namespace: "monitoring"
+          namespace: falco

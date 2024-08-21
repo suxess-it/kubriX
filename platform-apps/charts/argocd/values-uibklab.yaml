@@ -39,25 +39,19 @@ argo-cd:
     metrics:
       enabled: true
       serviceMonitor: 
-        enabled: true
-        additionalLabels:
-          release: kube-prometheus-stack        
+        enabled: true     
 
   dex:
     metrics:
       enabled: true
       serviceMonitor: 
-        enabled: true
-        additionalLabels:
-          release: kube-prometheus-stack        
+        enabled: true      
 
   redis:
     metrics:
       enabled: true
       serviceMonitor: 
-        enabled: true
-        additionalLabels:
-          release: kube-prometheus-stack        
+        enabled: true       
 
   server:
     ingress:
@@ -83,31 +77,23 @@ argo-cd:
     metrics:
       enabled: true
       serviceMonitor: 
-        enabled: true
-        additionalLabels:
-          release: kube-prometheus-stack        
+        enabled: true      
 
   applicationSet:
     allowAnyNamespace: true
     metrics:
       enabled: true
       serviceMonitor: 
-        enabled: true
-        additionalLabels:
-          release: kube-prometheus-stack        
+        enabled: true      
 
   repoServer:
     metrics:
       enabled: true
       serviceMonitor: 
-        enabled: true
-        additionalLabels:
-          release: kube-prometheus-stack        
+        enabled: true     
 
   notifications:
     metrics:
       enabled: true
       serviceMonitor: 
-        enabled: true
-        additionalLabels:
-          release: kube-prometheus-stack        
+        enabled: true    
