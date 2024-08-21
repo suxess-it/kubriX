@@ -94,11 +94,7 @@ velero:
       create: true
       name: velero
   credentials:
-    secretContents: 
-      cloud: |
-        [default]
-        aws_access_key_id=minio
-        aws_secret_access_key=minio123
+    existingSecret: velero-cloud-credential 
   snapshotsEnabled: true
   deployNodeAgent: true
   configMaps:
