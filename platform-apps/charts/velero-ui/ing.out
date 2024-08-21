@@ -1,0 +1,43 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  annotations:
+    cert.gardener.cloud/purpose: managed
+    dns.gardener.cloud/class: garden
+    dns.gardener.cloud/dnsnames: vui.lab.suxessit.k8s.cloud.uibk.ac.at
+    dns.gardener.cloud/ttl: "180"
+  generation: 1
+  labels:
+  name: sx-velero-ui-vui-ingress2
+  namespace: velero-ui
+spec:
+  ingressClassName: nginx
+  rules:
+  - host: vui.lab.suxessit.k8s.cloud.uibk.ac.at
+    http:
+      paths:
+      - backend:
+          service:
+            name: sx-velero-ui-vui-ui
+            port:
+              number: 80
+        path: /
+        pathType: Prefix
+      - backend:
+          service:
+            name: sx-velero-ui-vui-api
+            port:
+              number: 80
+        path: /api
+        pathType: Prefix
+      - backend:
+          service:
+            name: sx-velero-ui-vui-api
+            port:
+              number: 80
+        path: /ws
+        pathType: Prefix
+  tls:
+  - hosts:
+    - vui.lab.suxessit.k8s.cloud.uibk.ac.at
+    secretName: velero-ui2-tls
