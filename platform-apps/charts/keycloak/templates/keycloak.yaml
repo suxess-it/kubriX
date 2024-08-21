@@ -66,17 +66,17 @@ spec:
             - name: DB_DATABASE
               valueFrom:
                 secretKeyRef:
-                  name: "psql-kc-secret"
+                  name: "psql-kc-es"
                   key: POSTGRES_DB
             - name: DB_USER
               valueFrom:
                 secretKeyRef:
-                  name: "psql-kc-secret"
+                  name: "psql-kc-es"
                   key: POSTGRES_USER
             - name: DB_PASSWORD
               valueFrom:
                 secretKeyRef:
-                  name: "psql-kc-secret"
+                  name: "psql-kc-es"
                   key: POSTGRES_PASSWORD
           ports:
             - name: http
