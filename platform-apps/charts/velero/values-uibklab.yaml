@@ -33,12 +33,8 @@ velero:
   metrics:
     serviceMonitor:
       enabled: true
-      additionalLabels:
-        release: kube-prometheus-stack
     nodeAgentPodMonitor:
       enabled: true
-      additionalLabels:
-        release: kube-prometheus-stack
     prometheusRule:
       enabled: true
   crdjob:
