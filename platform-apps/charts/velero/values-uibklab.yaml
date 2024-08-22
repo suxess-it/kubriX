@@ -12,6 +12,9 @@ velero:
       volumeMounts:
         - mountPath: /target
           name: plugins
+        - mountPath: /etc/ssl/certs/ca.crt
+          subPath: ca.crt
+          name: certs
     - name: velero-plugin-for-microsoft-azure
       image: velero/velero-plugin-for-microsoft-azure:v1.10.0
       imagePullPolicy: IfNotPresent
@@ -83,6 +86,9 @@ velero:
     uploaderType: kopia # kopia when using datamover, alternative: restic
     features: EnableCSI
     defaultVolumesToFsBackup: false # false when using datamover
+    extraEnvVars:
+      - name: AWS_CA_BUNDLE
+        value: /etc/ssl/certs/ca.crt
     repositoryMaintenanceJob:
       latestJobsCount:
   serviceAccount:
