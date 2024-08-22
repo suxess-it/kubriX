@@ -6,14 +6,10 @@ vui:
 
   apiConfig:
     apiEnableDocumentation: "1"
-    awsAccessKeyId: minio
-    awsSecretAccessKey: minio123
     k8SInClusterMode: "True"
     origins1: 'https://velero-ui-127-0-0-1.nip.io'
-    securityTokenKey: 39ed3a846cf9fb105cbab6df007f5b7afbd163dbe66aaa19fafd25eb6fe0723a
     veleroCliVersion: v1.14.0
-    defaultAdminUsername: admin
-    defaultAdminPassword: admin
+    existingSecret: velero-ui-credential
 
   uiIngress:
     enabled: true
