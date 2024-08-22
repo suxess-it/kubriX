@@ -88,6 +88,10 @@ velero:
     defaultVolumesToFsBackup: false # false when using datamover
     extraEnvVars:
       AWS_CA_BUNDLE: /etc/ssl/certs/ca.crt
+    extraVolumes:
+      - name: certs
+        configMap:
+          name: cert-bundle
     repositoryMaintenanceJob:
       latestJobsCount:
   serviceAccount:
