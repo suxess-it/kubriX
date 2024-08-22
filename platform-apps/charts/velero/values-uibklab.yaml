@@ -87,8 +87,7 @@ velero:
     features: EnableCSI
     defaultVolumesToFsBackup: false # false when using datamover
     extraEnvVars:
-      - name: AWS_CA_BUNDLE
-        value: /etc/ssl/certs/ca.crt
+      AWS_CA_BUNDLE: /etc/ssl/certs/ca.crt
     repositoryMaintenanceJob:
       latestJobsCount:
   serviceAccount:
