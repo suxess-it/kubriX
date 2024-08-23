@@ -1,9 +1,0 @@
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  labels:
-    grafana_dashboard: "1"
-  name: k8s-views-pods
-data:
-  k8s-views-pods.json: |-
-{{ .Files.Get "dashboard-files/k8s-views-pods.json" | indent 4 }}
