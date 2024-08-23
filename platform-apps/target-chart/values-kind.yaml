@@ -24,7 +24,11 @@ applications:
       argocd.argoproj.io/sync-wave: "-1"
 
   - name: grafana
- 
+    annotations:
+      argocd.argoproj.io/compare-options: ServerSideDiff=true
+    syncOptions:
+      - ServerSideApply=true
+
   - name: mimir
 
   - name: loki
