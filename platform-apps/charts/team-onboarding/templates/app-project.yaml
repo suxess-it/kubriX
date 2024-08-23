@@ -3,6 +3,8 @@ apiVersion: argoproj.io/v1alpha1
 kind: AppProject
 metadata:
   name: {{ .name }}-project
+  annotations:
+    argocd.argoproj.io/sync-wave: "-1"
 spec:
   sourceNamespaces:
   - adn-{{ .name }}
