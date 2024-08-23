@@ -45,6 +45,10 @@ applications:
   - name: keycloak
 
   - name: grafana
+    annotations:
+      argocd.argoproj.io/compare-options: ServerSideDiff=true
+    syncOptions:
+      - ServerSideApply=true
 
   - name: mimir
 
