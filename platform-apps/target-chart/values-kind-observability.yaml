@@ -15,6 +15,15 @@ applications:
     syncOptions:
       - ServerSideApply=true
 
+  - name: loki
+    annotations:
+      argocd.argoproj.io/compare-options: ServerSideDiff=true
+      argocd.argoproj.io/sync-wave: "-1"
+    helmOptions:
+      skipCrds: true
+    syncOptions:
+      - ServerSideApply=true
+      
   - name: grafana
     annotations:
       argocd.argoproj.io/compare-options: ServerSideDiff=true
@@ -22,14 +31,6 @@ applications:
       - ServerSideApply=true
 
   - name: mimir
-
-  - name: loki
-    annotations:
-      argocd.argoproj.io/compare-options: ServerSideDiff=true
-    helmOptions:
-      skipCrds: true
-    syncOptions:
-      - ServerSideApply=true
 
   - name: tempo
 
