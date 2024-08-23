@@ -1,9 +1,0 @@
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  labels:
-    grafana_dashboard: "1"
-  name: k8s-views-namespaces
-data:
-  k8s-views-namespaces.json: |-
-{{ .Files.Get "dashboard-files/k8s-views-namespaces.json" | indent 4 }}

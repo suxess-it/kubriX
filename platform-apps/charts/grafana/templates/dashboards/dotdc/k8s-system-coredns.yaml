@@ -1,9 +1,0 @@
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  labels:
-    grafana_dashboard: "1"
-  name: k8s-system-coredns
-data:
-  k8s-system-coredns.json: |-
-{{ .Files.Get "dashboard-files/k8s-system-coredns.json" | indent 4 }}
