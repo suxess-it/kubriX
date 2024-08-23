@@ -40,6 +40,7 @@ applications:
   - name: loki
     annotations:
       argocd.argoproj.io/compare-options: ServerSideDiff=true
+      argocd.argoproj.io/sync-wave: "-1"
     helmOptions:
       skipCrds: true
     syncOptions:
