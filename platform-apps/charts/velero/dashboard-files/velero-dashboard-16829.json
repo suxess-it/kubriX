@@ -26,7 +26,7 @@
   "fiscalYearStartMonth": 0,
   "gnetId": 16829,
   "graphTooltip": 1,
-  "id": 386,
+  "id": 417,
   "links": [],
   "liveNow": false,
   "panels": [
@@ -61,7 +61,7 @@
         "type": "prometheus",
         "uid": "${datasource}"
       },
-      "description": "The sum of one-off backup and schedule backup success total ",
+      "description": "",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -102,99 +102,9 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 9,
+        "h": 5,
         "w": 3,
         "x": 0,
-        "y": 1
-      },
-      "id": 23,
-      "maxDataPoints": 100,
-      "options": {
-        "colorMode": "value",
-        "graphMode": "area",
-        "justifyMode": "auto",
-        "orientation": "auto",
-        "percentChangeColorMode": "standard",
-        "reduceOptions": {
-          "calcs": [
-            "lastNotNull"
-          ],
-          "fields": "",
-          "values": false
-        },
-        "showPercentChange": false,
-        "textMode": "auto",
-        "wideLayout": true
-      },
-      "pluginVersion": "11.1.4",
-      "targets": [
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "${datasource}"
-          },
-          "exemplar": false,
-          "expr": "velero_backup_total",
-          "format": "time_series",
-          "instant": true,
-          "interval": "",
-          "intervalFactor": 1,
-          "legendFormat": "",
-          "refId": "A"
-        }
-      ],
-      "title": "Backup Total",
-      "type": "stat"
-    },
-    {
-      "datasource": {
-        "type": "prometheus",
-        "uid": "${datasource}"
-      },
-      "description": "The last status of the backup. A value of 1 indicates success, while a value of 0 indicates failure.",
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "thresholds"
-          },
-          "mappings": [
-            {
-              "options": {
-                "match": "null",
-                "result": {
-                  "text": "N/A"
-                }
-              },
-              "type": "special"
-            }
-          ],
-          "max": 100,
-          "min": 0,
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "#d44a3a",
-                "value": null
-              },
-              {
-                "color": "rgba(237, 129, 40, 0.89)",
-                "value": 0.95
-              },
-              {
-                "color": "#299c46",
-                "value": 0.99
-              }
-            ]
-          },
-          "unit": "short"
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 9,
-        "w": 3,
-        "x": 3,
         "y": 1
       },
       "id": 48,
@@ -223,17 +133,18 @@
             "type": "prometheus",
             "uid": "${datasource}"
           },
+          "editorMode": "code",
           "exemplar": false,
-          "expr": "velero_backup_last_status",
+          "expr": "sum(velero_backup_active_total{schedule=~\"$schedule\", cluster=~\"$cluster\"}) by (cluster)",
           "format": "time_series",
           "instant": true,
           "interval": "",
           "intervalFactor": 1,
-          "legendFormat": "",
+          "legendFormat": "{{cluster}}",
           "refId": "A"
         }
       ],
-      "title": "Backup Last Status",
+      "title": "Active Backups",
       "type": "stat"
     },
     {
@@ -281,9 +192,9 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 9,
+        "h": 5,
         "w": 3,
-        "x": 6,
+        "x": 3,
         "y": 1
       },
       "id": 22,
@@ -368,9 +279,9 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 9,
+        "h": 5,
         "w": 3,
-        "x": 9,
+        "x": 6,
         "y": 1
       },
       "id": 25,
@@ -454,9 +365,9 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 9,
+        "h": 5,
         "w": 3,
-        "x": 12,
+        "x": 9,
         "y": 1
       },
       "id": 26,
@@ -598,9 +509,9 @@
         ]
       },
       "gridPos": {
-        "h": 9,
-        "w": 9,
-        "x": 15,
+        "h": 5,
+        "w": 12,
+        "x": 12,
         "y": 1
       },
       "id": 13,
@@ -644,6 +555,114 @@
         }
       ],
       "type": "table"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${datasource}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 50,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "linear",
+            "lineWidth": 4,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 24,
+        "x": 0,
+        "y": 6
+      },
+      "id": 62,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "table",
+          "placement": "right",
+          "showLegend": true
+        },
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "mimir"
+          },
+          "editorMode": "code",
+          "expr": "velero_backup_total{cluster=~\"$cluster\"}",
+          "instant": false,
+          "legendFormat": "Backup Total - {{cluster}}",
+          "range": true,
+          "refId": "A"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${datasource}"
+          },
+          "editorMode": "code",
+          "expr": "velero_backup_active_total{schedule=~\"$schedule\", cluster=~\"$cluster\"}",
+          "hide": false,
+          "instant": false,
+          "legendFormat": "Backup {{schedule}} - {{cluster}}",
+          "range": true,
+          "refId": "B"
+        }
+      ],
+      "title": "Panel Title",
+      "type": "timeseries"
     },
     {
       "datasource": {
@@ -711,7 +730,7 @@
         "h": 9,
         "w": 24,
         "x": 0,
-        "y": 10
+        "y": 14
       },
       "id": 8,
       "options": {
@@ -904,7 +923,7 @@
         "h": 8,
         "w": 24,
         "x": 0,
-        "y": 19
+        "y": 23
       },
       "heatmap": {},
       "hideZeroBuckets": false,
@@ -1050,7 +1069,7 @@
         "h": 6,
         "w": 24,
         "x": 0,
-        "y": 27
+        "y": 31
       },
       "id": 18,
       "options": {
@@ -1094,7 +1113,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 33
+        "y": 37
       },
       "id": 17,
       "panels": [],
@@ -1159,7 +1178,7 @@
         "h": 9,
         "w": 4,
         "x": 0,
-        "y": 34
+        "y": 38
       },
       "id": 27,
       "maxDataPoints": 100,
@@ -1187,17 +1206,18 @@
             "type": "prometheus",
             "uid": "${datasource}"
           },
+          "editorMode": "code",
           "exemplar": false,
-          "expr": "velero_restore_total",
+          "expr": "sum(rate(velero_restore_attempt_total{cluster=~\"$cluster\"}[$__interval])) by (cluster) / sum(rate(velero_restore_success_total{cluster=~\"$cluster\"}[$__interval])) by (cluster)",
           "format": "time_series",
           "instant": true,
           "interval": "",
           "intervalFactor": 1,
-          "legendFormat": "",
+          "legendFormat": " {{cluster}}",
           "refId": "A"
         }
       ],
-      "title": "Restore Total",
+      "title": "Active Restore",
       "type": "stat"
     },
     {
@@ -1248,7 +1268,7 @@
         "h": 9,
         "w": 4,
         "x": 4,
-        "y": 34
+        "y": 38
       },
       "id": 24,
       "maxDataPoints": 100,
@@ -1354,7 +1374,7 @@
         "h": 9,
         "w": 16,
         "x": 8,
-        "y": 34
+        "y": 38
       },
       "id": 28,
       "options": {
@@ -1425,12 +1445,198 @@
       "type": "timeseries"
     },
     {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "mimir"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 50,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "linear",
+            "lineWidth": 5,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 24,
+        "x": 0,
+        "y": 47
+      },
+      "id": 63,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "table",
+          "placement": "right",
+          "showLegend": true
+        },
+        "tooltip": {
+          "mode": "multi",
+          "sort": "none"
+        }
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "mimir"
+          },
+          "editorMode": "code",
+          "expr": "avg_over_time(velero_restore_total{cluster=~\"$cluster\"}[15m])",
+          "instant": false,
+          "legendFormat": "{{label_name}}Restore Total -  {{cluster}}",
+          "range": true,
+          "refId": "A"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "mimir"
+          },
+          "editorMode": "code",
+          "expr": "avg_over_time(velero_restore_success_total{schedule=~\"$schedule\", cluster=~\"$cluster\"}[15m])",
+          "hide": false,
+          "instant": false,
+          "legendFormat": "Restore Success Total {{schedule}} -  {{cluster}}",
+          "range": true,
+          "refId": "B"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "mimir"
+          },
+          "editorMode": "code",
+          "expr": "avg_over_time(velero_restore_success_total{schedule!~\".*\", cluster=~\"$cluster\"}[15m])",
+          "hide": false,
+          "instant": false,
+          "legendFormat": " Restore Partial Failure Total {{schedule}} -  {{cluster}}",
+          "range": true,
+          "refId": "C"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "mimir"
+          },
+          "editorMode": "code",
+          "expr": "avg_over_time(velero_restore_partial_failure_total{schedule!~\".*\", cluster=~\"$cluster\"}[15m])",
+          "hide": false,
+          "instant": false,
+          "legendFormat": "Restore Partial Failure Total -  {{cluster}}",
+          "range": true,
+          "refId": "D"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "mimir"
+          },
+          "editorMode": "code",
+          "expr": "avg_over_time(velero_restore_failed_total{schedule=~\"$schedule\", cluster=~\"$cluster\"}[15m])",
+          "hide": false,
+          "instant": false,
+          "legendFormat": "Restore Failure Total {{schedule}} -  {{cluster}}",
+          "range": true,
+          "refId": "E"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "mimir"
+          },
+          "editorMode": "code",
+          "expr": "avg_over_time(velero_restore_failed_total{schedule!~\".*\", cluster=~\"$cluster\"}[15m])",
+          "hide": false,
+          "instant": false,
+          "legendFormat": "Restore Failure Total -  {{cluster}}",
+          "range": true,
+          "refId": "F"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "mimir"
+          },
+          "editorMode": "code",
+          "expr": "avg_over_time(velero_restore_validation_failed_total{schedule=~\"$schedule\", cluster=~\"$cluster\"}[15m])",
+          "hide": false,
+          "instant": false,
+          "legendFormat": "Restore Validation Failed {{schedule}} -  {{cluster}}",
+          "range": true,
+          "refId": "G"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "mimir"
+          },
+          "editorMode": "code",
+          "expr": "avg_over_time(velero_restore_validation_failed_total{schedule!~\".*\", cluster=~\"$cluster\"}[15m])",
+          "hide": false,
+          "instant": false,
+          "legendFormat": "Restore Validation Failed -  {{cluster}}",
+          "range": true,
+          "refId": "H"
+        }
+      ],
+      "title": "Total Restore Count",
+      "type": "timeseries"
+    },
+    {
       "collapsed": false,
       "gridPos": {
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 43
+        "y": 55
       },
       "id": 56,
       "panels": [],
@@ -1504,7 +1710,7 @@
         "h": 10,
         "w": 11,
         "x": 0,
-        "y": 44
+        "y": 56
       },
       "id": 55,
       "options": {
@@ -1669,7 +1875,7 @@
         "h": 10,
         "w": 13,
         "x": 11,
-        "y": 44
+        "y": 56
       },
       "id": 57,
       "options": {
@@ -1766,7 +1972,7 @@
         "h": 8,
         "w": 11,
         "x": 0,
-        "y": 54
+        "y": 66
       },
       "id": 58,
       "options": {
@@ -1877,7 +2083,7 @@
         "h": 8,
         "w": 12,
         "x": 11,
-        "y": 54
+        "y": 66
       },
       "id": 60,
       "options": {
@@ -1987,7 +2193,7 @@
         "h": 8,
         "w": 11,
         "x": 0,
-        "y": 62
+        "y": 74
       },
       "id": 59,
       "options": {
@@ -2122,7 +2328,7 @@
         "h": 8,
         "w": 12,
         "x": 11,
-        "y": 62
+        "y": 74
       },
       "id": 61,
       "options": {
@@ -2236,7 +2442,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 70
+        "y": 82
       },
       "id": 52,
       "panels": [],
@@ -2318,7 +2524,7 @@
         "h": 9,
         "w": 24,
         "x": 0,
-        "y": 71
+        "y": 83
       },
       "id": 53,
       "options": {
@@ -2424,7 +2630,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 80
+        "y": 92
       },
       "id": 30,
       "panels": [],
@@ -2506,7 +2712,7 @@
         "h": 9,
         "w": 24,
         "x": 0,
-        "y": 81
+        "y": 93
       },
       "id": 32,
       "options": {
@@ -2574,7 +2780,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 90
+        "y": 102
       },
       "id": 36,
       "panels": [
@@ -2605,8 +2811,7 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "#d44a3a",
-                    "value": null
+                    "color": "#d44a3a"
                   },
                   {
                     "color": "rgba(237, 129, 40, 0.89)",
@@ -2626,7 +2831,7 @@
             "h": 9,
             "w": 4,
             "x": 0,
-            "y": 91
+            "y": 107
           },
           "id": 37,
           "maxDataPoints": 100,
@@ -2714,8 +2919,7 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green",
-                    "value": null
+                    "color": "green"
                   },
                   {
                     "color": "red",
@@ -2731,7 +2935,7 @@
             "h": 9,
             "w": 20,
             "x": 4,
-            "y": 91
+            "y": 107
           },
           "id": 38,
           "options": {
@@ -2827,8 +3031,7 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green",
-                    "value": null
+                    "color": "green"
                   },
                   {
                     "color": "red",
@@ -2844,7 +3047,7 @@
             "h": 6,
             "w": 24,
             "x": 0,
-            "y": 100
+            "y": 116
           },
           "id": 39,
           "options": {
@@ -2899,7 +3102,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 91
+        "y": 103
       },
       "id": 43,
       "panels": [
@@ -2930,8 +3133,7 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "#d44a3a",
-                    "value": null
+                    "color": "#d44a3a"
                   },
                   {
                     "color": "rgba(237, 129, 40, 0.89)",
@@ -2951,7 +3153,7 @@
             "h": 9,
             "w": 4,
             "x": 0,
-            "y": 92
+            "y": 108
           },
           "id": 41,
           "maxDataPoints": 100,
@@ -3039,8 +3241,7 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green",
-                    "value": null
+                    "color": "green"
                   },
                   {
                     "color": "red",
@@ -3056,7 +3257,7 @@
             "h": 9,
             "w": 20,
             "x": 4,
-            "y": 92
+            "y": 108
           },
           "id": 45,
           "options": {
@@ -3152,8 +3353,7 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green",
-                    "value": null
+                    "color": "green"
                   },
                   {
                     "color": "red",
@@ -3169,7 +3369,7 @@
             "h": 6,
             "w": 24,
             "x": 0,
-            "y": 101
+            "y": 117
           },
           "id": 47,
           "options": {
@@ -3224,7 +3424,7 @@
     "list": [
       {
         "current": {
-          "selected": true,
+          "selected": false,
           "text": "default",
           "value": "default"
         },
@@ -3243,7 +3443,34 @@
       },
       {
         "current": {
-          "selected": true,
+          "selected": false,
+          "text": "suxessit-uibklab",
+          "value": "suxessit-uibklab"
+        },
+        "datasource": {
+          "type": "prometheus",
+          "uid": "${datasource}"
+        },
+        "definition": "label_values(velero_backup_attempt_total,cluster)",
+        "hide": 0,
+        "includeAll": true,
+        "multi": true,
+        "name": "cluster",
+        "options": [],
+        "query": {
+          "qryType": 1,
+          "query": "label_values(velero_backup_attempt_total,cluster)",
+          "refId": "PrometheusVariableQueryEditor-VariableQuery"
+        },
+        "refresh": 1,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 0,
+        "type": "query"
+      },
+      {
+        "current": {
+          "selected": false,
           "text": [
             "All"
           ],
@@ -3380,7 +3607,7 @@
       },
       {
         "current": {
-          "selected": true,
+          "selected": false,
           "text": "All",
           "value": "$__all"
         },
@@ -3406,7 +3633,7 @@
       },
       {
         "current": {
-          "selected": true,
+          "selected": false,
           "text": "All",
           "value": "$__all"
         },
