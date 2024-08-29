@@ -1981,6 +1981,7 @@
               "mode": "off"
             }
           },
+          "decimals": 0,
           "mappings": [],
           "thresholds": {
             "mode": "absolute",
@@ -2025,10 +2026,10 @@
             "uid": "mimir"
           },
           "editorMode": "code",
-          "expr": "sum(rate(kopia_cache_hit_total[$__rate_interval])) by (schedule)",
+          "expr": "sum(kopia_cache_hit_total) by (cache)",
           "instant": false,
           "interval": "1m",
-          "legendFormat": "Hit",
+          "legendFormat": "hit {{cache}}",
           "range": true,
           "refId": "A"
         },
@@ -2038,11 +2039,11 @@
             "uid": "mimir"
           },
           "editorMode": "code",
-          "expr": "sum(rate(kopia_cache_miss_total[$__rate_interval]) * -1) by (schedule)",
+          "expr": "sum(kopia_cache_miss_total * -1) by (cache)",
           "hide": false,
           "instant": false,
           "interval": "1m",
-          "legendFormat": "Miss",
+          "legendFormat": "miss {{cache}}",
           "range": true,
           "refId": "B"
         }
@@ -2092,6 +2093,7 @@
               "mode": "off"
             }
           },
+          "decimals": 0,
           "mappings": [],
           "thresholds": {
             "mode": "absolute",
@@ -2135,9 +2137,10 @@
             "uid": "mimir"
           },
           "editorMode": "code",
-          "expr": "sum(rate(kopia_cache_store_errors_total[$__rate_interval])) by (schedule)",
+          "expr": "sum(kopia_cache_store_errors_total) by (cache)",
           "instant": false,
-          "legendFormat": "Cache store errors",
+          "interval": "1m",
+          "legendFormat": "cache store errors  - {{cache}}",
           "range": true,
           "refId": "A"
         },
@@ -2147,10 +2150,10 @@
             "uid": "mimir"
           },
           "editorMode": "code",
-          "expr": "sum(rate(kopia_cache_miss_errors_total[$__rate_interval])) by (schedule)",
+          "expr": "sum(kopia_cache_miss_errors_total) by (cache)",
           "hide": false,
           "instant": false,
-          "legendFormat": "Cache miss errors",
+          "legendFormat": "cache miss errors - {{cache}}",
           "range": true,
           "refId": "B"
         },
@@ -2160,10 +2163,11 @@
             "uid": "mimir"
           },
           "editorMode": "code",
-          "expr": "sum(rate(kopia_blob_errors_total[$__rate_interval])) by (schedule)",
+          "expr": "sum(kopia_blob_errors_total) by (method)",
           "hide": false,
           "instant": false,
-          "legendFormat": "Blob errors",
+          "interval": "1m",
+          "legendFormat": "blob errors - {{method}}",
           "range": true,
           "refId": "C"
         },
@@ -2173,12 +2177,38 @@
             "uid": "mimir"
           },
           "editorMode": "code",
-          "expr": "sum(rate(kopia_content_get_not_found_count_total[$__rate_interval])) by (schedule)",
+          "expr": "sum(kopia_content_get_not_found_count_total)",
           "hide": false,
           "instant": false,
           "legendFormat": "Not found",
           "range": true,
           "refId": "D"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "mimir"
+          },
+          "editorMode": "code",
+          "expr": "sum(kopia_content_get_error_count_total)",
+          "hide": false,
+          "instant": false,
+          "legendFormat": "error count total",
+          "range": true,
+          "refId": "E"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "mimir"
+          },
+          "editorMode": "code",
+          "expr": "sum(kopia_cache_malformed_total)",
+          "hide": false,
+          "instant": false,
+          "legendFormat": "cache malformed",
+          "range": true,
+          "refId": "F"
         }
       ],
       "title": "Errors",
@@ -2737,8 +2767,7 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "#d44a3a",
-                    "value": null
+                    "color": "#d44a3a"
                   },
                   {
                     "color": "rgba(237, 129, 40, 0.89)",
@@ -2846,8 +2875,7 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green",
-                    "value": null
+                    "color": "green"
                   },
                   {
                     "color": "red",
@@ -2959,8 +2987,7 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green",
-                    "value": null
+                    "color": "green"
                   },
                   {
                     "color": "red",
@@ -3062,8 +3089,7 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "#d44a3a",
-                    "value": null
+                    "color": "#d44a3a"
                   },
                   {
                     "color": "rgba(237, 129, 40, 0.89)",
@@ -3171,8 +3197,7 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green",
-                    "value": null
+                    "color": "green"
                   },
                   {
                     "color": "red",
@@ -3284,8 +3309,7 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green",
-                    "value": null
+                    "color": "green"
                   },
                   {
                     "color": "red",
@@ -3349,11 +3373,11 @@
   ],
   "refresh": false,
   "schemaVersion": 39,
-"tags": [
+  "tags": [
     "velero",
     "grc",
     "suXess"
-],
+  ],
   "templating": {
     "list": [
       {
@@ -3377,7 +3401,7 @@
       },
       {
         "current": {
-          "selected": true,
+          "selected": false,
           "text": [
             "All"
           ],
@@ -3439,7 +3463,7 @@
       },
       {
         "current": {
-          "selected": true,
+          "selected": false,
           "text": [
             "All"
           ],
@@ -3707,7 +3731,7 @@
     ]
   },
   "time": {
-    "from": "now-2h",
+    "from": "now-6h",
     "to": "now"
   },
   "timepicker": {
@@ -3728,6 +3752,6 @@
   "timezone": "",
   "title": "GRC/Velero",
   "uid": "EbXSjT24k",
-  "version": 3,
+  "version": 4,
   "weekStart": ""
 }
