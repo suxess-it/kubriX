@@ -115,6 +115,7 @@ vault:
                 if echo "$VAULT_STATUS" | grep -q "Sealed.*true"; then
                   if [ -f /vault-root-token/unseal_key ]; then
                     vault operator unseal $(cat /vault-root-token/unseal_key)
+                    sleep 5
                   else
                     echo unseal key not initialized yet  
                   fi
@@ -124,7 +125,6 @@ vault:
               else  
                 echo Vault not initialized yet
               fi
-    
             done
         volumeMounts:
           - name: vault-root-token
