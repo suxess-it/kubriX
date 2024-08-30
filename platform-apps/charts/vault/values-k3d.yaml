@@ -111,7 +111,7 @@ vault:
                   if [ -f /vault-root-token/unseal_key ]; then
                     if [ $HOSTNAME != 'sx-vault-0' ]; then
                       echo joining raft cluster
-                      vault operator raft join http://sx-vault-0.vault-internal:8200
+                      vault operator raft join http://sx-vault-0.sx-vault-internal:8200
                     fi
                     sleep 5
                     vault operator unseal $(cat /vault-root-token/unseal_key)
