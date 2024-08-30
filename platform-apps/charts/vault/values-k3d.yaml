@@ -66,7 +66,7 @@ vault:
               while [ -z $UNSEAL_KEY ]; do
                 sleep 5
                 VAULT_STATUS=$(vault status)
-                if echo "$VAULT_STATUS" | grep -q "Initialized.*false"; then
+                if echo "$VAULT_STATUS" | grep -q "Initialized.*false" && [ $HOSTNAME = 'sx-vault-0' ]; then
                   export INIT_RESPONSE=$(vault operator init -format=json -key-shares=1 -key-threshold=1)
                   echo "$INIT_RESPONSE"
                   export UNSEAL_KEY=$(echo "$INIT_RESPONSE" | /usr/local/libexec/vault/jq -r .unseal_keys_b64[0])
