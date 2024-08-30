@@ -50,7 +50,7 @@ vault:
           runAsNonRoot: true
     extraContainers:
       - name: auto-initializer
-        image: hashicorp/vault:1.16.1
+        image: hashicorp/vault:1.17.2
         env: 
           - name: VAULT_ADDR
             valueFrom:
@@ -92,7 +92,7 @@ vault:
           runAsNonRoot: true
 
       - name: auto-unsealer
-        image: hashicorp/vault:1.16.1
+        image: hashicorp/vault:1.17.2
         env: 
           - name: VAULT_ADDR
             valueFrom:
@@ -136,7 +136,7 @@ vault:
           privileged: false
           runAsNonRoot: true
       - name: vault-initializer
-        image: hashicorp/vault:1.16.1
+        image: hashicorp/vault:1.17.2
         env: 
           - name: VAULT_ADDR
             valueFrom:
