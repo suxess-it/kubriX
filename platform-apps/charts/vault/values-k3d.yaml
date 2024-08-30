@@ -109,13 +109,12 @@ vault:
               if echo "$VAULT_STATUS" | grep -q "Initialized.*true"; then
                 if echo "$VAULT_STATUS" | grep -q "Sealed.*true"; then
                   if [ -f /vault-root-token/unseal_key ]; then
-                    #vault operator unseal -reset $(cat /vault-root-token/unseal_key)
-                    vault operator unseal $(cat /vault-root-token/unseal_key)
-                    sleep 5
                     if [ $HOSTNAME != 'sx-vault-0' ]; then
                       echo joining raft cluster
                       vault operator raft join http://sx-vault-0.vault-internal:8200
                     fi
+                    sleep 5
+                    vault operator unseal $(cat /vault-root-token/unseal_key)
                   else
                     echo unseal key not initialized yet  
                   fi
