@@ -1,0 +1,27 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: truncate-audit-log
+  namespace: vault
+spec:
+  schedule: "* 10 * * *"  # daily at 10, until logs are integrated into SIEM, ...
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+          - name: truncate-audit-log
+            image: busybox
+            command:
+            - /bin/sh
+            - -c
+            - |
+              echo "" > /vault/audit/audit.log
+            volumeMounts:
+            - mountPath: /vault/audit
+              name: audit
+          volumes:
+          - name: audit
+            persistentVolumeClaim:
+              claimName: audit-sx-vault-0
+          restartPolicy: OnFailure
