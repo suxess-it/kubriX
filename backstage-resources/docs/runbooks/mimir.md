@@ -121,19 +121,3 @@ Set Min Step of 2 minutes if you use `$__rate_interval` and k8s-monitoring chart
 see https://grafana.com/blog/2020/09/28/new-in-grafana-7.2-__rate_interval-for-prometheus-rate-queries-that-just-work/
 
 
-### old documentation - DRAFT
-
-1. Download mimirtool from [Grafana Website](https://grafana.com/docs/mimir/latest/manage/tools/mimirtool/#installation)
-2. Create a Grafana API-Token (Roles 'Viewer') or get one from your Grafana system administrator
-3. Get all used metrics in Grafana with this command:
-```
-$ mimirtool analyze grafana --address=<Grafana-URL> --key="<API-Key from step 2>"
-```
-A `metrics-in-grafana.json` file should get writte in your current directory.
-
-
-
-
-references:
-
-- https://github.com/suxess-it/sx-cnp-oss/issues/380
