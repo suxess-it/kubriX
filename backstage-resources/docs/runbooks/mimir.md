@@ -54,6 +54,8 @@ How it worked in our environment with the example sts `sx-mimir-ingester-zone-c`
 6. sync ingester sts `sx-mimir-ingester-zone-c`
 ![image](https://github.com/user-attachments/assets/1d0c39b1-b13a-4b9d-aabf-6636fd134105)
 
+7. enable auto-sync in bootstrap app and mimir app again
+
 Matches with this (even though it is for Tempo) except that it doesn't explain the ArgoCD part: https://grafana.com/docs/tempo/latest/operations/ingester_pvcs/
 
 TBD: we definitly need to monitor the ingester PVCs!
