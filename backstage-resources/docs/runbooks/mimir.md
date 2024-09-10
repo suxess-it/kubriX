@@ -46,7 +46,7 @@ How it worked in our environment with the example sts `sx-mimir-ingester-zone-c`
 
 1. disable auto-sync in bootstrap app and mimir app
 2. resize pvc with `kubectl patch pvc -n mimir storage-sx-mimir-ingester-zone-c-0 -p '{"spec": {"resources": {"requests": {"storage": "'20Gi'"}}}}'`
-3. after some time this pvc should have the new size. check with `kubectl get pvc -n mimir storage-sx-mimir-ingester-zone-c-0`
+3. after some time this pvc should have the new size. check with `kubectl get pvc -n mimir storage-sx-mimir-ingester-zone-c-0` . Check with `kubectl get events -n mimir` for the resizing events.
 4. also the underlying pv should have the new size. check with: `kubectl get pv |grep storage-sx-mimir-ingester-zone-c-0`
 5. orphan delete sts `sx-mimir-ingester-zone-c`
 ![image](https://github.com/user-attachments/assets/1fb576ca-3c1e-4a9f-a38a-b2c26baec9f2)
