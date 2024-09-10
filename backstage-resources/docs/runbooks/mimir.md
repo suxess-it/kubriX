@@ -7,12 +7,14 @@ Mimir has a configured limit of time series of 150k. This is on purpose because 
 So before increasing the configured limit, you should take a look if your high series count is really needed.
 
 Follow the steps in https://medium.com/@dotdc/how-to-find-unused-prometheus-metrics-using-mimirtool-a44560173543 to get all used and unused metrics in your environment.
-Then follow https://medium.com/@dotdc/prometheus-performance-and-cardinality-in-practice-74d5d9cd6230 to drop unused metrics.
+Then follow https://medium.com/@dotdc/prometheus-performance-and-cardinality-in-practice-74d5d9cd6230 to drop unused metrics or increase the limit in the values:
 
-
-## err-mimir-tenant-max-ingestion-rate
-???
-
+```
+  mimir:
+    structuredConfig:
+      limits:
+        max_global_series_per_user: 500000
+```
 
 ## write to WAL - no space left on device
 
