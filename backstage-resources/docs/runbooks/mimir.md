@@ -95,6 +95,13 @@ NAME             STATUS   VOLUME                                     CAPACITY   
 sx-mimir-minio   Bound    pvc-386dcd78-923b-435b-a902-44da42783d8e   20Gi       RWO            premium        26d
 ```
 
+Check the filesystem usage inside minio pod:
+
+```
+kubectl exec sx-mimir-minio-74b979965-fl4fz -n mimir -it -- df -h /export
+Filesystem      Size  Used Avail Use% Mounted on
+/dev/nvme1n8     99G   27G   72G  28% /export
+```
 
 
 ## Grafana - No data because scrapeInterval is 60 seconds
