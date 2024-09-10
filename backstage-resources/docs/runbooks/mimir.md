@@ -26,7 +26,15 @@ ts=2024-08-12T06:25:31.119841738Z caller=grpc_logging.go:76 level=warn method=/c
 
 see https://community.grafana.com/t/mimir-ingesters-failing-on-no-space-left-on-device/66493/2
 
-solution: increase ingester persistentVolume, like https://github.com/grafana/mimir/blob/fefa35e43bcc36c58f8baa3b1de0171b5f590b28/operations/helm/charts/mimir-distributed/capped-small.yaml#L62C3-L63
+solution: increase ingester persistentVolume in values file, like https://github.com/grafana/mimir/blob/fefa35e43bcc36c58f8baa3b1de0171b5f590b28/operations/helm/charts/mimir-distributed/capped-small.yaml#L62C3-L63
+
+example:
+
+```
+  ingester:
+    persistentVolume:
+      size: 50Gi
+```
 
 When increasing the PVC in git repo and syncing via ArgoCD the following sync error happens:
 
