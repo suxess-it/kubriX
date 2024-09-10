@@ -16,7 +16,11 @@ Then follow https://medium.com/@dotdc/prometheus-performance-and-cardinality-in-
 
 ## write to WAL - no space left on device
 
+mimir ingester pods log warnings concerning full WAL filesystem:
+
 ```
+kubectl logs sx-mimir-ingester-zone-c-0 -n mimir
+
 ts=2024-08-12T06:25:31.119841738Z caller=grpc_logging.go:76 level=warn method=/cortex.Ingester/Push duration=4.881001ms msg=gRPC err="user=gardener: write to WAL: log samples: write /data/tsdb/gardener/wal/00000727: no space left on device"
 ```
 
@@ -24,7 +28,7 @@ see https://community.grafana.com/t/mimir-ingesters-failing-on-no-space-left-on-
 
 solution: increase ingester persistentVolume, like https://github.com/grafana/mimir/blob/fefa35e43bcc36c58f8baa3b1de0171b5f590b28/operations/helm/charts/mimir-distributed/capped-small.yaml#L62C3-L63
 
-When increasing the PVC and syncing via ArgoCD the following sync error happens:
+When increasing the PVC in git repo and syncing via ArgoCD the following sync error happens:
 
 ```
 one or more objects failed to apply, reason: error when patching "/dev/shm/2228869740": StatefulSet.apps "sx-mimir-ingester-zone-a" is invalid: spec: Forbidden: updates to statefulset spec for fields other than 'replicas', 'ordinals', 'template', 'updateStrategy', 'persistentVolumeClaimRetentionPolicy' and 'minReadySeconds' are forbidden,error when patching "/dev/shm/2372432679": StatefulSet.apps "sx-mimir-ingester-zone-b" is invalid: spec: Forbidden: updates to statefulset spec for fields other than 'replicas', 'ordinals', 'template', 'updateStrategy', 'persistentVolumeClaimRetentionPolicy' and 'minReadySeconds' are forbidden,error when patching "/dev/shm/657813136": StatefulSet.apps "sx-mimir-ingester-zone-c" is invalid: spec: Forbidden: updates to statefulset spec for fields other than 'replicas', 'ordinals', 'template', 'updateStrategy', 'persistentVolumeClaimRetentionPolicy' and 'minReadySeconds' are forbidden. Retrying attempt #2 at 6:43AM.
@@ -45,6 +49,52 @@ How it worked in our environment with the example sts `sx-mimir-ingester-zone-c`
 Matches with this (even though it is for Tempo) except that it doesn't explain the ArgoCD part: https://grafana.com/docs/tempo/latest/operations/ingester_pvcs/
 
 TBD: we definitly need to monitor the ingester PVCs!
+
+
+## write to long-term storage failed - Storage backend has reached its minimum free drive threshold
+
+mimir ingester pods log error concerning full s3 long-term storage. This could happen in parallel with the "full WAL storage" warning.
+
+```
+kubectl logs sx-mimir-ingester-zone-c-0 -n mimir
+
+ts=2024-09-10T07:34:52.173342654Z caller=shipper.go:162 level=error user=anonymous msg="uploading new block to long-term storage failed" block=01J71SHADT7DGVPR2JKCY5H8EE err="upload chunks: upload file /data/tsdb/anonymous/01J71SHADT7DGVPR2JKCY5H8EE/chunks/000001 as 01J71SHADT7DGVPR2JKCY5H8EE/chunks/000001: upload s3 object: Storage backend has reached its minimum free drive threshold. Please delete a few objects to proceed."!
+```
+
+When using minio default s3 long-term storage this could be increased by configuring the size in the values file like this
+
+```
+  minio:
+    persistence:
+      size: 20Gi
+```
+
+example commit: https://github.com/suxess-it/sx-cnp-oss/pull/538/commits/2afbce2151aa8e9e3e535702d60fd3650efffcb9
+
+During ArgoCD sync you probably will see the following event:
+
+![image](https://github.com/user-attachments/assets/033347bd-315f-43b8-a799-a784718e932d)
+
+or via kubectl:
+
+```
+kubectl get events -n mimir
+
+116s        Warning   ExternalExpanding            persistentvolumeclaim/sx-mimir-minio   waiting for an external controller to expand this PVC
+116s        Normal    Resizing                     persistentvolumeclaim/sx-mimir-minio   External resizer is resizing volume pvc-386dcd78-923b-435b-a902-44da42783d8e
+116s        Normal    FileSystemResizeRequired     persistentvolumeclaim/sx-mimir-minio   Require file system resize of volume on node
+84s         Normal    FileSystemResizeSuccessful   persistentvolumeclaim/sx-mimir-minio   MountVolume.NodeExpandVolume succeeded for volume "pvc-386dcd78-923b-435b-a902-44da42783d8e" shoot--suxessit--lab-default-76d97-6c6hr
+```
+
+Check the new filesystem size of the PVC:
+
+```
+kubectl get pvc -n mimir sx-mimir-minio
+
+NAME             STATUS   VOLUME                                     CAPACITY   ACCESS MODES   STORAGECLASS   AGE
+sx-mimir-minio   Bound    pvc-386dcd78-923b-435b-a902-44da42783d8e   20Gi       RWO            premium        26d
+```
+
 
 
 ## Grafana - No data because scrapeInterval is 60 seconds
