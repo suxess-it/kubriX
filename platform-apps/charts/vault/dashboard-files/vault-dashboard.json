@@ -15,12 +15,11 @@
       }
     ]
   },
-  "description": " Hashicorp Vault Metrics",
+  "description": "Hashicorp Vault Metrics maintained by suXess team",
   "editable": true,
   "fiscalYearStartMonth": 0,
   "gnetId": 12904,
   "graphTooltip": 1,
-  "id": 336,
   "links": [],
   "panels": [
     {
@@ -106,10 +105,12 @@
             "uid": "${datasource}"
           },
           "editorMode": "code",
-          "expr": "up{job=\"sx-vault-active\"}",
+          "exemplar": false,
+          "expr": "max by (job) (up{job=\"sx-vault-active\"})",
           "format": "time_series",
+          "instant": false,
           "interval": "",
-          "legendFormat": "{{ instance }}",
+          "legendFormat": "{{ pod }}",
           "range": true,
           "refId": "A"
         }
@@ -160,7 +161,7 @@
       },
       "gridPos": {
         "h": 3,
-        "w": 5,
+        "w": 4,
         "x": 4,
         "y": 1
       },
@@ -202,78 +203,6 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "${datasource}"
-      },
-      "fieldConfig": {
-        "defaults": {
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": null
-              },
-              {
-                "color": "#EAB839",
-                "value": 100
-              },
-              {
-                "color": "#EF843C",
-                "value": 200
-              },
-              {
-                "color": "red",
-                "value": 400
-              }
-            ]
-          }
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 3,
-        "w": 3,
-        "x": 9,
-        "y": 1
-      },
-      "id": 95,
-      "options": {
-        "colorMode": "value",
-        "graphMode": "area",
-        "justifyMode": "auto",
-        "orientation": "auto",
-        "percentChangeColorMode": "standard",
-        "reduceOptions": {
-          "calcs": [
-            "lastNotNull"
-          ],
-          "fields": "",
-          "values": false
-        },
-        "showPercentChange": false,
-        "textMode": "auto",
-        "wideLayout": true
-      },
-      "pluginVersion": "11.1.4",
-      "targets": [
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "${datasource}"
-          },
-          "expr": "avg(vault_expire_num_leases)",
-          "interval": "",
-          "legendFormat": "",
-          "refId": "A"
-        }
-      ],
-      "title": "Number of Leases",
-      "type": "stat"
-    },
-    {
-      "datasource": {
-        "type": "prometheus",
         "uid": "mimir"
       },
       "description": "Number of KV Engines across namespaces",
@@ -302,7 +231,7 @@
       "gridPos": {
         "h": 3,
         "w": 3,
-        "x": 12,
+        "x": 8,
         "y": 1
       },
       "id": 108,
@@ -346,6 +275,7 @@
         "type": "prometheus",
         "uid": "${datasource}"
       },
+      "description": "Number of Identity Entities",
       "fieldConfig": {
         "defaults": {
           "mappings": [],
@@ -364,7 +294,7 @@
       "gridPos": {
         "h": 3,
         "w": 3,
-        "x": 15,
+        "x": 11,
         "y": 1
       },
       "id": 78,
@@ -392,13 +322,15 @@
             "type": "prometheus",
             "uid": "${datasource}"
           },
+          "editorMode": "code",
           "expr": "avg(vault_identity_num_entities)",
           "interval": "",
           "legendFormat": "",
+          "range": true,
           "refId": "A"
         }
       ],
-      "title": "Number of Identity Entities",
+      "title": "Identity Entities",
       "type": "stat"
     },
     {
@@ -431,7 +363,7 @@
       "gridPos": {
         "h": 3,
         "w": 3,
-        "x": 18,
+        "x": 14,
         "y": 1
       },
       "id": 49,
@@ -479,8 +411,81 @@
       },
       "fieldConfig": {
         "defaults": {
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "#EAB839",
+                "value": 100
+              },
+              {
+                "color": "#EF843C",
+                "value": 200
+              },
+              {
+                "color": "red",
+                "value": 400
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 3,
+        "w": 3,
+        "x": 17,
+        "y": 1
+      },
+      "id": 95,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "percentChangeColorMode": "standard",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showPercentChange": false,
+        "textMode": "auto",
+        "wideLayout": true
+      },
+      "pluginVersion": "11.1.4",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${datasource}"
+          },
+          "expr": "avg(vault_expire_num_leases)",
+          "interval": "",
+          "legendFormat": "",
+          "refId": "A"
+        }
+      ],
+      "title": "Number of Leases",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${datasource}"
+      },
+      "description": "Indicates whether all nodes are healthy",
+      "fieldConfig": {
+        "defaults": {
           "color": {
-            "mode": "palette-classic"
+            "mode": "thresholds"
           },
           "custom": {
             "axisBorderShow": false,
@@ -515,7 +520,21 @@
             }
           },
           "decimals": 0,
-          "mappings": [],
+          "mappings": [
+            {
+              "options": {
+                "0": {
+                  "index": 0,
+                  "text": "unhealty"
+                },
+                "1": {
+                  "index": 1,
+                  "text": "healthy"
+                }
+              },
+              "type": "value"
+            }
+          ],
           "max": 1,
           "thresholds": {
             "mode": "absolute",
@@ -545,7 +564,7 @@
           "calcs": [],
           "displayMode": "table",
           "placement": "right",
-          "showLegend": true
+          "showLegend": false
         },
         "tooltip": {
           "mode": "single",
@@ -562,12 +581,12 @@
           "editorMode": "code",
           "expr": "vault_autopilot_healthy",
           "instant": false,
-          "legendFormat": "healthy",
+          "legendFormat": "{{label_name}}",
           "range": true,
           "refId": "A"
         }
       ],
-      "title": "Overall Health",
+      "title": "Autopilot Overall Health",
       "type": "timeseries"
     },
     {
@@ -578,7 +597,99 @@
       "fieldConfig": {
         "defaults": {
           "color": {
-            "mode": "palette-classic"
+            "mode": "continuous-BlPu"
+          },
+          "mappings": [
+            {
+              "options": {
+                "0": {
+                  "color": "red",
+                  "index": 1,
+                  "text": "OFFLINE"
+                },
+                "1": {
+                  "color": "green",
+                  "index": 0,
+                  "text": "ONLINE"
+                }
+              },
+              "type": "value"
+            }
+          ],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "transparent",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 0
+              },
+              {
+                "color": "green",
+                "value": 1
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 0,
+        "y": 9
+      },
+      "id": 107,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "horizontal",
+        "percentChangeColorMode": "standard",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showPercentChange": false,
+        "textMode": "auto",
+        "wideLayout": true
+      },
+      "pluginVersion": "11.1.4",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "mimir"
+          },
+          "editorMode": "code",
+          "exemplar": false,
+          "expr": "avg(vault_autopilot_node_healthy{container=~\"vault\"}) by (node_id)\n",
+          "format": "time_series",
+          "instant": false,
+          "legendFormat": "{{node_id}}",
+          "range": true,
+          "refId": "A"
+        }
+      ],
+      "title": "Cluster Health per Node",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${datasource}"
+      },
+      "description": "The failure tolerance indicates how many currently healthy nodes can fail without losing quorum.",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "continuous-BlPu"
           },
           "custom": {
             "axisBorderShow": false,
@@ -623,102 +734,8 @@
                 "value": null
               },
               {
-                "color": "green",
-                "value": 1
-              }
-            ]
-          }
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 8,
-        "w": 12,
-        "x": 0,
-        "y": 9
-      },
-      "id": 107,
-      "options": {
-        "legend": {
-          "calcs": [],
-          "displayMode": "table",
-          "placement": "right",
-          "showLegend": true
-        },
-        "tooltip": {
-          "mode": "single",
-          "sort": "none"
-        }
-      },
-      "pluginVersion": "11.1.4",
-      "targets": [
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "mimir"
-          },
-          "editorMode": "code",
-          "expr": "vault_autopilot_node_healthy",
-          "instant": false,
-          "legendFormat": "healthy",
-          "range": true,
-          "refId": "A"
-        }
-      ],
-      "title": "Cluster Health per Node",
-      "type": "timeseries"
-    },
-    {
-      "datasource": {
-        "type": "prometheus",
-        "uid": "${datasource}"
-      },
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "palette-classic"
-          },
-          "custom": {
-            "axisBorderShow": false,
-            "axisCenteredZero": false,
-            "axisColorMode": "text",
-            "axisLabel": "",
-            "axisPlacement": "auto",
-            "barAlignment": 0,
-            "drawStyle": "line",
-            "fillOpacity": 50,
-            "gradientMode": "opacity",
-            "hideFrom": {
-              "legend": false,
-              "tooltip": false,
-              "viz": false
-            },
-            "insertNulls": false,
-            "lineInterpolation": "linear",
-            "lineWidth": 4,
-            "pointSize": 5,
-            "scaleDistribution": {
-              "type": "linear"
-            },
-            "showPoints": "auto",
-            "spanNulls": false,
-            "stacking": {
-              "group": "A",
-              "mode": "none"
-            },
-            "thresholdsStyle": {
-              "mode": "off"
-            }
-          },
-          "decimals": 0,
-          "mappings": [],
-          "max": 1,
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
                 "color": "red",
-                "value": null
+                "value": 0
               },
               {
                 "color": "green",
@@ -777,14 +794,6 @@
           "color": {
             "mode": "thresholds"
           },
-          "custom": {
-            "align": "left",
-            "cellOptions": {
-              "type": "auto"
-            },
-            "filterable": true,
-            "inspect": false
-          },
           "mappings": [],
           "thresholds": {
             "mode": "absolute",
@@ -810,16 +819,21 @@
       },
       "id": 109,
       "options": {
-        "cellHeight": "sm",
-        "footer": {
-          "countRows": false,
-          "fields": "",
-          "reducer": [
-            "sum"
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "percentChangeColorMode": "standard",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
           ],
-          "show": false
+          "fields": "",
+          "values": false
         },
-        "showHeader": true
+        "showPercentChange": false,
+        "textMode": "auto",
+        "wideLayout": true
       },
       "pluginVersion": "11.1.4",
       "targets": [
@@ -838,7 +852,7 @@
           "refId": "A"
         }
       ],
-      "title": "Entitiy Count by Namespace (${datasource})",
+      "title": "Entity Count",
       "transformations": [
         {
           "id": "organize",
@@ -857,7 +871,7 @@
           }
         }
       ],
-      "type": "table"
+      "type": "stat"
     },
     {
       "datasource": {
@@ -869,14 +883,6 @@
         "defaults": {
           "color": {
             "mode": "thresholds"
-          },
-          "custom": {
-            "align": "left",
-            "cellOptions": {
-              "type": "auto"
-            },
-            "filterable": true,
-            "inspect": false
           },
           "mappings": [],
           "thresholds": {
@@ -897,22 +903,27 @@
       },
       "gridPos": {
         "h": 5,
-        "w": 10,
+        "w": 5,
         "x": 4,
         "y": 17
       },
       "id": 110,
       "options": {
-        "cellHeight": "sm",
-        "footer": {
-          "countRows": false,
-          "fields": "",
-          "reducer": [
-            "sum"
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "percentChangeColorMode": "standard",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
           ],
-          "show": false
+          "fields": "/^auth_method$/",
+          "values": false
         },
-        "showHeader": true
+        "showPercentChange": false,
+        "textMode": "auto",
+        "wideLayout": true
       },
       "pluginVersion": "11.1.4",
       "targets": [
@@ -931,7 +942,7 @@
           "refId": "A"
         }
       ],
-      "title": "Entitiy Count by Method (${datasource})",
+      "title": "Entity Methods",
       "transformations": [
         {
           "id": "organize",
@@ -950,21 +961,18 @@
           }
         }
       ],
-      "type": "table"
+      "type": "stat"
     },
     {
       "datasource": {
         "type": "prometheus",
         "uid": "${datasource}"
       },
+      "description": "",
       "fieldConfig": {
         "defaults": {
-          "custom": {
-            "align": "auto",
-            "cellOptions": {
-              "type": "auto"
-            },
-            "inspect": false
+          "color": {
+            "mode": "continuous-BlPu"
           },
           "mappings": [],
           "thresholds": {
@@ -987,40 +995,35 @@
               "id": "byName",
               "options": "Mount Path"
             },
-            "properties": [
-              {
-                "id": "custom.width",
-                "value": 166
-              }
-            ]
+            "properties": []
           }
         ]
       },
       "gridPos": {
         "h": 5,
-        "w": 10,
-        "x": 14,
+        "w": 15,
+        "x": 9,
         "y": 17
       },
       "id": 59,
       "maxDataPoints": 100,
       "options": {
-        "cellHeight": "sm",
-        "footer": {
-          "countRows": false,
-          "fields": "",
-          "reducer": [
-            "sum"
+        "displayMode": "lcd",
+        "maxVizHeight": 300,
+        "minVizHeight": 16,
+        "minVizWidth": 8,
+        "namePlacement": "auto",
+        "orientation": "horizontal",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
           ],
-          "show": false
+          "fields": "",
+          "values": false
         },
-        "showHeader": true,
-        "sortBy": [
-          {
-            "desc": true,
-            "displayName": "Number of Entries"
-          }
-        ]
+        "showUnfilled": true,
+        "sizing": "auto",
+        "valueMode": "color"
       },
       "pluginVersion": "11.1.4",
       "targets": [
@@ -1029,43 +1032,19 @@
             "type": "prometheus",
             "uid": "${datasource}"
           },
-          "expr": "avg without(instance) (vault_secret_kv_count)",
-          "format": "table",
+          "editorMode": "code",
+          "exemplar": true,
+          "expr": "avg without(instance,pod) (vault_secret_kv_count)",
+          "format": "time_series",
+          "instant": false,
           "interval": "",
           "legendFormat": "{{ mount_point }}",
+          "range": true,
           "refId": "A"
         }
       ],
-      "title": "Secrets",
-      "transformations": [
-        {
-          "id": "seriesToColumns",
-          "options": {
-            "byField": "mount_point"
-          }
-        },
-        {
-          "id": "organize",
-          "options": {
-            "excludeByName": {
-              "Time": true,
-              "__name__": true,
-              "cluster": true,
-              "env": true,
-              "instance": true,
-              "job": true,
-              "namespace": true,
-              "project": true
-            },
-            "indexByName": {},
-            "renameByName": {
-              "Value": "Number of Entries",
-              "mount_point": "Mount Path"
-            }
-          }
-        }
-      ],
-      "type": "table"
+      "title": "Secrets per KV Engine",
+      "type": "bargauge"
     },
     {
       "collapsed": true,
@@ -1082,29 +1061,24 @@
             "type": "prometheus",
             "uid": "${datasource}"
           },
-          "description": "Any count greater than zero means that Vault experienced a leadership change.",
+          "description": "Last reported Raft leader node",
           "fieldConfig": {
             "defaults": {
-              "color": {
-                "mode": "thresholds"
-              },
               "mappings": [],
               "thresholds": {
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green"
-                  },
-                  {
-                    "color": "#EAB839",
-                    "value": 1
+                    "color": "green",
+                    "value": null
                   },
                   {
                     "color": "red",
-                    "value": 2
+                    "value": 80
                   }
                 ]
-              }
+              },
+              "unit": "short"
             },
             "overrides": []
           },
@@ -1112,150 +1086,12 @@
             "h": 6,
             "w": 4,
             "x": 0,
-            "y": 17
-          },
-          "id": 113,
-          "options": {
-            "colorMode": "value",
-            "graphMode": "area",
-            "justifyMode": "auto",
-            "orientation": "auto",
-            "percentChangeColorMode": "standard",
-            "reduceOptions": {
-              "calcs": [
-                "sum"
-              ],
-              "fields": "",
-              "values": false
-            },
-            "showPercentChange": false,
-            "textMode": "auto",
-            "wideLayout": true
-          },
-          "pluginVersion": "11.1.4",
-          "targets": [
-            {
-              "datasource": {
-                "type": "prometheus",
-                "uid": "${datasource}"
-              },
-              "editorMode": "code",
-              "expr": "vault_core_leadership_lost_count",
-              "instant": false,
-              "legendFormat": "__auto",
-              "range": true,
-              "refId": "A"
-            }
-          ],
-          "title": "Vault Leadership Lost Count",
-          "type": "stat"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "${datasource}"
-          },
-          "description": "Number of Vault cluster leadership setup failures. Failures indicate bad overall cluster leadership status.",
-          "fieldConfig": {
-            "defaults": {
-              "color": {
-                "mode": "thresholds"
-              },
-              "mappings": [],
-              "thresholds": {
-                "mode": "absolute",
-                "steps": [
-                  {
-                    "color": "green"
-                  },
-                  {
-                    "color": "#EAB839",
-                    "value": 1
-                  },
-                  {
-                    "color": "red",
-                    "value": 2
-                  }
-                ]
-              }
-            },
-            "overrides": []
-          },
-          "gridPos": {
-            "h": 6,
-            "w": 4,
-            "x": 4,
-            "y": 17
-          },
-          "id": 114,
-          "options": {
-            "colorMode": "value",
-            "graphMode": "area",
-            "justifyMode": "auto",
-            "orientation": "auto",
-            "percentChangeColorMode": "standard",
-            "reduceOptions": {
-              "calcs": [
-                "sum"
-              ],
-              "fields": "",
-              "values": false
-            },
-            "showPercentChange": false,
-            "textMode": "auto",
-            "wideLayout": true
-          },
-          "pluginVersion": "11.1.4",
-          "targets": [
-            {
-              "datasource": {
-                "type": "prometheus",
-                "uid": "${datasource}"
-              },
-              "editorMode": "code",
-              "expr": "vault_core_leadership_setup_failed",
-              "instant": false,
-              "legendFormat": "__auto",
-              "range": true,
-              "refId": "A"
-            }
-          ],
-          "title": "Vault Leadership Setup Failures",
-          "type": "stat"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "${datasource}"
-          },
-          "description": "Last reported Vault and Raft leader node",
-          "fieldConfig": {
-            "defaults": {
-              "color": {
-                "mode": "thresholds"
-              },
-              "mappings": [],
-              "thresholds": {
-                "mode": "absolute",
-                "steps": [
-                  {
-                    "color": "green"
-                  }
-                ]
-              }
-            },
-            "overrides": []
-          },
-          "gridPos": {
-            "h": 6,
-            "w": 4,
-            "x": 8,
-            "y": 17
+            "y": 23
           },
           "id": 115,
           "options": {
             "colorMode": "value",
-            "graphMode": "none",
+            "graphMode": "area",
             "justifyMode": "auto",
             "orientation": "auto",
             "percentChangeColorMode": "standard",
@@ -1263,145 +1099,12 @@
               "calcs": [
                 "lastNotNull"
               ],
-              "fields": "",
+              "fields": "/^pod$/",
               "values": false
             },
             "showPercentChange": false,
             "textMode": "auto",
             "wideLayout": true
-          },
-          "pluginVersion": "11.1.4",
-          "targets": [
-            {
-              "datasource": {
-                "type": "prometheus",
-                "uid": "${datasource}"
-              },
-              "editorMode": "code",
-              "exemplar": false,
-              "expr": "vault_raft_state_leader",
-              "instant": true,
-              "legendFormat": "{{ host }}",
-              "range": false,
-              "refId": "A"
-            }
-          ],
-          "title": "Current Leader",
-          "type": "stat"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "${datasource}"
-          },
-          "description": "Increments whenever raft server starts an election. If there are frequent elections or leadership changes, it would likely indicate network issues between the raft nodes, or that the raft servers themselves are unable to keep up with the load.",
-          "fieldConfig": {
-            "defaults": {
-              "color": {
-                "mode": "thresholds"
-              },
-              "mappings": [],
-              "thresholds": {
-                "mode": "absolute",
-                "steps": [
-                  {
-                    "color": "green"
-                  }
-                ]
-              }
-            },
-            "overrides": []
-          },
-          "gridPos": {
-            "h": 6,
-            "w": 4,
-            "x": 12,
-            "y": 17
-          },
-          "id": 116,
-          "options": {
-            "colorMode": "value",
-            "graphMode": "area",
-            "justifyMode": "auto",
-            "orientation": "auto",
-            "percentChangeColorMode": "standard",
-            "reduceOptions": {
-              "calcs": [
-                "sum"
-              ],
-              "fields": "",
-              "values": false
-            },
-            "showPercentChange": false,
-            "textMode": "auto",
-            "wideLayout": true
-          },
-          "pluginVersion": "11.1.4",
-          "targets": [
-            {
-              "datasource": {
-                "type": "prometheus",
-                "uid": "${datasource}"
-              },
-              "editorMode": "code",
-              "exemplar": false,
-              "expr": "sum(vault_raft_state_candidate)",
-              "instant": true,
-              "legendFormat": "{{ host }}",
-              "range": false,
-              "refId": "A"
-            }
-          ],
-          "title": "Vault Raft Leader Elections",
-          "type": "stat"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "${datasource}"
-          },
-          "description": "Number of times node has entered the follower mode. This happens when a new node joins the cluster or after the end of a leader election.",
-          "fieldConfig": {
-            "defaults": {
-              "color": {
-                "mode": "thresholds"
-              },
-              "mappings": [],
-              "thresholds": {
-                "mode": "absolute",
-                "steps": [
-                  {
-                    "color": "green"
-                  }
-                ]
-              }
-            },
-            "overrides": []
-          },
-          "gridPos": {
-            "h": 8,
-            "w": 12,
-            "x": 0,
-            "y": 23
-          },
-          "id": 117,
-          "options": {
-            "displayMode": "lcd",
-            "maxVizHeight": 300,
-            "minVizHeight": 16,
-            "minVizWidth": 8,
-            "namePlacement": "auto",
-            "orientation": "horizontal",
-            "reduceOptions": {
-              "calcs": [
-                "sum"
-              ],
-              "fields": "",
-              "values": false
-            },
-            "showUnfilled": true,
-            "sizing": "auto",
-            "valueMode": "color"
           },
           "pluginVersion": "11.1.4",
           "targets": [
@@ -1412,15 +1115,120 @@
               },
               "editorMode": "code",
               "exemplar": true,
-              "expr": "vault_raft_state_follower",
+              "expr": "vault_raft_state_leader",
+              "format": "table",
               "instant": false,
-              "legendFormat": "{{ host }}",
+              "legendFormat": "",
               "range": true,
               "refId": "A"
             }
           ],
-          "title": "Raft Follower State Entered Count ",
-          "type": "bargauge"
+          "title": "Current Leader Node",
+          "type": "stat"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${datasource}"
+          },
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "continuous-GrYlRd"
+              },
+              "custom": {
+                "axisBorderShow": false,
+                "axisCenteredZero": false,
+                "axisColorMode": "text",
+                "axisLabel": "",
+                "axisPlacement": "auto",
+                "barAlignment": 0,
+                "drawStyle": "line",
+                "fillOpacity": 50,
+                "gradientMode": "opacity",
+                "hideFrom": {
+                  "legend": false,
+                  "tooltip": false,
+                  "viz": false
+                },
+                "insertNulls": false,
+                "lineInterpolation": "smooth",
+                "lineStyle": {
+                  "fill": "solid"
+                },
+                "lineWidth": 4,
+                "pointSize": 5,
+                "scaleDistribution": {
+                  "type": "linear"
+                },
+                "showPoints": "auto",
+                "spanNulls": false,
+                "stacking": {
+                  "group": "A",
+                  "mode": "none"
+                },
+                "thresholdsStyle": {
+                  "mode": "off"
+                }
+              },
+              "fieldMinMax": false,
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green",
+                    "value": null
+                  },
+                  {
+                    "color": "red",
+                    "value": 80
+                  }
+                ]
+              },
+              "unit": "ms"
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 6,
+            "w": 20,
+            "x": 4,
+            "y": 23
+          },
+          "id": 128,
+          "options": {
+            "legend": {
+              "calcs": [
+                "min",
+                "mean",
+                "lastNotNull"
+              ],
+              "displayMode": "table",
+              "placement": "right",
+              "showLegend": true
+            },
+            "tooltip": {
+              "mode": "single",
+              "sort": "none"
+            }
+          },
+          "targets": [
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "mimir"
+              },
+              "editorMode": "code",
+              "expr": "avg(vault_raft_storage_follower_last_heartbeat_ms) by (peer_id)",
+              "instant": false,
+              "legendFormat": "__auto",
+              "range": true,
+              "refId": "A"
+            }
+          ],
+          "title": "Follower Last Heartbeat",
+          "type": "timeseries"
         },
         {
           "datasource": {
@@ -1470,7 +1278,8 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green"
+                    "color": "green",
+                    "value": null
                   }
                 ]
               },
@@ -1481,8 +1290,8 @@
           "gridPos": {
             "h": 8,
             "w": 12,
-            "x": 12,
-            "y": 23
+            "x": 0,
+            "y": 29
           },
           "id": 118,
           "options": {
@@ -1577,7 +1386,8 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green"
+                    "color": "green",
+                    "value": null
                   }
                 ]
               },
@@ -1589,7 +1399,7 @@
             "h": 8,
             "w": 12,
             "x": 0,
-            "y": 1
+            "y": 24
           },
           "id": 119,
           "options": {
@@ -1655,7 +1465,7 @@
               "refId": "D"
             }
           ],
-          "title": "Storage Performance (ms) (${datasource})",
+          "title": "Storage Performance (ms)",
           "type": "timeseries"
         },
         {
@@ -1674,7 +1484,8 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "blue"
+                    "color": "blue",
+                    "value": null
                   }
                 ]
               },
@@ -1686,7 +1497,7 @@
             "h": 8,
             "w": 12,
             "x": 12,
-            "y": 1
+            "y": 24
           },
           "id": 120,
           "options": {
@@ -1698,7 +1509,7 @@
             "orientation": "horizontal",
             "reduceOptions": {
               "calcs": [
-                "sum"
+                "lastNotNull"
               ],
               "fields": "",
               "values": false
@@ -1715,10 +1526,12 @@
                 "type": "prometheus",
                 "uid": "${datasource}"
               },
+              "editorMode": "code",
               "exemplar": true,
-              "expr": "sum(vault_raft_storage_delete_sum)",
+              "expr": "avg(vault_raft_storage_delete_sum)",
               "interval": "",
               "legendFormat": "DEL",
+              "range": true,
               "refId": "A"
             },
             {
@@ -1726,11 +1539,13 @@
                 "type": "prometheus",
                 "uid": "${datasource}"
               },
+              "editorMode": "code",
               "exemplar": true,
-              "expr": "sum(vault_raft_storage_list_sum)",
+              "expr": "avg(vault_raft_storage_list_sum)",
               "hide": false,
               "interval": "",
               "legendFormat": "LIST",
+              "range": true,
               "refId": "B"
             },
             {
@@ -1738,11 +1553,13 @@
                 "type": "prometheus",
                 "uid": "${datasource}"
               },
+              "editorMode": "code",
               "exemplar": true,
-              "expr": "sum(vault_raft_storage_get_sum)",
+              "expr": "avg(vault_raft_storage_get_sum)",
               "hide": false,
               "interval": "",
               "legendFormat": "GET",
+              "range": true,
               "refId": "C"
             },
             {
@@ -1750,16 +1567,211 @@
                 "type": "prometheus",
                 "uid": "${datasource}"
               },
+              "editorMode": "code",
               "exemplar": true,
-              "expr": "sum(vault_raft_storage_put_sum)",
+              "expr": "avg(vault_raft_storage_put_sum)",
               "hide": false,
               "interval": "",
               "legendFormat": "PUT",
+              "range": true,
               "refId": "D"
             }
           ],
-          "title": "Time Spent (ms) (${datasource})",
+          "title": "Time Spent (ms)",
           "type": "bargauge"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${datasource}"
+          },
+          "description": "Mountpoint count metrics include labels to indicate whether the relevant table is an authentication table or a logical table and whether the table is replicated or local",
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "palette-classic"
+              },
+              "custom": {
+                "axisBorderShow": false,
+                "axisCenteredZero": false,
+                "axisColorMode": "text",
+                "axisLabel": "",
+                "axisPlacement": "auto",
+                "barAlignment": 0,
+                "drawStyle": "line",
+                "fillOpacity": 50,
+                "gradientMode": "opacity",
+                "hideFrom": {
+                  "legend": false,
+                  "tooltip": false,
+                  "viz": false
+                },
+                "insertNulls": false,
+                "lineInterpolation": "linear",
+                "lineWidth": 4,
+                "pointSize": 5,
+                "scaleDistribution": {
+                  "type": "linear"
+                },
+                "showPoints": "auto",
+                "spanNulls": false,
+                "stacking": {
+                  "group": "A",
+                  "mode": "none"
+                },
+                "thresholdsStyle": {
+                  "mode": "off"
+                }
+              },
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green",
+                    "value": null
+                  },
+                  {
+                    "color": "red",
+                    "value": 80
+                  }
+                ]
+              }
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 8,
+            "w": 12,
+            "x": 0,
+            "y": 32
+          },
+          "id": 156,
+          "options": {
+            "legend": {
+              "calcs": [],
+              "displayMode": "table",
+              "placement": "right",
+              "showLegend": true
+            },
+            "tooltip": {
+              "mode": "single",
+              "sort": "none"
+            }
+          },
+          "targets": [
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "mimir"
+              },
+              "editorMode": "code",
+              "expr": "sum(vault_core_mount_table_num_entries) by (type)",
+              "instant": false,
+              "legendFormat": "__auto",
+              "range": true,
+              "refId": "A"
+            }
+          ],
+          "title": "Mount Table Entries",
+          "type": "timeseries"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${datasource}"
+          },
+          "description": "Table size metrics include labels to indicate whether the relevant table is an authentication table or a logical table and whether the table is replicated or local.",
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "palette-classic"
+              },
+              "custom": {
+                "axisBorderShow": false,
+                "axisCenteredZero": false,
+                "axisColorMode": "text",
+                "axisLabel": "",
+                "axisPlacement": "auto",
+                "barAlignment": 0,
+                "drawStyle": "line",
+                "fillOpacity": 50,
+                "gradientMode": "opacity",
+                "hideFrom": {
+                  "legend": false,
+                  "tooltip": false,
+                  "viz": false
+                },
+                "insertNulls": false,
+                "lineInterpolation": "linear",
+                "lineWidth": 4,
+                "pointSize": 5,
+                "scaleDistribution": {
+                  "type": "linear"
+                },
+                "showPoints": "auto",
+                "spanNulls": false,
+                "stacking": {
+                  "group": "A",
+                  "mode": "none"
+                },
+                "thresholdsStyle": {
+                  "mode": "off"
+                }
+              },
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green",
+                    "value": null
+                  },
+                  {
+                    "color": "red",
+                    "value": 80
+                  }
+                ]
+              },
+              "unit": "bytes"
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 8,
+            "w": 12,
+            "x": 12,
+            "y": 32
+          },
+          "id": 157,
+          "options": {
+            "legend": {
+              "calcs": [],
+              "displayMode": "table",
+              "placement": "right",
+              "showLegend": true
+            },
+            "tooltip": {
+              "mode": "single",
+              "sort": "none"
+            }
+          },
+          "targets": [
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "mimir"
+              },
+              "editorMode": "code",
+              "expr": "sum(vault_core_mount_table_size) by (type,local)",
+              "instant": false,
+              "legendFormat": "__auto",
+              "range": true,
+              "refId": "A"
+            }
+          ],
+          "title": "Mount Table Size",
+          "type": "timeseries"
         }
       ],
       "title": "Raft Integrated Storage Performance",
@@ -1793,7 +1805,8 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green"
+                    "color": "green",
+                    "value": null
                   },
                   {
                     "color": "red",
@@ -1808,7 +1821,7 @@
             "h": 5,
             "w": 3,
             "x": 0,
-            "y": 40
+            "y": 25
           },
           "id": 41,
           "options": {
@@ -1858,7 +1871,8 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green"
+                    "color": "green",
+                    "value": null
                   },
                   {
                     "color": "#EAB839",
@@ -1881,7 +1895,7 @@
             "h": 5,
             "w": 3,
             "x": 3,
-            "y": 40
+            "y": 25
           },
           "id": 76,
           "options": {
@@ -1964,7 +1978,8 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green"
+                    "color": "green",
+                    "value": null
                   },
                   {
                     "color": "red",
@@ -1980,7 +1995,7 @@
             "h": 5,
             "w": 18,
             "x": 6,
-            "y": 40
+            "y": 25
           },
           "id": 43,
           "options": {
@@ -2015,6 +2030,200 @@
             }
           ],
           "title": "Allocated MB",
+          "type": "timeseries"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${datasource}"
+          },
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "palette-classic"
+              },
+              "custom": {
+                "axisBorderShow": false,
+                "axisCenteredZero": false,
+                "axisColorMode": "text",
+                "axisLabel": "",
+                "axisPlacement": "auto",
+                "barAlignment": 0,
+                "drawStyle": "line",
+                "fillOpacity": 50,
+                "gradientMode": "opacity",
+                "hideFrom": {
+                  "legend": false,
+                  "tooltip": false,
+                  "viz": false
+                },
+                "insertNulls": false,
+                "lineInterpolation": "linear",
+                "lineWidth": 4,
+                "pointSize": 5,
+                "scaleDistribution": {
+                  "type": "linear"
+                },
+                "showPoints": "auto",
+                "spanNulls": false,
+                "stacking": {
+                  "group": "A",
+                  "mode": "none"
+                },
+                "thresholdsStyle": {
+                  "mode": "off"
+                }
+              },
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green",
+                    "value": null
+                  },
+                  {
+                    "color": "red",
+                    "value": 80
+                  }
+                ]
+              },
+              "unit": "ns"
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 6,
+            "w": 12,
+            "x": 0,
+            "y": 30
+          },
+          "id": 135,
+          "options": {
+            "legend": {
+              "calcs": [],
+              "displayMode": "list",
+              "placement": "bottom",
+              "showLegend": false
+            },
+            "tooltip": {
+              "mode": "single",
+              "sort": "none"
+            }
+          },
+          "targets": [
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "mimir"
+              },
+              "editorMode": "code",
+              "exemplar": false,
+              "expr": "vault_runtime_total_gc_pause_ns",
+              "instant": false,
+              "legendFormat": "__auto",
+              "range": true,
+              "refId": "A"
+            }
+          ],
+          "title": "GC Time",
+          "type": "timeseries"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${datasource}"
+          },
+          "description": "",
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "palette-classic"
+              },
+              "custom": {
+                "axisBorderShow": false,
+                "axisCenteredZero": false,
+                "axisColorMode": "text",
+                "axisLabel": "",
+                "axisPlacement": "auto",
+                "barAlignment": 0,
+                "drawStyle": "line",
+                "fillOpacity": 50,
+                "gradientMode": "opacity",
+                "hideFrom": {
+                  "legend": false,
+                  "tooltip": false,
+                  "viz": false
+                },
+                "insertNulls": false,
+                "lineInterpolation": "linear",
+                "lineWidth": 4,
+                "pointSize": 5,
+                "scaleDistribution": {
+                  "type": "linear"
+                },
+                "showPoints": "auto",
+                "spanNulls": false,
+                "stacking": {
+                  "group": "A",
+                  "mode": "none"
+                },
+                "thresholdsStyle": {
+                  "mode": "off"
+                }
+              },
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green",
+                    "value": null
+                  },
+                  {
+                    "color": "red",
+                    "value": 80
+                  }
+                ]
+              },
+              "unit": "bytes"
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 6,
+            "w": 12,
+            "x": 12,
+            "y": 30
+          },
+          "id": 136,
+          "options": {
+            "legend": {
+              "calcs": [],
+              "displayMode": "list",
+              "placement": "bottom",
+              "showLegend": false
+            },
+            "tooltip": {
+              "mode": "single",
+              "sort": "none"
+            }
+          },
+          "targets": [
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "mimir"
+              },
+              "editorMode": "code",
+              "expr": "vault_runtime_sys_bytes",
+              "instant": false,
+              "legendFormat": "__auto",
+              "range": true,
+              "refId": "A"
+            }
+          ],
+          "title": "Allocated Memory",
           "type": "timeseries"
         }
       ],
@@ -2057,7 +2266,8 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green"
+                    "color": "green",
+                    "value": null
                   }
                 ]
               }
@@ -2068,7 +2278,7 @@
             "h": 4,
             "w": 3,
             "x": 0,
-            "y": 41
+            "y": 5
           },
           "id": 53,
           "options": {
@@ -2140,7 +2350,8 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green"
+                    "color": "green",
+                    "value": null
                   },
                   {
                     "color": "red",
@@ -2155,7 +2366,7 @@
             "h": 8,
             "w": 21,
             "x": 3,
-            "y": 41
+            "y": 5
           },
           "id": 104,
           "options": {
@@ -2185,9 +2396,14 @@
                 "type": "prometheus",
                 "uid": "${datasource}"
               },
+              "editorMode": "code",
+              "exemplar": false,
               "expr": "avg without(instance) (vault_token_count_by_policy)",
+              "format": "time_series",
+              "instant": true,
               "interval": "",
               "legendFormat": "{{ policy }}",
+              "range": false,
               "refId": "A"
             }
           ],
@@ -2217,7 +2433,8 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green"
+                    "color": "green",
+                    "value": null
                   },
                   {
                     "color": "orange",
@@ -2237,7 +2454,7 @@
             "h": 4,
             "w": 3,
             "x": 0,
-            "y": 45
+            "y": 9
           },
           "id": 8,
           "maxDataPoints": 100,
@@ -2317,7 +2534,8 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green"
+                    "color": "green",
+                    "value": null
                   },
                   {
                     "color": "red",
@@ -2332,7 +2550,7 @@
             "h": 8,
             "w": 12,
             "x": 0,
-            "y": 49
+            "y": 13
           },
           "id": 102,
           "options": {
@@ -2362,10 +2580,12 @@
                 "type": "prometheus",
                 "uid": "${datasource}"
               },
-              "expr": "avg without(instance) (vault_token_count_by_ttl)",
+              "editorMode": "code",
+              "expr": "avg without(instance,pod) (vault_token_count_by_ttl)",
               "format": "time_series",
               "interval": "",
               "legendFormat": "{{ creation_ttl }}",
+              "range": true,
               "refId": "A"
             }
           ],
@@ -2418,7 +2638,8 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green"
+                    "color": "green",
+                    "value": null
                   },
                   {
                     "color": "red",
@@ -2433,7 +2654,7 @@
             "h": 8,
             "w": 12,
             "x": 12,
-            "y": 49
+            "y": 13
           },
           "id": 100,
           "options": {
@@ -2463,9 +2684,11 @@
                 "type": "prometheus",
                 "uid": "${datasource}"
               },
-              "expr": "avg without(instance) (vault_token_count_by_auth)",
+              "editorMode": "code",
+              "expr": "avg without(instance,pod) (vault_token_count_by_auth)",
               "interval": "",
               "legendFormat": "{{ auth_method }}",
+              "range": true,
               "refId": "A"
             }
           ],
@@ -2529,7 +2752,8 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green"
+                    "color": "green",
+                    "value": null
                   },
                   {
                     "color": "red",
@@ -2545,7 +2769,7 @@
             "h": 6,
             "w": 12,
             "x": 0,
-            "y": 57
+            "y": 21
           },
           "id": 65,
           "maxDataPoints": 100,
@@ -2628,7 +2852,8 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green"
+                    "color": "green",
+                    "value": null
                   },
                   {
                     "color": "red",
@@ -2675,7 +2900,7 @@
             "h": 6,
             "w": 12,
             "x": 12,
-            "y": 57
+            "y": 21
           },
           "id": 6,
           "options": {
@@ -2771,7 +2996,8 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green"
+                    "color": "green",
+                    "value": null
                   },
                   {
                     "color": "red",
@@ -2803,7 +3029,7 @@
             "h": 6,
             "w": 24,
             "x": 0,
-            "y": 63
+            "y": 27
           },
           "id": 14,
           "options": {
@@ -2879,7 +3105,8 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green"
+                    "color": "green",
+                    "value": null
                   },
                   {
                     "color": "red",
@@ -2894,7 +3121,7 @@
             "h": 5,
             "w": 3,
             "x": 0,
-            "y": 124
+            "y": 27
           },
           "id": 97,
           "maxDataPoints": 100,
@@ -2981,7 +3208,8 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green"
+                    "color": "green",
+                    "value": null
                   },
                   {
                     "color": "red",
@@ -2997,7 +3225,7 @@
             "h": 10,
             "w": 11,
             "x": 3,
-            "y": 124
+            "y": 27
           },
           "id": 4,
           "options": {
@@ -3067,57 +3295,23 @@
             "type": "prometheus",
             "uid": "${datasource}"
           },
+          "description": "Number of times an audit device was written to successfully",
           "fieldConfig": {
             "defaults": {
-              "color": {
-                "mode": "palette-classic"
-              },
-              "custom": {
-                "axisBorderShow": false,
-                "axisCenteredZero": false,
-                "axisColorMode": "text",
-                "axisLabel": "Requests per second",
-                "axisPlacement": "auto",
-                "barAlignment": 0,
-                "drawStyle": "line",
-                "fillOpacity": 10,
-                "gradientMode": "none",
-                "hideFrom": {
-                  "legend": false,
-                  "tooltip": false,
-                  "viz": false
-                },
-                "insertNulls": false,
-                "lineInterpolation": "linear",
-                "lineWidth": 1,
-                "pointSize": 5,
-                "scaleDistribution": {
-                  "type": "linear"
-                },
-                "showPoints": "never",
-                "spanNulls": false,
-                "stacking": {
-                  "group": "A",
-                  "mode": "none"
-                },
-                "thresholdsStyle": {
-                  "mode": "off"
-                }
-              },
               "mappings": [],
               "thresholds": {
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green"
+                    "color": "green",
+                    "value": null
                   },
                   {
-                    "color": "red",
-                    "value": 80
+                    "color": "green",
+                    "value": 100
                   }
                 ]
-              },
-              "unit": "short"
+              }
             },
             "overrides": []
           },
@@ -3125,71 +3319,48 @@
             "h": 10,
             "w": 10,
             "x": 14,
-            "y": 124
+            "y": 27
           },
-          "id": 61,
+          "id": 141,
+          "maxDataPoints": 100,
           "options": {
-            "legend": {
+            "colorMode": "value",
+            "graphMode": "area",
+            "justifyMode": "auto",
+            "orientation": "auto",
+            "percentChangeColorMode": "standard",
+            "reduceOptions": {
               "calcs": [
-                "mean",
-                "lastNotNull",
-                "max",
-                "min"
+                "max"
               ],
-              "displayMode": "table",
-              "placement": "bottom",
-              "showLegend": true
+              "fields": "",
+              "values": false
             },
-            "tooltip": {
-              "mode": "multi",
-              "sort": "none"
-            }
+            "showPercentChange": false,
+            "text": {
+              "valueSize": 100
+            },
+            "textMode": "auto",
+            "wideLayout": true
           },
+          "pluginVersion": "11.1.4",
           "targets": [
             {
               "datasource": {
                 "type": "prometheus",
                 "uid": "${datasource}"
               },
-              "expr": "avg(irate(vault_consul_get_count[1m]))",
+              "editorMode": "code",
+              "expr": "max(idelta(vault_audit_sink_success[1m]))",
+              "format": "time_series",
               "interval": "",
-              "intervalFactor": 1,
-              "legendFormat": "GET",
+              "legendFormat": "Request",
+              "range": true,
               "refId": "A"
-            },
-            {
-              "datasource": {
-                "type": "prometheus",
-                "uid": "${datasource}"
-              },
-              "expr": "avg(irate(vault_consul_put_count[1m]))",
-              "interval": "",
-              "legendFormat": "PUT",
-              "refId": "B"
-            },
-            {
-              "datasource": {
-                "type": "prometheus",
-                "uid": "${datasource}"
-              },
-              "expr": "avg(irate(vault_consul_delete_count[1m]))",
-              "interval": "",
-              "legendFormat": "DELETE",
-              "refId": "C"
-            },
-            {
-              "datasource": {
-                "type": "prometheus",
-                "uid": "${datasource}"
-              },
-              "expr": "irate(vault_consul_list_count{instance=\"$node:$port\"}[1m])",
-              "interval": "",
-              "legendFormat": "LIST",
-              "refId": "D"
             }
           ],
-          "title": "Consul Requests",
-          "type": "timeseries"
+          "title": "Log Audit Sink Succes",
+          "type": "stat"
         },
         {
           "datasource": {
@@ -3204,7 +3375,8 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green"
+                    "color": "green",
+                    "value": null
                   },
                   {
                     "color": "red",
@@ -3219,7 +3391,7 @@
             "h": 5,
             "w": 3,
             "x": 0,
-            "y": 129
+            "y": 32
           },
           "id": 98,
           "maxDataPoints": 100,
@@ -3332,7 +3504,8 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green"
+                    "color": "green",
+                    "value": null
                   },
                   {
                     "color": "red",
@@ -3364,7 +3537,7 @@
             "h": 6,
             "w": 12,
             "x": 0,
-            "y": 135
+            "y": 79
           },
           "id": 10,
           "options": {
@@ -3385,11 +3558,13 @@
                 "type": "prometheus",
                 "uid": "${datasource}"
               },
+              "editorMode": "code",
               "expr": "avg(irate(vault_policy_set_policy_count[1m]))",
               "format": "time_series",
               "interval": "",
               "intervalFactor": 1,
               "legendFormat": "SET",
+              "range": true,
               "refId": "A"
             }
           ],
@@ -3445,7 +3620,8 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green"
+                    "color": "green",
+                    "value": null
                   },
                   {
                     "color": "red",
@@ -3477,7 +3653,7 @@
             "h": 6,
             "w": 12,
             "x": 12,
-            "y": 135
+            "y": 79
           },
           "id": 12,
           "options": {
@@ -3508,6 +3684,73 @@
           ],
           "title": "Policy Get",
           "type": "timeseries"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${datasource}"
+          },
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "continuous-BlPu"
+              },
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green",
+                    "value": null
+                  }
+                ]
+              }
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 5,
+            "w": 12,
+            "x": 0,
+            "y": 85
+          },
+          "id": 152,
+          "options": {
+            "displayMode": "lcd",
+            "maxVizHeight": 300,
+            "minVizHeight": 16,
+            "minVizWidth": 8,
+            "namePlacement": "auto",
+            "orientation": "horizontal",
+            "reduceOptions": {
+              "calcs": [
+                "lastNotNull"
+              ],
+              "fields": "",
+              "values": false
+            },
+            "showUnfilled": true,
+            "sizing": "auto",
+            "valueMode": "color"
+          },
+          "pluginVersion": "11.1.4",
+          "targets": [
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "mimir"
+              },
+              "editorMode": "code",
+              "exemplar": false,
+              "expr": "sum(vault_policy_configured_count) by (policy_type)",
+              "instant": false,
+              "legendFormat": "__auto",
+              "range": true,
+              "refId": "A"
+            }
+          ],
+          "title": "Configured Policies",
+          "type": "bargauge"
         }
       ],
       "targets": [
@@ -3601,7 +3844,7 @@
             "h": 9,
             "w": 12,
             "x": 0,
-            "y": 37
+            "y": 80
           },
           "id": 24,
           "options": {
@@ -3625,11 +3868,13 @@
                 "type": "prometheus",
                 "uid": "${datasource}"
               },
+              "editorMode": "code",
               "expr": "avg(increase(vault_route_create_${mountpoint}__count[5m]))",
               "format": "time_series",
               "hide": false,
               "interval": "5m",
               "legendFormat": "Create",
+              "range": true,
               "refId": "A"
             },
             {
@@ -3637,10 +3882,12 @@
                 "type": "prometheus",
                 "uid": "${datasource}"
               },
+              "editorMode": "code",
               "expr": "avg(increase(vault_route_delete_${mountpoint}__count[5m]))",
               "hide": false,
               "interval": "5m",
               "legendFormat": "Delete",
+              "range": true,
               "refId": "B"
             },
             {
@@ -3665,11 +3912,13 @@
                 "type": "prometheus",
                 "uid": "${datasource}"
               },
+              "editorMode": "code",
               "expr": "avg(increase(vault_route_list_${mountpoint}__count[5m]))",
               "format": "time_series",
               "hide": false,
               "interval": "5m",
               "legendFormat": "List",
+              "range": true,
               "refId": "D"
             },
             {
@@ -3677,10 +3926,12 @@
                 "type": "prometheus",
                 "uid": "${datasource}"
               },
+              "editorMode": "code",
               "expr": "avg(increase(vault_route_rollback_${mountpoint}__count[5m]))",
               "hide": true,
               "interval": "5m",
               "legendFormat": "Rollback",
+              "range": true,
               "refId": "E"
             }
           ],
@@ -3753,7 +4004,7 @@
             "h": 9,
             "w": 12,
             "x": 12,
-            "y": 37
+            "y": 80
           },
           "id": 35,
           "options": {
@@ -3777,11 +4028,13 @@
                 "type": "prometheus",
                 "uid": "${datasource}"
               },
+              "editorMode": "code",
               "expr": "avg(rate(vault_route_create_${mountpoint}__sum[1m]) / rate(vault_route_create_${mountpoint}__count[1m]) * 1000)",
               "format": "time_series",
               "interval": "",
               "intervalFactor": 1,
               "legendFormat": "Create",
+              "range": true,
               "refId": "A"
             },
             {
@@ -3789,9 +4042,11 @@
                 "type": "prometheus",
                 "uid": "${datasource}"
               },
+              "editorMode": "code",
               "expr": "avg(rate(vault_route_delete_${mountpoint}__sum[1m]) / rate(vault_route_delete_${mountpoint}__count[1m]) * 1000)",
               "interval": "",
               "legendFormat": "Delete",
+              "range": true,
               "refId": "B"
             },
             {
@@ -3799,10 +4054,12 @@
                 "type": "prometheus",
                 "uid": "${datasource}"
               },
+              "editorMode": "code",
               "expr": "avg(rate(vault_route_read_${mountpoint}__sum[1m]) / rate(vault_route_read_${mountpoint}__count[1m]) * 1000)",
               "hide": false,
               "interval": "",
               "legendFormat": "Read",
+              "range": true,
               "refId": "C"
             },
             {
@@ -3810,10 +4067,12 @@
                 "type": "prometheus",
                 "uid": "${datasource}"
               },
+              "editorMode": "code",
               "expr": "avg(rate(vault_route_list_${mountpoint}__sum[1m]) / rate(vault_route_list_${mountpoint}__count[1m]) * 1000)",
               "hide": false,
               "interval": "",
               "legendFormat": "List",
+              "range": true,
               "refId": "D"
             },
             {
@@ -3835,6 +4094,7 @@
         }
       ],
       "repeat": "mountpoint",
+      "repeatDirection": "h",
       "targets": [
         {
           "datasource": {
@@ -3846,12 +4106,391 @@
       ],
       "title": "Path Info: $mountpoint",
       "type": "row"
+    },
+    {
+      "collapsed": true,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 30
+      },
+      "id": 142,
+      "panels": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${datasource}"
+          },
+          "description": "",
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "thresholds"
+              },
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green",
+                    "value": null
+                  },
+                  {
+                    "color": "red",
+                    "value": 100
+                  }
+                ]
+              }
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 8,
+            "w": 12,
+            "x": 0,
+            "y": 69
+          },
+          "id": 127,
+          "options": {
+            "minVizHeight": 75,
+            "minVizWidth": 75,
+            "orientation": "auto",
+            "reduceOptions": {
+              "calcs": [
+                "lastNotNull"
+              ],
+              "fields": "",
+              "values": false
+            },
+            "showThresholdLabels": false,
+            "showThresholdMarkers": true,
+            "sizing": "auto"
+          },
+          "pluginVersion": "11.1.4",
+          "targets": [
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "mimir"
+              },
+              "editorMode": "code",
+              "exemplar": true,
+              "expr": "avg(vault_core_handle_request) by (quantile)",
+              "format": "time_series",
+              "instant": false,
+              "legendFormat": "{{quantile}}",
+              "range": true,
+              "refId": "A"
+            }
+          ],
+          "title": "Core Handle Requests",
+          "type": "gauge"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${datasource}"
+          },
+          "description": "Number of Vault cluster leadership setup failures. Failures indicate bad overall cluster leadership status.",
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "thresholds"
+              },
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green",
+                    "value": null
+                  },
+                  {
+                    "color": "#EAB839",
+                    "value": 1
+                  },
+                  {
+                    "color": "red",
+                    "value": 2
+                  }
+                ]
+              }
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 6,
+            "w": 4,
+            "x": 0,
+            "y": 77
+          },
+          "id": 114,
+          "options": {
+            "colorMode": "value",
+            "graphMode": "area",
+            "justifyMode": "auto",
+            "orientation": "auto",
+            "percentChangeColorMode": "standard",
+            "reduceOptions": {
+              "calcs": [
+                "sum"
+              ],
+              "fields": "",
+              "values": false
+            },
+            "showPercentChange": false,
+            "textMode": "auto",
+            "wideLayout": true
+          },
+          "pluginVersion": "11.1.4",
+          "targets": [
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "${datasource}"
+              },
+              "editorMode": "code",
+              "expr": "vault_core_leadership_setup_failed",
+              "instant": false,
+              "legendFormat": "__auto",
+              "range": true,
+              "refId": "A"
+            }
+          ],
+          "title": "Vault Leadership Setup Failures",
+          "type": "stat"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${datasource}"
+          },
+          "description": "Any count greater than zero means that Vault experienced a leadership change.",
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "thresholds"
+              },
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green",
+                    "value": null
+                  },
+                  {
+                    "color": "#EAB839",
+                    "value": 1
+                  },
+                  {
+                    "color": "red",
+                    "value": 2
+                  }
+                ]
+              }
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 6,
+            "w": 4,
+            "x": 4,
+            "y": 77
+          },
+          "id": 113,
+          "options": {
+            "colorMode": "value",
+            "graphMode": "area",
+            "justifyMode": "auto",
+            "orientation": "auto",
+            "percentChangeColorMode": "standard",
+            "reduceOptions": {
+              "calcs": [
+                "sum"
+              ],
+              "fields": "",
+              "values": false
+            },
+            "showPercentChange": false,
+            "textMode": "auto",
+            "wideLayout": true
+          },
+          "pluginVersion": "11.1.4",
+          "targets": [
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "${datasource}"
+              },
+              "editorMode": "code",
+              "exemplar": false,
+              "expr": "vault_core_leadership_lost",
+              "format": "table",
+              "instant": false,
+              "legendFormat": "__auto",
+              "range": true,
+              "refId": "A"
+            }
+          ],
+          "title": "Vault Leadership Lost Count",
+          "type": "stat"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${datasource}"
+          },
+          "description": "Increments whenever raft server starts an election. If there are frequent elections or leadership changes, it would likely indicate network issues between the raft nodes, or that the raft servers themselves are unable to keep up with the load.",
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "thresholds"
+              },
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green",
+                    "value": null
+                  },
+                  {
+                    "color": "#EAB839",
+                    "value": 10
+                  },
+                  {
+                    "color": "red",
+                    "value": 100
+                  }
+                ]
+              }
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 6,
+            "w": 4,
+            "x": 8,
+            "y": 77
+          },
+          "id": 116,
+          "options": {
+            "colorMode": "value",
+            "graphMode": "area",
+            "justifyMode": "auto",
+            "orientation": "auto",
+            "percentChangeColorMode": "standard",
+            "reduceOptions": {
+              "calcs": [
+                "sum"
+              ],
+              "fields": "",
+              "values": false
+            },
+            "showPercentChange": false,
+            "textMode": "auto",
+            "wideLayout": true
+          },
+          "pluginVersion": "11.1.4",
+          "targets": [
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "${datasource}"
+              },
+              "editorMode": "code",
+              "exemplar": false,
+              "expr": "sum(vault_raft_state_candidate)",
+              "format": "time_series",
+              "instant": true,
+              "legendFormat": "{{ pod }}",
+              "range": false,
+              "refId": "A"
+            }
+          ],
+          "title": "Vault Raft Leader Elections",
+          "type": "stat"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${datasource}"
+          },
+          "description": "Number of times node has entered the follower mode. This happens when a new node joins the cluster or after the end of a leader election.",
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "thresholds"
+              },
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green",
+                    "value": null
+                  }
+                ]
+              }
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 8,
+            "w": 12,
+            "x": 0,
+            "y": 83
+          },
+          "id": 117,
+          "options": {
+            "displayMode": "lcd",
+            "maxVizHeight": 300,
+            "minVizHeight": 16,
+            "minVizWidth": 8,
+            "namePlacement": "auto",
+            "orientation": "horizontal",
+            "reduceOptions": {
+              "calcs": [
+                "sum"
+              ],
+              "fields": "",
+              "values": false
+            },
+            "showUnfilled": true,
+            "sizing": "auto",
+            "valueMode": "color"
+          },
+          "pluginVersion": "11.1.4",
+          "targets": [
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "${datasource}"
+              },
+              "editorMode": "code",
+              "exemplar": true,
+              "expr": "vault_raft_state_follower",
+              "instant": false,
+              "legendFormat": "{{ host }}",
+              "range": true,
+              "refId": "A"
+            }
+          ],
+          "title": "Raft Follower State Entered Count ",
+          "type": "bargauge"
+        }
+      ],
+      "title": "unused for internal storage",
+      "type": "row"
     }
   ],
   "refresh": false,
   "schemaVersion": 39,
   "tags": [
     "vault",
+    "grc",
     "suXess"
   ],
   "templating": {
@@ -3877,8 +4516,8 @@
       {
         "current": {
           "selected": false,
-          "text": "10.240.0.228",
-          "value": "10.240.0.228"
+          "text": "10.240.0.126",
+          "value": "10.240.0.126"
         },
         "datasource": {
           "type": "prometheus",
@@ -3950,16 +4589,20 @@
           "type": "prometheus",
           "uid": "${datasource}"
         },
-        "definition": "label_values(vault_secret_kv_count, mount_point)",
+        "definition": "query_result(label_replace(  label_replace(    label_replace(      vault_secret_kv_count,      \"mount_point\", \"${1}_$2\", \"mount_point\", \"(.*)-(.+)\"    ),    \"mount_point\", \"${1}_$2\", \"mount_point\", \"(.*)-(.+)\"  ),  \"mount_point\", \"${1}_$2\", \"mount_point\", \"(.*)-(.+)\"))",
         "hide": 0,
         "includeAll": true,
         "label": "Mount Point:",
         "multi": true,
         "name": "mountpoint",
         "options": [],
-        "query": "label_values(vault_secret_kv_count, mount_point)",
+        "query": {
+          "qryType": 3,
+          "query": "query_result(label_replace(  label_replace(    label_replace(      vault_secret_kv_count,      \"mount_point\", \"${1}_$2\", \"mount_point\", \"(.*)-(.+)\"    ),    \"mount_point\", \"${1}_$2\", \"mount_point\", \"(.*)-(.+)\"  ),  \"mount_point\", \"${1}_$2\", \"mount_point\", \"(.*)-(.+)\"))",
+          "refId": "PrometheusVariableQueryEditor-VariableQuery"
+        },
         "refresh": 2,
-        "regex": "/(.*)//",
+        "regex": "/.*mount_point=\"([^\"]*).*//",
         "skipUrlSync": false,
         "sort": 1,
         "tagValuesQuery": "",
@@ -3979,7 +4622,7 @@
     ]
   },
   "time": {
-    "from": "now-2h",
+    "from": "now-24h",
     "to": "now"
   },
   "timepicker": {
@@ -4007,8 +4650,8 @@
     ]
   },
   "timezone": "",
-  "title": "Hashicorp Vault",
+  "title": "GRC/Hashicorp Vault",
   "uid": "vaults",
-  "version": 2,
+  "version": 1,
   "weekStart": ""
 }
