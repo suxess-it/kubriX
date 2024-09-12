@@ -2,8 +2,9 @@ cost-analyzer:
   global:
     # zone: cluster.local (use only if your DNS server doesn't live in the same zone as kubecost)
     prometheus:
-      enabled: true  # If false, Prometheus will not be installed -- Warning: Before changing this setting, please read to understand this setting https://docs.kubecost.com/install-and-configure/install/custom-prom
-      fqdn: http://sx-kube-prometheus-stack-prometheus.monitoring:9090/  # example address of a prometheus to connect to. Include protocol (http:// or https://) Ignored if enabled: 
+      enabled: false  # If false, Prometheus will not be installed -- Warning: Before changing this setting, please read to understand this setting https://docs.kubecost.com/install-and-configure/install/custom-prom
+      #fqdn: http://sx-kube-prometheus-stack-prometheus.monitoring:9090/  # example address of a prometheus to connect to. Include protocol (http:// or https://) Ignored if enabled: 
+      fqdn: http://sx-mimir-nginx.mimir.svc:80/prometheus
 
     grafana:
       enabled: false  # If false, Grafana will not be installed
