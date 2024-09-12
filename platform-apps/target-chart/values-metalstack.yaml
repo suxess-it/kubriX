@@ -27,12 +27,25 @@ applications:
     syncOptions:
       - ServerSideApply=true
 
+  - name: crossplane
+    annotations:
+      argocd.argoproj.io/sync-wave: "-1"
+
+  - name: kargo
+
+  - name: kubecost
+
+  - name: team-onboarding
+    destinationNamespaceOverwrite: argocd
+
+  - name: argo-rollouts
+
   - name: grafana
     annotations:
       argocd.argoproj.io/compare-options: ServerSideDiff=true
     syncOptions:
       - ServerSideApply=true
-      
+
   - name: mimir
 
   - name: loki
@@ -45,17 +58,6 @@ applications:
       - ServerSideApply=true
 
   - name: tempo
-   
-  - name: kargo
-
-  - name: kubecost
-
-  - name: team-onboarding
-    destinationNamespaceOverwrite: argocd
-
-  - name: argo-rollouts
-
-  - name: crossplane
 
   - name: kyverno
     syncOptions:
