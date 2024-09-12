@@ -7,8 +7,6 @@ applications:
   - name: cert-manager
     annotations:
       argocd.argoproj.io/sync-wave: "-3"
-    valueFiles:
-      - values.yaml
 
   - name: ingress-nginx
     annotations:
@@ -56,16 +54,10 @@ applications:
     destinationNamespaceOverwrite: argocd
 
   - name: argo-rollouts
-    valueFiles:
-      - values.yaml
 
   - name: crossplane
-    valueFiles:
-      - values.yaml
 
   - name: kyverno
-    valueFiles:
-      - values.yaml
     syncOptions:
       - ServerSideApply=true
       
