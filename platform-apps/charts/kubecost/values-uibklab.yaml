@@ -76,3 +76,14 @@ cost-analyzer:
     clusterName: "sx-cnp-oss Demo" # clusterName is the default context name in settings.
   #   clusterAccountID: "" # Manually set Account property for assets
     currencyCode: "EUR" # official support for USD, AUD, BRL, CAD, CHF, CNY, DKK, EUR, GBP, IDR, INR, JPY, NOK, PLN, SEK
+
+  serviceMonitor:
+    enabled: true
+    # additionalLabels:
+    #   label-key: label-value
+    networkCosts:
+      enabled: true
+      # additionalLabels:
+      #   label-key: label-value
+  prometheusRule:
+    enabled: true
