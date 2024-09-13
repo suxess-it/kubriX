@@ -243,6 +243,10 @@ backstage:
                 initialDelay: { seconds: 30 } # Customize this to fit your needs
 
       kubernetes:
+        customResources:
+          - group: 'aquasecurity.github.io'
+            apiVersion: 'v1alpha1'
+            plural: 'configauditreports'
         serviceLocatorMethod:
           type: multiTenant
         clusterLocatorMethods:
