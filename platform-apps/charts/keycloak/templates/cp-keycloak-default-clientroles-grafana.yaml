@@ -4,6 +4,8 @@ metadata:
   annotations:
     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
     argocd.argoproj.io/sync-wave: "1"
+  labels:
+    platform-engineer.cloud/role: viewer
   name: client-default-role-grafana-viewer
 spec:
   forProvider:
@@ -22,6 +24,8 @@ metadata:
   annotations:
     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
     argocd.argoproj.io/sync-wave: "1"
+  labels:
+    platform-engineer.cloud/role: editor
   name: client-default-role-grafana-editor
 spec:
   forProvider:
@@ -40,6 +44,8 @@ metadata:
   annotations:
     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
     argocd.argoproj.io/sync-wave: "1"
+  labels:
+    platform-engineer.cloud/role: admin
   name: client-default-role-grafana-admin
 spec:
   forProvider:
