@@ -14,7 +14,7 @@ spec:
       name: {{ $.Values.deployments.keycloak.realm.realmid }}
     protocol: openid-connect
     protocolMapper: oidc-usermodel-client-role-mapper
-    name: groups
+    name: grafana_role
     config:
       "claim.name": "${client_id}.roles"
       "userinfo.token.claim": "true"
