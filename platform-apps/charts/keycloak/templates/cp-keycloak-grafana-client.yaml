@@ -24,7 +24,8 @@ spec:
     realmId: {{ .Values.deployments.keycloak.realm.realmid }}
     adminUrl: "https://grafana{{ .Values.deployments.ingress.fqdn }}"
     rootUrl: "https://grafana{{ .Values.deployments.ingress.fqdn }}"
-    webOrigins: "https://grafana{{ .Values.deployments.ingress.fqdn }}"
+    webOrigins: 
+      - "https://grafana{{ .Values.deployments.ingress.fqdn }}"
     directAccessGrantsEnabled: true
     standardFlowEnabled: true
     serviceAccountsEnabled: false
