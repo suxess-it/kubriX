@@ -12,7 +12,7 @@ spec:
       name: admins
     realmIdRef: 
       name: {{ .Values.deployments.keycloak.realm.realmid }}
-    roleIdSelector:
+    roleIdsSelector:
       matchLabels:
         platform-engineer.cloud/role: editor
   initProvider: {}
