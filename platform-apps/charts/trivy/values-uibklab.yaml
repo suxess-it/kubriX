@@ -5,7 +5,7 @@ trivy-operator:
   serviceMonitor:
     enabled: true
   trivyOperator:
-    reportResourceLabels: "backstage.io/kubernetes-id"
+    reportResourceLabels: "owner,backstage.io/kubernetes-id"
     additionalReportLabels: "backstage.io/kubernetes-id"
   trivy:
     ignoreUnfixed: true
