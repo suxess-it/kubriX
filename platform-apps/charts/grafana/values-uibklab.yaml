@@ -24,12 +24,12 @@ grafana:
       client_id: grafana
       scopes: openid email profile offline_access roles groups
       email_attribute_path: email
-      login_attribute_path: username
-      name_attribute_path: full_name
+      login_attribute_path: preferred_username
+      name_attribute_path: preferred_username
       auth_url: https://keycloak.lab.suxessit.k8s.cloud.uibk.ac.at/realms/sx-cnp-oss/protocol/openid-connect/auth
       token_url: https://keycloak.lab.suxessit.k8s.cloud.uibk.ac.at/realms/sx-cnp-oss/protocol/openid-connect/token
       api_url: https://keycloak.lab.suxessit.k8s.cloud.uibk.ac.at/realms/sx-cnp-oss/protocol/openid-connect/userinfo
-      signout_redirect_url:  https://keycloak.lab.suxessit.k8s.cloud.uibk.ac.at/realms/sx-cnp-oss/protocol/openid-connect/logout
+      signout_redirect_url: https://keycloak.lab.suxessit.k8s.cloud.uibk.ac.at/realms/sx-cnp-oss/protocol/openid-connect/logout
       role_attribute_path: contains(grafana.roles[*], 'admin') && 'Admin' || contains(grafana.roles[*], 'editor') && 'Editor' || 'Viewer'
       allow_assign_grafana_admin: false 
     auth: 
