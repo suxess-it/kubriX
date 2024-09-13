@@ -14,6 +14,24 @@ grafana:
       allow_embedding: 'true'
       cookie_samesite: none
       cookie_secure: 'true'
+    auth.generic_oauth:
+      enabled: true
+      name: Keycloak
+      allow_sign_up: true
+      use_refresh_token: true
+      client_id: grafana
+      client_secret: demosecret
+      scopes: openid email profile offline_access roles groups
+      email_attribute_path: email
+      login_attribute_path: username
+      name_attribute_path: full_name
+      auth_url: https://keycloak.lab.suxessit.k8s.cloud.uibk.ac.at/realms/sx-cnp-oss/protocol/openid-connect/auth
+      token_url: https://keycloak.lab.suxessit.k8s.cloud.uibk.ac.at/realms/sx-cnp-oss/protocol/openid-connect/token
+      api_url: https://keycloak.lab.suxessit.k8s.cloud.uibk.ac.at/realms/sx-cnp-oss/protocol/openid-connect/userinfo
+      signout_redirect_url:  https://keycloak.lab.suxessit.k8s.cloud.uibk.ac.at/realms/sx-cnp-oss/protocol/openid-connect/logout
+      role_attribute_path: contains(roles[*], 'admin') && 'Admin' || contains(roles[*], 'editor') && 'Editor' || 'Viewer'
+      allow_assign_grafana_admin: true 
+
   ingress:
     ## If true, Grafana Ingress will be created
     ##
