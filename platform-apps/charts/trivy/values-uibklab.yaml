@@ -6,6 +6,10 @@ trivy-operator:
     enabled: true
   trivyOperator:
     reportResourceLabels: "backstage.io/kubernetes-id"
+    additionalReportLabels: "backstage.io/kubernetes-id"
+
   trivy:
     ignoreUnfixed: true
     timeout: "10m0s"
+    additionalVulnerabilityReportFields: "Target,Class"
+    slow: false
