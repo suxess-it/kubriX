@@ -9,8 +9,8 @@ metadata:
   name: client-default-role-grafana-viewer
 spec:
   forProvider:
-#    clientIdRef:
-#      name: {{ .Values.deployments.keycloak.grafanaclient.config.clientID }}
+    clientIdRef:
+      name: {{ .Values.deployments.keycloak.grafanaclient.config.clientID }}
     name: viewer
     description: viewer role for grafana
     realmIdRef:
@@ -29,8 +29,8 @@ metadata:
   name: client-default-role-grafana-editor
 spec:
   forProvider:
-#    clientIdRef:
-#      name: {{ .Values.deployments.keycloak.grafanaclient.config.clientID }}
+    clientIdRef:
+      name: {{ .Values.deployments.keycloak.grafanaclient.config.clientID }}
     name: editor
     description: editor role for grafana
     realmIdRef:
@@ -49,8 +49,8 @@ metadata:
   name: client-default-role-grafana-admin
 spec:
   forProvider:
- #   clientIdRef:
- #     name: {{ .Values.deployments.keycloak.grafanaclient.config.clientID }}
+    clientIdRef:
+      name: {{ .Values.deployments.keycloak.grafanaclient.config.clientID }}
     name: admin
     description: admin role for grafana
     realmIdRef:
