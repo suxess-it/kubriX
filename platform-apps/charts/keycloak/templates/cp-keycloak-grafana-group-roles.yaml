@@ -8,18 +8,12 @@ metadata:
 spec:
   deletionPolicy: Delete
   forProvider:
-    clientIdRef:
-      name: grafana
     groupIdRef:
       name: admins
     realmIdRef: 
       name: {{ .Values.deployments.keycloak.realm.realmid }}
     roleIdsRefs:
       - name: editor
-    roleIdsSelector:
-      matchLabels:
-        defaultRole: 'true'
-        realmName: {{ .Values.deployments.keycloak.realm.realmid }}
   initProvider: {}
   managementPolicies:
     - '*'
