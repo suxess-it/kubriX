@@ -1,0 +1,25 @@
+apiVersion: group.keycloak.crossplane.io/v1alpha1
+kind: Roles
+metadata:
+  name: {{ .Values.deployments.keycloak.grafanaclient.config.clientID }}-grafana-group-roles
+  annotations:
+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+    argocd.argoproj.io/sync-wave: "1"
+spec:
+  deletionPolicy: Delete
+  forProvider:
+    groupIdRef:
+      name: admins
+    realmIdRef: 
+      name: {{ .Values.deployments.keycloak.realm.realmid }}
+    roleIdsRefs:
+      - name: editor
+    roleIdsSelector:
+      matchLabels:
+        defaultRole: 'true'
+        realmName: {{ .Values.deployments.keycloak.realm.realmid }}
+  initProvider: {}
+  managementPolicies:
+    - '*'
+  providerConfigRef:
+    name: sx-keycloak-config
