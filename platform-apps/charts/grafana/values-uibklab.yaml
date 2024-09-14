@@ -11,6 +11,8 @@ grafana:
   # set cookies for backstage plugin integration
   envFromSecret: grafana-env-secret
   grafana.ini:
+    server:
+      root_url: "https://grafana.lab.suxessit.k8s.cloud.uibk.ac.at"
     security:
       allow_embedding: 'true'
       cookie_samesite: none
