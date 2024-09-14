@@ -31,7 +31,7 @@ spec:
     serviceAccountsEnabled: false
 #    managementPolicies: ["Observe"]
     validRedirectUris:
-      - "http://grafana{{ .Values.deployments.ingress.fqdn }}:3000/login/generic_oauth"
+ #     - "http://grafana{{ .Values.deployments.ingress.fqdn }}:3000/login/generic_oauth"
       - "https://grafana{{ .Values.deployments.ingress.fqdn }}/login/generic_oauth"
     clientSecretSecretRef:
       key: {{ .Values.deployments.keycloak.grafanaclient.config.clientID }}
