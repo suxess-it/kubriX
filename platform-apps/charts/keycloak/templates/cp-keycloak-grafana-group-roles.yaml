@@ -14,7 +14,7 @@ spec:
       name: {{ .Values.deployments.keycloak.realm.realmid }}
     roleIdsSelector:
       matchLabels:
-        platform-engineer.cloud/role: editor
+        platform-engineer.cloud/role: admin
   initProvider: {}
   managementPolicies:
     - '*'
@@ -37,7 +37,7 @@ spec:
       name: {{ .Values.deployments.keycloak.realm.realmid }}
     roleIdsSelector:
       matchLabels:
-        platform-engineer.cloud/role: viewer
+        platform-engineer.cloud/role: editor
   initProvider: {}
   managementPolicies:
     - '*'
