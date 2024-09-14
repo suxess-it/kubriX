@@ -32,6 +32,8 @@ grafana:
       signout_redirect_url: https://keycloak.lab.suxessit.k8s.cloud.uibk.ac.at/realms/sx-cnp-oss/protocol/openid-connect/logout
       role_attribute_path: contains(grafana.roles[*], 'admin') && 'Admin' || contains(grafana.roles[*], 'editor') && 'Editor' || 'Viewer'
       allow_assign_grafana_admin: false 
+      groups_attribute_path: groups
+
     auth: 
       oauth_skip_org_role_update_sync: false  
       skip_org_role_sync: false
