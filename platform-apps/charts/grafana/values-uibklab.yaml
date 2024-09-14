@@ -40,7 +40,8 @@ grafana:
       auto_assign_org_role: Viewer  #Admin
       auto_assign_org_id: 1 
     log:
-      filters: "oauth.generic_oauth:debug"
+      level: debug
+      #filters: "oauth.generic_oauth:debug"
   ingress:
     ## If true, Grafana Ingress will be created
     ##
