@@ -1,0 +1,12 @@
+apiVersion: authenticationflow.keycloak.crossplane.io/v1alpha1
+kind: Flow
+metadata:
+  annotations:
+    crossplane.io/external-name: c1b41f9a-8841-43ab-9297-43ae0c59b164
+  name: test4
+  namespace: keycloak
+spec:
+  forProvider: {}
+  managementPolicies: ["Observe"]
+  providerConfigRef:
+    name: sx-keycloak-config

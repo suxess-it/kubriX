@@ -95,6 +95,9 @@ deployments:
       config:
         clientID: grafana
         clientSecret: demosecret
+    # start with 2FA
+    mfa:
+      enabled: true
 # PersistenVolume / PersistenVolumeClaims
 pv:
   name: postgres-pv

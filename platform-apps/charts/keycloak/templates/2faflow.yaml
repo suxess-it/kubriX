@@ -1,0 +1,120 @@
+{{- if .Values.deployments.keycloak.mfa.enabled }}
+apiVersion: authenticationflow.keycloak.crossplane.io/v1alpha1
+kind: Flow
+metadata:
+  name: 2faflow
+  labels:
+    platform-engineer.cloud/flow: 2faflow
+  annotations:
+    argocd.argoproj.io/sync-wave: "2"
+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+spec:
+  deletionPolicy: Delete
+  forProvider:
+    realmIdSelector:
+      matchLabels:
+        platform-engineer.cloud/realm: {{ .Values.deployments.keycloak.realm.realmid }}
+    alias: browser 2 FA
+    description: browser based authentication
+    providerId: basic-flow
+  providerConfigRef:
+    name: "{{ .Release.Name }}-config"
+---
+apiVersion: authenticationflow.keycloak.crossplane.io/v1alpha1
+kind: Execution
+metadata:
+  name: 2fa-ex1
+  annotations:
+    argocd.argoproj.io/sync-wave: "3"
+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+spec:
+  forProvider:
+    authenticator: auth-cookie
+    parentFlowAliasSelector:
+      matchLabels:
+        platform-engineer.cloud/flow: 2faflow
+    requirement: ALTERNATIVE
+    realmIdSelector:
+      matchLabels:
+        platform-engineer.cloud/realm: {{ .Values.deployments.keycloak.realm.realmid }}
+  providerConfigRef:
+    name: "{{ .Release.Name }}-config"
+---
+apiVersion: authenticationflow.keycloak.crossplane.io/v1alpha1
+kind: Execution
+metadata:
+  name: 2fa-ex2
+  annotations:
+    argocd.argoproj.io/sync-wave: "3"
+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+spec:
+  forProvider:
+    authenticator: identity-provider-redirector
+    parentFlowAliasSelector:
+      matchLabels:
+        platform-engineer.cloud/flow: 2faflow
+    realmIdSelector:
+      matchLabels:
+        platform-engineer.cloud/realm: {{ .Values.deployments.keycloak.realm.realmid }}
+    requirement: ALTERNATIVE
+  providerConfigRef:
+    name: "{{ .Release.Name }}-config"
+---
+apiVersion: authenticationflow.keycloak.crossplane.io/v1alpha1
+kind: Execution
+metadata:
+  name: 2fa-ex3
+  annotations:
+    argocd.argoproj.io/sync-wave: "3"
+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+spec:
+  forProvider:
+    authenticator: auth-username-password-form
+    parentFlowAliasSelector:
+      matchLabels:
+        platform-engineer.cloud/flow: 2faflow
+    realmIdSelector:
+      matchLabels:
+        platform-engineer.cloud/realm: {{ .Values.deployments.keycloak.realm.realmid }}
+    requirement: REQUIRED
+  providerConfigRef:
+    name: "{{ .Release.Name }}-config"
+---
+apiVersion: authenticationflow.keycloak.crossplane.io/v1alpha1
+kind: Execution
+metadata:
+  name: 2fa-ex4
+  annotations:
+    argocd.argoproj.io/sync-wave: "3"
+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+spec:
+  forProvider:
+    authenticator: auth-otp-form
+    parentFlowAliasSelector:
+      matchLabels:
+        platform-engineer.cloud/flow: 2faflow
+    realmIdSelector:
+      matchLabels:
+        platform-engineer.cloud/realm: {{ .Values.deployments.keycloak.realm.realmid }}
+    requirement: REQUIRED
+  providerConfigRef:
+    name: "{{ .Release.Name }}-config"
+---
+apiVersion: authenticationflow.keycloak.crossplane.io/v1alpha1
+kind: Bindings
+metadata:
+  name: 2fa-browser-flow-binding
+  annotations:
+    argocd.argoproj.io/sync-wave: "4"
+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+spec:
+  forProvider:
+    browserFlowSelector:
+      matchLabels:
+        platform-engineer.cloud/flow: 2faflow
+    realmIdSelector:
+      matchLabels:
+        platform-engineer.cloud/realm: {{ .Values.deployments.keycloak.realm.realmid }}
+  providerConfigRef:
+    name: "{{ .Release.Name }}-config"
+#{{- end }}
