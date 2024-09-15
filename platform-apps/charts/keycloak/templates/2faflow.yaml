@@ -1,4 +1,24 @@
 {{- if .Values.deployments.keycloak.mfa.enabled }}
+apiVersion: role.keycloak.crossplane.io/v1alpha1
+kind: Role
+metadata:
+  name: 2faotprole
+  labels:
+    platform-engineer.cloud/role: 2faotprole
+  annotations:
+    argocd.argoproj.io/sync-wave: "2"
+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+spec:
+  deletionPolicy: Delete
+  forProvider:
+    description: "${role_{{ .Values.deployments.keycloak.realm.realmid }}_otprole}"
+    name: {{ .Values.deployments.keycloak.realm.realmid }}_otprole
+    realmIdSelector:
+      matchLabels:
+        platform-engineer.cloud/realm: {{ .Values.deployments.keycloak.realm.realmid }}
+  providerConfigRef:
+    name: "{{ .Release.Name }}-config"
+---
 apiVersion: authenticationflow.keycloak.crossplane.io/v1alpha1
 kind: Flow
 metadata:
@@ -84,12 +104,40 @@ apiVersion: authenticationflow.keycloak.crossplane.io/v1alpha1
 kind: Execution
 metadata:
   name: 2fa-ex4
+  labels:
+    platform-engineer.cloud/execution: 2fa-ex4
   annotations:
     argocd.argoproj.io/sync-wave: "6"
     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
 spec:
   forProvider:
-    authenticator: auth-otp-form
+    authenticator: auth-conditional-otp-form
+    parentFlowAliasSelector:
+      matchLabels:
+        platform-engineer.cloud/flow: 2faflow
+    realmIdSelector:
+      matchLabels:
+        platform-engineer.cloud/realm: {{ .Values.deployments.keycloak.realm.realmid }}
+    requirement: REQUIRED
+  providerConfigRef:
+    name: "{{ .Release.Name }}-config"
+---
+apiVersion: authenticationflow.keycloak.crossplane.io/v1alpha1
+kind: ExecutionConfig
+metadata:
+  name: 2fa-ex4-conf
+  annotations:
+    argocd.argoproj.io/sync-wave: "7"
+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+spec:
+  forProvider:
+    alias: conditional otp form
+    config:
+      defaultOtpOutcome: skip
+      forceOtpRole: {{ .Values.deployments.keycloak.realm.realmid }}_otprole
+    executionIdSelector:
+      matchLabels:
+        platform-engineer.cloud/execution: 2fa-ex4  
     parentFlowAliasSelector:
       matchLabels:
         platform-engineer.cloud/flow: 2faflow
@@ -105,7 +153,7 @@ kind: Bindings
 metadata:
   name: 2fa-browser-flow-binding
   annotations:
-    argocd.argoproj.io/sync-wave: "7"
+    argocd.argoproj.io/sync-wave: "8"
     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
 spec:
   forProvider:
