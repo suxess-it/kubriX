@@ -138,13 +138,9 @@ spec:
     executionIdSelector:
       matchLabels:
         platform-engineer.cloud/execution: 2fa-ex4  
-    parentFlowAliasSelector:
-      matchLabels:
-        platform-engineer.cloud/flow: 2faflow
     realmIdSelector:
       matchLabels:
         platform-engineer.cloud/realm: {{ .Values.deployments.keycloak.realm.realmid }}
-    requirement: REQUIRED
   providerConfigRef:
     name: "{{ .Release.Name }}-config"
 ---
