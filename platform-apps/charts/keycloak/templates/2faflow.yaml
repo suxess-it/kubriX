@@ -176,7 +176,7 @@ spec:
   forProvider:
     groupIdRef:
       name: {{ $group.name }}
-    roleIdSelector:
+    roleIdsSelector:
       matchLabels: 
         platform-engineer.cloud/role: 2faotprole    
     realmId: {{ $.Values.deployments.keycloak.realm.realmid }}
