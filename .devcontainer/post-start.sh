@@ -25,8 +25,7 @@ k3d cluster list
 # Ensure kubeconfig is set up. 
 # k3d kubeconfig merge dev --kubeconfig-merge-default
 
-curl -L https://raw.githubusercontent.com/suxess-it/sx-cnp-oss/${CURRENT_BRANCH}/install-platform.sh | bash
-
+./install-platform.sh
 
 # forward argocd and kargo so it gets also exposed in github codespace
 kubectl -n argocd port-forward svc/sx-argocd-server 6688:80 &
