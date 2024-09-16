@@ -1,4 +1,58 @@
-# cnp local demo environment
+# Test kubrix with GitHub Codespaces
+
+You can start a test environment with GitHub Codespaces.
+
+A k3d cluster and our platform stack gets installed during startup of the codespace,
+so just try it with the button below!
+
+[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/suxess-it/sx-cnp-oss)
+
+Don't forget to choose a kubrix scenario and choose 4 cores:
+![image](https://github.com/user-attachments/assets/767d389e-fa03-4e5d-9df1-d270050afa0c)
+
+You will get a VSCode environment in your browser and then inside this devcontainer
+a K3d cluster will get created and the platform stack will get installed.
+This will take up to 20 minutes. You can follow the installation in the terminal and log
+by running the shortcut CTRL+SHIFT+P and then type "Codespaces: View Creation Log":
+
+![image](https://github.com/user-attachments/assets/38b59d91-ce63-4e3c-9f0d-68b48d039ea8)
+
+Then you should see log messages in the "Terminal-View":
+
+![image](https://github.com/user-attachments/assets/5552ef73-bce6-4129-a0b0-9d410ce47af5)
+
+## accessing platform service consoles
+
+In the "Ports-View" you will see different URLs for different platform services. When clicking on the "world" symbol you can open the URL in your browser and use the tools.
+
+![image](https://github.com/user-attachments/assets/bad60f85-fb88-46cf-8d73-1090a9d61647)
+
+Needed credentials for the different tools are displayed in the end of the startup like this:
+
+```
+kubrix delivery is set up sucessfully.
+
+ArgoCD user: admin
+ArgoCD password: 0g3v2Tx2maPs7oKr
+
+Kargo password: admin
+```
+
+## known issues
+
+currently the k3d cluster "cnp-local-demo" still exists when opening the devcontainer. I am not really sure about the livecycle of the devcontainer. Currently I do the following to get rid of the problem.
+
+stop vscode
+
+start vscode (but don't switch to devcontainer remote explorer)
+
+dann in vscode command (CTRL+SHIFT+P)
+
+"dev containers: clean up dev containers"
+"dev cotainers: clean up dev volume"
+"rebuild without cache and reopen in container"
+
+# create cnp local demo environment
 
 ## how to set it up
 
@@ -124,56 +178,3 @@ docker push ghcr.io/suxess-it/sx-backstage:latest
 kubectl rollout restart deploy/sx-backstage -n backstage
 ```
 
-# Test environment with GitHub Codespaces
-
-You can start a test environment with GitHub Codespaces.
-
-A k3d cluster and our platform stack gets installed during startup of the codespace,
-so just try it with the button below!
-
-[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/suxess-it/sx-cnp-oss)
-
-Don't forget to choose a kubrix scenario and choose 4 cores:
-![image](https://github.com/user-attachments/assets/767d389e-fa03-4e5d-9df1-d270050afa0c)
-
-You will get a VSCode environment in your browser and then inside this devcontainer
-a K3d cluster will get created and the platform stack will get installed.
-This will take up to 20 minutes. You can follow the installation in the terminal and log
-by running the shortcut CTRL+SHIFT+P and then type "Codespaces: View Creation Log":
-
-![image](https://github.com/user-attachments/assets/38b59d91-ce63-4e3c-9f0d-68b48d039ea8)
-
-Then you should see log messages in the "Terminal-View":
-
-![image](https://github.com/user-attachments/assets/5552ef73-bce6-4129-a0b0-9d410ce47af5)
-
-## accessing platform service consoles
-
-In the "Ports-View" you will see different URLs for different platform services. When clicking on the "world" symbol you can open the URL in your browser and use the tools.
-
-![image](https://github.com/user-attachments/assets/bad60f85-fb88-46cf-8d73-1090a9d61647)
-
-Needed credentials for the different tools are displayed in the end of the startup like this:
-
-```
-kubrix delivery is set up sucessfully.
-
-ArgoCD user: admin
-ArgoCD password: 0g3v2Tx2maPs7oKr
-
-Kargo password: admin
-```
-
-## known issues
-
-currently the k3d cluster "cnp-local-demo" still exists when opening the devcontainer. I am not really sure about the livecycle of the devcontainer. Currently I do the following to get rid of the problem.
-
-stop vscode
-
-start vscode (but don't switch to devcontainer remote explorer)
-
-dann in vscode command (CTRL+SHIFT+P)
-
-"dev containers: clean up dev containers"
-"dev cotainers: clean up dev volume"
-"rebuild without cache and reopen in container"
