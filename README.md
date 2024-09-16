@@ -124,8 +124,36 @@ docker push ghcr.io/suxess-it/sx-backstage:latest
 kubectl rollout restart deploy/sx-backstage -n backstage
 ```
 
-# devcontainer - DRAFT
+# Test environment with GitHub Codespaces
 
+You can start a test environment with GitHub Codespaces.
+
+A k3d cluster and our platform stack gets installed during startup of the codespace,
+so just try it with the button below!
+
+[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/suxess-it/sx-cnp-oss)
+
+You will get a VSCode environment in your browser and then inside this devcontainer
+a K3d cluster will get created and the platform stack will get installed.
+This will take up to 20 minutes. You can follow the installation in the terminal and log
+by running the command CTRL+SHIFT+P "Codespaces: View Creation Log".
+
+## accessing platform service consoles
+
+In the "Ports-View" you will see different URLs for different platform services. When clicking on the "world" symbol you can open the URL in your browser and use the tools.
+
+Needed credentials for the different tools are displayed in the end of the startup like this:
+
+```
+kubrix delivery is set up sucessfully.
+
+ArgoCD user: admin
+ArgoCD password: 0g3v2Tx2maPs7oKr
+
+Kargo password: admin
+```
+
+## known issues
 
 currently the k3d cluster "cnp-local-demo" still exists when opening the devcontainer. I am not really sure about the livecycle of the devcontainer. Currently I do the following to get rid of the problem.
 
