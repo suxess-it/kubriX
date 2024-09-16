@@ -1,8 +1,6 @@
 #!/bin/bash
 set -e  # Exit on non-zero exit code from commands
 
-set -x
-
 echo "$(date): Running post-start.sh" >> ~/.status.log
 
 # this runs in background each time the container starts
