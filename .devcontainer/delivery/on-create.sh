@@ -27,18 +27,4 @@ k3d cluster list
 
 ./install-platform.sh
 
-# forward argocd and kargo so it gets also exposed in github codespace
-nohup kubectl -n argocd port-forward svc/sx-argocd-server 6688:80 &
-nohup kubectl -n kargo port-forward svc/kargo-api 6689:80 &
-
-argocd_password=$( kubectl get secret -n argocd argocd-initial-admin-secret -o=jsonpath='{.data.password}' | base64 -d )
-
-echo "kubrix delivery is set up sucessfully."
-echo "ArgoCD url: https://${CODESPACE_NAME}-6688.${GITHUB_CODESPACES_PORT_FORWARDING_DOMAIN}"
-echo "ArgoCD user: admin"
-echo "ArgoCD password: ${argocd_password}"
-echo ""
-echo "Kargo url: https://${CODESPACE_NAME}-6689.${GITHUB_CODESPACES_PORT_FORWARDING_DOMAIN}"
-echo "Kargo password: admin"
-
 echo "$(date): Finished post-start.sh" >> ~/.status.log
