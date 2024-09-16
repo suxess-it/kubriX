@@ -13,7 +13,11 @@ Don't forget to choose a kubrix scenario and choose 4 cores:
 You will get a VSCode environment in your browser and then inside this devcontainer
 a K3d cluster will get created and the platform stack will get installed.
 This will take up to 20 minutes. You can follow the installation in the terminal and log
-by running the shortcut CTRL+SHIFT+P and then type "Codespaces: View Creation Log":
+by clicking on the link "Building codespace...":
+
+![image](https://github.com/user-attachments/assets/0c1d88cb-1f3a-43e6-964c-6066fdbdf564)
+
+Sometimes you also need to press CTRL+SHIFT+P and then type "Codespaces: View Creation Log":
 
 ![image](https://github.com/user-attachments/assets/38b59d91-ce63-4e3c-9f0d-68b48d039ea8)
 
