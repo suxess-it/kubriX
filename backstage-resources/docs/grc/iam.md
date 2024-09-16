@@ -17,6 +17,7 @@ User are configured via __groups__:
 Extend Groups/Users to your needs
 
 Github or other Identity Providers can be added to Keycloak, if neccessary
+- only __1__ github provider possible
 
 ## Customizing Metrics
 tbd
