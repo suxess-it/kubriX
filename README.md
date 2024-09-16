@@ -123,3 +123,22 @@ docker tag sx-backstage:latest ghcr.io/suxess-it/sx-backstage:latest
 docker push ghcr.io/suxess-it/sx-backstage:latest
 kubectl rollout restart deploy/sx-backstage -n backstage
 ```
+
+# devcontainer - DRAFT
+
+
+currently the k3d cluster "cnp-local-demo" still exists when opening the devcontainer. I am not really sure about the livecycle of the devcontainer. Currently I do the following to get rid of the problem.
+
+stop vscode
+
+docker container ls
+docker container rm <ids>
+docker image ls
+docker image rm <ids>
+docker image prune
+
+an in vscode command
+
+"dev containers: clean up dev containers"
+"dev cotainers: clean up dev volume"
+"rebuild without cache and reopen in container"

@@ -22,6 +22,9 @@ sudo mv mkcert-v*-linux-amd64 /usr/local/bin/mkcert
 
 k3d cluster list
 
+# Ensure kubeconfig is set up. 
+# k3d kubeconfig merge dev --kubeconfig-merge-default
+
 curl -L https://raw.githubusercontent.com/suxess-it/sx-cnp-oss/${CURRENT_BRANCH}/install-platform.sh | bash
 
 echo "$(date): Finished post-start.sh" >> ~/.status.log
