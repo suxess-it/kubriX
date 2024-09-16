@@ -19,10 +19,10 @@
 		"cpus": 4
 	},
 	// Use 'postCreateCommand' to run commands after the container is created.
-	"postCreateCommand": "/bin/bash -c .devcontainer/delivery/post-create.sh",
+	"postCreateCommand": "/bin/bash -c .devcontainer/security/post-create.sh",
 
 	// Use 'postStartCommand' to run commands after the container is created like starting minikube.
-	"postStartCommand": "/bin/bash -c .devcontainer/delivery/post-start.sh",
+	"postStartCommand": "/bin/bash -c .devcontainer/security/post-start.sh",
 
 	// Configure tool-specific properties.
 	// "customizations": {},
@@ -33,10 +33,6 @@
 	"portsAttributes": {
 		"6688": {
 			"label": "argocd",
-			"protocol": "http"
-		},
-		"6689": {
-			"label": "kargo",
 			"protocol": "http"
 		}
 	},
