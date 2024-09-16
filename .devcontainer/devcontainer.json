@@ -30,10 +30,22 @@
 	// Uncomment to connect as root instead. More info: https://aka.ms/dev-containers-non-root.
 	// "remoteUser": "root"
 
-	"forwardPorts": [80],
+	"forwardPorts": [argocd-127-0-0-1.nip.io:443, kargo-127-0-0-1.nip.io:443],
 	"portsAttributes": {
-		"80": {
-			"label": "k3d ingress controller",
+		"argocd-127-0-0-1.nip.io:443": {
+			"label": "argocd k3d ingress controller",
+			"protocol": "https"
+		},
+		"kargo-127-0-0-1.nip.io:443": {
+			"label": "kargo k3d ingress controller",
+			"protocol": "https"
+		},
+		"6688": {
+			"label": "argocd",
+			"protocol": "http"
+		},
+		"6689": {
+			"label": "kargo",
 			"protocol": "http"
 		}
 	},

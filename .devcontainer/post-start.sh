@@ -1,6 +1,8 @@
 #!/bin/bash
 set -e  # Exit on non-zero exit code from commands
 
+set -x
+
 echo "$(date): Running post-start.sh" >> ~/.status.log
 
 # this runs in background each time the container starts
@@ -28,8 +30,9 @@ k3d cluster list
 ./install-platform.sh
 
 # forward argocd and kargo so it gets also exposed in github codespace
-kubectl -n argocd port-forward svc/sx-argocd-server 6688:80 &
-kubectl -n kargo port-forward svc/kargo-api 6689:80 &
+kubectl create ns blabla-test
+nohup kubectl -n argocd port-forward svc/sx-argocd-server 6688:80 &
+nohup kubectl -n kargo port-forward svc/kargo-api 6689:80 &
 
 
 echo "$(date): Finished post-start.sh" >> ~/.status.log
