@@ -7,10 +7,10 @@ Overview how identity and access management works in our platform, at first, how
 Keycloak is beeing installed via Helm Charts.
 User and Credentials Configuration are currently served via Helm values file (ESO is on the roadmap) [see default values files](https://github.com/suxess-it/sx-cnp-oss/tree/main/platform-apps/charts/keycloak):
 
-User are configured via groups:
-admins: adminusers with admin entitlement
-users: "normal" user entitlement
-group1: "team" group entitlement
+User are configured via __groups__:
+- __admins__: adminusers with admin entitlement
+- __users__: "normal" user entitlement
+- __group1__: "team" group entitlement
 
 2FA with mobile Authenticator is added for users and group1
 
