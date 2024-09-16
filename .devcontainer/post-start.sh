@@ -30,7 +30,6 @@ k3d cluster list
 ./install-platform.sh
 
 # forward argocd and kargo so it gets also exposed in github codespace
-kubectl create ns blabla-test
 nohup kubectl -n argocd port-forward svc/sx-argocd-server 6688:80 &
 nohup kubectl -n kargo port-forward svc/kargo-api 6689:80 &
 
