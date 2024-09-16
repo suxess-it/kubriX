@@ -1,7 +1,8 @@
-# See here for image contents: https://github.com/microsoft/vscode-dev-containers/tree/v0.245.2/containers/ubuntu/.devcontainer/base.Dockerfile
-FROM quay.io/akuity/argo-cd-learning-assets/akuity-devcontainer:0.2.3
+# this image is built and updated weekly
+# https://github.com/cse-labs/codespaces-images
 
-# Select desired TAG from https://github.com/argoproj/argo-cd/releases
-ENV ARGOCD_VERSION=v2.12.0
-RUN curl -sSL -o /usr/local/bin/argocd "https://github.com/argoproj/argo-cd/releases/download/${ARGOCD_VERSION}/argocd-linux-amd64" \
-    && chmod +x /usr/local/bin/argocd
+FROM ghcr.io/cse-labs/k3d:latest
+
+ARG USERNAME=vscode
+
+RUN chown -R $USERNAME:$USERNAME /home/$USERNAME
