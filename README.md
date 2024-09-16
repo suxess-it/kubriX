@@ -133,6 +133,9 @@ so just try it with the button below!
 
 [![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/suxess-it/sx-cnp-oss)
 
+Don't forget to choose a kubrix scenario and choose 4 cores:
+![image](https://github.com/user-attachments/assets/767d389e-fa03-4e5d-9df1-d270050afa0c)
+
 You will get a VSCode environment in your browser and then inside this devcontainer
 a K3d cluster will get created and the platform stack will get installed.
 This will take up to 20 minutes. You can follow the installation in the terminal and log
