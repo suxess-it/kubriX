@@ -10,7 +10,7 @@ export GITHUB_CLIENTID=dummy
 export GITHUB_TOKEN=dummy
 export GITHUB_APPSET_TOKEN=dummy
 export TARGET_TYPE=KIND-DELIVERY
-export CURRENT_BRANCH=feat/devcontainer
+export CURRENT_BRANCH=$( git rev-parse --abbrev-ref HEAD )
 export CREATE_K3D_CLUSTER=true
 
 # install mkcert
