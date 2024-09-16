@@ -136,11 +136,19 @@ so just try it with the button below!
 You will get a VSCode environment in your browser and then inside this devcontainer
 a K3d cluster will get created and the platform stack will get installed.
 This will take up to 20 minutes. You can follow the installation in the terminal and log
-by running the command CTRL+SHIFT+P "Codespaces: View Creation Log".
+by running the shortcut CTRL+SHIFT+P and then type "Codespaces: View Creation Log":
+
+![image](https://github.com/user-attachments/assets/38b59d91-ce63-4e3c-9f0d-68b48d039ea8)
+
+Then you should see log messages in the "Terminal-View":
+
+![image](https://github.com/user-attachments/assets/5552ef73-bce6-4129-a0b0-9d410ce47af5)
 
 ## accessing platform service consoles
 
 In the "Ports-View" you will see different URLs for different platform services. When clicking on the "world" symbol you can open the URL in your browser and use the tools.
+
+![image](https://github.com/user-attachments/assets/bad60f85-fb88-46cf-8d73-1090a9d61647)
 
 Needed credentials for the different tools are displayed in the end of the startup like this:
 
