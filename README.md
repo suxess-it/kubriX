@@ -131,13 +131,9 @@ currently the k3d cluster "cnp-local-demo" still exists when opening the devcont
 
 stop vscode
 
-docker container ls
-docker container rm <ids>
-docker image ls
-docker image rm <ids>
-docker image prune
+start vscode (but don't switch to devcontainer remote explorer)
 
-an in vscode command
+dann in vscode command (CTRL+SHIFT+P)
 
 "dev containers: clean up dev containers"
 "dev cotainers: clean up dev volume"
