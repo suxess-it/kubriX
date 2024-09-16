@@ -161,4 +161,27 @@ spec:
         platform-engineer.cloud/realm: {{ .Values.deployments.keycloak.realm.realmid }}
   providerConfigRef:
     name: "{{ .Release.Name }}-config"
-#{{- end }}
+{{- end }}
+---
+{{- range $group := .Values.deployments.keycloak.realm.groups }}
+{{- if $group.mfa }}
+apiVersion: group.keycloak.crossplane.io/v1alpha1
+kind: Roles
+metadata:
+  name: {{ $.Values.deployments.keycloak.backstageclient.config.clientID }}-{{ $group.name }}-2fa-roles
+  annotations:
+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+    argocd.argoproj.io/sync-wave: "1"
+spec:
+  forProvider:
+    groupIdRef:
+      name: {{ $group.name }}
+    roleIdSelector:
+      matchLabels: 
+        platform-engineer.cloud/role: 2faotprole    
+    realmId: {{ $.Values.deployments.keycloak.realm.realmid }}
+  providerConfigRef:
+    name: "{{ $.Release.Name }}-config"  
+---
+{{- end }}
+{{- end }}
