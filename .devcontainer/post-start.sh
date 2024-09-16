@@ -27,4 +27,10 @@ k3d cluster list
 
 curl -L https://raw.githubusercontent.com/suxess-it/sx-cnp-oss/${CURRENT_BRANCH}/install-platform.sh | bash
 
+
+# forward argocd and kargo so it gets also exposed in github codespace
+kubectl -n argocd port-forward svc/sx-argocd-server 6688:80 &
+kubectl -n kargo port-forward svc/kargo-api 6689:80 &
+
+
 echo "$(date): Finished post-start.sh" >> ~/.status.log
