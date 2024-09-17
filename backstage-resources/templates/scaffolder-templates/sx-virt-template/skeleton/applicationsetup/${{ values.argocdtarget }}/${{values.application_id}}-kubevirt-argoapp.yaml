@@ -4,6 +4,8 @@ kind: Application
 metadata:
   name: ${{values.application_id}}
   namespace: argocd
+  label:
+    platform-engineer.cloud/creator: backstage-template
   finalizers:
   - resources-finalizer.argocd.argoproj.io
 spec:
