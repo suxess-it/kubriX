@@ -49,7 +49,7 @@ spec:
 apiVersion: group.keycloak.crossplane.io/v1alpha1
 kind: Roles
 metadata:
-  name: {{ .Values.deployments.keycloak.grafanaclient.config.clientID }}-grafana-group-roles-viewer-group1
+  name: {{ .Values.deployments.keycloak.grafanaclient.config.clientID }}-grafana-group-roles-viewer-team1
   annotations:
     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
     argocd.argoproj.io/sync-wave: "1"
@@ -58,7 +58,7 @@ spec:
   forProvider:
     exhaustive: false
     groupIdRef:
-      name: group1
+      name: team1
     realmIdRef: 
       name: {{ .Values.deployments.keycloak.realm.realmid }}
     roleIdsSelector:
