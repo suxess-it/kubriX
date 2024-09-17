@@ -1,12 +1,14 @@
 apiVersion: scaffolder.backstage.io/v1beta3
 kind: Template
 metadata:
-  name: sx-cnp-oss-kubevirt-template-2
-  title: sx-cnp-oss kubevirt Template VMs-2
+  name: sx-cnp-oss-kubevirt-template
+  title: kubevirt VMs Template
   description: Run Demo VM n kubevirt provisoned with ArgoCD
   tags:
     - virtualization
     - metalstack
+    - kubevirt
+    - sx-cnp-oss
 spec:
   owner: user:phac008
   type: system
@@ -26,15 +28,15 @@ spec:
         - argocdtarget
       properties:
         application_id:
-          title: Name
+          title: Application Name
           type: string
-          description: Unique name of this vm
+          description: Unique name of this Application (VM)
         description:
           title: Description
           type: string
-          description: Help others understand what this vm is for.
+          description: Help others understand what this Application (VM) is for.
         cores:
-          title: Number of Cores
+          title: Number of Cores 
           type: string       
           default: '1'
         memory:
@@ -44,7 +46,7 @@ spec:
         environments:
           title: Environments
           type: array
-          description: Environments needed by this vm
+          description: Environments (Stages) needed by this vm, min 1. needed!
           items:
             type: string
             enum: 
@@ -74,20 +76,20 @@ spec:
         sshkey:
           title: single ssh-key
           type: string
-          description: "Optional: add ssh-key for vmlogin"  
+          description: "Optional: add ssh-key for login to VM"  
         team:
           title: Choose Team
           type: string
-          description: Owning Team of this vm, target repo for argo application
+          description: Owning Team of this VM, target repo for argo application
           ui:field: MyGroupsPicker
           ui:options: {}
         argocdtarget:
           title: argocd target directory
           type: string
-          description: Directory where argo application manifest is beeing deployed
+          description: Directory where argo application manifest is beeing deployed in team repo
           default: k3d-apps
 
-    - title: Choose owning team and location
+    - title: Choose Location
       required:
         - repoUrl
       properties:
@@ -164,6 +166,7 @@ spec:
         values:
           application_id: ${{ parameters.application_id }}
           description: ${{ parameters.description }}
+          team: ${{ steps['catalogFetchGroup'].output.entity.metadata.name }}
           repoUrlRepo: ${{ (parameters.repoUrl | parseRepoUrl)["repo"] }}
           repoUrlowner: ${{ (parameters.repoUrl | parseRepoUrl)["owner"] }}
           environments: ${{ parameters.environments }}
@@ -182,6 +185,7 @@ spec:
         token: ${{ secrets.USER_OAUTH_TOKEN }}
         gitAuthorName: ${{ user.entity.metadata.name }}
         gitAuthorEmail: ${{ user.entity.spec.profile.email }}
+        update: true
 
     - id: register
       name: Register Catalog

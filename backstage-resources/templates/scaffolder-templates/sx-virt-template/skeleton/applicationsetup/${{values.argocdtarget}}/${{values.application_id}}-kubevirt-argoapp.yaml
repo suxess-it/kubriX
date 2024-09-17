@@ -3,7 +3,7 @@ apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
   name: ${{values.application_id}}
-  namespace: argocd
+  namespace: adn-${{values.team}}
   label:
     platform-engineer.cloud/creator: backstage-template
   finalizers:
@@ -19,7 +19,7 @@ spec:
         - values.yaml
   destination:
     server: https://kubernetes.default.svc
-    namespace: default
+    namespace: adn-${{values.team}}
   syncPolicy:
     automated: 
       prune: true
