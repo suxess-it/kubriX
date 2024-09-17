@@ -1,0 +1,12 @@
+{%- for environment in values.environments %}
+---
+apiVersion: backstage.io/v1alpha1
+kind: System
+metadata:
+  name: ${{values.application_id}}
+  description: ${{values.description}}
+  labels:
+    stage: {{ $environment }}
+spec:
+  team: ${{values.team}}
+{%- endfor %}
