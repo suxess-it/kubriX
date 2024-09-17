@@ -1,8 +1,8 @@
 apiVersion: scaffolder.backstage.io/v1beta3
 kind: Template
 metadata:
-  name: sx-cnp-oss-kubevirt-template
-  title: sx-cnp-oss kubevirt Template VMs
+  name: sx-cnp-oss-kubevirt-template-2
+  title: sx-cnp-oss kubevirt Template VMs-2
   description: Run Demo VM n kubevirt provisoned with ArgoCD
   tags:
     - virtualization
@@ -23,6 +23,7 @@ spec:
         - os
         - initpwd
         - team
+        - argocdtarget
       properties:
         application_id:
           title: Name
@@ -57,13 +58,13 @@ spec:
           type: string
           default: '10Gi'
         initpwd:
-          title: initial init pwd
+          title: initial pwd for user cloud-user
           type: string
           default: 'admin'
         os:
           title: OS Type
           type: string
-          description: Select OS for vm
+          description: Select available OS for vm
           ui:field: EntityPicker
           ui:options:
             allowArbitraryValues: false
@@ -73,18 +74,19 @@ spec:
         sshkey:
           title: single ssh-key
           type: string
-          description: ssh-key for vmlogin
-          
+          description: "Optional: add ssh-key for vmlogin"  
         team:
-          title: Team
+          title: Choose Team
           type: string
-          description: Owning Team of this vm
-          ui:field: EntityPicker
-          ui:options:
-            allowArbitraryValues: false
-            allowedKinds:
-              - Group
-              
+          description: Owning Team of this vm, target repo for argo application
+          ui:field: MyGroupsPicker
+          ui:options: {}
+        argocdtarget:
+          title: argocd target directory
+          type: string
+          description: Directory where argo application manifest is beeing deployed
+          default: k3d-apps
+
     - title: Choose owning team and location
       required:
         - repoUrl
@@ -108,13 +110,13 @@ spec:
       action: catalog:fetch
       input:
         entityRef: ${{ parameters.os }}
-        
-    - id: catalogFetch
-      name: Fetch component details
+ 
+    - id: catalogFetchGroup
+      name: Fetch Context
       action: catalog:fetch
       input:
-        entityRef: ${{ parameters.team }}      
-        
+        entityRef: ${{ parameters.team }}
+
     - id: template-gitops
       name: Fetch Skeleton + Template
       action: fetch:template
@@ -125,7 +127,7 @@ spec:
         values:
           application_id: ${{ parameters.application_id }}
           description: ${{ parameters.description }}
-          team: ${{ parameters.team }}
+          team: ${{ steps['catalogFetchGroup'].output.entity.metadata.name }}
           environments: ${{ parameters.environments }}
           cores: ${{ parameters.cores }}
           memory: ${{ parameters.memory }}
@@ -165,17 +167,18 @@ spec:
           repoUrlRepo: ${{ (parameters.repoUrl | parseRepoUrl)["repo"] }}
           repoUrlowner: ${{ (parameters.repoUrl | parseRepoUrl)["owner"] }}
           environments: ${{ parameters.environments }}
+          argocdtarget: ${{ parameters.argocdtarget }}
 
     - id: pull-request-applicationsetup
-      name: make a pr to team repo with additional applicationsetup
+      name: make a pr to team repo
       action: publish:github:pull-request
       input:
         sourcePath: ./applicationsetup
         targetPath: '.'
-        repoUrl: github.com?repo=${{ parameters.team }}-apps&owner=suxess-it
+        repoUrl: github.com?repo=${{ steps['catalogFetchGroup'].output.entity.metadata.name }}-apps&owner=suxess-it
         branchName: ${{ parameters.application_id }}
-        title: argoapps and system config for ${{ parameters.application_id }}
-        description: argoapps and system config for ${{ parameters.application_id }}
+        title: argo application and system config for ${{ parameters.application_id }}
+        description: argo application and system config for ${{ parameters.application_id }}
         token: ${{ secrets.USER_OAUTH_TOKEN }}
         gitAuthorName: ${{ user.entity.metadata.name }}
         gitAuthorEmail: ${{ user.entity.spec.profile.email }}
@@ -186,14 +189,6 @@ spec:
       input:
         repoContentsUrl: ${{ steps["publish-gitopsreposetup"].output.repoContentsUrl }}
         catalogInfoPath: '/catalog-info.yaml'
-  
-#    - id: register2
-#      name: Register system
-#      action: catalog:register
-#      input:
-#        repoContentsUrl: ${{ steps["publish-gitopsreposetup"].output.repoContentsUrl }}
-#        catalogInfoPath: '/${{ parameters.application_id }}-system.yaml'
-
         
   output:
     links:
