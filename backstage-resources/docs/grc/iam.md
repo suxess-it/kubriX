@@ -10,9 +10,9 @@ User and Credentials Configuration are currently served via Helm values file (ES
 User are configured via __groups__:
 - __admins__: adminusers with admin entitlement
 - __users__: "normal" user entitlement
-- __group1__: "team" group entitlement
+- __team1__: "team" group entitlement
 
-2FA with mobile Authenticator is added for users and group1
+2FA with mobile Authenticator is added for users and team1
 
 Extend Groups/Users to your needs
 

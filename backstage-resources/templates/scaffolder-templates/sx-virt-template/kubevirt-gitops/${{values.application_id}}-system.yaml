@@ -6,7 +6,7 @@ metadata:
   name: ${{values.application_id}}
   description: ${{values.description}}
   labels:
-    stage: {{ $environment }}
+    stage: ${{environment}}
     platform-engineer.cloud/creator: backstage-template
 spec:
   team: ${{values.team}}
