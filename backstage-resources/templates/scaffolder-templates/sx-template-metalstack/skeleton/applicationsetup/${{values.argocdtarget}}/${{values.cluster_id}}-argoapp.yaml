@@ -2,12 +2,12 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: ${{values.application_id}}
-  namespace: argocd
+  name: ${{values.cluster_id}}-${{values.environments}}
+  namespace: adn-${{values.team}}
   finalizers:
   - resources-finalizer.argocd.argoproj.io
 spec:
-  project: default
+  project: ${{values.team}}-project
   source:
     repoURL: https://github.com/${{values.repoUrlowner}}/${{values.repoUrlRepo}}.git
     targetRevision: HEAD
@@ -17,14 +17,14 @@ spec:
         - values.yaml
   destination:
     server: https://kubernetes.default.svc
-    namespace: default
+    namespace: ${{values.team}}-${{values.application_id}}
   syncPolicy:
     automated: 
       prune: true
       selfHeal: true
       allowEmpty: true
     syncOptions:
-    - CreateNamespace=false      
+    - CreateNamespace=true      
     retry:
       limit: 0 # number of failed sync attempt retries; unlimited number of attempts if less than 0
       backoff:
