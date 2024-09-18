@@ -50,6 +50,8 @@ spec:
         resources:
           requests:
             memory: {{ $values.memory }}
+          limits:
+            memory: {{ $values.memory }}
       networks:
         - name: default
           pod: {}
