@@ -3,22 +3,21 @@ apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
   name: ${{values.cluster_id}}-${{values.environments}}
-  namespace: argocd
+  namespace: adn-${{values.team}}
   finalizers:
   - resources-finalizer.argocd.argoproj.io
 spec:
-  project: default
+  project: ${{values.team}}-project
   source:
     repoURL: https://github.com/${{values.repoUrlowner}}/${{values.repoUrlRepo}}.git
     targetRevision: HEAD
     path: helm/chart
     helm:
       valueFiles:
-        - ../value-files/values-${{values.environments}}.yaml
+        - values.yaml
   destination:
     server: https://kubernetes.default.svc
-#    namespace: ${{values.environments}}-demo-metalstack
-    namespace: default
+    namespace: ${{values.team}}-${{values.application_id}}
   syncPolicy:
     automated: 
       prune: true
