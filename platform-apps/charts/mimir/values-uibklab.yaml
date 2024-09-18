@@ -33,6 +33,8 @@ mimir:
         memory: 12Gi
     persistentVolume:
       size: 50Gi
+    extraArgs:
+      blocks-storage.tsdb.retention-period: 24h
 
 
   minio:
