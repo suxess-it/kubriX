@@ -3,6 +3,11 @@ set -e  # Exit on non-zero exit code from commands
 
 echo "$(date): Running post-start.sh" >> ~/.status.log
 
+# fix for https://github.com/kubernetes-sigs/kind/issues/2488
+# but using the microsoft devcontainer docker-in-docker image should also work,
+# but I didn't find it
+docker network create -d=bridge --subnet=172.19.0.0/24 kind
+
 # this runs in background each time the container starts
 
 export GITHUB_CLIENTSECRET=dummy
