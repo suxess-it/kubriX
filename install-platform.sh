@@ -65,10 +65,10 @@ helm install sx-argocd argo-cd \
 
 # create secret for scm applicationset in team app definition namespaces
 # see https://github.com/suxess-it/sx-cnp-oss/issues/214 for a sustainable solution
-for ns in adn-team1 adn-team2 adn-team-a; do
-  kubectl create namespace ${ns}
-  kubectl create secret generic appset-github-token --from-literal=token=${GITHUB_APPSET_TOKEN} -n ${ns}
-done
+#for ns in adn-team1 adn-team2 adn-team-a; do
+#  kubectl create namespace ${ns}
+#  kubectl create secret generic appset-github-token --from-literal=token=${GITHUB_APPSET_TOKEN} -n ${ns}
+#done
 
 CURRENT_BRANCH_SED=$( echo ${CURRENT_BRANCH} | sed 's/\//\\\//g' )
 
@@ -119,11 +119,9 @@ fi
 # apply argocd-secret to set a secretKey
 kubectl apply -f https://raw.githubusercontent.com/suxess-it/sx-cnp-oss/${CURRENT_BRANCH}/platform-apps/charts/argocd/manual-secret/argocd-secret.yaml
 
-# if kargo is part of this stack, create kargo credentials secret so kargo can do git promotion
-if [[ $( echo $argocd_apps | grep sx-kargo ) ]] ; then
-  kubectl create secret generic -n kargo github-creds --from-literal=password=${GITHUB_TOKEN} --from-literal=username=jkleinlercher --from-literal=repoURL="^https://github.com/suxess-it" --from-literal=repoURLIsRegex=true
-  kubectl label secret github-creds -n kargo kargo.akuity.io/cred-type=git
-fi
+export VAULT_HOSTNAME=$(kubectl get ingress -o jsonpath='{.items[*].spec.rules[*].host}' -n vault)
+curl --header "X-Vault-Token:$(kubectl get secret -n vault vault-init -o=jsonpath='{.data.root_token}'  | base64 -d)" --request POST --data "{\"data\": {\"GITHUB_APPSET_PAT\": \"$VAULT_TOKEN\", \"GITHUB_TOKEN\": \"$VAULT_TOKEN\", \"GITHUB_USERNAME\": \"jkleinlercher\"}}" ${VAULT_HOSTNAME}/v1/sx-cnp-oss-kv/data/demo/delivery
+
 
 # if backstage is part of this stack, create the manual secret for backstage
 if [[ $( echo $argocd_apps | grep sx-backstage ) ]] ; then
