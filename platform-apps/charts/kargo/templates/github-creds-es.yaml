@@ -16,8 +16,8 @@ spec:
     name: github-creds
     template:
       data:
-        password: "{{ .GITHUB_TOKEN }}"
-        username: "{{ .GITHUB_USERNAME }}"
+        password: "{{ `{{ .GITHUB_TOKEN }}` }}"
+        username: "{{ `{{ .GITHUB_USERNAME }}` }}"
         repoURL: "^https://github.com/suxess-it"
         repoURLIsRegex: "true"
   data:
