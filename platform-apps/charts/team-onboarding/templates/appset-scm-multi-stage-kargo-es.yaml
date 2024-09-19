@@ -16,7 +16,7 @@ spec:
     name: appset-github-token
     template:
       data:
-        GITHUB_APPSET_PAT: "{{ `{{ .GITHUB_APPSET_PAT }}` }}"
+        token: "{{ `{{ .GITHUB_APPSET_PAT }}` }}"
   data:
   - secretKey: GITHUB_APPSET_PAT
     remoteRef:
