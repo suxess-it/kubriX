@@ -6,7 +6,11 @@ echo "$(date): Running post-start.sh" >> ~/.status.log
 # fix for https://github.com/kubernetes-sigs/kind/issues/2488
 # but using the microsoft devcontainer docker-in-docker image should also work,
 # but I didn't find it
-docker network create -d=bridge --subnet=172.19.0.0/24 kind
+if [[ $( docker network ls | grep kind ) ]] ; then
+  echo "kind network already exists"
+else
+  docker network create -d=bridge --subnet=172.19.0.0/24 kind
+fi
 
 # this runs in background each time the container starts
 
@@ -23,9 +27,15 @@ chmod +x mkcert-v*-linux-amd64
 sudo mv mkcert-v*-linux-amd64 /usr/local/bin/mkcert
 
 # create kind cluster by ourselves
-kind create cluster --name devcontainer-cluster --config .devcontainer/kind-config.yaml
+if [[ $( kind get clusters | grep devcontainer-cluster ) ]] ; then
+  echo "kind cluster 'devcontainer-cluster' already exists"
+else
+  kind create cluster --name devcontainer-cluster --config .devcontainer/kind-config.yaml
+fi
 
 # here we can add some NodePort objects if we want to open ports before the apps are installed
+kubectl create ns argocd
+kubectl apply -f .devcontainer/argocd-nodeport.yaml
 
 # Ensure kubeconfig is set up. 
 # k3d kubeconfig merge dev --kubeconfig-merge-default
@@ -34,8 +44,8 @@ kind create cluster --name devcontainer-cluster --config .devcontainer/kind-conf
 
 if [[ ${TARGET_TYPE} == "KIND-DELIVERY" ]] ; then
   # forward argocd and kargo so it gets also exposed in github codespace
-  nohup kubectl -n argocd port-forward svc/sx-argocd-server 6688:80 &
-  nohup kubectl -n kargo port-forward svc/kargo-api 6689:80 &
+  # nohup kubectl -n argocd port-forward svc/sx-argocd-server 6688:80 &
+  # nohup kubectl -n kargo port-forward svc/kargo-api 6689:80 &
 
   argocd_password=$( kubectl get secret -n argocd argocd-initial-admin-secret -o=jsonpath='{.data.password}' | base64 -d )
 
