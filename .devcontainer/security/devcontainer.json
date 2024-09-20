@@ -1,7 +1,7 @@
 // For format details, see https://aka.ms/devcontainer.json. For config options, see the
 // README at: https://github.com/devcontainers/templates/tree/main/src/kubernetes-helm-minikube
 {
-	"name": "kubrix security",
+	"name": "kubrix observability",
 	// Or use a Dockerfile or Docker Compose file. More info: https://containers.dev/guide/dockerfile
 	"build": {
 		"dockerfile": "../Dockerfile"
@@ -19,13 +19,8 @@
 		"cpus": 4
 	},
 
-	"onCreateCommand": "/bin/bash -c .devcontainer/security/on-create.sh",
-	
-	// Use 'postCreateCommand' to run commands after the container is created.
-	"postCreateCommand": "/bin/bash -c .devcontainer/security/post-create.sh",
-
 	// Use 'postStartCommand' to run commands after the container is created like starting minikube.
-	"postStartCommand": "/bin/bash -c .devcontainer/security/post-start.sh",
+	"postStartCommand": "export TARGET_TYPE=KIND-SECURITY ; /bin/bash -c .devcontainer/install-platform-devcontainer.sh",
 
 	// Configure tool-specific properties.
 	// "customizations": {},
@@ -33,12 +28,20 @@
 	// Uncomment to connect as root instead. More info: https://aka.ms/dev-containers-non-root.
 	// "remoteUser": "root"
 
-	"forwardPorts": [6688],
+	"forwardPorts": [6688, 6692, 6693],
 	"portsAttributes": {
 		"6688": {
 			"label": "argocd",
 			"protocol": "http"
-		}
+		},
+		"6692": {
+			"label": "keycloak",
+			"protocol": "http"
+		},
+                "6693": {
+                        "label": "falco",
+                        "protocol": "http"
+                }
 	},
 	"customizations": {
 		"vscode": {

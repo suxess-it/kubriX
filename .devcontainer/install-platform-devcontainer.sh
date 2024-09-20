@@ -45,6 +45,18 @@ kubectl apply -f .devcontainer/argocd-nodeport.yaml
 kubectl create namespace kargo --dry-run=client -o yaml | kubectl apply -f -
 kubectl apply -f .devcontainer/kargo-nodeport.yaml
 
+kubectl create namespace backstage --dry-run=client -o yaml | kubectl apply -f -
+kubectl apply -f .devcontainer/backstage-nodeport.yaml
+
+kubectl create namespace grafana --dry-run=client -o yaml | kubectl apply -f -
+kubectl apply -f .devcontainer/grafana-nodeport.yaml
+
+kubectl create namespace keycloak --dry-run=client -o yaml | kubectl apply -f -
+kubectl apply -f .devcontainer/keycloak-nodeport.yaml
+
+kubectl create namespace falco --dry-run=client -o yaml | kubectl apply -f -
+kubectl apply -f .devcontainer/falco-nodeport.yaml
+
 # Ensure kubeconfig is set up. 
 # k3d kubeconfig merge dev --kubeconfig-merge-default
 
@@ -52,27 +64,28 @@ kubectl apply -f .devcontainer/kargo-nodeport.yaml
 
 if [[ ${TARGET_TYPE} == "KIND-DELIVERY" ]] ; then
   echo "kubrix delivery is set up sucessfully."
-  argocd_password=$( kubectl get secret -n argocd argocd-initial-admin-secret -o=jsonpath='{.data.password}' | base64 -d )
-
-  echo "kubrix delivery is set up sucessfully."
-  echo "ArgoCD url: https://${CODESPACE_NAME}-6688.${GITHUB_CODESPACES_PORT_FORWARDING_DOMAIN}"
-  echo "ArgoCD user: admin"
-  echo "ArgoCD password: ${argocd_password}"
-  echo ""
   echo "Kargo url: https://${CODESPACE_NAME}-6689.${GITHUB_CODESPACES_PORT_FORWARDING_DOMAIN}"
   echo "Kargo password: admin"
 
 elif  [[ ${TARGET_TYPE} == "KIND-OBSERVABILITY" ]]
   echo "kubrix observability is set up sucessfully."
-  argocd_password=$( kubectl get secret -n argocd argocd-initial-admin-secret -o=jsonpath='{.data.password}' | base64 -d )
-
-  echo "ArgoCD url: https://${CODESPACE_NAME}-6688.${GITHUB_CODESPACES_PORT_FORWARDING_DOMAIN}"
-  echo "ArgoCD user: admin"
-  echo "ArgoCD password: ${argocd_password}"
-  echo ""
   echo "Grafana url: https://${CODESPACE_NAME}-6690.${GITHUB_CODESPACES_PORT_FORWARDING_DOMAIN}"
   echo "Grafana user: admin"
   echo "Grafana password: prom-operator"
+
+elif  [[ ${TARGET_TYPE} == "KIND-PORTAL" ]]
+  echo "kubrix portal is set up sucessfully."
+  echo "Backstage url: https://${CODESPACE_NAME}-6691.${GITHUB_CODESPACES_PORT_FORWARDING_DOMAIN}"
+
+elif  [[ ${TARGET_TYPE} == "KIND-SECURITY" ]]
+  echo "kubrix portal is set up sucessfully."
+  echo "Keycloak url: https://${CODESPACE_NAME}-6692.${GITHUB_CODESPACES_PORT_FORWARDING_DOMAIN}"
+  echo "Falco url: https://${CODESPACE_NAME}-6693.${GITHUB_CODESPACES_PORT_FORWARDING_DOMAIN}"
 fi
+
+argocd_password=$( kubectl get secret -n argocd argocd-initial-admin-secret -o=jsonpath='{.data.password}' | base64 -d )
+echo "ArgoCD url: https://${CODESPACE_NAME}-6688.${GITHUB_CODESPACES_PORT_FORWARDING_DOMAIN}"
+echo "ArgoCD user: admin"
+echo "ArgoCD password: ${argocd_password}"
 
 echo "$(date): Finished post-start.sh" >> ~/.status.log

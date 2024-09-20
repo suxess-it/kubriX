@@ -19,13 +19,8 @@
 		"cpus": 4
 	},
 
-	"onCreateCommand": "/bin/bash -c .devcontainer/portal/on-create.sh",
-	
-	// Use 'postCreateCommand' to run commands after the container is created.
-	"postCreateCommand": "/bin/bash -c .devcontainer/portal/post-create.sh",
-
 	// Use 'postStartCommand' to run commands after the container is created like starting minikube.
-	"postStartCommand": "/bin/bash -c .devcontainer/portal/post-start.sh",
+	"postStartCommand": "export TARGET_TYPE=KIND-PORTAL ; /bin/bash -c .devcontainer/install-platform-devcontainer.sh",
 
 	// Configure tool-specific properties.
 	// "customizations": {},
@@ -40,7 +35,7 @@
 			"protocol": "http"
 		},
 		"6691": {
-			"label": "portal",
+			"label": "backstage",
 			"protocol": "http"
 		}
 	},
