@@ -32,6 +32,8 @@ if [[ $( kind get clusters | grep devcontainer-cluster ) ]] ; then
   echo "wait 10 seconds for starting up ..."
   sleep 10
   echo "wait time over .."
+  echo "export kubeconfig"
+  kind export kubeconfig --name devcontainer-cluster
 else
   kind create cluster --name devcontainer-cluster --config .devcontainer/kind-config.yaml
 fi
