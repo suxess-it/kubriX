@@ -8,9 +8,13 @@ applications:
     annotations:
       argocd.argoproj.io/sync-wave: "-8"
 
-  - name: vault
+  - name: crossplane
     annotations:
       argocd.argoproj.io/sync-wave: "-7"
+
+  - name: vault
+    annotations:
+      argocd.argoproj.io/sync-wave: "-6"
 
   - name: cert-manager
     annotations:
