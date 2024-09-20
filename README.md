@@ -11,7 +11,7 @@ Don't forget to choose a kubrix scenario and choose 4 cores:
 ![image](https://github.com/user-attachments/assets/767d389e-fa03-4e5d-9df1-d270050afa0c)
 
 You will get a VSCode environment in your browser and then inside this devcontainer
-a K3d cluster will get created and the platform stack will get installed.
+a KinD cluster will get created and the platform stack will get installed.
 This will take up to 20 minutes. You can follow the installation in the terminal and log
 by clicking on the link "Building codespace...":
 
@@ -44,7 +44,7 @@ Kargo password: admin
 
 ## known issues
 
-currently the k3d cluster "cnp-local-demo" still exists when opening the devcontainer. I am not really sure about the livecycle of the devcontainer. Currently I do the following to get rid of the problem.
+In local VSCode you can also use this devcontainers. If you want to rebuild them from scratch you need to do the following:
 
 stop vscode
 
