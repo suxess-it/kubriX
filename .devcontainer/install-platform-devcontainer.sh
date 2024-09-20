@@ -51,10 +51,7 @@ kubectl apply -f .devcontainer/kargo-nodeport.yaml
 ./install-platform.sh
 
 if [[ ${TARGET_TYPE} == "KIND-DELIVERY" ]] ; then
-  # forward argocd and kargo so it gets also exposed in github codespace
-  # nohup kubectl -n argocd port-forward svc/sx-argocd-server 6688:80 &
-  # nohup kubectl -n kargo port-forward svc/kargo-api 6689:80 &
-
+  echo "kubrix delivery is set up sucessfully."
   argocd_password=$( kubectl get secret -n argocd argocd-initial-admin-secret -o=jsonpath='{.data.password}' | base64 -d )
 
   echo "kubrix delivery is set up sucessfully."
@@ -64,6 +61,18 @@ if [[ ${TARGET_TYPE} == "KIND-DELIVERY" ]] ; then
   echo ""
   echo "Kargo url: https://${CODESPACE_NAME}-6689.${GITHUB_CODESPACES_PORT_FORWARDING_DOMAIN}"
   echo "Kargo password: admin"
+
+elif  [[ ${TARGET_TYPE} == "KIND-OBSERVABILITY" ]]
+  echo "kubrix observability is set up sucessfully."
+  argocd_password=$( kubectl get secret -n argocd argocd-initial-admin-secret -o=jsonpath='{.data.password}' | base64 -d )
+
+  echo "ArgoCD url: https://${CODESPACE_NAME}-6688.${GITHUB_CODESPACES_PORT_FORWARDING_DOMAIN}"
+  echo "ArgoCD user: admin"
+  echo "ArgoCD password: ${argocd_password}"
+  echo ""
+  echo "Grafana url: https://${CODESPACE_NAME}-6690.${GITHUB_CODESPACES_PORT_FORWARDING_DOMAIN}"
+  echo "Grafana user: admin"
+  echo "Grafana password: prom-operator"
 fi
 
 echo "$(date): Finished post-start.sh" >> ~/.status.log
