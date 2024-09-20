@@ -40,6 +40,9 @@ fi
 kubectl create namespace argocd --dry-run=client -o yaml | kubectl apply -f -
 kubectl apply -f .devcontainer/argocd-nodeport.yaml
 
+kubectl create namespace kargo --dry-run=client -o yaml | kubectl apply -f -
+kubectl apply -f .devcontainer/kargo-nodeport.yaml
+
 # Ensure kubeconfig is set up. 
 # k3d kubeconfig merge dev --kubeconfig-merge-default
 
