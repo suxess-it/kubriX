@@ -4,6 +4,14 @@ default:
 
 applications:
 
+  - name: external-secrets
+    annotations:
+      argocd.argoproj.io/sync-wave: "-8"
+
+  - name: vault
+    annotations:
+      argocd.argoproj.io/sync-wave: "-7"
+
   - name: cert-manager
     annotations:
       argocd.argoproj.io/sync-wave: "-3"
