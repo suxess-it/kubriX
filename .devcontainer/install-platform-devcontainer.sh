@@ -29,12 +29,15 @@ sudo mv mkcert-v*-linux-amd64 /usr/local/bin/mkcert
 # create kind cluster by ourselves
 if [[ $( kind get clusters | grep devcontainer-cluster ) ]] ; then
   echo "kind cluster 'devcontainer-cluster' already exists"
+  echo "wait 10 seconds for starting up ..."
+  sleep 10
+  echo "wait time over .."
 else
   kind create cluster --name devcontainer-cluster --config .devcontainer/kind-config.yaml
 fi
 
 # here we can add some NodePort objects if we want to open ports before the apps are installed
-kubectl create ns argocd
+kubectl create namespace argocd --dry-run=client -o yaml | kubectl apply -f -
 kubectl apply -f .devcontainer/argocd-nodeport.yaml
 
 # Ensure kubeconfig is set up. 
