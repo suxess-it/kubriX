@@ -124,7 +124,7 @@ kubectl apply -f https://raw.githubusercontent.com/suxess-it/sx-cnp-oss/${CURREN
 if [[ $( echo $argocd_apps | grep sx-kargo ) ]] ; then
 echo "adding special configuration for sx-kargo"
 export VAULT_HOSTNAME=$(kubectl get ingress -o jsonpath='{.items[*].spec.rules[*].host}' -n vault)
-curl --header "X-Vault-Token:$(kubectl get secret -n vault vault-init -o=jsonpath='{.data.root_token}'  | base64 -d)" --request POST --data "{\"data\": {\"GITHUB_APPSET_PAT\": \"$VAULT_TOKEN\", \"GITHUB_TOKEN\": \"$VAULT_TOKEN\", \"GITHUB_USERNAME\": \"jkleinlercher\"}}" https://${VAULT_HOSTNAME}/v1/sx-cnp-oss-kv/data/demo/delivery
+curl -k --header "X-Vault-Token:$(kubectl get secret -n vault vault-init -o=jsonpath='{.data.root_token}'  | base64 -d)" --request POST --data "{\"data\": {\"GITHUB_APPSET_PAT\": \"$VAULT_TOKEN\", \"GITHUB_TOKEN\": \"$VAULT_TOKEN\", \"GITHUB_USERNAME\": \"jkleinlercher\"}}" https://${VAULT_HOSTNAME}/v1/sx-cnp-oss-kv/data/demo/delivery
 
   # check if kargo is already synced 
   # max wait for 5 minutes
