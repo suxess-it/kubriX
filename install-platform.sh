@@ -137,7 +137,7 @@ curl --header "X-Vault-Token:$(kubectl get secret -n vault vault-init -o=jsonpat
   while [ $SECONDS -lt $end ]; do
     all_apps_synced="true"
     for app in ${argocd_app_individual} ; do
-      kubectl get application -n argocd ${app} | grep "Synced.*"
+      kubectl get application -n argocd ${app} | grep "Synced.*Healthy"
       exit_code=$?
       if [[ $exit_code -ne 0 ]]; then
         all_apps_synced="false"
