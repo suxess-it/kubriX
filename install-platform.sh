@@ -122,6 +122,7 @@ kubectl apply -f https://raw.githubusercontent.com/suxess-it/sx-cnp-oss/${CURREN
 
 # if kargo is part of this stack, upload token to vault
 if [[ $( echo $argocd_apps | grep sx-kargo ) ]] ; then
+echo "adding special configuration for sx-kargo"
 export VAULT_HOSTNAME=$(kubectl get ingress -o jsonpath='{.items[*].spec.rules[*].host}' -n vault)
 curl --header "X-Vault-Token:$(kubectl get secret -n vault vault-init -o=jsonpath='{.data.root_token}'  | base64 -d)" --request POST --data "{\"data\": {\"GITHUB_APPSET_PAT\": \"$VAULT_TOKEN\", \"GITHUB_TOKEN\": \"$VAULT_TOKEN\", \"GITHUB_USERNAME\": \"jkleinlercher\"}}" https://${VAULT_HOSTNAME}/v1/sx-cnp-oss-kv/data/demo/delivery
 
@@ -157,7 +158,7 @@ fi
 
 # if backstage is part of this stack, create the manual secret for backstage
 if [[ $( echo $argocd_apps | grep sx-backstage ) ]] ; then
-
+echo "adding special configuration for sx-backstage"
   # get hostnames
   # gethostnames from ingress - to remove TARGET_TYPE 
   export ARGOCD_HOSTNAME=$(kubectl get ingress -o jsonpath='{.items[*].spec.rules[*].host}' -n argocd)
