@@ -33,7 +33,7 @@ spec:
           subjects:
             - kind: ServiceAccount
               name: default
-              namespace: "{{ˋ{{request.object.metadata.name}}ˋ}}"
+              namespace: "{{`{{request.object.metadata.name}}`}}"
           roleRef:
             kind: ClusterRole
             name: kubevirt-datavolume-permission
