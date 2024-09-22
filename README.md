@@ -17,7 +17,7 @@ by clicking on the link "Building codespace...":
 
 ![image](https://github.com/user-attachments/assets/0c1d88cb-1f3a-43e6-964c-6066fdbdf564)
 
-Sometimes you also need to press CTRL+SHIFT+P and then type "Codespaces: View Creation Log":
+For further logs you also need to press CTRL+SHIFT+P and then type "Codespaces: View Creation Log":
 
 ![image](https://github.com/user-attachments/assets/38b59d91-ce63-4e3c-9f0d-68b48d039ea8)
 
