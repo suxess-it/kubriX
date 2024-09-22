@@ -122,10 +122,11 @@ kubectl apply -f https://raw.githubusercontent.com/suxess-it/sx-cnp-oss/${CURREN
 
 # if kargo is part of this stack, upload token to vault
 if [[ $( echo $argocd_apps | grep sx-kargo ) ]] ; then
-echo "adding special configuration for sx-kargo"
-export VAULT_HOSTNAME=$(kubectl get ingress -o jsonpath='{.items[*].spec.rules[*].host}' -n vault)
-curl -k --header "X-Vault-Token:$(kubectl get secret -n vault vault-init -o=jsonpath='{.data.root_token}'  | base64 -d)" --request POST --data "{\"data\": {\"GITHUB_APPSET_PAT\": \"$VAULT_TOKEN\", \"GITHUB_TOKEN\": \"$VAULT_TOKEN\", \"GITHUB_USERNAME\": \"jkleinlercher\"}}" https://${VAULT_HOSTNAME}/v1/sx-cnp-oss-kv/data/demo/delivery
-
+  echo "adding special configuration for sx-kargo"
+  export VAULT_HOSTNAME=$(kubectl get ingress -o jsonpath='{.items[*].spec.rules[*].host}' -n vault)
+  curl -k --header "X-Vault-Token:$(kubectl get secret -n vault vault-init -o=jsonpath='{.data.root_token}'  | base64 -d)" --request POST --data "{\"data\": {\"GITHUB_APPSET_PAT\": \"$VAULT_TOKEN\", \"GITHUB_TOKEN\": \"$VAULT_TOKEN\", \"GITHUB_USERNAME\": \"jkleinlercher\"}}" https://${VAULT_HOSTNAME}/v1/sx-cnp-oss-kv/data/demo/delivery
+  sleep 10
+  kubectl delete ExternalSecret github-creds -n kargo
   # check if kargo is already synced 
   # max wait for 5 minutes
   argocd_app_individual="sx-kargo"
