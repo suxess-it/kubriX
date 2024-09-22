@@ -2,12 +2,12 @@
 
 You can start a test environment with GitHub Codespaces.
 
-A k3d cluster and our platform stack gets installed during startup of the codespace,
+A KinD cluster and our platform stack gets installed during startup of the codespace,
 so just try it with the button below!
 
 [![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/suxess-it/sx-cnp-oss)
 
-Don't forget to choose a kubrix scenario and choose 4 cores:
+Don't forget to choose one of the kubrix stacks (delivery, observability, security, portal):
 ![image](https://github.com/user-attachments/assets/767d389e-fa03-4e5d-9df1-d270050afa0c)
 
 You will get a VSCode environment in your browser and then inside this devcontainer
