@@ -67,17 +67,17 @@ if [[ ${TARGET_TYPE} == "KIND-DELIVERY" ]] ; then
   echo "Kargo url: https://${CODESPACE_NAME}-6689.${GITHUB_CODESPACES_PORT_FORWARDING_DOMAIN}"
   echo "Kargo password: admin"
 
-elif  [[ ${TARGET_TYPE} == "KIND-OBSERVABILITY" ]]
+elif  [[ ${TARGET_TYPE} == "KIND-OBSERVABILITY" ]] ; then
   echo "kubrix observability is set up sucessfully."
   echo "Grafana url: https://${CODESPACE_NAME}-6690.${GITHUB_CODESPACES_PORT_FORWARDING_DOMAIN}"
   echo "Grafana user: admin"
   echo "Grafana password: prom-operator"
 
-elif  [[ ${TARGET_TYPE} == "KIND-PORTAL" ]]
+elif  [[ ${TARGET_TYPE} == "KIND-PORTAL" ]] ; then
   echo "kubrix portal is set up sucessfully."
   echo "Backstage url: https://${CODESPACE_NAME}-6691.${GITHUB_CODESPACES_PORT_FORWARDING_DOMAIN}"
 
-elif  [[ ${TARGET_TYPE} == "KIND-SECURITY" ]]
+elif  [[ ${TARGET_TYPE} == "KIND-SECURITY" ]] ; then
   echo "kubrix portal is set up sucessfully."
   echo "Keycloak url: https://${CODESPACE_NAME}-6692.${GITHUB_CODESPACES_PORT_FORWARDING_DOMAIN}"
   echo "Falco url: https://${CODESPACE_NAME}-6693.${GITHUB_CODESPACES_PORT_FORWARDING_DOMAIN}"
