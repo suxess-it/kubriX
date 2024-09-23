@@ -15,8 +15,9 @@ metadata:
     github.com/project-slug: ${{values.repoUrlowner}}/${{values.repoUrlRepo}}
     backstage.io/kubernetes-id: ${{values.application_id}}
     kubecost.com/deployment-name: ${{values.application_id}}
-    argocd/app-name: ${{values.application_id}}-${{values.environments}}
-    backstage.io/kubernetes-namespace: ${{values.environments}}-demo-kubevirt
+    argocd/app-name: ${{values.application_id}}
+    backstage.io/kubernetes-namespace: ${{values.team}}-${{values.application_id}}
+    backstage.io/kubernetes-label-selector: app=${{values.application_id}}
     kubevirt-manager: "https://kubevirt-manager-metalstack.platform-engineer.cloud/"
     backstage.io/techdocs-ref: dir:.
     grafana/dashboard-selector: "(tags @> 'kubevirt')"
