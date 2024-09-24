@@ -50,6 +50,7 @@ if [[ $( kind get clusters | grep devcontainer-cluster ) ]] ; then
   echo "wait time over .."
   echo "export kubeconfig"
   kind export kubeconfig --name devcontainer-cluster
+  echo "wait until KinD cluster is available"
   iterations=10
   while ! kubectl cluster-info &>/dev/null; do
     if [[ $iterations -eq 0 ]]; then
