@@ -31,16 +31,22 @@ In the "Ports-View" you will see different URLs for different platform services.
 
 ![image](https://github.com/user-attachments/assets/bad60f85-fb88-46cf-8d73-1090a9d61647)
 
-Needed credentials for the different tools are displayed in the end of the startup like this:
+You can already access the tools during installation of the platform stack, as soon as the tool is synced via ArgoCD and healthy. So especially opening ArgoCD UI during platform installation is very helpful to follow the installation process.
 
-```
-kubrix delivery is set up sucessfully.
+Needed credentials for the different tools are:
 
-ArgoCD user: admin
-ArgoCD password: 0g3v2Tx2maPs7oKr
+| Tool     | Username | Password |
+| -------- | ------- | ------- |
+| Backstage  | via github | via github |
+| ArgoCD | admin | `kubectl get secret -n argocd argocd-initial-admin-secret -o=jsonpath='{.data.password}' \| base64 -d` |
+| Kargo  | admin | - |
+| Grafana    | admin | prom-operator |
+| Keycloak   | admin | admin |
+| FalcoUI    | admin | admin |
 
-Kargo password: admin
-```
+The password for ArgoCD can be found with the command above in the VSCode terminal. Just open a new "bash Terminal" and execute the command above.
+
+Also, at the end of the installation you get a summary of the URLs and credentials per tool. Unfortunately some infos are masked, we are working on that.
 
 ## known issues
 
