@@ -3,6 +3,20 @@ set -e  # Exit on non-zero exit code from commands
 
 echo "$(date): Running post-start.sh" >> ~/.status.log
 
+# Docker can take a couple seconds to come up. Wait for it to be ready before
+# proceeding with bootstrap. https://github.com/devcontainers/features/issues/977#issuecomment-2148230117
+iterations=10
+while ! docker ps &>/dev/null; do
+  if [[ $iterations -eq 0 ]]; then
+    echo "Timeout waiting for the Docker daemon to start."
+    exit 1
+  fi
+
+  iterations=$((iterations - 1))
+  echo 'Docker is not ready. Waiting 10 seconds and trying again.'
+  sleep 10
+done
+
 # fix for https://github.com/kubernetes-sigs/kind/issues/2488
 # but using the microsoft devcontainer docker-in-docker image should also work,
 # but I didn't find it
