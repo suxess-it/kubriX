@@ -36,9 +36,11 @@ export CURRENT_BRANCH=$( git rev-parse --abbrev-ref HEAD )
 #export CREATE_K3D_CLUSTER=true
 
 # install mkcert
-curl -JLO "https://dl.filippo.io/mkcert/latest?for=linux/amd64"
-chmod +x mkcert-v*-linux-amd64
-sudo mv mkcert-v*-linux-amd64 /usr/local/bin/mkcert
+if [ ! -x /usr/local/bin/mkcert ]; then
+  curl -JLO "https://dl.filippo.io/mkcert/latest?for=linux/amd64"
+  chmod +x mkcert-v*-linux-amd64
+  sudo mv mkcert-v*-linux-amd64 /usr/local/bin/mkcert
+fi
 
 # create kind cluster by ourselves
 if [[ $( kind get clusters | grep devcontainer-cluster ) ]] ; then
