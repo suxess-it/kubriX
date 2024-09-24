@@ -53,26 +53,29 @@ else
 fi
 
 # here we can add some NodePort objects if we want to open ports before the apps are installed
+
+if [[ ${TARGET_TYPE} == "KIND-DELIVERY" ]] ; then
+  kubectl create namespace kargo --dry-run=client -o yaml | kubectl apply -f -
+  kubectl apply -f .devcontainer/kargo-nodeport.yaml
+
+elif  [[ ${TARGET_TYPE} == "KIND-OBSERVABILITY" ]] ; then
+  kubectl create namespace grafana --dry-run=client -o yaml | kubectl apply -f -
+  kubectl apply -f .devcontainer/grafana-nodeport.yaml
+
+elif  [[ ${TARGET_TYPE} == "KIND-PORTAL" ]] ; then
+  kubectl create namespace backstage --dry-run=client -o yaml | kubectl apply -f -
+  kubectl apply -f .devcontainer/backstage-nodeport.yaml
+
+elif  [[ ${TARGET_TYPE} == "KIND-SECURITY" ]] ; then
+  kubectl create namespace keycloak --dry-run=client -o yaml | kubectl apply -f -
+  kubectl apply -f .devcontainer/keycloak-nodeport.yaml
+
+  kubectl create namespace falco --dry-run=client -o yaml | kubectl apply -f -
+  kubectl apply -f .devcontainer/falco-nodeport.yaml
+fi
+
 kubectl create namespace argocd --dry-run=client -o yaml | kubectl apply -f -
 kubectl apply -f .devcontainer/argocd-nodeport.yaml
-
-kubectl create namespace kargo --dry-run=client -o yaml | kubectl apply -f -
-kubectl apply -f .devcontainer/kargo-nodeport.yaml
-
-kubectl create namespace backstage --dry-run=client -o yaml | kubectl apply -f -
-kubectl apply -f .devcontainer/backstage-nodeport.yaml
-
-kubectl create namespace grafana --dry-run=client -o yaml | kubectl apply -f -
-kubectl apply -f .devcontainer/grafana-nodeport.yaml
-
-kubectl create namespace keycloak --dry-run=client -o yaml | kubectl apply -f -
-kubectl apply -f .devcontainer/keycloak-nodeport.yaml
-
-kubectl create namespace falco --dry-run=client -o yaml | kubectl apply -f -
-kubectl apply -f .devcontainer/falco-nodeport.yaml
-
-# Ensure kubeconfig is set up. 
-# k3d kubeconfig merge dev --kubeconfig-merge-default
 
 ./install-platform.sh
 
