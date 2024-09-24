@@ -19,6 +19,8 @@
 		"cpus": 4
 	},
 
+	"postCreateCommand": "sudo cp .devcontainer/portal/welcome.txt /usr/local/etc/vscode-dev-containers/first-run-notice.txt",
+
 	// Use 'postStartCommand' to run commands after the container is created like starting minikube.
 	"postStartCommand": "export TARGET_TYPE=KIND-PORTAL ; /bin/bash -c .devcontainer/install-platform-devcontainer.sh",
 
