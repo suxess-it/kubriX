@@ -1,11 +1,19 @@
 # Test kubrix with GitHub Codespaces
 
-You can start a test environment with GitHub Codespaces.
+## To fork or not to fork
+
+If you want to test onboarding your apps you need to write in this repository. Therefor you should fork [this repository](https://github.com/suxess-it/sx-cnp-oss) into your GitHub account.
+
+If you just want to have a look at the platform stack in a read-only mode, just use the original repository without forking.
+
+## Start GitHub Codespace
+
+You can then start a test environment with GitHub Codespaces in the original repository or in your personal fork. 
 
 A KinD cluster and our platform stack gets installed during startup of the codespace,
-so just try it with the button below!
+so just try it with the button below and select the original or the fork:
 
-[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/suxess-it/sx-cnp-oss)
+[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/)
 
 Don't forget to choose one of the kubrix stacks (delivery, observability, security, portal):
 ![image](https://github.com/user-attachments/assets/767d389e-fa03-4e5d-9df1-d270050afa0c)
