@@ -18,7 +18,7 @@ concurrency:
 
 env:
   CURRENT_BRANCH: ${{ github.head_ref || github.ref_name }}
-  CURRENT_REPOSITORY: $GITHUB_REPOSITORY
+  CURRENT_REPOSITORY: ${{ github.repository }}
   
 jobs:
   create-cluster:
