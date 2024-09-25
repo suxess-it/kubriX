@@ -1,11 +1,19 @@
 # Test kubrix with GitHub Codespaces
 
-You can start a test environment with GitHub Codespaces.
+## To fork or not to fork
+
+If you want to test onboarding your apps you need to write in this repository. Therefor you should fork [this repository](https://github.com/suxess-it/sx-cnp-oss) into your GitHub account.
+
+If you just want to have a look at the platform stack in a read-only mode, just use the original repository without forking.
+
+## Start GitHub Codespace
+
+You can then start a test environment with GitHub Codespaces in the original repository or in your personal fork. 
 
 A KinD cluster and our platform stack gets installed during startup of the codespace,
-so just try it with the button below!
+so just try it with the button below and select the original or the fork:
 
-[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/suxess-it/sx-cnp-oss)
+[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/)
 
 Don't forget to choose one of the kubrix stacks (delivery, observability, security, portal):
 ![image](https://github.com/user-attachments/assets/767d389e-fa03-4e5d-9df1-d270050afa0c)
@@ -47,6 +55,12 @@ Needed credentials for the different tools are:
 The password for ArgoCD can be found with the command above in the VSCode terminal. Just open a new "bash Terminal" and execute the command above.
 
 Also, at the end of the installation you get a summary of the URLs and credentials per tool. Unfortunately some infos are masked, we are working on that.
+
+## onboarding teams and apps on the platform
+
+Details about our onboarding concept are explained in [Onboarding](https://github.com/suxess-it/sx-cnp-oss/blob/main/backstage-resources/docs/ONBOARDING.md). There is explained how to modify which gitops-Repos.
+
+Of course our portal helps to onboard teams and apps easier. However, currently we are facing some issues when login into the portal in a codespace via github login. OAuth and Browser-Codespaces don't seem to work together at the moment. We will try tofix thatin the future. In the meantime you can start your codespace in your local VSCode. There it should work.
 
 ## known issues
 
