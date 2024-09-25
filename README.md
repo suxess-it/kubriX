@@ -56,6 +56,18 @@ The password for ArgoCD can be found with the command above in the VSCode termin
 
 Also, at the end of the installation you get a summary of the URLs and credentials per tool. Unfortunately some infos are masked, we are working on that.
 
+## onboarding teams and apps on the platform
+
+Details about our onboarding concept are explained in [Onboarding](https://github.com/suxess-it/sx-cnp-oss/blob/main/backstage-resources/docs/ONBOARDING.md). There is explained how to modify which gitops-Repos.
+
+However, our portal helps to onboard teams and apps easier.
+
+Create portal Codespace and do the following in the portal:
+
+-
+-
+-
+
 ## known issues
 
 In local VSCode you can also use this devcontainers. If you want to rebuild them from scratch you need to do the following:
