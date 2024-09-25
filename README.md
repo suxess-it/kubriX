@@ -60,9 +60,7 @@ Also, at the end of the installation you get a summary of the URLs and credentia
 
 Details about our onboarding concept are explained in [Onboarding](https://github.com/suxess-it/sx-cnp-oss/blob/main/backstage-resources/docs/ONBOARDING.md). There is explained how to modify which gitops-Repos.
 
-Fortunately our portal helps to onboard teams and apps easier.
-
-Currently we are facing some issues when login into the portal in a codespace via github login. We will fix that soon!
+Of course our portal helps to onboard teams and apps easier. However, currently we are facing some issues when login into the portal in a codespace via github login. OAuth and Browser-Codespaces don't seem to work together at the moment. We will try tofix thatin the future. In the meantime you can start your codespace in your local VSCode. There it should work.
 
 ## known issues
 
