@@ -18,7 +18,8 @@ concurrency:
 
 env:
   CURRENT_BRANCH: ${{ github.head_ref || github.ref_name }}
-
+  CURRENT_REPOSITORY: $GITHUB_REPOSITORY
+  
 jobs:
   create-cluster:
     runs-on: ubuntu-latest
