@@ -62,7 +62,7 @@ Details about our onboarding concept are explained in [Onboarding](https://githu
 
 Fortunately our portal helps to onboard teams and apps easier.
 
-Currently we are facing some issues when login into the portal in a fork repo. We will fix that soon!
+Currently we are facing some issues when login into the portal in a codespace via github login. We will fix that soon!
 
 ## known issues
 
