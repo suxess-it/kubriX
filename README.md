@@ -60,13 +60,9 @@ Also, at the end of the installation you get a summary of the URLs and credentia
 
 Details about our onboarding concept are explained in [Onboarding](https://github.com/suxess-it/sx-cnp-oss/blob/main/backstage-resources/docs/ONBOARDING.md). There is explained how to modify which gitops-Repos.
 
-However, our portal helps to onboard teams and apps easier.
+Fortunately our portal helps to onboard teams and apps easier.
 
-Create portal Codespace and do the following in the portal:
-
--
--
--
+Currently we are facing some issues when login into the portal in a fork repo. We will fix that soon!
 
 ## known issues
 
