@@ -62,3 +62,29 @@ spec:
   deletionPolicy: "Delete"
   providerConfigRef:
     name: "sx-keycloak-config"
+---
+apiVersion: group.keycloak.crossplane.io/v1alpha1
+kind: Group
+metadata:
+  name: team1
+spec:
+  forProvider:
+    realmId: sx-cnp-oss-codespaces
+    name: team1
+  deletionPolicy: "Delete"
+  providerConfigRef:
+    name: "sx-keycloak-config"
+---
+apiVersion: group.keycloak.crossplane.io/v1alpha1
+kind: Memberships
+metadata:
+  name: backstage-codespaces-team1-users-memberships
+spec:
+  forProvider:
+    groupIdRef:
+      name: team1
+    members:
+      - demouser
+    realmId: sx-cnp-oss-codespaces
+  providerConfigRef:
+    name: "sx-keycloak-config"
