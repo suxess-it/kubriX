@@ -79,6 +79,8 @@ elif  [[ ${TARGET_TYPE} == "KIND-OBSERVABILITY" ]] ; then
 elif  [[ ${TARGET_TYPE} == "KIND-PORTAL" ]] ; then
   kubectl create namespace backstage --dry-run=client -o yaml | kubectl apply -f -
   kubectl apply -f .devcontainer/backstage-nodeport.yaml
+  kubectl create namespace keycloak --dry-run=client -o yaml | kubectl apply -f -
+  kubectl apply -f .devcontainer/keycloak-nodeport.yaml
 
 elif  [[ ${TARGET_TYPE} == "KIND-SECURITY" ]] ; then
   kubectl create namespace keycloak --dry-run=client -o yaml | kubectl apply -f -
@@ -107,6 +109,7 @@ elif  [[ ${TARGET_TYPE} == "KIND-OBSERVABILITY" ]] ; then
 elif  [[ ${TARGET_TYPE} == "KIND-PORTAL" ]] ; then
   echo "kubrix portal is set up sucessfully."
   echo "Backstage url: https://${CODESPACE_NAME}-6691.${GITHUB_CODESPACES_PORT_FORWARDING_DOMAIN}"
+  echo "Keycloak url: https://${CODESPACE_NAME}-6692.${GITHUB_CODESPACES_PORT_FORWARDING_DOMAIN}"
 
 elif  [[ ${TARGET_TYPE} == "KIND-SECURITY" ]] ; then
   echo "kubrix portal is set up sucessfully."
