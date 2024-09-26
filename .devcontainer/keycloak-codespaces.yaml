@@ -39,3 +39,26 @@ spec:
   deletionPolicy: "Delete"
   providerConfigRef:
     name: "sx-keycloak-config"
+---
+apiVersion: user.keycloak.crossplane.io/v1alpha1
+kind: User
+metadata:
+  name: demouser
+spec:
+  forProvider:
+    realmId: sx-cnp-oss-codespaces
+    username: demouser
+    enabled: true
+    emailVerified: true
+    firstName: demo
+    lastName: user
+    email: "demouser@platform-engineer.cloud"
+    initialPassword:
+      - valueSecretRef:
+          name: "sx-keycloak-initial-passwords"
+          key: demouser
+          namespace: keycloak
+        temporary: false # should be set to true in production
+  deletionPolicy: "Delete"
+  providerConfigRef:
+    name: "sx-keycloak-config"
