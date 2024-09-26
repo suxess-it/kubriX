@@ -1,4 +1,6 @@
-# Test kubrix with GitHub Codespaces
+# Test kubriX with GitHub Codespaces
+
+You can create a kubriX test environment by starting a GitHub Codespace in your browser. With that you have your own kubriX test environment within minutes without any installations on your local machine.
 
 ## To fork or not to fork
 
@@ -33,7 +35,7 @@ Then you should see log messages in the "Terminal-View":
 
 ![image](https://github.com/user-attachments/assets/5552ef73-bce6-4129-a0b0-9d410ce47af5)
 
-## accessing platform service consoles
+## Accessing platform service consoles
 
 In the "Ports-View" you will see different URLs for different platform services. When clicking on the "world" symbol you can open the URL in your browser and use the tools.
 
@@ -56,13 +58,13 @@ The password for ArgoCD can be found with the command above in the VSCode termin
 
 Also, at the end of the installation you get a summary of the URLs and credentials per tool. Unfortunately some infos are masked, we are working on that.
 
-## onboarding teams and apps on the platform
+## Onboarding teams and apps on the platform
 
-Details about our onboarding concept are explained in [Onboarding](https://github.com/suxess-it/sx-cnp-oss/blob/main/backstage-resources/docs/ONBOARDING.md). There is explained how to modify which gitops-Repos.
+Details about our onboarding concept are explained in [Onboarding](https://github.com/suxess-it/sx-cnp-oss/blob/main/backstage-resources/docs/ONBOARDING.md). There is also explained how to modify which gitops-Repos to onboard new teams and new applications.
 
 Of course our portal helps to onboard teams and apps easier. However, currently we are facing some issues when login into the portal in a codespace via github login. OAuth and Browser-Codespaces don't seem to work together at the moment. We will try tofix thatin the future. In the meantime you can start your codespace in your local VSCode. There it should work.
 
-## known issues
+## Known issues
 
 In local VSCode you can also use this devcontainers. If you want to rebuild them from scratch you need to do the following:
 
@@ -76,7 +78,7 @@ dann in vscode command (CTRL+SHIFT+P)
 "dev cotainers: clean up dev volume"
 "rebuild without cache and reopen in container"
 
-# create cnp local demo environment
+# Create a local kubriX test environment on your machine
 
 ## how to set it up
 
@@ -180,25 +182,5 @@ tbd
 ```
 k3d cluster stop cnp-local-demo
 k3d cluster delete cnp-local-demo
-```
-
-
-### Build suXess backstage container image and push it to our registry
-
-#### automatically with Github Actions
-
-Workflow-File: https://github.com/suxess-it/sx-backstage/blob/feat/cnp-local-demo-jokl/.github/workflows/ci.yaml
-
-#### manually on local machine
-dual arch build, x86 and arm64, arm64 build could take up to 50 minutes 
-```
-git clone https://github.com/suxess-it/sx-backstage.git
-cd sx-backstage
-git switch feat/cnp-local-demo-jokl
-# modify code, test, commit
-docker build -t sx-backstage:latest .
-docker tag sx-backstage:latest ghcr.io/suxess-it/sx-backstage:latest
-docker push ghcr.io/suxess-it/sx-backstage:latest
-kubectl rollout restart deploy/sx-backstage -n backstage
 ```
 
