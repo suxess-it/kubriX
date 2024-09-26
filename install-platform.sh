@@ -213,36 +213,36 @@ echo "adding special configuration for sx-backstage"
   # in github codespace we need additional environment variables to overwrite app-config.yaml
   if [ ${CODESPACES} ]; then
     BACKSTAGE_CODESPACE_URL="https://${CODESPACE_NAME}-6691.${GITHUB_CODESPACES_PORT_FORWARDING_DOMAIN}"
-    kubectl create secret generic -n backstage manual-secret \\
-      --from-literal=GITHUB_CLIENTSECRET=${GITHUB_CLIENTSECRET} \\
-      --from-literal=GITHUB_CLIENTID=${GITHUB_CLIENTID} \\
-      --from-literal=GITHUB_ORG=${GITHUB_ORG} \\
-      --from-literal=GITHUB_TOKEN=${GITHUB_TOKEN} \\
-      --from-literal=K8S_SA_TOKEN=${K8S_SA_TOKEN} \\
-      --from-literal=ARGOCD_AUTH_TOKEN=${ARGOCD_AUTH_TOKEN} \\
-      --from-literal=GRAFANA_TOKEN=${GRAFANA_TOKEN} \\
-      --from-literal=APP_CONFIG_app_baseUrl=${BACKSTAGE_CODESPACE_URL} \\
-      --from-literal=APP_CONFIG_backend_baseUrl=${BACKSTAGE_CODESPACE_URL} \\
-      --from-literal=APP_CONFIG_backend_cors_origin=${BACKSTAGE_CODESPACE_URL} \\
-      --from-literal=APP_CONFIG_auth_providers_oidc_development_callbackUrl=${BACKSTAGE_CODESPACE_URL}/api/auth/oidc/handler/frame \\
-      --from-literal=APP_CONFIG_auth_providers_oidc_development_clientId=backstage-Codespaces \\
+    kubectl create secret generic -n backstage manual-secret \
+      --from-literal=GITHUB_CLIENTSECRET=${GITHUB_CLIENTSECRET} \
+      --from-literal=GITHUB_CLIENTID=${GITHUB_CLIENTID} \
+      --from-literal=GITHUB_ORG=${GITHUB_ORG} \
+      --from-literal=GITHUB_TOKEN=${GITHUB_TOKEN} \
+      --from-literal=K8S_SA_TOKEN=${K8S_SA_TOKEN} \
+      --from-literal=ARGOCD_AUTH_TOKEN=${ARGOCD_AUTH_TOKEN} \
+      --from-literal=GRAFANA_TOKEN=${GRAFANA_TOKEN} \
+      --from-literal=APP_CONFIG_app_baseUrl=${BACKSTAGE_CODESPACE_URL} \
+      --from-literal=APP_CONFIG_backend_baseUrl=${BACKSTAGE_CODESPACE_URL} \
+      --from-literal=APP_CONFIG_backend_cors_origin=${BACKSTAGE_CODESPACE_URL} \
+      --from-literal=APP_CONFIG_auth_providers_oidc_development_callbackUrl=${BACKSTAGE_CODESPACE_URL}/api/auth/oidc/handler/frame \
+      --from-literal=APP_CONFIG_auth_providers_oidc_development_clientId=backstage-Codespaces \
       --from-literal=APP_CONFIG_auth_providers_oidc_development_metadataUrl=http://keycloak-service.keycloak.svc.cluster.local:8080/realms/sx-cnp-oss-Codespaces
 
   else
-    kubectl create secret generic -n backstage manual-secret \\
-    --from-literal=GITHUB_CLIENTSECRET=${GITHUB_CLIENTSECRET} \\
-    --from-literal=GITHUB_CLIENTID=${GITHUB_CLIENTID} \\
-    --from-literal=GITHUB_ORG=${GITHUB_ORG} \\
-    --from-literal=GITHUB_TOKEN=${GITHUB_TOKEN} \\
-    --from-literal=K8S_SA_TOKEN=${K8S_SA_TOKEN} \\
-    --from-literal=ARGOCD_AUTH_TOKEN=${ARGOCD_AUTH_TOKEN} \\
+    kubectl create secret generic -n backstage manual-secret \
+    --from-literal=GITHUB_CLIENTSECRET=${GITHUB_CLIENTSECRET} \
+    --from-literal=GITHUB_CLIENTID=${GITHUB_CLIENTID} \
+    --from-literal=GITHUB_ORG=${GITHUB_ORG} \
+    --from-literal=GITHUB_TOKEN=${GITHUB_TOKEN} \
+    --from-literal=K8S_SA_TOKEN=${K8S_SA_TOKEN} \
+    --from-literal=ARGOCD_AUTH_TOKEN=${ARGOCD_AUTH_TOKEN} \
     --from-literal=GRAFANA_TOKEN=${GRAFANA_TOKEN}
   fi
 
   # in codespaces we need additional crossplane resources for keycloak
   # because of the port-forwarding URLs
   if [ ${CODESPACES} ]; then
-    curl -L https://raw.githubusercontent.com/${CURRENT_REPOSITORY}/${CURRENT_BRANCH}/keycloak-codespaces.yaml | sed "s/BACKSTAGE_CODESPACES_REPLACE/${CODESPACE_NAME}-6691.${GITHUB_CODESPACES_PORT_FORWARDING_DOMAIN}/g" | sed "s/KEYCLOAK_CODESPACES_REPLACE/${CODESPACE_NAME}-6692.${GITHUB_CODESPACES_PORT_FORWARDING_DOMAIN}/g" | kubectl apply -n keycloak -f -
+    curl -L https://raw.githubusercontent.com/${CURRENT_REPOSITORY}/${CURRENT_BRANCH}/.devcontainer/keycloak-codespaces.yaml | sed "s/BACKSTAGE_CODESPACES_REPLACE/${CODESPACE_NAME}-6691.${GITHUB_CODESPACES_PORT_FORWARDING_DOMAIN}/g" | sed "s/KEYCLOAK_CODESPACES_REPLACE/${CODESPACE_NAME}-6692.${GITHUB_CODESPACES_PORT_FORWARDING_DOMAIN}/g" | kubectl apply -n keycloak -f -
   fi
 
   # finally wait for all apps including backstage to be synced and health
