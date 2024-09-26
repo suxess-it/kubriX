@@ -1,14 +1,14 @@
 apiVersion: openidclient.keycloak.crossplane.io/v1alpha1
 kind: Client
 metadata:
-  name: backstageCodespaces
+  name: backstage-codespaces
 spec:
   deletionPolicy: Delete
   forProvider:
     accessType: CONFIDENTIAL 
-    clientId: backstage-Codespaces
-    name: backstage-Codespaces
-    realmId: sx-cnp-oss-Codespaces
+    clientId: backstage-codespaces
+    name: backstage-codespaces
+    realmId: sx-cnp-oss-codespaces
     directAccessGrantsEnabled: false
     standardFlowEnabled: true
     serviceAccountsEnabled: true
@@ -17,8 +17,8 @@ spec:
       - "http://localhost:7007/api/auth/oidc/handler/frame"
       - "https://BACKSTAGE_CODESPACES_REPLACE/api/auth/oidc/handler/frame"
     clientSecretSecretRef:
-      key: backstage-Codespaces
-      name: "sx-keycloak-client-backstage-Codespaces-password"
+      key: backstage-codespaces
+      name: "sx-keycloak-client-backstage-codespaces-password"
       namespace: keycloak
     loginTheme: keycloak
   providerConfigRef:
@@ -27,13 +27,13 @@ spec:
 apiVersion: realm.keycloak.crossplane.io/v1alpha1
 kind: Realm
 metadata:
-  name: sx-cnp-oss-Codespaces
+  name: sx-cnp-oss-codespaces
   labels:
-    platform-engineer.cloud/realm: sx-cnp-oss-Codespaces
+    platform-engineer.cloud/realm: sx-cnp-oss-codespaces
 spec:
   forProvider:
-    realm: sx-cnp-oss-Codespaces
-    displayName: sx-cnp-oss-Codespaces
+    realm: sx-cnp-oss-codespaces
+    displayName: sx-cnp-oss-codespaces
     attributes:
       frontendUrl: https://KEYCLOAK_CODESPACES_REPLACE
   deletionPolicy: "Delete"

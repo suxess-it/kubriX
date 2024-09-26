@@ -225,8 +225,8 @@ echo "adding special configuration for sx-backstage"
       --from-literal=APP_CONFIG_backend_baseUrl=${BACKSTAGE_CODESPACE_URL} \
       --from-literal=APP_CONFIG_backend_cors_origin=${BACKSTAGE_CODESPACE_URL} \
       --from-literal=APP_CONFIG_auth_providers_oidc_development_callbackUrl=${BACKSTAGE_CODESPACE_URL}/api/auth/oidc/handler/frame \
-      --from-literal=APP_CONFIG_auth_providers_oidc_development_clientId=backstage-Codespaces \
-      --from-literal=APP_CONFIG_auth_providers_oidc_development_metadataUrl=http://keycloak-service.keycloak.svc.cluster.local:8080/realms/sx-cnp-oss-Codespaces
+      --from-literal=APP_CONFIG_auth_providers_oidc_development_clientId=backstage-codespaces \
+      --from-literal=APP_CONFIG_auth_providers_oidc_development_metadataUrl=http://keycloak-service.keycloak.svc.cluster.local:8080/realms/sx-cnp-oss-codespaces
 
   else
     kubectl create secret generic -n backstage manual-secret \
