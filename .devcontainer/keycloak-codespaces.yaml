@@ -63,6 +63,14 @@ spec:
   providerConfigRef:
     name: "sx-keycloak-config"
 ---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: "sx-keycloak-initial-passwords"
+type: Opaque
+stringData:
+  demouser: test
+---
 apiVersion: group.keycloak.crossplane.io/v1alpha1
 kind: Group
 metadata:
