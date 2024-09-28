@@ -1,0 +1,29 @@
+kind: Cluster
+apiVersion: kind.x-k8s.io/v1alpha4
+nodes:
+- role: control-plane
+  kubeadmConfigPatches:
+  - |
+    kind: InitConfiguration
+    nodeRegistration:
+      kubeletExtraArgs:
+        node-labels: "ingress-ready=true"
+  extraPortMappings:
+  - containerPort: 80
+    hostPort: 80
+    protocol: TCP
+  - containerPort: 443
+    hostPort: 443
+    protocol: TCP
+  - containerPort: 30688
+    hostPort: 6688
+  - containerPort: 30689
+    hostPort: 6689
+  - containerPort: 30690
+    hostPort: 6690
+  - containerPort: 30691
+    hostPort: 6691
+  - containerPort: 30692
+    hostPort: 6692
+  - containerPort: 30693
+    hostPort: 6693

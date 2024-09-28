@@ -52,6 +52,8 @@ applications:
 
   - name: mimir
 
+  - name: minio
+
   - name: loki
     annotations:
       argocd.argoproj.io/compare-options: ServerSideDiff=true
@@ -81,9 +83,11 @@ applications:
 
   - name: kubevirt
 
+  - name: trivy
+
   - name: vault
 
-#  - name: velero
+  - name: velero
 
   - name: velero-ui
 
