@@ -1,3 +1,11 @@
+# What is kubriX?
+
+kubriX is a curated, opinionated and still very flexible platform stack build out of bricks for Kubernetes.
+
+More informations on https://kubriX.io.
+
+Slack Channel: https://join.slack.com/t/kubrixgruppe/shared_invite/zt-2rc1yty2f-VTT3GOzUvo_k5hrgKbppKQ
+
 # Test kubriX with GitHub Codespaces
 
 You can create a kubriX test environment by starting a GitHub Codespace in your browser. With that you have your own kubriX test environment within minutes without any installations on your local machine.
