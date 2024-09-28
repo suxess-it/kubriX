@@ -2,9 +2,9 @@
 
 kubriX is a curated, opinionated and still very flexible platform stack build out of bricks for Kubernetes.
 
-More informations on our [website](https://kubriX.io)
+More informations on our [website](https://kubriX.
 
-Slack Channel: cloud-native Workspace Channel "kubrix"
+Slack Channel: https://join.slack.com/t/kubrixgruppe/shared_invite/zt-2rc1yty2f-VTT3GOzUvo_k5hrgKbppKQ
 
 # Test kubriX with GitHub Codespaces
 
