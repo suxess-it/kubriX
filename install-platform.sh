@@ -156,6 +156,15 @@ if [[ $( echo $argocd_apps | grep sx-kargo ) ]] ; then
     echo "max wait time: ${max_wait_time} seconds"
     sleep 10
   done
+  
+  echo "status of all pods"
+  kubectl get pods -A
+  if [ ${all_apps_synced} != "true" ] ; then
+    echo "not all apps synced and healthy after limit reached :("
+    exit 1
+  else
+    echo "all apps are synced. ready for take off :)"
+  fi
 fi
 
 # if backstage is part of this stack, create the manual secret for backstage
