@@ -43,20 +43,20 @@ spec:
 apiVersion: user.keycloak.crossplane.io/v1alpha1
 kind: User
 metadata:
-  name: demouser
+  name: demouser1
 spec:
   forProvider:
     realmId: sx-cnp-oss-codespaces
-    username: demouser
+    username: demouser1
     enabled: true
     emailVerified: true
-    firstName: demo
+    firstName: demo1
     lastName: user
-    email: "demouser@platform-engineer.cloud"
+    email: "demouser1@platform-engineer.cloud"
     initialPassword:
       - valueSecretRef:
           name: "sx-keycloak-initial-passwords"
-          key: demouser
+          key: demouser1
           namespace: keycloak
         temporary: false # should be set to true in production
   deletionPolicy: "Delete"
@@ -69,16 +69,16 @@ metadata:
   name: "sx-keycloak-initial-passwords"
 type: Opaque
 stringData:
-  demouser: test
+  demouser1: test
 ---
 apiVersion: group.keycloak.crossplane.io/v1alpha1
 kind: Group
 metadata:
-  name: team1
+  name: team-codespace
 spec:
   forProvider:
     realmId: sx-cnp-oss-codespaces
-    name: team1
+    name: team-codespace
   deletionPolicy: "Delete"
   providerConfigRef:
     name: "sx-keycloak-config"
@@ -90,9 +90,9 @@ metadata:
 spec:
   forProvider:
     groupIdRef:
-      name: team1
+      name: team-codespace
     members:
-      - demouser
+      - demouser1
     realmId: sx-cnp-oss-codespaces
   providerConfigRef:
     name: "sx-keycloak-config"
