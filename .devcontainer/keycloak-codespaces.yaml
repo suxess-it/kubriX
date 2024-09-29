@@ -55,7 +55,7 @@ spec:
     email: "demouser1@platform-engineer.cloud"
     initialPassword:
       - valueSecretRef:
-          name: "sx-keycloak-initial-passwords"
+          name: "sx-keycloak-initial-passwords-codespace"
           key: demouser1
           namespace: keycloak
         temporary: false # should be set to true in production
@@ -66,7 +66,7 @@ spec:
 apiVersion: v1
 kind: Secret
 metadata:
-  name: "sx-keycloak-initial-passwords"
+  name: "sx-keycloak-initial-passwords-codespace"
 type: Opaque
 stringData:
   demouser1: test
@@ -86,7 +86,7 @@ spec:
 apiVersion: group.keycloak.crossplane.io/v1alpha1
 kind: Memberships
 metadata:
-  name: backstage-codespaces-team1-users-memberships
+  name: backstage-codespaces-team-codespace-users-memberships
 spec:
   forProvider:
     groupIdRef:
