@@ -1,3 +1,12 @@
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: "sx-keycloak-client-backstage-codespaces-password"
+type: Opaque
+stringData:
+  backstage-codespaces: demosecret
+---
 apiVersion: openidclient.keycloak.crossplane.io/v1alpha1
 kind: Client
 metadata:
@@ -96,3 +105,49 @@ spec:
     realmId: sx-cnp-oss-codespaces
   providerConfigRef:
     name: "sx-keycloak-config"
+---
+apiVersion: openidclient.keycloak.crossplane.io/v1alpha1
+kind: ClientDefaultScopes
+metadata:
+  name: client-default-scopes-codespaces
+spec:
+  forProvider:
+    clientIdRef:
+      name: backstage-codespaces
+    defaultScopes:
+    - profile
+    - email
+    - roles
+    - web-origins
+    - groups
+    - acr
+    realmIdRef:
+      name: sx-cnp-oss-codespaces
+  providerConfigRef:
+    name: "sx-keycloak-config"
+---
+apiVersion: group.keycloak.crossplane.io/v1alpha1
+kind: Roles
+metadata:
+  name: backstage-codespaces-default-group-roles
+spec:
+  deletionPolicy: Delete
+  forProvider:
+    exhaustive: false
+    groupIdRef:
+      name: backstage-codespaces-admin
+    realmIdRef: 
+      name: sx-cnp-oss-codespaces
+    roleIdsRefs:
+      - name: builtin-sx-cnp-oss-codespaces-realm-management-view-users
+      - name: builtin-sx-cnp-oss-codespaces-realm-management-query-groups
+      - name: builtin-sx-cnp-oss-codespaces-realm-management-query-users
+    roleIdsSelector:
+      matchLabels:
+        defaultRole: 'true'
+        realmName: sx-cnp-oss-codespaces
+  initProvider: {}
+  managementPolicies:
+    - '*'
+  providerConfigRef:
+    name: sx-keycloak-config
