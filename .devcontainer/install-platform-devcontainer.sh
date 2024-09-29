@@ -80,12 +80,6 @@ elif  [[ ${TARGET_TYPE} == "KIND-OBSERVABILITY" ]] ; then
   kubectl create namespace grafana --dry-run=client -o yaml | kubectl apply -f -
   kubectl apply -f .devcontainer/grafana-nodeport.yaml
 
-elif  [[ ${TARGET_TYPE} == "KIND-PORTAL" ]] ; then
-  kubectl create namespace backstage --dry-run=client -o yaml | kubectl apply -f -
-  kubectl apply -f .devcontainer/backstage-nodeport.yaml
-  kubectl create namespace keycloak --dry-run=client -o yaml | kubectl apply -f -
-  kubectl apply -f .devcontainer/keycloak-nodeport.yaml
-
 elif  [[ ${TARGET_TYPE} == "KIND-SECURITY" ]] ; then
   kubectl create namespace keycloak --dry-run=client -o yaml | kubectl apply -f -
   kubectl apply -f .devcontainer/keycloak-nodeport.yaml
@@ -96,6 +90,10 @@ fi
 
 kubectl create namespace argocd --dry-run=client -o yaml | kubectl apply -f -
 kubectl apply -f .devcontainer/argocd-nodeport.yaml
+kubectl create namespace backstage --dry-run=client -o yaml | kubectl apply -f -
+kubectl apply -f .devcontainer/backstage-nodeport.yaml
+kubectl create namespace keycloak --dry-run=client -o yaml | kubectl apply -f -
+kubectl apply -f .devcontainer/keycloak-nodeport.yaml
 
 ./install-platform.sh
 
