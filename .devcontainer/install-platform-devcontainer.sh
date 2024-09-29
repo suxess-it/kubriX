@@ -33,7 +33,11 @@ export GITHUB_CLIENTID=dummy
 export GITHUB_TOKEN=dummy
 export GITHUB_APPSET_TOKEN=dummy
 export CURRENT_BRANCH=$( git rev-parse --abbrev-ref HEAD )
-export CURRENT_REPOSITORY=${GITHUB_REPOSITORY}
+if [ ${CODESPACES} ]; then
+  export CURRENT_REPOSITORY=${GITHUB_REPOSITORY}
+else
+  export CURRENT_REPOSITORY=$( git config --get remote.origin.url | sed 's/^https:\/\/github.com\///g' | sed 's/.git$//g' )
+fi
 #export CREATE_K3D_CLUSTER=true
 
 # install mkcert
