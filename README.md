@@ -4,7 +4,7 @@ kubriX is a curated, opinionated and still very flexible platform stack build ou
 
 More informations on https://kubriX.io.
 
-Slack Channel: https://join.slack.com/t/kubrixgruppe/shared_invite/zt-2rc1yty2f-VTT3GOzUvo_k5hrgKbppKQ
+If you have ideas / questions, please [join our slack](https://join.slack.com/t/kubrix-platform/shared_invite/zt-2rc1yty2f-VTT3GOzUvo_k5hrgKbppKQ) or raise an issue.
 
 # Test kubriX with GitHub Codespaces
 
