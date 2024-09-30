@@ -28,20 +28,46 @@ so just try it with the button below and select the original or the fork:
 Don't forget to choose one of the kubrix stacks (delivery, observability, security, portal):
 ![image](https://github.com/user-attachments/assets/767d389e-fa03-4e5d-9df1-d270050afa0c)
 
-You will get a VSCode environment in your browser and then inside this devcontainer
-a KinD cluster will get created and the platform stack will get installed.
-This will take up to 20 minutes. You can follow the installation in the terminal and log
-by clicking on the link "Building codespace...":
+You will get a VSCode environment in your browser.
 
-![image](https://github.com/user-attachments/assets/0c1d88cb-1f3a-43e6-964c-6066fdbdf564)
+### Create GitHub OAuth App 
 
-For further logs you also need to press CTRL+SHIFT+P and then type "Codespaces: View Creation Log":
+The Backstage-Portal authenticates via GitHub OAuth App. Therefore you need to create one in your organization and use the Client-Secret and Client-ID during installation.
 
-![image](https://github.com/user-attachments/assets/38b59d91-ce63-4e3c-9f0d-68b48d039ea8)
+In your Github Organization for Backstage login: https://backstage.io/docs/auth/github/provider/
 
-Then you should see log messages in the "Terminal-View":
+The `Homepage URL` and `Authorization callback URL` derive from the codespace URL.
+You can simple open a terminal in your codespace and use the output of the following commands for the attributes:
 
-![image](https://github.com/user-attachments/assets/5552ef73-bce6-4129-a0b0-9d410ce47af5)
+- Homepage URL: `echo https://${CODESPACE_NAME}-6691.${GITHUB_CODESPACES_PORT_FORWARDING_DOMAIN}`
+- Authorization callback URL: `echo https://${CODESPACE_NAME}-6691.${GITHUB_CODESPACES_PORT_FORWARDING_DOMAIN}/api/auth/github`
+
+Example:
+
+Use "Client ID" to define the variable "GITHUB_CLIENTID" in the step below.
+Generate a "Client secret" and use the secret to define the variable "GITHUB_CLIENTSECRET" in the step below.
+
+### Define some variables so the platform can access github
+
+Define the variables below in the codespaces terminal. The GITHUB_TOKEN is used by kargo to write in your application gitops-Repos for git-promotion.
+
+```
+export GITHUB_CLIENTID=<value from steps above>
+export GITHUB_CLIENTSECRET=<value from steps above>
+export GITHUB_TOKEN=<your personal access token>
+export GITHUB_APPSET_TOKEN=<github-pat-for-argocd-appsets-only-read-permissions-needed>
+```
+### Run installation script
+
+Run the following script in your codespaces terminal to install the platform stack according to the kubriX stack you chose.
+
+```
+export TARGET_TYPE=KIND-DELIVERY
+.devcontainer/install-platform-devcontainer.sh
+```
+
+A KinD cluster will get created and the platform stack will get installed.
+This will take up to 20 minutes.
 
 ## Accessing platform service consoles
 
@@ -192,3 +218,17 @@ k3d cluster stop cnp-local-demo
 k3d cluster delete cnp-local-demo
 ```
 
+
+# Old infos
+
+## Auto-Installed Platform Stack in Codespace (DRAFT)
+
+![image](https://github.com/user-attachments/assets/0c1d88cb-1f3a-43e6-964c-6066fdbdf564)
+
+For further logs you also need to press CTRL+SHIFT+P and then type "Codespaces: View Creation Log":
+
+![image](https://github.com/user-attachments/assets/38b59d91-ce63-4e3c-9f0d-68b48d039ea8)
+
+Then you should see log messages in the "Terminal-View":
+
+![image](https://github.com/user-attachments/assets/5552ef73-bce6-4129-a0b0-9d410ce47af5)
