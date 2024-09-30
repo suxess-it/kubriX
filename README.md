@@ -39,10 +39,14 @@ In your Github Organization for Backstage login: https://backstage.io/docs/auth/
 The `Homepage URL` and `Authorization callback URL` derive from the codespace URL.
 You can simple open a terminal in your codespace and use the output of the following commands for the attributes:
 
+![bash](https://github.com/user-attachments/assets/fd320ed9-aae3-46ce-85ab-b94b8a25a341)
+
 - Homepage URL: `echo https://${CODESPACE_NAME}-6691.${GITHUB_CODESPACES_PORT_FORWARDING_DOMAIN}`
 - Authorization callback URL: `echo https://${CODESPACE_NAME}-6691.${GITHUB_CODESPACES_PORT_FORWARDING_DOMAIN}/api/auth/github`
 
 Example:
+
+![oauth](https://github.com/user-attachments/assets/a2e4f15e-8def-4340-bc39-e236d78be34f)
 
 Use "Client ID" to define the variable "GITHUB_CLIENTID" in the step below.
 Generate a "Client secret" and use the secret to define the variable "GITHUB_CLIENTSECRET" in the step below.
