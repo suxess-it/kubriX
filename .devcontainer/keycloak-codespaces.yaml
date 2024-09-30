@@ -163,3 +163,39 @@ spec:
     - '*'
   providerConfigRef:
     name: sx-keycloak-config
+---
+apiVersion: openidclient.keycloak.crossplane.io/v1alpha1
+kind: ClientScope
+metadata:
+  labels:
+    platform-engineer.cloud/clientscope: groups
+  name: openid-client-scope-groups-codespaces
+spec:
+  forProvider:
+    description: When requested, this scope will map a user's group memberships to a claim
+    guiOrder: 1
+    consentScreenText: "groups"
+    includeInTokenScope: true
+    name: groups
+    realmIdRef:
+      name: sx-cnp-oss-codespaces
+  providerConfigRef:
+    name: sx-keycloak-config
+---
+apiVersion: openidclient.keycloak.crossplane.io/v1alpha1
+kind: ClientScope
+metadata:
+  labels:
+    platform-engineer.cloud/clientscope: groups
+  name: openid-client-scope-openid-codespaces
+spec:
+  forProvider:
+    description: When requested, add openid scope
+    guiOrder: 1
+    consentScreenText: "openid"
+    includeInTokenScope: true
+    name: openid
+    realmIdRef:
+      name: sx-cnp-oss-codespaces
+  providerConfigRef:
+    name: sx-keycloak-config
