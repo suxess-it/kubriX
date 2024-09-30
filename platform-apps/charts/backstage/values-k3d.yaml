@@ -25,7 +25,7 @@ backstage:
     appConfig:
       app:
         title: sX CNP App
-        baseUrl: https://backstage-127-0-0-1.nip.io
+        baseUrl: https://glowing-system-jjj5p7r69xrc5vqx-6691.app.github.dev
 
       organization:
         name: sX CNP
@@ -37,18 +37,18 @@ backstage:
         auth:
           keys:
             - secret: ${BACKEND_SECRET}
-        baseUrl: https://backstage-127-0-0-1.nip.io
+        baseUrl: https://glowing-system-jjj5p7r69xrc5vqx-6691.app.github.dev
         listen:
           port: 7007
           # Uncomment the following host directive to bind to specific interfaces
           # host: 127.0.0.1
         csp:
           connect-src: ["'self'", 'http:', 'https:']
-          frame-src: ['*.${GITHUB_CODESPACES_PORT_FORWARDING_DOMAIN:-nip.io}']
+          frame-src: ['*.app.github.dev']
           # Content-Security-Policy directives follow the Helmet format: https://helmetjs.github.io/#reference
           # Default Helmet Content-Security-Policy values can be removed by setting the key to false
         cors:
-          origin: https://backstage-127-0-0-1.nip.io
+          origin: https://glowing-system-jjj5p7r69xrc5vqx-6691.app.github.dev
           methods: [GET, HEAD, PATCH, POST, PUT, DELETE]
           credentials: true
         # This is for local development only, it is not recommended to use this in production
