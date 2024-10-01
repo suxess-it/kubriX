@@ -67,7 +67,7 @@ helm install sx-argocd argo-cd \
 # see https://github.com/suxess-it/sx-cnp-oss/issues/214 for a sustainable solution
 #for ns in adn-team1 adn-team2 adn-team-a; do
 #  kubectl create namespace ${ns}
-#  kubectl create secret generic appset-github-token --from-literal=token=${GITHUB_APPSET_TOKEN} -n ${ns}
+#  kubectl create secret generic appset-github-token --from-literal=token=${KUBRIX_GITHUB_APPSET_TOKEN} -n ${ns}
 #done
 
 CURRENT_BRANCH_SED=$( echo ${CURRENT_BRANCH} | sed 's/\//\\\//g' )
@@ -224,10 +224,10 @@ echo "adding special configuration for sx-backstage"
   if [ ${CODESPACES} ]; then
     BACKSTAGE_CODESPACE_URL="https://${CODESPACE_NAME}-6691.${GITHUB_CODESPACES_PORT_FORWARDING_DOMAIN}"
     kubectl create secret generic -n backstage manual-secret \
-      --from-literal=GITHUB_CLIENTSECRET=${GITHUB_CLIENTSECRET} \
-      --from-literal=GITHUB_CLIENTID=${GITHUB_CLIENTID} \
+      --from-literal=GITHUB_CLIENTSECRET=${KUBRIX_GITHUB_CLIENTSECRET} \
+      --from-literal=GITHUB_CLIENTID=${KUBRIX_GITHUB_CLIENTID} \
       --from-literal=GITHUB_ORG=${GITHUB_ORG} \
-      --from-literal=GITHUB_TOKEN=${GITHUB_TOKEN} \
+      --from-literal=GITHUB_TOKEN=${KUBRIX_GITHUB_TOKEN} \
       --from-literal=K8S_SA_TOKEN=${K8S_SA_TOKEN} \
       --from-literal=ARGOCD_AUTH_TOKEN=${ARGOCD_AUTH_TOKEN} \
       --from-literal=GRAFANA_TOKEN=${GRAFANA_TOKEN} \
@@ -245,10 +245,10 @@ echo "adding special configuration for sx-backstage"
 
   else
     kubectl create secret generic -n backstage manual-secret \
-    --from-literal=GITHUB_CLIENTSECRET=${GITHUB_CLIENTSECRET} \
-    --from-literal=GITHUB_CLIENTID=${GITHUB_CLIENTID} \
+    --from-literal=GITHUB_CLIENTSECRET=${KUBRIX_GITHUB_CLIENTSECRET} \
+    --from-literal=GITHUB_CLIENTID=${KUBRIX_GITHUB_CLIENTID} \
     --from-literal=GITHUB_ORG=${GITHUB_ORG} \
-    --from-literal=GITHUB_TOKEN=${GITHUB_TOKEN} \
+    --from-literal=GITHUB_TOKEN=${KUBRIX_GITHUB_TOKEN} \
     --from-literal=K8S_SA_TOKEN=${K8S_SA_TOKEN} \
     --from-literal=ARGOCD_AUTH_TOKEN=${ARGOCD_AUTH_TOKEN} \
     --from-literal=GRAFANA_TOKEN=${GRAFANA_TOKEN}
