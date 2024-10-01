@@ -18,11 +18,20 @@
 		// 4 cpus required for multi-node: https://github.com/akuityio/docs.akuity.io/issues/452#issuecomment-2111058843
 		"cpus": 4
 	},
+	"secrets": {
+	  "GITHUB_CLIENTSECRET": {
+            "description": "This is the description of the secret.",
+            "documentationUrl": "https://example.com/link/to/info"
+           },
+           "GITHUB_CLIENTID": { },
+           "GITHUB_TOKEN": { },
+	   "GITHUB_APPSET_TOKEN": { }
+        },
 
 	"postCreateCommand": "sudo cp .devcontainer/delivery/welcome.txt /usr/local/etc/vscode-dev-containers/first-run-notice.txt",
 
 	// Use 'postStartCommand' to run commands after the container is created like starting minikube.
-	// postStartCommand": "export TARGET_TYPE=KIND-DELIVERY ; /bin/bash -c .devcontainer/install-platform-devcontainer.sh",
+	"postStartCommand": "export TARGET_TYPE=KIND-DELIVERY ; /bin/bash -c .devcontainer/install-platform-devcontainer.sh",
 
 	// Configure tool-specific properties.
 	// "customizations": {},
