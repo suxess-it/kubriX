@@ -19,13 +19,13 @@ backstage:
         value: "--no-node-snapshot"
 #      - name: NODE_TLS_REJECT_UNAUTHORIZED
 #        value: "0"
-#      - name: LOG_LEVEL
-#        value: "debug"
+      - name: LOG_LEVEL
+        value: "debug"
 
     appConfig:
       app:
         title: sX CNP App
-        baseUrl: https://glowing-system-jjj5p7r69xrc5vqx-6691.app.github.dev
+        baseUrl: https://backstage-127-0-0-1.nip.io
 
       organization:
         name: sX CNP
@@ -37,18 +37,18 @@ backstage:
         auth:
           keys:
             - secret: ${BACKEND_SECRET}
-        baseUrl: https://glowing-system-jjj5p7r69xrc5vqx-6691.app.github.dev
+        baseUrl: https://backstage-127-0-0-1.nip.io
         listen:
           port: 7007
           # Uncomment the following host directive to bind to specific interfaces
           # host: 127.0.0.1
         csp:
           connect-src: ["'self'", 'http:', 'https:']
-          frame-src: ['*.app.github.dev']
+          frame-src: ['*.${GITHUB_CODESPACES_PORT_FORWARDING_DOMAIN:-nip.io}']
           # Content-Security-Policy directives follow the Helmet format: https://helmetjs.github.io/#reference
           # Default Helmet Content-Security-Policy values can be removed by setting the key to false
         cors:
-          origin: https://glowing-system-jjj5p7r69xrc5vqx-6691.app.github.dev
+          origin: https://backstage-127-0-0-1.nip.io
           methods: [GET, HEAD, PATCH, POST, PUT, DELETE]
           credentials: true
         # This is for local development only, it is not recommended to use this in production
@@ -226,9 +226,9 @@ backstage:
               #baseUrl: https://keycloak-127-0-0-1.nip.io
               # workaround
               baseUrl: http://keycloak-service.keycloak.svc.cluster.local:8080
-              loginRealm: sx-cnp-oss-codespaces
-              realm: sx-cnp-oss-codespaces
-              clientId: backstage-codespaces
+              loginRealm: sx-cnp-oss
+              realm: sx-cnp-oss
+              clientId: backstage
               clientSecret: 'demosecret'
               schedule: # Mandatory; same options as in TaskScheduleDefinition
                 # supports cron, ISO duration, "human duration" as used in code
