@@ -4,7 +4,7 @@ kubriX is a curated, opinionated and still very flexible platform stack build ou
 
 More informations on https://kubriX.io.
 
-Slack Channel: https://join.slack.com/t/kubrixgruppe/shared_invite/zt-2rc1yty2f-VTT3GOzUvo_k5hrgKbppKQ
+If you have ideas / questions, please [join our slack](https://join.slack.com/t/kubrix-platform/shared_invite/zt-2rc1yty2f-VTT3GOzUvo_k5hrgKbppKQ) or raise an issue.
 
 # Test kubriX with GitHub Codespaces
 
@@ -100,7 +100,7 @@ Also, at the end of the installation you get a summary of the URLs and credentia
 
 Details about our onboarding concept are explained in [Onboarding](https://github.com/suxess-it/sx-cnp-oss/blob/main/backstage-resources/docs/ONBOARDING.md). There is also explained how to modify which gitops-Repos to onboard new teams and new applications.
 
-Of course our portal helps to onboard teams and apps easier. However, currently we are facing some issues when login into the portal in a codespace via github login. OAuth and Browser-Codespaces don't seem to work together at the moment. We will try tofix thatin the future. In the meantime you can start your codespace in your local VSCode. There it should work.
+Of course our portal helps to onboard teams and apps easier. However, currently we are facing some issues when login into the portal in a codespace via GitHub login. OAuth and Browser-Codespaces don't seem to work together at the moment. We will try to fix that in the future. In the meantime you can start your devcontainer in your local VSCode. There it should work.
 
 ## Known issues
 
@@ -116,16 +116,14 @@ dann in vscode command (CTRL+SHIFT+P)
 "dev cotainers: clean up dev volume"
 "rebuild without cache and reopen in container"
 
-# Create a local kubriX test environment on your machine
+# Create a kubriX test environment on your local machine
 
-## how to set it up
-
-### prereqs
+## prereqs
 
 k3d installed
 kubectl installed
 
-#### mkcert
+### mkcert
 
 ```
 curl -L -O https://github.com/FiloSottile/mkcert/releases/download/v1.4.4/mkcert-v1.4.4-linux-amd64
@@ -135,7 +133,7 @@ chmod u+x ~/bin/mkcert
 
 install the CA of mkcert in your OS truststore: https://docs.kubefirst.io/k3d/quick-start/install#install-the-ca-certificate-authority-of-mkcert-in-your-trusted-store
 
-#### create GitHub OAuth App 
+### create GitHub OAuth App 
 
 in your Github Organization for Backstage login: https://backstage.io/docs/auth/github/provider/
 
@@ -144,24 +142,29 @@ in your Github Organization for Backstage login: https://backstage.io/docs/auth/
 
 use GITHUB_CLIENTSECRET and GITHUB_CLIENTID from your Github OAuth App for the following environment variables in step 1
 
-### 1. define some variables so the platform can access github
+## 1. define some variables for the installation
+
+For the installation some variables are needed:
 
 ```
 export GITHUB_CLIENTSECRET=<value from steps above>
 export GITHUB_CLIENTID=<value from steps above>
 export GITHUB_TOKEN=<your personal access token>
 export GITHUB_APPSET_TOKEN=<github-pat-for-argocd-appsets-only-read-permissions-needed>
-```
-
-### 2. create k3d cluster
-
-```
-export TARGET_TYPE=K3D
-# if you use a KIND cluster you should set:
-# export TARGET_TYPE=KIND
+# set target type to the platform stack you want to install
+export TARGET_TYPE=KIND-DELIVERY
+# if a K3d cluster should get created:
+export CREATE_K3D_CLUSTER=true
 # if you want to test another branch, specify something else than main
 export CURRENT_BRANCH=main
-curl -L https://raw.githubusercontent.com/suxess-it/sx-cnp-oss/${CURRENT_BRANCH}/install-platform.sh | bash
+# set the current repository to the origin or to your fork
+export CURRENT_REPOSITORY=suxess-it/sx-cnp-oss
+```
+
+## 2. install platform-stack
+
+```
+curl -L https://raw.githubusercontent.com/${CURRENT_REPOSITORY}/${CURRENT_BRANCH}/install-platform.sh | bash
 ```
 
 With this command a new k3d cluster gets created.
@@ -188,7 +191,7 @@ The platform stack will be installed automagically ;)
 * external-secret-operator
 * falco
 
-### 3. log in to the tools
+## 3. log in to the tools
 
 | Tool    | URL | Username | Password |
 | -------- | ------- | ------- | ------- |
@@ -199,23 +202,23 @@ The platform stack will be installed automagically ;)
 | Keycloak    | https://keycloak-127-0-0-1.nip.io | admin | admin |
 | FalcoUI    | https://falco-127-0-0-1.nip.io | admin | admin |
 
-### 4. kubecost
+## 4. kubecost
 
 initialization need some minutes until values are visible in UI - https://kubecost-127-0-0-1.nip.io/overview
 
-### 5. keycloak
+## 5. keycloak
 
-depending on Hardare initialization need some minutes until keycloak is running 
+depending on your hardware it needs some minutes until keycloak is running 
 
-### 6. Onboard teams and applications
+## 6. Onboard teams and applications
 
 In our [Onboarding-Documentation](https://github.com/suxess-it/sx-cnp-oss/blob/main/backstage-resources/docs/ONBOARDING.md) we explain how new teams and apps get onboarded on the platform in a gitops way.
 
-### 7. Promote apps with Kargo
+## 7. Promote apps with Kargo
 
 tbd
 
-### delete k3d cluster
+## delete k3d cluster
 
 ```
 k3d cluster stop cnp-local-demo
