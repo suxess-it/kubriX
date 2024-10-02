@@ -105,6 +105,18 @@ spec:
     name: "sx-keycloak-config"
 ---
 apiVersion: group.keycloak.crossplane.io/v1alpha1
+kind: Group
+metadata:
+  name: admins-codespaces
+spec:
+  forProvider:
+    realmId: sx-cnp-oss-codespaces
+    name: backstage-codespaces-admin
+  deletionPolicy: "Delete"
+  providerConfigRef:
+    name: "sx-keycloak-config"
+---
+apiVersion: group.keycloak.crossplane.io/v1alpha1
 kind: Memberships
 metadata:
   name: backstage-codespaces-team-codespace-users-memberships
@@ -115,6 +127,34 @@ spec:
     members:
       - demouser1
     realmId: sx-cnp-oss-codespaces
+  providerConfigRef:
+    name: "sx-keycloak-config"
+---
+apiVersion: group.keycloak.crossplane.io/v1alpha1
+kind: Memberships
+metadata:
+  name: backstage-codespaces-admins-users-memberships
+spec:
+  forProvider:
+    groupIdRef:
+      name: admins-codespaces
+    members:
+      - demoadmin
+    realmId: sx-cnp-oss-codespaces
+  providerConfigRef:
+    name: "sx-keycloak-config"
+---
+apiVersion: group.keycloak.crossplane.io/v1alpha1
+kind: Memberships
+metadata:
+  name: backstage-codespaces-admin-memberships
+spec:
+  forProvider:
+    groupIdRef:
+      name: backstage-codespaces-admin
+    members:
+      - service-account-backstage-codespaces
+    realmId:  sx-cnp-oss-codespaces
   providerConfigRef:
     name: "sx-keycloak-config"
 ---
