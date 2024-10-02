@@ -138,6 +138,25 @@ spec:
   providerConfigRef:
     name: "sx-keycloak-config"
 ---
+apiVersion: keycloak.crossplane.io/v1alpha1
+kind: XBuiltinObjects
+metadata:
+  name: keycloak-builtin-objects-sx-cnp-oss-codespaces
+spec:
+  providerConfigName: sx-keycloak-config
+  providerSecretName: keycloak-credentials-cp
+  realm: sx-cnp-oss-codespaces
+  builtinClients: 
+    - account
+    - account-console
+    - admin-cli
+    - broker
+    - realm-management
+    - security-admin-console
+  builtinRealmRoles:
+    - offline_access
+    - uma_authorization
+---
 apiVersion: group.keycloak.crossplane.io/v1alpha1
 kind: Roles
 metadata:
@@ -151,9 +170,9 @@ spec:
     realmIdRef: 
       name: sx-cnp-oss-codespaces
     roleIdsRefs:
-      - name: builtin-sx-cnp-oss-realm-management-view-users
-      - name: builtin-sx-cnp-oss-realm-management-query-groups
-      - name: builtin-sx-cnp-oss-realm-management-query-users
+      - name: builtin-sx-cnp-oss-codespaces-realm-management-view-users
+      - name: builtin-sx-cnp-oss-codespaces-realm-management-query-groups
+      - name: builtin-sx-cnp-oss-codespaces-realm-management-query-users
     roleIdsSelector:
       matchLabels:
         defaultRole: 'true'
