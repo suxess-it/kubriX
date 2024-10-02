@@ -222,6 +222,9 @@ echo "adding special configuration for sx-backstage"
   # create manual-secret secret with all tokens for backstage
   # in github codespace we need additional environment variables to overwrite app-config.yaml
   if [ ${CODESPACES} ]; then
+    KEYCLOAK_CODESPACES=false
+  fi
+  if [ ${KEYCLOAK_CODESPACES} ]; then
     BACKSTAGE_CODESPACE_URL="https://${CODESPACE_NAME}-6691.${GITHUB_CODESPACES_PORT_FORWARDING_DOMAIN}"
     kubectl create secret generic -n backstage manual-secret \
       --from-literal=GITHUB_CLIENTSECRET=${KUBRIX_GITHUB_CLIENTSECRET} \
@@ -256,7 +259,7 @@ echo "adding special configuration for sx-backstage"
 
   # in codespaces we need additional crossplane resources for keycloak
   # because of the port-forwarding URLs
-  if [ ${CODESPACES} ]; then
+  if [ ${KEYCLOAK_CODESPACES} ]; then
     curl -L https://raw.githubusercontent.com/${CURRENT_REPOSITORY}/${CURRENT_BRANCH}/.devcontainer/keycloak-codespaces.yaml | sed "s/BACKSTAGE_CODESPACES_REPLACE/${CODESPACE_NAME}-6691.${GITHUB_CODESPACES_PORT_FORWARDING_DOMAIN}/g" | sed "s/KEYCLOAK_CODESPACES_REPLACE/${CODESPACE_NAME}-6692.${GITHUB_CODESPACES_PORT_FORWARDING_DOMAIN}/g" | kubectl apply -n keycloak -f -
   fi
 
