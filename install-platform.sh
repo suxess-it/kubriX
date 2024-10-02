@@ -222,7 +222,7 @@ echo "adding special configuration for sx-backstage"
   # create manual-secret secret with all tokens for backstage
   # in github codespace we need additional environment variables to overwrite app-config.yaml
   if [ ${CODESPACES} ]; then
-    KEYCLOAK_CODESPACES=false
+    KEYCLOAK_CODESPACES=""
   fi
   if [ ${KEYCLOAK_CODESPACES} ]; then
     BACKSTAGE_CODESPACE_URL="https://${CODESPACE_NAME}-6691.${GITHUB_CODESPACES_PORT_FORWARDING_DOMAIN}"
