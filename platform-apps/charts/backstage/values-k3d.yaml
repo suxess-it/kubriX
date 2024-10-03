@@ -44,7 +44,7 @@ backstage:
           # host: 127.0.0.1
         csp:
           connect-src: ["'self'", 'http:', 'https:']
-          frame-src: ['*.${GITHUB_CODESPACES_PORT_FORWARDING_DOMAIN:-nip.io}']
+          frame-src: ['*.nip.io']
           # Content-Security-Policy directives follow the Helmet format: https://helmetjs.github.io/#reference
           # Default Helmet Content-Security-Policy values can be removed by setting the key to false
         cors:
