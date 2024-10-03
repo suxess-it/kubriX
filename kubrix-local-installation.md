@@ -29,10 +29,10 @@ use GITHUB_CLIENTSECRET and GITHUB_CLIENTID from your Github OAuth App for the f
 For the installation some variables are needed:
 
 ```
-export GITHUB_CLIENTSECRET=<value from steps above>
-export GITHUB_CLIENTID=<value from steps above>
-export GITHUB_TOKEN=<your personal access token>
-export GITHUB_APPSET_TOKEN=<github-pat-for-argocd-appsets-only-read-permissions-needed>
+export KUBRIX_GITHUB_CLIENTSECRET=<value from steps above>
+export KUBRIX_GITHUB_CLIENTID=<value from steps above>
+export KUBRIX_GITHUB_TOKEN=<your personal access token>
+export KUBRIX_GITHUB_APPSET_TOKEN=<github-pat-for-argocd-appsets-only-read-permissions-needed>
 # set target type to the platform stack you want to install
 export TARGET_TYPE=KIND-DELIVERY
 # if a K3d cluster should get created:
