@@ -105,6 +105,18 @@ spec:
     name: "sx-keycloak-config"
 ---
 apiVersion: group.keycloak.crossplane.io/v1alpha1
+kind: Group
+metadata:
+  name: admins-codespaces
+spec:
+  forProvider:
+    realmId: sx-cnp-oss-codespaces
+    name: backstage-codespaces-admin
+  deletionPolicy: "Delete"
+  providerConfigRef:
+    name: "sx-keycloak-config"
+---
+apiVersion: group.keycloak.crossplane.io/v1alpha1
 kind: Memberships
 metadata:
   name: backstage-codespaces-team-codespace-users-memberships
@@ -115,6 +127,34 @@ spec:
     members:
       - demouser1
     realmId: sx-cnp-oss-codespaces
+  providerConfigRef:
+    name: "sx-keycloak-config"
+---
+apiVersion: group.keycloak.crossplane.io/v1alpha1
+kind: Memberships
+metadata:
+  name: backstage-codespaces-admins-users-memberships
+spec:
+  forProvider:
+    groupIdRef:
+      name: admins-codespaces
+    members:
+      - demoadmin
+    realmId: sx-cnp-oss-codespaces
+  providerConfigRef:
+    name: "sx-keycloak-config"
+---
+apiVersion: group.keycloak.crossplane.io/v1alpha1
+kind: Memberships
+metadata:
+  name: backstage-codespaces-admin-memberships
+spec:
+  forProvider:
+    groupIdRef:
+      name: backstage-codespaces-admin
+    members:
+      - service-account-backstage-codespaces
+    realmId:  sx-cnp-oss-codespaces
   providerConfigRef:
     name: "sx-keycloak-config"
 ---
@@ -138,6 +178,25 @@ spec:
   providerConfigRef:
     name: "sx-keycloak-config"
 ---
+apiVersion: keycloak.crossplane.io/v1alpha1
+kind: XBuiltinObjects
+metadata:
+  name: keycloak-builtin-objects-sx-cnp-oss-codespaces
+spec:
+  providerConfigName: sx-keycloak-config
+  providerSecretName: keycloak-credentials-cp
+  realm: sx-cnp-oss-codespaces
+  builtinClients: 
+    - account
+    - account-console
+    - admin-cli
+    - broker
+    - realm-management
+    - security-admin-console
+  builtinRealmRoles:
+    - offline_access
+    - uma_authorization
+---
 apiVersion: group.keycloak.crossplane.io/v1alpha1
 kind: Roles
 metadata:
@@ -151,9 +210,9 @@ spec:
     realmIdRef: 
       name: sx-cnp-oss-codespaces
     roleIdsRefs:
-      - name: builtin-sx-cnp-oss-realm-management-view-users
-      - name: builtin-sx-cnp-oss-realm-management-query-groups
-      - name: builtin-sx-cnp-oss-realm-management-query-users
+      - name: builtin-sx-cnp-oss-codespaces-realm-management-view-users
+      - name: builtin-sx-cnp-oss-codespaces-realm-management-query-groups
+      - name: builtin-sx-cnp-oss-codespaces-realm-management-query-users
     roleIdsSelector:
       matchLabels:
         defaultRole: 'true'

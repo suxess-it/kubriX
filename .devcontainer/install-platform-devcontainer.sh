@@ -27,11 +27,6 @@ else
 fi
 
 # this runs in background each time the container starts
-
-export GITHUB_CLIENTSECRET=dummy
-export GITHUB_CLIENTID=dummy
-export GITHUB_TOKEN=dummy
-export GITHUB_APPSET_TOKEN=dummy
 export CURRENT_BRANCH=$( git rev-parse --abbrev-ref HEAD )
 if [ ${CODESPACES} ]; then
   export CURRENT_REPOSITORY=${GITHUB_REPOSITORY}
