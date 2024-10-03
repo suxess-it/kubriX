@@ -6,9 +6,9 @@ More informations on https://kubriX.io.
 
 If you have ideas / questions, please [join our slack](https://join.slack.com/t/kubrix-platform/shared_invite/zt-2rc1yty2f-VTT3GOzUvo_k5hrgKbppKQ) or raise an issue.
 
-# Test kubriX with GitHub Codespaces
+# kubriX playground with GitHub Codespaces
 
-You can create a kubriX test environment by starting a GitHub Codespace in your browser. With that you have your own kubriX test environment within minutes without any installations on your local machine.
+You can create a kubriX playground by starting a GitHub Codespace in your browser. With that you have your own kubriX test environment within minutes without any installations on your local machine.
 
 ## To fork or not to fork
 
@@ -16,62 +16,64 @@ If you want to test onboarding your apps you need to write in this repository. T
 
 If you just want to have a look at the platform stack in a read-only mode, just use the original repository without forking.
 
+### Create GitHub OAuth App 
+
+The Platform-Portal authenticates via GitHub OAuth App. Therefore you need to create a OAuth App in your [delevoper settings](https://github.com/settings/developers) and use the Client-Secret and Client-ID during installation or GitHub Codespace creation.
+
+The `Homepage URL` and `Authorization callback URL` derive from the codespace URL. Since the codespace URL is not known yet, you can set some dummy values. We will correct this in the next steps.
+
+![image](https://github.com/user-attachments/assets/fd513ff7-3501-4299-aab2-41feae1028bc)
+
+Use "Client ID" to define the variable "KUBRIX_GITHUB_CLIENTID" in the step below.
+Generate a "Client secret" and use the secret to define the variable "KUBRIX_GITHUB_CLIENTSECRET" in the step below.
+
 ## Start GitHub Codespace
 
-You can then start a test environment with GitHub Codespaces in the original repository or in your personal fork. 
+You can start a GitHub Codespaces with the button below or this [link](https://github.com/codespaces/new/)
 
-A KinD cluster and our platform stack gets installed during startup of the codespace,
-so just try it with the button below and select the original or the fork:
+- Repository: this original repository or your fork
+- Branch: main branch (or a feature branch if you want to test some special features)
+- Dev container configuration: you can select which platform stack (brick) should get installed
+- Recommended Secrets:
+  - KUBRIX_GITHUB_CLIENTID: "Client ID" of your OAuth App in the variable
+  - KUBRIX_GITHUB_CLIENTSECRET: "Client secret" of your OAuth App in the variable
+  - KUBRIX_GITHUB_TOKEN: a Personal Access Token for Github to read files from the origin repo
+  - KUBRIX_GITHUB_APPSET_TOKEN: a Personal Access Token for Github to read repositories in your organization (for ArgoCD AppSet SCM Generator)
 
 [![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/)
 
-Don't forget to choose one of the kubrix stacks (delivery, observability, security, portal):
-![image](https://github.com/user-attachments/assets/767d389e-fa03-4e5d-9df1-d270050afa0c)
+![image](https://github.com/user-attachments/assets/ca473d8c-6bf2-4687-9b10-88dd29843860)
 
-You will get a VSCode environment in your browser.
 
-### Create GitHub OAuth App 
+You will get a VSCode environment in your browser and additionally a KinD cluster and our platform stack gets installed during startup of the Codespace.
 
-The Backstage-Portal authenticates via GitHub OAuth App. Therefore you need to create one in your organization and use the Client-Secret and Client-ID during installation.
+## Correct 'Homepage URL' and 'Authorization callback URL' in your OAuth App
 
-In your Github Organization for Backstage login: https://backstage.io/docs/auth/github/provider/
+The URL of the new Codespace has a random name and ID like `https://crispy-robot-g44qvrx9jpx29xx7.github.dev/`.
+Copy the hostname (codespace name) except ".github.dev" and fix the URLs of the created OAuth App like this:
 
-The `Homepage URL` and `Authorization callback URL` derive from the codespace URL.
-You can simple open a terminal in your codespace and use the output of the following commands for the attributes:
+- Homepage URL: `<copied hostname>-6691.app.github.dev`
+- Authorization callback URL: `<copied hostname>-6691.app.github.dev/api/auth/github`
 
-![bash](https://github.com/user-attachments/assets/fd320ed9-aae3-46ce-85ab-b94b8a25a341)
-
-- Homepage URL: `echo https://${CODESPACE_NAME}-6691.${GITHUB_CODESPACES_PORT_FORWARDING_DOMAIN}`
-- Authorization callback URL: `echo https://${CODESPACE_NAME}-6691.${GITHUB_CODESPACES_PORT_FORWARDING_DOMAIN}/api/auth/github`
-
+and click on "Update application"
 Example:
 
-![oauth](https://github.com/user-attachments/assets/a2e4f15e-8def-4340-bc39-e236d78be34f)
+![image](https://github.com/user-attachments/assets/7e8e51c7-bd1c-4c5b-b21f-c8abe37a47ed)
 
-Use "Client ID" to define the variable "GITHUB_CLIENTID" in the step below.
-Generate a "Client secret" and use the secret to define the variable "GITHUB_CLIENTSECRET" in the step below.
+## Check the startup of the kubriX platform
 
-### Define some variables so the platform can access github
+After the Codespace gets created a KinD cluster gets installed and the whole platform stack gets installed. This takes up to 20 minutes. During this phase it is normal that some apps are degraded. This gets fixed in the installation process automatically.
+You can follow this procedure in the log by pressing this link:
 
-Define the variables below in the codespaces terminal. The GITHUB_TOKEN is used by kargo to write in your application gitops-Repos for git-promotion.
+![image](https://github.com/user-attachments/assets/0c1d88cb-1f3a-43e6-964c-6066fdbdf564)
 
-```
-export GITHUB_CLIENTID=<value from steps above>
-export GITHUB_CLIENTSECRET=<value from steps above>
-export GITHUB_TOKEN=<your personal access token>
-export GITHUB_APPSET_TOKEN=<github-pat-for-argocd-appsets-only-read-permissions-needed>
-```
-### Run installation script
+For further logs you also need to press CTRL+SHIFT+P and then type "Codespaces: View Creation Log":
 
-Run the following script in your codespaces terminal to install the platform stack according to the kubriX stack you chose.
+![image](https://github.com/user-attachments/assets/38b59d91-ce63-4e3c-9f0d-68b48d039ea8)
 
-```
-export TARGET_TYPE=KIND-DELIVERY
-.devcontainer/install-platform-devcontainer.sh
-```
+Then you should see log messages in the "Terminal-View":
 
-A KinD cluster will get created and the platform stack will get installed.
-This will take up to 20 minutes.
+![image](https://github.com/user-attachments/assets/5552ef73-bce6-4129-a0b0-9d410ce47af5)
 
 ## Accessing platform service consoles
 
@@ -96,11 +98,16 @@ The password for ArgoCD can be found with the command above in the VSCode termin
 
 Also, at the end of the installation you get a summary of the URLs and credentials per tool. Unfortunately some infos are masked, we are working on that.
 
+Log into kubriX portal (Backstage) with "Github".  Keycloak doesn't work inside GitHub Codespaces.
+
+![image](https://github.com/user-attachments/assets/cd277d82-cda3-4144-82dd-9b218e2e6b6a)
+
+
 ## Onboarding teams and apps on the platform
 
 Details about our onboarding concept are explained in [Onboarding](https://github.com/suxess-it/sx-cnp-oss/blob/main/backstage-resources/docs/ONBOARDING.md). There is also explained how to modify which gitops-Repos to onboard new teams and new applications.
 
-Of course our portal helps to onboard teams and apps easier. However, currently we are facing some issues when login into the portal in a codespace via GitHub login. OAuth and Browser-Codespaces don't seem to work together at the moment. We will try to fix that in the future. In the meantime you can start your devcontainer in your local VSCode. There it should work.
+Of course our portal helps to onboard teams and apps easier. You will be able to test this also on GitHub Codespaces in the near future!
 
 ## Known issues
 
@@ -226,16 +233,4 @@ k3d cluster delete cnp-local-demo
 ```
 
 
-# Old infos
 
-## Auto-Installed Platform Stack in Codespace (DRAFT)
-
-![image](https://github.com/user-attachments/assets/0c1d88cb-1f3a-43e6-964c-6066fdbdf564)
-
-For further logs you also need to press CTRL+SHIFT+P and then type "Codespaces: View Creation Log":
-
-![image](https://github.com/user-attachments/assets/38b59d91-ce63-4e3c-9f0d-68b48d039ea8)
-
-Then you should see log messages in the "Terminal-View":
-
-![image](https://github.com/user-attachments/assets/5552ef73-bce6-4129-a0b0-9d410ce47af5)
