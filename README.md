@@ -8,7 +8,7 @@ If you have ideas / questions, please [join our slack](https://join.slack.com/t/
 
 Eager to see kubriX in action? Have a look at our [kubriX playground with Github Codespaces](kubrix-playground-github-codespaces.md)!
 
-Want to install kubriX on your local machine? Follow [local installation guide](kubrix-local-installation.md)
+Want to install kubriX on your local machine? Follow [local installation guide](kubrix-local-installation.md)!
 
 
 
