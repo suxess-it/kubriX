@@ -114,7 +114,7 @@ kubectl port-forward svc/sx-argocd-server -n argocd 8080:80
 - Username: `admin`
 - Password: `kubectl get secret -n argocd argocd-initial-admin-secret -o=jsonpath='{.data.password}' | base64 -d`
 
-# AWS helpful things (DRAFT)
+# AWS helpful things (DRAFT.)
 
 install aws cli:
 ```
