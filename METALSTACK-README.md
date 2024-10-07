@@ -131,3 +131,7 @@ create IAM policy:
 aws iam create-policy --policy-name "AllowExternalDNSUpdates" --policy-document file://aws-resources/route53-iam-policy.json
 ```
 
+
+# Tests
+
+this ist just a test
