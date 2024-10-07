@@ -1,5 +1,7 @@
 # Build suXess backstage container image and push it to our registry
 
+This documents are just for internal use for the moment.
+
 ## automatically with Github Actions
 
 Workflow-File: https://github.com/suxess-it/sx-backstage/blob/feat/cnp-local-demo-jokl/.github/workflows/ci.yaml
