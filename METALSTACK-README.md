@@ -1,4 +1,4 @@
-# SX-CNP on Metalstack
+# kubriX on Metalstack
 
 ## how to set it up
 
