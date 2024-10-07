@@ -138,3 +138,5 @@ this ist just a test
 something from suXess upstream
 
 and something new
+
+new change in upstream repo
