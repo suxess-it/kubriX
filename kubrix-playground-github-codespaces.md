@@ -98,9 +98,51 @@ Log into kubriX portal (Backstage) with "Github".  Keycloak doesn't work inside 
 
 ## Onboarding teams and apps on the platform
 
-Details about our onboarding concept are explained in [Onboarding](https://github.com/suxess-it/sx-cnp-oss/blob/main/backstage-resources/docs/ONBOARDING.md). There is also explained how to modify which gitops-Repos to onboard new teams and new applications.
+In kubriX you can normally onboard new teams and onboard new applications via Backstage, our developer portal. However, there are several issues right now which prevents to do that in your forked repository. That's why we show you how you can do this directly via the gitops Repo. The positive effect is, you can look under the hood what really happens in the portal scaffolder templates ;) Of course our portal helps to onboard teams and apps easier. You will be able to test this also on GitHub Codespaces in the near future!
 
-Of course our portal helps to onboard teams and apps easier. You will be able to test this also on GitHub Codespaces in the near future!
+### Onboarding new teams via the kubriX platform gitops-Repo
+
+After kubriX was installed sucessfully in Codespaces, edit this file in your Codespaces VSCode editor: `platform-apps/charts/team-onboarding/values-k3d.yaml`
+
+![image](https://github.com/user-attachments/assets/4c5c6fa5-967c-4c8c-a267-e0a5dc577006)
+
+Add the following stanza to the file and replace YOUR_PRIVATE_ORGANIZATION with your private organization you created the fork (e.g. jkleinlercher).
+
+```
+teams:
+  - name: team1
+    sourceRepos:
+      - '*'
+    clusterResourceWhitelist:
+      - group: ""
+        kind: Namespace
+      - group: kargo.akuity.io
+        kind: Project
+    appOfAppsRepo:
+      repoURL: https://github.com/YOUR_PRIVATE_ORGANIZATION/team1-apps
+      path: codespaces-apps
+      revision: main
+    multiStageKargoAppSet:
+      organization: YOUR_PRIVATE_ORGANIZATION
+```
+Then commit and push the changes to your main branch:
+
+```
+git commit -a -m "onboard team1"
+git push
+```
+
+The onboarded team has now two possibilities to onboard their apps. Option 1 is for teams which are familiar with ArgoCD application definitions and want a maximum of flexibility. Option 2 is more for dev teams which focus more on their application code and application specific K8s manifests but are not familiar with ArgoCD.
+
+Option 1: create a new repo `https://github.com/YOUR_PRIVATE_ORGANIZATION/team1-apps` and create a new ArgoCD application definitions in this repo.
+
+Option 2: create a new application gitops-repo in specified organization above with a specific pattern which matches specified [multiStageKargoAppSet](https://github.com/suxess-it/kubriX/blob/main/platform-apps/charts/team-onboarding/templates/appset-scm-multi-stage-kargo.yaml) ArgoCD ApplicationSet. This ApplicationSet is just an example and your platform engineers can define them on their own specific to your organizational needs. Attention: since ArgoCD ApplicationSet SCM Provider only scans repos in organizations and not in personal accounts, you need to create a repo in an organization. Maybe this gets fixed in the future by ArgoCD.
+
+An example repo for Option 2 in our case is https://github.com/suxess-it/team-a-kcd-demo . It has a [app-stages.yaml](https://github.com/suxess-it/team-a-kcd-demo/blob/main/app-stages.yaml) and the corresponding values files. In the end this example creates three argocd applications and a Kargo project which does a gitops-promotion automatically.
+
+After creating the new repo it can take up to 30 minutes that the ApplicationSet triggers a new API call to search for new Github repos. You can trigger this manually by deleting the applicationset-controller pod.
+
+Details about our onboarding concept are explained in [Onboarding](https://github.com/suxess-it/sx-cnp-oss/blob/main/backstage-resources/docs/ONBOARDING.md). There is also explained how to modify which gitops-Repos to onboard new teams and new applications.
 
 ## Known issues
 
