@@ -28,7 +28,7 @@ spec:
         synchronize: true
         apiVersion: rbac.authorization.k8s.io/v1
         kind: RoleBinding
-        name: kubevirt-rolebinding
+        name: kubevirt-rolebinding-"{{`{{request.object.metadata.name}}`}}"
         namespace: kubevirt
         data:
           subjects:
