@@ -2,7 +2,7 @@
 
 # What is kubriX?
 
-kubriX is a curated, opinionated and still very flexible platform stack build out of bricks for Kubernetes.
+kubriX is a curated, opinionated, yet highly flexible IDP distribution, build from predefined bricks for kubernetes.
 
 More informations on https://kubriX.io.
 
