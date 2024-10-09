@@ -15,6 +15,7 @@ backstage:
     serviceMonitor:
       enabled: true
   backstage:
+    command: ["node", "--require", "./instrumentation.js", "packages/backend"]
     image:
       registry: ghcr.io/suxess-it
       repository: sx-backstage
