@@ -34,6 +34,8 @@ backstage:
         value: "debug"
       - name: OTEL_EXPORTER_OTLP_ENDPOINT
         value: http://sx-k8s-monitoring-alloy-cluster.k8s-monitoring.svc.cluster.local:4318
+      - name: OTEL_SERVICE_NAME
+        value: backstage
 
     appConfig:
       app:
