@@ -11,6 +11,9 @@ backstage:
     tls:
       enabled: true
       secretName: backstage-server-tls
+  metrics:
+    serviceMonitor:
+      enabled: true
   backstage:
     image:
       registry: ghcr.io/suxess-it
@@ -24,8 +27,8 @@ backstage:
         value: "--no-node-snapshot"
 #      - name: NODE_TLS_REJECT_UNAUTHORIZED
 #        value: "0"
-#      - name: LOG_LEVEL
-#        value: "debug"
+      - name: LOG_LEVEL
+        value: "debug"
 
     appConfig:
       app:
