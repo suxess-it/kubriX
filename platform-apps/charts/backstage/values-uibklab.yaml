@@ -393,3 +393,12 @@ cluster:
       argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
   backups:
     enabled: false
+
+  roles:
+  - name: backstage
+    ensure: present
+    comment: backstage-admin-user
+    login: false
+    superuser: false
+    inRoles:
+      - pg_database_owner
