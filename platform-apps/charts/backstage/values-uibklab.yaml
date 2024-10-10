@@ -380,7 +380,7 @@ cluster:
       enabled: true
     monitoring:
       enabled: true
-    #superuserSecret: admin
+    superuserSecret: superuser-secret
     roles:
     - name: backstage
       ensure: present
@@ -388,6 +388,9 @@ cluster:
       login: true
       inherit: true
       superuser: true
+      createdb: true
+      passwordSecret:
+        name: backstage-user-secret
   #    inRoles:
   #      - pg_database_owner
   #  initdb:
