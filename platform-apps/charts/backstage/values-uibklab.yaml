@@ -387,17 +387,17 @@ cluster:
       comment: backstage-admin-user
       login: true
       inherit: true
-      superuser: false
-      inRoles:
-        - pg_database_owner
-    initdb:
-      database: backstage
-      owner: backstage
-      localeCollate: en_US.UTF-8
-      #localeCtype: en_US.UTF-8
-      encoding: UTF-8
-      secret:
-        name: backstage-owner-user
+      superuser: true
+  #    inRoles:
+  #      - pg_database_owner
+  #  initdb:
+  #    database: backstage
+  #    owner: backstage
+  #    localeCollate: en_US.UTF-8
+  #    #localeCtype: en_US.UTF-8
+  #    encoding: UTF-8
+  #    secret:
+  #      name: backstage-owner-user
     annotations:
       argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
   backups:
