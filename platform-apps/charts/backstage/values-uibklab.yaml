@@ -362,3 +362,28 @@ backstage:
         # Add it in case your JIRA instance is connected to Confluence, in order to filter those activities
         # confluenceActivityFilter: wiki@uuid
         # Defaults to latest and can be omitted if you want to use the latest version of the api
+## pgdb
+cluster:
+  type: postgresql
+  mode: standalone
+  version:
+    postgresql: "16"
+  cluster:
+    instances: 3
+    walStorage:
+      enabled: true
+    monitoring:
+      enabled: true
+    superuserSecret: admin
+    initdb:
+      database: backstage
+      owner: backstage
+      localeCollate: en_US.UTF-8
+      localeCtype: en_US.UTF-8
+      encoding: UTF-8
+     # secret:
+     #   name: backstage-owner-user
+    annotations:
+      argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+  backups:
+    enabled: false
