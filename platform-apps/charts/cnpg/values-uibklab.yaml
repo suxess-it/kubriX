@@ -1,0 +1,27 @@
+cloudnative-pg:
+  replicaCount: 2
+  monitoring:
+    podMonitorEnabled: true
+    grafanaDashboard:
+      create: true
+  commonAnnotations:
+    argocd.argoproj.io/sync-wave: "-2"
+    helm.sh/hook-weight: "-3"
+pgadmin4:
+  ingress:
+    enabled: true
+    ingressClassName: nginx
+    annotations:
+      cert.gardener.cloud/purpose: managed
+      dns.gardener.cloud/class: garden
+      dns.gardener.cloud/dnsnames: pgadmin.lab.suxessit.k8s.cloud.uibk.ac.at
+      dns.gardener.cloud/ttl: "180"   
+    hosts:
+      - host: pgadmin.lab.suxessit.k8s.cloud.uibk.ac.at
+        paths:
+          - path: /
+            pathType: Prefix
+    tls:
+      - secretName: pgadmin-server-tls
+        hosts:
+          - pgadmin.lab.suxessit.k8s.cloud.uibk.ac.at
