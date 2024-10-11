@@ -15,7 +15,6 @@ backstage:
     serviceMonitor:
       enabled: true
   backstage:
-    command: ["node", "--require", "./instrumentation.js", "packages/backend"]
     image:
       registry: ghcr.io/suxess-it
       repository: sx-backstage
@@ -29,14 +28,11 @@ backstage:
         value: "--no-node-snapshot"
 #      - name: NODE_TLS_REJECT_UNAUTHORIZED
 #        value: "0"
-      - name: LOG_LEVEL
-        value: "debug"
+#      - name: LOG_LEVEL
+#        value: "debug"
 #      - name: OTEL_LOG_LEVEL
 #        value: "debug"
-      - name: OTEL_EXPORTER_OTLP_ENDPOINT
-        value: http://sx-k8s-monitoring-grafana-agent.k8s-monitoring.svc.cluster.local:4318
-      - name: OTEL_SERVICE_NAME
-        value: backstage
+
 
     appConfig:
       app:
