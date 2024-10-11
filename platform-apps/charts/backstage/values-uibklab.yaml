@@ -11,6 +11,9 @@ backstage:
     tls:
       enabled: true
       secretName: backstage-server-tls
+  metrics:
+    serviceMonitor:
+      enabled: true
   backstage:
     image:
       registry: ghcr.io/suxess-it
@@ -19,6 +22,7 @@ backstage:
     extraEnvVarsSecrets:
       - sx-cnp-secret
       - manual-secret
+      - backstage-db-secrets
     extraEnvVars:
       - name: NODE_OPTIONS
         value: "--no-node-snapshot"
@@ -26,6 +30,9 @@ backstage:
 #        value: "0"
 #      - name: LOG_LEVEL
 #        value: "debug"
+#      - name: OTEL_LOG_LEVEL
+#        value: "debug"
+
 
     appConfig:
       app:
@@ -59,8 +66,14 @@ backstage:
         # This is for local development only, it is not recommended to use this in production
         # The production database configuration is stored in app-config.production.yaml
         database:
-          client: better-sqlite3
-          connection: ':memory:'
+     #     client: better-sqlite3
+     #     connection: ':memory:'
+          client: pg
+          connection:
+            host: ${POSTGRES_HOST}
+            port: ${POSTGRES_PORT}
+            user: ${POSTGRES_USER}
+            password: ${POSTGRES_PASSWORD}
         cache:
           store: memory
         # workingDirectory: /tmp # Use this to configure a working directory for the scaffolder, defaults to the OS temp-dir
@@ -352,3 +365,40 @@ backstage:
         # Add it in case your JIRA instance is connected to Confluence, in order to filter those activities
         # confluenceActivityFilter: wiki@uuid
         # Defaults to latest and can be omitted if you want to use the latest version of the api
+## pgdb
+cluster:
+  type: postgresql
+  mode: standalone
+  version:
+    postgresql: "16"
+  cluster:
+    instances: 3
+    walStorage:
+      enabled: true
+    monitoring:
+      enabled: true
+    superuserSecret: cnpg-superuser-secret
+    roles:
+    - name: backstage
+      ensure: present
+      comment: backstage-admin-user
+      login: true
+      inherit: true
+      superuser: true
+      createdb: true
+      passwordSecret:
+        name: cnpg-backstage-secret
+  #    inRoles:
+  #      - pg_database_owner
+  #  initdb:
+  #    database: backstage
+  #    owner: backstage
+  #    localeCollate: en_US.UTF-8
+  #    #localeCtype: en_US.UTF-8
+  #    encoding: UTF-8
+  #    secret:
+  #      name: backstage-owner-user
+    annotations:
+      argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+  backups:
+    enabled: false
