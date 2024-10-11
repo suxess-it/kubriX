@@ -50,6 +50,7 @@ spec:
   target:
     name: cnpg-backstage-secret
     template:
+      type: kubernetes.io/basic-auth
       metadata:
         labels:
           cnpg.io/reload: "true"
@@ -81,6 +82,7 @@ spec:
   target:
     name: cnpg-superuser-secret
     template:
+      type: kubernetes.io/basic-auth
       metadata:
         labels:
           cnpg.io/reload: "true"
