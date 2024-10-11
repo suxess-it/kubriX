@@ -56,7 +56,6 @@ spec:
       data:
         username: "{{ `{{ .pgbackstageusername }}` }}"
         password: "{{ `{{ .pgbackstagepassword }}` }}"
-        secretKey: "{{ `{{ .password }}` }}"
   data:
   - secretKey: pgbackstageusername
     remoteRef:
@@ -88,7 +87,6 @@ spec:
       data:
         username: "{{ `{{ .superuser }}` }}"
         password: "{{ `{{ .superuserpassword }}` }}"
-        secretKey: "{{ `{{ .password }}` }}"
   data:
   - secretKey: superuser
     remoteRef:
