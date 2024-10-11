@@ -1,3 +1,4 @@
+{{- if eq .Values.backstage.backstage.appConfig.backend.database.client "pg"  }}
 ---
 apiVersion: external-secrets.io/v1beta1
 kind: ExternalSecret
@@ -98,3 +99,4 @@ spec:
     remoteRef:
       key: sx-cnp-oss-kv/data/demo/cnpg
       property: superuserpassword
+{{- end }}
