@@ -23,6 +23,7 @@ backstage:
     extraEnvVarsSecrets:
       - sx-cnp-secret
       - manual-secret
+      - backstage-db-secrets
     extraEnvVars:
       - name: NODE_OPTIONS
         value: "--no-node-snapshot"
@@ -380,7 +381,7 @@ cluster:
       enabled: true
     monitoring:
       enabled: true
-    superuserSecret: superuser-secret
+    superuserSecret: cnpg-superuser-secret
     roles:
     - name: backstage
       ensure: present

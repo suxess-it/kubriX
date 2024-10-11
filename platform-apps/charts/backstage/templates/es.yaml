@@ -1,0 +1,100 @@
+---
+apiVersion: external-secrets.io/v1beta1
+kind: ExternalSecret
+metadata:
+  name: backstage-db-secrets
+spec:
+  refreshInterval: 1m
+  secretStoreRef:
+    name: pg-secrets
+    kind: ClusterSecretStore
+  target:
+    name: backstage-db-secrets
+    template:
+      type: Opaque
+      data:
+        POSTGRES_HOST: "{{ `{{ .pgbackstagehost }}` }}"
+        POSTGRES_PORT: "{{ `{{ .pgbackstageport }}` }}"
+        POSTGRES_USER: "{{ `{{ .pgbackstageusername }}` }}"
+        POSTGRES_PASSWORD: "{{ `{{ .pgbackstagepassword }}` }}"
+  data:
+  - secretKey: pgbackstageusername
+    remoteRef:
+      key: sx-cnp-oss-kv/data/demo/cnpg
+      property: pgbackstageusername
+  - secretKey: pgbackstagepassword
+    remoteRef:
+      key: sx-cnp-oss-kv/data/demo/cnpg
+      property: pgbackstagepassword
+  - secretKey: pgbackstagehost
+    remoteRef:
+      key: sx-cnp-oss-kv/data/demo/cnpg
+      property: pgbackstagehost
+  - secretKey: pgbackstageport
+    remoteRef:
+      key: sx-cnp-oss-kv/data/demo/cnpg
+      property: pgbackstageport
+---
+apiVersion: external-secrets.io/v1beta1
+kind: ExternalSecret
+metadata:
+  name: cnpg-backstage-secret
+  namespace: backstage
+  annotations:
+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+spec:
+  refreshInterval: "15s"
+  secretStoreRef:
+    name: vault-backend
+    kind: ClusterSecretStore
+  target:
+    name: cnpg-backstage-secret
+    template:
+      metadata:
+        labels:
+          cnpg.io/reload: "true"
+      data:
+        username: "{{ `{{ .pgbackstageusername }}` }}"
+        password: "{{ `{{ .pgbackstagepassword }}` }}"
+        secretKey: "{{ `{{ .password }}` }}"
+  data:
+  - secretKey: pgbackstageusername
+    remoteRef:
+      key: sx-cnp-oss-kv/data/demo/cnpg
+      property: pgbackstageusername
+  - secretKey: pgbackstagepassword
+    remoteRef:
+      key: sx-cnp-oss-kv/data/demo/cnpg
+      property: pgbackstagepassword
+---
+apiVersion: external-secrets.io/v1beta1
+kind: ExternalSecret
+metadata:
+  name: cnpg-superuser-secret
+  namespace: backstage
+  annotations:
+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+spec:
+  refreshInterval: "15s"
+  secretStoreRef:
+    name: vault-backend
+    kind: ClusterSecretStore
+  target:
+    name: cnpg-superuser-secret
+    template:
+      metadata:
+        labels:
+          cnpg.io/reload: "true"
+      data:
+        username: "{{ `{{ .superuser }}` }}"
+        password: "{{ `{{ .superuserpassword }}` }}"
+        secretKey: "{{ `{{ .password }}` }}"
+  data:
+  - secretKey: superuser
+    remoteRef:
+      key: sx-cnp-oss-kv/data/demo/cnpg
+      property: superuser
+  - secretKey: superuserpassword
+    remoteRef:
+      key: sx-cnp-oss-kv/data/demo/cnpg
+      property: superuserpassword
