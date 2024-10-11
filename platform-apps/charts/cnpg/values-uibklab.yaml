@@ -2,10 +2,6 @@ cloudnative-pg:
   replicaCount: 2
   monitoring:
     podMonitorEnabled: true
-    grafanaDashboard:
-      create: true
-      labels:
-        grafana_dashboard: "1"
   commonAnnotations:
     argocd.argoproj.io/sync-wave: "-2"
 ## pgadmin for demopurposes
