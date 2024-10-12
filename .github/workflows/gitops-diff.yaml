@@ -50,7 +50,6 @@ jobs:
           path: comment-files/
 
       - uses: thollander/actions-comment-pull-request@v2
-        if: ${{ needs.diff.outputs.matrix != '' }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
