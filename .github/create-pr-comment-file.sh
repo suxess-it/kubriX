@@ -18,8 +18,10 @@ for env in pr target; do
       mkdir -p ../../../out/${env}/${chart}/${valuefile}
       helm template  --include-crds ${chart} -f ${value} --output-dir ../../../out/${env}/${chart}/${valuefile}
     done
-    # get default values of subchart
-    helm show values ${chart}/charts/* > ../../../out-default-values/${env}/${chart}_default-values.out || true
+    # get default values of subcharts
+    for subchart in $( ls ${chart}/charts/ ); do
+      helm show values ${chart}/charts/${subchart} > ../../../out-default-values/${env}/${chart}_${subchart}_default-values.out || true
+    done
   done
   cd -
 done
