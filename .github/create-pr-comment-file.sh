@@ -1,7 +1,6 @@
 #!/bin/bash
 
 set -e
-set -x
 
 mkdir -p out/pr
 mkdir -p out/target
