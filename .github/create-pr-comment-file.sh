@@ -31,7 +31,7 @@ csplit -f comment-files/comment out/diff.txt --elide-empty-files /^diff\ \-U/ '{
 comment_files_csplit=$( find comment-files -type f | sort )
 
 # Define the maximum size in bytes
-MAX_SIZE=131072
+MAX_SIZE=65536
 
 # Initialize output file counter and base name
 OUTPUT_BASE_NAME="combined_file"
