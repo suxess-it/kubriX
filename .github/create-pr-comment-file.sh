@@ -74,13 +74,12 @@ done
 
 echo "Concatenation completed. Total output files: $output_file_count."
 
-if [ -e combined_file* ]; then
-  combined_files=$( ls combined_file* )
-  for combined_file in ${combined_files} ; do
-    sed  's/DESCRIPTION_HERE/Changes Rendered Chart/g' pr/.github/pr-diff-template.txt > out/comment-diff-${combined_file}
-    sed  -e "/DIFF_HERE/{r ${combined_file}" -e "d}" out/comment-diff-${combined_file} > comment-files/comment-result-${combined_file}
-  done
-fi
+
+combined_files=$( ls combined_file* )
+for combined_file in ${combined_files} ; do
+  sed  's/DESCRIPTION_HERE/Changes Rendered Chart/g' pr/.github/pr-diff-template.txt > out/comment-diff-${combined_file}
+  sed  -e "/DIFF_HERE/{r ${combined_file}" -e "d}" out/comment-diff-${combined_file} > comment-files/comment-result-${combined_file}
+done
 
 # default values comparison (we assume they will not be bigger than comment size limit)
 sed  's/DESCRIPTION_HERE/Changes Default Values/g' pr/.github/pr-diff-template.txt > out/comment-diff-default-values.txt
