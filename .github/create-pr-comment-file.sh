@@ -74,7 +74,8 @@ done
 
 echo "Concatenation completed. Total output files: $output_file_count."
 
-if [ -e combined_file* ]; then
+
+if ls combined_file* 1> /dev/null 2>&1 ; then
   combined_files=$( ls combined_file* )
   for combined_file in ${combined_files} ; do
     sed  's/DESCRIPTION_HERE/Changes Rendered Chart/g' pr/.github/pr-diff-template.txt > out/comment-diff-${combined_file}
