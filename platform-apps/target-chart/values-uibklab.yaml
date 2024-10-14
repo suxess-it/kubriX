@@ -34,6 +34,8 @@ applications:
   - name: cnpg
     annotations:
       argocd.argoproj.io/sync-wave: "-1"
+    syncOptions:
+      - ServerSideApply=true
 
   - name: external-secrets
     annotations:
