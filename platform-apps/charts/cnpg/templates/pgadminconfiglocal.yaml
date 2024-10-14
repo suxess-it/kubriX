@@ -17,8 +17,8 @@ data:
       {
         'OAUTH2_NAME': 'keycloak',
         'OAUTH2_DISPLAY_NAME': 'keycloak',
-        'OAUTH2_CLIENT_ID': 'os.environ['pgadminclientid']',
-        'OAUTH2_CLIENT_SECRET': 'os.environ['pgadminclientsecret']',
+        'OAUTH2_CLIENT_ID': os.environ['pgadminclientid'],
+        'OAUTH2_CLIENT_SECRET': os.environ['pgadminclientsecret'],
         'OAUTH2_TOKEN_URL': 'https://keycloak.lab.suxessit.k8s.cloud.uibk.ac.at/realms/sx-cnp-oss/protocol/openid-connect/token',
         'OAUTH2_AUTHORIZATION_URL': 'https://keycloak.lab.suxessit.k8s.cloud.uibk.ac.at/realms/sx-cnp-oss/protocol/openid-connect/auth',
         'OAUTH2_API_BASE_URL': 'https://keycloak.lab.suxessit.k8s.cloud.uibk.ac.at/',
