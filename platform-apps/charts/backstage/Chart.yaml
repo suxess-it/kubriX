@@ -25,6 +25,9 @@ appVersion: "1.0.0"
 
 dependencies:
   - name: backstage
-    version: 1.9.6
+    version: 1.10.0
     repository: https://backstage.github.io/charts
-
+  - name: cluster
+    version: 0.0.11
+    repository: https://cloudnative-pg.github.io/charts
+    condition: cluster.enabled

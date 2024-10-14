@@ -38,6 +38,7 @@ jobs:
   create-template-render-diff-comment:
     needs: diff
     runs-on: ubuntu-latest
+    if: ${{ needs.diff.outputs.matrix.comment-files != '[]' }}
     strategy:
       matrix: ${{fromJSON(needs.diff.outputs.matrix)}}
       max-parallel: 1

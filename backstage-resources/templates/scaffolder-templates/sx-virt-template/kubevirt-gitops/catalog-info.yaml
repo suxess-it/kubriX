@@ -8,7 +8,7 @@ metadata:
     - template
     - metalstack
   links:
-    - url: https://grafana-metalstack.platform-engineer.cloud/
+    - url: https://grafana.lab.suxessit.k8s.cloud.uibk.ac.at
       title: Grafana SRE Metrics
       icon: web
   annotations:
@@ -18,10 +18,10 @@ metadata:
     argocd/app-name: ${{values.application_id}}
     backstage.io/kubernetes-namespace: ${{values.team}}-${{values.application_id}}
     backstage.io/kubernetes-label-selector: app=${{values.application_id}}
-    kubevirt-manager: "https://kubevirt-manager-metalstack.platform-engineer.cloud/"
+    kubevirt-manager: "https://kubevirt-manager.lab.suxessit.k8s.cloud.uibk.ac.at/"
     backstage.io/techdocs-ref: dir:.
     grafana/dashboard-selector: "(tags @> 'kubevirt')"
-    grafana/overview-dashboard: "https://grafana-metalstack.platform-engineer.cloud/d/k8s_views_ns/kubernetes-views-namespaces?orgId=1&refresh=30s&var-datasource=default&var-cluster=&var-namespace=${{values.environments}}-demo-kubevirt&var-resolution=30s&var-created_by=All"
+    grafana/overview-dashboard: "https://grafana.lab.suxessit.k8s.cloud.uibk.ac.at/d/k8s_views_ns/kubernetes-views-namespaces?orgId=1&refresh=30s&var-datasource=default&var-cluster=&var-namespace=${{values.environments}}-demo-kubevirt&var-resolution=30s&var-created_by=All"
 spec:
   type: service
   lifecycle: ${{values.environments}}
