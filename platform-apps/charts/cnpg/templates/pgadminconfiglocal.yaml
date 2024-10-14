@@ -1,0 +1,30 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: pgadminconfiglocal
+  namespace: cnpg
+data:
+  config_local.py: |-
+    import os
+    import logging
+
+    FILE_LOG_LEVEL = logging.INFO
+    SERVER_MODE = True
+    CONSOLE_LOG_LEVEL = logging.INFO
+    MASTER_PASSWORD_REQUIRED = True
+    AUTHENTICATION_SOURCES = ['internal', 'oauth2']
+    OAUTH2_CONFIG = [
+      {
+        'OAUTH2_NAME': 'keycloak',
+        'OAUTH2_DISPLAY_NAME': 'keycloak',
+        'OAUTH2_CLIENT_ID': 'pgadmin',
+        'OAUTH2_CLIENT_SECRET': 'demosecret',
+        'OAUTH2_TOKEN_URL': 'https://keycloak.lab.suxessit.k8s.cloud.uibk.ac.at/realms/sx-cnp-oss/protocol/openid-connect/token',
+        'OAUTH2_AUTHORIZATION_URL': 'https://keycloak.lab.suxessit.k8s.cloud.uibk.ac.at/realms/sx-cnp-oss/protocol/openid-connect/auth',
+        'OAUTH2_API_BASE_URL': 'https://keycloak.lab.suxessit.k8s.cloud.uibk.ac.at/',
+        'OAUTH2_USERINFO_ENDPOINT': 'https://keycloak.lab.suxessit.k8s.cloud.uibk.ac.at/realms/sx-cnp-oss/protocol/openid-connect/userinfo',
+        'OAUTH2_SCOPE': 'openid groups email profile',
+        'OAUTH2_SERVER_METADATA_URL': 'https://keycloak.lab.suxessit.k8s.cloud.uibk.ac.at/realms/sx-cnp-oss/.well-known/openid-configuration',
+        'OAUTH2_LOGOUT_URL': 'https://keycloak.lab.suxessit.k8s.cloud.uibk.ac.at/realms/sx-cnp-oss/protocol/openid-connect/logout?client_id=pgadmin',
+      }
+    ]

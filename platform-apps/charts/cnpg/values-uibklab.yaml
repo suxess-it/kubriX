@@ -23,6 +23,12 @@ pgadmin4:
       - secretName: pgadmin-server-tls
         hosts:
           - pgadmin.lab.suxessit.k8s.cloud.uibk.ac.at
+  extraConfigmapMounts:
+    - name: configmap
+      configMap: pgadminconfiglocal
+      mountPath: /pgadmin4/config_local.py
+      subPath: config_local.py
+      readOnly: true
   serverDefinitions:
     enabled: true
     servers:
