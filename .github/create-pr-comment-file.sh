@@ -18,9 +18,14 @@ for env in pr target; do
       helm template  --include-crds ${chart} -f ${value} --output-dir ../../../out/${env}/${chart}/${valuefile}
     done
     # get default values of subcharts
-    for subchart in $( ls ${chart}/charts/ ); do
-      helm show values ${chart}/charts/${subchart} > ../../../out-default-values/${env}/${chart}_${subchart}_default-values.out || true
-    done
+    # to compare between different subchart versions we need to write to values files without version names
+    while IFS= read -r line; do
+      subchart_name=$( echo $line | awk '{print $1}' )
+      subchart_version=$( echo $line | awk '{print $2}' )
+      for subchart in $( ls ${chart}/charts/ ); do
+        helm show values ${chart}/charts/${subchart_name}-${subchart_version}.tgz > ../../../out-default-values/${env}/${chart}_${subchart_name}_default-values.out || true
+      done
+    done <<< $( helm dependency list ${chart} |grep -v "NAME" )
   done
   cd -
 done
