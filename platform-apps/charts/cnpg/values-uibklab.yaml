@@ -23,6 +23,14 @@ pgadmin4:
       - secretName: pgadmin-server-tls
         hosts:
           - pgadmin.lab.suxessit.k8s.cloud.uibk.ac.at
+  extraConfigmapMounts:
+    - name: configmap
+      configMap: pgadminconfiglocal
+      mountPath: /pgadmin4/config_local.py
+      subPath: config_local.py
+      readOnly: true
+  envVarsFromSecrets:
+    - pgadmin-secret
   serverDefinitions:
     enabled: true
     servers:
@@ -35,4 +43,4 @@ pgadmin4:
         MaintenanceDB: "postgres"
   existingSecret: pgadmin-secret
   env:
-    email: admin@kubrix.io
+    email: pgadmin4@kubrix.io

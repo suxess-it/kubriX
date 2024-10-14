@@ -5,7 +5,7 @@ Overview how identity and access management works in our platform, at first, how
 ## High-Level Overview
 
 Keycloak is beeing installed via Helm Charts.
-User and Credentials Configuration are currently served via Helm values file (ESO is on the roadmap) [see default values files](https://github.com/suxess-it/sx-cnp-oss/tree/main/platform-apps/charts/keycloak):
+User and Credentials Configuration are currently served via Helm values file (ESO is on the roadmap) [see default values files](https://github.com/suxess-it/kubrix/tree/main/platform-apps/charts/keycloak):
 
 User are configured via __groups__:
 - __admins__: adminusers with admin entitlement
