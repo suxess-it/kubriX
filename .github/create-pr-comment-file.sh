@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -e
+
 mkdir -p out/pr
 mkdir -p out/target
 mkdir -p out-default-values/pr
@@ -15,8 +17,15 @@ for env in pr target; do
       mkdir -p ../../../out/${env}/${chart}/${valuefile}
       helm template  --include-crds ${chart} -f ${value} --output-dir ../../../out/${env}/${chart}/${valuefile}
     done
-    # get default values of subchart
-    helm show values ${chart}/charts/* > ../../../out-default-values/${env}/${chart}_default-values.out || true
+    # get default values of subcharts
+    # to compare between different subchart versions we need to write to values files without version names
+    while IFS= read -r line; do
+      subchart_name=$( echo $line | awk '{print $1}' )
+      subchart_version=$( echo $line | awk '{print $2}' )
+      for subchart in $( ls ${chart}/charts/ ); do
+        helm show values ${chart}/charts/${subchart_name}-${subchart_version}.tgz > ../../../out-default-values/${env}/${chart}_${subchart_name}_default-values.out || true
+      done
+    done <<< $( helm dependency list ${chart} |grep -v "NAME" )
   done
   cd -
 done
@@ -70,16 +79,20 @@ done
 
 echo "Concatenation completed. Total output files: $output_file_count."
 
-combined_files=$( ls combined_file* )
-for combined_file in ${combined_files} ; do
-  sed  's/DESCRIPTION_HERE/Changes Rendered Chart/g' pr/.github/pr-diff-template.txt > out/comment-diff-${combined_file}
-  sed  -e "/DIFF_HERE/{r ${combined_file}" -e "d}" out/comment-diff-${combined_file} > comment-files/comment-result-${combined_file}
-done
+
+if ls combined_file* 1> /dev/null 2>&1 ; then
+  combined_files=$( ls combined_file* )
+  for combined_file in ${combined_files} ; do
+    sed  's/DESCRIPTION_HERE/Changes Rendered Chart/g' pr/.github/pr-diff-template.txt > out/comment-diff-${combined_file}
+    sed  -e "/DIFF_HERE/{r ${combined_file}" -e "d}" out/comment-diff-${combined_file} > comment-files/comment-result-${combined_file}
+  done
+fi
 
 # default values comparison (we assume they will not be bigger than comment size limit)
 sed  's/DESCRIPTION_HERE/Changes Default Values/g' pr/.github/pr-diff-template.txt > out/comment-diff-default-values.txt
 sed  -e "/DIFF_HERE/{r out/default-values-diff.txt" -e "d}" out/comment-diff-default-values.txt > comment-files/comment-default-values-result.txt
 
+echo "matrix={\"comment-files\": $( jq -n '$ARGS.positional' --args $( ls comment-files/comment-result-* ) | tr "\n" " ")}" 
 
 # output for matrix build
 echo "matrix={\"comment-files\": $( jq -n '$ARGS.positional' --args $( ls comment-files/comment-result-* ) | tr "\n" " ")}" >> $GITHUB_OUTPUT
