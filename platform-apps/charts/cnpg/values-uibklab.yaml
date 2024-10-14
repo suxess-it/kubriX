@@ -29,6 +29,8 @@ pgadmin4:
       mountPath: /pgadmin4/config_local.py
       subPath: config_local.py
       readOnly: true
+  envVarsFromSecrets:
+    - pgadmin-secret
   serverDefinitions:
     enabled: true
     servers:
