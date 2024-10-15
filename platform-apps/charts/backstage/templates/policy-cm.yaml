@@ -4,6 +4,23 @@ metadata:
   name: rbac-policy
 data:
   rbac-policy.csv: |
-    p, role:default/guests, catalog-entity, read, allow
-    p, role:default/guests, catalog.entity.create, create, allow
-    g, group:default/team1, role:default/guests
+    p, role:default/kubrixdemo, catalog-entity, read, allow
+    p, role:default/kubrixdemo, catalog.entity.create, create, allow
+    p, role:default/kubrixdemo, catalog.entity.refresh, update, allow
+    g, group:default/team1, role:default/kubrixdemo
+
+    p, role:default/kubrixdev, catalog-entity, read, allow
+    p, role:default/kubrixdev, catalog-entity, update, allow
+    p, role:default/kubrixdev, catalog.entity.create, create, allow
+    p, role:default/kubrixdev, catalog.entity.read, read, allow
+    p, role:default/kubrixdev, catalog.location.read, read, allow
+    p, role:default/kubrixdev, catalog.location.create, create, allow
+    p, role:default/kubrixdev, scaffolder-action, use, allow
+    p, role:default/kubrixdev, scaffolder-template, read, allow
+    p, role:default/kubrixdev, scaffolder.task.read, read, allow
+    p, role:default/kubrixdev, scaffolder.task.create, create, allow
+    p, role:default/kubrixdev, scaffolder.task.cancel, use, allow
+    p, role:default/kubrixdev, kubernetes.proxy, use, allow
+    p, role:default/kubrixdev, argocd.view.read, read, allow
+    g, group:default/users, role:default/kubrixdev
+    g, group:default/team-a, role:default/kubrixdev
