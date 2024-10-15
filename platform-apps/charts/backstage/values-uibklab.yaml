@@ -15,6 +15,7 @@ backstage:
     serviceMonitor:
       enabled: true
   backstage:
+    command: ["node", "--require", "./instrumentation.js", "packages/backend"]
     image:
       registry: ghcr.io/suxess-it
       repository: sx-backstage
@@ -32,8 +33,14 @@ backstage:
 #        value: "debug"
 #      - name: OTEL_LOG_LEVEL
 #        value: "debug"
-
-
+    extraVolumes:
+      - configMap:
+          defaultMode: 420
+          name: rbac-policy
+        name: rbac-policy
+    extraVolumeMounts:
+      - name: rbac-policy
+        mountPath: /opt/app-root/src/rbac
     appConfig:
       app:
         title: sX CNP App
@@ -365,6 +372,29 @@ backstage:
         # Add it in case your JIRA instance is connected to Confluence, in order to filter those activities
         # confluenceActivityFilter: wiki@uuid
         # Defaults to latest and can be omitted if you want to use the latest version of the api
+      permission:
+        enabled: true
+        rbac:
+          pluginsWithPermission:
+            - kubernetes
+            - catalog
+            - policy
+            - scaffolder
+            - rbac
+ #           - techdocs
+          maxDepth: 1
+          admin:
+            users:
+              - name: group:default/uibklab
+            superUsers:
+              - name: user:default/demoadmin
+              - name: user:default/phac008
+              - name: user:default/jkleinlercher
+          policies-csv-file: /opt/app-root/src/rbac/rbac-policy.csv
+          policyFileReload: true
+          database:
+            enabled: true
+
 ## pgdb
 cluster:
   type: postgresql
