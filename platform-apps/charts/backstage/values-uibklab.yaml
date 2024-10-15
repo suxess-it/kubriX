@@ -33,7 +33,9 @@ backstage:
 #        value: "debug"
 #      - name: OTEL_LOG_LEVEL
 #        value: "debug"
-
+    extraAppConfig:
+      - filename: rbac-policy.csv
+        configMapRef: rbac-policy
     appConfig:
       app:
         title: sX CNP App
@@ -381,6 +383,8 @@ backstage:
               - name: user:default/demoadmin
               - name: user:default/phac008
               - name: user:default/jkleinlercher
+          policies-csv-file: ./rbac-policy.csv
+          policyFileReload: true
 
 ## pgdb
 cluster:
