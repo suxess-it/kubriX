@@ -377,16 +377,23 @@ backstage:
         rbac:
           pluginsWithPermission:
             - kubernetes
+            - catalog
+            - policy
+            - scaffolder
+            - rbac
+ #           - techdocs
           maxDepth: 1
           admin:
             users:
               - name: group:default/uibklab
             superUsers:
-              - name: group:default/admins
+              - name: user:default/demoadmin
               - name: user:default/phac008
               - name: user:default/jkleinlercher
           policies-csv-file: /opt/app-root/src/rbac/rbac-policy.csv
           policyFileReload: true
+          database:
+            enabled: true
 
 ## pgdb
 cluster:
