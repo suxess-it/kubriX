@@ -65,7 +65,7 @@ jobs:
           GITHUB_APPSET_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         shell: bash
         run: |
-          curl -L https://raw.githubusercontent.com/${CURRENT_REPOSITORY}/${CURRENT_BRANCH}/install-platform.sh | bash
+          ./install-platform.sh
 
       - name: argocd show diff
         if: always()
