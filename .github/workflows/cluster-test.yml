@@ -73,8 +73,8 @@ jobs:
           TARGET_TYPE: ${{ matrix.target-type }}
         shell: bash
         run: |
-          URL=https://raw.githubusercontent.com/${CURRENT_REPOSITORY}/${CURRENT_BRANCH}/platform-apps/target-chart/values-$(echo ${TARGET_TYPE} | awk '{print tolower($0)}').yaml
-          argocd_apps=$(curl -L $URL | awk '/^  - name:/ { printf "%s", "sx-"$3" "}' )
+          target_chart_values_file=platform-apps/target-chart/values-$(echo ${TARGET_TYPE} | awk '{print tolower($0)}').yaml
+          argocd_apps=$(cat $target_chart_values_file | awk '/^  - name:/ { printf "%s", "sx-"$3" "}' )
           curl -kL -o argocd https://argocd-127-0-0-1.nip.io/download/argocd-linux-amd64
           chmod u+x argocd
           ls -l
