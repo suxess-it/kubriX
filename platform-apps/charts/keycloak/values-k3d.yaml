@@ -67,6 +67,11 @@ deployments:
           lastName: admin
           email: "demoadmin@platform-engineer.cloud"
           password: "test"
+        - name: team1user
+          firstName: team1
+          lastName: demouser
+          email: "team1user@platform-engineer.cloud"
+          password: "test"
       groups:
         - name: admins
           members:
@@ -74,11 +79,12 @@ deployments:
             - demoadmin
         - name: team1
           members:
-            - demouser
+            - team1user
         - name: users
           members: 
             - phac
             - jokl
+            - demouser
         - name: backstage-admin # for service-account permission workaround
     # backstage client
     backstageclient:
