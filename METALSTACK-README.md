@@ -50,12 +50,16 @@ rm credentials
 ### 3. define some variables so the platform can access github
 
 ```
-export GITHUB_CLIENTSECRET=<value from steps above>
-export GITHUB_CLIENTID=<value from steps above>
-export GITHUB_TOKEN=<your personal access token>
-export GITHUB_APPSET_TOKEN=<github-pat-for-argocd-appsets-only-read-permissions-needed>
-export CURRENT_BRANCH=main
+export KUBRIX_GITHUB_CLIENTSECRET=<value from steps above>
+export KUBRIX_GITHUB_CLIENTID=<value from steps above>
+export KUBRIX_GITHUB_TOKEN=<your personal access token>
+export KUBRIX_GITHUB_APPSET_TOKEN=<github-pat-for-argocd-appsets-only-read-permissions-needed>
+# set target type to the platform stack you want to install
 export TARGET_TYPE=METALSTACK
+# if you want to test another branch, specify something else than main
+export CURRENT_BRANCH=main
+# set the current repository to the origin or to your fork
+export CURRENT_REPOSITORY=suxess-it/sx-cnp-oss
 ```
 
 ### 4. install platform on metalstack cluster
