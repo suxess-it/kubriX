@@ -1,6 +1,6 @@
 # Onboarding teams and apps
 
-According to the ADR [Onboarding teams in a gitops way](https://github.com/suxess-it/sx-cnp-oss/blob/main/backstage-resources/adr/0001-gitops-onboarding-teams.md) we are currently working with the approach [apps-in-any-namespace and multi-tenant kyverno-policies](https://github.com/suxess-it/sx-cnp-oss/blob/main/backstage-resources/adr/0001-gitops-onboarding-teams.md#apps-in-any-namespace-and-multi-tenant-kyverno-policies).
+According to the ADR [Onboarding teams in a gitops way](https://github.com/suxess-it/kubriX/blob/main/backstage-resources/adr/0001-gitops-onboarding-teams.md) we are currently working with the approach [apps-in-any-namespace and multi-tenant kyverno-policies](https://github.com/suxess-it/kubriX/blob/main/backstage-resources/adr/0001-gitops-onboarding-teams.md#apps-in-any-namespace-and-multi-tenant-kyverno-policies).
 
 For detailed explanations how this approach works, please read through the ADR.
 
@@ -48,16 +48,16 @@ It is up to you or your dev-teams what they like more. The good thing is, each d
 
 ### add new team and configuration in team-onboarding chart
 
-add a new team in this [teams-array](https://github.com/suxess-it/sx-cnp-oss/blob/d2edfc78fe31109f3b33dcd4071a5247ab4abad1/platform-apps/charts/team-onboarding/values-k3d.yaml#L1-L18) with the corresponding attributes.
+add a new team in this [teams-array](https://github.com/suxess-it/kubriX/blob/d2edfc78fe31109f3b33dcd4071a5247ab4abad1/platform-apps/charts/team-onboarding/values-k3d.yaml#L1-L18) with the corresponding attributes.
 
 #### app-onboarding options
-with [appOfAppsRepo](https://github.com/suxess-it/sx-cnp-oss/blob/d2edfc78fe31109f3b33dcd4071a5247ab4abad1/platform-apps/charts/team-onboarding/values-k3d.yaml#L13-L16) we define a gitops-repo where the dev-team can create its own application definitions. Still, it is automatically restricted that these applications can only belong to the teams argocd app-project.
+with [appOfAppsRepo](https://github.com/suxess-it/kubriX/blob/d2edfc78fe31109f3b33dcd4071a5247ab4abad1/platform-apps/charts/team-onboarding/values-k3d.yaml#L13-L16) we define a gitops-repo where the dev-team can create its own application definitions. Still, it is automatically restricted that these applications can only belong to the teams argocd app-project.
 
-with [multiStageKargoAppSet](https://github.com/suxess-it/sx-cnp-oss/blob/d2edfc78fe31109f3b33dcd4071a5247ab4abad1/platform-apps/charts/team-onboarding/values-k3d.yaml#L17-L18) an ApplicationSet is automatically created in the adn-<team> namespace which constantly searches for corresponding gitops-repos and adds new applications automatically in the adn-<team> namespace. This special ApplicationSet creates an application per stage defined in an `app-stages.yaml` like this [example](https://github.com/suxess-it/team1-demo-app1/blob/main/app-stages.yaml) and adds kargo project, warehouse and stages to the cluster.
+with [multiStageKargoAppSet](https://github.com/suxess-it/kubriX/blob/d2edfc78fe31109f3b33dcd4071a5247ab4abad1/platform-apps/charts/team-onboarding/values-k3d.yaml#L17-L18) an ApplicationSet is automatically created in the adn-<team> namespace which constantly searches for corresponding gitops-repos and adds new applications automatically in the adn-<team> namespace. This special ApplicationSet creates an application per stage defined in an `app-stages.yaml` like this [example](https://github.com/suxess-it/team1-demo-app1/blob/main/app-stages.yaml) and adds kargo project, warehouse and stages to the cluster.
 
 ### check if multi-tenant kyverno-policies get applied
 
-we set them in [kyverno-policies array](https://github.com/suxess-it/sx-cnp-oss/blob/98f8990c888b60283f3c3f51ac19c505b71e8141/platform-apps/charts/kyverno/values.yaml#L1)
+we set them in [kyverno-policies array](https://github.com/suxess-it/kubriX/blob/98f8990c888b60283f3c3f51ac19c505b71e8141/platform-apps/charts/kyverno/values.yaml#L1)
 
 currently there is just a limitrange and resourcequota resource generated, networkpolicies and others will follow.
 
@@ -77,15 +77,15 @@ The repo organization must match the organization defined in the team-onboarding
 
 Then apps for each stage in the app-stage.yaml get created, and a corresponding kargo project, warehouse and stages which is responsible for git-promotion to production.
 
-This approach does lots of things out-of-the-box and is good, as long as you are fine with the standards the ApplicationSet and the [Application-Helm-Chart](https://github.com/suxess-it/sx-cnp-oss/blob/main/team-apps/onboarding-apps-charts/multi-stage-app-with-kargo-pipeline/README.md#applicationset-with-scm-provider) define.
+This approach does lots of things out-of-the-box and is good, as long as you are fine with the standards the ApplicationSet and the [Application-Helm-Chart](https://github.com/suxess-it/kubriX/blob/main/team-apps/onboarding-apps-charts/multi-stage-app-with-kargo-pipeline/README.md#applicationset-with-scm-provider) define.
 
 ### use some platform helm-chart as a source for an applicationset
 
 the same Application-Helm-Chart as in the option before can also be used directly in an ApplicationSet which the dev-team just creates in ins team-app-of-apps-repo, like https://github.com/suxess-it/team1-apps/blob/main/k3d-apps/example-multi-stage-app-with-kargo.yaml.
 
 describe in
-- https://github.com/suxess-it/sx-cnp-oss/blob/main/backstage-resources/adr/0002-gitops-onboarding-apps.md#applicationset-with-parent-helm-chart
-- or in https://github.com/suxess-it/sx-cnp-oss/blob/main/backstage-resources/adr/0002-gitops-onboarding-apps.md#applicationset-with-configjson-representing-a-parent-helm-chart
+- https://github.com/suxess-it/kubriX/blob/main/backstage-resources/adr/0002-gitops-onboarding-apps.md#applicationset-with-parent-helm-chart
+- or in https://github.com/suxess-it/kubriX/blob/main/backstage-resources/adr/0002-gitops-onboarding-apps.md#applicationset-with-configjson-representing-a-parent-helm-chart
 
 ### deploy applications as you want
 

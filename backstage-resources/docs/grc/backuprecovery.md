@@ -5,7 +5,7 @@ Overview how backup/recovery works in our platform, at first, how initial setup 
 ## High-Level Overview
 
 Velero and Velero UI is beeing installed via Helm Charts.
-User Credentials are served via Vault and exposed by External Secrets Operator, currently [default values](https://github.com/suxess-it/sx-cnp-oss/blob/36a080dcc13c23d3d514fbba24e5dce79d29dcdb/platform-apps/charts/vault/templates/crossplane/cp-kv2-demosecretjson.yaml) are used:
+User Credentials are served via Vault and exposed by External Secrets Operator, currently [default values](https://github.com/suxess-it/kubriX/blob/36a080dcc13c23d3d514fbba24e5dce79d29dcdb/platform-apps/charts/vault/templates/crossplane/cp-kv2-demosecretjson.yaml) are used:
 
 ## Customizing Metrics
 In Local Demo Environment we use uploaderType restic and set defaultVolumeToFsBackup to true, in production environment we suggest you to use Kopia, CSI Snapshotting and DataMover for efficient Backup Strategy. This is also due to restic beeing deprecated in next Velero Releases.
