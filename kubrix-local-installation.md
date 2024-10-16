@@ -45,8 +45,18 @@ export CURRENT_REPOSITORY=suxess-it/sx-cnp-oss
 
 ## 2. install platform-stack
 
+clone the upstream repo (or your personal fork) and optionally switch to specific branch
+
 ```
-curl -L https://raw.githubusercontent.com/${CURRENT_REPOSITORY}/${CURRENT_BRANCH}/install-platform.sh | bash
+git clone https://github.com/suxess-it/kubriX.git
+cd kubriX
+checkout ${CURRENT_BRANCH}
+```
+
+and install specific stack
+
+```
+./install-platform.sh
 ```
 
 With this command a new k3d cluster gets created.
