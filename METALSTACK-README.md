@@ -54,18 +54,26 @@ export GITHUB_CLIENTSECRET=<value from steps above>
 export GITHUB_CLIENTID=<value from steps above>
 export GITHUB_TOKEN=<your personal access token>
 export GITHUB_APPSET_TOKEN=<github-pat-for-argocd-appsets-only-read-permissions-needed>
+export CURRENT_BRANCH=main
+export TARGET_TYPE=METALSTACK
 ```
 
 ### 4. install platform on metalstack cluster
 
+clone the upstream repo (or your personal fork) and optionally switch to specific branch
+
 ```
-export TARGET_TYPE=METALSTACK
-# if you want to test another branch, specify something else than main
-export CURRENT_BRANCH=main
-curl -L https://raw.githubusercontent.com/suxess-it/sx-cnp-oss/${CURRENT_BRANCH}/install-platform.sh | bash
+git clone https://github.com/suxess-it/kubriX.git
+cd kubriX
+checkout ${CURRENT_BRANCH}
 ```
 
-With this command a new k3d cluster gets created.
+and install specific stack
+
+```
+./install-platform.sh
+```
+
 A "bootstrap argocd" get's installed via helm.
 A "boostrap-app" gets installed which references all other apps in the plattform-stack (app-of-apps pattern)
 ArgoCD itself is also then managed by an argocd app.
