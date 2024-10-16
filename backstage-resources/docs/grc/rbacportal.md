@@ -30,7 +30,7 @@ app-config.yaml:
           policyFileReload: true
           database:
             enabled: true
-````
+```
 
 rbac-policy.csv:
 ```
