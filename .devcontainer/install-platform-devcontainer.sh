@@ -27,13 +27,14 @@ else
 fi
 
 # this runs in background each time the container starts
-export CURRENT_BRANCH=$( git rev-parse --abbrev-ref HEAD )
+export KUBRIX_REPO_BRANCH=$( git rev-parse --abbrev-ref HEAD )
+# codespace always use the github repository where they are started,
+# on local machine it should use the remote origin repo
 if [ ${CODESPACES} ]; then
-  export CURRENT_REPOSITORY=${GITHUB_REPOSITORY}
+  export KUBRIX_REPO="https://github.com/${GITHUB_REPOSITORY}"
 else
-  export CURRENT_REPOSITORY=$( git config --get remote.origin.url | sed 's/^https:\/\/github.com\///g' | sed 's/.git$//g' )
+  export KUBRIX_REPO=$( git config --get remote.origin.url)
 fi
-#export CREATE_K3D_CLUSTER=true
 
 # install mkcert
 if [ ! -x /usr/local/bin/mkcert ]; then
@@ -67,15 +68,15 @@ fi
 
 # here we can add some NodePort objects if we want to open ports before the apps are installed
 
-if [[ ${TARGET_TYPE} == "KIND-DELIVERY" ]] ; then
+if [[ ${KUBRIX_TARGET_TYPE} == "KIND-DELIVERY" ]] ; then
   kubectl create namespace kargo --dry-run=client -o yaml | kubectl apply -f -
   kubectl apply -f .devcontainer/kargo-nodeport.yaml
 
-elif  [[ ${TARGET_TYPE} == "KIND-OBSERVABILITY" ]] ; then
+elif  [[ ${KUBRIX_TARGET_TYPE} == "KIND-OBSERVABILITY" ]] ; then
   kubectl create namespace grafana --dry-run=client -o yaml | kubectl apply -f -
   kubectl apply -f .devcontainer/grafana-nodeport.yaml
 
-elif  [[ ${TARGET_TYPE} == "KIND-SECURITY" ]] ; then
+elif  [[ ${KUBRIX_TARGET_TYPE} == "KIND-SECURITY" ]] ; then
   kubectl create namespace keycloak --dry-run=client -o yaml | kubectl apply -f -
   kubectl apply -f .devcontainer/keycloak-nodeport.yaml
 
@@ -92,23 +93,23 @@ kubectl apply -f .devcontainer/keycloak-nodeport.yaml
 
 ./install-platform.sh
 
-if [[ ${TARGET_TYPE} == "KIND-DELIVERY" ]] ; then
+if [[ ${KUBRIX_TARGET_TYPE} == "KIND-DELIVERY" ]] ; then
   echo "kubrix delivery is set up sucessfully."
   echo "Kargo url: https://${CODESPACE_NAME}-6689.${GITHUB_CODESPACES_PORT_FORWARDING_DOMAIN}"
   echo "Kargo password: admin"
 
-elif  [[ ${TARGET_TYPE} == "KIND-OBSERVABILITY" ]] ; then
+elif  [[ ${KUBRIX_TARGET_TYPE} == "KIND-OBSERVABILITY" ]] ; then
   echo "kubrix observability is set up sucessfully."
   echo "Grafana url: https://${CODESPACE_NAME}-6690.${GITHUB_CODESPACES_PORT_FORWARDING_DOMAIN}"
   echo "Grafana user: admin"
   echo "Grafana password: prom-operator"
 
-elif  [[ ${TARGET_TYPE} == "KIND-PORTAL" ]] ; then
+elif  [[ ${KUBRIX_TARGET_TYPE} == "KIND-PORTAL" ]] ; then
   echo "kubrix portal is set up sucessfully."
   echo "Backstage url: https://${CODESPACE_NAME}-6691.${GITHUB_CODESPACES_PORT_FORWARDING_DOMAIN}"
   echo "Keycloak url: https://${CODESPACE_NAME}-6692.${GITHUB_CODESPACES_PORT_FORWARDING_DOMAIN}"
 
-elif  [[ ${TARGET_TYPE} == "KIND-SECURITY" ]] ; then
+elif  [[ ${KUBRIX_TARGET_TYPE} == "KIND-SECURITY" ]] ; then
   echo "kubrix portal is set up sucessfully."
   echo "Keycloak url: https://${CODESPACE_NAME}-6692.${GITHUB_CODESPACES_PORT_FORWARDING_DOMAIN}"
   echo "Falco url: https://${CODESPACE_NAME}-6693.${GITHUB_CODESPACES_PORT_FORWARDING_DOMAIN}"
