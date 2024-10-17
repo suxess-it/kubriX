@@ -18,7 +18,7 @@ concurrency:
 
 env:
   KUBRIX_REPO_BRANCH: ${{ github.head_ref || github.ref_name }}
-  KUBRIX_REPO: ${{ github.repository }}
+  KUBRIX_REPO: "http://github.com/${{ github.repository }}"
   
 jobs:
   create-cluster:
@@ -63,6 +63,8 @@ jobs:
           KUBRIX_GITHUB_CLIENTID: "dummy"
           KUBRIX_GITHUB_TOKEN: "dummy"
           KUBRIX_GITHUB_APPSET_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          KUBRIX_REPO_PASSWORD: ${{ secrets.GITHUB_TOKEN }}
+          KUBRIX_REPO_USERNAME: "dummy"
         shell: bash
         run: |
           ./install-platform.sh
