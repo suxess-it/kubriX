@@ -39,7 +39,7 @@ jobs:
       - name: Create k8s Kind Cluster
         uses: helm/kind-action@v1
         with:
-          cluster_name: sx-cnp-oss-cluster
+          cluster_name: kubrix-cluster
           config: ${{ github.workspace }}/.github/kind-config.yaml
           
       - name: install mkcert
@@ -56,7 +56,7 @@ jobs:
           sudo dpkg -i k8sgpt_amd64.deb
           k8sgpt analyze
 
-      - name: install sx-cnp-oss full stack 
+      - name: install kubriX stack
         env:
           KUBRIX_TARGET_TYPE: ${{ matrix.target-type }}
           KUBRIX_GITHUB_CLIENTSECRET: "dummy"
@@ -100,7 +100,7 @@ jobs:
         shell: bash
         run: |
           echo "===== node describe ======"
-          kubectl describe node sx-cnp-oss-cluster-control-plane
+          kubectl describe node kubrix-cluster-control-plane
           echo "===== node top  ======"
           kubectl top node
           echo "===== node yaml ======"
