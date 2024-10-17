@@ -29,24 +29,40 @@ use GITHUB_CLIENTSECRET and GITHUB_CLIENTID from your Github OAuth App for the f
 For the installation some variables are needed:
 
 ```
+# Github clientsecret and clientid from GitHub OAuth App for Backstage
 export KUBRIX_GITHUB_CLIENTSECRET=<value from steps above>
 export KUBRIX_GITHUB_CLIENTID=<value from steps above>
+# Github token Backstage uses to get the catalog yaml form github
 export KUBRIX_GITHUB_TOKEN=<your personal access token>
+# Github token ArgoCD uses for the SCM Provider
 export KUBRIX_GITHUB_APPSET_TOKEN=<github-pat-for-argocd-appsets-only-read-permissions-needed>
-# set target type to the platform stack you want to install
-export TARGET_TYPE=KIND-DELIVERY
-# if a K3d cluster should get created:
-export CREATE_K3D_CLUSTER=true
-# if you want to test another branch, specify something else than main
-export CURRENT_BRANCH=main
 # set the current repository to the origin or to your fork
-export CURRENT_REPOSITORY=suxess-it/sx-cnp-oss
+export KUBRIX_REPO=https://github.com/suxess-it/kubriX.git
+# if you want to test another branch, specify something else than main
+export KUBRIX_REPO_BRANCH=main
+# username and password for ArgoCDs kubriX repository
+export KUBRIX_REPO_USERNAME=<kubrix-repo-username>
+export KUBRIX_REPO_PASSWORD=<kubrix-repo-password-or-token>
+export KUBRIX_TARGET_TYPE=KIND-DELIVERY
+# if a K3d cluster should get created:
+export KUBRIX_CREATE_K3D_CLUSTER=true
 ```
 
 ## 2. install platform-stack
 
+clone the upstream repo (or your personal fork) and optionally switch to specific branch
+
 ```
-curl -L https://raw.githubusercontent.com/${CURRENT_REPOSITORY}/${CURRENT_BRANCH}/install-platform.sh | bash
+git clone ${KUBRIX_REPO}
+# change to repo directory (if it is something else then kubriX, please change)
+cd kubriX
+checkout ${KUBRIX_REPO_BRANCH}
+```
+
+and install specific stack
+
+```
+./install-platform.sh
 ```
 
 With this command a new k3d cluster gets created.
@@ -103,6 +119,6 @@ tbd
 ## delete k3d cluster
 
 ```
-k3d cluster stop cnp-local-demo
-k3d cluster delete cnp-local-demo
+k3d cluster stop kubrix-local-demo
+k3d cluster delete kubrix-local-demo
 ```
