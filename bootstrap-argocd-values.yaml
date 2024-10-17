@@ -1,6 +1,8 @@
 global:
   domain: argocd-127-0-0-1.nip.io
 configs:
+  params:
+    server.insecure: true
   cm:
     resource.customizations: |
       argoproj.io/Application:
