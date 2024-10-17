@@ -66,11 +66,15 @@ helm install sx-argocd argo-cd \
   -f bootstrap-argocd-values.yaml \
   --wait
 
+
+
 # add a repo so that private repos (e.g. private gitlab repos are also accessable)
 # note: this is just for initial bootstrap. this repo should of course then also
 # be configured in the argocd chart as a external-secrets template in the kubriX stack.
 # see https://argo-cd.readthedocs.io/en/stable/operator-manual/declarative-setup/#repositories
 export ARGOCD_HOSTNAME=$(kubectl get ingress -o jsonpath='{.items[*].spec.rules[*].host}' -n argocd)
+# sleep 10 seconds because ingress/service/pod is not available otherwise
+sleep 10
 # download argocd
 curl -kL -o argocd https://${ARGOCD_HOSTNAME}/download/argocd-linux-amd64
 chmod u+x argocd
