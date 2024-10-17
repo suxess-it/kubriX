@@ -29,7 +29,6 @@ use GITHUB_CLIENTSECRET and GITHUB_CLIENTID from your Github OAuth App for the f
 For the installation some variables are needed:
 
 ```
-```
 # Github clientsecret and clientid from GitHub OAuth App for Backstage
 export KUBRIX_GITHUB_CLIENTSECRET=<value from steps above>
 export KUBRIX_GITHUB_CLIENTID=<value from steps above>
