@@ -17,8 +17,8 @@ concurrency:
   cancel-in-progress: true
 
 env:
-  CURRENT_BRANCH: ${{ github.head_ref || github.ref_name }}
-  CURRENT_REPOSITORY: ${{ github.repository }}
+  KUBRIX_REPO_BRANCH: ${{ github.head_ref || github.ref_name }}
+  KUBRIX_REPO: ${{ github.repository }}
   
 jobs:
   create-cluster:
@@ -58,11 +58,11 @@ jobs:
 
       - name: install sx-cnp-oss full stack 
         env:
-          TARGET_TYPE: ${{ matrix.target-type }}
-          GITHUB_CLIENTSECRET: "dummy"
-          GITHUB_CLIENTID: "dummy"
-          GITHUB_TOKEN: "dummy"
-          GITHUB_APPSET_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          KUBRIX_TARGET_TYPE: ${{ matrix.target-type }}
+          KUBRIX_GITHUB_CLIENTSECRET: "dummy"
+          KUBRIX_GITHUB_CLIENTID: "dummy"
+          KUBRIX_GITHUB_TOKEN: "dummy"
+          KUBRIX_GITHUB_APPSET_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         shell: bash
         run: |
           ./install-platform.sh
@@ -70,10 +70,10 @@ jobs:
       - name: argocd show diff
         if: always()
         env:
-          TARGET_TYPE: ${{ matrix.target-type }}
+          KUBRIX_TARGET_TYPE: ${{ matrix.target-type }}
         shell: bash
         run: |
-          target_chart_values_file=platform-apps/target-chart/values-$(echo ${TARGET_TYPE} | awk '{print tolower($0)}').yaml
+          target_chart_values_file=platform-apps/target-chart/values-$(echo ${KUBRIX_TARGET_TYPE} | awk '{print tolower($0)}').yaml
           argocd_apps=$(cat $target_chart_values_file | awk '/^  - name:/ { printf "%s", "sx-"$3" "}' )
           curl -kL -o argocd https://argocd-127-0-0-1.nip.io/download/argocd-linux-amd64
           chmod u+x argocd

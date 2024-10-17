@@ -50,26 +50,33 @@ rm credentials
 ### 3. define some variables so the platform can access github
 
 ```
+# Github clientsecret and clientid from GitHub OAuth App for Backstage
 export KUBRIX_GITHUB_CLIENTSECRET=<value from steps above>
 export KUBRIX_GITHUB_CLIENTID=<value from steps above>
+# Github token Backstage uses to get the catalog yaml form github
 export KUBRIX_GITHUB_TOKEN=<your personal access token>
+# Github token ArgoCD uses for the SCM Provider
 export KUBRIX_GITHUB_APPSET_TOKEN=<github-pat-for-argocd-appsets-only-read-permissions-needed>
-# set target type to the platform stack you want to install
-export TARGET_TYPE=METALSTACK
-# if you want to test another branch, specify something else than main
-export CURRENT_BRANCH=main
 # set the current repository to the origin or to your fork
-export CURRENT_REPOSITORY=suxess-it/sx-cnp-oss
+export KUBRIX_REPO=https://github.com/suxess-it/kubriX.git
+# if you want to test another branch, specify something else than main
+export KUBRIX_REPO_BRANCH=main
+# username and password for ArgoCDs kubriX repository
+export KUBRIX_REPO_USERNAME=<kubrix-repo-username>
+export KUBRIX_REPO_PASSWORD=<kubrix-repo-password-or-token>
+# set target type to the platform stack you want to install
+export KUBRIX_TARGET_TYPE=METALSTACK
 ```
 
-### 4. install platform on metalstack cluster
+### 4. install platform-stack
 
 clone the upstream repo (or your personal fork) and optionally switch to specific branch
 
 ```
-git clone https://github.com/suxess-it/kubriX.git
+git clone ${KUBRIX_REPO}
+# change to repo directory (if it is something else then kubriX, please change)
 cd kubriX
-checkout ${CURRENT_BRANCH}
+checkout ${KUBRIX_REPO_BRANCH}
 ```
 
 and install specific stack
