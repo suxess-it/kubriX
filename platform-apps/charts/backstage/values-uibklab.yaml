@@ -56,6 +56,11 @@ backstage:
         auth:
           keys:
             - secret: ${BACKEND_SECRET}
+          externalAccess:
+          - type: static
+            options:
+              token: ${EXTERNAL_ACCESS_TOKEN}
+              subject: admincurlaccess          
         baseUrl: https://backstage.lab.suxessit.k8s.cloud.uibk.ac.at
         listen:
           port: 7007
