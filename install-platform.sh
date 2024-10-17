@@ -9,7 +9,7 @@ if [ "${KUBRIX_CREATE_K3D_CLUSTER}" == true ] ; then
   # do we need to set this always? I had DNS issues on the train
   export K3D_FIX_DNS=1
   
-  k3d cluster create cnp-local-demo \
+  k3d cluster create kubrix-local-demo \
     -p "80:80@loadbalancer" \
     -p "443:443@loadbalancer" \
     --k3s-arg '--cluster-init@server:0' \

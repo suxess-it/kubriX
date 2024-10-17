@@ -120,6 +120,6 @@ tbd
 ## delete k3d cluster
 
 ```
-k3d cluster stop cnp-local-demo
-k3d cluster delete cnp-local-demo
+k3d cluster stop kubrix-local-demo
+k3d cluster delete kubrix-local-demo
 ```
