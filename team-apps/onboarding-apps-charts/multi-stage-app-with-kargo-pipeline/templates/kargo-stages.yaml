@@ -5,17 +5,40 @@ metadata:
   name: {{ .name }}
   namespace: {{ tpl $.Values.kargoProject $ }}
 spec:
-spec:
 {{- with .requestedFreight }}
   requestedFreight:
   {{- tpl ( toYaml .) $ | nindent 4 }}
 {{- end }}
-  promotionMechanisms:
-    gitRepoUpdates:
-    - repoURL: {{ $.Values.repoUrl }}
-      writeBranch: stages/{{ .name }}
-    argoCDAppUpdates:
-    - appName: {{ $.Values.appName }}-{{ .name }}
-      appNamespace: {{ $.Release.Namespace }}
+  promotionTemplate:
+    spec:
+      steps:
+      - uses: git-clone
+        config:
+          repoURL: {{ $.Values.repoUrl }}
+          checkout:
+          - fromFreight: true
+            path: ./src
+          - branch: stages/{{ .name }}
+            create: true
+            path: ./out
+      - uses: git-clear
+        config:
+          path: ./out
+      - uses: copy
+        config:
+          inPath: ./src
+          outPath: ./out
+      - uses: git-push
+        config:
+          path: ./out
+          targetBranch: stages/{{ .name }}
+      - uses: argocd-update
+        config:
+          apps:
+          - name: {{ $.Values.appName }}-{{ .name }}
+            namespace: {{ $.Release.Namespace }}
+            sources:
+            - repoURL: {{ $.Values.repoUrl }}
+              desiredCommitFromStep: commit
 ---
 {{- end }}
