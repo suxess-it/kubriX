@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  labels:
+    grafana_dashboard: "1"
+  name: cnpg-dashboard
+data:
+  cnpg-dashboard.json: |-
+{{ .Files.Get "dashboard-files/cnpg-dashboard.json" | indent 4 }}

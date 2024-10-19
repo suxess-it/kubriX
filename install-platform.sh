@@ -2,11 +2,14 @@
 
 set -x
 
-if [ "${CREATE_K3D_CLUSTER}" == true ] ; then
+# dump all kubrix variables
+env | grep KUBRIX
+
+if [ "${KUBRIX_CREATE_K3D_CLUSTER}" == true ] ; then
   # do we need to set this always? I had DNS issues on the train
   export K3D_FIX_DNS=1
   
-  k3d cluster create cnp-local-demo \
+  k3d cluster create kubrix-local-demo \
     -p "80:80@loadbalancer" \
     -p "443:443@loadbalancer" \
     --k3s-arg '--cluster-init@server:0' \
@@ -15,7 +18,7 @@ if [ "${CREATE_K3D_CLUSTER}" == true ] ; then
     --wait
 fi
 
-if [[ "${TARGET_TYPE}" =~ ^KIND.* ]] ; then
+if [[ "${KUBRIX_TARGET_TYPE}" =~ ^KIND.* ]] ; then
   # create mkcert certs in alle namespaces with ingress
   for namespace in backstage kargo grafana argocd keycloak komoplane kubecost falco minio velero velero-ui vault; do
     kubectl create namespace ${namespace}
@@ -37,7 +40,7 @@ if [[ "${TARGET_TYPE}" =~ ^KIND.* ]] ; then
 
   # do not install kind nginx-controller and metrics-server on k3d cluster
   # since kind nginx only works on kind cluster and metrics-server is already installed on k3d
-  if [[ ${CREATE_K3D_CLUSTER} != true ]] ; then
+  if [[ ${KUBRIX_CREATE_K3D_CLUSTER} != true ]] ; then
     # and install nginx ingress-controller
     kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/main/deploy/static/provider/kind/deploy.yaml
     kubectl wait --namespace ingress-nginx \
@@ -60,8 +63,25 @@ helm install sx-argocd argo-cd \
   --namespace argocd \
   --create-namespace \
   --set configs.cm.application.resourceTrackingMethod=annotation \
-  -f https://raw.githubusercontent.com/${CURRENT_REPOSITORY}/${CURRENT_BRANCH}/bootstrap-argocd-values.yaml \
+  -f bootstrap-argocd-values.yaml \
   --wait
+
+
+
+# add a repo so that private repos (e.g. private gitlab repos are also accessable)
+# note: this is just for initial bootstrap. this repo should of course then also
+# be configured in the argocd chart as a external-secrets template in the kubriX stack.
+# see https://argo-cd.readthedocs.io/en/stable/operator-manual/declarative-setup/#repositories
+export ARGOCD_HOSTNAME=$(kubectl get ingress -o jsonpath='{.items[*].spec.rules[*].host}' -n argocd)
+# sleep 10 seconds because ingress/service/pod is not available otherwise
+sleep 10
+# download argocd
+curl -kL -o argocd https://${ARGOCD_HOSTNAME}/download/argocd-linux-amd64
+chmod u+x argocd
+INITIAL_ARGOCD_PASSWORD=$( kubectl get secret -n argocd argocd-initial-admin-secret -o=jsonpath={'.data.password'} | base64 -d )
+./argocd login ${ARGOCD_HOSTNAME} --grpc-web --insecure --username admin --password ${INITIAL_ARGOCD_PASSWORD}
+./argocd repo add ${KUBRIX_REPO} --username ${KUBRIX_REPO_USERNAME} --password ${KUBRIX_REPO_PASSWORD}
+rm argocd
 
 # create secret for scm applicationset in team app definition namespaces
 # see https://github.com/suxess-it/sx-cnp-oss/issues/214 for a sustainable solution
@@ -70,18 +90,18 @@ helm install sx-argocd argo-cd \
 #  kubectl create secret generic appset-github-token --from-literal=token=${KUBRIX_GITHUB_APPSET_TOKEN} -n ${ns}
 #done
 
-CURRENT_BRANCH_SED=$( echo ${CURRENT_BRANCH} | sed 's/\//\\\//g' )
-CURRENT_REPOSITORY_SED=$( echo ${CURRENT_REPOSITORY} | sed 's/\//\\\//g' )
+KUBRIX_REPO_BRANCH_SED=$( echo ${KUBRIX_REPO_BRANCH} | sed 's/\//\\\//g' )
+KUBRIX_REPO_SED=$( echo ${KUBRIX_REPO} | sed 's/\//\\\//g' )
 
 # bootstrap-app
-curl -L https://raw.githubusercontent.com/${CURRENT_REPOSITORY}/${CURRENT_BRANCH}/bootstrap-app-$(echo ${TARGET_TYPE} | awk '{print tolower($0)}').yaml | sed "s/targetRevision: main/targetRevision: ${CURRENT_BRANCH_SED}/g" | sed "s/suxess-it\/sx-cnp-oss/${CURRENT_REPOSITORY_SED}/g" | kubectl apply -n argocd -f -
+cat bootstrap-app-$(echo ${KUBRIX_TARGET_TYPE} | awk '{print tolower($0)}').yaml | sed "s/targetRevision:.*/targetRevision: ${KUBRIX_REPO_BRANCH_SED}/g" | sed "s/repoURL:.*/repoURL: ${KUBRIX_REPO_SED}/g" | kubectl apply -n argocd -f -
 
 # create app list
-URL=https://raw.githubusercontent.com/${CURRENT_REPOSITORY}/${CURRENT_BRANCH}/platform-apps/target-chart/values-$(echo ${TARGET_TYPE} | awk '{print tolower($0)}').yaml
+target_chart_value_file="platform-apps/target-chart/values-$(echo ${KUBRIX_TARGET_TYPE} | awk '{print tolower($0)}').yaml"
 
-argocd_apps=$(curl -L $URL | awk '/^  - name:/ { printf "%s", "sx-"$3" "}' )
+argocd_apps=$(cat $target_chart_value_file | awk '/^  - name:/ { printf "%s", "sx-"$3" "}' )
 # list apps which need some sort of special treatment in bootstrap
-argocd_apps_without_individual=$(curl -L $URL | egrep -Ev "backstage|kargo" | awk '/^  - name:/ { printf "%s", "sx-"$3" "}' )
+argocd_apps_without_individual=$(cat $target_chart_value_file | egrep -Ev "backstage|kargo" | awk '/^  - name:/ { printf "%s", "sx-"$3" "}' )
 
 # max wait for 20 minutes
 max_wait_time=1200
@@ -119,13 +139,13 @@ else
 fi
 
 # apply argocd-secret to set a secretKey
-kubectl apply -f https://raw.githubusercontent.com/${CURRENT_REPOSITORY}/${CURRENT_BRANCH}/platform-apps/charts/argocd/manual-secret/argocd-secret.yaml
+kubectl apply -f platform-apps/charts/argocd/manual-secret/argocd-secret.yaml
 
 # if kargo is part of this stack, upload token to vault
 if [[ $( echo $argocd_apps | grep sx-kargo ) ]] ; then
   echo "adding special configuration for sx-kargo"
   export VAULT_HOSTNAME=$(kubectl get ingress -o jsonpath='{.items[*].spec.rules[*].host}' -n vault)
-  curl -k --header "X-Vault-Token:$(kubectl get secret -n vault vault-init -o=jsonpath='{.data.root_token}'  | base64 -d)" --request POST --data "{\"data\": {\"GITHUB_APPSET_PAT\": \"$VAULT_TOKEN\", \"GITHUB_TOKEN\": \"$VAULT_TOKEN\", \"GITHUB_USERNAME\": \"jkleinlercher\"}}" https://${VAULT_HOSTNAME}/v1/sx-cnp-oss-kv/data/demo/delivery
+  curl -k --header "X-Vault-Token:$(kubectl get secret -n vault vault-init -o=jsonpath='{.data.root_token}'  | base64 -d)" --request POST --data "{\"data\": {\"GITHUB_APPSET_PAT\": \"$VAULT_TOKEN\", \"GITHUB_TOKEN\": \"${KUBRIX_REPO_PASSWORD}\", \"GITHUB_USERNAME\": \"${KUBRIX_REPO_USERNAME}\"}}" https://${VAULT_HOSTNAME}/v1/sx-cnp-oss-kv/data/demo/delivery
   sleep 10
   kubectl delete ExternalSecret github-creds -n kargo
   # check if kargo is already synced 
@@ -170,8 +190,7 @@ fi
 # if backstage is part of this stack, create the manual secret for backstage
 if [[ $( echo $argocd_apps | grep sx-backstage ) ]] ; then
 echo "adding special configuration for sx-backstage"
-  # get hostnames
-  # gethostnames from ingress - to remove TARGET_TYPE 
+  # get hostnames from ingress
   export ARGOCD_HOSTNAME=$(kubectl get ingress -o jsonpath='{.items[*].spec.rules[*].host}' -n argocd)
   export GRAFANA_HOSTNAME=$(kubectl get ingress -o jsonpath='{.items[*].spec.rules[*].host}' -n grafana)
 
@@ -275,7 +294,7 @@ echo "adding special configuration for sx-backstage"
   # in codespaces we need additional crossplane resources for keycloak
   # because of the port-forwarding URLs
   if [ ${KEYCLOAK_CODESPACES} ]; then
-    curl -L https://raw.githubusercontent.com/${CURRENT_REPOSITORY}/${CURRENT_BRANCH}/.devcontainer/keycloak-codespaces.yaml | sed "s/BACKSTAGE_CODESPACES_REPLACE/${CODESPACE_NAME}-6691.${GITHUB_CODESPACES_PORT_FORWARDING_DOMAIN}/g" | sed "s/KEYCLOAK_CODESPACES_REPLACE/${CODESPACE_NAME}-6692.${GITHUB_CODESPACES_PORT_FORWARDING_DOMAIN}/g" | kubectl apply -n keycloak -f -
+    cat .devcontainer/keycloak-codespaces.yaml | sed "s/BACKSTAGE_CODESPACES_REPLACE/${CODESPACE_NAME}-6691.${GITHUB_CODESPACES_PORT_FORWARDING_DOMAIN}/g" | sed "s/KEYCLOAK_CODESPACES_REPLACE/${CODESPACE_NAME}-6692.${GITHUB_CODESPACES_PORT_FORWARDING_DOMAIN}/g" | kubectl apply -n keycloak -f -
   fi
 
   # finally wait for all apps including backstage to be synced and health
