@@ -29,6 +29,7 @@ spec:
           inPath: ./src
           outPath: ./out
       - uses: git-commit
+        as: commit
         config:
           path: ./out
           message: "Kargo applied some changes"
