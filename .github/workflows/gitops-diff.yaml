@@ -38,6 +38,7 @@ jobs:
   create-template-render-diff-comment:
     needs: diff
     runs-on: ubuntu-latest
+    if: ${{ fromJSON(needs.diff.outputs.matrix).comment-files[0] }}
     strategy:
       matrix: ${{fromJSON(needs.diff.outputs.matrix)}}
       max-parallel: 1
@@ -48,11 +49,11 @@ jobs:
           name: comment-files-artifact
           path: comment-files/
 
-      - uses: thollander/actions-comment-pull-request@v2
+      - uses: thollander/actions-comment-pull-request@v3
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          filePath: ${{matrix.comment-files}}
+          file-path: ${{matrix.comment-files}}
 
 
   create-default-value-diff-comment:
@@ -66,8 +67,8 @@ jobs:
           path: comment-files/
 
       - name: PR comment default values with file
-        uses: thollander/actions-comment-pull-request@v2
+        uses: thollander/actions-comment-pull-request@v3
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          filePath: comment-files/comment-default-values-result.txt
+          file-path: comment-files/comment-default-values-result.txt

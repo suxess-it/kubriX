@@ -81,7 +81,7 @@ When using minio default s3 long-term storage this could be increased by configu
       size: 20Gi
 ```
 
-example commit: https://github.com/suxess-it/sx-cnp-oss/pull/538/commits/2afbce2151aa8e9e3e535702d60fd3650efffcb9
+example commit: https://github.com/suxess-it/kubriX/pull/538/commits/2afbce2151aa8e9e3e535702d60fd3650efffcb9
 
 During ArgoCD sync you probably will see the following event:
 

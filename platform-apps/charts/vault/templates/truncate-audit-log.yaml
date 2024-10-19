@@ -38,7 +38,7 @@ spec:
           - name: audit
             persistentVolumeClaim:
               claimName: audit-sx-vault-0
-  schedule: '* 10 * * *'
+  schedule: '0 10 * * *'
   successfulJobsHistoryLimit: 3
   suspend: false
 ---
@@ -82,7 +82,7 @@ spec:
           - name: audit
             persistentVolumeClaim:
               claimName: audit-sx-vault-1
-  schedule: '* 10 * * *'
+  schedule: '0 10 * * *'
   successfulJobsHistoryLimit: 3
   suspend: false
 ---
@@ -126,7 +126,7 @@ spec:
           - name: audit
             persistentVolumeClaim:
               claimName: audit-sx-vault-2
-  schedule: '* 10 * * *'
+  schedule: '0 10 * * *'
   successfulJobsHistoryLimit: 3
   suspend: false
 ---
