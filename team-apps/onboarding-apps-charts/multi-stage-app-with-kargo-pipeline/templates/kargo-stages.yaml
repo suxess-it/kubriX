@@ -28,6 +28,10 @@ spec:
         config:
           inPath: ./src
           outPath: ./out
+      - uses: git-commit
+        config:
+          path: ./out
+          message: "Kargo applied some changes"
       - uses: git-push
         config:
           path: ./out
