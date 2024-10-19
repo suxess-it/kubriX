@@ -1,0 +1,195 @@
+apiVersion: kargo.akuity.io/v1alpha1
+kind: Stage
+metadata:
+  annotations:
+    argocd.argoproj.io/tracking-id: adn-team-a_team-a-kargo-test:kargo.akuity.io/Stage:team-a-kargo-test-kargo-project/qa
+    kubectl.kubernetes.io/last-applied-configuration: |
+      {"apiVersion":"kargo.akuity.io/v1alpha1","kind":"Stage","metadata":{"annotations":{"argocd.argoproj.io/tracking-id":"adn-team-a_team-a-kargo-test:kargo.akuity.io/Stage:team-a-kargo-test-kargo-project/qa"},"name":"qa","namespace":"team-a-kargo-test-kargo-project"},"spec":{"promotionTemplate":{"spec":{"steps":[{"config":{"checkout":[{"fromFreight":true,"path":"./src"},{"branch":"stages/qa","create":true,"path":"./out"}],"repoURL":"https://github.com/suxess-it/team-a-kargo-test"},"uses":"git-clone"},{"config":{"path":"./out"},"uses":"git-clear"},{"config":{"inPath":"./src","outPath":"./out"},"uses":"copy"},{"as":"commit","config":{"message":"Kargo applied some changes","path":"./out"},"uses":"git-commit"},{"config":{"path":"./out","targetBranch":"stages/qa"},"uses":"git-push"},{"config":{"apps":[{"name":"kargo-test-qa","namespace":"adn-team-a","sources":[{"desiredCommitFromStep":"commit","repoURL":"https://github.com/suxess-it/team-a-kargo-test"}]}]},"uses":"argocd-update"}]}},"requestedFreight":[{"origin":{"kind":"Warehouse","name":"warehouse-kargo-test"},"sources":{"stages":["test"]}}]}}
+  creationTimestamp: "2024-10-19T12:01:17Z"
+  finalizers:
+  - kargo.akuity.io/finalizer
+  generation: 10
+  name: qa
+  namespace: team-a-kargo-test-kargo-project
+  resourceVersion: "14625"
+  uid: 9319f231-c949-44ca-af34-2fab3af753ab
+spec:
+  promotionTemplate:
+    spec:
+      steps:
+      - config:
+          checkout:
+          - fromFreight: true
+            path: ./src
+          - branch: stages/qa
+            create: true
+            path: ./out
+          repoURL: https://github.com/suxess-it/team-a-kargo-test
+        uses: git-clone
+      - config:
+          path: ./out
+        uses: git-clear
+      - config:
+          inPath: ./src
+          outPath: ./out
+        uses: copy
+      - as: commit
+        config:
+          message: Kargo applied some changes
+          path: ./out
+        uses: git-commit
+      - config:
+          path: ./out
+          targetBranch: stages/qa
+        uses: git-push
+      - config:
+          apps:
+          - name: kargo-test-qa
+            namespace: adn-team-a
+            sources:
+            - desiredCommitFromStep: commit
+              repoURL: https://github.com/suxess-it/team-a-kargo-test
+        uses: argocd-update
+  requestedFreight:
+  - origin:
+      kind: Warehouse
+      name: warehouse-kargo-test
+    sources:
+      stages:
+      - test
+status:
+  freightHistory:
+  - id: 620e1eb9e097d7485d6e88e1654b7f27b961b85a
+    items:
+      Warehouse/warehouse-kargo-test:
+        commits:
+        - author: Johannes Kleinlercher <johannes@kleinlercher.at>
+          committer: GitHub <noreply@github.com>
+          id: f10742ab7a2f068fd19e385312e5b6da56056b1a
+          message: hat 4
+          repoURL: https://github.com/suxess-it/team-a-kargo-test
+        name: f717c932745598745c44e48e763cbca2c07638e0
+        origin:
+          kind: Warehouse
+          name: warehouse-kargo-test
+  - id: d7b2e16c41dab6375d958990c56ced74b08fa55e
+    items:
+      Warehouse/warehouse-kargo-test:
+        commits:
+        - author: Johannes Kleinlercher <johannes@kleinlercher.at>
+          committer: GitHub <noreply@github.com>
+          id: 73a1b46b77e31b3f9f7e1537ee9787f3608841b0
+          message: new hat
+          repoURL: https://github.com/suxess-it/team-a-kargo-test
+        name: 5b3efe72899673d8218da757c400a3a88a438347
+        origin:
+          kind: Warehouse
+          name: warehouse-kargo-test
+  - id: 56535d43755f9f8a615a8b4e98f6bdbc85db2363
+    items:
+      Warehouse/warehouse-kargo-test:
+        commits:
+        - author: Johannes Kleinlercher <johannes@kleinlercher.at>
+          committer: GitHub <noreply@github.com>
+          healthCheckCommit: d170713bf6f066bdc7bee5bffa633ddfdeff2f40
+          id: e80f3fa8375ce38c9691922d28f3105b9dd77610
+          message: Update values.yaml
+          repoURL: https://github.com/suxess-it/team-a-kargo-test
+        name: 6739342195d1504e594ced1e085f2067fb2a4f76
+        origin:
+          kind: Warehouse
+          name: warehouse-kargo-test
+  freightSummary: f717c932745598745c44e48e763cbca2c07638e0
+  health:
+    output:
+    - applicationStatuses:
+      - Name: kargo-test-qa
+        Namespace: adn-team-a
+        health:
+          status: Healthy
+        operationState:
+          finishedAt: "2024-10-19T12:21:20Z"
+          message: successfully synced (all tasks run)
+          operation:
+            info:
+            - name: Reason
+              value: Promotion triggered a sync of this Application resource.
+            - name: kargo.akuity.io/freight-collection
+              value: 620e1eb9e097d7485d6e88e1654b7f27b961b85a
+            initiatedBy:
+              automated: true
+              username: kargo-controller
+            retry:
+              limit: 5
+            sync:
+              revisions:
+              - stages/qa
+              syncOptions:
+              - CreateNamespace=true
+          phase: Succeeded
+          syncResult:
+            revision: b72b4e869e9f0eb0a2bec9a246274d14c8c92695
+            source:
+              helm: {}
+              repoURL: https://github.com/suxess-it/team-a-kargo-test
+              targetRevision: stages/qa
+        sync:
+          revision: b72b4e869e9f0eb0a2bec9a246274d14c8c92695
+          status: Synced
+    status: Healthy
+  lastPromotion:
+    finishedAt: "2024-10-19T12:21:20Z"
+    freight:
+      commits:
+      - author: Johannes Kleinlercher <johannes@kleinlercher.at>
+        committer: GitHub <noreply@github.com>
+        id: f10742ab7a2f068fd19e385312e5b6da56056b1a
+        message: hat 4
+        repoURL: https://github.com/suxess-it/team-a-kargo-test
+      name: f717c932745598745c44e48e763cbca2c07638e0
+      origin:
+        kind: Warehouse
+        name: warehouse-kargo-test
+    name: qa.01jajbk2thjy71wx7v43b7bv8v.f717c93
+    status:
+      currentStep: 5
+      finishedAt: "2024-10-19T12:21:20Z"
+      freight:
+        commits:
+        - author: Johannes Kleinlercher <johannes@kleinlercher.at>
+          committer: GitHub <noreply@github.com>
+          id: f10742ab7a2f068fd19e385312e5b6da56056b1a
+          message: hat 4
+          repoURL: https://github.com/suxess-it/team-a-kargo-test
+        name: f717c932745598745c44e48e763cbca2c07638e0
+        origin:
+          kind: Warehouse
+          name: warehouse-kargo-test
+      freightCollection:
+        id: 620e1eb9e097d7485d6e88e1654b7f27b961b85a
+        items:
+          Warehouse/warehouse-kargo-test:
+            commits:
+            - author: Johannes Kleinlercher <johannes@kleinlercher.at>
+              committer: GitHub <noreply@github.com>
+              id: f10742ab7a2f068fd19e385312e5b6da56056b1a
+              message: hat 4
+              repoURL: https://github.com/suxess-it/team-a-kargo-test
+            name: f717c932745598745c44e48e763cbca2c07638e0
+            origin:
+              kind: Warehouse
+              name: warehouse-kargo-test
+      healthChecks:
+      - config:
+          apps:
+          - desiredRevisions:
+            - b72b4e869e9f0eb0a2bec9a246274d14c8c92695
+            name: kargo-test-qa
+            namespace: adn-team-a
+        uses: argocd-update
+      phase: Succeeded
+      state:
+        commit:
+          commit: b72b4e869e9f0eb0a2bec9a246274d14c8c92695
+  observedGeneration: 10
+  phase: Steady
