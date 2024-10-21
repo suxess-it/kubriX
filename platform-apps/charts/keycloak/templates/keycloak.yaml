@@ -53,6 +53,10 @@ spec:
               value: "true"
             - name: KC_HOSTNAME_STRICT_HTTPS
               value: "true"
+            - name: KC_HOSTNAME
+              value: "https://keycloak{{ .Values.deployments.ingress.fqdn }}"
+            - name: KC_HOSTNAME_BACKCHANNEL_DYNAMIC
+              value: "true"
             - name: KC_LOG_LEVEL
               value: INFO
             - name: DB_VENDOR
