@@ -14,6 +14,25 @@ spec:
     app: "{{ .Values.deployments.keycloak.service.name }}"
   type: ClusterIP
 ---
+# this one for local kind cluster vault->keycloak
+{{- if contains "nip.io" .Values.deployments.ingress.fqdn }}
+apiVersion: v1
+kind: Service
+metadata:
+  name: "{{ .Values.deployments.keycloak.service.name }}-vault"
+  labels:
+    app: "{{ .Values.deployments.keycloak.service.name }}"
+spec:
+  ports:
+  - name: "{{ .Values.deployments.keycloak.service.name }}"
+    port: 80
+    protocol: TCP
+    targetPort: {{.Values.deployments.keycloak.ports.containerPort}}
+  selector:
+    app: "{{ .Values.deployments.keycloak.service.name }}"
+  type: ClusterIP
+{{- end }}
+---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
