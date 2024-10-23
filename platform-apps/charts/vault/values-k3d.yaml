@@ -21,10 +21,6 @@ vault:
         - secretName: vault-server-tls
           hosts:
             - vault-127-0-0-1.nip.io
-    hostAliases:
-    - ip: "kc-service-vault.keycloak.svc.cluster.local"
-      hostnames:
-        - "keycloak-127-0-0-1.nip.io"
     extraInitContainers:
       - name: utility-downloader
         image: alpine/curl:latest
