@@ -194,8 +194,10 @@ if [[ "${KUBRIX_TARGET_TYPE}" =~ ^KIND.* ]] ; then
   kubectl exec -it sx-vault-0 -n vault -c vault-initializer -- /bin/sh -c "VAULT_TOKEN=\$(cat /vault-root-token/root_token) vault auth disable oidc"
   kubectl patch sts sx-vault -n vault --type='json' -p="[{\"op\": \"add\", \"path\": \"/spec/template/spec/hostAliases\", \"value\": [{\"ip\": \"$(kubectl get svc/keycloak-service-vault -o jsonpath='{.spec.clusterIP}' -n keycloak)\", \"hostnames\": [\"keycloak-127-0-0-1.nip.io\"]}]}]"
   kubectl scale statefulset sx-vault --replicas=0 -n vault
-  
+  kubectl delete authbackendrole.jwt.vault.upbound.io/oidc-backend-role
+  kubectl delete authbackend.jwt.vault.upbound.io/oidc-backend
 fi
+
 # if backstage is part of this stack, create the manual secret for backstage
 if [[ $( echo $argocd_apps | grep sx-backstage ) ]] ; then
 echo "adding special configuration for sx-backstage"
