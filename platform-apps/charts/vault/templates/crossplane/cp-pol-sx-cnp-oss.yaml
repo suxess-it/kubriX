@@ -5,7 +5,7 @@ metadata:
   name: crossplane
   annotations:
     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
-    argocd.argoproj.io/sync-wave: "1"
+    argocd.argoproj.io/sync-wave: "2"
 spec:
   providerConfigRef:
     name: vault-crossplane-providerconfig
@@ -25,7 +25,7 @@ metadata:
   name: vault-admin
   annotations:
     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
-    argocd.argoproj.io/sync-wave: "1"
+    argocd.argoproj.io/sync-wave: "2"
 spec:
   providerConfigRef:
     name: vault-crossplane-providerconfig
@@ -42,7 +42,7 @@ metadata:
   name: users
   annotations:
     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
-    argocd.argoproj.io/sync-wave: "1"
+    argocd.argoproj.io/sync-wave: "2"
 spec:
   providerConfigRef:
     name: vault-crossplane-providerconfig
@@ -62,7 +62,7 @@ metadata:
   name: team1
   annotations:
     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
-    argocd.argoproj.io/sync-wave: "1"
+    argocd.argoproj.io/sync-wave: "2"
 spec:
   providerConfigRef:
     name: vault-crossplane-providerconfig
