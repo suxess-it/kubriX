@@ -187,6 +187,10 @@ if [[ $( echo $argocd_apps | grep sx-kargo ) ]] ; then
   fi
 fi
 
+# patch vault > oidc > keycloak for
+if [[ "${KUBRIX_TARGET_TYPE}" =~ ^KIND.* ]] ; then
+  kubectl patch sts sx-vault -n vault --type='json' -p="[{\"op\": \"add\", \"path\": \"/spec/template/spec/hostAliases\", \"value\": [{\"ip\": \"$(kubectl get svc/keycloak-service-vault -o jsonpath='{.spec.clusterIP}' -n keycloak)\", \"hostnames\": [\"keycloak-127-0-0-1.nip.io\"]}]}]"
+fi
 # if backstage is part of this stack, create the manual secret for backstage
 if [[ $( echo $argocd_apps | grep sx-backstage ) ]] ; then
 echo "adding special configuration for sx-backstage"
