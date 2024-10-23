@@ -190,8 +190,11 @@ fi
 # patch vault > oidc > keycloak for
 if [[ "${KUBRIX_TARGET_TYPE}" =~ ^KIND.* ]] ; then
   echo "patching vault for local oidc functionality"
+  # clear oidc paht due to order reason
+  kubectl exec -it sx-vault-0 -n vault -c vault-initializer -- /bin/sh -c "VAULT_TOKEN=\$(cat /vault-root-token/root_token) vault auth disable oidc"
   kubectl patch sts sx-vault -n vault --type='json' -p="[{\"op\": \"add\", \"path\": \"/spec/template/spec/hostAliases\", \"value\": [{\"ip\": \"$(kubectl get svc/keycloak-service-vault -o jsonpath='{.spec.clusterIP}' -n keycloak)\", \"hostnames\": [\"keycloak-127-0-0-1.nip.io\"]}]}]"
   kubectl scale statefulset sx-vault --replicas=0 -n vault
+  
 fi
 # if backstage is part of this stack, create the manual secret for backstage
 if [[ $( echo $argocd_apps | grep sx-backstage ) ]] ; then
