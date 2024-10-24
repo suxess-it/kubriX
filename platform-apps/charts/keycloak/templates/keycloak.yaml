@@ -8,8 +8,10 @@ spec:
   ports:
     - name: "{{ .Values.deployments.keycloak.service.name }}"
       port: {{.Values.deployments.keycloak.ports.containerPort}}
-#      port: {{.Values.deployments.securePort}}
-#      targetPort: {{.Values.deployments.keycloak.ports.containerPort}}
+      targetPort: {{.Values.deployments.keycloak.ports.containerPort}}
+    - name: "{{ .Values.deployments.keycloak.service.name }}s"
+      port: {{.Values.deployments.securePort}}
+      targetPort: {{.Values.deployments.securePort}}
   selector:
     app: "{{ .Values.deployments.keycloak.service.name }}"
   type: ClusterIP
@@ -78,6 +80,10 @@ spec:
                 secretKeyRef:
                   name: "{{ .Values.secrets.postgres.name }}"
                   key: POSTGRES_PASSWORD
+            - name: KC_HTTPS_CERTIFICATE_FILE
+              value: "/etc/keycloak/tls/tls.crt"
+            - name: KC_HTTPS_CERTIFICATE_KEY_FILE
+              value: "/etc/keycloak/tls/tls.key" 
           ports:
             - name: http
               containerPort:
@@ -114,8 +120,14 @@ spec:
             - mountPath: /tmp/sx-cnp-oss.realm.json
               subPath: sx-cnp-oss.realm.json
               name: keycloak-hookvolume
+            - name: keycloak-tls-volume
+              mountPath: /etc/keycloak/tls
+              readOnly: true
       volumes:
       - configMap:
           defaultMode: 493
           name: keycloak-configmap
         name: keycloak-hookvolume
+      - name: keycloak-tls-volume
+        secret:
+          secretName: keycloak-server-tls 

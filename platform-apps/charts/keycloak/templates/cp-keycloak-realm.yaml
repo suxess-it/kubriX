@@ -15,7 +15,7 @@ spec:
     displayName: {{ .Values.deployments.keycloak.realm.realmid }}
     attributes:
 {{- if contains "nip.io" .Values.deployments.ingress.fqdn }}
-      frontendUrl: http://keycloak{{ .Values.deployments.ingress.fqdn }}
+      frontendUrl: https://keycloak{{ .Values.deployments.ingress.fqdn }}
 {{- else }}
       frontendUrl: https://keycloak{{ .Values.deployments.ingress.fqdn }}
 {{- end }}

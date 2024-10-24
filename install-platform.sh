@@ -49,10 +49,10 @@ metadata:
   namespace: keycloak
 spec:
   ports:
-  - name: keycloak-service
-    port: 80
+  - name: keycloak-services
+    port: 443
     protocol: TCP
-    targetPort: 8080
+    targetPort: 8443
   selector:
     app: keycloak-service
   type: ClusterIP
