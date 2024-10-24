@@ -104,7 +104,7 @@ argocd_apps=$(cat $target_chart_value_file | awk '/^  - name:/ { printf "%s", "s
 argocd_apps_without_individual=$(cat $target_chart_value_file | egrep -Ev "backstage|kargo" | awk '/^  - name:/ { printf "%s", "sx-"$3" "}' )
 
 # max wait for 20 minutes
-max_wait_time=1200
+max_wait_time=${MAX_WAIT_TIME:-1200}
 start=$SECONDS
 end=$((SECONDS+${max_wait_time}))
 
@@ -190,12 +190,13 @@ fi
 # patch vault > oidc > keycloak for
 if [[ "${KUBRIX_TARGET_TYPE}" =~ ^KIND.* ]] ; then
   echo "patching vault for local oidc functionality"
-  # clear oidc paht due to order reason
+  # clear oidc path due to order reason and "path is already in use at oidc" issue
   kubectl exec -it sx-vault-0 -n vault -c vault-initializer -- /bin/sh -c "VAULT_TOKEN=\$(cat /vault-root-token/root_token) vault auth disable oidc"
   kubectl patch sts sx-vault -n vault --type='json' -p="[{\"op\": \"add\", \"path\": \"/spec/template/spec/hostAliases\", \"value\": [{\"ip\": \"$(kubectl get svc/keycloak-service-vault -o jsonpath='{.spec.clusterIP}' -n keycloak)\", \"hostnames\": [\"keycloak-127-0-0-1.nip.io\"]}]}]"
   kubectl scale statefulset sx-vault --replicas=0 -n vault
   kubectl delete authbackendrole.jwt.vault.upbound.io/oidc-backend-role
   kubectl delete authbackend.jwt.vault.upbound.io/oidc-backend
+  kubectl get managed | grep group.identity.vault.upbound.io |while read a b; do kubectl delete $a; done
 fi
 
 # if backstage is part of this stack, create the manual secret for backstage
