@@ -72,6 +72,11 @@ deployments:
           lastName: demouser
           email: "team1user@platform-engineer.cloud"
           password: "test"
+        - name: team-auser
+          firstName: team-a
+          lastName: demouser
+          email: "team-auser@platform-engineer.cloud"
+          password: "test"
       groups:
         - name: admins
           members:
@@ -80,6 +85,10 @@ deployments:
         - name: team1
           members:
             - team1user
+        - name: team-a
+          mfa: false # valid if .keycloak.mfa.enabled is true 
+          members:
+            - team-auser
         - name: users
           members: 
             - phac
