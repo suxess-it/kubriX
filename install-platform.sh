@@ -196,7 +196,7 @@ if [[ "${KUBRIX_TARGET_TYPE}" =~ ^KIND.* ]] ; then
   kubectl scale statefulset sx-vault --replicas=0 -n vault
   kubectl delete authbackendrole.jwt.vault.upbound.io/oidc-backend-role
   kubectl delete authbackend.jwt.vault.upbound.io/oidc-backend
-  kubectl get managed | grep group.identity.vault.upbound.io |while read a b; do kubectl delete $a; done
+  kubectl get group.identity.vault.upbound.io -o jsonpath='{.items[*].metadata.name}' | xargs -I {} echo "group.identity.vault.upbound.io {} &"
 fi
 
 # if backstage is part of this stack, create the manual secret for backstage

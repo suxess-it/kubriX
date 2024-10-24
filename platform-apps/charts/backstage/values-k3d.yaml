@@ -135,7 +135,7 @@ backstage:
               # real metadataUrl -> local cluster lead to "ECONNREFUSED 127.0.0.1:443" - #24935
               #metadataUrl: https://keycloak-127-0-0-1.nip.io/realms/sx-cnp-oss #.well-known/openid-configuration can be ommited
               # workaround -> also set frontendUrl in keycloak realm
-              metadataUrl: http://keycloak-service.keycloak.svc.cluster.local:8080/realms/sx-cnp-oss #.well-known/openid-configuration can be ommited
+              metadataUrl: http://keycloak-127-0-0-1.nip.io/realms/sx-cnp-oss #.well-known/openid-configuration can be ommited
               callbackUrl: https://backstage-127-0-0-1.nip.io/api/auth/oidc/handler/frame
               clientId: backstage
               clientSecret: demosecret
