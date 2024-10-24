@@ -38,6 +38,31 @@ if [[ "${KUBRIX_TARGET_TYPE}" =~ ^KIND.* ]] ; then
     rm ${namespace}-cert.pem ${namespace}-key.pem
   done
 
+  # set dns name for oidc functionality:
+  cat <<EOF | kubectl apply -f -
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: keycloak-service
+  name: keycloak-service-vault
+  namespace: keycloak
+spec:
+  ports:
+  - name: keycloak-service
+    port: 80
+    protocol: TCP
+    targetPort: 8080
+  selector:
+    app: keycloak-service
+  type: ClusterIP
+EOF
+
+  kubectl get configmap coredns -n kube-system -o yaml > coredns-configmap.yaml
+  sed -i '/ready/a\        hosts {\n            '$(kubectl get svc/keycloak-service-vault -o jsonpath=\'{.spec.clusterIP}\' -n keycloak)' keycloak-127-0-0-1.nip.io\n            fallthrough\n        }\n' coredns-configmap.yaml
+  kubectl apply -f coredns-configmap.yaml
+  kubectl rollout restart deployment coredns -n kube-system
+
   # do not install kind nginx-controller and metrics-server on k3d cluster
   # since kind nginx only works on kind cluster and metrics-server is already installed on k3d
   if [[ ${KUBRIX_CREATE_K3D_CLUSTER} != true ]] ; then
@@ -185,18 +210,6 @@ if [[ $( echo $argocd_apps | grep sx-kargo ) ]] ; then
   else
     echo "all apps are synced. ready for take off :)"
   fi
-fi
-
-# patch vault > oidc > keycloak for
-if [[ "${KUBRIX_TARGET_TYPE}" =~ ^KIND.* ]] ; then
-  echo "patching vault for local oidc functionality"
-  # clear oidc path due to order reason and "path is already in use at oidc" issue
-  kubectl exec -it sx-vault-0 -n vault -c vault-initializer -- /bin/sh -c "VAULT_TOKEN=\$(cat /vault-root-token/root_token) vault auth disable oidc"
-  kubectl patch sts sx-vault -n vault --type='json' -p="[{\"op\": \"add\", \"path\": \"/spec/template/spec/hostAliases\", \"value\": [{\"ip\": \"$(kubectl get svc/keycloak-service-vault -o jsonpath='{.spec.clusterIP}' -n keycloak)\", \"hostnames\": [\"keycloak-127-0-0-1.nip.io\"]}]}]"
-  kubectl scale statefulset sx-vault --replicas=0 -n vault
-  kubectl delete authbackendrole.jwt.vault.upbound.io/oidc-backend-role
-  kubectl delete authbackend.jwt.vault.upbound.io/oidc-backend
-  kubectl get group.identity.vault.upbound.io -o jsonpath='{.items[*].metadata.name}' | xargs -I {} echo "group.identity.vault.upbound.io {} &"
 fi
 
 # if backstage is part of this stack, create the manual secret for backstage
