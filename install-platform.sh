@@ -58,8 +58,7 @@ spec:
   type: ClusterIP
 EOF
 
-kubectl get configmap coredns -n kube-system -o yaml > coredns-configmap.yaml
-awk -v ip="$(kubectl get svc/keycloak-service-vault -o jsonpath='{.spec.clusterIP}' -n keycloak)" '
+kubectl get configmap coredns -n kube-system -o yaml |  awk -v ip="$(kubectl get svc/keycloak-service-vault -o jsonpath='{.spec.clusterIP}' -n keycloak)" '
 /ready/ {
     print;
     print "        hosts {";
@@ -69,8 +68,7 @@ awk -v ip="$(kubectl get svc/keycloak-service-vault -o jsonpath='{.spec.clusterI
     next
 }
 { print }
-' coredns-configmap.yaml > coredns-configmap-new.yaml
-  mv coredns-configmap-new.yaml coredns-configmap.yaml
+' > coredns-configmap.yaml
   kubectl apply -f coredns-configmap.yaml
   kubectl rollout restart deployment coredns -n kube-system
 
