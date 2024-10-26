@@ -135,29 +135,28 @@ while [ $SECONDS -lt $end ]; do
           sync_finished_seconds="-"
           sync_duration=$((${now_seconds}-${sync_started_seconds}))
         fi
+        if [ "${sync_status}" != "Synced" ] || [ "${health_status}" != "Healthy" ] ; then
+          all_apps_synced="false"
+          # terminate sync if sync is running and takes longer than 300 seconds (workaround when sync gets stuck)
+          operation_phase=$(kubectl get application -n argocd ${app} -o jsonpath='{.status.operationState.phase}')
+          if [ ${operation_phase} == "Running" ] && [ ${sync_duration} -gt 300 ] ; then
+            # Terminate the operation for the application
+            echo "sync of app ${app} gets terminated because it took longer than 600 seconds"
+            kubectl exec sx-argocd-application-controller-0 -n argocd -- argocd app terminate-op "$app" --core
+            echo "wait for 10 seconds"
+            sleep 10
+            echo "restart sync for app ${app}"
+            kubectl exec sx-argocd-application-controller-0 -n argocd -- argocd app sync "$app" --async --core
+          fi
+        fi
       else
           sync_started_seconds="-"
           sync_finished_seconds="-"
           sync_duration="-"
       fi
 
-      # print in beauftiful table doesn't work right now, so skip it
       printf '%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\n' ${app} ${sync_status} ${health_status} ${sync_duration} >> status-apps.out
 
-      if [ "${sync_status}" != "Synced" ] || [ "${health_status}" != "Healthy" ] ; then
-        all_apps_synced="false"
-        # terminate sync if sync is running and takes longer than 300 seconds (workaround when sync gets stuck)
-        operation_phase=$(kubectl get application -n argocd ${app} -o jsonpath='{.status.operationState.phase}')
-        if [ ${operation_phase} == "Running" ] && [ ${sync_duration} -gt 300 ] ; then
-          # Terminate the operation for the application
-          echo "sync of app ${app} gets terminated because it took longer than 600 seconds"
-          kubectl exec sx-argocd-application-controller-0 -n argocd -- argocd app terminate-op "$app" --core
-          echo "wait for 10 seconds"
-          sleep 10
-          echo "restart sync for app ${app}"
-          kubectl exec sx-argocd-application-controller-0 -n argocd -- argocd app sync "$app" --async --core
-        fi
-      fi
     else
       all_apps_synced="false"	
     fi
