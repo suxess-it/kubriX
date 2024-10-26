@@ -1,7 +1,5 @@
 #!/bin/bash
 
-set -x
-
 # dump all kubrix variables
 env | grep KUBRIX
 
