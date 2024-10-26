@@ -141,7 +141,7 @@ while [ $SECONDS -lt $end ]; do
           operation_phase=$(kubectl get application -n argocd ${app} -o jsonpath='{.status.operationState.phase}')
           if [ ${operation_phase} == "Running" ] && [ ${sync_duration} -gt 300 ] ; then
             # Terminate the operation for the application
-            echo "sync of app ${app} gets terminated because it took longer than 600 seconds"
+            echo "sync of app ${app} gets terminated because it took longer than 300 seconds"
             kubectl exec sx-argocd-application-controller-0 -n argocd -- argocd app terminate-op "$app" --core
             echo "wait for 10 seconds"
             sleep 10
