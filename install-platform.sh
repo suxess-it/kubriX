@@ -3,6 +3,7 @@
 # dump all kubrix variables
 env | grep KUBRIX
 ARCH=$(uname -m)
+OS=$(uname -s)
 
 if [ "${KUBRIX_CREATE_K3D_CLUSTER}" == true ] ; then
   # do we need to set this always? I had DNS issues on the train
@@ -49,6 +50,8 @@ if [[ "${KUBRIX_TARGET_TYPE}" =~ ^KIND.* ]] ; then
   kubectl apply -f coredns-configmap.yaml
   kubectl rollout restart deployment coredns -n kube-system
 
+
+
   # do not install kind nginx-controller and metrics-server on k3d cluster
   # since kind nginx only works on kind cluster and metrics-server is already installed on k3d
   if [[ ${KUBRIX_CREATE_K3D_CLUSTER} != true ]] ; then
@@ -58,6 +61,11 @@ if [[ "${KUBRIX_TARGET_TYPE}" =~ ^KIND.* ]] ; then
       --for=condition=ready pod \
       --selector=app.kubernetes.io/component=controller \
       --timeout=90s
+
+    # demo
+    mkcert "*.nip.io"
+    kubectl create secret tls nip-io-cert --cert=_wildcard.nip.io.pem --key=_wildcard.nip.io-key.pem -n ingress-nginx
+    kubectl patch deployment ingress-nginx-controller -n ingress-nginx --type='json' -p='[\n    {\n        "op": "add",\n        "path": "/spec/template/spec/containers/0/args/-",\n        "value": "--default-ssl-certificate=ingress-nginx/nip-io-cert"\n    },\n    {\n        "op": "add",\n        "path": "/spec/template/spec/containers/0/args/-",\n        "value": "--enable-ssl-passthrough"\n    }\n]'
 
     helm repo add metrics-server https://kubernetes-sigs.github.io/metrics-server/
     helm repo update
@@ -90,7 +98,7 @@ export ARGOCD_HOSTNAME=$(kubectl get ingress -o jsonpath='{.items[*].spec.rules[
 # sleep 10 seconds because ingress/service/pod is not available otherwise
 sleep 10
 # download argocd
-curl -kL -o argocd https://${ARGOCD_HOSTNAME}/download/argocd-linux-$ARCH
+curl -kL -o argocd https://${ARGOCD_HOSTNAME}/download/argocd-$OS-$ARCH
 chmod u+x argocd
 INITIAL_ARGOCD_PASSWORD=$( kubectl get secret -n argocd argocd-initial-admin-secret -o=jsonpath={'.data.password'} | base64 -d )
 ./argocd login ${ARGOCD_HOSTNAME} --grpc-web --insecure --username admin --password ${INITIAL_ARGOCD_PASSWORD}
