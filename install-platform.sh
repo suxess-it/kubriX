@@ -110,7 +110,7 @@ all_apps_synced="true"
 while [ $SECONDS -lt $end ]; do
   all_apps_synced="true"
 
-  # print in beauftiful table doesn't work right now, so skip it
+  # print app status in beautiful table
   printf 'app sync-status health-status sync-duration\n' > status-apps.out
 
   for app in ${argocd_apps_without_individual} ; do
@@ -155,6 +155,7 @@ while [ $SECONDS -lt $end ]; do
           sync_duration="-"
       fi
 
+      # print app status in beautiful table
       printf '%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\n' ${app} ${sync_status} ${health_status} ${sync_duration} >> status-apps.out
 
     else
@@ -162,14 +163,15 @@ while [ $SECONDS -lt $end ]; do
     fi
   done
 
-
   if [ ${all_apps_synced} = "true" ] ; then
     echo "${argocd_apps_without_individual} apps are synced"
     break
   fi
-  # kubectl get application -n argocd
+
+  # print app status in beautiful table
   cat status-apps.out | column -t
   rm status-apps.out
+  
   elapsed_time=$((SECONDS-${start}))
   echo "--------------------"
   echo "elapsed time: ${elapsed_time} seconds"
