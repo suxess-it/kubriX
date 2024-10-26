@@ -1,4 +1,4 @@
-# SX-CNP on Metalstack
+# kubriX on Metalstack
 
 ## how to set it up
 
@@ -50,22 +50,41 @@ rm credentials
 ### 3. define some variables so the platform can access github
 
 ```
-export GITHUB_CLIENTSECRET=<value from steps above>
-export GITHUB_CLIENTID=<value from steps above>
-export GITHUB_TOKEN=<your personal access token>
-export GITHUB_APPSET_TOKEN=<github-pat-for-argocd-appsets-only-read-permissions-needed>
-```
-
-### 4. install platform on metalstack cluster
-
-```
-export TARGET_TYPE=METALSTACK
+# Github clientsecret and clientid from GitHub OAuth App for Backstage
+export KUBRIX_GITHUB_CLIENTSECRET=<value from steps above>
+export KUBRIX_GITHUB_CLIENTID=<value from steps above>
+# Github token Backstage uses to get the catalog yaml form github
+export KUBRIX_GITHUB_TOKEN=<your personal access token>
+# Github token ArgoCD uses for the SCM Provider
+export KUBRIX_GITHUB_APPSET_TOKEN=<github-pat-for-argocd-appsets-only-read-permissions-needed>
+# set the current repository to the origin or to your fork
+export KUBRIX_REPO=https://github.com/suxess-it/kubriX.git
 # if you want to test another branch, specify something else than main
-export CURRENT_BRANCH=main
-curl -L https://raw.githubusercontent.com/suxess-it/sx-cnp-oss/${CURRENT_BRANCH}/install-platform.sh | bash
+export KUBRIX_REPO_BRANCH=main
+# username and password for ArgoCDs kubriX repository
+export KUBRIX_REPO_USERNAME=<kubrix-repo-username>
+export KUBRIX_REPO_PASSWORD=<kubrix-repo-password-or-token>
+# set target type to the platform stack you want to install
+export KUBRIX_TARGET_TYPE=METALSTACK
 ```
 
-With this command a new k3d cluster gets created.
+### 4. install platform-stack
+
+clone the upstream repo (or your personal fork) and optionally switch to specific branch
+
+```
+git clone ${KUBRIX_REPO}
+# change to repo directory (if it is something else then kubriX, please change)
+cd kubriX
+checkout ${KUBRIX_REPO_BRANCH}
+```
+
+and install specific stack
+
+```
+./install-platform.sh
+```
+
 A "bootstrap argocd" get's installed via helm.
 A "boostrap-app" gets installed which references all other apps in the plattform-stack (app-of-apps pattern)
 ArgoCD itself is also then managed by an argocd app.
@@ -114,7 +133,7 @@ kubectl port-forward svc/sx-argocd-server -n argocd 8080:80
 - Username: `admin`
 - Password: `kubectl get secret -n argocd argocd-initial-admin-secret -o=jsonpath='{.data.password}' | base64 -d`
 
-# AWS helpful things (DRAFT)
+# AWS helpful things (DRAFT.)
 
 install aws cli:
 ```
@@ -131,3 +150,14 @@ create IAM policy:
 aws iam create-policy --policy-name "AllowExternalDNSUpdates" --policy-document file://aws-resources/route53-iam-policy.json
 ```
 
+
+# Tests
+
+this ist just a test
+something from suXess upstream
+
+and something new
+
+new change in upstream repo
+
+another change in origin repo

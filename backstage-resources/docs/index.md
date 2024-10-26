@@ -1,5 +1,5 @@
-# sX cnp oss Backstage Showcase Documentation
+# kubriX platform showcase documentation
 
 Guide to get idea how this will work!
 
-Have FUN!
+ongoing improvement! Have FUN!

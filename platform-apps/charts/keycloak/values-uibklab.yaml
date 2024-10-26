@@ -69,6 +69,16 @@ deployments:
           lastName: admin
           email: "demoadmin@platform-engineer.cloud"
           password: "test"
+        - name: team1user
+          firstName: team1
+          lastName: demouser
+          email: "team1user@platform-engineer.cloud"
+          password: "test"
+        - name: team-auser
+          firstName: team-a
+          lastName: demouser
+          email: "team-auser@platform-engineer.cloud"
+          password: "test"
       groups:
         - name: admins
           mfa: false # valid if .keycloak.mfa.enabled is true, disable for admin 
@@ -78,12 +88,17 @@ deployments:
         - name: team1
           mfa: true # valid if .keycloak.mfa.enabled is true 
           members:
-            - demouser
+            - team1user
+        - name: team-a
+          mfa: false # valid if .keycloak.mfa.enabled is true 
+          members:
+            - team-auser
         - name: users
           mfa: true # valid if .keycloak.mfa.enabled is true 
           members: 
             - phac
             - jokl
+            - demouser
         - name: backstage-admin # for service-account permission workaround
     # backstage client
     backstageclient:
@@ -99,6 +114,11 @@ deployments:
     grafanaclient:
       config:
         clientID: grafana
+        clientSecret: demosecret
+    # pgadmin client
+    pgadminclient:
+      config:
+        clientID: pgadmin
         clientSecret: demosecret
     # start with 2FA mobile Authenticators
     mfa:

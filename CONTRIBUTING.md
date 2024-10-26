@@ -1,10 +1,12 @@
-### Build suXess backstage container image and push it to our registry
+# Build suXess backstage container image and push it to our registry
 
-#### automatically with Github Actions
+This documents are just for internal use for the moment.
+
+## automatically with Github Actions
 
 Workflow-File: https://github.com/suxess-it/sx-backstage/blob/feat/cnp-local-demo-jokl/.github/workflows/ci.yaml
 
-#### manually on local machine
+## manually on local machine
 dual arch build, x86 and arm64, arm64 build could take up to 50 minutes 
 ```
 git clone https://github.com/suxess-it/sx-backstage.git

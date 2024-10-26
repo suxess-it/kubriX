@@ -1,6 +1,6 @@
 # This is a basic workflow to help you get started with Actions
 
-name: test sx-cnp-oss k3d stack on kind cluster
+name: test kubriX k3d stack on kind cluster
 
 # Controls when the workflow will run
 on:
@@ -17,8 +17,8 @@ concurrency:
   cancel-in-progress: true
 
 env:
-  CURRENT_BRANCH: ${{ github.head_ref || github.ref_name }}
-  CURRENT_REPOSITORY: ${{ github.repository }}
+  KUBRIX_REPO_BRANCH: ${{ github.head_ref || github.ref_name }}
+  KUBRIX_REPO: "https://github.com/${{ github.repository }}"
   
 jobs:
   create-cluster:
@@ -39,7 +39,7 @@ jobs:
       - name: Create k8s Kind Cluster
         uses: helm/kind-action@v1
         with:
-          cluster_name: sx-cnp-oss-cluster
+          cluster_name: kubrix-cluster
           config: ${{ github.workspace }}/.github/kind-config.yaml
           
       - name: install mkcert
@@ -56,25 +56,27 @@ jobs:
           sudo dpkg -i k8sgpt_amd64.deb
           k8sgpt analyze
 
-      - name: install sx-cnp-oss full stack 
+      - name: install kubriX stack
         env:
-          TARGET_TYPE: ${{ matrix.target-type }}
-          GITHUB_CLIENTSECRET: "dummy"
-          GITHUB_CLIENTID: "dummy"
-          GITHUB_TOKEN: "dummy"
-          GITHUB_APPSET_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          KUBRIX_TARGET_TYPE: ${{ matrix.target-type }}
+          KUBRIX_GITHUB_CLIENTSECRET: "dummy"
+          KUBRIX_GITHUB_CLIENTID: "dummy"
+          KUBRIX_GITHUB_TOKEN: "dummy"
+          KUBRIX_GITHUB_APPSET_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          KUBRIX_REPO_PASSWORD: ${{ secrets.GITHUB_TOKEN }}
+          KUBRIX_REPO_USERNAME: "dummy"
         shell: bash
         run: |
-          curl -L https://raw.githubusercontent.com/${CURRENT_REPOSITORY}/${CURRENT_BRANCH}/install-platform.sh | bash
+          ./install-platform.sh
 
       - name: argocd show diff
         if: always()
         env:
-          TARGET_TYPE: ${{ matrix.target-type }}
+          KUBRIX_TARGET_TYPE: ${{ matrix.target-type }}
         shell: bash
         run: |
-          URL=https://raw.githubusercontent.com/${CURRENT_REPOSITORY}/${CURRENT_BRANCH}/platform-apps/target-chart/values-$(echo ${TARGET_TYPE} | awk '{print tolower($0)}').yaml
-          argocd_apps=$(curl -L $URL | awk '/^  - name:/ { printf "%s", "sx-"$3" "}' )
+          target_chart_values_file=platform-apps/target-chart/values-$(echo ${KUBRIX_TARGET_TYPE} | awk '{print tolower($0)}').yaml
+          argocd_apps=$(cat $target_chart_values_file | awk '/^  - name:/ { printf "%s", "sx-"$3" "}' )
           curl -kL -o argocd https://argocd-127-0-0-1.nip.io/download/argocd-linux-amd64
           chmod u+x argocd
           ls -l
@@ -100,7 +102,7 @@ jobs:
         shell: bash
         run: |
           echo "===== node describe ======"
-          kubectl describe node sx-cnp-oss-cluster-control-plane
+          kubectl describe node kubrix-cluster-control-plane
           echo "===== node top  ======"
           kubectl top node
           echo "===== node yaml ======"
