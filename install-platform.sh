@@ -2,6 +2,7 @@
 
 # dump all kubrix variables
 env | grep KUBRIX
+ARCH=$(uname -m)
 
 if [ "${KUBRIX_CREATE_K3D_CLUSTER}" == true ] ; then
   # do we need to set this always? I had DNS issues on the train
@@ -89,7 +90,7 @@ export ARGOCD_HOSTNAME=$(kubectl get ingress -o jsonpath='{.items[*].spec.rules[
 # sleep 10 seconds because ingress/service/pod is not available otherwise
 sleep 10
 # download argocd
-curl -kL -o argocd https://${ARGOCD_HOSTNAME}/download/argocd-linux-amd64
+curl -kL -o argocd https://${ARGOCD_HOSTNAME}/download/argocd-linux-$ARCH
 chmod u+x argocd
 INITIAL_ARGOCD_PASSWORD=$( kubectl get secret -n argocd argocd-initial-admin-secret -o=jsonpath={'.data.password'} | base64 -d )
 ./argocd login ${ARGOCD_HOSTNAME} --grpc-web --insecure --username admin --password ${INITIAL_ARGOCD_PASSWORD}
@@ -138,12 +139,26 @@ while [ $SECONDS -lt $end ]; do
       # if app has no resources, operationState is empty
       operation_state=$(kubectl get application -n argocd ${app} -o jsonpath='{.status.operationState}')
       if [ "${operation_state}" != "" ] ; then
-        sync_started=$(kubectl get application -n argocd ${app} -o jsonpath='{.status.operationState.startedAt}')
-        sync_finished=$(kubectl get application -n argocd ${app} -o jsonpath='{.status.operationState.finishedAt}')
-        sync_started_seconds=$( date -d$(echo ${sync_started} | sed 's/Z$//g') '+%s')
+        sync_started=$(kubectl get application -n argocd ${app} -o jsonpath='{.status.operationState.startedAt}' |sed 's/Z$//g')
+        sync_finished=$(kubectl get application -n argocd ${app} -o jsonpath='{.status.operationState.finishedAt}' |sed 's/Z$//g')
+        if [[ "$ARCH" == "amd64" ]]; then
+          sync_started_seconds=$(date -d "${sync_started}" '+%s')
+        elif [[ "$ARCH" == "arm64" ]]; then
+          sync_started_seconds=$(date -j -f "%Y-%m-%dT%H:%M:%S" "${sync_started}" "+%s")
+        else
+          echo "Unsupported OS"
+          exit 1
+        fi
         # if sync finished, duration is 'finished - started', otherwise its 'now - started'
         if [ "${sync_finished}" != "" ] ; then
-          sync_finished_seconds=$( date -d$(echo ${sync_finished} | sed 's/Z$//g') '+%s')
+          if [[ "$ARCH" == "amd64" ]]; then
+            sync_finished_seconds=$(date -d "${sync_finished}" '+%s')
+          elif [[ "$ARCH" == "arm64" ]]; then
+            sync_finished_seconds=$(date -j -f "%Y-%m-%dT%H:%M:%S" "${sync_finished}" "+%s")
+          else
+            echo "Unsupported OS"
+            exit 1
+          fi
           sync_duration=$((${sync_finished_seconds}-${sync_started_seconds}))
         else
           now_seconds=$(date '+%s')
