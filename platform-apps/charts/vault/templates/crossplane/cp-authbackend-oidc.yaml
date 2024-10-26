@@ -18,7 +18,7 @@ metadata:
   name: oidc-backend
   annotations:
     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
-    argocd.argoproj.io/sync-wave: "1"
+    argocd.argoproj.io/sync-wave: "3"
 spec:
   providerConfigRef:
     name: vault-crossplane-providerconfig
@@ -40,7 +40,7 @@ metadata:
   name: oidc-backend-role
   annotations:
     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
-    argocd.argoproj.io/sync-wave: "1"
+    argocd.argoproj.io/sync-wave: "4"
 spec:
   providerConfigRef:
     name: vault-crossplane-providerconfig

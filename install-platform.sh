@@ -35,6 +35,18 @@ if [[ "${KUBRIX_TARGET_TYPE}" =~ ^KIND.* ]] ; then
     fi
     rm ${namespace}-cert.pem ${namespace}-key.pem
   done
+  
+  # resolv domainname to ingress adress to solve localhost result 
+  kubectl get configmap coredns -n kube-system -o yaml |  awk '
+/ready/ {
+    print;
+    print "        rewrite name keycloak-127-0-0-1.nip.io ingress-nginx-controller.ingress-nginx.svc.cluster.local";
+    next
+}
+{ print }
+' > coredns-configmap.yaml
+  kubectl apply -f coredns-configmap.yaml
+  kubectl rollout restart deployment coredns -n kube-system
 
   # do not install kind nginx-controller and metrics-server on k3d cluster
   # since kind nginx only works on kind cluster and metrics-server is already installed on k3d
@@ -102,7 +114,7 @@ argocd_apps=$(cat $target_chart_value_file | awk '/^  - name:/ { printf "%s", "s
 argocd_apps_without_individual=$(cat $target_chart_value_file | egrep -Ev "backstage|kargo" | awk '/^  - name:/ { printf "%s", "sx-"$3" "}' )
 
 # max wait for 20 minutes
-max_wait_time=1200
+max_wait_time=${MAX_WAIT_TIME:-1200}
 start=$SECONDS
 end=$((SECONDS+${max_wait_time}))
 
