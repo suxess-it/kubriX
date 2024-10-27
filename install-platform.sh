@@ -163,14 +163,14 @@ while [ $SECONDS -lt $end ]; do
     fi
   done
 
+  # print app status in beautiful table
+  cat status-apps.out | column -t
+  rm status-apps.out
+
   if [ ${all_apps_synced} = "true" ] ; then
     echo "${argocd_apps_without_individual} apps are synced"
     break
   fi
-
-  # print app status in beautiful table
-  cat status-apps.out | column -t
-  rm status-apps.out
   
   elapsed_time=$((SECONDS-${start}))
   echo "--------------------"
