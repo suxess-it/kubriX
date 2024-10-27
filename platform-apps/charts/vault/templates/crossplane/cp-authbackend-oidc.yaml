@@ -32,6 +32,9 @@ spec:
       namespace: vault
     type: oidc
     path: oidc
+{{- if contains "nip.io" .Values.eso.oidcDiscoveryUrl }}
+    oidcDiscoveryCaPem: /vault/userconfig/vault-ca/ca.crt
+{{- end }}
 # tune not working?
 ---
 apiVersion: jwt.vault.upbound.io/v1alpha1
