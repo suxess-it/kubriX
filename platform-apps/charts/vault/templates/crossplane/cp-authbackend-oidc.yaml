@@ -12,6 +12,8 @@
 #    type: oidc
 #    path: oidc
 #---
+#issue opened https://github.com/upbound/provider-vault/issues/45 - oidcDiscoveryCaPem should be referenced with @oidcDiscoveryCaPem
+{{- if not (contains "nip.io" .Values.eso.oidcDiscoveryUrl) }}
 apiVersion: jwt.vault.upbound.io/v1alpha1
 kind: AuthBackend
 metadata:
@@ -32,8 +34,7 @@ spec:
       namespace: vault
     type: oidc
     path: oidc
-{{- if contains "nip.io" .Values.eso.oidcDiscoveryUrl }}
-    oidcDiscoveryCaPem: "@/vault/userconfig/vault-ca/ca.crt"
+  #  oidcDiscoveryCaPem: "/vault/userconfig/vault-ca/ca.crt"
 {{- end }}
 # tune not working?
 ---
