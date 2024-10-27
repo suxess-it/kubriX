@@ -33,7 +33,7 @@ spec:
     type: oidc
     path: oidc
 {{- if contains "nip.io" .Values.eso.oidcDiscoveryUrl }}
-    oidcDiscoveryCaPem: /vault/userconfig/vault-ca/ca.crt
+    oidcDiscoveryCaPem: "@/vault/userconfig/vault-ca/ca.crt"
 {{- end }}
 # tune not working?
 ---
