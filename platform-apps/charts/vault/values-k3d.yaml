@@ -207,6 +207,8 @@ vault:
             - ALL
           privileged: false
           runAsNonRoot: true
+    extraEnvironmentVars:
+      VAULT_CACERT: /vault/userconfig/vault-ca/ca.crt
     volumes:
       - name: plugins
         emptyDir: {}
@@ -214,11 +216,17 @@ vault:
         secret:
           secretName: vault-init
           optional: true 
-
+      - name: vault-ca-cert
+        secret:
+          defaultMode: 420
+          secretName: ca-cert
     volumeMounts:
       - mountPath: /usr/local/libexec/vault
         name: plugins
         readOnly: false 
+      - mountPath: /vault/userconfig/vault-ca
+        name: vault-ca-cert
+        readOnly: true 
     dataStorage:
       size: 1Gi
     auditStorage:
