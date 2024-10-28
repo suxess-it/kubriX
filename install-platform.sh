@@ -5,6 +5,29 @@ env | grep KUBRIX
 ARCH=$(uname -m)
 OS=$(uname -s)
 
+convert_to_seconds() {
+  local timestamp=$1
+  if [[ "$ARCH" == "amd64" ]]; then
+    date -d "${timestamp}" '+%s'
+  elif [[ "$ARCH" == "arm64" ]]; then
+    date -j -f "%Y-%m-%dT%H:%M:%S" "${timestamp}" "+%s"
+  else
+    echo "Unsupported architecture: $ARCH" >&2
+    exit 1
+  fi
+}
+
+utc_now_seconds() {
+  if [[ "$ARCH" == "amd64" ]]; then
+    date -u '+%s'
+  elif [[ "$ARCH" == "arm64" ]]; then
+    date -j -u '+%s'
+  else
+    echo "Unsupported architecture: $ARCH" >&2
+    exit 1
+  fi
+}
+
 if [ "${KUBRIX_CREATE_K3D_CLUSTER}" == true ] ; then
   # do we need to set this always? I had DNS issues on the train
   export K3D_FIX_DNS=1
@@ -50,8 +73,6 @@ if [[ "${KUBRIX_TARGET_TYPE}" =~ ^KIND.* ]] ; then
   kubectl apply -f coredns-configmap.yaml
   kubectl rollout restart deployment coredns -n kube-system
 
-
-
   # do not install kind nginx-controller and metrics-server on k3d cluster
   # since kind nginx only works on kind cluster and metrics-server is already installed on k3d
   if [[ ${KUBRIX_CREATE_K3D_CLUSTER} != true ]] ; then
@@ -62,14 +83,14 @@ if [[ "${KUBRIX_TARGET_TYPE}" =~ ^KIND.* ]] ; then
       --selector=app.kubernetes.io/component=controller \
       --timeout=90s
 
-    # demo
+    # vault oidc case
     kubectl create secret generic ca-cert --from-file=ca.crt="$(mkcert -CAROOT)"/rootCA.pem -n vault
     kubectl patch deployment ingress-nginx-controller -n ingress-nginx --type='json' -p='[
     {
         "op": "add",
         "path": "/spec/template/spec/containers/0/args/-",
         "value": "--enable-ssl-passthrough"
-    }
+    },
     ]'
 
     helm repo add metrics-server https://kubernetes-sigs.github.io/metrics-server/
@@ -77,13 +98,6 @@ if [[ "${KUBRIX_TARGET_TYPE}" =~ ^KIND.* ]] ; then
     helm upgrade --install --set args={--kubelet-insecure-tls} metrics-server metrics-server/metrics-server --namespace kube-system
   fi
 fi
-
-
-#    {
-#        "op": "add",
-#        "path": "/spec/template/spec/containers/0/args/-",
-#        "value": "--default-ssl-certificate=ingress-nginx/nip-io-cert"
-#    },
 
 # some clients may have performance issues for nginx startup, then argo init fails
 [ -n "$SLOWCLIENT" ] && sleep $SLOWCLIENT
@@ -109,8 +123,15 @@ helm install sx-argocd argo-cd \
 export ARGOCD_HOSTNAME=$(kubectl get ingress -o jsonpath='{.items[*].spec.rules[*].host}' -n argocd)
 # sleep 10 seconds because ingress/service/pod is not available otherwise
 sleep 10
+
 # download argocd
-curl -kL -o argocd https://${ARGOCD_HOSTNAME}/download/argocd-$OS-$ARCH
+if [[ "$OS" == "Darwin" && "$ARCH" == "arm64" ]]; then
+  VERSION=$(curl --silent "https://api.github.com/repos/argoproj/argo-cd/releases/latest" | grep '"tag_name"' | sed -E 's/.*"([^"]+)".*/\1/')
+  curl --progress-bar -SL -o argocd https://github.com/argoproj/argo-cd/releases/download/$VERSION/argocd-darwin-arm64
+else
+  curl -kL -o argocd https://${ARGOCD_HOSTNAME}/download/argocd-$OS-$ARCH
+fi
+
 chmod u+x argocd
 INITIAL_ARGOCD_PASSWORD=$( kubectl get secret -n argocd argocd-initial-admin-secret -o=jsonpath={'.data.password'} | base64 -d )
 ./argocd login ${ARGOCD_HOSTNAME} --grpc-web --insecure --username admin --password ${INITIAL_ARGOCD_PASSWORD}
@@ -147,7 +168,7 @@ while [ $SECONDS -lt $end ]; do
   all_apps_synced="true"
 
   # print app status in beautiful table
-  printf 'app sync-status health-status sync-duration\n' > status-apps.out
+  printf 'app sync-status health-status sync-duration operation-phase\n' > status-apps.out
 
   for app in ${argocd_apps_without_individual} ; do
     if kubectl get application -n argocd ${app} > /dev/null 2>&1 ; then
@@ -162,29 +183,19 @@ while [ $SECONDS -lt $end ]; do
       # if app has no resources, operationState is empty
       operation_state=$(kubectl get application -n argocd ${app} -o jsonpath='{.status.operationState}')
       if [ "${operation_state}" != "" ] ; then
+        # from our tests this time is always UTC!
         sync_started=$(kubectl get application -n argocd ${app} -o jsonpath='{.status.operationState.startedAt}' |sed 's/Z$//')
         sync_finished=$(kubectl get application -n argocd ${app} -o jsonpath='{.status.operationState.finishedAt}' |sed 's/Z$//')
-        if [[ "$ARCH" == "amd64" ]]; then
-          sync_started_seconds=$(date -d "${sync_started}" '+%s')
-        elif [[ "$ARCH" == "arm64" ]]; then
-          sync_started_seconds=$(date -j -f "%Y-%m-%dT%H:%M:%S" "${sync_started}" "+%s")
-        else
-          echo "Unsupported OS"
-          exit 1
-        fi
+        sync_started_seconds=$(convert_to_seconds "${sync_started}")
+
         # if sync finished, duration is 'finished - started', otherwise its 'now - started'
         if [ "${sync_finished}" != "" ] ; then
-          if [[ "$ARCH" == "amd64" ]]; then
-            sync_finished_seconds=$(date -d "${sync_finished}" '+%s')
-          elif [[ "$ARCH" == "arm64" ]]; then
-            sync_finished_seconds=$(date -j -f "%Y-%m-%dT%H:%M:%S" "${sync_finished}" "+%s")
-          else
-            echo "Unsupported OS"
-            exit 1
-          fi
+          sync_finished_seconds=$(convert_to_seconds "${sync_finished}")
           sync_duration=$((${sync_finished_seconds}-${sync_started_seconds}))
         else
-          now_seconds=$(date '+%s')
+          # since '.status.operationState.startedAt' is always UTC (from our tests)
+          #  we need to get 'now' also in UTC
+          now_seconds=$(utc_now_seconds)
           sync_finished_seconds="-"
           sync_duration=$((${now_seconds}-${sync_started_seconds}))
         fi
@@ -206,7 +217,7 @@ while [ $SECONDS -lt $end ]; do
       fi
 
       # print app status in beautiful table
-      printf '%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\n' ${app} ${sync_status} ${health_status} ${sync_duration} >> status-apps.out
+      printf '%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\n' ${app} ${sync_status} ${health_status} ${sync_duration} ${operation_phase} >> status-apps.out
 
     else
       all_apps_synced="false"	
