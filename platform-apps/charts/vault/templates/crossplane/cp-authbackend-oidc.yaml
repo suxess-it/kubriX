@@ -12,13 +12,15 @@
 #    type: oidc
 #    path: oidc
 #---
+#issue opened https://github.com/upbound/provider-vault/issues/45 - oidcDiscoveryCaPem should be referenced with @oidcDiscoveryCaPem
+{{- if not (contains "nip.io" .Values.eso.oidcDiscoveryUrl) }}
 apiVersion: jwt.vault.upbound.io/v1alpha1
 kind: AuthBackend
 metadata:
   name: oidc-backend
   annotations:
     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
-    argocd.argoproj.io/sync-wave: "1"
+    argocd.argoproj.io/sync-wave: "3"
 spec:
   providerConfigRef:
     name: vault-crossplane-providerconfig
@@ -32,6 +34,8 @@ spec:
       namespace: vault
     type: oidc
     path: oidc
+  #  oidcDiscoveryCaPem: "/vault/userconfig/vault-ca/ca.crt"
+{{- end }}
 # tune not working?
 ---
 apiVersion: jwt.vault.upbound.io/v1alpha1
@@ -40,7 +44,7 @@ metadata:
   name: oidc-backend-role
   annotations:
     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
-    argocd.argoproj.io/sync-wave: "1"
+    argocd.argoproj.io/sync-wave: "4"
 spec:
   providerConfigRef:
     name: vault-crossplane-providerconfig

@@ -2,6 +2,31 @@
 
 # dump all kubrix variables
 env | grep KUBRIX
+ARCH=$(uname -m)
+OS=$(uname -s)
+
+convert_to_seconds() {
+  local timestamp=$1
+  if [[ "$ARCH" == "amd64" || "$ARCH" == "x86_64" ]]; then
+    date -d "${timestamp}" '+%s'
+  elif [[ "$ARCH" == "arm64" ]]; then
+    date -j -f "%Y-%m-%dT%H:%M:%S" "${timestamp}" "+%s"
+  else
+    echo "Unsupported architecture: $ARCH" >&2
+    exit 1
+  fi
+}
+
+utc_now_seconds() {
+  if [[ "$ARCH" == "amd64" || "$ARCH" == "x86_64" ]]; then
+    date --date=$(date -u +"%Y-%m-%dT%T") '+%s'
+  elif [[ "$ARCH" == "arm64" ]]; then
+    date -j -f "%Y-%m-%dT%T" "$(date -u +"%Y-%m-%dT%T")" '+%s'
+  else
+    echo "Unsupported architecture: $ARCH" >&2
+    exit 1
+  fi
+}
 
 if [ "${KUBRIX_CREATE_K3D_CLUSTER}" == true ] ; then
   # do we need to set this always? I had DNS issues on the train
@@ -35,6 +60,18 @@ if [[ "${KUBRIX_TARGET_TYPE}" =~ ^KIND.* ]] ; then
     fi
     rm ${namespace}-cert.pem ${namespace}-key.pem
   done
+  
+  # resolv domainname to ingress adress to solve localhost result 
+  kubectl get configmap coredns -n kube-system -o yaml |  awk '
+/ready/ {
+    print;
+    print "        rewrite name keycloak-127-0-0-1.nip.io ingress-nginx-controller.ingress-nginx.svc.cluster.local";
+    next
+}
+{ print }
+' > coredns-configmap.yaml
+  kubectl apply -f coredns-configmap.yaml
+  kubectl rollout restart deployment coredns -n kube-system
 
   # do not install kind nginx-controller and metrics-server on k3d cluster
   # since kind nginx only works on kind cluster and metrics-server is already installed on k3d
@@ -46,11 +83,24 @@ if [[ "${KUBRIX_TARGET_TYPE}" =~ ^KIND.* ]] ; then
       --selector=app.kubernetes.io/component=controller \
       --timeout=90s
 
+    # vault oidc case
+    kubectl create secret generic ca-cert --from-file=ca.crt="$(mkcert -CAROOT)"/rootCA.pem -n vault
+    kubectl patch deployment ingress-nginx-controller -n ingress-nginx --type='json' -p='[
+    {
+        "op": "add",
+        "path": "/spec/template/spec/containers/0/args/-",
+        "value": "--enable-ssl-passthrough"
+    },
+    ]'
+
     helm repo add metrics-server https://kubernetes-sigs.github.io/metrics-server/
     helm repo update
     helm upgrade --install --set args={--kubelet-insecure-tls} metrics-server metrics-server/metrics-server --namespace kube-system
   fi
 fi
+
+# some clients may have performance issues for nginx startup, then argo init fails
+[ -n "$SLOWCLIENT" ] && sleep $SLOWCLIENT
 
 # create argocd with helm chart not with install.yaml
 # because afterwards argocd is also managed by itself with the helm-chart
@@ -73,8 +123,15 @@ helm install sx-argocd argo-cd \
 export ARGOCD_HOSTNAME=$(kubectl get ingress -o jsonpath='{.items[*].spec.rules[*].host}' -n argocd)
 # sleep 10 seconds because ingress/service/pod is not available otherwise
 sleep 10
+
 # download argocd
-curl -kL -o argocd https://${ARGOCD_HOSTNAME}/download/argocd-linux-amd64
+if [[ "$OS" == "Darwin" && "$ARCH" == "arm64" ]]; then
+  VERSION=$(curl --silent "https://api.github.com/repos/argoproj/argo-cd/releases/latest" | grep '"tag_name"' | sed -E 's/.*"([^"]+)".*/\1/')
+  curl --progress-bar -SL -o argocd https://github.com/argoproj/argo-cd/releases/download/$VERSION/argocd-darwin-arm64
+else
+  curl -kL -o argocd https://${ARGOCD_HOSTNAME}/download/argocd-$OS-$ARCH
+fi
+
 chmod u+x argocd
 INITIAL_ARGOCD_PASSWORD=$( kubectl get secret -n argocd argocd-initial-admin-secret -o=jsonpath={'.data.password'} | base64 -d )
 ./argocd login ${ARGOCD_HOSTNAME} --grpc-web --insecure --username admin --password ${INITIAL_ARGOCD_PASSWORD}
@@ -102,7 +159,7 @@ argocd_apps=$(cat $target_chart_value_file | awk '/^  - name:/ { printf "%s", "s
 argocd_apps_without_individual=$(cat $target_chart_value_file | egrep -Ev "backstage|kargo" | awk '/^  - name:/ { printf "%s", "sx-"$3" "}' )
 
 # max wait for 20 minutes
-max_wait_time=1200
+max_wait_time=${MAX_WAIT_TIME:-1200}
 start=$SECONDS
 end=$((SECONDS+${max_wait_time}))
 
@@ -127,17 +184,18 @@ while [ $SECONDS -lt $end ]; do
       operation_state=$(kubectl get application -n argocd ${app} -o jsonpath='{.status.operationState}')
       if [ "${operation_state}" != "" ] ; then
         # from our tests this time is always UTC!
-        sync_started=$(kubectl get application -n argocd ${app} -o jsonpath='{.status.operationState.startedAt}')
-        sync_finished=$(kubectl get application -n argocd ${app} -o jsonpath='{.status.operationState.finishedAt}')
-        sync_started_seconds=$( date --date=$(echo ${sync_started} | sed 's/Z$//g') '+%s')
+        sync_started=$(kubectl get application -n argocd ${app} -o jsonpath='{.status.operationState.startedAt}' |sed 's/Z$//')
+        sync_finished=$(kubectl get application -n argocd ${app} -o jsonpath='{.status.operationState.finishedAt}' |sed 's/Z$//')
+        sync_started_seconds=$(convert_to_seconds "${sync_started}")
+
         # if sync finished, duration is 'finished - started', otherwise its 'now - started'
         if [ "${sync_finished}" != "" ] ; then
-          sync_finished_seconds=$( date --date=$(echo ${sync_finished} | sed 's/Z$//g') '+%s')
+          sync_finished_seconds=$(convert_to_seconds "${sync_finished}")
           sync_duration=$((${sync_finished_seconds}-${sync_started_seconds}))
         else
           # since '.status.operationState.startedAt' is always UTC (from our tests)
           #  we need to get 'now' also in UTC
-          now_seconds=$(date --date=$(date -u +"%Y-%m-%dT%T") '+%s')
+          now_seconds=$(utc_now_seconds)
           sync_finished_seconds="-"
           sync_duration=$((${now_seconds}-${sync_started_seconds}))
         fi
@@ -157,7 +215,7 @@ while [ $SECONDS -lt $end ]; do
           sync_finished_seconds="-"
           sync_duration="-"
       fi
-      
+
       # print app status in beautiful table
       printf '%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\n' ${app} ${sync_status} ${health_status} ${sync_duration} ${operation_phase} >> status-apps.out
 
@@ -174,7 +232,7 @@ while [ $SECONDS -lt $end ]; do
     echo "${argocd_apps_without_individual} apps are synced"
     break
   fi
-  
+
   elapsed_time=$((SECONDS-${start}))
   echo "--------------------"
   echo "elapsed time: ${elapsed_time} seconds"
