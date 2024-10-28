@@ -40,9 +40,9 @@ export KUBRIX_GITHUB_APPSET_TOKEN=<github-pat-for-argocd-appsets-only-read-permi
 export KUBRIX_REPO=https://github.com/suxess-it/kubriX.git
 # if you want to test another branch, specify something else than main
 export KUBRIX_REPO_BRANCH=main
-# username and password for ArgoCDs kubriX repository
+# username and password to access kubriX git repository within ArgoCD
 export KUBRIX_REPO_USERNAME=<kubrix-repo-username>
-export KUBRIX_REPO_PASSWORD=<kubrix-repo-password-or-token>
+export KUBRIX_REPO_PASSWORD=<kubrix-repo-password-or-personal-access-token>
 export KUBRIX_TARGET_TYPE=KIND-DELIVERY
 # if a K3d cluster should get created:
 export KUBRIX_CREATE_K3D_CLUSTER=true
