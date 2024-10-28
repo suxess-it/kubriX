@@ -25,6 +25,14 @@ k8s-monitoring:
     enabled: false
 
   metrics:
+
+    extraMetricRelabelingRules: |-
+      rule {
+          source_labels = ["namespace"]
+          regex = "^kube-system$"
+          action = "drop"
+      }
+
     apiserver:
       enabled: true
       metricsTuning:
