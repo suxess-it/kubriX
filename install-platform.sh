@@ -21,7 +21,7 @@ utc_now_seconds() {
   if [[ "$ARCH" == "amd64" ]]; then
     date --date=$(date -u +"%Y-%m-%dT%T") '+%s'
   elif [[ "$ARCH" == "arm64" ]]; then
-    date -j -u '+%s'
+    date -j -f "%Y-%m-%dT%T" "$(date -u +"%Y-%m-%dT%T")" '+%s'
   else
     echo "Unsupported architecture: $ARCH" >&2
     exit 1
