@@ -19,7 +19,7 @@ convert_to_seconds() {
 
 utc_now_seconds() {
   if [[ "$ARCH" == "amd64" ]]; then
-    date -u '+%s'
+    date --date=$(date -u +"%Y-%m-%dT%T") '+%s'
   elif [[ "$ARCH" == "arm64" ]]; then
     date -j -u '+%s'
   else
