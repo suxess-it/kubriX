@@ -7,7 +7,7 @@ OS=$(uname -s)
 
 convert_to_seconds() {
   local timestamp=$1
-  if [[ "$ARCH" == "amd64" ]]; then
+  if [[ "$ARCH" == "amd64" || "$ARCH" == "x86_64" ]]; then
     date -d "${timestamp}" '+%s'
   elif [[ "$ARCH" == "arm64" ]]; then
     date -j -f "%Y-%m-%dT%H:%M:%S" "${timestamp}" "+%s"
@@ -18,7 +18,7 @@ convert_to_seconds() {
 }
 
 utc_now_seconds() {
-  if [[ "$ARCH" == "amd64" ]]; then
+  if [[ "$ARCH" == "amd64" || "$ARCH" == "x86_64" ]]; then
     date --date=$(date -u +"%Y-%m-%dT%T") '+%s'
   elif [[ "$ARCH" == "arm64" ]]; then
     date -j -f "%Y-%m-%dT%T" "$(date -u +"%Y-%m-%dT%T")" '+%s'
