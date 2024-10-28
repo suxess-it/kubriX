@@ -126,15 +126,18 @@ while [ $SECONDS -lt $end ]; do
       # if app has no resources, operationState is empty
       operation_state=$(kubectl get application -n argocd ${app} -o jsonpath='{.status.operationState}')
       if [ "${operation_state}" != "" ] ; then
+        # from our tests this time is always UTC!
         sync_started=$(kubectl get application -n argocd ${app} -o jsonpath='{.status.operationState.startedAt}')
         sync_finished=$(kubectl get application -n argocd ${app} -o jsonpath='{.status.operationState.finishedAt}')
-        sync_started_seconds=$( date -d$(echo ${sync_started} | sed 's/Z$//g') '+%s')
+        sync_started_seconds=$( date --date=$(echo ${sync_started} | sed 's/Z$//g') '+%s')
         # if sync finished, duration is 'finished - started', otherwise its 'now - started'
         if [ "${sync_finished}" != "" ] ; then
-          sync_finished_seconds=$( date -d$(echo ${sync_finished} | sed 's/Z$//g') '+%s')
+          sync_finished_seconds=$( date --date=$(echo ${sync_finished} | sed 's/Z$//g') '+%s')
           sync_duration=$((${sync_finished_seconds}-${sync_started_seconds}))
         else
-          now_seconds=$(date '+%s')
+          # since '.status.operationState.startedAt' is always UTC (from our tests)
+          #  we need to get 'now' also in UTC
+          now_seconds=$(date --date=$(date -u +"%Y-%m-%dT%T") '+%s')
           sync_finished_seconds="-"
           sync_duration=$((${now_seconds}-${sync_started_seconds}))
         fi
