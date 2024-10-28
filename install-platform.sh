@@ -111,7 +111,7 @@ while [ $SECONDS -lt $end ]; do
   all_apps_synced="true"
 
   # print app status in beautiful table
-  printf 'app sync-status health-status sync-duration\n' > status-apps.out
+  printf 'app sync-status health-status sync-duration operation-phase\n' > status-apps.out
 
   for app in ${argocd_apps_without_individual} ; do
     if kubectl get application -n argocd ${app} > /dev/null 2>&1 ; then
@@ -159,7 +159,7 @@ while [ $SECONDS -lt $end ]; do
       fi
       
       # print app status in beautiful table
-      printf '%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\n' ${app} ${sync_status} ${health_status} ${sync_duration} >> status-apps.out
+      printf '%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\n' ${app} ${sync_status} ${health_status} ${sync_duration} ${operation_phase} >> status-apps.out
 
     else
       all_apps_synced="false"	
