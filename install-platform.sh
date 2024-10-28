@@ -63,15 +63,27 @@ if [[ "${KUBRIX_TARGET_TYPE}" =~ ^KIND.* ]] ; then
       --timeout=90s
 
     # demo
-    mkcert "*.nip.io"
-    kubectl create secret tls nip-io-cert --cert=_wildcard.nip.io.pem --key=_wildcard.nip.io-key.pem -n ingress-nginx
-    kubectl patch deployment ingress-nginx-controller -n ingress-nginx --type='json' -p='[\n    {\n        "op": "add",\n        "path": "/spec/template/spec/containers/0/args/-",\n        "value": "--default-ssl-certificate=ingress-nginx/nip-io-cert"\n    },\n    {\n        "op": "add",\n        "path": "/spec/template/spec/containers/0/args/-",\n        "value": "--enable-ssl-passthrough"\n    }\n]'
+    kubectl create secret generic ca-cert --from-file=ca.crt="$(mkcert -CAROOT)"/rootCA.pem -n vault
+    kubectl patch deployment ingress-nginx-controller -n ingress-nginx --type='json' -p='[
+    {
+        "op": "add",
+        "path": "/spec/template/spec/containers/0/args/-",
+        "value": "--enable-ssl-passthrough"
+    }
+    ]'
 
     helm repo add metrics-server https://kubernetes-sigs.github.io/metrics-server/
     helm repo update
     helm upgrade --install --set args={--kubelet-insecure-tls} metrics-server metrics-server/metrics-server --namespace kube-system
   fi
 fi
+
+
+#    {
+#        "op": "add",
+#        "path": "/spec/template/spec/containers/0/args/-",
+#        "value": "--default-ssl-certificate=ingress-nginx/nip-io-cert"
+#    },
 
 # some clients may have performance issues for nginx startup, then argo init fails
 [ -n "$SLOWCLIENT" ] && sleep $SLOWCLIENT

@@ -166,10 +166,11 @@ vault:
                   /usr/local/libexec/vault/kubectl create secret generic crossplane-init -n vault --from-literal=credentials='{"token":"'${CROSSPLANETOKEN}'"}' 
                   vault write auth/kubernetes/role/crossplane bound_service_account_names="*" bound_service_account_namespaces=crossplane policies=crossplane ttl=24h        
 
-                  # due to #405
+                else 
+                
+                # due to #405
                   vault write auth/oidc/config oidc_discovery_url="https://keycloak-127-0-0-1.nip.io/realms/sx-cnp-oss" oidc_client_id="vault" oidc_client_secret="demosecret" default_role="default" oidc_discovery_ca_pem=@/vault/userconfig/vault-ca/ca.crt
 
-                else 
                   # workaround due to #422
                   if [ ! $(vault list identity/group-alias/id) ]; then
                     echo vault admins group configured, just updating group aliases
