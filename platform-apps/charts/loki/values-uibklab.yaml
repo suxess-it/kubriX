@@ -22,8 +22,8 @@ loki:
 
     storage:
       bucketNames:
-        chunks: chunks
-        ruler: ruler
+        chunks: observability-stack-bucket
+        ruler: observability-stack-bucket
 #        admin: admin
       type: s3
       s3:
@@ -34,7 +34,6 @@ loki:
         accessKeyId: "${ACCESSKEYID}"
         signatureVersion: null
         s3ForcePathStyle: true
-        bucketnames: loki-test
         insecure: true
         http_config:
           insecure_skip_verify: true
