@@ -144,7 +144,7 @@ if [[ "$OS" == "Darwin" && "$ARCH" == "arm64" ]]; then
   VERSION=$(curl --silent "https://api.github.com/repos/argoproj/argo-cd/releases/latest" | grep '"tag_name"' | sed -E 's/.*"([^"]+)".*/\1/')
   curl --progress-bar -SL -o argocd https://github.com/argoproj/argo-cd/releases/download/$VERSION/argocd-darwin-arm64
 else
-  curl -kL -o argocd https://${ARGOCD_HOSTNAME}/download/argocd-$OS-$ARCH
+  curl -kL -o argocd https://${ARGOCD_HOSTNAME}/download/argocd-$OS-amd64
 fi
 
 chmod u+x argocd
@@ -323,7 +323,12 @@ echo "adding special configuration for sx-backstage"
   export GRAFANA_HOSTNAME=$(kubectl get ingress -o jsonpath='{.items[*].spec.rules[*].host}' -n grafana)
 
   # download argocd
-  curl -kL -o argocd https://${ARGOCD_HOSTNAME}/download/argocd-linux-amd64
+  if [[ "$OS" == "Darwin" && "$ARCH" == "arm64" ]]; then
+    VERSION=$(curl --silent "https://api.github.com/repos/argoproj/argo-cd/releases/latest" | grep '"tag_name"' | sed -E 's/.*"([^"]+)".*/\1/')
+    curl --progress-bar -SL -o argocd https://github.com/argoproj/argo-cd/releases/download/$VERSION/argocd-darwin-arm64
+  else
+    curl -kL -o argocd https://${ARGOCD_HOSTNAME}/download/argocd-$OS-amd64
+  fi
   chmod u+x argocd
 
   INITIAL_ARGOCD_PASSWORD=$( kubectl get secret -n argocd argocd-initial-admin-secret -o=jsonpath={'.data.password'} | base64 -d )
