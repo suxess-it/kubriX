@@ -114,6 +114,18 @@ helm install sx-argocd argo-cd \
   -f bootstrap-argocd-values.yaml \
   --wait
 
+# check if argocd hostname is already registered in DNS
+echo "wait until argocd.${KUBRIX_DOMAIN} is registered in DNS"
+iterations=20
+while ! nslookup argocd.${KUBRIX_DOMAIN}  &>/dev/null; do
+  if [[ $iterations -eq 0 ]]; then
+    echo "Timeout waiting for argocd.${KUBRIX_DOMAIN} registration"
+    exit 1
+  fi
+  iterations=$((iterations - 1))
+  echo 'argocd.${KUBRIX_DOMAIN}. Waiting 10 seconds and trying again.'
+  sleep 10
+done
 
 
 # add a repo so that private repos (e.g. private gitlab repos are also accessable)

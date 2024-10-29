@@ -46,6 +46,8 @@ export KUBRIX_REPO_PASSWORD=<kubrix-repo-password-or-personal-access-token>
 export KUBRIX_TARGET_TYPE=KIND-DELIVERY
 # if a K3d cluster should get created:
 export KUBRIX_CREATE_K3D_CLUSTER=true
+# domain of the used platform service hostnames
+export KUBRIX_DOMAIN=127.0.0.1.nip.io
 ```
 
 ## 2. install platform-stack
