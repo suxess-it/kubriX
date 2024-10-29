@@ -34,9 +34,10 @@ loki:
         accessKeyId: "${ACCESSKEYID}"
         signatureVersion: null
         s3ForcePathStyle: true
-        insecure: true
+        insecure: false
         http_config:
-          insecure_skip_verify: true
+          insecure_skip_verify: false
+          ca_file: "/var/loki-tls/ca.crt"
   gateway:
     ingress:
       enabled: true
@@ -75,7 +76,14 @@ loki:
     extraEnvFrom: 
       - secretRef:
           name: loki-s3-credentials
-
+    extraVolumeMounts: 
+      - name: loki-s3-cert
+        mountPath: /var/loki-tls
+        readOnly: true
+    extraVolumes:
+      - name: loki-s3-cert
+        secret:
+          secretName: loki-s3-cert
   chunksCache:
     enabled: false
     # default is 500MB, with limited memory keep this smaller
