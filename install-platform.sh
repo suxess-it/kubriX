@@ -99,6 +99,7 @@ if [[ "${KUBRIX_TARGET_TYPE}" =~ ^KIND.* ]] ; then
 
     # wait until ingress-nginx-controller is ready
     echo "wait until ingress-nginx-controller is running ..."
+    sleep 10
     kubectl wait --namespace ingress-nginx \
       --for=condition=ready pod \
       --selector=app.kubernetes.io/component=controller \
