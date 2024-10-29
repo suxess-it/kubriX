@@ -111,7 +111,7 @@ helm install sx-argocd argo-cd \
   --namespace argocd \
   --create-namespace \
   --set configs.cm.application.resourceTrackingMethod=annotation \
-  -f bootstrap-argocd-values.yaml \
+  -f bootstrap-argocd-values-$(echo ${KUBRIX_TARGET_TYPE} | awk '{print tolower($0)}').yaml \
   --wait
 
 
