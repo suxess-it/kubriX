@@ -33,6 +33,18 @@ utc_now_seconds() {
   fi
 }
 
+lookup_hostname() {
+  local hostname=$1
+  if [[ "$ARCH" == "amd64" || "$ARCH" == "x86_64" ]]; then
+    getent hosts ${hostname}
+  elif [[ "$ARCH" == "arm64" ]]; then
+    nslookup ${hostname}
+  else
+    echo "Unsupported architecture: $ARCH" >&2
+    exit 1
+  fi
+}
+
 if [ "${KUBRIX_CREATE_K3D_CLUSTER}" == true ] ; then
   # do we need to set this always? I had DNS issues on the train
   export K3D_FIX_DNS=1
@@ -131,7 +143,7 @@ helm install sx-argocd argo-cd \
 # check if argocd hostname is already registered in DNS
 echo "wait until argocd.${KUBRIX_DOMAIN} is registered in DNS"
 iterations=20
-while ! getent hosts argocd.${KUBRIX_DOMAIN}  &>/dev/null; do
+while ! lookup_hostname argocd.${KUBRIX_DOMAIN}  &>/dev/null; do
   if [[ $iterations -eq 0 ]]; then
     echo "Timeout waiting for argocd.${KUBRIX_DOMAIN} registration"
     exit 1
