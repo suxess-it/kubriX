@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# just for troubleshooting
+set -x 
+
 # dump all kubrix variables
 env | grep KUBRIX
 ARCH=$(uname -m)
