@@ -136,7 +136,7 @@ while ! nslookup argocd.${KUBRIX_DOMAIN}  &>/dev/null; do
     exit 1
   fi
   iterations=$((iterations - 1))
-  echo 'argocd.${KUBRIX_DOMAIN}. Waiting 10 seconds and trying again.'
+  echo "argocd.${KUBRIX_DOMAIN}. Waiting 10 seconds and trying again."
   sleep 10
 done
 
