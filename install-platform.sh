@@ -1,7 +1,9 @@
 #!/bin/bash
 
 # just for troubleshooting
-set -x 
+if [ "${KUBRIX_INSTALL_DEBUG}" == true ]; then
+  set -x 
+fi
 
 # dump all kubrix variables
 env | grep KUBRIX
@@ -25,6 +27,18 @@ utc_now_seconds() {
     date --date=$(date -u +"%Y-%m-%dT%T") '+%s'
   elif [[ "$ARCH" == "arm64" ]]; then
     date -j -f "%Y-%m-%dT%T" "$(date -u +"%Y-%m-%dT%T")" '+%s'
+  else
+    echo "Unsupported architecture: $ARCH" >&2
+    exit 1
+  fi
+}
+
+lookup_hostname() {
+  local hostname=$1
+  if [[ "$ARCH" == "amd64" || "$ARCH" == "x86_64" ]]; then
+    getent hosts ${hostname}
+  elif [[ "$ARCH" == "arm64" ]]; then
+    nslookup ${hostname}
   else
     echo "Unsupported architecture: $ARCH" >&2
     exit 1
@@ -75,6 +89,7 @@ if [[ "${KUBRIX_TARGET_TYPE}" =~ ^KIND.* ]] ; then
 ' > coredns-configmap.yaml
   kubectl apply -f coredns-configmap.yaml
   kubectl rollout restart deployment coredns -n kube-system
+  rm coredns-configmap.yaml
 
   # do not install kind nginx-controller and metrics-server on k3d cluster
   # since kind nginx only works on kind cluster and metrics-server is already installed on k3d
@@ -96,6 +111,7 @@ if [[ "${KUBRIX_TARGET_TYPE}" =~ ^KIND.* ]] ; then
 
     # wait until ingress-nginx-controller is ready
     echo "wait until ingress-nginx-controller is running ..."
+    sleep 10
     kubectl wait --namespace ingress-nginx \
       --for=condition=ready pod \
       --selector=app.kubernetes.io/component=controller \
@@ -127,13 +143,13 @@ helm install sx-argocd argo-cd \
 # check if argocd hostname is already registered in DNS
 echo "wait until argocd.${KUBRIX_DOMAIN} is registered in DNS"
 iterations=20
-while ! nslookup argocd.${KUBRIX_DOMAIN}  &>/dev/null; do
+while ! lookup_hostname argocd.${KUBRIX_DOMAIN}  &>/dev/null; do
   if [[ $iterations -eq 0 ]]; then
     echo "Timeout waiting for argocd.${KUBRIX_DOMAIN} registration"
     exit 1
   fi
   iterations=$((iterations - 1))
-  echo 'argocd.${KUBRIX_DOMAIN}. Waiting 10 seconds and trying again.'
+  echo "argocd.${KUBRIX_DOMAIN}. Waiting 10 seconds and trying again."
   sleep 10
 done
 
@@ -223,7 +239,7 @@ while [ $SECONDS -lt $end ]; do
         fi
         # terminate sync if sync is running and takes longer than 300 seconds (workaround when sync gets stuck)
         operation_phase=$(kubectl get application -n argocd ${app} -o jsonpath='{.status.operationState.phase}')
-        if [ ${operation_phase} == "Running" ] && [ ${sync_duration} -gt 300 ] ; then
+        if [ "${operation_phase}" = "Running" ] && [ ${sync_duration} -gt 300 ] || [ "${operation_phase}" = "Failed" ] ; then
           # Terminate the operation for the application
           echo "sync of app ${app} gets terminated because it took longer than 300 seconds"
           kubectl exec sx-argocd-application-controller-0 -n argocd -- argocd app terminate-op "$app" --core
