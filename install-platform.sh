@@ -1,7 +1,9 @@
 #!/bin/bash
 
-# just to debug
-set -x
+# just for troubleshooting
+if [ "${KUBRIX_INSTALL_DEBUG}" == true ]; then
+  set -x 
+fi
 
 # dump all kubrix variables
 env | grep KUBRIX
@@ -75,6 +77,7 @@ if [[ "${KUBRIX_TARGET_TYPE}" =~ ^KIND.* ]] ; then
 ' > coredns-configmap.yaml
   kubectl apply -f coredns-configmap.yaml
   kubectl rollout restart deployment coredns -n kube-system
+  rm coredns-configmap.yaml
 
   # do not install kind nginx-controller and metrics-server on k3d cluster
   # since kind nginx only works on kind cluster and metrics-server is already installed on k3d
