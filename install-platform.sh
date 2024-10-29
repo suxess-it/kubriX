@@ -80,13 +80,11 @@ if [[ "${KUBRIX_TARGET_TYPE}" =~ ^KIND.* ]] ; then
   # since kind nginx only works on kind cluster and metrics-server is already installed on k3d
   if [[ ${KUBRIX_CREATE_K3D_CLUSTER} != true ]] ; then
     # and install nginx ingress-controller
+    echo "installing nginx ingress controller in KinD"
     kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/main/deploy/static/provider/kind/deploy.yaml
-    kubectl wait --namespace ingress-nginx \
-      --for=condition=ready pod \
-      --selector=app.kubernetes.io/component=controller \
-      --timeout=90s
 
     # vault oidc case
+    echo "create a root ca and patch ingress-nginx-controller for vault oidc"
     kubectl create secret generic ca-cert --from-file=ca.crt="$(mkcert -CAROOT)"/rootCA.pem -n vault
     kubectl patch deployment ingress-nginx-controller -n ingress-nginx --type='json' -p='[
     {
@@ -96,6 +94,14 @@ if [[ "${KUBRIX_TARGET_TYPE}" =~ ^KIND.* ]] ; then
     },
     ]'
 
+    # wait until ingress-nginx-controller is ready
+    echo "wait until ingress-nginx-controller is running ..."
+    kubectl wait --namespace ingress-nginx \
+      --for=condition=ready pod \
+      --selector=app.kubernetes.io/component=controller \
+      --timeout=90s
+
+    echo "installing metrics-server in KinD"
     helm repo add metrics-server https://kubernetes-sigs.github.io/metrics-server/
     helm repo update
     helm upgrade --install --set args={--kubelet-insecure-tls} metrics-server metrics-server/metrics-server --namespace kube-system
@@ -108,6 +114,7 @@ fi
 # create argocd with helm chart not with install.yaml
 # because afterwards argocd is also managed by itself with the helm-chart
 
+echo "installing bootstrap argocd ..."
 helm install sx-argocd argo-cd \
   --repo https://argoproj.github.io/argo-helm \
   --version 7.1.3 \
@@ -144,7 +151,7 @@ if [[ "$OS" == "Darwin" && "$ARCH" == "arm64" ]]; then
   VERSION=$(curl --silent "https://api.github.com/repos/argoproj/argo-cd/releases/latest" | grep '"tag_name"' | sed -E 's/.*"([^"]+)".*/\1/')
   curl --progress-bar -SL -o argocd https://github.com/argoproj/argo-cd/releases/download/$VERSION/argocd-darwin-arm64
 else
-  curl -kL -o argocd https://${ARGOCD_HOSTNAME}/download/argocd-$OS-$ARCH
+  curl -kL -o argocd https://${ARGOCD_HOSTNAME}/download/argocd-linux-amd64
 fi
 
 chmod u+x argocd
@@ -323,7 +330,12 @@ echo "adding special configuration for sx-backstage"
   export GRAFANA_HOSTNAME=$(kubectl get ingress -o jsonpath='{.items[*].spec.rules[*].host}' -n grafana)
 
   # download argocd
-  curl -kL -o argocd https://${ARGOCD_HOSTNAME}/download/argocd-linux-amd64
+  if [[ "$OS" == "Darwin" && "$ARCH" == "arm64" ]]; then
+    VERSION=$(curl --silent "https://api.github.com/repos/argoproj/argo-cd/releases/latest" | grep '"tag_name"' | sed -E 's/.*"([^"]+)".*/\1/')
+    curl --progress-bar -SL -o argocd https://github.com/argoproj/argo-cd/releases/download/$VERSION/argocd-darwin-arm64
+  else
+    curl -kL -o argocd https://${ARGOCD_HOSTNAME}/download/argocd-linux-amd64
+  fi
   chmod u+x argocd
 
   INITIAL_ARGOCD_PASSWORD=$( kubectl get secret -n argocd argocd-initial-admin-secret -o=jsonpath={'.data.password'} | base64 -d )
