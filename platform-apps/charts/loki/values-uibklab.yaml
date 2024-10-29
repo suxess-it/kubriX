@@ -35,8 +35,9 @@ loki:
         signatureVersion: null
         s3ForcePathStyle: true
         bucketnames: loki-test
+        insecure: true
         http_config:
-          insecure_skip_verify: false
+          insecure_skip_verify: true
   gateway:
     ingress:
       enabled: true
