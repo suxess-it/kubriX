@@ -227,7 +227,7 @@ while [ $SECONDS -lt $end ]; do
         fi
         # terminate sync if sync is running and takes longer than 300 seconds (workaround when sync gets stuck)
         operation_phase=$(kubectl get application -n argocd ${app} -o jsonpath='{.status.operationState.phase}')
-        if [ ${operation_phase} == "Running" ] && [ ${sync_duration} -gt 300 ] ; then
+        if [ "${operation_phase}" = "Running" ] && [ ${sync_duration} -gt 300 ] || [ "${operation_phase}" = "Failed" ] ; then
           # Terminate the operation for the application
           echo "sync of app ${app} gets terminated because it took longer than 300 seconds"
           kubectl exec sx-argocd-application-controller-0 -n argocd -- argocd app terminate-op "$app" --core
