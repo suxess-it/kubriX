@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# just for troubleshooting
+set -x 
+
 # dump all kubrix variables
 env | grep KUBRIX
 ARCH=$(uname -m)
@@ -111,9 +114,21 @@ helm install sx-argocd argo-cd \
   --namespace argocd \
   --create-namespace \
   --set configs.cm.application.resourceTrackingMethod=annotation \
-  -f bootstrap-argocd-values.yaml \
+  -f bootstrap-argocd-values-$(echo ${KUBRIX_TARGET_TYPE} | awk '{print tolower($0)}').yaml \
   --wait
 
+# check if argocd hostname is already registered in DNS
+echo "wait until argocd.${KUBRIX_DOMAIN} is registered in DNS"
+iterations=20
+while ! nslookup argocd.${KUBRIX_DOMAIN}  &>/dev/null; do
+  if [[ $iterations -eq 0 ]]; then
+    echo "Timeout waiting for argocd.${KUBRIX_DOMAIN} registration"
+    exit 1
+  fi
+  iterations=$((iterations - 1))
+  echo 'argocd.${KUBRIX_DOMAIN}. Waiting 10 seconds and trying again.'
+  sleep 10
+done
 
 
 # add a repo so that private repos (e.g. private gitlab repos are also accessable)
@@ -129,7 +144,7 @@ if [[ "$OS" == "Darwin" && "$ARCH" == "arm64" ]]; then
   VERSION=$(curl --silent "https://api.github.com/repos/argoproj/argo-cd/releases/latest" | grep '"tag_name"' | sed -E 's/.*"([^"]+)".*/\1/')
   curl --progress-bar -SL -o argocd https://github.com/argoproj/argo-cd/releases/download/$VERSION/argocd-darwin-arm64
 else
-  curl -kL -o argocd https://${ARGOCD_HOSTNAME}/download/argocd-$OS-$ARCH
+  curl -kL -o argocd https://${ARGOCD_HOSTNAME}/download/argocd-linux-amd64
 fi
 
 chmod u+x argocd
@@ -308,7 +323,12 @@ echo "adding special configuration for sx-backstage"
   export GRAFANA_HOSTNAME=$(kubectl get ingress -o jsonpath='{.items[*].spec.rules[*].host}' -n grafana)
 
   # download argocd
-  curl -kL -o argocd https://${ARGOCD_HOSTNAME}/download/argocd-linux-amd64
+  if [[ "$OS" == "Darwin" && "$ARCH" == "arm64" ]]; then
+    VERSION=$(curl --silent "https://api.github.com/repos/argoproj/argo-cd/releases/latest" | grep '"tag_name"' | sed -E 's/.*"([^"]+)".*/\1/')
+    curl --progress-bar -SL -o argocd https://github.com/argoproj/argo-cd/releases/download/$VERSION/argocd-darwin-arm64
+  else
+    curl -kL -o argocd https://${ARGOCD_HOSTNAME}/download/argocd-linux-amd64
+  fi
   chmod u+x argocd
 
   INITIAL_ARGOCD_PASSWORD=$( kubectl get secret -n argocd argocd-initial-admin-secret -o=jsonpath={'.data.password'} | base64 -d )
