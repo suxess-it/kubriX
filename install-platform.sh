@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # just for troubleshooting
-if [ "${KUBRIX_INSTALL_DEBUG} == true ]; then
+if [ "${KUBRIX_INSTALL_DEBUG}" == true ]; then
   set -x 
 fi
 
