@@ -1,7 +1,7 @@
 apiVersion: external-secrets.io/v1beta1
 kind: ExternalSecret
 metadata:
-  name: loki-external-secret
+  name: loki-s3-cert
   namespace: loki
   annotations:
     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
@@ -11,17 +11,12 @@ spec:
     name: vault-backend
     kind: ClusterSecretStore
   target:
-    name: loki-s3-credentials
+    name: loki-s3-cert
     template:
       data:
-        SECRETACCESSKEY: "{{ `{{ .SECRETACCESSKEY }}` }}"
-        ACCESSKEYID: "{{ `{{ .ACCESSKEYID }}` }}"
+        ca.crt: "{{ `{{ .ca.crt }}` }}"
   data:
-  - secretKey: ACCESSKEYID
+  - secretKey: ca.crt
     remoteRef:
       key: sx-cnp-oss-kv/data/observability/s3
-      property: ACCESSKEYID
-  - secretKey: SECRETACCESSKEY
-    remoteRef:
-      key: sx-cnp-oss-kv/data/observability/s3
-      property: SECRETACCESSKEY
+      property: ca.crt

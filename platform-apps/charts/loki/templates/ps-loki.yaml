@@ -1,0 +1,24 @@
+apiVersion: external-secrets.io/v1alpha1
+kind: PushSecret
+metadata:
+  name: pushsecret-loki
+  namespace: loki
+spec:
+  refreshInterval: 10s
+  secretStoreRefs:
+    - name: vault-backend
+      kind: ClusterSecretStore
+  selector:
+    secret:
+      name: loki-s3-secret
+  data:
+    - match:
+        secretKey: SECRETACCESSKEY
+        remoteRef:
+          remoteKey: observability/s3
+          property: SECRETACCESSKEY
+    - match:
+        secretKey: ACCESSKEYID
+        remoteRef:
+          remoteKey: observability/s3
+          property: ACCESSKEYID
