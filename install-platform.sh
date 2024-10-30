@@ -173,6 +173,7 @@ if [ "${KUBRIX_INGRESS_CONTROLLER_INSTALLED}" = "true" ]; then
 else
   # port forward to download and login to argocd
   kubectl port-forward svc/sx-argocd-server -n argocd 8080:80 &
+  sleep 10
   export ARGOCD_HOSTNAME="localhost:8080"
   # download argocd
   if [[ "$OS" == "Darwin" && "$ARCH" == "arm64" ]]; then
