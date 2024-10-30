@@ -1,0 +1,24 @@
+{{- if not .Values.loki.minio.enabled }}
+apiVersion: external-secrets.io/v1beta1
+kind: ExternalSecret
+metadata:
+  name: loki-s3-cert
+  namespace: loki
+  annotations:
+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+spec:
+  refreshInterval: "15s"
+  secretStoreRef:
+    name: vault-backend
+    kind: ClusterSecretStore
+  target:
+    name: loki-s3-cert
+    template:
+      data:
+        ca.crt: "{{ `{{ .S3CERT }}` }}"
+  data:
+  - secretKey: S3CERT
+    remoteRef:
+      key: sx-cnp-oss-kv/data/observability/s3
+      property: S3CERT
+{{- end }}

@@ -1,0 +1,39 @@
+{{- if not .Values.loki.minio.enabled }}
+apiVersion: external-secrets.io/v1beta1
+kind: ExternalSecret
+metadata:
+  name: loki-external-secret
+  namespace: loki
+  annotations:
+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+spec:
+  refreshInterval: "15s"
+  secretStoreRef:
+    name: vault-backend
+    kind: ClusterSecretStore
+  target:
+    name: loki-s3-credentials
+    template:
+      data:
+        SECRETACCESSKEY: "{{ `{{ .SECRETACCESSKEY }}` }}"
+        ACCESSKEYID: "{{ `{{ .ACCESSKEYID }}` }}"
+        ENDPOINT: "{{ `{{ .ENDPOINT }}` }}"
+        ACCESSKEYID: "{{ `{{ .ACCESSKEYID }}` }}"
+  data:
+  - secretKey: ACCESSKEYID
+    remoteRef:
+      key: sx-cnp-oss-kv/data/observability/s3
+      property: ACCESSKEYID
+  - secretKey: SECRETACCESSKEY
+    remoteRef:
+      key: sx-cnp-oss-kv/data/observability/s3
+      property: SECRETACCESSKEY
+  - secretKey: ENDPOINT
+    remoteRef:
+      key: sx-cnp-oss-kv/data/observability/s3
+      property: ENDPOINT
+  - secretKey: BUCKETNAME
+    remoteRef:
+      key: sx-cnp-oss-kv/data/observability/s3
+      property: BUCKETNAME
+{{- end }}

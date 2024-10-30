@@ -20,6 +20,24 @@ loki:
       # Default is 4, if you have enough memory and CPU you can increase, reduce if OOMing
       max_concurrent: 4
 
+    storage:
+      bucketNames:
+        chunks: "${BUCKETNAME}"
+        ruler: "${BUCKETNAME}"
+#        admin: admin
+      type: s3
+      s3:
+        s3: null                # instead of s3 url we use the attributes below
+        endpoint: https://"${ENDPOINT}"         # IP / Hostname of s3 bucket
+        region: us-east-1       # doesn't matter
+        secretAccessKey: "${SECRETACCESSKEY}"
+        accessKeyId: "${ACCESSKEYID}"
+        signatureVersion: null
+        s3ForcePathStyle: true
+        insecure: false
+        http_config:
+          insecure_skip_verify: false
+          ca_file: "/var/loki-tls/ca.crt"
   gateway:
     ingress:
       enabled: true
@@ -53,7 +71,19 @@ loki:
       # Keep a little bit lower than memory limits
       - name: GOMEMLIMIT
         value: 3750MiB
-  
+    extraArgs:
+      - -config.expand-env=true
+    extraEnvFrom: 
+      - secretRef:
+          name: loki-s3-credentials
+    extraVolumeMounts: 
+      - name: loki-s3-cert
+        mountPath: /var/loki-tls
+        readOnly: true
+    extraVolumes:
+      - name: loki-s3-cert
+        secret:
+          secretName: loki-s3-cert
   chunksCache:
     enabled: false
     # default is 500MB, with limited memory keep this smaller
@@ -62,7 +92,7 @@ loki:
   
   # Enable minio for storage
   minio:
-    enabled: true
+    enabled: false
     persistence:
       size: 100Gi
 
