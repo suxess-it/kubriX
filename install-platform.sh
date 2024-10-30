@@ -137,10 +137,11 @@ helm install sx-argocd argo-cd \
   --namespace argocd \
   --create-namespace \
   --set configs.cm.application.resourceTrackingMethod=annotation \
-  -f bootstrap-argocd-values-$(echo ${KUBRIX_TARGET_TYPE} | awk '{print tolower($0)}').yaml \
+  -f bootstrap-argocd-values.yaml \
   --wait
 
 
+# we add the repo inside the application-controller because it could be that clusters do not have any ingress controller installed yet at this moment
 echo "add kubriX repo in argocd pod"
 kubectl exec sx-argocd-application-controller-0 -n argocd -- argocd repo add ${KUBRIX_REPO} --username ${KUBRIX_REPO_USERNAME} --password ${KUBRIX_REPO_PASSWORD} --core
 
