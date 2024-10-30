@@ -39,8 +39,8 @@ mimir:
         storage:
           backend: s3
           s3:
-            bucket_name: observability-stack-bucket
-            endpoint: nasvm-cnbkup-s3.intra.uibk.ac.at
+            bucket_name: "${BUCKETNAME}"
+            endpoint: "${ENDPOINT}" #without https, coming from insecure=false
             access_key_id: "${ACCESSKEYID}" # This is a secret injected via an environment variable
             secret_access_key: "${SECRETACCESSKEY}" # This is a secret injected via an environment variable
             insecure: false

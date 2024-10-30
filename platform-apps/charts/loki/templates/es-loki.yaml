@@ -17,6 +17,8 @@ spec:
       data:
         SECRETACCESSKEY: "{{ `{{ .SECRETACCESSKEY }}` }}"
         ACCESSKEYID: "{{ `{{ .ACCESSKEYID }}` }}"
+        ENDPOINT: "{{ `{{ .ENDPOINT }}` }}"
+        ACCESSKEYID: "{{ `{{ .ACCESSKEYID }}` }}"
   data:
   - secretKey: ACCESSKEYID
     remoteRef:
@@ -26,4 +28,12 @@ spec:
     remoteRef:
       key: sx-cnp-oss-kv/data/observability/s3
       property: SECRETACCESSKEY
+  - secretKey: ENDPOINT
+    remoteRef:
+      key: sx-cnp-oss-kv/data/observability/s3
+      property: ENDPOINT
+  - secretKey: BUCKETNAME
+    remoteRef:
+      key: sx-cnp-oss-kv/data/observability/s3
+      property: BUCKETNAME
 {{- end }}

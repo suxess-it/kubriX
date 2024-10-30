@@ -22,13 +22,13 @@ loki:
 
     storage:
       bucketNames:
-        chunks: observability-stack-bucket
-        ruler: observability-stack-bucket
+        chunks: "${BUCKETNAME}"
+        ruler: "${BUCKETNAME}"
 #        admin: admin
       type: s3
       s3:
         s3: null                # instead of s3 url we use the attributes below
-        endpoint: https://nasvm-cnbkup-s3.intra.uibk.ac.at          # IP / Hostname of s3 bucket
+        endpoint: https://"${ENDPOINT}"         # IP / Hostname of s3 bucket
         region: us-east-1       # doesn't matter
         secretAccessKey: "${SECRETACCESSKEY}"
         accessKeyId: "${ACCESSKEYID}"
