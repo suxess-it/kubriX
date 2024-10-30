@@ -17,10 +17,49 @@ mimir:
         - secretName: mimir-nginx-tls
           hosts:
             - metrics-monitoring.lab.suxessit.k8s.cloud.uibk.ac.at
+  global:
+    extraEnvFrom: 
+      - secretRef:
+          name: mimir-s3-credentials
+    extraVolumeMounts: 
+      - name: mimir-s3-cert
+        mountPath: /var/mimir-tls
+        readOnly: true
+    extraVolumes:
+      - name: mimir-s3-cert
+        secret:
+          secretName: mimir-s3-cert
   mimir:
     structuredConfig:
       limits:
         max_global_series_per_user: 500000
+        #compactor_blocks_retention_period: 30d
+        #max_label_names_per_series: 60
+      common:
+        storage:
+          backend: s3
+          s3:
+            bucket_name: observability-stack-bucket
+            endpoint: https://nasvm-cnbkup-s3.intra.uibk.ac.at
+            access_key_id: "${SECRETACCESSKEY}" # This is a secret injected via an environment variable
+            secret_access_key: "${ACCESSKEYID}" # This is a secret injected via an environment variable
+            insecure: false
+            tls_cert_path: "/var/mimir-tls/ca.crt"
+            #http:
+            #  insecure_skip_verify: false
+            #  tls_cert_path: 
+      alertmanager_storage:
+        s3:
+          bucket_name: observability-stack-bucket
+          storage_prefix: alertmanager
+      blocks_storage:
+        s3:
+          bucket_name: observability-stack-bucket
+          storage_prefix: blocks
+      ruler_storage:
+        s3:
+          bucket_name: observability-stack-bucket
+          storage_prefix: ruler
   distributor:
     resources:
       limits:
@@ -34,7 +73,7 @@ mimir:
     persistentVolume:
       size: 50Gi
 
-
   minio:
+    enabled: false
     persistence:
       size: 100Gi

@@ -1,0 +1,27 @@
+apiVersion: external-secrets.io/v1beta1
+kind: ExternalSecret
+metadata:
+  name: mimir-external-secret
+  namespace: mimir
+  annotations:
+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+spec:
+  refreshInterval: "15s"
+  secretStoreRef:
+    name: vault-backend
+    kind: ClusterSecretStore
+  target:
+    name: mimir-s3-credentials
+    template:
+      data:
+        SECRETACCESSKEY: "{{ `{{ .SECRETACCESSKEY }}` }}"
+        ACCESSKEYID: "{{ `{{ .ACCESSKEYID }}` }}"
+  data:
+  - secretKey: ACCESSKEYID
+    remoteRef:
+      key: sx-cnp-oss-kv/data/observability/s3
+      property: ACCESSKEYID
+  - secretKey: SECRETACCESSKEY
+    remoteRef:
+      key: sx-cnp-oss-kv/data/observability/s3
+      property: SECRETACCESSKEY
