@@ -190,6 +190,9 @@ INITIAL_ARGOCD_PASSWORD=$( kubectl get secret -n argocd argocd-initial-admin-sec
 ./argocd repo add ${KUBRIX_REPO} --username ${KUBRIX_REPO_USERNAME} --password ${KUBRIX_REPO_PASSWORD}
 rm argocd
 
+echo "try it in pod"
+kubectl exec sx-argocd-application-controller-0 -n argocd -- argocd repo add ${KUBRIX_REPO} --username ${KUBRIX_REPO_USERNAME} --password ${KUBRIX_REPO_PASSWORD} --core
+
 # kill port-forward
 kill %1
 
