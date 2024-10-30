@@ -140,34 +140,47 @@ helm install sx-argocd argo-cd \
   -f bootstrap-argocd-values-$(echo ${KUBRIX_TARGET_TYPE} | awk '{print tolower($0)}').yaml \
   --wait
 
-# check if argocd hostname is already registered in DNS
-echo "wait until argocd.${KUBRIX_DOMAIN} is registered in DNS"
-iterations=20
-while ! lookup_hostname argocd.${KUBRIX_DOMAIN}  &>/dev/null; do
-  if [[ $iterations -eq 0 ]]; then
-    echo "Timeout waiting for argocd.${KUBRIX_DOMAIN} registration"
-    exit 1
-  fi
-  iterations=$((iterations - 1))
-  echo "argocd.${KUBRIX_DOMAIN}. Waiting 10 seconds and trying again."
+if [ "${KUBRIX_INGRESS_CONTROLLER_INSTALLED}" = "true" ]; then
+  # check if argocd hostname is already registered in DNS
+  echo "wait until argocd.${KUBRIX_DOMAIN} is registered in DNS"
+  iterations=20
+  while ! lookup_hostname argocd.${KUBRIX_DOMAIN}  &>/dev/null; do
+    if [[ $iterations -eq 0 ]]; then
+      echo "Timeout waiting for argocd.${KUBRIX_DOMAIN} registration"
+      exit 1
+    fi
+    iterations=$((iterations - 1))
+    echo "argocd.${KUBRIX_DOMAIN}. Waiting 10 seconds and trying again."
+    sleep 10
+  done
+
+  # add a repo so that private repos (e.g. private gitlab repos are also accessable)
+  # note: this is just for initial bootstrap. this repo should of course then also
+  # be configured in the argocd chart as a external-secrets template in the kubriX stack.
+  # see https://argo-cd.readthedocs.io/en/stable/operator-manual/declarative-setup/#repositories
+  export ARGOCD_HOSTNAME=$(kubectl get ingress -o jsonpath='{.items[*].spec.rules[*].host}' -n argocd)
+
+  # sleep 10 seconds because ingress/service/pod is not available otherwise
   sleep 10
-done
 
-
-# add a repo so that private repos (e.g. private gitlab repos are also accessable)
-# note: this is just for initial bootstrap. this repo should of course then also
-# be configured in the argocd chart as a external-secrets template in the kubriX stack.
-# see https://argo-cd.readthedocs.io/en/stable/operator-manual/declarative-setup/#repositories
-export ARGOCD_HOSTNAME=$(kubectl get ingress -o jsonpath='{.items[*].spec.rules[*].host}' -n argocd)
-# sleep 10 seconds because ingress/service/pod is not available otherwise
-sleep 10
-
-# download argocd
-if [[ "$OS" == "Darwin" && "$ARCH" == "arm64" ]]; then
-  VERSION=$(curl --silent "https://api.github.com/repos/argoproj/argo-cd/releases/latest" | grep '"tag_name"' | sed -E 's/.*"([^"]+)".*/\1/')
-  curl --progress-bar -SL -o argocd https://github.com/argoproj/argo-cd/releases/download/$VERSION/argocd-darwin-arm64
+  # download argocd
+  if [[ "$OS" == "Darwin" && "$ARCH" == "arm64" ]]; then
+    VERSION=$(curl --silent "https://api.github.com/repos/argoproj/argo-cd/releases/latest" | grep '"tag_name"' | sed -E 's/.*"([^"]+)".*/\1/')
+    curl --progress-bar -SL -o argocd https://github.com/argoproj/argo-cd/releases/download/$VERSION/argocd-darwin-arm64
+  else
+    curl -kL -o argocd https://${ARGOCD_HOSTNAME}/download/argocd-linux-amd64
+  fi
 else
-  curl -kL -o argocd https://${ARGOCD_HOSTNAME}/download/argocd-linux-amd64
+  # port forward to download and login to argocd
+  kubectl port-forward svc/sx-argocd-server -n argocd 8080:80 &
+  export ARGOCD_HOSTNAME="localhost:8080"
+  # download argocd
+  if [[ "$OS" == "Darwin" && "$ARCH" == "arm64" ]]; then
+    VERSION=$(curl --silent "https://api.github.com/repos/argoproj/argo-cd/releases/latest" | grep '"tag_name"' | sed -E 's/.*"([^"]+)".*/\1/')
+    curl --progress-bar -SL -o argocd https://github.com/argoproj/argo-cd/releases/download/$VERSION/argocd-darwin-arm64
+  else
+    curl -kL -o argocd http://${ARGOCD_HOSTNAME}/download/argocd-linux-amd64
+  fi
 fi
 
 chmod u+x argocd
@@ -175,6 +188,9 @@ INITIAL_ARGOCD_PASSWORD=$( kubectl get secret -n argocd argocd-initial-admin-sec
 ./argocd login ${ARGOCD_HOSTNAME} --grpc-web --insecure --username admin --password ${INITIAL_ARGOCD_PASSWORD}
 ./argocd repo add ${KUBRIX_REPO} --username ${KUBRIX_REPO_USERNAME} --password ${KUBRIX_REPO_PASSWORD}
 rm argocd
+
+# kill port-forward
+kill %1
 
 # create secret for scm applicationset in team app definition namespaces
 # see https://github.com/suxess-it/sx-cnp-oss/issues/214 for a sustainable solution
