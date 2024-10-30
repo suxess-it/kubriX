@@ -44,10 +44,9 @@ mimir:
             access_key_id: "${SECRETACCESSKEY}" # This is a secret injected via an environment variable
             secret_access_key: "${ACCESSKEYID}" # This is a secret injected via an environment variable
             insecure: false
-            tls_cert_path: "/var/mimir-tls/ca.crt"
-            #http:
+            http:
             #  insecure_skip_verify: false
-            #  tls_cert_path: 
+              tls_cert_path:  "/var/mimir-tls/ca.crt"
       alertmanager_storage:
         s3:
           bucket_name: observability-stack-bucket
