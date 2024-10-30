@@ -1,3 +1,4 @@
+{{- if not .Values.mimir.minio.enabled }}
 apiVersion: external-secrets.io/v1beta1
 kind: ExternalSecret
 metadata:
@@ -20,3 +21,4 @@ spec:
     remoteRef:
       key: sx-cnp-oss-kv/data/observability/s3
       property: S3CERT
+{{- end }}
