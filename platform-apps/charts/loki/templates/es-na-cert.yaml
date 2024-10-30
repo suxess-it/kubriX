@@ -14,9 +14,9 @@ spec:
     name: loki-s3-cert
     template:
       data:
-        ca.crt: "{{ `{{ .ca.crt }}` }}"
+        ca.crt: "{{ `{{ .S3CERT }}` }}"
   data:
-  - secretKey: ca.crt
+  - secretKey: S3CERT
     remoteRef:
       key: sx-cnp-oss-kv/data/observability/s3
-      property: ca.crt
+      property: S3CERT
