@@ -46,7 +46,7 @@ mimir:
             insecure: false
             http:
             #  insecure_skip_verify: false
-              tls_cert_path:  "/var/mimir-tls/ca.crt"
+              tls_ca_path:  "/var/mimir-tls/ca.crt"
       alertmanager_storage:
         s3:
           bucket_name: observability-stack-bucket
