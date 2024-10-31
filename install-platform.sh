@@ -297,7 +297,7 @@ if [[ $( echo $argocd_apps | grep sx-backstage ) ]] ; then
 echo "adding special configuration for sx-backstage"
   # get hostnames from ingress
   export GRAFANA_HOSTNAME=$(kubectl get ingress -o jsonpath='{.items[*].spec.rules[*].host}' -n grafana )
-  export ARGOCD_AUTH_TOKEN="$( kubectl exec sx-argocd-application-controller-0 -n argocd -- argocd account generate-token --account backstage --grpc-web --core )"
+  export ARGOCD_AUTH_TOKEN="$( kubectl exec sx-argocd-application-controller-0 -n argocd -- argocd account generate-token --account backstage --core )"
   
   ID=$( curl -k -X POST https://${GRAFANA_HOSTNAME}/api/serviceaccounts --user 'admin:prom-operator' -H "Content-Type: application/json" -d '{"name": "backstage","role": "Viewer","isDisabled": false}' | jq -r .id )
   export GRAFANA_TOKEN=$(curl -k -X POST https://${GRAFANA_HOSTNAME}/api/serviceaccounts/${ID}/tokens --user 'admin:prom-operator' -H "Content-Type: application/json" -d '{"name": "backstage"}' | jq -r .key)
