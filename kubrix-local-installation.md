@@ -1,5 +1,7 @@
 # Create a kubriX test environment on your local machine
 
+#### Attention! We will probably skip support for K3d cluster in a local environment in the future. We use KinD in our pipeline and also on local envs and we believe we should focus on one dev environment and keep this very stable. If you still need K3d, just please open an issue.
+
 ## prereqs
 
 k3d or kind installed
