@@ -112,9 +112,6 @@ if [[ "${KUBRIX_TARGET_TYPE}" =~ ^KIND.* ]] ; then
   fi
 fi
 
-# some clients may have performance issues for nginx startup, then argo init fails
-[ -n "$SLOWCLIENT" ] && sleep $SLOWCLIENT
-
 # create argocd with helm chart not with install.yaml
 # because afterwards argocd is also managed by itself with the helm-chart
 
