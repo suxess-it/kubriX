@@ -33,18 +33,6 @@ utc_now_seconds() {
   fi
 }
 
-lookup_hostname() {
-  local hostname=$1
-  if [[ "$ARCH" == "amd64" || "$ARCH" == "x86_64" ]]; then
-    getent hosts ${hostname}
-  elif [[ "$ARCH" == "arm64" ]]; then
-    nslookup ${hostname}
-  else
-    echo "Unsupported architecture: $ARCH" >&2
-    exit 1
-  fi
-}
-
 if [ "${KUBRIX_CREATE_K3D_CLUSTER}" == true ] ; then
   # do we need to set this always? I had DNS issues on the train
   export K3D_FIX_DNS=1
