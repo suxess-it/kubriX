@@ -133,3 +133,10 @@ tbd
 k3d cluster stop kubrix-local-demo
 k3d cluster delete kubrix-local-demo
 ```
+
+
+## delete kind cluster
+
+```
+kind delete cluster --name kubrix-local-demo
+```
