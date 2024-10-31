@@ -2,8 +2,17 @@
 
 ## prereqs
 
-k3d installed
+k3d or kind installed
 kubectl installed
+
+### installing KinD
+
+Install kind: https://kind.sigs.k8s.io/docs/user/quick-start/#installing-from-release-binaries
+
+Create kind cluster
+````
+kind create cluster --name kubrix-local-demo --config .github/kind-config.yaml
+````
 
 ### mkcert
 
