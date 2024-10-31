@@ -32,7 +32,6 @@ export KUBRIX_REPO_BRANCH=$( git rev-parse --abbrev-ref HEAD )
 # on local machine it should use the remote origin repo
 if [ ${CODESPACES} ]; then
   export KUBRIX_REPO="https://github.com/${GITHUB_REPOSITORY}"
-  export KUBRIX_DOMAIN=127-0-0-1.nip.io
   export KUBRIX_REPO_USERNAME=${GITHUB_USER}
   export KUBRIX_REPO_PASSWORD=${GITHUB_TOKEN}
 else

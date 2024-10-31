@@ -33,18 +33,6 @@ utc_now_seconds() {
   fi
 }
 
-lookup_hostname() {
-  local hostname=$1
-  if [[ "$ARCH" == "amd64" || "$ARCH" == "x86_64" ]]; then
-    getent hosts ${hostname}
-  elif [[ "$ARCH" == "arm64" ]]; then
-    nslookup ${hostname}
-  else
-    echo "Unsupported architecture: $ARCH" >&2
-    exit 1
-  fi
-}
-
 if [ "${KUBRIX_CREATE_K3D_CLUSTER}" == true ] ; then
   # do we need to set this always? I had DNS issues on the train
   export K3D_FIX_DNS=1
@@ -123,9 +111,6 @@ if [[ "${KUBRIX_TARGET_TYPE}" =~ ^KIND.* ]] ; then
     helm upgrade --install --set args={--kubelet-insecure-tls} metrics-server metrics-server/metrics-server --namespace kube-system
   fi
 fi
-
-# some clients may have performance issues for nginx startup, then argo init fails
-[ -n "$SLOWCLIENT" ] && sleep $SLOWCLIENT
 
 # create argocd with helm chart not with install.yaml
 # because afterwards argocd is also managed by itself with the helm-chart
@@ -311,22 +296,8 @@ fi
 if [[ $( echo $argocd_apps | grep sx-backstage ) ]] ; then
 echo "adding special configuration for sx-backstage"
   # get hostnames from ingress
-  export ARGOCD_HOSTNAME=$(kubectl get ingress -o jsonpath='{.items[*].spec.rules[*].host}' -n argocd)
-  export GRAFANA_HOSTNAME=$(kubectl get ingress -o jsonpath='{.items[*].spec.rules[*].host}' -n grafana)
-
-  # download argocd
-  if [[ "$OS" == "Darwin" && "$ARCH" == "arm64" ]]; then
-    VERSION=$(curl --silent "https://api.github.com/repos/argoproj/argo-cd/releases/latest" | grep '"tag_name"' | sed -E 's/.*"([^"]+)".*/\1/')
-    curl --progress-bar -SL -o argocd https://github.com/argoproj/argo-cd/releases/download/$VERSION/argocd-darwin-arm64
-  else
-    curl -kL -o argocd https://${ARGOCD_HOSTNAME}/download/argocd-linux-amd64
-  fi
-  chmod u+x argocd
-
-  INITIAL_ARGOCD_PASSWORD=$( kubectl get secret -n argocd argocd-initial-admin-secret -o=jsonpath={'.data.password'} | base64 -d )
-  ./argocd login ${ARGOCD_HOSTNAME} --grpc-web --insecure --username admin --password ${INITIAL_ARGOCD_PASSWORD}
-  export ARGOCD_AUTH_TOKEN="$( ./argocd account generate-token --account backstage --grpc-web )"
-  rm argocd
+  export GRAFANA_HOSTNAME=$(kubectl get ingress -o jsonpath='{.items[*].spec.rules[*].host}' -n grafana )
+  export ARGOCD_AUTH_TOKEN="$( kubectl exec sx-argocd-application-controller-0 -n argocd -- argocd account generate-token --account backstage --core )"
   
   ID=$( curl -k -X POST https://${GRAFANA_HOSTNAME}/api/serviceaccounts --user 'admin:prom-operator' -H "Content-Type: application/json" -d '{"name": "backstage","role": "Viewer","isDisabled": false}' | jq -r .id )
   export GRAFANA_TOKEN=$(curl -k -X POST https://${GRAFANA_HOSTNAME}/api/serviceaccounts/${ID}/tokens --user 'admin:prom-operator' -H "Content-Type: application/json" -d '{"name": "backstage"}' | jq -r .key)
