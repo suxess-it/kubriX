@@ -102,7 +102,7 @@ wait_until_apps_synced_healthy() {
         printf '%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\n' ${app} ${sync_status} ${health_status} ${sync_duration} ${operation_phase} >> status-apps.out
 
       else
-        printf '%s -' ${app} >> status-apps.out
+        printf '%s - (not synced yet)\n'' ${app} >> status-apps.out
         all_apps_synced="false"	
       fi
     done
