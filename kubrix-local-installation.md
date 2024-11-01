@@ -1,9 +1,20 @@
 # Create a kubriX test environment on your local machine
 
+#### Attention! We will probably skip support for K3d cluster in a local environment in the future. We use KinD in our pipeline and also on local envs and we believe we should focus on one dev environment and keep this very stable. If you still need K3d, just please open an issue.
+
 ## prereqs
 
-k3d installed
+k3d or kind installed
 kubectl installed
+
+### installing KinD
+
+Install kind: https://kind.sigs.k8s.io/docs/user/quick-start/#installing-from-release-binaries
+
+Create kind cluster
+````
+kind create cluster --name kubrix-local-demo --config .github/kind-config.yaml
+````
 
 ### mkcert
 
@@ -46,8 +57,6 @@ export KUBRIX_REPO_PASSWORD=<kubrix-repo-password-or-personal-access-token>
 export KUBRIX_TARGET_TYPE=KIND-DELIVERY
 # if a K3d cluster should get created:
 export KUBRIX_CREATE_K3D_CLUSTER=true
-# domain of the used platform service hostnames
-export KUBRIX_DOMAIN=127.0.0.1.nip.io
 ```
 
 ## 2. install platform-stack
@@ -123,4 +132,11 @@ tbd
 ```
 k3d cluster stop kubrix-local-demo
 k3d cluster delete kubrix-local-demo
+```
+
+
+## delete kind cluster
+
+```
+kind delete cluster --name kubrix-local-demo
 ```

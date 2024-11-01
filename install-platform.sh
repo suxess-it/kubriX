@@ -33,18 +33,6 @@ utc_now_seconds() {
   fi
 }
 
-lookup_hostname() {
-  local hostname=$1
-  if [[ "$ARCH" == "amd64" || "$ARCH" == "x86_64" ]]; then
-    getent hosts ${hostname}
-  elif [[ "$ARCH" == "arm64" ]]; then
-    nslookup ${hostname}
-  else
-    echo "Unsupported architecture: $ARCH" >&2
-    exit 1
-  fi
-}
-
 if [ "${KUBRIX_CREATE_K3D_CLUSTER}" == true ] ; then
   # do we need to set this always? I had DNS issues on the train
   export K3D_FIX_DNS=1
@@ -124,9 +112,6 @@ if [[ "${KUBRIX_TARGET_TYPE}" =~ ^KIND.* ]] ; then
   fi
 fi
 
-# some clients may have performance issues for nginx startup, then argo init fails
-[ -n "$SLOWCLIENT" ] && sleep $SLOWCLIENT
-
 # create argocd with helm chart not with install.yaml
 # because afterwards argocd is also managed by itself with the helm-chart
 
@@ -137,44 +122,13 @@ helm install sx-argocd argo-cd \
   --namespace argocd \
   --create-namespace \
   --set configs.cm.application.resourceTrackingMethod=annotation \
-  -f bootstrap-argocd-values-$(echo ${KUBRIX_TARGET_TYPE} | awk '{print tolower($0)}').yaml \
+  -f bootstrap-argocd-values.yaml \
   --wait
 
-# check if argocd hostname is already registered in DNS
-echo "wait until argocd.${KUBRIX_DOMAIN} is registered in DNS"
-iterations=20
-while ! lookup_hostname argocd.${KUBRIX_DOMAIN}  &>/dev/null; do
-  if [[ $iterations -eq 0 ]]; then
-    echo "Timeout waiting for argocd.${KUBRIX_DOMAIN} registration"
-    exit 1
-  fi
-  iterations=$((iterations - 1))
-  echo "argocd.${KUBRIX_DOMAIN}. Waiting 10 seconds and trying again."
-  sleep 10
-done
 
-
-# add a repo so that private repos (e.g. private gitlab repos are also accessable)
-# note: this is just for initial bootstrap. this repo should of course then also
-# be configured in the argocd chart as a external-secrets template in the kubriX stack.
-# see https://argo-cd.readthedocs.io/en/stable/operator-manual/declarative-setup/#repositories
-export ARGOCD_HOSTNAME=$(kubectl get ingress -o jsonpath='{.items[*].spec.rules[*].host}' -n argocd)
-# sleep 10 seconds because ingress/service/pod is not available otherwise
-sleep 10
-
-# download argocd
-if [[ "$OS" == "Darwin" && "$ARCH" == "arm64" ]]; then
-  VERSION=$(curl --silent "https://api.github.com/repos/argoproj/argo-cd/releases/latest" | grep '"tag_name"' | sed -E 's/.*"([^"]+)".*/\1/')
-  curl --progress-bar -SL -o argocd https://github.com/argoproj/argo-cd/releases/download/$VERSION/argocd-darwin-arm64
-else
-  curl -kL -o argocd https://${ARGOCD_HOSTNAME}/download/argocd-linux-amd64
-fi
-
-chmod u+x argocd
-INITIAL_ARGOCD_PASSWORD=$( kubectl get secret -n argocd argocd-initial-admin-secret -o=jsonpath={'.data.password'} | base64 -d )
-./argocd login ${ARGOCD_HOSTNAME} --grpc-web --insecure --username admin --password ${INITIAL_ARGOCD_PASSWORD}
-./argocd repo add ${KUBRIX_REPO} --username ${KUBRIX_REPO_USERNAME} --password ${KUBRIX_REPO_PASSWORD}
-rm argocd
+# we add the repo inside the application-controller because it could be that clusters do not have any ingress controller installed yet at this moment
+echo "add kubriX repo in argocd pod"
+kubectl exec sx-argocd-application-controller-0 -n argocd -- argocd repo add ${KUBRIX_REPO} --username ${KUBRIX_REPO_USERNAME} --password ${KUBRIX_REPO_PASSWORD} --core
 
 # create secret for scm applicationset in team app definition namespaces
 # see https://github.com/suxess-it/sx-cnp-oss/issues/214 for a sustainable solution
@@ -340,27 +294,6 @@ fi
 
 # if backstage is part of this stack, create the manual secret for backstage
 if [[ $( echo $argocd_apps | grep sx-backstage ) ]] ; then
-echo "adding special configuration for sx-backstage"
-  # get hostnames from ingress
-  export ARGOCD_HOSTNAME=$(kubectl get ingress -o jsonpath='{.items[*].spec.rules[*].host}' -n argocd)
-  export GRAFANA_HOSTNAME=$(kubectl get ingress -o jsonpath='{.items[*].spec.rules[*].host}' -n grafana)
-
-  # download argocd
-  if [[ "$OS" == "Darwin" && "$ARCH" == "arm64" ]]; then
-    VERSION=$(curl --silent "https://api.github.com/repos/argoproj/argo-cd/releases/latest" | grep '"tag_name"' | sed -E 's/.*"([^"]+)".*/\1/')
-    curl --progress-bar -SL -o argocd https://github.com/argoproj/argo-cd/releases/download/$VERSION/argocd-darwin-arm64
-  else
-    curl -kL -o argocd https://${ARGOCD_HOSTNAME}/download/argocd-linux-amd64
-  fi
-  chmod u+x argocd
-
-  INITIAL_ARGOCD_PASSWORD=$( kubectl get secret -n argocd argocd-initial-admin-secret -o=jsonpath={'.data.password'} | base64 -d )
-  ./argocd login ${ARGOCD_HOSTNAME} --grpc-web --insecure --username admin --password ${INITIAL_ARGOCD_PASSWORD}
-  export ARGOCD_AUTH_TOKEN="$( ./argocd account generate-token --account backstage --grpc-web )"
-  rm argocd
-  
-  ID=$( curl -k -X POST https://${GRAFANA_HOSTNAME}/api/serviceaccounts --user 'admin:prom-operator' -H "Content-Type: application/json" -d '{"name": "backstage","role": "Viewer","isDisabled": false}' | jq -r .id )
-  export GRAFANA_TOKEN=$(curl -k -X POST https://${GRAFANA_HOSTNAME}/api/serviceaccounts/${ID}/tokens --user 'admin:prom-operator' -H "Content-Type: application/json" -d '{"name": "backstage"}' | jq -r .key)
 
   # check if backstage is already synced (it will still be degraded because of the missing secret we create in the next step)
   # max wait for 5 minutes
@@ -391,6 +324,19 @@ echo "adding special configuration for sx-backstage"
     sleep 10
   done
 
+
+  echo "adding special configuration for sx-backstage"
+
+  # generate argocd token
+  export ARGOCD_AUTH_TOKEN="$( kubectl exec sx-argocd-application-controller-0 -n argocd -- argocd account generate-token --account backstage --core )"
+
+  # generate grafana token
+  export GRAFANA_HOSTNAME=$(kubectl get ingress -o jsonpath='{.items[*].spec.rules[*].host}' -n grafana )
+  if [ "${GRAFANA_HOSTNAME}" != "" ]; then
+    ID=$( curl -k -X POST https://${GRAFANA_HOSTNAME}/api/serviceaccounts --user 'admin:prom-operator' -H "Content-Type: application/json" -d '{"name": "backstage","role": "Viewer","isDisabled": false}' | jq -r .id )
+    export GRAFANA_TOKEN=$(curl -k -X POST https://${GRAFANA_HOSTNAME}/api/serviceaccounts/${ID}/tokens --user 'admin:prom-operator' -H "Content-Type: application/json" -d '{"name": "backstage"}' | jq -r .key)
+  fi
+  
   # get backstage-locator token for backstage secret
   export K8S_SA_TOKEN=$( kubectl get secret backstage-locator -n backstage  -o jsonpath='{.data.token}' | base64 -d )
 
@@ -401,6 +347,7 @@ echo "adding special configuration for sx-backstage"
     GITHUB_CODESPACES="true"
     BACKSTAGE_CODESPACE_URL="https://${CODESPACE_NAME}-6691.${GITHUB_CODESPACES_PORT_FORWARDING_DOMAIN}"
   fi
+  
   if [ ${KEYCLOAK_CODESPACES} ]; then
     kubectl create secret generic -n backstage manual-secret \
       --from-literal=GITHUB_CLIENTSECRET=${KUBRIX_GITHUB_CLIENTSECRET} \
