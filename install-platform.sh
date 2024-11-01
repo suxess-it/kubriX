@@ -294,13 +294,6 @@ fi
 
 # if backstage is part of this stack, create the manual secret for backstage
 if [[ $( echo $argocd_apps | grep sx-backstage ) ]] ; then
-echo "adding special configuration for sx-backstage"
-  # get hostnames from ingress
-  export GRAFANA_HOSTNAME=$(kubectl get ingress -o jsonpath='{.items[*].spec.rules[*].host}' -n grafana )
-  export ARGOCD_AUTH_TOKEN="$( kubectl exec sx-argocd-application-controller-0 -n argocd -- argocd account generate-token --account backstage --core )"
-  
-  ID=$( curl -k -X POST https://${GRAFANA_HOSTNAME}/api/serviceaccounts --user 'admin:prom-operator' -H "Content-Type: application/json" -d '{"name": "backstage","role": "Viewer","isDisabled": false}' | jq -r .id )
-  export GRAFANA_TOKEN=$(curl -k -X POST https://${GRAFANA_HOSTNAME}/api/serviceaccounts/${ID}/tokens --user 'admin:prom-operator' -H "Content-Type: application/json" -d '{"name": "backstage"}' | jq -r .key)
 
   # check if backstage is already synced (it will still be degraded because of the missing secret we create in the next step)
   # max wait for 5 minutes
@@ -331,6 +324,19 @@ echo "adding special configuration for sx-backstage"
     sleep 10
   done
 
+
+  echo "adding special configuration for sx-backstage"
+
+  # generate argocd token
+  export ARGOCD_AUTH_TOKEN="$( kubectl exec sx-argocd-application-controller-0 -n argocd -- argocd account generate-token --account backstage --core )"
+
+  # generate grafana token
+  export GRAFANA_HOSTNAME=$(kubectl get ingress -o jsonpath='{.items[*].spec.rules[*].host}' -n grafana )
+  if [ "${GRAFANA_HOSTNAME}" != "" ]; then
+    ID=$( curl -k -X POST https://${GRAFANA_HOSTNAME}/api/serviceaccounts --user 'admin:prom-operator' -H "Content-Type: application/json" -d '{"name": "backstage","role": "Viewer","isDisabled": false}' | jq -r .id )
+    export GRAFANA_TOKEN=$(curl -k -X POST https://${GRAFANA_HOSTNAME}/api/serviceaccounts/${ID}/tokens --user 'admin:prom-operator' -H "Content-Type: application/json" -d '{"name": "backstage"}' | jq -r .key)
+  fi
+  
   # get backstage-locator token for backstage secret
   export K8S_SA_TOKEN=$( kubectl get secret backstage-locator -n backstage  -o jsonpath='{.data.token}' | base64 -d )
 
@@ -341,6 +347,7 @@ echo "adding special configuration for sx-backstage"
     GITHUB_CODESPACES="true"
     BACKSTAGE_CODESPACE_URL="https://${CODESPACE_NAME}-6691.${GITHUB_CODESPACES_PORT_FORWARDING_DOMAIN}"
   fi
+  
   if [ ${KEYCLOAK_CODESPACES} ]; then
     kubectl create secret generic -n backstage manual-secret \
       --from-literal=GITHUB_CLIENTSECRET=${KUBRIX_GITHUB_CLIENTSECRET} \
