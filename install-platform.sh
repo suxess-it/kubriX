@@ -252,7 +252,7 @@ argocd_apps=$(cat $target_chart_value_file | awk '/^  - name:/ { printf "%s", "s
 argocd_apps_without_individual=$(cat $target_chart_value_file | egrep -Ev "backstage|kargo" | awk '/^  - name:/ { printf "%s", "sx-"$3" "}' )
 
 # max wait for 20 minutes until all apps except backstage and kargo are synced and healthy
-wait_until_apps_synced_healthy ${argocd_apps_without_individual} "Synced" "Healthy" ${MAX_WAIT_TIME:-1200}
+wait_until_apps_synced_healthy "${argocd_apps_without_individual}" "Synced" "Healthy" ${MAX_WAIT_TIME:-1200}
 
 # apply argocd-secret to set a secretKey
 kubectl apply -f platform-apps/charts/argocd/manual-secret/argocd-secret.yaml
