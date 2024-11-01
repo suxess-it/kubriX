@@ -39,99 +39,100 @@ wait_until_apps_synced_healthy() {
   local healthy=$3
   local max_wait_time=$4
 
-start=$SECONDS
-end=$((SECONDS+${max_wait_time}))
+  echo "wait until these apps have reached sync state '${synced}' and health state '${healthy}'"
+  echo "apps: ${apps}"
+  echo "max wait time: ${max_wait_time}"
 
-all_apps_synced="true"
-while [ $SECONDS -lt $end ]; do
-  all_apps_synced="true"
+  start=$SECONDS
+  end=$((SECONDS+${max_wait_time}))
 
-  # print app status in beautiful table
-  printf 'app sync-status health-status sync-duration operation-phase\n' > status-apps.out
+  while [ $SECONDS -lt $end ]; do
+    all_apps_synced="true"
 
-  for app in ${apps} ; do
-    if kubectl get application -n argocd ${app} > /dev/null 2>&1 ; then
-      sync_status=$(kubectl get application -n argocd ${app} -o jsonpath='{.status.sync.status}')
-      health_status=$(kubectl get application -n argocd ${app} -o jsonpath='{.status.health.status}')
+    # print app status in beautiful table
+    printf 'app sync-status health-status sync-duration operation-phase\n' > status-apps.out
 
-      if [[ "${sync_status}" != "${synced}" ]] || [[ "${health_status}" != "${healthy}" ]] ; then
-        all_apps_synced="false"
-      fi
+    for app in ${apps} ; do
+      if kubectl get application -n argocd ${app} > /dev/null 2>&1 ; then
+        sync_status=$(kubectl get application -n argocd ${app} -o jsonpath='{.status.sync.status}')
+        health_status=$(kubectl get application -n argocd ${app} -o jsonpath='{.status.health.status}')
 
-      # check if app sync is stuck and needs to get restarted
-      # if app has no resources, operationState is empty
-      operation_state=$(kubectl get application -n argocd ${app} -o jsonpath='{.status.operationState}')
-      if [ "${operation_state}" != "" ] ; then
-        # from our tests this time is always UTC!
-        sync_started=$(kubectl get application -n argocd ${app} -o jsonpath='{.status.operationState.startedAt}' |sed 's/Z$//')
-        sync_finished=$(kubectl get application -n argocd ${app} -o jsonpath='{.status.operationState.finishedAt}' |sed 's/Z$//')
-        sync_started_seconds=$(convert_to_seconds "${sync_started}")
+        if [[ "${sync_status}" != "${synced}" ]] || [[ "${health_status}" != "${healthy}" ]] ; then
+          all_apps_synced="false"
+        fi
 
-        # if sync finished, duration is 'finished - started', otherwise its 'now - started'
-        if [ "${sync_finished}" != "" ] ; then
-          sync_finished_seconds=$(convert_to_seconds "${sync_finished}")
-          sync_duration=$((${sync_finished_seconds}-${sync_started_seconds}))
+        # check if app sync is stuck and needs to get restarted
+        # if app has no resources, operationState is empty
+        operation_state=$(kubectl get application -n argocd ${app} -o jsonpath='{.status.operationState}')
+        if [ "${operation_state}" != "" ] ; then
+          # from our tests this time is always UTC!
+          sync_started=$(kubectl get application -n argocd ${app} -o jsonpath='{.status.operationState.startedAt}' |sed 's/Z$//')
+          sync_finished=$(kubectl get application -n argocd ${app} -o jsonpath='{.status.operationState.finishedAt}' |sed 's/Z$//')
+          sync_started_seconds=$(convert_to_seconds "${sync_started}")
+
+          # if sync finished, duration is 'finished - started', otherwise its 'now - started'
+          if [ "${sync_finished}" != "" ] ; then
+            sync_finished_seconds=$(convert_to_seconds "${sync_finished}")
+            sync_duration=$((${sync_finished_seconds}-${sync_started_seconds}))
+          else
+            # since '.status.operationState.startedAt' is always UTC (from our tests)
+            #  we need to get 'now' also in UTC
+            now_seconds=$(utc_now_seconds)
+            sync_finished_seconds="-"
+            sync_duration=$((${now_seconds}-${sync_started_seconds}))
+          fi
+          # terminate sync if sync is running and takes longer than 300 seconds (workaround when sync gets stuck)
+          operation_phase=$(kubectl get application -n argocd ${app} -o jsonpath='{.status.operationState.phase}')
+          if [ "${operation_phase}" = "Running" ] && [ ${sync_duration} -gt 300 ] || [ "${operation_phase}" = "Failed" ] ; then
+            # Terminate the operation for the application
+            echo "sync of app ${app} gets terminated because it took longer than 300 seconds"
+            kubectl exec sx-argocd-application-controller-0 -n argocd -- argocd app terminate-op "$app" --core
+            echo "wait for 10 seconds"
+            sleep 10
+            echo "restart sync for app ${app}"
+            kubectl exec sx-argocd-application-controller-0 -n argocd -- argocd app sync "$app" --async --core
+          fi
         else
-          # since '.status.operationState.startedAt' is always UTC (from our tests)
-          #  we need to get 'now' also in UTC
-          now_seconds=$(utc_now_seconds)
-          sync_finished_seconds="-"
-          sync_duration=$((${now_seconds}-${sync_started_seconds}))
+            sync_started_seconds="-"
+            sync_finished_seconds="-"
+            sync_duration="-"
         fi
-        # terminate sync if sync is running and takes longer than 300 seconds (workaround when sync gets stuck)
-        operation_phase=$(kubectl get application -n argocd ${app} -o jsonpath='{.status.operationState.phase}')
-        if [ "${operation_phase}" = "Running" ] && [ ${sync_duration} -gt 300 ] || [ "${operation_phase}" = "Failed" ] ; then
-          # Terminate the operation for the application
-          echo "sync of app ${app} gets terminated because it took longer than 300 seconds"
-          kubectl exec sx-argocd-application-controller-0 -n argocd -- argocd app terminate-op "$app" --core
-          echo "wait for 10 seconds"
-          sleep 10
-          echo "restart sync for app ${app}"
-          kubectl exec sx-argocd-application-controller-0 -n argocd -- argocd app sync "$app" --async --core
-        fi
+
+        # print app status in beautiful table
+        printf '%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\n' ${app} ${sync_status} ${health_status} ${sync_duration} ${operation_phase} >> status-apps.out
+
       else
-          sync_started_seconds="-"
-          sync_finished_seconds="-"
-          sync_duration="-"
+        all_apps_synced="false"	
       fi
+    done
 
-      # print app status in beautiful table
-      printf '%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\n' ${app} ${sync_status} ${health_status} ${sync_duration} ${operation_phase} >> status-apps.out
+    # print app status in beautiful table
+    cat status-apps.out | column -t
+    rm status-apps.out
 
-    else
-      all_apps_synced="false"	
+    if [ ${all_apps_synced} = "true" ] ; then
+      echo "${apps} apps are synced"
+      break
     fi
+
+    elapsed_time=$((SECONDS-${start}))
+    echo "--------------------"
+    echo "elapsed time: ${elapsed_time} seconds"
+    echo "max wait time: ${max_wait_time} seconds"
+    echo "wait another 10 seconds"
+    echo "--------------------"
+    sleep 10
   done
 
-  # print app status in beautiful table
-  cat status-apps.out | column -t
-  rm status-apps.out
-
-  if [ ${all_apps_synced} = "true" ] ; then
-    echo "${argocd_apps_without_individual} apps are synced"
-    break
+  if [ ${all_apps_synced} != "true" ] ; then
+    echo "not all apps synced and healthy after limit reached :("
+    echo "status of all pods"
+    kubectl get pods -A
+    exit 1
+  else
+    echo "all apps are synced."
   fi
-
-  elapsed_time=$((SECONDS-${start}))
-  echo "--------------------"
-  echo "elapsed time: ${elapsed_time} seconds"
-  echo "max wait time: ${max_wait_time} seconds"
-  echo "wait another 10 seconds"
-  echo "--------------------"
-  sleep 10
-done
-
-if [ ${all_apps_synced} != "true" ] ; then
-  echo "not all apps synced and healthy after limit reached :("
-  echo "status of all pods"
-  kubectl get pods -A
-  exit 1
-else
-  echo "all apps are synced. ready for take off :)"
-fi
 }
-
-
 
 
 if [ "${KUBRIX_CREATE_K3D_CLUSTER}" == true ] ; then
@@ -350,6 +351,6 @@ if [[ $( echo $argocd_apps | grep sx-backstage ) ]] ; then
   fi
 
   # finally wait for all apps including backstage to be synced and health
-  wait_until_apps_synced_healthy ${argocd_apps} "Synced" "Healthy" 300
+  wait_until_apps_synced_healthy "${argocd_apps}" "Synced" "Healthy" 300
 
 fi
