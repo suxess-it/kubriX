@@ -57,7 +57,7 @@ wait_until_apps_synced_healthy() {
         sync_status=$(kubectl get application -n argocd ${app} -o jsonpath='{.status.sync.status}')
         health_status=$(kubectl get application -n argocd ${app} -o jsonpath='{.status.health.status}')
 
-        if [[ "${sync_status}" != "${synced}" ]] || [[ "${health_status}" != "${healthy}" ]] ; then
+        if [[ "${sync_status}" != ${synced} ]] || [[ "${health_status}" != ${healthy} ]] ; then
           all_apps_synced="false"
         fi
 
