@@ -263,7 +263,7 @@ kubectl apply -f platform-apps/charts/argocd/manual-secret/argocd-secret.yaml
 if [[ $( echo $argocd_apps | grep sx-kargo ) ]] ; then
   echo "adding special configuration for sx-kargo"
   export VAULT_HOSTNAME=$(kubectl get ingress -o jsonpath='{.items[*].spec.rules[*].host}' -n vault)
-  curl -k --header "X-Vault-Token:$(kubectl get secret -n vault vault-init -o=jsonpath='{.data.root_token}'  | base64 -d)" --request POST --data "{\"data\": {\"GITHUB_APPSET_PAT\": \"$VAULT_TOKEN\", \"GITHUB_TOKEN\": \"${KUBRIX_REPO_PASSWORD}\", \"GITHUB_USERNAME\": \"${KUBRIX_REPO_USERNAME}\"}}" https://${VAULT_HOSTNAME}/v1/sx-cnp-oss-kv/data/demo/delivery
+  curl -k --header "X-Vault-Token:$(kubectl get secret -n vault vault-init -o=jsonpath='{.data.root_token}'  | base64 -d)" --request POST --data "{\"data\": {\"GITHUB_APPSET_PAT\": \"${KUBRIX_ARGOCD_APPSET_TOKEN}\", \"GITHUB_TOKEN\": \"${KUBRIX_KARGO_GIT_PASSWORD}\", \"GITHUB_USERNAME\": \"${KUBRIX_KARGO_GIT_USERNAME}\"}}" https://${VAULT_HOSTNAME}/v1/sx-cnp-oss-kv/data/demo/delivery
   sleep 10
   kubectl delete ExternalSecret github-creds -n kargo
   # check if kargo is synced and healthy for 5 minutes
@@ -301,10 +301,10 @@ if [[ $( echo $argocd_apps | grep sx-backstage ) ]] ; then
   
   if [ ${KEYCLOAK_CODESPACES} ]; then
     kubectl create secret generic -n backstage manual-secret \
-      --from-literal=GITHUB_CLIENTSECRET=${KUBRIX_GITHUB_CLIENTSECRET} \
-      --from-literal=GITHUB_CLIENTID=${KUBRIX_GITHUB_CLIENTID} \
+      --from-literal=GITHUB_CLIENTSECRET=${KUBRIX_BACKSTAGE_GITHUB_CLIENTSECRET} \
+      --from-literal=GITHUB_CLIENTID=${KUBRIX_BACKSTAGE_GITHUB_CLIENTID} \
       --from-literal=GITHUB_ORG=${GITHUB_ORG} \
-      --from-literal=GITHUB_TOKEN=${KUBRIX_GITHUB_TOKEN} \
+      --from-literal=GITHUB_TOKEN=${KUBRIX_BACKSTAGE_GITHUB_TOKEN} \
       --from-literal=K8S_SA_TOKEN=${K8S_SA_TOKEN} \
       --from-literal=ARGOCD_AUTH_TOKEN=${ARGOCD_AUTH_TOKEN} \
       --from-literal=GRAFANA_TOKEN=${GRAFANA_TOKEN} \
@@ -322,10 +322,10 @@ if [[ $( echo $argocd_apps | grep sx-backstage ) ]] ; then
 
   elif [ ${GITHUB_CODESPACES} ]; then
     kubectl create secret generic -n backstage manual-secret \
-    --from-literal=GITHUB_CLIENTSECRET=${KUBRIX_GITHUB_CLIENTSECRET} \
-    --from-literal=GITHUB_CLIENTID=${KUBRIX_GITHUB_CLIENTID} \
+    --from-literal=GITHUB_CLIENTSECRET=${KUBRIX_BACKSTAGE_GITHUB_CLIENTSECRET} \
+    --from-literal=GITHUB_CLIENTID=${KUBRIX_BACKSTAGE_GITHUB_CLIENTID} \
     --from-literal=GITHUB_ORG=${GITHUB_ORG} \
-    --from-literal=GITHUB_TOKEN=${KUBRIX_GITHUB_TOKEN} \
+    --from-literal=GITHUB_TOKEN=${KUBRIX_BACKSTAGE_GITHUB_TOKEN} \
     --from-literal=K8S_SA_TOKEN=${K8S_SA_TOKEN} \
     --from-literal=ARGOCD_AUTH_TOKEN=${ARGOCD_AUTH_TOKEN} \
     --from-literal=GRAFANA_TOKEN=${GRAFANA_TOKEN} \
@@ -336,10 +336,10 @@ if [[ $( echo $argocd_apps | grep sx-backstage ) ]] ; then
 
   else
     kubectl create secret generic -n backstage manual-secret \
-    --from-literal=GITHUB_CLIENTSECRET=${KUBRIX_GITHUB_CLIENTSECRET} \
-    --from-literal=GITHUB_CLIENTID=${KUBRIX_GITHUB_CLIENTID} \
+    --from-literal=GITHUB_CLIENTSECRET=${KUBRIX_BACKSTAGE_GITHUB_CLIENTSECRET} \
+    --from-literal=GITHUB_CLIENTID=${KUBRIX_BACKSTAGE_GITHUB_CLIENTID} \
     --from-literal=GITHUB_ORG=${GITHUB_ORG} \
-    --from-literal=GITHUB_TOKEN=${KUBRIX_GITHUB_TOKEN} \
+    --from-literal=GITHUB_TOKEN=${KUBRIX_BACKSTAGE_GITHUB_TOKEN} \
     --from-literal=K8S_SA_TOKEN=${K8S_SA_TOKEN} \
     --from-literal=ARGOCD_AUTH_TOKEN=${ARGOCD_AUTH_TOKEN} \
     --from-literal=GRAFANA_TOKEN=${GRAFANA_TOKEN}

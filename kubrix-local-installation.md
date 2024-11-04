@@ -41,12 +41,15 @@ For the installation some variables are needed:
 
 ```
 # Github clientsecret and clientid from GitHub OAuth App for Backstage
-export KUBRIX_GITHUB_CLIENTSECRET=<value from steps above>
-export KUBRIX_GITHUB_CLIENTID=<value from steps above>
+export KUBRIX_BACKSTAGE_GITHUB_CLIENTSECRET=<value from steps above>
+export KUBRIX_BACKSTAGE_GITHUB_CLIENTID=<value from steps above>
 # Github token Backstage uses to get the catalog yaml form github
-export KUBRIX_GITHUB_TOKEN=<your personal access token>
+export KUBRIX_BACKSTAGE_GITHUB_TOKEN=<your personal access token>
 # Github token ArgoCD uses for the SCM Provider
-export KUBRIX_GITHUB_APPSET_TOKEN=<github-pat-for-argocd-appsets-only-read-permissions-needed>
+export KUBRIX_ARGOCD_APPSET_TOKEN=<github-pat-for-argocd-appsets-only-read-permissions-needed>
+# Kargo Git Promotion credentials
+export KUBRIX_KARGO_GIT_USERNAME=<username-for-kargo-git-promotion>
+export KUBRIX_KARGO_GIT_PASSWORD=<username-for-kargo-git-promotion>
 # set the current repository to the origin or to your fork
 export KUBRIX_REPO=https://github.com/suxess-it/kubriX.git
 # if you want to test another branch, specify something else than main
