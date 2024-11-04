@@ -28,10 +28,10 @@ You can start a GitHub Codespaces with the button below or this [link](https://g
 - Branch: main branch (or a feature branch if you want to test some special features)
 - Dev container configuration: you can select which platform stack (brick) should get installed
 - Recommended Secrets:
-  - KUBRIX_GITHUB_CLIENTID: "Client ID" of your OAuth App in the variable
-  - KUBRIX_GITHUB_CLIENTSECRET: "Client secret" of your OAuth App in the variable
-  - KUBRIX_GITHUB_TOKEN: a Personal Access Token for Github to read files from the origin repo
-  - KUBRIX_GITHUB_APPSET_TOKEN: a Personal Access Token for Github to read repositories in your organization (for ArgoCD AppSet SCM Generator)
+  - KUBRIX_BACKSTAGE_GITHUB_CLIENTID: "Client ID" of your OAuth App in the variable
+  - KUBRIX_BACKSTAGE_GITHUB_CLIENTSECRET: "Client secret" of your OAuth App in the variable
+  - KUBRIX_BACKSTAGE_GITHUB_TOKEN: a Personal Access Token for Github to read files from the origin repo
+  - KUBRIX_ARGOCD_APPSET_TOKEN: a Personal Access Token for Github to read repositories in your organization (for ArgoCD AppSet SCM Generator)
 
 [![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/)
 
