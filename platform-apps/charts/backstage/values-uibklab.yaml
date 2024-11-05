@@ -78,14 +78,14 @@ backstage:
         # This is for local development only, it is not recommended to use this in production
         # The production database configuration is stored in app-config.production.yaml
         database:
-     #     client: better-sqlite3
-     #     connection: ':memory:'
-          client: pg
-          connection:
-            host: ${POSTGRES_HOST}
-            port: ${POSTGRES_PORT}
-            user: ${POSTGRES_USER}
-            password: ${POSTGRES_PASSWORD}
+          client: better-sqlite3
+          connection: ':memory:'
+     #     client: pg
+     #     connection:
+     #       host: ${POSTGRES_HOST}
+     #       port: ${POSTGRES_PORT}
+     #       user: ${POSTGRES_USER}
+     #       password: ${POSTGRES_PASSWORD}
         cache:
           store: memory
         # workingDirectory: /tmp # Use this to configure a working directory for the scaffolder, defaults to the OS temp-dir
