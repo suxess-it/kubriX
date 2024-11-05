@@ -36,12 +36,10 @@ spec:
     {{- end }}
     server: 'https://kubernetes.default.svc'
   syncPolicy:
-    {{- if .argocdHandlesNamespace }}
     managedNamespaceMetadata:
       annotations:
         # doesn't handle destinationNamespaceOverride yet
-        argocd.argoproj.io/tracking-id: sx-{{ .name }}/Namespace:{{ .name }}/{{ .name }}
-    {{- end }}
+        argocd.argoproj.io/tracking-id: sx-{{ .name }}:app/Namespace:{{ .name }}/{{ .name }}
     automated:
       prune: true
       selfHeal: true
