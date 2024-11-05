@@ -22,10 +22,10 @@ spec:
       {{- end }}
       {{- if .valueFiles }}
       valueFiles:
-        {{- toYaml .valueFiles | nindent 6 }} 
+        {{- toYaml .valueFiles | nindent 6 }}
       {{- else }}
       valueFiles:
-        {{- toYaml $.Values.default.valueFiles | nindent 6}}      
+        {{- toYaml $.Values.default.valueFiles | nindent 6}}
       {{- end }}
       ignoreMissingValueFiles: true
   destination:
@@ -36,6 +36,12 @@ spec:
     {{- end }}
     server: 'https://kubernetes.default.svc'
   syncPolicy:
+    {{- if .argocdHandlesNamespace }}
+    managedNamespaceMetadata:
+      annotations:
+        # doesn't handle destinationNamespaceOverride yet
+        argocd.argoproj.io/tracking-id: sx-{{ .name }}/Namespace:{{ .name }}/{{ .name }}
+    {{- end }}
     automated:
       prune: true
       selfHeal: true
