@@ -33,9 +33,24 @@ backstage:
         value: "debug"
 #      - name: OTEL_LOG_LEVEL
 #        value: "debug"
-    readinessProbe: {}
-    livenessProbe: {}
-    startupProbe: {}
+    readinessProbe:
+      failureThreshold: 3
+      httpGet:
+        path: /healthcheck
+        port: 7007
+        scheme: HTTP
+    livenessProbe:
+      failureThreshold: 3
+      httpGet:
+        path: /healthcheck
+        port: 7007
+        scheme: HTTP
+    startupProbe:
+      failureThreshold: 3
+      httpGet:
+        path: /healthcheck
+        port: 7007
+        scheme: HTTP
     extraVolumes:
       - configMap:
           defaultMode: 420
