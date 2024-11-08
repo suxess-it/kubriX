@@ -5,7 +5,6 @@ backstage:
     tls:
       enabled: true
       secretName: backstage-server-tls
-
   backstage:
     image:
       registry: ghcr.io/suxess-it
@@ -21,7 +20,14 @@ backstage:
 #        value: "0"
       - name: LOG_LEVEL
         value: "debug"
-
+    extraVolumes:
+      - configMap:
+          defaultMode: 420
+          name: rbac-policy
+        name: rbac-policy
+    extraVolumeMounts:
+      - name: rbac-policy
+        mountPath: /opt/app-root/src/rbac
     appConfig:
       app:
         title: sX CNP App
@@ -35,8 +41,15 @@ backstage:
         # See https://backstage.io/docs/tutorials/backend-to-backend-auth for
         # information on the format
         auth:
-          keys:
-            - secret: ${BACKEND_SECRET}
+          externalAccess:
+          - type: static
+            options:
+              token: ${EXTERNAL_ACCESS_TOKEN}
+              subject: admincurlaccess          
+          - type: legacy
+            options:
+              secret: ${BACKEND_SECRET}
+              subject: legacy-secret
         baseUrl: https://backstage-127-0-0-1.nip.io
         listen:
           port: 7007
@@ -71,25 +84,25 @@ backstage:
           #   token: ${GHE_TOKEN}
 
       proxy:
+        endpoints:
         ### Example for how to add a proxy endpoint for the frontend.
         ### A typical reason to do this is to handle HTTPS and CORS for internal services.
         # '/test':
         #   target: 'https://example.com'
         #   changeOrigin: true
-        "/argocd/api":
-          # use k8s internal service name because argocd-127-0-0-1.nip.io resolves to 127.0.0.1 in container, too
-          target: http://sx-argocd-server.argocd:80/api/v1/
-          changeOrigin: true
-          secure: false
-          headers:
-            Cookie:
-              $env: ARGOCD_AUTH_TOKEN
+          "/argocd/api":
+            # use k8s internal service name because argocd-127-0-0-1.nip.io resolves to 127.0.0.1 in container, too
+            target: http://sx-argocd-server.argocd:80/api/v1/
+            changeOrigin: true
+            headers:
+              Cookie:
+                $env: ARGOCD_AUTH_TOKEN
 
-        '/grafana/api':
-          # use k8s internal service name because grafana-127-0-0-1.nip.io resolves to 127.0.0.1 in container, too
-          target: http://sx-grafana.grafana:80
-          headers:
-            Authorization: Bearer ${GRAFANA_TOKEN}
+          '/grafana/api':
+            # use k8s internal service name because grafana-127-0-0-1.nip.io resolves to 127.0.0.1 in container, too
+            target: http://sx-grafana.grafana:80
+            headers:
+              Authorization: Bearer ${GRAFANA_TOKEN}
 
       argocd:
         baseUrl: https://argocd-127-0-0-1.nip.io/
@@ -114,7 +127,7 @@ backstage:
 
       auth:
         session:
-          secret: supersecret # free sessionsecret
+          secret: ${BACKEND_SECRET} # free sessionsecret for user sessions
         environment: development
         providers:
           github:
@@ -318,7 +331,7 @@ backstage:
         sharedNamespaces: kube-system
         queryframes: week,yesterday,month,today,lastweek
         annotationDeploymentName: 'backstage.io/kubernetes-id'
-        shareTenancyCosts: true
+        shareTenancyCosts: false
         aggregate: true
         showDashboardLink: true
         fractionDigits: 4 
@@ -327,7 +340,9 @@ backstage:
       vault:
         baseUrl: https://${VAULT_ADDR}
         publicUrl: https://${VAULT_ADDR}
-        token: "${VAULT_TOKEN}"
+        auth:
+          type: static
+          secret: "${VAULT_TOKEN}"
         #secretEngine: "${VAULT_ENGINE}"
         #kvVersion: 2
 
@@ -337,5 +352,28 @@ backstage:
         # Add it in case your JIRA instance is connected to Confluence, in order to filter those activities
         # confluenceActivityFilter: wiki@uuid
         # Defaults to latest and can be omitted if you want to use the latest version of the api
+      permission:
+        enabled: true
+        rbac:
+          pluginsWithPermission:
+            - kubernetes
+            - catalog
+            - policy
+            - scaffolder
+            - rbac
+ #           - techdocs
+          maxDepth: 1
+          admin:
+            users:
+              - name: group:default/demouser
+            superUsers:
+              - name: user:default/demoadmin
+              - name: user:default/phac008
+              - name: user:default/jkleinlercher
+          policies-csv-file: /opt/app-root/src/rbac/rbac-policy.csv
+          policyFileReload: true
+          database:
+            enabled: true
+## pgdb
 cluster:
   enabled: false

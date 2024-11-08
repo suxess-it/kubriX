@@ -61,7 +61,7 @@ backstage:
               subject: admincurlaccess          
           - type: legacy
             options:
-              secret: supersecret
+              secret: ${BACKEND_SECRET}
               subject: legacy-secret
         baseUrl: https://backstage.lab.suxessit.k8s.cloud.uibk.ac.at
         listen:
@@ -146,7 +146,7 @@ backstage:
 
       auth:
         session:
-          secret: supersecret # free sessionsecret
+          secret: ${BACKEND_SECRET} # free sessionsecret for user sessions
         environment: development
         providers:
           github:
