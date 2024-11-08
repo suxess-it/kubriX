@@ -19,7 +19,7 @@ backstage:
     image:
       registry: ghcr.io/suxess-it
       repository: sx-backstage
-      tag: 1.32.5-upgrade
+      tag: v1.32.5-upgrade
     extraEnvVarsSecrets:
       - sx-cnp-secret
       - manual-secret
@@ -153,11 +153,11 @@ backstage:
             development:
               clientId: ${GITHUB_CLIENTID}
               clientSecret: ${GITHUB_CLIENTSECRET}
-              #signIn:
-              #  resolvers:
-                #  - resolver: usernameMatchingUserEntityName
-                #  - resolver: emailMatchingUserEntityProfileEmail
-                #  - resolver: emailLocalPartMatchingUserEntityName
+              signIn:
+                resolvers:
+                  - resolver: usernameMatchingUserEntityName
+                  - resolver: emailMatchingUserEntityProfileEmail
+                  - resolver: emailLocalPartMatchingUserEntityName
               schedule:
                 frequency: PT30M
                 timeout: PT3M
