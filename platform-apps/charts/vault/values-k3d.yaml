@@ -149,6 +149,7 @@ vault:
         - -c
         - | 
             while true; do
+              echo "waiting for tomorrow :-)"
               sleep 86400  # Runs daily, after 1 day
               echo "Truncating log file..."
               truncate -s 0 /vault/audit/audit.log
