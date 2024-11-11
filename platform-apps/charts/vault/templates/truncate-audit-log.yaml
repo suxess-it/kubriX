@@ -43,5 +43,6 @@ spec:
               claimName: audit-sx-vault-{{ $i }}
   schedule: '0 10 * * *'
   successfulJobsHistoryLimit: 3
+  startingDeadlineSeconds: 300  
   suspend: false
-{{- end -}}
+{{ end -}}
