@@ -110,9 +110,9 @@ vault:
         - -c
         - | 
             while true; do
+              sleep 86400  # Runs daily, after 1 day
               echo "Truncating log file..."
               truncate -s 0 /vault/audit/audit.log
-              sleep 86400  # Runs daily
             done
         volumeMounts:
           - name: vault-root-token
@@ -124,7 +124,7 @@ vault:
             - ALL
           privileged: false
           runAsNonRoot: true
-          
+
       - name: auto-unsealer
         image: hashicorp/vault:1.17.2
         env: 
