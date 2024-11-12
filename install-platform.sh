@@ -33,17 +33,166 @@ utc_now_seconds() {
   fi
 }
 
-lookup_hostname() {
-  local hostname=$1
-  if [[ "$ARCH" == "amd64" || "$ARCH" == "x86_64" ]]; then
-    getent hosts ${hostname}
-  elif [[ "$ARCH" == "arm64" ]]; then
-    nslookup ${hostname}
-  else
-    echo "Unsupported architecture: $ARCH" >&2
+wait_until_apps_synced_healthy() {
+  local apps=$1
+  local synced=$2
+  local healthy=$3
+  local max_wait_time=$4
+
+  echo "wait until these apps have reached sync state '${synced}' and health state '${healthy}'"
+  echo "apps: ${apps}"
+  echo "max wait time: ${max_wait_time}"
+
+  start=$SECONDS
+  end=$((SECONDS+${max_wait_time}))
+
+  while [ $SECONDS -lt $end ]; do
+    all_apps_synced="true"
+
+    # print app status in beautiful table
+    printf 'app sync-status health-status sync-duration operation-phase\n' > status-apps.out
+
+    for app in ${apps} ; do
+      if kubectl get application -n argocd ${app} > /dev/null 2>&1 ; then
+        sync_status=$(kubectl get application -n argocd ${app} -o jsonpath='{.status.sync.status}')
+        health_status=$(kubectl get application -n argocd ${app} -o jsonpath='{.status.health.status}')
+
+        if [[ "${sync_status}" != ${synced} ]] || [[ "${health_status}" != ${healthy} ]] ; then
+          all_apps_synced="false"
+        fi
+
+        # check if app sync is stuck and needs to get restarted
+        # if app has no resources, operationState is empty
+        operation_state=$(kubectl get application -n argocd ${app} -o jsonpath='{.status.operationState}')
+        if [ "${operation_state}" != "" ] ; then
+          # from our tests this time is always UTC!
+          sync_started=$(kubectl get application -n argocd ${app} -o jsonpath='{.status.operationState.startedAt}' |sed 's/Z$//')
+          sync_finished=$(kubectl get application -n argocd ${app} -o jsonpath='{.status.operationState.finishedAt}' |sed 's/Z$//')
+          sync_started_seconds=$(convert_to_seconds "${sync_started}")
+
+          # if sync finished, duration is 'finished - started', otherwise its 'now - started'
+          if [ "${sync_finished}" != "" ] ; then
+            sync_finished_seconds=$(convert_to_seconds "${sync_finished}")
+            sync_duration=$((${sync_finished_seconds}-${sync_started_seconds}))
+          else
+            # since '.status.operationState.startedAt' is always UTC (from our tests)
+            #  we need to get 'now' also in UTC
+            now_seconds=$(utc_now_seconds)
+            sync_finished_seconds="-"
+            sync_duration=$((${now_seconds}-${sync_started_seconds}))
+          fi
+          # terminate sync if sync is running and takes longer than 300 seconds (workaround when sync gets stuck)
+          operation_phase=$(kubectl get application -n argocd ${app} -o jsonpath='{.status.operationState.phase}')
+          if [ "${operation_phase}" = "Running" ] && [ ${sync_duration} -gt 300 ] || [ "${operation_phase}" = "Failed" ] ; then
+            # Terminate the operation for the application
+            echo "sync of app ${app} gets terminated because it took longer than 300 seconds"
+            kubectl exec sx-argocd-application-controller-0 -n argocd -- argocd app terminate-op "$app" --core
+            echo "wait for 10 seconds"
+            sleep 10
+            echo "restart sync for app ${app}"
+            kubectl exec sx-argocd-application-controller-0 -n argocd -- argocd app sync "$app" --async --core
+          fi
+        else
+            sync_started_seconds="-"
+            sync_finished_seconds="-"
+            sync_duration="-"
+        fi
+
+        # print app status in beautiful table
+        printf '%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\n' ${app} ${sync_status} ${health_status} ${sync_duration} ${operation_phase} >> status-apps.out
+
+      else
+        printf '%s - - - -\n' ${app} >> status-apps.out
+        all_apps_synced="false"	
+      fi
+    done
+
+    # print app status in beautiful table
+    cat status-apps.out | column -t
+    rm status-apps.out
+
+    if [ ${all_apps_synced} = "true" ] ; then
+      echo "${apps} apps are synced"
+      break
+    fi
+
+    elapsed_time=$((SECONDS-${start}))
+    echo "--------------------"
+    echo "elapsed time: ${elapsed_time} seconds"
+    echo "max wait time: ${max_wait_time} seconds"
+    echo "wait another 10 seconds"
+    echo "--------------------"
+    sleep 10
+  done
+
+  if [ ${all_apps_synced} != "true" ] ; then
+    echo "not all apps synced and healthy after limit reached :("
+    analyze_all_unhealthy_apps "${apps}"
     exit 1
+  else
+    echo "all apps are synced."
   fi
 }
+
+analyze_all_unhealthy_apps() {
+  local apps=$1
+  for app in ${apps} ; do
+    if kubectl get application -n argocd ${app} > /dev/null 2>&1 ; then
+      sync_status=$(kubectl get application -n argocd ${app} -o jsonpath='{.status.sync.status}')
+      health_status=$(kubectl get application -n argocd ${app} -o jsonpath='{.status.health.status}')
+
+      if [[ "${sync_status}" != ${synced} ]] || [[ "${health_status}" != ${healthy} ]] ; then
+        analyze_app ${app}
+      fi
+    fi
+  done
+}
+
+analyze_app() {
+  local app=$1
+
+  # get target namespace for app
+  app_namespace=$( kubectl get applications -n argocd ${app} -o=jsonpath='{.spec.destination.namespace}' )
+
+  echo "------------------"
+  echo "starting analyzing unhealthy/unsynced app '${app}'"
+  echo "------------------"
+
+  # get application spec and status
+  echo "------------------"
+  echo "kubectl get application -n argocd ${app} -o yaml"
+  kubectl get application -n argocd ${app} -o yaml
+  echo "------------------"
+
+  # get events in this namespace
+  echo "------------------"
+  echo "kubectl get events -n ${app_namespace} --sort-by='.lastTimestamp'"
+  kubectl get events -n ${app_namespace} --sort-by='.lastTimestamp'
+  echo "------------------"
+
+  # get pods for app
+  echo "------------------"
+  echo "kubectl get pods -n ${app_namespace}"
+  kubectl get pods -n ${app_namespace}
+  echo "------------------"
+
+  # describe pods for app
+  echo "------------------"
+  echo "kubectl describe pod -n ${app_namespace}"
+  kubectl describe pod -n ${app_namespace}
+  echo "------------------"
+
+  # get logs
+  echo "------------------"
+  echo "kubectl get pods -o name -n ${app_namespace} | xargs -I {} kubectl logs -n ${app_namespace} {}"
+  kubectl get pods -o name -n ${app_namespace} | xargs -I {} kubectl logs -n ${app_namespace} {} --all-containers=true
+  echo "------------------"
+
+  echo "------------------"
+  echo "finished analyzing degraded app '${app}'"
+  echo "------------------"
+}
+
 
 if [ "${KUBRIX_CREATE_K3D_CLUSTER}" == true ] ; then
   # do we need to set this always? I had DNS issues on the train
@@ -124,9 +273,6 @@ if [[ "${KUBRIX_TARGET_TYPE}" =~ ^KIND.* ]] ; then
   fi
 fi
 
-# some clients may have performance issues for nginx startup, then argo init fails
-[ -n "$SLOWCLIENT" ] && sleep $SLOWCLIENT
-
 # create argocd with helm chart not with install.yaml
 # because afterwards argocd is also managed by itself with the helm-chart
 
@@ -137,44 +283,13 @@ helm install sx-argocd argo-cd \
   --namespace argocd \
   --create-namespace \
   --set configs.cm.application.resourceTrackingMethod=annotation \
-  -f bootstrap-argocd-values-$(echo ${KUBRIX_TARGET_TYPE} | awk '{print tolower($0)}').yaml \
+  -f bootstrap-argocd-values.yaml \
   --wait
 
-# check if argocd hostname is already registered in DNS
-echo "wait until argocd.${KUBRIX_DOMAIN} is registered in DNS"
-iterations=20
-while ! lookup_hostname argocd.${KUBRIX_DOMAIN}  &>/dev/null; do
-  if [[ $iterations -eq 0 ]]; then
-    echo "Timeout waiting for argocd.${KUBRIX_DOMAIN} registration"
-    exit 1
-  fi
-  iterations=$((iterations - 1))
-  echo "argocd.${KUBRIX_DOMAIN}. Waiting 10 seconds and trying again."
-  sleep 10
-done
 
-
-# add a repo so that private repos (e.g. private gitlab repos are also accessable)
-# note: this is just for initial bootstrap. this repo should of course then also
-# be configured in the argocd chart as a external-secrets template in the kubriX stack.
-# see https://argo-cd.readthedocs.io/en/stable/operator-manual/declarative-setup/#repositories
-export ARGOCD_HOSTNAME=$(kubectl get ingress -o jsonpath='{.items[*].spec.rules[*].host}' -n argocd)
-# sleep 10 seconds because ingress/service/pod is not available otherwise
-sleep 10
-
-# download argocd
-if [[ "$OS" == "Darwin" && "$ARCH" == "arm64" ]]; then
-  VERSION=$(curl --silent "https://api.github.com/repos/argoproj/argo-cd/releases/latest" | grep '"tag_name"' | sed -E 's/.*"([^"]+)".*/\1/')
-  curl --progress-bar -SL -o argocd https://github.com/argoproj/argo-cd/releases/download/$VERSION/argocd-darwin-arm64
-else
-  curl -kL -o argocd https://${ARGOCD_HOSTNAME}/download/argocd-linux-amd64
-fi
-
-chmod u+x argocd
-INITIAL_ARGOCD_PASSWORD=$( kubectl get secret -n argocd argocd-initial-admin-secret -o=jsonpath={'.data.password'} | base64 -d )
-./argocd login ${ARGOCD_HOSTNAME} --grpc-web --insecure --username admin --password ${INITIAL_ARGOCD_PASSWORD}
-./argocd repo add ${KUBRIX_REPO} --username ${KUBRIX_REPO_USERNAME} --password ${KUBRIX_REPO_PASSWORD}
-rm argocd
+# we add the repo inside the application-controller because it could be that clusters do not have any ingress controller installed yet at this moment
+echo "add kubriX repo in argocd pod"
+kubectl exec sx-argocd-application-controller-0 -n argocd -- argocd repo add ${KUBRIX_REPO} --username ${KUBRIX_REPO_USERNAME} --password ${KUBRIX_REPO_PASSWORD} --core
 
 # create secret for scm applicationset in team app definition namespaces
 # see https://github.com/suxess-it/sx-cnp-oss/issues/214 for a sustainable solution
@@ -196,98 +311,8 @@ argocd_apps=$(cat $target_chart_value_file | awk '/^  - name:/ { printf "%s", "s
 # list apps which need some sort of special treatment in bootstrap
 argocd_apps_without_individual=$(cat $target_chart_value_file | egrep -Ev "backstage|kargo" | awk '/^  - name:/ { printf "%s", "sx-"$3" "}' )
 
-# max wait for 20 minutes
-max_wait_time=${MAX_WAIT_TIME:-1200}
-start=$SECONDS
-end=$((SECONDS+${max_wait_time}))
-
-all_apps_synced="true"
-while [ $SECONDS -lt $end ]; do
-  all_apps_synced="true"
-
-  # print app status in beautiful table
-  printf 'app sync-status health-status sync-duration operation-phase\n' > status-apps.out
-
-  for app in ${argocd_apps_without_individual} ; do
-    if kubectl get application -n argocd ${app} > /dev/null 2>&1 ; then
-      sync_status=$(kubectl get application -n argocd ${app} -o jsonpath='{.status.sync.status}')
-      health_status=$(kubectl get application -n argocd ${app} -o jsonpath='{.status.health.status}')
-
-      if [ "${sync_status}" != "Synced" ] || [ "${health_status}" != "Healthy" ] ; then
-        all_apps_synced="false"
-      fi
-
-      # check if app sync is stuck and needs to get restarted
-      # if app has no resources, operationState is empty
-      operation_state=$(kubectl get application -n argocd ${app} -o jsonpath='{.status.operationState}')
-      if [ "${operation_state}" != "" ] ; then
-        # from our tests this time is always UTC!
-        sync_started=$(kubectl get application -n argocd ${app} -o jsonpath='{.status.operationState.startedAt}' |sed 's/Z$//')
-        sync_finished=$(kubectl get application -n argocd ${app} -o jsonpath='{.status.operationState.finishedAt}' |sed 's/Z$//')
-        sync_started_seconds=$(convert_to_seconds "${sync_started}")
-
-        # if sync finished, duration is 'finished - started', otherwise its 'now - started'
-        if [ "${sync_finished}" != "" ] ; then
-          sync_finished_seconds=$(convert_to_seconds "${sync_finished}")
-          sync_duration=$((${sync_finished_seconds}-${sync_started_seconds}))
-        else
-          # since '.status.operationState.startedAt' is always UTC (from our tests)
-          #  we need to get 'now' also in UTC
-          now_seconds=$(utc_now_seconds)
-          sync_finished_seconds="-"
-          sync_duration=$((${now_seconds}-${sync_started_seconds}))
-        fi
-        # terminate sync if sync is running and takes longer than 300 seconds (workaround when sync gets stuck)
-        operation_phase=$(kubectl get application -n argocd ${app} -o jsonpath='{.status.operationState.phase}')
-        if [ "${operation_phase}" = "Running" ] && [ ${sync_duration} -gt 300 ] || [ "${operation_phase}" = "Failed" ] ; then
-          # Terminate the operation for the application
-          echo "sync of app ${app} gets terminated because it took longer than 300 seconds"
-          kubectl exec sx-argocd-application-controller-0 -n argocd -- argocd app terminate-op "$app" --core
-          echo "wait for 10 seconds"
-          sleep 10
-          echo "restart sync for app ${app}"
-          kubectl exec sx-argocd-application-controller-0 -n argocd -- argocd app sync "$app" --async --core
-        fi
-      else
-          sync_started_seconds="-"
-          sync_finished_seconds="-"
-          sync_duration="-"
-      fi
-
-      # print app status in beautiful table
-      printf '%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\n' ${app} ${sync_status} ${health_status} ${sync_duration} ${operation_phase} >> status-apps.out
-
-    else
-      all_apps_synced="false"	
-    fi
-  done
-
-  # print app status in beautiful table
-  cat status-apps.out | column -t
-  rm status-apps.out
-
-  if [ ${all_apps_synced} = "true" ] ; then
-    echo "${argocd_apps_without_individual} apps are synced"
-    break
-  fi
-
-  elapsed_time=$((SECONDS-${start}))
-  echo "--------------------"
-  echo "elapsed time: ${elapsed_time} seconds"
-  echo "max wait time: ${max_wait_time} seconds"
-  echo "wait another 10 seconds"
-  echo "--------------------"
-  sleep 10
-done
-
-echo "status of all pods"
-kubectl get pods -A
-if [ ${all_apps_synced} != "true" ] ; then
-  echo "not all apps synced and healthy after limit reached :("
-  exit 1
-else
-  echo "all apps are synced. ready for take off :)"
-fi
+# max wait for 20 minutes until all apps except backstage and kargo are synced and healthy
+wait_until_apps_synced_healthy "${argocd_apps_without_individual}" "Synced" "Healthy" ${KUBRIX_BOOTSTRAP_MAX_WAIT_TIME:-1200}
 
 # apply argocd-secret to set a secretKey
 kubectl apply -f platform-apps/charts/argocd/manual-secret/argocd-secret.yaml
@@ -296,101 +321,31 @@ kubectl apply -f platform-apps/charts/argocd/manual-secret/argocd-secret.yaml
 if [[ $( echo $argocd_apps | grep sx-kargo ) ]] ; then
   echo "adding special configuration for sx-kargo"
   export VAULT_HOSTNAME=$(kubectl get ingress -o jsonpath='{.items[*].spec.rules[*].host}' -n vault)
-  curl -k --header "X-Vault-Token:$(kubectl get secret -n vault vault-init -o=jsonpath='{.data.root_token}'  | base64 -d)" --request POST --data "{\"data\": {\"GITHUB_APPSET_PAT\": \"$VAULT_TOKEN\", \"GITHUB_TOKEN\": \"${KUBRIX_REPO_PASSWORD}\", \"GITHUB_USERNAME\": \"${KUBRIX_REPO_USERNAME}\"}}" https://${VAULT_HOSTNAME}/v1/sx-cnp-oss-kv/data/demo/delivery
+  curl -k --header "X-Vault-Token:$(kubectl get secret -n vault vault-init -o=jsonpath='{.data.root_token}'  | base64 -d)" --request POST --data "{\"data\": {\"GITHUB_APPSET_PAT\": \"${KUBRIX_ARGOCD_APPSET_TOKEN}\", \"GITHUB_TOKEN\": \"${KUBRIX_KARGO_GIT_PASSWORD}\", \"GITHUB_USERNAME\": \"${KUBRIX_KARGO_GIT_USERNAME}\"}}" https://${VAULT_HOSTNAME}/v1/sx-cnp-oss-kv/data/demo/delivery
   sleep 10
   kubectl delete ExternalSecret github-creds -n kargo
-  # check if kargo is already synced 
-  # max wait for 5 minutes
-  argocd_app_individual="sx-kargo"
-
-  max_wait_time=900
-  start=$SECONDS
-  end=$((SECONDS+${max_wait_time}))
-
-  all_apps_synced="true"
-  while [ $SECONDS -lt $end ]; do
-    all_apps_synced="true"
-    for app in ${argocd_app_individual} ; do
-      kubectl get application -n argocd ${app} | grep "Synced.*Healthy"
-      exit_code=$?
-      if [[ $exit_code -ne 0 ]]; then
-        all_apps_synced="false"
-      fi
-    done
-    if [ ${all_apps_synced} = "true" ] ; then
-      echo "${argocd_app_individual} apps are synced"
-      break
-    fi
-    kubectl get application -n argocd
-    elapsed_time=$((SECONDS-${start}))
-    echo "elapsed time: ${elapsed_time} seconds"
-    echo "max wait time: ${max_wait_time} seconds"
-    sleep 10
-  done
-  
-  echo "status of all pods"
-  kubectl get pods -A
-  if [ ${all_apps_synced} != "true" ] ; then
-    echo "not all apps synced and healthy after limit reached :("
-    exit 1
-  else
-    echo "all apps are synced. ready for take off :)"
-  fi
+  # check if kargo is synced and healthy for 5 minutes
+  wait_until_apps_synced_healthy "sx-kargo" "Synced" "Healthy" 900
 fi
-
+  
 # if backstage is part of this stack, create the manual secret for backstage
 if [[ $( echo $argocd_apps | grep sx-backstage ) ]] ; then
-echo "adding special configuration for sx-backstage"
-  # get hostnames from ingress
-  export ARGOCD_HOSTNAME=$(kubectl get ingress -o jsonpath='{.items[*].spec.rules[*].host}' -n argocd)
-  export GRAFANA_HOSTNAME=$(kubectl get ingress -o jsonpath='{.items[*].spec.rules[*].host}' -n grafana)
-
-  # download argocd
-  if [[ "$OS" == "Darwin" && "$ARCH" == "arm64" ]]; then
-    VERSION=$(curl --silent "https://api.github.com/repos/argoproj/argo-cd/releases/latest" | grep '"tag_name"' | sed -E 's/.*"([^"]+)".*/\1/')
-    curl --progress-bar -SL -o argocd https://github.com/argoproj/argo-cd/releases/download/$VERSION/argocd-darwin-arm64
-  else
-    curl -kL -o argocd https://${ARGOCD_HOSTNAME}/download/argocd-linux-amd64
-  fi
-  chmod u+x argocd
-
-  INITIAL_ARGOCD_PASSWORD=$( kubectl get secret -n argocd argocd-initial-admin-secret -o=jsonpath={'.data.password'} | base64 -d )
-  ./argocd login ${ARGOCD_HOSTNAME} --grpc-web --insecure --username admin --password ${INITIAL_ARGOCD_PASSWORD}
-  export ARGOCD_AUTH_TOKEN="$( ./argocd account generate-token --account backstage --grpc-web )"
-  rm argocd
-  
-  ID=$( curl -k -X POST https://${GRAFANA_HOSTNAME}/api/serviceaccounts --user 'admin:prom-operator' -H "Content-Type: application/json" -d '{"name": "backstage","role": "Viewer","isDisabled": false}' | jq -r .id )
-  export GRAFANA_TOKEN=$(curl -k -X POST https://${GRAFANA_HOSTNAME}/api/serviceaccounts/${ID}/tokens --user 'admin:prom-operator' -H "Content-Type: application/json" -d '{"name": "backstage"}' | jq -r .key)
 
   # check if backstage is already synced (it will still be degraded because of the missing secret we create in the next step)
-  # max wait for 5 minutes
-  argocd_app_individual="sx-backstage"
+  wait_until_apps_synced_healthy "sx-backstage" "Synced" "*" 900
 
-  max_wait_time=900
-  start=$SECONDS
-  end=$((SECONDS+${max_wait_time}))
+  echo "adding special configuration for sx-backstage"
 
-  all_apps_synced="true"
-  while [ $SECONDS -lt $end ]; do
-    all_apps_synced="true"
-    for app in ${argocd_app_individual} ; do
-      kubectl get application -n argocd ${app} | grep "Synced.*"
-      exit_code=$?
-      if [[ $exit_code -ne 0 ]]; then
-        all_apps_synced="false"
-      fi
-    done
-    if [ ${all_apps_synced} = "true" ] ; then
-      echo "${argocd_app_individual} apps are synced"
-      break
-    fi
-    kubectl get application -n argocd
-    elapsed_time=$((SECONDS-${start}))
-    echo "elapsed time: ${elapsed_time} seconds"
-    echo "max wait time: ${max_wait_time} seconds"
-    sleep 10
-  done
+  # generate argocd token
+  export ARGOCD_AUTH_TOKEN="$( kubectl exec sx-argocd-application-controller-0 -n argocd -- argocd account generate-token --account backstage --core )"
 
+  # generate grafana token
+  export GRAFANA_HOSTNAME=$(kubectl get ingress -o jsonpath='{.items[*].spec.rules[*].host}' -n grafana )
+  if [ "${GRAFANA_HOSTNAME}" != "" ]; then
+    ID=$( curl -k -X POST https://${GRAFANA_HOSTNAME}/api/serviceaccounts --user 'admin:prom-operator' -H "Content-Type: application/json" -d '{"name": "backstage","role": "Viewer","isDisabled": false}' | jq -r .id )
+    export GRAFANA_TOKEN=$(curl -k -X POST https://${GRAFANA_HOSTNAME}/api/serviceaccounts/${ID}/tokens --user 'admin:prom-operator' -H "Content-Type: application/json" -d '{"name": "backstage"}' | jq -r .key)
+  fi
+  
   # get backstage-locator token for backstage secret
   export K8S_SA_TOKEN=$( kubectl get secret backstage-locator -n backstage  -o jsonpath='{.data.token}' | base64 -d )
 
@@ -401,12 +356,13 @@ echo "adding special configuration for sx-backstage"
     GITHUB_CODESPACES="true"
     BACKSTAGE_CODESPACE_URL="https://${CODESPACE_NAME}-6691.${GITHUB_CODESPACES_PORT_FORWARDING_DOMAIN}"
   fi
+  
   if [ ${KEYCLOAK_CODESPACES} ]; then
     kubectl create secret generic -n backstage manual-secret \
-      --from-literal=GITHUB_CLIENTSECRET=${KUBRIX_GITHUB_CLIENTSECRET} \
-      --from-literal=GITHUB_CLIENTID=${KUBRIX_GITHUB_CLIENTID} \
+      --from-literal=GITHUB_CLIENTSECRET=${KUBRIX_BACKSTAGE_GITHUB_CLIENTSECRET} \
+      --from-literal=GITHUB_CLIENTID=${KUBRIX_BACKSTAGE_GITHUB_CLIENTID} \
       --from-literal=GITHUB_ORG=${GITHUB_ORG} \
-      --from-literal=GITHUB_TOKEN=${KUBRIX_GITHUB_TOKEN} \
+      --from-literal=GITHUB_TOKEN=${KUBRIX_BACKSTAGE_GITHUB_TOKEN} \
       --from-literal=K8S_SA_TOKEN=${K8S_SA_TOKEN} \
       --from-literal=ARGOCD_AUTH_TOKEN=${ARGOCD_AUTH_TOKEN} \
       --from-literal=GRAFANA_TOKEN=${GRAFANA_TOKEN} \
@@ -424,10 +380,10 @@ echo "adding special configuration for sx-backstage"
 
   elif [ ${GITHUB_CODESPACES} ]; then
     kubectl create secret generic -n backstage manual-secret \
-    --from-literal=GITHUB_CLIENTSECRET=${KUBRIX_GITHUB_CLIENTSECRET} \
-    --from-literal=GITHUB_CLIENTID=${KUBRIX_GITHUB_CLIENTID} \
+    --from-literal=GITHUB_CLIENTSECRET=${KUBRIX_BACKSTAGE_GITHUB_CLIENTSECRET} \
+    --from-literal=GITHUB_CLIENTID=${KUBRIX_BACKSTAGE_GITHUB_CLIENTID} \
     --from-literal=GITHUB_ORG=${GITHUB_ORG} \
-    --from-literal=GITHUB_TOKEN=${KUBRIX_GITHUB_TOKEN} \
+    --from-literal=GITHUB_TOKEN=${KUBRIX_BACKSTAGE_GITHUB_TOKEN} \
     --from-literal=K8S_SA_TOKEN=${K8S_SA_TOKEN} \
     --from-literal=ARGOCD_AUTH_TOKEN=${ARGOCD_AUTH_TOKEN} \
     --from-literal=GRAFANA_TOKEN=${GRAFANA_TOKEN} \
@@ -438,10 +394,10 @@ echo "adding special configuration for sx-backstage"
 
   else
     kubectl create secret generic -n backstage manual-secret \
-    --from-literal=GITHUB_CLIENTSECRET=${KUBRIX_GITHUB_CLIENTSECRET} \
-    --from-literal=GITHUB_CLIENTID=${KUBRIX_GITHUB_CLIENTID} \
+    --from-literal=GITHUB_CLIENTSECRET=${KUBRIX_BACKSTAGE_GITHUB_CLIENTSECRET} \
+    --from-literal=GITHUB_CLIENTID=${KUBRIX_BACKSTAGE_GITHUB_CLIENTID} \
     --from-literal=GITHUB_ORG=${GITHUB_ORG} \
-    --from-literal=GITHUB_TOKEN=${KUBRIX_GITHUB_TOKEN} \
+    --from-literal=GITHUB_TOKEN=${KUBRIX_BACKSTAGE_GITHUB_TOKEN} \
     --from-literal=K8S_SA_TOKEN=${K8S_SA_TOKEN} \
     --from-literal=ARGOCD_AUTH_TOKEN=${ARGOCD_AUTH_TOKEN} \
     --from-literal=GRAFANA_TOKEN=${GRAFANA_TOKEN}
@@ -454,38 +410,6 @@ echo "adding special configuration for sx-backstage"
   fi
 
   # finally wait for all apps including backstage to be synced and health
+  wait_until_apps_synced_healthy "${argocd_apps}" "Synced" "Healthy" 300
 
-  max_wait_time=300
-  start=$SECONDS
-  end=$((SECONDS+${max_wait_time}))
-
-  all_apps_synced="true"
-  while [ $SECONDS -lt $end ]; do
-    all_apps_synced="true"
-    for app in ${argocd_apps} ; do
-      kubectl get application -n argocd ${app} | grep "Synced.*Healthy"
-      exit_code=$?
-      if [[ $exit_code -ne 0 ]]; then
-        all_apps_synced="false"	
-      fi
-    done
-    if [ ${all_apps_synced} = "true" ] ; then
-      echo "${argocd_apps} apps are synced"
-      break
-    fi
-    kubectl get application -n argocd
-    elapsed_time=$((SECONDS-${start}))
-    echo "elapsed time: ${elapsed_time} seconds"
-    echo "max wait time: ${max_wait_time} seconds"
-    sleep 10
-  done
-
-  echo "status of all pods"
-  kubectl get pods -A
-  if [ ${all_apps_synced} != "true" ] ; then
-    echo "not all apps synced and healthy after limit reached :("
-    exit 1
-  else
-    echo "all apps are synced. ready for take off :)"
-  fi
 fi

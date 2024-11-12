@@ -14,13 +14,21 @@ backstage:
     image:
       registry: ghcr.io/suxess-it
       repository: sx-backstage
-      tag: latest
+      tag: v1.32.5
     extraEnvVarsSecrets:
       - sx-cnp-secret
       - manual-secret
     extraEnvVars:
       - name: NODE_OPTIONS
         value: "--no-node-snapshot"
+    extraVolumes:
+      - configMap:
+          defaultMode: 420
+          name: rbac-policy
+        name: rbac-policy
+    extraVolumeMounts:
+      - name: rbac-policy
+        mountPath: /opt/app-root/src/rbac
     appConfig:
       app:
         title: sX CNP App
@@ -34,8 +42,15 @@ backstage:
         # See https://backstage.io/docs/tutorials/backend-to-backend-auth for
         # information on the format
         auth:
-          keys:
-            - secret: ${BACKEND_SECRET}
+          externalAccess:
+          - type: static
+            options:
+              token: ${EXTERNAL_ACCESS_TOKEN}
+              subject: admincurlaccess          
+          - type: legacy
+            options:
+              secret: ${BACKEND_SECRET}
+              subject: legacy-secret
         baseUrl: https://portal-metalstack.platform-engineer.cloud
         listen:
           port: 7007
@@ -62,8 +77,6 @@ backstage:
       integrations:
         github:
           - host: github.com
-            # This is a Personal Access Token or PAT from GitHub. You can find out how to generate this token, and more information
-            # about setting up the GitHub integration here: https://backstage.io/docs/getting-started/configuration#setting-up-a-github-integration
             token: ${GITHUB_TOKEN}
           ### Example for how to add your GitHub Enterprise instance using the API:
           # - host: ghe.example.net
@@ -71,25 +84,24 @@ backstage:
           #   token: ${GHE_TOKEN}
 
       proxy:
+        endpoints:
         ### Example for how to add a proxy endpoint for the frontend.
         ### A typical reason to do this is to handle HTTPS and CORS for internal services.
         # '/test':
         #   target: 'https://example.com'
         #   changeOrigin: true
-        "/argocd/api":
-          target: https://argocd-metalstack.platform-engineer.cloud/api/v1/
-          changeOrigin: true
-          secure: false
-          headers:
-            Cookie:
-              $env: ARGOCD_AUTH_TOKEN
+          "/argocd/api":
+            target: https://argocd-metalstack.platform-engineer.cloud/api/v1/
+            changeOrigin: true
+            headers:
+              Cookie:
+                $env: ARGOCD_AUTH_TOKEN
 
-        '/grafana/api':
-          # May be a public or an internal DNS
-          target: https://grafana-metalstack.platform-engineer.cloud
-          secure: false
-          headers:
-            Authorization: Bearer ${GRAFANA_TOKEN}
+          '/grafana/api':
+            # May be a public or an internal DNS
+            target: https://grafana-metalstack.platform-engineer.cloud
+            headers:
+              Authorization: Bearer ${GRAFANA_TOKEN}
 
       argocd:
         baseUrl: https://argocd-metalstack.platform-engineer.cloud
@@ -113,6 +125,8 @@ backstage:
           type: 'local' # Alternatives - 'googleGcs' or 'awsS3'. Read documentation for using alternatives.
 
       auth:
+        session:
+          secret: ${BACKEND_SECRET} # free sessionsecret for user sessions
         environment: development
         providers:
           github:
@@ -290,7 +304,9 @@ backstage:
       vault:
         baseUrl: https://${VAULT_ADDR}
         publicUrl: https://${VAULT_ADDR}
-        token: "${VAULT_TOKEN}"
+        auth:
+          type: static
+          secret: "${VAULT_TOKEN}"
         #secretEngine: "${VAULT_ENGINE}"
         #kvVersion: 2
 
@@ -300,5 +316,29 @@ backstage:
         # Add it in case your JIRA instance is connected to Confluence, in order to filter those activities
         # confluenceActivityFilter: wiki@uuid
         # Defaults to latest and can be omitted if you want to use the latest version of the api
+      permission:
+        enabled: false
+        rbac:
+          pluginsWithPermission:
+            - kubernetes
+            - catalog
+            - policy
+            - scaffolder
+            - rbac
+ #           - techdocs
+          maxDepth: 1
+          admin:
+            users:
+              - name: group:default/demouser
+            superUsers:
+              - name: user:default/demoadmin
+              - name: user:default/phac008
+              - name: user:default/jkleinlercher
+          policies-csv-file: /opt/app-root/src/rbac/rbac-policy.csv
+          policyFileReload: true
+          database:
+            enabled: true
+
+## pgdb
 cluster:
   enabled: false

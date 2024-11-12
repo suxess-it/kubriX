@@ -1,9 +1,20 @@
 # Create a kubriX test environment on your local machine
 
+#### Attention! We will probably skip support for K3d cluster in a local environment in the future. We use KinD in our pipeline and also on local envs and we believe we should focus on one dev environment and keep this very stable. If you still need K3d, just please open an issue.
+
 ## prereqs
 
-k3d installed
+k3d or kind installed
 kubectl installed
+
+### installing KinD
+
+Install kind: https://kind.sigs.k8s.io/docs/user/quick-start/#installing-from-release-binaries
+
+Create kind cluster
+````
+kind create cluster --name kubrix-local-demo --config .github/kind-config.yaml
+````
 
 ### mkcert
 
@@ -30,12 +41,15 @@ For the installation some variables are needed:
 
 ```
 # Github clientsecret and clientid from GitHub OAuth App for Backstage
-export KUBRIX_GITHUB_CLIENTSECRET=<value from steps above>
-export KUBRIX_GITHUB_CLIENTID=<value from steps above>
+export KUBRIX_BACKSTAGE_GITHUB_CLIENTSECRET=<value from steps above>
+export KUBRIX_BACKSTAGE_GITHUB_CLIENTID=<value from steps above>
 # Github token Backstage uses to get the catalog yaml form github
-export KUBRIX_GITHUB_TOKEN=<your personal access token>
+export KUBRIX_BACKSTAGE_GITHUB_TOKEN=<your personal access token>
 # Github token ArgoCD uses for the SCM Provider
-export KUBRIX_GITHUB_APPSET_TOKEN=<github-pat-for-argocd-appsets-only-read-permissions-needed>
+export KUBRIX_ARGOCD_APPSET_TOKEN=<github-pat-for-argocd-appsets-only-read-permissions-needed>
+# Kargo Git Promotion credentials
+export KUBRIX_KARGO_GIT_USERNAME=<username-for-kargo-git-promotion>
+export KUBRIX_KARGO_GIT_PASSWORD=<username-for-kargo-git-promotion>
 # set the current repository to the origin or to your fork
 export KUBRIX_REPO=https://github.com/suxess-it/kubriX.git
 # if you want to test another branch, specify something else than main
@@ -46,8 +60,6 @@ export KUBRIX_REPO_PASSWORD=<kubrix-repo-password-or-personal-access-token>
 export KUBRIX_TARGET_TYPE=KIND-DELIVERY
 # if a K3d cluster should get created:
 export KUBRIX_CREATE_K3D_CLUSTER=true
-# domain of the used platform service hostnames
-export KUBRIX_DOMAIN=127.0.0.1.nip.io
 ```
 
 ## 2. install platform-stack
@@ -123,4 +135,11 @@ tbd
 ```
 k3d cluster stop kubrix-local-demo
 k3d cluster delete kubrix-local-demo
+```
+
+
+## delete kind cluster
+
+```
+kind delete cluster --name kubrix-local-demo
 ```
