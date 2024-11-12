@@ -67,6 +67,10 @@ for file in ${comment_files_csplit}; do
 
     # Concatenate the file to the current output file
     cat "$file" >> "$OUTPUT_FILE"
+    if (( $(stat -c %s "$OUTPUT_FILE") > MAX_SIZE )); then
+      echo "split single diff file ${OUTPUT_FILE}"
+      split -b ${MAX_SIZE} ${OUTPUT_FILE} ${OUTPUT_FILE}_
+    fi
 
     # Update the current size
     current_size=$((current_size + file_size))
