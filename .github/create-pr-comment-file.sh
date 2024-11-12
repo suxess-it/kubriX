@@ -77,6 +77,7 @@ for file in ${comment_files_csplit}; do
     if (( $(stat -c %s "$OUTPUT_FILE") > MAX_SIZE )); then
       echo "split file ${OUTPUT_FILE} by byte because its file is bigger than ${MAX_SIZE} byte"
       split -b ${MAX_SIZE} ${OUTPUT_FILE} ${OUTPUT_FILE}_
+      rm ${OUTPUT_FILE}
     fi
     
   else
