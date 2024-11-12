@@ -72,6 +72,14 @@ for file in ${comment_files_csplit}; do
     current_size=$((current_size + file_size))
 
     echo "Added '$file' to '$OUTPUT_FILE'. Current size: $current_size bytes."
+
+    # if output file is bigger than max size, split the file by byte
+    if (( $(stat -c %s "$OUTPUT_FILE") > MAX_SIZE )); then
+      echo "split file ${OUTPUT_FILE} by byte because its file is bigger than ${MAX_SIZE} byte"
+      split -b ${MAX_SIZE} ${OUTPUT_FILE} ${OUTPUT_FILE}_
+      rm ${OUTPUT_FILE}
+    fi
+    
   else
     echo "'$file' is not a valid file. Skipping."
   fi
@@ -79,6 +87,8 @@ done
 
 echo "Concatenation completed. Total output files: $output_file_count."
 
+echo "all files:"
+ls -l combined_file*
 
 # default values comparison (we assume they will not be bigger than comment size limit)
 sed  's/DESCRIPTION_HERE/Changes Default Values/g' pr/.github/pr-diff-template.txt > out/comment-diff-default-values.txt
