@@ -16,6 +16,7 @@ metadata:
     backstage.io/kubernetes-id: ${{values.application_id}}
     kubecost.com/deployment-name: ${{values.application_id}}
     argocd/app-name: ${{values.application_id}}
+    argocd/app-namespace: adn-${{values.team}}
     backstage.io/kubernetes-namespace: ${{values.team}}-${{values.application_id}}
     backstage.io/kubernetes-label-selector: app=${{values.application_id}}
     kubevirt-manager: "https://kubevirt-manager.lab.suxessit.k8s.cloud.uibk.ac.at/"
