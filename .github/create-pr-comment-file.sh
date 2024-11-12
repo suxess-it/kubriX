@@ -86,6 +86,8 @@ done
 
 echo "Concatenation completed. Total output files: $output_file_count."
 
+echo "all files:"
+ls -l combined_file*
 
 # default values comparison (we assume they will not be bigger than comment size limit)
 sed  's/DESCRIPTION_HERE/Changes Default Values/g' pr/.github/pr-diff-template.txt > out/comment-diff-default-values.txt
