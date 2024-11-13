@@ -31,11 +31,10 @@ kyverno:
         memory: 512Mi
   config:
     webhooks:
-      - namespaceSelector:
-          matchExpressions:
-                  - key: kubernetes.io/metadata.name
-                    operator: NotIn
-                    values:
-                      - kyverno
-                      - kube-system
-                  
+      namespaceSelector:
+        matchExpressions:
+          - key: kubernetes.io/metadata.name
+            operator: NotIn
+            values:
+              - kyverno
+              - kube-system
