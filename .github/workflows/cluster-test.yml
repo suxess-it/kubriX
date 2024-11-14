@@ -56,6 +56,11 @@ jobs:
           sudo dpkg -i k8sgpt_amd64.deb
           k8sgpt analyze
 
+      - name: sysctl
+        shell: bash
+        run: |
+          cat /etc/sysctl.conf
+
       - name: install kubriX stack
         env:
           KUBRIX_TARGET_TYPE: ${{ matrix.target-type }}
