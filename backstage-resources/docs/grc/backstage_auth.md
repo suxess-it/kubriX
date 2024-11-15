@@ -25,7 +25,7 @@ auth:
         oidc:
             development:
                 metadataUrl: http://keycloak-service.keycloak.svc.cluster.local:8080/realms/sx-cnp-oss #.well-known/openid-configuration can be ommited
-                callbackUrl: https://backstage.lab.suxessit.k8s.cloud.uibk.ac.at/api/auth/oidc/handler/frame
+                callbackUrl: https://<backstageurl>/api/auth/oidc/handler/frame
                 clientId: backstage
 ```
 GitHub secrets created by oauth app, alternativly they can get created by GitHub App:
