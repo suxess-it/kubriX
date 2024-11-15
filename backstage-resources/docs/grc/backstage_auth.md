@@ -70,7 +70,7 @@ tbd - solution for this
 
 ### Purpose:
 - Service account for automated GitHub API Requests
-- Allow Backstage to read or publish data using external providers (Github, Gitlab,…)
+- Allow Backstage to read or publish data using external providers (Github,…)
 - Performing static, non-user-specific tasks, such as reading repo data, fethcing org information or indexing repos
 
 For github (located at root level in app-config.yaml since it is used by many Backstage core features)
