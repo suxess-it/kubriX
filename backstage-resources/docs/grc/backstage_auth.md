@@ -1,18 +1,18 @@
 # Authentication/Integration in Backstage
 
-In this document we give an overview how Backstage Authentication/Integration works
+This document should give an overview how Backstage Authentication/Integration works in kubriX Environment
 
-Base information: 
-[Authorization](https://backstage.io/docs/auth/)
-[Integration](https://backstage.io/docs/integrations/)
+backstage.io documentation link: 
+- [Authorization](https://backstage.io/docs/auth/)
+- [Integration](https://backstage.io/docs/integrations/)
 
 ## Authorization
 ### Purpose
 - Sign-in and identification of users
 - Delegating access to 3rd party resources
 
-There are several build-in auth providers build-in in, also custom providers are possible. Only "one" will be used for sign-in, the rest provides access to external resources.
-For different showcases we have 2 different providers active in kubriX demo - GitHub and oidc/keyloak
+There are several build-in auth providers, also custom providers are possible. Only "one" will/should be used for sign-in, the rest provide access to external resources.
+For different showcases we have currently 2 providers active in our kubriX demo - GitHub and OIDC via Keyloak Instance
 
 ```
 auth:
@@ -28,10 +28,10 @@ auth:
                 callbackUrl: https://backstage.lab.suxessit.k8s.cloud.uibk.ac.at/api/auth/oidc/handler/frame
                 clientId: backstage
 ```
-GitHub secrets created by oauth app, alternativly they can get created by GitHub App.
+GitHub secrets created by oauth app, alternativly they can get created by GitHub App:
 
-### HINT
-[Base Information](https://backstage.io/docs/integrations/github/github-apps)
+#### HINT
+[backstage.io documentation link](https://backstage.io/docs/integrations/github/github-apps)
 
     Difference between GitHub Apps and GitHub OAuth Apps
     GitHub Apps handle OAuth scope at the app installation level, meaning that the scope parameter for the call to getAccessToken in the frontend has no effect. When calling getAccessToken in open source plugins, one should still include the appropriate scope, but also document in the plugin README what scopes are required for GitHub Apps.
@@ -40,7 +40,7 @@ Autorization Needs Frontend and Backend configuration
 - Backend: https://backstage.io/docs/auth/identity-resolver/
 - Frontend: SignInPage
 
-### Scenarios
+### Scenario Examples
 - Authenticate Users to Backstage using their Github accounts
   - User Login
 - Perform API Actions on behalf of authenticated users, utilizing their permissions
@@ -56,13 +56,15 @@ Autorization Needs Frontend and Backend configuration
 - write:discussion: For creating or managing discussions (if your Backstage setup involves GitHub Discussions)
 
 ### Scaffolder
-[Integration by default](https://backstage.io/docs/auth/identity-resolver)
+Integrated by default 
+[backstage.io documentation link](https://backstage.io/docs/auth/identity-resolver)
     
 ### Token issuer
 Authentication backend generates and manages its own signing keys automatically for any issued backstage token
 The have short lifetime and do not persist after instance restarts!
 
-[Solution for this](https://backstage.io/docs/auth/#configuring-token-issuers)
+tbd - solution for this 
+[backstage.io documentation link](https://backstage.io/docs/auth/#configuring-token-issuers)
 
 ## Integrations
 
@@ -79,7 +81,7 @@ integrations:
         token: ${GITHUB_TOKEN}
 ```
 
-### Scenarios
+### Scenario Example
 - Github discovery processor
   - Scanning Github Repos for catalog files
 - Github API requests
