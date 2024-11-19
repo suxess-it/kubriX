@@ -1,12 +1,12 @@
 # Authentication/Integration in Backstage
 
-This document should give an overview how Backstage Authentication/Integration works in kubriX Environment
+This document should give an overview how Backstage Authentication/Integration works in general and how we use that in kubriX environment
 
 backstage.io documentation link: 
-- [Authorization](https://backstage.io/docs/auth/)
+- [Authentication](https://backstage.io/docs/auth/)
 - [Integration](https://backstage.io/docs/integrations/)
 
-## Authorization
+## Authentication
 ### Purpose
 - Sign-in and identification of users
 - Delegating access to 3rd party resources
@@ -28,15 +28,15 @@ auth:
                 callbackUrl: https://<backstageurl>/api/auth/oidc/handler/frame
                 clientId: backstage
 ```
-GitHub secrets created by oauth app, alternativly they can get created by GitHub App:
+GitHub secrets GITHUB_CLIENT_ID and GITHUB_CLIENT_SECRET are created by oauth app, alternativly they can get created by GitHub App:
 
 #### HINT
 [backstage.io documentation link](https://backstage.io/docs/integrations/github/github-apps)
 
-    Difference between GitHub Apps and GitHub OAuth Apps
-    GitHub Apps handle OAuth scope at the app installation level, meaning that the scope parameter for the call to getAccessToken in the frontend has no effect. When calling getAccessToken in open source plugins, one should still include the appropriate scope, but also document in the plugin README what scopes are required for GitHub Apps.
+Difference between GitHub Apps and GitHub OAuth Apps:
+GitHub Apps handle OAuth scope at the app installation level, meaning that the scope parameter for the call to getAccessToken in the frontend has no effect. When calling getAccessToken in open source plugins, one should still include the appropriate scope, but also document in the plugin README what scopes are required for GitHub Apps.
 
-Autorization Needs Frontend and Backend configuration
+Authentication needs frontend and backend configuration
 - Backend: https://backstage.io/docs/auth/identity-resolver/
 - Frontend: SignInPage
 
@@ -56,22 +56,26 @@ Autorization Needs Frontend and Backend configuration
 - write:discussion: For creating or managing discussions (if your Backstage setup involves GitHub Discussions)
 
 ### Scaffolder
-Integrated by default 
-[backstage.io documentation link](https://backstage.io/docs/auth/identity-resolver)
+Integrated Identity Resolver | [backstage.io documentation link](https://backstage.io/docs/features/software-templates/writing-templates#accessing-the-signed-in-users-details)
+
+Integrated Authentication Capabilities | [backstage.io documentation link](https://backstage.io/docs/auth/#scaffolder-configuration-software-templates)
+
+tbd - access crontrol to certain parameter
+[Scaffolder and Permission framework](https://backstage.io/docs/features/software-templates/authorizing-scaffolder-template-details)
     
 ### Token issuer
 Authentication backend generates and manages its own signing keys automatically for any issued backstage token
-The have short lifetime and do not persist after instance restarts!
+They have short lifetime and do not persist after instance restarts!
 
 tbd - solution for this 
 [backstage.io documentation link](https://backstage.io/docs/auth/#configuring-token-issuers)
 
 ## Integrations
 
-### Purpose:
+### Purpose
 - Service account for automated GitHub API Requests
 - Allow Backstage to read or publish data using external providers (Github,…)
-- Performing static, non-user-specific tasks, such as reading repo data, fethcing org information or indexing repos
+- Performing static, non-user-specific tasks, such as reading repo data, fetching org information or indexing repos
 
 For github (located at root level in app-config.yaml since it is used by many Backstage core features)
 ```
@@ -89,7 +93,7 @@ integrations:
 - CI/CD pipelines interacting with GitHub via Backstage
 - Backstage scanning GitHub repos and does not need user authentication (sign-in)
 - Running Github integration Plugin, that requires persistent access to certain data
-- Fetching GitHub Actions logs for a Backstage plugin: Use a PAT with workflow scope.
+- Fetching GitHub Actions logs for a Backstage plugin
 
 #### Required Scopes
 - repo: Full control of private repositories (read/write)
@@ -109,6 +113,6 @@ integrations:
 |CI/CD integration|❌ No, not ideal!|✅ Yes|
 |Setup Complexity|Medium|Low|
 
-## Best Practices Shorty
-- Use **OAuth App** for user-related actions, user authentication, and any actions that need to happen on **behalf of a user**.
+## Best Practices in kubriX environment
+- We use **OAuth App** for user-related actions, user authentication, and any actions that need to happen on **behalf of a user**.
 - Use **PAT** for service-level access where **user context is not required**, such as scanning repositories, reading data, or performing automated tasks.
