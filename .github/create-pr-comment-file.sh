@@ -87,14 +87,14 @@ done
 
 echo "Concatenation completed. Total output files: $output_file_count."
 
-echo "all files:"
-ls -l combined_file*
-
 # default values comparison (we assume they will not be bigger than comment size limit)
 sed  's/DESCRIPTION_HERE/Changes Default Values/g' pr/.github/pr-diff-template.txt > out/comment-diff-default-values.txt
 sed  -e "/DIFF_HERE/{r out/default-values-diff.txt" -e "d}" out/comment-diff-default-values.txt > comment-files/comment-default-values-result.txt
 
 if ls combined_file* 1> /dev/null 2>&1 ; then
+  echo "all files:"
+  ls -l combined_file*
+
   combined_files=$( ls combined_file* )
   for combined_file in ${combined_files} ; do
     sed  's/DESCRIPTION_HERE/Changes Rendered Chart/g' pr/.github/pr-diff-template.txt > out/comment-diff-${combined_file}
@@ -105,6 +105,7 @@ if ls combined_file* 1> /dev/null 2>&1 ; then
   echo "matrix={\"comment-files\": $( jq -n '$ARGS.positional' --args $( ls comment-files/comment-result-* ) | tr "\n" " ")}" 
   echo "matrix={\"comment-files\": $( jq -n '$ARGS.positional' --args $( ls comment-files/comment-result-* ) | tr "\n" " ")}" >> $GITHUB_OUTPUT
 else
+  echo "no changes found"
   # outpout empty matrix so matrix build is ignored
   echo "matrix={\"comment-files\": []}"
   echo "matrix={\"comment-files\": []}" >> $GITHUB_OUTPUT
