@@ -1,3 +1,4 @@
+{{ if has "policy-kubevirt-rolebinding" .Values.kyvernoPolicies }}
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRoleBinding
 metadata:
@@ -10,3 +11,4 @@ subjects:
 - kind: ServiceAccount
   name: kyverno-background-controller
   namespace: kyverno
+{{- end }}
