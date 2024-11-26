@@ -1,3 +1,4 @@
+{{ if has "policy-kubevirt-rolebinding" .Values.kyvernoPolicies }}
 apiVersion: kyverno.io/v1
 kind: ClusterPolicy
 metadata:
@@ -39,4 +40,5 @@ spec:
             kind: ClusterRole
             name: kubevirt-datavolume-permission
             apiGroup: rbac.authorization.k8s.io
+{{- end }}
 
