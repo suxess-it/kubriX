@@ -1,10 +1,10 @@
 eso:
-  providerUrl: "https://vault-kubrix.platform-engineer.cloud/"
+  providerUrl: "https://vault.demo.kubrix.cloud/"
   backendName: vault-backend
   secretStore: sx-cnp-oss-kv
   # oidc config
-  oidcDiscoveryUrl: "https://keycloak-kubrix.platform-engineer.cloud/realms/sx-cnp-oss"
-  callbackUri: "https://vault-kubrix.platform-engineer.cloud"
+  oidcDiscoveryUrl: "https://keycloak.demo.kubrix.cloud/realms/sx-cnp-oss"
+  callbackUri: "https://vault.demo.kubrix.cloud"
 
   # Copyright (c) HashiCorp, Inc.
   # SPDX-License-Identifier: MPL-2.0
@@ -19,12 +19,12 @@ vault:
         external-dns.alpha.kubernetes.io/ttl: "60"
         cert-manager.io/cluster-issuer: letsencrypt-prod
       hosts:
-        - host: vault-kubrix.platform-engineer.cloud
+        - host: vault.demo.kubrix.cloud
           paths: []
       tls: 
         - secretName: vault-server-tls
           hosts:
-            - vault-kubrix.platform-engineer.cloud
+            - vault.demo.kubrix.cloud
     extraInitContainers:
       - name: utility-downloader
         image: alpine/curl:latest

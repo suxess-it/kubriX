@@ -28,14 +28,14 @@ loki:
         external-dns.alpha.kubernetes.io/ttl: "60"
         cert-manager.io/cluster-issuer: letsencrypt-prod
       hosts:
-        - host: logs-monitoring-kubrix.platform-engineer.cloud
+        - host: logs-monitoring.demo.kubrix.cloud
           paths:
             - path: /
               pathType: Prefix
       tls:
         - secretName: loki-gateway-tls
           hosts:
-            - logs-monitoring-kubrix.platform-engineer.cloud
+            - logs-monitoring.demo.kubrix.cloud
 
   deploymentMode: SingleBinary
   singleBinary:

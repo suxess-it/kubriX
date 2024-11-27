@@ -33,14 +33,14 @@ falco:
           cert-manager.io/cluster-issuer: letsencrypt-prod
         ingressClassName: nginx
         hosts:
-          - host: falco-kubrix.platform-engineer.cloud
+          - host: falco.demo.kubrix.cloud
             paths:
               - path: /
                 pathType: Prefix
         tls:
             - secretName: falco-server-tls
               hosts:
-                - falco-kubrix.platform-engineer.cloud
+                - falco.demo.kubrix.cloud
     replicaCount: 1
     serviceMonitor:
       enabled: true

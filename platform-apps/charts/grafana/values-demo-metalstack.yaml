@@ -11,7 +11,7 @@ grafana:
   envFromSecret: grafana-env-secret
   grafana.ini:
     server:
-      root_url: "https://grafana-kubrix.platform-engineer.cloud"
+      root_url: "https://grafana.demo.kubrix.cloud"
     security:
       # set cookies for backstage plugin integration
       allow_embedding: 'true'
@@ -28,10 +28,10 @@ grafana:
       email_attribute_path: email
       login_attribute_path: preferred_username
       name_attribute_path: preferred_username
-      auth_url: https://keycloak-kubrix.platform-engineer.cloud/realms/sx-cnp-oss/protocol/openid-connect/auth
-      token_url: https://keycloak-kubrix.platform-engineer.cloud/realms/sx-cnp-oss/protocol/openid-connect/token
-      api_url: https://keycloak-kubrix.platform-engineer.cloud/realms/sx-cnp-oss/protocol/openid-connect/userinfo
-      signout_redirect_url: https://keycloak-kubrix.platform-engineer.cloud/realms/sx-cnp-oss/protocol/openid-connect/logout
+      auth_url: https://keycloak.demo.kubrix.cloud/realms/sx-cnp-oss/protocol/openid-connect/auth
+      token_url: https://keycloak.demo.kubrix.cloud/realms/sx-cnp-oss/protocol/openid-connect/token
+      api_url: https://keycloak.demo.kubrix.cloud/realms/sx-cnp-oss/protocol/openid-connect/userinfo
+      signout_redirect_url: https://keycloak.demo.kubrix.cloud/realms/sx-cnp-oss/protocol/openid-connect/logout
       role_attribute_path: contains(grafana.roles[*], 'admin') && 'Admin' || contains(grafana.roles[*], 'editor') && 'Editor' || 'Viewer'
       allow_assign_grafana_admin: false
       groups_attribute_path: groups
@@ -54,11 +54,11 @@ grafana:
     annotations:
       external-dns.alpha.kubernetes.io/ttl: "60"
       cert-manager.io/cluster-issuer: letsencrypt-prod
-    hosts: [grafana-kubrix.platform-engineer.cloud]
+    hosts: [grafana.demo.kubrix.cloud]
     tls:
       - secretName: grafana-server-tls
         hosts:
-        - grafana-kubrix.platform-engineer.cloud
+        - grafana.demo.kubrix.cloud
         
   # # To make Grafana persistent (Using Statefulset)
   # #

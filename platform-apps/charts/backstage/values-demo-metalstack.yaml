@@ -1,7 +1,7 @@
 backstage:
   ingress:
     enabled: true
-    host: portal-kubrix.platform-engineer.cloud
+    host: backstage.demo.kubrix.cloud
     className: nginx
     annotations:
       external-dns.alpha.kubernetes.io/ttl: "60"
@@ -34,7 +34,7 @@ backstage:
     appConfig:
       app:
         title: sX CNP App
-        baseUrl: https://portal-kubrix.platform-engineer.cloud
+        baseUrl: https://backstage.demo.kubrix.cloud
 
       organization:
         name: sX CNP
@@ -53,18 +53,18 @@ backstage:
             options:
               secret: ${BACKEND_SECRET}
               subject: legacy-secret
-        baseUrl: https://portal-kubrix.platform-engineer.cloud
+        baseUrl: https://backstage.demo.kubrix.cloud
         listen:
           port: 7007
           # Uncomment the following host directive to bind to specific interfaces
           # host: 127.0.0.1
         csp:
           connect-src: ["'self'", 'http:', 'https:']
-          frame-src: ['*.platform-engineer.cloud']
+          frame-src: ['*.demo.kubrix.cloud']
           # Content-Security-Policy directives follow the Helmet format: https://helmetjs.github.io/#reference
           # Default Helmet Content-Security-Policy values can be removed by setting the key to false
         cors:
-          origin: https://portal-kubrix.platform-engineer.cloud
+          origin: https://backstage.demo.kubrix.cloud
           methods: [GET, HEAD, PATCH, POST, PUT, DELETE]
           credentials: true
         # This is for local development only, it is not recommended to use this in production
@@ -93,7 +93,7 @@ backstage:
         #   target: 'https://example.com'
         #   changeOrigin: true
           "/argocd/api":
-            target: https://argocd-kubrix.platform-engineer.cloud/api/v1/
+            target: https://argocd.demo.kubrix.cloud/api/v1/
             changeOrigin: true
             headers:
               Cookie:
@@ -101,18 +101,18 @@ backstage:
 
           '/grafana/api':
             # May be a public or an internal DNS
-            target: https://grafana-kubrix.platform-engineer.cloud
+            target: https://grafana.demo.kubrix.cloud
             headers:
               Authorization: Bearer ${GRAFANA_TOKEN}
 
       argocd:
-        baseUrl: https://argocd-kubrix.platform-engineer.cloud
+        baseUrl: https://argocd.demo.kubrix.cloud
         namespacedApps: true
         appLocatorMethods:
           - type: 'config'
             instances:
               - name: kubrixdemo
-                url: https://argocd-kubrix.platform-engineer.cloud
+                url: https://argocd.demo.kubrix.cloud
                 token: ${ARGOCD_AUTH_TOKEN}
 
       # Reference documentation http://backstage.io/docs/features/techdocs/configuration
@@ -150,7 +150,7 @@ backstage:
               #metadataUrl: https://keycloak.lab.suxessit.k8s.cloud.uibk.ac.at/realms/sx-cnp-oss #.well-known/openid-configuration can be ommited
               # workaround -> also set frontendUrl in keycloak realm
               metadataUrl: http://keycloak-service.keycloak.svc.cluster.local:8080/realms/sx-cnp-oss #.well-known/openid-configuration can be ommited
-              callbackUrl: https://portal-kubrix.platform-engineer.cloud/api/auth/oidc/handler/frame
+              callbackUrl: https://backstage.demo.kubrix.cloud/api/auth/oidc/handler/frame
               clientId: backstage
               clientSecret: demosecret
               additionalScopes: 'groups'
@@ -279,7 +279,7 @@ backstage:
 
       grafana:
         # Publicly accessible domain
-        domain: https://grafana-kubrix.platform-engineer.cloud
+        domain: https://grafana.demo.kubrix.cloud
 
         # Is unified alerting enabled in Grafana?
         # See: https://grafana.com/blog/2021/06/14/the-new-unified-alerting-system-for-grafana-everything-you-need-to-know/
@@ -338,7 +338,7 @@ backstage:
             rate: 5.5
 
       kubecost:
-        baseUrl: https://kubecost-kubrix.platform-engineer.cloud/
+        baseUrl: https://kubecost.demo.kubrix.cloud/
         sharedNamespaces: kube-system
         queryframes: week,yesterday,month,today,lastweek
         annotationDeploymentName: 'backstage.io/kubernetes-id'
