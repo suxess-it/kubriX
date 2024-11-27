@@ -16,7 +16,7 @@ external-dns:
         tag: v0.6.2
       env:
       - name: LOG_LEVEL
-        value: debug # reduce in production
+        value: info # reduce in production
       - name: IONOS_API_KEY
         valueFrom:
           secretKeyRef:
@@ -27,7 +27,7 @@ external-dns:
       - name: SERVER_PORT
         value: "8080"
       - name: IONOS_DEBUG
-        value: "true" # put this to true if you want see details of the http requests
+        value: "false" # put this to true if you want see details of the http requests
       - name: DRY_RUN
         value: "false" # set to false to apply changes
       livenessProbe:
