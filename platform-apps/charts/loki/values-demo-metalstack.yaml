@@ -26,16 +26,16 @@ loki:
       ingressClassName: nginx
       annotations:
         external-dns.alpha.kubernetes.io/ttl: "60"
-        cert-manager.io/cluster-issuer: letsencrypt-staging
+        cert-manager.io/cluster-issuer: letsencrypt-prod
       hosts:
-        - host: logs-monitoring-metalstack.platform-engineer.cloud
+        - host: logs-monitoring-kubrix.platform-engineer.cloud
           paths:
             - path: /
               pathType: Prefix
       tls:
         - secretName: loki-gateway-tls
           hosts:
-            - logs-monitoring-metalstack.platform-engineer.cloud
+            - logs-monitoring-kubrix.platform-engineer.cloud
 
   deploymentMode: SingleBinary
   singleBinary:

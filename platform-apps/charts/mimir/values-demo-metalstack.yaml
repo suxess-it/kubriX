@@ -5,16 +5,16 @@ mimir:
       ingressClassName: nginx
       annotations:
         external-dns.alpha.kubernetes.io/ttl: "60"
-        cert-manager.io/cluster-issuer: letsencrypt-staging
+        cert-manager.io/cluster-issuer: letsencrypt-prod
       hosts:
-        - host: metrics-monitoring-metalstack.platform-engineer.cloud
+        - host: metrics-monitoring-kubrix.platform-engineer.cloud
           paths:
             - path: /
               pathType: Prefix
       tls:
         - secretName: mimir-nginx-tls
           hosts:
-            - metrics-monitoring-metalstack.platform-engineer.cloud
+            - metrics-monitoring-kubrix.platform-engineer.cloud
   mimir:
     structuredConfig:
       limits:

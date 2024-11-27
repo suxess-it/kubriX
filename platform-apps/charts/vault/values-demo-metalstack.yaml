@@ -1,10 +1,10 @@
 eso:
-  providerUrl: "https://vault.lab.suxessit.k8s.cloud.uibk.ac.at/"
+  providerUrl: "https://vault-kubrix.platform-engineer.cloud/"
   backendName: vault-backend
   secretStore: sx-cnp-oss-kv
   # oidc config
-  oidcDiscoveryUrl: "https://keycloak.lab.suxessit.k8s.cloud.uibk.ac.at/realms/sx-cnp-oss"
-  callbackUri: "https://vault.lab.suxessit.k8s.cloud.uibk.ac.at"
+  oidcDiscoveryUrl: "https://keycloak-kubrix.platform-engineer.cloud/realms/sx-cnp-oss"
+  callbackUri: "https://vault-kubrix.platform-engineer.cloud"
 
   # Copyright (c) HashiCorp, Inc.
   # SPDX-License-Identifier: MPL-2.0
@@ -16,17 +16,15 @@ vault:
       enabled: true
       ingressClassName: nginx
       annotations:
-        cert.gardener.cloud/purpose: managed
-        dns.gardener.cloud/class: garden
-        dns.gardener.cloud/dnsnames: vault.lab.suxessit.k8s.cloud.uibk.ac.at
-        dns.gardener.cloud/ttl: "180"      
+        external-dns.alpha.kubernetes.io/ttl: "60"
+        cert-manager.io/cluster-issuer: letsencrypt-prod
       hosts:
-        - host: vault.lab.suxessit.k8s.cloud.uibk.ac.at
+        - host: vault-kubrix.platform-engineer.cloud
           paths: []
       tls: 
         - secretName: vault-server-tls
           hosts:
-            - vault.lab.suxessit.k8s.cloud.uibk.ac.at
+            - vault-kubrix.platform-engineer.cloud
     extraInitContainers:
       - name: utility-downloader
         image: alpine/curl:latest

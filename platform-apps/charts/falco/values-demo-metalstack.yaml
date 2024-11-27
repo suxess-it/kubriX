@@ -29,20 +29,18 @@ falco:
       ingress:
         enabled: true
         annotations:
-          cert.gardener.cloud/purpose: managed
-          dns.gardener.cloud/class: garden
-          dns.gardener.cloud/dnsnames: falco.lab.suxessit.k8s.cloud.uibk.ac.at
-          dns.gardener.cloud/ttl: "180"          
+          external-dns.alpha.kubernetes.io/ttl: "60"
+          cert-manager.io/cluster-issuer: letsencrypt-prod
         ingressClassName: nginx
         hosts:
-          - host: falco.lab.suxessit.k8s.cloud.uibk.ac.at
+          - host: falco-kubrix.platform-engineer.cloud
             paths:
               - path: /
                 pathType: Prefix
         tls:
             - secretName: falco-server-tls
               hosts:
-                - falco.lab.suxessit.k8s.cloud.uibk.ac.at
+                - falco-kubrix.platform-engineer.cloud
     replicaCount: 1
     serviceMonitor:
       enabled: true

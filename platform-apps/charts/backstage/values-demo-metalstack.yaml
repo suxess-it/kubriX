@@ -1,15 +1,17 @@
 backstage:
   ingress:
     enabled: true
+    host: portal-kubrix.platform-engineer.cloud
     className: nginx
-    host: portal-metalstack.platform-engineer.cloud
     annotations:
       external-dns.alpha.kubernetes.io/ttl: "60"
-      cert-manager.io/cluster-issuer: letsencrypt-staging
+      cert-manager.io/cluster-issuer: letsencrypt-prod
     tls:
       enabled: true
-      secretName: backstage-tls
-
+      secretName: backstage-server-tls
+  metrics:
+    serviceMonitor:
+      enabled: true
   backstage:
     image:
       registry: ghcr.io/suxess-it
@@ -32,7 +34,7 @@ backstage:
     appConfig:
       app:
         title: sX CNP App
-        baseUrl: https://portal-metalstack.platform-engineer.cloud
+        baseUrl: https://portal-kubrix.platform-engineer.cloud
 
       organization:
         name: sX CNP
@@ -51,7 +53,7 @@ backstage:
             options:
               secret: ${BACKEND_SECRET}
               subject: legacy-secret
-        baseUrl: https://portal-metalstack.platform-engineer.cloud
+        baseUrl: https://portal-kubrix.platform-engineer.cloud
         listen:
           port: 7007
           # Uncomment the following host directive to bind to specific interfaces
@@ -62,7 +64,7 @@ backstage:
           # Content-Security-Policy directives follow the Helmet format: https://helmetjs.github.io/#reference
           # Default Helmet Content-Security-Policy values can be removed by setting the key to false
         cors:
-          origin: https://portal-metalstack.platform-engineer.cloud
+          origin: https://portal-kubrix.platform-engineer.cloud
           methods: [GET, HEAD, PATCH, POST, PUT, DELETE]
           credentials: true
         # This is for local development only, it is not recommended to use this in production
@@ -91,7 +93,7 @@ backstage:
         #   target: 'https://example.com'
         #   changeOrigin: true
           "/argocd/api":
-            target: https://argocd-metalstack.platform-engineer.cloud/api/v1/
+            target: https://argocd-kubrix.platform-engineer.cloud/api/v1/
             changeOrigin: true
             headers:
               Cookie:
@@ -99,19 +101,19 @@ backstage:
 
           '/grafana/api':
             # May be a public or an internal DNS
-            target: https://grafana-metalstack.platform-engineer.cloud
+            target: https://grafana-kubrix.platform-engineer.cloud
             headers:
               Authorization: Bearer ${GRAFANA_TOKEN}
 
       argocd:
-        baseUrl: https://argocd-metalstack.platform-engineer.cloud
-        username: admin
-        password: admin
+        baseUrl: https://argocd-kubrix.platform-engineer.cloud
+        namespacedApps: true
         appLocatorMethods:
           - type: 'config'
             instances:
-              - name: main
-                url: https://argocd-metalstack.platform-engineer.cloud
+              - name: kubrixdemo
+                url: https://argocd-kubrix.platform-engineer.cloud
+                token: ${ARGOCD_AUTH_TOKEN}
 
       # Reference documentation http://backstage.io/docs/features/techdocs/configuration
       # Note: After experimenting with basic setup, use CI/CD to generate docs
@@ -136,7 +138,27 @@ backstage:
               signIn:
                 resolvers:
                   - resolver: usernameMatchingUserEntityName
-          guest: {}
+                  - resolver: emailMatchingUserEntityProfileEmail
+                  - resolver: emailLocalPartMatchingUserEntityName
+              schedule:
+                frequency: PT30M
+                timeout: PT3M
+          #guest: {}
+          oidc:
+            development:
+              # real metadataUrl -> local cluster lead to "ECONNREFUSED 127.0.0.1:443" - #24935
+              #metadataUrl: https://keycloak.lab.suxessit.k8s.cloud.uibk.ac.at/realms/sx-cnp-oss #.well-known/openid-configuration can be ommited
+              # workaround -> also set frontendUrl in keycloak realm
+              metadataUrl: http://keycloak-service.keycloak.svc.cluster.local:8080/realms/sx-cnp-oss #.well-known/openid-configuration can be ommited
+              callbackUrl: https://portal-kubrix.platform-engineer.cloud/api/auth/oidc/handler/frame
+              clientId: backstage
+              clientSecret: demosecret
+              additionalScopes: 'groups'
+              prompt: auto
+              signIn:
+                resolvers:
+                  - resolver: emailLocalPartMatchingUserEntityName
+                  - resolver: emailMatchingUserEntityProfileEmail
 
       scaffolder: {}
         # see https://backstage.io/docs/features/software-templates/configuration for software template options
@@ -193,6 +215,7 @@ backstage:
             tags:
               - apps
               - notReallyavailable
+
       catalog:
         import:
           entityFilename: catalog-info.yaml
@@ -201,9 +224,7 @@ backstage:
           - allow: [Component, System, API, Resource, Location, Template, Domain, User, Group ]
         locations:
           - type: url
-            target: https://github.com/suxess-it/sx-cnp-oss-demo-app/blob/main/catalog-info-metalstack.yaml
-          - type: url
-            target: https://github.com/jkleinlercher/test9-repo/blob/master/catalog-info.yaml
+            target: https://github.com/suxess-it/team1-demo-app1/blob/main/catalog-info.yaml
           - type: url
             target: https://github.com/suxess-it/sx-cnp-oss/blob/main/backstage-resources/templates/showcase-templates.yaml
             rules:
@@ -211,16 +232,43 @@ backstage:
           - type: url
             target: https://github.com/suxess-it/sx-cnp-oss/blob/main/backstage-resources/entities/all.yaml
           - type: url
-            target: https://github.com/suxess-it/sx-cnp-oss/blob/main/backstage-resources/entities/metalstack.yaml
+            target: https://github.com/suxess-it/sx-cnp-oss/blob/main/backstage-resources/entities/uibklab.yaml
+        providers:
+          keycloakOrg:
+            default:
+              # real baseUrl -> local cluster lead to "ECONNREFUSED 127.0.0.1:443"
+              #baseUrl: https://keycloak.lab.suxessit.k8s.cloud.uibk.ac.at
+              # workaround
+              baseUrl: http://keycloak-service.keycloak.svc.cluster.local:8080
+              loginRealm: sx-cnp-oss
+              realm: sx-cnp-oss
+              clientId: backstage
+              clientSecret: 'demosecret'
+              schedule: # Mandatory; same options as in TaskScheduleDefinition
+                # supports cron, ISO duration, "human duration" as used in code
+                frequency: { minutes: 30 } # Customize this to fit your needs
+                # supports ISO duration, "human duration" as used in code
+                timeout: { minutes: 3 } # Customize this to fit your needs
+                initialDelay: { seconds: 30 } # Customize this to fit your needs
 
       kubernetes:
+        customResources:
+          - group: 'aquasecurity.github.io'
+            apiVersion: 'v1alpha1'
+            plural: 'configauditreports'
+          - group: 'kubevirt.io'
+            apiVersion: 'v1'
+            plural: 'virtualmachines'
+          - group: 'kubevirt.io'
+            apiVersion: 'v1'
+            plural: 'virtualmachineinstances'
         serviceLocatorMethod:
           type: multiTenant
         clusterLocatorMethods:
           - type: config
             clusters:
               - url: https://kubernetes.default.svc
-                name: metalstack
+                name: kubrixdemo
                 authProvider: serviceAccount
                 skipTLSVerify: true
                 skipMetricsLookup: true
@@ -229,10 +277,9 @@ backstage:
       scorecards:
         jsonDataUrl: https://raw.githubusercontent.com/Oriflame/backstage-plugins/main/plugins/score-card/sample-data/
 
-      
       grafana:
         # Publicly accessible domain
-        domain: https://grafana-metalstack.platform-engineer.cloud
+        domain: https://grafana-kubrix.platform-engineer.cloud
 
         # Is unified alerting enabled in Grafana?
         # See: https://grafana.com/blog/2021/06/14/the-new-unified-alerting-system-for-grafana-everything-you-need-to-know/
@@ -291,7 +338,7 @@ backstage:
             rate: 5.5
 
       kubecost:
-        baseUrl: https://kubecost-metalstack.platform-engineer.cloud/
+        baseUrl: https://kubecost-kubrix.platform-engineer.cloud/
         sharedNamespaces: kube-system
         queryframes: week,yesterday,month,today,lastweek
         annotationDeploymentName: 'backstage.io/kubernetes-id'

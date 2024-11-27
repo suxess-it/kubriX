@@ -13,10 +13,6 @@ secrets:
       name: admin
       password: admin
 
-gardenercert:
-  enabled: true
-  # dnsnames set by .Values.deployments.ingress.host
-
 # Postgres, Keycloak and Ingress deployments
 deployments:
   securePort: 443
@@ -33,7 +29,7 @@ deployments:
       path: /var/lib/postgresql/data
   ingress:
     className: nginx
-    fqdn: .lab.suxessit.k8s.cloud.uibk.ac.at # add to prefix keycloak in templates
+    fqdn: .platform-engineer.cloud # add to prefix keycloak in templates
   keycloak:
     version: 25.0.2
     service:
