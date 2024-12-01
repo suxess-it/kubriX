@@ -9,8 +9,10 @@ metadata:
     dns.gardener.cloud/dnsnames: keycloak{{ .Values.deployments.ingress.fqdn }}
     dns.gardener.cloud/ttl: "180"
 {{- end }}
+{{- if hasKey .Values "certmanager" }}
 {{- if .Values.certmanager.enabled }}
     cert-manager.io/cluster-issuer: {{ .Values.certmanager.issuer }}
+{{- end }}
 {{- end }}
     nginx.ingress.kubernetes.io/backend-protocol: HTTP
 #    nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
