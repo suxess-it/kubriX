@@ -356,6 +356,11 @@ if [[ $( echo $argocd_apps | grep sx-backstage ) ]] ; then
     GITHUB_CODESPACES="true"
     BACKSTAGE_CODESPACE_URL="https://${CODESPACE_NAME}-6691.${GITHUB_CODESPACES_PORT_FORWARDING_DOMAIN}"
   fi
+
+  # delete secret if it already exists
+  if kubectl get secret -n backstage manual-secret > /dev/null 2>&1 ; then
+    kubectl delete secret -n backstage manual-secret
+  fi
   
   if [ ${KEYCLOAK_CODESPACES} ]; then
     kubectl create secret generic -n backstage manual-secret \
@@ -400,8 +405,7 @@ if [[ $( echo $argocd_apps | grep sx-backstage ) ]] ; then
     --from-literal=GITHUB_TOKEN=${KUBRIX_BACKSTAGE_GITHUB_TOKEN} \
     --from-literal=K8S_SA_TOKEN=${K8S_SA_TOKEN} \
     --from-literal=ARGOCD_AUTH_TOKEN=${ARGOCD_AUTH_TOKEN} \
-    --from-literal=GRAFANA_TOKEN=${GRAFANA_TOKEN} \
-    --from-literal=BACKSTAGE_CATALOG_BRANCH=${KUBRIX_REPO_BRANCH}
+    --from-literal=GRAFANA_TOKEN=${GRAFANA_TOKEN}
   fi
 
   # in codespaces we need additional crossplane resources for keycloak
