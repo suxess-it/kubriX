@@ -400,7 +400,8 @@ if [[ $( echo $argocd_apps | grep sx-backstage ) ]] ; then
     --from-literal=GITHUB_TOKEN=${KUBRIX_BACKSTAGE_GITHUB_TOKEN} \
     --from-literal=K8S_SA_TOKEN=${K8S_SA_TOKEN} \
     --from-literal=ARGOCD_AUTH_TOKEN=${ARGOCD_AUTH_TOKEN} \
-    --from-literal=GRAFANA_TOKEN=${GRAFANA_TOKEN}
+    --from-literal=GRAFANA_TOKEN=${GRAFANA_TOKEN} \
+    --from-literal=BACKSTAGE_CATALOG_BRANCH=${KUBRIX_REPO_BRANCH}
   fi
 
   # in codespaces we need additional crossplane resources for keycloak
