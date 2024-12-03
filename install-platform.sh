@@ -309,7 +309,7 @@ target_chart_value_file="platform-apps/target-chart/values-$(echo ${KUBRIX_TARGE
 
 argocd_apps=$(cat $target_chart_value_file | awk '/^  - name:/ { printf "%s", "sx-"$3" "}' )
 # list apps which need some sort of special treatment in bootstrap
-argocd_apps_without_individual=$(cat $target_chart_value_file | egrep -Ev "backstage|kargo" | awk '/^  - name:/ { printf "%s", "sx-"$3" "}' )
+argocd_apps_without_individual=$(cat $target_chart_value_file | egrep -Ev "backstage|kargo|team-onboarding" | awk '/^  - name:/ { printf "%s", "sx-"$3" "}' )
 
 # max wait for 20 minutes until all apps except backstage and kargo are synced and healthy
 wait_until_apps_synced_healthy "${argocd_apps_without_individual}" "Synced" "Healthy" ${KUBRIX_BOOTSTRAP_MAX_WAIT_TIME:-1200}
@@ -318,14 +318,23 @@ wait_until_apps_synced_healthy "${argocd_apps_without_individual}" "Synced" "Hea
 kubectl apply -f platform-apps/charts/argocd/manual-secret/argocd-secret.yaml
 
 # if kargo is part of this stack, upload token to vault
-if [[ $( echo $argocd_apps | grep sx-kargo ) ]] ; then
-  echo "adding special configuration for sx-kargo"
+if [[ $( echo $argocd_apps | grep sx-vault ) ]] ; then
+  echo "adding secrets in vault for sx-kargo and sx-team-onboarding ..."
   export VAULT_HOSTNAME=$(kubectl get ingress -o jsonpath='{.items[*].spec.rules[*].host}' -n vault)
   curl -k --header "X-Vault-Token:$(kubectl get secret -n vault vault-init -o=jsonpath='{.data.root_token}'  | base64 -d)" --request POST --data "{\"data\": {\"GITHUB_APPSET_PAT\": \"${KUBRIX_ARGOCD_APPSET_TOKEN}\", \"GITHUB_TOKEN\": \"${KUBRIX_KARGO_GIT_PASSWORD}\", \"GITHUB_USERNAME\": \"${KUBRIX_KARGO_GIT_USERNAME}\"}}" https://${VAULT_HOSTNAME}/v1/sx-cnp-oss-kv/data/demo/delivery
   sleep 10
+fi
+
+if [[ $( echo $argocd_apps | grep sx-kargo ) ]] ; then
   kubectl delete ExternalSecret github-creds -n kargo
   # check if kargo is synced and healthy for 5 minutes
-  wait_until_apps_synced_healthy "sx-kargo" "Synced" "Healthy" 900
+  wait_until_apps_synced_healthy "sx-kargo" "Synced" "Healthy" 300
+fi
+
+if [[ $( echo $argocd_apps | grep sx-team-onboarding ) ]] ; then
+  kubectl delete ExternalSecret github-creds -n kargo
+  # check if kargo is synced and healthy for 5 minutes
+  wait_until_apps_synced_healthy "sx-team-onboarding" "Synced" "Healthy" 300
 fi
   
 # if backstage is part of this stack, create the manual secret for backstage
