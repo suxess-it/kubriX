@@ -21,7 +21,7 @@ spec:
       data:
         password: "{{ `{{ .GITHUB_TOKEN }}` }}"
         username: "{{ `{{ .GITHUB_USERNAME }}` }}"
-        repoURL: "^https://github.com/suxess-it"
+        repoURL: "{{ .Values.credentialRepoUrl }}"
         repoURLIsRegex: "true"
   data:
   - secretKey: GITHUB_TOKEN
