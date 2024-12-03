@@ -1,0 +1,182 @@
+apiVersion: scaffolder.backstage.io/v1beta3
+kind: Template
+metadata:
+  name: sx-cnp-oss-template-metalstack
+  title: Create Cluster on metalstack.cloud
+  description: Start metalstack.cloud cluster and integrate to ArgoCD
+  tags:
+    - cloud
+    - metalstack
+    - baremetal
+    - sx-cnp-oss
+spec:
+  owner: group:sx-cnp-oss
+  type: system
+  
+  parameters:
+    - title: Provide information on this application
+      required:
+        - cluster_id
+        - description
+        - team
+        - instances
+        - type
+        - environments
+        - argocdtarget
+      properties:
+        cluster_id:
+          title: Name
+          type: string
+          description: Unique name of cluster (max. 11 signs)
+        description:
+          title: Description
+          type: string
+          description: Help others understand what this cluster is for.
+        team:
+          title: Choose Team
+          type: string
+          description: Owning Team of this VM, target repo for argo application
+          ui:field: MyGroupsPicker
+          ui:options: {}
+        instances:
+          title: Number of Nodes (max. 3)
+          type: string       
+          default: '1'
+        type:
+          title: MachineType
+          type: array
+          description: Machine Type for worker nodes
+          items:
+            type: string
+            enum: 
+              - n1-medium-x86
+          uniqueItems: true
+          ui:widget: checkboxes
+        environments:
+          title: Environments
+          type: string
+          description: Panned Stage for new Cluster?
+          enum:
+            - prod
+            - test
+            - qa
+          uniqueItems: true
+        argocdtarget:
+          title: argocd target directory
+          type: string
+          description: Directory where argo application manifest is beeing deployed in team repo
+          default: k3d-apps
+
+## TODO: Maintenancewindow
+    - title: Choose a location
+      required:
+        - repoUrl
+      properties:
+        repoUrl:
+          title: Repository Location
+          type: string
+          ui:field: RepoUrlPicker
+          ui:options:
+            requestUserCredentials:
+              secretsKey: USER_OAUTH_TOKEN
+              additionalScopes:
+                github: 
+                  - workflow
+                  - user
+            allowedHosts:
+              - github.com
+  steps:
+    - id: catalogFetchGroup
+      name: Fetch Context
+      action: catalog:fetch
+      input:
+        entityRef: ${{ parameters.team }}
+
+    - id: template-gitops
+      name: Fetch Skeleton + Template
+      action: fetch:template
+      input:
+        url: ./metalstack-gitops
+        targetPath: ./metalstack-gitops
+        copyWithoutRender: []
+        values:
+          cluster_id: ${{ parameters.cluster_id }}
+          description: ${{ parameters.description }}
+          owner: ${{ parameters.team }}
+          instances: ${{ parameters.instances }}
+          type: ${{ parameters.type }}
+          environments: ${{ parameters.environments }}
+          repoUrl: ${{ parameters.repoUrl }}
+          repoUrlRepo: ${{ (parameters.repoUrl | parseRepoUrl)["repo"] }}
+          repoUrlowner: ${{ (parameters.repoUrl | parseRepoUrl)["owner"] }}
+
+    - id: publish-gitopsreposetup
+      name: Publish Template Gitops Repo
+      action: publish:github
+      input:
+        sourcePath: ./metalstack-gitops
+        allowedHosts: ['github.com']
+        description: This is ${{ parameters.cluster_id }}
+        repoUrl: ${{ parameters.repoUrl }}
+        token: ${{ secrets.USER_OAUTH_TOKEN }}
+        gitAuthorName: ${{ user.entity.metadata.name }}
+        gitAuthorEmail: ${{ user.entity.spec.profile.email }}
+        repoVisibility: public
+        deleteBranchOnMerge: true
+        protectDefaultBranch: false
+        update: true
+        
+    - id: template-applicationsetup
+      name: Fetch Namespacesetup Skeleton + Template
+      action: fetch:template
+      input:
+        url: ./skeleton/applicationsetup
+        targetPath: ./applicationsetup
+        copyWithoutRender: []
+        values:
+          cluster_id: ${{ parameters.cluster_id }}
+          description: ${{ parameters.description }}
+          repoUrlRepo: ${{ (parameters.repoUrl | parseRepoUrl)["repo"] }}
+          repoUrlowner: ${{ (parameters.repoUrl | parseRepoUrl)["owner"] }}
+          environments: ${{ parameters.environments }}
+          argocdtarget: ${{ parameters.argocdtarget }}
+
+
+    - id: pull-request-applicationsetup
+      name: make a pr to team-apps repo with additional applicationsetup
+      action: publish:github:pull-request
+      input:
+        sourcePath: ./applicationsetup
+        targetPath: '.'
+        repoUrl: github.com?repo=${{ steps['catalogFetchGroup'].output.entity.metadata.name }}-apps&owner=suxess-it
+        branchName: ${{ parameters.cluster_id }}
+        title: argoapps and system config for ${{ parameters.cluster_id }}
+        description: argoapps and system config for ${{ parameters.cluster_id }}
+        token: ${{ secrets.USER_OAUTH_TOKEN }}
+        gitAuthorName: ${{ user.entity.metadata.name }}
+        gitAuthorEmail: ${{ user.entity.spec.profile.email }}
+        update: true
+
+    - id: register
+      name: Register Catalog
+      action: catalog:register
+      input:
+        repoContentsUrl: ${{ steps["publish-gitopsreposetup"].output.repoContentsUrl }}
+        catalogInfoPath: '/catalog-info.yaml'
+  
+    - id: register2
+      name: Register system
+      action: catalog:register
+      input:
+        repoContentsUrl: ${{ steps["publish-gitopsreposetup"].output.repoContentsUrl }}
+        catalogInfoPath: '/system-info.yaml'
+        
+  output:
+    links:
+      - title: Repository
+        url: ${{ steps["publish-gitopsreposetup"].output.remoteUrl }}
+      - title: Approved-Apps PR
+        url: ${{ steps["pull-request-applicationsetup"].output.remoteUrl }}
+      - title: Open in catalog
+        icon: catalog
+        entityRef: ${{ steps.register.output.entityRef }}

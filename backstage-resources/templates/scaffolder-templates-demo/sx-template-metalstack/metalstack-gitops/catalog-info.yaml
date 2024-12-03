@@ -1,0 +1,30 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: "${{values.cluster_id}}"
+  description: "${{values.cluster_id}} metalstack.cloud"
+  tags:
+    - sx-cnp-oss
+    - template
+    - metalstack
+  links:
+    - url: https://grafana-metalstack.platform-engineer.cloud/
+      title: Grafana SRE Metrics
+      icon: web
+  annotations:
+    github.com/project-slug: ${{values.repoUrlowner}}/${{values.repoUrlRepo}}
+    backstage.io/kubernetes-id: ${{values.cluster_id}}
+    argocd/app-name: ${{values.cluster_id}}-${{values.environments}}
+    backstage.io/kubernetes-namespace: default
+#    backstage.io/kubernetes-namespace: ${{values.environments}}-metalstack
+
+    backstage.io/techdocs-ref: dir:.
+spec:
+  type: service
+  lifecycle: ${{values.environments}}
+  owner: "${{values.owner}}"
+  system: ${{values.cluster_id}}
+  dependsOn:
+    - resource:argocd
+    - resource:metalstack
+    - resource:loki
