@@ -1,0 +1,9 @@
+apiVersion: backstage.io/v1alpha1
+kind: System
+metadata:
+  name: ${{values.cluster_id}}
+  title: metalstack.cloud cluster
+  description: ${{values.description}} - metalstack.cloud
+spec:
+  owner: ${{values.owner}}
+  lifecycle: ${{values.environments}}
