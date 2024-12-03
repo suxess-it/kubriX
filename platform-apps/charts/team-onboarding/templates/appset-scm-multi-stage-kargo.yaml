@@ -20,13 +20,14 @@ spec:
       filters:
       - repositoryMatch: ^{{ .name }}
         pathsExist: [app-stages.yaml]
+      requeueAfterSeconds: {{ $.Values.scmAppsetRequeueAfterSeconds }}
   template:
     metadata:
       name: '{{`{{ .repository }}`}}'
     spec:
       project: {{ .name }}-project
       sources:
-      - repoURL: https://github.com/suxess-it/sx-cnp-oss
+      - repoURL: {{ $.Values.multiStageKargoAppSetHelmRepo }}
         targetRevision: HEAD
         path: team-apps/onboarding-apps-charts/multi-stage-app-with-kargo-pipeline
         helm:
