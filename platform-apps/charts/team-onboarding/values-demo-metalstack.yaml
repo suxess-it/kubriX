@@ -16,19 +16,3 @@ teams:
       revision: main
     multiStageKargoAppSet:
       organization: kubriX-demo
-      
-# new team stanza for team team-a
-  - name:  team-a
-    sourceRepos:
-      - '*'
-    clusterResourceWhitelist:
-      - group: ""
-        kind: Namespace
-      - group: kargo.akuity.io
-        kind: Project
-    appOfAppsRepo:
-      repoURL: https://github.com/kubriX-demo/team-a-apps
-      path: demo-apps
-      revision: main
-    multiStageKargoAppSet:
-      organization: kubriX-demo
