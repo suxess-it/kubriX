@@ -104,7 +104,7 @@ spec:
       action: fetch:template
       input:
         url: ./skeleton
-        targetPath: .
+        targetPath: ./team-apps-of-apps
         copyWithoutTemplating: []
         values:
           description: ${{ parameters.description }}
@@ -118,6 +118,7 @@ spec:
       name: create team-apps Github repo
       action: publish:github
       input:
+        sourcePath: ./team-apps-of-apps
         repoUrl: github.com?repo=${{ steps['catalogFetch'].output.entity.metadata.name }}-apps&owner=kubriX-demo
         title: team-apps repo for ${{ steps['catalogFetch'].output.entity.metadata.name }}
         description: team-apps repo for ${{ steps['catalogFetch'].output.entity.metadata.name }}
