@@ -1,3 +1,13 @@
 # required user for demo environment https://github.com/suxess-it/sx-cnp-oss/issues/87
 # until user management set up properly
 ---
+apiVersion: backstage.io/v1alpha1
+kind: User
+metadata:
+  name: nclarcher
+spec:
+  profile:
+    displayName: nclarcher
+    email: guest@example.com
+    picture: https://api.dicebear.com/7.x/avataaars/svg?seed=Midnight&backgroundColor=transparent
+  memberOf: [sx-cnp-oss]
