@@ -1,0 +1,20 @@
+name: Sync Upstream
+
+# This runs every day on 1801 UTC
+on:
+  schedule:
+    - cron: '1 18 * * *'
+  # Allows manual workflow run (must in default branch to work)
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: GitHub Sync to Upstream Repository
+        uses: dabreadman/sync-upstream-repo@v1.3.0
+        with: 
+          upstream_repo: "https://github.com/suxess-it/kubriX.git"
+          upstream_branch: "main"
+          downstream_branch: "from-upstream"
+          token: ${{ secrets.GITHUB_TOKEN }}
