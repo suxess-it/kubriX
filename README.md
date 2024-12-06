@@ -18,6 +18,3 @@ Want to install kubriX on your local machine? Follow [local installation guide](
 
 
 
-
-
-
