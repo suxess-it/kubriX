@@ -15,6 +15,14 @@ jobs:
         uses: dabreadman/sync-upstream-repo@v1.3.0
         with: 
           upstream_repo: "https://github.com/suxess-it/kubriX.git"
-          upstream_branch: "main"
-          downstream_branch: "from-upstream"
+          upstream_branch: main
+          downstream_branch: from-upstream
           token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Run the Action
+        uses: devops-infra/action-pull-request@v0.5.5
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          source_branch: from-upstream
+          target_branch: main
+          title: updates from kubriX oss
