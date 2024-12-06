@@ -20,6 +20,7 @@ backstage:
     extraEnvVarsSecrets:
       - sx-cnp-secret
       - manual-secret
+      - backstage-db-secrets
     extraEnvVars:
       - name: NODE_OPTIONS
         value: "--no-node-snapshot"
@@ -33,11 +34,11 @@ backstage:
         mountPath: /opt/app-root/src/rbac
     appConfig:
       app:
-        title: sX CNP App
+        title: kubriX platform
         baseUrl: https://backstage.demo.kubrix.cloud
 
       organization:
-        name: sX CNP
+        name: kubriX platform
 
       backend:
         # Used for enabling authentication, secret is shared by all backend plugins
@@ -70,8 +71,14 @@ backstage:
         # This is for local development only, it is not recommended to use this in production
         # The production database configuration is stored in app-config.production.yaml
         database:
-          client: better-sqlite3
-          connection: ':memory:'
+        #  client: better-sqlite3
+        #  connection: ':memory:'
+          client: pg
+          connection:
+            host: ${POSTGRES_HOST}
+            port: ${POSTGRES_PORT}
+            user: ${POSTGRES_USER}
+            password: ${POSTGRES_PASSWORD}
         cache:
           store: memory
         # workingDirectory: /tmp # Use this to configure a working directory for the scaffolder, defaults to the OS temp-dir
@@ -175,47 +182,49 @@ backstage:
               - noHashtag
           - title: Central Monitoring
             description: Central Monitoring
-            url: /monitoring
+            url: https://grafana.demo.kubrix.cloud/
             image: /homepage/images/monitoring.jpg
             tags:
               - Monitoring
-              - notReallyavailable
-          - title: Platforms
-            description: Discover other companies platforms
-            url: /platforms
+              - Observability
+          - title: GitOps CD
+            description: Discover kubriX GitOps CD
+            url: https://argocd.demo.kubrix.cloud/
             image: /homepage/images/platforms.jpg
             tags:
-              - platforms
-              - notReallyavailable
-          - title: Infrastructure
-            description: Recommended products for Platform Missions
-            url: /infrastructure
-            image: /homepage/images/infrastructure.jpg
-            tags:
-              - infrastructure
-              - notReallyavailable
-          - title: Client SDKs
-            description: corporate building blocks
-            url: /cliendsdk
+              - GitOps
+              - CD
+              - argocd
+          - title: GitOps Promotion
+            description: orchestrate stage-to-stage deployments
+            url: https://kargo.demo.kubrix.cloud
             image: /homepage/images/sdk.jpg
             tags:
-              - clientSDK
-              - notReallyavailable
-          - title: Hubs
-            description: User experiences arount specific domains of interest
-            url: /hubs
+              - kargo
+              - multistage
+              - promotion
+          - title: Thread Detection
+            description: Discover security threats in real time
+            url: https://falco.demo.kubrix.cloud
+            image: /homepage/images/infrastructure.jpg
+            tags:
+              - falco
+              - Threat Detection
+              - Regulatory Compliance
+          - title: IAM
+            description: Identity and Access Management
+            url: /https://keycloak.demo.kubrix.cloud
             image: /homepage/images/hubs.jpg
             tags:
-              - hubs
-              - notReallyavailable
-          - title: Apps
-            description: Official sX Apps
-            url: /hubs
+              - keycloak
+              - sso
+          - title: Secret Management
+            description: Manage Secrets 
+            url: https://vault.demo.kubrix.cloud
             image: /homepage/images/apps.jpg
             tags:
-              - apps
-              - notReallyavailable
-
+              - vault
+              - secrets
       catalog:
         import:
           entityFilename: catalog-info.yaml
@@ -386,4 +395,28 @@ backstage:
 
 ## pgdb
 cluster:
-  enabled: false
+  type: postgresql
+  mode: standalone
+  version:
+    postgresql: "16"
+  cluster:
+    instances: 3
+    walStorage:
+      enabled: true
+    monitoring:
+      enabled: true
+    superuserSecret: cnpg-superuser-secret
+    roles:
+    - name: backstage
+      ensure: present
+      comment: backstage-admin-user
+      login: true
+      inherit: true
+      superuser: true
+      createdb: true
+      passwordSecret:
+        name: cnpg-backstage-secret
+    annotations:
+      argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+  backups:
+    enabled: false
