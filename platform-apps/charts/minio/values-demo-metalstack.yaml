@@ -47,6 +47,8 @@ minio:
     enabled: true
     ingressClassName: ~
     annotations:
+      external-dns.alpha.kubernetes.io/ttl: "60"
+      cert-manager.io/cluster-issuer: letsencrypt-prod
       nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
     path: /
     hosts:
