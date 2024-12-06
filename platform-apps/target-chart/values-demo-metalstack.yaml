@@ -56,6 +56,8 @@ applications:
   - name: argo-rollouts
 
   - name: keycloak
+    annotations:
+      argocd.argoproj.io/sync-wave: "-8"
       
   - name: grafana
     annotations:
@@ -64,6 +66,7 @@ applications:
       - ServerSideApply=true
 
   - name: mimir
+
 
   - name: falco
     annotations:
@@ -80,3 +83,20 @@ applications:
   - name: backstage
     annotations:
       argocd.argoproj.io/sync-wave: "10"
+
+  - name: cnpg
+    annotations:
+      argocd.argoproj.io/compare-options: ServerSideDiff=true
+      argocd.argoproj.io/sync-wave: "-1"
+    syncOptions:
+      - ServerSideApply=true
+
+  - name: kubevirt-manager
+
+  - name: kubevirt
+
+  - name: velero
+
+  - name: velero-ui
+
+  - name: minio

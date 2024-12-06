@@ -1,0 +1,70 @@
+velero:
+  initContainers:
+    - name: velero-plugin-for-aws
+      image: velero/velero-plugin-for-aws:v1.11.0
+      imagePullPolicy: IfNotPresent
+      volumeMounts:
+        - mountPath: /target
+          name: plugins
+    - name: velero-plugin-for-microsoft-azure
+      image: velero/velero-plugin-for-microsoft-azure:v1.11.0
+      imagePullPolicy: IfNotPresent
+      volumeMounts:
+        - mountPath: /target
+          name: plugins
+  metrics:
+    serviceMonitor:
+      enabled: true
+    nodeAgentPodMonitor:
+      enabled: true
+    prometheusRule:
+      enabled: true
+  crdjob:
+    resources:
+      requests:
+        cpu: 128m
+        memory: 128Mi
+      limits:
+        cpu: 128m
+        memory: 128Mi
+  configuration:
+    backupStorageLocation:
+    - name:
+      provider: aws
+      bucket: velero
+      default: true
+      config:
+        region: minio
+        s3ForcePathStyle: true
+        s3Url: https://sx-minio.minio.svc.cluster.local:9000
+        publicUrl: https://minio.demo.kubrix.cloud
+        insecureSkipTLSVerify: true # temp for minio/local deployment
+    volumeSnapshotLocation:
+    - name:
+      provider: aws
+      config:
+       region: minio
+    uploaderType: kopia
+    features: EnableCSI
+    defaultVolumesToFsBackup: true
+  serviceAccount:
+    server:
+      create: true
+      name: velero
+  credentials:
+    existingSecret: velero-cloud-credential
+  #credentials:
+  #  secretContents: 
+  #    cloud: |
+  #      [default]
+  #      aws_access_key_id=minio
+  #      aws_secret_access_key=minio123
+  snapshotsEnabled: false
+  deployNodeAgent: true
+  configMaps:
+    fs-restore-action-config:
+      labels:
+        velero.io/plugin-config: ""
+        velero.io/pod-volume-restore: RestoreItemAction
+      data:
+        image: velero/velero-restore-helper:v1.14.1
