@@ -11,41 +11,41 @@ For Showcase-Purposes there is an AppSet for "Multi-Stage Apps with Kargo-Pipeli
 
 With the scaffolder [template for multi-stage app with kargo pipeline](https://backstage.demo.kubrix.cloud/create/templates/default/multi-stage-app-with-kargo-pipeline) you can automatically create such a repo with the predefined example application 'podtato-head'.
 
-![app-onboarding-1](https://github.com/user-attachments/assets/cb72d622-9729-40d6-a9a6-dec7e8534d4b)
+![image](img/app-onboarding-1.png)
 
 Just specifiy your application name and a description and be sure that the "FQDN" points to `demo.kubrix.cloud`. Then click 'Next'.
 
-![app-onboarding-2](https://github.com/user-attachments/assets/0be48c9d-c748-493d-abfc-c91c3546430e)
+![image](img/app-onboarding-2.png)
 
 The Git-Repo for your applications Kubernetes resources is automatically set, just click 'Next'.
 
-![app-onboarding-3](https://github.com/user-attachments/assets/389ae3e1-7b47-48a1-957f-a0532f99c29d)
+![image](img/app-onboarding-3.png)
 
 On the summary page review your data and click on 'Create'
 
-![app-onboarding-4](https://github.com/user-attachments/assets/101f6c5f-4b02-48e2-a8b7-e64843999a0d)
+![image](img/app-onboarding-4.png)
 
 Backstage now creates a new Git-Repo with the needed Helm-Chart in it and registers this new app in backstage. With 'Repository' you can open the Git-Repository and with 'Open in catalog' you will open the corresponding application component in backstage.
 
-![app-onboarding-5](https://github.com/user-attachments/assets/c47d690b-8dac-4213-a06a-09fc51dd2ea1)
+![image](img/app-onboarding-5.png)
 
 In the backstage component overview of your application you can see the ArgoCD sync and health status. It may take a few seconds until your app is recognized bei the ArgoCD ApplicationSet and synced in ArgoCD. You can click on the application name to open the corresponding argocd dashboard.
 
-![app-onboarding-6](https://github.com/user-attachments/assets/f74e706c-bfd7-4d65-a05b-bb372ef643c5)
+![image](img/app-onboarding-6.png)
 
 On the bottom of the component overview page you can see that this application has three subcomponents, one per stage.
 You can click on each subcomponent and get to the overview page of each subcomponent.
 
-![app-onboarding-7](https://github.com/user-attachments/assets/d1b9cd65-27dd-40bd-9fef-9432cb8f4cd4)
+![image](img/app-onboarding-7.png)
 
 Each component page has different tabs for different informations.
 
-![app-onboarding-8](https://github.com/user-attachments/assets/8a62d4a0-d2cf-485d-9436-f2ca998b2878)
+![image](img/app-onboarding-8.png)
 
 * Overview: some key informations for your app from different tools and links to e.g. interesting Grafana Dashboards
 * Kargo: GitOps-Promotion tool to bring your changes from dev to prod (Password in demo env: 'admin')
 
-![app-onboarding-10](https://github.com/user-attachments/assets/fa9202b0-e144-41f5-8cd2-3a566defae20)
+![image](img/app-onboarding-10.png)
 
 * Kubernetes: shows your app specific resources and state in your Kubernetes cluster
 * Docs: shows your application documentation
@@ -54,13 +54,13 @@ Each component page has different tabs for different informations.
 * Github Insights: overview of your application gitops-Repo
 * Grafana Dashboard: overview of your application resource consumption and health state (User: admin, Password: prom-operator)
 
-![app-onboarding-12](https://github.com/user-attachments/assets/6ce30d00-297c-4837-93d1-2ee724f15f9b)
+![image](img/app-onboarding-12.png)
 
 And at the bottom of your components overview page, you see the ArgoCD status and a link to open your application.
 
-![app-onboarding-9](https://github.com/user-attachments/assets/d23b4445-a2d3-43b5-98d6-fe81c34f87e1)
+![image](img/app-onboarding-9.png)
 
-![app-onboarding-11](https://github.com/user-attachments/assets/507ed727-a8bc-4121-94d2-7f72ddf57585)
+![image](img/app-onboarding-11.png)
 
 
 # New apps via Team-App-Of-Apps Repo

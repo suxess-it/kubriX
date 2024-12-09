@@ -2,25 +2,25 @@
 
 New teams can simply onboard themselves by [executing the 'team-onboarding' template](https://backstage.demo.kubrix.cloud/create/templates/default/team-onboarding) or by clicking "Choose" in the "Team-Onboarding" template here: https://backstage.demo.kubrix.cloud/create
 
-![team-onboarding-1](https://github.com/user-attachments/assets/35f22ccc-f9f9-47f0-8641-d63c7234a817)
+![image](img/team-onboarding-1.png)
 
 The team name is automatically selected based on your assigned group, so just click on 'Next'
 
-![team-onboarding-2](https://github.com/user-attachments/assets/eee9956f-92c9-45b0-8799-4adc0625dc5b)
+![image](img/team-onboarding-2.png)
 
 The host, organization and path to your kubriX platform Git-Repo is also automatically select, so just click on 'Next'
 
-![team-onboarding-3](https://github.com/user-attachments/assets/da290374-545a-4777-aa50-a105ffaff3d6)
+![image](img/team-onboarding-3.png)
 
 On the summary page review your data and click on 'Create'
 
-![team-onboarding-4](https://github.com/user-attachments/assets/7b3547b5-0d81-4f71-b482-fcb22180d939)
+![image](img/team-onboarding-4.png)
 
 Backstage creates a Pull-Request for you to add your team to the team-onboarding chart. This PR needs to get reviewewd and merged by the platform-team.
 
 Also, your team gets their own "App-Of-apps" Git-Repo where you can put your own ArgoCD application definitions in the created 'demo-apps' folder.
 
-![team-onboarding-5](https://github.com/user-attachments/assets/8571cd52-85e6-469b-8640-a70f5518c294)
+![image](img/team-onboarding-5.png)
 
 What you will see in the Pull-Request 'Files changed" tab, is a new stanza for your team.
 With these values the team-onboarding chart creates:
