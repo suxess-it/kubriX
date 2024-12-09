@@ -76,4 +76,4 @@ Please be aware that depending on the ArgoCD project definition it is very likel
 
 # Additional infos
 
-Some background information can also be found in the 'Additional infos' chapter.
+Some background information can also be found in the [Additional infos](additional-infos.md) chapter.

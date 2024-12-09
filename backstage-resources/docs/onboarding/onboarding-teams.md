@@ -36,6 +36,6 @@ your application team can deploy new applications in a complete self-service way
 
 # Additional infos
 
-Some background information can also be found in the 'Additional infos' chapter.
+Some background information can also be found in the [Additional infos](additional-infos.md) chapter.
 
 
