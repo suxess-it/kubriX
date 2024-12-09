@@ -34,6 +34,8 @@ you can have a look at the automatically created PR comments "Changes Rendered C
 When your platform team merges the PR and everything gets synchronized by ArgoCD 
 your application team can deploy new applications in a complete self-service way!
 
-Some background information can also be found in the 'Onboarding teams and apps' chapter.
+# Additional infos
+
+Some background information can also be found in the 'Additional infos' chapter.
 
 
