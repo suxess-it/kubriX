@@ -6,6 +6,8 @@ metadata:
   namespace: {{ $.Release.Namespace }}
   annotations:
     kargo.akuity.io/authorized-stage: {{ tpl $.Values.kargoProject $ }}:{{ .name }}
+  finalizers:
+      - resources-finalizer.argocd.argoproj.io
 spec:
   project: {{ tpl $.Values.appProject $ }}
   source:
