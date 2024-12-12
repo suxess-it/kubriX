@@ -24,6 +24,8 @@ spec:
   template:
     metadata:
       name: '{{`{{ .repository }}`}}'
+      finalizers:
+      - resources-finalizer.argocd.argoproj.io
     spec:
       project: {{ .name }}-project
       sources:

@@ -6,6 +6,8 @@ metadata:
   namespace: {{ $.Release.Namespace }}
   annotations:
     kargo.akuity.io/authorized-stage: {{ tpl $.Values.kargoProject $ }}:{{ .name }}
+  finalizers:
+      - resources-finalizer.argocd.argoproj.io
 spec:
   project: {{ tpl $.Values.appProject $ }}
   source:
@@ -19,6 +21,10 @@ spec:
     server: https://kubernetes.default.svc
     namespace: {{ $.Values.teamName }}-{{ $.Values.appName }}-{{ .name }}
   syncPolicy:
+    managedNamespaceMetadata:
+      annotations:
+        # doesn't handle destinationNamespaceOverride yet
+        argocd.argoproj.io/tracking-id: {{ $.Values.appName }}-{{ .name }}:app/Namespace:{{ $.Values.teamName }}-{{ $.Values.appName }}-{{ .name }}/{{ $.Values.teamName }}-{{ $.Values.appName }}-{{ .name }}
     automated:
       prune: true
       selfHeal: true
