@@ -7,8 +7,24 @@ on:
   # do a full cluster test in main branch and when opening or changing PRs
   push:
     branches: [ "main" ]
+    paths:
+      - '.github/workflows/cluster-test.yml'
+      - '.github/kind-config.yaml'
+      - 'platform-apps/charts/**'
+      - 'platform-apps/target-chart/templates/**'
+      - 'platform-apps/target-chart/values.yaml'
+      - 'platform-apps/target-chart/values-kind*'
+      - 'install-platform.sh'
   pull_request:
     types: [opened, synchronize]
+    paths:
+      - '.github/workflows/cluster-test.yml'
+      - '.github/kind-config.yaml'
+      - 'platform-apps/charts/**'
+      - 'platform-apps/target-chart/templates/**'
+      - 'platform-apps/target-chart/values.yaml'
+      - 'platform-apps/target-chart/values-kind*'
+      - 'install-platform.sh'
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
