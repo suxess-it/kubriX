@@ -1,0 +1,35 @@
+name: sync upstream with PR
+
+# This runs every day on 1801 UTC
+on:
+  schedule:
+    - cron: '1 18 * * *'
+  # Allows manual workflow run (must in default branch to work)
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    if: ${{ vars.UPSTREAM_REPO =!= '' }}    
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        # we need all commits to evaluate diff between upstream and downstream project
+        with:
+          fetch-depth: 0
+          token: ${{ secrets.SYNC_TOKEN }}
+      
+      - name: fetch upstream commits and create PR
+        shell: bash
+        env:
+          GH_TOKEN: ${{ secrets.SYNC_TOKEN }}
+          UPSTREAM_REPO: ${{ vars.UPSTREAM_REPO }}
+        run: |
+          git remote add upstream ${UPSTREAM_REPO}
+          git fetch upstream
+          git switch -c from-upstream upstream/main
+          git push --set-upstream origin from-upstream
+          echo "new commits:"
+          git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset' --abbrev-commit --date=relative main..from-upstream
+          # create a PR unless there are no new commits or there is already an existing PR from branch 'from-upstream'
+          [ "$(git log main..from-upstream)" = "" ] || gh pr view from-upstream --repo ${GITHUB_REPOSITORY} --json state --jq '.state' | grep OPEN || gh pr create --base main --head from-upstream --repo ${GITHUB_REPOSITORY} --title "Updates from upstream" --body ""
