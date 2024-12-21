@@ -10,7 +10,7 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    if: ${{ vars.UPSTREAM_REPO =!= '' }}    
+    if: ${{ vars.UPSTREAM_REPO != '' }}    
     steps:
       - name: Checkout
         uses: actions/checkout@v4
