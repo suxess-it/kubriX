@@ -17,6 +17,7 @@ jobs:
         # we need all commits to evaluate diff between upstream and downstream project
         with:
           fetch-depth: 0
+          token: ${{ secrets.SYNC_TOKEN }}
 
       - name: fetch upstream commits
         shell: bash
@@ -31,13 +32,11 @@ jobs:
       - name: create PR
         shell: bash
         env:
-          SYNC_TOKEN: ${{ secrets.SYNC_TOKEN }}
           GH_TOKEN: ${{ secrets.SYNC_TOKEN }}
         run: |
-          git remote set-url origin https://${SYNC_TOKEN}@github.com/${GITHUB_REPOSITORY}.git
           git remote -v
           git push --set-upstream origin from-upstream
           echo "new commits:"
           git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset' --abbrev-commit --date=relative main..from-upstream
           # create a PR unless there are no new commits or there is already an existing PR from branch 'from-upstream'
-          [ "$(git log main..from-upstream)" = "" ] || gh pr view from-upstream --repo ${GITHUB_REPOSITORY} --json state --jq '.state' | grep OPEN || gh pr create --base main --head from-upstream --repo ${GITHUB_REPOSITORY} --title "Update
+          [ "$(git log main..from-upstream)" = "" ] || gh pr view from-upstream --repo ${GITHUB_REPOSITORY} --json state --jq '.state' | grep OPEN || gh pr create --base main --head from-upstream --repo
