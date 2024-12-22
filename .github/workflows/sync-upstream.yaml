@@ -39,4 +39,4 @@ jobs:
           echo "new commits:"
           git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset' --abbrev-commit --date=relative main..from-upstream
           # create a PR unless there are no new commits or there is already an existing PR from branch 'from-upstream'
-          [ "$(git log main..from-upstream)" = "" ] || gh pr view from-upstream --repo ${GITHUB_REPOSITORY} --json state --jq '.state' | grep OPEN || gh pr create --base main --head from-upstream --repo
+          [ "$(git log main..from-upstream)" = "" ] || gh pr view from-upstream --repo ${GITHUB_REPOSITORY} --json state --jq '.state' | grep OPEN || gh pr create --base main --head from-upstream --repo ${GITHUB_REPOSITORY} --title "Updates from upstream" --body ""
