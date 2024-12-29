@@ -5,17 +5,24 @@
     "config:recommended"
   ],
   "crossplane": {
-    "fileMatch": [".+provider\\.yaml$"]
+    "fileMatch": [
+      ".+provider\\.yaml$"
+    ]
   },
-  "dependencies": {
-    "major": {
-      "semanticCommitType": "feat(deps)!"
-    },
-    "minor": {
-      "semanticCommitType": "feat(deps)" 
-    },
-    "patch": {
-      "semanticCommitType": "fix(deps)"
+  "packageRules": [
+    {
+      "matchDepTypes": [
+        "dependencies"
+      ],
+      "major": {
+        "semanticCommitType": "feat(deps)!"
+      },
+      "minor": {
+        "semanticCommitType": "feat(deps)"
+      },
+      "patch": {
+        "semanticCommitType": "fix(deps)"
+      }
     }
-  }
+  ]
 }
