@@ -22,6 +22,7 @@ jobs:
             echo "=== ${chart} ==="
             helm dependency update ${chart} 1> /dev/null 2>&1
             for value in $( find ${chart} -type f -name "values-*" ); do
-              helm images get ${chart} -f ${value}
+              helm images get ${chart} -f ${value} --kind "Deployment,StatefulSet,DaemonSet,CronJob,Job,ReplicaSet,Pod,Alertmanager,Prometheus,ThanosRul
+er,Grafana,Thanos,Receiver"
             done
           done
