@@ -9,6 +9,8 @@ name: list images
 
 jobs:
   list-images:
+    permissions:
+      contents: write
     runs-on: ubuntu-latest
     steps:
       - name: Checkout PR
@@ -27,6 +29,6 @@ jobs:
               helm images get ${chart} -f ${value} --log-level error --kind "Deployment,StatefulSet,DaemonSet,CronJob,Job,ReplicaSet,Pod,Alertmanager,Prometheus,ThanosRuler,Grafana,Thanos,Receiver"
             done | sort -u >> image-list.md
           done
-          git add image-list.md
+          git add .
           git commit -m "updated container image list"
           git push
