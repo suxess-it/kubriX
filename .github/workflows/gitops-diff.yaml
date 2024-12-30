@@ -1,7 +1,10 @@
 on:
   pull_request:
     types: [opened, synchronize]
-
+    paths:
+      - '.github/workflows/gitops-diff.yaml'
+      - 'platform-apps/charts/**'
+      
 permissions:
   contents: read
   pull-requests: write
