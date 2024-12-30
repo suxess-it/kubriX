@@ -19,9 +19,10 @@ jobs:
           helm plugin install https://github.com/nikhilsbhat/helm-images
           cd platform-apps/charts
           for chart in $( ls ); do
-            echo "Chart ${chart}:"
+            echo -e "\n\nChart ${chart}:\n"
             helm dependency update ${chart} 1> /dev/null 2>&1
             for value in $( find ${chart} -type f -name "values-*" ); do
-              helm images get ${chart} -f ${value} --log-level error --kind "Deployment,StatefulSet,DaemonSet,CronJob,Job,ReplicaSet,Pod,Alertmanager,Prometheus,ThanosRuler,Grafana,Thanos,Receiver" | sort -u
-            done
+              helm images get ${chart} -f ${value} --log-level error --kind "Deployment,StatefulSet,DaemonSet,CronJob,Job,ReplicaSet,Pod,Alertmanager,Prometheus,ThanosRuler,Grafana,Thanos,Receiver"
+            done | sort -u
+            echo "-------"
           done
