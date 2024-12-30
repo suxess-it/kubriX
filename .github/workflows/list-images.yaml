@@ -21,7 +21,7 @@ jobs:
           helm plugin install https://github.com/nikhilsbhat/helm-images
           cd platform-apps/charts
           > image-list.md
-          for chart in $( ls ); do
+          for chart in $( ls -d */ ); do
             echo "Image list"
             echo "# Image list" >> image-list.md
             echo "${chart}"
