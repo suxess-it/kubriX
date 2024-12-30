@@ -16,6 +16,7 @@ jobs:
       - name: get images
         shell: bash
         run: |
+          helm plugin install https://github.com/nikhilsbhat/helm-images
           cd platform-apps/charts
           for chart in $( ls ); do
             echo "=== ${chart} ==="
