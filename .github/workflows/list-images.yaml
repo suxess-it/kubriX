@@ -18,11 +18,14 @@ jobs:
         run: |
           helm plugin install https://github.com/nikhilsbhat/helm-images
           cd platform-apps/charts
+          > image-list.md
           for chart in $( ls ); do
-            echo -e "\n\nChart ${chart}:\n\n"
+            echo "# Image list" >> image-list.md
+            echo -e "## ${chart}" >> image-list.md
             helm dependency update ${chart} 1> /dev/null 2>&1
             for value in $( find ${chart} -type f -name "values-*" ); do
               helm images get ${chart} -f ${value} --log-level error --kind "Deployment,StatefulSet,DaemonSet,CronJob,Job,ReplicaSet,Pod,Alertmanager,Prometheus,ThanosRuler,Grafana,Thanos,Receiver"
-            done | sort -u
-            echo "-------"
+            done | sort -u >> image-list.md
           done
+          git add image-list.md
+          git commit -m "updated container image list"
