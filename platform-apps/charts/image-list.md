@@ -1,39 +1,31 @@
 # Image list
-## argo-rollouts/
+## argo-rollouts
 quay.io/argoproj/argo-rollouts:v1.7.2
-# Image list
-## argocd/
+## argocd
 ghcr.io/dexidp/dex:v2.41.1
 public.ecr.aws/docker/library/redis:7.4.1-alpine
 quay.io/argoproj/argocd:v2.13.2
-# Image list
-## backstage/
+## backstage
 alpine:3.17
 ghcr.io/suxess-it/sx-backstage:v1.32.5
-# Image list
-## cert-manager/
+## cert-manager
 quay.io/jetstack/cert-manager-acmesolver:v1.16.2
 quay.io/jetstack/cert-manager-cainjector:v1.16.2
 quay.io/jetstack/cert-manager-controller:v1.16.2
 quay.io/jetstack/cert-manager-startupapicheck:v1.16.2
 quay.io/jetstack/cert-manager-webhook:v1.16.2
-# Image list
-## cnpg/
+## cnpg
 docker.io/busybox:latest
 docker.io/dpage/pgadmin4:8.13
 ghcr.io/cloudnative-pg/cloudnative-pg:1.24.1
-# Image list
-## crossplane/
+## crossplane
 xpkg.upbound.io/crossplane/crossplane:v1.17.2
-# Image list
-## external-dns/
+## external-dns
 ghcr.io/ionos-cloud/external-dns-ionos-webhook:v0.6.2
 registry.k8s.io/external-dns/external-dns:v0.15.0
-# Image list
-## external-secrets/
+## external-secrets
 oci.external-secrets.io/external-secrets/external-secrets:v0.12.1
-# Image list
-## falco/
+## falco
 appropriate/curl
 busybox
 docker.io/falcosecurity/falco-exporter:0.8.3
@@ -43,53 +35,43 @@ docker.io/falcosecurity/falcosidekick-ui:2.2.0
 docker.io/falcosecurity/falcosidekick:2.30.0
 docker.io/falcosecurity/k8s-metacollector:0.1.1
 docker.io/redis/redis-stack:7.2.0-v11
-# Image list
-## grafana/
+## grafana
 docker.io/bats/bats:v1.4.1
 docker.io/grafana/grafana:11.4.0
 docker.io/library/busybox:1.31.1
 quay.io/kiwigrid/k8s-sidecar:1.28.0
-# Image list
-## ingress-nginx/
+## ingress-nginx
 registry.k8s.io/ingress-nginx/controller:v1.11.3@sha256:d56f135b6462cfc476447cfe564b83a45e8bb7da2774963b00d12161112270b7
 registry.k8s.io/ingress-nginx/kube-webhook-certgen:v1.4.4@sha256:a9f03b34a3cbfbb26d103a14046ab2c5130a80c3d69d526ff8063d2b37b9fd3f
-# Image list
-## k8s-monitoring/
+## k8s-monitoring
 docker.io/grafana/alloy:v1.5.1
 ghcr.io/grafana/k8s-monitoring-test:1.6.13
 ghcr.io/jimmidyson/configmap-reload:v0.12.0
 quay.io/prometheus/node-exporter:v1.8.2
 registry.k8s.io/kube-state-metrics/kube-state-metrics:v2.14.0
-# Image list
-## kargo/
+## kargo
 ghcr.io/akuity/kargo:v1.1.2
-# Image list
-## keycloak/
+## keycloak
 busybox
 postgres:latest
 quay.io/keycloak/keycloak:25.0.2
-# Image list
-## komoplane/
+## komoplane
 busybox
 komodorio/komoplane:0.1.5
-# Image list
-## kubecost/
+## kubecost
 alpine/k8s:1.26.9
 gcr.io/kubecost1/cost-model:prod-2.4.3
 gcr.io/kubecost1/frontend:prod-2.4.3
 gcr.io/kubecost1/kubecost-modeling:v0.1.16
 gcr.io/kubecost1/kubecost-network-costs:v0.17.6
 quay.io/prometheus/prometheus:v2.55.1
-# Image list
-## kubevirt-manager/
+## kubevirt-manager
 kubevirtmanager/kubevirt-manager:1.3.3
 kubevirtmanager/kubevirt-manager:1.4.1
-# Image list
-## kubevirt/
+## kubevirt
 quay.io/kubevirt/cdi-operator:v1.59.0
 quay.io/kubevirt/virt-operator:v1.2.0
-# Image list
-## kyverno/
+## kyverno
 bitnami/kubectl:1.30.2
 busybox:1.35
 ghcr.io/kyverno/background-controller:v1.13.2
@@ -98,8 +80,7 @@ ghcr.io/kyverno/kyverno-cli:v1.13.2
 ghcr.io/kyverno/kyverno:v1.13.2
 ghcr.io/kyverno/kyvernopre:v1.13.2
 ghcr.io/kyverno/reports-controller:v1.13.2
-# Image list
-## loki/
+## loki
 docker.io/grafana/agent-operator:v0.43.3
 docker.io/grafana/loki-canary:3.3.2
 docker.io/grafana/loki-helm-test:ewelch-distributed-helm-chart-17db5ee
@@ -111,38 +92,30 @@ memcached:1.6.33-alpine
 prom/memcached-exporter:v0.15.0
 quay.io/minio/mc:RELEASE.2024-04-18T16-45-29Z
 quay.io/minio/minio:RELEASE.2024-04-18T19-09-19Z
-# Image list
-## mimir/
+## mimir
 docker.io/nginxinc/nginx-unprivileged:1.27-alpine
 grafana/mimir:2.14.0
 grafana/rollout-operator:v0.19.1
 quay.io/minio/mc:RELEASE.2024-04-18T16-45-29Z
 quay.io/minio/minio:RELEASE.2024-04-18T19-09-19Z
-# Image list
-## minio/
+## minio
 quay.io/minio/mc:RELEASE.2024-04-18T16-45-29Z
 quay.io/minio/minio:RELEASE.2024-04-18T19-09-19Z
-# Image list
-## team-onboarding/
-# Image list
-## tempo/
+## team-onboarding
+## tempo
 ghcr.io/grafana/xk6-client-tracing:v0.0.2
 grafana/tempo-query:2.5.0
 grafana/tempo:2.5.0
-# Image list
-## trivy/
+## trivy
 mirror.gcr.io/aquasec/trivy-operator:0.23.0
-# Image list
-## vault/
+## vault
 alpine/curl:latest
 hashicorp/vault:1.17.2
-# Image list
-## velero-ui/
+## velero-ui
 docker.io/dserio83/velero-api:0.1.18
 docker.io/dserio83/velero-ui:0.1.17
 docker.io/dserio83/velero-watchdog:0.1.6
-# Image list
-## velero/
+## velero
 docker.io/bitnami/kubectl:1.31
 quay.io/kubevirt/kubevirt-velero-plugin:v0.7.0
 velero/velero-plugin-for-aws:v1.10.0
