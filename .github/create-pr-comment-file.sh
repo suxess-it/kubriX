@@ -9,7 +9,7 @@ mkdir -p out-default-values/target
 mkdir -p comment-files
 for env in pr target; do
   cd ${env}/platform-apps/charts
-  for chart in $( ls ); do
+  for chart in $( ls -d */ | sed 's#/##' ); do
     echo ${chart}
     helm dependency update ${chart}
     for value in $( find ${chart} -type f -name "values-*" ); do
