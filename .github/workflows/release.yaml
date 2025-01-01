@@ -12,7 +12,7 @@ name: release-please
 jobs:
   release-please:
     runs-on: ubuntu-latest
-    if: ${{ vars.RELEASE_PLEASE != 'true' }}  
+    if: ${{ vars.RELEASE_PLEASE == 'true' }}  
     steps:
       - uses: googleapis/release-please-action@v4
         with:
