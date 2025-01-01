@@ -17,7 +17,7 @@
 ## cnpg
 * docker.io/busybox:latest
 * docker.io/dpage/pgadmin4:8.13
-* ghcr.io/cloudnative-pg/cloudnative-pg:1.24.1
+* ghcr.io/cloudnative-pg/cloudnative-pg:1.25.0
 ## crossplane
 * xpkg.upbound.io/crossplane/crossplane:v1.17.2
 ## external-dns
