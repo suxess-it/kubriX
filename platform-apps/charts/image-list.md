@@ -45,7 +45,7 @@
 * registry.k8s.io/ingress-nginx/kube-webhook-certgen:v1.4.4@sha256:a9f03b34a3cbfbb26d103a14046ab2c5130a80c3d69d526ff8063d2b37b9fd3f
 ## k8s-monitoring
 * docker.io/grafana/alloy:v1.5.1
-* ghcr.io/grafana/k8s-monitoring-test:1.6.13
+* ghcr.io/grafana/k8s-monitoring-test:1.6.16
 * ghcr.io/jimmidyson/configmap-reload:v0.12.0
 * quay.io/prometheus/node-exporter:v1.8.2
 * registry.k8s.io/kube-state-metrics/kube-state-metrics:v2.14.0
