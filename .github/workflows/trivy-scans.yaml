@@ -11,7 +11,7 @@ jobs:
   scan-images:
     strategy:
       matrix:
-        array: [
+        images: [
           {chart: "argocd", image: "ghcr.io/dexidp/dex:v2.41.1"}, 
           {chart: "argocd", image: "public.ecr.aws/docker/library/redis:7.4.1-alpine"}, 
           {chart: "argocd", image: "quay.io/argoproj/argocd:v2.13.2"}
@@ -29,9 +29,9 @@ jobs:
       - name: Run Trivy vulnerability scanner
         uses: aquasecurity/trivy-action@0.29.0
         with:
-          image-ref: ${{ matrix.arrays.image }}
+          image-ref: ${{ matrix.images.image }}
           format: 'sarif'
-          output: 'trivy-results-${{ matrix.array.chart }}-${{ matrix.array.image }}.sarif'
+          output: 'trivy-results-${{ matrix.images.chart }}-${{ matrix.images.image }}.sarif'
           # exit-code: '1'
           ignore-unfixed: true
           # vuln-type: 'os,library'
@@ -40,5 +40,5 @@ jobs:
       - name: Upload Trivy scan results to GitHub Security tab
         uses: github/codeql-action/upload-sarif@v3
         with:
-          category: "trivy-${{ matrix.array.chart }}-${{ matrix.array.image }}"
-          sarif_file: 'trivy-results-${{ matrix.array.chart }}-${{ matrix.array.image }}.sarif'
+          category: "trivy-${{ matrix.images.chart }}-${{ matrix.images.image }}"
+          sarif_file: 'trivy-results-${{ matrix.images.chart }}-${{ matrix.images.image }}.sarif'
