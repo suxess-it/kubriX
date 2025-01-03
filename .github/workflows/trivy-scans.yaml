@@ -8,7 +8,28 @@ on:
 name: scan images
 
 jobs:
+  configure:
+    runs-on: ubuntu-latest
+    outputs:
+      matrix: ${{ steps.set-matrix.outputs.matrix }}
+    steps:
+     - name: Checkout to repository
+       uses: actions/checkout@v3
+     - name: Set matrix data
+       id: set-matrix
+       run: echo "matrix=$(jq -c . < ./config.json)" >> $GITHUB_OUTPUT
+       
   scan-images:
+    needs: configure
+    strategy:
+      # matrix: ${{ fromJson(needs.configure.outputs.matrix) }}
+      matrix:
+        images: [
+         { name: "one", digit: "1"}, 
+         { name: "two", digit: "2"}, 
+         { name: "three", digit: "3"} 
+         ]
+          
     permissions:
       contents: read # for actions/checkout to fetch code
       security-events: write # for github/codeql-action/upload-sarif to upload SARIF results
