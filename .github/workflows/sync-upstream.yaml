@@ -7,24 +7,22 @@ on:
   # Allows manual workflow run (must in default branch to work)
   workflow_dispatch:
 
+# checkout is not done via checkout action because then 
+# using different tokens for upstream and current repo is not possible
 jobs:
   build:
     runs-on: ubuntu-latest
     if: ${{ vars.UPSTREAM_REPO != '' }}    
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-        # we need all commits to evaluate diff between upstream and downstream project
-        with:
-          fetch-depth: 0
-          token: ${{ secrets.SYNC_TOKEN }}
-
-      - name: fetch upstream commits
+      - name: checkout and fetch upstream commits
         shell: bash
         env:
+          SYNC_TOKEN: ${{ secrets.SYNC_TOKEN }}
           UPSTREAM_TOKEN: ${{ secrets.UPSTREAM_TOKEN }}
           UPSTREAM_REPO: ${{ vars.UPSTREAM_REPO }}
         run: |
+          git clone https://${SYNC_TOKEN}@github.com/${GITHUB_REPOSITORY}.git .
+          git checkout main
           git remote add upstream https://${UPSTREAM_TOKEN}@github.com/${UPSTREAM_REPO}.git
           git fetch upstream
           git switch -c from-upstream upstream/main
