@@ -12,9 +12,9 @@ jobs:
     strategy:
       matrix:
         images: [
-          {chart: "argocd", image: "ghcr.io/dexidp/dex:v2.41.1"}, 
-          {chart: "argocd", image: "public.ecr.aws/docker/library/redis:7.4.1-alpine"}, 
-          {chart: "argocd", image: "quay.io/argoproj/argocd:v2.13.2"}
+          {chart: "argocd", image: "ghcr.io/dexidp/dex:v2.41.1", output: "dex"}, 
+          {chart: "argocd", image: "public.ecr.aws/docker/library/redis:7.4.1-alpine", output: "redis"}, 
+          {chart: "argocd", image: "quay.io/argoproj/argocd:v2.13.2", output: "argocd"}
         ]
           
     permissions:
@@ -31,7 +31,7 @@ jobs:
         with:
           image-ref: ${{ matrix.images.image }}
           format: 'sarif'
-          output: 'trivy-results-${{ matrix.images.chart }}-${{ matrix.images.image }}.sarif'
+          output: 'trivy-results-${{ matrix.images.chart }}-${{ matrix.images.output }}.sarif'
           # exit-code: '1'
           ignore-unfixed: true
           # vuln-type: 'os,library'
@@ -40,5 +40,5 @@ jobs:
       - name: Upload Trivy scan results to GitHub Security tab
         uses: github/codeql-action/upload-sarif@v3
         with:
-          category: "trivy-${{ matrix.images.chart }}-${{ matrix.images.image }}"
-          sarif_file: 'trivy-results-${{ matrix.images.chart }}-${{ matrix.images.image }}.sarif'
+          category: "trivy-${{ matrix.images.chart }}-${{ matrix.images.output }}"
+          sarif_file: 'trivy-results-${{ matrix.images.chart }}-${{ matrix.images.output }}.sarif'
