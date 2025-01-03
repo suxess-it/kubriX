@@ -8,13 +8,13 @@ on:
 name: scan images
 
 jobs:
-  list-images:
+  scan-images:
     runs-on: ubuntu-latest
     steps:
       - name: Run Trivy vulnerability scanner
         uses: aquasecurity/trivy-action@0.28.0
         with:
-          image-ref: 'docker.io/my-organization/my-app:${{ github.sha }}'
+          image-ref: 'quay.io/argoproj/argocd:v2.13.2'
           format: 'sarif'
           output: 'trivy-results.sarif'
           exit-code: '1'
