@@ -8,22 +8,15 @@ on:
 name: scan images
 
 jobs:
-  configure:
-    runs-on: ubuntu-latest
-    outputs:
-      matrix: ${{ steps.set-matrix.outputs.matrix }}
-    steps:
-     - name: Checkout to repository
-       uses: actions/checkout@v3
-     - name: Set matrix data
-       id: set-matrix
-       run: echo "matrix=$(jq -c . < ./config.json)" >> $GITHUB_OUTPUT
-       
   scan-images:
     needs: configure
     strategy:
       matrix:
-        array: ["bla" ]
+        array: [
+          {chart: "argocd", image: "ghcr.io/dexidp/dex:v2.41.1"}, 
+          {chart: "argocd", image: "public.ecr.aws/docker/library/redis:7.4.1-alpine"}, 
+          {chart: "argocd", image: "quay.io/argoproj/argocd:v2.13.2"}
+        ]
           
     permissions:
       contents: read # for actions/checkout to fetch code
@@ -37,9 +30,9 @@ jobs:
       - name: Run Trivy vulnerability scanner
         uses: aquasecurity/trivy-action@0.29.0
         with:
-          image-ref: 'quay.io/argoproj/argocd:v2.13.2'
+          image-ref: ${{ matrix.arrays.image }}
           format: 'sarif'
-          output: 'trivy-results.sarif'
+          output: 'trivy-results-${{ matrix.array.chart }}-${{ matrix.array.image }}.sarif'
           # exit-code: '1'
           ignore-unfixed: true
           # vuln-type: 'os,library'
@@ -48,4 +41,5 @@ jobs:
       - name: Upload Trivy scan results to GitHub Security tab
         uses: github/codeql-action/upload-sarif@v3
         with:
-          sarif_file: 'trivy-results.sarif'
+          category: "trivy-${{ matrix.array.chart }}-${{ matrix.array.image }}"
+          sarif_file: 'trivy-results-${{ matrix.array.chart }}-${{ matrix.array.image }}.sarif'
