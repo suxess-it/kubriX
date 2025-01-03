@@ -22,13 +22,8 @@ jobs:
   scan-images:
     needs: configure
     strategy:
-      # matrix: ${{ fromJson(needs.configure.outputs.matrix) }}
       matrix:
-        images: [
-         { name: "one", digit: "1"}, 
-         { name: "two", digit: "2"}, 
-         { name: "three", digit: "3"} 
-         ]
+        array: ["bla" ]
           
     permissions:
       contents: read # for actions/checkout to fetch code
