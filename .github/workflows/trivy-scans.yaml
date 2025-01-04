@@ -18,15 +18,16 @@ jobs:
         
       - id: dataStep
         run: |
-          echo "matrix={\"images\":[$( cat platform-apps/charts/image-list.json )]}" | jq --raw-input --slurp '.'
+          echo "matrix=[$( cat platform-apps/charts/image-list.json )]" | jq --raw-input --slurp '.'
           #echo "matrix<<EOF" >> ${GITHUB_OUTPUT}
-          echo "matrix={\"images\":[$( cat platform-apps/charts/image-list.json )]}" | jq --raw-input --slurp '.' >> ${GITHUB_OUTPUT}
+          echo "matrix=[$( cat platform-apps/charts/image-list.json )]" | jq --raw-input --slurp '.' >> ${GITHUB_OUTPUT}
           #echo "EOF" >> ${GITHUB_OUTPUT}
           
   scan-images:
     needs: evaluate
     strategy:
-      matrix: ${{ fromJson(needs.evaluate.outputs.matrix) }}
+      matrix: 
+        images: ${{ fromJson(needs.evaluate.outputs.matrix) }}
       # matrix:
       #  images: [
       #    {chart: "argocd", image: "ghcr.io/dexidp/dex:v2.41.1", id: "dex"}, 
