@@ -13,6 +13,9 @@ jobs:
     outputs:
       matrix: ${{ steps.dataStep.outputs.matrix }}
     steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        
       - id: dataStep
         run: |
           echo "myoutput=$( cat platform-apps/charts/image-list.json ) >> $GITHUB_OUTPUT
