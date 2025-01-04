@@ -8,14 +8,25 @@ on:
 name: scan images
 
 jobs:
+  evaluate:
+    runs-on: ubuntu-latest
+    outputs:
+      matrix: ${{ steps.dataStep.outputs.matrix }}
+    steps:
+      - id: dataStep
+        run: |
+          echo "myoutput=$( cat platform-apps/charts/image-list.json ) >> $GITHUB_OUTPUT
+            
   scan-images:
+    needs: evaluate
     strategy:
-      matrix:
-        images: [
-          {chart: "argocd", image: "ghcr.io/dexidp/dex:v2.41.1", id: "dex"}, 
-          {chart: "argocd", image: "public.ecr.aws/docker/library/redis:7.4.1-alpine", id: "redis"}, 
-          {chart: "argocd", image: "quay.io/argoproj/argocd:v2.13.2", id: "argocd"}
-        ]
+      matrix: ${{ fromJson(needs.evaluate.outputs.matrix) }}
+      # matrix:
+      #  images: [
+      #    {chart: "argocd", image: "ghcr.io/dexidp/dex:v2.41.1", id: "dex"}, 
+      #    {chart: "argocd", image: "public.ecr.aws/docker/library/redis:7.4.1-alpine", id: "redis"}, 
+      #    {chart: "argocd", image: "quay.io/argoproj/argocd:v2.13.2", id: "argocd"}
+      #  ]
           
     permissions:
       contents: read # for actions/checkout to fetch code
