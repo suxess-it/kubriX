@@ -20,7 +20,7 @@ jobs:
         run: |
           {
           echo 'matrix<<EOF'
-          images:[$( cat platform-apps/charts/image-list.json )]
+          echo "images:[$( cat platform-apps/charts/image-list.json )]"
           echo EOF
           } >> "$GITHUB_OUTPUT"
             
