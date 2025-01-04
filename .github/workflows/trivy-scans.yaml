@@ -18,9 +18,9 @@ jobs:
         
       - id: dataStep
         run: |
-          echo "images:[$( cat platform-apps/charts/image-list.json )]" | jq --raw-input --slurp '.'
+          echo "{images:[$( cat platform-apps/charts/image-list.json )]}" | jq --raw-input --slurp '.'
           echo "matrix<<EOF" >> ${GITHUB_OUTPUT}
-          echo "images:[$( cat platform-apps/charts/image-list.json )]" | jq --raw-input --slurp '.' >> ${GITHUB_OUTPUT}
+          echo "{images:[$( cat platform-apps/charts/image-list.json )]}" | jq --raw-input --slurp '.' >> ${GITHUB_OUTPUT}
           echo "EOF" >> ${GITHUB_OUTPUT}
           
   scan-images:
