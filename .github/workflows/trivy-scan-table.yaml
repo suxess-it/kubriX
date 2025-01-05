@@ -69,7 +69,7 @@ jobs:
         with:
           image-ref: ${{ matrix.images.image }}
           format: 'table'
-          output: 'trivy-reports/${{ matrix.images.chart }}_trivy-results-${{ matrix.images.id }}.md'
+          output: 'trivy-reports/${{ matrix.images.id }}.md'
           # exit-code: '1'
           ignore-unfixed: true
           # vuln-type: 'os,library'
