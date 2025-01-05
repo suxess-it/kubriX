@@ -49,6 +49,7 @@ jobs:
   scan-images:
     needs: evaluate
     strategy:
+      max-parallel: 1
       matrix: 
         images: ${{ fromJson(needs.evaluate.outputs.matrix) }}
       # matrix:
