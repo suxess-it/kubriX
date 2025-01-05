@@ -75,7 +75,7 @@ jobs:
         with:
           image-ref: ${{ matrix.images.image }}
           format: 'table'
-          output: 'platform-apps/charts/${{ matrix.images.chart }}/trivy-results-${{ matrix.images.image }}.md'
+          output: 'platform-apps/charts/${{ matrix.images.chart }}/trivy-results-${{ matrix.images.id }}.md'
           # exit-code: '1'
           ignore-unfixed: true
           # vuln-type: 'os,library'
