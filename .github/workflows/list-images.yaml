@@ -23,7 +23,6 @@ jobs:
           helm plugin install https://github.com/nikhilsbhat/helm-images
           cd platform-apps/charts
           echo "# Image list" > image-list.md
-          echo -n "" > image-list.json
           for chart in $( ls -d */ | sed 's#/##' ); do
             echo "${chart}"
             echo "## ${chart}" >> image-list.md
@@ -31,13 +30,6 @@ jobs:
             for value in $( find ${chart} -type f -name "values-*" ); do
               helm images get ${chart} -f ${value} --log-level error --kind "Deployment,StatefulSet,DaemonSet,CronJob,Job,ReplicaSet,Pod,Alertmanager,Prometheus,ThanosRuler,Grafana,Thanos,Receiver"
             done | sort -u | sed 's/^/* /' >> image-list.md
-            for image in $(
-              for value in $( find ${chart} -type f -name "values-*" ); do
-                helm images get ${chart} -f ${value} --log-level error --kind "Deployment,StatefulSet,DaemonSet,CronJob,Job,ReplicaSet,Pod,Alertmanager,Prometheus,ThanosRuler,Grafana,Thanos,Receiver"
-              done | sort -u ); do
-              id=$( echo "${chart}_${image}" | base64 -w 0 )
-              echo -n "{chart: \"${chart}\", image: \"${image}\", id: \"${id}\"}," >> image-list.json
-            done
           done
           cat image-list.md
           git config user.name "github-actions[bot]"
