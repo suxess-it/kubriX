@@ -44,7 +44,6 @@ jobs:
   scan-images:
     needs: evaluate
     strategy:
-      max-parallel: 1
       matrix: 
         images: ${{ fromJson(needs.evaluate.outputs.matrix) }}
       # matrix:
@@ -70,18 +69,32 @@ jobs:
         with:
           image-ref: ${{ matrix.images.image }}
           format: 'table'
-          output: 'platform-apps/charts/${{ matrix.images.chart }}/trivy-results-${{ matrix.images.id }}.md'
+          output: 'trivy-reports/${{ matrix.images.chart }}_trivy-results-${{ matrix.images.id }}.md'
           # exit-code: '1'
           ignore-unfixed: true
           # vuln-type: 'os,library'
           severity: 'CRITICAL,HIGH'
 
+      - name: upload reports
+        uses: actions/upload-artifact@v4
+        with:
+          name: trivy-reports
+          path: trivy-reports/
+
+  commit-reports:
+    needs: scan-images
+    runs-on: ubuntu-latest
+    steps:
+      - name: download report
+        uses: actions/download-artifact@v4
+        with:
+          name: trivy-reports
       - name: commit trivy table
         shell: bash
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git pull
-          git add .
+          git add trivy-reports
           git diff --cached --exit-code || git commit -m "updated trivy scan results"
           git push
