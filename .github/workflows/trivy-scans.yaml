@@ -15,7 +15,25 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
-        
+          
+      - name: create image json
+        shell: bash
+        run: |
+          helm plugin install https://github.com/nikhilsbhat/helm-images
+          cd platform-apps/charts
+          echo -n "" > image-list.json
+          for chart in $( ls -d */ | sed 's#/##' ); do
+            echo "${chart}"
+            helm dependency update ${chart} 1> /dev/null 2>&1
+            for image in $(
+              for value in $( find ${chart} -type f -name "values-*" ); do
+                helm images get ${chart} -f ${value} --log-level error --kind "Deployment,StatefulSet,DaemonSet,CronJob,Job,ReplicaSet,Pod,Alertmanager,Prometheus,ThanosRuler,Grafana,Thanos,Receiver"
+              done | sort -u ); do
+              id=$( echo "${chart}_${image}" | base64 -w 0 )
+              echo -n "{chart: \"${chart}\", image: \"${image}\", id: \"${id}\"}," >> image-list.json
+            done
+          done
+          
       - id: dataStep
         run: |
           echo "matrix=[$( cat platform-apps/charts/image-list.json )]"
