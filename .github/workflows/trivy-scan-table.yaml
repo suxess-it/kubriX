@@ -99,9 +99,11 @@ jobs:
         run: |
           pwd
           git pull
+          rm trivy-reports/*
           git rm trivy-reports/*
           ls
           git status
+          git add .
           
       - name: download report
         uses: actions/download-artifact@v4
