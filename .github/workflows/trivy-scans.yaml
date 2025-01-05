@@ -20,7 +20,7 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
-          
+
       - name: create image json
         shell: bash
         run: |
@@ -66,7 +66,29 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.ref }}
 
+      - name: Run Trivy vulnerability scanner
+        uses: aquasecurity/trivy-action@0.29.0
+        with:
+          image-ref: ${{ matrix.images.image }}
+          format: 'table'
+          output: 'platform-apps/charts/${{ matrix.images.chart }}/trivy-results.md'
+          # exit-code: '1'
+          ignore-unfixed: true
+          # vuln-type: 'os,library'
+          severity: 'CRITICAL,HIGH'
+
+      - name: commit trivy table
+        shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add .
+          git diff --cached --exit-code || git commit -m "updated trivy scan results"
+          git push
+          
       - name: Run Trivy vulnerability scanner
         uses: aquasecurity/trivy-action@0.29.0
         with:
@@ -88,3 +110,7 @@ jobs:
         with:
           category: "trivy-${{ matrix.images.id }}"
           sarif_file: 'trivy-results-${{ matrix.images.id }}.sarif'
+
+
+
+
