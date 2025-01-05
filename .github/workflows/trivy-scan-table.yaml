@@ -85,6 +85,11 @@ jobs:
     needs: scan-images
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout PR
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.ref }}
+  
       - name: download report
         uses: actions/download-artifact@v4
         with:
