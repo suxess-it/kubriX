@@ -78,7 +78,7 @@ jobs:
       - name: upload reports
         uses: actions/upload-artifact@v4
         with:
-          name: trivy-reports
+          name: trivy-reports-${{ matrix.images.id }}
           path: trivy-reports/
 
   commit-reports:
