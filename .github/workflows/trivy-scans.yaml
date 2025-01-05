@@ -71,6 +71,7 @@ jobs:
 
       - name: Run Trivy vulnerability scanner
         uses: aquasecurity/trivy-action@0.29.0
+        if: github.ref != 'refs/heads/main'
         with:
           image-ref: ${{ matrix.images.image }}
           format: 'table'
