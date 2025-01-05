@@ -67,7 +67,6 @@ jobs:
 
       - name: Run Trivy vulnerability scanner
         uses: aquasecurity/trivy-action@0.29.0
-        if: github.ref != 'refs/heads/main'
         with:
           image-ref: ${{ matrix.images.image }}
           format: 'table'
@@ -79,7 +78,6 @@ jobs:
 
       - name: commit trivy table
         shell: bash
-        if: github.ref != 'refs/heads/main'
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
