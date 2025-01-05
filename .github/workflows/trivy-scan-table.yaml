@@ -84,6 +84,9 @@ jobs:
   commit-reports:
     needs: scan-images
     runs-on: ubuntu-latest
+    permissions:
+      actions: write
+      
     steps:
       - name: Checkout PR
         uses: actions/checkout@v4
@@ -110,3 +113,7 @@ jobs:
           git add trivy-reports
           git diff --cached --exit-code || git commit -m "updated trivy scan results"
           git push
+
+      - uses: geekyeggo/delete-artifact@v5
+        with:
+          name: trivy-reports-*
