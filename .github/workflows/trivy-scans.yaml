@@ -1,4 +1,9 @@
 on:
+  push:
+    branches: [ "main" ]
+    paths:
+      - '.github/workflows/trivy-scans.yaml'
+      - 'platform-apps/charts/image-list.md'
   pull_request:
     types: [opened, synchronize]
     paths:
