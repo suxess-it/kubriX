@@ -29,7 +29,7 @@ jobs:
               for value in $( find ${chart} -type f -name "values-*" ); do
                 helm images get ${chart} -f ${value} --log-level error --kind "Deployment,StatefulSet,DaemonSet,CronJob,Job,ReplicaSet,Pod,Alertmanager,Prometheus,ThanosRuler,Grafana,Thanos,Receiver"
               done | sort -u ); do
-              id=$( echo "${chart}_${image}" | base64 -w 0 )
+              id=$( echo "${chart}_${image}" | awk -F/ '{print $NF} | awk -F: '{print $1} )
               echo -n "{chart: \"${chart}\", image: \"${image}\", id: \"${id}\"}," >> image-list.json
             done
           done
