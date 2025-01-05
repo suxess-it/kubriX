@@ -1,0 +1,90 @@
+on:
+  pull_request:
+    types: [opened, synchronize]
+    paths:
+      - '.github/workflows/trivy-scan-table.yaml'
+      - 'platform-apps/charts/image-list.md'
+
+name: create trivy scan table
+
+jobs:
+  evaluate:
+    runs-on: ubuntu-latest
+    outputs:
+      matrix: ${{ steps.dataStep.outputs.matrix }}
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: create image json
+        shell: bash
+        run: |
+          helm plugin install https://github.com/nikhilsbhat/helm-images
+          cd platform-apps/charts
+          echo -n "" > image-list.json
+          for chart in $( ls -d */ | sed 's#/##' ); do
+            echo "${chart}"
+            helm dependency update ${chart} 1> /dev/null 2>&1
+            for image in $(
+              for value in $( find ${chart} -type f -name "values-*" ); do
+                helm images get ${chart} -f ${value} --log-level error --kind "Deployment,StatefulSet,DaemonSet,CronJob,Job,ReplicaSet,Pod,Alertmanager,Prometheus,ThanosRuler,Grafana,Thanos,Receiver"
+              done | sort -u ); do
+              id=$( echo "${chart}_${image}" | base64 -w 0 )
+              echo -n "{chart: \"${chart}\", image: \"${image}\", id: \"${id}\"}," >> image-list.json
+            done
+          done
+          
+      - id: dataStep
+        run: |
+          echo "matrix=[$( cat platform-apps/charts/image-list.json )]"
+          #echo "matrix<<EOF" >> ${GITHUB_OUTPUT}
+          echo "matrix=[$( cat platform-apps/charts/image-list.json )]" >> ${GITHUB_OUTPUT}
+          #echo "EOF" >> ${GITHUB_OUTPUT}
+          
+  scan-images:
+    needs: evaluate
+    strategy:
+      max-parallel: 1
+      matrix: 
+        images: ${{ fromJson(needs.evaluate.outputs.matrix) }}
+      # matrix:
+      #  images: [
+      #    {chart: "argocd", image: "ghcr.io/dexidp/dex:v2.41.1", id: "dex"}, 
+      #    {chart: "argocd", image: "public.ecr.aws/docker/library/redis:7.4.1-alpine", id: "redis"}, 
+      #    {chart: "argocd", image: "quay.io/argoproj/argocd:v2.13.2", id: "argocd"}
+      #  ]
+          
+    permissions:
+      contents: write # for actions/checkout to fetch code
+      security-events: write # for github/codeql-action/upload-sarif to upload SARIF results
+      actions: read # only required for a private repository by github/codeql-action/upload-sarif to get the Action run status
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.ref }}
+
+      - name: Run Trivy vulnerability scanner
+        uses: aquasecurity/trivy-action@0.29.0
+        if: github.ref != 'refs/heads/main'
+        with:
+          image-ref: ${{ matrix.images.image }}
+          format: 'table'
+          output: 'platform-apps/charts/${{ matrix.images.chart }}/trivy-results-${{ matrix.images.id }}.md'
+          # exit-code: '1'
+          ignore-unfixed: true
+          # vuln-type: 'os,library'
+          severity: 'CRITICAL,HIGH'
+
+      - name: commit trivy table
+        shell: bash
+        if: github.ref != 'refs/heads/main'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git pull
+          git add .
+          git diff --cached --exit-code || git commit -m "updated trivy scan results"
+          git push
+          
