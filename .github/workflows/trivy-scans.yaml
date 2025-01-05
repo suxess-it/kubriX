@@ -75,7 +75,7 @@ jobs:
         with:
           image-ref: ${{ matrix.images.image }}
           format: 'table'
-          output: 'platform-apps/charts/${{ matrix.images.chart }}/trivy-results.md'
+          output: 'platform-apps/charts/${{ matrix.images.chart }}/trivy-results-${{ matrix.images.image }}.md'
           # exit-code: '1'
           ignore-unfixed: true
           # vuln-type: 'os,library'
@@ -87,6 +87,7 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git pull
           git add .
           git diff --cached --exit-code || git commit -m "updated trivy scan results"
           git push
