@@ -88,7 +88,8 @@ jobs:
       - name: download report
         uses: actions/download-artifact@v4
         with:
-          name: trivy-reports
+          path: trivy-reports
+          merge-multiple: true
       - name: commit trivy table
         shell: bash
         run: |
