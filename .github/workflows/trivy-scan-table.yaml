@@ -97,8 +97,11 @@ jobs:
       - name: delete old trivy reports
         shell: bash
         run: |
+          pwd
           git pull
           git rm trivy-reports/*
+          ls trivy-reports/
+          git status
           
       - name: download report
         uses: actions/download-artifact@v4
@@ -110,9 +113,14 @@ jobs:
       - name: commit trivy table
         shell: bash
         run: |
+          pwd
+          ls trivy-reports/
+          git status
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add trivy-reports
+          ls trivy-reports/
+          git status
           git diff --cached --exit-code || git commit -m "updated trivy scan results"
           git push
 
