@@ -103,7 +103,7 @@ jobs:
       - name: download report
         uses: actions/download-artifact@v4
         with:
-          name: trivy-reports-*
+          pattern: trivy-reports-*
           path: trivy-reports
           merge-multiple: true
           
