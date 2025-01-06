@@ -68,7 +68,8 @@ jobs:
         uses: aquasecurity/trivy-action@0.29.0
         with:
           image-ref: ${{ matrix.images.image }}
-          format: 'table'
+          format: template
+          template: "@/github/workspace/trivy-reports/markdown.tpl"
           output: 'trivy-reports/report-${{ matrix.images.id }}.md'
           # exit-code: '1'
           ignore-unfixed: true
