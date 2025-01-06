@@ -69,7 +69,7 @@ jobs:
         with:
           image-ref: ${{ matrix.images.image }}
           format: 'table'
-          output: 'trivy-reports/${{ matrix.images.id }}.md'
+          output: 'trivy-reports/report-${{ matrix.images.id }}.md'
           # exit-code: '1'
           ignore-unfixed: true
           # vuln-type: 'os,library'
@@ -99,7 +99,7 @@ jobs:
         run: |
           pwd
           git pull
-          rm trivy-reports/*
+          rm trivy-reports/report-*
           git status
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
