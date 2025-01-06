@@ -109,7 +109,8 @@ jobs:
           echo "remove old reports"
           # use find to remove files
           # because it does not fail when no files exist
-          find trivy-reports/ -type f -name 'report-*' -delete
+          # find trivy-reports/ -type f -name 'report-*' -delete
+          rm trivy-reports/*
           git status
           
       - name: download reports
