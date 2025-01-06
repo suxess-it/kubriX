@@ -64,13 +64,18 @@ jobs:
         with:
           ref: ${{ github.event.pull_request.head.ref }}
 
+      - name: delete old trivy reports
+        shell: bash
+        run: |
+          mkdir trivy-reports-workdir
+
       - name: Run Trivy vulnerability scanner
         uses: aquasecurity/trivy-action@0.29.0
         with:
           image-ref: ${{ matrix.images.image }}
           format: template
           template: "@${{ github.workspace }}/trivy-reports/markdown.tpl"
-          output: 'trivy-reports/report-${{ matrix.images.id }}.md'
+          output: 'trivy-reports-workdir/report-${{ matrix.images.id }}.md'
           # exit-code: '1'
           ignore-unfixed: true
           # vuln-type: 'os,library'
@@ -80,7 +85,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: trivy-reports-${{ matrix.images.id }}
-          path: trivy-reports/report-${{ matrix.images.id }}.md
+          path: trivy-reports-workdir/report-${{ matrix.images.id }}.md
 
   commit-reports:
     needs: scan-images
