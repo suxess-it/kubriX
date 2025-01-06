@@ -101,7 +101,9 @@ jobs:
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git pull
           echo "remove old reports"
-          rm trivy-reports/report-*
+          # use find to remove files
+          # because it does not fail when no files exist
+          find trivy-reports/ -type f -name 'report-*' | xargs rm 
           git status
           
       - name: download reports
