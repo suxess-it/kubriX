@@ -69,7 +69,7 @@ jobs:
         with:
           image-ref: ${{ matrix.images.image }}
           format: template
-          template: "@/github/workspace/trivy-reports/markdown.tpl"
+          template: "@/github/workspace/software/trivy-reports/markdown.tpl"
           output: 'trivy-reports/report-${{ matrix.images.id }}.md'
           # exit-code: '1'
           ignore-unfixed: true
