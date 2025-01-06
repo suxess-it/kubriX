@@ -100,7 +100,6 @@ jobs:
           pwd
           git pull
           rm trivy-reports/*
-          ls trivy-reports/*
           git status
           
       - name: download report
@@ -113,8 +112,6 @@ jobs:
       - name: commit trivy table
         shell: bash
         run: |
-          pwd
-          ls trivy-reports/
           git status
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
