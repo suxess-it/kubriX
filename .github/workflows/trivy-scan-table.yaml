@@ -97,18 +97,14 @@ jobs:
       - name: delete old trivy reports
         shell: bash
         run: |
-          pwd
-          git pull
-          rm trivy-reports/report-*
-          git status
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add trivy-reports
+          git pull
+          echo "remove old reports"
+          rm trivy-reports/report-*
           git status
-          git diff --cached --exit-code || git commit -m "updated trivy scan results"
-          git push
           
-      - name: download report
+      - name: download reports
         uses: actions/download-artifact@v4
         with:
           pattern: trivy-reports-*
@@ -119,11 +115,12 @@ jobs:
         shell: bash
         run: |
           git status
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          echo "git add trivy-reports"
           git add trivy-reports
           git status
+          echo "check diff and commit"
           git diff --cached --exit-code || git commit -m "updated trivy scan results"
+          echo "git push"
           git push
 
       - uses: geekyeggo/delete-artifact@v5
