@@ -1,92 +1,142 @@
 
-For OSS Maintainers: VEX Notice
---------------------------------
-If you're an OSS maintainer and Trivy has detected vulnerabilities in your project that you believe are not actually exploitable, consider issuing a VEX (Vulnerability Exploitability eXchange) statement.
-VEX allows you to communicate the actual status of vulnerabilities in your project, improving security transparency and reducing false positives for your users.
-Learn more and start using VEX: https://aquasecurity.github.io/trivy/v0.57/docs/supply-chain/vex/repo#publishing-vex-documents
-
-To disable this notice, set the TRIVY_DISABLE_VEX_NOTICE environment variable.
-
-
-quay.io/minio/minio:RELEASE.2024-04-18T19-09-19Z (redhat 9.3)
-=============================================================
-Total: 6 (HIGH: 6, CRITICAL: 0)
-
-┌────────────────────────┬────────────────┬──────────┬────────┬───────────────────┬──────────────────┬────────────────────────────────────────────────────────┐
-│        Library         │ Vulnerability  │ Severity │ Status │ Installed Version │  Fixed Version   │                         Title                          │
-├────────────────────────┼────────────────┼──────────┼────────┼───────────────────┼──────────────────┼────────────────────────────────────────────────────────┤
-│ glibc                  │ CVE-2024-2961  │ HIGH     │ fixed  │ 2.34-83.el9_3.12  │ 2.34-100.el9_4.2 │ glibc: Out of bounds write in iconv may lead to remote │
-│                        │                │          │        │                   │                  │ code...                                                │
-│                        │                │          │        │                   │                  │ https://avd.aquasec.com/nvd/cve-2024-2961              │
-│                        ├────────────────┤          │        │                   │                  ├────────────────────────────────────────────────────────┤
-│                        │ CVE-2024-33599 │          │        │                   │                  │ glibc: stack-based buffer overflow in netgroup cache   │
-│                        │                │          │        │                   │                  │ https://avd.aquasec.com/nvd/cve-2024-33599             │
-├────────────────────────┼────────────────┤          │        │                   │                  ├────────────────────────────────────────────────────────┤
-│ glibc-common           │ CVE-2024-2961  │          │        │                   │                  │ glibc: Out of bounds write in iconv may lead to remote │
-│                        │                │          │        │                   │                  │ code...                                                │
-│                        │                │          │        │                   │                  │ https://avd.aquasec.com/nvd/cve-2024-2961              │
-│                        ├────────────────┤          │        │                   │                  ├────────────────────────────────────────────────────────┤
-│                        │ CVE-2024-33599 │          │        │                   │                  │ glibc: stack-based buffer overflow in netgroup cache   │
-│                        │                │          │        │                   │                  │ https://avd.aquasec.com/nvd/cve-2024-33599             │
-├────────────────────────┼────────────────┤          │        │                   │                  ├────────────────────────────────────────────────────────┤
-│ glibc-minimal-langpack │ CVE-2024-2961  │          │        │                   │                  │ glibc: Out of bounds write in iconv may lead to remote │
-│                        │                │          │        │                   │                  │ code...                                                │
-│                        │                │          │        │                   │                  │ https://avd.aquasec.com/nvd/cve-2024-2961              │
-│                        ├────────────────┤          │        │                   │                  ├────────────────────────────────────────────────────────┤
-│                        │ CVE-2024-33599 │          │        │                   │                  │ glibc: stack-based buffer overflow in netgroup cache   │
-│                        │                │          │        │                   │                  │ https://avd.aquasec.com/nvd/cve-2024-33599             │
-└────────────────────────┴────────────────┴──────────┴────────┴───────────────────┴──────────────────┴────────────────────────────────────────────────────────┘
-
-usr/bin/mc (gobinary)
-=====================
-Total: 5 (HIGH: 3, CRITICAL: 2)
-
-┌─────────────────────┬────────────────┬──────────┬────────┬───────────────────┬─────────────────┬────────────────────────────────────────────────────────────┐
-│       Library       │ Vulnerability  │ Severity │ Status │ Installed Version │  Fixed Version  │                           Title                            │
-├─────────────────────┼────────────────┼──────────┼────────┼───────────────────┼─────────────────┼────────────────────────────────────────────────────────────┤
-│ golang.org/x/crypto │ CVE-2024-45337 │ CRITICAL │ fixed  │ v0.21.0           │ 0.31.0          │ golang.org/x/crypto/ssh: Misuse of                         │
-│                     │                │          │        │                   │                 │ ServerConfig.PublicKeyCallback may cause authorization     │
-│                     │                │          │        │                   │                 │ bypass in golang.org/x/crypto                              │
-│                     │                │          │        │                   │                 │ https://avd.aquasec.com/nvd/cve-2024-45337                 │
-├─────────────────────┼────────────────┼──────────┤        │                   ├─────────────────┼────────────────────────────────────────────────────────────┤
-│ golang.org/x/net    │ CVE-2024-45338 │ HIGH     │        │                   │ 0.33.0          │ golang.org/x/net/html: Non-linear parsing of               │
-│                     │                │          │        │                   │                 │ case-insensitive content in golang.org/x/net/html          │
-│                     │                │          │        │                   │                 │ https://avd.aquasec.com/nvd/cve-2024-45338                 │
-├─────────────────────┼────────────────┼──────────┤        ├───────────────────┼─────────────────┼────────────────────────────────────────────────────────────┤
-│ stdlib              │ CVE-2024-24790 │ CRITICAL │        │ v1.21.8           │ 1.21.11, 1.22.4 │ golang: net/netip: Unexpected behavior from Is methods for │
-│                     │                │          │        │                   │                 │ IPv4-mapped IPv6 addresses                                 │
-│                     │                │          │        │                   │                 │ https://avd.aquasec.com/nvd/cve-2024-24790                 │
-│                     ├────────────────┼──────────┤        │                   ├─────────────────┼────────────────────────────────────────────────────────────┤
-│                     │ CVE-2023-45288 │ HIGH     │        │                   │ 1.21.9, 1.22.2  │ golang: net/http, x/net/http2: unlimited number of         │
-│                     │                │          │        │                   │                 │ CONTINUATION frames causes DoS                             │
-│                     │                │          │        │                   │                 │ https://avd.aquasec.com/nvd/cve-2023-45288                 │
-│                     ├────────────────┤          │        │                   ├─────────────────┼────────────────────────────────────────────────────────────┤
-│                     │ CVE-2024-34156 │          │        │                   │ 1.22.7, 1.23.1  │ encoding/gob: golang: Calling Decoder.Decode on a message  │
-│                     │                │          │        │                   │                 │ which contains deeply nested structures...                 │
-│                     │                │          │        │                   │                 │ https://avd.aquasec.com/nvd/cve-2024-34156                 │
-└─────────────────────┴────────────────┴──────────┴────────┴───────────────────┴─────────────────┴────────────────────────────────────────────────────────────┘
-
-usr/bin/minio (gobinary)
-========================
-Total: 4 (HIGH: 2, CRITICAL: 2)
-
-┌─────────────────────┬────────────────┬──────────┬────────┬───────────────────┬─────────────────┬────────────────────────────────────────────────────────────┐
-│       Library       │ Vulnerability  │ Severity │ Status │ Installed Version │  Fixed Version  │                           Title                            │
-├─────────────────────┼────────────────┼──────────┼────────┼───────────────────┼─────────────────┼────────────────────────────────────────────────────────────┤
-│ golang.org/x/crypto │ CVE-2024-45337 │ CRITICAL │ fixed  │ v0.22.0           │ 0.31.0          │ golang.org/x/crypto/ssh: Misuse of                         │
-│                     │                │          │        │                   │                 │ ServerConfig.PublicKeyCallback may cause authorization     │
-│                     │                │          │        │                   │                 │ bypass in golang.org/x/crypto                              │
-│                     │                │          │        │                   │                 │ https://avd.aquasec.com/nvd/cve-2024-45337                 │
-├─────────────────────┼────────────────┼──────────┤        ├───────────────────┼─────────────────┼────────────────────────────────────────────────────────────┤
-│ golang.org/x/net    │ CVE-2024-45338 │ HIGH     │        │ v0.24.0           │ 0.33.0          │ golang.org/x/net/html: Non-linear parsing of               │
-│                     │                │          │        │                   │                 │ case-insensitive content in golang.org/x/net/html          │
-│                     │                │          │        │                   │                 │ https://avd.aquasec.com/nvd/cve-2024-45338                 │
-├─────────────────────┼────────────────┼──────────┤        ├───────────────────┼─────────────────┼────────────────────────────────────────────────────────────┤
-│ stdlib              │ CVE-2024-24790 │ CRITICAL │        │ v1.21.9           │ 1.21.11, 1.22.4 │ golang: net/netip: Unexpected behavior from Is methods for │
-│                     │                │          │        │                   │                 │ IPv4-mapped IPv6 addresses                                 │
-│                     │                │          │        │                   │                 │ https://avd.aquasec.com/nvd/cve-2024-24790                 │
-│                     ├────────────────┼──────────┤        │                   ├─────────────────┼────────────────────────────────────────────────────────────┤
-│                     │ CVE-2024-34156 │ HIGH     │        │                   │ 1.22.7, 1.23.1  │ encoding/gob: golang: Calling Decoder.Decode on a message  │
-│                     │                │          │        │                   │                 │ which contains deeply nested structures...                 │
-│                     │                │          │        │                   │                 │ https://avd.aquasec.com/nvd/cve-2024-34156                 │
-└─────────────────────┴────────────────┴──────────┴────────┴───────────────────┴─────────────────┴────────────────────────────────────────────────────────────┘
+<h3>Target <code>quay.io/minio/minio:RELEASE.2024-04-18T19-09-19Z (redhat 9.3)</code></h3>
+<h4>Vulnerabilities (6)</h4>
+<table>
+    <tr>
+        <th>Package</th>
+        <th>ID</th>
+        <th>Severity</th>
+        <th>Installed Version</th>
+        <th>Fixed Version</th>
+    </tr>
+    <tr>
+        <td><code>glibc</code></td>
+        <td>CVE-2024-2961</td>
+        <td>HIGH</td>
+        <td>2.34-83.el9_3.12</td>
+        <td>2.34-100.el9_4.2</td>
+    </tr>
+    <tr>
+        <td><code>glibc</code></td>
+        <td>CVE-2024-33599</td>
+        <td>HIGH</td>
+        <td>2.34-83.el9_3.12</td>
+        <td>2.34-100.el9_4.2</td>
+    </tr>
+    <tr>
+        <td><code>glibc-common</code></td>
+        <td>CVE-2024-2961</td>
+        <td>HIGH</td>
+        <td>2.34-83.el9_3.12</td>
+        <td>2.34-100.el9_4.2</td>
+    </tr>
+    <tr>
+        <td><code>glibc-common</code></td>
+        <td>CVE-2024-33599</td>
+        <td>HIGH</td>
+        <td>2.34-83.el9_3.12</td>
+        <td>2.34-100.el9_4.2</td>
+    </tr>
+    <tr>
+        <td><code>glibc-minimal-langpack</code></td>
+        <td>CVE-2024-2961</td>
+        <td>HIGH</td>
+        <td>2.34-83.el9_3.12</td>
+        <td>2.34-100.el9_4.2</td>
+    </tr>
+    <tr>
+        <td><code>glibc-minimal-langpack</code></td>
+        <td>CVE-2024-33599</td>
+        <td>HIGH</td>
+        <td>2.34-83.el9_3.12</td>
+        <td>2.34-100.el9_4.2</td>
+    </tr>
+</table>
+<h4>No Misconfigurations found</h4>
+<h3>Target <code>usr/bin/mc</code></h3>
+<h4>Vulnerabilities (5)</h4>
+<table>
+    <tr>
+        <th>Package</th>
+        <th>ID</th>
+        <th>Severity</th>
+        <th>Installed Version</th>
+        <th>Fixed Version</th>
+    </tr>
+    <tr>
+        <td><code>golang.org/x/crypto</code></td>
+        <td>CVE-2024-45337</td>
+        <td>CRITICAL</td>
+        <td>v0.21.0</td>
+        <td>0.31.0</td>
+    </tr>
+    <tr>
+        <td><code>golang.org/x/net</code></td>
+        <td>CVE-2024-45338</td>
+        <td>HIGH</td>
+        <td>v0.21.0</td>
+        <td>0.33.0</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2024-24790</td>
+        <td>CRITICAL</td>
+        <td>v1.21.8</td>
+        <td>1.21.11, 1.22.4</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2023-45288</td>
+        <td>HIGH</td>
+        <td>v1.21.8</td>
+        <td>1.21.9, 1.22.2</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2024-34156</td>
+        <td>HIGH</td>
+        <td>v1.21.8</td>
+        <td>1.22.7, 1.23.1</td>
+    </tr>
+</table>
+<h4>No Misconfigurations found</h4>
+<h3>Target <code>usr/bin/minio</code></h3>
+<h4>Vulnerabilities (4)</h4>
+<table>
+    <tr>
+        <th>Package</th>
+        <th>ID</th>
+        <th>Severity</th>
+        <th>Installed Version</th>
+        <th>Fixed Version</th>
+    </tr>
+    <tr>
+        <td><code>golang.org/x/crypto</code></td>
+        <td>CVE-2024-45337</td>
+        <td>CRITICAL</td>
+        <td>v0.22.0</td>
+        <td>0.31.0</td>
+    </tr>
+    <tr>
+        <td><code>golang.org/x/net</code></td>
+        <td>CVE-2024-45338</td>
+        <td>HIGH</td>
+        <td>v0.24.0</td>
+        <td>0.33.0</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2024-24790</td>
+        <td>CRITICAL</td>
+        <td>v1.21.9</td>
+        <td>1.21.11, 1.22.4</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2024-34156</td>
+        <td>HIGH</td>
+        <td>v1.21.9</td>
+        <td>1.22.7, 1.23.1</td>
+    </tr>
+</table>
+<h4>No Misconfigurations found</h4>
