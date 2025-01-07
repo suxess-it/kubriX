@@ -14,6 +14,7 @@ name: scan images
 
 jobs:
   evaluate:
+    if: ${{ vars.TRIVY_GITHUB_CODE_SCANNING == 'true' }}
     runs-on: ubuntu-latest
     outputs:
       matrix: ${{ steps.dataStep.outputs.matrix }}
