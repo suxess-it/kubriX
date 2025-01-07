@@ -5,6 +5,11 @@ on:
       - '.github/workflows/list-images.yaml'
       - 'platform-apps/charts/**'
 
+  workflow_run:
+    workflows: [sync upstream with PR]
+    types:
+      - completed
+
 name: list images
 
 jobs:
