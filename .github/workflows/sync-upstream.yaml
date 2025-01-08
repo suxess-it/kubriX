@@ -33,7 +33,16 @@ jobs:
           GH_TOKEN: ${{ secrets.SYNC_TOKEN }}
         run: |
           git remote -v
-          git push --set-upstream origin from-upstream
+          # check if from-upstream branch already exists and pull from it to get all new commits from origin (e.g. list-images or trivy-scan commits)
+          if [[ -z $(git ls-remote --heads origin from-upstream) ]] ; then
+            git push --set-upstream origin from-upstream
+          else
+            git config user.name "github-actions[bot]"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git branch --set-upstream-to origin/from-upstream from-upstream
+            git pull --no-rebase
+            git push
+          fi         
           echo "new commits:"
           git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset' --abbrev-commit --date=relative main..from-upstream
           # create a PR unless there are no new commits or there is already an existing PR from branch 'from-upstream'
