@@ -1,6 +1,6 @@
 
 <h3>Target <code>ghcr.io/suxess-it/sx-backstage:v1.32.5 (debian 12.7)</code></h3>
-<h4>Vulnerabilities (114)</h4>
+<h4>Vulnerabilities (113)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -334,13 +334,6 @@
     <tr>
         <td><code>linux-libc-dev</code></td>
         <td>CVE-2024-49966</td>
-        <td>HIGH</td>
-        <td>6.1.112-1</td>
-        <td>6.1.115-1</td>
-    </tr>
-    <tr>
-        <td><code>linux-libc-dev</code></td>
-        <td>CVE-2024-49967</td>
         <td>HIGH</td>
         <td>6.1.112-1</td>
         <td>6.1.115-1</td>
