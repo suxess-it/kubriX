@@ -1,9 +1,30 @@
 {
+  "configMigration": true,
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "extends": [
     "config:recommended"
   ],
   "crossplane": {
-    "fileMatch": [".+provider\\.yaml$"]
-  }
+    "fileMatch": [
+      ".+provider\\.yaml$"
+    ]
+  },
+  "packageRules": [
+    {
+      "matchDatasources": [
+        "helm",
+        "docker"
+      ],
+      "major": {
+        "semanticCommitType": "feat",
+        "commitBody": "BREAKING CHANGE: new upstream major version"
+      },
+      "minor": {
+        "semanticCommitType": "feat"
+      },
+      "patch": {
+        "semanticCommitType": "fix"
+      }
+    }
+  ]
 }

@@ -1,0 +1,43 @@
+apiVersion: tf.upbound.io/v1beta1
+kind: Workspace
+metadata:
+  annotation:
+    description: {{ .Values.description }}
+  name: {{ .Values.cluster_id }}
+#  namespace: {{ .Values.environments }}-demo-metalstack
+  namespace: default
+spec:
+  forProvider:
+    # Workspaces default to using a remote source - like workspace-remote.yaml.
+    # For simple cases you can use an inline source to specify the content of
+    # main.tf as opaque, inline HCL.
+    source: Inline
+    module: |
+      resource "metal_cluster" "{{ .Values.cluster_id }}" {
+        name       = "{{ .Values.cluster_id }}" #max 11
+        kubernetes = "1.28.10"
+        partition  = "eqx-mu4"
+        workers = [
+          {
+            name         = "default"
+            machine_type = "{{ .Values.type }}"
+            min_size     = {{ .Values.instances }}
+            max_size     = 3
+          }
+        ]
+        maintenance = {
+          time_window = {
+            begin = {
+              hour   = 18
+              minute = 30
+            }
+            duration = 2
+          }
+        }
+      }
+  writeConnectionSecretToRef:
+    namespace: {{ .Values.environments }}-demo-metalstack
+    name: terraform-{{ .Values.cluster_id }}-metalstack-cluster
+  providerConfigRef:
+    name: metalstack-config
+

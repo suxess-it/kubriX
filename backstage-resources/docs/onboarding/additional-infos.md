@@ -8,7 +8,7 @@ Here we want to give you a good overview how this approach works and what platfo
 
 ## Overview - Onboarding teams and apps with ApplicationSets
 
-![image](img/onboarding-teams-with-appset.png)
+![image](../img/onboarding-teams-with-appset.png)
 
 While this picture seems to be complex, it actually shows that onboarding teams and apps is just as easy as follows:
 
@@ -26,7 +26,7 @@ The internal operators, controllers and a little bit of love and magic then
 
 ## Overview - Onboarding teams and apps with App-Of-Apps
 
-![image](img/onboarding-teams-with-appofapps.png)
+![image](../img/onboarding-teams-with-appofapps.png)
 
 Also this picture is probably a little bit overwhelming in the first place, but in the end there is just one additional step here
 
