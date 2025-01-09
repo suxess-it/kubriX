@@ -18,6 +18,10 @@
 * **trivy-scan:** use safir component id without image tag ([#962](https://github.com/suxess-it/kubriX/issues/962)) ([2811e20](https://github.com/suxess-it/kubriX/commit/2811e20c011fdfd7cbf275711cd563317051a391))
 * use feat and fix commits also for renovate deps updates ([#939](https://github.com/suxess-it/kubriX/issues/939)) ([d985b61](https://github.com/suxess-it/kubriX/commit/d985b61aa7399c0ab5dbf96ef0995fa0f4fe5111))
 
+### Prime Features (only available with kubriX prime plan)
+
+* **hub-and-spoke**: support "hub and spoke" architecture ([kubriX-prime/285a297](https://github.com/suxess-it/kubriX-prime/commit/285a29717068a242441dee8f14b568fba3328520))
+* **hub-and-spoke**: propagate cluster labels to spoke applications ([kubriX-prime/#6](https://github.com/suxess-it/kubriX-prime/issues/6)) ([kubriX-prime/0035ea9](https://github.com/suxess-it/kubriX-prime/commit/0035ea9b75838efc3f1a7d98f8f60804cb9c7eeb))
 
 ### Bug Fixes
 
