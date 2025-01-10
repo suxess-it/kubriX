@@ -16,7 +16,7 @@
 * quay.io/jetstack/cert-manager-webhook:v1.16.2
 ## cnpg
 * docker.io/busybox:latest
-* docker.io/dpage/pgadmin4:8.13
+* docker.io/dpage/pgadmin4:8.14
 * ghcr.io/cloudnative-pg/cloudnative-pg:1.24.1
 ## crossplane
 * xpkg.upbound.io/crossplane/crossplane:v1.17.2
