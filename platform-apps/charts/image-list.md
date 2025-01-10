@@ -103,9 +103,8 @@
 * quay.io/minio/minio:RELEASE.2024-04-18T19-09-19Z
 ## team-onboarding
 ## tempo
-* ghcr.io/grafana/xk6-client-tracing:v0.0.2
-* grafana/tempo-query:2.5.0
-* grafana/tempo:2.5.0
+* grafana/tempo-query:2.6.1
+* grafana/tempo:2.6.1
 ## trivy
 * mirror.gcr.io/aquasec/trivy-operator:0.23.0
 ## vault

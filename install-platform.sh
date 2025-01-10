@@ -184,8 +184,8 @@ analyze_app() {
 
   # get logs
   echo "------------------"
-  echo "kubectl get pods -o name -n ${app_namespace} | xargs -I {} kubectl logs -n ${app_namespace} {}"
-  kubectl get pods -o name -n ${app_namespace} | xargs -I {} kubectl logs -n ${app_namespace} {} --all-containers=true
+  echo "kubectl get pods -o name -n ${app_namespace} | xargs -I {} kubectl logs --prefix -n ${app_namespace} {}"
+  kubectl get pods -o name -n ${app_namespace} | xargs -I {} kubectl logs --prefix -n ${app_namespace} {} --all-containers=true
   echo "------------------"
 
   echo "------------------"
