@@ -19,7 +19,7 @@
 * docker.io/dpage/pgadmin4:8.14
 * ghcr.io/cloudnative-pg/cloudnative-pg:1.24.1
 ## crossplane
-* xpkg.upbound.io/crossplane/crossplane:v1.17.2
+* xpkg.upbound.io/crossplane/crossplane:v1.18.2
 ## external-dns
 * ghcr.io/ionos-cloud/external-dns-ionos-webhook:v0.6.2
 * registry.k8s.io/external-dns/external-dns:v0.15.0
@@ -60,9 +60,9 @@
 * komodorio/komoplane:0.1.5
 ## kubecost
 * alpine/k8s:1.26.9
-* gcr.io/kubecost1/cost-model:prod-2.4.3
-* gcr.io/kubecost1/frontend:prod-2.4.3
-* gcr.io/kubecost1/kubecost-modeling:v0.1.16
+* gcr.io/kubecost1/cost-model:prod-2.5.1
+* gcr.io/kubecost1/frontend:prod-2.5.1
+* gcr.io/kubecost1/kubecost-modeling:v0.1.18
 * gcr.io/kubecost1/kubecost-network-costs:v0.17.6
 * quay.io/prometheus/prometheus:v2.55.1
 ## kubevirt-manager
