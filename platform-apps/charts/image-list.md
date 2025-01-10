@@ -99,8 +99,8 @@
 * quay.io/minio/mc:RELEASE.2024-04-18T16-45-29Z
 * quay.io/minio/minio:RELEASE.2024-04-18T19-09-19Z
 ## minio
-* quay.io/minio/mc:RELEASE.2024-04-18T16-45-29Z
-* quay.io/minio/minio:RELEASE.2024-04-18T19-09-19Z
+* quay.io/minio/mc:RELEASE.2024-11-21T17-21-54Z
+* quay.io/minio/minio:RELEASE.2024-12-18T13-15-44Z
 ## team-onboarding
 ## tempo
 * ghcr.io/grafana/xk6-client-tracing:v0.0.2
