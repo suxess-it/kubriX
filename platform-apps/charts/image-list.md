@@ -112,8 +112,8 @@
 * alpine/curl:latest
 * hashicorp/vault:1.17.2
 ## velero-ui
-* docker.io/dserio83/velero-api:0.1.18
-* docker.io/dserio83/velero-ui:0.1.17
+* docker.io/dserio83/velero-api:0.1.19
+* docker.io/dserio83/velero-ui:0.1.18
 * docker.io/dserio83/velero-watchdog:0.1.6
 ## velero
 * docker.io/bitnami/kubectl:1.31
