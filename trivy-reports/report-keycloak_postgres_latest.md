@@ -1,5 +1,5 @@
 
-<h3>Target <code>postgres:latest (debian 12.8)</code></h3>
+<h3>Target <code>postgres:latest (debian 12.9)</code></h3>
 <h4>No Vulnerabilities found</h4>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>usr/local/bin/gosu</code></h3>
