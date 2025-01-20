@@ -1,2 +1,11 @@
+# default destination rules for single instance team-onboarding (must get overwritten for hub-and-spoke topologies)
+defaultDestinationsRules:
+  - server: 'https://kubernetes.default.svc'
+    name: 'in-cluster'
+    namespace: '{{ .name }}-*'
+  - server: 'https://kubernetes.default.svc'
+    name: 'in-cluster'
+    namespace: 'adn-{{ .name }}'
+
 scmAppsetRequeueAfterSeconds: 1800
 multiStageKargoAppSetHelmRepo: ~
