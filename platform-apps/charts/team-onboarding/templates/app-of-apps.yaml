@@ -9,12 +9,14 @@ metadata:
 spec:
   destination:
     namespace: adn-{{ .name }}
-    server: https://kubernetes.default.svc
+    name: "in-cluster"
   project: {{ .name }}-project
-  sources:
-  - path:  {{ .appOfAppsRepo.path }}
+  source:
+    path:  {{ .appOfAppsRepo.path }}
     repoURL: {{ .appOfAppsRepo.repoURL }}
     targetRevision:  {{ .appOfAppsRepo.revision }}
+    directory:
+      recurse: true
   syncPolicy:
     automated:
       prune: true
