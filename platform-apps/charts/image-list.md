@@ -87,8 +87,8 @@
 * docker.io/grafana/loki:3.3.2
 * docker.io/library/busybox:latest
 * docker.io/nginxinc/nginx-unprivileged:1.27-alpine
-* kiwigrid/k8s-sidecar:1.28.0
-* memcached:1.6.33-alpine
+* kiwigrid/k8s-sidecar:1.29.0
+* memcached:1.6.34-alpine
 * prom/memcached-exporter:v0.15.0
 * quay.io/minio/mc:RELEASE.2024-04-18T16-45-29Z
 * quay.io/minio/minio:RELEASE.2024-04-18T19-09-19Z
