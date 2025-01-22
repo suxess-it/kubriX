@@ -145,12 +145,13 @@ jobs:
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git pull
           echo "remove old reports. ids from removed images are: "
-          cat platform-apps/charts/image-list-removed.json | jq '.[].id'
+          cat platform-apps/charts/image-list-removed.json | jq -r '.[].id'
 
           # use find to remove files
           # because it does not fail when no files exist
-          for id in $( cat platform-apps/charts/image-list-removed.json | jq '.[].id' ) ; do
-            find trivy-reports/ -type f -name 'report-${id}.md' -delete
+          for id in $( cat platform-apps/charts/image-list-removed.json | jq -r '.[].id' ) ; do
+            echo "delete file trivy-reports/report-${id}.md"
+            rm -f trivy-reports/report-${id}.md
           done
 
           # delete file again so it will not get committed
