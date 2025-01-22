@@ -37,9 +37,7 @@ jobs:
       - id: dataStep
         run: |
           echo "matrix=[$( cat platform-apps/charts/image-list.json )]"
-          #echo "matrix<<EOF" >> ${GITHUB_OUTPUT}
-          echo "matrix=[$( cat platform-apps/charts/image-list.json )]" >> ${GITHUB_OUTPUT}
-          #echo "EOF" >> ${GITHUB_OUTPUT}
+          echo "matrix=[$( cat platform-apps/charts/image-list.json | tr -d '\n' )]" >> ${GITHUB_OUTPUT}
           
   scan-images:
     needs: evaluate
