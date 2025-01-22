@@ -16,13 +16,20 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
         with:
+          path: pr
           fetch-depth: 0
+
+      - name: Checkout Target of PR
+        uses: actions/checkout@v4
+        with:
+          path: target
+          ref: ${{ github.event.pull_request.base.ref }}
 
       - name: create image json
         shell: bash
         run: |
           helm plugin install https://github.com/nikhilsbhat/helm-images
-          cd platform-apps/charts
+          cd pr/platform-apps/charts
           echo -n "" > image-list-temp.json
           for chart in $( ls -d */ | sed 's#/##' ); do
             echo "${chart}"
@@ -39,23 +46,27 @@ jobs:
 
       # find removed images compared to main branch and upload a json as an artifact
       # so the commit-report job can delete trivy reports from these images
+      - name: install jd
+        run: |
+          brew install jd
+
       - name: find removed images
         run: |
-          git diff origin/main --unified=0 platform-apps/charts/image-list.json | tail -n +6 | grep --invert-match '^@@' | grep ^- | sed 's/^-//g' > platform-apps/charts/image-list-removed.json
-          cat platform-apps/charts/image-list-removed.json
+          jd -set target/platform-apps/charts/image-list.json pr/platform-apps/charts/image-list.json | grep --invert-match '^@' | grep ^- | sed 's/^-//g' | jq --slurp > pr/platform-apps/charts/image-list-removed.json
+          cat pr/platform-apps/charts/image-list-removed.json
 
       - name: upload removed images list
         uses: actions/upload-artifact@v4
         with:
           name: image-list-removed.json
-          path: platform-apps/charts/image-list-removed.json
+          path: pr/platform-apps/charts/image-list-removed.json
           
       # only scan images which are added compared to main branch
       - id: dataStep
         run: |
-          git diff origin/main --unified=0 platform-apps/charts/image-list.json | tail -n +6 | grep --invert-match '^@@' | grep ^+ | sed 's/^+//g' > platform-apps/charts/image-list-added.json 
-          echo "matrix=[$( cat platform-apps/charts/image-list-added.json )]"
-          echo "matrix=[$( cat platform-apps/charts/image-list-added.json | tr -d '\n' )]" >> ${GITHUB_OUTPUT}
+          jd -set target/platform-apps/charts/image-list.json pr/platform-apps/charts/image-list.json | grep --invert-match '^@' | grep ^+ | sed 's/^+//g' | jq --slurp > pr/platform-apps/charts/image-list-added.json
+          echo "matrix=$( cat pr/platform-apps/charts/image-list-added.json )"
+          echo "matrix=$( cat pr/platform-apps/charts/image-list-added.json | tr -d '\n' )" >> ${GITHUB_OUTPUT}
           
   scan-images:
     needs: evaluate
