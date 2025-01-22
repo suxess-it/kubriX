@@ -24,7 +24,7 @@
 * ghcr.io/ionos-cloud/external-dns-ionos-webhook:v0.6.2
 * registry.k8s.io/external-dns/external-dns:v0.15.0
 ## external-secrets
-* oci.external-secrets.io/external-secrets/external-secrets:v0.12.1
+* oci.external-secrets.io/external-secrets/external-secrets:v0.13.0
 ## falco
 * appropriate/curl
 * busybox
