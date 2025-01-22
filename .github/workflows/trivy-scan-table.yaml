@@ -152,7 +152,7 @@ jobs:
           for id in $( cat platform-apps/charts/image-list-removed.json | jq -r '.[].id' ) ; do
             echo "delete file trivy-reports/report-${id}.md"
             ls -l trivy-reports/report-${id}.md
-            find trivy-reports/ -type f -name 'report-${id}.md' -delete
+            rm trivy-reports/report-${id}.md
             ls -l trivy-reports/report-${id}.md
           done
 
