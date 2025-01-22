@@ -151,7 +151,7 @@ jobs:
           # because it does not fail when no files exist
           for id in $( cat platform-apps/charts/image-list-removed.json | jq -r '.[].id' ) ; do
             echo "delete file trivy-reports/report-${id}.md"
-            rm trivy-reports/report-${id}.md
+            rm -f trivy-reports/report-${id}.md
           done
 
           # delete file again so it will not get committed
