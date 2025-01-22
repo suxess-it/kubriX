@@ -42,6 +42,7 @@ jobs:
           cat image-list.md
 
           echo "create the images json"
+          echo -n "" > image-list-temp.json
           for chart in $( ls -d */ | sed 's#/##' ); do
             echo "${chart}"
             helm dependency update ${chart} 1> /dev/null 2>&1
@@ -50,9 +51,10 @@ jobs:
                 helm images get ${chart} -f ${value} --log-level error --kind "Deployment,StatefulSet,DaemonSet,CronJob,Job,ReplicaSet,Pod,Alertmanager,Prometheus,ThanosRuler,Grafana,Thanos,Receiver"
               done | sort -u ); do
               id=$( echo -n "${chart}_$( echo ${image} | awk -F/ '{print $NF}' | sed 's/:/_/g' )" )
-              echo "{chart: \"${chart}\", image: \"${image}\", id: \"${id}\"}," >> image-list.json
+              echo "{\"chart\": \"${chart}\", \"image\": \"${image}\", \"id\": \"${id}\"}" >> image-list-temp.json
             done
           done
+          jq --slurp '.' image-list-temp.json image-list.json
 
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
