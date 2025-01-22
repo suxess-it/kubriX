@@ -53,7 +53,7 @@ jobs:
 
       - name: find removed images
         run: |
-          jd -set target/platform-apps/charts/image-list.json pr/platform-apps/charts/image-list.json | grep --invert-match '^@' | grep ^- | sed 's/^-//g' | jq --slurp > pr/platform-apps/charts/image-list-removed.json
+          ./jd -set target/platform-apps/charts/image-list.json pr/platform-apps/charts/image-list.json | grep --invert-match '^@' | grep ^- | sed 's/^-//g' | jq --slurp > pr/platform-apps/charts/image-list-removed.json
           cat pr/platform-apps/charts/image-list-removed.json
 
       - name: upload removed images list
@@ -65,7 +65,7 @@ jobs:
       # only scan images which are added compared to main branch
       - id: dataStep
         run: |
-          jd -set target/platform-apps/charts/image-list.json pr/platform-apps/charts/image-list.json | grep --invert-match '^@' | grep ^+ | sed 's/^+//g' | jq --slurp > pr/platform-apps/charts/image-list-added.json
+          ./jd -set target/platform-apps/charts/image-list.json pr/platform-apps/charts/image-list.json | grep --invert-match '^@' | grep ^+ | sed 's/^+//g' | jq --slurp > pr/platform-apps/charts/image-list-added.json
           echo "matrix=$( cat pr/platform-apps/charts/image-list-added.json )"
           echo "matrix=$( cat pr/platform-apps/charts/image-list-added.json | tr -d '\n' )" >> ${GITHUB_OUTPUT}
           
