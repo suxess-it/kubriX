@@ -57,7 +57,7 @@
 * quay.io/keycloak/keycloak:25.0.2
 ## komoplane
 * busybox
-* komodorio/komoplane:0.1.5
+* komodorio/komoplane:0.1.6
 ## kubecost
 * alpine/k8s:1.26.9
 * gcr.io/kubecost1/cost-model:prod-2.5.1
