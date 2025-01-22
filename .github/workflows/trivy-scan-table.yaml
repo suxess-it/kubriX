@@ -15,6 +15,8 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - name: create image json
         shell: bash
@@ -39,7 +41,7 @@ jobs:
       # so the commit-report job can delete trivy reports from these images
       - name: find removed images
         run: |
-          git diff main --unified=0 platform-apps/charts/image-list.json | tail -n +6 | grep --invert-match '^@@' | grep ^- | sed 's/^-//g' > platform-apps/charts/image-list-removed.json
+          git diff origin/main --unified=0 platform-apps/charts/image-list.json | tail -n +6 | grep --invert-match '^@@' | grep ^- | sed 's/^-//g' > platform-apps/charts/image-list-removed.json
 
       - name: upload removed images list
         uses: actions/upload-artifact@v4
