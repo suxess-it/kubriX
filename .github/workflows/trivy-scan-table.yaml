@@ -72,6 +72,7 @@ jobs:
           
   scan-images:
     needs: evaluate
+    if: ${{ fromJSON(needs.evaluate.outputs.matrix).images[0] }}
     strategy:
       matrix: 
         images: ${{ fromJson(needs.evaluate.outputs.matrix) }}
