@@ -15,13 +15,22 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
+        with:
+          path: pr
+          fetch-depth: 0
+
+      - name: Checkout Target of PR
+        uses: actions/checkout@v4
+        with:
+          path: target
+          ref: ${{ github.event.pull_request.base.ref }}
 
       - name: create image json
         shell: bash
         run: |
           helm plugin install https://github.com/nikhilsbhat/helm-images
-          cd platform-apps/charts
-          echo -n "" > image-list.json
+          cd pr/platform-apps/charts
+          echo -n "" > image-list-temp.json
           for chart in $( ls -d */ | sed 's#/##' ); do
             echo "${chart}"
             helm dependency update ${chart} 1> /dev/null 2>&1
@@ -30,19 +39,40 @@ jobs:
                 helm images get ${chart} -f ${value} --log-level error --kind "Deployment,StatefulSet,DaemonSet,CronJob,Job,ReplicaSet,Pod,Alertmanager,Prometheus,ThanosRuler,Grafana,Thanos,Receiver"
               done | sort -u ); do
               id=$( echo -n "${chart}_$( echo ${image} | awk -F/ '{print $NF}' | sed 's/:/_/g' )" )
-              echo -n "{chart: \"${chart}\", image: \"${image}\", id: \"${id}\"}," >> image-list.json
+              echo "{\"chart\": \"${chart}\", \"image\": \"${image}\", \"id\": \"${id}\"}" >> image-list-temp.json
             done
           done
-          
-      - id: dataStep
+          jq --slurp '.' image-list-temp.json > image-list.json
+
+      # find removed images compared to main branch and upload a json as an artifact
+      # so the commit-report job can delete trivy reports from these images
+      - name: install jd
         run: |
-          echo "matrix=[$( cat platform-apps/charts/image-list.json )]"
-          #echo "matrix<<EOF" >> ${GITHUB_OUTPUT}
-          echo "matrix=[$( cat platform-apps/charts/image-list.json )]" >> ${GITHUB_OUTPUT}
-          #echo "EOF" >> ${GITHUB_OUTPUT}
+          curl -L -o jd https://github.com/josephburnett/jd/releases/download/v1.9.1/jd-amd64-linux
+          chmod u+x jd
+
+      - name: find removed images
+        run: |
+          ./jd -set target/platform-apps/charts/image-list.json pr/platform-apps/charts/image-list.json | grep --invert-match '^@' | grep ^- | sed 's/^-//g' | jq --slurp > pr/platform-apps/charts/image-list-removed.json
+          cat pr/platform-apps/charts/image-list-removed.json
+
+      - name: upload removed images list
+        uses: actions/upload-artifact@v4
+        with:
+          name: image-list-removed.json
+          path: pr/platform-apps/charts/image-list-removed.json
+          
+      # only scan images which are added compared to main branch
+      - name: set scan matrix
+        id: dataStep
+        run: |
+          ./jd -set target/platform-apps/charts/image-list.json pr/platform-apps/charts/image-list.json | grep --invert-match '^@' | grep ^+ | sed 's/^+//g' | jq --slurp > pr/platform-apps/charts/image-list-added.json
+          echo "matrix=$( cat pr/platform-apps/charts/image-list-added.json )"
+          echo "matrix=$( cat pr/platform-apps/charts/image-list-added.json | tr -d '\n' )" >> ${GITHUB_OUTPUT}
           
   scan-images:
     needs: evaluate
+    if: ${{ fromJSON(needs.evaluate.outputs.matrix)[0] }}
     strategy:
       matrix: 
         images: ${{ fromJson(needs.evaluate.outputs.matrix) }}
@@ -64,7 +94,7 @@ jobs:
         with:
           ref: ${{ github.event.pull_request.head.ref }}
 
-      - name: delete old trivy reports
+      - name:  create temp dir for trivy reports
         shell: bash
         run: |
           mkdir trivy-reports-workdir
@@ -100,19 +130,35 @@ jobs:
         with:
           ref: ${{ github.event.pull_request.head.ref }}
 
-      - name: delete old trivy reports
+      # we need to delete scans reports from files which got deleted
+      # and download scan reports from files which got changed
+      - name: download removed images json
+        uses: actions/download-artifact@v4
+        with:
+          name: image-list-removed.json
+          path: platform-apps/charts/
+
+      - name: delete old trivy reports from removed images artifact
         shell: bash
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git pull
-          echo "remove old reports"
+          echo "remove old reports. ids from removed images are: "
+          cat platform-apps/charts/image-list-removed.json | jq '.[].id'
+
           # use find to remove files
           # because it does not fail when no files exist
-          find trivy-reports/ -type f -name 'report-*' -delete
+          for id in $( cat platform-apps/charts/image-list-removed.json | jq '.[].id' ) ; do
+            find trivy-reports/ -type f -name 'report-${id}.md' -delete
+          done
+
+          # delete file again so it will not get committed
+          rm platform-apps/charts/image-list-removed.json
+
           git status
           
-      - name: download reports
+      - name: download new reports
         uses: actions/download-artifact@v4
         with:
           pattern: trivy-reports-*
