@@ -48,7 +48,8 @@ jobs:
       # so the commit-report job can delete trivy reports from these images
       - name: install jd
         run: |
-          brew install jd
+          curl -L -o jd https://github.com/josephburnett/jd/releases/download/v1.9.1/jd-amd64-linux
+          chmod u+x jd
 
       - name: find removed images
         run: |
