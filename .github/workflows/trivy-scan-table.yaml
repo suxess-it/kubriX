@@ -63,7 +63,8 @@ jobs:
           path: pr/platform-apps/charts/image-list-removed.json
           
       # only scan images which are added compared to main branch
-      - id: dataStep
+      - name: set scan matrix
+        id: dataStep
         run: |
           ./jd -set target/platform-apps/charts/image-list.json pr/platform-apps/charts/image-list.json | grep --invert-match '^@' | grep ^+ | sed 's/^+//g' | jq --slurp > pr/platform-apps/charts/image-list-added.json
           echo "matrix=$( cat pr/platform-apps/charts/image-list-added.json )"
