@@ -116,7 +116,7 @@
 * docker.io/dserio83/velero-ui:0.1.18
 * docker.io/dserio83/velero-watchdog:0.1.6
 ## velero
-* docker.io/bitnami/kubectl:1.32
+* docker.io/bitnami/kubectl:1.31
 * quay.io/kubevirt/kubevirt-velero-plugin:v0.7.0
 * velero/velero-plugin-for-aws:v1.10.0
 * velero/velero-plugin-for-aws:v1.11.0
