@@ -30,7 +30,7 @@ jobs:
                 helm images get ${chart} -f ${value} --log-level error --kind "Deployment,StatefulSet,DaemonSet,CronJob,Job,ReplicaSet,Pod,Alertmanager,Prometheus,ThanosRuler,Grafana,Thanos,Receiver"
               done | sort -u ); do
               id=$( echo -n "${chart}_$( echo ${image} | awk -F/ '{print $NF}' | sed 's/:/_/g' )" )
-              echo "{chart: \"${chart}\", image: \"${image}\", id: \"${id}\"}," >> image-list.json
+              echo "{\"chart\": \"${chart}\", \"image\": \"${image}\", \"id\": \"${id}\"}," >> image-list.json
             done
           done
           
