@@ -33,7 +33,7 @@ jobs:
               echo "{\"chart\": \"${chart}\", \"image\": \"${image}\", \"id\": \"${id}\"}" >> image-list-temp.json
             done
           done
-          jq --slurp '.' image-list-temp.json image-list.json
+          jq --slurp '.' image-list-temp.json > image-list.json
 
       # find removed images compared to main branch and upload a json as an artifact
       # so the commit-report job can delete trivy reports from these images

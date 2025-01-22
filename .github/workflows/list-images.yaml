@@ -54,7 +54,7 @@ jobs:
               echo "{\"chart\": \"${chart}\", \"image\": \"${image}\", \"id\": \"${id}\"}" >> image-list-temp.json
             done
           done
-          jq --slurp '.' image-list-temp.json image-list.json
+          jq --slurp '.' image-list-temp.json > image-list.json
 
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
