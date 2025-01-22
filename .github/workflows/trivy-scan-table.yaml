@@ -118,7 +118,7 @@ jobs:
 
       # we need to delete scans reports from files which got deleted
       # and download scan reports from files which got changed
-      - name: download images diff
+      - name: download removed images json
         uses: actions/download-artifact@v4
         with:
           name: image-list-removed.json
@@ -138,6 +138,9 @@ jobs:
           for id in $( cat platform-apps/charts/image-list-removed.json | jq '.[].id' ) ; do
             find trivy-reports/ -type f -name 'report-${id}.md' -delete
           done
+
+          # delete file again so it will not get committed
+          rm platform-apps/charts/image-list-removed.json
 
           git status
           
