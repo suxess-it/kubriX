@@ -5,6 +5,11 @@ on:
       - '.github/workflows/list-images.yaml'
       - 'platform-apps/charts/**'
 
+  workflow_run:
+    workflows: [sync upstream with PR]
+    types:
+      - completed
+
 name: list images
 
 jobs:
@@ -17,11 +22,14 @@ jobs:
         uses: actions/checkout@v4
         with:
           ref: ${{ github.event.pull_request.head.ref }}
-      - name: get images
+
+      - name: create images list markdown and json
         shell: bash
         run: |
           helm plugin install https://github.com/nikhilsbhat/helm-images
           cd platform-apps/charts
+
+          echo "create the images markdown"
           echo "# Image list" > image-list.md
           for chart in $( ls -d */ | sed 's#/##' ); do
             echo "${chart}"
@@ -32,6 +40,23 @@ jobs:
             done | sort -u | sed 's/^/* /' >> image-list.md
           done
           cat image-list.md
+
+          echo "create the images json"
+          echo -n "" > image-list-temp.json
+          for chart in $( ls -d */ | sed 's#/##' ); do
+            echo "${chart}"
+            helm dependency update ${chart} 1> /dev/null 2>&1
+            for image in $(
+              for value in $( find ${chart} -type f -name "values-*" ); do
+                helm images get ${chart} -f ${value} --log-level error --kind "Deployment,StatefulSet,DaemonSet,CronJob,Job,ReplicaSet,Pod,Alertmanager,Prometheus,ThanosRuler,Grafana,Thanos,Receiver"
+              done | sort -u ); do
+              id=$( echo -n "${chart}_$( echo ${image} | awk -F/ '{print $NF}' | sed 's/:/_/g' )" )
+              echo "{\"chart\": \"${chart}\", \"image\": \"${image}\", \"id\": \"${id}\"}" >> image-list-temp.json
+            done
+          done
+          jq --slurp '.' image-list-temp.json > image-list.json
+          rm image-list-temp.json
+
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add .
