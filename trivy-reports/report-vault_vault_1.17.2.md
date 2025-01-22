@@ -3,7 +3,7 @@
 <h4>No Vulnerabilities found</h4>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>bin/vault</code></h3>
-<h4>Vulnerabilities (4)</h4>
+<h4>Vulnerabilities (5)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -18,6 +18,13 @@
         <td>CRITICAL</td>
         <td>v25.0.5+incompatible</td>
         <td>23.0.15, 26.1.5, 27.1.1, 25.0.6</td>
+    </tr>
+    <tr>
+        <td><code>github.com/hashicorp/go-slug</code></td>
+        <td>CVE-2025-0377</td>
+        <td>HIGH</td>
+        <td>v0.15.0</td>
+        <td>0.16.3</td>
     </tr>
     <tr>
         <td><code>golang.org/x/crypto</code></td>
