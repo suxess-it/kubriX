@@ -42,6 +42,7 @@ jobs:
       - name: find removed images
         run: |
           git diff origin/main --unified=0 platform-apps/charts/image-list.json | tail -n +6 | grep --invert-match '^@@' | grep ^- | sed 's/^-//g' > platform-apps/charts/image-list-removed.json
+          cat platform-apps/charts/image-list-removed.json
 
       - name: upload removed images list
         uses: actions/upload-artifact@v4
