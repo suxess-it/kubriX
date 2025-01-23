@@ -17,7 +17,7 @@
 ## cnpg
 * docker.io/busybox:latest
 * docker.io/dpage/pgadmin4:8.14
-* ghcr.io/cloudnative-pg/cloudnative-pg:1.24.1
+* ghcr.io/cloudnative-pg/cloudnative-pg:1.25.0
 ## crossplane
 * xpkg.upbound.io/crossplane/crossplane:v1.18.2
 ## external-dns
@@ -50,7 +50,7 @@
 * quay.io/prometheus/node-exporter:v1.8.2
 * registry.k8s.io/kube-state-metrics/kube-state-metrics:v2.14.0
 ## kargo
-* ghcr.io/akuity/kargo:v1.2.0
+* ghcr.io/akuity/kargo:v1.2.1
 ## keycloak
 * busybox
 * postgres:latest
@@ -126,4 +126,4 @@
 * velero/velero-plugin-for-microsoft-azure:v1.10.1
 * velero/velero-plugin-for-microsoft-azure:v1.11.0
 * velero/velero:v1.14.1
-* velero/velero:v1.15.1
+* velero/velero:v1.15.2
