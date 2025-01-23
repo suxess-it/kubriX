@@ -12,7 +12,7 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    if: ${{ vars.UPSTREAM_REPO != '' }}    
+    if: ${{ (vars.UPSTREAM_REPO != '') && (vars.SYNC_RELEASE_TAG == 'true') }}    
     steps:
       - name: checkout and fetch upstream commits
         shell: bash
