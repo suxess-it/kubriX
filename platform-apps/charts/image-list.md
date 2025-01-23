@@ -125,4 +125,4 @@
 * velero/velero-plugin-for-microsoft-azure:v1.10.1
 * velero/velero-plugin-for-microsoft-azure:v1.11.0
 * velero/velero:v1.14.1
-* velero/velero:v1.15.0
+* velero/velero:v1.15.1
