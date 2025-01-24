@@ -119,6 +119,7 @@ jobs:
 
   commit-reports:
     needs: scan-images
+    if: ${{ !failure() && !cancelled() }}
     runs-on: ubuntu-latest
     permissions:
       actions: write
