@@ -54,6 +54,8 @@ jobs:
 
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git pull
+          git status
           git add .
           git diff --cached --exit-code || git commit -m "updated container image list"
           git push
