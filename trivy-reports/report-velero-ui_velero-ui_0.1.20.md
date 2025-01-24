@@ -1,5 +1,5 @@
 
-<h3>Target <code>docker.io/dserio83/velero-ui:0.1.19 (alpine 3.19.0)</code></h3>
+<h3>Target <code>docker.io/dserio83/velero-ui:0.1.20 (alpine 3.19.0)</code></h3>
 <h4>No Vulnerabilities found</h4>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>Node.js</code></h3>
