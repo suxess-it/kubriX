@@ -104,7 +104,6 @@
 ## team-onboarding
 ## tempo
 * ghcr.io/grafana/xk6-client-tracing:v0.0.2
-* grafana/tempo-query:2.7.0
 * grafana/tempo:2.7.0
 ## trivy
 * mirror.gcr.io/aquasec/trivy-operator:0.23.0
