@@ -50,6 +50,7 @@ metadata:
 spec:
   forProvider:
     authenticator: auth-cookie
+    priority: 1
     parentFlowAliasSelector:
       matchLabels:
         platform-engineer.cloud/flow: 2faflow
@@ -70,6 +71,7 @@ metadata:
 spec:
   forProvider:
     authenticator: identity-provider-redirector
+    priority: 2
     parentFlowAliasSelector:
       matchLabels:
         platform-engineer.cloud/flow: 2faflow
@@ -90,6 +92,7 @@ metadata:
 spec:
   forProvider:
     authenticator: auth-username-password-form
+    priority: 3
     parentFlowAliasSelector:
       matchLabels:
         platform-engineer.cloud/flow: 2faflow
@@ -112,6 +115,7 @@ metadata:
 spec:
   forProvider:
     authenticator: auth-conditional-otp-form
+    priority: 4
     parentFlowAliasSelector:
       matchLabels:
         platform-engineer.cloud/flow: 2faflow
