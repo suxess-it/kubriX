@@ -50,7 +50,7 @@
 * quay.io/prometheus/node-exporter:v1.8.2
 * registry.k8s.io/kube-state-metrics/kube-state-metrics:v2.14.0
 ## kargo
-* ghcr.io/akuity/kargo:v1.2.1
+* ghcr.io/akuity/kargo:v1.2.2
 ## keycloak
 * busybox
 * postgres:latest
