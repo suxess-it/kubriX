@@ -37,7 +37,7 @@
 * docker.io/redis/redis-stack:7.2.0-v11
 ## grafana
 * docker.io/bats/bats:v1.4.1
-* docker.io/grafana/grafana:11.4.0
+* docker.io/grafana/grafana:11.4.1
 * docker.io/library/busybox:1.31.1
 * quay.io/kiwigrid/k8s-sidecar:1.28.0
 ## ingress-nginx
