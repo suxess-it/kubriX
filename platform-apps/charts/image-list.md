@@ -29,7 +29,7 @@
 * appropriate/curl
 * busybox
 * docker.io/falcosecurity/falco-exporter:0.8.3
-* docker.io/falcosecurity/falco-no-driver:0.39.2
+* docker.io/falcosecurity/falco:0.40.0-debian
 * docker.io/falcosecurity/falcoctl:0.10.1
 * docker.io/falcosecurity/falcosidekick-ui:2.2.0
 * docker.io/falcosecurity/falcosidekick:2.30.0
