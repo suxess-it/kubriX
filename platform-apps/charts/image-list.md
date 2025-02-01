@@ -3,7 +3,7 @@
 * quay.io/argoproj/argo-rollouts:v1.8.0
 ## argocd
 * ghcr.io/dexidp/dex:v2.41.1
-* public.ecr.aws/docker/library/redis:7.4.1-alpine
+* public.ecr.aws/docker/library/redis:7.4.2-alpine
 * quay.io/argoproj/argocd:v2.13.3
 ## backstage
 * alpine:3.17
