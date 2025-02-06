@@ -38,7 +38,7 @@ env:
   
 jobs:
   create-cluster:
-    runs-on: ubuntu-latest
+    runs-on: ${{ vars.KUBRIX_GITHUB_RUNNER || 'ubuntu-latest' }}
     permissions: read-all
     strategy:
       matrix:
