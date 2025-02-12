@@ -9,7 +9,7 @@ backstage:
     image:
       registry: ghcr.io/suxess-it
       repository: sx-backstage
-      tag: v1.32.5
+      tag: v1.34.2
     extraEnvVarsSecrets:
       - sx-cnp-secret
       - manual-secret
@@ -30,11 +30,11 @@ backstage:
         mountPath: /opt/app-root/src/rbac
     appConfig:
       app:
-        title: sX CNP App
+        title: kubriX OSS
         baseUrl: https://backstage-127-0-0-1.nip.io
 
       organization:
-        name: sX CNP
+        name: kubriX OSS
 
       backend:
         # Used for enabling authentication, secret is shared by all backend plugins
@@ -90,14 +90,6 @@ backstage:
         # '/test':
         #   target: 'https://example.com'
         #   changeOrigin: true
-          "/argocd/api":
-            # use k8s internal service name because argocd-127-0-0-1.nip.io resolves to 127.0.0.1 in container, too
-            target: http://sx-argocd-server.argocd:80/api/v1/
-            changeOrigin: true
-            headers:
-              Cookie:
-                $env: ARGOCD_AUTH_TOKEN
-
           '/grafana/api':
             # use k8s internal service name because grafana-127-0-0-1.nip.io resolves to 127.0.0.1 in container, too
             target: http://sx-grafana.grafana:80
@@ -225,13 +217,13 @@ backstage:
           - type: url
             target: https://github.com/suxess-it/sx-cnp-oss-demo-app/blob/main/catalog-info.yaml
           - type: url
-            target: https://github.com/suxess-it/sx-cnp-oss/blob/main/backstage-resources/templates/showcase-templates.yaml
+            target: https://github.com/suxess-it/kubriX/blob/main/backstage-resources/templates/showcase-templates.yaml
             rules:
               - allow: [Template]
           - type: url
-            target: https://github.com/suxess-it/sx-cnp-oss/blob/main/backstage-resources/entities/all.yaml
+            target: https://github.com/suxess-it/kubriX/blob/main/backstage-resources/entities/all.yaml
           - type: url
-            target: https://github.com/suxess-it/sx-cnp-oss/blob/main/backstage-resources/entities/k3d.yaml
+            target: https://github.com/suxess-it/kubriX/blob/main/backstage-resources/entities/k3d.yaml
         providers:
           keycloakOrg:
             default:
@@ -262,9 +254,6 @@ backstage:
                 skipTLSVerify: true
                 skipMetricsLookup: true
                 serviceAccountToken: ${K8S_SA_TOKEN}
-
-      scorecards:
-        jsonDataUrl: https://raw.githubusercontent.com/Oriflame/backstage-plugins/main/plugins/score-card/sample-data/
 
       grafana:
         # Publicly accessible domain
