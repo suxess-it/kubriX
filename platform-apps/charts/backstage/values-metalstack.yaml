@@ -14,7 +14,7 @@ backstage:
     image:
       registry: ghcr.io/suxess-it
       repository: sx-backstage
-      tag: v1.32.5
+      tag: v1.34.2
     extraEnvVarsSecrets:
       - sx-cnp-secret
       - manual-secret
@@ -31,11 +31,11 @@ backstage:
         mountPath: /opt/app-root/src/rbac
     appConfig:
       app:
-        title: sX CNP App
+        title: kubriX OSS
         baseUrl: https://portal-metalstack.platform-engineer.cloud
 
       organization:
-        name: sX CNP
+        name: kubriX OSS
 
       backend:
         # Used for enabling authentication, secret is shared by all backend plugins
@@ -90,13 +90,6 @@ backstage:
         # '/test':
         #   target: 'https://example.com'
         #   changeOrigin: true
-          "/argocd/api":
-            target: https://argocd-metalstack.platform-engineer.cloud/api/v1/
-            changeOrigin: true
-            headers:
-              Cookie:
-                $env: ARGOCD_AUTH_TOKEN
-
           '/grafana/api':
             # May be a public or an internal DNS
             target: https://grafana-metalstack.platform-engineer.cloud
@@ -205,13 +198,13 @@ backstage:
           - type: url
             target: https://github.com/jkleinlercher/test9-repo/blob/master/catalog-info.yaml
           - type: url
-            target: https://github.com/suxess-it/sx-cnp-oss/blob/main/backstage-resources/templates/showcase-templates.yaml
+            target: https://github.com/suxess-it/kubrix/blob/main/backstage-resources/templates/showcase-templates.yaml
             rules:
               - allow: [Template]
           - type: url
-            target: https://github.com/suxess-it/sx-cnp-oss/blob/main/backstage-resources/entities/all.yaml
+            target: https://github.com/suxess-it/kubrix/blob/main/backstage-resources/entities/all.yaml
           - type: url
-            target: https://github.com/suxess-it/sx-cnp-oss/blob/main/backstage-resources/entities/metalstack.yaml
+            target: https://github.com/suxess-it/kubrix/blob/main/backstage-resources/entities/metalstack.yaml
 
       kubernetes:
         serviceLocatorMethod:
@@ -225,10 +218,6 @@ backstage:
                 skipTLSVerify: true
                 skipMetricsLookup: true
                 serviceAccountToken: ${K8S_SA_TOKEN}
-
-      scorecards:
-        jsonDataUrl: https://raw.githubusercontent.com/Oriflame/backstage-plugins/main/plugins/score-card/sample-data/
-
       
       grafana:
         # Publicly accessible domain
@@ -317,7 +306,7 @@ backstage:
         # confluenceActivityFilter: wiki@uuid
         # Defaults to latest and can be omitted if you want to use the latest version of the api
       permission:
-        enabled: false
+        enabled: true
         rbac:
           pluginsWithPermission:
             - kubernetes

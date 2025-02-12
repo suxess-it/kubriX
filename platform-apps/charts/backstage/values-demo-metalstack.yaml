@@ -16,7 +16,7 @@ backstage:
     image:
       registry: ghcr.io/suxess-it
       repository: sx-backstage
-      tag: v1.32.5
+      tag: v1.34.2
     extraEnvVarsSecrets:
       - sx-cnp-secret
       - manual-secret
@@ -34,11 +34,11 @@ backstage:
         mountPath: /opt/app-root/src/rbac
     appConfig:
       app:
-        title: kubriX platform
+        title: kubriX OSS
         baseUrl: https://backstage.demo.kubrix.cloud
 
       organization:
-        name: kubriX platform
+        name: kubriX OSS
 
       backend:
         # Used for enabling authentication, secret is shared by all backend plugins
@@ -99,13 +99,6 @@ backstage:
         # '/test':
         #   target: 'https://example.com'
         #   changeOrigin: true
-          "/argocd/api":
-            target: https://argocd.demo.kubrix.cloud/api/v1/
-            changeOrigin: true
-            headers:
-              Cookie:
-                $env: ARGOCD_AUTH_TOKEN
-
           '/grafana/api':
             # May be a public or an internal DNS
             target: https://grafana.demo.kubrix.cloud
@@ -281,9 +274,6 @@ backstage:
                 skipMetricsLookup: true
                 serviceAccountToken: ${K8S_SA_TOKEN}
 
-      scorecards:
-        jsonDataUrl: https://raw.githubusercontent.com/Oriflame/backstage-plugins/main/plugins/score-card/sample-data/
-
       grafana:
         # Publicly accessible domain
         domain: https://grafana.demo.kubrix.cloud
@@ -371,7 +361,7 @@ backstage:
         # confluenceActivityFilter: wiki@uuid
         # Defaults to latest and can be omitted if you want to use the latest version of the api
       permission:
-        enabled: false
+        enabled: true
         rbac:
           pluginsWithPermission:
             - kubernetes
