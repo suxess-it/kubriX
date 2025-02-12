@@ -63,7 +63,6 @@
 * gcr.io/kubecost1/cost-model:prod-2.5.3
 * gcr.io/kubecost1/frontend:prod-2.5.3
 * gcr.io/kubecost1/kubecost-modeling:v0.1.19
-* gcr.io/kubecost1/kubecost-network-costs:v0.17.6
 * quay.io/prometheus/prometheus:v2.55.1
 ## kubevirt-manager
 * kubevirtmanager/kubevirt-manager:1.3.3
@@ -117,12 +116,8 @@
 * docker.io/dserio83/velero-watchdog:0.1.6
 ## velero
 * docker.io/bitnami/kubectl:1.31
-* quay.io/kubevirt/kubevirt-velero-plugin:v0.7.0
 * velero/velero-plugin-for-aws:v1.10.0
 * velero/velero-plugin-for-aws:v1.11.0
-* velero/velero-plugin-for-aws:v1.8.2
 * velero/velero-plugin-for-microsoft-azure:v1.10.0
-* velero/velero-plugin-for-microsoft-azure:v1.10.1
 * velero/velero-plugin-for-microsoft-azure:v1.11.0
-* velero/velero:v1.14.1
 * velero/velero:v1.15.2
