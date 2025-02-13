@@ -28,10 +28,10 @@ grafana:
       email_attribute_path: email
       login_attribute_path: preferred_username
       name_attribute_path: preferred_username
-      auth_url: https://keycloak.demo.kubrix.cloud/realms/sx-cnp-oss/protocol/openid-connect/auth
-      token_url: https://keycloak.demo.kubrix.cloud/realms/sx-cnp-oss/protocol/openid-connect/token
-      api_url: https://keycloak.demo.kubrix.cloud/realms/sx-cnp-oss/protocol/openid-connect/userinfo
-      signout_redirect_url: https://keycloak.demo.kubrix.cloud/realms/sx-cnp-oss/protocol/openid-connect/logout
+      auth_url: https://keycloak.demo.kubrix.cloud/realms/kubrix/protocol/openid-connect/auth
+      token_url: https://keycloak.demo.kubrix.cloud/realms/kubrix/protocol/openid-connect/token
+      api_url: https://keycloak.demo.kubrix.cloud/realms/kubrix/protocol/openid-connect/userinfo
+      signout_redirect_url: https://keycloak.demo.kubrix.cloud/realms/kubrix/protocol/openid-connect/logout
       role_attribute_path: contains(grafana.roles[*], 'admin') && 'Admin' || contains(grafana.roles[*], 'editor') && 'Editor' || 'Viewer'
       allow_assign_grafana_admin: false
       groups_attribute_path: groups

@@ -17,7 +17,7 @@ spec:
     accessType: CONFIDENTIAL 
     clientId: backstage-codespaces
     name: backstage-codespaces
-    realmId: sx-cnp-oss-codespaces
+    realmId: kubrix-codespaces
     directAccessGrantsEnabled: false
     standardFlowEnabled: true
     serviceAccountsEnabled: true
@@ -36,13 +36,13 @@ spec:
 apiVersion: realm.keycloak.crossplane.io/v1alpha1
 kind: Realm
 metadata:
-  name: sx-cnp-oss-codespaces
+  name: kubrix-codespaces
   labels:
-    platform-engineer.cloud/realm: sx-cnp-oss-codespaces
+    platform-engineer.cloud/realm: kubrix-codespaces
 spec:
   forProvider:
-    realm: sx-cnp-oss-codespaces
-    displayName: sx-cnp-oss-codespaces
+    realm: kubrix-codespaces
+    displayName: kubrix-codespaces
     attributes:
       frontendUrl: https://KEYCLOAK_CODESPACES_REPLACE
   deletionPolicy: "Delete"
@@ -55,7 +55,7 @@ metadata:
   name: demouser1
 spec:
   forProvider:
-    realmId: sx-cnp-oss-codespaces
+    realmId: kubrix-codespaces
     username: demouser1
     enabled: true
     emailVerified: true
@@ -86,7 +86,7 @@ metadata:
   name: team-codespace
 spec:
   forProvider:
-    realmId: sx-cnp-oss-codespaces
+    realmId: kubrix-codespaces
     name: team-codespace
   deletionPolicy: "Delete"
   providerConfigRef:
@@ -98,7 +98,7 @@ metadata:
   name: backstage-codespaces-admin
 spec:
   forProvider:
-    realmId: sx-cnp-oss-codespaces
+    realmId: kubrix-codespaces
     name: backstage-codespaces-admin
   deletionPolicy: "Delete"
   providerConfigRef:
@@ -110,7 +110,7 @@ metadata:
   name: admins-codespaces
 spec:
   forProvider:
-    realmId: sx-cnp-oss-codespaces
+    realmId: kubrix-codespaces
     name: backstage-codespaces-admin
   deletionPolicy: "Delete"
   providerConfigRef:
@@ -126,7 +126,7 @@ spec:
       name: team-codespace
     members:
       - demouser1
-    realmId: sx-cnp-oss-codespaces
+    realmId: kubrix-codespaces
   providerConfigRef:
     name: "sx-keycloak-config"
 ---
@@ -140,7 +140,7 @@ spec:
       name: admins-codespaces
     members:
       - demoadmin
-    realmId: sx-cnp-oss-codespaces
+    realmId: kubrix-codespaces
   providerConfigRef:
     name: "sx-keycloak-config"
 ---
@@ -154,7 +154,7 @@ spec:
       name: backstage-codespaces-admin
     members:
       - service-account-backstage-codespaces
-    realmId:  sx-cnp-oss-codespaces
+    realmId:  kubrix-codespaces
   providerConfigRef:
     name: "sx-keycloak-config"
 ---
@@ -174,18 +174,18 @@ spec:
     - groups
     - acr
     realmIdRef:
-      name: sx-cnp-oss-codespaces
+      name: kubrix-codespaces
   providerConfigRef:
     name: "sx-keycloak-config"
 ---
 apiVersion: keycloak.crossplane.io/v1alpha1
 kind: XBuiltinObjects
 metadata:
-  name: keycloak-builtin-objects-sx-cnp-oss-codespaces
+  name: keycloak-builtin-objects-kubrix-codespaces
 spec:
   providerConfigName: sx-keycloak-config
   providerSecretName: keycloak-credentials-cp
-  realm: sx-cnp-oss-codespaces
+  realm: kubrix-codespaces
   builtinClients: 
     - account
     - account-console
@@ -208,15 +208,15 @@ spec:
     groupIdRef:
       name: backstage-codespaces-admin
     realmIdRef: 
-      name: sx-cnp-oss-codespaces
+      name: kubrix-codespaces
     roleIdsRefs:
-      - name: builtin-sx-cnp-oss-codespaces-realm-management-view-users
-      - name: builtin-sx-cnp-oss-codespaces-realm-management-query-groups
-      - name: builtin-sx-cnp-oss-codespaces-realm-management-query-users
+      - name: builtin-kubrix-codespaces-realm-management-view-users
+      - name: builtin-kubrix-codespaces-realm-management-query-groups
+      - name: builtin-kubrix-codespaces-realm-management-query-users
     roleIdsSelector:
       matchLabels:
         defaultRole: 'true'
-        realmName: sx-cnp-oss-codespaces
+        realmName: kubrix-codespaces
   initProvider: {}
   managementPolicies:
     - '*'
@@ -237,7 +237,7 @@ spec:
     includeInTokenScope: true
     name: groups
     realmIdRef:
-      name: sx-cnp-oss-codespaces
+      name: kubrix-codespaces
   providerConfigRef:
     name: sx-keycloak-config
 ---
@@ -255,6 +255,6 @@ spec:
     includeInTokenScope: true
     name: openid
     realmIdRef:
-      name: sx-cnp-oss-codespaces
+      name: kubrix-codespaces
   providerConfigRef:
     name: sx-keycloak-config

@@ -1,9 +1,9 @@
 eso:
   providerUrl: "http://sx-vault-active.vault.svc.cluster.local:8200"
   backendName: vault-backend
-  secretStore: sx-cnp-oss-kv
+  secretStore: kubrix-kv
   # oidc config
-  oidcDiscoveryUrl: https://keycloak-127-0-0-1.nip.io/realms/sx-cnp-oss
+  oidcDiscoveryUrl: https://keycloak-127-0-0-1.nip.io/realms/kubrix
   callbackUri: "https://vault-127-0-0-1.nip.io"
 
   # Copyright (c) HashiCorp, Inc.
@@ -171,7 +171,7 @@ vault:
                 # due to #405
                   if [ ! $(vault read auth/oidc/config) ]; then
                     vault auth enable oidc
-                    vault write auth/oidc/config oidc_discovery_url="https://keycloak-127-0-0-1.nip.io/realms/sx-cnp-oss" oidc_client_id="vault" oidc_client_secret="demosecret" default_role="default" oidc_discovery_ca_pem=@/vault/userconfig/vault-ca/ca.crt
+                    vault write auth/oidc/config oidc_discovery_url="https://keycloak-127-0-0-1.nip.io/realms/kubrix" oidc_client_id="vault" oidc_client_secret="demosecret" default_role="default" oidc_discovery_ca_pem=@/vault/userconfig/vault-ca/ca.crt
                   fi
 
                   # workaround due to #422

@@ -98,11 +98,11 @@ because the child-app in the app-of-apps repo can use any argocd app-project in 
 Dev-team creates a new argocd app-definition in their app-of-apps gitops-repo.
 Therefore the platform-team needs to define a app-of-apps definition upfront which points to this gitops-repo.
 
-ApplicationSets-in-any-namespace are also possible with some restrictions: https://github.com/suxess-it/sx-cnp-oss/issues/181
+ApplicationSets-in-any-namespace are also possible with some restrictions: https://github.com/suxess-it/kubriX/issues/181
 So Dev-Teams can create their own ApplicationSets without a platform-team. Without "Apps-in-any-Namespace" ApplicationSets were also only safe when platform-teams defined them, otherwise dev-teams could use any argocd app-project.
 
 Example:
-https://github.com/suxess-it/sx-cnp-oss/blob/ee5d680e315a5b054b9b1833194fbe70826d2585/platform-apps/charts/team-onboarding/values-k3d.yaml#L13-L16
+https://github.com/suxess-it/kubriX/blob/ee5d680e315a5b054b9b1833194fbe70826d2585/platform-apps/charts/team-onboarding/values-k3d.yaml#L13-L16
 and https://github.com/suxess-it/team1-apps/tree/main/k3d-apps 
 
 pros:
@@ -113,7 +113,7 @@ pros:
 
 cons:
 - apps-in-any-namespace is still beta, although it seems very stable
-- applicationsets then have some restrictions (also when used by the platform team), see https://github.com/suxess-it/sx-cnp-oss/issues/181
+- applicationsets then have some restrictions (also when used by the platform team), see https://github.com/suxess-it/kubriX/issues/181
 - dev-team needs to have high knowledge of argocd app-definitions (could be enhanced with backstage scaffolder templates)
 
 ### ApplicationSet with simple "deployment descriptor"
@@ -130,7 +130,7 @@ If you are fine with the sane defaults, you have a small values file, if you nee
 
 Example:
 
-- [ApplicationSet with SCM-Provider](https://github.com/suxess-it/sx-cnp-oss/blob/main/team-apps/onboarding-apps-charts/multi-stage-app-with-kargo-pipeline/README.md#applicationset-with-scm-provider)
+- [ApplicationSet with SCM-Provider](https://github.com/suxess-it/kubriX/blob/main/team-apps/onboarding-apps-charts/multi-stage-app-with-kargo-pipeline/README.md#applicationset-with-scm-provider)
 - [gitops-repos with simple deployment file (which also creates multi-stage apps and kargo resources)](https://github.com/suxess-it/team1-demo-app1/blob/main/app-stages.yaml)
 
 pros:

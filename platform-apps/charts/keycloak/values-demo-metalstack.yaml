@@ -45,7 +45,7 @@ deployments:
       containerPort: 8080
     # keycloak realm config
     realm:
-      realmid: sx-cnp-oss
+      realmid: kubrix
       users:
         - name: phac
           firstName: Philipp
@@ -97,7 +97,7 @@ deployments:
           members:
             - team-auser
         - name: users
-          mfa: true # valid if .keycloak.mfa.enabled is true 
+          mfa: false # valid if .keycloak.mfa.enabled is true 
           members: 
             - phac
             - jokl

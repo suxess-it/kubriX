@@ -62,17 +62,17 @@ Depending on the solution some of this parts are done by the platform-team, by t
 
 I would like to propose the option "Apps-in-any-Namespace and Multi-Tenant Kyverno-Policies"
 since it seems to be an interesting new solution which brings high self-service and good governance.
-Also, in combination with the [self-service app and app-namespace onboarding](https://github.com/suxess-it/sx-cnp-oss/blob/main/backstage-resources/adr/0002-gitops-onboarding-apps.md#self-service-app-and-app-namespace-onboarding) it looks like an interesting approach we should get experiences with.
-And this approach has flexibility for the dev-teams. They can use [very simple deployment-descriptors](https://github.com/suxess-it/sx-cnp-oss/blob/main/team-apps/onboarding-apps-charts/multi-stage-app-with-kargo-pipeline/README.md#applicationset-with-scm-provider) or define their own applications by themselves. 
+Also, in combination with the [self-service app and app-namespace onboarding](https://github.com/suxess-it/kubriX/blob/main/backstage-resources/adr/0002-gitops-onboarding-apps.md#self-service-app-and-app-namespace-onboarding) it looks like an interesting approach we should get experiences with.
+And this approach has flexibility for the dev-teams. They can use [very simple deployment-descriptors](https://github.com/suxess-it/kubriX/blob/main/team-apps/onboarding-apps-charts/multi-stage-app-with-kargo-pipeline/README.md#applicationset-with-scm-provider) or define their own applications by themselves. 
 
-"Seperate namespace-scoped argocd instance for every team" is not a quick option in the sx-cnp-oss stack and also has its downsides.
+"Seperate namespace-scoped argocd instance for every team" is not a quick option in the kubriX stack and also has its downsides.
 As long as we don't need seperate argocd instances from a scalability and better isolation perspective, I wouldn't go this way for now.
 
 "Central gitops-Repo for app-projects, apps, namespaces and default configurations" can lead to a quite big central repo and needs lots of platform-team involvement.
 
 ### Consequences
 
-- we need to find out if https://github.com/suxess-it/sx-cnp-oss/issues/181 is a showstopper for applicationsets for "easy deployment-descriptors"
+- we need to find out if https://github.com/suxess-it/kubriX/issues/181 is a showstopper for applicationsets for "easy deployment-descriptors"
 - since app-in-any-namespace has some special notes in the documentation that you should take care about misconfigurations, we should double-check if there is some misconfiguration which leads to a security issue.
 
 ## Validation
@@ -130,7 +130,7 @@ Additionally [Namespace Metadata](https://argo-cd.readthedocs.io/en/stable/user-
 
 In ArgoCD we need to set [application.namespaces](https://github.com/argoproj/argo-helm/blob/3174f52ffcfe3bb0d2ad6118411eacbaf20b0c7d/charts/argo-cd/values.yaml#L276) to allow some "app-definition namespace" (e.g. "adn-*" ).
 
-Kargo Projects are also possible as a self-service - even though they are cluster-scoped ressources - with a special kyverno policy which checks the [kargo project name against the allowed argocd app-project destinations](https://github.com/suxess-it/sx-cnp-oss/blob/main/platform-apps/charts/kyverno/templates/policy-kargo-project-name-validation-apps-in-any-ns.yaml).
+Kargo Projects are also possible as a self-service - even though they are cluster-scoped ressources - with a special kyverno policy which checks the [kargo project name against the allowed argocd app-project destinations](https://github.com/suxess-it/kubriX/blob/main/platform-apps/charts/kyverno/templates/policy-kargo-project-name-validation-apps-in-any-ns.yaml).
 
 pros:
 - very high self-service for dev-teams
@@ -147,10 +147,10 @@ consider:
 
 Example implementation: 
 
-- [App-In-Any-Namespace-Config](https://github.com/suxess-it/sx-cnp-oss/blob/ab3b44880a9936bddd781a2bf312e9f3e4d57a93/platform-apps/charts/argocd/values-k3d.yaml#L8-L9)
-- [App-Definition-Namespace](https://github.com/suxess-it/sx-cnp-oss/blob/main/platform-apps/charts/team-onboarding/templates/app-definition-ns.yaml)
-- [team project](https://github.com/suxess-it/sx-cnp-oss/blob/main/platform-apps/charts/team-onboarding/templates/app-project.yaml)
-- [Generate Kyverno-Policies for new namespaces](https://github.com/suxess-it/sx-cnp-oss/blob/main/platform-apps/charts/kyverno/templates/policy-add-ns-quota.yaml)
+- [App-In-Any-Namespace-Config](https://github.com/suxess-it/kubriX/blob/ab3b44880a9936bddd781a2bf312e9f3e4d57a93/platform-apps/charts/argocd/values-k3d.yaml#L8-L9)
+- [App-Definition-Namespace](https://github.com/suxess-it/kubriX/blob/main/platform-apps/charts/team-onboarding/templates/app-definition-ns.yaml)
+- [team project](https://github.com/suxess-it/kubriX/blob/main/platform-apps/charts/team-onboarding/templates/app-project.yaml)
+- [Generate Kyverno-Policies for new namespaces](https://github.com/suxess-it/kubriX/blob/main/platform-apps/charts/kyverno/templates/policy-add-ns-quota.yaml)
 
 
 ### seperate namespace-scoped argocd instance for every team
