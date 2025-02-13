@@ -24,7 +24,7 @@ auth:
                 clientSecret: ${GITHUB_CLIENT_SECRET}
         oidc:
             development:
-                metadataUrl: http://keycloak-service.keycloak.svc.cluster.local:8080/realms/sx-cnp-oss #.well-known/openid-configuration can be ommited
+                metadataUrl: http://keycloak-service.keycloak.svc.cluster.local:8080/realms/kubrix #.well-known/openid-configuration can be ommited
                 callbackUrl: https://<backstageurl>/api/auth/oidc/handler/frame
                 clientId: backstage
 ```

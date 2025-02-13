@@ -5,7 +5,7 @@ We are constantly adding new features to our kubriX playground with GitHub Codes
 
 ## To fork or not to fork
 
-If you want to test onboarding your apps you need to write in this repository. Therefor you should fork [this repository](https://github.com/suxess-it/sx-cnp-oss) into your GitHub account.
+If you want to test onboarding your apps you need to write in this repository. Therefor you should fork [this repository](https://github.com/suxess-it/kubriX) into your GitHub account.
 
 If you just want to have a look at the platform stack in a read-only mode, just use the original repository without forking.
 
@@ -142,7 +142,7 @@ An example repo for Option 2 in our case is https://github.com/suxess-it/team-a-
 
 After creating the new repo it can take up to 30 minutes that the ApplicationSet triggers a new API call to search for new Github repos. You can trigger this manually by deleting the applicationset-controller pod.
 
-Details about our onboarding concept are explained in [Onboarding](https://github.com/suxess-it/sx-cnp-oss/blob/main/backstage-resources/docs/ONBOARDING.md). There is also explained how to modify which gitops-Repos to onboard new teams and new applications.
+Details about our onboarding concept are explained in [App-Onboarding-Documentation](https://github.com/suxess-it/kubriX/blob/main/backstage-resources/docs/onboarding/onboarding-apps.md) and [Team-Onboarding-Documentation](https://github.com/suxess-it/kubriX/blob/main/backstage-resources/docs/onboarding/onboarding-teams.md ).
 
 ## Known issues
 

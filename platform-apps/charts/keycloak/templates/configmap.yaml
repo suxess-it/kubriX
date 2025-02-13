@@ -3,8 +3,8 @@ kind: ConfigMap
 metadata:
   name: keycloak-configmap
 data:
-  sx-cnp-oss.realm.json: |-
-{{ .Files.Get "realmsettings/sx-cnp-oss.realm.json" | indent 4}}
+  kubrix.realm.json: |-
+{{ .Files.Get "realmsettings/kubrix.realm.json" | indent 4}}
   poststart.sh:  |-
     #!/bin/bash
     #

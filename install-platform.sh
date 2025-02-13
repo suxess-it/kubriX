@@ -292,7 +292,7 @@ echo "add kubriX repo in argocd pod"
 kubectl exec sx-argocd-application-controller-0 -n argocd -- argocd repo add ${KUBRIX_REPO} --username ${KUBRIX_REPO_USERNAME} --password ${KUBRIX_REPO_PASSWORD} --core
 
 # create secret for scm applicationset in team app definition namespaces
-# see https://github.com/suxess-it/sx-cnp-oss/issues/214 for a sustainable solution
+# see https://github.com/suxess-it/kubriX/issues/214 for a sustainable solution
 #for ns in adn-team1 adn-team2 adn-team-a; do
 #  kubectl create namespace ${ns}
 #  kubectl create secret generic appset-github-token --from-literal=token=${KUBRIX_GITHUB_APPSET_TOKEN} -n ${ns}
@@ -321,7 +321,7 @@ kubectl apply -f platform-apps/charts/argocd/manual-secret/argocd-secret.yaml
 if [[ $( echo $argocd_apps | grep sx-vault ) ]] ; then
   echo "adding secrets in vault for sx-kargo and sx-team-onboarding ..."
   export VAULT_HOSTNAME=$(kubectl get ingress -o jsonpath='{.items[*].spec.rules[*].host}' -n vault)
-  curl -k --header "X-Vault-Token:$(kubectl get secret -n vault vault-init -o=jsonpath='{.data.root_token}'  | base64 -d)" --request POST --data "{\"data\": {\"GITHUB_APPSET_PAT\": \"${KUBRIX_ARGOCD_APPSET_TOKEN}\", \"GITHUB_TOKEN\": \"${KUBRIX_KARGO_GIT_PASSWORD}\", \"GITHUB_USERNAME\": \"${KUBRIX_KARGO_GIT_USERNAME}\"}}" https://${VAULT_HOSTNAME}/v1/sx-cnp-oss-kv/data/demo/delivery
+  curl -k --header "X-Vault-Token:$(kubectl get secret -n vault vault-init -o=jsonpath='{.data.root_token}'  | base64 -d)" --request POST --data "{\"data\": {\"GITHUB_APPSET_PAT\": \"${KUBRIX_ARGOCD_APPSET_TOKEN}\", \"GITHUB_TOKEN\": \"${KUBRIX_KARGO_GIT_PASSWORD}\", \"GITHUB_USERNAME\": \"${KUBRIX_KARGO_GIT_USERNAME}\"}}" https://${VAULT_HOSTNAME}/v1/kubrix-kv/data/demo/delivery
   sleep 10
 fi
 
@@ -385,11 +385,11 @@ if [[ $( echo $argocd_apps | grep sx-backstage ) ]] ; then
       --from-literal=APP_CONFIG_backend_cors_origin=${BACKSTAGE_CODESPACE_URL} \
       --from-literal=APP_CONFIG_auth_providers_oidc_development_callbackUrl=${BACKSTAGE_CODESPACE_URL}/api/auth/oidc/handler/frame \
       --from-literal=APP_CONFIG_auth_providers_oidc_development_clientId=backstage-codespaces \
-      --from-literal=APP_CONFIG_auth_providers_oidc_development_metadataUrl=http://keycloak-service.keycloak.svc.cluster.local:8080/realms/sx-cnp-oss-codespaces \
+      --from-literal=APP_CONFIG_auth_providers_oidc_development_metadataUrl=http://keycloak-service.keycloak.svc.cluster.local:8080/realms/kubrix-codespaces \
       --from-literal=APP_CONFIG_auth_provider_github_development_callbackUrl=${BACKSTAGE_CODESPACE_URL}/api/auth/github/handler/frame \
-      --from-literal=APP_CONFIG_catalog_providers_keycloakOrg_default_loginRealm=sx-cnp-oss-codespaces \
-      --from-literal=APP_CONFIG_catalog_providers_keycloakOrg_default_realm=sx-cnp-oss-codespaces \
-      --from-literal=APP_CONFIG_catalog_providers_keycloakOrg_default_clientId=backstage-codespaces \
+      --from-literal=APP_CONFIG_catalog_providers_keycloakOrg_default_loginRealm=kubrix-codespaces \
+      --from-literal=APP_CONFIG_catalog_providers_keycloakOrg_default_realm=kubrix-codespaces \
+      --from-literal=APP_CONFIG_catalog_providers_keycloakOrg_default_clientId=kubrix-codespaces \
       --from-literal=APP_CONFIG_catalog_providers_keycloakOrg_default_clientSecret=demosecret
 
   elif [ ${GITHUB_CODESPACES} ]; then

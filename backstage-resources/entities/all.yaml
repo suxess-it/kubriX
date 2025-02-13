@@ -1,4 +1,4 @@
-# required user for demo environment https://github.com/suxess-it/sx-cnp-oss/issues/87
+# required user for demo environment https://github.com/suxess-it/kubriX/issues/87
 # until user management set up properly
 apiVersion: backstage.io/v1alpha1
 kind: User
@@ -9,7 +9,7 @@ spec:
     displayName: phac008
     email: guest@example.com
     picture: https://avatars.dicebear.com/api/avataaars/guest@example.com.svg?background=%23fff
-  memberOf: [sx-cnp-oss]
+  memberOf: [kubrix]
 ---
 apiVersion: backstage.io/v1alpha1
 kind: User
@@ -20,18 +20,18 @@ spec:
     displayName: jkleinlercher
     email: guest@example.com
     picture: https://api.dicebear.com/7.x/avataaars/svg?seed=Midnight&backgroundColor=transparent
-  memberOf: [sx-cnp-oss]
+  memberOf: [kubrix]
 ---
 apiVersion: backstage.io/v1alpha1
 kind: Group
 metadata:
-  name: sx-cnp-oss
-  description: sx CNP Team
+  name: kubrix
+  description: kubriX Team
 spec:
   type: team
   profile:
     # Intentional no displayName for testing
-    email: sx-cnp-oss@example.com
+    email: team@kubrix.io
     picture: https://api.dicebear.com/7.x/identicon/svg?seed=Fluffy&backgroundType=solid,gradientLinear&backgroundColor=ffd5dc,b6e3f4
   parent: backstage
   children: []
@@ -80,8 +80,8 @@ metadata:
   title: fedora-cloud-base
 spec:
   lifecycle: production
-  owner: sx-cnp-oss
-  system: sx-cnp-oss
+  owner: kubrix
+  system: kubrix
   type: datasource
 ---
 apiVersion: backstage.io/v1alpha1
@@ -100,8 +100,8 @@ metadata:
   title: ubuntu-jammy-server
 spec:
   lifecycle: production
-  owner: sx-cnp-oss
-  system: sx-cnp-oss
+  owner: kubrix
+  system: kubrix
   type: datasource
 
 ---

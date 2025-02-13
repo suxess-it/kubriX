@@ -138,9 +138,9 @@ backstage:
           oidc:
             development:
               # real metadataUrl -> local cluster lead to "ECONNREFUSED 127.0.0.1:443" - #24935
-              #metadataUrl: https://keycloak-127-0-0-1.nip.io/realms/sx-cnp-oss #.well-known/openid-configuration can be ommited
+              #metadataUrl: https://keycloak-127-0-0-1.nip.io/realms/kubrix #.well-known/openid-configuration can be ommited
               # workaround -> also set frontendUrl in keycloak realm
-              metadataUrl: http://keycloak-service.keycloak.svc.cluster.local:8080/realms/sx-cnp-oss #.well-known/openid-configuration can be ommited
+              metadataUrl: http://keycloak-service.keycloak.svc.cluster.local:8080/realms/kubrix #.well-known/openid-configuration can be ommited
               callbackUrl: https://backstage-127-0-0-1.nip.io/api/auth/oidc/handler/frame
               clientId: backstage
               clientSecret: demosecret
@@ -215,7 +215,7 @@ backstage:
           - allow: [Component, System, API, Resource, Location, Template, Domain, User, Group ]
         locations:
           - type: url
-            target: https://github.com/suxess-it/sx-cnp-oss-demo-app/blob/main/catalog-info.yaml
+            target: https://github.com/suxess-it/kubriX-demo-app/blob/main/catalog-info.yaml
           - type: url
             target: https://github.com/suxess-it/kubriX/blob/main/backstage-resources/templates/showcase-templates.yaml
             rules:
@@ -231,8 +231,8 @@ backstage:
               #baseUrl: https://keycloak-127-0-0-1.nip.io
               # workaround
               baseUrl: http://keycloak-service.keycloak.svc.cluster.local:8080
-              loginRealm: sx-cnp-oss
-              realm: sx-cnp-oss
+              loginRealm: kubrix
+              realm: kubrix
               clientId: backstage
               clientSecret: 'demosecret'
               schedule: # Mandatory; same options as in TaskScheduleDefinition

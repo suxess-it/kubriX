@@ -12,10 +12,10 @@ spec:
   forProvider:
     name: crossplane
     policy: |
-      path "sx-cnp-oss-kv/data/*" {
+      path "kubrix-kv/data/*" {
         capabilities = ["read","list","create","update",]
       }
-      path "sx-cnp-oss-kv/metadata/*" {
+      path "kubrix-kv/metadata/*" {
         capabilities = ["read","list","create","update",]
       }  
 ---
@@ -49,10 +49,10 @@ spec:
   forProvider:
     name: users
     policy: |
-      path "sx-cnp-oss-kv/data/users" {
+      path "kubrix-kv/data/users" {
         capabilities = ["read","list","create","update",]
       }
-      path "sx-cnp-oss-kv/*" {
+      path "kubrix-kv/*" {
         capabilities = ["list"]
       }
 ---
@@ -69,9 +69,9 @@ spec:
   forProvider:
     name: team1
     policy: |
-      path "sx-cnp-oss-kv/data/team1" {
+      path "kubrix-kv/data/team1" {
         capabilities = ["read","list","create","update",]
       }
-      path "sx-cnp-oss-kv/*" {
+      path "kubrix-kv/*" {
         capabilities = ["list"]
       }
