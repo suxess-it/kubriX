@@ -34,7 +34,13 @@ applications:
   - name: vault
     annotations:
       argocd.argoproj.io/sync-wave: "-5"
-      
+
+  - name: velero
+
+  - name: velero-ui
+
+  - name: minio
+  
   - name: falco
     annotations:
       argocd.argoproj.io/compare-options: ServerSideDiff=true
