@@ -1,9 +1,9 @@
 
-<h3>Target <code>ghcr.io/suxess-it/sx-backstage:v1.34.2 (debian 12.9)</code></h3>
+<h3>Target <code>ghcr.io/suxess-it/sx-backstage:v1.32.6 (debian 12.9)</code></h3>
 <h4>No Vulnerabilities found</h4>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>Node.js</code></h3>
-<h4>Vulnerabilities (6)</h4>
+<h4>Vulnerabilities (5)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -25,13 +25,6 @@
         <td>CRITICAL</td>
         <td>7.2.0</td>
         <td>10.2.0</td>
-    </tr>
-    <tr>
-        <td><code>jsonwebtoken</code></td>
-        <td>CVE-2022-23539</td>
-        <td>HIGH</td>
-        <td>8.5.1</td>
-        <td>9.0.0</td>
     </tr>
     <tr>
         <td><code>mysql2</code></td>
