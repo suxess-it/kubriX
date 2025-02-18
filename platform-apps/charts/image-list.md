@@ -7,7 +7,7 @@
 * quay.io/argoproj/argocd:v2.14.2
 ## backstage
 * alpine:3.17
-* ghcr.io/suxess-it/sx-backstage:v1.34.2
+* ghcr.io/suxess-it/sx-backstage:v1.32.6
 ## cert-manager
 * quay.io/jetstack/cert-manager-acmesolver:v1.17.0
 * quay.io/jetstack/cert-manager-cainjector:v1.17.0
