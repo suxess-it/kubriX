@@ -3,10 +3,6 @@
 ## [2.0.0](https://github.com/suxess-it/kubriX/compare/v1.0.0...v2.0.0) (2025-02-18)
 
 
-### ⚠ BREAKING CHANGES
-
-* **deps:** new upstream major version
-
 ### Features
 
 * add scope at login ([675ae16](https://github.com/suxess-it/kubriX/commit/675ae166fb165deeb8337b9ee9e1c44234801615))
@@ -38,6 +34,14 @@
 * rename sx-cnp-oss to kubrix ([#1053](https://github.com/suxess-it/kubriX/issues/1053)) ([9652144](https://github.com/suxess-it/kubriX/commit/96521444c32b94b8c9837757c2846d046a6e28f0))
 * **team-onboarding:** make chart more flexible for different cluster topologies ([#990](https://github.com/suxess-it/kubriX/issues/990)) ([fceab9c](https://github.com/suxess-it/kubriX/commit/fceab9c32dd59941d6c9e83e7cb2ba7281c147de))
 
+### Prime Features (only available with kubriX prime plan)
+
+* **team-onboarding:** add appset template to support app-onboarding on spoke clusters and extend docs ([#26](https://github.com/suxess-it/kubriX-prime/issues/26)) ([d1ef4af](https://github.com/suxess-it/kubriX-prime/commit/d1ef4af205bce39400a86261cd9ab37a378919bd))
+* **app-onboarding:** support gitlab in multi-stage kargo spoke appset ([#35](https://github.com/suxess-it/kubriX-prime/issues/35)) ([d7d6f73](https://github.com/suxess-it/kubriX-prime/commit/d7d6f73a2c6879767a770e3f881485a8b255994d))
+* **hub-and-spoke:** support kustomize in multi-stage app for hub-and-spoke with kargo ([#36](https://github.com/suxess-it/kubriX-prime/issues/36)) ([1ead14b](https://github.com/suxess-it/kubriX-prime/commit/1ead14bd9dbf801dd96fda8bd4337c6eaa41bd11))
+* **hub-and-spoke:** add application deployment documentation option 1 for hub&spoke ([#20](https://github.com/suxess-it/kubriX-prime/issues/20)) ([f8f3545](https://github.com/suxess-it/kubriX-prime/commit/f8f3545dd1cfae0f04a3df51ebc55e00843aed13))
+* **hub-and-spoke:** add application deployment documentation option 2-4 for hub&spoke ([#25](https://github.com/suxess-it/kubriX-prime/issues/25)) ([a4b7539](https://github.com/suxess-it/kubriX-prime/commit/a4b7539e937acc50d923690300caf6d853e66834))
+* **SSO:** add argocd oidc integration ([#34](https://github.com/suxess-it/kubriX-prime/issues/34)) ([88d6b75] (https://github.com/suxess-it/kubriX-prime/commit/88d6b751fadc087cf346062c26f423d994506849))
 
 ### Bug Fixes
 
