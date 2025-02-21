@@ -111,9 +111,9 @@
 * hashicorp/vault:1.17.2
 * hashicorp/vault:1.18.1
 ## velero-ui
-* docker.io/dserio83/velero-api:0.1.21
-* docker.io/dserio83/velero-ui:0.1.20
-* docker.io/dserio83/velero-watchdog:0.1.6
+* docker.io/dserio83/velero-api:0.1.23
+* docker.io/dserio83/velero-ui:0.1.22
+* docker.io/dserio83/velero-watchdog:0.1.7
 ## velero
 * docker.io/bitnami/kubectl:1.31
 * velero/velero-plugin-for-aws:v1.10.0
