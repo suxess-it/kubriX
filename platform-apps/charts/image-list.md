@@ -9,11 +9,11 @@
 * alpine:3.17
 * ghcr.io/suxess-it/sx-backstage:v1.32.6
 ## cert-manager
-* quay.io/jetstack/cert-manager-acmesolver:v1.17.0
-* quay.io/jetstack/cert-manager-cainjector:v1.17.0
-* quay.io/jetstack/cert-manager-controller:v1.17.0
-* quay.io/jetstack/cert-manager-startupapicheck:v1.17.0
-* quay.io/jetstack/cert-manager-webhook:v1.17.0
+* quay.io/jetstack/cert-manager-acmesolver:v1.17.1
+* quay.io/jetstack/cert-manager-cainjector:v1.17.1
+* quay.io/jetstack/cert-manager-controller:v1.17.1
+* quay.io/jetstack/cert-manager-startupapicheck:v1.17.1
+* quay.io/jetstack/cert-manager-webhook:v1.17.1
 ## cnpg
 * docker.io/busybox:latest
 * docker.io/dpage/pgadmin4:8.14
