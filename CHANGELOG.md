@@ -1,5 +1,22 @@
 # Changelog
 
+## [2.1.0](https://github.com/suxess-it/kubriX/compare/v2.0.0...v2.1.0) (2025-02-21)
+
+
+### Features
+
+* **deps:** update helm release external-secrets to v0.14.2 ([#1038](https://github.com/suxess-it/kubriX/issues/1038)) ([1f5bb2e](https://github.com/suxess-it/kubriX/commit/1f5bb2e1f71c7b1f11f577d7ed108685df691e70))
+* **deps:** update helm release falco to v4.20.1 ([#1042](https://github.com/suxess-it/kubriX/issues/1042)) ([33bfd21](https://github.com/suxess-it/kubriX/commit/33bfd2179238452a09817d35048f66a3c0ecb338))
+
+
+### Bug Fixes
+
+* **deps:** update helm release cert-manager to v1.17.1 ([#1072](https://github.com/suxess-it/kubriX/issues/1072)) ([825451c](https://github.com/suxess-it/kubriX/commit/825451cb988d92672ce6ae433d326fbc0c2fd28e))
+* **deps:** update helm release external-dns to v1.15.2 ([#1073](https://github.com/suxess-it/kubriX/issues/1073)) ([c176f74](https://github.com/suxess-it/kubriX/commit/c176f74300a5378ce70e8359abf7baa735ad2649))
+* **deps:** update helm release kyverno to v3.3.7 ([#1041](https://github.com/suxess-it/kubriX/issues/1041)) ([e627da6](https://github.com/suxess-it/kubriX/commit/e627da6abb2d27cee44cc8d35d82d8f1034b2e85))
+* **deps:** update helm release vui to v0.1.22 ([#1048](https://github.com/suxess-it/kubriX/issues/1048)) ([81e8b88](https://github.com/suxess-it/kubriX/commit/81e8b883309ebea3363fd10ac280b14bb666360b))
+* remove configauditreports because trivy is not installed ([#1064](https://github.com/suxess-it/kubriX/issues/1064)) ([9e637b6](https://github.com/suxess-it/kubriX/commit/9e637b62f9812b05e0adb681161cb85fd1574844))
+
 ## [2.0.0](https://github.com/suxess-it/kubriX/compare/v1.0.0...v2.0.0) (2025-02-18)
 
 
