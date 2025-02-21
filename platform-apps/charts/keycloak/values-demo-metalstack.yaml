@@ -85,26 +85,26 @@ deployments:
       groups:
         - name: admins
           roles:
-            - admin
+            - grafana-admin
           mfa: false # valid if .keycloak.mfa.enabled is true, disable for admin
           members:
             - backstageadmin
             - demoadmin
         - name: team1
           roles:
-            - viewer
+            - grafana-viewer
           mfa: true # valid if .keycloak.mfa.enabled is true 
           members:
             - team1user
         - name: team-a
           roles:
-            - viewer
+            - grafana-viewer
           mfa: false # valid if .keycloak.mfa.enabled is true 
           members:
             - team-auser
         - name: users
           roles:
-            - editor
+            - grafana-editor
           mfa: false # valid if .keycloak.mfa.enabled is true 
           members: 
             - phac
