@@ -84,19 +84,27 @@ deployments:
           password: "test"
       groups:
         - name: admins
-          mfa: false # valid if .keycloak.mfa.enabled is true, disable for admin 
+          roles:
+            - admin
+          mfa: false # valid if .keycloak.mfa.enabled is true, disable for admin
           members:
             - backstageadmin
             - demoadmin
         - name: team1
+          roles:
+            - viewer
           mfa: true # valid if .keycloak.mfa.enabled is true 
           members:
             - team1user
         - name: team-a
+          roles:
+            - viewer
           mfa: false # valid if .keycloak.mfa.enabled is true 
           members:
             - team-auser
         - name: users
+          roles:
+            - editor
           mfa: false # valid if .keycloak.mfa.enabled is true 
           members: 
             - phac

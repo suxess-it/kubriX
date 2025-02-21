@@ -74,13 +74,19 @@ deployments:
           password: "test"
       groups:
         - name: admins
+          roles:
+            - admin
           members:
             - backstageadmin
             - demoadmin
         - name: team1
+          roles:
+            - viewer
           members:
             - team1user
         - name: users
+          roles:
+            - editor
           members: 
             - phac
             - jokl
