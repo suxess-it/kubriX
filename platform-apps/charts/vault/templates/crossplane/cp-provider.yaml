@@ -12,7 +12,8 @@ spec:
         spec:
           containers:
           - name: package-runtime
-            args: 
+            args:
+            - --poll-interval=1m
             - --debug
 ---
 # should move to crossplane ns, maybe? 
