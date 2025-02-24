@@ -1,3 +1,18 @@
+apiVersion: pkg.crossplane.io/v1beta1
+kind: DeploymentRuntimeConfig
+metadata:
+  name: debug-config
+spec:
+  deploymentTemplate:
+    spec:
+      selector: {}
+      template:
+        spec:
+          containers:
+          - name: package-runtime
+            args: 
+            - --debug
+---
 # should move to crossplane ns, maybe? 
 apiVersion: pkg.crossplane.io/v1
 kind: Provider
@@ -7,3 +22,7 @@ metadata:
     argocd.argoproj.io/sync-wave: "-10"
 spec:
   package: xpkg.upbound.io/upbound/provider-vault:v2.1.1
+  runtimeConfigRef:
+    apiVersion: pkg.crossplane.io/v1beta1
+    kind: DeploymentRuntimeConfig
+    name: debug-config
