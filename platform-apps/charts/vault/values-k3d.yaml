@@ -168,13 +168,13 @@ vault:
 
                 else 
 
-                # due to #405
+                # due to https://github.com/suxess-it/kubriX/issues/405
                   if [ ! $(vault read auth/oidc/config) ]; then
                     vault auth enable oidc
                     vault write auth/oidc/config oidc_discovery_url="https://keycloak-127-0-0-1.nip.io/realms/kubrix" oidc_client_id="vault" oidc_client_secret="demosecret" default_role="default" oidc_discovery_ca_pem=@/vault/userconfig/vault-ca/ca.crt
                   fi
 
-                  # workaround due to #422
+                  # workaround due to https://github.com/suxess-it/kubriX/issues/422
                   if [ ! $(vault list identity/group-alias/id) ]; then
                     echo vault admins group configured, just updating group aliases
                     vault list identity/group/name
