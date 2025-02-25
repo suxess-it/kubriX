@@ -83,9 +83,9 @@ wait_until_apps_synced_healthy() {
           fi
           # terminate sync if sync is running and takes longer than 300 seconds (workaround when sync gets stuck)
           operation_phase=$(kubectl get application -n argocd ${app} -o jsonpath='{.status.operationState.phase}')
-          if [ "${operation_phase}" = "Running" ] && [ ${sync_duration} -gt 300 ] || [ "${operation_phase}" = "Failed" ] ; then
+          if [ "${operation_phase}" = "Running" ] && [ ${sync_duration} -gt 300 ] || [ "${operation_phase}" = "Failed" ] || [ "${operation_phase}" = "Error" ] ; then
             # Terminate the operation for the application
-            echo "sync of app ${app} gets terminated because it took longer than 300 seconds"
+            echo "sync of app ${app} gets terminated because it took longer than 300 seconds or failed"
             kubectl exec sx-argocd-application-controller-0 -n argocd -- argocd app terminate-op "$app" --core
             echo "wait for 10 seconds"
             sleep 10
@@ -328,12 +328,16 @@ fi
 if [[ $( echo $argocd_apps | grep sx-kargo ) ]] ; then
   kubectl delete ExternalSecret github-creds -n kargo
   # check if kargo is synced and healthy for 5 minutes
+  # we trigger a new sync in case the bootstrap-app already failed 5 times
+  kubectl exec sx-argocd-application-controller-0 -n argocd -- argocd app sync "sx-kargo" --async --core
   wait_until_apps_synced_healthy "sx-kargo" "Synced" "Healthy" 300
 fi
 
 if [[ $( echo $argocd_apps | grep sx-team-onboarding ) ]] ; then
   kubectl delete ExternalSecret github-creds -n kargo
   # check if kargo is synced and healthy for 5 minutes
+  # we trigger a new sync in case the bootstrap-app already failed 5 times
+  kubectl exec sx-argocd-application-controller-0 -n argocd -- argocd app sync "sx-team-onboarding" --async --core
   wait_until_apps_synced_healthy "sx-team-onboarding" "Synced" "Healthy" 300
 fi
   
@@ -341,6 +345,8 @@ fi
 if [[ $( echo $argocd_apps | grep sx-backstage ) ]] ; then
 
   # check if backstage is already synced (it will still be degraded because of the missing secret we create in the next step)
+  # we trigger a new sync in case the bootstrap-app already failed 5 times
+  kubectl exec sx-argocd-application-controller-0 -n argocd -- argocd app sync "sx-bootstrap-app" --async --core
   wait_until_apps_synced_healthy "sx-backstage" "Synced" "*" 900
 
   echo "adding special configuration for sx-backstage"
@@ -424,6 +430,8 @@ if [[ $( echo $argocd_apps | grep sx-backstage ) ]] ; then
   fi
 
   # finally wait for all apps including backstage to be synced and health
+  # we trigger a new sync in case the bootstrap-app already failed 5 times
+  kubectl exec sx-argocd-application-controller-0 -n argocd -- argocd app sync "sx-bootstrap-app" --async --core
   wait_until_apps_synced_healthy "${argocd_apps}" "Synced" "Healthy" 300
 
 fi
