@@ -346,7 +346,7 @@ if [[ $( echo $argocd_apps | grep sx-backstage ) ]] ; then
 
   # check if backstage is already synced (it will still be degraded because of the missing secret we create in the next step)
   # we trigger a new sync in case the bootstrap-app already failed 5 times
-  kubectl exec sx-argocd-application-controller-0 -n argocd -- argocd app sync sx-backstage --async --core
+  kubectl exec sx-argocd-application-controller-0 -n argocd -- argocd app sync "sx-bootstrap-app" --async --core
   wait_until_apps_synced_healthy "sx-backstage" "Synced" "*" 900
 
   echo "adding special configuration for sx-backstage"
