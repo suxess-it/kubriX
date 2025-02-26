@@ -74,13 +74,19 @@ deployments:
           password: "test"
       groups:
         - name: admins
+          roles:
+            - grafana-admin
           members:
             - backstageadmin
             - demoadmin
         - name: team1
+          roles:
+            - grafana-viewer
           members:
             - team1user
         - name: users
+          roles:
+            - grafana-editor
           members: 
             - phac
             - jokl
