@@ -37,9 +37,10 @@ spec:
     server: 'https://kubernetes.default.svc'
   syncPolicy:
     managedNamespaceMetadata:
+    {{- if ne .namespaceResourceTracking "false" }}
       annotations:
-        # doesn't handle destinationNamespaceOverride yet
         argocd.argoproj.io/tracking-id: sx-{{ .name }}:app/Namespace:{{ .name }}/{{ .name }}
+    {{- end }}
     automated:
       prune: true
       selfHeal: true
