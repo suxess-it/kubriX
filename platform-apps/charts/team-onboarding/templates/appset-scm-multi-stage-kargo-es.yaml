@@ -20,7 +20,7 @@ spec:
   data:
   - secretKey: GITHUB_APPSET_PAT
     remoteRef:
-      key: kubrix-kv/data/demo/delivery
+      key: kubrix-kv/data/{{ .name }}/delivery
       property: GITHUB_APPSET_PAT
 ---
 {{- end }}
