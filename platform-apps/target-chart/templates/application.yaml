@@ -28,6 +28,11 @@ spec:
         {{- toYaml $.Values.default.valueFiles | nindent 6}}
       {{- end }}
       ignoreMissingValueFiles: true
+      parameters:
+        - name: default.repoURL
+          value: {{ $.Values.default.repoURL }}
+        - name: default.targetRevision
+          value: {{ $.Values.default.targetRevision }}
   destination:
     {{- if .destinationNamespaceOverwrite }}
     namespace: {{ .destinationNamespaceOverwrite }}
