@@ -11,7 +11,7 @@ spec:
   generators:
   - scmProvider:
       cloneProtocol: https
-      {{- with $team.multiStageKargoAppSetSpoke.gitlab }}
+      {{- with $team.multiStageKargoAppSet.gitlab }}
       gitlab:
         group: {{ .group }}
         api: {{ .api }}
@@ -19,10 +19,10 @@ spec:
           secretName: {{ $team.name }}-appset-github-token
           key: token
       {{- end }}
-      {{- with $team.multiStageKargoAppSetSpoke.github }}
+      {{- with $team.multiStageKargoAppSet.github }}
       github:
         # The GitHub organization to scan.
-        organization: {{ $team.organization }}
+        organization: {{ .organization }}
         tokenRef:
           secretName: {{ $team.name }}-appset-github-token
           key: token
