@@ -19,11 +19,18 @@ metadata:
 spec:
   rules:
   - name: default-deny
+    skipBackgroundRequests: true
     match:
       any:
       - resources:
           kinds:
           - Namespace
+    exclude:
+      any:
+      - resources:
+          namespaces:
+          - kube-system
+          - kyverno
     generate:
       apiVersion: networking.k8s.io/v1
       kind: NetworkPolicy
