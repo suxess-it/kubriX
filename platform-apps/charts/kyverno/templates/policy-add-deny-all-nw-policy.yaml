@@ -1,8 +1,8 @@
-{{ if .Values.kyvernoPolicies.add-deny-all-nw-policy.enabled }}
+{{ if .Values.kyvernoPolicies.createDenyAllNetworkPolicy.enabled }}
 apiVersion: kyverno.io/v1
 kind: ClusterPolicy
 metadata:
-  name: add-networkpolicy
+  name: add-deny-all-allow-dns-networkpolicy
   annotations:
     policies.kyverno.io/title: Add Network Policy
     policies.kyverno.io/category: Multi-Tenancy, EKS Best Practices
@@ -18,7 +18,7 @@ metadata:
       named `default-deny` which will deny all traffic anytime a new Namespace is created.
 spec:
   rules:
-  - name: default-deny
+  - name: default-deny-all-except-dns
     skipBackgroundRequests: true
     match:
       any:
@@ -34,7 +34,7 @@ spec:
     generate:
       apiVersion: networking.k8s.io/v1
       kind: NetworkPolicy
-      name: default-deny
+      name: default-deny-all-except-dns
       namespace: "{{`{{request.object.metadata.name}}`}}"
       synchronize: true
       data:
@@ -45,4 +45,12 @@ spec:
           policyTypes:
           - Ingress
           - Egress
+          egress:
+          - to:
+            - namespaceSelector:
+                matchLabels:
+                  name: kube-system
+            ports:
+            - protocol: UDP
+              port: 53
 {{- end }}
