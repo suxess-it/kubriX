@@ -1,4 +1,4 @@
-{{ if has "kargo-project-name-validation-apps-in-any-ns" .Values.kyvernoPolicies }}
+{{ if .Values.kyvernoPolicies.validateKargoProjectName.enabled }}
 {{- if .Capabilities.APIVersions.Has "kargo.akuity.io/v1alpha1/Project" }}
 apiVersion: kyverno.io/v1
 kind: ClusterPolicy
