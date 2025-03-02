@@ -1,4 +1,4 @@
-{{ if has "add-deny-all-nw-policy" .Values.kyvernoPolicies }}
+{{ if .Values.kyvernoPolicies.add-deny-all-nw-policy.enabled }}
 apiVersion: kyverno.io/v1
 kind: ClusterPolicy
 metadata:
