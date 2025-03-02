@@ -1,15 +1,19 @@
 # per default no kyvernoPolicies get applied, add them in the list in your values files to enable them
-kyvernoPolicies: {}
-#  add-deny-all-nw-policy:
-#    enable: true
-#    excludeNamespaces:
-#      - kube-system
-#      - kyverno
+kyvernoPolicies:
+  add-deny-all-nw-policy:
+    enable: false
+    excludeNamespaces:
+      - kube-system
+      - kyverno
       
-#  - add-ns-quota
-#  - kargo-project-name-validation-apps-in-any-ns
-#  - policy-kubevirt-rolebinding
-#  - add-deny-all-nw-policy
+  add-ns-quota-limit-range:
+    ensbled: false
+
+  kargo-project-name-validation-apps-in-any-ns:
+    enabled: false
+    
+  policy-kubevirt-rolebinding:
+    enabled: false
 
 kyverno:
   admissionController:
