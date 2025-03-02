@@ -7,7 +7,7 @@ keycloak:
     existingSecret: "keycloak-credentials"
   ingress:
     enabled: true
-    hostname: keycloak2-127-0-0-1.nip.io
+    hostname: keycloak-127-0-0-1.nip.io
     #ingressClassName: nginx
     path: /
     annotations:
@@ -16,18 +16,13 @@ keycloak:
     tls: true
     extraTls:
     - hosts:
-        - keycloak2-127-0-0-1.nip.io
-      secretName: keycloak2-server-tls
+        - keycloak-127-0-0-1.nip.io
+      secretName: keycloak-server-tls
   pdb:
     create: false
   postgresql:
     enabled: false
   externalDatabase:
-  #  host: "sx-keycloak2-postgresql-hl.keycloak2.svc.cluster.local"
-  #  port: 5432
-  #  user: keycloak
-  #  database: postgres
-  #  password: keycloak
     existingSecret: "cp-keycloak-externaldb-secret"
     existingSecretHostKey: "HOST"
     existingSecretPortKey: "PORT"
