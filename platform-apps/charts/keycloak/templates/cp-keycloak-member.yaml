@@ -1,26 +1,26 @@
 apiVersion: group.keycloak.crossplane.io/v1alpha1
 kind: Memberships
 metadata:
-  name: {{ .Values.deployments.keycloak.backstageclient.config.clientID }}-admin-memberships
+  name: backstage-admin-memberships
   annotations:
     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
     argocd.argoproj.io/sync-wave: "1"
 spec:
   forProvider:
     groupIdRef:
-      name: {{ .Values.deployments.keycloak.backstageclient.config.clientID }}-admin
+      name: backstage-admin
     members:
-      - service-account-{{ .Values.deployments.keycloak.backstageclient.config.clientID }}
-    realmId: {{ .Values.deployments.keycloak.realm.realmid }}
+      - service-account-backstage
+    realmId: {{ .Values.kubrix.keycloak.realm.realmid }}
   providerConfigRef:
     name: "{{ .Release.Name }}-config"
 ---
-{{- range $group := .Values.deployments.keycloak.realm.groups }}
+{{- range $group := .Values.kubrix.keycloak.realm.groups }}
 {{- if $group.members }}
 apiVersion: group.keycloak.crossplane.io/v1alpha1
 kind: Memberships
 metadata:
-  name: {{ $.Values.deployments.keycloak.backstageclient.config.clientID }}-{{ $group.name }}-users-memberships
+  name: backstage-{{ $group.name }}-users-memberships
   annotations:
     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
     argocd.argoproj.io/sync-wave: "1"
@@ -32,7 +32,7 @@ spec:
 {{- range $member := $group.members }}
       - {{ $member }}
 {{- end }}
-    realmId: {{ $.Values.deployments.keycloak.realm.realmid }}
+    realmId: {{ $.Values.kubrix.keycloak.realm.realmid }}
   providerConfigRef:
     name: "{{ $.Release.Name }}-config"
 ---

@@ -1,17 +1,8 @@
 ---
-apiVersion: v1
-kind: Secret
-metadata:
-  name: "{{ .Release.Name }}-client-{{ .Values.deployments.keycloak.pgadminclient.config.clientID }}-password"
-type: Opaque
-stringData:
-  {{ .Values.deployments.keycloak.pgadminclient.config.clientID }}: {{ .Values.deployments.keycloak.pgadminclient.config.clientSecret }}
-
----
 apiVersion: openidclient.keycloak.crossplane.io/v1alpha1
 kind: Client
 metadata:
-  name: {{ .Values.deployments.keycloak.pgadminclient.config.clientID }}
+  name: pgadmin
   annotations:
     argocd.argoproj.io/sync-wave: "1"
     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
@@ -19,19 +10,19 @@ spec:
   deletionPolicy: Delete
   forProvider:
     accessType: CONFIDENTIAL 
-    clientId: {{ .Values.deployments.keycloak.pgadminclient.config.clientID }}
-    name: {{ .Values.deployments.keycloak.pgadminclient.config.clientID }}
-    realmId: {{ .Values.deployments.keycloak.realm.realmid }}
+    clientId: pgadmin
+    name: pgadmin
+    realmId: {{ .Values.kubrix.keycloak.realm.realmid }}
     directAccessGrantsEnabled: false
     standardFlowEnabled: true
     serviceAccountsEnabled: true
 #    managementPolicies: ["Observe"]
     validRedirectUris:
       - "http://localhost:7007/api/auth/oidc/handler/frame"
-      - "https://pgadmin{{ .Values.deployments.ingress.fqdn }}/oauth2/authorize"
+      - "https://pgadmin{{ .Values.kubrix.keycloak.fqdn }}/oauth2/authorize"
     clientSecretSecretRef:
-      key: {{ .Values.deployments.keycloak.pgadminclient.config.clientID }}
-      name: "{{ .Release.Name }}-client-{{ .Values.deployments.keycloak.pgadminclient.config.clientID }}-password"
+      key: pgadmin
+      name: keycloak-client-credentials
       namespace: {{ .Release.Namespace }}
     loginTheme: keycloak
   providerConfigRef:

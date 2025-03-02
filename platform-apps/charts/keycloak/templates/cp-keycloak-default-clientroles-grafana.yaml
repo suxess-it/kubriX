@@ -5,16 +5,16 @@ metadata:
     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
     argocd.argoproj.io/sync-wave: "1"
   labels:
-    platform-engineer.cloud/role: viewer
+    platform-engineer.cloud/role: grafana-viewer
   name: client-default-role-grafana-viewer
 spec:
   forProvider:
     clientIdRef:
-      name: {{ .Values.deployments.keycloak.grafanaclient.config.clientID }}
+      name: grafana
     name: viewer
     description: viewer role for grafana
     realmIdRef:
-      name: {{ $.Values.deployments.keycloak.realm.realmid }}
+      name: {{ $.Values.kubrix.keycloak.realm.realmid }}
   providerConfigRef:
     name: "{{ .Release.Name }}-config"
 ---
@@ -25,16 +25,16 @@ metadata:
     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
     argocd.argoproj.io/sync-wave: "1"
   labels:
-    platform-engineer.cloud/role: editor
+    platform-engineer.cloud/role: grafana-editor
   name: client-default-role-grafana-editor
 spec:
   forProvider:
     clientIdRef:
-      name: {{ .Values.deployments.keycloak.grafanaclient.config.clientID }}
+      name: grafana
     name: editor
     description: editor role for grafana
     realmIdRef:
-      name: {{ $.Values.deployments.keycloak.realm.realmid }}
+      name: {{ $.Values.kubrix.keycloak.realm.realmid }}
   providerConfigRef:
     name: "{{ .Release.Name }}-config"
 ---
@@ -45,15 +45,15 @@ metadata:
     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
     argocd.argoproj.io/sync-wave: "1"
   labels:
-    platform-engineer.cloud/role: admin
+    platform-engineer.cloud/role: grafana-admin
   name: client-default-role-grafana-admin
 spec:
   forProvider:
     clientIdRef:
-      name: {{ .Values.deployments.keycloak.grafanaclient.config.clientID }}
+      name: grafana
     name: admin
     description: admin role for grafana
     realmIdRef:
-      name: {{ $.Values.deployments.keycloak.realm.realmid }}
+      name: {{ $.Values.kubrix.keycloak.realm.realmid }}
   providerConfigRef:
     name: "{{ .Release.Name }}-config"

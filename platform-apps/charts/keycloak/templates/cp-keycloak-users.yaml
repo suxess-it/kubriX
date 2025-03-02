@@ -1,15 +1,4 @@
----
-apiVersion: v1
-kind: Secret
-metadata:
-  name: "{{ .Release.Name }}-initial-passwords"
-type: Opaque
-stringData:
-  {{- range $user := $.Values.deployments.keycloak.realm.users }}
-  {{$user.name}}: {{$user.password}}
-  {{- end }}
-
-{{- range $user := .Values.deployments.keycloak.realm.users }}
+{{- range $user := .Values.kubrix.keycloak.realm.users }}
 ---
 apiVersion: user.keycloak.crossplane.io/v1alpha1
 kind: User
@@ -20,7 +9,7 @@ metadata:
     argocd.argoproj.io/sync-wave: "1"
 spec:
   forProvider:
-    realmId: {{ $.Values.deployments.keycloak.realm.realmid }}
+    realmId: {{ $.Values.kubrix.keycloak.realm.realmid }}
     username: {{ $user.name }}
     enabled: true
     emailVerified: true
@@ -29,7 +18,7 @@ spec:
     email: {{ $user.email }} 
     initialPassword:
       - valueSecretRef:
-          name: "{{ $.Release.Name }}-initial-passwords"
+          name: "cp-keycloak-users-secret"
           key: {{ $user.name }}
           namespace: {{ $.Release.Namespace }}
         temporary: false # should be set to true in production

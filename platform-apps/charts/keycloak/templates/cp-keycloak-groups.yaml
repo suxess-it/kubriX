@@ -1,4 +1,4 @@
-{{- range $group := .Values.deployments.keycloak.realm.groups }}
+{{- range $group := .Values.kubrix.keycloak.realm.groups }}
 ---
 apiVersion: group.keycloak.crossplane.io/v1alpha1
 kind: Group
@@ -9,21 +9,9 @@ metadata:
     argocd.argoproj.io/sync-wave: "1"
 spec:
   forProvider:
-    realmId: {{ $.Values.deployments.keycloak.realm.realmid }}
+    realmId: {{ $.Values.kubrix.keycloak.realm.realmid }}
     name: {{ $group.name }}
   deletionPolicy: "Delete"
   providerConfigRef:
     name: "{{ $.Release.Name }}-config"
 {{- end }}
-#---
-#apiVersion: group.keycloak.crossplane.io/v1alpha1
-#kind: Group
-#metadata:
-#  name: crossplane-admin
-#spec:
-#  forProvider:
-#    realmId: master
-#    name: crossplane-admin
-#  deletionPolicy: "Delete"
-#  providerConfigRef:
-#    name: "{{ $.Release.Name }}-config"

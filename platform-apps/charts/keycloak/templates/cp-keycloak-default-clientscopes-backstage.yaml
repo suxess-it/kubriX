@@ -8,7 +8,7 @@ metadata:
 spec:
   forProvider:
     clientIdRef:
-      name: {{ .Values.deployments.keycloak.backstageclient.config.clientID }}
+      name: backstage
     defaultScopes:
     - profile
     - email
@@ -17,6 +17,6 @@ spec:
     - groups
     - acr
     realmIdRef:
-      name: {{ $.Values.deployments.keycloak.realm.realmid }}
+      name: {{ $.Values.kubrix.keycloak.realm.realmid }}
   providerConfigRef:
     name: "{{ .Release.Name }}-config"

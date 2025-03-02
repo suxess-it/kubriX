@@ -11,7 +11,7 @@ spec:
       matchLabels:
         platform-engineer.cloud/clientscope: groups
     realmIdRef:
-      name: {{ $.Values.deployments.keycloak.realm.realmid }}
+      name: {{ $.Values.kubrix.keycloak.realm.realmid }}
     protocol: openid-connect
     protocolMapper: oidc-group-membership-mapper
     name: groups

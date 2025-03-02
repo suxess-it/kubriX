@@ -15,7 +15,7 @@ spec:
     includeInTokenScope: true
     name: groups
     realmIdRef:
-      name: {{ $.Values.deployments.keycloak.realm.realmid }}
+      name: {{ $.Values.kubrix.keycloak.realm.realmid }}
   providerConfigRef:
     name: "{{ .Release.Name }}-config"
 ---
@@ -36,6 +36,6 @@ spec:
     includeInTokenScope: true
     name: openid
     realmIdRef:
-      name: {{ $.Values.deployments.keycloak.realm.realmid }}
+      name: {{ $.Values.kubrix.keycloak.realm.realmid }}
   providerConfigRef:
     name: "{{ .Release.Name }}-config"

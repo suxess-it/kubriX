@@ -8,7 +8,7 @@ metadata:
 spec:
   forProvider:
     clientIdRef:
-      name: {{ .Values.deployments.keycloak.grafanaclient.config.clientID }}
+      name: grafana
     defaultScopes:
     - profile
     - email
@@ -18,6 +18,6 @@ spec:
     - acr
     - openid
     realmIdRef:
-      name: {{ $.Values.deployments.keycloak.realm.realmid }}
+      name: {{ $.Values.kubrix.keycloak.realm.realmid }}
   providerConfigRef:
     name: "{{ .Release.Name }}-config"
