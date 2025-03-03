@@ -52,9 +52,8 @@
 ## kargo
 * ghcr.io/akuity/kargo:v1.2.3
 ## keycloak
-* busybox
-* postgres:latest
-* quay.io/keycloak/keycloak:25.0.2
+* docker.io/bitnami/keycloak:26.1.2-debian-12-r0
+* docker.io/bitnami/postgresql:17.4.0-debian-12-r2
 ## komoplane
 * busybox
 * komodorio/komoplane:0.1.6
