@@ -1,7 +1,7 @@
 # per default no kyvernoPolicies get applied, add them in the list in your values files to enable them
 kyvernoPolicies:
-  createDenyAllNetworkPolicy:
-    enable: false
+  createDenyAllAllowCoreDNSNetworkPolicy:
+    enabled: false
     excludeNamespaces:
       - kube-system
       - kyverno
