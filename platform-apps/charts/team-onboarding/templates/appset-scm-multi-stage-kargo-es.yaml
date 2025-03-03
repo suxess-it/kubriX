@@ -13,7 +13,7 @@ spec:
     name: vault-backend
     kind: ClusterSecretStore
   target:
-    name: appset-github-token
+    name: {{ .name }}-appset-github-token
     template:
       data:
         token: "{{ `{{ .GITHUB_APPSET_PAT }}` }}"
