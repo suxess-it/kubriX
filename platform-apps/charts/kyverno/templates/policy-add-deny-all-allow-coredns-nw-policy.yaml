@@ -17,6 +17,7 @@ metadata:
       to application Pods from select sources. This policy will create a new NetworkPolicy resource
       named `default-deny` which will deny all traffic anytime a new Namespace is created.
 spec:
+  generateExisting: true
   rules:
   - name: default-deny-all-except-dns
     skipBackgroundRequests: true
@@ -40,18 +41,22 @@ spec:
       synchronize: true
       data:
         spec:
-          # select all pods in the namespace
           podSelector: {}
-          # deny all traffic
           policyTypes:
-          - Ingress
-          - Egress
+            - Ingress
+            - Egress
+          ingress: []
           egress:
-          - to:
-            - namespaceSelector:
-                matchLabels:
-                  name: kube-system
-            ports:
-            - protocol: UDP
-              port: 53
+            - to:
+              - namespaceSelector:
+                  matchLabels:
+                    kubernetes.io/metadata.name: kube-system
+                podSelector:
+                  matchLabels:
+                    k8s-app: kube-dns
+              ports:
+                - port: {{- .Values.kyvernoPolicies.createDenyAllAllowCoreDNSNetworkPolicy.dnsPort }}
+                  protocol: UDP
+                - port: {{- .Values.kyvernoPolicies.createDenyAllAllowCoreDNSNetworkPolicy.dnsPort }}
+                  protocol: TCP
 {{- end }}
