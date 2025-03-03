@@ -47,7 +47,11 @@ keycloak:
 
   networkPolicy:
     enabled: false
-
+  metrics:
+    enabled: true
+    serviceMonitor:
+      enabled: true
+      
   keycloakConfigCli:
     enabled: false
 ######## postgres instance
