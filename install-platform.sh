@@ -54,7 +54,7 @@ wait_until_apps_synced_healthy() {
     operation_state_bootstrap_app=$(kubectl get application -n argocd ${bootstrap_app} -o jsonpath='{.status.operationState}')
     if [ "${operation_state_bootstrap_app}" != "" ] ; then
       operation_phase_bootstrap_app=$(kubectl get application -n argocd ${bootstrap_app} -o jsonpath='{.status.operationState.phase}')
-      if [ "${operation_phase_bootstrap_app}" = "Failed" ] || [ "${operation_phase_bootstrap_app}" = "Error" ]
+      if [ "${operation_phase_bootstrap_app}" = "Failed" ] || [ "${operation_phase_bootstrap_app}" = "Error" ] ; then
         echo "sx-boostrap-app sync failed. Restarting sync ..."
         kubectl exec sx-argocd-application-controller-0 -n argocd -- argocd app terminate-op "$bootstrap_app" --core
         kubectl exec sx-argocd-application-controller-0 -n argocd -- argocd app sync "$bootstrap_app" --async --core
