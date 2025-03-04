@@ -1,9 +1,9 @@
 
-<h3>Target <code>docker.io/dserio83/velero-ui:0.1.20 (alpine 3.19.0)</code></h3>
+<h3>Target <code>docker.io/dserio83/velero-ui:0.1.22 (alpine 3.19.0)</code></h3>
 <h4>No Vulnerabilities found</h4>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>Node.js</code></h3>
-<h4>Vulnerabilities (3)</h4>
+<h4>Vulnerabilities (1)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -18,20 +18,6 @@
         <td>HIGH</td>
         <td>7.0.3</td>
         <td>7.0.5, 6.0.6</td>
-    </tr>
-    <tr>
-        <td><code>next</code></td>
-        <td>CVE-2024-46982</td>
-        <td>HIGH</td>
-        <td>14.1.2</td>
-        <td>13.5.7, 14.2.10</td>
-    </tr>
-    <tr>
-        <td><code>next</code></td>
-        <td>CVE-2024-51479</td>
-        <td>HIGH</td>
-        <td>14.1.2</td>
-        <td>14.2.15</td>
     </tr>
 </table>
 <h4>No Misconfigurations found</h4>

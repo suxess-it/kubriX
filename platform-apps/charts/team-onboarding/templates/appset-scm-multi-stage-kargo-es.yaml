@@ -13,14 +13,14 @@ spec:
     name: vault-backend
     kind: ClusterSecretStore
   target:
-    name: appset-github-token
+    name: {{ .name }}-appset-github-token
     template:
       data:
         token: "{{ `{{ .GITHUB_APPSET_PAT }}` }}"
   data:
   - secretKey: GITHUB_APPSET_PAT
     remoteRef:
-      key: kubrix-kv/data/demo/delivery
+      key: kubrix-kv/data/{{ .name }}/delivery
       property: GITHUB_APPSET_PAT
 ---
 {{- end }}
