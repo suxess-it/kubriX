@@ -6,7 +6,7 @@ metadata:
   labels:
     platform-engineer.cloud/role: 2faotprole
   annotations:
-    argocd.argoproj.io/sync-wave: "2"
+    argocd.argoproj.io/sync-wave: "6"
     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
 spec:
   deletionPolicy: Delete
@@ -26,7 +26,7 @@ metadata:
   labels:
     platform-engineer.cloud/flow: 2faflow
   annotations:
-    argocd.argoproj.io/sync-wave: "2"
+    argocd.argoproj.io/sync-wave: "6"
     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
 spec:
   deletionPolicy: Delete
@@ -45,7 +45,7 @@ kind: Execution
 metadata:
   name: 2fa-ex1
   annotations:
-    argocd.argoproj.io/sync-wave: "3"
+    argocd.argoproj.io/sync-wave: "7"
     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
 spec:
   forProvider:
@@ -66,7 +66,7 @@ kind: Execution
 metadata:
   name: 2fa-ex2
   annotations:
-    argocd.argoproj.io/sync-wave: "4"
+    argocd.argoproj.io/sync-wave: "8"
     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
 spec:
   forProvider:
@@ -87,7 +87,7 @@ kind: Execution
 metadata:
   name: 2fa-ex3
   annotations:
-    argocd.argoproj.io/sync-wave: "5"
+    argocd.argoproj.io/sync-wave: "9"
     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
 spec:
   forProvider:
@@ -110,7 +110,7 @@ metadata:
   labels:
     platform-engineer.cloud/execution: 2fa-ex4
   annotations:
-    argocd.argoproj.io/sync-wave: "6"
+    argocd.argoproj.io/sync-wave: "10"
     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
 spec:
   forProvider:
@@ -131,7 +131,7 @@ kind: ExecutionConfig
 metadata:
   name: 2fa-ex4-conf
   annotations:
-    argocd.argoproj.io/sync-wave: "7"
+    argocd.argoproj.io/sync-wave: "11"
     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
 spec:
   forProvider:
@@ -153,7 +153,7 @@ kind: Bindings
 metadata:
   name: 2fa-browser-flow-binding
   annotations:
-    argocd.argoproj.io/sync-wave: "8"
+    argocd.argoproj.io/sync-wave: "12"
     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
 spec:
   forProvider:
@@ -175,7 +175,7 @@ metadata:
   name: backstage-{{ $group.name }}-2fa-roles
   annotations:
     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
-    argocd.argoproj.io/sync-wave: "1"
+    argocd.argoproj.io/sync-wave: "7"
 spec:
   forProvider:
     exhaustive: false

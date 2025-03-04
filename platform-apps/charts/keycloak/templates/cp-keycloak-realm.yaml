@@ -8,6 +8,7 @@ metadata:
   annotations:
     link.argocd.argoproj.io/external-link: https://keycloak{{ .Values.kubrix.keycloak.fqdn }}/admin/master/console/#/{{ .Values.kubrix.keycloak.realm.realmid }}
     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+    argocd.argoproj.io/sync-wave: "1"
 spec:
   forProvider:
     realm: {{ .Values.kubrix.keycloak.realm.realmid }}
