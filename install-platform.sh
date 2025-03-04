@@ -49,6 +49,18 @@ wait_until_apps_synced_healthy() {
   while [ $SECONDS -lt $end ]; do
     all_apps_synced="true"
 
+    # check if sx-boostrap-app already failed and restart sync
+    bootstrap_app="sx-bootstrap-app"
+    operation_state_bootstrap_app=$(kubectl get application -n argocd ${bootstrap_app} -o jsonpath='{.status.operationState}')
+    if [ "${operation_state_bootstrap_app}" != "" ] ; then
+      operation_phase_bootstrap_app=$(kubectl get application -n argocd ${bootstrap_app} -o jsonpath='{.status.operationState.phase}')
+      if [ "${operation_phase_bootstrap_app}" = "Failed" ] || [ "${operation_phase_bootstrap_app}" = "Error" ] ; then
+        echo "sx-boostrap-app sync failed. Restarting sync ..."
+        kubectl exec sx-argocd-application-controller-0 -n argocd -- argocd app terminate-op "$bootstrap_app" --core
+        kubectl exec sx-argocd-application-controller-0 -n argocd -- argocd app sync "$bootstrap_app" --async --core
+      fi
+    fi
+
     # print app status in beautiful table
     printf 'app sync-status health-status sync-duration operation-phase\n' > status-apps.out
 
@@ -83,9 +95,9 @@ wait_until_apps_synced_healthy() {
           fi
           # terminate sync if sync is running and takes longer than 300 seconds (workaround when sync gets stuck)
           operation_phase=$(kubectl get application -n argocd ${app} -o jsonpath='{.status.operationState.phase}')
-          if [ "${operation_phase}" = "Running" ] && [ ${sync_duration} -gt 300 ] || [ "${operation_phase}" = "Failed" ] ; then
+          if [ "${operation_phase}" = "Running" ] && [ ${sync_duration} -gt 300 ] || [ "${operation_phase}" = "Failed" ] || [ "${operation_phase}" = "Error" ] ; then
             # Terminate the operation for the application
-            echo "sync of app ${app} gets terminated because it took longer than 300 seconds"
+            echo "sync of app ${app} gets terminated because it took longer than 300 seconds or failed"
             kubectl exec sx-argocd-application-controller-0 -n argocd -- argocd app terminate-op "$app" --core
             echo "wait for 10 seconds"
             sleep 10
