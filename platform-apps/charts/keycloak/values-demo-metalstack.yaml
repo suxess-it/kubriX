@@ -14,10 +14,6 @@ keycloak:
       cert-manager.io/cluster-issuer: letsencrypt-prod
     path: /
     tls: true
-    extraTls:
-    - hosts:
-        - keycloak.demo.kubrix.cloud
-      secretName: keycloak-server-tls
   pdb:
     create: false
   postgresql:

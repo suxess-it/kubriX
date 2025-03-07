@@ -14,10 +14,6 @@ keycloak:
       nginx.ingress.kubernetes.io/rewrite-target: /
       nginx.ingress.kubernetes.io/backend-protocol: HTTP
     tls: true
-    extraTls:
-    - hosts:
-        - keycloak-127-0-0-1.nip.io
-      secretName: keycloak-server-tls
   pdb:
     create: false
   postgresql:
