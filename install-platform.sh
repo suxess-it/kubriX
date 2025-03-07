@@ -333,7 +333,7 @@ kubectl apply -f platform-apps/charts/argocd/manual-secret/argocd-secret.yaml
 if [[ $( echo $argocd_apps | grep sx-vault ) ]] ; then
   echo "adding secrets in vault for sx-kargo and sx-team-onboarding ..."
   export VAULT_HOSTNAME=$(kubectl get ingress -o jsonpath='{.items[*].spec.rules[*].host}' -n vault)
-  curl -k --header "X-Vault-Token:$(kubectl get secret -n vault vault-init -o=jsonpath='{.data.root_token}'  | base64 -d)" --request POST --data "{\"data\": {\"GITHUB_APPSET_PAT\": \"${KUBRIX_ARGOCD_APPSET_TOKEN}\", \"GITHUB_TOKEN\": \"${KUBRIX_KARGO_GIT_PASSWORD}\", \"GITHUB_USERNAME\": \"${KUBRIX_KARGO_GIT_USERNAME}\"}}" https://${VAULT_HOSTNAME}/v1/kubrix-kv/data/demo/delivery
+  curl -k --header "X-Vault-Token:$(kubectl get secret -n vault vault-init -o=jsonpath='{.data.root_token}'  | base64 -d)" --request POST --data "{\"data\": {\"KUBRIX_ARGOCD_APPSET_TOKEN\": \"${KUBRIX_ARGOCD_APPSET_TOKEN}\", \"KUBRIX_KARGO_GIT_PASSWORD\": \"${KUBRIX_KARGO_GIT_PASSWORD}\", \"KUBRIX_KARGO_GIT_USERNAME\": \"${KUBRIX_KARGO_GIT_USERNAME}\"}}" https://${VAULT_HOSTNAME}/v1/kubrix-kv/data/demo/delivery
   sleep 10
 fi
 
