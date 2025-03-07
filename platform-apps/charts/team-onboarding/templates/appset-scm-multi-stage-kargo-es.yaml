@@ -16,12 +16,12 @@ spec:
     name: {{ .name }}-appset-github-token
     template:
       data:
-        token: "{{ `{{ .GITHUB_APPSET_PAT }}` }}"
+        token: "{{ `{{ .KUBRIX_ARGOCD_APPSET_TOKEN }}` }}"
   data:
-  - secretKey: GITHUB_APPSET_PAT
+  - secretKey: KUBRIX_ARGOCD_APPSET_TOKEN
     remoteRef:
       key: kubrix-kv/data/{{ .name }}/delivery
-      property: GITHUB_APPSET_PAT
+      property: KUBRIX_ARGOCD_APPSET_TOKEN
 ---
 {{- end }}
 {{- end }}

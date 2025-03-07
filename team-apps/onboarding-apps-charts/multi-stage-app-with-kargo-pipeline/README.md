@@ -111,8 +111,8 @@ Still, it could be a feature that with team-onboarding this appset gets created 
 
 create a secret first for the github pat (otherwise a very low rate limit affects you):
 ```
-export GITHUB_APPSET_PAT=<token>
-kubectl create secret generic appset-github-token --from-literal=token=${GITHUB_APPSET_PAT} -n team1-apps
+export KUBRIX_ARGOCD_APPSET_TOKEN=<token>
+kubectl create secret generic appset-github-token --from-literal=token=${KUBRIX_ARGOCD_APPSET_TOKEN} -n team1-apps
 ```
 
 and then define this applicationset in the teams1-apps namespace:
