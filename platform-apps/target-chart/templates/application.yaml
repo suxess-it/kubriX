@@ -20,13 +20,11 @@ spec:
       {{- with .helmOptions }}
         {{- toYaml . | nindent 6 }}
       {{- end }}
-      {{- if .valueFiles }}
-      valueFiles:
-        {{- toYaml .valueFiles | nindent 6 }}
-      {{- else }}
       valueFiles:
         {{- toYaml $.Values.default.valueFiles | nindent 6}}
-      {{- end }}
+        {{- with .valueFiles }}
+        {{- toYaml . | nindent 6}}
+        {{- end }}
       ignoreMissingValueFiles: true
       parameters:
         - name: default.repoURL
