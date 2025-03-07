@@ -20,6 +20,13 @@ applications:
     annotations:
       argocd.argoproj.io/sync-wave: "-7"
 
+  - name: k8s-monitoring
+    annotations:
+      argocd.argoproj.io/compare-options: ServerSideDiff=true
+      argocd.argoproj.io/sync-wave: "-7"
+    syncOptions:
+      - ServerSideApply=true
+
   - name: keycloak
     annotations:
       argocd.argoproj.io/sync-wave: "-6"

@@ -1,26 +1,26 @@
 apiVersion: group.keycloak.crossplane.io/v1alpha1
 kind: Roles
 metadata:
-  name: {{ .Values.deployments.keycloak.backstageclient.config.clientID }}-default-group-roles
+  name: backstage-default-group-roles
   annotations:
     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
-    argocd.argoproj.io/sync-wave: "1"
+    argocd.argoproj.io/sync-wave: "4"
 spec:
   deletionPolicy: Delete
   forProvider:
     exhaustive: false
     groupIdRef:
-      name: {{ .Values.deployments.keycloak.backstageclient.config.clientID }}-admin
+      name: backstage-admin
     realmIdRef: 
-      name: {{ .Values.deployments.keycloak.realm.realmid }}
+      name: {{ .Values.kubrix.keycloak.realm.realmid }}
     roleIdsRefs:
-      - name: builtin-{{ .Values.deployments.keycloak.realm.realmid }}-realm-management-view-users
-      - name: builtin-{{ .Values.deployments.keycloak.realm.realmid }}-realm-management-query-groups
-      - name: builtin-{{ .Values.deployments.keycloak.realm.realmid }}-realm-management-query-users
+      - name: builtin-{{ .Values.kubrix.keycloak.realm.realmid }}-realm-management-view-users
+      - name: builtin-{{ .Values.kubrix.keycloak.realm.realmid }}-realm-management-query-groups
+      - name: builtin-{{ .Values.kubrix.keycloak.realm.realmid }}-realm-management-query-users
     roleIdsSelector:
       matchLabels:
         defaultRole: 'true'
-        realmName: {{ .Values.deployments.keycloak.realm.realmid }}
+        realmName: {{ .Values.kubrix.keycloak.realm.realmid }}
   initProvider: {}
   managementPolicies:
     - '*'

@@ -1,4 +1,4 @@
-{{ if has "policy-kubevirt-rolebinding" .Values.kyvernoPolicies }}
+{{ if .Values.kyvernoPolicies.createKubevirtRolebinding.enabled }}
 apiVersion: kyverno.io/v1
 kind: ClusterPolicy
 metadata:
