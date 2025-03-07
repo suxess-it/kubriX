@@ -1,5 +1,5 @@
 
-<h3>Target <code>quay.io/argoproj/argocd:v2.14.2 (ubuntu 24.04)</code></h3>
+<h3>Target <code>quay.io/argoproj/argocd:v2.14.4 (ubuntu 24.04)</code></h3>
 <h4>No Vulnerabilities found</h4>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>usr/local/bin/argocd</code></h3>
