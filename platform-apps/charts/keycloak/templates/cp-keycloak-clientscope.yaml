@@ -3,7 +3,7 @@ kind: ClientScope
 metadata:
   annotations:
     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
-    argocd.argoproj.io/sync-wave: "1"
+    argocd.argoproj.io/sync-wave: "2"
   labels:
     platform-engineer.cloud/clientscope: groups
   name: openid-client-scope-groups
@@ -15,7 +15,7 @@ spec:
     includeInTokenScope: true
     name: groups
     realmIdRef:
-      name: {{ $.Values.deployments.keycloak.realm.realmid }}
+      name: {{ $.Values.kubrix.keycloak.realm.realmid }}
   providerConfigRef:
     name: "{{ .Release.Name }}-config"
 ---
@@ -24,7 +24,7 @@ kind: ClientScope
 metadata:
   annotations:
     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
-    argocd.argoproj.io/sync-wave: "1"
+    argocd.argoproj.io/sync-wave: "2"
   labels:
     platform-engineer.cloud/clientscope: groups
   name: openid-client-scope-openid
@@ -36,6 +36,6 @@ spec:
     includeInTokenScope: true
     name: openid
     realmIdRef:
-      name: {{ $.Values.deployments.keycloak.realm.realmid }}
+      name: {{ $.Values.kubrix.keycloak.realm.realmid }}
   providerConfigRef:
     name: "{{ .Release.Name }}-config"

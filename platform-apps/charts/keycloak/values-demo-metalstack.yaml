@@ -1,135 +1,137 @@
-# Postgres account data, web server certificates, and keycloak admin user
-secrets:
-  postgres:
-    name: postgres-credentials
-    admin:
-      name: postgres
-      password: postgres
-  tls:
-    name: keycloak-server-tls
-  keycloak:
-    name: keycloak-secrets
-    admin:
-      name: admin
-      password: admin
-
-gardenercert:
-  enabled: false
-
-certmanager:
-  enabled: true
-  issuer: letsencrypt-prod
-
-# Postgres, Keycloak and Ingress deployments
-deployments:
-  securePort: 443
-  postgres:
-    image:
-      name: postgres:latest
-    db:
-      name: keycloak
-    service:
-      name: postgres
-      port: 5432
-    volume:
-      name: postgres-storage
-      path: /var/lib/postgresql/data
+keycloak:
+  #extraEnvVars:
+  #  - name: KEYCLOAK_LOG_LEVEL
+  #    value: DEBUG
+  auth:
+    adminUser: admin
+    existingSecret: "keycloak-credentials"
   ingress:
-    className: nginx
-    fqdn: .demo.kubrix.cloud # add to prefix keycloak in templates
+    enabled: true
+    hostname: keycloak.demo.kubrix.cloud
+    ingressClassName: nginx
+    annotations:
+      external-dns.alpha.kubernetes.io/ttl: "60"
+      cert-manager.io/cluster-issuer: letsencrypt-prod
+    path: /
+    tls: true
+    extraTls:
+    - hosts:
+        - keycloak.demo.kubrix.cloud
+      secretName: keycloak-server-tls
+  pdb:
+    create: false
+  postgresql:
+    enabled: false
+  externalDatabase:
+    existingSecret: "cp-keycloak-externaldb-secret"
+    existingSecretHostKey: "HOST"
+    existingSecretPortKey: "PORT"
+    existingSecretUserKey: "POSTGRES_USER"
+    existingSecretDatabaseKey: "POSTGRES_DATABASE"
+    existingSecretPasswordKey: "POSTGRES_PASSWORD"
+
+  readinessProbe:
+    httpGet:
+      path: /realms/master
+      port: http
+    initialDelaySeconds: 60
+    timeoutSeconds: 5
+
+  resources:
+    requests:
+      memory: "512Mi"
+      cpu: "300m"
+    limits:
+      memory: "1Gi"
+      cpu: "1"
+
+  networkPolicy:
+    enabled: false
+  metrics:
+    enabled: true
+    serviceMonitor:
+      enabled: true
+      
+  keycloakConfigCli:
+    enabled: false
+######## postgres instance
+postgresql:
+  enabled: true
+  pdb:
+    create: false
+  primary:
+    networkPolicy:
+      enabled: false
+    persistence:
+      size: 2Gi # for demo only
+  auth:
+#    postgresPassword: "keycloak"
+    username: keycloak
+    database: postgres
+    existingSecret: "cp-keycloak-externaldb-secret"
+    secretKeys:
+      userPasswordKey: POSTGRES_PASSWORD
+      adminPasswordKey: POSTGRES_ADMIN
+      # replicationPasswordKey: # not used
+  volumePermissions:
+    enabled: false
+  architecture: standalone
+
+#### kubrix
+kubrix:
   keycloak:
-    version: 25.0.2
-    service:
-      name: keycloak-service
-    ports:
-      containerPort: 8080
-    # keycloak realm config
+    fqdn: .demo.kubrix.cloud # add to prefix keycloak in templates
     realm:
       realmid: kubrix
       users:
         - name: phac
           firstName: Philipp
           lastName: Achmueller
-          email: "philipp.achmueller@platform-engineer.cloud"
-          password: "test"
+          email: "philipp.achmueller@kubrix.io"
         - name: jokl
           firstName: Johannes
           lastName: Kleinlercher
-          email: "johannes.kleinlercher@platform-engineer.cloud"
-          password: "test"
+          email: "johannes.kleinlercher@kubrix.io"
         - name: backstageadmin
           firstName: MrBackstage
           lastName: MrAdmin
-          email: "backstageadmin@platform-engineer.cloud"
-          password: "test"
+          email: "backstageadmin@kubrix.io"
         - name: demouser
           firstName: demo
           lastName: user
-          email: "demouser@platform-engineer.cloud"
-          password: "test"
+          email: "demouser@kubrix.io"
         - name: demoadmin
           firstName: demo
           lastName: admin
-          email: "demoadmin@platform-engineer.cloud"
-          password: "test"
+          email: "demoadmin@kubrix.io"
         - name: team1user
           firstName: team1
           lastName: demouser
-          email: "team1user@platform-engineer.cloud"
-          password: "test"
-        - name: team-auser
-          firstName: team-a
-          lastName: demouser
-          email: "team-auser@platform-engineer.cloud"
-          password: "test"
+          email: "team1user@kubrix.io"
       groups:
         - name: admins
-          mfa: false # valid if .keycloak.mfa.enabled is true, disable for admin 
+          roles:
+            - grafana-admin
           members:
             - backstageadmin
             - demoadmin
         - name: team1
-          mfa: true # valid if .keycloak.mfa.enabled is true 
+          roles:
+            - grafana-viewer
           members:
             - team1user
-        - name: team-a
-          mfa: false # valid if .keycloak.mfa.enabled is true 
-          members:
-            - team-auser
         - name: users
-          mfa: false # valid if .keycloak.mfa.enabled is true 
+          roles:
+            - grafana-editor
           members: 
             - phac
             - jokl
             - demouser
         - name: backstage-admin # for service-account permission workaround
-    # backstage client
-    backstageclient:
-      config:
-        clientID: backstage
-        clientSecret: demosecret
-    # vault client
-    vaultclient:
-      config:
-        clientID: vault
-        clientSecret: demosecret
-    # grafana client
-    grafanaclient:
-      config:
-        clientID: grafana
-        clientSecret: demosecret
-    # pgadmin client
-    pgadminclient:
-      config:
-        clientID: pgadmin
-        clientSecret: demosecret
     # start with 2FA mobile Authenticators
     mfa:
-      enabled: true
-# PersistenVolume / PersistenVolumeClaims
-pv:
-  name: postgres-pv
-  size: 1Gi
-pvc:
-  name: postgres-pvc
-  size: 1Gi
+      enabled: false
+
+## cnpg
+cluster:
+  enabled: false
