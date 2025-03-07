@@ -42,7 +42,7 @@ spec:
     server: 'https://kubernetes.default.svc'
   syncPolicy:
     managedNamespaceMetadata:
-    {{- if ne .namespaceResourceTracking "false" }}
+    {{- if or .namespaceResourceTracking (not (hasKey . "namespaceResourceTracking")) }}
       annotations:
         argocd.argoproj.io/tracking-id: sx-{{ .name }}:app/Namespace:{{ .name }}/{{ .name }}
     {{- end }}
