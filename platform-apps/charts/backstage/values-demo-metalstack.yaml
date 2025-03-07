@@ -16,7 +16,7 @@ backstage:
     image:
       registry: ghcr.io/suxess-it
       repository: sx-backstage
-      tag: v1.34.2
+      tag: v1.32.6
     extraEnvVarsSecrets:
       - sx-cnp-secret
       - manual-secret
@@ -143,13 +143,14 @@ backstage:
               schedule:
                 frequency: PT30M
                 timeout: PT3M
+              additionalScopes: ['repo','workflow'] 
           #guest: {}
           oidc:
             development:
               # real metadataUrl -> local cluster lead to "ECONNREFUSED 127.0.0.1:443" - #24935
               #metadataUrl: https://keycloak.lab.suxessit.k8s.cloud.uibk.ac.at/realms/kubrix #.well-known/openid-configuration can be ommited
               # workaround -> also set frontendUrl in keycloak realm
-              metadataUrl: http://keycloak-service.keycloak.svc.cluster.local:8080/realms/kubrix #.well-known/openid-configuration can be ommited
+              metadataUrl: http://sx-keycloak-headless.keycloak.svc.cluster.local:8080/realms/kubrix #.well-known/openid-configuration can be ommited
               callbackUrl: https://backstage.demo.kubrix.cloud/api/auth/oidc/handler/frame
               clientId: backstage
               clientSecret: demosecret
@@ -226,20 +227,20 @@ backstage:
           - allow: [Component, System, API, Resource, Location, Template, Domain, User, Group ]
         locations:
           - type: url
-            target: https://github.com/kubriX-demo/kubriX-demo/blob/main/backstage-resources/templates/showcase-templates-demo.yaml
+            target: https://github.com/kubriX-demo/kubriX-demo-oss/blob/main/backstage-resources/templates/showcase-templates-demo.yaml
             rules:
               - allow: [Template]
           - type: url
-            target: https://github.com/kubriX-demo/kubriX-demo/blob/main/backstage-resources/entities/all.yaml
+            target: https://github.com/kubriX-demo/kubriX-demo-oss/blob/main/backstage-resources/entities/all.yaml
           - type: url
-            target: https://github.com/kubriX-demo/kubriX-demo/blob/main/backstage-resources/entities/demo.yaml
+            target: https://github.com/kubriX-demo/kubriX-demo-oss/blob/main/backstage-resources/entities/demo.yaml
         providers:
           keycloakOrg:
             default:
               # real baseUrl -> local cluster lead to "ECONNREFUSED 127.0.0.1:443"
               #baseUrl: https://keycloak.lab.suxessit.k8s.cloud.uibk.ac.at
               # workaround
-              baseUrl: http://keycloak-service.keycloak.svc.cluster.local:8080
+              baseUrl: http://sx-keycloak-headless.keycloak.svc.cluster.local:8080
               loginRealm: kubrix
               realm: kubrix
               clientId: backstage
@@ -253,9 +254,6 @@ backstage:
 
       kubernetes:
         customResources:
-          - group: 'aquasecurity.github.io'
-            apiVersion: 'v1alpha1'
-            plural: 'configauditreports'
           - group: 'kubevirt.io'
             apiVersion: 'v1'
             plural: 'virtualmachines'

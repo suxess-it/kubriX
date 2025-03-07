@@ -11,6 +11,6 @@ spec:
   credentials:
     source: Secret
     secretRef:
-      name: "{{ .Release.Name }}-credentials"
-      key: keycloak-credentials
+      name: keycloak-credentials
+      key: credentials
       namespace: "{{ .Release.Namespace }}"

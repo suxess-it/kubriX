@@ -23,6 +23,10 @@ applications:
     syncOptions:
       - ServerSideApply=true
 
+  - name: keycloak
+    annotations:
+      argocd.argoproj.io/sync-wave: "-6"
+
   - name: vault
     annotations:
       argocd.argoproj.io/sync-wave: "-5"

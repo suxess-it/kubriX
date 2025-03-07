@@ -16,5 +16,6 @@ spec:
 {{- range .sourceRepos }}
   - {{ quote . }}
 {{- end }}
+  - {{ $.Values.multiStageKargoAppSetHelmRepo | quote }}
 ---
 {{- end }}

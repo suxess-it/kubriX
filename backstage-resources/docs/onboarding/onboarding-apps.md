@@ -69,7 +69,7 @@ Experienced teams can create their own ArgoCD application definition or AppSets 
 This application definition can point to any GitOps-Repo as long as
 
 * ArgoCD is able to read this repo
-* it meets the 'sourceRepos' rules in the [team-onboarding values](https://github.com/kubriX-demo/kubriX-demo/blob/main/platform-apps/charts/team-onboarding/values-demo-metalstack.yaml)
+* it meets the 'sourceRepos' rules in the [team-onboarding values](https://github.com/kubriX-demo/kubriX-demo-oss/blob/main/platform-apps/charts/team-onboarding/values-demo-metalstack.yaml)
 
 Please be aware that depending on the ArgoCD project definition it is very likely that your team can only deploy namespace-scoped resources in namespaces beginning with your team name (e.g. 'team-1-app-1').
 

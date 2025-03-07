@@ -3,12 +3,12 @@ kind: ClientDefaultScopes
 metadata:
   annotations:
     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
-    argocd.argoproj.io/sync-wave: "1"
+    argocd.argoproj.io/sync-wave: "6"
   name: client-default-scopes
 spec:
   forProvider:
     clientIdRef:
-      name: {{ .Values.deployments.keycloak.backstageclient.config.clientID }}
+      name: backstage
     defaultScopes:
     - profile
     - email
@@ -17,6 +17,6 @@ spec:
     - groups
     - acr
     realmIdRef:
-      name: {{ $.Values.deployments.keycloak.realm.realmid }}
+      name: {{ $.Values.kubrix.keycloak.realm.realmid }}
   providerConfigRef:
     name: "{{ .Release.Name }}-config"

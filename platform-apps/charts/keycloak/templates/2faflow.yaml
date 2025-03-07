@@ -1,4 +1,4 @@
-{{- if .Values.deployments.keycloak.mfa.enabled }}
+{{- if .Values.kubrix.keycloak.mfa.enabled }}
 apiVersion: role.keycloak.crossplane.io/v1alpha1
 kind: Role
 metadata:
@@ -6,16 +6,16 @@ metadata:
   labels:
     platform-engineer.cloud/role: 2faotprole
   annotations:
-    argocd.argoproj.io/sync-wave: "2"
+    argocd.argoproj.io/sync-wave: "6"
     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
 spec:
   deletionPolicy: Delete
   forProvider:
-    description: "${role_{{ .Values.deployments.keycloak.realm.realmid }}_otprole}"
-    name: {{ .Values.deployments.keycloak.realm.realmid }}_otprole
+    description: "${role_{{ .Values.kubrix.keycloak.realm.realmid }}_otprole}"
+    name: {{ .Values.kubrix.keycloak.realm.realmid }}_otprole
     realmIdSelector:
       matchLabels:
-        platform-engineer.cloud/realm: {{ .Values.deployments.keycloak.realm.realmid }}
+        platform-engineer.cloud/realm: {{ .Values.kubrix.keycloak.realm.realmid }}
   providerConfigRef:
     name: "{{ .Release.Name }}-config"
 ---
@@ -26,14 +26,14 @@ metadata:
   labels:
     platform-engineer.cloud/flow: 2faflow
   annotations:
-    argocd.argoproj.io/sync-wave: "2"
+    argocd.argoproj.io/sync-wave: "6"
     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
 spec:
   deletionPolicy: Delete
   forProvider:
     realmIdSelector:
       matchLabels:
-        platform-engineer.cloud/realm: {{ .Values.deployments.keycloak.realm.realmid }}
+        platform-engineer.cloud/realm: {{ .Values.kubrix.keycloak.realm.realmid }}
     alias: browser 2 FA
     description: browser based authentication
     providerId: basic-flow
@@ -45,7 +45,7 @@ kind: Execution
 metadata:
   name: 2fa-ex1
   annotations:
-    argocd.argoproj.io/sync-wave: "3"
+    argocd.argoproj.io/sync-wave: "7"
     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
 spec:
   forProvider:
@@ -57,7 +57,7 @@ spec:
     requirement: ALTERNATIVE
     realmIdSelector:
       matchLabels:
-        platform-engineer.cloud/realm: {{ .Values.deployments.keycloak.realm.realmid }}
+        platform-engineer.cloud/realm: {{ .Values.kubrix.keycloak.realm.realmid }}
   providerConfigRef:
     name: "{{ .Release.Name }}-config"
 ---
@@ -66,7 +66,7 @@ kind: Execution
 metadata:
   name: 2fa-ex2
   annotations:
-    argocd.argoproj.io/sync-wave: "4"
+    argocd.argoproj.io/sync-wave: "8"
     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
 spec:
   forProvider:
@@ -77,7 +77,7 @@ spec:
         platform-engineer.cloud/flow: 2faflow
     realmIdSelector:
       matchLabels:
-        platform-engineer.cloud/realm: {{ .Values.deployments.keycloak.realm.realmid }}
+        platform-engineer.cloud/realm: {{ .Values.kubrix.keycloak.realm.realmid }}
     requirement: ALTERNATIVE
   providerConfigRef:
     name: "{{ .Release.Name }}-config"
@@ -87,7 +87,7 @@ kind: Execution
 metadata:
   name: 2fa-ex3
   annotations:
-    argocd.argoproj.io/sync-wave: "5"
+    argocd.argoproj.io/sync-wave: "9"
     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
 spec:
   forProvider:
@@ -98,7 +98,7 @@ spec:
         platform-engineer.cloud/flow: 2faflow
     realmIdSelector:
       matchLabels:
-        platform-engineer.cloud/realm: {{ .Values.deployments.keycloak.realm.realmid }}
+        platform-engineer.cloud/realm: {{ .Values.kubrix.keycloak.realm.realmid }}
     requirement: REQUIRED
   providerConfigRef:
     name: "{{ .Release.Name }}-config"
@@ -110,7 +110,7 @@ metadata:
   labels:
     platform-engineer.cloud/execution: 2fa-ex4
   annotations:
-    argocd.argoproj.io/sync-wave: "6"
+    argocd.argoproj.io/sync-wave: "10"
     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
 spec:
   forProvider:
@@ -121,7 +121,7 @@ spec:
         platform-engineer.cloud/flow: 2faflow
     realmIdSelector:
       matchLabels:
-        platform-engineer.cloud/realm: {{ .Values.deployments.keycloak.realm.realmid }}
+        platform-engineer.cloud/realm: {{ .Values.kubrix.keycloak.realm.realmid }}
     requirement: REQUIRED
   providerConfigRef:
     name: "{{ .Release.Name }}-config"
@@ -131,20 +131,20 @@ kind: ExecutionConfig
 metadata:
   name: 2fa-ex4-conf
   annotations:
-    argocd.argoproj.io/sync-wave: "7"
+    argocd.argoproj.io/sync-wave: "11"
     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
 spec:
   forProvider:
     alias: conditional otp form
     config:
       defaultOtpOutcome: skip
-      forceOtpRole: {{ .Values.deployments.keycloak.realm.realmid }}_otprole
+      forceOtpRole: {{ .Values.kubrix.keycloak.realm.realmid }}_otprole
     executionIdSelector:
       matchLabels:
         platform-engineer.cloud/execution: 2fa-ex4  
     realmIdSelector:
       matchLabels:
-        platform-engineer.cloud/realm: {{ .Values.deployments.keycloak.realm.realmid }}
+        platform-engineer.cloud/realm: {{ .Values.kubrix.keycloak.realm.realmid }}
   providerConfigRef:
     name: "{{ .Release.Name }}-config"
 ---
@@ -153,7 +153,7 @@ kind: Bindings
 metadata:
   name: 2fa-browser-flow-binding
   annotations:
-    argocd.argoproj.io/sync-wave: "8"
+    argocd.argoproj.io/sync-wave: "12"
     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
 spec:
   forProvider:
@@ -162,20 +162,20 @@ spec:
         platform-engineer.cloud/flow: 2faflow
     realmIdSelector:
       matchLabels:
-        platform-engineer.cloud/realm: {{ .Values.deployments.keycloak.realm.realmid }}
+        platform-engineer.cloud/realm: {{ .Values.kubrix.keycloak.realm.realmid }}
   providerConfigRef:
     name: "{{ .Release.Name }}-config"
 {{- end }}
 ---
-{{- range $group := .Values.deployments.keycloak.realm.groups }}
+{{- range $group := .Values.kubrix.keycloak.realm.groups }}
 {{- if $group.mfa }}
 apiVersion: group.keycloak.crossplane.io/v1alpha1
 kind: Roles
 metadata:
-  name: {{ $.Values.deployments.keycloak.backstageclient.config.clientID }}-{{ $group.name }}-2fa-roles
+  name: backstage-{{ $group.name }}-2fa-roles
   annotations:
     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
-    argocd.argoproj.io/sync-wave: "1"
+    argocd.argoproj.io/sync-wave: "7"
 spec:
   forProvider:
     exhaustive: false
@@ -184,7 +184,7 @@ spec:
     roleIdsSelector:
       matchLabels: 
         platform-engineer.cloud/role: 2faotprole    
-    realmId: {{ $.Values.deployments.keycloak.realm.realmid }}
+    realmId: {{ $.Values.kubrix.keycloak.realm.realmid }}
   providerConfigRef:
     name: "{{ $.Release.Name }}-config"  
 ---

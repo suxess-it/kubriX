@@ -2,19 +2,19 @@
 apiVersion: realm.keycloak.crossplane.io/v1alpha1
 kind: Realm
 metadata:
-  name: {{ .Values.deployments.keycloak.realm.realmid }}
+  name: {{ .Values.kubrix.keycloak.realm.realmid }}
   labels:
-    platform-engineer.cloud/realm: {{ .Values.deployments.keycloak.realm.realmid }}
+    platform-engineer.cloud/realm: {{ .Values.kubrix.keycloak.realm.realmid }}
   annotations:
-    link.argocd.argoproj.io/external-link: https://{{ .Values.deployments.ingress.host }}/admin/master/console/#/{{ .Values.deployments.keycloak.realm.realmid }}
+    link.argocd.argoproj.io/external-link: https://keycloak{{ .Values.kubrix.keycloak.fqdn }}/admin/master/console/#/{{ .Values.kubrix.keycloak.realm.realmid }}
     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
     argocd.argoproj.io/sync-wave: "1"
 spec:
   forProvider:
-    realm: {{ .Values.deployments.keycloak.realm.realmid }}
-    displayName: {{ .Values.deployments.keycloak.realm.realmid }}
+    realm: {{ .Values.kubrix.keycloak.realm.realmid }}
+    displayName: {{ .Values.kubrix.keycloak.realm.realmid }}
     attributes:
-      frontendUrl: https://keycloak{{ .Values.deployments.ingress.fqdn }}
+      frontendUrl: https://keycloak{{ .Values.kubrix.keycloak.fqdn }}
   deletionPolicy: "Delete"
   providerConfigRef:
     name: "{{ .Release.Name }}-config"

@@ -1,10 +1,13 @@
+{{- $tlsEntry := index .Values.pgadmin4.ingress.tls 0 }}
+{{- $fullHost := index $tlsEntry.hosts 0 }}
+{{- $fqdn := regexReplaceAll "^[^.]+\\." $fullHost "" }}
 apiVersion: v1
 kind: ConfigMap
 metadata:
   name: pgadminconfiglocal
   namespace: cnpg
 data:
-  config_local.py: |-
+  config_local.py: |+
     import os
     import logging
 
@@ -19,13 +22,13 @@ data:
         'OAUTH2_DISPLAY_NAME': 'keycloak',
         'OAUTH2_CLIENT_ID': os.environ['pgadminclientid'],
         'OAUTH2_CLIENT_SECRET': os.environ['pgadminclientsecret'],
-        'OAUTH2_TOKEN_URL': 'https://keycloak{{ .Values.pgadmin4.fqdn }}/realms/kubrix/protocol/openid-connect/token',
-        'OAUTH2_AUTHORIZATION_URL': 'https://keycloak{{ .Values.pgadmin4.fqdn }}/realms/kubrix/protocol/openid-connect/auth',
-        'OAUTH2_API_BASE_URL': 'https://keycloak.lab.suxessit.k8s.cloud.uibk.ac.at/',
-        'OAUTH2_USERINFO_ENDPOINT': 'https://keycloak{{ .Values.pgadmin4.fqdn }}/realms/kubrix/protocol/openid-connect/userinfo',
+        'OAUTH2_TOKEN_URL': 'https://keycloak.{{ $fqdn }}/realms/kubrix/protocol/openid-connect/token',
+        'OAUTH2_AUTHORIZATION_URL': 'https://keycloak.{{ $fqdn }}/realms/kubrix/protocol/openid-connect/auth',
+        'OAUTH2_API_BASE_URL': 'https://keycloak.{{ $fqdn }}/',
+        'OAUTH2_USERINFO_ENDPOINT': 'https://keycloak.{{ $fqdn }}/realms/kubrix/protocol/openid-connect/userinfo',
         'OAUTH2_SCOPE': 'openid groups email profile',
-        'OAUTH2_SERVER_METADATA_URL': 'https://keycloak{{ .Values.pgadmin4.fqdn }}/realms/kubrix/.well-known/openid-configuration',
-        'OAUTH2_LOGOUT_URL': 'https://keycloak{{ .Values.pgadmin4.fqdn }}/realms/kubrix/protocol/openid-connect/logout?client_id=pgadmin',
+        'OAUTH2_SERVER_METADATA_URL': 'https://keycloak.{{ $fqdn }}/realms/kubrix/.well-known/openid-configuration',
+        'OAUTH2_LOGOUT_URL': 'https://keycloak.{{ $fqdn }}/realms/kubrix/protocol/openid-connect/logout?client_id=pgadmin',
         "OAUTH2_BUTTON_COLOR": "None", "OAUTH2_ICON": "None" 
       }
     ]
