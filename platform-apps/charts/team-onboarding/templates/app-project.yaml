@@ -11,15 +11,11 @@ spec:
   clusterResourceWhitelist:
 {{ toYaml .clusterResourceWhitelist | indent 2 }}
   destinations:
-  - name: in-cluster
-    namespace: {{ .name }}-*
-    server: https://kubernetes.default.svc
-  - name: in-cluster
-    namespace: adn-{{ .name }}
-    server: https://kubernetes.default.svc
+{{ tpl (toYaml $.Values.defaultDestinationsRules | indent 2) . }}
   sourceRepos:
 {{- range .sourceRepos }}
   - {{ quote . }}
 {{- end }}
+  - {{ $.Values.multiStageKargoAppSetHelmRepo | quote }}
 ---
 {{- end }}

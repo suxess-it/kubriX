@@ -20,14 +20,17 @@ spec:
       {{- with .helmOptions }}
         {{- toYaml . | nindent 6 }}
       {{- end }}
-      {{- if .valueFiles }}
-      valueFiles:
-        {{- toYaml .valueFiles | nindent 6 }}
-      {{- else }}
       valueFiles:
         {{- toYaml $.Values.default.valueFiles | nindent 6}}
-      {{- end }}
+        {{- with .valueFiles }}
+        {{- toYaml . | nindent 6}}
+        {{- end }}
       ignoreMissingValueFiles: true
+      parameters:
+        - name: default.repoURL
+          value: {{ $.Values.default.repoURL }}
+        - name: default.targetRevision
+          value: {{ $.Values.default.targetRevision }}
   destination:
     {{- if .destinationNamespaceOverwrite }}
     namespace: {{ .destinationNamespaceOverwrite }}
@@ -37,9 +40,10 @@ spec:
     server: 'https://kubernetes.default.svc'
   syncPolicy:
     managedNamespaceMetadata:
+    {{- if or .namespaceResourceTracking (not (hasKey . "namespaceResourceTracking")) }}
       annotations:
-        # doesn't handle destinationNamespaceOverride yet
         argocd.argoproj.io/tracking-id: sx-{{ .name }}:app/Namespace:{{ .name }}/{{ .name }}
+    {{- end }}
     automated:
       prune: true
       selfHeal: true

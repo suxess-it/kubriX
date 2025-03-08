@@ -51,21 +51,25 @@ rm credentials
 
 ```
 # Github clientsecret and clientid from GitHub OAuth App for Backstage
-export KUBRIX_GITHUB_CLIENTSECRET=<value from steps above>
-export KUBRIX_GITHUB_CLIENTID=<value from steps above>
+export KUBRIX_BACKSTAGE_GITHUB_CLIENTSECRET=<value from steps above>
+export KUBRIX_BACKSTAGE_GITHUB_CLIENTID=<value from steps above>
 # Github token Backstage uses to get the catalog yaml form github
-export KUBRIX_GITHUB_TOKEN=<your personal access token>
+export KUBRIX_BACKSTAGE_GITHUB_TOKEN=<your personal access token>
 # Github token ArgoCD uses for the SCM Provider
-export KUBRIX_GITHUB_APPSET_TOKEN=<github-pat-for-argocd-appsets-only-read-permissions-needed>
+export KUBRIX_ARGOCD_APPSET_TOKEN=<github-pat-for-argocd-appsets-only-read-permissions-needed>
+# Kargo Git Promotion credentials
+export KUBRIX_KARGO_GIT_USERNAME=<username-for-kargo-git-promotion>
+export KUBRIX_KARGO_GIT_PASSWORD=<username-for-kargo-git-promotion>
 # set the current repository to the origin or to your fork
 export KUBRIX_REPO=https://github.com/suxess-it/kubriX.git
 # if you want to test another branch, specify something else than main
 export KUBRIX_REPO_BRANCH=main
-# username and password for ArgoCDs kubriX repository
+# username and password to access kubriX git repository within ArgoCD
 export KUBRIX_REPO_USERNAME=<kubrix-repo-username>
-export KUBRIX_REPO_PASSWORD=<kubrix-repo-password-or-token>
-# set target type to the platform stack you want to install
-export KUBRIX_TARGET_TYPE=METALSTACK
+export KUBRIX_REPO_PASSWORD=<kubrix-repo-password-or-personal-access-token>
+export KUBRIX_TARGET_TYPE=DEMO-METALSTACK
+# if a K3d cluster should get created:
+export KUBRIX_CREATE_K3D_CLUSTER=false
 ```
 
 ### 4. install platform-stack
@@ -117,7 +121,7 @@ The platform stack will be installed automagically ;)
 
 ### 6. Onboard teams and applications
 
-In our [Onboarding-Documentation](https://github.com/suxess-it/sx-cnp-oss/blob/main/backstage-resources/docs/ONBOARDING.md) we explain how new teams and apps get onboarded on the platform in a gitops way.
+In our [App-Onboarding-Documentation](https://github.com/suxess-it/kubriX/blob/main/backstage-resources/docs/onboarding/onboarding-apps.md) and [Team-Onboarding-Documentation](https://github.com/suxess-it/kubriX/blob/main/backstage-resources/docs/onboarding/onboarding-teams.md ) we explain how new teams and apps get onboarded on the platform in a gitops way.
 
 ### 7. Promote apps with Kargo
 

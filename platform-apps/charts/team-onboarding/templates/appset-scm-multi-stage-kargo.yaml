@@ -1,9 +1,9 @@
-{{- range .Values.teams }}
-{{- if .multiStageKargoAppSet }}
+{{- range $team := .Values.teams }}
+{{- if $team.multiStageKargoAppSet }}
 apiVersion: argoproj.io/v1alpha1
 kind: ApplicationSet
 metadata:
-  name: {{ .name }}-appset
+  name: {{ $team.name }}-appset
   namespace: adn-{{ .name }}
 spec:
   goTemplate: true
@@ -11,23 +11,36 @@ spec:
   generators:
   - scmProvider:
       cloneProtocol: https
+      {{- with $team.multiStageKargoAppSet.gitlab }}
+      gitlab:
+        group: {{ .group }}
+        api: {{ .api }}
+        tokenRef:
+          secretName: {{ $team.name }}-appset-github-token
+          key: token
+      {{- end }}
+      {{- with $team.multiStageKargoAppSet.github }}
       github:
         # The GitHub organization to scan.
-        organization: {{ .multiStageKargoAppSet.organization }}
+        organization: {{ .organization }}
         tokenRef:
-          secretName: appset-github-token
+          secretName: {{ $team.name }}-appset-github-token
           key: token
+      {{- end }}
       filters:
       - repositoryMatch: ^{{ .name }}
         pathsExist: [app-stages.yaml]
+      requeueAfterSeconds: {{ $.Values.scmAppsetRequeueAfterSeconds }}
   template:
     metadata:
       name: '{{`{{ .repository }}`}}'
+      finalizers:
+      - resources-finalizer.argocd.argoproj.io
     spec:
-      project: {{ .name }}-project
+      project: {{ $team.name }}-project
       sources:
-      - repoURL: https://github.com/suxess-it/sx-cnp-oss
-        targetRevision: HEAD
+      - repoURL: {{ $.Values.multiStageKargoAppSetHelmRepo }}
+        targetRevision: '{{ $.Values.default.targetRevision }}'
         path: team-apps/onboarding-apps-charts/multi-stage-app-with-kargo-pipeline
         helm:
           valueFiles:

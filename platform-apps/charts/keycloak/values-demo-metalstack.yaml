@@ -1,0 +1,133 @@
+keycloak:
+  #extraEnvVars:
+  #  - name: KEYCLOAK_LOG_LEVEL
+  #    value: DEBUG
+  auth:
+    adminUser: admin
+    existingSecret: "keycloak-credentials"
+  ingress:
+    enabled: true
+    hostname: keycloak.demo.kubrix.cloud
+    ingressClassName: nginx
+    annotations:
+      external-dns.alpha.kubernetes.io/ttl: "60"
+      cert-manager.io/cluster-issuer: letsencrypt-prod
+    path: /
+    tls: true
+  pdb:
+    create: false
+  postgresql:
+    enabled: false
+  externalDatabase:
+    existingSecret: "cp-keycloak-externaldb-secret"
+    existingSecretHostKey: "HOST"
+    existingSecretPortKey: "PORT"
+    existingSecretUserKey: "POSTGRES_USER"
+    existingSecretDatabaseKey: "POSTGRES_DATABASE"
+    existingSecretPasswordKey: "POSTGRES_PASSWORD"
+
+  readinessProbe:
+    httpGet:
+      path: /realms/master
+      port: http
+    initialDelaySeconds: 60
+    timeoutSeconds: 5
+
+  resources:
+    requests:
+      memory: "512Mi"
+      cpu: "300m"
+    limits:
+      memory: "1Gi"
+      cpu: "1"
+
+  networkPolicy:
+    enabled: false
+  metrics:
+    enabled: true
+    serviceMonitor:
+      enabled: true
+      
+  keycloakConfigCli:
+    enabled: false
+######## postgres instance
+postgresql:
+  enabled: true
+  pdb:
+    create: false
+  primary:
+    networkPolicy:
+      enabled: false
+    persistence:
+      size: 2Gi # for demo only
+  auth:
+#    postgresPassword: "keycloak"
+    username: keycloak
+    database: postgres
+    existingSecret: "cp-keycloak-externaldb-secret"
+    secretKeys:
+      userPasswordKey: POSTGRES_PASSWORD
+      adminPasswordKey: POSTGRES_ADMIN
+      # replicationPasswordKey: # not used
+  volumePermissions:
+    enabled: false
+  architecture: standalone
+
+#### kubrix
+kubrix:
+  keycloak:
+    fqdn: .demo.kubrix.cloud # add to prefix keycloak in templates
+    realm:
+      realmid: kubrix
+      users:
+        - name: phac
+          firstName: Philipp
+          lastName: Achmueller
+          email: "philipp.achmueller@kubrix.io"
+        - name: jokl
+          firstName: Johannes
+          lastName: Kleinlercher
+          email: "johannes.kleinlercher@kubrix.io"
+        - name: backstageadmin
+          firstName: MrBackstage
+          lastName: MrAdmin
+          email: "backstageadmin@kubrix.io"
+        - name: demouser
+          firstName: demo
+          lastName: user
+          email: "demouser@kubrix.io"
+        - name: demoadmin
+          firstName: demo
+          lastName: admin
+          email: "demoadmin@kubrix.io"
+        - name: team1user
+          firstName: team1
+          lastName: demouser
+          email: "team1user@kubrix.io"
+      groups:
+        - name: admins
+          roles:
+            - grafana-admin
+          members:
+            - backstageadmin
+            - demoadmin
+        - name: team1
+          roles:
+            - grafana-viewer
+          members:
+            - team1user
+        - name: users
+          roles:
+            - grafana-editor
+          members: 
+            - phac
+            - jokl
+            - demouser
+        - name: backstage-admin # for service-account permission workaround
+    # start with 2FA mobile Authenticators
+    mfa:
+      enabled: false
+
+## cnpg
+cluster:
+  enabled: false

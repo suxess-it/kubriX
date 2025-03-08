@@ -4,6 +4,14 @@ default:
 
 applications:
 
+  - name: cert-manager
+    annotations:
+      argocd.argoproj.io/sync-wave: "-10"
+
+  - name: argocd
+    annotations:
+      argocd.argoproj.io/sync-wave: "-9"
+
   - name: external-secrets
     annotations:
       argocd.argoproj.io/sync-wave: "-8"
@@ -15,22 +23,24 @@ applications:
   - name: k8s-monitoring
     annotations:
       argocd.argoproj.io/compare-options: ServerSideDiff=true
-      argocd.argoproj.io/sync-wave: "-6"
+      argocd.argoproj.io/sync-wave: "-7"
     syncOptions:
       - ServerSideApply=true
+
+  - name: keycloak
+    annotations:
+      argocd.argoproj.io/sync-wave: "-6"
 
   - name: vault
     annotations:
       argocd.argoproj.io/sync-wave: "-5"
 
-  - name: cert-manager
-    annotations:
-      argocd.argoproj.io/sync-wave: "-10"
+  - name: velero
 
-  - name: argocd
-    annotations:
-      argocd.argoproj.io/sync-wave: "-9"
-      
+  - name: velero-ui
+
+  - name: minio
+
   - name: falco
     annotations:
       argocd.argoproj.io/compare-options: ServerSideDiff=true
@@ -38,9 +48,7 @@ applications:
       skipCrds: true
     syncOptions:
       - ServerSideApply=true
-
-  - name: keycloak
-      
+     
   - name: kyverno
     syncOptions:
       - ServerSideApply=true

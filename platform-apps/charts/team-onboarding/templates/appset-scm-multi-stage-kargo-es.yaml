@@ -13,15 +13,15 @@ spec:
     name: vault-backend
     kind: ClusterSecretStore
   target:
-    name: appset-github-token
+    name: {{ .name }}-appset-github-token
     template:
       data:
-        token: "{{ `{{ .GITHUB_APPSET_PAT }}` }}"
+        token: "{{ `{{ .KUBRIX_ARGOCD_APPSET_TOKEN }}` }}"
   data:
-  - secretKey: GITHUB_APPSET_PAT
+  - secretKey: KUBRIX_ARGOCD_APPSET_TOKEN
     remoteRef:
-      key: sx-cnp-oss-kv/data/demo/delivery
-      property: GITHUB_APPSET_PAT
+      key: kubrix-kv/data/{{ .name }}/delivery
+      property: KUBRIX_ARGOCD_APPSET_TOKEN
 ---
 {{- end }}
 {{- end }}

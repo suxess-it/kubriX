@@ -49,6 +49,18 @@ wait_until_apps_synced_healthy() {
   while [ $SECONDS -lt $end ]; do
     all_apps_synced="true"
 
+    # check if sx-boostrap-app already failed and restart sync
+    bootstrap_app="sx-bootstrap-app"
+    operation_state_bootstrap_app=$(kubectl get application -n argocd ${bootstrap_app} -o jsonpath='{.status.operationState}')
+    if [ "${operation_state_bootstrap_app}" != "" ] ; then
+      operation_phase_bootstrap_app=$(kubectl get application -n argocd ${bootstrap_app} -o jsonpath='{.status.operationState.phase}')
+      if [ "${operation_phase_bootstrap_app}" = "Failed" ] || [ "${operation_phase_bootstrap_app}" = "Error" ] ; then
+        echo "sx-boostrap-app sync failed. Restarting sync ..."
+        kubectl exec sx-argocd-application-controller-0 -n argocd -- argocd app terminate-op "$bootstrap_app" --core
+        kubectl exec sx-argocd-application-controller-0 -n argocd -- argocd app sync "$bootstrap_app" --async --core
+      fi
+    fi
+
     # print app status in beautiful table
     printf 'app sync-status health-status sync-duration operation-phase\n' > status-apps.out
 
@@ -83,9 +95,9 @@ wait_until_apps_synced_healthy() {
           fi
           # terminate sync if sync is running and takes longer than 300 seconds (workaround when sync gets stuck)
           operation_phase=$(kubectl get application -n argocd ${app} -o jsonpath='{.status.operationState.phase}')
-          if [ "${operation_phase}" = "Running" ] && [ ${sync_duration} -gt 300 ] || [ "${operation_phase}" = "Failed" ] ; then
+          if [ "${operation_phase}" = "Running" ] && [ ${sync_duration} -gt 300 ] || [ "${operation_phase}" = "Failed" ] || [ "${operation_phase}" = "Error" ] ; then
             # Terminate the operation for the application
-            echo "sync of app ${app} gets terminated because it took longer than 300 seconds"
+            echo "sync of app ${app} gets terminated because it took longer than 300 seconds or failed"
             kubectl exec sx-argocd-application-controller-0 -n argocd -- argocd app terminate-op "$app" --core
             echo "wait for 10 seconds"
             sleep 10
@@ -292,7 +304,7 @@ echo "add kubriX repo in argocd pod"
 kubectl exec sx-argocd-application-controller-0 -n argocd -- argocd repo add ${KUBRIX_REPO} --username ${KUBRIX_REPO_USERNAME} --password ${KUBRIX_REPO_PASSWORD} --core
 
 # create secret for scm applicationset in team app definition namespaces
-# see https://github.com/suxess-it/sx-cnp-oss/issues/214 for a sustainable solution
+# see https://github.com/suxess-it/kubriX/issues/214 for a sustainable solution
 #for ns in adn-team1 adn-team2 adn-team-a; do
 #  kubectl create namespace ${ns}
 #  kubectl create secret generic appset-github-token --from-literal=token=${KUBRIX_GITHUB_APPSET_TOKEN} -n ${ns}
@@ -309,7 +321,7 @@ target_chart_value_file="platform-apps/target-chart/values-$(echo ${KUBRIX_TARGE
 
 argocd_apps=$(cat $target_chart_value_file | awk '/^  - name:/ { printf "%s", "sx-"$3" "}' )
 # list apps which need some sort of special treatment in bootstrap
-argocd_apps_without_individual=$(cat $target_chart_value_file | egrep -Ev "backstage|kargo" | awk '/^  - name:/ { printf "%s", "sx-"$3" "}' )
+argocd_apps_without_individual=$(cat $target_chart_value_file | egrep -Ev "backstage|kargo|team-onboarding" | awk '/^  - name:/ { printf "%s", "sx-"$3" "}' )
 
 # max wait for 20 minutes until all apps except backstage and kargo are synced and healthy
 wait_until_apps_synced_healthy "${argocd_apps_without_individual}" "Synced" "Healthy" ${KUBRIX_BOOTSTRAP_MAX_WAIT_TIME:-1200}
@@ -318,14 +330,23 @@ wait_until_apps_synced_healthy "${argocd_apps_without_individual}" "Synced" "Hea
 kubectl apply -f platform-apps/charts/argocd/manual-secret/argocd-secret.yaml
 
 # if kargo is part of this stack, upload token to vault
-if [[ $( echo $argocd_apps | grep sx-kargo ) ]] ; then
-  echo "adding special configuration for sx-kargo"
+if [[ $( echo $argocd_apps | grep sx-vault ) ]] ; then
+  echo "adding secrets in vault for sx-kargo and sx-team-onboarding ..."
   export VAULT_HOSTNAME=$(kubectl get ingress -o jsonpath='{.items[*].spec.rules[*].host}' -n vault)
-  curl -k --header "X-Vault-Token:$(kubectl get secret -n vault vault-init -o=jsonpath='{.data.root_token}'  | base64 -d)" --request POST --data "{\"data\": {\"GITHUB_APPSET_PAT\": \"${KUBRIX_ARGOCD_APPSET_TOKEN}\", \"GITHUB_TOKEN\": \"${KUBRIX_KARGO_GIT_PASSWORD}\", \"GITHUB_USERNAME\": \"${KUBRIX_KARGO_GIT_USERNAME}\"}}" https://${VAULT_HOSTNAME}/v1/sx-cnp-oss-kv/data/demo/delivery
+  curl -k --header "X-Vault-Token:$(kubectl get secret -n vault vault-init -o=jsonpath='{.data.root_token}'  | base64 -d)" --request POST --data "{\"data\": {\"KUBRIX_ARGOCD_APPSET_TOKEN\": \"${KUBRIX_ARGOCD_APPSET_TOKEN}\", \"KUBRIX_KARGO_GIT_PASSWORD\": \"${KUBRIX_KARGO_GIT_PASSWORD}\", \"KUBRIX_KARGO_GIT_USERNAME\": \"${KUBRIX_KARGO_GIT_USERNAME}\"}}" https://${VAULT_HOSTNAME}/v1/kubrix-kv/data/demo/delivery
   sleep 10
+fi
+
+if [[ $( echo $argocd_apps | grep sx-kargo ) ]] ; then
   kubectl delete ExternalSecret github-creds -n kargo
   # check if kargo is synced and healthy for 5 minutes
-  wait_until_apps_synced_healthy "sx-kargo" "Synced" "Healthy" 900
+  wait_until_apps_synced_healthy "sx-kargo" "Synced" "Healthy" 300
+fi
+
+if [[ $( echo $argocd_apps | grep sx-team-onboarding ) ]] ; then
+  kubectl delete ExternalSecret github-creds -n kargo
+  # check if kargo is synced and healthy for 5 minutes
+  wait_until_apps_synced_healthy "sx-team-onboarding" "Synced" "Healthy" 300
 fi
   
 # if backstage is part of this stack, create the manual secret for backstage
@@ -356,6 +377,11 @@ if [[ $( echo $argocd_apps | grep sx-backstage ) ]] ; then
     GITHUB_CODESPACES="true"
     BACKSTAGE_CODESPACE_URL="https://${CODESPACE_NAME}-6691.${GITHUB_CODESPACES_PORT_FORWARDING_DOMAIN}"
   fi
+
+  # delete secret if it already exists
+  if kubectl get secret -n backstage manual-secret > /dev/null 2>&1 ; then
+    kubectl delete secret -n backstage manual-secret
+  fi
   
   if [ ${KEYCLOAK_CODESPACES} ]; then
     kubectl create secret generic -n backstage manual-secret \
@@ -371,11 +397,11 @@ if [[ $( echo $argocd_apps | grep sx-backstage ) ]] ; then
       --from-literal=APP_CONFIG_backend_cors_origin=${BACKSTAGE_CODESPACE_URL} \
       --from-literal=APP_CONFIG_auth_providers_oidc_development_callbackUrl=${BACKSTAGE_CODESPACE_URL}/api/auth/oidc/handler/frame \
       --from-literal=APP_CONFIG_auth_providers_oidc_development_clientId=backstage-codespaces \
-      --from-literal=APP_CONFIG_auth_providers_oidc_development_metadataUrl=http://keycloak-service.keycloak.svc.cluster.local:8080/realms/sx-cnp-oss-codespaces \
+      --from-literal=APP_CONFIG_auth_providers_oidc_development_metadataUrl=http://keycloak-service.keycloak.svc.cluster.local:8080/realms/kubrix-codespaces \
       --from-literal=APP_CONFIG_auth_provider_github_development_callbackUrl=${BACKSTAGE_CODESPACE_URL}/api/auth/github/handler/frame \
-      --from-literal=APP_CONFIG_catalog_providers_keycloakOrg_default_loginRealm=sx-cnp-oss-codespaces \
-      --from-literal=APP_CONFIG_catalog_providers_keycloakOrg_default_realm=sx-cnp-oss-codespaces \
-      --from-literal=APP_CONFIG_catalog_providers_keycloakOrg_default_clientId=backstage-codespaces \
+      --from-literal=APP_CONFIG_catalog_providers_keycloakOrg_default_loginRealm=kubrix-codespaces \
+      --from-literal=APP_CONFIG_catalog_providers_keycloakOrg_default_realm=kubrix-codespaces \
+      --from-literal=APP_CONFIG_catalog_providers_keycloakOrg_default_clientId=kubrix-codespaces \
       --from-literal=APP_CONFIG_catalog_providers_keycloakOrg_default_clientSecret=demosecret
 
   elif [ ${GITHUB_CODESPACES} ]; then

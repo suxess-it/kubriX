@@ -1,0 +1,43 @@
+name: sync upstream release tag with PR
+
+# This runs every day on 1801 UTC
+on:
+  schedule:
+    - cron: '1 18 * * *'
+  # Allows manual workflow run (must in default branch to work)
+  workflow_dispatch:
+
+# checkout is not done via checkout action because then 
+# using different tokens for upstream and current repo is not possible
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    if: ${{ (vars.UPSTREAM_REPO != '') && (vars.SYNC_RELEASE_TAG == 'true') }}    
+    steps:
+      - name: checkout and fetch upstream commits
+        shell: bash
+        env:
+          SYNC_TOKEN: ${{ secrets.SYNC_TOKEN }}
+          UPSTREAM_TOKEN: ${{ secrets.UPSTREAM_TOKEN }}
+          UPSTREAM_REPO: ${{ vars.UPSTREAM_REPO }}
+        run: |
+          git clone https://${SYNC_TOKEN}@github.com/${GITHUB_REPOSITORY}.git .
+          git checkout main
+          git remote add upstream https://${UPSTREAM_TOKEN}@github.com/${UPSTREAM_REPO}.git
+          
+          # checkout latest release tag
+          git fetch upstream --tags
+          latestTag=$(git describe --tags "$(git rev-list --tags --max-count=1 --remotes upstream/main)")
+          git switch -c from-upstream-release ${latestTag}
+          
+      - name: create PR
+        shell: bash
+        env:
+          GH_TOKEN: ${{ secrets.SYNC_TOKEN }}
+        run: |
+          git remote -v
+          git push --set-upstream origin from-upstream-release
+          echo "new commits:"
+          git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset' --abbrev-commit --date=relative main..from-upstream-release
+          # create a PR unless there are no new commits or there is already an existing PR from branch 'from-upstream-release'
+          [ "$(git log main..from-upstream-release)" = "" ] || gh pr view from-upstream-release --repo ${GITHUB_REPOSITORY} --json state --jq '.state' | grep OPEN || gh pr create --base main --head from-upstream-release --repo ${GITHUB_REPOSITORY} --title "Updates from upstream release" --body ""

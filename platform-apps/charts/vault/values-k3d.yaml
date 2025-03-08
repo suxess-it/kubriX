@@ -1,9 +1,9 @@
 eso:
   providerUrl: "http://sx-vault-active.vault.svc.cluster.local:8200"
   backendName: vault-backend
-  secretStore: sx-cnp-oss-kv
+  secretStore: kubrix-kv
   # oidc config
-  oidcDiscoveryUrl: https://keycloak-127-0-0-1.nip.io/realms/sx-cnp-oss
+  oidcDiscoveryUrl: https://keycloak-127-0-0-1.nip.io/realms/kubrix
   callbackUri: "https://vault-127-0-0-1.nip.io"
 
   # Copyright (c) HashiCorp, Inc.
@@ -136,34 +136,6 @@ vault:
             - ALL
           privileged: false
           runAsNonRoot: true
-      - name: audit-cleanup
-        image: hashicorp/vault:1.17.2
-        env: 
-          - name: VAULT_ADDR
-            valueFrom:
-              secretKeyRef:
-                name: sx-vault-env-vars
-                key: VAULT_ADDR  
-        command: 
-        - /bin/sh
-        - -c
-        - | 
-            while true; do
-              echo "waiting for tomorrow :-)"
-              sleep 86400  # Runs daily, after 1 day
-              echo "Truncating log file..."
-              truncate -s 0 /vault/audit/audit.log
-            done
-        volumeMounts:
-          - name: vault-root-token
-            mountPath: /vault-root-token  
-        securityContext:
-          allowPrivilegeEscalation: false
-          capabilities:
-            drop:
-            - ALL
-          privileged: false
-          runAsNonRoot: true
       - name: vault-initializer
         image: hashicorp/vault:1.17.2
         env: 
@@ -199,7 +171,7 @@ vault:
                 # due to #405
                   if [ ! $(vault read auth/oidc/config) ]; then
                     vault auth enable oidc
-                    vault write auth/oidc/config oidc_discovery_url="https://keycloak-127-0-0-1.nip.io/realms/sx-cnp-oss" oidc_client_id="vault" oidc_client_secret="demosecret" default_role="default" oidc_discovery_ca_pem=@/vault/userconfig/vault-ca/ca.crt
+                    vault write auth/oidc/config oidc_discovery_url="https://keycloak-127-0-0-1.nip.io/realms/kubrix" oidc_client_id="vault" oidc_client_secret="demosecret" default_role="default" oidc_discovery_ca_pem=@/vault/userconfig/vault-ca/ca.crt
                   fi
 
                   # workaround due to #422
@@ -266,9 +238,6 @@ vault:
         name: vault-ca-cert
         readOnly: true 
     dataStorage:
-      size: 1Gi
-    auditStorage:
-      enabled: true
       size: 1Gi
     affinity: {}
     ha:

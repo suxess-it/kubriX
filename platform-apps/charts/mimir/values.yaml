@@ -7,3 +7,8 @@ mimir:
     grafanaAgent:
       enabled: true
 #      installOperator: true
+
+  mimir:
+    structuredConfig:
+      limits:
+        compactor_blocks_retention_period: 30d

@@ -1,6 +1,23 @@
+# per default no kyvernoPolicies get applied, add them in the list in your values files to enable them
 kyvernoPolicies:
-  - add-ns-quota
-  - kargo-project-name-validation-apps-in-any-ns
+  createDenyAllAllowCoreDNSNetworkPolicy:
+    enabled: false
+    excludeNamespaces:
+      - kube-system
+      - kyverno
+    dnsPort: 53
+
+  createResourceQuotaAndLimitrange:
+    ensbled: false
+
+  validateKargoProjectName:
+    enabled: false
+
+  createKubevirtRolebinding:
+    enabled: false
+
+  createExcludeFromBackupLabel:
+    enabled: false
 
 kyverno:
   admissionController:

@@ -1,0 +1,16 @@
+---
+# locations
+apiVersion: backstage.io/v1alpha1
+kind: Location
+metadata:
+  name: demo-location
+  description: A collection of all Backstage entities for official kubriX demo
+spec:
+  targets:
+    - ./demo/argocd-info.yaml
+    - ./demo/backstage-info.yaml
+    - ./demo/keycloak-info.yaml
+    - ./demo/k8s-monitoring.yaml
+    - ./demo/kubecost-info.yaml
+    - ./demo/kubevirt-manager-info.yaml
+    - ./demo/user-info.yaml

@@ -1,0 +1,49 @@
+name: sync upstream with PR
+
+# This runs every day on 1801 UTC
+on:
+  schedule:
+    - cron: '1 18 * * *'
+  # Allows manual workflow run (must in default branch to work)
+  workflow_dispatch:
+
+# checkout is not done via checkout action because then 
+# using different tokens for upstream and current repo is not possible
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    if: ${{ vars.UPSTREAM_REPO != '' }}    
+    steps:
+      - name: checkout and fetch upstream commits
+        shell: bash
+        env:
+          SYNC_TOKEN: ${{ secrets.SYNC_TOKEN }}
+          UPSTREAM_TOKEN: ${{ secrets.UPSTREAM_TOKEN }}
+          UPSTREAM_REPO: ${{ vars.UPSTREAM_REPO }}
+        run: |
+          git clone https://${SYNC_TOKEN}@github.com/${GITHUB_REPOSITORY}.git .
+          git checkout main
+          git remote add upstream https://${UPSTREAM_TOKEN}@github.com/${UPSTREAM_REPO}.git
+          git fetch upstream
+          git switch -c from-upstream upstream/main
+          
+      - name: create PR
+        shell: bash
+        env:
+          GH_TOKEN: ${{ secrets.SYNC_TOKEN }}
+        run: |
+          git remote -v
+          # check if from-upstream branch already exists and pull from it to get all new commits from origin (e.g. list-images or trivy-scan commits)
+          if [[ -z $(git ls-remote --heads origin from-upstream) ]] ; then
+            git push --set-upstream origin from-upstream
+          else
+            git config user.name "github-actions[bot]"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git branch --set-upstream-to origin/from-upstream from-upstream
+            git pull --no-rebase
+            git push
+          fi         
+          echo "new commits:"
+          git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset' --abbrev-commit --date=relative main..from-upstream
+          # create a PR unless there are no new commits or there is already an existing PR from branch 'from-upstream'
+          [ "$(git log main..from-upstream)" = "" ] || gh pr view from-upstream --repo ${GITHUB_REPOSITORY} --json state --jq '.state' | grep OPEN || gh pr create --base main --head from-upstream --repo ${GITHUB_REPOSITORY} --title "Updates from upstream" --body ""

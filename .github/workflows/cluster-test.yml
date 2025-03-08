@@ -1,14 +1,30 @@
 # This is a basic workflow to help you get started with Actions
 
-name: test kubriX k3d stack on kind cluster
+name: kind
 
 # Controls when the workflow will run
 on:
   # do a full cluster test in main branch and when opening or changing PRs
   push:
     branches: [ "main" ]
+    paths:
+      - '.github/workflows/cluster-test.yml'
+      - '.github/kind-config.yaml'
+      - 'platform-apps/charts/**'
+      - 'platform-apps/target-chart/templates/**'
+      - 'platform-apps/target-chart/values.yaml'
+      - 'platform-apps/target-chart/values-kind*'
+      - 'install-platform.sh'
   pull_request:
     types: [opened, synchronize]
+    paths:
+      - '.github/workflows/cluster-test.yml'
+      - '.github/kind-config.yaml'
+      - 'platform-apps/charts/**'
+      - 'platform-apps/target-chart/templates/**'
+      - 'platform-apps/target-chart/values.yaml'
+      - 'platform-apps/target-chart/values-kind*'
+      - 'install-platform.sh'
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
@@ -22,7 +38,7 @@ env:
   
 jobs:
   create-cluster:
-    runs-on: ubuntu-latest
+    runs-on: ${{ vars.KUBRIX_GITHUB_RUNNER || 'ubuntu-latest' }}
     permissions: read-all
     strategy:
       matrix:
@@ -66,6 +82,7 @@ jobs:
           KUBRIX_REPO_PASSWORD: ${{ secrets.GITHUB_TOKEN }}
           KUBRIX_REPO_USERNAME: "dummy"
           KUBRIX_INSTALL_DEBUG: "false"
+          KUBRIX_BOOTSTRAP_MAX_WAIT_TIME: ${{ vars.KUBRIX_BOOTSTRAP_MAX_WAIT_TIME }}
         shell: bash
         run: |
           ./install-platform.sh

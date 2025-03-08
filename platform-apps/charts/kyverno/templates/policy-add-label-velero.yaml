@@ -1,10 +1,11 @@
+{{ if .Values.kyvernoPolicies.createExcludeFromBackupLabel.enabled }}
 apiVersion: kyverno.io/v1
 kind: ClusterPolicy
 metadata:
   name: add-labels-to-cm-velero
   annotations:
     policies.kyverno.io/title: Add Labels for velero exclude
-    policies.kyverno.io/category: sx-cnp-oss
+    policies.kyverno.io/category: kubrix
     policies.kyverno.io/minversion: 1.6.0
     policies.kyverno.io/severity: low
     policies.kyverno.io/subject: ConfigMap
@@ -31,3 +32,4 @@ spec:
           labels:
             velero.io/exclude-from-backup: "true"
     skipBackgroundRequests: true
+{{- end }}
