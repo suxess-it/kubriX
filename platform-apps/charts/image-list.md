@@ -4,7 +4,7 @@
 ## argocd
 * ghcr.io/dexidp/dex:v2.42.0
 * public.ecr.aws/docker/library/redis:7.4.2-alpine
-* quay.io/argoproj/argocd:v2.14.4
+* quay.io/argoproj/argocd:v2.14.5
 ## backstage
 * alpine:3.17
 * ghcr.io/suxess-it/sx-backstage:v1.32.6
