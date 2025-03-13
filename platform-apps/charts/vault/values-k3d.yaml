@@ -50,7 +50,7 @@ vault:
           runAsNonRoot: true
     extraContainers:
       - name: auto-initializer
-        image: hashicorp/vault:1.17.2
+        image: hashicorp/vault:1.18.1
         env: 
           - name: VAULT_ADDR
             valueFrom:
@@ -92,7 +92,7 @@ vault:
           runAsNonRoot: true
 
       - name: auto-unsealer
-        image: hashicorp/vault:1.17.2
+        image: hashicorp/vault:1.18.1
         env: 
           - name: VAULT_ADDR
             valueFrom:
@@ -137,7 +137,7 @@ vault:
           privileged: false
           runAsNonRoot: true
       - name: vault-initializer
-        image: hashicorp/vault:1.17.2
+        image: hashicorp/vault:1.18.1
         env: 
           - name: VAULT_ADDR
             valueFrom:
@@ -175,6 +175,7 @@ vault:
                     /usr/local/libexec/vault/kubectl create configmap kubeauth-accessor -n vault --from-literal=accessor=${accessor}
                   fi  
                   echo setup complete 
+                  sleep 15
                 fi      
               else
                 echo vault still sealed
