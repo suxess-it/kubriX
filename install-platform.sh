@@ -221,7 +221,7 @@ fi
 
 if [[ "${KUBRIX_TARGET_TYPE}" =~ ^KIND.* ]] ; then
   # create mkcert certs in alle namespaces with ingress
-  for namespace in backstage kargo grafana cnpg argocd komoplane kubecost falco minio velero velero-ui vault; do
+  for namespace in backstage kargo grafana cnpg argocd komoplane kubecost falco minio velero velero-ui; do
     kubectl create namespace ${namespace}
     mkcert -cert-file ${namespace}-cert.pem -key-file ${namespace}-key.pem ${namespace}-127-0-0-1.nip.io
     # kargo needs a special secret name according to its helm chart
@@ -265,6 +265,7 @@ if [[ "${KUBRIX_TARGET_TYPE}" =~ ^KIND.* ]] ; then
 
     # vault oidc case
     echo "create a root ca and patch ingress-nginx-controller for vault oidc"
+    kubectl create namespace vault
     kubectl create secret generic ca-cert --from-file=ca.crt="$(mkcert -CAROOT)"/rootCA.pem -n vault
     kubectl patch deployment ingress-nginx-controller -n ingress-nginx --type='json' -p='[
     {
