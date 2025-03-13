@@ -349,30 +349,29 @@ if [[ $( echo $argocd_apps | grep sx-vault ) ]] ; then
     export KEYCLOAK_HOSTNAME=$(kubectl get ingress -o jsonpath='{.items[*].spec.rules[*].host}' -n keycloak)
 
     if [[ "$(echo "$OIDC_CONFIG" | jq -r '.errors')" != "null" ]]; then
-    set -x
         echo "Setting up OIDC auth method"
-        curl -s --header "X-Vault-Token: $VAULT_TOKEN" --request POST --data '{"type": "oidc"}' https://${VAULT_HOSTNAME}/v1/sys/auth/oidc
+        curl -k --header "X-Vault-Token: $VAULT_TOKEN" --request POST --data '{"type": "oidc"}' https://${VAULT_HOSTNAME}/v1/sys/auth/oidc
         echo "configure OIDC auth method"
-        curl -s --header "X-Vault-Token: $VAULT_TOKEN" --request POST --data '{"oidc_discovery_url": "https://'${KEYCLOAK_HOSTNAME}'/realms/kubrix", "oidc_client_id": "vault", "oidc_client_secret": "'$VAULT_CLIENTSECRET'", "default_role": "default", "oidc_discovery_ca_pem": "@/vault/userconfig/vault-ca/ca.crt"}' https://${VAULT_HOSTNAME}/v1/auth/oidc/config
+        curl -k --header "X-Vault-Token: $VAULT_TOKEN" --request POST --data '{"oidc_discovery_url": "https://'${KEYCLOAK_HOSTNAME}'/realms/kubrix", "oidc_client_id": "vault", "oidc_client_secret": "'$VAULT_CLIENTSECRET'", "default_role": "default", "oidc_discovery_ca_pem": "@/vault/userconfig/vault-ca/ca.crt"}' https://${VAULT_HOSTNAME}/v1/auth/oidc/config
     fi
   fi
   # due to issue #422 this step is needed for all clusters
-    GROUP_ALIAS_LIST=$(curl -s --header "X-Vault-Token: $VAULT_TOKEN" --request LIST https://${VAULT_HOSTNAME}/v1/identity/group-alias/id)
+    GROUP_ALIAS_LIST=$(curl -k --header "X-Vault-Token: $VAULT_TOKEN" --request LIST https://${VAULT_HOSTNAME}/v1/identity/group-alias/id)
     if [ -z "$(echo "$GROUP_ALIAS_LIST" | jq -r '.data.keys | length')" ] || [ "$(echo "$GROUP_ALIAS_LIST" | jq -r '.data.keys | length')" -eq 0 ]; then
         echo "No group aliases found. Setting up group aliases..."
         # Get the list of identity groups
-        GROUP_LIST=$(curl -s --header "X-Vault-Token: $VAULT_TOKEN" --request LIST https://${VAULT_HOSTNAME}/v1/identity/group/name)
+        GROUP_LIST=$(curl -k --header "X-Vault-Token: $VAULT_TOKEN" --request LIST https://${VAULT_HOSTNAME}/v1/identity/group/name)
         # Get OIDC accessor
-        ACC=$(curl -s --header "X-Vault-Token: $VAULT_TOKEN" --request GET https://${VAULT_HOSTNAME}/v1/sys/auth | jq -r '.["oidc/"].accessor')
+        ACC=$(curl -k --header "X-Vault-Token: $VAULT_TOKEN" --request GET https://${VAULT_HOSTNAME}/v1/sys/auth | jq -r '.["oidc/"].accessor')
         echo "OIDC Accessor: $ACC"
         # Iterate over groups and create group aliases
         echo "$GROUP_LIST" | jq -r '.data.keys[]' | while read -r GROUP_NAME; do
             echo "Processing group: $GROUP_NAME"
             # Get Group ID
-            GROUP_ID=$(curl -s --header "X-Vault-Token: $VAULT_TOKEN" --request GET https://${VAULT_HOSTNAME}/v1/identity/group/name/$GROUP_NAME | jq -r '.data.id')
+            GROUP_ID=$(curl -k --header "X-Vault-Token: $VAULT_TOKEN" --request GET https://${VAULT_HOSTNAME}/v1/identity/group/name/$GROUP_NAME | jq -r '.data.id')
             if [ -n "$GROUP_ID" ] && [ "$GROUP_ID" != "null" ]; then
                 # Create Group Alias
-                RESPONSE=$(curl -s --header "X-Vault-Token: $VAULT_TOKEN" --request POST --data '{"name": "'$GROUP_NAME'", "mount_accessor": "'$ACC'", "canonical_id": "'$GROUP_ID'"}' https://${VAULT_HOSTNAME}/v1/identity/group-alias)
+                RESPONSE=$(curl -k --header "X-Vault-Token: $VAULT_TOKEN" --request POST --data '{"name": "'$GROUP_NAME'", "mount_accessor": "'$ACC'", "canonical_id": "'$GROUP_ID'"}' https://${VAULT_HOSTNAME}/v1/identity/group-alias)
                 echo "Group alias created for $GROUP_NAME: $RESPONSE"
             else
                 echo "Group ID not found for $GROUP_NAME, skipping..."
