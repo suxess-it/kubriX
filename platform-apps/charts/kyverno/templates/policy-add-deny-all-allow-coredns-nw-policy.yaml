@@ -55,8 +55,8 @@ spec:
                   matchLabels:
                     k8s-app: kube-dns
               ports:
-                - port: {{- .Values.kyvernoPolicies.createDenyAllAllowCoreDNSNetworkPolicy.dnsPort }}
+                - port: {{ .Values.kyvernoPolicies.createDenyAllAllowCoreDNSNetworkPolicy.dnsPort }}
                   protocol: UDP
-                - port: {{- .Values.kyvernoPolicies.createDenyAllAllowCoreDNSNetworkPolicy.dnsPort }}
+                - port: {{ .Values.kyvernoPolicies.createDenyAllAllowCoreDNSNetworkPolicy.dnsPort }}
                   protocol: TCP
 {{- end }}
