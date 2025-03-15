@@ -344,16 +344,29 @@ if [[ $( echo $argocd_apps | grep sx-vault ) ]] ; then
   
   if [[ "${KUBRIX_TARGET_TYPE}" =~ ^KIND.* ]] ; then
   # due to issue #405 this step is needed for kind clusters
-    export OIDC_CONFIG=$(curl -s --header "X-Vault-Token: $VAULT_TOKEN" --request GET https://${VAULT_HOSTNAME}/v1/auth/oidc/config)
     export VAULT_CLIENTSECRET=$(kubectl get secret -n keycloak keycloak-client-credentials -o=jsonpath='{.data.vault}'  | base64 -d)
     export KEYCLOAK_HOSTNAME=$(kubectl get ingress -o jsonpath='{.items[*].spec.rules[*].host}' -n keycloak)
-
-    if [[ "$(echo "$OIDC_CONFIG" | jq -r '.errors')" != "null" ]]; then
-        echo "Setting up OIDC auth method"
-        curl -k --header "X-Vault-Token: $VAULT_TOKEN" --request POST --data '{"type": "oidc"}' https://${VAULT_HOSTNAME}/v1/sys/auth/oidc
-        echo "configure OIDC auth method"
-        curl -k --header "X-Vault-Token: $VAULT_TOKEN" --request POST --data '{"oidc_discovery_url": "https://'${KEYCLOAK_HOSTNAME}'/realms/kubrix", "oidc_client_id": "vault", "oidc_client_secret": "'$VAULT_CLIENTSECRET'", "default_role": "default", "oidc_discovery_ca_pem": "@/vault/userconfig/vault-ca/ca.crt"}' https://${VAULT_HOSTNAME}/v1/auth/oidc/config
-    fi
+    export CERT=$(awk '{printf "%s\\n", $0}' "$(mkcert -CAROOT)"/rootCA.pem)
+    curl -k --header "X-Vault-Token: $VAULT_TOKEN" --request POST --data '{"type": "oidc"}' https://${VAULT_HOSTNAME}/v1/sys/auth/oidc
+    MAX_ATTEMPTS=3
+    ATTEMPT=1
+    while [[ $ATTEMPT -le $MAX_ATTEMPTS ]]; do
+      echo "Setting up OIDC auth method, try $ATTEMPT of $MAX_ATTEMPTS"
+#      export OIDC_CONFIG=$(curl -s --header "X-Vault-Token: $VAULT_TOKEN" --request GET https://${VAULT_HOSTNAME}/v1/auth/oidc/config)
+      RESPONSE=$(curl -k --header "X-Vault-Token: $VAULT_TOKEN" --request POST --data '{
+          "oidc_discovery_url": "https://'${KEYCLOAK_HOSTNAME}'/realms/kubrix",
+          "oidc_client_id": "vault",
+          "oidc_client_secret": "'$VAULT_CLIENTSECRET'",
+          "default_role": "default",
+          "oidc_discovery_ca_pem": "'"$CERT"'"
+        }' https://${VAULT_HOSTNAME}/v1/auth/oidc/config)
+      if [[ -z "$(echo "$RESPONSE" | jq -r '.errors | select(.!=null)')" ]]; then
+        echo "configure OIDC auth method successful"
+        break
+      fi  
+    sleep 5
+    ((ATTEMPT++))
+    done
   fi
   # due to issue #422 this step is needed for all clusters
     GROUP_ALIAS_LIST=$(curl -k --header "X-Vault-Token: $VAULT_TOKEN" --request LIST https://${VAULT_HOSTNAME}/v1/identity/group-alias/id)
