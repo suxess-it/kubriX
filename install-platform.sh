@@ -352,7 +352,6 @@ if [[ $( echo $argocd_apps | grep sx-vault ) ]] ; then
     ATTEMPT=1
     while [[ $ATTEMPT -le $MAX_ATTEMPTS ]]; do
       echo "Setting up OIDC auth method, try $ATTEMPT of $MAX_ATTEMPTS"
-#      export OIDC_CONFIG=$(curl -s --header "X-Vault-Token: $VAULT_TOKEN" --request GET https://${VAULT_HOSTNAME}/v1/auth/oidc/config)
       RESPONSE=$(curl -k --header "X-Vault-Token: $VAULT_TOKEN" --request POST --data '{
           "oidc_discovery_url": "https://'${KEYCLOAK_HOSTNAME}'/realms/kubrix",
           "oidc_client_id": "vault",
@@ -386,8 +385,6 @@ if [[ $( echo $argocd_apps | grep sx-vault ) ]] ; then
                 # Create Group Alias
                 RESPONSE=$(curl -k --header "X-Vault-Token: $VAULT_TOKEN" --request POST --data '{"name": "'$GROUP_NAME'", "mount_accessor": "'$ACC'", "canonical_id": "'$GROUP_ID'"}' https://${VAULT_HOSTNAME}/v1/identity/group-alias)
                 echo "Group alias created for $GROUP_NAME: $RESPONSE"
-            else
-                echo "Group ID not found for $GROUP_NAME, skipping..."
             fi
         done
     fi
