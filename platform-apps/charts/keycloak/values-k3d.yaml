@@ -8,12 +8,13 @@ keycloak:
   ingress:
     enabled: true
     hostname: keycloak-127-0-0-1.nip.io
-    #ingressClassName: nginx
     path: /
     annotations:
       nginx.ingress.kubernetes.io/rewrite-target: /
       nginx.ingress.kubernetes.io/backend-protocol: HTTP
+      cert-manager.io/cluster-issuer: mkcert-issuer
     tls: true
+    ingressClassName: nginx
   pdb:
     create: false
   postgresql:
@@ -75,6 +76,7 @@ postgresql:
 
 #### kubrix
 kubrix:
+  plan: oss # oss, prime, select, default: oss
   keycloak:
     fqdn: -127-0-0-1.nip.io # add to prefix keycloak in templates
     realm:

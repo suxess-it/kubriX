@@ -107,7 +107,6 @@
 * mirror.gcr.io/aquasec/trivy-operator:0.24.1
 ## vault
 * alpine/curl:latest
-* hashicorp/vault:1.17.2
 * hashicorp/vault:1.18.1
 ## velero-ui
 * docker.io/dserio83/velero-api:0.1.23
