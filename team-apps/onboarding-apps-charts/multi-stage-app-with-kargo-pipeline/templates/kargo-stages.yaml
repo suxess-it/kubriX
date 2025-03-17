@@ -11,14 +11,17 @@ spec:
 {{- end }}
   promotionTemplate:
     spec:
+      vars:
+      - name: gitRepo
+        value: {{ $.Values.repoUrl }}
       steps:
       - uses: git-clone
         config:
-          repoURL: {{ $.Values.repoUrl }}
+          repoURL: ${{`{{ vars.gitRepo }}`}}
           checkout:
-          - fromFreight: true
+          - commit: ${{`{{ commitFrom(vars.gitRepo) }}`}}
             path: ./src
-          - branch: stages/{{ .name }}
+          - branch: stages/${{`{{ ctx.stage }}`}}
             create: true
             path: ./out
       - uses: git-clear
@@ -36,14 +39,14 @@ spec:
       - uses: git-push
         config:
           path: ./out
-          targetBranch: stages/{{ .name }}
+          targetBranch: stages/${{`{{ ctx.stage }}`}}
       - uses: argocd-update
         config:
           apps:
-          - name: {{ $.Values.appName }}-{{ .name }}
+          - name: {{ $.Values.appName }}-${{`{{ ctx.stage }}`}}
             namespace: {{ $.Release.Namespace }}
             sources:
-            - repoURL: {{ $.Values.repoUrl }}
+            - repoURL: ${{`{{ vars.gitRepo }}`}}
               desiredCommitFromStep: commit
 ---
 {{- end }}
