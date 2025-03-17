@@ -4,7 +4,7 @@
 ## argocd
 * ghcr.io/dexidp/dex:v2.42.0
 * public.ecr.aws/docker/library/redis:7.4.2-alpine
-* quay.io/argoproj/argocd:v2.14.4
+* quay.io/argoproj/argocd:v2.14.5
 ## backstage
 * alpine:3.17
 * ghcr.io/suxess-it/sx-backstage:v1.32.6
@@ -107,7 +107,6 @@
 * mirror.gcr.io/aquasec/trivy-operator:0.24.1
 ## vault
 * alpine/curl:latest
-* hashicorp/vault:1.17.2
 * hashicorp/vault:1.18.1
 ## velero-ui
 * docker.io/dserio83/velero-api:0.1.23

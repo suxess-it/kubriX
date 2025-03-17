@@ -2,9 +2,6 @@ eso:
   providerUrl: "https://vault.demo.kubrix.cloud/"
   backendName: vault-backend
   secretStore: kubrix-kv
-  # oidc config
-  oidcDiscoveryUrl: "https://keycloak.demo.kubrix.cloud/realms/kubrix"
-  callbackUri: "https://vault.demo.kubrix.cloud"
 
   # Copyright (c) HashiCorp, Inc.
   # SPDX-License-Identifier: MPL-2.0
@@ -54,7 +51,7 @@ vault:
           runAsNonRoot: true
     extraContainers:
       - name: auto-initializer
-        image: hashicorp/vault:1.17.2
+        image: hashicorp/vault:1.18.1
         env: 
           - name: VAULT_ADDR
             valueFrom:
@@ -95,7 +92,7 @@ vault:
           privileged: false
           runAsNonRoot: true
       - name: auto-unsealer
-        image: hashicorp/vault:1.17.2
+        image: hashicorp/vault:1.18.1
         env: 
           - name: VAULT_ADDR
             valueFrom:
@@ -140,7 +137,7 @@ vault:
           privileged: false
           runAsNonRoot: true
       - name: vault-initializer
-        image: hashicorp/vault:1.17.2
+        image: hashicorp/vault:1.18.1
         env: 
           - name: VAULT_ADDR
             valueFrom:
@@ -158,30 +155,18 @@ vault:
               VAULT_STATUS=$(vault status)
               if echo "$VAULT_STATUS" | grep -q "Sealed.*false"; then
                 if [ ! $(vault read identity/group/name/admins) ]; then
-
                   # kubernetes
-                  vault auth enable kubernetes
-                  #vault write auth/kubernetes/config kubernetes_host=https://kubernetes.default.svc:443 
-                  vault write auth/kubernetes/config token_reviewer_jwt="$(cat /var/run/secrets/kubernetes.io/serviceaccount/token)" kubernetes_host="https://$KUBERNETES_PORT_443_TCP_ADDR:443" kubernetes_ca_cert=@/var/run/secrets/kubernetes.io/serviceaccount/ca.crt
-
-                  # crossplane
-                  CROSSPLANETOKEN=$(vault token create -display-name=crossplane-token -policy=root -format=json | /usr/local/libexec/vault/jq -r ."auth.client_token")
-                  /usr/local/libexec/vault/kubectl create secret generic crossplane-init -n vault --from-literal=credentials='{"token":"'${CROSSPLANETOKEN}'"}' 
-                  vault write auth/kubernetes/role/crossplane bound_service_account_names="*" bound_service_account_namespaces=crossplane policies=crossplane ttl=24h        
-
-                else 
-                  # workaround due to #422
-                  if [ ! $(vault list identity/group-alias/id) ]; then
-                    echo vault admins group configured, just updating group aliases
-                    vault list identity/group/name
-                    acc=$(vault auth list -format=json | /usr/local/libexec/vault/jq -r '.["oidc/"].accessor')
-                    vault list identity/group/name |grep -A10 -- '----' |tail -n +2 | while read groupname ; do 
-                      id=$(vault read "/identity/group/name/$groupname" -format=json | /usr/local/libexec/vault/jq -r ."data.id") 
-                      vault write identity/group-alias name="$groupname" mount_accessor="$acc" canonical_id="$id"
-                    echo group-alias created
-                    done
+                  if [ ! $(vault read auth/kubernetes/config) ]; then
+                    vault auth enable kubernetes
+                    vault write auth/kubernetes/config token_reviewer_jwt="$(cat /var/run/secrets/kubernetes.io/serviceaccount/token)" kubernetes_host="https://$KUBERNETES_PORT_443_TCP_ADDR:443" kubernetes_ca_cert=@/var/run/secrets/kubernetes.io/serviceaccount/ca.crt
                   fi
-                  # end #422
+                  # crossplane
+                  if [ ! $(vault read auth/kubernetes/role/crossplane) ]; then
+                    CROSSPLANETOKEN=$(vault token create -display-name=crossplane-token -policy=root -format=json | /usr/local/libexec/vault/jq -r ."auth.client_token")
+                    /usr/local/libexec/vault/kubectl create secret generic crossplane-init -n vault --from-literal=credentials='{"token":"'${CROSSPLANETOKEN}'"}' 
+                    vault write auth/kubernetes/role/crossplane bound_service_account_names="*" bound_service_account_namespaces=crossplane policies=crossplane ttl=24h        
+                  fi
+                else 
                   echo creating accessor configmap
                   accessor=$(vault auth list -detailed | grep kubernetes | awk '{print $3}')
                   if /usr/local/libexec/vault/kubectl get configmap kubeauth-accessor -n vault; then
