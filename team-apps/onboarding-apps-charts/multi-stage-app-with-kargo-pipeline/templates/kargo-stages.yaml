@@ -47,6 +47,6 @@ spec:
             namespace: {{ $.Release.Namespace }}
             sources:
             - repoURL: ${{`{{ vars.gitRepo }}`}}
-              desiredRevision: ${{ outputs.commit.commit }}
+              desiredRevision: ${{`{{ outputs.commit.commit }}`}}
 ---
 {{- end }}
