@@ -28,6 +28,14 @@
 * **kyverno:** restructure policies and add deny all network policy ([#1103](https://github.com/suxess-it/kubriX/issues/1103)) ([d94ad0e](https://github.com/suxess-it/kubriX/commit/d94ad0e8b76c8ae3d3da11762dec9cb4d36dbff9))
 * **observability:** set default retention of 30 days ([#1102](https://github.com/suxess-it/kubriX/issues/1102)) ([c6b57d5](https://github.com/suxess-it/kubriX/commit/c6b57d576425cb0ca4d9647962efbe0a35eddf01))
 
+### Prime Features (only available with kubriX prime plan)
+
+* **argocd:** create ExternalSecret for oidc clientSecret ([kubriX-prime/#50](https://github.com/suxess-it/kubriX-prime/issues/50)) ([kubriX-prime/f0dc149](https://github.com/suxess-it/kubriX-prime/commit/f0dc14928c677f3435a0df5c2999ad77b8fbd30f))
+* **team-onboarding:** each team should set their own appset access token. fixes https://github.com/suxess-it/kubriX/issues/1086 ([kubriX-prime/#45](https://github.com/suxess-it/kubriX-prime/issues/45)) ([kubriX-prime/d7f10c6](https://github.com/suxess-it/kubriX-prime/commit/d7f10c6f80d499ccc47da4514382522b1b06c8f7))
+* **kargo:** replace unsupported kargo 1.3 options with new expressio… ([kubriX-prime/#71](https://github.com/suxess-it/kubriX-prime/issues/71)) ([kubriX-prime/dcf3c41](https://github.com/suxess-it/kubriX-prime/commit/dcf3c41680ae1d43953959b7fee6c0c849bbfad6))
+* **kyverno:** create secretstore in app namespaces automatically to connect to vault ([kubriX-prime/#60](https://github.com/suxess-it/kubriX-prime/issues/60)) ([kubriX-prime/fc3b404](https://github.com/suxess-it/kubriX-prime/commit/fc3b404775895ec24bfe4b23fb37448d883d32d9))
+* **team-onboarding:** create team specific secrets ([kubriX-prime/#46](https://github.com/suxess-it/kubriX-prime/issues/46)) ([kubriX-prime/1982bc1](https://github.com/suxess-it/kubriX-prime/commit/1982bc1a2eb5b5b6466a53c31f38ee905ebbb75b))
+* **team-onboarding:** create vault role and policy per team ([kubriX-prime/#69](https://github.com/suxess-it/kubriX-prime/issues/69)) ([kubriX-prime/4547c50](https://github.com/suxess-it/kubriX-prime/commit/4547c50e16d07bb3e12834cc6dadd68e3a49620e))
 
 ### Bug Fixes
 
