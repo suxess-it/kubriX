@@ -1,5 +1,66 @@
 # Changelog
 
+## [2.1.0](https://github.com/suxess-it/kubriX/compare/v2.0.0...v2.1.0) (2025-03-19)
+
+
+### Features
+
+* add option to not track the automatically created namespace. fixes https://github.com/suxess-it/kubriX/issues/1085 ([#1097](https://github.com/suxess-it/kubriX/issues/1097)) ([3edb507](https://github.com/suxess-it/kubriX/commit/3edb507f16b8aa9762c896c3018ad744bacff2a9))
+* add team prefix to secrets ([#1101](https://github.com/suxess-it/kubriX/issues/1101)) ([3a4905f](https://github.com/suxess-it/kubriX/commit/3a4905f11fd12bea49b79b10a45577b93d79965a))
+* **argocd:** application should only be healthy when also synced ([#1118](https://github.com/suxess-it/kubriX/issues/1118)) ([9b12131](https://github.com/suxess-it/kubriX/commit/9b12131b5a6c835a969aa94e80f538adc2e4ed9e))
+* **argocd:** create credential-template automatically during onboarding ([#1098](https://github.com/suxess-it/kubriX/issues/1098)) ([304923f](https://github.com/suxess-it/kubriX/commit/304923f748320c3ab7825ecc001427a1be6efc75))
+* **argocd:** enable crossplane health checks ([#1106](https://github.com/suxess-it/kubriX/issues/1106)) ([bf9f420](https://github.com/suxess-it/kubriX/commit/bf9f420f5fa0b5eca9edd4c0c504fc6a55602a0e))
+* combine default valueFiles with chart specific valueFiles ([#1116](https://github.com/suxess-it/kubriX/issues/1116)) ([4a96ed0](https://github.com/suxess-it/kubriX/commit/4a96ed0d31a9c196b832659623ea52ca4cd31b80))
+* create secret per kargo project ([#1122](https://github.com/suxess-it/kubriX/issues/1122)) ([782102f](https://github.com/suxess-it/kubriX/commit/782102f6d55f795f4fde18631eafa310c272a2a5))
+* **deps:** update helm release cost-analyzer to v2.6.2 ([#1078](https://github.com/suxess-it/kubriX/issues/1078)) ([4cc62a0](https://github.com/suxess-it/kubriX/commit/4cc62a091718376650dac163f752c4fa0f06b84b))
+* **deps:** update helm release external-secrets to v0.14.2 ([#1038](https://github.com/suxess-it/kubriX/issues/1038)) ([1f5bb2e](https://github.com/suxess-it/kubriX/commit/1f5bb2e1f71c7b1f11f577d7ed108685df691e70))
+* **deps:** update helm release falco to v4.20.1 ([#1042](https://github.com/suxess-it/kubriX/issues/1042)) ([33bfd21](https://github.com/suxess-it/kubriX/commit/33bfd2179238452a09817d35048f66a3c0ecb338))
+* **deps:** update helm release grafana to v8.10.1 ([#1093](https://github.com/suxess-it/kubriX/issues/1093)) ([eea52fc](https://github.com/suxess-it/kubriX/commit/eea52fc0b114d078814fb7d9ead74f87b86a177e))
+* **deps:** update helm release grafana to v8.9.0 ([#1037](https://github.com/suxess-it/kubriX/issues/1037)) ([007279d](https://github.com/suxess-it/kubriX/commit/007279d16e95bdd344898c4873ad89a50d5b56c9))
+* **deps:** update helm release loki to v6.27.0 ([#1094](https://github.com/suxess-it/kubriX/issues/1094)) ([bf7acf9](https://github.com/suxess-it/kubriX/commit/bf7acf921ca587f67a8ee7a8d6adca5e6359b8aa))
+* **deps:** update helm release trivy-operator to v0.26.1 ([#1128](https://github.com/suxess-it/kubriX/issues/1128)) ([8585f16](https://github.com/suxess-it/kubriX/commit/8585f167a69ea33ad0cc9444d7a505334e30a926))
+* **deps:** update kargo to v1.3.1 and remove unsupported promotion configs in multi-stage base chart ([#1131](https://github.com/suxess-it/kubriX/issues/1131)) ([2ea6080](https://github.com/suxess-it/kubriX/commit/2ea608004381c74d5baadfe261a79b85004b49a9))
+* **deps:** update xpkg.upbound.io/crossplane-contrib/provider-keycloak docker tag to v1.12.0 ([#1027](https://github.com/suxess-it/kubriX/issues/1027)) ([30b5a3e](https://github.com/suxess-it/kubriX/commit/30b5a3e4e489b1ad3bf6f0c5ba97f2f79e77624a))
+* each team should set their own appset access token. fixes https://github.com/suxess-it/kubriX/issues/1086 ([#1096](https://github.com/suxess-it/kubriX/issues/1096)) ([7d35bb9](https://github.com/suxess-it/kubriX/commit/7d35bb914be6fc53a2749bcabebd3d6fcd8fc5b0))
+* **kargo:** remove global creds, fixes https://github.com/suxess-it/kubriX/issues/753 ([#1099](https://github.com/suxess-it/kubriX/issues/1099)) ([45030ce](https://github.com/suxess-it/kubriX/commit/45030ceb75781a90ada3b80bb3fe3200fb8b6bdf))
+* **keycloak:** adapt keycloak dependency to vault ([#1136](https://github.com/suxess-it/kubriX/issues/1136)) ([30068cb](https://github.com/suxess-it/kubriX/commit/30068cbdcccf4a8a7071434279bea4a6bfa1d07f))
+* **keycloak:** migrate to keycloak helm chart  ([#1107](https://github.com/suxess-it/kubriX/issues/1107)) ([d795719](https://github.com/suxess-it/kubriX/commit/d7957196c2ad7ac3e93ec78be45363907443c26c))
+* **kyverno:** restructure policies and add deny all network policy ([#1103](https://github.com/suxess-it/kubriX/issues/1103)) ([d94ad0e](https://github.com/suxess-it/kubriX/commit/d94ad0e8b76c8ae3d3da11762dec9cb4d36dbff9))
+* **observability:** set default retention of 30 days ([#1102](https://github.com/suxess-it/kubriX/issues/1102)) ([c6b57d5](https://github.com/suxess-it/kubriX/commit/c6b57d576425cb0ca4d9647962efbe0a35eddf01))
+
+
+### Bug Fixes
+
+* **app-onboarding:** missing namespace resource tracking of multi-stage-apps ([#1135](https://github.com/suxess-it/kubriX/issues/1135)) ([f41a92b](https://github.com/suxess-it/kubriX/commit/f41a92b3121183509fddc5818603bbe8400aa5da))
+* **argocd:** sometimes namespaces which should not get tracked have tracking annotation ([#1134](https://github.com/suxess-it/kubriX/issues/1134)) ([a1df67a](https://github.com/suxess-it/kubriX/commit/a1df67a0d6007793fa683ce97f538a9671a7834a))
+* **backstage:** missing github attribute in onboarding templates ([#1133](https://github.com/suxess-it/kubriX/issues/1133)) ([8108e91](https://github.com/suxess-it/kubriX/commit/8108e916845e41b44d5efddaebf8f5a8d2dd3170))
+* **delivery:** streamline variable names ([#1121](https://github.com/suxess-it/kubriX/issues/1121)) ([e8e4f4c](https://github.com/suxess-it/kubriX/commit/e8e4f4c99722c203cebfd2121d32650d22a2cb40))
+* **demo:** add variables to demo-metalstack environment ([#1139](https://github.com/suxess-it/kubriX/issues/1139)) ([caf83ed](https://github.com/suxess-it/kubriX/commit/caf83ed61e507f1377adda4ba18c0ce4cf78f910))
+* **deps:** update helm release argo-cd to v7.8.10 ([#1129](https://github.com/suxess-it/kubriX/issues/1129)) ([19ec03b](https://github.com/suxess-it/kubriX/commit/19ec03bb15d6fd981a703203a68e2e6951774178))
+* **deps:** update helm release argo-cd to v7.8.4 ([#1071](https://github.com/suxess-it/kubriX/issues/1071)) ([5c306f1](https://github.com/suxess-it/kubriX/commit/5c306f191d31bef03451343e54624a4f7d0a7fd5))
+* **deps:** update helm release argo-cd to v7.8.5 ([#1089](https://github.com/suxess-it/kubriX/issues/1089)) ([e120e6e](https://github.com/suxess-it/kubriX/commit/e120e6e52692a4511cbe069c561002971a5569e2))
+* **deps:** update helm release argo-cd to v7.8.8 ([#1113](https://github.com/suxess-it/kubriX/issues/1113)) ([3fad9fb](https://github.com/suxess-it/kubriX/commit/3fad9fbbf09fa00fcc26fd6cfae250e18dcf9b31))
+* **deps:** update helm release cert-manager to v1.17.1 ([#1072](https://github.com/suxess-it/kubriX/issues/1072)) ([825451c](https://github.com/suxess-it/kubriX/commit/825451cb988d92672ce6ae433d326fbc0c2fd28e))
+* **deps:** update helm release cost-analyzer to v2.6.3 ([#1123](https://github.com/suxess-it/kubriX/issues/1123)) ([b2e8fee](https://github.com/suxess-it/kubriX/commit/b2e8feeb40949dd0c453e0a5830b3046ba674501))
+* **deps:** update helm release external-dns to v1.15.2 ([#1073](https://github.com/suxess-it/kubriX/issues/1073)) ([c176f74](https://github.com/suxess-it/kubriX/commit/c176f74300a5378ce70e8359abf7baa735ad2649))
+* **deps:** update helm release external-secrets to v0.14.3 ([#1088](https://github.com/suxess-it/kubriX/issues/1088)) ([7431e9d](https://github.com/suxess-it/kubriX/commit/7431e9df5dbb79ee78fe6706cb92b019bf67e2f1))
+* **deps:** update helm release k8s-monitoring to v1.6.22 ([#1023](https://github.com/suxess-it/kubriX/issues/1023)) ([390a257](https://github.com/suxess-it/kubriX/commit/390a25793b82dc23645cfd4fd3d8a8955ead2e78))
+* **deps:** update helm release k8s-monitoring to v1.6.26 ([#1092](https://github.com/suxess-it/kubriX/issues/1092)) ([689925c](https://github.com/suxess-it/kubriX/commit/689925cbfe3b6df7088df1a3bf0f54aa45ae17b8))
+* **deps:** update helm release k8s-monitoring to v1.6.27 ([#1124](https://github.com/suxess-it/kubriX/issues/1124)) ([e5a1c57](https://github.com/suxess-it/kubriX/commit/e5a1c5724bf9397e3e483ae1d23fad138e8c80b8))
+* **deps:** update helm release kyverno to v3.3.7 ([#1041](https://github.com/suxess-it/kubriX/issues/1041)) ([e627da6](https://github.com/suxess-it/kubriX/commit/e627da6abb2d27cee44cc8d35d82d8f1034b2e85))
+* **deps:** update helm release loki to v6.25.1 ([#1039](https://github.com/suxess-it/kubriX/issues/1039)) ([b5ec26a](https://github.com/suxess-it/kubriX/commit/b5ec26a6d0192ccdf21686d556557fde3e66b559))
+* **deps:** update helm release tempo to v1.18.2 ([#1076](https://github.com/suxess-it/kubriX/issues/1076)) ([74e48a8](https://github.com/suxess-it/kubriX/commit/74e48a82205700017e8b73c4c08d9622ea18ab38))
+* **deps:** update helm release tempo to v1.18.3 ([#1126](https://github.com/suxess-it/kubriX/issues/1126)) ([207bdda](https://github.com/suxess-it/kubriX/commit/207bddad90b9d5bd18dff7515a089b6e5493a15b))
+* **deps:** update helm release vui to v0.1.22 ([#1048](https://github.com/suxess-it/kubriX/issues/1048)) ([81e8b88](https://github.com/suxess-it/kubriX/commit/81e8b883309ebea3363fd10ac280b14bb666360b))
+* **deps:** update kargo docker tag to v1.2.3 ([#1077](https://github.com/suxess-it/kubriX/issues/1077)) ([f3660a0](https://github.com/suxess-it/kubriX/commit/f3660a08efe7baa3e23546577be3bfd303911133))
+* **installer:** restart bootstrap-app sync if it failed too often and check also… ([#1111](https://github.com/suxess-it/kubriX/issues/1111)) ([2c34493](https://github.com/suxess-it/kubriX/commit/2c34493ad988f0c5b3137875ee1aec6e57517e34))
+* **keycloak:** remove extraTls from oss config([#1115](https://github.com/suxess-it/kubriX/issues/1115)) ([68a8077](https://github.com/suxess-it/kubriX/commit/68a807793f860538f1059c5b7b1a8ace4b2a0316))
+* **kyverno:** add missing space in deny-all-nw-policy ([#1137](https://github.com/suxess-it/kubriX/issues/1137)) ([a009c2f](https://github.com/suxess-it/kubriX/commit/a009c2f79f349081e977acc380413f172db52aaf))
+* remove configauditreports because trivy is not installed ([#1064](https://github.com/suxess-it/kubriX/issues/1064)) ([9e637b6](https://github.com/suxess-it/kubriX/commit/9e637b62f9812b05e0adb681161cb85fd1574844))
+* use boolean for namespace resource tracking decision ([#1117](https://github.com/suxess-it/kubriX/issues/1117)) ([9e84bc3](https://github.com/suxess-it/kubriX/commit/9e84bc3c11fe7918a6ce4f60fe714d37f3ece375))
+* **vault:** oidc-backend-role needs to run later, because of [#1074](https://github.com/suxess-it/kubriX/issues/1074) ([#1109](https://github.com/suxess-it/kubriX/issues/1109)) ([62779a2](https://github.com/suxess-it/kubriX/commit/62779a2b795c27f46232c1b1b2b47517634f3e15))
+* **vault:** reduce crossplane vault-provider pollInterval to speed up installation, solves https://github.com/suxess-it/kubriX/issues/1083 ([#1110](https://github.com/suxess-it/kubriX/issues/1110)) ([3be214f](https://github.com/suxess-it/kubriX/commit/3be214f9b01642f272f7cf1c609317a9da15930b))
+
 ## [2.0.0](https://github.com/suxess-it/kubriX/compare/v1.0.0...v2.0.0) (2025-02-18)
 
 
