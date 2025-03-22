@@ -24,7 +24,7 @@ spec:
     managedNamespaceMetadata:
       annotations:
         # doesn't handle destinationNamespaceOverride yet
-        argocd.argoproj.io/tracking-id: {{ $.Values.appName }}-{{ .name }}:app/Namespace:{{ $.Values.teamName }}-{{ $.Values.appName }}-{{ .name }}/{{ $.Values.teamName }}-{{ $.Values.appName }}-{{ .name }}
+        argocd.argoproj.io/tracking-id: {{ $.Release.Namespace }}_{{ $.Values.appName }}-{{ .name }}:app/Namespace:{{ $.Values.teamName }}-{{ $.Values.appName }}-{{ .name }}/{{ $.Values.teamName }}-{{ $.Values.appName }}-{{ .name }}
     automated:
       prune: true
       selfHeal: true

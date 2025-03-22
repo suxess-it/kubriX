@@ -1,0 +1,28 @@
+apiVersion: external-secrets.io/v1beta1
+kind: ExternalSecret
+metadata:
+  labels:
+    kargo.akuity.io/cred-type: git
+  name: {{ .Values.appName }}-git-creds
+  namespace: {{ tpl .Values.kargoProject . }}
+spec:
+  data:
+    - remoteRef:
+        key: kubrix-kv/data/{{ .Values.teamName }}/delivery
+        property: KUBRIX_KARGO_GIT_PASSWORD
+      secretKey: KUBRIX_KARGO_GIT_PASSWORD
+  refreshInterval: 15s
+  secretStoreRef:
+    kind: ClusterSecretStore
+    name: vault-backend
+  target:
+    name: {{ .Values.appName }}-git-creds
+    template:
+      data:
+        password: '{{`{{ .KUBRIX_KARGO_GIT_PASSWORD }}`}}'
+        repoURL: '{{ .Values.repoUrl }}'
+        repoURLIsRegex: 'false'
+        username: 'dummy'
+      metadata:
+        labels:
+          kargo.akuity.io/cred-type: git
