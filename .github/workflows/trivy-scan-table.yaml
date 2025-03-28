@@ -50,17 +50,6 @@ jobs:
         run: |
           curl -L -o jd https://github.com/josephburnett/jd/releases/download/v1.9.1/jd-amd64-linux
           chmod u+x jd
-
-      - name: find removed images
-        run: |
-          ./jd -set target/platform-apps/charts/image-list.json pr/platform-apps/charts/image-list.json | grep --invert-match '^@' | grep ^- | sed 's/^-//g' | jq --slurp > pr/platform-apps/charts/image-list-removed.json
-          cat pr/platform-apps/charts/image-list-removed.json
-
-      - name: upload removed images list
-        uses: actions/upload-artifact@v4
-        with:
-          name: image-list-removed.json
-          path: pr/platform-apps/charts/image-list-removed.json
           
       # only scan images which are added compared to main branch
       - name: set scan matrix
@@ -76,17 +65,7 @@ jobs:
     strategy:
       matrix: 
         images: ${{ fromJson(needs.evaluate.outputs.matrix) }}
-      # matrix:
-      #  images: [
-      #    {chart: "argocd", image: "ghcr.io/dexidp/dex:v2.41.1", id: "dex"}, 
-      #    {chart: "argocd", image: "public.ecr.aws/docker/library/redis:7.4.1-alpine", id: "redis"}, 
-      #    {chart: "argocd", image: "quay.io/argoproj/argocd:v2.13.2", id: "argocd"}
-      #  ]
           
-    permissions:
-      contents: write # for actions/checkout to fetch code
-      security-events: write # for github/codeql-action/upload-sarif to upload SARIF results
-      actions: read # only required for a private repository by github/codeql-action/upload-sarif to get the Action run status
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
@@ -97,7 +76,7 @@ jobs:
       - name:  create temp dir for trivy reports
         shell: bash
         run: |
-          mkdir trivy-reports-workdir
+          mkdir pr
 
       - name: Run Trivy vulnerability scanner
         uses: aquasecurity/trivy-action@0.29.0
@@ -105,7 +84,7 @@ jobs:
           image-ref: ${{ matrix.images.image }}
           format: template
           template: "@${{ github.workspace }}/trivy-reports/markdown.tpl"
-          output: 'trivy-reports-workdir/report-${{ matrix.images.id }}.md'
+          output: 'pr/report-${{ matrix.images.id }}.md'
           # exit-code: '1'
           ignore-unfixed: true
           # vuln-type: 'os,library'
@@ -114,8 +93,8 @@ jobs:
       - name: upload reports
         uses: actions/upload-artifact@v4
         with:
-          name: trivy-reports-${{ matrix.images.id }}
-          path: trivy-reports-workdir/report-${{ matrix.images.id }}.md
+          name: pr/trivy-reports-${{ matrix.images.id }}
+          path: pr/report-${{ matrix.images.id }}.md
 
   commit-reports:
     needs: scan-images
@@ -131,54 +110,18 @@ jobs:
         with:
           ref: ${{ github.event.pull_request.head.ref }}
 
-      # we need to delete scans reports from files which got deleted
-      # and download scan reports from files which got changed
-      - name: download removed images json
-        uses: actions/download-artifact@v4
-        with:
-          name: image-list-removed.json
-          path: platform-apps/charts/
-
-      - name: delete old trivy reports from removed images artifact
-        shell: bash
-        run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git pull
-          echo "remove old reports. ids from removed images are: "
-          cat platform-apps/charts/image-list-removed.json | jq -r '.[].id'
-
-          # use find to remove files
-          # because it does not fail when no files exist
-          for id in $( cat platform-apps/charts/image-list-removed.json | jq -r '.[].id' ) ; do
-            echo "delete file trivy-reports/report-${id}.md"
-            rm -f trivy-reports/report-${id}.md
-          done
-
-          # delete file again so it will not get committed
-          rm platform-apps/charts/image-list-removed.json
-
-          git status
-          
       - name: download new reports
         uses: actions/download-artifact@v4
         with:
-          pattern: trivy-reports-*
-          path: trivy-reports
+          pattern: pr/trivy-reports-*
+          path: pr/trivy-reports
           merge-multiple: true
           
-      - name: commit trivy table
+      - name: diff trivy table
         shell: bash
         run: |
-          git status
-          echo "git add trivy-reports"
-          git add trivy-reports
-          git status
-          echo "check diff and commit"
-          git diff --cached --exit-code || git commit -m "updated trivy scan results"
-          echo "git push"
-          git push
+          diff pr target
 
       - uses: geekyeggo/delete-artifact@v5
         with:
-          name: trivy-reports-*
+          name: pr/trivy-reports-*
