@@ -41,8 +41,8 @@
 * docker.io/library/busybox:1.31.1
 * quay.io/kiwigrid/k8s-sidecar:1.30.0
 ## ingress-nginx
-* registry.k8s.io/ingress-nginx/controller:v1.12.0@sha256:e6b8de175acda6ca913891f0f727bca4527e797d52688cbe9fec9040d6f6b6fa
-* registry.k8s.io/ingress-nginx/kube-webhook-certgen:v1.5.0@sha256:aaafd456bda110628b2d4ca6296f38731a3aaf0bf7581efae824a41c770a8fc4
+* registry.k8s.io/ingress-nginx/controller:v1.12.1@sha256:d2fbc4ec70d8aa2050dd91a91506e998765e86c96f32cffb56c503c9c34eed5b
+* registry.k8s.io/ingress-nginx/kube-webhook-certgen:v1.5.2@sha256:e8825994b7a2c7497375a9b945f386506ca6a3eda80b89b74ef2db743f66a5ea
 ## k8s-monitoring
 * docker.io/grafana/alloy:v1.7.1
 * ghcr.io/grafana/k8s-monitoring-test:1.6.27
