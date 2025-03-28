@@ -1,5 +1,24 @@
 # Changelog
 
+## [3.0.0](https://github.com/suxess-it/kubriX/compare/v2.1.0...v3.0.0) (2025-03-28)
+
+
+### ⚠ BREAKING CHANGES
+
+* **deps:** new upstream major version
+
+### Features
+
+* **deps:** update helm release external-secrets to v0.15.0 ([#1151](https://github.com/suxess-it/kubriX/issues/1151)) ([3f82678](https://github.com/suxess-it/kubriX/commit/3f8267849133972d8a6c90397a70ea1ea0f89f8a))
+* **deps:** update helm release loki to v6.28.0 ([#1152](https://github.com/suxess-it/kubriX/issues/1152)) ([b7846db](https://github.com/suxess-it/kubriX/commit/b7846db15e840cf35cad5f569b17aeb01746a99c))
+* **deps:** update xpkg.upbound.io/crossplane-contrib/provider-keycloak docker tag to v2 ([#1149](https://github.com/suxess-it/kubriX/issues/1149)) ([52f193f](https://github.com/suxess-it/kubriX/commit/52f193f60924f6a98fcaaa8160cbd5fa203959e3))
+
+
+### Bug Fixes
+
+* **deps:** update helm release argo-cd to v7.8.13 ([#1154](https://github.com/suxess-it/kubriX/issues/1154)) ([0449018](https://github.com/suxess-it/kubriX/commit/04490188a0cdbe7ade37448461007621f6fbb00b))
+* **deps:** update helm release ingress-nginx to v4.12.1 ([#1156](https://github.com/suxess-it/kubriX/issues/1156)) ([496c996](https://github.com/suxess-it/kubriX/commit/496c996e22e3727851fdd2cfa69a36e6b48c0181))
+
 ## [2.1.0](https://github.com/suxess-it/kubriX/compare/v2.0.0...v2.1.0) (2025-03-19)
 
 
