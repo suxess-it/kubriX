@@ -314,7 +314,6 @@ echo "Generating secrets..."
 
 echo "Applying secrets manifests..."
 kubectl apply -f ./.secrets/secrettemp/secrets.yaml
-kubectl apply -f ./.secrets/secrettemp/pushsecrets.yaml
 
 # create secret for scm applicationset in team app definition namespaces
 # see https://github.com/suxess-it/kubriX/issues/214 for a sustainable solution
@@ -334,16 +333,26 @@ target_chart_value_file="platform-apps/target-chart/values-$(echo ${KUBRIX_TARGE
 
 argocd_apps=$(cat $target_chart_value_file | awk '/^  - name:/ { printf "%s", "sx-"$3" "}' )
 # list apps which need some sort of special treatment in bootstrap
-argocd_apps_without_individual=$(cat $target_chart_value_file | egrep -Ev "backstage|kargo|team-onboarding" | awk '/^  - name:/ { printf "%s", "sx-"$3" "}' )
+argocd_apps_without_individual=$(cat $target_chart_value_file | egrep -Ev "keycloak|backstage|kargo|team-onboarding" | awk '/^  - name:/ { printf "%s", "sx-"$3" "}' )
 
 # max wait for 20 minutes until all apps except backstage and kargo are synced and healthy
 wait_until_apps_synced_healthy "${argocd_apps_without_individual}" "Synced" "Healthy" ${KUBRIX_BOOTSTRAP_MAX_WAIT_TIME:-1200}
+
+
+if [[ $( echo $argocd_apps | grep sx-keycloak ) ]] ; then
+  echo "adding pushsecrets from initial setup"
+  kubectl apply -f ./.secrets/secrettemp/pushsecrets.yaml
+  # check if keycloak is synced and healthy for 5 minutes
+  wait_until_apps_synced_healthy "sx-keycloak" "Synced" "Healthy" 300
+fi
 
 # apply argocd-secret to set a secretKey
 kubectl apply -f platform-apps/charts/argocd/manual-secret/argocd-secret.yaml
 
 # if vault is part of this stack, upload token to vault
 if [[ $( echo $argocd_apps | grep sx-vault ) ]] ; then
+
+
   echo "adding secrets in vault for sx-kargo and sx-team-onboarding ..."
   export VAULT_HOSTNAME=$(kubectl get ingress -o jsonpath='{.items[*].spec.rules[*].host}' -n vault)
   export VAULT_TOKEN=$(kubectl get secret -n vault vault-init -o=jsonpath='{.data.root_token}'  | base64 -d)
