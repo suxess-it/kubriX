@@ -65,6 +65,12 @@ wait_until_apps_synced_healthy() {
     printf 'app sync-status health-status sync-duration operation-phase\n' > status-apps.out
 
     for app in ${apps} ; do
+      # additional logic for sx-keycloak
+      if [[ "${app}" == "sx-keycloak" ]]; then
+        echo "sx-keycloak detected — running custom logic"
+        kubectl apply -f ./.secrets/secrettemp/secrets.yaml
+        kubectl apply -f ./.secrets/secrettemp/pushsecrets.yaml
+      fi
       if kubectl get application -n argocd ${app} > /dev/null 2>&1 ; then
         sync_status=$(kubectl get application -n argocd ${app} -o jsonpath='{.status.sync.status}')
         health_status=$(kubectl get application -n argocd ${app} -o jsonpath='{.status.health.status}')
@@ -73,12 +79,7 @@ wait_until_apps_synced_healthy() {
           all_apps_synced="false"
         fi
 
-       # additional logic for sx-keycloak
-        if [[ "${app}" == "sx-keycloak" ]]; then
-          echo "sx-keycloak detected — running custom logic"
-          kubectl apply -f ./.secrets/secrettemp/secrets.yaml
-          kubectl apply -f ./.secrets/secrettemp/pushsecrets.yaml
-        fi
+
         # check if app sync is stuck and needs to get restarted
         # if app has no resources, operationState is empty
         operation_state=$(kubectl get application -n argocd ${app} -o jsonpath='{.status.operationState}')
