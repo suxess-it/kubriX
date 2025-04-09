@@ -3,7 +3,7 @@
 shopt -s nullglob
 
 # basevariables
-TMPDIR="secrettemp"
+TMPDIR=".secrets/secrettemp"
 SECRETFILE="secrets.yaml"
 KUBE_CMD="kubectl"
 VAULT_CMD="vault"
