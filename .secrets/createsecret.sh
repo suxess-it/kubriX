@@ -26,7 +26,6 @@ mkdir -p $TMPDIR
 # reset file
 > $TMPDIR/$SECRETFILE 
 > $TMPDIR/push$SECRETFILE 
-> $TMPDIR/external$SECRETFILE 
 
 for BASEFILE in "${CONFIGFILES[@]}"; do
   if [[ -f "$BASEFILE" ]]; then
@@ -124,32 +123,6 @@ spec:
   data:
 EOF
 
-    echo "generating externalsecret: $SECRET_NAME-external for $APP in namespace $NS (type: $SECRET_TYPE)"
-
-    echo "---" >> $TMPDIR/external$SECRETFILE  # temp
-    cat <<EOF >> "$TMPDIR/external$SECRETFILE"
-apiVersion: external-secrets.io/v1beta1
-kind: ExternalSecret
-metadata:
-  name: $SECRET_NAME-external
-  namespace: $NS
-spec:
-  refreshInterval: 1h
-  secretStoreRef:
-    name: external-secret-store
-    kind: SecretStore
-  target:
-    deletionPolicy: Retain
-    name: $SECRET_NAME
-    creationPolicy: Owner
-    template:
-      type: $SECRET_TYPE
-      metadata:
-        annotations:
-          kubrix.io/install: "false"
-      data:
-EOF
-
     # Process stringData efficiently
     STRINGDATA_KEYS=$(yq e ".secrets[$i].stringData | keys | .[]" "$BASEFILE")
     for KEY in $STRINGDATA_KEYS; do
@@ -171,13 +144,6 @@ EOF
     else
       printf "  %s: %s\n" "$KEY" "$VALUE" >> "$TMPDIR/$SECRETFILE"
     fi
-#    cat <<EOF >> "$TMPDIR/$SECRETFILE"
-#  $KEY: $VALUE
-#EOF
-    # Add data entry in ExternalSecret
-    cat <<EOF >> "$TMPDIR/external$SECRETFILE"
-        $KEY: "{{ \`{{ .${KEY} }}\` }}"
-EOF
     # Add data entry in PushSecret   
     cat <<EOF >> "$TMPDIR/push$SECRETFILE"
     - match:
@@ -187,20 +153,6 @@ EOF
           property: $KEY
 EOF
     done
-# add data entry in ExternalSecret
-    cat <<EOF >> "$TMPDIR/external$SECRETFILE"
-  data:
-EOF
-
-# add data entry in ExternalSecret
-    for KEY in $STRINGDATA_KEYS; do
-        cat <<EOF >> "$TMPDIR/external$SECRETFILE"
-  - secretKey: $KEY
-    remoteRef:
-      key: $SECRETKVNAME/data/$APP
-      property: $KEY
-EOF
-done
 done
 done
 echo "finished"

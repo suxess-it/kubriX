@@ -313,8 +313,8 @@ echo "Generating secrets..."
 ./.secrets/createsecret.sh
 
 echo "Applying secrets manifests..."
-kubectl apply -f ./.secrets/secrets.yaml
-kubectl apply -f ./.secrets/pushsecrets.yaml
+kubectl apply -f ./.secrets/secrettemp/secrets.yaml
+kubectl apply -f ./.secrets/secrettemp/pushsecrets.yaml
 
 # create secret for scm applicationset in team app definition namespaces
 # see https://github.com/suxess-it/kubriX/issues/214 for a sustainable solution
