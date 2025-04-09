@@ -1,5 +1,7 @@
 #!/bin/bash
 
+shopt -s nullglob
+
 # basevariables
 TMPDIR="secrettemp"
 SECRETFILE="secrets.yaml"
@@ -7,7 +9,7 @@ KUBE_CMD="kubectl"
 VAULT_CMD="vault"
 VAULT_ENABLED=false
 SECRETKVNAME=kubrix-kv
-CONFIGFILES=(.env*.yaml)
+CONFIGFILES=(.secrets/.env*.yaml)
 
 # check for yq
 if ! command -v yq &> /dev/null; then
@@ -20,13 +22,16 @@ if [ ${#CONFIGFILES[@]} -eq 0 ]; then
   exit 1
 fi
 
+mkdir -p $TMPDIR
 # reset file
 > $TMPDIR/$SECRETFILE 
 > $TMPDIR/push$SECRETFILE 
 > $TMPDIR/external$SECRETFILE 
 
 for BASEFILE in "${CONFIGFILES[@]}"; do
-
+  if [[ -f "$BASEFILE" ]]; then
+    echo "🔍 Processing file: $BASEFILE"
+  fi
 # vault?
 VAULT_ENABLED=$(yq eval '.vault.enabled' $BASEFILE)
 VAULT_ADDR=$(yq eval '.vault.address' $BASEFILE)

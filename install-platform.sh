@@ -310,7 +310,7 @@ kubectl exec sx-argocd-application-controller-0 -n argocd -- argocd repo add ${K
 
 # add secrets
 echo "Generating secrets..."
-./.secrets/createsecrets.sh
+./.secrets/createsecret.sh
 
 echo "Applying secrets manifests..."
 kubectl apply -f ./.secrets/secrets.yaml
