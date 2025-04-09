@@ -73,6 +73,12 @@ wait_until_apps_synced_healthy() {
           all_apps_synced="false"
         fi
 
+       # additional logic for sx-keycloak
+        if [[ "${app}" == "sx-keycloak" ]]; then
+          echo "sx-keycloak detected — running custom logic"
+          kubectl apply -f ./.secrets/secrettemp/secrets.yaml
+          kubectl apply -f ./.secrets/secrettemp/pushsecrets.yaml
+        fi
         # check if app sync is stuck and needs to get restarted
         # if app has no resources, operationState is empty
         operation_state=$(kubectl get application -n argocd ${app} -o jsonpath='{.status.operationState}')
@@ -314,6 +320,9 @@ kubectl exec sx-argocd-application-controller-0 -n argocd -- argocd repo add ${K
 #  kubectl create namespace ${ns}
 #  kubectl create secret generic appset-github-token --from-literal=token=${KUBRIX_GITHUB_APPSET_TOKEN} -n ${ns}
 #done
+# add secrets
+echo "Generating secrets..."
+./.secrets/createsecret.sh
 
 KUBRIX_REPO_BRANCH_SED=$( echo ${KUBRIX_REPO_BRANCH} | sed 's/\//\\\//g' )
 KUBRIX_REPO_SED=$( echo ${KUBRIX_REPO} | sed 's/\//\\\//g' )
@@ -326,25 +335,10 @@ target_chart_value_file="platform-apps/target-chart/values-$(echo ${KUBRIX_TARGE
 
 argocd_apps=$(cat $target_chart_value_file | awk '/^  - name:/ { printf "%s", "sx-"$3" "}' )
 # list apps which need some sort of special treatment in bootstrap
-argocd_apps_without_individual=$(cat $target_chart_value_file | egrep -Ev "keycloak|backstage|kargo|team-onboarding" | awk '/^  - name:/ { printf "%s", "sx-"$3" "}' )
+argocd_apps_without_individual=$(cat $target_chart_value_file | egrep -Ev "backstage|kargo|team-onboarding" | awk '/^  - name:/ { printf "%s", "sx-"$3" "}' )
 
 # max wait for 20 minutes until all apps except backstage and kargo are synced and healthy
 wait_until_apps_synced_healthy "${argocd_apps_without_individual}" "Synced" "Healthy" ${KUBRIX_BOOTSTRAP_MAX_WAIT_TIME:-1200}
-
-# apply argocd-secret to set a secretKey
-kubectl apply -f platform-apps/charts/argocd/manual-secret/argocd-secret.yaml
-
-if [[ $( echo $argocd_apps | grep sx-keycloak ) ]] ; then
-  # add secrets
-  echo "Generating secrets..."
-  ./.secrets/createsecret.sh
-
-  echo "Applying secrets manifests..."
-  kubectl apply -f ./.secrets/secrettemp/secrets.yaml
-  kubectl apply -f ./.secrets/secrettemp/pushsecrets.yaml
-  # check if keycloak is synced and healthy for 5 minutes
-  wait_until_apps_synced_healthy "sx-keycloak" "Synced" "Healthy" 300
-fi
 
 # if vault is part of this stack, upload token to vault
 if [[ $( echo $argocd_apps | grep sx-vault ) ]] ; then
