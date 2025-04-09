@@ -13,6 +13,7 @@ data:
           group_by:
             - grafana_folder
             - alertname
+{{- if gt (len .Values.teams) 0 }}
           routes:
 {{- range .Values.teams }}
 {{- if .alerting }}
@@ -21,5 +22,6 @@ data:
                 - - namespace
                   - =~
                   - {{ .name }}-.*
+{{ end -}}
 {{ end -}}
 {{ end -}}
