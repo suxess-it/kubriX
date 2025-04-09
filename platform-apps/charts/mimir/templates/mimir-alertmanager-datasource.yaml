@@ -1,0 +1,18 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: alertmanager-{{ template "mimir.fullname" .Subcharts.mimir }}-datasource
+  labels:
+    grafana_datasource: "1"
+data:
+  alertmanager-mimir-datasource.yaml: |-
+    apiVersion: 1
+    datasources:
+    - name: alertmanager-mimir
+      type: alertmanager
+      url: http://{{ template "mimir.fullname" .Subcharts.mimir }}-nginx.{{ .Release.Namespace }}.svc:80/
+      basicAuth: false
+      access: proxy
+      jsonData:
+        implementation: mimir
+        handleGrafanaManagedAlerts: false
