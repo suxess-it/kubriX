@@ -308,6 +308,14 @@ helm install sx-argocd argo-cd \
 echo "add kubriX repo in argocd pod"
 kubectl exec sx-argocd-application-controller-0 -n argocd -- argocd repo add ${KUBRIX_REPO} --username ${KUBRIX_REPO_USERNAME} --password ${KUBRIX_REPO_PASSWORD} --core
 
+# add secrets
+echo "Generating secrets..."
+./.secrets/createsecrets.sh
+
+echo "Applying secrets manifests..."
+kubectl apply -f ./.secrets/secrets.yaml
+kubectl apply -f ./.secrets/pushsecrets.yaml
+
 # create secret for scm applicationset in team app definition namespaces
 # see https://github.com/suxess-it/kubriX/issues/214 for a sustainable solution
 #for ns in adn-team1 adn-team2 adn-team-a; do
@@ -388,12 +396,7 @@ if [[ $( echo $argocd_apps | grep sx-vault ) ]] ; then
             fi
         done
     fi
-  echo "adding initial secrets to vault, for demo purposes only, be sure to change them afterwards..."
-  curl -k -H "X-Vault-Token:$VAULT_TOKEN" -X POST -d '{"data":{"username":"admin","password":"admin1","url":"http://sx-keycloak-headless.keycloak.svc.cluster.local:8080"}}' https://${VAULT_HOSTNAME}/v1/kubrix-kv/data/keycloak/base
-  curl -k -H "X-Vault-Token:$VAULT_TOKEN" -X POST -d '{"data":{"phac":"test","jokl":"test","backstageadmin":"test","demouser":"test","demoadmin":"test","team1user":"test"}}' https://${VAULT_HOSTNAME}/v1/kubrix-kv/data/keycloak/users
-  curl -k -H "X-Vault-Token:$VAULT_TOKEN" -X POST -d '{"data":{"argocd":"demosecret","backstage":"demosecret"}}' https://${VAULT_HOSTNAME}/v1/kubrix-kv/data/keycloak/oidc
-  curl -k -H "X-Vault-Token:$VAULT_TOKEN" -X POST -d '{"data":{"BACKEND_SECRET":"7gvQd4H/QV4q0zYT7ncZ0Vc0y3ncIHUQ","EXTERNAL_ACCESS_TOKEN":"P/cOLBk6qId6IAf9ohX5FlmPJGP1IJP","VAULT_TOKEN":"null","VAULT_ADDR":"null"}}' https://${VAULT_HOSTNAME}/v1/kubrix-kv/data/portal/backstage/base
- fi
+fi
 
 # if kargo is part of this stack, upload token to vault
 if [[ $( echo $argocd_apps | grep sx-kargo ) ]] ; then

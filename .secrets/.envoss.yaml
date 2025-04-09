@@ -1,0 +1,66 @@
+# Baseenvironment variables
+# For Demo Purposes they can be used "as is" but for production they should be changed
+
+#  - application: "<application name>"
+#    path: "<path to secret in vault>"
+#    namespace: "<namespace where secret should be created>"
+#    secretType: "<Opaque, tls, auth,... "
+#    secretname: <secretname> 
+#    stringData:
+#      rootPassword: "root12345"
+#      API_KEY: "dynamic:32:hex"
+#      API_SECRET: "dynamic:16:alphanumeric"
+
+secrets:
+  - application: "keycloak"
+    path: "asdf/keycloak/base"
+    namespace: "keycloak"
+    secretname: keycloak-credentials
+    labels:
+      type: provider-credentials
+    type: Opaque
+    stringData:
+      username: "admin"
+      password: "admin1"
+      url: "http://sx-keycloak-headless.keycloak.svc.cluster.local:8080"
+      client_id: "admin-cli"
+      realm: "master"
+      tls_insecure_skip_verify: "true"
+  # sx-keycloak-credentials
+  - application: "keycloak"
+    path: "asdf/keycloak/users"
+    namespace: "keycloak"
+    secretname: cp-keycloak-user-secret
+    type: Opaque
+    stringData:
+  # must match users from values file
+      phac: "test" #dynamic
+      jokl: "test" #dynamic
+      backstageadmin: "test"  #dynamic
+      demouser: "test" #dynamic
+      demoadmin: "test" #dynamic
+      team1user: "test"  #dynamic
+  # sx-backstage demo users
+  - application: "backstage"
+    path: "asdf/portal/backstage/base"
+    namespace: "backstage"
+    secretname: sx-cnp-secret 
+    secretType: "Opaque"
+    labels:
+      app: sx-cnp-secret
+    stringData:
+      VAULT_TOKEN: null
+      VAULT_ADDR: null
+      BACKEND_SECRET: N2d2UWQ0SC9RVjRxMHpZVDduY1owVmMweTNuY0lIVVE=
+      EXTERNAL_ACCESS_TOKEN: UC9jT0xCazZxSWQ2SUFmOW9oWDVGbG1QSkdQMUlKUAo=
+      OIDC_CLIENTSECRET: demosecret
+    # keycloak-client-credentials
+  - application: "keycloak"
+    paht: "asdf/keycloak/oidc"
+    namespace: "keycloak"
+    secretname: keycloak-client-credentials
+    type: Opaque
+    stringData:
+      # clientsecret for keycloak clients
+      backstage: "demosecret"
+      vault: "demosecret"
