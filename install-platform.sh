@@ -65,15 +65,20 @@ wait_until_apps_synced_healthy() {
     printf 'app sync-status health-status sync-duration operation-phase\n' > status-apps.out
 
     for app in ${apps} ; do
-      # additional logic for sx-keycloak
-      if [[ "${app}" == "sx-keycloak" ]]; then
-        echo "sx-keycloak detected — running custom logic"
-        kubectl apply -f ./.secrets/secrettemp/secrets.yaml
-        kubectl apply -f ./.secrets/secrettemp/pushsecrets.yaml
-      fi
       if kubectl get application -n argocd ${app} > /dev/null 2>&1 ; then
         sync_status=$(kubectl get application -n argocd ${app} -o jsonpath='{.status.sync.status}')
         health_status=$(kubectl get application -n argocd ${app} -o jsonpath='{.status.health.status}')
+
+        # special case for sx-vault
+        if [[ "${app}" == "sx-vault" && "${sync_status}" == "${synced}" && "${health_status}" == "${healthy}" ]]; then
+          if [ ! -f ./.secrets/secrettemp/secrets-applied ]; then
+            echo "sx-vault is synced and healthy — applying pushsecrets"
+            echo 
+            kubectl apply -f ./.secrets/secrettemp/pushsecrets.yaml
+            touch ./.secrets/secrettemp/secrets-applied
+            echo "--------------------"
+          fi
+        fi
 
         if [[ "${sync_status}" != ${synced} ]] || [[ "${health_status}" != ${healthy} ]] ; then
           all_apps_synced="false"
@@ -321,9 +326,11 @@ kubectl exec sx-argocd-application-controller-0 -n argocd -- argocd repo add ${K
 #  kubectl create namespace ${ns}
 #  kubectl create secret generic appset-github-token --from-literal=token=${KUBRIX_GITHUB_APPSET_TOKEN} -n ${ns}
 #done
+
 # add secrets
-echo "Generating secrets..."
+echo "Generating default secrets..."
 ./.secrets/createsecret.sh
+kubectl apply -f ./.secrets/secrettemp/secrets.yaml
 
 KUBRIX_REPO_BRANCH_SED=$( echo ${KUBRIX_REPO_BRANCH} | sed 's/\//\\\//g' )
 KUBRIX_REPO_SED=$( echo ${KUBRIX_REPO} | sed 's/\//\\\//g' )
@@ -340,6 +347,9 @@ argocd_apps_without_individual=$(cat $target_chart_value_file | egrep -Ev "backs
 
 # max wait for 20 minutes until all apps except backstage and kargo are synced and healthy
 wait_until_apps_synced_healthy "${argocd_apps_without_individual}" "Synced" "Healthy" ${KUBRIX_BOOTSTRAP_MAX_WAIT_TIME:-1200}
+
+# apply argocd-secret to set a secretKey
+kubectl apply -f platform-apps/charts/argocd/manual-secret/argocd-secret.yaml
 
 # if vault is part of this stack, upload token to vault
 if [[ $( echo $argocd_apps | grep sx-vault ) ]] ; then
