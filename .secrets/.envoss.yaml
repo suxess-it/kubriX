@@ -13,7 +13,7 @@
 
 secrets:
   - application: "keycloak"
-    path: "asdf/keycloak/base"
+    path: "keycloak/base"
     namespace: "keycloak"
     secretname: keycloak-credentials
     labels:
@@ -28,7 +28,7 @@ secrets:
       tls_insecure_skip_verify: true
   # sx-keycloak-credentials
   - application: "keycloak"
-    path: "asdf/keycloak/users"
+    path: "keycloak/users"
     namespace: "keycloak"
     secretname: cp-keycloak-user-secret
     type: Opaque
@@ -42,7 +42,7 @@ secrets:
       team1user: "test"  #dynamic
   # sx-backstage demo users
   - application: "backstage"
-    path: "asdf/portal/backstage/base"
+    path: "portal/backstage/base"
     namespace: "backstage"
     secretname: sx-cnp-secret 
     secretType: "Opaque"
@@ -56,7 +56,7 @@ secrets:
       OIDC_CLIENTSECRET: demosecret
     # keycloak-client-credentials
   - application: "keycloak"
-    path: "asdf/keycloak/oidc"
+    path: "keycloak/oidc"
     namespace: "keycloak"
     secretname: keycloak-client-credentials
     type: Opaque

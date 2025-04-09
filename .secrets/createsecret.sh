@@ -31,17 +31,6 @@ for BASEFILE in "${CONFIGFILES[@]}"; do
   if [[ -f "$BASEFILE" ]]; then
     echo "🔍 Processing file: $BASEFILE"
   fi
-# vault?
-VAULT_ENABLED=$(yq eval '.vault.enabled' $BASEFILE)
-VAULT_ADDR=$(yq eval '.vault.address' $BASEFILE)
-VAULT_PATH=$(yq eval '.vault.path' $BASEFILE)
-VAULT_TOKEN=$(yq eval '.vault.token' $BASEFILE)
-
-if [[ "$VAULT_ENABLED" == "true" ]]; then
-    export VAULT_ADDR
-    export VAULT_TOKEN
-    echo "vault activated: pushing secrets after vault available."
-fi
 
 # dynamic password generation
 generate_secret() {
