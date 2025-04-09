@@ -105,7 +105,7 @@ EOF
     echo "generating pushsecret: $SECRET_NAME-push for $APP in namespace $NS (type: $SECRET_TYPE)"
     echo "---" >> $TMPDIR/push$SECRETFILE  # temp
         cat <<EOF >> "$TMPDIR/push$SECRETFILE"
-apiVersion: external-secrets.io/v1beta1
+apiVersion: external-secrets.io/v1alpha1
 kind: PushSecret
 metadata:
   name: $SECRET_NAME-push
@@ -126,24 +126,30 @@ EOF
     # Process stringData efficiently
     STRINGDATA_KEYS=$(yq e ".secrets[$i].stringData | keys | .[]" "$BASEFILE")
     for KEY in $STRINGDATA_KEYS; do
-        VALUE=$(yq e -r ".secrets[$i].stringData[\"$KEY\"]" "$BASEFILE")
-      #  VALUE=$(yq e ".secrets[$i].stringData[\"$KEY\"]" "$BASEFILE" | tr -d '\n' | sed 's/^[ \t]*//;s/[ \t]*$//')
 
-        if [[ "$VALUE" =~ ^dynamic:([0-9]+):([a-zA-Z0-9_-]+)$ ]]; then
-            LENGTH=${BASH_REMATCH[1]}
-            CHARSET=${BASH_REMATCH[2]}
-            VALUE=$(generate_secret "$LENGTH" "$CHARSET")
-            echo "  -> generating dynamic secret $KEY ($LENGTH length, $CHARSET)"
-        fi
-        #echo "$KEY=$VALUE" >> "$SECRET_FILE"
-    # add stringData entry in Secret 
-    if [[ "$VALUE" == *$'\n'* ]]; then
-      # format json 
-      VALUE="$(echo "$VALUE" | tr -d '\n' | sed 's/^[ \t]*//;s/[ \t]*$//')"
-      printf "  %s: |\n    %s\n" "$KEY" "$VALUE" >> "$TMPDIR/$SECRETFILE"
-    else
-      printf "  %s: %s\n" "$KEY" "$VALUE" >> "$TMPDIR/$SECRETFILE"
-    fi
+      VALUE_TYPE=$(yq e ".secrets[$i].stringData[\"$KEY\"] | type" "$BASEFILE")
+
+      if [[ "$VALUE_TYPE" == "!!bool" ]]; then
+          RAW_VALUE=$(yq e -r ".secrets[$i].stringData[\"$KEY\"] | tostring" "$BASEFILE")
+          VALUE="\"$RAW_VALUE\""
+      else
+          VALUE=$(yq e -r ".secrets[$i].stringData[\"$KEY\"]" "$BASEFILE")
+      fi
+      if [[ "$VALUE" =~ ^dynamic:([0-9]+):([a-zA-Z0-9_-]+)$ ]]; then
+          LENGTH=${BASH_REMATCH[1]}
+          CHARSET=${BASH_REMATCH[2]}
+          VALUE=$(generate_secret "$LENGTH" "$CHARSET")
+          echo "  -> generating dynamic secret $KEY ($LENGTH length, $CHARSET)"
+      fi
+          #echo "$KEY=$VALUE" >> "$SECRET_FILE"
+      # add stringData entry in Secret 
+      if [[ "$VALUE" == *$'\n'* ]]; then
+        # format json 
+        VALUE="$(echo "$VALUE" | tr -d '\n' | sed 's/^[ \t]*//;s/[ \t]*$//')"
+        printf "  %s: |\n    %s\n" "$KEY" "$VALUE" >> "$TMPDIR/$SECRETFILE"
+      else
+        printf "  %s: %s\n" "$KEY" "$VALUE" >> "$TMPDIR/$SECRETFILE"
+      fi
     # Add data entry in PushSecret   
     cat <<EOF >> "$TMPDIR/push$SECRETFILE"
     - match:

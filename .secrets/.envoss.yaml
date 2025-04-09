@@ -25,7 +25,7 @@ secrets:
       url: "http://sx-keycloak-headless.keycloak.svc.cluster.local:8080"
       client_id: "admin-cli"
       realm: "master"
-      tls_insecure_skip_verify: "true"
+      tls_insecure_skip_verify: true
   # sx-keycloak-credentials
   - application: "keycloak"
     path: "asdf/keycloak/users"
@@ -49,8 +49,8 @@ secrets:
     labels:
       app: sx-cnp-secret
     stringData:
-      VAULT_TOKEN: null
-      VAULT_ADDR: null
+      VAULT_TOKEN: tbd
+      VAULT_ADDR: tbd
       BACKEND_SECRET: N2d2UWQ0SC9RVjRxMHpZVDduY1owVmMweTNuY0lIVVE=
       EXTERNAL_ACCESS_TOKEN: UC9jT0xCazZxSWQ2SUFmOW9oWDVGbG1QSkdQMUlKUAo=
       OIDC_CLIENTSECRET: demosecret
