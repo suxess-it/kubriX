@@ -4,7 +4,7 @@ keycloak:
   #    value: DEBUG
   auth:
     adminUser: admin
-    existingSecret: "keycloak-credentials"
+    existingSecret: "keycloak-admin"
   ingress:
     enabled: true
     hostname: keycloak-127-0-0-1.nip.io
@@ -76,7 +76,6 @@ postgresql:
 
 #### kubrix
 kubrix:
-  plan: oss # oss, prime, select, default: oss
   keycloak:
     fqdn: -127-0-0-1.nip.io # add to prefix keycloak in templates
     realm:
