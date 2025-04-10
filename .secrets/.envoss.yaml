@@ -18,7 +18,7 @@ secrets:
     secretname: keycloak-credentials
     labels:
       type: provider-credentials
-    type: Opaque
+    secretType: "Opaque"
     stringData:
       username: "admin"
       password: "admin1"
@@ -31,7 +31,7 @@ secrets:
     path: "keycloak/users"
     namespace: "keycloak"
     secretname: cp-keycloak-user-secret
-    type: Opaque
+    secretType: "Opaque"
     stringData:
   # must match users from values file
       phac: "test" #dynamic
@@ -59,7 +59,7 @@ secrets:
     path: "keycloak/oidc"
     namespace: "keycloak"
     secretname: keycloak-client-credentials
-    type: Opaque
+    secretType: "Opaque"
     stringData:
       # clientsecret for keycloak clients
       backstage: "demosecret"

@@ -26,6 +26,7 @@ mkdir -p $TMPDIR
 # reset file
 > $TMPDIR/$SECRETFILE 
 > $TMPDIR/push$SECRETFILE 
+[ -f .secrets/secrettemp/secrets-applied ] && rm .secrets/secrettemp/secrets-applied #for local testing
 
 for BASEFILE in "${CONFIGFILES[@]}"; do
   if [[ -f "$BASEFILE" ]]; then
@@ -37,14 +38,14 @@ generate_secret() {
     local length=$1
     local charset=$2
     if [[ "$charset" == "alphanumeric" ]]; then
-        tr -dc 'A-Za-z0-9' </dev/urandom | head -c "$length"
+      openssl rand -base64 $((length * 2)) | tr -dc 'A-Za-z0-9' | head -c "$length"
     elif [[ "$charset" == "hex" ]]; then
-        openssl rand -hex "$((length/2))"
+      openssl rand -hex "$((length/2))"
     elif [[ "$charset" == "numeric" ]]; then
-        tr -dc '0-9' </dev/urandom | head -c "$length"
+      openssl rand -base64 $((length * 2)) | tr -dc '0-9' | head -c "$length"
     else
-        echo "Error: unknown charset $charset"
-        exit 1
+      echo "Error: unknown charset $charset"
+      exit 1
     fi
 }
 
@@ -57,19 +58,12 @@ for ((i=0; i<SECRET_COUNT; i++)); do
     SECRET_NAME=$(yq e ".secrets[$i].secretname" "$BASEFILE")
     SECRET_TYPE=$(yq e ".secrets[$i].secretType" "$BASEFILE")
     LABELS=$(yq e ".secrets[$i].labels" "$BASEFILE" | sed 's/^/    /')
-
     if [[ -z "$APP" || -z "$NS" || -z "$SECRET_NAME" || -z "$SECRET_TYPE" || -z "$PAT" ]]; then
         echo "Skipping invalid secret entry at index $i (missing required fields)."
         continue
     fi
-
-    # tmpdir for secret creation
-    #mkdir -p $TMPDIR
-    #SECRET_FILE="$TMPDIR/$SECRET_NAME.env"
-    #> "$SECRET_FILE"
-
     # create secret
-    echo "generating secret: $SECRET_NAME for $APP in namespace $NS (type: $SECRET_TYPE)"
+    echo "generating secret: $SECRET_NAME for App: $APP, Namespace: $NS (type: $SECRET_TYPE)"
     echo "---" >> $TMPDIR/$SECRETFILE  # temp
     cat <<EOF >> "$TMPDIR/$SECRETFILE"
 apiVersion: v1
@@ -91,7 +85,7 @@ stringData:
 EOF
 
     # create pushsecret
-    echo "generating pushsecret: $SECRET_NAME-push for $APP in namespace $NS (type: $SECRET_TYPE)"
+    echo "generating pushsecret: $SECRET_NAME-push for App: $APP, Namespace: $NS (type: $SECRET_TYPE)"
     echo "---" >> $TMPDIR/push$SECRETFILE  # temp
         cat <<EOF >> "$TMPDIR/push$SECRETFILE"
 apiVersion: external-secrets.io/v1alpha1
@@ -115,9 +109,7 @@ EOF
     # Process stringData efficiently
     STRINGDATA_KEYS=$(yq e ".secrets[$i].stringData | keys | .[]" "$BASEFILE")
     for KEY in $STRINGDATA_KEYS; do
-
       VALUE_TYPE=$(yq e ".secrets[$i].stringData[\"$KEY\"] | type" "$BASEFILE")
-
       if [[ "$VALUE_TYPE" == "!!bool" ]]; then
           RAW_VALUE=$(yq e -r ".secrets[$i].stringData[\"$KEY\"] | tostring" "$BASEFILE")
           VALUE="\"$RAW_VALUE\""
@@ -128,9 +120,8 @@ EOF
           LENGTH=${BASH_REMATCH[1]}
           CHARSET=${BASH_REMATCH[2]}
           VALUE=$(generate_secret "$LENGTH" "$CHARSET")
-          echo "  -> generating dynamic secret $KEY ($LENGTH length, $CHARSET)"
+          echo "  -> generating dynamic secret for App: $APP, Value: $KEY (length: $LENGTH, $CHARSET)"
       fi
-          #echo "$KEY=$VALUE" >> "$SECRET_FILE"
       # add stringData entry in Secret 
       if [[ "$VALUE" == *$'\n'* ]]; then
         # format json 
