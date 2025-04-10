@@ -4,7 +4,7 @@ kind: Role
 metadata:
   name: 2faotprole
   labels:
-    platform-engineer.cloud/role: 2faotprole
+    kubrix.io/role: 2faotprole
   annotations:
     argocd.argoproj.io/sync-wave: "6"
     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
@@ -15,7 +15,7 @@ spec:
     name: {{ .Values.kubrix.keycloak.realm.realmid }}_otprole
     realmIdSelector:
       matchLabels:
-        platform-engineer.cloud/realm: {{ .Values.kubrix.keycloak.realm.realmid }}
+        kubrix.io/realm: {{ .Values.kubrix.keycloak.realm.realmid }}
   providerConfigRef:
     name: "{{ .Release.Name }}-config"
 ---
@@ -24,7 +24,7 @@ kind: Flow
 metadata:
   name: 2faflow
   labels:
-    platform-engineer.cloud/flow: 2faflow
+    kubrix.io/flow: 2faflow
   annotations:
     argocd.argoproj.io/sync-wave: "6"
     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
@@ -33,7 +33,7 @@ spec:
   forProvider:
     realmIdSelector:
       matchLabels:
-        platform-engineer.cloud/realm: {{ .Values.kubrix.keycloak.realm.realmid }}
+        kubrix.io/realm: {{ .Values.kubrix.keycloak.realm.realmid }}
     alias: browser 2 FA
     description: browser based authentication
     providerId: basic-flow
@@ -53,11 +53,11 @@ spec:
     priority: 1
     parentFlowAliasSelector:
       matchLabels:
-        platform-engineer.cloud/flow: 2faflow
+        kubrix.io/flow: 2faflow
     requirement: ALTERNATIVE
     realmIdSelector:
       matchLabels:
-        platform-engineer.cloud/realm: {{ .Values.kubrix.keycloak.realm.realmid }}
+        kubrix.io/realm: {{ .Values.kubrix.keycloak.realm.realmid }}
   providerConfigRef:
     name: "{{ .Release.Name }}-config"
 ---
@@ -74,10 +74,10 @@ spec:
     priority: 2
     parentFlowAliasSelector:
       matchLabels:
-        platform-engineer.cloud/flow: 2faflow
+        kubrix.io/flow: 2faflow
     realmIdSelector:
       matchLabels:
-        platform-engineer.cloud/realm: {{ .Values.kubrix.keycloak.realm.realmid }}
+        kubrix.io/realm: {{ .Values.kubrix.keycloak.realm.realmid }}
     requirement: ALTERNATIVE
   providerConfigRef:
     name: "{{ .Release.Name }}-config"
@@ -95,10 +95,10 @@ spec:
     priority: 3
     parentFlowAliasSelector:
       matchLabels:
-        platform-engineer.cloud/flow: 2faflow
+        kubrix.io/flow: 2faflow
     realmIdSelector:
       matchLabels:
-        platform-engineer.cloud/realm: {{ .Values.kubrix.keycloak.realm.realmid }}
+        kubrix.io/realm: {{ .Values.kubrix.keycloak.realm.realmid }}
     requirement: REQUIRED
   providerConfigRef:
     name: "{{ .Release.Name }}-config"
@@ -108,7 +108,7 @@ kind: Execution
 metadata:
   name: 2fa-ex4
   labels:
-    platform-engineer.cloud/execution: 2fa-ex4
+    kubrix.io/execution: 2fa-ex4
   annotations:
     argocd.argoproj.io/sync-wave: "10"
     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
@@ -118,10 +118,10 @@ spec:
     priority: 4
     parentFlowAliasSelector:
       matchLabels:
-        platform-engineer.cloud/flow: 2faflow
+        kubrix.io/flow: 2faflow
     realmIdSelector:
       matchLabels:
-        platform-engineer.cloud/realm: {{ .Values.kubrix.keycloak.realm.realmid }}
+        kubrix.io/realm: {{ .Values.kubrix.keycloak.realm.realmid }}
     requirement: REQUIRED
   providerConfigRef:
     name: "{{ .Release.Name }}-config"
@@ -141,10 +141,10 @@ spec:
       forceOtpRole: {{ .Values.kubrix.keycloak.realm.realmid }}_otprole
     executionIdSelector:
       matchLabels:
-        platform-engineer.cloud/execution: 2fa-ex4  
+        kubrix.io/execution: 2fa-ex4  
     realmIdSelector:
       matchLabels:
-        platform-engineer.cloud/realm: {{ .Values.kubrix.keycloak.realm.realmid }}
+        kubrix.io/realm: {{ .Values.kubrix.keycloak.realm.realmid }}
   providerConfigRef:
     name: "{{ .Release.Name }}-config"
 ---
@@ -159,10 +159,10 @@ spec:
   forProvider:
     browserFlowSelector:
       matchLabels:
-        platform-engineer.cloud/flow: 2faflow
+        kubrix.io/flow: 2faflow
     realmIdSelector:
       matchLabels:
-        platform-engineer.cloud/realm: {{ .Values.kubrix.keycloak.realm.realmid }}
+        kubrix.io/realm: {{ .Values.kubrix.keycloak.realm.realmid }}
   providerConfigRef:
     name: "{{ .Release.Name }}-config"
 {{- end }}
@@ -183,7 +183,7 @@ spec:
       name: {{ $group.name }}
     roleIdsSelector:
       matchLabels: 
-        platform-engineer.cloud/role: 2faotprole    
+        kubrix.io/role: 2faotprole    
     realmId: {{ $.Values.kubrix.keycloak.realm.realmid }}
   providerConfigRef:
     name: "{{ $.Release.Name }}-config"  
