@@ -92,10 +92,10 @@
 * quay.io/minio/minio:RELEASE.2024-12-18T13-15-44Z
 ## mimir
 * docker.io/nginxinc/nginx-unprivileged:1.27-alpine
-* grafana/mimir:2.15.0
-* grafana/rollout-operator:v0.21.0
-* quay.io/minio/mc:RELEASE.2024-04-18T16-45-29Z
-* quay.io/minio/minio:RELEASE.2024-04-18T19-09-19Z
+* grafana/mimir:2.16.0
+* grafana/rollout-operator:v0.24.0
+* quay.io/minio/mc:RELEASE.2024-11-21T17-21-54Z
+* quay.io/minio/minio:RELEASE.2024-12-18T13-15-44Z
 ## minio
 * quay.io/minio/mc:RELEASE.2024-11-21T17-21-54Z
 * quay.io/minio/minio:RELEASE.2024-12-18T13-15-44Z
