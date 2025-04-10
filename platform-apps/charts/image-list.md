@@ -104,7 +104,7 @@
 * ghcr.io/grafana/xk6-client-tracing:v0.0.2
 * grafana/tempo:2.7.1
 ## trivy
-* mirror.gcr.io/aquasec/trivy-operator:0.24.1
+* mirror.gcr.io/aquasec/trivy-operator:0.25.0
 ## vault
 * alpine/curl:latest
 * hashicorp/vault:1.18.1
