@@ -1,6 +1,6 @@
 
 <h3>Target <code>docker.io/dpage/pgadmin4:9.1 (alpine 3.21.3)</code></h3>
-<h4>Vulnerabilities (1)</h4>
+<h4>Vulnerabilities (2)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -15,6 +15,13 @@
         <td>HIGH</td>
         <td>2.6.4-r0</td>
         <td>2.7.0-r0</td>
+    </tr>
+    <tr>
+        <td><code>xz-libs</code></td>
+        <td>CVE-2025-31115</td>
+        <td>HIGH</td>
+        <td>5.6.3-r0</td>
+        <td>5.6.3-r1</td>
     </tr>
 </table>
 <h4>No Misconfigurations found</h4>
