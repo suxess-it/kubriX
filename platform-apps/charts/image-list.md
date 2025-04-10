@@ -1,6 +1,6 @@
 # Image list
 ## argo-rollouts
-* quay.io/argoproj/argo-rollouts:v1.8.0
+* quay.io/argoproj/argo-rollouts:v1.8.2
 ## argocd
 * ghcr.io/dexidp/dex:v2.42.0
 * public.ecr.aws/docker/library/redis:7.4.2-alpine
