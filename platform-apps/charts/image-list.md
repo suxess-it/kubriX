@@ -50,7 +50,7 @@
 * quay.io/prometheus/node-exporter:v1.9.0
 * registry.k8s.io/kube-state-metrics/kube-state-metrics:v2.15.0
 ## kargo
-* ghcr.io/akuity/kargo:v1.3.1
+* ghcr.io/akuity/kargo:v1.4.1
 ## keycloak
 * docker.io/bitnami/keycloak:26.1.4-debian-12-r2
 * docker.io/bitnami/postgresql:17.4.0-debian-12-r15
