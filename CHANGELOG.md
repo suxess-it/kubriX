@@ -1,5 +1,49 @@
 # Changelog
 
+## [3.0.0](https://github.com/suxess-it/kubriX/compare/v2.1.0...v3.0.0) (2025-04-11)
+
+
+### ⚠ BREAKING CHANGES
+
+* **deps:** new upstream major version
+
+### Features
+
+* **deps:** update helm release backstage to v2.4.1 ([#1090](https://github.com/suxess-it/kubriX/issues/1090)) ([5bee3eb](https://github.com/suxess-it/kubriX/commit/5bee3eb701d0b072c028e2cb5299cfaa3994bec4))
+* **deps:** update helm release backstage to v2.5.0 ([#1169](https://github.com/suxess-it/kubriX/issues/1169)) ([e545758](https://github.com/suxess-it/kubriX/commit/e54575852d12b965f49cd38416f41e6d7167d00e))
+* **deps:** update helm release cluster to v0.3.0 ([#1170](https://github.com/suxess-it/kubriX/issues/1170)) ([0394b7b](https://github.com/suxess-it/kubriX/commit/0394b7b0a492897d045afe7c86c6d06c1214fcfe))
+* **deps:** update helm release cost-analyzer to v2.7.0 ([#1174](https://github.com/suxess-it/kubriX/issues/1174)) ([70cc5b8](https://github.com/suxess-it/kubriX/commit/70cc5b8ab813b9b394d56a0f6452933408e8231f))
+* **deps:** update helm release external-secrets to v0.15.0 ([#1151](https://github.com/suxess-it/kubriX/issues/1151)) ([3f82678](https://github.com/suxess-it/kubriX/commit/3f8267849133972d8a6c90397a70ea1ea0f89f8a))
+* **deps:** update helm release falco to v4.21.3 ([#1171](https://github.com/suxess-it/kubriX/issues/1171)) ([20262fc](https://github.com/suxess-it/kubriX/commit/20262fc4f0c5b3bb1cd0c271f0ab4dc2f8abcdd6))
+* **deps:** update helm release grafana to v8.11.0 ([#1157](https://github.com/suxess-it/kubriX/issues/1157)) ([d728e10](https://github.com/suxess-it/kubriX/commit/d728e10ee1ddbbe567eb0eaf6dd8723df71567e9))
+* **deps:** update helm release keycloak to v24.5.1 ([#1163](https://github.com/suxess-it/kubriX/issues/1163)) ([54f30bb](https://github.com/suxess-it/kubriX/commit/54f30bb3dd906cca2ba21978749dc9c45630df83))
+* **deps:** update helm release loki to v6.28.0 ([#1152](https://github.com/suxess-it/kubriX/issues/1152)) ([b7846db](https://github.com/suxess-it/kubriX/commit/b7846db15e840cf35cad5f569b17aeb01746a99c))
+* **deps:** update helm release loki to v6.29.0 ([#1175](https://github.com/suxess-it/kubriX/issues/1175)) ([94e4c90](https://github.com/suxess-it/kubriX/commit/94e4c9002039915e6228aea0600fc99f981ef30f))
+* **deps:** update helm release pgadmin4 to v1.36.0 ([#1095](https://github.com/suxess-it/kubriX/issues/1095)) ([71bc5d7](https://github.com/suxess-it/kubriX/commit/71bc5d70f7556a13e7ded68542117a9ee54ab6d6))
+* **deps:** update helm release pgadmin4 to v1.37.0 ([#1172](https://github.com/suxess-it/kubriX/issues/1172)) ([3434cc0](https://github.com/suxess-it/kubriX/commit/3434cc0a5c2a602689b790f4c979a984d07a5c9a))
+* **deps:** update helm release postgresql to v16.6.3 ([#1125](https://github.com/suxess-it/kubriX/issues/1125)) ([afa81f2](https://github.com/suxess-it/kubriX/commit/afa81f2dd28d848a91ce4e2967c2a62506caf7b5))
+* **deps:** update helm release tempo to v1.20.0 ([#1177](https://github.com/suxess-it/kubriX/issues/1177)) ([c9e9da4](https://github.com/suxess-it/kubriX/commit/c9e9da4cdb28ad9164fcc18b29e641e7f04b4b08))
+* **deps:** update helm release trivy-operator to v0.27.0 ([#1178](https://github.com/suxess-it/kubriX/issues/1178)) ([1b6c299](https://github.com/suxess-it/kubriX/commit/1b6c299c134c9a6cc50d35bf8d1c7397a5c684df))
+* **deps:** update helm release velero to v8.7.1 ([#1130](https://github.com/suxess-it/kubriX/issues/1130)) ([1255ed8](https://github.com/suxess-it/kubriX/commit/1255ed8c41133c84c01d5276b3a4d02d1c1a32c8))
+* **deps:** update kargo docker tag to v1.4.1 ([#1180](https://github.com/suxess-it/kubriX/issues/1180)) ([1206550](https://github.com/suxess-it/kubriX/commit/12065501e48864e291758effeea79a01ddc07a03))
+* **deps:** update xpkg.upbound.io/crossplane-contrib/provider-keycloak docker tag to v2 ([#1149](https://github.com/suxess-it/kubriX/issues/1149)) ([52f193f](https://github.com/suxess-it/kubriX/commit/52f193f60924f6a98fcaaa8160cbd5fa203959e3))
+* **team-onboarding:** prepare for oidc ([#1160](https://github.com/suxess-it/kubriX/issues/1160)) ([fdb2929](https://github.com/suxess-it/kubriX/commit/fdb29295129b57522d0fe8707ac170a2501b67d7))
+
+
+### Bug Fixes
+
+* **deps:** update helm release argo-cd to v7.8.13 ([#1154](https://github.com/suxess-it/kubriX/issues/1154)) ([0449018](https://github.com/suxess-it/kubriX/commit/04490188a0cdbe7ade37448461007621f6fbb00b))
+* **deps:** update helm release argo-cd to v7.8.23 ([#1164](https://github.com/suxess-it/kubriX/issues/1164)) ([9959a9e](https://github.com/suxess-it/kubriX/commit/9959a9eb352f056ccdf114bead5ab46296256744))
+* **deps:** update helm release argo-rollouts to v2.39.5 ([#1165](https://github.com/suxess-it/kubriX/issues/1165)) ([1f8bef6](https://github.com/suxess-it/kubriX/commit/1f8bef67a4f39ba64f7fc928c6a5530b64f7236e))
+* **deps:** update helm release cloudnative-pg to v0.23.2 ([#1119](https://github.com/suxess-it/kubriX/issues/1119)) ([b093323](https://github.com/suxess-it/kubriX/commit/b0933235f012b5ecf170aaad29ff18b50a0f6396))
+* **deps:** update helm release external-secrets to v0.15.1 ([#1166](https://github.com/suxess-it/kubriX/issues/1166)) ([c0106ca](https://github.com/suxess-it/kubriX/commit/c0106ca8b9992546c6ef0f52a0642657ae886127))
+* **deps:** update helm release falco-exporter to v0.12.2 ([#1167](https://github.com/suxess-it/kubriX/issues/1167)) ([0b49a02](https://github.com/suxess-it/kubriX/commit/0b49a0269505b551af1b63a60744b3c9fb548b38))
+* **deps:** update helm release grafana to v8.11.4 ([#1168](https://github.com/suxess-it/kubriX/issues/1168)) ([f6b71bb](https://github.com/suxess-it/kubriX/commit/f6b71bbe9baf5e5b34d54bd0602561c14e2c5f86))
+* **deps:** update helm release ingress-nginx to v4.12.1 ([#1156](https://github.com/suxess-it/kubriX/issues/1156)) ([496c996](https://github.com/suxess-it/kubriX/commit/496c996e22e3727851fdd2cfa69a36e6b48c0181))
+* **deps:** update helm release k8s-monitoring to v1.6.32 ([#1162](https://github.com/suxess-it/kubriX/issues/1162)) ([5dac7b7](https://github.com/suxess-it/kubriX/commit/5dac7b76e719faf57793a11d77d4a67d16d326cd))
+* **deps:** update helm release keycloak to v24.4.13 ([#1120](https://github.com/suxess-it/kubriX/issues/1120)) ([710f415](https://github.com/suxess-it/kubriX/commit/710f41597e976993fb77ecccd3be9aac602b01c6))
+* **deps:** update helm release vui to v0.1.27 ([#1127](https://github.com/suxess-it/kubriX/issues/1127)) ([aea1733](https://github.com/suxess-it/kubriX/commit/aea1733049ccdfb816cd4330f81b69369c19b466))
+
 ## [2.1.0](https://github.com/suxess-it/kubriX/compare/v2.0.0...v2.1.0) (2025-03-19)
 
 
