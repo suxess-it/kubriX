@@ -108,6 +108,7 @@
 ## vault
 * alpine/curl:latest
 * hashicorp/vault:1.18.1
+* hashicorp/vault:1.19.0
 ## velero-ui
 * docker.io/dserio83/velero-api:0.2.4
 * docker.io/dserio83/velero-ui:0.2.4
