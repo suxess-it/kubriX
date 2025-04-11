@@ -19,7 +19,7 @@
 * docker.io/dpage/pgadmin4:9.2
 * ghcr.io/cloudnative-pg/cloudnative-pg:1.25.1
 ## crossplane
-* xpkg.upbound.io/crossplane/crossplane:v1.18.2
+* xpkg.upbound.io/crossplane/crossplane:v1.19.1
 ## external-dns
 * ghcr.io/ionos-cloud/external-dns-ionos-webhook:v0.6.2
 * registry.k8s.io/external-dns/external-dns:v0.15.1
