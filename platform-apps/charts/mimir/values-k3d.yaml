@@ -1,13 +1,4 @@
-mimir:
-  metamonitoring:
-    grafanaAgent:
-      logs:
-        remote:
-          url: "http://sx-loki-gateway.loki.svc/loki/api/v1/push"
-      metrics:
-        remote:
-          url: "http://sx-mimir-nginx.mimir.svc/api/v1/push"
-      
+mimir:      
   nginx:
     ingress:
       enabled: true
