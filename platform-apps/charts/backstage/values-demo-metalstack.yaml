@@ -153,7 +153,7 @@ backstage:
               metadataUrl: http://sx-keycloak-headless.keycloak.svc.cluster.local:8080/realms/kubrix #.well-known/openid-configuration can be ommited
               callbackUrl: https://backstage.demo.kubrix.cloud/api/auth/oidc/handler/frame
               clientId: backstage
-              clientSecret: demosecret
+              clientSecret: ${OIDC_CLIENTSECRET}
               additionalScopes: 'groups'
               prompt: auto
               signIn:
@@ -244,7 +244,7 @@ backstage:
               loginRealm: kubrix
               realm: kubrix
               clientId: backstage
-              clientSecret: 'demosecret'
+              clientSecret: ${OIDC_CLIENTSECRET}
               schedule: # Mandatory; same options as in TaskScheduleDefinition
                 # supports cron, ISO duration, "human duration" as used in code
                 frequency: { minutes: 30 } # Customize this to fit your needs

@@ -4,7 +4,7 @@ kind: Realm
 metadata:
   name: {{ .Values.kubrix.keycloak.realm.realmid }}
   labels:
-    platform-engineer.cloud/realm: {{ .Values.kubrix.keycloak.realm.realmid }}
+    kubrix.io/realm: {{ .Values.kubrix.keycloak.realm.realmid }}
   annotations:
     link.argocd.argoproj.io/external-link: https://keycloak{{ .Values.kubrix.keycloak.fqdn }}/admin/master/console/#/{{ .Values.kubrix.keycloak.realm.realmid }}
     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true

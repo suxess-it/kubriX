@@ -1,3 +1,4 @@
+{{- if eq .Values.kubriXPlan "oss" }}
 {{- range .Values.teams }}
 apiVersion: argoproj.io/v1alpha1
 kind: AppProject
@@ -18,4 +19,5 @@ spec:
 {{- end }}
   - {{ $.Values.multiStageKargoAppSetHelmRepo | quote }}
 ---
+{{- end }}
 {{- end }}
