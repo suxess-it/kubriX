@@ -1249,9 +1249,9 @@ groups:
               model:
                 editorMode: builder
                 expr: |
-                  (sum(rate(rest_client_requests_total{job="kube-apiserver",code=~"5.."}[5m])) by (cluster, instance, job, namespace)
+                  (sum(rate(rest_client_requests_total{job!="",code=~"5.."}[5m])) by (cluster, instance, job, namespace)
                     /
-                  sum(rate(rest_client_requests_total{job="kube-apiserver"}[5m])) by (cluster, instance, job, namespace))
+                  sum(rate(rest_client_requests_total{job!=""}[5m])) by (cluster, instance, job, namespace))
                   > 0.01
                 legendFormat: __auto
                 maxDataPoints: 43200
@@ -1264,6 +1264,179 @@ groups:
             description: Kubernetes API server client '{{ $labels.job }}/{{ $labels.instance }}' is experiencing {{ $value | humanizePercentage }} errors.'
             runbook_url: https://github.com/kubernetes-monitoring/kubernetes-mixin/tree/master/runbook.md#alert-name-kubeclienterrors
             summary: Kubernetes API server client is experiencing errors.
+          labels:
+            severity: warning
+          isPaused: false
+
+    - orgId: 1
+      name: kubernetes-system-apiserver
+      folder: kubernetes-monitoring
+      interval: 1m
+      rules:
+        - uid: KubeClientCertificateExpirationWarning
+          title: KubeClientCertificateExpirationWarning
+          condition: A
+          data:
+            - refId: A
+              relativeTimeRange:
+                from: 600
+                to: 0
+              datasourceUid: mimir
+              model:
+                editorMode: builder
+                expr: |
+                  histogram_quantile(0.01, sum without (namespace, service, endpoint) (rate(apiserver_client_certificate_expiration_seconds_bucket{job!=""}[5m]))) < 604800
+                  and
+                  on(job, cluster, instance) apiserver_client_certificate_expiration_seconds_count{job!=""} > 0
+                legendFormat: __auto
+                maxDataPoints: 43200
+                range: false
+                refId: A
+          noDataState: NoData
+          execErrState: Error
+          for: 5m
+          annotations:
+            description: A client certificate used to authenticate to kubernetes apiserver is expiring in less than 7.0 days on cluster {{ $labels.cluster }}.
+            runbook_url: https://github.com/kubernetes-monitoring/kubernetes-mixin/tree/master/runbook.md#alert-name-kubeclientcertificateexpiration
+            summary: Client certificate is about to expire.
+          labels:
+            severity: warning
+          isPaused: false
+
+        - uid: KubeClientCertificateExpirationCritical
+          title: KubeClientCertificateExpirationCritical
+          condition: A
+          data:
+            - refId: A
+              relativeTimeRange:
+                from: 600
+                to: 0
+              datasourceUid: mimir
+              model:
+                editorMode: builder
+                expr: |
+                  histogram_quantile(0.01, sum without (namespace, service, endpoint) (rate(apiserver_client_certificate_expiration_seconds_bucket{job!=""}[5m]))) < 86400
+                  and
+                  on(job, cluster, instance) apiserver_client_certificate_expiration_seconds_count{job!=""} > 0
+                legendFormat: __auto
+                maxDataPoints: 43200
+                range: false
+                refId: A
+          noDataState: NoData
+          execErrState: Error
+          for: 5m
+          annotations:
+            description: A client certificate used to authenticate to kubernetes apiserver is expiring in less than 24.0 hours on cluster {{ $labels.cluster }}.
+            runbook_url: https://github.com/kubernetes-monitoring/kubernetes-mixin/tree/master/runbook.md#alert-name-kubeclientcertificateexpiration
+            summary: Client certificate is about to expire.
+          labels:
+            severity: critical
+          isPaused: false
+
+        - uid: KubeAggregatedAPIErrors
+          title: KubeAggregatedAPIErrors
+          condition: A
+          data:
+            - refId: A
+              relativeTimeRange:
+                from: 600
+                to: 0
+              datasourceUid: mimir
+              model:
+                editorMode: builder
+                expr: sum by(cluster, instance, name, reason)(increase(aggregator_unavailable_apiservice_total{job!=""}[1m])) > 0
+                legendFormat: __auto
+                maxDataPoints: 43200
+                range: false
+                refId: A
+          noDataState: NoData
+          execErrState: Error
+          for: 10m
+          annotations:
+            description: Kubernetes aggregated API {{ $labels.instance }}/{{ $labels.name }} has reported {{ $labels.reason }} errors on cluster {{ $labels.cluster }}.
+            runbook_url: https://github.com/kubernetes-monitoring/kubernetes-mixin/tree/master/runbook.md#alert-name-kubeaggregatedapierrors
+            summary: Kubernetes aggregated API has reported errors.
+          labels:
+            severity: warning
+          isPaused: false
+
+        - uid: KubeAggregatedAPIDown
+          title: KubeAggregatedAPIDown
+          condition: A
+          data:
+            - refId: A
+              relativeTimeRange:
+                from: 600
+                to: 0
+              datasourceUid: mimir
+              model:
+                editorMode: builder
+                expr: (1 - max by(name, namespace, cluster)(avg_over_time(aggregator_unavailable_apiservice{job!=""}[10m]))) * 100 < 85
+                legendFormat: __auto
+                maxDataPoints: 43200
+                range: false
+                refId: A
+          noDataState: NoData
+          execErrState: Error
+          for: 5m
+          annotations:
+            description: Kubernetes aggregated API {{ $labels.name }}/{{ $labels.namespace }} has been only {{ $value | humanize }}% available over the last 10m.
+            runbook_url: https://github.com/kubernetes-monitoring/kubernetes-mixin/tree/master/runbook.md#alert-name-kubeaggregatedapidown
+            summary: Kubernetes aggregated API is down.
+          labels:
+            severity: warning
+          isPaused: false
+
+        - uid: KubeAPIDown
+          title: KubeAPIDown
+          condition: A
+          data:
+            - refId: A
+              relativeTimeRange:
+                from: 600
+                to: 0
+              datasourceUid: mimir
+              model:
+                editorMode: builder
+                expr: absent(up{job!=""} == 1)
+                legendFormat: __auto
+                maxDataPoints: 43200
+                range: false
+                refId: A
+          noDataState: NoData
+          execErrState: Error
+          for: 15m
+          annotations:
+            description: KubeAPI has disappeared from Prometheus target discovery.
+            runbook_url: https://github.com/kubernetes-monitoring/kubernetes-mixin/tree/master/runbook.md#alert-name-kubeapidown
+            summary: Target disappeared from Prometheus target discovery.
+          labels:
+            severity: critical
+          isPaused: false
+
+        - uid: KubeAPITerminatedRequests
+          title: KubeAPITerminatedRequests
+          condition: A
+          data:
+            - refId: A
+              relativeTimeRange:
+                from: 600
+                to: 0
+              datasourceUid: mimir
+              model:
+                editorMode: builder
+                expr: sum by(cluster) (rate(apiserver_request_terminations_total{job!=""}[10m])) / ( sum by(cluster) (rate(apiserver_request_total{job!=""}[10m])) + sum by(cluster) (rate(apiserver_request_terminations_total{job!=""}[10m])) ) > 0.20
+                legendFormat: __auto
+                maxDataPoints: 43200
+                range: false
+                refId: A
+          noDataState: NoData
+          execErrState: Error
+          for: 5m
+          annotations:
+            description: The kubernetes apiserver has terminated {{ $value | humanizePercentage }} of its incoming requests.
+            runbook_url: https://github.com/kubernetes-monitoring/kubernetes-mixin/tree/master/runbook.md#alert-name-kubeapiterminatedrequests
+            summary: The kubernetes apiserver has terminated {{ $value | humanizePercentage }} of its incoming requests.
           labels:
             severity: warning
           isPaused: false
