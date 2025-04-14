@@ -6,8 +6,8 @@ groups:
       folder: kubernetes-monitoring
       interval: 1m
       rules:
-        - uid: KubeAPIErrorBudgetBurn
-          title: KubeAPIErrorBudgetBurn
+        - uid: KubeAPIErrorBudgetBurnCritical1h
+          title: KubeAPIErrorBudgetBurnCritical1h
           condition: A
           data:
             - refId: A
@@ -40,8 +40,8 @@ groups:
             short: 5m
           isPaused: false
 
-        - uid: KubeAPIErrorBudgetBurn
-          title: KubeAPIErrorBudgetBurn
+        - uid: KubeAPIErrorBudgetBurnCritical6h
+          title: KubeAPIErrorBudgetBurnCritical6h
           condition: A
           data:
             - refId: A
@@ -74,8 +74,8 @@ groups:
             short: 30m
           isPaused: false
 
-        - uid: KubeAPIErrorBudgetBurn
-          title: KubeAPIErrorBudgetBurn
+        - uid: KubeAPIErrorBudgetBurnWarning1d
+          title: KubeAPIErrorBudgetBurnWarning1d
           condition: A
           data:
             - refId: A
@@ -108,8 +108,8 @@ groups:
             short: 2h
           isPaused: false
 
-        - uid: KubeAPIErrorBudgetBurn
-          title: KubeAPIErrorBudgetBurn
+        - uid: KubeAPIErrorBudgetBurn3d
+          title: KubeAPIErrorBudgetBurn3d
           condition: A
           data:
             - refId: A
