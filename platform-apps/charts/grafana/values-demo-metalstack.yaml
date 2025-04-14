@@ -7,6 +7,14 @@ kubernetesModernDashboards:
 kubernetesAlerts:
   enabled: true
 
+  platformTeamContactPoint:
+    receivers:
+      - uid: platform-team-default
+        type: teams
+        settings:
+          url: https://myteams-url.com
+        disableResolveMessage: false
+
 kubrix:
   plan: oss # oss, prime, select, default: oss
 
