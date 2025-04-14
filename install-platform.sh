@@ -308,7 +308,7 @@ fi
 echo "installing bootstrap argocd ..."
 helm install sx-argocd argo-cd \
   --repo https://argoproj.github.io/argo-helm \
-  --version 7.1.3 \
+  --version 7.8.24 \
   --namespace argocd \
   --create-namespace \
   --set configs.cm.application.resourceTrackingMethod=annotation \
