@@ -1,0 +1,6 @@
+apiVersion: monitoring.coreos.com/v1
+kind: PrometheusRule
+metadata:
+  name: "kubernetes-recording-rules"
+spec:
+    {{- $.Files.Get "recording-rules/kubernetes-recording-rules.yaml" | nindent 2 }}
