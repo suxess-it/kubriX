@@ -311,6 +311,74 @@ groups:
             severity: warning
           isPaused: false
 
+        - uid: KubeDeploymentRolloutStuck
+          title: KubeDeploymentRolloutStuck
+          condition: A
+          data:
+            - refId: A
+              relativeTimeRange:
+                from: 600
+                to: 0
+              datasourceUid: mimir
+              model:
+                editorMode: builder
+                expr: |
+                  kube_deployment_status_condition{condition="Progressing", status="false",job!=""} != 0
+                instant: true
+                intervalMs: 1000
+                legendFormat: __auto
+                maxDataPoints: 43200
+                range: false
+                refId: A
+          noDataState: NoData
+          execErrState: Error
+          for: 15m
+          annotations:
+            description: Rollout of deployment {{ $labels.namespace }}/{{ $labels.deployment }} is not progressing for longer than 15 minutes.
+            runbook_url: https://github.com/kubernetes-monitoring/kubernetes-mixin/tree/master/runbook.md#alert-name-kubedeploymentrolloutstuck
+            summary: Deployment rollout is not progressing.
+          labels:
+            severity: warning
+          isPaused: false
+
+        - uid: KubeStatefulSetReplicasMismatch
+          title: KubeStatefulSetReplicasMismatch
+          condition: A
+          data:
+            - refId: A
+              relativeTimeRange:
+                from: 600
+                to: 0
+              datasourceUid: mimir
+              model:
+                editorMode: builder
+                expr: |
+                  (
+                    kube_statefulset_status_replicas_ready{job!=""}
+                      !=
+                    kube_statefulset_status_replicas{job!=""}
+                  ) and (
+                    changes(kube_statefulset_status_replicas_updated{job!=""}[10m])
+                      ==
+                    0
+                  )
+                instant: true
+                intervalMs: 1000
+                legendFormat: __auto
+                maxDataPoints: 43200
+                range: false
+                refId: A
+          noDataState: NoData
+          execErrState: Error
+          for: 15m
+          annotations:
+            description: StatefulSet {{ $labels.namespace }}/{{ $labels.statefulset }} has not matched the expected number of replicas for longer than 15 minutes.
+            runbook_url: https://github.com/kubernetes-monitoring/kubernetes-mixin/tree/master/runbook.md#alert-name-kubestatefulsetreplicasmismatch
+            summary: StatefulSet has not matched the expected number of replicas.
+          labels:
+            severity: warning
+          isPaused: false
+
         - uid: KubeStatefulSetGenerationMismatch
           title: KubeStatefulSetGenerationMismatch
           condition: A
@@ -356,7 +424,7 @@ groups:
                 editorMode: builder
                 expr: |
                   (
-                    max without (revision) (
+                    max by(namespace, statefulset, job, cluster) (
                       kube_statefulset_status_current_revision{job!=""}
                         unless
                       kube_statefulset_status_update_revision{job!=""}
@@ -453,7 +521,7 @@ groups:
               model:
                 editorMode: builder
                 expr: |
-                  sum by (namespace, pod, container, job, cluster) (kube_pod_container_status_waiting_reason{job!=""}) > 0
+                  sum by (namespace, pod, container, job, cluster) (kube_pod_container_status_waiting_reason{reason!="CrashLoopBackOff", job!=""}) > 0
                 instant: true
                 intervalMs: 1000
                 legendFormat: __auto
@@ -464,7 +532,7 @@ groups:
           execErrState: Error
           for: 1h
           annotations:
-            description: pod/{{ $labels.pod }} in namespace {{ $labels.namespace }} on container {{ $labels.container}} has been in waiting state for longer than 1 hour.
+            description: 'pod/{{ $labels.pod }} in namespace {{ $labels.namespace }} on container {{ $labels.container}} has been in waiting state for longer than 1 hour. (reason: "{{ $labels.reason }}").'
             runbook_url: https://github.com/kubernetes-monitoring/kubernetes-mixin/tree/master/runbook.md#alert-name-kubecontainerwaiting
             summary: Pod container waiting longer than 1 hour.
           labels:
