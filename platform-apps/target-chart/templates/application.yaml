@@ -27,6 +27,8 @@ spec:
         {{- end }}
       ignoreMissingValueFiles: true
       parameters:
+        - name: kubriXPlan
+          value: {{ $.Values.kubriXPlan }}
         - name: default.repoURL
           value: {{ $.Values.default.repoURL }}
         - name: default.targetRevision

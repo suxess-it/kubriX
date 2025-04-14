@@ -167,13 +167,6 @@ vault:
                     vault write auth/kubernetes/role/crossplane bound_service_account_names="*" bound_service_account_namespaces=crossplane policies=crossplane ttl=24h        
                   fi
                 else 
-                  echo creating accessor configmap
-                  accessor=$(vault auth list -detailed | grep kubernetes | awk '{print $3}')
-                  if /usr/local/libexec/vault/kubectl get configmap kubeauth-accessor -n vault; then
-                    /usr/local/libexec/vault/kubectl patch configmap kubeauth-accessor -n vault -p '{"data":{"accessor": "'"${accessor}"'"}}'
-                  else  
-                    /usr/local/libexec/vault/kubectl create configmap kubeauth-accessor -n vault --from-literal=accessor=${accessor}
-                  fi  
                   echo setup complete 
                 fi      
               else
