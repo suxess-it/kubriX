@@ -55,5 +55,10 @@ grafana:
         - mimir
         - loki
         - kubecost
+    alerts:
+      enabled: true
+      label: grafana_alert
+      searchNamespace: ALL
+      labelValue: "1"
 
   defaultDashboardsEditable: true
