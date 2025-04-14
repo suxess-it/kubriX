@@ -6,6 +6,6 @@ metadata:
     grafana_alert: "1"
   name: kubernetes-alerts
 data:
-{{ (.Files.Glob "alert-files/*").AsConfig | indent 2 }}
+{{ (.Files.Glob "alerting-rules/*").AsConfig | indent 2 }}
 ---
 {{ end -}}
