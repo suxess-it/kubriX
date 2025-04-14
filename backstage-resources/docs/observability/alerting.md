@@ -2,6 +2,8 @@
 
 In kubriX we defined some default Kubernetes alert rules as Grafana-managed alert rules in `platform-apps/charts/grafana/alert-files/kubernetes-alerts.yaml` . This alerts apply to all applications and based on the specific namespace where this alert instance comes from the corresponding team gets alerted.
 
+The required mimir-datasource-managed recording rules include some equivalent to [Grafana cloud recording rules](https://grafana.com/docs/grafana-cloud/monitor-infrastructure/kubernetes-monitoring/configuration/manage-configuration/#recording-rules) and the Grafana-Managed Alerting Rules correspong to [Grafana cloud alerting rules](https://grafana.com/docs/grafana-cloud/monitor-infrastructure/kubernetes-monitoring/configuration/manage-configuration/#alerting-rules).
+
 To activate these alert rules you need to enable them in the kubriX grafana values file like this:
 
 ```
