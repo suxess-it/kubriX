@@ -2,6 +2,147 @@ apiVersion: 1
 
 groups:
     - orgId: 1
+      name: kube-apiserver-slos
+      folder: kubernetes-monitoring
+      interval: 1m
+      rules:
+        - uid: KubeAPIErrorBudgetBurn
+          title: KubeAPIErrorBudgetBurn
+          condition: A
+          data:
+            - refId: A
+              relativeTimeRange:
+                from: 600
+                to: 0
+              datasourceUid: mimir
+              model:
+                editorMode: builder
+                expr: |
+                  sum by(cluster) (apiserver_request:burnrate1h) > (14.40 * 0.01000)
+                  and on(cluster)
+                  sum by(cluster) (apiserver_request:burnrate5m) > (14.40 * 0.01000)
+                instant: true
+                intervalMs: 1000
+                legendFormat: __auto
+                maxDataPoints: 43200
+                range: false
+                refId: A
+          noDataState: NoData
+          execErrState: Error
+          for: 2m
+          annotations:
+            description: The API server is burning too much error budget.
+            runbook_url: https://github.com/kubernetes-monitoring/kubernetes-mixin/tree/master/runbook.md#alert-name-kubeapierrorbudgetburn
+            summary: The API server is burning too much error budget.
+          labels:
+            severity: critical
+            long: 1h
+            short: 5m
+          isPaused: false
+
+        - uid: KubeAPIErrorBudgetBurn
+          title: KubeAPIErrorBudgetBurn
+          condition: A
+          data:
+            - refId: A
+              relativeTimeRange:
+                from: 600
+                to: 0
+              datasourceUid: mimir
+              model:
+                editorMode: builder
+                expr: |
+                  sum by(cluster) (apiserver_request:burnrate6h) > (6.00 * 0.01000)
+                  and on(cluster)
+                  sum by(cluster) (apiserver_request:burnrate30m) > (6.00 * 0.01000)
+                instant: true
+                intervalMs: 1000
+                legendFormat: __auto
+                maxDataPoints: 43200
+                range: false
+                refId: A
+          noDataState: NoData
+          execErrState: Error
+          for: 15m
+          annotations:
+            description: The API server is burning too much error budget.
+            runbook_url: https://github.com/kubernetes-monitoring/kubernetes-mixin/tree/master/runbook.md#alert-name-kubeapierrorbudgetburn
+            summary: The API server is burning too much error budget.
+          labels:
+            severity: critical
+            long: 6h
+            short: 30m
+          isPaused: false
+
+        - uid: KubeAPIErrorBudgetBurn
+          title: KubeAPIErrorBudgetBurn
+          condition: A
+          data:
+            - refId: A
+              relativeTimeRange:
+                from: 600
+                to: 0
+              datasourceUid: mimir
+              model:
+                editorMode: builder
+                expr: |
+                  sum by(cluster) (apiserver_request:burnrate1d) > (3.00 * 0.01000)
+                  and on(cluster)
+                  sum by(cluster) (apiserver_request:burnrate2h) > (3.00 * 0.01000)
+                instant: true
+                intervalMs: 1000
+                legendFormat: __auto
+                maxDataPoints: 43200
+                range: false
+                refId: A
+          noDataState: NoData
+          execErrState: Error
+          for: 1h
+          annotations:
+            description: The API server is burning too much error budget.
+            runbook_url: https://github.com/kubernetes-monitoring/kubernetes-mixin/tree/master/runbook.md#alert-name-kubeapierrorbudgetburn
+            summary: The API server is burning too much error budget.
+          labels:
+            severity: warning
+            long: 1d
+            short: 2h
+          isPaused: false
+
+        - uid: KubeAPIErrorBudgetBurn
+          title: KubeAPIErrorBudgetBurn
+          condition: A
+          data:
+            - refId: A
+              relativeTimeRange:
+                from: 600
+                to: 0
+              datasourceUid: mimir
+              model:
+                editorMode: builder
+                expr: |
+                  sum by(cluster) (apiserver_request:burnrate3d) > (1.00 * 0.01000)
+                  and on(cluster)
+                  sum by(cluster) (apiserver_request:burnrate6h) > (1.00 * 0.01000)
+                instant: true
+                intervalMs: 1000
+                legendFormat: __auto
+                maxDataPoints: 43200
+                range: false
+                refId: A
+          noDataState: NoData
+          execErrState: Error
+          for: 3h
+          annotations:
+            description: The API server is burning too much error budget.
+            runbook_url: https://github.com/kubernetes-monitoring/kubernetes-mixin/tree/master/runbook.md#alert-name-kubeapierrorbudgetburn
+            summary: The API server is burning too much error budget.
+          labels:
+            severity: warning
+            long: 3d
+            short: 6h
+          isPaused: false
+
+    - orgId: 1
       name: kubernetes-apps
       folder: kubernetes-monitoring
       interval: 1m
