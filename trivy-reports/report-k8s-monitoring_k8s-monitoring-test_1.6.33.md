@@ -1,6 +1,6 @@
 
 <h3>Target <code>usr/local/bin/profilecli</code></h3>
-<h4>Vulnerabilities (2)</h4>
+<h4>Vulnerabilities (3)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -22,6 +22,13 @@
         <td>CRITICAL</td>
         <td>v0.24.0</td>
         <td>0.31.0</td>
+    </tr>
+    <tr>
+        <td><code>golang.org/x/crypto</code></td>
+        <td>CVE-2025-22869</td>
+        <td>HIGH</td>
+        <td>v0.24.0</td>
+        <td>0.35.0</td>
     </tr>
 </table>
 <h4>No Misconfigurations found</h4>
