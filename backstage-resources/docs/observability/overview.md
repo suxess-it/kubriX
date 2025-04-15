@@ -4,7 +4,7 @@ In this document we give an overview how observability in our platform works, it
 
 ## High-Level Overview
 
-![image](img/kubrix-observe-topology.png)
+![image](../img/kubrix-observe-topology.png)
 
 Via [k8s-monitoring helm-chart](https://github.com/grafana/k8s-monitoring-helm) Grafana Alloy and some additional prometheus exporter (kube-state-metrics, node-exporter) are installed on the workload cluster to scrape important metrics, gather logs from pods and receive otel traces from applications.
 

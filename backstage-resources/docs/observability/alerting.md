@@ -15,7 +15,7 @@ You can extend these alert rules by creating your own ConfigMaps in the `grafana
 
 The high-level data flow diagram looks like this:
 
-![image](../img/alerting-data-flow.png)
+![image](../img/alerting_data_flow.png)
 
 # Platform team contact points
 
