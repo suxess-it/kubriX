@@ -4,7 +4,7 @@
 ## argocd
 * ghcr.io/dexidp/dex:v2.42.0
 * public.ecr.aws/docker/library/redis:7.4.2-alpine
-* quay.io/argoproj/argocd:v2.14.9
+* quay.io/argoproj/argocd:v2.14.10
 ## backstage
 * alpine:3.17
 * ghcr.io/suxess-it/sx-backstage:v1.32.6
@@ -50,9 +50,9 @@
 * quay.io/prometheus/node-exporter:v1.9.0
 * registry.k8s.io/kube-state-metrics/kube-state-metrics:v2.15.0
 ## kargo
-* ghcr.io/akuity/kargo:v1.3.1
+* ghcr.io/akuity/kargo:v1.4.1
 ## keycloak
-* docker.io/bitnami/keycloak:26.1.4-debian-12-r2
+* docker.io/bitnami/keycloak:26.1.5-debian-12-r0
 * docker.io/bitnami/postgresql:17.4.0-debian-12-r15
 ## komoplane
 * busybox
@@ -85,9 +85,9 @@
 * docker.io/grafana/loki:3.4.2
 * docker.io/library/busybox:latest
 * docker.io/nginxinc/nginx-unprivileged:1.27-alpine
-* kiwigrid/k8s-sidecar:1.30.1
-* memcached:1.6.37-alpine
-* prom/memcached-exporter:v0.15.1
+* kiwigrid/k8s-sidecar:1.30.2
+* memcached:1.6.38-alpine
+* prom/memcached-exporter:v0.15.2
 * quay.io/minio/mc:RELEASE.2024-11-21T17-21-54Z
 * quay.io/minio/minio:RELEASE.2024-12-18T13-15-44Z
 ## mimir
