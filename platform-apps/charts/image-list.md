@@ -65,10 +65,12 @@
 * quay.io/prometheus/prometheus:v3.2.1
 ## kubevirt-manager
 * kubevirtmanager/kubevirt-manager:1.3.3
-* kubevirtmanager/kubevirt-manager:1.4.1
+* kubevirtmanager/kubevirt-manager:1.5.0
 ## kubevirt
 * quay.io/kubevirt/cdi-operator:v1.59.0
+* quay.io/kubevirt/cdi-operator:v1.62.0
 * quay.io/kubevirt/virt-operator:v1.2.0
+* quay.io/kubevirt/virt-operator:v1.5.0
 ## kyverno
 * bitnami/kubectl:1.30.2
 * busybox:1.35
