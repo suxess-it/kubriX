@@ -1,0 +1,27 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  labels:
+    grafana_alert: "1"
+  name: alerting-notification-policy
+data:
+  notification-policy.yaml: |-
+    apiVersion: 1
+    policies:
+        - orgId: 1
+          receiver: platform-team-default
+          group_by:
+            - grafana_folder
+            - alertname
+{{- if gt (len .Values.teams) 0 }}
+          routes:
+{{- range .Values.teams }}
+{{- if .alerting }}
+            - receiver: {{ .name }}
+              object_matchers:
+                - - namespace
+                  - =~
+                  - {{ .name }}-.*
+{{ end -}}
+{{ end -}}
+{{ end -}}

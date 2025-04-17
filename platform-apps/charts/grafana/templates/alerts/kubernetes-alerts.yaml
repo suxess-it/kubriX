@@ -1,0 +1,11 @@
+{{- if .Values.kubernetesAlerts.enabled -}}
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  labels:
+    grafana_alert: "1"
+  name: kubernetes-alerts
+data:
+{{ (.Files.Glob "alerting-rules/*").AsConfig | indent 2 }}
+---
+{{ end -}}

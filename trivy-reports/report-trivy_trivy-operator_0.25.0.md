@@ -1,11 +1,8 @@
 
-<h3>Target <code>docker.io/grafana/grafana:11.6.0 (alpine 3.21.3)</code></h3>
+<h3>Target <code>mirror.gcr.io/aquasec/trivy-operator:0.25.0 (alpine 3.20.3)</code></h3>
 <h4>No Vulnerabilities found</h4>
 <h4>No Misconfigurations found</h4>
-<h3>Target <code>Node.js</code></h3>
-<h4>No Vulnerabilities found</h4>
-<h4>No Misconfigurations found</h4>
-<h3>Target <code>usr/share/grafana/bin/grafana</code></h3>
+<h3>Target <code>usr/local/bin/trivy-operator</code></h3>
 <h4>Vulnerabilities (2)</h4>
 <table>
     <tr>
@@ -30,10 +27,4 @@
         <td>5.2.2</td>
     </tr>
 </table>
-<h4>No Misconfigurations found</h4>
-<h3>Target <code>usr/share/grafana/bin/grafana-cli</code></h3>
-<h4>No Vulnerabilities found</h4>
-<h4>No Misconfigurations found</h4>
-<h3>Target <code>usr/share/grafana/bin/grafana-server</code></h3>
-<h4>No Vulnerabilities found</h4>
 <h4>No Misconfigurations found</h4>
