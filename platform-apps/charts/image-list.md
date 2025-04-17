@@ -19,7 +19,7 @@
 * docker.io/dpage/pgadmin4:9.2
 * ghcr.io/cloudnative-pg/cloudnative-pg:1.25.1
 ## crossplane
-* xpkg.upbound.io/crossplane/crossplane:v1.18.2
+* xpkg.upbound.io/crossplane/crossplane:v1.19.1
 ## external-dns
 * ghcr.io/ionos-cloud/external-dns-ionos-webhook:v0.6.2
 * registry.k8s.io/external-dns/external-dns:v0.15.1
@@ -65,10 +65,12 @@
 * quay.io/prometheus/prometheus:v3.2.1
 ## kubevirt-manager
 * kubevirtmanager/kubevirt-manager:1.3.3
-* kubevirtmanager/kubevirt-manager:1.4.1
+* kubevirtmanager/kubevirt-manager:1.5.0
 ## kubevirt
 * quay.io/kubevirt/cdi-operator:v1.59.0
+* quay.io/kubevirt/cdi-operator:v1.62.0
 * quay.io/kubevirt/virt-operator:v1.2.0
+* quay.io/kubevirt/virt-operator:v1.5.0
 ## kyverno
 * bitnami/kubectl:1.30.2
 * busybox:1.35
