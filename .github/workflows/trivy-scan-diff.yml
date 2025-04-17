@@ -1,0 +1,41 @@
+
+on:
+  pull_request:
+    types: [opened, synchronize]
+    paths:
+      - '.github/workflows/trivy-scan-diff.yaml'
+      - '.github/create-trivy-scan-diff.sh'
+      - 'platform-apps/charts/**'
+      
+permissions:
+  contents: read
+  pull-requests: write
+
+name: Diff GitOps
+
+jobs:
+  diff:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout PR
+        uses: actions/checkout@v4
+        with:
+         path: pr
+      - name: Checkout Target of PR
+        uses: actions/checkout@v4
+        with:
+          path: target
+          ref: ${{ github.event.pull_request.base.ref }}
+
+      - name: create trivy scan diff
+        shell: bash
+        run: |
+          bash pr/.github/create-trivy-scan-diff.sh
+
+
+      - name: PR comment default values with file
+        uses: thollander/actions-comment-pull-request@v3
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          file-path: out/scan-diff.txt
