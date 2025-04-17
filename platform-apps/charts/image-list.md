@@ -2,9 +2,9 @@
 ## argo-rollouts
 * quay.io/argoproj/argo-rollouts:v1.8.2
 ## argocd
-* ghcr.io/dexidp/dex:v2.42.1
+* ghcr.io/dexidp/dex:v2.42.0
 * public.ecr.aws/docker/library/redis:7.4.2-alpine
-* quay.io/argoproj/argocd:v2.14.10
+* quay.io/argoproj/argocd:v2.14.7
 ## backstage
 * alpine:3.17
 * ghcr.io/suxess-it/sx-backstage:v1.32.6
@@ -94,10 +94,10 @@
 * quay.io/minio/minio:RELEASE.2024-12-18T13-15-44Z
 ## mimir
 * docker.io/nginxinc/nginx-unprivileged:1.27-alpine
-* grafana/mimir:2.16.0
-* grafana/rollout-operator:v0.24.0
-* quay.io/minio/mc:RELEASE.2024-11-21T17-21-54Z
-* quay.io/minio/minio:RELEASE.2024-12-18T13-15-44Z
+* grafana/mimir:2.15.0
+* grafana/rollout-operator:v0.21.0
+* quay.io/minio/mc:RELEASE.2024-04-18T16-45-29Z
+* quay.io/minio/minio:RELEASE.2024-04-18T19-09-19Z
 ## minio
 * quay.io/minio/mc:RELEASE.2024-11-21T17-21-54Z
 * quay.io/minio/minio:RELEASE.2024-12-18T13-15-44Z
