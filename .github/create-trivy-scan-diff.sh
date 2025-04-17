@@ -15,11 +15,18 @@ chmod u+x trivy
 mkdir -p out/pr
 mkdir -p out/target
 
-cd pr
-changed_charts=$( git diff main --name-only platform-apps/charts | grep -v "platform-apps/charts/image-list" | awk -F/ '{print $3}' | sort -u )
+diff -qr pr/platform-apps/charts target/platform-apps/charts
+result=$?
+
+if ${result} == 0 ; then
+  echo "no changes"
+  exit 0
+else
+  changed_charts=$( diff -qr pr/platform-apps/charts target/platform-apps/charts | grep -v "platform-apps/charts/image-list" | awk -F/ '{print $4}' | sort -u )
+fi
+
 echo "charts which differ between main and PR:"
 echo "${changed_charts}"
-cd -
 
 # get images for this charts to see if also the images changed
 for env in pr target; do
