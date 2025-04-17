@@ -22,7 +22,7 @@
 * xpkg.upbound.io/crossplane/crossplane:v1.19.1
 ## external-dns
 * ghcr.io/ionos-cloud/external-dns-ionos-webhook:v0.6.2
-* registry.k8s.io/external-dns/external-dns:v0.15.1
+* registry.k8s.io/external-dns/external-dns:v0.16.1
 ## external-secrets
 * oci.external-secrets.io/external-secrets/external-secrets:v0.15.1
 ## falco
