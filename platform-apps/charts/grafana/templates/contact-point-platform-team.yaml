@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  labels:
+    grafana_alert: "1"
+  name: alerting-contact-point-platform-team
+data:
+  contact-points-platform-team.yaml: |-
+    apiVersion: 1
+    contactPoints:
+{{- if .Values.kubernetesAlerts }}
+        - orgId: 1
+          name: platform-team-default
+{{ toYaml .Values.kubernetesAlerts.platformTeamContactPoint | indent 10 }}
+{{ end -}}

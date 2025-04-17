@@ -64,3 +64,44 @@ secrets:
       # clientsecret for keycloak clients
       backstage: "demosecret"
       vault: "demosecret"
+    # velero-ui secrets
+  - application: "velero-ui"
+    path: "velero-ui/base"
+    namespace: "velero-ui"
+    secretname: velero-ui-credential
+    secretType: "Opaque"
+    stringData:
+      securityTokenKey: "39ed3a846cf9fb105cbab6df007f5b7afbd163dbe66aaa19fafd25eb6fe0723a"
+      username: "admin"
+      password: "admin"
+      awsAccessKeyId: "minio"
+      awsSecretAccessKey: "minio123"
+      resticPassword: "static-passw0rd"
+      securityPathDatabase: "./data"
+  # minio secrets
+  - application: "minio"
+    path: "minio/base"
+    namespace: "minio"
+    secretname: minio-admin-secret
+    secretType: "Opaque"
+    stringData:
+      rootPassword: "root12345"
+      rootUser: "root"
+      username: "minio"
+      password: "minio123"
+  # cnpg secrets
+  - application: "cnpg"
+    path: "cnpg/base"
+    namespace: "cnpg"
+    secretname: cnpg-creds
+    secretType: "Opaque"
+    stringData:
+      superuser: "superuser"
+      superuserpassword: "superuser"
+      pgbackstageusername: "backstage"
+      pgbackstagepassword: "backstage"
+      pgbackstageport: "5432"
+      pgbackstagehost: "sx-backstage-cluster-rw"
+      pgadminsecret: "admin"
+      pgadminclientid: "pgadmin"
+      pgadminclientsecret: "demosecret"

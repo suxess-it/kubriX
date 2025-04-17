@@ -8,6 +8,7 @@ on:
 name: trivy scan tables
 
 jobs:
+  if: false
   evaluate:
     runs-on: ubuntu-latest
     outputs:
@@ -100,7 +101,7 @@ jobs:
           mkdir trivy-reports-workdir
 
       - name: Run Trivy vulnerability scanner
-        uses: aquasecurity/trivy-action@0.29.0
+        uses: aquasecurity/trivy-action@0.30.0
         with:
           image-ref: ${{ matrix.images.image }}
           format: template

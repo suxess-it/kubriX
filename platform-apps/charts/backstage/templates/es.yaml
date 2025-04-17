@@ -21,19 +21,19 @@ spec:
   data:
   - secretKey: pgbackstageusername
     remoteRef:
-      key: kubrix-kv/data/demo/cnpg
+      key: kubrix-kv/data/cnpg/base
       property: pgbackstageusername
   - secretKey: pgbackstagepassword
     remoteRef:
-      key: kubrix-kv/data/demo/cnpg
+      key: kubrix-kv/data/cnpg/base
       property: pgbackstagepassword
   - secretKey: pgbackstagehost
     remoteRef:
-      key: kubrix-kv/data/demo/cnpg
+      key: kubrix-kv/data/cnpg/base
       property: pgbackstagehost
   - secretKey: pgbackstageport
     remoteRef:
-      key: kubrix-kv/data/demo/cnpg
+      key: kubrix-kv/data/cnpg/base
       property: pgbackstageport
 ---
 apiVersion: external-secrets.io/v1beta1
@@ -61,11 +61,11 @@ spec:
   data:
   - secretKey: pgbackstageusername
     remoteRef:
-      key: kubrix-kv/data/demo/cnpg
+      key: kubrix-kv/data/cnpg/base
       property: pgbackstageusername
   - secretKey: pgbackstagepassword
     remoteRef:
-      key: kubrix-kv/data/demo/cnpg
+      key: kubrix-kv/data/cnpg/base
       property: pgbackstagepassword
 ---
 apiVersion: external-secrets.io/v1beta1
@@ -93,10 +93,10 @@ spec:
   data:
   - secretKey: superuser
     remoteRef:
-      key: kubrix-kv/data/demo/cnpg
+      key: kubrix-kv/data/cnpg/base
       property: superuser
   - secretKey: superuserpassword
     remoteRef:
-      key: kubrix-kv/data/demo/cnpg
+      key: kubrix-kv/data/cnpg/base
       property: superuserpassword
 {{- end }}
