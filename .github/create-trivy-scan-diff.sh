@@ -15,8 +15,11 @@ changed_charts=$( diff -qr pr/platform-apps/charts target/platform-apps/charts |
 
 if [[ "${changed_charts}" == "" ]]; then
   echo "no changes"
+  echo "CHANGES=false" >> $GITHUB_ENV
   exit 0
-fi
+else
+  echo "CHANGES=true" >> $GITHUB_ENV
+
 
 echo "charts which differ between main and PR:"
 echo "${changed_charts}"
