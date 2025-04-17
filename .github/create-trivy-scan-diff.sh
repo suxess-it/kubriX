@@ -16,6 +16,8 @@ pwd
 ls
 changed_charts=$( diff -qr pr/platform-apps/charts target/platform-apps/charts | grep -v "platform-apps/charts/image-list" | awk -F/ '{print $4}' | sort -u )
 
+diff -r pr/platform-apps/charts target/platform-apps/charts || true
+
 if [[ "${changed_charts}" == "" ]]; then
   echo "no changes"
   exit 0
