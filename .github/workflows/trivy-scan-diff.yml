@@ -11,7 +11,7 @@ permissions:
   contents: read
   pull-requests: write
 
-name: Diff GitOps
+name: trivy scan diff
 
 jobs:
   diff:
@@ -21,17 +21,18 @@ jobs:
         uses: actions/checkout@v4
         with:
          path: pr
+         fetch-depth: 0
       - name: Checkout Target of PR
         uses: actions/checkout@v4
         with:
           path: target
+          fetch-depth: 0
           ref: ${{ github.event.pull_request.base.ref }}
 
       - name: create trivy scan diff
         shell: bash
         run: |
           bash pr/.github/create-trivy-scan-diff.sh
-
 
       - name: PR comment default values with file
         uses: thollander/actions-comment-pull-request@v3
