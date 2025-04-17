@@ -15,14 +15,11 @@ chmod u+x trivy
 mkdir -p out/pr
 mkdir -p out/target
 
-diff -qr pr/platform-apps/charts target/platform-apps/charts
-result=$?
+changed_charts=$( diff -qr pr/platform-apps/charts target/platform-apps/charts | grep -v "platform-apps/charts/image-list" | awk -F/ '{print $4}' | sort -u )
 
-if ${result} == 0 ; then
+if [[ "${changed_charts}" == "" ]]; then
   echo "no changes"
   exit 0
-else
-  changed_charts=$( diff -qr pr/platform-apps/charts target/platform-apps/charts | grep -v "platform-apps/charts/image-list" | awk -F/ '{print $4}' | sort -u )
 fi
 
 echo "charts which differ between main and PR:"
