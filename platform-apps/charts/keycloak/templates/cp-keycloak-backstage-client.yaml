@@ -24,6 +24,6 @@ spec:
       key: backstage
       name: keycloak-client-credentials
       namespace: {{ .Release.Namespace }}
-    loginTheme: keycloak
+    loginTheme: keycloak.v2
   providerConfigRef:
     name: "{{ .Release.Name }}-config"

@@ -69,9 +69,21 @@ wait_until_apps_synced_healthy() {
         sync_status=$(kubectl get application -n argocd ${app} -o jsonpath='{.status.sync.status}')
         health_status=$(kubectl get application -n argocd ${app} -o jsonpath='{.status.health.status}')
 
+        # special case for sx-vault
+        if [[ "${app}" == "sx-vault" && "${sync_status}" == "${synced}" && "${health_status}" == "${healthy}" ]]; then
+          if [ ! -f ./.secrets/secrettemp/secrets-applied ]; then
+            echo "sx-vault is synced and healthy — applying pushsecrets"
+            echo 
+            kubectl apply -f ./.secrets/secrettemp/pushsecrets.yaml
+            touch ./.secrets/secrettemp/secrets-applied
+            echo "--------------------"
+          fi
+        fi
+
         if [[ "${sync_status}" != ${synced} ]] || [[ "${health_status}" != ${healthy} ]] ; then
           all_apps_synced="false"
         fi
+
 
         # check if app sync is stuck and needs to get restarted
         # if app has no resources, operationState is empty
@@ -296,7 +308,7 @@ fi
 echo "installing bootstrap argocd ..."
 helm install sx-argocd argo-cd \
   --repo https://argoproj.github.io/argo-helm \
-  --version 7.1.3 \
+  --version 7.8.24 \
   --namespace argocd \
   --create-namespace \
   --set configs.cm.application.resourceTrackingMethod=annotation \
@@ -314,6 +326,11 @@ kubectl exec sx-argocd-application-controller-0 -n argocd -- argocd repo add ${K
 #  kubectl create namespace ${ns}
 #  kubectl create secret generic appset-github-token --from-literal=token=${KUBRIX_GITHUB_APPSET_TOKEN} -n ${ns}
 #done
+
+# add secrets
+echo "Generating default secrets..."
+./.secrets/createsecret.sh
+kubectl apply -f ./.secrets/secrettemp/secrets.yaml
 
 KUBRIX_REPO_BRANCH_SED=$( echo ${KUBRIX_REPO_BRANCH} | sed 's/\//\\\//g' )
 KUBRIX_REPO_SED=$( echo ${KUBRIX_REPO} | sed 's/\//\\\//g' )
@@ -336,6 +353,8 @@ kubectl apply -f platform-apps/charts/argocd/manual-secret/argocd-secret.yaml
 
 # if vault is part of this stack, upload token to vault
 if [[ $( echo $argocd_apps | grep sx-vault ) ]] ; then
+
+
   echo "adding secrets in vault for sx-kargo and sx-team-onboarding ..."
   export VAULT_HOSTNAME=$(kubectl get ingress -o jsonpath='{.items[*].spec.rules[*].host}' -n vault)
   export VAULT_TOKEN=$(kubectl get secret -n vault vault-init -o=jsonpath='{.data.root_token}'  | base64 -d)
@@ -388,7 +407,7 @@ if [[ $( echo $argocd_apps | grep sx-vault ) ]] ; then
             fi
         done
     fi
- fi
+fi
 
 # if kargo is part of this stack, upload token to vault
 if [[ $( echo $argocd_apps | grep sx-kargo ) ]] ; then

@@ -1,0 +1,19 @@
+{{- if eq .Values.kubriXPlan "oss" }}
+{{- range $group := .Values.kubrix.keycloak.realm.groups }}
+---
+apiVersion: group.keycloak.crossplane.io/v1alpha1
+kind: Group
+metadata:
+  name: {{ $group.name }}
+  annotations:
+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+    argocd.argoproj.io/sync-wave: "3"
+spec:
+  forProvider:
+    realmId: {{ $.Values.kubrix.keycloak.realm.realmid }}
+    name: {{ $group.name }}
+  deletionPolicy: "Delete"
+  providerConfigRef:
+    name: "{{ $.Release.Name }}-config"
+{{- end }}
+{{- end }}

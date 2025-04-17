@@ -4,48 +4,32 @@ metalstackDashboards:
 kubernetesModernDashboards:
   enabled: true
 
+kubernetesAlerts:
+  enabled: true
+
+  platformTeamContactPoint:
+    receivers:
+      - uid: platform-team-default
+        type: teams
+        settings:
+          url: https://myteams-url.com
+        disableResolveMessage: false
+
+kubrix:
+  plan: oss # oss, prime, select, default: oss
+
 ## Using default values from https://github.com/grafana/helm-charts/blob/main/charts/grafana/values.yaml
 ##
 grafana:
   adminPassword: prom-operator
-  envFromSecret: grafana-env-secret
+  # set cookies for backstage plugin integration
   grafana.ini:
     server:
       root_url: "https://grafana.demo.kubrix.cloud"
     security:
-      # set cookies for backstage plugin integration
       allow_embedding: 'true'
       cookie_samesite: none
       cookie_secure: 'true'
-  # keycloak auth
-    auth.generic_oauth:
-      enabled: true
-      name: Keycloak
-      allow_sign_up: true
-      use_refresh_token: true
-      client_id: grafana
-      scopes: openid email profile offline_access roles groups
-      email_attribute_path: email
-      login_attribute_path: preferred_username
-      name_attribute_path: preferred_username
-      auth_url: https://keycloak.demo.kubrix.cloud/realms/kubrix/protocol/openid-connect/auth
-      token_url: https://keycloak.demo.kubrix.cloud/realms/kubrix/protocol/openid-connect/token
-      api_url: https://keycloak.demo.kubrix.cloud/realms/kubrix/protocol/openid-connect/userinfo
-      signout_redirect_url: https://keycloak.demo.kubrix.cloud/realms/kubrix/protocol/openid-connect/logout
-      role_attribute_path: contains(grafana.roles[*], 'admin') && 'Admin' || contains(grafana.roles[*], 'editor') && 'Editor' || 'Viewer'
-      allow_assign_grafana_admin: false
-      groups_attribute_path: groups
-
-    auth:
-      oauth_skip_org_role_update_sync: false
-      skip_org_role_sync: false
-    users:
-      auto_assign_org: true
-      auto_assign_org_role: Viewer  #Admin
-      auto_assign_org_id: 1
-    log:
-      level: debug
-      filters: "oauth.generic_oauth:debug"
   ingress:
     ## If true, Grafana Ingress will be created
     ##
@@ -89,6 +73,11 @@ grafana:
         - mimir
         - loki
         - kubecost
+    alerts:
+      enabled: true
+      label: grafana_alert
+      searchNamespace: ALL
+      labelValue: "1"
 
   defaultDashboardsEditable: true
   
