@@ -63,7 +63,7 @@ for chart in ${changed_images_charts} ; do
 done
 
 
- diff -U 4 -r out/pr/scans out/target/scans > out/scan-diff.txt || true
+ diff -U 4 -r out/target/scans out/pr/scans > out/scan-diff.txt || true
 
 sed  's/DESCRIPTION_HERE/Changes Trivy Scan/g' pr/.github/pr-diff-template.txt > out/comment-diff-trivy-scan.txt
 sed  -e "/DIFF_HERE/{r out/scan-diff.txt" -e "d}" out/comment-diff-trivy-scan.txt > out/comment-diff-trivy-scan-result.txt
