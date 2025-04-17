@@ -54,7 +54,7 @@ for chart in ${changed_images_charts} ; do
   for env in pr target; do
     for image in $(cat out/${env}/${chart}-images.txt) ; do
       output_file=$( echo -n "${chart}_$( echo ${image} | awk -F/ '{print $NF}' )" )
-      trivy image --scanners vuln -f template --template "@pr/trivy-reports/markdown.tpl" -o out/${env}/scans/${chart}/${output_file}.md ${image}
+      ./trivy image --scanners vuln -f template --template "@pr/trivy-reports/markdown.tpl" -o out/${env}/scans/${chart}/${output_file}.md ${image}
       # append file to a scan output per chart to better compare them 
       cat out/${env}/scans/${chart}/${output_file}.md >> out/${env}/scans/${chart}/scan_summary.md
       rm out/${env}/scans/${chart}/${output_file}.md
