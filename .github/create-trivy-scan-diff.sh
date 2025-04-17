@@ -10,6 +10,8 @@ curl -L https://github.com/aquasecurity/trivy/releases/download/v0.61.0/trivy_0.
 tar -xzvf trivy.tar.gz trivy
 chmod u+x trivy
 
+# install helm images plugin
+helm plugin install https://github.com/nikhilsbhat/helm-images
 
 # get changed charts between main and PR
 pwd
