@@ -19,7 +19,7 @@ if [[ "${changed_charts}" == "" ]]; then
   exit 0
 else
   echo "CHANGES=true" >> $GITHUB_ENV
-
+fi
 
 echo "charts which differ between main and PR:"
 echo "${changed_charts}"
