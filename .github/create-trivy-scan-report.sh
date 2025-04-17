@@ -29,5 +29,5 @@ for chart in $( ls -d */ | sed 's#/##' ); do
   done
   rm -rf ../../trivy-scan-reports/${chart}
 done
-
+cd -
 rm trivy trivy.tar.gz
