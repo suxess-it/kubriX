@@ -1,9 +1,6 @@
 #!/bin/bash
 
 set -e
-set -x
-
-
 
 # install trivy
 curl -L https://github.com/aquasecurity/trivy/releases/download/v0.61.0/trivy_0.61.0_Linux-32bit.tar.gz -o trivy.tar.gz
@@ -14,11 +11,7 @@ chmod u+x trivy
 helm plugin install https://github.com/nikhilsbhat/helm-images
 
 # get changed charts between main and PR
-pwd
-ls
 changed_charts=$( diff -qr pr/platform-apps/charts target/platform-apps/charts | grep -v "platform-apps/charts/image-list" | awk -F/ '{print $4}' | sort -u )
-
-diff -r pr/platform-apps/charts target/platform-apps/charts || true
 
 if [[ "${changed_charts}" == "" ]]; then
   echo "no changes"
