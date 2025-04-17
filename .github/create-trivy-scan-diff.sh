@@ -12,9 +12,8 @@ chmod u+x trivy
 
 
 # get changed charts between main and PR
-mkdir -p out/pr
-mkdir -p out/target
-
+pwd
+ls
 changed_charts=$( diff -qr pr/platform-apps/charts target/platform-apps/charts | grep -v "platform-apps/charts/image-list" | awk -F/ '{print $4}' | sort -u )
 
 if [[ "${changed_charts}" == "" ]]; then
@@ -26,6 +25,8 @@ echo "charts which differ between main and PR:"
 echo "${changed_charts}"
 
 # get images for this charts to see if also the images changed
+mkdir -p out/pr
+mkdir -p out/target
 for env in pr target; do
   cd ${env}/platform-apps/charts
   for chart in ${changed_charts}; do
