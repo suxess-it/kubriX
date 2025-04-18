@@ -6,6 +6,20 @@ mimir:
       enabled: true
     grafanaAgent:
       enabled: true
+      logs:
+        remote:
+          url: "http://test.com"
+          auth:
+            username: ""
+            passwordSecretName: ""
+            passwordSecretKey: ""
+      metrics:
+        remote:
+          url: "http://test.com"
+          auth:
+            username: ""
+            passwordSecretName: ""
+            passwordSecretKey: ""
 #      installOperator: true
 
   mimir:
