@@ -59,8 +59,8 @@
 * komodorio/komoplane:0.1.6
 ## kubecost
 * alpine/k8s:1.26.9
-* gcr.io/kubecost1/cost-model:prod-2.7.0
-* gcr.io/kubecost1/frontend:prod-2.7.0
+* gcr.io/kubecost1/cost-model:prod-2.7.1
+* gcr.io/kubecost1/frontend:prod-2.7.1
 * gcr.io/kubecost1/kubecost-modeling:v0.1.24
 * quay.io/prometheus/prometheus:v3.2.1
 ## kubevirt-manager
