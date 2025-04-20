@@ -26,5 +26,5 @@ jobs:
           git add trivy-scan-reports
           git status
           echo "commit"
-          git commit -m "update trivy scan reports"
+          git diff --cached --exit-code || git commit -m "update trivy scan reports"
           git push
