@@ -29,6 +29,7 @@ jobs:
       - name: commit trivy scan report
         shell: bash
         run: |
+          set -x
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git status
@@ -37,5 +38,5 @@ jobs:
           echo "commit"
           git diff --cached --exit-code || git commit -m "update trivy scan reports"
           git push
-                    # create a PR unless there are no new commits or there is already an existing PR from branch 'from-upstream'
+          # create a PR unless there are no new commits or there is already an existing PR from branch 'from-upstream'
           [ "$(git log main..trivy-report-update)" = "" ] || gh pr view trivy-report-update --repo ${GITHUB_REPOSITORY} --json state --jq '.state' | grep OPEN || gh pr create --base main --head trivy-report-update --repo ${GITHUB_REPOSITORY} --title "trivy scan updates" --body ""
