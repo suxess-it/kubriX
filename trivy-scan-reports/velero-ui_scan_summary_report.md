@@ -1,6 +1,6 @@
 
 <h3>Target <code>docker.io/dserio83/velero-api:0.2.4 (debian 12.10)</code></h3>
-<h4>Vulnerabilities (6)</h4>
+<h4>Vulnerabilities (7)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -43,6 +43,13 @@
         <td>HIGH</td>
         <td>5.36.0-7+deb12u1</td>
         <td></td>
+    </tr>
+    <tr>
+        <td><code>perl-base</code></td>
+        <td>CVE-2024-56406</td>
+        <td>HIGH</td>
+        <td>5.36.0-7+deb12u1</td>
+        <td>5.36.0-7+deb12u2</td>
     </tr>
     <tr>
         <td><code>zlib1g</code></td>
@@ -126,7 +133,7 @@
 <h4>No Misconfigurations found</h4>
 
 <h3>Target <code>docker.io/dserio83/velero-watchdog:0.1.7 (debian 12.9)</code></h3>
-<h4>Vulnerabilities (10)</h4>
+<h4>Vulnerabilities (14)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -171,11 +178,25 @@
         <td></td>
     </tr>
     <tr>
+        <td><code>libperl5.36</code></td>
+        <td>CVE-2024-56406</td>
+        <td>HIGH</td>
+        <td>5.36.0-7+deb12u1</td>
+        <td>5.36.0-7+deb12u2</td>
+    </tr>
+    <tr>
         <td><code>perl</code></td>
         <td>CVE-2023-31484</td>
         <td>HIGH</td>
         <td>5.36.0-7+deb12u1</td>
         <td></td>
+    </tr>
+    <tr>
+        <td><code>perl</code></td>
+        <td>CVE-2024-56406</td>
+        <td>HIGH</td>
+        <td>5.36.0-7+deb12u1</td>
+        <td>5.36.0-7+deb12u2</td>
     </tr>
     <tr>
         <td><code>perl-base</code></td>
@@ -185,11 +206,25 @@
         <td></td>
     </tr>
     <tr>
+        <td><code>perl-base</code></td>
+        <td>CVE-2024-56406</td>
+        <td>HIGH</td>
+        <td>5.36.0-7+deb12u1</td>
+        <td>5.36.0-7+deb12u2</td>
+    </tr>
+    <tr>
         <td><code>perl-modules-5.36</code></td>
         <td>CVE-2023-31484</td>
         <td>HIGH</td>
         <td>5.36.0-7+deb12u1</td>
         <td></td>
+    </tr>
+    <tr>
+        <td><code>perl-modules-5.36</code></td>
+        <td>CVE-2024-56406</td>
+        <td>HIGH</td>
+        <td>5.36.0-7+deb12u1</td>
+        <td>5.36.0-7+deb12u2</td>
     </tr>
     <tr>
         <td><code>wget</code></td>
