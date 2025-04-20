@@ -1,5 +1,7 @@
 on:
   workflow_dispatch:
+  schedule:
+    - cron: "*/5 * * * *"
 
 name: create trivy scan report on demand
 
@@ -11,10 +13,17 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
 
       - name: create trivy scan report
         shell: bash
         run: |
+          if [[ -z $(git ls-remote --heads origin trivy-report-update) ]] ; then
+            git checkout -b trivy-report-update
+          else
+            git checkout trivy-report-update
+          fi
           .github/create-trivy-scan-report.sh
           
       - name: commit trivy scan report
@@ -26,5 +35,7 @@ jobs:
           git add trivy-scan-reports
           git status
           echo "commit"
-          git commit -m "update trivy scan reports"
+          git diff --cached --exit-code || git commit -m "update trivy scan reports"
           git push
+                    # create a PR unless there are no new commits or there is already an existing PR from branch 'from-upstream'
+          [ "$(git log main..trivy-report-update)" = "" ] || gh pr view trivy-report-update --repo ${GITHUB_REPOSITORY} --json state --jq '.state' | grep OPEN || gh pr create --base main --head trivy-report-update --repo ${GITHUB_REPOSITORY} --title "trivy scan updates" --body ""
