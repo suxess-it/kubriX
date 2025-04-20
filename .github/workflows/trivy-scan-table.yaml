@@ -11,10 +11,17 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
 
       - name: create trivy scan report
         shell: bash
         run: |
+          if [[ -z $(git ls-remote --heads origin trivy-report-update) ]] ; then
+            git checkout -b trivy-report-update
+          else
+            git checkout trivy-report-update
+          fi
           .github/create-trivy-scan-report.sh
           
       - name: commit trivy scan report
