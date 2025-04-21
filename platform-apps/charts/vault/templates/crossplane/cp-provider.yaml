@@ -12,8 +12,9 @@ spec:
         spec:
           containers:
           - name: package-runtime
-            # args:
+            args:
             # - --poll=1m
+            - --debug
 ---
 # should move to crossplane ns, maybe? 
 apiVersion: pkg.crossplane.io/v1
