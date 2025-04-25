@@ -34,6 +34,7 @@ just define these values and all needed argocd app resources and kargo resources
 | teamName            | the name of the team this app belongs to | ~ | team1
 | appProject          | the argocd app project this app belongs to | `{{ .Values.teamName }}-project` | -
 | appName             | the base name of the apps, the stage name will be appened to     |  ~ | team1-demo-app
+| appDefinition       | additional app definition attributes (annotations and synOptions) | ~ | <pre>appDefinition:<br>&nbsp;&nbsp;annotations:<br>&nbsp;&nbsp;&nbsp;&nbsp;argocd.argoproj.io/compare-options: ServerSideDiff=true<br>&nbsp;&nbsp;syncOptions:<br>&nbsp;&nbsp;&nbsp;&nbsp;- ServerSideApply=true</pre> |
 | repoUrl             | the gitops repo for this apps | ~ | https://github.com/suxess-it/kubrix-demo-app
 | kargoProject        | the kargo project where the kargo resources get created for this app | `{{ .Values.appName }}-kargo-project` | -
 | createAppNamespace  | if the namespaces for this apps get created automatically, the namespaces will have the same name as the apps | `true` | `true`
