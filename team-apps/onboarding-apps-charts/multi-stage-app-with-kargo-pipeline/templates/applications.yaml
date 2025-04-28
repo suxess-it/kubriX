@@ -6,6 +6,11 @@ metadata:
   namespace: {{ $.Release.Namespace }}
   annotations:
     kargo.akuity.io/authorized-stage: {{ tpl $.Values.kargoProject $ }}:{{ .name }}
+    {{- if $.Values.appDefinition }}
+      {{- with $.Values.appDefinition.annotations }}
+        {{- toYaml . | nindent 4 }}
+      {{- end }}
+    {{- end }}
   finalizers:
       - resources-finalizer.argocd.argoproj.io
 spec:
@@ -28,9 +33,16 @@ spec:
     automated:
       prune: true
       selfHeal: true
-{{- if $.Values.createAppNamespace }}
+{{- if or $.Values.createAppNamespace (and $.Values.appDefinition $.Values.appDefinition.syncOptions)}}
     syncOptions:
+  {{- if or $.Values.createAppNamespace }}
     - CreateNamespace=true
+  {{- end }}
+  {{- if $.Values.appDefinition }}
+    {{- with $.Values.appDefinition.syncOptions }}
+      {{- toYaml . | nindent 4 }}
+    {{- end }}
+  {{- end }}
 {{- end }}
 ---
 {{- end }}
