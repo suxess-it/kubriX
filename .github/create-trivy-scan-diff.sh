@@ -11,7 +11,7 @@ chmod u+x trivy
 helm plugin install https://github.com/nikhilsbhat/helm-images
 
 # get changed charts between main and PR
-changed_charts=$( diff -qr pr/platform-apps/charts target/platform-apps/charts | grep -v "platform-apps/charts/image-list" | awk -F/ '{print $4}' | sort -u )
+changed_charts=$( diff -qr pr/platform-apps/charts target/platform-apps/charts | grep -v "platform-apps/charts/image-list" | awk -F/ '{print $4}' | awk -F: '{print $1}' | sort -u )
 
 if [[ "${changed_charts}" == "" ]]; then
   echo "no changes"

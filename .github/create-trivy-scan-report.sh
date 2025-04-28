@@ -22,6 +22,7 @@ for chart in $( ls -d */ | sed 's#/##' ); do
   for value in $( find ${chart} -type f -name "values-*" ); do
     helm images get ${chart} -f ${value} --log-level error --kind "Deployment,StatefulSet,DaemonSet,CronJob,Job,ReplicaSet,Pod,Alertmanager,Prometheus,ThanosRuler,Grafana,Thanos,Receiver"
   done | sort -u > ../../trivy-scan-reports/${chart}/images.txt
+  > ../../trivy-scan-reports/${chart}_scan_summary_report.md
   for image in $(cat ../../trivy-scan-reports/${chart}/images.txt) ; do
     output_file=$( echo -n "${chart}_$( echo ${image} | awk -F/ '{print $NF}' )" )
     ../../trivy image --scanners vuln --severity HIGH,CRITICAL -f template --template "@../../.github/trivy-scan-markdown.tpl" -o ../../trivy-scan-reports/${chart}/${output_file}.md ${image}
@@ -29,5 +30,5 @@ for chart in $( ls -d */ | sed 's#/##' ); do
   done
   rm -rf ../../trivy-scan-reports/${chart}
 done
-
+cd -
 rm trivy trivy.tar.gz

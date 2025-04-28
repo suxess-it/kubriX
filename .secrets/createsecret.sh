@@ -110,7 +110,7 @@ EOF
     STRINGDATA_KEYS=$(yq e ".secrets[$i].stringData | keys | .[]" "$BASEFILE")
     for KEY in $STRINGDATA_KEYS; do
       VALUE_TYPE=$(yq e ".secrets[$i].stringData[\"$KEY\"] | type" "$BASEFILE")
-      if [[ "$VALUE_TYPE" == "!!bool" ]]; then
+      if [[ "$VALUE_TYPE" != "!!str" ]]; then
           RAW_VALUE=$(yq e -r ".secrets[$i].stringData[\"$KEY\"] | tostring" "$BASEFILE")
           VALUE="\"$RAW_VALUE\""
       else
