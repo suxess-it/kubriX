@@ -2,11 +2,6 @@
 
 ## [3.0.0](https://github.com/suxess-it/kubriX/compare/v2.1.0...v3.0.0) (2025-04-24)
 
-
-### ⚠ BREAKING CHANGES
-
-* **deps:** new upstream major version
-
 ### Features
 
 * create image list ([#1209](https://github.com/suxess-it/kubriX/issues/1209)) ([1b0eae8](https://github.com/suxess-it/kubriX/commit/1b0eae8ac764fe51f52f9f7c80d95b03ecf08120))
@@ -37,6 +32,11 @@
 * trivy scan report ([#1208](https://github.com/suxess-it/kubriX/issues/1208)) ([5249418](https://github.com/suxess-it/kubriX/commit/52494181def2395c5417c5e06081085f7f451b89))
 * update bootstrap argocd to 7.8.24 ([#1187](https://github.com/suxess-it/kubriX/issues/1187)) ([313dc83](https://github.com/suxess-it/kubriX/commit/313dc839358bfe3e964a6a5a7d71a22e23409c20))
 
+### Prime Features (only available with kubriX prime plan)
+
+* add docs for spoke registration in argocd and vault ([kubriX-prime/#75](https://github.com/suxess-it/kubriX-prime/issues/75)) ([kubriX-prime/472b1e4](https://github.com/suxess-it/kubriX-prime/commit/472b1e4dd0ac8ffb2d01d30e45ddf966c5d6a046))
+* **kargo:** add sa/role/rolebindings for team ([kubriX-prime/#87](https://github.com/suxess-it/kubriX-prime/issues/87)) ([kubriX-prime/8dd33b4](https://github.com/suxess-it/kubriX-prime/commit/8dd33b412be714a92d497bebe2b900eeda139607))
+* **onboarding:** add oidc for prime ([kubriX-prime/0e61637](https://github.com/suxess-it/kubriX-prime/commit/0e61637ddc38465eaff251db4d02e493bfdbbffb))
 
 ### Bug Fixes
 
@@ -61,6 +61,12 @@
 * **secrets:** change format of port for proper secret creation ([#1229](https://github.com/suxess-it/kubriX/issues/1229)) ([707e882](https://github.com/suxess-it/kubriX/commit/707e8820ad6b9a7c772d48bcd8876a24ac4a419b))
 * **secrets:** migrate demosecrets to externalsecrets ([#1197](https://github.com/suxess-it/kubriX/issues/1197)) ([4aa9a73](https://github.com/suxess-it/kubriX/commit/4aa9a732811305a5b84b66a1110971be75c1beb8))
 * wrong indentation, should fix https://github.com/suxess-it/kubriX/issues/1194 ([#1195](https://github.com/suxess-it/kubriX/issues/1195)) ([e508ef8](https://github.com/suxess-it/kubriX/commit/e508ef8522dcc99413135b5d7d526b42d5d1a4e4))
+
+* **grafana:** external secret configuration for admin ([kubriX-prime/#81](https://github.com/suxess-it/kubriX-prime/issues/81)) ([kubriX-prime/bb4198e](https://github.com/suxess-it/kubriX-prime/commit/bb4198e55566340e5872761258a8363c919aabbf))
+* **oidc:** minor fixes for better argocd order and prime secrets  ([kubriX-prime/#79](https://github.com/suxess-it/kubriX-prime/issues/79)) ([kubriX-prime/c46d0e5](https://github.com/suxess-it/kubriX-prime/commit/c46d0e5d3fcc2c73568f6ce55570fc62ad2e1693))
+* **secrets:** change format of port for proper secret creation - prime ([kubriX-prime/#89](https://github.com/suxess-it/kubriX-prime/issues/89)) ([kubriX-prime/5f33867](https://github.com/suxess-it/kubriX-prime/commit/5f33867772851e7b27f5b1838680662e75295c2f))
+* **secrets:** migrate demosecrets to externalsecrets in prime ([kubriX-prime/#82](https://github.com/suxess-it/kubriX-prime/issues/82)) ([kubriX-prime/d23891f](https://github.com/suxess-it/kubriX-prime/commit/d23891f5e1c8b44d4a2705d20ed0621155ae147d))
+
 
 ## [2.1.0](https://github.com/suxess-it/kubriX/compare/v2.0.0...v2.1.0) (2025-03-19)
 
