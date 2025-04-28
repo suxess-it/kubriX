@@ -1,185 +1,45 @@
 on:
-  pull_request:
-    types: [opened, synchronize]
-    paths:
-      - '.github/workflows/trivy-scan-table.yaml'
-      - 'platform-apps/charts/**'
+  workflow_dispatch:
+  schedule:
+    - cron: '1 17 * * *'
 
-name: trivy scan tables
+name: create trivy scan report on demand
 
 jobs:
-  if: false
   evaluate:
     runs-on: ubuntu-latest
-    outputs:
-      matrix: ${{ steps.dataStep.outputs.matrix }}
+    permissions:
+      contents: write
+      pull-requests: write
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
         with:
-          path: pr
           fetch-depth: 0
 
-      - name: Checkout Target of PR
-        uses: actions/checkout@v4
-        with:
-          path: target
-          ref: ${{ github.event.pull_request.base.ref }}
-
-      - name: create image json
+      - name: create trivy scan report
         shell: bash
         run: |
-          helm plugin install https://github.com/nikhilsbhat/helm-images
-          cd pr/platform-apps/charts
-          echo -n "" > image-list-temp.json
-          for chart in $( ls -d */ | sed 's#/##' ); do
-            echo "${chart}"
-            helm dependency update ${chart} 1> /dev/null 2>&1
-            for image in $(
-              for value in $( find ${chart} -type f -name "values-*" ); do
-                helm images get ${chart} -f ${value} --log-level error --kind "Deployment,StatefulSet,DaemonSet,CronJob,Job,ReplicaSet,Pod,Alertmanager,Prometheus,ThanosRuler,Grafana,Thanos,Receiver"
-              done | sort -u ); do
-              id=$( echo -n "${chart}_$( echo ${image} | awk -F/ '{print $NF}' | sed 's/:/_/g' )" )
-              echo "{\"chart\": \"${chart}\", \"image\": \"${image}\", \"id\": \"${id}\"}" >> image-list-temp.json
-            done
-          done
-          jq --slurp '.' image-list-temp.json > image-list.json
-
-      # find removed images compared to main branch and upload a json as an artifact
-      # so the commit-report job can delete trivy reports from these images
-      - name: install jd
-        run: |
-          curl -L -o jd https://github.com/josephburnett/jd/releases/download/v1.9.1/jd-amd64-linux
-          chmod u+x jd
-
-      - name: find removed images
-        run: |
-          ./jd -set target/platform-apps/charts/image-list.json pr/platform-apps/charts/image-list.json | grep --invert-match '^@' | grep ^- | sed 's/^-//g' | jq --slurp > pr/platform-apps/charts/image-list-removed.json
-          cat pr/platform-apps/charts/image-list-removed.json
-
-      - name: upload removed images list
-        uses: actions/upload-artifact@v4
-        with:
-          name: image-list-removed.json
-          path: pr/platform-apps/charts/image-list-removed.json
+          if [[ -z $(git ls-remote --heads origin trivy-report-update) ]] ; then
+            git checkout -b trivy-report-update
+          else
+            git checkout trivy-report-update
+          fi
+          .github/create-trivy-scan-report.sh
           
-      # only scan images which are added compared to main branch
-      - name: set scan matrix
-        id: dataStep
-        run: |
-          ./jd -set target/platform-apps/charts/image-list.json pr/platform-apps/charts/image-list.json | grep --invert-match '^@' | grep ^+ | sed 's/^+//g' | jq --slurp > pr/platform-apps/charts/image-list-added.json
-          echo "matrix=$( cat pr/platform-apps/charts/image-list-added.json )"
-          echo "matrix=$( cat pr/platform-apps/charts/image-list-added.json | tr -d '\n' )" >> ${GITHUB_OUTPUT}
-          
-  scan-images:
-    needs: evaluate
-    if: ${{ fromJSON(needs.evaluate.outputs.matrix)[0] }}
-    strategy:
-      matrix: 
-        images: ${{ fromJson(needs.evaluate.outputs.matrix) }}
-      # matrix:
-      #  images: [
-      #    {chart: "argocd", image: "ghcr.io/dexidp/dex:v2.41.1", id: "dex"}, 
-      #    {chart: "argocd", image: "public.ecr.aws/docker/library/redis:7.4.1-alpine", id: "redis"}, 
-      #    {chart: "argocd", image: "quay.io/argoproj/argocd:v2.13.2", id: "argocd"}
-      #  ]
-          
-    permissions:
-      contents: write # for actions/checkout to fetch code
-      security-events: write # for github/codeql-action/upload-sarif to upload SARIF results
-      actions: read # only required for a private repository by github/codeql-action/upload-sarif to get the Action run status
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-        with:
-          ref: ${{ github.event.pull_request.head.ref }}
-
-      - name:  create temp dir for trivy reports
+      - name: commit trivy scan report
         shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
         run: |
-          mkdir trivy-reports-workdir
-
-      - name: Run Trivy vulnerability scanner
-        uses: aquasecurity/trivy-action@0.30.0
-        with:
-          image-ref: ${{ matrix.images.image }}
-          format: template
-          template: "@${{ github.workspace }}/trivy-reports/markdown.tpl"
-          output: 'trivy-reports-workdir/report-${{ matrix.images.id }}.md'
-          # exit-code: '1'
-          ignore-unfixed: true
-          # vuln-type: 'os,library'
-          severity: 'CRITICAL,HIGH'
-
-      - name: upload reports
-        uses: actions/upload-artifact@v4
-        with:
-          name: trivy-reports-${{ matrix.images.id }}
-          path: trivy-reports-workdir/report-${{ matrix.images.id }}.md
-
-  commit-reports:
-    needs: scan-images
-    if: ${{ !failure() && !cancelled() }}
-    runs-on: ubuntu-latest
-    permissions:
-      actions: write
-      contents: write
-      
-    steps:
-      - name: Checkout PR
-        uses: actions/checkout@v4
-        with:
-          ref: ${{ github.event.pull_request.head.ref }}
-
-      # we need to delete scans reports from files which got deleted
-      # and download scan reports from files which got changed
-      - name: download removed images json
-        uses: actions/download-artifact@v4
-        with:
-          name: image-list-removed.json
-          path: platform-apps/charts/
-
-      - name: delete old trivy reports from removed images artifact
-        shell: bash
-        run: |
+          set -x
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git pull
-          echo "remove old reports. ids from removed images are: "
-          cat platform-apps/charts/image-list-removed.json | jq -r '.[].id'
-
-          # use find to remove files
-          # because it does not fail when no files exist
-          for id in $( cat platform-apps/charts/image-list-removed.json | jq -r '.[].id' ) ; do
-            echo "delete file trivy-reports/report-${id}.md"
-            rm -f trivy-reports/report-${id}.md
-          done
-
-          # delete file again so it will not get committed
-          rm platform-apps/charts/image-list-removed.json
-
           git status
-          
-      - name: download new reports
-        uses: actions/download-artifact@v4
-        with:
-          pattern: trivy-reports-*
-          path: trivy-reports
-          merge-multiple: true
-          
-      - name: commit trivy table
-        shell: bash
-        run: |
+          git add trivy-scan-reports
           git status
-          echo "git add trivy-reports"
-          git add trivy-reports
-          git status
-          echo "check diff and commit"
-          git diff --cached --exit-code || git commit -m "updated trivy scan results"
-          echo "git push"
-          git push
-
-      - uses: geekyeggo/delete-artifact@v5
-        with:
-          name: trivy-reports-*
+          echo "commit"
+          git diff --cached --exit-code || git commit -m "update trivy scan reports"
+          git push --set-upstream origin trivy-report-update
+          # create a PR unless there are no new commits or there is already an existing PR from branch 'from-upstream'
+          [ "$(git log main..trivy-report-update)" = "" ] || gh pr view trivy-report-update --repo ${GITHUB_REPOSITORY} --json state --jq '.state' | grep OPEN || gh pr create --base main --head trivy-report-update --repo ${GITHUB_REPOSITORY} --title "trivy scan updates" --body ""

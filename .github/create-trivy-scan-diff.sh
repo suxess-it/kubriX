@@ -11,7 +11,7 @@ chmod u+x trivy
 helm plugin install https://github.com/nikhilsbhat/helm-images
 
 # get changed charts between main and PR
-changed_charts=$( diff -qr pr/platform-apps/charts target/platform-apps/charts | grep -v "platform-apps/charts/image-list" | awk -F/ '{print $4}' | sort -u )
+changed_charts=$( diff -qr pr/platform-apps/charts target/platform-apps/charts | grep -v "platform-apps/charts/image-list" | awk -F/ '{print $4}' | awk -F: '{print $1}' | sort -u )
 
 if [[ "${changed_charts}" == "" ]]; then
   echo "no changes"
@@ -50,7 +50,7 @@ for chart in ${changed_images_charts} ; do
   for env in pr target; do
     for image in $(cat out/${env}/${chart}-images.txt) ; do
       output_file=$( echo -n "${chart}_$( echo ${image} | awk -F/ '{print $NF}' )" )
-      ./trivy image --scanners vuln -f template --template "@pr/trivy-reports/markdown.tpl" -o out/${env}/scans/${chart}/${output_file}.md ${image}
+      ./trivy image --scanners vuln -f template --template "@pr/.github/trivy-scan-markdown.tpl" -o out/${env}/scans/${chart}/${output_file}.md ${image}
       # append file to a scan output per chart to better compare them 
       cat out/${env}/scans/${chart}/${output_file}.md >> out/${env}/scans/${chart}/scan_summary.md
       rm out/${env}/scans/${chart}/${output_file}.md
