@@ -67,12 +67,6 @@
 * **secrets:** migrate demosecrets to externalsecrets in prime ([kubriX-prime/#82](https://github.com/suxess-it/kubriX-prime/issues/82)) ([kubriX-prime/d23891f](https://github.com/suxess-it/kubriX-prime/commit/d23891f5e1c8b44d4a2705d20ed0621155ae147d))
 
 
-* **grafana:** external secret configuration for admin ([kubriX-prime/#81](https://github.com/suxess-it/kubriX-prime/issues/81)) ([kubriX-prime/bb4198e](https://github.com/suxess-it/kubriX-prime/commit/bb4198e55566340e5872761258a8363c919aabbf))
-* **oidc:** minor fixes for better argocd order and prime secrets  ([kubriX-prime/#79](https://github.com/suxess-it/kubriX-prime/issues/79)) ([kubriX-prime/c46d0e5](https://github.com/suxess-it/kubriX-prime/commit/c46d0e5d3fcc2c73568f6ce55570fc62ad2e1693))
-* **secrets:** change format of port for proper secret creation - prime ([kubriX-prime/#89](https://github.com/suxess-it/kubriX-prime/issues/89)) ([kubriX-prime/5f33867](https://github.com/suxess-it/kubriX-prime/commit/5f33867772851e7b27f5b1838680662e75295c2f))
-* **secrets:** migrate demosecrets to externalsecrets in prime ([kubriX-prime/#82](https://github.com/suxess-it/kubriX-prime/issues/82)) ([kubriX-prime/d23891f](https://github.com/suxess-it/kubriX-prime/commit/d23891f5e1c8b44d4a2705d20ed0621155ae147d))
-
-
 ## [2.1.0](https://github.com/suxess-it/kubriX/compare/v2.0.0...v2.1.0) (2025-03-19)
 
 
