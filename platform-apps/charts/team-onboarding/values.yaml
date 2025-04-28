@@ -1,11 +1,11 @@
-# default destination rules for single instance team-onboarding (must get overwritten for hub-and-spoke topologies)
-defaultDestinationsRules:
-  - server: 'https://kubernetes.default.svc'
-    name: 'in-cluster'
-    namespace: '{{ .name }}-*'
-  - server: 'https://kubernetes.default.svc'
-    name: 'in-cluster'
-    namespace: 'adn-{{ .name }}'
+# destinationClusters list defines which team is allowed to deploy to which cluster
+# on single-node instances you should set 'allowedTeams: [".*"]' so every team is able to deploy application
+# this needs to get change on hub-and-spoke architectures
+# regexp for team names is possible
+destinationClusters:
+  - name: in-cluster
+#    allowedTeams: [".*"]
+#    deniedTeams: [".*"]
 
 scmAppsetRequeueAfterSeconds: 1800
 multiStageKargoAppSetHelmRepo: ~
@@ -13,3 +13,5 @@ multiStageKargoAppSetHelmRepo: ~
 default:
   repoURL: https://github.com/suxess-it/kubriX
   targetRevision: main
+
+teams: []
