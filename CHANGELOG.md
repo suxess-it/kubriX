@@ -61,7 +61,6 @@
 * **secrets:** change format of port for proper secret creation ([#1229](https://github.com/suxess-it/kubriX/issues/1229)) ([707e882](https://github.com/suxess-it/kubriX/commit/707e8820ad6b9a7c772d48bcd8876a24ac4a419b))
 * **secrets:** migrate demosecrets to externalsecrets ([#1197](https://github.com/suxess-it/kubriX/issues/1197)) ([4aa9a73](https://github.com/suxess-it/kubriX/commit/4aa9a732811305a5b84b66a1110971be75c1beb8))
 * wrong indentation, should fix https://github.com/suxess-it/kubriX/issues/1194 ([#1195](https://github.com/suxess-it/kubriX/issues/1195)) ([e508ef8](https://github.com/suxess-it/kubriX/commit/e508ef8522dcc99413135b5d7d526b42d5d1a4e4))
-
 * **grafana:** external secret configuration for admin ([kubriX-prime/#81](https://github.com/suxess-it/kubriX-prime/issues/81)) ([kubriX-prime/bb4198e](https://github.com/suxess-it/kubriX-prime/commit/bb4198e55566340e5872761258a8363c919aabbf))
 * **oidc:** minor fixes for better argocd order and prime secrets  ([kubriX-prime/#79](https://github.com/suxess-it/kubriX-prime/issues/79)) ([kubriX-prime/c46d0e5](https://github.com/suxess-it/kubriX-prime/commit/c46d0e5d3fcc2c73568f6ce55570fc62ad2e1693))
 * **secrets:** change format of port for proper secret creation - prime ([kubriX-prime/#89](https://github.com/suxess-it/kubriX-prime/issues/89)) ([kubriX-prime/5f33867](https://github.com/suxess-it/kubriX-prime/commit/5f33867772851e7b27f5b1838680662e75295c2f))
