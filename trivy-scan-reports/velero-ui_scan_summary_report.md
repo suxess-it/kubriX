@@ -1,6 +1,6 @@
 
 <h3>Target <code>docker.io/dserio83/velero-api:0.2.4 (debian 12.10)</code></h3>
-<h4>Vulnerabilities (6)</h4>
+<h4>Vulnerabilities (7)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -45,6 +45,13 @@
         <td></td>
     </tr>
     <tr>
+        <td><code>perl-base</code></td>
+        <td>CVE-2024-56406</td>
+        <td>HIGH</td>
+        <td>5.36.0-7+deb12u1</td>
+        <td>5.36.0-7+deb12u2</td>
+    </tr>
+    <tr>
         <td><code>zlib1g</code></td>
         <td>CVE-2023-45853</td>
         <td>CRITICAL</td>
@@ -54,7 +61,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>Python</code></h3>
-<h4>Vulnerabilities (1)</h4>
+<h4>Vulnerabilities (2)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -62,6 +69,13 @@
         <th>Severity</th>
         <th>Installed Version</th>
         <th>Fixed Version</th>
+    </tr>
+    <tr>
+        <td><code>h11</code></td>
+        <td>CVE-2025-43859</td>
+        <td>CRITICAL</td>
+        <td>0.14.0</td>
+        <td>0.16.0</td>
     </tr>
     <tr>
         <td><code>setuptools</code></td>
@@ -126,7 +140,7 @@
 <h4>No Misconfigurations found</h4>
 
 <h3>Target <code>docker.io/dserio83/velero-watchdog:0.1.7 (debian 12.9)</code></h3>
-<h4>Vulnerabilities (10)</h4>
+<h4>Vulnerabilities (14)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -171,11 +185,25 @@
         <td></td>
     </tr>
     <tr>
+        <td><code>libperl5.36</code></td>
+        <td>CVE-2024-56406</td>
+        <td>HIGH</td>
+        <td>5.36.0-7+deb12u1</td>
+        <td>5.36.0-7+deb12u2</td>
+    </tr>
+    <tr>
         <td><code>perl</code></td>
         <td>CVE-2023-31484</td>
         <td>HIGH</td>
         <td>5.36.0-7+deb12u1</td>
         <td></td>
+    </tr>
+    <tr>
+        <td><code>perl</code></td>
+        <td>CVE-2024-56406</td>
+        <td>HIGH</td>
+        <td>5.36.0-7+deb12u1</td>
+        <td>5.36.0-7+deb12u2</td>
     </tr>
     <tr>
         <td><code>perl-base</code></td>
@@ -185,11 +213,25 @@
         <td></td>
     </tr>
     <tr>
+        <td><code>perl-base</code></td>
+        <td>CVE-2024-56406</td>
+        <td>HIGH</td>
+        <td>5.36.0-7+deb12u1</td>
+        <td>5.36.0-7+deb12u2</td>
+    </tr>
+    <tr>
         <td><code>perl-modules-5.36</code></td>
         <td>CVE-2023-31484</td>
         <td>HIGH</td>
         <td>5.36.0-7+deb12u1</td>
         <td></td>
+    </tr>
+    <tr>
+        <td><code>perl-modules-5.36</code></td>
+        <td>CVE-2024-56406</td>
+        <td>HIGH</td>
+        <td>5.36.0-7+deb12u1</td>
+        <td>5.36.0-7+deb12u2</td>
     </tr>
     <tr>
         <td><code>wget</code></td>
@@ -208,7 +250,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>Python</code></h3>
-<h4>Vulnerabilities (1)</h4>
+<h4>Vulnerabilities (2)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -216,6 +258,13 @@
         <th>Severity</th>
         <th>Installed Version</th>
         <th>Fixed Version</th>
+    </tr>
+    <tr>
+        <td><code>h11</code></td>
+        <td>CVE-2025-43859</td>
+        <td>CRITICAL</td>
+        <td>0.14.0</td>
+        <td>0.16.0</td>
     </tr>
     <tr>
         <td><code>setuptools</code></td>
