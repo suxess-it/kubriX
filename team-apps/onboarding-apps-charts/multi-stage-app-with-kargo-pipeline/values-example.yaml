@@ -1,6 +1,11 @@
 teamName: team1
 appProject: "{{ .Values.teamName }}-project"
 appName: multi-stage-app
+appDefinition:
+  annotations:
+    argocd.argoproj.io/compare-options: ServerSideDiff=true
+  syncOptions:
+    - ServerSideApply=true
 repoUrl: https://github.com/suxess-it/kubrix-demo-app
 # since a kargo project is a cluster-scoped resource it needs a unique name
 # however, in a app-in-any-namespace feature the appName doesn't need to be unique in the cluster
