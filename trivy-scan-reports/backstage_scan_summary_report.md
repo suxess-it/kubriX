@@ -4,7 +4,7 @@
 <h4>No Misconfigurations found</h4>
 
 <h3>Target <code>ghcr.io/suxess-it/sx-backstage:v1.32.6 (debian 12.9)</code></h3>
-<h4>Vulnerabilities (109)</h4>
+<h4>Vulnerabilities (117)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -54,6 +54,13 @@
         <td>HIGH</td>
         <td>5.36.0-7+deb12u1</td>
         <td></td>
+    </tr>
+    <tr>
+        <td><code>libperl5.36</code></td>
+        <td>CVE-2024-56406</td>
+        <td>HIGH</td>
+        <td>5.36.0-7+deb12u1</td>
+        <td>5.36.0-7+deb12u2</td>
     </tr>
     <tr>
         <td><code>linux-libc-dev</code></td>
@@ -298,7 +305,7 @@
         <td>CVE-2024-46774</td>
         <td>HIGH</td>
         <td>6.1.128-1</td>
-        <td></td>
+        <td>6.1.135-1</td>
     </tr>
     <tr>
         <td><code>linux-libc-dev</code></td>
@@ -361,7 +368,7 @@
         <td>CVE-2024-50063</td>
         <td>HIGH</td>
         <td>6.1.128-1</td>
-        <td></td>
+        <td>6.1.135-1</td>
     </tr>
     <tr>
         <td><code>linux-libc-dev</code></td>
@@ -729,10 +736,38 @@
     </tr>
     <tr>
         <td><code>linux-libc-dev</code></td>
-        <td>CVE-2025-21999</td>
+        <td>CVE-2025-22055</td>
         <td>HIGH</td>
         <td>6.1.128-1</td>
-        <td>6.1.133-1</td>
+        <td>6.1.135-1</td>
+    </tr>
+    <tr>
+        <td><code>linux-libc-dev</code></td>
+        <td>CVE-2025-22058</td>
+        <td>HIGH</td>
+        <td>6.1.128-1</td>
+        <td>6.1.135-1</td>
+    </tr>
+    <tr>
+        <td><code>linux-libc-dev</code></td>
+        <td>CVE-2025-37785</td>
+        <td>HIGH</td>
+        <td>6.1.128-1</td>
+        <td>6.1.135-1</td>
+    </tr>
+    <tr>
+        <td><code>linux-libc-dev</code></td>
+        <td>CVE-2025-39735</td>
+        <td>HIGH</td>
+        <td>6.1.128-1</td>
+        <td>6.1.135-1</td>
+    </tr>
+    <tr>
+        <td><code>linux-libc-dev</code></td>
+        <td>CVE-2025-40014</td>
+        <td>HIGH</td>
+        <td>6.1.128-1</td>
+        <td></td>
     </tr>
     <tr>
         <td><code>perl</code></td>
@@ -742,6 +777,13 @@
         <td></td>
     </tr>
     <tr>
+        <td><code>perl</code></td>
+        <td>CVE-2024-56406</td>
+        <td>HIGH</td>
+        <td>5.36.0-7+deb12u1</td>
+        <td>5.36.0-7+deb12u2</td>
+    </tr>
+    <tr>
         <td><code>perl-base</code></td>
         <td>CVE-2023-31484</td>
         <td>HIGH</td>
@@ -749,11 +791,25 @@
         <td></td>
     </tr>
     <tr>
+        <td><code>perl-base</code></td>
+        <td>CVE-2024-56406</td>
+        <td>HIGH</td>
+        <td>5.36.0-7+deb12u1</td>
+        <td>5.36.0-7+deb12u2</td>
+    </tr>
+    <tr>
         <td><code>perl-modules-5.36</code></td>
         <td>CVE-2023-31484</td>
         <td>HIGH</td>
         <td>5.36.0-7+deb12u1</td>
         <td></td>
+    </tr>
+    <tr>
+        <td><code>perl-modules-5.36</code></td>
+        <td>CVE-2024-56406</td>
+        <td>HIGH</td>
+        <td>5.36.0-7+deb12u1</td>
+        <td>5.36.0-7+deb12u2</td>
     </tr>
     <tr>
         <td><code>xz-utils</code></td>
