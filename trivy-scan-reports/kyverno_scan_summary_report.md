@@ -1,6 +1,6 @@
 
 <h3>Target <code>bitnami/kubectl:1.30.2 (debian 12.6)</code></h3>
-<h4>Vulnerabilities (26)</h4>
+<h4>Vulnerabilities (32)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -136,6 +136,13 @@
         <td></td>
     </tr>
     <tr>
+        <td><code>libperl5.36</code></td>
+        <td>CVE-2024-56406</td>
+        <td>HIGH</td>
+        <td>5.36.0-7+deb12u1</td>
+        <td>5.36.0-7+deb12u2</td>
+    </tr>
+    <tr>
         <td><code>libxml2</code></td>
         <td>CVE-2024-25062</td>
         <td>HIGH</td>
@@ -164,11 +171,32 @@
         <td></td>
     </tr>
     <tr>
+        <td><code>libxml2</code></td>
+        <td>CVE-2025-32414</td>
+        <td>HIGH</td>
+        <td>2.9.14+dfsg-1.3~deb12u1</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>libxml2</code></td>
+        <td>CVE-2025-32415</td>
+        <td>HIGH</td>
+        <td>2.9.14+dfsg-1.3~deb12u1</td>
+        <td></td>
+    </tr>
+    <tr>
         <td><code>perl</code></td>
         <td>CVE-2023-31484</td>
         <td>HIGH</td>
         <td>5.36.0-7+deb12u1</td>
         <td></td>
+    </tr>
+    <tr>
+        <td><code>perl</code></td>
+        <td>CVE-2024-56406</td>
+        <td>HIGH</td>
+        <td>5.36.0-7+deb12u1</td>
+        <td>5.36.0-7+deb12u2</td>
     </tr>
     <tr>
         <td><code>perl-base</code></td>
@@ -178,11 +206,25 @@
         <td></td>
     </tr>
     <tr>
+        <td><code>perl-base</code></td>
+        <td>CVE-2024-56406</td>
+        <td>HIGH</td>
+        <td>5.36.0-7+deb12u1</td>
+        <td>5.36.0-7+deb12u2</td>
+    </tr>
+    <tr>
         <td><code>perl-modules-5.36</code></td>
         <td>CVE-2023-31484</td>
         <td>HIGH</td>
         <td>5.36.0-7+deb12u1</td>
         <td></td>
+    </tr>
+    <tr>
+        <td><code>perl-modules-5.36</code></td>
+        <td>CVE-2024-56406</td>
+        <td>HIGH</td>
+        <td>5.36.0-7+deb12u1</td>
+        <td>5.36.0-7+deb12u2</td>
     </tr>
     <tr>
         <td><code>zlib1g</code></td>
