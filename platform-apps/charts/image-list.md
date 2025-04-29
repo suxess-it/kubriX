@@ -2,7 +2,7 @@
 ## argo-rollouts
 * quay.io/argoproj/argo-rollouts:v1.8.2
 ## argocd
-* ghcr.io/dexidp/dex:v2.42.0
+* ghcr.io/dexidp/dex:v2.42.1
 * public.ecr.aws/docker/library/redis:7.4.2-alpine
 * quay.io/argoproj/argocd:v2.14.10
 ## backstage
