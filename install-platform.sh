@@ -435,9 +435,11 @@ if [[ $( echo $argocd_apps | grep sx-backstage ) ]] ; then
 
   # generate grafana token
   export GRAFANA_HOSTNAME=$(kubectl get ingress -o jsonpath='{.items[*].spec.rules[*].host}' -n grafana )
+  export GRAFANA_USERKEY=$(kubectl get secret -n grafana grafana-admin-secret -o=jsonpath='{.data.userKey }'  | base64 -d)
+  export GRAFANA_PASSWORDKEY=$(kubectl get secret -n grafana grafana-admin-secret -o=jsonpath='{.data.passwordKey }'  | base64 -d)
   if [ "${GRAFANA_HOSTNAME}" != "" ]; then
-    ID=$( curl -k -X POST https://${GRAFANA_HOSTNAME}/api/serviceaccounts --user 'admin:prom-operator' -H "Content-Type: application/json" -d '{"name": "backstage","role": "Viewer","isDisabled": false}' | jq -r .id )
-    export GRAFANA_TOKEN=$(curl -k -X POST https://${GRAFANA_HOSTNAME}/api/serviceaccounts/${ID}/tokens --user 'admin:prom-operator' -H "Content-Type: application/json" -d '{"name": "backstage"}' | jq -r .key)
+    ID=$( curl -k -X POST https://${GRAFANA_HOSTNAME}/api/serviceaccounts --user "${GRAFANA_USERKEY}:${GRAFANA_PASSWORDKEY}" -H "Content-Type: application/json" -d '{"name": "backstage","role": "Viewer","isDisabled": false}' | jq -r .id )
+    export GRAFANA_TOKEN=$(curl -k -X POST https://${GRAFANA_HOSTNAME}/api/serviceaccounts/${ID}/tokens --user "${GRAFANA_USERKEY}:${GRAFANA_PASSWORDKEY}" -H "Content-Type: application/json" -d '{"name": "backstage"}' | jq -r .key)
   fi
   
   # get backstage-locator token for backstage secret
