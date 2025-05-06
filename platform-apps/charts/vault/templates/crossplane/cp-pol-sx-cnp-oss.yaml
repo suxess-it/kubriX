@@ -39,7 +39,7 @@ spec:
 apiVersion: vault.vault.upbound.io/v1alpha1
 kind: Policy
 metadata:
-  name: users
+  name: editors
   annotations:
     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
     argocd.argoproj.io/sync-wave: "2"
@@ -47,19 +47,16 @@ spec:
   providerConfigRef:
     name: vault-crossplane-providerconfig
   forProvider:
-    name: users
+    name: editors
     policy: |
-      path "kubrix-kv/data/users" {
-        capabilities = ["read","list","create","update",]
-      }
-      path "kubrix-kv/*" {
-        capabilities = ["list"]
+      path "/*" {
+        capabilities = ["read","list","update"]
       }
 ---
 apiVersion: vault.vault.upbound.io/v1alpha1
 kind: Policy
 metadata:
-  name: team1
+  name: viewers
   annotations:
     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
     argocd.argoproj.io/sync-wave: "2"
@@ -67,11 +64,8 @@ spec:
   providerConfigRef:
     name: vault-crossplane-providerconfig
   forProvider:
-    name: team1
+    name: viewers
     policy: |
-      path "kubrix-kv/data/team1" {
-        capabilities = ["read","list","create","update",]
-      }
-      path "kubrix-kv/*" {
-        capabilities = ["list"]
+      path "/*" {
+        capabilities = ["read","list"]
       }
