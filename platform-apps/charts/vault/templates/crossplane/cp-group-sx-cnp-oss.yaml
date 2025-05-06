@@ -19,7 +19,7 @@ spec:
 apiVersion: identity.vault.upbound.io/v1alpha1
 kind: Group
 metadata:
-  name: users
+  name: editors
   annotations:
     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
     argocd.argoproj.io/sync-wave: "5"
@@ -29,15 +29,15 @@ spec:
   forProvider:
     metadata:
       version: "2"
-    name: users
+    name: editors
     policies:
-    - users
+    - editors
     type: external
 ---
 apiVersion: identity.vault.upbound.io/v1alpha1
 kind: Group
 metadata:
-  name: team1
+  name: viewers
   annotations:
     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
     argocd.argoproj.io/sync-wave: "5"
@@ -47,7 +47,7 @@ spec:
   forProvider:
     metadata:
       version: "2"
-    name: team1
+    name: viewers
     policies:
-    - team1
+    - viewers
     type: external
