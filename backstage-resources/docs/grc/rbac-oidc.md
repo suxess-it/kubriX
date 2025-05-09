@@ -11,10 +11,20 @@ kubriX allows you to connect its integrated Keycloak instance with your existing
 The team-onboarding Helm chart is the main entry point for all team-related resources in kubriX. It defines users, roles, and access permissions using a single values.yaml file. Secrets are managed and synced using the External Secrets Operator (ESO).
 
 ```
+platformteam:
+  admins:
+    - backstageadmin
+    - demoadmin
+  editors:
+    - phac
+    - jokl
+  viewers:
+    - demouser
+
 teams:
   - name: teamx
     admins:
-      - demoadmin
+      - teamadmin
     editors:
       - demoeditor
     viewers:
@@ -34,9 +44,21 @@ teams:
       github:
         organization: kubrix-demo
 ```
-## Team Configration Explained
+## platformteam Configration Explained
 
-This configuration creates a team called teamx with specific user roles:
+This configuration configures platformwide user configuration:
+
+* **admins**: Full control to create, modify, and delete resources and metadata
+* **editors**: Can list and modify resources and metadata
+* **viewers**: Read-only access to resources, limited metadata visibility
+
+````
+⚠️ Note: when using platformteam config - please remove members from keycloak values file group setting
+````
+
+## teams Configration Explained
+
+This configuration creates a team called teamx with specific user roles for team configuration:
 
 * **admins**: Full control to create, modify, and delete resources and metadata
 * **editors**: Can list and modify resources and metadata
@@ -65,7 +87,7 @@ team-sync.yaml: Recreates teams and their folder structures based on Git-defined
 
 team-sync-es.yaml: Enhances syncing by triggering reconciliation through External Secrets events. If a secret or mapping changes, the sync logic is re-applied automatically.
 ````
-⚠️ Note: kubriX Grafana Team Sync runs every 5 minutes. On first login, it may take up to 5 minutes before synchronization is complete.
+⚠️ Note: kubrix Grafana Team Sync runs every 5 minutes. On first login, it may take up to 5 minutes before synchronization is complete.
 ````
 This ensures that user-to-team mappings and team-level permissions stay intact even after accidental removal, especially helpful when SSO users are dynamically added to teams outside Git.
 
