@@ -138,7 +138,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>k6-tracing</code></h3>
-<h4>Vulnerabilities (27)</h4>
+<h4>Vulnerabilities (28)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -328,6 +328,13 @@
         <td>HIGH</td>
         <td>v1.19.3</td>
         <td>1.20.0</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2023-45288</td>
+        <td>HIGH</td>
+        <td>v1.19.3</td>
+        <td>1.21.9, 1.22.2</td>
     </tr>
     <tr>
         <td><code>stdlib</code></td>
