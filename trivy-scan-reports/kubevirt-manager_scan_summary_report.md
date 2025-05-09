@@ -120,7 +120,7 @@
 <h4>No Vulnerabilities found</h4>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>usr/local/bin/kubectl</code></h3>
-<h4>Vulnerabilities (3)</h4>
+<h4>Vulnerabilities (2)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -135,13 +135,6 @@
         <td>CRITICAL</td>
         <td>v1.21.7</td>
         <td>1.21.11, 1.22.4</td>
-    </tr>
-    <tr>
-        <td><code>stdlib</code></td>
-        <td>CVE-2023-45288</td>
-        <td>HIGH</td>
-        <td>v1.21.7</td>
-        <td>1.21.9, 1.22.2</td>
     </tr>
     <tr>
         <td><code>stdlib</code></td>
