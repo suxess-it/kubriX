@@ -11,7 +11,12 @@ repoUrl: https://github.com/suxess-it/kubrix-demo-app
 # however, in a app-in-any-namespace feature the appName doesn't need to be unique in the cluster
 # so we add the team as an extra prefix to get a unique name
 kargoProject: "{{ .Values.teamName }}-{{ .Values.appName }}-kargo-project"
-createAppNamespace: true
+appNamespace:
+  create: true
+  annotations:
+    testAnnotation: blub
+  labels:
+    testLabel: bla
 stages:
   - name: "test"
     subscriptions: 
