@@ -1,0 +1,23 @@
+teamName: ${{values.team}}
+appName: ${{values.application_id}}
+repoUrl: https://github.com/kubriX-demo/${{values.team}}-${{values.application_id}}
+appNamespace:
+  create: true
+  labels:
+    kubrix.io/kyverno: kubevirt-rolebinding
+stages:
+  - name: "test"
+    requestedFreight:
+    - origin:
+        kind: Warehouse
+        name: warehouse-{{ .Values.appName }}
+      sources:
+        direct: true
+  - name: "prod"
+    requestedFreight:
+    - origin:
+        kind: Warehouse
+        name: warehouse-{{ .Values.appName }}
+      sources:
+        stages:
+        - test
