@@ -2,13 +2,14 @@ apiVersion: scaffolder.backstage.io/v1beta3
 kind: Template
 metadata:
   name: kubrix-kubevirt-template
-  title: kubevirt VMs Template
-  description: Run Demo VM n kubevirt provisoned with ArgoCD
+  title: kubevirt VMs Template with Kargo Pipelines
+  description: Run Demo VM n kubevirt provisoned with ArgoCD and promoted with KArgo
   tags:
     - virtualization
     - metalstack
     - kubevirt
     - kubrix
+    - kargo
 spec:
   owner: group:kubrix
   type: system
@@ -17,7 +18,6 @@ spec:
     - title: Provide information on this application
       required:
         - application_id
-        - environments
         - description
         - cores
         - memory
@@ -25,7 +25,6 @@ spec:
         - os
         - initpwd
         - team
-        - argocdtarget
       properties:
         application_id:
           title: Application Name
@@ -43,18 +42,6 @@ spec:
           title: Size of Memory in Gi
           type: string       
           default: '4Gi'
-        environments:
-          title: Environments
-          type: array
-          description: Environments (Stages) needed by this vm, min 1. needed!
-          items:
-            type: string
-            enum: 
-              - prod
-              - test
-              - qa
-          uniqueItems: true
-          ui:widget: checkboxes
         disk:
           title: Disk size of VM
           type: string
@@ -83,12 +70,10 @@ spec:
           description: Owning Team of this VM, target repo for argo application
           ui:field: MyGroupsPicker
           ui:options: {}
-        argocdtarget:
-          title: argocd target directory
-          type: string
-          description: Directory where argo application manifest is beeing deployed in team repo
-          default: k3d-apps
-
+        fqdn:
+          title: FQDN
+          type: string       
+          default: 'demo.kubrix.cloud'
     - title: Choose Location
       required:
         - repoUrl
@@ -98,14 +83,18 @@ spec:
           type: string
           ui:field: RepoUrlPicker
           ui:options:
+            allowedHosts:
+              - github.com
+            allowedOwners:
+              - kubriX-demo
             requestUserCredentials:
               secretsKey: USER_OAUTH_TOKEN
               additionalScopes:
                 github: 
                   - workflow
                   - user
-            allowedHosts:
-              - github.com
+            allowedRepos:
+              - will-be-autocomplete-by-template
   steps:          
     - id: catalogFetch
       name: Fetch Context
@@ -125,20 +114,21 @@ spec:
       input:
         url: ./kubevirt-gitops
         targetPath: ./kubevirt-gitops
-        copyWithoutRender: []
+        copyWithoutTemplating: 
+          - .github/workflows/branch.yaml
         values:
           application_id: ${{ parameters.application_id }}
           description: ${{ parameters.description }}
           team: ${{ steps['catalogFetchGroup'].output.entity.metadata.name }}
-          environments: ${{ parameters.environments }}
           cores: ${{ parameters.cores }}
           memory: ${{ parameters.memory }}
           os: ${{ steps['catalogFetch'].output.entity.metadata.name }}
           disk: ${{ parameters.disk }}
           initpwd: ${{ parameters.initpwd }}
+          fqdn: ${{ parameters.fqdn }}
           repoUrl: ${{ parameters.repoUrl }}
-          repoUrlRepo: ${{ (parameters.repoUrl | parseRepoUrl)["repo"] }}
-          repoUrlowner: ${{ (parameters.repoUrl | parseRepoUrl)["owner"] }}
+          repoUrlRepo: ${{ steps['catalogFetchGroup'].output.entity.metadata.name }}-${{ parameters.application_id }}
+          repoUrlowner: kubriX-demo
           sshkey: ${{ parameters.sshkey }}
 
     - id: publish-gitopsreposetup
@@ -148,8 +138,9 @@ spec:
         sourcePath: ./kubevirt-gitops
         allowedHosts: ['github.com']
         description: This is ${{ parameters.application_id }}
-        repoUrl: ${{ parameters.repoUrl }}
+        repoUrl: github.com?repo=${{ steps['catalogFetchGroup'].output.entity.metadata.name }}-${{ parameters.application_id }}&owner=kubriX-demo
         token: ${{ secrets.USER_OAUTH_TOKEN }}
+        fqdn: ${{ parameters.fqdn }}
         gitAuthorName: ${{ user.entity.metadata.name }}
         gitAuthorEmail: ${{ user.entity.spec.profile.email }}
         repoVisibility: public
@@ -157,37 +148,6 @@ spec:
         protectDefaultBranch: false
         defaultBranch: main
         
-    - id: template-applicationsetup
-      name: Fetch Namespacesetup Skeleton + Template
-      action: fetch:template
-      input:
-        url: ./skeleton/applicationsetup
-        targetPath: ./applicationsetup
-        copyWithoutRender: []
-        values:
-          application_id: ${{ parameters.application_id }}
-          description: ${{ parameters.description }}
-          team: ${{ steps['catalogFetchGroup'].output.entity.metadata.name }}
-          repoUrlRepo: ${{ (parameters.repoUrl | parseRepoUrl)["repo"] }}
-          repoUrlowner: ${{ (parameters.repoUrl | parseRepoUrl)["owner"] }}
-          environments: ${{ parameters.environments }}
-          argocdtarget: ${{ parameters.argocdtarget }}
-
-    - id: pull-request-applicationsetup
-      name: make a pr to team repo
-      action: publish:github:pull-request
-      input:
-        sourcePath: ./applicationsetup
-        targetPath: '.'
-        repoUrl: github.com?repo=${{ steps['catalogFetchGroup'].output.entity.metadata.name }}-apps&owner=kubriX-demo
-        branchName: ${{ parameters.application_id }}
-        title: argo application and system config for ${{ parameters.application_id }}
-        description: argo application and system config for ${{ parameters.application_id }}
-        token: ${{ secrets.USER_OAUTH_TOKEN }}
-        gitAuthorName: ${{ user.entity.metadata.name }}
-        gitAuthorEmail: ${{ user.entity.spec.profile.email }}
-        update: true
-
     - id: register
       name: Register Catalog
       action: catalog:register
