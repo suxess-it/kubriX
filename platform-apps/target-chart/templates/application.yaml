@@ -55,8 +55,8 @@ spec:
         {{- toYaml . | nindent 6 }}
       {{- end }}
     {{- with .ignoreDifferences }}
-    ignoreDifferences:
-        {{- toYaml . | nindent 6 }}
+  ignoreDifferences:
+        {{- toYaml . | nindent 4 }}
     {{- end }}
 ---
 {{- end }}
