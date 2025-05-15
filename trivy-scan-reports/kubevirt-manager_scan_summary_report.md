@@ -168,7 +168,7 @@
 <h4>No Misconfigurations found</h4>
 
 <h3>Target <code>kubevirtmanager/kubevirt-manager:1.5.0 (alpine 3.20.5)</code></h3>
-<h4>Vulnerabilities (9)</h4>
+<h4>Vulnerabilities (11)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -218,6 +218,20 @@
         <td>HIGH</td>
         <td>2.12.7-r0</td>
         <td>2.12.7-r2</td>
+    </tr>
+    <tr>
+        <td><code>libxml2</code></td>
+        <td>CVE-2025-32414</td>
+        <td>HIGH</td>
+        <td>2.12.7-r0</td>
+        <td>2.12.7-r3</td>
+    </tr>
+    <tr>
+        <td><code>libxml2</code></td>
+        <td>CVE-2025-32415</td>
+        <td>HIGH</td>
+        <td>2.12.7-r0</td>
+        <td>2.12.7-r3</td>
     </tr>
     <tr>
         <td><code>libxslt</code></td>
