@@ -1,6 +1,6 @@
 
 <h3>Target <code>registry.k8s.io/ingress-nginx/controller:v1.12.1@sha256:d2fbc4ec70d8aa2050dd91a91506e998765e86c96f32cffb56c503c9c34eed5b (alpine 3.21.3)</code></h3>
-<h4>Vulnerabilities (2)</h4>
+<h4>Vulnerabilities (4)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -15,6 +15,20 @@
         <td>HIGH</td>
         <td>1.34.3-r0</td>
         <td>1.34.5-r0</td>
+    </tr>
+    <tr>
+        <td><code>libxml2</code></td>
+        <td>CVE-2025-32414</td>
+        <td>HIGH</td>
+        <td>2.13.4-r5</td>
+        <td>2.13.4-r6</td>
+    </tr>
+    <tr>
+        <td><code>libxml2</code></td>
+        <td>CVE-2025-32415</td>
+        <td>HIGH</td>
+        <td>2.13.4-r5</td>
+        <td>2.13.4-r6</td>
     </tr>
     <tr>
         <td><code>xz-libs</code></td>
