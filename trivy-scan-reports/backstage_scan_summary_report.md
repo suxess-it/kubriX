@@ -158,7 +158,7 @@
         <td>CVE-2024-26739</td>
         <td>HIGH</td>
         <td>6.1.128-1</td>
-        <td></td>
+        <td>6.1.137-1</td>
     </tr>
     <tr>
         <td><code>linux-libc-dev</code></td>
@@ -774,7 +774,7 @@
         <td>CVE-2025-22020</td>
         <td>HIGH</td>
         <td>6.1.128-1</td>
-        <td></td>
+        <td>6.1.133-1</td>
     </tr>
     <tr>
         <td><code>linux-libc-dev</code></td>
