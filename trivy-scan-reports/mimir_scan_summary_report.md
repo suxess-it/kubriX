@@ -1,29 +1,6 @@
 
 <h3>Target <code>docker.io/nginxinc/nginx-unprivileged:1.27-alpine (alpine 3.21.3)</code></h3>
-<h4>Vulnerabilities (2)</h4>
-<table>
-    <tr>
-        <th>Package</th>
-        <th>ID</th>
-        <th>Severity</th>
-        <th>Installed Version</th>
-        <th>Fixed Version</th>
-    </tr>
-    <tr>
-        <td><code>libxml2</code></td>
-        <td>CVE-2025-32414</td>
-        <td>HIGH</td>
-        <td>2.13.4-r5</td>
-        <td>2.13.4-r6</td>
-    </tr>
-    <tr>
-        <td><code>libxml2</code></td>
-        <td>CVE-2025-32415</td>
-        <td>HIGH</td>
-        <td>2.13.4-r5</td>
-        <td>2.13.4-r6</td>
-    </tr>
-</table>
+<h4>No Vulnerabilities found</h4>
 <h4>No Misconfigurations found</h4>
 
 <h3>Target <code>grafana/mimir:2.15.0 (debian 12.8)</code></h3>
