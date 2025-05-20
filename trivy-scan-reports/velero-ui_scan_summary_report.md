@@ -1,6 +1,6 @@
 
 <h3>Target <code>docker.io/dserio83/velero-api:0.2.4 (debian 12.10)</code></h3>
-<h4>Vulnerabilities (7)</h4>
+<h4>Vulnerabilities (9)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -52,6 +52,20 @@
         <td>5.36.0-7+deb12u2</td>
     </tr>
     <tr>
+        <td><code>python3-pkg-resources</code></td>
+        <td>CVE-2025-47273</td>
+        <td>HIGH</td>
+        <td>66.1.1-1+deb12u1</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>python3-setuptools</code></td>
+        <td>CVE-2025-47273</td>
+        <td>HIGH</td>
+        <td>66.1.1-1+deb12u1</td>
+        <td></td>
+    </tr>
+    <tr>
         <td><code>zlib1g</code></td>
         <td>CVE-2023-45853</td>
         <td>CRITICAL</td>
@@ -61,7 +75,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>Python</code></h3>
-<h4>Vulnerabilities (2)</h4>
+<h4>Vulnerabilities (3)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -83,6 +97,13 @@
         <td>HIGH</td>
         <td>65.5.1</td>
         <td>70.0.0</td>
+    </tr>
+    <tr>
+        <td><code>setuptools</code></td>
+        <td>CVE-2025-47273</td>
+        <td>HIGH</td>
+        <td>65.5.1</td>
+        <td>78.1.1</td>
     </tr>
 </table>
 <h4>No Misconfigurations found</h4>
@@ -250,7 +271,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>Python</code></h3>
-<h4>Vulnerabilities (2)</h4>
+<h4>Vulnerabilities (3)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -272,6 +293,13 @@
         <td>HIGH</td>
         <td>65.5.1</td>
         <td>70.0.0</td>
+    </tr>
+    <tr>
+        <td><code>setuptools</code></td>
+        <td>CVE-2025-47273</td>
+        <td>HIGH</td>
+        <td>65.5.1</td>
+        <td>78.1.1</td>
     </tr>
 </table>
 <h4>No Misconfigurations found</h4>

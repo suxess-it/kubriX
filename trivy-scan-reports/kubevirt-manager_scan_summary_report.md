@@ -224,14 +224,14 @@
         <td>CVE-2025-32414</td>
         <td>HIGH</td>
         <td>2.12.7-r0</td>
-        <td>2.12.7-r3</td>
+        <td>2.12.10-r0</td>
     </tr>
     <tr>
         <td><code>libxml2</code></td>
         <td>CVE-2025-32415</td>
         <td>HIGH</td>
         <td>2.12.7-r0</td>
-        <td>2.12.7-r3</td>
+        <td>2.12.10-r0</td>
     </tr>
     <tr>
         <td><code>libxslt</code></td>
