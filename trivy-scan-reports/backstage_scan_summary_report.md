@@ -4,7 +4,7 @@
 <h4>No Misconfigurations found</h4>
 
 <h3>Target <code>ghcr.io/suxess-it/sx-backstage:v1.32.6 (debian 12.9)</code></h3>
-<h4>Vulnerabilities (134)</h4>
+<h4>Vulnerabilities (150)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -12,6 +12,34 @@
         <th>Severity</th>
         <th>Installed Version</th>
         <th>Fixed Version</th>
+    </tr>
+    <tr>
+        <td><code>libc-bin</code></td>
+        <td>CVE-2025-4802</td>
+        <td>HIGH</td>
+        <td>2.36-9+deb12u9</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>libc-dev-bin</code></td>
+        <td>CVE-2025-4802</td>
+        <td>HIGH</td>
+        <td>2.36-9+deb12u9</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>libc6</code></td>
+        <td>CVE-2025-4802</td>
+        <td>HIGH</td>
+        <td>2.36-9+deb12u9</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>libc6-dev</code></td>
+        <td>CVE-2025-4802</td>
+        <td>HIGH</td>
+        <td>2.36-9+deb12u9</td>
+        <td></td>
     </tr>
     <tr>
         <td><code>libexpat1</code></td>
@@ -603,6 +631,20 @@
     </tr>
     <tr>
         <td><code>linux-libc-dev</code></td>
+        <td>CVE-2025-21759</td>
+        <td>HIGH</td>
+        <td>6.1.128-1</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>linux-libc-dev</code></td>
+        <td>CVE-2025-21761</td>
+        <td>HIGH</td>
+        <td>6.1.128-1</td>
+        <td>6.1.129-1</td>
+    </tr>
+    <tr>
+        <td><code>linux-libc-dev</code></td>
         <td>CVE-2025-21764</td>
         <td>HIGH</td>
         <td>6.1.128-1</td>
@@ -639,6 +681,13 @@
     <tr>
         <td><code>linux-libc-dev</code></td>
         <td>CVE-2025-21794</td>
+        <td>HIGH</td>
+        <td>6.1.128-1</td>
+        <td>6.1.129-1</td>
+    </tr>
+    <tr>
+        <td><code>linux-libc-dev</code></td>
+        <td>CVE-2025-21796</td>
         <td>HIGH</td>
         <td>6.1.128-1</td>
         <td>6.1.129-1</td>
@@ -855,6 +904,90 @@
     </tr>
     <tr>
         <td><code>linux-libc-dev</code></td>
+        <td>CVE-2025-37892</td>
+        <td>HIGH</td>
+        <td>6.1.128-1</td>
+        <td>6.1.135-1</td>
+    </tr>
+    <tr>
+        <td><code>linux-libc-dev</code></td>
+        <td>CVE-2025-37897</td>
+        <td>HIGH</td>
+        <td>6.1.128-1</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>linux-libc-dev</code></td>
+        <td>CVE-2025-37909</td>
+        <td>HIGH</td>
+        <td>6.1.128-1</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>linux-libc-dev</code></td>
+        <td>CVE-2025-37913</td>
+        <td>HIGH</td>
+        <td>6.1.128-1</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>linux-libc-dev</code></td>
+        <td>CVE-2025-37914</td>
+        <td>HIGH</td>
+        <td>6.1.128-1</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>linux-libc-dev</code></td>
+        <td>CVE-2025-37915</td>
+        <td>HIGH</td>
+        <td>6.1.128-1</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>linux-libc-dev</code></td>
+        <td>CVE-2025-37920</td>
+        <td>HIGH</td>
+        <td>6.1.128-1</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>linux-libc-dev</code></td>
+        <td>CVE-2025-37923</td>
+        <td>HIGH</td>
+        <td>6.1.128-1</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>linux-libc-dev</code></td>
+        <td>CVE-2025-37928</td>
+        <td>HIGH</td>
+        <td>6.1.128-1</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>linux-libc-dev</code></td>
+        <td>CVE-2025-37932</td>
+        <td>HIGH</td>
+        <td>6.1.128-1</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>linux-libc-dev</code></td>
+        <td>CVE-2025-37938</td>
+        <td>HIGH</td>
+        <td>6.1.128-1</td>
+        <td>6.1.137-1</td>
+    </tr>
+    <tr>
+        <td><code>linux-libc-dev</code></td>
+        <td>CVE-2025-37970</td>
+        <td>HIGH</td>
+        <td>6.1.128-1</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>linux-libc-dev</code></td>
         <td>CVE-2025-39735</td>
         <td>HIGH</td>
         <td>6.1.128-1</td>
@@ -908,27 +1041,6 @@
         <td>HIGH</td>
         <td>5.36.0-7+deb12u1</td>
         <td>5.36.0-7+deb12u2</td>
-    </tr>
-    <tr>
-        <td><code>python3-pkg-resources</code></td>
-        <td>CVE-2025-47273</td>
-        <td>HIGH</td>
-        <td>66.1.1-1+deb12u1</td>
-        <td></td>
-    </tr>
-    <tr>
-        <td><code>python3-setuptools</code></td>
-        <td>CVE-2025-47273</td>
-        <td>HIGH</td>
-        <td>66.1.1-1+deb12u1</td>
-        <td></td>
-    </tr>
-    <tr>
-        <td><code>python3-setuptools-whl</code></td>
-        <td>CVE-2025-47273</td>
-        <td>HIGH</td>
-        <td>66.1.1-1+deb12u1</td>
-        <td></td>
     </tr>
     <tr>
         <td><code>xz-utils</code></td>
@@ -1017,14 +1129,14 @@
         <td>CVE-2024-12905</td>
         <td>HIGH</td>
         <td>2.0.1</td>
-        <td>1.16.4, 2.1.2, 3.0.8</td>
+        <td>1.16.4, 2.1.2, 3.0.7</td>
     </tr>
     <tr>
         <td><code>tar-fs</code></td>
         <td>CVE-2024-12905</td>
         <td>HIGH</td>
         <td>2.0.1</td>
-        <td>1.16.4, 2.1.2, 3.0.8</td>
+        <td>1.16.4, 2.1.2, 3.0.7</td>
     </tr>
     <tr>
         <td><code>xml-crypto</code></td>

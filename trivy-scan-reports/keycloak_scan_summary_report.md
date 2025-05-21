@@ -1,6 +1,6 @@
 
 <h3>Target <code>docker.io/bitnami/keycloak:26.1.5-debian-12-r0 (debian 12.10)</code></h3>
-<h4>Vulnerabilities (10)</h4>
+<h4>Vulnerabilities (12)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -8,6 +8,20 @@
         <th>Severity</th>
         <th>Installed Version</th>
         <th>Fixed Version</th>
+    </tr>
+    <tr>
+        <td><code>libc-bin</code></td>
+        <td>CVE-2025-4802</td>
+        <td>HIGH</td>
+        <td>2.36-9+deb12u10</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>libc6</code></td>
+        <td>CVE-2025-4802</td>
+        <td>HIGH</td>
+        <td>2.36-9+deb12u10</td>
+        <td></td>
     </tr>
     <tr>
         <td><code>libldap-2.5-0</code></td>
@@ -117,7 +131,7 @@
 <h4>No Misconfigurations found</h4>
 
 <h3>Target <code>docker.io/bitnami/postgresql:17.4.0-debian-12-r15 (debian 12.10)</code></h3>
-<h4>Vulnerabilities (16)</h4>
+<h4>Vulnerabilities (20)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -125,6 +139,27 @@
         <th>Severity</th>
         <th>Installed Version</th>
         <th>Fixed Version</th>
+    </tr>
+    <tr>
+        <td><code>libc-bin</code></td>
+        <td>CVE-2025-4802</td>
+        <td>HIGH</td>
+        <td>2.36-9+deb12u10</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>libc-l10n</code></td>
+        <td>CVE-2025-4802</td>
+        <td>HIGH</td>
+        <td>2.36-9+deb12u10</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>libc6</code></td>
+        <td>CVE-2025-4802</td>
+        <td>HIGH</td>
+        <td>2.36-9+deb12u10</td>
+        <td></td>
     </tr>
     <tr>
         <td><code>libldap-2.5-0</code></td>
@@ -187,6 +222,13 @@
         <td>CVE-2025-32415</td>
         <td>HIGH</td>
         <td>2.9.14+dfsg-1.3~deb12u1</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>locales</code></td>
+        <td>CVE-2025-4802</td>
+        <td>HIGH</td>
+        <td>2.36-9+deb12u10</td>
         <td></td>
     </tr>
     <tr>

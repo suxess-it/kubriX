@@ -10,6 +10,20 @@
         <th>Fixed Version</th>
     </tr>
     <tr>
+        <td><code>libc-bin</code></td>
+        <td>CVE-2025-4802</td>
+        <td>HIGH</td>
+        <td>2.36-9+deb12u10</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>libc6</code></td>
+        <td>CVE-2025-4802</td>
+        <td>HIGH</td>
+        <td>2.36-9+deb12u10</td>
+        <td></td>
+    </tr>
+    <tr>
         <td><code>libexpat1</code></td>
         <td>CVE-2023-52425</td>
         <td>HIGH</td>
@@ -50,20 +64,6 @@
         <td>HIGH</td>
         <td>5.36.0-7+deb12u1</td>
         <td>5.36.0-7+deb12u2</td>
-    </tr>
-    <tr>
-        <td><code>python3-pkg-resources</code></td>
-        <td>CVE-2025-47273</td>
-        <td>HIGH</td>
-        <td>66.1.1-1+deb12u1</td>
-        <td></td>
-    </tr>
-    <tr>
-        <td><code>python3-setuptools</code></td>
-        <td>CVE-2025-47273</td>
-        <td>HIGH</td>
-        <td>66.1.1-1+deb12u1</td>
-        <td></td>
     </tr>
     <tr>
         <td><code>zlib1g</code></td>
@@ -161,7 +161,7 @@
 <h4>No Misconfigurations found</h4>
 
 <h3>Target <code>docker.io/dserio83/velero-watchdog:0.1.7 (debian 12.9)</code></h3>
-<h4>Vulnerabilities (14)</h4>
+<h4>Vulnerabilities (16)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -169,6 +169,20 @@
         <th>Severity</th>
         <th>Installed Version</th>
         <th>Fixed Version</th>
+    </tr>
+    <tr>
+        <td><code>libc-bin</code></td>
+        <td>CVE-2025-4802</td>
+        <td>HIGH</td>
+        <td>2.36-9+deb12u9</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>libc6</code></td>
+        <td>CVE-2025-4802</td>
+        <td>HIGH</td>
+        <td>2.36-9+deb12u9</td>
+        <td></td>
     </tr>
     <tr>
         <td><code>libexpat1</code></td>
