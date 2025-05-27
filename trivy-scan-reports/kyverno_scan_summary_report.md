@@ -1,6 +1,6 @@
 
 <h3>Target <code>bitnami/kubectl:1.30.2 (debian 12.6)</code></h3>
-<h4>Vulnerabilities (34)</h4>
+<h4>Vulnerabilities (35)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -126,6 +126,13 @@
         <td>CVE-2024-8176</td>
         <td>HIGH</td>
         <td>2.5.0-1</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>libicu72</code></td>
+        <td>CVE-2025-5222</td>
+        <td>HIGH</td>
+        <td>72.1-3</td>
         <td></td>
     </tr>
     <tr>

@@ -4,7 +4,7 @@
 <h4>No Misconfigurations found</h4>
 
 <h3>Target <code>ghcr.io/suxess-it/sx-backstage:v1.32.6 (debian 12.9)</code></h3>
-<h4>Vulnerabilities (177)</h4>
+<h4>Vulnerabilities (182)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -645,6 +645,13 @@
     </tr>
     <tr>
         <td><code>linux-libc-dev</code></td>
+        <td>CVE-2025-21762</td>
+        <td>HIGH</td>
+        <td>6.1.128-1</td>
+        <td>6.1.129-1</td>
+    </tr>
+    <tr>
+        <td><code>linux-libc-dev</code></td>
         <td>CVE-2025-21764</td>
         <td>HIGH</td>
         <td>6.1.128-1</td>
@@ -726,6 +733,13 @@
         <td>HIGH</td>
         <td>6.1.128-1</td>
         <td></td>
+    </tr>
+    <tr>
+        <td><code>linux-libc-dev</code></td>
+        <td>CVE-2025-21887</td>
+        <td>HIGH</td>
+        <td>6.1.128-1</td>
+        <td>6.1.133-1</td>
     </tr>
     <tr>
         <td><code>linux-libc-dev</code></td>
@@ -841,6 +855,13 @@
     </tr>
     <tr>
         <td><code>linux-libc-dev</code></td>
+        <td>CVE-2025-22026</td>
+        <td>HIGH</td>
+        <td>6.1.128-1</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>linux-libc-dev</code></td>
         <td>CVE-2025-22038</td>
         <td>HIGH</td>
         <td>6.1.128-1</td>
@@ -876,7 +897,28 @@
     </tr>
     <tr>
         <td><code>linux-libc-dev</code></td>
+        <td>CVE-2025-22113</td>
+        <td>HIGH</td>
+        <td>6.1.128-1</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>linux-libc-dev</code></td>
+        <td>CVE-2025-22121</td>
+        <td>HIGH</td>
+        <td>6.1.128-1</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>linux-libc-dev</code></td>
         <td>CVE-2025-22126</td>
+        <td>HIGH</td>
+        <td>6.1.128-1</td>
+        <td>6.1.135-1</td>
+    </tr>
+    <tr>
+        <td><code>linux-libc-dev</code></td>
+        <td>CVE-2025-23150</td>
         <td>HIGH</td>
         <td>6.1.128-1</td>
         <td>6.1.135-1</td>
@@ -926,13 +968,6 @@
     <tr>
         <td><code>linux-libc-dev</code></td>
         <td>CVE-2025-37897</td>
-        <td>HIGH</td>
-        <td>6.1.128-1</td>
-        <td>6.1.140-1</td>
-    </tr>
-    <tr>
-        <td><code>linux-libc-dev</code></td>
-        <td>CVE-2025-37902</td>
         <td>HIGH</td>
         <td>6.1.128-1</td>
         <td>6.1.140-1</td>
