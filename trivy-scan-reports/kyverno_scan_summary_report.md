@@ -260,19 +260,83 @@
 <h4>No Vulnerabilities found</h4>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>opt/bitnami/common/.spdx-yq.spdx</code></h3>
-<h4>No Vulnerabilities found</h4>
+<h4>Vulnerabilities (1)</h4>
+<table>
+    <tr>
+        <th>Package</th>
+        <th>ID</th>
+        <th>Severity</th>
+        <th>Installed Version</th>
+        <th>Fixed Version</th>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2024-34156</td>
+        <td>HIGH</td>
+        <td>1.21.12</td>
+        <td>1.22.7, 1.23.1</td>
+    </tr>
+</table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>opt/bitnami/common/bin/yq</code></h3>
-<h4>No Vulnerabilities found</h4>
+<h4>Vulnerabilities (1)</h4>
+<table>
+    <tr>
+        <th>Package</th>
+        <th>ID</th>
+        <th>Severity</th>
+        <th>Installed Version</th>
+        <th>Fixed Version</th>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2024-34156</td>
+        <td>HIGH</td>
+        <td>v1.21.12</td>
+        <td>1.22.7, 1.23.1</td>
+    </tr>
+</table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>opt/bitnami/kubectl</code></h3>
 <h4>No Vulnerabilities found</h4>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>opt/bitnami/kubectl/.spdx-kubectl.spdx</code></h3>
-<h4>No Vulnerabilities found</h4>
+<h4>Vulnerabilities (1)</h4>
+<table>
+    <tr>
+        <th>Package</th>
+        <th>ID</th>
+        <th>Severity</th>
+        <th>Installed Version</th>
+        <th>Fixed Version</th>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2024-34156</td>
+        <td>HIGH</td>
+        <td>1.22.4</td>
+        <td>1.22.7, 1.23.1</td>
+    </tr>
+</table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>opt/bitnami/kubectl/bin/kubectl</code></h3>
-<h4>No Vulnerabilities found</h4>
+<h4>Vulnerabilities (1)</h4>
+<table>
+    <tr>
+        <th>Package</th>
+        <th>ID</th>
+        <th>Severity</th>
+        <th>Installed Version</th>
+        <th>Fixed Version</th>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2024-34156</td>
+        <td>HIGH</td>
+        <td>v1.22.4</td>
+        <td>1.22.7, 1.23.1</td>
+    </tr>
+</table>
 <h4>No Misconfigurations found</h4>
 
 <h3>Trivy Returned Empty Report</h3>
