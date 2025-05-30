@@ -409,7 +409,7 @@
 <h4>No Misconfigurations found</h4>
 
 <h3>Target <code>docker.io/falcosecurity/falco:0.40.0-debian (debian 12.9)</code></h3>
-<h4>Vulnerabilities (8)</h4>
+<h4>Vulnerabilities (10)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -452,6 +452,20 @@
         <td>HIGH</td>
         <td>5.4.1-0.2</td>
         <td>5.4.1-1</td>
+    </tr>
+    <tr>
+        <td><code>libsystemd0</code></td>
+        <td>CVE-2025-4598</td>
+        <td>HIGH</td>
+        <td>252.33-1~deb12u1</td>
+        <td>252.38-1~deb12u1</td>
+    </tr>
+    <tr>
+        <td><code>libudev1</code></td>
+        <td>CVE-2025-4598</td>
+        <td>HIGH</td>
+        <td>252.33-1~deb12u1</td>
+        <td>252.38-1~deb12u1</td>
     </tr>
     <tr>
         <td><code>perl-base</code></td>

@@ -1,6 +1,6 @@
 
 <h3>Target <code>bitnami/kubectl:1.30.2 (debian 12.6)</code></h3>
-<h4>Vulnerabilities (35)</h4>
+<h4>Vulnerabilities (37)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -162,6 +162,20 @@
         <td>HIGH</td>
         <td>5.36.0-7+deb12u1</td>
         <td>5.36.0-7+deb12u2</td>
+    </tr>
+    <tr>
+        <td><code>libsystemd0</code></td>
+        <td>CVE-2025-4598</td>
+        <td>HIGH</td>
+        <td>252.26-1~deb12u2</td>
+        <td>252.38-1~deb12u1</td>
+    </tr>
+    <tr>
+        <td><code>libudev1</code></td>
+        <td>CVE-2025-4598</td>
+        <td>HIGH</td>
+        <td>252.26-1~deb12u2</td>
+        <td>252.38-1~deb12u1</td>
     </tr>
     <tr>
         <td><code>libxml2</code></td>

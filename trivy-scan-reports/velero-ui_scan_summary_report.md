@@ -1,6 +1,6 @@
 
 <h3>Target <code>docker.io/dserio83/velero-api:0.2.4 (debian 12.10)</code></h3>
-<h4>Vulnerabilities (9)</h4>
+<h4>Vulnerabilities (11)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -50,6 +50,20 @@
         <td>HIGH</td>
         <td>5.4.1-0.2</td>
         <td>5.4.1-1</td>
+    </tr>
+    <tr>
+        <td><code>libsystemd0</code></td>
+        <td>CVE-2025-4598</td>
+        <td>HIGH</td>
+        <td>252.36-1~deb12u1</td>
+        <td>252.38-1~deb12u1</td>
+    </tr>
+    <tr>
+        <td><code>libudev1</code></td>
+        <td>CVE-2025-4598</td>
+        <td>HIGH</td>
+        <td>252.36-1~deb12u1</td>
+        <td>252.38-1~deb12u1</td>
     </tr>
     <tr>
         <td><code>perl-base</code></td>
@@ -161,7 +175,7 @@
 <h4>No Misconfigurations found</h4>
 
 <h3>Target <code>docker.io/dserio83/velero-watchdog:0.1.7 (debian 12.9)</code></h3>
-<h4>Vulnerabilities (16)</h4>
+<h4>Vulnerabilities (18)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -225,6 +239,20 @@
         <td>HIGH</td>
         <td>5.36.0-7+deb12u1</td>
         <td>5.36.0-7+deb12u2</td>
+    </tr>
+    <tr>
+        <td><code>libsystemd0</code></td>
+        <td>CVE-2025-4598</td>
+        <td>HIGH</td>
+        <td>252.33-1~deb12u1</td>
+        <td>252.38-1~deb12u1</td>
+    </tr>
+    <tr>
+        <td><code>libudev1</code></td>
+        <td>CVE-2025-4598</td>
+        <td>HIGH</td>
+        <td>252.33-1~deb12u1</td>
+        <td>252.38-1~deb12u1</td>
     </tr>
     <tr>
         <td><code>perl</code></td>
