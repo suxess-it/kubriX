@@ -1,6 +1,6 @@
 
 <h3>Target <code>docker.io/bitnami/keycloak:26.1.5-debian-12-r0 (debian 12.10)</code></h3>
-<h4>Vulnerabilities (14)</h4>
+<h4>Vulnerabilities (12)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -43,20 +43,6 @@
         <td>HIGH</td>
         <td>5.36.0-7+deb12u1</td>
         <td>5.36.0-7+deb12u2</td>
-    </tr>
-    <tr>
-        <td><code>libsystemd0</code></td>
-        <td>CVE-2025-4598</td>
-        <td>HIGH</td>
-        <td>252.36-1~deb12u1</td>
-        <td>252.38-1~deb12u1</td>
-    </tr>
-    <tr>
-        <td><code>libudev1</code></td>
-        <td>CVE-2025-4598</td>
-        <td>HIGH</td>
-        <td>252.36-1~deb12u1</td>
-        <td>252.38-1~deb12u1</td>
     </tr>
     <tr>
         <td><code>perl</code></td>
@@ -145,7 +131,7 @@
 <h4>No Misconfigurations found</h4>
 
 <h3>Target <code>docker.io/bitnami/postgresql:17.4.0-debian-12-r15 (debian 12.10)</code></h3>
-<h4>Vulnerabilities (23)</h4>
+<h4>Vulnerabilities (21)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -202,20 +188,6 @@
         <td>HIGH</td>
         <td>5.36.0-7+deb12u1</td>
         <td>5.36.0-7+deb12u2</td>
-    </tr>
-    <tr>
-        <td><code>libsystemd0</code></td>
-        <td>CVE-2025-4598</td>
-        <td>HIGH</td>
-        <td>252.36-1~deb12u1</td>
-        <td>252.38-1~deb12u1</td>
-    </tr>
-    <tr>
-        <td><code>libudev1</code></td>
-        <td>CVE-2025-4598</td>
-        <td>HIGH</td>
-        <td>252.36-1~deb12u1</td>
-        <td>252.38-1~deb12u1</td>
     </tr>
     <tr>
         <td><code>libxml2</code></td>

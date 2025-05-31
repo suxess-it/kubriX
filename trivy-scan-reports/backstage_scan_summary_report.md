@@ -4,7 +4,7 @@
 <h4>No Misconfigurations found</h4>
 
 <h3>Target <code>ghcr.io/suxess-it/sx-backstage:v1.32.6 (debian 12.9)</code></h3>
-<h4>Vulnerabilities (185)</h4>
+<h4>Vulnerabilities (189)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -89,20 +89,6 @@
         <td>HIGH</td>
         <td>5.36.0-7+deb12u1</td>
         <td>5.36.0-7+deb12u2</td>
-    </tr>
-    <tr>
-        <td><code>libsystemd0</code></td>
-        <td>CVE-2025-4598</td>
-        <td>HIGH</td>
-        <td>252.33-1~deb12u1</td>
-        <td>252.38-1~deb12u1</td>
-    </tr>
-    <tr>
-        <td><code>libudev1</code></td>
-        <td>CVE-2025-4598</td>
-        <td>HIGH</td>
-        <td>252.33-1~deb12u1</td>
-        <td>252.38-1~deb12u1</td>
     </tr>
     <tr>
         <td><code>linux-libc-dev</code></td>
@@ -932,6 +918,13 @@
     </tr>
     <tr>
         <td><code>linux-libc-dev</code></td>
+        <td>CVE-2025-23141</td>
+        <td>HIGH</td>
+        <td>6.1.128-1</td>
+        <td>6.1.135-1</td>
+    </tr>
+    <tr>
+        <td><code>linux-libc-dev</code></td>
         <td>CVE-2025-23150</td>
         <td>HIGH</td>
         <td>6.1.128-1</td>
@@ -943,6 +936,13 @@
         <td>HIGH</td>
         <td>6.1.128-1</td>
         <td>6.1.135-1</td>
+    </tr>
+    <tr>
+        <td><code>linux-libc-dev</code></td>
+        <td>CVE-2025-37750</td>
+        <td>HIGH</td>
+        <td>6.1.128-1</td>
+        <td></td>
     </tr>
     <tr>
         <td><code>linux-libc-dev</code></td>
@@ -1230,6 +1230,34 @@
         <td>HIGH</td>
         <td>6.1.128-1</td>
         <td>6.1.140-1</td>
+    </tr>
+    <tr>
+        <td><code>linux-libc-dev</code></td>
+        <td>CVE-2025-37994</td>
+        <td>HIGH</td>
+        <td>6.1.128-1</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>linux-libc-dev</code></td>
+        <td>CVE-2025-37995</td>
+        <td>HIGH</td>
+        <td>6.1.128-1</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>linux-libc-dev</code></td>
+        <td>CVE-2025-37997</td>
+        <td>HIGH</td>
+        <td>6.1.128-1</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>linux-libc-dev</code></td>
+        <td>CVE-2025-37998</td>
+        <td>HIGH</td>
+        <td>6.1.128-1</td>
+        <td></td>
     </tr>
     <tr>
         <td><code>linux-libc-dev</code></td>
