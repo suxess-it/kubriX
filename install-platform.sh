@@ -343,7 +343,7 @@ target_chart_value_file="platform-apps/target-chart/values-$(echo ${KUBRIX_TARGE
 
 argocd_apps=$(cat $target_chart_value_file | awk '/^  - name:/ { printf "%s", "sx-"$3" "}' )
 # list apps which need some sort of special treatment in bootstrap
-argocd_apps_without_individual=$(cat $target_chart_value_file | egrep -Ev "backstage|kargo|team-onboarding" | awk '/^  - name:/ { printf "%s", "sx-"$3" "}' )
+argocd_apps_without_individual=$(cat $target_chart_value_file | egrep -Ev "backstage" | awk '/^  - name:/ { printf "%s", "sx-"$3" "}' )
 
 # max wait for 20 minutes until all apps except backstage and kargo are synced and healthy
 wait_until_apps_synced_healthy "${argocd_apps_without_individual}" "Synced" "Healthy" ${KUBRIX_BOOTSTRAP_MAX_WAIT_TIME:-1200}
@@ -353,14 +353,9 @@ kubectl apply -f platform-apps/charts/argocd/manual-secret/argocd-secret.yaml
 
 # if vault is part of this stack, upload token to vault
 if [[ $( echo $argocd_apps | grep sx-vault ) ]] ; then
-
-
-  echo "adding secrets in vault for sx-kargo and sx-team-onboarding ..."
   export VAULT_HOSTNAME=$(kubectl get ingress -o jsonpath='{.items[*].spec.rules[*].host}' -n vault)
   export VAULT_TOKEN=$(kubectl get secret -n vault vault-init -o=jsonpath='{.data.root_token}'  | base64 -d)
-  curl -k --header "X-Vault-Token:$VAULT_TOKEN" --request POST --data "{\"data\": {\"KUBRIX_ARGOCD_APPSET_TOKEN\": \"${KUBRIX_ARGOCD_APPSET_TOKEN}\", \"KUBRIX_KARGO_GIT_PASSWORD\": \"${KUBRIX_KARGO_GIT_PASSWORD}\", \"KUBRIX_KARGO_GIT_USERNAME\": \"${KUBRIX_KARGO_GIT_USERNAME}\"}}" https://${VAULT_HOSTNAME}/v1/kubrix-kv/data/demo/delivery
-  sleep 10
-  
+
   if [[ "${KUBRIX_TARGET_TYPE}" =~ ^KIND.* ]] ; then
   # due to issue #405 this step is needed for kind clusters
     export VAULT_CLIENTSECRET=$(kubectl get secret -n keycloak keycloak-client-credentials -o=jsonpath='{.data.vault}'  | base64 -d)
@@ -407,19 +402,6 @@ if [[ $( echo $argocd_apps | grep sx-vault ) ]] ; then
             fi
         done
     fi
-fi
-
-# if kargo is part of this stack, upload token to vault
-if [[ $( echo $argocd_apps | grep sx-kargo ) ]] ; then
-  kubectl delete ExternalSecret github-creds -n kargo
-  # check if kargo is synced and healthy for 5 minutes
-  wait_until_apps_synced_healthy "sx-kargo" "Synced" "Healthy" 300
-fi
-
-if [[ $( echo $argocd_apps | grep sx-team-onboarding ) ]] ; then
-  kubectl delete ExternalSecret github-creds -n kargo
-  # check if kargo is synced and healthy for 5 minutes
-  wait_until_apps_synced_healthy "sx-team-onboarding" "Synced" "Healthy" 300
 fi
   
 # if backstage is part of this stack, create the manual secret for backstage
