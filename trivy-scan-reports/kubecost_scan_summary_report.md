@@ -1,6 +1,6 @@
 
 <h3>Target <code>alpine/k8s:1.26.9 (alpine 3.18.4)</code></h3>
-<h4>Vulnerabilities (33)</h4>
+<h4>Vulnerabilities (35)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -157,6 +157,20 @@
         <td>2.11.8-r2</td>
     </tr>
     <tr>
+        <td><code>libxml2</code></td>
+        <td>CVE-2025-32414</td>
+        <td>HIGH</td>
+        <td>2.11.4-r0</td>
+        <td>2.11.8-r3</td>
+    </tr>
+    <tr>
+        <td><code>libxml2</code></td>
+        <td>CVE-2025-32415</td>
+        <td>HIGH</td>
+        <td>2.11.4-r0</td>
+        <td>2.11.8-r3</td>
+    </tr>
+    <tr>
         <td><code>nghttp2-libs</code></td>
         <td>CVE-2023-44487</td>
         <td>HIGH</td>
@@ -243,7 +257,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>Python</code></h3>
-<h4>Vulnerabilities (2)</h4>
+<h4>Vulnerabilities (3)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -265,6 +279,13 @@
         <td>HIGH</td>
         <td>65.5.0</td>
         <td>70.0.0</td>
+    </tr>
+    <tr>
+        <td><code>setuptools</code></td>
+        <td>CVE-2025-47273</td>
+        <td>HIGH</td>
+        <td>65.5.0</td>
+        <td>78.1.1</td>
     </tr>
 </table>
 <h4>No Misconfigurations found</h4>
@@ -1158,7 +1179,7 @@
 <h4>No Vulnerabilities found</h4>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>Python</code></h3>
-<h4>Vulnerabilities (1)</h4>
+<h4>Vulnerabilities (2)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -1173,6 +1194,13 @@
         <td>CRITICAL</td>
         <td>0.14.0</td>
         <td>0.16.0</td>
+    </tr>
+    <tr>
+        <td><code>setuptools</code></td>
+        <td>CVE-2025-47273</td>
+        <td>HIGH</td>
+        <td>75.8.2</td>
+        <td>78.1.1</td>
     </tr>
 </table>
 <h4>No Misconfigurations found</h4>

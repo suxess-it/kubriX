@@ -1,6 +1,6 @@
 
 <h3>Target <code>bitnami/kubectl:1.30.2 (debian 12.6)</code></h3>
-<h4>Vulnerabilities (32)</h4>
+<h4>Vulnerabilities (35)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -80,6 +80,20 @@
         <td>1:2.39.5-0+deb12u1</td>
     </tr>
     <tr>
+        <td><code>libc-bin</code></td>
+        <td>CVE-2025-4802</td>
+        <td>HIGH</td>
+        <td>2.36-9+deb12u7</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>libc6</code></td>
+        <td>CVE-2025-4802</td>
+        <td>HIGH</td>
+        <td>2.36-9+deb12u7</td>
+        <td></td>
+    </tr>
+    <tr>
         <td><code>libexpat1</code></td>
         <td>CVE-2024-45491</td>
         <td>CRITICAL</td>
@@ -112,6 +126,13 @@
         <td>CVE-2024-8176</td>
         <td>HIGH</td>
         <td>2.5.0-1</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>libicu72</code></td>
+        <td>CVE-2025-5222</td>
+        <td>HIGH</td>
+        <td>72.1-3</td>
         <td></td>
     </tr>
     <tr>
@@ -324,7 +345,7 @@
 <h4>No Vulnerabilities found</h4>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>ko-app/background-controller</code></h3>
-<h4>Vulnerabilities (3)</h4>
+<h4>Vulnerabilities (4)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -346,6 +367,13 @@
         <td>HIGH</td>
         <td>v5.2.1</td>
         <td>5.2.2</td>
+    </tr>
+    <tr>
+        <td><code>github.com/open-policy-agent/opa</code></td>
+        <td>CVE-2025-46569</td>
+        <td>HIGH</td>
+        <td>v0.68.0</td>
+        <td>1.4.0</td>
     </tr>
     <tr>
         <td><code>golang.org/x/crypto</code></td>
@@ -361,7 +389,7 @@
 <h4>No Vulnerabilities found</h4>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>ko-app/cleanup-controller</code></h3>
-<h4>Vulnerabilities (3)</h4>
+<h4>Vulnerabilities (4)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -385,6 +413,13 @@
         <td>5.2.2</td>
     </tr>
     <tr>
+        <td><code>github.com/open-policy-agent/opa</code></td>
+        <td>CVE-2025-46569</td>
+        <td>HIGH</td>
+        <td>v0.68.0</td>
+        <td>1.4.0</td>
+    </tr>
+    <tr>
         <td><code>golang.org/x/crypto</code></td>
         <td>CVE-2025-22869</td>
         <td>HIGH</td>
@@ -398,7 +433,7 @@
 <h4>No Vulnerabilities found</h4>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>ko-app/kubectl-kyverno</code></h3>
-<h4>Vulnerabilities (5)</h4>
+<h4>Vulnerabilities (6)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -436,6 +471,13 @@
         <td>5.2.2</td>
     </tr>
     <tr>
+        <td><code>github.com/open-policy-agent/opa</code></td>
+        <td>CVE-2025-46569</td>
+        <td>HIGH</td>
+        <td>v0.68.0</td>
+        <td>1.4.0</td>
+    </tr>
+    <tr>
         <td><code>golang.org/x/crypto</code></td>
         <td>CVE-2025-22869</td>
         <td>HIGH</td>
@@ -449,7 +491,7 @@
 <h4>No Vulnerabilities found</h4>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>ko-app/kyverno</code></h3>
-<h4>Vulnerabilities (3)</h4>
+<h4>Vulnerabilities (4)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -471,6 +513,13 @@
         <td>HIGH</td>
         <td>v5.2.1</td>
         <td>5.2.2</td>
+    </tr>
+    <tr>
+        <td><code>github.com/open-policy-agent/opa</code></td>
+        <td>CVE-2025-46569</td>
+        <td>HIGH</td>
+        <td>v0.68.0</td>
+        <td>1.4.0</td>
     </tr>
     <tr>
         <td><code>golang.org/x/crypto</code></td>
@@ -486,7 +535,7 @@
 <h4>No Vulnerabilities found</h4>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>ko-app/kyverno-init</code></h3>
-<h4>Vulnerabilities (3)</h4>
+<h4>Vulnerabilities (4)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -508,6 +557,13 @@
         <td>HIGH</td>
         <td>v5.2.1</td>
         <td>5.2.2</td>
+    </tr>
+    <tr>
+        <td><code>github.com/open-policy-agent/opa</code></td>
+        <td>CVE-2025-46569</td>
+        <td>HIGH</td>
+        <td>v0.68.0</td>
+        <td>1.4.0</td>
     </tr>
     <tr>
         <td><code>golang.org/x/crypto</code></td>
@@ -523,7 +579,7 @@
 <h4>No Vulnerabilities found</h4>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>ko-app/reports-controller</code></h3>
-<h4>Vulnerabilities (3)</h4>
+<h4>Vulnerabilities (4)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -545,6 +601,13 @@
         <td>HIGH</td>
         <td>v5.2.1</td>
         <td>5.2.2</td>
+    </tr>
+    <tr>
+        <td><code>github.com/open-policy-agent/opa</code></td>
+        <td>CVE-2025-46569</td>
+        <td>HIGH</td>
+        <td>v0.68.0</td>
+        <td>1.4.0</td>
     </tr>
     <tr>
         <td><code>golang.org/x/crypto</code></td>
