@@ -1,6 +1,6 @@
 
 <h3>Target <code>bitnami/kubectl:1.30.2 (debian 12.6)</code></h3>
-<h4>Vulnerabilities (35)</h4>
+<h4>Vulnerabilities (37)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -164,6 +164,13 @@
         <td>5.36.0-7+deb12u2</td>
     </tr>
     <tr>
+        <td><code>libssl3</code></td>
+        <td>CVE-2024-6119</td>
+        <td>HIGH</td>
+        <td>3.0.13-1~deb12u1</td>
+        <td>3.0.14-1~deb12u2</td>
+    </tr>
+    <tr>
         <td><code>libxml2</code></td>
         <td>CVE-2024-25062</td>
         <td>HIGH</td>
@@ -204,6 +211,13 @@
         <td>HIGH</td>
         <td>2.9.14+dfsg-1.3~deb12u1</td>
         <td></td>
+    </tr>
+    <tr>
+        <td><code>openssl</code></td>
+        <td>CVE-2024-6119</td>
+        <td>HIGH</td>
+        <td>3.0.13-1~deb12u1</td>
+        <td>3.0.14-1~deb12u2</td>
     </tr>
     <tr>
         <td><code>perl</code></td>
