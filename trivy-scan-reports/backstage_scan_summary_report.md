@@ -4,7 +4,7 @@
 <h4>No Misconfigurations found</h4>
 
 <h3>Target <code>ghcr.io/suxess-it/sx-backstage:v1.32.6 (debian 12.9)</code></h3>
-<h4>Vulnerabilities (188)</h4>
+<h4>Vulnerabilities (212)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -89,6 +89,90 @@
         <td>HIGH</td>
         <td>5.36.0-7+deb12u1</td>
         <td>5.36.0-7+deb12u2</td>
+    </tr>
+    <tr>
+        <td><code>libpython3.11</code></td>
+        <td>CVE-2024-12718</td>
+        <td>HIGH</td>
+        <td>3.11.2-6+deb12u5</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>libpython3.11</code></td>
+        <td>CVE-2025-4138</td>
+        <td>HIGH</td>
+        <td>3.11.2-6+deb12u5</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>libpython3.11</code></td>
+        <td>CVE-2025-4517</td>
+        <td>HIGH</td>
+        <td>3.11.2-6+deb12u5</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>libpython3.11-dev</code></td>
+        <td>CVE-2024-12718</td>
+        <td>HIGH</td>
+        <td>3.11.2-6+deb12u5</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>libpython3.11-dev</code></td>
+        <td>CVE-2025-4138</td>
+        <td>HIGH</td>
+        <td>3.11.2-6+deb12u5</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>libpython3.11-dev</code></td>
+        <td>CVE-2025-4517</td>
+        <td>HIGH</td>
+        <td>3.11.2-6+deb12u5</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>libpython3.11-minimal</code></td>
+        <td>CVE-2024-12718</td>
+        <td>HIGH</td>
+        <td>3.11.2-6+deb12u5</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>libpython3.11-minimal</code></td>
+        <td>CVE-2025-4138</td>
+        <td>HIGH</td>
+        <td>3.11.2-6+deb12u5</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>libpython3.11-minimal</code></td>
+        <td>CVE-2025-4517</td>
+        <td>HIGH</td>
+        <td>3.11.2-6+deb12u5</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>libpython3.11-stdlib</code></td>
+        <td>CVE-2024-12718</td>
+        <td>HIGH</td>
+        <td>3.11.2-6+deb12u5</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>libpython3.11-stdlib</code></td>
+        <td>CVE-2025-4138</td>
+        <td>HIGH</td>
+        <td>3.11.2-6+deb12u5</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>libpython3.11-stdlib</code></td>
+        <td>CVE-2025-4517</td>
+        <td>HIGH</td>
+        <td>3.11.2-6+deb12u5</td>
+        <td></td>
     </tr>
     <tr>
         <td><code>linux-libc-dev</code></td>
@@ -1307,6 +1391,90 @@
         <td>HIGH</td>
         <td>5.36.0-7+deb12u1</td>
         <td>5.36.0-7+deb12u2</td>
+    </tr>
+    <tr>
+        <td><code>python3.11</code></td>
+        <td>CVE-2024-12718</td>
+        <td>HIGH</td>
+        <td>3.11.2-6+deb12u5</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>python3.11</code></td>
+        <td>CVE-2025-4138</td>
+        <td>HIGH</td>
+        <td>3.11.2-6+deb12u5</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>python3.11</code></td>
+        <td>CVE-2025-4517</td>
+        <td>HIGH</td>
+        <td>3.11.2-6+deb12u5</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>python3.11-dev</code></td>
+        <td>CVE-2024-12718</td>
+        <td>HIGH</td>
+        <td>3.11.2-6+deb12u5</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>python3.11-dev</code></td>
+        <td>CVE-2025-4138</td>
+        <td>HIGH</td>
+        <td>3.11.2-6+deb12u5</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>python3.11-dev</code></td>
+        <td>CVE-2025-4517</td>
+        <td>HIGH</td>
+        <td>3.11.2-6+deb12u5</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>python3.11-minimal</code></td>
+        <td>CVE-2024-12718</td>
+        <td>HIGH</td>
+        <td>3.11.2-6+deb12u5</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>python3.11-minimal</code></td>
+        <td>CVE-2025-4138</td>
+        <td>HIGH</td>
+        <td>3.11.2-6+deb12u5</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>python3.11-minimal</code></td>
+        <td>CVE-2025-4517</td>
+        <td>HIGH</td>
+        <td>3.11.2-6+deb12u5</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>python3.11-venv</code></td>
+        <td>CVE-2024-12718</td>
+        <td>HIGH</td>
+        <td>3.11.2-6+deb12u5</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>python3.11-venv</code></td>
+        <td>CVE-2025-4138</td>
+        <td>HIGH</td>
+        <td>3.11.2-6+deb12u5</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>python3.11-venv</code></td>
+        <td>CVE-2025-4517</td>
+        <td>HIGH</td>
+        <td>3.11.2-6+deb12u5</td>
+        <td></td>
     </tr>
     <tr>
         <td><code>xz-utils</code></td>
