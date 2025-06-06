@@ -1,6 +1,6 @@
 
 <h3>Target <code>docker.io/bitnami/kubectl:1.31 (debian 12.8)</code></h3>
-<h4>Vulnerabilities (22)</h4>
+<h4>Vulnerabilities (27)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -17,8 +17,36 @@
         <td></td>
     </tr>
     <tr>
+        <td><code>libc-bin</code></td>
+        <td>CVE-2025-5702</td>
+        <td>HIGH</td>
+        <td>2.36-9+deb12u9</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>libc-bin</code></td>
+        <td>CVE-2025-5745</td>
+        <td>HIGH</td>
+        <td>2.36-9+deb12u9</td>
+        <td></td>
+    </tr>
+    <tr>
         <td><code>libc6</code></td>
         <td>CVE-2025-4802</td>
+        <td>HIGH</td>
+        <td>2.36-9+deb12u9</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>libc6</code></td>
+        <td>CVE-2025-5702</td>
+        <td>HIGH</td>
+        <td>2.36-9+deb12u9</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>libc6</code></td>
+        <td>CVE-2025-5745</td>
         <td>HIGH</td>
         <td>2.36-9+deb12u9</td>
         <td></td>
@@ -36,6 +64,13 @@
         <td>HIGH</td>
         <td>2.5.0-1+deb12u1</td>
         <td></td>
+    </tr>
+    <tr>
+        <td><code>libfile-find-rule-perl</code></td>
+        <td>CVE-2011-10007</td>
+        <td>HIGH</td>
+        <td>0.34-3</td>
+        <td>0.34-4~deb12u1</td>
     </tr>
     <tr>
         <td><code>libicu72</code></td>

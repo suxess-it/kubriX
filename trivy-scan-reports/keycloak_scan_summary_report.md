@@ -1,6 +1,6 @@
 
 <h3>Target <code>docker.io/bitnami/keycloak:26.1.5-debian-12-r0 (debian 12.10)</code></h3>
-<h4>Vulnerabilities (12)</h4>
+<h4>Vulnerabilities (17)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -17,11 +17,46 @@
         <td></td>
     </tr>
     <tr>
+        <td><code>libc-bin</code></td>
+        <td>CVE-2025-5702</td>
+        <td>HIGH</td>
+        <td>2.36-9+deb12u10</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>libc-bin</code></td>
+        <td>CVE-2025-5745</td>
+        <td>HIGH</td>
+        <td>2.36-9+deb12u10</td>
+        <td></td>
+    </tr>
+    <tr>
         <td><code>libc6</code></td>
         <td>CVE-2025-4802</td>
         <td>HIGH</td>
         <td>2.36-9+deb12u10</td>
         <td></td>
+    </tr>
+    <tr>
+        <td><code>libc6</code></td>
+        <td>CVE-2025-5702</td>
+        <td>HIGH</td>
+        <td>2.36-9+deb12u10</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>libc6</code></td>
+        <td>CVE-2025-5745</td>
+        <td>HIGH</td>
+        <td>2.36-9+deb12u10</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>libfile-find-rule-perl</code></td>
+        <td>CVE-2011-10007</td>
+        <td>HIGH</td>
+        <td>0.34-3</td>
+        <td>0.34-4~deb12u1</td>
     </tr>
     <tr>
         <td><code>libldap-2.5-0</code></td>
@@ -131,7 +166,7 @@
 <h4>No Misconfigurations found</h4>
 
 <h3>Target <code>docker.io/bitnami/postgresql:17.4.0-debian-12-r15 (debian 12.10)</code></h3>
-<h4>Vulnerabilities (21)</h4>
+<h4>Vulnerabilities (30)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -148,8 +183,36 @@
         <td></td>
     </tr>
     <tr>
+        <td><code>libc-bin</code></td>
+        <td>CVE-2025-5702</td>
+        <td>HIGH</td>
+        <td>2.36-9+deb12u10</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>libc-bin</code></td>
+        <td>CVE-2025-5745</td>
+        <td>HIGH</td>
+        <td>2.36-9+deb12u10</td>
+        <td></td>
+    </tr>
+    <tr>
         <td><code>libc-l10n</code></td>
         <td>CVE-2025-4802</td>
+        <td>HIGH</td>
+        <td>2.36-9+deb12u10</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>libc-l10n</code></td>
+        <td>CVE-2025-5702</td>
+        <td>HIGH</td>
+        <td>2.36-9+deb12u10</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>libc-l10n</code></td>
+        <td>CVE-2025-5745</td>
         <td>HIGH</td>
         <td>2.36-9+deb12u10</td>
         <td></td>
@@ -160,6 +223,27 @@
         <td>HIGH</td>
         <td>2.36-9+deb12u10</td>
         <td></td>
+    </tr>
+    <tr>
+        <td><code>libc6</code></td>
+        <td>CVE-2025-5702</td>
+        <td>HIGH</td>
+        <td>2.36-9+deb12u10</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>libc6</code></td>
+        <td>CVE-2025-5745</td>
+        <td>HIGH</td>
+        <td>2.36-9+deb12u10</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>libfile-find-rule-perl</code></td>
+        <td>CVE-2011-10007</td>
+        <td>HIGH</td>
+        <td>0.34-3</td>
+        <td>0.34-4~deb12u1</td>
     </tr>
     <tr>
         <td><code>libicu72</code></td>
@@ -234,6 +318,20 @@
     <tr>
         <td><code>locales</code></td>
         <td>CVE-2025-4802</td>
+        <td>HIGH</td>
+        <td>2.36-9+deb12u10</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>locales</code></td>
+        <td>CVE-2025-5702</td>
+        <td>HIGH</td>
+        <td>2.36-9+deb12u10</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>locales</code></td>
+        <td>CVE-2025-5745</td>
         <td>HIGH</td>
         <td>2.36-9+deb12u10</td>
         <td></td>
