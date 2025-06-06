@@ -32,7 +32,7 @@ for env in pr target; do
   for chart in ${changed_charts}; do
     echo "get images for chart: ${chart}"
     helm dependency update ${chart}
-    for value in $( find ${chart} -type f -name "values-*" ); do
+    for value in $( find ${chart} -type f -name "values-*.yaml" ); do
       helm images get ${chart} -f ${value} --log-level error --kind "Deployment,StatefulSet,DaemonSet,CronJob,Job,ReplicaSet,Pod,Alertmanager,Prometheus,ThanosRuler,Grafana,Thanos,Receiver"
     done | sort -u > ../../../out/${env}/${chart}-images.txt
   done
