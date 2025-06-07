@@ -39,7 +39,7 @@ Steps:
 Then run this command in your home directory in your linux bash:
 
 ```
-curl -H 'Cache-Control: no-cache, no-store' https://raw.githubusercontent.com/suxess-it/kubriX/refs/main/template-values-files/bootstrap/bootstrap.sh | bash -s -- ${KUBRIX_CUSTOMER_REPO} ${KUBRIX_CUSTOMER_REPO_TOKEN} ${KUBRIX_CUSTOMER_DOMAIN}
+curl -H 'Cache-Control: no-cache, no-store' https://raw.githubusercontent.com/suxess-it/kubriX/refs/heads/main/bootstrap/bootstrap.sh | bash -s -- ${KUBRIX_CUSTOMER_REPO} ${KUBRIX_CUSTOMER_REPO_TOKEN} ${KUBRIX_CUSTOMER_DOMAIN}
 ```
 
 It will create a new kubriX repo based on your parameters and installs kubriX based on your created kubriX repo on your connected K8s cluster.
