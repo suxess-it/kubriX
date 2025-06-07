@@ -11,7 +11,7 @@ KUBRIX_CUSTOMER_REPO_TOKEN=$2
 KUBRIX_CUSTOMER_DOMAIN=$3
 
 # git clone if bootstrap.sh was executed via curl|bash
-mkdir kubriX
+mkdir -p bootstrap-kubriX/kubriX-repo
 cd kubriX
 git clone ${KUBRIX_UPSTREAM_REPO} .
 git checkout ${KUBRIX_UPSTREAM_BRANCH}
