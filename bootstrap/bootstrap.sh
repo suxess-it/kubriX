@@ -12,7 +12,7 @@ KUBRIX_CUSTOMER_DOMAIN=$3
 
 # git clone if bootstrap.sh was executed via curl|bash
 mkdir -p bootstrap-kubriX/kubriX-repo
-cd kubriX
+cd bootstrap-kubriX/kubriX-repo
 git clone ${KUBRIX_UPSTREAM_REPO} .
 git checkout ${KUBRIX_UPSTREAM_BRANCH}
 
