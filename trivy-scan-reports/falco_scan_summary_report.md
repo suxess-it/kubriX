@@ -409,7 +409,7 @@
 <h4>No Misconfigurations found</h4>
 
 <h3>Target <code>docker.io/falcosecurity/falco:0.40.0-debian (debian 12.9)</code></h3>
-<h4>Vulnerabilities (12)</h4>
+<h4>Vulnerabilities (8)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -426,36 +426,8 @@
         <td></td>
     </tr>
     <tr>
-        <td><code>libc-bin</code></td>
-        <td>CVE-2025-5702</td>
-        <td>HIGH</td>
-        <td>2.36-9+deb12u9</td>
-        <td></td>
-    </tr>
-    <tr>
-        <td><code>libc-bin</code></td>
-        <td>CVE-2025-5745</td>
-        <td>HIGH</td>
-        <td>2.36-9+deb12u9</td>
-        <td></td>
-    </tr>
-    <tr>
         <td><code>libc6</code></td>
         <td>CVE-2025-4802</td>
-        <td>HIGH</td>
-        <td>2.36-9+deb12u9</td>
-        <td></td>
-    </tr>
-    <tr>
-        <td><code>libc6</code></td>
-        <td>CVE-2025-5702</td>
-        <td>HIGH</td>
-        <td>2.36-9+deb12u9</td>
-        <td></td>
-    </tr>
-    <tr>
-        <td><code>libc6</code></td>
-        <td>CVE-2025-5745</td>
         <td>HIGH</td>
         <td>2.36-9+deb12u9</td>
         <td></td>
