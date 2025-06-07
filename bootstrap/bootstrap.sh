@@ -16,10 +16,12 @@ cd bootstrap-kubriX/kubriX-repo
 git clone ${KUBRIX_UPSTREAM_REPO} .
 git checkout ${KUBRIX_UPSTREAM_BRANCH}
 
+pwd
+
 # write new customer values in customer config
-cat << EOF
+cat << EOF > bootstrap/customer-config.yaml
 domain: ${KUBRIX_CUSTOMER_DOMAIN}
-EOF > bootstrap/customer-config.yaml
+EOF 
 
 # before executing this script, the bootstrap/customer-config.yaml file needs to get changed to the customer instance
 echo "the current customer-config is like this:"
