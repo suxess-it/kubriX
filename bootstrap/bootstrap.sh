@@ -2,6 +2,24 @@
 
 full_path=$(realpath $0)
 dir_path=$(dirname $full_path)
+KUBRIX_UPSTREAM_REPO="https://github.com/suxess-it/kubriX"
+KUBRIX_UPSTREAM_BRANCH="feat/template-values-files"
+
+# just a mvp to get the params via shell input (in the future some better methods would be needed)
+KUBRIX_CUSTOMER_REPO=$1
+KUBRIX_CUSTOMER_REPO_TOKEN=$2
+KUBRIX_CUSTOMER_DOMAIN=$3
+
+# git clone if bootstrap.sh was executed via curl|bash
+mkdir kubriX
+cd kubriX
+git clone ${KUBRIX_UPSTREAM_REPO} .
+git checkout ${KUBRIX_UPSTREAM_BRANCH}
+
+# write new customer values in customer config
+cat << EOF
+domain: ${KUBRIX_CUSTOMER_DOMAIN}
+EOF > ${dir_path}/customer-config.yaml
 
 # before executing this script, the bootstrap/customer-config.yaml file needs to get changed to the customer instance
 echo "the current customer-config is like this:"
@@ -35,5 +53,12 @@ KUBRIX_CUSTOMER_REPO_TOKEN="blabla"
 git remote add customer https://\${KUBRIX_CUSTOMER_REPO_TOKEN}@\${KUBRIX_CUSTOMER_REPO}.git
 git add -A
 git commit -a -m "add rendered values files"
-git push --set-upstream customer main
+git push --set-upstream customer ${KUBRIX_UPSTREAM_BRANCH}:main
 EOF
+
+git remote add customer https://\${KUBRIX_CUSTOMER_REPO_TOKEN}@\${KUBRIX_CUSTOMER_REPO}.git
+git add -A
+git commit -a -m "add rendered values files"
+git push --set-upstream customer ${KUBRIX_UPSTREAM_BRANCH}:main
+
+echo "Now run install-platform.sh from your new kubriX repo"
