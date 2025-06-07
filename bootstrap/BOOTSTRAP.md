@@ -1,4 +1,4 @@
-# BOOTSTRAP kubriX
+# Bootstrap kubriX
 
 ## Fully automated bootstrapping
 
