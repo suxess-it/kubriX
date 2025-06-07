@@ -21,11 +21,22 @@ define another variable with our Domain, under which kubriX should be available
 KUBRIX_CUSTOMER_DOMAIN="demo-johnny.kubrix.cloud"
 ```
 
+If you need to prepare something on your cluster do this now.
+We at kubriX for example need to create our ionos dns api key:
+
+```
+kubectl create ns external-dns
+kubectl create secret generic ionos-credentials -n external-dns --from-literal=api-key='topsecret'
+```
+
+
 Then run this command in your home directory in your linux bash:
 
 ```
 curl -H 'Cache-Control: no-cache, no-store' https://raw.githubusercontent.com/suxess-it/kubriX/refs/main/template-values-files/bootstrap/bootstrap.sh | bash -s -- ${KUBRIX_CUSTOMER_REPO} ${KUBRIX_CUSTOMER_REPO_TOKEN} ${KUBRIX_CUSTOMER_DOMAIN}
 ```
+
+It will create a new kubriX repo based on your parameters and installs kubriX based on your created kubriX repo.
 
 ## background information
 
