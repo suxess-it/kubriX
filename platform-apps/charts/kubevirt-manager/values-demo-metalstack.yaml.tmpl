@@ -1,0 +1,15 @@
+cert:
+  enabled: true
+
+gardenercert:
+  enabled: false
+
+deployment:
+  version: 1.5.0
+  tls: 
+    name: kubevirt-manager-server-tls
+  ingress:
+    host: kubevirt-manager.{{ .kubriX.domain }}
+  service:
+    name: kubevirt-manager
+    port: 8080

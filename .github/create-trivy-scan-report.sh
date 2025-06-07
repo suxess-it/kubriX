@@ -19,7 +19,7 @@ for chart in $( ls -d */ | sed 's#/##' ); do
   mkdir -p ../../trivy-scan-reports/${chart}
   echo "get images for chart: ${chart}"
   helm dependency update ${chart}
-  for value in $( find ${chart} -type f -name "values-*" ); do
+  for value in $( find ${chart} -type f -name "values-*.yaml" ); do
     helm images get ${chart} -f ${value} --log-level error --kind "Deployment,StatefulSet,DaemonSet,CronJob,Job,ReplicaSet,Pod,Alertmanager,Prometheus,ThanosRuler,Grafana,Thanos,Receiver"
   done | sort -u > ../../trivy-scan-reports/${chart}/images.txt
   > ../../trivy-scan-reports/${chart}_scan_summary_report.md
