@@ -18,6 +18,8 @@ git checkout ${KUBRIX_UPSTREAM_BRANCH}
 
 pwd
 
+echo "blabla"
+
 # write new customer values in customer config
 cat << EOF > bootstrap/customer-config.yaml
 domain: ${KUBRIX_CUSTOMER_DOMAIN}
