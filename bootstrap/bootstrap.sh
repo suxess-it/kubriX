@@ -21,7 +21,7 @@ pwd
 # write new customer values in customer config
 cat << EOF > bootstrap/customer-config.yaml
 domain: ${KUBRIX_CUSTOMER_DOMAIN}
-EOF 
+EOF
 
 # before executing this script, the bootstrap/customer-config.yaml file needs to get changed to the customer instance
 echo "the current customer-config is like this:"
