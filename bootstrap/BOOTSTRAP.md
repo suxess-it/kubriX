@@ -4,9 +4,14 @@
 
 Steps:
 
-1. create new empty customer repo on your Git-Server (GitLab, GitHub, Gitea, ...). IMPORTANT: the repo needs to be empty (also now initial README!!!)
+1. create new empty customer repo on your Git-Server (GitLab, GitHub, Gitea, ...).
+
+    IMPORTANT: the repo needs to be empty (also no initial README!!!)
 
 2. create an access token for this new repo with write access
+    
+    Instead of a newly created access token you can also use your personal access tokens,
+    but this is not recommended since your personal access token has probably more permissions than needed.
 
 3. set the repo url and token in this variables like this:
 
@@ -15,7 +20,8 @@ Steps:
     export KUBRIX_CUSTOMER_REPO_TOKEN="blabla"
     ```
 
-    IMPORTANT: KUBRIX_CUSTOMER_REPO without "https"! https will get added automatically.
+    IMPORTANT: KUBRIX_CUSTOMER_REPO without "https"!
+    https will get added automatically.
 
 4. set the domain, under which kubriX should be available.
 
@@ -36,11 +42,11 @@ Steps:
     ```
 
 
-Then run this command in your home directory in your linux bash:
+7. Then run this command in your home directory in your linux bash:
 
-```
-curl -H 'Cache-Control: no-cache, no-store' https://raw.githubusercontent.com/suxess-it/kubriX/refs/heads/main/bootstrap/bootstrap.sh | bash -s -- ${KUBRIX_CUSTOMER_REPO} ${KUBRIX_CUSTOMER_REPO_TOKEN} ${KUBRIX_CUSTOMER_DOMAIN}
-```
+    ```
+    curl -H 'Cache-Control: no-cache, no-store' https://raw.githubusercontent.com/suxess-it/kubriX/refs/heads/main/bootstrap/bootstrap.sh | bash -s --  ${KUBRIX_CUSTOMER_REPO} ${KUBRIX_CUSTOMER_REPO_TOKEN} ${KUBRIX_CUSTOMER_DOMAIN}
+    ```
 
 It will create a new kubriX repo based on your parameters and installs kubriX based on your created kubriX repo on your connected K8s cluster.
 
