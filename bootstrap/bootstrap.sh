@@ -19,12 +19,12 @@ git checkout ${KUBRIX_UPSTREAM_BRANCH}
 # write new customer values in customer config
 cat << EOF
 domain: ${KUBRIX_CUSTOMER_DOMAIN}
-EOF > ${dir_path}/customer-config.yaml
+EOF > bootstrap/customer-config.yaml
 
 # before executing this script, the bootstrap/customer-config.yaml file needs to get changed to the customer instance
 echo "the current customer-config is like this:"
 echo "----"
-cat ${dir_path}/customer-config.yaml
+cat bootstrap/customer-config.yaml
 echo "----"
 
 echo "downloading gomplate ..."
@@ -32,7 +32,7 @@ curl -o gomplate -sSL https://github.com/hairyhenderson/gomplate/releases/downlo
 chmod 755 gomplate
 
 echo "rendering values templates ..."
-gomplate --context kubriX=${dir_path}/customer-config.yaml --input-dir ${dir_path}/../platform-apps/charts --include *.yaml.tmpl --output-map='${dir_path}/../platform-apps/charts/{{ .in | strings.ReplaceAll ".yaml.tmpl" ".yaml" }}'
+gomplate --context kubriX=$bootstrap/customer-config.yaml --input-dir platform-apps/charts --include *.yaml.tmpl --output-map='platform-apps/charts/{{ .in | strings.ReplaceAll ".yaml.tmpl" ".yaml" }}'
 rm gomplate
 
 cat << EOF
