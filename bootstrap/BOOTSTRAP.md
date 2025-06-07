@@ -2,32 +2,38 @@
 
 ## Fully automated bootstrapping
 
-Prerequisites
+Steps:
 
-1. create new empty customer repo
+1. create new empty customer repo on your Git-Server (GitLab, GitHub, Gitea, ...). IMPORTANT: the repo needs to be empty (also now initial README!!!)
 
-2. create an access token for this repo with write access
+2. create an access token for this new repo with write access
 
-3. save the repo url and token in this variables like this:
+3. set the repo url and token in this variables like this:
 
-```
-KUBRIX_CUSTOMER_REPO="github.com/kubriX-demo/kubriX-demo-customerXY"
-KUBRIX_CUSTOMER_REPO_TOKEN="blabla"
-```
+    ```
+    export KUBRIX_CUSTOMER_REPO="github.com/kubriX-demo/kubriX-demo-customerXY"
+    export KUBRIX_CUSTOMER_REPO_TOKEN="blabla"
+    ```
 
-define another variable with our Domain, under which kubriX should be available
+    IMPORTANT: KUBRIX_CUSTOMER_REPO without "https"! https will get added automatically.
 
-```
-KUBRIX_CUSTOMER_DOMAIN="demo-johnny.kubrix.cloud"
-```
+4. set the domain, under which kubriX should be available.
 
-If you need to prepare something on your cluster do this now.
-We at kubriX for example need to create our ionos dns api key:
+    this domain will be used by external-dns.
+    TODO: customizing external-dns is not explained here and not part of bootstrap yet. So it will only work with ionos and 'kubrix.cloud' domain.
 
-```
-kubectl create ns external-dns
-kubectl create secret generic ionos-credentials -n external-dns --from-literal=api-key='topsecret'
-```
+    ```
+    export KUBRIX_CUSTOMER_DOMAIN="demo-johnny.kubrix.cloud"
+    ```
+
+5. create a new Kubernetes cluster and be sure that kubectl is connected to it. check with `kubectl cluster-info`
+
+6. If you need to prepare something on your cluster do this now. We at kubriX for example need to create our ionos dns api key:
+
+    ```
+    kubectl create ns external-dns
+    kubectl create secret generic ionos-credentials -n external-dns --from-literal=api-key='topsecret'
+    ```
 
 
 Then run this command in your home directory in your linux bash:
@@ -36,13 +42,13 @@ Then run this command in your home directory in your linux bash:
 curl -H 'Cache-Control: no-cache, no-store' https://raw.githubusercontent.com/suxess-it/kubriX/refs/main/template-values-files/bootstrap/bootstrap.sh | bash -s -- ${KUBRIX_CUSTOMER_REPO} ${KUBRIX_CUSTOMER_REPO_TOKEN} ${KUBRIX_CUSTOMER_DOMAIN}
 ```
 
-It will create a new kubriX repo based on your parameters and installs kubriX based on your created kubriX repo.
+It will create a new kubriX repo based on your parameters and installs kubriX based on your created kubriX repo on your connected K8s cluster.
 
 ## background information
 
-### create customer specific parameters
+### customer specific parameters
 
-In `bootstrap/customer-config.yaml` the customer specific parameters need to get set,
+In `bootstrap/customer-config.yaml` the customer specific parameters are set,
 which are then used for rendering the chart values files.
 
 ### Rendering values templates
