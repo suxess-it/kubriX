@@ -1,7 +1,5 @@
 #!/bin/bash
 
-full_path=$(realpath $0)
-dir_path=$(dirname $full_path)
 KUBRIX_UPSTREAM_REPO="https://github.com/suxess-it/kubriX"
 KUBRIX_UPSTREAM_BRANCH="feat/template-values-files"
 
@@ -13,10 +11,9 @@ KUBRIX_CUSTOMER_DOMAIN=$3
 # git clone if bootstrap.sh was executed via curl|bash
 mkdir -p bootstrap-kubriX/kubriX-repo
 cd bootstrap-kubriX/kubriX-repo
+echo "checkout kubriX to $(pwd) ..."
 git clone ${KUBRIX_UPSTREAM_REPO} .
 git checkout ${KUBRIX_UPSTREAM_BRANCH}
-
-pwd
 
 # write new customer values in customer config
 cat << EOF > bootstrap/customer-config.yaml
@@ -37,30 +34,23 @@ echo "rendering values templates ..."
 gomplate --context kubriX=bootstrap/customer-config.yaml --input-dir platform-apps/charts --include *.yaml.tmpl --output-map='platform-apps/charts/{{ .in | strings.ReplaceAll ".yaml.tmpl" ".yaml" }}'
 rm gomplate
 
-cat << EOF
-
-to push this repo to the new emtpy customer repo do the following
-
-# 1. create new empty customer repo
-
-# 2. create an access token for this repo with write access
-
-# 3. save the repo url and token in this variables like this:
-
-KUBRIX_CUSTOMER_REPO="github.com/kubriX-demo/kubriX-demo-customerXY"
-KUBRIX_CUSTOMER_REPO_TOKEN="blabla"
-
-# 4. execute the following git commands:
-
-git remote add customer https://\${KUBRIX_CUSTOMER_REPO_TOKEN}@\${KUBRIX_CUSTOMER_REPO}.git
-git add -A
-git commit -a -m "add rendered values files"
-git push --set-upstream customer ${KUBRIX_UPSTREAM_BRANCH}:main
-EOF
-
 git remote add customer https://${KUBRIX_CUSTOMER_REPO_TOKEN}@${KUBRIX_CUSTOMER_REPO}.git
 git add -A
 git commit -a -m "add rendered values files"
 git push --set-upstream customer ${KUBRIX_UPSTREAM_BRANCH}:main
 
 echo "Now run install-platform.sh from your new kubriX repo"
+
+export KUBRIX_BACKSTAGE_GITHUB_CLIENTID=dummy
+export KUBRIX_BACKSTAGE_GITHUB_CLIENTSECRET=dummy
+export KUBRIX_BACKSTAGE_GITHUB_TOKEN=${KUBRIX_CUSTOMER_REPO_TOKEN}
+export KUBRIX_REPO=https://${KUBRIX_CUSTOMER_REPO}
+export KUBRIX_REPO_BRANCH=main
+export KUBRIX_REPO_USERNAME=dummy
+export KUBRIX_REPO_PASSWORD=${KUBRIX_CUSTOMER_REPO_TOKEN}
+export KUBRIX_TARGET_TYPE=DEMO-METALSTACK
+export KUBRIX_CREATE_K3D_CLUSTER=false
+export KUBRIX_BOOTSTRAP_MAX_WAIT_TIME=2000
+
+# install-platform from new repository
+./install-platform.sh

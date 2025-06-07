@@ -1,11 +1,40 @@
 # BOOTSTRAP kubriX
 
-## create customer specific parameters
+## Fully automated bootstrapping
+
+Prerequisites
+
+1. create new empty customer repo
+
+2. create an access token for this repo with write access
+
+3. save the repo url and token in this variables like this:
+
+```
+KUBRIX_CUSTOMER_REPO="github.com/kubriX-demo/kubriX-demo-customerXY"
+KUBRIX_CUSTOMER_REPO_TOKEN="blabla"
+```
+
+define another variable with our Domain, under which kubriX should be available
+
+```
+KUBRIX_CUSTOMER_DOMAIN="demo-johnny.kubrix.cloud"
+```
+
+Then run this command in your home directory in your linux bash:
+
+```
+curl -H 'Cache-Control: no-cache, no-store' https://raw.githubusercontent.com/suxess-it/kubriX/refs/main/template-values-files/bootstrap/bootstrap.sh | bash -s -- ${KUBRIX_CUSTOMER_REPO} ${KUBRIX_CUSTOMER_REPO_TOKEN} ${KUBRIX_CUSTOMER_DOMAIN}
+```
+
+## background information
+
+### create customer specific parameters
 
 In `bootstrap/customer-config.yaml` the customer specific parameters need to get set,
 which are then used for rendering the chart values files.
 
-## Rendering values templates
+### Rendering values templates
 
 To create values files for specific instances in an automated 
 way we render the values files with the template renderer `gomplate`
@@ -23,7 +52,7 @@ bootstrap/bootstrap.sh
 The used variables for the templates are defined in `bootstrap/customer-config.yaml` 
 and are stored in the context `kubriX`.
 
-## Example
+### Example
 
 Content of the `bootstrap/customer-config.yaml` is
 
@@ -41,7 +70,7 @@ will then result in a `values-demo.yaml` with the content
 hostname: foo.demo.kubrix.cloud
 ```
 
-## Escaping helm brackets
+### Escaping helm brackets
 
 When you want to use brackets `{{ }}` also in your values files 
 (when using [variables in values files](https://helm.sh/docs/howto/charts_tips_and_tricks/#using-the-tpl-function) 
