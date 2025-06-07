@@ -9,6 +9,7 @@ KUBRIX_CUSTOMER_REPO_TOKEN=$2
 KUBRIX_CUSTOMER_DOMAIN=$3
 
 # git clone if bootstrap.sh was executed via curl|bash
+cd $HOME
 mkdir -p bootstrap-kubriX/kubriX-repo
 cd bootstrap-kubriX/kubriX-repo
 echo "checkout kubriX to $(pwd) ..."
