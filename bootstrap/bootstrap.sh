@@ -18,8 +18,6 @@ git checkout ${KUBRIX_UPSTREAM_BRANCH}
 
 pwd
 
-echo "blabla"
-
 # write new customer values in customer config
 cat << EOF > bootstrap/customer-config.yaml
 domain: ${KUBRIX_CUSTOMER_DOMAIN}
@@ -36,7 +34,7 @@ curl -o gomplate -sSL https://github.com/hairyhenderson/gomplate/releases/downlo
 chmod 755 gomplate
 
 echo "rendering values templates ..."
-gomplate --context kubriX=$bootstrap/customer-config.yaml --input-dir platform-apps/charts --include *.yaml.tmpl --output-map='platform-apps/charts/{{ .in | strings.ReplaceAll ".yaml.tmpl" ".yaml" }}'
+gomplate --context kubriX=bootstrap/customer-config.yaml --input-dir platform-apps/charts --include *.yaml.tmpl --output-map='platform-apps/charts/{{ .in | strings.ReplaceAll ".yaml.tmpl" ".yaml" }}'
 rm gomplate
 
 cat << EOF
@@ -60,7 +58,7 @@ git commit -a -m "add rendered values files"
 git push --set-upstream customer ${KUBRIX_UPSTREAM_BRANCH}:main
 EOF
 
-git remote add customer https://\${KUBRIX_CUSTOMER_REPO_TOKEN}@\${KUBRIX_CUSTOMER_REPO}.git
+git remote add customer https://${KUBRIX_CUSTOMER_REPO_TOKEN}@${KUBRIX_CUSTOMER_REPO}.git
 git add -A
 git commit -a -m "add rendered values files"
 git push --set-upstream customer ${KUBRIX_UPSTREAM_BRANCH}:main
