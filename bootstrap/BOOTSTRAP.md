@@ -16,12 +16,9 @@ Steps:
 3. set the repo url and token in this variables like this:
 
     ```
-    export KUBRIX_CUSTOMER_REPO="github.com/kubriX-demo/kubriX-demo-customerXY"
+    export KUBRIX_CUSTOMER_REPO="https://github.com/kubriX-demo/kubriX-demo-customerXY"
     export KUBRIX_CUSTOMER_REPO_TOKEN="blabla"
     ```
-
-    IMPORTANT: KUBRIX_CUSTOMER_REPO without "https"!
-    https will get added automatically.
 
 4. set the domain, under which kubriX should be available.
 
