@@ -8,6 +8,11 @@ KUBRIX_CUSTOMER_REPO=$1
 KUBRIX_CUSTOMER_REPO_TOKEN=$2
 KUBRIX_CUSTOMER_DOMAIN=$3
 
+# get protocol
+KUBRIX_CUSTOMER_REPO_PROTO="$(echo ${KUBRIX_CUSTOMER_REPO} | grep :// | sed -e's,^\(.*://\).*,\1,g')"
+# remove the protocol from url
+KUBRIX_CUSTOMER_REPO_URL="$(echo ${KUBRIX_CUSTOMER_REPO/$KUBRIX_CUSTOMER_REPO_PROTO/})"
+
 # git clone if bootstrap.sh was executed via curl|bash
 cd $HOME
 mkdir -p bootstrap-kubriX/kubriX-repo
@@ -36,7 +41,7 @@ gomplate --context kubriX=bootstrap/customer-config.yaml --input-dir platform-ap
 rm gomplate
 
 echo "Push kubriX gitops files to ${KUBRIX_CUSTOMER_REPO}"
-git remote add customer https://${KUBRIX_CUSTOMER_REPO_TOKEN}@${KUBRIX_CUSTOMER_REPO}.git
+git remote add customer ${KUBRIX_CUSTOMER_REPO_PROTO}${KUBRIX_CUSTOMER_REPO_TOKEN}@${KUBRIX_CUSTOMER_REPO_URL}
 git add -A
 git commit -a -m "add rendered values files"
 git push --set-upstream customer ${KUBRIX_UPSTREAM_BRANCH}:main
@@ -46,7 +51,7 @@ echo "Now run install-platform.sh from your new kubriX repo ${KUBRIX_CUSTOMER_RE
 export KUBRIX_BACKSTAGE_GITHUB_CLIENTID=dummy
 export KUBRIX_BACKSTAGE_GITHUB_CLIENTSECRET=dummy
 export KUBRIX_BACKSTAGE_GITHUB_TOKEN=${KUBRIX_CUSTOMER_REPO_TOKEN}
-export KUBRIX_REPO=https://${KUBRIX_CUSTOMER_REPO}
+export KUBRIX_REPO=${KUBRIX_CUSTOMER_REPO}
 export KUBRIX_REPO_BRANCH=main
 export KUBRIX_REPO_USERNAME=dummy
 export KUBRIX_REPO_PASSWORD=${KUBRIX_CUSTOMER_REPO_TOKEN}
