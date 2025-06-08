@@ -47,7 +47,7 @@ rm gomplate
 echo "Push kubriX gitops files to ${KUBRIX_CUSTOMER_REPO}"
 git remote add customer ${KUBRIX_CUSTOMER_REPO_PROTO}${KUBRIX_CUSTOMER_REPO_TOKEN}@${KUBRIX_CUSTOMER_REPO_URL}
 git add -A
-git commit -a -m "add rendered values files"
+git commit -a -m "add customer specific modifications during bootstrap"
 git push --set-upstream customer ${KUBRIX_UPSTREAM_BRANCH}:main
 
 echo "Now run install-platform.sh from your new kubriX repo ${KUBRIX_CUSTOMER_REPO}"
