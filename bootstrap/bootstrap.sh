@@ -11,7 +11,10 @@ KUBRIX_CUSTOMER_DOMAIN=$3
 # get protocol
 KUBRIX_CUSTOMER_REPO_PROTO="$(echo ${KUBRIX_CUSTOMER_REPO} | grep :// | sed -e's,^\(.*://\).*,\1,g')"
 # remove the protocol from url
-KUBRIX_CUSTOMER_REPO_URL="$(echo ${KUBRIX_CUSTOMER_REPO/$KUBRIX_CUSTOMER_REPO_PROTO/})"
+KUBRIX_CUSTOMER_REPO_URL="$(echo ${KUBRIX_CUSTOMER_REPO} | sed -e's/https\?:\/\///')"
+
+echo "protocol: ${KUBRIX_CUSTOMER_REPO_PROTO}"
+echo "url: ${KUBRIX_CUSTOMER_REPO_URL}"
 
 # git clone if bootstrap.sh was executed via curl|bash
 cd $HOME
