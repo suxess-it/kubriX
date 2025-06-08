@@ -27,6 +27,7 @@ git checkout ${KUBRIX_UPSTREAM_BRANCH}
 # write new customer values in customer config
 cat << EOF > bootstrap/customer-config.yaml
 domain: ${KUBRIX_CUSTOMER_DOMAIN}
+gitRepo: ${KUBRIX_CUSTOMER_REPO}
 EOF
 
 # before executing this script, the bootstrap/customer-config.yaml file needs to get changed to the customer instance
