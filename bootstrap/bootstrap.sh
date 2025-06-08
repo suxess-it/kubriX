@@ -35,12 +35,13 @@ echo "rendering values templates ..."
 gomplate --context kubriX=bootstrap/customer-config.yaml --input-dir platform-apps/charts --include *.yaml.tmpl --output-map='platform-apps/charts/{{ .in | strings.ReplaceAll ".yaml.tmpl" ".yaml" }}'
 rm gomplate
 
+echo "Push kubriX gitops files to ${KUBRIX_CUSTOMER_REPO}"
 git remote add customer https://${KUBRIX_CUSTOMER_REPO_TOKEN}@${KUBRIX_CUSTOMER_REPO}.git
 git add -A
 git commit -a -m "add rendered values files"
 git push --set-upstream customer ${KUBRIX_UPSTREAM_BRANCH}:main
 
-echo "Now run install-platform.sh from your new kubriX repo"
+echo "Now run install-platform.sh from your new kubriX repo ${KUBRIX_CUSTOMER_REPO}"
 
 export KUBRIX_BACKSTAGE_GITHUB_CLIENTID=dummy
 export KUBRIX_BACKSTAGE_GITHUB_CLIENTSECRET=dummy
