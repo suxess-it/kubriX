@@ -29,23 +29,29 @@ Steps:
     export KUBRIX_CUSTOMER_DOMAIN="demo-johnny.kubrix.cloud"
     ```
 
-5. create a new Kubernetes cluster and be sure that kubectl is connected to it. check with `kubectl cluster-info`
+5. set the kubrix target type which should be used
 
-6. If you need to prepare something on your cluster do this now. We at kubriX for example need to create our ionos dns api key:
+    ```
+    export KUBRIX_CUSTOMER_TARGET_TYPE="DEMO-METALSTACK"
+    ```
+
+6. create a new Kubernetes cluster and be sure that kubectl is connected to it. check with `kubectl cluster-info`
+
+7. If you need to prepare something on your cluster do this now. We at kubriX for example need to create our ionos dns api key:
 
     ```
     kubectl create ns external-dns
     kubectl create secret generic ionos-credentials -n external-dns --from-literal=api-key='topsecret'
     ```
 
-
-7. Then run this command in your home directory in your linux bash:
+8. Then run this command in your home directory in your linux bash:
 
     ```
-    curl -H 'Cache-Control: no-cache, no-store' https://raw.githubusercontent.com/suxess-it/kubriX/refs/heads/main/bootstrap/bootstrap.sh | bash -s --  ${KUBRIX_CUSTOMER_REPO} ${KUBRIX_CUSTOMER_REPO_TOKEN} ${KUBRIX_CUSTOMER_DOMAIN}
+    curl -H 'Cache-Control: no-cache, no-store' https://raw.githubusercontent.com/suxess-it/kubriX/refs/heads/main/bootstrap/bootstrap.sh | bash -s
     ```
 
 It will create a new kubriX repo based on your parameters and installs kubriX based on your created kubriX repo on your connected K8s cluster.
+
 
 ## background information
 
