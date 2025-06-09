@@ -3,10 +3,11 @@
 KUBRIX_UPSTREAM_REPO="https://github.com/suxess-it/kubriX"
 KUBRIX_UPSTREAM_BRANCH="feat/template-values-files"
 
-# just a mvp to get the params via shell input (in the future some better methods would be needed)
-KUBRIX_CUSTOMER_REPO=$1
-KUBRIX_CUSTOMER_REPO_TOKEN=$2
-KUBRIX_CUSTOMER_DOMAIN=$3
+# variables which willbe used in this script and should get defined outside of the script
+# KUBRIX_CUSTOMER_REPO
+# KUBRIX_CUSTOMER_REPO_TOKEN
+# KUBRIX_CUSTOMER_DOMAIN
+# KUBRIX_CUSTOMER_TARGET_TYPE
 
 # get protocol
 KUBRIX_CUSTOMER_REPO_PROTO=$(echo ${KUBRIX_CUSTOMER_REPO} | grep :// | sed "s,^\(.*://\).*,\1,")
@@ -56,7 +57,7 @@ export KUBRIX_REPO=${KUBRIX_CUSTOMER_REPO}
 export KUBRIX_REPO_BRANCH=main
 export KUBRIX_REPO_USERNAME=dummy
 export KUBRIX_REPO_PASSWORD=${KUBRIX_CUSTOMER_REPO_TOKEN}
-export KUBRIX_TARGET_TYPE=DEMO-METALSTACK
+export KUBRIX_TARGET_TYPE=${KUBRIX_CUSTOMER_TARGET_TYPE}
 export KUBRIX_CREATE_K3D_CLUSTER=false
 export KUBRIX_BOOTSTRAP_MAX_WAIT_TIME=2000
 
