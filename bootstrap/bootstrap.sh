@@ -1,13 +1,20 @@
 #!/bin/bash
 
-KUBRIX_UPSTREAM_REPO="https://github.com/suxess-it/kubriX"
-KUBRIX_UPSTREAM_BRANCH="feat/template-values-files"
+# variables which must be defined by user
+while read var; do
+  [ -z "${!var}" ] && { echo "$var is empty or not set. Exiting.."; exit 1; }
+done << EOF
+KUBRIX_CUSTOMER_REPO
+KUBRIX_CUSTOMER_REPO_TOKEN
+EOF
 
-# variables which willbe used in this script and should get defined outside of the script
-# KUBRIX_CUSTOMER_REPO
-# KUBRIX_CUSTOMER_REPO_TOKEN
-# KUBRIX_CUSTOMER_DOMAIN
-# KUBRIX_CUSTOMER_TARGET_TYPE
+# variables with possible sane defaults
+KUBRIX_UPSTREAM_REPO=${KUBRIX_CUSTOMER_TARGET_TYPE:-"https://github.com/suxess-it/kubriX"}
+KUBRIX_UPSTREAM_BRANCH=${KUBRIX_UPSTREAM_BRANCH:-"feat/template-values-files"}
+KUBRIX_CUSTOMER_TARGET_TYPE=${KUBRIX_CUSTOMER_TARGET_TYPE:-"DEMO-METALSTACK"}
+KUBRIX_CUSTOMER_DOMAIN=${KUBRIX_CUSTOMER_DOMAIN:-"demo.kubrix.cloud"}
+
+
 
 # get protocol
 KUBRIX_CUSTOMER_REPO_PROTO=$(echo ${KUBRIX_CUSTOMER_REPO} | grep :// | sed "s,^\(.*://\).*,\1,")
