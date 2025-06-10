@@ -9,18 +9,29 @@ KUBRIX_CUSTOMER_REPO_TOKEN
 EOF
 
 # variables with possible sane defaults
-KUBRIX_UPSTREAM_REPO=${KUBRIX_CUSTOMER_TARGET_TYPE:-"https://github.com/suxess-it/kubriX"}
+KUBRIX_UPSTREAM_REPO=${KUBRIX_UPSTREAM_REPO:-"https://github.com/suxess-it/kubriX"}
 KUBRIX_UPSTREAM_BRANCH=${KUBRIX_UPSTREAM_BRANCH:-"feat/template-values-files"}
 KUBRIX_CUSTOMER_TARGET_TYPE=${KUBRIX_CUSTOMER_TARGET_TYPE:-"DEMO-METALSTACK"}
-KUBRIX_CUSTOMER_DOMAIN=${KUBRIX_CUSTOMER_DOMAIN:-"demo-$(sha256sum ${KUBRIX_CUSTOMER_REPO} | head -c 10).kubrix.cloud"}
+KUBRIX_CUSTOMER_DOMAIN=${KUBRIX_CUSTOMER_DOMAIN:-"demo-$(echo ${KUBRIX_CUSTOMER_REPO} | sha256sum | head -c 10).kubrix.cloud"}
 
 # get protocol
 KUBRIX_CUSTOMER_REPO_PROTO=$(echo ${KUBRIX_CUSTOMER_REPO} | grep :// | sed "s,^\(.*://\).*,\1,")
 # remove the protocol from url
 KUBRIX_CUSTOMER_REPO_URL=$(echo ${KUBRIX_CUSTOMER_REPO} | sed "s,^${KUBRIX_CUSTOMER_REPO_PROTO},,")
 
-# git clone if bootstrap.sh was executed via curl|bash
+echo "kubriX will get bootstrapped with the following parameters:"
+echo "KUBRIX_UPSTREAM_REPO: ${KUBRIX_UPSTREAM_REPO}"
+echo "KUBRIX_UPSTREAM_BRANCH: ${KUBRIX_UPSTREAM_BRANCH}"
+echo "KUBRIX_CUSTOMER_REPO: ${KUBRIX_CUSTOMER_REPO}"
+echo "KUBRIX_CUSTOMER_TARGET_TYPE: ${KUBRIX_CUSTOMER_TARGET_TYPE}"
+echo "KUBRIX_CUSTOMER_DOMAIN: ${KUBRIX_CUSTOMER_DOMAIN}"
+
+# clone kubriX upstream repo to bootstrap-kubriX/kubriX-repo
 cd $HOME
+if [ -d "bootstrap-kubriX" ]; then
+  echo "boostrap-kubriX already exists. We will delete it."
+  rm -rf bootstrap-kubriX
+fi
 mkdir -p bootstrap-kubriX/kubriX-repo
 cd bootstrap-kubriX/kubriX-repo
 echo "checkout kubriX to $(pwd) ..."
@@ -33,14 +44,13 @@ domain: ${KUBRIX_CUSTOMER_DOMAIN}
 gitRepo: ${KUBRIX_CUSTOMER_REPO}
 EOF
 
-# before executing this script, the bootstrap/customer-config.yaml file needs to get changed to the customer instance
 echo "the current customer-config is like this:"
 echo "----"
 cat bootstrap/customer-config.yaml
 echo "----"
 
 echo "downloading gomplate ..."
-curl -o gomplate -sSL https://github.com/hairyhenderson/gomplate/releases/download/v4.3.2/gomplate_linux-amd64
+curl --progress-bar -o gomplate -SL https://github.com/hairyhenderson/gomplate/releases/download/v4.3.2/gomplate_linux-amd64
 chmod 755 gomplate
 
 echo "rendering values templates ..."
