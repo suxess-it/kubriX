@@ -19,12 +19,17 @@ KUBRIX_CUSTOMER_REPO_PROTO=$(echo ${KUBRIX_CUSTOMER_REPO} | grep :// | sed "s,^\
 # remove the protocol from url
 KUBRIX_CUSTOMER_REPO_URL=$(echo ${KUBRIX_CUSTOMER_REPO} | sed "s,^${KUBRIX_CUSTOMER_REPO_PROTO},,")
 
+echo ""
+echo "-------------------------------------------------------------"
 echo "kubriX will get bootstrapped with the following parameters:"
+echo "-------------------------------------------------------------"
 echo "KUBRIX_UPSTREAM_REPO: ${KUBRIX_UPSTREAM_REPO}"
 echo "KUBRIX_UPSTREAM_BRANCH: ${KUBRIX_UPSTREAM_BRANCH}"
 echo "KUBRIX_CUSTOMER_REPO: ${KUBRIX_CUSTOMER_REPO}"
 echo "KUBRIX_CUSTOMER_TARGET_TYPE: ${KUBRIX_CUSTOMER_TARGET_TYPE}"
 echo "KUBRIX_CUSTOMER_DOMAIN: ${KUBRIX_CUSTOMER_DOMAIN}"
+echo "-------------------------------------------------------------"
+echo ""
 
 # clone kubriX upstream repo to bootstrap-kubriX/kubriX-repo
 cd $HOME
@@ -69,7 +74,7 @@ export KUBRIX_BACKSTAGE_GITHUB_CLIENTID=dummy
 export KUBRIX_BACKSTAGE_GITHUB_CLIENTSECRET=dummy
 export KUBRIX_BACKSTAGE_GITHUB_TOKEN=${KUBRIX_CUSTOMER_REPO_TOKEN}
 export KUBRIX_REPO=${KUBRIX_CUSTOMER_REPO}
-export KUBRIX_REPO_BRANCH=main
+export KUBRIX_REPO_BRANCH=${KUBRIX_UPSTREAM_BRANCH}
 export KUBRIX_REPO_USERNAME=dummy
 export KUBRIX_REPO_PASSWORD=${KUBRIX_CUSTOMER_REPO_TOKEN}
 export KUBRIX_TARGET_TYPE=${KUBRIX_CUSTOMER_TARGET_TYPE}
