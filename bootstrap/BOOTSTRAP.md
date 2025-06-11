@@ -20,7 +20,7 @@ Steps:
     export KUBRIX_CUSTOMER_REPO_TOKEN="blabla"
     ```
 
-4. set the domain, under which kubriX should be available.
+4. optional: set the domain, under which kubriX should be available.
 
     this domain will be used by external-dns.
     TODO: customizing external-dns is not explained here and not part of bootstrap yet. So it will only work with ionos and 'kubrix.cloud' domain.
@@ -29,11 +29,15 @@ Steps:
     export KUBRIX_CUSTOMER_DOMAIN="demo-johnny.kubrix.cloud"
     ```
 
-5. set the kubrix target type which should be used
+    if this variable is not set, a subdomain of "kubrix.cloud" is randomly created (for example "demo-2faf23d.kubrix.cloud")
+
+5. optional: set the kubrix target type which should be used
 
     ```
     export KUBRIX_CUSTOMER_TARGET_TYPE="DEMO-METALSTACK"
     ```
+
+    if this variable is not set, "DEMO-METALSTACK" is used.
 
 6. create a new Kubernetes cluster and be sure that kubectl is connected to it. check with `kubectl cluster-info`
 
