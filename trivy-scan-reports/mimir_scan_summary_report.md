@@ -349,7 +349,7 @@
         <td>CVE-2025-47950</td>
         <td>HIGH</td>
         <td>v1.11.2</td>
-        <td>1.21.2</td>
+        <td>1.12.2</td>
     </tr>
     <tr>
         <td><code>github.com/golang-jwt/jwt/v4</code></td>
