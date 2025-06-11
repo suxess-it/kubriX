@@ -83,3 +83,27 @@ export KUBRIX_BOOTSTRAP_MAX_WAIT_TIME=2000
 
 # install-platform from new repository
 ./install-platform.sh
+
+rc=$?
+if [ $rc -ne 0 ]; then
+  echo "install-platform.sh was not sucessful. To rerun the installation with the already existing customer repo ${KUBRIX_CUSTOMER_REPO} just export these variables:\
+  
+  
+  export KUBRIX_BACKSTAGE_GITHUB_CLIENTID=dummy
+  export KUBRIX_BACKSTAGE_GITHUB_CLIENTSECRET=dummy
+  export KUBRIX_BACKSTAGE_GITHUB_TOKEN=${KUBRIX_CUSTOMER_REPO_TOKEN}
+  export KUBRIX_REPO=${KUBRIX_CUSTOMER_REPO}
+  export KUBRIX_REPO_BRANCH=main
+  export KUBRIX_REPO_USERNAME=dummy
+  export KUBRIX_REPO_PASSWORD=${KUBRIX_CUSTOMER_REPO_TOKEN}
+  export KUBRIX_TARGET_TYPE=${KUBRIX_CUSTOMER_TARGET_TYPE}
+  export KUBRIX_CREATE_K3D_CLUSTER=false
+  export KUBRIX_BOOTSTRAP_MAX_WAIT_TIME=2000
+  
+  and then 
+  
+  cd "$HOME/bootstrap-kubriX/kubriX-repo"
+  ./install-platform.sh
+  "
+fi
+
