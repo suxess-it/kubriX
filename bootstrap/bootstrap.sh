@@ -105,5 +105,7 @@ if [ $rc -ne 0 ]; then
   cd "$HOME/bootstrap-kubriX/kubriX-repo"
   ./install-platform.sh
   "
+else
+  echo "kubriX bootstrapped sucessfully!"
 fi
 
