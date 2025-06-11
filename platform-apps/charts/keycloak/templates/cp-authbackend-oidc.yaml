@@ -11,7 +11,7 @@ spec:
   providerConfigRef:
     name: vault-crossplane-providerconfig
   forProvider:
-    oidcDiscoveryUrl: "http://sx-keycloak.keycloak.svc.cluster.local:80/realms/{{ $.Values.kubrix.keycloak.realm.realmid }}"
+    oidcDiscoveryUrl: "https://keycloak{{ .Values.kubrix.keycloak.fqdn }}/realms/{{ $.Values.kubrix.keycloak.realm.realmid }}"
     oidcClientId: vault
     defaultRole: default
     oidcClientSecretSecretRef:
