@@ -103,7 +103,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>Java</code></h3>
-<h4>Vulnerabilities (1)</h4>
+<h4>Vulnerabilities (3)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -118,6 +118,20 @@
         <td>HIGH</td>
         <td>26.1.5</td>
         <td>26.2.2</td>
+    </tr>
+    <tr>
+        <td><code>org.postgresql:postgresql</code></td>
+        <td>CVE-2025-49146</td>
+        <td>HIGH</td>
+        <td>42.7.4</td>
+        <td>42.7.7</td>
+    </tr>
+    <tr>
+        <td><code>org.postgresql:postgresql</code></td>
+        <td>CVE-2025-49146</td>
+        <td>HIGH</td>
+        <td>42.7.5</td>
+        <td>42.7.7</td>
     </tr>
 </table>
 <h4>No Misconfigurations found</h4>
