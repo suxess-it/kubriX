@@ -8,7 +8,7 @@ metadata:
     argocd.argoproj.io/sync-wave: "-8"
     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
 spec:
-  address: "{{ .Values.eso.providerUrl }}"
+  address: "http://sx-vault-active.{{ .Release.Namespace }}.svc.cluster.local:8200/"
   credentials:
     source: Secret
     secretRef:
