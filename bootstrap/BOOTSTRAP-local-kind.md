@@ -55,17 +55,17 @@ install the CA of mkcert in your OS truststore: https://docs.kubefirst.io/k3d/qu
      apiVersion: kind.x-k8s.io/v1alpha4
      nodes:
      - role: control-plane
-     kubeadmConfigPatches:
-     - |
+       kubeadmConfigPatches:
+       - |
          kind: InitConfiguration
          nodeRegistration:
          kubeletExtraArgs:
              node-labels: "ingress-ready=true"
-     extraPortMappings:
-     - containerPort: 80
+       extraPortMappings:
+       - containerPort: 80
          hostPort: 80
          protocol: TCP
-     - containerPort: 443
+       - containerPort: 443
          hostPort: 443
          protocol: TCP
      ```
