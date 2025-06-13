@@ -87,3 +87,4 @@ It will create a new kubriX repo based on your parameters and installs kubriX ba
 | Grafana    | https://grafana-127-0-0-1.nip.io | admin | prom-operator |
 | Keycloak    | https://keycloak-127-0-0-1.nip.io | admin | admin |
 | FalcoUI    | https://falco-127-0-0-1.nip.io | admin | admin |
+
