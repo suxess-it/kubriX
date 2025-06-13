@@ -1,6 +1,6 @@
 
 <h3>Target <code>docker.io/dserio83/velero-api:0.2.4 (debian 12.10)</code></h3>
-<h4>Vulnerabilities (9)</h4>
+<h4>Vulnerabilities (11)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -64,6 +64,20 @@
         <td>HIGH</td>
         <td>5.36.0-7+deb12u1</td>
         <td>5.36.0-7+deb12u2</td>
+    </tr>
+    <tr>
+        <td><code>python3-pkg-resources</code></td>
+        <td>CVE-2025-47273</td>
+        <td>HIGH</td>
+        <td>66.1.1-1+deb12u1</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>python3-setuptools</code></td>
+        <td>CVE-2025-47273</td>
+        <td>HIGH</td>
+        <td>66.1.1-1+deb12u1</td>
+        <td></td>
     </tr>
     <tr>
         <td><code>zlib1g</code></td>
