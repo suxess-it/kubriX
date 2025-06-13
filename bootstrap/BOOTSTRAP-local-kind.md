@@ -14,11 +14,6 @@ With this step-by-step guide kubriX with its default KIND-DELIVERY stack gets de
 
 Install kind: https://kind.sigs.k8s.io/docs/user/quick-start/#installing-from-release-binaries
 
-Create kind cluster
-````
-kind create cluster --name kubrix-local-demo --config .github/kind-config.yaml
-````
-
 ### mkcert
 
 ```
@@ -52,10 +47,43 @@ install the CA of mkcert in your OS truststore: https://docs.kubefirst.io/k3d/qu
 
 4. create a new KinD cluster and be sure that kubectl is connected to it. check with `kubectl cluster-info`
 
+     You need to enable ingress on your KinD cluster so this config below should be used with `kind create cluster --name kubrix-local-demo --config kind-config.yaml`
+
+        
+     ```
+     kind: Cluster
+     apiVersion: kind.x-k8s.io/v1alpha4
+     nodes:
+     - role: control-plane
+     kubeadmConfigPatches:
+     - |
+         kind: InitConfiguration
+         nodeRegistration:
+         kubeletExtraArgs:
+             node-labels: "ingress-ready=true"
+     extraPortMappings:
+     - containerPort: 80
+         hostPort: 80
+         protocol: TCP
+     - containerPort: 443
+         hostPort: 443
+         protocol: TCP
+     ```
+
 5. Then run this command in your home directory in your linux bash:
 
     ```
     curl -H 'Cache-Control: no-cache, no-store' https://raw.githubusercontent.com/suxess-it/kubriX/refs/heads/main/bootstrap/bootstrap.sh | bash -s
     ```
 
-It will create a new kubriX repo based on your parameters and installs kubriX based on your created kubriX repo on your connected K8s cluster.
+It will create a new kubriX repo based on your parameters and installs kubriX based on your created kubriX repo on your local KinD cluster.
+
+
+| Tool    | URL | Username | Password |
+| -------- | ------- | ------- | ------- |
+| Backstage  | https://backstage-127-0-0-1.nip.io | via github | via github |
+| ArgoCD | https://argocd-127-0-0-1.nip.io/ | admin | `kubectl get secret -n argocd argocd-initial-admin-secret -o=jsonpath='{.data.password}' \| base64 -d` |
+| Kargo | https://kargo-127-0-0-1.nip.io     | admin | - |
+| Grafana    | https://grafana-127-0-0-1.nip.io | admin | prom-operator |
+| Keycloak    | https://keycloak-127-0-0-1.nip.io | admin | admin |
+| FalcoUI    | https://falco-127-0-0-1.nip.io | admin | admin |
