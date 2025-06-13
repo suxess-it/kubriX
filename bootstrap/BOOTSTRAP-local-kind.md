@@ -59,7 +59,7 @@ install the CA of mkcert in your OS truststore: https://docs.kubefirst.io/k3d/qu
        - |
          kind: InitConfiguration
          nodeRegistration:
-         kubeletExtraArgs:
+           kubeletExtraArgs:
              node-labels: "ingress-ready=true"
        extraPortMappings:
        - containerPort: 80
