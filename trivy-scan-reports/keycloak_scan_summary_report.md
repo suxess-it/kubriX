@@ -139,16 +139,64 @@
 <h4>No Vulnerabilities found</h4>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>opt/bitnami/common/.spdx-wait-for-port.spdx</code></h3>
-<h4>No Vulnerabilities found</h4>
+<h4>Vulnerabilities (1)</h4>
+<table>
+    <tr>
+        <th>Package</th>
+        <th>ID</th>
+        <th>Severity</th>
+        <th>Installed Version</th>
+        <th>Fixed Version</th>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2025-22874</td>
+        <td>HIGH</td>
+        <td>v1.23.8</td>
+        <td>1.23.10, 1.24.4</td>
+    </tr>
+</table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>opt/bitnami/common/bin/wait-for-port</code></h3>
-<h4>No Vulnerabilities found</h4>
+<h4>Vulnerabilities (1)</h4>
+<table>
+    <tr>
+        <th>Package</th>
+        <th>ID</th>
+        <th>Severity</th>
+        <th>Installed Version</th>
+        <th>Fixed Version</th>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2025-22874</td>
+        <td>HIGH</td>
+        <td>v1.23.8</td>
+        <td>1.23.10, 1.24.4</td>
+    </tr>
+</table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>opt/bitnami/java</code></h3>
 <h4>No Vulnerabilities found</h4>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>opt/bitnami/keycloak</code></h3>
-<h4>No Vulnerabilities found</h4>
+<h4>Vulnerabilities (1)</h4>
+<table>
+    <tr>
+        <th>Package</th>
+        <th>ID</th>
+        <th>Severity</th>
+        <th>Installed Version</th>
+        <th>Fixed Version</th>
+    </tr>
+    <tr>
+        <td><code>postgresql-jdbc-driver</code></td>
+        <td>CVE-2025-49146</td>
+        <td>HIGH</td>
+        <td>42.7.5</td>
+        <td>42.7.7</td>
+    </tr>
+</table>
 <h4>No Misconfigurations found</h4>
 
 <h3>Target <code>docker.io/bitnami/postgresql:17.4.0-debian-12-r15 (debian 12.10)</code></h3>
