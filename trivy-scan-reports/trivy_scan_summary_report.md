@@ -38,7 +38,7 @@
         <td>CVE-2025-22874</td>
         <td>HIGH</td>
         <td>v1.24.1</td>
-        <td>1.23.10, 1.24.4</td>
+        <td>1.24.4</td>
     </tr>
 </table>
 <h4>No Misconfigurations found</h4>
