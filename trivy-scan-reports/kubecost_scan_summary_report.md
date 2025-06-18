@@ -1179,7 +1179,7 @@
 <h4>No Misconfigurations found</h4>
 
 <h3>Target <code>gcr.io/kubecost1/cost-model:prod-2.7.0 (redhat 9.5)</code></h3>
-<h4>Vulnerabilities (6)</h4>
+<h4>Vulnerabilities (3)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -1187,27 +1187,6 @@
         <th>Severity</th>
         <th>Installed Version</th>
         <th>Fixed Version</th>
-    </tr>
-    <tr>
-        <td><code>glibc</code></td>
-        <td>CVE-2025-5702</td>
-        <td>HIGH</td>
-        <td>2.34-125.el9_5.3</td>
-        <td></td>
-    </tr>
-    <tr>
-        <td><code>glibc-common</code></td>
-        <td>CVE-2025-5702</td>
-        <td>HIGH</td>
-        <td>2.34-125.el9_5.3</td>
-        <td></td>
-    </tr>
-    <tr>
-        <td><code>glibc-minimal-langpack</code></td>
-        <td>CVE-2025-5702</td>
-        <td>HIGH</td>
-        <td>2.34-125.el9_5.3</td>
-        <td></td>
     </tr>
     <tr>
         <td><code>libxml2</code></td>
@@ -1237,7 +1216,7 @@
 <h4>No Misconfigurations found</h4>
 
 <h3>Target <code>gcr.io/kubecost1/frontend:prod-2.7.0 (redhat 9.5)</code></h3>
-<h4>Vulnerabilities (6)</h4>
+<h4>Vulnerabilities (4)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -1245,27 +1224,6 @@
         <th>Severity</th>
         <th>Installed Version</th>
         <th>Fixed Version</th>
-    </tr>
-    <tr>
-        <td><code>glibc</code></td>
-        <td>CVE-2025-5702</td>
-        <td>HIGH</td>
-        <td>2.34-125.el9_5.3</td>
-        <td></td>
-    </tr>
-    <tr>
-        <td><code>glibc-common</code></td>
-        <td>CVE-2025-5702</td>
-        <td>HIGH</td>
-        <td>2.34-125.el9_5.3</td>
-        <td></td>
-    </tr>
-    <tr>
-        <td><code>glibc-minimal-langpack</code></td>
-        <td>CVE-2025-5702</td>
-        <td>HIGH</td>
-        <td>2.34-125.el9_5.3</td>
-        <td></td>
     </tr>
     <tr>
         <td><code>libxml2</code></td>
@@ -1288,11 +1246,18 @@
         <td>2.9.13-6.el9_5.2</td>
         <td></td>
     </tr>
+    <tr>
+        <td><code>pam</code></td>
+        <td>CVE-2025-6020</td>
+        <td>HIGH</td>
+        <td>1.5.1-22.el9_5</td>
+        <td></td>
+    </tr>
 </table>
 <h4>No Misconfigurations found</h4>
 
 <h3>Target <code>gcr.io/kubecost1/kubecost-modeling:v0.1.24 (redhat 9.5)</code></h3>
-<h4>Vulnerabilities (6)</h4>
+<h4>Vulnerabilities (3)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -1300,27 +1265,6 @@
         <th>Severity</th>
         <th>Installed Version</th>
         <th>Fixed Version</th>
-    </tr>
-    <tr>
-        <td><code>glibc</code></td>
-        <td>CVE-2025-5702</td>
-        <td>HIGH</td>
-        <td>2.34-125.el9_5.3</td>
-        <td></td>
-    </tr>
-    <tr>
-        <td><code>glibc-common</code></td>
-        <td>CVE-2025-5702</td>
-        <td>HIGH</td>
-        <td>2.34-125.el9_5.3</td>
-        <td></td>
-    </tr>
-    <tr>
-        <td><code>glibc-minimal-langpack</code></td>
-        <td>CVE-2025-5702</td>
-        <td>HIGH</td>
-        <td>2.34-125.el9_5.3</td>
-        <td></td>
     </tr>
     <tr>
         <td><code>libxml2</code></td>

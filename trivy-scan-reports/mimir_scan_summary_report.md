@@ -41,7 +41,7 @@
 <h4>No Misconfigurations found</h4>
 
 <h3>Target <code>quay.io/minio/mc:RELEASE.2024-04-18T16-45-29Z (redhat 9.3)</code></h3>
-<h4>Vulnerabilities (12)</h4>
+<h4>Vulnerabilities (9)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -72,13 +72,6 @@
         <td>2.34-100.el9_4.2</td>
     </tr>
     <tr>
-        <td><code>glibc</code></td>
-        <td>CVE-2025-5702</td>
-        <td>HIGH</td>
-        <td>2.34-83.el9_3.12</td>
-        <td></td>
-    </tr>
-    <tr>
         <td><code>glibc-common</code></td>
         <td>CVE-2023-4911</td>
         <td>HIGH</td>
@@ -100,13 +93,6 @@
         <td>2.34-100.el9_4.2</td>
     </tr>
     <tr>
-        <td><code>glibc-common</code></td>
-        <td>CVE-2025-5702</td>
-        <td>HIGH</td>
-        <td>2.34-83.el9_3.12</td>
-        <td></td>
-    </tr>
-    <tr>
         <td><code>glibc-minimal-langpack</code></td>
         <td>CVE-2023-4911</td>
         <td>HIGH</td>
@@ -126,13 +112,6 @@
         <td>HIGH</td>
         <td>2.34-83.el9_3.12</td>
         <td>2.34-100.el9_4.2</td>
-    </tr>
-    <tr>
-        <td><code>glibc-minimal-langpack</code></td>
-        <td>CVE-2025-5702</td>
-        <td>HIGH</td>
-        <td>2.34-83.el9_3.12</td>
-        <td></td>
     </tr>
 </table>
 <h4>No Misconfigurations found</h4>
@@ -185,7 +164,7 @@
 <h4>No Misconfigurations found</h4>
 
 <h3>Target <code>quay.io/minio/minio:RELEASE.2024-04-18T19-09-19Z (redhat 9.3)</code></h3>
-<h4>Vulnerabilities (12)</h4>
+<h4>Vulnerabilities (9)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -216,13 +195,6 @@
         <td>2.34-100.el9_4.2</td>
     </tr>
     <tr>
-        <td><code>glibc</code></td>
-        <td>CVE-2025-5702</td>
-        <td>HIGH</td>
-        <td>2.34-83.el9_3.12</td>
-        <td></td>
-    </tr>
-    <tr>
         <td><code>glibc-common</code></td>
         <td>CVE-2023-4911</td>
         <td>HIGH</td>
@@ -244,13 +216,6 @@
         <td>2.34-100.el9_4.2</td>
     </tr>
     <tr>
-        <td><code>glibc-common</code></td>
-        <td>CVE-2025-5702</td>
-        <td>HIGH</td>
-        <td>2.34-83.el9_3.12</td>
-        <td></td>
-    </tr>
-    <tr>
         <td><code>glibc-minimal-langpack</code></td>
         <td>CVE-2023-4911</td>
         <td>HIGH</td>
@@ -270,13 +235,6 @@
         <td>HIGH</td>
         <td>2.34-83.el9_3.12</td>
         <td>2.34-100.el9_4.2</td>
-    </tr>
-    <tr>
-        <td><code>glibc-minimal-langpack</code></td>
-        <td>CVE-2025-5702</td>
-        <td>HIGH</td>
-        <td>2.34-83.el9_3.12</td>
-        <td></td>
     </tr>
 </table>
 <h4>No Misconfigurations found</h4>
