@@ -17,6 +17,8 @@ spec:
 # every team MUST be allowed to create resources in adn namespace (for app creation)
   - name: 'in-cluster'
     namespace: 'adn-{{ $team.name }}'
+  - name: 'in-cluster'
+    namespace: '{{ $team.name }}-*-kargo-project'
 # all other destinations are depending on the destinationClusters list (particularly relevant in hub-and-spoke architectures)
   {{- range $cluster := $.Values.destinationClusters }}
     {{- if and $cluster.allowedTeams $cluster.deniedTeams -}}

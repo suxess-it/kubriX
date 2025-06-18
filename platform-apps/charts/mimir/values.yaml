@@ -2,6 +2,8 @@ mimir:
   metaMonitoring:
     dashboards:
       enabled: true
+      annotations:
+        argocd.argoproj.io/sync-options: ServerSideApply=true
     serviceMonitor:
       enabled: true
     grafanaAgent:

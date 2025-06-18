@@ -55,14 +55,23 @@ spec:
       name: Fetch the actual team configuration File from Github
       action: fetch:plain:file
       input:
-        url: https://github.com/suxess-it/kubriX/blob/main/platform-apps/charts/team-onboarding/values-uibklab.yaml
-        targetPath: values-uibklab.yaml
+        url: https://github.com/suxess-it/kubriX/blob/main/platform-apps/charts/team-onboarding/values.yaml
+        targetPath: values.yaml
+
+    - id: replace-if-new
+      name: Replace [] if new template
+      action: roadiehq:utils:fs:replace
+      input:
+        files:
+          - file: values.yaml
+            find: 'teams: []'
+            replaceWith: 'teams:'
 
     - id: update
       name: Update File with new Team Information
       action: roadiehq:utils:fs:append
       input:
-        path: values-uibklab.yaml
+        path: values.yaml
         content: >
           
           # new team stanza for team ${{ steps['catalogFetch'].output.entity.metadata.name }}
@@ -76,7 +85,7 @@ spec:
                   kind: Project
               appOfAppsRepo:
                 repoURL: https://github.com/suxess-it/${{ steps['catalogFetch'].output.entity.metadata.name }}-apps
-                path: uibklab-apps
+                path: demo-apps
                 revision: main
               multiStageKargoAppSet:
                 organization: suxess-it

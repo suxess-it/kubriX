@@ -16,3 +16,12 @@ spec:
   customizeComponents: {}
   imagePullPolicy: IfNotPresent
   workloadUpdateStrategy: {}
+  # for demo purposes only
+  infra:
+    nodePlacement:
+      nodeSelector:
+        kubernetes.io/os: linux
+  workloads:
+    nodePlacement:
+      nodeSelector:
+        kubernetes.io/os: linux

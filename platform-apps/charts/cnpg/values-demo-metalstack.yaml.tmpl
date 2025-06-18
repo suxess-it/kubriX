@@ -1,0 +1,47 @@
+cloudnative-pg:
+  replicaCount: 2
+  monitoring:
+    podMonitorEnabled: true
+ # commonAnnotations:
+ #   argocd.argoproj.io/sync-wave: "-2"
+## pgadmin for demopurposes
+pgadmin4:
+  fqdn: .{{ .kubriX.domain }}
+  ingress:
+    enabled: true
+    ingressClassName: nginx
+    annotations:
+      external-dns.alpha.kubernetes.io/ttl: "60"
+      cert-manager.io/cluster-issuer: letsencrypt-prod
+    hosts:
+      - host: pgadmin.{{ .kubriX.domain }}
+        paths:
+          - path: /
+            pathType: Prefix
+    tls:
+      - secretName: pgadmin-server-tls
+        hosts:
+          - pgadmin.{{ .kubriX.domain }}
+  extraConfigmapMounts:
+    - name: configmap
+      configMap: pgadminconfiglocal
+      mountPath: /pgadmin4/config_local.py
+      subPath: config_local.py
+      readOnly: true
+  envVarsFromSecrets:
+    - pgadmin-secret
+  serverDefinitions:
+    enabled: true
+    servers:
+      backstagePG:
+        Name: "backstagePG"
+        Group: "kubriX"
+        Port: 5432
+        Username: backstage
+        Host: sx-backstage-cluster-rw.backstage.svc.cluster.local
+        MaintenanceDB: "postgres"
+  existingSecret: pgadmin-secret
+  strategy:
+    type: Recreate
+  env:
+    email: pgadmin4@kubrix.io

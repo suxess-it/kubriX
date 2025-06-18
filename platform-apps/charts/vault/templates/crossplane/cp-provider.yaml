@@ -12,8 +12,9 @@ spec:
         spec:
           containers:
           - name: package-runtime
-            args:
-            - --poll=1m
+            # args: 
+            # - --poll=1m
+            # - --debug
 ---
 # should move to crossplane ns, maybe? 
 apiVersion: pkg.crossplane.io/v1
@@ -23,7 +24,7 @@ metadata:
   annotations:
     argocd.argoproj.io/sync-wave: "-10"
 spec:
-  package: xpkg.upbound.io/upbound/provider-vault:v2.1.3
+  package: xpkg.upbound.io/upbound/provider-vault:v2
   runtimeConfigRef:
     apiVersion: pkg.crossplane.io/v1beta1
     kind: DeploymentRuntimeConfig

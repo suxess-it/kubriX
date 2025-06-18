@@ -41,5 +41,7 @@ pgadmin4:
         Host: sx-backstage-cluster-rw.backstage.svc.cluster.local
         MaintenanceDB: "postgres"
   existingSecret: pgadmin-secret
+  strategy:
+    type: Recreate
   env:
     email: pgadmin4@kubrix.io

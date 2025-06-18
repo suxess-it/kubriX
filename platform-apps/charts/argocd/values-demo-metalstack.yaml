@@ -148,6 +148,12 @@ argo-cd:
             end
             return health_status
 
+      resource.exclusions: |
+        - apiGroups:
+          - "*"
+          kinds:
+          - ProviderConfigUsage
+
     rbac:
       policy.csv: |
         p, backstage, applications, get, */*, allow
