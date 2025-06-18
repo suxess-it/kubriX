@@ -1,6 +1,6 @@
 
 <h3>Target <code>bitnami/kubectl:1.30.2 (debian 12.6)</code></h3>
-<h4>Vulnerabilities (32)</h4>
+<h4>Vulnerabilities (42)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -80,6 +80,20 @@
         <td>1:2.39.5-0+deb12u1</td>
     </tr>
     <tr>
+        <td><code>libc-bin</code></td>
+        <td>CVE-2025-4802</td>
+        <td>HIGH</td>
+        <td>2.36-9+deb12u7</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>libc6</code></td>
+        <td>CVE-2025-4802</td>
+        <td>HIGH</td>
+        <td>2.36-9+deb12u7</td>
+        <td></td>
+    </tr>
+    <tr>
         <td><code>libexpat1</code></td>
         <td>CVE-2024-45491</td>
         <td>CRITICAL</td>
@@ -115,6 +129,20 @@
         <td></td>
     </tr>
     <tr>
+        <td><code>libfile-find-rule-perl</code></td>
+        <td>CVE-2011-10007</td>
+        <td>HIGH</td>
+        <td>0.34-3</td>
+        <td>0.34-4~deb12u1</td>
+    </tr>
+    <tr>
+        <td><code>libicu72</code></td>
+        <td>CVE-2025-5222</td>
+        <td>HIGH</td>
+        <td>72.1-3</td>
+        <td></td>
+    </tr>
+    <tr>
         <td><code>libldap-2.5-0</code></td>
         <td>CVE-2023-2953</td>
         <td>HIGH</td>
@@ -141,6 +169,27 @@
         <td>HIGH</td>
         <td>5.36.0-7+deb12u1</td>
         <td>5.36.0-7+deb12u2</td>
+    </tr>
+    <tr>
+        <td><code>libssl3</code></td>
+        <td>CVE-2024-6119</td>
+        <td>HIGH</td>
+        <td>3.0.13-1~deb12u1</td>
+        <td>3.0.14-1~deb12u2</td>
+    </tr>
+    <tr>
+        <td><code>libxml2</code></td>
+        <td>CVE-2025-49794</td>
+        <td>CRITICAL</td>
+        <td>2.9.14+dfsg-1.3~deb12u1</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>libxml2</code></td>
+        <td>CVE-2025-49796</td>
+        <td>CRITICAL</td>
+        <td>2.9.14+dfsg-1.3~deb12u1</td>
+        <td></td>
     </tr>
     <tr>
         <td><code>libxml2</code></td>
@@ -183,6 +232,27 @@
         <td>HIGH</td>
         <td>2.9.14+dfsg-1.3~deb12u1</td>
         <td></td>
+    </tr>
+    <tr>
+        <td><code>libxml2</code></td>
+        <td>CVE-2025-49795</td>
+        <td>HIGH</td>
+        <td>2.9.14+dfsg-1.3~deb12u1</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>libxml2</code></td>
+        <td>CVE-2025-6021</td>
+        <td>HIGH</td>
+        <td>2.9.14+dfsg-1.3~deb12u1</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>openssl</code></td>
+        <td>CVE-2024-6119</td>
+        <td>HIGH</td>
+        <td>3.0.13-1~deb12u1</td>
+        <td>3.0.14-1~deb12u2</td>
     </tr>
     <tr>
         <td><code>perl</code></td>
@@ -324,7 +394,7 @@
 <h4>No Vulnerabilities found</h4>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>ko-app/background-controller</code></h3>
-<h4>Vulnerabilities (3)</h4>
+<h4>Vulnerabilities (4)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -346,6 +416,13 @@
         <td>HIGH</td>
         <td>v5.2.1</td>
         <td>5.2.2</td>
+    </tr>
+    <tr>
+        <td><code>github.com/open-policy-agent/opa</code></td>
+        <td>CVE-2025-46569</td>
+        <td>HIGH</td>
+        <td>v0.68.0</td>
+        <td>1.4.0</td>
     </tr>
     <tr>
         <td><code>golang.org/x/crypto</code></td>
@@ -361,7 +438,7 @@
 <h4>No Vulnerabilities found</h4>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>ko-app/cleanup-controller</code></h3>
-<h4>Vulnerabilities (3)</h4>
+<h4>Vulnerabilities (4)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -385,6 +462,13 @@
         <td>5.2.2</td>
     </tr>
     <tr>
+        <td><code>github.com/open-policy-agent/opa</code></td>
+        <td>CVE-2025-46569</td>
+        <td>HIGH</td>
+        <td>v0.68.0</td>
+        <td>1.4.0</td>
+    </tr>
+    <tr>
         <td><code>golang.org/x/crypto</code></td>
         <td>CVE-2025-22869</td>
         <td>HIGH</td>
@@ -398,7 +482,7 @@
 <h4>No Vulnerabilities found</h4>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>ko-app/kubectl-kyverno</code></h3>
-<h4>Vulnerabilities (5)</h4>
+<h4>Vulnerabilities (6)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -436,6 +520,13 @@
         <td>5.2.2</td>
     </tr>
     <tr>
+        <td><code>github.com/open-policy-agent/opa</code></td>
+        <td>CVE-2025-46569</td>
+        <td>HIGH</td>
+        <td>v0.68.0</td>
+        <td>1.4.0</td>
+    </tr>
+    <tr>
         <td><code>golang.org/x/crypto</code></td>
         <td>CVE-2025-22869</td>
         <td>HIGH</td>
@@ -449,7 +540,7 @@
 <h4>No Vulnerabilities found</h4>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>ko-app/kyverno</code></h3>
-<h4>Vulnerabilities (3)</h4>
+<h4>Vulnerabilities (4)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -471,6 +562,13 @@
         <td>HIGH</td>
         <td>v5.2.1</td>
         <td>5.2.2</td>
+    </tr>
+    <tr>
+        <td><code>github.com/open-policy-agent/opa</code></td>
+        <td>CVE-2025-46569</td>
+        <td>HIGH</td>
+        <td>v0.68.0</td>
+        <td>1.4.0</td>
     </tr>
     <tr>
         <td><code>golang.org/x/crypto</code></td>
@@ -486,7 +584,7 @@
 <h4>No Vulnerabilities found</h4>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>ko-app/kyverno-init</code></h3>
-<h4>Vulnerabilities (3)</h4>
+<h4>Vulnerabilities (4)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -508,6 +606,13 @@
         <td>HIGH</td>
         <td>v5.2.1</td>
         <td>5.2.2</td>
+    </tr>
+    <tr>
+        <td><code>github.com/open-policy-agent/opa</code></td>
+        <td>CVE-2025-46569</td>
+        <td>HIGH</td>
+        <td>v0.68.0</td>
+        <td>1.4.0</td>
     </tr>
     <tr>
         <td><code>golang.org/x/crypto</code></td>
@@ -523,7 +628,7 @@
 <h4>No Vulnerabilities found</h4>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>ko-app/reports-controller</code></h3>
-<h4>Vulnerabilities (3)</h4>
+<h4>Vulnerabilities (4)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -545,6 +650,13 @@
         <td>HIGH</td>
         <td>v5.2.1</td>
         <td>5.2.2</td>
+    </tr>
+    <tr>
+        <td><code>github.com/open-policy-agent/opa</code></td>
+        <td>CVE-2025-46569</td>
+        <td>HIGH</td>
+        <td>v0.68.0</td>
+        <td>1.4.0</td>
     </tr>
     <tr>
         <td><code>golang.org/x/crypto</code></td>

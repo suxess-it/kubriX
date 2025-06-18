@@ -127,24 +127,8 @@
 <h4>No Vulnerabilities found</h4>
 <h4>No Misconfigurations found</h4>
 
-<h3>Target <code>docker.io/grafana/grafana:11.6.0 (alpine 3.21.3)</code></h3>
-<h4>Vulnerabilities (1)</h4>
-<table>
-    <tr>
-        <th>Package</th>
-        <th>ID</th>
-        <th>Severity</th>
-        <th>Installed Version</th>
-        <th>Fixed Version</th>
-    </tr>
-    <tr>
-        <td><code>c-ares</code></td>
-        <td>CVE-2025-31498</td>
-        <td>HIGH</td>
-        <td>1.34.3-r0</td>
-        <td>1.34.5-r0</td>
-    </tr>
-</table>
+<h3>Target <code>docker.io/grafana/grafana:11.6.1 (alpine 3.21.3)</code></h3>
+<h4>No Vulnerabilities found</h4>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>Node.js</code></h3>
 <h4>No Vulnerabilities found</h4>
@@ -160,32 +144,64 @@
         <th>Fixed Version</th>
     </tr>
     <tr>
-        <td><code>github.com/golang-jwt/jwt/v4</code></td>
-        <td>CVE-2025-30204</td>
+        <td><code>github.com/getkin/kin-openapi</code></td>
+        <td>CVE-2025-30153</td>
         <td>HIGH</td>
-        <td>v4.5.1</td>
-        <td>4.5.2</td>
+        <td>v0.126.0</td>
+        <td>0.131.0</td>
     </tr>
     <tr>
-        <td><code>github.com/golang-jwt/jwt/v5</code></td>
-        <td>CVE-2025-30204</td>
+        <td><code>stdlib</code></td>
+        <td>CVE-2025-22874</td>
         <td>HIGH</td>
-        <td>v5.2.1</td>
-        <td>5.2.2</td>
+        <td>v1.24.2</td>
+        <td>1.24.4</td>
     </tr>
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>usr/share/grafana/bin/grafana-cli</code></h3>
-<h4>No Vulnerabilities found</h4>
+<h4>Vulnerabilities (1)</h4>
+<table>
+    <tr>
+        <th>Package</th>
+        <th>ID</th>
+        <th>Severity</th>
+        <th>Installed Version</th>
+        <th>Fixed Version</th>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2025-22874</td>
+        <td>HIGH</td>
+        <td>v1.24.2</td>
+        <td>1.24.4</td>
+    </tr>
+</table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>usr/share/grafana/bin/grafana-server</code></h3>
-<h4>No Vulnerabilities found</h4>
+<h4>Vulnerabilities (1)</h4>
+<table>
+    <tr>
+        <th>Package</th>
+        <th>ID</th>
+        <th>Severity</th>
+        <th>Installed Version</th>
+        <th>Fixed Version</th>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2025-22874</td>
+        <td>HIGH</td>
+        <td>v1.24.2</td>
+        <td>1.24.4</td>
+    </tr>
+</table>
 <h4>No Misconfigurations found</h4>
 
 <h3>Trivy Returned Empty Report</h3>
 
 <h3>Target <code>quay.io/kiwigrid/k8s-sidecar:1.30.0 (alpine 3.21.2)</code></h3>
-<h4>Vulnerabilities (3)</h4>
+<h4>Vulnerabilities (4)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -209,6 +225,13 @@
         <td>3.3.3-r0</td>
     </tr>
     <tr>
+        <td><code>sqlite-libs</code></td>
+        <td>CVE-2025-29087</td>
+        <td>HIGH</td>
+        <td>3.47.1-r0</td>
+        <td>3.48.0-r1</td>
+    </tr>
+    <tr>
         <td><code>xz-libs</code></td>
         <td>CVE-2025-31115</td>
         <td>HIGH</td>
@@ -218,5 +241,21 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>Python</code></h3>
-<h4>No Vulnerabilities found</h4>
+<h4>Vulnerabilities (1)</h4>
+<table>
+    <tr>
+        <th>Package</th>
+        <th>ID</th>
+        <th>Severity</th>
+        <th>Installed Version</th>
+        <th>Fixed Version</th>
+    </tr>
+    <tr>
+        <td><code>setuptools</code></td>
+        <td>CVE-2025-47273</td>
+        <td>HIGH</td>
+        <td>75.8.0</td>
+        <td>78.1.1</td>
+    </tr>
+</table>
 <h4>No Misconfigurations found</h4>
