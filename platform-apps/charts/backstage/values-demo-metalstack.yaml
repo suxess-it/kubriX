@@ -21,6 +21,7 @@ backstage:
       - sx-cnp-secret
       - manual-secret
       - backstage-db-secrets
+      - sx-vault-secret
     extraEnvVars:
       - name: NODE_OPTIONS
         value: "--no-node-snapshot"
@@ -344,8 +345,8 @@ backstage:
         unitprefix: '€'
 
       vault:
-        baseUrl: https://${VAULT_ADDR}
-        publicUrl: https://${VAULT_ADDR}
+        baseUrl: ${VAULT_ADDR_INT}
+        publicUrl: ${VAULT_ADDR}
         auth:
           type: static
           secret: "${VAULT_TOKEN}"
