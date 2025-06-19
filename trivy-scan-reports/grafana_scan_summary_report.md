@@ -127,14 +127,14 @@
 <h4>No Vulnerabilities found</h4>
 <h4>No Misconfigurations found</h4>
 
-<h3>Target <code>docker.io/grafana/grafana:11.6.1 (alpine 3.21.3)</code></h3>
+<h3>Target <code>docker.io/grafana/grafana:12.0.1 (alpine 3.21.3)</code></h3>
 <h4>No Vulnerabilities found</h4>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>Node.js</code></h3>
 <h4>No Vulnerabilities found</h4>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>usr/share/grafana/bin/grafana</code></h3>
-<h4>Vulnerabilities (2)</h4>
+<h4>Vulnerabilities (1)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -144,17 +144,10 @@
         <th>Fixed Version</th>
     </tr>
     <tr>
-        <td><code>github.com/getkin/kin-openapi</code></td>
-        <td>CVE-2025-30153</td>
-        <td>HIGH</td>
-        <td>v0.126.0</td>
-        <td>0.131.0</td>
-    </tr>
-    <tr>
         <td><code>stdlib</code></td>
         <td>CVE-2025-22874</td>
         <td>HIGH</td>
-        <td>v1.24.2</td>
+        <td>v1.24.3</td>
         <td>1.24.4</td>
     </tr>
 </table>
@@ -173,7 +166,7 @@
         <td><code>stdlib</code></td>
         <td>CVE-2025-22874</td>
         <td>HIGH</td>
-        <td>v1.24.2</td>
+        <td>v1.24.3</td>
         <td>1.24.4</td>
     </tr>
 </table>
@@ -192,7 +185,7 @@
         <td><code>stdlib</code></td>
         <td>CVE-2025-22874</td>
         <td>HIGH</td>
-        <td>v1.24.2</td>
+        <td>v1.24.3</td>
         <td>1.24.4</td>
     </tr>
 </table>

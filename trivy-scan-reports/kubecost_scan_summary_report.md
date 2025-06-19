@@ -1178,7 +1178,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 
-<h3>Target <code>gcr.io/kubecost1/cost-model:prod-2.7.0 (redhat 9.5)</code></h3>
+<h3>Target <code>gcr.io/kubecost1/cost-model:prod-2.7.2 (redhat 9.5)</code></h3>
 <h4>Vulnerabilities (3)</h4>
 <table>
     <tr>
@@ -1215,7 +1215,7 @@
 <h4>No Vulnerabilities found</h4>
 <h4>No Misconfigurations found</h4>
 
-<h3>Target <code>gcr.io/kubecost1/frontend:prod-2.7.0 (redhat 9.5)</code></h3>
+<h3>Target <code>gcr.io/kubecost1/frontend:prod-2.7.2 (redhat 9.5)</code></h3>
 <h4>Vulnerabilities (4)</h4>
 <table>
     <tr>
@@ -1256,8 +1256,8 @@
 </table>
 <h4>No Misconfigurations found</h4>
 
-<h3>Target <code>gcr.io/kubecost1/kubecost-modeling:v0.1.24 (redhat 9.5)</code></h3>
-<h4>Vulnerabilities (3)</h4>
+<h3>Target <code>gcr.io/kubecost1/kubecost-modeling:v0.1.26 (redhat 9.5)</code></h3>
+<h4>Vulnerabilities (9)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -1287,10 +1287,52 @@
         <td>2.9.13-6.el9_5.2</td>
         <td></td>
     </tr>
+    <tr>
+        <td><code>python3.12</code></td>
+        <td>CVE-2024-12718</td>
+        <td>HIGH</td>
+        <td>3.12.5-2.el9_5.3</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>python3.12</code></td>
+        <td>CVE-2025-4138</td>
+        <td>HIGH</td>
+        <td>3.12.5-2.el9_5.3</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>python3.12</code></td>
+        <td>CVE-2025-4517</td>
+        <td>HIGH</td>
+        <td>3.12.5-2.el9_5.3</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>python3.12-libs</code></td>
+        <td>CVE-2024-12718</td>
+        <td>HIGH</td>
+        <td>3.12.5-2.el9_5.3</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>python3.12-libs</code></td>
+        <td>CVE-2025-4138</td>
+        <td>HIGH</td>
+        <td>3.12.5-2.el9_5.3</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>python3.12-libs</code></td>
+        <td>CVE-2025-4517</td>
+        <td>HIGH</td>
+        <td>3.12.5-2.el9_5.3</td>
+        <td></td>
+    </tr>
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>Python</code></h3>
-<h4>Vulnerabilities (2)</h4>
+<h4>Vulnerabilities (1)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -1298,13 +1340,6 @@
         <th>Severity</th>
         <th>Installed Version</th>
         <th>Fixed Version</th>
-    </tr>
-    <tr>
-        <td><code>h11</code></td>
-        <td>CVE-2025-43859</td>
-        <td>CRITICAL</td>
-        <td>0.14.0</td>
-        <td>0.16.0</td>
     </tr>
     <tr>
         <td><code>setuptools</code></td>
@@ -1334,11 +1369,11 @@
         <td>5.2.2</td>
     </tr>
     <tr>
-        <td><code>golang.org/x/crypto</code></td>
-        <td>CVE-2025-22869</td>
+        <td><code>stdlib</code></td>
+        <td>CVE-2025-22874</td>
         <td>HIGH</td>
-        <td>v0.32.0</td>
-        <td>0.35.0</td>
+        <td>v1.24.1</td>
+        <td>1.24.4</td>
     </tr>
 </table>
 <h4>No Misconfigurations found</h4>
@@ -1360,11 +1395,11 @@
         <td>5.2.2</td>
     </tr>
     <tr>
-        <td><code>golang.org/x/crypto</code></td>
-        <td>CVE-2025-22869</td>
+        <td><code>stdlib</code></td>
+        <td>CVE-2025-22874</td>
         <td>HIGH</td>
-        <td>v0.32.0</td>
-        <td>0.35.0</td>
+        <td>v1.24.1</td>
+        <td>1.24.4</td>
     </tr>
 </table>
 <h4>No Misconfigurations found</h4>

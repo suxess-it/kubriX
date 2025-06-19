@@ -1,6 +1,6 @@
 
 <h3>Target <code>docker.io/dserio83/velero-api:0.2.4 (debian 12.10)</code></h3>
-<h4>Vulnerabilities (11)</h4>
+<h4>Vulnerabilities (15)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -50,6 +50,34 @@
         <td>HIGH</td>
         <td>5.4.1-0.2</td>
         <td>5.4.1-1</td>
+    </tr>
+    <tr>
+        <td><code>libpam-modules</code></td>
+        <td>CVE-2025-6020</td>
+        <td>HIGH</td>
+        <td>1.5.2-6+deb12u1</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>libpam-modules-bin</code></td>
+        <td>CVE-2025-6020</td>
+        <td>HIGH</td>
+        <td>1.5.2-6+deb12u1</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>libpam-runtime</code></td>
+        <td>CVE-2025-6020</td>
+        <td>HIGH</td>
+        <td>1.5.2-6+deb12u1</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>libpam0g</code></td>
+        <td>CVE-2025-6020</td>
+        <td>HIGH</td>
+        <td>1.5.2-6+deb12u1</td>
+        <td></td>
     </tr>
     <tr>
         <td><code>perl-base</code></td>
@@ -198,7 +226,7 @@
 <h4>No Misconfigurations found</h4>
 
 <h3>Target <code>docker.io/dserio83/velero-watchdog:0.1.7 (debian 12.9)</code></h3>
-<h4>Vulnerabilities (16)</h4>
+<h4>Vulnerabilities (20)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -248,6 +276,34 @@
         <td>HIGH</td>
         <td>5.4.1-0.2</td>
         <td>5.4.1-1</td>
+    </tr>
+    <tr>
+        <td><code>libpam-modules</code></td>
+        <td>CVE-2025-6020</td>
+        <td>HIGH</td>
+        <td>1.5.2-6+deb12u1</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>libpam-modules-bin</code></td>
+        <td>CVE-2025-6020</td>
+        <td>HIGH</td>
+        <td>1.5.2-6+deb12u1</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>libpam-runtime</code></td>
+        <td>CVE-2025-6020</td>
+        <td>HIGH</td>
+        <td>1.5.2-6+deb12u1</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>libpam0g</code></td>
+        <td>CVE-2025-6020</td>
+        <td>HIGH</td>
+        <td>1.5.2-6+deb12u1</td>
+        <td></td>
     </tr>
     <tr>
         <td><code>libperl5.36</code></td>
