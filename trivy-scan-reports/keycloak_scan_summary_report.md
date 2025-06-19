@@ -1,5 +1,5 @@
 
-<h3>Target <code>docker.io/bitnami/keycloak:26.1.5-debian-12-r0 (debian 12.10)</code></h3>
+<h3>Target <code>docker.io/bitnami/keycloak:26.2.5-debian-12-r1 (debian 12.11)</code></h3>
 <h4>Vulnerabilities (13)</h4>
 <table>
     <tr>
@@ -38,60 +38,60 @@
         <td></td>
     </tr>
     <tr>
-        <td><code>libperl5.36</code></td>
-        <td>CVE-2023-31484</td>
+        <td><code>libpam-modules</code></td>
+        <td>CVE-2025-6020</td>
         <td>HIGH</td>
-        <td>5.36.0-7+deb12u1</td>
+        <td>1.5.2-6+deb12u1</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>libpam-modules-bin</code></td>
+        <td>CVE-2025-6020</td>
+        <td>HIGH</td>
+        <td>1.5.2-6+deb12u1</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>libpam-runtime</code></td>
+        <td>CVE-2025-6020</td>
+        <td>HIGH</td>
+        <td>1.5.2-6+deb12u1</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>libpam0g</code></td>
+        <td>CVE-2025-6020</td>
+        <td>HIGH</td>
+        <td>1.5.2-6+deb12u1</td>
         <td></td>
     </tr>
     <tr>
         <td><code>libperl5.36</code></td>
-        <td>CVE-2024-56406</td>
+        <td>CVE-2023-31484</td>
         <td>HIGH</td>
-        <td>5.36.0-7+deb12u1</td>
         <td>5.36.0-7+deb12u2</td>
+        <td></td>
     </tr>
     <tr>
         <td><code>perl</code></td>
         <td>CVE-2023-31484</td>
         <td>HIGH</td>
-        <td>5.36.0-7+deb12u1</td>
-        <td></td>
-    </tr>
-    <tr>
-        <td><code>perl</code></td>
-        <td>CVE-2024-56406</td>
-        <td>HIGH</td>
-        <td>5.36.0-7+deb12u1</td>
         <td>5.36.0-7+deb12u2</td>
+        <td></td>
     </tr>
     <tr>
         <td><code>perl-base</code></td>
         <td>CVE-2023-31484</td>
         <td>HIGH</td>
-        <td>5.36.0-7+deb12u1</td>
-        <td></td>
-    </tr>
-    <tr>
-        <td><code>perl-base</code></td>
-        <td>CVE-2024-56406</td>
-        <td>HIGH</td>
-        <td>5.36.0-7+deb12u1</td>
         <td>5.36.0-7+deb12u2</td>
+        <td></td>
     </tr>
     <tr>
         <td><code>perl-modules-5.36</code></td>
         <td>CVE-2023-31484</td>
         <td>HIGH</td>
-        <td>5.36.0-7+deb12u1</td>
-        <td></td>
-    </tr>
-    <tr>
-        <td><code>perl-modules-5.36</code></td>
-        <td>CVE-2024-56406</td>
-        <td>HIGH</td>
-        <td>5.36.0-7+deb12u1</td>
         <td>5.36.0-7+deb12u2</td>
+        <td></td>
     </tr>
     <tr>
         <td><code>zlib1g</code></td>
@@ -103,7 +103,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>Java</code></h3>
-<h4>Vulnerabilities (3)</h4>
+<h4>Vulnerabilities (2)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -113,24 +113,17 @@
         <th>Fixed Version</th>
     </tr>
     <tr>
-        <td><code>org.keycloak:keycloak-services</code></td>
-        <td>CVE-2025-3501</td>
-        <td>HIGH</td>
-        <td>26.1.5</td>
-        <td>26.2.2</td>
-    </tr>
-    <tr>
         <td><code>org.postgresql:postgresql</code></td>
         <td>CVE-2025-49146</td>
         <td>HIGH</td>
-        <td>42.7.4</td>
+        <td>42.7.5</td>
         <td>42.7.7</td>
     </tr>
     <tr>
         <td><code>org.postgresql:postgresql</code></td>
         <td>CVE-2025-49146</td>
         <td>HIGH</td>
-        <td>42.7.5</td>
+        <td>42.7.6</td>
         <td>42.7.7</td>
     </tr>
 </table>
@@ -161,13 +154,13 @@
         <td><code>postgresql-jdbc-driver</code></td>
         <td>CVE-2025-49146</td>
         <td>HIGH</td>
-        <td>42.7.5</td>
+        <td>42.7.6</td>
         <td>42.7.7</td>
     </tr>
 </table>
 <h4>No Misconfigurations found</h4>
 
-<h3>Target <code>docker.io/bitnami/postgresql:17.4.0-debian-12-r15 (debian 12.10)</code></h3>
+<h3>Target <code>docker.io/bitnami/postgresql:17.5.0-debian-12-r10 (debian 12.11)</code></h3>
 <h4>Vulnerabilities (26)</h4>
 <table>
     <tr>
@@ -220,18 +213,39 @@
         <td></td>
     </tr>
     <tr>
-        <td><code>libperl5.36</code></td>
-        <td>CVE-2023-31484</td>
+        <td><code>libpam-modules</code></td>
+        <td>CVE-2025-6020</td>
         <td>HIGH</td>
-        <td>5.36.0-7+deb12u1</td>
+        <td>1.5.2-6+deb12u1</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>libpam-modules-bin</code></td>
+        <td>CVE-2025-6020</td>
+        <td>HIGH</td>
+        <td>1.5.2-6+deb12u1</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>libpam-runtime</code></td>
+        <td>CVE-2025-6020</td>
+        <td>HIGH</td>
+        <td>1.5.2-6+deb12u1</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>libpam0g</code></td>
+        <td>CVE-2025-6020</td>
+        <td>HIGH</td>
+        <td>1.5.2-6+deb12u1</td>
         <td></td>
     </tr>
     <tr>
         <td><code>libperl5.36</code></td>
-        <td>CVE-2024-56406</td>
+        <td>CVE-2023-31484</td>
         <td>HIGH</td>
-        <td>5.36.0-7+deb12u1</td>
         <td>5.36.0-7+deb12u2</td>
+        <td></td>
     </tr>
     <tr>
         <td><code>libxml2</code></td>
@@ -314,43 +328,22 @@
         <td><code>perl</code></td>
         <td>CVE-2023-31484</td>
         <td>HIGH</td>
-        <td>5.36.0-7+deb12u1</td>
-        <td></td>
-    </tr>
-    <tr>
-        <td><code>perl</code></td>
-        <td>CVE-2024-56406</td>
-        <td>HIGH</td>
-        <td>5.36.0-7+deb12u1</td>
         <td>5.36.0-7+deb12u2</td>
+        <td></td>
     </tr>
     <tr>
         <td><code>perl-base</code></td>
         <td>CVE-2023-31484</td>
         <td>HIGH</td>
-        <td>5.36.0-7+deb12u1</td>
-        <td></td>
-    </tr>
-    <tr>
-        <td><code>perl-base</code></td>
-        <td>CVE-2024-56406</td>
-        <td>HIGH</td>
-        <td>5.36.0-7+deb12u1</td>
         <td>5.36.0-7+deb12u2</td>
+        <td></td>
     </tr>
     <tr>
         <td><code>perl-modules-5.36</code></td>
         <td>CVE-2023-31484</td>
         <td>HIGH</td>
-        <td>5.36.0-7+deb12u1</td>
-        <td></td>
-    </tr>
-    <tr>
-        <td><code>perl-modules-5.36</code></td>
-        <td>CVE-2024-56406</td>
-        <td>HIGH</td>
-        <td>5.36.0-7+deb12u1</td>
         <td>5.36.0-7+deb12u2</td>
+        <td></td>
     </tr>
     <tr>
         <td><code>zlib1g</code></td>
