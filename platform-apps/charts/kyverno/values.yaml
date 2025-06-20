@@ -23,12 +23,9 @@ kyverno:
   admissionController:
     replicas: 1
     container:
-      securityContext: null
       resources:
         limits:
           memory: 1Gi
-    initContainer:
-      securityContext: null
     serviceMonitor:
       enabled: true
     rbac:

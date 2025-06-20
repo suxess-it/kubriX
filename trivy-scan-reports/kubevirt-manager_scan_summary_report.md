@@ -1,6 +1,6 @@
 
 <h3>Target <code>kubevirtmanager/kubevirt-manager:1.3.3 (alpine 3.18.6)</code></h3>
-<h4>Vulnerabilities (15)</h4>
+<h4>Vulnerabilities (19)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -22,6 +22,13 @@
         <td>HIGH</td>
         <td>8.5.0-r0</td>
         <td>8.9.0-r0</td>
+    </tr>
+    <tr>
+        <td><code>libcrypto3</code></td>
+        <td>CVE-2024-6119</td>
+        <td>HIGH</td>
+        <td>3.1.4-r5</td>
+        <td>3.1.7-r0</td>
     </tr>
     <tr>
         <td><code>libcurl</code></td>
@@ -73,6 +80,13 @@
         <td>2.7.0-r0</td>
     </tr>
     <tr>
+        <td><code>libssl3</code></td>
+        <td>CVE-2024-6119</td>
+        <td>HIGH</td>
+        <td>3.1.4-r5</td>
+        <td>3.1.7-r0</td>
+    </tr>
+    <tr>
         <td><code>libxml2</code></td>
         <td>CVE-2024-56171</td>
         <td>HIGH</td>
@@ -92,6 +106,20 @@
         <td>HIGH</td>
         <td>2.11.7-r0</td>
         <td>2.11.8-r2</td>
+    </tr>
+    <tr>
+        <td><code>libxml2</code></td>
+        <td>CVE-2025-32414</td>
+        <td>HIGH</td>
+        <td>2.11.7-r0</td>
+        <td>2.11.8-r3</td>
+    </tr>
+    <tr>
+        <td><code>libxml2</code></td>
+        <td>CVE-2025-32415</td>
+        <td>HIGH</td>
+        <td>2.11.7-r0</td>
+        <td>2.11.8-r3</td>
     </tr>
     <tr>
         <td><code>libxslt</code></td>
@@ -154,7 +182,7 @@
 <h4>No Misconfigurations found</h4>
 
 <h3>Target <code>kubevirtmanager/kubevirt-manager:1.5.0 (alpine 3.20.5)</code></h3>
-<h4>Vulnerabilities (9)</h4>
+<h4>Vulnerabilities (11)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -204,6 +232,20 @@
         <td>HIGH</td>
         <td>2.12.7-r0</td>
         <td>2.12.7-r2</td>
+    </tr>
+    <tr>
+        <td><code>libxml2</code></td>
+        <td>CVE-2025-32414</td>
+        <td>HIGH</td>
+        <td>2.12.7-r0</td>
+        <td>2.12.10-r0</td>
+    </tr>
+    <tr>
+        <td><code>libxml2</code></td>
+        <td>CVE-2025-32415</td>
+        <td>HIGH</td>
+        <td>2.12.7-r0</td>
+        <td>2.12.10-r0</td>
     </tr>
     <tr>
         <td><code>libxslt</code></td>
