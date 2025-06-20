@@ -409,7 +409,7 @@
 <h4>No Misconfigurations found</h4>
 
 <h3>Target <code>docker.io/falcosecurity/falco:0.40.0-debian (debian 12.9)</code></h3>
-<h4>Vulnerabilities (6)</h4>
+<h4>Vulnerabilities (12)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -417,6 +417,20 @@
         <th>Severity</th>
         <th>Installed Version</th>
         <th>Fixed Version</th>
+    </tr>
+    <tr>
+        <td><code>libc-bin</code></td>
+        <td>CVE-2025-4802</td>
+        <td>HIGH</td>
+        <td>2.36-9+deb12u9</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>libc6</code></td>
+        <td>CVE-2025-4802</td>
+        <td>HIGH</td>
+        <td>2.36-9+deb12u9</td>
+        <td></td>
     </tr>
     <tr>
         <td><code>libldap-2.5-0</code></td>
@@ -438,6 +452,34 @@
         <td>HIGH</td>
         <td>5.4.1-0.2</td>
         <td>5.4.1-1</td>
+    </tr>
+    <tr>
+        <td><code>libpam-modules</code></td>
+        <td>CVE-2025-6020</td>
+        <td>HIGH</td>
+        <td>1.5.2-6+deb12u1</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>libpam-modules-bin</code></td>
+        <td>CVE-2025-6020</td>
+        <td>HIGH</td>
+        <td>1.5.2-6+deb12u1</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>libpam-runtime</code></td>
+        <td>CVE-2025-6020</td>
+        <td>HIGH</td>
+        <td>1.5.2-6+deb12u1</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>libpam0g</code></td>
+        <td>CVE-2025-6020</td>
+        <td>HIGH</td>
+        <td>1.5.2-6+deb12u1</td>
+        <td></td>
     </tr>
     <tr>
         <td><code>perl-base</code></td>

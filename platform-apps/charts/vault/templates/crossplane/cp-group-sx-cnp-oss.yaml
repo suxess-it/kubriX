@@ -4,7 +4,7 @@ metadata:
   name: admins
   annotations:
     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
-    argocd.argoproj.io/sync-wave: "6" # last item - for initcontainer check, until accessor id is available via crossplane plugin
+    argocd.argoproj.io/sync-wave: "7" # last item - for initcontainer check, until accessor id is available via crossplane plugin
 spec:
   providerConfigRef:
     name: vault-crossplane-providerconfig
@@ -22,7 +22,7 @@ metadata:
   name: editors
   annotations:
     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
-    argocd.argoproj.io/sync-wave: "5"
+    argocd.argoproj.io/sync-wave: "6"
 spec:
   providerConfigRef:
     name: vault-crossplane-providerconfig
@@ -40,7 +40,7 @@ metadata:
   name: viewers
   annotations:
     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
-    argocd.argoproj.io/sync-wave: "5"
+    argocd.argoproj.io/sync-wave: "6"
 spec:
   providerConfigRef:
     name: vault-crossplane-providerconfig
