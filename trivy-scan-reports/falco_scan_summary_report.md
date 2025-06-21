@@ -409,7 +409,7 @@
 <h4>No Misconfigurations found</h4>
 
 <h3>Target <code>docker.io/falcosecurity/falco:0.40.0-debian (debian 12.9)</code></h3>
-<h4>Vulnerabilities (12)</h4>
+<h4>Vulnerabilities (14)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -417,6 +417,13 @@
         <th>Severity</th>
         <th>Installed Version</th>
         <th>Fixed Version</th>
+    </tr>
+    <tr>
+        <td><code>jq</code></td>
+        <td>CVE-2025-48060</td>
+        <td>HIGH</td>
+        <td>1.6-2.1</td>
+        <td></td>
     </tr>
     <tr>
         <td><code>libc-bin</code></td>
@@ -430,6 +437,13 @@
         <td>CVE-2025-4802</td>
         <td>HIGH</td>
         <td>2.36-9+deb12u9</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>libjq1</code></td>
+        <td>CVE-2025-48060</td>
+        <td>HIGH</td>
+        <td>1.6-2.1</td>
         <td></td>
     </tr>
     <tr>
