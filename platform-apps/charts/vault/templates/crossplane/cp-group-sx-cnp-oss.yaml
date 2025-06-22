@@ -4,7 +4,7 @@ metadata:
   name: admins
   annotations:
     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
-    argocd.argoproj.io/sync-wave: "6" # last item - for initcontainer check, until accessor id is available via crossplane plugin
+    argocd.argoproj.io/sync-wave: "7" # last item - for initcontainer check, until accessor id is available via crossplane plugin
 spec:
   providerConfigRef:
     name: vault-crossplane-providerconfig
@@ -19,35 +19,35 @@ spec:
 apiVersion: identity.vault.upbound.io/v1alpha1
 kind: Group
 metadata:
-  name: users
+  name: editors
   annotations:
     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
-    argocd.argoproj.io/sync-wave: "5"
+    argocd.argoproj.io/sync-wave: "6"
 spec:
   providerConfigRef:
     name: vault-crossplane-providerconfig
   forProvider:
     metadata:
       version: "2"
-    name: users
+    name: editors
     policies:
-    - users
+    - editors
     type: external
 ---
 apiVersion: identity.vault.upbound.io/v1alpha1
 kind: Group
 metadata:
-  name: team1
+  name: viewers
   annotations:
     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
-    argocd.argoproj.io/sync-wave: "5"
+    argocd.argoproj.io/sync-wave: "6"
 spec:
   providerConfigRef:
     name: vault-crossplane-providerconfig
   forProvider:
     metadata:
       version: "2"
-    name: team1
+    name: viewers
     policies:
-    - team1
+    - viewers
     type: external

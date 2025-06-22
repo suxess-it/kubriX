@@ -1,0 +1,23 @@
+{{- range $group, $users := .Values.platformteam }}
+{{- if $users }}
+---
+apiVersion: group.keycloak.crossplane.io/v1alpha1
+kind: Memberships
+metadata:
+  name: kc-{{ $group }}-users-memberships
+  annotations:
+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+    argocd.argoproj.io/sync-wave: "4"
+spec:
+  forProvider:
+    groupIdRef:
+      name: {{ $group }}
+    members:
+{{- range $user := $users }}
+      - {{ $user }}
+{{- end }}
+    realmId: kubrix
+  providerConfigRef:
+    name: "sx-keycloak-config"
+{{- end }}
+{{- end }}

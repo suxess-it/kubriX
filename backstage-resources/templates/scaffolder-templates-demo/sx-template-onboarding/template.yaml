@@ -57,6 +57,15 @@ spec:
         url: https://github.com/kubriX-demo/kubriX-demo-oss/blob/main/platform-apps/charts/team-onboarding/values-demo-metalstack.yaml
         targetPath: values-demo-metalstack.yaml
 
+    - id: replace-if-new
+      name: Replace [] if new template
+      action: roadiehq:utils:fs:replace
+      input:
+        files:
+          - file: values-demo-metalstack.yaml
+            find: 'teams: []'
+            replaceWith: 'teams:'
+
     - id: update
       name: Update File with new Team Information
       action: roadiehq:utils:fs:append
@@ -78,7 +87,8 @@ spec:
                 path: demo-apps
                 revision: main
               multiStageKargoAppSet:
-                organization: kubriX-demo
+                github:
+                  organization: kubriX-demo
 
     - id: publish
       name: Publish new Version of team configuration

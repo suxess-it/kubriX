@@ -6,6 +6,11 @@ metadata:
   namespace: {{ $.Release.Namespace }}
   annotations:
     kargo.akuity.io/authorized-stage: {{ tpl $.Values.kargoProject $ }}:{{ .name }}
+    {{- if $.Values.appDefinition }}
+      {{- with $.Values.appDefinition.annotations }}
+        {{- toYaml . | nindent 4 }}
+      {{- end }}
+    {{- end }}
   finalizers:
       - resources-finalizer.argocd.argoproj.io
 spec:
@@ -21,16 +26,32 @@ spec:
     server: https://kubernetes.default.svc
     namespace: {{ $.Values.teamName }}-{{ $.Values.appName }}-{{ .name }}
   syncPolicy:
-    managedNamespaceMetadata:
-      annotations:
-        # doesn't handle destinationNamespaceOverride yet
-        argocd.argoproj.io/tracking-id: {{ $.Values.appName }}-{{ .name }}:app/Namespace:{{ $.Values.teamName }}-{{ $.Values.appName }}-{{ .name }}/{{ $.Values.teamName }}-{{ $.Values.appName }}-{{ .name }}
     automated:
       prune: true
       selfHeal: true
-{{- if $.Values.createAppNamespace }}
+    managedNamespaceMetadata:
+      annotations:
+        # doesn't handle destinationNamespaceOverride yet
+        argocd.argoproj.io/tracking-id: {{ $.Release.Namespace }}_{{ $.Values.appName }}-{{ .name }}:app/Namespace:{{ $.Values.teamName }}-{{ $.Values.appName }}-{{ .name }}/{{ $.Values.teamName }}-{{ $.Values.appName }}-{{ .name }}
+  {{- if and $.Values.appNamespace -}}
+    {{- with $.Values.appNamespace.annotations }}
+      {{- toYaml . | nindent 8 }}
+    {{- end }}
+    {{- with $.Values.appNamespace.labels }}
+      labels:
+      {{- toYaml . | nindent 8 }}
+    {{- end }}
+  {{- end }}
+  {{- if or $.Values.createAppNamespace (and $.Values.appNamespace $.Values.appNamespace.create) (and $.Values.appDefinition $.Values.appDefinition.syncOptions)}}
     syncOptions:
+  {{- if or $.Values.createAppNamespace (and $.Values.appNamespace $.Values.appNamespace.create) }}
     - CreateNamespace=true
+  {{- end }}
+  {{- if $.Values.appDefinition }}
+    {{- with $.Values.appDefinition.syncOptions }}
+      {{- toYaml . | nindent 4 }}
+    {{- end }}
+  {{- end }}
 {{- end }}
 ---
 {{- end }}

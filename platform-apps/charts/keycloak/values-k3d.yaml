@@ -4,16 +4,17 @@ keycloak:
   #    value: DEBUG
   auth:
     adminUser: admin
-    existingSecret: "keycloak-credentials"
+    existingSecret: "keycloak-admin"
   ingress:
     enabled: true
     hostname: keycloak-127-0-0-1.nip.io
-    #ingressClassName: nginx
     path: /
     annotations:
       nginx.ingress.kubernetes.io/rewrite-target: /
       nginx.ingress.kubernetes.io/backend-protocol: HTTP
+      cert-manager.io/cluster-issuer: mkcert-issuer
     tls: true
+    ingressClassName: nginx
   pdb:
     create: false
   postgresql:
@@ -108,17 +109,20 @@ kubrix:
         - name: admins
           roles:
             - grafana-admin
+            - vault-admin
           members:
             - backstageadmin
             - demoadmin
-        - name: team1
+        - name: viewers
           roles:
             - grafana-viewer
+            - vault-viewer
           members:
             - team1user
-        - name: users
+        - name: editors
           roles:
             - grafana-editor
+            - vault-editor
           members: 
             - phac
             - jokl

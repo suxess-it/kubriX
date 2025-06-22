@@ -1,0 +1,51 @@
+{{- if eq .Values.kubriXPlan "oss" }}
+{{- range $team := .Values.teams }}
+apiVersion: argoproj.io/v1alpha1
+kind: AppProject
+metadata:
+  name: {{ $team.name }}-project
+  annotations:
+    argocd.argoproj.io/sync-wave: "-1"
+spec:
+  sourceNamespaces:
+  - adn-{{ $team.name }}
+{{- if .clusterResourceWhitelist }}
+  clusterResourceWhitelist:
+{{ toYaml $team.clusterResourceWhitelist | indent 2 }}
+{{- end }}
+  destinations:
+# every team MUST be allowed to create resources in adn namespace (for app creation)
+  - name: 'in-cluster'
+    namespace: 'adn-{{ $team.name }}'
+  - name: 'in-cluster'
+    namespace: '{{ $team.name }}-*-kargo-project'
+# all other destinations are depending on the destinationClusters list (particularly relevant in hub-and-spoke architectures)
+  {{- range $cluster := $.Values.destinationClusters }}
+    {{- if and $cluster.allowedTeams $cluster.deniedTeams -}}
+      {{- fail (printf "allowedTeams and deniedTeams definition for cluster '%s' is not valid" $cluster.name) }}
+    {{- end }}
+    {{- if $cluster.allowedTeams }}
+      {{- range $teamPattern := $cluster.allowedTeams }}
+        {{- if mustRegexMatch $teamPattern $team.name }}
+  - name: '{{ $cluster.name }}'
+    namespace: '{{ $team.name }}-*'
+        {{- end }}
+      {{- end }}
+    {{- end }}
+    {{- if $cluster.deniedTeams }}
+      {{- range $teamPattern := $cluster.deniedTeams }}
+        {{- if not (mustRegexMatch $teamPattern $team.name) }}
+  - name: '{{ $cluster.name }}'
+    namespace: '{{ $team.name }}-*'
+        {{- end }}
+      {{- end }}
+    {{- end }}
+  {{- end }}
+  sourceRepos:
+{{- range $team.sourceRepos }}
+  - {{ quote . }}
+{{- end }}
+  - {{ $.Values.multiStageKargoAppSetHelmRepo | quote }}
+---
+{{- end }}
+{{- end }}

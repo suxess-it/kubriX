@@ -4,7 +4,7 @@ keycloak:
   #    value: DEBUG
   auth:
     adminUser: admin
-    existingSecret: "keycloak-credentials"
+    existingSecret: "keycloak-admin"
   ingress:
     enabled: true
     hostname: keycloak.demo.kubrix.cloud
@@ -108,17 +108,20 @@ kubrix:
         - name: admins
           roles:
             - grafana-admin
+            - vault-admin
           members:
             - backstageadmin
             - demoadmin
-        - name: team1
+        - name: viewers
           roles:
             - grafana-viewer
+            - vault-viewer
           members:
             - team1user
-        - name: users
+        - name: editors
           roles:
             - grafana-editor
+            - vault-editor
           members: 
             - phac
             - jokl

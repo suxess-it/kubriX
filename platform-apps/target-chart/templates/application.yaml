@@ -27,6 +27,8 @@ spec:
         {{- end }}
       ignoreMissingValueFiles: true
       parameters:
+        - name: kubriXPlan
+          value: {{ $.Values.kubriXPlan }}
         - name: default.repoURL
           value: {{ $.Values.default.repoURL }}
         - name: default.targetRevision
@@ -39,8 +41,8 @@ spec:
     {{- end }}
     server: 'https://kubernetes.default.svc'
   syncPolicy:
-    managedNamespaceMetadata:
     {{- if or .namespaceResourceTracking (not (hasKey . "namespaceResourceTracking")) }}
+    managedNamespaceMetadata:
       annotations:
         argocd.argoproj.io/tracking-id: sx-{{ .name }}:app/Namespace:{{ .name }}/{{ .name }}
     {{- end }}
@@ -52,5 +54,9 @@ spec:
       {{- with .syncOptions }}
         {{- toYaml . | nindent 6 }}
       {{- end }}
+    {{- with .ignoreDifferences }}
+  ignoreDifferences:
+        {{- toYaml . | nindent 4 }}
+    {{- end }}
 ---
 {{- end }}

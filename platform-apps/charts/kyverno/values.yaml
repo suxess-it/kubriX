@@ -23,18 +23,37 @@ kyverno:
   admissionController:
     replicas: 1
     container:
-      securityContext: null
       resources:
         limits:
           memory: 1Gi
-    initContainer:
-      securityContext: null
     serviceMonitor:
       enabled: true
+    rbac:
+      clusterRole:
+        extraResources:
+          - apiGroups:
+              - '*'
+            resources:
+              - '*'
+            verbs:
+              - get
+              - list
+              - watch
   backgroundController:
     replicas: 1
     serviceMonitor:
       enabled: true
+    rbac:
+      clusterRole:
+        extraResources:
+          - apiGroups:
+              - '*'
+            resources:
+              - '*'
+            verbs:
+              - get
+              - list
+              - watch
   cleanupController:
     replicas: 1
     serviceMonitor:
@@ -46,6 +65,17 @@ kyverno:
     resources:
       limits:
         memory: 512Mi
+    rbac:
+      clusterRole:
+        extraResources:
+          - apiGroups:
+              - '*'
+            resources:
+              - '*'
+            verbs:
+              - get
+              - list
+              - watch
   config:
     webhooks:
       namespaceSelector:

@@ -1,0 +1,53 @@
+#issue opened https://github.com/upbound/provider-vault/issues/45 - oidcDiscoveryCaPem should be referenced with @oidcDiscoveryCaPem
+{{- if not (contains "nip.io" .Values.kubrix.keycloak.fqdn ) }}
+apiVersion: jwt.vault.upbound.io/v1alpha1
+kind: AuthBackend
+metadata:
+  name: oidc-backend
+  annotations:
+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+    argocd.argoproj.io/sync-wave: "3"
+spec:
+  providerConfigRef:
+    name: vault-crossplane-providerconfig
+  forProvider:
+    oidcDiscoveryUrl: "https://keycloak{{ .Values.kubrix.keycloak.fqdn }}/realms/{{ $.Values.kubrix.keycloak.realm.realmid }}"
+    oidcClientId: vault
+    defaultRole: default
+    oidcClientSecretSecretRef:
+      name: keycloak-client-credentials
+      key: vault
+      namespace: keycloak
+    type: oidc
+    path: oidc
+  #  oidcDiscoveryCaPem: "/vault/userconfig/vault-ca/ca.crt"
+# tune not working?
+---
+apiVersion: jwt.vault.upbound.io/v1alpha1
+kind: AuthBackendRole
+metadata:
+  name: oidc-backend-role
+  annotations:
+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+    argocd.argoproj.io/sync-wave: "7"
+spec:
+  providerConfigRef:
+    name: vault-crossplane-providerconfig
+  forProvider:
+    allowedRedirectUris: 
+    - https://vault{{ .Values.kubrix.keycloak.fqdn }}/ui/vault/auth/oidc/oidc/callback
+    - http://localhost:8250/oidc/callback
+    roleName: default
+    userClaim: sub
+    groupsClaim: roles
+    tokenPolicies: 
+    - default
+    tokenNoDefaultPolicy: true
+    tokenType: service
+    verboseOidcLogging: true
+    oidcScopes:
+    - groups
+    roleType: oidc
+    backend: oidc
+   # policies: default #needed?
+{{- end }}

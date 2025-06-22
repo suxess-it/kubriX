@@ -16,11 +16,12 @@ backstage:
     image:
       registry: ghcr.io/suxess-it
       repository: sx-backstage
-      tag: v1.32.6
+      tag: v1.38.1
     extraEnvVarsSecrets:
       - sx-cnp-secret
       - manual-secret
       - backstage-db-secrets
+      - sx-vault-secret
     extraEnvVars:
       - name: NODE_OPTIONS
         value: "--no-node-snapshot"
@@ -153,7 +154,7 @@ backstage:
               metadataUrl: http://sx-keycloak-headless.keycloak.svc.cluster.local:8080/realms/kubrix #.well-known/openid-configuration can be ommited
               callbackUrl: https://backstage.demo.kubrix.cloud/api/auth/oidc/handler/frame
               clientId: backstage
-              clientSecret: demosecret
+              clientSecret: ${OIDC_CLIENTSECRET}
               additionalScopes: 'groups'
               prompt: auto
               signIn:
@@ -244,7 +245,7 @@ backstage:
               loginRealm: kubrix
               realm: kubrix
               clientId: backstage
-              clientSecret: 'demosecret'
+              clientSecret: ${OIDC_CLIENTSECRET}
               schedule: # Mandatory; same options as in TaskScheduleDefinition
                 # supports cron, ISO duration, "human duration" as used in code
                 frequency: { minutes: 30 } # Customize this to fit your needs
@@ -344,8 +345,8 @@ backstage:
         unitprefix: '€'
 
       vault:
-        baseUrl: https://${VAULT_ADDR}
-        publicUrl: https://${VAULT_ADDR}
+        baseUrl: ${VAULT_ADDR_INT}
+        publicUrl: ${VAULT_ADDR}
         auth:
           type: static
           secret: "${VAULT_TOKEN}"

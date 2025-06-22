@@ -4,6 +4,20 @@ metalstackDashboards:
 kubernetesModernDashboards:
   enabled: true
 
+kubernetesAlerts:
+  enabled: true
+
+  platformTeamContactPoint:
+    receivers:
+      - uid: platform-team-default
+        type: teams
+        settings:
+          url: https://myteams-url.com
+        disableResolveMessage: false
+
+kubrix:
+  plan: oss # oss, prime, select, default: oss
+
 ## Using default values from https://github.com/grafana/helm-charts/blob/main/charts/grafana/values.yaml
 ##
 grafana:
@@ -52,5 +66,10 @@ grafana:
         - mimir
         - loki
         - kubecost
+    alerts:
+      enabled: true
+      label: grafana_alert
+      searchNamespace: ALL
+      labelValue: "1"
 
   defaultDashboardsEditable: true

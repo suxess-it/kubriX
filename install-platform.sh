@@ -69,9 +69,21 @@ wait_until_apps_synced_healthy() {
         sync_status=$(kubectl get application -n argocd ${app} -o jsonpath='{.status.sync.status}')
         health_status=$(kubectl get application -n argocd ${app} -o jsonpath='{.status.health.status}')
 
+        # special case for sx-vault
+        if [[ "${app}" == "sx-vault" && "${sync_status}" == "${synced}" && "${health_status}" == "${healthy}" ]]; then
+          if [ ! -f ./.secrets/secrettemp/secrets-applied ]; then
+            echo "sx-vault is synced and healthy — applying pushsecrets"
+            echo 
+            kubectl apply -f ./.secrets/secrettemp/pushsecrets.yaml
+            touch ./.secrets/secrettemp/secrets-applied
+            echo "--------------------"
+          fi
+        fi
+
         if [[ "${sync_status}" != ${synced} ]] || [[ "${health_status}" != ${healthy} ]] ; then
           all_apps_synced="false"
         fi
+
 
         # check if app sync is stuck and needs to get restarted
         # if app has no resources, operationState is empty
@@ -221,7 +233,7 @@ fi
 
 if [[ "${KUBRIX_TARGET_TYPE}" =~ ^KIND.* ]] ; then
   # create mkcert certs in alle namespaces with ingress
-  for namespace in backstage kargo grafana argocd keycloak komoplane kubecost falco minio velero velero-ui vault; do
+  for namespace in backstage kargo grafana cnpg argocd komoplane kubecost falco minio velero velero-ui; do
     kubectl create namespace ${namespace}
     mkcert -cert-file ${namespace}-cert.pem -key-file ${namespace}-key.pem ${namespace}-127-0-0-1.nip.io
     # kargo needs a special secret name according to its helm chart
@@ -259,8 +271,13 @@ if [[ "${KUBRIX_TARGET_TYPE}" =~ ^KIND.* ]] ; then
     echo "installing nginx ingress controller in KinD"
     kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/main/deploy/static/provider/kind/deploy.yaml
 
+    # create mkcert-issuer
+    kubectl create namespace cert-manager
+    kubectl create secret tls mkcert-ca-key-pair --key "$(mkcert -CAROOT)"/rootCA-key.pem --cert "$(mkcert -CAROOT)"/rootCA.pem -n cert-manager
+
     # vault oidc case
     echo "create a root ca and patch ingress-nginx-controller for vault oidc"
+    kubectl create namespace vault
     kubectl create secret generic ca-cert --from-file=ca.crt="$(mkcert -CAROOT)"/rootCA.pem -n vault
     kubectl patch deployment ingress-nginx-controller -n ingress-nginx --type='json' -p='[
     {
@@ -291,7 +308,7 @@ fi
 echo "installing bootstrap argocd ..."
 helm install sx-argocd argo-cd \
   --repo https://argoproj.github.io/argo-helm \
-  --version 7.1.3 \
+  --version 7.8.24 \
   --namespace argocd \
   --create-namespace \
   --set configs.cm.application.resourceTrackingMethod=annotation \
@@ -310,6 +327,11 @@ kubectl exec sx-argocd-application-controller-0 -n argocd -- argocd repo add ${K
 #  kubectl create secret generic appset-github-token --from-literal=token=${KUBRIX_GITHUB_APPSET_TOKEN} -n ${ns}
 #done
 
+# add secrets
+echo "Generating default secrets..."
+./.secrets/createsecret.sh
+kubectl apply -f ./.secrets/secrettemp/secrets.yaml
+
 KUBRIX_REPO_BRANCH_SED=$( echo ${KUBRIX_REPO_BRANCH} | sed 's/\//\\\//g' )
 KUBRIX_REPO_SED=$( echo ${KUBRIX_REPO} | sed 's/\//\\\//g' )
 
@@ -321,7 +343,7 @@ target_chart_value_file="platform-apps/target-chart/values-$(echo ${KUBRIX_TARGE
 
 argocd_apps=$(cat $target_chart_value_file | awk '/^  - name:/ { printf "%s", "sx-"$3" "}' )
 # list apps which need some sort of special treatment in bootstrap
-argocd_apps_without_individual=$(cat $target_chart_value_file | egrep -Ev "backstage|kargo|team-onboarding" | awk '/^  - name:/ { printf "%s", "sx-"$3" "}' )
+argocd_apps_without_individual=$(cat $target_chart_value_file | egrep -Ev "backstage" | awk '/^  - name:/ { printf "%s", "sx-"$3" "}' )
 
 # max wait for 20 minutes until all apps except backstage and kargo are synced and healthy
 wait_until_apps_synced_healthy "${argocd_apps_without_individual}" "Synced" "Healthy" ${KUBRIX_BOOTSTRAP_MAX_WAIT_TIME:-1200}
@@ -329,24 +351,58 @@ wait_until_apps_synced_healthy "${argocd_apps_without_individual}" "Synced" "Hea
 # apply argocd-secret to set a secretKey
 kubectl apply -f platform-apps/charts/argocd/manual-secret/argocd-secret.yaml
 
-# if kargo is part of this stack, upload token to vault
+# if vault is part of this stack, upload token to vault
 if [[ $( echo $argocd_apps | grep sx-vault ) ]] ; then
-  echo "adding secrets in vault for sx-kargo and sx-team-onboarding ..."
   export VAULT_HOSTNAME=$(kubectl get ingress -o jsonpath='{.items[*].spec.rules[*].host}' -n vault)
-  curl -k --header "X-Vault-Token:$(kubectl get secret -n vault vault-init -o=jsonpath='{.data.root_token}'  | base64 -d)" --request POST --data "{\"data\": {\"KUBRIX_ARGOCD_APPSET_TOKEN\": \"${KUBRIX_ARGOCD_APPSET_TOKEN}\", \"KUBRIX_KARGO_GIT_PASSWORD\": \"${KUBRIX_KARGO_GIT_PASSWORD}\", \"KUBRIX_KARGO_GIT_USERNAME\": \"${KUBRIX_KARGO_GIT_USERNAME}\"}}" https://${VAULT_HOSTNAME}/v1/kubrix-kv/data/demo/delivery
-  sleep 10
-fi
+  export VAULT_TOKEN=$(kubectl get secret -n vault vault-init -o=jsonpath='{.data.root_token}'  | base64 -d)
+  curl -k --header "X-Vault-Token:$VAULT_TOKEN" --request POST --data "{\"data\": {\"VAULT_ADDR\": \"https://${VAULT_HOSTNAME}\", \"VAULT_ADDR_INT\": \"http://sx-vault-active.vault.svc.cluster.local:8200\", \"VAULT_TOKEN\": \"${VAULT_TOKEN}\"}}" https://${VAULT_HOSTNAME}/v1/kubrix-kv/data/security/vault/base
 
-if [[ $( echo $argocd_apps | grep sx-kargo ) ]] ; then
-  kubectl delete ExternalSecret github-creds -n kargo
-  # check if kargo is synced and healthy for 5 minutes
-  wait_until_apps_synced_healthy "sx-kargo" "Synced" "Healthy" 300
-fi
-
-if [[ $( echo $argocd_apps | grep sx-team-onboarding ) ]] ; then
-  kubectl delete ExternalSecret github-creds -n kargo
-  # check if kargo is synced and healthy for 5 minutes
-  wait_until_apps_synced_healthy "sx-team-onboarding" "Synced" "Healthy" 300
+  if [[ "${KUBRIX_TARGET_TYPE}" =~ ^KIND.* ]] ; then
+  # due to issue #405 this step is needed for kind clusters
+    export VAULT_CLIENTSECRET=$(kubectl get secret -n keycloak keycloak-client-credentials -o=jsonpath='{.data.vault}'  | base64 -d)
+    export KEYCLOAK_HOSTNAME=$(kubectl get ingress -o jsonpath='{.items[*].spec.rules[*].host}' -n keycloak)
+    export CERT=$(awk '{printf "%s\\n", $0}' "$(mkcert -CAROOT)"/rootCA.pem)
+    curl -k --header "X-Vault-Token: $VAULT_TOKEN" --request POST --data '{"type": "oidc"}' https://${VAULT_HOSTNAME}/v1/sys/auth/oidc
+    MAX_ATTEMPTS=3
+    ATTEMPT=1
+    while [[ $ATTEMPT -le $MAX_ATTEMPTS ]]; do
+      echo "Setting up OIDC auth method, try $ATTEMPT of $MAX_ATTEMPTS"
+      RESPONSE=$(curl -k --header "X-Vault-Token: $VAULT_TOKEN" --request POST --data '{
+          "oidc_discovery_url": "https://'${KEYCLOAK_HOSTNAME}'/realms/kubrix",
+          "oidc_client_id": "vault",
+          "oidc_client_secret": "'$VAULT_CLIENTSECRET'",
+          "default_role": "default",
+          "oidc_discovery_ca_pem": "'"$CERT"'"
+        }' https://${VAULT_HOSTNAME}/v1/auth/oidc/config)
+      if [[ -z "$(echo "$RESPONSE" | jq -r '.errors | select(.!=null)')" ]]; then
+        echo "configure OIDC auth method successful"
+        break
+      fi  
+    sleep 5
+    ((ATTEMPT++))
+    done
+  fi
+  # due to issue #422 this step is needed for all clusters
+    GROUP_ALIAS_LIST=$(curl -k --header "X-Vault-Token: $VAULT_TOKEN" --request LIST https://${VAULT_HOSTNAME}/v1/identity/group-alias/id)
+    if [ -z "$(echo "$GROUP_ALIAS_LIST" | jq -r '.data.keys | length')" ] || [ "$(echo "$GROUP_ALIAS_LIST" | jq -r '.data.keys | length')" -eq 0 ]; then
+        echo "No group aliases found. Setting up group aliases..."
+        # Get the list of identity groups
+        GROUP_LIST=$(curl -k --header "X-Vault-Token: $VAULT_TOKEN" --request LIST https://${VAULT_HOSTNAME}/v1/identity/group/name)
+        # Get OIDC accessor
+        ACC=$(curl -k --header "X-Vault-Token: $VAULT_TOKEN" --request GET https://${VAULT_HOSTNAME}/v1/sys/auth | jq -r '.["oidc/"].accessor')
+        echo "OIDC Accessor: $ACC"
+        # Iterate over groups and create group aliases
+        echo "$GROUP_LIST" | jq -r '.data.keys[]' | while read -r GROUP_NAME; do
+            echo "Processing group: $GROUP_NAME"
+            # Get Group ID
+            GROUP_ID=$(curl -k --header "X-Vault-Token: $VAULT_TOKEN" --request GET https://${VAULT_HOSTNAME}/v1/identity/group/name/$GROUP_NAME | jq -r '.data.id')
+            if [ -n "$GROUP_ID" ] && [ "$GROUP_ID" != "null" ]; then
+                # Create Group Alias
+                RESPONSE=$(curl -k --header "X-Vault-Token: $VAULT_TOKEN" --request POST --data '{"name": "'$GROUP_NAME'", "mount_accessor": "'$ACC'", "canonical_id": "'$GROUP_ID'"}' https://${VAULT_HOSTNAME}/v1/identity/group-alias)
+                echo "Group alias created for $GROUP_NAME: $RESPONSE"
+            fi
+        done
+    fi
 fi
   
 # if backstage is part of this stack, create the manual secret for backstage
@@ -362,9 +418,19 @@ if [[ $( echo $argocd_apps | grep sx-backstage ) ]] ; then
 
   # generate grafana token
   export GRAFANA_HOSTNAME=$(kubectl get ingress -o jsonpath='{.items[*].spec.rules[*].host}' -n grafana )
+
+  # check if the secret exists and extract credentials if it does
+  if kubectl get secret grafana-admin-secret -n grafana &>/dev/null; then
+    export GRAFANA_USER=$(kubectl get secret -n grafana grafana-admin-secret -o=jsonpath='{.data.userKey }'  | base64 -d)
+    export GRAFANA_PASSWORD=$(kubectl get secret -n grafana grafana-admin-secret -o=jsonpath='{.data.passwordKey }'  | base64 -d)
+  else
+    # use default credentials
+    export GRAFANA_USER="admin"
+    export GRAFANA_PASSWORD="prom-operator"
+  fi
   if [ "${GRAFANA_HOSTNAME}" != "" ]; then
-    ID=$( curl -k -X POST https://${GRAFANA_HOSTNAME}/api/serviceaccounts --user 'admin:prom-operator' -H "Content-Type: application/json" -d '{"name": "backstage","role": "Viewer","isDisabled": false}' | jq -r .id )
-    export GRAFANA_TOKEN=$(curl -k -X POST https://${GRAFANA_HOSTNAME}/api/serviceaccounts/${ID}/tokens --user 'admin:prom-operator' -H "Content-Type: application/json" -d '{"name": "backstage"}' | jq -r .key)
+    ID=$( curl -k -X POST https://${GRAFANA_HOSTNAME}/api/serviceaccounts --user "${GRAFANA_USER}:${GRAFANA_PASSWORD}" -H "Content-Type: application/json" -d '{"name": "backstage","role": "Viewer","isDisabled": false}' | jq -r .id )
+    export GRAFANA_TOKEN=$(curl -k -X POST https://${GRAFANA_HOSTNAME}/api/serviceaccounts/${ID}/tokens --user "${GRAFANA_USER}:${GRAFANA_PASSWORD}" -H "Content-Type: application/json" -d '{"name": "backstage"}' | jq -r .key)
   fi
   
   # get backstage-locator token for backstage secret
