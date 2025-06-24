@@ -1,6 +1,6 @@
 {{- if eq .Values.backstage.backstage.appConfig.backend.database.client "pg"  }}
 ---
-apiVersion: external-secrets.io/v1beta1
+apiVersion: external-secrets.io/v1
 kind: ExternalSecret
 metadata:
   name: backstage-db-secrets
@@ -36,7 +36,7 @@ spec:
       key: kubrix-kv/data/cnpg/base
       property: pgbackstageport
 ---
-apiVersion: external-secrets.io/v1beta1
+apiVersion: external-secrets.io/v1
 kind: ExternalSecret
 metadata:
   name: cnpg-backstage-secret
@@ -68,7 +68,7 @@ spec:
       key: kubrix-kv/data/cnpg/base
       property: pgbackstagepassword
 ---
-apiVersion: external-secrets.io/v1beta1
+apiVersion: external-secrets.io/v1
 kind: ExternalSecret
 metadata:
   name: cnpg-superuser-secret
