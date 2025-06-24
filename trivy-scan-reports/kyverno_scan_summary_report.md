@@ -1,6 +1,6 @@
 
 <h3>Target <code>bitnami/kubectl:1.32.3 (debian 12.10)</code></h3>
-<h4>Vulnerabilities (26)</h4>
+<h4>Vulnerabilities (28)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -8,6 +8,13 @@
         <th>Severity</th>
         <th>Installed Version</th>
         <th>Fixed Version</th>
+    </tr>
+    <tr>
+        <td><code>jq</code></td>
+        <td>CVE-2025-48060</td>
+        <td>HIGH</td>
+        <td>1.6-2.1</td>
+        <td></td>
     </tr>
     <tr>
         <td><code>libc-bin</code></td>
@@ -49,6 +56,13 @@
         <td>CVE-2025-5222</td>
         <td>HIGH</td>
         <td>72.1-3</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>libjq1</code></td>
+        <td>CVE-2025-48060</td>
+        <td>HIGH</td>
+        <td>1.6-2.1</td>
         <td></td>
     </tr>
     <tr>
