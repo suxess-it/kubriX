@@ -44,6 +44,14 @@
 * **keycloak:** rebase platformteam ([d28cc7f](https://github.com/suxess-it/kubriX/commit/d28cc7f54f9b3d3cb29669329106d1d7d4a14bf8))
 * **onboarding:** add destinationClusters list to define which team can deploy on which cluster ([#1233](https://github.com/suxess-it/kubriX/issues/1233)) ([baa6ef1](https://github.com/suxess-it/kubriX/commit/baa6ef18cf89dbb5b357ec22975b2493e53c3b75))
 
+### Prime Features (only available with kubriX prime plan)
+
+* add ignoreDifferences to argo-rollouts to prevent outofsync in argocd &gt;= 3.0 ([kubriX-prime/#118](https://github.com/suxess-it/kubriX-prime/issues/118)) ([kubriX-prime/88e17ea](https://github.com/suxess-it/kubriX-prime/commit/88e17eaa95e4bd0ccd6822021b58bf3105b9cdff))
+* **app-onboarding:** add option for appDefinition annotations and syncOptions in multi-stage-app ([kubriX-prime/#90](https://github.com/suxess-it/kubriX-prime/issues/90)) ([kubriX-prime/c1ae367](https://github.com/suxess-it/kubriX-prime/commit/c1ae36774168f452ca6f568f7c58015eb2922223))
+* **keycloak:** rebase platformteam prime ([kubriX-prime/acda828](https://github.com/suxess-it/kubriX-prime/commit/acda828bc099a1ddf066eac08ca756a04be5f095))
+* **keycloak:** rebase platformteam prime ([kubriX-prime/1e51e93](https://github.com/suxess-it/kubriX-prime/commit/1e51e93657c1a3d2af4558b5df4bd8f9794d74d9))
+* **spoke-registration:** add destinationCluster option to specifiy team specific destina… ([kubriX-prime/#91](https://github.com/suxess-it/kubriX-prime/issues/91)) ([kubriX-prime/a644dec](https://github.com/suxess-it/kubriX-prime/commit/a644dec0ec5cef792c199cbeb316706e61b3fd5e))
+* **vcluster:** add vcluster template ([kubriX-prime/#124](https://github.com/suxess-it/kubriX-prime/issues/124)) ([kubriX-prime/3df8f7e](https://github.com/suxess-it/kubriX-prime/commit/3df8f7eb101fcc3f58ef2bc09be83f29b71c18f4))
 
 ### Bug Fixes
 
@@ -84,6 +92,15 @@
 * permit also kargo-project namespaces ootb ([#1254](https://github.com/suxess-it/kubriX/issues/1254)) ([aa5c2b9](https://github.com/suxess-it/kubriX/commit/aa5c2b961ed9922f824c1f68a0765f6e181f4673))
 * **vault:** set audit first and everything else later ([#1338](https://github.com/suxess-it/kubriX/issues/1338)) ([fdbc077](https://github.com/suxess-it/kubriX/commit/fdbc077034e911328aec7be49bbb4d9b83d14541))
 * **vault:** try to stabilize vault with removing poll intervall ([#1221](https://github.com/suxess-it/kubriX/issues/1221)) ([45e0695](https://github.com/suxess-it/kubriX/commit/45e06955ef7f19dcb42eda9d21c9a69074d44243))
+* **app-onboarding-hub-and-spoke:** add option to set namespace labels and annotations ([kubriX-prime/#114](https://github.com/suxess-it/kubriX-prime/issues/114)) ([kubriX-prime/a27344d](https://github.com/suxess-it/kubriX-prime/commit/a27344deb8772d1ba272b31091620f6e3bb2b4df))
+* **app-onboarding:** remove stage qualifier in ingressDomain propagation ([kubriX-prime/#113](https://github.com/suxess-it/kubriX-prime/issues/113)) ([kubriX-prime/30e2097](https://github.com/suxess-it/kubriX-prime/commit/30e2097e24890b4884ea540c7e0dfc1ffdf931b8))
+* **argocd:** adapt platformteam configuration ([kubriX-prime/0a7b876](https://github.com/suxess-it/kubriX-prime/commit/0a7b8761c71bef47fd13144dee05626dfbfafec7))
+* **argocd:** adapt platformteam configuration ([kubriX-prime/57a0f74](https://github.com/suxess-it/kubriX-prime/commit/57a0f7466fae94c32fc89d19c69ab42cb15f8957))
+* **argocd:** fix rbac definitions due to argocd 3.0 breaking-changes ([kubriX-prime/#121](https://github.com/suxess-it/kubriX-prime/issues/121)) ([kubriX-prime/53b3637](https://github.com/suxess-it/kubriX-prime/commit/53b36375f0a63e92b25fa923438aab19d794a267))
+* **cnpg:** change strategy to Recreate because of MultiAttach Error ([kubriX-prime/#104](https://github.com/suxess-it/kubriX-prime/issues/104)) ([kubriX-prime/faaa7cd](https://github.com/suxess-it/kubriX-prime/commit/faaa7cda2981e9ecd164f9aa97456d5d4388ce64))
+* **kyverno:** adapt demopolicy ([kubriX-prime/#127](https://github.com/suxess-it/kubriX-prime/issues/127)) ([kubriX-prime/26d25a4](https://github.com/suxess-it/kubriX-prime/commit/26d25a45f273c9d9f5b7244b6d072cf2a3a5c31b))
+* minor syncwave adaption after release v3 ([kubriX-prime/#102](https://github.com/suxess-it/kubriX-prime/issues/102)) ([kubriX-prime/de7cb2a](https://github.com/suxess-it/kubriX-prime/commit/de7cb2a42089656421fffc3622fecb9bf68110e4))
+* permit also kargo-project namespaces on the hub ootb ([kubriX-prime/#101](https://github.com/suxess-it/kubriX-prime/issues/101)) ([kubriX-prime/f1cb0e2](https://github.com/suxess-it/kubriX-prime/commit/f1cb0e2498ac07b5eef1d5a0c01737d3e889987c))
 
 ## [3.0.0](https://github.com/suxess-it/kubriX/compare/v2.1.0...v3.0.0) (2025-04-24)
 
