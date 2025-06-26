@@ -88,15 +88,15 @@ spec:
         labels:
           cnpg.io/reload: "true"
       data:
-        username: "{{ `{{ .superuser }}` }}"
-        password: "{{ `{{ .superuserpassword }}` }}"
+        username: "{{ `{{ .pgbackstagesuperuser }}` }}"
+        password: "{{ `{{ .pgbackstagesuperuserpassword }}` }}"
   data:
-  - secretKey: superuser
+  - secretKey: pgbackstagesuperuser
     remoteRef:
       key: kubrix-kv/data/cnpg/base
-      property: superuser
-  - secretKey: superuserpassword
+      property: pgbackstagesuperuser
+  - secretKey: pgbackstagesuperuserpassword
     remoteRef:
       key: kubrix-kv/data/cnpg/base
-      property: superuserpassword
+      property: pgbackstagesuperuserpassword
 {{- end }}
