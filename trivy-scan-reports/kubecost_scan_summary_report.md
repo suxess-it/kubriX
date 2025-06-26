@@ -1251,7 +1251,7 @@
         <td>CVE-2025-6020</td>
         <td>HIGH</td>
         <td>1.5.1-22.el9_5</td>
-        <td></td>
+        <td>1.5.1-25.el9_6</td>
     </tr>
 </table>
 <h4>No Misconfigurations found</h4>
