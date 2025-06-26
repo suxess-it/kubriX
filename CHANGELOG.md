@@ -1,5 +1,19 @@
 # Changelog
 
+## [4.1.0](https://github.com/suxess-it/kubriX/compare/v4.0.0...v4.1.0) (2025-06-26)
+
+
+### Features
+
+* **argocd:** extend resource-exclusion to be aligned with default argocd 3.0 resource exclusions in https://github.com/argoproj/argo-helm/blob/91afef15ec56140c0c7e4f3b76641f16343f3769/charts/argo-cd/values.yaml#L326-L380 ([#1349](https://github.com/suxess-it/kubriX/issues/1349)) ([cf834ce](https://github.com/suxess-it/kubriX/commit/cf834ce38f41ad7788683046d5514a95b2b3dc31))
+* **bootstrap:** add HA option ([#1351](https://github.com/suxess-it/kubriX/issues/1351)) ([a194d21](https://github.com/suxess-it/kubriX/commit/a194d21847c9553718233049b1adfa567bef8c11))
+
+
+### Bug Fixes
+
+* **backstage:** change pg configuration to single db ([#1350](https://github.com/suxess-it/kubriX/issues/1350)) ([a018ce0](https://github.com/suxess-it/kubriX/commit/a018ce0a619706e47cce1451aa0605a37154f8f3))
+* **deps:** update helm release argo-rollouts to v2.39.6 ([#1326](https://github.com/suxess-it/kubriX/issues/1326)) ([e736bc7](https://github.com/suxess-it/kubriX/commit/e736bc78bcbcfa88286b2353c234236037301ec3))
+
 ## [4.0.0](https://github.com/suxess-it/kubriX/compare/v3.0.0...v4.0.0) (2025-06-20)
 
 
