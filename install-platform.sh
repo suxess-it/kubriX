@@ -505,3 +505,5 @@ if [[ $( echo $argocd_apps | grep sx-backstage ) ]] ; then
   wait_until_apps_synced_healthy "${argocd_apps}" "Synced" "Healthy" 300
 
 fi
+# remove pushsecrets
+kubectl delete -f ./.secrets/secrettemp/pushsecrets.yaml
