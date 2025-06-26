@@ -30,7 +30,7 @@ secrets:
   - application: "keycloak"
     path: "keycloak/users"
     namespace: "keycloak"
-    secretname: cp-keycloak-user-secret
+    secretname: cp-keycloak-users-secret
     secretType: "Opaque"
     stringData:
   # must match users from values file
@@ -94,8 +94,8 @@ secrets:
     secretname: cnpg-creds
     secretType: "Opaque"
     stringData:
-      superuser: "superuser"
-      superuserpassword: "superuser"
+      pgbackstagesuperuser: "postgres"
+      pgbackstagesuperuserpassword: "superuser"
       pgbackstageusername: "backstage"
       pgbackstagepassword: "backstage"
       pgbackstageport: 5432
