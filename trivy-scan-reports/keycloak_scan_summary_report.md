@@ -203,7 +203,7 @@
         <td>CVE-2025-5222</td>
         <td>HIGH</td>
         <td>72.1-3</td>
-        <td></td>
+        <td>72.1-3+deb12u1</td>
     </tr>
     <tr>
         <td><code>libldap-2.5-0</code></td>
