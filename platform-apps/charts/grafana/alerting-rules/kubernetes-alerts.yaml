@@ -7,26 +7,91 @@ groups:
       interval: 1m
       rules:
         - uid: KubeAPIErrorBudgetBurnCrit1h
-          title: KubeAPIErrorBudgetBurnCrit1h
-          condition: A
+          title: KubeAPIErrorBudgetBurn
+          condition: threshold
           data:
-            - refId: A
+            - refId: query
+              queryType: prometheus
               relativeTimeRange:
-                from: 600
-                to: 0
+                from: 660
+                to: 60
               datasourceUid: mimir
               model:
-                editorMode: builder
+                datasource:
+                    type: prometheus
+                    uid: mimir
                 expr: |
-                  sum by(cluster) (apiserver_request:burnrate1h) > (14.40 * 0.01000)
-                  and on(cluster)
-                  sum by(cluster) (apiserver_request:burnrate5m) > (14.40 * 0.01000)
+                    sum by(cluster) (apiserver_request:burnrate1h) > (14.40 * 0.01000)
+                    and on(cluster)
+                    sum by(cluster) (apiserver_request:burnrate5m) > (14.40 * 0.01000)
                 instant: true
                 intervalMs: 1000
-                legendFormat: __auto
                 maxDataPoints: 43200
                 range: false
-                refId: A
+                refId: query
+            - refId: prometheus_math
+              queryType: math
+              datasourceUid: __expr__
+              model:
+                datasource:
+                    IsPrunable: false
+                    access: ""
+                    apiVersion: ""
+                    basicAuth: false
+                    basicAuthUser: ""
+                    created: "0001-01-01T00:00:00Z"
+                    database: ""
+                    id: -100
+                    isDefault: false
+                    jsonData: {}
+                    name: __expr__
+                    readOnly: false
+                    secureJsonData: {}
+                    type: __expr__
+                    uid: __expr__
+                    updated: "0001-01-01T00:00:00Z"
+                    url: ""
+                    user: ""
+                    withCredentials: false
+                expression: is_number($query) || is_nan($query) || is_inf($query)
+                intervalMs: 1000
+                maxDataPoints: 43200
+                refId: prometheus_math
+                type: math
+            - refId: threshold
+              queryType: threshold
+              datasourceUid: __expr__
+              model:
+                conditions:
+                    - evaluator:
+                        params:
+                            - 0
+                        type: gt
+                datasource:
+                    IsPrunable: false
+                    access: ""
+                    apiVersion: ""
+                    basicAuth: false
+                    basicAuthUser: ""
+                    created: "0001-01-01T00:00:00Z"
+                    database: ""
+                    id: -100
+                    isDefault: false
+                    jsonData: {}
+                    name: __expr__
+                    readOnly: false
+                    secureJsonData: {}
+                    type: __expr__
+                    uid: __expr__
+                    updated: "0001-01-01T00:00:00Z"
+                    url: ""
+                    user: ""
+                    withCredentials: false
+                expression: prometheus_math
+                intervalMs: 1000
+                maxDataPoints: 43200
+                refId: threshold
+                type: threshold
           noDataState: NoData
           execErrState: Error
           for: 2m
@@ -39,6 +104,7 @@ groups:
             long: 1h
             short: 5m
           isPaused: false
+          missing_series_evals_to_resolve: 1
 
         - uid: KubeAPIErrorBudgetBurnCrit6h
           title: KubeAPIErrorBudgetBurnCrit6h
@@ -140,40 +206,6 @@ groups:
             severity: warning
             long: 3d
             short: 6h
-          isPaused: false
-
-    - orgId: 1
-      name: kubernetes-apps
-      folder: kubernetes-monitoring
-      interval: 1m
-      rules:
-        - uid: KubePodImagePullBackOff
-          title: KubePodImagePullBackOff
-          condition: A
-          data:
-            - refId: A
-              relativeTimeRange:
-                from: 600
-                to: 0
-              datasourceUid: mimir
-              model:
-                editorMode: builder
-                expr: max_over_time(kube_pod_container_status_waiting_reason{reason="ImagePullBackOff", job!=""}[5m]) >= 1
-                instant: true
-                intervalMs: 1000
-                legendFormat: __auto
-                maxDataPoints: 43200
-                range: false
-                refId: A
-          noDataState: NoData
-          execErrState: Error
-          for: 15m
-          annotations:
-            description: 'Pod {{ $labels.namespace }}/{{ $labels.pod }} ({{ $labels.container }}) is in waiting state (reason: "ImagePullBackOff").'
-            runbook_url: 'no runbook available'
-            summary: Pod cannot pull the image
-          labels:
-            severity: warning
           isPaused: false
 
         - uid: KubePodCrashLooping

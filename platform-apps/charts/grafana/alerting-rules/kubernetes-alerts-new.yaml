@@ -1,11 +1,12 @@
 apiVersion: 1
+
 groups:
     - orgId: 1
       name: kube-apiserver-slos
-      folder: jkleinlerchertest/prometheus_alerts.yaml
+      folder: kubernetes-monitoring
       interval: 1m
       rules:
-        - uid: 498a2f5e-ee44-57b9-9f65-c933c9230bab
+        - uid: KubeAPIErrorBudgetBurnCrit1h
           title: KubeAPIErrorBudgetBurn
           condition: threshold
           data:
@@ -14,11 +15,11 @@ groups:
               relativeTimeRange:
                 from: 660
                 to: 60
-              datasourceUid: grafanacloud-prom
+              datasourceUid: mimir
               model:
                 datasource:
                     type: prometheus
-                    uid: grafanacloud-prom
+                    uid: mimir
                 expr: |
                     sum by(cluster) (apiserver_request:burnrate1h) > (14.40 * 0.01000)
                     and on(cluster)
@@ -91,8 +92,8 @@ groups:
                 maxDataPoints: 43200
                 refId: threshold
                 type: threshold
-          noDataState: OK
-          execErrState: OK
+          noDataState: NoData
+          execErrState: Error
           for: 2m
           annotations:
             description: The API server is burning too much error budget.
@@ -105,7 +106,7 @@ groups:
             short: 5m
           isPaused: false
           missing_series_evals_to_resolve: 1
-        - uid: 9d82d124-7f58-551b-a954-e2ee70b714bc
+        - uid: KubeAPIErrorBudgetBurnCrit6h
           title: KubeAPIErrorBudgetBurn
           condition: threshold
           data:
@@ -114,11 +115,11 @@ groups:
               relativeTimeRange:
                 from: 660
                 to: 60
-              datasourceUid: grafanacloud-prom
+              datasourceUid: mimir
               model:
                 datasource:
                     type: prometheus
-                    uid: grafanacloud-prom
+                    uid: mimir
                 expr: |
                     sum by(cluster) (apiserver_request:burnrate6h) > (6.00 * 0.01000)
                     and on(cluster)
@@ -191,8 +192,8 @@ groups:
                 maxDataPoints: 43200
                 refId: threshold
                 type: threshold
-          noDataState: OK
-          execErrState: OK
+          noDataState: NoData
+          execErrState: Error
           for: 15m
           annotations:
             description: The API server is burning too much error budget.
@@ -203,9 +204,9 @@ groups:
             long: 6h
             severity: critical
             short: 30m
-          isPaused: true
+          isPaused: false
           missing_series_evals_to_resolve: 1
-        - uid: ed49e5ce-1514-591a-adda-c8d1140a0c51
+        - uid: KubeAPIErrorBudgetBurnWarn1d
           title: KubeAPIErrorBudgetBurn
           condition: threshold
           data:
@@ -214,11 +215,11 @@ groups:
               relativeTimeRange:
                 from: 660
                 to: 60
-              datasourceUid: grafanacloud-prom
+              datasourceUid: mimir
               model:
                 datasource:
                     type: prometheus
-                    uid: grafanacloud-prom
+                    uid: mimir
                 expr: |
                     sum by(cluster) (apiserver_request:burnrate1d) > (3.00 * 0.01000)
                     and on(cluster)
@@ -291,8 +292,8 @@ groups:
                 maxDataPoints: 43200
                 refId: threshold
                 type: threshold
-          noDataState: OK
-          execErrState: OK
+          noDataState: NoData
+          execErrState: Error
           for: 1h
           annotations:
             description: The API server is burning too much error budget.
@@ -303,9 +304,9 @@ groups:
             long: 1d
             severity: warning
             short: 2h
-          isPaused: true
+          isPaused: false
           missing_series_evals_to_resolve: 1
-        - uid: 9afd0b4e-10a7-5bfb-8c03-fceb5fe495db
+        - uid: KubeAPIErrorBudgetBurnWarn3d
           title: KubeAPIErrorBudgetBurn
           condition: threshold
           data:
@@ -314,11 +315,11 @@ groups:
               relativeTimeRange:
                 from: 660
                 to: 60
-              datasourceUid: grafanacloud-prom
+              datasourceUid: mimir
               model:
                 datasource:
                     type: prometheus
-                    uid: grafanacloud-prom
+                    uid: mimir
                 expr: |
                     sum by(cluster) (apiserver_request:burnrate3d) > (1.00 * 0.01000)
                     and on(cluster)
@@ -391,8 +392,8 @@ groups:
                 maxDataPoints: 43200
                 refId: threshold
                 type: threshold
-          noDataState: OK
-          execErrState: OK
+          noDataState: NoData
+          execErrState: Error
           for: 3h
           annotations:
             description: The API server is burning too much error budget.
@@ -403,14 +404,14 @@ groups:
             long: 3d
             severity: warning
             short: 6h
-          isPaused: true
+          isPaused: false
           missing_series_evals_to_resolve: 1
     - orgId: 1
       name: kubernetes-apps
-      folder: jkleinlerchertest/prometheus_alerts.yaml
+      folder: kubernetes-monitoring
       interval: 1m
       rules:
-        - uid: a27509cd-a61b-5509-8d71-c7927e48f2a5
+        - uid: KubePodCrashLooping
           title: KubePodCrashLooping
           condition: threshold
           data:
@@ -419,11 +420,11 @@ groups:
               relativeTimeRange:
                 from: 660
                 to: 60
-              datasourceUid: grafanacloud-prom
+              datasourceUid: mimir
               model:
                 datasource:
                     type: prometheus
-                    uid: grafanacloud-prom
+                    uid: mimir
                 expr: |
                     max_over_time(kube_pod_container_status_waiting_reason{reason="CrashLoopBackOff", job="kube-state-metrics"}[5m]) >= 1
                 instant: true
@@ -494,8 +495,8 @@ groups:
                 maxDataPoints: 43200
                 refId: threshold
                 type: threshold
-          noDataState: OK
-          execErrState: OK
+          noDataState: NoData
+          execErrState: Error
           for: 15m
           annotations:
             description: 'Pod {{ $labels.namespace }}/{{ $labels.pod }} ({{ $labels.container }}) is in waiting state (reason: "CrashLoopBackOff").'
@@ -504,9 +505,9 @@ groups:
           labels:
             __converted_prometheus_rule__: "true"
             severity: warning
-          isPaused: true
+          isPaused: false
           missing_series_evals_to_resolve: 1
-        - uid: b3918d6d-59e3-5d20-a0b2-c739a503173f
+        - uid: KubePodNotReady
           title: KubePodNotReady
           condition: threshold
           data:
@@ -515,11 +516,11 @@ groups:
               relativeTimeRange:
                 from: 660
                 to: 60
-              datasourceUid: grafanacloud-prom
+              datasourceUid: mimir
               model:
                 datasource:
                     type: prometheus
-                    uid: grafanacloud-prom
+                    uid: mimir
                 expr: |
                     sum by (namespace, pod, cluster) (
                       max by(namespace, pod, cluster) (
@@ -596,8 +597,8 @@ groups:
                 maxDataPoints: 43200
                 refId: threshold
                 type: threshold
-          noDataState: OK
-          execErrState: OK
+          noDataState: NoData
+          execErrState: Error
           for: 15m
           annotations:
             description: Pod {{ $labels.namespace }}/{{ $labels.pod }} has been in a non-ready state for longer than 15 minutes.
@@ -606,9 +607,9 @@ groups:
           labels:
             __converted_prometheus_rule__: "true"
             severity: warning
-          isPaused: true
+          isPaused: false
           missing_series_evals_to_resolve: 1
-        - uid: 6d8f3cc5-8fec-57ad-abda-4ba65150348f
+        - uid: KubeDeploymentGenerationMismatch
           title: KubeDeploymentGenerationMismatch
           condition: threshold
           data:
@@ -617,11 +618,11 @@ groups:
               relativeTimeRange:
                 from: 660
                 to: 60
-              datasourceUid: grafanacloud-prom
+              datasourceUid: mimir
               model:
                 datasource:
                     type: prometheus
-                    uid: grafanacloud-prom
+                    uid: mimir
                 expr: |
                     kube_deployment_status_observed_generation{job="kube-state-metrics"}
                       !=
@@ -694,8 +695,8 @@ groups:
                 maxDataPoints: 43200
                 refId: threshold
                 type: threshold
-          noDataState: OK
-          execErrState: OK
+          noDataState: NoData
+          execErrState: Error
           for: 15m
           annotations:
             description: Deployment generation for {{ $labels.namespace }}/{{ $labels.deployment }} does not match, this indicates that the Deployment has failed but has not been rolled back.
@@ -704,9 +705,9 @@ groups:
           labels:
             __converted_prometheus_rule__: "true"
             severity: warning
-          isPaused: true
+          isPaused: false
           missing_series_evals_to_resolve: 1
-        - uid: cc0cf33d-0e2c-5cb3-a399-881e7d9364fc
+        - uid: KubeDeploymentReplicasMismatch
           title: KubeDeploymentReplicasMismatch
           condition: threshold
           data:
@@ -715,11 +716,11 @@ groups:
               relativeTimeRange:
                 from: 660
                 to: 60
-              datasourceUid: grafanacloud-prom
+              datasourceUid: mimir
               model:
                 datasource:
                     type: prometheus
-                    uid: grafanacloud-prom
+                    uid: mimir
                 expr: |
                     (
                       kube_deployment_spec_replicas{job="kube-state-metrics"}
@@ -798,8 +799,8 @@ groups:
                 maxDataPoints: 43200
                 refId: threshold
                 type: threshold
-          noDataState: OK
-          execErrState: OK
+          noDataState: NoData
+          execErrState: Error
           for: 15m
           annotations:
             description: Deployment {{ $labels.namespace }}/{{ $labels.deployment }} has not matched the expected number of replicas for longer than 15 minutes.
@@ -808,9 +809,9 @@ groups:
           labels:
             __converted_prometheus_rule__: "true"
             severity: warning
-          isPaused: true
+          isPaused: false
           missing_series_evals_to_resolve: 1
-        - uid: f511ed7b-1446-5847-a83c-cf81177cac36
+        - uid: KubeDeploymentRolloutStuck
           title: KubeDeploymentRolloutStuck
           condition: threshold
           data:
@@ -819,11 +820,11 @@ groups:
               relativeTimeRange:
                 from: 660
                 to: 60
-              datasourceUid: grafanacloud-prom
+              datasourceUid: mimir
               model:
                 datasource:
                     type: prometheus
-                    uid: grafanacloud-prom
+                    uid: mimir
                 expr: |
                     kube_deployment_status_condition{condition="Progressing", status="false",job="kube-state-metrics"}
                     != 0
@@ -895,8 +896,8 @@ groups:
                 maxDataPoints: 43200
                 refId: threshold
                 type: threshold
-          noDataState: OK
-          execErrState: OK
+          noDataState: NoData
+          execErrState: Error
           for: 15m
           annotations:
             description: Rollout of deployment {{ $labels.namespace }}/{{ $labels.deployment }} is not progressing for longer than 15 minutes.
@@ -905,9 +906,9 @@ groups:
           labels:
             __converted_prometheus_rule__: "true"
             severity: warning
-          isPaused: true
+          isPaused: false
           missing_series_evals_to_resolve: 1
-        - uid: 199a7ad7-1eca-5ca7-b796-6ca1e000cef9
+        - uid: KubeStatefulSetReplicasMismatch
           title: KubeStatefulSetReplicasMismatch
           condition: threshold
           data:
@@ -916,11 +917,11 @@ groups:
               relativeTimeRange:
                 from: 660
                 to: 60
-              datasourceUid: grafanacloud-prom
+              datasourceUid: mimir
               model:
                 datasource:
                     type: prometheus
-                    uid: grafanacloud-prom
+                    uid: mimir
                 expr: |
                     (
                       kube_statefulset_status_replicas_ready{job="kube-state-metrics"}
@@ -999,8 +1000,8 @@ groups:
                 maxDataPoints: 43200
                 refId: threshold
                 type: threshold
-          noDataState: OK
-          execErrState: OK
+          noDataState: NoData
+          execErrState: Error
           for: 15m
           annotations:
             description: StatefulSet {{ $labels.namespace }}/{{ $labels.statefulset }} has not matched the expected number of replicas for longer than 15 minutes.
@@ -1009,9 +1010,9 @@ groups:
           labels:
             __converted_prometheus_rule__: "true"
             severity: warning
-          isPaused: true
+          isPaused: false
           missing_series_evals_to_resolve: 1
-        - uid: 387c52bf-4dcc-5768-9904-cc4b51e0a93a
+        - uid: KubeStatefulSetGenerationMismatch
           title: KubeStatefulSetGenerationMismatch
           condition: threshold
           data:
@@ -1020,11 +1021,11 @@ groups:
               relativeTimeRange:
                 from: 660
                 to: 60
-              datasourceUid: grafanacloud-prom
+              datasourceUid: mimir
               model:
                 datasource:
                     type: prometheus
-                    uid: grafanacloud-prom
+                    uid: mimir
                 expr: |
                     kube_statefulset_status_observed_generation{job="kube-state-metrics"}
                       !=
@@ -1097,8 +1098,8 @@ groups:
                 maxDataPoints: 43200
                 refId: threshold
                 type: threshold
-          noDataState: OK
-          execErrState: OK
+          noDataState: NoData
+          execErrState: Error
           for: 15m
           annotations:
             description: StatefulSet generation for {{ $labels.namespace }}/{{ $labels.statefulset }} does not match, this indicates that the StatefulSet has failed but has not been rolled back.
@@ -1107,9 +1108,9 @@ groups:
           labels:
             __converted_prometheus_rule__: "true"
             severity: warning
-          isPaused: true
+          isPaused: false
           missing_series_evals_to_resolve: 1
-        - uid: 5674e87c-6f49-5ad1-9fef-c435438c153b
+        - uid: KubeStatefulSetUpdateNotRolledOut
           title: KubeStatefulSetUpdateNotRolledOut
           condition: threshold
           data:
@@ -1118,11 +1119,11 @@ groups:
               relativeTimeRange:
                 from: 660
                 to: 60
-              datasourceUid: grafanacloud-prom
+              datasourceUid: mimir
               model:
                 datasource:
                     type: prometheus
-                    uid: grafanacloud-prom
+                    uid: mimir
                 expr: |
                     (
                       max by(namespace, statefulset, job, cluster) (
@@ -1209,8 +1210,8 @@ groups:
                 maxDataPoints: 43200
                 refId: threshold
                 type: threshold
-          noDataState: OK
-          execErrState: OK
+          noDataState: NoData
+          execErrState: Error
           for: 15m
           annotations:
             description: StatefulSet {{ $labels.namespace }}/{{ $labels.statefulset }} update has not been rolled out.
@@ -1219,9 +1220,9 @@ groups:
           labels:
             __converted_prometheus_rule__: "true"
             severity: warning
-          isPaused: true
+          isPaused: false
           missing_series_evals_to_resolve: 1
-        - uid: 9f83fd00-6fb4-583a-b99c-1dde5fbd02d5
+        - uid: KubeDaemonSetRolloutStuck
           title: KubeDaemonSetRolloutStuck
           condition: threshold
           data:
@@ -1230,11 +1231,11 @@ groups:
               relativeTimeRange:
                 from: 660
                 to: 60
-              datasourceUid: grafanacloud-prom
+              datasourceUid: mimir
               model:
                 datasource:
                     type: prometheus
-                    uid: grafanacloud-prom
+                    uid: mimir
                 expr: |
                     (
                       (
@@ -1327,8 +1328,8 @@ groups:
                 maxDataPoints: 43200
                 refId: threshold
                 type: threshold
-          noDataState: OK
-          execErrState: OK
+          noDataState: NoData
+          execErrState: Error
           for: 15m
           annotations:
             description: DaemonSet {{ $labels.namespace }}/{{ $labels.daemonset }} has not finished or progressed for at least 15m.
@@ -1337,9 +1338,9 @@ groups:
           labels:
             __converted_prometheus_rule__: "true"
             severity: warning
-          isPaused: true
+          isPaused: false
           missing_series_evals_to_resolve: 1
-        - uid: 4cc08a5b-ccf9-5695-823f-a0d9fa00f9dd
+        - uid: KubeContainerWaiting
           title: KubeContainerWaiting
           condition: threshold
           data:
@@ -1348,11 +1349,11 @@ groups:
               relativeTimeRange:
                 from: 660
                 to: 60
-              datasourceUid: grafanacloud-prom
+              datasourceUid: mimir
               model:
                 datasource:
                     type: prometheus
-                    uid: grafanacloud-prom
+                    uid: mimir
                 expr: |
                     kube_pod_container_status_waiting_reason{reason!="CrashLoopBackOff", job="kube-state-metrics"} > 0
                 instant: true
@@ -1423,8 +1424,8 @@ groups:
                 maxDataPoints: 43200
                 refId: threshold
                 type: threshold
-          noDataState: OK
-          execErrState: OK
+          noDataState: NoData
+          execErrState: Error
           for: 1h
           annotations:
             description: 'pod/{{ $labels.pod }} in namespace {{ $labels.namespace }} on container {{ $labels.container}} has been in waiting state for longer than 1 hour. (reason: "{{ $labels.reason }}").'
@@ -1433,9 +1434,9 @@ groups:
           labels:
             __converted_prometheus_rule__: "true"
             severity: warning
-          isPaused: true
+          isPaused: false
           missing_series_evals_to_resolve: 1
-        - uid: a1e4b564-d949-52e3-a11f-c86c86408cdd
+        - uid: KubeDaemonSetNotScheduled
           title: KubeDaemonSetNotScheduled
           condition: threshold
           data:
@@ -1444,11 +1445,11 @@ groups:
               relativeTimeRange:
                 from: 660
                 to: 60
-              datasourceUid: grafanacloud-prom
+              datasourceUid: mimir
               model:
                 datasource:
                     type: prometheus
-                    uid: grafanacloud-prom
+                    uid: mimir
                 expr: |
                     kube_daemonset_status_desired_number_scheduled{job="kube-state-metrics"}
                       -
@@ -1521,8 +1522,8 @@ groups:
                 maxDataPoints: 43200
                 refId: threshold
                 type: threshold
-          noDataState: OK
-          execErrState: OK
+          noDataState: NoData
+          execErrState: Error
           for: 10m
           annotations:
             description: '{{ $value }} Pods of DaemonSet {{ $labels.namespace }}/{{ $labels.daemonset }} are not scheduled.'
@@ -1531,9 +1532,9 @@ groups:
           labels:
             __converted_prometheus_rule__: "true"
             severity: warning
-          isPaused: true
+          isPaused: false
           missing_series_evals_to_resolve: 1
-        - uid: adccee4b-4ab8-57d7-b202-4f62b1ab2407
+        - uid: KubeDaemonSetMisScheduled
           title: KubeDaemonSetMisScheduled
           condition: threshold
           data:
@@ -1542,11 +1543,11 @@ groups:
               relativeTimeRange:
                 from: 660
                 to: 60
-              datasourceUid: grafanacloud-prom
+              datasourceUid: mimir
               model:
                 datasource:
                     type: prometheus
-                    uid: grafanacloud-prom
+                    uid: mimir
                 expr: |
                     kube_daemonset_status_number_misscheduled{job="kube-state-metrics"} > 0
                 instant: true
@@ -1617,8 +1618,8 @@ groups:
                 maxDataPoints: 43200
                 refId: threshold
                 type: threshold
-          noDataState: OK
-          execErrState: OK
+          noDataState: NoData
+          execErrState: Error
           for: 15m
           annotations:
             description: '{{ $value }} Pods of DaemonSet {{ $labels.namespace }}/{{ $labels.daemonset }} are running where they are not supposed to run.'
@@ -1627,9 +1628,9 @@ groups:
           labels:
             __converted_prometheus_rule__: "true"
             severity: warning
-          isPaused: true
+          isPaused: false
           missing_series_evals_to_resolve: 1
-        - uid: 9f5a6cd7-bfc0-5f62-a179-742161443a9b
+        - uid: KubeJobNotCompleted
           title: KubeJobNotCompleted
           condition: threshold
           data:
@@ -1638,11 +1639,11 @@ groups:
               relativeTimeRange:
                 from: 660
                 to: 60
-              datasourceUid: grafanacloud-prom
+              datasourceUid: mimir
               model:
                 datasource:
                     type: prometheus
-                    uid: grafanacloud-prom
+                    uid: mimir
                 expr: |
                     time() - max by(namespace, job_name, cluster) (kube_job_status_start_time{job="kube-state-metrics"}
                       and
@@ -1715,8 +1716,8 @@ groups:
                 maxDataPoints: 43200
                 refId: threshold
                 type: threshold
-          noDataState: OK
-          execErrState: OK
+          noDataState: NoData
+          execErrState: Error
           annotations:
             description: Job {{ $labels.namespace }}/{{ $labels.job_name }} is taking more than {{ "43200" | humanizeDuration }} to complete.
             runbook_url: https://github.com/kubernetes-monitoring/kubernetes-mixin/tree/master/runbook.md#alert-name-kubejobnotcompleted
@@ -1724,9 +1725,9 @@ groups:
           labels:
             __converted_prometheus_rule__: "true"
             severity: warning
-          isPaused: true
+          isPaused: false
           missing_series_evals_to_resolve: 1
-        - uid: 355a0e98-e85f-5695-a4b8-cd309d5724fb
+        - uid: KubeJobFailed
           title: KubeJobFailed
           condition: threshold
           data:
@@ -1735,11 +1736,11 @@ groups:
               relativeTimeRange:
                 from: 660
                 to: 60
-              datasourceUid: grafanacloud-prom
+              datasourceUid: mimir
               model:
                 datasource:
                     type: prometheus
-                    uid: grafanacloud-prom
+                    uid: mimir
                 expr: |
                     kube_job_failed{job="kube-state-metrics"}  > 0
                 instant: true
@@ -1810,8 +1811,8 @@ groups:
                 maxDataPoints: 43200
                 refId: threshold
                 type: threshold
-          noDataState: OK
-          execErrState: OK
+          noDataState: NoData
+          execErrState: Error
           for: 15m
           annotations:
             description: Job {{ $labels.namespace }}/{{ $labels.job_name }} failed to complete. Removing failed job after investigation should clear this alert.
@@ -1820,9 +1821,9 @@ groups:
           labels:
             __converted_prometheus_rule__: "true"
             severity: warning
-          isPaused: true
+          isPaused: false
           missing_series_evals_to_resolve: 1
-        - uid: 5192e271-d2e9-5c48-8864-e0dc2743aeb3
+        - uid: KubeHpaReplicasMismatch
           title: KubeHpaReplicasMismatch
           condition: threshold
           data:
@@ -1831,11 +1832,11 @@ groups:
               relativeTimeRange:
                 from: 660
                 to: 60
-              datasourceUid: grafanacloud-prom
+              datasourceUid: mimir
               model:
                 datasource:
                     type: prometheus
-                    uid: grafanacloud-prom
+                    uid: mimir
                 expr: |
                     (kube_horizontalpodautoscaler_status_desired_replicas{job="kube-state-metrics"}
                       !=
@@ -1918,8 +1919,8 @@ groups:
                 maxDataPoints: 43200
                 refId: threshold
                 type: threshold
-          noDataState: OK
-          execErrState: OK
+          noDataState: NoData
+          execErrState: Error
           for: 15m
           annotations:
             description: HPA {{ $labels.namespace }}/{{ $labels.horizontalpodautoscaler  }} has not matched the desired number of replicas for longer than 15 minutes.
@@ -1928,9 +1929,9 @@ groups:
           labels:
             __converted_prometheus_rule__: "true"
             severity: warning
-          isPaused: true
+          isPaused: false
           missing_series_evals_to_resolve: 1
-        - uid: 16d741db-868e-5543-a421-646c5f137fcb
+        - uid: KubeHpaMaxedOut
           title: KubeHpaMaxedOut
           condition: threshold
           data:
@@ -1939,11 +1940,11 @@ groups:
               relativeTimeRange:
                 from: 660
                 to: 60
-              datasourceUid: grafanacloud-prom
+              datasourceUid: mimir
               model:
                 datasource:
                     type: prometheus
-                    uid: grafanacloud-prom
+                    uid: mimir
                 expr: |
                     kube_horizontalpodautoscaler_status_current_replicas{job="kube-state-metrics"}
                       ==
@@ -2016,8 +2017,8 @@ groups:
                 maxDataPoints: 43200
                 refId: threshold
                 type: threshold
-          noDataState: OK
-          execErrState: OK
+          noDataState: NoData
+          execErrState: Error
           for: 15m
           annotations:
             description: HPA {{ $labels.namespace }}/{{ $labels.horizontalpodautoscaler  }} has been running at max replicas for longer than 15 minutes.
@@ -2026,9 +2027,9 @@ groups:
           labels:
             __converted_prometheus_rule__: "true"
             severity: warning
-          isPaused: true
+          isPaused: false
           missing_series_evals_to_resolve: 1
-        - uid: bdfd19f6-fdef-5f72-9865-32e0bb2eb82d
+        - uid: KubePdbNotEnoughHealthyPods
           title: KubePdbNotEnoughHealthyPods
           condition: threshold
           data:
@@ -2037,11 +2038,11 @@ groups:
               relativeTimeRange:
                 from: 660
                 to: 60
-              datasourceUid: grafanacloud-prom
+              datasourceUid: mimir
               model:
                 datasource:
                     type: prometheus
-                    uid: grafanacloud-prom
+                    uid: mimir
                 expr: |
                     (
                       kube_poddisruptionbudget_status_desired_healthy{job="kube-state-metrics"}
@@ -2117,8 +2118,8 @@ groups:
                 maxDataPoints: 43200
                 refId: threshold
                 type: threshold
-          noDataState: OK
-          execErrState: OK
+          noDataState: NoData
+          execErrState: Error
           for: 15m
           annotations:
             description: PDB {{ $labels.namespace }}/{{ $labels.poddisruptionbudget }} expects {{ $value }} more healthy pods. The desired number of healthy pods has not been met for at least 15m.
@@ -2127,14 +2128,14 @@ groups:
           labels:
             __converted_prometheus_rule__: "true"
             severity: warning
-          isPaused: true
+          isPaused: false
           missing_series_evals_to_resolve: 1
     - orgId: 1
       name: kubernetes-resources
-      folder: jkleinlerchertest/prometheus_alerts.yaml
+      folder: kubernetes-monitoring
       interval: 1m
       rules:
-        - uid: 8b6577f5-93cf-5adf-9bf7-361912fc21e3
+        - uid: KubeCPUOvercommit
           title: KubeCPUOvercommit
           condition: threshold
           data:
@@ -2143,11 +2144,11 @@ groups:
               relativeTimeRange:
                 from: 660
                 to: 60
-              datasourceUid: grafanacloud-prom
+              datasourceUid: mimir
               model:
                 datasource:
                     type: prometheus
-                    uid: grafanacloud-prom
+                    uid: mimir
                 expr: |
                     sum(namespace_cpu:kube_pod_container_resource_requests:sum{}) - (sum(kube_node_status_allocatable{resource="cpu", job="kube-state-metrics"}) - max(kube_node_status_allocatable{resource="cpu", job="kube-state-metrics"})) > 0
                     and
@@ -2220,8 +2221,8 @@ groups:
                 maxDataPoints: 43200
                 refId: threshold
                 type: threshold
-          noDataState: OK
-          execErrState: OK
+          noDataState: NoData
+          execErrState: Error
           for: 10m
           annotations:
             description: Cluster has overcommitted CPU resource requests for Pods by {{ $value }} CPU shares and cannot tolerate node failure.
@@ -2230,9 +2231,9 @@ groups:
           labels:
             __converted_prometheus_rule__: "true"
             severity: warning
-          isPaused: true
+          isPaused: false
           missing_series_evals_to_resolve: 1
-        - uid: 296b0b38-db9f-59a5-b14a-6e46cc4b4407
+        - uid: KubeMemoryOvercommit
           title: KubeMemoryOvercommit
           condition: threshold
           data:
@@ -2241,11 +2242,11 @@ groups:
               relativeTimeRange:
                 from: 660
                 to: 60
-              datasourceUid: grafanacloud-prom
+              datasourceUid: mimir
               model:
                 datasource:
                     type: prometheus
-                    uid: grafanacloud-prom
+                    uid: mimir
                 expr: |
                     sum(namespace_memory:kube_pod_container_resource_requests:sum{}) - (sum(kube_node_status_allocatable{resource="memory", job="kube-state-metrics"}) - max(kube_node_status_allocatable{resource="memory", job="kube-state-metrics"})) > 0
                     and
@@ -2318,8 +2319,8 @@ groups:
                 maxDataPoints: 43200
                 refId: threshold
                 type: threshold
-          noDataState: OK
-          execErrState: OK
+          noDataState: NoData
+          execErrState: Error
           for: 10m
           annotations:
             description: Cluster has overcommitted memory resource requests for Pods by {{ $value | humanize }} bytes and cannot tolerate node failure.
@@ -2328,9 +2329,9 @@ groups:
           labels:
             __converted_prometheus_rule__: "true"
             severity: warning
-          isPaused: true
+          isPaused: false
           missing_series_evals_to_resolve: 1
-        - uid: ede836d9-77d2-5334-88f7-5fe1340b70b7
+        - uid: KubeCPUQuotaOvercommit
           title: KubeCPUQuotaOvercommit
           condition: threshold
           data:
@@ -2339,11 +2340,11 @@ groups:
               relativeTimeRange:
                 from: 660
                 to: 60
-              datasourceUid: grafanacloud-prom
+              datasourceUid: mimir
               model:
                 datasource:
                     type: prometheus
-                    uid: grafanacloud-prom
+                    uid: mimir
                 expr: |
                     sum(min without(resource) (kube_resourcequota{job="kube-state-metrics", type="hard", resource=~"(cpu|requests.cpu)"}))
                       /
@@ -2417,8 +2418,8 @@ groups:
                 maxDataPoints: 43200
                 refId: threshold
                 type: threshold
-          noDataState: OK
-          execErrState: OK
+          noDataState: NoData
+          execErrState: Error
           for: 5m
           annotations:
             description: Cluster has overcommitted CPU resource requests for Namespaces.
@@ -2427,9 +2428,9 @@ groups:
           labels:
             __converted_prometheus_rule__: "true"
             severity: warning
-          isPaused: true
+          isPaused: false
           missing_series_evals_to_resolve: 1
-        - uid: ba12dcf8-001f-5afb-83e7-323ad9ee7840
+        - uid: KubeMemoryQuotaOvercommit
           title: KubeMemoryQuotaOvercommit
           condition: threshold
           data:
@@ -2438,11 +2439,11 @@ groups:
               relativeTimeRange:
                 from: 660
                 to: 60
-              datasourceUid: grafanacloud-prom
+              datasourceUid: mimir
               model:
                 datasource:
                     type: prometheus
-                    uid: grafanacloud-prom
+                    uid: mimir
                 expr: |
                     sum(min without(resource) (kube_resourcequota{job="kube-state-metrics", type="hard", resource=~"(memory|requests.memory)"}))
                       /
@@ -2516,8 +2517,8 @@ groups:
                 maxDataPoints: 43200
                 refId: threshold
                 type: threshold
-          noDataState: OK
-          execErrState: OK
+          noDataState: NoData
+          execErrState: Error
           for: 5m
           annotations:
             description: Cluster has overcommitted memory resource requests for Namespaces.
@@ -2526,9 +2527,9 @@ groups:
           labels:
             __converted_prometheus_rule__: "true"
             severity: warning
-          isPaused: true
+          isPaused: false
           missing_series_evals_to_resolve: 1
-        - uid: 60b42d18-eda9-5fc8-b2ad-2c1cc2606f88
+        - uid: KubeQuotaAlmostFull
           title: KubeQuotaAlmostFull
           condition: threshold
           data:
@@ -2537,11 +2538,11 @@ groups:
               relativeTimeRange:
                 from: 660
                 to: 60
-              datasourceUid: grafanacloud-prom
+              datasourceUid: mimir
               model:
                 datasource:
                     type: prometheus
-                    uid: grafanacloud-prom
+                    uid: mimir
                 expr: |
                     kube_resourcequota{job="kube-state-metrics", type="used"}
                       / ignoring(instance, job, type)
@@ -2615,8 +2616,8 @@ groups:
                 maxDataPoints: 43200
                 refId: threshold
                 type: threshold
-          noDataState: OK
-          execErrState: OK
+          noDataState: NoData
+          execErrState: Error
           for: 15m
           annotations:
             description: Namespace {{ $labels.namespace }} is using {{ $value | humanizePercentage }} of its {{ $labels.resource }} quota.
@@ -2625,9 +2626,9 @@ groups:
           labels:
             __converted_prometheus_rule__: "true"
             severity: info
-          isPaused: true
+          isPaused: false
           missing_series_evals_to_resolve: 1
-        - uid: 6a94eecd-271c-5af6-8929-f539fd409878
+        - uid: KubeQuotaFullyUsed
           title: KubeQuotaFullyUsed
           condition: threshold
           data:
@@ -2636,11 +2637,11 @@ groups:
               relativeTimeRange:
                 from: 660
                 to: 60
-              datasourceUid: grafanacloud-prom
+              datasourceUid: mimir
               model:
                 datasource:
                     type: prometheus
-                    uid: grafanacloud-prom
+                    uid: mimir
                 expr: |
                     kube_resourcequota{job="kube-state-metrics", type="used"}
                       / ignoring(instance, job, type)
@@ -2714,8 +2715,8 @@ groups:
                 maxDataPoints: 43200
                 refId: threshold
                 type: threshold
-          noDataState: OK
-          execErrState: OK
+          noDataState: NoData
+          execErrState: Error
           for: 15m
           annotations:
             description: Namespace {{ $labels.namespace }} is using {{ $value | humanizePercentage }} of its {{ $labels.resource }} quota.
@@ -2724,9 +2725,9 @@ groups:
           labels:
             __converted_prometheus_rule__: "true"
             severity: info
-          isPaused: true
+          isPaused: false
           missing_series_evals_to_resolve: 1
-        - uid: 0c95fa9c-58f8-5676-8284-eecaf8653dc5
+        - uid: KubeQuotaExceeded
           title: KubeQuotaExceeded
           condition: threshold
           data:
@@ -2735,11 +2736,11 @@ groups:
               relativeTimeRange:
                 from: 660
                 to: 60
-              datasourceUid: grafanacloud-prom
+              datasourceUid: mimir
               model:
                 datasource:
                     type: prometheus
-                    uid: grafanacloud-prom
+                    uid: mimir
                 expr: |
                     kube_resourcequota{job="kube-state-metrics", type="used"}
                       / ignoring(instance, job, type)
@@ -2813,8 +2814,8 @@ groups:
                 maxDataPoints: 43200
                 refId: threshold
                 type: threshold
-          noDataState: OK
-          execErrState: OK
+          noDataState: NoData
+          execErrState: Error
           for: 15m
           annotations:
             description: Namespace {{ $labels.namespace }} is using {{ $value | humanizePercentage }} of its {{ $labels.resource }} quota.
@@ -2823,9 +2824,9 @@ groups:
           labels:
             __converted_prometheus_rule__: "true"
             severity: warning
-          isPaused: true
+          isPaused: false
           missing_series_evals_to_resolve: 1
-        - uid: b3edd7d3-c550-508e-b75b-8bd6b01d24c1
+        - uid: CPUThrottlingHigh
           title: CPUThrottlingHigh
           condition: threshold
           data:
@@ -2834,11 +2835,11 @@ groups:
               relativeTimeRange:
                 from: 660
                 to: 60
-              datasourceUid: grafanacloud-prom
+              datasourceUid: mimir
               model:
                 datasource:
                     type: prometheus
-                    uid: grafanacloud-prom
+                    uid: mimir
                 expr: |
                     sum(increase(container_cpu_cfs_throttled_periods_total{container!="", job="cadvisor", }[5m])) without (id, metrics_path, name, image, endpoint, job, node)
                       / on (cluster, namespace, pod, container, instance) group_left
@@ -2912,8 +2913,8 @@ groups:
                 maxDataPoints: 43200
                 refId: threshold
                 type: threshold
-          noDataState: OK
-          execErrState: OK
+          noDataState: NoData
+          execErrState: Error
           for: 15m
           annotations:
             description: '{{ $value | humanizePercentage }} throttling of CPU in namespace {{ $labels.namespace }} for container {{ $labels.container }} in pod {{ $labels.pod }}.'
@@ -2922,14 +2923,14 @@ groups:
           labels:
             __converted_prometheus_rule__: "true"
             severity: info
-          isPaused: true
+          isPaused: false
           missing_series_evals_to_resolve: 1
     - orgId: 1
       name: kubernetes-storage
-      folder: jkleinlerchertest/prometheus_alerts.yaml
+      folder: kubernetes-monitoring
       interval: 1m
       rules:
-        - uid: 1030b0fc-6906-50d6-bafa-3141cf0faa51
+        - uid: KubePersistentVolumeFillingUpCrit
           title: KubePersistentVolumeFillingUp
           condition: threshold
           data:
@@ -2938,11 +2939,11 @@ groups:
               relativeTimeRange:
                 from: 660
                 to: 60
-              datasourceUid: grafanacloud-prom
+              datasourceUid: mimir
               model:
                 datasource:
                     type: prometheus
-                    uid: grafanacloud-prom
+                    uid: mimir
                 expr: |
                     (
                       kubelet_volume_stats_available_bytes{job="kubelet"}
@@ -3023,8 +3024,8 @@ groups:
                 maxDataPoints: 43200
                 refId: threshold
                 type: threshold
-          noDataState: OK
-          execErrState: OK
+          noDataState: NoData
+          execErrState: Error
           for: 1m
           annotations:
             description: The PersistentVolume claimed by {{ $labels.persistentvolumeclaim }} in Namespace {{ $labels.namespace }} {{ with $labels.cluster -}} on Cluster {{ . }} {{- end }} is only {{ $value | humanizePercentage }} free.
@@ -3033,9 +3034,9 @@ groups:
           labels:
             __converted_prometheus_rule__: "true"
             severity: critical
-          isPaused: true
+          isPaused: false
           missing_series_evals_to_resolve: 1
-        - uid: 69137174-854f-5745-b98c-f822d6f5b8eb
+        - uid: KubePersistentVolumeFillingUpWarn
           title: KubePersistentVolumeFillingUp
           condition: threshold
           data:
@@ -3044,11 +3045,11 @@ groups:
               relativeTimeRange:
                 from: 660
                 to: 60
-              datasourceUid: grafanacloud-prom
+              datasourceUid: mimir
               model:
                 datasource:
                     type: prometheus
-                    uid: grafanacloud-prom
+                    uid: mimir
                 expr: |
                     (
                       kubelet_volume_stats_available_bytes{job="kubelet"}
@@ -3131,8 +3132,8 @@ groups:
                 maxDataPoints: 43200
                 refId: threshold
                 type: threshold
-          noDataState: OK
-          execErrState: OK
+          noDataState: NoData
+          execErrState: Error
           for: 1h
           annotations:
             description: Based on recent sampling, the PersistentVolume claimed by {{ $labels.persistentvolumeclaim }} in Namespace {{ $labels.namespace }} {{ with $labels.cluster -}} on Cluster {{ . }} {{- end }} is expected to fill up within four days. Currently {{ $value | humanizePercentage }} is available.
@@ -3141,9 +3142,9 @@ groups:
           labels:
             __converted_prometheus_rule__: "true"
             severity: warning
-          isPaused: true
+          isPaused: false
           missing_series_evals_to_resolve: 1
-        - uid: c1e9b44e-10be-5b48-812a-ce379583b4e3
+        - uid: KubePersistentVolumeInodesFillingUpCrit
           title: KubePersistentVolumeInodesFillingUp
           condition: threshold
           data:
@@ -3152,11 +3153,11 @@ groups:
               relativeTimeRange:
                 from: 660
                 to: 60
-              datasourceUid: grafanacloud-prom
+              datasourceUid: mimir
               model:
                 datasource:
                     type: prometheus
-                    uid: grafanacloud-prom
+                    uid: mimir
                 expr: |
                     (
                       kubelet_volume_stats_inodes_free{job="kubelet"}
@@ -3237,8 +3238,8 @@ groups:
                 maxDataPoints: 43200
                 refId: threshold
                 type: threshold
-          noDataState: OK
-          execErrState: OK
+          noDataState: NoData
+          execErrState: Error
           for: 1m
           annotations:
             description: The PersistentVolume claimed by {{ $labels.persistentvolumeclaim }} in Namespace {{ $labels.namespace }} {{ with $labels.cluster -}} on Cluster {{ . }} {{- end }} only has {{ $value | humanizePercentage }} free inodes.
@@ -3247,9 +3248,9 @@ groups:
           labels:
             __converted_prometheus_rule__: "true"
             severity: critical
-          isPaused: true
+          isPaused: false
           missing_series_evals_to_resolve: 1
-        - uid: b47248fd-cf2c-5d62-be65-90bbc0ac9573
+        - uid: KubePersistentVolumeInodesFillingUpWarn
           title: KubePersistentVolumeInodesFillingUp
           condition: threshold
           data:
@@ -3258,11 +3259,11 @@ groups:
               relativeTimeRange:
                 from: 660
                 to: 60
-              datasourceUid: grafanacloud-prom
+              datasourceUid: mimir
               model:
                 datasource:
                     type: prometheus
-                    uid: grafanacloud-prom
+                    uid: mimir
                 expr: |
                     (
                       kubelet_volume_stats_inodes_free{job="kubelet"}
@@ -3345,8 +3346,8 @@ groups:
                 maxDataPoints: 43200
                 refId: threshold
                 type: threshold
-          noDataState: OK
-          execErrState: OK
+          noDataState: NoData
+          execErrState: Error
           for: 1h
           annotations:
             description: Based on recent sampling, the PersistentVolume claimed by {{ $labels.persistentvolumeclaim }} in Namespace {{ $labels.namespace }} {{ with $labels.cluster -}} on Cluster {{ . }} {{- end }} is expected to run out of inodes within four days. Currently {{ $value | humanizePercentage }} of its inodes are free.
@@ -3355,9 +3356,9 @@ groups:
           labels:
             __converted_prometheus_rule__: "true"
             severity: warning
-          isPaused: true
+          isPaused: false
           missing_series_evals_to_resolve: 1
-        - uid: a5ad04a2-b132-5c71-b4ac-94a4540c9a47
+        - uid: KubePersistentVolumeErrors
           title: KubePersistentVolumeErrors
           condition: threshold
           data:
@@ -3366,11 +3367,11 @@ groups:
               relativeTimeRange:
                 from: 660
                 to: 60
-              datasourceUid: grafanacloud-prom
+              datasourceUid: mimir
               model:
                 datasource:
                     type: prometheus
-                    uid: grafanacloud-prom
+                    uid: mimir
                 expr: |
                     kube_persistentvolume_status_phase{phase=~"Failed|Pending",job="kube-state-metrics"} > 0
                 instant: true
@@ -3441,8 +3442,8 @@ groups:
                 maxDataPoints: 43200
                 refId: threshold
                 type: threshold
-          noDataState: OK
-          execErrState: OK
+          noDataState: NoData
+          execErrState: Error
           for: 5m
           annotations:
             description: The persistent volume {{ $labels.persistentvolume }} {{ with $labels.cluster -}} on Cluster {{ . }} {{- end }} has status {{ $labels.phase }}.
@@ -3451,14 +3452,14 @@ groups:
           labels:
             __converted_prometheus_rule__: "true"
             severity: critical
-          isPaused: true
+          isPaused: false
           missing_series_evals_to_resolve: 1
     - orgId: 1
       name: kubernetes-system
-      folder: jkleinlerchertest/prometheus_alerts.yaml
+      folder: kubernetes-monitoring
       interval: 1m
       rules:
-        - uid: cd98fd20-d276-550b-8c20-2597ca06ff3e
+        - uid: KubeVersionMismatch
           title: KubeVersionMismatch
           condition: threshold
           data:
@@ -3467,11 +3468,11 @@ groups:
               relativeTimeRange:
                 from: 660
                 to: 60
-              datasourceUid: grafanacloud-prom
+              datasourceUid: mimir
               model:
                 datasource:
                     type: prometheus
-                    uid: grafanacloud-prom
+                    uid: mimir
                 expr: |
                     count by (cluster) (count by (git_version, cluster) (label_replace(kubernetes_build_info{job!~"kube-dns|coredns"},"git_version","$1","git_version","(v[0-9]*.[0-9]*).*"))) > 1
                 instant: true
@@ -3542,8 +3543,8 @@ groups:
                 maxDataPoints: 43200
                 refId: threshold
                 type: threshold
-          noDataState: OK
-          execErrState: OK
+          noDataState: NoData
+          execErrState: Error
           for: 15m
           annotations:
             description: There are {{ $value }} different semantic versions of Kubernetes components running.
@@ -3552,9 +3553,9 @@ groups:
           labels:
             __converted_prometheus_rule__: "true"
             severity: warning
-          isPaused: true
+          isPaused: false
           missing_series_evals_to_resolve: 1
-        - uid: 3a101e42-6963-59f1-83a8-84236525fcc0
+        - uid: KubeClientErrors
           title: KubeClientErrors
           condition: threshold
           data:
@@ -3563,11 +3564,11 @@ groups:
               relativeTimeRange:
                 from: 660
                 to: 60
-              datasourceUid: grafanacloud-prom
+              datasourceUid: mimir
               model:
                 datasource:
                     type: prometheus
-                    uid: grafanacloud-prom
+                    uid: mimir
                 expr: |
                     (sum(rate(rest_client_requests_total{job="kube-apiserver",code=~"5.."}[5m])) by (cluster, instance, job, namespace)
                       /
@@ -3641,8 +3642,8 @@ groups:
                 maxDataPoints: 43200
                 refId: threshold
                 type: threshold
-          noDataState: OK
-          execErrState: OK
+          noDataState: NoData
+          execErrState: Error
           for: 15m
           annotations:
             description: Kubernetes API server client '{{ $labels.job }}/{{ $labels.instance }}' is experiencing {{ $value | humanizePercentage }} errors.
@@ -3651,14 +3652,14 @@ groups:
           labels:
             __converted_prometheus_rule__: "true"
             severity: warning
-          isPaused: true
+          isPaused: false
           missing_series_evals_to_resolve: 1
     - orgId: 1
       name: kubernetes-system-apiserver
-      folder: jkleinlerchertest/prometheus_alerts.yaml
+      folder: kubernetes-monitoring
       interval: 1m
       rules:
-        - uid: 3a9a66fa-eba0-5478-98b6-56e727b11041
+        - uid: KubeClientCertificateExpirationWarn
           title: KubeClientCertificateExpiration
           condition: threshold
           data:
@@ -3667,11 +3668,11 @@ groups:
               relativeTimeRange:
                 from: 660
                 to: 60
-              datasourceUid: grafanacloud-prom
+              datasourceUid: mimir
               model:
                 datasource:
                     type: prometheus
-                    uid: grafanacloud-prom
+                    uid: mimir
                 expr: |
                     histogram_quantile(0.01, sum without (namespace, service, endpoint) (rate(apiserver_client_certificate_expiration_seconds_bucket{job="kube-apiserver"}[5m]))) < 604800
                     and
@@ -3744,8 +3745,8 @@ groups:
                 maxDataPoints: 43200
                 refId: threshold
                 type: threshold
-          noDataState: OK
-          execErrState: OK
+          noDataState: NoData
+          execErrState: Error
           for: 5m
           annotations:
             description: A client certificate used to authenticate to kubernetes apiserver is expiring in less than 7.0 days.
@@ -3754,9 +3755,9 @@ groups:
           labels:
             __converted_prometheus_rule__: "true"
             severity: warning
-          isPaused: true
+          isPaused: false
           missing_series_evals_to_resolve: 1
-        - uid: 29009f1a-4e16-583a-bdb5-7be6200c05d9
+        - uid: KubeClientCertificateExpirationCrit
           title: KubeClientCertificateExpiration
           condition: threshold
           data:
@@ -3765,11 +3766,11 @@ groups:
               relativeTimeRange:
                 from: 660
                 to: 60
-              datasourceUid: grafanacloud-prom
+              datasourceUid: mimir
               model:
                 datasource:
                     type: prometheus
-                    uid: grafanacloud-prom
+                    uid: mimir
                 expr: |
                     histogram_quantile(0.01, sum without (namespace, service, endpoint) (rate(apiserver_client_certificate_expiration_seconds_bucket{job="kube-apiserver"}[5m]))) < 86400
                     and
@@ -3842,8 +3843,8 @@ groups:
                 maxDataPoints: 43200
                 refId: threshold
                 type: threshold
-          noDataState: OK
-          execErrState: OK
+          noDataState: NoData
+          execErrState: Error
           for: 5m
           annotations:
             description: A client certificate used to authenticate to kubernetes apiserver is expiring in less than 24.0 hours.
@@ -3852,9 +3853,9 @@ groups:
           labels:
             __converted_prometheus_rule__: "true"
             severity: critical
-          isPaused: true
+          isPaused: false
           missing_series_evals_to_resolve: 1
-        - uid: 85c1ddf0-b08a-51f7-a052-91bf7b80b7b0
+        - uid: KubeAggregatedAPIErrors
           title: KubeAggregatedAPIErrors
           condition: threshold
           data:
@@ -3863,11 +3864,11 @@ groups:
               relativeTimeRange:
                 from: 660
                 to: 60
-              datasourceUid: grafanacloud-prom
+              datasourceUid: mimir
               model:
                 datasource:
                     type: prometheus
-                    uid: grafanacloud-prom
+                    uid: mimir
                 expr: |
                     sum by(cluster, instance, name, reason)(increase(aggregator_unavailable_apiservice_total{job="kube-apiserver"}[1m])) > 0
                 instant: true
@@ -3938,8 +3939,8 @@ groups:
                 maxDataPoints: 43200
                 refId: threshold
                 type: threshold
-          noDataState: OK
-          execErrState: OK
+          noDataState: NoData
+          execErrState: Error
           for: 10m
           annotations:
             description: Kubernetes aggregated API {{ $labels.instance }}/{{ $labels.name }} has reported {{ $labels.reason }} errors.
@@ -3948,9 +3949,9 @@ groups:
           labels:
             __converted_prometheus_rule__: "true"
             severity: warning
-          isPaused: true
+          isPaused: false
           missing_series_evals_to_resolve: 1
-        - uid: 9d83c8e6-698c-5ec5-a4fb-c86d130e554e
+        - uid: KubeAggregatedAPIDown
           title: KubeAggregatedAPIDown
           condition: threshold
           data:
@@ -3959,11 +3960,11 @@ groups:
               relativeTimeRange:
                 from: 660
                 to: 60
-              datasourceUid: grafanacloud-prom
+              datasourceUid: mimir
               model:
                 datasource:
                     type: prometheus
-                    uid: grafanacloud-prom
+                    uid: mimir
                 expr: |
                     (1 - max by(name, namespace, cluster)(avg_over_time(aggregator_unavailable_apiservice{job="kube-apiserver"}[10m]))) * 100 < 85
                 instant: true
@@ -4034,8 +4035,8 @@ groups:
                 maxDataPoints: 43200
                 refId: threshold
                 type: threshold
-          noDataState: OK
-          execErrState: OK
+          noDataState: NoData
+          execErrState: Error
           for: 5m
           annotations:
             description: Kubernetes aggregated API {{ $labels.name }}/{{ $labels.namespace }} has been only {{ $value | humanize }}% available over the last 10m.
@@ -4044,9 +4045,9 @@ groups:
           labels:
             __converted_prometheus_rule__: "true"
             severity: warning
-          isPaused: true
+          isPaused: false
           missing_series_evals_to_resolve: 1
-        - uid: cc2bf1f0-ba26-5022-8120-64422f8090df
+        - uid: KubeAPIDown
           title: KubeAPIDown
           condition: threshold
           data:
@@ -4055,11 +4056,11 @@ groups:
               relativeTimeRange:
                 from: 660
                 to: 60
-              datasourceUid: grafanacloud-prom
+              datasourceUid: mimir
               model:
                 datasource:
                     type: prometheus
-                    uid: grafanacloud-prom
+                    uid: mimir
                 expr: |
                     absent(up{job="kube-apiserver"} == 1)
                 instant: true
@@ -4130,8 +4131,8 @@ groups:
                 maxDataPoints: 43200
                 refId: threshold
                 type: threshold
-          noDataState: OK
-          execErrState: OK
+          noDataState: NoData
+          execErrState: Error
           for: 15m
           annotations:
             description: KubeAPI has disappeared from Prometheus target discovery.
@@ -4140,9 +4141,9 @@ groups:
           labels:
             __converted_prometheus_rule__: "true"
             severity: critical
-          isPaused: true
+          isPaused: false
           missing_series_evals_to_resolve: 1
-        - uid: f6d39921-1223-5542-a32d-b8074056224f
+        - uid: KubeAPITerminatedRequests
           title: KubeAPITerminatedRequests
           condition: threshold
           data:
@@ -4151,11 +4152,11 @@ groups:
               relativeTimeRange:
                 from: 660
                 to: 60
-              datasourceUid: grafanacloud-prom
+              datasourceUid: mimir
               model:
                 datasource:
                     type: prometheus
-                    uid: grafanacloud-prom
+                    uid: mimir
                 expr: |
                     sum by(cluster) (rate(apiserver_request_terminations_total{job="kube-apiserver"}[10m])) / ( sum by(cluster) (rate(apiserver_request_total{job="kube-apiserver"}[10m])) + sum by(cluster) (rate(apiserver_request_terminations_total{job="kube-apiserver"}[10m])) ) > 0.20
                 instant: true
@@ -4226,8 +4227,8 @@ groups:
                 maxDataPoints: 43200
                 refId: threshold
                 type: threshold
-          noDataState: OK
-          execErrState: OK
+          noDataState: NoData
+          execErrState: Error
           for: 5m
           annotations:
             description: The kubernetes apiserver has terminated {{ $value | humanizePercentage }} of its incoming requests.
@@ -4236,14 +4237,14 @@ groups:
           labels:
             __converted_prometheus_rule__: "true"
             severity: warning
-          isPaused: true
+          isPaused: false
           missing_series_evals_to_resolve: 1
     - orgId: 1
       name: kubernetes-system-controller-manager
-      folder: jkleinlerchertest/prometheus_alerts.yaml
+      folder: kubernetes-monitoring
       interval: 1m
       rules:
-        - uid: 1aea52b8-3038-51c9-8297-928ef8ffe2a8
+        - uid: KubeControllerManagerDown
           title: KubeControllerManagerDown
           condition: threshold
           data:
@@ -4252,11 +4253,11 @@ groups:
               relativeTimeRange:
                 from: 660
                 to: 60
-              datasourceUid: grafanacloud-prom
+              datasourceUid: mimir
               model:
                 datasource:
                     type: prometheus
-                    uid: grafanacloud-prom
+                    uid: mimir
                 expr: |
                     absent(up{job="kube-controller-manager"} == 1)
                 instant: true
@@ -4327,8 +4328,8 @@ groups:
                 maxDataPoints: 43200
                 refId: threshold
                 type: threshold
-          noDataState: OK
-          execErrState: OK
+          noDataState: NoData
+          execErrState: Error
           for: 15m
           annotations:
             description: KubeControllerManager has disappeared from Prometheus target discovery.
@@ -4337,14 +4338,14 @@ groups:
           labels:
             __converted_prometheus_rule__: "true"
             severity: critical
-          isPaused: true
+          isPaused: false
           missing_series_evals_to_resolve: 1
     - orgId: 1
       name: kubernetes-system-kube-proxy
-      folder: jkleinlerchertest/prometheus_alerts.yaml
+      folder: kubernetes-monitoring
       interval: 1m
       rules:
-        - uid: 56684f40-9f2d-5c8e-afda-08d52cd040f4
+        - uid: KubeProxyDown
           title: KubeProxyDown
           condition: threshold
           data:
@@ -4353,11 +4354,11 @@ groups:
               relativeTimeRange:
                 from: 660
                 to: 60
-              datasourceUid: grafanacloud-prom
+              datasourceUid: mimir
               model:
                 datasource:
                     type: prometheus
-                    uid: grafanacloud-prom
+                    uid: mimir
                 expr: |
                     absent(up{job="kube-proxy"} == 1)
                 instant: true
@@ -4428,8 +4429,8 @@ groups:
                 maxDataPoints: 43200
                 refId: threshold
                 type: threshold
-          noDataState: OK
-          execErrState: OK
+          noDataState: NoData
+          execErrState: Error
           for: 15m
           annotations:
             description: KubeProxy has disappeared from Prometheus target discovery.
@@ -4438,14 +4439,14 @@ groups:
           labels:
             __converted_prometheus_rule__: "true"
             severity: critical
-          isPaused: true
+          isPaused: false
           missing_series_evals_to_resolve: 1
     - orgId: 1
       name: kubernetes-system-kubelet
-      folder: jkleinlerchertest/prometheus_alerts.yaml
+      folder: kubernetes-monitoring
       interval: 1m
       rules:
-        - uid: 89e0266a-aeff-56b8-966c-24f04920812a
+        - uid: KubeNodeNotReady
           title: KubeNodeNotReady
           condition: threshold
           data:
@@ -4454,11 +4455,11 @@ groups:
               relativeTimeRange:
                 from: 660
                 to: 60
-              datasourceUid: grafanacloud-prom
+              datasourceUid: mimir
               model:
                 datasource:
                     type: prometheus
-                    uid: grafanacloud-prom
+                    uid: mimir
                 expr: |
                     kube_node_status_condition{job="kube-state-metrics",condition="Ready",status="true"} == 0
                     and on (cluster, node)
@@ -4531,8 +4532,8 @@ groups:
                 maxDataPoints: 43200
                 refId: threshold
                 type: threshold
-          noDataState: OK
-          execErrState: OK
+          noDataState: NoData
+          execErrState: Error
           for: 15m
           annotations:
             description: '{{ $labels.node }} has been unready for more than 15 minutes.'
@@ -4541,9 +4542,9 @@ groups:
           labels:
             __converted_prometheus_rule__: "true"
             severity: warning
-          isPaused: true
+          isPaused: false
           missing_series_evals_to_resolve: 1
-        - uid: 11b733d1-2f12-5bd8-a589-5c1ae4dac8a0
+        - uid: KubeNodePressure
           title: KubeNodePressure
           condition: threshold
           data:
@@ -4552,11 +4553,11 @@ groups:
               relativeTimeRange:
                 from: 660
                 to: 60
-              datasourceUid: grafanacloud-prom
+              datasourceUid: mimir
               model:
                 datasource:
                     type: prometheus
-                    uid: grafanacloud-prom
+                    uid: mimir
                 expr: |
                     kube_node_status_condition{job="kube-state-metrics",condition=~"(MemoryPressure|DiskPressure|PIDPressure)",status="true"} == 1
                     and on (cluster, node)
@@ -4629,8 +4630,8 @@ groups:
                 maxDataPoints: 43200
                 refId: threshold
                 type: threshold
-          noDataState: OK
-          execErrState: OK
+          noDataState: NoData
+          execErrState: Error
           for: 10m
           annotations:
             description: '{{ $labels.node }} has active Condition {{ $labels.condition }}. This is caused by resource usage exceeding eviction thresholds.'
@@ -4639,9 +4640,9 @@ groups:
           labels:
             __converted_prometheus_rule__: "true"
             severity: info
-          isPaused: true
+          isPaused: false
           missing_series_evals_to_resolve: 1
-        - uid: ef36ead3-34fd-5fb0-8c4e-6740f811851e
+        - uid: KubeNodeUnreachable
           title: KubeNodeUnreachable
           condition: threshold
           data:
@@ -4650,11 +4651,11 @@ groups:
               relativeTimeRange:
                 from: 660
                 to: 60
-              datasourceUid: grafanacloud-prom
+              datasourceUid: mimir
               model:
                 datasource:
                     type: prometheus
-                    uid: grafanacloud-prom
+                    uid: mimir
                 expr: |
                     (kube_node_spec_taint{job="kube-state-metrics",key="node.kubernetes.io/unreachable",effect="NoSchedule"} unless ignoring(key,value) kube_node_spec_taint{job="kube-state-metrics",key=~"ToBeDeletedByClusterAutoscaler|cloud.google.com/impending-node-termination|aws-node-termination-handler/spot-itn"}) == 1
                 instant: true
@@ -4725,8 +4726,8 @@ groups:
                 maxDataPoints: 43200
                 refId: threshold
                 type: threshold
-          noDataState: OK
-          execErrState: OK
+          noDataState: NoData
+          execErrState: Error
           for: 15m
           annotations:
             description: '{{ $labels.node }} is unreachable and some workloads may be rescheduled.'
@@ -4735,9 +4736,9 @@ groups:
           labels:
             __converted_prometheus_rule__: "true"
             severity: warning
-          isPaused: true
+          isPaused: false
           missing_series_evals_to_resolve: 1
-        - uid: f64bdd4e-5999-539f-9e99-5a7292d52e50
+        - uid: KubeletTooManyPods
           title: KubeletTooManyPods
           condition: threshold
           data:
@@ -4746,11 +4747,11 @@ groups:
               relativeTimeRange:
                 from: 660
                 to: 60
-              datasourceUid: grafanacloud-prom
+              datasourceUid: mimir
               model:
                 datasource:
                     type: prometheus
-                    uid: grafanacloud-prom
+                    uid: mimir
                 expr: |
                     (
                       max by (cluster, instance) (
@@ -4833,8 +4834,8 @@ groups:
                 maxDataPoints: 43200
                 refId: threshold
                 type: threshold
-          noDataState: OK
-          execErrState: OK
+          noDataState: NoData
+          execErrState: Error
           for: 15m
           annotations:
             description: Kubelet '{{ $labels.node }}' is running at {{ $value | humanizePercentage }} of its Pod capacity.
@@ -4843,9 +4844,9 @@ groups:
           labels:
             __converted_prometheus_rule__: "true"
             severity: info
-          isPaused: true
+          isPaused: false
           missing_series_evals_to_resolve: 1
-        - uid: 34fce09b-e67a-57cb-9223-0070781c1add
+        - uid: KubeNodeReadinessFlapping
           title: KubeNodeReadinessFlapping
           condition: threshold
           data:
@@ -4854,11 +4855,11 @@ groups:
               relativeTimeRange:
                 from: 660
                 to: 60
-              datasourceUid: grafanacloud-prom
+              datasourceUid: mimir
               model:
                 datasource:
                     type: prometheus
-                    uid: grafanacloud-prom
+                    uid: mimir
                 expr: |
                     sum(changes(kube_node_status_condition{job="kube-state-metrics",status="true",condition="Ready"}[15m])) by (cluster, node) > 2
                     and on (cluster, node)
@@ -4931,8 +4932,8 @@ groups:
                 maxDataPoints: 43200
                 refId: threshold
                 type: threshold
-          noDataState: OK
-          execErrState: OK
+          noDataState: NoData
+          execErrState: Error
           for: 15m
           annotations:
             description: The readiness status of node {{ $labels.node }} has changed {{ $value }} times in the last 15 minutes.
@@ -4941,9 +4942,9 @@ groups:
           labels:
             __converted_prometheus_rule__: "true"
             severity: warning
-          isPaused: true
+          isPaused: false
           missing_series_evals_to_resolve: 1
-        - uid: dd433730-962f-5890-8269-705020d1712d
+        - uid: KubeNodeEviction
           title: KubeNodeEviction
           condition: threshold
           data:
@@ -4952,11 +4953,11 @@ groups:
               relativeTimeRange:
                 from: 660
                 to: 60
-              datasourceUid: grafanacloud-prom
+              datasourceUid: mimir
               model:
                 datasource:
                     type: prometheus
-                    uid: grafanacloud-prom
+                    uid: mimir
                 expr: |
                     sum(rate(kubelet_evictions{job="kubelet"}[15m])) by(cluster, eviction_signal, instance)
                     * on (cluster, instance) group_left(node)
@@ -5032,8 +5033,8 @@ groups:
                 maxDataPoints: 43200
                 refId: threshold
                 type: threshold
-          noDataState: OK
-          execErrState: OK
+          noDataState: NoData
+          execErrState: Error
           annotations:
             description: Node {{ $labels.node }} is evicting Pods due to {{ $labels.eviction_signal }}.  Eviction occurs when eviction thresholds are crossed, typically caused by Pods exceeding RAM/ephemeral-storage limits.
             runbook_url: https://github.com/kubernetes-monitoring/kubernetes-mixin/tree/master/runbook.md#alert-name-kubenodeeviction
@@ -5041,9 +5042,9 @@ groups:
           labels:
             __converted_prometheus_rule__: "true"
             severity: info
-          isPaused: true
+          isPaused: false
           missing_series_evals_to_resolve: 1
-        - uid: 67e33619-1dfe-5f0a-8593-15a1bb0ede74
+        - uid: KubeletPlegDurationHigh
           title: KubeletPlegDurationHigh
           condition: threshold
           data:
@@ -5052,11 +5053,11 @@ groups:
               relativeTimeRange:
                 from: 660
                 to: 60
-              datasourceUid: grafanacloud-prom
+              datasourceUid: mimir
               model:
                 datasource:
                     type: prometheus
-                    uid: grafanacloud-prom
+                    uid: mimir
                 expr: |
                     node_quantile:kubelet_pleg_relist_duration_seconds:histogram_quantile{quantile="0.99"} >= 10
                 instant: true
@@ -5127,8 +5128,8 @@ groups:
                 maxDataPoints: 43200
                 refId: threshold
                 type: threshold
-          noDataState: OK
-          execErrState: OK
+          noDataState: NoData
+          execErrState: Error
           for: 5m
           annotations:
             description: The Kubelet Pod Lifecycle Event Generator has a 99th percentile duration of {{ $value }} seconds on node {{ $labels.node }}.
@@ -5137,9 +5138,9 @@ groups:
           labels:
             __converted_prometheus_rule__: "true"
             severity: warning
-          isPaused: true
+          isPaused: false
           missing_series_evals_to_resolve: 1
-        - uid: a83fc134-e3e1-51e5-8e81-1dbf1ee4465d
+        - uid: KubeletPodStartUpLatencyHigh
           title: KubeletPodStartUpLatencyHigh
           condition: threshold
           data:
@@ -5148,11 +5149,11 @@ groups:
               relativeTimeRange:
                 from: 660
                 to: 60
-              datasourceUid: grafanacloud-prom
+              datasourceUid: mimir
               model:
                 datasource:
                     type: prometheus
-                    uid: grafanacloud-prom
+                    uid: mimir
                 expr: |
                     histogram_quantile(0.99, sum(rate(kubelet_pod_worker_duration_seconds_bucket{job="kubelet"}[5m])) by (cluster, instance, le)) * on(cluster, instance) group_left(node) kubelet_node_name{job="kubelet"} > 60
                 instant: true
@@ -5223,8 +5224,8 @@ groups:
                 maxDataPoints: 43200
                 refId: threshold
                 type: threshold
-          noDataState: OK
-          execErrState: OK
+          noDataState: NoData
+          execErrState: Error
           for: 15m
           annotations:
             description: Kubelet Pod startup 99th percentile latency is {{ $value }} seconds on node {{ $labels.node }}.
@@ -5233,9 +5234,9 @@ groups:
           labels:
             __converted_prometheus_rule__: "true"
             severity: warning
-          isPaused: true
+          isPaused: false
           missing_series_evals_to_resolve: 1
-        - uid: c23628c5-f0e3-5d0d-b06c-fea035ed5192
+        - uid: KubeletClientCertificateExpirationWarn
           title: KubeletClientCertificateExpiration
           condition: threshold
           data:
@@ -5244,11 +5245,11 @@ groups:
               relativeTimeRange:
                 from: 660
                 to: 60
-              datasourceUid: grafanacloud-prom
+              datasourceUid: mimir
               model:
                 datasource:
                     type: prometheus
-                    uid: grafanacloud-prom
+                    uid: mimir
                 expr: |
                     kubelet_certificate_manager_client_ttl_seconds < 604800
                 instant: true
@@ -5319,8 +5320,8 @@ groups:
                 maxDataPoints: 43200
                 refId: threshold
                 type: threshold
-          noDataState: OK
-          execErrState: OK
+          noDataState: NoData
+          execErrState: Error
           annotations:
             description: Client certificate for Kubelet on node {{ $labels.node }} expires in {{ $value | humanizeDuration }}.
             runbook_url: https://github.com/kubernetes-monitoring/kubernetes-mixin/tree/master/runbook.md#alert-name-kubeletclientcertificateexpiration
@@ -5328,9 +5329,9 @@ groups:
           labels:
             __converted_prometheus_rule__: "true"
             severity: warning
-          isPaused: true
+          isPaused: false
           missing_series_evals_to_resolve: 1
-        - uid: bcfc0995-32d8-5713-ae50-070af48203bb
+        - uid: KubeletClientCertificateExpirationCrit
           title: KubeletClientCertificateExpiration
           condition: threshold
           data:
@@ -5339,11 +5340,11 @@ groups:
               relativeTimeRange:
                 from: 660
                 to: 60
-              datasourceUid: grafanacloud-prom
+              datasourceUid: mimir
               model:
                 datasource:
                     type: prometheus
-                    uid: grafanacloud-prom
+                    uid: mimir
                 expr: |
                     kubelet_certificate_manager_client_ttl_seconds < 86400
                 instant: true
@@ -5414,8 +5415,8 @@ groups:
                 maxDataPoints: 43200
                 refId: threshold
                 type: threshold
-          noDataState: OK
-          execErrState: OK
+          noDataState: NoData
+          execErrState: Error
           annotations:
             description: Client certificate for Kubelet on node {{ $labels.node }} expires in {{ $value | humanizeDuration }}.
             runbook_url: https://github.com/kubernetes-monitoring/kubernetes-mixin/tree/master/runbook.md#alert-name-kubeletclientcertificateexpiration
@@ -5423,9 +5424,9 @@ groups:
           labels:
             __converted_prometheus_rule__: "true"
             severity: critical
-          isPaused: true
+          isPaused: false
           missing_series_evals_to_resolve: 1
-        - uid: 0038877d-40d0-5a82-a78b-8f9e111d416f
+        - uid: KubeletServerCertificateExpirationWarn
           title: KubeletServerCertificateExpiration
           condition: threshold
           data:
@@ -5434,11 +5435,11 @@ groups:
               relativeTimeRange:
                 from: 660
                 to: 60
-              datasourceUid: grafanacloud-prom
+              datasourceUid: mimir
               model:
                 datasource:
                     type: prometheus
-                    uid: grafanacloud-prom
+                    uid: mimir
                 expr: |
                     kubelet_certificate_manager_server_ttl_seconds < 604800
                 instant: true
@@ -5509,8 +5510,8 @@ groups:
                 maxDataPoints: 43200
                 refId: threshold
                 type: threshold
-          noDataState: OK
-          execErrState: OK
+          noDataState: NoData
+          execErrState: Error
           annotations:
             description: Server certificate for Kubelet on node {{ $labels.node }} expires in {{ $value | humanizeDuration }}.
             runbook_url: https://github.com/kubernetes-monitoring/kubernetes-mixin/tree/master/runbook.md#alert-name-kubeletservercertificateexpiration
@@ -5518,9 +5519,9 @@ groups:
           labels:
             __converted_prometheus_rule__: "true"
             severity: warning
-          isPaused: true
+          isPaused: false
           missing_series_evals_to_resolve: 1
-        - uid: c398794d-13c5-50af-90db-3a3c856b3729
+        - uid: KubeletServerCertificateExpirationCrit
           title: KubeletServerCertificateExpiration
           condition: threshold
           data:
@@ -5529,11 +5530,11 @@ groups:
               relativeTimeRange:
                 from: 660
                 to: 60
-              datasourceUid: grafanacloud-prom
+              datasourceUid: mimir
               model:
                 datasource:
                     type: prometheus
-                    uid: grafanacloud-prom
+                    uid: mimir
                 expr: |
                     kubelet_certificate_manager_server_ttl_seconds < 86400
                 instant: true
@@ -5604,8 +5605,8 @@ groups:
                 maxDataPoints: 43200
                 refId: threshold
                 type: threshold
-          noDataState: OK
-          execErrState: OK
+          noDataState: NoData
+          execErrState: Error
           annotations:
             description: Server certificate for Kubelet on node {{ $labels.node }} expires in {{ $value | humanizeDuration }}.
             runbook_url: https://github.com/kubernetes-monitoring/kubernetes-mixin/tree/master/runbook.md#alert-name-kubeletservercertificateexpiration
@@ -5613,9 +5614,9 @@ groups:
           labels:
             __converted_prometheus_rule__: "true"
             severity: critical
-          isPaused: true
+          isPaused: false
           missing_series_evals_to_resolve: 1
-        - uid: 32ada1db-f3c7-597c-8ef8-4248fad9b3ef
+        - uid: KubeletClientCertificateRenewalErrors
           title: KubeletClientCertificateRenewalErrors
           condition: threshold
           data:
@@ -5624,11 +5625,11 @@ groups:
               relativeTimeRange:
                 from: 660
                 to: 60
-              datasourceUid: grafanacloud-prom
+              datasourceUid: mimir
               model:
                 datasource:
                     type: prometheus
-                    uid: grafanacloud-prom
+                    uid: mimir
                 expr: |
                     increase(kubelet_certificate_manager_client_expiration_renew_errors[5m]) > 0
                 instant: true
@@ -5699,8 +5700,8 @@ groups:
                 maxDataPoints: 43200
                 refId: threshold
                 type: threshold
-          noDataState: OK
-          execErrState: OK
+          noDataState: NoData
+          execErrState: Error
           for: 15m
           annotations:
             description: Kubelet on node {{ $labels.node }} has failed to renew its client certificate ({{ $value | humanize }} errors in the last 5 minutes).
@@ -5709,9 +5710,9 @@ groups:
           labels:
             __converted_prometheus_rule__: "true"
             severity: warning
-          isPaused: true
+          isPaused: false
           missing_series_evals_to_resolve: 1
-        - uid: f6fff70c-5b8e-5f6f-a106-d4eb5993bfee
+        - uid: KubeletServerCertificateRenewalErrors
           title: KubeletServerCertificateRenewalErrors
           condition: threshold
           data:
@@ -5720,11 +5721,11 @@ groups:
               relativeTimeRange:
                 from: 660
                 to: 60
-              datasourceUid: grafanacloud-prom
+              datasourceUid: mimir
               model:
                 datasource:
                     type: prometheus
-                    uid: grafanacloud-prom
+                    uid: mimir
                 expr: |
                     increase(kubelet_server_expiration_renew_errors[5m]) > 0
                 instant: true
@@ -5795,8 +5796,8 @@ groups:
                 maxDataPoints: 43200
                 refId: threshold
                 type: threshold
-          noDataState: OK
-          execErrState: OK
+          noDataState: NoData
+          execErrState: Error
           for: 15m
           annotations:
             description: Kubelet on node {{ $labels.node }} has failed to renew its server certificate ({{ $value | humanize }} errors in the last 5 minutes).
@@ -5805,9 +5806,9 @@ groups:
           labels:
             __converted_prometheus_rule__: "true"
             severity: warning
-          isPaused: true
+          isPaused: false
           missing_series_evals_to_resolve: 1
-        - uid: 341f063b-142d-50ba-b7a5-d13e23dd11d1
+        - uid: KubeletDown
           title: KubeletDown
           condition: threshold
           data:
@@ -5816,11 +5817,11 @@ groups:
               relativeTimeRange:
                 from: 660
                 to: 60
-              datasourceUid: grafanacloud-prom
+              datasourceUid: mimir
               model:
                 datasource:
                     type: prometheus
-                    uid: grafanacloud-prom
+                    uid: mimir
                 expr: |
                     absent(up{job="kubelet"} == 1)
                 instant: true
@@ -5891,8 +5892,8 @@ groups:
                 maxDataPoints: 43200
                 refId: threshold
                 type: threshold
-          noDataState: OK
-          execErrState: OK
+          noDataState: NoData
+          execErrState: Error
           for: 15m
           annotations:
             description: Kubelet has disappeared from Prometheus target discovery.
@@ -5901,14 +5902,14 @@ groups:
           labels:
             __converted_prometheus_rule__: "true"
             severity: critical
-          isPaused: true
+          isPaused: false
           missing_series_evals_to_resolve: 1
     - orgId: 1
       name: kubernetes-system-scheduler
-      folder: jkleinlerchertest/prometheus_alerts.yaml
+      folder: kubernetes-monitoring
       interval: 1m
       rules:
-        - uid: 6892d3d9-bd5e-5a69-bce6-1258a15bfe11
+        - uid: KubeSchedulerDown
           title: KubeSchedulerDown
           condition: threshold
           data:
@@ -5917,11 +5918,11 @@ groups:
               relativeTimeRange:
                 from: 660
                 to: 60
-              datasourceUid: grafanacloud-prom
+              datasourceUid: mimir
               model:
                 datasource:
                     type: prometheus
-                    uid: grafanacloud-prom
+                    uid: mimir
                 expr: |
                     absent(up{job="kube-scheduler"} == 1)
                 instant: true
@@ -5992,8 +5993,8 @@ groups:
                 maxDataPoints: 43200
                 refId: threshold
                 type: threshold
-          noDataState: OK
-          execErrState: OK
+          noDataState: NoData
+          execErrState: Error
           for: 15m
           annotations:
             description: KubeScheduler has disappeared from Prometheus target discovery.
@@ -6002,5 +6003,5 @@ groups:
           labels:
             __converted_prometheus_rule__: "true"
             severity: critical
-          isPaused: true
+          isPaused: false
           missing_series_evals_to_resolve: 1
