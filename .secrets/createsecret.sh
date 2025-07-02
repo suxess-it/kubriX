@@ -123,13 +123,12 @@ EOF
           echo "  -> generating dynamic secret for App: $APP, Value: $KEY (length: $LENGTH, $CHARSET)"
       fi
       # add stringData entry in Secret 
-      if [[ "$VALUE" == *$'\n'* ]]; then
-        # format json 
-        VALUE="$(echo "$VALUE" | tr -d '\n' | sed 's/^[ \t]*//;s/[ \t]*$//')"
-        printf "  %s: |\n    %s\n" "$KEY" "$VALUE" >> "$TMPDIR/$SECRETFILE"
-      else
-        printf "  %s: %s\n" "$KEY" "$VALUE" >> "$TMPDIR/$SECRETFILE"
-      fi
+        if [[ "$VALUE" == *$'\n'* ]]; then
+          printf "  %s: |-\n" "$KEY" >> "$TMPDIR/$SECRETFILE"
+          printf "%s\n" "$VALUE" | sed 's/^/    /' >> "$TMPDIR/$SECRETFILE"
+        else
+          printf "  %s: %s\n" "$KEY" "$VALUE" >> "$TMPDIR/$SECRETFILE"
+        fi
     # Add data entry in PushSecret   
     cat <<EOF >> "$TMPDIR/push$SECRETFILE"
     - match:
