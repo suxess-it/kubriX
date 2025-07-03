@@ -106,6 +106,7 @@ groups:
             short: 5m
           isPaused: false
           missing_series_evals_to_resolve: 1
+        
         - uid: KubeAPIErrorBudgetBurnCrit6h
           title: KubeAPIErrorBudgetBurn
           condition: threshold
@@ -206,6 +207,7 @@ groups:
             short: 30m
           isPaused: false
           missing_series_evals_to_resolve: 1
+        
         - uid: KubeAPIErrorBudgetBurnWarn1d
           title: KubeAPIErrorBudgetBurn
           condition: threshold
@@ -306,6 +308,7 @@ groups:
             short: 2h
           isPaused: false
           missing_series_evals_to_resolve: 1
+        
         - uid: KubeAPIErrorBudgetBurnWarn3d
           title: KubeAPIErrorBudgetBurn
           condition: threshold
@@ -411,6 +414,7 @@ groups:
       folder: kubernetes-monitoring
       interval: 1m
       rules:
+
         - uid: KubePodCrashLooping
           title: KubePodCrashLooping
           condition: threshold
@@ -507,6 +511,7 @@ groups:
             severity: warning
           isPaused: false
           missing_series_evals_to_resolve: 1
+        
         - uid: KubePodNotReady
           title: KubePodNotReady
           condition: threshold
@@ -609,6 +614,7 @@ groups:
             severity: warning
           isPaused: false
           missing_series_evals_to_resolve: 1
+        
         - uid: KubeDeploymentGenerationMismatch
           title: KubeDeploymentGenerationMismatch
           condition: threshold
@@ -707,6 +713,7 @@ groups:
             severity: warning
           isPaused: false
           missing_series_evals_to_resolve: 1
+        
         - uid: KubeDeploymentReplicasMismatch
           title: KubeDeploymentReplicasMismatch
           condition: threshold
@@ -811,6 +818,7 @@ groups:
             severity: warning
           isPaused: false
           missing_series_evals_to_resolve: 1
+        
         - uid: KubeDeploymentRolloutStuck
           title: KubeDeploymentRolloutStuck
           condition: threshold
@@ -908,6 +916,7 @@ groups:
             severity: warning
           isPaused: false
           missing_series_evals_to_resolve: 1
+        
         - uid: KubeStatefulSetReplicasMismatch
           title: KubeStatefulSetReplicasMismatch
           condition: threshold
@@ -1012,6 +1021,7 @@ groups:
             severity: warning
           isPaused: false
           missing_series_evals_to_resolve: 1
+        
         - uid: KubeStatefulSetGenerationMismatch
           title: KubeStatefulSetGenerationMismatch
           condition: threshold
@@ -1110,6 +1120,7 @@ groups:
             severity: warning
           isPaused: false
           missing_series_evals_to_resolve: 1
+        
         - uid: KubeStatefulSetUpdateNotRolledOut
           title: KubeStatefulSetUpdateNotRolledOut
           condition: threshold
@@ -1222,6 +1233,7 @@ groups:
             severity: warning
           isPaused: false
           missing_series_evals_to_resolve: 1
+
         - uid: KubeDaemonSetRolloutStuck
           title: KubeDaemonSetRolloutStuck
           condition: threshold
@@ -1340,6 +1352,7 @@ groups:
             severity: warning
           isPaused: false
           missing_series_evals_to_resolve: 1
+
         - uid: KubeContainerWaiting
           title: KubeContainerWaiting
           condition: threshold
@@ -1436,6 +1449,7 @@ groups:
             severity: warning
           isPaused: false
           missing_series_evals_to_resolve: 1
+
         - uid: KubeDaemonSetNotScheduled
           title: KubeDaemonSetNotScheduled
           condition: threshold
@@ -1534,6 +1548,7 @@ groups:
             severity: warning
           isPaused: false
           missing_series_evals_to_resolve: 1
+
         - uid: KubeDaemonSetMisScheduled
           title: KubeDaemonSetMisScheduled
           condition: threshold
@@ -1630,6 +1645,7 @@ groups:
             severity: warning
           isPaused: false
           missing_series_evals_to_resolve: 1
+
         - uid: KubeJobNotCompleted
           title: KubeJobNotCompleted
           condition: threshold
@@ -1727,6 +1743,7 @@ groups:
             severity: warning
           isPaused: false
           missing_series_evals_to_resolve: 1
+        
         - uid: KubeJobFailed
           title: KubeJobFailed
           condition: threshold
@@ -1823,6 +1840,7 @@ groups:
             severity: warning
           isPaused: false
           missing_series_evals_to_resolve: 1
+        
         - uid: KubeHpaReplicasMismatch
           title: KubeHpaReplicasMismatch
           condition: threshold
@@ -1931,6 +1949,7 @@ groups:
             severity: warning
           isPaused: false
           missing_series_evals_to_resolve: 1
+        
         - uid: KubeHpaMaxedOut
           title: KubeHpaMaxedOut
           condition: threshold
@@ -2029,6 +2048,7 @@ groups:
             severity: warning
           isPaused: false
           missing_series_evals_to_resolve: 1
+        
         - uid: KubePdbNotEnoughHealthyPods
           title: KubePdbNotEnoughHealthyPods
           condition: threshold
@@ -2135,6 +2155,7 @@ groups:
       folder: kubernetes-monitoring
       interval: 1m
       rules:
+        
         - uid: KubeCPUOvercommit
           title: KubeCPUOvercommit
           condition: threshold
@@ -2233,6 +2254,7 @@ groups:
             severity: warning
           isPaused: false
           missing_series_evals_to_resolve: 1
+        
         - uid: KubeMemoryOvercommit
           title: KubeMemoryOvercommit
           condition: threshold
@@ -2331,6 +2353,7 @@ groups:
             severity: warning
           isPaused: false
           missing_series_evals_to_resolve: 1
+        
         - uid: KubeCPUQuotaOvercommit
           title: KubeCPUQuotaOvercommit
           condition: threshold
@@ -2430,6 +2453,7 @@ groups:
             severity: warning
           isPaused: false
           missing_series_evals_to_resolve: 1
+        
         - uid: KubeMemoryQuotaOvercommit
           title: KubeMemoryQuotaOvercommit
           condition: threshold
@@ -2529,6 +2553,7 @@ groups:
             severity: warning
           isPaused: false
           missing_series_evals_to_resolve: 1
+        
         - uid: KubeQuotaAlmostFull
           title: KubeQuotaAlmostFull
           condition: threshold
@@ -2628,6 +2653,7 @@ groups:
             severity: info
           isPaused: false
           missing_series_evals_to_resolve: 1
+        
         - uid: KubeQuotaFullyUsed
           title: KubeQuotaFullyUsed
           condition: threshold
@@ -2727,6 +2753,7 @@ groups:
             severity: info
           isPaused: false
           missing_series_evals_to_resolve: 1
+        
         - uid: KubeQuotaExceeded
           title: KubeQuotaExceeded
           condition: threshold
@@ -2826,6 +2853,7 @@ groups:
             severity: warning
           isPaused: false
           missing_series_evals_to_resolve: 1
+        
         - uid: CPUThrottlingHigh
           title: CPUThrottlingHigh
           condition: threshold
@@ -2930,6 +2958,7 @@ groups:
       folder: kubernetes-monitoring
       interval: 1m
       rules:
+        
         - uid: KubePersistentVolumeFillingUpCrit
           title: KubePersistentVolumeFillingUp
           condition: threshold
@@ -3036,6 +3065,7 @@ groups:
             severity: critical
           isPaused: false
           missing_series_evals_to_resolve: 1
+        
         - uid: KubePersistentVolumeFillingUpWarn
           title: KubePersistentVolumeFillingUp
           condition: threshold
@@ -3144,6 +3174,7 @@ groups:
             severity: warning
           isPaused: false
           missing_series_evals_to_resolve: 1
+        
         - uid: KubePersistentVolumeInodesFillingUpCrit
           title: KubePersistentVolumeInodesFillingUp
           condition: threshold
@@ -3250,6 +3281,7 @@ groups:
             severity: critical
           isPaused: false
           missing_series_evals_to_resolve: 1
+        
         - uid: KubePersistentVolumeInodesFillingUpWarn
           title: KubePersistentVolumeInodesFillingUp
           condition: threshold
@@ -3358,6 +3390,7 @@ groups:
             severity: warning
           isPaused: false
           missing_series_evals_to_resolve: 1
+        
         - uid: KubePersistentVolumeErrors
           title: KubePersistentVolumeErrors
           condition: threshold
@@ -3459,6 +3492,7 @@ groups:
       folder: kubernetes-monitoring
       interval: 1m
       rules:
+        
         - uid: KubeVersionMismatch
           title: KubeVersionMismatch
           condition: threshold
@@ -3555,6 +3589,7 @@ groups:
             severity: warning
           isPaused: false
           missing_series_evals_to_resolve: 1
+        
         - uid: KubeClientErrors
           title: KubeClientErrors
           condition: threshold
@@ -3659,6 +3694,7 @@ groups:
       folder: kubernetes-monitoring
       interval: 1m
       rules:
+        
         - uid: KubeClientCertificateExpirationWarn
           title: KubeClientCertificateExpiration
           condition: threshold
@@ -3757,6 +3793,7 @@ groups:
             severity: warning
           isPaused: false
           missing_series_evals_to_resolve: 1
+        
         - uid: KubeClientCertificateExpirationCrit
           title: KubeClientCertificateExpiration
           condition: threshold
@@ -3855,6 +3892,7 @@ groups:
             severity: critical
           isPaused: false
           missing_series_evals_to_resolve: 1
+        
         - uid: KubeAggregatedAPIErrors
           title: KubeAggregatedAPIErrors
           condition: threshold
@@ -3951,6 +3989,7 @@ groups:
             severity: warning
           isPaused: false
           missing_series_evals_to_resolve: 1
+        
         - uid: KubeAggregatedAPIDown
           title: KubeAggregatedAPIDown
           condition: threshold
@@ -4047,6 +4086,7 @@ groups:
             severity: warning
           isPaused: false
           missing_series_evals_to_resolve: 1
+        
         - uid: KubeAPIDown
           title: KubeAPIDown
           condition: threshold
@@ -4143,6 +4183,7 @@ groups:
             severity: critical
           isPaused: false
           missing_series_evals_to_resolve: 1
+        
         - uid: KubeAPITerminatedRequests
           title: KubeAPITerminatedRequests
           condition: threshold
@@ -4244,6 +4285,7 @@ groups:
       folder: kubernetes-monitoring
       interval: 1m
       rules:
+        
         - uid: KubeControllerManagerDown
           title: KubeControllerManagerDown
           condition: threshold
@@ -4345,6 +4387,7 @@ groups:
       folder: kubernetes-monitoring
       interval: 1m
       rules:
+        
         - uid: KubeProxyDown
           title: KubeProxyDown
           condition: threshold
@@ -4446,6 +4489,7 @@ groups:
       folder: kubernetes-monitoring
       interval: 1m
       rules:
+        
         - uid: KubeNodeNotReady
           title: KubeNodeNotReady
           condition: threshold
@@ -4544,6 +4588,7 @@ groups:
             severity: warning
           isPaused: false
           missing_series_evals_to_resolve: 1
+        
         - uid: KubeNodePressure
           title: KubeNodePressure
           condition: threshold
@@ -4642,6 +4687,7 @@ groups:
             severity: info
           isPaused: false
           missing_series_evals_to_resolve: 1
+        
         - uid: KubeNodeUnreachable
           title: KubeNodeUnreachable
           condition: threshold
@@ -4738,6 +4784,7 @@ groups:
             severity: warning
           isPaused: false
           missing_series_evals_to_resolve: 1
+        
         - uid: KubeletTooManyPods
           title: KubeletTooManyPods
           condition: threshold
@@ -4846,6 +4893,7 @@ groups:
             severity: info
           isPaused: false
           missing_series_evals_to_resolve: 1
+        
         - uid: KubeNodeReadinessFlapping
           title: KubeNodeReadinessFlapping
           condition: threshold
@@ -4944,6 +4992,7 @@ groups:
             severity: warning
           isPaused: false
           missing_series_evals_to_resolve: 1
+        
         - uid: KubeNodeEviction
           title: KubeNodeEviction
           condition: threshold
@@ -5044,6 +5093,7 @@ groups:
             severity: info
           isPaused: false
           missing_series_evals_to_resolve: 1
+        
         - uid: KubeletPlegDurationHigh
           title: KubeletPlegDurationHigh
           condition: threshold
@@ -5140,6 +5190,7 @@ groups:
             severity: warning
           isPaused: false
           missing_series_evals_to_resolve: 1
+        
         - uid: KubeletPodStartUpLatencyHigh
           title: KubeletPodStartUpLatencyHigh
           condition: threshold
@@ -5236,6 +5287,7 @@ groups:
             severity: warning
           isPaused: false
           missing_series_evals_to_resolve: 1
+        
         - uid: KubeletClientCertificateExpirationWarn
           title: KubeletClientCertificateExpiration
           condition: threshold
@@ -5331,6 +5383,7 @@ groups:
             severity: warning
           isPaused: false
           missing_series_evals_to_resolve: 1
+        
         - uid: KubeletClientCertificateExpirationCrit
           title: KubeletClientCertificateExpiration
           condition: threshold
@@ -5426,6 +5479,7 @@ groups:
             severity: critical
           isPaused: false
           missing_series_evals_to_resolve: 1
+        
         - uid: KubeletServerCertificateExpirationWarn
           title: KubeletServerCertificateExpiration
           condition: threshold
@@ -5521,6 +5575,7 @@ groups:
             severity: warning
           isPaused: false
           missing_series_evals_to_resolve: 1
+        
         - uid: KubeletServerCertificateExpirationCrit
           title: KubeletServerCertificateExpiration
           condition: threshold
@@ -5616,6 +5671,7 @@ groups:
             severity: critical
           isPaused: false
           missing_series_evals_to_resolve: 1
+        
         - uid: KubeletClientCertificateRenewalErrors
           title: KubeletClientCertificateRenewalErrors
           condition: threshold
@@ -5712,6 +5768,7 @@ groups:
             severity: warning
           isPaused: false
           missing_series_evals_to_resolve: 1
+        
         - uid: KubeletServerCertificateRenewalErrors
           title: KubeletServerCertificateRenewalErrors
           condition: threshold
@@ -5808,6 +5865,7 @@ groups:
             severity: warning
           isPaused: false
           missing_series_evals_to_resolve: 1
+        
         - uid: KubeletDown
           title: KubeletDown
           condition: threshold
@@ -5909,6 +5967,7 @@ groups:
       folder: kubernetes-monitoring
       interval: 1m
       rules:
+        
         - uid: KubeSchedulerDown
           title: KubeSchedulerDown
           condition: threshold
