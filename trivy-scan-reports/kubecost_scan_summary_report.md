@@ -1292,42 +1292,42 @@
         <td>CVE-2024-12718</td>
         <td>HIGH</td>
         <td>3.12.5-2.el9_5.3</td>
-        <td></td>
+        <td>3.12.9-1.el9_6.1</td>
     </tr>
     <tr>
         <td><code>python3.12</code></td>
         <td>CVE-2025-4138</td>
         <td>HIGH</td>
         <td>3.12.5-2.el9_5.3</td>
-        <td></td>
+        <td>3.12.9-1.el9_6.1</td>
     </tr>
     <tr>
         <td><code>python3.12</code></td>
         <td>CVE-2025-4517</td>
         <td>HIGH</td>
         <td>3.12.5-2.el9_5.3</td>
-        <td></td>
+        <td>3.12.9-1.el9_6.1</td>
     </tr>
     <tr>
         <td><code>python3.12-libs</code></td>
         <td>CVE-2024-12718</td>
         <td>HIGH</td>
         <td>3.12.5-2.el9_5.3</td>
-        <td></td>
+        <td>3.12.9-1.el9_6.1</td>
     </tr>
     <tr>
         <td><code>python3.12-libs</code></td>
         <td>CVE-2025-4138</td>
         <td>HIGH</td>
         <td>3.12.5-2.el9_5.3</td>
-        <td></td>
+        <td>3.12.9-1.el9_6.1</td>
     </tr>
     <tr>
         <td><code>python3.12-libs</code></td>
         <td>CVE-2025-4517</td>
         <td>HIGH</td>
         <td>3.12.5-2.el9_5.3</td>
-        <td></td>
+        <td>3.12.9-1.el9_6.1</td>
     </tr>
 </table>
 <h4>No Misconfigurations found</h4>
