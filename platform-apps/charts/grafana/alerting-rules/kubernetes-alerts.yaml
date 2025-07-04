@@ -3605,9 +3605,9 @@ groups:
                     type: prometheus
                     uid: mimir
                 expr: |
-                    (sum(rate(rest_client_requests_total{job="kube-apiserver",code=~"5.."}[5m])) by (cluster, instance, job, namespace)
+                    (sum(rate(rest_client_requests_total{job="integrations/kubernetes/apiserver",code=~"5.."}[5m])) by (cluster, instance, job, namespace)
                       /
-                    sum(rate(rest_client_requests_total{job="kube-apiserver"}[5m])) by (cluster, instance, job, namespace))
+                    sum(rate(rest_client_requests_total{job="integrations/kubernetes/apiserver"}[5m])) by (cluster, instance, job, namespace))
                     > 0.01
                 instant: true
                 intervalMs: 1000
@@ -3710,9 +3710,9 @@ groups:
                     type: prometheus
                     uid: mimir
                 expr: |
-                    histogram_quantile(0.01, sum without (namespace, service, endpoint) (rate(apiserver_client_certificate_expiration_seconds_bucket{job="kube-apiserver"}[5m]))) < 604800
+                    histogram_quantile(0.01, sum without (namespace, service, endpoint) (rate(apiserver_client_certificate_expiration_seconds_bucket{job="integrations/kubernetes/apiserver"}[5m]))) < 604800
                     and
-                    on(job, cluster, instance) apiserver_client_certificate_expiration_seconds_count{job="kube-apiserver"} > 0
+                    on(job, cluster, instance) apiserver_client_certificate_expiration_seconds_count{job="integrations/kubernetes/apiserver"} > 0
                 instant: true
                 intervalMs: 1000
                 maxDataPoints: 43200
@@ -3809,9 +3809,9 @@ groups:
                     type: prometheus
                     uid: mimir
                 expr: |
-                    histogram_quantile(0.01, sum without (namespace, service, endpoint) (rate(apiserver_client_certificate_expiration_seconds_bucket{job="kube-apiserver"}[5m]))) < 86400
+                    histogram_quantile(0.01, sum without (namespace, service, endpoint) (rate(apiserver_client_certificate_expiration_seconds_bucket{job="integrations/kubernetes/apiserver"}[5m]))) < 86400
                     and
-                    on(job, cluster, instance) apiserver_client_certificate_expiration_seconds_count{job="kube-apiserver"} > 0
+                    on(job, cluster, instance) apiserver_client_certificate_expiration_seconds_count{job="integrations/kubernetes/apiserver"} > 0
                 instant: true
                 intervalMs: 1000
                 maxDataPoints: 43200
@@ -3908,7 +3908,7 @@ groups:
                     type: prometheus
                     uid: mimir
                 expr: |
-                    sum by(cluster, instance, name, reason)(increase(aggregator_unavailable_apiservice_total{job="kube-apiserver"}[1m])) > 0
+                    sum by(cluster, instance, name, reason)(increase(aggregator_unavailable_apiservice_total{job="integrations/kubernetes/apiserver"}[1m])) > 0
                 instant: true
                 intervalMs: 1000
                 maxDataPoints: 43200
@@ -4005,7 +4005,7 @@ groups:
                     type: prometheus
                     uid: mimir
                 expr: |
-                    (1 - max by(name, namespace, cluster)(avg_over_time(aggregator_unavailable_apiservice{job="kube-apiserver"}[10m]))) * 100 < 85
+                    (1 - max by(name, namespace, cluster)(avg_over_time(aggregator_unavailable_apiservice{job="integrations/kubernetes/apiserver"}[10m]))) * 100 < 85
                 instant: true
                 intervalMs: 1000
                 maxDataPoints: 43200
@@ -4102,7 +4102,7 @@ groups:
                     type: prometheus
                     uid: mimir
                 expr: |
-                    absent(up{job="kube-apiserver"} == 1)
+                    absent(up{job="integrations/kubernetes/apiserver"} == 1)
                 instant: true
                 intervalMs: 1000
                 maxDataPoints: 43200
@@ -4199,7 +4199,7 @@ groups:
                     type: prometheus
                     uid: mimir
                 expr: |
-                    sum by(cluster) (rate(apiserver_request_terminations_total{job="kube-apiserver"}[10m])) / ( sum by(cluster) (rate(apiserver_request_total{job="kube-apiserver"}[10m])) + sum by(cluster) (rate(apiserver_request_terminations_total{job="kube-apiserver"}[10m])) ) > 0.20
+                    sum by(cluster) (rate(apiserver_request_terminations_total{job="integrations/kubernetes/apiserver"}[10m])) / ( sum by(cluster) (rate(apiserver_request_total{job="integrations/kubernetes/apiserver"}[10m])) + sum by(cluster) (rate(apiserver_request_terminations_total{job="integrations/kubernetes/apiserver"}[10m])) ) > 0.20
                 instant: true
                 intervalMs: 1000
                 maxDataPoints: 43200
