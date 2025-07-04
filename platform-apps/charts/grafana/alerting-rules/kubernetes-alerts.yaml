@@ -2975,12 +2975,12 @@ groups:
                     uid: mimir
                 expr: |
                     (
-                      kubelet_volume_stats_available_bytes{job="kubelet"}
+                      kubelet_volume_stats_available_bytes{job="integrations/kubernetes/kubelet"}
                         /
-                      kubelet_volume_stats_capacity_bytes{job="kubelet"}
+                      kubelet_volume_stats_capacity_bytes{job="integrations/kubernetes/kubelet"}
                     ) < 0.03
                     and
-                    kubelet_volume_stats_used_bytes{job="kubelet"} > 0
+                    kubelet_volume_stats_used_bytes{job="integrations/kubernetes/kubelet"} > 0
                     unless on(cluster, namespace, persistentvolumeclaim)
                     kube_persistentvolumeclaim_access_mode{ access_mode="ReadOnlyMany"} == 1
                     unless on(cluster, namespace, persistentvolumeclaim)
@@ -3082,14 +3082,14 @@ groups:
                     uid: mimir
                 expr: |
                     (
-                      kubelet_volume_stats_available_bytes{job="kubelet"}
+                      kubelet_volume_stats_available_bytes{job="integrations/kubernetes/kubelet"}
                         /
-                      kubelet_volume_stats_capacity_bytes{job="kubelet"}
+                      kubelet_volume_stats_capacity_bytes{job="integrations/kubernetes/kubelet"}
                     ) < 0.15
                     and
-                    kubelet_volume_stats_used_bytes{job="kubelet"} > 0
+                    kubelet_volume_stats_used_bytes{job="integrations/kubernetes/kubelet"} > 0
                     and
-                    predict_linear(kubelet_volume_stats_available_bytes{job="kubelet"}[6h], 4 * 24 * 3600) < 0
+                    predict_linear(kubelet_volume_stats_available_bytes{job="integrations/kubernetes/kubelet"}[6h], 4 * 24 * 3600) < 0
                     unless on(cluster, namespace, persistentvolumeclaim)
                     kube_persistentvolumeclaim_access_mode{ access_mode="ReadOnlyMany"} == 1
                     unless on(cluster, namespace, persistentvolumeclaim)
@@ -3191,12 +3191,12 @@ groups:
                     uid: mimir
                 expr: |
                     (
-                      kubelet_volume_stats_inodes_free{job="kubelet"}
+                      kubelet_volume_stats_inodes_free{job="integrations/kubernetes/kubelet"}
                         /
-                      kubelet_volume_stats_inodes{job="kubelet"}
+                      kubelet_volume_stats_inodes{job="integrations/kubernetes/kubelet"}
                     ) < 0.03
                     and
-                    kubelet_volume_stats_inodes_used{job="kubelet"} > 0
+                    kubelet_volume_stats_inodes_used{job="integrations/kubernetes/kubelet"} > 0
                     unless on(cluster, namespace, persistentvolumeclaim)
                     kube_persistentvolumeclaim_access_mode{ access_mode="ReadOnlyMany"} == 1
                     unless on(cluster, namespace, persistentvolumeclaim)
@@ -3298,14 +3298,14 @@ groups:
                     uid: mimir
                 expr: |
                     (
-                      kubelet_volume_stats_inodes_free{job="kubelet"}
+                      kubelet_volume_stats_inodes_free{job="integrations/kubernetes/kubelet"}
                         /
-                      kubelet_volume_stats_inodes{job="kubelet"}
+                      kubelet_volume_stats_inodes{job="integrations/kubernetes/kubelet"}
                     ) < 0.15
                     and
-                    kubelet_volume_stats_inodes_used{job="kubelet"} > 0
+                    kubelet_volume_stats_inodes_used{job="integrations/kubernetes/kubelet"} > 0
                     and
-                    predict_linear(kubelet_volume_stats_inodes_free{job="kubelet"}[6h], 4 * 24 * 3600) < 0
+                    predict_linear(kubelet_volume_stats_inodes_free{job="integrations/kubernetes/kubelet"}[6h], 4 * 24 * 3600) < 0
                     unless on(cluster, namespace, persistentvolumeclaim)
                     kube_persistentvolumeclaim_access_mode{ access_mode="ReadOnlyMany"} == 1
                     unless on(cluster, namespace, persistentvolumeclaim)
@@ -4802,11 +4802,11 @@ groups:
                 expr: |
                     (
                       max by (cluster, instance) (
-                        kubelet_running_pods{job="kubelet"} > 1
+                        kubelet_running_pods{job="integrations/kubernetes/kubelet"} > 1
                       )
                       * on (cluster, instance) group_left(node)
                       max by (cluster, instance, node) (
-                        kubelet_node_name{job="kubelet"}
+                        kubelet_node_name{job="integrations/kubernetes/kubelet"}
                       )
                     )
                     / on (cluster, node) group_left()
@@ -5008,10 +5008,10 @@ groups:
                     type: prometheus
                     uid: mimir
                 expr: |
-                    sum(rate(kubelet_evictions{job="kubelet"}[15m])) by(cluster, eviction_signal, instance)
+                    sum(rate(kubelet_evictions{job="integrations/kubernetes/kubelet"}[15m])) by(cluster, eviction_signal, instance)
                     * on (cluster, instance) group_left(node)
                     max by (cluster, instance, node) (
-                      kubelet_node_name{job="kubelet"}
+                      kubelet_node_name{job="integrations/kubernetes/kubelet"}
                     )
                     > 0
                 instant: true
@@ -5206,7 +5206,7 @@ groups:
                     type: prometheus
                     uid: mimir
                 expr: |
-                    histogram_quantile(0.99, sum(rate(kubelet_pod_worker_duration_seconds_bucket{job="kubelet"}[5m])) by (cluster, instance, le)) * on(cluster, instance) group_left(node) kubelet_node_name{job="kubelet"} > 60
+                    histogram_quantile(0.99, sum(rate(kubelet_pod_worker_duration_seconds_bucket{job="integrations/kubernetes/kubelet"}[5m])) by (cluster, instance, le)) * on(cluster, instance) group_left(node) kubelet_node_name{job="integrations/kubernetes/kubelet"} > 60
                 instant: true
                 intervalMs: 1000
                 maxDataPoints: 43200
@@ -5881,7 +5881,7 @@ groups:
                     type: prometheus
                     uid: mimir
                 expr: |
-                    absent(up{job="kubelet"} == 1)
+                    absent(up{job="integrations/kubernetes/kubelet"} == 1)
                 instant: true
                 intervalMs: 1000
                 maxDataPoints: 43200
