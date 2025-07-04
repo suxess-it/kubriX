@@ -430,7 +430,7 @@ groups:
                     type: prometheus
                     uid: mimir
                 expr: |
-                    max_over_time(kube_pod_container_status_waiting_reason{reason="CrashLoopBackOff", job="kube-state-metrics"}[5m]) >= 1
+                    max_over_time(kube_pod_container_status_waiting_reason{reason="CrashLoopBackOff", job="integrations/kubernetes/kube-state-metrics"}[5m]) >= 1
                 instant: true
                 intervalMs: 1000
                 maxDataPoints: 43200
@@ -529,7 +529,7 @@ groups:
                 expr: |
                     sum by (namespace, pod, cluster) (
                       max by(namespace, pod, cluster) (
-                        kube_pod_status_phase{job="kube-state-metrics", phase=~"Pending|Unknown|Failed"}
+                        kube_pod_status_phase{job="integrations/kubernetes/kube-state-metrics", phase=~"Pending|Unknown|Failed"}
                       ) * on(namespace, pod, cluster) group_left(owner_kind) topk by(namespace, pod, cluster) (
                         1, max by(namespace, pod, owner_kind, cluster) (kube_pod_owner{owner_kind!="Job"})
                       )
@@ -630,9 +630,9 @@ groups:
                     type: prometheus
                     uid: mimir
                 expr: |
-                    kube_deployment_status_observed_generation{job="kube-state-metrics"}
+                    kube_deployment_status_observed_generation{job="integrations/kubernetes/kube-state-metrics"}
                       !=
-                    kube_deployment_metadata_generation{job="kube-state-metrics"}
+                    kube_deployment_metadata_generation{job="integrations/kubernetes/kube-state-metrics"}
                 instant: true
                 intervalMs: 1000
                 maxDataPoints: 43200
@@ -730,11 +730,11 @@ groups:
                     uid: mimir
                 expr: |
                     (
-                      kube_deployment_spec_replicas{job="kube-state-metrics"}
+                      kube_deployment_spec_replicas{job="integrations/kubernetes/kube-state-metrics"}
                         >
-                      kube_deployment_status_replicas_available{job="kube-state-metrics"}
+                      kube_deployment_status_replicas_available{job="integrations/kubernetes/kube-state-metrics"}
                     ) and (
-                      changes(kube_deployment_status_replicas_updated{job="kube-state-metrics"}[10m])
+                      changes(kube_deployment_status_replicas_updated{job="integrations/kubernetes/kube-state-metrics"}[10m])
                         ==
                       0
                     )
@@ -834,7 +834,7 @@ groups:
                     type: prometheus
                     uid: mimir
                 expr: |
-                    kube_deployment_status_condition{condition="Progressing", status="false",job="kube-state-metrics"}
+                    kube_deployment_status_condition{condition="Progressing", status="false",job="integrations/kubernetes/kube-state-metrics"}
                     != 0
                 instant: true
                 intervalMs: 1000
@@ -933,11 +933,11 @@ groups:
                     uid: mimir
                 expr: |
                     (
-                      kube_statefulset_status_replicas_ready{job="kube-state-metrics"}
+                      kube_statefulset_status_replicas_ready{job="integrations/kubernetes/kube-state-metrics"}
                         !=
-                      kube_statefulset_replicas{job="kube-state-metrics"}
+                      kube_statefulset_replicas{job="integrations/kubernetes/kube-state-metrics"}
                     ) and (
-                      changes(kube_statefulset_status_replicas_updated{job="kube-state-metrics"}[10m])
+                      changes(kube_statefulset_status_replicas_updated{job="integrations/kubernetes/kube-state-metrics"}[10m])
                         ==
                       0
                     )
@@ -1037,9 +1037,9 @@ groups:
                     type: prometheus
                     uid: mimir
                 expr: |
-                    kube_statefulset_status_observed_generation{job="kube-state-metrics"}
+                    kube_statefulset_status_observed_generation{job="integrations/kubernetes/kube-state-metrics"}
                       !=
-                    kube_statefulset_metadata_generation{job="kube-state-metrics"}
+                    kube_statefulset_metadata_generation{job="integrations/kubernetes/kube-state-metrics"}
                 instant: true
                 intervalMs: 1000
                 maxDataPoints: 43200
@@ -1138,18 +1138,18 @@ groups:
                 expr: |
                     (
                       max by(namespace, statefulset, job, cluster) (
-                        kube_statefulset_status_current_revision{job="kube-state-metrics"}
+                        kube_statefulset_status_current_revision{job="integrations/kubernetes/kube-state-metrics"}
                           unless
-                        kube_statefulset_status_update_revision{job="kube-state-metrics"}
+                        kube_statefulset_status_update_revision{job="integrations/kubernetes/kube-state-metrics"}
                       )
                         * on(namespace, statefulset, job, cluster)
                       (
-                        kube_statefulset_replicas{job="kube-state-metrics"}
+                        kube_statefulset_replicas{job="integrations/kubernetes/kube-state-metrics"}
                           !=
-                        kube_statefulset_status_replicas_updated{job="kube-state-metrics"}
+                        kube_statefulset_status_replicas_updated{job="integrations/kubernetes/kube-state-metrics"}
                       )
                     )  and on(namespace, statefulset, job, cluster) (
-                      changes(kube_statefulset_status_replicas_updated{job="kube-state-metrics"}[5m])
+                      changes(kube_statefulset_status_replicas_updated{job="integrations/kubernetes/kube-state-metrics"}[5m])
                         ==
                       0
                     )
@@ -1251,24 +1251,24 @@ groups:
                 expr: |
                     (
                       (
-                        kube_daemonset_status_current_number_scheduled{job="kube-state-metrics"}
+                        kube_daemonset_status_current_number_scheduled{job="integrations/kubernetes/kube-state-metrics"}
                          !=
-                        kube_daemonset_status_desired_number_scheduled{job="kube-state-metrics"}
+                        kube_daemonset_status_desired_number_scheduled{job="integrations/kubernetes/kube-state-metrics"}
                       ) or (
-                        kube_daemonset_status_number_misscheduled{job="kube-state-metrics"}
+                        kube_daemonset_status_number_misscheduled{job="integrations/kubernetes/kube-state-metrics"}
                          !=
                         0
                       ) or (
-                        kube_daemonset_status_updated_number_scheduled{job="kube-state-metrics"}
+                        kube_daemonset_status_updated_number_scheduled{job="integrations/kubernetes/kube-state-metrics"}
                          !=
-                        kube_daemonset_status_desired_number_scheduled{job="kube-state-metrics"}
+                        kube_daemonset_status_desired_number_scheduled{job="integrations/kubernetes/kube-state-metrics"}
                       ) or (
-                        kube_daemonset_status_number_available{job="kube-state-metrics"}
+                        kube_daemonset_status_number_available{job="integrations/kubernetes/kube-state-metrics"}
                          !=
-                        kube_daemonset_status_desired_number_scheduled{job="kube-state-metrics"}
+                        kube_daemonset_status_desired_number_scheduled{job="integrations/kubernetes/kube-state-metrics"}
                       )
                     ) and (
-                      changes(kube_daemonset_status_updated_number_scheduled{job="kube-state-metrics"}[5m])
+                      changes(kube_daemonset_status_updated_number_scheduled{job="integrations/kubernetes/kube-state-metrics"}[5m])
                         ==
                       0
                     )
@@ -1368,7 +1368,7 @@ groups:
                     type: prometheus
                     uid: mimir
                 expr: |
-                    kube_pod_container_status_waiting_reason{reason!="CrashLoopBackOff", job="kube-state-metrics"} > 0
+                    kube_pod_container_status_waiting_reason{reason!="CrashLoopBackOff", job="integrations/kubernetes/kube-state-metrics"} > 0
                 instant: true
                 intervalMs: 1000
                 maxDataPoints: 43200
@@ -1465,9 +1465,9 @@ groups:
                     type: prometheus
                     uid: mimir
                 expr: |
-                    kube_daemonset_status_desired_number_scheduled{job="kube-state-metrics"}
+                    kube_daemonset_status_desired_number_scheduled{job="integrations/kubernetes/kube-state-metrics"}
                       -
-                    kube_daemonset_status_current_number_scheduled{job="kube-state-metrics"} > 0
+                    kube_daemonset_status_current_number_scheduled{job="integrations/kubernetes/kube-state-metrics"} > 0
                 instant: true
                 intervalMs: 1000
                 maxDataPoints: 43200
@@ -1564,7 +1564,7 @@ groups:
                     type: prometheus
                     uid: mimir
                 expr: |
-                    kube_daemonset_status_number_misscheduled{job="kube-state-metrics"} > 0
+                    kube_daemonset_status_number_misscheduled{job="integrations/kubernetes/kube-state-metrics"} > 0
                 instant: true
                 intervalMs: 1000
                 maxDataPoints: 43200
@@ -1661,9 +1661,9 @@ groups:
                     type: prometheus
                     uid: mimir
                 expr: |
-                    time() - max by(namespace, job_name, cluster) (kube_job_status_start_time{job="kube-state-metrics"}
+                    time() - max by(namespace, job_name, cluster) (kube_job_status_start_time{job="integrations/kubernetes/kube-state-metrics"}
                       and
-                    kube_job_status_active{job="kube-state-metrics"} > 0) > 43200
+                    kube_job_status_active{job="integrations/kubernetes/kube-state-metrics"} > 0) > 43200
                 instant: true
                 intervalMs: 1000
                 maxDataPoints: 43200
@@ -1759,7 +1759,7 @@ groups:
                     type: prometheus
                     uid: mimir
                 expr: |
-                    kube_job_failed{job="kube-state-metrics"}  > 0
+                    kube_job_failed{job="integrations/kubernetes/kube-state-metrics"}  > 0
                 instant: true
                 intervalMs: 1000
                 maxDataPoints: 43200
@@ -1856,19 +1856,19 @@ groups:
                     type: prometheus
                     uid: mimir
                 expr: |
-                    (kube_horizontalpodautoscaler_status_desired_replicas{job="kube-state-metrics"}
+                    (kube_horizontalpodautoscaler_status_desired_replicas{job="integrations/kubernetes/kube-state-metrics"}
                       !=
-                    kube_horizontalpodautoscaler_status_current_replicas{job="kube-state-metrics"})
+                    kube_horizontalpodautoscaler_status_current_replicas{job="integrations/kubernetes/kube-state-metrics"})
                       and
-                    (kube_horizontalpodautoscaler_status_current_replicas{job="kube-state-metrics"}
+                    (kube_horizontalpodautoscaler_status_current_replicas{job="integrations/kubernetes/kube-state-metrics"}
                       >
-                    kube_horizontalpodautoscaler_spec_min_replicas{job="kube-state-metrics"})
+                    kube_horizontalpodautoscaler_spec_min_replicas{job="integrations/kubernetes/kube-state-metrics"})
                       and
-                    (kube_horizontalpodautoscaler_status_current_replicas{job="kube-state-metrics"}
+                    (kube_horizontalpodautoscaler_status_current_replicas{job="integrations/kubernetes/kube-state-metrics"}
                       <
-                    kube_horizontalpodautoscaler_spec_max_replicas{job="kube-state-metrics"})
+                    kube_horizontalpodautoscaler_spec_max_replicas{job="integrations/kubernetes/kube-state-metrics"})
                       and
-                    changes(kube_horizontalpodautoscaler_status_current_replicas{job="kube-state-metrics"}[15m]) == 0
+                    changes(kube_horizontalpodautoscaler_status_current_replicas{job="integrations/kubernetes/kube-state-metrics"}[15m]) == 0
                 instant: true
                 intervalMs: 1000
                 maxDataPoints: 43200
@@ -1965,9 +1965,9 @@ groups:
                     type: prometheus
                     uid: mimir
                 expr: |
-                    kube_horizontalpodautoscaler_status_current_replicas{job="kube-state-metrics"}
+                    kube_horizontalpodautoscaler_status_current_replicas{job="integrations/kubernetes/kube-state-metrics"}
                       ==
-                    kube_horizontalpodautoscaler_spec_max_replicas{job="kube-state-metrics"}
+                    kube_horizontalpodautoscaler_spec_max_replicas{job="integrations/kubernetes/kube-state-metrics"}
                 instant: true
                 intervalMs: 1000
                 maxDataPoints: 43200
@@ -2065,9 +2065,9 @@ groups:
                     uid: mimir
                 expr: |
                     (
-                      kube_poddisruptionbudget_status_desired_healthy{job="kube-state-metrics"}
+                      kube_poddisruptionbudget_status_desired_healthy{job="integrations/kubernetes/kube-state-metrics"}
                       -
-                      kube_poddisruptionbudget_status_current_healthy{job="kube-state-metrics"}
+                      kube_poddisruptionbudget_status_current_healthy{job="integrations/kubernetes/kube-state-metrics"}
                     )
                     > 0
                 instant: true
@@ -2171,9 +2171,9 @@ groups:
                     type: prometheus
                     uid: mimir
                 expr: |
-                    sum(namespace_cpu:kube_pod_container_resource_requests:sum{}) - (sum(kube_node_status_allocatable{resource="cpu", job="kube-state-metrics"}) - max(kube_node_status_allocatable{resource="cpu", job="kube-state-metrics"})) > 0
+                    sum(namespace_cpu:kube_pod_container_resource_requests:sum{}) - (sum(kube_node_status_allocatable{resource="cpu", job="integrations/kubernetes/kube-state-metrics"}) - max(kube_node_status_allocatable{resource="cpu", job="integrations/kubernetes/kube-state-metrics"})) > 0
                     and
-                    (sum(kube_node_status_allocatable{resource="cpu", job="kube-state-metrics"}) - max(kube_node_status_allocatable{resource="cpu", job="kube-state-metrics"})) > 0
+                    (sum(kube_node_status_allocatable{resource="cpu", job="integrations/kubernetes/kube-state-metrics"}) - max(kube_node_status_allocatable{resource="cpu", job="integrations/kubernetes/kube-state-metrics"})) > 0
                 instant: true
                 intervalMs: 1000
                 maxDataPoints: 43200
@@ -2270,9 +2270,9 @@ groups:
                     type: prometheus
                     uid: mimir
                 expr: |
-                    sum(namespace_memory:kube_pod_container_resource_requests:sum{}) - (sum(kube_node_status_allocatable{resource="memory", job="kube-state-metrics"}) - max(kube_node_status_allocatable{resource="memory", job="kube-state-metrics"})) > 0
+                    sum(namespace_memory:kube_pod_container_resource_requests:sum{}) - (sum(kube_node_status_allocatable{resource="memory", job="integrations/kubernetes/kube-state-metrics"}) - max(kube_node_status_allocatable{resource="memory", job="integrations/kubernetes/kube-state-metrics"})) > 0
                     and
-                    (sum(kube_node_status_allocatable{resource="memory", job="kube-state-metrics"}) - max(kube_node_status_allocatable{resource="memory", job="kube-state-metrics"})) > 0
+                    (sum(kube_node_status_allocatable{resource="memory", job="integrations/kubernetes/kube-state-metrics"}) - max(kube_node_status_allocatable{resource="memory", job="integrations/kubernetes/kube-state-metrics"})) > 0
                 instant: true
                 intervalMs: 1000
                 maxDataPoints: 43200
@@ -2369,9 +2369,9 @@ groups:
                     type: prometheus
                     uid: mimir
                 expr: |
-                    sum(min without(resource) (kube_resourcequota{job="kube-state-metrics", type="hard", resource=~"(cpu|requests.cpu)"}))
+                    sum(min without(resource) (kube_resourcequota{job="integrations/kubernetes/kube-state-metrics", type="hard", resource=~"(cpu|requests.cpu)"}))
                       /
-                    sum(kube_node_status_allocatable{resource="cpu", job="kube-state-metrics"})
+                    sum(kube_node_status_allocatable{resource="cpu", job="integrations/kubernetes/kube-state-metrics"})
                       > 1.5
                 instant: true
                 intervalMs: 1000
@@ -2469,9 +2469,9 @@ groups:
                     type: prometheus
                     uid: mimir
                 expr: |
-                    sum(min without(resource) (kube_resourcequota{job="kube-state-metrics", type="hard", resource=~"(memory|requests.memory)"}))
+                    sum(min without(resource) (kube_resourcequota{job="integrations/kubernetes/kube-state-metrics", type="hard", resource=~"(memory|requests.memory)"}))
                       /
-                    sum(kube_node_status_allocatable{resource="memory", job="kube-state-metrics"})
+                    sum(kube_node_status_allocatable{resource="memory", job="integrations/kubernetes/kube-state-metrics"})
                       > 1.5
                 instant: true
                 intervalMs: 1000
@@ -2569,9 +2569,9 @@ groups:
                     type: prometheus
                     uid: mimir
                 expr: |
-                    kube_resourcequota{job="kube-state-metrics", type="used"}
+                    kube_resourcequota{job="integrations/kubernetes/kube-state-metrics", type="used"}
                       / ignoring(instance, job, type)
-                    (kube_resourcequota{job="kube-state-metrics", type="hard"} > 0)
+                    (kube_resourcequota{job="integrations/kubernetes/kube-state-metrics", type="hard"} > 0)
                       > 0.9 < 1
                 instant: true
                 intervalMs: 1000
@@ -2669,9 +2669,9 @@ groups:
                     type: prometheus
                     uid: mimir
                 expr: |
-                    kube_resourcequota{job="kube-state-metrics", type="used"}
+                    kube_resourcequota{job="integrations/kubernetes/kube-state-metrics", type="used"}
                       / ignoring(instance, job, type)
-                    (kube_resourcequota{job="kube-state-metrics", type="hard"} > 0)
+                    (kube_resourcequota{job="integrations/kubernetes/kube-state-metrics", type="hard"} > 0)
                       == 1
                 instant: true
                 intervalMs: 1000
@@ -2769,9 +2769,9 @@ groups:
                     type: prometheus
                     uid: mimir
                 expr: |
-                    kube_resourcequota{job="kube-state-metrics", type="used"}
+                    kube_resourcequota{job="integrations/kubernetes/kube-state-metrics", type="used"}
                       / ignoring(instance, job, type)
-                    (kube_resourcequota{job="kube-state-metrics", type="hard"} > 0)
+                    (kube_resourcequota{job="integrations/kubernetes/kube-state-metrics", type="hard"} > 0)
                       > 1
                 instant: true
                 intervalMs: 1000
@@ -3406,7 +3406,7 @@ groups:
                     type: prometheus
                     uid: mimir
                 expr: |
-                    kube_persistentvolume_status_phase{phase=~"Failed|Pending",job="kube-state-metrics"} > 0
+                    kube_persistentvolume_status_phase{phase=~"Failed|Pending",job="integrations/kubernetes/kube-state-metrics"} > 0
                 instant: true
                 intervalMs: 1000
                 maxDataPoints: 43200
@@ -4505,9 +4505,9 @@ groups:
                     type: prometheus
                     uid: mimir
                 expr: |
-                    kube_node_status_condition{job="kube-state-metrics",condition="Ready",status="true"} == 0
+                    kube_node_status_condition{job="integrations/kubernetes/kube-state-metrics",condition="Ready",status="true"} == 0
                     and on (cluster, node)
-                    kube_node_spec_unschedulable{job="kube-state-metrics"} == 0
+                    kube_node_spec_unschedulable{job="integrations/kubernetes/kube-state-metrics"} == 0
                 instant: true
                 intervalMs: 1000
                 maxDataPoints: 43200
@@ -4604,9 +4604,9 @@ groups:
                     type: prometheus
                     uid: mimir
                 expr: |
-                    kube_node_status_condition{job="kube-state-metrics",condition=~"(MemoryPressure|DiskPressure|PIDPressure)",status="true"} == 1
+                    kube_node_status_condition{job="integrations/kubernetes/kube-state-metrics",condition=~"(MemoryPressure|DiskPressure|PIDPressure)",status="true"} == 1
                     and on (cluster, node)
-                    kube_node_spec_unschedulable{job="kube-state-metrics"} == 0
+                    kube_node_spec_unschedulable{job="integrations/kubernetes/kube-state-metrics"} == 0
                 instant: true
                 intervalMs: 1000
                 maxDataPoints: 43200
@@ -4703,7 +4703,7 @@ groups:
                     type: prometheus
                     uid: mimir
                 expr: |
-                    (kube_node_spec_taint{job="kube-state-metrics",key="node.kubernetes.io/unreachable",effect="NoSchedule"} unless ignoring(key,value) kube_node_spec_taint{job="kube-state-metrics",key=~"ToBeDeletedByClusterAutoscaler|cloud.google.com/impending-node-termination|aws-node-termination-handler/spot-itn"}) == 1
+                    (kube_node_spec_taint{job="integrations/kubernetes/kube-state-metrics",key="node.kubernetes.io/unreachable",effect="NoSchedule"} unless ignoring(key,value) kube_node_spec_taint{job="integrations/kubernetes/kube-state-metrics",key=~"ToBeDeletedByClusterAutoscaler|cloud.google.com/impending-node-termination|aws-node-termination-handler/spot-itn"}) == 1
                 instant: true
                 intervalMs: 1000
                 maxDataPoints: 43200
@@ -4811,7 +4811,7 @@ groups:
                     )
                     / on (cluster, node) group_left()
                     max by (cluster, node) (
-                      kube_node_status_capacity{job="kube-state-metrics", resource="pods"} != 1
+                      kube_node_status_capacity{job="integrations/kubernetes/kube-state-metrics", resource="pods"} != 1
                     ) > 0.95
                 instant: true
                 intervalMs: 1000
@@ -4909,9 +4909,9 @@ groups:
                     type: prometheus
                     uid: mimir
                 expr: |
-                    sum(changes(kube_node_status_condition{job="kube-state-metrics",status="true",condition="Ready"}[15m])) by (cluster, node) > 2
+                    sum(changes(kube_node_status_condition{job="integrations/kubernetes/kube-state-metrics",status="true",condition="Ready"}[15m])) by (cluster, node) > 2
                     and on (cluster, node)
-                    kube_node_spec_unschedulable{job="kube-state-metrics"} == 0
+                    kube_node_spec_unschedulable{job="integrations/kubernetes/kube-state-metrics"} == 0
                 instant: true
                 intervalMs: 1000
                 maxDataPoints: 43200
