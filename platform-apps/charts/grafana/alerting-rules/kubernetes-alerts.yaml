@@ -4403,7 +4403,7 @@ groups:
                     type: prometheus
                     uid: mimir
                 expr: |
-                    absent(up{job="kube-proxy"} == 1)
+                    absent(up{job="integrations/kubernetes/kube-proxy"} == 1)
                 instant: true
                 intervalMs: 1000
                 maxDataPoints: 43200
