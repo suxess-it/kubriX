@@ -1179,7 +1179,7 @@
 <h4>No Misconfigurations found</h4>
 
 <h3>Target <code>gcr.io/kubecost1/cost-model:prod-2.7.2 (redhat 9.5)</code></h3>
-<h4>Vulnerabilities (3)</h4>
+<h4>Vulnerabilities (2)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -1191,13 +1191,6 @@
     <tr>
         <td><code>libxml2</code></td>
         <td>CVE-2025-49794</td>
-        <td>HIGH</td>
-        <td>2.9.13-6.el9_5.2</td>
-        <td></td>
-    </tr>
-    <tr>
-        <td><code>libxml2</code></td>
-        <td>CVE-2025-49795</td>
         <td>HIGH</td>
         <td>2.9.13-6.el9_5.2</td>
         <td></td>
@@ -1216,7 +1209,7 @@
 <h4>No Misconfigurations found</h4>
 
 <h3>Target <code>gcr.io/kubecost1/frontend:prod-2.7.2 (redhat 9.5)</code></h3>
-<h4>Vulnerabilities (4)</h4>
+<h4>Vulnerabilities (3)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -1228,13 +1221,6 @@
     <tr>
         <td><code>libxml2</code></td>
         <td>CVE-2025-49794</td>
-        <td>HIGH</td>
-        <td>2.9.13-6.el9_5.2</td>
-        <td></td>
-    </tr>
-    <tr>
-        <td><code>libxml2</code></td>
-        <td>CVE-2025-49795</td>
         <td>HIGH</td>
         <td>2.9.13-6.el9_5.2</td>
         <td></td>
@@ -1257,7 +1243,7 @@
 <h4>No Misconfigurations found</h4>
 
 <h3>Target <code>gcr.io/kubecost1/kubecost-modeling:v0.1.26 (redhat 9.5)</code></h3>
-<h4>Vulnerabilities (9)</h4>
+<h4>Vulnerabilities (8)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -1269,13 +1255,6 @@
     <tr>
         <td><code>libxml2</code></td>
         <td>CVE-2025-49794</td>
-        <td>HIGH</td>
-        <td>2.9.13-6.el9_5.2</td>
-        <td></td>
-    </tr>
-    <tr>
-        <td><code>libxml2</code></td>
-        <td>CVE-2025-49795</td>
         <td>HIGH</td>
         <td>2.9.13-6.el9_5.2</td>
         <td></td>
