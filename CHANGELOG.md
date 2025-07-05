@@ -1,5 +1,24 @@
 # Changelog
 
+## [4.1.0](https://github.com/suxess-it/kubriX/compare/v4.0.0...v4.1.0) (2025-07-05)
+
+
+### Features
+
+* **argocd:** extend resource-exclusion to be aligned with default argocd 3.0 resource exclusions in https://github.com/argoproj/argo-helm/blob/91afef15ec56140c0c7e4f3b76641f16343f3769/charts/argo-cd/values.yaml#L326-L380 ([#1349](https://github.com/suxess-it/kubriX/issues/1349)) ([cf834ce](https://github.com/suxess-it/kubriX/commit/cf834ce38f41ad7788683046d5514a95b2b3dc31))
+* **bootstrap:** add HA option ([#1351](https://github.com/suxess-it/kubriX/issues/1351)) ([a194d21](https://github.com/suxess-it/kubriX/commit/a194d21847c9553718233049b1adfa567bef8c11))
+* **deps:** update helm release argo-cd to v8.1.2 ([#1325](https://github.com/suxess-it/kubriX/issues/1325)) ([b1af4c6](https://github.com/suxess-it/kubriX/commit/b1af4c6e3397d5aab840faca89a4b1f8f4574659))
+* **grafana:** use transformed grafana-managed alerts from original kubernetes-mixin ([#1355](https://github.com/suxess-it/kubriX/issues/1355)) ([fe36d77](https://github.com/suxess-it/kubriX/commit/fe36d777b3527e28a201cdd312fffbd952d44990))
+* **secrets:** includes certificates into createsecrets ([#1354](https://github.com/suxess-it/kubriX/issues/1354)) ([0481757](https://github.com/suxess-it/kubriX/commit/048175788d7863ac252a6f596551a1d311455158))
+
+
+### Bug Fixes
+
+* **backstage:** change pg configuration to single db ([#1350](https://github.com/suxess-it/kubriX/issues/1350)) ([a018ce0](https://github.com/suxess-it/kubriX/commit/a018ce0a619706e47cce1451aa0605a37154f8f3))
+* **bootstrap:** cleanup pushsecrets as final step ([#1352](https://github.com/suxess-it/kubriX/issues/1352)) ([eabc8ec](https://github.com/suxess-it/kubriX/commit/eabc8ec347fe0d5a41580387299dddf8f36a538e))
+* **deps:** update helm release argo-rollouts to v2.39.6 ([#1326](https://github.com/suxess-it/kubriX/issues/1326)) ([e736bc7](https://github.com/suxess-it/kubriX/commit/e736bc78bcbcfa88286b2353c234236037301ec3))
+* **deps:** update helm release grafana to v9.2.10 ([#1356](https://github.com/suxess-it/kubriX/issues/1356)) ([7577f9e](https://github.com/suxess-it/kubriX/commit/7577f9ecdb005e7e8e00dcab25e01c18fbcda4d6))
+
 ## [4.0.0](https://github.com/suxess-it/kubriX/compare/v3.0.0...v4.0.0) (2025-06-20)
 
 
