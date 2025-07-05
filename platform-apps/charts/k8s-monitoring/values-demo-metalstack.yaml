@@ -1,31 +1,31 @@
 k8s-monitoring:
 
-  alloy:
-    logging:
-      # -- Level at which Alloy log lines should be written.
-      # @section -- Deployment: [Alloy](https://github.com/grafana/alloy/tree/main/operations/helm/charts/alloy)
-      level: info
-
   cluster:
-    name: "kubrix-demo"
-  
-  externalServices:
-    prometheus:
-      host: "http://sx-mimir-nginx.mimir.svc"
-      queryEndpoint: "/prometheus/api/v1/query"
-      writeEndpoint: "/api/v1/push"
-      tenantId: ""
-    loki:
-      host: "http://sx-loki-gateway.loki.svc"
-      queryEndpoint: "/loki/api/v1/query"
-      writeEndPoint: "/loki/api/v1/push"
-      tenantId: ""
-
-  opencost:
-    enabled: false
-
-  metrics:
-    apiserver:
+    name: kubrix-demo
+  destinations:
+    - name: metricsService
+      type: prometheus
+      url: http://sx-mimir-nginx.mimir.svc/api/v1/push
+      tenantId: ''
+    - name: logsService
+      type: loki
+      url: http://sx-loki-gateway.loki.svc/loki/api/v1/push
+      tenantId: ''
+  clusterMetrics:
+    enabled: true
+    opencost:
+      enabled: false
+    kubelet:
+      metricsTuning:
+        includeMetrics:
+          - kubelet_volume_stats_used_bytes
+    cadvisor:
+      metricsTuning:
+        includeMetrics:
+          - machine_cpu_cores
+          - container_oom_events_total
+          - container_cpu_cfs_throttled_seconds_total
+    apiServer:
       enabled: true
       metricsTuning:
         includeMetrics:
@@ -60,17 +60,7 @@ k8s-monitoring:
           - kube_node_info
           - kube_pod_status_qos_class
           - kube_pod_container_status_last_terminated_exitcode
-    cadvisor:
-      metricsTuning:
-        includeMetrics:
-          - machine_cpu_cores
-          - container_oom_events_total
-          - container_cpu_cfs_throttled_seconds_total
-    kubelet:
-      metricsTuning:
-        includeMetrics:
-          - kubelet_volume_stats_used_bytes
-    node-exporter:
+   node-exporter:
       metricsTuning:
         includeMetrics:
           - node_uname_info
@@ -97,41 +87,73 @@ k8s-monitoring:
           - node_disk_reads_completed_total
           - node_disk_writes_completed_total
           - node_disk_io_now
-  extraConfig: |
-    mimir.rules.kubernetes "rules" {
-      address = nonsensitive(remote.kubernetes.secret.metrics_service.data["host"])
-      tenant_id = "anonymous"
+  alloy-metrics:
+    logging:
+      level: info
+    enabled: true
+    extraConfig: |
+      mimir.rules.kubernetes "rules" {
+        address = nonsensitive(remote.kubernetes.secret.metrics_service.data["host"])
+        tenant_id = "anonymous"
 
-      rule_namespace_selector {
-          match_labels = {
-            "kubernetes.io/metadata.name" = "mimir",
-          }
+        rule_namespace_selector {
+            match_labels = {
+              "kubernetes.io/metadata.name" = "mimir",
+            }
+        }
+        rule_selector {
+            match_labels = {}
+        }
       }
-      rule_selector {
-          match_labels = {}
-      }
-    }
 
-    discovery.relabel "coredns" {
-      targets = discovery.kubernetes.pods.targets
-      rule {
-        source_labels = ["__meta_kubernetes_pod_label_k8s_app"]
-        regex = "kube-dns"
-        action = "keep"
+      discovery.relabel "coredns" {
+        targets = discovery.kubernetes.pods.targets
+        rule {
+          source_labels = ["__meta_kubernetes_pod_label_k8s_app"]
+          regex = "kube-dns"
+          action = "keep"
+        }
+        rule {
+          source_labels = ["__meta_kubernetes_pod_container_port_number"]
+          regex = "9153"
+          action = "keep"
+        }
+        rule {
+          source_labels = ["__meta_kubernetes_pod_name"]
+          target_label = "instance"
+        }
       }
-      rule {
-        source_labels = ["__meta_kubernetes_pod_container_port_number"]
-        regex = "9153"
-        action = "keep"
+      prometheus.scrape "coredns" {
+        job_name     = "integrations/coredns"
+        targets      = discovery.relabel.coredns.output
+        honor_labels = true
+        forward_to   = [prometheus.relabel.metrics_service.receiver]
       }
-      rule {
-        source_labels = ["__meta_kubernetes_pod_name"]
-        target_label = "instance"
-      }
-    }
-    prometheus.scrape "coredns" {
-      job_name     = "integrations/coredns"
-      targets      = discovery.relabel.coredns.output
-      honor_labels = true
-      forward_to   = [prometheus.relabel.metrics_service.receiver]
-    }
+  clusterEvents:
+    enabled: true
+  alloy-singleton:
+    enabled: true
+  podLogs:
+    enabled: true
+  alloy-logs:
+    enabled: true
+  annotationAutodiscovery:
+    enabled: true
+  prometheusOperatorObjects:
+    enabled: true
+    crds:
+      deploy: true
+  integrations:
+    alloy:
+      instances:
+        - name: alloy
+         labelSelectors:
+            app.kubernetes.io/name:
+              - alloy-metrics
+              - alloy-singleton
+              - alloy-logs
+          metrics:
+            tuning:
+              useDefaultAllowList: false
+              includeMetrics:
+                - alloy_build_info
