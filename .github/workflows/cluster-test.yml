@@ -93,7 +93,7 @@ jobs:
           KUBRIX_TARGET_TYPE: ${{ matrix.target-type }}
         shell: bash
         run: |
-          kubectl get clusterrole sx-k8s-monitoring-alloy-operator
+          kubectl get clusterrole sx-k8s-monitoring-alloy-operator -o yaml
           target_chart_values_file=platform-apps/target-chart/values-$(echo ${KUBRIX_TARGET_TYPE} | awk '{print tolower($0)}').yaml
           argocd_apps=$(cat $target_chart_values_file | awk '/^  - name:/ { printf "%s", "sx-"$3" "}' )
           curl -kL -o argocd https://argocd-127-0-0-1.nip.io/download/argocd-linux-amd64
