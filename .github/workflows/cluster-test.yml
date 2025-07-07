@@ -101,6 +101,7 @@ jobs:
           ls -l
           INITIAL_ARGOCD_PASSWORD=$( kubectl get secret -n argocd argocd-initial-admin-secret -o=jsonpath={'.data.password'} | base64 -d )
           ./argocd login argocd-127-0-0-1.nip.io --grpc-web --insecure --username admin --password ${INITIAL_ARGOCD_PASSWORD}
+          ./argocd app sync sx-k8s-monitoring --grpc-web
           for app in ${argocd_apps} ; do echo "$app diff" ; ./argocd app diff $app --grpc-web ; done         
           
       - name: kubectl get applications
