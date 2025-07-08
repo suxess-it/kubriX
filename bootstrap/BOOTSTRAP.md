@@ -25,6 +25,10 @@ Steps:
     default: ionos  
     supported: ionos, route53
 
+    ```
+    export KUBRIX_CUSTOMER_DNS_PROVIDER="ionos"
+    ```
+
 5. optional: set the domain, under which kubriX should be available.
 
     This domain will be used by external-dns. Your provider in step 4 needs to be able to manage this domain with the credentials set in step 8.

@@ -13,6 +13,7 @@ KUBRIX_UPSTREAM_REPO=${KUBRIX_UPSTREAM_REPO:-"https://github.com/suxess-it/kubri
 KUBRIX_UPSTREAM_BRANCH=${KUBRIX_UPSTREAM_BRANCH:-"main"}
 KUBRIX_CUSTOMER_TARGET_TYPE=${KUBRIX_CUSTOMER_TARGET_TYPE:-"DEMO-STACK"}
 KUBRIX_CUSTOMER_DOMAIN=${KUBRIX_CUSTOMER_DOMAIN:-"demo-$(echo ${KUBRIX_CUSTOMER_REPO} | sha256sum | head -c 10).kubrix.cloud"}
+KUBRIX_CUSTOMER_DNS_PROVIDER=${KUBRIX_CUSTOMER_DNS_PROVIDER:-"ionos"}
 
 # get protocol
 KUBRIX_CUSTOMER_REPO_PROTO=$(echo ${KUBRIX_CUSTOMER_REPO} | grep :// | sed "s,^\(.*://\).*,\1,")
@@ -28,6 +29,7 @@ echo "KUBRIX_UPSTREAM_BRANCH: ${KUBRIX_UPSTREAM_BRANCH}"
 echo "KUBRIX_CUSTOMER_REPO: ${KUBRIX_CUSTOMER_REPO}"
 echo "KUBRIX_CUSTOMER_TARGET_TYPE: ${KUBRIX_CUSTOMER_TARGET_TYPE}"
 echo "KUBRIX_CUSTOMER_DOMAIN: ${KUBRIX_CUSTOMER_DOMAIN}"
+echo "KUBRIX_CUSTOMER_DNS_PROVIDER: ${KUBRIX_CUSTOMER_DNS_PROVIDER}"
 echo "-------------------------------------------------------------"
 echo ""
 
@@ -45,6 +47,7 @@ git checkout ${KUBRIX_UPSTREAM_BRANCH}
 
 # write new customer values in customer config
 cat << EOF > bootstrap/customer-config.yaml
+dnsProvider: ${KUBRIX_CUSTOMER_DNS_PROVIDER}
 domain: ${KUBRIX_CUSTOMER_DOMAIN}
 gitRepo: ${KUBRIX_CUSTOMER_REPO}
 EOF
