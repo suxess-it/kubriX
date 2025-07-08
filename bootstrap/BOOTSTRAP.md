@@ -34,10 +34,10 @@ Steps:
 5. optional: set the kubrix target type which should be used
 
     ```
-    export KUBRIX_CUSTOMER_TARGET_TYPE="DEMO-METALSTACK"
+    export KUBRIX_CUSTOMER_TARGET_TYPE="DEMO-STACK"
     ```
 
-    if this variable is not set, "DEMO-METALSTACK" is used.
+    if this variable is not set, "DEMO-STACK" is used.
 
 6. create a new Kubernetes cluster and be sure that kubectl is connected to it. check with `kubectl cluster-info`
 
