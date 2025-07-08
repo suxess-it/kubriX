@@ -93,7 +93,6 @@ jobs:
           KUBRIX_TARGET_TYPE: ${{ matrix.target-type }}
         shell: bash
         run: |
-          kubectl get clusterrole sx-k8s-monitoring-alloy-operator -o yaml
           target_chart_values_file=platform-apps/target-chart/values-$(echo ${KUBRIX_TARGET_TYPE} | awk '{print tolower($0)}').yaml
           argocd_apps=$(cat $target_chart_values_file | awk '/^  - name:/ { printf "%s", "sx-"$3" "}' )
           curl -kL -o argocd https://argocd-127-0-0-1.nip.io/download/argocd-linux-amd64
@@ -101,7 +100,6 @@ jobs:
           ls -l
           INITIAL_ARGOCD_PASSWORD=$( kubectl get secret -n argocd argocd-initial-admin-secret -o=jsonpath={'.data.password'} | base64 -d )
           ./argocd login argocd-127-0-0-1.nip.io --grpc-web --insecure --username admin --password ${INITIAL_ARGOCD_PASSWORD}
-          ./argocd app sync sx-k8s-monitoring --grpc-web
           for app in ${argocd_apps} ; do echo "$app diff" ; ./argocd app diff $app --grpc-web ; done         
           
       - name: kubectl get applications
