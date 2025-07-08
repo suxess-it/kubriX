@@ -11,8 +11,9 @@ EOF
 # variables with possible sane defaults
 KUBRIX_UPSTREAM_REPO=${KUBRIX_UPSTREAM_REPO:-"https://github.com/suxess-it/kubriX"}
 KUBRIX_UPSTREAM_BRANCH=${KUBRIX_UPSTREAM_BRANCH:-"main"}
-KUBRIX_CUSTOMER_TARGET_TYPE=${KUBRIX_CUSTOMER_TARGET_TYPE:-"DEMO-METALSTACK"}
+KUBRIX_CUSTOMER_TARGET_TYPE=${KUBRIX_CUSTOMER_TARGET_TYPE:-"DEMO-STACK"}
 KUBRIX_CUSTOMER_DOMAIN=${KUBRIX_CUSTOMER_DOMAIN:-"demo-$(echo ${KUBRIX_CUSTOMER_REPO} | sha256sum | head -c 10).kubrix.cloud"}
+KUBRIX_CUSTOMER_DNS_PROVIDER=${KUBRIX_CUSTOMER_DNS_PROVIDER:-"ionos"}
 
 # get protocol
 KUBRIX_CUSTOMER_REPO_PROTO=$(echo ${KUBRIX_CUSTOMER_REPO} | grep :// | sed "s,^\(.*://\).*,\1,")
@@ -28,6 +29,7 @@ echo "KUBRIX_UPSTREAM_BRANCH: ${KUBRIX_UPSTREAM_BRANCH}"
 echo "KUBRIX_CUSTOMER_REPO: ${KUBRIX_CUSTOMER_REPO}"
 echo "KUBRIX_CUSTOMER_TARGET_TYPE: ${KUBRIX_CUSTOMER_TARGET_TYPE}"
 echo "KUBRIX_CUSTOMER_DOMAIN: ${KUBRIX_CUSTOMER_DOMAIN}"
+echo "KUBRIX_CUSTOMER_DNS_PROVIDER: ${KUBRIX_CUSTOMER_DNS_PROVIDER}"
 echo "-------------------------------------------------------------"
 echo ""
 
@@ -45,6 +47,7 @@ git checkout ${KUBRIX_UPSTREAM_BRANCH}
 
 # write new customer values in customer config
 cat << EOF > bootstrap/customer-config.yaml
+dnsProvider: ${KUBRIX_CUSTOMER_DNS_PROVIDER}
 domain: ${KUBRIX_CUSTOMER_DOMAIN}
 gitRepo: ${KUBRIX_CUSTOMER_REPO}
 EOF
@@ -59,7 +62,8 @@ curl --progress-bar -o gomplate -SL https://github.com/hairyhenderson/gomplate/r
 chmod 755 gomplate
 
 echo "rendering values templates ..."
-gomplate --context kubriX=bootstrap/customer-config.yaml --input-dir platform-apps/charts --include *.yaml.tmpl --output-map='platform-apps/charts/{{ .in | strings.ReplaceAll ".yaml.tmpl" ".yaml" }}'
+valuesFile=$( echo ${KUBRIX_CUSTOMER_TARGET_TYPE} | awk '{print tolower($0)}' )
+gomplate --context kubriX=bootstrap/customer-config.yaml --input-dir platform-apps/charts --include *${valuesFile}.yaml.tmpl --output-map='platform-apps/charts/{{ .in | strings.ReplaceAll ".yaml.tmpl" ".yaml" }}'
 rm gomplate
 
 echo "Push kubriX gitops files to ${KUBRIX_CUSTOMER_REPO}"
