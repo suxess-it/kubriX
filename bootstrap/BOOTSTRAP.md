@@ -22,7 +22,7 @@ Steps:
 
 4. optional: set the DNS provider, which external-dns should connect to.
 
-    default: ionos
+    default: ionos  
     supported: ionos, route53
 
 5. optional: set the domain, under which kubriX should be available.
