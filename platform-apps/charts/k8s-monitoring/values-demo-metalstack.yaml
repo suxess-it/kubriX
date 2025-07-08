@@ -96,7 +96,7 @@ k8s-monitoring:
     enabled: true
     extraConfig: |
       mimir.rules.kubernetes "rules" {
-        address = nonsensitive(remote.kubernetes.secret.metrics_service.data["host"])
+        address = "http://sx-mimir-nginx.mimir.svc"
         tenant_id = "anonymous"
 
         rule_namespace_selector {
