@@ -92,8 +92,8 @@ groups:
                 maxDataPoints: 43200
                 refId: threshold
                 type: threshold
-          noDataState: NoData
-          execErrState: Error
+          noDataState: OK
+          execErrState: OK
           for: 2m
           annotations:
             description: The API server is burning too much error budget.
@@ -193,8 +193,8 @@ groups:
                 maxDataPoints: 43200
                 refId: threshold
                 type: threshold
-          noDataState: NoData
-          execErrState: Error
+          noDataState: OK
+          execErrState: OK
           for: 15m
           annotations:
             description: The API server is burning too much error budget.
@@ -294,8 +294,8 @@ groups:
                 maxDataPoints: 43200
                 refId: threshold
                 type: threshold
-          noDataState: NoData
-          execErrState: Error
+          noDataState: OK
+          execErrState: OK
           for: 1h
           annotations:
             description: The API server is burning too much error budget.
@@ -395,8 +395,8 @@ groups:
                 maxDataPoints: 43200
                 refId: threshold
                 type: threshold
-          noDataState: NoData
-          execErrState: Error
+          noDataState: OK
+          execErrState: OK
           for: 3h
           annotations:
             description: The API server is burning too much error budget.
@@ -499,8 +499,8 @@ groups:
                 maxDataPoints: 43200
                 refId: threshold
                 type: threshold
-          noDataState: NoData
-          execErrState: Error
+          noDataState: OK
+          execErrState: OK
           for: 15m
           annotations:
             description: 'Pod {{ $labels.namespace }}/{{ $labels.pod }} ({{ $labels.container }}) is in waiting state (reason: "CrashLoopBackOff").'
@@ -602,8 +602,8 @@ groups:
                 maxDataPoints: 43200
                 refId: threshold
                 type: threshold
-          noDataState: NoData
-          execErrState: Error
+          noDataState: OK
+          execErrState: OK
           for: 15m
           annotations:
             description: Pod {{ $labels.namespace }}/{{ $labels.pod }} has been in a non-ready state for longer than 15 minutes.
@@ -701,8 +701,8 @@ groups:
                 maxDataPoints: 43200
                 refId: threshold
                 type: threshold
-          noDataState: NoData
-          execErrState: Error
+          noDataState: OK
+          execErrState: OK
           for: 15m
           annotations:
             description: Deployment generation for {{ $labels.namespace }}/{{ $labels.deployment }} does not match, this indicates that the Deployment has failed but has not been rolled back.
@@ -806,8 +806,8 @@ groups:
                 maxDataPoints: 43200
                 refId: threshold
                 type: threshold
-          noDataState: NoData
-          execErrState: Error
+          noDataState: OK
+          execErrState: OK
           for: 15m
           annotations:
             description: Deployment {{ $labels.namespace }}/{{ $labels.deployment }} has not matched the expected number of replicas for longer than 15 minutes.
@@ -904,8 +904,8 @@ groups:
                 maxDataPoints: 43200
                 refId: threshold
                 type: threshold
-          noDataState: NoData
-          execErrState: Error
+          noDataState: OK
+          execErrState: OK
           for: 15m
           annotations:
             description: Rollout of deployment {{ $labels.namespace }}/{{ $labels.deployment }} is not progressing for longer than 15 minutes.
@@ -1009,8 +1009,8 @@ groups:
                 maxDataPoints: 43200
                 refId: threshold
                 type: threshold
-          noDataState: NoData
-          execErrState: Error
+          noDataState: OK
+          execErrState: OK
           for: 15m
           annotations:
             description: StatefulSet {{ $labels.namespace }}/{{ $labels.statefulset }} has not matched the expected number of replicas for longer than 15 minutes.
@@ -1108,8 +1108,8 @@ groups:
                 maxDataPoints: 43200
                 refId: threshold
                 type: threshold
-          noDataState: NoData
-          execErrState: Error
+          noDataState: OK
+          execErrState: OK
           for: 15m
           annotations:
             description: StatefulSet generation for {{ $labels.namespace }}/{{ $labels.statefulset }} does not match, this indicates that the StatefulSet has failed but has not been rolled back.
@@ -1221,8 +1221,8 @@ groups:
                 maxDataPoints: 43200
                 refId: threshold
                 type: threshold
-          noDataState: NoData
-          execErrState: Error
+          noDataState: OK
+          execErrState: OK
           for: 15m
           annotations:
             description: StatefulSet {{ $labels.namespace }}/{{ $labels.statefulset }} update has not been rolled out.
@@ -1340,8 +1340,8 @@ groups:
                 maxDataPoints: 43200
                 refId: threshold
                 type: threshold
-          noDataState: NoData
-          execErrState: Error
+          noDataState: OK
+          execErrState: OK
           for: 15m
           annotations:
             description: DaemonSet {{ $labels.namespace }}/{{ $labels.daemonset }} has not finished or progressed for at least 15m.
@@ -1437,8 +1437,8 @@ groups:
                 maxDataPoints: 43200
                 refId: threshold
                 type: threshold
-          noDataState: NoData
-          execErrState: Error
+          noDataState: OK
+          execErrState: OK
           for: 1h
           annotations:
             description: 'pod/{{ $labels.pod }} in namespace {{ $labels.namespace }} on container {{ $labels.container}} has been in waiting state for longer than 1 hour. (reason: "{{ $labels.reason }}").'
@@ -1536,8 +1536,8 @@ groups:
                 maxDataPoints: 43200
                 refId: threshold
                 type: threshold
-          noDataState: NoData
-          execErrState: Error
+          noDataState: OK
+          execErrState: OK
           for: 10m
           annotations:
             description: '{{ $value }} Pods of DaemonSet {{ $labels.namespace }}/{{ $labels.daemonset }} are not scheduled.'
@@ -1633,8 +1633,8 @@ groups:
                 maxDataPoints: 43200
                 refId: threshold
                 type: threshold
-          noDataState: NoData
-          execErrState: Error
+          noDataState: OK
+          execErrState: OK
           for: 15m
           annotations:
             description: '{{ $value }} Pods of DaemonSet {{ $labels.namespace }}/{{ $labels.daemonset }} are running where they are not supposed to run.'
@@ -1732,8 +1732,8 @@ groups:
                 maxDataPoints: 43200
                 refId: threshold
                 type: threshold
-          noDataState: NoData
-          execErrState: Error
+          noDataState: OK
+          execErrState: OK
           annotations:
             description: Job {{ $labels.namespace }}/{{ $labels.job_name }} is taking more than {{ "43200" | humanizeDuration }} to complete.
             runbook_url: https://github.com/kubernetes-monitoring/kubernetes-mixin/tree/master/runbook.md#alert-name-kubejobnotcompleted
@@ -1828,8 +1828,8 @@ groups:
                 maxDataPoints: 43200
                 refId: threshold
                 type: threshold
-          noDataState: NoData
-          execErrState: Error
+          noDataState: OK
+          execErrState: OK
           for: 15m
           annotations:
             description: Job {{ $labels.namespace }}/{{ $labels.job_name }} failed to complete. Removing failed job after investigation should clear this alert.
@@ -1937,8 +1937,8 @@ groups:
                 maxDataPoints: 43200
                 refId: threshold
                 type: threshold
-          noDataState: NoData
-          execErrState: Error
+          noDataState: OK
+          execErrState: OK
           for: 15m
           annotations:
             description: HPA {{ $labels.namespace }}/{{ $labels.horizontalpodautoscaler  }} has not matched the desired number of replicas for longer than 15 minutes.
@@ -2036,8 +2036,8 @@ groups:
                 maxDataPoints: 43200
                 refId: threshold
                 type: threshold
-          noDataState: NoData
-          execErrState: Error
+          noDataState: OK
+          execErrState: OK
           for: 15m
           annotations:
             description: HPA {{ $labels.namespace }}/{{ $labels.horizontalpodautoscaler  }} has been running at max replicas for longer than 15 minutes.
@@ -2138,8 +2138,8 @@ groups:
                 maxDataPoints: 43200
                 refId: threshold
                 type: threshold
-          noDataState: NoData
-          execErrState: Error
+          noDataState: OK
+          execErrState: OK
           for: 15m
           annotations:
             description: PDB {{ $labels.namespace }}/{{ $labels.poddisruptionbudget }} expects {{ $value }} more healthy pods. The desired number of healthy pods has not been met for at least 15m.
@@ -2242,8 +2242,8 @@ groups:
                 maxDataPoints: 43200
                 refId: threshold
                 type: threshold
-          noDataState: NoData
-          execErrState: Error
+          noDataState: OK
+          execErrState: OK
           for: 10m
           annotations:
             description: Cluster has overcommitted CPU resource requests for Pods by {{ $value }} CPU shares and cannot tolerate node failure.
@@ -2341,8 +2341,8 @@ groups:
                 maxDataPoints: 43200
                 refId: threshold
                 type: threshold
-          noDataState: NoData
-          execErrState: Error
+          noDataState: OK
+          execErrState: OK
           for: 10m
           annotations:
             description: Cluster has overcommitted memory resource requests for Pods by {{ $value | humanize }} bytes and cannot tolerate node failure.
@@ -2441,8 +2441,8 @@ groups:
                 maxDataPoints: 43200
                 refId: threshold
                 type: threshold
-          noDataState: NoData
-          execErrState: Error
+          noDataState: OK
+          execErrState: OK
           for: 5m
           annotations:
             description: Cluster has overcommitted CPU resource requests for Namespaces.
@@ -2541,8 +2541,8 @@ groups:
                 maxDataPoints: 43200
                 refId: threshold
                 type: threshold
-          noDataState: NoData
-          execErrState: Error
+          noDataState: OK
+          execErrState: OK
           for: 5m
           annotations:
             description: Cluster has overcommitted memory resource requests for Namespaces.
@@ -2641,8 +2641,8 @@ groups:
                 maxDataPoints: 43200
                 refId: threshold
                 type: threshold
-          noDataState: NoData
-          execErrState: Error
+          noDataState: OK
+          execErrState: OK
           for: 15m
           annotations:
             description: Namespace {{ $labels.namespace }} is using {{ $value | humanizePercentage }} of its {{ $labels.resource }} quota.
@@ -2741,8 +2741,8 @@ groups:
                 maxDataPoints: 43200
                 refId: threshold
                 type: threshold
-          noDataState: NoData
-          execErrState: Error
+          noDataState: OK
+          execErrState: OK
           for: 15m
           annotations:
             description: Namespace {{ $labels.namespace }} is using {{ $value | humanizePercentage }} of its {{ $labels.resource }} quota.
@@ -2841,8 +2841,8 @@ groups:
                 maxDataPoints: 43200
                 refId: threshold
                 type: threshold
-          noDataState: NoData
-          execErrState: Error
+          noDataState: OK
+          execErrState: OK
           for: 15m
           annotations:
             description: Namespace {{ $labels.namespace }} is using {{ $value | humanizePercentage }} of its {{ $labels.resource }} quota.
@@ -2941,8 +2941,8 @@ groups:
                 maxDataPoints: 43200
                 refId: threshold
                 type: threshold
-          noDataState: NoData
-          execErrState: Error
+          noDataState: OK
+          execErrState: OK
           for: 15m
           annotations:
             description: '{{ $value | humanizePercentage }} throttling of CPU in namespace {{ $labels.namespace }} for container {{ $labels.container }} in pod {{ $labels.pod }}.'
@@ -3053,8 +3053,8 @@ groups:
                 maxDataPoints: 43200
                 refId: threshold
                 type: threshold
-          noDataState: NoData
-          execErrState: Error
+          noDataState: OK
+          execErrState: OK
           for: 1m
           annotations:
             description: The PersistentVolume claimed by {{ $labels.persistentvolumeclaim }} in Namespace {{ $labels.namespace }} {{ with $labels.cluster -}} on Cluster {{ . }} {{- end }} is only {{ $value | humanizePercentage }} free.
@@ -3162,8 +3162,8 @@ groups:
                 maxDataPoints: 43200
                 refId: threshold
                 type: threshold
-          noDataState: NoData
-          execErrState: Error
+          noDataState: OK
+          execErrState: OK
           for: 1h
           annotations:
             description: Based on recent sampling, the PersistentVolume claimed by {{ $labels.persistentvolumeclaim }} in Namespace {{ $labels.namespace }} {{ with $labels.cluster -}} on Cluster {{ . }} {{- end }} is expected to fill up within four days. Currently {{ $value | humanizePercentage }} is available.
@@ -3269,8 +3269,8 @@ groups:
                 maxDataPoints: 43200
                 refId: threshold
                 type: threshold
-          noDataState: NoData
-          execErrState: Error
+          noDataState: OK
+          execErrState: OK
           for: 1m
           annotations:
             description: The PersistentVolume claimed by {{ $labels.persistentvolumeclaim }} in Namespace {{ $labels.namespace }} {{ with $labels.cluster -}} on Cluster {{ . }} {{- end }} only has {{ $value | humanizePercentage }} free inodes.
@@ -3378,8 +3378,8 @@ groups:
                 maxDataPoints: 43200
                 refId: threshold
                 type: threshold
-          noDataState: NoData
-          execErrState: Error
+          noDataState: OK
+          execErrState: OK
           for: 1h
           annotations:
             description: Based on recent sampling, the PersistentVolume claimed by {{ $labels.persistentvolumeclaim }} in Namespace {{ $labels.namespace }} {{ with $labels.cluster -}} on Cluster {{ . }} {{- end }} is expected to run out of inodes within four days. Currently {{ $value | humanizePercentage }} of its inodes are free.
@@ -3475,8 +3475,8 @@ groups:
                 maxDataPoints: 43200
                 refId: threshold
                 type: threshold
-          noDataState: NoData
-          execErrState: Error
+          noDataState: OK
+          execErrState: OK
           for: 5m
           annotations:
             description: The persistent volume {{ $labels.persistentvolume }} {{ with $labels.cluster -}} on Cluster {{ . }} {{- end }} has status {{ $labels.phase }}.
@@ -3577,8 +3577,8 @@ groups:
                 maxDataPoints: 43200
                 refId: threshold
                 type: threshold
-          noDataState: NoData
-          execErrState: Error
+          noDataState: OK
+          execErrState: OK
           for: 15m
           annotations:
             description: There are {{ $value }} different semantic versions of Kubernetes components running.
@@ -3677,8 +3677,8 @@ groups:
                 maxDataPoints: 43200
                 refId: threshold
                 type: threshold
-          noDataState: NoData
-          execErrState: Error
+          noDataState: OK
+          execErrState: OK
           for: 15m
           annotations:
             description: Kubernetes API server client '{{ $labels.job }}/{{ $labels.instance }}' is experiencing {{ $value | humanizePercentage }} errors.
@@ -3781,8 +3781,8 @@ groups:
                 maxDataPoints: 43200
                 refId: threshold
                 type: threshold
-          noDataState: NoData
-          execErrState: Error
+          noDataState: OK
+          execErrState: OK
           for: 5m
           annotations:
             description: A client certificate used to authenticate to kubernetes apiserver is expiring in less than 7.0 days.
@@ -3880,8 +3880,8 @@ groups:
                 maxDataPoints: 43200
                 refId: threshold
                 type: threshold
-          noDataState: NoData
-          execErrState: Error
+          noDataState: OK
+          execErrState: OK
           for: 5m
           annotations:
             description: A client certificate used to authenticate to kubernetes apiserver is expiring in less than 24.0 hours.
@@ -3977,8 +3977,8 @@ groups:
                 maxDataPoints: 43200
                 refId: threshold
                 type: threshold
-          noDataState: NoData
-          execErrState: Error
+          noDataState: OK
+          execErrState: OK
           for: 10m
           annotations:
             description: Kubernetes aggregated API {{ $labels.instance }}/{{ $labels.name }} has reported {{ $labels.reason }} errors.
@@ -4074,8 +4074,8 @@ groups:
                 maxDataPoints: 43200
                 refId: threshold
                 type: threshold
-          noDataState: NoData
-          execErrState: Error
+          noDataState: OK
+          execErrState: OK
           for: 5m
           annotations:
             description: Kubernetes aggregated API {{ $labels.name }}/{{ $labels.namespace }} has been only {{ $value | humanize }}% available over the last 10m.
@@ -4171,8 +4171,8 @@ groups:
                 maxDataPoints: 43200
                 refId: threshold
                 type: threshold
-          noDataState: NoData
-          execErrState: Error
+          noDataState: OK
+          execErrState: OK
           for: 15m
           annotations:
             description: KubeAPI has disappeared from Prometheus target discovery.
@@ -4268,8 +4268,8 @@ groups:
                 maxDataPoints: 43200
                 refId: threshold
                 type: threshold
-          noDataState: NoData
-          execErrState: Error
+          noDataState: OK
+          execErrState: OK
           for: 5m
           annotations:
             description: The kubernetes apiserver has terminated {{ $value | humanizePercentage }} of its incoming requests.
@@ -4370,8 +4370,8 @@ groups:
                 maxDataPoints: 43200
                 refId: threshold
                 type: threshold
-          noDataState: NoData
-          execErrState: Error
+          noDataState: OK
+          execErrState: OK
           for: 15m
           annotations:
             description: KubeControllerManager has disappeared from Prometheus target discovery.
@@ -4472,8 +4472,8 @@ groups:
                 maxDataPoints: 43200
                 refId: threshold
                 type: threshold
-          noDataState: NoData
-          execErrState: Error
+          noDataState: OK
+          execErrState: OK
           for: 15m
           annotations:
             description: KubeProxy has disappeared from Prometheus target discovery.
@@ -4576,8 +4576,8 @@ groups:
                 maxDataPoints: 43200
                 refId: threshold
                 type: threshold
-          noDataState: NoData
-          execErrState: Error
+          noDataState: OK
+          execErrState: OK
           for: 15m
           annotations:
             description: '{{ $labels.node }} has been unready for more than 15 minutes.'
@@ -4675,8 +4675,8 @@ groups:
                 maxDataPoints: 43200
                 refId: threshold
                 type: threshold
-          noDataState: NoData
-          execErrState: Error
+          noDataState: OK
+          execErrState: OK
           for: 10m
           annotations:
             description: '{{ $labels.node }} has active Condition {{ $labels.condition }}. This is caused by resource usage exceeding eviction thresholds.'
@@ -4772,8 +4772,8 @@ groups:
                 maxDataPoints: 43200
                 refId: threshold
                 type: threshold
-          noDataState: NoData
-          execErrState: Error
+          noDataState: OK
+          execErrState: OK
           for: 15m
           annotations:
             description: '{{ $labels.node }} is unreachable and some workloads may be rescheduled.'
@@ -4881,8 +4881,8 @@ groups:
                 maxDataPoints: 43200
                 refId: threshold
                 type: threshold
-          noDataState: NoData
-          execErrState: Error
+          noDataState: OK
+          execErrState: OK
           for: 15m
           annotations:
             description: Kubelet '{{ $labels.node }}' is running at {{ $value | humanizePercentage }} of its Pod capacity.
@@ -4980,8 +4980,8 @@ groups:
                 maxDataPoints: 43200
                 refId: threshold
                 type: threshold
-          noDataState: NoData
-          execErrState: Error
+          noDataState: OK
+          execErrState: OK
           for: 15m
           annotations:
             description: The readiness status of node {{ $labels.node }} has changed {{ $value }} times in the last 15 minutes.
@@ -5082,8 +5082,8 @@ groups:
                 maxDataPoints: 43200
                 refId: threshold
                 type: threshold
-          noDataState: NoData
-          execErrState: Error
+          noDataState: OK
+          execErrState: OK
           annotations:
             description: Node {{ $labels.node }} is evicting Pods due to {{ $labels.eviction_signal }}.  Eviction occurs when eviction thresholds are crossed, typically caused by Pods exceeding RAM/ephemeral-storage limits.
             runbook_url: https://github.com/kubernetes-monitoring/kubernetes-mixin/tree/master/runbook.md#alert-name-kubenodeeviction
@@ -5178,8 +5178,8 @@ groups:
                 maxDataPoints: 43200
                 refId: threshold
                 type: threshold
-          noDataState: NoData
-          execErrState: Error
+          noDataState: OK
+          execErrState: OK
           for: 5m
           annotations:
             description: The Kubelet Pod Lifecycle Event Generator has a 99th percentile duration of {{ $value }} seconds on node {{ $labels.node }}.
@@ -5275,8 +5275,8 @@ groups:
                 maxDataPoints: 43200
                 refId: threshold
                 type: threshold
-          noDataState: NoData
-          execErrState: Error
+          noDataState: OK
+          execErrState: OK
           for: 15m
           annotations:
             description: Kubelet Pod startup 99th percentile latency is {{ $value }} seconds on node {{ $labels.node }}.
@@ -5372,8 +5372,8 @@ groups:
                 maxDataPoints: 43200
                 refId: threshold
                 type: threshold
-          noDataState: NoData
-          execErrState: Error
+          noDataState: OK
+          execErrState: OK
           annotations:
             description: Client certificate for Kubelet on node {{ $labels.node }} expires in {{ $value | humanizeDuration }}.
             runbook_url: https://github.com/kubernetes-monitoring/kubernetes-mixin/tree/master/runbook.md#alert-name-kubeletclientcertificateexpiration
@@ -5468,8 +5468,8 @@ groups:
                 maxDataPoints: 43200
                 refId: threshold
                 type: threshold
-          noDataState: NoData
-          execErrState: Error
+          noDataState: OK
+          execErrState: OK
           annotations:
             description: Client certificate for Kubelet on node {{ $labels.node }} expires in {{ $value | humanizeDuration }}.
             runbook_url: https://github.com/kubernetes-monitoring/kubernetes-mixin/tree/master/runbook.md#alert-name-kubeletclientcertificateexpiration
@@ -5564,8 +5564,8 @@ groups:
                 maxDataPoints: 43200
                 refId: threshold
                 type: threshold
-          noDataState: NoData
-          execErrState: Error
+          noDataState: OK
+          execErrState: OK
           annotations:
             description: Server certificate for Kubelet on node {{ $labels.node }} expires in {{ $value | humanizeDuration }}.
             runbook_url: https://github.com/kubernetes-monitoring/kubernetes-mixin/tree/master/runbook.md#alert-name-kubeletservercertificateexpiration
@@ -5660,8 +5660,8 @@ groups:
                 maxDataPoints: 43200
                 refId: threshold
                 type: threshold
-          noDataState: NoData
-          execErrState: Error
+          noDataState: OK
+          execErrState: OK
           annotations:
             description: Server certificate for Kubelet on node {{ $labels.node }} expires in {{ $value | humanizeDuration }}.
             runbook_url: https://github.com/kubernetes-monitoring/kubernetes-mixin/tree/master/runbook.md#alert-name-kubeletservercertificateexpiration
@@ -5756,8 +5756,8 @@ groups:
                 maxDataPoints: 43200
                 refId: threshold
                 type: threshold
-          noDataState: NoData
-          execErrState: Error
+          noDataState: OK
+          execErrState: OK
           for: 15m
           annotations:
             description: Kubelet on node {{ $labels.node }} has failed to renew its client certificate ({{ $value | humanize }} errors in the last 5 minutes).
@@ -5853,8 +5853,8 @@ groups:
                 maxDataPoints: 43200
                 refId: threshold
                 type: threshold
-          noDataState: NoData
-          execErrState: Error
+          noDataState: OK
+          execErrState: OK
           for: 15m
           annotations:
             description: Kubelet on node {{ $labels.node }} has failed to renew its server certificate ({{ $value | humanize }} errors in the last 5 minutes).
@@ -5950,8 +5950,8 @@ groups:
                 maxDataPoints: 43200
                 refId: threshold
                 type: threshold
-          noDataState: NoData
-          execErrState: Error
+          noDataState: OK
+          execErrState: OK
           for: 15m
           annotations:
             description: Kubelet has disappeared from Prometheus target discovery.
@@ -6052,8 +6052,8 @@ groups:
                 maxDataPoints: 43200
                 refId: threshold
                 type: threshold
-          noDataState: NoData
-          execErrState: Error
+          noDataState: OK
+          execErrState: OK
           for: 15m
           annotations:
             description: KubeScheduler has disappeared from Prometheus target discovery.
