@@ -20,10 +20,14 @@ Steps:
     export KUBRIX_CUSTOMER_REPO_TOKEN="blabla"
     ```
 
-4. optional: set the domain, under which kubriX should be available.
+4. optional: set the DNS provider, which external-dns should connect to.
 
-    this domain will be used by external-dns.
-    TODO: customizing external-dns is not explained here and not part of bootstrap yet. So it will only work with ionos and 'kubrix.cloud' domain.
+    default: ionos
+    supported: ionos, route53
+
+5. optional: set the domain, under which kubriX should be available.
+
+    This domain will be used by external-dns. Your provider in step 4 needs to be able to manage this domain with the credentials set in step 8.
 
     ```
     export KUBRIX_CUSTOMER_DOMAIN="demo-johnny.kubrix.cloud"
@@ -31,7 +35,7 @@ Steps:
 
     if this variable is not set, a subdomain of "kubrix.cloud" is randomly created (for example "demo-2faf23d.kubrix.cloud")
 
-5. optional: set the kubrix target type which should be used
+6. optional: set the kubrix target type which should be used
 
     ```
     export KUBRIX_CUSTOMER_TARGET_TYPE="DEMO-STACK"
@@ -39,16 +43,39 @@ Steps:
 
     if this variable is not set, "DEMO-STACK" is used.
 
-6. create a new Kubernetes cluster and be sure that kubectl is connected to it. check with `kubectl cluster-info`
+7. create a new Kubernetes cluster and be sure that kubectl is connected to it. check with `kubectl cluster-info`
 
-7. If you need to prepare something on your cluster do this now. We at kubriX for example need to create our ionos dns api key:
+8. provide external-dns secrets
+
+    ### ionos
+
+    create a secret with your DNS api-key like this:
 
     ```
     kubectl create ns external-dns
-    kubectl create secret generic ionos-credentials -n external-dns --from-literal=api-key='topsecret'
+    kubectl create secret generic ionos-credentials -n external-dns --from-literal=api-key='your-api-key'
     ```
 
-8. Then run this command in your home directory in your linux bash:
+    ### aws
+
+    create a `credentials` file like this:
+
+    ```
+    [default]
+    aws_access_key_id = your-key-id
+    aws_secret_access_key = your-access-key
+    ```
+
+    and then create the secret on the K8s cluster based on this `credentials` file:
+    ```
+    kubectl create ns external-dns
+    kubectl create secret generic -n external-dns sx-external-dns --from-file credentials
+    ```
+
+9. If you need to prepare something else on your cluster before kubriX gets installed, do this now.
+
+
+10. Then run this command in your home directory in your linux bash:
 
     ```
     curl -H 'Cache-Control: no-cache, no-store' https://raw.githubusercontent.com/suxess-it/kubriX/refs/heads/main/bootstrap/bootstrap.sh | bash -s

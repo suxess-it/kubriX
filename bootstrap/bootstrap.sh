@@ -59,7 +59,8 @@ curl --progress-bar -o gomplate -SL https://github.com/hairyhenderson/gomplate/r
 chmod 755 gomplate
 
 echo "rendering values templates ..."
-gomplate --context kubriX=bootstrap/customer-config.yaml --input-dir platform-apps/charts --include *.yaml.tmpl --output-map='platform-apps/charts/{{ .in | strings.ReplaceAll ".yaml.tmpl" ".yaml" }}'
+valuesFile=$( echo ${KUBRIX_CUSTOMER_TARGET_TYPE} | awk '{print tolower($0)}' )
+gomplate --context kubriX=bootstrap/customer-config.yaml --input-dir platform-apps/charts --include *${valuesFile}.yaml.tmpl --output-map='platform-apps/charts/{{ .in | strings.ReplaceAll ".yaml.tmpl" ".yaml" }}'
 rm gomplate
 
 echo "Push kubriX gitops files to ${KUBRIX_CUSTOMER_REPO}"

@@ -1,5 +1,6 @@
 external-dns:
 
+  {{ if eq .kubriX.dnsProvider "ionos" -}}
   # we use ionos external-dns webhook 
   # described in https://github.com/ionos-cloud/external-dns-ionos-webhook?tab=readme-ov-file#kubernetes-deployment
   # ionos-credentials is in external-dns namespace
@@ -36,4 +37,23 @@ external-dns:
       readinessProbe:
         httpGet:
           path: /health
+  {{ end }}
+  {{ if eq .kubriX.dnsProvider "aws" -}}
+  provider:
+    name: aws
 
+  env:
+    - name: AWS_SHARED_CREDENTIALS_FILE
+      value: /.aws/credentials
+
+  extraVolumeMounts:
+    - name: aws-credentials
+      mountPath: /.aws
+      readOnly: true
+
+  extraVolumes:
+    - name: aws-credentials
+      secret:
+        secretName: sx-external-dns
+
+  {{ end }}
