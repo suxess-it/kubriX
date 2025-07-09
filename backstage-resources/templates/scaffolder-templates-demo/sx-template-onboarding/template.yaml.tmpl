@@ -94,7 +94,7 @@ spec:
       name: Publish new Version of team configuration
       action: publish:github:pull-request
       input:
-        repoUrl: github.com?repo={{ .kubriX.gitRepoName }}&owner={{ .kubriX.gitRepoOrg }}`}}
+        repoUrl: github.com?repo={{ .kubriX.gitRepoName }}&owner={{ .kubriX.gitRepoOrg }}
         title: Onboarding team ${{`{{ steps['catalogFetch'].output.entity.metadata.name }}`}}
         description: Onboarding team ${{`{{ steps['catalogFetch'].output.entity.metadata.name }}`}}
         targetPath: platform-apps/charts/team-onboarding
@@ -127,11 +127,11 @@ spec:
         sourcePath: ./team-apps-of-apps
         repoUrl: github.com?repo=${{`{{ steps['catalogFetch'].output.entity.metadata.name }}`}}-apps&owner={{ .kubriX.gitRepoOrg }}
         title: team-apps repo for ${{`{{ steps['catalogFetch'].output.entity.metadata.name }}`}}
-        description: team-apps repo for ${{ steps['catalogFetch'].output.entity.metadata.name }}`}}
+        description: team-apps repo for ${{`{{ steps['catalogFetch'].output.entity.metadata.name }}`}}
         token: ${{`{{ secrets.USER_OAUTH_TOKEN }}`}}
         gitAuthorName: ${{`{{ user.entity.metadata.name }}`}}
         gitAuthorEmail: ${{`{{ user.entity.spec.profile.email }}`}}
-        gitCommitMessage: Team Onboarding for ${{ steps['catalogFetch'].output.entity.metadata.name }}`}}
+        gitCommitMessage: Team Onboarding for ${{`{{ steps['catalogFetch'].output.entity.metadata.name }}`}}
         repoVisibility: public
         deleteBranchOnMerge: true
         protectDefaultBranch: false
