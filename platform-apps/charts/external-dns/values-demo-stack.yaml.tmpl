@@ -68,8 +68,9 @@ external-dns:
   # set cache to reduce rate-limit problems
   - --provider-cache-time=15m
 
-    domainFilters:
-    - kubrix.stackit.run
+  domainFilters:
+  - {{ .kubriX.domain }}
+
   global:
     imagePullSecrets:
       - name: image-pull-secret
