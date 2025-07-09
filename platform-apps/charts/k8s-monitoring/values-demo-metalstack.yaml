@@ -118,6 +118,15 @@ k8s-monitoring:
     enabled: true
   podLogs:
     enabled: true
+    labelsToKeep:
+      - instance
+      - job
+      - level
+      - name
+      - unit
+      - service_name
+      - source
+      - stream
   alloy-logs:
     enabled: true
   annotationAutodiscovery:
@@ -135,7 +144,7 @@ k8s-monitoring:
               - alloy-metrics
               - alloy-singleton
               - alloy-logs
-          metrics:
+          metrics:stream
             tuning:
               useDefaultAllowList: false
               includeMetrics:
