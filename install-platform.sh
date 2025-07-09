@@ -231,11 +231,11 @@ if [ "${KUBRIX_CREATE_K3D_CLUSTER}" == true ] ; then
     --wait
 fi
 
-if [[ "${KUBRIX_TARGET_TYPE}" =~ ^KIND.* ]] ; then
+if [[ "${KUBRIX_TARGET_TYPE}" =~ ^KIND.* || "${KUBRIX_CLUSTER_TYPE}" == "KIND" ]] ; then
   # create mkcert certs in alle namespaces with ingress
   for namespace in backstage kargo grafana cnpg argocd komoplane kubecost falco minio velero velero-ui; do
     kubectl create namespace ${namespace}
-    mkcert -cert-file ${namespace}-cert.pem -key-file ${namespace}-key.pem ${namespace}-127-0-0-1.nip.io
+    mkcert -cert-file ${namespace}-cert.pem -key-file ${namespace}-key.pem ${namespace}.127-0-0-1.nip.io
     # kargo needs a special secret name according to its helm chart
     if [ "${namespace}" = "kargo" ]; then
       kubectl create secret tls kargo-api-ingress-cert -n ${namespace} --cert=${namespace}-cert.pem --key=${namespace}-key.pem
@@ -244,7 +244,7 @@ if [[ "${KUBRIX_TARGET_TYPE}" =~ ^KIND.* ]] ; then
     fi
     # minioconsole needs additional secret
     if [ "${namespace}" = "minio" ]; then
-      mkcert -cert-file ${namespace}-console-cert.pem -key-file ${namespace}-console-key.pem minio-console-127-0-0-1.nip.io
+      mkcert -cert-file ${namespace}-console-cert.pem -key-file ${namespace}-console-key.pem minio-console.127-0-0-1.nip.io
       kubectl create secret tls minio-console-tls -n ${namespace} --cert=${namespace}-console-cert.pem --key=${namespace}-console-key.pem
       rm ${namespace}-console-cert.pem ${namespace}-console-key.pem
     fi
@@ -255,7 +255,7 @@ if [[ "${KUBRIX_TARGET_TYPE}" =~ ^KIND.* ]] ; then
   kubectl get configmap coredns -n kube-system -o yaml |  awk '
 /ready/ {
     print;
-    print "        rewrite name keycloak-127-0-0-1.nip.io ingress-nginx-controller.ingress-nginx.svc.cluster.local";
+    print "        rewrite name keycloak.127-0-0-1.nip.io ingress-nginx-controller.ingress-nginx.svc.cluster.local";
     next
 }
 { print }
@@ -357,7 +357,7 @@ if [[ $( echo $argocd_apps | grep sx-vault ) ]] ; then
   export VAULT_TOKEN=$(kubectl get secret -n vault vault-init -o=jsonpath='{.data.root_token}'  | base64 -d)
   curl -k --header "X-Vault-Token:$VAULT_TOKEN" --request POST --data "{\"data\": {\"VAULT_ADDR\": \"https://${VAULT_HOSTNAME}\", \"VAULT_ADDR_INT\": \"http://sx-vault-active.vault.svc.cluster.local:8200\", \"VAULT_TOKEN\": \"${VAULT_TOKEN}\"}}" https://${VAULT_HOSTNAME}/v1/kubrix-kv/data/security/vault/base
 
-  if [[ "${KUBRIX_TARGET_TYPE}" =~ ^KIND.* ]] ; then
+  if [[ "${KUBRIX_TARGET_TYPE}" =~ ^KIND.* || "${KUBRIX_CLUSTER_TYPE}" == "KIND" ]] ; then
   # due to issue #405 this step is needed for kind clusters
     export VAULT_CLIENTSECRET=$(kubectl get secret -n keycloak keycloak-client-credentials -o=jsonpath='{.data.vault}'  | base64 -d)
     export KEYCLOAK_HOSTNAME=$(kubectl get ingress -o jsonpath='{.items[*].spec.rules[*].host}' -n keycloak)
