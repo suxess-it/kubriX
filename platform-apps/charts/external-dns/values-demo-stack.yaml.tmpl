@@ -72,11 +72,10 @@ external-dns:
   - {{ .kubriX.domain }}
 
   global:
-    imagePullSecrets:
-      - name: image-pull-secret
     security:
       allowInsecureImages: true
   provider:
+    name: webhook
     webhook:
       image:
         repository: ghcr.io/stackitcloud/external-dns-stackit-webhook
@@ -92,5 +91,22 @@ external-dns:
             secretKeyRef:
               name: external-dns-webhook
               key: PROJECT_ID
+      livenessProbe:
+        failureThreshold: 2
+        httpGet:
+          path: /healthz
+          port: 8888
+        initialDelaySeconds: 10
+        periodSeconds: 10
+        successThreshold: 1
+        timeoutSeconds: 5
+      readinessProbe:
+        failureThreshold: 6
+        httpGet:
+          path: /healthz
+          port: 8888
+        initialDelaySeconds: 5
+        periodSeconds: 10
+        successThreshold: 1
   txtOwnerId: kubrix-production
   {{ end }}
