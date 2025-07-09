@@ -80,6 +80,15 @@ wait_until_apps_synced_healthy() {
           fi
         fi
 
+        # special case for k8s-monitoring to re-sync one time after it deployed sucessfully,
+        # because of a .Capabilities.APIVersions.Has condition in the templates for monitoring.coreos which gets deployed by k8s-monitoring itself
+        if [[ "${app}" == "sx-k8s-monitoring" && "${sync_status}" == "${synced}" && "${health_status}" == "${healthy}" ]]; then
+          if [  "${k8smonitoring_restarted}" != "true" ]; then
+            kubectl exec sx-argocd-application-controller-0 -n argocd -- argocd app sync "$app" --async --core
+            k8smonitoring_restarted="true"
+          fi
+        fi
+        
         if [[ "${sync_status}" != ${synced} ]] || [[ "${health_status}" != ${healthy} ]] ; then
           all_apps_synced="false"
         fi
