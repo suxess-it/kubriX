@@ -1,1 +1,5 @@
+{{ if eq .kubriX.clusterType "kind" -}}
+createmkcertClusterIssuer: true
+{{ else }}
 createLetsEncryptProdClusterIssuer: true
+{{ end -}}
