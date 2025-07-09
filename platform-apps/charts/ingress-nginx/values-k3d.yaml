@@ -1,5 +1,7 @@
 ingress-nginx:
   controller:
+    extraArgs:
+      enable-ssl-passthrough: "true"
     updateStrategy:
       type: RollingUpdate
       rollingUpdate:
