@@ -23,7 +23,7 @@ Steps:
 4. optional: set the DNS provider, which external-dns should connect to.
 
     default: ionos  
-    supported: ionos, route53
+    supported: ionos, route53, stackit
 
     ```
     export KUBRIX_CUSTOMER_DNS_PROVIDER="ionos"
@@ -49,9 +49,9 @@ Steps:
 
 7. create a new Kubernetes cluster and be sure that kubectl is connected to it. check with `kubectl cluster-info`
 
-8. provide external-dns secrets
+8. provide external-dns secrets depending on your DNS provider
 
-    ### ionos
+    __ionos__
 
     create a secret with your DNS api-key like this:
 
@@ -60,7 +60,7 @@ Steps:
     kubectl create secret generic ionos-credentials -n external-dns --from-literal=api-key='your-api-key'
     ```
 
-    ### aws
+    __aws__
 
     create a `credentials` file like this:
 
@@ -74,6 +74,14 @@ Steps:
     ```
     kubectl create ns external-dns
     kubectl create secret generic -n external-dns sx-external-dns --from-file credentials
+    ```
+
+    __stackit__
+
+    ```
+    kubectl create ns external-dns
+    kubectl create secret generic external-dns-webhook -n external-dns --from-literal=AUTH_TOKEN='your-auth-token'
+    --from-literal=PROJECT_ID='your-project-id'
     ```
 
 9. If you need to prepare something else on your cluster before kubriX gets installed, do this now.

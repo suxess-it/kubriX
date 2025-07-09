@@ -59,3 +59,29 @@ external-dns:
         secretName: sx-external-dns
 
   {{ end }}
+  {{ if eq .kubriX.dnsProvider "stackit" -}}
+    domainFilters:
+    - kubrix.stackit.run
+  global:
+    imagePullSecrets:
+      - name: image-pull-secret
+    security:
+      allowInsecureImages: true
+  provider:
+    webhook:
+      image:
+        repository: ghcr.io/stackitcloud/external-dns-stackit-webhook
+        tag: v0.3.2
+       env:
+        - name: AUTH_TOKEN
+          valueFrom:
+            secretKeyRef:
+              name: external-dns-webhook
+              key: AUTH_TOKEN
+        - name: PROJECT_ID
+          valueFrom:
+            secretKeyRef:
+              name: external-dns-webhook
+              key: PROJECT_ID
+  txtOwnerId: kubrix-production
+  {{ end }}
