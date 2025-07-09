@@ -51,6 +51,25 @@ k8s-monitoring:
     enabled: true
   podLogs:
     enabled: true
+    labelsToKeep:
+      - app.kubernetes.io/name
+      - container
+      - instance
+      - job
+      - level
+      - namespace
+      - service.name
+      - service.namespace
+      - deployment.environment
+      - deployment.environment.name
+      - k8s.namespace.name
+      - k8s.deployment.name
+      - k8s.statefulset.name
+      - k8s.daemonset.name
+      - k8s.cronjob.name
+      - k8s.job.name
+      - k8s.node.name
+      - stream
   alloy-logs:
     enabled: true
   annotationAutodiscovery:
