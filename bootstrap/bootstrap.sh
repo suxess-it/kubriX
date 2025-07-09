@@ -47,6 +47,7 @@ git checkout ${KUBRIX_UPSTREAM_BRANCH}
 
 # write new customer values in customer config
 cat << EOF > bootstrap/customer-config.yaml
+clusterType: $( echo ${KUBRIX_CLUSTER_TYPE} | awk '{print tolower($0)}' )
 dnsProvider: ${KUBRIX_CUSTOMER_DNS_PROVIDER}
 domain: ${KUBRIX_CUSTOMER_DOMAIN}
 gitRepo: ${KUBRIX_CUSTOMER_REPO}
@@ -63,7 +64,7 @@ chmod 755 gomplate
 
 echo "rendering values templates ..."
 valuesFile=$( echo ${KUBRIX_CUSTOMER_TARGET_TYPE} | awk '{print tolower($0)}' )
-gomplate --context kubriX=bootstrap/customer-config.yaml --input-dir platform-apps/charts --include *${valuesFile}.yaml.tmpl --output-map='platform-apps/charts/{{ .in | strings.ReplaceAll ".yaml.tmpl" ".yaml" }}'
+gomplate --context kubriX=bootstrap/customer-config.yaml --input-dir platform-apps --include *${valuesFile}.yaml.tmpl --output-map='platform-apps/{{ .in | strings.ReplaceAll ".yaml.tmpl" ".yaml" }}'
 rm gomplate
 
 echo "Push kubriX gitops files to ${KUBRIX_CUSTOMER_REPO}"
