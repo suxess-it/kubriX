@@ -1,6 +1,6 @@
 
 <h3>Target <code>docker.io/bitnami/kubectl:1.31 (debian 12.8)</code></h3>
-<h4>Vulnerabilities (33)</h4>
+<h4>Vulnerabilities (37)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -8,6 +8,34 @@
         <th>Severity</th>
         <th>Installed Version</th>
         <th>Fixed Version</th>
+    </tr>
+    <tr>
+        <td><code>git</code></td>
+        <td>CVE-2025-48384</td>
+        <td>HIGH</td>
+        <td>1:2.39.5-0+deb12u1</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>git</code></td>
+        <td>CVE-2025-48385</td>
+        <td>HIGH</td>
+        <td>1:2.39.5-0+deb12u1</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>git-man</code></td>
+        <td>CVE-2025-48384</td>
+        <td>HIGH</td>
+        <td>1:2.39.5-0+deb12u1</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>git-man</code></td>
+        <td>CVE-2025-48385</td>
+        <td>HIGH</td>
+        <td>1:2.39.5-0+deb12u1</td>
+        <td></td>
     </tr>
     <tr>
         <td><code>jq</code></td>

@@ -226,7 +226,7 @@
 <h4>No Misconfigurations found</h4>
 
 <h3>Target <code>docker.io/dserio83/velero-watchdog:0.1.7 (debian 12.9)</code></h3>
-<h4>Vulnerabilities (20)</h4>
+<h4>Vulnerabilities (24)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -234,6 +234,34 @@
         <th>Severity</th>
         <th>Installed Version</th>
         <th>Fixed Version</th>
+    </tr>
+    <tr>
+        <td><code>git</code></td>
+        <td>CVE-2025-48384</td>
+        <td>HIGH</td>
+        <td>1:2.39.5-0+deb12u2</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>git</code></td>
+        <td>CVE-2025-48385</td>
+        <td>HIGH</td>
+        <td>1:2.39.5-0+deb12u2</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>git-man</code></td>
+        <td>CVE-2025-48384</td>
+        <td>HIGH</td>
+        <td>1:2.39.5-0+deb12u2</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>git-man</code></td>
+        <td>CVE-2025-48385</td>
+        <td>HIGH</td>
+        <td>1:2.39.5-0+deb12u2</td>
+        <td></td>
     </tr>
     <tr>
         <td><code>libc-bin</code></td>

@@ -412,7 +412,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>root/.local/share/helm/plugins/helm-diff/bin/diff</code></h3>
-<h4>Vulnerabilities (16)</h4>
+<h4>Vulnerabilities (17)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -462,6 +462,13 @@
         <td>HIGH</td>
         <td>v3.11.3</td>
         <td>3.14.2</td>
+    </tr>
+    <tr>
+        <td><code>helm.sh/helm/v3</code></td>
+        <td>CVE-2025-53547</td>
+        <td>HIGH</td>
+        <td>v3.11.3</td>
+        <td>3.18.4</td>
     </tr>
     <tr>
         <td><code>stdlib</code></td>
@@ -536,7 +543,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>root/.local/share/helm/plugins/helm-push/bin/helm-cm-push</code></h3>
-<h4>Vulnerabilities (13)</h4>
+<h4>Vulnerabilities (14)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -595,6 +602,13 @@
         <td>3.14.2</td>
     </tr>
     <tr>
+        <td><code>helm.sh/helm/v3</code></td>
+        <td>CVE-2025-53547</td>
+        <td>HIGH</td>
+        <td>v3.11.2</td>
+        <td>3.18.4</td>
+    </tr>
+    <tr>
         <td><code>stdlib</code></td>
         <td>CVE-2024-24790</td>
         <td>CRITICAL</td>
@@ -639,7 +653,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>root/.local/share/helm/plugins/helm-unittest/untt</code></h3>
-<h4>Vulnerabilities (9)</h4>
+<h4>Vulnerabilities (10)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -675,6 +689,13 @@
         <td>HIGH</td>
         <td>v3.12.2</td>
         <td>3.14.2</td>
+    </tr>
+    <tr>
+        <td><code>helm.sh/helm/v3</code></td>
+        <td>CVE-2025-53547</td>
+        <td>HIGH</td>
+        <td>v3.12.2</td>
+        <td>3.18.4</td>
     </tr>
     <tr>
         <td><code>stdlib</code></td>
@@ -824,7 +845,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>usr/bin/eksctl</code></h3>
-<h4>Vulnerabilities (12)</h4>
+<h4>Vulnerabilities (13)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -874,6 +895,13 @@
         <td>HIGH</td>
         <td>v3.11.2</td>
         <td>3.14.2</td>
+    </tr>
+    <tr>
+        <td><code>helm.sh/helm/v3</code></td>
+        <td>CVE-2025-53547</td>
+        <td>HIGH</td>
+        <td>v3.11.2</td>
+        <td>3.18.4</td>
     </tr>
     <tr>
         <td><code>k8s.io/kops</code></td>
