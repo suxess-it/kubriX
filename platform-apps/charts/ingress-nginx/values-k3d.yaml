@@ -13,13 +13,8 @@ ingress-nginx:
       type: LoadBalancer
     watchIngressWithoutClass: true
 
-    tolerations:
-      - key: "node-role.kubernetes.io/master"
-        operator: "Equal"
-        effect: "NoSchedule"
-      - key: "node-role.kubernetes.io/control-plane"
-        operator: "Equal"
-        effect: "NoSchedule"
+    nodeSelector:
+      ingress-ready: true
 
     publishService:
       enabled: false
