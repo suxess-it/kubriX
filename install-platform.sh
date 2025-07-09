@@ -231,7 +231,7 @@ if [ "${KUBRIX_CREATE_K3D_CLUSTER}" == true ] ; then
     --wait
 fi
 
-if [[ "${KUBRIX_TARGET_TYPE}" =~ ^KIND.* ]] ; then
+if [[ "${KUBRIX_TARGET_TYPE}" =~ ^KIND.* || "${KUBRIX_CLUSTER_TYPE}" == "KIND" ]] ; then
   # create mkcert certs in alle namespaces with ingress
   for namespace in backstage kargo grafana cnpg argocd komoplane kubecost falco minio velero velero-ui; do
     kubectl create namespace ${namespace}
@@ -357,7 +357,7 @@ if [[ $( echo $argocd_apps | grep sx-vault ) ]] ; then
   export VAULT_TOKEN=$(kubectl get secret -n vault vault-init -o=jsonpath='{.data.root_token}'  | base64 -d)
   curl -k --header "X-Vault-Token:$VAULT_TOKEN" --request POST --data "{\"data\": {\"VAULT_ADDR\": \"https://${VAULT_HOSTNAME}\", \"VAULT_ADDR_INT\": \"http://sx-vault-active.vault.svc.cluster.local:8200\", \"VAULT_TOKEN\": \"${VAULT_TOKEN}\"}}" https://${VAULT_HOSTNAME}/v1/kubrix-kv/data/security/vault/base
 
-  if [[ "${KUBRIX_TARGET_TYPE}" =~ ^KIND.* ]] ; then
+  if [[ "${KUBRIX_TARGET_TYPE}" =~ ^KIND.* || "${KUBRIX_CLUSTER_TYPE}" == "KIND" ]] ; then
   # due to issue #405 this step is needed for kind clusters
     export VAULT_CLIENTSECRET=$(kubectl get secret -n keycloak keycloak-client-credentials -o=jsonpath='{.data.vault}'  | base64 -d)
     export KEYCLOAK_HOSTNAME=$(kubectl get ingress -o jsonpath='{.items[*].spec.rules[*].host}' -n keycloak)
