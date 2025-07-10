@@ -34,7 +34,7 @@ spec:
             allowedHosts:
               - github.com
             allowedOwners:
-              - kubriX-demo
+              - {{ .kubriX.gitRepoOrg }}
             requestUserCredentials:
               secretsKey: USER_OAUTH_TOKEN
               additionalScopes:
@@ -42,7 +42,7 @@ spec:
                   - workflow
                   - user
             allowedRepos:
-              - kubriX-demo-oss
+              - {{ .kubriX.gitRepoName }}
   steps:
     - id: catalogFetch
       name: Fetch component details
