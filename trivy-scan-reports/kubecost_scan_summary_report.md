@@ -1221,14 +1221,14 @@
         <td>CVE-2025-49794</td>
         <td>HIGH</td>
         <td>2.9.13-6.el9_5.2</td>
-        <td></td>
+        <td>2.9.13-10.el9_6</td>
     </tr>
     <tr>
         <td><code>libxml2</code></td>
         <td>CVE-2025-49796</td>
         <td>HIGH</td>
         <td>2.9.13-6.el9_5.2</td>
-        <td></td>
+        <td>2.9.13-10.el9_6</td>
     </tr>
 </table>
 <h4>No Misconfigurations found</h4>
@@ -1251,14 +1251,14 @@
         <td>CVE-2025-49794</td>
         <td>HIGH</td>
         <td>2.9.13-6.el9_5.2</td>
-        <td></td>
+        <td>2.9.13-10.el9_6</td>
     </tr>
     <tr>
         <td><code>libxml2</code></td>
         <td>CVE-2025-49796</td>
         <td>HIGH</td>
         <td>2.9.13-6.el9_5.2</td>
-        <td></td>
+        <td>2.9.13-10.el9_6</td>
     </tr>
     <tr>
         <td><code>pam</code></td>
@@ -1285,14 +1285,14 @@
         <td>CVE-2025-49794</td>
         <td>HIGH</td>
         <td>2.9.13-6.el9_5.2</td>
-        <td></td>
+        <td>2.9.13-10.el9_6</td>
     </tr>
     <tr>
         <td><code>libxml2</code></td>
         <td>CVE-2025-49796</td>
         <td>HIGH</td>
         <td>2.9.13-6.el9_5.2</td>
-        <td></td>
+        <td>2.9.13-10.el9_6</td>
     </tr>
     <tr>
         <td><code>python3.12</code></td>
