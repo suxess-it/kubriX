@@ -1,5 +1,5 @@
 scmAppsetRequeueAfterSeconds: 30
-multiStageKargoAppSetHelmRepo: "https://github.com/kubriX-demo/kubriX-demo-oss"
+multiStageKargoAppSetHelmRepo: {{ .kubriX.gitRepo }}
 
 destinationClusters:
   - name: in-cluster
