@@ -19,6 +19,10 @@ KUBRIX_CUSTOMER_DNS_PROVIDER=${KUBRIX_CUSTOMER_DNS_PROVIDER:-"ionos"}
 KUBRIX_CUSTOMER_REPO_PROTO=$(echo ${KUBRIX_CUSTOMER_REPO} | grep :// | sed "s,^\(.*://\).*,\1,")
 # remove the protocol from url
 KUBRIX_CUSTOMER_REPO_URL=$(echo ${KUBRIX_CUSTOMER_REPO} | sed "s,^${KUBRIX_CUSTOMER_REPO_PROTO},,")
+# get git server organization (for backstage scaffolder templates)
+KUBRIX_CUSTOMER_REPO_ORG=$(echo $KUBRIX_CUSTOMER_REPO_URL | awk -F/ '{print $2}')
+# get name of the repo
+KUBRIX_CUSTOMER_REPO_NAME=$(echo $KUBRIX_CUSTOMER_REPO_URL | awk -F/ '{print $3}')
 
 echo ""
 echo "-------------------------------------------------------------"
@@ -27,6 +31,8 @@ echo "-------------------------------------------------------------"
 echo "KUBRIX_UPSTREAM_REPO: ${KUBRIX_UPSTREAM_REPO}"
 echo "KUBRIX_UPSTREAM_BRANCH: ${KUBRIX_UPSTREAM_BRANCH}"
 echo "KUBRIX_CUSTOMER_REPO: ${KUBRIX_CUSTOMER_REPO}"
+echo "KUBRIX_CUSTOMER_REPO_ORG: ${KUBRIX_CUSTOMER_REPO_ORG}"
+echo "KUBRIX_CUSTOMER_REPO_NAME: ${KUBRIX_CUSTOMER_REPO_NAME}"
 echo "KUBRIX_CUSTOMER_TARGET_TYPE: ${KUBRIX_CUSTOMER_TARGET_TYPE}"
 echo "KUBRIX_CUSTOMER_DOMAIN: ${KUBRIX_CUSTOMER_DOMAIN}"
 echo "KUBRIX_CUSTOMER_DNS_PROVIDER: ${KUBRIX_CUSTOMER_DNS_PROVIDER}"
@@ -48,9 +54,12 @@ git checkout ${KUBRIX_UPSTREAM_BRANCH}
 # write new customer values in customer config
 cat << EOF > bootstrap/customer-config.yaml
 clusterType: $( echo ${KUBRIX_CLUSTER_TYPE} | awk '{print tolower($0)}' )
+valuesFile: $( echo ${KUBRIX_CUSTOMER_TARGET_TYPE} | awk '{print tolower($0)}' )
 dnsProvider: ${KUBRIX_CUSTOMER_DNS_PROVIDER}
 domain: ${KUBRIX_CUSTOMER_DOMAIN}
 gitRepo: ${KUBRIX_CUSTOMER_REPO}
+gitRepoOrg: ${KUBRIX_CUSTOMER_REPO_ORG}
+gitRepoName: ${KUBRIX_CUSTOMER_REPO_NAME}
 EOF
 
 echo "the current customer-config is like this:"
@@ -65,6 +74,7 @@ chmod 755 gomplate
 echo "rendering values templates ..."
 valuesFile=$( echo ${KUBRIX_CUSTOMER_TARGET_TYPE} | awk '{print tolower($0)}' )
 gomplate --context kubriX=bootstrap/customer-config.yaml --input-dir platform-apps --include *${valuesFile}.yaml.tmpl --output-map='platform-apps/{{ .in | strings.ReplaceAll ".yaml.tmpl" ".yaml" }}'
+gomplate --context kubriX=bootstrap/customer-config.yaml --input-dir backstage-resources --include *.yaml.tmpl --output-map='backstage-resources/{{ .in | strings.ReplaceAll ".yaml.tmpl" ".yaml" }}'
 rm gomplate
 
 echo "Push kubriX gitops files to ${KUBRIX_CUSTOMER_REPO}"
