@@ -54,6 +54,7 @@ git checkout ${KUBRIX_UPSTREAM_BRANCH}
 # write new customer values in customer config
 cat << EOF > bootstrap/customer-config.yaml
 clusterType: $( echo ${KUBRIX_CLUSTER_TYPE} | awk '{print tolower($0)}' )
+valuesFile: $( echo ${KUBRIX_CUSTOMER_TARGET_TYPE} | awk '{print tolower($0)}' )
 dnsProvider: ${KUBRIX_CUSTOMER_DNS_PROVIDER}
 domain: ${KUBRIX_CUSTOMER_DOMAIN}
 gitRepo: ${KUBRIX_CUSTOMER_REPO}
