@@ -76,7 +76,7 @@ spec:
           # new team stanza for team ${{`{{ steps['catalogFetch'].output.entity.metadata.name }}`}}
             - name: ${{`{{ steps['catalogFetch'].output.entity.metadata.name }}`}}
               sourceRepos:
-                - 'https://github.com/{{ .kubriX.gitRepoOrg }}/${{`{{ parameters.team }}`}}-*'
+                - 'https://github.com/{{ .kubriX.gitRepoOrg }}/${{`{{ steps['catalogFetch'].output.entity.metadata.name }}`}}-*'
               clusterResourceWhitelist:
                 - group: ""
                   kind: Namespace
