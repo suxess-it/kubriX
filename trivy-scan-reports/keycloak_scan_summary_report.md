@@ -161,7 +161,7 @@
 <h4>No Misconfigurations found</h4>
 
 <h3>Target <code>docker.io/bitnami/postgresql:17.5.0-debian-12-r10 (debian 12.11)</code></h3>
-<h4>Vulnerabilities (26)</h4>
+<h4>Vulnerabilities (27)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -305,16 +305,23 @@
     </tr>
     <tr>
         <td><code>libxml2</code></td>
-        <td>CVE-2025-49795</td>
+        <td>CVE-2025-6021</td>
         <td>HIGH</td>
         <td>2.9.14+dfsg-1.3~deb12u1</td>
         <td></td>
     </tr>
     <tr>
-        <td><code>libxml2</code></td>
-        <td>CVE-2025-6021</td>
+        <td><code>libxslt1.1</code></td>
+        <td>CVE-2025-7424</td>
         <td>HIGH</td>
-        <td>2.9.14+dfsg-1.3~deb12u1</td>
+        <td>1.1.35-1+deb12u1</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>libxslt1.1</code></td>
+        <td>CVE-2025-7425</td>
+        <td>HIGH</td>
+        <td>1.1.35-1+deb12u1</td>
         <td></td>
     </tr>
     <tr>

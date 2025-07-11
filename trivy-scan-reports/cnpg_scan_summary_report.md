@@ -2,7 +2,7 @@
 <h3>Trivy Returned Empty Report</h3>
 
 <h3>Target <code>docker.io/dpage/pgadmin4:9.4 (alpine 3.21.3)</code></h3>
-<h4>Vulnerabilities (18)</h4>
+<h4>Vulnerabilities (20)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -10,6 +10,20 @@
         <th>Severity</th>
         <th>Installed Version</th>
         <th>Fixed Version</th>
+    </tr>
+    <tr>
+        <td><code>icu-data-en</code></td>
+        <td>CVE-2025-5222</td>
+        <td>HIGH</td>
+        <td>74.2-r0</td>
+        <td>74.2-r1</td>
+    </tr>
+    <tr>
+        <td><code>icu-libs</code></td>
+        <td>CVE-2025-5222</td>
+        <td>HIGH</td>
+        <td>74.2-r0</td>
+        <td>74.2-r1</td>
     </tr>
     <tr>
         <td><code>pyc</code></td>
