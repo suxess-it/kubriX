@@ -1,0 +1,112 @@
+external-dns:
+
+  {{ if eq .kubriX.dnsProvider "ionos" -}}
+  # we use ionos external-dns webhook 
+  # described in https://github.com/ionos-cloud/external-dns-ionos-webhook?tab=readme-ov-file#kubernetes-deployment
+  # ionos-credentials is in external-dns namespace
+
+  extraArgs:
+  ## must override the default value with port 8888 with port 8080 because this is hard-coded in the helm chart
+  - --webhook-provider-url=http://localhost:8080
+  # set cache to reduce rate-limit problems on ionos
+  - --provider-cache-time=15m
+
+  provider:
+    name: webhook
+    webhook:
+      image:
+        repository: ghcr.io/ionos-cloud/external-dns-ionos-webhook
+        tag: v0.6.2
+      env:
+      - name: LOG_LEVEL
+        value: info # reduce in production
+      - name: IONOS_API_KEY
+        valueFrom:
+          secretKeyRef:
+            name: ionos-credentials
+            key: api-key
+      - name: SERVER_HOST
+        value: "0.0.0.0"
+      - name: SERVER_PORT
+        value: "8080"
+      - name: IONOS_DEBUG
+        value: "false" # put this to true if you want see details of the http requests
+      - name: DRY_RUN
+        value: "false" # set to false to apply changes
+      livenessProbe:
+        httpGet:
+          path: /health
+      readinessProbe:
+        httpGet:
+          path: /health
+  {{ end }}
+  {{ if eq .kubriX.dnsProvider "aws" -}}
+  extraArgs:
+  # set cache to reduce rate-limit problems
+  - --provider-cache-time=15m
+
+  provider:
+    name: aws
+
+  env:
+    - name: AWS_SHARED_CREDENTIALS_FILE
+      value: /.aws/credentials
+
+  extraVolumeMounts:
+    - name: aws-credentials
+      mountPath: /.aws
+      readOnly: true
+
+  extraVolumes:
+    - name: aws-credentials
+      secret:
+        secretName: sx-external-dns
+
+  {{ end }}
+  {{ if eq .kubriX.dnsProvider "stackit" -}}
+  extraArgs:
+  # set cache to reduce rate-limit problems
+  - --provider-cache-time=15m
+
+  domainFilters:
+  - {{ .kubriX.domain }}
+
+  global:
+    security:
+      allowInsecureImages: true
+  provider:
+    name: webhook
+    webhook:
+      image:
+        repository: ghcr.io/stackitcloud/external-dns-stackit-webhook
+        tag: v0.3.2
+      env:
+        - name: AUTH_TOKEN
+          valueFrom:
+            secretKeyRef:
+              name: external-dns-webhook
+              key: AUTH_TOKEN
+        - name: PROJECT_ID
+          valueFrom:
+            secretKeyRef:
+              name: external-dns-webhook
+              key: PROJECT_ID
+      livenessProbe:
+        failureThreshold: 2
+        httpGet:
+          path: /healthz
+          port: 8888
+        initialDelaySeconds: 10
+        periodSeconds: 10
+        successThreshold: 1
+        timeoutSeconds: 5
+      readinessProbe:
+        failureThreshold: 6
+        httpGet:
+          path: /healthz
+          port: 8888
+        initialDelaySeconds: 5
+        periodSeconds: 10
+        successThreshold: 1
+  txtOwnerId: kubrix-production
+  {{ end }}

@@ -1,5 +1,9 @@
 eso:
+  {{- if eq .kubriX.clusterType "kind" -}}
+  providerUrl: "http://sx-vault-active.vault.svc.cluster.local:8200"
+  {{ else }}
   providerUrl: "https://vault.{{ .kubriX.domain }}/"
+  {{ end -}}
   backendName: vault-backend
   secretStore: kubrix-kv
 
