@@ -1,8 +1,8 @@
 
 <h3>Trivy Returned Empty Report</h3>
 
-<h3>Target <code>docker.io/dpage/pgadmin4:9.4 (alpine 3.21.3)</code></h3>
-<h4>Vulnerabilities (12)</h4>
+<h3>Target <code>docker.io/dpage/pgadmin4:9.5 (alpine 3.22.0)</code></h3>
+<h4>Vulnerabilities (4)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -12,88 +12,32 @@
         <th>Fixed Version</th>
     </tr>
     <tr>
-        <td><code>pyc</code></td>
-        <td>CVE-2024-12718</td>
+        <td><code>icu-data-en</code></td>
+        <td>CVE-2025-5222</td>
         <td>HIGH</td>
-        <td>3.12.10-r1</td>
-        <td>3.12.11-r0</td>
+        <td>76.1-r0</td>
+        <td>76.1-r1</td>
     </tr>
     <tr>
-        <td><code>pyc</code></td>
-        <td>CVE-2025-4138</td>
+        <td><code>icu-libs</code></td>
+        <td>CVE-2025-5222</td>
         <td>HIGH</td>
-        <td>3.12.10-r1</td>
-        <td>3.12.11-r0</td>
+        <td>76.1-r0</td>
+        <td>76.1-r1</td>
     </tr>
     <tr>
-        <td><code>pyc</code></td>
-        <td>CVE-2025-4517</td>
+        <td><code>sudo</code></td>
+        <td>CVE-2025-32462</td>
         <td>HIGH</td>
-        <td>3.12.10-r1</td>
-        <td>3.12.11-r0</td>
+        <td>1.9.16_p2-r1</td>
+        <td>1.9.17_p1-r0</td>
     </tr>
     <tr>
-        <td><code>python3</code></td>
-        <td>CVE-2024-12718</td>
+        <td><code>sudo</code></td>
+        <td>CVE-2025-32463</td>
         <td>HIGH</td>
-        <td>3.12.10-r1</td>
-        <td>3.12.11-r0</td>
-    </tr>
-    <tr>
-        <td><code>python3</code></td>
-        <td>CVE-2025-4138</td>
-        <td>HIGH</td>
-        <td>3.12.10-r1</td>
-        <td>3.12.11-r0</td>
-    </tr>
-    <tr>
-        <td><code>python3</code></td>
-        <td>CVE-2025-4517</td>
-        <td>HIGH</td>
-        <td>3.12.10-r1</td>
-        <td>3.12.11-r0</td>
-    </tr>
-    <tr>
-        <td><code>python3-pyc</code></td>
-        <td>CVE-2024-12718</td>
-        <td>HIGH</td>
-        <td>3.12.10-r1</td>
-        <td>3.12.11-r0</td>
-    </tr>
-    <tr>
-        <td><code>python3-pyc</code></td>
-        <td>CVE-2025-4138</td>
-        <td>HIGH</td>
-        <td>3.12.10-r1</td>
-        <td>3.12.11-r0</td>
-    </tr>
-    <tr>
-        <td><code>python3-pyc</code></td>
-        <td>CVE-2025-4517</td>
-        <td>HIGH</td>
-        <td>3.12.10-r1</td>
-        <td>3.12.11-r0</td>
-    </tr>
-    <tr>
-        <td><code>python3-pycache-pyc0</code></td>
-        <td>CVE-2024-12718</td>
-        <td>HIGH</td>
-        <td>3.12.10-r1</td>
-        <td>3.12.11-r0</td>
-    </tr>
-    <tr>
-        <td><code>python3-pycache-pyc0</code></td>
-        <td>CVE-2025-4138</td>
-        <td>HIGH</td>
-        <td>3.12.10-r1</td>
-        <td>3.12.11-r0</td>
-    </tr>
-    <tr>
-        <td><code>python3-pycache-pyc0</code></td>
-        <td>CVE-2025-4517</td>
-        <td>HIGH</td>
-        <td>3.12.10-r1</td>
-        <td>3.12.11-r0</td>
+        <td>1.9.16_p2-r1</td>
+        <td>1.9.17_p1-r0</td>
     </tr>
 </table>
 <h4>No Misconfigurations found</h4>
@@ -108,11 +52,11 @@
         <th>Fixed Version</th>
     </tr>
     <tr>
-        <td><code>protobuf</code></td>
-        <td>CVE-2025-4565</td>
+        <td><code>pillow</code></td>
+        <td>CVE-2025-48379</td>
         <td>HIGH</td>
-        <td>6.31.0</td>
-        <td>4.25.8, 5.29.5, 6.31.1</td>
+        <td>11.2.1</td>
+        <td>11.3.0</td>
     </tr>
 </table>
 <h4>No Misconfigurations found</h4>

@@ -412,7 +412,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>root/.local/share/helm/plugins/helm-diff/bin/diff</code></h3>
-<h4>Vulnerabilities (16)</h4>
+<h4>Vulnerabilities (17)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -462,6 +462,13 @@
         <td>HIGH</td>
         <td>v3.11.3</td>
         <td>3.14.2</td>
+    </tr>
+    <tr>
+        <td><code>helm.sh/helm/v3</code></td>
+        <td>CVE-2025-53547</td>
+        <td>HIGH</td>
+        <td>v3.11.3</td>
+        <td>3.18.4</td>
     </tr>
     <tr>
         <td><code>stdlib</code></td>
@@ -536,7 +543,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>root/.local/share/helm/plugins/helm-push/bin/helm-cm-push</code></h3>
-<h4>Vulnerabilities (13)</h4>
+<h4>Vulnerabilities (14)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -595,6 +602,13 @@
         <td>3.14.2</td>
     </tr>
     <tr>
+        <td><code>helm.sh/helm/v3</code></td>
+        <td>CVE-2025-53547</td>
+        <td>HIGH</td>
+        <td>v3.11.2</td>
+        <td>3.18.4</td>
+    </tr>
+    <tr>
         <td><code>stdlib</code></td>
         <td>CVE-2024-24790</td>
         <td>CRITICAL</td>
@@ -639,7 +653,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>root/.local/share/helm/plugins/helm-unittest/untt</code></h3>
-<h4>Vulnerabilities (9)</h4>
+<h4>Vulnerabilities (10)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -675,6 +689,13 @@
         <td>HIGH</td>
         <td>v3.12.2</td>
         <td>3.14.2</td>
+    </tr>
+    <tr>
+        <td><code>helm.sh/helm/v3</code></td>
+        <td>CVE-2025-53547</td>
+        <td>HIGH</td>
+        <td>v3.12.2</td>
+        <td>3.18.4</td>
     </tr>
     <tr>
         <td><code>stdlib</code></td>
@@ -824,7 +845,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>usr/bin/eksctl</code></h3>
-<h4>Vulnerabilities (12)</h4>
+<h4>Vulnerabilities (13)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -874,6 +895,13 @@
         <td>HIGH</td>
         <td>v3.11.2</td>
         <td>3.14.2</td>
+    </tr>
+    <tr>
+        <td><code>helm.sh/helm/v3</code></td>
+        <td>CVE-2025-53547</td>
+        <td>HIGH</td>
+        <td>v3.11.2</td>
+        <td>3.18.4</td>
     </tr>
     <tr>
         <td><code>k8s.io/kops</code></td>
@@ -1179,6 +1207,36 @@
 <h4>No Misconfigurations found</h4>
 
 <h3>Target <code>gcr.io/kubecost1/cost-model:prod-2.7.2 (redhat 9.5)</code></h3>
+<h4>Vulnerabilities (2)</h4>
+<table>
+    <tr>
+        <th>Package</th>
+        <th>ID</th>
+        <th>Severity</th>
+        <th>Installed Version</th>
+        <th>Fixed Version</th>
+    </tr>
+    <tr>
+        <td><code>libxml2</code></td>
+        <td>CVE-2025-49794</td>
+        <td>HIGH</td>
+        <td>2.9.13-6.el9_5.2</td>
+        <td>2.9.13-10.el9_6</td>
+    </tr>
+    <tr>
+        <td><code>libxml2</code></td>
+        <td>CVE-2025-49796</td>
+        <td>HIGH</td>
+        <td>2.9.13-6.el9_5.2</td>
+        <td>2.9.13-10.el9_6</td>
+    </tr>
+</table>
+<h4>No Misconfigurations found</h4>
+<h3>Target <code>go/bin/app</code></h3>
+<h4>No Vulnerabilities found</h4>
+<h4>No Misconfigurations found</h4>
+
+<h3>Target <code>gcr.io/kubecost1/frontend:prod-2.7.2 (redhat 9.5)</code></h3>
 <h4>Vulnerabilities (3)</h4>
 <table>
     <tr>
@@ -1193,71 +1251,27 @@
         <td>CVE-2025-49794</td>
         <td>HIGH</td>
         <td>2.9.13-6.el9_5.2</td>
-        <td></td>
-    </tr>
-    <tr>
-        <td><code>libxml2</code></td>
-        <td>CVE-2025-49795</td>
-        <td>HIGH</td>
-        <td>2.9.13-6.el9_5.2</td>
-        <td></td>
+        <td>2.9.13-10.el9_6</td>
     </tr>
     <tr>
         <td><code>libxml2</code></td>
         <td>CVE-2025-49796</td>
         <td>HIGH</td>
         <td>2.9.13-6.el9_5.2</td>
-        <td></td>
-    </tr>
-</table>
-<h4>No Misconfigurations found</h4>
-<h3>Target <code>go/bin/app</code></h3>
-<h4>No Vulnerabilities found</h4>
-<h4>No Misconfigurations found</h4>
-
-<h3>Target <code>gcr.io/kubecost1/frontend:prod-2.7.2 (redhat 9.5)</code></h3>
-<h4>Vulnerabilities (4)</h4>
-<table>
-    <tr>
-        <th>Package</th>
-        <th>ID</th>
-        <th>Severity</th>
-        <th>Installed Version</th>
-        <th>Fixed Version</th>
-    </tr>
-    <tr>
-        <td><code>libxml2</code></td>
-        <td>CVE-2025-49794</td>
-        <td>HIGH</td>
-        <td>2.9.13-6.el9_5.2</td>
-        <td></td>
-    </tr>
-    <tr>
-        <td><code>libxml2</code></td>
-        <td>CVE-2025-49795</td>
-        <td>HIGH</td>
-        <td>2.9.13-6.el9_5.2</td>
-        <td></td>
-    </tr>
-    <tr>
-        <td><code>libxml2</code></td>
-        <td>CVE-2025-49796</td>
-        <td>HIGH</td>
-        <td>2.9.13-6.el9_5.2</td>
-        <td></td>
+        <td>2.9.13-10.el9_6</td>
     </tr>
     <tr>
         <td><code>pam</code></td>
         <td>CVE-2025-6020</td>
         <td>HIGH</td>
         <td>1.5.1-22.el9_5</td>
-        <td></td>
+        <td>1.5.1-25.el9_6</td>
     </tr>
 </table>
 <h4>No Misconfigurations found</h4>
 
 <h3>Target <code>gcr.io/kubecost1/kubecost-modeling:v0.1.26 (redhat 9.5)</code></h3>
-<h4>Vulnerabilities (9)</h4>
+<h4>Vulnerabilities (8)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -1271,63 +1285,56 @@
         <td>CVE-2025-49794</td>
         <td>HIGH</td>
         <td>2.9.13-6.el9_5.2</td>
-        <td></td>
-    </tr>
-    <tr>
-        <td><code>libxml2</code></td>
-        <td>CVE-2025-49795</td>
-        <td>HIGH</td>
-        <td>2.9.13-6.el9_5.2</td>
-        <td></td>
+        <td>2.9.13-10.el9_6</td>
     </tr>
     <tr>
         <td><code>libxml2</code></td>
         <td>CVE-2025-49796</td>
         <td>HIGH</td>
         <td>2.9.13-6.el9_5.2</td>
-        <td></td>
+        <td>2.9.13-10.el9_6</td>
     </tr>
     <tr>
         <td><code>python3.12</code></td>
         <td>CVE-2024-12718</td>
         <td>HIGH</td>
         <td>3.12.5-2.el9_5.3</td>
-        <td></td>
+        <td>3.12.9-1.el9_6.1</td>
     </tr>
     <tr>
         <td><code>python3.12</code></td>
         <td>CVE-2025-4138</td>
         <td>HIGH</td>
         <td>3.12.5-2.el9_5.3</td>
-        <td></td>
+        <td>3.12.9-1.el9_6.1</td>
     </tr>
     <tr>
         <td><code>python3.12</code></td>
         <td>CVE-2025-4517</td>
         <td>HIGH</td>
         <td>3.12.5-2.el9_5.3</td>
-        <td></td>
+        <td>3.12.9-1.el9_6.1</td>
     </tr>
     <tr>
         <td><code>python3.12-libs</code></td>
         <td>CVE-2024-12718</td>
         <td>HIGH</td>
         <td>3.12.5-2.el9_5.3</td>
-        <td></td>
+        <td>3.12.9-1.el9_6.1</td>
     </tr>
     <tr>
         <td><code>python3.12-libs</code></td>
         <td>CVE-2025-4138</td>
         <td>HIGH</td>
         <td>3.12.5-2.el9_5.3</td>
-        <td></td>
+        <td>3.12.9-1.el9_6.1</td>
     </tr>
     <tr>
         <td><code>python3.12-libs</code></td>
         <td>CVE-2025-4517</td>
         <td>HIGH</td>
         <td>3.12.5-2.el9_5.3</td>
-        <td></td>
+        <td>3.12.9-1.el9_6.1</td>
     </tr>
 </table>
 <h4>No Misconfigurations found</h4>
