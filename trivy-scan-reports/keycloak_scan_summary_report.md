@@ -161,7 +161,7 @@
 <h4>No Misconfigurations found</h4>
 
 <h3>Target <code>docker.io/bitnami/postgresql:17.5.0-debian-12-r10 (debian 12.11)</code></h3>
-<h4>Vulnerabilities (27)</h4>
+<h4>Vulnerabilities (28)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -245,6 +245,13 @@
         <td>CVE-2023-31484</td>
         <td>HIGH</td>
         <td>5.36.0-7+deb12u2</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>libsqlite3-0</code></td>
+        <td>CVE-2025-6965</td>
+        <td>HIGH</td>
+        <td>3.40.1-2+deb12u1</td>
         <td></td>
     </tr>
     <tr>

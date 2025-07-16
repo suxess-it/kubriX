@@ -409,7 +409,7 @@
 <h4>No Misconfigurations found</h4>
 
 <h3>Target <code>docker.io/falcosecurity/falco:0.40.0-debian (debian 12.9)</code></h3>
-<h4>Vulnerabilities (14)</h4>
+<h4>Vulnerabilities (15)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -493,6 +493,13 @@
         <td>CVE-2025-6020</td>
         <td>HIGH</td>
         <td>1.5.2-6+deb12u1</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>libsqlite3-0</code></td>
+        <td>CVE-2025-6965</td>
+        <td>HIGH</td>
+        <td>3.40.1-2+deb12u1</td>
         <td></td>
     </tr>
     <tr>
