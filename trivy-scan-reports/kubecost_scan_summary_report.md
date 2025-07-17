@@ -468,7 +468,7 @@
         <td>CVE-2025-53547</td>
         <td>HIGH</td>
         <td>v3.11.3</td>
-        <td>3.18.4</td>
+        <td>3.18.4, 3.17.4</td>
     </tr>
     <tr>
         <td><code>stdlib</code></td>
@@ -606,7 +606,7 @@
         <td>CVE-2025-53547</td>
         <td>HIGH</td>
         <td>v3.11.2</td>
-        <td>3.18.4</td>
+        <td>3.18.4, 3.17.4</td>
     </tr>
     <tr>
         <td><code>stdlib</code></td>
@@ -695,7 +695,7 @@
         <td>CVE-2025-53547</td>
         <td>HIGH</td>
         <td>v3.12.2</td>
-        <td>3.18.4</td>
+        <td>3.18.4, 3.17.4</td>
     </tr>
     <tr>
         <td><code>stdlib</code></td>
@@ -901,7 +901,7 @@
         <td>CVE-2025-53547</td>
         <td>HIGH</td>
         <td>v3.11.2</td>
-        <td>3.18.4</td>
+        <td>3.18.4, 3.17.4</td>
     </tr>
     <tr>
         <td><code>k8s.io/kops</code></td>

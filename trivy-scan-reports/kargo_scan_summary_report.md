@@ -17,7 +17,7 @@
         <td>CVE-2025-53547</td>
         <td>HIGH</td>
         <td>v3.18.0</td>
-        <td>3.18.4</td>
+        <td>3.18.4, 3.17.4</td>
     </tr>
     <tr>
         <td><code>stdlib</code></td>
@@ -81,7 +81,7 @@
         <td>CVE-2025-53547</td>
         <td>HIGH</td>
         <td>v3.17.3</td>
-        <td>3.18.4</td>
+        <td>3.18.4, 3.17.4</td>
     </tr>
     <tr>
         <td><code>stdlib</code></td>
