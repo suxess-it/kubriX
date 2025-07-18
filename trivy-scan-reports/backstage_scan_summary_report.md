@@ -582,13 +582,6 @@
     </tr>
     <tr>
         <td><code>linux-libc-dev</code></td>
-        <td>CVE-2025-37957</td>
-        <td>HIGH</td>
-        <td>6.1.140-1</td>
-        <td></td>
-    </tr>
-    <tr>
-        <td><code>linux-libc-dev</code></td>
         <td>CVE-2025-37968</td>
         <td>HIGH</td>
         <td>6.1.140-1</td>
@@ -1184,6 +1177,13 @@
     </tr>
     <tr>
         <td><code>linux-libc-dev</code></td>
+        <td>CVE-2025-38211</td>
+        <td>HIGH</td>
+        <td>6.1.140-1</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>linux-libc-dev</code></td>
         <td>CVE-2025-38212</td>
         <td>HIGH</td>
         <td>6.1.140-1</td>
@@ -1416,7 +1416,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>Node.js</code></h3>
-<h4>Vulnerabilities (6)</h4>
+<h4>Vulnerabilities (7)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -1466,6 +1466,13 @@
         <td>HIGH</td>
         <td>2.0.0</td>
         <td>2.0.1</td>
+    </tr>
+    <tr>
+        <td><code>multer</code></td>
+        <td>CVE-2025-7338</td>
+        <td>HIGH</td>
+        <td>2.0.0</td>
+        <td>2.0.2</td>
     </tr>
 </table>
 <h4>No Misconfigurations found</h4>
