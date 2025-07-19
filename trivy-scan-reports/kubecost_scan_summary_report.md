@@ -412,7 +412,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>root/.local/share/helm/plugins/helm-diff/bin/diff</code></h3>
-<h4>Vulnerabilities (17)</h4>
+<h4>Vulnerabilities (18)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -448,6 +448,13 @@
         <td>HIGH</td>
         <td>v0.9.0</td>
         <td>0.17.0</td>
+    </tr>
+    <tr>
+        <td><code>golang.org/x/oauth2</code></td>
+        <td>CVE-2025-22868</td>
+        <td>HIGH</td>
+        <td>v0.4.0</td>
+        <td>0.27.0</td>
     </tr>
     <tr>
         <td><code>google.golang.org/grpc</code></td>
@@ -543,7 +550,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>root/.local/share/helm/plugins/helm-push/bin/helm-cm-push</code></h3>
-<h4>Vulnerabilities (14)</h4>
+<h4>Vulnerabilities (15)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -586,6 +593,13 @@
         <td>HIGH</td>
         <td>v0.9.0</td>
         <td>0.17.0</td>
+    </tr>
+    <tr>
+        <td><code>golang.org/x/oauth2</code></td>
+        <td>CVE-2025-22868</td>
+        <td>HIGH</td>
+        <td>v0.0.0-20220223155221-ee480838109b</td>
+        <td>0.27.0</td>
     </tr>
     <tr>
         <td><code>google.golang.org/grpc</code></td>
@@ -653,7 +667,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>root/.local/share/helm/plugins/helm-unittest/untt</code></h3>
-<h4>Vulnerabilities (10)</h4>
+<h4>Vulnerabilities (11)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -682,6 +696,13 @@
         <td>HIGH</td>
         <td>v0.10.0</td>
         <td>0.17.0</td>
+    </tr>
+    <tr>
+        <td><code>golang.org/x/oauth2</code></td>
+        <td>CVE-2025-22868</td>
+        <td>HIGH</td>
+        <td>v0.7.0</td>
+        <td>0.27.0</td>
     </tr>
     <tr>
         <td><code>helm.sh/helm/v3</code></td>
@@ -735,7 +756,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>usr/bin/aws-iam-authenticator</code></h3>
-<h4>Vulnerabilities (14)</h4>
+<h4>Vulnerabilities (15)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -750,6 +771,13 @@
         <td>HIGH</td>
         <td>v0.7.0</td>
         <td>0.17.0</td>
+    </tr>
+    <tr>
+        <td><code>golang.org/x/oauth2</code></td>
+        <td>CVE-2025-22868</td>
+        <td>HIGH</td>
+        <td>v0.0.0-20220223155221-ee480838109b</td>
+        <td>0.27.0</td>
     </tr>
     <tr>
         <td><code>stdlib</code></td>
@@ -845,7 +873,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>usr/bin/eksctl</code></h3>
-<h4>Vulnerabilities (13)</h4>
+<h4>Vulnerabilities (14)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -881,6 +909,13 @@
         <td>HIGH</td>
         <td>v0.15.0</td>
         <td>0.17.0</td>
+    </tr>
+    <tr>
+        <td><code>golang.org/x/oauth2</code></td>
+        <td>CVE-2025-22868</td>
+        <td>HIGH</td>
+        <td>v0.12.0</td>
+        <td>0.27.0</td>
     </tr>
     <tr>
         <td><code>google.golang.org/grpc</code></td>
@@ -948,7 +983,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>usr/bin/helm</code></h3>
-<h4>Vulnerabilities (10)</h4>
+<h4>Vulnerabilities (11)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -984,6 +1019,13 @@
         <td>HIGH</td>
         <td>v0.13.0</td>
         <td>0.17.0</td>
+    </tr>
+    <tr>
+        <td><code>golang.org/x/oauth2</code></td>
+        <td>CVE-2025-22868</td>
+        <td>HIGH</td>
+        <td>v0.8.0</td>
+        <td>0.27.0</td>
     </tr>
     <tr>
         <td><code>google.golang.org/grpc</code></td>
@@ -1030,7 +1072,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>usr/bin/kubectl</code></h3>
-<h4>Vulnerabilities (7)</h4>
+<h4>Vulnerabilities (8)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -1052,6 +1094,13 @@
         <td>HIGH</td>
         <td>v0.8.0</td>
         <td>0.17.0</td>
+    </tr>
+    <tr>
+        <td><code>golang.org/x/oauth2</code></td>
+        <td>CVE-2025-22868</td>
+        <td>HIGH</td>
+        <td>v0.0.0-20220223155221-ee480838109b</td>
+        <td>0.27.0</td>
     </tr>
     <tr>
         <td><code>stdlib</code></td>
@@ -1091,7 +1140,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>usr/bin/kubeseal</code></h3>
-<h4>Vulnerabilities (8)</h4>
+<h4>Vulnerabilities (9)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -1120,6 +1169,13 @@
         <td>HIGH</td>
         <td>v0.14.0</td>
         <td>0.17.0</td>
+    </tr>
+    <tr>
+        <td><code>golang.org/x/oauth2</code></td>
+        <td>CVE-2025-22868</td>
+        <td>HIGH</td>
+        <td>v0.8.0</td>
+        <td>0.27.0</td>
     </tr>
     <tr>
         <td><code>stdlib</code></td>
