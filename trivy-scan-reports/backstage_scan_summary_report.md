@@ -1416,7 +1416,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>Node.js</code></h3>
-<h4>Vulnerabilities (7)</h4>
+<h4>Vulnerabilities (10)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -1431,6 +1431,27 @@
         <td>HIGH</td>
         <td>7.0.3</td>
         <td>7.0.5, 6.0.6</td>
+    </tr>
+    <tr>
+        <td><code>form-data</code></td>
+        <td>CVE-2025-7783</td>
+        <td>CRITICAL</td>
+        <td>2.3.3</td>
+        <td>2.5.4, 3.0.4, 4.0.4</td>
+    </tr>
+    <tr>
+        <td><code>form-data</code></td>
+        <td>CVE-2025-7783</td>
+        <td>CRITICAL</td>
+        <td>2.5.3</td>
+        <td>2.5.4, 3.0.4, 4.0.4</td>
+    </tr>
+    <tr>
+        <td><code>form-data</code></td>
+        <td>CVE-2025-7783</td>
+        <td>CRITICAL</td>
+        <td>4.0.2</td>
+        <td>2.5.4, 3.0.4, 4.0.4</td>
     </tr>
     <tr>
         <td><code>jsonpath-plus</code></td>
