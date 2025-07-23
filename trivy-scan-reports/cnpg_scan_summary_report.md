@@ -28,7 +28,7 @@
     <tr>
         <td><code>sqlite-libs</code></td>
         <td>CVE-2025-6965</td>
-        <td>HIGH</td>
+        <td>CRITICAL</td>
         <td>3.49.2-r0</td>
         <td>3.49.2-r1</td>
     </tr>

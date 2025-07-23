@@ -107,14 +107,14 @@
     <tr>
         <td><code>libsqlite3-0</code></td>
         <td>CVE-2025-6965</td>
-        <td>HIGH</td>
+        <td>CRITICAL</td>
         <td>3.40.1-2+deb12u1</td>
         <td></td>
     </tr>
     <tr>
         <td><code>libsqlite3-dev</code></td>
         <td>CVE-2025-6965</td>
-        <td>HIGH</td>
+        <td>CRITICAL</td>
         <td>3.40.1-2+deb12u1</td>
         <td></td>
     </tr>
