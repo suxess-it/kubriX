@@ -151,7 +151,10 @@ backstage:
                 resolvers:
                   - resolver: emailLocalPartMatchingUserEntityName
                   - resolver: emailMatchingUserEntityProfileEmail
-
+      routes:
+        bindings:
+          scaffolder.registerComponent: false
+          
       scaffolder: 
         defaultAuthor: nageshrathod7296@gmail.com
         defaultOwner: user:default/nageshredhat
