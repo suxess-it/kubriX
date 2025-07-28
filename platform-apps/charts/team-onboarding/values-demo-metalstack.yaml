@@ -5,4 +5,20 @@ destinationClusters:
   - name: in-cluster
     allowedTeams: [".*"]
 
-teams: []
+teams: 
+# new team stanza for team kubrix
+  - name: kubrix
+    sourceRepos:
+      - '*'
+    clusterResourceWhitelist:
+      - group: ""
+        kind: Namespace
+      - group: kargo.akuity.io
+        kind: Project
+    appOfAppsRepo:
+      repoURL: https://github.com/kubriX-stackit-demo/kubrix-apps
+      path: demo-apps
+      revision: main
+    multiStageKargoAppSet:
+      github:
+        organization: kubriX-stackit-demo
