@@ -1,0 +1,660 @@
+{
+  "annotations": {
+    "list": [
+      {
+        "builtIn": 1,
+        "datasource": {
+          "type": "grafana",
+          "uid": "-- Grafana --"
+        },
+        "enable": true,
+        "hide": true,
+        "iconColor": "rgba(0, 211, 255, 1)",
+        "name": "Annotations & Alerts",
+        "target": {
+          "limit": 100,
+          "matchAny": false,
+          "tags": [],
+          "type": "dashboard"
+        },
+        "type": "dashboard"
+      }
+    ]
+  },
+  "editable": true,
+  "fiscalYearStartMonth": 0,
+  "graphTooltip": 0,
+  "id": 68,
+  "links": [
+    {
+      "asDropdown": true,
+      "icon": "dashboard",
+      "includeVars": false,
+      "keepTime": false,
+      "tags": [],
+      "targetBlank": false,
+      "title": "Cardinality management - overview",
+      "tooltip": "",
+      "type": "link",
+      "url": "/d/cardinality-management/?${datasource:queryparam}"
+    }
+  ],
+  "panels": [
+    {
+      "description": "",
+      "fieldConfig": {
+        "defaults": {},
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 12,
+        "w": 7,
+        "x": 0,
+        "y": 0
+      },
+      "id": 75,
+      "options": {
+        "code": {
+          "language": "plaintext",
+          "showLineNumbers": false,
+          "showMiniMap": false
+        },
+        "content": "This dashboard helps you understand the count of time series per label. \n\nUse the selector at the top of the page to pick a label name you’d like to inspect. For the selected label name, you’ll see the label values that have the highest number of series associated with them. So if you’ve chosen “environment” as your label name, you may see that 1231 time series have value “environmentA” attached to them and 542 time series have value “environmentB” attached to them. \n\nThis can be helpful in allowing you to determine where the bulk of your time series are coming from. If the label “team=teamA” was applied to 34,222 series and the label “team=teamB” was only applied to 1,237 series, you’d know, for example, that teamA was responsible for sending the majority of the time series. ",
+        "mode": "markdown"
+      },
+      "pluginVersion": "12.0.1",
+      "title": "Tips",
+      "type": "text"
+    },
+    {
+      "datasource": {
+        "type": "marcusolsson-json-datasource",
+        "uid": "cardinality"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "fixedColor": "blue",
+            "mode": "fixed"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green"
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 2,
+        "w": 8,
+        "x": 7,
+        "y": 0
+      },
+      "id": 22,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "percentChangeColorMode": "standard",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showPercentChange": false,
+        "text": {},
+        "textMode": "auto",
+        "wideLayout": true
+      },
+      "pluginVersion": "12.0.1",
+      "targets": [
+        {
+          "cacheDurationSeconds": 0,
+          "datasource": {
+            "type": "marcusolsson-json-datasource",
+            "uid": "cardinality"
+          },
+          "fields": [
+            {
+              "jsonPath": "$.labels[*].label_values_count",
+              "type": "number"
+            }
+          ],
+          "headers": [
+            [
+              "X-Scope-OrgID",
+              "${tenant}"
+            ]
+          ],
+          "method": "GET",
+          "params": [
+            [
+              "label_names[]",
+              "${label}"
+            ]
+          ],
+          "queryParams": "",
+          "refId": "A",
+          "urlPath": "/label_values"
+        }
+      ],
+      "title": "Total values for label: $label",
+      "transformations": [
+        {
+          "id": "filterFieldsByName",
+          "options": {
+            "include": {
+              "names": [
+                "label_values_count"
+              ]
+            }
+          }
+        }
+      ],
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "marcusolsson-json-datasource",
+        "uid": "cardinality"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "fixedColor": "blue",
+            "mode": "fixed"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green"
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "result"
+            },
+            "properties": [
+              {
+                "id": "unit",
+                "value": "percentunit"
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 2,
+        "w": 9,
+        "x": 15,
+        "y": 0
+      },
+      "id": 54,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "percentChangeColorMode": "standard",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showPercentChange": false,
+        "text": {},
+        "textMode": "auto",
+        "wideLayout": true
+      },
+      "pluginVersion": "12.0.1",
+      "targets": [
+        {
+          "cacheDurationSeconds": 300,
+          "datasource": {
+            "type": "marcusolsson-json-datasource",
+            "uid": "cardinality"
+          },
+          "fields": [
+            {
+              "jsonPath": "$.labels[0].series_count/$.series_count_total",
+              "language": "jsonata",
+              "type": "number"
+            }
+          ],
+          "headers": [
+            [
+              "X-Scope-OrgID",
+              "${tenant}"
+            ]
+          ],
+          "method": "GET",
+          "params": [
+            [
+              "label_names[]",
+              "${label}"
+            ]
+          ],
+          "queryParams": "",
+          "refId": "A",
+          "urlPath": "/label_values"
+        }
+      ],
+      "title": "Percentage of total series with label: $label",
+      "transformations": [
+        {
+          "id": "filterFieldsByName",
+          "options": {
+            "include": {
+              "names": [
+                "result"
+              ]
+            }
+          }
+        }
+      ],
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "marcusolsson-json-datasource",
+        "uid": "cardinality"
+      },
+      "description": "For each value of label ${label}, shows you the number of time series that have that label value applied. Click to show drilldown link.",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "links": [
+            {
+              "title": "View overview cardinality dashboard scoped to ${label}: ${__data.fields[0]}",
+              "url": "d/cardinality-management/?${tenant:queryparam}&${filter:queryparam}&var-filter=${label}%7C%3D%7C${__data.fields[0]}"
+            }
+          ],
+          "mappings": [],
+          "thresholds": {
+            "mode": "percentage",
+            "steps": [
+              {
+                "color": "blue"
+              },
+              {
+                "color": "yellow",
+                "value": 50
+              },
+              {
+                "color": "red",
+                "value": 100
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 10,
+        "w": 17,
+        "x": 7,
+        "y": 2
+      },
+      "id": 13,
+      "options": {
+        "sizeField": "series_count",
+        "textField": "label_value",
+        "tiling": "treemapSquarify"
+      },
+      "pluginVersion": "2.1.1",
+      "targets": [
+        {
+          "cacheDurationSeconds": 300,
+          "datasource": {
+            "type": "marcusolsson-json-datasource",
+            "uid": "cardinality"
+          },
+          "fields": [
+            {
+              "jsonPath": "$.labels[*].cardinality[*].label_value",
+              "type": "string"
+            },
+            {
+              "jsonPath": "$.labels[*].cardinality[*].series_count",
+              "language": "jsonpath",
+              "name": ""
+            }
+          ],
+          "headers": [
+            [
+              "X-Scope-OrgID",
+              "${tenant}"
+            ]
+          ],
+          "method": "GET",
+          "params": [
+            [
+              "label_names[]",
+              "${label}"
+            ]
+          ],
+          "queryParams": "",
+          "refId": "A",
+          "urlPath": "/label_values"
+        }
+      ],
+      "title": "Top distribution of series per label value",
+      "type": "marcusolsson-treemap-panel"
+    },
+    {
+      "fieldConfig": {
+        "defaults": {},
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 12
+      },
+      "id": 96,
+      "options": {
+        "code": {
+          "language": "plaintext",
+          "showLineNumbers": false,
+          "showMiniMap": false
+        },
+        "content": "",
+        "mode": "markdown"
+      },
+      "pluginVersion": "12.0.1",
+      "title": "Highest cardinality metrics for a given label value",
+      "type": "text"
+    },
+    {
+      "datasource": {
+        "type": "marcusolsson-json-datasource",
+        "uid": "cardinality"
+      },
+      "description": "Highest cardinality metrics with ${label} = ${labelValues}.",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "fixed"
+          },
+          "custom": {
+            "align": "auto",
+            "cellOptions": {
+              "type": "auto"
+            },
+            "inspect": false
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green"
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Metric"
+            },
+            "properties": [
+              {
+                "id": "links",
+                "value": [
+                  {
+                    "title": "View detailed cardinality dashboard for metric: ${__data.fields.Metric}",
+                    "url": "d/cardinality-management-metrics-detail/?var-metric=${__data.fields.Metric}&${tenant:queryparam}&${filter:queryparam}&var-filter=${label}%7C%3D%7C${labelValues}"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 9,
+        "w": 24,
+        "x": 0,
+        "y": 13
+      },
+      "id": 10,
+      "maxPerRow": 2,
+      "options": {
+        "cellHeight": "sm",
+        "footer": {
+          "countRows": false,
+          "fields": "",
+          "reducer": [
+            "sum"
+          ],
+          "show": false
+        },
+        "showHeader": true,
+        "sortBy": [
+          {
+            "desc": true,
+            "displayName": "Percentage of total series"
+          }
+        ]
+      },
+      "pluginVersion": "8.5.21",
+      "repeat": "labelValues",
+      "repeatDirection": "h",
+      "targets": [
+        {
+          "cacheDurationSeconds": 300,
+          "datasource": {
+            "type": "marcusolsson-json-datasource",
+            "uid": "cardinality"
+          },
+          "fields": [
+            {
+              "jsonPath": "$.labels[*].cardinality[*].label_value",
+              "name": "Metric"
+            },
+            {
+              "jsonPath": "$.labels[*].cardinality[*].series_count",
+              "language": "jsonpath",
+              "name": "Count of series"
+            }
+          ],
+          "headers": [
+            [
+              "X-Scope-OrgID",
+              "${tenant}"
+            ]
+          ],
+          "hide": false,
+          "method": "GET",
+          "params": [
+            [
+              "label_names[]",
+              "__name__"
+            ],
+            [
+              "selector",
+              "{$label='${labelValues}'}"
+            ]
+          ],
+          "queryParams": "",
+          "refId": "B",
+          "urlPath": "/label_values"
+        }
+      ],
+      "title": "${label} = ${labelValues}",
+      "type": "table"
+    }
+  ],
+  "preload": false,
+  "refresh": "10s",
+  "schemaVersion": 41,
+  "tags": [
+    "cardinality-management"
+  ],
+  "templating": {
+    "list": [
+      {
+        "current": {
+          "text": "anonymous",
+          "value": "anonymous"
+        },
+        "datasource": {
+          "type": "prometheus",
+          "uid": "mimir"
+        },
+        "definition": "label_values(cortex_distributor_requests_in_total,user)",
+        "description": "Tenants for mimir",
+        "includeAll": false,
+        "label": "Tenant",
+        "name": "tenant",
+        "options": [],
+        "query": {
+          "qryType": 1,
+          "query": "label_values(cortex_distributor_requests_in_total,user)",
+          "refId": "PrometheusVariableQueryEditor-VariableQuery"
+        },
+        "refresh": 1,
+        "regex": "",
+        "type": "query"
+      },
+      {
+        "current": {
+          "text": "__name__",
+          "value": "__name__"
+        },
+        "datasource": {
+          "type": "marcusolsson-json-datasource",
+          "uid": "cardinality"
+        },
+        "definition": "$.cardinality[*].label_name",
+        "includeAll": false,
+        "label": "Label",
+        "name": "label",
+        "options": [],
+        "query": {
+          "cacheDurationSeconds": 300,
+          "fields": [
+            {
+              "jsonPath": "$.cardinality[*].label_name"
+            }
+          ],
+          "headers": [
+            [
+              "X-Scope-OrgID",
+              "${tenant}"
+            ]
+          ],
+          "method": "GET",
+          "queryParams": "",
+          "urlPath": "/label_names"
+        },
+        "refresh": 1,
+        "regex": "",
+        "type": "query"
+      },
+      {
+        "current": {
+          "text": [
+            "All"
+          ],
+          "value": [
+            "$__all"
+          ]
+        },
+        "datasource": {
+          "type": "marcusolsson-json-datasource",
+          "uid": "cardinality"
+        },
+        "definition": "$.labels[*].cardinality[*].label_value",
+        "hide": 2,
+        "includeAll": true,
+        "label": "Label",
+        "multi": true,
+        "name": "labelValues",
+        "options": [],
+        "query": {
+          "cacheDurationSeconds": 300,
+          "fields": [
+            {
+              "jsonPath": "$.labels[*].cardinality[*].label_value"
+            }
+          ],
+          "headers": [
+            [
+              "X-Scope-OrgID",
+              "${tenant}"
+            ]
+          ],
+          "method": "GET",
+          "params": [
+            [
+              "label_names[]",
+              "${label}"
+            ]
+          ],
+          "queryParams": "",
+          "urlPath": "/label_values"
+        },
+        "refresh": 1,
+        "regex": "",
+        "type": "query"
+      },
+      {
+        "baseFilters": [],
+        "datasource": {
+          "type": "prometheus",
+          "uid": "${datasource}"
+        },
+        "description": "A label-value filter to be used for all cardinality queries",
+        "filters": [],
+        "label": "Filter",
+        "name": "filter",
+        "type": "adhoc"
+      }
+    ]
+  },
+  "time": {
+    "from": "now-24h",
+    "to": "now"
+  },
+  "timepicker": {
+    "hidden": true
+  },
+  "timezone": "",
+  "title": "Cardinality management - 3 - labels",
+  "uid": "cardinality-management-label-detail",
+  "version": 1
+}
