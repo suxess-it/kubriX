@@ -1,11 +1,12 @@
 # Create a kubriX test environment on your local machine
 
-#### Attention! We will probably skip support for K3d cluster in a local environment in the future. We use KinD in our pipeline and also on local envs and we believe we should focus on one dev environment and keep this very stable. If you still need K3d, just please open an issue.
-
 ## prereqs
 
-k3d or kind installed
-kubectl installed
+- kind
+- yq
+- jq
+- helm
+- kubectl
 
 ### installing KinD
 
@@ -58,8 +59,6 @@ export KUBRIX_REPO_BRANCH=main
 export KUBRIX_REPO_USERNAME=<kubrix-repo-username>
 export KUBRIX_REPO_PASSWORD=<kubrix-repo-password-or-personal-access-token>
 export KUBRIX_TARGET_TYPE=KIND-DELIVERY
-# if a K3d cluster should get created:
-export KUBRIX_CREATE_K3D_CLUSTER=true
 ```
 
 ## 2. install platform-stack
@@ -129,14 +128,6 @@ In our [App-Onboarding-Documentation](https://github.com/suxess-it/kubriX/blob/m
 ## 7. Promote apps with Kargo
 
 tbd
-
-## delete k3d cluster
-
-```
-k3d cluster stop kubrix-local-demo
-k3d cluster delete kubrix-local-demo
-```
-
 
 ## delete kind cluster
 
