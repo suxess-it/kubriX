@@ -5,10 +5,57 @@ if [ "${KUBRIX_INSTALL_DEBUG}" == true ]; then
   set -x 
 fi
 
-# dump all kubrix variables
-env | grep KUBRIX
-ARCH=$(uname -m)
-OS=$(uname -s)
+fail() {
+  echo $1
+  exit "${2-1}"
+}
+
+check_tool() {
+  tool=$1
+  command=$2
+  version_output="${3-}"
+  version=$( ${command} ) || fail "prereq check failed: ${tool} not found"
+  echo "${tool} found with version '${version}'"
+}
+
+check_variable() {
+  variable=$1
+  if [ -z "${!variable}" ]; then
+    echo ""
+    echo "prereq check failed: variable '${variable}' is blank or not set"
+    exit 1
+  else
+    echo "${variable} is set to '${!variable}'"
+  fi
+}
+
+check_prereqs() {
+  echo ""
+  echo "Checking prereqs ..."
+  echo "arch: ${ARCH}"
+  echo "os: ${OS}"
+
+  # check tools
+  check_tool yq "yq --version"
+  check_tool jq "jq --version"
+  check_tool kubectl "kubectl version --client=true"
+  check_tool helm "helm version"
+  check_tool curl "curl -V | head -1"
+
+  if [[ "${KUBRIX_TARGET_TYPE}" =~ ^KIND.* || "${KUBRIX_CLUSTER_TYPE}" == "KIND" ]] ; then
+    check_tool mkcert "mkcert --version"
+  fi
+
+  # check variables
+  check_variable KUBRIX_REPO
+  check_variable KUBRIX_REPO_BRANCH
+  check_variable KUBRIX_REPO_USERNAME
+  check_variable KUBRIX_REPO_PASSWORD
+  check_variable KUBRIX_TARGET_TYPE
+
+  echo "Prereq checks finished sucessfully."
+  echo ""
+}
 
 convert_to_seconds() {
   local timestamp=$1
@@ -226,6 +273,12 @@ analyze_app() {
   echo "------------------"
 }
 
+# dump all kubrix variables
+env | grep KUBRIX
+ARCH=$(uname -m)
+OS=$(uname -s)
+
+check_prereqs
 
 if [ "${KUBRIX_CREATE_K3D_CLUSTER}" == true ] ; then
   # do we need to set this always? I had DNS issues on the train
@@ -315,6 +368,8 @@ fi
 # because afterwards argocd is also managed by itself with the helm-chart
 
 echo "installing bootstrap argocd ..."
+helm repo add argo-cd https://argoproj.github.io/argo-helm
+helm repo update
 helm install sx-argocd argo-cd \
   --repo https://argoproj.github.io/argo-helm \
   --version 7.8.24 \
