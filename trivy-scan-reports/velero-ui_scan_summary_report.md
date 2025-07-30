@@ -1,6 +1,6 @@
 
 <h3>Target <code>docker.io/dserio83/velero-api:0.2.4 (debian 12.10)</code></h3>
-<h4>Vulnerabilities (16)</h4>
+<h4>Vulnerabilities (20)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -80,6 +80,20 @@
         <td></td>
     </tr>
     <tr>
+        <td><code>libpython3.11-minimal</code></td>
+        <td>CVE-2025-8194</td>
+        <td>HIGH</td>
+        <td>3.11.2-6+deb12u5</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>libpython3.11-stdlib</code></td>
+        <td>CVE-2025-8194</td>
+        <td>HIGH</td>
+        <td>3.11.2-6+deb12u5</td>
+        <td></td>
+    </tr>
+    <tr>
         <td><code>libsqlite3-0</code></td>
         <td>CVE-2025-6965</td>
         <td>CRITICAL</td>
@@ -112,6 +126,20 @@
         <td>CVE-2025-47273</td>
         <td>HIGH</td>
         <td>66.1.1-1+deb12u1</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>python3.11</code></td>
+        <td>CVE-2025-8194</td>
+        <td>HIGH</td>
+        <td>3.11.2-6+deb12u5</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>python3.11-minimal</code></td>
+        <td>CVE-2025-8194</td>
+        <td>HIGH</td>
+        <td>3.11.2-6+deb12u5</td>
         <td></td>
     </tr>
     <tr>
