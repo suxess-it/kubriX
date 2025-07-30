@@ -52,6 +52,9 @@ check_prereqs() {
   check_variable KUBRIX_REPO_USERNAME
   check_variable KUBRIX_REPO_PASSWORD
   check_variable KUBRIX_TARGET_TYPE
+
+  echo "Prereq checks finished sucessfully."
+  echo ""
 }
 
 convert_to_seconds() {
