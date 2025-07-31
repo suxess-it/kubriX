@@ -65,10 +65,6 @@ applications:
 
   - name: kargo
 
-  - name: team-onboarding
-    destinationNamespaceOverwrite: argocd
-    namespaceResourceTracking: false
-
   - name: argo-rollouts
     ignoreDifferences:
     - group: apiextensions.k8s.io
@@ -109,3 +105,9 @@ applications:
   - name: backstage
     annotations:
       argocd.argoproj.io/sync-wave: "10"
+
+  - name: team-onboarding
+    destinationNamespaceOverwrite: argocd
+    namespaceResourceTracking: false
+    annotations:
+      argocd.argoproj.io/sync-wave: "15"
