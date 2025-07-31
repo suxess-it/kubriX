@@ -84,10 +84,10 @@ It will create a new kubriX repo based on your parameters and installs kubriX ba
 
 | Tool    | URL | Username | Password |
 | -------- | ------- | ------- | ------- |
-| Backstage  | https://backstage-127-0-0-1.nip.io | via github | via github |
-| ArgoCD | https://argocd-127-0-0-1.nip.io/ | admin | `kubectl get secret -n argocd argocd-initial-admin-secret -o=jsonpath='{.data.password}' \| base64 -d` |
-| Kargo | https://kargo-127-0-0-1.nip.io     | admin | - |
-| Grafana    | https://grafana-127-0-0-1.nip.io | admin | prom-operator |
-| Keycloak    | https://keycloak-127-0-0-1.nip.io | admin | admin |
-| FalcoUI    | https://falco-127-0-0-1.nip.io | admin | admin |
+| Backstage  | https://backstage.127-0-0-1.nip.io | via github | via github |
+| ArgoCD | https://argocd.127-0-0-1.nip.io/ | admin | `kubectl get secret -n argocd argocd-initial-admin-secret -o=jsonpath='{.data.password}' \| base64 -d` |
+| Kargo | https://kargo.127-0-0-1.nip.io     | admin | - |
+| Grafana    | https://grafana.127-0-0-1.nip.io | `kubectl get secret -n grafana grafana-admin-secret -o=jsonpath='{.data.userKey}' \| base64 -d` | `kubectl get secret -n grafana grafana-admin-secret -o=jsonpath='{.data.passwordKey}' \| base64 -d` |
+| Keycloak    | https://keycloak.127-0-0-1.nip.io | admin | `kubectl get secret -n keycloak keycloak-admin -o=jsonpath='{.data.admin-password}' \| base64 -d` |
+| FalcoUI    | https://falco.127-0-0-1.nip.io | `kubectl get secret -n falco falco-ui-creds -o=jsonpath='{.data.FALCOSIDEKICK_UI_USER}' \| base64 -d \| awk -F: '{print $1}'` | `kubectl get secret -n falco falco-ui-creds -o=jsonpath='{.data.FALCOSIDEKICK_UI_USER}' \| base64 -d \| awk -F: '{print $2}'` |
 
