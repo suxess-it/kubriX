@@ -38,11 +38,11 @@ generate_secret() {
     local length=$1
     local charset=$2
     if [[ "$charset" == "alphanumeric" ]]; then
-      openssl rand -base64 $((length * 2)) | tr -dc 'A-Za-z0-9' | head -c "$length"
+      echo \"$(openssl rand -base64 $((length * 2)) | tr -dc 'A-Za-z0-9' | head -c "$length")\"
     elif [[ "$charset" == "hex" ]]; then
-      openssl rand -hex "$((length/2))"
+      echo \"$(openssl rand -hex "$((length/2))")\"
     elif [[ "$charset" == "numeric" ]]; then
-      openssl rand -base64 $((length * 2)) | tr -dc '0-9' | head -c "$length"
+      echo \"$(openssl rand -base64 $((length * 2)) | tr -dc '0-9' | head -c "$length")\"
     else
       echo "Error: unknown charset $charset"
       exit 1
