@@ -152,7 +152,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>Python</code></h3>
-<h4>Vulnerabilities (3)</h4>
+<h4>Vulnerabilities (4)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -160,6 +160,13 @@
         <th>Severity</th>
         <th>Installed Version</th>
         <th>Fixed Version</th>
+    </tr>
+    <tr>
+        <td><code>ecdsa</code></td>
+        <td>CVE-2024-23342</td>
+        <td>HIGH</td>
+        <td>0.19.0</td>
+        <td></td>
     </tr>
     <tr>
         <td><code>h11</code></td>
