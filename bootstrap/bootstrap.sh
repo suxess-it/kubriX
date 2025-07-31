@@ -73,8 +73,8 @@ chmod 755 gomplate
 
 echo "rendering values templates ..."
 valuesFile=$( echo ${KUBRIX_CUSTOMER_TARGET_TYPE} | awk '{print tolower($0)}' )
-gomplate --context kubriX=bootstrap/customer-config.yaml --input-dir platform-apps --include *${valuesFile}.yaml.tmpl --output-map='platform-apps/{{ .in | strings.ReplaceAll ".yaml.tmpl" ".yaml" }}'
-gomplate --context kubriX=bootstrap/customer-config.yaml --input-dir backstage-resources --include *.yaml.tmpl --output-map='backstage-resources/{{ .in | strings.ReplaceAll ".yaml.tmpl" ".yaml" }}'
+./gomplate --context kubriX=bootstrap/customer-config.yaml --input-dir platform-apps --include *${valuesFile}.yaml.tmpl --output-map='platform-apps/{{ .in | strings.ReplaceAll ".yaml.tmpl" ".yaml" }}'
+./gomplate --context kubriX=bootstrap/customer-config.yaml --input-dir backstage-resources --include *.yaml.tmpl --output-map='backstage-resources/{{ .in | strings.ReplaceAll ".yaml.tmpl" ".yaml" }}'
 rm gomplate
 
 echo "Push kubriX gitops files to ${KUBRIX_CUSTOMER_REPO}"
@@ -93,7 +93,6 @@ export KUBRIX_REPO_BRANCH=main
 export KUBRIX_REPO_USERNAME=dummy
 export KUBRIX_REPO_PASSWORD=${KUBRIX_CUSTOMER_REPO_TOKEN}
 export KUBRIX_TARGET_TYPE=${KUBRIX_CUSTOMER_TARGET_TYPE}
-export KUBRIX_CREATE_K3D_CLUSTER=false
 export KUBRIX_BOOTSTRAP_MAX_WAIT_TIME=2000
 
 # install-platform from new repository
@@ -112,7 +111,6 @@ if [ $rc -ne 0 ]; then
   export KUBRIX_REPO_USERNAME=dummy
   export KUBRIX_REPO_PASSWORD=${KUBRIX_CUSTOMER_REPO_TOKEN}
   export KUBRIX_TARGET_TYPE=${KUBRIX_CUSTOMER_TARGET_TYPE}
-  export KUBRIX_CREATE_K3D_CLUSTER=false
   export KUBRIX_BOOTSTRAP_MAX_WAIT_TIME=2000
   
   and then 
