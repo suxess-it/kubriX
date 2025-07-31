@@ -1,11 +1,12 @@
 # Create a kubriX test environment on your local machine
 
-#### Attention! We will probably skip support for K3d cluster in a local environment in the future. We use KinD in our pipeline and also on local envs and we believe we should focus on one dev environment and keep this very stable. If you still need K3d, just please open an issue.
-
 ## prereqs
 
-k3d or kind installed
-kubectl installed
+- kind
+- yq
+- jq
+- helm
+- kubectl
 
 ### installing KinD
 
@@ -58,8 +59,6 @@ export KUBRIX_REPO_BRANCH=main
 export KUBRIX_REPO_USERNAME=<kubrix-repo-username>
 export KUBRIX_REPO_PASSWORD=<kubrix-repo-password-or-personal-access-token>
 export KUBRIX_TARGET_TYPE=KIND-DELIVERY
-# if a K3d cluster should get created:
-export KUBRIX_CREATE_K3D_CLUSTER=true
 ```
 
 ## 2. install platform-stack
@@ -107,12 +106,13 @@ The platform stack will be installed automagically ;)
 
 | Tool    | URL | Username | Password |
 | -------- | ------- | ------- | ------- |
-| Backstage  | https://backstage-127-0-0-1.nip.io | via github | via github |
-| ArgoCD | https://argocd-127-0-0-1.nip.io/ | admin | `kubectl get secret -n argocd argocd-initial-admin-secret -o=jsonpath='{.data.password}' \| base64 -d` |
-| Kargo | https://kargo-127-0-0-1.nip.io     | admin | - |
-| Grafana    | https://grafana-127-0-0-1.nip.io | admin | prom-operator |
-| Keycloak    | https://keycloak-127-0-0-1.nip.io | admin | admin |
-| FalcoUI    | https://falco-127-0-0-1.nip.io | admin | admin |
+| Backstage  | https://backstage.127-0-0-1.nip.io | via github | via github |
+| ArgoCD | https://argocd.127-0-0-1.nip.io/ | admin | `kubectl get secret -n argocd argocd-initial-admin-secret -o=jsonpath='{.data.password}' \| base64 -d` |
+| Kargo | https://kargo.127-0-0-1.nip.io     | admin | - |
+| Grafana    | https://grafana.127-0-0-1.nip.io | `kubectl get secret -n grafana grafana-admin-secret -o=jsonpath='{.data.userKey}' \| base64 -d` | `kubectl get secret -n grafana grafana-admin-secret -o=jsonpath='{.data.passwordKey}' \| base64 -d` |
+| Keycloak    | https://keycloak.127-0-0-1.nip.io | admin | `kubectl get secret -n keycloak keycloak-admin -o=jsonpath='{.data.admin-password}' \| base64 -d` |
+| FalcoUI    | https://falco.127-0-0-1.nip.io | `kubectl get secret -n falco falco-ui-creds -o=jsonpath='{.data.FALCOSIDEKICK_UI_USER}' \| base64 -d \| awk -F: '{print $1}'` | `kubectl get secret -n falco falco-ui-creds -o=jsonpath='{.data.FALCOSIDEKICK_UI_USER}' \| base64 -d \| awk -F: '{print $2}'` |
+
 
 ## 4. kubecost
 
@@ -129,14 +129,6 @@ In our [App-Onboarding-Documentation](https://github.com/suxess-it/kubriX/blob/m
 ## 7. Promote apps with Kargo
 
 tbd
-
-## delete k3d cluster
-
-```
-k3d cluster stop kubrix-local-demo
-k3d cluster delete kubrix-local-demo
-```
-
 
 ## delete kind cluster
 
