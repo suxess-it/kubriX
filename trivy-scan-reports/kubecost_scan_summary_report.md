@@ -1263,43 +1263,6 @@
 <h4>No Misconfigurations found</h4>
 
 <h3>Target <code>gcr.io/kubecost1/cost-model:prod-2.7.2 (redhat 9.5)</code></h3>
-<h4>Vulnerabilities (3)</h4>
-<table>
-    <tr>
-        <th>Package</th>
-        <th>ID</th>
-        <th>Severity</th>
-        <th>Installed Version</th>
-        <th>Fixed Version</th>
-    </tr>
-    <tr>
-        <td><code>libxml2</code></td>
-        <td>CVE-2025-49794</td>
-        <td>HIGH</td>
-        <td>2.9.13-6.el9_5.2</td>
-        <td>2.9.13-10.el9_6</td>
-    </tr>
-    <tr>
-        <td><code>libxml2</code></td>
-        <td>CVE-2025-49796</td>
-        <td>HIGH</td>
-        <td>2.9.13-6.el9_5.2</td>
-        <td>2.9.13-10.el9_6</td>
-    </tr>
-    <tr>
-        <td><code>sqlite-libs</code></td>
-        <td>CVE-2025-6965</td>
-        <td>HIGH</td>
-        <td>3.34.1-7.el9_3</td>
-        <td>3.34.1-8.el9_6</td>
-    </tr>
-</table>
-<h4>No Misconfigurations found</h4>
-<h3>Target <code>go/bin/app</code></h3>
-<h4>No Vulnerabilities found</h4>
-<h4>No Misconfigurations found</h4>
-
-<h3>Target <code>gcr.io/kubecost1/frontend:prod-2.7.2 (redhat 9.5)</code></h3>
 <h4>Vulnerabilities (4)</h4>
 <table>
     <tr>
@@ -1324,11 +1287,11 @@
         <td>2.9.13-10.el9_6</td>
     </tr>
     <tr>
-        <td><code>pam</code></td>
-        <td>CVE-2025-6020</td>
+        <td><code>libxml2</code></td>
+        <td>CVE-2025-7425</td>
         <td>HIGH</td>
-        <td>1.5.1-22.el9_5</td>
-        <td>1.5.1-25.el9_6</td>
+        <td>2.9.13-6.el9_5.2</td>
+        <td>2.9.13-11.el9_6</td>
     </tr>
     <tr>
         <td><code>sqlite-libs</code></td>
@@ -1339,9 +1302,12 @@
     </tr>
 </table>
 <h4>No Misconfigurations found</h4>
+<h3>Target <code>go/bin/app</code></h3>
+<h4>No Vulnerabilities found</h4>
+<h4>No Misconfigurations found</h4>
 
-<h3>Target <code>gcr.io/kubecost1/kubecost-modeling:v0.1.26 (redhat 9.5)</code></h3>
-<h4>Vulnerabilities (9)</h4>
+<h3>Target <code>gcr.io/kubecost1/frontend:prod-2.7.2 (redhat 9.5)</code></h3>
+<h4>Vulnerabilities (5)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -1363,6 +1329,61 @@
         <td>HIGH</td>
         <td>2.9.13-6.el9_5.2</td>
         <td>2.9.13-10.el9_6</td>
+    </tr>
+    <tr>
+        <td><code>libxml2</code></td>
+        <td>CVE-2025-7425</td>
+        <td>HIGH</td>
+        <td>2.9.13-6.el9_5.2</td>
+        <td>2.9.13-11.el9_6</td>
+    </tr>
+    <tr>
+        <td><code>pam</code></td>
+        <td>CVE-2025-6020</td>
+        <td>HIGH</td>
+        <td>1.5.1-22.el9_5</td>
+        <td>1.5.1-25.el9_6</td>
+    </tr>
+    <tr>
+        <td><code>sqlite-libs</code></td>
+        <td>CVE-2025-6965</td>
+        <td>HIGH</td>
+        <td>3.34.1-7.el9_3</td>
+        <td>3.34.1-8.el9_6</td>
+    </tr>
+</table>
+<h4>No Misconfigurations found</h4>
+
+<h3>Target <code>gcr.io/kubecost1/kubecost-modeling:v0.1.26 (redhat 9.5)</code></h3>
+<h4>Vulnerabilities (10)</h4>
+<table>
+    <tr>
+        <th>Package</th>
+        <th>ID</th>
+        <th>Severity</th>
+        <th>Installed Version</th>
+        <th>Fixed Version</th>
+    </tr>
+    <tr>
+        <td><code>libxml2</code></td>
+        <td>CVE-2025-49794</td>
+        <td>HIGH</td>
+        <td>2.9.13-6.el9_5.2</td>
+        <td>2.9.13-10.el9_6</td>
+    </tr>
+    <tr>
+        <td><code>libxml2</code></td>
+        <td>CVE-2025-49796</td>
+        <td>HIGH</td>
+        <td>2.9.13-6.el9_5.2</td>
+        <td>2.9.13-10.el9_6</td>
+    </tr>
+    <tr>
+        <td><code>libxml2</code></td>
+        <td>CVE-2025-7425</td>
+        <td>HIGH</td>
+        <td>2.9.13-6.el9_5.2</td>
+        <td>2.9.13-11.el9_6</td>
     </tr>
     <tr>
         <td><code>python3.12</code></td>
