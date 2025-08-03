@@ -38,11 +38,11 @@ generate_secret() {
     local length=$1
     local charset=$2
     if [[ "$charset" == "alphanumeric" ]]; then
-      openssl rand -base64 $((length * 2)) | tr -dc 'A-Za-z0-9' | head -c "$length"
+      echo \"$(openssl rand -base64 $((length * 2)) | tr -dc 'A-Za-z0-9' | head -c "$length")\"
     elif [[ "$charset" == "hex" ]]; then
-      openssl rand -hex "$((length/2))"
+      echo \"$(openssl rand -hex "$((length/2))")\"
     elif [[ "$charset" == "numeric" ]]; then
-      openssl rand -base64 $((length * 2)) | tr -dc '0-9' | head -c "$length"
+      echo \"$(openssl rand -base64 $((length * 2)) | tr -dc '0-9' | head -c "$length")\"
     else
       echo "Error: unknown charset $charset"
       exit 1
@@ -123,13 +123,12 @@ EOF
           echo "  -> generating dynamic secret for App: $APP, Value: $KEY (length: $LENGTH, $CHARSET)"
       fi
       # add stringData entry in Secret 
-      if [[ "$VALUE" == *$'\n'* ]]; then
-        # format json 
-        VALUE="$(echo "$VALUE" | tr -d '\n' | sed 's/^[ \t]*//;s/[ \t]*$//')"
-        printf "  %s: |\n    %s\n" "$KEY" "$VALUE" >> "$TMPDIR/$SECRETFILE"
-      else
-        printf "  %s: %s\n" "$KEY" "$VALUE" >> "$TMPDIR/$SECRETFILE"
-      fi
+        if [[ "$VALUE" == *$'\n'* ]]; then
+          printf "  %s: |-\n" "$KEY" >> "$TMPDIR/$SECRETFILE"
+          printf "%s\n" "$VALUE" | sed 's/^/    /' >> "$TMPDIR/$SECRETFILE"
+        else
+          printf "  %s: %s\n" "$KEY" "$VALUE" >> "$TMPDIR/$SECRETFILE"
+        fi
     # Add data entry in PushSecret   
     cat <<EOF >> "$TMPDIR/push$SECRETFILE"
     - match:

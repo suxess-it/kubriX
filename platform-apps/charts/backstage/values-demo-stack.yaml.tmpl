@@ -148,9 +148,6 @@ backstage:
           #guest: {}
           oidc:
             development:
-              # real metadataUrl -> local cluster lead to "ECONNREFUSED 127.0.0.1:443" - #24935
-              #metadataUrl: https://keycloak.lab.suxessit.k8s.cloud.uibk.ac.at/realms/kubrix #.well-known/openid-configuration can be ommited
-              # workaround -> also set frontendUrl in keycloak realm
               metadataUrl: http://sx-keycloak-headless.keycloak.svc.cluster.local:8080/realms/kubrix #.well-known/openid-configuration can be ommited
               callbackUrl: https://backstage.{{ .kubriX.domain }}/api/auth/oidc/handler/frame
               clientId: backstage
@@ -208,7 +205,7 @@ backstage:
               - Regulatory Compliance
           - title: IAM
             description: Identity and Access Management
-            url: /https://keycloak.{{ .kubriX.domain }}
+            url: https://keycloak.{{ .kubriX.domain }}
             image: /homepage/images/hubs.jpg
             tags:
               - keycloak
@@ -228,19 +225,16 @@ backstage:
           - allow: [Component, System, API, Resource, Location, Template, Domain, User, Group ]
         locations:
           - type: url
-            target: https://github.com/kubriX-demo/kubriX-demo-oss/blob/main/backstage-resources/templates/showcase-templates-demo.yaml
+            target: {{ .kubriX.gitRepo }}/blob/main/backstage-resources/templates/showcase-templates-demo.yaml
             rules:
               - allow: [Template]
           - type: url
-            target: https://github.com/kubriX-demo/kubriX-demo-oss/blob/main/backstage-resources/entities/all.yaml
+            target: {{ .kubriX.gitRepo }}/blob/main/backstage-resources/entities/all.yaml
           - type: url
-            target: https://github.com/kubriX-demo/kubriX-demo-oss/blob/main/backstage-resources/entities/demo.yaml
+            target: {{ .kubriX.gitRepo }}/blob/main/backstage-resources/entities/demo.yaml
         providers:
           keycloakOrg:
             default:
-              # real baseUrl -> local cluster lead to "ECONNREFUSED 127.0.0.1:443"
-              #baseUrl: https://keycloak.lab.suxessit.k8s.cloud.uibk.ac.at
-              # workaround
               baseUrl: http://sx-keycloak-headless.keycloak.svc.cluster.local:8080
               loginRealm: kubrix
               realm: kubrix

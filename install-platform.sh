@@ -5,10 +5,57 @@ if [ "${KUBRIX_INSTALL_DEBUG}" == true ]; then
   set -x 
 fi
 
-# dump all kubrix variables
-env | grep KUBRIX
-ARCH=$(uname -m)
-OS=$(uname -s)
+fail() {
+  echo $1
+  exit "${2-1}"
+}
+
+check_tool() {
+  tool=$1
+  command=$2
+  version_output="${3-}"
+  version=$( ${command} ) || fail "prereq check failed: ${tool} not found"
+  echo "${tool} found with version '${version}'"
+}
+
+check_variable() {
+  variable=$1
+  if [ -z "${!variable}" ]; then
+    echo ""
+    echo "prereq check failed: variable '${variable}' is blank or not set"
+    exit 1
+  else
+    echo "${variable} is set to '${!variable}'"
+  fi
+}
+
+check_prereqs() {
+  echo ""
+  echo "Checking prereqs ..."
+  echo "arch: ${ARCH}"
+  echo "os: ${OS}"
+
+  # check tools
+  check_tool yq "yq --version"
+  check_tool jq "jq --version"
+  check_tool kubectl "kubectl version --client=true"
+  check_tool helm "helm version"
+  check_tool curl "curl -V | head -1"
+
+  if [[ "${KUBRIX_TARGET_TYPE}" =~ ^KIND.* || "${KUBRIX_CLUSTER_TYPE}" == "KIND" ]] ; then
+    check_tool mkcert "mkcert --version"
+  fi
+
+  # check variables
+  check_variable KUBRIX_REPO
+  check_variable KUBRIX_REPO_BRANCH
+  check_variable KUBRIX_REPO_USERNAME
+  check_variable KUBRIX_REPO_PASSWORD
+  check_variable KUBRIX_TARGET_TYPE
+
+  echo "Prereq checks finished sucessfully."
+  echo ""
+}
 
 convert_to_seconds() {
   local timestamp=$1
@@ -80,6 +127,15 @@ wait_until_apps_synced_healthy() {
           fi
         fi
 
+        # special case for k8s-monitoring to re-sync one time after it deployed sucessfully,
+        # because of a .Capabilities.APIVersions.Has condition in the templates for monitoring.coreos which gets deployed by k8s-monitoring itself
+        if [[ "${app}" == "sx-k8s-monitoring" && "${sync_status}" == "${synced}" && "${health_status}" == "${healthy}" ]]; then
+          if [  "${k8smonitoring_restarted}" != "true" ]; then
+            kubectl exec sx-argocd-application-controller-0 -n argocd -- argocd app sync "$app" --async --core
+            k8smonitoring_restarted="true"
+          fi
+        fi
+        
         if [[ "${sync_status}" != ${synced} ]] || [[ "${health_status}" != ${healthy} ]] ; then
           all_apps_synced="false"
         fi
@@ -217,25 +273,18 @@ analyze_app() {
   echo "------------------"
 }
 
+# dump all kubrix variables
+env | grep KUBRIX
+ARCH=$(uname -m)
+OS=$(uname -s)
 
-if [ "${KUBRIX_CREATE_K3D_CLUSTER}" == true ] ; then
-  # do we need to set this always? I had DNS issues on the train
-  export K3D_FIX_DNS=1
-  
-  k3d cluster create kubrix-local-demo \
-    -p "80:80@loadbalancer" \
-    -p "443:443@loadbalancer" \
-    --k3s-arg '--cluster-init@server:0' \
-    --k3s-arg '--etcd-expose-metrics=true@server:0' \
-    --agents 2 \
-    --wait
-fi
+check_prereqs
 
-if [[ "${KUBRIX_TARGET_TYPE}" =~ ^KIND.* ]] ; then
+if [[ "${KUBRIX_TARGET_TYPE}" =~ ^KIND.* || "${KUBRIX_CLUSTER_TYPE}" == "KIND" ]] ; then
   # create mkcert certs in alle namespaces with ingress
   for namespace in backstage kargo grafana cnpg argocd komoplane kubecost falco minio velero velero-ui; do
     kubectl create namespace ${namespace}
-    mkcert -cert-file ${namespace}-cert.pem -key-file ${namespace}-key.pem ${namespace}-127-0-0-1.nip.io
+    mkcert -cert-file ${namespace}-cert.pem -key-file ${namespace}-key.pem ${namespace}.127-0-0-1.nip.io
     # kargo needs a special secret name according to its helm chart
     if [ "${namespace}" = "kargo" ]; then
       kubectl create secret tls kargo-api-ingress-cert -n ${namespace} --cert=${namespace}-cert.pem --key=${namespace}-key.pem
@@ -244,7 +293,7 @@ if [[ "${KUBRIX_TARGET_TYPE}" =~ ^KIND.* ]] ; then
     fi
     # minioconsole needs additional secret
     if [ "${namespace}" = "minio" ]; then
-      mkcert -cert-file ${namespace}-console-cert.pem -key-file ${namespace}-console-key.pem minio-console-127-0-0-1.nip.io
+      mkcert -cert-file ${namespace}-console-cert.pem -key-file ${namespace}-console-key.pem minio-console.127-0-0-1.nip.io
       kubectl create secret tls minio-console-tls -n ${namespace} --cert=${namespace}-console-cert.pem --key=${namespace}-console-key.pem
       rm ${namespace}-console-cert.pem ${namespace}-console-key.pem
     fi
@@ -255,7 +304,7 @@ if [[ "${KUBRIX_TARGET_TYPE}" =~ ^KIND.* ]] ; then
   kubectl get configmap coredns -n kube-system -o yaml |  awk '
 /ready/ {
     print;
-    print "        rewrite name keycloak-127-0-0-1.nip.io ingress-nginx-controller.ingress-nginx.svc.cluster.local";
+    print "        rewrite name keycloak.127-0-0-1.nip.io ingress-nginx-controller.ingress-nginx.svc.cluster.local";
     next
 }
 { print }
@@ -264,48 +313,46 @@ if [[ "${KUBRIX_TARGET_TYPE}" =~ ^KIND.* ]] ; then
   kubectl rollout restart deployment coredns -n kube-system
   rm coredns-configmap.yaml
 
-  # do not install kind nginx-controller and metrics-server on k3d cluster
-  # since kind nginx only works on kind cluster and metrics-server is already installed on k3d
-  if [[ ${KUBRIX_CREATE_K3D_CLUSTER} != true ]] ; then
-    # and install nginx ingress-controller
-    echo "installing nginx ingress controller in KinD"
-    kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/main/deploy/static/provider/kind/deploy.yaml
+  # and install nginx ingress-controller
+  echo "installing nginx ingress controller in KinD"
+  kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/main/deploy/static/provider/kind/deploy.yaml
 
-    # create mkcert-issuer
-    kubectl create namespace cert-manager
-    kubectl create secret tls mkcert-ca-key-pair --key "$(mkcert -CAROOT)"/rootCA-key.pem --cert "$(mkcert -CAROOT)"/rootCA.pem -n cert-manager
+  # create mkcert-issuer
+  kubectl create namespace cert-manager
+  kubectl create secret tls mkcert-ca-key-pair --key "$(mkcert -CAROOT)"/rootCA-key.pem --cert "$(mkcert -CAROOT)"/rootCA.pem -n cert-manager
 
-    # vault oidc case
-    echo "create a root ca and patch ingress-nginx-controller for vault oidc"
-    kubectl create namespace vault
-    kubectl create secret generic ca-cert --from-file=ca.crt="$(mkcert -CAROOT)"/rootCA.pem -n vault
-    kubectl patch deployment ingress-nginx-controller -n ingress-nginx --type='json' -p='[
-    {
-        "op": "add",
-        "path": "/spec/template/spec/containers/0/args/-",
-        "value": "--enable-ssl-passthrough"
-    },
-    ]'
+  # vault oidc case
+  echo "create a root ca and patch ingress-nginx-controller for vault oidc"
+  kubectl create namespace vault
+  kubectl create secret generic ca-cert --from-file=ca.crt="$(mkcert -CAROOT)"/rootCA.pem -n vault
+  kubectl patch deployment ingress-nginx-controller -n ingress-nginx --type='json' -p='[
+  {
+      "op": "add",
+      "path": "/spec/template/spec/containers/0/args/-",
+      "value": "--enable-ssl-passthrough"
+  },
+  ]'
 
-    # wait until ingress-nginx-controller is ready
-    echo "wait until ingress-nginx-controller is running ..."
-    sleep 10
-    kubectl wait --namespace ingress-nginx \
-      --for=condition=ready pod \
-      --selector=app.kubernetes.io/component=controller \
-      --timeout=90s
+  # wait until ingress-nginx-controller is ready
+  echo "wait until ingress-nginx-controller is running ..."
+  sleep 10
+  kubectl wait --namespace ingress-nginx \
+    --for=condition=ready pod \
+    --selector=app.kubernetes.io/component=controller \
+    --timeout=90s
 
-    echo "installing metrics-server in KinD"
-    helm repo add metrics-server https://kubernetes-sigs.github.io/metrics-server/
-    helm repo update
-    helm upgrade --install --set args={--kubelet-insecure-tls} metrics-server metrics-server/metrics-server --namespace kube-system
-  fi
+  echo "installing metrics-server in KinD"
+  helm repo add metrics-server https://kubernetes-sigs.github.io/metrics-server/
+  helm repo update
+  helm upgrade --install --set args={--kubelet-insecure-tls} metrics-server metrics-server/metrics-server --namespace kube-system
 fi
 
 # create argocd with helm chart not with install.yaml
 # because afterwards argocd is also managed by itself with the helm-chart
 
 echo "installing bootstrap argocd ..."
+helm repo add argo-cd https://argoproj.github.io/argo-helm
+helm repo update
 helm install sx-argocd argo-cd \
   --repo https://argoproj.github.io/argo-helm \
   --version 7.8.24 \
@@ -341,9 +388,9 @@ cat bootstrap-app-$(echo ${KUBRIX_TARGET_TYPE} | awk '{print tolower($0)}').yaml
 # create app list
 target_chart_value_file="platform-apps/target-chart/values-$(echo ${KUBRIX_TARGET_TYPE} | awk '{print tolower($0)}').yaml"
 
-argocd_apps=$(cat $target_chart_value_file | awk '/^  - name:/ { printf "%s", "sx-"$3" "}' )
+argocd_apps=$(cat $target_chart_value_file | egrep -Ev "team-onboarding" | awk '/^  - name:/ { printf "%s", "sx-"$3" "}' )
 # list apps which need some sort of special treatment in bootstrap
-argocd_apps_without_individual=$(cat $target_chart_value_file | egrep -Ev "backstage" | awk '/^  - name:/ { printf "%s", "sx-"$3" "}' )
+argocd_apps_without_individual=$(cat $target_chart_value_file | egrep -Ev "backstage|team-onboarding" | awk '/^  - name:/ { printf "%s", "sx-"$3" "}' )
 
 # max wait for 20 minutes until all apps except backstage and kargo are synced and healthy
 wait_until_apps_synced_healthy "${argocd_apps_without_individual}" "Synced" "Healthy" ${KUBRIX_BOOTSTRAP_MAX_WAIT_TIME:-1200}
@@ -355,9 +402,9 @@ kubectl apply -f platform-apps/charts/argocd/manual-secret/argocd-secret.yaml
 if [[ $( echo $argocd_apps | grep sx-vault ) ]] ; then
   export VAULT_HOSTNAME=$(kubectl get ingress -o jsonpath='{.items[*].spec.rules[*].host}' -n vault)
   export VAULT_TOKEN=$(kubectl get secret -n vault vault-init -o=jsonpath='{.data.root_token}'  | base64 -d)
-  curl -k --header "X-Vault-Token:$VAULT_TOKEN" --request POST --data "{\"data\": {\"VAULT_ADDR\": \"https://${VAULT_HOSTNAME}\", \"VAULT_ADDR_INT\": \"http://sx-vault-active.vault.svc.cluster.local:8200\", \"VAULT_TOKEN\": \"${VAULT_TOKEN}\"}}" https://${VAULT_HOSTNAME}/v1/kubrix-kv/data/security/vault/base
+  curl -k --header "X-Vault-Token:$VAULT_TOKEN" --request POST --data "{\"data\": {\"VAULT_ADDR\": \"https://${VAULT_HOSTNAME}\", \"VAULT_ADDR_INT\": \"http://sx-vault-active.vault.svc.cluster.local:8200\"}}" https://${VAULT_HOSTNAME}/v1/kubrix-kv/data/security/vault/base
 
-  if [[ "${KUBRIX_TARGET_TYPE}" =~ ^KIND.* ]] ; then
+  if [[ "${KUBRIX_TARGET_TYPE}" =~ ^KIND.* || "${KUBRIX_CLUSTER_TYPE}" == "KIND" ]] ; then
   # due to issue #405 this step is needed for kind clusters
     export VAULT_CLIENTSECRET=$(kubectl get secret -n keycloak keycloak-client-credentials -o=jsonpath='{.data.vault}'  | base64 -d)
     export KEYCLOAK_HOSTNAME=$(kubectl get ingress -o jsonpath='{.items[*].spec.rules[*].host}' -n keycloak)
@@ -505,3 +552,5 @@ if [[ $( echo $argocd_apps | grep sx-backstage ) ]] ; then
   wait_until_apps_synced_healthy "${argocd_apps}" "Synced" "Healthy" 300
 
 fi
+# remove pushsecrets
+kubectl delete -f ./.secrets/secrettemp/pushsecrets.yaml
