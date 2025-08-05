@@ -1,0 +1,70 @@
+apiVersion: k8s.keycloak.org/v2alpha1
+kind: Keycloak
+metadata:
+  name: kubrix-keycloak
+spec:
+  db:
+    vendor: postgres
+    usernameSecret:
+      name: usernameSecret
+      key: usernameSecretKey
+    passwordSecret:
+      name: passwordSecret
+      key: passwordSecretKey
+    host: host
+    database: database
+    port: 123
+    schema: schema
+    poolInitialSize: 1
+    poolMinSize: 2
+    poolMaxSize: 3
+  http:
+    httpEnabled: true
+    httpPort: 8180
+    httpsPort: 8543
+    tlsSecret: keycloak-tls-secret
+  hostname:
+    hostname: https://keycloak{{ .Values.kubrix.keycloak.fqdn }}
+    admin: https://keycloak{{ .Values.kubrix.keycloak.fqdn }}/admin
+    strict: false
+    backchannelDynamic: true
+  readinessProbe:
+    periodSeconds: 20
+    failureThreshold: 5
+  livenessProbe:
+    periodSeconds: 20
+    failureThreshold: 5
+  startupProbe:
+    periodSeconds: 20
+    failureThreshold: 5
+  resources:
+    requests:
+      cpu: 300m
+      memory: 512Mi
+    limits:
+      cpu: 1
+      memory: 1Gi
+  ingress:
+    enabled: true
+    annotations:
+      external-dns.alpha.kubernetes.io/ttl: "60"
+      cert-manager.io/cluster-issuer: letsencrypt-prod
+    className: nginx
+  networkPolicy:
+    enabled: false
+  features:
+    enabled:
+      - authorization
+    disabled:
+      - admin
+      - step-up-authentication
+  transaction:
+    xaEnabled: false
+  update:
+    strategy: Auto
+  additionalOptions:
+    - name: "metrics-enabled"
+      value: true
+    - name: "health-enabled"
+      value: true
+  
