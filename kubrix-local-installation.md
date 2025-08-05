@@ -27,23 +27,11 @@ chmod u+x ~/bin/mkcert
 
 install the CA of mkcert in your OS truststore: https://docs.kubefirst.io/k3d/quick-start/install#install-the-ca-certificate-authority-of-mkcert-in-your-trusted-store
 
-### create GitHub OAuth App 
-
-in your Github Organization for Backstage login: https://backstage.io/docs/auth/github/provider/
-
-- Homepage URL: https://backstage-127-0-0-1.nip.io
-- Authorization callback URL: https://backstage-127-0-0-1.nip.io/api/auth/github
-
-use GITHUB_CLIENTSECRET and GITHUB_CLIENTID from your Github OAuth App for the following environment variables in step 1
-
 ## 1. define some variables for the installation
 
 For the installation some variables are needed:
 
 ```
-# Github clientsecret and clientid from GitHub OAuth App for Backstage
-export KUBRIX_BACKSTAGE_GITHUB_CLIENTSECRET=<value from steps above>
-export KUBRIX_BACKSTAGE_GITHUB_CLIENTID=<value from steps above>
 # Github token Backstage uses to get the catalog yaml form github
 export KUBRIX_BACKSTAGE_GITHUB_TOKEN=<your personal access token>
 # Github token ArgoCD uses for the SCM Provider
@@ -113,16 +101,35 @@ The platform stack will be installed automagically ;)
 | Keycloak    | https://keycloak.127-0-0-1.nip.io | admin | `kubectl get secret -n keycloak keycloak-admin -o=jsonpath='{.data.admin-password}' \| base64 -d` |
 | FalcoUI    | https://falco.127-0-0-1.nip.io | `kubectl get secret -n falco falco-ui-creds -o=jsonpath='{.data.FALCOSIDEKICK_UI_USER}' \| base64 -d \| awk -F: '{print $1}'` | `kubectl get secret -n falco falco-ui-creds -o=jsonpath='{.data.FALCOSIDEKICK_UI_USER}' \| base64 -d \| awk -F: '{print $2}'` |
 
+## 4. create GitHub OAuth App 
 
-## 4. kubecost
+The Platform-Portal authenticates via GitHub OAuth App. Therefore you need to create a OAuth App in your [developer settings](https://github.com/organizations/YOUR-ORG/settings/applications).
+Click the button "New OAuth App".
+
+- Homepage URL: https://backstage-127-0-0-1.nip.io
+- Authorization callback URL: https://backstage-127-0-0-1.nip.io/api/auth/github
+
+use GITHUB_CLIENTSECRET and GITHUB_CLIENTID from your Github OAuth App and set them in vault via kubectl/curl:
+
+```
+export VAULT_HOSTNAME=$(kubectl get ingress -o jsonpath='{.items[*].spec.rules[*].host}' -n vault)
+export VAULT_TOKEN=$(kubectl get secret -n vault vault-init -o=jsonpath='{.data.root_token}'  | base64 -d)
+curl -k --header "X-Vault-Token:$VAULT_TOKEN" --request POST --data "{\"data\": {\"GITHUB_CLIENTSECRET\": \"${GITHUB_CLIENTSECRET}\", \"GITHUB_CLIENTID\":
+\"${GITHUB_CLIENTID}\"}}" https://${VAULT_HOSTNAME}/v1/kubrix-kv/data/portal/backstage/base
+kubectl rollout restart deployment -n backstage sx-backstage
+```
+
+
+
+## 5. kubecost
 
 initialization need some minutes until values are visible in UI - https://kubecost-127-0-0-1.nip.io/overview
 
-## 5. keycloak
+## 6. keycloak
 
 depending on your hardware it needs some minutes until keycloak is running 
 
-## 6. Onboard teams and applications
+## 7. Onboard teams and applications
 
 In our [App-Onboarding-Documentation](https://github.com/suxess-it/kubriX/blob/main/backstage-resources/docs/onboarding/onboarding-apps.md) and [Team-Onboarding-Documentation](https://github.com/suxess-it/kubriX/blob/main/backstage-resources/docs/onboarding/onboarding-teams.md ) we explain how new teams and apps get onboarded on the platform in a gitops way.
 

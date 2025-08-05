@@ -9,17 +9,6 @@ If you want to test onboarding your apps you need to write in this repository. T
 
 If you just want to have a look at the platform stack in a read-only mode, just use the original repository without forking.
 
-### Create GitHub OAuth App 
-
-The Platform-Portal authenticates via GitHub OAuth App. Therefore you need to create a OAuth App in your [delevoper settings](https://github.com/settings/developers) and use the Client-Secret and Client-ID during installation or GitHub Codespace creation.
-
-The `Homepage URL` and `Authorization callback URL` derive from the codespace URL. Since the codespace URL is not known yet, you can set some dummy values. We will correct this in the next steps.
-
-![image](https://github.com/user-attachments/assets/fd513ff7-3501-4299-aab2-41feae1028bc)
-
-Use "Client ID" to define the variable "KUBRIX_GITHUB_CLIENTID" in the step below.
-Generate a "Client secret" and use the secret to define the variable "KUBRIX_GITHUB_CLIENTSECRET" in the step below.
-
 ## Start GitHub Codespace
 
 You can start a GitHub Codespaces with the button below or this [link](https://github.com/codespaces/new/)
@@ -28,8 +17,6 @@ You can start a GitHub Codespaces with the button below or this [link](https://g
 - Branch: main branch (or a feature branch if you want to test some special features)
 - Dev container configuration: you can select which platform stack (brick) should get installed
 - Recommended Secrets:
-  - KUBRIX_BACKSTAGE_GITHUB_CLIENTID: "Client ID" of your OAuth App in the variable
-  - KUBRIX_BACKSTAGE_GITHUB_CLIENTSECRET: "Client secret" of your OAuth App in the variable
   - KUBRIX_BACKSTAGE_GITHUB_TOKEN: a Personal Access Token for Github to read files from the origin repo
   - KUBRIX_ARGOCD_APPSET_TOKEN: a Personal Access Token for Github to read repositories in your organization (for ArgoCD AppSet SCM Generator)
 
@@ -39,19 +26,6 @@ You can start a GitHub Codespaces with the button below or this [link](https://g
 
 
 You will get a VSCode environment in your browser and additionally a KinD cluster and our platform stack gets installed during startup of the Codespace.
-
-## Correct 'Homepage URL' and 'Authorization callback URL' in your OAuth App
-
-The URL of the new Codespace has a random name and ID like `https://crispy-robot-g44qvrx9jpx29xx7.github.dev/`.
-Copy the hostname (codespace name) except ".github.dev" and fix the URLs of the created OAuth App like this:
-
-- Homepage URL: `<copied hostname>-6691.app.github.dev`
-- Authorization callback URL: `<copied hostname>-6691.app.github.dev/api/auth/github`
-
-and click on "Update application"
-Example:
-
-![image](https://github.com/user-attachments/assets/7e8e51c7-bd1c-4c5b-b21f-c8abe37a47ed)
 
 ## Check the startup of the kubriX platform
 
@@ -67,6 +41,33 @@ For further logs you also need to press CTRL+SHIFT+P and then type "Codespaces: 
 Then you should see log messages in the "Terminal-View":
 
 ![image](https://github.com/user-attachments/assets/5552ef73-bce6-4129-a0b0-9d410ce47af5)
+
+### Create GitHub OAuth App 
+
+The Platform-Portal authenticates via GitHub OAuth App. Therefore you need to create a OAuth App in your [delevoper settings](https://github.com/settings/developers) and use the Client-Secret and Client-ID during installation or GitHub Codespace creation.
+ 
+The URL of the Codespace has a random name and ID like `https://crispy-robot-g44qvrx9jpx29xx7.github.dev/`.
+Copy the hostname (codespace name) except ".github.dev" and set the URLs of the created OAuth App like this:
+
+- Homepage URL: `<copied hostname>-6691.app.github.dev`
+- Authorization callback URL: `<copied hostname>-6691.app.github.dev/api/auth/github`
+
+![image](https://github.com/user-attachments/assets/fd513ff7-3501-4299-aab2-41feae1028bc)
+
+
+Use "Client ID" to define the variable "GITHUB_CLIENTID" in the step below. Generate a "Client secret" and use the secret to define the variable "GITHUB_CLIENTSECRET" in the step below.
+
+Then set GITHUB_CLIENTSECRET and GITHUB_CLIENTID from your Github OAuth App and set them in vault via kubectl/curl:
+
+```
+export GITHUB_CLIENTID="<client-id-from-step-before>"
+export GITHUB_CLIENTSECRET="<client-secret-from-step-before>"
+export VAULT_HOSTNAME=$(kubectl get ingress -o jsonpath='{.items[*].spec.rules[*].host}' -n vault)
+export VAULT_TOKEN=$(kubectl get secret -n vault vault-init -o=jsonpath='{.data.root_token}'  | base64 -d)
+curl -k --header "X-Vault-Token:$VAULT_TOKEN" --request POST --data "{\"data\": {\"GITHUB_CLIENTSECRET\": \"${GITHUB_CLIENTSECRET}\", \"GITHUB_CLIENTID\":
+\"${GITHUB_CLIENTID}\"}}" https://${VAULT_HOSTNAME}/v1/kubrix-kv/data/portal/backstage/base
+kubectl rollout restart deployment -n backstage sx-backstage
+```
 
 ## Accessing platform service consoles
 

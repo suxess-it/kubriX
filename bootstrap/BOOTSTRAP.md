@@ -93,8 +93,34 @@ Steps:
     curl -H 'Cache-Control: no-cache, no-store' https://raw.githubusercontent.com/suxess-it/kubriX/refs/heads/main/bootstrap/bootstrap.sh | bash -s
     ```
 
-It will create a new kubriX repo based on your parameters and installs kubriX based on your created kubriX repo on your connected K8s cluster.
+    It will create a new kubriX repo based on your parameters and installs kubriX based on your created kubriX repo on your connected K8s cluster.
 
+11. Create Github OAuth App and set secrets in vault
+
+    The Platform-Portal authenticates via GitHub OAuth App. Therefore you need to create a OAuth App in your [developer settings](https://github.com/organizations/YOUR-ORG/settings/applications).
+    Click the button "New OAuth App".
+    
+   Homepage URL and Authorization callback URL must match your `backstage.${KUBRIX_CUSTOMER_DOMAIN}`
+
+    - Homepage URL: `backstage.demo-johnny.kubrix.cloud`
+    - Authorization callback URL: `backstage.demo-johnny.kubrix.cloud/api/auth/github`
+
+    ![image](https://github.com/user-attachments/assets/fd513ff7-3501-4299-aab2-41feae1028bc)
+
+
+    Use "Client ID" to define the variable "GITHUB_CLIENTID" in the step below. Generate a "Client secret" and use the secret to define the variable "GITHUB_CLIENTSECRET" in the step below.
+
+    Then set GITHUB_CLIENTSECRET and GITHUB_CLIENTID from your Github OAuth App and set them in vault via kubectl/curl:
+
+    ```
+    export GITHUB_CLIENTID="<client-id-from-step-before>"
+    export GITHUB_CLIENTSECRET="<client-secret-from-step-before>"
+    export VAULT_HOSTNAME=$(kubectl get ingress -o jsonpath='{.items[*].spec.rules[*].host}' -n vault)
+    export VAULT_TOKEN=$(kubectl get secret -n vault vault-init -o=jsonpath='{.data.root_token}'  | base64 -d)
+    curl -k --header "X-Vault-Token:$VAULT_TOKEN" --request POST --data "{\"data\": {\"GITHUB_CLIENTSECRET\": \"${GITHUB_CLIENTSECRET}\", \"GITHUB_CLIENTID\":
+    \"${GITHUB_CLIENTID}\"}}" https://${VAULT_HOSTNAME}/v1/kubrix-kv/data/portal/backstage/base
+    kubectl rollout restart deployment -n backstage sx-backstage
+    ```
 
 ## background information
 

@@ -498,8 +498,6 @@ if [[ $( echo $argocd_apps | grep sx-backstage ) ]] ; then
   
   if [ ${KEYCLOAK_CODESPACES} ]; then
     kubectl create secret generic -n backstage manual-secret \
-      --from-literal=GITHUB_CLIENTSECRET=${KUBRIX_BACKSTAGE_GITHUB_CLIENTSECRET} \
-      --from-literal=GITHUB_CLIENTID=${KUBRIX_BACKSTAGE_GITHUB_CLIENTID} \
       --from-literal=GITHUB_ORG=${GITHUB_ORG} \
       --from-literal=GITHUB_TOKEN=${KUBRIX_BACKSTAGE_GITHUB_TOKEN} \
       --from-literal=K8S_SA_TOKEN=${K8S_SA_TOKEN} \
@@ -519,8 +517,6 @@ if [[ $( echo $argocd_apps | grep sx-backstage ) ]] ; then
 
   elif [ ${GITHUB_CODESPACES} ]; then
     kubectl create secret generic -n backstage manual-secret \
-    --from-literal=GITHUB_CLIENTSECRET=${KUBRIX_BACKSTAGE_GITHUB_CLIENTSECRET} \
-    --from-literal=GITHUB_CLIENTID=${KUBRIX_BACKSTAGE_GITHUB_CLIENTID} \
     --from-literal=GITHUB_ORG=${GITHUB_ORG} \
     --from-literal=GITHUB_TOKEN=${KUBRIX_BACKSTAGE_GITHUB_TOKEN} \
     --from-literal=K8S_SA_TOKEN=${K8S_SA_TOKEN} \
@@ -533,8 +529,6 @@ if [[ $( echo $argocd_apps | grep sx-backstage ) ]] ; then
 
   else
     kubectl create secret generic -n backstage manual-secret \
-    --from-literal=GITHUB_CLIENTSECRET=${KUBRIX_BACKSTAGE_GITHUB_CLIENTSECRET} \
-    --from-literal=GITHUB_CLIENTID=${KUBRIX_BACKSTAGE_GITHUB_CLIENTID} \
     --from-literal=GITHUB_ORG=${GITHUB_ORG} \
     --from-literal=GITHUB_TOKEN=${KUBRIX_BACKSTAGE_GITHUB_TOKEN} \
     --from-literal=K8S_SA_TOKEN=${K8S_SA_TOKEN} \

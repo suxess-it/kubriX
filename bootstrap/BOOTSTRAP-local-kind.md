@@ -79,8 +79,35 @@ install the CA of mkcert in your OS truststore: https://docs.kubefirst.io/k3d/qu
     curl -H 'Cache-Control: no-cache, no-store' https://raw.githubusercontent.com/suxess-it/kubriX/refs/heads/main/bootstrap/bootstrap.sh | bash -s
     ```
 
-It will create a new kubriX repo based on your parameters and installs kubriX based on your created kubriX repo on your local KinD cluster.
+    It will create a new kubriX repo based on your parameters and installs kubriX based on your created kubriX repo on your local KinD cluster.
 
+6. Create Github OAuth App and set secrets in vault
+
+    The Platform-Portal authenticates via GitHub OAuth App. Therefore you need to create a OAuth App in your [developer settings](https://github.com/organizations/YOUR-ORG/settings/applications).
+    Click the button "New OAuth App".
+    
+    The URL of the Codespace has a random name and ID like `https://crispy-robot-g44qvrx9jpx29xx7.github.dev/`.
+    Copy the hostname (codespace name) except ".github.dev" and set the URLs of the created OAuth App like this:
+
+    - Homepage URL: `<copied hostname>-6691.app.github.dev`
+    - Authorization callback URL: `<copied hostname>-6691.app.github.dev/api/auth/github`
+
+    ![image](https://github.com/user-attachments/assets/fd513ff7-3501-4299-aab2-41feae1028bc)
+
+
+    Use "Client ID" to define the variable "GITHUB_CLIENTID" in the step below. Generate a "Client secret" and use the secret to define the variable "GITHUB_CLIENTSECRET" in the step below.
+
+    Then set GITHUB_CLIENTSECRET and GITHUB_CLIENTID from your Github OAuth App and set them in vault via kubectl/curl:
+
+    ```
+    export GITHUB_CLIENTID="<client-id-from-step-before>"
+    export GITHUB_CLIENTSECRET="<client-secret-from-step-before>"
+    export VAULT_HOSTNAME=$(kubectl get ingress -o jsonpath='{.items[*].spec.rules[*].host}' -n vault)
+    export VAULT_TOKEN=$(kubectl get secret -n vault vault-init -o=jsonpath='{.data.root_token}'  | base64 -d)
+    curl -k --header "X-Vault-Token:$VAULT_TOKEN" --request POST --data "{\"data\": {\"GITHUB_CLIENTSECRET\": \"${GITHUB_CLIENTSECRET}\", \"GITHUB_CLIENTID\":
+    \"${GITHUB_CLIENTID}\"}}" https://${VAULT_HOSTNAME}/v1/kubrix-kv/data/portal/backstage/base
+    kubectl rollout restart deployment -n backstage sx-backstage
+    ```
 
 | Tool    | URL | Username | Password |
 | -------- | ------- | ------- | ------- |
