@@ -86,8 +86,6 @@ git push --set-upstream customer ${KUBRIX_UPSTREAM_BRANCH}:main
 
 echo "Now run install-platform.sh from your new kubriX repo ${KUBRIX_CUSTOMER_REPO}"
 
-export KUBRIX_BACKSTAGE_GITHUB_CLIENTID=dummy
-export KUBRIX_BACKSTAGE_GITHUB_CLIENTSECRET=dummy
 export KUBRIX_BACKSTAGE_GITHUB_TOKEN=${KUBRIX_CUSTOMER_REPO_TOKEN}
 export KUBRIX_REPO=${KUBRIX_CUSTOMER_REPO}
 export KUBRIX_REPO_BRANCH=main
@@ -104,8 +102,6 @@ if [ $rc -ne 0 ]; then
   echo "install-platform.sh was not sucessful. To rerun the installation with the already existing customer repo ${KUBRIX_CUSTOMER_REPO} just export these variables:\
   
   
-  export KUBRIX_BACKSTAGE_GITHUB_CLIENTID=dummy
-  export KUBRIX_BACKSTAGE_GITHUB_CLIENTSECRET=dummy
   export KUBRIX_BACKSTAGE_GITHUB_TOKEN=${KUBRIX_CUSTOMER_REPO_TOKEN}
   export KUBRIX_REPO=${KUBRIX_CUSTOMER_REPO}
   export KUBRIX_REPO_BRANCH=main
