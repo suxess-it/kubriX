@@ -82,6 +82,14 @@ applications:
 
 {{ if ne .kubriX.clusterType "kind" -}}
 
+  - name: falco
+    annotations:
+      argocd.argoproj.io/compare-options: ServerSideDiff=true
+    helmOptions:
+      skipCrds: true
+    syncOptions:
+      - ServerSideApply=true
+
   - name: kyverno
     syncOptions:
       - ServerSideApply=true
