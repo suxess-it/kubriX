@@ -543,7 +543,7 @@ if [[ $( echo $argocd_apps | grep sx-backstage ) ]] ; then
   fi
 
   # finally wait for all apps including backstage to be synced and health
-  wait_until_apps_synced_healthy "${argocd_apps}" "Synced" "Healthy" 300
+  wait_until_apps_synced_healthy "${argocd_apps}" "Synced" "Healthy" 600
 
 fi
 # remove pushsecrets
