@@ -80,7 +80,7 @@ applications:
 
   - name: mimir
 
-{{ if ne .kubriX.clusterType "kind" -}}
+  {{ if ne .kubriX.clusterType "kind" -}}
 
   - name: falco
     annotations:
@@ -100,7 +100,7 @@ applications:
 
   - name: minio
 
-{{ end -}}
+  {{ end -}}
 
   - name: backstage
     annotations:
