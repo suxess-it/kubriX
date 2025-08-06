@@ -1,10 +1,17 @@
 # Bootstrap kubriX
 
-## Fully automated bootstrapping
+With this step-by-step guide kubriX with its default KIND-DELIVERY stack gets deployed on your local KinD cluster.
 
-Steps:
+## Prerequisites
+
+* kubectl
+* jq
+* yq
+
+## Installation steps
 
 1. create new empty customer repo on your Git-Server (GitLab, GitHub, Gitea, ...).
+    We fully tested this with GitHub, but others should also work.
 
     IMPORTANT: the repo needs to be empty (also no initial README!!!)
 
@@ -100,15 +107,20 @@ Steps:
     The Platform-Portal authenticates via GitHub OAuth App. Therefore you need to create a OAuth App in your [developer settings](https://github.com/organizations/YOUR-ORG/settings/applications).
     Click the button "New OAuth App".
     
-   Homepage URL and Authorization callback URL must match your `backstage.${KUBRIX_CUSTOMER_DOMAIN}`
+    Homepage URL and Authorization callback URL must match "https://backstage.${KUBRIX_CUSTOMER_DOMAIN}"
 
+    Example:
     - Homepage URL: `backstage.demo-johnny.kubrix.cloud`
     - Authorization callback URL: `backstage.demo-johnny.kubrix.cloud/api/auth/github`
 
-    ![image](https://github.com/user-attachments/assets/fd513ff7-3501-4299-aab2-41feae1028bc)
+    <img width="549" height="638" alt="image" src="https://github.com/user-attachments/assets/2bed4a26-8990-49ab-afaf-2daaf0138261" />
 
+    After clicking "Register application", click on "Generate a new client secret".
 
-    Use "Client ID" to define the variable "GITHUB_CLIENTID" in the step below. Generate a "Client secret" and use the secret to define the variable "GITHUB_CLIENTSECRET" in the step below.
+    <img width="1035" height="550" alt="image" src="https://github.com/user-attachments/assets/df3c94da-10e2-4315-8411-e1fa5c282ff8" />
+
+    Use the value of the "Client ID" for the variable `GITHUB_CLIENTID` in the step below. 
+    Use the generated client secret as the value for the variable `GITHUB_CLIENTSECRET` in the step below.
 
     Then set GITHUB_CLIENTSECRET and GITHUB_CLIENTID from your Github OAuth App and set them in vault via kubectl/curl:
 
@@ -121,6 +133,7 @@ Steps:
     kubectl delete externalsecret -n backstage sx-cnp-secret
     kubectl rollout restart deployment -n backstage sx-backstage
     ```
+
 
 ## background information
 
