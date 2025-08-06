@@ -92,8 +92,8 @@ install the CA of mkcert in your OS truststore: https://docs.kubefirst.io/k3d/qu
     The Platform-Portal authenticates via GitHub OAuth App. Therefore you need to create a OAuth App in your [developer settings](https://github.com/organizations/YOUR-ORG/settings/applications).
     Click the button "New OAuth App".
     
-    - Homepage URL: https://backstage.127-0-0-1.nip.io
-    - Authorization callback URL: https://backstage.127-0-0-1.nip.io/api/auth/github
+    - Homepage URL: `https://backstage.127-0-0-1.nip.io`
+    - Authorization callback URL: `https://backstage.127-0-0-1.nip.io/api/auth/github`
 
     <img width="549" height="638" alt="image" src="https://github.com/user-attachments/assets/2bed4a26-8990-49ab-afaf-2daaf0138261" />
 
