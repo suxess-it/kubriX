@@ -79,8 +79,44 @@ install the CA of mkcert in your OS truststore: https://docs.kubefirst.io/k3d/qu
     curl -H 'Cache-Control: no-cache, no-store' https://raw.githubusercontent.com/suxess-it/kubriX/refs/heads/main/bootstrap/bootstrap.sh | bash -s
     ```
 
-It will create a new kubriX repo based on your parameters and installs kubriX based on your created kubriX repo on your local KinD cluster.
+    It will create a new kubriX repo based on your parameters and installs kubriX based on your created kubriX repo on your local KinD cluster.
+    This could take up to 30 minutes, depending how powerful your local environment is.
 
+    Especially Keycloak could take a while,
+    since there are many resources created via Crossplane in different ArgoCD sync-waves.  
+    After 300 seconds the sync process gets terminated and restarted. This could happend sometimes and is not always indicating a problem.
+    Also, sometimes the Keycloak app could be in temporary `Degraded` state during installation, but gets `Healthy` afterwards.
+
+7. Create Github OAuth App and set secrets in vault
+
+    The Platform-Portal authenticates via GitHub OAuth App. Therefore you need to create a OAuth App in your [developer settings](https://github.com/organizations/YOUR-ORG/settings/applications).
+    Click the button "New OAuth App".
+    
+    - Homepage URL: `https://backstage.127-0-0-1.nip.io`
+    - Authorization callback URL: `https://backstage.127-0-0-1.nip.io/api/auth/github`
+
+    <img width="549" height="638" alt="image" src="https://github.com/user-attachments/assets/2bed4a26-8990-49ab-afaf-2daaf0138261" />
+
+    After clicking "Register application", click on "Generate a new client secret".
+
+    <img width="1035" height="550" alt="image" src="https://github.com/user-attachments/assets/df3c94da-10e2-4315-8411-e1fa5c282ff8" />
+
+    Use the value of the "Client ID" for the variable `GITHUB_CLIENTID` in the step below. 
+    Use the generated client secret as the value for the variable `GITHUB_CLIENTSECRET` in the step below.
+
+    Then set GITHUB_CLIENTSECRET and GITHUB_CLIENTID from your Github OAuth App and set them in vault via kubectl/curl:
+
+    ```
+    export GITHUB_CLIENTID="<client-id-from-previous-step>"
+    export GITHUB_CLIENTSECRET="<client-secret-from-previous-step>"
+    export VAULT_HOSTNAME=$(kubectl get ingress -o jsonpath='{.items[*].spec.rules[*].host}' -n vault)
+    export VAULT_TOKEN=$(kubectl get secret -n vault vault-init -o=jsonpath='{.data.root_token}'  | base64 -d)
+    curl -k --header "X-Vault-Token:$VAULT_TOKEN" --request PATCH --header "Content-Type: application/merge-patch+json" --data "{\"data\": {\"GITHUB_CLIENTSECRET\": \"${GITHUB_CLIENTSECRET}\", \"GITHUB_CLIENTID\": \"${GITHUB_CLIENTID}\"}}" https://${VAULT_HOSTNAME}/v1/kubrix-kv/data/portal/backstage/base
+    kubectl delete externalsecret -n backstage sx-cnp-secret
+    kubectl rollout restart deployment -n backstage sx-backstage
+    ```
+
+When kubriX installed sucessfully you can access the platform services via these URLs and login with these credentials:
 
 | Tool    | URL | Username | Password |
 | -------- | ------- | ------- | ------- |
@@ -91,3 +127,21 @@ It will create a new kubriX repo based on your parameters and installs kubriX ba
 | Keycloak    | https://keycloak.127-0-0-1.nip.io | admin | `kubectl get secret -n keycloak keycloak-admin -o=jsonpath='{.data.admin-password}' \| base64 -d` |
 | FalcoUI    | https://falco.127-0-0-1.nip.io | `kubectl get secret -n falco falco-ui-creds -o=jsonpath='{.data.FALCOSIDEKICK_UI_USER}' \| base64 -d \| awk -F: '{print $1}'` | `kubectl get secret -n falco falco-ui-creds -o=jsonpath='{.data.FALCOSIDEKICK_UI_USER}' \| base64 -d \| awk -F: '{print $2}'` |
 
+
+## Onboard teams and applications
+
+In our [App-Onboarding-Documentation](https://github.com/suxess-it/kubriX/blob/main/backstage-resources/docs/onboarding/onboarding-apps.md) and [Team-Onboarding-Documentation](https://github.com/suxess-it/kubriX/blob/main/backstage-resources/docs/onboarding/onboarding-teams.md ) we explain how new teams and apps get onboarded on the platform in a gitops way.
+
+## Promote apps with Kargo
+
+Follow the [Promoting changes with Kargo](https://github.com/suxess-it/kubriX/blob/main/backstage-resources/docs/onboarding/promoting-changes.md) documentation to walk through the use case how to move changes from test to production.
+
+## Cleanup
+
+Delete your local KinD cluster:
+
+```
+kind delete cluster --name kubrix-local-demo
+```
+
+Also delete your created kubriX gitops-Repo you defined in variable `KUBRIX_CUSTOMER_REPO` on your Git-Server.
