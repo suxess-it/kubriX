@@ -80,6 +80,8 @@ applications:
 
   - name: mimir
 
+{{ if ne .kubriX.clusterType "kind" -}}
+
   - name: falco
     annotations:
       argocd.argoproj.io/compare-options: ServerSideDiff=true
@@ -92,15 +94,13 @@ applications:
     syncOptions:
       - ServerSideApply=true
 
-#  - name: kubevirt-manager
-
-#  - name: kubevirt
-
   - name: velero
 
   - name: velero-ui
 
   - name: minio
+
+{{ end -}}
 
   - name: backstage
     annotations:
