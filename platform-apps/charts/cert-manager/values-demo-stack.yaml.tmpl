@@ -1,7 +1,11 @@
 {{ if eq .kubriX.clusterType "kind" -}}
-createmkcertClusterIssuer: true
+mkcertClusterIssuer:
+  enabled: true
+  default: true
 {{ else }}
-createLetsEncryptProdClusterIssuer: true
+letsEncryptProdClusterIssuer:
+  enabled: true
+  default: true
 {{ end -}}
 
 cert-manager:
