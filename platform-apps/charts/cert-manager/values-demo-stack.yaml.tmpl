@@ -1,12 +1,12 @@
-{{ if eq .kubriX.clusterType "kind" -}}
+{{- if eq .kubriX.clusterType "kind" }}
 mkcertClusterIssuer:
   enabled: true
   default: true
-{{ else }}
+{{- else }}
 letsEncryptProdClusterIssuer:
   enabled: true
   default: true
-{{ end -}}
+{{- end }}
 
 cert-manager:
   webhook:
