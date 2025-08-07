@@ -28,6 +28,8 @@ falco:
       replicaCount: 1
       ingress:
         enabled: true
+        annotations:
+          cert-manager.io/cluster-issuer: mkcert-issuer
         hosts:
           - host: falco-127-0-0-1.nip.io
             paths:
