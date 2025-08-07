@@ -141,7 +141,7 @@ backstage:
               # real metadataUrl -> local cluster lead to "ECONNREFUSED 127.0.0.1:443" - #24935
               #metadataUrl: https://keycloak-127-0-0-1.nip.io/realms/kubrix #.well-known/openid-configuration can be ommited
               # workaround -> also set frontendUrl in keycloak realm
-              metadataUrl: http://sx-keycloak-headless.keycloak.svc.cluster.local:8080/realms/kubrix #.well-known/openid-configuration can be ommited
+              metadataUrl: http://kubrix-keycloak-service.keycloak.svc.cluster.local:8080/realms/kubrix #.well-known/openid-configuration can be ommited
               callbackUrl: https://backstage-127-0-0-1.nip.io/api/auth/oidc/handler/frame
               clientId: backstage
               clientSecret: ${OIDC_CLIENTSECRET}
