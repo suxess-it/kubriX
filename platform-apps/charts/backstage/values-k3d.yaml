@@ -2,6 +2,8 @@ backstage:
   ingress:
     enabled: true
     host: backstage-127-0-0-1.nip.io
+    annotations:
+      cert-manager.io/cluster-issuer: mkcert-issuer
     tls:
       enabled: true
       secretName: backstage-server-tls
