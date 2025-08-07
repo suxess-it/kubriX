@@ -471,10 +471,6 @@ if [[ $( echo $argocd_apps | grep sx-backstage ) ]] ; then
   # check if backstage is already synced (it will still be degraded because of the missing secret we create in the next step)
   wait_until_apps_synced_healthy "sx-backstage" "Synced" "*" 900
 
-  # get backstage-locator token for backstage secret
-  export K8S_SA_TOKEN=$( kubectl get secret backstage-locator -n backstage  -o jsonpath='{.data.token}' | base64 -d )
-  curl -k --header "X-Vault-Token:$VAULT_TOKEN" --request PATCH --header "Content-Type: application/merge-patch+json" --data "{\"data\": {\"K8S_SA_TOKEN\": \"${K8S_SA_TOKEN}\"}}" https://${VAULT_HOSTNAME}/v1/kubrix-kv/data/portal/backstage/base
-
   # create manual-secret secret with all tokens for backstage
   # in github codespace we need additional environment variables to overwrite app-config.yaml
   if [ ${CODESPACES} ]; then
@@ -492,7 +488,6 @@ if [[ $( echo $argocd_apps | grep sx-backstage ) ]] ; then
     kubectl create secret generic -n backstage manual-secret \
       --from-literal=GITHUB_ORG=${GITHUB_ORG} \
       --from-literal=GITHUB_TOKEN=${KUBRIX_BACKSTAGE_GITHUB_TOKEN} \
-      --from-literal=K8S_SA_TOKEN=${K8S_SA_TOKEN} \
       --from-literal=APP_CONFIG_app_baseUrl=${BACKSTAGE_CODESPACE_URL} \
       --from-literal=APP_CONFIG_backend_baseUrl=${BACKSTAGE_CODESPACE_URL} \
       --from-literal=APP_CONFIG_backend_cors_origin=${BACKSTAGE_CODESPACE_URL} \
@@ -509,7 +504,6 @@ if [[ $( echo $argocd_apps | grep sx-backstage ) ]] ; then
     kubectl create secret generic -n backstage manual-secret \
     --from-literal=GITHUB_ORG=${GITHUB_ORG} \
     --from-literal=GITHUB_TOKEN=${KUBRIX_BACKSTAGE_GITHUB_TOKEN} \
-    --from-literal=GRAFANA_TOKEN=${GRAFANA_TOKEN} \
     --from-literal=APP_CONFIG_app_baseUrl=${BACKSTAGE_CODESPACE_URL} \
     --from-literal=APP_CONFIG_backend_baseUrl=${BACKSTAGE_CODESPACE_URL} \
     --from-literal=APP_CONFIG_backend_cors_origin=${BACKSTAGE_CODESPACE_URL} \
@@ -519,7 +513,6 @@ if [[ $( echo $argocd_apps | grep sx-backstage ) ]] ; then
     kubectl create secret generic -n backstage manual-secret \
     --from-literal=GITHUB_ORG=${GITHUB_ORG} \
     --from-literal=GITHUB_TOKEN=${KUBRIX_BACKSTAGE_GITHUB_TOKEN} \
-    --from-literal=K8S_SA_TOKEN=${K8S_SA_TOKEN} \
   fi
 
   # in codespaces we need additional crossplane resources for keycloak
