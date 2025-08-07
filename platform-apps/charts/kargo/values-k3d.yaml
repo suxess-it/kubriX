@@ -7,6 +7,8 @@ kargo:
     ingress:
       ## @param api.ingress.enabled Whether to enable ingress. By default, this is disabled. Enabling ingress is advanced usage.
       enabled: true
+      annotations:
+        cert-manager.io/cluster-issuer: mkcert-issuer
       tls:
         enabled: true
         selfSignedCert: false

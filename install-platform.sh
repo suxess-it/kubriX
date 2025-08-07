@@ -281,24 +281,6 @@ OS=$(uname -s)
 check_prereqs
 
 if [[ "${KUBRIX_TARGET_TYPE}" =~ ^KIND.* || "${KUBRIX_CLUSTER_TYPE}" == "KIND" ]] ; then
-  # create mkcert certs in alle namespaces with ingress
-  for namespace in backstage kargo grafana cnpg argocd komoplane kubecost falco minio velero velero-ui; do
-    kubectl create namespace ${namespace}
-    mkcert -cert-file ${namespace}-cert.pem -key-file ${namespace}-key.pem ${namespace}.127-0-0-1.nip.io
-    # kargo needs a special secret name according to its helm chart
-    if [ "${namespace}" = "kargo" ]; then
-      kubectl create secret tls kargo-api-ingress-cert -n ${namespace} --cert=${namespace}-cert.pem --key=${namespace}-key.pem
-    else
-      kubectl create secret tls ${namespace}-server-tls -n ${namespace} --cert=${namespace}-cert.pem --key=${namespace}-key.pem
-    fi
-    # minioconsole needs additional secret
-    if [ "${namespace}" = "minio" ]; then
-      mkcert -cert-file ${namespace}-console-cert.pem -key-file ${namespace}-console-key.pem minio-console.127-0-0-1.nip.io
-      kubectl create secret tls minio-console-tls -n ${namespace} --cert=${namespace}-console-cert.pem --key=${namespace}-console-key.pem
-      rm ${namespace}-console-cert.pem ${namespace}-console-key.pem
-    fi
-    rm ${namespace}-cert.pem ${namespace}-key.pem
-  done
   
   # resolv domainname to ingress adress to solve localhost result 
   kubectl get configmap coredns -n kube-system -o yaml |  awk '
@@ -317,7 +299,8 @@ if [[ "${KUBRIX_TARGET_TYPE}" =~ ^KIND.* || "${KUBRIX_CLUSTER_TYPE}" == "KIND" ]
   echo "installing nginx ingress controller in KinD"
   kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/main/deploy/static/provider/kind/deploy.yaml
 
-  # create mkcert-issuer
+  # create mkcert-issuer root certificate
+  mkcert -install
   kubectl create namespace cert-manager
   kubectl create secret tls mkcert-ca-key-pair --key "$(mkcert -CAROOT)"/rootCA-key.pem --cert "$(mkcert -CAROOT)"/rootCA.pem -n cert-manager
 

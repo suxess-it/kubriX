@@ -32,6 +32,8 @@ grafana:
     ## If true, Grafana Ingress will be created
     ##
     enabled: true
+    annotations:
+      cert-manager.io/cluster-issuer: mkcert-issuer
     hosts: [grafana-127-0-0-1.nip.io]
     tls:
       - secretName: grafana-server-tls
