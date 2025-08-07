@@ -238,6 +238,7 @@ argo-cd:
       annotations: 
         nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
         nginx.ingress.kubernetes.io/backend-protocol: "HTTP"
+        cert-manager.io/cluster-issuer: mkcert-issuer
       extraTls:
         - hosts:
           - argocd-127-0-0-1.nip.io
