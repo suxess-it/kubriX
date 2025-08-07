@@ -34,6 +34,7 @@ minio:
     ingressClassName:
     annotations:
       nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
+      cert-manager.io/cluster-issuer: mkcert-issuer
     path: /
     hosts:
       - minio-console-127-0-0-1.nip.io
