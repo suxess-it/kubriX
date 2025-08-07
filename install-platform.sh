@@ -407,7 +407,7 @@ target_chart_value_file="platform-apps/target-chart/values-$(echo ${KUBRIX_TARGE
 
 argocd_apps=$(cat $target_chart_value_file | egrep -Ev "team-onboarding" | awk '/^  - name:/ { printf "%s", "sx-"$3" "}' )
 # list apps which need some sort of special treatment in bootstrap
-argocd_apps_without_individual=$(cat $target_chart_value_file | egrep -Ev "backstage|team-onboarding" | awk '/^  - name:/ { printf "%s", "sx-"$3" "}' )
+argocd_apps_without_individual=$(cat $target_chart_value_file | egrep -Ev "team-onboarding" | awk '/^  - name:/ { printf "%s", "sx-"$3" "}' )
 
 # max wait for 20 minutes until all apps except backstage and kargo are synced and healthy
 wait_until_apps_synced_healthy "${argocd_apps_without_individual}" "Synced" "Healthy" ${KUBRIX_BOOTSTRAP_MAX_WAIT_TIME:-1200}
@@ -472,9 +472,6 @@ fi
 # if backstage is part of this stack, create the manual secret for backstage
 if [[ $( echo $argocd_apps | grep sx-backstage ) ]] ; then
 
-  # check if backstage is already synced (it will still be degraded because of the missing secret we create in the next step)
-  wait_until_apps_synced_healthy "sx-backstage" "Synced" "*" 900
-
   # create manual-secret secret with all tokens for backstage
   # in github codespace we need additional environment variables to overwrite app-config.yaml
   if [ ${CODESPACES} ]; then
@@ -490,7 +487,6 @@ if [[ $( echo $argocd_apps | grep sx-backstage ) ]] ; then
   
   if [ ${KEYCLOAK_CODESPACES} ]; then
     kubectl create secret generic -n backstage manual-secret \
-      --from-literal=GITHUB_ORG=${GITHUB_ORG} \
       --from-literal=APP_CONFIG_app_baseUrl=${BACKSTAGE_CODESPACE_URL} \
       --from-literal=APP_CONFIG_backend_baseUrl=${BACKSTAGE_CODESPACE_URL} \
       --from-literal=APP_CONFIG_backend_cors_origin=${BACKSTAGE_CODESPACE_URL} \
@@ -505,15 +501,11 @@ if [[ $( echo $argocd_apps | grep sx-backstage ) ]] ; then
 
   elif [ ${GITHUB_CODESPACES} ]; then
     kubectl create secret generic -n backstage manual-secret \
-    --from-literal=GITHUB_ORG=${GITHUB_ORG} \
     --from-literal=APP_CONFIG_app_baseUrl=${BACKSTAGE_CODESPACE_URL} \
     --from-literal=APP_CONFIG_backend_baseUrl=${BACKSTAGE_CODESPACE_URL} \
     --from-literal=APP_CONFIG_backend_cors_origin=${BACKSTAGE_CODESPACE_URL} \
     --from-literal=APP_CONFIG_auth_provider_github_development_callbackUrl=${BACKSTAGE_CODESPACE_URL}/api/auth/github/handler/frame
 
-  else
-    kubectl create secret generic -n backstage manual-secret \
-    --from-literal=GITHUB_ORG=${GITHUB_ORG} \
   fi
 
   # in codespaces we need additional crossplane resources for keycloak
@@ -521,6 +513,8 @@ if [[ $( echo $argocd_apps | grep sx-backstage ) ]] ; then
   if [ ${KEYCLOAK_CODESPACES} ]; then
     cat .devcontainer/keycloak-codespaces.yaml | sed "s/BACKSTAGE_CODESPACES_REPLACE/${CODESPACE_NAME}-6691.${GITHUB_CODESPACES_PORT_FORWARDING_DOMAIN}/g" | sed "s/KEYCLOAK_CODESPACES_REPLACE/${CODESPACE_NAME}-6692.${GITHUB_CODESPACES_PORT_FORWARDING_DOMAIN}/g" | kubectl apply -n keycloak -f -
   fi
+
+  kubectl rollout restart deployment sx-backstage -n backstage
 
   # finally wait for all apps including backstage to be synced and health
   wait_until_apps_synced_healthy "${argocd_apps}" "Synced" "Healthy" 600
