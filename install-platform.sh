@@ -384,13 +384,6 @@ helm install sx-argocd argo-cd \
 echo "add kubriX repo in argocd pod"
 kubectl exec sx-argocd-application-controller-0 -n argocd -- argocd repo add ${KUBRIX_REPO} --username ${KUBRIX_REPO_USERNAME} --password ${KUBRIX_REPO_PASSWORD} --core
 
-# create secret for scm applicationset in team app definition namespaces
-# see https://github.com/suxess-it/kubriX/issues/214 for a sustainable solution
-#for ns in adn-team1 adn-team2 adn-team-a; do
-#  kubectl create namespace ${ns}
-#  kubectl create secret generic appset-github-token --from-literal=token=${KUBRIX_GITHUB_APPSET_TOKEN} -n ${ns}
-#done
-
 # add secrets
 echo "Generating default secrets..."
 ./.secrets/createsecret.sh
