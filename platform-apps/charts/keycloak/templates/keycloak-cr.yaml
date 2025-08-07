@@ -26,9 +26,11 @@ spec:
     httpEnabled: true
   hostname:
     hostname: https://keycloak{{ .Values.kubrix.keycloak.fqdn }}
-    admin: https://keycloak{{ .Values.kubrix.keycloak.fqdn }}/admin
+    admin: https://keycloak{{ .Values.kubrix.keycloak.fqdn }}
     strict: false
     backchannelDynamic: true
+  proxy:
+    headers: xforwarded
   {{ with .Values.keycloak.readinessProbe }}
   readinessProbe:
     {{- toYaml . | nindent 4 }}
