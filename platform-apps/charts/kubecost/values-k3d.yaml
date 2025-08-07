@@ -26,6 +26,8 @@ cost-analyzer:
   # Basic Kubecost ingress, more examples available at https://github.com/kubecost/docs/blob/main/ingress-examples.md
   ingress:
     enabled: true
+    annotations:
+      cert-manager.io/cluster-issuer: mkcert-issuer
     hosts:
       - kubecost-127-0-0-1.nip.io
     tls: 

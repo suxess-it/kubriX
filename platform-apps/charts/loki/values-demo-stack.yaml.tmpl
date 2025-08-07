@@ -26,7 +26,7 @@ loki:
       ingressClassName: nginx
       annotations:
         external-dns.alpha.kubernetes.io/ttl: "60"
-        cert-manager.io/cluster-issuer: letsencrypt-prod
+        cert-manager.io/cluster-issuer: default-issuer
       hosts:
         - host: logs-monitoring.{{ .kubriX.domain }}
           paths:

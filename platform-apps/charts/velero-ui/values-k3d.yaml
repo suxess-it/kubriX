@@ -18,6 +18,7 @@ vui:
     ingressClassName: ""
     metadata:
       annotations:
+        cert-manager.io/cluster-issuer: mkcert-issuer
     spec:
       tls:
         - secretName: velero-ui-server-tls
