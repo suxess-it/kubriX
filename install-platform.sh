@@ -80,6 +80,35 @@ utc_now_seconds() {
   fi
 }
 
+create_integration_secrets_for_backstage() {
+  echo "adding special configuration for sx-backstage"
+
+  export VAULT_HOSTNAME=$(kubectl get ingress -o jsonpath='{.items[*].spec.rules[*].host}' -n vault)
+  export VAULT_TOKEN=$(kubectl get secret -n vault vault-init -o=jsonpath='{.data.root_token}'  | base64 -d)
+
+  # generate argocd token
+  export ARGOCD_AUTH_TOKEN="$( kubectl exec sx-argocd-application-controller-0 -n argocd -- argocd account generate-token --account backstage --core )"
+  curl -k --header "X-Vault-Token:$VAULT_TOKEN" --request PATCH --header "Content-Type: application/merge-patch+json" --data "{\"data\": {\"ARGOCD_AUTH_TOKEN\": \"${ARGOCD_AUTH_TOKEN}\"}}" https://${VAULT_HOSTNAME}/v1/kubrix-kv/data/portal/backstage/base
+
+  # generate grafana token
+  export GRAFANA_HOSTNAME=$(kubectl get ingress -o jsonpath='{.items[*].spec.rules[*].host}' -n grafana )
+  
+  # check if the secret exists and extract credentials if it does
+  if kubectl get secret grafana-admin-secret -n grafana &>/dev/null; then
+    export GRAFANA_USER=$(kubectl get secret -n grafana grafana-admin-secret -o=jsonpath='{.data.userKey }'  | base64 -d)
+    export GRAFANA_PASSWORD=$(kubectl get secret -n grafana grafana-admin-secret -o=jsonpath='{.data.passwordKey }'  | base64 -d)
+  else
+    # use default credentials
+    export GRAFANA_USER="admin"
+    export GRAFANA_PASSWORD="prom-operator"
+  fi
+  if [ "${GRAFANA_HOSTNAME}" != "" ]; then
+    ID=$( curl -k -X POST https://${GRAFANA_HOSTNAME}/api/serviceaccounts --user "${GRAFANA_USER}:${GRAFANA_PASSWORD}" -H "Content-Type: application/json" -d '{"name": "backstage","role": "Viewer","isDisabled": false}' | jq -r .id )
+    export GRAFANA_TOKEN=$(curl -k -X POST https://${GRAFANA_HOSTNAME}/api/serviceaccounts/${ID}/tokens --user "${GRAFANA_USER}:${GRAFANA_PASSWORD}" -H "Content-Type: application/json" -d '{"name": "backstage"}' | jq -r .key)
+    curl -k --header "X-Vault-Token:$VAULT_TOKEN" --request PATCH --header "Content-Type: application/merge-patch+json" --data "{\"data\": {\"GRAFANA_TOKEN\": \"${GRAFANA_TOKEN}\"}}" https://${VAULT_HOSTNAME}/v1/kubrix-kv/data/portal/backstage/base
+  fi
+}
+
 wait_until_apps_synced_healthy() {
   local apps=$1
   local synced=$2
@@ -122,6 +151,7 @@ wait_until_apps_synced_healthy() {
             echo "sx-vault is synced and healthy — applying pushsecrets"
             echo 
             kubectl apply -f ./.secrets/secrettemp/pushsecrets.yaml
+            create_integration_secrets_for_backstage
             touch ./.secrets/secrettemp/secrets-applied
             echo "--------------------"
           fi
@@ -441,30 +471,9 @@ if [[ $( echo $argocd_apps | grep sx-backstage ) ]] ; then
   # check if backstage is already synced (it will still be degraded because of the missing secret we create in the next step)
   wait_until_apps_synced_healthy "sx-backstage" "Synced" "*" 900
 
-  echo "adding special configuration for sx-backstage"
-
-  # generate argocd token
-  export ARGOCD_AUTH_TOKEN="$( kubectl exec sx-argocd-application-controller-0 -n argocd -- argocd account generate-token --account backstage --core )"
-
-  # generate grafana token
-  export GRAFANA_HOSTNAME=$(kubectl get ingress -o jsonpath='{.items[*].spec.rules[*].host}' -n grafana )
-
-  # check if the secret exists and extract credentials if it does
-  if kubectl get secret grafana-admin-secret -n grafana &>/dev/null; then
-    export GRAFANA_USER=$(kubectl get secret -n grafana grafana-admin-secret -o=jsonpath='{.data.userKey }'  | base64 -d)
-    export GRAFANA_PASSWORD=$(kubectl get secret -n grafana grafana-admin-secret -o=jsonpath='{.data.passwordKey }'  | base64 -d)
-  else
-    # use default credentials
-    export GRAFANA_USER="admin"
-    export GRAFANA_PASSWORD="prom-operator"
-  fi
-  if [ "${GRAFANA_HOSTNAME}" != "" ]; then
-    ID=$( curl -k -X POST https://${GRAFANA_HOSTNAME}/api/serviceaccounts --user "${GRAFANA_USER}:${GRAFANA_PASSWORD}" -H "Content-Type: application/json" -d '{"name": "backstage","role": "Viewer","isDisabled": false}' | jq -r .id )
-    export GRAFANA_TOKEN=$(curl -k -X POST https://${GRAFANA_HOSTNAME}/api/serviceaccounts/${ID}/tokens --user "${GRAFANA_USER}:${GRAFANA_PASSWORD}" -H "Content-Type: application/json" -d '{"name": "backstage"}' | jq -r .key)
-  fi
-  
   # get backstage-locator token for backstage secret
   export K8S_SA_TOKEN=$( kubectl get secret backstage-locator -n backstage  -o jsonpath='{.data.token}' | base64 -d )
+  curl -k --header "X-Vault-Token:$VAULT_TOKEN" --request PATCH --header "Content-Type: application/merge-patch+json" --data "{\"data\": {\"K8S_SA_TOKEN\": \"${K8S_SA_TOKEN}\"}}" https://${VAULT_HOSTNAME}/v1/kubrix-kv/data/portal/backstage/base
 
   # create manual-secret secret with all tokens for backstage
   # in github codespace we need additional environment variables to overwrite app-config.yaml
@@ -484,8 +493,6 @@ if [[ $( echo $argocd_apps | grep sx-backstage ) ]] ; then
       --from-literal=GITHUB_ORG=${GITHUB_ORG} \
       --from-literal=GITHUB_TOKEN=${KUBRIX_BACKSTAGE_GITHUB_TOKEN} \
       --from-literal=K8S_SA_TOKEN=${K8S_SA_TOKEN} \
-      --from-literal=ARGOCD_AUTH_TOKEN=${ARGOCD_AUTH_TOKEN} \
-      --from-literal=GRAFANA_TOKEN=${GRAFANA_TOKEN} \
       --from-literal=APP_CONFIG_app_baseUrl=${BACKSTAGE_CODESPACE_URL} \
       --from-literal=APP_CONFIG_backend_baseUrl=${BACKSTAGE_CODESPACE_URL} \
       --from-literal=APP_CONFIG_backend_cors_origin=${BACKSTAGE_CODESPACE_URL} \
@@ -502,8 +509,6 @@ if [[ $( echo $argocd_apps | grep sx-backstage ) ]] ; then
     kubectl create secret generic -n backstage manual-secret \
     --from-literal=GITHUB_ORG=${GITHUB_ORG} \
     --from-literal=GITHUB_TOKEN=${KUBRIX_BACKSTAGE_GITHUB_TOKEN} \
-    --from-literal=K8S_SA_TOKEN=${K8S_SA_TOKEN} \
-    --from-literal=ARGOCD_AUTH_TOKEN=${ARGOCD_AUTH_TOKEN} \
     --from-literal=GRAFANA_TOKEN=${GRAFANA_TOKEN} \
     --from-literal=APP_CONFIG_app_baseUrl=${BACKSTAGE_CODESPACE_URL} \
     --from-literal=APP_CONFIG_backend_baseUrl=${BACKSTAGE_CODESPACE_URL} \
@@ -515,8 +520,6 @@ if [[ $( echo $argocd_apps | grep sx-backstage ) ]] ; then
     --from-literal=GITHUB_ORG=${GITHUB_ORG} \
     --from-literal=GITHUB_TOKEN=${KUBRIX_BACKSTAGE_GITHUB_TOKEN} \
     --from-literal=K8S_SA_TOKEN=${K8S_SA_TOKEN} \
-    --from-literal=ARGOCD_AUTH_TOKEN=${ARGOCD_AUTH_TOKEN} \
-    --from-literal=GRAFANA_TOKEN=${GRAFANA_TOKEN}
   fi
 
   # in codespaces we need additional crossplane resources for keycloak
