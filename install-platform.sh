@@ -80,37 +80,39 @@ utc_now_seconds() {
   fi
 }
 
-create_integration_secrets_for_backstage() {
+create_vault_secrets_for_backstage() {
   echo "adding special configuration for sx-backstage"
 
+  # get vault hostname and token for communicating with vault via curl
   export VAULT_HOSTNAME=$(kubectl get ingress -o jsonpath='{.items[*].spec.rules[*].host}' -n vault)
   export VAULT_TOKEN=$(kubectl get secret -n vault vault-init -o=jsonpath='{.data.root_token}'  | base64 -d)
 
-  # generate argocd token
+  # store env variable KUBRIX_BACKSTAGE_GITHUB_TOKEN in vault
+  curl -k --header "X-Vault-Token:$VAULT_TOKEN" --request PATCH --header "Content-Type: application/merge-patch+json" --data "{\"data\": {\"GITHUB_TOKEN\": \"${KUBRIX_BACKSTAGE_GITHUB_TOKEN}\"}}" https://${VAULT_HOSTNAME}/v1/kubrix-kv/data/portal/backstage/base
+
+  # generate argocd token and store in vault
   export ARGOCD_AUTH_TOKEN="$( kubectl exec sx-argocd-application-controller-0 -n argocd -- argocd account generate-token --account backstage --core )"
   curl -k --header "X-Vault-Token:$VAULT_TOKEN" --request PATCH --header "Content-Type: application/merge-patch+json" --data "{\"data\": {\"ARGOCD_AUTH_TOKEN\": \"${ARGOCD_AUTH_TOKEN}\"}}" https://${VAULT_HOSTNAME}/v1/kubrix-kv/data/portal/backstage/base
 
-  # generate grafana token
+  # generate grafana token if grafana ingress is found and store in vault
   export GRAFANA_HOSTNAME=$(kubectl get ingress -o jsonpath='{.items[*].spec.rules[*].host}' -n grafana )
   
-  # check if the secret exists and extract credentials if it does
-  if kubectl get secret grafana-admin-secret -n grafana &>/dev/null; then
-    export GRAFANA_USER=$(kubectl get secret -n grafana grafana-admin-secret -o=jsonpath='{.data.userKey }'  | base64 -d)
-    export GRAFANA_PASSWORD=$(kubectl get secret -n grafana grafana-admin-secret -o=jsonpath='{.data.passwordKey }'  | base64 -d)
-  else
-    # use default credentials
-    export GRAFANA_USER="admin"
-    export GRAFANA_PASSWORD="prom-operator"
-  fi
   if [ "${GRAFANA_HOSTNAME}" != "" ]; then
+    # check if the grafana user/admin is stored in secret, or use default credentials
+    if kubectl get secret grafana-admin-secret -n grafana &>/dev/null; then
+      export GRAFANA_USER=$(kubectl get secret -n grafana grafana-admin-secret -o=jsonpath='{.data.userKey }'  | base64 -d)
+      export GRAFANA_PASSWORD=$(kubectl get secret -n grafana grafana-admin-secret -o=jsonpath='{.data.passwordKey }'  | base64 -d)
+    else
+      # use default credentials
+      export GRAFANA_USER="admin"
+      export GRAFANA_PASSWORD="prom-operator"
+    fi
+
     ID=$( curl -k -X POST https://${GRAFANA_HOSTNAME}/api/serviceaccounts --user "${GRAFANA_USER}:${GRAFANA_PASSWORD}" -H "Content-Type: application/json" -d '{"name": "backstage","role": "Viewer","isDisabled": false}' | jq -r .id )
     export GRAFANA_TOKEN=$(curl -k -X POST https://${GRAFANA_HOSTNAME}/api/serviceaccounts/${ID}/tokens --user "${GRAFANA_USER}:${GRAFANA_PASSWORD}" -H "Content-Type: application/json" -d '{"name": "backstage"}' | jq -r .key)
     curl -k --header "X-Vault-Token:$VAULT_TOKEN" --request PATCH --header "Content-Type: application/merge-patch+json" --data "{\"data\": {\"GRAFANA_TOKEN\": \"${GRAFANA_TOKEN}\"}}" https://${VAULT_HOSTNAME}/v1/kubrix-kv/data/portal/backstage/base
   fi
 
-  # add also backstage github token
-  curl -k --header "X-Vault-Token:$VAULT_TOKEN" --request PATCH --header "Content-Type: application/merge-patch+json" --data "{\"data\": {\"GITHUB_TOKEN\": \"${KUBRIX_BACKSTAGE_GITHUB_TOKEN}\"}}" https://${VAULT_HOSTNAME}/v1/kubrix-kv/data/portal/backstage/base
-  
 }
 
 wait_until_apps_synced_healthy() {
@@ -155,8 +157,21 @@ wait_until_apps_synced_healthy() {
             echo "sx-vault is synced and healthy — applying pushsecrets"
             echo 
             kubectl apply -f ./.secrets/secrettemp/pushsecrets.yaml
-            create_integration_secrets_for_backstage
             touch ./.secrets/secrettemp/secrets-applied
+            echo "--------------------"
+          fi
+        fi
+
+        # special case for sx-backstage - create vault secrets when backstage is synced.
+        # side note: backstage should be able to fully sync,
+        #   but will be progressing until the vault secrets exist which we create here
+        #   because of externalsecret 'sx-cnp-secret' which waits for these vault secrets
+        if [[ "${app}" == "sx-backstage" && "${sync_status}" == "${synced}" ]]; then
+          if [ ! -f ./backstage-vault-secrets-created ]; then
+            echo "sx-backstage is synced — creating vault secrets"
+            echo 
+            create_vault_secrets_for_backstage
+            touch ./backstage-vault-secrets-created
             echo "--------------------"
           fi
         fi
