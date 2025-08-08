@@ -87,6 +87,9 @@ create_vault_secrets_for_backstage() {
   export VAULT_HOSTNAME=$(kubectl get ingress -o jsonpath='{.items[*].spec.rules[*].host}' -n vault)
   export VAULT_TOKEN=$(kubectl get secret -n vault vault-init -o=jsonpath='{.data.root_token}'  | base64 -d)
 
+  # set vault address and vault internal address so backstage can communicate with vault
+  curl -k --header "X-Vault-Token:$VAULT_TOKEN" --request POST --data "{\"data\": {\"VAULT_ADDR\": \"https://${VAULT_HOSTNAME}\", \"VAULT_ADDR_INT\": \"http://sx-vault-active.vault.svc.cluster.local:8200\"}}" https://${VAULT_HOSTNAME}/v1/kubrix-kv/data/security/vault/base
+
   # store env variable KUBRIX_BACKSTAGE_GITHUB_TOKEN in vault
   curl -k --header "X-Vault-Token:$VAULT_TOKEN" --request PATCH --header "Content-Type: application/merge-patch+json" --data "{\"data\": {\"GITHUB_TOKEN\": \"${KUBRIX_BACKSTAGE_GITHUB_TOKEN}\"}}" https://${VAULT_HOSTNAME}/v1/kubrix-kv/data/portal/backstage/base
 
@@ -424,11 +427,11 @@ wait_until_apps_synced_healthy "${argocd_apps_without_individual}" "Synced" "Hea
 # apply argocd-secret to set a secretKey
 kubectl apply -f platform-apps/charts/argocd/manual-secret/argocd-secret.yaml
 
-# if vault is part of this stack, upload token to vault
+# if vault is part of this stack, do some special configuration
 if [[ $( echo $argocd_apps | grep sx-vault ) ]] ; then
+
   export VAULT_HOSTNAME=$(kubectl get ingress -o jsonpath='{.items[*].spec.rules[*].host}' -n vault)
   export VAULT_TOKEN=$(kubectl get secret -n vault vault-init -o=jsonpath='{.data.root_token}'  | base64 -d)
-  curl -k --header "X-Vault-Token:$VAULT_TOKEN" --request POST --data "{\"data\": {\"VAULT_ADDR\": \"https://${VAULT_HOSTNAME}\", \"VAULT_ADDR_INT\": \"http://sx-vault-active.vault.svc.cluster.local:8200\"}}" https://${VAULT_HOSTNAME}/v1/kubrix-kv/data/security/vault/base
 
   if [[ "${KUBRIX_TARGET_TYPE}" =~ ^KIND.* || "${KUBRIX_CLUSTER_TYPE}" == "KIND" ]] ; then
   # due to issue #405 this step is needed for kind clusters
@@ -456,26 +459,26 @@ if [[ $( echo $argocd_apps | grep sx-vault ) ]] ; then
     done
   fi
   # due to issue #422 this step is needed for all clusters
-    GROUP_ALIAS_LIST=$(curl -k --header "X-Vault-Token: $VAULT_TOKEN" --request LIST https://${VAULT_HOSTNAME}/v1/identity/group-alias/id)
-    if [ -z "$(echo "$GROUP_ALIAS_LIST" | jq -r '.data.keys | length')" ] || [ "$(echo "$GROUP_ALIAS_LIST" | jq -r '.data.keys | length')" -eq 0 ]; then
-        echo "No group aliases found. Setting up group aliases..."
-        # Get the list of identity groups
-        GROUP_LIST=$(curl -k --header "X-Vault-Token: $VAULT_TOKEN" --request LIST https://${VAULT_HOSTNAME}/v1/identity/group/name)
-        # Get OIDC accessor
-        ACC=$(curl -k --header "X-Vault-Token: $VAULT_TOKEN" --request GET https://${VAULT_HOSTNAME}/v1/sys/auth | jq -r '.["oidc/"].accessor')
-        echo "OIDC Accessor: $ACC"
-        # Iterate over groups and create group aliases
-        echo "$GROUP_LIST" | jq -r '.data.keys[]' | while read -r GROUP_NAME; do
-            echo "Processing group: $GROUP_NAME"
-            # Get Group ID
-            GROUP_ID=$(curl -k --header "X-Vault-Token: $VAULT_TOKEN" --request GET https://${VAULT_HOSTNAME}/v1/identity/group/name/$GROUP_NAME | jq -r '.data.id')
-            if [ -n "$GROUP_ID" ] && [ "$GROUP_ID" != "null" ]; then
-                # Create Group Alias
-                RESPONSE=$(curl -k --header "X-Vault-Token: $VAULT_TOKEN" --request POST --data '{"name": "'$GROUP_NAME'", "mount_accessor": "'$ACC'", "canonical_id": "'$GROUP_ID'"}' https://${VAULT_HOSTNAME}/v1/identity/group-alias)
-                echo "Group alias created for $GROUP_NAME: $RESPONSE"
-            fi
-        done
-    fi
+  GROUP_ALIAS_LIST=$(curl -k --header "X-Vault-Token: $VAULT_TOKEN" --request LIST https://${VAULT_HOSTNAME}/v1/identity/group-alias/id)
+  if [ -z "$(echo "$GROUP_ALIAS_LIST" | jq -r '.data.keys | length')" ] || [ "$(echo "$GROUP_ALIAS_LIST" | jq -r '.data.keys | length')" -eq 0 ]; then
+      echo "No group aliases found. Setting up group aliases..."
+      # Get the list of identity groups
+      GROUP_LIST=$(curl -k --header "X-Vault-Token: $VAULT_TOKEN" --request LIST https://${VAULT_HOSTNAME}/v1/identity/group/name)
+      # Get OIDC accessor
+      ACC=$(curl -k --header "X-Vault-Token: $VAULT_TOKEN" --request GET https://${VAULT_HOSTNAME}/v1/sys/auth | jq -r '.["oidc/"].accessor')
+      echo "OIDC Accessor: $ACC"
+      # Iterate over groups and create group aliases
+      echo "$GROUP_LIST" | jq -r '.data.keys[]' | while read -r GROUP_NAME; do
+          echo "Processing group: $GROUP_NAME"
+          # Get Group ID
+          GROUP_ID=$(curl -k --header "X-Vault-Token: $VAULT_TOKEN" --request GET https://${VAULT_HOSTNAME}/v1/identity/group/name/$GROUP_NAME | jq -r '.data.id')
+          if [ -n "$GROUP_ID" ] && [ "$GROUP_ID" != "null" ]; then
+              # Create Group Alias
+              RESPONSE=$(curl -k --header "X-Vault-Token: $VAULT_TOKEN" --request POST --data '{"name": "'$GROUP_NAME'", "mount_accessor": "'$ACC'", "canonical_id": "'$GROUP_ID'"}' https://${VAULT_HOSTNAME}/v1/identity/group-alias)
+              echo "Group alias created for $GROUP_NAME: $RESPONSE"
+          fi
+      done
+  fi
 fi
   
 # if backstage is part of this stack, create the manual secret for backstage
