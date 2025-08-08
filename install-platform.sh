@@ -518,5 +518,3 @@ fi
 
 # remove pushsecrets and status files
 kubectl delete -f ./.secrets/secrettemp/pushsecrets.yaml
-rm ./.secrets/secrettemp/secrets-applied
-rm ./backstage-vault-secrets-created
