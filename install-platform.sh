@@ -83,6 +83,9 @@ utc_now_seconds() {
 create_vault_secrets_for_backstage() {
   echo "adding special configuration for sx-backstage"
 
+  # create an empty manual secret because it is still needed for github codespaces and cannot configured optional
+  kubectl create secret generic -n backstage manual-secret
+
   # get vault hostname and token for communicating with vault via curl
   export VAULT_HOSTNAME=$(kubectl get ingress -o jsonpath='{.items[*].spec.rules[*].host}' -n vault)
   export VAULT_TOKEN=$(kubectl get secret -n vault vault-init -o=jsonpath='{.data.root_token}'  | base64 -d)
