@@ -1,5 +1,93 @@
 # Changelog
 
+## [5.0.0](https://github.com/suxess-it/kubriX/compare/v4.0.0...v5.0.0) (2025-08-08)
+
+
+### ⚠ BREAKING CHANGES
+
+* **installer:** KUBRIX_CREATE_K3D_CLUSTER and K3d as local test cluster is not support anymore
+* **deps:** v0.17.0 external-secrets stops serving v1beta1 apis. You need to update your manifests from v1beta1 to v1 prior to updating from v0.16 to v0.17.
+* **deps:** With the update to k8s-monitoring 3.0 several values need to get adapted.  see https://github.com/grafana/k8s-monitoring-helm/blob/main/charts/k8s-monitoring/docs/Migration.md and changes in the values examples in this commit
+
+### Features
+
+* **alerting:** allow empty alertings secrets ([#1417](https://github.com/suxess-it/kubriX/issues/1417)) ([375271a](https://github.com/suxess-it/kubriX/commit/375271aad7a26d7dcbf0abd8e3b4d309c06fc802))
+* **argocd:** extend resource-exclusion to be aligned with default argocd 3.0 resource exclusions in https://github.com/argoproj/argo-helm/blob/91afef15ec56140c0c7e4f3b76641f16343f3769/charts/argo-cd/values.yaml#L326-L380 ([#1349](https://github.com/suxess-it/kubriX/issues/1349)) ([cf834ce](https://github.com/suxess-it/kubriX/commit/cf834ce38f41ad7788683046d5514a95b2b3dc31))
+* **argocd:** set secretKey via .secret framework ([#1446](https://github.com/suxess-it/kubriX/issues/1446)) ([69cd5a0](https://github.com/suxess-it/kubriX/commit/69cd5a0ab808d5776008b31ce26362ca0bce0cf9))
+* **bootstrap:** add HA option ([#1351](https://github.com/suxess-it/kubriX/issues/1351)) ([a194d21](https://github.com/suxess-it/kubriX/commit/a194d21847c9553718233049b1adfa567bef8c11))
+* **bootstrap:** renamed from metal-stack to demo-stack, and optional ionos or aws dns provider ([#1360](https://github.com/suxess-it/kubriX/issues/1360)) ([ce1f303](https://github.com/suxess-it/kubriX/commit/ce1f30345ea874771c156c0ab00b9ecb27fdaf32))
+* **bootstrap:** support demo-stack on local kind ([#1366](https://github.com/suxess-it/kubriX/issues/1366)) ([0b73483](https://github.com/suxess-it/kubriX/commit/0b734835698712bc08a0814fcb29e40e10438b75))
+* **bootstrap:** support stackit cloud provider ([#1368](https://github.com/suxess-it/kubriX/issues/1368)) ([ba22c34](https://github.com/suxess-it/kubriX/commit/ba22c344306d911481c16bd2ce18c910725d2f6d))
+* **bootstrap:** template backstage resources ([#1372](https://github.com/suxess-it/kubriX/issues/1372)) ([b2d213e](https://github.com/suxess-it/kubriX/commit/b2d213e0a4eb813bff8fab58e916b77e4aaadcf3))
+* **cert-manager:** add option for default issuer ([#1435](https://github.com/suxess-it/kubriX/issues/1435)) ([c8931ac](https://github.com/suxess-it/kubriX/commit/c8931ac48b606f01b7de13645a9d596961ee9f50))
+* **deps:** update helm release argo-cd to v8.1.2 ([#1325](https://github.com/suxess-it/kubriX/issues/1325)) ([b1af4c6](https://github.com/suxess-it/kubriX/commit/b1af4c6e3397d5aab840faca89a4b1f8f4574659))
+* **deps:** update helm release argo-cd to v8.2.0 ([#1389](https://github.com/suxess-it/kubriX/issues/1389)) ([461579d](https://github.com/suxess-it/kubriX/commit/461579d7e34a29f5f9161d602eb699965ec05f19))
+* **deps:** update helm release argo-rollouts to v2.40.0 ([#1369](https://github.com/suxess-it/kubriX/issues/1369)) ([7b9e291](https://github.com/suxess-it/kubriX/commit/7b9e2917cc971888755d43c88a2777c7933c4c89))
+* **deps:** update helm release backstage to v2.6.0 ([#1348](https://github.com/suxess-it/kubriX/issues/1348)) ([43af90d](https://github.com/suxess-it/kubriX/commit/43af90de0f77bf337c564d6ec097af79e2c9835e))
+* **deps:** update helm release external-dns to v1.17.0 ([#1367](https://github.com/suxess-it/kubriX/issues/1367)) ([03d61e3](https://github.com/suxess-it/kubriX/commit/03d61e3f9c2f396d8563ff3adef548dfe4b19d13))
+* **deps:** update helm release external-dns to v1.18.0 ([#1390](https://github.com/suxess-it/kubriX/issues/1390)) ([b8ae2db](https://github.com/suxess-it/kubriX/commit/b8ae2dbbc8462b7fb614b6229504b0f3cb9ba046))
+* **deps:** update helm release external-secrets to v0.18.0 [#1284](https://github.com/suxess-it/kubriX/issues/1284) ([d1c90be](https://github.com/suxess-it/kubriX/commit/d1c90be09ab6d69180857774ffceb52828ed9395))
+* **deps:** update helm release falco to v4.22.0 ([#1306](https://github.com/suxess-it/kubriX/issues/1306)) ([d9e90c9](https://github.com/suxess-it/kubriX/commit/d9e90c9cde9251de9615e6a5c3ee02c32b135d7e))
+* **deps:** update helm release ingress-nginx to v4.13.0 ([#1361](https://github.com/suxess-it/kubriX/issues/1361)) ([2f602d8](https://github.com/suxess-it/kubriX/commit/2f602d8d4269d39d9d7f8f6bed040f9a05be67b1))
+* **deps:** update helm release k8s-monitoring to v3 ([#1344](https://github.com/suxess-it/kubriX/issues/1344)) ([2a00eb3](https://github.com/suxess-it/kubriX/commit/2a00eb3e25583f45ee89d8795b127dff62b8e1b1))
+* **deps:** update helm release loki to v6.32.0 ([#1391](https://github.com/suxess-it/kubriX/issues/1391)) ([6d3c057](https://github.com/suxess-it/kubriX/commit/6d3c057941ae7e95cd84cf0ad6ce7620fb14141f))
+* **deps:** update helm release tempo to v1.23.2 ([#1392](https://github.com/suxess-it/kubriX/issues/1392)) ([18f375e](https://github.com/suxess-it/kubriX/commit/18f375e0f90999e0eb648974c4c821ed2900e574))
+* **deps:** update kargo docker tag to v1.6.1 ([#1370](https://github.com/suxess-it/kubriX/issues/1370)) ([f210215](https://github.com/suxess-it/kubriX/commit/f210215d394a1a7eb5c5fcb97e487aa5548845ff))
+* **docs:** add documentation for creating user entity ([#1441](https://github.com/suxess-it/kubriX/issues/1441)) ([e0fed99](https://github.com/suxess-it/kubriX/commit/e0fed99f444f85a612ee92db2411ee91b7f2b7e0))
+* **documentation:** describe how to create vault tokens for onboarded teams ([#1429](https://github.com/suxess-it/kubriX/issues/1429)) ([36351d2](https://github.com/suxess-it/kubriX/commit/36351d2327851d13a6bf5340ad1a9283a2b0c294))
+* enable cardinality dashboards according to https://blog.devops.… ([#1400](https://github.com/suxess-it/kubriX/issues/1400)) ([6a8ec97](https://github.com/suxess-it/kubriX/commit/6a8ec97789850d87dd3a8dbc3a400fd9a9f411e7))
+* **grafana:** use transformed grafana-managed alerts from original kubernetes-mixin ([#1355](https://github.com/suxess-it/kubriX/issues/1355)) ([fe36d77](https://github.com/suxess-it/kubriX/commit/fe36d777b3527e28a201cdd312fffbd952d44990))
+* **installation:** switch to dynamic generated credentials ([#1412](https://github.com/suxess-it/kubriX/issues/1412)) ([27e804c](https://github.com/suxess-it/kubriX/commit/27e804c0c67592257325081e6312055ca91e55ca))
+* **installer:** ignore degraded team-onboarding chart because this i… ([#1414](https://github.com/suxess-it/kubriX/issues/1414)) ([0a3f6c6](https://github.com/suxess-it/kubriX/commit/0a3f6c6ab15d2938ff1663778d2b7554caffc3f8))
+* **installer:** manage all backstage secrets via vault ([#1436](https://github.com/suxess-it/kubriX/issues/1436)) ([efc19f4](https://github.com/suxess-it/kubriX/commit/efc19f44df4af33707e443372e54d035555d10cd))
+* **installer:** prereq checks for installed tools and variables  ([#1408](https://github.com/suxess-it/kubriX/issues/1408)) ([cb9043f](https://github.com/suxess-it/kubriX/commit/cb9043f9cdd7b68a3a573337abcd39d61ac9af48))
+* **installer:** remove K3d installation ([#1410](https://github.com/suxess-it/kubriX/issues/1410)) ([4a934dd](https://github.com/suxess-it/kubriX/commit/4a934ddd7b15350845609ecbdb95dc8108f7c963))
+* **installer:** use .secrets framework for github oauth app secrets and update installation docs ([#1428](https://github.com/suxess-it/kubriX/issues/1428)) ([90e85fa](https://github.com/suxess-it/kubriX/commit/90e85fa10278e26078980365cdaa7c655fd193ff))
+* **installer:** use smaller demo-stack on kind cluster ([#1432](https://github.com/suxess-it/kubriX/issues/1432)) ([29bf835](https://github.com/suxess-it/kubriX/commit/29bf83572597bda703bd2cc8c0113e38e946841e))
+* **secrets:** includes certificates into createsecrets ([#1354](https://github.com/suxess-it/kubriX/issues/1354)) ([0481757](https://github.com/suxess-it/kubriX/commit/048175788d7863ac252a6f596551a1d311455158))
+* **vault:** do not push vault root token to vault ([#1415](https://github.com/suxess-it/kubriX/issues/1415)) ([ff40628](https://github.com/suxess-it/kubriX/commit/ff4062858978d48c17c2702b9bfcedd98cf63adf))
+
+
+### Bug Fixes
+
+* **alerting:** nodata or errors should not be alerted for now ([#1359](https://github.com/suxess-it/kubriX/issues/1359)) ([88c50bd](https://github.com/suxess-it/kubriX/commit/88c50bd6821f011b783cbc05e115ae03c8534b51))
+* **backstage:** change pg configuration to single db ([#1350](https://github.com/suxess-it/kubriX/issues/1350)) ([a018ce0](https://github.com/suxess-it/kubriX/commit/a018ce0a619706e47cce1451aa0605a37154f8f3))
+* **backstage:** typo in keycloak url ([#1422](https://github.com/suxess-it/kubriX/issues/1422)) ([4153bbe](https://github.com/suxess-it/kubriX/commit/4153bbee6e755794d3680697f0bdc158d1de6dd2))
+* **boostrap:** wrong indent ([#1433](https://github.com/suxess-it/kubriX/issues/1433)) ([f9a6773](https://github.com/suxess-it/kubriX/commit/f9a6773d89b1263a3d019ae43c9ceaa1434d0841))
+* **bootstrap:** better document team and app onboarding ([#1442](https://github.com/suxess-it/kubriX/issues/1442)) ([90bc334](https://github.com/suxess-it/kubriX/commit/90bc334496485dc7aef96a5f1bd45c64f0f01737))
+* **bootstrap:** cleanup pushsecrets as final step ([#1352](https://github.com/suxess-it/kubriX/issues/1352)) ([eabc8ec](https://github.com/suxess-it/kubriX/commit/eabc8ec347fe0d5a41580387299dddf8f36a538e))
+* **bootstrap:** extend default installation wait time ([#1430](https://github.com/suxess-it/kubriX/issues/1430)) ([6f6e948](https://github.com/suxess-it/kubriX/commit/6f6e948c694172c7c425aa8636371ff44167aa62))
+* **bootstrap:** gomplate path missing ([#1409](https://github.com/suxess-it/kubriX/issues/1409)) ([28423d2](https://github.com/suxess-it/kubriX/commit/28423d2a7b9e14df1e029a314aa87a5b18a371a7))
+* **bootstrap:** k8s-monitoring values file v2 instead of v3 ([#1381](https://github.com/suxess-it/kubriX/issues/1381)) ([6fdd4ea](https://github.com/suxess-it/kubriX/commit/6fdd4ea3fabe320097d88a2fc2a4e127f5336f14))
+* **bootstrap:** remove kubevirt cr in backstage to prevent warnings ([#1444](https://github.com/suxess-it/kubriX/issues/1444)) ([5396261](https://github.com/suxess-it/kubriX/commit/5396261b43608dd45ee88aa484e44417106b65fc))
+* **bootstrap:** teamonboarding template has wrong team-name in allowed source repos ([#1383](https://github.com/suxess-it/kubriX/issues/1383)) ([aa69b4b](https://github.com/suxess-it/kubriX/commit/aa69b4b3fd20d07b975b316ca1eb9aa8a2bde2d4))
+* **codespaces:** remove unused code ([#1439](https://github.com/suxess-it/kubriX/issues/1439)) ([910b837](https://github.com/suxess-it/kubriX/commit/910b8375150c0049f13935a250db757613f72bdb))
+* **deps:** update helm release argo-cd to v8.1.3 ([#1379](https://github.com/suxess-it/kubriX/issues/1379)) ([209a7c7](https://github.com/suxess-it/kubriX/commit/209a7c75b2f8022526fbdb8860b385915bbbbc00))
+* **deps:** update helm release argo-cd to v8.2.4 ([#1404](https://github.com/suxess-it/kubriX/issues/1404)) ([e302d38](https://github.com/suxess-it/kubriX/commit/e302d38a17ac6eda1dfe67dc3a0dfa88cb6ab996))
+* **deps:** update helm release argo-cd to v8.2.5 ([#1419](https://github.com/suxess-it/kubriX/issues/1419)) ([6bb7299](https://github.com/suxess-it/kubriX/commit/6bb72998b06d3d5e9b9366dd9a71248390650e2e))
+* **deps:** update helm release argo-rollouts to v2.39.6 ([#1326](https://github.com/suxess-it/kubriX/issues/1326)) ([e736bc7](https://github.com/suxess-it/kubriX/commit/e736bc78bcbcfa88286b2353c234236037301ec3))
+* **deps:** update helm release argo-rollouts to v2.40.1 ([#1387](https://github.com/suxess-it/kubriX/issues/1387)) ([8499d55](https://github.com/suxess-it/kubriX/commit/8499d5555bb262963377c98dc908ee24866e8c90))
+* **deps:** update helm release argo-rollouts to v2.40.2 ([#1420](https://github.com/suxess-it/kubriX/issues/1420)) ([b31d478](https://github.com/suxess-it/kubriX/commit/b31d478dfb68ddea1a575098e2dd81981659f5c9))
+* **deps:** update helm release external-secrets to v0.18.2 ([#1385](https://github.com/suxess-it/kubriX/issues/1385)) ([bd65eb9](https://github.com/suxess-it/kubriX/commit/bd65eb94d20e65b37622417d0ed31b9b69258d09))
+* **deps:** update helm release grafana to v9.2.10 ([#1356](https://github.com/suxess-it/kubriX/issues/1356)) ([7577f9e](https://github.com/suxess-it/kubriX/commit/7577f9ecdb005e7e8e00dcab25e01c18fbcda4d6))
+* **deps:** update helm release ingress-nginx to v4.12.3 ([#1357](https://github.com/suxess-it/kubriX/issues/1357)) ([f8fd8ae](https://github.com/suxess-it/kubriX/commit/f8fd8ae7a640f4fbb2e0d636c61919a33f3b8ef6))
+* **deps:** update helm release k8s-monitoring to v3.1.1 ([#1373](https://github.com/suxess-it/kubriX/issues/1373)) ([ba0cdd8](https://github.com/suxess-it/kubriX/commit/ba0cdd8177f4c13deb20242a0018fb8356644e30))
+* **deps:** update helm release k8s-monitoring to v3.1.2 ([#1380](https://github.com/suxess-it/kubriX/issues/1380)) ([334bdb0](https://github.com/suxess-it/kubriX/commit/334bdb0c0ff7e89fda1e090c47498681004ba59f))
+* **deps:** update helm release k8s-monitoring to v3.1.5 ([#1388](https://github.com/suxess-it/kubriX/issues/1388)) ([eb5dd1f](https://github.com/suxess-it/kubriX/commit/eb5dd1fbe67575cb3d5d866ff2c5768692f51dcd))
+* **deps:** update helm release kyverno to v3.4.4 ([#1374](https://github.com/suxess-it/kubriX/issues/1374)) ([35dcc5b](https://github.com/suxess-it/kubriX/commit/35dcc5bb2e9070bce350f3a24dc6493dc37861cb))
+* **deps:** update kargo docker tag to v1.6.2 ([#1424](https://github.com/suxess-it/kubriX/issues/1424)) ([c2b226f](https://github.com/suxess-it/kubriX/commit/c2b226f663861f72ddeee73deb1f928b5d450765))
+* **external-dns:** set cache to prevent dns rate limit for ionos ([#1363](https://github.com/suxess-it/kubriX/issues/1363)) ([9994403](https://github.com/suxess-it/kubriX/commit/999440301c56fb6bcba8ca58f75c9060ceb1375a))
+* **external-dns:** set cache to prevent dns rate limit for ionos ([#1364](https://github.com/suxess-it/kubriX/issues/1364)) ([94f9ec3](https://github.com/suxess-it/kubriX/commit/94f9ec364cd757d0e9ac92b38384b008b322ea68))
+* **installer:** add argocd alias in coredns for kind installations ([#1445](https://github.com/suxess-it/kubriX/issues/1445)) ([db4cab1](https://github.com/suxess-it/kubriX/commit/db4cab1eceab4622527ef983b17382a9a89982a9))
+* **installer:** fix oidc auth method error on kind in github action ([#1438](https://github.com/suxess-it/kubriX/issues/1438)) ([a216a63](https://github.com/suxess-it/kubriX/commit/a216a63f8b51f54f483624d9b1c4b2447b4a2bb9))
+* **installer:** increase last wait time to better support local installations ([#1434](https://github.com/suxess-it/kubriX/issues/1434)) ([4b35a41](https://github.com/suxess-it/kubriX/commit/4b35a419fd0e96c45d2d58fc21f4b42000f2d951))
+* **installer:** quote secret values in case they are just numbers ([#1413](https://github.com/suxess-it/kubriX/issues/1413)) ([cfc490b](https://github.com/suxess-it/kubriX/commit/cfc490b350246b1ee8927a96e97fedf550eb697f))
+* **keycloak:** also allow no keycloak users ([#1416](https://github.com/suxess-it/kubriX/issues/1416)) ([df197e8](https://github.com/suxess-it/kubriX/commit/df197e820bf2145507a3d2633958e2162e9c1374))
+* **kind:** make backstage - grafana communication work on kind cluster ([#1437](https://github.com/suxess-it/kubriX/issues/1437)) ([a0db367](https://github.com/suxess-it/kubriX/commit/a0db3677da86439860c38772bbdb9b4b0acd55ab))
+* **nginx:** downgrade to 4.12.2 because newer versions do not start u… ([#1362](https://github.com/suxess-it/kubriX/issues/1362)) ([ec076c4](https://github.com/suxess-it/kubriX/commit/ec076c460399487b602161013b7152c9d04a174a))
+* **team-onboarding:** apply keycloak membership in parallel with everything else ([#1418](https://github.com/suxess-it/kubriX/issues/1418)) ([2ca70c1](https://github.com/suxess-it/kubriX/commit/2ca70c18344c84f7e63c98265c4474b0d299ff0b))
+* **vault:** use internal vault url so secretsstore also works when TLS secret is not valid ([#1407](https://github.com/suxess-it/kubriX/issues/1407)) ([9980f1a](https://github.com/suxess-it/kubriX/commit/9980f1a3f5ec5e00c262c3c3639f25bcdf216273))
+
 ## [4.0.0](https://github.com/suxess-it/kubriX/compare/v3.0.0...v4.0.0) (2025-06-20)
 
 
