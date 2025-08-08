@@ -29,11 +29,11 @@ cost-analyzer:
     annotations:
       cert-manager.io/cluster-issuer: mkcert-issuer
     hosts:
-      - kubecost-127-0-0-1.nip.io
+      - kubecost.127-0-0-1.nip.io
     tls: 
       - secretName: kubecost-server-tls
         hosts:
-          - kubecost-127-0-0-1.nip.io
+          - kubecost.127-0-0-1.nip.io
 
   # Define persistence volume for cost-analyzer, more information at https://docs.kubecost.com/install-and-configure/install/storage
   persistentVolume:

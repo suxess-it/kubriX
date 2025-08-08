@@ -1,6 +1,6 @@
 argo-cd:
   global:
-    domain: argocd-127-0-0-1.nip.io
+    domain: argocd.127-0-0-1.nip.io
 
   configs:
     params:
@@ -241,7 +241,7 @@ argo-cd:
         cert-manager.io/cluster-issuer: mkcert-issuer
       extraTls:
         - hosts:
-          - argocd-127-0-0-1.nip.io
+          - argocd.127-0-0-1.nip.io
           # Based on the ingress controller used secret might be optional
           secretName: argocd-server-tls
     extensions:
