@@ -146,7 +146,10 @@ When kubriX installed sucessfully you can access the platform services via these
 
 ## Onboard teams and applications
 
-In our [App-Onboarding-Documentation](https://github.com/suxess-it/kubriX/blob/main/backstage-resources/docs/onboarding/onboarding-apps.md) and [Team-Onboarding-Documentation](https://github.com/suxess-it/kubriX/blob/main/backstage-resources/docs/onboarding/onboarding-teams.md ) we explain how new teams and apps get onboarded on the platform in a gitops way.
+Onboarding teams and applications is all done the gitops way. We provide Backstage scaffolder templates to create corresponding Pull-Requests and git repositories easily.
+
+First you need to onboard your team according to our [Team-Onboarding-Documentation](https://github.com/suxess-it/kubriX/blob/main/backstage-resources/docs/onboarding/onboarding-teams.md ).
+Then continuoue with [onobarding new applications](https://github.com/suxess-it/kubriX/blob/main/backstage-resources/docs/onboarding/onboarding-apps.md).
 
 ## Promote apps with Kargo
 
