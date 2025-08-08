@@ -518,6 +518,9 @@ if [[ $( echo $argocd_apps | grep sx-backstage ) ]] ; then
     --from-literal=APP_CONFIG_backend_cors_origin=${BACKSTAGE_CODESPACE_URL} \
     --from-literal=APP_CONFIG_auth_provider_github_development_callbackUrl=${BACKSTAGE_CODESPACE_URL}/api/auth/github/handler/frame
 
+  else
+    # create an empty secret because it is needed as a prereq for backstage deployment
+    kubectl create secret generic -n backstage manual-secret
   fi
 
   # in codespaces we need additional crossplane resources for keycloak
