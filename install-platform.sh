@@ -461,6 +461,9 @@ if [[ $( echo $argocd_apps | grep sx-vault ) ]] ; then
       if [[ -z "$(echo "$RESPONSE" | jq -r '.errors | select(.!=null)')" ]]; then
         echo "configure OIDC auth method successful"
         break
+      else
+        echo "configure OIDC auth method not sucessful. Error: "
+        echo "$RESPONSE"
       fi  
     sleep 5
     ((ATTEMPT++))
