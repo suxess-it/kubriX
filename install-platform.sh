@@ -343,6 +343,7 @@ if [[ "${KUBRIX_TARGET_TYPE}" =~ ^KIND.* || "${KUBRIX_CLUSTER_TYPE}" == "KIND" ]
 /ready/ {
     print;
     print "        rewrite name keycloak.127-0-0-1.nip.io ingress-nginx-controller.ingress-nginx.svc.cluster.local";
+    print "        rewrite name grafana.127-0-0-1.nip.io ingress-nginx-controller.ingress-nginx.svc.cluster.local";
     next
 }
 { print }
@@ -359,6 +360,10 @@ if [[ "${KUBRIX_TARGET_TYPE}" =~ ^KIND.* || "${KUBRIX_CLUSTER_TYPE}" == "KIND" ]
   mkcert -install
   kubectl create namespace cert-manager
   kubectl create secret tls mkcert-ca-key-pair --key "$(mkcert -CAROOT)"/rootCA-key.pem --cert "$(mkcert -CAROOT)"/rootCA.pem -n cert-manager
+
+  # create a cacert secret for backstage so backstage trusts internal services with mkcert certificates
+  kubectl create namespace backstage
+  kubectl create secret generic mkcert-cacert --from-file=ca.crt="$(mkcert -CAROOT)"/rootCA.pem -n backstage
 
   # vault oidc case
   echo "create a root ca and patch ingress-nginx-controller for vault oidc"
