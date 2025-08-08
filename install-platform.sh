@@ -83,8 +83,8 @@ utc_now_seconds() {
 create_vault_secrets_for_backstage() {
   echo "adding special configuration for sx-backstage"
 
-  # create an empty manual secret because it is still needed for github codespaces and cannot configured optional
-  kubectl create secret generic -n backstage manual-secret
+  # create an empty codespaces-secret secret because it is still needed for github codespaces and cannot configured optional in backstage
+  kubectl create secret generic -n backstage codespaces-secret
 
   # get vault hostname and token for communicating with vault via curl
   export VAULT_HOSTNAME=$(kubectl get ingress -o jsonpath='{.items[*].spec.rules[*].host}' -n vault)
@@ -492,59 +492,29 @@ if [[ $( echo $argocd_apps | grep sx-vault ) ]] ; then
   fi
 fi
   
-# if backstage is part of this stack, create the manual secret for backstage
-if [[ $( echo $argocd_apps | grep sx-backstage ) ]] ; then
+# when we are in a github codespace, we need to add special backstage env variables
+if [ ${CODESPACES} ]; then
+  if [[ $( echo $argocd_apps | grep sx-backstage ) ]] ; then
 
-  # create manual-secret secret with all tokens for backstage
-  # in github codespace we need additional environment variables to overwrite app-config.yaml
-  if [ ${CODESPACES} ]; then
-    KEYCLOAK_CODESPACES=""
-    GITHUB_CODESPACES="true"
+    # delete secret if it already exists
+    if kubectl get secret -n backstage codespaces-secret > /dev/null 2>&1 ; then
+      kubectl delete secret -n backstage codespaces-secret
+    fi
+    
     BACKSTAGE_CODESPACE_URL="https://${CODESPACE_NAME}-6691.${GITHUB_CODESPACES_PORT_FORWARDING_DOMAIN}"
-  fi
 
-  # delete secret if it already exists
-  if kubectl get secret -n backstage manual-secret > /dev/null 2>&1 ; then
-    kubectl delete secret -n backstage manual-secret
-  fi
-  
-  if [ ${KEYCLOAK_CODESPACES} ]; then
-    kubectl create secret generic -n backstage manual-secret \
-      --from-literal=APP_CONFIG_app_baseUrl=${BACKSTAGE_CODESPACE_URL} \
-      --from-literal=APP_CONFIG_backend_baseUrl=${BACKSTAGE_CODESPACE_URL} \
-      --from-literal=APP_CONFIG_backend_cors_origin=${BACKSTAGE_CODESPACE_URL} \
-      --from-literal=APP_CONFIG_auth_providers_oidc_development_callbackUrl=${BACKSTAGE_CODESPACE_URL}/api/auth/oidc/handler/frame \
-      --from-literal=APP_CONFIG_auth_providers_oidc_development_clientId=backstage-codespaces \
-      --from-literal=APP_CONFIG_auth_providers_oidc_development_metadataUrl=http://keycloak-service.keycloak.svc.cluster.local:8080/realms/kubrix-codespaces \
-      --from-literal=APP_CONFIG_auth_provider_github_development_callbackUrl=${BACKSTAGE_CODESPACE_URL}/api/auth/github/handler/frame \
-      --from-literal=APP_CONFIG_catalog_providers_keycloakOrg_default_loginRealm=kubrix-codespaces \
-      --from-literal=APP_CONFIG_catalog_providers_keycloakOrg_default_realm=kubrix-codespaces \
-      --from-literal=APP_CONFIG_catalog_providers_keycloakOrg_default_clientId=kubrix-codespaces \
-      --from-literal=APP_CONFIG_catalog_providers_keycloakOrg_default_clientSecret=demosecret
-
-  elif [ ${GITHUB_CODESPACES} ]; then
-    kubectl create secret generic -n backstage manual-secret \
+    kubectl create secret generic -n backstage codespaces-secret \
     --from-literal=APP_CONFIG_app_baseUrl=${BACKSTAGE_CODESPACE_URL} \
     --from-literal=APP_CONFIG_backend_baseUrl=${BACKSTAGE_CODESPACE_URL} \
     --from-literal=APP_CONFIG_backend_cors_origin=${BACKSTAGE_CODESPACE_URL} \
     --from-literal=APP_CONFIG_auth_provider_github_development_callbackUrl=${BACKSTAGE_CODESPACE_URL}/api/auth/github/handler/frame
 
-  else
-    # create an empty secret because it is needed as a prereq for backstage deployment
-    kubectl create secret generic -n backstage manual-secret
+    kubectl rollout restart deployment sx-backstage -n backstage
+
+    # finally wait for backstage to be synced and healthy
+    wait_until_apps_synced_healthy "sx-backstage" "Synced" "Healthy" 600
   fi
-
-  # in codespaces we need additional crossplane resources for keycloak
-  # because of the port-forwarding URLs
-  if [ ${KEYCLOAK_CODESPACES} ]; then
-    cat .devcontainer/keycloak-codespaces.yaml | sed "s/BACKSTAGE_CODESPACES_REPLACE/${CODESPACE_NAME}-6691.${GITHUB_CODESPACES_PORT_FORWARDING_DOMAIN}/g" | sed "s/KEYCLOAK_CODESPACES_REPLACE/${CODESPACE_NAME}-6692.${GITHUB_CODESPACES_PORT_FORWARDING_DOMAIN}/g" | kubectl apply -n keycloak -f -
-  fi
-
-  kubectl rollout restart deployment sx-backstage -n backstage
-
-  # finally wait for all apps including backstage to be synced and health
-  wait_until_apps_synced_healthy "${argocd_apps}" "Synced" "Healthy" 600
-
 fi
-# remove pushsecrets
+
+# remove pushsecrets and status files
 kubectl delete -f ./.secrets/secrettemp/pushsecrets.yaml
