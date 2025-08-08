@@ -482,7 +482,7 @@ if [[ $( echo $argocd_apps | grep sx-vault ) ]] ; then
 fi
   
 # if backstage is part of this stack, create the manual secret for backstage
-if [[ $( echo $argocd_apps | grep sx-backstage ) && ]] ; then
+if [[ $( echo $argocd_apps | grep sx-backstage ) ]] ; then
 
   # create manual-secret secret with all tokens for backstage
   # in github codespace we need additional environment variables to overwrite app-config.yaml
