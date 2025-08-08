@@ -261,13 +261,6 @@ backstage:
                 initialDelay: { seconds: 30 } # Customize this to fit your needs
 
       kubernetes:
-        customResources:
-          - group: 'kubevirt.io'
-            apiVersion: 'v1'
-            plural: 'virtualmachines'
-          - group: 'kubevirt.io'
-            apiVersion: 'v1'
-            plural: 'virtualmachineinstances'
         serviceLocatorMethod:
           type: multiTenant
         clusterLocatorMethods:
