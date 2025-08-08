@@ -19,8 +19,8 @@ secrets:
     labels:
       app.kubernetes.io/name: argocd-secret
       app.kubernetes.io/part-of: argocd
-    secretType:
-    stringData: "Opaque"
+    secretType: "Opaque"
+    stringData:
       server.secretkey: "dynamic:44:hex"
   - application: "keycloak"
     path: "keycloak/base"
