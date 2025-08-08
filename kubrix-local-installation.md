@@ -113,7 +113,24 @@ kubectl delete externalsecret -n backstage sx-cnp-secret
 kubectl rollout restart deployment -n backstage sx-backstage
 ```
 
-## 4. log in to the tools
+## 4. Define user entities in backstage
+
+  Before users can login via GitHub in backstage, there needs to be a matching User entity in your own kubriX repo in `backstage-resources/entities/all.yaml`
+
+  ```
+  apiVersion: backstage.io/v1alpha1
+  kind: User
+  metadata:
+    name: <github-user>
+  spec:
+    profile:
+      displayName: <github-user>
+      email: guest@example.com
+      picture: https://api.dicebear.com/9.x/adventurer-neutral/svg
+    memberOf: [kubrix]
+  ```
+
+## 5. log in to the tools
 
 When kubriX installed sucessfully you can access the platform services via these URLs and login with these credentials:
 
@@ -127,15 +144,16 @@ When kubriX installed sucessfully you can access the platform services via these
 | FalcoUI    | https://falco.127-0-0-1.nip.io | `kubectl get secret -n falco falco-ui-creds -o=jsonpath='{.data.FALCOSIDEKICK_UI_USER}' \| base64 -d \| awk -F: '{print $1}'` | `kubectl get secret -n falco falco-ui-creds -o=jsonpath='{.data.FALCOSIDEKICK_UI_USER}' \| base64 -d \| awk -F: '{print $2}'` |
 | KubeCost | https://kubecost.127-0-0-1.nip.io/overview | | |
 
-## 5. Onboard teams and applications
+
+## 6. Onboard teams and applications
 
 In our [App-Onboarding-Documentation](https://github.com/suxess-it/kubriX/blob/main/backstage-resources/docs/onboarding/onboarding-apps.md) and [Team-Onboarding-Documentation](https://github.com/suxess-it/kubriX/blob/main/backstage-resources/docs/onboarding/onboarding-teams.md ) we explain how new teams and apps get onboarded on the platform in a gitops way.
 
-## 6. Promote apps with Kargo
+## 7. Promote apps with Kargo
 
 Follow the [Promoting changes with Kargo](https://github.com/suxess-it/kubriX/blob/main/backstage-resources/docs/onboarding/promoting-changes.md) documentation to walk through the use case how to move changes from test to production.
 
-## 7. delete kind cluster
+## 8. delete kind cluster
 
 ```
 kind delete cluster --name kubrix-local-demo
