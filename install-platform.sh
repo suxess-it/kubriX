@@ -80,6 +80,48 @@ utc_now_seconds() {
   fi
 }
 
+create_vault_secrets_for_backstage() {
+  echo "adding special configuration for sx-backstage"
+
+  # create an empty manual secret because it is still needed for github codespaces and cannot configured optional
+  kubectl create secret generic -n backstage manual-secret
+
+  # get vault hostname and token for communicating with vault via curl
+  export VAULT_HOSTNAME=$(kubectl get ingress -o jsonpath='{.items[*].spec.rules[*].host}' -n vault)
+  export VAULT_TOKEN=$(kubectl get secret -n vault vault-init -o=jsonpath='{.data.root_token}'  | base64 -d)
+
+  # set vault address and vault internal address so backstage can communicate with vault
+  curl -k --header "X-Vault-Token:$VAULT_TOKEN" --request POST --data "{\"data\": {\"VAULT_ADDR\": \"https://${VAULT_HOSTNAME}\", \"VAULT_ADDR_INT\": \"http://sx-vault-active.vault.svc.cluster.local:8200\"}}" https://${VAULT_HOSTNAME}/v1/kubrix-kv/data/security/vault/base
+
+  # store env variable KUBRIX_BACKSTAGE_GITHUB_TOKEN in vault
+  curl -k --header "X-Vault-Token:$VAULT_TOKEN" --request PATCH --header "Content-Type: application/merge-patch+json" --data "{\"data\": {\"GITHUB_TOKEN\": \"${KUBRIX_BACKSTAGE_GITHUB_TOKEN}\"}}" https://${VAULT_HOSTNAME}/v1/kubrix-kv/data/portal/backstage/base
+
+  # generate argocd token and store in vault
+  export ARGOCD_AUTH_TOKEN="$( kubectl exec sx-argocd-application-controller-0 -n argocd -- argocd account generate-token --account backstage --core )"
+  curl -k --header "X-Vault-Token:$VAULT_TOKEN" --request PATCH --header "Content-Type: application/merge-patch+json" --data "{\"data\": {\"ARGOCD_AUTH_TOKEN\": \"${ARGOCD_AUTH_TOKEN}\"}}" https://${VAULT_HOSTNAME}/v1/kubrix-kv/data/portal/backstage/base
+
+  # generate grafana token if grafana ingress is found and store in vault
+  export GRAFANA_HOSTNAME=$(kubectl get ingress -o jsonpath='{.items[*].spec.rules[*].host}' -n grafana )  
+  if [ "${GRAFANA_HOSTNAME}" != "" ]; then
+    # check if the grafana user/admin is stored in secret, or use default credentials
+    if kubectl get secret grafana-admin-secret -n grafana &>/dev/null; then
+      export GRAFANA_USER=$(kubectl get secret -n grafana grafana-admin-secret -o=jsonpath='{.data.userKey }'  | base64 -d)
+      export GRAFANA_PASSWORD=$(kubectl get secret -n grafana grafana-admin-secret -o=jsonpath='{.data.passwordKey }'  | base64 -d)
+    else
+      # use default credentials
+      export GRAFANA_USER="admin"
+      export GRAFANA_PASSWORD="prom-operator"
+    fi
+
+    ID=$( curl -k -X POST https://${GRAFANA_HOSTNAME}/api/serviceaccounts --user "${GRAFANA_USER}:${GRAFANA_PASSWORD}" -H "Content-Type: application/json" -d '{"name": "backstage","role": "Viewer","isDisabled": false}' | jq -r .id )
+    export GRAFANA_TOKEN=$(curl -k -X POST https://${GRAFANA_HOSTNAME}/api/serviceaccounts/${ID}/tokens --user "${GRAFANA_USER}:${GRAFANA_PASSWORD}" -H "Content-Type: application/json" -d '{"name": "backstage"}' | jq -r .key)
+  else
+    export GRAFANA_TOKEN="dummy"
+  fi
+  curl -k --header "X-Vault-Token:$VAULT_TOKEN" --request PATCH --header "Content-Type: application/merge-patch+json" --data "{\"data\": {\"GRAFANA_TOKEN\": \"${GRAFANA_TOKEN}\"}}" https://${VAULT_HOSTNAME}/v1/kubrix-kv/data/portal/backstage/base
+
+}
+
 wait_until_apps_synced_healthy() {
   local apps=$1
   local synced=$2
@@ -123,6 +165,20 @@ wait_until_apps_synced_healthy() {
             echo 
             kubectl apply -f ./.secrets/secrettemp/pushsecrets.yaml
             touch ./.secrets/secrettemp/secrets-applied
+            echo "--------------------"
+          fi
+        fi
+
+        # special case for sx-backstage - create vault secrets when backstage is synced.
+        # side note: backstage should be able to fully sync,
+        #   but will be progressing until the vault secrets exist which we create here
+        #   because of externalsecret 'sx-cnp-secret' which waits for these vault secrets
+        if [[ "${app}" == "sx-backstage" && "${sync_status}" == "${synced}" ]]; then
+          if [ ! -f ./backstage-vault-secrets-created ]; then
+            echo "sx-backstage is synced — creating vault secrets"
+            echo 
+            create_vault_secrets_for_backstage
+            touch ./backstage-vault-secrets-created
             echo "--------------------"
           fi
         fi
@@ -350,13 +406,6 @@ helm install sx-argocd argo-cd \
 echo "add kubriX repo in argocd pod"
 kubectl exec sx-argocd-application-controller-0 -n argocd -- argocd repo add ${KUBRIX_REPO} --username ${KUBRIX_REPO_USERNAME} --password ${KUBRIX_REPO_PASSWORD} --core
 
-# create secret for scm applicationset in team app definition namespaces
-# see https://github.com/suxess-it/kubriX/issues/214 for a sustainable solution
-#for ns in adn-team1 adn-team2 adn-team-a; do
-#  kubectl create namespace ${ns}
-#  kubectl create secret generic appset-github-token --from-literal=token=${KUBRIX_GITHUB_APPSET_TOKEN} -n ${ns}
-#done
-
 # add secrets
 echo "Generating default secrets..."
 ./.secrets/createsecret.sh
@@ -373,7 +422,7 @@ target_chart_value_file="platform-apps/target-chart/values-$(echo ${KUBRIX_TARGE
 
 argocd_apps=$(cat $target_chart_value_file | egrep -Ev "team-onboarding" | awk '/^  - name:/ { printf "%s", "sx-"$3" "}' )
 # list apps which need some sort of special treatment in bootstrap
-argocd_apps_without_individual=$(cat $target_chart_value_file | egrep -Ev "backstage|team-onboarding" | awk '/^  - name:/ { printf "%s", "sx-"$3" "}' )
+argocd_apps_without_individual=$(cat $target_chart_value_file | egrep -Ev "team-onboarding" | awk '/^  - name:/ { printf "%s", "sx-"$3" "}' )
 
 # max wait for 20 minutes until all apps except backstage and kargo are synced and healthy
 wait_until_apps_synced_healthy "${argocd_apps_without_individual}" "Synced" "Healthy" ${KUBRIX_BOOTSTRAP_MAX_WAIT_TIME:-1200}
@@ -381,11 +430,11 @@ wait_until_apps_synced_healthy "${argocd_apps_without_individual}" "Synced" "Hea
 # apply argocd-secret to set a secretKey
 kubectl apply -f platform-apps/charts/argocd/manual-secret/argocd-secret.yaml
 
-# if vault is part of this stack, upload token to vault
+# if vault is part of this stack, do some special configuration
 if [[ $( echo $argocd_apps | grep sx-vault ) ]] ; then
+
   export VAULT_HOSTNAME=$(kubectl get ingress -o jsonpath='{.items[*].spec.rules[*].host}' -n vault)
   export VAULT_TOKEN=$(kubectl get secret -n vault vault-init -o=jsonpath='{.data.root_token}'  | base64 -d)
-  curl -k --header "X-Vault-Token:$VAULT_TOKEN" --request POST --data "{\"data\": {\"VAULT_ADDR\": \"https://${VAULT_HOSTNAME}\", \"VAULT_ADDR_INT\": \"http://sx-vault-active.vault.svc.cluster.local:8200\"}}" https://${VAULT_HOSTNAME}/v1/kubrix-kv/data/security/vault/base
 
   if [[ "${KUBRIX_TARGET_TYPE}" =~ ^KIND.* || "${KUBRIX_CLUSTER_TYPE}" == "KIND" ]] ; then
   # due to issue #405 this step is needed for kind clusters
@@ -413,58 +462,30 @@ if [[ $( echo $argocd_apps | grep sx-vault ) ]] ; then
     done
   fi
   # due to issue #422 this step is needed for all clusters
-    GROUP_ALIAS_LIST=$(curl -k --header "X-Vault-Token: $VAULT_TOKEN" --request LIST https://${VAULT_HOSTNAME}/v1/identity/group-alias/id)
-    if [ -z "$(echo "$GROUP_ALIAS_LIST" | jq -r '.data.keys | length')" ] || [ "$(echo "$GROUP_ALIAS_LIST" | jq -r '.data.keys | length')" -eq 0 ]; then
-        echo "No group aliases found. Setting up group aliases..."
-        # Get the list of identity groups
-        GROUP_LIST=$(curl -k --header "X-Vault-Token: $VAULT_TOKEN" --request LIST https://${VAULT_HOSTNAME}/v1/identity/group/name)
-        # Get OIDC accessor
-        ACC=$(curl -k --header "X-Vault-Token: $VAULT_TOKEN" --request GET https://${VAULT_HOSTNAME}/v1/sys/auth | jq -r '.["oidc/"].accessor')
-        echo "OIDC Accessor: $ACC"
-        # Iterate over groups and create group aliases
-        echo "$GROUP_LIST" | jq -r '.data.keys[]' | while read -r GROUP_NAME; do
-            echo "Processing group: $GROUP_NAME"
-            # Get Group ID
-            GROUP_ID=$(curl -k --header "X-Vault-Token: $VAULT_TOKEN" --request GET https://${VAULT_HOSTNAME}/v1/identity/group/name/$GROUP_NAME | jq -r '.data.id')
-            if [ -n "$GROUP_ID" ] && [ "$GROUP_ID" != "null" ]; then
-                # Create Group Alias
-                RESPONSE=$(curl -k --header "X-Vault-Token: $VAULT_TOKEN" --request POST --data '{"name": "'$GROUP_NAME'", "mount_accessor": "'$ACC'", "canonical_id": "'$GROUP_ID'"}' https://${VAULT_HOSTNAME}/v1/identity/group-alias)
-                echo "Group alias created for $GROUP_NAME: $RESPONSE"
-            fi
-        done
-    fi
+  GROUP_ALIAS_LIST=$(curl -k --header "X-Vault-Token: $VAULT_TOKEN" --request LIST https://${VAULT_HOSTNAME}/v1/identity/group-alias/id)
+  if [ -z "$(echo "$GROUP_ALIAS_LIST" | jq -r '.data.keys | length')" ] || [ "$(echo "$GROUP_ALIAS_LIST" | jq -r '.data.keys | length')" -eq 0 ]; then
+      echo "No group aliases found. Setting up group aliases..."
+      # Get the list of identity groups
+      GROUP_LIST=$(curl -k --header "X-Vault-Token: $VAULT_TOKEN" --request LIST https://${VAULT_HOSTNAME}/v1/identity/group/name)
+      # Get OIDC accessor
+      ACC=$(curl -k --header "X-Vault-Token: $VAULT_TOKEN" --request GET https://${VAULT_HOSTNAME}/v1/sys/auth | jq -r '.["oidc/"].accessor')
+      echo "OIDC Accessor: $ACC"
+      # Iterate over groups and create group aliases
+      echo "$GROUP_LIST" | jq -r '.data.keys[]' | while read -r GROUP_NAME; do
+          echo "Processing group: $GROUP_NAME"
+          # Get Group ID
+          GROUP_ID=$(curl -k --header "X-Vault-Token: $VAULT_TOKEN" --request GET https://${VAULT_HOSTNAME}/v1/identity/group/name/$GROUP_NAME | jq -r '.data.id')
+          if [ -n "$GROUP_ID" ] && [ "$GROUP_ID" != "null" ]; then
+              # Create Group Alias
+              RESPONSE=$(curl -k --header "X-Vault-Token: $VAULT_TOKEN" --request POST --data '{"name": "'$GROUP_NAME'", "mount_accessor": "'$ACC'", "canonical_id": "'$GROUP_ID'"}' https://${VAULT_HOSTNAME}/v1/identity/group-alias)
+              echo "Group alias created for $GROUP_NAME: $RESPONSE"
+          fi
+      done
+  fi
 fi
   
 # if backstage is part of this stack, create the manual secret for backstage
 if [[ $( echo $argocd_apps | grep sx-backstage ) ]] ; then
-
-  # check if backstage is already synced (it will still be degraded because of the missing secret we create in the next step)
-  wait_until_apps_synced_healthy "sx-backstage" "Synced" "*" 900
-
-  echo "adding special configuration for sx-backstage"
-
-  # generate argocd token
-  export ARGOCD_AUTH_TOKEN="$( kubectl exec sx-argocd-application-controller-0 -n argocd -- argocd account generate-token --account backstage --core )"
-
-  # generate grafana token
-  export GRAFANA_HOSTNAME=$(kubectl get ingress -o jsonpath='{.items[*].spec.rules[*].host}' -n grafana )
-
-  # check if the secret exists and extract credentials if it does
-  if kubectl get secret grafana-admin-secret -n grafana &>/dev/null; then
-    export GRAFANA_USER=$(kubectl get secret -n grafana grafana-admin-secret -o=jsonpath='{.data.userKey }'  | base64 -d)
-    export GRAFANA_PASSWORD=$(kubectl get secret -n grafana grafana-admin-secret -o=jsonpath='{.data.passwordKey }'  | base64 -d)
-  else
-    # use default credentials
-    export GRAFANA_USER="admin"
-    export GRAFANA_PASSWORD="prom-operator"
-  fi
-  if [ "${GRAFANA_HOSTNAME}" != "" ]; then
-    ID=$( curl -k -X POST https://${GRAFANA_HOSTNAME}/api/serviceaccounts --user "${GRAFANA_USER}:${GRAFANA_PASSWORD}" -H "Content-Type: application/json" -d '{"name": "backstage","role": "Viewer","isDisabled": false}' | jq -r .id )
-    export GRAFANA_TOKEN=$(curl -k -X POST https://${GRAFANA_HOSTNAME}/api/serviceaccounts/${ID}/tokens --user "${GRAFANA_USER}:${GRAFANA_PASSWORD}" -H "Content-Type: application/json" -d '{"name": "backstage"}' | jq -r .key)
-  fi
-  
-  # get backstage-locator token for backstage secret
-  export K8S_SA_TOKEN=$( kubectl get secret backstage-locator -n backstage  -o jsonpath='{.data.token}' | base64 -d )
 
   # create manual-secret secret with all tokens for backstage
   # in github codespace we need additional environment variables to overwrite app-config.yaml
@@ -481,11 +502,6 @@ if [[ $( echo $argocd_apps | grep sx-backstage ) ]] ; then
   
   if [ ${KEYCLOAK_CODESPACES} ]; then
     kubectl create secret generic -n backstage manual-secret \
-      --from-literal=GITHUB_ORG=${GITHUB_ORG} \
-      --from-literal=GITHUB_TOKEN=${KUBRIX_BACKSTAGE_GITHUB_TOKEN} \
-      --from-literal=K8S_SA_TOKEN=${K8S_SA_TOKEN} \
-      --from-literal=ARGOCD_AUTH_TOKEN=${ARGOCD_AUTH_TOKEN} \
-      --from-literal=GRAFANA_TOKEN=${GRAFANA_TOKEN} \
       --from-literal=APP_CONFIG_app_baseUrl=${BACKSTAGE_CODESPACE_URL} \
       --from-literal=APP_CONFIG_backend_baseUrl=${BACKSTAGE_CODESPACE_URL} \
       --from-literal=APP_CONFIG_backend_cors_origin=${BACKSTAGE_CODESPACE_URL} \
@@ -500,23 +516,14 @@ if [[ $( echo $argocd_apps | grep sx-backstage ) ]] ; then
 
   elif [ ${GITHUB_CODESPACES} ]; then
     kubectl create secret generic -n backstage manual-secret \
-    --from-literal=GITHUB_ORG=${GITHUB_ORG} \
-    --from-literal=GITHUB_TOKEN=${KUBRIX_BACKSTAGE_GITHUB_TOKEN} \
-    --from-literal=K8S_SA_TOKEN=${K8S_SA_TOKEN} \
-    --from-literal=ARGOCD_AUTH_TOKEN=${ARGOCD_AUTH_TOKEN} \
-    --from-literal=GRAFANA_TOKEN=${GRAFANA_TOKEN} \
     --from-literal=APP_CONFIG_app_baseUrl=${BACKSTAGE_CODESPACE_URL} \
     --from-literal=APP_CONFIG_backend_baseUrl=${BACKSTAGE_CODESPACE_URL} \
     --from-literal=APP_CONFIG_backend_cors_origin=${BACKSTAGE_CODESPACE_URL} \
     --from-literal=APP_CONFIG_auth_provider_github_development_callbackUrl=${BACKSTAGE_CODESPACE_URL}/api/auth/github/handler/frame
 
   else
-    kubectl create secret generic -n backstage manual-secret \
-    --from-literal=GITHUB_ORG=${GITHUB_ORG} \
-    --from-literal=GITHUB_TOKEN=${KUBRIX_BACKSTAGE_GITHUB_TOKEN} \
-    --from-literal=K8S_SA_TOKEN=${K8S_SA_TOKEN} \
-    --from-literal=ARGOCD_AUTH_TOKEN=${ARGOCD_AUTH_TOKEN} \
-    --from-literal=GRAFANA_TOKEN=${GRAFANA_TOKEN}
+    # create an empty secret because it is needed as a prereq for backstage deployment
+    kubectl create secret generic -n backstage manual-secret
   fi
 
   # in codespaces we need additional crossplane resources for keycloak
@@ -524,6 +531,8 @@ if [[ $( echo $argocd_apps | grep sx-backstage ) ]] ; then
   if [ ${KEYCLOAK_CODESPACES} ]; then
     cat .devcontainer/keycloak-codespaces.yaml | sed "s/BACKSTAGE_CODESPACES_REPLACE/${CODESPACE_NAME}-6691.${GITHUB_CODESPACES_PORT_FORWARDING_DOMAIN}/g" | sed "s/KEYCLOAK_CODESPACES_REPLACE/${CODESPACE_NAME}-6692.${GITHUB_CODESPACES_PORT_FORWARDING_DOMAIN}/g" | kubectl apply -n keycloak -f -
   fi
+
+  kubectl rollout restart deployment sx-backstage -n backstage
 
   # finally wait for all apps including backstage to be synced and health
   wait_until_apps_synced_healthy "${argocd_apps}" "Synced" "Healthy" 600
