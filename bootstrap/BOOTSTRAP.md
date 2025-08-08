@@ -134,6 +134,22 @@ With this step-by-step guide kubriX with its default KIND-DELIVERY stack gets de
     kubectl rollout restart deployment -n backstage sx-backstage
     ```
 
+12. Define user entities in backstage
+
+    Before users can login via GitHub in backstage, there needs to be a matching User entity in your own kubriX repo in `backstage-resources/entities/all.yaml`
+
+    ```
+    apiVersion: backstage.io/v1alpha1
+    kind: User
+    metadata:
+      name: <github-user>
+    spec:
+      profile:
+        displayName: <github-user>
+        email: guest@example.com
+        picture: https://api.dicebear.com/9.x/adventurer-neutral/svg
+      memberOf: [kubrix]
+    ```
 
 ## background information
 
