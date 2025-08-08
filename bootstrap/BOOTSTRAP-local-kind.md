@@ -115,6 +115,22 @@ install the CA of mkcert in your OS truststore: https://docs.kubefirst.io/k3d/qu
     kubectl delete externalsecret -n backstage sx-cnp-secret
     kubectl rollout restart deployment -n backstage sx-backstage
     ```
+8. Define user entities in backstage
+
+    Before users can login via GitHub in backstage, there needs to be a matching User entity in your own kubriX repo in `backstage-resources/entities/all.yaml`
+
+    ```
+    apiVersion: backstage.io/v1alpha1
+    kind: User
+    metadata:
+      name: <github-user>
+    spec:
+      profile:
+        displayName: <github-user>
+        email: guest@example.com
+        picture: https://api.dicebear.com/9.x/adventurer-neutral/svg
+      memberOf: [kubrix]
+    ```
 
 When kubriX installed sucessfully you can access the platform services via these URLs and login with these credentials:
 
