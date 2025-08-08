@@ -16,12 +16,12 @@ vault:
       annotations:
         cert-manager.io/cluster-issuer: mkcert-issuer
       hosts:
-        - host: vault-127-0-0-1.nip.io
+        - host: vault.127-0-0-1.nip.io
           paths: []
       tls: 
         - secretName: vault-server-tls
           hosts:
-            - vault-127-0-0-1.nip.io
+            - vault.127-0-0-1.nip.io
     extraInitContainers:
       - name: utility-downloader
         image: alpine/curl:latest
