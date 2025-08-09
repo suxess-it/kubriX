@@ -23,7 +23,8 @@ komoplane:
     # The name of the service account to use.
     # If not set and create is true, a name is generated using the fullname template
     name: ""
-    annotations: { }
+    annotations:
+      cert-manager.io/cluster-issuer: mkcert-issuer
     labels: { }
 
   resources:
@@ -75,13 +76,13 @@ komoplane:
     annotations: { }
     labels: { }
     hosts:
-      - host: komoplane-127-0-0-1.nip.io 
+      - host: komoplane.127-0-0-1.nip.io 
         paths:
           - path: /
             pathType: ImplementationSpecific
     tls:
       - hosts:
-        - komoplane-127-0-0-1.nip.io
+        - komoplane.127-0-0-1.nip.io
         secretName: komoplane-server-tls
 
   autoscaling:

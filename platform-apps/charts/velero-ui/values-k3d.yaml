@@ -8,21 +8,22 @@ vui:
   apiConfig:
     apiEnableDocumentation: "1"
     k8SInClusterMode: "True"
-    origins1: 'https://velero-ui-127-0-0-1.nip.io'
+    origins1: 'https://velero-ui.127-0-0-1.nip.io'
     veleroCliVersion: v1.14.0
     existingSecret: velero-ui-credential
 
   uiIngress:
     enabled: true
-    host: velero-ui-127-0-0-1.nip.io
+    host: velero-ui.127-0-0-1.nip.io
     ingressClassName: ""
     metadata:
       annotations:
+        cert-manager.io/cluster-issuer: mkcert-issuer
     spec:
       tls:
         - secretName: velero-ui-server-tls
           hosts:
-            - velero-ui-127-0-0-1.nip.io
+            - velero-ui.127-0-0-1.nip.io
   
   uiNp: # NodePort
     enabled: false

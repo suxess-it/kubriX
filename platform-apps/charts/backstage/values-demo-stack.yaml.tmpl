@@ -5,7 +5,7 @@ backstage:
     className: nginx
     annotations:
       external-dns.alpha.kubernetes.io/ttl: "60"
-      cert-manager.io/cluster-issuer: letsencrypt-prod
+      cert-manager.io/cluster-issuer: default-issuer
     tls:
       enabled: true
       secretName: backstage-server-tls
@@ -19,20 +19,33 @@ backstage:
       tag: v1.38.1
     extraEnvVarsSecrets:
       - sx-cnp-secret
-      - manual-secret
+      - codespaces-secret
       - backstage-db-secrets
       - sx-vault-secret
     extraEnvVars:
       - name: NODE_OPTIONS
         value: "--no-node-snapshot"
+      {{- if eq .kubriX.clusterType "kind" }}
+      - name: NODE_EXTRA_CA_CERTS
+        value: "/mkcert-cacert/ca.crt"
+      {{- end }}
     extraVolumes:
       - configMap:
           defaultMode: 420
           name: rbac-policy
         name: rbac-policy
+      {{- if eq .kubriX.clusterType "kind" }}
+      - name: mkcert-cacert
+        secret:
+          secretName: mkcert-cacert
+      {{- end }}
     extraVolumeMounts:
       - name: rbac-policy
         mountPath: /opt/app-root/src/rbac
+      {{- if eq .kubriX.clusterType "kind" }}
+      - name: mkcert-cacert
+        mountPath: /mkcert-cacert
+      {{- end }}
     appConfig:
       app:
         title: kubriX OSS
@@ -205,7 +218,7 @@ backstage:
               - Regulatory Compliance
           - title: IAM
             description: Identity and Access Management
-            url: /https://keycloak.{{ .kubriX.domain }}
+            url: https://keycloak.{{ .kubriX.domain }}
             image: /homepage/images/hubs.jpg
             tags:
               - keycloak
@@ -248,13 +261,6 @@ backstage:
                 initialDelay: { seconds: 30 } # Customize this to fit your needs
 
       kubernetes:
-        customResources:
-          - group: 'kubevirt.io'
-            apiVersion: 'v1'
-            plural: 'virtualmachines'
-          - group: 'kubevirt.io'
-            apiVersion: 'v1'
-            plural: 'virtualmachineinstances'
         serviceLocatorMethod:
           type: multiTenant
         clusterLocatorMethods:

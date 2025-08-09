@@ -1,7 +1,9 @@
 backstage:
   ingress:
     enabled: true
-    host: backstage-127-0-0-1.nip.io
+    host: backstage.127-0-0-1.nip.io
+    annotations:
+      cert-manager.io/cluster-issuer: mkcert-issuer
     tls:
       enabled: true
       secretName: backstage-server-tls
@@ -12,7 +14,7 @@ backstage:
       tag: v1.38.1
     extraEnvVarsSecrets:
       - sx-cnp-secret
-      - manual-secret
+      - codespaces-secret
       - sx-vault-secret
     extraEnvVars:
       - name: NODE_OPTIONS
@@ -32,7 +34,7 @@ backstage:
     appConfig:
       app:
         title: kubriX OSS
-        baseUrl: https://backstage-127-0-0-1.nip.io
+        baseUrl: https://backstage.127-0-0-1.nip.io
 
       organization:
         name: kubriX OSS
@@ -51,7 +53,7 @@ backstage:
             options:
               secret: ${BACKEND_SECRET}
               subject: legacy-secret
-        baseUrl: https://backstage-127-0-0-1.nip.io
+        baseUrl: https://backstage.127-0-0-1.nip.io
         listen:
           port: 7007
           # Uncomment the following host directive to bind to specific interfaces
@@ -62,7 +64,7 @@ backstage:
           # Content-Security-Policy directives follow the Helmet format: https://helmetjs.github.io/#reference
           # Default Helmet Content-Security-Policy values can be removed by setting the key to false
         cors:
-          origin: https://backstage-127-0-0-1.nip.io
+          origin: https://backstage.127-0-0-1.nip.io
           methods: [GET, HEAD, PATCH, POST, PUT, DELETE]
           credentials: true
         # This is for local development only, it is not recommended to use this in production
@@ -92,19 +94,19 @@ backstage:
         #   target: 'https://example.com'
         #   changeOrigin: true
           '/grafana/api':
-            # use k8s internal service name because grafana-127-0-0-1.nip.io resolves to 127.0.0.1 in container, too
+            # use k8s internal service name because grafana.127-0-0-1.nip.io resolves to 127.0.0.1 in container, too
             target: http://sx-grafana.grafana:80
             headers:
               Authorization: Bearer ${GRAFANA_TOKEN}
 
       argocd:
-        baseUrl: https://argocd-127-0-0-1.nip.io/
+        baseUrl: https://argocd.127-0-0-1.nip.io/
         namespacedApps: true
         appLocatorMethods:
           - type: 'config'
             instances:
               - name: k3d
-                url: https://argocd-127-0-0-1.nip.io/
+                url: https://argocd.127-0-0-1.nip.io/
                 token: ${ARGOCD_AUTH_TOKEN}
 
       # Reference documentation http://backstage.io/docs/features/techdocs/configuration
@@ -139,10 +141,10 @@ backstage:
           oidc:
             development:
               # real metadataUrl -> local cluster lead to "ECONNREFUSED 127.0.0.1:443" - #24935
-              #metadataUrl: https://keycloak-127-0-0-1.nip.io/realms/kubrix #.well-known/openid-configuration can be ommited
+              #metadataUrl: https://keycloak.127-0-0-1.nip.io/realms/kubrix #.well-known/openid-configuration can be ommited
               # workaround -> also set frontendUrl in keycloak realm
               metadataUrl: http://sx-keycloak-headless.keycloak.svc.cluster.local:8080/realms/kubrix #.well-known/openid-configuration can be ommited
-              callbackUrl: https://backstage-127-0-0-1.nip.io/api/auth/oidc/handler/frame
+              callbackUrl: https://backstage.127-0-0-1.nip.io/api/auth/oidc/handler/frame
               clientId: backstage
               clientSecret: ${OIDC_CLIENTSECRET}
               additionalScopes: 'groups'
@@ -229,7 +231,7 @@ backstage:
           keycloakOrg:
             default:
               # real baseUrl -> local cluster lead to "ECONNREFUSED 127.0.0.1:443"
-              #baseUrl: https://keycloak-127-0-0-1.nip.io
+              #baseUrl: https://keycloak.127-0-0-1.nip.io
               # workaround
               baseUrl: http://sx-keycloak-headless.keycloak.svc.cluster.local:8080
               loginRealm: kubrix
@@ -258,7 +260,7 @@ backstage:
 
       grafana:
         # Publicly accessible domain
-        domain: https://grafana-127-0-0-1.nip.io
+        domain: https://grafana.127-0-0-1.nip.io
 
         # Is unified alerting enabled in Grafana?
         # See: https://grafana.com/blog/2021/06/14/the-new-unified-alerting-system-for-grafana-everything-you-need-to-know/
@@ -317,7 +319,7 @@ backstage:
             rate: 5.5
 
       kubecost:
-        baseUrl: https://kubecost-127-0-0-1.nip.io
+        baseUrl: https://kubecost.127-0-0-1.nip.io
         sharedNamespaces: kube-system
         queryframes: week,yesterday,month,today,lastweek
         annotationDeploymentName: 'backstage.io/kubernetes-id'

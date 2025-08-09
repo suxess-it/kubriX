@@ -28,15 +28,17 @@ falco:
       replicaCount: 1
       ingress:
         enabled: true
+        annotations:
+          cert-manager.io/cluster-issuer: mkcert-issuer
         hosts:
-          - host: falco-127-0-0-1.nip.io
+          - host: falco.127-0-0-1.nip.io
             paths:
               - path: /
                 pathType: Prefix
         tls: 
           - secretName: falco-server-tls
             hosts:
-              - falco-127-0-0-1.nip.io
+              - falco.127-0-0-1.nip.io
     replicaCount: 1
     serviceMonitor:
       enabled: true

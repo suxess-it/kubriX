@@ -1,8 +1,12 @@
-{{- if .Values.createLetsEncrypStagingClusterIssuer }}
+{{- if .Values.letsEncrypStagingClusterIssuer }}
 apiVersion: cert-manager.io/v1
 kind: ClusterIssuer
 metadata:
+  {{- if .Values.letsEncrypStagingClusterIssuer.default }}
+  name: default-issuer
+  {{- else }}
   name: letsencrypt-staging
+  {{- end }}
 spec:
   acme:
     email: support@suxess-it.com
