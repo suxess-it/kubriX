@@ -1,37 +1,17 @@
 keycloak:
-  #extraEnvVars:
-  #  - name: KEYCLOAK_LOG_LEVEL
-  #    value: DEBUG
-  auth:
-    adminUser: admin
-    existingSecret: "keycloak-admin"
   ingress:
-    enabled: true
-    hostname: keycloak.demo.kubrix.cloud
-    ingressClassName: nginx
-    annotations:
-      external-dns.alpha.kubernetes.io/ttl: "60"
-      cert-manager.io/cluster-issuer: letsencrypt-prod
-    path: /
-    tls: true
-  pdb:
-    create: false
-  postgresql:
+  # ingress tls not implemented yet, we need to create our own ingress resource
     enabled: false
-  externalDatabase:
-    existingSecret: "cp-keycloak-externaldb-secret"
-    existingSecretHostKey: "HOST"
-    existingSecretPortKey: "PORT"
-    existingSecretUserKey: "POSTGRES_USER"
-    existingSecretDatabaseKey: "POSTGRES_DATABASE"
-    existingSecretPasswordKey: "POSTGRES_PASSWORD"
 
   readinessProbe:
-    httpGet:
-      path: /realms/master
-      port: http
-    initialDelaySeconds: 60
-    timeoutSeconds: 5
+    periodSeconds: 20
+    failureThreshold: 5
+  livenessProbe:
+    periodSeconds: 20
+    failureThreshold: 5
+  startupProbe:
+    periodSeconds: 20
+    failureThreshold: 5
 
   resources:
     requests:
@@ -43,13 +23,25 @@ keycloak:
 
   networkPolicy:
     enabled: false
-  metrics:
-    enabled: true
-    serviceMonitor:
-      enabled: true
-      
-  keycloakConfigCli:
-    enabled: false
+
+  additionalOptions:
+    - name: "metrics-enabled"
+      value: "true"
+    - name: "health-enabled"
+      value: "true"
+
+    # serviceMonitor: # not yet implemented in keycloak, https://github.com/keycloak/keycloak/issues/40406, we need to create our own servicemonitor
+
+  db:
+    usernameSecret:
+      name: cp-keycloak-externaldb-secret
+      key: POSTGRES_USER
+    passwordSecret:
+      name: cp-keycloak-externaldb-secret
+      key: POSTGRES_PASSWORD
+    port: 5432
+
+
 ######## postgres instance
 postgresql:
   enabled: true
@@ -61,7 +53,6 @@ postgresql:
     persistence:
       size: 2Gi # for demo only
   auth:
-#    postgresPassword: "keycloak"
     username: keycloak
     database: postgres
     existingSecret: "cp-keycloak-externaldb-secret"
@@ -76,6 +67,15 @@ postgresql:
 #### kubrix
 kubrix:
   keycloak:
+    ingress:
+      enabled: true
+      tls:
+        enabled: true
+        secretName: keycloak-server-tls
+      annotations:
+        external-dns.alpha.kubernetes.io/ttl: "60"
+        cert-manager.io/cluster-issuer: letsencrypt-prod
+      className: nginx
     fqdn: .demo.kubrix.cloud # add to prefix keycloak in templates
     realm:
       realmid: kubrix
