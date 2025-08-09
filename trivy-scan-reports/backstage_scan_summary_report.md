@@ -1689,7 +1689,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>Node.js</code></h3>
-<h4>Vulnerabilities (12)</h4>
+<h4>Vulnerabilities (13)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -1700,6 +1700,13 @@
     </tr>
     <tr>
         <td><code>@node-saml/node-saml</code></td>
+        <td>CVE-2025-54419</td>
+        <td>CRITICAL</td>
+        <td>5.0.1</td>
+        <td>5.1.0</td>
+    </tr>
+    <tr>
+        <td><code>@node-saml/passport-saml</code></td>
         <td>CVE-2025-54419</td>
         <td>CRITICAL</td>
         <td>5.0.1</td>
