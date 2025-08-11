@@ -1,4 +1,36 @@
-#!/bin/bash
+#!/usr/bin/env bash
+set -Eeuo pipefail
+
+# Simple error trap
+fail() { printf '%s\n' "$1" >&2; exit "${2:-1}"; }
+trap 'fail "Error on line $LINENO"' ERR
+
+lower() { printf '%s' "$1" | tr '[:upper:]' '[:lower:]'; }
+
+detect_os() {
+  local s; s="$(uname -s 2>/dev/null || echo unknown)"
+  case "$(lower "$s")" in
+    linux*)  echo linux ;;
+    darwin*) echo darwin ;;
+    msys*|mingw*|cygwin*) echo windows ;;
+    *) echo unknown ;;
+  esac
+}
+
+detect_arch() {
+  local m; m="$(uname -m 2>/dev/null || echo unknown)"
+  case "$m" in
+    x86_64|amd64) echo amd64 ;;
+    aarch64|arm64) echo arm64 ;;
+    armv7l|armv7) echo armv7 ;;
+    armv6l|armv6) echo armv6 ;;
+    i386|i686)    echo 386 ;;
+    *) echo unknown ;;
+  esac
+}
+
+OS="$(detect_os)"
+ARCH="$(detect_arch)"
 
 # variables which must be defined by user
 while read var; do
@@ -69,7 +101,7 @@ cat bootstrap/customer-config.yaml
 echo "----"
 
 echo "downloading gomplate ..."
-curl --progress-bar -o gomplate -SL https://github.com/hairyhenderson/gomplate/releases/download/v4.3.2/gomplate_linux-amd64
+curl --progress-bar -o gomplate -SL https://github.com/hairyhenderson/gomplate/releases/download/v4.3.2/gomplate_${OS}-${ARCH}
 chmod 755 gomplate
 
 echo "rendering values templates ..."
