@@ -52,6 +52,14 @@ echo "checkout kubriX to $(pwd) ..."
 git clone ${KUBRIX_UPSTREAM_REPO} .
 git checkout ${KUBRIX_UPSTREAM_BRANCH}
 
+# Create an orphan branch that has NO parents
+git checkout --orphan publish
+
+# now add one commit before we do the customer specific changes
+git reset --mixed
+git add -A
+git commit -m "Initial publish: squashed snapshot of kubriX"
+
 # write new customer values in customer config
 cat << EOF > bootstrap/customer-config.yaml
 clusterType: $( echo ${KUBRIX_CLUSTER_TYPE} | awk '{print tolower($0)}' )
@@ -82,7 +90,7 @@ echo "Push kubriX gitops files to ${KUBRIX_CUSTOMER_REPO}"
 git remote add customer ${KUBRIX_CUSTOMER_REPO_PROTO}${KUBRIX_CUSTOMER_REPO_TOKEN}@${KUBRIX_CUSTOMER_REPO_URL}
 git add -A
 git commit -a -m "add customer specific modifications during bootstrap"
-git push --set-upstream customer ${KUBRIX_UPSTREAM_BRANCH}:main
+git push --set-upstream customer publish:main
 
 echo "Now run install-platform.sh from your new kubriX repo ${KUBRIX_CUSTOMER_REPO}"
 
