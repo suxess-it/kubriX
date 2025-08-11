@@ -1,14 +1,14 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
-# just for troubleshooting
-if [ "${KUBRIX_INSTALL_DEBUG}" == true ]; then
-  set -x 
-fi
+# Safer prologue
+set -Eeuo pipefail
 
-fail() {
-  echo $1
-  exit "${2-1}"
-}
+# Debug if requested
+if [[ "${KUBRIX_INSTALL_DEBUG:-}" == "true" ]]; then set -x; fi
+
+# Simple error trap
+fail() { printf '%s\n' "$1" >&2; exit "${2:-1}"; }
+trap 'fail "Error on line $LINENO"' ERR
 
 check_tool() {
   tool=$1
@@ -57,27 +57,48 @@ check_prereqs() {
   echo ""
 }
 
-convert_to_seconds() {
-  local timestamp=$1
-  if [[ "$ARCH" == "amd64" || "$ARCH" == "x86_64" ]]; then
-    date -d "${timestamp}" '+%s'
-  elif [[ "$ARCH" == "arm64" ]]; then
-    date -j -f "%Y-%m-%dT%H:%M:%S" "${timestamp}" "+%s"
-  else
-    echo "Unsupported architecture: $ARCH" >&2
-    exit 1
-  fi
+detect_date_impl() {
+  if "$DATE_BIN" --version >/dev/null 2>&1; then echo gnu; return; fi
+  if "$DATE_BIN" -d @0 +%s >/dev/null 2>&1; then echo gnu; return; fi
+  if "$DATE_BIN" -r 0 +%s >/dev/null 2>&1; then echo bsd; return; fi
+  if "$DATE_BIN" -v -1d +%s >/dev/null 2>&1; then echo bsd; return; fi
+  echo unknown
 }
 
+# Current UTC epoch seconds (works on GNU & BSD)
 utc_now_seconds() {
-  if [[ "$ARCH" == "amd64" || "$ARCH" == "x86_64" ]]; then
-    date --date=$(date -u +"%Y-%m-%dT%T") '+%s'
-  elif [[ "$ARCH" == "arm64" ]]; then
-    date -j -f "%Y-%m-%dT%T" "$(date -u +"%Y-%m-%dT%T")" '+%s'
-  else
-    echo "Unsupported architecture: $ARCH" >&2
-    exit 1
-  fi
+  "$DATE_BIN" -u +%s
+}
+
+# Convert ISO8601 → epoch seconds.
+# Accepts: 2025-08-11T10:20:30 with optional .sss and TZ (Z, +HH:MM, +HHMM)
+convert_to_seconds() {
+  local ts="$1"
+  case "$DATE_IMPL" in
+    gnu)
+      if [[ "$ts" =~ (Z|z|[+-][0-9]{2}(:?[0-9]{2})?)$ ]]; then
+        "$DATE_BIN" -d "$ts" +%s
+      else
+        "$DATE_BIN" -u -d "$ts" +%s
+      fi
+      ;;
+    bsd)
+      local base="${ts%%.*}" fmt="%Y-%m-%dT%H:%M:%S"
+      if [[ "$base" =~ [Zz]$ ]]; then
+        base="${base%Z}${base%z}+0000"; fmt="$fmt%z"
+      elif [[ "$base" =~ [+-][0-9]{2}:[0-9]{2}$ ]]; then
+        base="${base:0:${#base}-3}${base: -2}"; fmt="$fmt%z"
+      elif [[ "$base" =~ [+-][0-9]{4}$ ]]; then
+        fmt="$fmt%z"
+      else
+        TZ=UTC "$DATE_BIN" -j -f "$fmt" "$base" +%s; return
+      fi
+      TZ=UTC "$DATE_BIN" -j -f "$fmt" "$base" +%s
+      ;;
+    *)
+      echo "Unknown date(1) implementation" >&2; return 1
+      ;;
+  esac
 }
 
 create_vault_secrets_for_backstage() {
@@ -97,7 +118,7 @@ create_vault_secrets_for_backstage() {
   curl -k --header "X-Vault-Token:$VAULT_TOKEN" --request PATCH --header "Content-Type: application/merge-patch+json" --data "{\"data\": {\"GITHUB_TOKEN\": \"${KUBRIX_BACKSTAGE_GITHUB_TOKEN}\"}}" https://${VAULT_HOSTNAME}/v1/kubrix-kv/data/portal/backstage/base
 
   # generate argocd token and store in vault
-  export ARGOCD_AUTH_TOKEN="$( kubectl exec sx-argocd-application-controller-0 -n argocd -- argocd account generate-token --account backstage --core )"
+  export ARGOCD_AUTH_TOKEN="$( kubectl exec "$(kubectl get pod -n argocd -l app.kubernetes.io/name=argocd-application-controller -o jsonpath='{.items[0].metadata.name}')" -n argocd -- argocd account generate-token --account backstage --core )"
   curl -k --header "X-Vault-Token:$VAULT_TOKEN" --request PATCH --header "Content-Type: application/merge-patch+json" --data "{\"data\": {\"ARGOCD_AUTH_TOKEN\": \"${ARGOCD_AUTH_TOKEN}\"}}" https://${VAULT_HOSTNAME}/v1/kubrix-kv/data/portal/backstage/base
 
   # generate grafana token if grafana ingress is found and store in vault
@@ -145,8 +166,8 @@ wait_until_apps_synced_healthy() {
       operation_phase_bootstrap_app=$(kubectl get application -n argocd ${bootstrap_app} -o jsonpath='{.status.operationState.phase}')
       if [ "${operation_phase_bootstrap_app}" = "Failed" ] || [ "${operation_phase_bootstrap_app}" = "Error" ] ; then
         echo "sx-boostrap-app sync failed. Restarting sync ..."
-        kubectl exec sx-argocd-application-controller-0 -n argocd -- argocd app terminate-op "$bootstrap_app" --core
-        kubectl exec sx-argocd-application-controller-0 -n argocd -- argocd app sync "$bootstrap_app" --async --core
+        kubectl exec "$(kubectl get pod -n argocd -l app.kubernetes.io/name=argocd-application-controller -o jsonpath='{.items[0].metadata.name}')" -n argocd -- argocd app terminate-op "$bootstrap_app" --core
+        kubectl exec "$(kubectl get pod -n argocd -l app.kubernetes.io/name=argocd-application-controller -o jsonpath='{.items[0].metadata.name}')" -n argocd -- argocd app sync "$bootstrap_app" --async --core
       fi
     fi
 
@@ -187,7 +208,7 @@ wait_until_apps_synced_healthy() {
         # because of a .Capabilities.APIVersions.Has condition in the templates for monitoring.coreos which gets deployed by k8s-monitoring itself
         if [[ "${app}" == "sx-k8s-monitoring" && "${sync_status}" == "${synced}" && "${health_status}" == "${healthy}" ]]; then
           if [  "${k8smonitoring_restarted}" != "true" ]; then
-            kubectl exec sx-argocd-application-controller-0 -n argocd -- argocd app sync "$app" --async --core
+            kubectl exec "$(kubectl get pod -n argocd -l app.kubernetes.io/name=argocd-application-controller -o jsonpath='{.items[0].metadata.name}')" -n argocd -- argocd app sync "$app" --async --core
             k8smonitoring_restarted="true"
           fi
         fi
@@ -222,11 +243,11 @@ wait_until_apps_synced_healthy() {
           if [ "${operation_phase}" = "Running" ] && [ ${sync_duration} -gt 300 ] || [ "${operation_phase}" = "Failed" ] || [ "${operation_phase}" = "Error" ] ; then
             # Terminate the operation for the application
             echo "sync of app ${app} gets terminated because it took longer than 300 seconds or failed"
-            kubectl exec sx-argocd-application-controller-0 -n argocd -- argocd app terminate-op "$app" --core
+            kubectl exec "$(kubectl get pod -n argocd -l app.kubernetes.io/name=argocd-application-controller -o jsonpath='{.items[0].metadata.name}')" -n argocd -- argocd app terminate-op "$app" --core
             echo "wait for 10 seconds"
             sleep 10
             echo "restart sync for app ${app}"
-            kubectl exec sx-argocd-application-controller-0 -n argocd -- argocd app sync "$app" --async --core
+            kubectl exec "$(kubectl get pod -n argocd -l app.kubernetes.io/name=argocd-application-controller -o jsonpath='{.items[0].metadata.name}')" -n argocd -- argocd app sync "$app" --async --core
           fi
         else
             sync_started_seconds="-"
@@ -336,6 +357,15 @@ OS=$(uname -s)
 
 check_prereqs
 
+# Portable date(1) detection + helpers
+if command -v gdate >/dev/null 2>&1; then
+  DATE_BIN="$(command -v gdate)"
+else
+  DATE_BIN="$(command -v date)"
+fi
+DATE_IMPL="$(detect_date_impl)"
+
+
 if [[ "${KUBRIX_TARGET_TYPE}" =~ ^KIND.* || "${KUBRIX_CLUSTER_TYPE}" == "KIND" ]] ; then
   
   # resolv domainname to ingress adress to solve localhost result 
@@ -410,7 +440,7 @@ helm install sx-argocd argo-cd \
 
 # we add the repo inside the application-controller because it could be that clusters do not have any ingress controller installed yet at this moment
 echo "add kubriX repo in argocd pod"
-kubectl exec sx-argocd-application-controller-0 -n argocd -- argocd repo add ${KUBRIX_REPO} --username ${KUBRIX_REPO_USERNAME} --password ${KUBRIX_REPO_PASSWORD} --core
+kubectl exec "$(kubectl get pod -n argocd -l app.kubernetes.io/name=argocd-application-controller -o jsonpath='{.items[0].metadata.name}')" -n argocd -- argocd repo add ${KUBRIX_REPO} --username ${KUBRIX_REPO_USERNAME} --password ${KUBRIX_REPO_PASSWORD} --core
 
 # add secrets
 echo "Generating default secrets..."
