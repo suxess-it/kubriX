@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+
 set -Eeuo pipefail
 
 # Simple error trap
@@ -29,13 +30,24 @@ detect_arch() {
   esac
 }
 
+sha256_portable() {
+  if command -v shasum >/dev/null 2>&1; then
+    shasum -a 256 | awk '{print $1}'
+  else
+    sha256sum | awk '{print $1}'
+  fi
+}
+
 OS="$(detect_os)"
 ARCH="$(detect_arch)"
 
 # variables which must be defined by user
-while read var; do
-  [ -z "${!var}" ] && { echo "$var is empty or not set. Exiting.."; exit 1; }
-done << EOF
+while read -r var; do
+  if [ -z "${!var-}" ]; then
+    printf '%s\n' "$var is empty or not set. Exiting.."
+    exit 1
+  fi
+done <<'EOF'
 KUBRIX_CUSTOMER_REPO
 KUBRIX_CUSTOMER_REPO_TOKEN
 EOF
@@ -44,9 +56,10 @@ EOF
 KUBRIX_UPSTREAM_REPO=${KUBRIX_UPSTREAM_REPO:-"https://github.com/suxess-it/kubriX"}
 KUBRIX_UPSTREAM_BRANCH=${KUBRIX_UPSTREAM_BRANCH:-"main"}
 KUBRIX_CUSTOMER_TARGET_TYPE=${KUBRIX_CUSTOMER_TARGET_TYPE:-"DEMO-STACK"}
-KUBRIX_CUSTOMER_DOMAIN=${KUBRIX_CUSTOMER_DOMAIN:-"demo-$(echo ${KUBRIX_CUSTOMER_REPO} | sha256sum | head -c 10).kubrix.cloud"}
+KUBRIX_CUSTOMER_DOMAIN=${KUBRIX_CUSTOMER_DOMAIN:-"demo-$(printf '%s' "${KUBRIX_CUSTOMER_REPO}" | sha256_portable | head -c 10).kubrix.cloud"}
 KUBRIX_CUSTOMER_DNS_PROVIDER=${KUBRIX_CUSTOMER_DNS_PROVIDER:-"ionos"}
 KUBRIX_BOOTSTRAP_MAX_WAIT_TIME=${KUBRIX_BOOTSTRAP_MAX_WAIT_TIME:-"3600"}
+KUBRIX_CLUSTER_TYPE=${KUBRIX_CLUSTER_TYPE:-"k8s"}
 
 # get protocol
 KUBRIX_CUSTOMER_REPO_PROTO=$(echo ${KUBRIX_CUSTOMER_REPO} | grep :// | sed "s,^\(.*://\).*,\1,")
@@ -73,21 +86,22 @@ echo "-------------------------------------------------------------"
 echo ""
 
 # clone kubriX upstream repo to bootstrap-kubriX/kubriX-repo
-cd $HOME
+cd "$HOME"
 if [ -d "bootstrap-kubriX" ]; then
-  echo "boostrap-kubriX already exists. We will delete it."
+  printf '%s\n' "boostrap-kubriX already exists. We will delete it."
   rm -rf bootstrap-kubriX
 fi
 mkdir -p bootstrap-kubriX/kubriX-repo
 cd bootstrap-kubriX/kubriX-repo
-echo "checkout kubriX to $(pwd) ..."
-git clone ${KUBRIX_UPSTREAM_REPO} .
-git checkout ${KUBRIX_UPSTREAM_BRANCH}
+
+printf 'checkout kubriX to %s ...\n' "$(pwd)"
+git clone "${KUBRIX_UPSTREAM_REPO}" .
+git checkout "${KUBRIX_UPSTREAM_BRANCH}"
 
 # write new customer values in customer config
 cat << EOF > bootstrap/customer-config.yaml
-clusterType: $( echo ${KUBRIX_CLUSTER_TYPE} | awk '{print tolower($0)}' )
-valuesFile: $( echo ${KUBRIX_CUSTOMER_TARGET_TYPE} | awk '{print tolower($0)}' )
+clusterType: $( printf '%s' "${KUBRIX_CLUSTER_TYPE}" | awk '{print tolower($0)}' )
+valuesFile: $( printf '%s' "${KUBRIX_CUSTOMER_TARGET_TYPE}" | awk '{print tolower($0)}' )
 dnsProvider: ${KUBRIX_CUSTOMER_DNS_PROVIDER}
 domain: ${KUBRIX_CUSTOMER_DOMAIN}
 gitRepo: ${KUBRIX_CUSTOMER_REPO}
