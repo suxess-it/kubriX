@@ -523,7 +523,7 @@ if [[ $( echo $argocd_apps | grep sx-vault ) ]] ; then
 fi
   
 # when we are in a github codespace, we need to add special backstage env variables
-if [ ${CODESPACES} ]; then
+if [[ "${CODESPACES:-}" == "true" ]]; then
   if [[ $( echo $argocd_apps | grep sx-backstage ) ]] ; then
 
     # delete secret if it already exists
