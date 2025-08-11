@@ -30,7 +30,7 @@ With this step-by-step guide kubriX with its default KIND-DELIVERY stack gets de
 4. optional: set the DNS provider, which external-dns should connect to.
 
     default: ionos  
-    supported: ionos, route53, stackit
+    supported: ionos, route53, stackit, cloudflare
 
     ```
     export KUBRIX_CUSTOMER_DNS_PROVIDER="ionos"
@@ -91,10 +91,17 @@ With this step-by-step guide kubriX with its default KIND-DELIVERY stack gets de
     --from-literal=PROJECT_ID='your-project-id'
     ```
 
-9. If you need to prepare something else on your cluster before kubriX gets installed, do this now.
+    __cloudflare__
+
+    ```
+    kubectl create ns external-dns
+    kubectl create secret generic cloudflare-api-key --from-literal=apiKey=`YOUR_API_TOKEN`
+    ```
+
+10. If you need to prepare something else on your cluster before kubriX gets installed, do this now.
 
 
-10. Then run this command in your home directory in your linux bash:
+11. Then run this command in your home directory in your linux bash:
 
     ```
     curl -H 'Cache-Control: no-cache, no-store' https://raw.githubusercontent.com/suxess-it/kubriX/refs/heads/main/bootstrap/bootstrap.sh | bash -s
@@ -102,7 +109,7 @@ With this step-by-step guide kubriX with its default KIND-DELIVERY stack gets de
 
     It will create a new kubriX repo based on your parameters and installs kubriX based on your created kubriX repo on your connected K8s cluster.
 
-11. Create Github OAuth App and set secrets in vault
+12. Create Github OAuth App and set secrets in vault
 
     The Platform-Portal authenticates via GitHub OAuth App. Therefore you need to create a OAuth App in your [developer settings](https://github.com/organizations/YOUR-ORG/settings/applications).
     Click the button "New OAuth App".
@@ -134,7 +141,7 @@ With this step-by-step guide kubriX with its default KIND-DELIVERY stack gets de
     kubectl rollout restart deployment -n backstage sx-backstage
     ```
 
-12. Define user entities in backstage
+13. Define user entities in backstage
 
     Before users can login via GitHub in backstage, there needs to be a matching User entity in your own kubriX repo in `backstage-resources/entities/all.yaml`
 
