@@ -168,8 +168,8 @@ wait_until_apps_synced_healthy() {
       operation_phase_bootstrap_app=$(kubectl get application -n argocd ${bootstrap_app} -o jsonpath='{.status.operationState.phase}')
       if [ "${operation_phase_bootstrap_app}" = "Failed" ] || [ "${operation_phase_bootstrap_app}" = "Error" ] ; then
         echo "sx-boostrap-app sync failed. Restarting sync ..."
-        kubectl exec "$(kubectl get pod -n argocd -l app.kubernetes.io/name=argocd-application-controller -o jsonpath='{.items[0].metadata.name}')" -n argocd -- argocd app terminate-op "$bootstrap_app" --core
-        kubectl exec "$(kubectl get pod -n argocd -l app.kubernetes.io/name=argocd-application-controller -o jsonpath='{.items[0].metadata.name}')" -n argocd -- argocd app sync "$bootstrap_app" --async --core
+        kubectl exec "$(kubectl get pod -n argocd -l app.kubernetes.io/name=argocd-application-controller -o jsonpath='{.items[0].metadata.name}')" -n argocd -- argocd app terminate-op "$bootstrap_app" --core || true
+        kubectl exec "$(kubectl get pod -n argocd -l app.kubernetes.io/name=argocd-application-controller -o jsonpath='{.items[0].metadata.name}')" -n argocd -- argocd app sync "$bootstrap_app" --async --core || true
       fi
     fi
 
@@ -210,7 +210,7 @@ wait_until_apps_synced_healthy() {
         # because of a .Capabilities.APIVersions.Has condition in the templates for monitoring.coreos which gets deployed by k8s-monitoring itself
         if [[ "${app}" == "sx-k8s-monitoring" && "${sync_status}" == "${synced}" && "${health_status}" == "${healthy}" ]]; then
           if [  "${k8smonitoring_restarted}" != "true" ]; then
-            kubectl exec "$(kubectl get pod -n argocd -l app.kubernetes.io/name=argocd-application-controller -o jsonpath='{.items[0].metadata.name}')" -n argocd -- argocd app sync "$app" --async --core
+            kubectl exec "$(kubectl get pod -n argocd -l app.kubernetes.io/name=argocd-application-controller -o jsonpath='{.items[0].metadata.name}')" -n argocd -- argocd app sync "$app" --async --core || true
             k8smonitoring_restarted="true"
           fi
         fi
@@ -245,11 +245,11 @@ wait_until_apps_synced_healthy() {
           if [ "${operation_phase}" = "Running" ] && [ ${sync_duration} -gt 300 ] || [ "${operation_phase}" = "Failed" ] || [ "${operation_phase}" = "Error" ] ; then
             # Terminate the operation for the application
             echo "sync of app ${app} gets terminated because it took longer than 300 seconds or failed"
-            kubectl exec "$(kubectl get pod -n argocd -l app.kubernetes.io/name=argocd-application-controller -o jsonpath='{.items[0].metadata.name}')" -n argocd -- argocd app terminate-op "$app" --core
+            kubectl exec "$(kubectl get pod -n argocd -l app.kubernetes.io/name=argocd-application-controller -o jsonpath='{.items[0].metadata.name}')" -n argocd -- argocd app terminate-op "$app" --core || true
             echo "wait for 10 seconds"
             sleep 10
             echo "restart sync for app ${app}"
-            kubectl exec "$(kubectl get pod -n argocd -l app.kubernetes.io/name=argocd-application-controller -o jsonpath='{.items[0].metadata.name}')" -n argocd -- argocd app sync "$app" --async --core
+            kubectl exec "$(kubectl get pod -n argocd -l app.kubernetes.io/name=argocd-application-controller -o jsonpath='{.items[0].metadata.name}')" -n argocd -- argocd app sync "$app" --async --core || true
           fi
         else
             sync_started_seconds="-"
