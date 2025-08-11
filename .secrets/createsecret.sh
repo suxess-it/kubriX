@@ -1,6 +1,13 @@
 #!/usr/bin/env bash
 
+# Safer prologue
+set -Eeuo pipefail
+
 shopt -s nullglob
+
+# Simple error trap
+fail() { printf '%s\n' "$1" >&2; exit "${2:-1}"; }
+trap 'fail "Error on line $LINENO"' ERR
 
 # basevariables
 TMPDIR=".secrets/secrettemp"
