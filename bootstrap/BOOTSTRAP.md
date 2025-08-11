@@ -30,7 +30,7 @@ With this step-by-step guide kubriX with its default KIND-DELIVERY stack gets de
 4. optional: set the DNS provider, which external-dns should connect to.
 
     default: ionos  
-    supported: ionos, route53, stackit
+    supported: ionos, route53, stackit, cloudflare
 
     ```
     export KUBRIX_CUSTOMER_DNS_PROVIDER="ionos"
@@ -89,6 +89,13 @@ With this step-by-step guide kubriX with its default KIND-DELIVERY stack gets de
     kubectl create ns external-dns
     kubectl create secret generic external-dns-webhook -n external-dns --from-literal=AUTH_TOKEN='your-auth-token'
     --from-literal=PROJECT_ID='your-project-id'
+    ```
+
+    __cloudflare__
+
+    ```
+    kubectl create ns external-dns
+    kubectl create secret generic cloudflare-api-key --from-literal=apiKey=`YOUR_API_TOKEN`
     ```
 
 9. If you need to prepare something else on your cluster before kubriX gets installed, do this now.
