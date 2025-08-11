@@ -105,7 +105,7 @@ create_vault_secrets_for_backstage() {
   echo "adding special configuration for sx-backstage"
 
   # create an empty codespaces-secret secret because it is still needed for github codespaces and cannot configured optional in backstage
-  kubectl create secret generic -n backstage codespaces-secret
+  kubectl create secret generic -n backstage codespaces-secret --dry-run=client -o yaml | kubectl apply -f -
 
   # get vault hostname and token for communicating with vault via curl
   export VAULT_HOSTNAME=$(kubectl get ingress -o jsonpath='{.items[*].spec.rules[*].host}' -n vault)
@@ -389,17 +389,17 @@ if [[ "${KUBRIX_TARGET_TYPE}" =~ ^KIND.* || "${KUBRIX_CLUSTER_TYPE}" == "KIND" ]
 
   # create mkcert-issuer root certificate
   mkcert -install
-  kubectl create namespace cert-manager
-  kubectl create secret tls mkcert-ca-key-pair --key "$(mkcert -CAROOT)"/rootCA-key.pem --cert "$(mkcert -CAROOT)"/rootCA.pem -n cert-manager
+  kubectl get ns cert-manager >/dev/null 2>&1 || kubectl create ns cert-manager
+  kubectl create secret tls mkcert-ca-key-pair --key "$(mkcert -CAROOT)"/rootCA-key.pem --cert "$(mkcert -CAROOT)"/rootCA.pem -n cert-manager --dry-run=client -o yaml | kubectl apply -f -
 
   # create a cacert secret for backstage so backstage trusts internal services with mkcert certificates
-  kubectl create namespace backstage
-  kubectl create secret generic mkcert-cacert --from-file=ca.crt="$(mkcert -CAROOT)"/rootCA.pem -n backstage
+  kubectl get ns backstage >/dev/null 2>&1 || kubectl create ns backstage
+  kubectl create secret generic mkcert-cacert --from-file=ca.crt="$(mkcert -CAROOT)"/rootCA.pem -n backstage --dry-run=client -o yaml | kubectl apply -f -
 
   # vault oidc case
   echo "create a root ca and patch ingress-nginx-controller for vault oidc"
-  kubectl create namespace vault
-  kubectl create secret generic ca-cert --from-file=ca.crt="$(mkcert -CAROOT)"/rootCA.pem -n vault
+  kubectl get ns vault >/dev/null 2>&1 || kubectl create ns vault
+  kubectl create secret generic ca-cert --from-file=ca.crt="$(mkcert -CAROOT)"/rootCA.pem -n vault --dry-run=client -o yaml | kubectl apply -f -
   kubectl patch deployment ingress-nginx-controller -n ingress-nginx --type='json' -p='[
   {
       "op": "add",
@@ -447,8 +447,8 @@ echo "Generating default secrets..."
 ./.secrets/createsecret.sh
 kubectl apply -f ./.secrets/secrettemp/secrets.yaml
 
-KUBRIX_REPO_BRANCH_SED=$( echo ${KUBRIX_REPO_BRANCH} | sed 's/\//\\\//g' )
-KUBRIX_REPO_SED=$( echo ${KUBRIX_REPO} | sed 's/\//\\\//g' )
+KUBRIX_REPO_BRANCH_SED=$( printf '%s' "${KUBRIX_REPO_BRANCH}" | sed -e 's/[\/&]/\\&/g' );
+KUBRIX_REPO_SED=$( printf '%s' "${KUBRIX_REPO}" | sed -e 's/[\/&]/\\&/g' );
 
 # bootstrap-app
 cat bootstrap-app-$(echo ${KUBRIX_TARGET_TYPE} | awk '{print tolower($0)}').yaml | sed "s/targetRevision:.*/targetRevision: ${KUBRIX_REPO_BRANCH_SED}/g" | sed "s/repoURL:.*/repoURL: ${KUBRIX_REPO_SED}/g" | kubectl apply -n argocd -f -
@@ -535,7 +535,8 @@ if [ ${CODESPACES} ]; then
     --from-literal=APP_CONFIG_app_baseUrl=${BACKSTAGE_CODESPACE_URL} \
     --from-literal=APP_CONFIG_backend_baseUrl=${BACKSTAGE_CODESPACE_URL} \
     --from-literal=APP_CONFIG_backend_cors_origin=${BACKSTAGE_CODESPACE_URL} \
-    --from-literal=APP_CONFIG_auth_provider_github_development_callbackUrl=${BACKSTAGE_CODESPACE_URL}/api/auth/github/handler/frame
+    --from-literal=APP_CONFIG_auth_provider_github_development_callbackUrl=${BACKSTAGE_CODESPACE_URL}/api/auth/github/handler/frame \
+    --dry-run=client -o yaml | kubectl apply -f -
 
     kubectl rollout restart deployment sx-backstage -n backstage
 
