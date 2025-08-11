@@ -156,6 +156,8 @@ wait_until_apps_synced_healthy() {
   start=$SECONDS
   end=$((SECONDS+${max_wait_time}))
 
+  k8smonitoring_restarted=false
+
   while [ $SECONDS -lt $end ]; do
     all_apps_synced="true"
 
