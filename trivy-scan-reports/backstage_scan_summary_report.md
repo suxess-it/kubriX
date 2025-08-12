@@ -4,7 +4,7 @@
 <h4>No Misconfigurations found</h4>
 
 <h3>Target <code>ghcr.io/suxess-it/sx-backstage:v1.38.1 (debian 12.11)</code></h3>
-<h4>Vulnerabilities (239)</h4>
+<h4>Vulnerabilities (242)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -140,8 +140,22 @@
         <td></td>
     </tr>
     <tr>
+        <td><code>libsqlite3-0</code></td>
+        <td>CVE-2025-7458</td>
+        <td>CRITICAL</td>
+        <td>3.40.1-2+deb12u1</td>
+        <td></td>
+    </tr>
+    <tr>
         <td><code>libsqlite3-dev</code></td>
         <td>CVE-2025-6965</td>
+        <td>CRITICAL</td>
+        <td>3.40.1-2+deb12u1</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>libsqlite3-dev</code></td>
+        <td>CVE-2025-7458</td>
         <td>CRITICAL</td>
         <td>3.40.1-2+deb12u1</td>
         <td></td>
@@ -1591,6 +1605,13 @@
     <tr>
         <td><code>linux-libc-dev</code></td>
         <td>CVE-2025-38498</td>
+        <td>HIGH</td>
+        <td>6.1.140-1</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>linux-libc-dev</code></td>
+        <td>CVE-2025-38499</td>
         <td>HIGH</td>
         <td>6.1.140-1</td>
         <td></td>
