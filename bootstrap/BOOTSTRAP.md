@@ -95,7 +95,7 @@ With this step-by-step guide kubriX with its default KIND-DELIVERY stack gets de
 
     ```
     kubectl create ns external-dns
-    kubectl create secret generic cloudflare-api-key --from-literal=apiKey=`YOUR_API_TOKEN`
+    kubectl create secret generic cloudflare-api-key --from-literal=apiKey='YOUR_API_TOKEN'
     ```
 
 9. If you need to prepare something else on your cluster before kubriX gets installed, do this now.
