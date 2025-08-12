@@ -17,7 +17,7 @@ for chart in $( ls -d */ | sed 's#/##' ); do
     tar -xzf ${archive} -C ${chart}/charts/
   done
 
-  helm cascade list ${chart} | tee -a helm-dependency-list.txt
+  helm cascade list ${chart} | tee -a ../../helm-chart-list/helm-chart-list.txt
 done
 
 echo "delete extraced files again ..."
