@@ -1,83 +1,33 @@
 #!/usr/bin/env bash
+set -euo pipefail
 
-release_filter=$1
-multilevel=$2
+helm plugin install https://github.com/origranot/helm-cascade || true
 
-# global array with chart identifiers, i.e., chart_name-chart_version-repo_url strings
-charts=()
+mkdir -p helm-chart-list
 
-function chart_deps() {
-  [ ${#charts[@]} -eq 0 ] && return
+cd platform-apps/charts
+echo -n "" > ../../helm-chart-list/helm-chart-list.txt
 
-  local chart_identifier="${charts[0]}"
-  local chart_name chart_version repo_url
-  local status
-  local deps
+for chart in $( ls -d */ | sed 's#/##' ); do
+  echo "Chart: ${chart}"
+  helm dependency update ${chart} 
 
-  # get chart name and version
-  IFS=- read chart_name chart_version repo_url <<< "$chart_identifier"
-  
-  printf 'Processing %s from %s ...\n' $chart_name $repo_url
+  # helm archives need to get extraced for "helm cascade list"
+  for archive in $( find ${chart}/charts -maxdepth 1 -type f -name '*.tgz' ) ; do
+    tar -xzf ${archive} -C ${chart}/charts/
+  done
 
-  # pull chart via URL
-  if [[ $repo_url =~ 'oci://' ]]; then
-    helm pull $repo_url --version $chart_version --untar >/dev/null 2>&1
-  else
-    helm pull $chart_name --repo $repo_url --version $chart_version --untar >/dev/null 2>&1
-  fi
-  
-  if [ $? -ne 0 ]; then
-    printf 'Unable to pull %s from %s.\n\n' $chart_name $repo_url
-    return
-  fi
-
-  deps="$(helm dependency list ./$chart_name)"
-
-  printf '%s deps:\n%s\n\n' "$chart_name-$chart_version" "$deps"
-
-  if [ -n "$deps" ] && [ -n "$multilevel" ]; then
-    charts+=($(echo "$deps" | awk 'NR > 1 { print $1"-"$2"-"$3; }'))
-  fi
-
-  rm -rf $chart_name
-  rm -rf $chart_name-$chart_version.tgz
-}
-
-# get all helm dependencies from local chart
-helm dependency update
-
-# extract all dependecies
-helm dependency list .
-
-# get partial chart identifier from the YAML information about the single matching release
-chart_identifier="$(helm list --filter $release_filter --all-namespaces --output=yaml
-  | awk '/chart:/ { print $2; }')"
-
-# extract chart name and version
-IFS=- read chart_name chart_version <<< "$chart_identifier"
-
-# get chart repository URL from repo or hub
-chart_path="$(helm search repo $chart_name --version $chart_version --output yaml
-  | grep 'version: '$chart_version -B 1
-  | awk '/name:/ { print $2; }')"
-if [ -n "$chart_path" ]; then
-  IFS=/ read repo_name chart_name <<< "$chart_path"
-  repo_url="$(helm repo list | awk '/'$repo_name'/ { print $2; }')"
-else
-  repo_url="$(helm search hub $chart_name --output yaml
-    | grep 'version: '$chart_version -B 2
-    | awk 'NR == 1 && /url:/ { print $2; }')"
-fi
-if [ -z "$repo_url" ]; then
-  >&2 printf 'Repository not found for release chart %s version %s.' $chart_name $chart_version
-  exit 1
-fi
-
-# first chart identifier comes
-chart_identifier=$chart_identifier-$repo_url
-charts+=("$chart_identifier")
-
-while [ ${#charts[@]} -ne 0 ]; do
-  chart_deps 
-  charts=("${charts[@]:1}")
+  helm cascade list ${chart} | tee -a helm-dependency-list.txt
 done
+
+echo "delete extraced files again ..."
+for chart in $( ls -d */ | sed 's#/##' ); do
+  echo "Chart: ${chart}"
+  for archive in $( find ${chart}/charts -maxdepth 1 -type f -name '*.tgz' ) ; do
+    echo "processing archive ${archive}"
+    dir="$(tar -tzf "$archive" | sed -n '1p' | cut -d/ -f1)"
+    echo "delete ${chart}/charts/$dir again"
+    rm -rf "${chart}/charts/$dir"
+  done
+done
+
