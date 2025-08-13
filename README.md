@@ -23,14 +23,13 @@ Choose your preferred setup:
    Bootstrap kubriX on a local KinD (Kubernetes in Docker) cluster with your own GitOps repository.  
    → See [Local KinD Installation Guide](docs/oss/installation/kind.md)
 
-2. **GitHub Codespaces Playground (read-only)**  
-   Explore kubriX instantly in your browser — no local setup required.  
-   → See [Codespaces Guide](docs/oss/installation/codespaces.md)
-
-3. **Your preferred Kubernetes cluster**  
+2. **Your preferred Kubernetes cluster**  
    Bootstrap kubriX on your real-world Kubernetes cluster with your own GitOps repository.  
-   → See [Local Installation Guide](docs/oss/installation/K8s.md)
+   → See [Local Installation Guide](docs/oss/installation/kubernetes.md)
 
+3. **Experimental: GitHub Codespaces Playground (read-only)**  
+   Explore kubriX instantly in your browser — no local setup required, but with some limitations at the moment.
+   → See [Codespaces Guide](docs/oss/installation/codespaces.md)
 ---
 
 ## 📚 Documentation
