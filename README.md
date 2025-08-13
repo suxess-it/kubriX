@@ -37,8 +37,8 @@ Choose your preferred setup:
 
 ### Open Source (OSS)
 - [Overview](docs/oss/overview.md)
-- [Installation](docs/oss/installation/)
-- [Configuration](docs/oss/configuration/)
+- [Installation](docs/oss/installation/installation.md)
+- [Configuration](docs/oss/configuration/configuration.md)
 - [User Guide](docs/oss/user-guide/)
 - [Administration](docs/oss/admin-guide/)
 - [API & CLI Reference](docs/oss/api-cli-reference.md)
