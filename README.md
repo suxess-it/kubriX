@@ -1,4 +1,6 @@
-<img src="https://github.com/user-attachments/assets/58af160d-92d5-4786-8f1d-f901582500ad" width="200px">
+<p align="center">
+   <img src="https://github.com/user-attachments/assets/58af160d-92d5-4786-8f1d-f901582500ad" width="200px">
+</p>
 
 # kubriX — Internal Developer Platform (IDP) on Kubernetes
 
