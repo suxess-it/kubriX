@@ -26,7 +26,7 @@ Choose your preferred setup:
 
 2. **Your preferred Kubernetes cluster**  
    Bootstrap kubriX on your real-world Kubernetes cluster with your own GitOps repository.  
-   → See [Local Installation Guide](docs/oss/installation/kubernetes.md)
+   → See [Quick-Start Installation Guide](docs/oss/installation/quick-start-kubernetes.md)
 
 3. **Experimental: GitHub Codespaces Playground (read-only)**  
    Explore kubriX instantly in your browser — no local setup required, but with some limitations at the moment.
