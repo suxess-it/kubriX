@@ -5,7 +5,7 @@
 # kubriX - Internal Developer Platform (IDP) Distribution
 
 kubriX is a **curated**, **opinionated**, and **highly flexible** Internal Developer Platform (IDP)
-on Kubernetes.  
+for Kubernetes.  
 It is built from reusable components (“bricks”) to help teams accelerate development, standardize environments, and streamline Kubernetes operations.
 
 > kubriX empowers teams to focus on building software, not on plumbing infrastructure.
