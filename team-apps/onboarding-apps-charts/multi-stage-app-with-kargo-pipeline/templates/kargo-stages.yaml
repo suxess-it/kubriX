@@ -36,10 +36,33 @@ spec:
         config:
           path: ./out
           message: "Kargo applied some changes"
+      {{- if .openPr }}
+      - uses: git-push
+        as: push
+        config:
+          generateTargetBranch: true
+          path: ./out
+      - uses: git-open-pr
+        as: open-pr
+        config:
+          createTargetBranch: true
+          repoURL: ${{`{{ vars.gitRepo }}`}}
+          sourceBranch: ${{`{{ outputs.push.branch }}`}}
+          targetBranch: stages/${{`{{ ctx.stage }}`}}
+          title: push changes to ${{`{{ ctx.stage }}`}}
+      - uses: git-wait-for-pr
+        as: wait-for-pr
+        config:
+          prNumber: ${{`{{ outputs['open-pr'].pr.id }}`}}
+          repoURL: ${{`{{ vars.gitRepo }}`}}
+        retry:
+          timeout: 1m0s
+      {{- else }}
       - uses: git-push
         config:
           path: ./out
           targetBranch: stages/${{`{{ ctx.stage }}`}}
+      {{- end }}
       - uses: argocd-update
         config:
           apps:
