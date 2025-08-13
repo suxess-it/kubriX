@@ -89,6 +89,7 @@ spec:
               upstreamStages:
               - name: test
           - name: "prod"
+            openPr: true
             subscriptions: 
               upstreamStages:
               - name: qa
