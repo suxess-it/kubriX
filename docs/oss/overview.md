@@ -69,11 +69,9 @@ For a full feature comparison, see [Open Source vs. Prime](../prime/overview.md)
 
 ## How to Get Started
 
-1. **Install locally** using KinD for exploration  
-2. **Deploy in a test cluster** with your own kubriX GitOps repo  
-3. **Integrate with your existing Kubernetes setup** for real workloads
-
-See the [Installation Guide](installation/) to choose the right path.
+1.  [**Install locally**](installation/kind.md) using KinD for exploration  
+2. [**Deploy in an empty test cluster**](installation/quick-start-kubernetes.md) with your own kubriX GitOps repo  
+3. [**Integrate with your existing Kubernetes setup**](installation/) for real workloads
 
 ---
 
