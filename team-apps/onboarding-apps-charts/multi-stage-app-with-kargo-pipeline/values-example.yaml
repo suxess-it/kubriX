@@ -24,11 +24,31 @@ stages:
       # because it gets created with this name implicitly.
       # todo: give the user the option to define the warehouse as he likes it
       warehouse: "warehouse-{{ .Values.appName }}"
+    requestedFreight:
+    - origin:
+        kind: Warehouse
+        name: warehouse-{{ .Values.appName }}
+      sources:
+        direct: true
   - name: "qa"
-    subscriptions: 
+    subscriptions:
       upstreamStages:
       - name: test
+    requestedFreight:
+    - origin:
+        kind: Warehouse
+        name: warehouse-{{ .Values.appName }}
+      sources:
+        stages:
+        - test
   - name: "prod"
-    subscriptions: 
+    subscriptions:
       upstreamStages:
       - name: qa
+    requestedFreight:
+    - origin:
+        kind: Warehouse
+        name: warehouse-{{ .Values.appName }}
+      sources:
+        stages:
+        - qa
