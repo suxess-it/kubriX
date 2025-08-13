@@ -1,6 +1,6 @@
-# Bootstrap kubriX
+# Quickstart kubriX on Kubernetes
 
-With this step-by-step guide kubriX with its default stack gets deployed on your Kubernetes cluster.
+With this step-by-step guide kubriX with its default demo stack gets deployed on your preferred Kubernetes cluster.
 
 ## Prerequisites
 

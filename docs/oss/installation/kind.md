@@ -1,6 +1,6 @@
-# Bootstrap kubriX on a local KinD cluster
+# Quickstart kubriX on a local KinD cluster
 
-With this step-by-step guide kubriX with its default KIND-DELIVERY stack gets deployed on your local KinD cluster.
+With this step-by-step guide kubriX with its default stack gets deployed on your local KinD cluster.
 
 ## Prerequisites
 
