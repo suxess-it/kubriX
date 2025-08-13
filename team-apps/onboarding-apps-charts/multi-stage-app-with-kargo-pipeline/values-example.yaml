@@ -31,7 +31,6 @@ stages:
       sources:
         direct: true
   - name: "qa"
-    targetClusterStage: "nonprod"
     subscriptions:
       upstreamStages:
       - name: test
@@ -43,7 +42,6 @@ stages:
         stages:
         - test
   - name: "prod"
-    targetClusterStage: "prod"
     subscriptions:
       upstreamStages:
       - name: qa
