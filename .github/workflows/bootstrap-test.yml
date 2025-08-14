@@ -41,6 +41,8 @@ jobs:
           KUBRIX_CUSTOMER_DNS_PROVIDER: "none"
           KUBRIX_CLUSTER_TYPE: "KIND"        
         run: |
+          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git config --global user.name "github-actions[bot]"
           curl -H 'Cache-Control: no-cache, no-store' https://raw.githubusercontent.com/suxess-it/kubriX/refs/heads/main/bootstrap/bootstrap.sh | bash -s
 
 
