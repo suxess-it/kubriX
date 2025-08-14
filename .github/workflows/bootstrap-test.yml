@@ -15,6 +15,9 @@ jobs:
           private: false
           access-token: ${{ secrets.KUBRIX_CUSTOMER_REPO_TOKEN }}
 
+      - name: Checkout
+        uses: actions/checkout@v4
+        
       - name: Create k8s Kind Cluster
         uses: helm/kind-action@v1
         with:
