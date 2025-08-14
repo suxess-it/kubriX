@@ -11,7 +11,7 @@ jobs:
         shell: bash
         env:
           REPO_ORG: 'kubriX-demo'
-          REPO_NAME: 'kubrix-johnny-bootstrap-test'
+          REPO_NAME: "kubrix-bootstrap-test-${{ github.run_id }}"
           GH_TOKEN: ${{ secrets.KUBRIX_CUSTOMER_REPO_TOKEN }}
           VIS: "public"
         run: |
@@ -43,8 +43,8 @@ jobs:
 
       - name: bootstrap kubrix
         shell: bash
-        env:
-          KUBRIX_CUSTOMER_REPO: "https://github.com/kubriX-demo/kubrix-johnny-bootstrap-test.git"
+        env:          
+          KUBRIX_CUSTOMER_REPO: "https://github.com/kubriX-demo/kubrix-bootstrap-test-${{ github.run_id }}.git"
           KUBRIX_CUSTOMER_REPO_TOKEN: ${{ secrets.KUBRIX_CUSTOMER_REPO_TOKEN }}
           KUBRIX_CUSTOMER_TARGET_TYPE: "DEMO-STACK"
           KUBRIX_CUSTOMER_DOMAIN: "127-0-0-1.nip.io"
