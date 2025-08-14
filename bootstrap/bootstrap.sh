@@ -69,6 +69,8 @@ KUBRIX_CUSTOMER_REPO_URL=$(echo ${KUBRIX_CUSTOMER_REPO} | sed "s,^${KUBRIX_CUSTO
 KUBRIX_CUSTOMER_REPO_ORG=$(echo $KUBRIX_CUSTOMER_REPO_URL | awk -F/ '{print $2}')
 # get name of the repo
 KUBRIX_CUSTOMER_REPO_NAME=$(echo $KUBRIX_CUSTOMER_REPO_URL | awk -F/ '{print $3}')
+# remove .git suffix if it exists
+KUBRIX_CUSTOMER_REPO_NAME=${KUBRIX_CUSTOMER_REPO_NAME%".git"}
 
 echo ""
 echo "-------------------------------------------------------------"
