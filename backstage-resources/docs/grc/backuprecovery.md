@@ -20,3 +20,28 @@ $ velero client config set cacert=<ca file> [see Velero Documentation](https://v
 ## Checking Endpoint:
 Use aws s3api client for checking Content on S3 Endpoint
 $ aws s3api --endpoint-url <Endpoint> list-objects --bucket <bucketname> --debug | jq -r '.Contents[].Key'
+
+## Which Resources should get backuped for kubriX platform
+
+### Kargo
+
+Kargo creates `freights` and `promotions`. If they are lost you loose your freight line and your promotion state of the pipeline, see https://github.com/akuity/kargo/discussions/3126 .
+
+- `Freight.kargo.akuity.io`
+- `Promotion.kargo.akuity.io`
+
+These types are defined automatically in a velero scheduler via [-include-resource flag](https://velero.io/docs/main/resource-filtering/#--include-resources)
+
+## Opt-In other resources
+
+Other resources (also applications) can opt-in by defining a label `backup.kubrix.io/tier` and a value from `critical`, `standard` or `archive`. 
+Velero has a default scheduler which backups labeled resources by using a [-selector option](https://velero.io/docs/main/resource-filtering/#--selector).
+
+- critical: hourly
+- standard: daily
+- archive: weekly
+
+💡 Extra tip:
+If you can’t label every resource directly, you could label the namespace with `backup.kubrix.io/tier=critical` → Velero selectors will match all objects in that namespace.
+
+
