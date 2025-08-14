@@ -24,7 +24,7 @@ Choose your preferred setup:
    Bootstrap kubriX on a local KinD (Kubernetes in Docker) cluster with your own GitOps repository.  
    → See [Local KinD Installation Guide](docs/oss/installation/kind.md)
 
-2. **Your preferred Kubernetes cluster**  
+2. **Your preferred remote Kubernetes cluster**  
    Bootstrap kubriX on your real-world Kubernetes cluster with your own GitOps repository.  
    → See [Quick-Start Installation Guide](docs/oss/installation/quick-start-kubernetes.md)
 
