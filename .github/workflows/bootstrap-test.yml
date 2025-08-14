@@ -8,12 +8,22 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: create kubrix customer repo
-        uses: lokalise/create-repository-action@v1
-        with:
-          name: 'kubrix-johnny-bootstrap-test'
-          org: 'kubriX-demo'
-          private: false
-          access-token: ${{ secrets.KUBRIX_CUSTOMER_REPO_TOKEN }}
+        shell: bash
+        env:
+          REPO_ORG: 'kubriX-demo'
+          REPO_NAME: 'kubrix-johnny-bootstrap-test'
+          GH_TOKEN: ${{ secrets.KUBRIX_CUSTOMER_REPO_TOKEN }}
+          VIS: "public"
+        run: |
+          gh api \
+            --method POST \
+            -H "Accept: application/vnd.github+json" \
+            "/orgs/${REPO_ORG}/repos" \
+            -f name="$REPO_NAME" \
+            -f visibility="$VIS" \
+            -f has_issues=true \
+            -f has_wiki=false
+          echo "Repo created: https://github.com/${REPO_ORG}/${REPO_NAME}"
 
       - name: Checkout
         uses: actions/checkout@v4
