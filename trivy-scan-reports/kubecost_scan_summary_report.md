@@ -1407,7 +1407,7 @@
 <h4>No Misconfigurations found</h4>
 
 <h3>Target <code>gcr.io/kubecost1/frontend:prod-2.7.2 (redhat 9.5)</code></h3>
-<h4>Vulnerabilities (6)</h4>
+<h4>Vulnerabilities (7)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -1450,6 +1450,13 @@
         <td>HIGH</td>
         <td>1.5.1-22.el9_5</td>
         <td>1.5.1-25.el9_6</td>
+    </tr>
+    <tr>
+        <td><code>pam</code></td>
+        <td>CVE-2025-8941</td>
+        <td>HIGH</td>
+        <td>1.5.1-22.el9_5</td>
+        <td></td>
     </tr>
     <tr>
         <td><code>sqlite-libs</code></td>
