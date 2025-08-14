@@ -20,12 +20,15 @@ check_tool() {
 
 check_variable() {
   variable=$1
+  show_output=$2
   if [ -z "${!variable}" ]; then
     echo ""
     echo "prereq check failed: variable '${variable}' is blank or not set"
     exit 1
-  else
+  elif [ ${show_output} = "true" ] ; then
     echo "${variable} is set to '${!variable}'"
+  else
+    echo "${variable} is set. Value is a secret."
   fi
 }
 
@@ -47,11 +50,11 @@ check_prereqs() {
   fi
 
   # check variables
-  check_variable KUBRIX_REPO
-  check_variable KUBRIX_REPO_BRANCH
-  check_variable KUBRIX_REPO_USERNAME
-  check_variable KUBRIX_REPO_PASSWORD
-  check_variable KUBRIX_TARGET_TYPE
+  check_variable KUBRIX_REPO "true"
+  check_variable KUBRIX_REPO_BRANCH "true"
+  check_variable KUBRIX_REPO_USERNAME "true"
+  check_variable KUBRIX_REPO_PASSWORD "false"
+  check_variable KUBRIX_TARGET_TYPE "true"
 
   echo "Prereq checks finished sucessfully."
   echo ""
@@ -352,8 +355,7 @@ analyze_app() {
   echo "------------------"
 }
 
-# dump all kubrix variables
-env | grep KUBRIX
+
 ARCH=$(uname -m)
 OS=$(uname -s)
 
