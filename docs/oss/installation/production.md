@@ -4,27 +4,27 @@
 
 ## Clone a kubriX release to your git Repository
 
-balblabla
+tbd
 
 ## Integrating existing managed services
 
-blabla
+tbd
 
 ## Preparing the .secrets files
 
-blabla
+tbd
 
 ## Preparing values files
 
-blablabla
+tbd
 
 ## Running the installer
 
-fasffasfaf
+tbd
 
 ## Post-Installation tasks
 
-fasfaf 
+tbd 
 
 
 ###  Next steps
