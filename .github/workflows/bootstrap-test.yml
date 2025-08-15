@@ -1,0 +1,59 @@
+on:
+  workflow_dispatch:
+
+name: test bootstrap
+
+jobs:
+  evaluate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: create kubrix customer repo
+        shell: bash
+        env:
+          REPO_ORG: 'kubriX-demo'
+          REPO_NAME: "kubrix-bootstrap-test-${{ github.run_id }}"
+          GH_TOKEN: ${{ secrets.KUBRIX_CUSTOMER_REPO_TOKEN }}
+          VIS: "public"
+        run: |
+          gh api \
+            --method POST \
+            -H "Accept: application/vnd.github+json" \
+            "/orgs/${REPO_ORG}/repos" \
+            -f name="$REPO_NAME" \
+            -f visibility="$VIS" \
+            -f has_issues=true \
+            -f has_wiki=false
+          echo "Repo created: https://github.com/${REPO_ORG}/${REPO_NAME}"
+
+      - name: Checkout
+        uses: actions/checkout@v4
+        
+      - name: Create k8s Kind Cluster
+        uses: helm/kind-action@v1
+        with:
+          cluster_name: kubrix-cluster
+          config: ${{ github.workspace }}/.github/kind-config.yaml
+          
+      - name: install mkcert
+        shell: bash
+        run: |
+          curl -JLO "https://dl.filippo.io/mkcert/latest?for=linux/amd64"
+          chmod +x mkcert-v*-linux-amd64
+          sudo cp mkcert-v*-linux-amd64 /usr/local/bin/mkcert
+
+      - name: bootstrap kubrix
+        shell: bash
+        env:          
+          KUBRIX_CUSTOMER_REPO: "https://github.com/kubriX-demo/kubrix-bootstrap-test-${{ github.run_id }}.git"
+          KUBRIX_CUSTOMER_REPO_TOKEN: ${{ secrets.KUBRIX_CUSTOMER_REPO_TOKEN }}
+          KUBRIX_CUSTOMER_TARGET_TYPE: "DEMO-STACK"
+          KUBRIX_CUSTOMER_DOMAIN: "127-0-0-1.nip.io"
+          KUBRIX_CUSTOMER_DNS_PROVIDER: "none"
+          KUBRIX_CLUSTER_TYPE: "KIND"
+          KUBRIX_UPSTREAM_BRANCH: ${{ github.head_ref || github.ref_name }}
+        run: |
+          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git config --global user.name "github-actions[bot]"
+          curl -H 'Cache-Control: no-cache, no-store' https://raw.githubusercontent.com/suxess-it/kubriX/refs/heads/${KUBRIX_UPSTREAM_BRANCH}/bootstrap/bootstrap.sh | bash -s
+
+

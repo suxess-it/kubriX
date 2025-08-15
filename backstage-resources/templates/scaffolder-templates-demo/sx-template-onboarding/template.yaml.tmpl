@@ -54,7 +54,7 @@ spec:
       name: Fetch the actual team configuration File from Github
       action: fetch:plain:file
       input:
-        url: {{ .kubriX.gitRepo }}/blob/main/platform-apps/charts/team-onboarding/values-{{ .kubriX.valuesFile }}.yaml
+        url: {{ .kubriX.gitRepo | strings.TrimSuffix ".git" }}/blob/main/platform-apps/charts/team-onboarding/values-{{ .kubriX.valuesFile }}.yaml
         targetPath: values-{{ .kubriX.valuesFile }}.yaml
 
     - id: replace-if-new

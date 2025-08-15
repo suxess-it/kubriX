@@ -69,6 +69,8 @@ KUBRIX_CUSTOMER_REPO_URL=$(echo ${KUBRIX_CUSTOMER_REPO} | sed "s,^${KUBRIX_CUSTO
 KUBRIX_CUSTOMER_REPO_ORG=$(echo $KUBRIX_CUSTOMER_REPO_URL | awk -F/ '{print $2}')
 # get name of the repo
 KUBRIX_CUSTOMER_REPO_NAME=$(echo $KUBRIX_CUSTOMER_REPO_URL | awk -F/ '{print $3}')
+# remove .git suffix if it exists
+KUBRIX_CUSTOMER_REPO_NAME=${KUBRIX_CUSTOMER_REPO_NAME%".git"}
 
 echo ""
 echo "-------------------------------------------------------------"
@@ -156,11 +158,11 @@ if [ $rc -ne 0 ]; then
   echo "install-platform.sh was not sucessful. To rerun the installation with the already existing customer repo ${KUBRIX_CUSTOMER_REPO} just export these variables:\
   
   
-  export KUBRIX_BACKSTAGE_GITHUB_TOKEN=${KUBRIX_CUSTOMER_REPO_TOKEN}
+  export KUBRIX_BACKSTAGE_GITHUB_TOKEN=\${KUBRIX_CUSTOMER_REPO_TOKEN}
   export KUBRIX_REPO=${KUBRIX_CUSTOMER_REPO}
   export KUBRIX_REPO_BRANCH=main
   export KUBRIX_REPO_USERNAME=dummy
-  export KUBRIX_REPO_PASSWORD=${KUBRIX_CUSTOMER_REPO_TOKEN}
+  export KUBRIX_REPO_PASSWORD=\${KUBRIX_CUSTOMER_REPO_TOKEN}
   export KUBRIX_TARGET_TYPE=${KUBRIX_CUSTOMER_TARGET_TYPE}
   export KUBRIX_BOOTSTRAP_MAX_WAIT_TIME=${KUBRIX_BOOTSTRAP_MAX_WAIT_TIME}
   
