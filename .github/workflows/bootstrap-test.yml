@@ -8,13 +8,26 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: create kubrix customer repo
-        uses: f1lander/create-repository-action@v1
-        with:
-          name: 'kubrix-johnny-bootstrap-test'
-          org: 'kubriX-demo'
-          private: false
-          access-token: ${{ secrets.KUBRIX_CUSTOMER_REPO_TOKEN }}
+        shell: bash
+        env:
+          REPO_ORG: 'kubriX-demo'
+          REPO_NAME: "kubrix-bootstrap-test-${{ github.run_id }}"
+          GH_TOKEN: ${{ secrets.KUBRIX_CUSTOMER_REPO_TOKEN }}
+          VIS: "public"
+        run: |
+          gh api \
+            --method POST \
+            -H "Accept: application/vnd.github+json" \
+            "/orgs/${REPO_ORG}/repos" \
+            -f name="$REPO_NAME" \
+            -f visibility="$VIS" \
+            -f has_issues=true \
+            -f has_wiki=false
+          echo "Repo created: https://github.com/${REPO_ORG}/${REPO_NAME}"
 
+      - name: Checkout
+        uses: actions/checkout@v4
+        
       - name: Create k8s Kind Cluster
         uses: helm/kind-action@v1
         with:
@@ -30,14 +43,17 @@ jobs:
 
       - name: bootstrap kubrix
         shell: bash
-        env:
-          KUBRIX_CUSTOMER_REPO: "https://github.com/kubriX-demo/kubrix-johnny-bootstrap-test.git"
+        env:          
+          KUBRIX_CUSTOMER_REPO: "https://github.com/kubriX-demo/kubrix-bootstrap-test-${{ github.run_id }}.git"
           KUBRIX_CUSTOMER_REPO_TOKEN: ${{ secrets.KUBRIX_CUSTOMER_REPO_TOKEN }}
           KUBRIX_CUSTOMER_TARGET_TYPE: "DEMO-STACK"
           KUBRIX_CUSTOMER_DOMAIN: "127-0-0-1.nip.io"
           KUBRIX_CUSTOMER_DNS_PROVIDER: "none"
-          KUBRIX_CLUSTER_TYPE: "KIND"        
+          KUBRIX_CLUSTER_TYPE: "KIND"
+          KUBRIX_UPSTREAM_BRANCH: ${{ github.head_ref || github.ref_name }}
         run: |
-          curl -H 'Cache-Control: no-cache, no-store' https://raw.githubusercontent.com/suxess-it/kubriX/refs/heads/main/bootstrap/bootstrap.sh | bash -s
+          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git config --global user.name "github-actions[bot]"
+          curl -H 'Cache-Control: no-cache, no-store' https://raw.githubusercontent.com/suxess-it/kubriX/refs/heads/${KUBRIX_UPSTREAM_BRANCH}/bootstrap/bootstrap.sh | bash -s
 
 
