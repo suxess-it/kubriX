@@ -4,9 +4,9 @@ With this step-by-step guide kubriX with its default demo stack gets deployed on
 
 ## Prerequisites
 
-* kubectl
-* jq
-* yq
+## Prerequisites
+
+* check [Prerequisites](installation.md#-prerequisites)
 * DNS-Provider which is supported by external-dns (see https://kubernetes-sigs.github.io/external-dns/latest/#new-providers )
 * Kubernetes cluster with at least 4 CPU cores and 20 GB RAM
 
