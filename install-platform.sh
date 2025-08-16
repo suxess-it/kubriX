@@ -1,14 +1,14 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
-# just for troubleshooting
-if [ "${KUBRIX_INSTALL_DEBUG}" == true ]; then
-  set -x 
-fi
+# Safer prologue
+set -Eeuo pipefail
 
-fail() {
-  echo $1
-  exit "${2-1}"
-}
+# Debug if requested
+if [[ "${KUBRIX_INSTALL_DEBUG:-}" == "true" ]]; then set -x; fi
+
+# Simple error trap
+fail() { printf '%s\n' "$1" >&2; exit "${2:-1}"; }
+trap 'fail "Error on line $LINENO"' ERR
 
 check_tool() {
   tool=$1
@@ -20,12 +20,15 @@ check_tool() {
 
 check_variable() {
   variable=$1
+  show_output=$2
   if [ -z "${!variable}" ]; then
     echo ""
     echo "prereq check failed: variable '${variable}' is blank or not set"
     exit 1
-  else
+  elif [ ${show_output} = "true" ] ; then
     echo "${variable} is set to '${!variable}'"
+  else
+    echo "${variable} is set. Value is a secret."
   fi
 }
 
@@ -47,44 +50,65 @@ check_prereqs() {
   fi
 
   # check variables
-  check_variable KUBRIX_REPO
-  check_variable KUBRIX_REPO_BRANCH
-  check_variable KUBRIX_REPO_USERNAME
-  check_variable KUBRIX_REPO_PASSWORD
-  check_variable KUBRIX_TARGET_TYPE
+  check_variable KUBRIX_REPO "true"
+  check_variable KUBRIX_REPO_BRANCH "true"
+  check_variable KUBRIX_REPO_USERNAME "true"
+  check_variable KUBRIX_REPO_PASSWORD "false"
+  check_variable KUBRIX_TARGET_TYPE "true"
 
   echo "Prereq checks finished sucessfully."
   echo ""
 }
 
-convert_to_seconds() {
-  local timestamp=$1
-  if [[ "$ARCH" == "amd64" || "$ARCH" == "x86_64" ]]; then
-    date -d "${timestamp}" '+%s'
-  elif [[ "$ARCH" == "arm64" ]]; then
-    date -j -f "%Y-%m-%dT%H:%M:%S" "${timestamp}" "+%s"
-  else
-    echo "Unsupported architecture: $ARCH" >&2
-    exit 1
-  fi
+detect_date_impl() {
+  if "$DATE_BIN" --version >/dev/null 2>&1; then echo gnu; return; fi
+  if "$DATE_BIN" -d @0 +%s >/dev/null 2>&1; then echo gnu; return; fi
+  if "$DATE_BIN" -r 0 +%s >/dev/null 2>&1; then echo bsd; return; fi
+  if "$DATE_BIN" -v -1d +%s >/dev/null 2>&1; then echo bsd; return; fi
+  echo unknown
 }
 
+# Current UTC epoch seconds (works on GNU & BSD)
 utc_now_seconds() {
-  if [[ "$ARCH" == "amd64" || "$ARCH" == "x86_64" ]]; then
-    date --date=$(date -u +"%Y-%m-%dT%T") '+%s'
-  elif [[ "$ARCH" == "arm64" ]]; then
-    date -j -f "%Y-%m-%dT%T" "$(date -u +"%Y-%m-%dT%T")" '+%s'
-  else
-    echo "Unsupported architecture: $ARCH" >&2
-    exit 1
-  fi
+  "$DATE_BIN" -u +%s
+}
+
+# Convert ISO8601 → epoch seconds.
+# Accepts: 2025-08-11T10:20:30 with optional .sss and TZ (Z, +HH:MM, +HHMM)
+convert_to_seconds() {
+  local ts="$1"
+  case "$DATE_IMPL" in
+    gnu)
+      if [[ "$ts" =~ (Z|z|[+-][0-9]{2}(:?[0-9]{2})?)$ ]]; then
+        "$DATE_BIN" -d "$ts" +%s
+      else
+        "$DATE_BIN" -u -d "$ts" +%s
+      fi
+      ;;
+    bsd)
+      local base="${ts%%.*}" fmt="%Y-%m-%dT%H:%M:%S"
+      if [[ "$base" =~ [Zz]$ ]]; then
+        base="${base%Z}${base%z}+0000"; fmt="$fmt%z"
+      elif [[ "$base" =~ [+-][0-9]{2}:[0-9]{2}$ ]]; then
+        base="${base:0:${#base}-3}${base: -2}"; fmt="$fmt%z"
+      elif [[ "$base" =~ [+-][0-9]{4}$ ]]; then
+        fmt="$fmt%z"
+      else
+        TZ=UTC "$DATE_BIN" -j -f "$fmt" "$base" +%s; return
+      fi
+      TZ=UTC "$DATE_BIN" -j -f "$fmt" "$base" +%s
+      ;;
+    *)
+      echo "Unknown date(1) implementation" >&2; return 1
+      ;;
+  esac
 }
 
 create_vault_secrets_for_backstage() {
   echo "adding special configuration for sx-backstage"
 
   # create an empty codespaces-secret secret because it is still needed for github codespaces and cannot configured optional in backstage
-  kubectl create secret generic -n backstage codespaces-secret
+  kubectl create secret generic -n backstage codespaces-secret --dry-run=client -o yaml | kubectl apply -f -
 
   # get vault hostname and token for communicating with vault via curl
   export VAULT_HOSTNAME=$(kubectl get ingress -o jsonpath='{.items[*].spec.rules[*].host}' -n vault)
@@ -97,7 +121,7 @@ create_vault_secrets_for_backstage() {
   curl -k --header "X-Vault-Token:$VAULT_TOKEN" --request PATCH --header "Content-Type: application/merge-patch+json" --data "{\"data\": {\"GITHUB_TOKEN\": \"${KUBRIX_BACKSTAGE_GITHUB_TOKEN}\"}}" https://${VAULT_HOSTNAME}/v1/kubrix-kv/data/portal/backstage/base
 
   # generate argocd token and store in vault
-  export ARGOCD_AUTH_TOKEN="$( kubectl exec sx-argocd-application-controller-0 -n argocd -- argocd account generate-token --account backstage --core )"
+  export ARGOCD_AUTH_TOKEN="$( kubectl exec "$(kubectl get pod -n argocd -l app.kubernetes.io/name=argocd-application-controller -o jsonpath='{.items[0].metadata.name}')" -n argocd -- argocd account generate-token --account backstage --core )"
   curl -k --header "X-Vault-Token:$VAULT_TOKEN" --request PATCH --header "Content-Type: application/merge-patch+json" --data "{\"data\": {\"ARGOCD_AUTH_TOKEN\": \"${ARGOCD_AUTH_TOKEN}\"}}" https://${VAULT_HOSTNAME}/v1/kubrix-kv/data/portal/backstage/base
 
   # generate grafana token if grafana ingress is found and store in vault
@@ -135,6 +159,8 @@ wait_until_apps_synced_healthy() {
   start=$SECONDS
   end=$((SECONDS+${max_wait_time}))
 
+  k8smonitoring_restarted=false
+
   while [ $SECONDS -lt $end ]; do
     all_apps_synced="true"
 
@@ -145,8 +171,8 @@ wait_until_apps_synced_healthy() {
       operation_phase_bootstrap_app=$(kubectl get application -n argocd ${bootstrap_app} -o jsonpath='{.status.operationState.phase}')
       if [ "${operation_phase_bootstrap_app}" = "Failed" ] || [ "${operation_phase_bootstrap_app}" = "Error" ] ; then
         echo "sx-boostrap-app sync failed. Restarting sync ..."
-        kubectl exec sx-argocd-application-controller-0 -n argocd -- argocd app terminate-op "$bootstrap_app" --core
-        kubectl exec sx-argocd-application-controller-0 -n argocd -- argocd app sync "$bootstrap_app" --async --core
+        kubectl exec "$(kubectl get pod -n argocd -l app.kubernetes.io/name=argocd-application-controller -o jsonpath='{.items[0].metadata.name}')" -n argocd -- argocd app terminate-op "$bootstrap_app" --core || true
+        kubectl exec "$(kubectl get pod -n argocd -l app.kubernetes.io/name=argocd-application-controller -o jsonpath='{.items[0].metadata.name}')" -n argocd -- argocd app sync "$bootstrap_app" --async --core || true
       fi
     fi
 
@@ -187,7 +213,7 @@ wait_until_apps_synced_healthy() {
         # because of a .Capabilities.APIVersions.Has condition in the templates for monitoring.coreos which gets deployed by k8s-monitoring itself
         if [[ "${app}" == "sx-k8s-monitoring" && "${sync_status}" == "${synced}" && "${health_status}" == "${healthy}" ]]; then
           if [  "${k8smonitoring_restarted}" != "true" ]; then
-            kubectl exec sx-argocd-application-controller-0 -n argocd -- argocd app sync "$app" --async --core
+            kubectl exec "$(kubectl get pod -n argocd -l app.kubernetes.io/name=argocd-application-controller -o jsonpath='{.items[0].metadata.name}')" -n argocd -- argocd app sync "$app" --async --core || true
             k8smonitoring_restarted="true"
           fi
         fi
@@ -222,11 +248,11 @@ wait_until_apps_synced_healthy() {
           if [ "${operation_phase}" = "Running" ] && [ ${sync_duration} -gt 300 ] || [ "${operation_phase}" = "Failed" ] || [ "${operation_phase}" = "Error" ] ; then
             # Terminate the operation for the application
             echo "sync of app ${app} gets terminated because it took longer than 300 seconds or failed"
-            kubectl exec sx-argocd-application-controller-0 -n argocd -- argocd app terminate-op "$app" --core
+            kubectl exec "$(kubectl get pod -n argocd -l app.kubernetes.io/name=argocd-application-controller -o jsonpath='{.items[0].metadata.name}')" -n argocd -- argocd app terminate-op "$app" --core || true
             echo "wait for 10 seconds"
             sleep 10
             echo "restart sync for app ${app}"
-            kubectl exec sx-argocd-application-controller-0 -n argocd -- argocd app sync "$app" --async --core
+            kubectl exec "$(kubectl get pod -n argocd -l app.kubernetes.io/name=argocd-application-controller -o jsonpath='{.items[0].metadata.name}')" -n argocd -- argocd app sync "$app" --async --core || true
           fi
         else
             sync_started_seconds="-"
@@ -329,12 +355,20 @@ analyze_app() {
   echo "------------------"
 }
 
-# dump all kubrix variables
-env | grep KUBRIX
+
 ARCH=$(uname -m)
 OS=$(uname -s)
 
 check_prereqs
+
+# Portable date(1) detection + helpers
+if command -v gdate >/dev/null 2>&1; then
+  DATE_BIN="$(command -v gdate)"
+else
+  DATE_BIN="$(command -v date)"
+fi
+DATE_IMPL="$(detect_date_impl)"
+
 
 if [[ "${KUBRIX_TARGET_TYPE}" =~ ^KIND.* || "${KUBRIX_CLUSTER_TYPE}" == "KIND" ]] ; then
   
@@ -344,6 +378,7 @@ if [[ "${KUBRIX_TARGET_TYPE}" =~ ^KIND.* || "${KUBRIX_CLUSTER_TYPE}" == "KIND" ]
     print;
     print "        rewrite name keycloak.127-0-0-1.nip.io ingress-nginx-controller.ingress-nginx.svc.cluster.local";
     print "        rewrite name grafana.127-0-0-1.nip.io ingress-nginx-controller.ingress-nginx.svc.cluster.local";
+    print "        rewrite name argocd.127-0-0-1.nip.io ingress-nginx-controller.ingress-nginx.svc.cluster.local";
     next
 }
 { print }
@@ -358,17 +393,17 @@ if [[ "${KUBRIX_TARGET_TYPE}" =~ ^KIND.* || "${KUBRIX_CLUSTER_TYPE}" == "KIND" ]
 
   # create mkcert-issuer root certificate
   mkcert -install
-  kubectl create namespace cert-manager
-  kubectl create secret tls mkcert-ca-key-pair --key "$(mkcert -CAROOT)"/rootCA-key.pem --cert "$(mkcert -CAROOT)"/rootCA.pem -n cert-manager
+  kubectl get ns cert-manager >/dev/null 2>&1 || kubectl create ns cert-manager
+  kubectl create secret tls mkcert-ca-key-pair --key "$(mkcert -CAROOT)"/rootCA-key.pem --cert "$(mkcert -CAROOT)"/rootCA.pem -n cert-manager --dry-run=client -o yaml | kubectl apply -f -
 
   # create a cacert secret for backstage so backstage trusts internal services with mkcert certificates
-  kubectl create namespace backstage
-  kubectl create secret generic mkcert-cacert --from-file=ca.crt="$(mkcert -CAROOT)"/rootCA.pem -n backstage
+  kubectl get ns backstage >/dev/null 2>&1 || kubectl create ns backstage
+  kubectl create secret generic mkcert-cacert --from-file=ca.crt="$(mkcert -CAROOT)"/rootCA.pem -n backstage --dry-run=client -o yaml | kubectl apply -f -
 
   # vault oidc case
   echo "create a root ca and patch ingress-nginx-controller for vault oidc"
-  kubectl create namespace vault
-  kubectl create secret generic ca-cert --from-file=ca.crt="$(mkcert -CAROOT)"/rootCA.pem -n vault
+  kubectl get ns vault >/dev/null 2>&1 || kubectl create ns vault
+  kubectl create secret generic ca-cert --from-file=ca.crt="$(mkcert -CAROOT)"/rootCA.pem -n vault --dry-run=client -o yaml | kubectl apply -f -
   kubectl patch deployment ingress-nginx-controller -n ingress-nginx --type='json' -p='[
   {
       "op": "add",
@@ -409,15 +444,15 @@ helm install sx-argocd argo-cd \
 
 # we add the repo inside the application-controller because it could be that clusters do not have any ingress controller installed yet at this moment
 echo "add kubriX repo in argocd pod"
-kubectl exec sx-argocd-application-controller-0 -n argocd -- argocd repo add ${KUBRIX_REPO} --username ${KUBRIX_REPO_USERNAME} --password ${KUBRIX_REPO_PASSWORD} --core
+kubectl exec "$(kubectl get pod -n argocd -l app.kubernetes.io/name=argocd-application-controller -o jsonpath='{.items[0].metadata.name}')" -n argocd -- argocd repo add ${KUBRIX_REPO} --username ${KUBRIX_REPO_USERNAME} --password ${KUBRIX_REPO_PASSWORD} --core
 
 # add secrets
 echo "Generating default secrets..."
 ./.secrets/createsecret.sh
 kubectl apply -f ./.secrets/secrettemp/secrets.yaml
 
-KUBRIX_REPO_BRANCH_SED=$( echo ${KUBRIX_REPO_BRANCH} | sed 's/\//\\\//g' )
-KUBRIX_REPO_SED=$( echo ${KUBRIX_REPO} | sed 's/\//\\\//g' )
+KUBRIX_REPO_BRANCH_SED=$( printf '%s' "${KUBRIX_REPO_BRANCH}" | sed -e 's/[\/&]/\\&/g' );
+KUBRIX_REPO_SED=$( printf '%s' "${KUBRIX_REPO}" | sed -e 's/[\/&]/\\&/g' );
 
 # bootstrap-app
 cat bootstrap-app-$(echo ${KUBRIX_TARGET_TYPE} | awk '{print tolower($0)}').yaml | sed "s/targetRevision:.*/targetRevision: ${KUBRIX_REPO_BRANCH_SED}/g" | sed "s/repoURL:.*/repoURL: ${KUBRIX_REPO_SED}/g" | kubectl apply -n argocd -f -
@@ -431,9 +466,6 @@ argocd_apps_without_individual=$(cat $target_chart_value_file | egrep -Ev "team-
 
 # max wait for 20 minutes until all apps except backstage and kargo are synced and healthy
 wait_until_apps_synced_healthy "${argocd_apps_without_individual}" "Synced" "Healthy" ${KUBRIX_BOOTSTRAP_MAX_WAIT_TIME:-1200}
-
-# apply argocd-secret to set a secretKey
-kubectl apply -f platform-apps/charts/argocd/manual-secret/argocd-secret.yaml
 
 # if vault is part of this stack, do some special configuration
 if [[ $( echo $argocd_apps | grep sx-vault ) ]] ; then
@@ -493,7 +525,7 @@ if [[ $( echo $argocd_apps | grep sx-vault ) ]] ; then
 fi
   
 # when we are in a github codespace, we need to add special backstage env variables
-if [ ${CODESPACES} ]; then
+if [[ "${CODESPACES:-}" == "true" ]]; then
   if [[ $( echo $argocd_apps | grep sx-backstage ) ]] ; then
 
     # delete secret if it already exists
@@ -507,7 +539,8 @@ if [ ${CODESPACES} ]; then
     --from-literal=APP_CONFIG_app_baseUrl=${BACKSTAGE_CODESPACE_URL} \
     --from-literal=APP_CONFIG_backend_baseUrl=${BACKSTAGE_CODESPACE_URL} \
     --from-literal=APP_CONFIG_backend_cors_origin=${BACKSTAGE_CODESPACE_URL} \
-    --from-literal=APP_CONFIG_auth_provider_github_development_callbackUrl=${BACKSTAGE_CODESPACE_URL}/api/auth/github/handler/frame
+    --from-literal=APP_CONFIG_auth_provider_github_development_callbackUrl=${BACKSTAGE_CODESPACE_URL}/api/auth/github/handler/frame \
+    --dry-run=client -o yaml | kubectl apply -f -
 
     kubectl rollout restart deployment sx-backstage -n backstage
 
