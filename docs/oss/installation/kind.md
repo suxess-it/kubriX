@@ -6,17 +6,6 @@ With this step-by-step guide kubriX with its default stack gets deployed on your
 
 * check [Prerequisites](installation.md#-prerequisites)
 
-### mkcert
-
-```
-curl -L -O https://github.com/FiloSottile/mkcert/releases/download/v1.4.4/mkcert-v1.4.4-linux-amd64
-mv mkcert-v1.4.4-linux-amd64 ~/bin/mkcert
-chmod u+x ~/bin/mkcert
-```
-
-install the CA of mkcert in your OS truststore: https://docs.kubefirst.io/k3d/quick-start/install#install-the-ca-certificate-authority-of-mkcert-in-your-trusted-store
-
-
 ## Installation steps
 
 1. create new empty customer repo on your Git-Server (GitLab, GitHub, Gitea, ...).
