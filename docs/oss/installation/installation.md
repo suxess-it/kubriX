@@ -22,6 +22,7 @@ Before installing kubriX, make sure you have:
   - [`yq`](https://github.com/mikefarah/yq?tab=readme-ov-file#install) – yaml processor
   - [`docker`](https://www.docker.com/) – Container runtime (for local installs only)
   - [`mkcert`](https://github.com/FiloSottile/mkcert) - tool for making locally-trusted development certificates (for local installs only)
+  - [`kind`](https://kind.sigs.k8s.io/docs/user/quick-start/#installing-from-release-binaries) - create a Kubernetes in Docker (for local installs only)
 
 - **Cluster resources**:
   - Minimum: 4 CPU cores, 16 GB RAM, 20 GB storage
