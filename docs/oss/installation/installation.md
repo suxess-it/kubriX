@@ -37,9 +37,9 @@ Before installing kubriX, make sure you have:
 | Environment | Goal | Install Guide |
 |-------------|------|---------------|
 | **GitHub Codespaces (Experimental)** | Explore kubriX instantly in your browser | [Codespaces Installation](codespaces.md) |
-| **local KinD** | Try kubriX quickly on your laptop | [Demo-Stack local KinD](kind.md) |
-| *Remote Kubernetes Demo Cluster** | Deploy a demo stack on K8s cluster in your preferred cloud provider| [Demo-Stack Remote Kubernetes](quick-start-kubernetes.md)
-| **Production Kubernetes Cluster** | Set up kubriX for team use | [Production Installation](production.md) |
+| **Local KinD** | Try kubriX quickly on your laptop | [Demo-Stack local KinD](kind.md) |
+| **Demo Kubernetes Cluster** | Test a demo stack on a K8s cluster on your preferred cloud provider| [Demo-Stack on Kubernetes](quick-start-kubernetes.md)
+| **Production Kubernetes Cluster** | Set up kubriX for productive team use | [Production Installation](production.md) |
 
 > 💡 **Tip:** If you’re unsure where to start, try the **KinD installation** - it’s the fastest way to get kubriX running locally.
 
