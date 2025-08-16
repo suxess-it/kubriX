@@ -1,6 +1,6 @@
 
 <h3>Target <code>docker.io/bitnami/keycloak:26.2.5-debian-12-r1 (debian 12.11)</code></h3>
-<h4>Vulnerabilities (13)</h4>
+<h4>Vulnerabilities (14)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -29,6 +29,13 @@
         <td>HIGH</td>
         <td>0.34-3</td>
         <td>0.34-4~deb12u1</td>
+    </tr>
+    <tr>
+        <td><code>libgnutls30</code></td>
+        <td>CVE-2025-32990</td>
+        <td>HIGH</td>
+        <td>3.7.9-2+deb12u4</td>
+        <td>3.7.9-2+deb12u5</td>
     </tr>
     <tr>
         <td><code>libldap-2.5-0</code></td>
@@ -200,7 +207,7 @@
 <h4>No Misconfigurations found</h4>
 
 <h3>Target <code>docker.io/bitnami/postgresql:17.5.0-debian-12-r10 (debian 12.11)</code></h3>
-<h4>Vulnerabilities (29)</h4>
+<h4>Vulnerabilities (30)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -236,6 +243,13 @@
         <td>HIGH</td>
         <td>0.34-3</td>
         <td>0.34-4~deb12u1</td>
+    </tr>
+    <tr>
+        <td><code>libgnutls30</code></td>
+        <td>CVE-2025-32990</td>
+        <td>HIGH</td>
+        <td>3.7.9-2+deb12u4</td>
+        <td>3.7.9-2+deb12u5</td>
     </tr>
     <tr>
         <td><code>libicu72</code></td>

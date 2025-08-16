@@ -1,6 +1,6 @@
 
 <h3>Target <code>docker.io/bitnami/kubectl:1.31 (debian 12.8)</code></h3>
-<h4>Vulnerabilities (36)</h4>
+<h4>Vulnerabilities (37)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -78,6 +78,13 @@
         <td>HIGH</td>
         <td>0.34-3</td>
         <td>0.34-4~deb12u1</td>
+    </tr>
+    <tr>
+        <td><code>libgnutls30</code></td>
+        <td>CVE-2025-32990</td>
+        <td>HIGH</td>
+        <td>3.7.9-2+deb12u3</td>
+        <td>3.7.9-2+deb12u5</td>
     </tr>
     <tr>
         <td><code>libicu72</code></td>
