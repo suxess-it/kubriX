@@ -110,3 +110,8 @@ With this step-by-step guide kubriX with its default demo stack gets deployed on
     ```
 
     It will create a new kubriX repo based on your parameters and installs kubriX based on your created kubriX repo on your connected K8s cluster.
+
+
+##  Next steps
+
+* [Post-Installation steps](installation.md#-post-installation-steps)
