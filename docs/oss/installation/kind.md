@@ -4,11 +4,7 @@ With this step-by-step guide kubriX with its default stack gets deployed on your
 
 ## Prerequisites
 
-* kubectl
-* kind
-* mkcert
-* jq
-* yq
+* check [Prerequisites](installation.md#-prerequisites)
 
 ### installing KinD
 
@@ -86,4 +82,8 @@ install the CA of mkcert in your OS truststore: https://docs.kubefirst.io/k3d/qu
     since there are many resources created via Crossplane in different ArgoCD sync-waves.  
     After 300 seconds the sync process gets terminated and restarted. This could happend sometimes and is not always indicating a problem.
     Also, sometimes the Keycloak app could be in temporary `Degraded` state during installation, but gets `Healthy` afterwards.
+
+##  Next steps
+
+* [Post-Installation steps](installation.md#-post-installation-steps)
 
