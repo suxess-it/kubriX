@@ -1,111 +1,122 @@
-# Hub & Spoke Architecture (kubriX prime Feature)
+# Hub & Spoke Architecture (kubriX Prime feature)
 
-In Topologies where you want a central management cluster managing many workload clusters
-we often speak about so called "Hub and Spoke" topologies.
+In topologies where you want a **central management cluster** operating many **workload clusters**, we speak of a _Hub & Spoke_ model.  
+The **Hub** is the central management (control-plane) cluster; the **Spokes** are workload clusters where your application workloads run.
 
-"Hub" is the central management cluster (or control-plane cluster) and "spokes" are the workload clusters where your custom applications run.
+![Hub & Spoke topology](../../img/hub-and-spoke-topology-1.png)
 
-![image](../../img/hub-and-spoke-topology-1.png)
+---
 
-On the central mgmt-cluster the following kubriX components can run:
+## What runs where?
 
-* kubriX delivery
-* kubriX security
-* kubriX observability
-* kubriX portal
+### On the Hub (management cluster)
+The Hub typically hosts kubriX control-plane components such as:
+- **kubriX Delivery** _(required)_ – deploys apps and platform services to Spokes
+- **kubriX Security**
+- **kubriX Observability**
+- **kubriX Portal**
 
-At least "kubriX delivery" is essential on the hub, since it is responsible for deploying all apps on the spokes.
-Of course it is totally legit to deploy e.g. kubriX portal and kubriX observability also on a seperate control-plane cluster.
-However, for the sake of simplicity, let's assume every kubriX control-plane component is on the same control-plane cluster.
+> You **must** run **kubriX Delivery** on the Hub, because it is responsible for orchestrating deployments to the Spokes.  
+> Portal and Observability can also be deployed onto a separate control-plane cluster if desired.
 
-On the spokes are the following components installed (via kubriX delivery on the hub):
+### On the Spokes (workload clusters)
+Installed **via kubriX Delivery** from the Hub:
+- Your **application workloads**
+- Selected **kubriX platform services** (e.g., cert-manager, ingress-nginx, external-secrets)
+- **kubriX Security agents** (e.g., Falco, Kyverno)
+- **kubriX Observability agents** (e.g., k8s-monitoring / Alloy)
 
-* your custom application workload
-* some kubriX platform services like cert-manager, ingress-nginx, external-secrets
-* kubriX security agents like falco, kyverno, ...
-* kubriX observability agents like k8s-monitoring (alloy, ...)
+For simplicity, examples below assume all kubriX control-plane components run on the same Hub cluster.
 
-# Deployment of kubriX platform services on the hub
+---
 
-This is the same way as in a single instance topology.
-Define your bricks in your values file in the folder "platform-apps/target-chart", bootstrap your platform and let argocd manage your platform apps.
+## Deploying platform services on the Hub
 
-# Deployment of kubriX platform services on the spokes
+This is the same as a single-cluster topology:
+1. Define your bricks in the values file of `platform-apps/target-chart`.
+2. Bootstrap the platform.
+3. Let Argo CD reconcile your platform apps.
 
-To set up the spoke deployments you need to do the following steps.
+---
 
-## Add spoke-appset app to your platform
+## Deploying platform services to the Spokes
 
-In your "platform-apps/target-chart" values file add the following stanza:
+### 1) Enable the `spoke-appset` on the Hub
+In your `platform-apps/target-chart` **values** file, include the `spoke-appset` app. This creates an **ApplicationSet** that will generate a per-spoke **App-of-Apps**:
 
+```yaml
+# Include this app when you want to deploy apps to Spoke clusters
+# in a Hub & Spoke architecture.
+- name: spoke-appset
+  destinationNamespaceOverwrite: argocd
 ```
-  # include app when you want to deploy apps to spoke clusters in a hub-and-spoke architecture
-  - name: spoke-appset
-    destinationNamespaceOverwrite: argocd
-```
 
-The values of this spoke-appset need to define a (cluster) generator for the appset and default valueFiles (see example values files).
+The `spoke-appset` values must define a Cluster generator and default `valueFiles`.
+The Cluster generator uses the set of registered clusters in Argo CD.
 
-With this an ArgoCD ApplicationSet gets deployed which creates an App-Of-Apps for each spoke cluster according to the generator.
-This App-Of-Apps gets defined in the spoke-applications chart as follows.
+### 2) Define spoke-applications
 
-## Define spoke-applications
+The chart `platform-apps/charts/spoke-applications` defines the **per-spoke App-of-Apps**.
+Its values are similar to `platform-apps/target-chart`: you list the applications that should be deployed to **all Spokes** (same semantics as in the target-chart).
 
-The values file of "platform-apps/charts/spoke-applications" is very similar to the "platform-apps/target-chart" values file.
-You define a list of applications which should get deployed to all spokes. The semantic is the same as in the target-chart.
+---
 
-# Propagating spoke specific values to spoke applications
+## Propagating Spoke-specific values into applications
 
-The values files for each spoke application is defined in `.default.valueFiles` array, which would be the same for every spoke cluster.
-Therefore, just with values files there would not be any possibility to set spoke specific values.
+The `default.valueFiles` for Spoke applications are shared across Spokes. To inject **cluster-specific values** (e.g., an ingress domain), add **labels** to each Spoke’s **Argo CD Cluster Secret** and expose those labels to your ApplicationSet template via the Cluster generator.
+*	Argo CD stores managed clusters in **Secrets** labeled `argocd.argoproj.io/secret-type: cluster`.
+*	The **Cluster generator** reads data/labels from those Secrets and provides them as parameters for substitution in ApplicationSet templates.
 
-To achieve this you should define spoke specific properties as labels in your [cluster secret](https://argo-cd.readthedocs.io/en/stable/operator-manual/declarative-setup/#clusters).
+### Example: Ingress domain per Spoke
 
-The value of these labels can then be used the `valuesObject` attribute of your spoke application.
+**Cluster Secret** (label the Secret with the per-spoke domain):
 
-## Example
-
-Ingress label in cluster secret:
-
-```
+```yaml
+apiVersion: v1
 kind: Secret
 metadata:
+  name: cluster-<spoke-name>
+  namespace: argocd
   labels:
+    argocd.argoproj.io/secret-type: cluster
     spoke.kubrix.io/ingress-domain: staging.kubrix.cloud
+type: Opaque
+data:
+  # ... cluster connection fields omitted for brevity ...
 ```
 
-spoke-appset values file:
+**spoke-appset values** – read the label via the Cluster generator and pass it as a parameter:
 
-Use this label in your generator attribute and the value in your parameters attribute:
-
-```
+```yaml
 generator:
   - clusters:
       selector:
         matchExpressions:
-        - key: name
-          operator: NotIn
-          values:
-          - in-cluster
+          - key: name
+            operator: NotIn
+            values:
+              - in-cluster
       values:
-        ingressDomain: '{{index .metadata.labels "spoke.kubrix.io/ingress-domain"}}'
-
+        ingressDomain: '{{ index .metadata.labels "spoke.kubrix.io/ingress-domain" }}'
 parameters:
   - name: default.repoURL
     value: '{{ .Values.default.repoURL }}'
   - name: default.targetRevision
     value: '{{ .Values.default.targetRevision }}'
   - name: destinationServer
-    value: '{{`{{.server}}`}}'
+    value: '{{`{{ .server }}`}}'
   - name: destinationClusterName
-    value: '{{`{{.name}}`}}'
+    value: '{{`{{ .name }}`}}'
   - name: ingressDomain
-    value: '{{`{{.values.ingressDomain}}`}}'
+    value: '{{`{{ .values.ingressDomain }}`}}'
 ```
 
-Now the `ingressDomain` value gets propagated to your spoke-applications and can be used here in the applications list `valuesObject`:
+> The Cluster generator provides .server and .name, and you can reference any labels via index .metadata.labels. These are substituted into the template at render time.  
 
-```
+**spoke-applications values** – use the propagated parameter in `valuesObject` for each application:
+
+```yaml
+applications:
   - name: falco
     valuesObject:
       falco:
@@ -113,14 +124,14 @@ Now the `ingressDomain` value gets propagated to your spoke-applications and can
           webui:
             ingress:
               hosts:
-                - host: falco.{{ .Values.ingressDomain }}
+                - host: 'falco.{{ .Values.ingressDomain }}'
                   paths:
                     - path: /
                       pathType: Prefix
               tls:
-                  - secretName: falco-server-tls
-                    hosts:
-                      - falco.{{ .Values.ingressDomain }}
+                - secretName: falco-server-tls
+                  hosts:
+                    - 'falco.{{ .Values.ingressDomain }}'
     annotations:
       argocd.argoproj.io/compare-options: ServerSideDiff=true
     helmOptions:
@@ -128,20 +139,15 @@ Now the `ingressDomain` value gets propagated to your spoke-applications and can
     syncOptions:
       - ServerSideApply=true
 ```
+---
 
-# Overall composition of Apps-Of-Apps and AppSets in Hub & Spoke
+## How the pieces fit together
 
-In the first place it can be quite confusing how all these pieces work together.
-So lets have a look at the overall composition of app-of-apps, appsets and apps and where they get deployed to.
+* The spoke-appset is part of the bootstrap app on the Hub.
+* It creates an ApplicationSet (spoke-applications) which, for each Spoke cluster, generates a per-spoke App-of-Apps.
+*	Grey apps are deployed on the Hub; yellow/green apps are deployed on the corresponding Spokes.
 
 ![image](../../img/hub-and-spoke-topology-2.png)
-
-The spoke-appset is part of the bootstrap-app. This spoke-appset creates an ApplicationSet 'spoke-applications'
-which creates a spoke-applications App-Of-Apps for each spoke.
-
-While the grey applications get deployed on the Hub, the yellow and green applications get deployed on the corresponding spokes.
-
-
 
 
 
