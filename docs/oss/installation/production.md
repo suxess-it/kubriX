@@ -18,15 +18,20 @@ git merge kubriX-upstream
 
 ## Integrating existing managed services
 
-Think about how you deal with
+Think about how you want to deal with
 
 - DNS resolution (kubriX works best with DNS provider supported by `external-secrets`)
 - TLS certificates (kubriX uses `cert-manager` for creating certificates, typically via ACME protocol)
-- 
+- Git-Server, Git-Server Repo/Group structure
+- Helm- and Container-Registry
+- Identity-Provider in your company which should get integrated with Keycloak (prime feature)
+- Alerting-Receivers (Chat channels, E-Mails, .. any receivers supported by Alertmanager)
+- Persistent Storage integration (S3,...)
+
 
 ## Preparing the .secrets files
 
-tbd
+All platform services get dynamically generated credentials during first installation according to [secret creation definition](/.secrets/.envoss.yaml). We highly recommend to not change this, unless you know what you do.
 
 ## Preparing values files
 
@@ -38,7 +43,7 @@ tbd
 
 ## Post-Installation tasks
 
-tbd 
+* [Post-Installation steps](installation.md#-post-installation-steps)
 
 
 ###  Next steps
