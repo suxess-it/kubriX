@@ -3,7 +3,7 @@
 <h4>No Vulnerabilities found</h4>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>bin/rollouts-controller</code></h3>
-<h4>Vulnerabilities (7)</h4>
+<h4>Vulnerabilities (9)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -48,6 +48,13 @@
         <td>0.35.0</td>
     </tr>
     <tr>
+        <td><code>golang.org/x/oauth2</code></td>
+        <td>CVE-2025-22868</td>
+        <td>HIGH</td>
+        <td>v0.24.0</td>
+        <td>0.27.0</td>
+    </tr>
+    <tr>
         <td><code>k8s.io/kubernetes</code></td>
         <td>CVE-2024-10220</td>
         <td>HIGH</td>
@@ -60,6 +67,13 @@
         <td>HIGH</td>
         <td>v1.29.3</td>
         <td>1.27.16, 1.28.12, 1.29.7, 1.30.3</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2025-47907</td>
+        <td>HIGH</td>
+        <td>v1.23.7</td>
+        <td>1.23.12, 1.24.6</td>
     </tr>
 </table>
 <h4>No Misconfigurations found</h4>

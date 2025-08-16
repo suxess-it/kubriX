@@ -1,6 +1,6 @@
 
 <h3>Target <code>docker.io/dserio83/velero-api:0.2.4 (debian 12.10)</code></h3>
-<h4>Vulnerabilities (15)</h4>
+<h4>Vulnerabilities (22)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -36,6 +36,13 @@
         <td>HIGH</td>
         <td>2.5.0-1+deb12u1</td>
         <td></td>
+    </tr>
+    <tr>
+        <td><code>libgnutls30</code></td>
+        <td>CVE-2025-32990</td>
+        <td>HIGH</td>
+        <td>3.7.9-2+deb12u4</td>
+        <td>3.7.9-2+deb12u5</td>
     </tr>
     <tr>
         <td><code>libldap-2.5-0</code></td>
@@ -80,6 +87,34 @@
         <td></td>
     </tr>
     <tr>
+        <td><code>libpython3.11-minimal</code></td>
+        <td>CVE-2025-8194</td>
+        <td>HIGH</td>
+        <td>3.11.2-6+deb12u5</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>libpython3.11-stdlib</code></td>
+        <td>CVE-2025-8194</td>
+        <td>HIGH</td>
+        <td>3.11.2-6+deb12u5</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>libsqlite3-0</code></td>
+        <td>CVE-2025-6965</td>
+        <td>CRITICAL</td>
+        <td>3.40.1-2+deb12u1</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>libsqlite3-0</code></td>
+        <td>CVE-2025-7458</td>
+        <td>CRITICAL</td>
+        <td>3.40.1-2+deb12u1</td>
+        <td></td>
+    </tr>
+    <tr>
         <td><code>perl-base</code></td>
         <td>CVE-2023-31484</td>
         <td>HIGH</td>
@@ -108,6 +143,20 @@
         <td></td>
     </tr>
     <tr>
+        <td><code>python3.11</code></td>
+        <td>CVE-2025-8194</td>
+        <td>HIGH</td>
+        <td>3.11.2-6+deb12u5</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>python3.11-minimal</code></td>
+        <td>CVE-2025-8194</td>
+        <td>HIGH</td>
+        <td>3.11.2-6+deb12u5</td>
+        <td></td>
+    </tr>
+    <tr>
         <td><code>zlib1g</code></td>
         <td>CVE-2023-45853</td>
         <td>CRITICAL</td>
@@ -117,7 +166,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>Python</code></h3>
-<h4>Vulnerabilities (3)</h4>
+<h4>Vulnerabilities (4)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -125,6 +174,13 @@
         <th>Severity</th>
         <th>Installed Version</th>
         <th>Fixed Version</th>
+    </tr>
+    <tr>
+        <td><code>ecdsa</code></td>
+        <td>CVE-2024-23342</td>
+        <td>HIGH</td>
+        <td>0.19.0</td>
+        <td></td>
     </tr>
     <tr>
         <td><code>h11</code></td>
@@ -150,7 +206,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>usr/local/bin/kubectl</code></h3>
-<h4>Vulnerabilities (1)</h4>
+<h4>Vulnerabilities (3)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -160,11 +216,25 @@
         <th>Fixed Version</th>
     </tr>
     <tr>
+        <td><code>golang.org/x/oauth2</code></td>
+        <td>CVE-2025-22868</td>
+        <td>HIGH</td>
+        <td>v0.21.0</td>
+        <td>0.27.0</td>
+    </tr>
+    <tr>
         <td><code>stdlib</code></td>
         <td>CVE-2024-34156</td>
         <td>HIGH</td>
         <td>v1.22.5</td>
         <td>1.22.7, 1.23.1</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2025-47907</td>
+        <td>HIGH</td>
+        <td>v1.22.5</td>
+        <td>1.23.12, 1.24.6</td>
     </tr>
 </table>
 <h4>No Misconfigurations found</h4>
@@ -222,11 +292,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>app/node_modules/@esbuild/linux-x64/bin/esbuild</code></h3>
-<h4>No Vulnerabilities found</h4>
-<h4>No Misconfigurations found</h4>
-
-<h3>Target <code>docker.io/dserio83/velero-watchdog:0.1.7 (debian 12.9)</code></h3>
-<h4>Vulnerabilities (20)</h4>
+<h4>Vulnerabilities (1)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -234,6 +300,54 @@
         <th>Severity</th>
         <th>Installed Version</th>
         <th>Fixed Version</th>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2025-47907</td>
+        <td>HIGH</td>
+        <td>v1.23.7</td>
+        <td>1.23.12, 1.24.6</td>
+    </tr>
+</table>
+<h4>No Misconfigurations found</h4>
+
+<h3>Target <code>docker.io/dserio83/velero-watchdog:0.1.7 (debian 12.9)</code></h3>
+<h4>Vulnerabilities (27)</h4>
+<table>
+    <tr>
+        <th>Package</th>
+        <th>ID</th>
+        <th>Severity</th>
+        <th>Installed Version</th>
+        <th>Fixed Version</th>
+    </tr>
+    <tr>
+        <td><code>git</code></td>
+        <td>CVE-2025-48384</td>
+        <td>HIGH</td>
+        <td>1:2.39.5-0+deb12u2</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>git</code></td>
+        <td>CVE-2025-48385</td>
+        <td>HIGH</td>
+        <td>1:2.39.5-0+deb12u2</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>git-man</code></td>
+        <td>CVE-2025-48384</td>
+        <td>HIGH</td>
+        <td>1:2.39.5-0+deb12u2</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>git-man</code></td>
+        <td>CVE-2025-48385</td>
+        <td>HIGH</td>
+        <td>1:2.39.5-0+deb12u2</td>
+        <td></td>
     </tr>
     <tr>
         <td><code>libc-bin</code></td>
@@ -262,6 +376,13 @@
         <td>HIGH</td>
         <td>2.5.0-1+deb12u1</td>
         <td></td>
+    </tr>
+    <tr>
+        <td><code>libgnutls30</code></td>
+        <td>CVE-2025-32990</td>
+        <td>HIGH</td>
+        <td>3.7.9-2+deb12u3</td>
+        <td>3.7.9-2+deb12u5</td>
     </tr>
     <tr>
         <td><code>libldap-2.5-0</code></td>
@@ -318,6 +439,20 @@
         <td>HIGH</td>
         <td>5.36.0-7+deb12u1</td>
         <td>5.36.0-7+deb12u2</td>
+    </tr>
+    <tr>
+        <td><code>libsqlite3-0</code></td>
+        <td>CVE-2025-6965</td>
+        <td>CRITICAL</td>
+        <td>3.40.1-2+deb12u1</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>libsqlite3-0</code></td>
+        <td>CVE-2025-7458</td>
+        <td>CRITICAL</td>
+        <td>3.40.1-2+deb12u1</td>
+        <td></td>
     </tr>
     <tr>
         <td><code>perl</code></td>

@@ -134,7 +134,7 @@
 <h4>No Vulnerabilities found</h4>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>usr/share/grafana/bin/grafana</code></h3>
-<h4>Vulnerabilities (1)</h4>
+<h4>Vulnerabilities (2)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -149,11 +149,18 @@
         <td>HIGH</td>
         <td>v1.24.3</td>
         <td>1.24.4</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2025-47907</td>
+        <td>HIGH</td>
+        <td>v1.24.3</td>
+        <td>1.23.12, 1.24.6</td>
     </tr>
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>usr/share/grafana/bin/grafana-cli</code></h3>
-<h4>Vulnerabilities (1)</h4>
+<h4>Vulnerabilities (2)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -168,11 +175,18 @@
         <td>HIGH</td>
         <td>v1.24.3</td>
         <td>1.24.4</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2025-47907</td>
+        <td>HIGH</td>
+        <td>v1.24.3</td>
+        <td>1.23.12, 1.24.6</td>
     </tr>
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>usr/share/grafana/bin/grafana-server</code></h3>
-<h4>Vulnerabilities (1)</h4>
+<h4>Vulnerabilities (2)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -187,6 +201,13 @@
         <td>HIGH</td>
         <td>v1.24.3</td>
         <td>1.24.4</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2025-47907</td>
+        <td>HIGH</td>
+        <td>v1.24.3</td>
+        <td>1.23.12, 1.24.6</td>
     </tr>
 </table>
 <h4>No Misconfigurations found</h4>
@@ -194,7 +215,7 @@
 <h3>Trivy Returned Empty Report</h3>
 
 <h3>Target <code>quay.io/kiwigrid/k8s-sidecar:1.30.0 (alpine 3.21.2)</code></h3>
-<h4>Vulnerabilities (4)</h4>
+<h4>Vulnerabilities (5)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -216,6 +237,13 @@
         <td>HIGH</td>
         <td>3.3.2-r4</td>
         <td>3.3.3-r0</td>
+    </tr>
+    <tr>
+        <td><code>sqlite-libs</code></td>
+        <td>CVE-2025-6965</td>
+        <td>CRITICAL</td>
+        <td>3.47.1-r0</td>
+        <td>3.48.0-r3</td>
     </tr>
     <tr>
         <td><code>sqlite-libs</code></td>
