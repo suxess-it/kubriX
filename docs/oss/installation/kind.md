@@ -6,10 +6,6 @@ With this step-by-step guide kubriX with its default stack gets deployed on your
 
 * check [Prerequisites](installation.md#-prerequisites)
 
-### installing KinD
-
-Install kind: https://kind.sigs.k8s.io/docs/user/quick-start/#installing-from-release-binaries
-
 ### mkcert
 
 ```
