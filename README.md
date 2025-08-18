@@ -39,7 +39,7 @@ Choose your preferred setup:
 - [Overview](docs/oss/overview.md)
 - [Installation](docs/oss/installation/installation.md)
 - [Configuration](docs/oss/configuration/configuration.md)
-- [User Guide](docs/oss/user-guide/)
+- [User Guide](docs/oss/user-guide/user-guide.md)
 - [Administration](docs/oss/admin-guide/)
 - [API & CLI Reference](docs/oss/api-cli-reference.md)
 
