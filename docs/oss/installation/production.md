@@ -65,7 +65,7 @@ applications:
       argocd.argoproj.io/sync-wave: "-10"
 ```
 
-You can set several attributes per aplication, which you can see in the example files.
+You can set several attributes per application, which you can see in the example files.
 These apps reference to directories in the `platform-apps/charts/` directory.
 
 > 🔭 **Future Outlook**: we will probably introduce also an attribute `repo` so platform apps can also live in different git/oci repositories.
