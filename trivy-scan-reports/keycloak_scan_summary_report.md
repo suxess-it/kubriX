@@ -432,5 +432,28 @@
 <h4>No Vulnerabilities found</h4>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>opt/bitnami/postgresql</code></h3>
-<h4>No Vulnerabilities found</h4>
+<h4>Vulnerabilities (2)</h4>
+<table>
+    <tr>
+        <th>Package</th>
+        <th>ID</th>
+        <th>Severity</th>
+        <th>Installed Version</th>
+        <th>Fixed Version</th>
+    </tr>
+    <tr>
+        <td><code>postgresql</code></td>
+        <td>CVE-2025-8714</td>
+        <td>HIGH</td>
+        <td>17.5.0-7</td>
+        <td>13.22.0, 14.19.0, 15.14.0, 16.10.0, 17.6.0</td>
+    </tr>
+    <tr>
+        <td><code>postgresql</code></td>
+        <td>CVE-2025-8715</td>
+        <td>HIGH</td>
+        <td>17.5.0-7</td>
+        <td>13.22.0, 14.19.0, 15.14.0, 16.10.0, 17.6.0</td>
+    </tr>
+</table>
 <h4>No Misconfigurations found</h4>
