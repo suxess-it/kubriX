@@ -39,7 +39,7 @@ Think about how you want to deal with
 
 ## Preparing the .secrets files
 
-All platform services get dynamically generated credentials during first installation according to [secret creation definition](/.secrets/.envoss.yaml). We highly recommend to not change this, unless you know what you do.
+All platform services get dynamically generated credentials during first installation according to `.secrets/.envoss.yaml`. We highly recommend to not change this, unless you know what you do.
 
 ## Preparing values files
 

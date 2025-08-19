@@ -32,7 +32,7 @@ Also this picture is probably a little bit overwhelming in the first place, but 
 
 1. dev-team creates a PR to the argocd gitops-repo with some team-information
 2. platform-team reviewes this PR and merges it
-3. dev-team then creates its own app-of-apps gitops-repo <--- this step is added in this scenario
+3. dev-team then creates its own app-of-apps gitops-repo (this step is added in this scenario)
 4. dev-team then creates its own app gitops-repo which is referenced in an app-definition in step 3
 
 Then (again) the platform does everything it is build for and 
@@ -53,7 +53,7 @@ add a new team in this [teams-array](https://github.com/suxess-it/kubriX/blob/d2
 #### app-onboarding options
 with [appOfAppsRepo](https://github.com/suxess-it/kubriX/blob/d2edfc78fe31109f3b33dcd4071a5247ab4abad1/platform-apps/charts/team-onboarding/values-k3d.yaml#L13-L16) we define a gitops-repo where the dev-team can create its own application definitions. Still, it is automatically restricted that these applications can only belong to the teams argocd app-project.
 
-with [multiStageKargoAppSet](https://github.com/suxess-it/kubriX/blob/d2edfc78fe31109f3b33dcd4071a5247ab4abad1/platform-apps/charts/team-onboarding/values-k3d.yaml#L17-L18) an ApplicationSet is automatically created in the adn-<team> namespace which constantly searches for corresponding gitops-repos and adds new applications automatically in the adn-<team> namespace. This special ApplicationSet creates an application per stage defined in an `app-stages.yaml` like this [example](https://github.com/suxess-it/team1-demo-app1/blob/main/app-stages.yaml) and adds kargo project, warehouse and stages to the cluster.
+with [multiStageKargoAppSet](https://github.com/suxess-it/kubriX/blob/d2edfc78fe31109f3b33dcd4071a5247ab4abad1/platform-apps/charts/team-onboarding/values-k3d.yaml#L17-L18) an ApplicationSet is automatically created in the `adn-<team>` namespace which constantly searches for corresponding gitops-repos and adds new applications automatically in the `adn-<team>` namespace. This special ApplicationSet creates an application per stage defined in an `app-stages.yaml` like this [example](https://github.com/suxess-it/team1-demo-app1/blob/main/app-stages.yaml) and adds kargo project, warehouse and stages to the cluster.
 
 ### check if multi-tenant kyverno-policies get applied
 
