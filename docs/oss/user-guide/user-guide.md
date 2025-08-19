@@ -1,3 +1,5 @@
+# User Guide
+
 ## Onboard teams and applications
 
 Onboarding teams and applications is all done the gitops way. We provide Backstage scaffolder templates to create corresponding Pull-Requests and git repositories easily.
