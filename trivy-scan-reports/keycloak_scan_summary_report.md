@@ -382,7 +382,7 @@
         <td>CVE-2025-7424</td>
         <td>HIGH</td>
         <td>1.1.35-1+deb12u1</td>
-        <td></td>
+        <td>1.1.35-1+deb12u2</td>
     </tr>
     <tr>
         <td><code>libxslt1.1</code></td>

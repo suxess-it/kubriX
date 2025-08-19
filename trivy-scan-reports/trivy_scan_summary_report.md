@@ -3,7 +3,7 @@
 <h4>No Vulnerabilities found</h4>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>usr/local/bin/trivy-operator</code></h3>
-<h4>Vulnerabilities (3)</h4>
+<h4>Vulnerabilities (4)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -11,6 +11,13 @@
         <th>Severity</th>
         <th>Installed Version</th>
         <th>Fixed Version</th>
+    </tr>
+    <tr>
+        <td><code>github.com/hashicorp/go-getter</code></td>
+        <td>CVE-2025-8959</td>
+        <td>HIGH</td>
+        <td>v1.7.8</td>
+        <td>1.7.9</td>
     </tr>
     <tr>
         <td><code>helm.sh/helm/v3</code></td>
