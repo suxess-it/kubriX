@@ -117,7 +117,7 @@ stop vscode
 
 start vscode (but don't switch to devcontainer remote explorer)
 
-dann in vscode command (CTRL+SHIFT+P)
+then in vscode command (CTRL+SHIFT+P)
 
 "dev containers: clean up dev containers"
 "dev cotainers: clean up dev volume"
