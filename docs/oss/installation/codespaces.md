@@ -42,12 +42,6 @@ Then you should see log messages in the "Terminal-View":
 
 The Platform-Portal authenticates via GitHub OAuth App. Therefore you need to create a OAuth App as described in [this section](installation.md#create-github-oauth-app-and-set-secrets-in-vault).
  
-The URL of the Codespace has a random name and ID like `https://crispy-robot-g44qvrx9jpx29xx7.github.dev/`.
-Copy the hostname (codespace name) except ".github.dev" and set the URLs of the created OAuth App like this:
-
-- Homepage URL: `<copied hostname>-6691.app.github.dev`
-- Authorization callback URL: `<copied hostname>-6691.app.github.dev/api/auth/github`
-
 ## Accessing platform service consoles
 
 In the "Ports-View" you will see different URLs for different platform services. When clicking on the "world" symbol you can open the URL in your browser and use the tools.
