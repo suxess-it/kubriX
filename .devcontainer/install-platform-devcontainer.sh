@@ -81,9 +81,6 @@ elif  [[ ${KUBRIX_TARGET_TYPE} == "KIND-OBSERVABILITY" ]] ; then
   kubectl apply -f .devcontainer/grafana-nodeport.yaml
 
 elif  [[ ${KUBRIX_TARGET_TYPE} == "KIND-SECURITY" ]] ; then
-  kubectl create namespace keycloak --dry-run=client -o yaml | kubectl apply -f -
-  kubectl apply -f .devcontainer/keycloak-nodeport.yaml
-
   kubectl create namespace falco --dry-run=client -o yaml | kubectl apply -f -
   kubectl apply -f .devcontainer/falco-nodeport.yaml
 fi
