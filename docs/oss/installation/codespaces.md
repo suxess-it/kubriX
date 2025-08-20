@@ -13,17 +13,13 @@ If you just want to have a look at the platform stack in a read-only mode, just 
 
 You can start a GitHub Codespaces with the button below or this [link](https://github.com/codespaces/new/)
 
-- Repository: this original repository or your fork
+- Repository: this original kubriX repository or your fork
 - Branch: main branch (or a feature branch if you want to test some special features)
 - Dev container configuration: you can select which platform stack (brick) should get installed
-- Recommended Secrets:
-  - KUBRIX_BACKSTAGE_GITHUB_TOKEN: a Personal Access Token for Github to read files from the origin repo
-  - KUBRIX_ARGOCD_APPSET_TOKEN: a Personal Access Token for Github to read repositories in your organization (for ArgoCD AppSet SCM Generator)
 
 [![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/)
 
-![image](https://github.com/user-attachments/assets/ca473d8c-6bf2-4687-9b10-88dd29843860)
-
+<img width="991" height="706" alt="image" src="https://github.com/user-attachments/assets/e7ebe2ad-2724-4880-a7ba-40796df0dc9b" />
 
 You will get a VSCode environment in your browser and additionally a KinD cluster and our platform stack gets installed during startup of the Codespace.
 
