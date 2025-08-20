@@ -52,13 +52,20 @@ Before installing kubriX, make sure you have:
 
   The Platform-Portal authenticates via GitHub OAuth App. Therefore you need to create a OAuth App in your [developer settings](https://github.com/organizations/YOUR-ORG/settings/applications).
   Click the button "New OAuth App".
-  
-  For local KinD Cluster:  
+
+  **For Github Codespaces**:
+
+  The URL of the Codespace has a random name and ID like `https://crispy-robot-g44qvrx9jpx29xx7.github.dev/`. Copy the hostname (codespace name) except ".github.dev" and set the URLs of the created OAuth App like this:
+
+  - Homepage URL: `<copied hostname>-6691.app.github.dev`
+  - Authorization callback URL: `<copied hostname>-6691.app.github.dev/api/auth/github`
+
+  **For local KinD Cluster**:  
 
   - Homepage URL: `https://backstage.127-0-0-1.nip.io`
   - Authorization callback URL: `https://backstage.127-0-0-1.nip.io/api/auth/github`
 
-  For remote Kubernetes Cluster:  
+  **For remote Kubernetes Cluster**:  
 
   - Homepage URL and Authorization callback URL must match "https://backstage.${KUBRIX_CUSTOMER_DOMAIN}"
 
