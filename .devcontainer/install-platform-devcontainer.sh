@@ -27,6 +27,7 @@ else
 fi
 
 export KUBRIX_REPO_BRANCH=$( git rev-parse --abbrev-ref HEAD )
+export KUBRIX_BOOTSTRAP_MAX_WAIT_TIME=1800
 
 # codespace always use the github repository where they are started,
 # on local machine it should use the remote origin repo
