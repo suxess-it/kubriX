@@ -40,31 +40,13 @@ Then you should see log messages in the "Terminal-View":
 
 ### Create GitHub OAuth App 
 
-The Platform-Portal authenticates via GitHub OAuth App. Therefore you need to create a OAuth App in your [delevoper settings](https://github.com/settings/developers) and use the Client-Secret and Client-ID during installation or GitHub Codespace creation.
+The Platform-Portal authenticates via GitHub OAuth App. Therefore you need to create a OAuth App in your [delevoper settings](https://github.com/settings/developers) and use the Client-Secret and Client-ID as described in [this section](installation.md#create-github-oauth-app-and-set-secrets-in-vault).
  
 The URL of the Codespace has a random name and ID like `https://crispy-robot-g44qvrx9jpx29xx7.github.dev/`.
 Copy the hostname (codespace name) except ".github.dev" and set the URLs of the created OAuth App like this:
 
 - Homepage URL: `<copied hostname>-6691.app.github.dev`
 - Authorization callback URL: `<copied hostname>-6691.app.github.dev/api/auth/github`
-
-![image](https://github.com/user-attachments/assets/fd513ff7-3501-4299-aab2-41feae1028bc)
-
-
-Use "Client ID" to define the variable "GITHUB_CLIENTID" in the step below. Generate a "Client secret" and use the secret to define the variable "GITHUB_CLIENTSECRET" in the step below.
-
-Then set GITHUB_CLIENTSECRET and GITHUB_CLIENTID from your Github OAuth App and set them in vault via kubectl/curl:
-
-```
-export GITHUB_CLIENTID="<client-id-from-step-before>"
-export GITHUB_CLIENTSECRET="<client-secret-from-step-before>"
-export VAULT_HOSTNAME=$(kubectl get ingress -o jsonpath='{.items[*].spec.rules[*].host}' -n vault)
-export VAULT_TOKEN=$(kubectl get secret -n vault vault-init -o=jsonpath='{.data.root_token}'  | base64 -d)
-curl -k --header "X-Vault-Token:$VAULT_TOKEN" --request PATCH --header "Content-Type: application/merge-patch+json" --data "{\"data\": {\"GITHUB_CLIENTSECRET\": \"${GITHUB_CLIENTSECRET}\", \"GITHUB_CLIENTID\":
-\"${GITHUB_CLIENTID}\"}}" https://${VAULT_HOSTNAME}/v1/kubrix-kv/data/portal/backstage/base
-kubectl delete externalsecret -n backstage sx-cnp-secret
-kubectl rollout restart deployment -n backstage sx-backstage
-```
 
 ## Accessing platform service consoles
 
