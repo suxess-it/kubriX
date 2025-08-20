@@ -40,7 +40,7 @@ Then you should see log messages in the "Terminal-View":
 
 ### Create GitHub OAuth App 
 
-The Platform-Portal authenticates via GitHub OAuth App. Therefore you need to create a OAuth App in your [delevoper settings](https://github.com/settings/developers) and use the Client-Secret and Client-ID as described in [this section](installation.md#create-github-oauth-app-and-set-secrets-in-vault).
+The Platform-Portal authenticates via GitHub OAuth App. Therefore you need to create a OAuth App as described in [this section](installation.md#create-github-oauth-app-and-set-secrets-in-vault).
  
 The URL of the Codespace has a random name and ID like `https://crispy-robot-g44qvrx9jpx29xx7.github.dev/`.
 Copy the hostname (codespace name) except ".github.dev" and set the URLs of the created OAuth App like this:
