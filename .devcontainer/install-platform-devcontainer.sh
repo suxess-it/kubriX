@@ -34,6 +34,7 @@ if [ ${CODESPACES} ]; then
   export KUBRIX_REPO="https://github.com/${GITHUB_REPOSITORY}"
   export KUBRIX_REPO_USERNAME=${GITHUB_USER}
   export KUBRIX_REPO_PASSWORD=${GITHUB_TOKEN}
+  export KUBRIX_BACKSTAGE_GITHUB_TOKEN=${GITHUB_TOKEN}
 else
   export KUBRIX_REPO=$( git config --get remote.origin.url)
 fi
