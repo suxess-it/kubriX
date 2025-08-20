@@ -21,10 +21,17 @@ check_tool() {
 check_variable() {
   variable=$1
   show_output=$2
-  if [ -z "${!variable}" ]; then
-    echo ""
-    echo "prereq check failed: variable '${variable}' is blank or not set"
-    exit 1
+  sane_default="${3:-}"
+  # check if variable is set
+  if [ -z "${!variable:-}" ]; then
+    # set variable to a sane default if a sane default is present, else exit with error
+    if [ ! -z "${sane_default}" ]; then
+      declare -g ${variable}=${sane_default}
+      echo "set ${variable} to sane default '${!variable}'"
+    else
+      fail "prereq check failed: variable '${variable}' is blank or not set"
+    fi
+  # show value of the variable, unless show_output is false (for omitting output of secrets)
   elif [ ${show_output} = "true" ] ; then
     echo "${variable} is set to '${!variable}'"
   else
@@ -38,6 +45,14 @@ check_prereqs() {
   echo "arch: ${ARCH}"
   echo "os: ${OS}"
 
+  # check variables
+  check_variable KUBRIX_REPO "true"
+  check_variable KUBRIX_REPO_BRANCH "true"
+  check_variable KUBRIX_REPO_USERNAME "true"
+  check_variable KUBRIX_REPO_PASSWORD "false"
+  check_variable KUBRIX_TARGET_TYPE "true"
+  check_variable KUBRIX_CLUSTER_TYPE "true" "k8s"
+
   # check tools
   check_tool yq "yq --version"
   check_tool jq "jq --version"
@@ -48,13 +63,6 @@ check_prereqs() {
   if [[ "${KUBRIX_TARGET_TYPE}" =~ ^KIND.* || "${KUBRIX_CLUSTER_TYPE}" == "KIND" ]] ; then
     check_tool mkcert "mkcert --version"
   fi
-
-  # check variables
-  check_variable KUBRIX_REPO "true"
-  check_variable KUBRIX_REPO_BRANCH "true"
-  check_variable KUBRIX_REPO_USERNAME "true"
-  check_variable KUBRIX_REPO_PASSWORD "false"
-  check_variable KUBRIX_TARGET_TYPE "true"
 
   echo "Prereq checks finished sucessfully."
   echo ""
