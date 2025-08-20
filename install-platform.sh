@@ -50,6 +50,7 @@ check_prereqs() {
   check_variable KUBRIX_REPO_BRANCH "true"
   check_variable KUBRIX_REPO_USERNAME "true"
   check_variable KUBRIX_REPO_PASSWORD "false"
+  check_variable KUBRIX_BACKSTAGE_GITHUB_TOKEN "false"
   check_variable KUBRIX_TARGET_TYPE "true"
   check_variable KUBRIX_CLUSTER_TYPE "true" "k8s"
 

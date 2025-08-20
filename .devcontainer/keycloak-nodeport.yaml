@@ -10,5 +10,6 @@ spec:
       port: 8080
       nodePort: 30692
   selector:
-    app: "keycloak-service"
+    app: keycloak
+    app.kubernetes.io/instance: kubrix-keycloak
   sessionAffinity: None
