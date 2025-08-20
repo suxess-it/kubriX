@@ -32,7 +32,7 @@ secrets:
     stringData:
       username: "admin"
       password: "dynamic:12:hex"
-      url: "http://sx-keycloak-headless.keycloak.svc.cluster.local:8080"
+      url: "http://kubrix-keycloak-service.keycloak.svc.cluster.local:8080"
       client_id: "admin-cli"
       realm: "master"
       tls_insecure_skip_verify: true
@@ -95,7 +95,7 @@ secrets:
       rootUser: "root"
       username: "minio"
       password: "dynamic:12:hex"
-  # cnpg secrets
+  # cnpg backstage secrets
   - application: "cnpg"
     path: "cnpg/base"
     namespace: "cnpg"
@@ -111,3 +111,16 @@ secrets:
       pgadminsecret: "dynamic:12:hex"
       pgadminclientid: "pgadmin"
       pgadminclientsecret: "dynamic:12:hex"
+  # cnpg keycloak secrets    
+  - application: "cnpg"
+    path: "cnpg/base"
+    namespace: "cnpg"
+    secretname: cnpg-creds-kc
+    secretType: "Opaque"
+    stringData:
+      pgkeycloakusername: "keycloak"
+      pgkeycloakpassword: "dynamic:12:hex"
+      pgkeycloakhost: "sx-keycloak-cluster-rw"
+      pgkeycloakdatabase: "keycloak"
+      pgkeycloaksuperuser: "postgres"
+      pgkeycloaksuperuserpassword: "dynamic:12:hex"
