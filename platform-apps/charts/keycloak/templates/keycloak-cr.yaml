@@ -16,7 +16,7 @@ spec:
     passwordSecret:
       name: {{ .Values.keycloak.db.passwordSecret.name }}
       key: {{ .Values.keycloak.db.passwordSecret.key }}
-    host: "{{ .Release.Name }}-postgresql-hl.{{ .Release.Namespace }}.svc.cluster.local"
+    host: "{{ .Release.Name }}-cluster-rw.{{ .Release.Namespace }}.svc.cluster.local"
     database: postgres
     port: {{ .Values.keycloak.db.port | default 5432 }}
     poolInitialSize: 1
@@ -25,8 +25,8 @@ spec:
   http:
     httpEnabled: true
   hostname:
-    hostname: https://keycloak{{ .Values.kubrix.keycloak.fqdn }}
-    admin: https://keycloak{{ .Values.kubrix.keycloak.fqdn }}
+    hostname: https://keycloak{{ .Values.kubrix.keycloak.domainName }}
+    admin: https://keycloak{{ .Values.kubrix.keycloak.domainName }}
     strict: false
     backchannelDynamic: true
   proxy:

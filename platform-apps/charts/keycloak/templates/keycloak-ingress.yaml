@@ -13,11 +13,11 @@ spec:
   {{- if .Values.kubrix.keycloak.ingress.tls.enabled }}
   tls:
     - hosts:
-        - "keycloak{{ .Values.kubrix.keycloak.fqdn }}"
+        - "keycloak{{ .Values.kubrix.keycloak.domainName }}"
       secretName: {{ .Values.kubrix.keycloak.ingress.tls.secretName | default "keycloak-server-tls" }}
   {{- end }}
   rules:
-    - host: "keycloak{{ .Values.kubrix.keycloak.fqdn }}"
+    - host: "keycloak{{ .Values.kubrix.keycloak.domainName }}"
       http:
         paths:
           - path: /

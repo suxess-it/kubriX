@@ -41,29 +41,6 @@ keycloak:
       key: POSTGRES_PASSWORD
     port: 5432
 
-
-######## postgres instance
-postgresql:
-  enabled: true
-  pdb:
-    create: false
-  primary:
-    networkPolicy:
-      enabled: false
-    persistence:
-      size: 2Gi # for demo only
-  auth:
-    username: keycloak
-    database: postgres
-    existingSecret: "cp-keycloak-externaldb-secret"
-    secretKeys:
-      userPasswordKey: POSTGRES_PASSWORD
-      adminPasswordKey: POSTGRES_ADMIN
-      # replicationPasswordKey: # not used
-  volumePermissions:
-    enabled: false
-  architecture: standalone
-
 #### kubrix
 kubrix:
   keycloak:
@@ -76,7 +53,7 @@ kubrix:
         external-dns.alpha.kubernetes.io/ttl: "60"
         cert-manager.io/cluster-issuer: letsencrypt-prod
       className: nginx
-    fqdn: .demo.kubrix.cloud # add to prefix keycloak in templates
+    domainName: .demo.kubrix.cloud # add to prefix keycloak in templates
     realm:
       realmid: kubrix
       users:
@@ -133,4 +110,31 @@ kubrix:
 
 ## cnpg
 cluster:
-  enabled: false
+  type: postgresql
+  mode: standalone
+  version:
+    postgresql: "16"
+  cluster:
+    instances: 1
+    monitoring:
+      enabled: true
+    superuserSecret: cnpg-superuser-secret
+    initdb:
+      database: keycloak
+      secret:
+        name: cnpg-keycloak-secret
+    roles:
+    - name: keycloak
+      ensure: present
+      comment: keycloak-admin-user
+      login: true
+      inherit: true
+      superuser: true
+      createdb: true
+      passwordSecret:
+        name: cnpg-keycloak-secret
+    annotations:
+      argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+      argocd.argoproj.io/sync-wave: "-1"
+  backups:
+    enabled: false
