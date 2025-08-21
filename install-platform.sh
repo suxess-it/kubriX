@@ -438,17 +438,22 @@ fi
 # create argocd with helm chart not with install.yaml
 # because afterwards argocd is also managed by itself with the helm-chart
 
-echo "installing bootstrap argocd ..."
-helm repo add argo-cd https://argoproj.github.io/argo-helm
-helm repo update
-helm install sx-argocd argo-cd \
-  --repo https://argoproj.github.io/argo-helm \
-  --version 7.8.24 \
-  --namespace argocd \
-  --create-namespace \
-  --set configs.cm.application.resourceTrackingMethod=annotation \
-  -f bootstrap-argocd-values.yaml \
-  --wait
+
+# install argocd unless it is already deployed
+if [[ $(helm status sx-argocd -n argocd | grep "STATUS: deployed") ]] ; then
+  echo "argocd already installed"
+else
+  echo "installing bootstrap argocd ..."
+  helm repo add argo-cd https://argoproj.github.io/argo-helm
+  helm install sx-argocd argo-cd \
+    --repo https://argoproj.github.io/argo-helm \
+    --version 7.8.24 \
+    --namespace argocd \
+    --create-namespace \
+    --set configs.cm.application.resourceTrackingMethod=annotation \
+    -f bootstrap-argocd-values.yaml \
+    --wait
+fi
 
 
 # we add the repo inside the application-controller because it could be that clusters do not have any ingress controller installed yet at this moment
