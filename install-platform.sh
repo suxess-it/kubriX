@@ -438,13 +438,14 @@ fi
 # create argocd with helm chart not with install.yaml
 # because afterwards argocd is also managed by itself with the helm-chart
 
-echo "installing bootstrap argocd ..."
-helm repo add argo-cd https://argoproj.github.io/argo-helm
-helm repo update
 
 # install argocd unless it is already deployed
-if [ ! $(helm status sx-argocd -n argocd | grep "STATUS: deployed") ] ; then
-  helm install sx-argocd argo-cd \
+if [[ $(helm status sx-argocd -n argocd | grep "STATUS: deployed") ]] ; then
+  echo "argocd already installed"
+else
+  echo "installing bootstrap argocd ..."
+  helm repo add argo-cd https://argoproj.github.io/argo-helm
+  helm repo update install sx-argocd argo-cd \
     --repo https://argoproj.github.io/argo-helm \
     --version 7.8.24 \
     --namespace argocd \
