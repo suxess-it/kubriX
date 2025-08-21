@@ -18,6 +18,12 @@ VAULT_ENABLED=false
 SECRETKVNAME=kubrix-kv
 CONFIGFILES=(.secrets/.env*.yaml)
 
+if [ -f $TMPDIR/$SECRETFILE  ] ; then
+  echo "secrets file $TMPDIR/$SECRETFILE already exists."
+  echo "don't create new secrets."
+  exit 0
+fi
+
 # check for yq
 if ! command -v yq &> /dev/null; then
     echo "Error: missing yq binary!"
