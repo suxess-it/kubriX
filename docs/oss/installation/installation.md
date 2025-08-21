@@ -48,9 +48,7 @@ Before installing kubriX, make sure you have:
 
 ## ⚠️ Troubleshooting Installation
 
-If you run into issues during setup, please see our  
-[Troubleshooting Installation Guide](../troubleshooting/installation-troubleshooting.md)  
-for common problems and solutions.
+If you run into issues during setup, please see our [Troubleshooting Installation Guide](../troubleshooting/installation-troubleshooting.md) for common problems and solutions.
 
 ---
 
