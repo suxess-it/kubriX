@@ -171,7 +171,7 @@ kubectl logs -n <namespace> <pod-name>
 
 > 💡 **Tips:** Try [K8sGPT](https://k8sgpt.ai/) to analyze your environment. We will integrate this tool in the future probably also in kubriX.
 
-Consult the [Troubleshooting Guide](../troubleshooting/troubleshooting.md) for common fixes.
+Consult the [Troubleshooting Installation Guide](../troubleshooting/installation-troubleshooting.md) for common fixes.
 
 ## 🗑 Uninstalling kubriX
 
