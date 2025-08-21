@@ -445,7 +445,7 @@ if [[ $(helm status sx-argocd -n argocd | grep "STATUS: deployed") ]] ; then
 else
   echo "installing bootstrap argocd ..."
   helm repo add argo-cd https://argoproj.github.io/argo-helm
-  helm repo update install sx-argocd argo-cd \
+  helm install sx-argocd argo-cd \
     --repo https://argoproj.github.io/argo-helm \
     --version 7.8.24 \
     --namespace argocd \
