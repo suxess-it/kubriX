@@ -62,11 +62,12 @@ vault:
             if ls /keycloak-ca/*.crt >/dev/null 2>&1; then
               cat /keycloak-ca/*.crt >> /vault/kind-bundle-ca/combined-bundle.crt
             fi
-        - name: ca-bundle
-          mountPath: /vault/kind-bundle-ca
-        - name: keycloak-ca
-          mountPath: /keycloak-ca
-          readOnly: true
+        volumeMounts:
+          - name: ca-bundle
+            mountPath: /vault/kind-bundle-ca
+          - name: keycloak-ca
+            mountPath: /keycloak-ca
+            readOnly: true
         securityContext:
           allowPrivilegeEscalation: false
           capabilities:
