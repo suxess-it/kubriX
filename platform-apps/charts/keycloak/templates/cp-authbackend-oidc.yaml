@@ -4,7 +4,8 @@
 apiVersion: batch/v1
 kind: Job
 metadata:
-  name: curl-until-success-or-timeout
+  name: curl-oidcDiscoveryUrl
+  namespace: vault
   annotations:
     argocd.argoproj.io/sync-wave: "2"
 spec:
@@ -25,12 +26,14 @@ spec:
             value: "300"                          # total time to keep trying
           - name: SLEEP_SECONDS
             value: "5"                            # wait between attempts
+{{- if (contains "nip.io" .Values.kubrix.keycloak.domainName ) }}
           - name: CURL_CA_BUNDLE
             value: "/etc/ssl/custom/ca.crt"
         volumeMounts:
           - name: ca-cert
             mountPath: /etc/ssl/custom
             readOnly: true
+{{- end }}
         command:
           - sh
           - -c
@@ -48,6 +51,7 @@ spec:
             done
             echo "Timed out after ${TIMEOUT_SECONDS}s waiting for $URL"
             exit 1
+{{- if (contains "nip.io" .Values.kubrix.keycloak.domainName ) }}
       volumes:
         - name: ca-cert
           secret:
@@ -56,9 +60,8 @@ spec:
               - key: ca.crt
                 path: ca.crt
                 mode: 0444
+{{- end }}
 ---
-#issue opened https://github.com/upbound/provider-vault/issues/45 - oidcDiscoveryCaPem should be referenced with @oidcDiscoveryCaPem
-{{- if not (contains "nip.io" .Values.kubrix.keycloak.domainName ) }}
 apiVersion: jwt.vault.upbound.io/v1alpha1
 kind: AuthBackend
 metadata:
@@ -109,4 +112,3 @@ spec:
     roleType: oidc
     backend: oidc
    # policies: default #needed?
-{{- end }}
