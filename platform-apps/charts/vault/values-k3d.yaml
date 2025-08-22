@@ -62,6 +62,18 @@ vault:
             if ls /keycloak-ca/*.crt >/dev/null 2>&1; then
               cat /keycloak-ca/*.crt >> /vault/kind-bundle-ca/combined-bundle.crt
             fi
+        - name: ca-bundle
+          mountPath: /vault/kind-bundle-ca
+        - name: keycloak-ca
+          mountPath: /keycloak-ca
+          readOnly: true
+        securityContext:
+          allowPrivilegeEscalation: false
+          capabilities:
+            drop:
+            - ALL
+          privileged: false
+          runAsNonRoot: true
     extraContainers:
       - name: auto-initializer
         image: hashicorp/vault:1.19.5
