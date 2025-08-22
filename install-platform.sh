@@ -26,7 +26,7 @@ check_variable() {
   if [ -z "${!variable:-}" ]; then
     # set variable to a sane default if a sane default is present, else exit with error
     if [ ! -z "${sane_default}" ]; then
-      printf -v "${variable}" '%s' "${sane_default}“
+      printf -v "${variable}" '%s' "${sane_default}"
       echo "set ${variable} to sane default '${!variable}'"
     else
       fail "prereq check failed: variable '${variable}' is blank or not set"
