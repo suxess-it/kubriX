@@ -25,13 +25,19 @@ spec:
             value: "300"                          # total time to keep trying
           - name: SLEEP_SECONDS
             value: "5"                            # wait between attempts
+          - name: CURL_CA_BUNDLE
+            value: "/etc/ssl/custom/ca.crt"
+        volumeMounts:
+          - name: ca-cert
+            mountPath: /etc/ssl/custom
+            readOnly: true
         command:
           - sh
           - -c
           - |
             start=$(date +%s)
             end=$((start + TIMEOUT_SECONDS))
-            echo "Probing $URL for up to ${TIMEOUT_SECONDS}s ..."
+            echo "Probing $URL with custom CA ($CURL_CA_BUNDLE) for up to ${TIMEOUT_SECONDS}s ..."
             while [ "$(date +%s)" -lt "$end" ]; do
               if curl -fsS "$URL" > /dev/null; then
                 echo "Success: $URL is reachable."
@@ -42,6 +48,14 @@ spec:
             done
             echo "Timed out after ${TIMEOUT_SECONDS}s waiting for $URL"
             exit 1
+      volumes:
+        - name: ca-cert
+          secret:
+            secretName: ca-cert
+            items:
+              - key: ca.crt
+                path: ca.crt
+                mode: 0444
 ---
 #issue opened https://github.com/upbound/provider-vault/issues/45 - oidcDiscoveryCaPem should be referenced with @oidcDiscoveryCaPem
 {{- if not (contains "nip.io" .Values.kubrix.keycloak.domainName ) }}
