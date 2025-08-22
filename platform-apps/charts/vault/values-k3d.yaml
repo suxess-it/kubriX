@@ -184,6 +184,9 @@ vault:
             mountPath: /usr/local/libexec/vault
           - mountPath: /vault/userconfig/vault-ca
             name: vault-ca-cert
+            readOnly: true
+          - name: ca-cert
+            mountPath: /etc/ssl/custom
             readOnly: true 
         securityContext:
           allowPrivilegeEscalation: false
@@ -204,6 +207,9 @@ vault:
       - name: vault-ca-cert
         secret:
           defaultMode: 420
+          secretName: ca-cert
+      - name: ca-cert
+        secret:
           secretName: ca-cert
     volumeMounts:
       - mountPath: /usr/local/libexec/vault
