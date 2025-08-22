@@ -1,6 +1,6 @@
 
 <h3>Target <code>bitnami/kubectl:1.32.3 (debian 12.10)</code></h3>
-<h4>Vulnerabilities (32)</h4>
+<h4>Vulnerabilities (33)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -78,6 +78,13 @@
         <td>HIGH</td>
         <td>0.34-3</td>
         <td>0.34-4~deb12u1</td>
+    </tr>
+    <tr>
+        <td><code>libgnutls30</code></td>
+        <td>CVE-2025-32988</td>
+        <td>HIGH</td>
+        <td>3.7.9-2+deb12u4</td>
+        <td>3.7.9-2+deb12u5</td>
     </tr>
     <tr>
         <td><code>libgnutls30</code></td>
