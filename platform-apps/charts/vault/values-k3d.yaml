@@ -49,6 +49,19 @@ vault:
             - ALL
           privileged: false
           runAsNonRoot: true
+      # only for kind cluster with mkcert root ca
+      - name: combine-system-and-keycloak-ca
+        image: hashicorp/vault:1.19.5              # same base as server to get the original ca-certificates.crt
+        command: ["/bin/sh","-c"]
+        args:
+          - |
+            set -euo pipefail
+            # Start with the system bundle from the base image
+            cat /etc/ssl/certs/ca-certificates.crt > /vault/kind-bundle-ca/combined-bundle.crt
+            # Append your Keycloak CA(s) if present
+            if ls /keycloak-ca/*.crt >/dev/null 2>&1; then
+              cat /keycloak-ca/*.crt >> /vault/kind-bundle-ca/combined-bundle.crt
+            fi
     extraContainers:
       - name: auto-initializer
         image: hashicorp/vault:1.19.5
@@ -194,7 +207,8 @@ vault:
           runAsNonRoot: true
     extraEnvironmentVars:
       VAULT_CACERT: /vault/userconfig/vault-ca/ca.crt
-      SSL_CERT_FILE: /vault/userconfig/vault-ca/ca.crt
+      # only for kind cluster with mkcert root ca
+      SSL_CERT_FILE: /vault/kind-bundle-ca/combined-bundle.crt
     volumes:
       - name: plugins
         emptyDir: {}
@@ -206,6 +220,13 @@ vault:
         secret:
           defaultMode: 420
           secretName: ca-cert
+      # only for kind cluster with mkcert root ca
+      - name: keycloak-ca
+        secret:
+          defaultMode: 420
+          secretName: ca-cert
+      - name: ca-bundle
+        emptyDir: {}
     volumeMounts:
       - mountPath: /usr/local/libexec/vault
         name: plugins
@@ -213,6 +234,12 @@ vault:
       - mountPath: /vault/userconfig/vault-ca
         name: vault-ca-cert
         readOnly: true
+      # only for kind cluster with mkcert root ca
+      - name: keycloak-ca
+        mountPath: /keycloak-ca
+        readOnly: true
+      - name: ca-bundle
+        mountPath: /vault/kind-bundle-ca
     dataStorage:
       size: 1Gi
     affinity: {}
