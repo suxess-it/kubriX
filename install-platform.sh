@@ -26,7 +26,7 @@ check_variable() {
   if [ -z "${!variable:-}" ]; then
     # set variable to a sane default if a sane default is present, else exit with error
     if [ ! -z "${sane_default}" ]; then
-      declare -g ${variable}=${sane_default}
+      printf -v "${variable}" '%s' "${sane_default}"
       echo "set ${variable} to sane default '${!variable}'"
     else
       fail "prereq check failed: variable '${variable}' is blank or not set"
@@ -53,6 +53,7 @@ check_prereqs() {
   check_variable KUBRIX_BACKSTAGE_GITHUB_TOKEN "false"
   check_variable KUBRIX_TARGET_TYPE "true"
   check_variable KUBRIX_CLUSTER_TYPE "true" "k8s"
+  check_variable KUBRIX_BOOTSTRAP_MAX_WAIT_TIME "true" "1800"
 
   # check tools
   check_tool yq "yq --version"
@@ -479,7 +480,7 @@ argocd_apps=$(cat $target_chart_value_file | egrep -Ev "team-onboarding" | awk '
 argocd_apps_without_individual=$(cat $target_chart_value_file | egrep -Ev "team-onboarding" | awk '/^  - name:/ { printf "%s", "sx-"$3" "}' )
 
 # max wait for 20 minutes until all apps except backstage and kargo are synced and healthy
-wait_until_apps_synced_healthy "${argocd_apps_without_individual}" "Synced" "Healthy" ${KUBRIX_BOOTSTRAP_MAX_WAIT_TIME:-1200}
+wait_until_apps_synced_healthy "${argocd_apps_without_individual}" "Synced" "Healthy" ${KUBRIX_BOOTSTRAP_MAX_WAIT_TIME}
 
 # if vault is part of this stack, do some special configuration
 if [[ $( echo $argocd_apps | grep sx-vault ) ]] ; then
