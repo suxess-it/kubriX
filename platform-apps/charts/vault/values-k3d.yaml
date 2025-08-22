@@ -185,9 +185,6 @@ vault:
           - mountPath: /vault/userconfig/vault-ca
             name: vault-ca-cert
             readOnly: true
-          - name: ca-cert
-            mountPath: /etc/ssl/custom
-            readOnly: true 
         securityContext:
           allowPrivilegeEscalation: false
           capabilities:
@@ -217,7 +214,10 @@ vault:
         readOnly: false 
       - mountPath: /vault/userconfig/vault-ca
         name: vault-ca-cert
-        readOnly: true 
+        readOnly: true
+      - name: ca-cert
+        mountPath: /etc/ssl/custom
+        readOnly: true
     dataStorage:
       size: 1Gi
     affinity: {}
