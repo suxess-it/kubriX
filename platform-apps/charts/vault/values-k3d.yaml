@@ -192,6 +192,23 @@ vault:
             - ALL
           privileged: false
           runAsNonRoot: true
+      - name: integrate-keycloak-ca-in-system-trust-bundle
+        image: hashicorp/vault:1.19.5
+        command: ["/bin/sh","-c"]
+        args:
+          - |
+            set -e
+            apt-get update >/dev/null && apt-get install -y --no-install-recommends ca-certificates >/dev/null
+            # Rebuild system bundle using base image defaults + your Secret's CA
+            update-ca-certificates
+            # Copy the generated bundle & hashes into the shared volume
+            cp -a /etc/ssl/certs/. /work-certs/
+        volumeMounts:
+          - name: ca-input
+            mountPath: /usr/local/share/ca-certificates   # adds your CA
+            readOnly: true
+          - name: ca-shared
+            mountPath: /work-certs                        # shared emptyDir target
     extraEnvironmentVars:
       VAULT_CACERT: /vault/userconfig/vault-ca/ca.crt
     volumes:
@@ -205,9 +222,11 @@ vault:
         secret:
           defaultMode: 420
           secretName: ca-cert
-      - name: ca-cert
+      - name: ca-input
         secret:
           secretName: ca-cert
+      - name: ca-shared
+        emptyDir: {}
     volumeMounts:
       - mountPath: /usr/local/libexec/vault
         name: plugins
@@ -215,8 +234,10 @@ vault:
       - mountPath: /vault/userconfig/vault-ca
         name: vault-ca-cert
         readOnly: true
-      - name: ca-cert
-        mountPath: /etc/ssl/custom
+      - name: ca-shared
+        mountPath: /etc/ssl/certs                  # Vault sees updated bundle here
+      - name: ca-input
+        mountPath: /usr/local/share/ca-certificates
         readOnly: true
     dataStorage:
       size: 1Gi
