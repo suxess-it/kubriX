@@ -48,9 +48,9 @@ RUN mkdir -p "$CAROOT" \
  && chmod -R a+rX "$CAROOT"
 
 # (optional but handy) make mkcert skip failing -install later if CA already exists
-RUN mv /usr/local/bin/mkcert /usr/local/bin/mkcert.real && \
-    cat >/usr/local/bin/mkcert <<'EOF' && \
-    chmod +x /usr/local/bin/mkcert
+RUN mv /usr/bin/mkcert /usr/bin/mkcert.real && \
+    cat >/usr/bin/mkcert <<'EOF' && \
+    chmod +x /usr/bin/mkcert
 #!/usr/bin/env bash
 set -euo pipefail
 if [[ "$1" == "-install" || "$1" == "install" ]]; then
@@ -59,7 +59,7 @@ if [[ "$1" == "-install" || "$1" == "install" ]]; then
     exit 0
   fi
 fi
-exec /usr/local/bin/mkcert.real "$@"
+exec /usr/bin/mkcert.real "$@"
 EOF
 
 # Non-root default (Job can override if needed)
