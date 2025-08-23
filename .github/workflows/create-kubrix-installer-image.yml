@@ -10,7 +10,7 @@ env:
   GHCR_REPO: ghcr.io/suxess-it/kubrix-installer
 
 jobs:
-  build:
+  create-kubrix-installer-image:
     runs-on: ubuntu-latest
     timeout-minutes: 10
 
@@ -38,6 +38,8 @@ jobs:
      
       - name: Build and push docker amd64
         uses: docker/build-push-action@v6
+        env:
+          TARGETARCH: amd64
         with:
           context: .
           push: true
@@ -47,6 +49,8 @@ jobs:
           
       - name: Build and push docker arm64
         uses: docker/build-push-action@v5
+        env:
+          TARGETARCH: arm64
         with:
           context: .
           push: true
