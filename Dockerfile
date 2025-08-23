@@ -1,4 +1,4 @@
-# docker buildx build --platform linux/amd64,linux/arm64 -t yourrepo/kubrix-installer:<tag> --push .
+# docker buildx build --platform linux/amd64,linux/arm64 -t ghcr.io/suxess-it/kubrix-installer:latest --push .
 FROM ubuntu:22.04
 
 ARG TARGETARCH
