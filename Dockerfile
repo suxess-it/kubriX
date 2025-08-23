@@ -48,17 +48,19 @@ RUN mkdir -p "$CAROOT" \
  && chmod -R a+rX "$CAROOT"
 
 # (optional but handy) make mkcert skip failing -install later if CA already exists
-RUN mv /usr/local/bin/mkcert /usr/local/bin/mkcert.real \
- && printf '%s\n' '#!/usr/bin/env bash
-set -e
+RUN mv /usr/local/bin/mkcert /usr/local/bin/mkcert.real && \
+    cat >/usr/local/bin/mkcert <<'EOF' && \
+    chmod +x /usr/local/bin/mkcert
+#!/usr/bin/env bash
+set -euo pipefail
 if [[ "$1" == "-install" || "$1" == "install" ]]; then
   if [[ -f "${CAROOT:-/etc/mkcert}/rootCA-key.pem" ]]; then
-    echo "mkcert: CA already installed, skipping.";
+    echo "mkcert: CA already installed, skipping."
     exit 0
   fi
 fi
-exec /usr/local/bin/mkcert.real "$@"' > /usr/local/bin/mkcert \
- && chmod +x /usr/local/bin/mkcert
+exec /usr/local/bin/mkcert.real "$@"
+EOF
 
 # Non-root default (Job can override if needed)
 RUN useradd -m runner && chown -R runner:runner /work
