@@ -41,6 +41,25 @@ WORKDIR /work
 COPY install-platform.sh /work/install-platform.sh
 RUN chmod +x /work/install-platform.sh
 
+# Use a stable, shared CAROOT inside the image (readable to non-root)
+ENV CAROOT=/etc/mkcert
+RUN mkdir -p "$CAROOT" \
+ && mkcert -install \           # runs as root; installs CA into CAROOT and system trust
+ && chmod -R a+rX "$CAROOT"
+
+# (optional but handy) make mkcert skip failing -install later if CA already exists
+RUN mv /usr/local/bin/mkcert /usr/local/bin/mkcert.real \
+ && printf '%s\n' '#!/usr/bin/env bash
+set -e
+if [[ "$1" == "-install" || "$1" == "install" ]]; then
+  if [[ -f "${CAROOT:-/etc/mkcert}/rootCA-key.pem" ]]; then
+    echo "mkcert: CA already installed, skipping.";
+    exit 0
+  fi
+fi
+exec /usr/local/bin/mkcert.real "$@"' > /usr/local/bin/mkcert \
+ && chmod +x /usr/local/bin/mkcert
+
 # Non-root default (Job can override if needed)
 RUN useradd -m runner && chown -R runner:runner /work
 USER runner
