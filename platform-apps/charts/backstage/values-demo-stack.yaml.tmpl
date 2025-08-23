@@ -161,7 +161,7 @@ backstage:
           #guest: {}
           oidc:
             development:
-              metadataUrl: http://sx-keycloak-headless.keycloak.svc.cluster.local:8080/realms/kubrix #.well-known/openid-configuration can be ommited
+              metadataUrl: http://kubrix-keycloak-service.keycloak.svc.cluster.local:8080/realms/kubrix #.well-known/openid-configuration can be ommited
               callbackUrl: https://backstage.{{ .kubriX.domain }}/api/auth/oidc/handler/frame
               clientId: backstage
               clientSecret: ${OIDC_CLIENTSECRET}
@@ -238,17 +238,17 @@ backstage:
           - allow: [Component, System, API, Resource, Location, Template, Domain, User, Group ]
         locations:
           - type: url
-            target: {{ .kubriX.gitRepo }}/blob/main/backstage-resources/templates/showcase-templates-demo.yaml
+            target: {{ .kubriX.gitRepo | strings.TrimSuffix ".git" }}/blob/main/backstage-resources/templates/showcase-templates-demo.yaml
             rules:
               - allow: [Template]
           - type: url
-            target: {{ .kubriX.gitRepo }}/blob/main/backstage-resources/entities/all.yaml
+            target: {{ .kubriX.gitRepo | strings.TrimSuffix ".git" }}/blob/main/backstage-resources/entities/all.yaml
           - type: url
-            target: {{ .kubriX.gitRepo }}/blob/main/backstage-resources/entities/demo.yaml
+            target: {{ .kubriX.gitRepo | strings.TrimSuffix ".git" }}/blob/main/backstage-resources/entities/demo.yaml
         providers:
           keycloakOrg:
             default:
-              baseUrl: http://sx-keycloak-headless.keycloak.svc.cluster.local:8080
+              baseUrl: http://kubrix-keycloak-service.keycloak.svc.cluster.local:8080
               loginRealm: kubrix
               realm: kubrix
               clientId: backstage

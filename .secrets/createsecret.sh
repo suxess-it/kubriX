@@ -1,6 +1,13 @@
-#!/bin/bash
+#!/usr/bin/env bash
+
+# Safer prologue
+set -Eeuo pipefail
 
 shopt -s nullglob
+
+# Simple error trap
+fail() { printf '%s\n' "$1" >&2; exit "${2:-1}"; }
+trap 'fail "Error on line $LINENO"' ERR
 
 # basevariables
 TMPDIR=".secrets/secrettemp"
@@ -10,6 +17,12 @@ VAULT_CMD="vault"
 VAULT_ENABLED=false
 SECRETKVNAME=kubrix-kv
 CONFIGFILES=(.secrets/.env*.yaml)
+
+if [ -f $TMPDIR/$SECRETFILE  ] ; then
+  echo "secrets file $TMPDIR/$SECRETFILE already exists."
+  echo "don't create new secrets."
+  exit 0
+fi
 
 # check for yq
 if ! command -v yq &> /dev/null; then
