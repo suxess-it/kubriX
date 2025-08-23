@@ -9,6 +9,7 @@ SHELL ["/bin/bash","-lc"]
 RUN apt-get update && apt-get install -y --no-install-recommends \
     ca-certificates curl git jq bash coreutils tar gzip unzip procps \
     libnss3-tools \
+    mkcert \
  && rm -rf /var/lib/apt/lists/*
 
 # yq (select by TARGETARCH)
@@ -33,18 +34,6 @@ RUN case "${TARGETARCH}" in \
 
 # Helm (script auto-detects arch)
 RUN curl -fsSL https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3 | bash
-
-# mkcert (needed if target type is KIND; select by TARGETARCH)
-RUN case "${TARGETARCH}" in \
-      amd64) MC_ARCH=amd64 ;; \
-      arm64) MC_ARCH=arm64 ;; \
-    esac \
- && MC_VER="$(curl -fsSL https://api.github.com/repos/FiloSottile/mkcert/releases/latest | jq -r '.tag_name')" \
- && curl -fsSLo /tmp/mkcert.tar.gz \
-      "https://github.com/FiloSottile/mkcert/releases/download/${MC_VER}/mkcert-${MC_VER}-linux-${MC_ARCH}.tar.gz" \
- && tar -C /usr/local/bin -xzf /tmp/mkcert.tar.gz mkcert \
- && rm -f /tmp/mkcert.tar.gz \
- && chmod +x /usr/local/bin/mkcert
 
 # Put the installer script into the image (Option A)
 WORKDIR /work
