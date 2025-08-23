@@ -75,6 +75,7 @@ jobs:
       - name: install kubriX stack
         env:
           KUBRIX_TARGET_TYPE: ${{ matrix.target-type }}
+          KUBRIX_CLUSTER_TYPE: "KIND"
           KUBRIX_BACKSTAGE_GITHUB_CLIENTSECRET: "dummy"
           KUBRIX_BACKSTAGE_GITHUB_CLIENTID: "dummy"
           KUBRIX_BACKSTAGE_GITHUB_TOKEN: "dummy"
@@ -88,6 +89,7 @@ jobs:
           ./install-platform.sh
 
       - name: argocd show diff
+        continue-on-error: true
         if: always()
         env:
           KUBRIX_TARGET_TYPE: ${{ matrix.target-type }}

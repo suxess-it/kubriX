@@ -6,7 +6,8 @@ cloudnative-pg:
  #   argocd.argoproj.io/sync-wave: "-2"
 ## pgadmin for demopurposes
 pgadmin4:
-  fqdn: .demo.kubrix.cloud
+  enabled: true
+  domainName: .demo.kubrix.cloud
   ingress:
     enabled: true
     ingressClassName: nginx

@@ -13,14 +13,14 @@ spec:
     clientId: vault
     name: vault
     realmId: {{ .Values.kubrix.keycloak.realm.realmid }}
-    adminUrl: "https://vault{{ .Values.kubrix.keycloak.fqdn }}"
-    rootUrl: "https://vault{{ .Values.kubrix.keycloak.fqdn }}"
+    adminUrl: "https://vault{{ .Values.kubrix.keycloak.domainName }}"
+    rootUrl: "https://vault{{ .Values.kubrix.keycloak.domainName }}"
     directAccessGrantsEnabled: false
     standardFlowEnabled: true
     serviceAccountsEnabled: true
 #    managementPolicies: ["Observe"]
     validRedirectUris:
-      - "https://vault{{ .Values.kubrix.keycloak.fqdn }}/ui/vault/auth/oidc/oidc/callback"
+      - "https://vault{{ .Values.kubrix.keycloak.domainName }}/ui/vault/auth/oidc/oidc/callback"
     clientSecretSecretRef:
       key: vault
       name: keycloak-client-credentials

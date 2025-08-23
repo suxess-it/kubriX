@@ -13,17 +13,13 @@ If you just want to have a look at the platform stack in a read-only mode, just 
 
 You can start a GitHub Codespaces with the button below or this [link](https://github.com/codespaces/new/)
 
-- Repository: this original repository or your fork
+- Repository: this original kubriX repository or your fork
 - Branch: main branch (or a feature branch if you want to test some special features)
 - Dev container configuration: you can select which platform stack (brick) should get installed
-- Recommended Secrets:
-  - KUBRIX_BACKSTAGE_GITHUB_TOKEN: a Personal Access Token for Github to read files from the origin repo
-  - KUBRIX_ARGOCD_APPSET_TOKEN: a Personal Access Token for Github to read repositories in your organization (for ArgoCD AppSet SCM Generator)
 
 [![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/)
 
-![image](https://github.com/user-attachments/assets/ca473d8c-6bf2-4687-9b10-88dd29843860)
-
+<img width="991" height="706" alt="image" src="https://github.com/user-attachments/assets/e7ebe2ad-2724-4880-a7ba-40796df0dc9b" />
 
 You will get a VSCode environment in your browser and additionally a KinD cluster and our platform stack gets installed during startup of the Codespace.
 
@@ -44,32 +40,8 @@ Then you should see log messages in the "Terminal-View":
 
 ### Create GitHub OAuth App 
 
-The Platform-Portal authenticates via GitHub OAuth App. Therefore you need to create a OAuth App in your [delevoper settings](https://github.com/settings/developers) and use the Client-Secret and Client-ID during installation or GitHub Codespace creation.
+The Platform-Portal authenticates via GitHub OAuth App. Therefore you need to create a OAuth App as described in [this section](installation.md#create-github-oauth-app-and-set-secrets-in-vault).
  
-The URL of the Codespace has a random name and ID like `https://crispy-robot-g44qvrx9jpx29xx7.github.dev/`.
-Copy the hostname (codespace name) except ".github.dev" and set the URLs of the created OAuth App like this:
-
-- Homepage URL: `<copied hostname>-6691.app.github.dev`
-- Authorization callback URL: `<copied hostname>-6691.app.github.dev/api/auth/github`
-
-![image](https://github.com/user-attachments/assets/fd513ff7-3501-4299-aab2-41feae1028bc)
-
-
-Use "Client ID" to define the variable "GITHUB_CLIENTID" in the step below. Generate a "Client secret" and use the secret to define the variable "GITHUB_CLIENTSECRET" in the step below.
-
-Then set GITHUB_CLIENTSECRET and GITHUB_CLIENTID from your Github OAuth App and set them in vault via kubectl/curl:
-
-```
-export GITHUB_CLIENTID="<client-id-from-step-before>"
-export GITHUB_CLIENTSECRET="<client-secret-from-step-before>"
-export VAULT_HOSTNAME=$(kubectl get ingress -o jsonpath='{.items[*].spec.rules[*].host}' -n vault)
-export VAULT_TOKEN=$(kubectl get secret -n vault vault-init -o=jsonpath='{.data.root_token}'  | base64 -d)
-curl -k --header "X-Vault-Token:$VAULT_TOKEN" --request PATCH --header "Content-Type: application/merge-patch+json" --data "{\"data\": {\"GITHUB_CLIENTSECRET\": \"${GITHUB_CLIENTSECRET}\", \"GITHUB_CLIENTID\":
-\"${GITHUB_CLIENTID}\"}}" https://${VAULT_HOSTNAME}/v1/kubrix-kv/data/portal/backstage/base
-kubectl delete externalsecret -n backstage sx-cnp-secret
-kubectl rollout restart deployment -n backstage sx-backstage
-```
-
 ## Accessing platform service consoles
 
 In the "Ports-View" you will see different URLs for different platform services. When clicking on the "world" symbol you can open the URL in your browser and use the tools.
@@ -78,18 +50,9 @@ In the "Ports-View" you will see different URLs for different platform services.
 
 You can already access the tools during installation of the platform stack, as soon as the tool is synced via ArgoCD and healthy. So especially opening ArgoCD UI during platform installation is very helpful to follow the installation process.
 
-Needed credentials for the different tools are:
+Needed credentials for the different tools are documented in [Logins](installation.md#login).
 
-| Tool     | Username | Password |
-| -------- | ------- | ------- |
-| Backstage  | via github | via github |
-| ArgoCD | admin | `kubectl get secret -n argocd argocd-initial-admin-secret -o=jsonpath='{.data.password}' \| base64 -d` |
-| Kargo  | admin | - |
-| Grafana    | admin | prom-operator |
-| Keycloak   | admin | admin |
-| FalcoUI    | admin | admin |
-
-The password for ArgoCD can be found with the command above in the VSCode terminal. Just open a new "bash Terminal" and execute the command above.
+The commands can be executed in the Codespaces VSCode terminal. Just open a new "bash Terminal" and execute the commands above. Sometimes you need to permit copy/paste in your browser.
 
 Also, at the end of the installation you get a summary of the URLs and credentials per tool. Unfortunately some infos are masked, we are working on that.
 
@@ -154,7 +117,7 @@ stop vscode
 
 start vscode (but don't switch to devcontainer remote explorer)
 
-dann in vscode command (CTRL+SHIFT+P)
+then in vscode command (CTRL+SHIFT+P)
 
 "dev containers: clean up dev containers"
 "dev cotainers: clean up dev volume"

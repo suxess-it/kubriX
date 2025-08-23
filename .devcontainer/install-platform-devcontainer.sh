@@ -27,6 +27,7 @@ else
 fi
 
 export KUBRIX_REPO_BRANCH=$( git rev-parse --abbrev-ref HEAD )
+export KUBRIX_BOOTSTRAP_MAX_WAIT_TIME=1800
 
 # codespace always use the github repository where they are started,
 # on local machine it should use the remote origin repo
@@ -34,6 +35,7 @@ if [ ${CODESPACES} ]; then
   export KUBRIX_REPO="https://github.com/${GITHUB_REPOSITORY}"
   export KUBRIX_REPO_USERNAME=${GITHUB_USER}
   export KUBRIX_REPO_PASSWORD=${GITHUB_TOKEN}
+  export KUBRIX_BACKSTAGE_GITHUB_TOKEN=${GITHUB_TOKEN}
 else
   export KUBRIX_REPO=$( git config --get remote.origin.url)
 fi
@@ -79,9 +81,6 @@ elif  [[ ${KUBRIX_TARGET_TYPE} == "KIND-OBSERVABILITY" ]] ; then
   kubectl apply -f .devcontainer/grafana-nodeport.yaml
 
 elif  [[ ${KUBRIX_TARGET_TYPE} == "KIND-SECURITY" ]] ; then
-  kubectl create namespace keycloak --dry-run=client -o yaml | kubectl apply -f -
-  kubectl apply -f .devcontainer/keycloak-nodeport.yaml
-
   kubectl create namespace falco --dry-run=client -o yaml | kubectl apply -f -
   kubectl apply -f .devcontainer/falco-nodeport.yaml
 fi
