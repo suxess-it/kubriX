@@ -19,7 +19,7 @@ spec:
 #    managementPolicies: ["Observe"]
     validRedirectUris:
       - "http://localhost:7007/api/auth/oidc/handler/frame"
-      - "https://backstage{{ .Values.kubrix.keycloak.fqdn }}/api/auth/oidc/handler/frame"
+      - "https://backstage{{ .Values.kubrix.keycloak.domainName }}/api/auth/oidc/handler/frame"
     clientSecretSecretRef:
       key: backstage
       name: keycloak-client-credentials

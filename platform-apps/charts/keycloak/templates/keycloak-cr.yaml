@@ -1,0 +1,74 @@
+# https://www.keycloak.org/operator/advanced-configuration
+
+apiVersion: k8s.keycloak.org/v2alpha1
+kind: Keycloak
+metadata:
+  name: kubrix-keycloak
+spec:
+  bootstrapAdmin:
+    user:
+      secret: "keycloak-credentials"
+  db:
+    vendor: postgres
+    usernameSecret:
+      name: {{ .Values.keycloak.db.usernameSecret.name }}
+      key: {{ .Values.keycloak.db.usernameSecret.key }}
+    passwordSecret:
+      name: {{ .Values.keycloak.db.passwordSecret.name }}
+      key: {{ .Values.keycloak.db.passwordSecret.key }}
+    host: "{{ .Release.Name }}-cluster-rw.{{ .Release.Namespace }}.svc.cluster.local"
+    database: postgres
+    port: {{ .Values.keycloak.db.port | default 5432 }}
+    poolInitialSize: 1
+    poolMinSize: 2
+    poolMaxSize: 3
+  http:
+    httpEnabled: true
+  hostname:
+    hostname: https://keycloak{{ .Values.kubrix.keycloak.domainName }}
+    admin: https://keycloak{{ .Values.kubrix.keycloak.domainName }}
+    strict: false
+    backchannelDynamic: true
+  proxy:
+    headers: xforwarded
+  {{ with .Values.keycloak.readinessProbe }}
+  readinessProbe:
+    {{- toYaml . | nindent 4 }}
+  {{ end }}
+  {{ with .Values.keycloak.livenessProbe }}
+  livenessProbe:
+    {{- toYaml . | nindent 4 }}
+  {{ end }}
+  {{ with .Values.keycloak.startupProbe }}
+  startupProbe:
+    {{- toYaml . | nindent 4 }}
+  {{ end }}
+  {{ with .Values.keycloak.resources }}
+  resources:
+    {{- toYaml . | nindent 4 }}
+  {{ end }}
+  ingress:
+    enabled: {{ .Values.keycloak.ingress.enabled }}
+    {{ with .Values.keycloak.ingress.annotations }}
+    annotations:
+      {{- toYaml . | nindent 6 }}
+    {{ end }}
+    className: {{ .Values.keycloak.ingress.className }}
+    tlsSecret: {{ .Values.keycloak.ingress.tlsSecret }} # only possible >= keycloak version 26.4
+  networkPolicy:
+    enabled: {{ .Values.keycloak.networkPolicy.enabled }}
+  features:
+    enabled:
+      - authorization
+    disabled:
+#      - admin
+      - step-up-authentication
+  transaction:
+    xaEnabled: false
+  update:
+    strategy: Auto
+  {{ with .Values.keycloak.additionalOptions }}
+  additionalOptions:
+    {{- toYaml . | nindent 4 }}
+  {{ end }}
+  

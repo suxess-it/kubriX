@@ -61,9 +61,9 @@ All components are pre-integrated but can be replaced or extended as needed.
 |-----------|-------------|----------|
 | **kubriX Free** | Free and open, core functionality for building an IDP | Start small, customize freely |
 | **kubriX Prime** | Enterprise-grade edition with advanced features | Production-scale deployments, compliance needs |
-| **kubriX Select** | Prime + add-ons on demand | Customized enterprise-grade add-ons tailored to your needs |
+| **kubriX Select** | Prime + add-ons on demand | special customized environment with special integration requirements |
 
-For a full feature comparison, see [Open Source vs. Prime](../prime/overview.md).
+For a full feature comparison, see [Open Source vs. Prime](https://kubrix.io/plans).
 
 ---
 

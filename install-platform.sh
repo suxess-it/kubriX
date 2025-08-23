@@ -20,12 +20,22 @@ check_tool() {
 
 check_variable() {
   variable=$1
-  if [ -z "${!variable}" ]; then
-    echo ""
-    echo "prereq check failed: variable '${variable}' is blank or not set"
-    exit 1
-  else
+  show_output=$2
+  sane_default="${3:-}"
+  # check if variable is set
+  if [ -z "${!variable:-}" ]; then
+    # set variable to a sane default if a sane default is present, else exit with error
+    if [ ! -z "${sane_default}" ]; then
+      printf -v "${variable}" '%s' "${sane_default}"
+      echo "set ${variable} to sane default '${!variable}'"
+    else
+      fail "prereq check failed: variable '${variable}' is blank or not set"
+    fi
+  # show value of the variable, unless show_output is false (for omitting output of secrets)
+  elif [ ${show_output} = "true" ] ; then
     echo "${variable} is set to '${!variable}'"
+  else
+    echo "${variable} is set. Value is a secret."
   fi
 }
 
@@ -34,6 +44,16 @@ check_prereqs() {
   echo "Checking prereqs ..."
   echo "arch: ${ARCH}"
   echo "os: ${OS}"
+
+  # check variables
+  check_variable KUBRIX_REPO "true"
+  check_variable KUBRIX_REPO_BRANCH "true"
+  check_variable KUBRIX_REPO_USERNAME "true"
+  check_variable KUBRIX_REPO_PASSWORD "false"
+  check_variable KUBRIX_BACKSTAGE_GITHUB_TOKEN "false"
+  check_variable KUBRIX_TARGET_TYPE "true"
+  check_variable KUBRIX_CLUSTER_TYPE "true" "k8s"
+  check_variable KUBRIX_BOOTSTRAP_MAX_WAIT_TIME "true" "1800"
 
   # check tools
   check_tool yq "yq --version"
@@ -45,13 +65,6 @@ check_prereqs() {
   if [[ "${KUBRIX_TARGET_TYPE}" =~ ^KIND.* || "${KUBRIX_CLUSTER_TYPE}" == "KIND" ]] ; then
     check_tool mkcert "mkcert --version"
   fi
-
-  # check variables
-  check_variable KUBRIX_REPO
-  check_variable KUBRIX_REPO_BRANCH
-  check_variable KUBRIX_REPO_USERNAME
-  check_variable KUBRIX_REPO_PASSWORD
-  check_variable KUBRIX_TARGET_TYPE
 
   echo "Prereq checks finished sucessfully."
   echo ""
@@ -352,8 +365,7 @@ analyze_app() {
   echo "------------------"
 }
 
-# dump all kubrix variables
-env | grep KUBRIX
+
 ARCH=$(uname -m)
 OS=$(uname -s)
 
@@ -427,10 +439,11 @@ fi
 # create argocd with helm chart not with install.yaml
 # because afterwards argocd is also managed by itself with the helm-chart
 
+# install argocd unless it is already deployed
 echo "installing bootstrap argocd ..."
 helm repo add argo-cd https://argoproj.github.io/argo-helm
 helm repo update
-helm install sx-argocd argo-cd \
+helm upgrade --install sx-argocd argo-cd \
   --repo https://argoproj.github.io/argo-helm \
   --version 7.8.24 \
   --namespace argocd \
@@ -438,7 +451,6 @@ helm install sx-argocd argo-cd \
   --set configs.cm.application.resourceTrackingMethod=annotation \
   -f bootstrap-argocd-values.yaml \
   --wait
-
 
 # we add the repo inside the application-controller because it could be that clusters do not have any ingress controller installed yet at this moment
 echo "add kubriX repo in argocd pod"
@@ -463,7 +475,7 @@ argocd_apps=$(cat $target_chart_value_file | egrep -Ev "team-onboarding" | awk '
 argocd_apps_without_individual=$(cat $target_chart_value_file | egrep -Ev "team-onboarding" | awk '/^  - name:/ { printf "%s", "sx-"$3" "}' )
 
 # max wait for 20 minutes until all apps except backstage and kargo are synced and healthy
-wait_until_apps_synced_healthy "${argocd_apps_without_individual}" "Synced" "Healthy" ${KUBRIX_BOOTSTRAP_MAX_WAIT_TIME:-1200}
+wait_until_apps_synced_healthy "${argocd_apps_without_individual}" "Synced" "Healthy" ${KUBRIX_BOOTSTRAP_MAX_WAIT_TIME}
 
 # if vault is part of this stack, do some special configuration
 if [[ $( echo $argocd_apps | grep sx-vault ) ]] ; then
