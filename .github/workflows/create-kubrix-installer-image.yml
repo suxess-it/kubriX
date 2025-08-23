@@ -23,11 +23,21 @@ jobs:
       - uses: docker/setup-qemu-action@v3
       - uses: docker/setup-buildx-action@v3
 
-      - name: get version
-        id: get_version
+      - name: compute ref name
+        id: ref_name
+        run: |
+          RAW="${GITHUB_REF_NAME}"
+          SAFE=$(echo "$RAW" | tr '[:upper:]' '[:lower:]' \
+                       | sed -E 's/[^a-z0-9._-]+/-/g' \
+                       | sed -E 's/^-+|-+$//g' \
+                       | cut -c1-128)
+          echo "safe_ref=$SAFE" >> $GITHUB_OUTPUT
+
+      - name: compute version
+        id: version
         run: |
           VERSION=$(git describe --tags)
-          echo "VERSION=${VERSION}-${BRANCH}" >> $GITHUB_ENV
+          echo "version=${VERSION}" >> $GITHUB_OUTPUT
 
       - name: Login to Github Container Registry
         uses: docker/login-action@v3
@@ -43,5 +53,5 @@ jobs:
           push: true
           platforms: linux/amd64, linux/arm64
           tags: |
-            ${{ env.GHCR_REPO}}:${{ env.VERSION }}
-            ${{ env.GHCR_REPO}}:${{ env.BRANCH }}
+            ${{ env.GHCR_REPO}}:${{ steps.version.outputs.version }}-${{ steps.ref_name.outputs.safe_ref }}
+            ${{ env.GHCR_REPO}}:${{ steps.ref_name.outputs.safe_ref }}
