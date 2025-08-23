@@ -21,10 +21,17 @@ check_tool() {
 check_variable() {
   variable=$1
   show_output=$2
-  if [ -z "${!variable}" ]; then
-    echo ""
-    echo "prereq check failed: variable '${variable}' is blank or not set"
-    exit 1
+  sane_default="${3:-}"
+  # check if variable is set
+  if [ -z "${!variable:-}" ]; then
+    # set variable to a sane default if a sane default is present, else exit with error
+    if [ ! -z "${sane_default}" ]; then
+      printf -v "${variable}" '%s' "${sane_default}"
+      echo "set ${variable} to sane default '${!variable}'"
+    else
+      fail "prereq check failed: variable '${variable}' is blank or not set"
+    fi
+  # show value of the variable, unless show_output is false (for omitting output of secrets)
   elif [ ${show_output} = "true" ] ; then
     echo "${variable} is set to '${!variable}'"
   else
@@ -38,6 +45,16 @@ check_prereqs() {
   echo "arch: ${ARCH}"
   echo "os: ${OS}"
 
+  # check variables
+  check_variable KUBRIX_REPO "true"
+  check_variable KUBRIX_REPO_BRANCH "true"
+  check_variable KUBRIX_REPO_USERNAME "true"
+  check_variable KUBRIX_REPO_PASSWORD "false"
+  check_variable KUBRIX_BACKSTAGE_GITHUB_TOKEN "false"
+  check_variable KUBRIX_TARGET_TYPE "true"
+  check_variable KUBRIX_CLUSTER_TYPE "true" "k8s"
+  check_variable KUBRIX_BOOTSTRAP_MAX_WAIT_TIME "true" "1800"
+
   # check tools
   check_tool yq "yq --version"
   check_tool jq "jq --version"
@@ -48,13 +65,6 @@ check_prereqs() {
   if [[ "${KUBRIX_TARGET_TYPE}" =~ ^KIND.* || "${KUBRIX_CLUSTER_TYPE}" == "KIND" ]] ; then
     check_tool mkcert "mkcert --version"
   fi
-
-  # check variables
-  check_variable KUBRIX_REPO "true"
-  check_variable KUBRIX_REPO_BRANCH "true"
-  check_variable KUBRIX_REPO_USERNAME "true"
-  check_variable KUBRIX_REPO_PASSWORD "false"
-  check_variable KUBRIX_TARGET_TYPE "true"
 
   echo "Prereq checks finished sucessfully."
   echo ""
@@ -429,10 +439,11 @@ fi
 # create argocd with helm chart not with install.yaml
 # because afterwards argocd is also managed by itself with the helm-chart
 
+# install argocd unless it is already deployed
 echo "installing bootstrap argocd ..."
 helm repo add argo-cd https://argoproj.github.io/argo-helm
 helm repo update
-helm install sx-argocd argo-cd \
+helm upgrade --install sx-argocd argo-cd \
   --repo https://argoproj.github.io/argo-helm \
   --version 7.8.24 \
   --namespace argocd \
@@ -440,7 +451,6 @@ helm install sx-argocd argo-cd \
   --set configs.cm.application.resourceTrackingMethod=annotation \
   -f bootstrap-argocd-values.yaml \
   --wait
-
 
 # we add the repo inside the application-controller because it could be that clusters do not have any ingress controller installed yet at this moment
 echo "add kubriX repo in argocd pod"
@@ -465,7 +475,7 @@ argocd_apps=$(cat $target_chart_value_file | egrep -Ev "team-onboarding" | awk '
 argocd_apps_without_individual=$(cat $target_chart_value_file | egrep -Ev "team-onboarding" | awk '/^  - name:/ { printf "%s", "sx-"$3" "}' )
 
 # max wait for 20 minutes until all apps except backstage and kargo are synced and healthy
-wait_until_apps_synced_healthy "${argocd_apps_without_individual}" "Synced" "Healthy" ${KUBRIX_BOOTSTRAP_MAX_WAIT_TIME:-1200}
+wait_until_apps_synced_healthy "${argocd_apps_without_individual}" "Synced" "Healthy" ${KUBRIX_BOOTSTRAP_MAX_WAIT_TIME}
 
 # if vault is part of this stack, do some special configuration
 if [[ $( echo $argocd_apps | grep sx-vault ) ]] ; then
@@ -473,34 +483,6 @@ if [[ $( echo $argocd_apps | grep sx-vault ) ]] ; then
   export VAULT_HOSTNAME=$(kubectl get ingress -o jsonpath='{.items[*].spec.rules[*].host}' -n vault)
   export VAULT_TOKEN=$(kubectl get secret -n vault vault-init -o=jsonpath='{.data.root_token}'  | base64 -d)
 
-  if [[ "${KUBRIX_TARGET_TYPE}" =~ ^KIND.* || "${KUBRIX_CLUSTER_TYPE}" == "KIND" ]] ; then
-  # due to issue #405 this step is needed for kind clusters
-    export VAULT_CLIENTSECRET=$(kubectl get secret -n keycloak keycloak-client-credentials -o=jsonpath='{.data.vault}'  | base64 -d)
-    export KEYCLOAK_HOSTNAME=$(kubectl get ingress -o jsonpath='{.items[*].spec.rules[*].host}' -n keycloak)
-    export CERT=$(awk '{printf "%s\\n", $0}' "$(mkcert -CAROOT)"/rootCA.pem)
-    curl -k --header "X-Vault-Token: $VAULT_TOKEN" --request POST --data '{"type": "oidc"}' https://${VAULT_HOSTNAME}/v1/sys/auth/oidc
-    MAX_ATTEMPTS=3
-    ATTEMPT=1
-    while [[ $ATTEMPT -le $MAX_ATTEMPTS ]]; do
-      echo "Setting up OIDC auth method, try $ATTEMPT of $MAX_ATTEMPTS"
-      RESPONSE=$(curl -k --header "X-Vault-Token: $VAULT_TOKEN" --request POST --data '{
-          "oidc_discovery_url": "https://'${KEYCLOAK_HOSTNAME}'/realms/kubrix",
-          "oidc_client_id": "vault",
-          "oidc_client_secret": "'$VAULT_CLIENTSECRET'",
-          "default_role": "default",
-          "oidc_discovery_ca_pem": "'"$CERT"'"
-        }' https://${VAULT_HOSTNAME}/v1/auth/oidc/config)
-      if [[ -z "$(echo "$RESPONSE" | jq -r '.errors | select(.!=null)')" ]]; then
-        echo "configure OIDC auth method successful"
-        break
-      else
-        echo "configure OIDC auth method not sucessful. Error: "
-        echo "$RESPONSE"
-      fi  
-    sleep 5
-    ((ATTEMPT++))
-    done
-  fi
   # due to issue #422 this step is needed for all clusters
   GROUP_ALIAS_LIST=$(curl -k --header "X-Vault-Token: $VAULT_TOKEN" --request LIST https://${VAULT_HOSTNAME}/v1/identity/group-alias/id)
   if [ -z "$(echo "$GROUP_ALIAS_LIST" | jq -r '.data.keys | length')" ] || [ "$(echo "$GROUP_ALIAS_LIST" | jq -r '.data.keys | length')" -eq 0 ]; then
