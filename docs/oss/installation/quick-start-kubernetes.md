@@ -1,12 +1,10 @@
-# Quickstart kubriX on Kubernetes
+# Quickstart demo stack on Kubernetes
 
 With this step-by-step guide kubriX with its default demo stack gets deployed on your preferred Kubernetes cluster.
 
 ## Prerequisites
 
-* kubectl
-* jq
-* yq
+* check [Prerequisites](installation.md#-prerequisites)
 * DNS-Provider which is supported by external-dns (see https://kubernetes-sigs.github.io/external-dns/latest/#new-providers )
 * Kubernetes cluster with at least 4 CPU cores and 20 GB RAM
 
@@ -22,14 +20,19 @@ With this step-by-step guide kubriX with its default demo stack gets deployed on
     Instead of a newly created access token you can also use your personal access tokens,
     but this is not recommended since your personal access token has probably more permissions than needed.
 
-3. set the repo url and token in this variables like this:
+    If you create a fine-grained token on Github, these are the needed permissions:
+
+    <img width="991" height="600" alt="image" src="https://github.com/user-attachments/assets/a82efc5a-e90c-43af-baff-942f2433be7b" />
+
+
+4. set the repo url and token in this variables like this:
 
     ```
     export KUBRIX_CUSTOMER_REPO="https://github.com/kubriX-demo/kubriX-demo-customerXY"
     export KUBRIX_CUSTOMER_REPO_TOKEN="blabla"
     ```
 
-4. optional: set the DNS provider, which external-dns should connect to.
+5. optional: set the DNS provider, which external-dns should connect to.
 
     default: ionos  
     supported: ionos, route53, stackit, cloudflare
@@ -38,7 +41,7 @@ With this step-by-step guide kubriX with its default demo stack gets deployed on
     export KUBRIX_CUSTOMER_DNS_PROVIDER="ionos"
     ```
 
-5. optional: set the domain, under which kubriX should be available.
+6. optional: set the domain, under which kubriX should be available.
 
     This domain will be used by external-dns. Your provider in step 4 needs to be able to manage this domain with the credentials set in step 8.
 
@@ -48,7 +51,7 @@ With this step-by-step guide kubriX with its default demo stack gets deployed on
 
     if this variable is not set, a subdomain of "kubrix.cloud" is randomly created (for example "demo-2faf23d.kubrix.cloud")
 
-6. optional: set the kubrix target type which should be used
+7. optional: set the kubrix target type which should be used
 
     ```
     export KUBRIX_CUSTOMER_TARGET_TYPE="DEMO-STACK"
@@ -56,9 +59,9 @@ With this step-by-step guide kubriX with its default demo stack gets deployed on
 
     if this variable is not set, "DEMO-STACK" is used.
 
-7. create a new Kubernetes cluster and be sure that kubectl is connected to it. check with `kubectl cluster-info`
+8. create a new Kubernetes cluster and be sure that kubectl is connected to it. check with `kubectl cluster-info`
 
-8. provide external-dns secrets depending on your DNS provider
+9. provide external-dns secrets depending on your DNS provider
 
     __ionos__
 
@@ -97,16 +100,21 @@ With this step-by-step guide kubriX with its default demo stack gets deployed on
 
     ```
     kubectl create ns external-dns
-    kubectl create secret generic cloudflare-api-key --from-literal=apiKey='YOUR_API_TOKEN'
+    kubectl create secret generic cloudflare-api-key -n external-dns --from-literal=apiKey='YOUR_API_TOKEN'
     ```
 
-9. If you need to prepare something else on your cluster before kubriX gets installed, do this now.
+10. If you need to prepare something else on your cluster before kubriX gets installed, do this now.
 
 
-10. Then run this command in your home directory in your linux bash:
+11. Then run this command in your home directory in your linux bash:
 
     ```
     curl -H 'Cache-Control: no-cache, no-store' https://raw.githubusercontent.com/suxess-it/kubriX/refs/heads/main/bootstrap/bootstrap.sh | bash -s
     ```
 
     It will create a new kubriX repo based on your parameters and installs kubriX based on your created kubriX repo on your connected K8s cluster.
+
+
+##  Next steps
+
+* [Post-Installation steps](installation.md#-post-installation-steps)

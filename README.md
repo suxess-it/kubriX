@@ -39,7 +39,7 @@ Choose your preferred setup:
 - [Overview](docs/oss/overview.md)
 - [Installation](docs/oss/installation/installation.md)
 - [Configuration](docs/oss/configuration/configuration.md)
-- [User Guide](docs/oss/user-guide/)
+- [User Guide](docs/oss/user-guide/user-guide.md)
 - [Administration](docs/oss/admin-guide/)
 - [API & CLI Reference](docs/oss/api-cli-reference.md)
 
@@ -78,6 +78,7 @@ We welcome contributions from the community!
 ## 🎤 Blogs and Presentations
 
 1. [kubriX: Your Out-of-the-Box Internal Developer Platform (IDP) for Kubernetes](https://itnext.io/kubrix-your-out-of-the-box-internal-developer-platform-idp-for-kubernetes-ba4c2671e6d1) by Artem Lajko
+2. [iX Magazin 09/2025 - Developer-Plattformen für Kubernetes (german)](https://www.heise.de/select/ix/2025/9/2519712125119736547)
 
 
 ## 📄 License

@@ -22,6 +22,7 @@ Before installing kubriX, make sure you have:
   - [`yq`](https://github.com/mikefarah/yq?tab=readme-ov-file#install) – yaml processor
   - [`docker`](https://www.docker.com/) – Container runtime (for local installs only)
   - [`mkcert`](https://github.com/FiloSottile/mkcert) - tool for making locally-trusted development certificates (for local installs only)
+  - [`kind`](https://kind.sigs.k8s.io/docs/user/quick-start/#installing-from-release-binaries) - create a Kubernetes in Docker (for local installs only)
 
 - **Cluster resources**:
   - Minimum: 4 CPU cores, 16 GB RAM, 20 GB storage
@@ -37,11 +38,17 @@ Before installing kubriX, make sure you have:
 | Environment | Goal | Install Guide |
 |-------------|------|---------------|
 | **GitHub Codespaces (Experimental)** | Explore kubriX instantly in your browser | [Codespaces Installation](codespaces.md) |
-| **local KinD** | Try kubriX quickly on your laptop | [Demo-Stack local KinD](kind.md) |
-| *Remote Kubernetes Demo Cluster** | Deploy a demo stack on K8s cluster in your preferred cloud provider| [Demo-Stack Remote Kubernetes](quick-start-kubernetes.md)
-| **Production Kubernetes Cluster** | Set up kubriX for team use | [Production Installation](production.md) |
+| **Local KinD** | Try kubriX quickly on your laptop | [Demo-Stack local KinD](kind.md) |
+| **Demo Kubernetes Cluster** | Test a demo stack on a K8s cluster on your preferred cloud provider| [Demo-Stack on Kubernetes](quick-start-kubernetes.md)
+| **Production Kubernetes Cluster** | Set up kubriX for productive team use | [Production Installation](production.md) |
 
 > 💡 **Tip:** If you’re unsure where to start, try the **KinD installation** - it’s the fastest way to get kubriX running locally.
+
+---
+
+## ⚠️ Troubleshooting Installation
+
+If you run into issues during setup, please see our [Troubleshooting Installation Guide](../troubleshooting/installation-troubleshooting.md) for common problems and solutions.
 
 ---
 
@@ -51,13 +58,20 @@ Before installing kubriX, make sure you have:
 
   The Platform-Portal authenticates via GitHub OAuth App. Therefore you need to create a OAuth App in your [developer settings](https://github.com/organizations/YOUR-ORG/settings/applications).
   Click the button "New OAuth App".
-  
-  For local KinD Cluster:  
+
+  **For Github Codespaces**:
+
+  The URL of the Codespace has a random name and ID like `https://crispy-robot-g44qvrx9jpx29xx7.github.dev/`. Copy the hostname (codespace name) except ".github.dev" and set the URLs of the created OAuth App like this:
+
+  - Homepage URL: `<copied hostname>-6691.app.github.dev`
+  - Authorization callback URL: `<copied hostname>-6691.app.github.dev/api/auth/github`
+
+  **For local KinD Cluster**:  
 
   - Homepage URL: `https://backstage.127-0-0-1.nip.io`
   - Authorization callback URL: `https://backstage.127-0-0-1.nip.io/api/auth/github`
 
-  For remote Kubernetes Cluster:  
+  **For remote Kubernetes Cluster**:  
 
   - Homepage URL and Authorization callback URL must match "https://backstage.${KUBRIX_CUSTOMER_DOMAIN}"
 
@@ -157,7 +171,7 @@ kubectl logs -n <namespace> <pod-name>
 
 > 💡 **Tips:** Try [K8sGPT](https://k8sgpt.ai/) to analyze your environment. We will integrate this tool in the future probably also in kubriX.
 
-Consult the [Troubleshooting Guide](../troubleshooting/troubleshooting.md) for common fixes.
+Consult the [Troubleshooting Installation Guide](../troubleshooting/installation-troubleshooting.md) for common fixes.
 
 ## 🗑 Uninstalling kubriX
 
