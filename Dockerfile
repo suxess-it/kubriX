@@ -44,7 +44,7 @@ RUN chmod +x /work/install-platform.sh
 # Use a stable, shared CAROOT inside the image (readable to non-root)
 ENV CAROOT=/etc/mkcert
 RUN mkdir -p "$CAROOT" \
- && mkcert -install \           # runs as root; installs CA into CAROOT and system trust
+ && mkcert -install \
  && chmod -R a+rX "$CAROOT"
 
 # (optional but handy) make mkcert skip failing -install later if CA already exists
