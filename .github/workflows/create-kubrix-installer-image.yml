@@ -8,6 +8,7 @@ on:
 
 env:
   GHCR_REPO: ghcr.io/suxess-it/kubrix-installer
+  BRANCH: ${{ github.head_ref || github.ref_name }}
 
 jobs:
   create-kubrix-installer-image:
@@ -26,7 +27,6 @@ jobs:
         id: get_version
         run: |
           VERSION=$(git describe --tags)
-          BRANCH=$(echo "${GITHUB_REF##*/}")
           echo "VERSION=${VERSION}-${BRANCH}" >> $GITHUB_ENV
 
       - name: Login to Github Container Registry
@@ -38,22 +38,10 @@ jobs:
      
       - name: Build and push docker amd64
         uses: docker/build-push-action@v6
-        env:
-          TARGETARCH: amd64
         with:
           context: .
           push: true
-          platforms: linux/amd64
+          platforms: linux/amd64, linux/arm64
           tags: |
-            ${{ env.GHCR_REPO}}:${{ env.VERSION }}-linux-amd64
-          
-      - name: Build and push docker arm64
-        uses: docker/build-push-action@v5
-        env:
-          TARGETARCH: arm64
-        with:
-          context: .
-          push: true
-          platforms: linux/arm64
-          tags: |
-            ${{ env.GHCR_REPO}}:${{ env.VERSION }}-linux-arm64
+            ${{ env.GHCR_REPO}}:${{ env.VERSION }}
+            ${{ env.GHCR_REPO}}:${{ env.BRANCH }}
