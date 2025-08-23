@@ -483,34 +483,6 @@ if [[ $( echo $argocd_apps | grep sx-vault ) ]] ; then
   export VAULT_HOSTNAME=$(kubectl get ingress -o jsonpath='{.items[*].spec.rules[*].host}' -n vault)
   export VAULT_TOKEN=$(kubectl get secret -n vault vault-init -o=jsonpath='{.data.root_token}'  | base64 -d)
 
-  if [[ "${KUBRIX_TARGET_TYPE}" =~ ^KIND.* || "${KUBRIX_CLUSTER_TYPE}" == "KIND" ]] ; then
-  # due to issue #405 this step is needed for kind clusters
-    export VAULT_CLIENTSECRET=$(kubectl get secret -n keycloak keycloak-client-credentials -o=jsonpath='{.data.vault}'  | base64 -d)
-    export KEYCLOAK_HOSTNAME=$(kubectl get ingress -o jsonpath='{.items[*].spec.rules[*].host}' -n keycloak)
-    export CERT=$(awk '{printf "%s\\n", $0}' "$(mkcert -CAROOT)"/rootCA.pem)
-    curl -k --header "X-Vault-Token: $VAULT_TOKEN" --request POST --data '{"type": "oidc"}' https://${VAULT_HOSTNAME}/v1/sys/auth/oidc
-    MAX_ATTEMPTS=3
-    ATTEMPT=1
-    while [[ $ATTEMPT -le $MAX_ATTEMPTS ]]; do
-      echo "Setting up OIDC auth method, try $ATTEMPT of $MAX_ATTEMPTS"
-      RESPONSE=$(curl -k --header "X-Vault-Token: $VAULT_TOKEN" --request POST --data '{
-          "oidc_discovery_url": "https://'${KEYCLOAK_HOSTNAME}'/realms/kubrix",
-          "oidc_client_id": "vault",
-          "oidc_client_secret": "'$VAULT_CLIENTSECRET'",
-          "default_role": "default",
-          "oidc_discovery_ca_pem": "'"$CERT"'"
-        }' https://${VAULT_HOSTNAME}/v1/auth/oidc/config)
-      if [[ -z "$(echo "$RESPONSE" | jq -r '.errors | select(.!=null)')" ]]; then
-        echo "configure OIDC auth method successful"
-        break
-      else
-        echo "configure OIDC auth method not sucessful. Error: "
-        echo "$RESPONSE"
-      fi  
-    sleep 5
-    ((ATTEMPT++))
-    done
-  fi
   # due to issue #422 this step is needed for all clusters
   GROUP_ALIAS_LIST=$(curl -k --header "X-Vault-Token: $VAULT_TOKEN" --request LIST https://${VAULT_HOSTNAME}/v1/identity/group-alias/id)
   if [ -z "$(echo "$GROUP_ALIAS_LIST" | jq -r '.data.keys | length')" ] || [ "$(echo "$GROUP_ALIAS_LIST" | jq -r '.data.keys | length')" -eq 0 ]; then
