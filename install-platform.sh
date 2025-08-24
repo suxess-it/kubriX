@@ -533,3 +533,7 @@ fi
 
 # remove pushsecrets and status files
 kubectl delete -f ./.secrets/secrettemp/pushsecrets.yaml
+
+# just a test
+app_namespace="vault"
+kubectl get pods -o name -n ${app_namespace} | xargs -I {} kubectl logs -n ${app_namespace} {} --all-containers=true
