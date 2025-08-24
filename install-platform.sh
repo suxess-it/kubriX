@@ -54,6 +54,7 @@ check_prereqs() {
   check_variable KUBRIX_TARGET_TYPE "true"
   check_variable KUBRIX_CLUSTER_TYPE "true" "k8s"
   check_variable KUBRIX_BOOTSTRAP_MAX_WAIT_TIME "true" "1800"
+  check_variable KUBRIX_INSTALLER "true" "false"
 
   # check tools
   check_tool yq "yq --version"
