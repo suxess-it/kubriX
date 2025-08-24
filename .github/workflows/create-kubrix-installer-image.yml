@@ -35,22 +35,6 @@ jobs:
       - uses: docker/setup-qemu-action@v3
       - uses: docker/setup-buildx-action@v3
 
-      - name: compute ref name
-        id: ref_name
-        run: |
-          RAW="${GITHUB_REF_NAME}"
-          SAFE=$(echo "$RAW" | tr '[:upper:]' '[:lower:]' \
-                       | sed -E 's/[^a-z0-9._-]+/-/g' \
-                       | sed -E 's/^-+|-+$//g' \
-                       | cut -c1-128)
-          echo "safe_ref=$SAFE" >> $GITHUB_OUTPUT
-
-      - name: compute version
-        id: version
-        run: |
-          VERSION=$(git describe --tags)
-          echo "version=${VERSION}" >> $GITHUB_OUTPUT
-
       - name: Docker meta
         id: meta
         uses: docker/metadata-action@v5
