@@ -428,6 +428,9 @@ if [[ "${KUBRIX_TARGET_TYPE}" =~ ^KIND.* || "${KUBRIX_CLUSTER_TYPE}" == "KIND" ]
   },
   ]'
 
+  # curl should trust all websites with the mkcert cert
+  export CURL_CA_BUNDLE="$(mkcert -CAROOT)"/rootCA-key.pem
+
   # wait until ingress-nginx-controller is ready
   echo "wait until ingress-nginx-controller is running ..."
   sleep 10
