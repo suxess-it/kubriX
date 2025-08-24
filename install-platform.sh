@@ -379,6 +379,9 @@ else
 fi
 DATE_IMPL="$(detect_date_impl)"
 
+# checkout upstream repo
+git clone "${KUBRIX_REPO}" .
+git checkout "${KUBRIX_REPO_BRANCH}"
 
 if [[ "${KUBRIX_TARGET_TYPE}" =~ ^KIND.* || "${KUBRIX_CLUSTER_TYPE}" == "KIND" ]] ; then
   
