@@ -8,7 +8,8 @@ SHELL ["/bin/bash","-lc"]
 # Base tools
 RUN apt-get update && apt-get install -y --no-install-recommends \
     ca-certificates curl git jq bash coreutils tar gzip unzip procps \
-    libnss3-tools \
+    libnss3-tools util-linux gettext-base gawk grep sed \
+    iproute2 iputils-ping dnsutils openssl \
     mkcert \
  && rm -rf /var/lib/apt/lists/*
 
