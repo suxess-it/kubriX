@@ -2,13 +2,21 @@ name: create kubrix-installer image (non-main branches)
 
 on:
   push:
-    branches:
-      - '**'  
-      - '!main'
+    branches: 
+      - 'main'
     paths:
       - 'Dockerfile'
       - 'install-platform.sh'
       - '.github/workflows/create-kubrix-installer-image.yml'
+    tags:
+      - 'v*'
+  pull_request:
+    types: [opened, synchronize]
+    paths:
+      - 'Dockerfile'
+      - 'install-platform.sh'
+      - '.github/workflows/create-kubrix-installer-image.yml'
+  workflow_dispatch:
 
 env:
   GHCR_REPO: ghcr.io/suxess-it/kubrix-installer
@@ -43,6 +51,19 @@ jobs:
           VERSION=$(git describe --tags)
           echo "version=${VERSION}" >> $GITHUB_OUTPUT
 
+      - name: Docker meta
+        id: meta
+        uses: docker/metadata-action@v5
+        with:
+          images: |
+            name=ghcr.io/suxess-it/kubrix-installer
+          tags: |
+            # set latest tag for default branch
+            type=raw,value=latest,enable={{is_default_branch}}
+            type=ref,event=branch
+            type=ref,event=tag
+            type=ref,event=workflow_dispatch
+
       - name: Login to Github Container Registry
         uses: docker/login-action@v3
         with:
@@ -56,6 +77,5 @@ jobs:
           context: .
           push: true
           platforms: linux/amd64, linux/arm64
-          tags: |
-            ${{ env.GHCR_REPO}}:${{ steps.version.outputs.version }}-${{ steps.ref_name.outputs.safe_ref }}
-            ${{ env.GHCR_REPO}}:${{ steps.ref_name.outputs.safe_ref }}
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}
