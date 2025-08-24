@@ -37,10 +37,12 @@ spec:
       securityContext:
         runAsNonRoot: true
         fsGroup: 1000
+        runAsUser: 1000
+        runAsGroup: 1000
       containers:
         - name: installer
           image: ghcr.io/suxess-it/kubrix-installer:latest
-          imagePullPolicy: IfNotPresent
+          imagePullPolicy: Always
           envFrom:
             - secretRef:
                 name: kubrix-install-secrets
