@@ -379,12 +379,14 @@ else
 fi
 DATE_IMPL="$(detect_date_impl)"
 
-# checkout upstream repo
-printf 'checkout kubriX to %s ...\n' "$(pwd)/kubriX"
-mkdir kubriX
-git clone "${KUBRIX_REPO}" kubriX
-cd kubriX
-git checkout "${KUBRIX_REPO_BRANCH}"
+# checkout upstream repo when running inside kubrix-installer job
+if [ ${KUBRIX_INSTALLER} = "true" ] ; then
+  printf 'checkout kubriX to %s ...\n' "$(pwd)/kubriX"
+  mkdir kubriX
+  git clone "${KUBRIX_REPO}" kubriX
+  cd kubriX
+  git checkout "${KUBRIX_REPO_BRANCH}"
+fi
 
 if [[ "${KUBRIX_TARGET_TYPE}" =~ ^KIND.* || "${KUBRIX_CLUSTER_TYPE}" == "KIND" ]] ; then
   
