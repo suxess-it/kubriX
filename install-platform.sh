@@ -380,7 +380,10 @@ fi
 DATE_IMPL="$(detect_date_impl)"
 
 # checkout upstream repo
-git clone "${KUBRIX_REPO}" .
+printf 'checkout kubriX to %s ...\n' "$(pwd)/kubriX"
+mkdir kubriX
+git clone "${KUBRIX_REPO}" kubriX
+cd kubriX
 git checkout "${KUBRIX_REPO_BRANCH}"
 
 if [[ "${KUBRIX_TARGET_TYPE}" =~ ^KIND.* || "${KUBRIX_CLUSTER_TYPE}" == "KIND" ]] ; then
