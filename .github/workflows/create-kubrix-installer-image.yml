@@ -5,6 +5,10 @@ on:
     branches:
       - '**'  
       - '!main'
+    paths:
+      - 'Dockerfile'
+      - 'install-platform.sh'
+      - '.github/workflows/create-kubrix-installer-image.yml'
 
 env:
   GHCR_REPO: ghcr.io/suxess-it/kubrix-installer
