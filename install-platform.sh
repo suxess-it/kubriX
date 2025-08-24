@@ -54,6 +54,7 @@ check_prereqs() {
   check_variable KUBRIX_TARGET_TYPE "true"
   check_variable KUBRIX_CLUSTER_TYPE "true" "k8s"
   check_variable KUBRIX_BOOTSTRAP_MAX_WAIT_TIME "true" "1800"
+  check_variable KUBRIX_INSTALLER "true" "false"
 
   # check tools
   check_tool yq "yq --version"
@@ -379,6 +380,14 @@ else
 fi
 DATE_IMPL="$(detect_date_impl)"
 
+# checkout upstream repo when running inside kubrix-installer job
+if [ ${KUBRIX_INSTALLER} = "true" ] ; then
+  printf 'checkout kubriX to %s ...\n' "$(pwd)/kubriX"
+  mkdir kubriX
+  git clone "${KUBRIX_REPO}" kubriX
+  cd kubriX
+  git checkout "${KUBRIX_REPO_BRANCH}"
+fi
 
 if [[ "${KUBRIX_TARGET_TYPE}" =~ ^KIND.* || "${KUBRIX_CLUSTER_TYPE}" == "KIND" ]] ; then
   
@@ -421,6 +430,9 @@ if [[ "${KUBRIX_TARGET_TYPE}" =~ ^KIND.* || "${KUBRIX_CLUSTER_TYPE}" == "KIND" ]
       "value": "--enable-ssl-passthrough"
   },
   ]'
+
+  # curl should trust all websites with the mkcert cert
+  export CURL_CA_BUNDLE="$(mkcert -CAROOT)"/rootCA-key.pem
 
   # wait until ingress-nginx-controller is ready
   echo "wait until ingress-nginx-controller is running ..."
