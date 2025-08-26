@@ -93,7 +93,7 @@ jobs:
             --from-literal KUBRIX_BOOTSTRAP_MAX_WAIT_TIME=${KUBRIX_BOOTSTRAP_MAX_WAIT_TIME} \
             --from-literal KUBRIX_INSTALLER=true
           kubectl apply -f install-manifests.yaml
-          kubectl wait --for=condition=ready job/kubrix-install-job -n kubrix-install --timeout=120s
+          kubectl wait --for=jsonpath='{.status.phase}'=Running job/kubrix-install-job -n kubrix-install --timeout=120s
           kubectl logs jobs/kubrix-install-job -n kubrix-install
 
       - name: argocd show diff
