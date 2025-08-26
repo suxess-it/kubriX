@@ -2,12 +2,20 @@
 set -euo pipefail
 
 # Config (from the manifest)
-MANIFEST_URL="https://raw.githubusercontent.com/suxess-it/kubriX/refs/heads/main/install-manifests.yaml"
+MANIFEST_URL="https://raw.githubusercontent.com/suxess-it/kubriX/refs/heads/${KUBRIX_REPO_BRANCH}/install-manifests.yaml"
 NAMESPACE="kubrix-install"
 JOB_NAME="kubrix-install-job"
 
 echo "Applying manifest..."
-kubectl apply -f "${MANIFEST_URL}"
+
+curl -H "Authorization: token ${KUBRIX_REPO_PASSWORD}" \
+  -H 'Accept: application/vnd.github.v3.raw' \
+  -O \
+  -L ${MANIFEST_URL}
+
+cat install-manifest.yaml | \
+sed "s,image: ghcr.io/suxess-it/kubrix-installer:latest,image: ghcr.io/suxess-it/kubrix-installer:pr-${PR_NUMBER},g" \
+kubectl apply -f -
 
 echo "Ensuring namespace exists..."
 kubectl get ns "${NAMESPACE}" >/dev/null
