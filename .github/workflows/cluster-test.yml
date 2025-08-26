@@ -94,6 +94,7 @@ jobs:
             --from-literal KUBRIX_INSTALLER=true
           kubectl apply -f install-manifests.yaml
           kubectl wait --for=jsonpath='{.status.phase}'=Running job/kubrix-install-job -n kubrix-install --timeout=120s
+          kubectl get jobs,pods -n kubrix-install
           kubectl logs jobs/kubrix-install-job -n kubrix-install
 
       - name: argocd show diff
