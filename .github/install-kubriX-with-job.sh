@@ -73,7 +73,7 @@ for _ in {1..30}; do
   sleep 2
 done
 
-echo "Job status: complete=${COMPLETED:-False} failed=${FAILED:-False} succeeded=${SUCCEEDED_COUNT:-0} failedPods=${FAILED_COUNT:-
+echo "Job status: complete=${COMPLETED:-False} failed=${FAILED:-False} succeeded=${SUCCEEDED_COUNT:-0} failedPods=${FAILED_COUNT:-}"
 # Check outcome explicitly
 COMPLETED="$(kubectl get job "${JOB_NAME}" -n "${NAMESPACE}" -o jsonpath='{.status.conditions[?(@.type=="Complete")].status}')"
 FAILED="$(kubectl get job "${JOB_NAME}" -n "${NAMESPACE}" -o jsonpath='{.status.conditions[?(@.type=="Failed")].status}')"
