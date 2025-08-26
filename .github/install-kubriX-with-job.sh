@@ -13,9 +13,9 @@ curl -H "Authorization: token ${KUBRIX_REPO_PASSWORD}" \
   -O \
   -L ${MANIFEST_URL}
 
-cat install-manifests.yaml | \
-sed 's,image: ghcr.io/suxess-it/kubrix-installer:latest,image: ghcr.io/suxess-it/kubrix-installer:pr-'"${PR_NUMBER}"',g' \
-kubectl apply -f -
+cat install-manifests.yaml \
+ | sed 's,image: ghcr.io/suxess-it/kubrix-installer:latest,image: ghcr.io/suxess-it/kubrix-installer:pr-'"${PR_NUMBER}"',g' \
+ | kubectl apply -f -
 
 echo "Ensuring namespace exists..."
 kubectl get ns "${NAMESPACE}" >/dev/null
