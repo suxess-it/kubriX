@@ -88,9 +88,9 @@ jobs:
             --from-literal KUBRIX_CLUSTER_TYPE=${KUBRIX_CLUSTER_TYPE} \
             --from-literal KUBRIX_REPO_PASSWORD=${KUBRIX_REPO_PASSWORD} \
             --from-literal KUBRIX_REPO_USERNAME=${KUBRIX_REPO_USERNAME} \
-            --from-literal KUBRIX_REPO_BRANCH=${KUBRIX_REPO_BRANCH}
-            --from-literal KUBRIX_REPO=${KUBRIX_REPO}
-            --from-literal KUBRIX_BOOTSTRAP_MAX_WAIT_TIME=${KUBRIX_BOOTSTRAP_MAX_WAIT_TIME}
+            --from-literal KUBRIX_REPO_BRANCH=${KUBRIX_REPO_BRANCH} \
+            --from-literal KUBRIX_REPO=${KUBRIX_REPO} \
+            --from-literal KUBRIX_BOOTSTRAP_MAX_WAIT_TIME=${KUBRIX_BOOTSTRAP_MAX_WAIT_TIME} \
             --from-literal KUBRIX_INSTALLER=true
           kubectl apply -f install-manifests.yaml
           watch kubectl logs jobs/kubrix-install-job -n kubrix-install
