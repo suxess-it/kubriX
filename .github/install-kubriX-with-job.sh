@@ -48,7 +48,7 @@ fi
 
 # Wait until the pod is Running (or already Succeeded/Failed)
 echo "Waiting for pod to be Running (or to finish quickly)..."
-for _ in {1..300}; do
+for _ in {1..60}; do
   PHASE="$(kubectl get pod "${POD}" -n "${NAMESPACE}" -o jsonpath='{.status.phase}')"
   case "${PHASE}" in
     Running)
