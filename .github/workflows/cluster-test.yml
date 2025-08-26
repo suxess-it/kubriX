@@ -76,17 +76,20 @@ jobs:
         env:
           KUBRIX_TARGET_TYPE: ${{ matrix.target-type }}
           KUBRIX_CLUSTER_TYPE: "KIND"
-          KUBRIX_BACKSTAGE_GITHUB_CLIENTSECRET: "dummy"
-          KUBRIX_BACKSTAGE_GITHUB_CLIENTID: "dummy"
-          KUBRIX_BACKSTAGE_GITHUB_TOKEN: "dummy"
-          KUBRIX_ARGOCD_APPSET_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           KUBRIX_REPO_PASSWORD: ${{ secrets.GITHUB_TOKEN }}
           KUBRIX_REPO_USERNAME: "dummy"
           KUBRIX_INSTALL_DEBUG: "false"
           KUBRIX_BOOTSTRAP_MAX_WAIT_TIME: ${{ vars.KUBRIX_BOOTSTRAP_MAX_WAIT_TIME }}
         shell: bash
         run: |
-          ./install-platform.sh
+          kubectl create ns kubrix-install
+          kubectl create secret generic kubrix-install-secrets -n kubrix-install \
+            --from-literal KUBRIX_TARGET_TYPE=${KUBRIX_TARGET_TYPE} \
+            --from-literal KUBRIX_CLUSTER_TYPE=${KUBRIX_CLUSTER_TYPE} \
+            --from-literal KUBRIX_REPO_PASSWORD=${KUBRIX_REPO_PASSWORD} \
+          KUBRIX_REPO_USERNAME=${KUBRIX_REPO_USERNAME} \
+          kubectl apply -f install-manifests.yaml
+          watch kubectl logs jobs/kubrix-install-job -n kubrix-install
 
       - name: argocd show diff
         continue-on-error: true
