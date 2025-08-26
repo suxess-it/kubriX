@@ -59,13 +59,21 @@ echo "---- BEGIN JOB LOGS (${POD}) ----"
 kubectl logs -n "${NAMESPACE}" -f "pod/${POD}" --all-containers=true || true
 echo "---- END JOB LOGS (${POD}) ----"
 
-# Wait for Job completion (or failure) with a timeout
-echo "Waiting for Job to finish..."
-set +e
-kubectl wait -n "${NAMESPACE}" --for=condition=complete "job/${JOB_NAME}" --timeout=30m
-WAIT_RC=$?
-set -e
+# Quick settle loop (the Job controller may need a moment to set conditions)
+echo "Checking Job conditions..."
+for _ in {1..30}; do
+  COMPLETED="$(kubectl get job -n "${NAMESPACE}" "${JOB_NAME}" -o jsonpath='{.status.conditions[?(@.type=="Complete")].status}' 2>/dev/null || true)"
+  FAILED="$(kubectl get job -n "${NAMESPACE}" "${JOB_NAME}" -o jsonpath='{.status.conditions[?(@.type=="Failed")].status}' 2>/dev/null || true)"
+  SUCCEEDED_COUNT="$(kubectl get job -n "${NAMESPACE}" "${JOB_NAME}" -o jsonpath='{.status.succeeded}' 2>/dev/null || echo 0)"
+  FAILED_COUNT="$(kubectl get job -n "${NAMESPACE}" "${JOB_NAME}" -o jsonpath='{.status.failed}' 2>/dev/null || echo 0)"
 
+  if [[ "${COMPLETED}" == "True" || "${FAILED}" == "True" ]]; then
+    break
+  fi
+  sleep 2
+done
+
+echo "Job status: complete=${COMPLETED:-False} failed=${FAILED:-False} succeeded=${SUCCEEDED_COUNT:-0} failedPods=${FAILED_COUNT:-
 # Check outcome explicitly
 COMPLETED="$(kubectl get job "${JOB_NAME}" -n "${NAMESPACE}" -o jsonpath='{.status.conditions[?(@.type=="Complete")].status}')"
 FAILED="$(kubectl get job "${JOB_NAME}" -n "${NAMESPACE}" -o jsonpath='{.status.conditions[?(@.type=="Failed")].status}')"
