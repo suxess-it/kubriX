@@ -1,13 +1,15 @@
 velero:
+  nameOverride: velero #https://github.com/vmware-tanzu/velero/issues/9023
+  fullnameOverride: velero
   initContainers:
     - name: velero-plugin-for-aws
-      image: velero/velero-plugin-for-aws:v1.11.0
+      image: velero/velero-plugin-for-aws:v1.12.2
       imagePullPolicy: IfNotPresent
       volumeMounts:
         - mountPath: /target
           name: plugins
     - name: velero-plugin-for-microsoft-azure
-      image: velero/velero-plugin-for-microsoft-azure:v1.11.0
+      image: velero/velero-plugin-for-microsoft-azure:v1.12.2
       imagePullPolicy: IfNotPresent
       volumeMounts:
         - mountPath: /target
@@ -33,6 +35,9 @@ velero:
       provider: aws
       bucket: velero
       default: true
+      credential:
+        name: velero-cloud-credential
+        key: cloud
       config:
         region: minio
         s3ForcePathStyle: true
@@ -51,20 +56,5 @@ velero:
     server:
       create: true
       name: velero
-  credentials:
-    existingSecret: velero-cloud-credential
-  #credentials:
-  #  secretContents: 
-  #    cloud: |
-  #      [default]
-  #      aws_access_key_id=minio
-  #      aws_secret_access_key=minio123
   snapshotsEnabled: false
   deployNodeAgent: true
-  configMaps:
-    fs-restore-action-config:
-      labels:
-        velero.io/plugin-config: ""
-        velero.io/pod-volume-restore: RestoreItemAction
-      data:
-        image: velero/velero-restore-helper:v1.14.1
