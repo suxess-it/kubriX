@@ -70,6 +70,14 @@ secrets:
       # clientsecret for keycloak clients
       backstage: "dynamic:12:hex"
       vault: "dynamic:12:hex"
+  # velero secrets
+  - application: "velero"
+    path: "velero/base"
+    namespace: "velero"
+    secretname: velero-repo-credentials
+    secretType: "Opaque"
+    stringData:
+      repositorypassword: "dynamic:32:hex"
   # velero-ui secrets
   - application: "velero-ui"
     path: "velero-ui/base"
@@ -77,13 +85,8 @@ secrets:
     secretname: velero-ui-credential
     secretType: "Opaque"
     stringData:
-      securityTokenKey: "dynamic:32:hex"
       username: "admin"
       password: "dynamic:12:hex"
-      awsAccessKeyId: "minio"
-      awsSecretAccessKey: "dynamic:12:hex"
-      resticPassword: "dynamic:12:hex"
-      securityPathDatabase: "./data"
   # minio secrets
   - application: "minio"
     path: "minio/base"

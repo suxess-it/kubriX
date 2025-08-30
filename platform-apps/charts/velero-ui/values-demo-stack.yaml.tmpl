@@ -1,34 +1,24 @@
 vui:
   global:
     veleroNamespace: velero
-    kubernetesClusterDomain: cluster.local
-    clusterName: "kubriX--demo"
-    nextPublicLoggerEnabled: false
+    clusterName: "kubrix"
 
-  apiConfig:
-    apiEnableDocumentation: "1"
-    k8SInClusterMode: "True"
-    origins1: 'https://velero-ui.{{ .kubriX.domain }}'
-    veleroCliVersion: v1.14.0
-    existingSecret: velero-ui-credential
+  apiService:
+    config:
+      apiEnableDocumentation: true
+    secret:
+      existingSecret: velero-ui-credential
 
-  uiIngress:
-    enabled: true
-    host: velero-ui.{{ .kubriX.domain }}
-    ingressClassName: nginx
-    metadata:
-      annotations:
-        external-dns.alpha.kubernetes.io/ttl: "60"
-        cert-manager.io/cluster-issuer: default-issuer
-    spec:
-      tls:
-        - secretName: velero-ui-tls
-          hosts:
-            - velero-ui.{{ .kubriX.domain }}
-  
-  uiNp: # NodePort
-    enabled: false
-    ip: ""
-    apiPort: "30001"
-    uiPort: "30002"
-
+  exposure:
+    mode: ingress
+    ingress:
+      ingressClassName: nginx
+      metadata:
+        annotations:
+          external-dns.alpha.kubernetes.io/ttl: "60"
+          cert-manager.io/cluster-issuer: default-issuer
+      spec:
+        tls:
+          - secretName: velero-ui-tls
+            hosts:
+              - velero-ui.{{ .kubriX.domain }}
