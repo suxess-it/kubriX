@@ -14,6 +14,7 @@ curl -H "Authorization: token ${KUBRIX_REPO_PASSWORD}" \
   -L ${MANIFEST_URL}
 
 echo "checking for image ghcr.io/suxess-it/kubrix-installer:pr-${PR_NUMBER} ..."
+docker images -q ghcr.io/suxess-it/kubrix-installer:pr-${PR_NUMBER}
 if [ "$(docker images -q ghcr.io/suxess-it/kubrix-installer:pr-${PR_NUMBER} 2> /dev/null)" ]; then
   echo "using kubrix-installer:pr-${PR_NUMBER} image"
   cat install-manifests.yaml \
