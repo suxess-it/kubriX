@@ -544,5 +544,5 @@ if [[ "${CODESPACES:-}" == "true" ]]; then
   fi
 fi
 
-# remove pushsecrets and status files
+# remove pushsecrets
 kubectl delete -f ./.secrets/secrettemp/pushsecrets.yaml
