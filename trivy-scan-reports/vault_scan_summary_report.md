@@ -132,7 +132,7 @@
 <h4>No Vulnerabilities found</h4>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>bin/vault</code></h3>
-<h4>Vulnerabilities (7)</h4>
+<h4>Vulnerabilities (8)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -175,6 +175,13 @@
         <td>HIGH</td>
         <td>v0.0.0-20250529131706-7010adf2c676+dirty</td>
         <td>1.18.0</td>
+    </tr>
+    <tr>
+        <td><code>github.com/hashicorp/vault</code></td>
+        <td>CVE-2025-6203</td>
+        <td>HIGH</td>
+        <td>v0.0.0-20250529131706-7010adf2c676+dirty</td>
+        <td>1.20.3</td>
     </tr>
     <tr>
         <td><code>stdlib</code></td>
