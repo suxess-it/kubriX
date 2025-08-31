@@ -2,20 +2,8 @@ name: create kubrix-installer image
 
 on:
   push:
-    branches: 
-      - 'main'
-    paths:
-      - 'Dockerfile'
-      - 'install-platform.sh'
-      - '.github/workflows/create-kubrix-installer-image.yml'
     tags:
       - 'v*'
-  pull_request:
-    types: [opened, synchronize]
-    paths:
-      - 'Dockerfile'
-      - 'install-platform.sh'
-      - '.github/workflows/create-kubrix-installer-image.yml'
   workflow_dispatch:
 
 env:
