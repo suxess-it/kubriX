@@ -366,6 +366,17 @@ analyze_app() {
   echo "------------------"
 }
 
+# main starts here
+
+# Option A: from ENV
+echo "Version: ${APP_VERSION:-unknown}"
+echo "Revision: ${VCS_REF:-unknown}"
+
+# Option B: from file (fallback)
+if [ -f /etc/image-version ]; then
+  echo "Image metadata:"
+  cat /etc/image-version
+f
 
 ARCH=$(uname -m)
 OS=$(uname -s)
