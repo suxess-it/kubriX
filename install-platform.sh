@@ -376,7 +376,7 @@ echo "Revision: ${VCS_REF:-unknown}"
 if [ -f /etc/image-version ]; then
   echo "Image metadata:"
   cat /etc/image-version
-if
+fi
 
 ARCH=$(uname -m)
 OS=$(uname -s)
