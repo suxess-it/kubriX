@@ -1449,14 +1449,14 @@
         <td>CVE-2025-6020</td>
         <td>HIGH</td>
         <td>1.5.1-22.el9_5</td>
-        <td>1.5.1-25.el9_6</td>
+        <td>1.5.1-26.el9_6</td>
     </tr>
     <tr>
         <td><code>pam</code></td>
         <td>CVE-2025-8941</td>
         <td>HIGH</td>
         <td>1.5.1-22.el9_5</td>
-        <td></td>
+        <td>1.5.1-26.el9_6</td>
     </tr>
     <tr>
         <td><code>sqlite-libs</code></td>
