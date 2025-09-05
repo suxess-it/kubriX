@@ -21,9 +21,8 @@ With this step-by-step guide kubriX with its default demo stack gets deployed on
     but this is not recommended since your personal access token has probably more permissions than needed.
 
     If you create a fine-grained token on Github, these are the needed permissions:
-
-    <img width="991" height="600" alt="image" src="https://github.com/user-attachments/assets/a82efc5a-e90c-43af-baff-942f2433be7b" />
-
+   
+<img width="1126" height="670" alt="github access token" src="https://github.com/user-attachments/assets/fc17742b-cda2-4d57-9cee-b33182706933" />
 
 4. set the repo url and token in this variables like this:
 
