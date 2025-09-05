@@ -18,6 +18,8 @@ With this step-by-step guide kubriX with its default stack gets deployed on your
     Instead of a newly created access token you can also use your personal access tokens,
     but this is not recommended since your personal access token has probably more permissions than needed.
 
+    ![image](../../img/github_token.png)
+
 3. set the repo url and token in this variables like this and the kubriX stack which should get deployed:
 
     ```
