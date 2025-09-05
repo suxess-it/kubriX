@@ -366,6 +366,17 @@ analyze_app() {
   echo "------------------"
 }
 
+# main starts here
+
+# version from ENV
+echo "Version: ${APP_VERSION:-unknown}"
+echo "Revision: ${VCS_REF:-unknown}"
+
+# version from file (fallback)
+if [ -f /etc/image-version ]; then
+  echo "Image metadata:"
+  cat /etc/image-version
+fi
 
 ARCH=$(uname -m)
 OS=$(uname -s)
@@ -544,5 +555,5 @@ if [[ "${CODESPACES:-}" == "true" ]]; then
   fi
 fi
 
-# remove pushsecrets and status files
+# remove pushsecrets
 kubectl delete -f ./.secrets/secrettemp/pushsecrets.yaml

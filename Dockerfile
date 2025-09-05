@@ -5,6 +5,22 @@ ARG TARGETARCH
 ENV DEBIAN_FRONTEND=noninteractive
 SHELL ["/bin/bash","-lc"]
 
+
+ARG VERSION=unknown
+ARG VCS_REF=unknown
+
+# Make it available in several ways
+ENV APP_VERSION="${VERSION}" \
+    VCS_REF="${VCS_REF}"
+
+# Optional: a tiny metadata file that's easy to cat
+RUN printf "version=%s\nrevision=%s\n" "$APP_VERSION" "$VCS_REF" > /etc/image-version
+RUN chmod a+r /etc/image-version
+
+# OCI labels (useful for docker inspect / registries)
+LABEL org.opencontainers.image.revision="$VCS_REF" \
+      org.opencontainers.image.version="$APP_VERSION"
+
 # Base tools
 RUN apt-get update && apt-get install -y --no-install-recommends \
     ca-certificates curl git jq bash coreutils tar gzip unzip procps \
