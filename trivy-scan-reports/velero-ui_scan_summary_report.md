@@ -14,28 +14,28 @@
         <td>CVE-2025-4802</td>
         <td>HIGH</td>
         <td>2.36-9+deb12u10</td>
-        <td></td>
+        <td>2.36-9+deb12u11</td>
     </tr>
     <tr>
         <td><code>libc6</code></td>
         <td>CVE-2025-4802</td>
         <td>HIGH</td>
         <td>2.36-9+deb12u10</td>
-        <td></td>
+        <td>2.36-9+deb12u11</td>
     </tr>
     <tr>
         <td><code>libexpat1</code></td>
         <td>CVE-2023-52425</td>
         <td>HIGH</td>
         <td>2.5.0-1+deb12u1</td>
-        <td></td>
+        <td>2.5.0-1+deb12u2</td>
     </tr>
     <tr>
         <td><code>libexpat1</code></td>
         <td>CVE-2024-8176</td>
         <td>HIGH</td>
         <td>2.5.0-1+deb12u1</td>
-        <td></td>
+        <td>2.5.0-1+deb12u2</td>
     </tr>
     <tr>
         <td><code>libgnutls30</code></td>
@@ -112,7 +112,7 @@
         <td>CVE-2025-6965</td>
         <td>CRITICAL</td>
         <td>3.40.1-2+deb12u1</td>
-        <td></td>
+        <td>3.40.1-2+deb12u2</td>
     </tr>
     <tr>
         <td><code>libsqlite3-0</code></td>
@@ -126,7 +126,7 @@
         <td>CVE-2023-31484</td>
         <td>HIGH</td>
         <td>5.36.0-7+deb12u1</td>
-        <td></td>
+        <td>5.36.0-7+deb12u3</td>
     </tr>
     <tr>
         <td><code>perl-base</code></td>
@@ -140,14 +140,14 @@
         <td>CVE-2025-47273</td>
         <td>HIGH</td>
         <td>66.1.1-1+deb12u1</td>
-        <td></td>
+        <td>66.1.1-1+deb12u2</td>
     </tr>
     <tr>
         <td><code>python3-setuptools</code></td>
         <td>CVE-2025-47273</td>
         <td>HIGH</td>
         <td>66.1.1-1+deb12u1</td>
-        <td></td>
+        <td>66.1.1-1+deb12u2</td>
     </tr>
     <tr>
         <td><code>python3.11</code></td>
@@ -361,28 +361,28 @@
         <td>CVE-2025-4802</td>
         <td>HIGH</td>
         <td>2.36-9+deb12u9</td>
-        <td></td>
+        <td>2.36-9+deb12u11</td>
     </tr>
     <tr>
         <td><code>libc6</code></td>
         <td>CVE-2025-4802</td>
         <td>HIGH</td>
         <td>2.36-9+deb12u9</td>
-        <td></td>
+        <td>2.36-9+deb12u11</td>
     </tr>
     <tr>
         <td><code>libexpat1</code></td>
         <td>CVE-2023-52425</td>
         <td>HIGH</td>
         <td>2.5.0-1+deb12u1</td>
-        <td></td>
+        <td>2.5.0-1+deb12u2</td>
     </tr>
     <tr>
         <td><code>libexpat1</code></td>
         <td>CVE-2024-8176</td>
         <td>HIGH</td>
         <td>2.5.0-1+deb12u1</td>
-        <td></td>
+        <td>2.5.0-1+deb12u2</td>
     </tr>
     <tr>
         <td><code>libgnutls30</code></td>
@@ -445,7 +445,7 @@
         <td>CVE-2023-31484</td>
         <td>HIGH</td>
         <td>5.36.0-7+deb12u1</td>
-        <td></td>
+        <td>5.36.0-7+deb12u3</td>
     </tr>
     <tr>
         <td><code>libperl5.36</code></td>
@@ -459,7 +459,7 @@
         <td>CVE-2025-6965</td>
         <td>CRITICAL</td>
         <td>3.40.1-2+deb12u1</td>
-        <td></td>
+        <td>3.40.1-2+deb12u2</td>
     </tr>
     <tr>
         <td><code>libsqlite3-0</code></td>
@@ -473,7 +473,7 @@
         <td>CVE-2023-31484</td>
         <td>HIGH</td>
         <td>5.36.0-7+deb12u1</td>
-        <td></td>
+        <td>5.36.0-7+deb12u3</td>
     </tr>
     <tr>
         <td><code>perl</code></td>
@@ -487,7 +487,7 @@
         <td>CVE-2023-31484</td>
         <td>HIGH</td>
         <td>5.36.0-7+deb12u1</td>
-        <td></td>
+        <td>5.36.0-7+deb12u3</td>
     </tr>
     <tr>
         <td><code>perl-base</code></td>
@@ -501,7 +501,7 @@
         <td>CVE-2023-31484</td>
         <td>HIGH</td>
         <td>5.36.0-7+deb12u1</td>
-        <td></td>
+        <td>5.36.0-7+deb12u3</td>
     </tr>
     <tr>
         <td><code>perl-modules-5.36</code></td>

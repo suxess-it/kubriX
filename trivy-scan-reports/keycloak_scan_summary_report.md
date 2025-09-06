@@ -14,14 +14,14 @@
         <td>CVE-2025-4802</td>
         <td>HIGH</td>
         <td>2.36-9+deb12u10</td>
-        <td></td>
+        <td>2.36-9+deb12u11</td>
     </tr>
     <tr>
         <td><code>libc6</code></td>
         <td>CVE-2025-4802</td>
         <td>HIGH</td>
         <td>2.36-9+deb12u10</td>
-        <td></td>
+        <td>2.36-9+deb12u11</td>
     </tr>
     <tr>
         <td><code>libfile-find-rule-perl</code></td>
@@ -84,28 +84,28 @@
         <td>CVE-2023-31484</td>
         <td>HIGH</td>
         <td>5.36.0-7+deb12u2</td>
-        <td></td>
+        <td>5.36.0-7+deb12u3</td>
     </tr>
     <tr>
         <td><code>perl</code></td>
         <td>CVE-2023-31484</td>
         <td>HIGH</td>
         <td>5.36.0-7+deb12u2</td>
-        <td></td>
+        <td>5.36.0-7+deb12u3</td>
     </tr>
     <tr>
         <td><code>perl-base</code></td>
         <td>CVE-2023-31484</td>
         <td>HIGH</td>
         <td>5.36.0-7+deb12u2</td>
-        <td></td>
+        <td>5.36.0-7+deb12u3</td>
     </tr>
     <tr>
         <td><code>perl-modules-5.36</code></td>
         <td>CVE-2023-31484</td>
         <td>HIGH</td>
         <td>5.36.0-7+deb12u2</td>
-        <td></td>
+        <td>5.36.0-7+deb12u3</td>
     </tr>
     <tr>
         <td><code>zlib1g</code></td>
@@ -117,7 +117,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>Java</code></h3>
-<h4>Vulnerabilities (4)</h4>
+<h4>Vulnerabilities (3)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -125,13 +125,6 @@
         <th>Severity</th>
         <th>Installed Version</th>
         <th>Fixed Version</th>
-    </tr>
-    <tr>
-        <td><code>io.netty:netty-codec-http</code></td>
-        <td>CVE-2025-58056</td>
-        <td>HIGH</td>
-        <td>4.1.119.Final</td>
-        <td>4.1.125.Final, 4.2.5.Final</td>
     </tr>
     <tr>
         <td><code>io.netty:netty-codec-http2</code></td>
@@ -235,21 +228,21 @@
         <td>CVE-2025-4802</td>
         <td>HIGH</td>
         <td>2.36-9+deb12u10</td>
-        <td></td>
+        <td>2.36-9+deb12u11</td>
     </tr>
     <tr>
         <td><code>libc-l10n</code></td>
         <td>CVE-2025-4802</td>
         <td>HIGH</td>
         <td>2.36-9+deb12u10</td>
-        <td></td>
+        <td>2.36-9+deb12u11</td>
     </tr>
     <tr>
         <td><code>libc6</code></td>
         <td>CVE-2025-4802</td>
         <td>HIGH</td>
         <td>2.36-9+deb12u10</td>
-        <td></td>
+        <td>2.36-9+deb12u11</td>
     </tr>
     <tr>
         <td><code>libfile-find-rule-perl</code></td>
@@ -319,14 +312,14 @@
         <td>CVE-2023-31484</td>
         <td>HIGH</td>
         <td>5.36.0-7+deb12u2</td>
-        <td></td>
+        <td>5.36.0-7+deb12u3</td>
     </tr>
     <tr>
         <td><code>libsqlite3-0</code></td>
         <td>CVE-2025-6965</td>
         <td>CRITICAL</td>
         <td>3.40.1-2+deb12u1</td>
-        <td></td>
+        <td>3.40.1-2+deb12u2</td>
     </tr>
     <tr>
         <td><code>libsqlite3-0</code></td>
@@ -340,14 +333,14 @@
         <td>CVE-2025-49794</td>
         <td>CRITICAL</td>
         <td>2.9.14+dfsg-1.3~deb12u1</td>
-        <td></td>
+        <td>2.9.14+dfsg-1.3~deb12u3</td>
     </tr>
     <tr>
         <td><code>libxml2</code></td>
         <td>CVE-2025-49796</td>
         <td>CRITICAL</td>
         <td>2.9.14+dfsg-1.3~deb12u1</td>
-        <td></td>
+        <td>2.9.14+dfsg-1.3~deb12u3</td>
     </tr>
     <tr>
         <td><code>libxml2</code></td>
@@ -396,7 +389,7 @@
         <td>CVE-2025-6021</td>
         <td>HIGH</td>
         <td>2.9.14+dfsg-1.3~deb12u1</td>
-        <td></td>
+        <td>2.9.14+dfsg-1.3~deb12u3</td>
     </tr>
     <tr>
         <td><code>libxslt1.1</code></td>
@@ -417,28 +410,28 @@
         <td>CVE-2025-4802</td>
         <td>HIGH</td>
         <td>2.36-9+deb12u10</td>
-        <td></td>
+        <td>2.36-9+deb12u11</td>
     </tr>
     <tr>
         <td><code>perl</code></td>
         <td>CVE-2023-31484</td>
         <td>HIGH</td>
         <td>5.36.0-7+deb12u2</td>
-        <td></td>
+        <td>5.36.0-7+deb12u3</td>
     </tr>
     <tr>
         <td><code>perl-base</code></td>
         <td>CVE-2023-31484</td>
         <td>HIGH</td>
         <td>5.36.0-7+deb12u2</td>
-        <td></td>
+        <td>5.36.0-7+deb12u3</td>
     </tr>
     <tr>
         <td><code>perl-modules-5.36</code></td>
         <td>CVE-2023-31484</td>
         <td>HIGH</td>
         <td>5.36.0-7+deb12u2</td>
-        <td></td>
+        <td>5.36.0-7+deb12u3</td>
     </tr>
     <tr>
         <td><code>zlib1g</code></td>
