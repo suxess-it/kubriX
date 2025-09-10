@@ -49,8 +49,13 @@ RUN case "${TARGETARCH}" in \
       "https://dl.k8s.io/release/${KVER}/bin/linux/${K_ARCH}/kubectl" \
  && chmod +x /usr/local/bin/kubectl
 
-# Helm (script auto-detects arch)
-RUN curl -fsSL https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3 | bash
+# Helm
+RUN apt-get update && apt-get install -y --no-install-recommends ca-certificates curl gnupg \
+ && curl -fsSL https://packages.buildkite.com/helm-linux/helm-debian/gpgkey | gpg --dearmor | tee /usr/share/keyrings/helm.gpg > /dev/null \
+ && echo "deb [signed-by=/usr/share/keyrings/helm.gpg] https://packages.buildkite.com/helm-linux/helm-debian/any/ any main" \
+    > /etc/apt/sources.list.d/helm-stable-debian.list \
+ && apt-get update && apt-get install -y --no-install-recommends helm \
+ && rm -rf /var/lib/apt/lists/*
 
 # Put the installer script into the image (Option A)
 WORKDIR /work
