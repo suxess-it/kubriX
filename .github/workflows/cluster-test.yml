@@ -50,7 +50,7 @@ jobs:
     timeout-minutes: 10
 
     steps:         
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
         with:
           fetch-depth: 0
 
@@ -110,7 +110,7 @@ jobs:
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
  
       - name: Create k8s Kind Cluster
         uses: helm/kind-action@v1
