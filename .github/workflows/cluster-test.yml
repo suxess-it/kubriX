@@ -128,7 +128,7 @@ jobs:
       - name: install k8sgpt
         shell: bash
         run: |
-          curl -LO https://github.com/k8sgpt-ai/k8sgpt/releases/download/v0.3.30/k8sgpt_amd64.deb
+          curl -LO https://github.com/k8sgpt-ai/k8sgpt/releases/download/v0.4.25/k8sgpt_amd64.deb
           sudo dpkg -i k8sgpt_amd64.deb
           k8sgpt analyze
 
@@ -198,6 +198,11 @@ jobs:
           kubectl get nodes -o yaml
           echo "===== yaml output of all applications ======"
           kubectl get application -n argocd -o yaml
+          echo "===== crossplane managed ======"
+          kubectl get managed
+          kubectl get managed -o yaml
+          kubectl get pkg
+          kubectl get pkg -o yaml 
 
       - name: mustgather logs for troubleshooting
         if: ${{ failure() }}
