@@ -23,7 +23,7 @@ LABEL org.opencontainers.image.revision="$VCS_REF" \
 
 # Base tools
 RUN apt-get update && apt-get install -y --no-install-recommends \
-    ca-certificates curl git jq bash coreutils tar gzip unzip procps \
+    ca-certificates curl gnupg git jq bash coreutils tar gzip unzip procps \
     libnss3-tools util-linux bsdextrautils gettext-base gawk grep sed \
     iproute2 iputils-ping dnsutils openssl \
     mkcert \
@@ -50,8 +50,7 @@ RUN case "${TARGETARCH}" in \
  && chmod +x /usr/local/bin/kubectl
 
 # Helm
-RUN apt-get update && apt-get install -y --no-install-recommends ca-certificates curl gnupg \
- && curl -fsSL https://packages.buildkite.com/helm-linux/helm-debian/gpgkey | gpg --dearmor | tee /usr/share/keyrings/helm.gpg > /dev/null \
+RUN curl -fsSL https://packages.buildkite.com/helm-linux/helm-debian/gpgkey | gpg --dearmor | tee /usr/share/keyrings/helm.gpg > /dev/null \
  && echo "deb [signed-by=/usr/share/keyrings/helm.gpg] https://packages.buildkite.com/helm-linux/helm-debian/any/ any main" \
     > /etc/apt/sources.list.d/helm-stable-debian.list \
  && apt-get update && apt-get install -y --no-install-recommends helm \
