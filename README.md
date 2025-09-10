@@ -79,6 +79,8 @@ We welcome contributions from the community!
 
 1. [kubriX: Your Out-of-the-Box Internal Developer Platform (IDP) for Kubernetes](https://itnext.io/kubrix-your-out-of-the-box-internal-developer-platform-idp-for-kubernetes-ba4c2671e6d1) by Artem Lajko
 2. [iX Magazin 09/2025 - Developer-Plattformen für Kubernetes (german)](https://www.heise.de/select/ix/2025/9/2519712125119736547)
+3. [infoQ - kubriX Launches as "Out of the Box" Internal Developer Platform](https://www.infoq.com/news/2025/08/kubrix-idp/)
+4. [thenewstack - KubriX Thinks You’ll Soon Regret Building Your Own IDP](https://thenewstack.io/kubrix-thinks-youll-soon-regret-building-your-own-idp/)
 
 
 ## 📄 License
