@@ -19,11 +19,11 @@ jobs:
       matrix: ${{ steps.diffStep.outputs.matrix }}
     steps:
       - name: Checkout PR
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
         with:
          path: pr
       - name: Checkout Target of PR
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
         with:
           path: target
           ref: ${{ github.event.pull_request.base.ref }}
