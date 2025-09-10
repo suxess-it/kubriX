@@ -198,7 +198,9 @@ jobs:
           kubectl get nodes -o yaml
           echo "===== yaml output of all applications ======"
           kubectl get application -n argocd -o yaml
-
+          echo "===== crossplane managed ======"
+          kubectl get managed 
+          
       - name: mustgather logs for troubleshooting
         if: ${{ failure() }}
         shell: bash
