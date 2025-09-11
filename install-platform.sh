@@ -185,6 +185,10 @@ convert_to_seconds() {
   esac
 }
 
+lower() {
+  printf '%s' "$1" | tr '[:upper:]' '[:lower:]';
+}
+
 detect_os() {
   local s; s="$(uname -s 2>/dev/null || echo unknown)"
   case "$(lower "$s")" in
