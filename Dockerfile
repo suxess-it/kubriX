@@ -29,6 +29,9 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     mkcert \
  && rm -rf /var/lib/apt/lists/*
 
+# gomplate
+COPY --from=hairyhenderson/gomplate:stable /gomplate /usr/local/bin/gomplate
+
 # yq (select by TARGETARCH)
 RUN case "${TARGETARCH}" in \
       amd64) YQ_ARCH=amd64 ;; \
