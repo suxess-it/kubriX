@@ -304,7 +304,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>krew-linux_amd64</code></h3>
-<h4>Vulnerabilities (6)</h4>
+<h4>Vulnerabilities (7)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -354,11 +354,18 @@
         <td>HIGH</td>
         <td>v1.20.5</td>
         <td>1.22.7, 1.23.1</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2025-47907</td>
+        <td>HIGH</td>
+        <td>v1.20.5</td>
+        <td>1.23.12, 1.24.6</td>
     </tr>
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>root/.krew/store/krew/v0.4.4/krew</code></h3>
-<h4>Vulnerabilities (6)</h4>
+<h4>Vulnerabilities (7)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -409,10 +416,17 @@
         <td>v1.20.5</td>
         <td>1.22.7, 1.23.1</td>
     </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2025-47907</td>
+        <td>HIGH</td>
+        <td>v1.20.5</td>
+        <td>1.23.12, 1.24.6</td>
+    </tr>
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>root/.local/share/helm/plugins/helm-diff/bin/diff</code></h3>
-<h4>Vulnerabilities (16)</h4>
+<h4>Vulnerabilities (19)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -450,6 +464,13 @@
         <td>0.17.0</td>
     </tr>
     <tr>
+        <td><code>golang.org/x/oauth2</code></td>
+        <td>CVE-2025-22868</td>
+        <td>HIGH</td>
+        <td>v0.4.0</td>
+        <td>0.27.0</td>
+    </tr>
+    <tr>
         <td><code>google.golang.org/grpc</code></td>
         <td>GHSA-m425-mq94-257g</td>
         <td>HIGH</td>
@@ -462,6 +483,13 @@
         <td>HIGH</td>
         <td>v3.11.3</td>
         <td>3.14.2</td>
+    </tr>
+    <tr>
+        <td><code>helm.sh/helm/v3</code></td>
+        <td>CVE-2025-53547</td>
+        <td>HIGH</td>
+        <td>v3.11.3</td>
+        <td>3.18.4, 3.17.4</td>
     </tr>
     <tr>
         <td><code>stdlib</code></td>
@@ -533,10 +561,17 @@
         <td>v1.19.8</td>
         <td>1.22.7, 1.23.1</td>
     </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2025-47907</td>
+        <td>HIGH</td>
+        <td>v1.19.8</td>
+        <td>1.23.12, 1.24.6</td>
+    </tr>
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>root/.local/share/helm/plugins/helm-push/bin/helm-cm-push</code></h3>
-<h4>Vulnerabilities (13)</h4>
+<h4>Vulnerabilities (16)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -581,6 +616,13 @@
         <td>0.17.0</td>
     </tr>
     <tr>
+        <td><code>golang.org/x/oauth2</code></td>
+        <td>CVE-2025-22868</td>
+        <td>HIGH</td>
+        <td>v0.0.0-20220223155221-ee480838109b</td>
+        <td>0.27.0</td>
+    </tr>
+    <tr>
         <td><code>google.golang.org/grpc</code></td>
         <td>GHSA-m425-mq94-257g</td>
         <td>HIGH</td>
@@ -593,6 +635,13 @@
         <td>HIGH</td>
         <td>v3.11.2</td>
         <td>3.14.2</td>
+    </tr>
+    <tr>
+        <td><code>helm.sh/helm/v3</code></td>
+        <td>CVE-2025-53547</td>
+        <td>HIGH</td>
+        <td>v3.11.2</td>
+        <td>3.18.4, 3.17.4</td>
     </tr>
     <tr>
         <td><code>stdlib</code></td>
@@ -636,10 +685,17 @@
         <td>v1.20.4</td>
         <td>1.22.7, 1.23.1</td>
     </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2025-47907</td>
+        <td>HIGH</td>
+        <td>v1.20.4</td>
+        <td>1.23.12, 1.24.6</td>
+    </tr>
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>root/.local/share/helm/plugins/helm-unittest/untt</code></h3>
-<h4>Vulnerabilities (9)</h4>
+<h4>Vulnerabilities (12)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -670,11 +726,25 @@
         <td>0.17.0</td>
     </tr>
     <tr>
+        <td><code>golang.org/x/oauth2</code></td>
+        <td>CVE-2025-22868</td>
+        <td>HIGH</td>
+        <td>v0.7.0</td>
+        <td>0.27.0</td>
+    </tr>
+    <tr>
         <td><code>helm.sh/helm/v3</code></td>
         <td>CVE-2024-26147</td>
         <td>HIGH</td>
         <td>v3.12.2</td>
         <td>3.14.2</td>
+    </tr>
+    <tr>
+        <td><code>helm.sh/helm/v3</code></td>
+        <td>CVE-2025-53547</td>
+        <td>HIGH</td>
+        <td>v3.12.2</td>
+        <td>3.18.4, 3.17.4</td>
     </tr>
     <tr>
         <td><code>stdlib</code></td>
@@ -711,10 +781,17 @@
         <td>v1.21.1</td>
         <td>1.22.7, 1.23.1</td>
     </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2025-47907</td>
+        <td>HIGH</td>
+        <td>v1.21.1</td>
+        <td>1.23.12, 1.24.6</td>
+    </tr>
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>usr/bin/aws-iam-authenticator</code></h3>
-<h4>Vulnerabilities (14)</h4>
+<h4>Vulnerabilities (16)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -729,6 +806,13 @@
         <td>HIGH</td>
         <td>v0.7.0</td>
         <td>0.17.0</td>
+    </tr>
+    <tr>
+        <td><code>golang.org/x/oauth2</code></td>
+        <td>CVE-2025-22868</td>
+        <td>HIGH</td>
+        <td>v0.0.0-20220223155221-ee480838109b</td>
+        <td>0.27.0</td>
     </tr>
     <tr>
         <td><code>stdlib</code></td>
@@ -821,10 +905,17 @@
         <td>v1.20.1</td>
         <td>1.22.7, 1.23.1</td>
     </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2025-47907</td>
+        <td>HIGH</td>
+        <td>v1.20.1</td>
+        <td>1.23.12, 1.24.6</td>
+    </tr>
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>usr/bin/eksctl</code></h3>
-<h4>Vulnerabilities (12)</h4>
+<h4>Vulnerabilities (15)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -862,6 +953,13 @@
         <td>0.17.0</td>
     </tr>
     <tr>
+        <td><code>golang.org/x/oauth2</code></td>
+        <td>CVE-2025-22868</td>
+        <td>HIGH</td>
+        <td>v0.12.0</td>
+        <td>0.27.0</td>
+    </tr>
+    <tr>
         <td><code>google.golang.org/grpc</code></td>
         <td>GHSA-m425-mq94-257g</td>
         <td>HIGH</td>
@@ -874,6 +972,13 @@
         <td>HIGH</td>
         <td>v3.11.2</td>
         <td>3.14.2</td>
+    </tr>
+    <tr>
+        <td><code>helm.sh/helm/v3</code></td>
+        <td>CVE-2025-53547</td>
+        <td>HIGH</td>
+        <td>v3.11.2</td>
+        <td>3.18.4, 3.17.4</td>
     </tr>
     <tr>
         <td><code>k8s.io/kops</code></td>
@@ -917,10 +1022,17 @@
         <td>v1.20.8</td>
         <td>1.22.7, 1.23.1</td>
     </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2025-47907</td>
+        <td>HIGH</td>
+        <td>v1.20.8</td>
+        <td>1.23.12, 1.24.6</td>
+    </tr>
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>usr/bin/helm</code></h3>
-<h4>Vulnerabilities (10)</h4>
+<h4>Vulnerabilities (12)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -956,6 +1068,13 @@
         <td>HIGH</td>
         <td>v0.13.0</td>
         <td>0.17.0</td>
+    </tr>
+    <tr>
+        <td><code>golang.org/x/oauth2</code></td>
+        <td>CVE-2025-22868</td>
+        <td>HIGH</td>
+        <td>v0.8.0</td>
+        <td>0.27.0</td>
     </tr>
     <tr>
         <td><code>google.golang.org/grpc</code></td>
@@ -999,10 +1118,17 @@
         <td>v1.20.8</td>
         <td>1.22.7, 1.23.1</td>
     </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2025-47907</td>
+        <td>HIGH</td>
+        <td>v1.20.8</td>
+        <td>1.23.12, 1.24.6</td>
+    </tr>
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>usr/bin/kubectl</code></h3>
-<h4>Vulnerabilities (7)</h4>
+<h4>Vulnerabilities (9)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -1024,6 +1150,13 @@
         <td>HIGH</td>
         <td>v0.8.0</td>
         <td>0.17.0</td>
+    </tr>
+    <tr>
+        <td><code>golang.org/x/oauth2</code></td>
+        <td>CVE-2025-22868</td>
+        <td>HIGH</td>
+        <td>v0.0.0-20220223155221-ee480838109b</td>
+        <td>0.27.0</td>
     </tr>
     <tr>
         <td><code>stdlib</code></td>
@@ -1060,10 +1193,17 @@
         <td>v1.20.8</td>
         <td>1.22.7, 1.23.1</td>
     </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2025-47907</td>
+        <td>HIGH</td>
+        <td>v1.20.8</td>
+        <td>1.23.12, 1.24.6</td>
+    </tr>
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>usr/bin/kubeseal</code></h3>
-<h4>Vulnerabilities (8)</h4>
+<h4>Vulnerabilities (10)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -1094,6 +1234,13 @@
         <td>0.17.0</td>
     </tr>
     <tr>
+        <td><code>golang.org/x/oauth2</code></td>
+        <td>CVE-2025-22868</td>
+        <td>HIGH</td>
+        <td>v0.8.0</td>
+        <td>0.27.0</td>
+    </tr>
+    <tr>
         <td><code>stdlib</code></td>
         <td>CVE-2024-24790</td>
         <td>CRITICAL</td>
@@ -1128,9 +1275,71 @@
         <td>v1.21.1</td>
         <td>1.22.7, 1.23.1</td>
     </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2025-47907</td>
+        <td>HIGH</td>
+        <td>v1.21.1</td>
+        <td>1.23.12, 1.24.6</td>
+    </tr>
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>usr/bin/kustomize</code></h3>
+<h4>Vulnerabilities (6)</h4>
+<table>
+    <tr>
+        <th>Package</th>
+        <th>ID</th>
+        <th>Severity</th>
+        <th>Installed Version</th>
+        <th>Fixed Version</th>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2024-24790</td>
+        <td>CRITICAL</td>
+        <td>v1.20.6</td>
+        <td>1.21.11, 1.22.4</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2023-39325</td>
+        <td>HIGH</td>
+        <td>v1.20.6</td>
+        <td>1.20.10, 1.21.3</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2023-45283</td>
+        <td>HIGH</td>
+        <td>v1.20.6</td>
+        <td>1.20.11, 1.21.4, 1.20.12, 1.21.5</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2023-45288</td>
+        <td>HIGH</td>
+        <td>v1.20.6</td>
+        <td>1.21.9, 1.22.2</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2024-34156</td>
+        <td>HIGH</td>
+        <td>v1.20.6</td>
+        <td>1.22.7, 1.23.1</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2025-47907</td>
+        <td>HIGH</td>
+        <td>v1.20.6</td>
+        <td>1.23.12, 1.24.6</td>
+    </tr>
+</table>
+<h4>No Misconfigurations found</h4>
+
+<h3>Target <code>gcr.io/kubecost1/cost-model:prod-2.7.2 (redhat 9.5)</code></h3>
 <h4>Vulnerabilities (5)</h4>
 <table>
     <tr>
@@ -1141,82 +1350,44 @@
         <th>Fixed Version</th>
     </tr>
     <tr>
-        <td><code>stdlib</code></td>
-        <td>CVE-2024-24790</td>
-        <td>CRITICAL</td>
-        <td>v1.20.6</td>
-        <td>1.21.11, 1.22.4</td>
-    </tr>
-    <tr>
-        <td><code>stdlib</code></td>
-        <td>CVE-2023-39325</td>
+        <td><code>libarchive</code></td>
+        <td>CVE-2025-5914</td>
         <td>HIGH</td>
-        <td>v1.20.6</td>
-        <td>1.20.10, 1.21.3</td>
-    </tr>
-    <tr>
-        <td><code>stdlib</code></td>
-        <td>CVE-2023-45283</td>
-        <td>HIGH</td>
-        <td>v1.20.6</td>
-        <td>1.20.11, 1.21.4, 1.20.12, 1.21.5</td>
-    </tr>
-    <tr>
-        <td><code>stdlib</code></td>
-        <td>CVE-2023-45288</td>
-        <td>HIGH</td>
-        <td>v1.20.6</td>
-        <td>1.21.9, 1.22.2</td>
-    </tr>
-    <tr>
-        <td><code>stdlib</code></td>
-        <td>CVE-2024-34156</td>
-        <td>HIGH</td>
-        <td>v1.20.6</td>
-        <td>1.22.7, 1.23.1</td>
-    </tr>
-</table>
-<h4>No Misconfigurations found</h4>
-
-<h3>Target <code>gcr.io/kubecost1/cost-model:prod-2.7.2 (redhat 9.5)</code></h3>
-<h4>Vulnerabilities (3)</h4>
-<table>
-    <tr>
-        <th>Package</th>
-        <th>ID</th>
-        <th>Severity</th>
-        <th>Installed Version</th>
-        <th>Fixed Version</th>
+        <td>3.5.3-4.el9</td>
+        <td>3.5.3-6.el9_6</td>
     </tr>
     <tr>
         <td><code>libxml2</code></td>
         <td>CVE-2025-49794</td>
         <td>HIGH</td>
         <td>2.9.13-6.el9_5.2</td>
-        <td></td>
-    </tr>
-    <tr>
-        <td><code>libxml2</code></td>
-        <td>CVE-2025-49795</td>
-        <td>HIGH</td>
-        <td>2.9.13-6.el9_5.2</td>
-        <td></td>
+        <td>2.9.13-10.el9_6</td>
     </tr>
     <tr>
         <td><code>libxml2</code></td>
         <td>CVE-2025-49796</td>
         <td>HIGH</td>
         <td>2.9.13-6.el9_5.2</td>
-        <td></td>
+        <td>2.9.13-10.el9_6</td>
+    </tr>
+    <tr>
+        <td><code>libxml2</code></td>
+        <td>CVE-2025-7425</td>
+        <td>HIGH</td>
+        <td>2.9.13-6.el9_5.2</td>
+        <td>2.9.13-11.el9_6</td>
+    </tr>
+    <tr>
+        <td><code>sqlite-libs</code></td>
+        <td>CVE-2025-6965</td>
+        <td>HIGH</td>
+        <td>3.34.1-7.el9_3</td>
+        <td>3.34.1-8.el9_6</td>
     </tr>
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>go/bin/app</code></h3>
-<h4>No Vulnerabilities found</h4>
-<h4>No Misconfigurations found</h4>
-
-<h3>Target <code>gcr.io/kubecost1/frontend:prod-2.7.2 (redhat 9.5)</code></h3>
-<h4>Vulnerabilities (4)</h4>
+<h4>Vulnerabilities (1)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -1226,38 +1397,79 @@
         <th>Fixed Version</th>
     </tr>
     <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2025-47907</td>
+        <td>HIGH</td>
+        <td>v1.23.7</td>
+        <td>1.23.12, 1.24.6</td>
+    </tr>
+</table>
+<h4>No Misconfigurations found</h4>
+
+<h3>Target <code>gcr.io/kubecost1/frontend:prod-2.7.2 (redhat 9.5)</code></h3>
+<h4>Vulnerabilities (7)</h4>
+<table>
+    <tr>
+        <th>Package</th>
+        <th>ID</th>
+        <th>Severity</th>
+        <th>Installed Version</th>
+        <th>Fixed Version</th>
+    </tr>
+    <tr>
+        <td><code>libarchive</code></td>
+        <td>CVE-2025-5914</td>
+        <td>HIGH</td>
+        <td>3.5.3-4.el9</td>
+        <td>3.5.3-6.el9_6</td>
+    </tr>
+    <tr>
         <td><code>libxml2</code></td>
         <td>CVE-2025-49794</td>
         <td>HIGH</td>
         <td>2.9.13-6.el9_5.2</td>
-        <td></td>
-    </tr>
-    <tr>
-        <td><code>libxml2</code></td>
-        <td>CVE-2025-49795</td>
-        <td>HIGH</td>
-        <td>2.9.13-6.el9_5.2</td>
-        <td></td>
+        <td>2.9.13-10.el9_6</td>
     </tr>
     <tr>
         <td><code>libxml2</code></td>
         <td>CVE-2025-49796</td>
         <td>HIGH</td>
         <td>2.9.13-6.el9_5.2</td>
-        <td></td>
+        <td>2.9.13-10.el9_6</td>
+    </tr>
+    <tr>
+        <td><code>libxml2</code></td>
+        <td>CVE-2025-7425</td>
+        <td>HIGH</td>
+        <td>2.9.13-6.el9_5.2</td>
+        <td>2.9.13-11.el9_6</td>
     </tr>
     <tr>
         <td><code>pam</code></td>
         <td>CVE-2025-6020</td>
         <td>HIGH</td>
         <td>1.5.1-22.el9_5</td>
-        <td></td>
+        <td>1.5.1-26.el9_6</td>
+    </tr>
+    <tr>
+        <td><code>pam</code></td>
+        <td>CVE-2025-8941</td>
+        <td>HIGH</td>
+        <td>1.5.1-22.el9_5</td>
+        <td>1.5.1-26.el9_6</td>
+    </tr>
+    <tr>
+        <td><code>sqlite-libs</code></td>
+        <td>CVE-2025-6965</td>
+        <td>HIGH</td>
+        <td>3.34.1-7.el9_3</td>
+        <td>3.34.1-8.el9_6</td>
     </tr>
 </table>
 <h4>No Misconfigurations found</h4>
 
 <h3>Target <code>gcr.io/kubecost1/kubecost-modeling:v0.1.26 (redhat 9.5)</code></h3>
-<h4>Vulnerabilities (9)</h4>
+<h4>Vulnerabilities (11)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -1267,67 +1479,81 @@
         <th>Fixed Version</th>
     </tr>
     <tr>
+        <td><code>libarchive</code></td>
+        <td>CVE-2025-5914</td>
+        <td>HIGH</td>
+        <td>3.5.3-4.el9</td>
+        <td>3.5.3-6.el9_6</td>
+    </tr>
+    <tr>
         <td><code>libxml2</code></td>
         <td>CVE-2025-49794</td>
         <td>HIGH</td>
         <td>2.9.13-6.el9_5.2</td>
-        <td></td>
-    </tr>
-    <tr>
-        <td><code>libxml2</code></td>
-        <td>CVE-2025-49795</td>
-        <td>HIGH</td>
-        <td>2.9.13-6.el9_5.2</td>
-        <td></td>
+        <td>2.9.13-10.el9_6</td>
     </tr>
     <tr>
         <td><code>libxml2</code></td>
         <td>CVE-2025-49796</td>
         <td>HIGH</td>
         <td>2.9.13-6.el9_5.2</td>
-        <td></td>
+        <td>2.9.13-10.el9_6</td>
+    </tr>
+    <tr>
+        <td><code>libxml2</code></td>
+        <td>CVE-2025-7425</td>
+        <td>HIGH</td>
+        <td>2.9.13-6.el9_5.2</td>
+        <td>2.9.13-11.el9_6</td>
     </tr>
     <tr>
         <td><code>python3.12</code></td>
         <td>CVE-2024-12718</td>
         <td>HIGH</td>
         <td>3.12.5-2.el9_5.3</td>
-        <td></td>
+        <td>3.12.9-1.el9_6.1</td>
     </tr>
     <tr>
         <td><code>python3.12</code></td>
         <td>CVE-2025-4138</td>
         <td>HIGH</td>
         <td>3.12.5-2.el9_5.3</td>
-        <td></td>
+        <td>3.12.9-1.el9_6.1</td>
     </tr>
     <tr>
         <td><code>python3.12</code></td>
         <td>CVE-2025-4517</td>
         <td>HIGH</td>
         <td>3.12.5-2.el9_5.3</td>
-        <td></td>
+        <td>3.12.9-1.el9_6.1</td>
     </tr>
     <tr>
         <td><code>python3.12-libs</code></td>
         <td>CVE-2024-12718</td>
         <td>HIGH</td>
         <td>3.12.5-2.el9_5.3</td>
-        <td></td>
+        <td>3.12.9-1.el9_6.1</td>
     </tr>
     <tr>
         <td><code>python3.12-libs</code></td>
         <td>CVE-2025-4138</td>
         <td>HIGH</td>
         <td>3.12.5-2.el9_5.3</td>
-        <td></td>
+        <td>3.12.9-1.el9_6.1</td>
     </tr>
     <tr>
         <td><code>python3.12-libs</code></td>
         <td>CVE-2025-4517</td>
         <td>HIGH</td>
         <td>3.12.5-2.el9_5.3</td>
-        <td></td>
+        <td>3.12.9-1.el9_6.1</td>
+    </tr>
+    <tr>
+        <td><code>sqlite-libs</code></td>
+        <td>CVE-2025-6965</td>
+        <td>HIGH</td>
+        <td>3.34.1-7.el9_3</td>
+        <td>3.34.1-8.el9_6</td>
     </tr>
 </table>
 <h4>No Misconfigurations found</h4>
@@ -1352,7 +1578,7 @@
 <h4>No Misconfigurations found</h4>
 
 <h3>Target <code>bin/prometheus</code></h3>
-<h4>Vulnerabilities (2)</h4>
+<h4>Vulnerabilities (3)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -1374,11 +1600,18 @@
         <td>HIGH</td>
         <td>v1.24.1</td>
         <td>1.24.4</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2025-47907</td>
+        <td>HIGH</td>
+        <td>v1.24.1</td>
+        <td>1.23.12, 1.24.6</td>
     </tr>
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>bin/promtool</code></h3>
-<h4>Vulnerabilities (2)</h4>
+<h4>Vulnerabilities (3)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -1400,6 +1633,13 @@
         <td>HIGH</td>
         <td>v1.24.1</td>
         <td>1.24.4</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2025-47907</td>
+        <td>HIGH</td>
+        <td>v1.24.1</td>
+        <td>1.23.12, 1.24.6</td>
     </tr>
 </table>
 <h4>No Misconfigurations found</h4>
