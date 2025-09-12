@@ -26,13 +26,17 @@ mimir:
         memory: 6Gi
   ingester:
     resources:
+      requests:
+        cpu: 50m
       limits:
         cpu: 5
         memory: 6Gi
     persistentVolume:
       size: 5Gi
-
-
+  store_gateway:
+    resources:
+      requests:
+        cpu: 50m
   minio:
     persistence:
       size: 10Gi
