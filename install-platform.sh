@@ -116,10 +116,6 @@ bootstrap_clone_from_upstream() {
 }
 
 bootstrap_template_downstream_repo() {
-  # get protocol
-  export KUBRIX_REPO_PROTO=$(echo ${KUBRIX_REPO} | grep :// | sed "s,^\(.*://\).*,\1,")
-  # remove the protocol from url
-  export KUBRIX_REPO_URL=$(echo ${KUBRIX_REPO} | sed "s,^${KUBRIX_REPO_PROTO},,")
   # get git server organization (for backstage scaffolder templates)
   KUBRIX_REPO_ORG=$(echo $KUBRIX_REPO_URL | awk -F/ '{print $2}')
   # get name of the repo
@@ -508,6 +504,11 @@ else
   DATE_BIN="$(command -v date)"
 fi
 DATE_IMPL="$(detect_date_impl)"
+
+# get protocol and url of the kubrix repo for bootstrap templating and repo cloning
+export KUBRIX_REPO_PROTO=$(echo ${KUBRIX_REPO} | grep :// | sed "s,^\(.*://\).*,\1,")
+# remove the protocol from url
+export KUBRIX_REPO_URL=$(echo ${KUBRIX_REPO} | sed "s,^${KUBRIX_REPO_PROTO},,")
 
 # if KUBRIX_BOOTSTRAP is set to 'true', clone upstream repo, template files, and push to downstream repo
 if [ "${KUBRIX_BOOTSTRAP}" = "true" ] ; then
