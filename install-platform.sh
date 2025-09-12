@@ -452,7 +452,7 @@ analyze_app() {
 
   echo "------------------"
   echo "argocd app get ${app} --show-operation -o json"
-  kubectl exec "$(kubectl get pod -n argocd -l app.kubernetes.io/name=argocd-application-controller -o jsonpath='{.items[0].metadata.name}')" -n argocd -- argocd app get ${app} --show-operation -o json
+  kubectl exec "$(kubectl get pod -n argocd -l app.kubernetes.io/name=argocd-application-controller -o jsonpath='{.items[0].metadata.name}')" -n argocd -- argocd app get ${app} --show-operation -o json --core
   echo "------------------"
 
   # get events in this namespace
