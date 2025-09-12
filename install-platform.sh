@@ -450,6 +450,11 @@ analyze_app() {
   kubectl get application -n argocd ${app} -o yaml
   echo "------------------"
 
+  echo "------------------"
+  echo "argocd app get ${app} --show-operation -o json
+  kubectl exec "$(kubectl get pod -n argocd -l app.kubernetes.io/name=argocd-application-controller -o jsonpath='{.items[0].metadata.name}')" -n argocd -- argocd app get ${app} --show-operation -o json
+  echo "------------------"
+
   # get events in this namespace
   echo "------------------"
   echo "kubectl get events -n ${app_namespace} --sort-by='.lastTimestamp'"
