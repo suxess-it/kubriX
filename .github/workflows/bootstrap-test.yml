@@ -1,5 +1,9 @@
 on:
   workflow_dispatch:
+    inputs:
+      pr_number:
+        description: pr number for kubrix-installer image
+        type: string
 
 name: test bootstrap
 
@@ -51,7 +55,7 @@ jobs:
           KUBRIX_DNS_PROVIDER: "none"
           KUBRIX_CLUSTER_TYPE: "KIND"
           KUBRIX_UPSTREAM_BRANCH: ${{ github.head_ref || github.ref_name }}
-          PR_NUMBER: ${{ github.event.number }}
+          PR_NUMBER: ${{ inputs.pr_number }}
         run: |
           kubectl create ns kubrix-install
           kubectl create secret generic kubrix-install-secrets -n kubrix-install \
