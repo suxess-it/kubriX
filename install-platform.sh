@@ -96,14 +96,14 @@ detect_date_impl() {
 
 # clone kubriX upstream repo to bootstrap-kubriX/kubriX-repo
 bootstrap_clone_from_upstream() {
-  printf 'bootstrap from upstream repo %s to downstream repo %s' "${KUBRIX_UPSTREAM_REPO}" "${KUBRIX_REPO}"
+  printf 'bootstrap from upstream repo %s to downstream repo %s' "${KUBRIX_UPSTREAM_REPO}" "${KUBRIX_REPO}\n"
   printf 'checkout kubriX upstream to %s ...\n' "$(pwd)"
-
-  git config user.name "github-actions[kubrix-bot]"
-  git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
 
   git clone "${KUBRIX_UPSTREAM_REPO}" .
   git checkout "${KUBRIX_UPSTREAM_BRANCH}"
+
+  git config user.name "github-actions[kubrix-bot]"
+  git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
 
   # Create an orphan branch that has NO parents
   git checkout --orphan publish
