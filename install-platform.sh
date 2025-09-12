@@ -27,7 +27,11 @@ check_variable() {
     # set variable to a sane default if a sane default is present, else exit with error
     if [ ! -z "${sane_default}" ]; then
       printf -v "${variable}" '%s' "${sane_default}"
-      echo "set ${variable} to sane default '${!variable}'"
+      if [ ${show_output} = "true" ] ; then
+        echo "set ${variable} to sane default '${!variable}'"
+      else
+        echo "set ${variable} to sane default. Value is a secret."
+      fi
     else
       fail "prereq check failed: variable '${variable}' is blank or not set"
     fi
@@ -47,14 +51,25 @@ check_prereqs() {
 
   # check variables
   check_variable KUBRIX_REPO "true"
-  check_variable KUBRIX_REPO_BRANCH "true"
-  check_variable KUBRIX_REPO_USERNAME "true"
+  check_variable KUBRIX_REPO_BRANCH "true" "main"
+  check_variable KUBRIX_REPO_USERNAME "true" "dummy"
   check_variable KUBRIX_REPO_PASSWORD "false"
-  check_variable KUBRIX_BACKSTAGE_GITHUB_TOKEN "false"
-  check_variable KUBRIX_TARGET_TYPE "true"
+  check_variable KUBRIX_BACKSTAGE_GITHUB_TOKEN "false" "${KUBRIX_REPO_PASSWORD}"
+  check_variable KUBRIX_TARGET_TYPE "true" "DEMO-STACK"
   check_variable KUBRIX_CLUSTER_TYPE "true" "k8s"
-  check_variable KUBRIX_BOOTSTRAP_MAX_WAIT_TIME "true" "1800"
+  check_variable KUBRIX_BOOTSTRAP_MAX_WAIT_TIME "true" "2400"
   check_variable KUBRIX_INSTALLER "true" "false"
+
+  # if bootstrapping from kubriX upstream to empty customer repo is set to true
+  check_variable KUBRIX_BOOTSTRAP "true" "false"
+
+  if [ "${KUBRIX_BOOTSTRAP}" = "true" ] ; then
+    check_variable KUBRIX_UPSTREAM_REPO "true" "https://github.com/suxess-it/kubriX"
+    check_variable KUBRIX_UPSTREAM_BRANCH "true" "main"
+    check_variable KUBRIX_DOMAIN "true" "demo-$(printf '%s' "${KUBRIX_REPO}" | sha256_portable | head -c 10).kubrix.cloud"
+    check_variable KUBRIX_DNS_PROVIDER "true" "ionos"
+    check_tool gomplate "gomplate -v"
+  fi
 
   # check tools
   check_tool yq "yq --version"
@@ -77,6 +92,70 @@ detect_date_impl() {
   if "$DATE_BIN" -r 0 +%s >/dev/null 2>&1; then echo bsd; return; fi
   if "$DATE_BIN" -v -1d +%s >/dev/null 2>&1; then echo bsd; return; fi
   echo unknown
+}
+
+# clone kubriX upstream repo to bootstrap-kubriX/kubriX-repo
+bootstrap_clone_from_upstream() {
+  printf 'bootstrap from upstream repo %s to downstream repo %s' "${KUBRIX_UPSTREAM_REPO}" "${KUBRIX_REPO}\n"
+  printf 'checkout kubriX upstream to %s ...\n' "$(pwd)"
+
+  git clone "${KUBRIX_UPSTREAM_REPO}" .
+  git checkout "${KUBRIX_UPSTREAM_BRANCH}"
+
+  git config user.name "github-actions[kubrix-bot]"
+  git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+  # Create an orphan branch that has NO parents
+  # just for demo purposes to hide commit history, for official customer projects it might be a disadvantage for merging to updates.
+  # need to test that
+  git checkout --orphan publish
+
+  # now add one commit before we do the customer specific changes
+  git add -A
+  git commit -m "Initial publish: squashed snapshot of kubriX"
+}
+
+bootstrap_template_downstream_repo() {
+  # get protocol
+  KUBRIX_REPO_PROTO=$(echo ${KUBRIX_REPO} | grep :// | sed "s,^\(.*://\).*,\1,")
+  # remove the protocol from url
+  KUBRIX_REPO_URL=$(echo ${KUBRIX_REPO} | sed "s,^${KUBRIX_REPO_PROTO},,")
+  # get git server organization (for backstage scaffolder templates)
+  KUBRIX_REPO_ORG=$(echo $KUBRIX_REPO_URL | awk -F/ '{print $2}')
+  # get name of the repo
+  KUBRIX_REPO_NAME=$(echo $KUBRIX_REPO_URL | awk -F/ '{print $3}')
+  # remove .git suffix if it exists
+  KUBRIX_REPO_NAME=${KUBRIX_REPO_NAME%".git"}
+
+# write new customer values in customer config (without indentation because of heredoc)
+cat << EOF > bootstrap/customer-config.yaml
+clusterType: $( printf '%s' "${KUBRIX_CLUSTER_TYPE}" | awk '{print tolower($0)}' )
+valuesFile: $( printf '%s' "${KUBRIX_TARGET_TYPE}" | awk '{print tolower($0)}' )
+dnsProvider: ${KUBRIX_DNS_PROVIDER}
+domain: ${KUBRIX_DOMAIN}
+gitRepo: ${KUBRIX_REPO}
+gitRepoOrg: ${KUBRIX_REPO_ORG}
+gitRepoName: ${KUBRIX_REPO_NAME}
+EOF
+
+  echo "the current customer-config is like this:"
+  echo "----"
+  cat bootstrap/customer-config.yaml
+  echo "----"
+
+  echo "rendering values templates ..."
+  valuesFile=$( echo ${KUBRIX_TARGET_TYPE} | awk '{print tolower($0)}' )
+  gomplate --context kubriX=bootstrap/customer-config.yaml --input-dir platform-apps --include *${valuesFile}.yaml.tmpl --output-map='platform-apps/{{ .in | strings.ReplaceAll ".yaml.tmpl" ".yaml" }}'
+  gomplate --context kubriX=bootstrap/customer-config.yaml --input-dir backstage-resources --include *.yaml.tmpl --output-map='backstage-resources/{{ .in | strings.ReplaceAll ".yaml.tmpl" ".yaml" }}'
+
+}
+
+bootstrap_push_to_downstream() {
+  echo "Push kubriX gitops files to ${KUBRIX_REPO}"
+  git remote add customer ${KUBRIX_REPO_PROTO}${KUBRIX_REPO_PASSWORD}@${KUBRIX_REPO_URL}
+  git add -A
+  git commit -a -m "add customer specific modifications during bootstrap"
+  git push --set-upstream customer publish:main
 }
 
 # Current UTC epoch seconds (works on GNU & BSD)
@@ -113,6 +192,40 @@ convert_to_seconds() {
       echo "Unknown date(1) implementation" >&2; return 1
       ;;
   esac
+}
+
+lower() {
+  printf '%s' "$1" | tr '[:upper:]' '[:lower:]';
+}
+
+detect_os() {
+  local s; s="$(uname -s 2>/dev/null || echo unknown)"
+  case "$(lower "$s")" in
+    linux*)  echo linux ;;
+    darwin*) echo darwin ;;
+    msys*|mingw*|cygwin*) echo windows ;;
+    *) echo unknown ;;
+  esac
+}
+
+detect_arch() {
+  local m; m="$(uname -m 2>/dev/null || echo unknown)"
+  case "$m" in
+    x86_64|amd64) echo amd64 ;;
+    aarch64|arm64) echo arm64 ;;
+    armv7l|armv7) echo armv7 ;;
+    armv6l|armv6) echo armv6 ;;
+    i386|i686)    echo 386 ;;
+    *) echo unknown ;;
+  esac
+}
+
+sha256_portable() {
+  if command -v shasum >/dev/null 2>&1; then
+    shasum -a 256 | awk '{print $1}'
+  else
+    sha256sum | awk '{print $1}'
+  fi
 }
 
 create_vault_secrets_for_backstage() {
@@ -337,6 +450,11 @@ analyze_app() {
   kubectl get application -n argocd ${app} -o yaml
   echo "------------------"
 
+  echo "------------------"
+  echo "argocd app get ${app} --show-operation -o json"
+  kubectl exec "$(kubectl get pod -n argocd -l app.kubernetes.io/name=argocd-application-controller -o jsonpath='{.items[0].metadata.name}')" -n argocd -- argocd app get ${app} --show-operation -o json --core
+  echo "------------------"
+
   # get events in this namespace
   echo "------------------"
   echo "kubectl get events -n ${app_namespace} --sort-by='.lastTimestamp'"
@@ -378,8 +496,8 @@ if [ -f /etc/image-version ]; then
   cat /etc/image-version
 fi
 
-ARCH=$(uname -m)
-OS=$(uname -s)
+ARCH="$(detect_arch)"
+OS="$(detect_os)"
 
 check_prereqs
 
@@ -391,8 +509,23 @@ else
 fi
 DATE_IMPL="$(detect_date_impl)"
 
-# checkout upstream repo when running inside kubrix-installer job
+# if KUBRIX_BOOTSTRAP is set to 'true', clone upstream repo, template files, and push to downstream repo
+if [ "${KUBRIX_BOOTSTRAP}" = "true" ] ; then
+  cd "$HOME"
+  if [ -d "bootstrap-kubriX" ]; then
+    printf '%s\n' "boostrap-kubriX already exists. We will delete it."
+    rm -rf bootstrap-kubriX
+  fi
+  mkdir -p bootstrap-kubriX/kubriX-repo
+  cd bootstrap-kubriX/kubriX-repo
+  bootstrap_clone_from_upstream
+  bootstrap_template_downstream_repo
+  bootstrap_push_to_downstream
+fi
+
+# checkout repo when running inside kubrix-installer job
 if [ ${KUBRIX_INSTALLER} = "true" ] ; then
+  cd "$HOME"
   printf 'checkout kubriX to %s ...\n' "$(pwd)/kubriX"
   mkdir kubriX
   git clone "${KUBRIX_REPO}" kubriX
