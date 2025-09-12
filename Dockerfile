@@ -1,5 +1,5 @@
 # docker buildx build --platform linux/amd64,linux/arm64 -t ghcr.io/suxess-it/kubrix-installer:latest --push .
-FROM ubuntu:22.04
+FROM ubuntu:24.04
 
 ARG TARGETARCH
 ENV DEBIAN_FRONTEND=noninteractive
@@ -23,7 +23,7 @@ LABEL org.opencontainers.image.revision="$VCS_REF" \
 
 # Base tools
 RUN apt-get update && apt-get install -y --no-install-recommends \
-    ca-certificates curl git jq bash coreutils tar gzip unzip procps \
+    ca-certificates curl gnupg git jq bash coreutils tar gzip unzip procps \
     libnss3-tools util-linux bsdextrautils gettext-base gawk grep sed \
     iproute2 iputils-ping dnsutils openssl \
     mkcert \
@@ -49,8 +49,12 @@ RUN case "${TARGETARCH}" in \
       "https://dl.k8s.io/release/${KVER}/bin/linux/${K_ARCH}/kubectl" \
  && chmod +x /usr/local/bin/kubectl
 
-# Helm (script auto-detects arch)
-RUN curl -fsSL https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3 | bash
+# Helm
+RUN curl -fsSL https://packages.buildkite.com/helm-linux/helm-debian/gpgkey | gpg --dearmor | tee /usr/share/keyrings/helm.gpg > /dev/null \
+ && echo "deb [signed-by=/usr/share/keyrings/helm.gpg] https://packages.buildkite.com/helm-linux/helm-debian/any/ any main" \
+    > /etc/apt/sources.list.d/helm-stable-debian.list \
+ && apt-get update && apt-get install -y --no-install-recommends helm \
+ && rm -rf /var/lib/apt/lists/*
 
 # Put the installer script into the image (Option A)
 WORKDIR /work
