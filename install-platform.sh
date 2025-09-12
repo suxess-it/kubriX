@@ -117,9 +117,9 @@ bootstrap_clone_from_upstream() {
 
 bootstrap_template_downstream_repo() {
   # get protocol
-  KUBRIX_REPO_PROTO=$(echo ${KUBRIX_REPO} | grep :// | sed "s,^\(.*://\).*,\1,")
+  export KUBRIX_REPO_PROTO=$(echo ${KUBRIX_REPO} | grep :// | sed "s,^\(.*://\).*,\1,")
   # remove the protocol from url
-  KUBRIX_REPO_URL=$(echo ${KUBRIX_REPO} | sed "s,^${KUBRIX_REPO_PROTO},,")
+  export KUBRIX_REPO_URL=$(echo ${KUBRIX_REPO} | sed "s,^${KUBRIX_REPO_PROTO},,")
   # get git server organization (for backstage scaffolder templates)
   KUBRIX_REPO_ORG=$(echo $KUBRIX_REPO_URL | awk -F/ '{print $2}')
   # get name of the repo
@@ -528,7 +528,7 @@ if [ ${KUBRIX_INSTALLER} = "true" ] ; then
   cd "$HOME"
   printf 'checkout kubriX to %s ...\n' "$(pwd)/kubriX"
   mkdir kubriX
-  git clone "${KUBRIX_REPO}" kubriX
+  git clone ${KUBRIX_REPO_PROTO}${KUBRIX_REPO_PASSWORD}@${KUBRIX_REPO_URL} kubriX
   cd kubriX
   git checkout "${KUBRIX_REPO_BRANCH}"
 fi
