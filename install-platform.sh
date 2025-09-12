@@ -106,10 +106,11 @@ bootstrap_clone_from_upstream() {
   git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
 
   # Create an orphan branch that has NO parents
+  # just for demo purposes to hide commit history, for official customer projects it might be a disadvantage for merging to updates.
+  # need to test that
   git checkout --orphan publish
 
   # now add one commit before we do the customer specific changes
-  git reset --mixed
   git add -A
   git commit -m "Initial publish: squashed snapshot of kubriX"
 }
