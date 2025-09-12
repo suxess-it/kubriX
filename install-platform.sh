@@ -27,7 +27,11 @@ check_variable() {
     # set variable to a sane default if a sane default is present, else exit with error
     if [ ! -z "${sane_default}" ]; then
       printf -v "${variable}" '%s' "${sane_default}"
-      echo "set ${variable} to sane default '${!variable}'"
+      if [ ${show_output} = "true" ] ; then
+        echo "set ${variable} to sane default '${!variable}'"
+      else
+        echo "set ${variable} to sane default. Value is a secret."
+      fi
     else
       fail "prereq check failed: variable '${variable}' is blank or not set"
     fi
@@ -62,7 +66,7 @@ check_prereqs() {
   if [ "${KUBRIX_BOOTSTRAP}" = "true" ] ; then
     check_variable KUBRIX_UPSTREAM_REPO "true" "https://github.com/suxess-it/kubriX"
     check_variable KUBRIX_UPSTREAM_BRANCH "true" "main"
-    check_variable KUBRIX_DOMAIN "true" "demo-$(printf '%s' "${KUBRIX_CUSTOMER_REPO}" | sha256_portable | head -c 10).kubrix.cloud"
+    check_variable KUBRIX_DOMAIN "true" "demo-$(printf '%s' "${KUBRIX_REPO}" | sha256_portable | head -c 10).kubrix.cloud"
     check_variable KUBRIX_DNS_PROVIDER "true" "ionos"
     check_tool gomplate "gomplate -v"
   fi
@@ -94,6 +98,10 @@ detect_date_impl() {
 bootstrap_clone_from_upstream() {
   printf 'bootstrap from upstream repo %s to downstream repo %s' "${KUBRIX_UPSTREAM_REPO}" "${KUBRIX_REPO}"
   printf 'checkout kubriX upstream to %s ...\n' "$(pwd)"
+
+  git config user.name "github-actions[kubrix-bot]"
+  git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
   git clone "${KUBRIX_UPSTREAM_REPO}" .
   git checkout "${KUBRIX_UPSTREAM_BRANCH}"
 
