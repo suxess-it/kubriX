@@ -44,7 +44,7 @@ With this step-by-step guide kubriX with its default stack gets deployed on your
 
     Then be sure that kubectl is connected to it. check with `kubectl cluster-info`
 
-4. Create a `kubrix-install` Namespace and a Secret `kubrix-installer-secret` to configure the installer.  
+4. Create a `kubrix-install` Namespace and a Secret `kubrix-installer-secrets` to configure the installer.  
     The values of `KUBRIX_REPO` and `KUBRIX_REPO_PASSWORD` need to be set to your newly created empty Git repo in step 1 and the access token you created in step 2.
 
     ```
