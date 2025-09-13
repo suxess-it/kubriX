@@ -105,7 +105,7 @@ With this step-by-step guide kubriX with its default demo stack gets deployed on
 10. If you need to prepare something else on your cluster before kubriX gets installed, do this now.
 
 
-11. Create a `kubrix-install` Namespace and a Secret `kubrix-installer-secret` to configure the installer.
+11. Create a `kubrix-install` Namespace and a Secret `kubrix-installer-secrets` to configure the installer.
 
     ```
     kubectl create ns kubrix-install
