@@ -29,7 +29,7 @@ git pull
 
 Think about how you want to deal with
 
-- DNS resolution (kubriX works best with DNS provider supported by `external-secrets`)
+- DNS resolution (kubriX works best with DNS provider supported by `external-dns`)
 - TLS certificates (kubriX uses `cert-manager` for creating certificates, typically via ACME protocol)
 - Persistent Storage integration (S3 for observability data and backups, ...)
 - Git-Server, Git-Server Repo/Group structure
