@@ -34,7 +34,7 @@ With this step-by-step guide kubriX with its default demo stack gets deployed on
 5. optional: set the DNS provider, which external-dns should connect to.
 
     default: ionos  
-    supported: ionos, route53, stackit, cloudflare
+    supported: ionos, aws, stackit, cloudflare
 
     ```
     export KUBRIX_DNS_PROVIDER="ionos"
