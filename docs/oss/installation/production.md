@@ -88,7 +88,10 @@ Create a `kubrix-install` Namespace and a Secret `kubrix-installer-secrets` to c
     kubectl create ns kubrix-install
     kubectl create secret generic kubrix-install-secrets -n kubrix-install \
       --from-literal KUBRIX_REPO=${KUBRIX_REPO} \
-      --from-literal KUBRIX_REPO_PASSWORD=${KUBRIX_REPO_PASSWORD} \
+      --from-literal 
+KUBRIX_REPO_PASSWORD=${KUBRIX_REPO_PASSWORD} \
+      --from-literal KUBRIX_TARGET_TYPE=<your-target-type> #in upper case!
+      --from-literal  KUBRIX_BACKSTAGE_GITHUB_TOKEN=<your-repo-read-access-token>
       --from-literal KUBRIX_INSTALLER=true
     ```
 
