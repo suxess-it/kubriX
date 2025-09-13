@@ -78,20 +78,31 @@ After customizing all values files, commit and push your changes to your own kub
 
 ## Running the installer
 
-The installer will use some scripts of your local repository and apply platform apps from your remote repository. So be sure that all your applied changes are pushed to your remote repository and you also checked out snd pulled your latest changes from your remote repository.
+Create a `kubrix-install` Namespace and a Secret `kubrix-installer-secrets` to configure the installer.  
+    The values of `KUBRIX_REPO` and `KUBRIX_REPO_PASSWORD` need to be set to your newly created empty Git repo in step 1 and the access token you created in step 2.
 
-```bash
-export KUBRIX_REPO=https://github.com/<your-org>/<your-kubrix-repo>
-export KUBRIX_REPO_BRANCH=<your-stage-branch>
-export KUBRIX_REPO_USERNAME=dummy
-export KUBRIX_REPO_PASSWORD=<your-repo-read-access-token>
-export KUBRIX_TARGET_TYPE=<your-target-type> #in upper case!
-export KUBRIX_BACKSTAGE_GITHUB_TOKEN=<your-repo-read-access-token>
-export KUBRIX_BOOTSTRAP_MAX_WAIT_TIME=3600
+    ```
+    export KUBRIX_REPO="https://github.com/kubriX-demo/kubriX-demo-customerXY"
+    export KUBRIX_REPO_PASSWORD="your-read-write-access-token"
+    
+    kubectl create ns kubrix-install
+    kubectl create secret generic kubrix-install-secrets -n kubrix-install \
+      --from-literal KUBRIX_REPO=${KUBRIX_REPO} \
+      --from-literal KUBRIX_REPO_PASSWORD=${KUBRIX_REPO_PASSWORD} \
+      --from-literal KUBRIX_DOMAIN="127-0-0-1.nip.io" \
+      --from-literal KUBRIX_DNS_PROVIDER="none" \
+      --from-literal KUBRIX_TARGET_TYPE="DEMO-STACK" \
+      --from-literal KUBRIX_CLUSTER_TYPE="KIND" \
+      --from-literal KUBRIX_BOOTSTRAP=true \
+      --from-literal KUBRIX_INSTALLER=true
+    ```
 
-# install-platform from new repository
-./install-platform.sh
-```
+6. Then apply the installer manifests:
+
+    ```
+    kubectl apply -f https://raw.githubusercontent.com/suxess-it/kubriX/refs/heads/main/install-manifests.yaml
+    ```
+
 
 ## Post-Installation tasks
 
