@@ -89,11 +89,6 @@ Create a `kubrix-install` Namespace and a Secret `kubrix-installer-secrets` to c
     kubectl create secret generic kubrix-install-secrets -n kubrix-install \
       --from-literal KUBRIX_REPO=${KUBRIX_REPO} \
       --from-literal KUBRIX_REPO_PASSWORD=${KUBRIX_REPO_PASSWORD} \
-      --from-literal KUBRIX_DOMAIN="127-0-0-1.nip.io" \
-      --from-literal KUBRIX_DNS_PROVIDER="none" \
-      --from-literal KUBRIX_TARGET_TYPE="DEMO-STACK" \
-      --from-literal KUBRIX_CLUSTER_TYPE="KIND" \
-      --from-literal KUBRIX_BOOTSTRAP=true \
       --from-literal KUBRIX_INSTALLER=true
     ```
 
