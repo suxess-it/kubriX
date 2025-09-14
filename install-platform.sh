@@ -429,8 +429,19 @@ analyze_all_unhealthy_apps() {
       fi
     fi
   done
-  echo "==== k8sgpt analyze ===="
+  echo "===== k8sgpt analyze ====="
   k8sgpt analyze
+  echo "===== kubectl describe node ======"
+  kubectl describe node
+  echo "===== kubectl top node  ======"
+  kubectl top node
+  echo "===== kubectl get nodes ======"
+  kubectl get nodes -o yaml
+  echo "===== crossplane managed ======"
+  kubectl get managed
+  kubectl get managed -o yaml
+  kubectl get pkg
+  kubectl get pkg -o yaml
 }
 
 analyze_app() {
