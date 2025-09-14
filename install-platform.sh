@@ -630,9 +630,12 @@ echo "add kubriX repo in argocd pod"
 kubectl exec "$(kubectl get pod -n argocd -l app.kubernetes.io/name=argocd-application-controller -o jsonpath='{.items[0].metadata.name}')" -n argocd -- argocd repo add ${KUBRIX_REPO} --username ${KUBRIX_REPO_USERNAME} --password ${KUBRIX_REPO_PASSWORD} --core
 
 # add secrets
-if [ ${KUBRIX_GENERATE_SECRETS} = "true" ] ; then
   echo "Generating default secrets..."
   ./.secrets/createsecret.sh
+# create the secrets.yaml and pushsecrets.yaml but only apply them when KUBRIX_GENERATE_SECRETS is true
+# reason: we always want to delete the pushsecrets at the end so you can manage those secrets via vault
+#         so we let createsecret.sh create the secrets.yaml and pushsecrets.yaml, not apply them when KUBRIX_GENERATE_SECRETS is not true, but always delete them at the end of the script
+if [ ${KUBRIX_GENERATE_SECRETS} = "true" ] ; then
   kubectl apply -f ./.secrets/secrettemp/secrets.yaml
 fi
 
@@ -707,6 +710,4 @@ if [[ "${CODESPACES:-}" == "true" ]]; then
 fi
 
 # remove pushsecrets
-if [ ${KUBRIX_GENERATE_SECRETS} = "true" ] ; then
-  kubectl delete -f ./.secrets/secrettemp/pushsecrets.yaml
-fi
+kubectl delete -f ./.secrets/secrettemp/pushsecrets.yaml
