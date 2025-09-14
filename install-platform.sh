@@ -77,7 +77,8 @@ check_prereqs() {
   check_tool kubectl "kubectl version --client=true"
   check_tool helm "helm version"
   check_tool curl "curl -V | head -1"
-
+  check_tool k8sgpt "k8sgpt version"
+  
   if [[ "${KUBRIX_TARGET_TYPE}" =~ ^KIND.* || "${KUBRIX_CLUSTER_TYPE}" == "KIND" ]] ; then
     check_tool mkcert "mkcert --version"
   fi
@@ -428,7 +429,8 @@ analyze_all_unhealthy_apps() {
       fi
     fi
   done
-  
+  echo "===== k8sgpt analyze ====="
+  k8sgpt analyze
   echo "===== kubectl describe node ======"
   kubectl describe node
   echo "===== kubectl top node  ======"
