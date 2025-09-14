@@ -19,11 +19,11 @@ jobs:
       matrix: ${{ steps.diffStep.outputs.matrix }}
     steps:
       - name: Checkout PR
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
         with:
          path: pr
       - name: Checkout Target of PR
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
         with:
           path: target
           ref: ${{ github.event.pull_request.base.ref }}
@@ -48,7 +48,7 @@ jobs:
       max-parallel: 1
     steps:
 
-      - uses: actions/download-artifact@v4
+      - uses: actions/download-artifact@v5
         with:
           name: comment-files-artifact
           path: comment-files/
@@ -65,7 +65,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
 
-      - uses: actions/download-artifact@v4
+      - uses: actions/download-artifact@v5
         with:
           name: comment-files-artifact
           path: comment-files/

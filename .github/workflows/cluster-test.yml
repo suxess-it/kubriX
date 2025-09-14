@@ -14,7 +14,10 @@ on:
       - 'platform-apps/target-chart/templates/**'
       - 'platform-apps/target-chart/values.yaml'
       - 'platform-apps/target-chart/values-kind*'
+      - 'Dockerfile'
       - 'install-platform.sh'
+      - '.github/workflows/create-kubrix-installer-image.yml'
+      - 'install-manifests.yaml'
   pull_request:
     types: [opened, synchronize]
     paths:
@@ -24,9 +27,16 @@ on:
       - 'platform-apps/target-chart/templates/**'
       - 'platform-apps/target-chart/values.yaml'
       - 'platform-apps/target-chart/values-kind*'
+      - 'Dockerfile'
       - 'install-platform.sh'
+      - '.github/workflows/create-kubrix-installer-image.yml'
+      - 'install-manifests.yaml'
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
+  # Also run AFTER kubrix-installer build completes
+  workflow_run:
+    workflows: ['create kubrix-installer image']
+    types: [completed]
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
@@ -37,7 +47,59 @@ env:
   KUBRIX_REPO: "https://github.com/${{ github.repository }}"
   
 jobs:
+  create-kubrix-installer-image:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:         
+      - uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
+
+      - uses: docker/setup-qemu-action@v3
+      - uses: docker/setup-buildx-action@v3
+
+      - name: Docker meta
+        id: meta
+        uses: docker/metadata-action@v5
+        with:
+          images: |
+            name=ghcr.io/suxess-it/kubrix-installer
+          tags: |
+            # set latest tag for default branch
+            type=raw,value=latest,enable={{is_default_branch}}
+            type=ref,event=branch
+            type=ref,event=tag
+            type=ref,event=pr
+
+      - name: Login to Github Container Registry
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Compute version
+        id: ver
+        run: |
+          echo "version=$(git describe --tags --dirty --always)" >> $GITHUB_OUTPUT
+          echo "sha_short=$(git rev-parse --short=12 HEAD)" >> $GITHUB_OUTPUT
+     
+      - name: Build and push docker
+        uses: docker/build-push-action@v6
+        with:
+          context: .
+          push: true
+          platforms: linux/amd64, linux/arm64
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}
+          build-args: |
+            VERSION=${{ steps.ver.outputs.version }}
+            VCS_REF=${{ steps.ver.outputs.sha_short }}
+  
   create-cluster:
+    needs:
+      - create-kubrix-installer-image
     runs-on: ${{ vars.KUBRIX_GITHUB_RUNNER || 'ubuntu-latest' }}
     permissions: read-all
     strategy:
@@ -50,7 +112,7 @@ jobs:
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
  
       - name: Create k8s Kind Cluster
         uses: helm/kind-action@v1
@@ -68,7 +130,7 @@ jobs:
       - name: install k8sgpt
         shell: bash
         run: |
-          curl -LO https://github.com/k8sgpt-ai/k8sgpt/releases/download/v0.3.30/k8sgpt_amd64.deb
+          curl -LO https://github.com/k8sgpt-ai/k8sgpt/releases/download/v0.4.25/k8sgpt_amd64.deb
           sudo dpkg -i k8sgpt_amd64.deb
           k8sgpt analyze
 
@@ -76,17 +138,26 @@ jobs:
         env:
           KUBRIX_TARGET_TYPE: ${{ matrix.target-type }}
           KUBRIX_CLUSTER_TYPE: "KIND"
-          KUBRIX_BACKSTAGE_GITHUB_CLIENTSECRET: "dummy"
-          KUBRIX_BACKSTAGE_GITHUB_CLIENTID: "dummy"
-          KUBRIX_BACKSTAGE_GITHUB_TOKEN: "dummy"
-          KUBRIX_ARGOCD_APPSET_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          KUBRIX_BACKSTAGE_GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           KUBRIX_REPO_PASSWORD: ${{ secrets.GITHUB_TOKEN }}
           KUBRIX_REPO_USERNAME: "dummy"
           KUBRIX_INSTALL_DEBUG: "false"
           KUBRIX_BOOTSTRAP_MAX_WAIT_TIME: ${{ vars.KUBRIX_BOOTSTRAP_MAX_WAIT_TIME }}
+          PR_NUMBER: ${{ github.event.number }}
         shell: bash
         run: |
-          ./install-platform.sh
+          kubectl create ns kubrix-install
+          kubectl create secret generic kubrix-install-secrets -n kubrix-install \
+            --from-literal KUBRIX_TARGET_TYPE=${KUBRIX_TARGET_TYPE} \
+            --from-literal KUBRIX_CLUSTER_TYPE=${KUBRIX_CLUSTER_TYPE} \
+            --from-literal KUBRIX_BACKSTAGE_GITHUB_TOKEN=${KUBRIX_BACKSTAGE_GITHUB_TOKEN} \
+            --from-literal KUBRIX_REPO_PASSWORD=${KUBRIX_REPO_PASSWORD} \
+            --from-literal KUBRIX_REPO_USERNAME=${KUBRIX_REPO_USERNAME} \
+            --from-literal KUBRIX_REPO_BRANCH=${KUBRIX_REPO_BRANCH} \
+            --from-literal KUBRIX_REPO=${KUBRIX_REPO} \
+            --from-literal KUBRIX_BOOTSTRAP_MAX_WAIT_TIME=${KUBRIX_BOOTSTRAP_MAX_WAIT_TIME} \
+            --from-literal KUBRIX_INSTALLER=true
+          bash .github/install-kubriX-with-job.sh
 
       - name: argocd show diff
         continue-on-error: true
@@ -129,6 +200,11 @@ jobs:
           kubectl get nodes -o yaml
           echo "===== yaml output of all applications ======"
           kubectl get application -n argocd -o yaml
+          echo "===== crossplane managed ======"
+          kubectl get managed
+          kubectl get managed -o yaml
+          kubectl get pkg
+          kubectl get pkg -o yaml 
 
       - name: mustgather logs for troubleshooting
         if: ${{ failure() }}

@@ -22,23 +22,22 @@ With this step-by-step guide kubriX with its default demo stack gets deployed on
 
     If you create a fine-grained token on Github, these are the needed permissions:
 
-    <img width="991" height="600" alt="image" src="https://github.com/user-attachments/assets/a82efc5a-e90c-43af-baff-942f2433be7b" />
-
+    ![image](../../img/github_token.png)
 
 4. set the repo url and token in this variables like this:
 
     ```
-    export KUBRIX_CUSTOMER_REPO="https://github.com/kubriX-demo/kubriX-demo-customerXY"
-    export KUBRIX_CUSTOMER_REPO_TOKEN="blabla"
+    export KUBRIX_REPO="https://github.com/kubriX-demo/kubriX-demo-customerXY"
+    export KUBRIX_REPO_PASSWORD="blabla"
     ```
 
 5. optional: set the DNS provider, which external-dns should connect to.
 
     default: ionos  
-    supported: ionos, route53, stackit, cloudflare
+    supported: ionos, aws, stackit, cloudflare
 
     ```
-    export KUBRIX_CUSTOMER_DNS_PROVIDER="ionos"
+    export KUBRIX_DNS_PROVIDER="ionos"
     ```
 
 6. optional: set the domain, under which kubriX should be available.
@@ -46,7 +45,7 @@ With this step-by-step guide kubriX with its default demo stack gets deployed on
     This domain will be used by external-dns. Your provider in step 4 needs to be able to manage this domain with the credentials set in step 8.
 
     ```
-    export KUBRIX_CUSTOMER_DOMAIN="demo-johnny.kubrix.cloud"
+    export KUBRIX_DOMAIN="demo-johnny.kubrix.cloud"
     ```
 
     if this variable is not set, a subdomain of "kubrix.cloud" is randomly created (for example "demo-2faf23d.kubrix.cloud")
@@ -54,7 +53,7 @@ With this step-by-step guide kubriX with its default demo stack gets deployed on
 7. optional: set the kubrix target type which should be used
 
     ```
-    export KUBRIX_CUSTOMER_TARGET_TYPE="DEMO-STACK"
+    export KUBRIX_TARGET_TYPE="DEMO-STACK"
     ```
 
     if this variable is not set, "DEMO-STACK" is used.
@@ -106,13 +105,39 @@ With this step-by-step guide kubriX with its default demo stack gets deployed on
 10. If you need to prepare something else on your cluster before kubriX gets installed, do this now.
 
 
-11. Then run this command in your home directory in your linux bash:
+11. Create a `kubrix-install` Namespace and a Secret `kubrix-installer-secret` to configure the installer.
 
     ```
-    curl -H 'Cache-Control: no-cache, no-store' https://raw.githubusercontent.com/suxess-it/kubriX/refs/heads/main/bootstrap/bootstrap.sh | bash -s
+    kubectl create ns kubrix-install
+    kubectl create secret generic kubrix-install-secrets -n kubrix-install \
+      --from-literal KUBRIX_REPO=${KUBRIX_REPO} \
+      --from-literal KUBRIX_REPO_PASSWORD=${KUBRIX_REPO_PASSWORD} \
+      --from-literal KUBRIX_DOMAIN=${KUBRIX_DOMAIN} \
+      --from-literal KUBRIX_DNS_PROVIDER=${KUBRIX_DNS_PROVIDER} \
+      --from-literal KUBRIX_TARGET_TYPE=${KUBRIX_TARGET_TYPE} \
+      --from-literal KUBRIX_BOOTSTRAP=true \
+      --from-literal KUBRIX_INSTALLER=true
     ```
 
-    It will create a new kubriX repo based on your parameters and installs kubriX based on your created kubriX repo on your connected K8s cluster.
+12. Then apply the installer manifests:
+
+    ```
+    kubectl apply -f https://raw.githubusercontent.com/suxess-it/kubriX/refs/heads/main/install-manifests.yaml
+    ```
+
+    These manifests will create a Kubernetes Job which creates a clone of the upstream kubriX OSS repo with some customizations in your newly created repo and starts the installation on your Kubernetes cluster.
+
+    This could take up to 30 minutes, depending how powerful your local environment is.
+
+    You can watch the logs of the job with
+    ```
+    kubectl logs -n kubrix-install -f "pod/$(kubectl get pod -n kubrix-install -l "job-name=kubrix-install-job" -o jsonpath='{.items[0].metadata.name}')" --all-containers=true
+    ```
+
+    Especially Keycloak could take a while,
+    since there are many resources created via Crossplane in different ArgoCD sync-waves.
+    After 300 seconds the sync process gets terminated and restarted. This could happend sometimes and is not always indicating a problem.
+    Also, sometimes the Keycloak app could be in temporary `Degraded` state during installation, but gets `Healthy` afterwards.
 
 
 ##  Next steps
