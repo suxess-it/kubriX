@@ -59,6 +59,7 @@ check_prereqs() {
   check_variable KUBRIX_CLUSTER_TYPE "true" "k8s"
   check_variable KUBRIX_BOOTSTRAP_MAX_WAIT_TIME "true" "2400"
   check_variable KUBRIX_INSTALLER "true" "false"
+  check_variable KUBRIX_GENERATE_SECRETS "true" "true"
 
   # if bootstrapping from kubriX upstream to empty customer repo is set to true
   check_variable KUBRIX_BOOTSTRAP "true" "false"
@@ -307,7 +308,7 @@ wait_until_apps_synced_healthy() {
 
         # special case for sx-vault
         if [[ "${app}" == "sx-vault" && "${sync_status}" == "${synced}" && "${health_status}" == "${healthy}" ]]; then
-          if [ ! -f ./.secrets/secrettemp/secrets-applied ]; then
+          if [ ! -f ./.secrets/secrettemp/secrets-applied ] && [ ${KUBRIX_GENERATE_SECRETS} = "true" ] ; then
             echo "sx-vault is synced and healthy — applying pushsecrets"
             echo 
             kubectl apply -f ./.secrets/secrettemp/pushsecrets.yaml
@@ -629,9 +630,11 @@ echo "add kubriX repo in argocd pod"
 kubectl exec "$(kubectl get pod -n argocd -l app.kubernetes.io/name=argocd-application-controller -o jsonpath='{.items[0].metadata.name}')" -n argocd -- argocd repo add ${KUBRIX_REPO} --username ${KUBRIX_REPO_USERNAME} --password ${KUBRIX_REPO_PASSWORD} --core
 
 # add secrets
-echo "Generating default secrets..."
-./.secrets/createsecret.sh
-kubectl apply -f ./.secrets/secrettemp/secrets.yaml
+if [ ${KUBRIX_GENERATE_SECRETS} = "true" ] ; then
+  echo "Generating default secrets..."
+  ./.secrets/createsecret.sh
+  kubectl apply -f ./.secrets/secrettemp/secrets.yaml
+fi
 
 KUBRIX_REPO_BRANCH_SED=$( printf '%s' "${KUBRIX_REPO_BRANCH}" | sed -e 's/[\/&]/\\&/g' );
 KUBRIX_REPO_SED=$( printf '%s' "${KUBRIX_REPO}" | sed -e 's/[\/&]/\\&/g' );
@@ -704,4 +707,6 @@ if [[ "${CODESPACES:-}" == "true" ]]; then
 fi
 
 # remove pushsecrets
-kubectl delete -f ./.secrets/secrettemp/pushsecrets.yaml
+if [ ${KUBRIX_GENERATE_SECRETS} = "true" ] ; then
+  kubectl delete -f ./.secrets/secrettemp/pushsecrets.yaml
+fi
