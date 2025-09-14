@@ -1,5 +1,40 @@
 # Troubleshooting during Installation
 
+## Restart Installation
+
+If you had troubles during installation and want to restart the installation you can do this as follows:
+
+Delete the kubrix-install job:
+
+```
+kubectl delete job kubrix-install-job -n kubrix-install
+```
+
+If you already have your own kubriX repo and don't want to bootstrap your repo from the upstream kubriX repo
+set `KUBRIX_BOOTSTRAP` to `false`:
+
+```
+kubectl patch secret kubrix-install-secrets -n kubrix-install -p='{"stringData":{"KUBRIX_BOOTSTRAP": "false"}}'
+```
+
+If you do not want to regenerate the kubrix platform services credentials you should set `KUBRIX_GENERATE_SECRETS` to `false`:
+
+```
+kubectl patch secret kubrix-install-secrets -n kubrix-install -p='{"stringData":{"KUBRIX_GENERATE_SECRETS": "false"}}'
+```
+
+Then restart the installation by applying the manifests again:
+
+```
+kubectl apply -f https://raw.githubusercontent.com/suxess-it/kubriX/refs/heads/main/install-manifests.yaml
+```
+
+and view the logs again with this command:
+
+```
+kubectl logs -n kubrix-install -f "pod/$(kubectl get pod -n kubrix-install -l "job-name=kubrix-install-job" -o jsonpath='{.items[0].metadata.name}')" --all-containers=true
+```
+
 ## Keycloak degraded
 
 ```
