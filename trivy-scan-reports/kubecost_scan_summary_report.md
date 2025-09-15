@@ -1407,7 +1407,7 @@
 <h4>No Misconfigurations found</h4>
 
 <h3>Target <code>gcr.io/kubecost1/frontend:prod-2.7.2 (redhat 9.5)</code></h3>
-<h4>Vulnerabilities (7)</h4>
+<h4>Vulnerabilities (8)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -1415,6 +1415,13 @@
         <th>Severity</th>
         <th>Installed Version</th>
         <th>Fixed Version</th>
+    </tr>
+    <tr>
+        <td><code>expat</code></td>
+        <td>CVE-2025-59375</td>
+        <td>HIGH</td>
+        <td>2.5.0-3.el9_5.3</td>
+        <td></td>
     </tr>
     <tr>
         <td><code>libarchive</code></td>
@@ -1469,7 +1476,7 @@
 <h4>No Misconfigurations found</h4>
 
 <h3>Target <code>gcr.io/kubecost1/kubecost-modeling:v0.1.26 (redhat 9.5)</code></h3>
-<h4>Vulnerabilities (11)</h4>
+<h4>Vulnerabilities (12)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -1477,6 +1484,13 @@
         <th>Severity</th>
         <th>Installed Version</th>
         <th>Fixed Version</th>
+    </tr>
+    <tr>
+        <td><code>expat</code></td>
+        <td>CVE-2025-59375</td>
+        <td>HIGH</td>
+        <td>2.5.0-3.el9_5.3</td>
+        <td></td>
     </tr>
     <tr>
         <td><code>libarchive</code></td>
