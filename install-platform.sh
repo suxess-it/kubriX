@@ -711,3 +711,11 @@ fi
 
 # remove pushsecrets
 kubectl delete -f ./.secrets/secrettemp/pushsecrets.yaml
+
+# print the rootCA so users can import it in their browsers
+
+if [[ "${KUBRIX_TARGET_TYPE}" =~ ^KIND.* || "${KUBRIX_CLUSTER_TYPE}" == "KIND" ]] ; then
+  echo "Installation finished! On KinD clusters we create self-signed certificates for our platform services. You probably need to import this CA cert in your browser to accept the certificates:"
+  kubectl get secret mkcert-ca-key-pair -n cert-manager -o jsonpath="{['data']['ca\.crt']}" | base64 --decode
+fi
+
