@@ -1,6 +1,6 @@
 
 <h3>Target <code>docker.io/bitnami/kubectl:1.31 (debian 12.8)</code></h3>
-<h4>Vulnerabilities (38)</h4>
+<h4>Vulnerabilities (39)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -71,6 +71,13 @@
         <td>HIGH</td>
         <td>2.5.0-1+deb12u1</td>
         <td>2.5.0-1+deb12u2</td>
+    </tr>
+    <tr>
+        <td><code>libexpat1</code></td>
+        <td>CVE-2025-59375</td>
+        <td>HIGH</td>
+        <td>2.5.0-1+deb12u1</td>
+        <td></td>
     </tr>
     <tr>
         <td><code>libfile-find-rule-perl</code></td>
