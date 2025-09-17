@@ -16,12 +16,7 @@ Before installing kubriX, make sure you have:
 - **Kubernetes**: v1.26+ (tested on KinD, K3s, EKS, AKS, GKE, and on-prem)
 - **Command-line tools**:
   - [`kubectl`](https://kubernetes.io/docs/tasks/tools/) – Kubernetes CLI
-  - [`helm`](https://helm.sh/) – Helm package manager
-  - [`git`](https://git-scm.com/) – Version control
-  - [`jq`](https://jqlang.org/download/) – json processor
-  - [`yq`](https://github.com/mikefarah/yq?tab=readme-ov-file#install) – yaml processor
   - [`docker`](https://www.docker.com/) – Container runtime (for local installs only)
-  - [`mkcert`](https://github.com/FiloSottile/mkcert) - tool for making locally-trusted development certificates (for local installs only)
   - [`kind`](https://kind.sigs.k8s.io/docs/user/quick-start/#installing-from-release-binaries) - create a Kubernetes in Docker (for local installs only)
 
 - **Cluster resources**:
