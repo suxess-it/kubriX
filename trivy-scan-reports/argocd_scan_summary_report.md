@@ -3,7 +3,7 @@
 <h4>No Vulnerabilities found</h4>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>usr/local/bin/gosu</code></h3>
-<h4>Vulnerabilities (34)</h4>
+<h4>Vulnerabilities (35)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -250,6 +250,13 @@
         <td>v1.18.2</td>
         <td>1.22.7, 1.23.1</td>
     </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2025-47907</td>
+        <td>HIGH</td>
+        <td>v1.18.2</td>
+        <td>1.23.12, 1.24.6</td>
+    </tr>
 </table>
 <h4>No Misconfigurations found</h4>
 
@@ -257,7 +264,7 @@
 <h4>No Vulnerabilities found</h4>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>usr/local/bin/dex</code></h3>
-<h4>Vulnerabilities (1)</h4>
+<h4>Vulnerabilities (2)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -272,11 +279,18 @@
         <td>HIGH</td>
         <td>v1.24.3</td>
         <td>1.24.4</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2025-47907</td>
+        <td>HIGH</td>
+        <td>v1.24.3</td>
+        <td>1.23.12, 1.24.6</td>
     </tr>
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>usr/local/bin/docker-entrypoint</code></h3>
-<h4>Vulnerabilities (1)</h4>
+<h4>Vulnerabilities (2)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -292,10 +306,17 @@
         <td>v1.24.3</td>
         <td>1.24.4</td>
     </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2025-47907</td>
+        <td>HIGH</td>
+        <td>v1.24.3</td>
+        <td>1.23.12, 1.24.6</td>
+    </tr>
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>usr/local/bin/gomplate</code></h3>
-<h4>Vulnerabilities (1)</h4>
+<h4>Vulnerabilities (2)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -311,13 +332,17 @@
         <td>v1.24.1</td>
         <td>1.24.4</td>
     </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2025-47907</td>
+        <td>HIGH</td>
+        <td>v1.24.1</td>
+        <td>1.23.12, 1.24.6</td>
+    </tr>
 </table>
 <h4>No Misconfigurations found</h4>
 
 <h3>Target <code>quay.io/argoproj/argocd:v3.0.5 (ubuntu 24.04)</code></h3>
-<h4>No Vulnerabilities found</h4>
-<h4>No Misconfigurations found</h4>
-<h3>Target <code>usr/local/bin/argocd</code></h3>
 <h4>Vulnerabilities (2)</h4>
 <table>
     <tr>
@@ -326,6 +351,39 @@
         <th>Severity</th>
         <th>Installed Version</th>
         <th>Fixed Version</th>
+    </tr>
+    <tr>
+        <td><code>git</code></td>
+        <td>CVE-2025-48384</td>
+        <td>HIGH</td>
+        <td>1:2.43.0-1ubuntu7.2</td>
+        <td>1:2.43.0-1ubuntu7.3</td>
+    </tr>
+    <tr>
+        <td><code>git-man</code></td>
+        <td>CVE-2025-48384</td>
+        <td>HIGH</td>
+        <td>1:2.43.0-1ubuntu7.2</td>
+        <td>1:2.43.0-1ubuntu7.3</td>
+    </tr>
+</table>
+<h4>No Misconfigurations found</h4>
+<h3>Target <code>usr/local/bin/argocd</code></h3>
+<h4>Vulnerabilities (4)</h4>
+<table>
+    <tr>
+        <th>Package</th>
+        <th>ID</th>
+        <th>Severity</th>
+        <th>Installed Version</th>
+        <th>Fixed Version</th>
+    </tr>
+    <tr>
+        <td><code>github.com/argoproj/argo-cd/v3</code></td>
+        <td>CVE-2025-55190</td>
+        <td>CRITICAL</td>
+        <td>3.0.5</td>
+        <td>3.0.14, 3.1.2</td>
     </tr>
     <tr>
         <td><code>github.com/expr-lang/expr</code></td>
@@ -341,10 +399,17 @@
         <td>v1.24.1</td>
         <td>1.24.4</td>
     </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2025-47907</td>
+        <td>HIGH</td>
+        <td>v1.24.1</td>
+        <td>1.23.12, 1.24.6</td>
+    </tr>
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>usr/local/bin/helm</code></h3>
-<h4>Vulnerabilities (1)</h4>
+<h4>Vulnerabilities (3)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -360,8 +425,38 @@
         <td>v0.31.0</td>
         <td>0.35.0</td>
     </tr>
+    <tr>
+        <td><code>golang.org/x/oauth2</code></td>
+        <td>CVE-2025-22868</td>
+        <td>HIGH</td>
+        <td>v0.23.0</td>
+        <td>0.27.0</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2025-47907</td>
+        <td>HIGH</td>
+        <td>v1.23.5</td>
+        <td>1.23.12, 1.24.6</td>
+    </tr>
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>usr/local/bin/kustomize</code></h3>
-<h4>No Vulnerabilities found</h4>
+<h4>Vulnerabilities (1)</h4>
+<table>
+    <tr>
+        <th>Package</th>
+        <th>ID</th>
+        <th>Severity</th>
+        <th>Installed Version</th>
+        <th>Fixed Version</th>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2025-47907</td>
+        <td>HIGH</td>
+        <td>v1.22.7</td>
+        <td>1.23.12, 1.24.6</td>
+    </tr>
+</table>
 <h4>No Misconfigurations found</h4>
