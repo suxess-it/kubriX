@@ -89,7 +89,7 @@ If you run into issues during setup, please see our [Troubleshooting Installatio
 
 ### Define user entities in backstage
 
-  Before users can login via GitHub in backstage, there needs to be a matching User entity in your own kubriX repo in `backstage-resources/entities/all.yaml`
+  Before users can login via GitHub in backstage, there needs to be a matching User entity in `{{ .kubriX.gitRepo | strings.TrimSuffix ".git" }}/blob/main/backstage-resources/entities/all.yaml`
 
   ```
   apiVersion: backstage.io/v1alpha1
