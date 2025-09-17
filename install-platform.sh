@@ -145,6 +145,7 @@ EOF
   valuesFile=$( echo ${KUBRIX_TARGET_TYPE} | awk '{print tolower($0)}' )
   gomplate --context kubriX=bootstrap/customer-config.yaml --input-dir platform-apps --include *${valuesFile}.yaml.tmpl --output-map='platform-apps/{{ .in | strings.ReplaceAll ".yaml.tmpl" ".yaml" }}'
   gomplate --context kubriX=bootstrap/customer-config.yaml --input-dir backstage-resources --include *.yaml.tmpl --output-map='backstage-resources/{{ .in | strings.ReplaceAll ".yaml.tmpl" ".yaml" }}'
+  gomplate --context kubriX=bootstrap/customer-config.yaml --input-dir docs --include *.md.tmpl --output-map='docs/{{ .in | strings.ReplaceAll ".md.tmpl" ".md" }}'
 
 }
 
