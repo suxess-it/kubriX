@@ -20,9 +20,10 @@ With this step-by-step guide kubriX with its default stack gets deployed on your
 
     ![image](../../img/github_token.png)
 
-3. create a new KinD cluster. You need to enable ingress on your KinD cluster so this config below should be used with `kind create cluster --name kubrix-local-demo --config kind-config.yaml`
+3. create a new KinD cluster. You need to enable ingress on your KinD cluster so this command below should be used:
         
      ```
+     kind create cluster --name kubrix-local-demo --config /dev/stdin <<EOF
      kind: Cluster
      apiVersion: kind.x-k8s.io/v1alpha4
      nodes:
@@ -40,6 +41,7 @@ With this step-by-step guide kubriX with its default stack gets deployed on your
        - containerPort: 443
          hostPort: 443
          protocol: TCP
+     EOF
      ```
 
     Then be sure that kubectl is connected to it. check with `kubectl cluster-info`
