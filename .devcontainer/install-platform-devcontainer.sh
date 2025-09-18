@@ -92,7 +92,19 @@ kubectl apply -f .devcontainer/backstage-nodeport.yaml
 kubectl create namespace keycloak --dry-run=client -o yaml | kubectl apply -f -
 kubectl apply -f .devcontainer/keycloak-nodeport.yaml
 
-./install-platform.sh
+kubectl create namespace kubrix-install --dry-run=client -o yaml | kubectl apply -f -
+kubectl create secret generic kubrix-install-secrets -n kubrix-install \
+  --from-literal KUBRIX_TARGET_TYPE=${KUBRIX_TARGET_TYPE} \
+  --from-literal KUBRIX_CLUSTER_TYPE=${KUBRIX_CLUSTER_TYPE} \
+  --from-literal KUBRIX_BACKSTAGE_GITHUB_TOKEN=${KUBRIX_BACKSTAGE_GITHUB_TOKEN} \
+  --from-literal KUBRIX_REPO_PASSWORD=${KUBRIX_REPO_PASSWORD} \
+  --from-literal KUBRIX_REPO_USERNAME=${KUBRIX_REPO_USERNAME} \
+  --from-literal KUBRIX_REPO_BRANCH=${KUBRIX_REPO_BRANCH} \
+  --from-literal KUBRIX_REPO=${KUBRIX_REPO} \
+  --from-literal KUBRIX_BOOTSTRAP_MAX_WAIT_TIME=${KUBRIX_BOOTSTRAP_MAX_WAIT_TIME} \
+  --from-literal KUBRIX_INSTALLER=true \
+  --dry-run=client -o yaml | kubectl apply -f -
+bash .github/install-kubriX-with-job.sh
 
 if [[ ${KUBRIX_TARGET_TYPE} == "KIND-DELIVERY" ]] ; then
   echo "kubrix delivery is set up sucessfully."

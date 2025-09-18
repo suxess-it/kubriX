@@ -6,8 +6,6 @@
 
 Many of the next steps will be probably automated in the future by the bootstrap automation you already use in [Quickstart Kubernetes Installation](quick-start-kubernetes.md). However, with this tutorial we want to show you how you can customize your kubriX installation in the most flexible way.
 
-> 🔭 **Future Outlook**: in the future, this bootstrapping process could be also a Kubernetes job or  operator, so even the bootstrap process could get deployed on Kubernetes.
-
 ## Clone latest kubriX release to your git Repository
 
 Create your own empty git repository on your VCS, clone it to your local machine and merge latest kubriX release into it:
@@ -29,7 +27,7 @@ git pull
 
 Think about how you want to deal with
 
-- DNS resolution (kubriX works best with DNS provider supported by `external-secrets`)
+- DNS resolution (kubriX works best with DNS provider supported by `external-dns`)
 - TLS certificates (kubriX uses `cert-manager` for creating certificates, typically via ACME protocol)
 - Persistent Storage integration (S3 for observability data and backups, ...)
 - Git-Server, Git-Server Repo/Group structure
@@ -78,20 +76,41 @@ After customizing all values files, commit and push your changes to your own kub
 
 ## Running the installer
 
-The installer will use some scripts of your local repository and apply platform apps from your remote repository. So be sure that all your applied changes are pushed to your remote repository and you also checked out snd pulled your latest changes from your remote repository.
+Create a `kubrix-install` Namespace and a Secret `kubrix-installer-secrets` to configure the installer.  
+The values of `KUBRIX_REPO` and `KUBRIX_REPO_PASSWORD` need to be set to your newly created kubriX Git repo in step 1 and the access token you created in step 2.
 
-```bash
-export KUBRIX_REPO=https://github.com/<your-org>/<your-kubrix-repo>
-export KUBRIX_REPO_BRANCH=<your-stage-branch>
-export KUBRIX_REPO_USERNAME=dummy
-export KUBRIX_REPO_PASSWORD=<your-repo-read-access-token>
-export KUBRIX_TARGET_TYPE=<your-target-type> #in upper case!
-export KUBRIX_BACKSTAGE_GITHUB_TOKEN=<your-repo-read-access-token>
-export KUBRIX_BOOTSTRAP_MAX_WAIT_TIME=3600
-
-# install-platform from new repository
-./install-platform.sh
 ```
+export KUBRIX_REPO="https://github.com/kubriX-demo/kubriX-demo-customerXY"
+export KUBRIX_REPO_PASSWORD="your-read-write-access-token"
+
+kubectl create ns kubrix-install
+kubectl create secret generic kubrix-install-secrets -n kubrix-install \
+  --from-literal KUBRIX_REPO=${KUBRIX_REPO} \
+  --from-literal KUBRIX_REPO_PASSWORD=${KUBRIX_REPO_PASSWORD} \
+  --from-literal KUBRIX_TARGET_TYPE=<your-target-type> #in upper case!
+  --from-literal KUBRIX_BACKSTAGE_GITHUB_TOKEN=<your-repo-read-access-token>
+  --from-literal KUBRIX_INSTALLER=true
+```
+
+Then apply the installer manifests:
+
+```
+kubectl apply -f https://raw.githubusercontent.com/suxess-it/kubriX/refs/heads/main/install-manifests.yaml
+```
+
+These manifests will create a Kubernetes Job which creates a clone of the upstream kubriX OSS repo with some customizations in your newly created repo and starts the installation on your Kubernetes cluster.
+
+This could take up to 30 minutes, depending on the compute resources of the Kubernetes cluster.
+
+You can watch the logs of the job with
+```
+kubectl logs -n kubrix-install -f "pod/$(kubectl get pod -n kubrix-install -l "job-name=kubrix-install-job" -o jsonpath='{.items[0].metadata.name}')" --all-containers=true
+```
+
+Especially Keycloak could take a while,
+since there are many resources created via Crossplane in different ArgoCD sync-waves.
+After 300 seconds the sync process gets terminated and restarted. This could happend sometimes and is not always indicating a problem.
+Also, sometimes the Keycloak app could be in temporary `Degraded` state during installation, but gets `Healthy` afterwards.
 
 ## Post-Installation tasks
 

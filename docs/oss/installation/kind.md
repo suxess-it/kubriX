@@ -20,23 +20,10 @@ With this step-by-step guide kubriX with its default stack gets deployed on your
 
     ![image](../../img/github_token.png)
 
-3. set the repo url and token in this variables like this and the kubriX stack which should get deployed:
-
-    ```
-    export KUBRIX_CUSTOMER_REPO="https://github.com/kubriX-demo/kubriX-demo-customerXY"
-    export KUBRIX_CUSTOMER_REPO_TOKEN="your-read-write-access-token"
-    export KUBRIX_CUSTOMER_TARGET_TYPE="DEMO-STACK"
-    export KUBRIX_CUSTOMER_DOMAIN="127-0-0-1.nip.io"
-    export KUBRIX_CUSTOMER_DNS_PROVIDER="none"
-    export KUBRIX_CLUSTER_TYPE="KIND"
-    ```
-
-4. create a new KinD cluster and be sure that kubectl is connected to it. check with `kubectl cluster-info`
-
-     You need to enable ingress on your KinD cluster so this config below should be used with `kind create cluster --name kubrix-local-demo --config kind-config.yaml`
-
+3. create a new KinD cluster. You need to enable ingress on your KinD cluster so this command below should be used:
         
      ```
+     kind create cluster --name kubrix-local-demo --config /dev/stdin <<EOF
      kind: Cluster
      apiVersion: kind.x-k8s.io/v1alpha4
      nodes:
@@ -54,17 +41,46 @@ With this step-by-step guide kubriX with its default stack gets deployed on your
        - containerPort: 443
          hostPort: 443
          protocol: TCP
+     EOF
      ```
 
-5. Then run this command in your home directory in your linux bash:
+    Then be sure that kubectl is connected to it. check with `kubectl cluster-info`
+
+4. Create a `kubrix-install` Namespace and a Secret `kubrix-installer-secrets` to configure the installer.  
+    The values of `KUBRIX_REPO` and `KUBRIX_REPO_PASSWORD` need to be set to your newly created empty Git repo in step 1 and the access token you created in step 2.
 
     ```
-    curl -H 'Cache-Control: no-cache, no-store' https://raw.githubusercontent.com/suxess-it/kubriX/refs/heads/main/bootstrap/bootstrap.sh | bash -s
+    export KUBRIX_REPO="https://github.com/kubriX-demo/kubriX-demo-customerXY"
+    export KUBRIX_REPO_PASSWORD="your-read-write-access-token"
+    
+    kubectl create ns kubrix-install
+    kubectl create secret generic kubrix-install-secrets -n kubrix-install \
+      --from-literal KUBRIX_REPO=${KUBRIX_REPO} \
+      --from-literal KUBRIX_REPO_PASSWORD=${KUBRIX_REPO_PASSWORD} \
+      --from-literal KUBRIX_DOMAIN="127-0-0-1.nip.io" \
+      --from-literal KUBRIX_DNS_PROVIDER="none" \
+      --from-literal KUBRIX_TARGET_TYPE="DEMO-STACK" \
+      --from-literal KUBRIX_CLUSTER_TYPE="KIND" \
+      --from-literal KUBRIX_BOOTSTRAP=true \
+      --from-literal KUBRIX_INSTALLER=true
     ```
 
-    It will create a new kubriX repo based on your parameters and installs kubriX based on your created kubriX repo on your local KinD cluster.
+6. Then apply the installer manifests:
+
+    ```
+    kubectl apply -f https://raw.githubusercontent.com/suxess-it/kubriX/refs/heads/main/install-manifests.yaml
+    ```
+
+    These manifests will create a Kubernetes Job which creates a clone of the upstream kubriX OSS repo with some customizations in your newly created repo
+    and starts the installation on your local KinD cluster.
+
     This could take up to 30 minutes, depending how powerful your local environment is.
 
+    You can watch the logs of the job with
+    ```
+    kubectl logs -n kubrix-install -f "pod/$(kubectl get pod -n kubrix-install -l "job-name=kubrix-install-job" -o jsonpath='{.items[0].metadata.name}')" --all-containers=true
+    ```
+    
     Especially Keycloak could take a while,
     since there are many resources created via Crossplane in different ArgoCD sync-waves.  
     After 300 seconds the sync process gets terminated and restarted. This could happend sometimes and is not always indicating a problem.
