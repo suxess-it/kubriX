@@ -3,7 +3,7 @@
 <h4>No Vulnerabilities found</h4>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>usr/bin/helm</code></h3>
-<h4>Vulnerabilities (3)</h4>
+<h4>Vulnerabilities (4)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -28,6 +28,13 @@
     </tr>
     <tr>
         <td><code>stdlib</code></td>
+        <td>CVE-2025-47906</td>
+        <td>HIGH</td>
+        <td>v1.24.3</td>
+        <td>1.23.12, 1.24.6</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
         <td>CVE-2025-47907</td>
         <td>HIGH</td>
         <td>v1.24.3</td>
@@ -36,7 +43,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>usr/local/bin/credential-helper</code></h3>
-<h4>Vulnerabilities (2)</h4>
+<h4>Vulnerabilities (3)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -54,6 +61,13 @@
     </tr>
     <tr>
         <td><code>stdlib</code></td>
+        <td>CVE-2025-47906</td>
+        <td>HIGH</td>
+        <td>v1.24.3</td>
+        <td>1.23.12, 1.24.6</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
         <td>CVE-2025-47907</td>
         <td>HIGH</td>
         <td>v1.24.3</td>
@@ -62,7 +76,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>usr/local/bin/grpc_health_probe</code></h3>
-<h4>Vulnerabilities (2)</h4>
+<h4>Vulnerabilities (3)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -80,6 +94,13 @@
     </tr>
     <tr>
         <td><code>stdlib</code></td>
+        <td>CVE-2025-47906</td>
+        <td>HIGH</td>
+        <td>v1.23.4</td>
+        <td>1.23.12, 1.24.6</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
         <td>CVE-2025-47907</td>
         <td>HIGH</td>
         <td>v1.23.4</td>
@@ -88,7 +109,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>usr/local/bin/kargo</code></h3>
-<h4>Vulnerabilities (3)</h4>
+<h4>Vulnerabilities (4)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -110,6 +131,13 @@
         <td>HIGH</td>
         <td>v1.24.3</td>
         <td>1.24.4</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2025-47906</td>
+        <td>HIGH</td>
+        <td>v1.24.3</td>
+        <td>1.23.12, 1.24.6</td>
     </tr>
     <tr>
         <td><code>stdlib</code></td>

@@ -288,7 +288,7 @@
 <h4>No Vulnerabilities found</h4>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>opt/bitnami/common/.spdx-yq.spdx</code></h3>
-<h4>Vulnerabilities (1)</h4>
+<h4>Vulnerabilities (2)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -296,6 +296,13 @@
         <th>Severity</th>
         <th>Installed Version</th>
         <th>Fixed Version</th>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2025-47906</td>
+        <td>HIGH</td>
+        <td>1.22.10</td>
+        <td>1.23.12, 1.24.6</td>
     </tr>
     <tr>
         <td><code>stdlib</code></td>
@@ -307,7 +314,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>opt/bitnami/common/bin/yq</code></h3>
-<h4>Vulnerabilities (1)</h4>
+<h4>Vulnerabilities (2)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -315,6 +322,13 @@
         <th>Severity</th>
         <th>Installed Version</th>
         <th>Fixed Version</th>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2025-47906</td>
+        <td>HIGH</td>
+        <td>v1.22.10</td>
+        <td>1.23.12, 1.24.6</td>
     </tr>
     <tr>
         <td><code>stdlib</code></td>
@@ -329,7 +343,7 @@
 <h4>No Vulnerabilities found</h4>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>opt/bitnami/kubectl/.spdx-kubectl.spdx</code></h3>
-<h4>Vulnerabilities (2)</h4>
+<h4>Vulnerabilities (3)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -347,6 +361,13 @@
     </tr>
     <tr>
         <td><code>stdlib</code></td>
+        <td>CVE-2025-47906</td>
+        <td>HIGH</td>
+        <td>1.23.4</td>
+        <td>1.23.12, 1.24.6</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
         <td>CVE-2025-47907</td>
         <td>HIGH</td>
         <td>1.23.4</td>
@@ -355,7 +376,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>opt/bitnami/kubectl/bin/kubectl</code></h3>
-<h4>Vulnerabilities (2)</h4>
+<h4>Vulnerabilities (3)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -370,6 +391,13 @@
         <td>HIGH</td>
         <td>v0.21.0</td>
         <td>0.27.0</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2025-47906</td>
+        <td>HIGH</td>
+        <td>v1.23.4</td>
+        <td>1.23.12, 1.24.6</td>
     </tr>
     <tr>
         <td><code>stdlib</code></td>
@@ -382,7 +410,7 @@
 <h4>No Misconfigurations found</h4>
 
 <h3>Target <code>bin/cp-plugin</code></h3>
-<h4>Vulnerabilities (4)</h4>
+<h4>Vulnerabilities (5)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -414,6 +442,13 @@
     </tr>
     <tr>
         <td><code>stdlib</code></td>
+        <td>CVE-2025-47906</td>
+        <td>HIGH</td>
+        <td>v1.22.2</td>
+        <td>1.23.12, 1.24.6</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
         <td>CVE-2025-47907</td>
         <td>HIGH</td>
         <td>v1.22.2</td>
@@ -422,7 +457,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>plugins/velero-plugin-for-aws</code></h3>
-<h4>Vulnerabilities (5)</h4>
+<h4>Vulnerabilities (6)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -461,6 +496,13 @@
     </tr>
     <tr>
         <td><code>stdlib</code></td>
+        <td>CVE-2025-47906</td>
+        <td>HIGH</td>
+        <td>v1.22.2</td>
+        <td>1.23.12, 1.24.6</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
         <td>CVE-2025-47907</td>
         <td>HIGH</td>
         <td>v1.22.2</td>
@@ -470,25 +512,6 @@
 <h4>No Misconfigurations found</h4>
 
 <h3>Target <code>bin/cp-plugin</code></h3>
-<h4>Vulnerabilities (1)</h4>
-<table>
-    <tr>
-        <th>Package</th>
-        <th>ID</th>
-        <th>Severity</th>
-        <th>Installed Version</th>
-        <th>Fixed Version</th>
-    </tr>
-    <tr>
-        <td><code>stdlib</code></td>
-        <td>CVE-2025-47907</td>
-        <td>HIGH</td>
-        <td>v1.22.8</td>
-        <td>1.23.12, 1.24.6</td>
-    </tr>
-</table>
-<h4>No Misconfigurations found</h4>
-<h3>Target <code>plugins/velero-plugin-for-aws</code></h3>
 <h4>Vulnerabilities (2)</h4>
 <table>
     <tr>
@@ -499,11 +522,44 @@
         <th>Fixed Version</th>
     </tr>
     <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2025-47906</td>
+        <td>HIGH</td>
+        <td>v1.22.8</td>
+        <td>1.23.12, 1.24.6</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2025-47907</td>
+        <td>HIGH</td>
+        <td>v1.22.8</td>
+        <td>1.23.12, 1.24.6</td>
+    </tr>
+</table>
+<h4>No Misconfigurations found</h4>
+<h3>Target <code>plugins/velero-plugin-for-aws</code></h3>
+<h4>Vulnerabilities (3)</h4>
+<table>
+    <tr>
+        <th>Package</th>
+        <th>ID</th>
+        <th>Severity</th>
+        <th>Installed Version</th>
+        <th>Fixed Version</th>
+    </tr>
+    <tr>
         <td><code>golang.org/x/oauth2</code></td>
         <td>CVE-2025-22868</td>
         <td>HIGH</td>
         <td>v0.19.0</td>
         <td>0.27.0</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2025-47906</td>
+        <td>HIGH</td>
+        <td>v1.22.8</td>
+        <td>1.23.12, 1.24.6</td>
     </tr>
     <tr>
         <td><code>stdlib</code></td>
@@ -516,134 +572,6 @@
 <h4>No Misconfigurations found</h4>
 
 <h3>Target <code>bin/cp-plugin</code></h3>
-<h4>Vulnerabilities (4)</h4>
-<table>
-    <tr>
-        <th>Package</th>
-        <th>ID</th>
-        <th>Severity</th>
-        <th>Installed Version</th>
-        <th>Fixed Version</th>
-    </tr>
-    <tr>
-        <td><code>stdlib</code></td>
-        <td>CVE-2024-24790</td>
-        <td>CRITICAL</td>
-        <td>v1.22.2</td>
-        <td>1.21.11, 1.22.4</td>
-    </tr>
-    <tr>
-        <td><code>stdlib</code></td>
-        <td>CVE-2024-24788</td>
-        <td>HIGH</td>
-        <td>v1.22.2</td>
-        <td>1.22.3</td>
-    </tr>
-    <tr>
-        <td><code>stdlib</code></td>
-        <td>CVE-2024-34156</td>
-        <td>HIGH</td>
-        <td>v1.22.2</td>
-        <td>1.22.7, 1.23.1</td>
-    </tr>
-    <tr>
-        <td><code>stdlib</code></td>
-        <td>CVE-2025-47907</td>
-        <td>HIGH</td>
-        <td>v1.22.2</td>
-        <td>1.23.12, 1.24.6</td>
-    </tr>
-</table>
-<h4>No Misconfigurations found</h4>
-<h3>Target <code>plugins/velero-plugin-for-microsoft-azure</code></h3>
-<h4>Vulnerabilities (8)</h4>
-<table>
-    <tr>
-        <th>Package</th>
-        <th>ID</th>
-        <th>Severity</th>
-        <th>Installed Version</th>
-        <th>Fixed Version</th>
-    </tr>
-    <tr>
-        <td><code>github.com/golang-jwt/jwt/v5</code></td>
-        <td>CVE-2025-30204</td>
-        <td>HIGH</td>
-        <td>v5.2.1</td>
-        <td>5.2.2</td>
-    </tr>
-    <tr>
-        <td><code>golang.org/x/crypto</code></td>
-        <td>CVE-2024-45337</td>
-        <td>CRITICAL</td>
-        <td>v0.22.0</td>
-        <td>0.31.0</td>
-    </tr>
-    <tr>
-        <td><code>golang.org/x/crypto</code></td>
-        <td>CVE-2025-22869</td>
-        <td>HIGH</td>
-        <td>v0.22.0</td>
-        <td>0.35.0</td>
-    </tr>
-    <tr>
-        <td><code>golang.org/x/oauth2</code></td>
-        <td>CVE-2025-22868</td>
-        <td>HIGH</td>
-        <td>v0.19.0</td>
-        <td>0.27.0</td>
-    </tr>
-    <tr>
-        <td><code>stdlib</code></td>
-        <td>CVE-2024-24790</td>
-        <td>CRITICAL</td>
-        <td>v1.22.2</td>
-        <td>1.21.11, 1.22.4</td>
-    </tr>
-    <tr>
-        <td><code>stdlib</code></td>
-        <td>CVE-2024-24788</td>
-        <td>HIGH</td>
-        <td>v1.22.2</td>
-        <td>1.22.3</td>
-    </tr>
-    <tr>
-        <td><code>stdlib</code></td>
-        <td>CVE-2024-34156</td>
-        <td>HIGH</td>
-        <td>v1.22.2</td>
-        <td>1.22.7, 1.23.1</td>
-    </tr>
-    <tr>
-        <td><code>stdlib</code></td>
-        <td>CVE-2025-47907</td>
-        <td>HIGH</td>
-        <td>v1.22.2</td>
-        <td>1.23.12, 1.24.6</td>
-    </tr>
-</table>
-<h4>No Misconfigurations found</h4>
-
-<h3>Target <code>bin/cp-plugin</code></h3>
-<h4>Vulnerabilities (1)</h4>
-<table>
-    <tr>
-        <th>Package</th>
-        <th>ID</th>
-        <th>Severity</th>
-        <th>Installed Version</th>
-        <th>Fixed Version</th>
-    </tr>
-    <tr>
-        <td><code>stdlib</code></td>
-        <td>CVE-2025-47907</td>
-        <td>HIGH</td>
-        <td>v1.22.8</td>
-        <td>1.23.12, 1.24.6</td>
-    </tr>
-</table>
-<h4>No Misconfigurations found</h4>
-<h3>Target <code>plugins/velero-plugin-for-microsoft-azure</code></h3>
 <h4>Vulnerabilities (5)</h4>
 <table>
     <tr>
@@ -654,6 +582,155 @@
         <th>Fixed Version</th>
     </tr>
     <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2024-24790</td>
+        <td>CRITICAL</td>
+        <td>v1.22.2</td>
+        <td>1.21.11, 1.22.4</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2024-24788</td>
+        <td>HIGH</td>
+        <td>v1.22.2</td>
+        <td>1.22.3</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2024-34156</td>
+        <td>HIGH</td>
+        <td>v1.22.2</td>
+        <td>1.22.7, 1.23.1</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2025-47906</td>
+        <td>HIGH</td>
+        <td>v1.22.2</td>
+        <td>1.23.12, 1.24.6</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2025-47907</td>
+        <td>HIGH</td>
+        <td>v1.22.2</td>
+        <td>1.23.12, 1.24.6</td>
+    </tr>
+</table>
+<h4>No Misconfigurations found</h4>
+<h3>Target <code>plugins/velero-plugin-for-microsoft-azure</code></h3>
+<h4>Vulnerabilities (9)</h4>
+<table>
+    <tr>
+        <th>Package</th>
+        <th>ID</th>
+        <th>Severity</th>
+        <th>Installed Version</th>
+        <th>Fixed Version</th>
+    </tr>
+    <tr>
+        <td><code>github.com/golang-jwt/jwt/v5</code></td>
+        <td>CVE-2025-30204</td>
+        <td>HIGH</td>
+        <td>v5.2.1</td>
+        <td>5.2.2</td>
+    </tr>
+    <tr>
+        <td><code>golang.org/x/crypto</code></td>
+        <td>CVE-2024-45337</td>
+        <td>CRITICAL</td>
+        <td>v0.22.0</td>
+        <td>0.31.0</td>
+    </tr>
+    <tr>
+        <td><code>golang.org/x/crypto</code></td>
+        <td>CVE-2025-22869</td>
+        <td>HIGH</td>
+        <td>v0.22.0</td>
+        <td>0.35.0</td>
+    </tr>
+    <tr>
+        <td><code>golang.org/x/oauth2</code></td>
+        <td>CVE-2025-22868</td>
+        <td>HIGH</td>
+        <td>v0.19.0</td>
+        <td>0.27.0</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2024-24790</td>
+        <td>CRITICAL</td>
+        <td>v1.22.2</td>
+        <td>1.21.11, 1.22.4</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2024-24788</td>
+        <td>HIGH</td>
+        <td>v1.22.2</td>
+        <td>1.22.3</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2024-34156</td>
+        <td>HIGH</td>
+        <td>v1.22.2</td>
+        <td>1.22.7, 1.23.1</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2025-47906</td>
+        <td>HIGH</td>
+        <td>v1.22.2</td>
+        <td>1.23.12, 1.24.6</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2025-47907</td>
+        <td>HIGH</td>
+        <td>v1.22.2</td>
+        <td>1.23.12, 1.24.6</td>
+    </tr>
+</table>
+<h4>No Misconfigurations found</h4>
+
+<h3>Target <code>bin/cp-plugin</code></h3>
+<h4>Vulnerabilities (2)</h4>
+<table>
+    <tr>
+        <th>Package</th>
+        <th>ID</th>
+        <th>Severity</th>
+        <th>Installed Version</th>
+        <th>Fixed Version</th>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2025-47906</td>
+        <td>HIGH</td>
+        <td>v1.22.8</td>
+        <td>1.23.12, 1.24.6</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2025-47907</td>
+        <td>HIGH</td>
+        <td>v1.22.8</td>
+        <td>1.23.12, 1.24.6</td>
+    </tr>
+</table>
+<h4>No Misconfigurations found</h4>
+<h3>Target <code>plugins/velero-plugin-for-microsoft-azure</code></h3>
+<h4>Vulnerabilities (6)</h4>
+<table>
+    <tr>
+        <th>Package</th>
+        <th>ID</th>
+        <th>Severity</th>
+        <th>Installed Version</th>
+        <th>Fixed Version</th>
+    </tr>
+    <tr>
         <td><code>github.com/golang-jwt/jwt/v5</code></td>
         <td>CVE-2025-30204</td>
         <td>HIGH</td>
@@ -680,6 +757,13 @@
         <td>HIGH</td>
         <td>v0.19.0</td>
         <td>0.27.0</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2025-47906</td>
+        <td>HIGH</td>
+        <td>v1.22.8</td>
+        <td>1.23.12, 1.24.6</td>
     </tr>
     <tr>
         <td><code>stdlib</code></td>
@@ -695,7 +779,7 @@
 <h4>No Vulnerabilities found</h4>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>usr/bin/restic</code></h3>
-<h4>Vulnerabilities (3)</h4>
+<h4>Vulnerabilities (4)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -720,6 +804,13 @@
     </tr>
     <tr>
         <td><code>stdlib</code></td>
+        <td>CVE-2025-47906</td>
+        <td>HIGH</td>
+        <td>v1.22.10</td>
+        <td>1.23.12, 1.24.6</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
         <td>CVE-2025-47907</td>
         <td>HIGH</td>
         <td>v1.22.10</td>
@@ -728,7 +819,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>velero</code></h3>
-<h4>Vulnerabilities (4)</h4>
+<h4>Vulnerabilities (5)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -760,6 +851,13 @@
     </tr>
     <tr>
         <td><code>stdlib</code></td>
+        <td>CVE-2025-47906</td>
+        <td>HIGH</td>
+        <td>v1.22.10</td>
+        <td>1.23.12, 1.24.6</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
         <td>CVE-2025-47907</td>
         <td>HIGH</td>
         <td>v1.22.10</td>
@@ -768,7 +866,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>velero-helper</code></h3>
-<h4>Vulnerabilities (1)</h4>
+<h4>Vulnerabilities (2)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -776,6 +874,13 @@
         <th>Severity</th>
         <th>Installed Version</th>
         <th>Fixed Version</th>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2025-47906</td>
+        <td>HIGH</td>
+        <td>v1.22.10</td>
+        <td>1.23.12, 1.24.6</td>
     </tr>
     <tr>
         <td><code>stdlib</code></td>
