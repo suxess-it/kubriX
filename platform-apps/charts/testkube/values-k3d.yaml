@@ -2,9 +2,10 @@ testkube:
   testkube-api:
     uiIngress:
       enabled: true
+      pathType: ImplementationSpecific
       hosts:
         - testkube.127-0-0-1.nip.io
     cliIngress:
-      enabled: true
+      enabled: false
       hosts:
         - testkube.127-0-0-1.nip.io
