@@ -187,6 +187,11 @@ jobs:
         shell: bash
         run: |
           k8sgpt analyze
+
+      # run testkube tests
+      - uses: kubeshop/setup-testkube@v1
+      - run: |
+          testkube run testworkflow TEST_WORKFLOW_NAME -f
           
       - name: mustgather data for troubleshooting
         if: ${{ failure() }}
