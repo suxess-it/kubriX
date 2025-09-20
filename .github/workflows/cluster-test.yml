@@ -191,7 +191,7 @@ jobs:
       # run testkube tests
       - uses: kubeshop/setup-testkube@v1
       - run: |
-          testkube run testworkflow TEST_WORKFLOW_NAME -f
+          testkube run testworkflow service-availability -f
           
       - name: mustgather data for troubleshooting
         if: ${{ failure() }}
