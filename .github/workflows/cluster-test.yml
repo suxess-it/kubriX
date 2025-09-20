@@ -190,6 +190,8 @@ jobs:
 
       # run testkube tests
       - uses: kubeshop/setup-testkube@v1
+        with:
+          version: 2.2.5
       - run: |
           testkube run testworkflow service-availability -f
           
