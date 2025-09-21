@@ -1,10 +1,12 @@
+{{- if .Values.portalTests.enabled -}}
 apiVersion: testworkflows.testkube.io/v1
 kind: TestWorkflow
 metadata:
-  name: service-availability
+  name: backstage-available
 spec:
   steps:
     - run:
         image: "curlimages/curl:7.78.0"
         shell: |
           curl https://backstage.127-0-0-1.nip.io
+{{- end }}
