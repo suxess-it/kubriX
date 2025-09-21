@@ -594,6 +594,10 @@ if [[ "${KUBRIX_TARGET_TYPE}" =~ ^KIND.* || "${KUBRIX_CLUSTER_TYPE}" == "KIND" ]
   },
   ]'
 
+  # testkube should also trust every cert signed with our mkcert ca
+  kubectl get ns testkube >/dev/null 2>&1 || kubectl create ns testkube
+  kubectl create secret generic ca-cert --from-file=ca.crt="$(mkcert -CAROOT)"/rootCA.pem -n testkube --dry-run=client -o yaml | kubectl apply -f -
+  
   # curl should trust all websites with the mkcert cert
   export CURL_CA_BUNDLE="$(mkcert -CAROOT)"/rootCA-key.pem
 
