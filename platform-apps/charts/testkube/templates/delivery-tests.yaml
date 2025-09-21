@@ -1,0 +1,12 @@
+{{- if .Values.deliveryTests.enabled -}}
+apiVersion: testworkflows.testkube.io/v1
+kind: TestWorkflow
+metadata:
+  name: kind-delivery
+spec:
+  steps:
+    - run:
+        image: "curlimages/curl:7.78.0"
+        shell: |
+          curl https://argocd.127-0-0-1.nip.io
+{{- end }}
