@@ -193,7 +193,7 @@ jobs:
         with:
           version: 2.2.5
       - run: |
-          testkube run testworkflow service-availability -f
+          testkube run testworkflow $(echo ${KUBRIX_TARGET_TYPE} | awk '{print tolower($0)}') -f
           
       - name: mustgather data for troubleshooting
         if: ${{ failure() }}
