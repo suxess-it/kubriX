@@ -20,6 +20,15 @@ k8s-monitoring:
       metricsTuning:
         includeMetrics:
           - apiserver_requested_deprecated_apis
+          - apiserver_request_total
+          - apiserver_request_duration_seconds_sum
+          - apiserver_request_duration_seconds_count
+          - apiserver_request_sli_duration_seconds_count
+          - apiserver_request_sli_duration_seconds_bucket
+          - workqueue_depth
+          - process_cpu_seconds_total
+          - process_resident_memory_bytes
+          - apiserver_requested_deprecated_apis
     kube-state-metrics:
       metricsTuning:
         includeMetrics:
