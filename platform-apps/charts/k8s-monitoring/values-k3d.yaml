@@ -54,6 +54,8 @@ k8s-monitoring:
           - kube_pod_container_status_last_terminated_exitcode
           - kube_poddisruptionbudget_status_desired_healthy
           - kube_poddisruptionbudget_status_current_healthy
+    kubeControllerManager:
+      enabled: true
     windows-exporter:
       enabled: false
       deploy: false
