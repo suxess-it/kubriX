@@ -100,6 +100,11 @@ argo-cd:
         p, backstage, applications, get, */*, allow
 
   controller:
+    env:
+      - name: ARGOCD_K8S_CLIENT_QPS
+        value: "150"
+      - name: ARGOCD_K8S_CLIENT_BURST
+        value: "300"
     metrics:
       enabled: true
       serviceMonitor: 
