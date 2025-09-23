@@ -203,7 +203,7 @@
 <h4>No Misconfigurations found</h4>
 
 <h3>Target <code>kubevirtmanager/kubevirt-manager:1.5.0 (alpine 3.20.5)</code></h3>
-<h4>Vulnerabilities (11)</h4>
+<h4>Vulnerabilities (12)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -225,6 +225,13 @@
         <td>HIGH</td>
         <td>2.6.4-r0</td>
         <td>2.7.0-r0</td>
+    </tr>
+    <tr>
+        <td><code>libexpat</code></td>
+        <td>CVE-2025-59375</td>
+        <td>HIGH</td>
+        <td>2.6.4-r0</td>
+        <td>2.7.2-r0</td>
     </tr>
     <tr>
         <td><code>libssl3</code></td>
