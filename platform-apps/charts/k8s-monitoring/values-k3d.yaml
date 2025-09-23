@@ -15,6 +15,14 @@ k8s-monitoring:
     enabled: true
     opencost:
       enabled: false
+    kubeDNS:
+      enabled: true
+      jobLabel: integrations/coredns
+    kubelet:
+      metricsTuning:
+        includeMetrics:
+          - kubelet_volume_stats_used_bytes
+          - kubelet_evictions
     apiServer:
       enabled: true
       metricsTuning:
