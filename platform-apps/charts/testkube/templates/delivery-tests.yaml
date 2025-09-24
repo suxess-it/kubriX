@@ -4,6 +4,20 @@ kind: TestWorkflow
 metadata:
   name: kind-delivery
 spec:
+  container:
+    env:
+    - name: CURL_CA_BUNDLE
+      value: /etc/ssl/custom/ca.crt
+    volumeMounts:
+    - mountPath: /etc/ssl/custom
+      name: testkube-ca
+      readOnly: true
+  pod:
+    volumes:
+    - name: testkube-ca
+      secret:
+        defaultMode: 420
+        secretName: ca-cert
   steps:
     - run:
         image: "curlimages/curl:7.78.0"
