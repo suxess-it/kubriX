@@ -60,6 +60,7 @@ check_prereqs() {
   check_variable KUBRIX_BOOTSTRAP_MAX_WAIT_TIME "true" "2400"
   check_variable KUBRIX_INSTALLER "true" "false"
   check_variable KUBRIX_GENERATE_SECRETS "true" "true"
+  check_variable KUBRIX_GIT_USER_NAME "true" "dummy"
 
   # if bootstrapping from kubriX upstream to empty customer repo is set to true
   check_variable KUBRIX_BOOTSTRAP "true" "false"
@@ -134,6 +135,7 @@ domain: ${KUBRIX_DOMAIN}
 gitRepo: ${KUBRIX_REPO}
 gitRepoOrg: ${KUBRIX_REPO_ORG}
 gitRepoName: ${KUBRIX_REPO_NAME}
+gitUser: ${KUBRIX_GIT_USER_NAME}
 EOF
 
   echo "the current customer-config is like this:"
