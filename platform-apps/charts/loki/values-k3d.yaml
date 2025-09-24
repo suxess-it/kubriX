@@ -1,7 +1,7 @@
 loki:
   loki:
     commonConfig:
-      replication_factor: 1
+      replication_factor: 1 # since replicas is set to 1
     auth_enabled: false
     schemaConfig:
       configs:
@@ -30,7 +30,10 @@ loki:
           paths:
             - path: /
               pathType: Prefix
-      tls: ""
+      tls:
+        - secretName: loki-gateway-tls
+          hosts:
+            - logs-monitoring.127-0-0-1.nip.io
 
   resultsCache:
     resources:
@@ -39,21 +42,38 @@ loki:
       requests:
         cpu: 250m
         memory: 512Mi
-  
-  deploymentMode: SingleBinary
-  singleBinary:
+
+  deploymentMode: SimpleScalable
+
+  backend:
     replicas: 1
-    resources:
-      limits:
-        cpu: 3
-        memory: 4Gi
-      requests:
-        cpu: 250m
-        memory: 500Mi
-    extraEnv:
-      # Keep a little bit lower than memory limits
-      - name: GOMEMLIMIT
-        value: 3750MiB
+  read:
+    replicas: 1
+  write:
+    replicas: 1
+
+  # Zero out replica counts of other deployment modes
+  singleBinary:
+    replicas: 0
+
+  ingester:
+    replicas: 0
+  querier:
+    replicas: 0
+  queryFrontend:
+    replicas: 0
+  queryScheduler:
+    replicas: 0
+  distributor:
+    replicas: 0
+  compactor:
+    replicas: 0
+  indexGateway:
+    replicas: 0
+  bloomCompactor:
+    replicas: 0
+  bloomGateway:
+    replicas: 0
   
   chunksCache:
     enabled: false
@@ -78,53 +98,8 @@ loki:
       # -- Include alerting rules
       alerting: true
       # -- Additional groups to add to the rules file
-      additionalGroups:
-      - name: additional-loki-rules
-        rules:
-          - record: job:loki_request_duration_seconds_bucket:sum_rate
-            expr: sum(rate(loki_request_duration_seconds_bucket[1m])) by (le, job)
-          - record: job_route:loki_request_duration_seconds_bucket:sum_rate
-            expr: sum(rate(loki_request_duration_seconds_bucket[1m])) by (le, job, route)
-          - record: node_namespace_pod_container:container_cpu_usage_seconds_total:sum_rate
-            expr: sum(rate(container_cpu_usage_seconds_total[1m])) by (node, namespace, pod, container)
+      additionalGroups: []
     # ServiceMonitor configuration
     serviceMonitor:
       # -- If enabled, ServiceMonitor resources for Prometheus Operator are created
       enabled: true
-    # Self monitoring determines whether Loki should scrape its own logs.
-    # This feature currently relies on the Grafana Agent Operator being installed,
-    # which is installed by default using the grafana-agent-operator sub-chart.
-    # It will create custom resources for GrafanaAgent, LogsInstance, and PodLogs to configure
-    # scrape configs to scrape its own logs with the labels expected by the included dashboards.
-    selfMonitoring:
-      enabled: true
-      grafanaAgent:
-        installOperator: true
-
-  # Zero out replica counts of other deployment modes
-  backend:
-    replicas: 0
-  read:
-    replicas: 0
-  write:
-    replicas: 0
-
-  ingester:
-    replicas: 0
-  querier:
-    replicas: 0
-  queryFrontend:
-    replicas: 0
-  queryScheduler:
-    replicas: 0
-  distributor:
-    replicas: 0
-  compactor:
-    replicas: 0
-  indexGateway:
-    replicas: 0
-  bloomCompactor:
-    replicas: 0
-  bloomGateway:
-    replicas: 0
-
