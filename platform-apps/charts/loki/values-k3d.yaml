@@ -1,8 +1,8 @@
 loki:
   loki:
     commonConfig:
-      replication_factor: 1 # since replicas is set to 1 in kind cluster tests
-    auth_enabled: false # still needed when switching to scalable mode?
+      replication_factor: 1 # since replicas is set to 1
+    auth_enabled: false
     schemaConfig:
       configs:
         - from: 2024-04-01
@@ -30,7 +30,10 @@ loki:
           paths:
             - path: /
               pathType: Prefix
-      tls: ""
+      tls:
+        - secretName: loki-gateway-tls
+          hosts:
+            - logs-monitoring.demo.kubrix.cloud
 
   resultsCache:
     resources:
