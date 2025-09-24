@@ -49,7 +49,7 @@ spec:
           ui:field: RepoUrlPicker
           ui:options:
             allowedHosts:
-              - {{ (urlParse .kubriX.gitRepo).Host }}
+              - github.com
             allowedOwners:
               - {{ .kubriX.gitRepoOrg }}
             requestUserCredentials:
@@ -83,13 +83,13 @@ spec:
           team: ${{`{{ steps['catalogFetch'].output.entity.metadata.name }}`}}
           repoUrlRepo: ${{`{{ steps['catalogFetch'].output.entity.metadata.name }}`}}-${{`{{ parameters.application_id }}`}}
           repoUrlowner: {{ .kubriX.gitRepoOrg }}
-          gitRepoUrl: {{ (urlParse .kubriX.gitRepo).Host }}
+          gitRepoUrl: github.com
     - id: publish-gitopsreposetup
       name: Publish Template Gitops Repo
       action: publish:github
       input:
         sourcePath: ./kargo-gitops
-        allowedHosts: ['{{ (urlParse .kubriX.gitRepo).Host }}']
+        allowedHosts: ['github.com']
         description: This is Kargo Demo App ${{`{{ parameters.application_id }}`}}
         #repoUrl: ${{`{{ parameters.repoUrl }}`}}
         repoUrl: github.com?repo=${{`{{ steps['catalogFetch'].output.entity.metadata.name }}`}}-${{`{{ parameters.application_id }}`}}&owner={{ .kubriX.gitRepoOrg }}
