@@ -1,6 +1,7 @@
 default:
   valueFiles:
   - values-k3d.yaml
+  - values-kind-delivery.yaml
 
 applications:
 
@@ -50,6 +51,8 @@ applications:
       kind: CustomResourceDefinition
       jsonPointers:
       - /spec/preserveUnknownFields
+
+  - name: testkube
 
   - name: backstage
     annotations:

@@ -1,6 +1,7 @@
 default:
   valueFiles:
   - values-k3d.yaml
+  - values-kind-portal.yaml
 
 applications:
 
@@ -41,6 +42,8 @@ applications:
   - name: keycloak
     annotations:
       argocd.argoproj.io/sync-wave: "-5"
+
+  - name: testkube
    
   - name: backstage
     annotations:

@@ -1,6 +1,7 @@
 default:
   valueFiles:
   - values-k3d.yaml
+  - values-kind-security.yaml
 
 applications:
 
@@ -59,3 +60,5 @@ applications:
   - name: kyverno
     syncOptions:
       - ServerSideApply=true
+
+  - name: testkube

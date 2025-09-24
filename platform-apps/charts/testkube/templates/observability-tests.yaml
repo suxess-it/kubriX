@@ -1,0 +1,12 @@
+{{- if .Values.observabilityTests.enabled -}}
+apiVersion: testworkflows.testkube.io/v1
+kind: TestWorkflow
+metadata:
+  name: kind-observability
+spec:
+  steps:
+    - run:
+        image: "curlimages/curl:7.78.0"
+        shell: |
+          curl https://grafana.127-0-0-1.nip.io
+{{- end }}
