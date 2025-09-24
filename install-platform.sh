@@ -549,7 +549,8 @@ if [ ${KUBRIX_INSTALLER} = "true" ] ; then
   mkdir kubriX
   git clone ${KUBRIX_REPO_PROTO}${KUBRIX_REPO_PASSWORD}@${KUBRIX_REPO_URL} kubriX
   cd kubriX
-  git checkout "${KUBRIX_REPO_BRANCH}"
+  #git checkout "${KUBRIX_REPO_BRANCH}"
+  git checkout main
 fi
 
 if [[ "${KUBRIX_TARGET_TYPE}" =~ ^KIND.* || "${KUBRIX_CLUSTER_TYPE}" == "KIND" ]] ; then
