@@ -58,10 +58,10 @@ spec:
       input:
         url: ./skeleton
         values:
-          name: ${{ parameters.name }}
-          description: ${{ parameters.description }}
-          destination: ${{ (parameters.repoUrl | parseRepoUrl).owner }}/${{ (parameters.repoUrl | parseRepoUrl).repo }}
-          owner: ${{ parameters.owner }}
+          name: ${{`{{ parameters.name }}`}}
+          description: ${{`{{ parameters.description }}`}}
+          destination: ${{`{{ (parameters.repoUrl | parseRepoUrl).owner }}/${{ (parameters.repoUrl | parseRepoUrl).repo }}`}}
+          owner: ${{`{{ parameters.owner }}`}}
 
     - id: publish
       name: Publish
@@ -69,21 +69,21 @@ spec:
       input:
         allowedHosts:
           - github.com
-        description: This is ${{ parameters.name }}
-        repoUrl: ${{ parameters.repoUrl }}
+        description: This is ${{`{{ parameters.name }}`}}
+        repoUrl: ${{`{{ parameters.repoUrl }}`}}
         repoVisibility: public
 
     - id: register
       name: Register
       action: catalog:register
       input:
-        repoContentsUrl: ${{ steps.publish.output.repoContentsUrl }}
+        repoContentsUrl: ${{`{{ steps.publish.output.repoContentsUrl }}`}}
         catalogInfoPath: "/catalog-info.yaml"
 
   output:
     links:
       - title: Repository
-        url: ${{ steps.publish.output.remoteUrl }}
+        url: ${{`{{ steps.publish.output.remoteUrl }}`}}
       - title: Open in catalog
         icon: catalog
-        entityRef: ${{ steps.register.output.entityRef }}
+        entityRef: ${{`{{ steps.register.output.entityRef }}`}}

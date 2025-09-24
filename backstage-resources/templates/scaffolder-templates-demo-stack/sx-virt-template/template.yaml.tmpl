@@ -100,13 +100,13 @@ spec:
       name: Fetch Context
       action: catalog:fetch
       input:
-        entityRef: ${{ parameters.os }}
+        entityRef: ${{`{{ parameters.os }}`}}
  
     - id: catalogFetchGroup
       name: Fetch Context
       action: catalog:fetch
       input:
-        entityRef: ${{ parameters.team }}
+        entityRef: ${{`{{ parameters.team }}`}}
 
     - id: template-gitops
       name: Fetch Skeleton + Template
@@ -117,19 +117,19 @@ spec:
         copyWithoutTemplating: 
           - .github/workflows/branch.yaml
         values:
-          application_id: ${{ parameters.application_id }}
-          description: ${{ parameters.description }}
-          team: ${{ steps['catalogFetchGroup'].output.entity.metadata.name }}
-          cores: ${{ parameters.cores }}
-          memory: ${{ parameters.memory }}
-          os: ${{ steps['catalogFetch'].output.entity.metadata.name }}
-          disk: ${{ parameters.disk }}
-          initpwd: ${{ parameters.initpwd }}
-          fqdn: ${{ parameters.fqdn }}
-          repoUrl: ${{ parameters.repoUrl }}
-          repoUrlRepo: ${{ steps['catalogFetchGroup'].output.entity.metadata.name }}-${{ parameters.application_id }}
+          application_id: ${{`{{ parameters.application_id }}`}}
+          description: ${{`{{ parameters.description }}`}}
+          team: ${{`{{ steps['catalogFetchGroup'].output.entity.metadata.name }}`}}
+          cores: ${{`{{ parameters.cores }}`}}
+          memory: ${{`{{ parameters.memory }}`}}
+          os: ${{`{{ steps['catalogFetch'].output.entity.metadata.name }}`}}
+          disk: ${{`{{ parameters.disk }}`}}
+          initpwd: ${{`{{ parameters.initpwd }}`}}
+          fqdn: ${{`{{ parameters.fqdn }}`}}
+          repoUrl: ${{`{{ parameters.repoUrl }}`}}
+          repoUrlRepo: ${{`{{ steps['catalogFetchGroup'].output.entity.metadata.name }}`}}-${{`{{ parameters.application_id }}`}}
           repoUrlowner: {{ .kubriX.gitRepoOrg }}
-          sshkey: ${{ parameters.sshkey }}
+          sshkey: ${{`{{ parameters.sshkey }}`}}
 
     - id: publish-gitopsreposetup
       name: Publish Template Gitops Repo
@@ -137,12 +137,12 @@ spec:
       input:
         sourcePath: ./kubevirt-gitops
         allowedHosts: ['github.com']
-        description: This is ${{ parameters.application_id }}
-        repoUrl: github.com?repo=${{ steps['catalogFetchGroup'].output.entity.metadata.name }}-${{ parameters.application_id }}&owner={{ .kubriX.gitRepoOrg }}
-        token: ${{ secrets.USER_OAUTH_TOKEN }}
-        fqdn: ${{ parameters.fqdn }}
-        gitAuthorName: ${{ user.entity.metadata.name }}
-        gitAuthorEmail: ${{ user.entity.spec.profile.email }}
+        description: This is ${{`{{ parameters.application_id }}`}}
+        repoUrl: github.com?repo=${{`{{ steps['catalogFetchGroup'].output.entity.metadata.name }}`}}-${{`{{ parameters.application_id }}`}}&owner={{ .kubriX.gitRepoOrg }}
+        token: ${{`{{ secrets.USER_OAUTH_TOKEN }}`}}
+        fqdn: ${{`{{ parameters.fqdn }}`}}
+        gitAuthorName: ${{`{{ user.entity.metadata.name }}`}}
+        gitAuthorEmail: ${{`{{ user.entity.spec.profile.email }}`}}
         repoVisibility: public
         deleteBranchOnMerge: true
         protectDefaultBranch: false
@@ -152,15 +152,15 @@ spec:
       name: Register Catalog
       action: catalog:register
       input:
-        repoContentsUrl: ${{ steps["publish-gitopsreposetup"].output.repoContentsUrl }}
+        repoContentsUrl: ${{`{{ steps["publish-gitopsreposetup"].output.repoContentsUrl }}`}}
         catalogInfoPath: '/catalog-info.yaml'
         
   output:
     links:
       - title: Repository
-        url: ${{ steps["publish-gitopsreposetup"].output.remoteUrl }}
+        url: ${{`{{ steps["publish-gitopsreposetup"].output.remoteUrl }}`}}
       - title: Approved-Apps PR
-        url: ${{ steps["pull-request-applicationsetup"].output.remoteUrl }}
+        url: ${{`{{ steps["pull-request-applicationsetup"].output.remoteUrl }}`}}
       - title: Open in catalog
         icon: catalog
-        entityRef: ${{ steps.register.output.entityRef }}
+        entityRef: ${{`{{ steps.register.output.entityRef }}`}}

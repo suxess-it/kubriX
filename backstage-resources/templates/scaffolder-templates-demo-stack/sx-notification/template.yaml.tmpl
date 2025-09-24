@@ -75,10 +75,10 @@ spec:
       action: notification:send
       name: Send Notification
       input:
-        recipients: ${{ parameters.recipients }}
-        entityRefs: ${{ parameters.entityRefs }}
-        title: ${{ parameters.name }}
-        info: ${{ parameters.message }}
-        severity: ${{ parameters.severity }}
+        recipients: ${{`{{ parameters.recipients }}`}}
+        entityRefs: ${{`{{ parameters.entityRefs }}`}}
+        title: ${{`{{ parameters.name }}`}}
+        info: ${{`{{ parameters.message }}`}}
+        severity: ${{`{{ parameters.severity }}`}}
         scope: internal
         optional: true
