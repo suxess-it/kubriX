@@ -1,5 +1,7 @@
 loki:
   loki:
+    commonConfig:
+      replication_factor: 1 # since replicas is set to 1 in kind cluster tests
     auth_enabled: false # still needed when switching to scalable mode?
     schemaConfig:
       configs:
