@@ -1,25 +1,4 @@
-testkube:
-  global:
-    testWorkflows:
-      globalTemplate:
-        enabled: true
-        spec:
-          pod:
-            volumes:
-              - name: testkube-ca
-                secret:
-                  secretName: ca-cert
-                  defaultMode: 420
-
-          container:
-            env:
-              - name: CURL_CA_BUNDLE
-                value: "/etc/ssl/custom/ca.crt"
-            volumeMounts:
-              - name: testkube-ca
-                mountPath: /etc/ssl/custom
-                readOnly: true
-  
+testkube: 
   testkube-api:
     uiIngress:
       enabled: true
