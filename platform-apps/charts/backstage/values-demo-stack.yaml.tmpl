@@ -230,6 +230,13 @@ backstage:
             tags:
               - vault
               - secrets
+          - title: Postgres Database Management
+            description: Manage Postgres Databases
+            url: https://pgadmin.{{ .kubriX.domain }}
+            image: /homepage/images/apps.jpg
+            tags:
+              - pgadmin
+              - postgres
       catalog:
         import:
           entityFilename: catalog-info.yaml
@@ -238,13 +245,11 @@ backstage:
           - allow: [Component, System, API, Resource, Location, Template, Domain, User, Group ]
         locations:
           - type: url
-            target: {{ .kubriX.gitRepo | strings.TrimSuffix ".git" }}/blob/main/backstage-resources/templates/showcase-templates-demo.yaml
+            target: {{ .kubriX.gitRepo | strings.TrimSuffix ".git" }}/blob/main/backstage-resources/templates/showcase-templates-demo-stack.yaml
             rules:
               - allow: [Template]
           - type: url
-            target: {{ .kubriX.gitRepo | strings.TrimSuffix ".git" }}/blob/main/backstage-resources/entities/all.yaml
-          - type: url
-            target: {{ .kubriX.gitRepo | strings.TrimSuffix ".git" }}/blob/main/backstage-resources/entities/demo.yaml
+            target: {{ .kubriX.gitRepo | strings.TrimSuffix ".git" }}/blob/main/backstage-resources/entities/demo-stack.yaml
         providers:
           keycloakOrg:
             default:
@@ -389,7 +394,9 @@ cluster:
   version:
     postgresql: "16"
   cluster:
-    instances: 1
+    instances: 3
+    walStorage:
+      enabled: true
     monitoring:
       enabled: true
     superuserSecret: cnpg-superuser-secret

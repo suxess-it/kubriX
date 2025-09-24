@@ -1,0 +1,11 @@
+# applies to podtato-head-entry deployment only
+ingress:
+  className: nginx
+  annotations:
+    external-dns.alpha.kubernetes.io/ttl: "60"
+    cert-manager.io/cluster-issuer: default-issuer
+  hosts:
+    - host: ${{values.team}}-${{values.application_id}}-test.${{values.fqdn}}
+      paths:
+        - path: /
+          pathType: ImplementationSpecific
