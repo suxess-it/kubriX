@@ -84,7 +84,7 @@ spec:
           ui:field: RepoUrlPicker
           ui:options:
             allowedHosts:
-              - {{ (url.Parse .kubriX.gitRepo).Host }}
+              - {{ (urlParse .kubriX.gitRepo).Host }}
             allowedOwners:
               - {{ .kubriX.gitRepoOrg }}
             requestUserCredentials:
@@ -136,9 +136,9 @@ spec:
       action: publish:github
       input:
         sourcePath: ./kubevirt-gitops
-        allowedHosts: ['{{ (url.Parse .kubriX.gitRepo).Host }}']
+        allowedHosts: ['{{ (urlParse .kubriX.gitRepo).Host }}']
         description: This is ${{ parameters.application_id }}
-        repoUrl: {{ (url.Parse .kubriX.gitRepo).Host }}?repo=${{ steps['catalogFetchGroup'].output.entity.metadata.name }}-${{ parameters.application_id }}&owner={{ .kubriX.gitRepoOrg }}
+        repoUrl: {{ (urlParse .kubriX.gitRepo).Host }}?repo=${{ steps['catalogFetchGroup'].output.entity.metadata.name }}-${{ parameters.application_id }}&owner={{ .kubriX.gitRepoOrg }}
         token: ${{ secrets.USER_OAUTH_TOKEN }}
         fqdn: ${{ parameters.fqdn }}
         gitAuthorName: ${{ user.entity.metadata.name }}

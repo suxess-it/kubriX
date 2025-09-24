@@ -32,7 +32,7 @@ spec:
           ui:field: RepoUrlPicker
           ui:options:
             allowedHosts:
-              - {{ (url.Parse .kubriX.gitRepo).Host }}
+              - {{ (urlParse .kubriX.gitRepo).Host }}
             allowedOwners:
               - {{ .kubriX.gitRepoOrg }}
             requestUserCredentials:
@@ -76,14 +76,14 @@ spec:
           # new team stanza for team ${{`{{ steps['catalogFetch'].output.entity.metadata.name }}`}}
             - name: ${{`{{ steps['catalogFetch'].output.entity.metadata.name }}`}}
               sourceRepos:
-                - 'https://{{ (url.Parse .kubriX.gitRepo).Host }}/{{ .kubriX.gitRepoOrg }}/${{`{{ steps['catalogFetch'].output.entity.metadata.name }}`}}-*'
+                - 'https://{{ (urlParse .kubriX.gitRepo).Host }}/{{ .kubriX.gitRepoOrg }}/${{`{{ steps['catalogFetch'].output.entity.metadata.name }}`}}-*'
               clusterResourceWhitelist:
                 - group: ""
                   kind: Namespace
                 - group: kargo.akuity.io
                   kind: Project
               appOfAppsRepo:
-                repoURL: https://{{ (url.Parse .kubriX.gitRepo).Host }}/{{ .kubriX.gitRepoOrg }}/${{`{{ steps['catalogFetch'].output.entity.metadata.name }}`}}-apps
+                repoURL: https://{{ (urlParse .kubriX.gitRepo).Host }}/{{ .kubriX.gitRepoOrg }}/${{`{{ steps['catalogFetch'].output.entity.metadata.name }}`}}-apps
                 path: demo-apps
                 revision: main
               multiStageKargoAppSet:
@@ -94,7 +94,7 @@ spec:
       name: Publish new Version of team configuration
       action: publish:github:pull-request
       input:
-        repoUrl: {{ (url.Parse .kubriX.gitRepo).Host }}?repo={{ .kubriX.gitRepoName }}&owner={{ .kubriX.gitRepoOrg }}
+        repoUrl: {{ (urlParse .kubriX.gitRepo).Host }}?repo={{ .kubriX.gitRepoName }}&owner={{ .kubriX.gitRepoOrg }}
         title: Onboarding team ${{`{{ steps['catalogFetch'].output.entity.metadata.name }}`}}
         description: Onboarding team ${{`{{ steps['catalogFetch'].output.entity.metadata.name }}`}}
         targetPath: platform-apps/charts/team-onboarding
@@ -125,7 +125,7 @@ spec:
       action: publish:github
       input:
         sourcePath: ./team-apps-of-apps
-        repoUrl: {{ (url.Parse .kubriX.gitRepo).Host }}?repo=${{`{{ steps['catalogFetch'].output.entity.metadata.name }}`}}-apps&owner={{ .kubriX.gitRepoOrg }}
+        repoUrl: {{ (urlParse .kubriX.gitRepo).Host }}?repo=${{`{{ steps['catalogFetch'].output.entity.metadata.name }}`}}-apps&owner={{ .kubriX.gitRepoOrg }}
         title: team-apps repo for ${{`{{ steps['catalogFetch'].output.entity.metadata.name }}`}}
         description: team-apps repo for ${{`{{ steps['catalogFetch'].output.entity.metadata.name }}`}}
         token: ${{`{{ secrets.USER_OAUTH_TOKEN }}`}}
