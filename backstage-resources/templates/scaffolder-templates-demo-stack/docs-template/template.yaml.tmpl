@@ -31,11 +31,9 @@ spec:
         owner:
           title: Owner
           type: string
-          description: Owner of the component
-          ui:field: OwnerPicker
-          ui:options:
-            allowedKinds:
-              - Group
+          description: Select your team name for the component
+          ui:field: MyGroupsPicker
+          ui:options: {}
     - title: Choose a location
       required:
         - repoUrl
@@ -47,6 +45,10 @@ spec:
           ui:options:
             allowedHosts:
               - github.com
+            allowedOwners:
+              - {{ .kubriX.gitRepoOrg }}
+            requestUserCredentials:
+              secretsKey: USER_OAUTH_TOKEN
 
   # This template is meant to be used on top of an existing template.
   # By adding the following and fetching from an absolute URL you can
@@ -69,21 +71,28 @@ spec:
       input:
         allowedHosts:
           - github.com
-        description: This is ${{`{{ parameters.name }}`}}
-        repoUrl: ${{`{{ parameters.repoUrl }}`}}
+        description: This is ${{ parameters.name }}
+        repoUrl: ${{ parameters.repoUrl }}
         repoVisibility: public
+        token: ${{ secrets.USER_OAUTH_TOKEN }}
+        gitAuthorName: ${{ user.entity.metadata.name }}
+        gitAuthorEmail: ${{ user.entity.spec.profile.email }}
+        gitCommitMessage: Doc Template
+        deleteBranchOnMerge: true
+        protectDefaultBranch: false
+        defaultBranch: main
 
     - id: register
       name: Register
       action: catalog:register
       input:
-        repoContentsUrl: ${{`{{ steps.publish.output.repoContentsUrl }}`}}
-        catalogInfoPath: "/catalog-info.yaml"
-
+        repoContentsUrl: ${{ steps['publish'].output.repoContentsUrl }}
+        catalogInfoPath: '/catalog-info.yaml'
+        
   output:
     links:
       - title: Repository
-        url: ${{`{{ steps.publish.output.remoteUrl }}`}}
+        url: ${{ steps['publish'].output.remoteUrl }}
       - title: Open in catalog
         icon: catalog
-        entityRef: ${{`{{ steps.register.output.entityRef }}`}}
+        entityRef: ${{ steps['register'].output.entityRef }}

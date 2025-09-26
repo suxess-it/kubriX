@@ -4,7 +4,7 @@ metadata:
   name: ${{values.name | dump}}
   description: ${{values.description | dump}}
   annotations:
-    github.com/project-slug: ${{values.destination.owner + "/" + values.destination.repo}}
+    github.com/project-slug: ${{values.repoUrlowner}}/${{values.repoUrlRepo}}
     backstage.io/techdocs-ref: dir:.
 spec:
   type: documentation
