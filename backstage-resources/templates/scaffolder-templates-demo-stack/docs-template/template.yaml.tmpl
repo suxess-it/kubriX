@@ -47,8 +47,6 @@ spec:
               - github.com
             allowedOwners:
               - {{ .kubriX.gitRepoOrg }}
-            requestUserCredentials:
-              secretsKey: USER_OAUTH_TOKEN
 
   # This template is meant to be used on top of an existing template.
   # By adding the following and fetching from an absolute URL you can
@@ -74,7 +72,6 @@ spec:
         description: This is ${{ parameters.name }}
         repoUrl: ${{ parameters.repoUrl }}
         repoVisibility: public
-        token: ${{ secrets.USER_OAUTH_TOKEN }}
         gitAuthorName: ${{ user.entity.metadata.name }}
         gitAuthorEmail: ${{ user.entity.spec.profile.email }}
         gitCommitMessage: Doc Template
