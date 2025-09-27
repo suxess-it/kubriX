@@ -545,7 +545,7 @@ if [ ${KUBRIX_INSTALLER} = "true" ] ; then
   cd "$HOME"
   printf 'checkout kubriX to %s ...\n' "$(pwd)/kubriX"
   mkdir kubriX
-  git clone ${KUBRIX_REPO_PROTO}${KUBRIX_REPO_PASSWORD}@${KUBRIX_REPO_URL} kubriX
+  git clone ${KUBRIX_REPO_PROTO}${KUBRIX_REPO_USERNAME}:${KUBRIX_REPO_PASSWORD}@${KUBRIX_REPO_URL} kubriX
   cd kubriX
   git checkout "${KUBRIX_REPO_BRANCH}"
 fi
