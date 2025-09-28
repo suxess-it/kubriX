@@ -48,7 +48,7 @@ env:
   
 jobs:
   create-kubrix-installer-image:
-    if: ${{ github.repository == 'suxess-it/kubriX' }} || ${{ github.repository == 'suxess-it/kubriX-prime' }}
+    if: ${{ github.repository == 'suxess-it/kubriX' || github.repository == 'suxess-it/kubriX-prime' }}
     runs-on: ubuntu-latest
     timeout-minutes: 10
 
