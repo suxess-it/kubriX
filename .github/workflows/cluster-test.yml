@@ -48,6 +48,7 @@ env:
   
 jobs:
   create-kubrix-installer-image:
+    if: ${{ github.repository == 'suxess-it/kubriX' }} || ${{ github.repository == 'suxess-it/kubriX-prime' }}
     runs-on: ubuntu-latest
     timeout-minutes: 10
 
@@ -101,6 +102,7 @@ jobs:
     needs:
       - create-kubrix-installer-image
     runs-on: ${{ vars.KUBRIX_GITHUB_RUNNER || 'ubuntu-latest' }}
+    if: ${{ always() && (needs.create-kubrix-installer-image.result == 'success' || needs.create-kubrix-installer-image.result == 'skipped') }}
     permissions: read-all
     strategy:
       matrix:
