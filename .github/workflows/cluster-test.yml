@@ -198,7 +198,7 @@ jobs:
         env:
           KUBRIX_TARGET_TYPE: ${{ matrix.target-type }}
         run: |
-          testkube run testworkflow $(echo ${KUBRIX_TARGET_TYPE} | awk '{print tolower($0)}') -f
+          testkube run testworkflow -l type=$(echo ${KUBRIX_TARGET_TYPE} | awk '{print tolower($0)}') -f -d 
           
       - name: mustgather data for troubleshooting
         if: ${{ failure() }}
