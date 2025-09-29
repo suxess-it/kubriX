@@ -201,6 +201,7 @@ jobs:
           testkube run testworkflow -l type=$(echo ${KUBRIX_TARGET_TYPE} | awk '{print tolower($0)}') -f -d
 
       - uses: actions/upload-artifact@v4
+        if: always()
         with:
           name: testkube-artifacts
           path: artifacts/
