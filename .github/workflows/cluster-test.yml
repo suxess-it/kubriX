@@ -198,7 +198,12 @@ jobs:
         env:
           KUBRIX_TARGET_TYPE: ${{ matrix.target-type }}
         run: |
-          testkube run testworkflow -l type=$(echo ${KUBRIX_TARGET_TYPE} | awk '{print tolower($0)}') -f -d 
+          testkube run testworkflow -l type=$(echo ${KUBRIX_TARGET_TYPE} | awk '{print tolower($0)}') -f -d
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: testkube-artifacts
+          path: artifacts/
           
       - name: mustgather data for troubleshooting
         if: ${{ failure() }}
