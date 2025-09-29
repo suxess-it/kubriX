@@ -1,8 +1,37 @@
-{{- if .Values.portalTests.enabled -}}
 apiVersion: testworkflows.testkube.io/v1
 kind: TestWorkflow
 metadata:
   name: kind-portal
+  labels:
+    type: kind-portal
+spec:
+  container:
+    env:
+    - name: CURL_CA_BUNDLE
+      value: /etc/ssl/custom/ca.crt
+    volumeMounts:
+    - mountPath: /etc/ssl/custom
+      name: testkube-ca
+      readOnly: true
+  pod:
+    volumes:
+    - name: testkube-ca
+      secret:
+        defaultMode: 420
+        secretName: ca-cert
+  steps:
+    - run:
+        image: "curlimages/curl:7.78.0"
+        shell: |
+          cat /etc/ssl/custom/ca.crt
+          echo ${CURL_CA_BUNDLE}
+          curl --insecure -vvI https://backstage.127-0-0-1.nip.io 2>&1 | awk 'BEGIN { cert=0 } /^\* SSL connection/ { cert=1 } /^\*/ { if (cert) print }'
+          curl https://backstage.127-0-0-1.nip.io
+---
+apiVersion: testworkflows.testkube.io/v1
+kind: TestWorkflow
+metadata:
+  name: kind-portal-cypress
   labels:
     type: kind-portal
 spec:
@@ -18,29 +47,9 @@ spec:
         cpu: 1500m
         memory: 2Gi
     workingDir: /data/repo/cypress
-    env:
-    - name: CURL_CA_BUNDLE
-      value: /etc/ssl/custom/ca.crt
-    volumeMounts:
-    - mountPath: /etc/ssl/custom
-      name: testkube-ca
-      readOnly: true
   job:
     activeDeadlineSeconds: 600
-  pod:
-    volumes:
-    - name: testkube-ca
-      secret:
-        defaultMode: 420
-        secretName: ca-cert
   steps:
-    - run:
-        image: "curlimages/curl:7.78.0"
-        shell: |
-          cat /etc/ssl/custom/ca.crt
-          echo ${CURL_CA_BUNDLE}
-          curl --insecure -vvI https://backstage.127-0-0-1.nip.io 2>&1 | awk 'BEGIN { cert=0 } /^\* SSL connection/ { cert=1 } /^\*/ { if (cert) print }'
-          curl https://backstage.127-0-0-1.nip.io
     - name: Run tests
       run:
         image: cypress/included:15.3.0
@@ -54,4 +63,3 @@ spec:
         artifacts:
           paths:
           - '**/*'
-{{- end }}

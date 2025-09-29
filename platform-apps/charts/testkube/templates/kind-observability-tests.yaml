@@ -1,10 +1,9 @@
-{{- if .Values.deliveryTests.enabled -}}
 apiVersion: testworkflows.testkube.io/v1
 kind: TestWorkflow
 metadata:
-  name: kind-delivery
+  name: kind-observability
   labels:
-    type: kind-delivery
+    type: kind-observability
 spec:
   container:
     env:
@@ -26,6 +25,5 @@ spec:
         shell: |
           cat /etc/ssl/custom/ca.crt
           echo ${CURL_CA_BUNDLE}
-          curl --insecure -vvI https://argocd.127-0-0-1.nip.io 2>&1 | awk 'BEGIN { cert=0 } /^\* SSL connection/ { cert=1 } /^\*/ { if (cert) print }'
-          curl https://argocd.127-0-0-1.nip.io
-{{- end }}
+          curl --insecure -vvI https://grafana.127-0-0-1.nip.io 2>&1 | awk 'BEGIN { cert=0 } /^\* SSL connection/ { cert=1 } /^\*/ { if (cert) print }'
+          curl https://grafana.127-0-0-1.nip.io

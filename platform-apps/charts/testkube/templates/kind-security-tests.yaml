@@ -1,4 +1,3 @@
-{{- if .Values.securityTests.enabled -}}
 apiVersion: testworkflows.testkube.io/v1
 kind: TestWorkflow
 metadata:
@@ -28,4 +27,3 @@ spec:
           echo ${CURL_CA_BUNDLE}
           curl --insecure -vvI https://vault.127-0-0-1.nip.io 2>&1 | awk 'BEGIN { cert=0 } /^\* SSL connection/ { cert=1 } /^\*/ { if (cert) print }'
           curl https://vault.127-0-0-1.nip.io
-{{- end }}
