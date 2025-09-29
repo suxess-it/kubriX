@@ -1,0 +1,192 @@
+├── argo-rollouts
+│   argo-rollouts             2.40.4   https://argoproj.github.io/argo-helm                 ok
+│   │   ├── argo-rollouts
+├── argocd
+│   argo-cd                   8.5.2    https://argoproj.github.io/argo-helm                 ok
+│   │   ├── argo-cd
+│   │   │   redis-ha                  4.33.7   https://dandydeveloper.github.io/charts/             unpacked
+│   │   │   │   ├── redis-ha
+├── backstage
+│   backstage                 2.6.1    https://backstage.github.io/charts                   ok
+│   cluster                   0.3.1    https://cloudnative-pg.github.io/charts              ok
+│   │   ├── backstage
+│   │   │   common                    2.10.0   oci://registry-1.docker.io/bitnamicharts             unpacked
+│   │   │   postgresql                12.10.0  oci://registry-1.docker.io/bitnamicharts             unpacked
+│   │   │   │   ├── common
+│   │   │   │   ├── postgresql
+│   │   │   │   │   common                    2.x.x    oci://registry-1.docker.io/bitnamicharts             unpacked
+│   │   │   │   │   │   ├── common
+│   │   ├── cluster
+├── cert-manager
+│   cert-manager              v1.17.2  https://charts.jetstack.io                           ok
+│   │   ├── cert-manager
+├── cnpg
+│   cloudnative-pg            0.24.0   https://cloudnative-pg.github.io/charts              ok
+│   pgadmin4                  1.47.0   https://helm.runix.net                               ok
+│   │   ├── cloudnative-pg
+│   │   │   cluster                   0.0      https://cloudnative-pg.github.io/grafana-dashboards  unpacked
+│   │   │   │   ├── cluster
+│   │   ├── pgadmin4
+├── crossplane
+│   crossplane                1.20.1   https://charts.crossplane.io/stable                  ok
+│   │   ├── crossplane
+├── external-dns
+│   external-dns              1.19.0   https://kubernetes-sigs.github.io/external-dns/      ok
+│   │   ├── external-dns
+├── external-secrets
+│   external-secrets          0.18.2   https://charts.external-secrets.io                   ok
+│   │   ├── external-secrets
+│   │   │   bitwarden-sdk-server      v0.5.0   oci://ghcr.io/external-secrets/charts                unpacked
+│   │   │   │   ├── bitwarden-sdk-server
+├── falco
+│   falco                     4.22.0   https://falcosecurity.github.io/charts               ok
+│   falco-exporter            0.12.2   https://falcosecurity.github.io/charts               ok
+│   k8s-metacollector         0.1.10   https://falcosecurity.github.io/charts               ok
+│   │   ├── falco
+│   │   │   falcosidekick             0.9.*    https://falcosecurity.github.io/charts               unpacked
+│   │   │   k8s-metacollector         0.1.*    https://falcosecurity.github.io/charts               unpacked
+│   │   │   falco-talon               0.2.*    https://falcosecurity.github.io/charts               unpacked
+│   │   │   │   ├── falco-talon
+│   │   │   │   ├── falcosidekick
+│   │   │   │   ├── k8s-metacollector
+│   │   ├── falco-exporter
+│   │   ├── k8s-metacollector
+├── grafana
+│   grafana                   9.2.10   https://grafana.github.io/helm-charts                ok
+│   │   ├── grafana
+├── ingress-nginx
+│   ingress-nginx             4.12.2   https://kubernetes.github.io/ingress-nginx           ok
+│   │   ├── ingress-nginx
+├── k8s-monitoring
+│   k8s-monitoring            3.5.0    https://grafana.github.io/helm-charts                ok
+│   │   ├── k8s-monitoring
+│   │   │   feature-annotation-autodiscovery 1.0.0                                                         unpacked
+│   │   │   feature-application-observability 1.0.0                                                         unpacked
+│   │   │   feature-auto-instrumentation 1.0.0                                                         unpacked
+│   │   │   feature-cluster-events    1.0.0                                                         unpacked
+│   │   │   feature-cluster-metrics   1.0.0                                                         unpacked
+│   │   │   feature-integrations      1.0.0                                                         unpacked
+│   │   │   feature-node-logs         1.0.0                                                         unpacked
+│   │   │   feature-pod-logs          1.0.0                                                         unpacked
+│   │   │   feature-pod-logs-via-kubernetes-api 1.0.0                                                         unpacked
+│   │   │   feature-profiling         1.0.0                                                         unpacked
+│   │   │   feature-profiles-receiver 1.0.0                                                         unpacked
+│   │   │   feature-prometheus-operator-objects 1.0.0                                                         unpacked
+│   │   │   alloy-operator            0.3.9    https://grafana.github.io/helm-charts                unpacked
+│   │   │   │   ├── alloy-operator
+│   │   │   │   │   alloy-crd                 1.0.0    https://grafana.github.io/helm-charts                unpacked
+│   │   │   │   │   podlogs-crd               0.0.0                                                         unpacked
+│   │   │   │   │   │   ├── alloy-crd
+│   │   │   │   │   │   ├── podlogs-crd
+│   │   │   │   ├── feature-annotation-autodiscovery
+│   │   │   │   ├── feature-application-observability
+│   │   │   │   ├── feature-auto-instrumentation
+│   │   │   │   │   beyla                     1.9.4    https://grafana.github.io/helm-charts                unpacked
+│   │   │   │   │   │   ├── beyla
+│   │   │   │   ├── feature-cluster-events
+│   │   │   │   ├── feature-cluster-metrics
+│   │   │   │   │   kube-state-metrics        6.3.0    https://prometheus-community.github.io/helm-charts   unpacked
+│   │   │   │   │   prometheus-node-exporter  4.47.3   https://prometheus-community.github.io/helm-charts   unpacked
+│   │   │   │   │   prometheus-windows-exporter 0.12.2   https://prometheus-community.github.io/helm-charts   unpacked
+│   │   │   │   │   kepler                    0.6.1    https://sustainable-computing-io.github.io/kepler-helm-chart unpacked
+│   │   │   │   │   opencost                  2.2.7    https://opencost.github.io/opencost-helm-chart       unpacked
+│   │   │   │   │   │   ├── kepler
+│   │   │   │   │   │   ├── kube-state-metrics
+│   │   │   │   │   │   ├── opencost
+│   │   │   │   │   │   ├── prometheus-node-exporter
+│   │   │   │   │   │   ├── prometheus-windows-exporter
+│   │   │   │   ├── feature-integrations
+│   │   │   │   ├── feature-node-logs
+│   │   │   │   ├── feature-pod-logs
+│   │   │   │   ├── feature-pod-logs-via-kubernetes-api
+│   │   │   │   ├── feature-profiles-receiver
+│   │   │   │   ├── feature-profiling
+│   │   │   │   ├── feature-prometheus-operator-objects
+│   │   │   │   │   prometheus-operator-crds  23.0.0   https://prometheus-community.github.io/helm-charts   unpacked
+│   │   │   │   │   │   ├── prometheus-operator-crds
+│   │   │   │   │   │   │   crds                      0.0.0                                                         unpacked
+│   │   │   │   │   │   │   │   ├── crds
+├── kargo
+│   kargo                     1.7.5    oci://ghcr.io/akuity/kargo-charts                    ok
+│   │   ├── kargo
+├── keycloak
+│   cluster                   0.3.1    https://cloudnative-pg.github.io/charts              ok
+│   │   ├── cluster
+├── komoplane
+│   komoplane                 0.1.6    https://helm-charts.komodor.io                       ok
+│   │   ├── komoplane
+├── kubecost
+│   cost-analyzer             2.8.2    https://kubecost.github.io/cost-analyzer             ok
+│   │   ├── cost-analyzer
+├── kubevirt-manager
+├── kubevirt
+├── kyverno
+│   kyverno                   3.5.2    https://kyverno.github.io/kyverno/                   ok
+│   │   ├── kyverno
+│   │   │   grafana                   3.5.2                                                         unpacked
+│   │   │   crds                      3.5.2                                                         unpacked
+│   │   │   openreports               0.1.0    https://openreports.github.io/reports-api            unpacked
+│   │   │   │   ├── crds
+│   │   │   │   ├── grafana
+│   │   │   │   ├── openreports
+├── loki
+│   loki                      6.40.0   https://grafana.github.io/helm-charts                ok
+│   │   ├── loki
+│   │   │   minio                     5.4.0    https://charts.min.io/                               unpacked
+│   │   │   grafana-agent-operator    0.5.1    https://grafana.github.io/helm-charts                unpacked
+│   │   │   rollout-operator          0.32.0   https://grafana.github.io/helm-charts                unpacked
+│   │   │   │   ├── grafana-agent-operator
+│   │   │   │   ├── minio
+│   │   │   │   ├── rollout-operator
+├── mimir
+│   mimir-distributed         5.8.0    https://grafana.github.io/helm-charts                ok
+│   │   ├── mimir-distributed
+│   │   │   minio                     5.4.0    https://charts.min.io/                               unpacked
+│   │   │   grafana-agent-operator    0.5.1    https://grafana.github.io/helm-charts                unpacked
+│   │   │   rollout-operator          0.30.0   https://grafana.github.io/helm-charts                unpacked
+│   │   │   │   ├── grafana-agent-operator
+│   │   │   │   ├── minio
+│   │   │   │   ├── rollout-operator
+├── minio
+│   minio                     5.4.0    https://charts.min.io/                               ok
+│   │   ├── minio
+├── team-onboarding
+├── tempo
+│   tempo                     1.23.3   https://grafana.github.io/helm-charts                ok
+│   │   ├── tempo
+├── testkube
+│   testkube                  2.2.13   https://kubeshop.github.io/helm-charts               ok
+│   │   ├── testkube
+│   │   │   testkube-operator         2.1.154  file://../testkube-operator                          unpacked
+│   │   │   mongodb                   13.10.1  file://../mongodb                                    unpacked
+│   │   │   postgresql                16.3.0   file://../postgresql                                 unpacked
+│   │   │   nats                      1.2.6-3  file://./charts/nats                                 unpacked
+│   │   │   testkube-api              2.2.6    file://../testkube-api                               unpacked
+│   │   │   testkube-logs             0.2.0    file://../testkube-logs                              unpacked
+│   │   │   global                    0.1.3    file://../global                                     unpacked
+│   │   │   │   ├── global
+│   │   │   │   ├── mongodb
+│   │   │   │   │   common                    2.x.x    oci://registry-1.docker.io/bitnamicharts             unpacked
+│   │   │   │   │   │   ├── common
+│   │   │   │   ├── nats
+│   │   │   │   ├── postgresql
+│   │   │   │   │   common                    2.x.x    oci://registry-1.docker.io/bitnamicharts             unpacked
+│   │   │   │   │   │   ├── common
+│   │   │   │   ├── testkube-api
+│   │   │   │   │   global                    0.1.3    file://../global                                     missing
+│   │   │   │   ├── testkube-logs
+│   │   │   │   │   global                    0.1.3    file://../global                                     missing
+│   │   │   │   ├── testkube-operator
+│   │   │   │   │   global                    0.1.3    file://../global                                     missing
+├── trivy
+│   trivy-operator            0.30.0   https://aquasecurity.github.io/helm-charts/          ok
+│   │   ├── trivy-operator
+├── vault
+│   vault                     0.30.1   https://helm.releases.hashicorp.com                  ok
+│   │   ├── vault
+├── velero-ui
+│   vui                       1.0.6    https://seriohub.github.io/velero-helm/              ok
+│   │   ├── vui
+├── velero
+│   velero                    10.1.3   https://vmware-tanzu.github.io/helm-charts           ok
+│   │   ├── velero
