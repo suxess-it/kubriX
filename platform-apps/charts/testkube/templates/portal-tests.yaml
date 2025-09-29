@@ -4,7 +4,18 @@ kind: TestWorkflow
 metadata:
   name: kind-portal
 spec:
+  content:
+    git:
+      uri: https://github.com/suxess-it/kubriX
+      revision: main
+      paths:
+      - cypress
   container:
+    resources:
+      requests:
+        cpu: 1500m
+        memory: 2Gi
+    workingDir: /data/repo/cypress
     env:
     - name: CURL_CA_BUNDLE
       value: /etc/ssl/custom/ca.crt
@@ -12,6 +23,8 @@ spec:
     - mountPath: /etc/ssl/custom
       name: testkube-ca
       readOnly: true
+  job:
+    activeDeadlineSeconds: 600
   pod:
     volumes:
     - name: testkube-ca
@@ -26,4 +39,16 @@ spec:
           echo ${CURL_CA_BUNDLE}
           curl --insecure -vvI https://backstage.127-0-0-1.nip.io 2>&1 | awk 'BEGIN { cert=0 } /^\* SSL connection/ { cert=1 } /^\*/ { if (cert) print }'
           curl https://backstage.127-0-0-1.nip.io
+    - name: Run tests
+      run:
+        image: cypress/included:14.5.1
+        args:
+        - --config
+        - '{"screenshotsFolder":"/data/artifacts/screenshots","videosFolder":"/data/artifacts/videos"}'
+      steps:
+      - name: Saving artifacts
+        workingDir: /data/artifacts
+        artifacts:
+          paths:
+          - '**/*'
 {{- end }}
