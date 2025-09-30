@@ -11,6 +11,10 @@ k8s-monitoring:
       type: loki
       url: http://sx-loki-gateway.loki.svc/loki/api/v1/push
       tenantId: ''
+    - name: tempo
+      type: otlp
+      url: http://sx-tempo.tempo:4318/v1/traces
+      traces:  { enabled: true }
   clusterMetrics:
     enabled: true
     opencost:
@@ -151,6 +155,28 @@ k8s-monitoring:
       
   alloy-logs:
     enabled: true
+  applicationObservability:
+    enabled: true
+    receivers:
+      otlp:
+        grpc:
+          enabled: true
+          port: 4317
+        http:
+          enabled: true
+          port: 4318
+  alloy-receiver:
+    enabled: true
+    alloy:
+      extraPorts:
+        - name: otlp-grpc
+          port: 4317
+          targetPort: 4317
+          protocol: TCP
+        - name: otlp-http
+          port: 4318
+          targetPort: 4318
+          protocol: TCP
   annotationAutodiscovery:
     enabled: true
   prometheusOperatorObjects:
