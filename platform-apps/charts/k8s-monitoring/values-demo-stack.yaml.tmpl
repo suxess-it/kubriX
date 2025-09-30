@@ -13,8 +13,14 @@ k8s-monitoring:
       tenantId: ''
     - name: tempo
       type: otlp
-      url: http://sx-tempo.tempo:4318/v1/traces
+      protocol: "http"
+      url: http://sx-tempo.tempo:4318
       traces:  { enabled: true }
+      logs:    { enabled: false }
+      metrics: { enabled: false }
+      tls:
+        insecure: true
+        insecureSkipVerify: true
   clusterMetrics:
     enabled: true
     opencost:
