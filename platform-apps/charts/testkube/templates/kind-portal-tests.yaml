@@ -56,6 +56,8 @@ spec:
         args:
         - --config
         - '{"screenshotsFolder":"/data/artifacts/screenshots","videosFolder":"/data/artifacts/videos"}'
+        - --spec
+        - "cypress/e2e/portal/**/*"
       steps:
       - name: Saving artifacts
         condition: always
