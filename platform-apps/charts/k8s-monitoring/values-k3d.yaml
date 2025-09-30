@@ -18,6 +18,8 @@ k8s-monitoring:
       traces:  { enabled: true }
       logs:    { enabled: false }
       metrics: { enabled: false }
+      processors:
+        serviceGraphMetrics: { enabled: true }
       tls:
         insecure: true
         insecureSkipVerify: true
