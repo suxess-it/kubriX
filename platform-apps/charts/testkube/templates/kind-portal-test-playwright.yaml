@@ -33,6 +33,7 @@ spec:
         value: /data/artifacts/playwright-report
     steps:
     - name: Save artifacts
+      condition: always
       artifacts:
         workingDir: /data/artifacts/
         paths:
