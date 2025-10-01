@@ -36,6 +36,8 @@ spec:
   steps:
   - name: Install dependencies
     shell: "npm ci"
+  - name: Install cacert
+    shell: "cp /etc/ssl/custom/ca.crt /usr/local/share/ca-certificates/ && update-ca-certificates"
   - name: Run tests
     run:
       shell: "mkdir /data/artifacts && npx playwright test portal/ --reporter=list,junit,html --trace on"
