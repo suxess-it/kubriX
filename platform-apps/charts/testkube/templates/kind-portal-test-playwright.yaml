@@ -44,6 +44,8 @@ spec:
         value: "/data/artifacts/junit-report.xml"
       - name: PLAYWRIGHT_HTML_REPORT
         value: /data/artifacts/playwright-report
+      - name: NODE_EXTRA_CA_CERTS
+        value: /etc/ssl/custom/ca.crt
     steps:
     - name: Save artifacts
       condition: always
