@@ -5,12 +5,6 @@ metadata:
   labels:
     type: kind-portal
 spec:
-  pod:
-    volumes:
-    - name: testkube-ca
-      secret:
-        defaultMode: 420
-        secretName: ca-cert
   content:
     git:
       uri: https://github.com/suxess-it/kubriX.git
@@ -24,20 +18,11 @@ spec:
         cpu: 500m
         memory: 500Mi
     workingDir: /data/repo/e2e-tests/playwright
-    env:
-    - name: NODE_EXTRA_CA_CERTS
-      value: /etc/ssl/custom/ca.crt
-    volumeMounts:
-    - mountPath: /etc/ssl/custom
-      name: testkube-ca
-      readOnly: true
   job:
     activeDeadlineSeconds:  600
   steps:
   - name: Install dependencies
     shell: "npm ci"
-  - name: Install cacert
-    shell: "cp /etc/ssl/custom/ca.crt /usr/local/share/ca-certificates/ && update-ca-certificates"
   - name: Run tests
     run:
       shell: "mkdir /data/artifacts && npx playwright test portal/ --reporter=list,junit,html --trace on"
@@ -46,8 +31,6 @@ spec:
         value: "/data/artifacts/junit-report.xml"
       - name: PLAYWRIGHT_HTML_REPORT
         value: /data/artifacts/playwright-report
-      - name: NODE_EXTRA_CA_CERTS
-        value: /etc/ssl/custom/ca.crt
     steps:
     - name: Save artifacts
       condition: always
