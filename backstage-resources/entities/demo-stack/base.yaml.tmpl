@@ -1,0 +1,105 @@
+# required user for demo environment https://github.com/suxess-it/kubriX/issues/87
+# until user management set up properly
+apiVersion: backstage.io/v1alpha1
+kind: User
+metadata:
+  name: jkleinlercher
+spec:
+  profile:
+    displayName: jkleinlercher
+    email: guest@example.com
+    picture: https://api.dicebear.com/7.x/avataaars/svg?seed=Midnight&backgroundColor=transparent
+  memberOf: [kubrix]
+---
+apiVersion: backstage.io/v1alpha1
+kind: User
+metadata:
+  name: {{ .kubriX.gitUser }}
+spec:
+  profile:
+    displayName: {{ .kubriX.gitUser }}
+    email: guest@example.com
+    picture: https://api.dicebear.com/9.x/adventurer-neutral/svg
+  memberOf: [kubrix]
+---
+apiVersion: backstage.io/v1alpha1
+kind: Group
+metadata:
+  name: kubrix
+  description: kubriX Team
+spec:
+  type: team
+  profile:
+    # Intentional no displayName for testing
+    email: team@kubrix.io
+    picture: https://api.dicebear.com/7.x/identicon/svg?seed=Fluffy&backgroundType=solid,gradientLinear&backgroundColor=ffd5dc,b6e3f4
+  parent: backstage
+  children: []
+---
+# This user is added as an example, to make it more easy for the "Guest"
+# sign-in option to demonstrate some entities being owned. In a regular org,
+# a guest user would probably not be registered like this.
+apiVersion: backstage.io/v1alpha1
+kind: User
+metadata:
+  name: guest
+spec:
+  profile:
+    displayName: Guest User
+    email: guest@example.com
+  memberOf: [team-a]
+---
+apiVersion: backstage.io/v1alpha1
+kind: Group
+metadata:
+  name: team-a
+  description: Team A
+spec:
+  type: team
+  profile:
+    # Intentional no displayName for testing
+    email: team-a@example.com
+    picture: https://api.dicebear.com/7.x/identicon/svg?seed=Fluffy&backgroundType=solid,gradientLinear&backgroundColor=ffd5dc,b6e3f4
+  parent: backstage
+  children: []
+---
+# dummy for templating
+apiVersion: backstage.io/v1alpha1
+kind: Resource
+metadata:
+  description: fedoa cloud v40.1.14 Base Image
+  labels:
+    argocd.argoproj.io/instance: sx-kubevirt
+  links:
+    - icon: web
+      title: Official Repolink
+      url: >-
+        https://download.fedoraproject.org/pub/fedora/linux/releases/40/Cloud/x86_64/images/Fedora-Cloud-Base-Generic.x86_64-40-1.14.qcow2
+  name: fedora-cloud-base
+  namespace: kubevirt
+  title: fedora-cloud-base
+spec:
+  lifecycle: production
+  owner: kubrix
+  system: kubrix
+  type: datasource
+---
+apiVersion: backstage.io/v1alpha1
+kind: Resource
+metadata:
+  description: ubuntu 22.02 Base Image
+  labels:
+    argocd.argoproj.io/instance: sx-kubevirt
+  links:
+    - icon: web
+      title: Official Repolink
+      url: >-
+        http://cloud-images.ubuntu.com/jammy/current/jammy-server-cloudimg-amd64.img
+  name: ubuntu-jammy-server
+  namespace: kubevirt
+  title: ubuntu-jammy-server
+spec:
+  lifecycle: production
+  owner: kubrix
+  system: kubrix
+  type: datasource
