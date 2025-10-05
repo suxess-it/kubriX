@@ -105,6 +105,7 @@ jobs:
     if: ${{ always() && (needs.create-kubrix-installer-image.result == 'success' || needs.create-kubrix-installer-image.result == 'skipped') }}
     permissions: read-all
     strategy:
+      fail-fast: false
       matrix:
         target-type:
           - KIND-DELIVERY
@@ -198,7 +199,13 @@ jobs:
         env:
           KUBRIX_TARGET_TYPE: ${{ matrix.target-type }}
         run: |
-          testkube run testworkflow $(echo ${KUBRIX_TARGET_TYPE} | awk '{print tolower($0)}') -f
+          testkube run testworkflow -l type=$(echo ${KUBRIX_TARGET_TYPE} | awk '{print tolower($0)}') -f -d
+
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: testkube-artifacts-${{ matrix.target-type }}
+          path: artifacts/
           
       - name: mustgather data for troubleshooting
         if: ${{ failure() }}
