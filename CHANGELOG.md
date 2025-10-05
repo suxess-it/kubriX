@@ -90,6 +90,23 @@
 * **vault:** refactor vault initialization script ([#1525](https://github.com/suxess-it/kubriX/issues/1525)) ([7f728c3](https://github.com/suxess-it/kubriX/commit/7f728c3b410931381b213a6d392093b1d545e519))
 * **velero,vui:** update helm releases and change kubectl to bitnamilegacy ([#1510](https://github.com/suxess-it/kubriX/issues/1510)) ([be7fe4c](https://github.com/suxess-it/kubriX/commit/be7fe4cdde04f356e45682db98fb01dc0ab1e6a5))
 
+### Prime Features (only available with kubriX prime plan)
+
+* **alerting:** add matrix-chat integration ([kubriX-prime/#160](https://github.com/suxess-it/kubriX-prime/issues/160)) ([kubriX-prime/57b1c1d](https://github.com/suxess-it/kubriX-prime/commit/57b1c1dfed81678fe927c6dd9bb5d3a912ec3435))
+* **argocd:** add default client role in keycloak ([kubriX-prime/#162](https://github.com/suxess-it/kubriX-prime/issues/162)) ([kubriX-prime/d5c2c55](https://github.com/suxess-it/kubriX-prime/commit/d5c2c550165a782ef3ab2f907c9a80c652cc2bf8))
+* **argocd:** extend resource-exclusion to be aligned with default argocd 3.0 resource exclusions in https://github.com/argoproj/argo-helm/blob/91afef15ec56140c0c7e4f3b76641f16343f3769/charts/argo-cd/values.yaml#L326-L380 ([kubriX-prime/#132](https://github.com/suxess-it/kubriX-prime/issues/132)) ([kubriX-prime/c4c98e6](https://github.com/suxess-it/kubriX-prime/commit/c4c98e6e88ce4bf70e02222f4b100e9de01a3993))
+* **bootstrap:** add HA option for bootstrapping argocd ([kubriX-prime/#134](https://github.com/suxess-it/kubriX-prime/issues/134)) ([kubriX-prime/6085e4d](https://github.com/suxess-it/kubriX-prime/commit/6085e4dc758579c4fabf2484172408be88a5ae1c))
+* **documentation:** add known issue 'spokes not registered' to reinstall kubrix docs ([kubriX-prime/#159](https://github.com/suxess-it/kubriX-prime/issues/159)) ([kubriX-prime/5a7d5c6](https://github.com/suxess-it/kubriX-prime/commit/5a7d5c671f8b9f41f606d64b45faaed95a83f920))
+* **documentation:** add secret inventory and matrix chat integration in mkdocs index ([kubriX-prime/#161](https://github.com/suxess-it/kubriX-prime/issues/161)) ([kubriX-prime/e35ccae](https://github.com/suxess-it/kubriX-prime/commit/e35ccae628e335876e4a026f986035382882a766))
+* **documentation:** add secret-inventory docs ([kubriX-prime/#158](https://github.com/suxess-it/kubriX-prime/issues/158)) ([kubriX-prime/ed77e96](https://github.com/suxess-it/kubriX-prime/commit/ed77e96f2da33e42aea0369f4aef64b1495c7137))
+* **documentation:** add vault token documentation in admin-credentials docs ([kubriX-prime/#157](https://github.com/suxess-it/kubriX-prime/issues/157)) ([kubriX-prime/2fb1dc4](https://github.com/suxess-it/kubriX-prime/commit/2fb1dc467f5438c647d26bb69833cb132cf04e1b))
+* **installation:** switch to dynamic generated credentials ([kubriX-prime/#155](https://github.com/suxess-it/kubriX-prime/issues/155)) ([kubriX-prime/163b00e](https://github.com/suxess-it/kubriX-prime/commit/163b00e8ec324abc6fb8cd4a7f9e17afa4268b5a))
+* **kargo:** add backup integration for freight and promotion ([kubriX-prime/#177](https://github.com/suxess-it/kubriX-prime/issues/177)) ([kubriX-prime/298ddf1](https://github.com/suxess-it/kubriX-prime/commit/298ddf1d2f2d33d174273f936618c82604be1243))
+* **keycloak:** switch from bitnami to official keycloak-operator (prime) ([kubriX-prime/#168](https://github.com/suxess-it/kubriX-prime/issues/168)) ([kubriX-prime/c847668](https://github.com/suxess-it/kubriX-prime/commit/c847668e3b3b17d354bda7eb9217da8cc7b17129))
+* **mimir:** enable cardinality analyses ([kubriX-prime/#185](https://github.com/suxess-it/kubriX-prime/issues/185)) ([kubriX-prime/287be44](https://github.com/suxess-it/kubriX-prime/commit/287be4493864f5b5ba8679c429b540960daeb5fb))
+* **vault:** change unseal keys to 5 ([kubriX-prime/#171](https://github.com/suxess-it/kubriX-prime/issues/171)) ([kubriX-prime/6338eda](https://github.com/suxess-it/kubriX-prime/commit/6338edad3ecf09085177fb0d0ec1f35afebef67f))
+* **velero:** add default opt-in schedules ([kubriX-prime/#180](https://github.com/suxess-it/kubriX-prime/issues/180)) ([kubriX-prime/b76a338](https://github.com/suxess-it/kubriX-prime/commit/b76a338fa2237d1115a6b75b605735c2b54ef6b1))
+
 
 ### Bug Fixes
 
