@@ -8,7 +8,7 @@ spec:
   content:
     git:
       uri: https://github.com/suxess-it/kubriX.git
-      revision: feat/cypress-tests
+      revision: {{ .Values.default.targetRevision }}
       paths:
       - e2e-tests/playwright
   container:
