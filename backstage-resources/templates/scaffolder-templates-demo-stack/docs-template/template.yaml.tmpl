@@ -75,13 +75,13 @@ spec:
       input:
         allowedHosts:
           - github.com
-        description: This is ${{ parameters.name }}
-        repoUrl: ${{ parameters.repoUrl }}
+        description: This is ${{`${{ parameters.name }}`}}
+        repoUrl: ${{`${{ parameters.repoUrl }}`}}
         repoVisibility: public
         sourcePath: ./skeleton
-        token: ${{ secrets.USER_OAUTH_TOKEN }}
-        gitAuthorName: ${{ user.entity.metadata.name }}
-        gitAuthorEmail: ${{ user.entity.spec.profile.email }}
+        token: ${{`${{ secrets.USER_OAUTH_TOKEN }}`}}
+        gitAuthorName: ${{`${{ user.entity.metadata.name }}`}}
+        gitAuthorEmail: ${{`${{ user.entity.spec.profile.email }}`}}
         gitCommitMessage: Doc Template
         deleteBranchOnMerge: true
         protectDefaultBranch: false
@@ -91,13 +91,13 @@ spec:
       name: Register
       action: catalog:register
       input:
-        repoContentsUrl: ${{ steps['publish'].output.repoContentsUrl }}
+        repoContentsUrl: ${{`${{ steps['publish'].output.repoContentsUrl }}`}}
         catalogInfoPath: '/catalog-info.yaml'
         
   output:
     links:
       - title: Repository
-        url: ${{ steps['publish'].output.remoteUrl }}
+        url: ${{`${{ steps['publish'].output.remoteUrl }}`}}
       - title: Open in catalog
         icon: catalog
-        entityRef: ${{ steps['register'].output.entityRef }}
+        entityRef: ${{`${{ steps['register'].output.entityRef }}`}}
