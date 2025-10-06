@@ -24,13 +24,18 @@ With this step-by-step guide kubriX with its default demo stack gets deployed on
 
     ![image](../../img/github_token.png)
 
-4. set the repo url and token in this variables like this:
+3. set the repo url and token in this variables like this:
 
     ```
     export KUBRIX_REPO="https://github.com/kubriX-demo/kubriX-demo-customerXY"
     export KUBRIX_REPO_PASSWORD="blabla"
     ```
 
+4. set your GitHub Username:
+    ```
+    export KUBRIX_GIT_USER_NAME="your-github-username"
+    ```
+    
 5. optional: set the DNS provider, which external-dns should connect to.
 
     default: ionos  

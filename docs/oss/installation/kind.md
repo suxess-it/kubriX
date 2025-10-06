@@ -52,11 +52,13 @@ With this step-by-step guide kubriX with its default stack gets deployed on your
     ```
     export KUBRIX_REPO="https://github.com/kubriX-demo/kubriX-demo-customerXY"
     export KUBRIX_REPO_PASSWORD="your-read-write-access-token"
+    export KUBRIX_GIT_USER_NAME="your-github-username"
     
     kubectl create ns kubrix-install
     kubectl create secret generic kubrix-install-secrets -n kubrix-install \
       --from-literal KUBRIX_REPO=${KUBRIX_REPO} \
       --from-literal KUBRIX_REPO_PASSWORD=${KUBRIX_REPO_PASSWORD} \
+      --from-literal KUBRIX_GIT_USER_NAME=${KUBRIX_GIT_USER_NAME} \
       --from-literal KUBRIX_DOMAIN="127-0-0-1.nip.io" \
       --from-literal KUBRIX_DNS_PROVIDER="none" \
       --from-literal KUBRIX_TARGET_TYPE="DEMO-STACK" \
