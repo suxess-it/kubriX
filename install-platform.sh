@@ -498,6 +498,26 @@ analyze_app() {
   echo "------------------"
 }
 
+# exclude apps from a space-separated list
+exclude_apps() {
+  local apps="$1"
+  local exclude_list="$2"
+  local filtered=""
+
+  for app in $apps; do
+    local skip=false
+    for ex in $exclude_list; do
+      if [[ "$app" == "sx-$ex" ]]; then
+        skip=true
+        break
+      fi
+    done
+    $skip || filtered+="$app "
+  done
+
+  echo "$filtered"
+}
+
 # main starts here
 
 # version from ENV
@@ -656,9 +676,17 @@ cat bootstrap-app-$(echo ${KUBRIX_TARGET_TYPE} | awk '{print tolower($0)}').yaml
 # create app list
 target_chart_value_file="platform-apps/target-chart/values-$(echo ${KUBRIX_TARGET_TYPE} | awk '{print tolower($0)}').yaml"
 
-argocd_apps=$(cat $target_chart_value_file | egrep -Ev "team-onboarding" | awk '/^  - name:/ { printf "%s", "sx-"$3" "}' )
+base_apps=$(egrep -Ev "team-onboarding" "${target_chart_value_file}" | awk '/^  - name:/ { printf "%s", "sx-"$3" " }')
 # list apps which need some sort of special treatment in bootstrap
-argocd_apps_without_individual=$(cat $target_chart_value_file | egrep -Ev "team-onboarding" | awk '/^  - name:/ { printf "%s", "sx-"$3" "}' )
+base_apps_without_individual=$(egrep -Ev "team-onboarding" "${target_chart_value_file}" | awk '/^  - name:/ { printf "%s", "sx-"$3" " }')
+
+if [[ -n "${KUBRIX_APP_EXCLUDE:-}" ]]; then
+  argocd_apps=$(exclude_apps "$base_apps" "$KUBRIX_APP_EXCLUDE")
+  argocd_apps_without_individual=$(exclude_apps "$base_apps_without_individual" "$KUBRIX_APP_EXCLUDE")
+else
+  argocd_apps="$base_apps"
+  argocd_apps_without_individual="$base_apps_without_individual"
+fi
 
 # max wait for 20 minutes until all apps except backstage and kargo are synced and healthy
 wait_until_apps_synced_healthy "${argocd_apps_without_individual}" "Synced" "Healthy" ${KUBRIX_BOOTSTRAP_MAX_WAIT_TIME}
