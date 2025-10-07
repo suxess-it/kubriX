@@ -6,14 +6,24 @@ on:
 permissions:
   contents: write
   pull-requests: write
+  issues: write
 
 name: release-please
 
 jobs:
   release-please:
     runs-on: ubuntu-latest
-    if: ${{ vars.RELEASE_PLEASE == 'true' }}  
+    if: ${{ vars.RELEASE_PLEASE == 'true' }}
     steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          fetch-tags: true
+
+      - run: |
+          git describe --tags --abbrev=0 || true
+          git show-ref --tags | tail -n +1
+    
       - uses: googleapis/release-please-action@v4
         with:
           # this assumes that you have created a personal access token
@@ -22,4 +32,5 @@ jobs:
           # token: ${{ secrets.MY_RELEASE_PLEASE_TOKEN }}
           # this is a built-in strategy in release-please, see "Action Inputs"
           # for more options
-          release-type: simple
+          config-file: release-please-config.json
+          manifest-file: .release-please-manifest.json

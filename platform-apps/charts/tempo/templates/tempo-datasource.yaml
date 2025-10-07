@@ -12,7 +12,7 @@ data:
       type: tempo
       uid: tempo
       basicAuth: false
-      url: http://{{ template "tempo.fullname" .Subcharts.tempo }}:3100
+      url: http://{{ template "tempo.fullname" .Subcharts.tempo }}.{{ .Release.Namespace }}.svc:3200
       access: proxy
       isDefault: false
       jsonData:

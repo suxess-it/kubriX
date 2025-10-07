@@ -48,6 +48,7 @@ env:
   
 jobs:
   create-kubrix-installer-image:
+    if: ${{ github.repository == 'suxess-it/kubriX' || github.repository == 'suxess-it/kubriX-prime' }}
     runs-on: ubuntu-latest
     timeout-minutes: 10
 
@@ -101,8 +102,10 @@ jobs:
     needs:
       - create-kubrix-installer-image
     runs-on: ${{ vars.KUBRIX_GITHUB_RUNNER || 'ubuntu-latest' }}
+    if: ${{ always() && (needs.create-kubrix-installer-image.result == 'success' || needs.create-kubrix-installer-image.result == 'skipped') }}
     permissions: read-all
     strategy:
+      fail-fast: false
       matrix:
         target-type:
           - KIND-DELIVERY
@@ -196,7 +199,13 @@ jobs:
         env:
           KUBRIX_TARGET_TYPE: ${{ matrix.target-type }}
         run: |
-          testkube run testworkflow $(echo ${KUBRIX_TARGET_TYPE} | awk '{print tolower($0)}') -f
+          testkube run testworkflow -l type=$(echo ${KUBRIX_TARGET_TYPE} | awk '{print tolower($0)}') -f -d
+
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: testkube-artifacts-${{ matrix.target-type }}
+          path: artifacts/
           
       - name: mustgather data for troubleshooting
         if: ${{ failure() }}

@@ -2,7 +2,7 @@
 set -euo pipefail
 
 # Config (from the manifest)
-MANIFEST_URL="https://raw.githubusercontent.com/suxess-it/kubriX/refs/heads/${KUBRIX_UPSTREAM_BRANCH:=$KUBRIX_REPO_BRANCH}/install-manifests.yaml"
+MANIFEST_URL="https://raw.githubusercontent.com/${GITHUB_REPOSITORY}/refs/heads/${KUBRIX_UPSTREAM_BRANCH:=$KUBRIX_REPO_BRANCH}/install-manifests.yaml"
 NAMESPACE="kubrix-install"
 JOB_NAME="kubrix-install-job"
 
