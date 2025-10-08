@@ -149,6 +149,11 @@ EOF
   gomplate --context kubriX=bootstrap/customer-config.yaml --input-dir backstage-resources --include *.yaml.tmpl --output-map='backstage-resources/{{ .in | strings.ReplaceAll ".yaml.tmpl" ".yaml" }}'
   gomplate --context kubriX=bootstrap/customer-config.yaml --input-dir docs --include *.md.tmpl --output-map='docs/{{ .in | strings.ReplaceAll ".md.tmpl" ".md" }}'
 
+  # exclude apps from KUBRIX_APP_EXCLUDE
+  if [[ -n "${KUBRIX_APP_EXCLUDE:-}" ]]; then
+    yq e '((env(KUBRIX_APP_EXCLUDE) // "") | split(" ") | map(select(length>0))) as $ex | .applications |= map(. as $a | select(($ex | contains([$a.name])) | not))' -i platform-apps/target-chart/${valuesFile}.yaml
+  fi
+
 }
 
 bootstrap_push_to_downstream() {
