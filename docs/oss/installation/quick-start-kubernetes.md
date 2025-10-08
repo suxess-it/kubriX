@@ -117,6 +117,7 @@ With this step-by-step guide kubriX with its default demo stack gets deployed on
     kubectl create secret generic kubrix-install-secrets -n kubrix-install \
       --from-literal KUBRIX_REPO=${KUBRIX_REPO} \
       --from-literal KUBRIX_REPO_PASSWORD=${KUBRIX_REPO_PASSWORD} \
+      --from-literal KUBRIX_GIT_USER_NAME=${KUBRIX_GIT_USER_NAME} \
       --from-literal KUBRIX_DOMAIN=${KUBRIX_DOMAIN} \
       --from-literal KUBRIX_DNS_PROVIDER=${KUBRIX_DNS_PROVIDER} \
       --from-literal KUBRIX_TARGET_TYPE=${KUBRIX_TARGET_TYPE} \
