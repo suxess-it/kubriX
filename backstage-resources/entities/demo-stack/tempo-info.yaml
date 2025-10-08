@@ -1,3 +1,4 @@
+{{ if ne .kubriX.clusterType "kind" -}}
 apiVersion: backstage.io/v1alpha1
 kind: Resource
 metadata:
@@ -13,3 +14,4 @@ spec:
   lifecycle: production
   owner: kubrix
   system: kubrix
+{{ end -}}
