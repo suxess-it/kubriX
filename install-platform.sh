@@ -151,6 +151,7 @@ EOF
 
   # exclude apps from KUBRIX_APP_EXCLUDE
   if [[ -n "${KUBRIX_APP_EXCLUDE:-}" ]]; then
+    echo "exclude apps $KUBRIX_APP_EXCLUDE from platform-apps/target-chart/${valuesFile}.yaml"
     yq e '((env(KUBRIX_APP_EXCLUDE) // "") | split(" ") | map(select(length>0))) as $ex | .applications |= map(. as $a | select(($ex | contains([$a.name])) | not))' -i platform-apps/target-chart/${valuesFile}.yaml
   fi
 
