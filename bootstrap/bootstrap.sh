@@ -196,4 +196,3 @@ if [ $rc -ne 0 ]; then
 else
   echo "kubriX bootstrapped sucessfully!"
 fi
-

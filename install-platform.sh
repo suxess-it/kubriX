@@ -60,6 +60,7 @@ check_prereqs() {
   check_variable KUBRIX_BOOTSTRAP_MAX_WAIT_TIME "true" "2400"
   check_variable KUBRIX_INSTALLER "true" "false"
   check_variable KUBRIX_GENERATE_SECRETS "true" "true"
+  check_variable KUBRIX_GIT_USER_NAME "true" "dummy"
 
   # if bootstrapping from kubriX upstream to empty customer repo is set to true
   check_variable KUBRIX_BOOTSTRAP "true" "false"
@@ -134,6 +135,7 @@ domain: ${KUBRIX_DOMAIN}
 gitRepo: ${KUBRIX_REPO}
 gitRepoOrg: ${KUBRIX_REPO_ORG}
 gitRepoName: ${KUBRIX_REPO_NAME}
+gitUser: ${KUBRIX_GIT_USER_NAME}
 EOF
 
   echo "the current customer-config is like this:"
@@ -146,6 +148,12 @@ EOF
   gomplate --context kubriX=bootstrap/customer-config.yaml --input-dir platform-apps --include *${valuesFile}.yaml.tmpl --output-map='platform-apps/{{ .in | strings.ReplaceAll ".yaml.tmpl" ".yaml" }}'
   gomplate --context kubriX=bootstrap/customer-config.yaml --input-dir backstage-resources --include *.yaml.tmpl --output-map='backstage-resources/{{ .in | strings.ReplaceAll ".yaml.tmpl" ".yaml" }}'
   gomplate --context kubriX=bootstrap/customer-config.yaml --input-dir docs --include *.md.tmpl --output-map='docs/{{ .in | strings.ReplaceAll ".md.tmpl" ".md" }}'
+
+  # exclude apps from KUBRIX_APP_EXCLUDE
+  if [[ -n "${KUBRIX_APP_EXCLUDE:-}" ]]; then
+    echo "exclude apps $KUBRIX_APP_EXCLUDE from platform-apps/target-chart/values-${valuesFile}.yaml"
+    yq e '((env(KUBRIX_APP_EXCLUDE) // "") | split(" ") | map(select(length>0))) as $ex | .applications |= map(. as $a | select(($ex | contains([$a.name])) | not))' -i platform-apps/target-chart/values-${valuesFile}.yaml
+  fi
 
 }
 
@@ -496,6 +504,26 @@ analyze_app() {
   echo "------------------"
 }
 
+# exclude apps from a space-separated list
+exclude_apps() {
+  local apps="$1"
+  local exclude_list="$2"
+  local filtered=""
+
+  for app in $apps; do
+    local skip=false
+    for ex in $exclude_list; do
+      if [[ "$app" == "sx-$ex" ]]; then
+        skip=true
+        break
+      fi
+    done
+    $skip || filtered+="$app "
+  done
+
+  echo "$filtered"
+}
+
 # main starts here
 
 # version from ENV
@@ -654,9 +682,17 @@ cat bootstrap-app-$(echo ${KUBRIX_TARGET_TYPE} | awk '{print tolower($0)}').yaml
 # create app list
 target_chart_value_file="platform-apps/target-chart/values-$(echo ${KUBRIX_TARGET_TYPE} | awk '{print tolower($0)}').yaml"
 
-argocd_apps=$(cat $target_chart_value_file | egrep -Ev "team-onboarding" | awk '/^  - name:/ { printf "%s", "sx-"$3" "}' )
+base_apps=$(egrep -Ev "team-onboarding" "${target_chart_value_file}" | awk '/^  - name:/ { printf "%s", "sx-"$3" " }')
 # list apps which need some sort of special treatment in bootstrap
-argocd_apps_without_individual=$(cat $target_chart_value_file | egrep -Ev "team-onboarding" | awk '/^  - name:/ { printf "%s", "sx-"$3" "}' )
+base_apps_without_individual=$(egrep -Ev "team-onboarding" "${target_chart_value_file}" | awk '/^  - name:/ { printf "%s", "sx-"$3" " }')
+
+if [[ -n "${KUBRIX_APP_EXCLUDE:-}" ]]; then
+  argocd_apps=$(exclude_apps "$base_apps" "$KUBRIX_APP_EXCLUDE")
+  argocd_apps_without_individual=$(exclude_apps "$base_apps_without_individual" "$KUBRIX_APP_EXCLUDE")
+else
+  argocd_apps="$base_apps"
+  argocd_apps_without_individual="$base_apps_without_individual"
+fi
 
 # max wait for 20 minutes until all apps except backstage and kargo are synced and healthy
 wait_until_apps_synced_healthy "${argocd_apps_without_individual}" "Synced" "Healthy" ${KUBRIX_BOOTSTRAP_MAX_WAIT_TIME}

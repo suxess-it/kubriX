@@ -1,0 +1,17 @@
+{{ if ne .kubriX.clusterType "kind" -}}
+apiVersion: backstage.io/v1alpha1
+kind: Resource
+metadata:
+  name: tempo
+  title: tempo
+  description: tempo Instance for kubriX
+  links: 
+    - url: https://grafana.com/docs/tempo/latest/
+      title: Official Documentation
+      icon: web
+spec:
+  type: observability
+  lifecycle: production
+  owner: kubrix
+  system: kubrix
+{{ end -}}

@@ -238,13 +238,11 @@ backstage:
           - allow: [Component, System, API, Resource, Location, Template, Domain, User, Group ]
         locations:
           - type: url
-            target: {{ .kubriX.gitRepo | strings.TrimSuffix ".git" }}/blob/main/backstage-resources/templates/showcase-templates-demo.yaml
+            target: {{ .kubriX.gitRepo | strings.TrimSuffix ".git" }}/blob/main/backstage-resources/templates/showcase-templates-demo-stack.yaml
             rules:
               - allow: [Template]
           - type: url
-            target: {{ .kubriX.gitRepo | strings.TrimSuffix ".git" }}/blob/main/backstage-resources/entities/all.yaml
-          - type: url
-            target: {{ .kubriX.gitRepo | strings.TrimSuffix ".git" }}/blob/main/backstage-resources/entities/demo.yaml
+            target: {{ .kubriX.gitRepo | strings.TrimSuffix ".git" }}/blob/main/backstage-resources/entities/demo-stack.yaml
         providers:
           keycloakOrg:
             default:

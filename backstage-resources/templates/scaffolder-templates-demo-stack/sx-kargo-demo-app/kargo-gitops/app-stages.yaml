@@ -1,0 +1,28 @@
+teamName: ${{values.team}}
+appName: ${{values.application_id}}
+repoUrl: https://${{values.gitRepoUrl}}/${{values.repoUrlowner}}/${{values.team}}-${{values.application_id}}
+createAppNamespace: true
+stages:
+  - name: "test"
+    requestedFreight:
+    - origin:
+        kind: Warehouse
+        name: warehouse-{{ .Values.appName }}
+      sources:
+        direct: true
+  - name: "qa"
+    requestedFreight:
+    - origin:
+        kind: Warehouse
+        name: warehouse-{{ .Values.appName }}
+      sources:
+        stages:
+        - test
+  - name: "prod"
+    requestedFreight:
+    - origin:
+        kind: Warehouse
+        name: warehouse-{{ .Values.appName }}
+      sources:
+        stages:
+        - qa
