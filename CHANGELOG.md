@@ -1,5 +1,18 @@
 # Changelog
 
+## [5.1.0](https://github.com/suxess-it/kubriX/compare/v5.0.0...v5.1.0) (2025-10-13)
+
+
+### Features
+
+* **pipeline:** add first e2e tests ([#1589](https://github.com/suxess-it/kubriX/issues/1589)) ([f1f625e](https://github.com/suxess-it/kubriX/commit/f1f625ea66dcf474ad2a0752995c2fc5739d6766))
+
+
+### Bug Fixes
+
+* **installer:** convert all Resource files to tmpl files ([#1601](https://github.com/suxess-it/kubriX/issues/1601)) ([89d158a](https://github.com/suxess-it/kubriX/commit/89d158a197acab322c6249d4572bd6ff95f74eb5))
+* **testkube:** Set revision to default.targetRevision ([#1597](https://github.com/suxess-it/kubriX/issues/1597)) ([db097fb](https://github.com/suxess-it/kubriX/commit/db097fbbd7da47adc6a49ce04aeae507a05fcabc))
+
 ## [5.0.0](https://github.com/suxess-it/kubriX/compare/v4.0.0...v5.0.0) (2025-10-05)
 
 
