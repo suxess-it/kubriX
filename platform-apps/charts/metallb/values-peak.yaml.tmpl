@@ -1,4 +1,4 @@
-{{- $lbip := get .kubriX "custom_peak_lbip" -}}
+{{- $lbip := index .kubriX "custom_peak_lbip" -}}
 {{- if $lbip }}
 IPAddress: {{ $lbip }}-{{ $lbip }}
 {{- end }}
