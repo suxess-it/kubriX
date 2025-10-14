@@ -136,6 +136,7 @@ gitRepo: ${KUBRIX_REPO}
 gitRepoOrg: ${KUBRIX_REPO_ORG}
 gitRepoName: ${KUBRIX_REPO_NAME}
 gitUser: ${KUBRIX_GIT_USER_NAME}
+$( [[ -n "${KUBRIX_CUSTOM_PEAK_LBIP}" ]] && echo "custom_peak_lbip: ${KUBRIX_CUSTOM_PEAK_LBIP}" )
 EOF
 
   echo "the current customer-config is like this:"

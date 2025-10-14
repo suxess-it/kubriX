@@ -1,0 +1,12 @@
+{{- if eq .kubriX.clusterType "kind" }}
+mkcertClusterIssuer:
+  enabled: true
+{{- else }}
+letsEncryptProdClusterIssuer:
+  enabled: true
+{{- end }}
+  default: true
+
+cert-manager:
+  webhook:
+    timeoutSeconds: 15 # best practice on gardener, and gardener will change this and produce an argocd out-of-sync

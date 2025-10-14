@@ -1,0 +1,24 @@
+vui:
+  global:
+    veleroNamespace: velero
+    clusterName: "kubrix"
+
+  apiService:
+    config:
+      apiEnableDocumentation: true
+    secret:
+      existingSecret: velero-ui-credential
+
+  exposure:
+    mode: ingress
+    ingress:
+      ingressClassName: nginx
+      metadata:
+        annotations:
+          external-dns.alpha.kubernetes.io/ttl: "60"
+          cert-manager.io/cluster-issuer: default-issuer
+      spec:
+        tls:
+          - secretName: velero-ui-tls
+            hosts:
+              - velero-ui.{{ .kubriX.domain }}
