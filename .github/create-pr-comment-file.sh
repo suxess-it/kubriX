@@ -18,8 +18,8 @@ for env in pr target; do
       mkdir -p ../../../out/${env}/${chart}/${valuefile}
       # use 'values-kubrix-base.yaml' as a default values file
       if [ -f ${chart}/values-kubrix-default.yaml ] ; then
-        echo "run command: 'helm template  --include-crds ${chart} -f values-kubrix-default.yaml -f ${value} --output-dir ../../../out/${env}/${chart}/${valuefile}'"
-        helm template  --include-crds ${chart} -f values-kubrix-default.yaml -f ${value} --output-dir ../../../out/${env}/${chart}/${valuefile}
+        echo "run command: 'helm template  --include-crds ${chart} -f ${chart}/values-kubrix-default.yaml -f ${value} --output-dir ../../../out/${env}/${chart}/${valuefile}'"
+        helm template  --include-crds ${chart} -f ${chart}/values-kubrix-default.yaml -f ${value} --output-dir ../../../out/${env}/${chart}/${valuefile}
       else
         echo "run command: 'helm template  --include-crds ${chart} -f ${value} --output-dir ../../../out/${env}/${chart}/${valuefile}'"
         helm template  --include-crds ${chart} -f ${value} --output-dir ../../../out/${env}/${chart}/${valuefile}
