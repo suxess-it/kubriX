@@ -1,0 +1,140 @@
+keycloak:
+  ingress:
+  # ingress tls not implemented yet, we need to create our own ingress resource
+    enabled: false
+
+  readinessProbe:
+    periodSeconds: 20
+    failureThreshold: 5
+  livenessProbe:
+    periodSeconds: 20
+    failureThreshold: 5
+  startupProbe:
+    periodSeconds: 20
+    failureThreshold: 5
+
+  resources:
+    requests:
+      memory: "512Mi"
+      cpu: "150m"
+    limits:
+      memory: "1Gi"
+      cpu: "1"
+
+  networkPolicy:
+    enabled: false
+
+  additionalOptions:
+    - name: "metrics-enabled"
+      value: "true"
+    - name: "health-enabled"
+      value: "true"
+
+    # serviceMonitor: # not yet implemented in keycloak, https://github.com/keycloak/keycloak/issues/40406, we need to create our own servicemonitor
+
+  db:
+    usernameSecret:
+      name: cp-keycloak-externaldb-secret
+      key: POSTGRES_USER
+    passwordSecret:
+      name: cp-keycloak-externaldb-secret
+      key: POSTGRES_PASSWORD
+    port: 5432
+
+#### kubrix
+kubrix:
+  keycloak:
+    ingress:
+      enabled: true
+      tls:
+        enabled: true
+        secretName: keycloak-server-tls
+      annotations:
+        external-dns.alpha.kubernetes.io/ttl: "60"
+        cert-manager.io/cluster-issuer: default-issuer
+      className: nginx
+    domainName: .{{ .kubriX.domain }} # add to prefix keycloak in templates
+    realm:
+      realmid: kubrix
+      users:
+        - name: phac
+          firstName: Philipp
+          lastName: Achmueller
+          email: "philipp.achmueller@kubrix.io"
+        - name: jokl
+          firstName: Johannes
+          lastName: Kleinlercher
+          email: "johannes.kleinlercher@kubrix.io"
+        - name: backstageadmin
+          firstName: MrBackstage
+          lastName: MrAdmin
+          email: "backstageadmin@kubrix.io"
+        - name: demouser
+          firstName: demo
+          lastName: user
+          email: "demouser@kubrix.io"
+        - name: demoadmin
+          firstName: demo
+          lastName: admin
+          email: "demoadmin@kubrix.io"
+        - name: team1user
+          firstName: team1
+          lastName: demouser
+          email: "team1user@kubrix.io"
+      groups:
+        - name: admins
+          roles:
+            - grafana-admin
+            - vault-admin
+          members:
+            - backstageadmin
+            - demoadmin
+        - name: viewers
+          roles:
+            - grafana-viewer
+            - vault-viewer
+          members:
+            - team1user
+        - name: editors
+          roles:
+            - grafana-editor
+            - vault-editor
+          members: 
+            - phac
+            - jokl
+            - demouser
+        - name: backstage-admin # for service-account permission workaround
+    # start with 2FA mobile Authenticators
+    mfa:
+      enabled: false
+
+## cnpg
+cluster:
+  type: postgresql
+  mode: standalone
+  version:
+    postgresql: "16"
+  cluster:
+    instances: 1
+    monitoring:
+      enabled: true
+    superuserSecret: cnpg-superuser-secret
+    initdb:
+      database: keycloak
+      secret:
+        name: cnpg-keycloak-secret
+    roles:
+    - name: keycloak
+      ensure: present
+      comment: keycloak-admin-user
+      login: true
+      inherit: true
+      superuser: true
+      createdb: true
+      passwordSecret:
+        name: cnpg-keycloak-secret
+    annotations:
+      argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+      argocd.argoproj.io/sync-wave: "-1"
+  backups:
+    enabled: false

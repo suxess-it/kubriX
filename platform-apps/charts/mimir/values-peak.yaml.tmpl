@@ -1,0 +1,50 @@
+mimir:
+  nginx:
+    ingress:
+      enabled: true
+      ingressClassName: nginx
+      annotations:
+        external-dns.alpha.kubernetes.io/ttl: "60"
+        cert-manager.io/cluster-issuer: default-issuer
+      hosts:
+        - host: metrics-monitoring.{{ .kubriX.domain }}
+          paths:
+            - path: /
+              pathType: Prefix
+      tls:
+        - secretName: mimir-nginx-tls
+          hosts:
+            - metrics-monitoring.{{ .kubriX.domain }}
+  mimir:
+    structuredConfig:
+      limits:
+        max_global_series_per_user: 500000
+        cardinality_analysis_enabled: true
+  distributor:
+    resources:
+      limits:
+        cpu: 3.5
+        memory: 6Gi
+  ingester:
+    replicas: 2
+    zoneAwareReplication:
+      enabled: false
+    resources:
+      requests:
+        cpu: 50m
+      limits:
+        cpu: 5
+        memory: 6Gi
+    persistentVolume:
+      size: 5Gi
+  store_gateway:
+    resources:
+      requests:
+        cpu: 50m
+  minio:
+    persistence:
+      size: 10Gi
+  querier:
+    replicas: 1
+  query_scheduler: 
+    replicas: 1

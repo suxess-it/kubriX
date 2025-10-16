@@ -98,7 +98,7 @@ spec:
       input:
         url: ./metalstack-gitops
         targetPath: ./metalstack-gitops
-        copyWithoutRender: []
+        copyWithoutTemplating: []
         values:
           cluster_id: ${{ parameters.cluster_id }}
           description: ${{ parameters.description }}
@@ -115,7 +115,6 @@ spec:
       action: publish:github
       input:
         sourcePath: ./metalstack-gitops
-        allowedHosts: ['github.com']
         description: This is ${{ parameters.cluster_id }}
         repoUrl: ${{ parameters.repoUrl }}
         token: ${{ secrets.USER_OAUTH_TOKEN }}
@@ -132,7 +131,7 @@ spec:
       input:
         url: ./skeleton/applicationsetup
         targetPath: ./applicationsetup
-        copyWithoutRender: []
+        copyWithoutTemplating: []
         values:
           cluster_id: ${{ parameters.cluster_id }}
           description: ${{ parameters.description }}
