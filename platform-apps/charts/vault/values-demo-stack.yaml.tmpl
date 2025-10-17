@@ -61,6 +61,7 @@ vault:
     {{- if eq .kubriX.clusterType "kind" }}
     extraEnvironmentVars:
       SSL_CERT_FILE: /vault/kind-bundle-ca/combined-bundle.crt
+      VAULT_CACERT: /vault/userconfig/vault-ca/ca.crt
     {{- end }}
     volumes:
       - name: plugins

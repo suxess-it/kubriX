@@ -60,18 +60,19 @@ vault:
     extraEnvironmentVars:
       # only for kind cluster with mkcert root ca
       SSL_CERT_FILE: /vault/kind-bundle-ca/combined-bundle.crt
+      VAULT_CACERT: /vault/userconfig/vault-ca/ca.crt
     volumes:
       - name: plugins
         emptyDir: {}
       - name: vault-root-token
         secret:
           secretName: vault-init
-          optional: true 
+          optional: true
+      # only for kind cluster with mkcert root ca
       - name: vault-ca-cert
         secret:
           defaultMode: 420
           secretName: ca-cert
-      # only for kind cluster with mkcert root ca
       - name: keycloak-ca
         secret:
           defaultMode: 420
