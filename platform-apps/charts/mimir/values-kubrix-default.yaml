@@ -1,0 +1,35 @@
+mimir:
+  nginx:
+    ingress:
+      enabled: true
+      ingressClassName: nginx
+      annotations:
+        external-dns.alpha.kubernetes.io/ttl: "60"
+        cert-manager.io/cluster-issuer: default-issuer
+      hosts: []
+      tls: []
+  mimir:
+    structuredConfig:
+      limits:
+        max_global_series_per_user: 500000
+        cardinality_analysis_enabled: true
+  distributor:
+    resources:
+      limits:
+        cpu: 3.5
+        memory: 6Gi
+  ingester:
+    resources:
+      limits:
+        cpu: 5
+        memory: 6Gi
+    persistentVolume:
+      size: 5Gi
+
+  minio:
+    persistence:
+      size: 10Gi
+
+  metaMonitoring:
+    grafanaAgent:
+      enabled: false
