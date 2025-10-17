@@ -184,9 +184,6 @@ vault:
             mountPath: /vault-root-token
           - name: plugins
             mountPath: /usr/local/libexec/vault
-          - mountPath: /vault/userconfig/vault-ca
-            name: vault-ca-cert
-            readOnly: true
         securityContext:
           allowPrivilegeEscalation: false
           capabilities:
