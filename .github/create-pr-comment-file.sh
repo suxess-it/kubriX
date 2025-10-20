@@ -12,10 +12,18 @@ for env in pr target; do
   for chart in $( ls -d */ | sed 's#/##' ); do
     echo ${chart}
     helm dependency update ${chart}
-    for value in $( find ${chart} -type f -name "values-*.yaml" ); do
+    # do not render charts with "values-kubrix-default.yaml" because then some values will be missing, resulting in nil pointer exception
+    for value in $( find ${chart} -type f -name "values-*.yaml" -not -name "values-kubrix-default.yaml" ); do
       valuefile=$( basename ${value} )
       mkdir -p ../../../out/${env}/${chart}/${valuefile}
-      helm template  --include-crds ${chart} -f ${value} --output-dir ../../../out/${env}/${chart}/${valuefile}
+      # use 'values-kubrix-base.yaml' as a default values file
+      if [ -f ${chart}/values-kubrix-default.yaml ] ; then
+        echo "run command: 'helm template  --include-crds ${chart} -f ${chart}/values-kubrix-default.yaml -f ${value} --output-dir ../../../out/${env}/${chart}/${valuefile}'"
+        helm template  --include-crds ${chart} -f ${chart}/values-kubrix-default.yaml -f ${value} --output-dir ../../../out/${env}/${chart}/${valuefile}
+      else
+        echo "run command: 'helm template  --include-crds ${chart} -f ${value} --output-dir ../../../out/${env}/${chart}/${valuefile}'"
+        helm template  --include-crds ${chart} -f ${value} --output-dir ../../../out/${env}/${chart}/${valuefile}
+      fi
     done
     # get default values of subcharts
     # to compare between different subchart versions we need to write to values files without version names

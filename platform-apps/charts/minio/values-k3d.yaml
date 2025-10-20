@@ -1,41 +1,5 @@
 minio:
-  enabled: true
-  replicas: 1
-  mode: standalone  
-  persistence:
-    size: 5Gi
-  resources:
-    requests:
-      memory: 2Gi
-  buckets:
-    - name: velero
-      policy: public
-      purge: false
-  metrics:
-    serviceMonitor:
-      enabled: true
-      includeNode: true
-  existingSecret: minio-admin-secret
-  users:
-  #  - accessKey: minio
-  #    secretKey: minio123
-  #    policy: consoleAdmin
-    - accessKey: minio
-      existingSecret: minio-admin-secret
-      existingSecretKey: secretKey
-      policy: consoleAdmin
-  tls:
-    enabled: true
-    certSecret: "minio-server-tls"
-    publicCrt: tls.crt
-    privateKey: tls.key
   consoleIngress:
-    enabled: true
-    ingressClassName:
-    annotations:
-      nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
-      cert-manager.io/cluster-issuer: mkcert-issuer
-    path: /
     hosts:
       - minio-console.127-0-0-1.nip.io
     tls: 
@@ -43,12 +7,6 @@ minio:
         hosts:
           - minio-console.127-0-0-1.nip.io
   ingress:
-    enabled: true
-    ingressClassName: ~
-    annotations:
-      nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
-      cert-manager.io/cluster-issuer: mkcert-issuer
-    path: /
     hosts:
       - minio.127-0-0-1.nip.io
     tls: 
