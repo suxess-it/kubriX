@@ -2,6 +2,9 @@ default:
   valueFiles:
   - values-kubrix-default.yaml
   - values-{{ .kubriX.clusterType }}.yaml
+  {{ if eq .kubriX.clusterType "kind" -}}
+  - values-k3d.yaml
+  {{ end -}}
   - values-demo-stack.yaml
 
 applications:
