@@ -28,7 +28,7 @@ for env in pr target; do
       valuesFiles=( )
       [[ -f ${chart}/values-kubrix-default.yaml ]] && valuesFiles+=( "-f ${chart}/values-kubrix-default.yaml" )
       echo "run command: 'helm template  --include-crds ${chart} "${valuesFiles[@]}" -f ${value} --output-dir ../../../out/${env}/${chart}/${valuefile}'"
-      helm template  --include-crds ${chart} "${valuesFiles[@]}" -f ${value} --output-dir ../../../out/${env}/${chart}/${valuefile}
+      helm template  --include-crds ${chart} ${valuesFiles[@]} -f ${value} --output-dir ../../../out/${env}/${chart}/${valuefile}
     done
     # get default values of subcharts
     # to compare between different subchart versions we need to write to values files without version names
