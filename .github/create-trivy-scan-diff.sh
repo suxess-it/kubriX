@@ -33,7 +33,16 @@ for env in pr target; do
     echo "get images for chart: ${chart}"
     helm dependency update ${chart}
     # do not render charts with "values-kubrix-default.yaml" because then some values will be missing, resulting in nil pointer exception
-    for value in $( find ${chart} -type f -name "values-*.yaml" -not -name "values-kubrix-default.yaml" ); do
+    for value in $( find ${chart} -type f -name "values-*.yaml" \
+      -not -name "values-kubrix-default.yaml" \
+      -not -name "values-cluster-*" \
+      -not -name "values-provider-*" \
+      -not -name "values-ha-enabled.yaml" \
+      -not -name "values-size-*" \
+      -not -name "values-security-strict.yaml" \
+      -not -name "values-customer-generated.yaml" \
+      -not -name "values-customer.yaml" \
+      ); do
       # use 'values-kubrix-base.yaml' as a default values file
       if [ -f ${chart}/values-kubrix-default.yaml ] ; then
         helm images get ${chart} -f ${chart}/values-kubrix-default.yaml -f ${value} --log-level error --kind "Deployment,StatefulSet,DaemonSet,CronJob,Job,ReplicaSet,Pod,Alertmanager,Prometheus,ThanosRuler,Grafana,Thanos,Receiver"
