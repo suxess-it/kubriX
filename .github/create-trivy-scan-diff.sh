@@ -40,8 +40,6 @@ for env in pr target; do
       -not -name "values-ha-enabled.yaml" \
       -not -name "values-size-*" \
       -not -name "values-security-strict.yaml" \
-      -not -name "values-customer-generated.yaml" \
-      -not -name "values-customer.yaml" \
       ); do
       # use 'values-kubrix-base.yaml' as a default values file
       if [ -f ${chart}/values-kubrix-default.yaml ] ; then
