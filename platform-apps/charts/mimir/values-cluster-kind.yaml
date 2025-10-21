@@ -11,6 +11,9 @@ mimir:
           hosts:
             - metrics-monitoring.127-0-0-1.nip.io
   ingester:
+    replicas: 2
+    zoneAwareReplication:
+      enabled: false
     resources:
       requests:
         cpu: 50m
@@ -28,3 +31,7 @@ mimir:
     resources:
       requests:
         cpu: 50m
+
+
+
+
