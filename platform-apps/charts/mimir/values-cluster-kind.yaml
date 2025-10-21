@@ -10,6 +10,13 @@ mimir:
         - secretName: mimir-nginx-tls
           hosts:
             - metrics-monitoring.127-0-0-1.nip.io
+  distributor:
+    replicas: 2
+    zoneAwareReplication:
+      enabled: false
+    resources:
+      requests:
+        cpu: 50m
   ingester:
     replicas: 2
     zoneAwareReplication:
