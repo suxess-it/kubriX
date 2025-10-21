@@ -45,7 +45,7 @@ for env in pr target; do
       # use 'values-kubrix-base.yaml' as a default values file
       valuesFiles=( )
       [[ -f ${chart}/values-kubrix-default.yaml ]] && valuesFiles+=( "-f ${chart}/values-kubrix-default.yaml" )
-      echo "run command: 'helm images get ${chart} "${valuesFiles[@]}" -f ${value} --log-level error --kind "Deployment,StatefulSet,DaemonSet,CronJob,Job,ReplicaSet,Pod,Alertmanager,Prometheus,ThanosRuler,Grafana,Thanos,Receiver"
+      echo "run command: 'helm images get ${chart} "${valuesFiles[@]}" -f ${value} --log-level error --kind "Deployment,StatefulSet,DaemonSet,CronJob,Job,ReplicaSet,Pod,Alertmanager,Prometheus,ThanosRuler,Grafana,Thanos,Receiver""
       helm images get ${chart} ${valuesFiles[@]} -f ${value} --log-level error --kind "Deployment,StatefulSet,DaemonSet,CronJob,Job,ReplicaSet,Pod,Alertmanager,Prometheus,ThanosRuler,Grafana,Thanos,Receiver"
     done | sort -u > ../../../out/${env}/${chart}-images.txt
   done
