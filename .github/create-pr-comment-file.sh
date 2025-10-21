@@ -25,7 +25,7 @@ for env in pr target; do
       valuefile=$( basename ${value} )
       mkdir -p ../../../out/${env}/${chart}/${valuefile}
       # use 'values-kubrix-base.yaml' as a default values file
-      valuesFiles=( -a space )
+      valuesFiles=( )
       [[ -f ${chart}/values-kubrix-default.yaml ]] && valuesFiles+=( "-f ${chart}/values-kubrix-default.yaml" )
       echo "run command: 'helm template  --include-crds ${chart} "${valuesFiles[@]}" -f ${value} --output-dir ../../../out/${env}/${chart}/${valuefile}'"
       helm template  --include-crds ${chart} "${valuesFiles[@]}" -f ${value} --output-dir ../../../out/${env}/${chart}/${valuefile}
