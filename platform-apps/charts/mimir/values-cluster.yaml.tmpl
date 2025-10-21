@@ -1,0 +1,27 @@
+mimir:
+  nginx:
+    ingress:
+      hosts:
+        - host: metrics-monitoring.{{ .kubriX.domain }}
+          paths:
+            - path: /
+              pathType: Prefix
+      tls:
+        - secretName: mimir-nginx-tls
+          hosts:
+            - metrics-monitoring.{{ .kubriX.domain }}
+  ingester:
+    replicas: 2
+    zoneAwareReplication:
+      enabled: false
+    resources:
+      requests:
+        cpu: 50m
+  store_gateway:
+    resources:
+      requests:
+        cpu: 50m
+  querier:
+    replicas: 1
+  query_scheduler: 
+    replicas: 1

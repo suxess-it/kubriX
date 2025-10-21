@@ -61,6 +61,8 @@ check_prereqs() {
   check_variable KUBRIX_INSTALLER "true" "false"
   check_variable KUBRIX_GENERATE_SECRETS "true" "true"
   check_variable KUBRIX_GIT_USER_NAME "true" "dummy"
+  check_variable KUBRIX_CLUSTER_VALUESFILE "true" "cluster"
+  check_variable KUBRIX_METALLB_IP "true" " "
 
   # if bootstrapping from kubriX upstream to empty customer repo is set to true
   check_variable KUBRIX_BOOTSTRAP "true" "false"
@@ -129,13 +131,14 @@ bootstrap_template_downstream_repo() {
 # write new customer values in customer config (without indentation because of heredoc)
 cat << EOF > bootstrap/customer-config.yaml
 clusterType: $( printf '%s' "${KUBRIX_CLUSTER_TYPE}" | awk '{print tolower($0)}' )
-valuesFile: $( printf '%s' "${KUBRIX_TARGET_TYPE}" | awk '{print tolower($0)}' )
+valuesFile: ${KUBRIX_CLUSTER_VALUESFILE}
 dnsProvider: ${KUBRIX_DNS_PROVIDER}
 domain: ${KUBRIX_DOMAIN}
 gitRepo: ${KUBRIX_REPO}
 gitRepoOrg: ${KUBRIX_REPO_ORG}
 gitRepoName: ${KUBRIX_REPO_NAME}
 gitUser: ${KUBRIX_GIT_USER_NAME}
+metalLbIp: ${KUBRIX_METALLB_IP}
 EOF
 
   echo "the current customer-config is like this:"
@@ -144,15 +147,14 @@ EOF
   echo "----"
 
   echo "rendering values templates ..."
-  valuesFile=$( echo ${KUBRIX_TARGET_TYPE} | awk '{print tolower($0)}' )
-  gomplate --context kubriX=bootstrap/customer-config.yaml --input-dir platform-apps --include *${valuesFile}.yaml.tmpl --output-map='platform-apps/{{ .in | strings.ReplaceAll ".yaml.tmpl" ".yaml" }}'
+  gomplate --context kubriX=bootstrap/customer-config.yaml --input-dir platform-apps --include *.yaml.tmpl --output-map='platform-apps/{{ .in | strings.ReplaceAll ".yaml.tmpl" ".yaml" }}'
   gomplate --context kubriX=bootstrap/customer-config.yaml --input-dir backstage-resources --include *.yaml.tmpl --output-map='backstage-resources/{{ .in | strings.ReplaceAll ".yaml.tmpl" ".yaml" }}'
   gomplate --context kubriX=bootstrap/customer-config.yaml --input-dir docs --include *.md.tmpl --output-map='docs/{{ .in | strings.ReplaceAll ".md.tmpl" ".md" }}'
 
   # exclude apps from KUBRIX_APP_EXCLUDE
   if [[ -n "${KUBRIX_APP_EXCLUDE:-}" ]]; then
-    echo "exclude apps $KUBRIX_APP_EXCLUDE from platform-apps/target-chart/values-${valuesFile}.yaml"
-    yq e '((env(KUBRIX_APP_EXCLUDE) // "") | split(" ") | map(select(length>0))) as $ex | .applications |= map(. as $a | select(($ex | contains([$a.name])) | not))' -i platform-apps/target-chart/values-${valuesFile}.yaml
+    echo "exclude apps $KUBRIX_APP_EXCLUDE from platform-apps/target-chart/values-$( echo ${KUBRIX_TARGET_TYPE} | awk '{print tolower($0)}' ).yaml"
+    yq e '((env(KUBRIX_APP_EXCLUDE) // "") | split(" ") | map(select(length>0))) as $ex | .applications |= map(. as $a | select(($ex | contains([$a.name])) | not))' -i platform-apps/target-chart/values-$( echo ${KUBRIX_TARGET_TYPE} | awk '{print tolower($0)}' ).yaml
   fi
 
 }
