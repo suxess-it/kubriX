@@ -20,17 +20,15 @@ for env in pr target; do
       -not -name "values-ha-enabled.yaml" \
       -not -name "values-size-*" \
       -not -name "values-security-strict.yaml" \
+      -not -name "values-customer.yaml" \
       ); do
       valuefile=$( basename ${value} )
       mkdir -p ../../../out/${env}/${chart}/${valuefile}
       # use 'values-kubrix-base.yaml' as a default values file
-      if [ -f ${chart}/values-kubrix-default.yaml ] ; then
-        echo "run command: 'helm template  --include-crds ${chart} -f ${chart}/values-kubrix-default.yaml -f ${value} --output-dir ../../../out/${env}/${chart}/${valuefile}'"
-        helm template  --include-crds ${chart} -f ${chart}/values-kubrix-default.yaml -f ${value} --output-dir ../../../out/${env}/${chart}/${valuefile}
-      else
-        echo "run command: 'helm template  --include-crds ${chart} -f ${value} --output-dir ../../../out/${env}/${chart}/${valuefile}'"
-        helm template  --include-crds ${chart} -f ${value} --output-dir ../../../out/${env}/${chart}/${valuefile}
-      fi
+      valuesFiles=( -a space )
+      [[ -f ${chart}/values-kubrix-default.yaml ]] && valuesFiles+=( "-f ${chart}/values-kubrix-default.yaml" )
+      echo "run command: 'helm template  --include-crds ${chart} "${valuesFiles[@]}" -f ${value} --output-dir ../../../out/${env}/${chart}/${valuefile}'"
+      helm template  --include-crds ${chart} "${valuesFiles[@]}" -f ${value} --output-dir ../../../out/${env}/${chart}/${valuefile}
     done
     # get default values of subcharts
     # to compare between different subchart versions we need to write to values files without version names
