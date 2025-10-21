@@ -19,7 +19,7 @@ for env in pr target; do
       -not -name "values-provider-*" \
       -not -name "values-ha-enabled.yaml" \
       -not -name "values-size-*" \
-      -not -name "values-security-strict.yaml"
+      -not -name "values-security-strict.yaml" \
       ); do
       valuefile=$( basename ${value} )
       mkdir -p ../../../out/${env}/${chart}/${valuefile}
