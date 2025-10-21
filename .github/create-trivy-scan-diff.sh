@@ -62,6 +62,7 @@ for chart in ${changed_images_charts} ; do
   mkdir -p out/target/scans/${chart}
   for env in pr target; do
     for image in $(cat out/${env}/${chart}-images.txt) ; do
+      echo "scanning image '${image}' for chart '${chart}'"
       output_file=$( echo -n "${chart}_$( echo ${image} | awk -F/ '{print $NF}' )" )
       ./trivy image --scanners vuln -f template --template "@pr/.github/trivy-scan-markdown.tpl" -o out/${env}/scans/${chart}/${output_file}.md ${image}
       # append file to a scan output per chart to better compare them 
