@@ -15,7 +15,6 @@ for env in pr target; do
     # do not render charts with "values-kubrix-default.yaml" because then some values will be missing, resulting in nil pointer exception
     for value in $( find ${chart} -type f -name "values-*.yaml" \
       -not -name "values-kubrix-default.yaml" \
-      # -not -name "values-cluster-*" \
       -not -name "values-provider-*" \
       -not -name "values-ha-enabled.yaml" \
       -not -name "values-size-*" \
