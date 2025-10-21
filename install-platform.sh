@@ -62,6 +62,7 @@ check_prereqs() {
   check_variable KUBRIX_GENERATE_SECRETS "true" "true"
   check_variable KUBRIX_GIT_USER_NAME "true" "dummy"
   check_variable KUBRIX_CLUSTER_VALUESFILE "true" "cluster"
+  check_variable KUBRIX_METALLB_IP "true" ""
 
   # if bootstrapping from kubriX upstream to empty customer repo is set to true
   check_variable KUBRIX_BOOTSTRAP "true" "false"
@@ -137,7 +138,7 @@ gitRepo: ${KUBRIX_REPO}
 gitRepoOrg: ${KUBRIX_REPO_ORG}
 gitRepoName: ${KUBRIX_REPO_NAME}
 gitUser: ${KUBRIX_GIT_USER_NAME}
-$( [[ -n "${KUBRIX_CUSTOM_PEAK_LBIP}" ]] && echo "custom_peak_lbip: ${KUBRIX_CUSTOM_PEAK_LBIP}" )
+metalLbIp: ${KUBRIX_METALLB_IP}
 EOF
 
   echo "the current customer-config is like this:"

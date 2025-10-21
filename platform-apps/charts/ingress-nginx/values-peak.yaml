@@ -1,16 +1,5 @@
 ingress-nginx:
   controller:
-    watchIngressWithoutClass: true
-    terminationGracePeriodSeconds: 0
-    hostNetwork: false
-    hostPort:
-      enabled: false
     service:
-      enabled: true
-      type: LoadBalancer
-      externalTrafficPolicy: Local
       annotations:
         metallb.universe.tf/address-pool: default-pool
-    publishService:
-      enabled: true
-    extraArgs: {}

@@ -1,4 +1,3 @@
-{{- $lbip := index .kubriX "custom_peak_lbip" -}}
-{{- if $lbip }}
-IPAddress: {{ $lbip }}-{{ $lbip }}
+{{- if .kubriX.metalLbIp }}
+IPAddress: {{ .kubriX.metalLbIp }}-{{ .kubriX.metalLbIp }}
 {{- end }}
