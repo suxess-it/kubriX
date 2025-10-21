@@ -61,7 +61,6 @@ check_prereqs() {
   check_variable KUBRIX_INSTALLER "true" "false"
   check_variable KUBRIX_GENERATE_SECRETS "true" "true"
   check_variable KUBRIX_GIT_USER_NAME "true" "dummy"
-  check_variable KUBRIX_CLUSTER_VALUESFILE "true" "cluster"
   check_variable KUBRIX_METALLB_IP "true" " "
 
   # if bootstrapping from kubriX upstream to empty customer repo is set to true
@@ -131,7 +130,6 @@ bootstrap_template_downstream_repo() {
 # write new customer values in customer config (without indentation because of heredoc)
 cat << EOF > bootstrap/customer-config.yaml
 clusterType: $( printf '%s' "${KUBRIX_CLUSTER_TYPE}" | awk '{print tolower($0)}' )
-valuesFile: ${KUBRIX_CLUSTER_VALUESFILE}
 dnsProvider: ${KUBRIX_DNS_PROVIDER}
 domain: ${KUBRIX_DOMAIN}
 gitRepo: ${KUBRIX_REPO}
