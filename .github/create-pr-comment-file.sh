@@ -17,7 +17,7 @@ for env in pr target; do
     #   we will use also this set for rendering the chart. In the future this might change, to also test the other aspect specific values.
     valuesFiles=( )
     [[ -f ${chart}/values-kubrix-default.yaml ]] && valuesFiles+=( "-f ${chart}/values-kubrix-default.yaml" )
-    [[ -f ${chart}/values-kubrix-default.yaml ]] && valuesFiles+=( "-f ${chart}/values-cluster-kind.yaml" )
+    [[ -f ${chart}/values-cluster-kind.yaml ]] && valuesFiles+=( "-f ${chart}/values-cluster-kind.yaml" )
     mkdir -p ../../../out/${env}/${chart}/
     echo "run command: 'helm template  --include-crds ${chart} "${valuesFiles[@]}" --output-dir ../../../out/${env}/${chart}/'"
     helm template  --include-crds ${chart} ${valuesFiles[@]} --output-dir ../../../out/${env}/${chart}/
