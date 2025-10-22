@@ -18,6 +18,8 @@ for env in pr target; do
     valuesFiles=( )
     [[ -f ${chart}/values-kubrix-default.yaml ]] && valuesFiles+=( "-f ${chart}/values-kubrix-default.yaml" )
     [[ -f ${chart}/values-cluster-kind.yaml ]] && valuesFiles+=( "-f ${chart}/values-cluster-kind.yaml" )
+    # this is just for the target where the 'kind' values have their old name. this gets fixed after this commit is in main branch
+    [[ -f ${chart}/values-kind.yaml ]] && valuesFiles+=( "-f ${chart}/values-kind.yaml" )
     mkdir -p ../../../out/${env}/${chart}/
     echo "run command: 'helm template  --include-crds ${chart} "${valuesFiles[@]}" --output-dir ../../../out/${env}/${chart}/'"
     helm template  --include-crds ${chart} ${valuesFiles[@]} --output-dir ../../../out/${env}/${chart}/
