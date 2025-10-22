@@ -32,20 +32,15 @@ for env in pr target; do
   for chart in ${changed_charts}; do
     echo "get images for chart: ${chart}"
     helm dependency update ${chart}
-    # do not render charts with "values-kubrix-default.yaml" because then some values will be missing, resulting in nil pointer exception
-    for value in $( find ${chart} -type f -name "values-*.yaml" \
-      -not -name "values-kubrix-default.yaml" \
-      -not -name "values-provider-*" \
-      -not -name "values-ha-enabled.yaml" \
-      -not -name "values-size-*" \
-      -not -name "values-security-strict.yaml" \
-      -not -name "values-customer.yaml" \
-      ); do
-      # use 'values-kubrix-base.yaml' as a default values file
-      valuesFiles=( )
-      [[ -f ${chart}/values-kubrix-default.yaml ]] && valuesFiles+=( "-f ${chart}/values-kubrix-default.yaml" )
-      helm images get ${chart} ${valuesFiles[@]} -f ${value} --log-level error --kind "Deployment,StatefulSet,DaemonSet,CronJob,Job,ReplicaSet,Pod,Alertmanager,Prometheus,ThanosRuler,Grafana,Thanos,Receiver"
-    done | sort -u > ../../../out/${env}/${chart}-images.txt
+    # with different aspect specific values we need to render the charts with a specific set of values files, not with every file by itself.
+    #   since we already install the charts in the kind github actions with the values "values-kubrix-default.yaml, values-cluster-kind.yaml"
+    #   we will use also this set for rendering the chart. In the future this might change, to also test the other aspect specific values.
+    valuesFiles=( )
+    [[ -f ${chart}/values-kubrix-default.yaml ]] && valuesFiles+=( "-f ${chart}/values-kubrix-default.yaml" )
+    [[ -f ${chart}/values-cluster-kind.yaml ]] && valuesFiles+=( "-f ${chart}/values-cluster-kind.yaml" )
+    # this is just for the target where the 'kind' values have their old name. this gets fixed after this commit is in main branch
+    [[ -f ${chart}/values-kind.yaml ]] && valuesFiles+=( "-f ${chart}/values-kind.yaml" )
+    helm images get ${chart} ${valuesFiles[@]} --log-level error --kind "Deployment,StatefulSet,DaemonSet,CronJob,Job,ReplicaSet,Pod,Alertmanager,Prometheus,ThanosRuler,Grafana,Thanos,Receiver" | sort -u > ../../../out/${env}/${chart}-images.txt
   done
   cd -
 done
