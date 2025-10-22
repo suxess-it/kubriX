@@ -21,6 +21,7 @@ Dies hat folgende Vorteile:
   Damit ist es auch möglich Werte von kubriX zu überschreiben, wenn diese beim Kunden so nicht sinnvoll sind.
 - modulare aspektorientierte Valuesfiles ermöglichen auch Konfigurationen auszuliefern, die nur in bestimmten Umgebungen (Cluster-Typen, Cloud-Providern) sinn machen
 - Mehrfachkonfigurationen werden vermieden, weil Konfigurationen nicht aus unterschiedlichen Valuesfiles zusammenkopiert werden müssen, sondern von den jeweiligen Valuesfiles herangezogen werden (DRY-Prinzip)
+- alternativ könnte ein einziges Valuesfile als Template definiert werden, das wird aber erfahrungsgemäß sehr komplex, nicht mehr Wartbar, und kann aufgrund seiner dynamischen Elemente nicht mehr mit statischen Codeanalyse-Tools wie `helm lint` geprüft werden
 
 ## Herausforderungen
 
