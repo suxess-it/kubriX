@@ -70,6 +70,8 @@ check_prereqs() {
   if [ "${KUBRIX_BOOTSTRAP}" = "true" ] ; then
     check_variable KUBRIX_UPSTREAM_REPO "true" "https://github.com/suxess-it/kubriX"
     check_variable KUBRIX_UPSTREAM_BRANCH "true" "main"
+    check_variable KUBRIX_UPSTREAM_REPO_PASSWORD "false" " "
+    
     check_variable KUBRIX_DOMAIN "true" "demo-$(printf '%s' "${KUBRIX_REPO}" | sha256_portable | head -c 10).kubrix.cloud"
     check_variable KUBRIX_DNS_PROVIDER "true" "ionos"
     check_tool gomplate "gomplate -v"
