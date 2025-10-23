@@ -70,8 +70,8 @@ check_prereqs() {
   if [ "${KUBRIX_BOOTSTRAP}" = "true" ] ; then
     check_variable KUBRIX_UPSTREAM_REPO "true" "https://github.com/suxess-it/kubriX"
     check_variable KUBRIX_UPSTREAM_BRANCH "true" "main"
+    check_variable KUBRIX_UPSTREAM_REPO_USERNAME "true" "dummy"
     check_variable KUBRIX_UPSTREAM_REPO_PASSWORD "false" " "
-    
     check_variable KUBRIX_DOMAIN "true" "demo-$(printf '%s' "${KUBRIX_REPO}" | sha256_portable | head -c 10).kubrix.cloud"
     check_variable KUBRIX_DNS_PROVIDER "true" "ionos"
     check_tool gomplate "gomplate -v"
@@ -106,12 +106,20 @@ bootstrap_clone_from_upstream() {
   printf 'bootstrap from upstream repo %s to downstream repo %s' "${KUBRIX_UPSTREAM_REPO}" "${KUBRIX_REPO}\n"
   printf 'checkout kubriX upstream to %s ...\n' "$(pwd)"
 
-  git clone "${KUBRIX_UPSTREAM_REPO}" .
+  if [ "${KUBRIX_UPSTREAM_REPO_PASSWOR}" != " " ]; then
+    # get protocol and url of the kubrix repo for bootstrap templating and repo cloning
+    KUBRIX_UPSTREAM_REPO_PROTO=$(echo ${KUBRIX_UPSTREAM_REPO} | grep :// | sed "s,^\(.*://\).*,\1,")
+    # remove the protocol from url
+    KUBRIX_UPSTREAM_REPO_URL=$(echo ${KUBRIX_UPSTREAM_REPO} | sed "s,^${KUBRIX_REPO_PROTO},,")
+    git clone ${KUBRIX_UPSTREAM_REPO_PROTO}${KUBRIX_UPSTREAM_REPO_USERNAME}:${KUBRIX_UPSTREAM_REPO_PASSWORD}@${KUBRIX_UPSTREAM_REPO_URL} .
+  else
+    git clone ${KUBRIX_UPSTREAM_REPO} .
+  fi
+  
   git checkout "${KUBRIX_UPSTREAM_BRANCH}"
 
-  git config user.name "github-actions[kubrix-bot]"
-  git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-
+  git config user.name "kubrix-installer[kubrix-bot]"
+  git config user.email "kubrix-installer[kubrix-bot]@users.noreply.github.com"
 }
 
 bootstrap_template_downstream_repo() {
