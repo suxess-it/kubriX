@@ -106,7 +106,7 @@ bootstrap_clone_from_upstream() {
   printf 'bootstrap from upstream repo %s to downstream repo %s' "${KUBRIX_UPSTREAM_REPO}" "${KUBRIX_REPO}\n"
   printf 'checkout kubriX upstream to %s ...\n' "$(pwd)"
 
-  if [ "${KUBRIX_UPSTREAM_REPO_PASSWOR}" != " " ]; then
+  if [ "${KUBRIX_UPSTREAM_REPO_PASSWORD}" != " " ]; then
     # get protocol and url of the kubrix repo for bootstrap templating and repo cloning
     KUBRIX_UPSTREAM_REPO_PROTO=$(echo ${KUBRIX_UPSTREAM_REPO} | grep :// | sed "s,^\(.*://\).*,\1,")
     # remove the protocol from url
