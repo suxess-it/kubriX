@@ -3,7 +3,7 @@ default:
   - values-kubrix-default.yaml
   - values-cluster-{{ .kubriX.clusterType }}.yaml
   - values-provider-{{ .kubriX.cloudProvider }}.yaml
-  {{ if .kubriX.highAvailability }}
+  {{ if .kubriX.haEnabled }}
   - values-ha-enabled.yaml
   {{ end -}}
   - values-size-{{ .kubriX.tShirtSize }}.yaml
