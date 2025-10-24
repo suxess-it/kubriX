@@ -119,6 +119,13 @@ bootstrap_clone_from_upstream() {
 
   git config user.name "kubrix-installer[kubrix-bot]"
   git config user.email "kubrix-installer[kubrix-bot]@users.noreply.github.com"
+
+  if [ "${KUBRIX_BOOTSTRAP_KEEP_HISTORY}" != "true" ]; then
+    # Create an orphan branch that has NO parents
+    # just for demo purposes to hide commit history, for official customer projects it might be a disadvantage for merging to updates.
+    # need to test that
+    git checkout --orphan publish
+  fi
 }
 
 bootstrap_template_downstream_repo() {
@@ -164,7 +171,12 @@ bootstrap_push_to_downstream() {
   git remote add customer ${KUBRIX_REPO_PROTO}${KUBRIX_REPO_PASSWORD}@${KUBRIX_REPO_URL}
   git add -A
   git commit -a -m "add customer specific modifications during bootstrap"
-  git push --set-upstream customer ${KUBRIX_UPSTREAM_BRANCH}:main
+
+  if [ "${KUBRIX_BOOTSTRAP_KEEP_HISTORY}" != "true" ]; then
+    git push --set-upstream customer publish:main
+  else
+    git push --set-upstream customer ${KUBRIX_UPSTREAM_BRANCH}:main
+  fi
 }
 
 # Current UTC epoch seconds (works on GNU & BSD)
