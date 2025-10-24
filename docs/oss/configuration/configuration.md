@@ -9,7 +9,7 @@ This approach makes it possible to deliver a stable, secure, and well-integrated
 
 ## 📘 Overview
 
-### [Configuration Structure →](./configuration-structure.md)
+### [Configuration Structure →](./helm-values-structure.md)
 Learn how kubriX organizes and prioritizes its configuration files.  
 This document describes:
 - The modular Helm-based values file system  
@@ -21,7 +21,7 @@ This overview is essential for understanding how kubriX assembles a full configu
 
 ---
 
-### [Customizing kubriX for Your Needs →](./customization.md)
+### [Customizing kubriX for Your Needs →](./customizations.md)
 Once you understand the base configuration structure, this guide explains **how to adapt kubriX** to your own use case:
 - Adding or overriding Helm values safely  
 - Managing environment-specific or customer-specific settings  
