@@ -58,10 +58,10 @@ With this step-by-step guide kubriX with its default demo stack gets deployed on
 7. optional: set the kubrix target type which should be used
 
     ```
-    export KUBRIX_TARGET_TYPE="demo-stack"
+    export KUBRIX_TARGET_TYPE="kubrix-oss-stack"
     ```
 
-    if this variable is not set, "demo-stack" is used.
+    if this variable is not set, "kubrix-oss-stack" is used.
 
 8. create a new Kubernetes cluster and be sure that kubectl is connected to it. check with `kubectl cluster-info`
 
