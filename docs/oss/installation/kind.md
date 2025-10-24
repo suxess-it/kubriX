@@ -61,7 +61,7 @@ With this step-by-step guide kubriX with its default stack gets deployed on your
       --from-literal KUBRIX_GIT_USER_NAME=${KUBRIX_GIT_USER_NAME} \
       --from-literal KUBRIX_DOMAIN="127-0-0-1.nip.io" \
       --from-literal KUBRIX_DNS_PROVIDER="none" \
-      --from-literal KUBRIX_TARGET_TYPE="demo-stack" \
+      --from-literal KUBRIX_TARGET_TYPE="kubrix-oss-stack" \
       --from-literal KUBRIX_CLUSTER_TYPE="kind" \
       --from-literal KUBRIX_BOOTSTRAP=true \
       --from-literal KUBRIX_INSTALLER=true
