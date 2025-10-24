@@ -1,10 +1,27 @@
 default:
   valueFiles:
   - values-kubrix-default.yaml
-  - values-provider-metalstack.yaml
-  - values-demo-metalstack.yaml
+  - values-cluster-{{ .kubriX.clusterType }}.yaml
+  - values-provider-peak.yaml
+  {{ if .kubriX.highAvailability }}
+  - values-ha-enabled.yaml
+  {{ end -}}
+  - values-size-{{ .kubriX.tShirtSize }}.yaml
+  {{ if .kubriX.strictSecurity }}
+  - values-security-strict.yaml
+  {{ end -}}
+  - values-customer-generated.yaml
+  - values-customer.yaml
 
 applications:
+  - name: metallb
+    annotations:
+      argocd.argoproj.io/sync-wave: "-12"
+    managedNamespaceMetadata:
+      labels:
+        pod-security.kubernetes.io/enforce: privileged
+        pod-security.kubernetes.io/audit: privileged
+        pod-security.kubernetes.io/warn: privileged
 
   - name: ingress-nginx
     annotations:
@@ -13,10 +30,6 @@ applications:
   - name: cert-manager
     annotations:
       argocd.argoproj.io/sync-wave: "-10"
-
-  - name: external-dns
-    annotations:
-      argocd.argoproj.io/sync-wave: "-9" 
 
   - name: crossplane
     annotations:
@@ -36,6 +49,11 @@ applications:
       argocd.argoproj.io/sync-wave: "-8"
     syncOptions:
       - ServerSideApply=true
+    managedNamespaceMetadata:
+      labels:
+        pod-security.kubernetes.io/enforce: privileged
+        pod-security.kubernetes.io/audit: privileged
+        pod-security.kubernetes.io/warn: privileged
 
   - name: vault
     annotations:
@@ -85,16 +103,22 @@ applications:
       skipCrds: true
     syncOptions:
       - ServerSideApply=true
+    managedNamespaceMetadata:
+      labels:
+        pod-security.kubernetes.io/enforce: privileged
+        pod-security.kubernetes.io/audit: privileged
+        pod-security.kubernetes.io/warn: privileged
 
   - name: kyverno
     syncOptions:
       - ServerSideApply=true
 
-  - name: kubevirt-manager
-
-  - name: kubevirt
-
   - name: velero
+    managedNamespaceMetadata:
+      labels:
+        pod-security.kubernetes.io/enforce: privileged
+        pod-security.kubernetes.io/audit: privileged
+        pod-security.kubernetes.io/warn: privileged
 
   - name: velero-ui
 
@@ -103,6 +127,11 @@ applications:
   - name: backstage
     annotations:
       argocd.argoproj.io/sync-wave: "10"
+    managedNamespaceMetadata:
+      labels:
+        pod-security.kubernetes.io/enforce: privileged
+        pod-security.kubernetes.io/audit: privileged
+        pod-security.kubernetes.io/warn: privileged
 
   - name: team-onboarding
     destinationNamespaceOverwrite: argocd

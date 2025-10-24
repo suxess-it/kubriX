@@ -1,23 +1,36 @@
 default:
   valueFiles:
   - values-kubrix-default.yaml
-  - values-provider-metalstack.yaml
-  - values-demo-metalstack.yaml
+  - values-cluster-{{ .kubriX.clusterType }}.yaml
+  - values-provider-{{ .kubriX.providerType }}.yaml
+  {{ if .kubriX.highAvailability }}
+  - values-ha-enabled.yaml
+  {{ end -}}
+  - values-size-{{ .kubriX.tShirtSize }}.yaml
+  {{ if .kubriX.strictSecurity }}
+  - values-security-strict.yaml
+  {{ end -}}
+  - values-customer-generated.yaml
+  - values-customer.yaml
 
 applications:
 
+  {{ if ne .kubriX.clusterType "kind" -}}
   - name: ingress-nginx
     annotations:
       argocd.argoproj.io/sync-wave: "-11"
+  {{ end -}}
 
   - name: cert-manager
     annotations:
       argocd.argoproj.io/sync-wave: "-10"
 
+  {{ if ne .kubriX.clusterType "kind" -}}
   - name: external-dns
     annotations:
       argocd.argoproj.io/sync-wave: "-9" 
-
+  {{ end -}}
+  
   - name: crossplane
     annotations:
       argocd.argoproj.io/sync-wave: "-9"
@@ -78,6 +91,8 @@ applications:
 
   - name: mimir
 
+  {{ if ne .kubriX.clusterType "kind" -}}
+
   - name: falco
     annotations:
       argocd.argoproj.io/compare-options: ServerSideDiff=true
@@ -90,15 +105,13 @@ applications:
     syncOptions:
       - ServerSideApply=true
 
-  - name: kubevirt-manager
-
-  - name: kubevirt
-
   - name: velero
 
   - name: velero-ui
 
   - name: minio
+
+  {{ end -}}
 
   - name: backstage
     annotations:
