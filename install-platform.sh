@@ -67,6 +67,7 @@ check_prereqs() {
   check_variable KUBRIX_BOOTSTRAP "true" "false"
 
   if [ "${KUBRIX_BOOTSTRAP}" = "true" ] ; then
+    check_variable KUBRIX_BOOTSTRAP_KEEP_HISTORY "true" "false"
     check_variable KUBRIX_UPSTREAM_REPO "true" "https://github.com/suxess-it/kubriX"
     check_variable KUBRIX_UPSTREAM_BRANCH "true" "main"
     check_variable KUBRIX_UPSTREAM_REPO_USERNAME "true" "dummy"
