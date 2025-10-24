@@ -1,71 +1,74 @@
-# Konfigurationsstruktur von kubriX
+# Configuration Structure of kubriX
 
-## Herausforderungen einer modularen, vorkonfigurierten aber flexiblen IDP Distribution
+## Challenges of a Modular, Preconfigured yet Flexible IDP Distribution
 
-kubriX soll nicht nur ein Set an ausgewählten CNCF Projekten sein,
-sondern bereits vorkonfiguriert eine sowohl schlüsselfertige als auch modular anpassbare Internal-Developer-Platform sein.
+kubriX is intended to be more than just a collection of selected CNCF projects —
+it aims to be a preconfigured Internal Developer Platform (IDP) that is both turnkey and modularly adaptable.
 
-Unsere Bausteine (Bricks) werden als Helm-Charts im `platform-apps/charts` Verzeichnis ausgeliefert,
-und stellen die Basis der kubriX Ditribution dar.
+Our building blocks (“Bricks”) are delivered as Helm charts in the `platform-apps/charts` directory,
+forming the foundation of the kubriX distribution.
 
-Um die aus unserer Sicht beste, stabilste und sichere Konfiguration, die auch gut mit den den anderen Bausteinen integriert ist,
-auszuliefern, benötigt man ein Konzept um einerseits Konfigurationen auszuliefern, die aber auch vom Kunden angepasst und individuell eingesetzt werden können.
+To deliver what we believe to be the most stable, secure, and well-integrated configuration,
+we need a concept that allows us to ship opinionated defaults while still enabling customers to adjust and extend the configuration as needed.
 
-## Vorteile unserer Konfigurationsstruktur
+## Advantages of Our Configuration Structure
 
-Um dieses Ziel zu erreichen, verfolgen wir den Ansatz von modularen Helm Valuesfiles, die sich um spezifische Aspekte kümmern.
-Dies hat folgende Vorteile:
+To achieve this, we follow an approach based on **modular Helm values files** that each handle specific configuration aspects.
 
-- kubriX kann Features, die auch bestimmte Helm Values benötigen, automatisiert ausliefern, und muss nicht manuell beim Kunden auf Basis von Dokumentationen in den kundenspezifischen Values integriert werden
-- Kunden können ihre kundenspezifischen Values über eigene Valuesfiles erweitern, und es ist sofort sichtbar was vom Produkt, und was vom Kunden kommt.
-  Damit ist es auch möglich Werte von kubriX zu überschreiben, wenn diese beim Kunden so nicht sinnvoll sind.
-- modulare aspektorientierte Valuesfiles ermöglichen auch Konfigurationen auszuliefern, die nur in bestimmten Umgebungen (Cluster-Typen, Cloud-Providern) sinn machen
-- Mehrfachkonfigurationen werden vermieden, weil Konfigurationen nicht aus unterschiedlichen Valuesfiles zusammenkopiert werden müssen, sondern von den jeweiligen Valuesfiles herangezogen werden (DRY-Prinzip)
-- alternativ könnte ein einziges Valuesfile als Template definiert werden, das wird aber erfahrungsgemäß sehr komplex, nicht mehr Wartbar, und kann aufgrund seiner dynamischen Elemente nicht mehr mit statischen Codeanalyse-Tools wie `helm lint` geprüft werden
+This provides several advantages:
 
-## Herausforderungen
+- kubriX can automatically deliver features that require specific Helm values — no need for customers to manually integrate settings based on documentation.
+- Customers can extend or override kubriX defaults through their own values files. This makes it immediately clear what comes from the product and what is customer-specific.
+  Customers can also override kubriX defaults if they don’t fit their environment.
+- Modular, aspect-oriented values files make it possible to deliver configurations that only apply in certain environments (e.g. specific cluster types or cloud providers).
+- Duplicate configurations are avoided, since values are not copied between files but inherited where relevant (following the **DRY principle**).
+- Alternatively, a single template-based values file could be used, but such files tend to become overly complex, unmaintainable, and incompatible with static analysis tools like `helm lint` due to their dynamic elements.
 
-Es gibt aber auch Herausforderungen, wenn man Helm Values auf mehrere Valuesfiles verteilt:
+## Challenges
 
-- Überblick bewahren, welche Values durch welche Valuesfiles ziehen und wie schlussendlich das gerenderte Ergebnis aussieht
-- Listen (Arrays) können nicht partiell überschrieben werden, sondern müssen immer komplett kopiert werden, wenn sich darin auch nur Teile ändern
+Distributing Helm values across multiple files also brings certain challenges:
 
-Um diese Herausforderungen zu meistern:
+- Maintaining an overview of which values come from which files, and understanding the final rendered result
+- Lists (arrays) cannot be partially overridden — they must be fully redefined even if only one element changes
 
-- entsprechende Tools, die das Ergebnis aller Values anzeigt (computed values) und ihre Konfigurationsherkunft
-- gerenderte Charts in CI-Pipeline als PR-Kommentar
-- wo man selbst entscheiden kann: Maps statt Listen bevorzugen, damit nicht ganze Listen kopiert werden müssen
+To address these challenges, we employ:
 
-## Arten und Reihenfolgen der Valuesfiles
+- Tools that display the resulting computed values along with their configuration origins
+- Rendered charts posted as PR comments in CI pipelines
+- A design preference for **maps over lists** where possible, to avoid full-list overrides
 
-Die folgende Tabelle listet die Valuesfiles nach ihrer Priorität auf (d.h. spätere Valuesfiles können vorherige überschreiben).
-Alle diese Values-Files sind optional, d.h. im einfachsten Fall besteht ein Helm-Chart nur aus einem leeren values.yaml.
-Damit ziehen die Default-Werte aller abhängigen Sub-Charts.
+## Types and Order of Values Files
 
-| Zweck | Filepattern | Beispiele für Filenamen | Installationsvariable
+The following table lists the values files in order of priority (later files override earlier ones).
+All of these files are optional — in the simplest case, a Helm chart may consist only of an empty `values.yaml`,
+thus relying entirely on the default values of its dependent sub-charts.
+
+| Purpose | File Pattern | Example Filenames | Bootstrap-Installation Variable
 |---|---|---|---|
-| Sinnvolle Defaults | values-kubrix-default.yaml | - | - |
-| Clustertyp spezifische Werte | values-cluster-${clusterType}.yaml | values-cluster-kind.yaml, values-cluster-okd.yaml, values-cluster-gardener.yaml  | KUBRIX_CLUSTER_TYPE |
-| Cloud-Provider spezifische Werte | values-provider-${cloudProvider}.yaml | values-provider-metalstack.yaml, values-provider-aks.yaml, values-provider-eks.yaml | KUBRIX_CLOUD_PROVIDER |
-| HA-spezifische Konfiguration | values-ha-enabled.yaml | - | KUBRIX_HA_ENABLED |
+| sane defaults | values-kubrix-default.yaml | - | - |
+| Cluster type-specific values | values-cluster-${clusterType}.yaml | values-cluster-kind.yaml, values-cluster-okd.yaml, values-cluster-gardener.yaml  | KUBRIX_CLUSTER_TYPE |
+| Cloud provider-specific values | values-provider-${cloudProvider}.yaml | values-provider-metalstack.yaml, values-provider-aks.yaml, values-provider-eks.yaml | KUBRIX_CLOUD_PROVIDER |
+| High-availability (HA) configuration | values-ha-enabled.yaml | - | KUBRIX_HA_ENABLED |
 | Sizing | values-size-${tShirtSize}.yaml | values-size-small.yaml, values-size-small.yaml, values-size-small.yaml | KUBRIX_TSHIRT_SIZE |
-| Höhere Sicherheit als Default | values-security-strict.yaml | - |KUBRIX_SECURITY_STRICT |
-| kundenspezifische Konfiguration, während Bootstrap generiert (sollte vom Kunden nicht verändert werden) | values-customer-generated.yaml | - | KUBRIX_REPO, KUBRIX_DOMAIN, KUBRIX_DNS_PROVIDER, KUBRIX_GIT_USER_NAME, KUBRIX_CUSTOM_VALUES
-| kundenspezifische Konfiguration, die manuell vom Kunden gepflegt wird | values-customer.yaml | - | -
+| Stricter security settings than default | values-security-strict.yaml | - |KUBRIX_SECURITY_STRICT |
+| Customer-specific configuration generated during bootstrap (should not be manually modified) | values-customer-generated.yaml | - | KUBRIX_REPO, KUBRIX_DOMAIN, KUBRIX_DNS_PROVIDER, KUBRIX_GIT_USER_NAME, KUBRIX_CUSTOM_VALUES
+| Customer-specific configuration maintained manually | values-customer.yaml | - | -
 
-> 💡 **Info:** Falls erforderlich, könnten bestimmte Aspekte auch in einem Valuesfile kombiniert sein, z.B. "XL-Sizing für hochverfügbare Topologie",
-falls die HA-Topologie andere Komponenten benötigt, wo sich auch die Sizing-Konfiguration ändert.
+> 💡 **Info:** In some cases, certain aspects may be combined in one values file,
+e.g. “XL sizing for a high-availability topology,” if the HA topology requires additional components and sizing adjustments.
 
-# Definition des Gesamt-Stacks
+# Defining the Overall Stack
 
-Um zu definieren welcher Gesamt-Stack mit welchen Values installiert werden soll, wird ein sogenannter "Target-Type" definiert (entspricht einem Kubrix-Stack).
-Er wird im `platform-apps/target-chart` im Valuesfile `values-${targetType}.yaml` definiert.
+To define which overall stack is installed with which values, a **“target type”** (equivalent to a kubriX stack) is defined.
+This is specified in the `platform-apps/target-chart` directory in the file `values-${targetType}.yaml`.
 
-Dieser Target-Type kann sehr generisch und variable sein (für mehrere Anwendungsfälle aber möglicherweise komplexer), oder sehr konkret auf einen spezifischen Anwendungsfall (nur für einen konkreten Anwendungsfall, aber dafür leicht zu lesen). Über die Installationsvariable KUBRIX_TARGET_TYPE wird bestimmt, welcher Stack installiert werden soll.
+A target type can be either generic and flexible (serving multiple use cases, but potentially more complex),
+or very specific (tailored to one use case, but simpler to read).
+The installation variable `KUBRIX_TARGET_TYPE` determines which stack will be installed.
 
-Welche oben genannten Valuesfiles der Helm-Charts in diesem Stack herangezogen werden, wird im `.default.valuesFiles` bestimmt. 
+Which of the above values files are included for each Helm chart in the stack is defined in `.default.valuesFiles`. 
 
-Sollen alle oben genannten Valuesfiles je nach Installationsvariablen herangezogen werden, muss `.default.valuesFiles` wiefolgt definiert sein:
+To include all possible values files depending on installation variables, `.default.valuesFiles` should be defined as follows:
 
 ```
 default:
@@ -84,17 +87,19 @@ default:
   - values-customer.yaml
 ```
 
-Weiters kann im `.applications` Attribut ein Chart je nach Installationsvariable ein- oder ausgenommen werden. Beispiel:
+Additionally, the `.applications` attribute can be used to include or exclude charts depending on installation variables.
 
+
+Example:
 ```
-  # installiere ingress-nginx nicht wenn der Clustertyp `kind` ist.
+  # Do not install ingress-nginx if the cluster type is `kind`.
   {{ if ne .kubriX.clusterType "kind" -}}
   - name: ingress-nginx
     annotations:
       argocd.argoproj.io/sync-wave: "-11"
   {{ end -}}
 
-  # installiere aks-data-collector nur wenn der Cloudprovider `aks` ist.
+  # Install aks-data-collector only if the cloud provider is `aks`.
   {{ if eq .kubriX.cloudProvider "aks" -}}
   - name: aks-data-collector
     annotations:
@@ -102,10 +107,11 @@ Weiters kann im `.applications` Attribut ein Chart je nach Installationsvariable
   {{ end -}}
 ```
 
-Zusätzlich kann mit der Installationsvariable `KUBRIX_APP_EXCLUDE` eine gewisse Applikation aus der `.applications` Liste entfernt werden.
-Damit spart man sich die komplexeren `If` Abfragen.
+Furthermore, the installation variable `KUBRIX_APP_EXCLUDE` can be used to remove a specific application
+from the `.applications` list, avoiding more complex `if`conditions.
 
-> 💡 **Info:** die Variablen in den Valuesfiles können nur während dem Bootstrap-Prozess gerendert werden, d.h. wenn die Installationsvariable `KUBRIX_BOOTSTRAP` auf `true` gesetzt ist.
+> 💡 **Info:** Variables inside values files are rendered only during the bootstrap process —
+that is, when the installation variable `KUBRIX_BOOTSTRAP` is set to `true`.
 
 
 
