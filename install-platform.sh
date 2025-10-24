@@ -55,7 +55,7 @@ check_prereqs() {
   check_variable KUBRIX_REPO_USERNAME "true" "dummy"
   check_variable KUBRIX_REPO_PASSWORD "false"
   check_variable KUBRIX_BACKSTAGE_GITHUB_TOKEN "false" "${KUBRIX_REPO_PASSWORD}"
-  check_variable KUBRIX_TARGET_TYPE "true" "DEMO-STACK"
+  check_variable KUBRIX_TARGET_TYPE "true" "demo-stack"
   check_variable KUBRIX_CLUSTER_TYPE "true" "k8s"
   check_variable KUBRIX_BOOTSTRAP_MAX_WAIT_TIME "true" "2400"
   check_variable KUBRIX_INSTALLER "true" "false"
