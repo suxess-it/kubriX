@@ -89,7 +89,7 @@ check_prereqs() {
   check_tool curl "curl -V | head -1"
   check_tool k8sgpt "k8sgpt version"
   
-  if [[ "${KUBRIX_TARGET_TYPE}" =~ ^KIND.* || "${KUBRIX_CLUSTER_TYPE}" == "KIND" ]] ; then
+  if [[ "${KUBRIX_CLUSTER_TYPE}" == "kind" ]] ; then
     check_tool mkcert "mkcert --version"
   fi
 
