@@ -110,10 +110,10 @@ jobs:
       fail-fast: false
       matrix:
         target-type:
-          - KIND-DELIVERY
-          - KIND-OBSERVABILITY
-          - KIND-SECURITY
-          - KIND-PORTAL
+          - kind-delivery
+          - kind-observability
+          - kind-security
+          - kind-portal
 
     steps:
       - name: Checkout
@@ -142,7 +142,7 @@ jobs:
       - name: install kubriX stack
         env:
           KUBRIX_TARGET_TYPE: ${{ matrix.target-type }}
-          KUBRIX_CLUSTER_TYPE: "KIND"
+          KUBRIX_CLUSTER_TYPE: "kind"
           KUBRIX_BACKSTAGE_GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           KUBRIX_REPO_PASSWORD: ${{ secrets.GITHUB_TOKEN }}
           KUBRIX_REPO_USERNAME: "dummy"

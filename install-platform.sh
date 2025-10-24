@@ -55,7 +55,7 @@ check_prereqs() {
   check_variable KUBRIX_REPO_USERNAME "true" "dummy"
   check_variable KUBRIX_REPO_PASSWORD "false"
   check_variable KUBRIX_BACKSTAGE_GITHUB_TOKEN "false" "${KUBRIX_REPO_PASSWORD}"
-  check_variable KUBRIX_TARGET_TYPE "true" "DEMO-STACK"
+  check_variable KUBRIX_TARGET_TYPE "true" "demo-stack"
   check_variable KUBRIX_CLUSTER_TYPE "true" "k8s"
   check_variable KUBRIX_BOOTSTRAP_MAX_WAIT_TIME "true" "2400"
   check_variable KUBRIX_INSTALLER "true" "false"
@@ -67,12 +67,17 @@ check_prereqs() {
   check_variable KUBRIX_BOOTSTRAP "true" "false"
 
   if [ "${KUBRIX_BOOTSTRAP}" = "true" ] ; then
+    check_variable KUBRIX_BOOTSTRAP_KEEP_HISTORY "true" "false"
     check_variable KUBRIX_UPSTREAM_REPO "true" "https://github.com/suxess-it/kubriX"
     check_variable KUBRIX_UPSTREAM_BRANCH "true" "main"
     check_variable KUBRIX_UPSTREAM_REPO_USERNAME "true" "dummy"
     check_variable KUBRIX_UPSTREAM_REPO_PASSWORD "false" " "
     check_variable KUBRIX_DOMAIN "true" "demo-$(printf '%s' "${KUBRIX_REPO}" | sha256_portable | head -c 10).kubrix.cloud"
     check_variable KUBRIX_DNS_PROVIDER "true" "ionos"
+    check_variable KUBRIX_CLOUD_PROVIDER "true" "on-prem"
+    check_variable KUBRIX_TSHIRT_SIZE "true" "small"
+    check_variable KUBRIX_SECURITY_STRICT "true" "false"
+    check_variable KUBRIX_HA_ENABLED "true" "false"
     check_tool gomplate "gomplate -v"
   fi
 
@@ -84,7 +89,7 @@ check_prereqs() {
   check_tool curl "curl -V | head -1"
   check_tool k8sgpt "k8sgpt version"
   
-  if [[ "${KUBRIX_TARGET_TYPE}" =~ ^KIND.* || "${KUBRIX_CLUSTER_TYPE}" == "KIND" ]] ; then
+  if [[ "${KUBRIX_CLUSTER_TYPE}" == "kind" ]] ; then
     check_tool mkcert "mkcert --version"
   fi
 
@@ -119,6 +124,13 @@ bootstrap_clone_from_upstream() {
 
   git config user.name "kubrix-installer[kubrix-bot]"
   git config user.email "kubrix-installer[kubrix-bot]@users.noreply.github.com"
+
+  if [ "${KUBRIX_BOOTSTRAP_KEEP_HISTORY}" != "true" ]; then
+    # Create an orphan branch that has NO parents
+    # just for demo purposes to hide commit history, for official customer projects it might be a disadvantage for merging to updates.
+    # need to test that
+    git checkout --orphan publish
+  fi
 }
 
 bootstrap_template_downstream_repo() {
@@ -131,8 +143,12 @@ bootstrap_template_downstream_repo() {
 
 # write new customer values in customer config (without indentation because of heredoc)
 cat << EOF > bootstrap/customer-config.yaml
-clusterType: $( printf '%s' "${KUBRIX_CLUSTER_TYPE}" | awk '{print tolower($0)}' )
+clusterType: ${KUBRIX_CLUSTER_TYPE}
+cloudProvider: ${KUBRIX_CLOUD_PROVIDER}
 dnsProvider: ${KUBRIX_DNS_PROVIDER}
+tShirtSize: ${KUBRIX_TSHIRT_SIZE}
+securityStrict: ${KUBRIX_SECURITY_STRICT}
+haEnabled: ${KUBRIX_HA_ENABLED}
 domain: ${KUBRIX_DOMAIN}
 gitRepo: ${KUBRIX_REPO}
 gitRepoOrg: ${KUBRIX_REPO_ORG}
@@ -153,8 +169,8 @@ EOF
 
   # exclude apps from KUBRIX_APP_EXCLUDE
   if [[ -n "${KUBRIX_APP_EXCLUDE:-}" ]]; then
-    echo "exclude apps $KUBRIX_APP_EXCLUDE from platform-apps/target-chart/values-$( echo ${KUBRIX_TARGET_TYPE} | awk '{print tolower($0)}' ).yaml"
-    yq e '((env(KUBRIX_APP_EXCLUDE) // "") | split(" ") | map(select(length>0))) as $ex | .applications |= map(. as $a | select(($ex | contains([$a.name])) | not))' -i platform-apps/target-chart/values-$( echo ${KUBRIX_TARGET_TYPE} | awk '{print tolower($0)}' ).yaml
+    echo "exclude apps $KUBRIX_APP_EXCLUDE from platform-apps/target-chart/values-${KUBRIX_TARGET_TYPE}.yaml"
+    yq e '((env(KUBRIX_APP_EXCLUDE) // "") | split(" ") | map(select(length>0))) as $ex | .applications |= map(. as $a | select(($ex | contains([$a.name])) | not))' -i platform-apps/target-chart/values-${KUBRIX_TARGET_TYPE}.yaml
   fi
 
 }
@@ -164,7 +180,12 @@ bootstrap_push_to_downstream() {
   git remote add customer ${KUBRIX_REPO_PROTO}${KUBRIX_REPO_PASSWORD}@${KUBRIX_REPO_URL}
   git add -A
   git commit -a -m "add customer specific modifications during bootstrap"
-  git push --set-upstream customer ${KUBRIX_UPSTREAM_BRANCH}:main
+
+  if [ "${KUBRIX_BOOTSTRAP_KEEP_HISTORY}" != "true" ]; then
+    git push --set-upstream customer publish:main
+  else
+    git push --set-upstream customer ${KUBRIX_UPSTREAM_BRANCH}:main
+  fi
 }
 
 # Current UTC epoch seconds (works on GNU & BSD)
@@ -580,7 +601,7 @@ if [ ${KUBRIX_INSTALLER} = "true" ] ; then
   git checkout "${KUBRIX_REPO_BRANCH}"
 fi
 
-if [[ "${KUBRIX_TARGET_TYPE}" =~ ^KIND.* || "${KUBRIX_CLUSTER_TYPE}" == "KIND" ]] ; then
+if [[ "${KUBRIX_CLUSTER_TYPE}" == "kind" ]] ; then
   
   # resolv domainname to ingress adress to solve localhost result 
   kubectl get configmap coredns -n kube-system -o yaml |  awk '
@@ -679,10 +700,10 @@ KUBRIX_REPO_BRANCH_SED=$( printf '%s' "${KUBRIX_REPO_BRANCH}" | sed -e 's/[\/&]/
 KUBRIX_REPO_SED=$( printf '%s' "${KUBRIX_REPO}" | sed -e 's/[\/&]/\\&/g' );
 
 # bootstrap-app
-cat bootstrap-app-$(echo ${KUBRIX_TARGET_TYPE} | awk '{print tolower($0)}').yaml | sed "s/targetRevision:.*/targetRevision: ${KUBRIX_REPO_BRANCH_SED}/g" | sed "s/repoURL:.*/repoURL: ${KUBRIX_REPO_SED}/g" | kubectl apply -n argocd -f -
+cat bootstrap-app-${KUBRIX_TARGET_TYPE}.yaml | sed "s/targetRevision:.*/targetRevision: ${KUBRIX_REPO_BRANCH_SED}/g" | sed "s/repoURL:.*/repoURL: ${KUBRIX_REPO_SED}/g" | kubectl apply -n argocd -f -
 
 # create app list
-target_chart_value_file="platform-apps/target-chart/values-$(echo ${KUBRIX_TARGET_TYPE} | awk '{print tolower($0)}').yaml"
+target_chart_value_file="platform-apps/target-chart/values-${KUBRIX_TARGET_TYPE}.yaml"
 
 base_apps=$(egrep -Ev "team-onboarding" "${target_chart_value_file}" | awk '/^  - name:/ { printf "%s", "sx-"$3" " }')
 # list apps which need some sort of special treatment in bootstrap
@@ -758,7 +779,7 @@ kubectl delete -f ./.secrets/secrettemp/pushsecrets.yaml
 
 # print the rootCA so users can import it in their browsers
 
-if [[ "${KUBRIX_TARGET_TYPE}" =~ ^KIND.* || "${KUBRIX_CLUSTER_TYPE}" == "KIND" ]] ; then
+if [[ "${KUBRIX_CLUSTER_TYPE}" == "kind" ]] ; then
   echo "Installation finished! On KinD clusters we create self-signed certificates for our platform services. You probably need to import this CA cert in your browser to accept the certificates:"
   kubectl get secret mkcert-ca-key-pair -n cert-manager -o jsonpath="{['data']['tls\.crt']}" | base64 --decode
 fi

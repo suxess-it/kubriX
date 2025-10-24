@@ -3,11 +3,11 @@ default:
   - values-kubrix-default.yaml
   - values-cluster-{{ .kubriX.clusterType }}.yaml
   - values-provider-peak.yaml
-  {{ if .kubriX.highAvailability }}
+  {{ if .kubriX.haEnabled }}
   - values-ha-enabled.yaml
   {{ end -}}
   - values-size-{{ .kubriX.tShirtSize }}.yaml
-  {{ if .kubriX.strictSecurity }}
+  {{ if .kubriX.securityStrict }}
   - values-security-strict.yaml
   {{ end -}}
   - values-customer-generated.yaml

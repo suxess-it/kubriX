@@ -2,12 +2,12 @@ default:
   valueFiles:
   - values-kubrix-default.yaml
   - values-cluster-{{ .kubriX.clusterType }}.yaml
-  - values-provider-{{ .kubriX.providerType }}.yaml
-  {{ if .kubriX.highAvailability }}
+  - values-provider-{{ .kubriX.cloudProvider }}.yaml
+  {{ if .kubriX.haEnabled }}
   - values-ha-enabled.yaml
   {{ end -}}
   - values-size-{{ .kubriX.tShirtSize }}.yaml
-  {{ if .kubriX.strictSecurity }}
+  {{ if .kubriX.securityStrict }}
   - values-security-strict.yaml
   {{ end -}}
   - values-customer-generated.yaml
