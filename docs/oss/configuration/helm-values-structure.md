@@ -45,14 +45,14 @@ thus relying entirely on the default values of its dependent sub-charts.
 
 | Purpose | File Pattern | Example Filenames | Bootstrap-Installation Variable
 |---|---|---|---|
-| sane defaults | values-kubrix-default.yaml | - | - |
-| Cluster type-specific values | values-cluster-${clusterType}.yaml | values-cluster-kind.yaml, values-cluster-okd.yaml, values-cluster-gardener.yaml  | KUBRIX_CLUSTER_TYPE |
-| Cloud provider-specific values | values-provider-${cloudProvider}.yaml | values-provider-metalstack.yaml, values-provider-aks.yaml, values-provider-eks.yaml | KUBRIX_CLOUD_PROVIDER |
-| High-availability (HA) configuration | values-ha-enabled.yaml | - | KUBRIX_HA_ENABLED |
-| Sizing | values-size-${tShirtSize}.yaml | values-size-small.yaml, values-size-small.yaml, values-size-small.yaml | KUBRIX_TSHIRT_SIZE |
-| Stricter security settings than default | values-security-strict.yaml | - |KUBRIX_SECURITY_STRICT |
-| Customer-specific configuration generated during bootstrap (should not be manually modified) | values-customer-generated.yaml | - | KUBRIX_REPO, KUBRIX_DOMAIN, KUBRIX_DNS_PROVIDER, KUBRIX_GIT_USER_NAME, KUBRIX_CUSTOM_VALUES
-| Customer-specific configuration maintained manually | values-customer.yaml | - | -
+| sane defaults | `values-kubrix-default.yaml` | - | - |
+| Cluster type-specific values | `values-cluster-${clusterType}.yaml` | `values-cluster-kind.yaml`, `values-cluster-okd.yaml`, `values-cluster-gardener.yaml`  | KUBRIX_CLUSTER_TYPE |
+| Cloud provider-specific values | `values-provider-${cloudProvider}.yaml` | `values-provider-metalstack.yaml`, `values-provider-aks.yaml`, `values-provider-eks.yaml` | KUBRIX_CLOUD_PROVIDER |
+| High-availability (HA) configuration | `values-ha-enabled.yaml` | - | KUBRIX_HA_ENABLED |
+| Sizing | `values-size-${tShirtSize}.yaml` | `values-size-small.yaml`, `values-size-small.yaml`, `values-size-small.yaml` | KUBRIX_TSHIRT_SIZE |
+| Stricter security settings than default | `values-security-strict.yaml` | - |KUBRIX_SECURITY_STRICT |
+| Customer-specific configuration generated during bootstrap (should not be manually modified) | `values-customer-generated.yaml` | - | KUBRIX_REPO, KUBRIX_DOMAIN, KUBRIX_DNS_PROVIDER, KUBRIX_GIT_USER_NAME, KUBRIX_CUSTOM_VALUES
+| Customer-specific configuration maintained manually | `values-customer.yaml` | - | -
 
 > 💡 **Info:** In some cases, certain aspects may be combined in one values file,
 e.g. “XL sizing for a high-availability topology,” if the HA topology requires additional components and sizing adjustments.
