@@ -88,13 +88,10 @@ spec:
       action: publish:github
       input:
         sourcePath: ./kargo-gitops
-        allowedHosts: ['github.com']
         description: This is Kargo Demo App ${{`{{ parameters.application_id }}`}}
         #repoUrl: ${{`{{ parameters.repoUrl }}`}}
         repoUrl: github.com?repo=${{`{{ steps['catalogFetch'].output.entity.metadata.name }}`}}-${{`{{ parameters.application_id }}`}}&owner={{ .kubriX.gitRepoOrg }}
         token: ${{`{{ secrets.USER_OAUTH_TOKEN }}`}}
-        fqdn: ${{`{{ parameters.fqdn }}`}}
-        team: ${{`{{ steps['catalogFetch'].output.entity.metadata.name }}`}}
         gitAuthorName: ${{`{{ user.entity.metadata.name }}`}}
         gitAuthorEmail: ${{`{{ user.entity.spec.profile.email }}`}}
         repoVisibility: public
