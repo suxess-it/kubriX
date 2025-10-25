@@ -41,6 +41,14 @@ spec:
       revision: {{ .Values.default.targetRevision }}
       paths:
       - e2e-tests/cypress
+      usernameFrom:
+        secretKeyRef:
+          name: git-credentials
+          key: username
+      tokenFrom:
+        secretKeyRef:
+          name: git-credentials
+          key: token
   container:
     resources:
       requests:
