@@ -1,5 +1,36 @@
 # Changelog
 
+## [5.1.0](https://github.com/suxess-it/kubriX/compare/v5.0.0...v5.1.0) (2025-10-25)
+
+
+### Features
+
+* **bootstrap:** align variables to new multi-layer helm values concept ([#1638](https://github.com/suxess-it/kubriX/issues/1638)) ([62aa926](https://github.com/suxess-it/kubriX/commit/62aa9264d8f4ea7d70e6c9f51918941f9184776b))
+* **bootstrap:** keep commit history and option to clone private repos ([#1631](https://github.com/suxess-it/kubriX/issues/1631)) ([67b4706](https://github.com/suxess-it/kubriX/commit/67b470684a48f7f20712d5ab89618f9752547c47))
+* **deps:** update helm release testkube to v2.3.0 ([#1599](https://github.com/suxess-it/kubriX/issues/1599)) ([de715c4](https://github.com/suxess-it/kubriX/commit/de715c4a578837658b6cd4345215cfe3b0a4a8ae))
+* **general:** introduce new multi-layer valuesfile structure ([#1627](https://github.com/suxess-it/kubriX/issues/1627)) ([345aacb](https://github.com/suxess-it/kubriX/commit/345aacbf8a2bc4ce0e2d729fc14ceabd61fea949))
+* **general:** provide kubrix-default values to keep DRY and reduce unintended diffs ([#1609](https://github.com/suxess-it/kubriX/issues/1609)) ([9668794](https://github.com/suxess-it/kubriX/commit/96687947ad5986a08c32d4c6748df91e7479576e))
+* **grafana:** add cnpg cluster as a dependency for further ha implementations in kubriX prime ([#1615](https://github.com/suxess-it/kubriX/issues/1615)) ([5c768c7](https://github.com/suxess-it/kubriX/commit/5c768c79f1909cc47d3463d57f8b99ac05ea245a))
+* **grafana:** add folderAnnotation to specify folders for dashboards ([#1628](https://github.com/suxess-it/kubriX/issues/1628)) ([74a19c4](https://github.com/suxess-it/kubriX/commit/74a19c47e5102b0b5027aaf94a7f0dc3ef9e2a93))
+* **peak-provider:** add files needed for peak installation ([#1617](https://github.com/suxess-it/kubriX/issues/1617)) ([73296d1](https://github.com/suxess-it/kubriX/commit/73296d1fd901b33ac9e1f79ed5d55f9290b600de))
+* **pipeline:** add first e2e tests ([#1589](https://github.com/suxess-it/kubriX/issues/1589)) ([f1f625e](https://github.com/suxess-it/kubriX/commit/f1f625ea66dcf474ad2a0752995c2fc5739d6766))
+* **pipeline:** rename files from k3d to kind since we use only kind anymore ([#1616](https://github.com/suxess-it/kubriX/issues/1616)) ([0180e21](https://github.com/suxess-it/kubriX/commit/0180e2117e58e165be36fec7e5081192138e1c14))
+* **testkube:** retrieve testfiles from current repo ([#1643](https://github.com/suxess-it/kubriX/issues/1643)) ([4c2883a](https://github.com/suxess-it/kubriX/commit/4c2883a913257d9b2f5401b6f174d2bc127233c5))
+* **testkube:** use git-credentials from secret ([#1644](https://github.com/suxess-it/kubriX/issues/1644)) ([6192429](https://github.com/suxess-it/kubriX/commit/6192429d0736c57425176ceaefca2a9a1fa31a8c))
+
+
+### Bug Fixes
+
+* **backstage:** set template cluster to kubrix ([#1642](https://github.com/suxess-it/kubriX/issues/1642)) ([4a6d3c8](https://github.com/suxess-it/kubriX/commit/4a6d3c8cd168a524c507f809dd16e2b5fcd38dc7))
+* **deps:** update helm release k8s-monitoring to v3.5.3 ([#1619](https://github.com/suxess-it/kubriX/issues/1619)) ([9439848](https://github.com/suxess-it/kubriX/commit/9439848733bf981a1663d8091be70b070227b446))
+* **devcontainer:** typo in if condition ([#1640](https://github.com/suxess-it/kubriX/issues/1640)) ([4725cff](https://github.com/suxess-it/kubriX/commit/4725cffb8cd24178fb9342c3c91feff50ad53b26))
+* **grafana:** explicitly disable cluster in default mode ([#1626](https://github.com/suxess-it/kubriX/issues/1626)) ([69b6e19](https://github.com/suxess-it/kubriX/commit/69b6e19a32ec1e6681ebb0f7793ee22519908de2))
+* **installer:** convert all Resource files to tmpl files ([#1601](https://github.com/suxess-it/kubriX/issues/1601)) ([89d158a](https://github.com/suxess-it/kubriX/commit/89d158a197acab322c6249d4572bd6ff95f74eb5))
+* **installer:** increase memory limits because of OOM ([#1636](https://github.com/suxess-it/kubriX/issues/1636)) ([5726ad2](https://github.com/suxess-it/kubriX/commit/5726ad2a3ed04106676f35dcf82590feb7c34620))
+* **installer:** set  allowPrivilegeEscalation: false ([#1634](https://github.com/suxess-it/kubriX/issues/1634)) ([c128f24](https://github.com/suxess-it/kubriX/commit/c128f24fade4da83b4980dcdccd20b2fa8d8d94e))
+* **loki:** add minio bucket creation job ([#1632](https://github.com/suxess-it/kubriX/issues/1632)) ([794ba55](https://github.com/suxess-it/kubriX/commit/794ba5534730c33b038cfcdb3fe507b94665aa1d))
+* **testkube:** Set revision to default.targetRevision ([#1597](https://github.com/suxess-it/kubriX/issues/1597)) ([db097fb](https://github.com/suxess-it/kubriX/commit/db097fbbd7da47adc6a49ce04aeae507a05fcabc))
+
 ## [5.0.0](https://github.com/suxess-it/kubriX/compare/v4.0.0...v5.0.0) (2025-10-05)
 
 
