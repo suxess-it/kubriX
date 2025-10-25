@@ -11,6 +11,14 @@ spec:
       revision: {{ .Values.default.targetRevision }}
       paths:
       - e2e-tests/playwright
+      usernameFrom:
+        secretKeyRef:
+          name: git-credentials
+          key: username
+      tokenFrom:
+        secretKeyRef:
+          name: git-credentials
+          key: token
   container:
     image: mcr.microsoft.com/playwright:v1.55.1
     resources:
