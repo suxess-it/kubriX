@@ -1,0 +1,12 @@
+pgadmin4:
+  domainName: .{{ .kubriX.domain }}
+  ingress:
+    hosts:
+      - host: pgadmin.{{ .kubriX.domain }}
+        paths:
+          - path: /
+            pathType: Prefix
+    tls:
+      - secretName: pgadmin-server-tls
+        hosts:
+          - pgadmin.{{ .kubriX.domain }}

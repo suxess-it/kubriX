@@ -89,7 +89,7 @@ kubectl create secret generic kubrix-install-secrets -n kubrix-install \
   --from-literal KUBRIX_REPO=${KUBRIX_REPO} \
   --from-literal KUBRIX_REPO_PASSWORD=${KUBRIX_REPO_PASSWORD} \
   --from-literal KUBRIX_GIT_USER_NAME=${KUBRIX_GIT_USER_NAME} \
-  --from-literal KUBRIX_TARGET_TYPE=<your-target-type> #in upper case!
+  --from-literal KUBRIX_TARGET_TYPE=<your-target-type>
   --from-literal KUBRIX_BACKSTAGE_GITHUB_TOKEN=<your-repo-read-access-token>
   --from-literal KUBRIX_INSTALLER=true
 ```

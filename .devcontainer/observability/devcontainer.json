@@ -26,7 +26,7 @@
 	"postCreateCommand": "sudo cp .devcontainer/observability/welcome.txt /usr/local/etc/vscode-dev-containers/first-run-notice.txt",
 
 	// Use 'postStartCommand' to run commands after the container is created like starting minikube.
-	"postStartCommand": "export KUBRIX_TARGET_TYPE=KIND-OBSERVABILITY ; export KUBRIX_CLUSTER_TYPE=KIND ; /bin/bash -c .devcontainer/install-platform-devcontainer.sh",
+	"postStartCommand": "export KUBRIX_TARGET_TYPE=kind-observability ; export KUBRIX_CLUSTER_TYPE=kind ; /bin/bash -c .devcontainer/install-platform-devcontainer.sh",
 
 	// Configure tool-specific properties.
 	// "customizations": {},

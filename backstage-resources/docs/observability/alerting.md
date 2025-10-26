@@ -82,9 +82,4 @@ In your team-onboarding values section you can use the variable `KUBRIX_MY_AWESO
             disableResolveMessage: false
 ```
 
-**_NOTE:_** every team needs to have at least an empty `<team-name>/observability` path in vault configured, otherwhise the ExternalSecrets throws an error like this:
-
-```
-error processing spec.dataFrom[0].extract, err: Secret does not exist
-```
               
