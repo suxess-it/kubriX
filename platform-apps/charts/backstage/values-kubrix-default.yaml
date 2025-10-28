@@ -373,6 +373,10 @@ cluster:
     monitoring:
       enabled: true
     superuserSecret: cnpg-superuser-secret
+    initdb:
+      database: backstage
+      secret:
+        name: cnpg-backstage-secret
     roles:
     - name: backstage
       ensure: present
