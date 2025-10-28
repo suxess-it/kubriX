@@ -34,10 +34,6 @@ backstage:
           frame-src: ['*.nip.io']
         cors:
           origin: https://backstage.127-0-0-1.nip.io
-        database:
-          client: better-sqlite3
-          connection: ':memory:'
-          pluginDivisionMode: ~
 
       proxy:
         endpoints:
@@ -132,6 +128,3 @@ backstage:
 
       kubecost:
         baseUrl: https://kubecost.127-0-0-1.nip.io
-
-cluster:
-  enabled: false
