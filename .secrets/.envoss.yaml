@@ -136,3 +136,13 @@ secrets:
     stringData:
       falcousername: "admin"
       falcopassword: "dynamic:12:hex"
+# grafana-client-credentials per environment
+  - application: "grafana"
+    path: "grafana/base"
+    namespace: "grafana"
+    secretname: grafana-crossplane-secret
+    secretType: "Opaque"
+    stringData:
+      # clientsecret for grafana usage
+      passwordKey: "dynamic:12:hex"
+      userKey: "admin"

@@ -19,7 +19,10 @@ kubernetesAlerts:
         disableResolveMessage: false
 
 grafana:
-  adminPassword: prom-operator
+  admin:
+    existingSecret: "grafana-admin-secret"
+    userKey: userKey
+    passwordKey: passwordKey
   # set cookies for backstage plugin integration
   grafana.ini:
     server:
