@@ -14,6 +14,8 @@ It is built from reusable components (“bricks”) to help teams accelerate dev
 
 Visit our [product website](https://kubriX.io) for more information.
 
+Explore more kubriX tips on our [YouTube Channel](http://www.youtube.com/@kubriX-m6y9k).
+
 ---
 
 ## 🚀 Quick Start
