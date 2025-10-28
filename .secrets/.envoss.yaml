@@ -127,3 +127,12 @@ secrets:
       pgkeycloakdatabase: "keycloak"
       pgkeycloaksuperuser: "postgres"
       pgkeycloaksuperuserpassword: "dynamic:12:hex"
+  # falco secrets
+  - application: "falco"
+    path: "security/falco/base"
+    namespace: "falco"
+    secretname: falco-ui-creds
+    secretType: "Opaque"
+    stringData:
+      falcousername: "admin"
+      falcopassword: "dynamic:12:hex"
