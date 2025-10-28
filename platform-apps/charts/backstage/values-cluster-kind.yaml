@@ -2,10 +2,6 @@ backstage:
   ingress:
     host: backstage.127-0-0-1.nip.io
   backstage:
-    extraEnvVarsSecrets:
-      - sx-cnp-secret
-      - codespaces-secret
-      - sx-vault-secret
     extraEnvVars:
       - name: NODE_OPTIONS
         value: "--no-node-snapshot"
