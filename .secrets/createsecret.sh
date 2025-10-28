@@ -50,16 +50,21 @@ for BASEFILE in "${CONFIGFILES[@]}"; do
 generate_secret() {
     local length=$1
     local charset=$2
+    local hashed=$3
     if [[ "$charset" == "alphanumeric" ]]; then
-      echo \"$(openssl rand -base64 $((length * 2)) | tr -dc 'A-Za-z0-9' | head -c "$length")\"
+      pass=$(echo \"$(openssl rand -base64 $((length * 2)) | tr -dc 'A-Za-z0-9' | head -c "$length")\")
     elif [[ "$charset" == "hex" ]]; then
-      echo \"$(openssl rand -hex "$((length/2))")\"
+      pass=$(echo \"$(openssl rand -hex "$((length/2))")\")
     elif [[ "$charset" == "numeric" ]]; then
-      echo \"$(openssl rand -base64 $((length * 2)) | tr -dc '0-9' | head -c "$length")\"
+      pass=$(echo \"$(openssl rand -base64 $((length * 2)) | tr -dc '0-9' | head -c "$length")\")
     else
       echo "Error: unknown charset $charset"
       exit 1
     fi
+    if [[ "$hashed" == "hashed" ]]; then
+      echo $(htpasswd -bnBC 10 "" ${pass} | tr -d ':\n')
+    else
+      echo ${pass}
 }
 
 SECRET_COUNT=$(yq e '.secrets | length' "$BASEFILE")
@@ -129,11 +134,12 @@ EOF
       else
           VALUE=$(yq e -r ".secrets[$i].stringData[\"$KEY\"]" "$BASEFILE")
       fi
-      if [[ "$VALUE" =~ ^dynamic:([0-9]+):([a-zA-Z0-9_-]+)$ ]]; then
+      if [[ "$VALUE" =~ ^dynamic:([0-9]+):([a-zA-Z0-9_-]+)(:hashed)?$ ]]; then
           LENGTH=${BASH_REMATCH[1]}
           CHARSET=${BASH_REMATCH[2]}
-          VALUE=$(generate_secret "$LENGTH" "$CHARSET")
-          echo "  -> generating dynamic secret for App: $APP, Value: $KEY (length: $LENGTH, $CHARSET)"
+          HASHED=${BASH_REMATCH[3]#:}
+          VALUE=$(generate_secret "$LENGTH" "$CHARSET" "$HASHED")
+          echo "  -> generating dynamic secret for App: $APP, Value: $KEY (length: $LENGTH, $CHARSET, hashed: ${HASHED:-no})"
       fi
       # add stringData entry in Secret 
         if [[ "$VALUE" == *$'\n'* ]]; then
