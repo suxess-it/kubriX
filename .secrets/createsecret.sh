@@ -65,6 +65,7 @@ generate_secret() {
       echo $(htpasswd -bnBC 10 "" ${pass} | tr -d ':\n')
     else
       echo ${pass}
+    fi
 }
 
 SECRET_COUNT=$(yq e '.secrets | length' "$BASEFILE")
