@@ -50,7 +50,6 @@ for BASEFILE in "${CONFIGFILES[@]}"; do
 generate_secret() {
     local length=$1
     local charset=$2
-    local hashed=$3
     if [[ "$charset" == "alphanumeric" ]]; then
       pass=$(echo \"$(openssl rand -base64 $((length * 2)) | tr -dc 'A-Za-z0-9' | head -c "$length")\")
     elif [[ "$charset" == "hex" ]]; then
@@ -61,11 +60,7 @@ generate_secret() {
       echo "Error: unknown charset $charset"
       exit 1
     fi
-    if [[ "$hashed" == "hashed" ]]; then
-      echo $(htpasswd -bnBC 10 "" ${pass} | tr -d ':\n')
-    else
-      echo ${pass}
-    fi
+    echo ${pass}
 }
 
 SECRET_COUNT=$(yq e '.secrets | length' "$BASEFILE")
@@ -139,7 +134,7 @@ EOF
           LENGTH=${BASH_REMATCH[1]}
           CHARSET=${BASH_REMATCH[2]}
           HASHED=${BASH_REMATCH[3]#:}
-          VALUE=$(generate_secret "$LENGTH" "$CHARSET" "$HASHED")
+          VALUE=$(generate_secret "$LENGTH" "$CHARSET")
           echo "  -> generating dynamic secret for App: $APP, Value: $KEY (length: $LENGTH, $CHARSET, hashed: ${HASHED:-no})"
       fi
       # add stringData entry in Secret 
@@ -148,6 +143,9 @@ EOF
           printf "%s\n" "$VALUE" | sed 's/^/    /' >> "$TMPDIR/$SECRETFILE"
         else
           printf "  %s: %s\n" "$KEY" "$VALUE" >> "$TMPDIR/$SECRETFILE"
+        fi
+        if [[ "$HASHED" == "hashed" ]]; then
+          printf " %s: %s\n" "$KEY_hashed" "$(htpasswd -bnBC 10 "" ${pass} | tr -d ':\n')" >> "$TMPDIR/$SECRETFILE"
         fi
     # Add data entry in PushSecret   
     cat <<EOF >> "$TMPDIR/push$SECRETFILE"
