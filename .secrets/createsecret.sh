@@ -151,7 +151,7 @@ EOF
           printf "  %s: %s\n" "$KEY" "$VALUE" >> "$TMPDIR/$SECRETFILE"
         fi
         if [[ "$HASHED" == "hashed" ]]; then
-          printf "  %sHash: %s\n" "${KEY}" "$(htpasswd -bnBC 10 "" "$VALUE" | tr -d ':\n')" >> "$TMPDIR/$SECRETFILE"
+          printf "  %sHash: %s\n" "${KEY}" "$(htpasswd -bnBC 10 "" $VALUE | tr -d ':\n')" >> "$TMPDIR/$SECRETFILE"
         fi
       fi
     # Add data entry in PushSecret   
