@@ -12,19 +12,15 @@ for env in pr target; do
   for chart in $( ls -d */ | sed 's#/##' ); do
     echo ${chart}
     helm dependency update ${chart}
-    # do not render charts with "values-kubrix-default.yaml" because then some values will be missing, resulting in nil pointer exception
-    for value in $( find ${chart} -type f -name "values-*.yaml" -not -name "values-kubrix-default.yaml" ); do
-      valuefile=$( basename ${value} )
-      mkdir -p ../../../out/${env}/${chart}/${valuefile}
-      # use 'values-kubrix-base.yaml' as a default values file
-      if [ -f ${chart}/values-kubrix-default.yaml ] ; then
-        echo "run command: 'helm template  --include-crds ${chart} -f ${chart}/values-kubrix-default.yaml -f ${value} --output-dir ../../../out/${env}/${chart}/${valuefile}'"
-        helm template  --include-crds ${chart} -f ${chart}/values-kubrix-default.yaml -f ${value} --output-dir ../../../out/${env}/${chart}/${valuefile}
-      else
-        echo "run command: 'helm template  --include-crds ${chart} -f ${value} --output-dir ../../../out/${env}/${chart}/${valuefile}'"
-        helm template  --include-crds ${chart} -f ${value} --output-dir ../../../out/${env}/${chart}/${valuefile}
-      fi
-    done
+    # with different aspect specific values we need to render the charts with a specific set of values files, not with every file by itself.
+    #   since we already install the charts in the kind github actions with the values "values-kubrix-default.yaml, values-cluster-kind.yaml"
+    #   we will use also this set for rendering the chart. In the future this might change, to also test the other aspect specific values.
+    valuesFiles=( )
+    [[ -f ${chart}/values-kubrix-default.yaml ]] && valuesFiles+=( "-f ${chart}/values-kubrix-default.yaml" )
+    [[ -f ${chart}/values-cluster-kind.yaml ]] && valuesFiles+=( "-f ${chart}/values-cluster-kind.yaml" )
+    mkdir -p ../../../out/${env}/${chart}/
+    echo "run command: 'helm template  --include-crds ${chart} "${valuesFiles[@]}" --output-dir ../../../out/${env}/${chart}/'"
+    helm template  --include-crds ${chart} ${valuesFiles[@]} --output-dir ../../../out/${env}/${chart}/
     # get default values of subcharts
     # to compare between different subchart versions we need to write to values files without version names
     while IFS= read -r line; do

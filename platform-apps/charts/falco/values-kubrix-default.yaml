@@ -24,6 +24,8 @@ falco:
     webui:
       enabled: true
       replicaCount: 1
+      user: ""
+      existingSecret: "falco-ui-creds"
       ingress:
         enabled: true
         annotations:
