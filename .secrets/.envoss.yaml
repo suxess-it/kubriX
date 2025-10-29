@@ -153,4 +153,5 @@ secrets:
     secretType: "Opaque"
     stringData:
       password: "dynamic:12:hex:hashed"
+      passwordHash: "-" # secret doesn't get created, but a pushsecret with the automated created hash secret of 'password'
       tokenSigningKey: "dynamic:12:hex"
