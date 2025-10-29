@@ -153,5 +153,5 @@ secrets:
     secretType: "Opaque"
     stringData:
       password: "dynamic:12:hex:hashed"
-      passwordHash: "-" # secret doesn't get created, but a pushsecret with the automated created hash secret of 'password'
+      passwordHash: "-" # due to value '-' a secret doesn't get created, but in the pushsecret a reference to the passwordHash secret key gets created
       tokenSigningKey: "dynamic:12:hex"
