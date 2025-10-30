@@ -24,6 +24,8 @@ jobs:
             valuesFiles: values-kubrix-default.yaml,values-cluster-kind.yaml
           - testCase: default-aks-kind
             valuesFiles: values-kubrix-default.yaml,values-provider-aks.yaml,values-cluster-kind.yaml
+          - testCase: default-demo-metalstack
+            valuesFiles: values-kubrix-default.yaml,values-demo-metalstack.yaml
     steps:
       - name: Checkout PR
         uses: actions/checkout@v5
