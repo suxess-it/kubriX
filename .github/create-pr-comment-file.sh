@@ -50,7 +50,7 @@ comment_files_csplit=$( find comment-files -type f | sort )
 MAX_SIZE=131072
 
 # Initialize output file counter and base name
-OUTPUT_BASE_NAME="combined_file"
+OUTPUT_BASE_NAME="combined_file_${testCase}"
 output_file_count=1
 OUTPUT_FILE="${OUTPUT_BASE_NAME}_${output_file_count}.txt"
 
