@@ -128,7 +128,7 @@ argo-cd:
         nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
         nginx.ingress.kubernetes.io/backend-protocol: "HTTP"
         cert-manager.io/cluster-issuer: default-issuer
-      ingressClassName: nginx-johnny
+      ingressClassName: nginx
       extraTls:
         - hosts: []
           # Based on the ingress controller used secret might be optional
