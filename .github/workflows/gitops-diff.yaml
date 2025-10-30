@@ -65,11 +65,11 @@ jobs:
         shell: bash
         run: |
           # Collect file paths (null-delimited so spaces are safe)
-          mapfile -d '' files < <(find . -type f -print0)
+          mapfile -d '' files < <(find . -type f -name "comment-result*" -print0)
 
           # Build: { "include": [ { "file": "path1" }, ... ] }
           json=$(printf '%s\0' "${files[@]}" \
-            | jq -R -s -c 'split("\u0000")[:-1] | map({file:.}) | {include:.}')
+            | jq -R -s -c 'split("\u0000")[:-1] | map({file:.}) | {files:.}')
 
           echo "matrix=$json"
           echo "matrix=$json" >> "$GITHUB_OUTPUT"
