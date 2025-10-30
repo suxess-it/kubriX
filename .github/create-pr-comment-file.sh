@@ -5,6 +5,7 @@ set -e
 testCase=$1
 valuesFilesList=$2
 
+
 mkdir -p out/pr
 mkdir -p out/target
 mkdir -p out-default-values/pr
