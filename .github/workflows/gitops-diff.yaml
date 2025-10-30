@@ -71,6 +71,7 @@ jobs:
           json=$(printf '%s\0' "${files[@]}" \
             | jq -R -s -c 'split("\u0000")[:-1] | map({file:.}) | {include:.}')
 
+          echo "matrix=$json"
           echo "matrix=$json" >> "$GITHUB_OUTPUT"
           
   create-template-render-diff-comment:
