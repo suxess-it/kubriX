@@ -59,8 +59,9 @@ jobs:
 
       - uses: actions/download-artifact@v5
         with:
-          name: comment-files-artifact
+          pattern: comment-files-artifact-*
           path: comment-files/
+          merge-multiple: true
 
       - uses: thollander/actions-comment-pull-request@v3
         env:
@@ -76,8 +77,9 @@ jobs:
 
       - uses: actions/download-artifact@v5
         with:
-          name: comment-files-artifact
+          pattern: comment-files-artifact-*
           path: comment-files/
+          merge-multiple: true
 
       - name: PR comment default values with file
         uses: thollander/actions-comment-pull-request@v3
