@@ -45,7 +45,7 @@ jobs:
 
       - uses: actions/upload-artifact@v4
         with:
-          name: comment-files-artifact
+          name: comment-files-artifact-${{ matrix.testCase }}
           path: comment-files/
 
   create-template-render-diff-comment:
