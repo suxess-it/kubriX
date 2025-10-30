@@ -25,7 +25,7 @@ jobs:
           - testCase: default-aks-kind
             valuesFiles: values-kubrix-default.yaml,values-provider-aks.yaml,values-cluster-kind.yaml
     outputs:
-      matrix: ${{ steps.diffStep.outputs.matrix }}
+      matrix: ${{ matrix.testCase }}-${{ steps.diffStep.outputs.matrix }}
     steps:
       - name: Checkout PR
         uses: actions/checkout@v5
