@@ -65,9 +65,9 @@ jobs:
           # Collect file paths (null-delimited so spaces are safe)
           mapfile -d '' files < <(find . -type f -name "comment-result*" -print0)
 
-          # Build: { "include": [ { "file": "path1" }, ... ] }
+          # build: {"files":["path1","path2",...]}
           json=$(printf '%s\0' "${files[@]}" \
-            | jq -R -s -c 'split("\u0000")[:-1] | map({file:.}) | {files:.}')
+            | jq -R -s -c 'split("\u0000")[:-1] | {files:.}')
 
           echo "matrix=$json"
           echo "matrix=$json" >> "$GITHUB_OUTPUT"
