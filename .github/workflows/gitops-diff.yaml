@@ -24,8 +24,6 @@ jobs:
             valuesFiles: values-kubrix-default.yaml,values-cluster-kind.yaml
           - testCase: default-aks-kind
             valuesFiles: values-kubrix-default.yaml,values-provider-aks.yaml,values-cluster-kind.yaml
-    outputs:
-      matrix: ${{ matrix.testCase }}-${{ steps.diffStep.outputs.matrix }}
     steps:
       - name: Checkout PR
         uses: actions/checkout@v5
@@ -69,7 +67,7 @@ jobs:
 
           # Build: { "include": [ { "file": "path1" }, ... ] }
           json=$(printf '%s\0' "${files[@]}" \
-            | jq -R -s -c 'split("\u0000")[:-1] | map({file:.}) | {comment-files:.}')
+            | jq -R -s -c 'split("\u0000")[:-1] | map({file:.}) | {files:.}')
 
           echo "matrix=$json"
           echo "matrix=$json" >> "$GITHUB_OUTPUT"
@@ -77,7 +75,7 @@ jobs:
   create-template-render-diff-comment:
     needs: gen-matrix-from-artifact
     runs-on: ubuntu-latest
-    if: ${{ fromJSON(needs.gen-matrix-from-artifact.outputs.matrix).comment-files[0] }}
+    if: ${{ fromJSON(needs.gen-matrix-from-artifact.outputs.matrix).files[0] }}
     strategy:
       matrix: ${{ fromJSON(needs.gen-matrix-from-artifact.outputs.matrix) }}
       max-parallel: 1
@@ -93,7 +91,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          file-path: ${{matrix.comment-files}}
+          file-path: ${{matrix.files}}
 
 
   create-default-value-diff-comment:
