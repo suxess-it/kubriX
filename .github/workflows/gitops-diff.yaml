@@ -48,12 +48,37 @@ jobs:
           name: comment-files-artifact-${{ matrix.testCase }}
           path: comment-files/
 
-  create-template-render-diff-comment:
-    needs: diff
+  gen-matrix-from-artifact:
     runs-on: ubuntu-latest
-    if: ${{ fromJSON(needs.diff.outputs.matrix).comment-files[0] }}
+    needs: diff
+    outputs:
+      matrix: ${{ steps.mk.outputs.matrix }}
+    steps:
+      - name: Download artifact
+        uses: actions/download-artifact@v4
+        with:
+          pattern: comment-files-artifact-*
+          path: comment-files/
+          merge-multiple: true
+      - id: mk
+        name: Create matrix JSON from files
+        shell: bash
+        run: |
+          # Collect file paths (null-delimited so spaces are safe)
+          mapfile -d '' files < <(find files -type f -print0)
+
+          # Build: { "include": [ { "file": "path1" }, ... ] }
+          json=$(printf '%s\0' "${files[@]}" \
+            | jq -R -s -c 'split("\u0000")[:-1] | map({file:.}) | {include:.}')
+
+          echo "matrix=$json" >> "$GITHUB_OUTPUT"
+          
+  create-template-render-diff-comment:
+    needs: gen-matrix-from-artifact
+    runs-on: ubuntu-latest
+    if: ${{ fromJSON(needs.gen-matrix-from-artifact.outputs.matrix).files[0] }}
     strategy:
-      matrix: ${{fromJSON(needs.diff.outputs.matrix)}}
+      matrix: ${{ fromJSON(needs.gen-matrix-from-artifact.outputs.matrix) }}
       max-parallel: 1
     steps:
 
@@ -67,7 +92,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          file-path: ${{matrix.comment-files}}
+          file-path: ${{matrix.file}}
 
 
   create-default-value-diff-comment:
