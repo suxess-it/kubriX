@@ -2,6 +2,9 @@
 
 set -e
 
+testCase=$1
+valuesFilesList=$2
+
 mkdir -p out/pr
 mkdir -p out/target
 mkdir -p out-default-values/pr
@@ -16,11 +19,14 @@ for env in pr target; do
     #   since we already install the charts in the kind github actions with the values "values-kubrix-default.yaml, values-cluster-kind.yaml"
     #   we will use also this set for rendering the chart. In the future this might change, to also test the other aspect specific values.
     valuesFiles=( )
-    [[ -f ${chart}/values-kubrix-default.yaml ]] && valuesFiles+=( "-f ${chart}/values-kubrix-default.yaml" )
-    [[ -f ${chart}/values-cluster-kind.yaml ]] && valuesFiles+=( "-f ${chart}/values-cluster-kind.yaml" )
-    mkdir -p ../../../out/${env}/${chart}/
-    echo "run command: 'helm template  --include-crds ${chart} "${valuesFiles[@]}" --output-dir ../../../out/${env}/${chart}/'"
-    helm template  --include-crds ${chart} ${valuesFiles[@]} --output-dir ../../../out/${env}/${chart}/
+    IFS=',' read -ra files <<< "${valuesFilesList}"
+    for valuesFile in "${files[@]}"; do
+        [[ -f ${chart}/${valuesFile} ]] && valuesFiles+=( "-f ${chart}/${valuesFile}" )
+        echo "$item"
+    done
+    mkdir -p ../../../out/${env}/${chart}/${testCase}
+    echo "run command: 'helm template  --include-crds ${chart} "${valuesFiles[@]}" --output-dir ../../../out/${env}/${chart}/${testCase}'"
+    helm template  --include-crds ${chart} ${valuesFiles[@]} --output-dir ../../../out/${env}/${chart}/${testCase}
     # get default values of subcharts
     # to compare between different subchart versions we need to write to values files without version names
     while IFS= read -r line; do
