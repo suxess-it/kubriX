@@ -65,7 +65,7 @@ jobs:
         shell: bash
         run: |
           # Collect file paths (null-delimited so spaces are safe)
-          mapfile -d '' files < <(find files -type f -print0)
+          mapfile -d '' files < <(find . -type f -print0)
 
           # Build: { "include": [ { "file": "path1" }, ... ] }
           json=$(printf '%s\0' "${files[@]}" \
