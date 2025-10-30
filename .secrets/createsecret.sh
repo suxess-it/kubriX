@@ -146,9 +146,14 @@ EOF
         if [[ "$VALUE" == *$'\n'* ]]; then
           printf "  %s: |-\n" "$KEY" >> "$TMPDIR/$SECRETFILE"
           printf "%s\n" "$VALUE" | sed 's/^/    /' >> "$TMPDIR/$SECRETFILE"
-        else
+        # if string has no quotes then add some in the output
+        elif [[ ! $VALUE =~ ^\".*\"$ ]]; then
           printf "  %s: \"%s\"\n" "$KEY" "$VALUE" >> "$TMPDIR/$SECRETFILE"
+        # otherwise don't add them to prevent double quotes
+        else
+          printf "  %s: %s\n" "$KEY" "$VALUE" >> "$TMPDIR/$SECRETFILE"
         fi
+        # if secret has the suffix 'hashed' create an additional secret hash with the key ${key}Hash
         if [[ "$HASHED" == "hashed" ]]; then
           printf "  %sHash: %s\n" "${KEY}" "$(htpasswd -bnBC 10 "" $VALUE | tr -d ':\n')" >> "$TMPDIR/$SECRETFILE"
         fi
