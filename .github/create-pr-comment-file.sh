@@ -113,13 +113,11 @@ if ls combined_file* 1> /dev/null 2>&1 ; then
   done
 
   # output for matrix build
-  echo "matrix={\"comment-files\": $( jq -n '$ARGS.positional' --args $( ls comment-files/comment-result-* ) | tr "\n" " ")}" 
-  echo "matrix={\"comment-files\": $( jq -n '$ARGS.positional' --args $( ls comment-files/comment-result-* ) | tr "\n" " ")}" >> $GITHUB_OUTPUT
+  echo "matrix={\"files\": $( jq -n '$ARGS.positional' --args $( ls comment-files/comment-result-* ) | tr "\n" " ")}" 
 else
   echo "no changes found"
   # outpout empty matrix so matrix build is ignored
-  echo "matrix={\"comment-files\": []}"
-  echo "matrix={\"comment-files\": []}" >> $GITHUB_OUTPUT
+  echo "matrix={\"files\": []}"
 fi
 
 
