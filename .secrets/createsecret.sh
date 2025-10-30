@@ -51,11 +51,11 @@ generate_secret() {
     local length=$1
     local charset=$2
     if [[ "$charset" == "alphanumeric" ]]; then
-      echo \"$(openssl rand -base64 $((length * 2)) | tr -dc 'A-Za-z0-9' | head -c "$length")\"
+      echo $(openssl rand -base64 $((length * 2)) | tr -dc 'A-Za-z0-9' | head -c "$length")
     elif [[ "$charset" == "hex" ]]; then
-      echo \"$(openssl rand -hex "$((length/2))")\"
+      echo $(openssl rand -hex "$((length/2))")
     elif [[ "$charset" == "numeric" ]]; then
-      echo \"$(openssl rand -base64 $((length * 2)) | tr -dc '0-9' | head -c "$length")\"
+      echo $(openssl rand -base64 $((length * 2)) | tr -dc '0-9' | head -c "$length")
     else
       echo "Error: unknown charset $charset"
       exit 1
@@ -147,7 +147,7 @@ EOF
           printf "  %s: |-\n" "$KEY" >> "$TMPDIR/$SECRETFILE"
           printf "%s\n" "$VALUE" | sed 's/^/    /' >> "$TMPDIR/$SECRETFILE"
         else
-          printf "  %s: %s\n" "$KEY" "$VALUE" >> "$TMPDIR/$SECRETFILE"
+          printf "  %s: \"%s\"\n" "$KEY" "$VALUE" >> "$TMPDIR/$SECRETFILE"
         fi
         if [[ "$HASHED" == "hashed" ]]; then
           printf "  %sHash: %s\n" "${KEY}" "$(htpasswd -bnBC 10 "" $VALUE | tr -d ':\n')" >> "$TMPDIR/$SECRETFILE"
