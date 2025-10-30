@@ -15,6 +15,15 @@ name: Diff GitOps
 jobs:
   diff:
     runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        testCase: [default-kind, default-aks-kind]
+        include:
+          - testCase: default-kind
+            valuesFiles: values-kubrix-default.yaml,values-cluster-kind.yaml
+          - testCase: default-aks-kind
+            valuesFiles: values-kubrix-default.yaml,values-provider-aks.yaml,values-cluster-kind.yaml
     outputs:
       matrix: ${{ steps.diffStep.outputs.matrix }}
     steps:
@@ -32,7 +41,7 @@ jobs:
         id: diffStep
         shell: bash
         run: |
-          bash pr/.github/create-pr-comment-file.sh
+          bash pr/.github/create-pr-comment-file.sh ${{ matrix.testCase }} ${{ matrix.valuesFiles }}
 
       - uses: actions/upload-artifact@v4
         with:
