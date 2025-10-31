@@ -24,6 +24,8 @@ applications:
   - name: cert-manager
     annotations:
       argocd.argoproj.io/sync-wave: "-10"
+    valueFiles:
+      - values-solver-dns-{{ .kubriX.certManagerDnsProvider }}.yaml
 
   {{ if ne .kubriX.clusterType "kind" -}}
   - name: external-dns

@@ -15,7 +15,12 @@ spec:
       name: letsencrypt-staging
     server: 'https://acme-staging-v02.api.letsencrypt.org/directory'
     solvers:
+    {{- if .Values.dnsSolvers }}
+      - dns01:
+{{ toYaml .Values.dnsSolvers | indent 10 }}
+    {{- else -}}
       - http01:
           ingress:
             ingressClassName: nginx
+    {{- end }}
 {{ end }}
