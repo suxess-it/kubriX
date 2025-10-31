@@ -1,59 +1,309 @@
 apiVersion: 1
 groups:
-    - orgId: 1
-      name: argocd-self-health.rules
-      folder: kubernetes-monitoring
-      interval: 1m
-      rules:
-        - uid: ef2qswfeemvpca
-          title: ArgoCDComponentDown
-          condition: C
-          data:
-            - refId: A
-              relativeTimeRange:
-                from: 600
-                to: 0
-              datasourceUid: mimir
-              model:
-                editorMode: code
-                expr: up{job=~"sx-argocd-(application-controller|server|repo-server|commit-server)-metrics"}
-                instant: true
-                intervalMs: 1000
-                legendFormat: __auto
-                maxDataPoints: 43200
-                range: false
-                refId: A
-            - refId: C
-              datasourceUid: __expr__
-              model:
-                conditions:
-                    - evaluator:
-                        params:
-                            - 0
-                        type: eq
-                      operator:
-                        type: and
-                      query:
-                        params:
-                            - C
-                      reducer:
-                        params: []
-                        type: last
-                      type: query
-                datasource:
-                    type: __expr__
-                    uid: __expr__
-                expression: A
-                intervalMs: 1000
-                maxDataPoints: 43200
-                refId: C
-                type: threshold
-          noDataState: NoData
-          execErrState: Error
-          for: 5m
-          annotations:
-            description: '{{ $labels.job }} is not exposing metrics for 5m.'
-            summary: 'Argo CD component down: {{ $labels.job }} (pod {{ $labels.pod }})'
-          labels:
-            severity: critical
-          isPaused: false
+  - orgId: 1
+    name: ArgoCD - Self Health
+    folder: Argo CD
+    interval: 1m
+    rules:
+      # --- ArgoCDComponentDown ---
+      - uid: argocd_component_down
+        title: ArgoCDComponentDown
+        condition: C
+        data:
+          - refId: A
+            datasourceUid: mimir
+            relativeTimeRange: { from: 300, to: 0 }
+            model:
+              expr: up{job=~"sx-argocd-(application-controller|server|repo-server|commit-server)-metrics"} == 0
+              legendFormat: '{{pod}}'
+              interval: ""
+              intervalMs: 60000
+              instant: false
+          - refId: B
+            datasourceUid: __expr__
+            model:
+              type: reduce
+              expression: A
+              reducer: last
+          - refId: C
+            datasourceUid: __expr__
+            model:
+              type: threshold
+              expression: B
+              conditions:
+                - evaluator: { type: gt, params: [0] }
+                  operator: { type: and }
+                  reducer: { type: last }
+                  query: { params: [B] }
+        noDataState: NoData
+        execErrState: Error
+        for: 5m
+        labels:
+          severity: critical
+        annotations:
+          summary: "Argo CD component down (pod {{ $labels.pod }}, job {{ $labels.job }})"
+          description: "{{ $labels.job }} metrics are down for 5m."
+
+      # --- ArgoCDControllerClusterCacheStale ---
+      - uid: argocd_controller_cache_stale
+        title: ArgoCDControllerClusterCacheStale
+        condition: C
+        data:
+          - refId: A
+            datasourceUid: mimir
+            relativeTimeRange: { from: 600, to: 0 }
+            model:
+              expr: max by(pod) (argocd_cluster_cache_age_seconds)
+              legendFormat: '{{pod}}'
+              instant: false
+          - refId: B
+            datasourceUid: __expr__
+            model:
+              type: reduce
+              expression: A
+              reducer: last
+          - refId: C
+            datasourceUid: __expr__
+            model:
+              type: threshold
+              expression: B
+              conditions:
+                - evaluator: { type: gt, params: [300] } # > 5 minutes
+                  operator: { type: and }
+                  reducer: { type: last }
+                  query: { params: [B] }
+        noDataState: NoData
+        execErrState: Error
+        for: 10m
+        labels:
+          severity: warning
+        annotations:
+          summary: "Argo CD controller cache stale ({{ $labels.pod }})"
+          description: "Cluster cache age > 5m; controller may be lagging."
+
+      # --- ArgoCDRepoPendingRequestsHigh ---
+      - uid: argocd_repo_pending_requests_high
+        title: ArgoCDRepoPendingRequestsHigh
+        condition: C
+        data:
+          - refId: A
+            datasourceUid: mimir
+            relativeTimeRange: { from: 600, to: 0 }
+            model:
+              expr: max by(pod) (argocd_repo_pending_request_total)
+              legendFormat: '{{pod}}'
+              instant: false
+          - refId: B
+            datasourceUid: __expr__
+            model:
+              type: reduce
+              expression: A
+              reducer: last
+          - refId: C
+            datasourceUid: __expr__
+            model:
+              type: threshold
+              expression: B
+              conditions:
+                - evaluator: { type: gt, params: [50] }
+                  operator: { type: and }
+                  reducer: { type: last }
+                  query: { params: [B] }
+        noDataState: NoData
+        execErrState: Error
+        for: 10m
+        labels:
+          severity: warning
+        annotations:
+          summary: "Argo CD repo-server backlog high ({{ $labels.pod }})"
+          description: "Pending repo lock requests > 50 for 10m."
+
+      # --- ArgoCDRepoGitFetchFailures ---
+      - uid: argocd_repo_git_fetch_failures
+        title: ArgoCDRepoGitFetchFailures
+        condition: C
+        data:
+          - refId: A
+            datasourceUid: mimir
+            relativeTimeRange: { from: 600, to: 0 }
+            model:
+              expr: rate(argocd_git_fetch_fail_total[5m])
+              legendFormat: '{{pod}}'
+              instant: false
+          - refId: B
+            datasourceUid: __expr__
+            model:
+              type: reduce
+              expression: A
+              reducer: last
+          - refId: C
+            datasourceUid: __expr__
+            model:
+              type: threshold
+              expression: B
+              conditions:
+                - evaluator: { type: gt, params: [0] }
+                  operator: { type: and }
+                  reducer: { type: last }
+                  query: { params: [B] }
+        noDataState: NoData
+        execErrState: Error
+        for: 10m
+        labels:
+          severity: warning
+        annotations:
+          summary: "Argo CD repo-server Git fetch failures ({{ $labels.pod }})"
+          description: "Non-zero git fetch failure rate over 5m."
+
+      # --- ArgoCDRedisFailures ---
+      - uid: argocd_redis_failures
+        title: ArgoCDRedisFailures
+        condition: C
+        data:
+          - refId: A
+            datasourceUid: mimir
+            relativeTimeRange: { from: 600, to: 0 }
+            model:
+              expr: sum by(initiator) (rate(argocd_redis_request_total{failed="true"}[5m]))
+              legendFormat: '{{initiator}}'
+              instant: false
+          - refId: B
+            datasourceUid: __expr__
+            model:
+              type: reduce
+              expression: A
+              reducer: last
+          - refId: C
+            datasourceUid: __expr__
+            model:
+              type: threshold
+              expression: B
+              conditions:
+                - evaluator: { type: gt, params: [0] }
+                  operator: { type: and }
+                  reducer: { type: last }
+                  query: { params: [B] }
+        noDataState: NoData
+        execErrState: Error
+        for: 10m
+        labels:
+          severity: warning
+        annotations:
+          summary: "Argo CD Redis failures ({{ $labels.initiator }})"
+          description: "Redis request failures observed by {{ $labels.initiator }}."
+
+      # --- ArgoCDServerKubernetesErrorsHigh ---
+      - uid: argocd_server_k8s_errors_high
+        title: ArgoCDServerKubernetesErrorsHigh
+        condition: C
+        data:
+          - refId: A
+            datasourceUid: mimir
+            relativeTimeRange: { from: 600, to: 0 }
+            model:
+              expr: |
+                (
+                  sum(rate(argocd_kubectl_requests_total{initiator="argocd-server",response_code=~"5.."}[5m]))
+                /
+                  clamp_min(sum(rate(argocd_kubectl_requests_total{initiator="argocd-server"}[5m])), 1)
+                )
+              legendFormat: '5xx_ratio'
+              instant: false
+          - refId: B
+            datasourceUid: __expr__
+            model:
+              type: reduce
+              expression: A
+              reducer: last
+          - refId: C
+            datasourceUid: __expr__
+            model:
+              type: threshold
+              expression: B
+              conditions:
+                - evaluator: { type: gt, params: [0.05] }  # >5%
+                  operator: { type: and }
+                  reducer: { type: last }
+                  query: { params: [B] }
+        noDataState: NoData
+        execErrState: Error
+        for: 10m
+        labels:
+          severity: warning
+        annotations:
+          summary: "Argo CD API server Kubernetes error rate >5%"
+          description: "High 5xx ratio talking to the Kubernetes API."
+
+      # --- ArgoCDClusterConnectionLost ---
+      - uid: argocd_cluster_connection_lost
+        title: ArgoCDClusterConnectionLost
+        condition: C
+        data:
+          - refId: A
+            datasourceUid: mimir
+            relativeTimeRange: { from: 1200, to: 0 }
+            model:
+              expr: argocd_cluster_connection_status == 0
+              legendFormat: '{{name}}'
+              instant: false
+          - refId: B
+            datasourceUid: __expr__
+            model:
+              type: reduce
+              expression: A
+              reducer: last
+          - refId: C
+            datasourceUid: __expr__
+            model:
+              type: threshold
+              expression: B
+              conditions:
+                - evaluator: { type: gt, params: [0] }
+                  operator: { type: and }
+                  reducer: { type: last }
+                  query: { params: [B] }
+        noDataState: NoData
+        execErrState: Error
+        for: 15m
+        labels:
+          severity: critical
+        annotations:
+          summary: "Argo CD lost connection to a managed cluster ({{ $labels.name }})"
+          description: "Cluster connection status is disconnected for 15m."
+
+      # --- ArgoCDCommitServerBacklog (optional) ---
+      - uid: argocd_commit_server_backlog
+        title: ArgoCDCommitServerBacklog
+        condition: C
+        data:
+          - refId: A
+            datasourceUid: mimir
+            relativeTimeRange: { from: 600, to: 0 }
+            model:
+              expr: max by(pod) (argocd_commitserver_commit_pending_request_total)
+              legendFormat: '{{pod}}'
+              instant: false
+          - refId: B
+            datasourceUid: __expr__
+            model:
+              type: reduce
+              expression: A
+              reducer: last
+          - refId: C
+            datasourceUid: __expr__
+            model:
+              type: threshold
+              expression: B
+              conditions:
+                - evaluator: { type: gt, params: [0] }
+                  operator: { type: and }
+                  reducer: { type: last }
+                  query: { params: [B] }
+        noDataState: NoData
+        execErrState: Error
+        for: 10m
+        labels:
+          severity: warning
+        annotations:
+          summary: "Argo CD commit-server backlog ({{ $labels.pod }})"
+          description: "Pending commit requests are queued for >10m."
