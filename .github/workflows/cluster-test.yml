@@ -104,7 +104,7 @@ jobs:
     needs:
       - create-kubrix-installer-image
     runs-on: ${{ vars.KUBRIX_GITHUB_RUNNER || 'ubuntu-latest' }}
-    if: ${{ always() && (needs.create-kubrix-installer-image.result == 'success' || needs.create-kubrix-installer-image.result == 'skipped') }}
+    if: ${{ needs.create-kubrix-installer-image.result == 'success' || needs.create-kubrix-installer-image.result == 'skipped' }}
     permissions: read-all
     strategy:
       fail-fast: false

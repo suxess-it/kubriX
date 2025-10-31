@@ -10,3 +10,6 @@ Then continue with [onbarding new applications](onboarding-apps.md).
 ## Promote apps with Kargo
 
 Follow the [Promoting changes with Kargo](promoting-changes.md) documentation to walk through the use case how to move changes from test to production.
+
+## [Watch on Youtube](https://youtu.be/Ih5wwX-ir00) 🎥
+[![Watch the video](https://img.youtube.com/vi/Ih5wwX-ir00/maxresdefault.jpg)](https://youtu.be/Ih5wwX-ir00)

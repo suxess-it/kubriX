@@ -28,7 +28,9 @@ applications:
   {{ if ne .kubriX.clusterType "kind" -}}
   - name: external-dns
     annotations:
-      argocd.argoproj.io/sync-wave: "-9" 
+      argocd.argoproj.io/sync-wave: "-9"
+    valueFiles:
+      - values-dns-{{ .kubriX.dnsProvider }}.yaml
   {{ end -}}
   
   - name: crossplane
