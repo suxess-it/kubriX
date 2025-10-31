@@ -1,0 +1,10 @@
+    solvers:
+      - dns01:
+          route53:
+            region: eu-central-1
+            accessKeyIDSecretRef:
+              name: route53-credentials-secret
+              key: aws-access-key-id
+            secretAccessKeySecretRef:
+              name: route53-credentials-secret
+              key: aws-secret-access-key
