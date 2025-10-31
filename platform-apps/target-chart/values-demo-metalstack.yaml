@@ -16,7 +16,9 @@ applications:
 
   - name: external-dns
     annotations:
-      argocd.argoproj.io/sync-wave: "-9" 
+      argocd.argoproj.io/sync-wave: "-9"
+    valueFiles:
+      - values-dns-ionos.yaml
 
   - name: crossplane
     annotations:

@@ -1,0 +1,19 @@
+external-dns:
+  provider:
+    name: aws
+
+  env:
+    - name: AWS_SHARED_CREDENTIALS_FILE
+      value: /.aws/credentials
+    - name: AWS_DEFAULT_REGION
+      value: eu-central-1
+
+  extraVolumeMounts:
+    - name: aws-credentials
+      mountPath: /.aws
+      readOnly: true
+
+  extraVolumes:
+    - name: aws-credentials
+      secret:
+        secretName: sx-external-dns
