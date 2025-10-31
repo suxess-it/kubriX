@@ -18,7 +18,7 @@ spec:
     {{- if .Values.dnsSolvers }}
       - dns01:
 {{ toYaml .Values.dnsSolvers | indent 10 }}
-    {{- else -}}
+    {{- else }}
       - http01:
           ingress:
             ingressClassName: nginx
