@@ -73,12 +73,9 @@ spec:
       name: Publish
       action: publish:github
       input:
-        allowedHosts:
-          - github.com
         description: This is ${{`{{ parameters.name }}`}}
         repoUrl: ${{`{{ parameters.repoUrl }}`}}
         repoVisibility: public
-        sourcePath: ./skeleton
         token: ${{`{{ secrets.USER_OAUTH_TOKEN }}`}}
         gitAuthorName: ${{`{{ user.entity.metadata.name }}`}}
         gitAuthorEmail: ${{`{{ user.entity.spec.profile.email }}`}}

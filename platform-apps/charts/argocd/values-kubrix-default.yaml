@@ -103,6 +103,11 @@ argo-cd:
       enabled: true
       serviceMonitor:
         enabled: true
+    env:
+      - name: ARGOCD_K8S_CLIENT_QPS
+        value: "150"
+      - name: ARGOCD_K8S_CLIENT_BURST
+        value: "300"
 
   dex:
     metrics:

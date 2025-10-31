@@ -2,10 +2,6 @@ backstage:
   ingress:
     host: backstage.127-0-0-1.nip.io
   backstage:
-    extraEnvVarsSecrets:
-      - sx-cnp-secret
-      - codespaces-secret
-      - sx-vault-secret
     extraEnvVars:
       - name: NODE_OPTIONS
         value: "--no-node-snapshot"
@@ -34,10 +30,6 @@ backstage:
           frame-src: ['*.nip.io']
         cors:
           origin: https://backstage.127-0-0-1.nip.io
-        database:
-          client: better-sqlite3
-          connection: ':memory:'
-          pluginDivisionMode: ~
 
       proxy:
         endpoints:
@@ -132,6 +124,3 @@ backstage:
 
       kubecost:
         baseUrl: https://kubecost.127-0-0-1.nip.io
-
-cluster:
-  enabled: false
