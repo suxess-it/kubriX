@@ -49,8 +49,26 @@ env:
   KUBRIX_REPO: "https://github.com/${{ github.repository }}"
   
 jobs:
+  changes:
+    runs-on: ubuntu-latest
+    outputs:
+      dockerImageChanges: ${{ steps.filter.outputs.dockerImageChanges }}
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          fetch-depth: 0  # needed so the action can diff properly
+      - id: filter
+        uses: dorny/paths-filter@v3
+        with:
+          # For PRs it compares base..head. For push it compares before..after.
+          filters: |
+            dockerImageChanges:
+              - 'Dockerfile'
+              - 'install-platform.sh'
+
   create-kubrix-installer-image:
-    if: ${{ github.repository == 'suxess-it/kubriX' || github.repository == 'suxess-it/kubriX-prime' }}
+    needs: changes
+    if: ${{ needs.changes.outputs.dockerImageChanges == 'true' && (github.repository == 'suxess-it/kubriX' || github.repository == 'suxess-it/kubriX-prime') }}
     runs-on: ubuntu-latest
     timeout-minutes: 10
 
@@ -60,6 +78,7 @@ jobs:
           fetch-depth: 0
 
       - uses: docker/setup-qemu-action@v3
+        
       - uses: docker/setup-buildx-action@v3
 
       - name: Docker meta
@@ -101,8 +120,7 @@ jobs:
             VCS_REF=${{ steps.ver.outputs.sha_short }}
   
   create-cluster:
-    needs:
-      - create-kubrix-installer-image
+    needs: create-kubrix-installer-image
     runs-on: ${{ vars.KUBRIX_GITHUB_RUNNER || 'ubuntu-latest' }}
     if: ${{ needs.create-kubrix-installer-image.result == 'success' || needs.create-kubrix-installer-image.result == 'skipped' }}
     permissions: read-all
