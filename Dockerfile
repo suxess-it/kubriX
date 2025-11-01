@@ -5,7 +5,6 @@ ARG TARGETARCH
 ENV DEBIAN_FRONTEND=noninteractive
 SHELL ["/bin/bash","-lc"]
 
-
 ARG VERSION=unknown
 ARG VCS_REF=unknown
 
