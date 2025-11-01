@@ -14,7 +14,7 @@ curl -H "Authorization: token ${KUBRIX_REPO_PASSWORD}" \
   -L ${MANIFEST_URL}
 
 echo "checking if image got build in this PR and should be used ..."
-if [[ "${PR_IMAGE}" == "true" ]] ; then
+if [[ -n "${PR_NUMBER:-}" ]]; then
   echo "using kubrix-installer:pr-${PR_NUMBER} image"
   cat install-manifests.yaml \
    | sed 's,image: ghcr.io/suxess-it/kubrix-installer:latest,image: ghcr.io/suxess-it/kubrix-installer:pr-'"${PR_NUMBER}"',g' \
