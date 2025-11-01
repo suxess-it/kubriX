@@ -78,6 +78,7 @@ check_prereqs() {
     check_variable KUBRIX_TSHIRT_SIZE "true" "small"
     check_variable KUBRIX_SECURITY_STRICT "true" "false"
     check_variable KUBRIX_HA_ENABLED "true" "false"
+    check_variable KUBRIX_CERT_MANAGER_DNS_PROVIDER "true" "none"
     check_tool gomplate "gomplate -v"
   fi
 
@@ -146,6 +147,7 @@ cat << EOF > bootstrap/customer-config.yaml
 clusterType: ${KUBRIX_CLUSTER_TYPE}
 cloudProvider: ${KUBRIX_CLOUD_PROVIDER}
 dnsProvider: ${KUBRIX_DNS_PROVIDER}
+certManagerDnsProvider: ${KUBRIX_CERT_MANAGER_DNS_PROVIDER}
 tShirtSize: ${KUBRIX_TSHIRT_SIZE}
 securityStrict: ${KUBRIX_SECURITY_STRICT}
 haEnabled: ${KUBRIX_HA_ENABLED}

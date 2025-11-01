@@ -44,10 +44,22 @@ With this step-by-step guide kubriX with its default demo stack gets deployed on
     ```
     export KUBRIX_DNS_PROVIDER="ionos"
     ```
+    
+6. optional: set the DNS provider, which cert-manager will use for DNS-01 ACME challenge.
 
-6. optional: set the domain, under which kubriX should be available.
+    if you don't set anything, HTTP-01 challenge will be used instead of DNS-01 challenge.
+    You then also need to set your DNS provider credentials in step 11.
 
-    This domain will be used by external-dns. Your provider in step 4 needs to be able to manage this domain with the credentials set in step 8.
+    default: none  
+    supported: aws
+
+    ```
+    export KUBRIX_CERT_MANAGER_DNS_PROVIDER="aws"
+    ```
+
+7. optional: set the domain, under which kubriX should be available.
+
+    This domain will be used by external-dns. Your provider in step 4 needs to be able to manage this domain with the credentials set in step 10.
 
     ```
     export KUBRIX_DOMAIN="demo-johnny.kubrix.cloud"
@@ -55,7 +67,7 @@ With this step-by-step guide kubriX with its default demo stack gets deployed on
 
     if this variable is not set, a subdomain of "kubrix.cloud" is randomly created (for example "demo-2faf23d.kubrix.cloud")
 
-7. optional: set the kubrix target type which should be used
+8. optional: set the kubrix target type which should be used
 
     ```
     export KUBRIX_TARGET_TYPE="kubrix-oss-stack"
@@ -63,9 +75,9 @@ With this step-by-step guide kubriX with its default demo stack gets deployed on
 
     if this variable is not set, "kubrix-oss-stack" is used.
 
-8. create a new Kubernetes cluster and be sure that kubectl is connected to it. check with `kubectl cluster-info`
+9. create a new Kubernetes cluster and be sure that kubectl is connected to it. check with `kubectl cluster-info`
 
-9. provide external-dns secrets depending on your DNS provider
+10. provide external-dns secrets depending on your DNS provider
 
     __ionos__
 
@@ -96,7 +108,8 @@ With this step-by-step guide kubriX with its default demo stack gets deployed on
 
     ```
     kubectl create ns external-dns
-    kubectl create secret generic external-dns-webhook -n external-dns --from-literal=AUTH_TOKEN='your-auth-token'
+    kubectl create secret generic external-dns-webhook -n external-dns \
+    --from-literal=AUTH_TOKEN='your-auth-token' \
     --from-literal=PROJECT_ID='your-project-id'
     ```
 
@@ -104,13 +117,25 @@ With this step-by-step guide kubriX with its default demo stack gets deployed on
 
     ```
     kubectl create ns external-dns
-    kubectl create secret generic cloudflare-api-key -n external-dns --from-literal=apiKey='YOUR_API_TOKEN'
+    kubectl create secret generic cloudflare-api-key -n external-dns \
+    --from-literal=apiKey='YOUR_API_TOKEN'
     ```
 
-10. If you need to prepare something else on your cluster before kubriX gets installed, do this now.
+11. optional: provide cert-manager secrets for your ACME dns-challenge depending on your DNS provider
+
+    __aws__
+
+    ```
+    kubectl create ns cert-manager
+    kubectl create secret generic route53-credentials-secret -n cert-manager \
+    --from-literal=aws-access-key-id='your-access-key-id' \
+    --from-literal=aws-secret-access-key='your-secret-access-key'
+    ```
+
+12. If you need to prepare something else on your cluster before kubriX gets installed, do this now.
 
 
-11. Create a `kubrix-install` Namespace and a Secret `kubrix-installer-secrets` to configure the installer.
+13. Create a `kubrix-install` Namespace and a Secret `kubrix-installer-secrets` to configure the installer.
 
     ```
     kubectl create ns kubrix-install
@@ -120,12 +145,13 @@ With this step-by-step guide kubriX with its default demo stack gets deployed on
       --from-literal KUBRIX_GIT_USER_NAME=${KUBRIX_GIT_USER_NAME} \
       --from-literal KUBRIX_DOMAIN=${KUBRIX_DOMAIN} \
       --from-literal KUBRIX_DNS_PROVIDER=${KUBRIX_DNS_PROVIDER} \
+      --from-literal KUBRIX_CERT_MANAGER_DNS_PROVIDER=${KUBRIX_CERT_MANAGER_DNS_PROVIDER} \
       --from-literal KUBRIX_TARGET_TYPE=${KUBRIX_TARGET_TYPE} \
       --from-literal KUBRIX_BOOTSTRAP=true \
       --from-literal KUBRIX_INSTALLER=true
     ```
 
-12. Then apply the installer manifests:
+14. Then apply the installer manifests:
 
     ```
     kubectl apply -f https://raw.githubusercontent.com/suxess-it/kubriX/refs/heads/main/install-manifests.yaml
