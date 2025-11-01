@@ -132,7 +132,9 @@ jobs:
             VCS_REF=${{ steps.ver.outputs.sha_short }}
   
   create-cluster:
-    needs: create-kubrix-installer-image
+    needs: 
+      - create-kubrix-installer-image
+      - changes
     runs-on: ${{ vars.KUBRIX_GITHUB_RUNNER || 'ubuntu-latest' }}
     if: ${{ needs.create-kubrix-installer-image.result == 'success' || needs.create-kubrix-installer-image.result == 'skipped' }}
     permissions: read-all
