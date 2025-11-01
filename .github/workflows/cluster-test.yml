@@ -70,7 +70,7 @@ jobs:
     # we check in each step with 
     # if: ${{ needs.changes.outputs.dockerImageChanges == 'true' }}
     # because checking it at job level skips the whole job
-    # and then prevents cluster-tests from running
+    # and then prevents create-cluster job from running
     needs: changes
     if: ${{ github.repository == 'suxess-it/kubriX' || github.repository == 'suxess-it/kubriX-prime' }}
     runs-on: ubuntu-latest
