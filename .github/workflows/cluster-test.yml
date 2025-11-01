@@ -68,7 +68,7 @@ jobs:
 
   create-kubrix-installer-image:
     needs: changes
-    if: ${{ needs.changes.outputs.dockerImageChanges == 'true' && (github.repository == 'suxess-it/kubriX' || github.repository == 'suxess-it/kubriX-prime') }}
+    if: ${{ github.repository == 'suxess-it/kubriX' || github.repository == 'suxess-it/kubriX-prime' }}
     runs-on: ubuntu-latest
     timeout-minutes: 10
 
@@ -108,6 +108,7 @@ jobs:
           echo "sha_short=$(git rev-parse --short=12 HEAD)" >> $GITHUB_OUTPUT
      
       - name: Build and push docker
+        if: ${{ needs.changes.outputs.dockerImageChanges == 'true' }}
         uses: docker/build-push-action@v6
         with:
           context: .
