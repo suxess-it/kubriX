@@ -2,8 +2,6 @@ ingress-nginx:
 # https://github.com/kubernetes/ingress-nginx/blob/main/hack/manifest-templates/provider/kind/values.yaml
 # Kind - https://kind.sigs.k8s.io/docs/user/ingress/
   controller:
-    extraArgs:
-      enable-ssl-passthrough: ""
     updateStrategy:
       type: RollingUpdate
       rollingUpdate:
@@ -27,3 +25,4 @@ ingress-nginx:
       enabled: false
     extraArgs:
       publish-status-address: localhost
+      enable-ssl-passthrough: ""
