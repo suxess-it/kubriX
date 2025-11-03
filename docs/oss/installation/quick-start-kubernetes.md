@@ -2,6 +2,8 @@
 
 With this step-by-step guide kubriX with its default demo stack gets deployed on your preferred Kubernetes cluster.
 
+> ⚠️ **kubriX-prime features**: In our [kubriX-prime quick-start-kubernetes docs](../../prime/installation/quick-start-kubernetes.md) you will find additional features like DNS01 challenge.
+
 ## Prerequisites
 
 * check [Prerequisites](installation.md#-prerequisites)
