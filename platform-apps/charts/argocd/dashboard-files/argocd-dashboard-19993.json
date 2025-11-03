@@ -203,7 +203,7 @@
           },
           "expr": "sum(\n  argocd_app_info{\n    cluster=\"$cluster\",\nnamespace=~'$namespace',\njob=~'$job',\ndest_server=~'$kubernetes_cluster',\nproject=~'$project',\n\n  }\n) by (health_status)\n",
           "instant": true,
-          "legendFormat": "{{ health_status }}"
+          "legendFormat": "{{`{{ health_status }}`}}"
         }
       ],
       "title": "Health Status",
@@ -295,7 +295,7 @@
           },
           "expr": "sum(\n  argocd_app_info{\n    cluster=\"$cluster\",\nnamespace=~'$namespace',\njob=~'$job',\ndest_server=~'$kubernetes_cluster',\nproject=~'$project',\n\n  }\n) by (sync_status)\n",
           "instant": true,
-          "legendFormat": "{{ sync_status }}"
+          "legendFormat": "{{`{{ sync_status }}`}}"
         }
       ],
       "title": "Sync Status",
@@ -449,7 +449,7 @@
             "uid": "$datasource"
           },
           "expr": "sum(\n  round(\n    increase(\n      argocd_app_sync_total{\n        cluster=\"$cluster\",\nnamespace=~'$namespace',\njob=~'$job',\ndest_server=~'$kubernetes_cluster',\nproject=~'$project',\n\n      }[$__rate_interval]\n    )\n  )\n) by (job, dest_server, project, name)\n",
-          "legendFormat": "{{ project }}/{{ name }}"
+          "legendFormat": "{{`{{ project }}`}}/{{`{{ name }}`}}"
         }
       ],
       "title": "Sync Activity",
@@ -501,7 +501,7 @@
             "uid": "$datasource"
           },
           "expr": "sum(\n  round(\n    increase(\n      argocd_app_sync_total{\n        cluster=\"$cluster\",\nnamespace=~'$namespace',\njob=~'$job',\ndest_server=~'$kubernetes_cluster',\nproject=~'$project',\n\n        phase=~\"Error|Failed\"\n      }[$__rate_interval]\n    )\n  )\n) by (job, dest_server, project, name, phase)\n",
-          "legendFormat": "{{ project }}/{{ name }} - {{ phase }}"
+          "legendFormat": "{{`{{ project }}`}}/{{`{{ name }}`}} - {{`{{ phase }}`}}"
         }
       ],
       "title": "Sync Failures",
@@ -563,7 +563,7 @@
                 "uid": "$datasource"
               },
               "expr": "sum(\n  round(\n    increase(\n      argocd_app_reconcile_count{\n        cluster=\"$cluster\",\n        namespace=~'$namespace',\n        job=~'$job',\n        dest_server=~'$kubernetes_cluster'\n      }[$__rate_interval]\n    )\n  )\n) by (namespace, job)\n",
-              "legendFormat": "{{ namespace }}/{{ job }}"
+              "legendFormat": "{{`{{ namespace }}`}}/{{`{{ job }}`}}"
             }
           ],
           "title": "Recociliation Activity",
@@ -595,7 +595,7 @@
               },
               "expr": "sum(\n  increase(\n    argocd_app_reconcile_bucket{\n      cluster=\"$cluster\",\n      namespace=~'$namespace',\n      job=~'$job',\n      dest_server=~'$kubernetes_cluster'\n    }[$__rate_interval]\n  )\n) by (le)\n",
               "format": "heatmap",
-              "legendFormat": "{{ le }}"
+              "legendFormat": "{{`{{ le }}`}}"
             }
           ],
           "title": "Reconciliation Performance",
@@ -647,7 +647,7 @@
                 "uid": "$datasource"
               },
               "expr": "sum(\n  round(\n    increase(\n      argocd_app_k8s_request_total{\n        cluster=\"$cluster\",\n        namespace=~'$namespace',\n        job=~'$job',\n        project=~'$project'\n      }[$__rate_interval]\n    )\n  )\n) by (job, verb, resource_kind)\n",
-              "legendFormat": "{{ verb }} {{ resource_kind }}"
+              "legendFormat": "{{`{{ verb }}`}} {{`{{ resource_kind }}`}}"
             }
           ],
           "title": "K8s API Activity",
@@ -699,7 +699,7 @@
                 "uid": "$datasource"
               },
               "expr": "sum(\n  argocd_kubectl_exec_pending{\n    cluster=\"$cluster\",\n    namespace=~'$namespace',\n    job=~'$job'\n  }\n) by (job, command)\n",
-              "legendFormat": "{{ command }}"
+              "legendFormat": "{{`{{  command }}`}}"
             }
           ],
           "title": "Pending Kubectl Runs",
@@ -765,7 +765,7 @@
                 "uid": "$datasource"
               },
               "expr": "sum(\n  argocd_cluster_api_resource_objects{\n    cluster=\"$cluster\",\n    namespace=~'$namespace',\n    job=~'$job',\n    server=~'$kubernetes_cluster'\n  }\n) by (namespace, job, server)\n",
-              "legendFormat": "{{ server }}"
+              "legendFormat": "{{`{{ server }}`}}"
             }
           ],
           "title": "Resource Objects",
@@ -817,7 +817,7 @@
                 "uid": "$datasource"
               },
               "expr": "sum(\n  argocd_cluster_api_resources{\n    cluster=\"$cluster\",\n    namespace=~'$namespace',\n    job=~'$job',\n    server=~'$kubernetes_cluster'\n  }\n) by (namespace, job, server)\n",
-              "legendFormat": "{{ server }}"
+              "legendFormat": "{{`{{ server }}`}}"
             }
           ],
           "title": "API Resources",
@@ -869,7 +869,7 @@
                 "uid": "$datasource"
               },
               "expr": "sum(\n  increase(\n    argocd_cluster_events_total{\n      cluster=\"$cluster\",\n      namespace=~'$namespace',\n      job=~'$job',\n      server=~'$kubernetes_cluster'\n    }[$__rate_interval]\n  )\n) by (namespace, job, server)\n",
-              "legendFormat": "{{ server }}"
+              "legendFormat": "{{`{{ server }}`}}"
             }
           ],
           "title": "Cluster Events",
@@ -935,7 +935,7 @@
                 "uid": "$datasource"
               },
               "expr": "sum(\n  increase(\n    argocd_git_request_total{\n      cluster=\"$cluster\",\n      namespace=~'$namespace',\n      job=~'$job',\n      request_type=\"ls-remote\"\n    }[$__rate_interval]\n  )\n) by (namespace, job, repo)\n",
-              "legendFormat": "{{ namespace }} - {{ repo }}"
+              "legendFormat": "{{`{{ namespace }}`}} - {{`{{ repo }}`}}"
             }
           ],
           "title": "Git Requests (ls-remote)",
@@ -987,7 +987,7 @@
                 "uid": "$datasource"
               },
               "expr": "sum(\n  increase(\n    argocd_git_request_total{\n      cluster=\"$cluster\",\n      namespace=~'$namespace',\n      job=~'$job',\n      request_type=\"fetch\"\n    }[$__rate_interval]\n  )\n) by (namespace, job, repo)\n",
-              "legendFormat": "{{ namespace }} - {{ repo }}"
+              "legendFormat": "{{`{{ namespace }}`}} - {{`{{ repo }}`}}"
             }
           ],
           "title": "Git Requests (checkout)",
@@ -1019,7 +1019,7 @@
               },
               "expr": "sum(\n  increase(\n    argocd_git_request_duration_seconds_bucket{\n      cluster=\"$cluster\",\n      namespace=~'$namespace',\n      job=~'$job',\n      request_type=\"fetch\"\n    }[$__rate_interval]\n  )\n) by (le)\n",
               "format": "heatmap",
-              "legendFormat": "{{ le }}"
+              "legendFormat": "{{`{{ le }}`}}"
             }
           ],
           "title": "Git Fetch Performance",
@@ -1051,7 +1051,7 @@
               },
               "expr": "sum(\n  increase(\n    argocd_git_request_duration_seconds_bucket{\n      cluster=\"$cluster\",\n      namespace=~'$namespace',\n      job=~'$job',\n      request_type=\"ls-remote\"\n    }[$__rate_interval]\n  )\n) by (le)\n",
               "format": "heatmap",
-              "legendFormat": "{{ le }}"
+              "legendFormat": "{{`{{ le }}`}}"
             }
           ],
           "title": "Git Ls-remote Performance",

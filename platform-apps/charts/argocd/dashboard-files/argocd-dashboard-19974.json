@@ -72,7 +72,7 @@
             "uid": "$datasource"
           },
           "expr": "sum(\n  argocd_app_info{\n    cluster=\"$cluster\",\nnamespace=~'$namespace',\njob=~'$job',\ndest_server=~'$kubernetes_cluster',\nproject=~'$project',\n\n  }\n) by (job, project, health_status)\n",
-          "legendFormat": "{{ project }} - {{ health_status }}"
+          "legendFormat": "{{`{{ project }}`}} - {{`{{ health_status }}`}}"
         }
       ],
       "title": "Application Health Status",
@@ -123,7 +123,7 @@
             "uid": "$datasource"
           },
           "expr": "sum(\n  argocd_app_info{\n    cluster=\"$cluster\",\nnamespace=~'$namespace',\njob=~'$job',\ndest_server=~'$kubernetes_cluster',\nproject=~'$project',\n\n  }\n) by (job, project, sync_status)\n",
-          "legendFormat": "{{ project }} - {{ sync_status }}"
+          "legendFormat": "{{`{{ project }}`}} - {{`{{ sync_status }}`}}"
         }
       ],
       "title": "Application Sync Status",
@@ -174,7 +174,7 @@
             "uid": "$datasource"
           },
           "expr": "sum(\n  round(\n    increase(\n      argocd_app_sync_total{\n        cluster=\"$cluster\",\nnamespace=~'$namespace',\njob=~'$job',\ndest_server=~'$kubernetes_cluster',\nproject=~'$project',\n\n      }[$__rate_interval]\n    )\n  )\n) by (job, project, phase)\n",
-          "legendFormat": "{{ project }} - {{ phase }}"
+          "legendFormat": "{{`{{ project }}`}} - {{`{{ phase }}`}}"
         }
       ],
       "title": "Application Syncs",
@@ -225,7 +225,7 @@
             "uid": "$datasource"
           },
           "expr": "sum(\n  argocd_app_info{\n    cluster=\"$cluster\",\nnamespace=~'$namespace',\njob=~'$job',\ndest_server=~'$kubernetes_cluster',\nproject=~'$project',\n\n  }\n) by (job, project, autosync_enabled)\n",
-          "legendFormat": "{{ project }} - {{ autosync_enabled }}"
+          "legendFormat": "{{`{{ project }}`}} - {{`{{ autosync_enabled }}`}}"
         }
       ],
       "title": "Application Auto Sync Enabled",
@@ -265,7 +265,7 @@
                   {
                     "targetBlank": true,
                     "title": "Go To Application",
-                    "url": "https://argocd.tietoevry.platform-engineer.cloud/applications/${__data.fields.Namespace}/${__value.raw}"
+                    "url": "https://{{ index .Values "argo-cd" "global" "domain" }}/applications/${__data.fields.Namespace}/${__value.raw}"
                   }
                 ]
               }
@@ -372,7 +372,7 @@
                   {
                     "targetBlank": true,
                     "title": "Go To Application",
-                    "url": "https://argocd.tietoevry.platform-engineer.cloud/applications/${__data.fields.Namespace}/${__value.raw}"
+                    "url": "https://{{ index .Values "argo-cd" "global" "domain" }}/applications/${__data.fields.Namespace}/${__value.raw}"
                   }
                 ]
               }
@@ -479,7 +479,7 @@
                   {
                     "targetBlank": true,
                     "title": "Go To Application",
-                    "url": "https://argocd.tietoevry.platform-engineer.cloud/applications/${__data.fields.Namespace}/${__value.raw}"
+                    "url": "https://{{ index .Values "argo-cd" "global" "domain" }}/applications/${__data.fields.Namespace}/${__value.raw}"
                   }
                 ]
               }
@@ -586,7 +586,7 @@
                   {
                     "targetBlank": true,
                     "title": "Go To Application",
-                    "url": "https://argocd.tietoevry.platform-engineer.cloud/applications/${__data.fields.Namespace}/${__value.raw}"
+                    "url": "https://{{ index .Values "argo-cd" "global" "domain" }}/applications/${__data.fields.Namespace}/${__value.raw}"
                   }
                 ]
               }
@@ -728,7 +728,7 @@
             "uid": "$datasource"
           },
           "expr": "sum(\n  argocd_app_info{\n    cluster=\"$cluster\",\nnamespace=~'$namespace',\njob=~'$job',\ndest_server=~'$kubernetes_cluster',\nproject=~'$project',\n\n    name=~\"$application\",\n  }\n) by (namespace, job, dest_server, project, name, health_status)\n",
-          "legendFormat": "{{ project }}/{{ name }} - {{ health_status }}"
+          "legendFormat": "{{`{{ project }}`}}/{{`{{ name }}`}} - {{`{{ health_status }}`}}"
         }
       ],
       "title": "Application Health Status",
@@ -778,7 +778,7 @@
             "uid": "$datasource"
           },
           "expr": "sum(\n  argocd_app_info{\n    cluster=\"$cluster\",\nnamespace=~'$namespace',\njob=~'$job',\ndest_server=~'$kubernetes_cluster',\nproject=~'$project',\n\n    name=~\"$application\",\n  }\n) by (namespace, job, dest_server, project, name, sync_status)\n",
-          "legendFormat": "{{ project }}/{{ name }} - {{ sync_status }}"
+          "legendFormat": "{{`{{ project }}`}}/{{`{{ name }}`}} - {{`{{ sync_status }}`}}"
         }
       ],
       "title": "Application Sync Status",
@@ -828,7 +828,7 @@
             "uid": "$datasource"
           },
           "expr": "sum(\n  round(\n    increase(\n      argocd_app_sync_total{\n        cluster=\"$cluster\",\nnamespace=~'$namespace',\njob=~'$job',\ndest_server=~'$kubernetes_cluster',\nproject=~'$project',\n\n        name=~\"$application\",\n      }[$__rate_interval]\n    )\n  )\n) by (namespace, job, dest_server, project, name, phase)\n",
-          "legendFormat": "{{ project }}/{{ name }} - {{ phase }}"
+          "legendFormat": "{{`{{ project }}`}}/{{`{{ name }}`}} - {{`{{ phase }}`}}"
         }
       ],
       "title": "Application Sync Result",
