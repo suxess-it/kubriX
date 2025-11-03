@@ -622,10 +622,6 @@ if [[ "${KUBRIX_CLUSTER_TYPE}" == "kind" ]] ; then
   kubectl rollout restart deployment coredns -n kube-system
   rm coredns-configmap.yaml
 
-  # and install nginx ingress-controller
-  echo "installing nginx ingress controller in KinD"
-  kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/main/deploy/static/provider/kind/deploy.yaml
-
   # create mkcert-issuer root certificate
   mkcert -install
   kubectl get ns cert-manager >/dev/null 2>&1 || kubectl create ns cert-manager
@@ -639,13 +635,6 @@ if [[ "${KUBRIX_CLUSTER_TYPE}" == "kind" ]] ; then
   echo "create a root ca and patch ingress-nginx-controller for vault oidc"
   kubectl get ns vault >/dev/null 2>&1 || kubectl create ns vault
   kubectl create secret generic ca-cert --from-file=ca.crt="$(mkcert -CAROOT)"/rootCA.pem -n vault --dry-run=client -o yaml | kubectl apply -f -
-  kubectl patch deployment ingress-nginx-controller -n ingress-nginx --type='json' -p='[
-  {
-      "op": "add",
-      "path": "/spec/template/spec/containers/0/args/-",
-      "value": "--enable-ssl-passthrough"
-  },
-  ]'
 
   # testkube should also trust every cert signed with our mkcert ca
   kubectl get ns testkube >/dev/null 2>&1 || kubectl create ns testkube
@@ -656,14 +645,6 @@ if [[ "${KUBRIX_CLUSTER_TYPE}" == "kind" ]] ; then
 
   # curl should trust all websites with the mkcert cert
   export CURL_CA_BUNDLE="$(mkcert -CAROOT)"/rootCA-key.pem
-
-  # wait until ingress-nginx-controller is ready
-  echo "wait until ingress-nginx-controller is running ..."
-  sleep 10
-  kubectl wait --namespace ingress-nginx \
-    --for=condition=ready pod \
-    --selector=app.kubernetes.io/component=controller \
-    --timeout=90s
 
   echo "installing metrics-server in KinD"
   helm repo add metrics-server https://kubernetes-sigs.github.io/metrics-server/
