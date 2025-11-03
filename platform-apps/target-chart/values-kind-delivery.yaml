@@ -4,6 +4,9 @@ default:
   - values-cluster-kind.yaml
 
 applications:
+  - name: ingress-nginx
+    annotations:
+      argocd.argoproj.io/sync-wave: "-11"
 
   - name: cert-manager
     annotations:
