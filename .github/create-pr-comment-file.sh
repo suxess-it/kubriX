@@ -2,6 +2,10 @@
 
 set -e
 
+testCase=$1
+valuesFilesList=$2
+
+
 mkdir -p out/pr
 mkdir -p out/target
 mkdir -p out-default-values/pr
@@ -12,11 +16,18 @@ for env in pr target; do
   for chart in $( ls -d */ | sed 's#/##' ); do
     echo ${chart}
     helm dependency update ${chart}
-    for value in $( find ${chart} -type f -name "values-*.yaml" ); do
-      valuefile=$( basename ${value} )
-      mkdir -p ../../../out/${env}/${chart}/${valuefile}
-      helm template  --include-crds ${chart} -f ${value} --output-dir ../../../out/${env}/${chart}/${valuefile}
+    # with different aspect specific values we need to render the charts with a specific set of values files, not with every file by itself.
+    #   since we already install the charts in the kind github actions with the values "values-kubrix-default.yaml, values-cluster-kind.yaml"
+    #   we will use also this set for rendering the chart. In the future this might change, to also test the other aspect specific values.
+    valuesFiles=( )
+    IFS=',' read -ra files <<< "${valuesFilesList}"
+    for valuesFile in "${files[@]}"; do
+        [[ -f ${chart}/${valuesFile} ]] && valuesFiles+=( "-f ${chart}/${valuesFile}" )
+        echo "$item"
     done
+    mkdir -p ../../../out/${env}/${chart}/${testCase}
+    echo "run command: 'helm template  --include-crds ${chart} "${valuesFiles[@]}" --output-dir ../../../out/${env}/${chart}/${testCase}'"
+    helm template  --include-crds ${chart} ${valuesFiles[@]} --output-dir ../../../out/${env}/${chart}/${testCase}
     # get default values of subcharts
     # to compare between different subchart versions we need to write to values files without version names
     while IFS= read -r line; do
@@ -39,7 +50,7 @@ comment_files_csplit=$( find comment-files -type f | sort )
 MAX_SIZE=131072
 
 # Initialize output file counter and base name
-OUTPUT_BASE_NAME="combined_file"
+OUTPUT_BASE_NAME="combined_file_${testCase}"
 output_file_count=1
 OUTPUT_FILE="${OUTPUT_BASE_NAME}_${output_file_count}.txt"
 
@@ -102,13 +113,11 @@ if ls combined_file* 1> /dev/null 2>&1 ; then
   done
 
   # output for matrix build
-  echo "matrix={\"comment-files\": $( jq -n '$ARGS.positional' --args $( ls comment-files/comment-result-* ) | tr "\n" " ")}" 
-  echo "matrix={\"comment-files\": $( jq -n '$ARGS.positional' --args $( ls comment-files/comment-result-* ) | tr "\n" " ")}" >> $GITHUB_OUTPUT
+  echo "matrix={\"files\": $( jq -n '$ARGS.positional' --args $( ls comment-files/comment-result-* ) | tr "\n" " ")}" 
 else
   echo "no changes found"
   # outpout empty matrix so matrix build is ignored
-  echo "matrix={\"comment-files\": []}"
-  echo "matrix={\"comment-files\": []}" >> $GITHUB_OUTPUT
+  echo "matrix={\"files\": []}"
 fi
 
 

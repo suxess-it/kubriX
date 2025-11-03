@@ -67,7 +67,7 @@ In kubriX you can normally onboard new teams and onboard new applications via Ba
 
 ### Onboarding new teams via the kubriX platform gitops-Repo
 
-After kubriX was installed sucessfully in Codespaces, edit this file in your Codespaces VSCode editor: `platform-apps/charts/team-onboarding/values-k3d.yaml`
+After kubriX was installed sucessfully in Codespaces, edit this file in your Codespaces VSCode editor: `platform-apps/charts/team-onboarding/values-kind.yaml`
 
 ![image](https://github.com/user-attachments/assets/4c5c6fa5-967c-4c8c-a267-e0a5dc577006)
 

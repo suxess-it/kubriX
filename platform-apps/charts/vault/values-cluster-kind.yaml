@@ -1,0 +1,93 @@
+vault:
+  server:
+    ingress:
+      hosts:
+        - host: vault.127-0-0-1.nip.io
+          paths: []
+      tls: 
+        - secretName: vault-server-tls
+          hosts:
+            - vault.127-0-0-1.nip.io
+    extraInitContainers:
+      - name: utility-downloader
+        image: alpine/curl:latest
+        command: 
+        - /bin/sh
+        - -c
+        - | 
+            cd /usr/local/libexec/vault
+            curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
+            chmod +x kubectl
+            curl -L -o jq https://github.com/stedolan/jq/releases/download/jq-1.8.1/jq-linux64
+            chmod +x jq
+        volumeMounts:
+          - name: plugins
+            mountPath: /usr/local/libexec/vault
+        securityContext:
+          allowPrivilegeEscalation: false
+          capabilities:
+            drop:
+            - ALL
+          privileged: false
+          runAsNonRoot: true
+      # only for kind cluster with mkcert root ca
+      - name: combine-system-and-keycloak-ca
+        image: hashicorp/vault:1.20.3              # same base as server to get the original ca-certificates.crt
+        command: ["/bin/sh","-c"]
+        args:
+          - |
+            set -euo pipefail
+            # Start with the system bundle from the base image
+            cat /etc/ssl/certs/ca-certificates.crt > /vault/kind-bundle-ca/combined-bundle.crt
+            # Append your Keycloak CA(s) if present
+            if ls /keycloak-ca/*.crt >/dev/null 2>&1; then
+              cat /keycloak-ca/*.crt >> /vault/kind-bundle-ca/combined-bundle.crt
+            fi
+        volumeMounts:
+          - name: ca-bundle
+            mountPath: /vault/kind-bundle-ca
+          - name: keycloak-ca
+            mountPath: /keycloak-ca
+            readOnly: true
+        securityContext:
+          allowPrivilegeEscalation: false
+          capabilities:
+            drop:
+            - ALL
+          privileged: false
+          runAsNonRoot: true
+    extraEnvironmentVars:
+      # only for kind cluster with mkcert root ca
+      SSL_CERT_FILE: /vault/kind-bundle-ca/combined-bundle.crt
+      VAULT_CACERT: /vault/userconfig/vault-ca/ca.crt
+    volumes:
+      - name: plugins
+        emptyDir: {}
+      - name: vault-root-token
+        secret:
+          secretName: vault-init
+          optional: true
+      # only for kind cluster with mkcert root ca
+      - name: vault-ca-cert
+        secret:
+          defaultMode: 420
+          secretName: ca-cert
+      - name: keycloak-ca
+        secret:
+          defaultMode: 420
+          secretName: ca-cert
+      - name: ca-bundle
+        emptyDir: {}
+    volumeMounts:
+      - mountPath: /usr/local/libexec/vault
+        name: plugins
+        readOnly: false 
+      - mountPath: /vault/userconfig/vault-ca
+        name: vault-ca-cert
+        readOnly: true
+      # only for kind cluster with mkcert root ca
+      - name: keycloak-ca
+        mountPath: /keycloak-ca
+        readOnly: true
+      - name: ca-bundle
+        mountPath: /vault/kind-bundle-ca

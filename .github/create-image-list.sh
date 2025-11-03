@@ -17,9 +17,13 @@ for chart in $( ls -d */ | sed 's#/##' ); do
   echo "${chart}"
   echo "## ${chart}" >> ../../image-list/image-list.md
   helm dependency update ${chart} 1> /dev/null 2>&1
-  for value in $( find ${chart} -type f -name "values-*.yaml" ); do
-    helm images get ${chart} -f ${value} --log-level error --kind "Deployment,StatefulSet,DaemonSet,CronJob,Job,ReplicaSet,Pod,Alertmanager,Prometheus,ThanosRuler,Grafana,Thanos,Receiver"
-  done | sort -u | sed 's/^/* /' >> ../../image-list/image-list.md
+  # with different aspect specific values we need to render the charts with a specific set of values files, not with every file by itself.
+  #   since we already install the charts in the kind github actions with the values "values-kubrix-default.yaml, values-cluster-kind.yaml"
+  #   we will use also this set for rendering the chart. In the future this might change, to also test the other aspect specific values.
+  valuesFiles=( )
+  [[ -f ${chart}/values-kubrix-default.yaml ]] && valuesFiles+=( "-f ${chart}/values-kubrix-default.yaml" )
+  [[ -f ${chart}/values-cluster-kind.yaml ]] && valuesFiles+=( "-f ${chart}/values-cluster-kind.yaml" )
+  helm images get ${chart} ${valuesFiles[@]} --log-level error --kind "Deployment,StatefulSet,DaemonSet,CronJob,Job,ReplicaSet,Pod,Alertmanager,Prometheus,ThanosRuler,Grafana,Thanos,Receiver" | sort -u | sed 's/^/* /' >> ../../image-list/image-list.md
 done
 
 echo "create the images json"
@@ -28,9 +32,14 @@ for chart in $( ls -d */ | sed 's#/##' ); do
   echo "${chart}"
   helm dependency update ${chart} 1> /dev/null 2>&1
   for image in $(
-    for value in $( find ${chart} -type f -name "values-*.yaml" ); do
-      helm images get ${chart} -f ${value} --log-level error --kind "Deployment,StatefulSet,DaemonSet,CronJob,Job,ReplicaSet,Pod,Alertmanager,Prometheus,ThanosRuler,Grafana,Thanos,Receiver"
-    done | sort -u ); do
+    # with different aspect specific values we need to render the charts with a specific set of values files, not with every file by itself.
+    #   since we already install the charts in the kind github actions with the values "values-kubrix-default.yaml, values-cluster-kind.yaml"
+    #   we will use also this set for rendering the chart. In the future this might change, to also test the other aspect specific values.
+    valuesFiles=( )
+    [[ -f ${chart}/values-kubrix-default.yaml ]] && valuesFiles+=( "-f ${chart}/values-kubrix-default.yaml" )
+    [[ -f ${chart}/values-cluster-kind.yaml ]] && valuesFiles+=( "-f ${chart}/values-cluster-kind.yaml" )
+    helm images get ${chart} ${valuesFiles[@]} --log-level error --kind "Deployment,StatefulSet,DaemonSet,CronJob,Job,ReplicaSet,Pod,Alertmanager,Prometheus,ThanosRuler,Grafana,Thanos,Receiver" \
+    | sort -u ); do
     id=$( echo -n "${chart}_$( echo ${image} | awk -F/ '{print $NF}' | sed 's/:/_/g' )" )
     echo "{\"chart\": \"${chart}\", \"image\": \"${image}\", \"id\": \"${id}\"}" >> ../../image-list/image-list-temp.json
   done

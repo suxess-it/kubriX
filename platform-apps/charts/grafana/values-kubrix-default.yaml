@@ -1,0 +1,87 @@
+kubernetesModernDashboards:
+  enabled: true
+
+cardinalityDashboards:
+  enabled: true
+
+kubernetesAlerts:
+  enabled: true
+
+  platformTeamContactPoint:
+    receivers:
+      - uid: platform-team-default
+        type: teams
+        settings:
+          url: https://myteams-url.com
+        disableResolveMessage: false
+
+grafana:
+  admin:
+    existingSecret: "grafana-admin-secret"
+    userKey: userKey
+    passwordKey: passwordKey
+  # set cookies for backstage plugin integration
+  grafana.ini:
+    server:
+      root_url: ~
+    security:
+      allow_embedding: 'true'
+      cookie_samesite: none
+      cookie_secure: 'true'
+  ingress:
+    ## If true, Grafana Ingress will be created
+    ##
+    enabled: true
+    ingressClassName: nginx
+    annotations:
+      external-dns.alpha.kubernetes.io/ttl: "60"
+      cert-manager.io/cluster-issuer: default-issuer
+    hosts: []
+    tls: []
+
+  # # To make Grafana persistent (Using Statefulset)
+  # #
+  persistence:
+    enabled: true
+    type: sts
+    accessModes:
+      - ReadWriteOnce
+    size: 1Gi
+    finalizers:
+      - kubernetes.io/pvc-protection
+
+  sidecar:
+    dashboards:
+      enabled: true
+      label: grafana_dashboard
+      folderAnnotation: grafana_folder
+      labelValue: "1"
+      searchNamespace: ALL
+      multicluster:
+        global:
+          enabled: true
+      provider:
+        foldersFromFilesStructure: true
+    datasources:
+      enabled: true
+      label: grafana_datasource
+      labelValue: "1"
+      searchNamespace:
+        - grafana
+        - mimir
+        - loki
+        - kubecost
+    alerts:
+      enabled: true
+      label: grafana_alert
+      searchNamespace: ALL
+      labelValue: "1"
+
+  defaultDashboardsEditable: true
+  
+  plugins:
+    - https://grafana.com/api/plugins/marcusolsson-treemap-panel/versions/2.1.1/download;marcusolsson-treemap-panel
+    - https://grafana.com/api/plugins/marcusolsson-json-datasource/versions/1.3.24/download;marcusolsson-json-datasource
+
+cluster:
+  enabled: false

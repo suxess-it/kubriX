@@ -54,15 +54,15 @@ spec:
       name: Fetch the actual team configuration File from Github
       action: fetch:plain:file
       input:
-        url: {{ .kubriX.gitRepo | strings.TrimSuffix ".git" }}/blob/main/platform-apps/charts/team-onboarding/values-{{ .kubriX.valuesFile }}.yaml
-        targetPath: values-{{ .kubriX.valuesFile }}.yaml
+        url: {{ .kubriX.gitRepo | strings.TrimSuffix ".git" }}/blob/main/platform-apps/charts/team-onboarding/values-customer.yaml
+        targetPath: values-customer.yaml
 
     - id: replace-if-new
       name: Replace [] if new template
       action: roadiehq:utils:fs:replace
       input:
         files:
-          - file: values-{{ .kubriX.valuesFile }}.yaml
+          - file: values-customer.yaml
             find: 'teams: []'
             replaceWith: 'teams:'
 
@@ -70,7 +70,7 @@ spec:
       name: Update File with new Team Information
       action: roadiehq:utils:fs:append
       input:
-        path: values-{{ .kubriX.valuesFile }}.yaml
+        path: values-customer.yaml
         content: >
           
           # new team stanza for team ${{`{{ steps['catalogFetch'].output.entity.metadata.name }}`}}
@@ -126,7 +126,6 @@ spec:
       input:
         sourcePath: ./team-apps-of-apps
         repoUrl: github.com?repo=${{`{{ steps['catalogFetch'].output.entity.metadata.name }}`}}-apps&owner={{ .kubriX.gitRepoOrg }}
-        title: team-apps repo for ${{`{{ steps['catalogFetch'].output.entity.metadata.name }}`}}
         description: team-apps repo for ${{`{{ steps['catalogFetch'].output.entity.metadata.name }}`}}
         token: ${{`{{ secrets.USER_OAUTH_TOKEN }}`}}
         gitAuthorName: ${{`{{ user.entity.metadata.name }}`}}

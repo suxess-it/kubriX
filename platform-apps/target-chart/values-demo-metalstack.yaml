@@ -1,5 +1,7 @@
 default:
   valueFiles:
+  - values-kubrix-default.yaml
+  - values-cluster-metalstack.yaml
   - values-demo-metalstack.yaml
 
 applications:
@@ -14,7 +16,9 @@ applications:
 
   - name: external-dns
     annotations:
-      argocd.argoproj.io/sync-wave: "-9" 
+      argocd.argoproj.io/sync-wave: "-9"
+    valueFiles:
+      - values-dns-ionos.yaml
 
   - name: crossplane
     annotations:

@@ -1,0 +1,10 @@
+argo-cd:
+  global:
+    domain: argocd.{{ .kubriX.domain }}
+
+  server:
+    ingress:
+      extraTls:
+        - hosts:
+          - argocd.{{ .kubriX.domain }}
+          secretName: argocd-server-tls

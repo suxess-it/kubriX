@@ -1,0 +1,10 @@
+vault:
+  server:
+    ingress:
+      hosts:
+        - host: vault.{{ .kubriX.domain }}
+          paths: []
+      tls: 
+        - secretName: vault-server-tls
+          hosts:
+            - vault.{{ .kubriX.domain }}

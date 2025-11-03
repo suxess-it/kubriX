@@ -1,0 +1,126 @@
+backstage:
+  ingress:
+    host: backstage.127-0-0-1.nip.io
+  backstage:
+    extraEnvVars:
+      - name: NODE_OPTIONS
+        value: "--no-node-snapshot"
+      - name: NODE_EXTRA_CA_CERTS
+        value: "/mkcert-cacert/ca.crt"
+    extraVolumes:
+      - configMap:
+          defaultMode: 420
+          name: rbac-policy
+        name: rbac-policy
+      - name: mkcert-cacert
+        secret:
+          secretName: mkcert-cacert
+    extraVolumeMounts:
+      - name: rbac-policy
+        mountPath: /opt/app-root/src/rbac
+      - name: mkcert-cacert
+        mountPath: /mkcert-cacert
+    appConfig:
+      app:
+        baseUrl: https://backstage.127-0-0-1.nip.io
+
+      backend:
+        baseUrl: https://backstage.127-0-0-1.nip.io
+        csp:
+          frame-src: ['*.nip.io']
+        cors:
+          origin: https://backstage.127-0-0-1.nip.io
+
+      proxy:
+        endpoints:
+          '/grafana/api':
+            target: https://grafana.127-0-0-1.nip.io/
+
+      argocd:
+        baseUrl: https://argocd.127-0-0-1.nip.io/
+        appLocatorMethods:
+          - type: 'config'
+            instances:
+              - name: kubrix
+                url: https://argocd.127-0-0-1.nip.io/
+                token: ${ARGOCD_AUTH_TOKEN}
+
+      auth:
+        providers:
+          oidc:
+            development:
+              callbackUrl: https://backstage.127-0-0-1.nip.io/api/auth/oidc/handler/frame
+
+      explore:
+        tools:
+          - title: Announcements
+            description: Updates for your Employees
+            url: /announcement
+            image: /homepage/images/announcements.jpg
+            tags:
+              - Announcement
+              - Employee
+              - noHashtag
+          - title: Central Monitoring
+            description: Central Monitoring
+            url: https://grafana.127-0-0-1.nip.io/
+            image: /homepage/images/monitoring.jpg
+            tags:
+              - Monitoring
+              - Observability
+          - title: GitOps CD
+            description: Discover kubriX GitOps CD
+            url: https://argocd.127-0-0-1.nip.io/
+            image: /homepage/images/platforms.jpg
+            tags:
+              - GitOps
+              - CD
+              - argocd
+          - title: GitOps Promotion
+            description: orchestrate stage-to-stage deployments
+            url: https://kargo.127-0-0-1.nip.io/
+            image: /homepage/images/sdk.jpg
+            tags:
+              - kargo
+              - multistage
+              - promotion
+          - title: Thread Detection
+            description: Discover security threats in real time
+            url: https://falco.127-0-0-1.nip.io/
+            image: /homepage/images/infrastructure.jpg
+            tags:
+              - falco
+              - Threat Detection
+              - Regulatory Compliance
+          - title: IAM
+            description: Identity and Access Management
+            url: https://keycloak.127-0-0-1.nip.io/
+            image: /homepage/images/hubs.jpg
+            tags:
+              - keycloak
+              - sso
+          - title: Secret Management
+            description: Manage Secrets 
+            url: https://vault.127-0-0-1.nip.io/
+            image: /homepage/images/apps.jpg
+            tags:
+              - vault
+              - secrets
+      catalog:
+        locations:
+          - type: url
+            target: https://github.com/suxess-it/kubriX-demo-app/blob/main/catalog-info.yaml
+          - type: url
+            target: https://github.com/suxess-it/kubriX/blob/main/backstage-resources/templates/showcase-templates.yaml
+            rules:
+              - allow: [Template]
+          - type: url
+            target: https://github.com/suxess-it/kubriX/blob/main/backstage-resources/entities/all.yaml
+          - type: url
+            target: https://github.com/suxess-it/kubriX/blob/main/backstage-resources/entities/k3d.yaml
+
+      grafana:
+        domain: https://grafana.127-0-0-1.nip.io
+
+      kubecost:
+        baseUrl: https://kubecost.127-0-0-1.nip.io

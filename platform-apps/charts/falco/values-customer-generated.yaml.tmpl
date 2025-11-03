@@ -1,0 +1,13 @@
+falco:
+  falcosidekick:
+    webui:
+      ingress:
+        hosts:
+          - host: falco.{{ .kubriX.domain }}
+            paths:
+              - path: /
+                pathType: Prefix
+        tls:
+            - secretName: falco-server-tls
+              hosts:
+                - falco.{{ .kubriX.domain }}

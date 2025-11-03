@@ -1,0 +1,15 @@
+minio:
+  consoleIngress:
+    hosts:
+      - minio-console.{{ .kubriX.domain }}
+    tls: 
+      - secretName: minio-console-tls
+        hosts:
+          - minio-console.{{ .kubriX.domain }}
+  ingress:
+    hosts:
+      - minio.{{ .kubriX.domain }}
+    tls: 
+      - secretName: minio-server-tls
+        hosts:
+          - minio.{{ .kubriX.domain }}

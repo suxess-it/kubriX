@@ -15,8 +15,17 @@ name: Diff GitOps
 jobs:
   diff:
     runs-on: ubuntu-latest
-    outputs:
-      matrix: ${{ steps.diffStep.outputs.matrix }}
+    strategy:
+      fail-fast: false
+      matrix:
+        testCase: [default-kind, default-aks-kind]
+        include:
+          - testCase: default-kind
+            valuesFiles: values-kubrix-default.yaml,values-cluster-kind.yaml
+          - testCase: default-aks-kind
+            valuesFiles: values-kubrix-default.yaml,values-provider-aks.yaml,values-cluster-kind.yaml
+          - testCase: default-demo-metalstack
+            valuesFiles: values-kubrix-default.yaml,values-demo-metalstack.yaml
     steps:
       - name: Checkout PR
         uses: actions/checkout@v5
@@ -32,32 +41,59 @@ jobs:
         id: diffStep
         shell: bash
         run: |
-          bash pr/.github/create-pr-comment-file.sh
+          bash pr/.github/create-pr-comment-file.sh ${{ matrix.testCase }} ${{ matrix.valuesFiles }}
 
       - uses: actions/upload-artifact@v4
         with:
-          name: comment-files-artifact
+          name: comment-files-artifact-${{ matrix.testCase }}
           path: comment-files/
 
-  create-template-render-diff-comment:
-    needs: diff
+  gen-matrix-from-artifact:
     runs-on: ubuntu-latest
-    if: ${{ fromJSON(needs.diff.outputs.matrix).comment-files[0] }}
+    needs: diff
+    outputs:
+      matrix: ${{ steps.mk.outputs.matrix }}
+    steps:
+      - name: Download artifact
+        uses: actions/download-artifact@v4
+        with:
+          pattern: comment-files-artifact-*
+          path: comment-files/
+          merge-multiple: true
+      - id: mk
+        name: Create matrix JSON from files
+        shell: bash
+        run: |
+          # Collect file paths (null-delimited so spaces are safe)
+          mapfile -d '' files < <(find . -type f -name "comment-result*" -print0)
+
+          # build: {"files":["path1","path2",...]}
+          json=$(printf '%s\0' "${files[@]}" \
+            | jq -R -s -c 'split("\u0000")[:-1] | {files:.}')
+
+          echo "matrix=$json"
+          echo "matrix=$json" >> "$GITHUB_OUTPUT"
+          
+  create-template-render-diff-comment:
+    needs: gen-matrix-from-artifact
+    runs-on: ubuntu-latest
+    if: ${{ fromJSON(needs.gen-matrix-from-artifact.outputs.matrix).files[0] }}
     strategy:
-      matrix: ${{fromJSON(needs.diff.outputs.matrix)}}
+      matrix: ${{ fromJSON(needs.gen-matrix-from-artifact.outputs.matrix) }}
       max-parallel: 1
     steps:
 
       - uses: actions/download-artifact@v5
         with:
-          name: comment-files-artifact
+          pattern: comment-files-artifact-*
           path: comment-files/
+          merge-multiple: true
 
       - uses: thollander/actions-comment-pull-request@v3
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          file-path: ${{matrix.comment-files}}
+          file-path: ${{matrix.files}}
 
 
   create-default-value-diff-comment:
@@ -67,8 +103,9 @@ jobs:
 
       - uses: actions/download-artifact@v5
         with:
-          name: comment-files-artifact
+          pattern: comment-files-artifact-*
           path: comment-files/
+          merge-multiple: true
 
       - name: PR comment default values with file
         uses: thollander/actions-comment-pull-request@v3

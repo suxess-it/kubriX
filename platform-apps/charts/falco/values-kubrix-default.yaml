@@ -1,0 +1,69 @@
+falco:
+  scc:
+    create: false
+  tty: true
+
+  driver:
+    enabled: true
+    #kind: ebpf
+    kind: modern-bpf
+    kubernetes:
+      enabled: true
+
+  falco:
+    grpc:
+      enabled: true
+      bind_address: "unix:///run/falco/falco.sock"
+    # when threadiness is 0, Falco automatically guesses it depending on the number of online cores
+      threadiness: 0
+    grpc_output:
+      enabled: true
+
+  falcosidekick:
+    enabled: true
+    webui:
+      enabled: true
+      replicaCount: 1
+      user: ""
+      existingSecret: "falco-ui-creds"
+      ingress:
+        enabled: true
+        annotations:
+          cert-manager.io/cluster-issuer: default-issuer
+          external-dns.alpha.kubernetes.io/ttl: "60"
+        ingressClassName: nginx
+        hosts: []
+        tls: []
+    replicaCount: 1
+    serviceMonitor:
+      enabled: true
+    prometheusRules:
+      enabled: true
+    config:
+      loki:
+        hostport: "http://sx-loki.loki.svc.cluster.local:3100"
+
+falco-exporter:
+  falco:
+    grpcUnixSocketPath: "unix:///run/falco/falco.sock"
+    grpcTimeout: 3m
+
+  serviceMonitor:
+    enabled: true
+  grafanaDashboard:
+    enabled: true
+    namespace: falco
+
+  prometheusRules:
+    enabled: true
+
+k8s-metacollector:
+  serviceMonitor:
+    create: true
+  grafana:
+    dashboards:
+      enabled: true
+      configMaps:
+        collector:
+          name: k8s-metacollector-grafana-dashboard
+          namespace: falco

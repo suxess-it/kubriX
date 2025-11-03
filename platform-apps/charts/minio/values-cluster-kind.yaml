@@ -1,0 +1,15 @@
+minio:
+  consoleIngress:
+    hosts:
+      - minio-console.127-0-0-1.nip.io
+    tls: 
+      - secretName: minio-console-tls
+        hosts:
+          - minio-console.127-0-0-1.nip.io
+  ingress:
+    hosts:
+      - minio.127-0-0-1.nip.io
+    tls: 
+      - secretName: minio-server-tls
+        hosts:
+          - minio.127-0-0-1.nip.io
