@@ -553,7 +553,7 @@
           "format": "time_series",
           "instant": false,
           "intervalFactor": 1,
-          "legendFormat": "{{namespace}}",
+          "legendFormat": "{{`{{namespace}}`}}",
           "refId": "A"
         }
       ],
@@ -675,7 +675,7 @@
               "format": "time_series",
               "instant": false,
               "intervalFactor": 1,
-              "legendFormat": "{{health_status}}",
+              "legendFormat": "{{`{{health_status}}`}}",
               "refId": "A"
             }
           ],
@@ -785,7 +785,7 @@
               "format": "time_series",
               "instant": false,
               "intervalFactor": 1,
-              "legendFormat": "{{sync_status}}",
+              "legendFormat": "{{`{{sync_status}}`}}",
               "refId": "A"
             }
           ],
@@ -902,7 +902,7 @@
               "expr": "sum(round(increase(argocd_app_sync_total{namespace=~\"$namespace\",dest_server=~\"$cluster\"}[$interval]))) by ($grouping)",
               "format": "time_series",
               "intervalFactor": 1,
-              "legendFormat": "{{$grouping}}",
+              "legendFormat": "{{`{{$grouping}}`}}",
               "refId": "A"
             }
           ],
@@ -998,7 +998,7 @@
               "expr": "sum(round(increase(argocd_app_sync_total{namespace=~\"$namespace\",phase=~\"Error|Failed\",dest_server=~\"$cluster\"}[$interval]))) by ($grouping, phase)",
               "format": "time_series",
               "intervalFactor": 1,
-              "legendFormat": "{{phase}}: {{$grouping}}",
+              "legendFormat": "{{`{{phase}}`}}: {{`{{$grouping}}`}}",
               "refId": "A"
             }
           ],
@@ -1116,7 +1116,7 @@
               "expr": "sum(increase(argocd_app_reconcile_count{namespace=~\"$namespace\",dest_server=~\"$cluster\"}[$interval])) by ($grouping)",
               "format": "time_series",
               "intervalFactor": 1,
-              "legendFormat": "{{$grouping}}",
+              "legendFormat": "{{`{{$grouping}}`}}",
               "refId": "A"
             }
           ],
@@ -1188,7 +1188,7 @@
               "format": "heatmap",
               "instant": false,
               "intervalFactor": 10,
-              "legendFormat": "{{le}}",
+              "legendFormat": "{{`{{le}}`}}",
               "refId": "A"
             }
           ],
@@ -1267,7 +1267,7 @@
               "format": "time_series",
               "instant": false,
               "intervalFactor": 1,
-              "legendFormat": "{{verb}} {{resource_kind}}",
+              "legendFormat": "{{`{{verb}}`}} {{`{{resource_kind}}`}}",
               "refId": "A"
             }
           ],
@@ -1354,7 +1354,7 @@
               "expr": "sum(workqueue_depth{namespace=~\"$namespace\",name=~\"app_.*\"}) by (name)",
               "format": "time_series",
               "intervalFactor": 1,
-              "legendFormat": "{{name}}",
+              "legendFormat": "{{`{{name}}`}}",
               "refId": "A"
             }
           ],
@@ -1442,7 +1442,7 @@
               "expr": "sum(argocd_kubectl_exec_pending{namespace=~\"$namespace\"}) by (command)",
               "format": "time_series",
               "intervalFactor": 1,
-              "legendFormat": "{{command}}",
+              "legendFormat": "{{`{{command}}`}}",
               "refId": "A"
             }
           ],
@@ -1571,7 +1571,7 @@
               "expr": "go_memstats_heap_alloc_bytes{job=\"sx-argocd-application-controller-metrics\",namespace=~\"$namespace\"}",
               "format": "time_series",
               "intervalFactor": 1,
-              "legendFormat": "{{namespace}}",
+              "legendFormat": "{{`{{namespace}}`}}",
               "refId": "A"
             }
           ],
@@ -1670,7 +1670,7 @@
               "expr": "irate(process_cpu_seconds_total{job=\"sx-argocd-application-controller-metrics\",namespace=~\"$namespace\"}[1m])",
               "format": "time_series",
               "intervalFactor": 1,
-              "legendFormat": "{{namespace}}",
+              "legendFormat": "{{`{{namespace}}`}}",
               "refId": "A"
             }
           ],
@@ -1770,7 +1770,7 @@
               "expr": "go_goroutines{job=\"sx-argocd-application-controller-metrics\",namespace=~\"$namespace\"}",
               "format": "time_series",
               "intervalFactor": 1,
-              "legendFormat": "{{namespace}}",
+              "legendFormat": "{{`{{namespace}}`}}",
               "refId": "A"
             }
           ],
@@ -1893,7 +1893,7 @@
               "expr": "go_memstats_heap_alloc_bytes{job=\"sx-argocd-applicationset-controller-metrics\",namespace=~\"$namespace\"}",
               "format": "time_series",
               "intervalFactor": 1,
-              "legendFormat": "{{namespace}}",
+              "legendFormat": "{{`{{namespace}}`}}",
               "refId": "A"
             }
           ],
@@ -1992,7 +1992,7 @@
               "expr": "irate(process_cpu_seconds_total{job=\"sx-argocd-applicationset-controller-metrics\",namespace=~\"$namespace\"}[1m])",
               "format": "time_series",
               "intervalFactor": 1,
-              "legendFormat": "{{namespace}}",
+              "legendFormat": "{{`{{namespace}}`}}",
               "refId": "A"
             }
           ],
@@ -2092,7 +2092,7 @@
               "expr": "go_goroutines{job=\"sx-argocd-applicationset-controller-metrics\",namespace=~\"$namespace\"}",
               "format": "time_series",
               "intervalFactor": 1,
-              "legendFormat": "{{namespace}}",
+              "legendFormat": "{{`{{namespace}}`}}",
               "refId": "A"
             }
           ],
@@ -2205,7 +2205,7 @@
               "expr": "sum(argocd_cluster_api_resource_objects{namespace=~\"$namespace\",server=~\"$cluster\"}) by (server)",
               "format": "time_series",
               "intervalFactor": 1,
-              "legendFormat": "{{server}}",
+              "legendFormat": "{{`{{server}}`}}",
               "refId": "A"
             }
           ],
@@ -2294,7 +2294,7 @@
               "expr": "  sum(argocd_cluster_api_resources{namespace=~\"$namespace\",server=~\"$cluster\"}) by (server)",
               "format": "time_series",
               "intervalFactor": 1,
-              "legendFormat": "{{server}}",
+              "legendFormat": "{{`{{server}}`}}",
               "refId": "A"
             }
           ],
@@ -2382,7 +2382,7 @@
               "expr": "sum(increase(argocd_cluster_events_total{namespace=~\"$namespace\",server=~\"$cluster\"}[$interval])) by (server)",
               "format": "time_series",
               "intervalFactor": 1,
-              "legendFormat": "{{server}}",
+              "legendFormat": "{{`{{server}}`}}",
               "refId": "A"
             }
           ],
@@ -2499,7 +2499,7 @@
               "expr": "sum(increase(argocd_git_request_total{request_type=\"ls-remote\", namespace=~\"$namespace\"}[10m])) by (namespace)",
               "format": "time_series",
               "intervalFactor": 1,
-              "legendFormat": "{{namespace}}",
+              "legendFormat": "{{`{{namespace}}`}}",
               "refId": "A"
             }
           ],
@@ -2591,7 +2591,7 @@
               "expr": "sum(increase(argocd_git_request_total{request_type=\"fetch\", namespace=~\"$namespace\"}[10m])) by (namespace)",
               "format": "time_series",
               "intervalFactor": 1,
-              "legendFormat": "{{namespace}}",
+              "legendFormat": "{{`{{namespace}}`}}",
               "refId": "A"
             }
           ],
@@ -2716,7 +2716,7 @@
               "expr": "sum(increase(argocd_git_request_duration_seconds_bucket{request_type=\"fetch\", namespace=~\"$namespace\"}[$interval])) by (le)",
               "format": "heatmap",
               "intervalFactor": 10,
-              "legendFormat": "{{le}}",
+              "legendFormat": "{{`{{le}}`}}",
               "refId": "A"
             }
           ],
@@ -2826,7 +2826,7 @@
               "expr": "sum(increase(argocd_git_request_duration_seconds_bucket{request_type=\"ls-remote\", namespace=~\"$namespace\"}[$interval])) by (le)",
               "format": "heatmap",
               "intervalFactor": 10,
-              "legendFormat": "{{le}}",
+              "legendFormat": "{{`{{le}}`}}",
               "refId": "A"
             }
           ],
@@ -2905,7 +2905,7 @@
               "expr": "go_memstats_heap_alloc_bytes{job=\"sx-argocd-repo-server-metrics\",namespace=~\"$namespace\"}",
               "format": "time_series",
               "intervalFactor": 1,
-              "legendFormat": "{{pod}}",
+              "legendFormat": "{{`{{pod}}`}}",
               "refId": "A"
             }
           ],
@@ -2990,7 +2990,7 @@
               "expr": "go_goroutines{job=\"sx-argocd-repo-server-metrics\",namespace=~\"$namespace\"}",
               "format": "time_series",
               "intervalFactor": 1,
-              "legendFormat": "{{pod}}",
+              "legendFormat": "{{`{{pod}}`}}",
               "refId": "A"
             }
           ],
@@ -3108,7 +3108,7 @@
               "expr": "go_memstats_heap_alloc_bytes{job=\"sx-argocd-server-metrics\",namespace=~\"$namespace\"}",
               "format": "time_series",
               "intervalFactor": 1,
-              "legendFormat": "{{pod}}",
+              "legendFormat": "{{`{{pod}}`}}",
               "refId": "A"
             }
           ],
@@ -3201,7 +3201,7 @@
               "expr": "go_goroutines{job=\"sx-argocd-server-metrics\",namespace=~\"$namespace\"}",
               "format": "time_series",
               "intervalFactor": 1,
-              "legendFormat": "{{pod}}",
+              "legendFormat": "{{`{{pod}}`}}",
               "refId": "A"
             }
           ],
@@ -3293,7 +3293,7 @@
               "expr": "go_gc_duration_seconds{job=\"sx-argocd-server-metrics\", quantile=~\"1.0|1\", namespace=~\"$namespace\"}",
               "format": "time_series",
               "intervalFactor": 2,
-              "legendFormat": "{{pod}}",
+              "legendFormat": "{{`{{pod}}`}}",
               "refId": "A"
             }
           ],
@@ -3393,7 +3393,7 @@
               "expr": "sum(increase(grpc_server_handled_total{job=\"sx-argocd-server-metrics\",grpc_service=\"application.ApplicationService\",namespace=~\"$namespace\"}[$interval])) by (grpc_code, grpc_method)",
               "format": "time_series",
               "intervalFactor": 1,
-              "legendFormat": "{{grpc_code}},{{grpc_method}}",
+              "legendFormat": "{{`{{grpc_code}}`}},{{`{{grpc_method}}`}}",
               "refId": "A"
             }
           ],
@@ -3477,7 +3477,7 @@
               "expr": "sum(increase(grpc_server_handled_total{job=\"sx-argocd-server-metrics\",grpc_service=\"cluster.ClusterService\",namespace=~\"$namespace\"}[$interval])) by (grpc_code, grpc_method)",
               "format": "time_series",
               "intervalFactor": 1,
-              "legendFormat": "{{grpc_code}},{{grpc_method}}",
+              "legendFormat": "{{`{{grpc_code}}`}},{{`{{grpc_method}}`}}",
               "refId": "A"
             }
           ],
@@ -3561,7 +3561,7 @@
               "expr": "sum(increase(grpc_server_handled_total{job=\"sx-argocd-server-metrics\",grpc_service=\"project.ProjectService\",namespace=~\"$namespace\"}[$interval])) by (grpc_code, grpc_method)",
               "format": "time_series",
               "intervalFactor": 1,
-              "legendFormat": "{{grpc_code}},{{grpc_method}}",
+              "legendFormat": "{{`{{grpc_code}}`}},{{`{{grpc_method}}`}}",
               "refId": "A"
             }
           ],
@@ -3644,7 +3644,7 @@
               "expr": "sum(increase(grpc_server_handled_total{job=\"sx-argocd-server-metrics\",grpc_service=\"repository.RepositoryService\",namespace=~\"$namespace\"}[$interval])) by (grpc_code, grpc_method)",
               "format": "time_series",
               "intervalFactor": 1,
-              "legendFormat": "{{grpc_code}},{{grpc_method}}",
+              "legendFormat": "{{`{{grpc_code}}`}},{{`{{grpc_method}}`}}",
               "refId": "A"
             }
           ],
@@ -3735,7 +3735,7 @@
               "expr": "sum(increase(grpc_server_handled_total{job=\"sx-argocd-server-metrics\",grpc_service=\"session.SessionService\",namespace=~\"$namespace\"}[$interval])) by (grpc_code, grpc_method)",
               "format": "time_series",
               "intervalFactor": 1,
-              "legendFormat": "{{grpc_code}},{{grpc_method}}",
+              "legendFormat": "{{`{{grpc_code}}`}},{{`{{grpc_method}}`}}",
               "refId": "A"
             }
           ],
@@ -3818,7 +3818,7 @@
               "expr": "sum(increase(grpc_server_handled_total{job=\"sx-argocd-server-metrics\",grpc_service=\"version.VersionService\",namespace=~\"$namespace\"}[$interval])) by (grpc_code, grpc_method)",
               "format": "time_series",
               "intervalFactor": 1,
-              "legendFormat": "{{grpc_code}},{{grpc_method}}",
+              "legendFormat": "{{`{{grpc_code}}`}},{{`{{grpc_method}}`}}",
               "refId": "A"
             }
           ],
@@ -3901,7 +3901,7 @@
               "expr": "sum(increase(grpc_server_handled_total{job=\"sx-argocd-server-metrics\",grpc_service=\"account.AccountService\",namespace=~\"$namespace\"}[$interval])) by (grpc_code, grpc_method)",
               "format": "time_series",
               "intervalFactor": 1,
-              "legendFormat": "{{grpc_code}},{{grpc_method}}",
+              "legendFormat": "{{`{{grpc_code}}`}},{{`{{grpc_method}}`}}",
               "refId": "A"
             }
           ],
@@ -3984,7 +3984,7 @@
               "expr": "sum(increase(grpc_server_handled_total{job=\"sx-argocd-server-metrics\",grpc_service=\"cluster.SettingsService\",namespace=~\"$namespace\"}[$interval])) by (grpc_code, grpc_method)",
               "format": "time_series",
               "intervalFactor": 1,
-              "legendFormat": "{{grpc_code}},{{grpc_method}}",
+              "legendFormat": "{{`{{grpc_code}}`}},{{`{{grpc_method}}`}}",
               "refId": "A"
             }
           ],
@@ -4158,9 +4158,9 @@
     "list": [
       {
         "current": {
-          "selected": false,
-          "text": "Prometheus",
-          "value": "prometheus"
+          "selected": true,
+          "text": "default",
+          "value": "default"
         },
         "hide": 0,
         "includeAll": false,

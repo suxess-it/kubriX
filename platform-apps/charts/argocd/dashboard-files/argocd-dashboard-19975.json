@@ -72,7 +72,7 @@
             "uid": "$datasource"
           },
           "expr": "sum(\n  round(\n    increase(\n      argocd_notifications_deliveries_total{\n        cluster=\"$cluster\",\nnamespace=~'$namespace',\njob=~'$job',\n\n        exported_service=~\"$exported_service\",\n      }[$__rate_interval]\n    )\n  )\n) by (job, exported_service, succeeded)\n",
-          "legendFormat": "{{ exported_service }} - Succeeded: {{ succeeded }}"
+          "legendFormat": "{{`{{ exported_service }}`}} - Succeeded: {{`{{ succeeded }}`}}"
         }
       ],
       "title": "Notification Deliveries",
@@ -123,7 +123,7 @@
             "uid": "$datasource"
           },
           "expr": "sum(\n  round(\n    increase(\n      argocd_notifications_trigger_eval_total{\n        cluster=\"$cluster\",\nnamespace=~'$namespace',\njob=~'$job',\n\n      }[$__rate_interval]\n    )\n  )\n) by (job, name, triggered)\n",
-          "legendFormat": "{{ name }} - Triggered: {{ triggered }}"
+          "legendFormat": "{{`{{ name }}`}} - Triggered: {{`{{ triggered }}`}}"
         }
       ],
       "title": "Trigger Evaluations",
