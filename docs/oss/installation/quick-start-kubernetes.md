@@ -37,6 +37,15 @@ With this step-by-step guide kubriX with its default demo stack gets deployed on
     ```
     export KUBRIX_GIT_USER_NAME="your-github-username"
     ```
+
+5. optional: set the Cloud provider, where kubriX gets installed:
+
+    default: on-prem  
+    supported: aks, peak
+
+    ```
+    export KUBRIX_CLOUD_PROVIDER="aks"
+    ```
     
 5. optional: set the DNS provider, which external-dns should connect to.
 
