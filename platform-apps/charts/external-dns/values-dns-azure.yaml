@@ -1,0 +1,25 @@
+external-dns:
+  fullnameOverride: external-dns
+  serviceAccount:
+    create: true
+    labels:
+      azure.workload.identity/use: "true"
+
+  extraVolumes:
+    - name: azure-config-file
+      secret:
+        secretName: external-dns-azure
+
+  extraVolumeMounts:
+    - name: azure-config-file
+      mountPath: /etc/kubernetes
+      readOnly: true
+
+  podLabels:
+    azure.workload.identity/use: "true"
+
+  sources:
+    - ingress
+
+  provider:
+    name: azure

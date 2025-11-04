@@ -41,7 +41,7 @@ With this step-by-step guide kubriX with its default demo stack gets deployed on
 5. optional: set the DNS provider, which external-dns should connect to.
 
     default: ionos  
-    supported: ionos, aws, stackit, cloudflare
+    supported: ionos, aws, azure, stackit, cloudflare
 
     ```
     export KUBRIX_DNS_PROVIDER="ionos"
@@ -92,6 +92,26 @@ With this step-by-step guide kubriX with its default demo stack gets deployed on
     ```
     kubectl create ns external-dns
     kubectl create secret generic -n external-dns sx-external-dns --from-file credentials
+    ```
+
+    __azure__
+
+    setup [Managed Identity using Workload identity](https://kubernetes-sigs.github.io/external-dns/latest/docs/tutorials/azure/#managed-identity-using-workload-identity) and create `azure.json` file like this:
+    
+    ```
+    {
+        "tenantId": "$TENANT_ID",
+        "subscriptionId": "$SUBSCRIPTION_ID",
+        "resourceGroup": "$AKS_RESOURCE_GROUP",
+        "aadClientId": "$IDENTITY_CLIENT_ID",
+        "useWorkloadIdentityExtension": true
+    }
+    ```    
+
+    and then create the secret on the K8s cluster based on this `azure.json` file: 
+    ```
+    kubectl create ns external-dns
+    external-dns-azure -n external-dns --from-file azure.json
     ```
 
     __stackit__
