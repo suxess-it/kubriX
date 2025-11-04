@@ -18,6 +18,7 @@ on:
       - 'Dockerfile'
       - 'install-platform.sh'
       - '.github/workflows/create-kubrix-installer-image.yml'
+      - '.github/install-kubriX-with-job.sh'
       - 'install-manifests.yaml'
   pull_request:
     types: [opened, synchronize]
@@ -32,6 +33,7 @@ on:
       - 'Dockerfile'
       - 'install-platform.sh'
       - '.github/workflows/create-kubrix-installer-image.yml'
+      - '.github/install-kubriX-with-job.sh'
       - 'install-manifests.yaml'
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
@@ -49,7 +51,29 @@ env:
   KUBRIX_REPO: "https://github.com/${{ github.repository }}"
   
 jobs:
+  changes:
+    runs-on: ubuntu-latest
+    outputs:
+      dockerImageChanges: ${{ steps.filter.outputs.dockerImageChanges }}
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          fetch-depth: 0  # needed so the action can diff properly
+      - id: filter
+        uses: dorny/paths-filter@v3
+        with:
+          # For PRs it compares base..head. For push it compares before..after.
+          filters: |
+            dockerImageChanges:
+              - 'Dockerfile'
+              - 'install-platform.sh'
+
   create-kubrix-installer-image:
+    # we check in each step with 
+    # if: ${{ needs.changes.outputs.dockerImageChanges == 'true' }}
+    # because checking it at job level skips the whole job
+    # and then prevents create-cluster job from running
+    needs: changes
     if: ${{ github.repository == 'suxess-it/kubriX' || github.repository == 'suxess-it/kubriX-prime' }}
     runs-on: ubuntu-latest
     timeout-minutes: 10
@@ -60,9 +84,13 @@ jobs:
           fetch-depth: 0
 
       - uses: docker/setup-qemu-action@v3
+        if: ${{ needs.changes.outputs.dockerImageChanges == 'true' }}
+        
       - uses: docker/setup-buildx-action@v3
+        if: ${{ needs.changes.outputs.dockerImageChanges == 'true' }}
 
       - name: Docker meta
+        if: ${{ needs.changes.outputs.dockerImageChanges == 'true' }}
         id: meta
         uses: docker/metadata-action@v5
         with:
@@ -76,6 +104,7 @@ jobs:
             type=ref,event=pr
 
       - name: Login to Github Container Registry
+        if: ${{ needs.changes.outputs.dockerImageChanges == 'true' }}
         uses: docker/login-action@v3
         with:
           registry: ghcr.io
@@ -83,12 +112,14 @@ jobs:
           password: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Compute version
+        if: ${{ needs.changes.outputs.dockerImageChanges == 'true' }}
         id: ver
         run: |
           echo "version=$(git describe --tags --dirty --always)" >> $GITHUB_OUTPUT
           echo "sha_short=$(git rev-parse --short=12 HEAD)" >> $GITHUB_OUTPUT
      
       - name: Build and push docker
+        if: ${{ needs.changes.outputs.dockerImageChanges == 'true' }}
         uses: docker/build-push-action@v6
         with:
           context: .
@@ -101,8 +132,9 @@ jobs:
             VCS_REF=${{ steps.ver.outputs.sha_short }}
   
   create-cluster:
-    needs:
+    needs: 
       - create-kubrix-installer-image
+      - changes
     runs-on: ${{ vars.KUBRIX_GITHUB_RUNNER || 'ubuntu-latest' }}
     if: ${{ needs.create-kubrix-installer-image.result == 'success' || needs.create-kubrix-installer-image.result == 'skipped' }}
     permissions: read-all
@@ -148,7 +180,7 @@ jobs:
           KUBRIX_REPO_USERNAME: "dummy"
           KUBRIX_INSTALL_DEBUG: "false"
           KUBRIX_BOOTSTRAP_MAX_WAIT_TIME: ${{ vars.KUBRIX_BOOTSTRAP_MAX_WAIT_TIME }}
-          PR_NUMBER: ${{ github.event.number }}
+          PR_NUMBER: "${{ needs.changes.outputs.dockerImageChanges == 'true' && github.event.number || '' }}"
         shell: bash
         run: |
           kubectl create ns kubrix-install

@@ -5,7 +5,6 @@ ARG TARGETARCH
 ENV DEBIAN_FRONTEND=noninteractive
 SHELL ["/bin/bash","-lc"]
 
-
 ARG VERSION=unknown
 ARG VCS_REF=unknown
 
@@ -26,6 +25,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     ca-certificates curl gnupg git jq bash coreutils tar gzip unzip procps \
     libnss3-tools util-linux bsdextrautils gettext-base gawk grep sed \
     iproute2 iputils-ping dnsutils openssl \
+    apache2-utils \
     mkcert \
  && rm -rf /var/lib/apt/lists/*
 
@@ -33,7 +33,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 COPY --from=hairyhenderson/gomplate:stable /gomplate /usr/local/bin/gomplate
 
 # k8sgpt
-COPY --from=ghcr.io/k8sgpt-ai/k8sgpt:v0.4.25 /k8sgpt /usr/local/bin/k8sgpt
+COPY --from=ghcr.io/k8sgpt-ai/k8sgpt:v0.4.26 /k8sgpt /usr/local/bin/k8sgpt
 
 # yq (select by TARGETARCH)
 RUN case "${TARGETARCH}" in \

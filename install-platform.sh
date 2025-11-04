@@ -78,6 +78,7 @@ check_prereqs() {
     check_variable KUBRIX_TSHIRT_SIZE "true" "small"
     check_variable KUBRIX_SECURITY_STRICT "true" "false"
     check_variable KUBRIX_HA_ENABLED "true" "false"
+    check_variable KUBRIX_CERT_MANAGER_DNS_PROVIDER "true" "none"
     check_tool gomplate "gomplate -v"
   fi
 
@@ -146,6 +147,7 @@ cat << EOF > bootstrap/customer-config.yaml
 clusterType: ${KUBRIX_CLUSTER_TYPE}
 cloudProvider: ${KUBRIX_CLOUD_PROVIDER}
 dnsProvider: ${KUBRIX_DNS_PROVIDER}
+certManagerDnsProvider: ${KUBRIX_CERT_MANAGER_DNS_PROVIDER}
 tShirtSize: ${KUBRIX_TSHIRT_SIZE}
 securityStrict: ${KUBRIX_SECURITY_STRICT}
 haEnabled: ${KUBRIX_HA_ENABLED}
@@ -607,11 +609,11 @@ if [[ "${KUBRIX_CLUSTER_TYPE}" == "kind" ]] ; then
   kubectl get configmap coredns -n kube-system -o yaml |  awk '
 /ready/ {
     print;
-    print "        rewrite name keycloak.127-0-0-1.nip.io ingress-nginx-controller.ingress-nginx.svc.cluster.local";
-    print "        rewrite name grafana.127-0-0-1.nip.io ingress-nginx-controller.ingress-nginx.svc.cluster.local";
-    print "        rewrite name argocd.127-0-0-1.nip.io ingress-nginx-controller.ingress-nginx.svc.cluster.local";
-    print "        rewrite name vault.127-0-0-1.nip.io ingress-nginx-controller.ingress-nginx.svc.cluster.local";
-    print "        rewrite name backstage.127-0-0-1.nip.io ingress-nginx-controller.ingress-nginx.svc.cluster.local";
+    print "        rewrite name keycloak.127-0-0-1.nip.io sx-ingress-nginx-controller.ingress-nginx.svc.cluster.local";
+    print "        rewrite name grafana.127-0-0-1.nip.io sx-ingress-nginx-controller.ingress-nginx.svc.cluster.local";
+    print "        rewrite name argocd.127-0-0-1.nip.io sx-ingress-nginx-controller.ingress-nginx.svc.cluster.local";
+    print "        rewrite name vault.127-0-0-1.nip.io sx-ingress-nginx-controller.ingress-nginx.svc.cluster.local";
+    print "        rewrite name backstage.127-0-0-1.nip.io sx-ingress-nginx-controller.ingress-nginx.svc.cluster.local";
     next
 }
 { print }
@@ -619,10 +621,6 @@ if [[ "${KUBRIX_CLUSTER_TYPE}" == "kind" ]] ; then
   kubectl apply -f coredns-configmap.yaml
   kubectl rollout restart deployment coredns -n kube-system
   rm coredns-configmap.yaml
-
-  # and install nginx ingress-controller
-  echo "installing nginx ingress controller in KinD"
-  kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/main/deploy/static/provider/kind/deploy.yaml
 
   # create mkcert-issuer root certificate
   mkcert -install
@@ -637,13 +635,6 @@ if [[ "${KUBRIX_CLUSTER_TYPE}" == "kind" ]] ; then
   echo "create a root ca and patch ingress-nginx-controller for vault oidc"
   kubectl get ns vault >/dev/null 2>&1 || kubectl create ns vault
   kubectl create secret generic ca-cert --from-file=ca.crt="$(mkcert -CAROOT)"/rootCA.pem -n vault --dry-run=client -o yaml | kubectl apply -f -
-  kubectl patch deployment ingress-nginx-controller -n ingress-nginx --type='json' -p='[
-  {
-      "op": "add",
-      "path": "/spec/template/spec/containers/0/args/-",
-      "value": "--enable-ssl-passthrough"
-  },
-  ]'
 
   # testkube should also trust every cert signed with our mkcert ca
   kubectl get ns testkube >/dev/null 2>&1 || kubectl create ns testkube
@@ -654,14 +645,6 @@ if [[ "${KUBRIX_CLUSTER_TYPE}" == "kind" ]] ; then
 
   # curl should trust all websites with the mkcert cert
   export CURL_CA_BUNDLE="$(mkcert -CAROOT)"/rootCA-key.pem
-
-  # wait until ingress-nginx-controller is ready
-  echo "wait until ingress-nginx-controller is running ..."
-  sleep 10
-  kubectl wait --namespace ingress-nginx \
-    --for=condition=ready pod \
-    --selector=app.kubernetes.io/component=controller \
-    --timeout=90s
 
   echo "installing metrics-server in KinD"
   helm repo add metrics-server https://kubernetes-sigs.github.io/metrics-server/
@@ -678,7 +661,7 @@ helm repo add argo-cd https://argoproj.github.io/argo-helm
 helm repo update
 helm upgrade --install sx-argocd argo-cd \
   --repo https://argoproj.github.io/argo-helm \
-  --version 7.8.24 \
+  --version 8.5.2 \
   --namespace argocd \
   --create-namespace \
   --set configs.cm.application.resourceTrackingMethod=annotation \
