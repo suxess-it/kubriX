@@ -111,7 +111,7 @@ With this step-by-step guide kubriX with its default demo stack gets deployed on
     and then create the secret on the K8s cluster based on this `azure.json` file: 
     ```
     kubectl create ns external-dns
-    external-dns-azure -n external-dns --from-file azure.json
+    kubectl create secret generic external-dns-azure -n external-dns --from-file azure.json
     ```
 
     __stackit__

@@ -1,7 +1,5 @@
 external-dns:
-  fullnameOverride: external-dns
   serviceAccount:
-    create: true
     labels:
       azure.workload.identity/use: "true"
 
@@ -17,9 +15,6 @@ external-dns:
 
   podLabels:
     azure.workload.identity/use: "true"
-
-  sources:
-    - ingress
 
   provider:
     name: azure
