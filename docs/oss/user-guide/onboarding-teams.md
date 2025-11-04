@@ -39,7 +39,14 @@ your application team can deploy new applications in a complete self-service way
 For the ArgoCD AppSet and the Kargo GitOps-Promotion you need two additional Tokens:
 
 `KUBRIX_ARGOCD_APPSET_TOKEN` ... A Token which has Read-Permissions in the Git Group/Organization, to find new application git-repos via ArgoCD AppSet SCM-Generator.
+
+Permissions:
+
+![image](../../img/team-argocd-appset-token-permissions.png)
+
 `KUBRIX_KARGO_GIT_PASSWORD` ... A Token which has Write-Permissions in this Git Group/Organization, to do git commands for GitOps promotion.
+
+![image](../../img/team-kargo-token-permissions.png)
 
 Then write these tokens in vault:
 

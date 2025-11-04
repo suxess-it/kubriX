@@ -20,9 +20,10 @@ With this step-by-step guide kubriX with its default stack gets deployed on your
 
     ![image](../../img/github_token.png)
 
-3. create a new KinD cluster. You need to enable ingress on your KinD cluster so this config below should be used with `kind create cluster --name kubrix-local-demo --config kind-config.yaml`
+3. create a new KinD cluster. You need to enable ingress on your KinD cluster so this command below should be used:
         
      ```
+     kind create cluster --name kubrix-local-demo --config /dev/stdin <<EOF
      kind: Cluster
      apiVersion: kind.x-k8s.io/v1alpha4
      nodes:
@@ -40,25 +41,28 @@ With this step-by-step guide kubriX with its default stack gets deployed on your
        - containerPort: 443
          hostPort: 443
          protocol: TCP
+     EOF
      ```
 
     Then be sure that kubectl is connected to it. check with `kubectl cluster-info`
 
-4. Create a `kubrix-install` Namespace and a Secret `kubrix-installer-secret` to configure the installer.  
+4. Create a `kubrix-install` Namespace and a Secret `kubrix-installer-secrets` to configure the installer.  
     The values of `KUBRIX_REPO` and `KUBRIX_REPO_PASSWORD` need to be set to your newly created empty Git repo in step 1 and the access token you created in step 2.
 
     ```
     export KUBRIX_REPO="https://github.com/kubriX-demo/kubriX-demo-customerXY"
     export KUBRIX_REPO_PASSWORD="your-read-write-access-token"
+    export KUBRIX_GIT_USER_NAME="your-github-username"
     
     kubectl create ns kubrix-install
     kubectl create secret generic kubrix-install-secrets -n kubrix-install \
       --from-literal KUBRIX_REPO=${KUBRIX_REPO} \
       --from-literal KUBRIX_REPO_PASSWORD=${KUBRIX_REPO_PASSWORD} \
+      --from-literal KUBRIX_GIT_USER_NAME=${KUBRIX_GIT_USER_NAME} \
       --from-literal KUBRIX_DOMAIN="127-0-0-1.nip.io" \
       --from-literal KUBRIX_DNS_PROVIDER="none" \
-      --from-literal KUBRIX_TARGET_TYPE="DEMO-STACK" \
-      --from-literal KUBRIX_CLUSTER_TYPE="KIND" \
+      --from-literal KUBRIX_TARGET_TYPE="kubrix-oss-stack" \
+      --from-literal KUBRIX_CLUSTER_TYPE="kind" \
       --from-literal KUBRIX_BOOTSTRAP=true \
       --from-literal KUBRIX_INSTALLER=true
     ```

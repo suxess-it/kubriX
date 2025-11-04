@@ -55,8 +55,10 @@ spec:
               /work/install-platform.sh
           resources:
             requests:
+              cpu: "25m"
+              memory: "256Mi"
+            limits:
               cpu: "250m"
               memory: "512Mi"
-            limits:
-              cpu: "2"
-              memory: "4Gi"
+          securityContext:
+            allowPrivilegeEscalation: false

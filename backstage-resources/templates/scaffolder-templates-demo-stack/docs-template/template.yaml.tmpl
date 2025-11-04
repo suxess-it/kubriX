@@ -1,0 +1,100 @@
+apiVersion: scaffolder.backstage.io/v1beta3
+kind: Template
+metadata:
+  name: docs-template
+  title: Documentation Template
+  description: Create a new standalone documentation project
+  tags:
+    - recommended
+    - techdocs
+    - mkdocs
+spec:
+  owner: group:kubrix
+  type: documentation
+
+  parameters:
+    - title: Fill in some steps
+      required:
+        - name
+        - description
+      properties:
+        name:
+          title: Name
+          type: string
+          description: Unique name of the component
+          ui:field: EntityNamePicker
+          ui:autofocus: true
+        description:
+          title: Description
+          type: string
+          description: A description for the component
+        owner:
+          title: Owner
+          type: string
+          description: Select your team name for the component
+          ui:field: MyGroupsPicker
+          ui:options: {}
+    - title: Choose a location
+      required:
+        - repoUrl
+      properties:
+        repoUrl:
+          title: Repository Location
+          type: string
+          ui:field: RepoUrlPicker
+          ui:options:
+            allowedHosts:
+              - github.com
+            allowedOwners:
+              - {{ .kubriX.gitRepoOrg }}
+            requestUserCredentials:
+              secretsKey: USER_OAUTH_TOKEN
+              additionalScopes:
+                github:
+                  - workflow
+                  - user
+
+  # This template is meant to be used on top of an existing template.
+  # By adding the following and fetching from an absolute URL you can
+  # add in the docs template
+  steps:
+    - id: fetch
+      name: Template Docs Skeleton
+      action: fetch:template
+      input:
+        url: ./skeleton
+        values:
+          name: ${{`{{ parameters.name }}`}}
+          description: ${{`{{ parameters.description }}`}}
+          destination: ${{`{{ (parameters.repoUrl | parseRepoUrl).owner }}/${{ (parameters.repoUrl | parseRepoUrl).repo }}`}}
+          owner: ${{`{{ parameters.owner }}`}}
+
+    - id: publish
+      name: Publish
+      action: publish:github
+      input:
+        description: This is ${{`{{ parameters.name }}`}}
+        repoUrl: ${{`{{ parameters.repoUrl }}`}}
+        repoVisibility: public
+        token: ${{`{{ secrets.USER_OAUTH_TOKEN }}`}}
+        gitAuthorName: ${{`{{ user.entity.metadata.name }}`}}
+        gitAuthorEmail: ${{`{{ user.entity.spec.profile.email }}`}}
+        gitCommitMessage: Doc Template
+        deleteBranchOnMerge: true
+        protectDefaultBranch: false
+        defaultBranch: main
+
+    - id: register
+      name: Register
+      action: catalog:register
+      input:
+        repoContentsUrl: ${{`{{ steps['publish'].output.repoContentsUrl }}`}}
+        catalogInfoPath: '/catalog-info.yaml'
+        
+  output:
+    links:
+      - title: Repository
+        url: ${{`{{ steps['publish'].output.remoteUrl }}`}}
+      - title: Open in catalog
+        icon: catalog
+        entityRef: ${{`{{ steps['register'].output.entityRef }}`}}

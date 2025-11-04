@@ -1,0 +1,16 @@
+velero:
+  configuration:
+    backupStorageLocation:
+    - name:
+      provider: aws
+      bucket: velero
+      default: true
+      credential:
+        name: velero-cloud-credential
+        key: cloud
+      config:
+        region: minio
+        s3ForcePathStyle: true
+        s3Url: https://sx-minio.minio.svc.cluster.local:9000
+        publicUrl: https://minio.{{ .kubriX.domain }}
+        insecureSkipTLSVerify: true # temp for minio/local deployment

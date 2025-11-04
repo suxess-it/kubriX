@@ -1,0 +1,116 @@
+apiVersion: scaffolder.backstage.io/v1beta3
+kind: Template
+metadata:
+  name: multi-stage-app-with-kargo-pipeline
+  title: Template for Multi-Stage App with Kargo Pipeline
+  description: Run Multi-Stage App provisioned with ArgoCD and promoted with Kargo
+  tags:
+    - kargo
+    - kubrix
+    - example
+spec:
+  owner: group:kubrix
+  type: onboarding
+  
+  parameters:
+    - title: Provide information on this application
+      required:
+        - application_id
+        - owner
+        - description
+        - fqdn
+      properties:
+        application_id:
+          title: Name
+          type: string
+          description: Unique name of this app
+          default: 'myappnamexx'
+        description:
+          title: Description
+          type: string
+          description: Help others understand what this app is for.
+        owner:
+          title: Team
+          type: string
+          description: Repoowner Teamname
+          ui:field: MyGroupsPicker
+          ui:options: {}
+        fqdn:
+          title: FQDN
+          type: string       
+          default: '{{ .kubriX.domain }}'
+    - title: Choose a location
+      required:
+        - repoUrl
+      properties:
+        repoUrl:
+          title: Repository Information
+          type: string
+          ui:field: RepoUrlPicker
+          ui:options:
+            allowedHosts:
+              - github.com
+            allowedOwners:
+              - {{ .kubriX.gitRepoOrg }}
+            requestUserCredentials:
+              secretsKey: USER_OAUTH_TOKEN
+              additionalScopes:
+                github: 
+                  - workflow
+                  - user
+            allowedRepos:
+              - will-be-autocomplete-by-template
+
+  steps:
+    - id: catalogFetch
+      name: Fetch component details
+      action: catalog:fetch
+      input:
+        entityRef: ${{`{{ parameters.owner }}`}}
+
+    - id: template-gitops
+      name: Fetch Skeleton + Template
+      action: fetch:template
+      input:
+        url: ./kargo-gitops
+        targetPath: ./kargo-gitops
+        copyWithoutTemplating: 
+          - .github/workflows/branch.yaml
+        values:
+          application_id: ${{`{{ parameters.application_id }}`}}
+          description: ${{`{{ parameters.description }}`}}
+          fqdn: ${{`{{ parameters.fqdn }}`}}
+          team: ${{`{{ steps['catalogFetch'].output.entity.metadata.name }}`}}
+          repoUrlRepo: ${{`{{ steps['catalogFetch'].output.entity.metadata.name }}`}}-${{`{{ parameters.application_id }}`}}
+          repoUrlowner: {{ .kubriX.gitRepoOrg }}
+          gitRepoUrl: github.com
+    - id: publish-gitopsreposetup
+      name: Publish Template Gitops Repo
+      action: publish:github
+      input:
+        sourcePath: ./kargo-gitops
+        description: This is Kargo Demo App ${{`{{ parameters.application_id }}`}}
+        #repoUrl: ${{`{{ parameters.repoUrl }}`}}
+        repoUrl: github.com?repo=${{`{{ steps['catalogFetch'].output.entity.metadata.name }}`}}-${{`{{ parameters.application_id }}`}}&owner={{ .kubriX.gitRepoOrg }}
+        token: ${{`{{ secrets.USER_OAUTH_TOKEN }}`}}
+        gitAuthorName: ${{`{{ user.entity.metadata.name }}`}}
+        gitAuthorEmail: ${{`{{ user.entity.spec.profile.email }}`}}
+        repoVisibility: public
+        deleteBranchOnMerge: true
+        protectDefaultBranch: false
+        defaultBranch: main
+
+    - id: register
+      name: Register catalog
+      action: catalog:register
+      input:
+        repoContentsUrl: ${{`{{ steps["publish-gitopsreposetup"].output.repoContentsUrl }}`}}
+        catalogInfoPath: '/catalog-info.yaml'
+
+  output:
+    links:
+      - title: Repository
+        url: ${{`{{ steps["publish-gitopsreposetup"].output.remoteUrl }}`}}
+      - title: Open in catalog
+        icon: catalog
+        entityRef: ${{`{{ steps.register.output.entityRef }}`}}

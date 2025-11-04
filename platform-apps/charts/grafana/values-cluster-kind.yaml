@@ -1,0 +1,10 @@
+grafana:
+  grafana.ini:
+    server:
+      root_url: "https://grafana.127-0-0-1.nip.io"
+  ingress:
+    hosts: [grafana.127-0-0-1.nip.io]
+    tls:
+      - secretName: grafana-server-tls
+        hosts:
+        - grafana.127-0-0-1.nip.io

@@ -136,11 +136,9 @@ spec:
       action: publish:github
       input:
         sourcePath: ./kubevirt-gitops
-        allowedHosts: ['github.com']
         description: This is ${{ parameters.application_id }}
         repoUrl: github.com?repo=${{ steps['catalogFetchGroup'].output.entity.metadata.name }}-${{ parameters.application_id }}&owner=kubriX-demo
         token: ${{ secrets.USER_OAUTH_TOKEN }}
-        fqdn: ${{ parameters.fqdn }}
         gitAuthorName: ${{ user.entity.metadata.name }}
         gitAuthorEmail: ${{ user.entity.spec.profile.email }}
         repoVisibility: public

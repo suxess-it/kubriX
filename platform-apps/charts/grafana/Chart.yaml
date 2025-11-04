@@ -28,3 +28,7 @@ dependencies:
     alias: grafana
     version: 9.2.10
     repository: https://grafana.github.io/helm-charts
+  - name: cluster
+    version: 0.3.1
+    repository: https://cloudnative-pg.github.io/charts
+    condition: cluster.enabled

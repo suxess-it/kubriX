@@ -2,6 +2,8 @@
 
 With this step-by-step guide kubriX with its default demo stack gets deployed on your preferred Kubernetes cluster.
 
+> ⚠️ **kubriX-prime features**: In our [kubriX-prime quick-start-kubernetes docs](../../prime/installation/quick-start-kubernetes.md) you will find additional features like DNS01 challenge.
+
 ## Prerequisites
 
 * check [Prerequisites](installation.md#-prerequisites)
@@ -24,17 +26,22 @@ With this step-by-step guide kubriX with its default demo stack gets deployed on
 
     ![image](../../img/github_token.png)
 
-4. set the repo url and token in this variables like this:
+3. set the repo url and token in this variables like this:
 
     ```
     export KUBRIX_REPO="https://github.com/kubriX-demo/kubriX-demo-customerXY"
     export KUBRIX_REPO_PASSWORD="blabla"
     ```
 
+4. set your GitHub Username:
+    ```
+    export KUBRIX_GIT_USER_NAME="your-github-username"
+    ```
+    
 5. optional: set the DNS provider, which external-dns should connect to.
 
     default: ionos  
-    supported: ionos, aws, stackit, cloudflare
+    supported: ionos, aws, azure, stackit, cloudflare
 
     ```
     export KUBRIX_DNS_PROVIDER="ionos"
@@ -53,10 +60,10 @@ With this step-by-step guide kubriX with its default demo stack gets deployed on
 7. optional: set the kubrix target type which should be used
 
     ```
-    export KUBRIX_TARGET_TYPE="DEMO-STACK"
+    export KUBRIX_TARGET_TYPE="kubrix-oss-stack"
     ```
 
-    if this variable is not set, "DEMO-STACK" is used.
+    if this variable is not set, "kubrix-oss-stack" is used.
 
 8. create a new Kubernetes cluster and be sure that kubectl is connected to it. check with `kubectl cluster-info`
 
@@ -87,6 +94,26 @@ With this step-by-step guide kubriX with its default demo stack gets deployed on
     kubectl create secret generic -n external-dns sx-external-dns --from-file credentials
     ```
 
+    __azure__
+
+    setup [Managed Identity using Workload identity](https://kubernetes-sigs.github.io/external-dns/latest/docs/tutorials/azure/#managed-identity-using-workload-identity) and create `azure.json` file like this:
+    
+    ```
+    {
+        "tenantId": "$TENANT_ID",
+        "subscriptionId": "$SUBSCRIPTION_ID",
+        "resourceGroup": "$AKS_RESOURCE_GROUP",
+        "aadClientId": "$IDENTITY_CLIENT_ID",
+        "useWorkloadIdentityExtension": true
+    }
+    ```    
+
+    and then create the secret on the K8s cluster based on this `azure.json` file: 
+    ```
+    kubectl create ns external-dns
+    kubectl create secret generic external-dns-azure -n external-dns --from-file azure.json
+    ```
+
     __stackit__
 
     ```
@@ -105,13 +132,14 @@ With this step-by-step guide kubriX with its default demo stack gets deployed on
 10. If you need to prepare something else on your cluster before kubriX gets installed, do this now.
 
 
-11. Create a `kubrix-install` Namespace and a Secret `kubrix-installer-secret` to configure the installer.
+11. Create a `kubrix-install` Namespace and a Secret `kubrix-installer-secrets` to configure the installer.
 
     ```
     kubectl create ns kubrix-install
     kubectl create secret generic kubrix-install-secrets -n kubrix-install \
       --from-literal KUBRIX_REPO=${KUBRIX_REPO} \
       --from-literal KUBRIX_REPO_PASSWORD=${KUBRIX_REPO_PASSWORD} \
+      --from-literal KUBRIX_GIT_USER_NAME=${KUBRIX_GIT_USER_NAME} \
       --from-literal KUBRIX_DOMAIN=${KUBRIX_DOMAIN} \
       --from-literal KUBRIX_DNS_PROVIDER=${KUBRIX_DNS_PROVIDER} \
       --from-literal KUBRIX_TARGET_TYPE=${KUBRIX_TARGET_TYPE} \

@@ -1,0 +1,20 @@
+vui:
+  global:
+    veleroNamespace: velero
+    clusterName: "kubrix"
+
+  apiService:
+    config:
+      apiEnableDocumentation: true
+    secret:
+      existingSecret: velero-ui-credential
+
+  exposure:
+    mode: ingress
+    ingress:
+      ingressClassName: nginx
+      metadata:
+        annotations:
+          cert-manager.io/cluster-issuer: default-issuer
+      spec:
+        tls: []

@@ -1,0 +1,113 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: "${{values.team}}-${{values.application_id}}-prod"
+  description: "${{values.team}}-${{values.application_id}}-prod"
+  tags:
+    - kubrix
+    - template
+    - metalstack
+  annotations:
+    github.com/project-slug: ${{values.repoUrlowner}}/${{values.repoUrlRepo}}
+    backstage.io/kubernetes-id: ${{values.application_id}}
+    kubecost.com/deployment-name: ${{values.application_id}}
+    argocd/app-name: ${{values.application_id}}
+    argocd/app-namespace: adn-${{values.team}}
+    backstage.io/kubernetes-namespace: ${{values.team}}-${{values.application_id}}
+    backstage.io/kubernetes-label-selector: app=${{values.application_id}}
+    kubevirt-manager: "https://kubevirt-manager.${{values.fqdn}}/"
+    kargo-project: "https://kargo.${{values.fqdn}}/project/${{values.team}}-${{values.application_id}}-kargo-project"
+    backstage.io/techdocs-ref: dir:.
+    grafana/dashboard-selector: "(tags @> 'kubevirt')"
+    grafana/overview-dashboard: "https://grafana.${{values.fqdn}}/d/k8s_views_ns/kubernetes-views-namespaces?orgId=1&refresh=30s&var-datasource=default&var-cluster=&var-namespace=adn-${{values.team}}-${{values.application_id}}-&var-resolution=30s&var-created_by=All"
+spec:
+  type: service
+  lifecycle: prod
+  owner: "${{values.team}}"
+  system: ${{values.application_id}}
+  dependsOn:
+    - resource:argocd
+    - resource:kubevirt
+    - resource:kubecost
+    - resource:k8s-monitoring
+    - resource:kubevirt-manager
+    - resource:kubevirt
+    - resource:loki
+    - resource:backstage
+  subcomponentOf: ${{values.team}}-${{values.application_id}}
+---
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: "${{values.team}}-${{values.application_id}}-test"
+  description: "${{values.team}}-${{values.application_id}}-test"
+  tags:
+    - kubrix
+    - template
+    - metalstack
+  annotations:
+    github.com/project-slug: ${{values.repoUrlowner}}/${{values.repoUrlRepo}}
+    backstage.io/kubernetes-id: ${{values.application_id}}
+    kubecost.com/deployment-name: ${{values.application_id}}
+    argocd/app-name: ${{values.application_id}}
+    argocd/app-namespace: adn-${{values.team}}
+    backstage.io/kubernetes-namespace: ${{values.team}}-${{values.application_id}}
+    backstage.io/kubernetes-label-selector: app=${{values.application_id}}
+    kubevirt-manager: "https://kubevirt-manager.${{values.fqdn}}/"
+    kargo-project: "https://kargo.${{values.fqdn}}/project/${{values.team}}-${{values.application_id}}-kargo-project"
+    backstage.io/techdocs-ref: dir:.
+    grafana/dashboard-selector: "(tags @> 'kubevirt')"
+    grafana/overview-dashboard: "https://grafana.${{values.fqdn}}/d/k8s_views_ns/kubernetes-views-namespaces?orgId=1&refresh=30s&var-datasource=default&var-cluster=&var-namespace=adn-${{values.team}}-${{values.application_id}}-&var-resolution=30s&var-created_by=All"
+spec:
+  type: service
+  lifecycle: test
+  owner: "${{values.team}}"
+  system: ${{values.application_id}}
+  dependsOn:
+    - resource:argocd
+    - resource:kubevirt
+    - resource:kubecost
+    - resource:k8s-monitoring
+    - resource:kubevirt-manager
+    - resource:kubevirt
+    - resource:loki
+    - resource:backstage
+  subcomponentOf: ${{values.team}}-${{values.application_id}}
+---
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: "${{values.team}}-${{values.application_id}}"
+  description: "${{values.team}}-${{values.application_id}}"
+  tags:
+    - kubrix
+    - template
+    - metalstack
+  annotations:
+    github.com/project-slug: ${{values.repoUrlowner}}/${{values.repoUrlRepo}}
+    backstage.io/kubernetes-id: ${{values.application_id}}
+    kubecost.com/deployment-name: ${{values.application_id}}
+    argocd/app-name: ${{values.application_id}}
+    argocd/app-namespace: adn-${{values.team}}
+    backstage.io/kubernetes-namespace: ${{values.team}}-${{values.application_id}}
+    backstage.io/kubernetes-label-selector: app=${{values.application_id}}
+    kubevirt-manager: "https://kubevirt-manager.${{values.fqdn}}/"
+    kargo-project: "https://kargo.${{values.fqdn}}/project/${{values.team}}-${{values.application_id}}-kargo-project"
+    backstage.io/techdocs-ref: dir:.
+    grafana/dashboard-selector: "(tags @> 'kubevirt')"
+    grafana/overview-dashboard: "https://grafana.${{values.fqdn}}/d/k8s_views_ns/kubernetes-views-namespaces?orgId=1&refresh=30s&var-datasource=default&var-cluster=&var-namespace=adn-${{values.team}}-${{values.application_id}}-&var-resolution=30s&var-created_by=All"
+spec:
+  type: service
+  lifecycle: experimental
+  owner: "${{values.team}}"
+  system: ${{values.application_id}}
+  dependsOn:
+    - resource:argocd
+    - resource:kubevirt
+    - resource:kubecost
+    - resource:k8s-monitoring
+    - resource:kubevirt-manager
+    - resource:kubevirt
+    - resource:loki
+    - resource:backstage
+  subcomponentOf: ${{values.team}}-${{values.application_id}}

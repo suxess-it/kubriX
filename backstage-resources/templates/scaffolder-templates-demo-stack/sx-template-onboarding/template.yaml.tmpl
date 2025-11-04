@@ -1,0 +1,145 @@
+apiVersion: scaffolder.backstage.io/v1beta3
+kind: Template
+metadata:
+  name: Team-Onboarding
+  title: Team-Onboarding
+  description: Onboarding a new stream-aligned-team via PR for the platform-team
+  tags:
+    - onboarding
+    - example
+    - team
+spec:
+  owner: group:kubrix
+  type: onboarding
+  parameters:
+    - title: Provide Team Name
+      required: ['team']
+      properties:
+        team:
+          title: Team Name
+          type: string
+          description: Select your team name for onboarding
+          ui:field: MyGroupsPicker
+          ui:options: {}
+
+    - title: Choose a location
+      required:
+        - repoUrl
+      properties:
+        repoUrl:
+          title: Repository Information
+          type: string
+          ui:field: RepoUrlPicker
+          ui:options:
+            allowedHosts:
+              - github.com
+            allowedOwners:
+              - {{ .kubriX.gitRepoOrg }}
+            requestUserCredentials:
+              secretsKey: USER_OAUTH_TOKEN
+              additionalScopes:
+                github: 
+                  - workflow
+                  - user
+            allowedRepos:
+              - {{ .kubriX.gitRepoName }}
+  steps:
+    - id: catalogFetch
+      name: Fetch component details
+      action: catalog:fetch
+      input:
+        entityRef: ${{`{{ parameters.team }}`}}
+
+    - id: fetchPlain
+      name: Fetch the actual team configuration File from Github
+      action: fetch:plain:file
+      input:
+        url: {{ .kubriX.gitRepo | strings.TrimSuffix ".git" }}/blob/main/platform-apps/charts/team-onboarding/values-customer.yaml
+        targetPath: values-customer.yaml
+
+    - id: replace-if-new
+      name: Replace [] if new template
+      action: roadiehq:utils:fs:replace
+      input:
+        files:
+          - file: values-customer.yaml
+            find: 'teams: []'
+            replaceWith: 'teams:'
+
+    - id: update
+      name: Update File with new Team Information
+      action: roadiehq:utils:fs:append
+      input:
+        path: values-customer.yaml
+        content: >
+          
+          # new team stanza for team ${{`{{ steps['catalogFetch'].output.entity.metadata.name }}`}}
+            - name: ${{`{{ steps['catalogFetch'].output.entity.metadata.name }}`}}
+              sourceRepos:
+                - 'https://github.com/{{ .kubriX.gitRepoOrg }}/${{`{{ steps['catalogFetch'].output.entity.metadata.name }}`}}-*'
+              clusterResourceWhitelist:
+                - group: ""
+                  kind: Namespace
+                - group: kargo.akuity.io
+                  kind: Project
+              appOfAppsRepo:
+                repoURL: https://github.com/{{ .kubriX.gitRepoOrg }}/${{`{{ steps['catalogFetch'].output.entity.metadata.name }}`}}-apps
+                path: demo-apps
+                revision: main
+              multiStageKargoAppSet:
+                github:
+                  organization: {{ .kubriX.gitRepoOrg }}
+
+    - id: publish
+      name: Publish new Version of team configuration
+      action: publish:github:pull-request
+      input:
+        repoUrl: github.com?repo={{ .kubriX.gitRepoName }}&owner={{ .kubriX.gitRepoOrg }}
+        description: Onboarding team ${{`{{ steps['catalogFetch'].output.entity.metadata.name }}`}}
+        title: Onboarding team ${{`{{ steps['catalogFetch'].output.entity.metadata.name }}`}}
+        targetPath: platform-apps/charts/team-onboarding
+        branchName: onboarding-team-${{`{{ steps['catalogFetch'].output.entity.metadata.name }}`}}
+        targetBranchName: main
+        update: true
+        token: ${{`{{ secrets.USER_OAUTH_TOKEN }}`}}
+        gitAuthorName: ${{`{{ user.entity.metadata.name }}`}}
+        gitAuthorEmail: ${{`{{ user.entity.spec.profile.email }}`}}
+
+    - id: template-teamrepo
+      name: Fetch reposetup
+      action: fetch:template
+      input:
+        url: ./skeleton
+        targetPath: ./team-apps-of-apps
+        copyWithoutTemplating: []
+        values:
+          description: ${{`{{ parameters.description }}`}}
+          team: ${{`{{ steps['catalogFetch'].output.entity.metadata.name }}`}}
+          repoUrlRepo: ${{`{{ (parameters.repoUrl | parseRepoUrl)["repo"] }}`}}
+          repoUrlowner: ${{`{{ (parameters.repoUrl | parseRepoUrl)["owner"] }}`}}
+          environments: ${{`{{ parameters.environments }}`}}
+          argocdtarget: ${{`{{ parameters.argocdtarget }}`}}
+
+    - id: repocreate
+      name: create team-apps Github repo
+      action: publish:github
+      input:
+        sourcePath: ./team-apps-of-apps
+        repoUrl: github.com?repo=${{`{{ steps['catalogFetch'].output.entity.metadata.name }}`}}-apps&owner={{ .kubriX.gitRepoOrg }}
+        description: team-apps repo for ${{`{{ steps['catalogFetch'].output.entity.metadata.name }}`}}
+        token: ${{`{{ secrets.USER_OAUTH_TOKEN }}`}}
+        gitAuthorName: ${{`{{ user.entity.metadata.name }}`}}
+        gitAuthorEmail: ${{`{{ user.entity.spec.profile.email }}`}}
+        gitCommitMessage: Team Onboarding for ${{`{{ steps['catalogFetch'].output.entity.metadata.name }}`}}
+        repoVisibility: public
+        deleteBranchOnMerge: true
+        protectDefaultBranch: false
+        defaultBranch: main
+
+  output:
+    remoteUrl: '{{`{{ steps.publish.output.remoteUrl }}`}}'
+    links:
+      - title: Open Pull-Request
+        url: ${{`{{ steps.publish.output.remoteUrl }}`}}
+      - title: Open Team-App-Of-Apps Repo
+        url: ${{`{{ steps.repocreate.output.remoteUrl }}`}}

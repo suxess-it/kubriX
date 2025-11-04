@@ -1,0 +1,11 @@
+testkube: 
+  testkube-api:
+    uiIngress:
+      className: nginx
+      enabled: true
+      pathType: ImplementationSpecific
+      hosts: []
+    cliIngress:
+      # 'false' until https://github.com/kubeshop/helm-charts/issues/1052 fixed
+      enabled: false
+      hosts: []

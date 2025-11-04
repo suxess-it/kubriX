@@ -1,8 +1,12 @@
 default:
   valueFiles:
-  - values-k3d.yaml
+  - values-kubrix-default.yaml
+  - values-cluster-kind.yaml
 
 applications:
+  - name: ingress-nginx
+    annotations:
+      argocd.argoproj.io/sync-wave: "-11"
 
   - name: cert-manager
     annotations:
@@ -59,3 +63,5 @@ applications:
   - name: kyverno
     syncOptions:
       - ServerSideApply=true
+
+  - name: testkube

@@ -1,0 +1,12 @@
+loki:
+  gateway:
+    ingress:
+      hosts:
+        - host: logs-monitoring.127-0-0-1.nip.io
+          paths:
+            - path: /
+              pathType: Prefix
+      tls:
+        - secretName: loki-gateway-tls
+          hosts:
+            - logs-monitoring.127-0-0-1.nip.io

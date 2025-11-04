@@ -50,10 +50,10 @@ jobs:
         env:          
           KUBRIX_REPO: "https://github.com/kubriX-demo/kubrix-bootstrap-test-${{ github.run_id }}.git"
           KUBRIX_REPO_PASSWORD: ${{ secrets.KUBRIX_CUSTOMER_REPO_TOKEN }}
-          KUBRIX_TARGET_TYPE: "DEMO-STACK"
+          KUBRIX_TARGET_TYPE: "kubrix-oss-stack"
           KUBRIX_DOMAIN: "127-0-0-1.nip.io"
           KUBRIX_DNS_PROVIDER: "none"
-          KUBRIX_CLUSTER_TYPE: "KIND"
+          KUBRIX_CLUSTER_TYPE: "kind"
           KUBRIX_UPSTREAM_BRANCH: ${{ github.head_ref || github.ref_name }}
           PR_NUMBER: ${{ inputs.pr_number }}
         run: |
