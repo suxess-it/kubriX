@@ -661,7 +661,7 @@ helm repo add argo-cd https://argoproj.github.io/argo-helm
 helm repo update
 helm upgrade --install sx-argocd argo-cd \
   --repo https://argoproj.github.io/argo-helm \
-  --version 7.8.24 \
+  --version 8.5.2 \
   --namespace argocd \
   --create-namespace \
   --set configs.cm.application.resourceTrackingMethod=annotation \
