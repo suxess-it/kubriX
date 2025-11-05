@@ -43,7 +43,7 @@ jobs:
         run: |
           bash pr/.github/create-pr-comment-file.sh ${{ matrix.testCase }} ${{ matrix.valuesFiles }}
 
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v5
         with:
           name: comment-files-artifact-${{ matrix.testCase }}
           path: comment-files/
@@ -55,7 +55,7 @@ jobs:
       matrix: ${{ steps.mk.outputs.matrix }}
     steps:
       - name: Download artifact
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v6
         with:
           pattern: comment-files-artifact-*
           path: comment-files/
@@ -83,7 +83,7 @@ jobs:
       max-parallel: 1
     steps:
 
-      - uses: actions/download-artifact@v5
+      - uses: actions/download-artifact@v6
         with:
           pattern: comment-files-artifact-*
           path: comment-files/
@@ -101,7 +101,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
 
-      - uses: actions/download-artifact@v5
+      - uses: actions/download-artifact@v6
         with:
           pattern: comment-files-artifact-*
           path: comment-files/
