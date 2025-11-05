@@ -25,6 +25,9 @@ mimir:
       requests:
         cpu: 50m
   store_gateway:
+    replicas: 2
+    zoneAwareReplication:
+      enabled: false
     resources:
       requests:
         cpu: 50m
