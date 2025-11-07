@@ -56,7 +56,8 @@ jobs:
     outputs:
       dockerImageChanges: ${{ steps.filter.outputs.dockerImageChanges }}
       globalChanges: ${{ steps.filter.outputs.globalChanges }}
-      targets: ${{ coalesce(steps.build-matrix-global.outputs.targets, steps.build-matrix.outputs.targets) }}
+      globalTargets: ${{ steps.build-matrix-global.outputs.targets }}
+      appTargets: ${{ steps.build-matrix-app.outputs.targets }}
     steps:
       - uses: actions/checkout@v5
         with:
@@ -90,7 +91,7 @@ jobs:
           echo "targets=["kind-security", "kind-portal", "kind-observability", "kind-delivery"]" >> "$GITHUB_OUTPUT"
 
       # 2) Derive app names from changed paths and check which of the 4 files reference them
-      - id: build-matrix
+      - id: build-matrix-app
         name: Build target matrix from file contents
         if: steps.filter.outputs.appChanges == 'true' && steps.filter.outputs.globalChanges == 'false'
         shell: bash
@@ -218,7 +219,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        target-type: ${{ fromJson(needs.changes.outputs.targets) }}
+        target-type: ${{ fromJson(needs.changes.outputs.globalTargets) || fromJson(needs.changes.outputs.appTargets) }}
 
     steps:
       - name: Checkout
