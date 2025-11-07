@@ -56,7 +56,7 @@ jobs:
     outputs:
       dockerImageChanges: ${{ steps.filter.outputs.dockerImageChanges }}
       globalChanges: ${{ steps.filter.outputs.globalChanges }}
-      targets: ${{ steps.build-matrix.outputs.targets }}
+      targets: ${{ coalesce(steps.build-matrix-global.outputs.targets, steps.build-matrix.outputs.targets) }}
     steps:
       - uses: actions/checkout@v5
         with:
