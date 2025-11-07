@@ -141,7 +141,7 @@ jobs:
           done
 
           # JSON array of files that matched (unique)
-          TARGETS_JSON=$(printf '%s\n' "${!TARGETS[@]}" | jq -R . | jq -s .)
+          TARGETS_JSON=$(printf '%s\n' "${!TARGETS[@]}" | jq -R . | jq -s -c .)
           echo "Will target files: $TARGETS_JSON"
 
           # Expose as job output to feed a matrix
