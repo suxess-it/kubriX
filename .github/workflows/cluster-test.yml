@@ -65,6 +65,7 @@ jobs:
       - id: filter
         uses: dorny/paths-filter@v3
         with:
+          list-files: json
           # For PRs it compares base..head. For push it compares before..after.
           filters: |
             dockerImageChanges:
