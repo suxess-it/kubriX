@@ -115,7 +115,7 @@ jobs:
           mapfile -t CHANGED <<<"$(jq -r '.[]' <<<"$CHANGED_JSON")"
           declare -A APPS=()
           for f in "${CHANGED[@]}"; do
-            if [[ "$f" =~ ^platform-apps/([^/]+)/ ]]; then
+            if [[ "$f" =~ ^platform-apps/charts/([^/]+)/ ]]; then
               APPS["${BASH_REMATCH[1]}"]=1
             fi
           done
