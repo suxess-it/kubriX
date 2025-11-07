@@ -67,6 +67,18 @@ jobs:
             dockerImageChanges:
               - 'Dockerfile'
               - 'install-platform.sh'
+              - '.github/workflows/create-kubrix-installer-image.yml'
+            appChanges:
+              - 'platform-apps/charts/**'
+            globalChanges:
+               - '.github/workflows/cluster-test.yml'
+               - '.github/kind-config.yaml'
+               - 'e2e-tests/**'
+               - 'platform-apps/target-chart/templates/**'
+               - 'platform-apps/target-chart/values.yaml'
+               - 'platform-apps/target-chart/values-kind*'
+               - '.github/install-kubriX-with-job.sh'
+               - 'install-manifests.yaml'
 
   create-kubrix-installer-image:
     # we check in each step with 
