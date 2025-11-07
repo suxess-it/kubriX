@@ -89,7 +89,7 @@ jobs:
         shell: bash
         run: |
           TARGETS=(kind-delivery kind-security kind-observability kind-portal)
-          TARGETS_JSON=$(printf '%s\n' "${TARGETS[@]}" | jq -R -s -c .)
+          TARGETS_JSON=$(printf '%s\n' "${TARGETS[@]}" | jq -R -s -c 'sort')
           echo "targets=$TARGETS_JSON" >> "$GITHUB_OUTPUT"
 
       # Derive app names from changed paths and check which of the 4 files reference them
