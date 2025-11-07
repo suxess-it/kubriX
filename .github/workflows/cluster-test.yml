@@ -94,7 +94,7 @@ jobs:
           TARGETS["kind-observability"]=1
           TARGETS["kind-portal"]=1
           TARGETS_JSON=$(printf '%s\n' "${!TARGETS[@]}" | jq -R . | jq -s -c .)
-          echo "targets=$TARGETS_JSON" >> "$GITHUB_OUTPUT"
+          printf "targets=%s\n" "$TARGETS_JSON" >> "$GITHUB_OUTPUT"
 
       # Derive app names from changed paths and check which of the 4 files reference them
       - id: build-matrix-app
