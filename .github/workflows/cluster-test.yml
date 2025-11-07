@@ -123,7 +123,7 @@ jobs:
           # For any app that changed, see which of the 4 targets mention it
           declare -A TARGETS=()
           for app in "${!APPS[@]}"; do
-            for file in "${TARGET_TYPES}"; do
+            for file in ${TARGET_TYPES}; do
               # Skip missing files quietly (useful for monorepos)
               [[ -f "platform-apps/target-chart/values-$file.yaml" ]] || continue
               if grep -q -- "$app" "platform-apps/target-chart/values-$file.yaml"; then
