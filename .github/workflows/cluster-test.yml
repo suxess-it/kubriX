@@ -163,10 +163,10 @@ jobs:
 
           # prefer global if it's non-empty JSON array and not '[]'
           if [[ -n "$global" && "$global" != "[]" && "$global" != "null" ]]; then
-            echo "Using global targets: $global"
+            printf "targets=%s\n" "$global"
             printf "targets=%s\n" "$global" >> "$GITHUB_OUTPUT"
           else
-            echo "Using app targets: $app"
+            printf "targets=%s\n" "$app"
             printf "targets=%s\n" "$app" >> "$GITHUB_OUTPUT"
           fi
 
