@@ -92,7 +92,7 @@ jobs:
           TARGETS["kind-delivery"]=1
           TARGETS["kind-security"]=1
           TARGETS["kind-observability"]=1
-          TARGETS["kind-security"]=1
+          TARGETS["kind-portal"]=1
           TARGETS_JSON=$(printf '%s\n' "${!TARGETS[@]}" | jq -R . | jq -s -c .)
           echo "targets=$TARGETS_JSON" >> "$GITHUB_OUTPUT"
 
@@ -109,7 +109,7 @@ jobs:
             "kind-delivery"
             "kind-security"
             "kind-observability"
-            "kind-security"
+            "kind-portal"
           )
           # -----------------------------------------------
 
