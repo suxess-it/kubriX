@@ -158,8 +158,8 @@ jobs:
         run: |
           set -euo pipefail
 
-          global=${{ steps.build-matrix-global.outputs.targets }}
-          app=${{ steps.build-matrix-app.outputs.targets }}
+          global='${{ steps.build-matrix-global.outputs.targets }}'
+          app='${{ steps.build-matrix-app.outputs.targets }}'
 
           # prefer global if it's non-empty JSON array and not '[]'
           if [[ -n "$global" && "$global" != "[]" && "$global" != "null" ]]; then
