@@ -88,7 +88,7 @@ jobs:
         if: steps.filter.outputs.globalChanges == 'true'
         shell: bash
         run: |
-          echo "targets=['kind-security', 'kind-portal', 'kind-observability', 'kind-delivery']" >> "$GITHUB_OUTPUT"
+          echo "targets=[\"kind-security\", \"kind-portal\", \"kind-observability\", \"kind-delivery\"]" >> "$GITHUB_OUTPUT"
 
       # Derive app names from changed paths and check which of the 4 files reference them
       - id: build-matrix-app
@@ -153,15 +153,15 @@ jobs:
           set -euo pipefail
 
           global="${{ steps.build-matrix-global.outputs.targets }}"
-          local="${{ steps.build-matrix-app.outputs.targets }}"
+          app="${{ steps.build-matrix-app.outputs.targets }}"
 
           # prefer global if it's non-empty JSON array and not '[]'
           if [[ -n "$global" && "$global" != "[]" && "$global" != "null" ]]; then
             echo "Using global targets: $global"
-            echo "targets=$global" >> "$GITHUB_OUTPUT"
+            printf "targets=%s\n" "$global" >> "$GITHUB_OUTPUT"
           else
             echo "Using app targets: $local"
-            echo "targets=$local" >> "$GITHUB_OUTPUT"
+            printf "targets=%s\n" "$app" >> "$GITHUB_OUTPUT"
           fi
 
   create-kubrix-installer-image:
