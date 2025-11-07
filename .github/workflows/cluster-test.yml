@@ -55,6 +55,9 @@ jobs:
     runs-on: ubuntu-latest
     outputs:
       dockerImageChanges: ${{ steps.filter.outputs.dockerImageChanges }}
+      globalChanges: ${{ steps.filter.outputs.globalChanges }}
+      globalTargets: ${{ steps.build-matrix-global.outputs.targets }}
+      appTargets: ${{ steps.build-matrix-app.outputs.targets }}
     steps:
       - uses: actions/checkout@v5
         with:
@@ -67,6 +70,81 @@ jobs:
             dockerImageChanges:
               - 'Dockerfile'
               - 'install-platform.sh'
+              - '.github/workflows/create-kubrix-installer-image.yml'
+            appChanges:
+              - 'platform-apps/charts/**'
+            globalChanges:
+               - '.github/workflows/cluster-test.yml'
+               - '.github/kind-config.yaml'
+               - 'e2e-tests/**'
+               - 'platform-apps/target-chart/templates/**'
+               - 'platform-apps/target-chart/values.yaml'
+               - 'platform-apps/target-chart/values-kind*'
+               - '.github/install-kubriX-with-job.sh'
+               - 'install-manifests.yaml'
+  
+      - id: build-matrix-global
+        name: Build global target matrix from changed files
+        if: steps.filter.outputs.globalChanges == 'true'
+        shell: bash
+        run: |
+          echo "targets=['kind-security', 'kind-portal', 'kind-observability', 'kind-delivery']" >> "$GITHUB_OUTPUT"
+
+      # 2) Derive app names from changed paths and check which of the 4 files reference them
+      - id: build-matrix-app
+        name: Build app target matrix from changed files
+        if: steps.filter.outputs.appChanges == 'true' && steps.filter.outputs.globalChanges == 'false'
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          # ---- configure the 4 files you want to scan ----
+          TARGET_TYPES=(
+            "kind-delivery"
+            "kind-security"
+            "kind-observability"
+            "kind-security"
+          )
+          # -----------------------------------------------
+
+          # Changed files matched by the filter (JSON array)
+          CHANGED_JSON='${{ steps.filter.outputs.appChanges_files }}'
+
+          # Extract unique app names from paths like platform-apps/<app>/...
+          mapfile -t CHANGED <<<"$(jq -r '.[]' <<<"$CHANGED_JSON")"
+          declare -A APPS=()
+          for f in "${CHANGED[@]}"; do
+            if [[ "$f" =~ ^platform-apps/([^/]+)/ ]]; then
+              APPS["${BASH_REMATCH[1]}"]=1
+            fi
+          done
+
+          if [[ ${#APPS[@]} -eq 0 ]]; then
+            echo "No app directories changed."
+            echo "targets=[]" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+
+          echo "Changed apps: ${!APPS[@]}"
+
+          # For any app that changed, see which of the 4 targets mention it
+          declare -A TARGETS=()
+          for app in "${!APPS[@]}"; do
+            for file in "${TARGET_TYPES[@]}"; do
+              # Skip missing files quietly (useful for monorepos)
+              [[ -f "$file" ]] || continue
+              if grep -q -- "$app" "platform-apps/target-chart/values-$file.yaml"; then
+                TARGETS["$file"]=1
+              fi
+            done
+          done
+
+          # JSON array of files that matched (unique)
+          TARGETS_JSON=$(printf '%s\n' "${!TARGETS[@]}" | jq -R . | jq -s .)
+          echo "Will target files: $TARGETS_JSON"
+
+          # Expose as job output to feed a matrix
+          echo "targets=$TARGETS_JSON" >> "$GITHUB_OUTPUT"
 
   create-kubrix-installer-image:
     # we check in each step with 
@@ -141,11 +219,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        target-type:
-          - kind-delivery
-          - kind-observability
-          - kind-security
-          - kind-portal
+        target-type: ${{ fromJson(needs.changes.outputs.globalTargets) || fromJson(needs.changes.outputs.appTargets) }}
 
     steps:
       - name: Checkout
