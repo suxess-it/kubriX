@@ -81,10 +81,18 @@ jobs:
                - 'platform-apps/target-chart/values-kind*'
                - '.github/install-kubriX-with-job.sh'
                - 'install-manifests.yaml'
+  
+      - id: build-matrix-all-targets
+        name: Build target matrix from file contents
+        if: steps.filter.outputs.globalChanges == 'true'
+        shell: bash
+        run: |
+          echo "targets=["kind-security", "kind-portal", "kind-observability", "kind-delivery"]" >> "$GITHUB_OUTPUT"
+
       # 2) Derive app names from changed paths and check which of the 4 files reference them
       - id: build-matrix
         name: Build target matrix from file contents
-        if: steps.filter.outputs.appChanges == 'true'
+        if: steps.filter.outputs.appChanges == 'true' && steps.filter.outputs.globalChanges == 'false'
         shell: bash
         run: |
           set -euo pipefail
