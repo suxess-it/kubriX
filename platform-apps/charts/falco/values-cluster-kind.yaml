@@ -1,0 +1,13 @@
+falco:
+  falcosidekick:
+    webui:
+      ingress:
+        hosts:
+          - host: falco.127-0-0-1.nip.io
+            paths:
+              - path: /
+                pathType: Prefix
+        tls: 
+          - secretName: falco-server-tls
+            hosts:
+              - falco.127-0-0-1.nip.io

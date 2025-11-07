@@ -1,6 +1,7 @@
 default:
   valueFiles:
-  - values-k3d.yaml
+  - values-kubrix-default.yaml
+  - values-cluster-kind.yaml
 
 applications:
 
@@ -50,6 +51,8 @@ applications:
       - ServerSideApply=true
 
   - name: external-secrets
+    syncOptions:
+      - ServerSideApply=true
 
   - name: keycloak
 

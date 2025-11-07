@@ -1,6 +1,7 @@
 default:
   valueFiles:
-  - values-k3d.yaml
+  - values-kubrix-default.yaml
+  - values-kind.yaml
 
 applications:
 
@@ -19,6 +20,8 @@ applications:
   - name: external-secrets
     annotations:
       argocd.argoproj.io/sync-wave: "-8"
+    syncOptions:
+      - ServerSideApply=true
 
   - name: k8s-monitoring
     annotations:

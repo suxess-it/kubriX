@@ -1,0 +1,14 @@
+komoplane:
+  ingress:
+    hosts:
+      - host: komoplane.127-0-0-1.nip.io 
+        paths:
+          - path: /
+            pathType: ImplementationSpecific
+    tls:
+      - hosts:
+        - komoplane.127-0-0-1.nip.io
+        secretName: komoplane-server-tls
+
+
+

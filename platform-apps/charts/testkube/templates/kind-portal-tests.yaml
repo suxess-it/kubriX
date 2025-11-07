@@ -33,14 +33,22 @@ kind: TestWorkflow
 metadata:
   name: kind-portal-cypress
   labels:
-    type: kind-portal
+    type: kind-portal-not-used
 spec:
   content:
     git:
-      uri: https://github.com/suxess-it/kubriX.git
+      uri: {{ .Values.default.repoURL }}
       revision: {{ .Values.default.targetRevision }}
       paths:
       - e2e-tests/cypress
+      usernameFrom:
+        secretKeyRef:
+          name: git-credentials
+          key: username
+      tokenFrom:
+        secretKeyRef:
+          name: git-credentials
+          key: token
   container:
     resources:
       requests:
@@ -52,7 +60,7 @@ spec:
   steps:
     - name: Run tests
       run:
-        image: cypress/included:15.3.0
+        image: cypress/included:15.6.0
         args:
         - --config
         - '{"screenshotsFolder":"/data/artifacts/screenshots","videosFolder":"/data/artifacts/videos"}'

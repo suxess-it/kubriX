@@ -1,0 +1,10 @@
+grafana:
+  grafana.ini:
+    server:
+      root_url: "https://grafana.{{ .kubriX.domain }}"
+  ingress:
+    hosts: [grafana.{{ .kubriX.domain }}]
+    tls:
+      - secretName: grafana-server-tls
+        hosts:
+        - grafana.{{ .kubriX.domain }}

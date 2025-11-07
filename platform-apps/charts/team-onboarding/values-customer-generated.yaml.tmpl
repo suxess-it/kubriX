@@ -1,0 +1,12 @@
+# do not edit this, since it is generated
+# put customer specific values in values-customer.yaml or any other customer created values file
+
+scmAppsetRequeueAfterSeconds: 30
+
+destinationClusters:
+  - name: in-cluster
+    allowedTeams: [".*"]
+
+multiStageKargoAppSetHelmRepo: {{ .kubriX.gitRepo }}
+
+teams: []

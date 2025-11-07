@@ -1,0 +1,142 @@
+default:
+  valueFiles:
+  - values-kubrix-default.yaml
+  - values-cluster-{{ .kubriX.clusterType }}.yaml
+  - values-provider-peak.yaml
+  {{ if .kubriX.haEnabled }}
+  - values-ha-enabled.yaml
+  {{ end -}}
+  - values-size-{{ .kubriX.tShirtSize }}.yaml
+  {{ if .kubriX.securityStrict }}
+  - values-security-strict.yaml
+  {{ end -}}
+  - values-customer-generated.yaml
+  - values-customer.yaml
+
+applications:
+  - name: metallb
+    annotations:
+      argocd.argoproj.io/sync-wave: "-12"
+    managedNamespaceMetadata:
+      labels:
+        pod-security.kubernetes.io/enforce: privileged
+        pod-security.kubernetes.io/audit: privileged
+        pod-security.kubernetes.io/warn: privileged
+
+  - name: ingress-nginx
+    annotations:
+      argocd.argoproj.io/sync-wave: "-11"
+
+  - name: cert-manager
+    annotations:
+      argocd.argoproj.io/sync-wave: "-10"
+
+  - name: crossplane
+    annotations:
+      argocd.argoproj.io/sync-wave: "-9"
+
+  - name: argocd
+    annotations:
+      argocd.argoproj.io/sync-wave: "-9"
+
+  - name: external-secrets
+    annotations:
+      argocd.argoproj.io/sync-wave: "-8"
+    syncOptions:
+      - ServerSideApply=true
+
+  - name: k8s-monitoring
+    annotations:
+      argocd.argoproj.io/compare-options: ServerSideDiff=true
+      argocd.argoproj.io/sync-wave: "-8"
+    syncOptions:
+      - ServerSideApply=true
+    managedNamespaceMetadata:
+      labels:
+        pod-security.kubernetes.io/enforce: privileged
+        pod-security.kubernetes.io/audit: privileged
+        pod-security.kubernetes.io/warn: privileged
+
+  - name: vault
+    annotations:
+      argocd.argoproj.io/sync-wave: "-7"
+
+  - name: cnpg
+    annotations:
+      argocd.argoproj.io/compare-options: ServerSideDiff=true
+      argocd.argoproj.io/sync-wave: "-6"
+    syncOptions:
+      - ServerSideApply=true
+      
+  - name: keycloak
+    annotations:
+      argocd.argoproj.io/sync-wave: "-5"
+
+  - name: loki
+    annotations:
+      argocd.argoproj.io/compare-options: ServerSideDiff=true
+      argocd.argoproj.io/sync-wave: "-1"
+    helmOptions:
+      skipCrds: true
+    syncOptions:
+      - ServerSideApply=true
+
+  - name: kargo
+
+  - name: argo-rollouts
+    ignoreDifferences:
+    - group: apiextensions.k8s.io
+      kind: CustomResourceDefinition
+      jsonPointers:
+      - /spec/preserveUnknownFields
+      
+  - name: grafana
+    annotations:
+      argocd.argoproj.io/compare-options: ServerSideDiff=true
+    syncOptions:
+      - ServerSideApply=true
+
+  - name: mimir
+
+  - name: falco
+    annotations:
+      argocd.argoproj.io/compare-options: ServerSideDiff=true
+    helmOptions:
+      skipCrds: true
+    syncOptions:
+      - ServerSideApply=true
+    managedNamespaceMetadata:
+      labels:
+        pod-security.kubernetes.io/enforce: privileged
+        pod-security.kubernetes.io/audit: privileged
+        pod-security.kubernetes.io/warn: privileged
+
+  - name: kyverno
+    syncOptions:
+      - ServerSideApply=true
+
+  - name: velero
+    managedNamespaceMetadata:
+      labels:
+        pod-security.kubernetes.io/enforce: privileged
+        pod-security.kubernetes.io/audit: privileged
+        pod-security.kubernetes.io/warn: privileged
+
+  - name: velero-ui
+
+  - name: minio
+
+  - name: backstage
+    annotations:
+      argocd.argoproj.io/sync-wave: "10"
+    managedNamespaceMetadata:
+      labels:
+        pod-security.kubernetes.io/enforce: privileged
+        pod-security.kubernetes.io/audit: privileged
+        pod-security.kubernetes.io/warn: privileged
+
+  - name: team-onboarding
+    destinationNamespaceOverwrite: argocd
+    namespaceResourceTracking: false
+    annotations:
+      argocd.argoproj.io/sync-wave: "15"

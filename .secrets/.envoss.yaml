@@ -127,3 +127,31 @@ secrets:
       pgkeycloakdatabase: "keycloak"
       pgkeycloaksuperuser: "postgres"
       pgkeycloaksuperuserpassword: "dynamic:12:hex"
+  # falco secrets
+  - application: "falco"
+    path: "security/falco/base"
+    namespace: "falco"
+    secretname: falco-ui-creds
+    secretType: "Opaque"
+    stringData:
+      falcousername: "admin"
+      falcopassword: "dynamic:12:hex"
+# grafana-client-credentials per environment
+  - application: "grafana"
+    path: "grafana/base"
+    namespace: "grafana"
+    secretname: grafana-crossplane-secret
+    secretType: "Opaque"
+    stringData:
+      # clientsecret for grafana usage
+      passwordKey: "dynamic:12:hex"
+      userKey: "admin"
+  - application: "kargo"
+    path: "delivery/kargo/base"
+    namespace: "kargo"
+    secretname: kargo-secrets
+    secretType: "Opaque"
+    stringData:
+      password: "dynamic:12:hex:hashed"
+      passwordHash: "-" # due to value '-' a secret doesn't get created, but in the pushsecret a reference to the passwordHash secret key gets created
+      tokenSigningKey: "dynamic:12:hex"
