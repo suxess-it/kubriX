@@ -1,5 +1,6 @@
 mimir:
-  nginx:
+  gateway:
+    enabledNonEnterprise: true
     ingress:
       enabled: true
       ingressClassName: nginx
@@ -13,6 +14,14 @@ mimir:
       limits:
         max_global_series_per_user: 500000
         cardinality_analysis_enabled: true
+  # continue to use classic arch (https://grafana.com/docs/helm-charts/mimir-distributed/latest/migration-guides/migrate-helm-chart-5.x-to-6.0/#continue-using-classic-architecture-disable-ingest-storage)
+      ingest_storage:
+        enabled: false
+      ingester:
+        push_grpc_method_enabled: true
+  kafka:
+    enabled: false
+  
   distributor:
     resources:
       limits:
