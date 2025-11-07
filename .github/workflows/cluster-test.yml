@@ -88,13 +88,9 @@ jobs:
         if: steps.filter.outputs.globalChanges == 'true'
         shell: bash
         run: |
-          declare -A TARGETS=()
-          TARGETS["kind-delivery"]=1
-          TARGETS["kind-security"]=1
-          TARGETS["kind-observability"]=1
-          TARGETS["kind-portal"]=1
-          TARGETS_JSON=$(printf '%s\n' "${!TARGETS[@]}" | jq -R . | jq -s -c .)
-          printf "targets=%s\n" "$TARGETS_JSON" >> "$GITHUB_OUTPUT"
+          TARGETS=(kind-delivery kind-security kind-observability kind-portal)
+          TARGETS_JSON=$(printf '%s\n' "${TARGETS[@]}" | jq -R -s -c .)
+          echo "targets=$TARGETS_JSON" >> "$GITHUB_OUTPUT"
 
       # Derive app names from changed paths and check which of the 4 files reference them
       - id: build-matrix-app
