@@ -265,7 +265,6 @@ jobs:
           k8sgpt analyze
 
       - name: install kubriX stack
-        if: ${{ matrix['target-type'] != '' }}
         env:
           KUBRIX_TARGET_TYPE: ${{ matrix.target-type }}
           KUBRIX_CLUSTER_TYPE: "kind"
