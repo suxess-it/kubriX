@@ -90,7 +90,7 @@ jobs:
         env:
           CLUSTER_TEST_TARGET_TYPES: ${{ vars.CLUSTER_TEST_TARGET_TYPES }}
         run: |
-          if [[ ${CLUSTER_TEST_TARGET_TYPES} == "" ]]; the
+          if [[ ${CLUSTER_TEST_TARGET_TYPES} == "" ]]; then
             echo "targets=[]" >> "$GITHUB_OUTPUT"
             exit 0
           fi
