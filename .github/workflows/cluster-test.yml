@@ -96,6 +96,7 @@ jobs:
           fi
           declare -A TARGETS=()
           for target in ${CLUSTER_TEST_TARGET_TYPES}; do
+            [[ -f "platform-apps/target-chart/values-$target.yaml" ]] || continue
             TARGETS["$target"]=1
           done
           TARGETS_JSON=$(printf '%s\n' "${!TARGETS[@]}" | jq -R . | jq -s -c .)
