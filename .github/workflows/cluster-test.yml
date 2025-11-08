@@ -162,7 +162,7 @@ jobs:
           app='${{ steps.build-matrix-app.outputs.targets }}'
 
           # prefer global if it's non-empty JSON array and not '[]'
-          if [[ -n "$global" && "$global" != "[]" && "$global" != "null" ]]; then
+          if [[ -n "$global" && "$global" != "null" ]]; then
             printf "targets=%s\n" "$global"
             printf "targets=%s\n" "$global" >> "$GITHUB_OUTPUT"
           else
