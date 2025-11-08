@@ -87,18 +87,30 @@ jobs:
         name: Build global target matrix from changed files
         if: steps.filter.outputs.globalChanges == 'true'
         shell: bash
+        env:
+          CLUSTER_TEST_TARGET_TYPES: ${{ vars.CLUSTER_TEST_TARGET_TYPES }}
         run: |
-          printf 'targets=["kind-delivery","kind-observability","kind-portal","kind-security"]\n' >> "$GITHUB_OUTPUT"
+          if [[ ${CLUSTER_TEST_TARGET_TYPES} == "" ]]; then
+            echo "targets=[]" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          declare -A TARGETS=()
+          for target in ${CLUSTER_TEST_TARGET_TYPES}; do
+            TARGETS["$target"]=1
+          done
+          TARGETS_JSON=$(printf '%s\n' "${!TARGETS[@]}" | jq -R . | jq -s -c .)
+          echo "targets=$TARGETS_JSON" >> "$GITHUB_OUTPUT"
+
 
       # Derive app names from changed paths and check which of target-types reference them
       - id: build-matrix-app
         name: Build app target matrix from changed files
         if: steps.filter.outputs.appChanges == 'true' && steps.filter.outputs.globalChanges == 'false'
+        env:
+          CLUSTER_TEST_TARGET_TYPES: ${{ vars.CLUSTER_TEST_TARGET_TYPES }}
         shell: bash
         run: |
           set -euo pipefail
-
-          TARGET_TYPES="kind-delivery kind-security kind-observability kind-portal"
 
           # Changed files matched by the filter (JSON array)
           CHANGED_JSON='${{ steps.filter.outputs.appChanges_files }}'
@@ -123,7 +135,7 @@ jobs:
           # For any app that changed, see which of the 4 targets mention it
           declare -A TARGETS=()
           for app in "${!APPS[@]}"; do
-            for file in ${TARGET_TYPES}; do
+            for file in ${CLUSTER_TEST_TARGET_TYPES}; do
               # Skip missing files quietly (useful for monorepos)
               [[ -f "platform-apps/target-chart/values-$file.yaml" ]] || continue
               if grep -q -- "$app" "platform-apps/target-chart/values-$file.yaml"; then
