@@ -1,0 +1,12 @@
+mimir:
+  gateway:
+    ingress:
+      hosts:
+        - host: metrics-monitoring.{{ .kubriX.domain }}
+          paths:
+            - path: /
+              pathType: Prefix
+      tls:
+        - secretName: mimir-nginx-tls
+          hosts:
+            - metrics-monitoring.{{ .kubriX.domain }}

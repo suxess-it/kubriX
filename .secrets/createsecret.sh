@@ -51,11 +51,11 @@ generate_secret() {
     local length=$1
     local charset=$2
     if [[ "$charset" == "alphanumeric" ]]; then
-      echo \"$(openssl rand -base64 $((length * 2)) | tr -dc 'A-Za-z0-9' | head -c "$length")\"
+      echo $(openssl rand -base64 $((length * 2)) | tr -dc 'A-Za-z0-9' | head -c "$length")
     elif [[ "$charset" == "hex" ]]; then
-      echo \"$(openssl rand -hex "$((length/2))")\"
+      echo $(openssl rand -hex "$((length/2))")
     elif [[ "$charset" == "numeric" ]]; then
-      echo \"$(openssl rand -base64 $((length * 2)) | tr -dc '0-9' | head -c "$length")\"
+      echo $(openssl rand -base64 $((length * 2)) | tr -dc '0-9' | head -c "$length")
     else
       echo "Error: unknown charset $charset"
       exit 1
@@ -122,6 +122,7 @@ EOF
     # Process stringData efficiently
     STRINGDATA_KEYS=$(yq e ".secrets[$i].stringData | keys | .[]" "$BASEFILE")
     for KEY in $STRINGDATA_KEYS; do
+      HASHED="no"
       VALUE_TYPE=$(yq e ".secrets[$i].stringData[\"$KEY\"] | type" "$BASEFILE")
       if [[ "$VALUE_TYPE" != "!!str" ]]; then
           RAW_VALUE=$(yq e -r ".secrets[$i].stringData[\"$KEY\"] | tostring" "$BASEFILE")
@@ -129,19 +130,34 @@ EOF
       else
           VALUE=$(yq e -r ".secrets[$i].stringData[\"$KEY\"]" "$BASEFILE")
       fi
-      if [[ "$VALUE" =~ ^dynamic:([0-9]+):([a-zA-Z0-9_-]+)$ ]]; then
-          LENGTH=${BASH_REMATCH[1]}
-          CHARSET=${BASH_REMATCH[2]}
-          VALUE=$(generate_secret "$LENGTH" "$CHARSET")
-          echo "  -> generating dynamic secret for App: $APP, Value: $KEY (length: $LENGTH, $CHARSET)"
-      fi
-      # add stringData entry in Secret 
+      # if VALUE is "-" it is just a placeholder
+      #  so that the pushsecret references this variable, but it won't get created in the secret
+      #  currently only for the 'hashed' use case, where we create a "${variable}Hash" variable,
+      #  which gets created in the secret automatically, but also needs to get created in pushsecret
+      if [[ "$VALUE" != "-" ]] ; then
+        if [[ "$VALUE" =~ ^dynamic:([0-9]+):([a-zA-Z0-9_-]+)(:hashed)?$ ]]; then
+            LENGTH=${BASH_REMATCH[1]}
+            CHARSET=${BASH_REMATCH[2]}
+            HASHED=${BASH_REMATCH[3]#:}
+            VALUE=$(generate_secret "$LENGTH" "$CHARSET")
+            echo "  -> generating dynamic secret for App: $APP, Value: $KEY (length: $LENGTH, $CHARSET, hashed: ${HASHED:-no})"
+        fi
+        # add stringData entry in Secret 
         if [[ "$VALUE" == *$'\n'* ]]; then
           printf "  %s: |-\n" "$KEY" >> "$TMPDIR/$SECRETFILE"
           printf "%s\n" "$VALUE" | sed 's/^/    /' >> "$TMPDIR/$SECRETFILE"
+        # if string has no quotes then add some in the output
+        elif [[ ! $VALUE =~ ^\".*\"$ ]]; then
+          printf "  %s: \"%s\"\n" "$KEY" "$VALUE" >> "$TMPDIR/$SECRETFILE"
+        # otherwise don't add them to prevent double quotes
         else
           printf "  %s: %s\n" "$KEY" "$VALUE" >> "$TMPDIR/$SECRETFILE"
         fi
+        # if secret has the suffix 'hashed' create an additional secret hash with the key ${key}Hash
+        if [[ "$HASHED" == "hashed" ]]; then
+          printf "  %sHash: %s\n" "${KEY}" "$(htpasswd -bnBC 10 "" $VALUE | tr -d ':\n')" >> "$TMPDIR/$SECRETFILE"
+        fi
+      fi
     # Add data entry in PushSecret   
     cat <<EOF >> "$TMPDIR/push$SECRETFILE"
     - match:

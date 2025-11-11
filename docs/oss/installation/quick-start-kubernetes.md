@@ -1,6 +1,8 @@
-# Quickstart demo stack on Kubernetes
+# Quickstart on Kubernetes
 
-With this step-by-step guide kubriX with its default demo stack gets deployed on your preferred Kubernetes cluster.
+With this step-by-step guide kubriX with its default kubriX OSS stack gets deployed on your preferred Kubernetes cluster.
+
+> ⚠️ **kubriX-prime features**: In our [kubriX-prime quick-start-kubernetes docs](../../prime/installation/quick-start-kubernetes.md) you will find additional features like DNS01 challenge.
 
 ## Prerequisites
 
@@ -39,7 +41,7 @@ With this step-by-step guide kubriX with its default demo stack gets deployed on
 5. optional: set the DNS provider, which external-dns should connect to.
 
     default: ionos  
-    supported: ionos, aws, stackit, cloudflare
+    supported: ionos, aws, azure, stackit, cloudflare
 
     ```
     export KUBRIX_DNS_PROVIDER="ionos"
@@ -58,10 +60,10 @@ With this step-by-step guide kubriX with its default demo stack gets deployed on
 7. optional: set the kubrix target type which should be used
 
     ```
-    export KUBRIX_TARGET_TYPE="DEMO-STACK"
+    export KUBRIX_TARGET_TYPE="kubrix-oss-stack"
     ```
 
-    if this variable is not set, "DEMO-STACK" is used.
+    if this variable is not set, "kubrix-oss-stack" is used.
 
 8. create a new Kubernetes cluster and be sure that kubectl is connected to it. check with `kubectl cluster-info`
 
@@ -90,6 +92,26 @@ With this step-by-step guide kubriX with its default demo stack gets deployed on
     ```
     kubectl create ns external-dns
     kubectl create secret generic -n external-dns sx-external-dns --from-file credentials
+    ```
+
+    __azure__
+
+    setup [Managed Identity using Workload identity](https://kubernetes-sigs.github.io/external-dns/latest/docs/tutorials/azure/#managed-identity-using-workload-identity) and create `azure.json` file like this:
+    
+    ```
+    {
+        "tenantId": "$TENANT_ID",
+        "subscriptionId": "$SUBSCRIPTION_ID",
+        "resourceGroup": "$AKS_RESOURCE_GROUP",
+        "aadClientId": "$IDENTITY_CLIENT_ID",
+        "useWorkloadIdentityExtension": true
+    }
+    ```    
+
+    and then create the secret on the K8s cluster based on this `azure.json` file: 
+    ```
+    kubectl create ns external-dns
+    kubectl create secret generic external-dns-azure -n external-dns --from-file azure.json
     ```
 
     __stackit__

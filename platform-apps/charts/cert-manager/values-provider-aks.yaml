@@ -1,0 +1,17 @@
+cert-manager:
+  webhook:
+    validatingWebhookConfiguration:
+      namespaceSelector:
+        matchExpressions:
+        - key: cert-manager.io/disable-validation
+          operator: NotIn
+          values:
+            - 'true'
+        - key: control-plane
+          operator: NotIn
+          values:
+            - 'true'
+        - key: kubernetes.azure.com/managedby
+          operator: NotIn
+          values:
+            - aks

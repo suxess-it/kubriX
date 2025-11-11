@@ -72,15 +72,15 @@ fi
 
 # here we can add some NodePort objects if we want to open ports before the apps are installed
 
-if [[ ${KUBRIX_TARGET_TYPE} == "KIND-DELIVERY" ]] ; then
+if [[ ${KUBRIX_TARGET_TYPE} == "kind-delivery" ]] ; then
   kubectl create namespace kargo --dry-run=client -o yaml | kubectl apply -f -
   kubectl apply -f .devcontainer/kargo-nodeport.yaml
 
-elif  [[ ${KUBRIX_TARGET_TYPE} == "KIND-OBSERVABILITY" ]] ; then
+elif  [[ ${KUBRIX_TARGET_TYPE} == "kind-observability" ]] ; then
   kubectl create namespace grafana --dry-run=client -o yaml | kubectl apply -f -
   kubectl apply -f .devcontainer/grafana-nodeport.yaml
 
-elif  [[ ${KUBRIX_TARGET_TYPE} == "KIND-SECURITY" ]] ; then
+elif  [[ ${KUBRIX_TARGET_TYPE} == "kind-security" ]] ; then
   kubectl create namespace falco --dry-run=client -o yaml | kubectl apply -f -
   kubectl apply -f .devcontainer/falco-nodeport.yaml
 fi
@@ -106,23 +106,23 @@ kubectl create secret generic kubrix-install-secrets -n kubrix-install \
   --dry-run=client -o yaml | kubectl apply -f -
 bash .github/install-kubriX-with-job.sh
 
-if [[ ${KUBRIX_TARGET_TYPE} == "KIND-DELIVERY" ]] ; then
+if [[ ${KUBRIX_TARGET_TYPE} == "kind-delivery" ]] ; then
   echo "kubrix delivery is set up sucessfully."
   echo "Kargo url: https://${CODESPACE_NAME}-6689.${GITHUB_CODESPACES_PORT_FORWARDING_DOMAIN}"
   echo "Kargo password: admin"
 
-elif  [[ ${KUBRIX_TARGET_TYPE} == "KIND-OBSERVABILITY" ]] ; then
+elif  [[ ${KUBRIX_TARGET_TYPE} == "kind-observability" ]] ; then
   echo "kubrix observability is set up sucessfully."
   echo "Grafana url: https://${CODESPACE_NAME}-6690.${GITHUB_CODESPACES_PORT_FORWARDING_DOMAIN}"
   echo "Grafana user: admin"
   echo "Grafana password: prom-operator"
 
-elif  [[ ${KUBRIX_TARGET_TYPE} == "KIND-PORTAL" ]] ; then
+elif  [[ ${KUBRIX_TARGET_TYPE} == "kind-portal" ]] ; then
   echo "kubrix portal is set up sucessfully."
   echo "Backstage url: https://${CODESPACE_NAME}-6691.${GITHUB_CODESPACES_PORT_FORWARDING_DOMAIN}"
   echo "Keycloak url: https://${CODESPACE_NAME}-6692.${GITHUB_CODESPACES_PORT_FORWARDING_DOMAIN}"
 
-elif  [[ ${KUBRIX_TARGET_TYPE} == "KIND-SECURITY" ]] ; then
+elif  [[ ${KUBRIX_TARGET_TYPE} == "kind-security" ]] ; then
   echo "kubrix portal is set up sucessfully."
   echo "Keycloak url: https://${CODESPACE_NAME}-6692.${GITHUB_CODESPACES_PORT_FORWARDING_DOMAIN}"
   echo "Falco url: https://${CODESPACE_NAME}-6693.${GITHUB_CODESPACES_PORT_FORWARDING_DOMAIN}"

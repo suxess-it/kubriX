@@ -7,12 +7,20 @@ metadata:
 spec:
   content:
     git:
-      uri: https://github.com/suxess-it/kubriX.git
+      uri: {{ .Values.default.repoURL }}
       revision: {{ .Values.default.targetRevision }}
       paths:
       - e2e-tests/playwright
+      usernameFrom:
+        secretKeyRef:
+          name: git-credentials
+          key: username
+      tokenFrom:
+        secretKeyRef:
+          name: git-credentials
+          key: token
   container:
-    image: mcr.microsoft.com/playwright:v1.55.1
+    image: mcr.microsoft.com/playwright:v1.56.1
     resources:
       requests:
         cpu: 500m

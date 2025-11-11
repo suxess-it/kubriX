@@ -18,6 +18,7 @@ on:
       - 'Dockerfile'
       - 'install-platform.sh'
       - '.github/workflows/create-kubrix-installer-image.yml'
+      - '.github/install-kubriX-with-job.sh'
       - 'install-manifests.yaml'
   pull_request:
     types: [opened, synchronize]
@@ -32,6 +33,7 @@ on:
       - 'Dockerfile'
       - 'install-platform.sh'
       - '.github/workflows/create-kubrix-installer-image.yml'
+      - '.github/install-kubriX-with-job.sh'
       - 'install-manifests.yaml'
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
@@ -49,7 +51,140 @@ env:
   KUBRIX_REPO: "https://github.com/${{ github.repository }}"
   
 jobs:
+  changes:
+    runs-on: ubuntu-latest
+    outputs:
+      dockerImageChanges: ${{ steps.filter.outputs.dockerImageChanges }}
+      globalChanges: ${{ steps.filter.outputs.globalChanges }}
+      targets: ${{ steps.select-targets.outputs.targets }}
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          fetch-depth: 0  # needed so the action can diff properly
+      - id: filter
+        uses: dorny/paths-filter@v3
+        with:
+          list-files: json
+          # For PRs it compares base..head. For push it compares before..after.
+          filters: |
+            dockerImageChanges:
+              - 'Dockerfile'
+              - 'install-platform.sh'
+              - '.github/workflows/create-kubrix-installer-image.yml'
+            appChanges:
+              - 'platform-apps/charts/**'
+            globalChanges:
+               - '.github/workflows/cluster-test.yml'
+               - '.github/kind-config.yaml'
+               - 'e2e-tests/**'
+               - 'platform-apps/target-chart/templates/**'
+               - 'platform-apps/target-chart/values.yaml'
+               - 'platform-apps/target-chart/values-kind*'
+               - '.github/install-kubriX-with-job.sh'
+               - 'install-manifests.yaml'
+  
+      - id: build-matrix-global
+        name: Build global target matrix from changed files
+        if: steps.filter.outputs.globalChanges == 'true'
+        shell: bash
+        env:
+          CLUSTER_TEST_TARGET_TYPES: ${{ vars.CLUSTER_TEST_TARGET_TYPES }}
+        run: |
+          if [[ ${CLUSTER_TEST_TARGET_TYPES} == "" ]]; then
+            echo "targets=[]" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          declare -A TARGETS=()
+          for target in ${CLUSTER_TEST_TARGET_TYPES}; do
+            [[ -f "platform-apps/target-chart/values-$target.yaml" ]] || continue
+            TARGETS["$target"]=1
+          done
+          if ((${#TARGETS[@]})); then
+            TARGETS_JSON=$(printf '%s\n' "${!TARGETS[@]}" | jq -R . | jq -s -c .)
+          else
+            TARGETS_JSON='[]'
+          fi
+
+          echo "targets=$TARGETS_JSON" >> "$GITHUB_OUTPUT"
+
+
+      # Derive app names from changed paths and check which of target-types reference them
+      - id: build-matrix-app
+        name: Build app target matrix from changed files
+        if: steps.filter.outputs.appChanges == 'true' && steps.filter.outputs.globalChanges == 'false'
+        env:
+          CLUSTER_TEST_TARGET_TYPES: ${{ vars.CLUSTER_TEST_TARGET_TYPES }}
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          # Changed files matched by the filter (JSON array)
+          CHANGED_JSON='${{ steps.filter.outputs.appChanges_files }}'
+
+          # Extract unique app names from paths like platform-apps/<app>/...
+          mapfile -t CHANGED <<<"$(jq -r '.[]' <<<"$CHANGED_JSON")"
+          declare -A APPS=()
+          for f in "${CHANGED[@]}"; do
+            if [[ "$f" =~ ^platform-apps/charts/([^/]+)/ ]]; then
+              APPS["${BASH_REMATCH[1]}"]=1
+            fi
+          done
+
+          if [[ ${#APPS[@]} -eq 0 ]]; then
+            echo "No app directories changed."
+            echo "targets=[]" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+
+          echo "Changed apps: ${!APPS[@]}"
+
+          # For any app that changed, see which of the 4 targets mention it
+          declare -A TARGETS=()
+          for app in "${!APPS[@]}"; do
+            for file in ${CLUSTER_TEST_TARGET_TYPES}; do
+              # Skip missing files quietly (useful for monorepos)
+              [[ -f "platform-apps/target-chart/values-$file.yaml" ]] || continue
+              if grep -q -- "$app" "platform-apps/target-chart/values-$file.yaml"; then
+                TARGETS["$file"]=1
+              fi
+            done
+          done
+
+          if ((${#TARGETS[@]})); then
+            TARGETS_JSON=$(printf '%s\n' "${!TARGETS[@]}" | jq -R . | jq -s -c .)
+          else
+            TARGETS_JSON='[]'
+          fi
+                   
+          echo "Will target files: $TARGETS_JSON"
+
+          # Expose as job output to feed a matrix
+          echo "targets=$TARGETS_JSON" >> "$GITHUB_OUTPUT"
+
+      - name: Select final targets
+        id: select-targets
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          global='${{ steps.build-matrix-global.outputs.targets }}'
+          app='${{ steps.build-matrix-app.outputs.targets }}'
+
+          # prefer global if it's non-empty JSON array and not '[]'
+          if [[ -n "$global" && "$global" != "null" ]]; then
+            printf "targets=%s\n" "$global"
+            printf "targets=%s\n" "$global" >> "$GITHUB_OUTPUT"
+          else
+            printf "targets=%s\n" "$app"
+            printf "targets=%s\n" "$app" >> "$GITHUB_OUTPUT"
+          fi
+
   create-kubrix-installer-image:
+    # we check in each step with 
+    # if: ${{ needs.changes.outputs.dockerImageChanges == 'true' }}
+    # because checking it at job level skips the whole job
+    # and then prevents create-cluster job from running
+    needs: changes
     if: ${{ github.repository == 'suxess-it/kubriX' || github.repository == 'suxess-it/kubriX-prime' }}
     runs-on: ubuntu-latest
     timeout-minutes: 10
@@ -60,9 +195,13 @@ jobs:
           fetch-depth: 0
 
       - uses: docker/setup-qemu-action@v3
+        if: ${{ needs.changes.outputs.dockerImageChanges == 'true' }}
+        
       - uses: docker/setup-buildx-action@v3
+        if: ${{ needs.changes.outputs.dockerImageChanges == 'true' }}
 
       - name: Docker meta
+        if: ${{ needs.changes.outputs.dockerImageChanges == 'true' }}
         id: meta
         uses: docker/metadata-action@v5
         with:
@@ -76,6 +215,7 @@ jobs:
             type=ref,event=pr
 
       - name: Login to Github Container Registry
+        if: ${{ needs.changes.outputs.dockerImageChanges == 'true' }}
         uses: docker/login-action@v3
         with:
           registry: ghcr.io
@@ -83,12 +223,14 @@ jobs:
           password: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Compute version
+        if: ${{ needs.changes.outputs.dockerImageChanges == 'true' }}
         id: ver
         run: |
           echo "version=$(git describe --tags --dirty --always)" >> $GITHUB_OUTPUT
           echo "sha_short=$(git rev-parse --short=12 HEAD)" >> $GITHUB_OUTPUT
      
       - name: Build and push docker
+        if: ${{ needs.changes.outputs.dockerImageChanges == 'true' }}
         uses: docker/build-push-action@v6
         with:
           context: .
@@ -101,19 +243,16 @@ jobs:
             VCS_REF=${{ steps.ver.outputs.sha_short }}
   
   create-cluster:
-    needs:
+    needs: 
       - create-kubrix-installer-image
+      - changes
     runs-on: ${{ vars.KUBRIX_GITHUB_RUNNER || 'ubuntu-latest' }}
-    if: ${{ always() && (needs.create-kubrix-installer-image.result == 'success' || needs.create-kubrix-installer-image.result == 'skipped') }}
+    if: ${{ needs.create-kubrix-installer-image.result == 'success' || needs.create-kubrix-installer-image.result == 'skipped' }}
     permissions: read-all
     strategy:
       fail-fast: false
       matrix:
-        target-type:
-          - KIND-DELIVERY
-          - KIND-OBSERVABILITY
-          - KIND-SECURITY
-          - KIND-PORTAL
+        target-type: ${{ fromJson(needs.changes.outputs.targets) }}
 
     steps:
       - name: Checkout
@@ -142,13 +281,13 @@ jobs:
       - name: install kubriX stack
         env:
           KUBRIX_TARGET_TYPE: ${{ matrix.target-type }}
-          KUBRIX_CLUSTER_TYPE: "KIND"
+          KUBRIX_CLUSTER_TYPE: "kind"
           KUBRIX_BACKSTAGE_GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           KUBRIX_REPO_PASSWORD: ${{ secrets.GITHUB_TOKEN }}
           KUBRIX_REPO_USERNAME: "dummy"
           KUBRIX_INSTALL_DEBUG: "false"
           KUBRIX_BOOTSTRAP_MAX_WAIT_TIME: ${{ vars.KUBRIX_BOOTSTRAP_MAX_WAIT_TIME }}
-          PR_NUMBER: ${{ github.event.number }}
+          PR_NUMBER: "${{ needs.changes.outputs.dockerImageChanges == 'true' && github.event.number || '' }}"
         shell: bash
         run: |
           kubectl create ns kubrix-install
@@ -203,7 +342,7 @@ jobs:
         run: |
           testkube run testworkflow -l type=$(echo ${KUBRIX_TARGET_TYPE} | awk '{print tolower($0)}') -f -d
 
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v5
         if: always()
         with:
           name: testkube-artifacts-${{ matrix.target-type }}
