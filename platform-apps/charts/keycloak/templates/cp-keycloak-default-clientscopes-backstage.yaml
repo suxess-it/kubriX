@@ -6,7 +6,6 @@ metadata:
     argocd.argoproj.io/sync-wave: "6"
   name: client-default-scopes
 spec:
-  deletionPolicy: Delete
   forProvider:
     clientIdRef:
       name: backstage
@@ -17,6 +16,7 @@ spec:
     - web-origins
     - groups
     - acr
+    realmId: {{ $.Values.kubrix.keycloak.realm.realmid }}
     realmIdRef:
       name: {{ $.Values.kubrix.keycloak.realm.realmid }}
   providerConfigRef:
