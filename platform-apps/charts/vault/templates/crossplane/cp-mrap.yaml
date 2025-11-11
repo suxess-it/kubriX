@@ -3,4 +3,9 @@ kind: ManagedResourceActivationPolicy
 metadata:
   name: vault-mrap
 spec:
-  activate: []
+  activate: 
+  - audits.vault.vault.m.upbound.io
+  - mounts.vault.vault.m.upbound.io
+  - policies.vault.vault.m.upbound.io
+  - authbackendroles.kubernetes.vault.m.upbound.io
+  - groups.identity.vault.m.upbound.io
