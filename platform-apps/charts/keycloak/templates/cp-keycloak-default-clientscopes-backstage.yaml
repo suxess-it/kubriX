@@ -6,6 +6,7 @@ metadata:
     argocd.argoproj.io/sync-wave: "6"
   name: client-default-scopes
 spec:
+  deletionPolicy: Delete
   forProvider:
     clientIdRef:
       name: backstage
