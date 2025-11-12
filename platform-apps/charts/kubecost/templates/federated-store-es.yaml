@@ -16,7 +16,7 @@ spec:
           type: S3
           config:
             bucket: kubecost
-            endpoint: https://sx-minio.minio.svc.cluster.local:9000
+            endpoint: sx-minio.minio.svc.cluster.local:9000
             region: minio
             access_key: "{{ `{{ .aws_access_key_id }}` }}"
             secret_key: "{{ `{{ .aws_secret_access_key }}` }}"
