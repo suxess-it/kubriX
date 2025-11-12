@@ -29,10 +29,21 @@ spec:
                 - key: type
                   type: Value
                   value: provider-credentials
+          # Optional if you want to adapt a default role
+          - kind: Role
+            into: roles
+            apiVersion: role.keycloak.crossplane.io/v1alpha1
+            type: Selector
+            selector:
+              minMatch: 0
+              maxMatch: 20
+              matchLabels:
+                - key: type
+                  type: Value
+                  value: modifiedrole
   - step: keycloak-builtin-objects
     functionRef:
       name: function-keycloak-builtin-objects
   - step: automatically-detect-ready-composed-resources
     functionRef:
       name: function-auto-ready
-
