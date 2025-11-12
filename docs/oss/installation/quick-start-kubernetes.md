@@ -159,9 +159,9 @@ With this step-by-step guide kubriX with its default demo stack gets deployed on
 
 
 
-## Parameter Reference for kubrix-installer-secret
+## Parameter Reference for kubrix-installer-secrets
 
-Summary of all configuration options via the `kubrix-installer-secret`:
+Summary of all configuration options via the `kubrix-installer-secrets`:
 
 | Key | Type | Required when | Default | Allowed Values | Purpose / Notes
 ---|---|---|---|---|---|
