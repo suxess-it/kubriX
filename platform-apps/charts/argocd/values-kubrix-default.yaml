@@ -40,7 +40,7 @@ argo-cd:
             health_status.message = ""
             if obj.status ~= nil then
               for i, condition in ipairs(obj.status.conditions) do
-                if contains({"Ready", "Healthy", "Offered", "Established"}, condition.type) then
+                if condition.type == "Established" then
                   if condition.status == "True" then
                     health_status.status = "Healthy"
                     health_status.message = "Resource is up-to-date."
@@ -49,6 +49,7 @@ argo-cd:
                   if condition.reason == "InactiveManagedResource" then
                     health_status.status = "Healthy"
                     health_status.message = "Resource is up-to-date."
+                    return health_status
                   end
                 end
               end
