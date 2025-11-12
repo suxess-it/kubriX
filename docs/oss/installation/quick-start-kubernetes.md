@@ -37,8 +37,17 @@ With this step-by-step guide kubriX with its default kubriX OSS stack gets deplo
     ```
     export KUBRIX_GIT_USER_NAME="your-github-username"
     ```
+
+5. optional: set the Cloud Provider, where kubriX gets installed:
+
+    default: on-prem  
+    supported: aks, peak
+
+    ```
+    export KUBRIX_CLOUD_PROVIDER="aks"
+    ```
     
-5. optional: set the DNS provider, which external-dns should connect to.
+6. optional: set the DNS provider, which external-dns should connect to.
 
     default: ionos  
     supported: ionos, aws, azure, stackit, cloudflare
@@ -47,7 +56,7 @@ With this step-by-step guide kubriX with its default kubriX OSS stack gets deplo
     export KUBRIX_DNS_PROVIDER="ionos"
     ```
 
-6. optional: set the domain, under which kubriX should be available.
+7. optional: set the domain, under which kubriX should be available.
 
     This domain will be used by external-dns. Your provider in step 4 needs to be able to manage this domain with the credentials set in step 8.
 
@@ -57,7 +66,7 @@ With this step-by-step guide kubriX with its default kubriX OSS stack gets deplo
 
     if this variable is not set, a subdomain of "kubrix.cloud" is randomly created (for example "demo-2faf23d.kubrix.cloud")
 
-7. optional: set the kubrix target type which should be used
+8. optional: set the kubrix target type which should be used
 
     ```
     export KUBRIX_TARGET_TYPE="kubrix-oss-stack"
@@ -65,9 +74,9 @@ With this step-by-step guide kubriX with its default kubriX OSS stack gets deplo
 
     if this variable is not set, "kubrix-oss-stack" is used.
 
-8. create a new Kubernetes cluster and be sure that kubectl is connected to it. check with `kubectl cluster-info`
+9. create a new Kubernetes cluster and be sure that kubectl is connected to it. check with `kubectl cluster-info`
 
-9. provide external-dns secrets depending on your DNS provider
+10. provide external-dns secrets depending on your DNS provider
 
     __ionos__
 
@@ -129,10 +138,10 @@ With this step-by-step guide kubriX with its default kubriX OSS stack gets deplo
     kubectl create secret generic cloudflare-api-key -n external-dns --from-literal=apiKey='YOUR_API_TOKEN'
     ```
 
-10. If you need to prepare something else on your cluster before kubriX gets installed, do this now.
+11. If you need to prepare something else on your cluster before kubriX gets installed, do this now.
 
 
-11. Create a `kubrix-install` Namespace and a Secret `kubrix-installer-secrets` to configure the installer.
+12. Create a `kubrix-install` Namespace and a Secret `kubrix-installer-secrets` to configure the installer.
 
     ```
     kubectl create ns kubrix-install
@@ -142,12 +151,13 @@ With this step-by-step guide kubriX with its default kubriX OSS stack gets deplo
       --from-literal KUBRIX_GIT_USER_NAME=${KUBRIX_GIT_USER_NAME} \
       --from-literal KUBRIX_DOMAIN=${KUBRIX_DOMAIN} \
       --from-literal KUBRIX_DNS_PROVIDER=${KUBRIX_DNS_PROVIDER} \
+      --from-literal KUBRIX_CLOUD_PROVIDER=${KUBRIX_CLOUD_PROVIDER} \
       --from-literal KUBRIX_TARGET_TYPE=${KUBRIX_TARGET_TYPE} \
       --from-literal KUBRIX_BOOTSTRAP=true \
       --from-literal KUBRIX_INSTALLER=true
     ```
 
-12. Then apply the installer manifests:
+13. Then apply the installer manifests:
 
     ```
     kubectl apply -f https://raw.githubusercontent.com/suxess-it/kubriX/refs/heads/main/install-manifests.yaml
@@ -166,6 +176,51 @@ With this step-by-step guide kubriX with its default kubriX OSS stack gets deplo
     since there are many resources created via Crossplane in different ArgoCD sync-waves.
     After 300 seconds the sync process gets terminated and restarted. This could happend sometimes and is not always indicating a problem.
     Also, sometimes the Keycloak app could be in temporary `Degraded` state during installation, but gets `Healthy` afterwards.
+
+
+
+## Parameter Reference for kubrix-installer-secrets
+
+Summary of all configuration options via the `kubrix-installer-secrets`:
+
+| Key | Type | Required when | Default | Allowed Values | Purpose / Notes
+---|---|---|---|---|---|
+KUBRIX_REPO|string|always|-|any non-empty string|new empty customer repo on your Git-Server (GitLab, GitHub, Gitea, ...) for your kubriX gitops files|
+KUBRIX_REPO_USERNAME|string|git server requires username/password instead of a token|-|any non-empty string|username for your new repo with write access
+KUBRIX_REPO_PASSWORD|string|always|-|any non-empty string|access token for your new repo with write access
+KUBRIX_GIT_USER_NAME|string|-|dummy|any non-empty string|if you want to login in backststage with git user|any non-empty string
+KUBRIX_DOMAIN|string|always|-|any non-empty string|your domain you want to access your kubrix installation; needs to be a valid domain / hosted zone in your DNS provider|any non-empty string
+KUBRIX_DNS_PROVIDER|string|never|`ionos`|`ionos`,`aws`, `azure`, `stackit`, `cloudflare`|
+KUBRIX_CLOUD_PROVIDER|string|never|`on-prem`|`on-prem`,`peak`,`aks`|
+KUBRIX_TARGET_TYPE|string|never|`kubrix-oss-stack`|any valid target-type in your `platform-apps/target-chart` folder|
+KUBRIX_BOOTSTRAP|boolean|never|`false`|`true`,`false`
+KUBRIX_INSTALLER|boolean|never|`true`|`true`,`false`
+KUBRIX_GENERATE_SECRETS|boolean|never|`true`|`true`,`false`
+KUBRIX_METALLB_IP|string|never|*(empty)*
+
+
+You configure your parameters in the `kubrix-installer-secrets` secret like this:
+```
+apiVersion: v1
+kind: Secret
+metadata:
+  name: kubrix-installer-secrets
+  namespace: kubrix-install
+type: Opaque
+stringData:
+  KUBRIX_REPO: "<http url to your git repo>"   # required; example: "https://github.com/kubriX-demo/kubriX-demo-customerXY"
+  KUBRIX_REPO_PASSWORD: "<access token to your kubrix repo>"  # required
+  KUBRIX_REPO_USERNAME: "<username>" # optional; default: dummy
+  KUBRIX_GIT_USER_NAME: "<your github username to login to backstage>"  # optional; default: dummy
+  KUBRIX_DOMAIN: "" # optional; example: "demo-johnny.kubrix.cloud"
+  KUBRIX_DNS_PROVIDER: ""   # required; valid values: ionos, aws, stackit, cloudflare; default: ionos
+  KUBRIX_CLOUD_PROVIDER: ""  # optional; valid values: aks, peak, on-prem; default: on-prem
+  KUBRIX_TARGET_TYPE: ""    # optional; default: kubrix-oss-stack
+  KUBRIX_BOOTSTRAP: true    # optional; true, if you want to clone from upstream repo to your KUBRIX_REPO
+  KUBRIX_INSTALLER: true    # required
+  KUBRIX_GENERATE_SECRETS: true  # optional; default: true
+  KUBRIX_METALLB_IP: "" # optional; only needed when metallb chart gets installed; default: ""
+```
 
 
 ##  Next steps

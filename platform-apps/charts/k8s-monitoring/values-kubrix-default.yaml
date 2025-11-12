@@ -5,7 +5,7 @@ k8s-monitoring:
   destinations:
     - name: metricsService
       type: prometheus
-      url: http://sx-mimir-nginx.mimir.svc/api/v1/push
+      url: http://sx-mimir-gateway.mimir.svc/api/v1/push
       tenantId: ''
     - name: logsService
       type: loki
@@ -112,7 +112,7 @@ k8s-monitoring:
     enabled: true
     extraConfig: |
       mimir.rules.kubernetes "rules" {
-        address = "http://sx-mimir-nginx.mimir.svc"
+        address = "http://sx-mimir-gateway.mimir.svc"
         tenant_id = "anonymous"
 
         rule_namespace_selector {
