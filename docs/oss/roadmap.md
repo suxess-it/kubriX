@@ -33,15 +33,17 @@ This is our current plan for the next features and improvements. It is based on 
 
 # Finished Milestones
 
+## Q3 2025
+
+* Alerting Enhancements (Completed)
+* Improve Platform-Service-Secrets-Mgmt (Completed)
+* K8s-Monitoring v3 Upgrade (Completed)
+
 ## Q2 2025 
 
 * Authn/Authz Integrations (Completed)
 * Application Observability Enhancements (Completed)
 * Provide Basic Multi Tenancy  / Isolation Options (Completed)
 
-## Q3 2025
 
-* Alerting Enhancements (Completed)
-* Improve Platform-Service-Secrets-Mgmt (Completed)
-* K8s-Monitoring v3 Upgrade (Completed)
 
