@@ -17,15 +17,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
-      matrix:
-        testCase: [default-kind, default-aks-kind]
-        include:
-          - testCase: default-kind
-            valuesFiles: values-kubrix-default.yaml,values-cluster-kind.yaml
-          - testCase: default-aks-kind
-            valuesFiles: values-kubrix-default.yaml,values-provider-aks.yaml,values-cluster-kind.yaml
-          - testCase: default-demo-metalstack
-            valuesFiles: values-kubrix-default.yaml,values-demo-metalstack.yaml
+      matrix: ${{ fromJson(vars.GITOPS_DIFF_TESTCASES) }}
     steps:
       - name: Checkout PR
         uses: actions/checkout@v5
@@ -41,9 +33,9 @@ jobs:
         id: diffStep
         shell: bash
         run: |
-          bash pr/.github/create-pr-comment-file.sh ${{ matrix.testCase }} ${{ matrix.valuesFiles }}
+          bash pr/.github/create-pr-comment-file.sh ${{ matrix.testCase }} ${{ matrix.valuesFiles }} "${{ matrix.setValues }}"
 
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v5
         with:
           name: comment-files-artifact-${{ matrix.testCase }}
           path: comment-files/
@@ -55,7 +47,7 @@ jobs:
       matrix: ${{ steps.mk.outputs.matrix }}
     steps:
       - name: Download artifact
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v6
         with:
           pattern: comment-files-artifact-*
           path: comment-files/
@@ -83,7 +75,7 @@ jobs:
       max-parallel: 1
     steps:
 
-      - uses: actions/download-artifact@v5
+      - uses: actions/download-artifact@v6
         with:
           pattern: comment-files-artifact-*
           path: comment-files/
@@ -101,7 +93,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
 
-      - uses: actions/download-artifact@v5
+      - uses: actions/download-artifact@v6
         with:
           pattern: comment-files-artifact-*
           path: comment-files/

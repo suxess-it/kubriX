@@ -1,5 +1,5 @@
 mimir:
-  nginx:
+  gateway:
     ingress:
       hosts:
         - host: metrics-monitoring.127-0-0-1.nip.io
@@ -25,6 +25,9 @@ mimir:
       requests:
         cpu: 50m
   store_gateway:
+    replicas: 1
+    zoneAwareReplication:
+      enabled: false
     resources:
       requests:
         cpu: 50m

@@ -4,11 +4,10 @@ argo-cd:
   configs:
     cm:
       timeout.reconciliation: 20s
- 
+
   server:
     ingress:
       extraTls:
         - hosts:
           - argocd.127-0-0-1.nip.io
           secretName: argocd-server-tls
-      

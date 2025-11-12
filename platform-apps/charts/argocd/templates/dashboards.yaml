@@ -7,4 +7,8 @@ metadata:
     argocd.argoproj.io/sync-options: ServerSideApply=true
   name: argocd-dashboards
 data:
-{{ (.Files.Glob "dashboard-files/*").AsConfig | indent 2 }}
+{{- $files := .Files.Glob "dashboard-files/*" }}
+{{- range $path, $_ := $files }}
+  {{ base $path }}: |-
+{{ tpl ($.Files.Get $path) $ | nindent 4 }}
+{{- end }}

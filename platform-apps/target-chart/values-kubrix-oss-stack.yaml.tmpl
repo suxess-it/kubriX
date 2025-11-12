@@ -15,11 +15,9 @@ default:
 
 applications:
 
-  {{ if ne .kubriX.clusterType "kind" -}}
   - name: ingress-nginx
     annotations:
       argocd.argoproj.io/sync-wave: "-11"
-  {{ end -}}
 
   - name: cert-manager
     annotations:
@@ -44,6 +42,8 @@ applications:
   - name: external-secrets
     annotations:
       argocd.argoproj.io/sync-wave: "-8"
+    syncOptions:
+      - ServerSideApply=true
 
   - name: k8s-monitoring
     annotations:
