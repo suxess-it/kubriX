@@ -8,6 +8,7 @@ This is our current plan for the next features and improvements. It is based on 
 ## Q4 2025
 
 * Crossplane v2 Upgrade (Completed)
+* Provide HA configurations (in progress)
 * Improve Observability Dashboards (in progress)
 * KaaS Support Extension (in progress)
 * Backup/Recovery Enhancements
@@ -38,6 +39,7 @@ This is our current plan for the next features and improvements. It is based on 
 * Alerting Enhancements (Completed)
 * Improve Platform-Service-Secrets-Mgmt (Completed)
 * K8s-Monitoring v3 Upgrade (Completed)
+* Provide flexible multi layer configuration support (Completed)
 
 ## Q2 2025 
 
