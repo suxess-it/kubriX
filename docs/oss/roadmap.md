@@ -6,7 +6,7 @@ This is our current plan for the next features and improvements. It is based on 
 
 ## Q2 2025
 
-* Authn/Authz Integrations (in progress)
+* Authn/Authz Integrations (Completed)
 * Alerting Enhancements (in progress)
 * Application Observability Enhancements
 * Extend Multi Tenancy  / Isolation Options
