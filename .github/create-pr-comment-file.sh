@@ -4,7 +4,7 @@ set -e
 
 testCase=$1
 valuesFilesList=$2
-
+setValues=$3
 
 mkdir -p out/pr
 mkdir -p out/target
@@ -26,8 +26,8 @@ for env in pr target; do
         echo "$item"
     done
     mkdir -p ../../../out/${env}/${chart}/${testCase}
-    echo "run command: 'helm template  --include-crds ${chart} "${valuesFiles[@]}" --output-dir ../../../out/${env}/${chart}/${testCase}'"
-    helm template  --include-crds ${chart} ${valuesFiles[@]} --output-dir ../../../out/${env}/${chart}/${testCase}
+    echo "run command: 'helm template  --include-crds ${chart} "${valuesFiles[@]}" ${setValues} --output-dir ../../../out/${env}/${chart}/${testCase}'"
+    helm template  --include-crds ${chart} ${valuesFiles[@]} ${setValues} --output-dir ../../../out/${env}/${chart}/${testCase}
     # get default values of subcharts
     # to compare between different subchart versions we need to write to values files without version names
     while IFS= read -r line; do
