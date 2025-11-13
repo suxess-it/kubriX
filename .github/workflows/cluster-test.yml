@@ -334,8 +334,8 @@ jobs:
 
       # run testkube tests
       - uses: kubeshop/setup-testkube@v1
-        with:
-          version: 2.2.5
+        # with:
+        #  version: 2.2.5
       - name: testkube tests
         env:
           KUBRIX_TARGET_TYPE: ${{ matrix.target-type }}
