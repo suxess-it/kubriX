@@ -108,6 +108,25 @@ kubrix:
     mfa:
       enabled: false
 
+crossplane:
+  activeMRDs:
+    authbackends.jwt.vault.upbound.io: true
+    realms.realm.keycloak.crossplane.io: true
+    authbackendroles.jwt.vault.upbound.io: true
+    protocolmappers.client.keycloak.crossplane.io: true
+    roles.role.keycloak.crossplane.io: true
+    roles.group.keycloak.crossplane.io: true
+    groups.group.keycloak.crossplane.io: true
+    users.user.keycloak.crossplane.io: true
+    clientscopes.openidclient.keycloak.crossplane.io: true
+    clientdefaultscopes.openidclient.keycloak.crossplane.io: true
+    clients.openidclient.keycloak.crossplane.io: true
+    memberships.group.keycloak.crossplane.io: true
+    flows.authenticationflow.keycloak.crossplane.io: true
+    executions.authenticationflow.keycloak.crossplane.io: true
+    executionconfigs.authenticationflow.keycloak.crossplane.io: true
+    bindings.authenticationflow.keycloak.crossplane.io: true
+
 ## cnpg
 cluster:
   type: postgresql
