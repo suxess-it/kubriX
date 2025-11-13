@@ -5,7 +5,6 @@ import path from 'path';
 test('authenticate via GitHub and save state', async ({ page }) => {
   await page.goto('https://backstage.127-0-0-1.nip.io/');
 
-  await page.getByRole('button', { name: /sign in/i }).click();
   await page.getByRole('button', { name: /github/i }).click();
 
   await page.getByLabel('Username or email address').fill(process.env.E2E_TEST_GH_USERNAME!);
