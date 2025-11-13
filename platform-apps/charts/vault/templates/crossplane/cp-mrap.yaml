@@ -3,12 +3,10 @@ kind: ManagedResourceActivationPolicy
 metadata:
   name: vault-mrap
 spec:
-  activate: 
-  - audits.vault.vault.upbound.io
-  - mounts.vault.vault.upbound.io
-  - policies.vault.vault.upbound.io
-  - authbackendroles.kubernetes.vault.upbound.io
-  - groups.identity.vault.upbound.io
-  - secretbackendv2s.kv.vault.upbound.io
-  - authbackendroles.token.vault.upbound.io
-  - tokens.vault.vault.upbound.io
+  activate:
+{{- $m := .Values.crossplane.activeMRDs | default dict }}
+{{- range $mrd, $enabled := $m }}
+{{- if $enabled }}
+    - {{ $mrd }}
+{{- end }}
+{{- end }}
