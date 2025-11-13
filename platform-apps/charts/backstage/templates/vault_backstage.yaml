@@ -1,0 +1,72 @@
+apiVersion: vault.vault.upbound.io/v1alpha1
+kind: Policy
+metadata:
+  name: backstage-vault
+  annotations:
+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+    argocd.argoproj.io/sync-wave: "-3"
+spec:
+  providerConfigRef:
+    name: vault-crossplane-providerconfig
+  forProvider:
+    name: backstage-vault
+    policy: |
+      path "kubrix-kv/*" {
+        capabilities = ["create", "read", "update", "delete", "list"]
+      }
+---
+apiVersion: token.vault.upbound.io/v1alpha1
+kind: AuthBackendRole
+metadata:
+  annotations:
+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+    argocd.argoproj.io/sync-wave: "-3"
+  name: backstage-vault
+spec:
+  forProvider:
+    roleName: backstage-vault
+  providerConfigRef:
+    name: vault-crossplane-providerconfig
+---
+apiVersion: vault.vault.upbound.io/v1alpha1
+kind: Token
+metadata:
+metadata:
+  annotations:
+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+    argocd.argoproj.io/sync-wave: "-2"
+  name: backstage-vault-token
+spec:
+  forProvider:
+    roleName: backstage-vault
+    policies:
+      - backstage-vault
+  providerConfigRef:
+    name: vault-crossplane-providerconfig
+  writeConnectionSecretToRef:
+    namespace: backstage
+    name: backstage-vault-token
+---
+apiVersion: external-secrets.io/v1alpha1
+kind: PushSecret
+metadata:
+  name: cp-backstage-vault-push
+  namespace: backstage
+  annotations:
+    kubrix.io/install: "false"
+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+    argocd.argoproj.io/sync-wave: "-1"
+spec:
+  secretStoreRefs:
+    - name: vault-backend
+      kind: ClusterSecretStore
+  refreshInterval: 15s
+  selector:
+    secret:
+      name: backstage-vault-token
+  data:
+    - match:
+        secretKey: attribute.client_token
+        remoteRef:
+          remoteKey: security/vault/token
+          property: BACKSTAGE_VAULT_TOKEN

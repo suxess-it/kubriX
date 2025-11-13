@@ -1,0 +1,47 @@
+mimir:
+  gateway:
+    ingress:
+      hosts:
+        - host: metrics-monitoring.127-0-0-1.nip.io
+          paths:
+            - path: /
+              pathType: Prefix
+      tls:
+        - secretName: mimir-nginx-tls
+          hosts:
+            - metrics-monitoring.127-0-0-1.nip.io
+  distributor:
+    replicas: 2
+    zoneAwareReplication:
+      enabled: false
+    resources:
+      requests:
+        cpu: 50m
+  ingester:
+    replicas: 2
+    zoneAwareReplication:
+      enabled: false
+    resources:
+      requests:
+        cpu: 50m
+  store_gateway:
+    replicas: 1
+    zoneAwareReplication:
+      enabled: false
+    resources:
+      requests:
+        cpu: 50m
+  querier:
+    replicas: 1
+    resources:
+      requests:
+        cpu: 50m
+  query_scheduler:
+    replicas: 1
+    resources:
+      requests:
+        cpu: 50m
+
+
+
+

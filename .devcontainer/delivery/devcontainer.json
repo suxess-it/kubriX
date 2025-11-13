@@ -20,16 +20,13 @@
 	},
 
 	"secrets": {
-		"KUBRIX_BACKSTAGE_GITHUB_CLIENTSECRET": { },
-		"KUBRIX_BACKSTAGE_GITHUB_CLIENTID": { },
-		"KUBRIX_BACKSTAGE_GITHUB_TOKEN": { },
-		"KUBRIX_ARGOCD_APPSET_TOKEN": { }
+		"PR_NUMBER": { },
 	},
 
 	"postCreateCommand": "sudo cp .devcontainer/delivery/welcome.txt /usr/local/etc/vscode-dev-containers/first-run-notice.txt",
 
 	// Use 'postStartCommand' to run commands after the container is created like starting minikube.
-	"postStartCommand": "export KUBRIX_TARGET_TYPE=KIND-DELIVERY ; /bin/bash -c .devcontainer/install-platform-devcontainer.sh",
+	"postStartCommand": "export KUBRIX_TARGET_TYPE=kind-delivery ; export KUBRIX_CLUSTER_TYPE=kind ; /bin/bash -c .devcontainer/install-platform-devcontainer.sh",
 
 	// Configure tool-specific properties.
 	// "customizations": {},

@@ -1,0 +1,64 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: kubrix-install
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: kubrix-installer
+  namespace: kubrix-install
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: kubrix-installer-admin
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: cluster-admin
+subjects:
+  - kind: ServiceAccount
+    name: kubrix-installer
+    namespace: kubrix-install
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: kubrix-install-job
+  namespace: kubrix-install
+spec:
+  backoffLimit: 0
+  template:
+    spec:
+      serviceAccountName: kubrix-installer
+      automountServiceAccountToken: true
+      restartPolicy: Never
+      securityContext:
+        runAsNonRoot: true
+        fsGroup: 1001
+        runAsUser: 1001
+        runAsGroup: 1001
+      containers:
+        - name: installer
+          image: ghcr.io/suxess-it/kubrix-installer:latest
+          imagePullPolicy: Always
+          envFrom:
+            - secretRef:
+                name: kubrix-install-secrets
+          # CMD already runs the script; this arg just ensures ARCH/OS are exported
+          command: ["/bin/bash","-lc"]
+          args:
+            - |
+              export ARCH="$(uname -m)"
+              export OS="$(uname | tr '[:upper:]' '[:lower:]')"
+              /work/install-platform.sh
+          resources:
+            requests:
+              cpu: "25m"
+              memory: "256Mi"
+            limits:
+              cpu: "250m"
+              memory: "512Mi"
+          securityContext:
+            allowPrivilegeEscalation: false

@@ -1,0 +1,672 @@
+{
+  "annotations": {
+    "list": [
+      {
+        "builtIn": 1,
+        "datasource": {
+          "type": "grafana",
+          "uid": "-- Grafana --"
+        },
+        "enable": true,
+        "hide": true,
+        "iconColor": "rgba(0, 211, 255, 1)",
+        "name": "Annotations & Alerts",
+        "target": {
+          "limit": 100,
+          "matchAny": false,
+          "tags": [],
+          "type": "dashboard"
+        },
+        "type": "dashboard"
+      }
+    ]
+  },
+  "editable": true,
+  "fiscalYearStartMonth": 0,
+  "graphTooltip": 0,
+  "id": 70,
+  "links": [
+    {
+      "asDropdown": true,
+      "icon": "dashboard",
+      "includeVars": false,
+      "keepTime": false,
+      "tags": [],
+      "targetBlank": false,
+      "title": "Cardinality management - overview",
+      "tooltip": "",
+      "type": "link",
+      "url": "/d/cardinality-management/?${datasource:queryparam}"
+    }
+  ],
+  "panels": [
+    {
+      "fieldConfig": {
+        "defaults": {},
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 12,
+        "w": 7,
+        "x": 0,
+        "y": 0
+      },
+      "id": 33,
+      "options": {
+        "code": {
+          "language": "plaintext",
+          "showLineNumbers": false,
+          "showMiniMap": false
+        },
+        "content": "This dashboard helps you understand the cardinality of a single metric. It shows you the count of series with this metric name and how that count relates to the total number of time series in your data source. Then it helps you understand which labels associated with that metric have the greatest impact on its cardinality. \n\nEach time series is a unique combination of key-value label pairs. Therefore a label key with a lot of values can create a lot of time series for a particular metric. If you’re trying to decrease the cardinality of a metric, start by looking at the labels with the highest number of values. \n\nUse the selector at the top of the page to pick which metric you’d like to inspect. ",
+        "mode": "markdown"
+      },
+      "pluginVersion": "12.0.1",
+      "title": "Tips",
+      "type": "text"
+    },
+    {
+      "datasource": {
+        "type": "marcusolsson-json-datasource",
+        "uid": "cardinality"
+      },
+      "description": "The number of time series with metric name ${metric}.",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "fixedColor": "text",
+            "mode": "fixed"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": []
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 2,
+        "w": 8,
+        "x": 7,
+        "y": 0
+      },
+      "id": 27,
+      "options": {
+        "colorMode": "none",
+        "graphMode": "area",
+        "justifyMode": "center",
+        "orientation": "vertical",
+        "percentChangeColorMode": "standard",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "/^series_count$/",
+          "values": false
+        },
+        "showPercentChange": false,
+        "text": {},
+        "textMode": "value",
+        "wideLayout": true
+      },
+      "pluginVersion": "12.0.1",
+      "targets": [
+        {
+          "cacheDurationSeconds": 0,
+          "datasource": {
+            "type": "marcusolsson-json-datasource",
+            "uid": "cardinality"
+          },
+          "fields": [
+            {
+              "jsonPath": "$.labels[0].cardinality[0].series_count",
+              "type": "number"
+            }
+          ],
+          "headers": [
+            [
+              "X-Scope-OrgID",
+              "${tenant}"
+            ]
+          ],
+          "method": "GET",
+          "params": [
+            [
+              "label_names[]",
+              "__name__"
+            ],
+            [
+              "selector",
+              "{__name__='${metric}'}"
+            ]
+          ],
+          "queryParams": "",
+          "refId": "A",
+          "urlPath": "/label_values"
+        }
+      ],
+      "title": "Number of series",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "marcusolsson-json-datasource",
+        "uid": "cardinality"
+      },
+      "description": "Count all time series with metric name ${metric} and express that as a percentage of the total number of time series in this data source.",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "fixedColor": "text",
+            "mode": "fixed"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": []
+          }
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Percentage"
+            },
+            "properties": [
+              {
+                "id": "unit",
+                "value": "percentunit"
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 2,
+        "w": 9,
+        "x": 15,
+        "y": 0
+      },
+      "id": 28,
+      "options": {
+        "colorMode": "none",
+        "graphMode": "area",
+        "justifyMode": "center",
+        "orientation": "vertical",
+        "percentChangeColorMode": "standard",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "/^Percentage$/",
+          "values": false
+        },
+        "showPercentChange": false,
+        "text": {},
+        "textMode": "value",
+        "wideLayout": true
+      },
+      "pluginVersion": "12.0.1",
+      "targets": [
+        {
+          "cacheDurationSeconds": 0,
+          "datasource": {
+            "type": "marcusolsson-json-datasource",
+            "uid": "cardinality"
+          },
+          "fields": [
+            {
+              "jsonPath": "$.labels[0].cardinality[0].series_count/$.series_count_total",
+              "language": "jsonata",
+              "name": "Percentage"
+            }
+          ],
+          "headers": [
+            [
+              "X-Scope-OrgID",
+              "${tenant}"
+            ]
+          ],
+          "method": "GET",
+          "params": [
+            [
+              "label_names[]",
+              "__name__"
+            ],
+            [
+              "selector",
+              "{__name__='${metric}'}"
+            ]
+          ],
+          "queryParams": "",
+          "refId": "A",
+          "urlPath": "/label_values"
+        }
+      ],
+      "title": "Percentage of total series",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "marcusolsson-json-datasource",
+        "uid": "cardinality"
+      },
+      "description": "Shows the labels attached to metric ${metric}. You see both the label name and then the number of values for each label name. Label names are sorted by the number of values they have in descending order.",
+      "fieldConfig": {
+        "defaults": {
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green"
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Label"
+            },
+            "properties": [
+              {
+                "id": "links",
+                "value": [
+                  {
+                    "title": "",
+                    "url": "d/cardinality-management-label-detail/?var-label=${__data.fields.Label}&${tenant:tenant}&${filter:queryparam}"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 10,
+        "w": 17,
+        "x": 7,
+        "y": 2
+      },
+      "id": 10,
+      "options": {
+        "labelFields": [],
+        "tiling": "treemapSquarify"
+      },
+      "pluginVersion": "2.1.1",
+      "targets": [
+        {
+          "cacheDurationSeconds": 0,
+          "datasource": {
+            "type": "marcusolsson-json-datasource",
+            "uid": "cardinality"
+          },
+          "fields": [
+            {
+              "jsonPath": "$.cardinality[*].label_name",
+              "name": "Label"
+            },
+            {
+              "jsonPath": "$.cardinality[*].label_values_count",
+              "language": "jsonpath",
+              "name": ""
+            }
+          ],
+          "headers": [
+            [
+              "X-Scope-OrgID",
+              "${tenant}"
+            ]
+          ],
+          "method": "GET",
+          "params": [
+            [
+              "selector",
+              "{__name__='${metric}'}"
+            ]
+          ],
+          "queryParams": "",
+          "refId": "A",
+          "urlPath": "/label_names"
+        }
+      ],
+      "title": "Labels attached to metric ${metric}",
+      "type": "marcusolsson-treemap-panel"
+    },
+    {
+      "datasource": {
+        "type": "marcusolsson-json-datasource",
+        "uid": "cardinality"
+      },
+      "description": "Shows the labels attached to metric ${metric}. You see both the label name and then the number of values for each label name. Label names are sorted by the number of values they have in descending order.",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "fixed"
+          },
+          "custom": {
+            "align": "auto",
+            "cellOptions": {
+              "type": "auto"
+            },
+            "inspect": false
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green"
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "label_name"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Labels attached to metric ${metric}"
+              },
+              {
+                "id": "links",
+                "value": [
+                  {
+                    "title": "",
+                    "url": "d/cardinality-management-label-detail/?var-label=${__data.fields.label_name}&${tenant:tenant}&${filter:queryparam}"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "label_values_count"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 132
+              },
+              {
+                "id": "displayName",
+                "value": "Number of values"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "values"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Example label values"
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 9,
+        "w": 24,
+        "x": 0,
+        "y": 12
+      },
+      "id": 21,
+      "options": {
+        "cellHeight": "sm",
+        "footer": {
+          "countRows": false,
+          "fields": "",
+          "reducer": [
+            "sum"
+          ],
+          "show": false
+        },
+        "frameIndex": 1,
+        "showHeader": true,
+        "sortBy": []
+      },
+      "pluginVersion": "12.0.1",
+      "targets": [
+        {
+          "cacheDurationSeconds": 0,
+          "datasource": {
+            "type": "marcusolsson-json-datasource",
+            "uid": "cardinality"
+          },
+          "fields": [
+            {
+              "jsonPath": "$.cardinality[*].label_name",
+              "name": ""
+            },
+            {
+              "jsonPath": "$.cardinality[*].label_values_count",
+              "language": "jsonpath",
+              "name": ""
+            }
+          ],
+          "headers": [
+            [
+              "X-Scope-OrgID",
+              "${tenant}"
+            ]
+          ],
+          "method": "GET",
+          "params": [
+            [
+              "selector",
+              "{__name__='${metric}'}"
+            ]
+          ],
+          "queryParams": "",
+          "refId": "A",
+          "urlPath": "/label_names"
+        },
+        {
+          "cacheDurationSeconds": 0,
+          "datasource": {
+            "type": "marcusolsson-json-datasource",
+            "uid": "cardinality"
+          },
+          "fields": [
+            {
+              "jsonPath": "$.labels[*].label_name"
+            },
+            {
+              "jsonPath": "$join(labels[*].cardinality[[0..2]].label_value, \", \")",
+              "language": "jsonata",
+              "name": "values"
+            }
+          ],
+          "headers": [
+            [
+              "X-Scope-OrgID",
+              "${tenant}"
+            ]
+          ],
+          "hide": false,
+          "method": "GET",
+          "params": [
+            [
+              "label_names[]",
+              "${values}"
+            ]
+          ],
+          "queryParams": "",
+          "refId": "B",
+          "urlPath": "/label_values"
+        }
+      ],
+      "title": "Labels attached to metric ${metric}",
+      "transformations": [
+        {
+          "id": "merge",
+          "options": {}
+        }
+      ],
+      "type": "table"
+    }
+  ],
+  "preload": false,
+  "refresh": "",
+  "schemaVersion": 41,
+  "tags": [
+    "cardinality-management"
+  ],
+  "templating": {
+    "list": [
+      {
+        "current": {
+          "text": "anonymous",
+          "value": "anonymous"
+        },
+        "datasource": {
+          "type": "prometheus",
+          "uid": "mimir"
+        },
+        "definition": "label_values(cortex_distributor_requests_in_total,user)",
+        "description": "Tenants for mimir",
+        "includeAll": false,
+        "label": "Tenant",
+        "name": "tenant",
+        "options": [],
+        "query": {
+          "qryType": 1,
+          "query": "label_values(cortex_distributor_requests_in_total,user)",
+          "refId": "PrometheusVariableQueryEditor-VariableQuery"
+        },
+        "refresh": 1,
+        "regex": "",
+        "type": "query"
+      },
+      {
+        "current": {
+          "text": "apiserver_request_sli_duration_seconds_bucket",
+          "value": "apiserver_request_sli_duration_seconds_bucket"
+        },
+        "datasource": {
+          "type": "marcusolsson-json-datasource",
+          "uid": "cardinality"
+        },
+        "definition": "$.labels[0].cardinality[*].label_value",
+        "includeAll": false,
+        "label": "Metric",
+        "name": "metric",
+        "options": [],
+        "query": {
+          "cacheDurationSeconds": 0,
+          "fields": [
+            {
+              "jsonPath": "$.labels[0].cardinality[*].label_value"
+            }
+          ],
+          "headers": [
+            [
+              "X-Scope-OrgID",
+              "${tenant}"
+            ]
+          ],
+          "method": "GET",
+          "params": [
+            [
+              "label_names[]",
+              "__name__"
+            ],
+            [
+              "limit",
+              "500"
+            ]
+          ],
+          "queryParams": "",
+          "urlPath": "/label_values"
+        },
+        "refresh": 1,
+        "regex": "",
+        "type": "query"
+      },
+      {
+        "current": {
+          "text": "resource",
+          "value": "resource"
+        },
+        "datasource": {
+          "type": "marcusolsson-json-datasource",
+          "uid": "cardinality"
+        },
+        "definition": "$.cardinality[*].label_name",
+        "includeAll": false,
+        "label": "Labels",
+        "name": "values",
+        "options": [],
+        "query": {
+          "cacheDurationSeconds": 0,
+          "fields": [
+            {
+              "jsonPath": "$.cardinality[*].label_name"
+            }
+          ],
+          "headers": [
+            [
+              "X-Scope-OrgID",
+              "${tenant}"
+            ]
+          ],
+          "method": "GET",
+          "params": [
+            [
+              "selector",
+              "{__name__='${metric}'}"
+            ]
+          ],
+          "queryParams": "",
+          "urlPath": "/label_names"
+        },
+        "refresh": 1,
+        "regex": "",
+        "type": "query"
+      },
+      {
+        "baseFilters": [],
+        "datasource": {
+          "type": "prometheus",
+          "uid": "${datasource}"
+        },
+        "description": "A label-value filter to be used for all cardinality queries",
+        "filters": [],
+        "label": "Filter",
+        "name": "filter",
+        "type": "adhoc"
+      }
+    ]
+  },
+  "time": {
+    "from": "now-24h",
+    "to": "now"
+  },
+  "timepicker": {
+    "hidden": true
+  },
+  "timezone": "",
+  "title": "Cardinality management - 2 - metrics",
+  "uid": "cardinality-management-metrics-detail",
+  "version": 1
+}

@@ -1,0 +1,34 @@
+external-dns:
+  extraArgs:
+  - --provider-cache-time=15m
+  ## must override the default value with port 8888 with port 8080 because this is hard-coded in the helm chart
+  - --webhook-provider-url=http://localhost:8080
+
+  provider:
+    name: webhook
+    webhook:
+      image:
+        repository: ghcr.io/ionos-cloud/external-dns-ionos-webhook
+        tag: v0.6.2
+      env:
+      - name: LOG_LEVEL
+        value: info # reduce in production
+      - name: IONOS_API_KEY
+        valueFrom:
+          secretKeyRef:
+            name: ionos-credentials
+            key: api-key
+      - name: SERVER_HOST
+        value: "0.0.0.0"
+      - name: SERVER_PORT
+        value: "8080"
+      - name: IONOS_DEBUG
+        value: "false" # put this to true if you want see details of the http requests
+      - name: DRY_RUN
+        value: "false" # set to false to apply changes
+      livenessProbe:
+        httpGet:
+          path: /health
+      readinessProbe:
+        httpGet:
+          path: /health

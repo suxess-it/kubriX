@@ -1,0 +1,72 @@
+on:
+  workflow_dispatch:
+    inputs:
+      pr_number:
+        description: pr number for kubrix-installer image
+        type: string
+
+name: test bootstrap
+
+jobs:
+  evaluate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: create kubrix customer repo
+        shell: bash
+        env:
+          REPO_ORG: 'kubriX-demo'
+          REPO_NAME: "kubrix-bootstrap-test-${{ github.run_id }}"
+          GH_TOKEN: ${{ secrets.KUBRIX_CUSTOMER_REPO_TOKEN }}
+          VIS: "public"
+        run: |
+          gh api \
+            --method POST \
+            -H "Accept: application/vnd.github+json" \
+            "/orgs/${REPO_ORG}/repos" \
+            -f name="$REPO_NAME" \
+            -f visibility="$VIS" \
+            -f has_issues=true \
+            -f has_wiki=false
+          echo "Repo created: https://github.com/${REPO_ORG}/${REPO_NAME}"
+
+      - name: Checkout
+        uses: actions/checkout@v5
+        
+      - name: Create k8s Kind Cluster
+        uses: helm/kind-action@v1
+        with:
+          cluster_name: kubrix-cluster
+          config: ${{ github.workspace }}/.github/kind-config.yaml
+          
+      - name: install mkcert
+        shell: bash
+        run: |
+          curl -JLO "https://dl.filippo.io/mkcert/latest?for=linux/amd64"
+          chmod +x mkcert-v*-linux-amd64
+          sudo cp mkcert-v*-linux-amd64 /usr/local/bin/mkcert
+
+      - name: bootstrap kubrix
+        shell: bash
+        env:          
+          KUBRIX_REPO: "https://github.com/kubriX-demo/kubrix-bootstrap-test-${{ github.run_id }}.git"
+          KUBRIX_REPO_PASSWORD: ${{ secrets.KUBRIX_CUSTOMER_REPO_TOKEN }}
+          KUBRIX_TARGET_TYPE: "kubrix-oss-stack"
+          KUBRIX_DOMAIN: "127-0-0-1.nip.io"
+          KUBRIX_DNS_PROVIDER: "none"
+          KUBRIX_CLUSTER_TYPE: "kind"
+          KUBRIX_UPSTREAM_BRANCH: ${{ github.head_ref || github.ref_name }}
+          PR_NUMBER: ${{ inputs.pr_number }}
+        run: |
+          kubectl create ns kubrix-install
+          kubectl create secret generic kubrix-install-secrets -n kubrix-install \
+            --from-literal KUBRIX_DOMAIN=${KUBRIX_DOMAIN} \
+            --from-literal KUBRIX_DNS_PROVIDER=${KUBRIX_DNS_PROVIDER} \
+            --from-literal KUBRIX_TARGET_TYPE=${KUBRIX_TARGET_TYPE} \
+            --from-literal KUBRIX_CLUSTER_TYPE=${KUBRIX_CLUSTER_TYPE} \
+            --from-literal KUBRIX_REPO_PASSWORD=${KUBRIX_REPO_PASSWORD} \
+            --from-literal KUBRIX_REPO=${KUBRIX_REPO} \
+            --from-literal KUBRIX_UPSTREAM_BRANCH=${KUBRIX_UPSTREAM_BRANCH} \
+            --from-literal KUBRIX_BOOTSTRAP=true \
+            --from-literal KUBRIX_INSTALLER=true
+          bash .github/install-kubriX-with-job.sh
+

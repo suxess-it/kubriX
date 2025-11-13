@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: cardinality-datasource
+  labels:
+    grafana_datasource: "1"
+data:
+  cardinality-datasource.yaml: |-
+    apiVersion: 1
+    datasources:
+    - name: cardinality
+      type: marcusolsson-json-datasource
+      typeName: "JSON API"
+      uid: cardinality
+      url: http://{{ template "mimir.fullname" .Subcharts.mimir }}-query-frontend.{{ .Release.Namespace }}.svc:8080/prometheus/api/v1/cardinality/

@@ -1,0 +1,186 @@
+argo-cd:
+  global:
+    domain: ~
+
+  configs:
+    params:
+      server.insecure: true
+      application.namespaces: "adn-*"
+      applicationsetcontroller.namespaces: "adn-*"
+      applicationsetcontroller.allowed.scm.providers: https://github.com/
+    secret:
+      createSecret: false
+
+    cm:
+      application.resourceTrackingMethod: annotation
+      accounts.backstage: apiKey
+
+      resource.customizations: |
+        argoproj.io/Application:
+          health.lua: |
+            hs = {}
+            hs.status = "Progressing"
+            hs.message = ""
+            if obj.status ~= nil then
+              if obj.status.health ~= nil then
+                if obj.status.sync.status == "Synced" then
+                  hs.status = obj.status.health.status
+                  if obj.status.health.message ~= nil then
+                    hs.message = obj.status.health.message
+                  end
+                end
+              end
+            end
+            return hs
+
+        apiextensions.crossplane.io/ManagedResourceDefinition:
+          health.lua: |
+            health_status = {}
+            health_status.status = "Progressing"
+            health_status.message = ""
+            if obj.status ~= nil then
+              for i, condition in ipairs(obj.status.conditions) do
+                if condition.type == "Established" then
+                  if condition.status == "True" then
+                    health_status.status = "Healthy"
+                    health_status.message = "Resource is up-to-date."
+                    return health_status
+                  end
+                  if condition.reason == "InactiveManagedResource" then
+                    health_status.status = "Healthy"
+                    health_status.message = "Resource is up-to-date."
+                    return health_status
+                  end
+                end
+              end
+            end
+            return health_status
+
+      resource.exclusions: |
+        ### Network resources created by the Kubernetes control plane and excluded to reduce the number of watched events and UI clutter
+        - apiGroups:
+          - ''
+          - discovery.k8s.io
+          kinds:
+          - Endpoints
+          - EndpointSlice
+        ### Internal Kubernetes resources excluded reduce the number of watched events
+        - apiGroups:
+          - coordination.k8s.io
+          kinds:
+          - Lease
+        ### Internal Kubernetes Authz/Authn resources excluded reduce the number of watched events
+        - apiGroups:
+          - authentication.k8s.io
+          - authorization.k8s.io
+          kinds:
+          - SelfSubjectReview
+          - TokenReview
+          - LocalSubjectAccessReview
+          - SelfSubjectAccessReview
+          - SelfSubjectRulesReview
+          - SubjectAccessReview
+        ### Intermediate Certificate Request excluded reduce the number of watched events
+        - apiGroups:
+          - certificates.k8s.io
+          kinds:
+          - CertificateSigningRequest
+        - apiGroups:
+          - cert-manager.io
+          kinds:
+          - CertificateRequest
+        ### Cilium internal resources excluded reduce the number of watched events and UI Clutter
+        - apiGroups:
+          - cilium.io
+          kinds:
+          - CiliumIdentity
+          - CiliumEndpoint
+          - CiliumEndpointSlice
+        ### Kyverno intermediate and reporting resources excluded reduce the number of watched events and improve performance
+        - apiGroups:
+          - kyverno.io
+          - reports.kyverno.io
+          - wgpolicyk8s.io
+          kinds:
+          - PolicyReport
+          - ClusterPolicyReport
+          - EphemeralReport
+          - ClusterEphemeralReport
+          - AdmissionReport
+          - ClusterAdmissionReport
+          - BackgroundScanReport
+          - ClusterBackgroundScanReport
+          - UpdateRequest
+        ### Crossplane ProviderConfigUsage
+        - apiGroups:
+          - "*"
+          kinds:
+          - ProviderConfigUsage
+
+    rbac:
+      policy.csv: |
+        p, backstage, applications, get, */*, allow
+
+  controller:
+    metrics:
+      enabled: true
+      serviceMonitor:
+        enabled: true
+    env:
+      - name: ARGOCD_K8S_CLIENT_QPS
+        value: "150"
+      - name: ARGOCD_K8S_CLIENT_BURST
+        value: "300"
+
+  dex:
+    metrics:
+      enabled: true
+      serviceMonitor:
+        enabled: true
+
+  redis:
+    metrics:
+      enabled: true
+      serviceMonitor:
+        enabled: true
+
+  server:
+    ingress:
+      enabled: true
+      annotations:
+        nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
+        nginx.ingress.kubernetes.io/backend-protocol: "HTTP"
+        cert-manager.io/cluster-issuer: default-issuer
+      ingressClassName: nginx
+      extraTls:
+        - hosts: []
+          # Based on the ingress controller used secret might be optional
+          secretName: argocd-server-tls
+    extensions:
+      enabled: true
+      contents:
+        - name: argo-rollouts
+          url: https://github.com/argoproj-labs/rollout-extension/releases/download/v0.3.6/extension.tar
+    metrics:
+      enabled: true
+      serviceMonitor:
+        enabled: true
+
+  applicationSet:
+    allowAnyNamespace: true
+    metrics:
+      enabled: true
+      serviceMonitor:
+        enabled: true
+
+  repoServer:
+    metrics:
+      enabled: true
+      serviceMonitor:
+        enabled: true
+
+  notifications:
+    metrics:
+      enabled: true
+      serviceMonitor:
+        enabled: true

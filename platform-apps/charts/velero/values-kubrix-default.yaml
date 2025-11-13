@@ -1,0 +1,59 @@
+velero:
+  nameOverride: velero #https://github.com/vmware-tanzu/velero/issues/9023
+  fullnameOverride: velero
+  initContainers:
+    - name: velero-plugin-for-aws
+      image: velero/velero-plugin-for-aws:v1.13.1
+      imagePullPolicy: IfNotPresent
+      volumeMounts:
+        - mountPath: /target
+          name: plugins
+    - name: velero-plugin-for-microsoft-azure
+      image: velero/velero-plugin-for-microsoft-azure:v1.13.1
+      imagePullPolicy: IfNotPresent
+      volumeMounts:
+        - mountPath: /target
+          name: plugins
+  metrics:
+    serviceMonitor:
+      enabled: true
+    nodeAgentPodMonitor:
+      enabled: true
+    prometheusRule:
+      enabled: true
+  crdjob:
+    resources:
+      requests:
+        cpu: 128m
+        memory: 128Mi
+      limits:
+        cpu: 128m
+        memory: 128Mi
+  configuration:
+    backupStorageLocation:
+    - name:
+      provider: aws
+      bucket: velero
+      default: true
+      credential:
+        name: velero-cloud-credential
+        key: cloud
+      config:
+        region: minio
+        s3ForcePathStyle: true
+        s3Url: https://sx-minio.minio.svc.cluster.local:9000
+        publicUrl: ~
+        insecureSkipTLSVerify: true # temp for minio/local deployment
+    volumeSnapshotLocation:
+    - name:
+      provider: aws
+      config:
+       region: minio
+    features: EnableCSI
+    defaultVolumesToFsBackup: true
+  serviceAccount:
+    server:
+      create: true
+      name: velero
+  snapshotsEnabled: false
+  deployNodeAgent: true

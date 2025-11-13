@@ -1,0 +1,75 @@
+apiVersion: testworkflows.testkube.io/v1
+kind: TestWorkflow
+metadata:
+  name: kind-portal
+  labels:
+    type: kind-portal
+spec:
+  container:
+    env:
+    - name: CURL_CA_BUNDLE
+      value: /etc/ssl/custom/ca.crt
+    volumeMounts:
+    - mountPath: /etc/ssl/custom
+      name: testkube-ca
+      readOnly: true
+  pod:
+    volumes:
+    - name: testkube-ca
+      secret:
+        defaultMode: 420
+        secretName: ca-cert
+  steps:
+    - run:
+        image: "curlimages/curl:7.78.0"
+        shell: |
+          cat /etc/ssl/custom/ca.crt
+          echo ${CURL_CA_BUNDLE}
+          curl --insecure -vvI https://backstage.127-0-0-1.nip.io 2>&1 | awk 'BEGIN { cert=0 } /^\* SSL connection/ { cert=1 } /^\*/ { if (cert) print }'
+          curl https://backstage.127-0-0-1.nip.io
+---
+apiVersion: testworkflows.testkube.io/v1
+kind: TestWorkflow
+metadata:
+  name: kind-portal-cypress
+  labels:
+    type: kind-portal-not-used
+spec:
+  content:
+    git:
+      uri: {{ .Values.default.repoURL }}
+      revision: {{ .Values.default.targetRevision }}
+      paths:
+      - e2e-tests/cypress
+      usernameFrom:
+        secretKeyRef:
+          name: git-credentials
+          key: username
+      tokenFrom:
+        secretKeyRef:
+          name: git-credentials
+          key: token
+  container:
+    resources:
+      requests:
+        cpu: 500m
+        memory: 1Gi
+    workingDir: /data/repo/e2e-tests/cypress
+  job:
+    activeDeadlineSeconds: 600
+  steps:
+    - name: Run tests
+      run:
+        image: cypress/included:15.6.0
+        args:
+        - --config
+        - '{"screenshotsFolder":"/data/artifacts/screenshots","videosFolder":"/data/artifacts/videos"}'
+        - --spec
+        - "cypress/e2e/portal/**/*"
+      steps:
+      - name: Saving artifacts
+        condition: always
+        workingDir: /data/artifacts
+        artifacts:
+          paths:
+          - '**/*'

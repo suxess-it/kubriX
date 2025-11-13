@@ -1,0 +1,17 @@
+{{ if ne .kubriX.clusterType "kind" -}}
+apiVersion: backstage.io/v1alpha1
+kind: Resource
+metadata:
+  name: kubevirt
+  title: kubevirt
+  description: kubevirt Instance for kubriX
+  links: 
+    - url: https://kubevirt.io/
+      title: Official Documentation
+      icon: web
+spec:
+  type: virtualization
+  lifecycle: production
+  owner: kubrix
+  system: kubrix
+{{ end -}}

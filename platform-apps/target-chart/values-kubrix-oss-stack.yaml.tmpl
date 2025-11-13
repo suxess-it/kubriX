@@ -1,0 +1,126 @@
+default:
+  valueFiles:
+  - values-kubrix-default.yaml
+  - values-cluster-{{ .kubriX.clusterType }}.yaml
+  - values-provider-{{ .kubriX.cloudProvider }}.yaml
+  {{ if .kubriX.haEnabled }}
+  - values-ha-enabled.yaml
+  {{ end -}}
+  - values-size-{{ .kubriX.tShirtSize }}.yaml
+  {{ if .kubriX.securityStrict }}
+  - values-security-strict.yaml
+  {{ end -}}
+  - values-customer-generated.yaml
+  - values-customer.yaml
+
+applications:
+
+  - name: ingress-nginx
+    annotations:
+      argocd.argoproj.io/sync-wave: "-11"
+
+  - name: cert-manager
+    annotations:
+      argocd.argoproj.io/sync-wave: "-10"
+
+  {{ if ne .kubriX.clusterType "kind" -}}
+  - name: external-dns
+    annotations:
+      argocd.argoproj.io/sync-wave: "-9"
+    valueFiles:
+      - values-dns-{{ .kubriX.dnsProvider }}.yaml
+  {{ end -}}
+  
+  - name: crossplane
+    annotations:
+      argocd.argoproj.io/sync-wave: "-9"
+
+  - name: argocd
+    annotations:
+      argocd.argoproj.io/sync-wave: "-9"
+
+  - name: external-secrets
+    annotations:
+      argocd.argoproj.io/sync-wave: "-8"
+    syncOptions:
+      - ServerSideApply=true
+
+  - name: k8s-monitoring
+    annotations:
+      argocd.argoproj.io/compare-options: ServerSideDiff=true
+      argocd.argoproj.io/sync-wave: "-8"
+    syncOptions:
+      - ServerSideApply=true
+
+  - name: vault
+    annotations:
+      argocd.argoproj.io/sync-wave: "-7"
+
+  - name: cnpg
+    annotations:
+      argocd.argoproj.io/compare-options: ServerSideDiff=true
+      argocd.argoproj.io/sync-wave: "-6"
+    syncOptions:
+      - ServerSideApply=true
+      
+  - name: keycloak
+    annotations:
+      argocd.argoproj.io/sync-wave: "-5"
+
+  - name: loki
+    annotations:
+      argocd.argoproj.io/compare-options: ServerSideDiff=true
+      argocd.argoproj.io/sync-wave: "-1"
+    helmOptions:
+      skipCrds: true
+    syncOptions:
+      - ServerSideApply=true
+
+  - name: kargo
+
+  - name: argo-rollouts
+    ignoreDifferences:
+    - group: apiextensions.k8s.io
+      kind: CustomResourceDefinition
+      jsonPointers:
+      - /spec/preserveUnknownFields
+      
+  - name: grafana
+    annotations:
+      argocd.argoproj.io/compare-options: ServerSideDiff=true
+    syncOptions:
+      - ServerSideApply=true
+
+  - name: mimir
+
+  {{ if ne .kubriX.clusterType "kind" -}}
+
+  - name: falco
+    annotations:
+      argocd.argoproj.io/compare-options: ServerSideDiff=true
+    helmOptions:
+      skipCrds: true
+    syncOptions:
+      - ServerSideApply=true
+
+  - name: kyverno
+    syncOptions:
+      - ServerSideApply=true
+
+  - name: velero
+
+  - name: velero-ui
+
+  - name: minio
+
+  {{ end -}}
+
+  - name: backstage
+    annotations:
+      argocd.argoproj.io/sync-wave: "10"
+
+  - name: team-onboarding
+    destinationNamespaceOverwrite: argocd
+    namespaceResourceTracking: false
+    annotations:
+      argocd.argoproj.io/sync-wave: "15"

@@ -1,0 +1,12 @@
+loki:
+  gateway:
+    ingress:
+      hosts:
+        - host: logs-monitoring.{{ .kubriX.domain }}
+          paths:
+            - path: /
+              pathType: Prefix
+      tls:
+        - secretName: loki-gateway-tls
+          hosts:
+            - logs-monitoring.{{ .kubriX.domain }}

@@ -1,0 +1,63 @@
+name: create kubrix-installer image
+
+on:
+  push:
+    tags:
+      - 'v*'
+  workflow_dispatch:
+
+env:
+  GHCR_REPO: ghcr.io/suxess-it/kubrix-installer
+  BRANCH: ${{ github.head_ref || github.ref_name }}
+
+jobs:
+  create-kubrix-installer-image:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:         
+      - uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
+
+      - uses: docker/setup-qemu-action@v3
+      - uses: docker/setup-buildx-action@v3
+
+      - name: Docker meta
+        id: meta
+        uses: docker/metadata-action@v5
+        with:
+          images: |
+            name=ghcr.io/suxess-it/kubrix-installer
+          tags: |
+            # set latest tag for default branch
+            type=raw,value=latest,enable={{is_default_branch}}
+            type=ref,event=branch
+            type=ref,event=tag
+            type=ref,event=pr
+
+      - name: Login to Github Container Registry
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Compute version
+        id: ver
+        run: |
+          echo "version=$(git describe --tags --dirty --always)" >> $GITHUB_OUTPUT
+          echo "sha_short=$(git rev-parse --short=12 HEAD)" >> $GITHUB_OUTPUT
+     
+      - name: Build and push docker
+        uses: docker/build-push-action@v6
+        with:
+          context: .
+          push: true
+          platforms: linux/amd64, linux/arm64
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}
+          build-args: |
+            VERSION=${{ steps.ver.outputs.version }}
+            VCS_REF=${{ steps.ver.outputs.sha_short }}
+            

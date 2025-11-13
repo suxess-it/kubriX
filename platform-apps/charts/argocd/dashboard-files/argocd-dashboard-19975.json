@@ -1,361 +1,217 @@
 {
-"annotations": {
-    "list": [
+  "__inputs": [],
+  "__requires": [],
+  "description": "A dashboard that monitors ArgoCD notifications. It is created using the [argo-cd-mixin](https://github.com/adinhodovic/argo-cd-mixin).",
+  "editable": true,
+  "links": [
     {
-        "builtIn": 1,
-        "datasource": {
-        "type": "grafana",
-        "uid": "-- Grafana --"
-        },
-        "enable": true,
-        "hide": true,
-        "iconColor": "rgba(0, 211, 255, 1)",
-        "name": "Annotations & Alerts",
-        "type": "dashboard"
-    }
-    ]
-},
-"description": "A dashboard that monitors ArgoCD notifications. It is created using the [argo-cd-mixin](https://github.com/adinhodovic/argo-cd-mixin).",
-"editable": true,
-"fiscalYearStartMonth": 0,
-"gnetId": 19975,
-"graphTooltip": 0,
-"id": 173,
-"links": [
-    {
-    "tags": [
+      "tags": [
         "ci/cd",
         "argo-cd"
-    ],
-    "targetBlank": true,
-    "title": "ArgoCD Dashboards",
-    "type": "dashboards"
+      ],
+      "targetBlank": true,
+      "title": "ArgoCD Dashboards",
+      "type": "dashboards"
     }
-],
-"panels": [
+  ],
+  "panels": [
     {
-    "collapsed": false,
-    "gridPos": {
+      "collapsed": false,
+      "gridPos": {
         "h": 1,
         "w": 24,
         "x": 0,
         "y": 0
-    },
-    "id": 1,
-    "title": "Summary",
-    "type": "row"
+      },
+      "id": 1,
+      "title": "Summary",
+      "type": "row"
     },
     {
-    "datasource": {
+      "datasource": {
         "type": "datasource",
         "uid": "-- Mixed --"
-    },
-    "fieldConfig": {
+      },
+      "fieldConfig": {
         "defaults": {
-        "color": {
-            "mode": "palette-classic"
-        },
-        "custom": {
-            "axisBorderShow": false,
-            "axisCenteredZero": false,
-            "axisColorMode": "text",
-            "axisLabel": "",
-            "axisPlacement": "auto",
-            "barAlignment": 0,
-            "drawStyle": "line",
-            "fillOpacity": 10,
-            "gradientMode": "none",
-            "hideFrom": {
-            "legend": false,
-            "tooltip": false,
-            "viz": false
-            },
-            "insertNulls": false,
-            "lineInterpolation": "linear",
-            "lineWidth": 1,
-            "pointSize": 5,
-            "scaleDistribution": {
-            "type": "linear"
-            },
-            "showPoints": "auto",
-            "spanNulls": false,
-            "stacking": {
-            "group": "A",
-            "mode": "none"
-            },
-            "thresholdsStyle": {
-            "mode": "off"
-            }
-        },
-        "mappings": [],
-        "thresholds": {
-            "mode": "absolute",
-            "steps": [
-            {
-                "color": "green",
-                "value": null
-            },
-            {
-                "color": "red",
-                "value": 80
-            }
-            ]
-        },
-        "unit": "short"
-        },
-        "overrides": []
-    },
-    "gridPos": {
+          "custom": {
+            "fillOpacity": 10
+          },
+          "unit": "short"
+        }
+      },
+      "gridPos": {
         "h": 8,
         "w": 12,
         "x": 0,
         "y": 1
-    },
-    "id": 2,
-    "options": {
+      },
+      "id": 2,
+      "options": {
         "legend": {
-        "calcs": [
+          "calcs": [
             "last",
             "max"
-        ],
-        "displayMode": "table",
-        "placement": "right",
-        "showLegend": true,
-        "sortBy": "Last",
-        "sortDesc": true
+          ],
+          "displayMode": "table",
+          "placement": "right",
+          "showLegend": true,
+          "sortBy": "Last",
+          "sortDesc": true
         },
         "tooltip": {
-        "maxHeight": 600,
-        "mode": "multi",
-        "sort": "desc"
+          "mode": "multi",
+          "sort": "desc"
         }
-    },
-    "pluginVersion": "v10.2.0",
-    "targets": [
+      },
+      "pluginVersion": "v11.4.0",
+      "targets": [
         {
-        "datasource": {
+          "datasource": {
             "type": "prometheus",
             "uid": "$datasource"
-        },
-        "expr": "sum(\n  round(\n    increase(\n      argocd_notifications_deliveries_total{\n        namespace=~'$namespace',\njob=~'$job',\n\n        exported_service=~\"$exported_service\",\n      }[$__rate_interval]\n    )\n  )\n) by (job, exported_service, succeeded)\n",
-        "legendFormat": "{{ exported_service }} - Succeeded: {{ succeeded }}",
-        "refId": "A"
+          },
+          "expr": "sum(\n  round(\n    increase(\n      argocd_notifications_deliveries_total{\n        cluster=\"$cluster\",\nnamespace=~'$namespace',\njob=~'$job',\n\n        exported_service=~\"$exported_service\",\n      }[$__rate_interval]\n    )\n  )\n) by (job, exported_service, succeeded)\n",
+          "legendFormat": "{{`{{ exported_service }}`}} - Succeeded: {{`{{ succeeded }}`}}"
         }
-    ],
-    "title": "Notification Deliveries",
-    "type": "timeseries"
+      ],
+      "title": "Notification Deliveries",
+      "type": "timeseries"
     },
     {
-    "datasource": {
+      "datasource": {
         "type": "datasource",
         "uid": "-- Mixed --"
-    },
-    "fieldConfig": {
+      },
+      "fieldConfig": {
         "defaults": {
-        "color": {
-            "mode": "palette-classic"
-        },
-        "custom": {
-            "axisBorderShow": false,
-            "axisCenteredZero": false,
-            "axisColorMode": "text",
-            "axisLabel": "",
-            "axisPlacement": "auto",
-            "barAlignment": 0,
-            "drawStyle": "line",
-            "fillOpacity": 10,
-            "gradientMode": "none",
-            "hideFrom": {
-            "legend": false,
-            "tooltip": false,
-            "viz": false
-            },
-            "insertNulls": false,
-            "lineInterpolation": "linear",
-            "lineWidth": 1,
-            "pointSize": 5,
-            "scaleDistribution": {
-            "type": "linear"
-            },
-            "showPoints": "auto",
-            "spanNulls": false,
-            "stacking": {
-            "group": "A",
-            "mode": "none"
-            },
-            "thresholdsStyle": {
-            "mode": "off"
-            }
-        },
-        "mappings": [],
-        "thresholds": {
-            "mode": "absolute",
-            "steps": [
-            {
-                "color": "green",
-                "value": null
-            },
-            {
-                "color": "red",
-                "value": 80
-            }
-            ]
-        },
-        "unit": "short"
-        },
-        "overrides": []
-    },
-    "gridPos": {
+          "custom": {
+            "fillOpacity": 10
+          },
+          "unit": "short"
+        }
+      },
+      "gridPos": {
         "h": 8,
         "w": 12,
         "x": 12,
         "y": 1
-    },
-    "id": 3,
-    "options": {
+      },
+      "id": 3,
+      "options": {
         "legend": {
-        "calcs": [
+          "calcs": [
             "last",
             "max"
-        ],
-        "displayMode": "table",
-        "placement": "right",
-        "showLegend": true,
-        "sortBy": "Last",
-        "sortDesc": true
+          ],
+          "displayMode": "table",
+          "placement": "right",
+          "showLegend": true,
+          "sortBy": "Last",
+          "sortDesc": true
         },
         "tooltip": {
-        "maxHeight": 600,
-        "mode": "multi",
-        "sort": "desc"
+          "mode": "multi",
+          "sort": "desc"
         }
-    },
-    "pluginVersion": "v10.2.0",
-    "targets": [
+      },
+      "pluginVersion": "v11.4.0",
+      "targets": [
         {
-        "datasource": {
+          "datasource": {
             "type": "prometheus",
             "uid": "$datasource"
-        },
-        "expr": "sum(\n  round(\n    increase(\n      argocd_notifications_trigger_eval_total{\n        namespace=~'$namespace',\njob=~'$job',\n\n      }[$__rate_interval]\n    )\n  )\n) by (job, name, triggered)\n",
-        "legendFormat": "{{ name }} - Triggered: {{ triggered }}",
-        "refId": "A"
+          },
+          "expr": "sum(\n  round(\n    increase(\n      argocd_notifications_trigger_eval_total{\n        cluster=\"$cluster\",\nnamespace=~'$namespace',\njob=~'$job',\n\n      }[$__rate_interval]\n    )\n  )\n) by (job, name, triggered)\n",
+          "legendFormat": "{{`{{ name }}`}} - Triggered: {{`{{ triggered }}`}}"
         }
-    ],
-    "title": "Trigger Evaluations",
-    "type": "timeseries"
+      ],
+      "title": "Trigger Evaluations",
+      "type": "timeseries"
     }
-],
-"schemaVersion": 39,
-"tags": [
+  ],
+  "schemaVersion": 39,
+  "tags": [
     "ci/cd",
     "argo-cd"
-],
-"templating": {
+  ],
+  "templating": {
     "list": [
-    {
+      {
         "current": {
-        "selected": true,
-        "text": "default",
-        "value": "default"
+          "selected": true,
+          "text": "default",
+          "value": "default"
         },
-        "hide": 0,
-        "includeAll": false,
         "label": "Data source",
-        "multi": false,
         "name": "datasource",
-        "options": [],
         "query": "prometheus",
-        "queryValue": "",
-        "refresh": 1,
-        "regex": "",
-        "skipUrlSync": false,
         "type": "datasource"
-    },
-    {
-        "current": {
-        "selected": false,
-        "text": "All",
-        "value": "$__all"
-        },
+      },
+      {
         "datasource": {
-        "type": "prometheus",
-        "uid": "${datasource}"
+          "type": "prometheus",
+          "uid": "${datasource}"
         },
-        "definition": "",
-        "hide": 0,
+        "hide": 2,
+        "label": "Cluster",
+        "name": "cluster",
+        "query": "label_values(argocd_notifications_deliveries_total{}, cluster)",
+        "refresh": 2,
+        "sort": 1,
+        "type": "query"
+      },
+      {
+        "datasource": {
+          "type": "prometheus",
+          "uid": "${datasource}"
+        },
         "includeAll": true,
         "label": "Namespace",
         "multi": true,
         "name": "namespace",
-        "options": [],
-        "query": "label_values(argocd_notifications_deliveries_total{}, namespace)",
+        "query": "label_values(argocd_notifications_deliveries_total{cluster=\"$cluster\"}, namespace)",
         "refresh": 2,
-        "regex": "",
-        "skipUrlSync": false,
         "sort": 1,
         "type": "query"
-    },
-    {
+      },
+      {
         "allValue": ".*",
-        "current": {
-        "selected": false,
-        "text": "All",
-        "value": "$__all"
-        },
         "datasource": {
-        "type": "prometheus",
-        "uid": "${datasource}"
+          "type": "prometheus",
+          "uid": "${datasource}"
         },
-        "definition": "",
-        "hide": 0,
         "includeAll": true,
         "label": "Job",
         "multi": true,
         "name": "job",
-        "options": [],
-        "query": "label_values(argocd_notifications_deliveries_total{namespace=~\"$namespace\"}, job)",
+        "query": "label_values(argocd_notifications_deliveries_total{cluster=\"$cluster\", namespace=~\"$namespace\"}, job)",
         "refresh": 2,
-        "regex": "",
-        "skipUrlSync": false,
         "sort": 1,
         "type": "query"
-    },
-    {
-        "current": {
-        "selected": false,
-        "text": "All",
-        "value": "$__all"
-        },
+      },
+      {
         "datasource": {
-        "type": "prometheus",
-        "uid": "${datasource}"
+          "type": "prometheus",
+          "uid": "${datasource}"
         },
-        "definition": "",
-        "hide": 0,
         "includeAll": true,
         "label": "Notifications Service",
         "multi": true,
         "name": "exported_service",
-        "options": [],
-        "query": "label_values(argocd_notifications_deliveries_total{namespace=~\"$namespace\", job=~\"$job\"}, exported_service)",
+        "query": "label_values(argocd_notifications_deliveries_total{cluster=\"$cluster\", namespace=~\"$namespace\", job=~\"$job\"}, exported_service)",
         "refresh": 2,
-        "regex": "",
-        "skipUrlSync": false,
         "sort": 1,
         "type": "query"
-    }
+      }
     ]
-},
-"time": {
+  },
+  "time": {
     "from": "now-2d",
     "to": "now"
-},
-"timeRangeUpdatedDuringEditOrView": false,
-"timepicker": {},
-"timezone": "utc",
-"title": "ArgoCD / Notifications / Overview",
-"uid": "argo-cd-notifications-overview-kask",
-"version": 1,
-"weekStart": ""
+  },
+  "timezone": "utc",
+  "title": "ArgoCD / Notifications / Overview",
+  "uid": "argo-cd-notifications-overview-kask",
+  "gnetId": 19975
 }

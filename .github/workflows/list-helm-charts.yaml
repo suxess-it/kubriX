@@ -1,0 +1,30 @@
+on:
+  workflow_dispatch:
+
+name: create helm-chart list
+
+jobs:
+  evaluate:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v5
+
+      - name: create helm-chart list
+        shell: bash
+        run: |
+          .github/create-helm-dependency-list.sh
+          
+      - name: commit helm-chart list
+        shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git status
+          git add helm-chart-list
+          git status
+          echo "check diff and commit"
+          git diff --cached --exit-code || git commit -m "update helm-chart list"
+          git push

@@ -1,0 +1,8 @@
+cost-analyzer:
+  ingress:
+    hosts:
+      - kubecost.{{ .kubriX.domain }}
+    tls:
+      - secretName: kubecost-server-tls
+        hosts:
+        - kubecost.{{ .kubriX.domain }}

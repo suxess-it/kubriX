@@ -1,6 +1,7 @@
 default:
   valueFiles:
-  - values-k3d.yaml
+  - values-kubrix-default.yaml
+  - values-cluster-kind.yaml
 
 applications:
 
@@ -50,16 +51,14 @@ applications:
       - ServerSideApply=true
 
   - name: external-secrets
+    syncOptions:
+      - ServerSideApply=true
 
   - name: keycloak
 
   - name: kargo
 
   - name: kubecost
-
-  - name: team-onboarding
-    destinationNamespaceOverwrite: argocd
-    namespaceResourceTracking: false
 
   - name: argo-rollouts
     ignoreDifferences:
@@ -75,3 +74,9 @@ applications:
   - name: backstage
     annotations:
       argocd.argoproj.io/sync-wave: "10"
+
+  - name: team-onboarding
+    destinationNamespaceOverwrite: argocd
+    namespaceResourceTracking: false
+    annotations:
+      argocd.argoproj.io/sync-wave: "15"

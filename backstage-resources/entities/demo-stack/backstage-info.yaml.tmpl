@@ -1,0 +1,28 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: kubrix-backstage
+  title: kubriX platform Showcase
+  description: |
+    This is the kubriX paltform Showcase for our official demo instance
+  links:
+    - title: Website
+      url: https://kubriX.io
+    - title: kubriX platform Showcase
+      url: https://backstage.{{ .kubriX.domain }}
+  annotations:
+    github.com/project-slug: {{ .kubriX.gitRepoOrg }}/{{ .kubriX.gitRepoName }}
+    backstage.io/kubernetes-label-selector: 'app.kubernetes.io/instance=sx-backstage'
+    argocd/app-name: "sx-backstage"
+    backstage.io/techdocs-ref: url:{{ .kubriX.gitRepo }}/tree/main/backstage-resources
+    backstage.io/kubernetes-namespace: backstage
+    backstage.io/kubernetes-id: sx-backstage
+    backstage.io/adr-location: {{ .kubriX.gitRepo }}/tree/main/backstage-resources/adr
+    grafana/dashboard-selector: "(tags @> 'suXess')"
+    grafana/overview-dashboard: "https://grafana.{{ .kubriX.domain }}/d/k8s_views_ns/kubernetes-views-namespaces?orgId=1&from=now-1h&to=now&var-datasource=default&var-cluster={{ .kubriX.gitRepoOrg }}&var-namespace=backstage&var-resolution=30s&var-created_by=$__all&refresh=30s"
+spec:
+  type: service
+  owner: kubrix
+  lifecycle: production
+  dependsOn:
+    - resource:argocd

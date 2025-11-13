@@ -1,0 +1,84 @@
+apiVersion: scaffolder.backstage.io/v1beta3
+kind: Template
+metadata:
+  name: notification-demo
+  title: send notification
+  description: send notifications
+  tags:
+    - onboarding
+    - example
+    - notification
+spec:
+  owner: group:kubrix
+  type: example
+  parameters:
+    - title: Fill in some steps
+      required:
+        - recipients
+        - name
+        - message
+      properties:
+        severity:
+          title: Severity
+          type: string
+          description: Notification severity
+          default: normal
+          enum:
+            - low
+            - normal
+            - high
+            - critical
+        name:
+          title: Name
+          type: string
+          description: Unique name for notification
+          default: 'New Feature enabled'
+        message:
+          title: message
+          type: string
+          description: message
+          default: 'explore them now!'
+        recipients:
+          title: Recipients
+          type: string
+          description: Recipients of notifications
+          default: broadcast
+          enum:
+            - entity
+            - broadcast
+      dependencies:
+        recipients:
+          oneOf:
+            - properties:
+                recipients:
+                  enum:
+                    - broadcast
+            - properties:
+                recipients:
+                  enum:
+                    - entity
+                entityRefs:
+                  title: Entities
+                  type: array
+                  description: User/Groups to send the notification
+                  items:
+                    type: string
+                  ui:field: MultiEntityPicker
+                  ui:options:
+                    catalogFilter:
+                      - kind: Group
+                      - kind: User
+              required:
+                - entityRefs
+  steps:
+    - id: sendNotification
+      action: notification:send
+      name: Send Notification
+      input:
+        recipients: ${{`{{ parameters.recipients }}`}}
+        entityRefs: ${{`{{ parameters.entityRefs }}`}}
+        title: ${{`{{ parameters.name }}`}}
+        info: ${{`{{ parameters.message }}`}}
+        severity: ${{`{{ parameters.severity }}`}}
+        scope: internal
+        optional: true

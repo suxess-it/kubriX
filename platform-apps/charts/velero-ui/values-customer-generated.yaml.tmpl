@@ -1,0 +1,8 @@
+vui:
+  exposure:
+    ingress:
+      spec:
+        tls:
+          - secretName: velero-ui-tls
+            hosts:
+              - velero-ui.{{ .kubriX.domain }}
