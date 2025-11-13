@@ -339,8 +339,13 @@ jobs:
       - name: testkube tests
         env:
           KUBRIX_TARGET_TYPE: ${{ matrix.target-type }}
+          E2E_TEST_GH_USERNAME: ${{ secrets.E2E_TEST_GH_USERNAME }}
+          E2E_TEST_GH_PASSWORD: ${{ secrets.E2E_TEST_GH_PASSWORD }}
         run: |
-          testkube run testworkflow -l type=$(echo ${KUBRIX_TARGET_TYPE} | awk '{print tolower($0)}') -f -d
+          testkube run testworkflow -l type=${KUBRIX_TARGET_TYPE} \
+            --variable E2E_TEST_GH_USERNAME=${E2E_TEST_GH_USERNAME} \
+            --variable E2E_TEST_GH_PASSWORD=${E2E_TEST_GH_PASSWORD} \
+            -f -d
 
       - uses: actions/upload-artifact@v5
         if: always()
