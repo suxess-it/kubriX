@@ -19,6 +19,7 @@ This is our current plan for the next features and improvements. It is based on 
 * Improve FinOps Capabilities
 * Improve Compliance Adherence
 * Extend Multi Tenancy  / Isolation Options
+* Migration from ingress-nginx to alternatives (Gateway API)
 * Auto-Ingest Apps in Dev-Portal
 * App-Delivery Quality-Gates
 * Support Air-Gapped-Installations
