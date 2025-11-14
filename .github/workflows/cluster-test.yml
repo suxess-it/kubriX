@@ -332,6 +332,17 @@ jobs:
         run: |
           k8sgpt analyze
 
+      - name: Update Vault with GitHub OAuth credentials for Testkube tests
+        env:
+          GITHUB_CLIENTID: ${{ secrets.E2E_TEST_GITHUB_CLIENTID }}
+          GITHUB_CLIENTSECRET: ${{ secrets.E2E_TEST_GITHUB_CLIENTSECRET }}
+        run: |
+          export VAULT_HOSTNAME=$(kubectl get ingress -o jsonpath='{.items[*].spec.rules[*].host}' -n vault)
+          export VAULT_TOKEN=$(kubectl get secret -n vault vault-init -o=jsonpath='{.data.root_token}'  | base64 -d)
+          curl -k --header "X-Vault-Token:$VAULT_TOKEN" --request PATCH --header "Content-Type: application/merge-patch+json" --data "{\"data\": {\"GITHUB_CLIENTSECRET\": \"${GITHUB_CLIENTSECRET}\", \"GITHUB_CLIENTID\": \"${GITHUB_CLIENTID}\"}}" https://${VAULT_HOSTNAME}/v1/kubrix-kv/data/portal/backstage/base
+          kubectl delete externalsecret -n backstage sx-cnp-secret
+          kubectl rollout restart deployment -n backstage sx-backstage
+
       # run testkube tests
       - uses: kubeshop/setup-testkube@v1
         # with:
