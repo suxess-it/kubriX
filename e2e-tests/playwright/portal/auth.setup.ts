@@ -6,9 +6,7 @@ test('authenticate via GitHub and save state', async ({ page, context }) => {
 
   // Open GitHub login popup
   const popupPromise = page.waitForEvent('popup');
-  await page
-    .getByRole('button', { name: /GitHub/i }) // adjust to your real accessible name
-    .click();
+  await page.getByRole('listitem').filter({ hasText: 'GitHubSign in using' }).getByRole('button').click();
   const githubPage = await popupPromise;
 
   // Fill GitHub credentials
