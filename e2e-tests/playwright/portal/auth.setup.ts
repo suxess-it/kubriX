@@ -28,7 +28,7 @@ test('authenticate via GitHub and save state', async ({ page, context }) => {
   // (Replace selector/text with something real from your Backstage instance)
   await page.waitForLoadState('networkidle');
   await expect(
-    page.getByText(/signed in as/i) // or some avatar / profile element
+    page.getByText(/Welcome to kubriX/i) // or some avatar / profile element
   ).toBeVisible();
 
   // Save authenticated storage state
