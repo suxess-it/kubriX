@@ -48,7 +48,7 @@ module.exports = defineConfig({
   projects: [
     {
       name: 'setup',
-      testMatch: 'auth.setup.ts',
+      testMatch: 'auth.github.ts',
     },
     {
       name: 'chromium',
