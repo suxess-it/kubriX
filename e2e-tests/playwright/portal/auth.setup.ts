@@ -5,14 +5,6 @@ import path from 'path';
 test('authenticate via GitHub and save state', async ({ page, context }) => {
   await page.goto('https://backstage.127-0-0-1.nip.io/');
 
-  await page.getByRole('listitem').filter({ hasText: 'GitHubSign in using' }).getByRole('button').click();
-
-  // ⚠️ The GitHub provider button triggers a popup, so capture it.
-  const [popup] = await Promise.all([
-    context.waitForEvent('page'),
-  ]);
-
-
   const page1Promise = page.waitForEvent('popup');
   await page.getByRole('listitem').filter({ hasText: 'GitHubSign in using' }).getByRole('button').click();
   const page1 = await page1Promise;
