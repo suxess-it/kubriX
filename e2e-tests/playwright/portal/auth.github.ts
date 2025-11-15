@@ -1,5 +1,15 @@
 import { test as setup, expect } from '@playwright/test';
 import path from 'path';
+import * as OTPAuth from "otpauth"
+
+const totp = new OTPAuth.TOTP({
+  issuer: "Raccoon",
+  label: "GitHub",
+  algorithm: "SHA1",
+  digits: 6,
+  period: 30,
+  secret: process.env.GITHUB_OTP,
+})
 
 const authFile = path.join(__dirname, '../playwright/.auth/user.json');
 
