@@ -11,9 +11,9 @@ test("Smoke 1 - has title", async ({ page }) => {
   await page.getByRole('listitem').filter({ hasText: 'GitHubSign in using' }).getByRole('button').click();
   const githubPage = await popupPromise;
   // Optionally handle “Authorize” screen if it appears
-  const authorizeButton = githubPage.getByRole('button', { name: 'Authorize' });
-  if (await authorizeButton.isVisible()) {
-    await authorizeButton.click();
-  }
+  // const authorizeButton = githubPage.getByRole('button', { name: 'Authorize' });
+  // if (await authorizeButton.isVisible()) {
+  //  await authorizeButton.click();
+  // }
   await githubPage.close();
 });
