@@ -42,7 +42,7 @@ module.exports = defineConfig({
     trace: 'on-first-retry',
     video: 'on',
     ignoreHTTPSErrors: true,
-    storageState: '.auth/user.json',
+    // storageState: '.auth/user.json',
   },
 
   /* Configure projects for major browsers */
@@ -53,7 +53,13 @@ module.exports = defineConfig({
     },
     {
       name: 'chromium',
-      use: { ...devices['Desktop Chrome'] },
+      use: {
+        ...devices['Desktop Chrome'],
+        // only chromium tests use the saved auth
+        storageState: '.auth/user.json',
+      },
+      //wait for setup project to finish first
+      dependencies: ['setup'],
     },
 
     // {
