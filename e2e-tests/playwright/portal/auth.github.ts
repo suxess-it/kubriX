@@ -12,8 +12,10 @@ const totp = new OTPAuth.TOTP({
   secret: process.env.E2E_TEST_GITHUB_OTP,
 })
 
-const authFile = path.join(__dirname, '../.auth/user.json');
-fs.mkdirSync('../.auth/', { recursive: true });
+const authDir = path.join(__dirname, '../.auth');
+fs.mkdirSync(authDir, { recursive: true });
+
+const authFile = path.join(authDir, 'user.json');
 
 setup('authenticate', async ({ page }) => {
   // Perform authentication steps. Replace these actions with your own.
