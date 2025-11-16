@@ -30,22 +30,6 @@ async function getFreshTotp(totp: OTPAuth.TOTP): Promise<string> {
   return code;
 }
 
-function waitForSafeTotpWindow(period = 30): Promise<void> {
-  return new Promise(resolve => {
-    const nowSeconds = Math.floor(Date.now() / 1000);
-    const secondsIntoWindow = nowSeconds % period;
-
-    // If we are in the "danger zone" (last 5 seconds of window)
-    if (secondsIntoWindow > period - 5) {
-      const waitMs = (period - secondsIntoWindow + 1) * 1000;
-      console.log(`Waiting ${waitMs}ms for next TOTP window...`);
-      setTimeout(resolve, waitMs);
-    } else {
-      resolve();
-    }
-  });
-}
-
 const authDir = path.join(__dirname, '../.auth');
 fs.mkdirSync(authDir, { recursive: true });
 
