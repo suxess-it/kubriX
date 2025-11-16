@@ -19,6 +19,8 @@ setup('authenticate', async ({ page }) => {
   await page.getByLabel('Username or email address').fill(process.env.E2E_TEST_GH_USERNAME!);
   await page.getByLabel('Password').fill(process.env.E2E_TEST_GH_PASSWORD!);
   await page.getByRole('button', { name: 'Sign in', exact: true }).click();
+  await page.getByPlaceholder("XXXXXX").click()
+  await page.getByPlaceholder("XXXXXX").fill(totp.generate())
   // Wait until the page receives the cookies.
   //
   // Sometimes login flow sets cookies in the process of several redirects.
