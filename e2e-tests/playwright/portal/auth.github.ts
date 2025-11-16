@@ -11,7 +11,8 @@ const totp = new OTPAuth.TOTP({
   secret: process.env.E2E_TEST_GITHUB_OTP,
 })
 
-const authFile = path.join(__dirname, '../playwright/.auth/user.json');
+const authFile = path.join(__dirname, '../.auth/user.json');
+fs.mkdirSync('../.auth/', { recursive: true });
 
 setup('authenticate', async ({ page }) => {
   // Perform authentication steps. Replace these actions with your own.
@@ -26,8 +27,6 @@ setup('authenticate', async ({ page }) => {
   // Sometimes login flow sets cookies in the process of several redirects.
   // Wait for the final URL to ensure that the cookies are actually set.
   await page.waitForURL('https://github.com/');
-  // Alternatively, you can wait until the page reaches a state where all cookies are set.
-  await expect(page.getByRole('button', { name: 'View profile and more' })).toBeVisible();
 
   // End of authentication steps.
 

@@ -42,6 +42,7 @@ module.exports = defineConfig({
     trace: 'on-first-retry',
     video: 'on',
     ignoreHTTPSErrors: true,
+    storageState: '.auth/user.json',
   },
 
   /* Configure projects for major browsers */
