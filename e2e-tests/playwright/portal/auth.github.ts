@@ -8,7 +8,7 @@ const totp = new OTPAuth.TOTP({
   algorithm: "SHA1",
   digits: 6,
   period: 30,
-  secret: process.env.GITHUB_OTP,
+  secret: process.env.E2E_TEST_GITHUB_OTP,
 })
 
 const authFile = path.join(__dirname, '../playwright/.auth/user.json');
