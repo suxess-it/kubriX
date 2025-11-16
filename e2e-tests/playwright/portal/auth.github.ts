@@ -28,7 +28,7 @@ setup('authenticate', async ({ page }) => {
   // generate at the last second
   const code = totp.generate();
   await page.getByPlaceholder("XXXXXX").fill(code);
-  await page.getByRole('button', { name: 'Verify', exact: true }).click();
+  // await page.getByRole('button', { name: 'Verify', exact: true }).click();
   
   // Wait until the page receives the cookies.
   //
