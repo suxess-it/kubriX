@@ -12,6 +12,24 @@ const totp = new OTPAuth.TOTP({
   secret: process.env.E2E_TEST_GITHUB_OTP,
 })
 
+async function getFreshTotp(totp: OTPAuth.TOTP): Promise<string> {
+  // How many ms are left for the current token
+  let remainingMs = totp.remaining();
+
+  // If we’re near the end of the window (< 5s left), wait for the next one
+  if (remainingMs < 5000) {
+    const waitMs = remainingMs + 1500; // wait rest of window + 1.5s safety
+    console.log(`[TOTP] Near window end, waiting ${waitMs}ms for a fresh code...`);
+    await new Promise(res => setTimeout(res, waitMs));
+  }
+
+  const code = totp.generate();
+  const afterRemaining = totp.remaining();
+  console.log(`[TOTP] Generated code=${code}, remaining=${afterRemaining}ms`);
+
+  return code;
+}
+
 function waitForSafeTotpWindow(period = 30): Promise<void> {
   return new Promise(resolve => {
     const nowSeconds = Math.floor(Date.now() / 1000);
@@ -42,8 +60,9 @@ setup('authenticate', async ({ page }) => {
   
   await page.getByPlaceholder("XXXXXX").waitFor({ state: 'visible' });
   // generate at the last second
-  await waitForSafeTotpWindow();
-  const code = totp.generate();
+  // await waitForSafeTotpWindow();
+  // const code = totp.generate();
+  const code = await getFreshTotp(totp);
   await page.getByPlaceholder("XXXXXX").fill(code);
   // await page.getByRole('button', { name: 'Verify', exact: true }).click();
   
