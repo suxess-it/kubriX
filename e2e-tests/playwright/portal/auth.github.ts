@@ -23,8 +23,13 @@ setup('authenticate', async ({ page }) => {
   await page.getByLabel('Username or email address').fill(process.env.E2E_TEST_GH_USERNAME!);
   await page.getByLabel('Password').fill(process.env.E2E_TEST_GH_PASSWORD!);
   await page.getByRole('button', { name: 'Sign in', exact: true }).click();
-  await page.getByPlaceholder("XXXXXX").click()
-  await page.getByPlaceholder("XXXXXX").fill(totp.generate())
+  
+  await page.getByPlaceholder("XXXXXX").waitFor({ state: 'visible' });
+  // generate at the last second
+  const code = totp.generate();
+  await page.getByPlaceholder("XXXXXX").fill(code);
+  await page.getByRole('button', { name: 'Verify', exact: true }).click();
+  
   // Wait until the page receives the cookies.
   //
   // Sometimes login flow sets cookies in the process of several redirects.
