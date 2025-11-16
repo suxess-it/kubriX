@@ -109,15 +109,15 @@ backstage:
       catalog:
         locations:
           - type: url
-            target: https://github.com/suxess-it/kubriX-demo-app/blob/{{ .Values.default.targetRevision }}/catalog-info.yaml
+            target: https://github.com/suxess-it/kubriX-demo-app/blob/{{ .Values.backstage.targetRevision }}/catalog-info.yaml
           - type: url
-            target: https://github.com/suxess-it/kubriX/blob/{{ .Values.default.targetRevision }}/backstage-resources/templates/showcase-templates.yaml
+            target: https://github.com/suxess-it/kubriX/blob/{{ .Values.targetRevision }}/backstage-resources/templates/showcase-templates.yaml
             rules:
               - allow: [Template]
           - type: url
-            target: https://github.com/suxess-it/kubriX/blob/{{ .Values.default.targetRevision }}/backstage-resources/entities/all.yaml
+            target: https://github.com/suxess-it/kubriX/blob/{{ .Values.targetRevision }}/backstage-resources/entities/all.yaml
           - type: url
-            target: https://github.com/suxess-it/kubriX/blob/{{ .Values.default.targetRevision }}/backstage-resources/entities/k3d.yaml
+            target: https://github.com/suxess-it/kubriX/blob/{{ .Values.targetRevision }}/backstage-resources/entities/k3d.yaml
 
       grafana:
         domain: https://grafana.127-0-0-1.nip.io
