@@ -353,10 +353,12 @@ jobs:
           KUBRIX_TARGET_TYPE: ${{ matrix.target-type }}
           E2E_TEST_GH_USERNAME: ${{ secrets.E2E_TEST_GH_USERNAME }}
           E2E_TEST_GH_PASSWORD: ${{ secrets.E2E_TEST_GH_PASSWORD }}
+          E2E_TEST_GITHUB_OTP: ${{ secrets.E2E_TEST_GITHUB_OTP }}
         run: |
           testkube run testworkflow -l type=${KUBRIX_TARGET_TYPE} \
             --variable E2E_TEST_GH_USERNAME=${E2E_TEST_GH_USERNAME} \
             --variable E2E_TEST_GH_PASSWORD=${E2E_TEST_GH_PASSWORD} \
+            --variable E2E_TEST_GITHUB_OTP=${E2E_TEST_GITHUB_OTP} \
             -f -d
 
       - uses: actions/upload-artifact@v5
