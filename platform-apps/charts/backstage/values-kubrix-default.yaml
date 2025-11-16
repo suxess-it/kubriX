@@ -1,11 +1,8 @@
-default:
+global:
   repoURL: https://github.com/suxess-it/kubriX
   targetRevision: main
 
 backstage:
-  repoURL: {{ .Values.default.repoURL }}
-  targetRevision: {{ .Values.default.targetRevision }}
-
   ingress:
     enabled: true
     host: ~
