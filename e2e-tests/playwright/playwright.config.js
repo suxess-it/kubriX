@@ -54,7 +54,6 @@ module.exports = defineConfig({
     {
       name: 'chromium',
       use: { ...devices['Desktop Chrome'] },
-      storageState: 'playwright/.auth/backstage.json',
     },
 
     // {
