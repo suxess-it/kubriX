@@ -12,6 +12,22 @@ const totp = new OTPAuth.TOTP({
   secret: process.env.E2E_TEST_GITHUB_OTP,
 })
 
+function waitForSafeTotpWindow(period = 30): Promise<void> {
+  return new Promise(resolve => {
+    const nowSeconds = Math.floor(Date.now() / 1000);
+    const secondsIntoWindow = nowSeconds % period;
+
+    // If we are in the "danger zone" (last 5 seconds of window)
+    if (secondsIntoWindow > period - 5) {
+      const waitMs = (period - secondsIntoWindow + 1) * 1000;
+      console.log(`Waiting ${waitMs}ms for next TOTP window...`);
+      setTimeout(resolve, waitMs);
+    } else {
+      resolve();
+    }
+  });
+}
+
 const authDir = path.join(__dirname, '../.auth');
 fs.mkdirSync(authDir, { recursive: true });
 
@@ -26,6 +42,7 @@ setup('authenticate', async ({ page }) => {
   
   await page.getByPlaceholder("XXXXXX").waitFor({ state: 'visible' });
   // generate at the last second
+  await waitForSafeTotpWindow();
   const code = totp.generate();
   await page.getByPlaceholder("XXXXXX").fill(code);
   // await page.getByRole('button', { name: 'Verify', exact: true }).click();
