@@ -1,0 +1,12 @@
+apiVersion: apiextensions.crossplane.io/v1alpha1
+kind: ManagedResourceActivationPolicy
+metadata:
+  name: keycloak-mrap
+spec:
+  activate:
+{{- $m := .Values.crossplane.activeMRDs | default dict }}
+{{- range $mrd, $enabled := $m }}
+{{- if $enabled }}
+    - {{ $mrd }}
+{{- end }}
+{{- end }}

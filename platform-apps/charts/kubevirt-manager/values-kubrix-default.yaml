@@ -10,6 +10,9 @@ deployment:
     name: kubevirt-manager-server-tls
   ingress:
     host: ~
+    annotations:
+      cert-manager.io/cluster-issuer: default-issuer
+      external-dns.alpha.kubernetes.io/ttl: "60"
   service:
     name: kubevirt-manager
     port: 8080

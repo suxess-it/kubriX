@@ -1,0 +1,33 @@
+apiVersion: external-secrets.io/v1
+kind: ExternalSecret
+metadata:
+  name: federated-store-es
+  namespace: kubecost
+spec:
+  refreshInterval: "15s"
+  secretStoreRef:
+    name: vault-backend
+    kind: ClusterSecretStore
+  target:
+    name: federated-store
+    template:
+      data:
+        federated-store.yaml: |-
+          type: S3
+          config:
+            bucket: kubecost
+            endpoint: sx-minio.minio.svc.cluster.local:9000
+            region: minio
+            access_key: "{{ `{{ .aws_access_key_id }}` }}"
+            secret_key: "{{ `{{ .aws_secret_access_key }}` }}"
+            http_config:
+              insecure_skip_verify: true # demo only
+  data:
+  - secretKey: aws_access_key_id
+    remoteRef:
+      key: kubrix-kv/data/minio/base
+      property: username
+  - secretKey: aws_secret_access_key
+    remoteRef:
+      key: kubrix-kv/data/minio/base
+      property: password

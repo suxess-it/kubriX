@@ -3,6 +3,17 @@ eso:
   backendName: vault-backend
   secretStore: kubrix-kv
 
+crossplane:
+  activeMRDs:
+    audits.vault.vault.upbound.io: true
+    mounts.vault.vault.upbound.io: true
+    policies.vault.vault.upbound.io: true
+    authbackendroles.kubernetes.vault.upbound.io: true
+    groups.identity.vault.upbound.io: true
+    secretbackendv2s.kv.vault.upbound.io: true
+    authbackendroles.token.vault.upbound.io: true
+    tokens.vault.vault.upbound.io: true
+
 vault:
   injector:
     enabled: false

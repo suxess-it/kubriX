@@ -13,7 +13,7 @@ data:
       typeName: prometheus
       uid: mimir-metamonitoring
       basicAuth: false
-      url: http://{{ template "mimir.fullname" .Subcharts.mimir }}-nginx.{{ .Release.Namespace }}.svc:80/prometheus
+      url: http://{{ template "mimir.fullname" .Subcharts.mimir }}-gateway.{{ .Release.Namespace }}.svc:80/prometheus
       access: proxy
       isDefault: false
       jsonData:

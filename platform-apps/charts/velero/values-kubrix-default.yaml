@@ -3,13 +3,13 @@ velero:
   fullnameOverride: velero
   initContainers:
     - name: velero-plugin-for-aws
-      image: velero/velero-plugin-for-aws:v1.12.2
+      image: velero/velero-plugin-for-aws:v1.13.1
       imagePullPolicy: IfNotPresent
       volumeMounts:
         - mountPath: /target
           name: plugins
     - name: velero-plugin-for-microsoft-azure
-      image: velero/velero-plugin-for-microsoft-azure:v1.12.2
+      image: velero/velero-plugin-for-microsoft-azure:v1.13.1
       imagePullPolicy: IfNotPresent
       volumeMounts:
         - mountPath: /target
@@ -49,7 +49,6 @@ velero:
       provider: aws
       config:
        region: minio
-    uploaderType: kopia
     features: EnableCSI
     defaultVolumesToFsBackup: true
   serviceAccount:
