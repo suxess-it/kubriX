@@ -6,18 +6,3 @@ solvers:
   - http01:
       ingress:
         ingressClassName: nginx
-
-cert-manager:
-  replicaCount: 2
-  podDisruptionBudget:
-    enabled: true
-
-  cainjector:
-    replicaCount: 2
-    podDisruptionBudget:
-      enabled: true
-
-  webhook:
-    replicaCount: 2
-    podDisruptionBudget:
-      enabled: true
