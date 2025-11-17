@@ -41,7 +41,7 @@ for env in pr target; do
   cd -
 done
 diff -U 4 -r out-default-values/target out-default-values/pr > out/default-values-diff.txt || true
-diff -U 4 -r out/target out/pr > out/diff.txt || true
+diff -U 4 -rN out/target out/pr > out/diff.txt || true
 csplit -f comment-files/comment out/diff.txt --elide-empty-files /^diff\ \-U/ '{*}'
 
 comment_files_csplit=$( find comment-files -type f | sort )
