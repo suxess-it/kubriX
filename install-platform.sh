@@ -440,6 +440,10 @@ wait_until_apps_synced_healthy() {
     echo "max wait time: ${max_wait_time} seconds"
     echo "wait another 10 seconds"
     echo "--------------------"
+    echo "node resource consumption:"
+    echo "--------------------"
+    kubectl top nodes --no-headers | awk "{printf \"%-30s %10s %10s\n\", \$1, \$3, \$5}"'
+    echo "--------------------"
     sleep 10
   done
 
