@@ -442,7 +442,14 @@ wait_until_apps_synced_healthy() {
     echo "--------------------"
     echo "node resource consumption:"
     echo "--------------------"
-    kubectl top nodes --no-headers | awk "{printf \"%-30s %10s %10s\n\", \$1, \$3, \$5}"
+    echo "--- Node usage ---"
+    kubectl top nodes
+
+    echo "--- Node requests/limits ---"
+    for node in $(kubectl get nodes -o name); do
+      echo "[ $node ]"
+      kubectl describe $node | grep -A10 "Allocated resources"
+    done
     echo "--------------------"
     sleep 10
   done
