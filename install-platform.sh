@@ -260,6 +260,42 @@ sha256_portable() {
   fi
 }
 
+show_node_resources() {
+  echo
+  echo "Node resource consumption"
+  echo "-------------------------"
+  printf "%-30s %8s %10s %10s %10s %10s %10s\n" \
+    "NODE" "CPUuse%" "CPUreq%" "CPUlim%" "MEMuse%" "MEMreq%" "MEMlim%"
+
+  for node in $(kubectl get nodes -o name); do
+    name=${node##*/}
+
+    # live usage from metrics-server
+    read cpu_use mem_use < <(
+      kubectl top node "$name" --no-headers | awk '{print $3, $5}'
+    )
+
+    # requests/limits (percent) from Allocated resources
+    read cpu_req cpu_lim mem_req mem_lim < <(
+      kubectl describe node "$name" | awk '
+        /Allocated resources:/ {in_alloc=1; next}
+        in_alloc && $1=="cpu"{
+          gsub(/[()%]/,"",$3); gsub(/[()%]/,"",$5);
+          cpu_req=$3; cpu_lim=$5;
+        }
+        in_alloc && $1=="memory"{
+          gsub(/[()%]/,"",$3); gsub(/[()%]/,"",$5);
+          mem_req=$3; mem_lim=$5;
+          in_alloc=0
+        }
+        END{printf "%s %s %s %s", cpu_req, cpu_lim, mem_req, mem_lim}'
+    )
+
+    printf "%-30s %8s %10s %10s %10s %10s %10s\n" \
+      "$name" "$cpu_use" "$cpu_req" "$cpu_lim" "$mem_use" "$mem_req" "$mem_lim"
+  done
+}
+
 create_vault_secrets_for_backstage() {
   echo "adding special configuration for sx-backstage"
 
@@ -440,16 +476,7 @@ wait_until_apps_synced_healthy() {
     echo "max wait time: ${max_wait_time} seconds"
     echo "wait another 10 seconds"
     echo "--------------------"
-    echo "node resource consumption:"
-    echo "--------------------"
-    echo "--- Node usage ---"
-    kubectl top nodes
-
-    echo "--- Node requests/limits ---"
-    for node in $(kubectl get nodes -o name); do
-      echo "[ $node ]"
-      kubectl describe $node | grep -A10 "Allocated resources"
-    done
+    show_node_resources
     echo "--------------------"
     sleep 10
   done
