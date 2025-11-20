@@ -6,10 +6,6 @@ testCase=$1
 valuesFilesList=$2
 setValues=$3
 
-# also run kubeconform just as a test, then move it out of this script
-curl -sL https://github.com/yannh/kubeconform/releases/download/v0.7.0/kubeconform-linux-amd64.tar.gz | tar zx kubeconform
-chmod u+x kubeconform
-
 mkdir -p out/pr
 mkdir -p out/target
 mkdir -p out-default-values/pr
@@ -32,13 +28,6 @@ for env in pr target; do
     mkdir -p ../../../out/${env}/${chart}/${testCase}
     echo "run command: 'helm template  --include-crds ${chart} "${valuesFiles[@]}" ${setValues} --output-dir ../../../out/${env}/${chart}/${testCase}'"
     helm template  --include-crds ${chart} ${valuesFiles[@]} ${setValues} --output-dir ../../../out/${env}/${chart}/${testCase}
-    # do a kubeconform test
-    helm template  --include-crds ${chart} ${valuesFiles[@]} ${setValues} | \
-      ../../../kubeconform -output pretty -strict \
-      -schema-location default \
-      -schema-location "https://raw.githubusercontent.com/datreeio/CRDs-catalog/main/{{.Group}}/{{.ResourceKind}}_{{.ResourceAPIVersion}}.json" \
-      -schema-location "https://raw.githubusercontent.com/yannh/kubernetes-json-schema/master/{{.NormalizedKubernetesVersion}}/{{.ResourceKind}}.json" \
-      -strict -kubernetes-version 1.31.0 -
     # get default values of subcharts
     # to compare between different subchart versions we need to write to values files without version names
     while IFS= read -r line; do
