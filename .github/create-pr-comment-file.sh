@@ -1,6 +1,6 @@
 #!/bin/bash
 
-set -e
+set -ex
 
 testCase=$1
 valuesFilesList=$2
