@@ -36,7 +36,7 @@ for env in pr target; do
     helm template  --include-crds ${chart} ${valuesFiles[@]} ${setValues} | \
       ../../../kubeconform \
       -schema-location default \
-      -schema-location 'https://raw.githubusercontent.com/datreeio/CRDs-catalog/refs/heads/main/argoproj.io/analysisrun_v1alpha1.json' \
+      -schema-location 'https://raw.githubusercontent.com/datreeio/CRDs-catalog/main/{{.Group}}/{{.ResourceKind}}_{{.ResourceAPIVersion}}.json' \
       -strict -kubernetes-version 1.31.0 -
     # get default values of subcharts
     # to compare between different subchart versions we need to write to values files without version names
