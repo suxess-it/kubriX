@@ -34,9 +34,10 @@ for env in pr target; do
     helm template  --include-crds ${chart} ${valuesFiles[@]} ${setValues} --output-dir ../../../out/${env}/${chart}/${testCase}
     # do a kubeconform test
     helm template  --include-crds ${chart} ${valuesFiles[@]} ${setValues} | \
-      ../../../kubeconform \
+      ../../../kubeconform -output pretty -strict \
       -schema-location default \
-      -schema-location 'https://raw.githubusercontent.com/datreeio/CRDs-catalog/refs/heads/main/argoproj.io/applicationset_v1alpha1.json' \
+      -schema-location "https://raw.githubusercontent.com/datreeio/CRDs-catalog/main/{{.Group}}/{{.ResourceKind}}_{{.ResourceAPIVersion}}.json" \
+      -schema-location "https://raw.githubusercontent.com/yannh/kubernetes-json-schema/master/{{.NormalizedKubernetesVersion}}/{{.ResourceKind}}.json" \
       -strict -kubernetes-version 1.31.0 -
     # get default values of subcharts
     # to compare between different subchart versions we need to write to values files without version names
