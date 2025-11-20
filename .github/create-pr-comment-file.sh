@@ -33,7 +33,11 @@ for env in pr target; do
     echo "run command: 'helm template  --include-crds ${chart} "${valuesFiles[@]}" ${setValues} --output-dir ../../../out/${env}/${chart}/${testCase}'"
     helm template  --include-crds ${chart} ${valuesFiles[@]} ${setValues} --output-dir ../../../out/${env}/${chart}/${testCase}
     # do a kubeconform test
-    helm template  --include-crds ${chart} ${valuesFiles[@]} ${setValues} | ../../../kubeconform -strict -kubernetes-version 1.31.0 -
+    helm template  --include-crds ${chart} ${valuesFiles[@]} ${setValues} | \
+      ../../../kubeconform \
+      -schema-location default \
+      -schema-location 'https://raw.githubusercontent.com/datreeio/CRDs-catalog/refs/heads/main/argoproj.io/analysisrun_v1alpha1.json' \
+      -strict -kubernetes-version 1.31.0 -
     # get default values of subcharts
     # to compare between different subchart versions we need to write to values files without version names
     while IFS= read -r line; do
