@@ -270,25 +270,43 @@ show_node_resources() {
   for node in $(kubectl get nodes -o name); do
     name=${node##*/}
 
-    # live usage from metrics-server
+    # --- usage ---
     read cpu_use mem_use < <(
-      kubectl top node "$name" --no-headers | awk '{print $3, $5}'
+      kubectl top node "$name" --no-headers 2>/dev/null \
+      | awk '{print $3, $5}'
     )
 
-    # requests/limits (percent) from Allocated resources
+    # In case metrics-server isn't ready
+    cpu_use=${cpu_use:-"-"}
+    mem_use=${mem_use:-"-"}
+
+    # --- requests & limits ---
     read cpu_req cpu_lim mem_req mem_lim < <(
-      kubectl describe node "$name" | awk '
+      kubectl describe node "$name" \
+      | awk '
         /Allocated resources:/ {in_alloc=1; next}
-        in_alloc && $1=="cpu"{
-          gsub(/[()%]/,"",$3); gsub(/[()%]/,"",$5);
-          cpu_req=$3; cpu_lim=$5;
+        in_alloc && $1=="cpu" {
+          req=$3; lim=$5;
+          gsub(/[()%]/, "", req);
+          gsub(/[()%]/, "", lim);
+          cpu_req=req; cpu_lim=lim;
         }
-        in_alloc && $1=="memory"{
-          gsub(/[()%]/,"",$3); gsub(/[()%]/,"",$5);
-          mem_req=$3; mem_lim=$5;
-          in_alloc=0
+        in_alloc && $1=="memory" {
+          req=$3; lim=$5;
+          gsub(/[()%]/, "", req);
+          gsub(/[()%]/, "", lim);
+          mem_req=req; mem_lim=lim;
+          in_alloc=0;
         }
-        END{printf "%s %s %s %s", cpu_req, cpu_lim, mem_req, mem_lim}'
+        END {
+          # Always output exactly 4 fields
+          if (cpu_req=="") cpu_req="0";
+          if (cpu_lim=="") cpu_lim="0";
+          if (mem_req=="") mem_req="0";
+          if (mem_lim=="") mem_lim="0";
+          print cpu_req, cpu_lim, mem_req, mem_lim;
+        }
+      '
     )
 
     printf "%-30s %8s %10s %10s %10s %10s %10s\n" \
