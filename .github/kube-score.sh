@@ -24,5 +24,5 @@ for chart in $( ls -d */ | sed 's#/##' ); do
   done
   echo "'helm template  --include-crds ${chart} "${valuesFiles[@]}" ${setValues} --output-dir ../../../out/${env}/${chart}/${testCase}'"
   helm template  --include-crds ${chart} ${valuesFiles[@]} ${setValues} | \
-    ../../kube-score --exit-one-on-warning score  - || true # just for testing
+    ../../kube-score score - || true
 done
