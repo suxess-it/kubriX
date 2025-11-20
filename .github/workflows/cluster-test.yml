@@ -58,7 +58,7 @@ jobs:
       globalChanges: ${{ steps.filter.outputs.globalChanges }}
       targets: ${{ steps.select-targets.outputs.targets }}
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v6
         with:
           fetch-depth: 0  # needed so the action can diff properly
       - id: filter
@@ -190,7 +190,7 @@ jobs:
     timeout-minutes: 10
 
     steps:         
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v6
         with:
           fetch-depth: 0
 
@@ -256,7 +256,7 @@ jobs:
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
  
       - name: Create k8s Kind Cluster
         uses: helm/kind-action@v1
