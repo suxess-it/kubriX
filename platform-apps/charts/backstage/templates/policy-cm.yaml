@@ -11,14 +11,32 @@ data:
     p, role:default/kubrixdev, catalog-entity, update, allow
     p, role:default/kubrixdev, catalog.entity.create, create, allow
     p, role:default/kubrixdev, catalog.entity.read, read, allow
+    p, role:default/kubrixdev, catalog-entity, read, update, delete, allow
     p, role:default/kubrixdev, catalog.location.read, read, allow
     p, role:default/kubrixdev, catalog.location.create, create, allow
+    p, role:default/kubrixdev, catalog.location.delete, delete, allow
     p, role:default/kubrixdev, scaffolder-action, use, allow
     p, role:default/kubrixdev, scaffolder-template, read, allow
     p, role:default/kubrixdev, scaffolder.task.read, read, allow
     p, role:default/kubrixdev, scaffolder.task.create, create, allow
     p, role:default/kubrixdev, scaffolder.task.cancel, use, allow
+    p, role:default/kubrixdev, scaffolder.template.management, use, allow
+    p, role:default/kubrixdev, kubernetes.clusters.read, read, allow
+    p, role:default/kubrixdev, kubernetes.resources.read, read, allow
     p, role:default/kubrixdev, kubernetes.proxy, use, allow
+    p, role:default/kubrixdev, bulk-import, use, allow
+    p, role:default/kubrixdev, kyverno.overview.view, read, allow
+    p, role:default/kubrixdev, kyverno.policy.view-yaml, read, allow
+    p, role:default/kubrixdev, kyverno.reports.view, read, allow
     p, role:default/kubrixdev, argocd.view.read, read, allow
+    p, role:default/kubrixdev, policy-entity.read, read, allow
+    p, role:default/kubrixdev, policy-entity.create, create, allow
+    p, role:default/kubrixdev, policy-entity.update, update, allow
+    p, role:default/kubrixdev, policy-entity.delete, delete,allow
+    p, role:default/kubrixdev, announcement.entity.create, create, allow
+    p, role:default/kubrixdev, announcement.entity.delete, delete, allow
+    p, role:default/kubrixdev, announcement.entity.update, update, allow
+    p, role:default/kubrixdev, mssv.view.read, read, allow
     g, group:default/viewers, role:default/kubrixdemo
     g, group:default/editors, role:default/kubrixdev
+    g, group:default/kubrix, role:default/kubrixdev
