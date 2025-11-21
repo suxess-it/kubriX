@@ -260,6 +260,60 @@ sha256_portable() {
   fi
 }
 
+show_node_resources() {
+  echo
+  echo "Node resource consumption"
+  echo "-------------------------"
+  printf "%-30s %8s %10s %10s %10s %10s %10s\n" \
+    "NODE" "CPUuse%" "CPUreq%" "CPUlim%" "MEMuse%" "MEMreq%" "MEMlim%"
+
+  for node in $(kubectl get nodes -o name); do
+    name=${node##*/}
+
+    # --- usage ---
+    read cpu_use mem_use < <(
+      kubectl top node "$name" --no-headers 2>/dev/null \
+      | awk '{print $3, $5}'
+    )
+
+    # In case metrics-server isn't ready
+    cpu_use=${cpu_use:-"-"}
+    mem_use=${mem_use:-"-"}
+
+    # --- requests & limits ---
+    read cpu_req cpu_lim mem_req mem_lim < <(
+      kubectl describe node "$name" \
+      | awk '
+        /Allocated resources:/ {in_alloc=1; next}
+        in_alloc && $1=="cpu" {
+          req=$3; lim=$5;
+          gsub(/[()%]/, "", req);
+          gsub(/[()%]/, "", lim);
+          cpu_req=req; cpu_lim=lim;
+        }
+        in_alloc && $1=="memory" {
+          req=$3; lim=$5;
+          gsub(/[()%]/, "", req);
+          gsub(/[()%]/, "", lim);
+          mem_req=req; mem_lim=lim;
+          in_alloc=0;
+        }
+        END {
+          # Always output exactly 4 fields
+          if (cpu_req=="") cpu_req="0";
+          if (cpu_lim=="") cpu_lim="0";
+          if (mem_req=="") mem_req="0";
+          if (mem_lim=="") mem_lim="0";
+          print cpu_req, cpu_lim, mem_req, mem_lim;
+        }
+      '
+    )
+
+    printf "%-30s %8s %10s %10s %10s %10s %10s\n" \
+      "$name" "$cpu_use" "$cpu_req" "$cpu_lim" "$mem_use" "$mem_req" "$mem_lim"
+  done
+}
+
 create_vault_secrets_for_backstage() {
   echo "adding special configuration for sx-backstage"
 
@@ -439,6 +493,8 @@ wait_until_apps_synced_healthy() {
     echo "elapsed time: ${elapsed_time} seconds"
     echo "max wait time: ${max_wait_time} seconds"
     echo "wait another 10 seconds"
+    echo "--------------------"
+    show_node_resources
     echo "--------------------"
     sleep 10
   done
