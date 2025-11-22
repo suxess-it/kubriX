@@ -20,11 +20,11 @@ jobs:
       matrix: ${{ fromJson(vars.GITOPS_DIFF_TESTCASES) }}
     steps:
       - name: Checkout PR
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
         with:
          path: pr
       - name: Checkout Target of PR
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
         with:
           path: target
           ref: ${{ github.event.pull_request.base.ref }}
