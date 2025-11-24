@@ -27,6 +27,7 @@ for chart in $( ls -d */ | sed 's#/##' ); do
     ../../kubeconform -output pretty -strict \
     -schema-location default \
     -schema-location "https://raw.githubusercontent.com/datreeio/CRDs-catalog/main/{{.Group}}/{{.ResourceKind}}_{{.ResourceAPIVersion}}.json" \
+    -schema-location "https://raw.githubusercontent.com/suxess-it/kubriX/jkleinlercher-patch-2/kubeconform/schemas/{{.Group}}/{{.ResourceKind}}_{{.ResourceAPIVersion}}.json" \
     -schema-location "https://raw.githubusercontent.com/yannh/kubernetes-json-schema/master/{{.NormalizedKubernetesVersion}}/{{.ResourceKind}}.json" \
     -strict -kubernetes-version 1.31.0 -
 done
