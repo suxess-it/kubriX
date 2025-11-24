@@ -385,6 +385,9 @@ jobs:
           kubectl get managed -o yaml
           kubectl get pkg
           kubectl get pkg -o yaml 
+          echo "===== external secrets ======"
+          kubectl get externalsecret -A
+          kubectl get externalsecret -A -o yaml
 
       - name: mustgather logs for troubleshooting
         if: ${{ failure() }}
