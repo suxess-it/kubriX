@@ -47,6 +47,8 @@ process_stream() {
     local -a cmd=( helm template "$chart" "${fargs[@]}" "${sargs[@]}" )
     # echo ">>> ${cmd[*]}"
 
+    helm dep up "$chart" > /dev/null
+
     # Run it (comment out next line if you only want to print)
     "${cmd[@]}"
 
