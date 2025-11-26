@@ -19,7 +19,7 @@ jobs:
       matrix: ${{ fromJson(vars.GITOPS_DIFF_TESTCASES) }}
     steps:
       - name: Checkout
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
 
       - name: kubeconform charts
         shell: bash
