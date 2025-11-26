@@ -1,6 +1,8 @@
 #!/usr/bin/env python3
 
-# Derived from https://github.com/instrumenta/openapi2jsonschema
+# Copied from https://github.com/yannh/kubeconform/blob/master/scripts/openapi2jsonschema.py commit hash 6ae8c45
+# Direct link: https://raw.githubusercontent.com/yannh/kubeconform/6ae8c45bc156ceeb1d421e9b217cfc0c7ba5828d/scripts/openapi2jsonschema.py
+
 import yaml
 import json
 import sys
