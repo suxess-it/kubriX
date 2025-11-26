@@ -24,9 +24,8 @@ for chart in $( ls -d */ | sed 's#/##' ); do
   done
   echo "'helm template  --include-crds ${chart} "${valuesFiles[@]}" ${setValues} --output-dir ../../../out/${env}/${chart}/${testCase}'"
   helm template  --include-crds ${chart} ${valuesFiles[@]} ${setValues} | \
-    ../../kubeconform -output pretty -strict \
+    ../../kubeconform -output pretty \
     -schema-location default \
-    -schema-location "https://raw.githubusercontent.com/datreeio/CRDs-catalog/main/{{.Group}}/{{.ResourceKind}}_{{.ResourceAPIVersion}}.json" \
     -schema-location "https://raw.githubusercontent.com/suxess-it/kubriX/jkleinlercher-patch-2/kubeconform-schemas/{{.Group}}/{{.ResourceKind}}_{{.ResourceAPIVersion}}.json" \
     -schema-location "https://raw.githubusercontent.com/yannh/kubernetes-json-schema/master/{{.NormalizedKubernetesVersion}}/{{.ResourceKind}}.json" \
     -strict -kubernetes-version 1.31.0 -
