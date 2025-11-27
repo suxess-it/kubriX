@@ -1,0 +1,102 @@
+{
+  "properties": {
+    "spec": {
+      "oneOf": [
+        {
+          "required": [
+            "http"
+          ]
+        },
+        {
+          "required": [
+            "registry"
+          ]
+        },
+        {
+          "required": [
+            "s3"
+          ]
+        },
+        {
+          "required": [
+            "gcs"
+          ]
+        },
+        {
+          "required": [
+            "pvc"
+          ]
+        }
+      ],
+      "properties": {
+        "credentials": {
+          "type": "string"
+        },
+        "gcs": {
+          "properties": {
+            "url": {
+              "type": "string"
+            }
+          },
+          "type": "object"
+        },
+        "http": {
+          "properties": {
+            "url": {
+              "type": "string"
+            }
+          },
+          "type": "object"
+        },
+        "pvc": {
+          "properties": {
+            "name": {
+              "type": "string"
+            },
+            "namespace": {
+              "type": "string"
+            }
+          },
+          "type": "object"
+        },
+        "readableDescription": {
+          "type": "string"
+        },
+        "readableName": {
+          "type": "string"
+        },
+        "registry": {
+          "properties": {
+            "url": {
+              "type": "string"
+            }
+          },
+          "type": "object"
+        },
+        "s3": {
+          "properties": {
+            "url": {
+              "type": "string"
+            }
+          },
+          "type": "object"
+        },
+        "type": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "type",
+        "readableName"
+      ],
+      "type": "object",
+      "x-kubernetes-validations": [
+        {
+          "message": "spec.type should be: http, registry, s3, gcs, pvc",
+          "rule": "self.type.matches('^(http)|(gcs)|(s3)|(registry)|(pvc)$')"
+        }
+      ]
+    }
+  },
+  "type": "object"
+}
