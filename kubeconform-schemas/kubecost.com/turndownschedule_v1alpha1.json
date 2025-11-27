@@ -1,0 +1,67 @@
+{
+  "properties": {
+    "spec": {
+      "properties": {
+        "end": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "repeat": {
+          "enum": [
+            "none",
+            "daily",
+            "weekly"
+          ],
+          "type": "string"
+        },
+        "start": {
+          "format": "date-time",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "status": {
+      "properties": {
+        "current": {
+          "type": "string"
+        },
+        "lastUpdated": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "nextScaleDownTime": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "nextScaleUpTime": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "scaleDownId": {
+          "type": "string"
+        },
+        "scaleDownMetadata": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": "object"
+        },
+        "scaleUpID": {
+          "type": "string"
+        },
+        "scaleUpMetadata": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": "object"
+        },
+        "state": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    }
+  },
+  "type": "object"
+}

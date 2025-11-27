@@ -1,0 +1,71 @@
+{
+  "description": "ServiceL2Status reveals the actual traffic status of loadbalancer services in layer2 mode.",
+  "properties": {
+    "apiVersion": {
+      "description": "APIVersion defines the versioned schema of this representation of an object.\nServers should convert recognized schemas to the latest internal value, and\nmay reject unrecognized values.\nMore info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources",
+      "type": "string"
+    },
+    "kind": {
+      "description": "Kind is a string value representing the REST resource this object represents.\nServers may infer this from the endpoint the client submits requests to.\nCannot be updated.\nIn CamelCase.\nMore info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
+      "type": "string"
+    },
+    "metadata": {
+      "type": "object"
+    },
+    "spec": {
+      "description": "ServiceL2StatusSpec defines the desired state of ServiceL2Status.",
+      "type": "object"
+    },
+    "status": {
+      "description": "MetalLBServiceL2Status defines the observed state of ServiceL2Status.",
+      "properties": {
+        "interfaces": {
+          "description": "Interfaces indicates the interfaces that receive the directed traffic",
+          "items": {
+            "description": "InterfaceInfo defines interface info of layer2 announcement.",
+            "properties": {
+              "name": {
+                "description": "Name the name of network interface card",
+                "type": "string"
+              }
+            },
+            "type": "object"
+          },
+          "type": "array"
+        },
+        "node": {
+          "description": "Node indicates the node that receives the directed traffic",
+          "type": "string",
+          "x-kubernetes-validations": [
+            {
+              "message": "Value is immutable",
+              "rule": "self == oldSelf"
+            }
+          ]
+        },
+        "serviceName": {
+          "description": "ServiceName indicates the service this status represents",
+          "type": "string",
+          "x-kubernetes-validations": [
+            {
+              "message": "Value is immutable",
+              "rule": "self == oldSelf"
+            }
+          ]
+        },
+        "serviceNamespace": {
+          "description": "ServiceNamespace indicates the namespace of the service",
+          "type": "string",
+          "x-kubernetes-validations": [
+            {
+              "message": "Value is immutable",
+              "rule": "self == oldSelf"
+            }
+          ]
+        }
+      },
+      "type": "object"
+    }
+  },
+  "type": "object"
+}
