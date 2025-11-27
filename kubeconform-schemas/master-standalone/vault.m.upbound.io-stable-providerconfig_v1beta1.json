@@ -37,8 +37,7 @@
               "required": [
                 "name"
               ],
-              "type": "object",
-              "additionalProperties": false
+              "type": "object"
             },
             "fs": {
               "description": "Fs is a reference to a filesystem location that contains credentials that\nmust be used to connect to the provider.",
@@ -51,8 +50,7 @@
               "required": [
                 "path"
               ],
-              "type": "object",
-              "additionalProperties": false
+              "type": "object"
             },
             "secretRef": {
               "description": "A SecretRef is a reference to a secret key that contains the credentials\nthat must be used to connect to the provider.",
@@ -75,8 +73,7 @@
                 "name",
                 "namespace"
               ],
-              "type": "object",
-              "additionalProperties": false
+              "type": "object"
             },
             "source": {
               "description": "Source of the provider credentials.",
@@ -94,8 +91,7 @@
           "required": [
             "source"
           ],
-          "type": "object",
-          "additionalProperties": false
+          "type": "object"
         },
         "headers": {
           "description": "A configuration block, described below,\nthat provides headers to be sent along with all\nrequests to the Vault server. This block can be\nspecified multiple times.",
@@ -113,8 +109,7 @@
             "name",
             "value"
           ],
-          "type": "object",
-          "additionalProperties": false
+          "type": "object"
         },
         "max_lease_ttl_seconds": {
           "description": "Used as the duration for the intermediate Vault\ntoken Terraform issues itself, which in turn limits the\nduration of secret leases issued by Vault. Defaults to\n20 minutes.",
@@ -166,8 +161,7 @@
           "message": "role is required when credentials.source is Kubernetes",
           "rule": "self.credentials.source != 'Kubernetes' || (has(self.role) && self.role != \"\")"
         }
-      ],
-      "additionalProperties": false
+      ]
     },
     "status": {
       "description": "A ProviderConfigStatus reflects the observed state of a ProviderConfig.",
@@ -210,8 +204,7 @@
               "status",
               "type"
             ],
-            "type": "object",
-            "additionalProperties": false
+            "type": "object"
           },
           "type": "array",
           "x-kubernetes-list-map-keys": [
@@ -225,8 +218,7 @@
           "type": "integer"
         }
       },
-      "type": "object",
-      "additionalProperties": false
+      "type": "object"
     }
   },
   "required": [

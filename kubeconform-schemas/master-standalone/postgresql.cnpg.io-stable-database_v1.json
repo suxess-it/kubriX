@@ -39,8 +39,7 @@
             }
           },
           "type": "object",
-          "x-kubernetes-map-type": "atomic",
-          "additionalProperties": false
+          "x-kubernetes-map-type": "atomic"
         },
         "collationVersion": {
           "description": "Maps to the `COLLATION_VERSION` parameter of `CREATE DATABASE`. This\nsetting cannot be changed.",
@@ -114,8 +113,7 @@
             "required": [
               "name"
             ],
-            "type": "object",
-            "additionalProperties": false
+            "type": "object"
           },
           "type": "array"
         },
@@ -235,8 +233,7 @@
             "required": [
               "name"
             ],
-            "type": "object",
-            "additionalProperties": false
+            "type": "object"
           },
           "type": "array"
         },
@@ -274,8 +271,7 @@
           "message": "icuRules is only available when localeProvider is set to `icu`",
           "rule": "!has(self.icuRules) || self.localeProvider == 'icu'"
         }
-      ],
-      "additionalProperties": false
+      ]
     },
     "status": {
       "description": "Most recently observed status of the Database. This data may not be up to\ndate. Populated by the system. Read-only.\nMore info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status",
@@ -306,8 +302,7 @@
               "applied",
               "name"
             ],
-            "type": "object",
-            "additionalProperties": false
+            "type": "object"
           },
           "type": "array"
         },
@@ -342,14 +337,12 @@
               "applied",
               "name"
             ],
-            "type": "object",
-            "additionalProperties": false
+            "type": "object"
           },
           "type": "array"
         }
       },
-      "type": "object",
-      "additionalProperties": false
+      "type": "object"
     }
   },
   "required": [

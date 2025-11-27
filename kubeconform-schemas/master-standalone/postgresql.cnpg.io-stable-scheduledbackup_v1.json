@@ -36,8 +36,7 @@
           "required": [
             "name"
           ],
-          "type": "object",
-          "additionalProperties": false
+          "type": "object"
         },
         "immediate": {
           "description": "If the first backup has to be immediately start after creation or not",
@@ -70,8 +69,7 @@
               "type": "boolean"
             }
           },
-          "type": "object",
-          "additionalProperties": false
+          "type": "object"
         },
         "pluginConfiguration": {
           "description": "Configuration parameters passed to the plugin managing this backup",
@@ -91,8 +89,7 @@
           "required": [
             "name"
           ],
-          "type": "object",
-          "additionalProperties": false
+          "type": "object"
         },
         "schedule": {
           "description": "The schedule does not follow the same format used in Kubernetes CronJobs\nas it includes an additional seconds specifier,\nsee https://pkg.go.dev/github.com/robfig/cron#hdr-CRON_Expression_Format",
@@ -115,8 +112,7 @@
         "cluster",
         "schedule"
       ],
-      "type": "object",
-      "additionalProperties": false
+      "type": "object"
     },
     "status": {
       "description": "Most recently observed status of the ScheduledBackup. This data may not be up\nto date. Populated by the system. Read-only.\nMore info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status",
@@ -137,8 +133,7 @@
           "type": "string"
         }
       },
-      "type": "object",
-      "additionalProperties": false
+      "type": "object"
     }
   },
   "required": [

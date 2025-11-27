@@ -58,8 +58,7 @@
                                     "key",
                                     "operator"
                                   ],
-                                  "type": "object",
-                                  "additionalProperties": false
+                                  "type": "object"
                                 },
                                 "type": "array",
                                 "x-kubernetes-list-type": "atomic"
@@ -73,8 +72,7 @@
                               }
                             },
                             "type": "object",
-                            "x-kubernetes-map-type": "atomic",
-                            "additionalProperties": false
+                            "x-kubernetes-map-type": "atomic"
                           },
                           "matchLabelKeys": {
                             "description": "MatchLabelKeys is a set of pod label keys to select which pods will\nbe taken into consideration. The keys are used to lookup values from the\nincoming pod labels, those key-value labels are merged with `labelSelector` as `key in (value)`\nto select the group of existing pods which pods will be taken into consideration\nfor the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming\npod labels will be ignored. The default value is empty.\nThe same key is forbidden to exist in both matchLabelKeys and labelSelector.\nAlso, matchLabelKeys cannot be set when labelSelector isn't set.",
@@ -121,8 +119,7 @@
                                     "key",
                                     "operator"
                                   ],
-                                  "type": "object",
-                                  "additionalProperties": false
+                                  "type": "object"
                                 },
                                 "type": "array",
                                 "x-kubernetes-list-type": "atomic"
@@ -136,8 +133,7 @@
                               }
                             },
                             "type": "object",
-                            "x-kubernetes-map-type": "atomic",
-                            "additionalProperties": false
+                            "x-kubernetes-map-type": "atomic"
                           },
                           "namespaces": {
                             "description": "namespaces specifies a static list of namespace names that the term applies to.\nThe term is applied to the union of the namespaces listed in this field\nand the ones selected by namespaceSelector.\nnull or empty namespaces list and null namespaceSelector means \"this pod's namespace\".",
@@ -155,8 +151,7 @@
                         "required": [
                           "topologyKey"
                         ],
-                        "type": "object",
-                        "additionalProperties": false
+                        "type": "object"
                       },
                       "weight": {
                         "description": "weight associated with matching the corresponding podAffinityTerm,\nin the range 1-100.",
@@ -168,8 +163,7 @@
                       "podAffinityTerm",
                       "weight"
                     ],
-                    "type": "object",
-                    "additionalProperties": false
+                    "type": "object"
                   },
                   "type": "array",
                   "x-kubernetes-list-type": "atomic"
@@ -208,8 +202,7 @@
                                 "key",
                                 "operator"
                               ],
-                              "type": "object",
-                              "additionalProperties": false
+                              "type": "object"
                             },
                             "type": "array",
                             "x-kubernetes-list-type": "atomic"
@@ -223,8 +216,7 @@
                           }
                         },
                         "type": "object",
-                        "x-kubernetes-map-type": "atomic",
-                        "additionalProperties": false
+                        "x-kubernetes-map-type": "atomic"
                       },
                       "matchLabelKeys": {
                         "description": "MatchLabelKeys is a set of pod label keys to select which pods will\nbe taken into consideration. The keys are used to lookup values from the\nincoming pod labels, those key-value labels are merged with `labelSelector` as `key in (value)`\nto select the group of existing pods which pods will be taken into consideration\nfor the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming\npod labels will be ignored. The default value is empty.\nThe same key is forbidden to exist in both matchLabelKeys and labelSelector.\nAlso, matchLabelKeys cannot be set when labelSelector isn't set.",
@@ -271,8 +263,7 @@
                                 "key",
                                 "operator"
                               ],
-                              "type": "object",
-                              "additionalProperties": false
+                              "type": "object"
                             },
                             "type": "array",
                             "x-kubernetes-list-type": "atomic"
@@ -286,8 +277,7 @@
                           }
                         },
                         "type": "object",
-                        "x-kubernetes-map-type": "atomic",
-                        "additionalProperties": false
+                        "x-kubernetes-map-type": "atomic"
                       },
                       "namespaces": {
                         "description": "namespaces specifies a static list of namespace names that the term applies to.\nThe term is applied to the union of the namespaces listed in this field\nand the ones selected by namespaceSelector.\nnull or empty namespaces list and null namespaceSelector means \"this pod's namespace\".",
@@ -305,15 +295,13 @@
                     "required": [
                       "topologyKey"
                     ],
-                    "type": "object",
-                    "additionalProperties": false
+                    "type": "object"
                   },
                   "type": "array",
                   "x-kubernetes-list-type": "atomic"
                 }
               },
-              "type": "object",
-              "additionalProperties": false
+              "type": "object"
             },
             "additionalPodAntiAffinity": {
               "description": "AdditionalPodAntiAffinity allows to specify pod anti-affinity terms to be added to the ones generated\nby the operator if EnablePodAntiAffinity is set to true (default) or to be used exclusively if set to false.",
@@ -355,8 +343,7 @@
                                     "key",
                                     "operator"
                                   ],
-                                  "type": "object",
-                                  "additionalProperties": false
+                                  "type": "object"
                                 },
                                 "type": "array",
                                 "x-kubernetes-list-type": "atomic"
@@ -370,8 +357,7 @@
                               }
                             },
                             "type": "object",
-                            "x-kubernetes-map-type": "atomic",
-                            "additionalProperties": false
+                            "x-kubernetes-map-type": "atomic"
                           },
                           "matchLabelKeys": {
                             "description": "MatchLabelKeys is a set of pod label keys to select which pods will\nbe taken into consideration. The keys are used to lookup values from the\nincoming pod labels, those key-value labels are merged with `labelSelector` as `key in (value)`\nto select the group of existing pods which pods will be taken into consideration\nfor the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming\npod labels will be ignored. The default value is empty.\nThe same key is forbidden to exist in both matchLabelKeys and labelSelector.\nAlso, matchLabelKeys cannot be set when labelSelector isn't set.",
@@ -418,8 +404,7 @@
                                     "key",
                                     "operator"
                                   ],
-                                  "type": "object",
-                                  "additionalProperties": false
+                                  "type": "object"
                                 },
                                 "type": "array",
                                 "x-kubernetes-list-type": "atomic"
@@ -433,8 +418,7 @@
                               }
                             },
                             "type": "object",
-                            "x-kubernetes-map-type": "atomic",
-                            "additionalProperties": false
+                            "x-kubernetes-map-type": "atomic"
                           },
                           "namespaces": {
                             "description": "namespaces specifies a static list of namespace names that the term applies to.\nThe term is applied to the union of the namespaces listed in this field\nand the ones selected by namespaceSelector.\nnull or empty namespaces list and null namespaceSelector means \"this pod's namespace\".",
@@ -452,8 +436,7 @@
                         "required": [
                           "topologyKey"
                         ],
-                        "type": "object",
-                        "additionalProperties": false
+                        "type": "object"
                       },
                       "weight": {
                         "description": "weight associated with matching the corresponding podAffinityTerm,\nin the range 1-100.",
@@ -465,8 +448,7 @@
                       "podAffinityTerm",
                       "weight"
                     ],
-                    "type": "object",
-                    "additionalProperties": false
+                    "type": "object"
                   },
                   "type": "array",
                   "x-kubernetes-list-type": "atomic"
@@ -505,8 +487,7 @@
                                 "key",
                                 "operator"
                               ],
-                              "type": "object",
-                              "additionalProperties": false
+                              "type": "object"
                             },
                             "type": "array",
                             "x-kubernetes-list-type": "atomic"
@@ -520,8 +501,7 @@
                           }
                         },
                         "type": "object",
-                        "x-kubernetes-map-type": "atomic",
-                        "additionalProperties": false
+                        "x-kubernetes-map-type": "atomic"
                       },
                       "matchLabelKeys": {
                         "description": "MatchLabelKeys is a set of pod label keys to select which pods will\nbe taken into consideration. The keys are used to lookup values from the\nincoming pod labels, those key-value labels are merged with `labelSelector` as `key in (value)`\nto select the group of existing pods which pods will be taken into consideration\nfor the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming\npod labels will be ignored. The default value is empty.\nThe same key is forbidden to exist in both matchLabelKeys and labelSelector.\nAlso, matchLabelKeys cannot be set when labelSelector isn't set.",
@@ -568,8 +548,7 @@
                                 "key",
                                 "operator"
                               ],
-                              "type": "object",
-                              "additionalProperties": false
+                              "type": "object"
                             },
                             "type": "array",
                             "x-kubernetes-list-type": "atomic"
@@ -583,8 +562,7 @@
                           }
                         },
                         "type": "object",
-                        "x-kubernetes-map-type": "atomic",
-                        "additionalProperties": false
+                        "x-kubernetes-map-type": "atomic"
                       },
                       "namespaces": {
                         "description": "namespaces specifies a static list of namespace names that the term applies to.\nThe term is applied to the union of the namespaces listed in this field\nand the ones selected by namespaceSelector.\nnull or empty namespaces list and null namespaceSelector means \"this pod's namespace\".",
@@ -602,15 +580,13 @@
                     "required": [
                       "topologyKey"
                     ],
-                    "type": "object",
-                    "additionalProperties": false
+                    "type": "object"
                   },
                   "type": "array",
                   "x-kubernetes-list-type": "atomic"
                 }
               },
-              "type": "object",
-              "additionalProperties": false
+              "type": "object"
             },
             "enablePodAntiAffinity": {
               "description": "Activates anti-affinity for the pods. The operator will define pods\nanti-affinity unless this field is explicitly set to false",
@@ -653,8 +629,7 @@
                                 "key",
                                 "operator"
                               ],
-                              "type": "object",
-                              "additionalProperties": false
+                              "type": "object"
                             },
                             "type": "array",
                             "x-kubernetes-list-type": "atomic"
@@ -685,16 +660,14 @@
                                 "key",
                                 "operator"
                               ],
-                              "type": "object",
-                              "additionalProperties": false
+                              "type": "object"
                             },
                             "type": "array",
                             "x-kubernetes-list-type": "atomic"
                           }
                         },
                         "type": "object",
-                        "x-kubernetes-map-type": "atomic",
-                        "additionalProperties": false
+                        "x-kubernetes-map-type": "atomic"
                       },
                       "weight": {
                         "description": "Weight associated with matching the corresponding nodeSelectorTerm, in the range 1-100.",
@@ -706,8 +679,7 @@
                       "preference",
                       "weight"
                     ],
-                    "type": "object",
-                    "additionalProperties": false
+                    "type": "object"
                   },
                   "type": "array",
                   "x-kubernetes-list-type": "atomic"
@@ -746,8 +718,7 @@
                                 "key",
                                 "operator"
                               ],
-                              "type": "object",
-                              "additionalProperties": false
+                              "type": "object"
                             },
                             "type": "array",
                             "x-kubernetes-list-type": "atomic"
@@ -778,16 +749,14 @@
                                 "key",
                                 "operator"
                               ],
-                              "type": "object",
-                              "additionalProperties": false
+                              "type": "object"
                             },
                             "type": "array",
                             "x-kubernetes-list-type": "atomic"
                           }
                         },
                         "type": "object",
-                        "x-kubernetes-map-type": "atomic",
-                        "additionalProperties": false
+                        "x-kubernetes-map-type": "atomic"
                       },
                       "type": "array",
                       "x-kubernetes-list-type": "atomic"
@@ -797,12 +766,10 @@
                     "nodeSelectorTerms"
                   ],
                   "type": "object",
-                  "x-kubernetes-map-type": "atomic",
-                  "additionalProperties": false
+                  "x-kubernetes-map-type": "atomic"
                 }
               },
-              "type": "object",
-              "additionalProperties": false
+              "type": "object"
             },
             "nodeSelector": {
               "additionalProperties": {
@@ -842,8 +809,7 @@
                     "type": "string"
                   }
                 },
-                "type": "object",
-                "additionalProperties": false
+                "type": "object"
               },
               "type": "array"
             },
@@ -852,8 +818,7 @@
               "type": "string"
             }
           },
-          "type": "object",
-          "additionalProperties": false
+          "type": "object"
         },
         "backup": {
           "description": "The configuration to be used for backups",
@@ -880,8 +845,7 @@
                         "key",
                         "name"
                       ],
-                      "type": "object",
-                      "additionalProperties": false
+                      "type": "object"
                     },
                     "inheritFromAzureAD": {
                       "description": "Use the Azure AD based authentication without providing explicitly the keys.",
@@ -903,8 +867,7 @@
                         "key",
                         "name"
                       ],
-                      "type": "object",
-                      "additionalProperties": false
+                      "type": "object"
                     },
                     "storageKey": {
                       "description": "The storage account key to be used in conjunction\nwith the storage account name",
@@ -922,8 +885,7 @@
                         "key",
                         "name"
                       ],
-                      "type": "object",
-                      "additionalProperties": false
+                      "type": "object"
                     },
                     "storageSasToken": {
                       "description": "A shared-access-signature to be used in conjunction with\nthe storage account name",
@@ -941,12 +903,10 @@
                         "key",
                         "name"
                       ],
-                      "type": "object",
-                      "additionalProperties": false
+                      "type": "object"
                     }
                   },
-                  "type": "object",
-                  "additionalProperties": false
+                  "type": "object"
                 },
                 "data": {
                   "description": "The configuration to be used to backup the data files\nWhen not defined, base backups files will be stored uncompressed and may\nbe unencrypted in the object store, according to the bucket default\npolicy.",
@@ -986,8 +946,7 @@
                       "type": "integer"
                     }
                   },
-                  "type": "object",
-                  "additionalProperties": false
+                  "type": "object"
                 },
                 "destinationPath": {
                   "description": "The path where to store the backup (i.e. s3://bucket/path/to/folder)\nthis path, with different destination folders, will be used for WALs\nand for data",
@@ -1010,8 +969,7 @@
                     "key",
                     "name"
                   ],
-                  "type": "object",
-                  "additionalProperties": false
+                  "type": "object"
                 },
                 "endpointURL": {
                   "description": "Endpoint to be used to upload data to the cloud,\noverriding the automatic endpoint discovery",
@@ -1036,16 +994,14 @@
                         "key",
                         "name"
                       ],
-                      "type": "object",
-                      "additionalProperties": false
+                      "type": "object"
                     },
                     "gkeEnvironment": {
                       "description": "If set to true, will presume that it's running inside a GKE environment,\ndefault to false.",
                       "type": "boolean"
                     }
                   },
-                  "type": "object",
-                  "additionalProperties": false
+                  "type": "object"
                 },
                 "historyTags": {
                   "additionalProperties": {
@@ -1073,8 +1029,7 @@
                         "key",
                         "name"
                       ],
-                      "type": "object",
-                      "additionalProperties": false
+                      "type": "object"
                     },
                     "inheritFromIAMRole": {
                       "description": "Use the role based authentication without providing explicitly the keys.",
@@ -1096,8 +1051,7 @@
                         "key",
                         "name"
                       ],
-                      "type": "object",
-                      "additionalProperties": false
+                      "type": "object"
                     },
                     "secretAccessKey": {
                       "description": "The reference to the secret access key",
@@ -1115,8 +1069,7 @@
                         "key",
                         "name"
                       ],
-                      "type": "object",
-                      "additionalProperties": false
+                      "type": "object"
                     },
                     "sessionToken": {
                       "description": "The references to the session key",
@@ -1134,12 +1087,10 @@
                         "key",
                         "name"
                       ],
-                      "type": "object",
-                      "additionalProperties": false
+                      "type": "object"
                     }
                   },
-                  "type": "object",
-                  "additionalProperties": false
+                  "type": "object"
                 },
                 "serverName": {
                   "description": "The server name on S3, the cluster name is used if this\nparameter is omitted",
@@ -1195,15 +1146,13 @@
                       "type": "array"
                     }
                   },
-                  "type": "object",
-                  "additionalProperties": false
+                  "type": "object"
                 }
               },
               "required": [
                 "destinationPath"
               ],
-              "type": "object",
-              "additionalProperties": false
+              "type": "object"
             },
             "retentionPolicy": {
               "description": "RetentionPolicy is the retention policy to be used for backups\nand WALs (i.e. '60d'). The retention policy is expressed in the form\nof `XXu` where `XX` is a positive integer and `u` is in `[dwm]` -\ndays, weeks, months.\nIt's currently only applicable when using the BarmanObjectStore method.",
@@ -1262,8 +1211,7 @@
                       "type": "boolean"
                     }
                   },
-                  "type": "object",
-                  "additionalProperties": false
+                  "type": "object"
                 },
                 "snapshotOwnerReference": {
                   "default": "none",
@@ -1287,12 +1235,10 @@
                   "type": "string"
                 }
               },
-              "type": "object",
-              "additionalProperties": false
+              "type": "object"
             }
           },
-          "type": "object",
-          "additionalProperties": false
+          "type": "object"
         },
         "bootstrap": {
           "description": "Instructions to bootstrap this cluster",
@@ -1377,8 +1323,7 @@
                       "required": [
                         "externalCluster"
                       ],
-                      "type": "object",
-                      "additionalProperties": false
+                      "type": "object"
                     },
                     "type": {
                       "description": "The import type. Can be `microservice` or `monolith`.",
@@ -1394,8 +1339,7 @@
                     "source",
                     "type"
                   ],
-                  "type": "object",
-                  "additionalProperties": false
+                  "type": "object"
                 },
                 "locale": {
                   "description": "Sets the default collation order and character classification in the new database.",
@@ -1452,8 +1396,7 @@
                           "key",
                           "name"
                         ],
-                        "type": "object",
-                        "additionalProperties": false
+                        "type": "object"
                       },
                       "type": "array"
                     },
@@ -1475,14 +1418,12 @@
                           "key",
                           "name"
                         ],
-                        "type": "object",
-                        "additionalProperties": false
+                        "type": "object"
                       },
                       "type": "array"
                     }
                   },
-                  "type": "object",
-                  "additionalProperties": false
+                  "type": "object"
                 },
                 "postInitSQL": {
                   "description": "List of SQL queries to be executed as a superuser in the `postgres`\ndatabase right after the cluster has been created - to be used with extreme care\n(by default empty)",
@@ -1512,8 +1453,7 @@
                           "key",
                           "name"
                         ],
-                        "type": "object",
-                        "additionalProperties": false
+                        "type": "object"
                       },
                       "type": "array"
                     },
@@ -1535,14 +1475,12 @@
                           "key",
                           "name"
                         ],
-                        "type": "object",
-                        "additionalProperties": false
+                        "type": "object"
                       },
                       "type": "array"
                     }
                   },
-                  "type": "object",
-                  "additionalProperties": false
+                  "type": "object"
                 },
                 "postInitTemplateSQL": {
                   "description": "List of SQL queries to be executed as a superuser in the `template1`\ndatabase right after the cluster has been created - to be used with extreme care\n(by default empty)",
@@ -1572,8 +1510,7 @@
                           "key",
                           "name"
                         ],
-                        "type": "object",
-                        "additionalProperties": false
+                        "type": "object"
                       },
                       "type": "array"
                     },
@@ -1595,14 +1532,12 @@
                           "key",
                           "name"
                         ],
-                        "type": "object",
-                        "additionalProperties": false
+                        "type": "object"
                       },
                       "type": "array"
                     }
                   },
-                  "type": "object",
-                  "additionalProperties": false
+                  "type": "object"
                 },
                 "secret": {
                   "description": "Name of the secret containing the initial credentials for the\nowner of the user database. If empty a new secret will be\ncreated from scratch",
@@ -1615,8 +1550,7 @@
                   "required": [
                     "name"
                   ],
-                  "type": "object",
-                  "additionalProperties": false
+                  "type": "object"
                 },
                 "walSegmentSize": {
                   "description": "The value in megabytes (1 to 1024) to be passed to the `--wal-segsize`\noption for initdb (default: empty, resulting in PostgreSQL default: 16MB)",
@@ -1639,8 +1573,7 @@
                   "message": "icuRules is only available when localeProvider is set to `icu`",
                   "rule": "!has(self.icuRules) || self.localeProvider == 'icu'"
                 }
-              ],
-              "additionalProperties": false
+              ]
             },
             "pg_basebackup": {
               "description": "Bootstrap the cluster taking a physical backup of another compatible\nPostgreSQL instance",
@@ -1664,8 +1597,7 @@
                   "required": [
                     "name"
                   ],
-                  "type": "object",
-                  "additionalProperties": false
+                  "type": "object"
                 },
                 "source": {
                   "description": "The name of the server of which we need to take a physical backup",
@@ -1676,8 +1608,7 @@
               "required": [
                 "source"
               ],
-              "type": "object",
-              "additionalProperties": false
+              "type": "object"
             },
             "recovery": {
               "description": "Bootstrap the cluster from a backup",
@@ -1701,8 +1632,7 @@
                         "key",
                         "name"
                       ],
-                      "type": "object",
-                      "additionalProperties": false
+                      "type": "object"
                     },
                     "name": {
                       "description": "Name of the referent.",
@@ -1712,8 +1642,7 @@
                   "required": [
                     "name"
                   ],
-                  "type": "object",
-                  "additionalProperties": false
+                  "type": "object"
                 },
                 "database": {
                   "description": "Name of the database used by the application. Default: `app`.",
@@ -1759,8 +1688,7 @@
                       "type": "string"
                     }
                   },
-                  "type": "object",
-                  "additionalProperties": false
+                  "type": "object"
                 },
                 "secret": {
                   "description": "Name of the secret containing the initial credentials for the\nowner of the user database. If empty a new secret will be\ncreated from scratch",
@@ -1773,8 +1701,7 @@
                   "required": [
                     "name"
                   ],
-                  "type": "object",
-                  "additionalProperties": false
+                  "type": "object"
                 },
                 "source": {
                   "description": "The external cluster whose backup we will restore. This is also\nused as the name of the folder under which the backup is stored,\nso it must be set to the name of the source cluster\nMutually exclusive with `backup`.",
@@ -1804,8 +1731,7 @@
                         "name"
                       ],
                       "type": "object",
-                      "x-kubernetes-map-type": "atomic",
-                      "additionalProperties": false
+                      "x-kubernetes-map-type": "atomic"
                     },
                     "tablespaceStorage": {
                       "additionalProperties": {
@@ -1829,8 +1755,7 @@
                           "name"
                         ],
                         "type": "object",
-                        "x-kubernetes-map-type": "atomic",
-                        "additionalProperties": false
+                        "x-kubernetes-map-type": "atomic"
                       },
                       "description": "Configuration of the storage for PostgreSQL tablespaces",
                       "type": "object"
@@ -1856,23 +1781,19 @@
                         "name"
                       ],
                       "type": "object",
-                      "x-kubernetes-map-type": "atomic",
-                      "additionalProperties": false
+                      "x-kubernetes-map-type": "atomic"
                     }
                   },
                   "required": [
                     "storage"
                   ],
-                  "type": "object",
-                  "additionalProperties": false
+                  "type": "object"
                 }
               },
-              "type": "object",
-              "additionalProperties": false
+              "type": "object"
             }
           },
-          "type": "object",
-          "additionalProperties": false
+          "type": "object"
         },
         "certificates": {
           "description": "The configuration for the CA and related certificates",
@@ -1901,8 +1822,7 @@
               "type": "string"
             }
           },
-          "type": "object",
-          "additionalProperties": false
+          "type": "object"
         },
         "description": {
           "description": "Description of this PostgreSQL cluster",
@@ -1955,8 +1875,7 @@
                       "key"
                     ],
                     "type": "object",
-                    "x-kubernetes-map-type": "atomic",
-                    "additionalProperties": false
+                    "x-kubernetes-map-type": "atomic"
                   },
                   "fieldRef": {
                     "description": "Selects a field of the pod: supports metadata.name, metadata.namespace, `metadata.labels['<KEY>']`, `metadata.annotations['<KEY>']`,\nspec.nodeName, spec.serviceAccountName, status.hostIP, status.podIP, status.podIPs.",
@@ -1974,8 +1893,7 @@
                       "fieldPath"
                     ],
                     "type": "object",
-                    "x-kubernetes-map-type": "atomic",
-                    "additionalProperties": false
+                    "x-kubernetes-map-type": "atomic"
                   },
                   "fileKeyRef": {
                     "description": "FileKeyRef selects a key of the env file.\nRequires the EnvFiles feature gate to be enabled.",
@@ -2004,8 +1922,7 @@
                       "volumeName"
                     ],
                     "type": "object",
-                    "x-kubernetes-map-type": "atomic",
-                    "additionalProperties": false
+                    "x-kubernetes-map-type": "atomic"
                   },
                   "resourceFieldRef": {
                     "description": "Selects a resource of the container: only resources limits and requests\n(limits.cpu, limits.memory, limits.ephemeral-storage, requests.cpu, requests.memory and requests.ephemeral-storage) are currently supported.",
@@ -2036,8 +1953,7 @@
                       "resource"
                     ],
                     "type": "object",
-                    "x-kubernetes-map-type": "atomic",
-                    "additionalProperties": false
+                    "x-kubernetes-map-type": "atomic"
                   },
                   "secretKeyRef": {
                     "description": "Selects a key of a secret in the pod's namespace",
@@ -2060,19 +1976,16 @@
                       "key"
                     ],
                     "type": "object",
-                    "x-kubernetes-map-type": "atomic",
-                    "additionalProperties": false
+                    "x-kubernetes-map-type": "atomic"
                   }
                 },
-                "type": "object",
-                "additionalProperties": false
+                "type": "object"
               }
             },
             "required": [
               "name"
             ],
-            "type": "object",
-            "additionalProperties": false
+            "type": "object"
           },
           "type": "array"
         },
@@ -2095,8 +2008,7 @@
                   }
                 },
                 "type": "object",
-                "x-kubernetes-map-type": "atomic",
-                "additionalProperties": false
+                "x-kubernetes-map-type": "atomic"
               },
               "prefix": {
                 "description": "Optional text to prepend to the name of each environment variable.\nMay consist of any printable ASCII characters except '='.",
@@ -2116,12 +2028,10 @@
                   }
                 },
                 "type": "object",
-                "x-kubernetes-map-type": "atomic",
-                "additionalProperties": false
+                "x-kubernetes-map-type": "atomic"
               }
             },
-            "type": "object",
-            "additionalProperties": false
+            "type": "object"
           },
           "type": "array"
         },
@@ -2167,8 +2077,7 @@
                         "name"
                       ],
                       "type": "object",
-                      "x-kubernetes-map-type": "atomic",
-                      "additionalProperties": false
+                      "x-kubernetes-map-type": "atomic"
                     },
                     "dataSourceRef": {
                       "description": "dataSourceRef specifies the object from which to populate the volume with data, if a non-empty\nvolume is desired. This may be any object from a non-empty API group (non\ncore object) or a PersistentVolumeClaim object.\nWhen this field is specified, volume binding will only succeed if the type of\nthe specified object matches some installed volume populator or dynamic\nprovisioner.\nThis field will replace the functionality of the dataSource field and as such\nif both fields are non-empty, they must have the same value. For backwards\ncompatibility, when namespace isn't specified in dataSourceRef,\nboth fields (dataSource and dataSourceRef) will be set to the same\nvalue automatically if one of them is empty and the other is non-empty.\nWhen namespace is specified in dataSourceRef,\ndataSource isn't set to the same value and must be empty.\nThere are three important differences between dataSource and dataSourceRef:\n* While dataSource only allows two specific types of objects, dataSourceRef\n  allows any non-core object, as well as PersistentVolumeClaim objects.\n* While dataSource ignores disallowed values (dropping them), dataSourceRef\n  preserves all values, and generates an error if a disallowed value is\n  specified.\n* While dataSource only allows local objects, dataSourceRef allows objects\n  in any namespaces.\n(Beta) Using this field requires the AnyVolumeDataSource feature gate to be enabled.\n(Alpha) Using the namespace field of dataSourceRef requires the CrossNamespaceVolumeDataSource feature gate to be enabled.",
@@ -2194,8 +2103,7 @@
                         "kind",
                         "name"
                       ],
-                      "type": "object",
-                      "additionalProperties": false
+                      "type": "object"
                     },
                     "resources": {
                       "description": "resources represents the minimum resources the volume should have.\nIf RecoverVolumeExpansionFailure feature is enabled users are allowed to specify resource requirements\nthat are lower than previous value but must still be higher than capacity recorded in the\nstatus field of the claim.\nMore info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#resources",
@@ -2233,8 +2141,7 @@
                           "type": "object"
                         }
                       },
-                      "type": "object",
-                      "additionalProperties": false
+                      "type": "object"
                     },
                     "selector": {
                       "description": "selector is a label query over volumes to consider for binding.",
@@ -2265,8 +2172,7 @@
                               "key",
                               "operator"
                             ],
-                            "type": "object",
-                            "additionalProperties": false
+                            "type": "object"
                           },
                           "type": "array",
                           "x-kubernetes-list-type": "atomic"
@@ -2280,8 +2186,7 @@
                         }
                       },
                       "type": "object",
-                      "x-kubernetes-map-type": "atomic",
-                      "additionalProperties": false
+                      "x-kubernetes-map-type": "atomic"
                     },
                     "storageClassName": {
                       "description": "storageClassName is the name of the StorageClass required by the claim.\nMore info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#class-1",
@@ -2300,19 +2205,16 @@
                       "type": "string"
                     }
                   },
-                  "type": "object",
-                  "additionalProperties": false
+                  "type": "object"
                 }
               },
               "required": [
                 "spec"
               ],
-              "type": "object",
-              "additionalProperties": false
+              "type": "object"
             }
           },
-          "type": "object",
-          "additionalProperties": false
+          "type": "object"
         },
         "ephemeralVolumesSizeLimit": {
           "description": "EphemeralVolumesSizeLimit allows the user to set the limits for the ephemeral\nvolumes",
@@ -2344,8 +2246,7 @@
               "x-kubernetes-int-or-string": true
             }
           },
-          "type": "object",
-          "additionalProperties": false
+          "type": "object"
         },
         "externalClusters": {
           "description": "The list of external clusters which are used in the configuration",
@@ -2374,8 +2275,7 @@
                           "key",
                           "name"
                         ],
-                        "type": "object",
-                        "additionalProperties": false
+                        "type": "object"
                       },
                       "inheritFromAzureAD": {
                         "description": "Use the Azure AD based authentication without providing explicitly the keys.",
@@ -2397,8 +2297,7 @@
                           "key",
                           "name"
                         ],
-                        "type": "object",
-                        "additionalProperties": false
+                        "type": "object"
                       },
                       "storageKey": {
                         "description": "The storage account key to be used in conjunction\nwith the storage account name",
@@ -2416,8 +2315,7 @@
                           "key",
                           "name"
                         ],
-                        "type": "object",
-                        "additionalProperties": false
+                        "type": "object"
                       },
                       "storageSasToken": {
                         "description": "A shared-access-signature to be used in conjunction with\nthe storage account name",
@@ -2435,12 +2333,10 @@
                           "key",
                           "name"
                         ],
-                        "type": "object",
-                        "additionalProperties": false
+                        "type": "object"
                       }
                     },
-                    "type": "object",
-                    "additionalProperties": false
+                    "type": "object"
                   },
                   "data": {
                     "description": "The configuration to be used to backup the data files\nWhen not defined, base backups files will be stored uncompressed and may\nbe unencrypted in the object store, according to the bucket default\npolicy.",
@@ -2480,8 +2376,7 @@
                         "type": "integer"
                       }
                     },
-                    "type": "object",
-                    "additionalProperties": false
+                    "type": "object"
                   },
                   "destinationPath": {
                     "description": "The path where to store the backup (i.e. s3://bucket/path/to/folder)\nthis path, with different destination folders, will be used for WALs\nand for data",
@@ -2504,8 +2399,7 @@
                       "key",
                       "name"
                     ],
-                    "type": "object",
-                    "additionalProperties": false
+                    "type": "object"
                   },
                   "endpointURL": {
                     "description": "Endpoint to be used to upload data to the cloud,\noverriding the automatic endpoint discovery",
@@ -2530,16 +2424,14 @@
                           "key",
                           "name"
                         ],
-                        "type": "object",
-                        "additionalProperties": false
+                        "type": "object"
                       },
                       "gkeEnvironment": {
                         "description": "If set to true, will presume that it's running inside a GKE environment,\ndefault to false.",
                         "type": "boolean"
                       }
                     },
-                    "type": "object",
-                    "additionalProperties": false
+                    "type": "object"
                   },
                   "historyTags": {
                     "additionalProperties": {
@@ -2567,8 +2459,7 @@
                           "key",
                           "name"
                         ],
-                        "type": "object",
-                        "additionalProperties": false
+                        "type": "object"
                       },
                       "inheritFromIAMRole": {
                         "description": "Use the role based authentication without providing explicitly the keys.",
@@ -2590,8 +2481,7 @@
                           "key",
                           "name"
                         ],
-                        "type": "object",
-                        "additionalProperties": false
+                        "type": "object"
                       },
                       "secretAccessKey": {
                         "description": "The reference to the secret access key",
@@ -2609,8 +2499,7 @@
                           "key",
                           "name"
                         ],
-                        "type": "object",
-                        "additionalProperties": false
+                        "type": "object"
                       },
                       "sessionToken": {
                         "description": "The references to the session key",
@@ -2628,12 +2517,10 @@
                           "key",
                           "name"
                         ],
-                        "type": "object",
-                        "additionalProperties": false
+                        "type": "object"
                       }
                     },
-                    "type": "object",
-                    "additionalProperties": false
+                    "type": "object"
                   },
                   "serverName": {
                     "description": "The server name on S3, the cluster name is used if this\nparameter is omitted",
@@ -2689,15 +2576,13 @@
                         "type": "array"
                       }
                     },
-                    "type": "object",
-                    "additionalProperties": false
+                    "type": "object"
                   }
                 },
                 "required": [
                   "destinationPath"
                 ],
-                "type": "object",
-                "additionalProperties": false
+                "type": "object"
               },
               "connectionParameters": {
                 "additionalProperties": {
@@ -2731,8 +2616,7 @@
                   "key"
                 ],
                 "type": "object",
-                "x-kubernetes-map-type": "atomic",
-                "additionalProperties": false
+                "x-kubernetes-map-type": "atomic"
               },
               "plugin": {
                 "description": "The configuration of the plugin that is taking care\nof WAL archiving and backups for this external cluster",
@@ -2762,8 +2646,7 @@
                 "required": [
                   "name"
                 ],
-                "type": "object",
-                "additionalProperties": false
+                "type": "object"
               },
               "sslCert": {
                 "description": "The reference to an SSL certificate to be used to connect to this\ninstance",
@@ -2786,8 +2669,7 @@
                   "key"
                 ],
                 "type": "object",
-                "x-kubernetes-map-type": "atomic",
-                "additionalProperties": false
+                "x-kubernetes-map-type": "atomic"
               },
               "sslKey": {
                 "description": "The reference to an SSL private key to be used to connect to this\ninstance",
@@ -2810,8 +2692,7 @@
                   "key"
                 ],
                 "type": "object",
-                "x-kubernetes-map-type": "atomic",
-                "additionalProperties": false
+                "x-kubernetes-map-type": "atomic"
               },
               "sslRootCert": {
                 "description": "The reference to an SSL CA public key to be used to connect to this\ninstance",
@@ -2834,15 +2715,13 @@
                   "key"
                 ],
                 "type": "object",
-                "x-kubernetes-map-type": "atomic",
-                "additionalProperties": false
+                "x-kubernetes-map-type": "atomic"
               }
             },
             "required": [
               "name"
             ],
-            "type": "object",
-            "additionalProperties": false
+            "type": "object"
           },
           "type": "array"
         },
@@ -2888,8 +2767,7 @@
               "message": "Only image catalogs are supported",
               "rule": "self.apiGroup == 'postgresql.cnpg.io'"
             }
-          ],
-          "additionalProperties": false
+          ]
         },
         "imageName": {
           "description": "Name of the container image, supporting both tags (`<image>:<tag>`)\nand digests for deterministic and repeatable deployments\n(`<image>:<tag>@sha256:<digestValue>`)",
@@ -2912,8 +2790,7 @@
             "required": [
               "name"
             ],
-            "type": "object",
-            "additionalProperties": false
+            "type": "object"
           },
           "type": "array"
         },
@@ -2933,8 +2810,7 @@
               "type": "object"
             }
           },
-          "type": "object",
-          "additionalProperties": false
+          "type": "object"
         },
         "instances": {
           "default": 1,
@@ -3033,8 +2909,7 @@
                     "required": [
                       "name"
                     ],
-                    "type": "object",
-                    "additionalProperties": false
+                    "type": "object"
                   },
                   "replication": {
                     "description": "Whether a role is a replication role. A role must have this\nattribute (or be a superuser) in order to be able to connect to the\nserver in replication mode (physical or logical replication) and in\norder to be able to create or drop replication slots. A role having\nthe `replication` attribute is a very highly privileged role, and\nshould only be used on roles actually used for replication. Default\nis `false`.",
@@ -3053,8 +2928,7 @@
                 "required": [
                   "name"
                 ],
-                "type": "object",
-                "additionalProperties": false
+                "type": "object"
               },
               "type": "array"
             },
@@ -3100,8 +2974,7 @@
                                 "type": "string"
                               }
                             },
-                            "type": "object",
-                            "additionalProperties": false
+                            "type": "object"
                           },
                           "spec": {
                             "description": "Specification of the desired behavior of the service.\nMore info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status",
@@ -3220,8 +3093,7 @@
                                   "required": [
                                     "port"
                                   ],
-                                  "type": "object",
-                                  "additionalProperties": false
+                                  "type": "object"
                                 },
                                 "type": "array",
                                 "x-kubernetes-list-map-keys": [
@@ -3258,12 +3130,10 @@
                                         "type": "integer"
                                       }
                                     },
-                                    "type": "object",
-                                    "additionalProperties": false
+                                    "type": "object"
                                   }
                                 },
-                                "type": "object",
-                                "additionalProperties": false
+                                "type": "object"
                               },
                               "trafficDistribution": {
                                 "description": "TrafficDistribution offers a way to express preferences for how traffic\nis distributed to Service endpoints. Implementations can use this field\nas a hint, but are not required to guarantee strict adherence. If the\nfield is not set, the implementation will apply its default routing\nstrategy. If set to \"PreferClose\", implementations should prioritize\nendpoints that are in the same zone.",
@@ -3274,12 +3144,10 @@
                                 "type": "string"
                               }
                             },
-                            "type": "object",
-                            "additionalProperties": false
+                            "type": "object"
                           }
                         },
-                        "type": "object",
-                        "additionalProperties": false
+                        "type": "object"
                       },
                       "updateStrategy": {
                         "default": "patch",
@@ -3295,8 +3163,7 @@
                       "selectorType",
                       "serviceTemplate"
                     ],
-                    "type": "object",
-                    "additionalProperties": false
+                    "type": "object"
                   },
                   "type": "array"
                 },
@@ -3314,12 +3181,10 @@
                   "type": "array"
                 }
               },
-              "type": "object",
-              "additionalProperties": false
+              "type": "object"
             }
           },
-          "type": "object",
-          "additionalProperties": false
+          "type": "object"
         },
         "maxSyncReplicas": {
           "default": 0,
@@ -3354,8 +3219,7 @@
                   "key",
                   "name"
                 ],
-                "type": "object",
-                "additionalProperties": false
+                "type": "object"
               },
               "type": "array"
             },
@@ -3377,8 +3241,7 @@
                   "key",
                   "name"
                 ],
-                "type": "object",
-                "additionalProperties": false
+                "type": "object"
               },
               "type": "array"
             },
@@ -3456,8 +3319,7 @@
                     "type": "string"
                   }
                 },
-                "type": "object",
-                "additionalProperties": false
+                "type": "object"
               },
               "type": "array"
             },
@@ -3525,8 +3387,7 @@
                     "type": "string"
                   }
                 },
-                "type": "object",
-                "additionalProperties": false
+                "type": "object"
               },
               "type": "array"
             },
@@ -3539,12 +3400,10 @@
                   "type": "boolean"
                 }
               },
-              "type": "object",
-              "additionalProperties": false
+              "type": "object"
             }
           },
-          "type": "object",
-          "additionalProperties": false
+          "type": "object"
         },
         "nodeMaintenanceWindow": {
           "description": "Define a maintenance window for the Kubernetes nodes",
@@ -3560,8 +3419,7 @@
               "type": "boolean"
             }
           },
-          "type": "object",
-          "additionalProperties": false
+          "type": "object"
         },
         "plugins": {
           "description": "The plugins configuration, containing\nany plugin to be loaded with the corresponding configuration",
@@ -3593,8 +3451,7 @@
             "required": [
               "name"
             ],
-            "type": "object",
-            "additionalProperties": false
+            "type": "object"
           },
           "type": "array"
         },
@@ -3654,8 +3511,7 @@
                         "message": "An image reference is required",
                         "rule": "has(self.reference)"
                       }
-                    ],
-                    "additionalProperties": false
+                    ]
                   },
                   "ld_library_path": {
                     "description": "The list of directories inside the image which should be added to ld_library_path.",
@@ -3675,8 +3531,7 @@
                   "image",
                   "name"
                 ],
-                "type": "object",
-                "additionalProperties": false
+                "type": "object"
               },
               "type": "array"
             },
@@ -3695,8 +3550,7 @@
                       "type": "string"
                     }
                   },
-                  "type": "object",
-                  "additionalProperties": false
+                  "type": "object"
                 },
                 "bindSearchAuth": {
                   "description": "Bind+Search authentication configuration",
@@ -3730,8 +3584,7 @@
                         "key"
                       ],
                       "type": "object",
-                      "x-kubernetes-map-type": "atomic",
-                      "additionalProperties": false
+                      "x-kubernetes-map-type": "atomic"
                     },
                     "searchAttribute": {
                       "description": "Attribute to match against the username",
@@ -3742,8 +3595,7 @@
                       "type": "string"
                     }
                   },
-                  "type": "object",
-                  "additionalProperties": false
+                  "type": "object"
                 },
                 "port": {
                   "description": "LDAP server port",
@@ -3766,8 +3618,7 @@
                   "type": "boolean"
                 }
               },
-              "type": "object",
-              "additionalProperties": false
+              "type": "object"
             },
             "parameters": {
               "additionalProperties": {
@@ -3820,8 +3671,7 @@
               "required": [
                 "enabled"
               ],
-              "type": "object",
-              "additionalProperties": false
+              "type": "object"
             },
             "synchronous": {
               "description": "Configuration of the PostgreSQL synchronous replication feature",
@@ -3881,12 +3731,10 @@
                   "message": "dataDurability set to 'preferred' requires empty 'standbyNamesPre' and empty 'standbyNamesPost'",
                   "rule": "self.dataDurability!='preferred' || ((!has(self.standbyNamesPre) || self.standbyNamesPre.size()==0) && (!has(self.standbyNamesPost) || self.standbyNamesPost.size()==0))"
                 }
-              ],
-              "additionalProperties": false
+              ]
             }
           },
-          "type": "object",
-          "additionalProperties": false
+          "type": "object"
         },
         "primaryUpdateMethod": {
           "default": "restart",
@@ -3945,8 +3793,7 @@
                       "type": "integer"
                     }
                   },
-                  "type": "object",
-                  "additionalProperties": false
+                  "type": "object"
                 },
                 "periodSeconds": {
                   "description": "How often (in seconds) to perform the probe.\nDefault to 10 seconds. Minimum value is 1.",
@@ -3969,8 +3816,7 @@
                   "type": "integer"
                 }
               },
-              "type": "object",
-              "additionalProperties": false
+              "type": "object"
             },
             "readiness": {
               "description": "The readiness probe configuration",
@@ -4028,8 +3874,7 @@
                   "type": "string"
                 }
               },
-              "type": "object",
-              "additionalProperties": false
+              "type": "object"
             },
             "startup": {
               "description": "The startup probe configuration",
@@ -4087,12 +3932,10 @@
                   "type": "string"
                 }
               },
-              "type": "object",
-              "additionalProperties": false
+              "type": "object"
             }
           },
-          "type": "object",
-          "additionalProperties": false
+          "type": "object"
         },
         "projectedVolumeTemplate": {
           "description": "Template to be used to define projected volumes, projected volumes will be mounted\nunder `/projected` base folder",
@@ -4139,8 +3982,7 @@
                                 "key",
                                 "operator"
                               ],
-                              "type": "object",
-                              "additionalProperties": false
+                              "type": "object"
                             },
                             "type": "array",
                             "x-kubernetes-list-type": "atomic"
@@ -4154,8 +3996,7 @@
                           }
                         },
                         "type": "object",
-                        "x-kubernetes-map-type": "atomic",
-                        "additionalProperties": false
+                        "x-kubernetes-map-type": "atomic"
                       },
                       "name": {
                         "description": "Select a single ClusterTrustBundle by object name.  Mutually-exclusive\nwith signerName and labelSelector.",
@@ -4177,8 +4018,7 @@
                     "required": [
                       "path"
                     ],
-                    "type": "object",
-                    "additionalProperties": false
+                    "type": "object"
                   },
                   "configMap": {
                     "description": "configMap information about the configMap data to project",
@@ -4206,8 +4046,7 @@
                             "key",
                             "path"
                           ],
-                          "type": "object",
-                          "additionalProperties": false
+                          "type": "object"
                         },
                         "type": "array",
                         "x-kubernetes-list-type": "atomic"
@@ -4223,8 +4062,7 @@
                       }
                     },
                     "type": "object",
-                    "x-kubernetes-map-type": "atomic",
-                    "additionalProperties": false
+                    "x-kubernetes-map-type": "atomic"
                   },
                   "downwardAPI": {
                     "description": "downwardAPI information about the downwardAPI data to project",
@@ -4250,8 +4088,7 @@
                                 "fieldPath"
                               ],
                               "type": "object",
-                              "x-kubernetes-map-type": "atomic",
-                              "additionalProperties": false
+                              "x-kubernetes-map-type": "atomic"
                             },
                             "mode": {
                               "description": "Optional: mode bits used to set permissions on this file, must be an octal value\nbetween 0000 and 0777 or a decimal value between 0 and 511.\nYAML accepts both octal and decimal values, JSON requires decimal values for mode bits.\nIf not specified, the volume defaultMode will be used.\nThis might be in conflict with other options that affect the file\nmode, like fsGroup, and the result can be other mode bits set.",
@@ -4291,22 +4128,19 @@
                                 "resource"
                               ],
                               "type": "object",
-                              "x-kubernetes-map-type": "atomic",
-                              "additionalProperties": false
+                              "x-kubernetes-map-type": "atomic"
                             }
                           },
                           "required": [
                             "path"
                           ],
-                          "type": "object",
-                          "additionalProperties": false
+                          "type": "object"
                         },
                         "type": "array",
                         "x-kubernetes-list-type": "atomic"
                       }
                     },
-                    "type": "object",
-                    "additionalProperties": false
+                    "type": "object"
                   },
                   "podCertificate": {
                     "description": "Projects an auto-rotating credential bundle (private key and certificate\nchain) that the pod can use either as a TLS client or server.\n\nKubelet generates a private key and uses it to send a\nPodCertificateRequest to the named signer.  Once the signer approves the\nrequest and issues a certificate chain, Kubelet writes the key and\ncertificate chain to the pod filesystem.  The pod does not start until\ncertificates have been issued for each podCertificate projected volume\nsource in its spec.\n\nKubelet will begin trying to rotate the certificate at the time indicated\nby the signer using the PodCertificateRequest.Status.BeginRefreshAt\ntimestamp.\n\nKubelet can write a single file, indicated by the credentialBundlePath\nfield, or separate files, indicated by the keyPath and\ncertificateChainPath fields.\n\nThe credential bundle is a single file in PEM format.  The first PEM\nentry is the private key (in PKCS#8 format), and the remaining PEM\nentries are the certificate chain issued by the signer (typically,\nsigners will return their certificate chain in leaf-to-root order).\n\nPrefer using the credential bundle format, since your application code\ncan read it atomically.  If you use keyPath and certificateChainPath,\nyour application must make two separate file reads. If these coincide\nwith a certificate rotation, it is possible that the private key and leaf\ncertificate you read may not correspond to each other.  Your application\nwill need to check for this condition, and re-read until they are\nconsistent.\n\nThe named signer controls chooses the format of the certificate it\nissues; consult the signer implementation's documentation to learn how to\nuse the certificates it issues.",
@@ -4341,8 +4175,7 @@
                       "keyType",
                       "signerName"
                     ],
-                    "type": "object",
-                    "additionalProperties": false
+                    "type": "object"
                   },
                   "secret": {
                     "description": "secret information about the secret data to project",
@@ -4370,8 +4203,7 @@
                             "key",
                             "path"
                           ],
-                          "type": "object",
-                          "additionalProperties": false
+                          "type": "object"
                         },
                         "type": "array",
                         "x-kubernetes-list-type": "atomic"
@@ -4387,8 +4219,7 @@
                       }
                     },
                     "type": "object",
-                    "x-kubernetes-map-type": "atomic",
-                    "additionalProperties": false
+                    "x-kubernetes-map-type": "atomic"
                   },
                   "serviceAccountToken": {
                     "description": "serviceAccountToken is information about the serviceAccountToken data to project",
@@ -4410,19 +4241,16 @@
                     "required": [
                       "path"
                     ],
-                    "type": "object",
-                    "additionalProperties": false
+                    "type": "object"
                   }
                 },
-                "type": "object",
-                "additionalProperties": false
+                "type": "object"
               },
               "type": "array",
               "x-kubernetes-list-type": "atomic"
             }
           },
-          "type": "object",
-          "additionalProperties": false
+          "type": "object"
         },
         "replica": {
           "description": "Replica cluster configuration",
@@ -4456,8 +4284,7 @@
           "required": [
             "source"
           ],
-          "type": "object",
-          "additionalProperties": false
+          "type": "object"
         },
         "replicationSlots": {
           "default": {
@@ -4489,8 +4316,7 @@
                   "type": "boolean"
                 }
               },
-              "type": "object",
-              "additionalProperties": false
+              "type": "object"
             },
             "synchronizeReplicas": {
               "description": "Configures the synchronization of the user defined physical replication slots",
@@ -4511,8 +4337,7 @@
               "required": [
                 "enabled"
               ],
-              "type": "object",
-              "additionalProperties": false
+              "type": "object"
             },
             "updateInterval": {
               "default": 30,
@@ -4521,8 +4346,7 @@
               "type": "integer"
             }
           },
-          "type": "object",
-          "additionalProperties": false
+          "type": "object"
         },
         "resources": {
           "description": "Resources requirements of every generated Pod. Please refer to\nhttps://kubernetes.io/docs/concepts/configuration/manage-resources-containers/\nfor more information.",
@@ -4544,8 +4368,7 @@
                 "required": [
                   "name"
                 ],
-                "type": "object",
-                "additionalProperties": false
+                "type": "object"
               },
               "type": "array",
               "x-kubernetes-list-map-keys": [
@@ -4586,8 +4409,7 @@
               "type": "object"
             }
           },
-          "type": "object",
-          "additionalProperties": false
+          "type": "object"
         },
         "schedulerName": {
           "description": "If specified, the pod will be dispatched by specified Kubernetes\nscheduler. If not specified, the pod will be dispatched by the default\nscheduler. More info:\nhttps://kubernetes.io/docs/concepts/scheduling-eviction/kube-scheduler/",
@@ -4608,8 +4430,7 @@
           "required": [
             "type"
           ],
-          "type": "object",
-          "additionalProperties": false
+          "type": "object"
         },
         "serviceAccountTemplate": {
           "description": "Configure the generation of the service account",
@@ -4636,15 +4457,13 @@
                   "type": "string"
                 }
               },
-              "type": "object",
-              "additionalProperties": false
+              "type": "object"
             }
           },
           "required": [
             "metadata"
           ],
-          "type": "object",
-          "additionalProperties": false
+          "type": "object"
         },
         "smartShutdownTimeout": {
           "default": 180,
@@ -4699,8 +4518,7 @@
                     "name"
                   ],
                   "type": "object",
-                  "x-kubernetes-map-type": "atomic",
-                  "additionalProperties": false
+                  "x-kubernetes-map-type": "atomic"
                 },
                 "dataSourceRef": {
                   "description": "dataSourceRef specifies the object from which to populate the volume with data, if a non-empty\nvolume is desired. This may be any object from a non-empty API group (non\ncore object) or a PersistentVolumeClaim object.\nWhen this field is specified, volume binding will only succeed if the type of\nthe specified object matches some installed volume populator or dynamic\nprovisioner.\nThis field will replace the functionality of the dataSource field and as such\nif both fields are non-empty, they must have the same value. For backwards\ncompatibility, when namespace isn't specified in dataSourceRef,\nboth fields (dataSource and dataSourceRef) will be set to the same\nvalue automatically if one of them is empty and the other is non-empty.\nWhen namespace is specified in dataSourceRef,\ndataSource isn't set to the same value and must be empty.\nThere are three important differences between dataSource and dataSourceRef:\n* While dataSource only allows two specific types of objects, dataSourceRef\n  allows any non-core object, as well as PersistentVolumeClaim objects.\n* While dataSource ignores disallowed values (dropping them), dataSourceRef\n  preserves all values, and generates an error if a disallowed value is\n  specified.\n* While dataSource only allows local objects, dataSourceRef allows objects\n  in any namespaces.\n(Beta) Using this field requires the AnyVolumeDataSource feature gate to be enabled.\n(Alpha) Using the namespace field of dataSourceRef requires the CrossNamespaceVolumeDataSource feature gate to be enabled.",
@@ -4726,8 +4544,7 @@
                     "kind",
                     "name"
                   ],
-                  "type": "object",
-                  "additionalProperties": false
+                  "type": "object"
                 },
                 "resources": {
                   "description": "resources represents the minimum resources the volume should have.\nIf RecoverVolumeExpansionFailure feature is enabled users are allowed to specify resource requirements\nthat are lower than previous value but must still be higher than capacity recorded in the\nstatus field of the claim.\nMore info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#resources",
@@ -4765,8 +4582,7 @@
                       "type": "object"
                     }
                   },
-                  "type": "object",
-                  "additionalProperties": false
+                  "type": "object"
                 },
                 "selector": {
                   "description": "selector is a label query over volumes to consider for binding.",
@@ -4797,8 +4613,7 @@
                           "key",
                           "operator"
                         ],
-                        "type": "object",
-                        "additionalProperties": false
+                        "type": "object"
                       },
                       "type": "array",
                       "x-kubernetes-list-type": "atomic"
@@ -4812,8 +4627,7 @@
                     }
                   },
                   "type": "object",
-                  "x-kubernetes-map-type": "atomic",
-                  "additionalProperties": false
+                  "x-kubernetes-map-type": "atomic"
                 },
                 "storageClassName": {
                   "description": "storageClassName is the name of the StorageClass required by the claim.\nMore info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#class-1",
@@ -4832,8 +4646,7 @@
                   "type": "string"
                 }
               },
-              "type": "object",
-              "additionalProperties": false
+              "type": "object"
             },
             "resizeInUseVolumes": {
               "default": true,
@@ -4849,8 +4662,7 @@
               "type": "string"
             }
           },
-          "type": "object",
-          "additionalProperties": false
+          "type": "object"
         },
         "superuserSecret": {
           "description": "The secret containing the superuser password. If not defined a new\nsecret will be created with a randomly generated password",
@@ -4863,8 +4675,7 @@
           "required": [
             "name"
           ],
-          "type": "object",
-          "additionalProperties": false
+          "type": "object"
         },
         "switchoverDelay": {
           "default": 3600,
@@ -4888,8 +4699,7 @@
                     "type": "string"
                   }
                 },
-                "type": "object",
-                "additionalProperties": false
+                "type": "object"
               },
               "storage": {
                 "description": "The storage configuration for the tablespace",
@@ -4926,8 +4736,7 @@
                           "name"
                         ],
                         "type": "object",
-                        "x-kubernetes-map-type": "atomic",
-                        "additionalProperties": false
+                        "x-kubernetes-map-type": "atomic"
                       },
                       "dataSourceRef": {
                         "description": "dataSourceRef specifies the object from which to populate the volume with data, if a non-empty\nvolume is desired. This may be any object from a non-empty API group (non\ncore object) or a PersistentVolumeClaim object.\nWhen this field is specified, volume binding will only succeed if the type of\nthe specified object matches some installed volume populator or dynamic\nprovisioner.\nThis field will replace the functionality of the dataSource field and as such\nif both fields are non-empty, they must have the same value. For backwards\ncompatibility, when namespace isn't specified in dataSourceRef,\nboth fields (dataSource and dataSourceRef) will be set to the same\nvalue automatically if one of them is empty and the other is non-empty.\nWhen namespace is specified in dataSourceRef,\ndataSource isn't set to the same value and must be empty.\nThere are three important differences between dataSource and dataSourceRef:\n* While dataSource only allows two specific types of objects, dataSourceRef\n  allows any non-core object, as well as PersistentVolumeClaim objects.\n* While dataSource ignores disallowed values (dropping them), dataSourceRef\n  preserves all values, and generates an error if a disallowed value is\n  specified.\n* While dataSource only allows local objects, dataSourceRef allows objects\n  in any namespaces.\n(Beta) Using this field requires the AnyVolumeDataSource feature gate to be enabled.\n(Alpha) Using the namespace field of dataSourceRef requires the CrossNamespaceVolumeDataSource feature gate to be enabled.",
@@ -4953,8 +4762,7 @@
                           "kind",
                           "name"
                         ],
-                        "type": "object",
-                        "additionalProperties": false
+                        "type": "object"
                       },
                       "resources": {
                         "description": "resources represents the minimum resources the volume should have.\nIf RecoverVolumeExpansionFailure feature is enabled users are allowed to specify resource requirements\nthat are lower than previous value but must still be higher than capacity recorded in the\nstatus field of the claim.\nMore info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#resources",
@@ -4992,8 +4800,7 @@
                             "type": "object"
                           }
                         },
-                        "type": "object",
-                        "additionalProperties": false
+                        "type": "object"
                       },
                       "selector": {
                         "description": "selector is a label query over volumes to consider for binding.",
@@ -5024,8 +4831,7 @@
                                 "key",
                                 "operator"
                               ],
-                              "type": "object",
-                              "additionalProperties": false
+                              "type": "object"
                             },
                             "type": "array",
                             "x-kubernetes-list-type": "atomic"
@@ -5039,8 +4845,7 @@
                           }
                         },
                         "type": "object",
-                        "x-kubernetes-map-type": "atomic",
-                        "additionalProperties": false
+                        "x-kubernetes-map-type": "atomic"
                       },
                       "storageClassName": {
                         "description": "storageClassName is the name of the StorageClass required by the claim.\nMore info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#class-1",
@@ -5059,8 +4864,7 @@
                         "type": "string"
                       }
                     },
-                    "type": "object",
-                    "additionalProperties": false
+                    "type": "object"
                   },
                   "resizeInUseVolumes": {
                     "default": true,
@@ -5076,8 +4880,7 @@
                     "type": "string"
                   }
                 },
-                "type": "object",
-                "additionalProperties": false
+                "type": "object"
               },
               "temporary": {
                 "default": false,
@@ -5089,8 +4892,7 @@
               "name",
               "storage"
             ],
-            "type": "object",
-            "additionalProperties": false
+            "type": "object"
           },
           "type": "array"
         },
@@ -5128,8 +4930,7 @@
                         "key",
                         "operator"
                       ],
-                      "type": "object",
-                      "additionalProperties": false
+                      "type": "object"
                     },
                     "type": "array",
                     "x-kubernetes-list-type": "atomic"
@@ -5143,8 +4944,7 @@
                   }
                 },
                 "type": "object",
-                "x-kubernetes-map-type": "atomic",
-                "additionalProperties": false
+                "x-kubernetes-map-type": "atomic"
               },
               "matchLabelKeys": {
                 "description": "MatchLabelKeys is a set of pod label keys to select the pods over which\nspreading will be calculated. The keys are used to lookup values from the\nincoming pod labels, those key-value labels are ANDed with labelSelector\nto select the group of existing pods over which spreading will be calculated\nfor the incoming pod. The same key is forbidden to exist in both MatchLabelKeys and LabelSelector.\nMatchLabelKeys cannot be set when LabelSelector isn't set.\nKeys that don't exist in the incoming pod labels will\nbe ignored. A null or empty list means only match against labelSelector.\n\nThis is a beta field and requires the MatchLabelKeysInPodTopologySpread feature gate to be enabled (enabled by default).",
@@ -5186,8 +4986,7 @@
               "topologyKey",
               "whenUnsatisfiable"
             ],
-            "type": "object",
-            "additionalProperties": false
+            "type": "object"
           },
           "type": "array"
         },
@@ -5226,8 +5025,7 @@
                     "name"
                   ],
                   "type": "object",
-                  "x-kubernetes-map-type": "atomic",
-                  "additionalProperties": false
+                  "x-kubernetes-map-type": "atomic"
                 },
                 "dataSourceRef": {
                   "description": "dataSourceRef specifies the object from which to populate the volume with data, if a non-empty\nvolume is desired. This may be any object from a non-empty API group (non\ncore object) or a PersistentVolumeClaim object.\nWhen this field is specified, volume binding will only succeed if the type of\nthe specified object matches some installed volume populator or dynamic\nprovisioner.\nThis field will replace the functionality of the dataSource field and as such\nif both fields are non-empty, they must have the same value. For backwards\ncompatibility, when namespace isn't specified in dataSourceRef,\nboth fields (dataSource and dataSourceRef) will be set to the same\nvalue automatically if one of them is empty and the other is non-empty.\nWhen namespace is specified in dataSourceRef,\ndataSource isn't set to the same value and must be empty.\nThere are three important differences between dataSource and dataSourceRef:\n* While dataSource only allows two specific types of objects, dataSourceRef\n  allows any non-core object, as well as PersistentVolumeClaim objects.\n* While dataSource ignores disallowed values (dropping them), dataSourceRef\n  preserves all values, and generates an error if a disallowed value is\n  specified.\n* While dataSource only allows local objects, dataSourceRef allows objects\n  in any namespaces.\n(Beta) Using this field requires the AnyVolumeDataSource feature gate to be enabled.\n(Alpha) Using the namespace field of dataSourceRef requires the CrossNamespaceVolumeDataSource feature gate to be enabled.",
@@ -5253,8 +5051,7 @@
                     "kind",
                     "name"
                   ],
-                  "type": "object",
-                  "additionalProperties": false
+                  "type": "object"
                 },
                 "resources": {
                   "description": "resources represents the minimum resources the volume should have.\nIf RecoverVolumeExpansionFailure feature is enabled users are allowed to specify resource requirements\nthat are lower than previous value but must still be higher than capacity recorded in the\nstatus field of the claim.\nMore info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#resources",
@@ -5292,8 +5089,7 @@
                       "type": "object"
                     }
                   },
-                  "type": "object",
-                  "additionalProperties": false
+                  "type": "object"
                 },
                 "selector": {
                   "description": "selector is a label query over volumes to consider for binding.",
@@ -5324,8 +5120,7 @@
                           "key",
                           "operator"
                         ],
-                        "type": "object",
-                        "additionalProperties": false
+                        "type": "object"
                       },
                       "type": "array",
                       "x-kubernetes-list-type": "atomic"
@@ -5339,8 +5134,7 @@
                     }
                   },
                   "type": "object",
-                  "x-kubernetes-map-type": "atomic",
-                  "additionalProperties": false
+                  "x-kubernetes-map-type": "atomic"
                 },
                 "storageClassName": {
                   "description": "storageClassName is the name of the StorageClass required by the claim.\nMore info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#class-1",
@@ -5359,8 +5153,7 @@
                   "type": "string"
                 }
               },
-              "type": "object",
-              "additionalProperties": false
+              "type": "object"
             },
             "resizeInUseVolumes": {
               "default": true,
@@ -5376,8 +5169,7 @@
               "type": "string"
             }
           },
-          "type": "object",
-          "additionalProperties": false
+          "type": "object"
         }
       },
       "required": [
@@ -5389,8 +5181,7 @@
           "message": "imageName and imageCatalogRef are mutually exclusive",
           "rule": "!(has(self.imageCatalogRef) && has(self.imageName))"
         }
-      ],
-      "additionalProperties": false
+      ]
     },
     "status": {
       "description": "Most recently observed status of the cluster. This data may not be up\nto date. Populated by the system. Read-only.\nMore info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status",
@@ -5413,8 +5204,7 @@
               "goArch",
               "hash"
             ],
-            "type": "object",
-            "additionalProperties": false
+            "type": "object"
           },
           "type": "array"
         },
@@ -5452,8 +5242,7 @@
               "type": "string"
             }
           },
-          "type": "object",
-          "additionalProperties": false
+          "type": "object"
         },
         "cloudNativePGCommitHash": {
           "description": "The commit hash number of which this operator running",
@@ -5514,8 +5303,7 @@
               "status",
               "type"
             ],
-            "type": "object",
-            "additionalProperties": false
+            "type": "object"
           },
           "type": "array"
         },
@@ -5530,8 +5318,7 @@
               "type": "object"
             }
           },
-          "type": "object",
-          "additionalProperties": false
+          "type": "object"
         },
         "currentPrimary": {
           "description": "Current primary instance",
@@ -5617,8 +5404,7 @@
             "required": [
               "isPrimary"
             ],
-            "type": "object",
-            "additionalProperties": false
+            "type": "object"
           },
           "description": "The reported state of the instances during the last reconciliation loop",
           "type": "object"
@@ -5699,15 +5485,13 @@
                     "type": "integer"
                   }
                 },
-                "type": "object",
-                "additionalProperties": false
+                "type": "object"
               },
               "description": "PasswordStatus gives the last transaction id and password secret version for each managed role",
               "type": "object"
             }
           },
-          "type": "object",
-          "additionalProperties": false
+          "type": "object"
         },
         "onlineUpdateEnabled": {
           "description": "OnlineUpdateEnabled shows if the online upgrade is enabled inside the cluster",
@@ -5729,8 +5513,7 @@
             "image",
             "majorVersion"
           ],
-          "type": "object",
-          "additionalProperties": false
+          "type": "object"
         },
         "phase": {
           "description": "Current phase of the cluster",
@@ -5797,8 +5580,7 @@
               "name",
               "version"
             ],
-            "type": "object",
-            "additionalProperties": false
+            "type": "object"
           },
           "type": "array"
         },
@@ -5815,12 +5597,10 @@
                   "type": "array"
                 }
               },
-              "type": "object",
-              "additionalProperties": false
+              "type": "object"
             }
           },
-          "type": "object",
-          "additionalProperties": false
+          "type": "object"
         },
         "pvcCount": {
           "description": "How many PVCs have been created by this cluster",
@@ -5899,8 +5679,7 @@
               "type": "string"
             }
           },
-          "type": "object",
-          "additionalProperties": false
+          "type": "object"
         },
         "switchReplicaClusterStatus": {
           "description": "SwitchReplicaClusterStatus is the status of the switch to replica cluster",
@@ -5910,8 +5689,7 @@
               "type": "boolean"
             }
           },
-          "type": "object",
-          "additionalProperties": false
+          "type": "object"
         },
         "systemID": {
           "description": "SystemID is the latest detected PostgreSQL SystemID",
@@ -5943,8 +5721,7 @@
               "name",
               "state"
             ],
-            "type": "object",
-            "additionalProperties": false
+            "type": "object"
           },
           "type": "array"
         },
@@ -5984,8 +5761,7 @@
               "type": "boolean"
             }
           },
-          "type": "object",
-          "additionalProperties": false
+          "type": "object"
         },
         "unusablePVC": {
           "description": "List of all the PVCs that are unusable because another PVC is missing",
@@ -5999,8 +5775,7 @@
           "type": "string"
         }
       },
-      "type": "object",
-      "additionalProperties": false
+      "type": "object"
     }
   },
   "required": [

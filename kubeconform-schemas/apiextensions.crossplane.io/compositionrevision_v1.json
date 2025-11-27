@@ -37,8 +37,7 @@
               "message": "Value is immutable",
               "rule": "self == oldSelf"
             }
-          ],
-          "additionalProperties": false
+          ]
         },
         "mode": {
           "default": "Pipeline",
@@ -78,8 +77,7 @@
                         "name",
                         "namespace"
                       ],
-                      "type": "object",
-                      "additionalProperties": false
+                      "type": "object"
                     },
                     "source": {
                       "description": "Source of the function credentials.",
@@ -100,8 +98,7 @@
                       "message": "the Secret source requires a secretRef",
                       "rule": "self.source == 'Secret' && has(self.secretRef)"
                     }
-                  ],
-                  "additionalProperties": false
+                  ]
                 },
                 "type": "array",
                 "x-kubernetes-list-map-keys": [
@@ -120,8 +117,7 @@
                 "required": [
                   "name"
                 ],
-                "type": "object",
-                "additionalProperties": false
+                "type": "object"
               },
               "input": {
                 "description": "Input is an optional, arbitrary Kubernetes resource (i.e. a resource\nwith an apiVersion and kind) that will be passed to the function as\nthe 'input' of its RunFunctionRequest.",
@@ -176,8 +172,7 @@
                           "message": "Either name or matchLabels must be specified, but not both",
                           "rule": "(has(self.name) && !has(self.matchLabels)) || (!has(self.name) && has(self.matchLabels))"
                         }
-                      ],
-                      "additionalProperties": false
+                      ]
                     },
                     "type": "array",
                     "x-kubernetes-list-map-keys": [
@@ -186,8 +181,7 @@
                     "x-kubernetes-list-type": "map"
                   }
                 },
-                "type": "object",
-                "additionalProperties": false
+                "type": "object"
               },
               "step": {
                 "description": "Step name. Must be unique within its Pipeline.",
@@ -198,8 +192,7 @@
               "functionRef",
               "step"
             ],
-            "type": "object",
-            "additionalProperties": false
+            "type": "object"
           },
           "type": "array",
           "x-kubernetes-list-map-keys": [
@@ -221,8 +214,7 @@
         "compositeTypeRef",
         "revision"
       ],
-      "type": "object",
-      "additionalProperties": false
+      "type": "object"
     },
     "status": {
       "description": "CompositionRevisionStatus shows the observed state of the composition\nrevision.",
@@ -265,8 +257,7 @@
               "status",
               "type"
             ],
-            "type": "object",
-            "additionalProperties": false
+            "type": "object"
           },
           "type": "array",
           "x-kubernetes-list-map-keys": [
@@ -275,8 +266,7 @@
           "x-kubernetes-list-type": "map"
         }
       },
-      "type": "object",
-      "additionalProperties": false
+      "type": "object"
     }
   },
   "type": "object"

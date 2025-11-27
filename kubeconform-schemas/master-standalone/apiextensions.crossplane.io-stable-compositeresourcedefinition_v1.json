@@ -69,8 +69,7 @@
               "message": "Singular name must be lowercase",
               "rule": "!has(self.singular) || self.singular == self.singular.lowerAscii()"
             }
-          ],
-          "additionalProperties": false
+          ]
         },
         "connectionSecretKeys": {
           "description": "ConnectionSecretKeys is the list of connection secret keys the\ndefined XR can publish. If the list is empty, all keys will be\npublished. If the list isn't empty, any connection secret keys that\ndon't appear in the list will be filtered out. Only LegacyCluster XRs\nsupport connection secrets.",
@@ -122,16 +121,14 @@
                         "name",
                         "namespace"
                       ],
-                      "type": "object",
-                      "additionalProperties": false
+                      "type": "object"
                     },
                     "url": {
                       "description": "url gives the location of the webhook, in standard URL form\n(`scheme://host:port/path`). Exactly one of `url` or `service`\nmust be specified.\n\nThe `host` should not refer to a service running in the cluster; use\nthe `service` field instead. The host might be resolved via external\nDNS in some apiservers (e.g., `kube-apiserver` cannot resolve\nin-cluster DNS as that would be a layering violation). `host` may\nalso be an IP address.\n\nPlease note that using `localhost` or `127.0.0.1` as a `host` is\nrisky unless you take great care to run this webhook on all hosts\nwhich run an apiserver which might need to make calls to this\nwebhook. Such installs are likely to be non-portable, i.e., not easy\nto turn up in a new cluster.\n\nThe scheme must be \"https\"; the URL must begin with \"https://\".\n\nA path is optional, and if present may be any string permissible in\na URL. You may use the path to pass an arbitrary string to the\nwebhook, for example, a cluster identifier.\n\nAttempting to use a user or basic auth e.g. \"user:password@\" is not\nallowed. Fragments (\"#...\") and query parameters (\"?...\") are not\nallowed, either.",
                       "type": "string"
                     }
                   },
-                  "type": "object",
-                  "additionalProperties": false
+                  "type": "object"
                 },
                 "conversionReviewVersions": {
                   "description": "conversionReviewVersions is an ordered list of preferred `ConversionReview`\nversions the Webhook expects. The API server will use the first version in\nthe list which it supports. If none of the versions specified in this list\nare supported by API server, conversion will fail for the custom resource.\nIf a persisted Webhook configuration specifies allowed versions and does not\ninclude any versions known to the API Server, calls to the webhook will fail.",
@@ -145,8 +142,7 @@
               "required": [
                 "conversionReviewVersions"
               ],
-              "type": "object",
-              "additionalProperties": false
+              "type": "object"
             }
           },
           "required": [
@@ -158,8 +154,7 @@
               "message": "Webhook configuration is required when conversion strategy is Webhook",
               "rule": "self.strategy == 'Webhook' && has(self.webhook)"
             }
-          ],
-          "additionalProperties": false
+          ]
         },
         "defaultCompositeDeletePolicy": {
           "default": "Background",
@@ -181,8 +176,7 @@
           "required": [
             "name"
           ],
-          "type": "object",
-          "additionalProperties": false
+          "type": "object"
         },
         "defaultCompositionUpdatePolicy": {
           "default": "Automatic",
@@ -210,8 +204,7 @@
               "message": "Value is immutable",
               "rule": "self == oldSelf"
             }
-          ],
-          "additionalProperties": false
+          ]
         },
         "group": {
           "description": "Group specifies the API group of the defined composite resource.\nComposite resources are served under `/apis/<group>/...`. Must match the\nname of the XRD (in the form `<names.plural>.<group>`).",
@@ -241,8 +234,7 @@
               "type": "object"
             }
           },
-          "type": "object",
-          "additionalProperties": false
+          "type": "object"
         },
         "names": {
           "description": "Names specifies the resource and kind names of the defined composite\nresource.",
@@ -298,8 +290,7 @@
               "message": "Singular name must be lowercase",
               "rule": "!has(self.singular) || self.singular == self.singular.lowerAscii()"
             }
-          ],
-          "additionalProperties": false
+          ]
         },
         "scope": {
           "default": "LegacyCluster",
@@ -358,8 +349,7 @@
                     "name",
                     "type"
                   ],
-                  "type": "object",
-                  "additionalProperties": false
+                  "type": "object"
                 },
                 "type": "array"
               },
@@ -389,8 +379,7 @@
                     "x-kubernetes-preserve-unknown-fields": true
                   }
                 },
-                "type": "object",
-                "additionalProperties": false
+                "type": "object"
               },
               "served": {
                 "description": "Served specifies that this version should be served via REST APIs.",
@@ -402,8 +391,7 @@
               "referenceable",
               "served"
             ],
-            "type": "object",
-            "additionalProperties": false
+            "type": "object"
           },
           "type": "array"
         }
@@ -423,8 +411,7 @@
           "message": "Only LegacyCluster composite resources support connection secrets",
           "rule": "self.scope == 'LegacyCluster' || !has(self.connectionSecretKeys)"
         }
-      ],
-      "additionalProperties": false
+      ]
     },
     "status": {
       "description": "CompositeResourceDefinitionStatus shows the observed state of the definition.",
@@ -467,8 +454,7 @@
               "status",
               "type"
             ],
-            "type": "object",
-            "additionalProperties": false
+            "type": "object"
           },
           "type": "array",
           "x-kubernetes-list-map-keys": [
@@ -495,8 +481,7 @@
                 "apiVersion",
                 "kind"
               ],
-              "type": "object",
-              "additionalProperties": false
+              "type": "object"
             },
             "compositeResourceType": {
               "description": "The CompositeResourceTypeRef is the type of composite resource that\nCrossplane is currently reconciling for this definition. Its version will\neventually become consistent with the definition's referenceable version.\nNote that clients may interact with any served type; this is simply the\ntype that Crossplane interacts with.",
@@ -514,16 +499,13 @@
                 "apiVersion",
                 "kind"
               ],
-              "type": "object",
-              "additionalProperties": false
+              "type": "object"
             }
           },
-          "type": "object",
-          "additionalProperties": false
+          "type": "object"
         }
       },
-      "type": "object",
-      "additionalProperties": false
+      "type": "object"
     }
   },
   "type": "object"
