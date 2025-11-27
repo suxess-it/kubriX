@@ -381,6 +381,8 @@ cluster:
     postgresql: "16"
   cluster:
     instances: 1
+    parameters:
+      max_connections: "50"
     initdb:
       database: backstage
       secret:
