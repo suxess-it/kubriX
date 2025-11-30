@@ -11,11 +11,11 @@ This is our current plan for the next features and improvements. It is based on 
 * Provide HA configurations (in progress)
 * Improve Observability Dashboards (in progress)
 * KaaS Support Extension (in progress)
-* Backup/Recovery Enhancements
-* Crossplane-Integration in Dev-Portal
+* Backup/Recovery Enhancements (in progress)
 
 ## 2026
 
+* Crossplane-Integration in Dev-Portal
 * Improve FinOps Capabilities
 * Improve Compliance Adherence
 * Extend Multi Tenancy  / Isolation Options

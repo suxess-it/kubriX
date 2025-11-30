@@ -1,0 +1,228 @@
+{
+  "description": "A ProviderConfig configures a Vault provider.",
+  "properties": {
+    "apiVersion": {
+      "description": "APIVersion defines the versioned schema of this representation of an object.\nServers should convert recognized schemas to the latest internal value, and\nmay reject unrecognized values.\nMore info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources",
+      "type": "string"
+    },
+    "kind": {
+      "description": "Kind is a string value representing the REST resource this object represents.\nServers may infer this from the endpoint the client submits requests to.\nCannot be updated.\nIn CamelCase.\nMore info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
+      "type": "string"
+    },
+    "metadata": {
+      "type": "object"
+    },
+    "spec": {
+      "description": "A ProviderConfigSpec defines the desired state of a ProviderConfig.",
+      "properties": {
+        "add_address_to_env": {
+          "description": "If true the environment variable\nVAULT_ADDR in the Terraform process environment\nwill be set to the value of the address argument\nfrom this provider. By default, this is false.",
+          "type": "boolean"
+        },
+        "address": {
+          "description": "Required origin URL of the Vault server.\nThis is a URL with a scheme, a hostname\nand a port but with no path.",
+          "type": "string"
+        },
+        "credentials": {
+          "description": "Credentials required to authenticate to this provider.\nThere are many options to authenticate. They include\n- token - (Optional) Vault token that will be used\nby Terraform to authenticate. May be set via the\nVAULT_TOKEN environment variable. If none is otherwise\nsupplied, Terraform will attempt to read it from\n~/.vault-token (where the vault command stores its\ncurrent token). Terraform will issue itself a new token\nthat is a child of the one given, with a short TTL to\nlimit the exposure of any requested secrets, unless\nskip_child_token is set to true (see below). Note\nthat the given token must have the update capability\non the auth/token/create path in Vault in order to create\nchild tokens. A token is required for the provider. A\ntoken can explicitly set via token argument, alternatively\na token can be dynamically set via an auth_login* block.",
+          "properties": {
+            "env": {
+              "description": "Env is a reference to an environment variable that contains credentials\nthat must be used to connect to the provider.",
+              "properties": {
+                "name": {
+                  "description": "Name is the name of an environment variable.",
+                  "type": "string"
+                }
+              },
+              "required": [
+                "name"
+              ],
+              "type": "object"
+            },
+            "fs": {
+              "description": "Fs is a reference to a filesystem location that contains credentials that\nmust be used to connect to the provider.",
+              "properties": {
+                "path": {
+                  "description": "Path is a filesystem path.",
+                  "type": "string"
+                }
+              },
+              "required": [
+                "path"
+              ],
+              "type": "object"
+            },
+            "secretRef": {
+              "description": "A SecretRef is a reference to a secret key that contains the credentials\nthat must be used to connect to the provider.",
+              "properties": {
+                "key": {
+                  "description": "The key to select.",
+                  "type": "string"
+                },
+                "name": {
+                  "description": "Name of the secret.",
+                  "type": "string"
+                },
+                "namespace": {
+                  "description": "Namespace of the secret.",
+                  "type": "string"
+                }
+              },
+              "required": [
+                "key",
+                "name",
+                "namespace"
+              ],
+              "type": "object"
+            },
+            "source": {
+              "description": "Source of the provider credentials.",
+              "enum": [
+                "None",
+                "Secret",
+                "InjectedIdentity",
+                "Environment",
+                "Filesystem",
+                "Kubernetes"
+              ],
+              "type": "string"
+            }
+          },
+          "required": [
+            "source"
+          ],
+          "type": "object"
+        },
+        "headers": {
+          "description": "A configuration block, described below,\nthat provides headers to be sent along with all\nrequests to the Vault server. This block can be\nspecified multiple times.",
+          "properties": {
+            "name": {
+              "description": "Required header name",
+              "type": "string"
+            },
+            "value": {
+              "description": "Required header value",
+              "type": "string"
+            }
+          },
+          "required": [
+            "name",
+            "value"
+          ],
+          "type": "object"
+        },
+        "max_lease_ttl_seconds": {
+          "description": "Used as the duration for the intermediate Vault\ntoken Terraform issues itself, which in turn limits the\nduration of secret leases issued by Vault. Defaults to\n20 minutes.",
+          "type": "integer"
+        },
+        "max_retries": {
+          "description": "Used as the maximum number of retries when a\n5xx error code is encountered. Defaults to 2 retries.",
+          "type": "integer"
+        },
+        "max_retries_ccc": {
+          "description": "Maximum number of retries for Client Controlled\nConsistency related operations. Defaults to 10 retries.",
+          "type": "integer"
+        },
+        "namespace": {
+          "description": "Set the namespace to use.",
+          "type": "string"
+        },
+        "role": {
+          "description": "Name of the role against which to login.",
+          "type": "string"
+        },
+        "skip_child_token": {
+          "description": "Set this to true to disable creation of an\nintermediate ephemeral Vault token for Terraform to use.\nEnabling this is strongly discouraged since it increases\nthe potential for a renewable Vault token being exposed\nin clear text. Only change this setting when the provided\ntoken cannot be permitted to create child tokens and there\nis no risk of exposure from the output of Terraform.",
+          "type": "boolean"
+        },
+        "skip_get_vault_version": {
+          "description": "Skip the dynamic fetching of the Vault server\nversion. Set to true when the /sys/seal-status API\nendpoint is not available.",
+          "type": "boolean"
+        },
+        "skip_tls_verify": {
+          "description": "Set this to true to disable verification\nof the Vault server's TLS certificate. This is\nstrongly discouraged except in prototype or\ndevelopment environments, since it exposes the\npossibility that Terraform can be tricked into\nwriting secrets to a server controlled by an intruder.",
+          "type": "boolean"
+        },
+        "tls_server_name": {
+          "description": "Name to use as the SNI host when connecting\nvia TLS.",
+          "type": "string"
+        },
+        "vault_version_override": {
+          "description": "Override the target Vault server semantic\nversion. Normally the version is dynamically set\nfrom the /sys/seal-status API endpoint. In the case\nwhere this endpoint is not available an override can\nbe specified here.",
+          "type": "string"
+        }
+      },
+      "required": [
+        "address"
+      ],
+      "type": "object",
+      "x-kubernetes-validations": [
+        {
+          "message": "role is required when credentials.source is Kubernetes",
+          "rule": "self.credentials.source != 'Kubernetes' || (has(self.role) && self.role != \"\")"
+        }
+      ]
+    },
+    "status": {
+      "description": "A ProviderConfigStatus reflects the observed state of a ProviderConfig.",
+      "properties": {
+        "conditions": {
+          "description": "Conditions of the resource.",
+          "items": {
+            "description": "A Condition that may apply to a resource.",
+            "properties": {
+              "lastTransitionTime": {
+                "description": "LastTransitionTime is the last time this condition transitioned from one\nstatus to another.",
+                "format": "date-time",
+                "type": "string"
+              },
+              "message": {
+                "description": "A Message containing details about this condition's last transition from\none status to another, if any.",
+                "type": "string"
+              },
+              "observedGeneration": {
+                "description": "ObservedGeneration represents the .metadata.generation that the condition was set based upon.\nFor instance, if .metadata.generation is currently 12, but the .status.conditions[x].observedGeneration is 9, the condition is out of date\nwith respect to the current state of the instance.",
+                "format": "int64",
+                "type": "integer"
+              },
+              "reason": {
+                "description": "A Reason for this condition's last transition from one status to another.",
+                "type": "string"
+              },
+              "status": {
+                "description": "Status of this condition; is it currently True, False, or Unknown?",
+                "type": "string"
+              },
+              "type": {
+                "description": "Type of this condition. At most one of each condition type may apply to\na resource at any point in time.",
+                "type": "string"
+              }
+            },
+            "required": [
+              "lastTransitionTime",
+              "reason",
+              "status",
+              "type"
+            ],
+            "type": "object"
+          },
+          "type": "array",
+          "x-kubernetes-list-map-keys": [
+            "type"
+          ],
+          "x-kubernetes-list-type": "map"
+        },
+        "users": {
+          "description": "Users of this provider configuration.",
+          "format": "int64",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    }
+  },
+  "required": [
+    "spec"
+  ],
+  "type": "object"
+}

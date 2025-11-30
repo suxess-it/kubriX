@@ -1,0 +1,254 @@
+{
+  "description": "A FunctionRevision represents a revision of a Function. Crossplane\ncreates new revisions when there are changes to the Function.\n\nCrossplane creates and manages FunctionRevisions. Don't directly edit\nFunctionRevisions.",
+  "properties": {
+    "apiVersion": {
+      "description": "APIVersion defines the versioned schema of this representation of an object.\nServers should convert recognized schemas to the latest internal value, and\nmay reject unrecognized values.\nMore info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources",
+      "type": "string"
+    },
+    "kind": {
+      "description": "Kind is a string value representing the REST resource this object represents.\nServers may infer this from the endpoint the client submits requests to.\nCannot be updated.\nIn CamelCase.\nMore info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
+      "type": "string"
+    },
+    "metadata": {
+      "type": "object"
+    },
+    "spec": {
+      "description": "FunctionRevisionSpec specifies configuration for a FunctionRevision.",
+      "properties": {
+        "commonLabels": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Map of string keys and values that can be used to organize and categorize\n(scope and select) objects. May match selectors of replication controllers\nand services.\nMore info: https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/",
+          "type": "object"
+        },
+        "desiredState": {
+          "description": "DesiredState of the PackageRevision. Can be either Active or Inactive.",
+          "type": "string"
+        },
+        "ignoreCrossplaneConstraints": {
+          "default": false,
+          "description": "IgnoreCrossplaneConstraints indicates to the package manager whether to\nhonor Crossplane version constrains specified by the package.\nDefault is false.",
+          "type": "boolean"
+        },
+        "image": {
+          "description": "Package image used by install Pod to extract package contents.",
+          "type": "string"
+        },
+        "packagePullPolicy": {
+          "default": "IfNotPresent",
+          "description": "PackagePullPolicy defines the pull policy for the package. It is also\napplied to any images pulled for the package, such as a provider's\ncontroller image.\nDefault is IfNotPresent.",
+          "type": "string"
+        },
+        "packagePullSecrets": {
+          "description": "PackagePullSecrets are named secrets in the same namespace that can be\nused to fetch packages from private registries. They are also applied to\nany images pulled for the package, such as a provider's controller image.",
+          "items": {
+            "description": "LocalObjectReference contains enough information to let you locate the\nreferenced object inside the same namespace.",
+            "properties": {
+              "name": {
+                "default": "",
+                "description": "Name of the referent.\nThis field is effectively required, but due to backwards compatibility is\nallowed to be empty. Instances of this type with an empty value here are\nalmost certainly wrong.\nMore info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+                "type": "string"
+              }
+            },
+            "type": "object",
+            "x-kubernetes-map-type": "atomic"
+          },
+          "type": "array"
+        },
+        "revision": {
+          "description": "Revision number. Indicates when the revision will be garbage collected\nbased on the parent's RevisionHistoryLimit.",
+          "format": "int64",
+          "type": "integer"
+        },
+        "runtimeConfigRef": {
+          "default": {
+            "name": "default"
+          },
+          "description": "RuntimeConfigRef references a RuntimeConfig resource that will be used\nto configure the package runtime.",
+          "properties": {
+            "apiVersion": {
+              "default": "pkg.crossplane.io/v1beta1",
+              "description": "API version of the referent.",
+              "type": "string"
+            },
+            "kind": {
+              "default": "DeploymentRuntimeConfig",
+              "description": "Kind of the referent.",
+              "type": "string"
+            },
+            "name": {
+              "description": "Name of the RuntimeConfig.",
+              "type": "string"
+            }
+          },
+          "required": [
+            "name"
+          ],
+          "type": "object"
+        },
+        "skipDependencyResolution": {
+          "default": false,
+          "description": "SkipDependencyResolution indicates to the package manager whether to skip\nresolving dependencies for a package. Setting this value to true may have\nunintended consequences.\nDefault is false.",
+          "type": "boolean"
+        },
+        "tlsClientSecretName": {
+          "description": "TLSClientSecretName is the name of the TLS Secret that stores client\ncertificates of the Provider.",
+          "type": "string"
+        },
+        "tlsServerSecretName": {
+          "description": "TLSServerSecretName is the name of the TLS Secret that stores server\ncertificates of the Provider.",
+          "type": "string"
+        }
+      },
+      "required": [
+        "desiredState",
+        "image",
+        "revision"
+      ],
+      "type": "object"
+    },
+    "status": {
+      "description": "FunctionRevisionStatus represents the observed state of a FunctionRevision.",
+      "properties": {
+        "appliedImageConfigRefs": {
+          "description": "AppliedImageConfigRefs records any image configs that were applied in\nreconciling this revision, and what they were used for.",
+          "items": {
+            "description": "ImageConfigRef is a reference to an image config that indicates how the\nreferenced image config was used by the package manager.",
+            "properties": {
+              "name": {
+                "description": "Name is the name of the image config.",
+                "type": "string"
+              },
+              "reason": {
+                "description": "Reason indicates what the image config was used for.",
+                "type": "string"
+              }
+            },
+            "required": [
+              "name",
+              "reason"
+            ],
+            "type": "object"
+          },
+          "type": "array"
+        },
+        "capabilities": {
+          "description": "Capabilities of this package. Capabilities are opaque strings that\nmay be meaningful to package consumers.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "conditions": {
+          "description": "Conditions of the resource.",
+          "items": {
+            "description": "A Condition that may apply to a resource.",
+            "properties": {
+              "lastTransitionTime": {
+                "description": "LastTransitionTime is the last time this condition transitioned from one\nstatus to another.",
+                "format": "date-time",
+                "type": "string"
+              },
+              "message": {
+                "description": "A Message containing details about this condition's last transition from\none status to another, if any.",
+                "type": "string"
+              },
+              "observedGeneration": {
+                "description": "ObservedGeneration represents the .metadata.generation that the condition was set based upon.\nFor instance, if .metadata.generation is currently 12, but the .status.conditions[x].observedGeneration is 9, the condition is out of date\nwith respect to the current state of the instance.",
+                "format": "int64",
+                "type": "integer"
+              },
+              "reason": {
+                "description": "A Reason for this condition's last transition from one status to another.",
+                "type": "string"
+              },
+              "status": {
+                "description": "Status of this condition; is it currently True, False, or Unknown?",
+                "type": "string"
+              },
+              "type": {
+                "description": "Type of this condition. At most one of each condition type may apply to\na resource at any point in time.",
+                "type": "string"
+              }
+            },
+            "required": [
+              "lastTransitionTime",
+              "reason",
+              "status",
+              "type"
+            ],
+            "type": "object"
+          },
+          "type": "array",
+          "x-kubernetes-list-map-keys": [
+            "type"
+          ],
+          "x-kubernetes-list-type": "map"
+        },
+        "endpoint": {
+          "description": "Endpoint is the gRPC endpoint where Crossplane will send\nRunFunctionRequests.",
+          "type": "string"
+        },
+        "foundDependencies": {
+          "description": "Dependency information.",
+          "format": "int64",
+          "type": "integer"
+        },
+        "installedDependencies": {
+          "format": "int64",
+          "type": "integer"
+        },
+        "invalidDependencies": {
+          "format": "int64",
+          "type": "integer"
+        },
+        "objectRefs": {
+          "description": "References to objects owned by PackageRevision.",
+          "items": {
+            "description": "A TypedReference refers to an object by Name, Kind, and APIVersion. It is\ncommonly used to reference cluster-scoped objects or objects where the\nnamespace is already known.",
+            "properties": {
+              "apiVersion": {
+                "description": "APIVersion of the referenced object.",
+                "type": "string"
+              },
+              "kind": {
+                "description": "Kind of the referenced object.",
+                "type": "string"
+              },
+              "name": {
+                "description": "Name of the referenced object.",
+                "type": "string"
+              },
+              "uid": {
+                "description": "UID of the referenced object.",
+                "type": "string"
+              }
+            },
+            "required": [
+              "apiVersion",
+              "kind",
+              "name"
+            ],
+            "type": "object"
+          },
+          "type": "array"
+        },
+        "resolvedImage": {
+          "description": "ResolvedPackage is the name of the package that was installed. It may be\ndifferent from spec.image if the package path was rewritten using an\nimage config.",
+          "type": "string"
+        },
+        "tlsClientSecretName": {
+          "description": "TLSClientSecretName is the name of the TLS Secret that stores client\ncertificates of the Provider.",
+          "type": "string"
+        },
+        "tlsServerSecretName": {
+          "description": "TLSServerSecretName is the name of the TLS Secret that stores server\ncertificates of the Provider.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    }
+  },
+  "type": "object"
+}
