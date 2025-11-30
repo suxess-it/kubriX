@@ -135,6 +135,9 @@ cluster:
     postgresql: "16"
   cluster:
     instances: 1
+    postgresql:
+      parameters:
+        max_connections: "100"
     monitoring:
       enabled: true
     superuserSecret: cnpg-superuser-secret

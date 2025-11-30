@@ -26,8 +26,7 @@
           "required": [
             "name"
           ],
-          "type": "object",
-          "additionalProperties": false
+          "type": "object"
         },
         "method": {
           "default": "barmanObjectStore",
@@ -56,8 +55,7 @@
               "type": "boolean"
             }
           },
-          "type": "object",
-          "additionalProperties": false
+          "type": "object"
         },
         "pluginConfiguration": {
           "description": "Configuration parameters passed to the plugin managing this backup",
@@ -77,8 +75,7 @@
           "required": [
             "name"
           ],
-          "type": "object",
-          "additionalProperties": false
+          "type": "object"
         },
         "target": {
           "description": "The policy to decide which instance should perform this backup. If empty,\nit defaults to `cluster.spec.backup.target`.\nAvailable options are empty string, `primary` and `prefer-standby`.\n`primary` to have backups run always on primary instances,\n`prefer-standby` to have backups run preferably on the most updated\nstandby, if available.",
@@ -98,8 +95,7 @@
           "message": "BackupSpec is immutable once set",
           "rule": "oldSelf == self"
         }
-      ],
-      "additionalProperties": false
+      ]
     },
     "status": {
       "description": "Most recently observed status of the backup. This data may not be up to\ndate. Populated by the system. Read-only.\nMore info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status",
@@ -123,8 +119,7 @@
                 "key",
                 "name"
               ],
-              "type": "object",
-              "additionalProperties": false
+              "type": "object"
             },
             "inheritFromAzureAD": {
               "description": "Use the Azure AD based authentication without providing explicitly the keys.",
@@ -146,8 +141,7 @@
                 "key",
                 "name"
               ],
-              "type": "object",
-              "additionalProperties": false
+              "type": "object"
             },
             "storageKey": {
               "description": "The storage account key to be used in conjunction\nwith the storage account name",
@@ -165,8 +159,7 @@
                 "key",
                 "name"
               ],
-              "type": "object",
-              "additionalProperties": false
+              "type": "object"
             },
             "storageSasToken": {
               "description": "A shared-access-signature to be used in conjunction with\nthe storage account name",
@@ -184,12 +177,10 @@
                 "key",
                 "name"
               ],
-              "type": "object",
-              "additionalProperties": false
+              "type": "object"
             }
           },
-          "type": "object",
-          "additionalProperties": false
+          "type": "object"
         },
         "backupId": {
           "description": "The ID of the Barman backup",
@@ -252,8 +243,7 @@
             "key",
             "name"
           ],
-          "type": "object",
-          "additionalProperties": false
+          "type": "object"
         },
         "endpointURL": {
           "description": "Endpoint to be used to upload data to the cloud,\noverriding the automatic endpoint discovery",
@@ -282,16 +272,14 @@
                 "key",
                 "name"
               ],
-              "type": "object",
-              "additionalProperties": false
+              "type": "object"
             },
             "gkeEnvironment": {
               "description": "If set to true, will presume that it's running inside a GKE environment,\ndefault to false.",
               "type": "boolean"
             }
           },
-          "type": "object",
-          "additionalProperties": false
+          "type": "object"
         },
         "instanceID": {
           "description": "Information to identify the instance where the backup has been taken from",
@@ -305,8 +293,7 @@
               "type": "string"
             }
           },
-          "type": "object",
-          "additionalProperties": false
+          "type": "object"
         },
         "majorVersion": {
           "description": "The PostgreSQL major version that was running when the\nbackup was taken.",
@@ -350,8 +337,7 @@
                 "key",
                 "name"
               ],
-              "type": "object",
-              "additionalProperties": false
+              "type": "object"
             },
             "inheritFromIAMRole": {
               "description": "Use the role based authentication without providing explicitly the keys.",
@@ -373,8 +359,7 @@
                 "key",
                 "name"
               ],
-              "type": "object",
-              "additionalProperties": false
+              "type": "object"
             },
             "secretAccessKey": {
               "description": "The reference to the secret access key",
@@ -392,8 +377,7 @@
                 "key",
                 "name"
               ],
-              "type": "object",
-              "additionalProperties": false
+              "type": "object"
             },
             "sessionToken": {
               "description": "The references to the session key",
@@ -411,12 +395,10 @@
                 "key",
                 "name"
               ],
-              "type": "object",
-              "additionalProperties": false
+              "type": "object"
             }
           },
-          "type": "object",
-          "additionalProperties": false
+          "type": "object"
         },
         "serverName": {
           "description": "The server name on S3, the cluster name is used if this\nparameter is omitted",
@@ -447,14 +429,12 @@
                   "name",
                   "type"
                 ],
-                "type": "object",
-                "additionalProperties": false
+                "type": "object"
               },
               "type": "array"
             }
           },
-          "type": "object",
-          "additionalProperties": false
+          "type": "object"
         },
         "startedAt": {
           "description": "When the backup was started",
@@ -472,8 +452,7 @@
           "type": "string"
         }
       },
-      "type": "object",
-      "additionalProperties": false
+      "type": "object"
     }
   },
   "required": [

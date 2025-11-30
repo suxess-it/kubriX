@@ -66,16 +66,14 @@
                   "required": [
                     "name"
                   ],
-                  "type": "object",
-                  "additionalProperties": false
+                  "type": "object"
                 }
               },
               "required": [
                 "keyID",
                 "keySecretRef"
               ],
-              "type": "object",
-              "additionalProperties": false
+              "type": "object"
             },
             "preferredChain": {
               "description": "PreferredChain is the chain to use if the ACME server outputs multiple.\nPreferredChain is no guarantee that this one gets delivered by the ACME\nendpoint.\nFor example, for Let's Encrypt's DST cross-sign you would use:\n\"DST Root CA X3\" or \"ISRG Root X1\" for the newer Let's Encrypt root CA.\nThis value picks the first certificate bundle in the combined set of\nACME default and alternative chains that has a root-most certificate with\nthis value as its issuer's commonname.",
@@ -97,8 +95,7 @@
               "required": [
                 "name"
               ],
-              "type": "object",
-              "additionalProperties": false
+              "type": "object"
             },
             "profile": {
               "description": "Profile allows requesting a certificate profile from the ACME server.\nSupported profiles are listed by the server's ACME directory URL.",
@@ -138,8 +135,7 @@
                             "required": [
                               "name"
                             ],
-                            "type": "object",
-                            "additionalProperties": false
+                            "type": "object"
                           },
                           "host": {
                             "type": "string"
@@ -149,8 +145,7 @@
                           "accountSecretRef",
                           "host"
                         ],
-                        "type": "object",
-                        "additionalProperties": false
+                        "type": "object"
                       },
                       "akamai": {
                         "description": "Use the Akamai DNS zone management API to manage DNS01 challenge records.",
@@ -170,8 +165,7 @@
                             "required": [
                               "name"
                             ],
-                            "type": "object",
-                            "additionalProperties": false
+                            "type": "object"
                           },
                           "clientSecretSecretRef": {
                             "description": "A reference to a specific 'key' within a Secret resource.\nIn some instances, `key` is a required field.",
@@ -188,8 +182,7 @@
                             "required": [
                               "name"
                             ],
-                            "type": "object",
-                            "additionalProperties": false
+                            "type": "object"
                           },
                           "clientTokenSecretRef": {
                             "description": "A reference to a specific 'key' within a Secret resource.\nIn some instances, `key` is a required field.",
@@ -206,8 +199,7 @@
                             "required": [
                               "name"
                             ],
-                            "type": "object",
-                            "additionalProperties": false
+                            "type": "object"
                           },
                           "serviceConsumerDomain": {
                             "type": "string"
@@ -219,8 +211,7 @@
                           "clientTokenSecretRef",
                           "serviceConsumerDomain"
                         ],
-                        "type": "object",
-                        "additionalProperties": false
+                        "type": "object"
                       },
                       "azureDNS": {
                         "description": "Use the Microsoft Azure DNS API to manage DNS01 challenge records.",
@@ -244,8 +235,7 @@
                             "required": [
                               "name"
                             ],
-                            "type": "object",
-                            "additionalProperties": false
+                            "type": "object"
                           },
                           "environment": {
                             "description": "name of the Azure environment (default AzurePublicCloud)",
@@ -277,8 +267,7 @@
                                 "type": "string"
                               }
                             },
-                            "type": "object",
-                            "additionalProperties": false
+                            "type": "object"
                           },
                           "resourceGroupName": {
                             "description": "resource group the DNS zone is located in",
@@ -297,8 +286,7 @@
                           "resourceGroupName",
                           "subscriptionID"
                         ],
-                        "type": "object",
-                        "additionalProperties": false
+                        "type": "object"
                       },
                       "cloudDNS": {
                         "description": "Use the Google Cloud DNS API to manage DNS01 challenge records.",
@@ -325,15 +313,13 @@
                             "required": [
                               "name"
                             ],
-                            "type": "object",
-                            "additionalProperties": false
+                            "type": "object"
                           }
                         },
                         "required": [
                           "project"
                         ],
-                        "type": "object",
-                        "additionalProperties": false
+                        "type": "object"
                       },
                       "cloudflare": {
                         "description": "Use the Cloudflare API to manage DNS01 challenge records.",
@@ -353,8 +339,7 @@
                             "required": [
                               "name"
                             ],
-                            "type": "object",
-                            "additionalProperties": false
+                            "type": "object"
                           },
                           "apiTokenSecretRef": {
                             "description": "API token used to authenticate with Cloudflare.",
@@ -371,16 +356,14 @@
                             "required": [
                               "name"
                             ],
-                            "type": "object",
-                            "additionalProperties": false
+                            "type": "object"
                           },
                           "email": {
                             "description": "Email of the account, only required when using API key based authentication.",
                             "type": "string"
                           }
                         },
-                        "type": "object",
-                        "additionalProperties": false
+                        "type": "object"
                       },
                       "cnameStrategy": {
                         "description": "CNAMEStrategy configures how the DNS01 provider should handle CNAME\nrecords when found in DNS zones.",
@@ -408,15 +391,13 @@
                             "required": [
                               "name"
                             ],
-                            "type": "object",
-                            "additionalProperties": false
+                            "type": "object"
                           }
                         },
                         "required": [
                           "tokenSecretRef"
                         ],
-                        "type": "object",
-                        "additionalProperties": false
+                        "type": "object"
                       },
                       "rfc2136": {
                         "description": "Use RFC2136 (\"Dynamic Updates in the Domain Name System\") (https://datatracker.ietf.org/doc/rfc2136/)\nto manage DNS01 challenge records.",
@@ -456,15 +437,13 @@
                             "required": [
                               "name"
                             ],
-                            "type": "object",
-                            "additionalProperties": false
+                            "type": "object"
                           }
                         },
                         "required": [
                           "nameserver"
                         ],
-                        "type": "object",
-                        "additionalProperties": false
+                        "type": "object"
                       },
                       "route53": {
                         "description": "Use the AWS Route53 API to manage DNS01 challenge records.",
@@ -488,8 +467,7 @@
                             "required": [
                               "name"
                             ],
-                            "type": "object",
-                            "additionalProperties": false
+                            "type": "object"
                           },
                           "auth": {
                             "description": "Auth configures how cert-manager authenticates.",
@@ -516,22 +494,19 @@
                                     "required": [
                                       "name"
                                     ],
-                                    "type": "object",
-                                    "additionalProperties": false
+                                    "type": "object"
                                   }
                                 },
                                 "required": [
                                   "serviceAccountRef"
                                 ],
-                                "type": "object",
-                                "additionalProperties": false
+                                "type": "object"
                               }
                             },
                             "required": [
                               "kubernetes"
                             ],
-                            "type": "object",
-                            "additionalProperties": false
+                            "type": "object"
                           },
                           "hostedZoneID": {
                             "description": "If set, the provider will manage only this zone in Route53 and will not do a lookup using the route53:ListHostedZonesByName api call.",
@@ -560,12 +535,10 @@
                             "required": [
                               "name"
                             ],
-                            "type": "object",
-                            "additionalProperties": false
+                            "type": "object"
                           }
                         },
-                        "type": "object",
-                        "additionalProperties": false
+                        "type": "object"
                       },
                       "webhook": {
                         "description": "Configure an external webhook based DNS01 challenge solver to manage\nDNS01 challenge records.",
@@ -587,12 +560,10 @@
                           "groupName",
                           "solverName"
                         ],
-                        "type": "object",
-                        "additionalProperties": false
+                        "type": "object"
                       }
                     },
-                    "type": "object",
-                    "additionalProperties": false
+                    "type": "object"
                   },
                   "http01": {
                     "description": "Configures cert-manager to attempt to complete authorizations by\nperforming the HTTP01 challenge flow.\nIt is not possible to obtain certificates for wildcard domain names\n(e.g., `*.example.com`) using the HTTP01 challenge mechanism.",
@@ -658,8 +629,7 @@
                               "required": [
                                 "name"
                               ],
-                              "type": "object",
-                              "additionalProperties": false
+                              "type": "object"
                             },
                             "type": "array",
                             "x-kubernetes-list-type": "atomic"
@@ -685,8 +655,7 @@
                                     "type": "object"
                                   }
                                 },
-                                "type": "object",
-                                "additionalProperties": false
+                                "type": "object"
                               },
                               "spec": {
                                 "description": "PodSpec defines overrides for the HTTP01 challenge solver pod.\nCheck ACMEChallengeSolverHTTP01IngressPodSpec to find out currently supported fields.\nAll other fields will be ignored.",
@@ -731,8 +700,7 @@
                                                           "key",
                                                           "operator"
                                                         ],
-                                                        "type": "object",
-                                                        "additionalProperties": false
+                                                        "type": "object"
                                                       },
                                                       "type": "array",
                                                       "x-kubernetes-list-type": "atomic"
@@ -763,16 +731,14 @@
                                                           "key",
                                                           "operator"
                                                         ],
-                                                        "type": "object",
-                                                        "additionalProperties": false
+                                                        "type": "object"
                                                       },
                                                       "type": "array",
                                                       "x-kubernetes-list-type": "atomic"
                                                     }
                                                   },
                                                   "type": "object",
-                                                  "x-kubernetes-map-type": "atomic",
-                                                  "additionalProperties": false
+                                                  "x-kubernetes-map-type": "atomic"
                                                 },
                                                 "weight": {
                                                   "description": "Weight associated with matching the corresponding nodeSelectorTerm, in the range 1-100.",
@@ -784,8 +750,7 @@
                                                 "preference",
                                                 "weight"
                                               ],
-                                              "type": "object",
-                                              "additionalProperties": false
+                                              "type": "object"
                                             },
                                             "type": "array",
                                             "x-kubernetes-list-type": "atomic"
@@ -824,8 +789,7 @@
                                                           "key",
                                                           "operator"
                                                         ],
-                                                        "type": "object",
-                                                        "additionalProperties": false
+                                                        "type": "object"
                                                       },
                                                       "type": "array",
                                                       "x-kubernetes-list-type": "atomic"
@@ -856,16 +820,14 @@
                                                           "key",
                                                           "operator"
                                                         ],
-                                                        "type": "object",
-                                                        "additionalProperties": false
+                                                        "type": "object"
                                                       },
                                                       "type": "array",
                                                       "x-kubernetes-list-type": "atomic"
                                                     }
                                                   },
                                                   "type": "object",
-                                                  "x-kubernetes-map-type": "atomic",
-                                                  "additionalProperties": false
+                                                  "x-kubernetes-map-type": "atomic"
                                                 },
                                                 "type": "array",
                                                 "x-kubernetes-list-type": "atomic"
@@ -875,12 +837,10 @@
                                               "nodeSelectorTerms"
                                             ],
                                             "type": "object",
-                                            "x-kubernetes-map-type": "atomic",
-                                            "additionalProperties": false
+                                            "x-kubernetes-map-type": "atomic"
                                           }
                                         },
-                                        "type": "object",
-                                        "additionalProperties": false
+                                        "type": "object"
                                       },
                                       "podAffinity": {
                                         "description": "Describes pod affinity scheduling rules (e.g. co-locate this pod in the same node, zone, etc. as some other pod(s)).",
@@ -922,8 +882,7 @@
                                                               "key",
                                                               "operator"
                                                             ],
-                                                            "type": "object",
-                                                            "additionalProperties": false
+                                                            "type": "object"
                                                           },
                                                           "type": "array",
                                                           "x-kubernetes-list-type": "atomic"
@@ -937,8 +896,7 @@
                                                         }
                                                       },
                                                       "type": "object",
-                                                      "x-kubernetes-map-type": "atomic",
-                                                      "additionalProperties": false
+                                                      "x-kubernetes-map-type": "atomic"
                                                     },
                                                     "matchLabelKeys": {
                                                       "description": "MatchLabelKeys is a set of pod label keys to select which pods will\nbe taken into consideration. The keys are used to lookup values from the\nincoming pod labels, those key-value labels are merged with `labelSelector` as `key in (value)`\nto select the group of existing pods which pods will be taken into consideration\nfor the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming\npod labels will be ignored. The default value is empty.\nThe same key is forbidden to exist in both matchLabelKeys and labelSelector.\nAlso, matchLabelKeys cannot be set when labelSelector isn't set.",
@@ -985,8 +943,7 @@
                                                               "key",
                                                               "operator"
                                                             ],
-                                                            "type": "object",
-                                                            "additionalProperties": false
+                                                            "type": "object"
                                                           },
                                                           "type": "array",
                                                           "x-kubernetes-list-type": "atomic"
@@ -1000,8 +957,7 @@
                                                         }
                                                       },
                                                       "type": "object",
-                                                      "x-kubernetes-map-type": "atomic",
-                                                      "additionalProperties": false
+                                                      "x-kubernetes-map-type": "atomic"
                                                     },
                                                     "namespaces": {
                                                       "description": "namespaces specifies a static list of namespace names that the term applies to.\nThe term is applied to the union of the namespaces listed in this field\nand the ones selected by namespaceSelector.\nnull or empty namespaces list and null namespaceSelector means \"this pod's namespace\".",
@@ -1019,8 +975,7 @@
                                                   "required": [
                                                     "topologyKey"
                                                   ],
-                                                  "type": "object",
-                                                  "additionalProperties": false
+                                                  "type": "object"
                                                 },
                                                 "weight": {
                                                   "description": "weight associated with matching the corresponding podAffinityTerm,\nin the range 1-100.",
@@ -1032,8 +987,7 @@
                                                 "podAffinityTerm",
                                                 "weight"
                                               ],
-                                              "type": "object",
-                                              "additionalProperties": false
+                                              "type": "object"
                                             },
                                             "type": "array",
                                             "x-kubernetes-list-type": "atomic"
@@ -1072,8 +1026,7 @@
                                                           "key",
                                                           "operator"
                                                         ],
-                                                        "type": "object",
-                                                        "additionalProperties": false
+                                                        "type": "object"
                                                       },
                                                       "type": "array",
                                                       "x-kubernetes-list-type": "atomic"
@@ -1087,8 +1040,7 @@
                                                     }
                                                   },
                                                   "type": "object",
-                                                  "x-kubernetes-map-type": "atomic",
-                                                  "additionalProperties": false
+                                                  "x-kubernetes-map-type": "atomic"
                                                 },
                                                 "matchLabelKeys": {
                                                   "description": "MatchLabelKeys is a set of pod label keys to select which pods will\nbe taken into consideration. The keys are used to lookup values from the\nincoming pod labels, those key-value labels are merged with `labelSelector` as `key in (value)`\nto select the group of existing pods which pods will be taken into consideration\nfor the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming\npod labels will be ignored. The default value is empty.\nThe same key is forbidden to exist in both matchLabelKeys and labelSelector.\nAlso, matchLabelKeys cannot be set when labelSelector isn't set.",
@@ -1135,8 +1087,7 @@
                                                           "key",
                                                           "operator"
                                                         ],
-                                                        "type": "object",
-                                                        "additionalProperties": false
+                                                        "type": "object"
                                                       },
                                                       "type": "array",
                                                       "x-kubernetes-list-type": "atomic"
@@ -1150,8 +1101,7 @@
                                                     }
                                                   },
                                                   "type": "object",
-                                                  "x-kubernetes-map-type": "atomic",
-                                                  "additionalProperties": false
+                                                  "x-kubernetes-map-type": "atomic"
                                                 },
                                                 "namespaces": {
                                                   "description": "namespaces specifies a static list of namespace names that the term applies to.\nThe term is applied to the union of the namespaces listed in this field\nand the ones selected by namespaceSelector.\nnull or empty namespaces list and null namespaceSelector means \"this pod's namespace\".",
@@ -1169,15 +1119,13 @@
                                               "required": [
                                                 "topologyKey"
                                               ],
-                                              "type": "object",
-                                              "additionalProperties": false
+                                              "type": "object"
                                             },
                                             "type": "array",
                                             "x-kubernetes-list-type": "atomic"
                                           }
                                         },
-                                        "type": "object",
-                                        "additionalProperties": false
+                                        "type": "object"
                                       },
                                       "podAntiAffinity": {
                                         "description": "Describes pod anti-affinity scheduling rules (e.g. avoid putting this pod in the same node, zone, etc. as some other pod(s)).",
@@ -1219,8 +1167,7 @@
                                                               "key",
                                                               "operator"
                                                             ],
-                                                            "type": "object",
-                                                            "additionalProperties": false
+                                                            "type": "object"
                                                           },
                                                           "type": "array",
                                                           "x-kubernetes-list-type": "atomic"
@@ -1234,8 +1181,7 @@
                                                         }
                                                       },
                                                       "type": "object",
-                                                      "x-kubernetes-map-type": "atomic",
-                                                      "additionalProperties": false
+                                                      "x-kubernetes-map-type": "atomic"
                                                     },
                                                     "matchLabelKeys": {
                                                       "description": "MatchLabelKeys is a set of pod label keys to select which pods will\nbe taken into consideration. The keys are used to lookup values from the\nincoming pod labels, those key-value labels are merged with `labelSelector` as `key in (value)`\nto select the group of existing pods which pods will be taken into consideration\nfor the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming\npod labels will be ignored. The default value is empty.\nThe same key is forbidden to exist in both matchLabelKeys and labelSelector.\nAlso, matchLabelKeys cannot be set when labelSelector isn't set.",
@@ -1282,8 +1228,7 @@
                                                               "key",
                                                               "operator"
                                                             ],
-                                                            "type": "object",
-                                                            "additionalProperties": false
+                                                            "type": "object"
                                                           },
                                                           "type": "array",
                                                           "x-kubernetes-list-type": "atomic"
@@ -1297,8 +1242,7 @@
                                                         }
                                                       },
                                                       "type": "object",
-                                                      "x-kubernetes-map-type": "atomic",
-                                                      "additionalProperties": false
+                                                      "x-kubernetes-map-type": "atomic"
                                                     },
                                                     "namespaces": {
                                                       "description": "namespaces specifies a static list of namespace names that the term applies to.\nThe term is applied to the union of the namespaces listed in this field\nand the ones selected by namespaceSelector.\nnull or empty namespaces list and null namespaceSelector means \"this pod's namespace\".",
@@ -1316,8 +1260,7 @@
                                                   "required": [
                                                     "topologyKey"
                                                   ],
-                                                  "type": "object",
-                                                  "additionalProperties": false
+                                                  "type": "object"
                                                 },
                                                 "weight": {
                                                   "description": "weight associated with matching the corresponding podAffinityTerm,\nin the range 1-100.",
@@ -1329,8 +1272,7 @@
                                                 "podAffinityTerm",
                                                 "weight"
                                               ],
-                                              "type": "object",
-                                              "additionalProperties": false
+                                              "type": "object"
                                             },
                                             "type": "array",
                                             "x-kubernetes-list-type": "atomic"
@@ -1369,8 +1311,7 @@
                                                           "key",
                                                           "operator"
                                                         ],
-                                                        "type": "object",
-                                                        "additionalProperties": false
+                                                        "type": "object"
                                                       },
                                                       "type": "array",
                                                       "x-kubernetes-list-type": "atomic"
@@ -1384,8 +1325,7 @@
                                                     }
                                                   },
                                                   "type": "object",
-                                                  "x-kubernetes-map-type": "atomic",
-                                                  "additionalProperties": false
+                                                  "x-kubernetes-map-type": "atomic"
                                                 },
                                                 "matchLabelKeys": {
                                                   "description": "MatchLabelKeys is a set of pod label keys to select which pods will\nbe taken into consideration. The keys are used to lookup values from the\nincoming pod labels, those key-value labels are merged with `labelSelector` as `key in (value)`\nto select the group of existing pods which pods will be taken into consideration\nfor the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming\npod labels will be ignored. The default value is empty.\nThe same key is forbidden to exist in both matchLabelKeys and labelSelector.\nAlso, matchLabelKeys cannot be set when labelSelector isn't set.",
@@ -1432,8 +1372,7 @@
                                                           "key",
                                                           "operator"
                                                         ],
-                                                        "type": "object",
-                                                        "additionalProperties": false
+                                                        "type": "object"
                                                       },
                                                       "type": "array",
                                                       "x-kubernetes-list-type": "atomic"
@@ -1447,8 +1386,7 @@
                                                     }
                                                   },
                                                   "type": "object",
-                                                  "x-kubernetes-map-type": "atomic",
-                                                  "additionalProperties": false
+                                                  "x-kubernetes-map-type": "atomic"
                                                 },
                                                 "namespaces": {
                                                   "description": "namespaces specifies a static list of namespace names that the term applies to.\nThe term is applied to the union of the namespaces listed in this field\nand the ones selected by namespaceSelector.\nnull or empty namespaces list and null namespaceSelector means \"this pod's namespace\".",
@@ -1466,19 +1404,16 @@
                                               "required": [
                                                 "topologyKey"
                                               ],
-                                              "type": "object",
-                                              "additionalProperties": false
+                                              "type": "object"
                                             },
                                             "type": "array",
                                             "x-kubernetes-list-type": "atomic"
                                           }
                                         },
-                                        "type": "object",
-                                        "additionalProperties": false
+                                        "type": "object"
                                       }
                                     },
-                                    "type": "object",
-                                    "additionalProperties": false
+                                    "type": "object"
                                   },
                                   "imagePullSecrets": {
                                     "description": "If specified, the pod's imagePullSecrets",
@@ -1492,8 +1427,7 @@
                                         }
                                       },
                                       "type": "object",
-                                      "x-kubernetes-map-type": "atomic",
-                                      "additionalProperties": false
+                                      "x-kubernetes-map-type": "atomic"
                                     },
                                     "type": "array",
                                     "x-kubernetes-list-map-keys": [
@@ -1548,8 +1482,7 @@
                                         "type": "object"
                                       }
                                     },
-                                    "type": "object",
-                                    "additionalProperties": false
+                                    "type": "object"
                                   },
                                   "securityContext": {
                                     "description": "If specified, the pod's security context",
@@ -1597,8 +1530,7 @@
                                             "type": "string"
                                           }
                                         },
-                                        "type": "object",
-                                        "additionalProperties": false
+                                        "type": "object"
                                       },
                                       "seccompProfile": {
                                         "description": "The seccomp options to use by the containers in this pod.\nNote that this field cannot be set when spec.os.name is windows.",
@@ -1615,8 +1547,7 @@
                                         "required": [
                                           "type"
                                         ],
-                                        "type": "object",
-                                        "additionalProperties": false
+                                        "type": "object"
                                       },
                                       "supplementalGroups": {
                                         "description": "A list of groups applied to the first process run in each container, in addition\nto the container's primary GID, the fsGroup (if specified), and group memberships\ndefined in the container image for the uid of the container process. If unspecified,\nno additional groups are added to any container. Note that group memberships\ndefined in the container image for the uid of the container process are still effective,\neven if they are not included in this list.\nNote that this field cannot be set when spec.os.name is windows.",
@@ -1645,15 +1576,13 @@
                                             "name",
                                             "value"
                                           ],
-                                          "type": "object",
-                                          "additionalProperties": false
+                                          "type": "object"
                                         },
                                         "type": "array",
                                         "x-kubernetes-list-type": "atomic"
                                       }
                                     },
-                                    "type": "object",
-                                    "additionalProperties": false
+                                    "type": "object"
                                   },
                                   "serviceAccountName": {
                                     "description": "If specified, the pod's service account",
@@ -1686,27 +1615,23 @@
                                           "type": "string"
                                         }
                                       },
-                                      "type": "object",
-                                      "additionalProperties": false
+                                      "type": "object"
                                     },
                                     "type": "array",
                                     "x-kubernetes-list-type": "atomic"
                                   }
                                 },
-                                "type": "object",
-                                "additionalProperties": false
+                                "type": "object"
                               }
                             },
-                            "type": "object",
-                            "additionalProperties": false
+                            "type": "object"
                           },
                           "serviceType": {
                             "description": "Optional service type for Kubernetes solver service. Supported values\nare NodePort or ClusterIP. If unset, defaults to NodePort.",
                             "type": "string"
                           }
                         },
-                        "type": "object",
-                        "additionalProperties": false
+                        "type": "object"
                       },
                       "ingress": {
                         "description": "The ingress based HTTP01 challenge solver will solve challenges by\ncreating or modifying Ingress resources in order to route requests for\n'/.well-known/acme-challenge/XYZ' to 'challenge solver' pods that are\nprovisioned by cert-manager for each Challenge to be completed.",
@@ -1740,12 +1665,10 @@
                                     "type": "object"
                                   }
                                 },
-                                "type": "object",
-                                "additionalProperties": false
+                                "type": "object"
                               }
                             },
-                            "type": "object",
-                            "additionalProperties": false
+                            "type": "object"
                           },
                           "name": {
                             "description": "The name of the ingress resource that should have ACME challenge solving\nroutes inserted into it in order to solve HTTP01 challenges.\nThis is typically used in conjunction with ingress controllers like\ningress-gce, which maintains a 1:1 mapping between external IPs and\ningress resources. Only one of `class`, `name` or `ingressClassName` may\nbe specified.",
@@ -1772,8 +1695,7 @@
                                     "type": "object"
                                   }
                                 },
-                                "type": "object",
-                                "additionalProperties": false
+                                "type": "object"
                               },
                               "spec": {
                                 "description": "PodSpec defines overrides for the HTTP01 challenge solver pod.\nCheck ACMEChallengeSolverHTTP01IngressPodSpec to find out currently supported fields.\nAll other fields will be ignored.",
@@ -1818,8 +1740,7 @@
                                                           "key",
                                                           "operator"
                                                         ],
-                                                        "type": "object",
-                                                        "additionalProperties": false
+                                                        "type": "object"
                                                       },
                                                       "type": "array",
                                                       "x-kubernetes-list-type": "atomic"
@@ -1850,16 +1771,14 @@
                                                           "key",
                                                           "operator"
                                                         ],
-                                                        "type": "object",
-                                                        "additionalProperties": false
+                                                        "type": "object"
                                                       },
                                                       "type": "array",
                                                       "x-kubernetes-list-type": "atomic"
                                                     }
                                                   },
                                                   "type": "object",
-                                                  "x-kubernetes-map-type": "atomic",
-                                                  "additionalProperties": false
+                                                  "x-kubernetes-map-type": "atomic"
                                                 },
                                                 "weight": {
                                                   "description": "Weight associated with matching the corresponding nodeSelectorTerm, in the range 1-100.",
@@ -1871,8 +1790,7 @@
                                                 "preference",
                                                 "weight"
                                               ],
-                                              "type": "object",
-                                              "additionalProperties": false
+                                              "type": "object"
                                             },
                                             "type": "array",
                                             "x-kubernetes-list-type": "atomic"
@@ -1911,8 +1829,7 @@
                                                           "key",
                                                           "operator"
                                                         ],
-                                                        "type": "object",
-                                                        "additionalProperties": false
+                                                        "type": "object"
                                                       },
                                                       "type": "array",
                                                       "x-kubernetes-list-type": "atomic"
@@ -1943,16 +1860,14 @@
                                                           "key",
                                                           "operator"
                                                         ],
-                                                        "type": "object",
-                                                        "additionalProperties": false
+                                                        "type": "object"
                                                       },
                                                       "type": "array",
                                                       "x-kubernetes-list-type": "atomic"
                                                     }
                                                   },
                                                   "type": "object",
-                                                  "x-kubernetes-map-type": "atomic",
-                                                  "additionalProperties": false
+                                                  "x-kubernetes-map-type": "atomic"
                                                 },
                                                 "type": "array",
                                                 "x-kubernetes-list-type": "atomic"
@@ -1962,12 +1877,10 @@
                                               "nodeSelectorTerms"
                                             ],
                                             "type": "object",
-                                            "x-kubernetes-map-type": "atomic",
-                                            "additionalProperties": false
+                                            "x-kubernetes-map-type": "atomic"
                                           }
                                         },
-                                        "type": "object",
-                                        "additionalProperties": false
+                                        "type": "object"
                                       },
                                       "podAffinity": {
                                         "description": "Describes pod affinity scheduling rules (e.g. co-locate this pod in the same node, zone, etc. as some other pod(s)).",
@@ -2009,8 +1922,7 @@
                                                               "key",
                                                               "operator"
                                                             ],
-                                                            "type": "object",
-                                                            "additionalProperties": false
+                                                            "type": "object"
                                                           },
                                                           "type": "array",
                                                           "x-kubernetes-list-type": "atomic"
@@ -2024,8 +1936,7 @@
                                                         }
                                                       },
                                                       "type": "object",
-                                                      "x-kubernetes-map-type": "atomic",
-                                                      "additionalProperties": false
+                                                      "x-kubernetes-map-type": "atomic"
                                                     },
                                                     "matchLabelKeys": {
                                                       "description": "MatchLabelKeys is a set of pod label keys to select which pods will\nbe taken into consideration. The keys are used to lookup values from the\nincoming pod labels, those key-value labels are merged with `labelSelector` as `key in (value)`\nto select the group of existing pods which pods will be taken into consideration\nfor the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming\npod labels will be ignored. The default value is empty.\nThe same key is forbidden to exist in both matchLabelKeys and labelSelector.\nAlso, matchLabelKeys cannot be set when labelSelector isn't set.",
@@ -2072,8 +1983,7 @@
                                                               "key",
                                                               "operator"
                                                             ],
-                                                            "type": "object",
-                                                            "additionalProperties": false
+                                                            "type": "object"
                                                           },
                                                           "type": "array",
                                                           "x-kubernetes-list-type": "atomic"
@@ -2087,8 +1997,7 @@
                                                         }
                                                       },
                                                       "type": "object",
-                                                      "x-kubernetes-map-type": "atomic",
-                                                      "additionalProperties": false
+                                                      "x-kubernetes-map-type": "atomic"
                                                     },
                                                     "namespaces": {
                                                       "description": "namespaces specifies a static list of namespace names that the term applies to.\nThe term is applied to the union of the namespaces listed in this field\nand the ones selected by namespaceSelector.\nnull or empty namespaces list and null namespaceSelector means \"this pod's namespace\".",
@@ -2106,8 +2015,7 @@
                                                   "required": [
                                                     "topologyKey"
                                                   ],
-                                                  "type": "object",
-                                                  "additionalProperties": false
+                                                  "type": "object"
                                                 },
                                                 "weight": {
                                                   "description": "weight associated with matching the corresponding podAffinityTerm,\nin the range 1-100.",
@@ -2119,8 +2027,7 @@
                                                 "podAffinityTerm",
                                                 "weight"
                                               ],
-                                              "type": "object",
-                                              "additionalProperties": false
+                                              "type": "object"
                                             },
                                             "type": "array",
                                             "x-kubernetes-list-type": "atomic"
@@ -2159,8 +2066,7 @@
                                                           "key",
                                                           "operator"
                                                         ],
-                                                        "type": "object",
-                                                        "additionalProperties": false
+                                                        "type": "object"
                                                       },
                                                       "type": "array",
                                                       "x-kubernetes-list-type": "atomic"
@@ -2174,8 +2080,7 @@
                                                     }
                                                   },
                                                   "type": "object",
-                                                  "x-kubernetes-map-type": "atomic",
-                                                  "additionalProperties": false
+                                                  "x-kubernetes-map-type": "atomic"
                                                 },
                                                 "matchLabelKeys": {
                                                   "description": "MatchLabelKeys is a set of pod label keys to select which pods will\nbe taken into consideration. The keys are used to lookup values from the\nincoming pod labels, those key-value labels are merged with `labelSelector` as `key in (value)`\nto select the group of existing pods which pods will be taken into consideration\nfor the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming\npod labels will be ignored. The default value is empty.\nThe same key is forbidden to exist in both matchLabelKeys and labelSelector.\nAlso, matchLabelKeys cannot be set when labelSelector isn't set.",
@@ -2222,8 +2127,7 @@
                                                           "key",
                                                           "operator"
                                                         ],
-                                                        "type": "object",
-                                                        "additionalProperties": false
+                                                        "type": "object"
                                                       },
                                                       "type": "array",
                                                       "x-kubernetes-list-type": "atomic"
@@ -2237,8 +2141,7 @@
                                                     }
                                                   },
                                                   "type": "object",
-                                                  "x-kubernetes-map-type": "atomic",
-                                                  "additionalProperties": false
+                                                  "x-kubernetes-map-type": "atomic"
                                                 },
                                                 "namespaces": {
                                                   "description": "namespaces specifies a static list of namespace names that the term applies to.\nThe term is applied to the union of the namespaces listed in this field\nand the ones selected by namespaceSelector.\nnull or empty namespaces list and null namespaceSelector means \"this pod's namespace\".",
@@ -2256,15 +2159,13 @@
                                               "required": [
                                                 "topologyKey"
                                               ],
-                                              "type": "object",
-                                              "additionalProperties": false
+                                              "type": "object"
                                             },
                                             "type": "array",
                                             "x-kubernetes-list-type": "atomic"
                                           }
                                         },
-                                        "type": "object",
-                                        "additionalProperties": false
+                                        "type": "object"
                                       },
                                       "podAntiAffinity": {
                                         "description": "Describes pod anti-affinity scheduling rules (e.g. avoid putting this pod in the same node, zone, etc. as some other pod(s)).",
@@ -2306,8 +2207,7 @@
                                                               "key",
                                                               "operator"
                                                             ],
-                                                            "type": "object",
-                                                            "additionalProperties": false
+                                                            "type": "object"
                                                           },
                                                           "type": "array",
                                                           "x-kubernetes-list-type": "atomic"
@@ -2321,8 +2221,7 @@
                                                         }
                                                       },
                                                       "type": "object",
-                                                      "x-kubernetes-map-type": "atomic",
-                                                      "additionalProperties": false
+                                                      "x-kubernetes-map-type": "atomic"
                                                     },
                                                     "matchLabelKeys": {
                                                       "description": "MatchLabelKeys is a set of pod label keys to select which pods will\nbe taken into consideration. The keys are used to lookup values from the\nincoming pod labels, those key-value labels are merged with `labelSelector` as `key in (value)`\nto select the group of existing pods which pods will be taken into consideration\nfor the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming\npod labels will be ignored. The default value is empty.\nThe same key is forbidden to exist in both matchLabelKeys and labelSelector.\nAlso, matchLabelKeys cannot be set when labelSelector isn't set.",
@@ -2369,8 +2268,7 @@
                                                               "key",
                                                               "operator"
                                                             ],
-                                                            "type": "object",
-                                                            "additionalProperties": false
+                                                            "type": "object"
                                                           },
                                                           "type": "array",
                                                           "x-kubernetes-list-type": "atomic"
@@ -2384,8 +2282,7 @@
                                                         }
                                                       },
                                                       "type": "object",
-                                                      "x-kubernetes-map-type": "atomic",
-                                                      "additionalProperties": false
+                                                      "x-kubernetes-map-type": "atomic"
                                                     },
                                                     "namespaces": {
                                                       "description": "namespaces specifies a static list of namespace names that the term applies to.\nThe term is applied to the union of the namespaces listed in this field\nand the ones selected by namespaceSelector.\nnull or empty namespaces list and null namespaceSelector means \"this pod's namespace\".",
@@ -2403,8 +2300,7 @@
                                                   "required": [
                                                     "topologyKey"
                                                   ],
-                                                  "type": "object",
-                                                  "additionalProperties": false
+                                                  "type": "object"
                                                 },
                                                 "weight": {
                                                   "description": "weight associated with matching the corresponding podAffinityTerm,\nin the range 1-100.",
@@ -2416,8 +2312,7 @@
                                                 "podAffinityTerm",
                                                 "weight"
                                               ],
-                                              "type": "object",
-                                              "additionalProperties": false
+                                              "type": "object"
                                             },
                                             "type": "array",
                                             "x-kubernetes-list-type": "atomic"
@@ -2456,8 +2351,7 @@
                                                           "key",
                                                           "operator"
                                                         ],
-                                                        "type": "object",
-                                                        "additionalProperties": false
+                                                        "type": "object"
                                                       },
                                                       "type": "array",
                                                       "x-kubernetes-list-type": "atomic"
@@ -2471,8 +2365,7 @@
                                                     }
                                                   },
                                                   "type": "object",
-                                                  "x-kubernetes-map-type": "atomic",
-                                                  "additionalProperties": false
+                                                  "x-kubernetes-map-type": "atomic"
                                                 },
                                                 "matchLabelKeys": {
                                                   "description": "MatchLabelKeys is a set of pod label keys to select which pods will\nbe taken into consideration. The keys are used to lookup values from the\nincoming pod labels, those key-value labels are merged with `labelSelector` as `key in (value)`\nto select the group of existing pods which pods will be taken into consideration\nfor the incoming pod's pod (anti) affinity. Keys that don't exist in the incoming\npod labels will be ignored. The default value is empty.\nThe same key is forbidden to exist in both matchLabelKeys and labelSelector.\nAlso, matchLabelKeys cannot be set when labelSelector isn't set.",
@@ -2519,8 +2412,7 @@
                                                           "key",
                                                           "operator"
                                                         ],
-                                                        "type": "object",
-                                                        "additionalProperties": false
+                                                        "type": "object"
                                                       },
                                                       "type": "array",
                                                       "x-kubernetes-list-type": "atomic"
@@ -2534,8 +2426,7 @@
                                                     }
                                                   },
                                                   "type": "object",
-                                                  "x-kubernetes-map-type": "atomic",
-                                                  "additionalProperties": false
+                                                  "x-kubernetes-map-type": "atomic"
                                                 },
                                                 "namespaces": {
                                                   "description": "namespaces specifies a static list of namespace names that the term applies to.\nThe term is applied to the union of the namespaces listed in this field\nand the ones selected by namespaceSelector.\nnull or empty namespaces list and null namespaceSelector means \"this pod's namespace\".",
@@ -2553,19 +2444,16 @@
                                               "required": [
                                                 "topologyKey"
                                               ],
-                                              "type": "object",
-                                              "additionalProperties": false
+                                              "type": "object"
                                             },
                                             "type": "array",
                                             "x-kubernetes-list-type": "atomic"
                                           }
                                         },
-                                        "type": "object",
-                                        "additionalProperties": false
+                                        "type": "object"
                                       }
                                     },
-                                    "type": "object",
-                                    "additionalProperties": false
+                                    "type": "object"
                                   },
                                   "imagePullSecrets": {
                                     "description": "If specified, the pod's imagePullSecrets",
@@ -2579,8 +2467,7 @@
                                         }
                                       },
                                       "type": "object",
-                                      "x-kubernetes-map-type": "atomic",
-                                      "additionalProperties": false
+                                      "x-kubernetes-map-type": "atomic"
                                     },
                                     "type": "array",
                                     "x-kubernetes-list-map-keys": [
@@ -2635,8 +2522,7 @@
                                         "type": "object"
                                       }
                                     },
-                                    "type": "object",
-                                    "additionalProperties": false
+                                    "type": "object"
                                   },
                                   "securityContext": {
                                     "description": "If specified, the pod's security context",
@@ -2684,8 +2570,7 @@
                                             "type": "string"
                                           }
                                         },
-                                        "type": "object",
-                                        "additionalProperties": false
+                                        "type": "object"
                                       },
                                       "seccompProfile": {
                                         "description": "The seccomp options to use by the containers in this pod.\nNote that this field cannot be set when spec.os.name is windows.",
@@ -2702,8 +2587,7 @@
                                         "required": [
                                           "type"
                                         ],
-                                        "type": "object",
-                                        "additionalProperties": false
+                                        "type": "object"
                                       },
                                       "supplementalGroups": {
                                         "description": "A list of groups applied to the first process run in each container, in addition\nto the container's primary GID, the fsGroup (if specified), and group memberships\ndefined in the container image for the uid of the container process. If unspecified,\nno additional groups are added to any container. Note that group memberships\ndefined in the container image for the uid of the container process are still effective,\neven if they are not included in this list.\nNote that this field cannot be set when spec.os.name is windows.",
@@ -2732,15 +2616,13 @@
                                             "name",
                                             "value"
                                           ],
-                                          "type": "object",
-                                          "additionalProperties": false
+                                          "type": "object"
                                         },
                                         "type": "array",
                                         "x-kubernetes-list-type": "atomic"
                                       }
                                     },
-                                    "type": "object",
-                                    "additionalProperties": false
+                                    "type": "object"
                                   },
                                   "serviceAccountName": {
                                     "description": "If specified, the pod's service account",
@@ -2773,31 +2655,26 @@
                                           "type": "string"
                                         }
                                       },
-                                      "type": "object",
-                                      "additionalProperties": false
+                                      "type": "object"
                                     },
                                     "type": "array",
                                     "x-kubernetes-list-type": "atomic"
                                   }
                                 },
-                                "type": "object",
-                                "additionalProperties": false
+                                "type": "object"
                               }
                             },
-                            "type": "object",
-                            "additionalProperties": false
+                            "type": "object"
                           },
                           "serviceType": {
                             "description": "Optional service type for Kubernetes solver service. Supported values\nare NodePort or ClusterIP. If unset, defaults to NodePort.",
                             "type": "string"
                           }
                         },
-                        "type": "object",
-                        "additionalProperties": false
+                        "type": "object"
                       }
                     },
-                    "type": "object",
-                    "additionalProperties": false
+                    "type": "object"
                   },
                   "selector": {
                     "description": "Selector selects a set of DNSNames on the Certificate resource that\nshould be solved using this challenge solver.\nIf not specified, the solver will be treated as the 'default' solver\nwith the lowest priority, i.e. if any other solver has a more specific\nmatch, it will be used instead.",
@@ -2826,12 +2703,10 @@
                         "type": "object"
                       }
                     },
-                    "type": "object",
-                    "additionalProperties": false
+                    "type": "object"
                   }
                 },
-                "type": "object",
-                "additionalProperties": false
+                "type": "object"
               },
               "type": "array",
               "x-kubernetes-list-type": "atomic"
@@ -2841,8 +2716,7 @@
             "privateKeySecretRef",
             "server"
           ],
-          "type": "object",
-          "additionalProperties": false
+          "type": "object"
         },
         "ca": {
           "description": "CA configures this issuer to sign certificates using a signing CA keypair\nstored in a Secret resource.\nThis is used to build internal PKIs that are managed by cert-manager.",
@@ -2879,8 +2753,7 @@
           "required": [
             "secretName"
           ],
-          "type": "object",
-          "additionalProperties": false
+          "type": "object"
         },
         "selfSigned": {
           "description": "SelfSigned configures this issuer to 'self sign' certificates using the\nprivate key used to create the CertificateRequest object.",
@@ -2894,8 +2767,7 @@
               "x-kubernetes-list-type": "atomic"
             }
           },
-          "type": "object",
-          "additionalProperties": false
+          "type": "object"
         },
         "vault": {
           "description": "Vault configures this issuer to sign certificates using a HashiCorp Vault\nPKI backend.",
@@ -2929,8 +2801,7 @@
                       "required": [
                         "name"
                       ],
-                      "type": "object",
-                      "additionalProperties": false
+                      "type": "object"
                     }
                   },
                   "required": [
@@ -2938,8 +2809,7 @@
                     "roleId",
                     "secretRef"
                   ],
-                  "type": "object",
-                  "additionalProperties": false
+                  "type": "object"
                 },
                 "clientCertificate": {
                   "description": "ClientCertificate authenticates with Vault by presenting a client\ncertificate during the request's TLS handshake.\nWorks only when using HTTPS protocol.",
@@ -2957,8 +2827,7 @@
                       "type": "string"
                     }
                   },
-                  "type": "object",
-                  "additionalProperties": false
+                  "type": "object"
                 },
                 "kubernetes": {
                   "description": "Kubernetes authenticates with Vault by passing the ServiceAccount\ntoken stored in the named Secret resource to the Vault server.",
@@ -2986,8 +2855,7 @@
                       "required": [
                         "name"
                       ],
-                      "type": "object",
-                      "additionalProperties": false
+                      "type": "object"
                     },
                     "serviceAccountRef": {
                       "description": "A reference to a service account that will be used to request a bound\ntoken (also known as \"projected token\"). Compared to using \"secretRef\",\nusing this field means that you don't rely on statically bound tokens. To\nuse this field, you must configure an RBAC rule to let cert-manager\nrequest a token.",
@@ -3008,15 +2876,13 @@
                       "required": [
                         "name"
                       ],
-                      "type": "object",
-                      "additionalProperties": false
+                      "type": "object"
                     }
                   },
                   "required": [
                     "role"
                   ],
-                  "type": "object",
-                  "additionalProperties": false
+                  "type": "object"
                 },
                 "tokenSecretRef": {
                   "description": "TokenSecretRef authenticates with Vault by presenting a token.",
@@ -3033,12 +2899,10 @@
                   "required": [
                     "name"
                   ],
-                  "type": "object",
-                  "additionalProperties": false
+                  "type": "object"
                 }
               },
-              "type": "object",
-              "additionalProperties": false
+              "type": "object"
             },
             "caBundle": {
               "description": "Base64-encoded bundle of PEM CAs which will be used to validate the certificate\nchain presented by Vault. Only used if using HTTPS to connect to Vault and\nignored for HTTP connections.\nMutually exclusive with CABundleSecretRef.\nIf neither CABundle nor CABundleSecretRef are defined, the certificate bundle in\nthe cert-manager controller container is used to validate the TLS connection.",
@@ -3060,8 +2924,7 @@
               "required": [
                 "name"
               ],
-              "type": "object",
-              "additionalProperties": false
+              "type": "object"
             },
             "clientCertSecretRef": {
               "description": "Reference to a Secret containing a PEM-encoded Client Certificate to use when the\nVault server requires mTLS.",
@@ -3078,8 +2941,7 @@
               "required": [
                 "name"
               ],
-              "type": "object",
-              "additionalProperties": false
+              "type": "object"
             },
             "clientKeySecretRef": {
               "description": "Reference to a Secret containing a PEM-encoded Client Private Key to use when the\nVault server requires mTLS.",
@@ -3096,8 +2958,7 @@
               "required": [
                 "name"
               ],
-              "type": "object",
-              "additionalProperties": false
+              "type": "object"
             },
             "namespace": {
               "description": "Name of the vault namespace. Namespaces is a set of features within Vault Enterprise that allows Vault environments to support Secure Multi-tenancy. e.g: \"ns1\"\nMore about namespaces can be found here https://www.vaultproject.io/docs/enterprise/namespaces",
@@ -3121,8 +2982,7 @@
             "path",
             "server"
           ],
-          "type": "object",
-          "additionalProperties": false
+          "type": "object"
         },
         "venafi": {
           "description": "Venafi configures this issuer to sign certificates using a Venafi TPP\nor Venafi Cloud policy zone.",
@@ -3145,8 +3005,7 @@
                   "required": [
                     "name"
                   ],
-                  "type": "object",
-                  "additionalProperties": false
+                  "type": "object"
                 },
                 "url": {
                   "description": "URL is the base URL for Venafi Cloud.\nDefaults to \"https://api.venafi.cloud/\".",
@@ -3156,8 +3015,7 @@
               "required": [
                 "apiTokenSecretRef"
               ],
-              "type": "object",
-              "additionalProperties": false
+              "type": "object"
             },
             "tpp": {
               "description": "TPP specifies Trust Protection Platform configuration settings.\nOnly one of TPP or Cloud may be specified.",
@@ -3182,8 +3040,7 @@
                   "required": [
                     "name"
                   ],
-                  "type": "object",
-                  "additionalProperties": false
+                  "type": "object"
                 },
                 "credentialsRef": {
                   "description": "CredentialsRef is a reference to a Secret containing the Venafi TPP API credentials.\nThe secret must contain the key 'access-token' for the Access Token Authentication,\nor two keys, 'username' and 'password' for the API Keys Authentication.",
@@ -3196,8 +3053,7 @@
                   "required": [
                     "name"
                   ],
-                  "type": "object",
-                  "additionalProperties": false
+                  "type": "object"
                 },
                 "url": {
                   "description": "URL is the base URL for the vedsdk endpoint of the Venafi TPP instance,\nfor example: \"https://tpp.example.com/vedsdk\".",
@@ -3208,8 +3064,7 @@
                 "credentialsRef",
                 "url"
               ],
-              "type": "object",
-              "additionalProperties": false
+              "type": "object"
             },
             "zone": {
               "description": "Zone is the Venafi Policy Zone to use for this issuer.\nAll requests made to the Venafi platform will be restricted by the named\nzone policy.\nThis field is required.",
@@ -3219,12 +3074,10 @@
           "required": [
             "zone"
           ],
-          "type": "object",
-          "additionalProperties": false
+          "type": "object"
         }
       },
-      "type": "object",
-      "additionalProperties": false
+      "type": "object"
     },
     "status": {
       "description": "Status of the ClusterIssuer. This is set and managed automatically.",
@@ -3245,8 +3098,7 @@
               "type": "string"
             }
           },
-          "type": "object",
-          "additionalProperties": false
+          "type": "object"
         },
         "conditions": {
           "description": "List of status conditions to indicate the status of a CertificateRequest.\nKnown condition types are `Ready`.",
@@ -3289,8 +3141,7 @@
               "status",
               "type"
             ],
-            "type": "object",
-            "additionalProperties": false
+            "type": "object"
           },
           "type": "array",
           "x-kubernetes-list-map-keys": [
@@ -3299,8 +3150,7 @@
           "x-kubernetes-list-type": "map"
         }
       },
-      "type": "object",
-      "additionalProperties": false
+      "type": "object"
     }
   },
   "required": [

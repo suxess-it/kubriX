@@ -35,8 +35,7 @@
             "key"
           ],
           "type": "object",
-          "x-kubernetes-map-type": "atomic",
-          "additionalProperties": false
+          "x-kubernetes-map-type": "atomic"
         },
         "clients": {
           "description": "Clients controls where logs are written to for this instance.",
@@ -59,8 +58,7 @@
                     "type": "string"
                   }
                 },
-                "type": "object",
-                "additionalProperties": false
+                "type": "object"
               },
               "basicAuth": {
                 "description": "BasicAuth for the Loki server.",
@@ -85,8 +83,7 @@
                       "key"
                     ],
                     "type": "object",
-                    "x-kubernetes-map-type": "atomic",
-                    "additionalProperties": false
+                    "x-kubernetes-map-type": "atomic"
                   },
                   "username": {
                     "description": "The secret in the service monitor namespace that contains the username for authentication.",
@@ -108,12 +105,10 @@
                       "key"
                     ],
                     "type": "object",
-                    "x-kubernetes-map-type": "atomic",
-                    "additionalProperties": false
+                    "x-kubernetes-map-type": "atomic"
                   }
                 },
-                "type": "object",
-                "additionalProperties": false
+                "type": "object"
               },
               "batchSize": {
                 "description": "Maximum batch size (in bytes) of logs to accumulate before sending the batch to Loki.",
@@ -164,8 +159,7 @@
                           "key"
                         ],
                         "type": "object",
-                        "x-kubernetes-map-type": "atomic",
-                        "additionalProperties": false
+                        "x-kubernetes-map-type": "atomic"
                       },
                       "secret": {
                         "description": "Secret containing data to use for the targets.",
@@ -187,12 +181,10 @@
                           "key"
                         ],
                         "type": "object",
-                        "x-kubernetes-map-type": "atomic",
-                        "additionalProperties": false
+                        "x-kubernetes-map-type": "atomic"
                       }
                     },
-                    "type": "object",
-                    "additionalProperties": false
+                    "type": "object"
                   },
                   "clientSecret": {
                     "description": "The secret containing the OAuth2 client secret",
@@ -214,8 +206,7 @@
                       "key"
                     ],
                     "type": "object",
-                    "x-kubernetes-map-type": "atomic",
-                    "additionalProperties": false
+                    "x-kubernetes-map-type": "atomic"
                   },
                   "endpointParams": {
                     "additionalProperties": {
@@ -242,8 +233,7 @@
                   "clientSecret",
                   "tokenUrl"
                 ],
-                "type": "object",
-                "additionalProperties": false
+                "type": "object"
               },
               "proxyUrl": {
                 "description": "ProxyURL to proxy requests through. Optional.",
@@ -283,8 +273,7 @@
                           "key"
                         ],
                         "type": "object",
-                        "x-kubernetes-map-type": "atomic",
-                        "additionalProperties": false
+                        "x-kubernetes-map-type": "atomic"
                       },
                       "secret": {
                         "description": "Secret containing data to use for the targets.",
@@ -306,12 +295,10 @@
                           "key"
                         ],
                         "type": "object",
-                        "x-kubernetes-map-type": "atomic",
-                        "additionalProperties": false
+                        "x-kubernetes-map-type": "atomic"
                       }
                     },
-                    "type": "object",
-                    "additionalProperties": false
+                    "type": "object"
                   },
                   "caFile": {
                     "description": "Path to the CA cert in the Prometheus container to use for the targets.",
@@ -340,8 +327,7 @@
                           "key"
                         ],
                         "type": "object",
-                        "x-kubernetes-map-type": "atomic",
-                        "additionalProperties": false
+                        "x-kubernetes-map-type": "atomic"
                       },
                       "secret": {
                         "description": "Secret containing data to use for the targets.",
@@ -363,12 +349,10 @@
                           "key"
                         ],
                         "type": "object",
-                        "x-kubernetes-map-type": "atomic",
-                        "additionalProperties": false
+                        "x-kubernetes-map-type": "atomic"
                       }
                     },
-                    "type": "object",
-                    "additionalProperties": false
+                    "type": "object"
                   },
                   "certFile": {
                     "description": "Path to the client cert file in the Prometheus container for the targets.",
@@ -402,16 +386,14 @@
                       "key"
                     ],
                     "type": "object",
-                    "x-kubernetes-map-type": "atomic",
-                    "additionalProperties": false
+                    "x-kubernetes-map-type": "atomic"
                   },
                   "serverName": {
                     "description": "Used to verify the hostname for the targets.",
                     "type": "string"
                   }
                 },
-                "type": "object",
-                "additionalProperties": false
+                "type": "object"
               },
               "url": {
                 "description": "URL is the URL where Loki is listening. Must be a full HTTP URL, including protocol. Required. Example: https://logs-prod-us-central1.grafana.net/loki/api/v1/push.",
@@ -421,8 +403,7 @@
             "required": [
               "url"
             ],
-            "type": "object",
-            "additionalProperties": false
+            "type": "object"
           },
           "type": "array"
         },
@@ -454,8 +435,7 @@
                   "key",
                   "operator"
                 ],
-                "type": "object",
-                "additionalProperties": false
+                "type": "object"
               },
               "type": "array"
             },
@@ -468,8 +448,7 @@
             }
           },
           "type": "object",
-          "x-kubernetes-map-type": "atomic",
-          "additionalProperties": false
+          "x-kubernetes-map-type": "atomic"
         },
         "podLogsSelector": {
           "description": "Determines which PodLogs should be selected for including in this instance.",
@@ -499,8 +478,7 @@
                   "key",
                   "operator"
                 ],
-                "type": "object",
-                "additionalProperties": false
+                "type": "object"
               },
               "type": "array"
             },
@@ -513,8 +491,7 @@
             }
           },
           "type": "object",
-          "x-kubernetes-map-type": "atomic",
-          "additionalProperties": false
+          "x-kubernetes-map-type": "atomic"
         },
         "targetConfig": {
           "description": "Configures how tailed targets are watched.",
@@ -524,12 +501,10 @@
               "type": "string"
             }
           },
-          "type": "object",
-          "additionalProperties": false
+          "type": "object"
         }
       },
-      "type": "object",
-      "additionalProperties": false
+      "type": "object"
     }
   },
   "type": "object"

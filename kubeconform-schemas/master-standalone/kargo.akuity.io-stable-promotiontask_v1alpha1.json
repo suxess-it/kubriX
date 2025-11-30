@@ -48,8 +48,7 @@
                     "type": "string"
                   }
                 },
-                "type": "object",
-                "additionalProperties": false
+                "type": "object"
               },
               "task": {
                 "description": "Task is a reference to a PromotionTask that should be inflated into a\nPromotion when it is built from a PromotionTemplate.",
@@ -73,8 +72,7 @@
                 "required": [
                   "name"
                 ],
-                "type": "object",
-                "additionalProperties": false
+                "type": "object"
               },
               "uses": {
                 "description": "Uses identifies a runner that can execute this step.",
@@ -100,8 +98,7 @@
                   "required": [
                     "name"
                   ],
-                  "type": "object",
-                  "additionalProperties": false
+                  "type": "object"
                 },
                 "type": "array"
               }
@@ -112,8 +109,7 @@
                 "message": "PromotionTask step must have uses set and must not reference another task",
                 "rule": "has(self.uses) && !has(self.task)"
               }
-            ],
-            "additionalProperties": false
+            ]
           },
           "minItems": 1,
           "type": "array"
@@ -137,8 +133,7 @@
             "required": [
               "name"
             ],
-            "type": "object",
-            "additionalProperties": false
+            "type": "object"
           },
           "type": "array"
         }
@@ -146,8 +141,7 @@
       "required": [
         "steps"
       ],
-      "type": "object",
-      "additionalProperties": false
+      "type": "object"
     }
   },
   "required": [

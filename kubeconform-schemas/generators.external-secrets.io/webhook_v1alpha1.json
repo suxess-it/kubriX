@@ -48,8 +48,7 @@
                       "type": "string"
                     }
                   },
-                  "type": "object",
-                  "additionalProperties": false
+                  "type": "object"
                 },
                 "usernameSecret": {
                   "description": "SecretKeySelector is a reference to a specific 'key' within a Secret resource.\nIn some instances, `key` is a required field.",
@@ -76,20 +75,17 @@
                       "type": "string"
                     }
                   },
-                  "type": "object",
-                  "additionalProperties": false
+                  "type": "object"
                 }
               },
               "required": [
                 "passwordSecret",
                 "usernameSecret"
               ],
-              "type": "object",
-              "additionalProperties": false
+              "type": "object"
             }
           },
-          "type": "object",
-          "additionalProperties": false
+          "type": "object"
         },
         "body": {
           "description": "Body",
@@ -137,8 +133,7 @@
             "name",
             "type"
           ],
-          "type": "object",
-          "additionalProperties": false
+          "type": "object"
         },
         "headers": {
           "additionalProperties": {
@@ -159,8 +154,7 @@
               "type": "string"
             }
           },
-          "type": "object",
-          "additionalProperties": false
+          "type": "object"
         },
         "secrets": {
           "description": "Secrets to fill in templates\nThese secrets will be passed to the templating function as key value pairs under the given name",
@@ -189,16 +183,14 @@
                     "type": "string"
                   }
                 },
-                "type": "object",
-                "additionalProperties": false
+                "type": "object"
               }
             },
             "required": [
               "name",
               "secretRef"
             ],
-            "type": "object",
-            "additionalProperties": false
+            "type": "object"
           },
           "type": "array"
         },
@@ -215,8 +207,7 @@
         "result",
         "url"
       ],
-      "type": "object",
-      "additionalProperties": false
+      "type": "object"
     }
   },
   "type": "object"

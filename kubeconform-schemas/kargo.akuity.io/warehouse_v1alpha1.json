@@ -23,8 +23,7 @@
               "type": "string"
             }
           },
-          "type": "object",
-          "additionalProperties": false
+          "type": "object"
         },
         "freightCreationPolicy": {
           "default": "Automatic",
@@ -79,8 +78,7 @@
                 "required": [
                   "repoURL"
                 ],
-                "type": "object",
-                "additionalProperties": false
+                "type": "object"
               },
               "git": {
                 "description": "Git describes a subscriptions to a Git repository.",
@@ -164,8 +162,7 @@
                   "repoURL",
                   "strictSemvers"
                 ],
-                "type": "object",
-                "additionalProperties": false
+                "type": "object"
               },
               "image": {
                 "description": "Image describes a subscription to container image repository.",
@@ -242,12 +239,10 @@
                     "message": "If imageSelectionStrategy is Digest, either constraint or semverConstraint must be set",
                     "rule": "!(self.imageSelectionStrategy == 'Digest') || has(self.constraint) || has(self.semverConstraint)"
                   }
-                ],
-                "additionalProperties": false
+                ]
               }
             },
-            "type": "object",
-            "additionalProperties": false
+            "type": "object"
           },
           "minItems": 1,
           "type": "array"
@@ -257,8 +252,7 @@
         "interval",
         "subscriptions"
       ],
-      "type": "object",
-      "additionalProperties": false
+      "type": "object"
     },
     "status": {
       "description": "Status describes the Warehouse's most recently observed state.",
@@ -314,8 +308,7 @@
               "status",
               "type"
             ],
-            "type": "object",
-            "additionalProperties": false
+            "type": "object"
           },
           "type": "array",
           "x-kubernetes-list-map-keys": [
@@ -355,8 +348,7 @@
                 "required": [
                   "repoURL"
                 ],
-                "type": "object",
-                "additionalProperties": false
+                "type": "object"
               },
               "type": "array"
             },
@@ -406,8 +398,7 @@
                           "type": "string"
                         }
                       },
-                      "type": "object",
-                      "additionalProperties": false
+                      "type": "object"
                     },
                     "type": "array"
                   },
@@ -421,8 +412,7 @@
                 "required": [
                   "repoURL"
                 ],
-                "type": "object",
-                "additionalProperties": false
+                "type": "object"
               },
               "type": "array"
             },
@@ -470,8 +460,7 @@
                         "digest",
                         "tag"
                       ],
-                      "type": "object",
-                      "additionalProperties": false
+                      "type": "object"
                     },
                     "type": "array"
                   },
@@ -484,14 +473,12 @@
                 "required": [
                   "repoURL"
                 ],
-                "type": "object",
-                "additionalProperties": false
+                "type": "object"
               },
               "type": "array"
             }
           },
-          "type": "object",
-          "additionalProperties": false
+          "type": "object"
         },
         "lastFreightID": {
           "description": "LastFreightID is a reference to the system-assigned identifier (name) of\nthe most recent Freight produced by the Warehouse.",
@@ -507,8 +494,7 @@
           "type": "integer"
         }
       },
-      "type": "object",
-      "additionalProperties": false
+      "type": "object"
     }
   },
   "required": [
