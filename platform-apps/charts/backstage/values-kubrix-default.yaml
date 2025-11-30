@@ -356,7 +356,7 @@ backstage:
           maxDepth: 1
           admin:
             users:
-              - name: user:default/demouser
+              - name: user:default/dummyuser
             superUsers:
               - name: user:default/demoadmin
               - name: user:default/phac008
@@ -381,6 +381,13 @@ cluster:
     postgresql: "16"
   cluster:
     instances: 1
+    postgresql:
+      parameters:
+        max_connections: "100"
+    initdb:
+      database: backstage
+      secret:
+        name: cnpg-backstage-secret
     monitoring:
       enabled: true
     superuserSecret: cnpg-superuser-secret

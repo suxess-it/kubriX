@@ -1,0 +1,784 @@
+{
+  "description": "AuthBackendRole is the Schema for the AuthBackendRoles API. Manages JWT/OIDC auth backend roles in Vault.",
+  "properties": {
+    "apiVersion": {
+      "description": "APIVersion defines the versioned schema of this representation of an object.\nServers should convert recognized schemas to the latest internal value, and\nmay reject unrecognized values.\nMore info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources",
+      "type": "string"
+    },
+    "kind": {
+      "description": "Kind is a string value representing the REST resource this object represents.\nServers may infer this from the endpoint the client submits requests to.\nCannot be updated.\nIn CamelCase.\nMore info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
+      "type": "string"
+    },
+    "metadata": {
+      "type": "object"
+    },
+    "spec": {
+      "description": "AuthBackendRoleSpec defines the desired state of AuthBackendRole",
+      "properties": {
+        "deletionPolicy": {
+          "default": "Delete",
+          "description": "DeletionPolicy specifies what will happen to the underlying external\nwhen this managed resource is deleted - either \"Delete\" or \"Orphan\" the\nexternal resource.\nThis field is planned to be deprecated in favor of the ManagementPolicies\nfield in a future release. Currently, both could be set independently and\nnon-default values would be honored if the feature flag is enabled.\nSee the design doc for more information: https://github.com/crossplane/crossplane/blob/499895a25d1a1a0ba1604944ef98ac7a1a71f197/design/design-doc-observe-only-resources.md?plain=1#L223",
+          "enum": [
+            "Orphan",
+            "Delete"
+          ],
+          "type": "string"
+        },
+        "forProvider": {
+          "properties": {
+            "allowedRedirectUris": {
+              "description": "The list of allowed values for redirect_uri during OIDC logins.\nRequired for OIDC roles\nThe list of allowed values for redirect_uri during OIDC logins.",
+              "items": {
+                "type": "string"
+              },
+              "type": "array",
+              "x-kubernetes-list-type": "set"
+            },
+            "backend": {
+              "description": "The unique name of the auth backend to configure.\nDefaults to jwt.\nUnique name of the auth backend to configure.",
+              "type": "string"
+            },
+            "backendRef": {
+              "description": "Reference to a AuthBackend in jwt to populate backend.",
+              "properties": {
+                "name": {
+                  "description": "Name of the referenced object.",
+                  "type": "string"
+                },
+                "policy": {
+                  "description": "Policies for referencing.",
+                  "properties": {
+                    "resolution": {
+                      "default": "Required",
+                      "description": "Resolution specifies whether resolution of this reference is required.\nThe default is 'Required', which means the reconcile will fail if the\nreference cannot be resolved. 'Optional' means this reference will be\na no-op if it cannot be resolved.",
+                      "enum": [
+                        "Required",
+                        "Optional"
+                      ],
+                      "type": "string"
+                    },
+                    "resolve": {
+                      "description": "Resolve specifies when this reference should be resolved. The default\nis 'IfNotPresent', which will attempt to resolve the reference only when\nthe corresponding field is not present. Use 'Always' to resolve the\nreference on every reconcile.",
+                      "enum": [
+                        "Always",
+                        "IfNotPresent"
+                      ],
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                }
+              },
+              "required": [
+                "name"
+              ],
+              "type": "object"
+            },
+            "backendSelector": {
+              "description": "Selector for a AuthBackend in jwt to populate backend.",
+              "properties": {
+                "matchControllerRef": {
+                  "description": "MatchControllerRef ensures an object with the same controller reference\nas the selecting object is selected.",
+                  "type": "boolean"
+                },
+                "matchLabels": {
+                  "additionalProperties": {
+                    "type": "string"
+                  },
+                  "description": "MatchLabels ensures an object with matching labels is selected.",
+                  "type": "object"
+                },
+                "policy": {
+                  "description": "Policies for selection.",
+                  "properties": {
+                    "resolution": {
+                      "default": "Required",
+                      "description": "Resolution specifies whether resolution of this reference is required.\nThe default is 'Required', which means the reconcile will fail if the\nreference cannot be resolved. 'Optional' means this reference will be\na no-op if it cannot be resolved.",
+                      "enum": [
+                        "Required",
+                        "Optional"
+                      ],
+                      "type": "string"
+                    },
+                    "resolve": {
+                      "description": "Resolve specifies when this reference should be resolved. The default\nis 'IfNotPresent', which will attempt to resolve the reference only when\nthe corresponding field is not present. Use 'Always' to resolve the\nreference on every reconcile.",
+                      "enum": [
+                        "Always",
+                        "IfNotPresent"
+                      ],
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                }
+              },
+              "type": "object"
+            },
+            "boundAudiences": {
+              "description": "List of aud claims to match against. Any match is sufficient.\nList of aud claims to match against. Any match is sufficient.",
+              "items": {
+                "type": "string"
+              },
+              "type": "array",
+              "x-kubernetes-list-type": "set"
+            },
+            "boundClaims": {
+              "additionalProperties": {
+                "type": "string"
+              },
+              "description": "If set, a map of claims to values to match against.\nA claim's value must be a string, which may contain one value or multiple\ncomma-separated values, e.g. \"red\" or \"red,green,blue\".\nMap of claims/values to match against. The expected value may be a single string or a comma-separated string list.",
+              "type": "object",
+              "x-kubernetes-map-type": "granular"
+            },
+            "boundClaimsType": {
+              "description": "How to interpret values in the claims/values\nmap (bound_claims): can be either string (exact match) or glob (wildcard\nmatch). Requires Vault 1.4.0 or above.\nHow to interpret values in the claims/values map: can be either \"string\" (exact match) or \"glob\" (wildcard match).",
+              "type": "string"
+            },
+            "boundSubject": {
+              "description": "If set, requires that the sub claim matches\nthis value.\nIf set, requires that the sub claim matches this value.",
+              "type": "string"
+            },
+            "claimMappings": {
+              "additionalProperties": {
+                "type": "string"
+              },
+              "description": "If set, a map of claims (keys) to be copied\nto specified metadata fields (values).\nMap of claims (keys) to be copied to specified metadata fields (values).",
+              "type": "object",
+              "x-kubernetes-map-type": "granular"
+            },
+            "clockSkewLeeway": {
+              "description": "The amount of leeway to add to all claims to account for clock skew, in\nseconds. Defaults to 60 seconds if set to 0 and can be disabled if set to -1.\nOnly applicable with \"jwt\" roles.\nThe amount of leeway to add to all claims to account for clock skew, in seconds. Defaults to 60 seconds if set to 0 and can be disabled if set to -1. Only applicable with 'jwt' roles.",
+              "type": "number"
+            },
+            "disableBoundClaimsParsing": {
+              "description": "Disable bound claim value parsing. Useful when values contain commas.",
+              "type": "boolean"
+            },
+            "expirationLeeway": {
+              "description": "The amount of leeway to add to expiration (exp) claims to account for\nclock skew, in seconds. Defaults to 150 seconds if set to 0 and can be disabled if set to -1.\nOnly applicable with \"jwt\" roles.\nThe amount of leeway to add to expiration (exp) claims to account for clock skew, in seconds. Defaults to 150 seconds if set to 0 and can be disabled if set to -1. Only applicable with 'jwt' roles.",
+              "type": "number"
+            },
+            "groupsClaim": {
+              "description": "The claim to use to uniquely identify\nthe set of groups to which the user belongs; this will be used as the names\nfor the Identity group aliases created due to a successful login. The claim\nvalue must be a list of strings.\nThe claim to use to uniquely identify the set of groups to which the user belongs; this will be used as the names for the Identity group aliases created due to a successful login. The claim value must be a list of strings.",
+              "type": "string"
+            },
+            "maxAge": {
+              "description": "Specifies the allowable elapsed time in seconds since the last time\nthe user was actively authenticated with the OIDC provider.\nSpecifies the allowable elapsed time in seconds since the last time the user was actively authenticated.",
+              "type": "number"
+            },
+            "namespace": {
+              "description": "The namespace to provision the resource in.\nThe value should not contain leading or trailing forward slashes.\nThe namespace is always relative to the provider's configured namespace.\nAvailable only for Vault Enterprise.\nTarget namespace. (requires Enterprise)",
+              "type": "string"
+            },
+            "notBeforeLeeway": {
+              "description": "The amount of leeway to add to not before (nbf) claims to account for\nclock skew, in seconds. Defaults to 150 seconds if set to 0 and can be disabled if set to -1.\nOnly applicable with \"jwt\" roles.\nThe amount of leeway to add to not before (nbf) claims to account for clock skew, in seconds. Defaults to 150 seconds if set to 0 and can be disabled if set to -1. Only applicable with 'jwt' roles.",
+              "type": "number"
+            },
+            "oidcScopes": {
+              "description": "If set, a list of OIDC scopes to be used with an OIDC role.\nThe standard scope \"openid\" is automatically included and need not be specified.\nList of OIDC scopes to be used with an OIDC role. The standard scope \"openid\" is automatically included and need not be specified.",
+              "items": {
+                "type": "string"
+              },
+              "type": "array",
+              "x-kubernetes-list-type": "set"
+            },
+            "roleName": {
+              "description": "The name of the role.\nName of the role.",
+              "type": "string"
+            },
+            "roleType": {
+              "description": "Type of role, either \"oidc\" (default) or \"jwt\".\nType of role, either \"oidc\" (default) or \"jwt\"",
+              "type": "string"
+            },
+            "tokenBoundCidrs": {
+              "description": "List of CIDR blocks; if set, specifies blocks of IP\naddresses which can authenticate successfully, and ties the resulting token to these blocks\nas well.\nSpecifies the blocks of IP addresses which are allowed to use the generated token",
+              "items": {
+                "type": "string"
+              },
+              "type": "array",
+              "x-kubernetes-list-type": "set"
+            },
+            "tokenExplicitMaxTtl": {
+              "description": "If set, will encode an\nexplicit max TTL\nonto the token in number of seconds. This is a hard cap even if token_ttl and\ntoken_max_ttl would otherwise allow a renewal.\nGenerated Token's Explicit Maximum TTL in seconds",
+              "type": "number"
+            },
+            "tokenMaxTtl": {
+              "description": "The maximum lifetime for generated tokens in number of seconds.\nIts current value will be referenced at renewal time.\nThe maximum lifetime of the generated token",
+              "type": "number"
+            },
+            "tokenNoDefaultPolicy": {
+              "description": "If set, the default policy will not be set on\ngenerated tokens; otherwise it will be added to the policies set in token_policies.\nIf true, the 'default' policy will not automatically be added to generated tokens",
+              "type": "boolean"
+            },
+            "tokenNumUses": {
+              "description": "The maximum number\nof times a generated token may be used (within its lifetime); 0 means unlimited.\nThe maximum number of times a token may be used, a value of zero means unlimited",
+              "type": "number"
+            },
+            "tokenPeriod": {
+              "description": "If set, indicates that the\ntoken generated using this role should never expire. The token should be renewed within the\nduration specified by this value. At each renewal, the token's TTL will be set to the\nvalue of this field. Specified in seconds.\nGenerated Token's Period",
+              "type": "number"
+            },
+            "tokenPolicies": {
+              "description": "List of policies to encode onto generated tokens. Depending\non the auth method, this list may be supplemented by user/group/other values.\nGenerated Token's Policies",
+              "items": {
+                "type": "string"
+              },
+              "type": "array",
+              "x-kubernetes-list-type": "set"
+            },
+            "tokenTtl": {
+              "description": "The incremental lifetime for generated tokens in number of seconds.\nIts current value will be referenced at renewal time.\nThe initial ttl of the token to generate in seconds",
+              "type": "number"
+            },
+            "tokenType": {
+              "description": "The type of token that should be generated. Can be service,\nbatch, or default to use the mount's tuned default (which unless changed will be\nservice tokens). For token store roles, there are two additional possibilities:\ndefault-service and default-batch which specify the type to return unless the client\nrequests a different type at generation time.\nThe type of token to generate, service or batch",
+              "type": "string"
+            },
+            "userClaim": {
+              "description": "The claim to use to uniquely identify\nthe user; this will be used as the name for the Identity entity alias created\ndue to a successful login.\nThe claim to use to uniquely identify the user; this will be used as the name for the Identity entity alias created due to a successful login.",
+              "type": "string"
+            },
+            "userClaimJsonPointer": {
+              "description": "Specifies if the user_claim value uses\nJSON pointer\nsyntax for referencing claims. By default, the user_claim value will not use JSON pointer.\nRequires Vault 1.11+.\nSpecifies if the user_claim value uses JSON pointer syntax for referencing claims. By default, the user_claim value will not use JSON pointer.",
+              "type": "boolean"
+            },
+            "verboseOidcLogging": {
+              "description": "Log received OIDC tokens and claims when debug-level\nlogging is active. Not recommended in production since sensitive information may be present\nin OIDC responses.\nLog received OIDC tokens and claims when debug-level logging is active. Not recommended in production since sensitive information may be present in OIDC responses.",
+              "type": "boolean"
+            }
+          },
+          "type": "object"
+        },
+        "initProvider": {
+          "description": "THIS IS A BETA FIELD. It will be honored\nunless the Management Policies feature flag is disabled.\nInitProvider holds the same fields as ForProvider, with the exception\nof Identifier and other resource reference fields. The fields that are\nin InitProvider are merged into ForProvider when the resource is created.\nThe same fields are also added to the terraform ignore_changes hook, to\navoid updating them after creation. This is useful for fields that are\nrequired on creation, but we do not desire to update them after creation,\nfor example because of an external controller is managing them, like an\nautoscaler.",
+          "properties": {
+            "allowedRedirectUris": {
+              "description": "The list of allowed values for redirect_uri during OIDC logins.\nRequired for OIDC roles\nThe list of allowed values for redirect_uri during OIDC logins.",
+              "items": {
+                "type": "string"
+              },
+              "type": "array",
+              "x-kubernetes-list-type": "set"
+            },
+            "backend": {
+              "description": "The unique name of the auth backend to configure.\nDefaults to jwt.\nUnique name of the auth backend to configure.",
+              "type": "string"
+            },
+            "backendRef": {
+              "description": "Reference to a AuthBackend in jwt to populate backend.",
+              "properties": {
+                "name": {
+                  "description": "Name of the referenced object.",
+                  "type": "string"
+                },
+                "policy": {
+                  "description": "Policies for referencing.",
+                  "properties": {
+                    "resolution": {
+                      "default": "Required",
+                      "description": "Resolution specifies whether resolution of this reference is required.\nThe default is 'Required', which means the reconcile will fail if the\nreference cannot be resolved. 'Optional' means this reference will be\na no-op if it cannot be resolved.",
+                      "enum": [
+                        "Required",
+                        "Optional"
+                      ],
+                      "type": "string"
+                    },
+                    "resolve": {
+                      "description": "Resolve specifies when this reference should be resolved. The default\nis 'IfNotPresent', which will attempt to resolve the reference only when\nthe corresponding field is not present. Use 'Always' to resolve the\nreference on every reconcile.",
+                      "enum": [
+                        "Always",
+                        "IfNotPresent"
+                      ],
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                }
+              },
+              "required": [
+                "name"
+              ],
+              "type": "object"
+            },
+            "backendSelector": {
+              "description": "Selector for a AuthBackend in jwt to populate backend.",
+              "properties": {
+                "matchControllerRef": {
+                  "description": "MatchControllerRef ensures an object with the same controller reference\nas the selecting object is selected.",
+                  "type": "boolean"
+                },
+                "matchLabels": {
+                  "additionalProperties": {
+                    "type": "string"
+                  },
+                  "description": "MatchLabels ensures an object with matching labels is selected.",
+                  "type": "object"
+                },
+                "policy": {
+                  "description": "Policies for selection.",
+                  "properties": {
+                    "resolution": {
+                      "default": "Required",
+                      "description": "Resolution specifies whether resolution of this reference is required.\nThe default is 'Required', which means the reconcile will fail if the\nreference cannot be resolved. 'Optional' means this reference will be\na no-op if it cannot be resolved.",
+                      "enum": [
+                        "Required",
+                        "Optional"
+                      ],
+                      "type": "string"
+                    },
+                    "resolve": {
+                      "description": "Resolve specifies when this reference should be resolved. The default\nis 'IfNotPresent', which will attempt to resolve the reference only when\nthe corresponding field is not present. Use 'Always' to resolve the\nreference on every reconcile.",
+                      "enum": [
+                        "Always",
+                        "IfNotPresent"
+                      ],
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                }
+              },
+              "type": "object"
+            },
+            "boundAudiences": {
+              "description": "List of aud claims to match against. Any match is sufficient.\nList of aud claims to match against. Any match is sufficient.",
+              "items": {
+                "type": "string"
+              },
+              "type": "array",
+              "x-kubernetes-list-type": "set"
+            },
+            "boundClaims": {
+              "additionalProperties": {
+                "type": "string"
+              },
+              "description": "If set, a map of claims to values to match against.\nA claim's value must be a string, which may contain one value or multiple\ncomma-separated values, e.g. \"red\" or \"red,green,blue\".\nMap of claims/values to match against. The expected value may be a single string or a comma-separated string list.",
+              "type": "object",
+              "x-kubernetes-map-type": "granular"
+            },
+            "boundClaimsType": {
+              "description": "How to interpret values in the claims/values\nmap (bound_claims): can be either string (exact match) or glob (wildcard\nmatch). Requires Vault 1.4.0 or above.\nHow to interpret values in the claims/values map: can be either \"string\" (exact match) or \"glob\" (wildcard match).",
+              "type": "string"
+            },
+            "boundSubject": {
+              "description": "If set, requires that the sub claim matches\nthis value.\nIf set, requires that the sub claim matches this value.",
+              "type": "string"
+            },
+            "claimMappings": {
+              "additionalProperties": {
+                "type": "string"
+              },
+              "description": "If set, a map of claims (keys) to be copied\nto specified metadata fields (values).\nMap of claims (keys) to be copied to specified metadata fields (values).",
+              "type": "object",
+              "x-kubernetes-map-type": "granular"
+            },
+            "clockSkewLeeway": {
+              "description": "The amount of leeway to add to all claims to account for clock skew, in\nseconds. Defaults to 60 seconds if set to 0 and can be disabled if set to -1.\nOnly applicable with \"jwt\" roles.\nThe amount of leeway to add to all claims to account for clock skew, in seconds. Defaults to 60 seconds if set to 0 and can be disabled if set to -1. Only applicable with 'jwt' roles.",
+              "type": "number"
+            },
+            "disableBoundClaimsParsing": {
+              "description": "Disable bound claim value parsing. Useful when values contain commas.",
+              "type": "boolean"
+            },
+            "expirationLeeway": {
+              "description": "The amount of leeway to add to expiration (exp) claims to account for\nclock skew, in seconds. Defaults to 150 seconds if set to 0 and can be disabled if set to -1.\nOnly applicable with \"jwt\" roles.\nThe amount of leeway to add to expiration (exp) claims to account for clock skew, in seconds. Defaults to 150 seconds if set to 0 and can be disabled if set to -1. Only applicable with 'jwt' roles.",
+              "type": "number"
+            },
+            "groupsClaim": {
+              "description": "The claim to use to uniquely identify\nthe set of groups to which the user belongs; this will be used as the names\nfor the Identity group aliases created due to a successful login. The claim\nvalue must be a list of strings.\nThe claim to use to uniquely identify the set of groups to which the user belongs; this will be used as the names for the Identity group aliases created due to a successful login. The claim value must be a list of strings.",
+              "type": "string"
+            },
+            "maxAge": {
+              "description": "Specifies the allowable elapsed time in seconds since the last time\nthe user was actively authenticated with the OIDC provider.\nSpecifies the allowable elapsed time in seconds since the last time the user was actively authenticated.",
+              "type": "number"
+            },
+            "namespace": {
+              "description": "The namespace to provision the resource in.\nThe value should not contain leading or trailing forward slashes.\nThe namespace is always relative to the provider's configured namespace.\nAvailable only for Vault Enterprise.\nTarget namespace. (requires Enterprise)",
+              "type": "string"
+            },
+            "notBeforeLeeway": {
+              "description": "The amount of leeway to add to not before (nbf) claims to account for\nclock skew, in seconds. Defaults to 150 seconds if set to 0 and can be disabled if set to -1.\nOnly applicable with \"jwt\" roles.\nThe amount of leeway to add to not before (nbf) claims to account for clock skew, in seconds. Defaults to 150 seconds if set to 0 and can be disabled if set to -1. Only applicable with 'jwt' roles.",
+              "type": "number"
+            },
+            "oidcScopes": {
+              "description": "If set, a list of OIDC scopes to be used with an OIDC role.\nThe standard scope \"openid\" is automatically included and need not be specified.\nList of OIDC scopes to be used with an OIDC role. The standard scope \"openid\" is automatically included and need not be specified.",
+              "items": {
+                "type": "string"
+              },
+              "type": "array",
+              "x-kubernetes-list-type": "set"
+            },
+            "roleName": {
+              "description": "The name of the role.\nName of the role.",
+              "type": "string"
+            },
+            "roleType": {
+              "description": "Type of role, either \"oidc\" (default) or \"jwt\".\nType of role, either \"oidc\" (default) or \"jwt\"",
+              "type": "string"
+            },
+            "tokenBoundCidrs": {
+              "description": "List of CIDR blocks; if set, specifies blocks of IP\naddresses which can authenticate successfully, and ties the resulting token to these blocks\nas well.\nSpecifies the blocks of IP addresses which are allowed to use the generated token",
+              "items": {
+                "type": "string"
+              },
+              "type": "array",
+              "x-kubernetes-list-type": "set"
+            },
+            "tokenExplicitMaxTtl": {
+              "description": "If set, will encode an\nexplicit max TTL\nonto the token in number of seconds. This is a hard cap even if token_ttl and\ntoken_max_ttl would otherwise allow a renewal.\nGenerated Token's Explicit Maximum TTL in seconds",
+              "type": "number"
+            },
+            "tokenMaxTtl": {
+              "description": "The maximum lifetime for generated tokens in number of seconds.\nIts current value will be referenced at renewal time.\nThe maximum lifetime of the generated token",
+              "type": "number"
+            },
+            "tokenNoDefaultPolicy": {
+              "description": "If set, the default policy will not be set on\ngenerated tokens; otherwise it will be added to the policies set in token_policies.\nIf true, the 'default' policy will not automatically be added to generated tokens",
+              "type": "boolean"
+            },
+            "tokenNumUses": {
+              "description": "The maximum number\nof times a generated token may be used (within its lifetime); 0 means unlimited.\nThe maximum number of times a token may be used, a value of zero means unlimited",
+              "type": "number"
+            },
+            "tokenPeriod": {
+              "description": "If set, indicates that the\ntoken generated using this role should never expire. The token should be renewed within the\nduration specified by this value. At each renewal, the token's TTL will be set to the\nvalue of this field. Specified in seconds.\nGenerated Token's Period",
+              "type": "number"
+            },
+            "tokenPolicies": {
+              "description": "List of policies to encode onto generated tokens. Depending\non the auth method, this list may be supplemented by user/group/other values.\nGenerated Token's Policies",
+              "items": {
+                "type": "string"
+              },
+              "type": "array",
+              "x-kubernetes-list-type": "set"
+            },
+            "tokenTtl": {
+              "description": "The incremental lifetime for generated tokens in number of seconds.\nIts current value will be referenced at renewal time.\nThe initial ttl of the token to generate in seconds",
+              "type": "number"
+            },
+            "tokenType": {
+              "description": "The type of token that should be generated. Can be service,\nbatch, or default to use the mount's tuned default (which unless changed will be\nservice tokens). For token store roles, there are two additional possibilities:\ndefault-service and default-batch which specify the type to return unless the client\nrequests a different type at generation time.\nThe type of token to generate, service or batch",
+              "type": "string"
+            },
+            "userClaim": {
+              "description": "The claim to use to uniquely identify\nthe user; this will be used as the name for the Identity entity alias created\ndue to a successful login.\nThe claim to use to uniquely identify the user; this will be used as the name for the Identity entity alias created due to a successful login.",
+              "type": "string"
+            },
+            "userClaimJsonPointer": {
+              "description": "Specifies if the user_claim value uses\nJSON pointer\nsyntax for referencing claims. By default, the user_claim value will not use JSON pointer.\nRequires Vault 1.11+.\nSpecifies if the user_claim value uses JSON pointer syntax for referencing claims. By default, the user_claim value will not use JSON pointer.",
+              "type": "boolean"
+            },
+            "verboseOidcLogging": {
+              "description": "Log received OIDC tokens and claims when debug-level\nlogging is active. Not recommended in production since sensitive information may be present\nin OIDC responses.\nLog received OIDC tokens and claims when debug-level logging is active. Not recommended in production since sensitive information may be present in OIDC responses.",
+              "type": "boolean"
+            }
+          },
+          "type": "object"
+        },
+        "managementPolicies": {
+          "default": [
+            "*"
+          ],
+          "description": "THIS IS A BETA FIELD. It is on by default but can be opted out\nthrough a Crossplane feature flag.\nManagementPolicies specify the array of actions Crossplane is allowed to\ntake on the managed and external resources.\nThis field is planned to replace the DeletionPolicy field in a future\nrelease. Currently, both could be set independently and non-default\nvalues would be honored if the feature flag is enabled. If both are\ncustom, the DeletionPolicy field will be ignored.\nSee the design doc for more information: https://github.com/crossplane/crossplane/blob/499895a25d1a1a0ba1604944ef98ac7a1a71f197/design/design-doc-observe-only-resources.md?plain=1#L223\nand this one: https://github.com/crossplane/crossplane/blob/444267e84783136daa93568b364a5f01228cacbe/design/one-pager-ignore-changes.md",
+          "items": {
+            "description": "A ManagementAction represents an action that the Crossplane controllers\ncan take on an external resource.",
+            "enum": [
+              "Observe",
+              "Create",
+              "Update",
+              "Delete",
+              "LateInitialize",
+              "*"
+            ],
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "providerConfigRef": {
+          "default": {
+            "name": "default"
+          },
+          "description": "ProviderConfigReference specifies how the provider that will be used to\ncreate, observe, update, and delete this managed resource should be\nconfigured.",
+          "properties": {
+            "name": {
+              "description": "Name of the referenced object.",
+              "type": "string"
+            },
+            "policy": {
+              "description": "Policies for referencing.",
+              "properties": {
+                "resolution": {
+                  "default": "Required",
+                  "description": "Resolution specifies whether resolution of this reference is required.\nThe default is 'Required', which means the reconcile will fail if the\nreference cannot be resolved. 'Optional' means this reference will be\na no-op if it cannot be resolved.",
+                  "enum": [
+                    "Required",
+                    "Optional"
+                  ],
+                  "type": "string"
+                },
+                "resolve": {
+                  "description": "Resolve specifies when this reference should be resolved. The default\nis 'IfNotPresent', which will attempt to resolve the reference only when\nthe corresponding field is not present. Use 'Always' to resolve the\nreference on every reconcile.",
+                  "enum": [
+                    "Always",
+                    "IfNotPresent"
+                  ],
+                  "type": "string"
+                }
+              },
+              "type": "object"
+            }
+          },
+          "required": [
+            "name"
+          ],
+          "type": "object"
+        },
+        "writeConnectionSecretToRef": {
+          "description": "WriteConnectionSecretToReference specifies the namespace and name of a\nSecret to which any connection details for this managed resource should\nbe written. Connection details frequently include the endpoint, username,\nand password required to connect to the managed resource.",
+          "properties": {
+            "name": {
+              "description": "Name of the secret.",
+              "type": "string"
+            },
+            "namespace": {
+              "description": "Namespace of the secret.",
+              "type": "string"
+            }
+          },
+          "required": [
+            "name",
+            "namespace"
+          ],
+          "type": "object"
+        }
+      },
+      "required": [
+        "forProvider"
+      ],
+      "type": "object",
+      "x-kubernetes-validations": [
+        {
+          "message": "spec.forProvider.roleName is a required parameter",
+          "rule": "!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.roleName) || (has(self.initProvider) && has(self.initProvider.roleName))"
+        },
+        {
+          "message": "spec.forProvider.userClaim is a required parameter",
+          "rule": "!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.userClaim) || (has(self.initProvider) && has(self.initProvider.userClaim))"
+        }
+      ]
+    },
+    "status": {
+      "description": "AuthBackendRoleStatus defines the observed state of AuthBackendRole.",
+      "properties": {
+        "atProvider": {
+          "properties": {
+            "allowedRedirectUris": {
+              "description": "The list of allowed values for redirect_uri during OIDC logins.\nRequired for OIDC roles\nThe list of allowed values for redirect_uri during OIDC logins.",
+              "items": {
+                "type": "string"
+              },
+              "type": "array",
+              "x-kubernetes-list-type": "set"
+            },
+            "backend": {
+              "description": "The unique name of the auth backend to configure.\nDefaults to jwt.\nUnique name of the auth backend to configure.",
+              "type": "string"
+            },
+            "boundAudiences": {
+              "description": "List of aud claims to match against. Any match is sufficient.\nList of aud claims to match against. Any match is sufficient.",
+              "items": {
+                "type": "string"
+              },
+              "type": "array",
+              "x-kubernetes-list-type": "set"
+            },
+            "boundClaims": {
+              "additionalProperties": {
+                "type": "string"
+              },
+              "description": "If set, a map of claims to values to match against.\nA claim's value must be a string, which may contain one value or multiple\ncomma-separated values, e.g. \"red\" or \"red,green,blue\".\nMap of claims/values to match against. The expected value may be a single string or a comma-separated string list.",
+              "type": "object",
+              "x-kubernetes-map-type": "granular"
+            },
+            "boundClaimsType": {
+              "description": "How to interpret values in the claims/values\nmap (bound_claims): can be either string (exact match) or glob (wildcard\nmatch). Requires Vault 1.4.0 or above.\nHow to interpret values in the claims/values map: can be either \"string\" (exact match) or \"glob\" (wildcard match).",
+              "type": "string"
+            },
+            "boundSubject": {
+              "description": "If set, requires that the sub claim matches\nthis value.\nIf set, requires that the sub claim matches this value.",
+              "type": "string"
+            },
+            "claimMappings": {
+              "additionalProperties": {
+                "type": "string"
+              },
+              "description": "If set, a map of claims (keys) to be copied\nto specified metadata fields (values).\nMap of claims (keys) to be copied to specified metadata fields (values).",
+              "type": "object",
+              "x-kubernetes-map-type": "granular"
+            },
+            "clockSkewLeeway": {
+              "description": "The amount of leeway to add to all claims to account for clock skew, in\nseconds. Defaults to 60 seconds if set to 0 and can be disabled if set to -1.\nOnly applicable with \"jwt\" roles.\nThe amount of leeway to add to all claims to account for clock skew, in seconds. Defaults to 60 seconds if set to 0 and can be disabled if set to -1. Only applicable with 'jwt' roles.",
+              "type": "number"
+            },
+            "disableBoundClaimsParsing": {
+              "description": "Disable bound claim value parsing. Useful when values contain commas.",
+              "type": "boolean"
+            },
+            "expirationLeeway": {
+              "description": "The amount of leeway to add to expiration (exp) claims to account for\nclock skew, in seconds. Defaults to 150 seconds if set to 0 and can be disabled if set to -1.\nOnly applicable with \"jwt\" roles.\nThe amount of leeway to add to expiration (exp) claims to account for clock skew, in seconds. Defaults to 150 seconds if set to 0 and can be disabled if set to -1. Only applicable with 'jwt' roles.",
+              "type": "number"
+            },
+            "groupsClaim": {
+              "description": "The claim to use to uniquely identify\nthe set of groups to which the user belongs; this will be used as the names\nfor the Identity group aliases created due to a successful login. The claim\nvalue must be a list of strings.\nThe claim to use to uniquely identify the set of groups to which the user belongs; this will be used as the names for the Identity group aliases created due to a successful login. The claim value must be a list of strings.",
+              "type": "string"
+            },
+            "id": {
+              "type": "string"
+            },
+            "maxAge": {
+              "description": "Specifies the allowable elapsed time in seconds since the last time\nthe user was actively authenticated with the OIDC provider.\nSpecifies the allowable elapsed time in seconds since the last time the user was actively authenticated.",
+              "type": "number"
+            },
+            "namespace": {
+              "description": "The namespace to provision the resource in.\nThe value should not contain leading or trailing forward slashes.\nThe namespace is always relative to the provider's configured namespace.\nAvailable only for Vault Enterprise.\nTarget namespace. (requires Enterprise)",
+              "type": "string"
+            },
+            "notBeforeLeeway": {
+              "description": "The amount of leeway to add to not before (nbf) claims to account for\nclock skew, in seconds. Defaults to 150 seconds if set to 0 and can be disabled if set to -1.\nOnly applicable with \"jwt\" roles.\nThe amount of leeway to add to not before (nbf) claims to account for clock skew, in seconds. Defaults to 150 seconds if set to 0 and can be disabled if set to -1. Only applicable with 'jwt' roles.",
+              "type": "number"
+            },
+            "oidcScopes": {
+              "description": "If set, a list of OIDC scopes to be used with an OIDC role.\nThe standard scope \"openid\" is automatically included and need not be specified.\nList of OIDC scopes to be used with an OIDC role. The standard scope \"openid\" is automatically included and need not be specified.",
+              "items": {
+                "type": "string"
+              },
+              "type": "array",
+              "x-kubernetes-list-type": "set"
+            },
+            "roleName": {
+              "description": "The name of the role.\nName of the role.",
+              "type": "string"
+            },
+            "roleType": {
+              "description": "Type of role, either \"oidc\" (default) or \"jwt\".\nType of role, either \"oidc\" (default) or \"jwt\"",
+              "type": "string"
+            },
+            "tokenBoundCidrs": {
+              "description": "List of CIDR blocks; if set, specifies blocks of IP\naddresses which can authenticate successfully, and ties the resulting token to these blocks\nas well.\nSpecifies the blocks of IP addresses which are allowed to use the generated token",
+              "items": {
+                "type": "string"
+              },
+              "type": "array",
+              "x-kubernetes-list-type": "set"
+            },
+            "tokenExplicitMaxTtl": {
+              "description": "If set, will encode an\nexplicit max TTL\nonto the token in number of seconds. This is a hard cap even if token_ttl and\ntoken_max_ttl would otherwise allow a renewal.\nGenerated Token's Explicit Maximum TTL in seconds",
+              "type": "number"
+            },
+            "tokenMaxTtl": {
+              "description": "The maximum lifetime for generated tokens in number of seconds.\nIts current value will be referenced at renewal time.\nThe maximum lifetime of the generated token",
+              "type": "number"
+            },
+            "tokenNoDefaultPolicy": {
+              "description": "If set, the default policy will not be set on\ngenerated tokens; otherwise it will be added to the policies set in token_policies.\nIf true, the 'default' policy will not automatically be added to generated tokens",
+              "type": "boolean"
+            },
+            "tokenNumUses": {
+              "description": "The maximum number\nof times a generated token may be used (within its lifetime); 0 means unlimited.\nThe maximum number of times a token may be used, a value of zero means unlimited",
+              "type": "number"
+            },
+            "tokenPeriod": {
+              "description": "If set, indicates that the\ntoken generated using this role should never expire. The token should be renewed within the\nduration specified by this value. At each renewal, the token's TTL will be set to the\nvalue of this field. Specified in seconds.\nGenerated Token's Period",
+              "type": "number"
+            },
+            "tokenPolicies": {
+              "description": "List of policies to encode onto generated tokens. Depending\non the auth method, this list may be supplemented by user/group/other values.\nGenerated Token's Policies",
+              "items": {
+                "type": "string"
+              },
+              "type": "array",
+              "x-kubernetes-list-type": "set"
+            },
+            "tokenTtl": {
+              "description": "The incremental lifetime for generated tokens in number of seconds.\nIts current value will be referenced at renewal time.\nThe initial ttl of the token to generate in seconds",
+              "type": "number"
+            },
+            "tokenType": {
+              "description": "The type of token that should be generated. Can be service,\nbatch, or default to use the mount's tuned default (which unless changed will be\nservice tokens). For token store roles, there are two additional possibilities:\ndefault-service and default-batch which specify the type to return unless the client\nrequests a different type at generation time.\nThe type of token to generate, service or batch",
+              "type": "string"
+            },
+            "userClaim": {
+              "description": "The claim to use to uniquely identify\nthe user; this will be used as the name for the Identity entity alias created\ndue to a successful login.\nThe claim to use to uniquely identify the user; this will be used as the name for the Identity entity alias created due to a successful login.",
+              "type": "string"
+            },
+            "userClaimJsonPointer": {
+              "description": "Specifies if the user_claim value uses\nJSON pointer\nsyntax for referencing claims. By default, the user_claim value will not use JSON pointer.\nRequires Vault 1.11+.\nSpecifies if the user_claim value uses JSON pointer syntax for referencing claims. By default, the user_claim value will not use JSON pointer.",
+              "type": "boolean"
+            },
+            "verboseOidcLogging": {
+              "description": "Log received OIDC tokens and claims when debug-level\nlogging is active. Not recommended in production since sensitive information may be present\nin OIDC responses.\nLog received OIDC tokens and claims when debug-level logging is active. Not recommended in production since sensitive information may be present in OIDC responses.",
+              "type": "boolean"
+            }
+          },
+          "type": "object"
+        },
+        "conditions": {
+          "description": "Conditions of the resource.",
+          "items": {
+            "description": "A Condition that may apply to a resource.",
+            "properties": {
+              "lastTransitionTime": {
+                "description": "LastTransitionTime is the last time this condition transitioned from one\nstatus to another.",
+                "format": "date-time",
+                "type": "string"
+              },
+              "message": {
+                "description": "A Message containing details about this condition's last transition from\none status to another, if any.",
+                "type": "string"
+              },
+              "observedGeneration": {
+                "description": "ObservedGeneration represents the .metadata.generation that the condition was set based upon.\nFor instance, if .metadata.generation is currently 12, but the .status.conditions[x].observedGeneration is 9, the condition is out of date\nwith respect to the current state of the instance.",
+                "format": "int64",
+                "type": "integer"
+              },
+              "reason": {
+                "description": "A Reason for this condition's last transition from one status to another.",
+                "type": "string"
+              },
+              "status": {
+                "description": "Status of this condition; is it currently True, False, or Unknown?",
+                "type": "string"
+              },
+              "type": {
+                "description": "Type of this condition. At most one of each condition type may apply to\na resource at any point in time.",
+                "type": "string"
+              }
+            },
+            "required": [
+              "lastTransitionTime",
+              "reason",
+              "status",
+              "type"
+            ],
+            "type": "object"
+          },
+          "type": "array",
+          "x-kubernetes-list-map-keys": [
+            "type"
+          ],
+          "x-kubernetes-list-type": "map"
+        },
+        "observedGeneration": {
+          "description": "ObservedGeneration is the latest metadata.generation\nwhich resulted in either a ready state, or stalled due to error\nit can not recover from without human intervention.",
+          "format": "int64",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    }
+  },
+  "required": [
+    "spec"
+  ],
+  "type": "object"
+}

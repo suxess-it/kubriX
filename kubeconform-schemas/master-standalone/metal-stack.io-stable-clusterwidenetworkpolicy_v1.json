@@ -1,0 +1,236 @@
+{
+  "description": "ClusterwideNetworkPolicy contains the desired state for a cluster wide network policy to be applied.",
+  "properties": {
+    "apiVersion": {
+      "description": "APIVersion defines the versioned schema of this representation of an object.\nServers should convert recognized schemas to the latest internal value, and\nmay reject unrecognized values.\nMore info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources",
+      "type": "string"
+    },
+    "kind": {
+      "description": "Kind is a string value representing the REST resource this object represents.\nServers may infer this from the endpoint the client submits requests to.\nCannot be updated.\nIn CamelCase.\nMore info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
+      "type": "string"
+    },
+    "metadata": {
+      "type": "object"
+    },
+    "spec": {
+      "description": "PolicySpec defines the rules to create for ingress and egress",
+      "properties": {
+        "description": {
+          "description": "Description is a free form string, it can be used by the creator of\nthe rule to store human-readable explanation of the purpose of this\nrule. Rules cannot be identified by comment.",
+          "type": "string"
+        },
+        "egress": {
+          "description": "List of egress rules to be applied. Outgoing traffic is\nallowed if there is a ClusterwideNetworkPolicy that allows it.\nClusters are isolated by default.",
+          "items": {
+            "description": "EgressRule describes a particular set of traffic that is allowed out of the cluster\nThe traffic must match both ports and to.",
+            "properties": {
+              "ports": {
+                "description": "List of destination ports for outgoing traffic.\nEach item in this list is combined using a logical OR. If this field is\nempty or missing, this rule matches all ports (traffic not restricted by port).\nIf this field is present and contains at least one item, then this rule allows\ntraffic only if the traffic matches at least one port in the list.",
+                "items": {
+                  "description": "NetworkPolicyPort describes a port to allow traffic on",
+                  "properties": {
+                    "endPort": {
+                      "description": "endPort indicates that the range of ports from port to endPort if set, inclusive,\nshould be allowed by the policy. This field cannot be defined if the port field\nis not defined or if the port field is defined as a named (string) port.\nThe endPort must be equal or greater than port.",
+                      "format": "int32",
+                      "type": "integer"
+                    },
+                    "port": {
+                      "anyOf": [
+                        {
+                          "type": "integer"
+                        },
+                        {
+                          "type": "string"
+                        }
+                      ],
+                      "description": "port represents the port on the given protocol. This can either be a numerical or named\nport on a pod. If this field is not provided, this matches all port names and\nnumbers.\nIf present, only traffic on the specified protocol AND port will be matched.",
+                      "x-kubernetes-int-or-string": true
+                    },
+                    "protocol": {
+                      "description": "protocol represents the protocol (TCP, UDP, or SCTP) which traffic must match.\nIf not specified, this field defaults to TCP.",
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                },
+                "type": "array"
+              },
+              "to": {
+                "description": "List of destinations for outgoing traffic of a cluster for this rule.\nItems in this list are combined using a logical OR operation. If this field is\nempty or missing, this rule matches all destinations (traffic not restricted by\ndestination). If this field is present and contains at least one item, this rule\nallows traffic only if the traffic matches at least one item in the to list.\nTo rules can't contain ToFQDNs rules.",
+                "items": {
+                  "description": "IPBlock describes a particular CIDR (Ex. \"192.168.1.0/24\",\"2001:db8::/64\") that is allowed\nto the pods matched by a NetworkPolicySpec's podSelector. The except entry describes CIDRs\nthat should not be included within this rule.",
+                  "properties": {
+                    "cidr": {
+                      "description": "cidr is a string representing the IPBlock\nValid examples are \"192.168.1.0/24\" or \"2001:db8::/64\"",
+                      "type": "string"
+                    },
+                    "except": {
+                      "description": "except is a slice of CIDRs that should not be included within an IPBlock\nValid examples are \"192.168.1.0/24\" or \"2001:db8::/64\"\nExcept values will be rejected if they are outside the cidr range",
+                      "items": {
+                        "type": "string"
+                      },
+                      "type": "array"
+                    }
+                  },
+                  "required": [
+                    "cidr"
+                  ],
+                  "type": "object"
+                },
+                "type": "array"
+              },
+              "toFQDNs": {
+                "description": "List of FQDNs (fully qualified domain names) for outgoing traffic of a cluster for this rule.\nItems in this list are combined using a logical OR operation. This field is used as\nwhitelist for DNS names. If none specified, no rule will be applied.\nToFQDNs rules can't contain To rules.",
+                "items": {
+                  "description": "FQDNSelector describes rules for matching DNS names.",
+                  "properties": {
+                    "matchName": {
+                      "description": "MatchName matches FQDN.",
+                      "pattern": "^([-a-zA-Z0-9_]+[.]?)+$",
+                      "type": "string"
+                    },
+                    "matchPattern": {
+                      "description": "MatchPattern allows using \"*\" to match DNS names.\n\"*\" matches 0 or more valid characters.",
+                      "pattern": "^([-a-zA-Z0-9_*]+[.]?)+$",
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                },
+                "type": "array"
+              }
+            },
+            "type": "object"
+          },
+          "type": "array"
+        },
+        "ingress": {
+          "description": "List of ingress rules to be applied. Traffic is allowed to\na cluster if there is a ClusterwideNetworkPolicy that allows it, OR there is a service\nexposed with type Loadbalancer. Clusters are isolated by default.",
+          "items": {
+            "description": "IngressRule describes a particular set of traffic that is allowed to the cluster.\nThe traffic must match both ports and from.",
+            "properties": {
+              "from": {
+                "description": "List of sources which should be able to access the cluster for this rule.\nItems in this list are combined using a logical OR operation. If this field is\nempty or missing, this rule matches all sources (traffic not restricted by\nsource). If this field is present and contains at least one item, this rule\nallows traffic only if the traffic matches at least one item in the from list.",
+                "items": {
+                  "description": "IPBlock describes a particular CIDR (Ex. \"192.168.1.0/24\",\"2001:db8::/64\") that is allowed\nto the pods matched by a NetworkPolicySpec's podSelector. The except entry describes CIDRs\nthat should not be included within this rule.",
+                  "properties": {
+                    "cidr": {
+                      "description": "cidr is a string representing the IPBlock\nValid examples are \"192.168.1.0/24\" or \"2001:db8::/64\"",
+                      "type": "string"
+                    },
+                    "except": {
+                      "description": "except is a slice of CIDRs that should not be included within an IPBlock\nValid examples are \"192.168.1.0/24\" or \"2001:db8::/64\"\nExcept values will be rejected if they are outside the cidr range",
+                      "items": {
+                        "type": "string"
+                      },
+                      "type": "array"
+                    }
+                  },
+                  "required": [
+                    "cidr"
+                  ],
+                  "type": "object"
+                },
+                "type": "array"
+              },
+              "ports": {
+                "description": "List of ports which should be made accessible on the cluster for this\nrule. Each item in this list is combined using a logical OR. If this field is\nempty or missing, this rule matches all ports (traffic not restricted by port).\nIf this field is present and contains at least one item, then this rule allows\ntraffic only if the traffic matches at least one port in the list.",
+                "items": {
+                  "description": "NetworkPolicyPort describes a port to allow traffic on",
+                  "properties": {
+                    "endPort": {
+                      "description": "endPort indicates that the range of ports from port to endPort if set, inclusive,\nshould be allowed by the policy. This field cannot be defined if the port field\nis not defined or if the port field is defined as a named (string) port.\nThe endPort must be equal or greater than port.",
+                      "format": "int32",
+                      "type": "integer"
+                    },
+                    "port": {
+                      "anyOf": [
+                        {
+                          "type": "integer"
+                        },
+                        {
+                          "type": "string"
+                        }
+                      ],
+                      "description": "port represents the port on the given protocol. This can either be a numerical or named\nport on a pod. If this field is not provided, this matches all port names and\nnumbers.\nIf present, only traffic on the specified protocol AND port will be matched.",
+                      "x-kubernetes-int-or-string": true
+                    },
+                    "protocol": {
+                      "description": "protocol represents the protocol (TCP, UDP, or SCTP) which traffic must match.\nIf not specified, this field defaults to TCP.",
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                },
+                "type": "array"
+              }
+            },
+            "type": "object"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "status": {
+      "description": "PolicyStatus defines the observed state for CWNP resource",
+      "properties": {
+        "fqdn_state": {
+          "additionalProperties": {
+            "items": {
+              "description": "IPSet stores set name association to IP addresses",
+              "properties": {
+                "expirationTime": {
+                  "description": "Deprecated: use `IPExpirationTimes` instead.",
+                  "format": "date-time",
+                  "type": "string"
+                },
+                "fqdn": {
+                  "description": "FQDN which this IP set is for.",
+                  "type": "string"
+                },
+                "ipExpirationTimes": {
+                  "additionalProperties": {
+                    "format": "date-time",
+                    "type": "string"
+                  },
+                  "description": "Maps IP addresses to their expiration times.",
+                  "type": "object"
+                },
+                "ips": {
+                  "description": "Deprecated: use `IPExpirationTimes` instead.",
+                  "items": {
+                    "type": "string"
+                  },
+                  "type": "array"
+                },
+                "setName": {
+                  "description": " A hash value merely used for reference.",
+                  "type": "string"
+                },
+                "version": {
+                  "description": "Whether this is a IPv4 or a IPv6 set.",
+                  "type": "string"
+                }
+              },
+              "type": "object"
+            },
+            "type": "array"
+          },
+          "description": "FQDNState stores mapping from FQDN rules to nftables sets used for a firewall rule.\nKey is either MatchName or MatchPattern",
+          "type": "object"
+        },
+        "message": {
+          "description": "Message describes why the state changed",
+          "type": "string"
+        },
+        "state": {
+          "description": "State of the CWNP, can be either deployed or ignored",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    }
+  },
+  "type": "object"
+}

@@ -1,0 +1,1654 @@
+{
+  "description": "Client is the Schema for the Clients API.",
+  "properties": {
+    "apiVersion": {
+      "description": "APIVersion defines the versioned schema of this representation of an object.\nServers should convert recognized schemas to the latest internal value, and\nmay reject unrecognized values.\nMore info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources",
+      "type": "string"
+    },
+    "kind": {
+      "description": "Kind is a string value representing the REST resource this object represents.\nServers may infer this from the endpoint the client submits requests to.\nCannot be updated.\nIn CamelCase.\nMore info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
+      "type": "string"
+    },
+    "metadata": {
+      "type": "object"
+    },
+    "spec": {
+      "description": "ClientSpec defines the desired state of Client",
+      "properties": {
+        "deletionPolicy": {
+          "default": "Delete",
+          "description": "DeletionPolicy specifies what will happen to the underlying external\nwhen this managed resource is deleted - either \"Delete\" or \"Orphan\" the\nexternal resource.\nThis field is planned to be deprecated in favor of the ManagementPolicies\nfield in a future release. Currently, both could be set independently and\nnon-default values would be honored if the feature flag is enabled.\nSee the design doc for more information: https://github.com/crossplane/crossplane/blob/499895a25d1a1a0ba1604944ef98ac7a1a71f197/design/design-doc-observe-only-resources.md?plain=1#L223",
+          "enum": [
+            "Orphan",
+            "Delete"
+          ],
+          "type": "string"
+        },
+        "forProvider": {
+          "properties": {
+            "accessTokenLifespan": {
+              "description": "The amount of time in seconds before an access token expires. This will override the default for the realm.",
+              "type": "string"
+            },
+            "accessType": {
+              "description": "Specifies the type of client, which can be one of the following:",
+              "type": "string"
+            },
+            "adminUrl": {
+              "description": "URL to the admin interface of the client.",
+              "type": "string"
+            },
+            "allowRefreshTokenInStandardTokenExchange": {
+              "description": "Defines whether to allow refresh token in Standard Token Exchange. Possible values are NO (default) and SAME_SESSION.",
+              "type": "string"
+            },
+            "alwaysDisplayInConsole": {
+              "description": "Always list this client in the Account UI, even if the user does not have an active session.",
+              "type": "boolean"
+            },
+            "authenticationFlowBindingOverrides": {
+              "description": "Override realm authentication flow bindings",
+              "items": {
+                "properties": {
+                  "browserId": {
+                    "description": "Browser flow id, (flow needs to exist)",
+                    "type": "string"
+                  },
+                  "browserIdRef": {
+                    "description": "Reference to a Flow in authenticationflow to populate browserId.",
+                    "properties": {
+                      "name": {
+                        "description": "Name of the referenced object.",
+                        "type": "string"
+                      },
+                      "policy": {
+                        "description": "Policies for referencing.",
+                        "properties": {
+                          "resolution": {
+                            "default": "Required",
+                            "description": "Resolution specifies whether resolution of this reference is required.\nThe default is 'Required', which means the reconcile will fail if the\nreference cannot be resolved. 'Optional' means this reference will be\na no-op if it cannot be resolved.",
+                            "enum": [
+                              "Required",
+                              "Optional"
+                            ],
+                            "type": "string"
+                          },
+                          "resolve": {
+                            "description": "Resolve specifies when this reference should be resolved. The default\nis 'IfNotPresent', which will attempt to resolve the reference only when\nthe corresponding field is not present. Use 'Always' to resolve the\nreference on every reconcile.",
+                            "enum": [
+                              "Always",
+                              "IfNotPresent"
+                            ],
+                            "type": "string"
+                          }
+                        },
+                        "type": "object"
+                      }
+                    },
+                    "required": [
+                      "name"
+                    ],
+                    "type": "object"
+                  },
+                  "browserIdSelector": {
+                    "description": "Selector for a Flow in authenticationflow to populate browserId.",
+                    "properties": {
+                      "matchControllerRef": {
+                        "description": "MatchControllerRef ensures an object with the same controller reference\nas the selecting object is selected.",
+                        "type": "boolean"
+                      },
+                      "matchLabels": {
+                        "additionalProperties": {
+                          "type": "string"
+                        },
+                        "description": "MatchLabels ensures an object with matching labels is selected.",
+                        "type": "object"
+                      },
+                      "policy": {
+                        "description": "Policies for selection.",
+                        "properties": {
+                          "resolution": {
+                            "default": "Required",
+                            "description": "Resolution specifies whether resolution of this reference is required.\nThe default is 'Required', which means the reconcile will fail if the\nreference cannot be resolved. 'Optional' means this reference will be\na no-op if it cannot be resolved.",
+                            "enum": [
+                              "Required",
+                              "Optional"
+                            ],
+                            "type": "string"
+                          },
+                          "resolve": {
+                            "description": "Resolve specifies when this reference should be resolved. The default\nis 'IfNotPresent', which will attempt to resolve the reference only when\nthe corresponding field is not present. Use 'Always' to resolve the\nreference on every reconcile.",
+                            "enum": [
+                              "Always",
+                              "IfNotPresent"
+                            ],
+                            "type": "string"
+                          }
+                        },
+                        "type": "object"
+                      }
+                    },
+                    "type": "object"
+                  },
+                  "directGrantId": {
+                    "description": "Direct grant flow id (flow needs to exist)",
+                    "type": "string"
+                  },
+                  "directGrantIdRef": {
+                    "description": "Reference to a Flow in authenticationflow to populate directGrantId.",
+                    "properties": {
+                      "name": {
+                        "description": "Name of the referenced object.",
+                        "type": "string"
+                      },
+                      "policy": {
+                        "description": "Policies for referencing.",
+                        "properties": {
+                          "resolution": {
+                            "default": "Required",
+                            "description": "Resolution specifies whether resolution of this reference is required.\nThe default is 'Required', which means the reconcile will fail if the\nreference cannot be resolved. 'Optional' means this reference will be\na no-op if it cannot be resolved.",
+                            "enum": [
+                              "Required",
+                              "Optional"
+                            ],
+                            "type": "string"
+                          },
+                          "resolve": {
+                            "description": "Resolve specifies when this reference should be resolved. The default\nis 'IfNotPresent', which will attempt to resolve the reference only when\nthe corresponding field is not present. Use 'Always' to resolve the\nreference on every reconcile.",
+                            "enum": [
+                              "Always",
+                              "IfNotPresent"
+                            ],
+                            "type": "string"
+                          }
+                        },
+                        "type": "object"
+                      }
+                    },
+                    "required": [
+                      "name"
+                    ],
+                    "type": "object"
+                  },
+                  "directGrantIdSelector": {
+                    "description": "Selector for a Flow in authenticationflow to populate directGrantId.",
+                    "properties": {
+                      "matchControllerRef": {
+                        "description": "MatchControllerRef ensures an object with the same controller reference\nas the selecting object is selected.",
+                        "type": "boolean"
+                      },
+                      "matchLabels": {
+                        "additionalProperties": {
+                          "type": "string"
+                        },
+                        "description": "MatchLabels ensures an object with matching labels is selected.",
+                        "type": "object"
+                      },
+                      "policy": {
+                        "description": "Policies for selection.",
+                        "properties": {
+                          "resolution": {
+                            "default": "Required",
+                            "description": "Resolution specifies whether resolution of this reference is required.\nThe default is 'Required', which means the reconcile will fail if the\nreference cannot be resolved. 'Optional' means this reference will be\na no-op if it cannot be resolved.",
+                            "enum": [
+                              "Required",
+                              "Optional"
+                            ],
+                            "type": "string"
+                          },
+                          "resolve": {
+                            "description": "Resolve specifies when this reference should be resolved. The default\nis 'IfNotPresent', which will attempt to resolve the reference only when\nthe corresponding field is not present. Use 'Always' to resolve the\nreference on every reconcile.",
+                            "enum": [
+                              "Always",
+                              "IfNotPresent"
+                            ],
+                            "type": "string"
+                          }
+                        },
+                        "type": "object"
+                      }
+                    },
+                    "type": "object"
+                  }
+                },
+                "type": "object"
+              },
+              "type": "array"
+            },
+            "authorization": {
+              "description": "When this block is present, fine-grained authorization will be enabled for this client. The client's access_type must be CONFIDENTIAL, and service_accounts_enabled must be true. This block has the following arguments:",
+              "items": {
+                "properties": {
+                  "allowRemoteResourceManagement": {
+                    "description": "When true, resources can be managed remotely by the resource server. Defaults to false.",
+                    "type": "boolean"
+                  },
+                  "decisionStrategy": {
+                    "description": "Dictates how the policies associated with a given permission are evaluated and how a final decision is obtained. Could be one of AFFIRMATIVE, CONSENSUS, or UNANIMOUS. Applies to permissions.",
+                    "type": "string"
+                  },
+                  "keepDefaults": {
+                    "description": "When true, defaults set by Keycloak will be respected. Defaults to false.",
+                    "type": "boolean"
+                  },
+                  "policyEnforcementMode": {
+                    "description": "Dictates how policies are enforced when evaluating authorization requests. Can be one of ENFORCING, PERMISSIVE, or DISABLED.",
+                    "type": "string"
+                  }
+                },
+                "type": "object"
+              },
+              "type": "array"
+            },
+            "backchannelLogoutRevokeOfflineSessions": {
+              "description": "Specifying whether a \"revoke_offline_access\" event is included in the Logout Token when the Backchannel Logout URL is used. Keycloak will revoke offline sessions when receiving a Logout Token with this event.",
+              "type": "boolean"
+            },
+            "backchannelLogoutSessionRequired": {
+              "description": "When true, a sid (session ID) claim will be included in the logout token when the backchannel logout URL is used. Defaults to true.",
+              "type": "boolean"
+            },
+            "backchannelLogoutUrl": {
+              "description": "The URL that will cause the client to log itself out when a logout request is sent to this realm. If omitted, no logout request will be sent to the client is this case.",
+              "type": "string"
+            },
+            "baseUrl": {
+              "description": "Default URL to use when the auth server needs to redirect or link back to the client.",
+              "type": "string"
+            },
+            "clientAuthenticatorType": {
+              "description": "Defaults to client-secret. The authenticator type for clients with an access_type of CONFIDENTIAL or BEARER-ONLY. A default Keycloak installation will have the following available types:",
+              "type": "string"
+            },
+            "clientId": {
+              "description": "The Client ID for this client, referenced in the URI during authentication and in issued tokens.",
+              "type": "string"
+            },
+            "clientIdRef": {
+              "description": "Reference to a Client in openidclient to populate clientId.",
+              "properties": {
+                "name": {
+                  "description": "Name of the referenced object.",
+                  "type": "string"
+                },
+                "policy": {
+                  "description": "Policies for referencing.",
+                  "properties": {
+                    "resolution": {
+                      "default": "Required",
+                      "description": "Resolution specifies whether resolution of this reference is required.\nThe default is 'Required', which means the reconcile will fail if the\nreference cannot be resolved. 'Optional' means this reference will be\na no-op if it cannot be resolved.",
+                      "enum": [
+                        "Required",
+                        "Optional"
+                      ],
+                      "type": "string"
+                    },
+                    "resolve": {
+                      "description": "Resolve specifies when this reference should be resolved. The default\nis 'IfNotPresent', which will attempt to resolve the reference only when\nthe corresponding field is not present. Use 'Always' to resolve the\nreference on every reconcile.",
+                      "enum": [
+                        "Always",
+                        "IfNotPresent"
+                      ],
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                }
+              },
+              "required": [
+                "name"
+              ],
+              "type": "object"
+            },
+            "clientIdSelector": {
+              "description": "Selector for a Client in openidclient to populate clientId.",
+              "properties": {
+                "matchControllerRef": {
+                  "description": "MatchControllerRef ensures an object with the same controller reference\nas the selecting object is selected.",
+                  "type": "boolean"
+                },
+                "matchLabels": {
+                  "additionalProperties": {
+                    "type": "string"
+                  },
+                  "description": "MatchLabels ensures an object with matching labels is selected.",
+                  "type": "object"
+                },
+                "policy": {
+                  "description": "Policies for selection.",
+                  "properties": {
+                    "resolution": {
+                      "default": "Required",
+                      "description": "Resolution specifies whether resolution of this reference is required.\nThe default is 'Required', which means the reconcile will fail if the\nreference cannot be resolved. 'Optional' means this reference will be\na no-op if it cannot be resolved.",
+                      "enum": [
+                        "Required",
+                        "Optional"
+                      ],
+                      "type": "string"
+                    },
+                    "resolve": {
+                      "description": "Resolve specifies when this reference should be resolved. The default\nis 'IfNotPresent', which will attempt to resolve the reference only when\nthe corresponding field is not present. Use 'Always' to resolve the\nreference on every reconcile.",
+                      "enum": [
+                        "Always",
+                        "IfNotPresent"
+                      ],
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                }
+              },
+              "type": "object"
+            },
+            "clientOfflineSessionIdleTimeout": {
+              "description": "Time a client session is allowed to be idle before it expires. Tokens are invalidated when a client session is expired. If not set it uses the standard SSO Session Idle value.",
+              "type": "string"
+            },
+            "clientOfflineSessionMaxLifespan": {
+              "description": "Max time before a client session is expired. Tokens are invalidated when a client session is expired. If not set, it uses the standard SSO Session Max value.",
+              "type": "string"
+            },
+            "clientSecretRegenerateWhenChanged": {
+              "additionalProperties": {
+                "type": "string"
+              },
+              "description": "Arbitrary map of values that, when changed, will trigger rotation of the secret. NOTE! Conflicts with client_secret, client_secret_wo and client_secret_wo_version attribute and can't be used together\nArbitrary map of values that, when changed, will trigger rotation of the secret",
+              "type": "object",
+              "x-kubernetes-map-type": "granular"
+            },
+            "clientSecretSecretRef": {
+              "description": "The secret for clients with an access_type of CONFIDENTIAL or BEARER-ONLY. This value is sensitive and should be treated with the same care as a password. If omitted, this will be generated by Keycloak.",
+              "properties": {
+                "key": {
+                  "description": "The key to select.",
+                  "type": "string"
+                },
+                "name": {
+                  "description": "Name of the secret.",
+                  "type": "string"
+                },
+                "namespace": {
+                  "description": "Namespace of the secret.",
+                  "type": "string"
+                }
+              },
+              "required": [
+                "key",
+                "name",
+                "namespace"
+              ],
+              "type": "object"
+            },
+            "clientSecretWoSecretRef": {
+              "description": "The secret for clients with an access_type of CONFIDENTIAL or BEARER-ONLY. If omitted, this will fallback to use client_secret.\nClient Secret as write-only argument",
+              "properties": {
+                "key": {
+                  "description": "The key to select.",
+                  "type": "string"
+                },
+                "name": {
+                  "description": "Name of the secret.",
+                  "type": "string"
+                },
+                "namespace": {
+                  "description": "Namespace of the secret.",
+                  "type": "string"
+                }
+              },
+              "required": [
+                "key",
+                "name",
+                "namespace"
+              ],
+              "type": "object"
+            },
+            "clientSecretWoVersion": {
+              "description": "The value of this argument is stored in the state and plan files. Required when using client_secret_wo.\nVersion of the Client secret write-only argument",
+              "type": "number"
+            },
+            "clientSessionIdleTimeout": {
+              "description": "Time a client offline session is allowed to be idle before it expires. Offline tokens are invalidated when a client offline session is expired. If not set it uses the Offline Session Idle value.",
+              "type": "string"
+            },
+            "clientSessionMaxLifespan": {
+              "description": "Max time before a client offline session is expired. Offline tokens are invalidated when a client offline session is expired. If not set, it uses the Offline Session Max value.",
+              "type": "string"
+            },
+            "consentRequired": {
+              "description": "When true, users have to consent to client access. Defaults to false.",
+              "type": "boolean"
+            },
+            "consentScreenText": {
+              "description": "The text to display on the consent screen about permissions specific to this client. This is applicable only when display_on_consent_screen is true.",
+              "type": "string"
+            },
+            "description": {
+              "description": "The description of this client in the GUI.",
+              "type": "string"
+            },
+            "directAccessGrantsEnabled": {
+              "description": "When true, the OAuth2 Resource Owner Password Grant will be enabled for this client. Defaults to false.",
+              "type": "boolean"
+            },
+            "displayOnConsentScreen": {
+              "description": "When true, the consent screen will display information about the client itself. Defaults to false. This is applicable only when consent_required is true.",
+              "type": "boolean"
+            },
+            "enabled": {
+              "description": "When false, this client will not be able to initiate a login or obtain access tokens. Defaults to true.",
+              "type": "boolean"
+            },
+            "excludeIssuerFromAuthResponse": {
+              "description": "When true, the parameter iss will not be included in OpenID Connect Authentication Response.",
+              "type": "boolean"
+            },
+            "excludeSessionStateFromAuthResponse": {
+              "description": "When true, the parameter session_state will not be included in OpenID Connect Authentication Response.",
+              "type": "boolean"
+            },
+            "extraConfig": {
+              "additionalProperties": {
+                "type": "string"
+              },
+              "description": "A map of key/value pairs to add extra configuration attributes to this client. Use this attribute at your own risk, as it may conflict with top-level configuration attributes in future provider updates. For example, the extra_config map can be used to set Authentication Context Class Reference (ACR) to Level of Authentication (LoA) mapping",
+              "type": "object",
+              "x-kubernetes-map-type": "granular"
+            },
+            "frontchannelLogoutEnabled": {
+              "description": "When true, frontchannel logout will be enabled for this client. Specify the url with frontchannel_logout_url. Defaults to false.",
+              "type": "boolean"
+            },
+            "frontchannelLogoutUrl": {
+              "description": "The frontchannel logout url. This is applicable only when frontchannel_logout_enabled is true.",
+              "type": "string"
+            },
+            "fullScopeAllowed": {
+              "description": "Allow to include all roles mappings in the access token.",
+              "type": "boolean"
+            },
+            "implicitFlowEnabled": {
+              "description": "When true, the OAuth2 Implicit Grant will be enabled for this client. Defaults to false.",
+              "type": "boolean"
+            },
+            "import": {
+              "description": "When true, the client with the specified client_id is assumed to already exist, and it will be imported into state instead of being created. This attribute is useful when dealing with clients that Keycloak creates automatically during realm creation, such as account and admin-cli. Note, that the client will not be removed during destruction if import is true.",
+              "type": "boolean"
+            },
+            "loginTheme": {
+              "description": "The client login theme. This will override the default theme for the realm.",
+              "type": "string"
+            },
+            "name": {
+              "description": "The display name of this client in the GUI.",
+              "type": "string"
+            },
+            "oauth2DeviceAuthorizationGrantEnabled": {
+              "description": "Enables support for OAuth 2.0 Device Authorization Grant, which means that client is an application on device that has limited input capabilities or lack a suitable browser.",
+              "type": "boolean"
+            },
+            "oauth2DeviceCodeLifespan": {
+              "description": "The maximum amount of time a client has to finish the device code flow before it expires.",
+              "type": "string"
+            },
+            "oauth2DevicePollingInterval": {
+              "description": "The minimum amount of time in seconds that the client should wait between polling requests to the token endpoint.",
+              "type": "string"
+            },
+            "pkceCodeChallengeMethod": {
+              "description": "The challenge method to use for Proof Key for Code Exchange. Can be either plain or S256 or set to empty value \u201c.",
+              "type": "string"
+            },
+            "realmId": {
+              "description": "The realm this client is attached to.",
+              "type": "string"
+            },
+            "realmIdRef": {
+              "description": "Reference to a Realm in realm to populate realmId.",
+              "properties": {
+                "name": {
+                  "description": "Name of the referenced object.",
+                  "type": "string"
+                },
+                "policy": {
+                  "description": "Policies for referencing.",
+                  "properties": {
+                    "resolution": {
+                      "default": "Required",
+                      "description": "Resolution specifies whether resolution of this reference is required.\nThe default is 'Required', which means the reconcile will fail if the\nreference cannot be resolved. 'Optional' means this reference will be\na no-op if it cannot be resolved.",
+                      "enum": [
+                        "Required",
+                        "Optional"
+                      ],
+                      "type": "string"
+                    },
+                    "resolve": {
+                      "description": "Resolve specifies when this reference should be resolved. The default\nis 'IfNotPresent', which will attempt to resolve the reference only when\nthe corresponding field is not present. Use 'Always' to resolve the\nreference on every reconcile.",
+                      "enum": [
+                        "Always",
+                        "IfNotPresent"
+                      ],
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                }
+              },
+              "required": [
+                "name"
+              ],
+              "type": "object"
+            },
+            "realmIdSelector": {
+              "description": "Selector for a Realm in realm to populate realmId.",
+              "properties": {
+                "matchControllerRef": {
+                  "description": "MatchControllerRef ensures an object with the same controller reference\nas the selecting object is selected.",
+                  "type": "boolean"
+                },
+                "matchLabels": {
+                  "additionalProperties": {
+                    "type": "string"
+                  },
+                  "description": "MatchLabels ensures an object with matching labels is selected.",
+                  "type": "object"
+                },
+                "policy": {
+                  "description": "Policies for selection.",
+                  "properties": {
+                    "resolution": {
+                      "default": "Required",
+                      "description": "Resolution specifies whether resolution of this reference is required.\nThe default is 'Required', which means the reconcile will fail if the\nreference cannot be resolved. 'Optional' means this reference will be\na no-op if it cannot be resolved.",
+                      "enum": [
+                        "Required",
+                        "Optional"
+                      ],
+                      "type": "string"
+                    },
+                    "resolve": {
+                      "description": "Resolve specifies when this reference should be resolved. The default\nis 'IfNotPresent', which will attempt to resolve the reference only when\nthe corresponding field is not present. Use 'Always' to resolve the\nreference on every reconcile.",
+                      "enum": [
+                        "Always",
+                        "IfNotPresent"
+                      ],
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                }
+              },
+              "type": "object"
+            },
+            "rootUrl": {
+              "description": "When specified, this URL is prepended to any relative URLs found within valid_redirect_uris, web_origins, and admin_url. NOTE: Due to limitations in the Keycloak API, when the root_url attribute is used, the valid_redirect_uris, web_origins, and admin_url attributes will be required.",
+              "type": "string"
+            },
+            "serviceAccountsEnabled": {
+              "description": "When true, the OAuth2 Client Credentials grant will be enabled for this client. Defaults to false.",
+              "type": "boolean"
+            },
+            "standardFlowEnabled": {
+              "description": "When true, the OAuth2 Authorization Code Grant will be enabled for this client. Defaults to false.",
+              "type": "boolean"
+            },
+            "standardTokenExchangeEnabled": {
+              "description": "Enables support for Standard Token Exchange",
+              "type": "boolean"
+            },
+            "useRefreshTokens": {
+              "description": "If this is true, a refresh_token will be created and added to the token response. If this is false then no refresh_token will be generated.  Defaults to true.",
+              "type": "boolean"
+            },
+            "useRefreshTokensClientCredentials": {
+              "description": "If this is true, a refresh_token will be created and added to the token response if the client_credentials grant is used and a user session will be created. If this is false then no refresh_token will be generated and the associated user session will be removed, in accordance with OAuth 2.0 RFC6749 Section 4.4.3. Defaults to false.",
+              "type": "boolean"
+            },
+            "validPostLogoutRedirectUris": {
+              "description": "A list of valid URIs a browser is permitted to redirect to after a successful logout.",
+              "items": {
+                "type": "string"
+              },
+              "type": "array",
+              "x-kubernetes-list-type": "set"
+            },
+            "validRedirectUris": {
+              "description": "A list of valid URIs a browser is permitted to redirect to after a successful login or logout. Simple\nwildcards in the form of an asterisk can be used here. This attribute must be set if either standard_flow_enabled or implicit_flow_enabled\nis set to true.",
+              "items": {
+                "type": "string"
+              },
+              "type": "array",
+              "x-kubernetes-list-type": "set"
+            },
+            "webOrigins": {
+              "description": "A list of allowed CORS origins. To permit all valid redirect URIs, add +. Note that this will not include the * wildcard. To permit all origins, explicitly add *.",
+              "items": {
+                "type": "string"
+              },
+              "type": "array",
+              "x-kubernetes-list-type": "set"
+            }
+          },
+          "type": "object"
+        },
+        "initProvider": {
+          "description": "THIS IS A BETA FIELD. It will be honored\nunless the Management Policies feature flag is disabled.\nInitProvider holds the same fields as ForProvider, with the exception\nof Identifier and other resource reference fields. The fields that are\nin InitProvider are merged into ForProvider when the resource is created.\nThe same fields are also added to the terraform ignore_changes hook, to\navoid updating them after creation. This is useful for fields that are\nrequired on creation, but we do not desire to update them after creation,\nfor example because of an external controller is managing them, like an\nautoscaler.",
+          "properties": {
+            "accessTokenLifespan": {
+              "description": "The amount of time in seconds before an access token expires. This will override the default for the realm.",
+              "type": "string"
+            },
+            "accessType": {
+              "description": "Specifies the type of client, which can be one of the following:",
+              "type": "string"
+            },
+            "adminUrl": {
+              "description": "URL to the admin interface of the client.",
+              "type": "string"
+            },
+            "allowRefreshTokenInStandardTokenExchange": {
+              "description": "Defines whether to allow refresh token in Standard Token Exchange. Possible values are NO (default) and SAME_SESSION.",
+              "type": "string"
+            },
+            "alwaysDisplayInConsole": {
+              "description": "Always list this client in the Account UI, even if the user does not have an active session.",
+              "type": "boolean"
+            },
+            "authenticationFlowBindingOverrides": {
+              "description": "Override realm authentication flow bindings",
+              "items": {
+                "properties": {
+                  "browserId": {
+                    "description": "Browser flow id, (flow needs to exist)",
+                    "type": "string"
+                  },
+                  "browserIdRef": {
+                    "description": "Reference to a Flow in authenticationflow to populate browserId.",
+                    "properties": {
+                      "name": {
+                        "description": "Name of the referenced object.",
+                        "type": "string"
+                      },
+                      "policy": {
+                        "description": "Policies for referencing.",
+                        "properties": {
+                          "resolution": {
+                            "default": "Required",
+                            "description": "Resolution specifies whether resolution of this reference is required.\nThe default is 'Required', which means the reconcile will fail if the\nreference cannot be resolved. 'Optional' means this reference will be\na no-op if it cannot be resolved.",
+                            "enum": [
+                              "Required",
+                              "Optional"
+                            ],
+                            "type": "string"
+                          },
+                          "resolve": {
+                            "description": "Resolve specifies when this reference should be resolved. The default\nis 'IfNotPresent', which will attempt to resolve the reference only when\nthe corresponding field is not present. Use 'Always' to resolve the\nreference on every reconcile.",
+                            "enum": [
+                              "Always",
+                              "IfNotPresent"
+                            ],
+                            "type": "string"
+                          }
+                        },
+                        "type": "object"
+                      }
+                    },
+                    "required": [
+                      "name"
+                    ],
+                    "type": "object"
+                  },
+                  "browserIdSelector": {
+                    "description": "Selector for a Flow in authenticationflow to populate browserId.",
+                    "properties": {
+                      "matchControllerRef": {
+                        "description": "MatchControllerRef ensures an object with the same controller reference\nas the selecting object is selected.",
+                        "type": "boolean"
+                      },
+                      "matchLabels": {
+                        "additionalProperties": {
+                          "type": "string"
+                        },
+                        "description": "MatchLabels ensures an object with matching labels is selected.",
+                        "type": "object"
+                      },
+                      "policy": {
+                        "description": "Policies for selection.",
+                        "properties": {
+                          "resolution": {
+                            "default": "Required",
+                            "description": "Resolution specifies whether resolution of this reference is required.\nThe default is 'Required', which means the reconcile will fail if the\nreference cannot be resolved. 'Optional' means this reference will be\na no-op if it cannot be resolved.",
+                            "enum": [
+                              "Required",
+                              "Optional"
+                            ],
+                            "type": "string"
+                          },
+                          "resolve": {
+                            "description": "Resolve specifies when this reference should be resolved. The default\nis 'IfNotPresent', which will attempt to resolve the reference only when\nthe corresponding field is not present. Use 'Always' to resolve the\nreference on every reconcile.",
+                            "enum": [
+                              "Always",
+                              "IfNotPresent"
+                            ],
+                            "type": "string"
+                          }
+                        },
+                        "type": "object"
+                      }
+                    },
+                    "type": "object"
+                  },
+                  "directGrantId": {
+                    "description": "Direct grant flow id (flow needs to exist)",
+                    "type": "string"
+                  },
+                  "directGrantIdRef": {
+                    "description": "Reference to a Flow in authenticationflow to populate directGrantId.",
+                    "properties": {
+                      "name": {
+                        "description": "Name of the referenced object.",
+                        "type": "string"
+                      },
+                      "policy": {
+                        "description": "Policies for referencing.",
+                        "properties": {
+                          "resolution": {
+                            "default": "Required",
+                            "description": "Resolution specifies whether resolution of this reference is required.\nThe default is 'Required', which means the reconcile will fail if the\nreference cannot be resolved. 'Optional' means this reference will be\na no-op if it cannot be resolved.",
+                            "enum": [
+                              "Required",
+                              "Optional"
+                            ],
+                            "type": "string"
+                          },
+                          "resolve": {
+                            "description": "Resolve specifies when this reference should be resolved. The default\nis 'IfNotPresent', which will attempt to resolve the reference only when\nthe corresponding field is not present. Use 'Always' to resolve the\nreference on every reconcile.",
+                            "enum": [
+                              "Always",
+                              "IfNotPresent"
+                            ],
+                            "type": "string"
+                          }
+                        },
+                        "type": "object"
+                      }
+                    },
+                    "required": [
+                      "name"
+                    ],
+                    "type": "object"
+                  },
+                  "directGrantIdSelector": {
+                    "description": "Selector for a Flow in authenticationflow to populate directGrantId.",
+                    "properties": {
+                      "matchControllerRef": {
+                        "description": "MatchControllerRef ensures an object with the same controller reference\nas the selecting object is selected.",
+                        "type": "boolean"
+                      },
+                      "matchLabels": {
+                        "additionalProperties": {
+                          "type": "string"
+                        },
+                        "description": "MatchLabels ensures an object with matching labels is selected.",
+                        "type": "object"
+                      },
+                      "policy": {
+                        "description": "Policies for selection.",
+                        "properties": {
+                          "resolution": {
+                            "default": "Required",
+                            "description": "Resolution specifies whether resolution of this reference is required.\nThe default is 'Required', which means the reconcile will fail if the\nreference cannot be resolved. 'Optional' means this reference will be\na no-op if it cannot be resolved.",
+                            "enum": [
+                              "Required",
+                              "Optional"
+                            ],
+                            "type": "string"
+                          },
+                          "resolve": {
+                            "description": "Resolve specifies when this reference should be resolved. The default\nis 'IfNotPresent', which will attempt to resolve the reference only when\nthe corresponding field is not present. Use 'Always' to resolve the\nreference on every reconcile.",
+                            "enum": [
+                              "Always",
+                              "IfNotPresent"
+                            ],
+                            "type": "string"
+                          }
+                        },
+                        "type": "object"
+                      }
+                    },
+                    "type": "object"
+                  }
+                },
+                "type": "object"
+              },
+              "type": "array"
+            },
+            "authorization": {
+              "description": "When this block is present, fine-grained authorization will be enabled for this client. The client's access_type must be CONFIDENTIAL, and service_accounts_enabled must be true. This block has the following arguments:",
+              "items": {
+                "properties": {
+                  "allowRemoteResourceManagement": {
+                    "description": "When true, resources can be managed remotely by the resource server. Defaults to false.",
+                    "type": "boolean"
+                  },
+                  "decisionStrategy": {
+                    "description": "Dictates how the policies associated with a given permission are evaluated and how a final decision is obtained. Could be one of AFFIRMATIVE, CONSENSUS, or UNANIMOUS. Applies to permissions.",
+                    "type": "string"
+                  },
+                  "keepDefaults": {
+                    "description": "When true, defaults set by Keycloak will be respected. Defaults to false.",
+                    "type": "boolean"
+                  },
+                  "policyEnforcementMode": {
+                    "description": "Dictates how policies are enforced when evaluating authorization requests. Can be one of ENFORCING, PERMISSIVE, or DISABLED.",
+                    "type": "string"
+                  }
+                },
+                "type": "object"
+              },
+              "type": "array"
+            },
+            "backchannelLogoutRevokeOfflineSessions": {
+              "description": "Specifying whether a \"revoke_offline_access\" event is included in the Logout Token when the Backchannel Logout URL is used. Keycloak will revoke offline sessions when receiving a Logout Token with this event.",
+              "type": "boolean"
+            },
+            "backchannelLogoutSessionRequired": {
+              "description": "When true, a sid (session ID) claim will be included in the logout token when the backchannel logout URL is used. Defaults to true.",
+              "type": "boolean"
+            },
+            "backchannelLogoutUrl": {
+              "description": "The URL that will cause the client to log itself out when a logout request is sent to this realm. If omitted, no logout request will be sent to the client is this case.",
+              "type": "string"
+            },
+            "baseUrl": {
+              "description": "Default URL to use when the auth server needs to redirect or link back to the client.",
+              "type": "string"
+            },
+            "clientAuthenticatorType": {
+              "description": "Defaults to client-secret. The authenticator type for clients with an access_type of CONFIDENTIAL or BEARER-ONLY. A default Keycloak installation will have the following available types:",
+              "type": "string"
+            },
+            "clientId": {
+              "description": "The Client ID for this client, referenced in the URI during authentication and in issued tokens.",
+              "type": "string"
+            },
+            "clientIdRef": {
+              "description": "Reference to a Client in openidclient to populate clientId.",
+              "properties": {
+                "name": {
+                  "description": "Name of the referenced object.",
+                  "type": "string"
+                },
+                "policy": {
+                  "description": "Policies for referencing.",
+                  "properties": {
+                    "resolution": {
+                      "default": "Required",
+                      "description": "Resolution specifies whether resolution of this reference is required.\nThe default is 'Required', which means the reconcile will fail if the\nreference cannot be resolved. 'Optional' means this reference will be\na no-op if it cannot be resolved.",
+                      "enum": [
+                        "Required",
+                        "Optional"
+                      ],
+                      "type": "string"
+                    },
+                    "resolve": {
+                      "description": "Resolve specifies when this reference should be resolved. The default\nis 'IfNotPresent', which will attempt to resolve the reference only when\nthe corresponding field is not present. Use 'Always' to resolve the\nreference on every reconcile.",
+                      "enum": [
+                        "Always",
+                        "IfNotPresent"
+                      ],
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                }
+              },
+              "required": [
+                "name"
+              ],
+              "type": "object"
+            },
+            "clientIdSelector": {
+              "description": "Selector for a Client in openidclient to populate clientId.",
+              "properties": {
+                "matchControllerRef": {
+                  "description": "MatchControllerRef ensures an object with the same controller reference\nas the selecting object is selected.",
+                  "type": "boolean"
+                },
+                "matchLabels": {
+                  "additionalProperties": {
+                    "type": "string"
+                  },
+                  "description": "MatchLabels ensures an object with matching labels is selected.",
+                  "type": "object"
+                },
+                "policy": {
+                  "description": "Policies for selection.",
+                  "properties": {
+                    "resolution": {
+                      "default": "Required",
+                      "description": "Resolution specifies whether resolution of this reference is required.\nThe default is 'Required', which means the reconcile will fail if the\nreference cannot be resolved. 'Optional' means this reference will be\na no-op if it cannot be resolved.",
+                      "enum": [
+                        "Required",
+                        "Optional"
+                      ],
+                      "type": "string"
+                    },
+                    "resolve": {
+                      "description": "Resolve specifies when this reference should be resolved. The default\nis 'IfNotPresent', which will attempt to resolve the reference only when\nthe corresponding field is not present. Use 'Always' to resolve the\nreference on every reconcile.",
+                      "enum": [
+                        "Always",
+                        "IfNotPresent"
+                      ],
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                }
+              },
+              "type": "object"
+            },
+            "clientOfflineSessionIdleTimeout": {
+              "description": "Time a client session is allowed to be idle before it expires. Tokens are invalidated when a client session is expired. If not set it uses the standard SSO Session Idle value.",
+              "type": "string"
+            },
+            "clientOfflineSessionMaxLifespan": {
+              "description": "Max time before a client session is expired. Tokens are invalidated when a client session is expired. If not set, it uses the standard SSO Session Max value.",
+              "type": "string"
+            },
+            "clientSecretRegenerateWhenChanged": {
+              "additionalProperties": {
+                "type": "string"
+              },
+              "description": "Arbitrary map of values that, when changed, will trigger rotation of the secret. NOTE! Conflicts with client_secret, client_secret_wo and client_secret_wo_version attribute and can't be used together\nArbitrary map of values that, when changed, will trigger rotation of the secret",
+              "type": "object",
+              "x-kubernetes-map-type": "granular"
+            },
+            "clientSecretSecretRef": {
+              "description": "The secret for clients with an access_type of CONFIDENTIAL or BEARER-ONLY. This value is sensitive and should be treated with the same care as a password. If omitted, this will be generated by Keycloak.",
+              "properties": {
+                "key": {
+                  "description": "The key to select.",
+                  "type": "string"
+                },
+                "name": {
+                  "description": "Name of the secret.",
+                  "type": "string"
+                },
+                "namespace": {
+                  "description": "Namespace of the secret.",
+                  "type": "string"
+                }
+              },
+              "required": [
+                "key",
+                "name",
+                "namespace"
+              ],
+              "type": "object"
+            },
+            "clientSecretWoSecretRef": {
+              "description": "The secret for clients with an access_type of CONFIDENTIAL or BEARER-ONLY. If omitted, this will fallback to use client_secret.\nClient Secret as write-only argument",
+              "properties": {
+                "key": {
+                  "description": "The key to select.",
+                  "type": "string"
+                },
+                "name": {
+                  "description": "Name of the secret.",
+                  "type": "string"
+                },
+                "namespace": {
+                  "description": "Namespace of the secret.",
+                  "type": "string"
+                }
+              },
+              "required": [
+                "key",
+                "name",
+                "namespace"
+              ],
+              "type": "object"
+            },
+            "clientSecretWoVersion": {
+              "description": "The value of this argument is stored in the state and plan files. Required when using client_secret_wo.\nVersion of the Client secret write-only argument",
+              "type": "number"
+            },
+            "clientSessionIdleTimeout": {
+              "description": "Time a client offline session is allowed to be idle before it expires. Offline tokens are invalidated when a client offline session is expired. If not set it uses the Offline Session Idle value.",
+              "type": "string"
+            },
+            "clientSessionMaxLifespan": {
+              "description": "Max time before a client offline session is expired. Offline tokens are invalidated when a client offline session is expired. If not set, it uses the Offline Session Max value.",
+              "type": "string"
+            },
+            "consentRequired": {
+              "description": "When true, users have to consent to client access. Defaults to false.",
+              "type": "boolean"
+            },
+            "consentScreenText": {
+              "description": "The text to display on the consent screen about permissions specific to this client. This is applicable only when display_on_consent_screen is true.",
+              "type": "string"
+            },
+            "description": {
+              "description": "The description of this client in the GUI.",
+              "type": "string"
+            },
+            "directAccessGrantsEnabled": {
+              "description": "When true, the OAuth2 Resource Owner Password Grant will be enabled for this client. Defaults to false.",
+              "type": "boolean"
+            },
+            "displayOnConsentScreen": {
+              "description": "When true, the consent screen will display information about the client itself. Defaults to false. This is applicable only when consent_required is true.",
+              "type": "boolean"
+            },
+            "enabled": {
+              "description": "When false, this client will not be able to initiate a login or obtain access tokens. Defaults to true.",
+              "type": "boolean"
+            },
+            "excludeIssuerFromAuthResponse": {
+              "description": "When true, the parameter iss will not be included in OpenID Connect Authentication Response.",
+              "type": "boolean"
+            },
+            "excludeSessionStateFromAuthResponse": {
+              "description": "When true, the parameter session_state will not be included in OpenID Connect Authentication Response.",
+              "type": "boolean"
+            },
+            "extraConfig": {
+              "additionalProperties": {
+                "type": "string"
+              },
+              "description": "A map of key/value pairs to add extra configuration attributes to this client. Use this attribute at your own risk, as it may conflict with top-level configuration attributes in future provider updates. For example, the extra_config map can be used to set Authentication Context Class Reference (ACR) to Level of Authentication (LoA) mapping",
+              "type": "object",
+              "x-kubernetes-map-type": "granular"
+            },
+            "frontchannelLogoutEnabled": {
+              "description": "When true, frontchannel logout will be enabled for this client. Specify the url with frontchannel_logout_url. Defaults to false.",
+              "type": "boolean"
+            },
+            "frontchannelLogoutUrl": {
+              "description": "The frontchannel logout url. This is applicable only when frontchannel_logout_enabled is true.",
+              "type": "string"
+            },
+            "fullScopeAllowed": {
+              "description": "Allow to include all roles mappings in the access token.",
+              "type": "boolean"
+            },
+            "implicitFlowEnabled": {
+              "description": "When true, the OAuth2 Implicit Grant will be enabled for this client. Defaults to false.",
+              "type": "boolean"
+            },
+            "import": {
+              "description": "When true, the client with the specified client_id is assumed to already exist, and it will be imported into state instead of being created. This attribute is useful when dealing with clients that Keycloak creates automatically during realm creation, such as account and admin-cli. Note, that the client will not be removed during destruction if import is true.",
+              "type": "boolean"
+            },
+            "loginTheme": {
+              "description": "The client login theme. This will override the default theme for the realm.",
+              "type": "string"
+            },
+            "name": {
+              "description": "The display name of this client in the GUI.",
+              "type": "string"
+            },
+            "oauth2DeviceAuthorizationGrantEnabled": {
+              "description": "Enables support for OAuth 2.0 Device Authorization Grant, which means that client is an application on device that has limited input capabilities or lack a suitable browser.",
+              "type": "boolean"
+            },
+            "oauth2DeviceCodeLifespan": {
+              "description": "The maximum amount of time a client has to finish the device code flow before it expires.",
+              "type": "string"
+            },
+            "oauth2DevicePollingInterval": {
+              "description": "The minimum amount of time in seconds that the client should wait between polling requests to the token endpoint.",
+              "type": "string"
+            },
+            "pkceCodeChallengeMethod": {
+              "description": "The challenge method to use for Proof Key for Code Exchange. Can be either plain or S256 or set to empty value \u201c.",
+              "type": "string"
+            },
+            "realmId": {
+              "description": "The realm this client is attached to.",
+              "type": "string"
+            },
+            "realmIdRef": {
+              "description": "Reference to a Realm in realm to populate realmId.",
+              "properties": {
+                "name": {
+                  "description": "Name of the referenced object.",
+                  "type": "string"
+                },
+                "policy": {
+                  "description": "Policies for referencing.",
+                  "properties": {
+                    "resolution": {
+                      "default": "Required",
+                      "description": "Resolution specifies whether resolution of this reference is required.\nThe default is 'Required', which means the reconcile will fail if the\nreference cannot be resolved. 'Optional' means this reference will be\na no-op if it cannot be resolved.",
+                      "enum": [
+                        "Required",
+                        "Optional"
+                      ],
+                      "type": "string"
+                    },
+                    "resolve": {
+                      "description": "Resolve specifies when this reference should be resolved. The default\nis 'IfNotPresent', which will attempt to resolve the reference only when\nthe corresponding field is not present. Use 'Always' to resolve the\nreference on every reconcile.",
+                      "enum": [
+                        "Always",
+                        "IfNotPresent"
+                      ],
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                }
+              },
+              "required": [
+                "name"
+              ],
+              "type": "object"
+            },
+            "realmIdSelector": {
+              "description": "Selector for a Realm in realm to populate realmId.",
+              "properties": {
+                "matchControllerRef": {
+                  "description": "MatchControllerRef ensures an object with the same controller reference\nas the selecting object is selected.",
+                  "type": "boolean"
+                },
+                "matchLabels": {
+                  "additionalProperties": {
+                    "type": "string"
+                  },
+                  "description": "MatchLabels ensures an object with matching labels is selected.",
+                  "type": "object"
+                },
+                "policy": {
+                  "description": "Policies for selection.",
+                  "properties": {
+                    "resolution": {
+                      "default": "Required",
+                      "description": "Resolution specifies whether resolution of this reference is required.\nThe default is 'Required', which means the reconcile will fail if the\nreference cannot be resolved. 'Optional' means this reference will be\na no-op if it cannot be resolved.",
+                      "enum": [
+                        "Required",
+                        "Optional"
+                      ],
+                      "type": "string"
+                    },
+                    "resolve": {
+                      "description": "Resolve specifies when this reference should be resolved. The default\nis 'IfNotPresent', which will attempt to resolve the reference only when\nthe corresponding field is not present. Use 'Always' to resolve the\nreference on every reconcile.",
+                      "enum": [
+                        "Always",
+                        "IfNotPresent"
+                      ],
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                }
+              },
+              "type": "object"
+            },
+            "rootUrl": {
+              "description": "When specified, this URL is prepended to any relative URLs found within valid_redirect_uris, web_origins, and admin_url. NOTE: Due to limitations in the Keycloak API, when the root_url attribute is used, the valid_redirect_uris, web_origins, and admin_url attributes will be required.",
+              "type": "string"
+            },
+            "serviceAccountsEnabled": {
+              "description": "When true, the OAuth2 Client Credentials grant will be enabled for this client. Defaults to false.",
+              "type": "boolean"
+            },
+            "standardFlowEnabled": {
+              "description": "When true, the OAuth2 Authorization Code Grant will be enabled for this client. Defaults to false.",
+              "type": "boolean"
+            },
+            "standardTokenExchangeEnabled": {
+              "description": "Enables support for Standard Token Exchange",
+              "type": "boolean"
+            },
+            "useRefreshTokens": {
+              "description": "If this is true, a refresh_token will be created and added to the token response. If this is false then no refresh_token will be generated.  Defaults to true.",
+              "type": "boolean"
+            },
+            "useRefreshTokensClientCredentials": {
+              "description": "If this is true, a refresh_token will be created and added to the token response if the client_credentials grant is used and a user session will be created. If this is false then no refresh_token will be generated and the associated user session will be removed, in accordance with OAuth 2.0 RFC6749 Section 4.4.3. Defaults to false.",
+              "type": "boolean"
+            },
+            "validPostLogoutRedirectUris": {
+              "description": "A list of valid URIs a browser is permitted to redirect to after a successful logout.",
+              "items": {
+                "type": "string"
+              },
+              "type": "array",
+              "x-kubernetes-list-type": "set"
+            },
+            "validRedirectUris": {
+              "description": "A list of valid URIs a browser is permitted to redirect to after a successful login or logout. Simple\nwildcards in the form of an asterisk can be used here. This attribute must be set if either standard_flow_enabled or implicit_flow_enabled\nis set to true.",
+              "items": {
+                "type": "string"
+              },
+              "type": "array",
+              "x-kubernetes-list-type": "set"
+            },
+            "webOrigins": {
+              "description": "A list of allowed CORS origins. To permit all valid redirect URIs, add +. Note that this will not include the * wildcard. To permit all origins, explicitly add *.",
+              "items": {
+                "type": "string"
+              },
+              "type": "array",
+              "x-kubernetes-list-type": "set"
+            }
+          },
+          "type": "object"
+        },
+        "managementPolicies": {
+          "default": [
+            "*"
+          ],
+          "description": "THIS IS A BETA FIELD. It is on by default but can be opted out\nthrough a Crossplane feature flag.\nManagementPolicies specify the array of actions Crossplane is allowed to\ntake on the managed and external resources.\nThis field is planned to replace the DeletionPolicy field in a future\nrelease. Currently, both could be set independently and non-default\nvalues would be honored if the feature flag is enabled. If both are\ncustom, the DeletionPolicy field will be ignored.\nSee the design doc for more information: https://github.com/crossplane/crossplane/blob/499895a25d1a1a0ba1604944ef98ac7a1a71f197/design/design-doc-observe-only-resources.md?plain=1#L223\nand this one: https://github.com/crossplane/crossplane/blob/444267e84783136daa93568b364a5f01228cacbe/design/one-pager-ignore-changes.md",
+          "items": {
+            "description": "A ManagementAction represents an action that the Crossplane controllers\ncan take on an external resource.",
+            "enum": [
+              "Observe",
+              "Create",
+              "Update",
+              "Delete",
+              "LateInitialize",
+              "*"
+            ],
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "providerConfigRef": {
+          "default": {
+            "name": "default"
+          },
+          "description": "ProviderConfigReference specifies how the provider that will be used to\ncreate, observe, update, and delete this managed resource should be\nconfigured.",
+          "properties": {
+            "name": {
+              "description": "Name of the referenced object.",
+              "type": "string"
+            },
+            "policy": {
+              "description": "Policies for referencing.",
+              "properties": {
+                "resolution": {
+                  "default": "Required",
+                  "description": "Resolution specifies whether resolution of this reference is required.\nThe default is 'Required', which means the reconcile will fail if the\nreference cannot be resolved. 'Optional' means this reference will be\na no-op if it cannot be resolved.",
+                  "enum": [
+                    "Required",
+                    "Optional"
+                  ],
+                  "type": "string"
+                },
+                "resolve": {
+                  "description": "Resolve specifies when this reference should be resolved. The default\nis 'IfNotPresent', which will attempt to resolve the reference only when\nthe corresponding field is not present. Use 'Always' to resolve the\nreference on every reconcile.",
+                  "enum": [
+                    "Always",
+                    "IfNotPresent"
+                  ],
+                  "type": "string"
+                }
+              },
+              "type": "object"
+            }
+          },
+          "required": [
+            "name"
+          ],
+          "type": "object"
+        },
+        "writeConnectionSecretToRef": {
+          "description": "WriteConnectionSecretToReference specifies the namespace and name of a\nSecret to which any connection details for this managed resource should\nbe written. Connection details frequently include the endpoint, username,\nand password required to connect to the managed resource.",
+          "properties": {
+            "name": {
+              "description": "Name of the secret.",
+              "type": "string"
+            },
+            "namespace": {
+              "description": "Namespace of the secret.",
+              "type": "string"
+            }
+          },
+          "required": [
+            "name",
+            "namespace"
+          ],
+          "type": "object"
+        }
+      },
+      "required": [
+        "forProvider"
+      ],
+      "type": "object",
+      "x-kubernetes-validations": [
+        {
+          "message": "spec.forProvider.accessType is a required parameter",
+          "rule": "!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.accessType) || (has(self.initProvider) && has(self.initProvider.accessType))"
+        }
+      ]
+    },
+    "status": {
+      "description": "ClientStatus defines the observed state of Client.",
+      "properties": {
+        "atProvider": {
+          "properties": {
+            "accessTokenLifespan": {
+              "description": "The amount of time in seconds before an access token expires. This will override the default for the realm.",
+              "type": "string"
+            },
+            "accessType": {
+              "description": "Specifies the type of client, which can be one of the following:",
+              "type": "string"
+            },
+            "adminUrl": {
+              "description": "URL to the admin interface of the client.",
+              "type": "string"
+            },
+            "allowRefreshTokenInStandardTokenExchange": {
+              "description": "Defines whether to allow refresh token in Standard Token Exchange. Possible values are NO (default) and SAME_SESSION.",
+              "type": "string"
+            },
+            "alwaysDisplayInConsole": {
+              "description": "Always list this client in the Account UI, even if the user does not have an active session.",
+              "type": "boolean"
+            },
+            "authenticationFlowBindingOverrides": {
+              "description": "Override realm authentication flow bindings",
+              "items": {
+                "properties": {
+                  "browserId": {
+                    "description": "Browser flow id, (flow needs to exist)",
+                    "type": "string"
+                  },
+                  "directGrantId": {
+                    "description": "Direct grant flow id (flow needs to exist)",
+                    "type": "string"
+                  }
+                },
+                "type": "object"
+              },
+              "type": "array"
+            },
+            "authorization": {
+              "description": "When this block is present, fine-grained authorization will be enabled for this client. The client's access_type must be CONFIDENTIAL, and service_accounts_enabled must be true. This block has the following arguments:",
+              "items": {
+                "properties": {
+                  "allowRemoteResourceManagement": {
+                    "description": "When true, resources can be managed remotely by the resource server. Defaults to false.",
+                    "type": "boolean"
+                  },
+                  "decisionStrategy": {
+                    "description": "Dictates how the policies associated with a given permission are evaluated and how a final decision is obtained. Could be one of AFFIRMATIVE, CONSENSUS, or UNANIMOUS. Applies to permissions.",
+                    "type": "string"
+                  },
+                  "keepDefaults": {
+                    "description": "When true, defaults set by Keycloak will be respected. Defaults to false.",
+                    "type": "boolean"
+                  },
+                  "policyEnforcementMode": {
+                    "description": "Dictates how policies are enforced when evaluating authorization requests. Can be one of ENFORCING, PERMISSIVE, or DISABLED.",
+                    "type": "string"
+                  }
+                },
+                "type": "object"
+              },
+              "type": "array"
+            },
+            "backchannelLogoutRevokeOfflineSessions": {
+              "description": "Specifying whether a \"revoke_offline_access\" event is included in the Logout Token when the Backchannel Logout URL is used. Keycloak will revoke offline sessions when receiving a Logout Token with this event.",
+              "type": "boolean"
+            },
+            "backchannelLogoutSessionRequired": {
+              "description": "When true, a sid (session ID) claim will be included in the logout token when the backchannel logout URL is used. Defaults to true.",
+              "type": "boolean"
+            },
+            "backchannelLogoutUrl": {
+              "description": "The URL that will cause the client to log itself out when a logout request is sent to this realm. If omitted, no logout request will be sent to the client is this case.",
+              "type": "string"
+            },
+            "baseUrl": {
+              "description": "Default URL to use when the auth server needs to redirect or link back to the client.",
+              "type": "string"
+            },
+            "clientAuthenticatorType": {
+              "description": "Defaults to client-secret. The authenticator type for clients with an access_type of CONFIDENTIAL or BEARER-ONLY. A default Keycloak installation will have the following available types:",
+              "type": "string"
+            },
+            "clientId": {
+              "description": "The Client ID for this client, referenced in the URI during authentication and in issued tokens.",
+              "type": "string"
+            },
+            "clientOfflineSessionIdleTimeout": {
+              "description": "Time a client session is allowed to be idle before it expires. Tokens are invalidated when a client session is expired. If not set it uses the standard SSO Session Idle value.",
+              "type": "string"
+            },
+            "clientOfflineSessionMaxLifespan": {
+              "description": "Max time before a client session is expired. Tokens are invalidated when a client session is expired. If not set, it uses the standard SSO Session Max value.",
+              "type": "string"
+            },
+            "clientSecretRegenerateWhenChanged": {
+              "additionalProperties": {
+                "type": "string"
+              },
+              "description": "Arbitrary map of values that, when changed, will trigger rotation of the secret. NOTE! Conflicts with client_secret, client_secret_wo and client_secret_wo_version attribute and can't be used together\nArbitrary map of values that, when changed, will trigger rotation of the secret",
+              "type": "object",
+              "x-kubernetes-map-type": "granular"
+            },
+            "clientSecretWoVersion": {
+              "description": "The value of this argument is stored in the state and plan files. Required when using client_secret_wo.\nVersion of the Client secret write-only argument",
+              "type": "number"
+            },
+            "clientSessionIdleTimeout": {
+              "description": "Time a client offline session is allowed to be idle before it expires. Offline tokens are invalidated when a client offline session is expired. If not set it uses the Offline Session Idle value.",
+              "type": "string"
+            },
+            "clientSessionMaxLifespan": {
+              "description": "Max time before a client offline session is expired. Offline tokens are invalidated when a client offline session is expired. If not set, it uses the Offline Session Max value.",
+              "type": "string"
+            },
+            "consentRequired": {
+              "description": "When true, users have to consent to client access. Defaults to false.",
+              "type": "boolean"
+            },
+            "consentScreenText": {
+              "description": "The text to display on the consent screen about permissions specific to this client. This is applicable only when display_on_consent_screen is true.",
+              "type": "string"
+            },
+            "description": {
+              "description": "The description of this client in the GUI.",
+              "type": "string"
+            },
+            "directAccessGrantsEnabled": {
+              "description": "When true, the OAuth2 Resource Owner Password Grant will be enabled for this client. Defaults to false.",
+              "type": "boolean"
+            },
+            "displayOnConsentScreen": {
+              "description": "When true, the consent screen will display information about the client itself. Defaults to false. This is applicable only when consent_required is true.",
+              "type": "boolean"
+            },
+            "enabled": {
+              "description": "When false, this client will not be able to initiate a login or obtain access tokens. Defaults to true.",
+              "type": "boolean"
+            },
+            "excludeIssuerFromAuthResponse": {
+              "description": "When true, the parameter iss will not be included in OpenID Connect Authentication Response.",
+              "type": "boolean"
+            },
+            "excludeSessionStateFromAuthResponse": {
+              "description": "When true, the parameter session_state will not be included in OpenID Connect Authentication Response.",
+              "type": "boolean"
+            },
+            "extraConfig": {
+              "additionalProperties": {
+                "type": "string"
+              },
+              "description": "A map of key/value pairs to add extra configuration attributes to this client. Use this attribute at your own risk, as it may conflict with top-level configuration attributes in future provider updates. For example, the extra_config map can be used to set Authentication Context Class Reference (ACR) to Level of Authentication (LoA) mapping",
+              "type": "object",
+              "x-kubernetes-map-type": "granular"
+            },
+            "frontchannelLogoutEnabled": {
+              "description": "When true, frontchannel logout will be enabled for this client. Specify the url with frontchannel_logout_url. Defaults to false.",
+              "type": "boolean"
+            },
+            "frontchannelLogoutUrl": {
+              "description": "The frontchannel logout url. This is applicable only when frontchannel_logout_enabled is true.",
+              "type": "string"
+            },
+            "fullScopeAllowed": {
+              "description": "Allow to include all roles mappings in the access token.",
+              "type": "boolean"
+            },
+            "id": {
+              "type": "string"
+            },
+            "implicitFlowEnabled": {
+              "description": "When true, the OAuth2 Implicit Grant will be enabled for this client. Defaults to false.",
+              "type": "boolean"
+            },
+            "import": {
+              "description": "When true, the client with the specified client_id is assumed to already exist, and it will be imported into state instead of being created. This attribute is useful when dealing with clients that Keycloak creates automatically during realm creation, such as account and admin-cli. Note, that the client will not be removed during destruction if import is true.",
+              "type": "boolean"
+            },
+            "loginTheme": {
+              "description": "The client login theme. This will override the default theme for the realm.",
+              "type": "string"
+            },
+            "name": {
+              "description": "The display name of this client in the GUI.",
+              "type": "string"
+            },
+            "oauth2DeviceAuthorizationGrantEnabled": {
+              "description": "Enables support for OAuth 2.0 Device Authorization Grant, which means that client is an application on device that has limited input capabilities or lack a suitable browser.",
+              "type": "boolean"
+            },
+            "oauth2DeviceCodeLifespan": {
+              "description": "The maximum amount of time a client has to finish the device code flow before it expires.",
+              "type": "string"
+            },
+            "oauth2DevicePollingInterval": {
+              "description": "The minimum amount of time in seconds that the client should wait between polling requests to the token endpoint.",
+              "type": "string"
+            },
+            "pkceCodeChallengeMethod": {
+              "description": "The challenge method to use for Proof Key for Code Exchange. Can be either plain or S256 or set to empty value \u201c.",
+              "type": "string"
+            },
+            "realmId": {
+              "description": "The realm this client is attached to.",
+              "type": "string"
+            },
+            "resourceServerId": {
+              "description": "(Computed) When authorization is enabled for this client, this attribute is the unique ID for the client (the same value as the .id attribute).",
+              "type": "string"
+            },
+            "rootUrl": {
+              "description": "When specified, this URL is prepended to any relative URLs found within valid_redirect_uris, web_origins, and admin_url. NOTE: Due to limitations in the Keycloak API, when the root_url attribute is used, the valid_redirect_uris, web_origins, and admin_url attributes will be required.",
+              "type": "string"
+            },
+            "serviceAccountUserId": {
+              "description": "(Computed) When service accounts are enabled for this client, this attribute is the unique ID for the Keycloak user that represents this service account.",
+              "type": "string"
+            },
+            "serviceAccountsEnabled": {
+              "description": "When true, the OAuth2 Client Credentials grant will be enabled for this client. Defaults to false.",
+              "type": "boolean"
+            },
+            "standardFlowEnabled": {
+              "description": "When true, the OAuth2 Authorization Code Grant will be enabled for this client. Defaults to false.",
+              "type": "boolean"
+            },
+            "standardTokenExchangeEnabled": {
+              "description": "Enables support for Standard Token Exchange",
+              "type": "boolean"
+            },
+            "useRefreshTokens": {
+              "description": "If this is true, a refresh_token will be created and added to the token response. If this is false then no refresh_token will be generated.  Defaults to true.",
+              "type": "boolean"
+            },
+            "useRefreshTokensClientCredentials": {
+              "description": "If this is true, a refresh_token will be created and added to the token response if the client_credentials grant is used and a user session will be created. If this is false then no refresh_token will be generated and the associated user session will be removed, in accordance with OAuth 2.0 RFC6749 Section 4.4.3. Defaults to false.",
+              "type": "boolean"
+            },
+            "validPostLogoutRedirectUris": {
+              "description": "A list of valid URIs a browser is permitted to redirect to after a successful logout.",
+              "items": {
+                "type": "string"
+              },
+              "type": "array",
+              "x-kubernetes-list-type": "set"
+            },
+            "validRedirectUris": {
+              "description": "A list of valid URIs a browser is permitted to redirect to after a successful login or logout. Simple\nwildcards in the form of an asterisk can be used here. This attribute must be set if either standard_flow_enabled or implicit_flow_enabled\nis set to true.",
+              "items": {
+                "type": "string"
+              },
+              "type": "array",
+              "x-kubernetes-list-type": "set"
+            },
+            "webOrigins": {
+              "description": "A list of allowed CORS origins. To permit all valid redirect URIs, add +. Note that this will not include the * wildcard. To permit all origins, explicitly add *.",
+              "items": {
+                "type": "string"
+              },
+              "type": "array",
+              "x-kubernetes-list-type": "set"
+            }
+          },
+          "type": "object"
+        },
+        "conditions": {
+          "description": "Conditions of the resource.",
+          "items": {
+            "description": "A Condition that may apply to a resource.",
+            "properties": {
+              "lastTransitionTime": {
+                "description": "LastTransitionTime is the last time this condition transitioned from one\nstatus to another.",
+                "format": "date-time",
+                "type": "string"
+              },
+              "message": {
+                "description": "A Message containing details about this condition's last transition from\none status to another, if any.",
+                "type": "string"
+              },
+              "observedGeneration": {
+                "description": "ObservedGeneration represents the .metadata.generation that the condition was set based upon.\nFor instance, if .metadata.generation is currently 12, but the .status.conditions[x].observedGeneration is 9, the condition is out of date\nwith respect to the current state of the instance.",
+                "format": "int64",
+                "type": "integer"
+              },
+              "reason": {
+                "description": "A Reason for this condition's last transition from one status to another.",
+                "type": "string"
+              },
+              "status": {
+                "description": "Status of this condition; is it currently True, False, or Unknown?",
+                "type": "string"
+              },
+              "type": {
+                "description": "Type of this condition. At most one of each condition type may apply to\na resource at any point in time.",
+                "type": "string"
+              }
+            },
+            "required": [
+              "lastTransitionTime",
+              "reason",
+              "status",
+              "type"
+            ],
+            "type": "object"
+          },
+          "type": "array",
+          "x-kubernetes-list-map-keys": [
+            "type"
+          ],
+          "x-kubernetes-list-type": "map"
+        },
+        "observedGeneration": {
+          "description": "ObservedGeneration is the latest metadata.generation\nwhich resulted in either a ready state, or stalled due to error\nit can not recover from without human intervention.",
+          "format": "int64",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    }
+  },
+  "required": [
+    "spec"
+  ],
+  "type": "object"
+}

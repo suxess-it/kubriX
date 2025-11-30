@@ -1,0 +1,513 @@
+{
+  "description": "Mount is the Schema for the Mounts API. Managing the mounting of secret backends in Vault",
+  "properties": {
+    "apiVersion": {
+      "description": "APIVersion defines the versioned schema of this representation of an object.\nServers should convert recognized schemas to the latest internal value, and\nmay reject unrecognized values.\nMore info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources",
+      "type": "string"
+    },
+    "kind": {
+      "description": "Kind is a string value representing the REST resource this object represents.\nServers may infer this from the endpoint the client submits requests to.\nCannot be updated.\nIn CamelCase.\nMore info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
+      "type": "string"
+    },
+    "metadata": {
+      "type": "object"
+    },
+    "spec": {
+      "description": "MountSpec defines the desired state of Mount",
+      "properties": {
+        "deletionPolicy": {
+          "default": "Delete",
+          "description": "DeletionPolicy specifies what will happen to the underlying external\nwhen this managed resource is deleted - either \"Delete\" or \"Orphan\" the\nexternal resource.\nThis field is planned to be deprecated in favor of the ManagementPolicies\nfield in a future release. Currently, both could be set independently and\nnon-default values would be honored if the feature flag is enabled.\nSee the design doc for more information: https://github.com/crossplane/crossplane/blob/499895a25d1a1a0ba1604944ef98ac7a1a71f197/design/design-doc-observe-only-resources.md?plain=1#L223",
+          "enum": [
+            "Orphan",
+            "Delete"
+          ],
+          "type": "string"
+        },
+        "forProvider": {
+          "properties": {
+            "allowedManagedKeys": {
+              "description": "Set of managed key registry entry names that the mount in question is allowed to access\nList of managed key registry entry names that the mount in question is allowed to access",
+              "items": {
+                "type": "string"
+              },
+              "type": "array",
+              "x-kubernetes-list-type": "set"
+            },
+            "allowedResponseHeaders": {
+              "description": "List of headers to allow, allowing a plugin to include\nthem in the response.\nList of headers to allow and pass from the request to the plugin",
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            },
+            "auditNonHmacRequestKeys": {
+              "description": "Specifies the list of keys that will not be HMAC'd by audit devices in the request data object.\nSpecifies the list of keys that will not be HMAC'd by audit devices in the request data object.",
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            },
+            "auditNonHmacResponseKeys": {
+              "description": "Specifies the list of keys that will not be HMAC'd by audit devices in the response data object.\nSpecifies the list of keys that will not be HMAC'd by audit devices in the response data object.",
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            },
+            "defaultLeaseTtlSeconds": {
+              "description": "Default lease duration for tokens and secrets in seconds\nDefault lease duration for tokens and secrets in seconds",
+              "type": "number"
+            },
+            "delegatedAuthAccessors": {
+              "description": "List of allowed authentication mount accessors the\nbackend can request delegated authentication for.\nList of headers to allow and pass from the request to the plugin",
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            },
+            "description": {
+              "description": "Human-friendly description of the mount\nHuman-friendly description of the mount",
+              "type": "string"
+            },
+            "externalEntropyAccess": {
+              "description": "Boolean flag that can be explicitly set to true to enable the secrets engine to access Vault's external entropy source\nEnable the secrets engine to access Vault's external entropy source",
+              "type": "boolean"
+            },
+            "forceNoCache": {
+              "description": "If set to true, disables caching.",
+              "type": "boolean"
+            },
+            "identityTokenKey": {
+              "description": "The key to use for signing plugin workload identity tokens. If\nnot provided, this will default to Vault's OIDC default key.\nThe key to use for signing plugin workload identity tokens",
+              "type": "string"
+            },
+            "listingVisibility": {
+              "description": "Specifies whether to show this mount in the UI-specific\nlisting endpoint. Valid values are unauth or hidden. If not set, behaves like hidden.\nSpecifies whether to show this mount in the UI-specific listing endpoint",
+              "type": "string"
+            },
+            "local": {
+              "description": "Boolean flag that can be explicitly set to true to enforce local mount in HA environment\nLocal mount flag that can be explicitly set to true to enforce local mount in HA environment",
+              "type": "boolean"
+            },
+            "maxLeaseTtlSeconds": {
+              "description": "Maximum possible lease duration for tokens and secrets in seconds\nMaximum possible lease duration for tokens and secrets in seconds",
+              "type": "number"
+            },
+            "namespace": {
+              "description": "The namespace to provision the resource in.\nThe value should not contain leading or trailing forward slashes.\nThe namespace is always relative to the provider's configured namespace.\nAvailable only for Vault Enterprise.\nTarget namespace. (requires Enterprise)",
+              "type": "string"
+            },
+            "options": {
+              "additionalProperties": {
+                "type": "string"
+              },
+              "description": "Specifies mount type specific options that are passed to the backend\nSpecifies mount type specific options that are passed to the backend",
+              "type": "object",
+              "x-kubernetes-map-type": "granular"
+            },
+            "passthroughRequestHeaders": {
+              "description": "List of headers to allow and pass from the request to\nthe plugin.\nList of headers to allow and pass from the request to the plugin",
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            },
+            "path": {
+              "description": "Where the secret backend will be mounted\nWhere the secret backend will be mounted",
+              "type": "string"
+            },
+            "pluginVersion": {
+              "description": "Specifies the semantic version of the plugin to use, e.g. \"v1.0.0\".\nIf unspecified, the server will select any matching unversioned plugin that may have been\nregistered, the latest versioned plugin registered, or a built-in plugin in that order of precedence.\nSpecifies the semantic version of the plugin to use, e.g. 'v1.0.0'",
+              "type": "string"
+            },
+            "sealWrap": {
+              "description": "Boolean flag that can be explicitly set to true to enable seal wrapping for the mount, causing values stored by the mount to be wrapped by the seal's encryption capability\nEnable seal wrapping for the mount, causing values stored by the mount to be wrapped by the seal's encryption capability",
+              "type": "boolean"
+            },
+            "type": {
+              "description": "Type of the backend, such as \"aws\"\nType of the backend, such as 'aws'",
+              "type": "string"
+            }
+          },
+          "type": "object"
+        },
+        "initProvider": {
+          "description": "THIS IS A BETA FIELD. It will be honored\nunless the Management Policies feature flag is disabled.\nInitProvider holds the same fields as ForProvider, with the exception\nof Identifier and other resource reference fields. The fields that are\nin InitProvider are merged into ForProvider when the resource is created.\nThe same fields are also added to the terraform ignore_changes hook, to\navoid updating them after creation. This is useful for fields that are\nrequired on creation, but we do not desire to update them after creation,\nfor example because of an external controller is managing them, like an\nautoscaler.",
+          "properties": {
+            "allowedManagedKeys": {
+              "description": "Set of managed key registry entry names that the mount in question is allowed to access\nList of managed key registry entry names that the mount in question is allowed to access",
+              "items": {
+                "type": "string"
+              },
+              "type": "array",
+              "x-kubernetes-list-type": "set"
+            },
+            "allowedResponseHeaders": {
+              "description": "List of headers to allow, allowing a plugin to include\nthem in the response.\nList of headers to allow and pass from the request to the plugin",
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            },
+            "auditNonHmacRequestKeys": {
+              "description": "Specifies the list of keys that will not be HMAC'd by audit devices in the request data object.\nSpecifies the list of keys that will not be HMAC'd by audit devices in the request data object.",
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            },
+            "auditNonHmacResponseKeys": {
+              "description": "Specifies the list of keys that will not be HMAC'd by audit devices in the response data object.\nSpecifies the list of keys that will not be HMAC'd by audit devices in the response data object.",
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            },
+            "defaultLeaseTtlSeconds": {
+              "description": "Default lease duration for tokens and secrets in seconds\nDefault lease duration for tokens and secrets in seconds",
+              "type": "number"
+            },
+            "delegatedAuthAccessors": {
+              "description": "List of allowed authentication mount accessors the\nbackend can request delegated authentication for.\nList of headers to allow and pass from the request to the plugin",
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            },
+            "description": {
+              "description": "Human-friendly description of the mount\nHuman-friendly description of the mount",
+              "type": "string"
+            },
+            "externalEntropyAccess": {
+              "description": "Boolean flag that can be explicitly set to true to enable the secrets engine to access Vault's external entropy source\nEnable the secrets engine to access Vault's external entropy source",
+              "type": "boolean"
+            },
+            "forceNoCache": {
+              "description": "If set to true, disables caching.",
+              "type": "boolean"
+            },
+            "identityTokenKey": {
+              "description": "The key to use for signing plugin workload identity tokens. If\nnot provided, this will default to Vault's OIDC default key.\nThe key to use for signing plugin workload identity tokens",
+              "type": "string"
+            },
+            "listingVisibility": {
+              "description": "Specifies whether to show this mount in the UI-specific\nlisting endpoint. Valid values are unauth or hidden. If not set, behaves like hidden.\nSpecifies whether to show this mount in the UI-specific listing endpoint",
+              "type": "string"
+            },
+            "local": {
+              "description": "Boolean flag that can be explicitly set to true to enforce local mount in HA environment\nLocal mount flag that can be explicitly set to true to enforce local mount in HA environment",
+              "type": "boolean"
+            },
+            "maxLeaseTtlSeconds": {
+              "description": "Maximum possible lease duration for tokens and secrets in seconds\nMaximum possible lease duration for tokens and secrets in seconds",
+              "type": "number"
+            },
+            "namespace": {
+              "description": "The namespace to provision the resource in.\nThe value should not contain leading or trailing forward slashes.\nThe namespace is always relative to the provider's configured namespace.\nAvailable only for Vault Enterprise.\nTarget namespace. (requires Enterprise)",
+              "type": "string"
+            },
+            "options": {
+              "additionalProperties": {
+                "type": "string"
+              },
+              "description": "Specifies mount type specific options that are passed to the backend\nSpecifies mount type specific options that are passed to the backend",
+              "type": "object",
+              "x-kubernetes-map-type": "granular"
+            },
+            "passthroughRequestHeaders": {
+              "description": "List of headers to allow and pass from the request to\nthe plugin.\nList of headers to allow and pass from the request to the plugin",
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            },
+            "path": {
+              "description": "Where the secret backend will be mounted\nWhere the secret backend will be mounted",
+              "type": "string"
+            },
+            "pluginVersion": {
+              "description": "Specifies the semantic version of the plugin to use, e.g. \"v1.0.0\".\nIf unspecified, the server will select any matching unversioned plugin that may have been\nregistered, the latest versioned plugin registered, or a built-in plugin in that order of precedence.\nSpecifies the semantic version of the plugin to use, e.g. 'v1.0.0'",
+              "type": "string"
+            },
+            "sealWrap": {
+              "description": "Boolean flag that can be explicitly set to true to enable seal wrapping for the mount, causing values stored by the mount to be wrapped by the seal's encryption capability\nEnable seal wrapping for the mount, causing values stored by the mount to be wrapped by the seal's encryption capability",
+              "type": "boolean"
+            },
+            "type": {
+              "description": "Type of the backend, such as \"aws\"\nType of the backend, such as 'aws'",
+              "type": "string"
+            }
+          },
+          "type": "object"
+        },
+        "managementPolicies": {
+          "default": [
+            "*"
+          ],
+          "description": "THIS IS A BETA FIELD. It is on by default but can be opted out\nthrough a Crossplane feature flag.\nManagementPolicies specify the array of actions Crossplane is allowed to\ntake on the managed and external resources.\nThis field is planned to replace the DeletionPolicy field in a future\nrelease. Currently, both could be set independently and non-default\nvalues would be honored if the feature flag is enabled. If both are\ncustom, the DeletionPolicy field will be ignored.\nSee the design doc for more information: https://github.com/crossplane/crossplane/blob/499895a25d1a1a0ba1604944ef98ac7a1a71f197/design/design-doc-observe-only-resources.md?plain=1#L223\nand this one: https://github.com/crossplane/crossplane/blob/444267e84783136daa93568b364a5f01228cacbe/design/one-pager-ignore-changes.md",
+          "items": {
+            "description": "A ManagementAction represents an action that the Crossplane controllers\ncan take on an external resource.",
+            "enum": [
+              "Observe",
+              "Create",
+              "Update",
+              "Delete",
+              "LateInitialize",
+              "*"
+            ],
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "providerConfigRef": {
+          "default": {
+            "name": "default"
+          },
+          "description": "ProviderConfigReference specifies how the provider that will be used to\ncreate, observe, update, and delete this managed resource should be\nconfigured.",
+          "properties": {
+            "name": {
+              "description": "Name of the referenced object.",
+              "type": "string"
+            },
+            "policy": {
+              "description": "Policies for referencing.",
+              "properties": {
+                "resolution": {
+                  "default": "Required",
+                  "description": "Resolution specifies whether resolution of this reference is required.\nThe default is 'Required', which means the reconcile will fail if the\nreference cannot be resolved. 'Optional' means this reference will be\na no-op if it cannot be resolved.",
+                  "enum": [
+                    "Required",
+                    "Optional"
+                  ],
+                  "type": "string"
+                },
+                "resolve": {
+                  "description": "Resolve specifies when this reference should be resolved. The default\nis 'IfNotPresent', which will attempt to resolve the reference only when\nthe corresponding field is not present. Use 'Always' to resolve the\nreference on every reconcile.",
+                  "enum": [
+                    "Always",
+                    "IfNotPresent"
+                  ],
+                  "type": "string"
+                }
+              },
+              "type": "object"
+            }
+          },
+          "required": [
+            "name"
+          ],
+          "type": "object"
+        },
+        "writeConnectionSecretToRef": {
+          "description": "WriteConnectionSecretToReference specifies the namespace and name of a\nSecret to which any connection details for this managed resource should\nbe written. Connection details frequently include the endpoint, username,\nand password required to connect to the managed resource.",
+          "properties": {
+            "name": {
+              "description": "Name of the secret.",
+              "type": "string"
+            },
+            "namespace": {
+              "description": "Namespace of the secret.",
+              "type": "string"
+            }
+          },
+          "required": [
+            "name",
+            "namespace"
+          ],
+          "type": "object"
+        }
+      },
+      "required": [
+        "forProvider"
+      ],
+      "type": "object",
+      "x-kubernetes-validations": [
+        {
+          "message": "spec.forProvider.path is a required parameter",
+          "rule": "!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.path) || (has(self.initProvider) && has(self.initProvider.path))"
+        },
+        {
+          "message": "spec.forProvider.type is a required parameter",
+          "rule": "!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.type) || (has(self.initProvider) && has(self.initProvider.type))"
+        }
+      ]
+    },
+    "status": {
+      "description": "MountStatus defines the observed state of Mount.",
+      "properties": {
+        "atProvider": {
+          "properties": {
+            "accessor": {
+              "description": "The accessor for this mount.\nAccessor of the mount",
+              "type": "string"
+            },
+            "allowedManagedKeys": {
+              "description": "Set of managed key registry entry names that the mount in question is allowed to access\nList of managed key registry entry names that the mount in question is allowed to access",
+              "items": {
+                "type": "string"
+              },
+              "type": "array",
+              "x-kubernetes-list-type": "set"
+            },
+            "allowedResponseHeaders": {
+              "description": "List of headers to allow, allowing a plugin to include\nthem in the response.\nList of headers to allow and pass from the request to the plugin",
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            },
+            "auditNonHmacRequestKeys": {
+              "description": "Specifies the list of keys that will not be HMAC'd by audit devices in the request data object.\nSpecifies the list of keys that will not be HMAC'd by audit devices in the request data object.",
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            },
+            "auditNonHmacResponseKeys": {
+              "description": "Specifies the list of keys that will not be HMAC'd by audit devices in the response data object.\nSpecifies the list of keys that will not be HMAC'd by audit devices in the response data object.",
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            },
+            "defaultLeaseTtlSeconds": {
+              "description": "Default lease duration for tokens and secrets in seconds\nDefault lease duration for tokens and secrets in seconds",
+              "type": "number"
+            },
+            "delegatedAuthAccessors": {
+              "description": "List of allowed authentication mount accessors the\nbackend can request delegated authentication for.\nList of headers to allow and pass from the request to the plugin",
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            },
+            "description": {
+              "description": "Human-friendly description of the mount\nHuman-friendly description of the mount",
+              "type": "string"
+            },
+            "externalEntropyAccess": {
+              "description": "Boolean flag that can be explicitly set to true to enable the secrets engine to access Vault's external entropy source\nEnable the secrets engine to access Vault's external entropy source",
+              "type": "boolean"
+            },
+            "forceNoCache": {
+              "description": "If set to true, disables caching.",
+              "type": "boolean"
+            },
+            "id": {
+              "type": "string"
+            },
+            "identityTokenKey": {
+              "description": "The key to use for signing plugin workload identity tokens. If\nnot provided, this will default to Vault's OIDC default key.\nThe key to use for signing plugin workload identity tokens",
+              "type": "string"
+            },
+            "listingVisibility": {
+              "description": "Specifies whether to show this mount in the UI-specific\nlisting endpoint. Valid values are unauth or hidden. If not set, behaves like hidden.\nSpecifies whether to show this mount in the UI-specific listing endpoint",
+              "type": "string"
+            },
+            "local": {
+              "description": "Boolean flag that can be explicitly set to true to enforce local mount in HA environment\nLocal mount flag that can be explicitly set to true to enforce local mount in HA environment",
+              "type": "boolean"
+            },
+            "maxLeaseTtlSeconds": {
+              "description": "Maximum possible lease duration for tokens and secrets in seconds\nMaximum possible lease duration for tokens and secrets in seconds",
+              "type": "number"
+            },
+            "namespace": {
+              "description": "The namespace to provision the resource in.\nThe value should not contain leading or trailing forward slashes.\nThe namespace is always relative to the provider's configured namespace.\nAvailable only for Vault Enterprise.\nTarget namespace. (requires Enterprise)",
+              "type": "string"
+            },
+            "options": {
+              "additionalProperties": {
+                "type": "string"
+              },
+              "description": "Specifies mount type specific options that are passed to the backend\nSpecifies mount type specific options that are passed to the backend",
+              "type": "object",
+              "x-kubernetes-map-type": "granular"
+            },
+            "passthroughRequestHeaders": {
+              "description": "List of headers to allow and pass from the request to\nthe plugin.\nList of headers to allow and pass from the request to the plugin",
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            },
+            "path": {
+              "description": "Where the secret backend will be mounted\nWhere the secret backend will be mounted",
+              "type": "string"
+            },
+            "pluginVersion": {
+              "description": "Specifies the semantic version of the plugin to use, e.g. \"v1.0.0\".\nIf unspecified, the server will select any matching unversioned plugin that may have been\nregistered, the latest versioned plugin registered, or a built-in plugin in that order of precedence.\nSpecifies the semantic version of the plugin to use, e.g. 'v1.0.0'",
+              "type": "string"
+            },
+            "sealWrap": {
+              "description": "Boolean flag that can be explicitly set to true to enable seal wrapping for the mount, causing values stored by the mount to be wrapped by the seal's encryption capability\nEnable seal wrapping for the mount, causing values stored by the mount to be wrapped by the seal's encryption capability",
+              "type": "boolean"
+            },
+            "type": {
+              "description": "Type of the backend, such as \"aws\"\nType of the backend, such as 'aws'",
+              "type": "string"
+            }
+          },
+          "type": "object"
+        },
+        "conditions": {
+          "description": "Conditions of the resource.",
+          "items": {
+            "description": "A Condition that may apply to a resource.",
+            "properties": {
+              "lastTransitionTime": {
+                "description": "LastTransitionTime is the last time this condition transitioned from one\nstatus to another.",
+                "format": "date-time",
+                "type": "string"
+              },
+              "message": {
+                "description": "A Message containing details about this condition's last transition from\none status to another, if any.",
+                "type": "string"
+              },
+              "observedGeneration": {
+                "description": "ObservedGeneration represents the .metadata.generation that the condition was set based upon.\nFor instance, if .metadata.generation is currently 12, but the .status.conditions[x].observedGeneration is 9, the condition is out of date\nwith respect to the current state of the instance.",
+                "format": "int64",
+                "type": "integer"
+              },
+              "reason": {
+                "description": "A Reason for this condition's last transition from one status to another.",
+                "type": "string"
+              },
+              "status": {
+                "description": "Status of this condition; is it currently True, False, or Unknown?",
+                "type": "string"
+              },
+              "type": {
+                "description": "Type of this condition. At most one of each condition type may apply to\na resource at any point in time.",
+                "type": "string"
+              }
+            },
+            "required": [
+              "lastTransitionTime",
+              "reason",
+              "status",
+              "type"
+            ],
+            "type": "object"
+          },
+          "type": "array",
+          "x-kubernetes-list-map-keys": [
+            "type"
+          ],
+          "x-kubernetes-list-type": "map"
+        },
+        "observedGeneration": {
+          "description": "ObservedGeneration is the latest metadata.generation\nwhich resulted in either a ready state, or stalled due to error\nit can not recover from without human intervention.",
+          "format": "int64",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    }
+  },
+  "required": [
+    "spec"
+  ],
+  "type": "object"
+}

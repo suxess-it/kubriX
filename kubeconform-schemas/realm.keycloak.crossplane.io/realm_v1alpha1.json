@@ -1,0 +1,1995 @@
+{
+  "description": "Realm is the Schema for the Realms API.",
+  "properties": {
+    "apiVersion": {
+      "description": "APIVersion defines the versioned schema of this representation of an object.\nServers should convert recognized schemas to the latest internal value, and\nmay reject unrecognized values.\nMore info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources",
+      "type": "string"
+    },
+    "kind": {
+      "description": "Kind is a string value representing the REST resource this object represents.\nServers may infer this from the endpoint the client submits requests to.\nCannot be updated.\nIn CamelCase.\nMore info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
+      "type": "string"
+    },
+    "metadata": {
+      "type": "object"
+    },
+    "spec": {
+      "description": "RealmSpec defines the desired state of Realm",
+      "properties": {
+        "deletionPolicy": {
+          "default": "Delete",
+          "description": "DeletionPolicy specifies what will happen to the underlying external\nwhen this managed resource is deleted - either \"Delete\" or \"Orphan\" the\nexternal resource.\nThis field is planned to be deprecated in favor of the ManagementPolicies\nfield in a future release. Currently, both could be set independently and\nnon-default values would be honored if the feature flag is enabled.\nSee the design doc for more information: https://github.com/crossplane/crossplane/blob/499895a25d1a1a0ba1604944ef98ac7a1a71f197/design/design-doc-observe-only-resources.md?plain=1#L223",
+          "enum": [
+            "Orphan",
+            "Delete"
+          ],
+          "type": "string"
+        },
+        "forProvider": {
+          "properties": {
+            "accessCodeLifespan": {
+              "description": "The maximum amount of time a client has to finish the authorization code flow.",
+              "type": "string"
+            },
+            "accessCodeLifespanLogin": {
+              "description": "The maximum amount of time a user is permitted to stay on the login page before the authentication process must be restarted.",
+              "type": "string"
+            },
+            "accessCodeLifespanUserAction": {
+              "description": "The maximum amount of time a user has to complete login related actions, such as updating a password.",
+              "type": "string"
+            },
+            "accessTokenLifespan": {
+              "description": "The amount of time an access token can be used before it expires.",
+              "type": "string"
+            },
+            "accessTokenLifespanForImplicitFlow": {
+              "description": "The amount of time an access token issued with the OpenID Connect Implicit Flow can be used before it expires.",
+              "type": "string"
+            },
+            "accountTheme": {
+              "description": "Used for account management pages.",
+              "type": "string"
+            },
+            "actionTokenGeneratedByAdminLifespan": {
+              "description": "The maximum time a user has to use an admin-generated permit before it expires.",
+              "type": "string"
+            },
+            "actionTokenGeneratedByUserLifespan": {
+              "description": "The maximum time a user has to use a user-generated permit before it expires.",
+              "type": "string"
+            },
+            "adminTheme": {
+              "description": "Used for the admin console.",
+              "type": "string"
+            },
+            "attributes": {
+              "additionalProperties": {
+                "type": "string"
+              },
+              "description": "A map of custom attributes to add to the realm.",
+              "type": "object",
+              "x-kubernetes-map-type": "granular"
+            },
+            "browserFlow": {
+              "description": "The desired flow for browser authentication. Defaults to browser.\nWhich flow should be used for BrowserFlow",
+              "type": "string"
+            },
+            "clientAuthenticationFlow": {
+              "description": "The desired flow for client authentication. Defaults to clients.\nWhich flow should be used for ClientAuthenticationFlow",
+              "type": "string"
+            },
+            "clientSessionIdleTimeout": {
+              "description": "The amount of time a session can be idle before it expires. Users can override it for individual clients.",
+              "type": "string"
+            },
+            "clientSessionMaxLifespan": {
+              "description": "The maximum amount of time before a session expires regardless of activity. Users can override it for individual clients.",
+              "type": "string"
+            },
+            "defaultDefaultClientScopes": {
+              "description": "A list of default default client scopes to be used for client definitions. Defaults to [] or keycloak's built-in default default client-scopes. For an alternative, please refer to the dedicated resource keycloak_realm_default_client_scopes.",
+              "items": {
+                "type": "string"
+              },
+              "type": "array",
+              "x-kubernetes-list-type": "set"
+            },
+            "defaultOptionalClientScopes": {
+              "description": "A list of default optional client scopes to be used for client definitions. Defaults to [] or keycloak's built-in default optional client-scopes. For an alternative, please refer to the dedicated resource keycloak_realm_optional_client_scopes.",
+              "items": {
+                "type": "string"
+              },
+              "type": "array",
+              "x-kubernetes-list-type": "set"
+            },
+            "defaultSignatureAlgorithm": {
+              "description": "Default algorithm used to sign tokens for the realm.",
+              "type": "string"
+            },
+            "directGrantFlow": {
+              "description": "The desired flow for direct access authentication. Defaults to direct grant.\nWhich flow should be used for DirectGrantFlow",
+              "type": "string"
+            },
+            "displayName": {
+              "description": "The display name for the realm that is shown when logging in to the admin console.",
+              "type": "string"
+            },
+            "displayNameHtml": {
+              "description": "The display name for the realm that is rendered as HTML on the screen when logging in to the admin console.",
+              "type": "string"
+            },
+            "dockerAuthenticationFlow": {
+              "description": "The desired flow for Docker authentication. Defaults to docker auth.\nWhich flow should be used for DockerAuthenticationFlow",
+              "type": "string"
+            },
+            "duplicateEmailsAllowed": {
+              "description": "When true, multiple users will be allowed to have the same email address. This argument must be set to false if login_with_email_allowed is set to true.",
+              "type": "boolean"
+            },
+            "editUsernameAllowed": {
+              "description": "When true, the username field is editable.",
+              "type": "boolean"
+            },
+            "emailTheme": {
+              "description": "Used for emails that are sent by Keycloak.",
+              "type": "string"
+            },
+            "enabled": {
+              "description": "When false, users and clients will not be able to access this realm. Defaults to true.",
+              "type": "boolean"
+            },
+            "firstBrokerLoginFlow": {
+              "description": "The desired flow for First Broker Login (since Keycloak 24). Defaults to first broker login.\nWhich flow should be used for FirstBrokerLoginFlow",
+              "type": "string"
+            },
+            "internalId": {
+              "description": "When specified, this will be used as the realm's internal ID within Keycloak. When not specified, the realm's internal ID will be set to the realm's name.",
+              "type": "string"
+            },
+            "internationalization": {
+              "items": {
+                "properties": {
+                  "defaultLocale": {
+                    "description": "The locale to use by default. This locale code must be present within the supported_locales list.",
+                    "type": "string"
+                  },
+                  "supportedLocales": {
+                    "description": "A list of ISO 639-1 locale codes that the realm should support.",
+                    "items": {
+                      "type": "string"
+                    },
+                    "type": "array",
+                    "x-kubernetes-list-type": "set"
+                  }
+                },
+                "type": "object"
+              },
+              "type": "array"
+            },
+            "loginTheme": {
+              "description": "Used for the login, forgot password, and registration pages.",
+              "type": "string"
+            },
+            "loginWithEmailAllowed": {
+              "description": "When true, users may log in with their email address.",
+              "type": "boolean"
+            },
+            "oauth2DeviceCodeLifespan": {
+              "description": "The maximum amount of time a client has to finish the device code flow before it expires.",
+              "type": "string"
+            },
+            "oauth2DevicePollingInterval": {
+              "description": "The minimum amount of time in seconds that the client should wait between polling requests to the token endpoint.",
+              "type": "number"
+            },
+            "offlineSessionIdleTimeout": {
+              "description": "The amount of time an offline session can be idle before it expires.",
+              "type": "string"
+            },
+            "offlineSessionMaxLifespan": {
+              "description": "The maximum amount of time before an offline session expires regardless of activity.",
+              "type": "string"
+            },
+            "offlineSessionMaxLifespanEnabled": {
+              "description": "Enable offline_session_max_lifespan.",
+              "type": "boolean"
+            },
+            "organizationsEnabled": {
+              "description": "When true, organization support is enabled. Defaults to false.",
+              "type": "boolean"
+            },
+            "otpPolicy": {
+              "items": {
+                "properties": {
+                  "algorithm": {
+                    "description": "What hashing algorithm should be used to generate the OTP, Valid options are HmacSHA1,HmacSHA256 and HmacSHA512. Defaults to HmacSHA1.\nWhat hashing algorithm should be used to generate the OTP.",
+                    "type": "string"
+                  },
+                  "digits": {
+                    "description": "How many digits the OTP have. Defaults to 6.",
+                    "type": "number"
+                  },
+                  "initialCounter": {
+                    "description": "What should the initial counter value be. Defaults to 2.",
+                    "type": "number"
+                  },
+                  "lookAheadWindow": {
+                    "description": "How far ahead should the server look just in case the token generator and server are out of time sync or counter sync. Defaults to 1.",
+                    "type": "number"
+                  },
+                  "period": {
+                    "description": "How many seconds should an OTP token be valid. Defaults to 30.",
+                    "type": "number"
+                  },
+                  "type": {
+                    "description": "One Time Password Type, supported Values are totp for Time-Based One Time Password and hotp for Counter Based. Defaults to totp.\nOTP Type, totp for Time-Based One Time Password or hotp for counter base one time password",
+                    "type": "string"
+                  }
+                },
+                "type": "object"
+              },
+              "type": "array"
+            },
+            "passwordPolicy": {
+              "description": "The password policy for users within the realm.\nString that represents the passwordPolicies that are in place. Each policy is separated with \" and \". Supported policies can be found in the server-info providers page. example: \"upperCase(1) and length(8) and forceExpiredPasswordChange(365) and notUsername(undefined)\"",
+              "type": "string"
+            },
+            "realm": {
+              "description": "The name of the realm. This is unique across Keycloak. This will also be used as the realm's internal ID within Keycloak.",
+              "type": "string"
+            },
+            "refreshTokenMaxReuse": {
+              "description": "Maximum number of times a refresh token can be reused before they are revoked. If unspecified and 'revoke_refresh_token' is enabled the default value is 0 and refresh tokens can not be reused.",
+              "type": "number"
+            },
+            "registrationAllowed": {
+              "description": "When true, user registration will be enabled, and a link for registration will be displayed on the login page.",
+              "type": "boolean"
+            },
+            "registrationEmailAsUsername": {
+              "description": "When true, the user's email will be used as their username during registration.",
+              "type": "boolean"
+            },
+            "registrationFlow": {
+              "description": "The desired flow for user registration. Defaults to registration.\nWhich flow should be used for RegistrationFlow",
+              "type": "string"
+            },
+            "rememberMe": {
+              "description": "When true, a \"remember me\" checkbox will be displayed on the login page, and the user's session will not expire between browser restarts.",
+              "type": "boolean"
+            },
+            "resetCredentialsFlow": {
+              "description": "The desired flow to use when a user attempts to reset their credentials. Defaults to reset credentials.\nWhich flow should be used for ResetCredentialsFlow",
+              "type": "string"
+            },
+            "resetPasswordAllowed": {
+              "description": "When true, a \"forgot password\" link will be displayed on the login page.",
+              "type": "boolean"
+            },
+            "revokeRefreshToken": {
+              "description": "If enabled a refresh token can only be used number of times specified in 'refresh_token_max_reuse' before they are revoked. If unspecified, refresh tokens can be reused.",
+              "type": "boolean"
+            },
+            "securityDefenses": {
+              "items": {
+                "properties": {
+                  "bruteForceDetection": {
+                    "items": {
+                      "properties": {
+                        "failureResetTimeSeconds": {
+                          "description": "When will failure count be reset?",
+                          "type": "number"
+                        },
+                        "maxFailureWaitSeconds": {
+                          "type": "number"
+                        },
+                        "maxLoginFailures": {
+                          "description": "How many failures before wait is triggered.",
+                          "type": "number"
+                        },
+                        "minimumQuickLoginWaitSeconds": {
+                          "description": "How long to wait after a quick login failure.",
+                          "type": "number"
+                        },
+                        "permanentLockout": {
+                          "description": "When true, this will lock the user permanently when the user exceeds the maximum login failures.",
+                          "type": "boolean"
+                        },
+                        "quickLoginCheckMilliSeconds": {
+                          "description": "Configures the amount of time, in milliseconds, for consecutive failures to lock a user out.",
+                          "type": "number"
+                        },
+                        "waitIncrementSeconds": {
+                          "description": "This represents the amount of time a user should be locked out when the login failure threshold has been met.",
+                          "type": "number"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "type": "array"
+                  },
+                  "headers": {
+                    "items": {
+                      "properties": {
+                        "contentSecurityPolicy": {
+                          "description": "Sets the Content Security Policy, which can be used for prevent pages from being included by non-origin iframes. More information can be found in the W3C-CSP Abstract.",
+                          "type": "string"
+                        },
+                        "contentSecurityPolicyReportOnly": {
+                          "description": "Used for testing Content Security Policies.",
+                          "type": "string"
+                        },
+                        "referrerPolicy": {
+                          "description": "The Referrer-Policy HTTP header controls how much referrer information (sent with the Referer header) should be included with requests.",
+                          "type": "string"
+                        },
+                        "strictTransportSecurity": {
+                          "description": "The Script-Transport-Security HTTP header tells browsers to always use HTTPS.",
+                          "type": "string"
+                        },
+                        "xContentTypeOptions": {
+                          "description": "Sets the X-Content-Type-Options, which can be used for prevent MIME-sniffing a response away from the declared content-type",
+                          "type": "string"
+                        },
+                        "xFrameOptions": {
+                          "description": "Sets the x-frame-option, which can be used to prevent pages from being included by non-origin iframes. More information can be found in the RFC7034",
+                          "type": "string"
+                        },
+                        "xRobotsTag": {
+                          "description": "Prevent pages from appearing in search engines.",
+                          "type": "string"
+                        },
+                        "xXssProtection": {
+                          "description": "This header configures the Cross-site scripting (XSS) filter in your browser.",
+                          "type": "string"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "type": "array"
+                  }
+                },
+                "type": "object"
+              },
+              "type": "array"
+            },
+            "smtpServer": {
+              "items": {
+                "properties": {
+                  "auth": {
+                    "description": "Enables authentication to the SMTP server. Cannot be set alongside token_auth. This block supports the following arguments:",
+                    "items": {
+                      "properties": {
+                        "passwordSecretRef": {
+                          "description": "The SMTP server password.",
+                          "properties": {
+                            "key": {
+                              "description": "The key to select.",
+                              "type": "string"
+                            },
+                            "name": {
+                              "description": "Name of the secret.",
+                              "type": "string"
+                            },
+                            "namespace": {
+                              "description": "Namespace of the secret.",
+                              "type": "string"
+                            }
+                          },
+                          "required": [
+                            "key",
+                            "name",
+                            "namespace"
+                          ],
+                          "type": "object"
+                        },
+                        "username": {
+                          "description": "The SMTP server username.",
+                          "type": "string"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "type": "array"
+                  },
+                  "envelopeFrom": {
+                    "description": "The email address uses for bounces.",
+                    "type": "string"
+                  },
+                  "from": {
+                    "description": "The email address for the sender.",
+                    "type": "string"
+                  },
+                  "fromDisplayName": {
+                    "description": "The display name of the sender email address.",
+                    "type": "string"
+                  },
+                  "host": {
+                    "description": "The host of the SMTP server.",
+                    "type": "string"
+                  },
+                  "port": {
+                    "description": "The port of the SMTP server (defaults to 25).",
+                    "type": "string"
+                  },
+                  "replyTo": {
+                    "description": "The \"reply to\" email address.",
+                    "type": "string"
+                  },
+                  "replyToDisplayName": {
+                    "description": "The display name of the \"reply to\" email address.",
+                    "type": "string"
+                  },
+                  "ssl": {
+                    "description": "When true, enables SSL. Defaults to false.",
+                    "type": "boolean"
+                  },
+                  "starttls": {
+                    "description": "When true, enables StartTLS. Defaults to false.",
+                    "type": "boolean"
+                  },
+                  "tokenAuth": {
+                    "description": "Enables authentication to the SMTP server through OAUTH2. Cannot be set alongside auth. This block supports the following arguments:",
+                    "items": {
+                      "properties": {
+                        "clientId": {
+                          "description": "The auth token client ID.",
+                          "type": "string"
+                        },
+                        "clientSecretSecretRef": {
+                          "description": "The auth token client secret.",
+                          "properties": {
+                            "key": {
+                              "description": "The key to select.",
+                              "type": "string"
+                            },
+                            "name": {
+                              "description": "Name of the secret.",
+                              "type": "string"
+                            },
+                            "namespace": {
+                              "description": "Namespace of the secret.",
+                              "type": "string"
+                            }
+                          },
+                          "required": [
+                            "key",
+                            "name",
+                            "namespace"
+                          ],
+                          "type": "object"
+                        },
+                        "scope": {
+                          "description": "The auth token scope.",
+                          "type": "string"
+                        },
+                        "url": {
+                          "description": "The auth token URL.",
+                          "type": "string"
+                        },
+                        "username": {
+                          "description": "The SMTP server username.",
+                          "type": "string"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "type": "array"
+                  }
+                },
+                "type": "object"
+              },
+              "type": "array"
+            },
+            "sslRequired": {
+              "description": "Can be one of following values: 'none, 'external' or 'all'\nSSL Required: Values can be 'none', 'external' or 'all'.",
+              "type": "string"
+            },
+            "ssoSessionIdleTimeout": {
+              "description": "The amount of time a session can be idle before it expires.",
+              "type": "string"
+            },
+            "ssoSessionIdleTimeoutRememberMe": {
+              "description": "Similar to sso_session_idle_timeout, but used when a user clicks \"Remember Me\". If not set, Keycloak will default to the value of sso_session_idle_timeout.",
+              "type": "string"
+            },
+            "ssoSessionMaxLifespan": {
+              "description": "The maximum amount of time before a session expires regardless of activity.",
+              "type": "string"
+            },
+            "ssoSessionMaxLifespanRememberMe": {
+              "description": "Similar to sso_session_max_lifespan, but used when a user clicks \"Remember Me\". If not set, Keycloak will default to the value of sso_session_max_lifespan.",
+              "type": "string"
+            },
+            "userManagedAccess": {
+              "description": "When true, users are allowed to manage their own resources. Defaults to false.",
+              "type": "boolean"
+            },
+            "verifyEmail": {
+              "description": "When true, users are required to verify their email address after registration and after email address changes.",
+              "type": "boolean"
+            },
+            "webAuthnPasswordlessPolicy": {
+              "description": "Configuration for WebAuthn Passwordless Policy authentication.",
+              "items": {
+                "properties": {
+                  "acceptableAaguids": {
+                    "description": "A set of AAGUIDs for which an authenticator can be registered.",
+                    "items": {
+                      "type": "string"
+                    },
+                    "type": "array",
+                    "x-kubernetes-list-type": "set"
+                  },
+                  "attestationConveyancePreference": {
+                    "description": "The preference of how to generate a WebAuthn attestation statement. Valid options are not specified, none, indirect, direct, or enterprise. Defaults to not specified.\nEither none, indirect or direct",
+                    "type": "string"
+                  },
+                  "authenticatorAttachment": {
+                    "description": "The acceptable attachment pattern for the WebAuthn authenticator. Valid options are not specified, platform, or cross-platform. Defaults to not specified.\nEither platform or cross-platform",
+                    "type": "string"
+                  },
+                  "avoidSameAuthenticatorRegister": {
+                    "description": "When true, Keycloak will avoid registering the authenticator for WebAuthn if it has already been registered. Defaults to false.",
+                    "type": "boolean"
+                  },
+                  "createTimeout": {
+                    "description": "The timeout value for creating a user's public key credential in seconds. When set to 0, this timeout option is not adapted. Defaults to 0.",
+                    "type": "number"
+                  },
+                  "extraOrigins": {
+                    "description": "A set of extra origins for non-web applications.",
+                    "items": {
+                      "type": "string"
+                    },
+                    "type": "array",
+                    "x-kubernetes-list-type": "set"
+                  },
+                  "relyingPartyEntityName": {
+                    "description": "A human-readable server name for the WebAuthn Relying Party. Defaults to keycloak.",
+                    "type": "string"
+                  },
+                  "relyingPartyId": {
+                    "description": "The WebAuthn relying party ID.",
+                    "type": "string"
+                  },
+                  "requireResidentKey": {
+                    "description": "Specifies whether a public key should be created to represent the resident key. Valid options are not specified, Yes, or No. Defaults to not specified.\nEither Yes or No",
+                    "type": "string"
+                  },
+                  "signatureAlgorithms": {
+                    "description": "A set of signature algorithms that should be used for the authentication assertion. Valid options at the time these docs were written are ES256, ES384, ES512, RS256, RS384, RS512, and RS1.\nKeycloak lists ES256, ES384, ES512, RS256, RS384, RS512, RS1 at the time of writing",
+                    "items": {
+                      "type": "string"
+                    },
+                    "type": "array",
+                    "x-kubernetes-list-type": "set"
+                  },
+                  "userVerificationRequirement": {
+                    "description": "Specifies the policy for verifying a user logging in via WebAuthn. Valid options are not specified, required, preferred, or discouraged. Defaults to not specified.\nEither required, preferred or discouraged",
+                    "type": "string"
+                  }
+                },
+                "type": "object"
+              },
+              "type": "array"
+            },
+            "webAuthnPolicy": {
+              "description": "Configuration for WebAuthn Policy authentication.",
+              "items": {
+                "properties": {
+                  "acceptableAaguids": {
+                    "description": "A set of AAGUIDs for which an authenticator can be registered.",
+                    "items": {
+                      "type": "string"
+                    },
+                    "type": "array",
+                    "x-kubernetes-list-type": "set"
+                  },
+                  "attestationConveyancePreference": {
+                    "description": "The preference of how to generate a WebAuthn attestation statement. Valid options are not specified, none, indirect, direct, or enterprise. Defaults to not specified.\nEither none, indirect or direct",
+                    "type": "string"
+                  },
+                  "authenticatorAttachment": {
+                    "description": "The acceptable attachment pattern for the WebAuthn authenticator. Valid options are not specified, platform, or cross-platform. Defaults to not specified.\nEither platform or cross-platform",
+                    "type": "string"
+                  },
+                  "avoidSameAuthenticatorRegister": {
+                    "description": "When true, Keycloak will avoid registering the authenticator for WebAuthn if it has already been registered. Defaults to false.",
+                    "type": "boolean"
+                  },
+                  "createTimeout": {
+                    "description": "The timeout value for creating a user's public key credential in seconds. When set to 0, this timeout option is not adapted. Defaults to 0.",
+                    "type": "number"
+                  },
+                  "extraOrigins": {
+                    "description": "A set of extra origins for non-web applications.",
+                    "items": {
+                      "type": "string"
+                    },
+                    "type": "array",
+                    "x-kubernetes-list-type": "set"
+                  },
+                  "relyingPartyEntityName": {
+                    "description": "A human-readable server name for the WebAuthn Relying Party. Defaults to keycloak.",
+                    "type": "string"
+                  },
+                  "relyingPartyId": {
+                    "description": "The WebAuthn relying party ID.",
+                    "type": "string"
+                  },
+                  "requireResidentKey": {
+                    "description": "Specifies whether a public key should be created to represent the resident key. Valid options are not specified, Yes, or No. Defaults to not specified.\nEither Yes or No",
+                    "type": "string"
+                  },
+                  "signatureAlgorithms": {
+                    "description": "A set of signature algorithms that should be used for the authentication assertion. Valid options at the time these docs were written are ES256, ES384, ES512, RS256, RS384, RS512, and RS1.\nKeycloak lists ES256, ES384, ES512, RS256, RS384, RS512, RS1 at the time of writing",
+                    "items": {
+                      "type": "string"
+                    },
+                    "type": "array",
+                    "x-kubernetes-list-type": "set"
+                  },
+                  "userVerificationRequirement": {
+                    "description": "Specifies the policy for verifying a user logging in via WebAuthn. Valid options are not specified, required, preferred, or discouraged. Defaults to not specified.\nEither required, preferred or discouraged",
+                    "type": "string"
+                  }
+                },
+                "type": "object"
+              },
+              "type": "array"
+            }
+          },
+          "type": "object"
+        },
+        "initProvider": {
+          "description": "THIS IS A BETA FIELD. It will be honored\nunless the Management Policies feature flag is disabled.\nInitProvider holds the same fields as ForProvider, with the exception\nof Identifier and other resource reference fields. The fields that are\nin InitProvider are merged into ForProvider when the resource is created.\nThe same fields are also added to the terraform ignore_changes hook, to\navoid updating them after creation. This is useful for fields that are\nrequired on creation, but we do not desire to update them after creation,\nfor example because of an external controller is managing them, like an\nautoscaler.",
+          "properties": {
+            "accessCodeLifespan": {
+              "description": "The maximum amount of time a client has to finish the authorization code flow.",
+              "type": "string"
+            },
+            "accessCodeLifespanLogin": {
+              "description": "The maximum amount of time a user is permitted to stay on the login page before the authentication process must be restarted.",
+              "type": "string"
+            },
+            "accessCodeLifespanUserAction": {
+              "description": "The maximum amount of time a user has to complete login related actions, such as updating a password.",
+              "type": "string"
+            },
+            "accessTokenLifespan": {
+              "description": "The amount of time an access token can be used before it expires.",
+              "type": "string"
+            },
+            "accessTokenLifespanForImplicitFlow": {
+              "description": "The amount of time an access token issued with the OpenID Connect Implicit Flow can be used before it expires.",
+              "type": "string"
+            },
+            "accountTheme": {
+              "description": "Used for account management pages.",
+              "type": "string"
+            },
+            "actionTokenGeneratedByAdminLifespan": {
+              "description": "The maximum time a user has to use an admin-generated permit before it expires.",
+              "type": "string"
+            },
+            "actionTokenGeneratedByUserLifespan": {
+              "description": "The maximum time a user has to use a user-generated permit before it expires.",
+              "type": "string"
+            },
+            "adminTheme": {
+              "description": "Used for the admin console.",
+              "type": "string"
+            },
+            "attributes": {
+              "additionalProperties": {
+                "type": "string"
+              },
+              "description": "A map of custom attributes to add to the realm.",
+              "type": "object",
+              "x-kubernetes-map-type": "granular"
+            },
+            "browserFlow": {
+              "description": "The desired flow for browser authentication. Defaults to browser.\nWhich flow should be used for BrowserFlow",
+              "type": "string"
+            },
+            "clientAuthenticationFlow": {
+              "description": "The desired flow for client authentication. Defaults to clients.\nWhich flow should be used for ClientAuthenticationFlow",
+              "type": "string"
+            },
+            "clientSessionIdleTimeout": {
+              "description": "The amount of time a session can be idle before it expires. Users can override it for individual clients.",
+              "type": "string"
+            },
+            "clientSessionMaxLifespan": {
+              "description": "The maximum amount of time before a session expires regardless of activity. Users can override it for individual clients.",
+              "type": "string"
+            },
+            "defaultDefaultClientScopes": {
+              "description": "A list of default default client scopes to be used for client definitions. Defaults to [] or keycloak's built-in default default client-scopes. For an alternative, please refer to the dedicated resource keycloak_realm_default_client_scopes.",
+              "items": {
+                "type": "string"
+              },
+              "type": "array",
+              "x-kubernetes-list-type": "set"
+            },
+            "defaultOptionalClientScopes": {
+              "description": "A list of default optional client scopes to be used for client definitions. Defaults to [] or keycloak's built-in default optional client-scopes. For an alternative, please refer to the dedicated resource keycloak_realm_optional_client_scopes.",
+              "items": {
+                "type": "string"
+              },
+              "type": "array",
+              "x-kubernetes-list-type": "set"
+            },
+            "defaultSignatureAlgorithm": {
+              "description": "Default algorithm used to sign tokens for the realm.",
+              "type": "string"
+            },
+            "directGrantFlow": {
+              "description": "The desired flow for direct access authentication. Defaults to direct grant.\nWhich flow should be used for DirectGrantFlow",
+              "type": "string"
+            },
+            "displayName": {
+              "description": "The display name for the realm that is shown when logging in to the admin console.",
+              "type": "string"
+            },
+            "displayNameHtml": {
+              "description": "The display name for the realm that is rendered as HTML on the screen when logging in to the admin console.",
+              "type": "string"
+            },
+            "dockerAuthenticationFlow": {
+              "description": "The desired flow for Docker authentication. Defaults to docker auth.\nWhich flow should be used for DockerAuthenticationFlow",
+              "type": "string"
+            },
+            "duplicateEmailsAllowed": {
+              "description": "When true, multiple users will be allowed to have the same email address. This argument must be set to false if login_with_email_allowed is set to true.",
+              "type": "boolean"
+            },
+            "editUsernameAllowed": {
+              "description": "When true, the username field is editable.",
+              "type": "boolean"
+            },
+            "emailTheme": {
+              "description": "Used for emails that are sent by Keycloak.",
+              "type": "string"
+            },
+            "enabled": {
+              "description": "When false, users and clients will not be able to access this realm. Defaults to true.",
+              "type": "boolean"
+            },
+            "firstBrokerLoginFlow": {
+              "description": "The desired flow for First Broker Login (since Keycloak 24). Defaults to first broker login.\nWhich flow should be used for FirstBrokerLoginFlow",
+              "type": "string"
+            },
+            "internalId": {
+              "description": "When specified, this will be used as the realm's internal ID within Keycloak. When not specified, the realm's internal ID will be set to the realm's name.",
+              "type": "string"
+            },
+            "internationalization": {
+              "items": {
+                "properties": {
+                  "defaultLocale": {
+                    "description": "The locale to use by default. This locale code must be present within the supported_locales list.",
+                    "type": "string"
+                  },
+                  "supportedLocales": {
+                    "description": "A list of ISO 639-1 locale codes that the realm should support.",
+                    "items": {
+                      "type": "string"
+                    },
+                    "type": "array",
+                    "x-kubernetes-list-type": "set"
+                  }
+                },
+                "type": "object"
+              },
+              "type": "array"
+            },
+            "loginTheme": {
+              "description": "Used for the login, forgot password, and registration pages.",
+              "type": "string"
+            },
+            "loginWithEmailAllowed": {
+              "description": "When true, users may log in with their email address.",
+              "type": "boolean"
+            },
+            "oauth2DeviceCodeLifespan": {
+              "description": "The maximum amount of time a client has to finish the device code flow before it expires.",
+              "type": "string"
+            },
+            "oauth2DevicePollingInterval": {
+              "description": "The minimum amount of time in seconds that the client should wait between polling requests to the token endpoint.",
+              "type": "number"
+            },
+            "offlineSessionIdleTimeout": {
+              "description": "The amount of time an offline session can be idle before it expires.",
+              "type": "string"
+            },
+            "offlineSessionMaxLifespan": {
+              "description": "The maximum amount of time before an offline session expires regardless of activity.",
+              "type": "string"
+            },
+            "offlineSessionMaxLifespanEnabled": {
+              "description": "Enable offline_session_max_lifespan.",
+              "type": "boolean"
+            },
+            "organizationsEnabled": {
+              "description": "When true, organization support is enabled. Defaults to false.",
+              "type": "boolean"
+            },
+            "otpPolicy": {
+              "items": {
+                "properties": {
+                  "algorithm": {
+                    "description": "What hashing algorithm should be used to generate the OTP, Valid options are HmacSHA1,HmacSHA256 and HmacSHA512. Defaults to HmacSHA1.\nWhat hashing algorithm should be used to generate the OTP.",
+                    "type": "string"
+                  },
+                  "digits": {
+                    "description": "How many digits the OTP have. Defaults to 6.",
+                    "type": "number"
+                  },
+                  "initialCounter": {
+                    "description": "What should the initial counter value be. Defaults to 2.",
+                    "type": "number"
+                  },
+                  "lookAheadWindow": {
+                    "description": "How far ahead should the server look just in case the token generator and server are out of time sync or counter sync. Defaults to 1.",
+                    "type": "number"
+                  },
+                  "period": {
+                    "description": "How many seconds should an OTP token be valid. Defaults to 30.",
+                    "type": "number"
+                  },
+                  "type": {
+                    "description": "One Time Password Type, supported Values are totp for Time-Based One Time Password and hotp for Counter Based. Defaults to totp.\nOTP Type, totp for Time-Based One Time Password or hotp for counter base one time password",
+                    "type": "string"
+                  }
+                },
+                "type": "object"
+              },
+              "type": "array"
+            },
+            "passwordPolicy": {
+              "description": "The password policy for users within the realm.\nString that represents the passwordPolicies that are in place. Each policy is separated with \" and \". Supported policies can be found in the server-info providers page. example: \"upperCase(1) and length(8) and forceExpiredPasswordChange(365) and notUsername(undefined)\"",
+              "type": "string"
+            },
+            "realm": {
+              "description": "The name of the realm. This is unique across Keycloak. This will also be used as the realm's internal ID within Keycloak.",
+              "type": "string"
+            },
+            "refreshTokenMaxReuse": {
+              "description": "Maximum number of times a refresh token can be reused before they are revoked. If unspecified and 'revoke_refresh_token' is enabled the default value is 0 and refresh tokens can not be reused.",
+              "type": "number"
+            },
+            "registrationAllowed": {
+              "description": "When true, user registration will be enabled, and a link for registration will be displayed on the login page.",
+              "type": "boolean"
+            },
+            "registrationEmailAsUsername": {
+              "description": "When true, the user's email will be used as their username during registration.",
+              "type": "boolean"
+            },
+            "registrationFlow": {
+              "description": "The desired flow for user registration. Defaults to registration.\nWhich flow should be used for RegistrationFlow",
+              "type": "string"
+            },
+            "rememberMe": {
+              "description": "When true, a \"remember me\" checkbox will be displayed on the login page, and the user's session will not expire between browser restarts.",
+              "type": "boolean"
+            },
+            "resetCredentialsFlow": {
+              "description": "The desired flow to use when a user attempts to reset their credentials. Defaults to reset credentials.\nWhich flow should be used for ResetCredentialsFlow",
+              "type": "string"
+            },
+            "resetPasswordAllowed": {
+              "description": "When true, a \"forgot password\" link will be displayed on the login page.",
+              "type": "boolean"
+            },
+            "revokeRefreshToken": {
+              "description": "If enabled a refresh token can only be used number of times specified in 'refresh_token_max_reuse' before they are revoked. If unspecified, refresh tokens can be reused.",
+              "type": "boolean"
+            },
+            "securityDefenses": {
+              "items": {
+                "properties": {
+                  "bruteForceDetection": {
+                    "items": {
+                      "properties": {
+                        "failureResetTimeSeconds": {
+                          "description": "When will failure count be reset?",
+                          "type": "number"
+                        },
+                        "maxFailureWaitSeconds": {
+                          "type": "number"
+                        },
+                        "maxLoginFailures": {
+                          "description": "How many failures before wait is triggered.",
+                          "type": "number"
+                        },
+                        "minimumQuickLoginWaitSeconds": {
+                          "description": "How long to wait after a quick login failure.",
+                          "type": "number"
+                        },
+                        "permanentLockout": {
+                          "description": "When true, this will lock the user permanently when the user exceeds the maximum login failures.",
+                          "type": "boolean"
+                        },
+                        "quickLoginCheckMilliSeconds": {
+                          "description": "Configures the amount of time, in milliseconds, for consecutive failures to lock a user out.",
+                          "type": "number"
+                        },
+                        "waitIncrementSeconds": {
+                          "description": "This represents the amount of time a user should be locked out when the login failure threshold has been met.",
+                          "type": "number"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "type": "array"
+                  },
+                  "headers": {
+                    "items": {
+                      "properties": {
+                        "contentSecurityPolicy": {
+                          "description": "Sets the Content Security Policy, which can be used for prevent pages from being included by non-origin iframes. More information can be found in the W3C-CSP Abstract.",
+                          "type": "string"
+                        },
+                        "contentSecurityPolicyReportOnly": {
+                          "description": "Used for testing Content Security Policies.",
+                          "type": "string"
+                        },
+                        "referrerPolicy": {
+                          "description": "The Referrer-Policy HTTP header controls how much referrer information (sent with the Referer header) should be included with requests.",
+                          "type": "string"
+                        },
+                        "strictTransportSecurity": {
+                          "description": "The Script-Transport-Security HTTP header tells browsers to always use HTTPS.",
+                          "type": "string"
+                        },
+                        "xContentTypeOptions": {
+                          "description": "Sets the X-Content-Type-Options, which can be used for prevent MIME-sniffing a response away from the declared content-type",
+                          "type": "string"
+                        },
+                        "xFrameOptions": {
+                          "description": "Sets the x-frame-option, which can be used to prevent pages from being included by non-origin iframes. More information can be found in the RFC7034",
+                          "type": "string"
+                        },
+                        "xRobotsTag": {
+                          "description": "Prevent pages from appearing in search engines.",
+                          "type": "string"
+                        },
+                        "xXssProtection": {
+                          "description": "This header configures the Cross-site scripting (XSS) filter in your browser.",
+                          "type": "string"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "type": "array"
+                  }
+                },
+                "type": "object"
+              },
+              "type": "array"
+            },
+            "smtpServer": {
+              "items": {
+                "properties": {
+                  "auth": {
+                    "description": "Enables authentication to the SMTP server. Cannot be set alongside token_auth. This block supports the following arguments:",
+                    "items": {
+                      "properties": {
+                        "passwordSecretRef": {
+                          "description": "The SMTP server password.",
+                          "properties": {
+                            "key": {
+                              "description": "The key to select.",
+                              "type": "string"
+                            },
+                            "name": {
+                              "description": "Name of the secret.",
+                              "type": "string"
+                            },
+                            "namespace": {
+                              "description": "Namespace of the secret.",
+                              "type": "string"
+                            }
+                          },
+                          "required": [
+                            "key",
+                            "name",
+                            "namespace"
+                          ],
+                          "type": "object"
+                        },
+                        "username": {
+                          "description": "The SMTP server username.",
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "passwordSecretRef"
+                      ],
+                      "type": "object"
+                    },
+                    "type": "array"
+                  },
+                  "envelopeFrom": {
+                    "description": "The email address uses for bounces.",
+                    "type": "string"
+                  },
+                  "from": {
+                    "description": "The email address for the sender.",
+                    "type": "string"
+                  },
+                  "fromDisplayName": {
+                    "description": "The display name of the sender email address.",
+                    "type": "string"
+                  },
+                  "host": {
+                    "description": "The host of the SMTP server.",
+                    "type": "string"
+                  },
+                  "port": {
+                    "description": "The port of the SMTP server (defaults to 25).",
+                    "type": "string"
+                  },
+                  "replyTo": {
+                    "description": "The \"reply to\" email address.",
+                    "type": "string"
+                  },
+                  "replyToDisplayName": {
+                    "description": "The display name of the \"reply to\" email address.",
+                    "type": "string"
+                  },
+                  "ssl": {
+                    "description": "When true, enables SSL. Defaults to false.",
+                    "type": "boolean"
+                  },
+                  "starttls": {
+                    "description": "When true, enables StartTLS. Defaults to false.",
+                    "type": "boolean"
+                  },
+                  "tokenAuth": {
+                    "description": "Enables authentication to the SMTP server through OAUTH2. Cannot be set alongside auth. This block supports the following arguments:",
+                    "items": {
+                      "properties": {
+                        "clientId": {
+                          "description": "The auth token client ID.",
+                          "type": "string"
+                        },
+                        "clientSecretSecretRef": {
+                          "description": "The auth token client secret.",
+                          "properties": {
+                            "key": {
+                              "description": "The key to select.",
+                              "type": "string"
+                            },
+                            "name": {
+                              "description": "Name of the secret.",
+                              "type": "string"
+                            },
+                            "namespace": {
+                              "description": "Namespace of the secret.",
+                              "type": "string"
+                            }
+                          },
+                          "required": [
+                            "key",
+                            "name",
+                            "namespace"
+                          ],
+                          "type": "object"
+                        },
+                        "scope": {
+                          "description": "The auth token scope.",
+                          "type": "string"
+                        },
+                        "url": {
+                          "description": "The auth token URL.",
+                          "type": "string"
+                        },
+                        "username": {
+                          "description": "The SMTP server username.",
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "clientSecretSecretRef"
+                      ],
+                      "type": "object"
+                    },
+                    "type": "array"
+                  }
+                },
+                "type": "object"
+              },
+              "type": "array"
+            },
+            "sslRequired": {
+              "description": "Can be one of following values: 'none, 'external' or 'all'\nSSL Required: Values can be 'none', 'external' or 'all'.",
+              "type": "string"
+            },
+            "ssoSessionIdleTimeout": {
+              "description": "The amount of time a session can be idle before it expires.",
+              "type": "string"
+            },
+            "ssoSessionIdleTimeoutRememberMe": {
+              "description": "Similar to sso_session_idle_timeout, but used when a user clicks \"Remember Me\". If not set, Keycloak will default to the value of sso_session_idle_timeout.",
+              "type": "string"
+            },
+            "ssoSessionMaxLifespan": {
+              "description": "The maximum amount of time before a session expires regardless of activity.",
+              "type": "string"
+            },
+            "ssoSessionMaxLifespanRememberMe": {
+              "description": "Similar to sso_session_max_lifespan, but used when a user clicks \"Remember Me\". If not set, Keycloak will default to the value of sso_session_max_lifespan.",
+              "type": "string"
+            },
+            "userManagedAccess": {
+              "description": "When true, users are allowed to manage their own resources. Defaults to false.",
+              "type": "boolean"
+            },
+            "verifyEmail": {
+              "description": "When true, users are required to verify their email address after registration and after email address changes.",
+              "type": "boolean"
+            },
+            "webAuthnPasswordlessPolicy": {
+              "description": "Configuration for WebAuthn Passwordless Policy authentication.",
+              "items": {
+                "properties": {
+                  "acceptableAaguids": {
+                    "description": "A set of AAGUIDs for which an authenticator can be registered.",
+                    "items": {
+                      "type": "string"
+                    },
+                    "type": "array",
+                    "x-kubernetes-list-type": "set"
+                  },
+                  "attestationConveyancePreference": {
+                    "description": "The preference of how to generate a WebAuthn attestation statement. Valid options are not specified, none, indirect, direct, or enterprise. Defaults to not specified.\nEither none, indirect or direct",
+                    "type": "string"
+                  },
+                  "authenticatorAttachment": {
+                    "description": "The acceptable attachment pattern for the WebAuthn authenticator. Valid options are not specified, platform, or cross-platform. Defaults to not specified.\nEither platform or cross-platform",
+                    "type": "string"
+                  },
+                  "avoidSameAuthenticatorRegister": {
+                    "description": "When true, Keycloak will avoid registering the authenticator for WebAuthn if it has already been registered. Defaults to false.",
+                    "type": "boolean"
+                  },
+                  "createTimeout": {
+                    "description": "The timeout value for creating a user's public key credential in seconds. When set to 0, this timeout option is not adapted. Defaults to 0.",
+                    "type": "number"
+                  },
+                  "extraOrigins": {
+                    "description": "A set of extra origins for non-web applications.",
+                    "items": {
+                      "type": "string"
+                    },
+                    "type": "array",
+                    "x-kubernetes-list-type": "set"
+                  },
+                  "relyingPartyEntityName": {
+                    "description": "A human-readable server name for the WebAuthn Relying Party. Defaults to keycloak.",
+                    "type": "string"
+                  },
+                  "relyingPartyId": {
+                    "description": "The WebAuthn relying party ID.",
+                    "type": "string"
+                  },
+                  "requireResidentKey": {
+                    "description": "Specifies whether a public key should be created to represent the resident key. Valid options are not specified, Yes, or No. Defaults to not specified.\nEither Yes or No",
+                    "type": "string"
+                  },
+                  "signatureAlgorithms": {
+                    "description": "A set of signature algorithms that should be used for the authentication assertion. Valid options at the time these docs were written are ES256, ES384, ES512, RS256, RS384, RS512, and RS1.\nKeycloak lists ES256, ES384, ES512, RS256, RS384, RS512, RS1 at the time of writing",
+                    "items": {
+                      "type": "string"
+                    },
+                    "type": "array",
+                    "x-kubernetes-list-type": "set"
+                  },
+                  "userVerificationRequirement": {
+                    "description": "Specifies the policy for verifying a user logging in via WebAuthn. Valid options are not specified, required, preferred, or discouraged. Defaults to not specified.\nEither required, preferred or discouraged",
+                    "type": "string"
+                  }
+                },
+                "type": "object"
+              },
+              "type": "array"
+            },
+            "webAuthnPolicy": {
+              "description": "Configuration for WebAuthn Policy authentication.",
+              "items": {
+                "properties": {
+                  "acceptableAaguids": {
+                    "description": "A set of AAGUIDs for which an authenticator can be registered.",
+                    "items": {
+                      "type": "string"
+                    },
+                    "type": "array",
+                    "x-kubernetes-list-type": "set"
+                  },
+                  "attestationConveyancePreference": {
+                    "description": "The preference of how to generate a WebAuthn attestation statement. Valid options are not specified, none, indirect, direct, or enterprise. Defaults to not specified.\nEither none, indirect or direct",
+                    "type": "string"
+                  },
+                  "authenticatorAttachment": {
+                    "description": "The acceptable attachment pattern for the WebAuthn authenticator. Valid options are not specified, platform, or cross-platform. Defaults to not specified.\nEither platform or cross-platform",
+                    "type": "string"
+                  },
+                  "avoidSameAuthenticatorRegister": {
+                    "description": "When true, Keycloak will avoid registering the authenticator for WebAuthn if it has already been registered. Defaults to false.",
+                    "type": "boolean"
+                  },
+                  "createTimeout": {
+                    "description": "The timeout value for creating a user's public key credential in seconds. When set to 0, this timeout option is not adapted. Defaults to 0.",
+                    "type": "number"
+                  },
+                  "extraOrigins": {
+                    "description": "A set of extra origins for non-web applications.",
+                    "items": {
+                      "type": "string"
+                    },
+                    "type": "array",
+                    "x-kubernetes-list-type": "set"
+                  },
+                  "relyingPartyEntityName": {
+                    "description": "A human-readable server name for the WebAuthn Relying Party. Defaults to keycloak.",
+                    "type": "string"
+                  },
+                  "relyingPartyId": {
+                    "description": "The WebAuthn relying party ID.",
+                    "type": "string"
+                  },
+                  "requireResidentKey": {
+                    "description": "Specifies whether a public key should be created to represent the resident key. Valid options are not specified, Yes, or No. Defaults to not specified.\nEither Yes or No",
+                    "type": "string"
+                  },
+                  "signatureAlgorithms": {
+                    "description": "A set of signature algorithms that should be used for the authentication assertion. Valid options at the time these docs were written are ES256, ES384, ES512, RS256, RS384, RS512, and RS1.\nKeycloak lists ES256, ES384, ES512, RS256, RS384, RS512, RS1 at the time of writing",
+                    "items": {
+                      "type": "string"
+                    },
+                    "type": "array",
+                    "x-kubernetes-list-type": "set"
+                  },
+                  "userVerificationRequirement": {
+                    "description": "Specifies the policy for verifying a user logging in via WebAuthn. Valid options are not specified, required, preferred, or discouraged. Defaults to not specified.\nEither required, preferred or discouraged",
+                    "type": "string"
+                  }
+                },
+                "type": "object"
+              },
+              "type": "array"
+            }
+          },
+          "type": "object"
+        },
+        "managementPolicies": {
+          "default": [
+            "*"
+          ],
+          "description": "THIS IS A BETA FIELD. It is on by default but can be opted out\nthrough a Crossplane feature flag.\nManagementPolicies specify the array of actions Crossplane is allowed to\ntake on the managed and external resources.\nThis field is planned to replace the DeletionPolicy field in a future\nrelease. Currently, both could be set independently and non-default\nvalues would be honored if the feature flag is enabled. If both are\ncustom, the DeletionPolicy field will be ignored.\nSee the design doc for more information: https://github.com/crossplane/crossplane/blob/499895a25d1a1a0ba1604944ef98ac7a1a71f197/design/design-doc-observe-only-resources.md?plain=1#L223\nand this one: https://github.com/crossplane/crossplane/blob/444267e84783136daa93568b364a5f01228cacbe/design/one-pager-ignore-changes.md",
+          "items": {
+            "description": "A ManagementAction represents an action that the Crossplane controllers\ncan take on an external resource.",
+            "enum": [
+              "Observe",
+              "Create",
+              "Update",
+              "Delete",
+              "LateInitialize",
+              "*"
+            ],
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "providerConfigRef": {
+          "default": {
+            "name": "default"
+          },
+          "description": "ProviderConfigReference specifies how the provider that will be used to\ncreate, observe, update, and delete this managed resource should be\nconfigured.",
+          "properties": {
+            "name": {
+              "description": "Name of the referenced object.",
+              "type": "string"
+            },
+            "policy": {
+              "description": "Policies for referencing.",
+              "properties": {
+                "resolution": {
+                  "default": "Required",
+                  "description": "Resolution specifies whether resolution of this reference is required.\nThe default is 'Required', which means the reconcile will fail if the\nreference cannot be resolved. 'Optional' means this reference will be\na no-op if it cannot be resolved.",
+                  "enum": [
+                    "Required",
+                    "Optional"
+                  ],
+                  "type": "string"
+                },
+                "resolve": {
+                  "description": "Resolve specifies when this reference should be resolved. The default\nis 'IfNotPresent', which will attempt to resolve the reference only when\nthe corresponding field is not present. Use 'Always' to resolve the\nreference on every reconcile.",
+                  "enum": [
+                    "Always",
+                    "IfNotPresent"
+                  ],
+                  "type": "string"
+                }
+              },
+              "type": "object"
+            }
+          },
+          "required": [
+            "name"
+          ],
+          "type": "object"
+        },
+        "writeConnectionSecretToRef": {
+          "description": "WriteConnectionSecretToReference specifies the namespace and name of a\nSecret to which any connection details for this managed resource should\nbe written. Connection details frequently include the endpoint, username,\nand password required to connect to the managed resource.",
+          "properties": {
+            "name": {
+              "description": "Name of the secret.",
+              "type": "string"
+            },
+            "namespace": {
+              "description": "Namespace of the secret.",
+              "type": "string"
+            }
+          },
+          "required": [
+            "name",
+            "namespace"
+          ],
+          "type": "object"
+        }
+      },
+      "required": [
+        "forProvider"
+      ],
+      "type": "object",
+      "x-kubernetes-validations": [
+        {
+          "message": "spec.forProvider.realm is a required parameter",
+          "rule": "!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.realm) || (has(self.initProvider) && has(self.initProvider.realm))"
+        }
+      ]
+    },
+    "status": {
+      "description": "RealmStatus defines the observed state of Realm.",
+      "properties": {
+        "atProvider": {
+          "properties": {
+            "accessCodeLifespan": {
+              "description": "The maximum amount of time a client has to finish the authorization code flow.",
+              "type": "string"
+            },
+            "accessCodeLifespanLogin": {
+              "description": "The maximum amount of time a user is permitted to stay on the login page before the authentication process must be restarted.",
+              "type": "string"
+            },
+            "accessCodeLifespanUserAction": {
+              "description": "The maximum amount of time a user has to complete login related actions, such as updating a password.",
+              "type": "string"
+            },
+            "accessTokenLifespan": {
+              "description": "The amount of time an access token can be used before it expires.",
+              "type": "string"
+            },
+            "accessTokenLifespanForImplicitFlow": {
+              "description": "The amount of time an access token issued with the OpenID Connect Implicit Flow can be used before it expires.",
+              "type": "string"
+            },
+            "accountTheme": {
+              "description": "Used for account management pages.",
+              "type": "string"
+            },
+            "actionTokenGeneratedByAdminLifespan": {
+              "description": "The maximum time a user has to use an admin-generated permit before it expires.",
+              "type": "string"
+            },
+            "actionTokenGeneratedByUserLifespan": {
+              "description": "The maximum time a user has to use a user-generated permit before it expires.",
+              "type": "string"
+            },
+            "adminTheme": {
+              "description": "Used for the admin console.",
+              "type": "string"
+            },
+            "attributes": {
+              "additionalProperties": {
+                "type": "string"
+              },
+              "description": "A map of custom attributes to add to the realm.",
+              "type": "object",
+              "x-kubernetes-map-type": "granular"
+            },
+            "browserFlow": {
+              "description": "The desired flow for browser authentication. Defaults to browser.\nWhich flow should be used for BrowserFlow",
+              "type": "string"
+            },
+            "clientAuthenticationFlow": {
+              "description": "The desired flow for client authentication. Defaults to clients.\nWhich flow should be used for ClientAuthenticationFlow",
+              "type": "string"
+            },
+            "clientSessionIdleTimeout": {
+              "description": "The amount of time a session can be idle before it expires. Users can override it for individual clients.",
+              "type": "string"
+            },
+            "clientSessionMaxLifespan": {
+              "description": "The maximum amount of time before a session expires regardless of activity. Users can override it for individual clients.",
+              "type": "string"
+            },
+            "defaultDefaultClientScopes": {
+              "description": "A list of default default client scopes to be used for client definitions. Defaults to [] or keycloak's built-in default default client-scopes. For an alternative, please refer to the dedicated resource keycloak_realm_default_client_scopes.",
+              "items": {
+                "type": "string"
+              },
+              "type": "array",
+              "x-kubernetes-list-type": "set"
+            },
+            "defaultOptionalClientScopes": {
+              "description": "A list of default optional client scopes to be used for client definitions. Defaults to [] or keycloak's built-in default optional client-scopes. For an alternative, please refer to the dedicated resource keycloak_realm_optional_client_scopes.",
+              "items": {
+                "type": "string"
+              },
+              "type": "array",
+              "x-kubernetes-list-type": "set"
+            },
+            "defaultSignatureAlgorithm": {
+              "description": "Default algorithm used to sign tokens for the realm.",
+              "type": "string"
+            },
+            "directGrantFlow": {
+              "description": "The desired flow for direct access authentication. Defaults to direct grant.\nWhich flow should be used for DirectGrantFlow",
+              "type": "string"
+            },
+            "displayName": {
+              "description": "The display name for the realm that is shown when logging in to the admin console.",
+              "type": "string"
+            },
+            "displayNameHtml": {
+              "description": "The display name for the realm that is rendered as HTML on the screen when logging in to the admin console.",
+              "type": "string"
+            },
+            "dockerAuthenticationFlow": {
+              "description": "The desired flow for Docker authentication. Defaults to docker auth.\nWhich flow should be used for DockerAuthenticationFlow",
+              "type": "string"
+            },
+            "duplicateEmailsAllowed": {
+              "description": "When true, multiple users will be allowed to have the same email address. This argument must be set to false if login_with_email_allowed is set to true.",
+              "type": "boolean"
+            },
+            "editUsernameAllowed": {
+              "description": "When true, the username field is editable.",
+              "type": "boolean"
+            },
+            "emailTheme": {
+              "description": "Used for emails that are sent by Keycloak.",
+              "type": "string"
+            },
+            "enabled": {
+              "description": "When false, users and clients will not be able to access this realm. Defaults to true.",
+              "type": "boolean"
+            },
+            "firstBrokerLoginFlow": {
+              "description": "The desired flow for First Broker Login (since Keycloak 24). Defaults to first broker login.\nWhich flow should be used for FirstBrokerLoginFlow",
+              "type": "string"
+            },
+            "id": {
+              "type": "string"
+            },
+            "internalId": {
+              "description": "When specified, this will be used as the realm's internal ID within Keycloak. When not specified, the realm's internal ID will be set to the realm's name.",
+              "type": "string"
+            },
+            "internationalization": {
+              "items": {
+                "properties": {
+                  "defaultLocale": {
+                    "description": "The locale to use by default. This locale code must be present within the supported_locales list.",
+                    "type": "string"
+                  },
+                  "supportedLocales": {
+                    "description": "A list of ISO 639-1 locale codes that the realm should support.",
+                    "items": {
+                      "type": "string"
+                    },
+                    "type": "array",
+                    "x-kubernetes-list-type": "set"
+                  }
+                },
+                "type": "object"
+              },
+              "type": "array"
+            },
+            "loginTheme": {
+              "description": "Used for the login, forgot password, and registration pages.",
+              "type": "string"
+            },
+            "loginWithEmailAllowed": {
+              "description": "When true, users may log in with their email address.",
+              "type": "boolean"
+            },
+            "oauth2DeviceCodeLifespan": {
+              "description": "The maximum amount of time a client has to finish the device code flow before it expires.",
+              "type": "string"
+            },
+            "oauth2DevicePollingInterval": {
+              "description": "The minimum amount of time in seconds that the client should wait between polling requests to the token endpoint.",
+              "type": "number"
+            },
+            "offlineSessionIdleTimeout": {
+              "description": "The amount of time an offline session can be idle before it expires.",
+              "type": "string"
+            },
+            "offlineSessionMaxLifespan": {
+              "description": "The maximum amount of time before an offline session expires regardless of activity.",
+              "type": "string"
+            },
+            "offlineSessionMaxLifespanEnabled": {
+              "description": "Enable offline_session_max_lifespan.",
+              "type": "boolean"
+            },
+            "organizationsEnabled": {
+              "description": "When true, organization support is enabled. Defaults to false.",
+              "type": "boolean"
+            },
+            "otpPolicy": {
+              "items": {
+                "properties": {
+                  "algorithm": {
+                    "description": "What hashing algorithm should be used to generate the OTP, Valid options are HmacSHA1,HmacSHA256 and HmacSHA512. Defaults to HmacSHA1.\nWhat hashing algorithm should be used to generate the OTP.",
+                    "type": "string"
+                  },
+                  "digits": {
+                    "description": "How many digits the OTP have. Defaults to 6.",
+                    "type": "number"
+                  },
+                  "initialCounter": {
+                    "description": "What should the initial counter value be. Defaults to 2.",
+                    "type": "number"
+                  },
+                  "lookAheadWindow": {
+                    "description": "How far ahead should the server look just in case the token generator and server are out of time sync or counter sync. Defaults to 1.",
+                    "type": "number"
+                  },
+                  "period": {
+                    "description": "How many seconds should an OTP token be valid. Defaults to 30.",
+                    "type": "number"
+                  },
+                  "type": {
+                    "description": "One Time Password Type, supported Values are totp for Time-Based One Time Password and hotp for Counter Based. Defaults to totp.\nOTP Type, totp for Time-Based One Time Password or hotp for counter base one time password",
+                    "type": "string"
+                  }
+                },
+                "type": "object"
+              },
+              "type": "array"
+            },
+            "passwordPolicy": {
+              "description": "The password policy for users within the realm.\nString that represents the passwordPolicies that are in place. Each policy is separated with \" and \". Supported policies can be found in the server-info providers page. example: \"upperCase(1) and length(8) and forceExpiredPasswordChange(365) and notUsername(undefined)\"",
+              "type": "string"
+            },
+            "realm": {
+              "description": "The name of the realm. This is unique across Keycloak. This will also be used as the realm's internal ID within Keycloak.",
+              "type": "string"
+            },
+            "refreshTokenMaxReuse": {
+              "description": "Maximum number of times a refresh token can be reused before they are revoked. If unspecified and 'revoke_refresh_token' is enabled the default value is 0 and refresh tokens can not be reused.",
+              "type": "number"
+            },
+            "registrationAllowed": {
+              "description": "When true, user registration will be enabled, and a link for registration will be displayed on the login page.",
+              "type": "boolean"
+            },
+            "registrationEmailAsUsername": {
+              "description": "When true, the user's email will be used as their username during registration.",
+              "type": "boolean"
+            },
+            "registrationFlow": {
+              "description": "The desired flow for user registration. Defaults to registration.\nWhich flow should be used for RegistrationFlow",
+              "type": "string"
+            },
+            "rememberMe": {
+              "description": "When true, a \"remember me\" checkbox will be displayed on the login page, and the user's session will not expire between browser restarts.",
+              "type": "boolean"
+            },
+            "resetCredentialsFlow": {
+              "description": "The desired flow to use when a user attempts to reset their credentials. Defaults to reset credentials.\nWhich flow should be used for ResetCredentialsFlow",
+              "type": "string"
+            },
+            "resetPasswordAllowed": {
+              "description": "When true, a \"forgot password\" link will be displayed on the login page.",
+              "type": "boolean"
+            },
+            "revokeRefreshToken": {
+              "description": "If enabled a refresh token can only be used number of times specified in 'refresh_token_max_reuse' before they are revoked. If unspecified, refresh tokens can be reused.",
+              "type": "boolean"
+            },
+            "securityDefenses": {
+              "items": {
+                "properties": {
+                  "bruteForceDetection": {
+                    "items": {
+                      "properties": {
+                        "failureResetTimeSeconds": {
+                          "description": "When will failure count be reset?",
+                          "type": "number"
+                        },
+                        "maxFailureWaitSeconds": {
+                          "type": "number"
+                        },
+                        "maxLoginFailures": {
+                          "description": "How many failures before wait is triggered.",
+                          "type": "number"
+                        },
+                        "minimumQuickLoginWaitSeconds": {
+                          "description": "How long to wait after a quick login failure.",
+                          "type": "number"
+                        },
+                        "permanentLockout": {
+                          "description": "When true, this will lock the user permanently when the user exceeds the maximum login failures.",
+                          "type": "boolean"
+                        },
+                        "quickLoginCheckMilliSeconds": {
+                          "description": "Configures the amount of time, in milliseconds, for consecutive failures to lock a user out.",
+                          "type": "number"
+                        },
+                        "waitIncrementSeconds": {
+                          "description": "This represents the amount of time a user should be locked out when the login failure threshold has been met.",
+                          "type": "number"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "type": "array"
+                  },
+                  "headers": {
+                    "items": {
+                      "properties": {
+                        "contentSecurityPolicy": {
+                          "description": "Sets the Content Security Policy, which can be used for prevent pages from being included by non-origin iframes. More information can be found in the W3C-CSP Abstract.",
+                          "type": "string"
+                        },
+                        "contentSecurityPolicyReportOnly": {
+                          "description": "Used for testing Content Security Policies.",
+                          "type": "string"
+                        },
+                        "referrerPolicy": {
+                          "description": "The Referrer-Policy HTTP header controls how much referrer information (sent with the Referer header) should be included with requests.",
+                          "type": "string"
+                        },
+                        "strictTransportSecurity": {
+                          "description": "The Script-Transport-Security HTTP header tells browsers to always use HTTPS.",
+                          "type": "string"
+                        },
+                        "xContentTypeOptions": {
+                          "description": "Sets the X-Content-Type-Options, which can be used for prevent MIME-sniffing a response away from the declared content-type",
+                          "type": "string"
+                        },
+                        "xFrameOptions": {
+                          "description": "Sets the x-frame-option, which can be used to prevent pages from being included by non-origin iframes. More information can be found in the RFC7034",
+                          "type": "string"
+                        },
+                        "xRobotsTag": {
+                          "description": "Prevent pages from appearing in search engines.",
+                          "type": "string"
+                        },
+                        "xXssProtection": {
+                          "description": "This header configures the Cross-site scripting (XSS) filter in your browser.",
+                          "type": "string"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "type": "array"
+                  }
+                },
+                "type": "object"
+              },
+              "type": "array"
+            },
+            "smtpServer": {
+              "items": {
+                "properties": {
+                  "auth": {
+                    "description": "Enables authentication to the SMTP server. Cannot be set alongside token_auth. This block supports the following arguments:",
+                    "items": {
+                      "properties": {
+                        "username": {
+                          "description": "The SMTP server username.",
+                          "type": "string"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "type": "array"
+                  },
+                  "envelopeFrom": {
+                    "description": "The email address uses for bounces.",
+                    "type": "string"
+                  },
+                  "from": {
+                    "description": "The email address for the sender.",
+                    "type": "string"
+                  },
+                  "fromDisplayName": {
+                    "description": "The display name of the sender email address.",
+                    "type": "string"
+                  },
+                  "host": {
+                    "description": "The host of the SMTP server.",
+                    "type": "string"
+                  },
+                  "port": {
+                    "description": "The port of the SMTP server (defaults to 25).",
+                    "type": "string"
+                  },
+                  "replyTo": {
+                    "description": "The \"reply to\" email address.",
+                    "type": "string"
+                  },
+                  "replyToDisplayName": {
+                    "description": "The display name of the \"reply to\" email address.",
+                    "type": "string"
+                  },
+                  "ssl": {
+                    "description": "When true, enables SSL. Defaults to false.",
+                    "type": "boolean"
+                  },
+                  "starttls": {
+                    "description": "When true, enables StartTLS. Defaults to false.",
+                    "type": "boolean"
+                  },
+                  "tokenAuth": {
+                    "description": "Enables authentication to the SMTP server through OAUTH2. Cannot be set alongside auth. This block supports the following arguments:",
+                    "items": {
+                      "properties": {
+                        "clientId": {
+                          "description": "The auth token client ID.",
+                          "type": "string"
+                        },
+                        "scope": {
+                          "description": "The auth token scope.",
+                          "type": "string"
+                        },
+                        "url": {
+                          "description": "The auth token URL.",
+                          "type": "string"
+                        },
+                        "username": {
+                          "description": "The SMTP server username.",
+                          "type": "string"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "type": "array"
+                  }
+                },
+                "type": "object"
+              },
+              "type": "array"
+            },
+            "sslRequired": {
+              "description": "Can be one of following values: 'none, 'external' or 'all'\nSSL Required: Values can be 'none', 'external' or 'all'.",
+              "type": "string"
+            },
+            "ssoSessionIdleTimeout": {
+              "description": "The amount of time a session can be idle before it expires.",
+              "type": "string"
+            },
+            "ssoSessionIdleTimeoutRememberMe": {
+              "description": "Similar to sso_session_idle_timeout, but used when a user clicks \"Remember Me\". If not set, Keycloak will default to the value of sso_session_idle_timeout.",
+              "type": "string"
+            },
+            "ssoSessionMaxLifespan": {
+              "description": "The maximum amount of time before a session expires regardless of activity.",
+              "type": "string"
+            },
+            "ssoSessionMaxLifespanRememberMe": {
+              "description": "Similar to sso_session_max_lifespan, but used when a user clicks \"Remember Me\". If not set, Keycloak will default to the value of sso_session_max_lifespan.",
+              "type": "string"
+            },
+            "userManagedAccess": {
+              "description": "When true, users are allowed to manage their own resources. Defaults to false.",
+              "type": "boolean"
+            },
+            "verifyEmail": {
+              "description": "When true, users are required to verify their email address after registration and after email address changes.",
+              "type": "boolean"
+            },
+            "webAuthnPasswordlessPolicy": {
+              "description": "Configuration for WebAuthn Passwordless Policy authentication.",
+              "items": {
+                "properties": {
+                  "acceptableAaguids": {
+                    "description": "A set of AAGUIDs for which an authenticator can be registered.",
+                    "items": {
+                      "type": "string"
+                    },
+                    "type": "array",
+                    "x-kubernetes-list-type": "set"
+                  },
+                  "attestationConveyancePreference": {
+                    "description": "The preference of how to generate a WebAuthn attestation statement. Valid options are not specified, none, indirect, direct, or enterprise. Defaults to not specified.\nEither none, indirect or direct",
+                    "type": "string"
+                  },
+                  "authenticatorAttachment": {
+                    "description": "The acceptable attachment pattern for the WebAuthn authenticator. Valid options are not specified, platform, or cross-platform. Defaults to not specified.\nEither platform or cross-platform",
+                    "type": "string"
+                  },
+                  "avoidSameAuthenticatorRegister": {
+                    "description": "When true, Keycloak will avoid registering the authenticator for WebAuthn if it has already been registered. Defaults to false.",
+                    "type": "boolean"
+                  },
+                  "createTimeout": {
+                    "description": "The timeout value for creating a user's public key credential in seconds. When set to 0, this timeout option is not adapted. Defaults to 0.",
+                    "type": "number"
+                  },
+                  "extraOrigins": {
+                    "description": "A set of extra origins for non-web applications.",
+                    "items": {
+                      "type": "string"
+                    },
+                    "type": "array",
+                    "x-kubernetes-list-type": "set"
+                  },
+                  "relyingPartyEntityName": {
+                    "description": "A human-readable server name for the WebAuthn Relying Party. Defaults to keycloak.",
+                    "type": "string"
+                  },
+                  "relyingPartyId": {
+                    "description": "The WebAuthn relying party ID.",
+                    "type": "string"
+                  },
+                  "requireResidentKey": {
+                    "description": "Specifies whether a public key should be created to represent the resident key. Valid options are not specified, Yes, or No. Defaults to not specified.\nEither Yes or No",
+                    "type": "string"
+                  },
+                  "signatureAlgorithms": {
+                    "description": "A set of signature algorithms that should be used for the authentication assertion. Valid options at the time these docs were written are ES256, ES384, ES512, RS256, RS384, RS512, and RS1.\nKeycloak lists ES256, ES384, ES512, RS256, RS384, RS512, RS1 at the time of writing",
+                    "items": {
+                      "type": "string"
+                    },
+                    "type": "array",
+                    "x-kubernetes-list-type": "set"
+                  },
+                  "userVerificationRequirement": {
+                    "description": "Specifies the policy for verifying a user logging in via WebAuthn. Valid options are not specified, required, preferred, or discouraged. Defaults to not specified.\nEither required, preferred or discouraged",
+                    "type": "string"
+                  }
+                },
+                "type": "object"
+              },
+              "type": "array"
+            },
+            "webAuthnPolicy": {
+              "description": "Configuration for WebAuthn Policy authentication.",
+              "items": {
+                "properties": {
+                  "acceptableAaguids": {
+                    "description": "A set of AAGUIDs for which an authenticator can be registered.",
+                    "items": {
+                      "type": "string"
+                    },
+                    "type": "array",
+                    "x-kubernetes-list-type": "set"
+                  },
+                  "attestationConveyancePreference": {
+                    "description": "The preference of how to generate a WebAuthn attestation statement. Valid options are not specified, none, indirect, direct, or enterprise. Defaults to not specified.\nEither none, indirect or direct",
+                    "type": "string"
+                  },
+                  "authenticatorAttachment": {
+                    "description": "The acceptable attachment pattern for the WebAuthn authenticator. Valid options are not specified, platform, or cross-platform. Defaults to not specified.\nEither platform or cross-platform",
+                    "type": "string"
+                  },
+                  "avoidSameAuthenticatorRegister": {
+                    "description": "When true, Keycloak will avoid registering the authenticator for WebAuthn if it has already been registered. Defaults to false.",
+                    "type": "boolean"
+                  },
+                  "createTimeout": {
+                    "description": "The timeout value for creating a user's public key credential in seconds. When set to 0, this timeout option is not adapted. Defaults to 0.",
+                    "type": "number"
+                  },
+                  "extraOrigins": {
+                    "description": "A set of extra origins for non-web applications.",
+                    "items": {
+                      "type": "string"
+                    },
+                    "type": "array",
+                    "x-kubernetes-list-type": "set"
+                  },
+                  "relyingPartyEntityName": {
+                    "description": "A human-readable server name for the WebAuthn Relying Party. Defaults to keycloak.",
+                    "type": "string"
+                  },
+                  "relyingPartyId": {
+                    "description": "The WebAuthn relying party ID.",
+                    "type": "string"
+                  },
+                  "requireResidentKey": {
+                    "description": "Specifies whether a public key should be created to represent the resident key. Valid options are not specified, Yes, or No. Defaults to not specified.\nEither Yes or No",
+                    "type": "string"
+                  },
+                  "signatureAlgorithms": {
+                    "description": "A set of signature algorithms that should be used for the authentication assertion. Valid options at the time these docs were written are ES256, ES384, ES512, RS256, RS384, RS512, and RS1.\nKeycloak lists ES256, ES384, ES512, RS256, RS384, RS512, RS1 at the time of writing",
+                    "items": {
+                      "type": "string"
+                    },
+                    "type": "array",
+                    "x-kubernetes-list-type": "set"
+                  },
+                  "userVerificationRequirement": {
+                    "description": "Specifies the policy for verifying a user logging in via WebAuthn. Valid options are not specified, required, preferred, or discouraged. Defaults to not specified.\nEither required, preferred or discouraged",
+                    "type": "string"
+                  }
+                },
+                "type": "object"
+              },
+              "type": "array"
+            }
+          },
+          "type": "object"
+        },
+        "conditions": {
+          "description": "Conditions of the resource.",
+          "items": {
+            "description": "A Condition that may apply to a resource.",
+            "properties": {
+              "lastTransitionTime": {
+                "description": "LastTransitionTime is the last time this condition transitioned from one\nstatus to another.",
+                "format": "date-time",
+                "type": "string"
+              },
+              "message": {
+                "description": "A Message containing details about this condition's last transition from\none status to another, if any.",
+                "type": "string"
+              },
+              "observedGeneration": {
+                "description": "ObservedGeneration represents the .metadata.generation that the condition was set based upon.\nFor instance, if .metadata.generation is currently 12, but the .status.conditions[x].observedGeneration is 9, the condition is out of date\nwith respect to the current state of the instance.",
+                "format": "int64",
+                "type": "integer"
+              },
+              "reason": {
+                "description": "A Reason for this condition's last transition from one status to another.",
+                "type": "string"
+              },
+              "status": {
+                "description": "Status of this condition; is it currently True, False, or Unknown?",
+                "type": "string"
+              },
+              "type": {
+                "description": "Type of this condition. At most one of each condition type may apply to\na resource at any point in time.",
+                "type": "string"
+              }
+            },
+            "required": [
+              "lastTransitionTime",
+              "reason",
+              "status",
+              "type"
+            ],
+            "type": "object"
+          },
+          "type": "array",
+          "x-kubernetes-list-map-keys": [
+            "type"
+          ],
+          "x-kubernetes-list-type": "map"
+        },
+        "observedGeneration": {
+          "description": "ObservedGeneration is the latest metadata.generation\nwhich resulted in either a ready state, or stalled due to error\nit can not recover from without human intervention.",
+          "format": "int64",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    }
+  },
+  "required": [
+    "spec"
+  ],
+  "type": "object"
+}

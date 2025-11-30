@@ -1,0 +1,118 @@
+{
+  "properties": {
+    "apiVersion": {
+      "description": "APIVersion defines the versioned schema of this representation of an object.\nServers should convert recognized schemas to the latest internal value, and\nmay reject unrecognized values.\nMore info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources",
+      "type": "string"
+    },
+    "kind": {
+      "description": "Kind is a string value representing the REST resource this object represents.\nServers may infer this from the endpoint the client submits requests to.\nCannot be updated.\nIn CamelCase.\nMore info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
+      "type": "string"
+    },
+    "metadata": {
+      "type": "object"
+    },
+    "spec": {
+      "description": "BackupRepositorySpec is the specification for a BackupRepository.",
+      "properties": {
+        "backupStorageLocation": {
+          "description": "BackupStorageLocation is the name of the BackupStorageLocation\nthat should contain this repository.",
+          "type": "string"
+        },
+        "maintenanceFrequency": {
+          "description": "MaintenanceFrequency is how often maintenance should be run.",
+          "type": "string"
+        },
+        "repositoryConfig": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "RepositoryConfig is for repository-specific configuration fields.",
+          "nullable": true,
+          "type": "object"
+        },
+        "repositoryType": {
+          "description": "RepositoryType indicates the type of the backend repository",
+          "enum": [
+            "kopia",
+            "restic",
+            ""
+          ],
+          "type": "string"
+        },
+        "resticIdentifier": {
+          "description": "ResticIdentifier is the full restic-compatible string for identifying\nthis repository. This field is only used when RepositoryType is \"restic\".",
+          "type": "string"
+        },
+        "volumeNamespace": {
+          "description": "VolumeNamespace is the namespace this backup repository contains\npod volume backups for.",
+          "type": "string"
+        }
+      },
+      "required": [
+        "backupStorageLocation",
+        "maintenanceFrequency",
+        "volumeNamespace"
+      ],
+      "type": "object"
+    },
+    "status": {
+      "description": "BackupRepositoryStatus is the current status of a BackupRepository.",
+      "properties": {
+        "lastMaintenanceTime": {
+          "description": "LastMaintenanceTime is the last time repo maintenance succeeded.",
+          "format": "date-time",
+          "nullable": true,
+          "type": "string"
+        },
+        "message": {
+          "description": "Message is a message about the current status of the BackupRepository.",
+          "type": "string"
+        },
+        "phase": {
+          "description": "Phase is the current state of the BackupRepository.",
+          "enum": [
+            "New",
+            "Ready",
+            "NotReady"
+          ],
+          "type": "string"
+        },
+        "recentMaintenance": {
+          "description": "RecentMaintenance is status of the recent repo maintenance.",
+          "items": {
+            "properties": {
+              "completeTimestamp": {
+                "description": "CompleteTimestamp is the completion time of the repo maintenance.",
+                "format": "date-time",
+                "nullable": true,
+                "type": "string"
+              },
+              "message": {
+                "description": "Message is a message about the current status of the repo maintenance.",
+                "type": "string"
+              },
+              "result": {
+                "description": "Result is the result of the repo maintenance.",
+                "enum": [
+                  "Succeeded",
+                  "Failed"
+                ],
+                "type": "string"
+              },
+              "startTimestamp": {
+                "description": "StartTimestamp is the start time of the repo maintenance.",
+                "format": "date-time",
+                "nullable": true,
+                "type": "string"
+              }
+            },
+            "type": "object"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    }
+  },
+  "type": "object"
+}
