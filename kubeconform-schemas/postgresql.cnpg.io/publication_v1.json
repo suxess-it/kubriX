@@ -25,8 +25,7 @@
             }
           },
           "type": "object",
-          "x-kubernetes-map-type": "atomic",
-          "additionalProperties": false
+          "x-kubernetes-map-type": "atomic"
         },
         "dbname": {
           "description": "The name of the database where the publication will be installed in\nthe \"publisher\" cluster",
@@ -108,8 +107,7 @@
                     "required": [
                       "name"
                     ],
-                    "type": "object",
-                    "additionalProperties": false
+                    "type": "object"
                   },
                   "tablesInSchema": {
                     "description": "Marks the publication as one that replicates changes for all tables\nin the specified list of schemas, including tables created in the\nfuture. Corresponding to `FOR TABLES IN SCHEMA` in PostgreSQL.",
@@ -122,8 +120,7 @@
                     "message": "tablesInSchema and table are mutually exclusive",
                     "rule": "(has(self.tablesInSchema) && !has(self.table)) || (!has(self.tablesInSchema) && has(self.table))"
                   }
-                ],
-                "additionalProperties": false
+                ]
               },
               "maxItems": 100000,
               "type": "array",
@@ -141,8 +138,7 @@
               "message": "allTables and objects are mutually exclusive",
               "rule": "(has(self.allTables) && !has(self.objects)) || (!has(self.allTables) && has(self.objects))"
             }
-          ],
-          "additionalProperties": false
+          ]
         }
       },
       "required": [
@@ -151,8 +147,7 @@
         "name",
         "target"
       ],
-      "type": "object",
-      "additionalProperties": false
+      "type": "object"
     },
     "status": {
       "description": "PublicationStatus defines the observed state of Publication",
@@ -171,8 +166,7 @@
           "type": "integer"
         }
       },
-      "type": "object",
-      "additionalProperties": false
+      "type": "object"
     }
   },
   "required": [

@@ -1,0 +1,320 @@
+{
+  "description": "FirewallMonitor is typically deployed into the shoot cluster in comparison to the other resources of this controller\nwhich are deployed into the seed cluster's shoot namespace.",
+  "properties": {
+    "apiVersion": {
+      "description": "APIVersion defines the versioned schema of this representation of an object.\nServers should convert recognized schemas to the latest internal value, and\nmay reject unrecognized values.\nMore info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources",
+      "type": "string"
+    },
+    "conditions": {
+      "description": "Conditions contain the latest available observations of a firewall's current state.",
+      "items": {
+        "description": "Condition holds the information about the state of a resource.",
+        "properties": {
+          "lastTransitionTime": {
+            "description": "Last time the condition transitioned from one status to another.",
+            "format": "date-time",
+            "type": "string"
+          },
+          "lastUpdateTime": {
+            "description": "Last time the condition was updated.",
+            "format": "date-time",
+            "type": "string"
+          },
+          "message": {
+            "description": "A human readable message indicating details about the transition.",
+            "type": "string"
+          },
+          "reason": {
+            "description": "The reason for the condition's last transition.",
+            "type": "string"
+          },
+          "status": {
+            "description": "Status of the condition, one of True, False, Unknown.",
+            "type": "string"
+          },
+          "type": {
+            "description": "Type of the condition.",
+            "type": "string"
+          }
+        },
+        "required": [
+          "lastTransitionTime",
+          "lastUpdateTime",
+          "message",
+          "reason",
+          "status",
+          "type"
+        ],
+        "type": "object"
+      },
+      "type": "array"
+    },
+    "controllerStatus": {
+      "description": "ControllerStatus holds the status of the firewall-controller reconciling this firewall",
+      "properties": {
+        "controllerVersion": {
+          "type": "string"
+        },
+        "distance": {
+          "description": "FirewallDistance defines the as-path length of firewalls, influencing how strong they attract\nnetwork traffic for routing traffic in and out of the cluster.\nThis is of particular interest during rolling firewall updates, i.e. when there is\nmore than a single firewall running in front of the cluster.\nDuring a rolling update, new firewalls start with a longer distance such that\ntraffic is only attracted by the existing firewalls (\"firewall staging\").\nWhen the new firewall has connected successfully to the firewall monitor, the deployment\ncontroller throws away the old firewalls and the new firewall takes over the routing.\nThe deployment controller will then shorten the distance of the new firewall.\nThis approach reduces service interruption of the external user traffic of the cluster\n(for firewall-controller versions that support this feature).",
+          "type": "integer"
+        },
+        "distanceSupported": {
+          "type": "boolean"
+        },
+        "lastRun": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "lastRunAgainstSeed": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "message": {
+          "type": "string"
+        },
+        "nftablesExporterVersion": {
+          "type": "string"
+        },
+        "stats": {
+          "description": "FirewallStats contains firewall statistics",
+          "properties": {
+            "devices": {
+              "additionalProperties": {
+                "description": "DeviceStat contains statistics of a device",
+                "properties": {
+                  "in": {
+                    "format": "int64",
+                    "type": "integer"
+                  },
+                  "out": {
+                    "format": "int64",
+                    "type": "integer"
+                  }
+                },
+                "required": [
+                  "in",
+                  "out"
+                ],
+                "type": "object"
+              },
+              "description": "DeviceStatsByDevice contains DeviceStatistics grouped by device name",
+              "type": "object"
+            },
+            "idsStats": {
+              "additionalProperties": {
+                "properties": {
+                  "drop": {
+                    "type": "integer"
+                  },
+                  "invalidChecksums": {
+                    "type": "integer"
+                  },
+                  "packets": {
+                    "type": "integer"
+                  }
+                },
+                "required": [
+                  "drop",
+                  "invalidChecksums",
+                  "packets"
+                ],
+                "type": "object"
+              },
+              "type": "object"
+            },
+            "rules": {
+              "additionalProperties": {
+                "additionalProperties": {
+                  "description": "RuleStat contains the statistics for a single nftables rule",
+                  "properties": {
+                    "counter": {
+                      "description": "Counter holds values of a nftables counter object",
+                      "properties": {
+                        "bytes": {
+                          "format": "int64",
+                          "type": "integer"
+                        },
+                        "packets": {
+                          "format": "int64",
+                          "type": "integer"
+                        }
+                      },
+                      "required": [
+                        "bytes",
+                        "packets"
+                      ],
+                      "type": "object"
+                    }
+                  },
+                  "required": [
+                    "counter"
+                  ],
+                  "type": "object"
+                },
+                "description": "RuleStats contains firewall rule statistics of all rules of an action",
+                "type": "object"
+              },
+              "description": "RuleStatsByAction contains firewall rule statistics groups by action: e.g. accept, drop, policy, masquerade",
+              "type": "object"
+            }
+          },
+          "required": [
+            "devices",
+            "idsStats",
+            "rules"
+          ],
+          "type": "object"
+        }
+      },
+      "type": "object"
+    },
+    "egressRules": {
+      "description": "EgressRules contains egress rules configured for this firewall.",
+      "items": {
+        "description": "EgressRuleSNAT holds a Source-NAT rule",
+        "properties": {
+          "ips": {
+            "description": "IPs contains the ips used as source addresses for packets leaving the specified network.",
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          },
+          "networkID": {
+            "description": "NetworkID is the network for which the egress rule will be configured.",
+            "type": "string"
+          }
+        },
+        "required": [
+          "ips",
+          "networkID"
+        ],
+        "type": "object"
+      },
+      "type": "array"
+    },
+    "image": {
+      "description": "Image is the os image of the firewall.",
+      "type": "string"
+    },
+    "kind": {
+      "description": "Kind is a string value representing the REST resource this object represents.\nServers may infer this from the endpoint the client submits requests to.\nCannot be updated.\nIn CamelCase.\nMore info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
+      "type": "string"
+    },
+    "logAcceptedConnections": {
+      "description": "LogAcceptedConnections if set to true, also log accepted connections in the droptailer log.",
+      "type": "boolean"
+    },
+    "machineStatus": {
+      "description": "MachineStatus holds the status of the firewall machine",
+      "properties": {
+        "allocationTimestamp": {
+          "description": "AllocationTimestamp is the timestamp when the machine was allocated.",
+          "format": "date-time",
+          "type": "string"
+        },
+        "crashLoop": {
+          "description": "CrashLoop can occur during provisioning of the firewall causing the firewall not to get ready.",
+          "type": "boolean"
+        },
+        "imageID": {
+          "description": "ImageID contains the used os image id of the firewall (the fully qualified version, no shorthand version).",
+          "type": "string"
+        },
+        "lastEvent": {
+          "description": "LastEvent contains the last provisioning event of the machine.",
+          "properties": {
+            "event": {
+              "description": "Event is the provisioning event.",
+              "type": "string"
+            },
+            "message": {
+              "description": "Message contains a message further describing the event.",
+              "type": "string"
+            },
+            "timestamp": {
+              "description": "Timestamp is the point in time when the provisioning event was received.",
+              "format": "date-time",
+              "type": "string"
+            }
+          },
+          "required": [
+            "event",
+            "message",
+            "timestamp"
+          ],
+          "type": "object"
+        },
+        "liveliness": {
+          "description": "Liveliness expresses the liveliness of the firewall and can be used to determine the general health state of the machine.",
+          "type": "string"
+        },
+        "machineID": {
+          "description": "MachineID is the id of the firewall in the metal-stack api.",
+          "type": "string"
+        }
+      },
+      "required": [
+        "allocationTimestamp",
+        "liveliness",
+        "machineID"
+      ],
+      "type": "object"
+    },
+    "metadata": {
+      "type": "object"
+    },
+    "networks": {
+      "description": "Networks are the networks to which this firewall is connected.",
+      "items": {
+        "type": "string"
+      },
+      "type": "array"
+    },
+    "partition": {
+      "description": "Partition is the partition in which the firewall resides.",
+      "type": "string"
+    },
+    "project": {
+      "description": "Project is the project in which the firewall resides.",
+      "type": "string"
+    },
+    "rateLimits": {
+      "description": "RateLimits allows configuration of rate limit rules for interfaces.",
+      "items": {
+        "description": "RateLimit contains the rate limit rule for a network.",
+        "properties": {
+          "networkID": {
+            "description": "NetworkID specifies the network which should be rate limited.",
+            "type": "string"
+          },
+          "rate": {
+            "description": "Rate is the input rate in MiB/s.",
+            "format": "int32",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "networkID",
+          "rate"
+        ],
+        "type": "object"
+      },
+      "type": "array"
+    },
+    "size": {
+      "description": "Size is the machine size of the firewall.",
+      "type": "string"
+    }
+  },
+  "required": [
+    "conditions",
+    "image",
+    "networks",
+    "partition",
+    "project",
+    "size"
+  ],
+  "type": "object"
+}

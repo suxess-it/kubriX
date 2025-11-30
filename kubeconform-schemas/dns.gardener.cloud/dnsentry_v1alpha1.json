@@ -1,0 +1,187 @@
+{
+  "properties": {
+    "apiVersion": {
+      "description": "APIVersion defines the versioned schema of this representation of an object.\nServers should convert recognized schemas to the latest internal value, and\nmay reject unrecognized values.\nMore info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources",
+      "type": "string"
+    },
+    "kind": {
+      "description": "Kind is a string value representing the REST resource this object represents.\nServers may infer this from the endpoint the client submits requests to.\nCannot be updated.\nIn CamelCase.\nMore info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
+      "type": "string"
+    },
+    "metadata": {
+      "type": "object"
+    },
+    "spec": {
+      "properties": {
+        "cnameLookupInterval": {
+          "description": "lookup interval for CNAMEs that must be resolved to IP addresses.\nOnly used if `resolveTargetsToAddresses` is set to true or targets consists of multiple domain names.",
+          "format": "int64",
+          "type": "integer"
+        },
+        "dnsName": {
+          "description": "full qualified domain name",
+          "type": "string"
+        },
+        "ownerId": {
+          "description": "Deprecated: This field is no longer used and will be removed in a future release.",
+          "type": "string"
+        },
+        "reference": {
+          "description": "reference to base entry used to inherit attributes from",
+          "properties": {
+            "name": {
+              "description": "name of the referenced DNSEntry object",
+              "type": "string"
+            },
+            "namespace": {
+              "description": "namespace of the referenced DNSEntry object",
+              "type": "string"
+            }
+          },
+          "required": [
+            "name"
+          ],
+          "type": "object"
+        },
+        "resolveTargetsToAddresses": {
+          "description": "enables translation of a target domain name in the resolved IPv4 and IPv6 addresses.\nIf enabled, `A` and/or `AAAA` records are created instead of a `CNAME` record.\nIf the target list contains multiple targets, it is enabled implicitly.",
+          "type": "boolean"
+        },
+        "routingPolicy": {
+          "description": "optional routing policy",
+          "properties": {
+            "parameters": {
+              "additionalProperties": {
+                "type": "string"
+              },
+              "description": "Policy specific parameters",
+              "type": "object"
+            },
+            "setIdentifier": {
+              "description": "SetIdentifier is the identifier of the record set",
+              "type": "string"
+            },
+            "type": {
+              "description": "Policy is the policy type. Allowed values are provider dependent, e.g. `weighted`",
+              "type": "string"
+            }
+          },
+          "required": [
+            "parameters",
+            "setIdentifier",
+            "type"
+          ],
+          "type": "object"
+        },
+        "targets": {
+          "description": "target records (CNAME or A records), either text or targets must be specified",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "text": {
+          "description": "text records, either text or targets must be specified",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "ttl": {
+          "description": "time to live for records in external DNS system",
+          "format": "int64",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "dnsName"
+      ],
+      "type": "object"
+    },
+    "status": {
+      "properties": {
+        "cnameLookupInterval": {
+          "description": "effective lookup interval for CNAMEs that must be resolved to IP addresses",
+          "format": "int64",
+          "type": "integer"
+        },
+        "dnsName": {
+          "description": "full qualified domain name applied",
+          "type": "string"
+        },
+        "lastUpdateTime": {
+          "description": "lastUpdateTime contains the timestamp of the last status update",
+          "format": "date-time",
+          "type": "string"
+        },
+        "message": {
+          "description": "message describing the reason for the state",
+          "type": "string"
+        },
+        "observedGeneration": {
+          "format": "int64",
+          "type": "integer"
+        },
+        "provider": {
+          "description": "assigned provider",
+          "type": "string"
+        },
+        "providerType": {
+          "description": "provider type used for the entry",
+          "type": "string"
+        },
+        "routingPolicy": {
+          "description": "effective routing policy",
+          "properties": {
+            "parameters": {
+              "additionalProperties": {
+                "type": "string"
+              },
+              "description": "Policy specific parameters",
+              "type": "object"
+            },
+            "setIdentifier": {
+              "description": "SetIdentifier is the identifier of the record set",
+              "type": "string"
+            },
+            "type": {
+              "description": "Policy is the policy type. Allowed values are provider dependent, e.g. `weighted`",
+              "type": "string"
+            }
+          },
+          "required": [
+            "parameters",
+            "setIdentifier",
+            "type"
+          ],
+          "type": "object"
+        },
+        "state": {
+          "description": "entry state",
+          "type": "string"
+        },
+        "targets": {
+          "description": "effective targets generated for the entry",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "ttl": {
+          "description": "time to live used for the entry",
+          "format": "int64",
+          "type": "integer"
+        },
+        "zone": {
+          "description": "zone used for the entry",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    }
+  },
+  "required": [
+    "spec"
+  ],
+  "type": "object"
+}

@@ -82,15 +82,13 @@
                             "type": "string"
                           }
                         },
-                        "type": "object",
-                        "additionalProperties": false
+                        "type": "object"
                       }
                     },
                     "required": [
                       "name"
                     ],
-                    "type": "object",
-                    "additionalProperties": false
+                    "type": "object"
                   },
                   "browserIdSelector": {
                     "description": "Selector for a Flow in authenticationflow to populate browserId.",
@@ -127,12 +125,10 @@
                             "type": "string"
                           }
                         },
-                        "type": "object",
-                        "additionalProperties": false
+                        "type": "object"
                       }
                     },
-                    "type": "object",
-                    "additionalProperties": false
+                    "type": "object"
                   },
                   "directGrantId": {
                     "description": "Direct grant flow id (flow needs to exist)",
@@ -166,15 +162,13 @@
                             "type": "string"
                           }
                         },
-                        "type": "object",
-                        "additionalProperties": false
+                        "type": "object"
                       }
                     },
                     "required": [
                       "name"
                     ],
-                    "type": "object",
-                    "additionalProperties": false
+                    "type": "object"
                   },
                   "directGrantIdSelector": {
                     "description": "Selector for a Flow in authenticationflow to populate directGrantId.",
@@ -211,16 +205,13 @@
                             "type": "string"
                           }
                         },
-                        "type": "object",
-                        "additionalProperties": false
+                        "type": "object"
                       }
                     },
-                    "type": "object",
-                    "additionalProperties": false
+                    "type": "object"
                   }
                 },
-                "type": "object",
-                "additionalProperties": false
+                "type": "object"
               },
               "type": "array"
             },
@@ -245,8 +236,7 @@
                     "type": "string"
                   }
                 },
-                "type": "object",
-                "additionalProperties": false
+                "type": "object"
               },
               "type": "array"
             },
@@ -302,15 +292,13 @@
                       "type": "string"
                     }
                   },
-                  "type": "object",
-                  "additionalProperties": false
+                  "type": "object"
                 }
               },
               "required": [
                 "name"
               ],
-              "type": "object",
-              "additionalProperties": false
+              "type": "object"
             },
             "clientIdSelector": {
               "description": "Selector for a Client in openidclient to populate clientId.",
@@ -347,12 +335,10 @@
                       "type": "string"
                     }
                   },
-                  "type": "object",
-                  "additionalProperties": false
+                  "type": "object"
                 }
               },
-              "type": "object",
-              "additionalProperties": false
+              "type": "object"
             },
             "clientOfflineSessionIdleTimeout": {
               "description": "Time a client session is allowed to be idle before it expires. Tokens are invalidated when a client session is expired. If not set it uses the standard SSO Session Idle value.",
@@ -391,8 +377,7 @@
                 "name",
                 "namespace"
               ],
-              "type": "object",
-              "additionalProperties": false
+              "type": "object"
             },
             "clientSecretWoSecretRef": {
               "description": "The secret for clients with an access_type of CONFIDENTIAL or BEARER-ONLY. If omitted, this will fallback to use client_secret.\nClient Secret as write-only argument",
@@ -415,8 +400,7 @@
                 "name",
                 "namespace"
               ],
-              "type": "object",
-              "additionalProperties": false
+              "type": "object"
             },
             "clientSecretWoVersion": {
               "description": "The value of this argument is stored in the state and plan files. Required when using client_secret_wo.\nVersion of the Client secret write-only argument",
@@ -546,15 +530,13 @@
                       "type": "string"
                     }
                   },
-                  "type": "object",
-                  "additionalProperties": false
+                  "type": "object"
                 }
               },
               "required": [
                 "name"
               ],
-              "type": "object",
-              "additionalProperties": false
+              "type": "object"
             },
             "realmIdSelector": {
               "description": "Selector for a Realm in realm to populate realmId.",
@@ -591,12 +573,10 @@
                       "type": "string"
                     }
                   },
-                  "type": "object",
-                  "additionalProperties": false
+                  "type": "object"
                 }
               },
-              "type": "object",
-              "additionalProperties": false
+              "type": "object"
             },
             "rootUrl": {
               "description": "When specified, this URL is prepended to any relative URLs found within valid_redirect_uris, web_origins, and admin_url. NOTE: Due to limitations in the Keycloak API, when the root_url attribute is used, the valid_redirect_uris, web_origins, and admin_url attributes will be required.",
@@ -647,8 +627,7 @@
               "x-kubernetes-list-type": "set"
             }
           },
-          "type": "object",
-          "additionalProperties": false
+          "type": "object"
         },
         "initProvider": {
           "description": "THIS IS A BETA FIELD. It will be honored\nunless the Management Policies feature flag is disabled.\nInitProvider holds the same fields as ForProvider, with the exception\nof Identifier and other resource reference fields. The fields that are\nin InitProvider are merged into ForProvider when the resource is created.\nThe same fields are also added to the terraform ignore_changes hook, to\navoid updating them after creation. This is useful for fields that are\nrequired on creation, but we do not desire to update them after creation,\nfor example because of an external controller is managing them, like an\nautoscaler.",
@@ -709,15 +688,13 @@
                             "type": "string"
                           }
                         },
-                        "type": "object",
-                        "additionalProperties": false
+                        "type": "object"
                       }
                     },
                     "required": [
                       "name"
                     ],
-                    "type": "object",
-                    "additionalProperties": false
+                    "type": "object"
                   },
                   "browserIdSelector": {
                     "description": "Selector for a Flow in authenticationflow to populate browserId.",
@@ -754,12 +731,10 @@
                             "type": "string"
                           }
                         },
-                        "type": "object",
-                        "additionalProperties": false
+                        "type": "object"
                       }
                     },
-                    "type": "object",
-                    "additionalProperties": false
+                    "type": "object"
                   },
                   "directGrantId": {
                     "description": "Direct grant flow id (flow needs to exist)",
@@ -793,15 +768,13 @@
                             "type": "string"
                           }
                         },
-                        "type": "object",
-                        "additionalProperties": false
+                        "type": "object"
                       }
                     },
                     "required": [
                       "name"
                     ],
-                    "type": "object",
-                    "additionalProperties": false
+                    "type": "object"
                   },
                   "directGrantIdSelector": {
                     "description": "Selector for a Flow in authenticationflow to populate directGrantId.",
@@ -838,16 +811,13 @@
                             "type": "string"
                           }
                         },
-                        "type": "object",
-                        "additionalProperties": false
+                        "type": "object"
                       }
                     },
-                    "type": "object",
-                    "additionalProperties": false
+                    "type": "object"
                   }
                 },
-                "type": "object",
-                "additionalProperties": false
+                "type": "object"
               },
               "type": "array"
             },
@@ -872,8 +842,7 @@
                     "type": "string"
                   }
                 },
-                "type": "object",
-                "additionalProperties": false
+                "type": "object"
               },
               "type": "array"
             },
@@ -929,15 +898,13 @@
                       "type": "string"
                     }
                   },
-                  "type": "object",
-                  "additionalProperties": false
+                  "type": "object"
                 }
               },
               "required": [
                 "name"
               ],
-              "type": "object",
-              "additionalProperties": false
+              "type": "object"
             },
             "clientIdSelector": {
               "description": "Selector for a Client in openidclient to populate clientId.",
@@ -974,12 +941,10 @@
                       "type": "string"
                     }
                   },
-                  "type": "object",
-                  "additionalProperties": false
+                  "type": "object"
                 }
               },
-              "type": "object",
-              "additionalProperties": false
+              "type": "object"
             },
             "clientOfflineSessionIdleTimeout": {
               "description": "Time a client session is allowed to be idle before it expires. Tokens are invalidated when a client session is expired. If not set it uses the standard SSO Session Idle value.",
@@ -1018,8 +983,7 @@
                 "name",
                 "namespace"
               ],
-              "type": "object",
-              "additionalProperties": false
+              "type": "object"
             },
             "clientSecretWoSecretRef": {
               "description": "The secret for clients with an access_type of CONFIDENTIAL or BEARER-ONLY. If omitted, this will fallback to use client_secret.\nClient Secret as write-only argument",
@@ -1042,8 +1006,7 @@
                 "name",
                 "namespace"
               ],
-              "type": "object",
-              "additionalProperties": false
+              "type": "object"
             },
             "clientSecretWoVersion": {
               "description": "The value of this argument is stored in the state and plan files. Required when using client_secret_wo.\nVersion of the Client secret write-only argument",
@@ -1173,15 +1136,13 @@
                       "type": "string"
                     }
                   },
-                  "type": "object",
-                  "additionalProperties": false
+                  "type": "object"
                 }
               },
               "required": [
                 "name"
               ],
-              "type": "object",
-              "additionalProperties": false
+              "type": "object"
             },
             "realmIdSelector": {
               "description": "Selector for a Realm in realm to populate realmId.",
@@ -1218,12 +1179,10 @@
                       "type": "string"
                     }
                   },
-                  "type": "object",
-                  "additionalProperties": false
+                  "type": "object"
                 }
               },
-              "type": "object",
-              "additionalProperties": false
+              "type": "object"
             },
             "rootUrl": {
               "description": "When specified, this URL is prepended to any relative URLs found within valid_redirect_uris, web_origins, and admin_url. NOTE: Due to limitations in the Keycloak API, when the root_url attribute is used, the valid_redirect_uris, web_origins, and admin_url attributes will be required.",
@@ -1274,8 +1233,7 @@
               "x-kubernetes-list-type": "set"
             }
           },
-          "type": "object",
-          "additionalProperties": false
+          "type": "object"
         },
         "managementPolicies": {
           "default": [
@@ -1327,15 +1285,13 @@
                   "type": "string"
                 }
               },
-              "type": "object",
-              "additionalProperties": false
+              "type": "object"
             }
           },
           "required": [
             "name"
           ],
-          "type": "object",
-          "additionalProperties": false
+          "type": "object"
         },
         "writeConnectionSecretToRef": {
           "description": "WriteConnectionSecretToReference specifies the namespace and name of a\nSecret to which any connection details for this managed resource should\nbe written. Connection details frequently include the endpoint, username,\nand password required to connect to the managed resource.",
@@ -1353,8 +1309,7 @@
             "name",
             "namespace"
           ],
-          "type": "object",
-          "additionalProperties": false
+          "type": "object"
         }
       },
       "required": [
@@ -1366,8 +1321,7 @@
           "message": "spec.forProvider.accessType is a required parameter",
           "rule": "!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.accessType) || (has(self.initProvider) && has(self.initProvider.accessType))"
         }
-      ],
-      "additionalProperties": false
+      ]
     },
     "status": {
       "description": "ClientStatus defines the observed state of Client.",
@@ -1407,8 +1361,7 @@
                     "type": "string"
                   }
                 },
-                "type": "object",
-                "additionalProperties": false
+                "type": "object"
               },
               "type": "array"
             },
@@ -1433,8 +1386,7 @@
                     "type": "string"
                   }
                 },
-                "type": "object",
-                "additionalProperties": false
+                "type": "object"
               },
               "type": "array"
             },
@@ -1638,8 +1590,7 @@
               "x-kubernetes-list-type": "set"
             }
           },
-          "type": "object",
-          "additionalProperties": false
+          "type": "object"
         },
         "conditions": {
           "description": "Conditions of the resource.",
@@ -1679,8 +1630,7 @@
               "status",
               "type"
             ],
-            "type": "object",
-            "additionalProperties": false
+            "type": "object"
           },
           "type": "array",
           "x-kubernetes-list-map-keys": [
@@ -1694,8 +1644,7 @@
           "type": "integer"
         }
       },
-      "type": "object",
-      "additionalProperties": false
+      "type": "object"
     }
   },
   "required": [

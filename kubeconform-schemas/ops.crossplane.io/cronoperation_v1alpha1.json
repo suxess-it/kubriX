@@ -79,8 +79,7 @@
                                 "name",
                                 "namespace"
                               ],
-                              "type": "object",
-                              "additionalProperties": false
+                              "type": "object"
                             },
                             "source": {
                               "description": "Source of the function credentials.",
@@ -95,8 +94,7 @@
                             "name",
                             "source"
                           ],
-                          "type": "object",
-                          "additionalProperties": false
+                          "type": "object"
                         },
                         "type": "array",
                         "x-kubernetes-list-map-keys": [
@@ -115,8 +113,7 @@
                         "required": [
                           "name"
                         ],
-                        "type": "object",
-                        "additionalProperties": false
+                        "type": "object"
                       },
                       "input": {
                         "description": "Input is an optional, arbitrary Kubernetes resource (i.e. a resource\nwith an apiVersion and kind) that will be passed to the unction as\nthe 'input' of its RunFunctionRequest.",
@@ -171,8 +168,7 @@
                                   "message": "Either name or matchLabels must be specified, but not both",
                                   "rule": "(has(self.name) && !has(self.matchLabels)) || (!has(self.name) && has(self.matchLabels))"
                                 }
-                              ],
-                              "additionalProperties": false
+                              ]
                             },
                             "type": "array",
                             "x-kubernetes-list-map-keys": [
@@ -181,8 +177,7 @@
                             "x-kubernetes-list-type": "map"
                           }
                         },
-                        "type": "object",
-                        "additionalProperties": false
+                        "type": "object"
                       },
                       "step": {
                         "description": "Step name. Must be unique within its Pipeline.",
@@ -193,8 +188,7 @@
                       "functionRef",
                       "step"
                     ],
-                    "type": "object",
-                    "additionalProperties": false
+                    "type": "object"
                   },
                   "maxItems": 99,
                   "minItems": 1,
@@ -214,15 +208,13 @@
                 "mode",
                 "pipeline"
               ],
-              "type": "object",
-              "additionalProperties": false
+              "type": "object"
             }
           },
           "required": [
             "spec"
           ],
-          "type": "object",
-          "additionalProperties": false
+          "type": "object"
         },
         "schedule": {
           "description": "Schedule is the cron schedule for the operation.",
@@ -244,8 +236,7 @@
         "operationTemplate",
         "schedule"
       ],
-      "type": "object",
-      "additionalProperties": false
+      "type": "object"
     },
     "status": {
       "description": "CronOperationStatus represents the observed state of a CronOperation.",
@@ -288,8 +279,7 @@
               "status",
               "type"
             ],
-            "type": "object",
-            "additionalProperties": false
+            "type": "object"
           },
           "type": "array",
           "x-kubernetes-list-map-keys": [
@@ -320,14 +310,12 @@
             "required": [
               "name"
             ],
-            "type": "object",
-            "additionalProperties": false
+            "type": "object"
           },
           "type": "array"
         }
       },
-      "type": "object",
-      "additionalProperties": false
+      "type": "object"
     }
   },
   "type": "object"

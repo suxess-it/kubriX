@@ -58,8 +58,7 @@
                         "key",
                         "operator"
                       ],
-                      "type": "object",
-                      "additionalProperties": false
+                      "type": "object"
                     },
                     "type": "array",
                     "x-kubernetes-list-type": "atomic"
@@ -77,8 +76,7 @@
                   }
                 },
                 "type": "object",
-                "x-kubernetes-map-type": "atomic",
-                "additionalProperties": false
+                "x-kubernetes-map-type": "atomic"
               }
             },
             "type": "object",
@@ -87,8 +85,7 @@
                 "message": "PromotionPolicy must have exactly one of stage or stageSelector set",
                 "rule": "has(self.stage) ? !has(self.stageSelector) : has(self.stageSelector)"
               }
-            ],
-            "additionalProperties": false
+            ]
           },
           "type": "array"
         },
@@ -110,8 +107,7 @@
                       }
                     },
                     "type": "object",
-                    "x-kubernetes-map-type": "atomic",
-                    "additionalProperties": false
+                    "x-kubernetes-map-type": "atomic"
                   },
                   "virtualRepoName": {
                     "description": "VirtualRepoName is the name of an Artifactory virtual repository.\n\nWhen unspecified, the Artifactory webhook receiver depends on the value of\nthe webhook payload's `data.repo_key` field when inferring the URL of the\nrepository from which the webhook originated, which will always be an\nArtifactory \"local repository.\" In cases where a Warehouse subscribes to\nsuch a repository indirectly via a \"virtual repository,\" there will be a\ndiscrepancy between the inferred (local) repository URL and the URL\nactually used by the subscription, which can prevent the receiver from\nidentifying such a Warehouse as one in need of refreshing. When specified,\nthe value of the VirtualRepoName field supersedes the value of the webhook\npayload's `data.repo_key` field to compensate for that discrepancy.\n\nIn practice, when using virtual repositories, a separate Artifactory\nwebhook receiver should be configured for each, but one such receiver can\nhandle inbound webhooks from any number of local repositories that are\naggregated by that virtual repository. For example, if a virtual repository\n`proj-virtual` aggregates container images from all of the `proj`\nArtifactory project's local image repositories, with a single webhook\nconfigured to post to a single receiver configured for the `proj-virtual`\nvirtual repository, an image pushed to\n`example.frog.io/proj-<local-repo-name>/<path>/image`, will cause that\nreceiver to refresh all Warehouses subscribed to\n`example.frog.io/proj-virtual/<path>/image`.",
@@ -121,8 +117,7 @@
                 "required": [
                   "secretRef"
                 ],
-                "type": "object",
-                "additionalProperties": false
+                "type": "object"
               },
               "azure": {
                 "description": "Azure contains the configuration for a webhook receiver that is compatible\nwith Azure Container Registry (ACR) and Azure DevOps payloads.",
@@ -137,15 +132,13 @@
                       }
                     },
                     "type": "object",
-                    "x-kubernetes-map-type": "atomic",
-                    "additionalProperties": false
+                    "x-kubernetes-map-type": "atomic"
                   }
                 },
                 "required": [
                   "secretRef"
                 ],
-                "type": "object",
-                "additionalProperties": false
+                "type": "object"
               },
               "bitbucket": {
                 "description": "Bitbucket contains the configuration for a webhook receiver that is\ncompatible with Bitbucket payloads.",
@@ -160,15 +153,13 @@
                       }
                     },
                     "type": "object",
-                    "x-kubernetes-map-type": "atomic",
-                    "additionalProperties": false
+                    "x-kubernetes-map-type": "atomic"
                   }
                 },
                 "required": [
                   "secretRef"
                 ],
-                "type": "object",
-                "additionalProperties": false
+                "type": "object"
               },
               "dockerhub": {
                 "description": "DockerHub contains the configuration for a webhook receiver that is\ncompatible with DockerHub payloads.",
@@ -183,15 +174,13 @@
                       }
                     },
                     "type": "object",
-                    "x-kubernetes-map-type": "atomic",
-                    "additionalProperties": false
+                    "x-kubernetes-map-type": "atomic"
                   }
                 },
                 "required": [
                   "secretRef"
                 ],
-                "type": "object",
-                "additionalProperties": false
+                "type": "object"
               },
               "gitea": {
                 "description": "Gitea contains the configuration for a webhook receiver that is compatible\nwith Gitea payloads.",
@@ -206,15 +195,13 @@
                       }
                     },
                     "type": "object",
-                    "x-kubernetes-map-type": "atomic",
-                    "additionalProperties": false
+                    "x-kubernetes-map-type": "atomic"
                   }
                 },
                 "required": [
                   "secretRef"
                 ],
-                "type": "object",
-                "additionalProperties": false
+                "type": "object"
               },
               "github": {
                 "description": "GitHub contains the configuration for a webhook receiver that is compatible\nwith GitHub payloads.",
@@ -229,15 +216,13 @@
                       }
                     },
                     "type": "object",
-                    "x-kubernetes-map-type": "atomic",
-                    "additionalProperties": false
+                    "x-kubernetes-map-type": "atomic"
                   }
                 },
                 "required": [
                   "secretRef"
                 ],
-                "type": "object",
-                "additionalProperties": false
+                "type": "object"
               },
               "gitlab": {
                 "description": "GitLab contains the configuration for a webhook receiver that is compatible\nwith GitLab payloads.",
@@ -252,15 +237,13 @@
                       }
                     },
                     "type": "object",
-                    "x-kubernetes-map-type": "atomic",
-                    "additionalProperties": false
+                    "x-kubernetes-map-type": "atomic"
                   }
                 },
                 "required": [
                   "secretRef"
                 ],
-                "type": "object",
-                "additionalProperties": false
+                "type": "object"
               },
               "harbor": {
                 "description": "Harbor contains the configuration for a webhook receiver that is compatible\nwith Harbor payloads.",
@@ -275,15 +258,13 @@
                       }
                     },
                     "type": "object",
-                    "x-kubernetes-map-type": "atomic",
-                    "additionalProperties": false
+                    "x-kubernetes-map-type": "atomic"
                   }
                 },
                 "required": [
                   "secretRef"
                 ],
-                "type": "object",
-                "additionalProperties": false
+                "type": "object"
               },
               "name": {
                 "description": "Name is the name of the webhook receiver.",
@@ -305,28 +286,24 @@
                       }
                     },
                     "type": "object",
-                    "x-kubernetes-map-type": "atomic",
-                    "additionalProperties": false
+                    "x-kubernetes-map-type": "atomic"
                   }
                 },
                 "required": [
                   "secretRef"
                 ],
-                "type": "object",
-                "additionalProperties": false
+                "type": "object"
               }
             },
             "required": [
               "name"
             ],
-            "type": "object",
-            "additionalProperties": false
+            "type": "object"
           },
           "type": "array"
         }
       },
-      "type": "object",
-      "additionalProperties": false
+      "type": "object"
     },
     "status": {
       "description": "Status describes the current status of a ProjectConfig.",
@@ -382,8 +359,7 @@
               "status",
               "type"
             ],
-            "type": "object",
-            "additionalProperties": false
+            "type": "object"
           },
           "type": "array",
           "x-kubernetes-list-map-keys": [
@@ -418,14 +394,12 @@
                 "type": "string"
               }
             },
-            "type": "object",
-            "additionalProperties": false
+            "type": "object"
           },
           "type": "array"
         }
       },
-      "type": "object",
-      "additionalProperties": false
+      "type": "object"
     }
   },
   "type": "object"

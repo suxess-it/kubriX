@@ -22,7 +22,9 @@ def test_additional_properties():
     }]):
         assert additional_properties(test["input"]) == test["expect"]
 
-def additional_properties(data, skip=False):
+# we set skip to true because otherwise no additional properties are possible,
+# which create false positive failures for some CRDs which have no metadata.annotations defined for example
+def additional_properties(data, skip=True):
     "This recreates the behaviour of kubectl at https://github.com/kubernetes/kubernetes/blob/225b9119d6a8f03fcbe3cc3d590c261965d928d0/pkg/kubectl/validation/schema.go#L312"
     if isinstance(data, dict):
         if "properties" in data and not skip:
