@@ -31,8 +31,7 @@
                     "required": [
                       "fieldPath"
                     ],
-                    "type": "object",
-                    "additionalProperties": false
+                    "type": "object"
                   },
                   "secretKeyRef": {
                     "properties": {
@@ -47,19 +46,16 @@
                       "key",
                       "name"
                     ],
-                    "type": "object",
-                    "additionalProperties": false
+                    "type": "object"
                   }
                 },
-                "type": "object",
-                "additionalProperties": false
+                "type": "object"
               }
             },
             "required": [
               "name"
             ],
-            "type": "object",
-            "additionalProperties": false
+            "type": "object"
           },
           "type": "array"
         },
@@ -73,8 +69,7 @@
             "required": [
               "metricName"
             ],
-            "type": "object",
-            "additionalProperties": false
+            "type": "object"
           },
           "type": "array"
         },
@@ -93,8 +88,7 @@
               "limit",
               "metricName"
             ],
-            "type": "object",
-            "additionalProperties": false
+            "type": "object"
           },
           "type": "array"
         },
@@ -201,8 +195,7 @@
                                             "type": "string"
                                           }
                                         },
-                                        "type": "object",
-                                        "additionalProperties": false
+                                        "type": "object"
                                       },
                                       "type": "array"
                                     },
@@ -213,8 +206,7 @@
                                       "type": "string"
                                     }
                                   },
-                                  "type": "object",
-                                  "additionalProperties": false
+                                  "type": "object"
                                 },
                                 "period": {
                                   "anyOf": [
@@ -234,8 +226,7 @@
                                   "type": "string"
                                 }
                               },
-                              "type": "object",
-                              "additionalProperties": false
+                              "type": "object"
                             },
                             "period": {
                               "anyOf": [
@@ -252,8 +243,7 @@
                               "type": "boolean"
                             }
                           },
-                          "type": "object",
-                          "additionalProperties": false
+                          "type": "object"
                         },
                         "type": "array"
                       }
@@ -261,8 +251,7 @@
                     "required": [
                       "metricDataQueries"
                     ],
-                    "type": "object",
-                    "additionalProperties": false
+                    "type": "object"
                   },
                   "datadog": {
                     "properties": {
@@ -313,12 +302,10 @@
                             "type": "boolean"
                           }
                         },
-                        "type": "object",
-                        "additionalProperties": false
+                        "type": "object"
                       }
                     },
-                    "type": "object",
-                    "additionalProperties": false
+                    "type": "object"
                   },
                   "graphite": {
                     "properties": {
@@ -329,8 +316,7 @@
                         "type": "string"
                       }
                     },
-                    "type": "object",
-                    "additionalProperties": false
+                    "type": "object"
                   },
                   "influxdb": {
                     "properties": {
@@ -341,8 +327,7 @@
                         "type": "string"
                       }
                     },
-                    "type": "object",
-                    "additionalProperties": false
+                    "type": "object"
                   },
                   "job": {
                     "properties": {
@@ -361,8 +346,7 @@
                             "type": "object"
                           }
                         },
-                        "type": "object",
-                        "additionalProperties": false
+                        "type": "object"
                       },
                       "spec": {
                         "properties": {
@@ -425,8 +409,7 @@
                                         "operator",
                                         "values"
                                       ],
-                                      "type": "object",
-                                      "additionalProperties": false
+                                      "type": "object"
                                     },
                                     "onPodConditions": {
                                       "items": {
@@ -442,8 +425,7 @@
                                           "status",
                                           "type"
                                         ],
-                                        "type": "object",
-                                        "additionalProperties": false
+                                        "type": "object"
                                       },
                                       "type": "array",
                                       "x-kubernetes-list-type": "atomic"
@@ -452,8 +434,7 @@
                                   "required": [
                                     "action"
                                   ],
-                                  "type": "object",
-                                  "additionalProperties": false
+                                  "type": "object"
                                 },
                                 "type": "array",
                                 "x-kubernetes-list-type": "atomic"
@@ -462,8 +443,7 @@
                             "required": [
                               "rules"
                             ],
-                            "type": "object",
-                            "additionalProperties": false
+                            "type": "object"
                           },
                           "podReplacementPolicy": {
                             "type": "string"
@@ -490,8 +470,7 @@
                                     "key",
                                     "operator"
                                   ],
-                                  "type": "object",
-                                  "additionalProperties": false
+                                  "type": "object"
                                 },
                                 "type": "array"
                               },
@@ -503,8 +482,7 @@
                               }
                             },
                             "type": "object",
-                            "x-kubernetes-map-type": "atomic",
-                            "additionalProperties": false
+                            "x-kubernetes-map-type": "atomic"
                           },
                           "suspend": {
                             "type": "boolean"
@@ -526,8 +504,7 @@
                                     "type": "object"
                                   }
                                 },
-                                "type": "object",
-                                "additionalProperties": false
+                                "type": "object"
                               },
                               "spec": {
                                 "properties": {
@@ -564,8 +541,7 @@
                                                           "key",
                                                           "operator"
                                                         ],
-                                                        "type": "object",
-                                                        "additionalProperties": false
+                                                        "type": "object"
                                                       },
                                                       "type": "array"
                                                     },
@@ -589,15 +565,13 @@
                                                           "key",
                                                           "operator"
                                                         ],
-                                                        "type": "object",
-                                                        "additionalProperties": false
+                                                        "type": "object"
                                                       },
                                                       "type": "array"
                                                     }
                                                   },
                                                   "type": "object",
-                                                  "x-kubernetes-map-type": "atomic",
-                                                  "additionalProperties": false
+                                                  "x-kubernetes-map-type": "atomic"
                                                 },
                                                 "weight": {
                                                   "format": "int32",
@@ -608,8 +582,7 @@
                                                 "preference",
                                                 "weight"
                                               ],
-                                              "type": "object",
-                                              "additionalProperties": false
+                                              "type": "object"
                                             },
                                             "type": "array"
                                           },
@@ -638,8 +611,7 @@
                                                           "key",
                                                           "operator"
                                                         ],
-                                                        "type": "object",
-                                                        "additionalProperties": false
+                                                        "type": "object"
                                                       },
                                                       "type": "array"
                                                     },
@@ -663,15 +635,13 @@
                                                           "key",
                                                           "operator"
                                                         ],
-                                                        "type": "object",
-                                                        "additionalProperties": false
+                                                        "type": "object"
                                                       },
                                                       "type": "array"
                                                     }
                                                   },
                                                   "type": "object",
-                                                  "x-kubernetes-map-type": "atomic",
-                                                  "additionalProperties": false
+                                                  "x-kubernetes-map-type": "atomic"
                                                 },
                                                 "type": "array"
                                               }
@@ -680,12 +650,10 @@
                                               "nodeSelectorTerms"
                                             ],
                                             "type": "object",
-                                            "x-kubernetes-map-type": "atomic",
-                                            "additionalProperties": false
+                                            "x-kubernetes-map-type": "atomic"
                                           }
                                         },
-                                        "type": "object",
-                                        "additionalProperties": false
+                                        "type": "object"
                                       },
                                       "podAffinity": {
                                         "properties": {
@@ -716,8 +684,7 @@
                                                               "key",
                                                               "operator"
                                                             ],
-                                                            "type": "object",
-                                                            "additionalProperties": false
+                                                            "type": "object"
                                                           },
                                                           "type": "array"
                                                         },
@@ -729,8 +696,7 @@
                                                         }
                                                       },
                                                       "type": "object",
-                                                      "x-kubernetes-map-type": "atomic",
-                                                      "additionalProperties": false
+                                                      "x-kubernetes-map-type": "atomic"
                                                     },
                                                     "matchLabelKeys": {
                                                       "items": {
@@ -768,8 +734,7 @@
                                                               "key",
                                                               "operator"
                                                             ],
-                                                            "type": "object",
-                                                            "additionalProperties": false
+                                                            "type": "object"
                                                           },
                                                           "type": "array"
                                                         },
@@ -781,8 +746,7 @@
                                                         }
                                                       },
                                                       "type": "object",
-                                                      "x-kubernetes-map-type": "atomic",
-                                                      "additionalProperties": false
+                                                      "x-kubernetes-map-type": "atomic"
                                                     },
                                                     "namespaces": {
                                                       "items": {
@@ -797,8 +761,7 @@
                                                   "required": [
                                                     "topologyKey"
                                                   ],
-                                                  "type": "object",
-                                                  "additionalProperties": false
+                                                  "type": "object"
                                                 },
                                                 "weight": {
                                                   "format": "int32",
@@ -809,8 +772,7 @@
                                                 "podAffinityTerm",
                                                 "weight"
                                               ],
-                                              "type": "object",
-                                              "additionalProperties": false
+                                              "type": "object"
                                             },
                                             "type": "array"
                                           },
@@ -839,8 +801,7 @@
                                                           "key",
                                                           "operator"
                                                         ],
-                                                        "type": "object",
-                                                        "additionalProperties": false
+                                                        "type": "object"
                                                       },
                                                       "type": "array"
                                                     },
@@ -852,8 +813,7 @@
                                                     }
                                                   },
                                                   "type": "object",
-                                                  "x-kubernetes-map-type": "atomic",
-                                                  "additionalProperties": false
+                                                  "x-kubernetes-map-type": "atomic"
                                                 },
                                                 "matchLabelKeys": {
                                                   "items": {
@@ -891,8 +851,7 @@
                                                           "key",
                                                           "operator"
                                                         ],
-                                                        "type": "object",
-                                                        "additionalProperties": false
+                                                        "type": "object"
                                                       },
                                                       "type": "array"
                                                     },
@@ -904,8 +863,7 @@
                                                     }
                                                   },
                                                   "type": "object",
-                                                  "x-kubernetes-map-type": "atomic",
-                                                  "additionalProperties": false
+                                                  "x-kubernetes-map-type": "atomic"
                                                 },
                                                 "namespaces": {
                                                   "items": {
@@ -920,14 +878,12 @@
                                               "required": [
                                                 "topologyKey"
                                               ],
-                                              "type": "object",
-                                              "additionalProperties": false
+                                              "type": "object"
                                             },
                                             "type": "array"
                                           }
                                         },
-                                        "type": "object",
-                                        "additionalProperties": false
+                                        "type": "object"
                                       },
                                       "podAntiAffinity": {
                                         "properties": {
@@ -958,8 +914,7 @@
                                                               "key",
                                                               "operator"
                                                             ],
-                                                            "type": "object",
-                                                            "additionalProperties": false
+                                                            "type": "object"
                                                           },
                                                           "type": "array"
                                                         },
@@ -971,8 +926,7 @@
                                                         }
                                                       },
                                                       "type": "object",
-                                                      "x-kubernetes-map-type": "atomic",
-                                                      "additionalProperties": false
+                                                      "x-kubernetes-map-type": "atomic"
                                                     },
                                                     "matchLabelKeys": {
                                                       "items": {
@@ -1010,8 +964,7 @@
                                                               "key",
                                                               "operator"
                                                             ],
-                                                            "type": "object",
-                                                            "additionalProperties": false
+                                                            "type": "object"
                                                           },
                                                           "type": "array"
                                                         },
@@ -1023,8 +976,7 @@
                                                         }
                                                       },
                                                       "type": "object",
-                                                      "x-kubernetes-map-type": "atomic",
-                                                      "additionalProperties": false
+                                                      "x-kubernetes-map-type": "atomic"
                                                     },
                                                     "namespaces": {
                                                       "items": {
@@ -1039,8 +991,7 @@
                                                   "required": [
                                                     "topologyKey"
                                                   ],
-                                                  "type": "object",
-                                                  "additionalProperties": false
+                                                  "type": "object"
                                                 },
                                                 "weight": {
                                                   "format": "int32",
@@ -1051,8 +1002,7 @@
                                                 "podAffinityTerm",
                                                 "weight"
                                               ],
-                                              "type": "object",
-                                              "additionalProperties": false
+                                              "type": "object"
                                             },
                                             "type": "array"
                                           },
@@ -1081,8 +1031,7 @@
                                                           "key",
                                                           "operator"
                                                         ],
-                                                        "type": "object",
-                                                        "additionalProperties": false
+                                                        "type": "object"
                                                       },
                                                       "type": "array"
                                                     },
@@ -1094,8 +1043,7 @@
                                                     }
                                                   },
                                                   "type": "object",
-                                                  "x-kubernetes-map-type": "atomic",
-                                                  "additionalProperties": false
+                                                  "x-kubernetes-map-type": "atomic"
                                                 },
                                                 "matchLabelKeys": {
                                                   "items": {
@@ -1133,8 +1081,7 @@
                                                           "key",
                                                           "operator"
                                                         ],
-                                                        "type": "object",
-                                                        "additionalProperties": false
+                                                        "type": "object"
                                                       },
                                                       "type": "array"
                                                     },
@@ -1146,8 +1093,7 @@
                                                     }
                                                   },
                                                   "type": "object",
-                                                  "x-kubernetes-map-type": "atomic",
-                                                  "additionalProperties": false
+                                                  "x-kubernetes-map-type": "atomic"
                                                 },
                                                 "namespaces": {
                                                   "items": {
@@ -1162,18 +1108,15 @@
                                               "required": [
                                                 "topologyKey"
                                               ],
-                                              "type": "object",
-                                              "additionalProperties": false
+                                              "type": "object"
                                             },
                                             "type": "array"
                                           }
                                         },
-                                        "type": "object",
-                                        "additionalProperties": false
+                                        "type": "object"
                                       }
                                     },
-                                    "type": "object",
-                                    "additionalProperties": false
+                                    "type": "object"
                                   },
                                   "automountServiceAccountToken": {
                                     "type": "boolean"
@@ -1220,8 +1163,7 @@
                                                       "key"
                                                     ],
                                                     "type": "object",
-                                                    "x-kubernetes-map-type": "atomic",
-                                                    "additionalProperties": false
+                                                    "x-kubernetes-map-type": "atomic"
                                                   },
                                                   "fieldRef": {
                                                     "properties": {
@@ -1236,8 +1178,7 @@
                                                       "fieldPath"
                                                     ],
                                                     "type": "object",
-                                                    "x-kubernetes-map-type": "atomic",
-                                                    "additionalProperties": false
+                                                    "x-kubernetes-map-type": "atomic"
                                                   },
                                                   "resourceFieldRef": {
                                                     "properties": {
@@ -1264,8 +1205,7 @@
                                                       "resource"
                                                     ],
                                                     "type": "object",
-                                                    "x-kubernetes-map-type": "atomic",
-                                                    "additionalProperties": false
+                                                    "x-kubernetes-map-type": "atomic"
                                                   },
                                                   "secretKeyRef": {
                                                     "properties": {
@@ -1283,19 +1223,16 @@
                                                       "key"
                                                     ],
                                                     "type": "object",
-                                                    "x-kubernetes-map-type": "atomic",
-                                                    "additionalProperties": false
+                                                    "x-kubernetes-map-type": "atomic"
                                                   }
                                                 },
-                                                "type": "object",
-                                                "additionalProperties": false
+                                                "type": "object"
                                               }
                                             },
                                             "required": [
                                               "name"
                                             ],
-                                            "type": "object",
-                                            "additionalProperties": false
+                                            "type": "object"
                                           },
                                           "type": "array"
                                         },
@@ -1312,8 +1249,7 @@
                                                   }
                                                 },
                                                 "type": "object",
-                                                "x-kubernetes-map-type": "atomic",
-                                                "additionalProperties": false
+                                                "x-kubernetes-map-type": "atomic"
                                               },
                                               "prefix": {
                                                 "type": "string"
@@ -1328,12 +1264,10 @@
                                                   }
                                                 },
                                                 "type": "object",
-                                                "x-kubernetes-map-type": "atomic",
-                                                "additionalProperties": false
+                                                "x-kubernetes-map-type": "atomic"
                                               }
                                             },
-                                            "type": "object",
-                                            "additionalProperties": false
+                                            "type": "object"
                                           },
                                           "type": "array"
                                         },
@@ -1356,8 +1290,7 @@
                                                       "type": "array"
                                                     }
                                                   },
-                                                  "type": "object",
-                                                  "additionalProperties": false
+                                                  "type": "object"
                                                 },
                                                 "httpGet": {
                                                   "properties": {
@@ -1378,8 +1311,7 @@
                                                           "name",
                                                           "value"
                                                         ],
-                                                        "type": "object",
-                                                        "additionalProperties": false
+                                                        "type": "object"
                                                       },
                                                       "type": "array"
                                                     },
@@ -1404,8 +1336,7 @@
                                                   "required": [
                                                     "port"
                                                   ],
-                                                  "type": "object",
-                                                  "additionalProperties": false
+                                                  "type": "object"
                                                 },
                                                 "sleep": {
                                                   "properties": {
@@ -1417,8 +1348,7 @@
                                                   "required": [
                                                     "seconds"
                                                   ],
-                                                  "type": "object",
-                                                  "additionalProperties": false
+                                                  "type": "object"
                                                 },
                                                 "tcpSocket": {
                                                   "properties": {
@@ -1440,12 +1370,10 @@
                                                   "required": [
                                                     "port"
                                                   ],
-                                                  "type": "object",
-                                                  "additionalProperties": false
+                                                  "type": "object"
                                                 }
                                               },
-                                              "type": "object",
-                                              "additionalProperties": false
+                                              "type": "object"
                                             },
                                             "preStop": {
                                               "properties": {
@@ -1458,8 +1386,7 @@
                                                       "type": "array"
                                                     }
                                                   },
-                                                  "type": "object",
-                                                  "additionalProperties": false
+                                                  "type": "object"
                                                 },
                                                 "httpGet": {
                                                   "properties": {
@@ -1480,8 +1407,7 @@
                                                           "name",
                                                           "value"
                                                         ],
-                                                        "type": "object",
-                                                        "additionalProperties": false
+                                                        "type": "object"
                                                       },
                                                       "type": "array"
                                                     },
@@ -1506,8 +1432,7 @@
                                                   "required": [
                                                     "port"
                                                   ],
-                                                  "type": "object",
-                                                  "additionalProperties": false
+                                                  "type": "object"
                                                 },
                                                 "sleep": {
                                                   "properties": {
@@ -1519,8 +1444,7 @@
                                                   "required": [
                                                     "seconds"
                                                   ],
-                                                  "type": "object",
-                                                  "additionalProperties": false
+                                                  "type": "object"
                                                 },
                                                 "tcpSocket": {
                                                   "properties": {
@@ -1542,16 +1466,13 @@
                                                   "required": [
                                                     "port"
                                                   ],
-                                                  "type": "object",
-                                                  "additionalProperties": false
+                                                  "type": "object"
                                                 }
                                               },
-                                              "type": "object",
-                                              "additionalProperties": false
+                                              "type": "object"
                                             }
                                           },
-                                          "type": "object",
-                                          "additionalProperties": false
+                                          "type": "object"
                                         },
                                         "livenessProbe": {
                                           "properties": {
@@ -1564,8 +1485,7 @@
                                                   "type": "array"
                                                 }
                                               },
-                                              "type": "object",
-                                              "additionalProperties": false
+                                              "type": "object"
                                             },
                                             "failureThreshold": {
                                               "format": "int32",
@@ -1584,8 +1504,7 @@
                                               "required": [
                                                 "port"
                                               ],
-                                              "type": "object",
-                                              "additionalProperties": false
+                                              "type": "object"
                                             },
                                             "httpGet": {
                                               "properties": {
@@ -1606,8 +1525,7 @@
                                                       "name",
                                                       "value"
                                                     ],
-                                                    "type": "object",
-                                                    "additionalProperties": false
+                                                    "type": "object"
                                                   },
                                                   "type": "array"
                                                 },
@@ -1632,8 +1550,7 @@
                                               "required": [
                                                 "port"
                                               ],
-                                              "type": "object",
-                                              "additionalProperties": false
+                                              "type": "object"
                                             },
                                             "initialDelaySeconds": {
                                               "format": "int32",
@@ -1667,8 +1584,7 @@
                                               "required": [
                                                 "port"
                                               ],
-                                              "type": "object",
-                                              "additionalProperties": false
+                                              "type": "object"
                                             },
                                             "terminationGracePeriodSeconds": {
                                               "format": "int64",
@@ -1679,8 +1595,7 @@
                                               "type": "integer"
                                             }
                                           },
-                                          "type": "object",
-                                          "additionalProperties": false
+                                          "type": "object"
                                         },
                                         "name": {
                                           "type": "string"
@@ -1710,8 +1625,7 @@
                                             "required": [
                                               "containerPort"
                                             ],
-                                            "type": "object",
-                                            "additionalProperties": false
+                                            "type": "object"
                                           },
                                           "type": "array",
                                           "x-kubernetes-list-map-keys": [
@@ -1731,8 +1645,7 @@
                                                   "type": "array"
                                                 }
                                               },
-                                              "type": "object",
-                                              "additionalProperties": false
+                                              "type": "object"
                                             },
                                             "failureThreshold": {
                                               "format": "int32",
@@ -1751,8 +1664,7 @@
                                               "required": [
                                                 "port"
                                               ],
-                                              "type": "object",
-                                              "additionalProperties": false
+                                              "type": "object"
                                             },
                                             "httpGet": {
                                               "properties": {
@@ -1773,8 +1685,7 @@
                                                       "name",
                                                       "value"
                                                     ],
-                                                    "type": "object",
-                                                    "additionalProperties": false
+                                                    "type": "object"
                                                   },
                                                   "type": "array"
                                                 },
@@ -1799,8 +1710,7 @@
                                               "required": [
                                                 "port"
                                               ],
-                                              "type": "object",
-                                              "additionalProperties": false
+                                              "type": "object"
                                             },
                                             "initialDelaySeconds": {
                                               "format": "int32",
@@ -1834,8 +1744,7 @@
                                               "required": [
                                                 "port"
                                               ],
-                                              "type": "object",
-                                              "additionalProperties": false
+                                              "type": "object"
                                             },
                                             "terminationGracePeriodSeconds": {
                                               "format": "int64",
@@ -1846,8 +1755,7 @@
                                               "type": "integer"
                                             }
                                           },
-                                          "type": "object",
-                                          "additionalProperties": false
+                                          "type": "object"
                                         },
                                         "resizePolicy": {
                                           "items": {
@@ -1863,8 +1771,7 @@
                                               "resourceName",
                                               "restartPolicy"
                                             ],
-                                            "type": "object",
-                                            "additionalProperties": false
+                                            "type": "object"
                                           },
                                           "type": "array",
                                           "x-kubernetes-list-type": "atomic"
@@ -1881,8 +1788,7 @@
                                                 "required": [
                                                   "name"
                                                 ],
-                                                "type": "object",
-                                                "additionalProperties": false
+                                                "type": "object"
                                               },
                                               "type": "array",
                                               "x-kubernetes-list-map-keys": [
@@ -1897,8 +1803,7 @@
                                               "x-kubernetes-preserve-unknown-fields": true
                                             }
                                           },
-                                          "type": "object",
-                                          "additionalProperties": false
+                                          "type": "object"
                                         },
                                         "restartPolicy": {
                                           "type": "string"
@@ -1923,8 +1828,7 @@
                                                   "type": "array"
                                                 }
                                               },
-                                              "type": "object",
-                                              "additionalProperties": false
+                                              "type": "object"
                                             },
                                             "privileged": {
                                               "type": "boolean"
@@ -1961,8 +1865,7 @@
                                                   "type": "string"
                                                 }
                                               },
-                                              "type": "object",
-                                              "additionalProperties": false
+                                              "type": "object"
                                             },
                                             "seccompProfile": {
                                               "properties": {
@@ -1976,8 +1879,7 @@
                                               "required": [
                                                 "type"
                                               ],
-                                              "type": "object",
-                                              "additionalProperties": false
+                                              "type": "object"
                                             },
                                             "windowsOptions": {
                                               "properties": {
@@ -1994,12 +1896,10 @@
                                                   "type": "string"
                                                 }
                                               },
-                                              "type": "object",
-                                              "additionalProperties": false
+                                              "type": "object"
                                             }
                                           },
-                                          "type": "object",
-                                          "additionalProperties": false
+                                          "type": "object"
                                         },
                                         "startupProbe": {
                                           "properties": {
@@ -2012,8 +1912,7 @@
                                                   "type": "array"
                                                 }
                                               },
-                                              "type": "object",
-                                              "additionalProperties": false
+                                              "type": "object"
                                             },
                                             "failureThreshold": {
                                               "format": "int32",
@@ -2032,8 +1931,7 @@
                                               "required": [
                                                 "port"
                                               ],
-                                              "type": "object",
-                                              "additionalProperties": false
+                                              "type": "object"
                                             },
                                             "httpGet": {
                                               "properties": {
@@ -2054,8 +1952,7 @@
                                                       "name",
                                                       "value"
                                                     ],
-                                                    "type": "object",
-                                                    "additionalProperties": false
+                                                    "type": "object"
                                                   },
                                                   "type": "array"
                                                 },
@@ -2080,8 +1977,7 @@
                                               "required": [
                                                 "port"
                                               ],
-                                              "type": "object",
-                                              "additionalProperties": false
+                                              "type": "object"
                                             },
                                             "initialDelaySeconds": {
                                               "format": "int32",
@@ -2115,8 +2011,7 @@
                                               "required": [
                                                 "port"
                                               ],
-                                              "type": "object",
-                                              "additionalProperties": false
+                                              "type": "object"
                                             },
                                             "terminationGracePeriodSeconds": {
                                               "format": "int64",
@@ -2127,8 +2022,7 @@
                                               "type": "integer"
                                             }
                                           },
-                                          "type": "object",
-                                          "additionalProperties": false
+                                          "type": "object"
                                         },
                                         "stdin": {
                                           "type": "boolean"
@@ -2159,8 +2053,7 @@
                                               "devicePath",
                                               "name"
                                             ],
-                                            "type": "object",
-                                            "additionalProperties": false
+                                            "type": "object"
                                           },
                                           "type": "array"
                                         },
@@ -2190,8 +2083,7 @@
                                               "mountPath",
                                               "name"
                                             ],
-                                            "type": "object",
-                                            "additionalProperties": false
+                                            "type": "object"
                                           },
                                           "type": "array"
                                         },
@@ -2202,8 +2094,7 @@
                                       "required": [
                                         "name"
                                       ],
-                                      "type": "object",
-                                      "additionalProperties": false
+                                      "type": "object"
                                     },
                                     "type": "array"
                                   },
@@ -2225,8 +2116,7 @@
                                               "type": "string"
                                             }
                                           },
-                                          "type": "object",
-                                          "additionalProperties": false
+                                          "type": "object"
                                         },
                                         "type": "array"
                                       },
@@ -2237,8 +2127,7 @@
                                         "type": "array"
                                       }
                                     },
-                                    "type": "object",
-                                    "additionalProperties": false
+                                    "type": "object"
                                   },
                                   "dnsPolicy": {
                                     "type": "string"
@@ -2288,8 +2177,7 @@
                                                       "key"
                                                     ],
                                                     "type": "object",
-                                                    "x-kubernetes-map-type": "atomic",
-                                                    "additionalProperties": false
+                                                    "x-kubernetes-map-type": "atomic"
                                                   },
                                                   "fieldRef": {
                                                     "properties": {
@@ -2304,8 +2192,7 @@
                                                       "fieldPath"
                                                     ],
                                                     "type": "object",
-                                                    "x-kubernetes-map-type": "atomic",
-                                                    "additionalProperties": false
+                                                    "x-kubernetes-map-type": "atomic"
                                                   },
                                                   "resourceFieldRef": {
                                                     "properties": {
@@ -2332,8 +2219,7 @@
                                                       "resource"
                                                     ],
                                                     "type": "object",
-                                                    "x-kubernetes-map-type": "atomic",
-                                                    "additionalProperties": false
+                                                    "x-kubernetes-map-type": "atomic"
                                                   },
                                                   "secretKeyRef": {
                                                     "properties": {
@@ -2351,19 +2237,16 @@
                                                       "key"
                                                     ],
                                                     "type": "object",
-                                                    "x-kubernetes-map-type": "atomic",
-                                                    "additionalProperties": false
+                                                    "x-kubernetes-map-type": "atomic"
                                                   }
                                                 },
-                                                "type": "object",
-                                                "additionalProperties": false
+                                                "type": "object"
                                               }
                                             },
                                             "required": [
                                               "name"
                                             ],
-                                            "type": "object",
-                                            "additionalProperties": false
+                                            "type": "object"
                                           },
                                           "type": "array"
                                         },
@@ -2380,8 +2263,7 @@
                                                   }
                                                 },
                                                 "type": "object",
-                                                "x-kubernetes-map-type": "atomic",
-                                                "additionalProperties": false
+                                                "x-kubernetes-map-type": "atomic"
                                               },
                                               "prefix": {
                                                 "type": "string"
@@ -2396,12 +2278,10 @@
                                                   }
                                                 },
                                                 "type": "object",
-                                                "x-kubernetes-map-type": "atomic",
-                                                "additionalProperties": false
+                                                "x-kubernetes-map-type": "atomic"
                                               }
                                             },
-                                            "type": "object",
-                                            "additionalProperties": false
+                                            "type": "object"
                                           },
                                           "type": "array"
                                         },
@@ -2424,8 +2304,7 @@
                                                       "type": "array"
                                                     }
                                                   },
-                                                  "type": "object",
-                                                  "additionalProperties": false
+                                                  "type": "object"
                                                 },
                                                 "httpGet": {
                                                   "properties": {
@@ -2446,8 +2325,7 @@
                                                           "name",
                                                           "value"
                                                         ],
-                                                        "type": "object",
-                                                        "additionalProperties": false
+                                                        "type": "object"
                                                       },
                                                       "type": "array"
                                                     },
@@ -2472,8 +2350,7 @@
                                                   "required": [
                                                     "port"
                                                   ],
-                                                  "type": "object",
-                                                  "additionalProperties": false
+                                                  "type": "object"
                                                 },
                                                 "sleep": {
                                                   "properties": {
@@ -2485,8 +2362,7 @@
                                                   "required": [
                                                     "seconds"
                                                   ],
-                                                  "type": "object",
-                                                  "additionalProperties": false
+                                                  "type": "object"
                                                 },
                                                 "tcpSocket": {
                                                   "properties": {
@@ -2508,12 +2384,10 @@
                                                   "required": [
                                                     "port"
                                                   ],
-                                                  "type": "object",
-                                                  "additionalProperties": false
+                                                  "type": "object"
                                                 }
                                               },
-                                              "type": "object",
-                                              "additionalProperties": false
+                                              "type": "object"
                                             },
                                             "preStop": {
                                               "properties": {
@@ -2526,8 +2400,7 @@
                                                       "type": "array"
                                                     }
                                                   },
-                                                  "type": "object",
-                                                  "additionalProperties": false
+                                                  "type": "object"
                                                 },
                                                 "httpGet": {
                                                   "properties": {
@@ -2548,8 +2421,7 @@
                                                           "name",
                                                           "value"
                                                         ],
-                                                        "type": "object",
-                                                        "additionalProperties": false
+                                                        "type": "object"
                                                       },
                                                       "type": "array"
                                                     },
@@ -2574,8 +2446,7 @@
                                                   "required": [
                                                     "port"
                                                   ],
-                                                  "type": "object",
-                                                  "additionalProperties": false
+                                                  "type": "object"
                                                 },
                                                 "sleep": {
                                                   "properties": {
@@ -2587,8 +2458,7 @@
                                                   "required": [
                                                     "seconds"
                                                   ],
-                                                  "type": "object",
-                                                  "additionalProperties": false
+                                                  "type": "object"
                                                 },
                                                 "tcpSocket": {
                                                   "properties": {
@@ -2610,16 +2480,13 @@
                                                   "required": [
                                                     "port"
                                                   ],
-                                                  "type": "object",
-                                                  "additionalProperties": false
+                                                  "type": "object"
                                                 }
                                               },
-                                              "type": "object",
-                                              "additionalProperties": false
+                                              "type": "object"
                                             }
                                           },
-                                          "type": "object",
-                                          "additionalProperties": false
+                                          "type": "object"
                                         },
                                         "livenessProbe": {
                                           "properties": {
@@ -2632,8 +2499,7 @@
                                                   "type": "array"
                                                 }
                                               },
-                                              "type": "object",
-                                              "additionalProperties": false
+                                              "type": "object"
                                             },
                                             "failureThreshold": {
                                               "format": "int32",
@@ -2652,8 +2518,7 @@
                                               "required": [
                                                 "port"
                                               ],
-                                              "type": "object",
-                                              "additionalProperties": false
+                                              "type": "object"
                                             },
                                             "httpGet": {
                                               "properties": {
@@ -2674,8 +2539,7 @@
                                                       "name",
                                                       "value"
                                                     ],
-                                                    "type": "object",
-                                                    "additionalProperties": false
+                                                    "type": "object"
                                                   },
                                                   "type": "array"
                                                 },
@@ -2700,8 +2564,7 @@
                                               "required": [
                                                 "port"
                                               ],
-                                              "type": "object",
-                                              "additionalProperties": false
+                                              "type": "object"
                                             },
                                             "initialDelaySeconds": {
                                               "format": "int32",
@@ -2735,8 +2598,7 @@
                                               "required": [
                                                 "port"
                                               ],
-                                              "type": "object",
-                                              "additionalProperties": false
+                                              "type": "object"
                                             },
                                             "terminationGracePeriodSeconds": {
                                               "format": "int64",
@@ -2747,8 +2609,7 @@
                                               "type": "integer"
                                             }
                                           },
-                                          "type": "object",
-                                          "additionalProperties": false
+                                          "type": "object"
                                         },
                                         "name": {
                                           "type": "string"
@@ -2778,8 +2639,7 @@
                                             "required": [
                                               "containerPort"
                                             ],
-                                            "type": "object",
-                                            "additionalProperties": false
+                                            "type": "object"
                                           },
                                           "type": "array",
                                           "x-kubernetes-list-map-keys": [
@@ -2799,8 +2659,7 @@
                                                   "type": "array"
                                                 }
                                               },
-                                              "type": "object",
-                                              "additionalProperties": false
+                                              "type": "object"
                                             },
                                             "failureThreshold": {
                                               "format": "int32",
@@ -2819,8 +2678,7 @@
                                               "required": [
                                                 "port"
                                               ],
-                                              "type": "object",
-                                              "additionalProperties": false
+                                              "type": "object"
                                             },
                                             "httpGet": {
                                               "properties": {
@@ -2841,8 +2699,7 @@
                                                       "name",
                                                       "value"
                                                     ],
-                                                    "type": "object",
-                                                    "additionalProperties": false
+                                                    "type": "object"
                                                   },
                                                   "type": "array"
                                                 },
@@ -2867,8 +2724,7 @@
                                               "required": [
                                                 "port"
                                               ],
-                                              "type": "object",
-                                              "additionalProperties": false
+                                              "type": "object"
                                             },
                                             "initialDelaySeconds": {
                                               "format": "int32",
@@ -2902,8 +2758,7 @@
                                               "required": [
                                                 "port"
                                               ],
-                                              "type": "object",
-                                              "additionalProperties": false
+                                              "type": "object"
                                             },
                                             "terminationGracePeriodSeconds": {
                                               "format": "int64",
@@ -2914,8 +2769,7 @@
                                               "type": "integer"
                                             }
                                           },
-                                          "type": "object",
-                                          "additionalProperties": false
+                                          "type": "object"
                                         },
                                         "resizePolicy": {
                                           "items": {
@@ -2931,8 +2785,7 @@
                                               "resourceName",
                                               "restartPolicy"
                                             ],
-                                            "type": "object",
-                                            "additionalProperties": false
+                                            "type": "object"
                                           },
                                           "type": "array",
                                           "x-kubernetes-list-type": "atomic"
@@ -2949,8 +2802,7 @@
                                                 "required": [
                                                   "name"
                                                 ],
-                                                "type": "object",
-                                                "additionalProperties": false
+                                                "type": "object"
                                               },
                                               "type": "array",
                                               "x-kubernetes-list-map-keys": [
@@ -2965,8 +2817,7 @@
                                               "x-kubernetes-preserve-unknown-fields": true
                                             }
                                           },
-                                          "type": "object",
-                                          "additionalProperties": false
+                                          "type": "object"
                                         },
                                         "restartPolicy": {
                                           "type": "string"
@@ -2991,8 +2842,7 @@
                                                   "type": "array"
                                                 }
                                               },
-                                              "type": "object",
-                                              "additionalProperties": false
+                                              "type": "object"
                                             },
                                             "privileged": {
                                               "type": "boolean"
@@ -3029,8 +2879,7 @@
                                                   "type": "string"
                                                 }
                                               },
-                                              "type": "object",
-                                              "additionalProperties": false
+                                              "type": "object"
                                             },
                                             "seccompProfile": {
                                               "properties": {
@@ -3044,8 +2893,7 @@
                                               "required": [
                                                 "type"
                                               ],
-                                              "type": "object",
-                                              "additionalProperties": false
+                                              "type": "object"
                                             },
                                             "windowsOptions": {
                                               "properties": {
@@ -3062,12 +2910,10 @@
                                                   "type": "string"
                                                 }
                                               },
-                                              "type": "object",
-                                              "additionalProperties": false
+                                              "type": "object"
                                             }
                                           },
-                                          "type": "object",
-                                          "additionalProperties": false
+                                          "type": "object"
                                         },
                                         "startupProbe": {
                                           "properties": {
@@ -3080,8 +2926,7 @@
                                                   "type": "array"
                                                 }
                                               },
-                                              "type": "object",
-                                              "additionalProperties": false
+                                              "type": "object"
                                             },
                                             "failureThreshold": {
                                               "format": "int32",
@@ -3100,8 +2945,7 @@
                                               "required": [
                                                 "port"
                                               ],
-                                              "type": "object",
-                                              "additionalProperties": false
+                                              "type": "object"
                                             },
                                             "httpGet": {
                                               "properties": {
@@ -3122,8 +2966,7 @@
                                                       "name",
                                                       "value"
                                                     ],
-                                                    "type": "object",
-                                                    "additionalProperties": false
+                                                    "type": "object"
                                                   },
                                                   "type": "array"
                                                 },
@@ -3148,8 +2991,7 @@
                                               "required": [
                                                 "port"
                                               ],
-                                              "type": "object",
-                                              "additionalProperties": false
+                                              "type": "object"
                                             },
                                             "initialDelaySeconds": {
                                               "format": "int32",
@@ -3183,8 +3025,7 @@
                                               "required": [
                                                 "port"
                                               ],
-                                              "type": "object",
-                                              "additionalProperties": false
+                                              "type": "object"
                                             },
                                             "terminationGracePeriodSeconds": {
                                               "format": "int64",
@@ -3195,8 +3036,7 @@
                                               "type": "integer"
                                             }
                                           },
-                                          "type": "object",
-                                          "additionalProperties": false
+                                          "type": "object"
                                         },
                                         "stdin": {
                                           "type": "boolean"
@@ -3230,8 +3070,7 @@
                                               "devicePath",
                                               "name"
                                             ],
-                                            "type": "object",
-                                            "additionalProperties": false
+                                            "type": "object"
                                           },
                                           "type": "array"
                                         },
@@ -3261,8 +3100,7 @@
                                               "mountPath",
                                               "name"
                                             ],
-                                            "type": "object",
-                                            "additionalProperties": false
+                                            "type": "object"
                                           },
                                           "type": "array"
                                         },
@@ -3273,8 +3111,7 @@
                                       "required": [
                                         "name"
                                       ],
-                                      "type": "object",
-                                      "additionalProperties": false
+                                      "type": "object"
                                     },
                                     "type": "array"
                                   },
@@ -3291,8 +3128,7 @@
                                           "type": "string"
                                         }
                                       },
-                                      "type": "object",
-                                      "additionalProperties": false
+                                      "type": "object"
                                     },
                                     "type": "array"
                                   },
@@ -3319,8 +3155,7 @@
                                         }
                                       },
                                       "type": "object",
-                                      "x-kubernetes-map-type": "atomic",
-                                      "additionalProperties": false
+                                      "x-kubernetes-map-type": "atomic"
                                     },
                                     "type": "array"
                                   },
@@ -3366,8 +3201,7 @@
                                                       "key"
                                                     ],
                                                     "type": "object",
-                                                    "x-kubernetes-map-type": "atomic",
-                                                    "additionalProperties": false
+                                                    "x-kubernetes-map-type": "atomic"
                                                   },
                                                   "fieldRef": {
                                                     "properties": {
@@ -3382,8 +3216,7 @@
                                                       "fieldPath"
                                                     ],
                                                     "type": "object",
-                                                    "x-kubernetes-map-type": "atomic",
-                                                    "additionalProperties": false
+                                                    "x-kubernetes-map-type": "atomic"
                                                   },
                                                   "resourceFieldRef": {
                                                     "properties": {
@@ -3410,8 +3243,7 @@
                                                       "resource"
                                                     ],
                                                     "type": "object",
-                                                    "x-kubernetes-map-type": "atomic",
-                                                    "additionalProperties": false
+                                                    "x-kubernetes-map-type": "atomic"
                                                   },
                                                   "secretKeyRef": {
                                                     "properties": {
@@ -3429,19 +3261,16 @@
                                                       "key"
                                                     ],
                                                     "type": "object",
-                                                    "x-kubernetes-map-type": "atomic",
-                                                    "additionalProperties": false
+                                                    "x-kubernetes-map-type": "atomic"
                                                   }
                                                 },
-                                                "type": "object",
-                                                "additionalProperties": false
+                                                "type": "object"
                                               }
                                             },
                                             "required": [
                                               "name"
                                             ],
-                                            "type": "object",
-                                            "additionalProperties": false
+                                            "type": "object"
                                           },
                                           "type": "array"
                                         },
@@ -3458,8 +3287,7 @@
                                                   }
                                                 },
                                                 "type": "object",
-                                                "x-kubernetes-map-type": "atomic",
-                                                "additionalProperties": false
+                                                "x-kubernetes-map-type": "atomic"
                                               },
                                               "prefix": {
                                                 "type": "string"
@@ -3474,12 +3302,10 @@
                                                   }
                                                 },
                                                 "type": "object",
-                                                "x-kubernetes-map-type": "atomic",
-                                                "additionalProperties": false
+                                                "x-kubernetes-map-type": "atomic"
                                               }
                                             },
-                                            "type": "object",
-                                            "additionalProperties": false
+                                            "type": "object"
                                           },
                                           "type": "array"
                                         },
@@ -3502,8 +3328,7 @@
                                                       "type": "array"
                                                     }
                                                   },
-                                                  "type": "object",
-                                                  "additionalProperties": false
+                                                  "type": "object"
                                                 },
                                                 "httpGet": {
                                                   "properties": {
@@ -3524,8 +3349,7 @@
                                                           "name",
                                                           "value"
                                                         ],
-                                                        "type": "object",
-                                                        "additionalProperties": false
+                                                        "type": "object"
                                                       },
                                                       "type": "array"
                                                     },
@@ -3550,8 +3374,7 @@
                                                   "required": [
                                                     "port"
                                                   ],
-                                                  "type": "object",
-                                                  "additionalProperties": false
+                                                  "type": "object"
                                                 },
                                                 "sleep": {
                                                   "properties": {
@@ -3563,8 +3386,7 @@
                                                   "required": [
                                                     "seconds"
                                                   ],
-                                                  "type": "object",
-                                                  "additionalProperties": false
+                                                  "type": "object"
                                                 },
                                                 "tcpSocket": {
                                                   "properties": {
@@ -3586,12 +3408,10 @@
                                                   "required": [
                                                     "port"
                                                   ],
-                                                  "type": "object",
-                                                  "additionalProperties": false
+                                                  "type": "object"
                                                 }
                                               },
-                                              "type": "object",
-                                              "additionalProperties": false
+                                              "type": "object"
                                             },
                                             "preStop": {
                                               "properties": {
@@ -3604,8 +3424,7 @@
                                                       "type": "array"
                                                     }
                                                   },
-                                                  "type": "object",
-                                                  "additionalProperties": false
+                                                  "type": "object"
                                                 },
                                                 "httpGet": {
                                                   "properties": {
@@ -3626,8 +3445,7 @@
                                                           "name",
                                                           "value"
                                                         ],
-                                                        "type": "object",
-                                                        "additionalProperties": false
+                                                        "type": "object"
                                                       },
                                                       "type": "array"
                                                     },
@@ -3652,8 +3470,7 @@
                                                   "required": [
                                                     "port"
                                                   ],
-                                                  "type": "object",
-                                                  "additionalProperties": false
+                                                  "type": "object"
                                                 },
                                                 "sleep": {
                                                   "properties": {
@@ -3665,8 +3482,7 @@
                                                   "required": [
                                                     "seconds"
                                                   ],
-                                                  "type": "object",
-                                                  "additionalProperties": false
+                                                  "type": "object"
                                                 },
                                                 "tcpSocket": {
                                                   "properties": {
@@ -3688,16 +3504,13 @@
                                                   "required": [
                                                     "port"
                                                   ],
-                                                  "type": "object",
-                                                  "additionalProperties": false
+                                                  "type": "object"
                                                 }
                                               },
-                                              "type": "object",
-                                              "additionalProperties": false
+                                              "type": "object"
                                             }
                                           },
-                                          "type": "object",
-                                          "additionalProperties": false
+                                          "type": "object"
                                         },
                                         "livenessProbe": {
                                           "properties": {
@@ -3710,8 +3523,7 @@
                                                   "type": "array"
                                                 }
                                               },
-                                              "type": "object",
-                                              "additionalProperties": false
+                                              "type": "object"
                                             },
                                             "failureThreshold": {
                                               "format": "int32",
@@ -3730,8 +3542,7 @@
                                               "required": [
                                                 "port"
                                               ],
-                                              "type": "object",
-                                              "additionalProperties": false
+                                              "type": "object"
                                             },
                                             "httpGet": {
                                               "properties": {
@@ -3752,8 +3563,7 @@
                                                       "name",
                                                       "value"
                                                     ],
-                                                    "type": "object",
-                                                    "additionalProperties": false
+                                                    "type": "object"
                                                   },
                                                   "type": "array"
                                                 },
@@ -3778,8 +3588,7 @@
                                               "required": [
                                                 "port"
                                               ],
-                                              "type": "object",
-                                              "additionalProperties": false
+                                              "type": "object"
                                             },
                                             "initialDelaySeconds": {
                                               "format": "int32",
@@ -3813,8 +3622,7 @@
                                               "required": [
                                                 "port"
                                               ],
-                                              "type": "object",
-                                              "additionalProperties": false
+                                              "type": "object"
                                             },
                                             "terminationGracePeriodSeconds": {
                                               "format": "int64",
@@ -3825,8 +3633,7 @@
                                               "type": "integer"
                                             }
                                           },
-                                          "type": "object",
-                                          "additionalProperties": false
+                                          "type": "object"
                                         },
                                         "name": {
                                           "type": "string"
@@ -3856,8 +3663,7 @@
                                             "required": [
                                               "containerPort"
                                             ],
-                                            "type": "object",
-                                            "additionalProperties": false
+                                            "type": "object"
                                           },
                                           "type": "array",
                                           "x-kubernetes-list-map-keys": [
@@ -3877,8 +3683,7 @@
                                                   "type": "array"
                                                 }
                                               },
-                                              "type": "object",
-                                              "additionalProperties": false
+                                              "type": "object"
                                             },
                                             "failureThreshold": {
                                               "format": "int32",
@@ -3897,8 +3702,7 @@
                                               "required": [
                                                 "port"
                                               ],
-                                              "type": "object",
-                                              "additionalProperties": false
+                                              "type": "object"
                                             },
                                             "httpGet": {
                                               "properties": {
@@ -3919,8 +3723,7 @@
                                                       "name",
                                                       "value"
                                                     ],
-                                                    "type": "object",
-                                                    "additionalProperties": false
+                                                    "type": "object"
                                                   },
                                                   "type": "array"
                                                 },
@@ -3945,8 +3748,7 @@
                                               "required": [
                                                 "port"
                                               ],
-                                              "type": "object",
-                                              "additionalProperties": false
+                                              "type": "object"
                                             },
                                             "initialDelaySeconds": {
                                               "format": "int32",
@@ -3980,8 +3782,7 @@
                                               "required": [
                                                 "port"
                                               ],
-                                              "type": "object",
-                                              "additionalProperties": false
+                                              "type": "object"
                                             },
                                             "terminationGracePeriodSeconds": {
                                               "format": "int64",
@@ -3992,8 +3793,7 @@
                                               "type": "integer"
                                             }
                                           },
-                                          "type": "object",
-                                          "additionalProperties": false
+                                          "type": "object"
                                         },
                                         "resizePolicy": {
                                           "items": {
@@ -4009,8 +3809,7 @@
                                               "resourceName",
                                               "restartPolicy"
                                             ],
-                                            "type": "object",
-                                            "additionalProperties": false
+                                            "type": "object"
                                           },
                                           "type": "array",
                                           "x-kubernetes-list-type": "atomic"
@@ -4027,8 +3826,7 @@
                                                 "required": [
                                                   "name"
                                                 ],
-                                                "type": "object",
-                                                "additionalProperties": false
+                                                "type": "object"
                                               },
                                               "type": "array",
                                               "x-kubernetes-list-map-keys": [
@@ -4043,8 +3841,7 @@
                                               "x-kubernetes-preserve-unknown-fields": true
                                             }
                                           },
-                                          "type": "object",
-                                          "additionalProperties": false
+                                          "type": "object"
                                         },
                                         "restartPolicy": {
                                           "type": "string"
@@ -4069,8 +3866,7 @@
                                                   "type": "array"
                                                 }
                                               },
-                                              "type": "object",
-                                              "additionalProperties": false
+                                              "type": "object"
                                             },
                                             "privileged": {
                                               "type": "boolean"
@@ -4107,8 +3903,7 @@
                                                   "type": "string"
                                                 }
                                               },
-                                              "type": "object",
-                                              "additionalProperties": false
+                                              "type": "object"
                                             },
                                             "seccompProfile": {
                                               "properties": {
@@ -4122,8 +3917,7 @@
                                               "required": [
                                                 "type"
                                               ],
-                                              "type": "object",
-                                              "additionalProperties": false
+                                              "type": "object"
                                             },
                                             "windowsOptions": {
                                               "properties": {
@@ -4140,12 +3934,10 @@
                                                   "type": "string"
                                                 }
                                               },
-                                              "type": "object",
-                                              "additionalProperties": false
+                                              "type": "object"
                                             }
                                           },
-                                          "type": "object",
-                                          "additionalProperties": false
+                                          "type": "object"
                                         },
                                         "startupProbe": {
                                           "properties": {
@@ -4158,8 +3950,7 @@
                                                   "type": "array"
                                                 }
                                               },
-                                              "type": "object",
-                                              "additionalProperties": false
+                                              "type": "object"
                                             },
                                             "failureThreshold": {
                                               "format": "int32",
@@ -4178,8 +3969,7 @@
                                               "required": [
                                                 "port"
                                               ],
-                                              "type": "object",
-                                              "additionalProperties": false
+                                              "type": "object"
                                             },
                                             "httpGet": {
                                               "properties": {
@@ -4200,8 +3990,7 @@
                                                       "name",
                                                       "value"
                                                     ],
-                                                    "type": "object",
-                                                    "additionalProperties": false
+                                                    "type": "object"
                                                   },
                                                   "type": "array"
                                                 },
@@ -4226,8 +4015,7 @@
                                               "required": [
                                                 "port"
                                               ],
-                                              "type": "object",
-                                              "additionalProperties": false
+                                              "type": "object"
                                             },
                                             "initialDelaySeconds": {
                                               "format": "int32",
@@ -4261,8 +4049,7 @@
                                               "required": [
                                                 "port"
                                               ],
-                                              "type": "object",
-                                              "additionalProperties": false
+                                              "type": "object"
                                             },
                                             "terminationGracePeriodSeconds": {
                                               "format": "int64",
@@ -4273,8 +4060,7 @@
                                               "type": "integer"
                                             }
                                           },
-                                          "type": "object",
-                                          "additionalProperties": false
+                                          "type": "object"
                                         },
                                         "stdin": {
                                           "type": "boolean"
@@ -4305,8 +4091,7 @@
                                               "devicePath",
                                               "name"
                                             ],
-                                            "type": "object",
-                                            "additionalProperties": false
+                                            "type": "object"
                                           },
                                           "type": "array"
                                         },
@@ -4336,8 +4121,7 @@
                                               "mountPath",
                                               "name"
                                             ],
-                                            "type": "object",
-                                            "additionalProperties": false
+                                            "type": "object"
                                           },
                                           "type": "array"
                                         },
@@ -4348,8 +4132,7 @@
                                       "required": [
                                         "name"
                                       ],
-                                      "type": "object",
-                                      "additionalProperties": false
+                                      "type": "object"
                                     },
                                     "type": "array"
                                   },
@@ -4372,8 +4155,7 @@
                                     "required": [
                                       "name"
                                     ],
-                                    "type": "object",
-                                    "additionalProperties": false
+                                    "type": "object"
                                   },
                                   "overhead": {
                                     "additionalProperties": {
@@ -4410,8 +4192,7 @@
                                       "required": [
                                         "conditionType"
                                       ],
-                                      "type": "object",
-                                      "additionalProperties": false
+                                      "type": "object"
                                     },
                                     "type": "array"
                                   },
@@ -4430,15 +4211,13 @@
                                               "type": "string"
                                             }
                                           },
-                                          "type": "object",
-                                          "additionalProperties": false
+                                          "type": "object"
                                         }
                                       },
                                       "required": [
                                         "name"
                                       ],
-                                      "type": "object",
-                                      "additionalProperties": false
+                                      "type": "object"
                                     },
                                     "type": "array",
                                     "x-kubernetes-list-map-keys": [
@@ -4465,8 +4244,7 @@
                                       "required": [
                                         "name"
                                       ],
-                                      "type": "object",
-                                      "additionalProperties": false
+                                      "type": "object"
                                     },
                                     "type": "array",
                                     "x-kubernetes-list-map-keys": [
@@ -4509,8 +4287,7 @@
                                             "type": "string"
                                           }
                                         },
-                                        "type": "object",
-                                        "additionalProperties": false
+                                        "type": "object"
                                       },
                                       "seccompProfile": {
                                         "properties": {
@@ -4524,8 +4301,7 @@
                                         "required": [
                                           "type"
                                         ],
-                                        "type": "object",
-                                        "additionalProperties": false
+                                        "type": "object"
                                       },
                                       "supplementalGroups": {
                                         "items": {
@@ -4548,8 +4324,7 @@
                                             "name",
                                             "value"
                                           ],
-                                          "type": "object",
-                                          "additionalProperties": false
+                                          "type": "object"
                                         },
                                         "type": "array"
                                       },
@@ -4568,12 +4343,10 @@
                                             "type": "string"
                                           }
                                         },
-                                        "type": "object",
-                                        "additionalProperties": false
+                                        "type": "object"
                                       }
                                     },
-                                    "type": "object",
-                                    "additionalProperties": false
+                                    "type": "object"
                                   },
                                   "serviceAccount": {
                                     "type": "string"
@@ -4614,8 +4387,7 @@
                                           "type": "string"
                                         }
                                       },
-                                      "type": "object",
-                                      "additionalProperties": false
+                                      "type": "object"
                                     },
                                     "type": "array"
                                   },
@@ -4644,8 +4416,7 @@
                                                   "key",
                                                   "operator"
                                                 ],
-                                                "type": "object",
-                                                "additionalProperties": false
+                                                "type": "object"
                                               },
                                               "type": "array"
                                             },
@@ -4657,8 +4428,7 @@
                                             }
                                           },
                                           "type": "object",
-                                          "x-kubernetes-map-type": "atomic",
-                                          "additionalProperties": false
+                                          "x-kubernetes-map-type": "atomic"
                                         },
                                         "matchLabelKeys": {
                                           "items": {
@@ -4693,8 +4463,7 @@
                                         "topologyKey",
                                         "whenUnsatisfiable"
                                       ],
-                                      "type": "object",
-                                      "additionalProperties": false
+                                      "type": "object"
                                     },
                                     "type": "array",
                                     "x-kubernetes-list-map-keys": [
@@ -4710,12 +4479,10 @@
                                 "required": [
                                   "containers"
                                 ],
-                                "type": "object",
-                                "additionalProperties": false
+                                "type": "object"
                               }
                             },
-                            "type": "object",
-                            "additionalProperties": false
+                            "type": "object"
                           },
                           "ttlSecondsAfterFinished": {
                             "format": "int32",
@@ -4725,15 +4492,13 @@
                         "required": [
                           "template"
                         ],
-                        "type": "object",
-                        "additionalProperties": false
+                        "type": "object"
                       }
                     },
                     "required": [
                       "spec"
                     ],
-                    "type": "object",
-                    "additionalProperties": false
+                    "type": "object"
                   },
                   "kayenta": {
                     "properties": {
@@ -4781,8 +4546,7 @@
                                 "start",
                                 "step"
                               ],
-                              "type": "object",
-                              "additionalProperties": false
+                              "type": "object"
                             },
                             "experimentScope": {
                               "properties": {
@@ -4810,8 +4574,7 @@
                                 "start",
                                 "step"
                               ],
-                              "type": "object",
-                              "additionalProperties": false
+                              "type": "object"
                             },
                             "name": {
                               "type": "string"
@@ -4822,8 +4585,7 @@
                             "experimentScope",
                             "name"
                           ],
-                          "type": "object",
-                          "additionalProperties": false
+                          "type": "object"
                         },
                         "type": "array"
                       },
@@ -4845,8 +4607,7 @@
                           "marginal",
                           "pass"
                         ],
-                        "type": "object",
-                        "additionalProperties": false
+                        "type": "object"
                       }
                     },
                     "required": [
@@ -4859,8 +4620,7 @@
                       "storageAccountName",
                       "threshold"
                     ],
-                    "type": "object",
-                    "additionalProperties": false
+                    "type": "object"
                   },
                   "newRelic": {
                     "properties": {
@@ -4878,8 +4638,7 @@
                     "required": [
                       "query"
                     ],
-                    "type": "object",
-                    "additionalProperties": false
+                    "type": "object"
                   },
                   "plugin": {
                     "type": "object",
@@ -4910,8 +4669,7 @@
                                 "type": "string"
                               }
                             },
-                            "type": "object",
-                            "additionalProperties": false
+                            "type": "object"
                           },
                           "sigv4": {
                             "properties": {
@@ -4925,12 +4683,10 @@
                                 "type": "string"
                               }
                             },
-                            "type": "object",
-                            "additionalProperties": false
+                            "type": "object"
                           }
                         },
-                        "type": "object",
-                        "additionalProperties": false
+                        "type": "object"
                       },
                       "headers": {
                         "items": {
@@ -4946,8 +4702,7 @@
                             "key",
                             "value"
                           ],
-                          "type": "object",
-                          "additionalProperties": false
+                          "type": "object"
                         },
                         "type": "array"
                       },
@@ -4969,16 +4724,14 @@
                             "type": "string"
                           }
                         },
-                        "type": "object",
-                        "additionalProperties": false
+                        "type": "object"
                       },
                       "timeout": {
                         "format": "int64",
                         "type": "integer"
                       }
                     },
-                    "type": "object",
-                    "additionalProperties": false
+                    "type": "object"
                   },
                   "skywalking": {
                     "properties": {
@@ -4992,8 +4745,7 @@
                         "type": "string"
                       }
                     },
-                    "type": "object",
-                    "additionalProperties": false
+                    "type": "object"
                   },
                   "wavefront": {
                     "properties": {
@@ -5004,8 +4756,7 @@
                         "type": "string"
                       }
                     },
-                    "type": "object",
-                    "additionalProperties": false
+                    "type": "object"
                   },
                   "web": {
                     "properties": {
@@ -5029,8 +4780,7 @@
                                 "type": "string"
                               }
                             },
-                            "type": "object",
-                            "additionalProperties": false
+                            "type": "object"
                           },
                           "sigv4": {
                             "properties": {
@@ -5044,12 +4794,10 @@
                                 "type": "string"
                               }
                             },
-                            "type": "object",
-                            "additionalProperties": false
+                            "type": "object"
                           }
                         },
-                        "type": "object",
-                        "additionalProperties": false
+                        "type": "object"
                       },
                       "body": {
                         "type": "string"
@@ -5068,8 +4816,7 @@
                             "key",
                             "value"
                           ],
-                          "type": "object",
-                          "additionalProperties": false
+                          "type": "object"
                         },
                         "type": "array"
                       },
@@ -5097,12 +4844,10 @@
                     "required": [
                       "url"
                     ],
-                    "type": "object",
-                    "additionalProperties": false
+                    "type": "object"
                   }
                 },
-                "type": "object",
-                "additionalProperties": false
+                "type": "object"
               },
               "successCondition": {
                 "type": "string"
@@ -5112,8 +4857,7 @@
               "name",
               "provider"
             ],
-            "type": "object",
-            "additionalProperties": false
+            "type": "object"
           },
           "type": "array"
         },
@@ -5135,15 +4879,13 @@
               "type": "integer"
             }
           },
-          "type": "object",
-          "additionalProperties": false
+          "type": "object"
         }
       },
       "required": [
         "metrics"
       ],
-      "type": "object",
-      "additionalProperties": false
+      "type": "object"
     },
     "status": {
       "properties": {
@@ -5174,8 +4916,7 @@
               "type": "integer"
             }
           },
-          "type": "object",
-          "additionalProperties": false
+          "type": "object"
         },
         "message": {
           "type": "string"
@@ -5244,8 +4985,7 @@
                   "required": [
                     "phase"
                   ],
-                  "type": "object",
-                  "additionalProperties": false
+                  "type": "object"
                 },
                 "type": "array"
               },
@@ -5273,8 +5013,7 @@
               "name",
               "phase"
             ],
-            "type": "object",
-            "additionalProperties": false
+            "type": "object"
           },
           "type": "array"
         },
@@ -5304,8 +5043,7 @@
               "type": "integer"
             }
           },
-          "type": "object",
-          "additionalProperties": false
+          "type": "object"
         },
         "startedAt": {
           "format": "date-time",
@@ -5315,8 +5053,7 @@
       "required": [
         "phase"
       ],
-      "type": "object",
-      "additionalProperties": false
+      "type": "object"
     }
   },
   "required": [

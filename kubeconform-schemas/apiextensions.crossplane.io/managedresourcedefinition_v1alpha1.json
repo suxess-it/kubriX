@@ -33,8 +33,7 @@
               "description",
               "name"
             ],
-            "type": "object",
-            "additionalProperties": false
+            "type": "object"
           },
           "type": "array"
         },
@@ -81,16 +80,14 @@
                         "name",
                         "namespace"
                       ],
-                      "type": "object",
-                      "additionalProperties": false
+                      "type": "object"
                     },
                     "url": {
                       "description": "url gives the location of the webhook, in standard URL form\n(`scheme://host:port/path`). Exactly one of `url` or `service`\nmust be specified.\n\nThe `host` should not refer to a service running in the cluster; use\nthe `service` field instead. The host might be resolved via external\nDNS in some apiservers (e.g., `kube-apiserver` cannot resolve\nin-cluster DNS as that would be a layering violation). `host` may\nalso be an IP address.\n\nPlease note that using `localhost` or `127.0.0.1` as a `host` is\nrisky unless you take great care to run this webhook on all hosts\nwhich run an apiserver which might need to make calls to this\nwebhook. Such installs are likely to be non-portable, i.e., not easy\nto turn up in a new cluster.\n\nThe scheme must be \"https\"; the URL must begin with \"https://\".\n\nA path is optional, and if present may be any string permissible in\na URL. You may use the path to pass an arbitrary string to the\nwebhook, for example, a cluster identifier.\n\nAttempting to use a user or basic auth e.g. \"user:password@\" is not\nallowed. Fragments (\"#...\") and query parameters (\"?...\") are not\nallowed, either.",
                       "type": "string"
                     }
                   },
-                  "type": "object",
-                  "additionalProperties": false
+                  "type": "object"
                 },
                 "conversionReviewVersions": {
                   "description": "conversionReviewVersions is an ordered list of preferred `ConversionReview`\nversions the Webhook expects. The API server will use the first version in\nthe list which it supports. If none of the versions specified in this list\nare supported by API server, conversion will fail for the custom resource.\nIf a persisted Webhook configuration specifies allowed versions and does not\ninclude any versions known to the API Server, calls to the webhook will fail.",
@@ -104,15 +101,13 @@
               "required": [
                 "conversionReviewVersions"
               ],
-              "type": "object",
-              "additionalProperties": false
+              "type": "object"
             }
           },
           "required": [
             "strategy"
           ],
-          "type": "object",
-          "additionalProperties": false
+          "type": "object"
         },
         "group": {
           "description": "Group is the API group of the defined custom resource.\nThe custom resources are served under `/apis/<group>/...`.\nMust match the name of the CustomResourceDefinition (in the form `<names.plural>.<group>`).",
@@ -178,8 +173,7 @@
               "message": "Singular name must be lowercase",
               "rule": "!has(self.singular) || self.singular == self.singular.lowerAscii()"
             }
-          ],
-          "additionalProperties": false
+          ]
         },
         "preserveUnknownFields": {
           "description": "PreserveUnknownFields indicates that object fields which are not specified\nin the OpenAPI schema should be preserved when persisting to storage.\napiVersion, kind, metadata and known fields inside metadata are always preserved.\nThis field is deprecated in favor of setting `x-preserve-unknown-fields` to true in `spec.versions[*].schema.openAPIV3Schema`.\nSee https://kubernetes.io/docs/tasks/extend-kubernetes/custom-resources/custom-resource-definitions/#field-pruning for details.",
@@ -256,8 +250,7 @@
                     "name",
                     "type"
                   ],
-                  "type": "object",
-                  "additionalProperties": false
+                  "type": "object"
                 },
                 "type": "array",
                 "x-kubernetes-list-type": "atomic"
@@ -283,8 +276,7 @@
                     "x-kubernetes-preserve-unknown-fields": true
                   }
                 },
-                "type": "object",
-                "additionalProperties": false
+                "type": "object"
               },
               "selectableFields": {
                 "description": "SelectableFields specifies paths to fields that may be used as field selectors.\nA maximum of 8 selectable fields are allowed.\nSee https://kubernetes.io/docs/concepts/overview/working-with-objects/field-selectors",
@@ -299,8 +291,7 @@
                   "required": [
                     "jsonPath"
                   ],
-                  "type": "object",
-                  "additionalProperties": false
+                  "type": "object"
                 },
                 "type": "array",
                 "x-kubernetes-list-type": "atomic"
@@ -336,16 +327,14 @@
                       "specReplicasPath",
                       "statusReplicasPath"
                     ],
-                    "type": "object",
-                    "additionalProperties": false
+                    "type": "object"
                   },
                   "status": {
                     "description": "status indicates the custom resource should serve a `/status` subresource.\nWhen enabled:\n1. requests to the custom resource primary endpoint ignore changes to the `status` stanza of the object.\n2. requests to the custom resource `/status` subresource ignore changes to anything other than the `status` stanza of the object.",
                     "type": "object"
                   }
                 },
-                "type": "object",
-                "additionalProperties": false
+                "type": "object"
               }
             },
             "required": [
@@ -353,8 +342,7 @@
               "served",
               "storage"
             ],
-            "type": "object",
-            "additionalProperties": false
+            "type": "object"
           },
           "type": "array",
           "x-kubernetes-list-type": "atomic"
@@ -366,8 +354,7 @@
         "scope",
         "versions"
       ],
-      "type": "object",
-      "additionalProperties": false
+      "type": "object"
     },
     "status": {
       "description": "ManagedResourceDefinitionStatus shows the observed state of the resource definition.",
@@ -410,8 +397,7 @@
               "status",
               "type"
             ],
-            "type": "object",
-            "additionalProperties": false
+            "type": "object"
           },
           "type": "array",
           "x-kubernetes-list-map-keys": [
@@ -420,8 +406,7 @@
           "x-kubernetes-list-type": "map"
         }
       },
-      "type": "object",
-      "additionalProperties": false
+      "type": "object"
     }
   },
   "type": "object"

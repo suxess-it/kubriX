@@ -1,0 +1,258 @@
+{
+  "description": "CertificateRevocation is the certificate revocation custom resource.",
+  "properties": {
+    "apiVersion": {
+      "description": "APIVersion defines the versioned schema of this representation of an object.\nServers should convert recognized schemas to the latest internal value, and\nmay reject unrecognized values.\nMore info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources",
+      "type": "string"
+    },
+    "kind": {
+      "description": "Kind is a string value representing the REST resource this object represents.\nServers may infer this from the endpoint the client submits requests to.\nCannot be updated.\nIn CamelCase.\nMore info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
+      "type": "string"
+    },
+    "metadata": {
+      "type": "object"
+    },
+    "spec": {
+      "description": "CertificateRevocationSpec is the spec of the certificate revocation.",
+      "properties": {
+        "certificateRef": {
+          "description": "CertificateRef is the references to the certificate to be revoked",
+          "properties": {
+            "name": {
+              "description": "Name is the name of the certificate in the same namespace.",
+              "type": "string"
+            },
+            "namespace": {
+              "description": "Namespace is the namespace of the certificate CR.",
+              "type": "string"
+            }
+          },
+          "required": [
+            "name",
+            "namespace"
+          ],
+          "type": "object"
+        },
+        "qualifyingDate": {
+          "description": "QualifyingDate specifies that any certificate with the same DNS names like the given 'certificateRef' should be revoked\nif it is valid before this date. If not specified, it will be filled with the current time.",
+          "format": "date-time",
+          "type": "string"
+        },
+        "renew": {
+          "description": "Renew specifies if certificate objects should be renewed before revoking old certificates",
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "status": {
+      "description": "CertificateRevocationStatus is the status of the certificate request.",
+      "properties": {
+        "message": {
+          "description": "Message is the status or error message.",
+          "type": "string"
+        },
+        "objects": {
+          "description": "ObjectStatuses contains the statuses of the involved certificate objects",
+          "properties": {
+            "failed": {
+              "description": "Failed is the list of certificate objects whose processing failed",
+              "items": {
+                "description": "CertificateRef is the reference of the issuer by name.",
+                "properties": {
+                  "name": {
+                    "description": "Name is the name of the certificate in the same namespace.",
+                    "type": "string"
+                  },
+                  "namespace": {
+                    "description": "Namespace is the namespace of the certificate CR.",
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "name",
+                  "namespace"
+                ],
+                "type": "object"
+              },
+              "type": "array"
+            },
+            "processing": {
+              "description": "Processing is the list of certificate objects to be processed",
+              "items": {
+                "description": "CertificateRef is the reference of the issuer by name.",
+                "properties": {
+                  "name": {
+                    "description": "Name is the name of the certificate in the same namespace.",
+                    "type": "string"
+                  },
+                  "namespace": {
+                    "description": "Namespace is the namespace of the certificate CR.",
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "name",
+                  "namespace"
+                ],
+                "type": "object"
+              },
+              "type": "array"
+            },
+            "renewed": {
+              "description": "Renewed is the list of certificate objects successfully renewed",
+              "items": {
+                "description": "CertificateRef is the reference of the issuer by name.",
+                "properties": {
+                  "name": {
+                    "description": "Name is the name of the certificate in the same namespace.",
+                    "type": "string"
+                  },
+                  "namespace": {
+                    "description": "Namespace is the namespace of the certificate CR.",
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "name",
+                  "namespace"
+                ],
+                "type": "object"
+              },
+              "type": "array"
+            },
+            "revoked": {
+              "description": "Revoked is the list of certificate objects successfully revoked (without renewal)",
+              "items": {
+                "description": "CertificateRef is the reference of the issuer by name.",
+                "properties": {
+                  "name": {
+                    "description": "Name is the name of the certificate in the same namespace.",
+                    "type": "string"
+                  },
+                  "namespace": {
+                    "description": "Namespace is the namespace of the certificate CR.",
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "name",
+                  "namespace"
+                ],
+                "type": "object"
+              },
+              "type": "array"
+            }
+          },
+          "type": "object"
+        },
+        "observedGeneration": {
+          "description": "ObservedGeneration is the observed generation of the spec.",
+          "format": "int64",
+          "type": "integer"
+        },
+        "revocationApplied": {
+          "description": "RevocationApplied is the timestamp when the revocation was completed",
+          "format": "date-time",
+          "type": "string"
+        },
+        "secrets": {
+          "description": "SecretStatuses contains the statuses of the involved certificate secrets",
+          "properties": {
+            "failed": {
+              "description": "Failed is the list of certificate secrets whose revocation failed",
+              "items": {
+                "description": "CertificateSecretRef is a reference to a secret together with the serial number",
+                "properties": {
+                  "name": {
+                    "description": "name is unique within a namespace to reference a secret resource.",
+                    "type": "string"
+                  },
+                  "namespace": {
+                    "description": "namespace defines the space within which the secret name must be unique.",
+                    "type": "string"
+                  },
+                  "serialNumber": {
+                    "description": "SerialNumber is the serial number of the certificate",
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "serialNumber"
+                ],
+                "type": "object",
+                "x-kubernetes-map-type": "atomic"
+              },
+              "type": "array"
+            },
+            "processing": {
+              "description": "Processing is the list of certificate secrets to be processed",
+              "items": {
+                "description": "CertificateSecretRef is a reference to a secret together with the serial number",
+                "properties": {
+                  "name": {
+                    "description": "name is unique within a namespace to reference a secret resource.",
+                    "type": "string"
+                  },
+                  "namespace": {
+                    "description": "namespace defines the space within which the secret name must be unique.",
+                    "type": "string"
+                  },
+                  "serialNumber": {
+                    "description": "SerialNumber is the serial number of the certificate",
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "serialNumber"
+                ],
+                "type": "object",
+                "x-kubernetes-map-type": "atomic"
+              },
+              "type": "array"
+            },
+            "revoked": {
+              "description": "Revoked is the list of certificate secrets successfully revoked",
+              "items": {
+                "description": "CertificateSecretRef is a reference to a secret together with the serial number",
+                "properties": {
+                  "name": {
+                    "description": "name is unique within a namespace to reference a secret resource.",
+                    "type": "string"
+                  },
+                  "namespace": {
+                    "description": "namespace defines the space within which the secret name must be unique.",
+                    "type": "string"
+                  },
+                  "serialNumber": {
+                    "description": "SerialNumber is the serial number of the certificate",
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "serialNumber"
+                ],
+                "type": "object",
+                "x-kubernetes-map-type": "atomic"
+              },
+              "type": "array"
+            }
+          },
+          "type": "object"
+        },
+        "state": {
+          "description": "State is the certificate state.",
+          "type": "string"
+        }
+      },
+      "required": [
+        "state"
+      ],
+      "type": "object"
+    }
+  },
+  "required": [
+    "spec"
+  ],
+  "type": "object"
+}

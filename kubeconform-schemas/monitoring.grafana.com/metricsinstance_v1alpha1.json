@@ -35,8 +35,7 @@
             "key"
           ],
           "type": "object",
-          "x-kubernetes-map-type": "atomic",
-          "additionalProperties": false
+          "x-kubernetes-map-type": "atomic"
         },
         "maxWALTime": {
           "description": "MaxWALTime is the maximum amount of time that series and samples can exist in the WAL before being forcibly deleted.",
@@ -74,8 +73,7 @@
                   "key",
                   "operator"
                 ],
-                "type": "object",
-                "additionalProperties": false
+                "type": "object"
               },
               "type": "array"
             },
@@ -88,8 +86,7 @@
             }
           },
           "type": "object",
-          "x-kubernetes-map-type": "atomic",
-          "additionalProperties": false
+          "x-kubernetes-map-type": "atomic"
         },
         "podMonitorSelector": {
           "description": "PodMonitorSelector determines which PodMonitors to selected for target discovery. Experimental.",
@@ -119,8 +116,7 @@
                   "key",
                   "operator"
                 ],
-                "type": "object",
-                "additionalProperties": false
+                "type": "object"
               },
               "type": "array"
             },
@@ -133,8 +129,7 @@
             }
           },
           "type": "object",
-          "x-kubernetes-map-type": "atomic",
-          "additionalProperties": false
+          "x-kubernetes-map-type": "atomic"
         },
         "probeNamespaceSelector": {
           "description": "ProbeNamespaceSelector is the set of labels that determines which namespaces to watch for Probe discovery. If nil, it only checks own namespace.",
@@ -164,8 +159,7 @@
                   "key",
                   "operator"
                 ],
-                "type": "object",
-                "additionalProperties": false
+                "type": "object"
               },
               "type": "array"
             },
@@ -178,8 +172,7 @@
             }
           },
           "type": "object",
-          "x-kubernetes-map-type": "atomic",
-          "additionalProperties": false
+          "x-kubernetes-map-type": "atomic"
         },
         "probeSelector": {
           "description": "ProbeSelector determines which Probes to select for target discovery.",
@@ -209,8 +202,7 @@
                   "key",
                   "operator"
                 ],
-                "type": "object",
-                "additionalProperties": false
+                "type": "object"
               },
               "type": "array"
             },
@@ -223,8 +215,7 @@
             }
           },
           "type": "object",
-          "x-kubernetes-map-type": "atomic",
-          "additionalProperties": false
+          "x-kubernetes-map-type": "atomic"
         },
         "remoteFlushDeadline": {
           "description": "RemoteFlushDeadline is the deadline for flushing data when an instance shuts down.",
@@ -258,8 +249,7 @@
                       "key"
                     ],
                     "type": "object",
-                    "x-kubernetes-map-type": "atomic",
-                    "additionalProperties": false
+                    "x-kubernetes-map-type": "atomic"
                   },
                   "username": {
                     "description": "The secret in the service monitor namespace that contains the username for authentication.",
@@ -281,12 +271,10 @@
                       "key"
                     ],
                     "type": "object",
-                    "x-kubernetes-map-type": "atomic",
-                    "additionalProperties": false
+                    "x-kubernetes-map-type": "atomic"
                   }
                 },
-                "type": "object",
-                "additionalProperties": false
+                "type": "object"
               },
               "bearerToken": {
                 "description": "BearerToken used for remote_write.",
@@ -315,8 +303,7 @@
                     "type": "string"
                   }
                 },
-                "type": "object",
-                "additionalProperties": false
+                "type": "object"
               },
               "name": {
                 "description": "Name of the remote_write queue. Must be unique if specified. The name is used in metrics and logging in order to differentiate queues.",
@@ -348,8 +335,7 @@
                           "key"
                         ],
                         "type": "object",
-                        "x-kubernetes-map-type": "atomic",
-                        "additionalProperties": false
+                        "x-kubernetes-map-type": "atomic"
                       },
                       "secret": {
                         "description": "Secret containing data to use for the targets.",
@@ -371,12 +357,10 @@
                           "key"
                         ],
                         "type": "object",
-                        "x-kubernetes-map-type": "atomic",
-                        "additionalProperties": false
+                        "x-kubernetes-map-type": "atomic"
                       }
                     },
-                    "type": "object",
-                    "additionalProperties": false
+                    "type": "object"
                   },
                   "clientSecret": {
                     "description": "The secret containing the OAuth2 client secret",
@@ -398,8 +382,7 @@
                       "key"
                     ],
                     "type": "object",
-                    "x-kubernetes-map-type": "atomic",
-                    "additionalProperties": false
+                    "x-kubernetes-map-type": "atomic"
                   },
                   "endpointParams": {
                     "additionalProperties": {
@@ -426,8 +409,7 @@
                   "clientSecret",
                   "tokenUrl"
                 ],
-                "type": "object",
-                "additionalProperties": false
+                "type": "object"
               },
               "proxyUrl": {
                 "description": "ProxyURL to proxy requests through. Optional.",
@@ -473,8 +455,7 @@
                     "type": "boolean"
                   }
                 },
-                "type": "object",
-                "additionalProperties": false
+                "type": "object"
               },
               "remoteTimeout": {
                 "description": "RemoteTimeout is the timeout for requests to the remote_write endpoint.",
@@ -503,8 +484,7 @@
                       "key"
                     ],
                     "type": "object",
-                    "x-kubernetes-map-type": "atomic",
-                    "additionalProperties": false
+                    "x-kubernetes-map-type": "atomic"
                   },
                   "profile": {
                     "description": "Profile is the named AWS profile to use for authentication.",
@@ -538,12 +518,10 @@
                       "key"
                     ],
                     "type": "object",
-                    "x-kubernetes-map-type": "atomic",
-                    "additionalProperties": false
+                    "x-kubernetes-map-type": "atomic"
                   }
                 },
-                "type": "object",
-                "additionalProperties": false
+                "type": "object"
               },
               "tlsConfig": {
                 "description": "TLSConfig to use for remote_write.",
@@ -571,8 +549,7 @@
                           "key"
                         ],
                         "type": "object",
-                        "x-kubernetes-map-type": "atomic",
-                        "additionalProperties": false
+                        "x-kubernetes-map-type": "atomic"
                       },
                       "secret": {
                         "description": "Secret containing data to use for the targets.",
@@ -594,12 +571,10 @@
                           "key"
                         ],
                         "type": "object",
-                        "x-kubernetes-map-type": "atomic",
-                        "additionalProperties": false
+                        "x-kubernetes-map-type": "atomic"
                       }
                     },
-                    "type": "object",
-                    "additionalProperties": false
+                    "type": "object"
                   },
                   "caFile": {
                     "description": "Path to the CA cert in the Prometheus container to use for the targets.",
@@ -628,8 +603,7 @@
                           "key"
                         ],
                         "type": "object",
-                        "x-kubernetes-map-type": "atomic",
-                        "additionalProperties": false
+                        "x-kubernetes-map-type": "atomic"
                       },
                       "secret": {
                         "description": "Secret containing data to use for the targets.",
@@ -651,12 +625,10 @@
                           "key"
                         ],
                         "type": "object",
-                        "x-kubernetes-map-type": "atomic",
-                        "additionalProperties": false
+                        "x-kubernetes-map-type": "atomic"
                       }
                     },
-                    "type": "object",
-                    "additionalProperties": false
+                    "type": "object"
                   },
                   "certFile": {
                     "description": "Path to the client cert file in the Prometheus container for the targets.",
@@ -690,16 +662,14 @@
                       "key"
                     ],
                     "type": "object",
-                    "x-kubernetes-map-type": "atomic",
-                    "additionalProperties": false
+                    "x-kubernetes-map-type": "atomic"
                   },
                   "serverName": {
                     "description": "Used to verify the hostname for the targets.",
                     "type": "string"
                   }
                 },
-                "type": "object",
-                "additionalProperties": false
+                "type": "object"
               },
               "url": {
                 "description": "URL of the endpoint to send samples to.",
@@ -770,8 +740,7 @@
                       "type": "string"
                     }
                   },
-                  "type": "object",
-                  "additionalProperties": false
+                  "type": "object"
                 },
                 "type": "array"
               }
@@ -779,8 +748,7 @@
             "required": [
               "url"
             ],
-            "type": "object",
-            "additionalProperties": false
+            "type": "object"
           },
           "type": "array"
         },
@@ -812,8 +780,7 @@
                   "key",
                   "operator"
                 ],
-                "type": "object",
-                "additionalProperties": false
+                "type": "object"
               },
               "type": "array"
             },
@@ -826,8 +793,7 @@
             }
           },
           "type": "object",
-          "x-kubernetes-map-type": "atomic",
-          "additionalProperties": false
+          "x-kubernetes-map-type": "atomic"
         },
         "serviceMonitorSelector": {
           "description": "ServiceMonitorSelector determines which ServiceMonitors to select for target discovery.",
@@ -857,8 +823,7 @@
                   "key",
                   "operator"
                 ],
-                "type": "object",
-                "additionalProperties": false
+                "type": "object"
               },
               "type": "array"
             },
@@ -871,8 +836,7 @@
             }
           },
           "type": "object",
-          "x-kubernetes-map-type": "atomic",
-          "additionalProperties": false
+          "x-kubernetes-map-type": "atomic"
         },
         "walTruncateFrequency": {
           "description": "WALTruncateFrequency specifies how frequently to run the WAL truncation process. Higher values cause the WAL to increase and for old series to stay in the WAL longer, but reduces the chance of data loss when remote_write fails for longer than the given frequency.",
@@ -883,8 +847,7 @@
           "type": "boolean"
         }
       },
-      "type": "object",
-      "additionalProperties": false
+      "type": "object"
     }
   },
   "type": "object"

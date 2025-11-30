@@ -42,8 +42,7 @@
               "key"
             ],
             "type": "object",
-            "x-kubernetes-map-type": "atomic",
-            "additionalProperties": false
+            "x-kubernetes-map-type": "atomic"
           },
           "type": "array"
         },
@@ -73,8 +72,7 @@
               "key"
             ],
             "type": "object",
-            "x-kubernetes-map-type": "atomic",
-            "additionalProperties": false
+            "x-kubernetes-map-type": "atomic"
           },
           "type": "array"
         },
@@ -90,8 +88,7 @@
               "type": "boolean"
             }
           },
-          "type": "object",
-          "additionalProperties": false
+          "type": "object"
         },
         "volumeMounts": {
           "description": "An extra list of VolumeMounts to be associated with the Grafana Agent pods running this integration. VolumeMount names are mutated to be unique across all used IntegrationSpecs. \n Mount paths should include the namespace/name of the Integration CR to avoid potentially colliding with other resources.",
@@ -127,8 +124,7 @@
               "mountPath",
               "name"
             ],
-            "type": "object",
-            "additionalProperties": false
+            "type": "object"
           },
           "type": "array"
         },
@@ -161,8 +157,7 @@
                 "required": [
                   "volumeID"
                 ],
-                "type": "object",
-                "additionalProperties": false
+                "type": "object"
               },
               "azureDisk": {
                 "description": "azureDisk represents an Azure Data Disk mount on the host and bind mount to the pod.",
@@ -196,8 +191,7 @@
                   "diskName",
                   "diskURI"
                 ],
-                "type": "object",
-                "additionalProperties": false
+                "type": "object"
               },
               "azureFile": {
                 "description": "azureFile represents an Azure File Service mount on the host and bind mount to the pod.",
@@ -219,8 +213,7 @@
                   "secretName",
                   "shareName"
                 ],
-                "type": "object",
-                "additionalProperties": false
+                "type": "object"
               },
               "cephfs": {
                 "description": "cephFS represents a Ceph FS mount on the host that shares a pod's lifetime",
@@ -253,8 +246,7 @@
                       }
                     },
                     "type": "object",
-                    "x-kubernetes-map-type": "atomic",
-                    "additionalProperties": false
+                    "x-kubernetes-map-type": "atomic"
                   },
                   "user": {
                     "description": "user is optional: User is the rados user name, default is admin More info: https://examples.k8s.io/volumes/cephfs/README.md#how-to-use-it",
@@ -264,8 +256,7 @@
                 "required": [
                   "monitors"
                 ],
-                "type": "object",
-                "additionalProperties": false
+                "type": "object"
               },
               "cinder": {
                 "description": "cinder represents a cinder volume attached and mounted on kubelets host machine. More info: https://examples.k8s.io/mysql-cinder-pd/README.md",
@@ -287,8 +278,7 @@
                       }
                     },
                     "type": "object",
-                    "x-kubernetes-map-type": "atomic",
-                    "additionalProperties": false
+                    "x-kubernetes-map-type": "atomic"
                   },
                   "volumeID": {
                     "description": "volumeID used to identify the volume in cinder. More info: https://examples.k8s.io/mysql-cinder-pd/README.md",
@@ -298,8 +288,7 @@
                 "required": [
                   "volumeID"
                 ],
-                "type": "object",
-                "additionalProperties": false
+                "type": "object"
               },
               "configMap": {
                 "description": "configMap represents a configMap that should populate this volume",
@@ -332,8 +321,7 @@
                         "key",
                         "path"
                       ],
-                      "type": "object",
-                      "additionalProperties": false
+                      "type": "object"
                     },
                     "type": "array"
                   },
@@ -347,8 +335,7 @@
                   }
                 },
                 "type": "object",
-                "x-kubernetes-map-type": "atomic",
-                "additionalProperties": false
+                "x-kubernetes-map-type": "atomic"
               },
               "csi": {
                 "description": "csi (Container Storage Interface) represents ephemeral storage that is handled by certain external CSI drivers (Beta feature).",
@@ -370,8 +357,7 @@
                       }
                     },
                     "type": "object",
-                    "x-kubernetes-map-type": "atomic",
-                    "additionalProperties": false
+                    "x-kubernetes-map-type": "atomic"
                   },
                   "readOnly": {
                     "description": "readOnly specifies a read-only configuration for the volume. Defaults to false (read/write).",
@@ -388,8 +374,7 @@
                 "required": [
                   "driver"
                 ],
-                "type": "object",
-                "additionalProperties": false
+                "type": "object"
               },
               "downwardAPI": {
                 "description": "downwardAPI represents downward API about the pod that should populate this volume",
@@ -420,8 +405,7 @@
                             "fieldPath"
                           ],
                           "type": "object",
-                          "x-kubernetes-map-type": "atomic",
-                          "additionalProperties": false
+                          "x-kubernetes-map-type": "atomic"
                         },
                         "mode": {
                           "description": "Optional: mode bits used to set permissions on this file, must be an octal value between 0000 and 0777 or a decimal value between 0 and 511. YAML accepts both octal and decimal values, JSON requires decimal values for mode bits. If not specified, the volume defaultMode will be used. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set.",
@@ -461,21 +445,18 @@
                             "resource"
                           ],
                           "type": "object",
-                          "x-kubernetes-map-type": "atomic",
-                          "additionalProperties": false
+                          "x-kubernetes-map-type": "atomic"
                         }
                       },
                       "required": [
                         "path"
                       ],
-                      "type": "object",
-                      "additionalProperties": false
+                      "type": "object"
                     },
                     "type": "array"
                   }
                 },
-                "type": "object",
-                "additionalProperties": false
+                "type": "object"
               },
               "emptyDir": {
                 "description": "emptyDir represents a temporary directory that shares a pod's lifetime. More info: https://kubernetes.io/docs/concepts/storage/volumes#emptydir",
@@ -498,8 +479,7 @@
                     "x-kubernetes-int-or-string": true
                   }
                 },
-                "type": "object",
-                "additionalProperties": false
+                "type": "object"
               },
               "ephemeral": {
                 "description": "ephemeral represents a volume that is handled by a cluster storage driver. The volume's lifecycle is tied to the pod that defines it - it will be created before the pod starts, and deleted when the pod is removed. \n Use this if: a) the volume is only needed while the pod runs, b) features of normal volumes like restoring from snapshot or capacity tracking are needed, c) the storage driver is specified through a storage class, and d) the storage driver supports dynamic volume provisioning through a PersistentVolumeClaim (see EphemeralVolumeSource for more information on the connection between this volume type and PersistentVolumeClaim). \n Use PersistentVolumeClaim or one of the vendor-specific APIs for volumes that persist for longer than the lifecycle of an individual pod. \n Use CSI for light-weight local ephemeral volumes if the CSI driver is meant to be used that way - see the documentation of the driver for more information. \n A pod can use both types of ephemeral volumes and persistent volumes at the same time.",
@@ -542,8 +522,7 @@
                               "name"
                             ],
                             "type": "object",
-                            "x-kubernetes-map-type": "atomic",
-                            "additionalProperties": false
+                            "x-kubernetes-map-type": "atomic"
                           },
                           "dataSourceRef": {
                             "description": "dataSourceRef specifies the object from which to populate the volume with data, if a non-empty volume is desired. This may be any object from a non-empty API group (non core object) or a PersistentVolumeClaim object. When this field is specified, volume binding will only succeed if the type of the specified object matches some installed volume populator or dynamic provisioner. This field will replace the functionality of the dataSource field and as such if both fields are non-empty, they must have the same value. For backwards compatibility, when namespace isn't specified in dataSourceRef, both fields (dataSource and dataSourceRef) will be set to the same value automatically if one of them is empty and the other is non-empty. When namespace is specified in dataSourceRef, dataSource isn't set to the same value and must be empty. There are three important differences between dataSource and dataSourceRef: * While dataSource only allows two specific types of objects, dataSourceRef allows any non-core object, as well as PersistentVolumeClaim objects. * While dataSource ignores disallowed values (dropping them), dataSourceRef preserves all values, and generates an error if a disallowed value is specified. * While dataSource only allows local objects, dataSourceRef allows objects in any namespaces. (Beta) Using this field requires the AnyVolumeDataSource feature gate to be enabled. (Alpha) Using the namespace field of dataSourceRef requires the CrossNamespaceVolumeDataSource feature gate to be enabled.",
@@ -569,8 +548,7 @@
                               "kind",
                               "name"
                             ],
-                            "type": "object",
-                            "additionalProperties": false
+                            "type": "object"
                           },
                           "resources": {
                             "description": "resources represents the minimum resources the volume should have. If RecoverVolumeExpansionFailure feature is enabled users are allowed to specify resource requirements that are lower than previous value but must still be higher than capacity recorded in the status field of the claim. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#resources",
@@ -588,8 +566,7 @@
                                   "required": [
                                     "name"
                                   ],
-                                  "type": "object",
-                                  "additionalProperties": false
+                                  "type": "object"
                                 },
                                 "type": "array",
                                 "x-kubernetes-list-map-keys": [
@@ -630,8 +607,7 @@
                                 "type": "object"
                               }
                             },
-                            "type": "object",
-                            "additionalProperties": false
+                            "type": "object"
                           },
                           "selector": {
                             "description": "selector is a label query over volumes to consider for binding.",
@@ -661,8 +637,7 @@
                                     "key",
                                     "operator"
                                   ],
-                                  "type": "object",
-                                  "additionalProperties": false
+                                  "type": "object"
                                 },
                                 "type": "array"
                               },
@@ -675,8 +650,7 @@
                               }
                             },
                             "type": "object",
-                            "x-kubernetes-map-type": "atomic",
-                            "additionalProperties": false
+                            "x-kubernetes-map-type": "atomic"
                           },
                           "storageClassName": {
                             "description": "storageClassName is the name of the StorageClass required by the claim. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#class-1",
@@ -691,19 +665,16 @@
                             "type": "string"
                           }
                         },
-                        "type": "object",
-                        "additionalProperties": false
+                        "type": "object"
                       }
                     },
                     "required": [
                       "spec"
                     ],
-                    "type": "object",
-                    "additionalProperties": false
+                    "type": "object"
                   }
                 },
-                "type": "object",
-                "additionalProperties": false
+                "type": "object"
               },
               "fc": {
                 "description": "fc represents a Fibre Channel resource that is attached to a kubelet's host machine and then exposed to the pod.",
@@ -736,8 +707,7 @@
                     "type": "array"
                   }
                 },
-                "type": "object",
-                "additionalProperties": false
+                "type": "object"
               },
               "flexVolume": {
                 "description": "flexVolume represents a generic volume resource that is provisioned/attached using an exec based plugin.",
@@ -770,15 +740,13 @@
                       }
                     },
                     "type": "object",
-                    "x-kubernetes-map-type": "atomic",
-                    "additionalProperties": false
+                    "x-kubernetes-map-type": "atomic"
                   }
                 },
                 "required": [
                   "driver"
                 ],
-                "type": "object",
-                "additionalProperties": false
+                "type": "object"
               },
               "flocker": {
                 "description": "flocker represents a Flocker volume attached to a kubelet's host machine. This depends on the Flocker control service being running",
@@ -792,8 +760,7 @@
                     "type": "string"
                   }
                 },
-                "type": "object",
-                "additionalProperties": false
+                "type": "object"
               },
               "gcePersistentDisk": {
                 "description": "gcePersistentDisk represents a GCE Disk resource that is attached to a kubelet's host machine and then exposed to the pod. More info: https://kubernetes.io/docs/concepts/storage/volumes#gcepersistentdisk",
@@ -819,8 +786,7 @@
                 "required": [
                   "pdName"
                 ],
-                "type": "object",
-                "additionalProperties": false
+                "type": "object"
               },
               "gitRepo": {
                 "description": "gitRepo represents a git repository at a particular revision. DEPRECATED: GitRepo is deprecated. To provision a container with a git repo, mount an EmptyDir into an InitContainer that clones the repo using git, then mount the EmptyDir into the Pod's container.",
@@ -841,8 +807,7 @@
                 "required": [
                   "repository"
                 ],
-                "type": "object",
-                "additionalProperties": false
+                "type": "object"
               },
               "glusterfs": {
                 "description": "glusterfs represents a Glusterfs mount on the host that shares a pod's lifetime. More info: https://examples.k8s.io/volumes/glusterfs/README.md",
@@ -864,8 +829,7 @@
                   "endpoints",
                   "path"
                 ],
-                "type": "object",
-                "additionalProperties": false
+                "type": "object"
               },
               "hostPath": {
                 "description": "hostPath represents a pre-existing file or directory on the host machine that is directly exposed to the container. This is generally used for system agents or other privileged things that are allowed to see the host machine. Most containers will NOT need this. More info: https://kubernetes.io/docs/concepts/storage/volumes#hostpath --- TODO(jonesdl) We need to restrict who can use host directory mounts and who can/can not mount host directories as read/write.",
@@ -882,8 +846,7 @@
                 "required": [
                   "path"
                 ],
-                "type": "object",
-                "additionalProperties": false
+                "type": "object"
               },
               "iscsi": {
                 "description": "iscsi represents an ISCSI Disk resource that is attached to a kubelet's host machine and then exposed to the pod. More info: https://examples.k8s.io/volumes/iscsi/README.md",
@@ -937,8 +900,7 @@
                       }
                     },
                     "type": "object",
-                    "x-kubernetes-map-type": "atomic",
-                    "additionalProperties": false
+                    "x-kubernetes-map-type": "atomic"
                   },
                   "targetPortal": {
                     "description": "targetPortal is iSCSI Target Portal. The Portal is either an IP or ip_addr:port if the port is other than default (typically TCP ports 860 and 3260).",
@@ -950,8 +912,7 @@
                   "lun",
                   "targetPortal"
                 ],
-                "type": "object",
-                "additionalProperties": false
+                "type": "object"
               },
               "name": {
                 "description": "name of the volume. Must be a DNS_LABEL and unique within the pod. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
@@ -977,8 +938,7 @@
                   "path",
                   "server"
                 ],
-                "type": "object",
-                "additionalProperties": false
+                "type": "object"
               },
               "persistentVolumeClaim": {
                 "description": "persistentVolumeClaimVolumeSource represents a reference to a PersistentVolumeClaim in the same namespace. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#persistentvolumeclaims",
@@ -995,8 +955,7 @@
                 "required": [
                   "claimName"
                 ],
-                "type": "object",
-                "additionalProperties": false
+                "type": "object"
               },
               "photonPersistentDisk": {
                 "description": "photonPersistentDisk represents a PhotonController persistent disk attached and mounted on kubelets host machine",
@@ -1013,8 +972,7 @@
                 "required": [
                   "pdID"
                 ],
-                "type": "object",
-                "additionalProperties": false
+                "type": "object"
               },
               "portworxVolume": {
                 "description": "portworxVolume represents a portworx volume attached and mounted on kubelets host machine",
@@ -1035,8 +993,7 @@
                 "required": [
                   "volumeID"
                 ],
-                "type": "object",
-                "additionalProperties": false
+                "type": "object"
               },
               "projected": {
                 "description": "projected items for all in one resources secrets, configmaps, and downward API",
@@ -1077,8 +1034,7 @@
                                   "key",
                                   "path"
                                 ],
-                                "type": "object",
-                                "additionalProperties": false
+                                "type": "object"
                               },
                               "type": "array"
                             },
@@ -1092,8 +1048,7 @@
                             }
                           },
                           "type": "object",
-                          "x-kubernetes-map-type": "atomic",
-                          "additionalProperties": false
+                          "x-kubernetes-map-type": "atomic"
                         },
                         "downwardAPI": {
                           "description": "downwardAPI information about the downwardAPI data to project",
@@ -1119,8 +1074,7 @@
                                       "fieldPath"
                                     ],
                                     "type": "object",
-                                    "x-kubernetes-map-type": "atomic",
-                                    "additionalProperties": false
+                                    "x-kubernetes-map-type": "atomic"
                                   },
                                   "mode": {
                                     "description": "Optional: mode bits used to set permissions on this file, must be an octal value between 0000 and 0777 or a decimal value between 0 and 511. YAML accepts both octal and decimal values, JSON requires decimal values for mode bits. If not specified, the volume defaultMode will be used. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set.",
@@ -1160,21 +1114,18 @@
                                       "resource"
                                     ],
                                     "type": "object",
-                                    "x-kubernetes-map-type": "atomic",
-                                    "additionalProperties": false
+                                    "x-kubernetes-map-type": "atomic"
                                   }
                                 },
                                 "required": [
                                   "path"
                                 ],
-                                "type": "object",
-                                "additionalProperties": false
+                                "type": "object"
                               },
                               "type": "array"
                             }
                           },
-                          "type": "object",
-                          "additionalProperties": false
+                          "type": "object"
                         },
                         "secret": {
                           "description": "secret information about the secret data to project",
@@ -1202,8 +1153,7 @@
                                   "key",
                                   "path"
                                 ],
-                                "type": "object",
-                                "additionalProperties": false
+                                "type": "object"
                               },
                               "type": "array"
                             },
@@ -1217,8 +1167,7 @@
                             }
                           },
                           "type": "object",
-                          "x-kubernetes-map-type": "atomic",
-                          "additionalProperties": false
+                          "x-kubernetes-map-type": "atomic"
                         },
                         "serviceAccountToken": {
                           "description": "serviceAccountToken is information about the serviceAccountToken data to project",
@@ -1240,18 +1189,15 @@
                           "required": [
                             "path"
                           ],
-                          "type": "object",
-                          "additionalProperties": false
+                          "type": "object"
                         }
                       },
-                      "type": "object",
-                      "additionalProperties": false
+                      "type": "object"
                     },
                     "type": "array"
                   }
                 },
-                "type": "object",
-                "additionalProperties": false
+                "type": "object"
               },
               "quobyte": {
                 "description": "quobyte represents a Quobyte mount on the host that shares a pod's lifetime",
@@ -1285,8 +1231,7 @@
                   "registry",
                   "volume"
                 ],
-                "type": "object",
-                "additionalProperties": false
+                "type": "object"
               },
               "rbd": {
                 "description": "rbd represents a Rados Block Device mount on the host that shares a pod's lifetime. More info: https://examples.k8s.io/volumes/rbd/README.md",
@@ -1327,8 +1272,7 @@
                       }
                     },
                     "type": "object",
-                    "x-kubernetes-map-type": "atomic",
-                    "additionalProperties": false
+                    "x-kubernetes-map-type": "atomic"
                   },
                   "user": {
                     "description": "user is the rados user name. Default is admin. More info: https://examples.k8s.io/volumes/rbd/README.md#how-to-use-it",
@@ -1339,8 +1283,7 @@
                   "image",
                   "monitors"
                 ],
-                "type": "object",
-                "additionalProperties": false
+                "type": "object"
               },
               "scaleIO": {
                 "description": "scaleIO represents a ScaleIO persistent volume attached and mounted on Kubernetes nodes.",
@@ -1370,8 +1313,7 @@
                       }
                     },
                     "type": "object",
-                    "x-kubernetes-map-type": "atomic",
-                    "additionalProperties": false
+                    "x-kubernetes-map-type": "atomic"
                   },
                   "sslEnabled": {
                     "description": "sslEnabled Flag enable/disable SSL communication with Gateway, default false",
@@ -1399,8 +1341,7 @@
                   "secretRef",
                   "system"
                 ],
-                "type": "object",
-                "additionalProperties": false
+                "type": "object"
               },
               "secret": {
                 "description": "secret represents a secret that should populate this volume. More info: https://kubernetes.io/docs/concepts/storage/volumes#secret",
@@ -1433,8 +1374,7 @@
                         "key",
                         "path"
                       ],
-                      "type": "object",
-                      "additionalProperties": false
+                      "type": "object"
                     },
                     "type": "array"
                   },
@@ -1447,8 +1387,7 @@
                     "type": "string"
                   }
                 },
-                "type": "object",
-                "additionalProperties": false
+                "type": "object"
               },
               "storageos": {
                 "description": "storageOS represents a StorageOS volume attached and mounted on Kubernetes nodes.",
@@ -1470,8 +1409,7 @@
                       }
                     },
                     "type": "object",
-                    "x-kubernetes-map-type": "atomic",
-                    "additionalProperties": false
+                    "x-kubernetes-map-type": "atomic"
                   },
                   "volumeName": {
                     "description": "volumeName is the human-readable name of the StorageOS volume.  Volume names are only unique within a namespace.",
@@ -1482,8 +1420,7 @@
                     "type": "string"
                   }
                 },
-                "type": "object",
-                "additionalProperties": false
+                "type": "object"
               },
               "vsphereVolume": {
                 "description": "vsphereVolume represents a vSphere volume attached and mounted on kubelets host machine",
@@ -1508,15 +1445,13 @@
                 "required": [
                   "volumePath"
                 ],
-                "type": "object",
-                "additionalProperties": false
+                "type": "object"
               }
             },
             "required": [
               "name"
             ],
-            "type": "object",
-            "additionalProperties": false
+            "type": "object"
           },
           "type": "array"
         }
@@ -1526,8 +1461,7 @@
         "name",
         "type"
       ],
-      "type": "object",
-      "additionalProperties": false
+      "type": "object"
     }
   },
   "type": "object"

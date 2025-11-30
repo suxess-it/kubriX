@@ -36,8 +36,7 @@
             "required": [
               "prefix"
             ],
-            "type": "object",
-            "additionalProperties": false
+            "type": "object"
           },
           "type": "array",
           "x-kubernetes-validations": [
@@ -63,19 +62,16 @@
                     }
                   },
                   "type": "object",
-                  "x-kubernetes-map-type": "atomic",
-                  "additionalProperties": false
+                  "x-kubernetes-map-type": "atomic"
                 }
               },
               "required": [
                 "pullSecretRef"
               ],
-              "type": "object",
-              "additionalProperties": false
+              "type": "object"
             }
           },
-          "type": "object",
-          "additionalProperties": false
+          "type": "object"
         },
         "rewriteImage": {
           "description": "RewriteImage defines how a matched image's path should be rewritten.",
@@ -88,8 +84,7 @@
           "required": [
             "prefix"
           ],
-          "type": "object",
-          "additionalProperties": false
+          "type": "object"
         },
         "verification": {
           "description": "Verification contains the configuration for verifying the image.",
@@ -120,8 +115,7 @@
                             "name",
                             "predicateType"
                           ],
-                          "type": "object",
-                          "additionalProperties": false
+                          "type": "object"
                         },
                         "type": "array"
                       },
@@ -149,16 +143,14 @@
                               "key",
                               "name"
                             ],
-                            "type": "object",
-                            "additionalProperties": false
+                            "type": "object"
                           }
                         },
                         "required": [
                           "hashAlgorithm",
                           "secretRef"
                         ],
-                        "type": "object",
-                        "additionalProperties": false
+                        "type": "object"
                       },
                       "keyless": {
                         "description": "Keyless sets the configuration to verify the authority against a Fulcio\ninstance.",
@@ -185,8 +177,7 @@
                                   "type": "string"
                                 }
                               },
-                              "type": "object",
-                              "additionalProperties": false
+                              "type": "object"
                             },
                             "type": "array"
                           },
@@ -198,8 +189,7 @@
                         "required": [
                           "identities"
                         ],
-                        "type": "object",
-                        "additionalProperties": false
+                        "type": "object"
                       },
                       "name": {
                         "description": "Name is the name for this authority.",
@@ -209,8 +199,7 @@
                     "required": [
                       "name"
                     ],
-                    "type": "object",
-                    "additionalProperties": false
+                    "type": "object"
                   },
                   "type": "array"
                 }
@@ -218,8 +207,7 @@
               "required": [
                 "authorities"
               ],
-              "type": "object",
-              "additionalProperties": false
+              "type": "object"
             },
             "provider": {
               "description": "Provider is the provider that should be used to verify the image.",
@@ -232,15 +220,13 @@
           "required": [
             "provider"
           ],
-          "type": "object",
-          "additionalProperties": false
+          "type": "object"
         }
       },
       "required": [
         "matchImages"
       ],
-      "type": "object",
-      "additionalProperties": false
+      "type": "object"
     }
   },
   "type": "object"

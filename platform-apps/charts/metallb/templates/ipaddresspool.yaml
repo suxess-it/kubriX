@@ -1,3 +1,4 @@
+{{ if .Values.IPAddress }}
 apiVersion: metallb.io/v1beta1
 kind: IPAddressPool
 metadata:
@@ -6,3 +7,4 @@ metadata:
 spec:
   addresses:
     - {{ .Values.IPAddress }}
+{{ end }}
