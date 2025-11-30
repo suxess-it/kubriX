@@ -39,16 +39,14 @@
                 "key"
               ],
               "type": "object",
-              "x-kubernetes-map-type": "atomic",
-              "additionalProperties": false
+              "x-kubernetes-map-type": "atomic"
             },
             "type": {
               "description": "type defines the authentication type. The value is case-insensitive.\n\n\"Basic\" is not a supported value.\n\nDefault: \"Bearer\"",
               "type": "string"
             }
           },
-          "type": "object",
-          "additionalProperties": false
+          "type": "object"
         },
         "basicAuth": {
           "description": "basicAuth allow an endpoint to authenticate over basic authentication.\nMore info: https://prometheus.io/docs/operating/configuration/#endpoint",
@@ -74,8 +72,7 @@
                 "key"
               ],
               "type": "object",
-              "x-kubernetes-map-type": "atomic",
-              "additionalProperties": false
+              "x-kubernetes-map-type": "atomic"
             },
             "username": {
               "description": "username defines a key of a Secret containing the username for\nauthentication.",
@@ -98,12 +95,10 @@
                 "key"
               ],
               "type": "object",
-              "x-kubernetes-map-type": "atomic",
-              "additionalProperties": false
+              "x-kubernetes-map-type": "atomic"
             }
           },
-          "type": "object",
-          "additionalProperties": false
+          "type": "object"
         },
         "bearerTokenSecret": {
           "description": "bearerTokenSecret defines the secret to mount to read bearer token for scraping targets. The secret\nneeds to be in the same namespace as the probe and accessible by\nthe Prometheus Operator.",
@@ -126,8 +121,7 @@
             "key"
           ],
           "type": "object",
-          "x-kubernetes-map-type": "atomic",
-          "additionalProperties": false
+          "x-kubernetes-map-type": "atomic"
         },
         "convertClassicHistogramsToNHCB": {
           "description": "convertClassicHistogramsToNHCB defines whether to convert all scraped classic histograms into a native histogram with custom buckets.\nIt requires Prometheus >= v3.0.0.",
@@ -237,8 +231,7 @@
                 "type": "string"
               }
             },
-            "type": "object",
-            "additionalProperties": false
+            "type": "object"
           },
           "type": "array"
         },
@@ -291,8 +284,7 @@
                     "key"
                   ],
                   "type": "object",
-                  "x-kubernetes-map-type": "atomic",
-                  "additionalProperties": false
+                  "x-kubernetes-map-type": "atomic"
                 },
                 "secret": {
                   "description": "secret defines the Secret containing data to use for the targets.",
@@ -315,12 +307,10 @@
                     "key"
                   ],
                   "type": "object",
-                  "x-kubernetes-map-type": "atomic",
-                  "additionalProperties": false
+                  "x-kubernetes-map-type": "atomic"
                 }
               },
-              "type": "object",
-              "additionalProperties": false
+              "type": "object"
             },
             "clientSecret": {
               "description": "clientSecret defines a key of a Secret containing the OAuth2\nclient's secret.",
@@ -343,8 +333,7 @@
                 "key"
               ],
               "type": "object",
-              "x-kubernetes-map-type": "atomic",
-              "additionalProperties": false
+              "x-kubernetes-map-type": "atomic"
             },
             "endpointParams": {
               "additionalProperties": {
@@ -380,8 +369,7 @@
                     "key"
                   ],
                   "type": "object",
-                  "x-kubernetes-map-type": "atomic",
-                  "additionalProperties": false
+                  "x-kubernetes-map-type": "atomic"
                 },
                 "type": "array"
               },
@@ -432,8 +420,7 @@
                         "key"
                       ],
                       "type": "object",
-                      "x-kubernetes-map-type": "atomic",
-                      "additionalProperties": false
+                      "x-kubernetes-map-type": "atomic"
                     },
                     "secret": {
                       "description": "secret defines the Secret containing data to use for the targets.",
@@ -456,12 +443,10 @@
                         "key"
                       ],
                       "type": "object",
-                      "x-kubernetes-map-type": "atomic",
-                      "additionalProperties": false
+                      "x-kubernetes-map-type": "atomic"
                     }
                   },
-                  "type": "object",
-                  "additionalProperties": false
+                  "type": "object"
                 },
                 "cert": {
                   "description": "cert defines the Client certificate to present when doing client-authentication.",
@@ -487,8 +472,7 @@
                         "key"
                       ],
                       "type": "object",
-                      "x-kubernetes-map-type": "atomic",
-                      "additionalProperties": false
+                      "x-kubernetes-map-type": "atomic"
                     },
                     "secret": {
                       "description": "secret defines the Secret containing data to use for the targets.",
@@ -511,12 +495,10 @@
                         "key"
                       ],
                       "type": "object",
-                      "x-kubernetes-map-type": "atomic",
-                      "additionalProperties": false
+                      "x-kubernetes-map-type": "atomic"
                     }
                   },
-                  "type": "object",
-                  "additionalProperties": false
+                  "type": "object"
                 },
                 "insecureSkipVerify": {
                   "description": "insecureSkipVerify defines how to disable target certificate validation.",
@@ -543,8 +525,7 @@
                     "key"
                   ],
                   "type": "object",
-                  "x-kubernetes-map-type": "atomic",
-                  "additionalProperties": false
+                  "x-kubernetes-map-type": "atomic"
                 },
                 "maxVersion": {
                   "description": "maxVersion defines the maximum acceptable TLS version.\n\nIt requires Prometheus >= v2.41.0 or Thanos >= v0.31.0.",
@@ -571,8 +552,7 @@
                   "type": "string"
                 }
               },
-              "type": "object",
-              "additionalProperties": false
+              "type": "object"
             },
             "tokenUrl": {
               "description": "tokenUrl defines the URL to fetch the token from.",
@@ -585,8 +565,7 @@
             "clientSecret",
             "tokenUrl"
           ],
-          "type": "object",
-          "additionalProperties": false
+          "type": "object"
         },
         "params": {
           "description": "params defines the list of HTTP query parameters for the scrape.\nPlease note that the `.spec.module` field takes precedence over the `module` parameter from this list when both are defined.\nThe module name must be added using Module under ProbeSpec.",
@@ -611,8 +590,7 @@
             "required": [
               "name"
             ],
-            "type": "object",
-            "additionalProperties": false
+            "type": "object"
           },
           "minItems": 1,
           "type": "array",
@@ -656,8 +634,7 @@
                     "key"
                   ],
                   "type": "object",
-                  "x-kubernetes-map-type": "atomic",
-                  "additionalProperties": false
+                  "x-kubernetes-map-type": "atomic"
                 },
                 "type": "array"
               },
@@ -690,8 +667,7 @@
           "required": [
             "url"
           ],
-          "type": "object",
-          "additionalProperties": false
+          "type": "object"
         },
         "sampleLimit": {
           "description": "sampleLimit defines per-scrape limit on number of scraped samples that will be accepted.",
@@ -754,8 +730,7 @@
                       "type": "array"
                     }
                   },
-                  "type": "object",
-                  "additionalProperties": false
+                  "type": "object"
                 },
                 "relabelingConfigs": {
                   "description": "relabelingConfigs to apply to the label set of the target before it gets\nscraped.\nThe original ingress address is available via the\n`__tmp_prometheus_ingress_address` label. It can be used to customize the\nprobed URL.\nThe original scrape job's name is available via the `__tmp_prometheus_job_name` label.\nMore info: https://prometheus.io/docs/prometheus/latest/configuration/configuration/#relabel_config",
@@ -821,8 +796,7 @@
                         "type": "string"
                       }
                     },
-                    "type": "object",
-                    "additionalProperties": false
+                    "type": "object"
                   },
                   "type": "array"
                 },
@@ -855,8 +829,7 @@
                           "key",
                           "operator"
                         ],
-                        "type": "object",
-                        "additionalProperties": false
+                        "type": "object"
                       },
                       "type": "array",
                       "x-kubernetes-list-type": "atomic"
@@ -870,12 +843,10 @@
                     }
                   },
                   "type": "object",
-                  "x-kubernetes-map-type": "atomic",
-                  "additionalProperties": false
+                  "x-kubernetes-map-type": "atomic"
                 }
               },
-              "type": "object",
-              "additionalProperties": false
+              "type": "object"
             },
             "staticConfig": {
               "description": "staticConfig defines the static list of targets to probe and the\nrelabeling configuration.\nIf `ingress` is also defined, `staticConfig` takes precedence.\nMore info: https://prometheus.io/docs/prometheus/latest/configuration/configuration/#static_config.",
@@ -951,8 +922,7 @@
                         "type": "string"
                       }
                     },
-                    "type": "object",
-                    "additionalProperties": false
+                    "type": "object"
                   },
                   "type": "array"
                 },
@@ -964,12 +934,10 @@
                   "type": "array"
                 }
               },
-              "type": "object",
-              "additionalProperties": false
+              "type": "object"
             }
           },
-          "type": "object",
-          "additionalProperties": false
+          "type": "object"
         },
         "tlsConfig": {
           "description": "tlsConfig defines the TLS configuration to use when scraping the endpoint.",
@@ -998,8 +966,7 @@
                     "key"
                   ],
                   "type": "object",
-                  "x-kubernetes-map-type": "atomic",
-                  "additionalProperties": false
+                  "x-kubernetes-map-type": "atomic"
                 },
                 "secret": {
                   "description": "secret defines the Secret containing data to use for the targets.",
@@ -1022,12 +989,10 @@
                     "key"
                   ],
                   "type": "object",
-                  "x-kubernetes-map-type": "atomic",
-                  "additionalProperties": false
+                  "x-kubernetes-map-type": "atomic"
                 }
               },
-              "type": "object",
-              "additionalProperties": false
+              "type": "object"
             },
             "cert": {
               "description": "cert defines the Client certificate to present when doing client-authentication.",
@@ -1053,8 +1018,7 @@
                     "key"
                   ],
                   "type": "object",
-                  "x-kubernetes-map-type": "atomic",
-                  "additionalProperties": false
+                  "x-kubernetes-map-type": "atomic"
                 },
                 "secret": {
                   "description": "secret defines the Secret containing data to use for the targets.",
@@ -1077,12 +1041,10 @@
                     "key"
                   ],
                   "type": "object",
-                  "x-kubernetes-map-type": "atomic",
-                  "additionalProperties": false
+                  "x-kubernetes-map-type": "atomic"
                 }
               },
-              "type": "object",
-              "additionalProperties": false
+              "type": "object"
             },
             "insecureSkipVerify": {
               "description": "insecureSkipVerify defines how to disable target certificate validation.",
@@ -1109,8 +1071,7 @@
                 "key"
               ],
               "type": "object",
-              "x-kubernetes-map-type": "atomic",
-              "additionalProperties": false
+              "x-kubernetes-map-type": "atomic"
             },
             "maxVersion": {
               "description": "maxVersion defines the maximum acceptable TLS version.\n\nIt requires Prometheus >= v2.41.0 or Thanos >= v0.31.0.",
@@ -1137,12 +1098,10 @@
               "type": "string"
             }
           },
-          "type": "object",
-          "additionalProperties": false
+          "type": "object"
         }
       },
-      "type": "object",
-      "additionalProperties": false
+      "type": "object"
     },
     "status": {
       "description": "status defines the status subresource. It is under active development and is updated only when the\n\"StatusForConfigurationResources\" feature gate is enabled.\n\nMost recent observed status of the Probe. Read-only.\nMore info:\nhttps://github.com/kubernetes/community/blob/master/contributors/devel/sig-architecture/api-conventions.md#spec-and-status",
@@ -1194,8 +1153,7 @@
                     "status",
                     "type"
                   ],
-                  "type": "object",
-                  "additionalProperties": false
+                  "type": "object"
                 },
                 "type": "array",
                 "x-kubernetes-list-map-keys": [
@@ -1237,8 +1195,7 @@
               "namespace",
               "resource"
             ],
-            "type": "object",
-            "additionalProperties": false
+            "type": "object"
           },
           "type": "array",
           "x-kubernetes-list-map-keys": [
@@ -1250,8 +1207,7 @@
           "x-kubernetes-list-type": "map"
         }
       },
-      "type": "object",
-      "additionalProperties": false
+      "type": "object"
     }
   },
   "required": [

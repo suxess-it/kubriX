@@ -1,0 +1,1229 @@
+{
+  "description": "IdentityProvider is the Schema for the IdentityProviders API.",
+  "properties": {
+    "apiVersion": {
+      "description": "APIVersion defines the versioned schema of this representation of an object.\nServers should convert recognized schemas to the latest internal value, and\nmay reject unrecognized values.\nMore info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources",
+      "type": "string"
+    },
+    "kind": {
+      "description": "Kind is a string value representing the REST resource this object represents.\nServers may infer this from the endpoint the client submits requests to.\nCannot be updated.\nIn CamelCase.\nMore info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
+      "type": "string"
+    },
+    "metadata": {
+      "type": "object"
+    },
+    "spec": {
+      "description": "IdentityProviderSpec defines the desired state of IdentityProvider",
+      "properties": {
+        "deletionPolicy": {
+          "default": "Delete",
+          "description": "DeletionPolicy specifies what will happen to the underlying external\nwhen this managed resource is deleted - either \"Delete\" or \"Orphan\" the\nexternal resource.\nThis field is planned to be deprecated in favor of the ManagementPolicies\nfield in a future release. Currently, both could be set independently and\nnon-default values would be honored if the feature flag is enabled.\nSee the design doc for more information: https://github.com/crossplane/crossplane/blob/499895a25d1a1a0ba1604944ef98ac7a1a71f197/design/design-doc-observe-only-resources.md?plain=1#L223",
+          "enum": [
+            "Orphan",
+            "Delete"
+          ],
+          "type": "string"
+        },
+        "forProvider": {
+          "properties": {
+            "acceptsPromptNoneForwardFromClient": {
+              "description": "When true, the IDP will accept forwarded authentication requests that contain the prompt=none query parameter. Defaults to false.\nThis is just used together with Identity Provider Authenticator or when kc_idp_hint points to this identity provider. In case that client sends a request with prompt=none and user is not yet authenticated, the error will not be directly returned to client, but the request with prompt=none will be forwarded to this identity provider.",
+              "type": "boolean"
+            },
+            "addReadTokenRoleOnCreate": {
+              "description": "When true, new users will be able to read stored tokens. This will automatically assign the broker.read-token role. Defaults to false.\nEnable/disable if new users can read any stored tokens. This assigns the broker.read-token role.",
+              "type": "boolean"
+            },
+            "alias": {
+              "description": "The alias uniquely identifies an identity provider, and it is also used to build the redirect uri.\nThe alias uniquely identifies an identity provider and it is also used to build the redirect uri.",
+              "type": "string"
+            },
+            "authenticateByDefault": {
+              "description": "Enable/disable authenticate users by default.",
+              "type": "boolean"
+            },
+            "authorizationUrl": {
+              "description": "The Authorization Url.\nOIDC authorization URL.",
+              "type": "string"
+            },
+            "backchannelSupported": {
+              "description": "Does the external IDP support backchannel logout? Defaults to true.\nDoes the external IDP support backchannel logout?",
+              "type": "boolean"
+            },
+            "clientIdSecretRef": {
+              "description": "The client or client identifier registered within the identity provider.\nClient ID.",
+              "properties": {
+                "key": {
+                  "description": "The key to select.",
+                  "type": "string"
+                },
+                "name": {
+                  "description": "Name of the secret.",
+                  "type": "string"
+                },
+                "namespace": {
+                  "description": "Namespace of the secret.",
+                  "type": "string"
+                }
+              },
+              "required": [
+                "key",
+                "name",
+                "namespace"
+              ],
+              "type": "object"
+            },
+            "clientSecretSecretRef": {
+              "description": "The client or client secret registered within the identity provider. This field is able to obtain its value from vault, use $${vault.ID} format. Required without client_secret_wo and client_secret_wo_version.\nClient Secret.",
+              "properties": {
+                "key": {
+                  "description": "The key to select.",
+                  "type": "string"
+                },
+                "name": {
+                  "description": "Name of the secret.",
+                  "type": "string"
+                },
+                "namespace": {
+                  "description": "Namespace of the secret.",
+                  "type": "string"
+                }
+              },
+              "required": [
+                "key",
+                "name",
+                "namespace"
+              ],
+              "type": "object"
+            },
+            "clientSecretWoSecretRef": {
+              "description": "The secret for clients with an access_type of CONFIDENTIAL or BEARER-ONLY. If omitted, this will fallback to use client_secret.\nClient Secret as write-only argument",
+              "properties": {
+                "key": {
+                  "description": "The key to select.",
+                  "type": "string"
+                },
+                "name": {
+                  "description": "Name of the secret.",
+                  "type": "string"
+                },
+                "namespace": {
+                  "description": "Namespace of the secret.",
+                  "type": "string"
+                }
+              },
+              "required": [
+                "key",
+                "name",
+                "namespace"
+              ],
+              "type": "object"
+            },
+            "clientSecretWoVersion": {
+              "description": "The value of this argument is stored in the state and plan files. Required when using client_secret_wo.\nVersion of the Client secret write-only argument",
+              "type": "number"
+            },
+            "defaultScopes": {
+              "description": "The scopes to be sent when asking for authorization. It can be a space-separated list of scopes. Defaults to openid.\nThe scopes to be sent when asking for authorization. It can be a space-separated list of scopes. Defaults to 'openid'.",
+              "type": "string"
+            },
+            "disableTypeClaimCheck": {
+              "description": "When true, disables the check for the typ claim of tokens received from the identity provider. Defaults to false.\nDisables the validation of the `typ` claim of tokens received from the Identity Provider. If this is `off` the type claim is validated (default).",
+              "type": "boolean"
+            },
+            "disableUserInfo": {
+              "description": "When true, disables the usage of the user info service to obtain additional user information. Defaults to false.\nDisable usage of User Info service to obtain additional user information?  Default is to use this OIDC service.",
+              "type": "boolean"
+            },
+            "displayName": {
+              "description": "Display name for the identity provider in the GUI.\nThe human-friendly name of the identity provider, used in the log in form.",
+              "type": "string"
+            },
+            "enabled": {
+              "description": "When true, users will be able to log in to this realm using this identity provider. Defaults to true.\nEnable/disable this identity provider.",
+              "type": "boolean"
+            },
+            "extraConfig": {
+              "additionalProperties": {
+                "type": "string"
+              },
+              "description": "A map of key/value pairs to add extra configuration to this identity provider. Use this attribute at your own risk, as custom attributes may conflict with top-level configuration attributes in future provider updates.",
+              "type": "object",
+              "x-kubernetes-map-type": "granular"
+            },
+            "firstBrokerLoginFlowAlias": {
+              "description": "The authentication flow to use when users log in for the first time through this identity provider. Defaults to first broker login.\nAlias of authentication flow, which is triggered after first login with this identity provider. Term 'First Login' means that there is not yet existing Keycloak account linked with the authenticated identity provider account.",
+              "type": "string"
+            },
+            "firstBrokerLoginFlowAliasRef": {
+              "description": "Reference to a Flow in authenticationflow to populate firstBrokerLoginFlowAlias.",
+              "properties": {
+                "name": {
+                  "description": "Name of the referenced object.",
+                  "type": "string"
+                },
+                "policy": {
+                  "description": "Policies for referencing.",
+                  "properties": {
+                    "resolution": {
+                      "default": "Required",
+                      "description": "Resolution specifies whether resolution of this reference is required.\nThe default is 'Required', which means the reconcile will fail if the\nreference cannot be resolved. 'Optional' means this reference will be\na no-op if it cannot be resolved.",
+                      "enum": [
+                        "Required",
+                        "Optional"
+                      ],
+                      "type": "string"
+                    },
+                    "resolve": {
+                      "description": "Resolve specifies when this reference should be resolved. The default\nis 'IfNotPresent', which will attempt to resolve the reference only when\nthe corresponding field is not present. Use 'Always' to resolve the\nreference on every reconcile.",
+                      "enum": [
+                        "Always",
+                        "IfNotPresent"
+                      ],
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                }
+              },
+              "required": [
+                "name"
+              ],
+              "type": "object"
+            },
+            "firstBrokerLoginFlowAliasSelector": {
+              "description": "Selector for a Flow in authenticationflow to populate firstBrokerLoginFlowAlias.",
+              "properties": {
+                "matchControllerRef": {
+                  "description": "MatchControllerRef ensures an object with the same controller reference\nas the selecting object is selected.",
+                  "type": "boolean"
+                },
+                "matchLabels": {
+                  "additionalProperties": {
+                    "type": "string"
+                  },
+                  "description": "MatchLabels ensures an object with matching labels is selected.",
+                  "type": "object"
+                },
+                "policy": {
+                  "description": "Policies for selection.",
+                  "properties": {
+                    "resolution": {
+                      "default": "Required",
+                      "description": "Resolution specifies whether resolution of this reference is required.\nThe default is 'Required', which means the reconcile will fail if the\nreference cannot be resolved. 'Optional' means this reference will be\na no-op if it cannot be resolved.",
+                      "enum": [
+                        "Required",
+                        "Optional"
+                      ],
+                      "type": "string"
+                    },
+                    "resolve": {
+                      "description": "Resolve specifies when this reference should be resolved. The default\nis 'IfNotPresent', which will attempt to resolve the reference only when\nthe corresponding field is not present. Use 'Always' to resolve the\nreference on every reconcile.",
+                      "enum": [
+                        "Always",
+                        "IfNotPresent"
+                      ],
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                }
+              },
+              "type": "object"
+            },
+            "guiOrder": {
+              "description": "A number defining the order of this identity provider in the GUI.\nGUI Order",
+              "type": "string"
+            },
+            "hideOnLoginPage": {
+              "description": "When true, this provider will be hidden on the login page, and is only accessible when requested explicitly. Defaults to false.\nHide On Login Page.",
+              "type": "boolean"
+            },
+            "issuer": {
+              "description": "The issuer identifier for the issuer of the response. If not provided, no validation will be performed.\nThe issuer identifier for the issuer of the response. If not provided, no validation will be performed.",
+              "type": "string"
+            },
+            "jwksUrl": {
+              "description": "JSON Web Key Set URL.\nJSON Web Key Set URL",
+              "type": "string"
+            },
+            "linkOnly": {
+              "description": "When true, users cannot sign-in using this provider, but their existing accounts will be linked when possible. Defaults to false.\nIf true, users cannot log in through this provider.  They can only link to this provider.  This is useful if you don't want to allow login from the provider, but want to integrate with a provider",
+              "type": "boolean"
+            },
+            "loginHint": {
+              "description": "Pass login hint to identity provider.\nLogin Hint.",
+              "type": "string"
+            },
+            "logoutUrl": {
+              "description": "The Logout URL is the end session endpoint to use to sign-out the user from external identity provider.\nLogout URL",
+              "type": "string"
+            },
+            "orgDomain": {
+              "description": "The organization domain to associate this identity provider with. it is used to map users to an organization based on their email domain and to authenticate them accordingly in the scope of the organization.",
+              "type": "string"
+            },
+            "orgRedirectModeEmailMatches": {
+              "description": "Indicates whether to automatically redirect user to this identity provider when email domain matches domain.",
+              "type": "boolean"
+            },
+            "organizationId": {
+              "description": "The ID of the organization to link this identity provider to.\nID of organization with which this identity is linked.",
+              "type": "string"
+            },
+            "organizationIdRef": {
+              "description": "Reference to a Organization in organization to populate organizationId.",
+              "properties": {
+                "name": {
+                  "description": "Name of the referenced object.",
+                  "type": "string"
+                },
+                "policy": {
+                  "description": "Policies for referencing.",
+                  "properties": {
+                    "resolution": {
+                      "default": "Required",
+                      "description": "Resolution specifies whether resolution of this reference is required.\nThe default is 'Required', which means the reconcile will fail if the\nreference cannot be resolved. 'Optional' means this reference will be\na no-op if it cannot be resolved.",
+                      "enum": [
+                        "Required",
+                        "Optional"
+                      ],
+                      "type": "string"
+                    },
+                    "resolve": {
+                      "description": "Resolve specifies when this reference should be resolved. The default\nis 'IfNotPresent', which will attempt to resolve the reference only when\nthe corresponding field is not present. Use 'Always' to resolve the\nreference on every reconcile.",
+                      "enum": [
+                        "Always",
+                        "IfNotPresent"
+                      ],
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                }
+              },
+              "required": [
+                "name"
+              ],
+              "type": "object"
+            },
+            "organizationIdSelector": {
+              "description": "Selector for a Organization in organization to populate organizationId.",
+              "properties": {
+                "matchControllerRef": {
+                  "description": "MatchControllerRef ensures an object with the same controller reference\nas the selecting object is selected.",
+                  "type": "boolean"
+                },
+                "matchLabels": {
+                  "additionalProperties": {
+                    "type": "string"
+                  },
+                  "description": "MatchLabels ensures an object with matching labels is selected.",
+                  "type": "object"
+                },
+                "policy": {
+                  "description": "Policies for selection.",
+                  "properties": {
+                    "resolution": {
+                      "default": "Required",
+                      "description": "Resolution specifies whether resolution of this reference is required.\nThe default is 'Required', which means the reconcile will fail if the\nreference cannot be resolved. 'Optional' means this reference will be\na no-op if it cannot be resolved.",
+                      "enum": [
+                        "Required",
+                        "Optional"
+                      ],
+                      "type": "string"
+                    },
+                    "resolve": {
+                      "description": "Resolve specifies when this reference should be resolved. The default\nis 'IfNotPresent', which will attempt to resolve the reference only when\nthe corresponding field is not present. Use 'Always' to resolve the\nreference on every reconcile.",
+                      "enum": [
+                        "Always",
+                        "IfNotPresent"
+                      ],
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                }
+              },
+              "type": "object"
+            },
+            "postBrokerLoginFlowAlias": {
+              "description": "The authentication flow to use after users have successfully logged in, which can be used to perform additional user verification (such as OTP checking). Defaults to an empty string, which means no post login flow will be used.\nAlias of authentication flow, which is triggered after each login with this identity provider. Useful if you want additional verification of each user authenticated with this identity provider (for example OTP). Leave this empty if you don't want any additional authenticators to be triggered after login with this identity provider. Also note, that authenticator implementations must assume that user is already set in ClientSession as identity provider already set it.",
+              "type": "string"
+            },
+            "providerId": {
+              "description": "The ID of the identity provider to use. Defaults to oidc, which should be used unless you have extended Keycloak and provided your own implementation.\nprovider id, is always oidc, unless you have a custom implementation",
+              "type": "string"
+            },
+            "realm": {
+              "description": "The name of the realm. This is unique across Keycloak.\nRealm Name",
+              "type": "string"
+            },
+            "realmRef": {
+              "description": "Reference to a Realm in realm to populate realm.",
+              "properties": {
+                "name": {
+                  "description": "Name of the referenced object.",
+                  "type": "string"
+                },
+                "policy": {
+                  "description": "Policies for referencing.",
+                  "properties": {
+                    "resolution": {
+                      "default": "Required",
+                      "description": "Resolution specifies whether resolution of this reference is required.\nThe default is 'Required', which means the reconcile will fail if the\nreference cannot be resolved. 'Optional' means this reference will be\na no-op if it cannot be resolved.",
+                      "enum": [
+                        "Required",
+                        "Optional"
+                      ],
+                      "type": "string"
+                    },
+                    "resolve": {
+                      "description": "Resolve specifies when this reference should be resolved. The default\nis 'IfNotPresent', which will attempt to resolve the reference only when\nthe corresponding field is not present. Use 'Always' to resolve the\nreference on every reconcile.",
+                      "enum": [
+                        "Always",
+                        "IfNotPresent"
+                      ],
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                }
+              },
+              "required": [
+                "name"
+              ],
+              "type": "object"
+            },
+            "realmSelector": {
+              "description": "Selector for a Realm in realm to populate realm.",
+              "properties": {
+                "matchControllerRef": {
+                  "description": "MatchControllerRef ensures an object with the same controller reference\nas the selecting object is selected.",
+                  "type": "boolean"
+                },
+                "matchLabels": {
+                  "additionalProperties": {
+                    "type": "string"
+                  },
+                  "description": "MatchLabels ensures an object with matching labels is selected.",
+                  "type": "object"
+                },
+                "policy": {
+                  "description": "Policies for selection.",
+                  "properties": {
+                    "resolution": {
+                      "default": "Required",
+                      "description": "Resolution specifies whether resolution of this reference is required.\nThe default is 'Required', which means the reconcile will fail if the\nreference cannot be resolved. 'Optional' means this reference will be\na no-op if it cannot be resolved.",
+                      "enum": [
+                        "Required",
+                        "Optional"
+                      ],
+                      "type": "string"
+                    },
+                    "resolve": {
+                      "description": "Resolve specifies when this reference should be resolved. The default\nis 'IfNotPresent', which will attempt to resolve the reference only when\nthe corresponding field is not present. Use 'Always' to resolve the\nreference on every reconcile.",
+                      "enum": [
+                        "Always",
+                        "IfNotPresent"
+                      ],
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                }
+              },
+              "type": "object"
+            },
+            "storeToken": {
+              "description": "When true, tokens will be stored after authenticating users. Defaults to true.\nEnable/disable if tokens must be stored after authenticating users.",
+              "type": "boolean"
+            },
+            "syncMode": {
+              "description": "The default sync mode to use for all mappers attached to this identity provider. Can be once of IMPORT, FORCE, or LEGACY.\nSync Mode",
+              "type": "string"
+            },
+            "tokenUrl": {
+              "description": "The Token URL.\nToken URL.",
+              "type": "string"
+            },
+            "trustEmail": {
+              "description": "When true, email addresses for users in this provider will automatically be verified regardless of the realm's email verification policy. Defaults to false.\nIf enabled then email provided by this provider is not verified even if verification is enabled for the realm.",
+              "type": "boolean"
+            },
+            "uiLocales": {
+              "description": "Pass current locale to identity provider. Defaults to false.\nPass current locale to identity provider",
+              "type": "boolean"
+            },
+            "userInfoUrl": {
+              "description": "User Info URL.\nUser Info URL",
+              "type": "string"
+            },
+            "validateSignature": {
+              "description": "Enable/disable signature validation of external IDP signatures. Defaults to false.\nEnable/disable signature validation of external IDP signatures.",
+              "type": "boolean"
+            }
+          },
+          "type": "object"
+        },
+        "initProvider": {
+          "description": "THIS IS A BETA FIELD. It will be honored\nunless the Management Policies feature flag is disabled.\nInitProvider holds the same fields as ForProvider, with the exception\nof Identifier and other resource reference fields. The fields that are\nin InitProvider are merged into ForProvider when the resource is created.\nThe same fields are also added to the terraform ignore_changes hook, to\navoid updating them after creation. This is useful for fields that are\nrequired on creation, but we do not desire to update them after creation,\nfor example because of an external controller is managing them, like an\nautoscaler.",
+          "properties": {
+            "acceptsPromptNoneForwardFromClient": {
+              "description": "When true, the IDP will accept forwarded authentication requests that contain the prompt=none query parameter. Defaults to false.\nThis is just used together with Identity Provider Authenticator or when kc_idp_hint points to this identity provider. In case that client sends a request with prompt=none and user is not yet authenticated, the error will not be directly returned to client, but the request with prompt=none will be forwarded to this identity provider.",
+              "type": "boolean"
+            },
+            "addReadTokenRoleOnCreate": {
+              "description": "When true, new users will be able to read stored tokens. This will automatically assign the broker.read-token role. Defaults to false.\nEnable/disable if new users can read any stored tokens. This assigns the broker.read-token role.",
+              "type": "boolean"
+            },
+            "alias": {
+              "description": "The alias uniquely identifies an identity provider, and it is also used to build the redirect uri.\nThe alias uniquely identifies an identity provider and it is also used to build the redirect uri.",
+              "type": "string"
+            },
+            "authenticateByDefault": {
+              "description": "Enable/disable authenticate users by default.",
+              "type": "boolean"
+            },
+            "authorizationUrl": {
+              "description": "The Authorization Url.\nOIDC authorization URL.",
+              "type": "string"
+            },
+            "backchannelSupported": {
+              "description": "Does the external IDP support backchannel logout? Defaults to true.\nDoes the external IDP support backchannel logout?",
+              "type": "boolean"
+            },
+            "clientIdSecretRef": {
+              "description": "The client or client identifier registered within the identity provider.\nClient ID.",
+              "properties": {
+                "key": {
+                  "description": "The key to select.",
+                  "type": "string"
+                },
+                "name": {
+                  "description": "Name of the secret.",
+                  "type": "string"
+                },
+                "namespace": {
+                  "description": "Namespace of the secret.",
+                  "type": "string"
+                }
+              },
+              "required": [
+                "key",
+                "name",
+                "namespace"
+              ],
+              "type": "object"
+            },
+            "clientSecretSecretRef": {
+              "description": "The client or client secret registered within the identity provider. This field is able to obtain its value from vault, use $${vault.ID} format. Required without client_secret_wo and client_secret_wo_version.\nClient Secret.",
+              "properties": {
+                "key": {
+                  "description": "The key to select.",
+                  "type": "string"
+                },
+                "name": {
+                  "description": "Name of the secret.",
+                  "type": "string"
+                },
+                "namespace": {
+                  "description": "Namespace of the secret.",
+                  "type": "string"
+                }
+              },
+              "required": [
+                "key",
+                "name",
+                "namespace"
+              ],
+              "type": "object"
+            },
+            "clientSecretWoSecretRef": {
+              "description": "The secret for clients with an access_type of CONFIDENTIAL or BEARER-ONLY. If omitted, this will fallback to use client_secret.\nClient Secret as write-only argument",
+              "properties": {
+                "key": {
+                  "description": "The key to select.",
+                  "type": "string"
+                },
+                "name": {
+                  "description": "Name of the secret.",
+                  "type": "string"
+                },
+                "namespace": {
+                  "description": "Namespace of the secret.",
+                  "type": "string"
+                }
+              },
+              "required": [
+                "key",
+                "name",
+                "namespace"
+              ],
+              "type": "object"
+            },
+            "clientSecretWoVersion": {
+              "description": "The value of this argument is stored in the state and plan files. Required when using client_secret_wo.\nVersion of the Client secret write-only argument",
+              "type": "number"
+            },
+            "defaultScopes": {
+              "description": "The scopes to be sent when asking for authorization. It can be a space-separated list of scopes. Defaults to openid.\nThe scopes to be sent when asking for authorization. It can be a space-separated list of scopes. Defaults to 'openid'.",
+              "type": "string"
+            },
+            "disableTypeClaimCheck": {
+              "description": "When true, disables the check for the typ claim of tokens received from the identity provider. Defaults to false.\nDisables the validation of the `typ` claim of tokens received from the Identity Provider. If this is `off` the type claim is validated (default).",
+              "type": "boolean"
+            },
+            "disableUserInfo": {
+              "description": "When true, disables the usage of the user info service to obtain additional user information. Defaults to false.\nDisable usage of User Info service to obtain additional user information?  Default is to use this OIDC service.",
+              "type": "boolean"
+            },
+            "displayName": {
+              "description": "Display name for the identity provider in the GUI.\nThe human-friendly name of the identity provider, used in the log in form.",
+              "type": "string"
+            },
+            "enabled": {
+              "description": "When true, users will be able to log in to this realm using this identity provider. Defaults to true.\nEnable/disable this identity provider.",
+              "type": "boolean"
+            },
+            "extraConfig": {
+              "additionalProperties": {
+                "type": "string"
+              },
+              "description": "A map of key/value pairs to add extra configuration to this identity provider. Use this attribute at your own risk, as custom attributes may conflict with top-level configuration attributes in future provider updates.",
+              "type": "object",
+              "x-kubernetes-map-type": "granular"
+            },
+            "firstBrokerLoginFlowAlias": {
+              "description": "The authentication flow to use when users log in for the first time through this identity provider. Defaults to first broker login.\nAlias of authentication flow, which is triggered after first login with this identity provider. Term 'First Login' means that there is not yet existing Keycloak account linked with the authenticated identity provider account.",
+              "type": "string"
+            },
+            "firstBrokerLoginFlowAliasRef": {
+              "description": "Reference to a Flow in authenticationflow to populate firstBrokerLoginFlowAlias.",
+              "properties": {
+                "name": {
+                  "description": "Name of the referenced object.",
+                  "type": "string"
+                },
+                "policy": {
+                  "description": "Policies for referencing.",
+                  "properties": {
+                    "resolution": {
+                      "default": "Required",
+                      "description": "Resolution specifies whether resolution of this reference is required.\nThe default is 'Required', which means the reconcile will fail if the\nreference cannot be resolved. 'Optional' means this reference will be\na no-op if it cannot be resolved.",
+                      "enum": [
+                        "Required",
+                        "Optional"
+                      ],
+                      "type": "string"
+                    },
+                    "resolve": {
+                      "description": "Resolve specifies when this reference should be resolved. The default\nis 'IfNotPresent', which will attempt to resolve the reference only when\nthe corresponding field is not present. Use 'Always' to resolve the\nreference on every reconcile.",
+                      "enum": [
+                        "Always",
+                        "IfNotPresent"
+                      ],
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                }
+              },
+              "required": [
+                "name"
+              ],
+              "type": "object"
+            },
+            "firstBrokerLoginFlowAliasSelector": {
+              "description": "Selector for a Flow in authenticationflow to populate firstBrokerLoginFlowAlias.",
+              "properties": {
+                "matchControllerRef": {
+                  "description": "MatchControllerRef ensures an object with the same controller reference\nas the selecting object is selected.",
+                  "type": "boolean"
+                },
+                "matchLabels": {
+                  "additionalProperties": {
+                    "type": "string"
+                  },
+                  "description": "MatchLabels ensures an object with matching labels is selected.",
+                  "type": "object"
+                },
+                "policy": {
+                  "description": "Policies for selection.",
+                  "properties": {
+                    "resolution": {
+                      "default": "Required",
+                      "description": "Resolution specifies whether resolution of this reference is required.\nThe default is 'Required', which means the reconcile will fail if the\nreference cannot be resolved. 'Optional' means this reference will be\na no-op if it cannot be resolved.",
+                      "enum": [
+                        "Required",
+                        "Optional"
+                      ],
+                      "type": "string"
+                    },
+                    "resolve": {
+                      "description": "Resolve specifies when this reference should be resolved. The default\nis 'IfNotPresent', which will attempt to resolve the reference only when\nthe corresponding field is not present. Use 'Always' to resolve the\nreference on every reconcile.",
+                      "enum": [
+                        "Always",
+                        "IfNotPresent"
+                      ],
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                }
+              },
+              "type": "object"
+            },
+            "guiOrder": {
+              "description": "A number defining the order of this identity provider in the GUI.\nGUI Order",
+              "type": "string"
+            },
+            "hideOnLoginPage": {
+              "description": "When true, this provider will be hidden on the login page, and is only accessible when requested explicitly. Defaults to false.\nHide On Login Page.",
+              "type": "boolean"
+            },
+            "issuer": {
+              "description": "The issuer identifier for the issuer of the response. If not provided, no validation will be performed.\nThe issuer identifier for the issuer of the response. If not provided, no validation will be performed.",
+              "type": "string"
+            },
+            "jwksUrl": {
+              "description": "JSON Web Key Set URL.\nJSON Web Key Set URL",
+              "type": "string"
+            },
+            "linkOnly": {
+              "description": "When true, users cannot sign-in using this provider, but their existing accounts will be linked when possible. Defaults to false.\nIf true, users cannot log in through this provider.  They can only link to this provider.  This is useful if you don't want to allow login from the provider, but want to integrate with a provider",
+              "type": "boolean"
+            },
+            "loginHint": {
+              "description": "Pass login hint to identity provider.\nLogin Hint.",
+              "type": "string"
+            },
+            "logoutUrl": {
+              "description": "The Logout URL is the end session endpoint to use to sign-out the user from external identity provider.\nLogout URL",
+              "type": "string"
+            },
+            "orgDomain": {
+              "description": "The organization domain to associate this identity provider with. it is used to map users to an organization based on their email domain and to authenticate them accordingly in the scope of the organization.",
+              "type": "string"
+            },
+            "orgRedirectModeEmailMatches": {
+              "description": "Indicates whether to automatically redirect user to this identity provider when email domain matches domain.",
+              "type": "boolean"
+            },
+            "organizationId": {
+              "description": "The ID of the organization to link this identity provider to.\nID of organization with which this identity is linked.",
+              "type": "string"
+            },
+            "organizationIdRef": {
+              "description": "Reference to a Organization in organization to populate organizationId.",
+              "properties": {
+                "name": {
+                  "description": "Name of the referenced object.",
+                  "type": "string"
+                },
+                "policy": {
+                  "description": "Policies for referencing.",
+                  "properties": {
+                    "resolution": {
+                      "default": "Required",
+                      "description": "Resolution specifies whether resolution of this reference is required.\nThe default is 'Required', which means the reconcile will fail if the\nreference cannot be resolved. 'Optional' means this reference will be\na no-op if it cannot be resolved.",
+                      "enum": [
+                        "Required",
+                        "Optional"
+                      ],
+                      "type": "string"
+                    },
+                    "resolve": {
+                      "description": "Resolve specifies when this reference should be resolved. The default\nis 'IfNotPresent', which will attempt to resolve the reference only when\nthe corresponding field is not present. Use 'Always' to resolve the\nreference on every reconcile.",
+                      "enum": [
+                        "Always",
+                        "IfNotPresent"
+                      ],
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                }
+              },
+              "required": [
+                "name"
+              ],
+              "type": "object"
+            },
+            "organizationIdSelector": {
+              "description": "Selector for a Organization in organization to populate organizationId.",
+              "properties": {
+                "matchControllerRef": {
+                  "description": "MatchControllerRef ensures an object with the same controller reference\nas the selecting object is selected.",
+                  "type": "boolean"
+                },
+                "matchLabels": {
+                  "additionalProperties": {
+                    "type": "string"
+                  },
+                  "description": "MatchLabels ensures an object with matching labels is selected.",
+                  "type": "object"
+                },
+                "policy": {
+                  "description": "Policies for selection.",
+                  "properties": {
+                    "resolution": {
+                      "default": "Required",
+                      "description": "Resolution specifies whether resolution of this reference is required.\nThe default is 'Required', which means the reconcile will fail if the\nreference cannot be resolved. 'Optional' means this reference will be\na no-op if it cannot be resolved.",
+                      "enum": [
+                        "Required",
+                        "Optional"
+                      ],
+                      "type": "string"
+                    },
+                    "resolve": {
+                      "description": "Resolve specifies when this reference should be resolved. The default\nis 'IfNotPresent', which will attempt to resolve the reference only when\nthe corresponding field is not present. Use 'Always' to resolve the\nreference on every reconcile.",
+                      "enum": [
+                        "Always",
+                        "IfNotPresent"
+                      ],
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                }
+              },
+              "type": "object"
+            },
+            "postBrokerLoginFlowAlias": {
+              "description": "The authentication flow to use after users have successfully logged in, which can be used to perform additional user verification (such as OTP checking). Defaults to an empty string, which means no post login flow will be used.\nAlias of authentication flow, which is triggered after each login with this identity provider. Useful if you want additional verification of each user authenticated with this identity provider (for example OTP). Leave this empty if you don't want any additional authenticators to be triggered after login with this identity provider. Also note, that authenticator implementations must assume that user is already set in ClientSession as identity provider already set it.",
+              "type": "string"
+            },
+            "providerId": {
+              "description": "The ID of the identity provider to use. Defaults to oidc, which should be used unless you have extended Keycloak and provided your own implementation.\nprovider id, is always oidc, unless you have a custom implementation",
+              "type": "string"
+            },
+            "realm": {
+              "description": "The name of the realm. This is unique across Keycloak.\nRealm Name",
+              "type": "string"
+            },
+            "realmRef": {
+              "description": "Reference to a Realm in realm to populate realm.",
+              "properties": {
+                "name": {
+                  "description": "Name of the referenced object.",
+                  "type": "string"
+                },
+                "policy": {
+                  "description": "Policies for referencing.",
+                  "properties": {
+                    "resolution": {
+                      "default": "Required",
+                      "description": "Resolution specifies whether resolution of this reference is required.\nThe default is 'Required', which means the reconcile will fail if the\nreference cannot be resolved. 'Optional' means this reference will be\na no-op if it cannot be resolved.",
+                      "enum": [
+                        "Required",
+                        "Optional"
+                      ],
+                      "type": "string"
+                    },
+                    "resolve": {
+                      "description": "Resolve specifies when this reference should be resolved. The default\nis 'IfNotPresent', which will attempt to resolve the reference only when\nthe corresponding field is not present. Use 'Always' to resolve the\nreference on every reconcile.",
+                      "enum": [
+                        "Always",
+                        "IfNotPresent"
+                      ],
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                }
+              },
+              "required": [
+                "name"
+              ],
+              "type": "object"
+            },
+            "realmSelector": {
+              "description": "Selector for a Realm in realm to populate realm.",
+              "properties": {
+                "matchControllerRef": {
+                  "description": "MatchControllerRef ensures an object with the same controller reference\nas the selecting object is selected.",
+                  "type": "boolean"
+                },
+                "matchLabels": {
+                  "additionalProperties": {
+                    "type": "string"
+                  },
+                  "description": "MatchLabels ensures an object with matching labels is selected.",
+                  "type": "object"
+                },
+                "policy": {
+                  "description": "Policies for selection.",
+                  "properties": {
+                    "resolution": {
+                      "default": "Required",
+                      "description": "Resolution specifies whether resolution of this reference is required.\nThe default is 'Required', which means the reconcile will fail if the\nreference cannot be resolved. 'Optional' means this reference will be\na no-op if it cannot be resolved.",
+                      "enum": [
+                        "Required",
+                        "Optional"
+                      ],
+                      "type": "string"
+                    },
+                    "resolve": {
+                      "description": "Resolve specifies when this reference should be resolved. The default\nis 'IfNotPresent', which will attempt to resolve the reference only when\nthe corresponding field is not present. Use 'Always' to resolve the\nreference on every reconcile.",
+                      "enum": [
+                        "Always",
+                        "IfNotPresent"
+                      ],
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                }
+              },
+              "type": "object"
+            },
+            "storeToken": {
+              "description": "When true, tokens will be stored after authenticating users. Defaults to true.\nEnable/disable if tokens must be stored after authenticating users.",
+              "type": "boolean"
+            },
+            "syncMode": {
+              "description": "The default sync mode to use for all mappers attached to this identity provider. Can be once of IMPORT, FORCE, or LEGACY.\nSync Mode",
+              "type": "string"
+            },
+            "tokenUrl": {
+              "description": "The Token URL.\nToken URL.",
+              "type": "string"
+            },
+            "trustEmail": {
+              "description": "When true, email addresses for users in this provider will automatically be verified regardless of the realm's email verification policy. Defaults to false.\nIf enabled then email provided by this provider is not verified even if verification is enabled for the realm.",
+              "type": "boolean"
+            },
+            "uiLocales": {
+              "description": "Pass current locale to identity provider. Defaults to false.\nPass current locale to identity provider",
+              "type": "boolean"
+            },
+            "userInfoUrl": {
+              "description": "User Info URL.\nUser Info URL",
+              "type": "string"
+            },
+            "validateSignature": {
+              "description": "Enable/disable signature validation of external IDP signatures. Defaults to false.\nEnable/disable signature validation of external IDP signatures.",
+              "type": "boolean"
+            }
+          },
+          "required": [
+            "clientIdSecretRef"
+          ],
+          "type": "object"
+        },
+        "managementPolicies": {
+          "default": [
+            "*"
+          ],
+          "description": "THIS IS A BETA FIELD. It is on by default but can be opted out\nthrough a Crossplane feature flag.\nManagementPolicies specify the array of actions Crossplane is allowed to\ntake on the managed and external resources.\nThis field is planned to replace the DeletionPolicy field in a future\nrelease. Currently, both could be set independently and non-default\nvalues would be honored if the feature flag is enabled. If both are\ncustom, the DeletionPolicy field will be ignored.\nSee the design doc for more information: https://github.com/crossplane/crossplane/blob/499895a25d1a1a0ba1604944ef98ac7a1a71f197/design/design-doc-observe-only-resources.md?plain=1#L223\nand this one: https://github.com/crossplane/crossplane/blob/444267e84783136daa93568b364a5f01228cacbe/design/one-pager-ignore-changes.md",
+          "items": {
+            "description": "A ManagementAction represents an action that the Crossplane controllers\ncan take on an external resource.",
+            "enum": [
+              "Observe",
+              "Create",
+              "Update",
+              "Delete",
+              "LateInitialize",
+              "*"
+            ],
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "providerConfigRef": {
+          "default": {
+            "name": "default"
+          },
+          "description": "ProviderConfigReference specifies how the provider that will be used to\ncreate, observe, update, and delete this managed resource should be\nconfigured.",
+          "properties": {
+            "name": {
+              "description": "Name of the referenced object.",
+              "type": "string"
+            },
+            "policy": {
+              "description": "Policies for referencing.",
+              "properties": {
+                "resolution": {
+                  "default": "Required",
+                  "description": "Resolution specifies whether resolution of this reference is required.\nThe default is 'Required', which means the reconcile will fail if the\nreference cannot be resolved. 'Optional' means this reference will be\na no-op if it cannot be resolved.",
+                  "enum": [
+                    "Required",
+                    "Optional"
+                  ],
+                  "type": "string"
+                },
+                "resolve": {
+                  "description": "Resolve specifies when this reference should be resolved. The default\nis 'IfNotPresent', which will attempt to resolve the reference only when\nthe corresponding field is not present. Use 'Always' to resolve the\nreference on every reconcile.",
+                  "enum": [
+                    "Always",
+                    "IfNotPresent"
+                  ],
+                  "type": "string"
+                }
+              },
+              "type": "object"
+            }
+          },
+          "required": [
+            "name"
+          ],
+          "type": "object"
+        },
+        "writeConnectionSecretToRef": {
+          "description": "WriteConnectionSecretToReference specifies the namespace and name of a\nSecret to which any connection details for this managed resource should\nbe written. Connection details frequently include the endpoint, username,\nand password required to connect to the managed resource.",
+          "properties": {
+            "name": {
+              "description": "Name of the secret.",
+              "type": "string"
+            },
+            "namespace": {
+              "description": "Namespace of the secret.",
+              "type": "string"
+            }
+          },
+          "required": [
+            "name",
+            "namespace"
+          ],
+          "type": "object"
+        }
+      },
+      "required": [
+        "forProvider"
+      ],
+      "type": "object",
+      "x-kubernetes-validations": [
+        {
+          "message": "spec.forProvider.alias is a required parameter",
+          "rule": "!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.alias) || (has(self.initProvider) && has(self.initProvider.alias))"
+        },
+        {
+          "message": "spec.forProvider.authorizationUrl is a required parameter",
+          "rule": "!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.authorizationUrl) || (has(self.initProvider) && has(self.initProvider.authorizationUrl))"
+        },
+        {
+          "message": "spec.forProvider.clientIdSecretRef is a required parameter",
+          "rule": "!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.clientIdSecretRef)"
+        },
+        {
+          "message": "spec.forProvider.tokenUrl is a required parameter",
+          "rule": "!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.tokenUrl) || (has(self.initProvider) && has(self.initProvider.tokenUrl))"
+        }
+      ]
+    },
+    "status": {
+      "description": "IdentityProviderStatus defines the observed state of IdentityProvider.",
+      "properties": {
+        "atProvider": {
+          "properties": {
+            "acceptsPromptNoneForwardFromClient": {
+              "description": "When true, the IDP will accept forwarded authentication requests that contain the prompt=none query parameter. Defaults to false.\nThis is just used together with Identity Provider Authenticator or when kc_idp_hint points to this identity provider. In case that client sends a request with prompt=none and user is not yet authenticated, the error will not be directly returned to client, but the request with prompt=none will be forwarded to this identity provider.",
+              "type": "boolean"
+            },
+            "addReadTokenRoleOnCreate": {
+              "description": "When true, new users will be able to read stored tokens. This will automatically assign the broker.read-token role. Defaults to false.\nEnable/disable if new users can read any stored tokens. This assigns the broker.read-token role.",
+              "type": "boolean"
+            },
+            "alias": {
+              "description": "The alias uniquely identifies an identity provider, and it is also used to build the redirect uri.\nThe alias uniquely identifies an identity provider and it is also used to build the redirect uri.",
+              "type": "string"
+            },
+            "authenticateByDefault": {
+              "description": "Enable/disable authenticate users by default.",
+              "type": "boolean"
+            },
+            "authorizationUrl": {
+              "description": "The Authorization Url.\nOIDC authorization URL.",
+              "type": "string"
+            },
+            "backchannelSupported": {
+              "description": "Does the external IDP support backchannel logout? Defaults to true.\nDoes the external IDP support backchannel logout?",
+              "type": "boolean"
+            },
+            "clientSecretWoVersion": {
+              "description": "The value of this argument is stored in the state and plan files. Required when using client_secret_wo.\nVersion of the Client secret write-only argument",
+              "type": "number"
+            },
+            "defaultScopes": {
+              "description": "The scopes to be sent when asking for authorization. It can be a space-separated list of scopes. Defaults to openid.\nThe scopes to be sent when asking for authorization. It can be a space-separated list of scopes. Defaults to 'openid'.",
+              "type": "string"
+            },
+            "disableTypeClaimCheck": {
+              "description": "When true, disables the check for the typ claim of tokens received from the identity provider. Defaults to false.\nDisables the validation of the `typ` claim of tokens received from the Identity Provider. If this is `off` the type claim is validated (default).",
+              "type": "boolean"
+            },
+            "disableUserInfo": {
+              "description": "When true, disables the usage of the user info service to obtain additional user information. Defaults to false.\nDisable usage of User Info service to obtain additional user information?  Default is to use this OIDC service.",
+              "type": "boolean"
+            },
+            "displayName": {
+              "description": "Display name for the identity provider in the GUI.\nThe human-friendly name of the identity provider, used in the log in form.",
+              "type": "string"
+            },
+            "enabled": {
+              "description": "When true, users will be able to log in to this realm using this identity provider. Defaults to true.\nEnable/disable this identity provider.",
+              "type": "boolean"
+            },
+            "extraConfig": {
+              "additionalProperties": {
+                "type": "string"
+              },
+              "description": "A map of key/value pairs to add extra configuration to this identity provider. Use this attribute at your own risk, as custom attributes may conflict with top-level configuration attributes in future provider updates.",
+              "type": "object",
+              "x-kubernetes-map-type": "granular"
+            },
+            "firstBrokerLoginFlowAlias": {
+              "description": "The authentication flow to use when users log in for the first time through this identity provider. Defaults to first broker login.\nAlias of authentication flow, which is triggered after first login with this identity provider. Term 'First Login' means that there is not yet existing Keycloak account linked with the authenticated identity provider account.",
+              "type": "string"
+            },
+            "guiOrder": {
+              "description": "A number defining the order of this identity provider in the GUI.\nGUI Order",
+              "type": "string"
+            },
+            "hideOnLoginPage": {
+              "description": "When true, this provider will be hidden on the login page, and is only accessible when requested explicitly. Defaults to false.\nHide On Login Page.",
+              "type": "boolean"
+            },
+            "id": {
+              "type": "string"
+            },
+            "internalId": {
+              "description": "(Computed) The unique ID that Keycloak assigns to the identity provider upon creation.\nInternal Identity Provider Id",
+              "type": "string"
+            },
+            "issuer": {
+              "description": "The issuer identifier for the issuer of the response. If not provided, no validation will be performed.\nThe issuer identifier for the issuer of the response. If not provided, no validation will be performed.",
+              "type": "string"
+            },
+            "jwksUrl": {
+              "description": "JSON Web Key Set URL.\nJSON Web Key Set URL",
+              "type": "string"
+            },
+            "linkOnly": {
+              "description": "When true, users cannot sign-in using this provider, but their existing accounts will be linked when possible. Defaults to false.\nIf true, users cannot log in through this provider.  They can only link to this provider.  This is useful if you don't want to allow login from the provider, but want to integrate with a provider",
+              "type": "boolean"
+            },
+            "loginHint": {
+              "description": "Pass login hint to identity provider.\nLogin Hint.",
+              "type": "string"
+            },
+            "logoutUrl": {
+              "description": "The Logout URL is the end session endpoint to use to sign-out the user from external identity provider.\nLogout URL",
+              "type": "string"
+            },
+            "orgDomain": {
+              "description": "The organization domain to associate this identity provider with. it is used to map users to an organization based on their email domain and to authenticate them accordingly in the scope of the organization.",
+              "type": "string"
+            },
+            "orgRedirectModeEmailMatches": {
+              "description": "Indicates whether to automatically redirect user to this identity provider when email domain matches domain.",
+              "type": "boolean"
+            },
+            "organizationId": {
+              "description": "The ID of the organization to link this identity provider to.\nID of organization with which this identity is linked.",
+              "type": "string"
+            },
+            "postBrokerLoginFlowAlias": {
+              "description": "The authentication flow to use after users have successfully logged in, which can be used to perform additional user verification (such as OTP checking). Defaults to an empty string, which means no post login flow will be used.\nAlias of authentication flow, which is triggered after each login with this identity provider. Useful if you want additional verification of each user authenticated with this identity provider (for example OTP). Leave this empty if you don't want any additional authenticators to be triggered after login with this identity provider. Also note, that authenticator implementations must assume that user is already set in ClientSession as identity provider already set it.",
+              "type": "string"
+            },
+            "providerId": {
+              "description": "The ID of the identity provider to use. Defaults to oidc, which should be used unless you have extended Keycloak and provided your own implementation.\nprovider id, is always oidc, unless you have a custom implementation",
+              "type": "string"
+            },
+            "realm": {
+              "description": "The name of the realm. This is unique across Keycloak.\nRealm Name",
+              "type": "string"
+            },
+            "storeToken": {
+              "description": "When true, tokens will be stored after authenticating users. Defaults to true.\nEnable/disable if tokens must be stored after authenticating users.",
+              "type": "boolean"
+            },
+            "syncMode": {
+              "description": "The default sync mode to use for all mappers attached to this identity provider. Can be once of IMPORT, FORCE, or LEGACY.\nSync Mode",
+              "type": "string"
+            },
+            "tokenUrl": {
+              "description": "The Token URL.\nToken URL.",
+              "type": "string"
+            },
+            "trustEmail": {
+              "description": "When true, email addresses for users in this provider will automatically be verified regardless of the realm's email verification policy. Defaults to false.\nIf enabled then email provided by this provider is not verified even if verification is enabled for the realm.",
+              "type": "boolean"
+            },
+            "uiLocales": {
+              "description": "Pass current locale to identity provider. Defaults to false.\nPass current locale to identity provider",
+              "type": "boolean"
+            },
+            "userInfoUrl": {
+              "description": "User Info URL.\nUser Info URL",
+              "type": "string"
+            },
+            "validateSignature": {
+              "description": "Enable/disable signature validation of external IDP signatures. Defaults to false.\nEnable/disable signature validation of external IDP signatures.",
+              "type": "boolean"
+            }
+          },
+          "type": "object"
+        },
+        "conditions": {
+          "description": "Conditions of the resource.",
+          "items": {
+            "description": "A Condition that may apply to a resource.",
+            "properties": {
+              "lastTransitionTime": {
+                "description": "LastTransitionTime is the last time this condition transitioned from one\nstatus to another.",
+                "format": "date-time",
+                "type": "string"
+              },
+              "message": {
+                "description": "A Message containing details about this condition's last transition from\none status to another, if any.",
+                "type": "string"
+              },
+              "observedGeneration": {
+                "description": "ObservedGeneration represents the .metadata.generation that the condition was set based upon.\nFor instance, if .metadata.generation is currently 12, but the .status.conditions[x].observedGeneration is 9, the condition is out of date\nwith respect to the current state of the instance.",
+                "format": "int64",
+                "type": "integer"
+              },
+              "reason": {
+                "description": "A Reason for this condition's last transition from one status to another.",
+                "type": "string"
+              },
+              "status": {
+                "description": "Status of this condition; is it currently True, False, or Unknown?",
+                "type": "string"
+              },
+              "type": {
+                "description": "Type of this condition. At most one of each condition type may apply to\na resource at any point in time.",
+                "type": "string"
+              }
+            },
+            "required": [
+              "lastTransitionTime",
+              "reason",
+              "status",
+              "type"
+            ],
+            "type": "object"
+          },
+          "type": "array",
+          "x-kubernetes-list-map-keys": [
+            "type"
+          ],
+          "x-kubernetes-list-type": "map"
+        },
+        "observedGeneration": {
+          "description": "ObservedGeneration is the latest metadata.generation\nwhich resulted in either a ready state, or stalled due to error\nit can not recover from without human intervention.",
+          "format": "int64",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    }
+  },
+  "required": [
+    "spec"
+  ],
+  "type": "object"
+}

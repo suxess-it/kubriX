@@ -37,8 +37,7 @@
               "required": [
                 "name"
               ],
-              "type": "object",
-              "additionalProperties": false
+              "type": "object"
             },
             "resourceSelector": {
               "description": "Selector to the resource.\nThis field will be ignored if ResourceRef is set.",
@@ -55,8 +54,7 @@
                   "type": "object"
                 }
               },
-              "type": "object",
-              "additionalProperties": false
+              "type": "object"
             }
           },
           "type": "object",
@@ -65,8 +63,7 @@
               "message": "either a resource reference or a resource selector should be set.",
               "rule": "has(self.resourceRef) || has(self.resourceSelector)"
             }
-          ],
-          "additionalProperties": false
+          ]
         },
         "of": {
           "description": "Of is the resource that is \"being used\".",
@@ -90,8 +87,7 @@
               "required": [
                 "name"
               ],
-              "type": "object",
-              "additionalProperties": false
+              "type": "object"
             },
             "resourceSelector": {
               "description": "Selector to the resource.\nThis field will be ignored if ResourceRef is set.",
@@ -108,8 +104,7 @@
                   "type": "object"
                 }
               },
-              "type": "object",
-              "additionalProperties": false
+              "type": "object"
             }
           },
           "type": "object",
@@ -118,8 +113,7 @@
               "message": "either a resource reference or a resource selector should be set.",
               "rule": "has(self.resourceRef) || has(self.resourceSelector)"
             }
-          ],
-          "additionalProperties": false
+          ]
         },
         "reason": {
           "description": "Reason is the reason for blocking deletion of the resource.",
@@ -139,8 +133,7 @@
           "message": "either \"spec.by\" or \"spec.reason\" must be specified.",
           "rule": "has(self.by) || has(self.reason)"
         }
-      ],
-      "additionalProperties": false
+      ]
     },
     "status": {
       "description": "UsageStatus defines the observed state of Usage.",
@@ -183,8 +176,7 @@
               "status",
               "type"
             ],
-            "type": "object",
-            "additionalProperties": false
+            "type": "object"
           },
           "type": "array",
           "x-kubernetes-list-map-keys": [
@@ -193,8 +185,7 @@
           "x-kubernetes-list-type": "map"
         }
       },
-      "type": "object",
-      "additionalProperties": false
+      "type": "object"
     }
   },
   "required": [

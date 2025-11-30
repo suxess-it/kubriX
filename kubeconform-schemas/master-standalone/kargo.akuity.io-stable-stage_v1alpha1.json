@@ -55,8 +55,7 @@
                             "type": "string"
                           }
                         },
-                        "type": "object",
-                        "additionalProperties": false
+                        "type": "object"
                       },
                       "task": {
                         "description": "Task is a reference to a PromotionTask that should be inflated into a\nPromotion when it is built from a PromotionTemplate.",
@@ -80,8 +79,7 @@
                         "required": [
                           "name"
                         ],
-                        "type": "object",
-                        "additionalProperties": false
+                        "type": "object"
                       },
                       "uses": {
                         "description": "Uses identifies a runner that can execute this step.",
@@ -107,8 +105,7 @@
                           "required": [
                             "name"
                           ],
-                          "type": "object",
-                          "additionalProperties": false
+                          "type": "object"
                         },
                         "type": "array"
                       }
@@ -127,8 +124,7 @@
                         "message": "PromotionTemplate step referencing a task cannot set retry",
                         "rule": "!has(self.task) || !has(self.retry)"
                       }
-                    ],
-                    "additionalProperties": false
+                    ]
                   },
                   "minItems": 1,
                   "type": "array"
@@ -152,21 +148,18 @@
                     "required": [
                       "name"
                     ],
-                    "type": "object",
-                    "additionalProperties": false
+                    "type": "object"
                   },
                   "type": "array"
                 }
               },
-              "type": "object",
-              "additionalProperties": false
+              "type": "object"
             }
           },
           "required": [
             "spec"
           ],
-          "type": "object",
-          "additionalProperties": false
+          "type": "object"
         },
         "requestedFreight": {
           "description": "RequestedFreight expresses the Stage's need for certain pieces of Freight,\neach having originated from a particular Warehouse. This list must be\nnon-empty. In the common case, a Stage will request Freight having\noriginated from just one specific Warehouse. In advanced cases, requesting\nFreight from multiple Warehouses provides a method of advancing new\nartifacts of different types through parallel pipelines at different\nspeeds. This can be useful, for instance, if a Stage is home to multiple\nmicroservices that are independently versioned.",
@@ -192,8 +185,7 @@
                   "kind",
                   "name"
                 ],
-                "type": "object",
-                "additionalProperties": false
+                "type": "object"
               },
               "sources": {
                 "description": "Sources describes where the requested Freight may be obtained from. This is\na required field.",
@@ -210,8 +202,7 @@
                         "type": "string"
                       }
                     },
-                    "type": "object",
-                    "additionalProperties": false
+                    "type": "object"
                   },
                   "availabilityStrategy": {
                     "description": "AvailabilityStrategy specifies the semantics for how requested Freight is\nmade available to the Stage. This field is optional. When left unspecified,\nthe field is implicitly treated as if its value were \"OneOf\".\n\nAccepted Values:\n\n- \"All\": Freight must be verified and, if applicable, soaked in all\n  upstream Stages to be considered available for promotion.\n- \"OneOf\": Freight must be verified and, if applicable, soaked in at least\n   one upstream Stage to be considered available for promotion.\n- \"\": Treated the same as \"OneOf\".",
@@ -239,16 +230,14 @@
                     "type": "array"
                   }
                 },
-                "type": "object",
-                "additionalProperties": false
+                "type": "object"
               }
             },
             "required": [
               "origin",
               "sources"
             ],
-            "type": "object",
-            "additionalProperties": false
+            "type": "object"
           },
           "minItems": 1,
           "type": "array"
@@ -276,8 +265,7 @@
             "required": [
               "name"
             ],
-            "type": "object",
-            "additionalProperties": false
+            "type": "object"
           },
           "type": "array"
         },
@@ -302,8 +290,7 @@
                   "type": "object"
                 }
               },
-              "type": "object",
-              "additionalProperties": false
+              "type": "object"
             },
             "analysisTemplates": {
               "description": "AnalysisTemplates is a list of AnalysisTemplates from which AnalysisRuns\nshould be created to verify a Stage's current Freight is fit to be promoted\ndownstream.",
@@ -326,8 +313,7 @@
                 "required": [
                   "name"
                 ],
-                "type": "object",
-                "additionalProperties": false
+                "type": "object"
               },
               "type": "array"
             },
@@ -349,21 +335,18 @@
                   "name",
                   "value"
                 ],
-                "type": "object",
-                "additionalProperties": false
+                "type": "object"
               },
               "type": "array"
             }
           },
-          "type": "object",
-          "additionalProperties": false
+          "type": "object"
         }
       },
       "required": [
         "requestedFreight"
       ],
-      "type": "object",
-      "additionalProperties": false
+      "type": "object"
     },
     "status": {
       "description": "Status describes the Stage's current and recent Freight, health, and more.",
@@ -423,8 +406,7 @@
               "status",
               "type"
             ],
-            "type": "object",
-            "additionalProperties": false
+            "type": "object"
           },
           "type": "array",
           "x-kubernetes-list-map-keys": [
@@ -461,8 +443,7 @@
                         "type": "string"
                       }
                     },
-                    "type": "object",
-                    "additionalProperties": false
+                    "type": "object"
                   },
                   "type": "array"
                 },
@@ -500,8 +481,7 @@
                         "type": "string"
                       }
                     },
-                    "type": "object",
-                    "additionalProperties": false
+                    "type": "object"
                   },
                   "type": "array"
                 },
@@ -530,8 +510,7 @@
                         "type": "string"
                       }
                     },
-                    "type": "object",
-                    "additionalProperties": false
+                    "type": "object"
                   },
                   "type": "array"
                 },
@@ -558,12 +537,10 @@
                     "kind",
                     "name"
                   ],
-                  "type": "object",
-                  "additionalProperties": false
+                  "type": "object"
                 }
               },
-              "type": "object",
-              "additionalProperties": false
+              "type": "object"
             },
             "name": {
               "description": "Name is the name of the Promotion.",
@@ -603,8 +580,7 @@
                             "type": "string"
                           }
                         },
-                        "type": "object",
-                        "additionalProperties": false
+                        "type": "object"
                       },
                       "type": "array"
                     },
@@ -642,8 +618,7 @@
                             "type": "string"
                           }
                         },
-                        "type": "object",
-                        "additionalProperties": false
+                        "type": "object"
                       },
                       "type": "array"
                     },
@@ -672,8 +647,7 @@
                             "type": "string"
                           }
                         },
-                        "type": "object",
-                        "additionalProperties": false
+                        "type": "object"
                       },
                       "type": "array"
                     },
@@ -700,12 +674,10 @@
                         "kind",
                         "name"
                       ],
-                      "type": "object",
-                      "additionalProperties": false
+                      "type": "object"
                     }
                   },
-                  "type": "object",
-                  "additionalProperties": false
+                  "type": "object"
                 },
                 "freightCollection": {
                   "description": "FreightCollection contains the details of the piece of Freight referenced\nby this Promotion as well as any additional Freight that is carried over\nfrom the target Stage's current state.",
@@ -736,8 +708,7 @@
                                   "type": "string"
                                 }
                               },
-                              "type": "object",
-                              "additionalProperties": false
+                              "type": "object"
                             },
                             "type": "array"
                           },
@@ -775,8 +746,7 @@
                                   "type": "string"
                                 }
                               },
-                              "type": "object",
-                              "additionalProperties": false
+                              "type": "object"
                             },
                             "type": "array"
                           },
@@ -805,8 +775,7 @@
                                   "type": "string"
                                 }
                               },
-                              "type": "object",
-                              "additionalProperties": false
+                              "type": "object"
                             },
                             "type": "array"
                           },
@@ -833,12 +802,10 @@
                               "kind",
                               "name"
                             ],
-                            "type": "object",
-                            "additionalProperties": false
+                            "type": "object"
                           }
                         },
-                        "type": "object",
-                        "additionalProperties": false
+                        "type": "object"
                       },
                       "description": "Freight is a map of FreightReference objects, indexed by their Warehouse\norigin.",
                       "type": "object"
@@ -873,8 +840,7 @@
                               "namespace",
                               "phase"
                             ],
-                            "type": "object",
-                            "additionalProperties": false
+                            "type": "object"
                           },
                           "finishTime": {
                             "description": "FinishTime is the time at which the Verification process finished.",
@@ -899,8 +865,7 @@
                             "type": "string"
                           }
                         },
-                        "type": "object",
-                        "additionalProperties": false
+                        "type": "object"
                       },
                       "type": "array"
                     }
@@ -908,8 +873,7 @@
                   "required": [
                     "id"
                   ],
-                  "type": "object",
-                  "additionalProperties": false
+                  "type": "object"
                 },
                 "healthChecks": {
                   "description": "HealthChecks contains the health check directives to be executed after\nthe Promotion has completed.",
@@ -929,8 +893,7 @@
                     "required": [
                       "uses"
                     ],
-                    "type": "object",
-                    "additionalProperties": false
+                    "type": "object"
                   },
                   "type": "array"
                 },
@@ -992,21 +955,18 @@
                         "type": "string"
                       }
                     },
-                    "type": "object",
-                    "additionalProperties": false
+                    "type": "object"
                   },
                   "type": "array"
                 }
               },
-              "type": "object",
-              "additionalProperties": false
+              "type": "object"
             }
           },
           "required": [
             "name"
           ],
-          "type": "object",
-          "additionalProperties": false
+          "type": "object"
         },
         "freightHistory": {
           "description": "FreightHistory is a list of recent Freight selections that were deployed\nto the Stage. By default, the last ten Freight selections are stored.\nThe first item in the list is the most recent Freight selection and\ncurrently deployed to the Stage, subsequent items are older selections.",
@@ -1039,8 +999,7 @@
                             "type": "string"
                           }
                         },
-                        "type": "object",
-                        "additionalProperties": false
+                        "type": "object"
                       },
                       "type": "array"
                     },
@@ -1078,8 +1037,7 @@
                             "type": "string"
                           }
                         },
-                        "type": "object",
-                        "additionalProperties": false
+                        "type": "object"
                       },
                       "type": "array"
                     },
@@ -1108,8 +1066,7 @@
                             "type": "string"
                           }
                         },
-                        "type": "object",
-                        "additionalProperties": false
+                        "type": "object"
                       },
                       "type": "array"
                     },
@@ -1136,12 +1093,10 @@
                         "kind",
                         "name"
                       ],
-                      "type": "object",
-                      "additionalProperties": false
+                      "type": "object"
                     }
                   },
-                  "type": "object",
-                  "additionalProperties": false
+                  "type": "object"
                 },
                 "description": "Freight is a map of FreightReference objects, indexed by their Warehouse\norigin.",
                 "type": "object"
@@ -1176,8 +1131,7 @@
                         "namespace",
                         "phase"
                       ],
-                      "type": "object",
-                      "additionalProperties": false
+                      "type": "object"
                     },
                     "finishTime": {
                       "description": "FinishTime is the time at which the Verification process finished.",
@@ -1202,8 +1156,7 @@
                       "type": "string"
                     }
                   },
-                  "type": "object",
-                  "additionalProperties": false
+                  "type": "object"
                 },
                 "type": "array"
               }
@@ -1211,8 +1164,7 @@
             "required": [
               "id"
             ],
-            "type": "object",
-            "additionalProperties": false
+            "type": "object"
           },
           "type": "array"
         },
@@ -1243,8 +1195,7 @@
               "type": "string"
             }
           },
-          "type": "object",
-          "additionalProperties": false
+          "type": "object"
         },
         "lastHandledRefresh": {
           "description": "LastHandledRefresh holds the value of the most recent AnnotationKeyRefresh\nannotation that was handled by the controller. This field can be used to\ndetermine whether the request to refresh the resource has been handled.",
@@ -1279,8 +1230,7 @@
                         "type": "string"
                       }
                     },
-                    "type": "object",
-                    "additionalProperties": false
+                    "type": "object"
                   },
                   "type": "array"
                 },
@@ -1318,8 +1268,7 @@
                         "type": "string"
                       }
                     },
-                    "type": "object",
-                    "additionalProperties": false
+                    "type": "object"
                   },
                   "type": "array"
                 },
@@ -1348,8 +1297,7 @@
                         "type": "string"
                       }
                     },
-                    "type": "object",
-                    "additionalProperties": false
+                    "type": "object"
                   },
                   "type": "array"
                 },
@@ -1376,12 +1324,10 @@
                     "kind",
                     "name"
                   ],
-                  "type": "object",
-                  "additionalProperties": false
+                  "type": "object"
                 }
               },
-              "type": "object",
-              "additionalProperties": false
+              "type": "object"
             },
             "name": {
               "description": "Name is the name of the Promotion.",
@@ -1421,8 +1367,7 @@
                             "type": "string"
                           }
                         },
-                        "type": "object",
-                        "additionalProperties": false
+                        "type": "object"
                       },
                       "type": "array"
                     },
@@ -1460,8 +1405,7 @@
                             "type": "string"
                           }
                         },
-                        "type": "object",
-                        "additionalProperties": false
+                        "type": "object"
                       },
                       "type": "array"
                     },
@@ -1490,8 +1434,7 @@
                             "type": "string"
                           }
                         },
-                        "type": "object",
-                        "additionalProperties": false
+                        "type": "object"
                       },
                       "type": "array"
                     },
@@ -1518,12 +1461,10 @@
                         "kind",
                         "name"
                       ],
-                      "type": "object",
-                      "additionalProperties": false
+                      "type": "object"
                     }
                   },
-                  "type": "object",
-                  "additionalProperties": false
+                  "type": "object"
                 },
                 "freightCollection": {
                   "description": "FreightCollection contains the details of the piece of Freight referenced\nby this Promotion as well as any additional Freight that is carried over\nfrom the target Stage's current state.",
@@ -1554,8 +1495,7 @@
                                   "type": "string"
                                 }
                               },
-                              "type": "object",
-                              "additionalProperties": false
+                              "type": "object"
                             },
                             "type": "array"
                           },
@@ -1593,8 +1533,7 @@
                                   "type": "string"
                                 }
                               },
-                              "type": "object",
-                              "additionalProperties": false
+                              "type": "object"
                             },
                             "type": "array"
                           },
@@ -1623,8 +1562,7 @@
                                   "type": "string"
                                 }
                               },
-                              "type": "object",
-                              "additionalProperties": false
+                              "type": "object"
                             },
                             "type": "array"
                           },
@@ -1651,12 +1589,10 @@
                               "kind",
                               "name"
                             ],
-                            "type": "object",
-                            "additionalProperties": false
+                            "type": "object"
                           }
                         },
-                        "type": "object",
-                        "additionalProperties": false
+                        "type": "object"
                       },
                       "description": "Freight is a map of FreightReference objects, indexed by their Warehouse\norigin.",
                       "type": "object"
@@ -1691,8 +1627,7 @@
                               "namespace",
                               "phase"
                             ],
-                            "type": "object",
-                            "additionalProperties": false
+                            "type": "object"
                           },
                           "finishTime": {
                             "description": "FinishTime is the time at which the Verification process finished.",
@@ -1717,8 +1652,7 @@
                             "type": "string"
                           }
                         },
-                        "type": "object",
-                        "additionalProperties": false
+                        "type": "object"
                       },
                       "type": "array"
                     }
@@ -1726,8 +1660,7 @@
                   "required": [
                     "id"
                   ],
-                  "type": "object",
-                  "additionalProperties": false
+                  "type": "object"
                 },
                 "healthChecks": {
                   "description": "HealthChecks contains the health check directives to be executed after\nthe Promotion has completed.",
@@ -1747,8 +1680,7 @@
                     "required": [
                       "uses"
                     ],
-                    "type": "object",
-                    "additionalProperties": false
+                    "type": "object"
                   },
                   "type": "array"
                 },
@@ -1810,21 +1742,18 @@
                         "type": "string"
                       }
                     },
-                    "type": "object",
-                    "additionalProperties": false
+                    "type": "object"
                   },
                   "type": "array"
                 }
               },
-              "type": "object",
-              "additionalProperties": false
+              "type": "object"
             }
           },
           "required": [
             "name"
           ],
-          "type": "object",
-          "additionalProperties": false
+          "type": "object"
         },
         "metadata": {
           "additionalProperties": {
@@ -1839,8 +1768,7 @@
           "type": "integer"
         }
       },
-      "type": "object",
-      "additionalProperties": false
+      "type": "object"
     }
   },
   "required": [

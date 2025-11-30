@@ -34,8 +34,7 @@
               "type": "array"
             }
           },
-          "type": "object",
-          "additionalProperties": false
+          "type": "object"
         },
         "pipelineStages": {
           "description": "Pipeline stages for this pod. Pipeline stages support transforming and filtering log lines.",
@@ -78,8 +77,7 @@
                     "type": "string"
                   }
                 },
-                "type": "object",
-                "additionalProperties": false
+                "type": "object"
               },
               "json": {
                 "description": "JSON is a parsing stage that reads the log line as JSON and accepts JMESPath expressions to extract data. \n Information on JMESPath: http://jmespath.org/",
@@ -96,8 +94,7 @@
                     "type": "string"
                   }
                 },
-                "type": "object",
-                "additionalProperties": false
+                "type": "object"
               },
               "labelAllow": {
                 "description": "LabelAllow is an action stage that only allows the provided labels to be included in the label set that is sent to Loki with the log entry.",
@@ -136,8 +133,7 @@
                     "type": "integer"
                   }
                 },
-                "type": "object",
-                "additionalProperties": false
+                "type": "object"
               },
               "match": {
                 "description": "Match is a filtering stage that conditionally applies a set of stages or drop entries when a log entry matches a configurable LogQL stream selector and filter expressions.",
@@ -166,8 +162,7 @@
                 "required": [
                   "selector"
                 ],
-                "type": "object",
-                "additionalProperties": false
+                "type": "object"
               },
               "metrics": {
                 "additionalProperties": {
@@ -221,8 +216,7 @@
                     "action",
                     "type"
                   ],
-                  "type": "object",
-                  "additionalProperties": false
+                  "type": "object"
                 },
                 "description": "Metrics is an action stage that supports defining and updating metrics based on data from the extracted map. Created metrics are not pushed to Loki or Prometheus and are instead exposed via the /metrics endpoint of the Grafana Agent pod. The Grafana Agent Operator should be configured with a MetricsInstance that discovers the logging DaemonSet to collect metrics created by this stage.",
                 "type": "object"
@@ -246,8 +240,7 @@
                 "required": [
                   "firstLine"
                 ],
-                "type": "object",
-                "additionalProperties": false
+                "type": "object"
               },
               "output": {
                 "description": "Output stage is an action stage that takes data from the extracted map and changes the log line that will be sent to Loki.",
@@ -260,8 +253,7 @@
                 "required": [
                   "source"
                 ],
-                "type": "object",
-                "additionalProperties": false
+                "type": "object"
               },
               "pack": {
                 "description": "Pack is a transform stage that lets you embed extracted values and labels into the log line by packing the log line and labels inside of a JSON object.",
@@ -281,8 +273,7 @@
                 "required": [
                   "labels"
                 ],
-                "type": "object",
-                "additionalProperties": false
+                "type": "object"
               },
               "regex": {
                 "description": "Regex is a parsing stage that parses a log line using a regular expression.  Named capture groups in the regex allows for adding data into the extracted map.",
@@ -299,8 +290,7 @@
                 "required": [
                   "expression"
                 ],
-                "type": "object",
-                "additionalProperties": false
+                "type": "object"
               },
               "replace": {
                 "description": "Replace is a parsing stage that parses a log line using a regular expression and replaces the log line. Named capture groups in the regex allows for adding data into the extracted map.",
@@ -321,8 +311,7 @@
                 "required": [
                   "expression"
                 ],
-                "type": "object",
-                "additionalProperties": false
+                "type": "object"
               },
               "template": {
                 "description": "Template is a transform stage that manipulates the values in the extracted map using Go's template syntax.",
@@ -340,8 +329,7 @@
                   "source",
                   "template"
                 ],
-                "type": "object",
-                "additionalProperties": false
+                "type": "object"
               },
               "tenant": {
                 "description": "Tenant is an action stage that sets the tenant ID for the log entry picking it from a field in the extracted data map. If the field is missing, the default LogsClientSpec.tenantId will be used.",
@@ -359,8 +347,7 @@
                     "type": "string"
                   }
                 },
-                "type": "object",
-                "additionalProperties": false
+                "type": "object"
               },
               "timestamp": {
                 "description": "Timestamp is an action stage that can change the timestamp of a log line before it is sent to Loki. If not present, the timestamp of a log line defaults to the time when the log line was read.",
@@ -393,12 +380,10 @@
                   "format",
                   "source"
                 ],
-                "type": "object",
-                "additionalProperties": false
+                "type": "object"
               }
             },
-            "type": "object",
-            "additionalProperties": false
+            "type": "object"
           },
           "type": "array"
         },
@@ -474,8 +459,7 @@
                 "type": "string"
               }
             },
-            "type": "object",
-            "additionalProperties": false
+            "type": "object"
           },
           "type": "array"
         },
@@ -507,8 +491,7 @@
                   "key",
                   "operator"
                 ],
-                "type": "object",
-                "additionalProperties": false
+                "type": "object"
               },
               "type": "array"
             },
@@ -521,15 +504,13 @@
             }
           },
           "type": "object",
-          "x-kubernetes-map-type": "atomic",
-          "additionalProperties": false
+          "x-kubernetes-map-type": "atomic"
         }
       },
       "required": [
         "selector"
       ],
-      "type": "object",
-      "additionalProperties": false
+      "type": "object"
     }
   },
   "type": "object"
