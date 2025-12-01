@@ -26,7 +26,7 @@ for chart in $( ls -d */ | sed 's#/##' ); do
   helm template  --include-crds ${chart} ${valuesFiles[@]} ${setValues} | \
     ../../kubeconform -output pretty \
     -schema-location default \
-    -schema-location "https://raw.githubusercontent.com/suxess-it/kubriX/${GITHUB_HEAD_REF}/kubeconform-schemas/{{.Group}}/{{.ResourceKind}}_{{.ResourceAPIVersion}}.json" \
+    -schema-location "https://raw.githubusercontent.com/suxess-it/kubriX/main/kubeconform-schemas/{{.Group}}/{{.ResourceKind}}_{{.ResourceAPIVersion}}.json" \
     -schema-location "https://raw.githubusercontent.com/yannh/kubernetes-json-schema/master/{{.NormalizedKubernetesVersion}}/{{.ResourceKind}}.json" \
     -strict -kubernetes-version 1.31.0 -
 done
