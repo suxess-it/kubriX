@@ -13,6 +13,21 @@ backstage:
     serviceMonitor:
       enabled: true
   backstage:
+    replicas: 2
+    pdb:
+      create: true
+      minAvailable: 1
+    topologySpreadConstraints:    
+      - maxSkew: 1
+        topologyKey: kubernetes.io/hostname
+        whenUnsatisfiable: ScheduleAnyway
+        labelSelector:
+          matchLabels:
+            app.kubernetes.io/name: backstage
+            app.kubernetes.io/component: backstage
+          matchLabelKeys:
+            - pod-template-hash
+
     image:
       registry: ghcr.io/suxess-it
       repository: sx-backstage
