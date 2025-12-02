@@ -303,7 +303,7 @@ jobs:
             --from-literal KUBRIX_BOOTSTRAP_MAX_WAIT_TIME=${KUBRIX_BOOTSTRAP_MAX_WAIT_TIME} \
             --from-literal KUBRIX_INSTALLER=true
           bash .github/install-kubriX-with-job.sh
-          kubectl get pods -o name -n backstage | xargs -I {} kubectl logs -n backstage {} --all-containers=true
+          
 
       - name: argocd show diff
         continue-on-error: true
@@ -325,6 +325,7 @@ jobs:
         if: always()
         shell: bash
         run: |
+          kubectl get pods -o name -n backstage | xargs -I {} kubectl logs -n backstage {} --all-containers=true
           kubectl get applications -n argocd
           kubectl get applications -n argocd -o yaml
           
