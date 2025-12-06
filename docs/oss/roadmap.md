@@ -16,6 +16,7 @@ This is our current plan for the next features and improvements. It is based on 
 ## 2026
 
 * Crossplane-Integration in Dev-Portal
+* Switch from Hashicorp Vault to OpenBao
 * Improve FinOps Capabilities
 * Improve Compliance Adherence
 * Extend Multi Tenancy  / Isolation Options
