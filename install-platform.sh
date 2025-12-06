@@ -274,7 +274,7 @@ show_node_resources() {
     read cpu_use mem_use < <(
       kubectl top node "$name" --no-headers 2>/dev/null \
       | awk '{print $3, $5}'
-    )
+    ) || true
 
     # In case metrics-server isn't ready
     cpu_use=${cpu_use:-"-"}
