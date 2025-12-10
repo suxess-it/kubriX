@@ -1,0 +1,156 @@
+{
+  "description": "Input can be used to provide input to this Function.",
+  "properties": {
+    "apiVersion": {
+      "description": "APIVersion defines the versioned schema of this representation of an object.\nServers should convert recognized schemas to the latest internal value, and\nmay reject unrecognized values.\nMore info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources",
+      "type": "string"
+    },
+    "kind": {
+      "description": "Kind is a string value representing the REST resource this object represents.\nServers may infer this from the endpoint the client submits requests to.\nCannot be updated.\nIn CamelCase.\nMore info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
+      "type": "string"
+    },
+    "metadata": {
+      "type": "object"
+    },
+    "spec": {
+      "description": "Spec is the input to this function.",
+      "properties": {
+        "extraResources": {
+          "description": "ExtraResources selects a list of `ExtraResource`s. The resolved\nresources are stored in the composite resource at\n`spec.extraResourceRefs` and is only updated if it is null.",
+          "items": {
+            "description": "ResourceSource selects a ExtraResource.",
+            "properties": {
+              "apiVersion": {
+                "description": "APIVersion is the kubernetes API Version of the target extra resource(s).",
+                "type": "string"
+              },
+              "into": {
+                "description": "Into is the key into which extra resources for this selector will be placed.",
+                "type": "string"
+              },
+              "kind": {
+                "description": "Kind is the kubernetes kind of the target extra resource(s).",
+                "type": "string"
+              },
+              "namespace": {
+                "description": "Namespace is the namespace in which to look for the ExtraResource.\nIf not set, the resource is assumed to be cluster-scoped.",
+                "type": "string"
+              },
+              "ref": {
+                "description": "Ref is a named reference to a single ExtraResource.\nEither Ref or Selector is required.",
+                "properties": {
+                  "name": {
+                    "description": "The name of the object.",
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "name"
+                ],
+                "type": "object"
+              },
+              "selector": {
+                "description": "Selector selects ExtraResource(s) via labels.",
+                "properties": {
+                  "matchLabels": {
+                    "description": "MatchLabels ensures an object with matching labels is selected.",
+                    "items": {
+                      "description": "An ResourceSourceSelectorLabelMatcher acts like a k8s label selector but\ncan draw the label value from a different path.",
+                      "properties": {
+                        "fromFieldPathPolicy": {
+                          "default": "Required",
+                          "description": "FromFieldPathPolicy specifies the policy for the valueFromFieldPath.\nThe default is Required, meaning that an error will be returned if the\nfield is not found in the composite resource.\nOptional means that if the field is not found in the composite resource,\nthat label pair will just be skipped. N.B. other specified label\nmatchers will still be used to retrieve the desired\nresource config, if any.",
+                          "enum": [
+                            "Optional",
+                            "Required"
+                          ],
+                          "type": "string"
+                        },
+                        "key": {
+                          "description": "Key of the label to match.",
+                          "type": "string"
+                        },
+                        "type": {
+                          "default": "FromCompositeFieldPath",
+                          "description": "Type specifies where the value for a label comes from.",
+                          "enum": [
+                            "FromCompositeFieldPath",
+                            "Value"
+                          ],
+                          "type": "string"
+                        },
+                        "value": {
+                          "description": "Value specifies a literal label value.",
+                          "type": "string"
+                        },
+                        "valueFromFieldPath": {
+                          "description": "ValueFromFieldPath specifies the field path to look for the label value.",
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "key"
+                      ],
+                      "type": "object"
+                    },
+                    "type": "array"
+                  },
+                  "maxMatch": {
+                    "description": "MaxMatch specifies the number of extracted ExtraResources in Multiple mode, extracts all if nil.",
+                    "format": "int64",
+                    "type": "integer"
+                  },
+                  "minMatch": {
+                    "description": "MinMatch specifies the required minimum of extracted ExtraResources in Multiple mode.",
+                    "format": "int64",
+                    "type": "integer"
+                  },
+                  "sortByFieldPath": {
+                    "default": "metadata.name",
+                    "description": "SortByFieldPath is the path to the field based on which list of ExtraResources is alphabetically sorted.",
+                    "type": "string"
+                  }
+                },
+                "type": "object"
+              },
+              "type": {
+                "default": "Reference",
+                "description": "Type specifies the way the ExtraResource is selected.\nDefault is `Reference`",
+                "enum": [
+                  "Reference",
+                  "Selector"
+                ],
+                "type": "string"
+              }
+            },
+            "required": [
+              "into"
+            ],
+            "type": "object"
+          },
+          "type": "array"
+        },
+        "policy": {
+          "description": "Policy represents the Resolution policies which apply to all\nResourceSourceReferences in ExtraResources list.",
+          "properties": {
+            "resolution": {
+              "default": "Required",
+              "description": "Resolution specifies whether resolution of this reference is required.\nThe default is 'Required', which means the reconcile will fail if the\nreference cannot be resolved. 'Optional' means this reference will be\na no-op if it cannot be resolved.",
+              "enum": [
+                "Required",
+                "Optional"
+              ],
+              "type": "string"
+            }
+          },
+          "type": "object"
+        }
+      },
+      "required": [
+        "extraResources"
+      ],
+      "type": "object"
+    }
+  },
+  "type": "object"
+}

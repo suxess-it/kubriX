@@ -58,7 +58,7 @@ jobs:
       globalChanges: ${{ steps.filter.outputs.globalChanges }}
       targets: ${{ steps.select-targets.outputs.targets }}
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v6
         with:
           fetch-depth: 0  # needed so the action can diff properly
       - id: filter
@@ -82,6 +82,7 @@ jobs:
                - 'platform-apps/target-chart/values-kind*'
                - '.github/install-kubriX-with-job.sh'
                - 'install-manifests.yaml'
+               - 'install-platform.sh'
   
       - id: build-matrix-global
         name: Build global target matrix from changed files
@@ -190,7 +191,7 @@ jobs:
     timeout-minutes: 10
 
     steps:         
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v6
         with:
           fetch-depth: 0
 
@@ -256,7 +257,7 @@ jobs:
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
  
       - name: Create k8s Kind Cluster
         uses: helm/kind-action@v1
@@ -332,15 +333,35 @@ jobs:
         run: |
           k8sgpt analyze
 
+      - name: Update Vault with GitHub OAuth credentials for Testkube tests
+        if: ${{ matrix.target-type  == 'kind-portal' }}
+        env:
+          GITHUB_CLIENTID: ${{ secrets.E2E_TEST_GITHUB_CLIENTID }}
+          GITHUB_CLIENTSECRET: ${{ secrets.E2E_TEST_GITHUB_CLIENTSECRET }}
+        run: |
+          export VAULT_HOSTNAME=$(kubectl get ingress -o jsonpath='{.items[*].spec.rules[*].host}' -n vault)
+          export VAULT_TOKEN=$(kubectl get secret -n vault vault-init -o=jsonpath='{.data.root_token}'  | base64 -d)
+          curl -k --header "X-Vault-Token:$VAULT_TOKEN" --request PATCH --header "Content-Type: application/merge-patch+json" --data "{\"data\": {\"GITHUB_CLIENTSECRET\": \"${GITHUB_CLIENTSECRET}\", \"GITHUB_CLIENTID\": \"${GITHUB_CLIENTID}\"}}" https://${VAULT_HOSTNAME}/v1/kubrix-kv/data/portal/backstage/base
+          kubectl delete externalsecret -n backstage sx-cnp-secret
+          kubectl rollout restart deployment -n backstage sx-backstage
+
       # run testkube tests
       - uses: kubeshop/setup-testkube@v1
         with:
-          version: 2.2.5
+          version: 2.4.4
+    
       - name: testkube tests
         env:
           KUBRIX_TARGET_TYPE: ${{ matrix.target-type }}
+          E2E_TEST_GH_USERNAME: ${{ secrets.E2E_TEST_GH_USERNAME }}
+          E2E_TEST_GH_PASSWORD: ${{ secrets.E2E_TEST_GH_PASSWORD }}
+          E2E_TEST_GITHUB_OTP: ${{ secrets.E2E_TEST_GITHUB_OTP }}
         run: |
-          testkube run testworkflow -l type=$(echo ${KUBRIX_TARGET_TYPE} | awk '{print tolower($0)}') -f -d
+          testkube run testworkflow -l type=${KUBRIX_TARGET_TYPE} \
+            --variable E2E_TEST_GH_USERNAME=${E2E_TEST_GH_USERNAME} \
+            --variable E2E_TEST_GH_PASSWORD=${E2E_TEST_GH_PASSWORD} \
+            --variable E2E_TEST_GITHUB_OTP=${E2E_TEST_GITHUB_OTP} \
+            -f -d
 
       - uses: actions/upload-artifact@v5
         if: always()
@@ -365,6 +386,9 @@ jobs:
           kubectl get managed -o yaml
           kubectl get pkg
           kubectl get pkg -o yaml 
+          echo "===== external secrets ======"
+          kubectl get externalsecret -A
+          kubectl get externalsecret -A -o yaml
 
       - name: mustgather logs for troubleshooting
         if: ${{ failure() }}

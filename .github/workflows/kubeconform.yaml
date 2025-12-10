@@ -1,0 +1,27 @@
+on:
+  pull_request:
+    types: [opened, synchronize]
+    paths:
+      - '.github/workflows/kubeconform.yaml'
+      - '.github/kubeconform.sh'
+      - 'platform-apps/charts/**'
+      
+permissions:
+  contents: read
+
+name: kubeconform
+
+jobs:
+  kubeconform:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix: ${{ fromJson(vars.GITOPS_DIFF_TESTCASES) }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+
+      - name: kubeconform charts
+        shell: bash
+        run: |
+          .github/kubeconform.sh ${{ matrix.testCase }} ${{ matrix.valuesFiles }} "${{ matrix.setValues }}"

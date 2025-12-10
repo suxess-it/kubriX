@@ -85,6 +85,11 @@ backstage:
           store: memory
         # workingDirectory: /tmp # Use this to configure a working directory for the scaffolder, defaults to the OS temp-dir
 
+      kubrix:
+        auth:
+          allowedProviders:
+          - github
+
       integrations:
         github:
           - host: github.com
@@ -351,7 +356,7 @@ backstage:
           maxDepth: 1
           admin:
             users:
-              - name: group:default/demouser
+              - name: user:default/dummyuser
             superUsers:
               - name: user:default/demoadmin
               - name: user:default/phac008
@@ -361,6 +366,13 @@ backstage:
           database:
             enabled: true
 
+      # dummy entry
+      mcpChat:
+        providers:
+          - id: ollama
+            baseUrl: 'http://localhost:11434'
+            model: llama3.1:8b
+
 ## pgdb
 cluster:
   type: postgresql
@@ -369,6 +381,13 @@ cluster:
     postgresql: "16"
   cluster:
     instances: 1
+    postgresql:
+      parameters:
+        max_connections: "100"
+    initdb:
+      database: backstage
+      secret:
+        name: cnpg-backstage-secret
     monitoring:
       enabled: true
     superuserSecret: cnpg-superuser-secret
