@@ -12,6 +12,7 @@
         <th>Severity</th>
         <th>Installed Version</th>
         <th>Fixed Version</th>
+        <th>CVSS</th>
     </tr>
     {{- range .Vulnerabilities }}
     <tr>
@@ -20,6 +21,7 @@
         <td>{{ escapeXML .Severity }}</td>
         <td>{{ escapeXML .InstalledVersion }}</td>
         <td>{{ escapeXML .FixedVersion }}</td>
+        <td>{{ escapeXML .CVSS }}</td>
     </tr>
     {{- end }}
 </table>
