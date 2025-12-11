@@ -20,10 +20,14 @@ jobs:
       - name: create trivy scan report
         shell: bash
         run: |
+          set -x
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           if [[ -z $(git ls-remote --heads origin trivy-report-update) ]] ; then
             git checkout -b trivy-report-update
           else
             git checkout trivy-report-update
+            git merge main
           fi
           .github/create-trivy-scan-report.sh
           
@@ -33,8 +37,6 @@ jobs:
           GH_TOKEN: ${{ github.token }}
         run: |
           set -x
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git status
           git add trivy-scan-reports
           git status
