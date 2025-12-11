@@ -435,10 +435,10 @@
     </tr>
     <tr>
         <td><code>stdlib</code></td>
-        <td>CVE-2025-58188</td>
+        <td>CVE-2025-61729</td>
         <td>HIGH</td>
         <td>v1.17.13</td>
-        <td>1.24.8, 1.25.2</td>
+        <td>1.24.11, 1.25.5</td>
     </tr>
 </table>
 <h4>No Misconfigurations found</h4>
@@ -572,7 +572,7 @@
 <h4>No Vulnerabilities found</h4>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>usr/bin/falcoctl</code></h3>
-<h4>Vulnerabilities (9)</h4>
+<h4>Vulnerabilities (11)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -594,6 +594,20 @@
         <td>HIGH</td>
         <td>v5.2.1</td>
         <td>5.2.2</td>
+    </tr>
+    <tr>
+        <td><code>github.com/sigstore/fulcio</code></td>
+        <td>CVE-2025-66506</td>
+        <td>HIGH</td>
+        <td>v1.6.3</td>
+        <td>1.8.3</td>
+    </tr>
+    <tr>
+        <td><code>github.com/sigstore/timestamp-authority</code></td>
+        <td>CVE-2025-66564</td>
+        <td>HIGH</td>
+        <td>v1.2.2</td>
+        <td>2.0.3</td>
     </tr>
     <tr>
         <td><code>golang.org/x/crypto</code></td>
@@ -639,10 +653,10 @@
     </tr>
     <tr>
         <td><code>stdlib</code></td>
-        <td>CVE-2025-58188</td>
+        <td>CVE-2025-61729</td>
         <td>HIGH</td>
         <td>v1.23.5</td>
-        <td>1.24.8, 1.25.2</td>
+        <td>1.24.11, 1.25.5</td>
     </tr>
 </table>
 <h4>No Misconfigurations found</h4>
@@ -753,10 +767,10 @@
     </tr>
     <tr>
         <td><code>stdlib</code></td>
-        <td>CVE-2025-58188</td>
+        <td>CVE-2025-61729</td>
         <td>HIGH</td>
         <td>v1.20.8</td>
-        <td>1.24.8, 1.25.2</td>
+        <td>1.24.11, 1.25.5</td>
     </tr>
 </table>
 <h4>No Misconfigurations found</h4>
@@ -825,10 +839,10 @@
     </tr>
     <tr>
         <td><code>stdlib</code></td>
-        <td>CVE-2025-58188</td>
+        <td>CVE-2025-61729</td>
         <td>HIGH</td>
         <td>v1.23.5</td>
-        <td>1.24.8, 1.25.2</td>
+        <td>1.24.11, 1.25.5</td>
     </tr>
 </table>
 <h4>No Misconfigurations found</h4>
@@ -918,10 +932,10 @@
     </tr>
     <tr>
         <td><code>stdlib</code></td>
-        <td>CVE-2025-58188</td>
+        <td>CVE-2025-61729</td>
         <td>HIGH</td>
         <td>v1.21.1</td>
-        <td>1.24.8, 1.25.2</td>
+        <td>1.24.11, 1.25.5</td>
     </tr>
 </table>
 <h4>No Misconfigurations found</h4>
