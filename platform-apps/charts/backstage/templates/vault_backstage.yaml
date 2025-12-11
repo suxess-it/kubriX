@@ -40,6 +40,9 @@ spec:
     roleName: backstage-vault
     policies:
       - backstage-vault
+    renewIncrement: 86400
+    renewMinLease: 43200
+    ttl: 24h
   providerConfigRef:
     name: vault-crossplane-providerconfig
   writeConnectionSecretToRef:
