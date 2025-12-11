@@ -24,6 +24,7 @@ jobs:
             git checkout -b trivy-report-update
           else
             git checkout trivy-report-update
+            git merge main
           fi
           .github/create-trivy-scan-report.sh
           
