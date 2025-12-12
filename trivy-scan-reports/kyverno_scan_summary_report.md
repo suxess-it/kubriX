@@ -1,6 +1,6 @@
 
 <h3>Target <code>curlimages/curl:8.10.1 (alpine 3.20.3)</code></h3>
-<h4>Vulnerabilities (2)</h4>
+<h4>Vulnerabilities (4)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -23,6 +23,20 @@
         <td>3.3.2-r0</td>
         <td>3.3.3-r0</td>
     </tr>
+    <tr>
+        <td><code>musl</code></td>
+        <td>CVE-2025-26519</td>
+        <td>HIGH</td>
+        <td>1.2.5-r0</td>
+        <td>1.2.5-r1</td>
+    </tr>
+    <tr>
+        <td><code>musl-utils</code></td>
+        <td>CVE-2025-26519</td>
+        <td>HIGH</td>
+        <td>1.2.5-r0</td>
+        <td>1.2.5-r1</td>
+    </tr>
 </table>
 <h4>No Misconfigurations found</h4>
 
@@ -30,42 +44,222 @@
 <h4>No Vulnerabilities found</h4>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>ko-app/background-controller</code></h3>
-<h4>No Vulnerabilities found</h4>
+<h4>Vulnerabilities (3)</h4>
+<table>
+    <tr>
+        <th>Package</th>
+        <th>ID</th>
+        <th>Severity</th>
+        <th>Installed Version</th>
+        <th>Fixed Version</th>
+    </tr>
+    <tr>
+        <td><code>github.com/sigstore/fulcio</code></td>
+        <td>CVE-2025-66506</td>
+        <td>HIGH</td>
+        <td>v1.6.6</td>
+        <td>1.8.3</td>
+    </tr>
+    <tr>
+        <td><code>github.com/sigstore/timestamp-authority</code></td>
+        <td>CVE-2025-66564</td>
+        <td>HIGH</td>
+        <td>v1.2.4</td>
+        <td>2.0.3</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2025-61729</td>
+        <td>HIGH</td>
+        <td>v1.25.3</td>
+        <td>1.24.11, 1.25.5</td>
+    </tr>
+</table>
 <h4>No Misconfigurations found</h4>
 
 <h3>Target <code>reg.kyverno.io/kyverno/cleanup-controller:v1.16.0 (alpine 3.23.0_alpha20251016)</code></h3>
 <h4>No Vulnerabilities found</h4>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>ko-app/cleanup-controller</code></h3>
-<h4>No Vulnerabilities found</h4>
+<h4>Vulnerabilities (3)</h4>
+<table>
+    <tr>
+        <th>Package</th>
+        <th>ID</th>
+        <th>Severity</th>
+        <th>Installed Version</th>
+        <th>Fixed Version</th>
+    </tr>
+    <tr>
+        <td><code>github.com/sigstore/fulcio</code></td>
+        <td>CVE-2025-66506</td>
+        <td>HIGH</td>
+        <td>v1.6.6</td>
+        <td>1.8.3</td>
+    </tr>
+    <tr>
+        <td><code>github.com/sigstore/timestamp-authority</code></td>
+        <td>CVE-2025-66564</td>
+        <td>HIGH</td>
+        <td>v1.2.4</td>
+        <td>2.0.3</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2025-61729</td>
+        <td>HIGH</td>
+        <td>v1.25.3</td>
+        <td>1.24.11, 1.25.5</td>
+    </tr>
+</table>
 <h4>No Misconfigurations found</h4>
 
 <h3>Target <code>reg.kyverno.io/kyverno/kyverno-cli:v1.16.0 (alpine 3.23.0_alpha20251016)</code></h3>
 <h4>No Vulnerabilities found</h4>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>ko-app/kubectl-kyverno</code></h3>
-<h4>No Vulnerabilities found</h4>
+<h4>Vulnerabilities (3)</h4>
+<table>
+    <tr>
+        <th>Package</th>
+        <th>ID</th>
+        <th>Severity</th>
+        <th>Installed Version</th>
+        <th>Fixed Version</th>
+    </tr>
+    <tr>
+        <td><code>github.com/sigstore/fulcio</code></td>
+        <td>CVE-2025-66506</td>
+        <td>HIGH</td>
+        <td>v1.6.6</td>
+        <td>1.8.3</td>
+    </tr>
+    <tr>
+        <td><code>github.com/sigstore/timestamp-authority</code></td>
+        <td>CVE-2025-66564</td>
+        <td>HIGH</td>
+        <td>v1.2.4</td>
+        <td>2.0.3</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2025-61729</td>
+        <td>HIGH</td>
+        <td>v1.25.3</td>
+        <td>1.24.11, 1.25.5</td>
+    </tr>
+</table>
 <h4>No Misconfigurations found</h4>
 
 <h3>Target <code>reg.kyverno.io/kyverno/kyverno:v1.16.0 (alpine 3.23.0_alpha20251016)</code></h3>
 <h4>No Vulnerabilities found</h4>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>ko-app/kyverno</code></h3>
-<h4>No Vulnerabilities found</h4>
+<h4>Vulnerabilities (3)</h4>
+<table>
+    <tr>
+        <th>Package</th>
+        <th>ID</th>
+        <th>Severity</th>
+        <th>Installed Version</th>
+        <th>Fixed Version</th>
+    </tr>
+    <tr>
+        <td><code>github.com/sigstore/fulcio</code></td>
+        <td>CVE-2025-66506</td>
+        <td>HIGH</td>
+        <td>v1.6.6</td>
+        <td>1.8.3</td>
+    </tr>
+    <tr>
+        <td><code>github.com/sigstore/timestamp-authority</code></td>
+        <td>CVE-2025-66564</td>
+        <td>HIGH</td>
+        <td>v1.2.4</td>
+        <td>2.0.3</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2025-61729</td>
+        <td>HIGH</td>
+        <td>v1.25.3</td>
+        <td>1.24.11, 1.25.5</td>
+    </tr>
+</table>
 <h4>No Misconfigurations found</h4>
 
 <h3>Target <code>reg.kyverno.io/kyverno/kyvernopre:v1.16.0 (alpine 3.23.0_alpha20251016)</code></h3>
 <h4>No Vulnerabilities found</h4>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>ko-app/kyverno-init</code></h3>
-<h4>No Vulnerabilities found</h4>
+<h4>Vulnerabilities (3)</h4>
+<table>
+    <tr>
+        <th>Package</th>
+        <th>ID</th>
+        <th>Severity</th>
+        <th>Installed Version</th>
+        <th>Fixed Version</th>
+    </tr>
+    <tr>
+        <td><code>github.com/sigstore/fulcio</code></td>
+        <td>CVE-2025-66506</td>
+        <td>HIGH</td>
+        <td>v1.6.6</td>
+        <td>1.8.3</td>
+    </tr>
+    <tr>
+        <td><code>github.com/sigstore/timestamp-authority</code></td>
+        <td>CVE-2025-66564</td>
+        <td>HIGH</td>
+        <td>v1.2.4</td>
+        <td>2.0.3</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2025-61729</td>
+        <td>HIGH</td>
+        <td>v1.25.3</td>
+        <td>1.24.11, 1.25.5</td>
+    </tr>
+</table>
 <h4>No Misconfigurations found</h4>
 
 <h3>Target <code>reg.kyverno.io/kyverno/reports-controller:v1.16.0 (alpine 3.23.0_alpha20251016)</code></h3>
 <h4>No Vulnerabilities found</h4>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>ko-app/reports-controller</code></h3>
-<h4>No Vulnerabilities found</h4>
+<h4>Vulnerabilities (3)</h4>
+<table>
+    <tr>
+        <th>Package</th>
+        <th>ID</th>
+        <th>Severity</th>
+        <th>Installed Version</th>
+        <th>Fixed Version</th>
+    </tr>
+    <tr>
+        <td><code>github.com/sigstore/fulcio</code></td>
+        <td>CVE-2025-66506</td>
+        <td>HIGH</td>
+        <td>v1.6.6</td>
+        <td>1.8.3</td>
+    </tr>
+    <tr>
+        <td><code>github.com/sigstore/timestamp-authority</code></td>
+        <td>CVE-2025-66564</td>
+        <td>HIGH</td>
+        <td>v1.2.4</td>
+        <td>2.0.3</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2025-61729</td>
+        <td>HIGH</td>
+        <td>v1.25.3</td>
+        <td>1.24.11, 1.25.5</td>
+    </tr>
+</table>
 <h4>No Misconfigurations found</h4>
 
 <h3>Target <code>registry.k8s.io/kubectl:v1.32.7 (debian 12.11)</code></h3>
@@ -118,10 +312,10 @@
     </tr>
     <tr>
         <td><code>stdlib</code></td>
-        <td>CVE-2025-58188</td>
+        <td>CVE-2025-61729</td>
         <td>HIGH</td>
         <td>v1.23.10</td>
-        <td>1.24.8, 1.25.2</td>
+        <td>1.24.11, 1.25.5</td>
     </tr>
 </table>
 <h4>No Misconfigurations found</h4>
@@ -165,10 +359,10 @@
     </tr>
     <tr>
         <td><code>stdlib</code></td>
-        <td>CVE-2025-58188</td>
+        <td>CVE-2025-61729</td>
         <td>HIGH</td>
         <td>v1.23.10</td>
-        <td>1.24.8, 1.25.2</td>
+        <td>1.24.11, 1.25.5</td>
     </tr>
 </table>
 <h4>No Misconfigurations found</h4>

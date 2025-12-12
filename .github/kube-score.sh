@@ -6,8 +6,8 @@ testCase=$1
 valuesFilesList=$2
 setValues=$3
 
-curl -sL https://github.com/yannh/kubeconform/releases/download/v0.7.0/kubeconform-linux-amd64.tar.gz | tar zx kubeconform
-chmod u+x kubeconform
+curl -sL https://github.com/zegl/kube-score/releases/download/v1.20.0/kube-score_1.20.0_linux_amd64.tar.gz | tar zx kube-score
+chmod u+x kube-score
 
 cd platform-apps/charts
 for chart in $( ls -d */ | sed 's#/##' ); do
@@ -24,9 +24,5 @@ for chart in $( ls -d */ | sed 's#/##' ); do
   done
   echo "'helm template  --include-crds ${chart} "${valuesFiles[@]}" ${setValues} --output-dir ../../../out/${env}/${chart}/${testCase}'"
   helm template  --include-crds ${chart} ${valuesFiles[@]} ${setValues} | \
-    ../../kubeconform -output pretty \
-    -schema-location default \
-    -schema-location "https://raw.githubusercontent.com/suxess-it/kubriX/main/kubeconform-schemas/{{.Group}}/{{.ResourceKind}}_{{.ResourceAPIVersion}}.json" \
-    -schema-location "https://raw.githubusercontent.com/yannh/kubernetes-json-schema/master/{{.NormalizedKubernetesVersion}}/{{.ResourceKind}}.json" \
-    -strict -kubernetes-version 1.31.0 -
+    ../../kube-score score - || true
 done

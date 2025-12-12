@@ -1,0 +1,27 @@
+on:
+  pull_request:
+    types: [opened, synchronize]
+    paths:
+      - '.github/workflows/kube-score.yaml'
+      - '.github/kube-score.sh'
+      - 'platform-apps/charts/**'
+      
+permissions:
+  contents: read
+
+name: kube-score
+
+jobs:
+  kube-score:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix: ${{ fromJson(vars.GITOPS_DIFF_TESTCASES) }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+
+      - name: kube-score charts
+        shell: bash
+        run: |
+          .github/kube-score.sh ${{ matrix.testCase }} ${{ matrix.valuesFiles }} "${{ matrix.setValues }}"

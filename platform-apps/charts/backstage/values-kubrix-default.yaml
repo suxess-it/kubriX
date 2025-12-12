@@ -13,6 +13,16 @@ backstage:
     serviceMonitor:
       enabled: true
   backstage:
+    startupProbe:
+      failureThreshold: 3
+      httpGet:
+        path: /.backstage/health/v1/readiness
+        port: 7007
+        scheme: HTTP
+      initialDelaySeconds: 60
+      periodSeconds: 10
+      successThreshold: 1
+      timeoutSeconds: 2
     image:
       registry: ghcr.io/suxess-it
       repository: sx-backstage
@@ -21,6 +31,7 @@ backstage:
       - sx-cnp-secret
       - backstage-db-secrets
       - sx-vault-secret
+      - sx-oidc-secret
     extraEnvVars:
       - name: NODE_OPTIONS
         value: "--no-node-snapshot"

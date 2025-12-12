@@ -1,6 +1,6 @@
 
 <h3>Target <code>kubevirtmanager/kubevirt-manager:1.5.0 (alpine 3.20.5)</code></h3>
-<h4>Vulnerabilities (11)</h4>
+<h4>Vulnerabilities (16)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -22,6 +22,27 @@
         <td>HIGH</td>
         <td>2.6.4-r0</td>
         <td>2.7.0-r0</td>
+    </tr>
+    <tr>
+        <td><code>libpng</code></td>
+        <td>CVE-2025-64720</td>
+        <td>HIGH</td>
+        <td>1.6.44-r0</td>
+        <td>1.6.53-r0</td>
+    </tr>
+    <tr>
+        <td><code>libpng</code></td>
+        <td>CVE-2025-65018</td>
+        <td>HIGH</td>
+        <td>1.6.44-r0</td>
+        <td>1.6.53-r0</td>
+    </tr>
+    <tr>
+        <td><code>libpng</code></td>
+        <td>CVE-2025-66293</td>
+        <td>HIGH</td>
+        <td>1.6.44-r0</td>
+        <td>1.6.53-r0</td>
     </tr>
     <tr>
         <td><code>libssl3</code></td>
@@ -78,6 +99,20 @@
         <td>HIGH</td>
         <td>1.1.39-r1</td>
         <td>1.1.39-r2</td>
+    </tr>
+    <tr>
+        <td><code>musl</code></td>
+        <td>CVE-2025-26519</td>
+        <td>HIGH</td>
+        <td>1.2.5-r0</td>
+        <td>1.2.5-r1</td>
+    </tr>
+    <tr>
+        <td><code>musl-utils</code></td>
+        <td>CVE-2025-26519</td>
+        <td>HIGH</td>
+        <td>1.2.5-r0</td>
+        <td>1.2.5-r1</td>
     </tr>
     <tr>
         <td><code>xz-libs</code></td>
@@ -138,10 +173,10 @@
     </tr>
     <tr>
         <td><code>stdlib</code></td>
-        <td>CVE-2025-58188</td>
+        <td>CVE-2025-61729</td>
         <td>HIGH</td>
         <td>v1.23.3</td>
-        <td>1.24.8, 1.25.2</td>
+        <td>1.24.11, 1.25.5</td>
     </tr>
 </table>
 <h4>No Misconfigurations found</h4>

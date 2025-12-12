@@ -1,6 +1,6 @@
 
 <h3>Target <code>quay.io/frrouting/frr:9.1.0 (alpine 3.18.4)</code></h3>
-<h4>Vulnerabilities (21)</h4>
+<h4>Vulnerabilities (23)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -78,6 +78,20 @@
         <td>HIGH</td>
         <td>3.1.3-r0</td>
         <td>3.1.7-r0</td>
+    </tr>
+    <tr>
+        <td><code>musl</code></td>
+        <td>CVE-2025-26519</td>
+        <td>HIGH</td>
+        <td>1.2.4-r1</td>
+        <td>1.2.4-r3</td>
+    </tr>
+    <tr>
+        <td><code>musl-utils</code></td>
+        <td>CVE-2025-26519</td>
+        <td>HIGH</td>
+        <td>1.2.4-r1</td>
+        <td>1.2.4-r3</td>
     </tr>
     <tr>
         <td><code>python3</code></td>
@@ -209,10 +223,10 @@
     </tr>
     <tr>
         <td><code>stdlib</code></td>
-        <td>CVE-2025-58188</td>
+        <td>CVE-2025-61729</td>
         <td>HIGH</td>
         <td>v1.24.3</td>
-        <td>1.24.8, 1.25.2</td>
+        <td>1.24.11, 1.25.5</td>
     </tr>
 </table>
 <h4>No Misconfigurations found</h4>
@@ -267,10 +281,10 @@
     </tr>
     <tr>
         <td><code>stdlib</code></td>
-        <td>CVE-2025-58188</td>
+        <td>CVE-2025-61729</td>
         <td>HIGH</td>
         <td>v1.24.3</td>
-        <td>1.24.8, 1.25.2</td>
+        <td>1.24.11, 1.25.5</td>
     </tr>
 </table>
 <h4>No Misconfigurations found</h4>
@@ -321,10 +335,10 @@
     </tr>
     <tr>
         <td><code>stdlib</code></td>
-        <td>CVE-2025-58188</td>
+        <td>CVE-2025-61729</td>
         <td>HIGH</td>
         <td>v1.24.3</td>
-        <td>1.24.8, 1.25.2</td>
+        <td>1.24.11, 1.25.5</td>
     </tr>
 </table>
 <h4>No Misconfigurations found</h4>
@@ -375,10 +389,10 @@
     </tr>
     <tr>
         <td><code>stdlib</code></td>
-        <td>CVE-2025-58188</td>
+        <td>CVE-2025-61729</td>
         <td>HIGH</td>
         <td>v1.24.3</td>
-        <td>1.24.8, 1.25.2</td>
+        <td>1.24.11, 1.25.5</td>
     </tr>
 </table>
 <h4>No Misconfigurations found</h4>
