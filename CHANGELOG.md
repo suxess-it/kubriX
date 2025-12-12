@@ -76,6 +76,34 @@
 * **vault,keycloak:** define MRDs in values ([#1754](https://github.com/suxess-it/kubriX/issues/1754)) ([acada2d](https://github.com/suxess-it/kubriX/commit/acada2df895b1d1fc91b02bcc3b507ccd510a37f))
 * **velero:** restic removed ([64c3f80](https://github.com/suxess-it/kubriX/commit/64c3f80c340f6ec1ad3f2ecdfc96497e7f048a4d))
 
+### Prime Features (only available with kubriX prime plan)
+
+* **argocd:** activate argocd terminal for admins ([kubriX-prime/#307](https://github.com/suxess-it/kubriX-prime/issues/307)) ([kubriX-prime/ed84cc0](https://github.com/suxess-it/kubriX-prime/commit/ed84cc0cc506dddb1f11aa9b177ef17ba261a42e))
+* **argocd:** add PDBs and topologySpreadConstraints for HA configuration ([kubriX-prime/#291](https://github.com/suxess-it/kubriX-prime/issues/291)) ([kubriX-prime/569f0bc](https://github.com/suxess-it/kubriX-prime/commit/569f0bc5c911320392e9373f29f6174e01dcbda4))
+* **argocd:** extend permissions for platform team and team roles ([kubriX-prime/#250](https://github.com/suxess-it/kubriX-prime/issues/250)) ([kubriX-prime/09d2eda](https://github.com/suxess-it/kubriX-prime/commit/09d2edaaad1e941b1b7475439ac23195b4637089))
+* **argocd:** set maxUnavailable to '1' in ha-enabled mode to prevent… ([kubriX-prime/#255](https://github.com/suxess-it/kubriX-prime/issues/255)) ([kubriX-prime/c108277](https://github.com/suxess-it/kubriX-prime/commit/c10827725958c63df34d5049d2bfb192e72300d0))
+* **backstage:** document signin Provider selection for Backstage (kubriX-prime/[#320](https://github.com/suxess-it/kubriX-prime/issues/320)) ([kubriX-prime/6b7e704](https://github.com/suxess-it/kubriX-prime/commit/6b7e704f944315ef042a0752de1a5edcedf0a833))
+* **backstage:** enable HA, add PDB and define topologySpreadContraints ([kubriX-prime/#296](https://github.com/suxess-it/kubriX-prime/issues/296)) ([kubriX-prime/d95bccb](https://github.com/suxess-it/kubriX-prime/commit/d95bccb675472e46819053570d06fb62b7c2e6f0))
+* **cert-manager:** add HA configuration ([kubriX-prime/#282](https://github.com/suxess-it/kubriX-prime/issues/282)) ([kubriX-prime/ef8562b](https://github.com/suxess-it/kubriX-prime/commit/ef8562b45bc3efb01db53ced23d08f70074a1d0d))
+* **cert-manager:** set topologySpreadContraints for HA configuration ([kubriX-prime/#288](https://github.com/suxess-it/kubriX-prime/issues/288)) ([kubriX-prime/75971f4](https://github.com/suxess-it/kubriX-prime/commit/75971f4b271a67d0b3f3fcd30eab85c60282e7c3))
+* **cert-manager:** support DNS-01 challenge with aws route53 ([kubriX-prime/#243](https://github.com/suxess-it/kubriX-prime/issues/243)) ([kubriX-prime/12b2e26](https://github.com/suxess-it/kubriX-prime/commit/12b2e261d876aefb0d6acc594a12d722f6212ab1))
+* **docs:** improve spoke-registration documentation ([kubriX-prime/#222](https://github.com/suxess-it/kubriX-prime/issues/222)) ([kubriX-prime/b8274e5](https://github.com/suxess-it/kubriX-prime/commit/b8274e5c4a2d62ef1e359113c3c1014acb8f13f5))
+* **docs:** kubriX observability HA ([kubriX-prime/#213](https://github.com/suxess-it/kubriX-prime/issues/213)) ([kubriX-prime/edb9ecc](https://github.com/suxess-it/kubriX-prime/commit/edb9ecc2c33eaa86d4a9c554d0392d129c8f1094))
+* **external-secrets:** switch to ServerSideApply due to large CRDs ([kubriX-prime/#248](https://github.com/suxess-it/kubriX-prime/issues/248)) ([kubriX-prime/0a41cbe](https://github.com/suxess-it/kubriX-prime/commit/0a41cbe710d71408d13a592b628e422944a26f52))
+* **general:** adapt values to new multi-layer values approach ([kubriX-prime/#225](https://github.com/suxess-it/kubriX-prime/issues/225)) ([kubriX-prime/573ffab](https://github.com/suxess-it/kubriX-prime/commit/573ffab695c1b1c0646c824f0a6631bdbcf93dfd))
+* **grafana:** add dynamic secretes for grafana cnpg db ([kubriX-prime/#274](https://github.com/suxess-it/kubriX-prime/issues/274)) ([kubriX-prime/601382e](https://github.com/suxess-it/kubriX-prime/commit/601382ea0aebeb84f2424274f0247f089dbbd489))
+* **grafana:** add mrds for grafana ([kubriX-prime/#279](https://github.com/suxess-it/kubriX-prime/issues/279)) ([kubriX-prime/845ee53](https://github.com/suxess-it/kubriX-prime/commit/845ee5322e3fc16a1dbcdfb18614d88e8cef9fb1))
+* **grafana:** enable cluster and set PDB and topologySpreadContraints for HA implementation ([kubriX-prime/#293](https://github.com/suxess-it/kubriX-prime/issues/293)) ([kubriX-prime/dac4bf6](https://github.com/suxess-it/kubriX-prime/commit/dac4bf6fb3df7abbef04d2fec8a7a1ca629a2e35))
+* **ingress-nginx:** add ha configuration ([kubriX-prime/#273](https://github.com/suxess-it/kubriX-prime/issues/273)) ([kubriX-prime/12e4650](https://github.com/suxess-it/kubriX-prime/commit/12e46503ec1ddfc54cfbcdd0506dd7890fe7f9cb))
+* **ingress-nginx:** add topologySpreadContraints to ha configuration ([kubriX-prime/#287](https://github.com/suxess-it/kubriX-prime/issues/287)) ([kubriX-prime/2160dcb](https://github.com/suxess-it/kubriX-prime/commit/2160dcbeef3af3468504a666a070cec3726daf5f))
+* **ingress-nginx:** set enable-ssl-passthrough per default for vCluster feature ([kubriX-prime/#236](https://github.com/suxess-it/kubriX-prime/issues/236)) ([kubriX-prime/4b49e17](https://github.com/suxess-it/kubriX-prime/commit/4b49e172c3cc5df7e87c788da0aba691d5ded409))
+* **k8s-monitoring:** set pdb and topologySpreadContraints where poss… ([kubriX-prime/#290](https://github.com/suxess-it/kubriX-prime/issues/290)) ([kubriX-prime/22600e7](https://github.com/suxess-it/kubriX-prime/commit/22600e756dbfc5d032e6ac732c630f1928b9db20))
+* **kargo:** create PodDisruptionBudget in HA-mode ([kubriX-prime/#286](https://github.com/suxess-it/kubriX-prime/issues/286)) ([kubriX-prime/f913294](https://github.com/suxess-it/kubriX-prime/commit/f913294b43c0f255d45b86b31c1b80c6130140ea))
+* **kargo:** provide ha values ([kubriX-prime/#265](https://github.com/suxess-it/kubriX-prime/issues/265)) ([kubriX-prime/42b659d](https://github.com/suxess-it/kubriX-prime/commit/42b659d4eaef360d5f26802e8b8fc5a2286173ba))
+* **loki:** enable topologySpreadContraints for HA configuration ([kubriX-prime/#294](https://github.com/suxess-it/kubriX-prime/issues/294)) ([kubriX-prime/9019a01](https://github.com/suxess-it/kubriX-prime/commit/9019a01181c2fe631c44a792c1075859f4588128))
+* **observability:** provide values files for HA topology ([kubriX-prime/#200](https://github.com/suxess-it/kubriX-prime/issues/200)) ([kubriX-prime/37acf46](https://github.com/suxess-it/kubriX-prime/commit/37acf463ff9212b12c4167708a9af159827a0287))
+* **vault:** add topologySpreadContraints for ha config ([kubriX-prime/#324](https://github.com/suxess-it/kubriX-prime/issues/324)) ([kubriX-prime/ee77e07](https://github.com/suxess-it/kubriX-prime/commit/ee77e077e02d9f652aa61ddb9cc52b8de6891014))
+
 
 ### Bug Fixes
 
