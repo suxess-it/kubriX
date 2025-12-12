@@ -105,7 +105,7 @@ With this step-by-step guide kubriX with its default kubriX OSS stack gets deplo
 
     __azure__
 
-    setup [Managed Identity using Workload identity](https://kubernetes-sigs.github.io/external-dns/latest/docs/tutorials/azure/#managed-identity-using-workload-identity) and create `azure.json` file like this:
+    setup [Managed Identity using Workload identity](https://kubernetes-sigs.github.io/external-dns/latest/docs/tutorials/azure/#managed-identity-using-workload-identity) - oidc issuer, managed identity, role assignment and federated identity credentials - and create `azure.json` file like this:
     
     ```
     {
