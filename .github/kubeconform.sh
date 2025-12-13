@@ -26,6 +26,8 @@ else
   done
 fi
 
+echo "analyze apps: ${!APPS[@]}"
+
 curl -sL https://github.com/yannh/kubeconform/releases/download/v0.7.0/kubeconform-linux-amd64.tar.gz | tar zx kubeconform
 chmod u+x kubeconform
 
