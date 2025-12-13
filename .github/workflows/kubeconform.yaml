@@ -33,7 +33,10 @@ jobs:
                - '.github/workflows/kubeconform.yaml'
                - '.github/kubeconform.sh'
 
+
       - name: kubeconform charts
         shell: bash
+        env:
+          CHANGED_APPS: ${{ steps.filter.outputs.appChanges_files }}
         run: |
           .github/kubeconform.sh ${{ matrix.testCase }} ${{ matrix.valuesFiles }} "${{ matrix.setValues }}"
