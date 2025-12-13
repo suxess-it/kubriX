@@ -6,6 +6,8 @@ testCase=$1
 valuesFilesList=$2
 setValues=$3
 
+echo "changes: $CHANGED_APPS"
+
 curl -sL https://github.com/yannh/kubeconform/releases/download/v0.7.0/kubeconform-linux-amd64.tar.gz | tar zx kubeconform
 chmod u+x kubeconform
 
