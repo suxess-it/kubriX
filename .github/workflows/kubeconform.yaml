@@ -21,6 +21,18 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v6
 
+      - id: filter
+        uses: dorny/paths-filter@v3
+        with:
+          list-files: json
+          # For PRs it compares base..head. For push it compares before..after.
+          filters: |
+            appChanges:
+              - 'platform-apps/charts/**'
+            globalChanges:
+               - '.github/workflows/kubeconform.yaml'
+               - '.github/kubeconform.sh'
+
       - name: kubeconform charts
         shell: bash
         run: |
