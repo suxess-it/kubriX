@@ -193,7 +193,7 @@
 
 <h3>Trivy Returned Empty Report</h3>
 
-<h3>Target <code>quay.io/kiwigrid/k8s-sidecar:1.30.10 (alpine 3.22.1)</code></h3>
+<h3>Target <code>quay.io/kiwigrid/k8s-sidecar:2.1.2 (alpine 3.22.2)</code></h3>
 <h4>No Vulnerabilities found</h4>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>Python</code></h3>
