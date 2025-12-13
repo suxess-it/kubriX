@@ -8,19 +8,23 @@ setValues=$3
 
 echo "changes: $CHANGED_APPS"
 
-# Extract unique app names from paths like platform-apps/<app>/...
-mapfile -t CHANGED <<<"$(jq -r '.[]' <<<"$CHANGED_APPS")"
 declare -A APPS=()
-for f in "${CHANGED[@]}"; do
-  if [[ "$f" =~ ^platform-apps/charts/([^/]+)/ ]]; then
-    APPS["${BASH_REMATCH[1]}"]=1
-  fi
-done
 
-if [[ ${#APPS[@]} -eq 0 ]]; then
-  echo "No app directories changed."
+if [[ -z "${CHANGED_APPS:-}" || "${CHANGED_APPS}" == "[]" ]]; then
+  # All apps = all direct subdirectories of platform-apps/charts
+  while IFS= read -r app; do
+    APPS["$app"]=1
+  done < <(find platform-apps/charts -mindepth 1 -maxdepth 1 -type d -printf '%f\n')
+
+else
+  mapfile -t CHANGED < <(jq -r '.[]' <<<"$CHANGED_APPS")
+
+  for f in "${CHANGED[@]}"; do
+    if [[ "$f" =~ ^platform-apps/charts/([^/]+)/ ]]; then
+      APPS["${BASH_REMATCH[1]}"]=1
+    fi
+  done
 fi
-echo "Changed apps: ${!APPS[@]}"
 
 curl -sL https://github.com/yannh/kubeconform/releases/download/v0.7.0/kubeconform-linux-amd64.tar.gz | tar zx kubeconform
 chmod u+x kubeconform
