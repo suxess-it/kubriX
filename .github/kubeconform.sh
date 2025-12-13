@@ -30,7 +30,7 @@ curl -sL https://github.com/yannh/kubeconform/releases/download/v0.7.0/kubeconfo
 chmod u+x kubeconform
 
 cd platform-apps/charts
-for chart in $( ls -d */ | sed 's#/##' ); do
+for chart in ${!APPS[@]}; do
   echo ${chart}
   helm dependency update ${chart}
   # with different aspect specific values we need to render the charts with a specific set of values files, not with every file by itself.
