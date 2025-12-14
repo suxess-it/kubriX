@@ -264,7 +264,7 @@ jobs:
         uses: jlumbroso/free-disk-space@main
       
       - name: Create k8s Kind Cluster
-        uses: helm/kind-action@v1
+        uses: helm/kind-action@v1.13.0
         with:
           cluster_name: kubrix-cluster
           config: ${{ github.workspace }}/.github/kind-config.yaml
