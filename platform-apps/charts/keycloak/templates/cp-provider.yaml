@@ -31,12 +31,12 @@ spec:
               env:
                 - name: LEADER_ELECTION
                   value: "true"
-      topologySpreadConstraints:
-        - maxSkew: 1
-          topologyKey: kubernetes.io/hostname
-          whenUnsatisfiable: ScheduleAnyway
-          labelSelector:
-            matchLabels:
-              pkg.crossplane.io/provider: provider-keycloak
-          matchLabelKeys:
-            - pod-template-hash
+          topologySpreadConstraints:
+            - maxSkew: 1
+              topologyKey: kubernetes.io/hostname
+              whenUnsatisfiable: ScheduleAnyway
+              labelSelector:
+                matchLabels:
+                  pkg.crossplane.io/provider: provider-keycloak
+              matchLabelKeys:
+                - pod-template-hash
