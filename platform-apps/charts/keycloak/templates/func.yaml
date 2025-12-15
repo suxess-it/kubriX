@@ -5,6 +5,8 @@ metadata:
   name: function-extra-resources
 spec:
   package: xpkg.upbound.io/crossplane-contrib/function-extra-resources:v0.2.0
+  runtimeConfigRef:
+    name: function-extra-resources-config
 ---
 apiVersion: pkg.crossplane.io/v1beta1
 kind: Function
@@ -12,6 +14,8 @@ metadata:
   name: function-auto-ready
 spec:
   package: xpkg.upbound.io/crossplane-contrib/function-auto-ready:v0.6.0
+  runtimeConfigRef:
+    name: function-auto-ready-config
 ---
 apiVersion: pkg.crossplane.io/v1beta1
 kind: Function
@@ -20,3 +24,68 @@ metadata:
 spec:
   package: registry.gitlab.com/corewire/images/crossplane/function-keycloak-builtin-objects:v3.1.2
   packagePullPolicy: Always
+  runtimeConfigRef:
+    name: function-keycloak-builtin-objects-config
+---
+{{- $crossplane := default (dict) .Values.crossplane -}}
+{{- $function   := default (dict) $crossplane.function -}}
+{{- $replicas   := default 1 $function.replicas -}}
+apiVersion: pkg.crossplane.io/v1beta1
+kind: DeploymentRuntimeConfig
+metadata:
+  name: function-extra-resources-config
+spec:
+  deploymentTemplate:
+    spec:
+      replicas: {{ $replicas }}
+      selector: {}
+      template: {}
+      topologySpreadConstraints:
+        - maxSkew: 1
+          topologyKey: kubernetes.io/hostname
+          whenUnsatisfiable: ScheduleAnyway
+          labelSelector:
+            matchLabels:
+              pkg.crossplane.io/function: function-extra-resources
+          matchLabelKeys:
+            - pod-template-hash
+---
+apiVersion: pkg.crossplane.io/v1beta1
+kind: DeploymentRuntimeConfig
+metadata:
+  name: function-auto-ready-config
+spec:
+  deploymentTemplate:
+    spec:
+      replicas: {{ $replicas }}
+      selector: {}
+      template: {}
+      topologySpreadConstraints:
+        - maxSkew: 1
+          topologyKey: kubernetes.io/hostname
+          whenUnsatisfiable: ScheduleAnyway
+          labelSelector:
+            matchLabels:
+              pkg.crossplane.io/function: function-auto-ready
+          matchLabelKeys:
+            - pod-template-hash
+---
+apiVersion: pkg.crossplane.io/v1beta1
+kind: DeploymentRuntimeConfig
+metadata:
+  name: function-keycloak-builtin-objects-config
+spec:
+  deploymentTemplate:
+    spec:
+      replicas: {{ $replicas }}
+      selector: {}
+      template: {}
+      topologySpreadConstraints:
+        - maxSkew: 1
+          topologyKey: kubernetes.io/hostname
+          whenUnsatisfiable: ScheduleAnyway
+          labelSelector:
+            matchLabels:
+              pkg.crossplane.io/function: function-keycloak-builtin-objects
+          matchLabelKeys:
+            - pod-template-hash
