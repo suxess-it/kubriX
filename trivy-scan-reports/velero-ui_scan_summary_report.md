@@ -350,7 +350,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>Node.js</code></h3>
-<h4>Vulnerabilities (5)</h4>
+<h4>Vulnerabilities (6)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -379,6 +379,13 @@
         <td>HIGH</td>
         <td>2.0.0</td>
         <td></td>
+    </tr>
+    <tr>
+        <td><code>next</code></td>
+        <td>CVE-2025-55182</td>
+        <td>CRITICAL</td>
+        <td>15.2.3</td>
+        <td>15.0.5, 15.1.9, 15.2.6, 15.3.6, 15.4.8, 15.5.7, 16.0.7</td>
     </tr>
     <tr>
         <td><code>next</code></td>
