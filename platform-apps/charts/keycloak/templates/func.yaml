@@ -39,16 +39,17 @@ spec:
     spec:
       replicas: {{ $replicas }}
       selector: {}
-      template: {}
-      topologySpreadConstraints:
-        - maxSkew: 1
-          topologyKey: kubernetes.io/hostname
-          whenUnsatisfiable: ScheduleAnyway
-          labelSelector:
-            matchLabels:
-              pkg.crossplane.io/function: function-extra-resources
-          matchLabelKeys:
-            - pod-template-hash
+      template:
+        spec:
+          topologySpreadConstraints:
+            - maxSkew: 1
+              topologyKey: kubernetes.io/hostname
+              whenUnsatisfiable: ScheduleAnyway
+              labelSelector:
+                matchLabels:
+                  pkg.crossplane.io/function: function-extra-resources
+              matchLabelKeys:
+                - pod-template-hash
 ---
 apiVersion: pkg.crossplane.io/v1beta1
 kind: DeploymentRuntimeConfig
@@ -59,16 +60,17 @@ spec:
     spec:
       replicas: {{ $replicas }}
       selector: {}
-      template: {}
-      topologySpreadConstraints:
-        - maxSkew: 1
-          topologyKey: kubernetes.io/hostname
-          whenUnsatisfiable: ScheduleAnyway
-          labelSelector:
-            matchLabels:
-              pkg.crossplane.io/function: function-auto-ready
-          matchLabelKeys:
-            - pod-template-hash
+      template:
+        spec:
+          topologySpreadConstraints:
+            - maxSkew: 1
+              topologyKey: kubernetes.io/hostname
+              whenUnsatisfiable: ScheduleAnyway
+              labelSelector:
+                matchLabels:
+                  pkg.crossplane.io/function: function-auto-ready
+              matchLabelKeys:
+                - pod-template-hash
 ---
 apiVersion: pkg.crossplane.io/v1beta1
 kind: DeploymentRuntimeConfig
@@ -79,13 +81,14 @@ spec:
     spec:
       replicas: {{ $replicas }}
       selector: {}
-      template: {}
-      topologySpreadConstraints:
-        - maxSkew: 1
-          topologyKey: kubernetes.io/hostname
-          whenUnsatisfiable: ScheduleAnyway
-          labelSelector:
-            matchLabels:
-              pkg.crossplane.io/function: function-keycloak-builtin-objects
-          matchLabelKeys:
-            - pod-template-hash
+      template:
+        spec:
+          topologySpreadConstraints:
+            - maxSkew: 1
+              topologyKey: kubernetes.io/hostname
+              whenUnsatisfiable: ScheduleAnyway
+              labelSelector:
+                matchLabels:
+                  pkg.crossplane.io/function: function-keycloak-builtin-objects
+              matchLabelKeys:
+                - pod-template-hash
