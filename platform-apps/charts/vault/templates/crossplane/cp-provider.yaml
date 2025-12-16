@@ -1,22 +1,4 @@
-apiVersion: pkg.crossplane.io/v1beta1
-kind: DeploymentRuntimeConfig
-metadata:
-  name: vault-provider-config
-  annotations:
-    argocd.argoproj.io/sync-wave: "-10"
-spec:
-  deploymentTemplate:
-    spec:
-      selector: {}
-      template:
-        spec:
-          containers:
-          - name: package-runtime
-            # args: 
-            # - --poll=1m
-            # - --debug
----
-# should move to crossplane ns, maybe? 
+# should move to crossplane ns, maybe?
 apiVersion: pkg.crossplane.io/v1
 kind: Provider
 metadata:
@@ -29,3 +11,34 @@ spec:
     apiVersion: pkg.crossplane.io/v1beta1
     kind: DeploymentRuntimeConfig
     name: vault-provider-config
+---
+{{- $crossplane := default (dict) .Values.crossplane -}}
+{{- $provider   := default (dict) $crossplane.provider -}}
+{{- $replicas   := default 1 $provider.replicas -}}
+apiVersion: pkg.crossplane.io/v1beta1
+kind: DeploymentRuntimeConfig
+metadata:
+  name: vault-provider-config
+  annotations:
+    argocd.argoproj.io/sync-wave: "-10"
+spec:
+  deploymentTemplate:
+    spec:
+      replicas: {{ $replicas }}
+      selector: {}
+      template:
+        spec:
+          containers:
+            - name: package-runtime
+              env:
+                - name: LEADER_ELECTION
+                  value: "true"
+          topologySpreadConstraints:
+            - maxSkew: 1
+              topologyKey: kubernetes.io/hostname
+              whenUnsatisfiable: ScheduleAnyway
+              labelSelector:
+                matchLabels:
+                  pkg.crossplane.io/provider: provider-vault
+              matchLabelKeys:
+                - pod-template-hash
