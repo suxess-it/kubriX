@@ -47,6 +47,13 @@ spec:
   resources:
     {{- toYaml . | nindent 4 }}
   {{ end }}
+  {{ with .Values.keycloak.instances }}
+  instances: {{ . }}
+  {{ end }}
+  {{ with .Values.keycloak.scheduling }}
+  scheduling:
+    {{- toYaml . | nindent 4 }}
+  {{ end }}
   ingress:
     enabled: {{ .Values.keycloak.ingress.enabled }}
     {{ if .Values.keycloak.ingress.enabled }}
