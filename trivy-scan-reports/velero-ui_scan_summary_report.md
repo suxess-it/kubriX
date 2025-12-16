@@ -1,6 +1,6 @@
 
 <h3>Target <code>docker.io/dserio83/velero-api:0.3.1 (debian 12.11)</code></h3>
-<h4>Vulnerabilities (26)</h4>
+<h4>Vulnerabilities (30)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -109,7 +109,21 @@
     </tr>
     <tr>
         <td><code>libpython3.11-minimal</code></td>
+        <td>CVE-2025-12084</td>
+        <td>HIGH</td>
+        <td>3.11.2-6+deb12u6</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>libpython3.11-minimal</code></td>
         <td>CVE-2025-8194</td>
+        <td>HIGH</td>
+        <td>3.11.2-6+deb12u6</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>libpython3.11-stdlib</code></td>
+        <td>CVE-2025-12084</td>
         <td>HIGH</td>
         <td>3.11.2-6+deb12u6</td>
         <td></td>
@@ -172,7 +186,21 @@
     </tr>
     <tr>
         <td><code>python3.11</code></td>
+        <td>CVE-2025-12084</td>
+        <td>HIGH</td>
+        <td>3.11.2-6+deb12u6</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>python3.11</code></td>
         <td>CVE-2025-8194</td>
+        <td>HIGH</td>
+        <td>3.11.2-6+deb12u6</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>python3.11-minimal</code></td>
+        <td>CVE-2025-12084</td>
         <td>HIGH</td>
         <td>3.11.2-6+deb12u6</td>
         <td></td>
@@ -350,7 +378,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>Node.js</code></h3>
-<h4>Vulnerabilities (6)</h4>
+<h4>Vulnerabilities (5)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -383,13 +411,6 @@
     <tr>
         <td><code>next</code></td>
         <td>CVE-2025-55182</td>
-        <td>CRITICAL</td>
-        <td>15.2.3</td>
-        <td>15.0.5, 15.1.9, 15.2.6, 15.3.6, 15.4.8, 15.5.7, 16.0.7</td>
-    </tr>
-    <tr>
-        <td><code>next</code></td>
-        <td>GHSA-9qr9-h5gf-34mp</td>
         <td>CRITICAL</td>
         <td>15.2.3</td>
         <td>15.0.5, 15.1.9, 15.2.6, 15.3.6, 15.4.8, 15.5.7, 16.0.7</td>
