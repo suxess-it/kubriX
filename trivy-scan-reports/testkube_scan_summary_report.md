@@ -1,57 +1,6 @@
 
-<h3>Target <code>docker.io/kubeshop/testkube-api-server:2.5.0 (alpine 3.20.6)</code></h3>
-<h4>Vulnerabilities (6)</h4>
-<table>
-    <tr>
-        <th>Package</th>
-        <th>ID</th>
-        <th>Severity</th>
-        <th>Installed Version</th>
-        <th>Fixed Version</th>
-    </tr>
-    <tr>
-        <td><code>git</code></td>
-        <td>CVE-2025-46334</td>
-        <td>HIGH</td>
-        <td>2.45.3-r0</td>
-        <td>2.45.4-r0</td>
-    </tr>
-    <tr>
-        <td><code>git</code></td>
-        <td>CVE-2025-48384</td>
-        <td>HIGH</td>
-        <td>2.45.3-r0</td>
-        <td>2.45.4-r0</td>
-    </tr>
-    <tr>
-        <td><code>git</code></td>
-        <td>CVE-2025-48385</td>
-        <td>HIGH</td>
-        <td>2.45.3-r0</td>
-        <td>2.45.4-r0</td>
-    </tr>
-    <tr>
-        <td><code>git-init-template</code></td>
-        <td>CVE-2025-46334</td>
-        <td>HIGH</td>
-        <td>2.45.3-r0</td>
-        <td>2.45.4-r0</td>
-    </tr>
-    <tr>
-        <td><code>git-init-template</code></td>
-        <td>CVE-2025-48384</td>
-        <td>HIGH</td>
-        <td>2.45.3-r0</td>
-        <td>2.45.4-r0</td>
-    </tr>
-    <tr>
-        <td><code>git-init-template</code></td>
-        <td>CVE-2025-48385</td>
-        <td>HIGH</td>
-        <td>2.45.3-r0</td>
-        <td>2.45.4-r0</td>
-    </tr>
-</table>
+<h3>Target <code>docker.io/kubeshop/testkube-api-server:2.5.1 (alpine 3.20.6)</code></h3>
+<h4>No Vulnerabilities found</h4>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>bin/app</code></h3>
 <h4>Vulnerabilities (1)</h4>
@@ -77,7 +26,7 @@
 <h4>No Vulnerabilities found</h4>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>usr/bin/mc</code></h3>
-<h4>Vulnerabilities (6)</h4>
+<h4>Vulnerabilities (5)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -116,13 +65,6 @@
     </tr>
     <tr>
         <td><code>stdlib</code></td>
-        <td>CVE-2025-58187</td>
-        <td>HIGH</td>
-        <td>v1.24.3</td>
-        <td>1.24.9, 1.25.3</td>
-    </tr>
-    <tr>
-        <td><code>stdlib</code></td>
         <td>CVE-2025-61729</td>
         <td>HIGH</td>
         <td>v1.24.3</td>
@@ -131,7 +73,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>usr/bin/minio</code></h3>
-<h4>Vulnerabilities (6)</h4>
+<h4>Vulnerabilities (5)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -170,13 +112,6 @@
     </tr>
     <tr>
         <td><code>stdlib</code></td>
-        <td>CVE-2025-58187</td>
-        <td>HIGH</td>
-        <td>v1.24.4</td>
-        <td>1.24.9, 1.25.3</td>
-    </tr>
-    <tr>
-        <td><code>stdlib</code></td>
         <td>CVE-2025-61729</td>
         <td>HIGH</td>
         <td>v1.24.4</td>
@@ -189,7 +124,7 @@
 <h4>No Vulnerabilities found</h4>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>usr/local/bin/nats-server</code></h3>
-<h4>Vulnerabilities (5)</h4>
+<h4>Vulnerabilities (4)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -218,13 +153,6 @@
         <td>HIGH</td>
         <td>v1.24.4</td>
         <td>1.24.8, 1.25.2</td>
-    </tr>
-    <tr>
-        <td><code>stdlib</code></td>
-        <td>CVE-2025-58187</td>
-        <td>HIGH</td>
-        <td>v1.24.4</td>
-        <td>1.24.9, 1.25.3</td>
     </tr>
     <tr>
         <td><code>stdlib</code></td>
@@ -240,7 +168,7 @@
 <h4>No Vulnerabilities found</h4>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>usr/local/bin/nats-server-config-reloader</code></h3>
-<h4>Vulnerabilities (5)</h4>
+<h4>Vulnerabilities (4)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -269,13 +197,6 @@
         <td>HIGH</td>
         <td>v1.24.4</td>
         <td>1.24.8, 1.25.2</td>
-    </tr>
-    <tr>
-        <td><code>stdlib</code></td>
-        <td>CVE-2025-58187</td>
-        <td>HIGH</td>
-        <td>v1.24.4</td>
-        <td>1.24.9, 1.25.3</td>
     </tr>
     <tr>
         <td><code>stdlib</code></td>
@@ -465,7 +386,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>usr/local/bin/gosu</code></h3>
-<h4>Vulnerabilities (4)</h4>
+<h4>Vulnerabilities (3)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -487,13 +408,6 @@
         <td>HIGH</td>
         <td>v1.24.6</td>
         <td>1.24.8, 1.25.2</td>
-    </tr>
-    <tr>
-        <td><code>stdlib</code></td>
-        <td>CVE-2025-58187</td>
-        <td>HIGH</td>
-        <td>v1.24.6</td>
-        <td>1.24.9, 1.25.3</td>
     </tr>
     <tr>
         <td><code>stdlib</code></td>
@@ -505,7 +419,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>usr/local/bin/wait-for-port</code></h3>
-<h4>Vulnerabilities (4)</h4>
+<h4>Vulnerabilities (3)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -527,13 +441,6 @@
         <td>HIGH</td>
         <td>v1.25.0</td>
         <td>1.24.8, 1.25.2</td>
-    </tr>
-    <tr>
-        <td><code>stdlib</code></td>
-        <td>CVE-2025-58187</td>
-        <td>HIGH</td>
-        <td>v1.25.0</td>
-        <td>1.24.9, 1.25.3</td>
     </tr>
     <tr>
         <td><code>stdlib</code></td>
