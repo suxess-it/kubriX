@@ -7,7 +7,7 @@
 <h4>No Vulnerabilities found</h4>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>bin/vault</code></h3>
-<h4>Vulnerabilities (4)</h4>
+<h4>Vulnerabilities (3)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -26,13 +26,6 @@
     <tr>
         <td><code>stdlib</code></td>
         <td>CVE-2025-58183</td>
-        <td>HIGH</td>
-        <td>v1.24.6</td>
-        <td>1.24.8, 1.25.2</td>
-    </tr>
-    <tr>
-        <td><code>stdlib</code></td>
-        <td>CVE-2025-58186</td>
         <td>HIGH</td>
         <td>v1.24.6</td>
         <td>1.24.8, 1.25.2</td>
@@ -51,7 +44,7 @@
 <h4>No Vulnerabilities found</h4>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>bin/vault</code></h3>
-<h4>Vulnerabilities (4)</h4>
+<h4>Vulnerabilities (3)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -70,13 +63,6 @@
     <tr>
         <td><code>stdlib</code></td>
         <td>CVE-2025-58183</td>
-        <td>HIGH</td>
-        <td>v1.24.6</td>
-        <td>1.24.8, 1.25.2</td>
-    </tr>
-    <tr>
-        <td><code>stdlib</code></td>
-        <td>CVE-2025-58186</td>
         <td>HIGH</td>
         <td>v1.24.6</td>
         <td>1.24.8, 1.25.2</td>

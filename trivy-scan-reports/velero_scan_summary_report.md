@@ -176,7 +176,7 @@
 <h4>No Vulnerabilities found</h4>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>opt/bitnami/common/.spdx-yq.spdx</code></h3>
-<h4>Vulnerabilities (3)</h4>
+<h4>Vulnerabilities (2)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -188,13 +188,6 @@
     <tr>
         <td><code>stdlib</code></td>
         <td>CVE-2025-58183</td>
-        <td>HIGH</td>
-        <td>v1.25.0</td>
-        <td>1.24.8, 1.25.2</td>
-    </tr>
-    <tr>
-        <td><code>stdlib</code></td>
-        <td>CVE-2025-58186</td>
         <td>HIGH</td>
         <td>v1.25.0</td>
         <td>1.24.8, 1.25.2</td>
@@ -209,7 +202,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>opt/bitnami/common/bin/yq</code></h3>
-<h4>Vulnerabilities (3)</h4>
+<h4>Vulnerabilities (2)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -221,13 +214,6 @@
     <tr>
         <td><code>stdlib</code></td>
         <td>CVE-2025-58183</td>
-        <td>HIGH</td>
-        <td>v1.25.0</td>
-        <td>1.24.8, 1.25.2</td>
-    </tr>
-    <tr>
-        <td><code>stdlib</code></td>
-        <td>CVE-2025-58186</td>
         <td>HIGH</td>
         <td>v1.25.0</td>
         <td>1.24.8, 1.25.2</td>
@@ -245,7 +231,7 @@
 <h4>No Vulnerabilities found</h4>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>opt/bitnami/kubectl/.spdx-kubectl.spdx</code></h3>
-<h4>Vulnerabilities (3)</h4>
+<h4>Vulnerabilities (2)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -257,13 +243,6 @@
     <tr>
         <td><code>stdlib</code></td>
         <td>CVE-2025-58183</td>
-        <td>HIGH</td>
-        <td>v1.25.0</td>
-        <td>1.24.8, 1.25.2</td>
-    </tr>
-    <tr>
-        <td><code>stdlib</code></td>
-        <td>CVE-2025-58186</td>
         <td>HIGH</td>
         <td>v1.25.0</td>
         <td>1.24.8, 1.25.2</td>
@@ -278,7 +257,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>opt/bitnami/kubectl/bin/kubectl</code></h3>
-<h4>Vulnerabilities (3)</h4>
+<h4>Vulnerabilities (2)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -290,13 +269,6 @@
     <tr>
         <td><code>stdlib</code></td>
         <td>CVE-2025-58183</td>
-        <td>HIGH</td>
-        <td>v1.25.0</td>
-        <td>1.24.8, 1.25.2</td>
-    </tr>
-    <tr>
-        <td><code>stdlib</code></td>
-        <td>CVE-2025-58186</td>
         <td>HIGH</td>
         <td>v1.25.0</td>
         <td>1.24.8, 1.25.2</td>

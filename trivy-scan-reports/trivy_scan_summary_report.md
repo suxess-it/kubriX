@@ -3,7 +3,7 @@
 <h4>No Vulnerabilities found</h4>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>usr/local/bin/trivy-operator</code></h3>
-<h4>Vulnerabilities (7)</h4>
+<h4>Vulnerabilities (6)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -43,13 +43,6 @@
     <tr>
         <td><code>stdlib</code></td>
         <td>CVE-2025-58183</td>
-        <td>HIGH</td>
-        <td>v1.24.7</td>
-        <td>1.24.8, 1.25.2</td>
-    </tr>
-    <tr>
-        <td><code>stdlib</code></td>
-        <td>CVE-2025-58186</td>
         <td>HIGH</td>
         <td>v1.24.7</td>
         <td>1.24.8, 1.25.2</td>
