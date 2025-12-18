@@ -1,0 +1,38 @@
+{{- $cluster := .Values.cluster | default dict -}}
+{{- $clusterName := $cluster.name | default "kubernetes" -}}
+apiVersion: velero.io/v1
+kind: BackupStorageLocation
+metadata:
+  name: default
+  namespace: velero
+spec:
+  provider: {{ .Values.backupStorageLocation.provider | default "aws" }}
+  objectStorage:
+    bucket: {{ .Values.backupStorageLocation.config.bucket | default "dummy" }}
+    prefix: {{ $clusterName }}
+  accessMode: ReadWrite
+  config:
+    region: {{ .Values.backupStorageLocation.config.region | default "us-east-1" }}
+    s3Url: {{ .Values.backupStorageLocation.config.s3Url }}
+{{- if .Values.backupStorageLocation.config.publicUrl }}
+    publicUrl: {{ .Values.backupStorageLocation.config.publicUrl }}
+{{- end }}
+    insecureSkipTLSVerify: {{ .Values.backupStorageLocation.config.insecureSkipTLSVerify | default "false" | quote }}
+    checksumAlgorithm: "" # required for netapp
+    s3ForcePathStyle: "true"
+  credential:
+    key: cloud
+    name: velero-cloud-credentials
+  default: true
+---
+# one per provider required by velero
+apiVersion: velero.io/v1
+kind: VolumeSnapshotLocation
+metadata:
+  name: default
+  namespace: velero
+spec:
+  config:
+    incremental: "true"
+    region: {{ .Values.backupStorageLocation.config.region | default "us-east-1" }}
+  provider: aws
