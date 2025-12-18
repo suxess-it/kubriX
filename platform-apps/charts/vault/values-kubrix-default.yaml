@@ -155,6 +155,8 @@ vault:
               export VAULT_TOKEN="$(cat /vault-root-token/root_token)"
 
               if vault status | grep -q "Sealed.*false"; then
+                # enable audit service here so it is enabled before any crossplane requests
+                vault audit enable file file_path=stdout
                 # only run setup when admins group does NOT exist
                 if ! vault read identity/group/name/admins >/dev/null 2>&1; then
                   # kubernetes auth backend
@@ -250,6 +252,8 @@ vault:
           
           service_registration "kubernetes" {}
           plugin_directory = "/usr/local/libexec/vault"
+      config: |
+        allow_audit_log_prefixing: true
   serverTelemetry:
     serviceMonitor:
       enabled: true
