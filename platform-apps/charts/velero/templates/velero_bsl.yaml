@@ -3,7 +3,7 @@
 apiVersion: velero.io/v1
 kind: BackupStorageLocation
 metadata:
-  name: bsl-{{ $clusterName }}
+  name: default
   namespace: velero
 spec:
   provider: {{ .Values.backupStorageLocation.provider | default "aws" }}
