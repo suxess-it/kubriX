@@ -4,3 +4,7 @@ backupStorageLocation:
     bucket: velero
     region: minio
     insecureSkipTLSVerify: true # temp for minio/local deployment
+velero:
+  configuration:
+    defaultVolumesToFsBackup: false #use CSI snapshots in metalstack environments
+  snapshotsEnabled: true #snapshots are supported in metalstack environments
