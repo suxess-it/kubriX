@@ -1,5 +1,5 @@
 
-<h3>Target <code>ghcr.io/grafana/alloy-operator:1.5.0 (redhat 9.6)</code></h3>
+<h3>Target <code>ghcr.io/grafana/alloy-operator:1.5.1 (redhat 9.6)</code></h3>
 <h4>Vulnerabilities (1)</h4>
 <table>
     <tr>
