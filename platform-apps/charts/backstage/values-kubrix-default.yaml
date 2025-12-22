@@ -119,7 +119,7 @@ backstage:
         #   changeOrigin: true
           '/grafana/api':
             # May be a public or an internal DNS
-            target: ~
+            target: http://sx-grafana.grafana:80
             headers:
               Authorization: Bearer ${GRAFANA_TOKEN}
 
