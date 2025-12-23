@@ -687,8 +687,7 @@ if [[ "${KUBRIX_CLUSTER_TYPE}" == "kind" ]] ; then
   kubectl get ns backstage >/dev/null 2>&1 || kubectl create ns backstage
   kubectl create secret generic mkcert-cacert --from-file=ca.crt="$(mkcert -CAROOT)"/rootCA.pem -n backstage --dry-run=client -o yaml | kubectl apply -f -
 
-  # vault oidc case
-  echo "create a root ca and patch ingress-nginx-controller for vault oidc"
+  # vault ca for oidc
   kubectl get ns vault >/dev/null 2>&1 || kubectl create ns vault
   kubectl create secret generic ca-cert --from-file=ca.crt="$(mkcert -CAROOT)"/rootCA.pem -n vault --dry-run=client -o yaml | kubectl apply -f -
 
