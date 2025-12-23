@@ -361,10 +361,12 @@ jobs:
           E2E_TEST_GH_PASSWORD: ${{ secrets.E2E_TEST_GH_PASSWORD }}
           E2E_TEST_GITHUB_OTP: ${{ secrets.E2E_TEST_GITHUB_OTP }}
         run: |
+          E2E_KEYCLOAK_DEMOADMIN_PASSWORD=$( kubectl get secret -n keycloak cp-keycloak-users-secret -o=jsonpath='{.data.demoadmin}'  | base64 -d )
           testkube run testworkflow -l type=${KUBRIX_TARGET_TYPE} \
             --variable E2E_TEST_GH_USERNAME=${E2E_TEST_GH_USERNAME} \
             --variable E2E_TEST_GH_PASSWORD=${E2E_TEST_GH_PASSWORD} \
             --variable E2E_TEST_GITHUB_OTP=${E2E_TEST_GITHUB_OTP} \
+            --variable E2E_KEYCLOAK_DEMOADMIN_PASSWORD=${E2E_KEYCLOAK_DEMOADMIN_PASSWORD} \
             -f -d
 
       - uses: actions/upload-artifact@v6
