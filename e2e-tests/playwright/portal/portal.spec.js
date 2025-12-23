@@ -23,7 +23,10 @@ test("Github Login", async ({ page }) => {
 });
 
 
-test('Keycloak Login', async ({ page }) => {
+test('Keycloak Demouser Login', async ({ page }) => {
+  const password = process.env.E2E_KEYCLOAK_DEMOADMIN_PASSWORD;
+  if (!password) throw new Error('Missing E2E_KEYCLOAK_DEMOADMIN_PASSWORD');
+
   await page.goto("https://backstage.127-0-0-1.nip.io/");
 
   await expect(page).toHaveTitle(/kubriX OSS/);
@@ -35,7 +38,7 @@ test('Keycloak Login', async ({ page }) => {
   await page1.getByRole('textbox', { name: 'Username' }).click();
   await page1.getByRole('textbox', { name: 'Username' }).fill('demoadmin');
   await page1.getByRole('textbox', { name: 'Password' }).click();
-  await page1.getByRole('textbox', { name: 'Password' }).fill(process.env.E2E_KEYCLOAK_DEMOADMIN_PASSWORD!);
+  await page1.getByRole('textbox', { name: 'Password' }).fill(password);
   await page1.getByRole('button', { name: 'Sign In' }).click();
   await page1.close();
   await expect(page.getByRole('heading', { name: 'Welcome to kubriX' })).toBeVisible();
