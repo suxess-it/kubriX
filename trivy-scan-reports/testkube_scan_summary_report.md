@@ -1,5 +1,5 @@
 
-<h3>Target <code>docker.io/kubeshop/testkube-api-server:2.5.2 (alpine 3.20.6)</code></h3>
+<h3>Target <code>docker.io/kubeshop/testkube-api-server:2.5.3 (alpine 3.20.6)</code></h3>
 <h4>No Vulnerabilities found</h4>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>bin/app</code></h3>
