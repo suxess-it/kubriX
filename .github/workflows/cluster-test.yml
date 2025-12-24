@@ -349,7 +349,7 @@ jobs:
           kubectl get secret -n backstage sx-cnp-secret
           kubectl delete secret -n backstage sx-cnp-secret
           kubectl delete externalsecret -n backstage sx-cnp-secret
-          kubectl get secret -n backstage sx-cnp-secret
+          kubectl get secret -n backstage
           kubectl rollout restart deployment -n backstage sx-backstage
 
       # run testkube tests
