@@ -351,6 +351,8 @@ jobs:
           kubectl delete externalsecret -n backstage sx-cnp-secret
           kubectl get secret -n backstage
           kubectl rollout restart deployment -n backstage sx-backstage
+          kubectl rollout status deployment -n backstage sx-backstage
+          kubectl get secret -n backstage
 
       # run testkube tests
       - uses: kubeshop/setup-testkube@v1
