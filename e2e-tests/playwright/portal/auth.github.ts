@@ -33,7 +33,7 @@ async function getFreshTotp(totp: OTPAuth.TOTP): Promise<string> {
 const authDir = path.join(__dirname, '../.auth');
 fs.mkdirSync(authDir, { recursive: true });
 
-const authFile = path.join(authDir, 'user.json');
+const ghAuthFile = path.join(authDir, 'github.json');
 
 setup('authenticate', async ({ page }) => {
   // Perform authentication steps. Replace these actions with your own.
@@ -58,5 +58,7 @@ setup('authenticate', async ({ page }) => {
 
   // End of authentication steps.
 
-  await page.context().storageState({ path: authFile });
+  await page.context().storageState({ path: ghAuthFile });
 });
+
+const keycloakAuthFile = path.join(authDir, 'keycloak.json');
