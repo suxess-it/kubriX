@@ -4,7 +4,7 @@ import path from 'path';
 import fs from "fs";
 
 const authDir = path.join(__dirname, '../.auth');
-const ghAuthFile = path.join(authDir, 'user.json');
+const ghAuthFile = path.join(authDir, 'github.json');
 test.use({ storageState: ghAuthFile });
 
 test("Github Login", async ({ page }) => {
@@ -28,7 +28,7 @@ test("Github Login", async ({ page }) => {
   await page.getByTestId('sign-out').click();
 });
 
-const keycloakAuthFile = path.join(authDir, 'user.json');
+const keycloakAuthFile = path.join(authDir, 'keycloak.json');
 test.use({ storageState: keycloakAuthFile });
 
 test('Keycloak Demouser Login', async ({ page }) => {
