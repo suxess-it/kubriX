@@ -62,3 +62,24 @@ setup('authenticate', async ({ page }) => {
 });
 
 const keycloakAuthFile = path.join(authDir, 'keycloak.json');
+
+setup('Keycloak Demouser Login', async ({ page }) => {
+  await page.goto("https://backstage.127-0-0-1.nip.io/");
+
+  await expect(page).toHaveTitle(/kubriX OSS/);
+
+  // Open Keycloak Login
+  const popupPromise = page.waitForEvent('popup');
+  await page.getByRole('listitem').filter({ hasText: 'Keycloak OIDCSign in with' }).getByRole('button').click();
+  const page1 = await popupPromise;
+  await page1.getByRole('textbox', { name: 'Username' }).click();
+  await page1.getByRole('textbox', { name: 'Username' }).fill('demoadmin');
+  await page1.getByRole('textbox', { name: 'Password' }).click();
+  await page1.getByRole('textbox', { name: 'Password' }).fill(process.env.E2E_KEYCLOAK_DEMOADMIN_PASSWORD!);
+  await page1.getByRole('button', { name: 'Sign In' }).click();
+
+  await page.context().storageState({ path: keycloakAuthFile });
+  
+  await page1.close();
+  await expect(page.getByRole('heading', { name: 'Welcome to kubriX' })).toBeVisible();
+});
