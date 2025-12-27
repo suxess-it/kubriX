@@ -5,9 +5,10 @@ import fs from "fs";
 
 const authDir = path.join(__dirname, '../.auth');
 const ghAuthFile = path.join(authDir, 'github.json');
-test.use({ storageState: ghAuthFile });
+
 
 test("Github Login", async ({ page }) => {
+  test.use({ storageState: ghAuthFile });
   await page.goto("https://backstage.127-0-0-1.nip.io/");
 
   await expect(page).toHaveTitle(/kubriX OSS/);
@@ -29,9 +30,10 @@ test("Github Login", async ({ page }) => {
 });
 
 const keycloakAuthFile = path.join(authDir, 'keycloak.json');
-test.use({ storageState: keycloakAuthFile });
+
 
 test('Keycloak Demouser Login', async ({ page }) => {
+  test.use({ storageState: keycloakAuthFile });
   await page.goto("https://backstage.127-0-0-1.nip.io/");
 
   await expect(page).toHaveTitle(/kubriX OSS/);
