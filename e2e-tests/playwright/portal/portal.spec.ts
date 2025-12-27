@@ -15,13 +15,13 @@ test("Github Login", async ({ page }) => {
   // Open GitHub login popup
   const popupPromise = page.waitForEvent('popup');
   await page.getByRole('listitem').filter({ hasText: 'GitHubSign in using' }).getByRole('button').click();
-  const githubPage = await popupPromise;
+  // const githubPage = await popupPromise;
   // Optionally handle “Authorize” screen if it appears
   // const authorizeButton = githubPage.getByRole('button', { name: 'Authorize' });
   // if (await authorizeButton.isVisible()) {
   //  await authorizeButton.click();
   // }
-  await githubPage.close();
+  /: await githubPage.close();
   await expect(page.getByRole('heading', { name: 'Welcome to kubriX' })).toBeVisible();
   await page.getByTestId('sidebar-root').getByRole('link', { name: 'Settings' }).click();
   await page.getByTestId('user-settings-menu').click();
