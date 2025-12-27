@@ -21,7 +21,7 @@ test("Github Login", async ({ page }) => {
   // if (await authorizeButton.isVisible()) {
   //  await authorizeButton.click();
   // }
-  /: await githubPage.close();
+  // await githubPage.close();
   await expect(page.getByRole('heading', { name: 'Welcome to kubriX' })).toBeVisible();
   await page.getByTestId('sidebar-root').getByRole('link', { name: 'Settings' }).click();
   await page.getByTestId('user-settings-menu').click();
