@@ -13,7 +13,7 @@ test("Github Login", async ({ page }) => {
   await expect(page).toHaveTitle(/kubriX OSS/);
 
   // Open GitHub login popup
-  const popupPromise = page.waitForEvent('popup');
+  // const popupPromise = page.waitForEvent('popup');
   await page.getByRole('listitem').filter({ hasText: 'GitHubSign in using' }).getByRole('button').click();
   // const githubPage = await popupPromise;
   // Optionally handle “Authorize” screen if it appears
