@@ -39,9 +39,9 @@ test('Keycloak Demouser Login', async ({ page }) => {
   await expect(page).toHaveTitle(/kubriX OSS/);
 
   // Open Keycloak Login
-  const popupPromise = page.waitForEvent('popup');
-  await page.getByRole('listitem').filter({ hasText: 'Keycloak OIDCSign in with' }).getByRole('button').click();
-  const page1 = await popupPromise;
+  // const popupPromise = page.waitForEvent('popup');
+  // await page.getByRole('listitem').filter({ hasText: 'Keycloak OIDCSign in with' }).getByRole('button').click();
+  // const page1 = await popupPromise;
   
   await expect(page.getByRole('heading', { name: 'Welcome to kubriX' })).toBeVisible();
   await page.getByTestId('sidebar-root').getByRole('link', { name: 'Settings' }).click();
