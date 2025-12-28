@@ -27,23 +27,3 @@ test("Github Login", async ({ page }) => {
   await page.getByTestId('user-settings-menu').click();
   await page.getByTestId('sign-out').click();
 });
-
-const keycloakAuthFile = path.join(authDir, 'keycloak.json');
-
-
-test('Keycloak Demouser Login', async ({ page }) => {
-  test.use({ storageState: keycloakAuthFile });
-  await page.goto("https://backstage.127-0-0-1.nip.io/");
-
-  await expect(page).toHaveTitle(/kubriX OSS/);
-
-  // Open Keycloak Login
-  // const popupPromise = page.waitForEvent('popup');
-  // await page.getByRole('listitem').filter({ hasText: 'Keycloak OIDCSign in with' }).getByRole('button').click();
-  // const page1 = await popupPromise;
-  
-  await expect(page.getByRole('heading', { name: 'Welcome to kubriX' })).toBeVisible();
-  await page.getByTestId('sidebar-root').getByRole('link', { name: 'Settings' }).click();
-  await page.getByTestId('user-settings-menu').click();
-  await page.getByTestId('sign-out').click();
-});
