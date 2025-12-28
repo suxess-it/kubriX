@@ -49,7 +49,7 @@ module.exports = defineConfig({
   projects: [
     {
       name: 'setup',
-      testMatch: 'auth.github.ts',
+      testMatch: 'auth.github-keycloak.ts',
     },
     {
       name: 'chromium',

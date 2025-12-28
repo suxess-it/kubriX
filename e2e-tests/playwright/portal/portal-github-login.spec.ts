@@ -4,20 +4,24 @@ import path from 'path';
 import fs from "fs";
 
 const authDir = path.join(__dirname, '../.auth');
-const keycloakAuthFile = path.join(authDir, 'keycloak.json');
-test.use({ storageState: keycloakAuthFile });
+const ghAuthFile = path.join(authDir, 'github.json');
+test.use({ storageState: ghAuthFile });
 
-test('Keycloak Demouser Login', async ({ page }) => {
+test("Github Login", async ({ page }) => {
   
   await page.goto("https://backstage.127-0-0-1.nip.io/");
-
   await expect(page).toHaveTitle(/kubriX OSS/);
 
-  // Open Keycloak Login
+  // Open GitHub login popup
   // const popupPromise = page.waitForEvent('popup');
-  // await page.getByRole('listitem').filter({ hasText: 'Keycloak OIDCSign in with' }).getByRole('button').click();
-  // const page1 = await popupPromise;
-  
+  await page.getByRole('listitem').filter({ hasText: 'GitHubSign in using' }).getByRole('button').click();
+  // const githubPage = await popupPromise;
+  // Optionally handle “Authorize” screen if it appears
+  // const authorizeButton = githubPage.getByRole('button', { name: 'Authorize' });
+  // if (await authorizeButton.isVisible()) {
+  //  await authorizeButton.click();
+  // }
+  // await githubPage.close();
   await expect(page.getByRole('heading', { name: 'Welcome to kubriX' })).toBeVisible();
   await page.getByTestId('sidebar-root').getByRole('link', { name: 'Settings' }).click();
   await page.getByTestId('user-settings-menu').click();
