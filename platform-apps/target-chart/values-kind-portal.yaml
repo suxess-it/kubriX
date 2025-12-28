@@ -6,7 +6,7 @@ default:
 applications:
   - name: ingress-nginx
     annotations:
-      argocd.argoproj.io/sync-wave: "-11"
+      argocd.argoproj.io/sync-wave: "-10"
 
   - name: cert-manager
     annotations:
@@ -49,7 +49,7 @@ applications:
       argocd.argoproj.io/sync-wave: "-5"
 
   - name: testkube
-      annotations:
+    annotations:
       argocd.argoproj.io/sync-wave: "-5"
    
   - name: backstage
