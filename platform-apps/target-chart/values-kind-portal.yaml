@@ -6,11 +6,11 @@ default:
 applications:
   - name: ingress-nginx
     annotations:
-      argocd.argoproj.io/sync-wave: "-11"
+      argocd.argoproj.io/sync-wave: "-9"
 
   - name: cert-manager
     annotations:
-      argocd.argoproj.io/sync-wave: "-10"
+      argocd.argoproj.io/sync-wave: "-9"
 
   - name: crossplane
     annotations:
@@ -40,7 +40,7 @@ applications:
   - name: cnpg
     annotations:
       argocd.argoproj.io/compare-options: ServerSideDiff=true
-      argocd.argoproj.io/sync-wave: "-6"
+      argocd.argoproj.io/sync-wave: "-9"
     syncOptions:
       - ServerSideApply=true
       
