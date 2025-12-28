@@ -7,7 +7,7 @@ const authDir = path.join(__dirname, '../.auth');
 const keycloakDemouserAuthFile = path.join(authDir, 'keycloak-demouser.json');
 test.use({ storageState: keycloakDemouserAuthFile });
 
-test('Keycloak Demoadmin Login', async ({ page }) => {
+test('Keycloak Demouser Login', async ({ page }) => {
   
   await page.goto("https://backstage.127-0-0-1.nip.io/");
 
