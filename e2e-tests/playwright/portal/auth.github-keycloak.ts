@@ -34,7 +34,6 @@ const authDir = path.join(__dirname, '../.auth');
 fs.mkdirSync(authDir, { recursive: true });
 
 const ghAuthFile = path.join(authDir, 'github.json');
-
 setup('authenticate', async ({ page }) => {
   // Perform authentication steps. Replace these actions with your own.
   await page.goto('https://github.com/login');
@@ -61,9 +60,8 @@ setup('authenticate', async ({ page }) => {
   await page.context().storageState({ path: ghAuthFile });
 });
 
-const keycloakAuthFile = path.join(authDir, 'keycloak.json');
-
-setup('Keycloak Demouser Login', async ({ page }) => {
+const keycloakDemoadminAuthFile = path.join(authDir, 'keycloak-demoadmin.json');
+setup('Keycloak Demoadmin Login', async ({ page }) => {
   await page.goto("https://backstage.127-0-0-1.nip.io/");
 
   await expect(page).toHaveTitle(/kubriX OSS/);
@@ -78,7 +76,29 @@ setup('Keycloak Demouser Login', async ({ page }) => {
   await page1.getByRole('textbox', { name: 'Password' }).fill(process.env.E2E_KEYCLOAK_DEMOADMIN_PASSWORD!);
   await page1.getByRole('button', { name: 'Sign In' }).click();
 
-  await page.context().storageState({ path: keycloakAuthFile });
+  await page.context().storageState({ path: keycloakDemoadminAuthFile });
+
+  await page1.close();
+  await expect(page.getByRole('heading', { name: 'Welcome to kubriX' })).toBeVisible();
+});
+
+const keycloakDemouserAuthFile = path.join(authDir, 'keycloak-demouser.json');
+setup('Keycloak Demouser Login', async ({ page }) => {
+  await page.goto("https://backstage.127-0-0-1.nip.io/");
+
+  await expect(page).toHaveTitle(/kubriX OSS/);
+
+  // Open Keycloak Login
+  const popupPromise = page.waitForEvent('popup');
+  await page.getByRole('listitem').filter({ hasText: 'Keycloak OIDCSign in with' }).getByRole('button').click();
+  const page1 = await popupPromise;
+  await page1.getByRole('textbox', { name: 'Username' }).click();
+  await page1.getByRole('textbox', { name: 'Username' }).fill('demouser');
+  await page1.getByRole('textbox', { name: 'Password' }).click();
+  await page1.getByRole('textbox', { name: 'Password' }).fill(process.env.E2E_KEYCLOAK_DEMOUSER_PASSWORD!);
+  await page1.getByRole('button', { name: 'Sign In' }).click();
+
+  await page.context().storageState({ path: keycloakDemouserAuthFile });
   
   await page1.close();
   await expect(page.getByRole('heading', { name: 'Welcome to kubriX' })).toBeVisible();

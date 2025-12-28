@@ -4,8 +4,8 @@ import path from 'path';
 import fs from "fs";
 
 const authDir = path.join(__dirname, '../.auth');
-const keycloakDemoadminAuthFile = path.join(authDir, 'keycloak-demoadmin.json');
-test.use({ storageState: keycloakDemoadminAuthFile });
+const keycloakDemouserAuthFile = path.join(authDir, 'keycloak-demouser.json');
+test.use({ storageState: keycloakDemouserAuthFile });
 
 test('Keycloak Demoadmin Login', async ({ page }) => {
   
@@ -19,8 +19,8 @@ test('Keycloak Demoadmin Login', async ({ page }) => {
   // const page1 = await popupPromise;
   
   await expect(page.getByRole('heading', { name: 'Welcome to kubriX' })).toBeVisible();
-  await expect(page.getByRole('link', { name: 'RBAC' })).toBeVisible();
-
+  await expect(page.getByRole('link', { name: 'RBAC' })).not.toBeVisible();
+  await expect(page.getByRole('link', { name: 'RBAC' })).toBeHidden();
 
 
   // logout
