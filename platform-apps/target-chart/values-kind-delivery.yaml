@@ -49,8 +49,13 @@ applications:
       argocd.argoproj.io/sync-wave: "-5"
 
   - name: kargo
+    annotations:
+      argocd.argoproj.io/sync-wave: "-5"
+
 
   - name: argo-rollouts
+    annotations:
+      argocd.argoproj.io/sync-wave: "-5"
     ignoreDifferences:
     - group: apiextensions.k8s.io
       kind: CustomResourceDefinition
@@ -58,6 +63,9 @@ applications:
       - /spec/preserveUnknownFields
 
   - name: testkube
+    annotations:
+      argocd.argoproj.io/sync-wave: "-5"
+
 
   - name: backstage
     annotations:
@@ -67,7 +75,7 @@ applications:
     destinationNamespaceOverwrite: argocd
     namespaceResourceTracking: false
     annotations:
-      argocd.argoproj.io/sync-wave: "15"
+      argocd.argoproj.io/sync-wave: "10"
       
 
 
