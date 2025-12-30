@@ -338,7 +338,7 @@ jobs:
           k8sgpt analyze
 
       - name: Update Vault with GitHub OAuth credentials for Testkube tests
-        if: ${{ matrix.target-type  == 'kind-portal' }}
+        if: ${{ matrix.target-type  == 'kind-portal' || matrix.target-type  == 'kind-hub-prime' }}
         env:
           GITHUB_CLIENTID: ${{ secrets.E2E_TEST_GITHUB_CLIENTID }}
           GITHUB_CLIENTSECRET: ${{ secrets.E2E_TEST_GITHUB_CLIENTSECRET }}
