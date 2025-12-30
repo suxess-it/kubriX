@@ -64,7 +64,7 @@ const keycloakDemoadminAuthFile = path.join(authDir, 'keycloak-demoadmin.json');
 setup('Keycloak Demoadmin Login', async ({ page }) => {
   await page.goto("https://backstage.127-0-0-1.nip.io/");
 
-  await expect(page).toHaveTitle(/kubriX OSS/);
+  await expect(page).toHaveTitle(/kubriX/);
 
   // Open Keycloak Login
   const popupPromise = page.waitForEvent('popup');
@@ -86,7 +86,7 @@ const keycloakDemouserAuthFile = path.join(authDir, 'keycloak-demouser.json');
 setup('Keycloak Demouser Login', async ({ page }) => {
   await page.goto("https://backstage.127-0-0-1.nip.io/");
 
-  await expect(page).toHaveTitle(/kubriX OSS/);
+  await expect(page).toHaveTitle(/kubriX/);
 
   // Open Keycloak Login
   const popupPromise = page.waitForEvent('popup');
