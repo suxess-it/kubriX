@@ -30,7 +30,7 @@
 <h4>No Vulnerabilities found</h4>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>Node.js</code></h3>
-<h4>Vulnerabilities (10)</h4>
+<h4>Vulnerabilities (14)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -101,6 +101,34 @@
         <td>HIGH</td>
         <td>1.3.1</td>
         <td>1.3.2</td>
+    </tr>
+    <tr>
+        <td><code>qs</code></td>
+        <td>CVE-2025-15284</td>
+        <td>HIGH</td>
+        <td>6.13.0</td>
+        <td>6.14.1</td>
+    </tr>
+    <tr>
+        <td><code>qs</code></td>
+        <td>CVE-2025-15284</td>
+        <td>HIGH</td>
+        <td>6.13.0</td>
+        <td>6.14.1</td>
+    </tr>
+    <tr>
+        <td><code>qs</code></td>
+        <td>CVE-2025-15284</td>
+        <td>HIGH</td>
+        <td>6.14.0</td>
+        <td>6.14.1</td>
+    </tr>
+    <tr>
+        <td><code>qs</code></td>
+        <td>CVE-2025-15284</td>
+        <td>HIGH</td>
+        <td>6.5.3</td>
+        <td>6.14.1</td>
     </tr>
     <tr>
         <td><code>systeminformation</code></td>
