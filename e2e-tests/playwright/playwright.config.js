@@ -49,18 +49,29 @@ export default defineConfig({
   /* Configure projects for major browsers */
   projects: [
     {
-      name: 'setup',
-      testMatch: 'auth.github-keycloak.ts',
+      name: 'portal-login',
+      testMatch: 'portal/auth.github-keycloak-login.ts',
     },
     {
-      name: 'chromium',
+      name: 'portal-tests',
+      testMatch: /portal\/portal-.*/,
       use: {
         ...devices['Desktop Chrome'],
       },
-      //wait for setup project to finish first
-      dependencies: ['setup'],
+      dependencies: ['portal-login'],
     },
-
+    {
+      name: 'argocd-login',
+      testMatch: 'argocd/auth.argocd-login.ts',
+    },
+    {
+      name: 'argocd-tests',
+      testMatch: /argocd\/argocd-.*/,
+      use: {
+        ...devices['Desktop Chrome'],
+      },
+      dependencies: ['argocd-login'],
+    },
     // {
     //   name: 'webkit',
     //   use: { ...devices['Desktop Safari'] },
