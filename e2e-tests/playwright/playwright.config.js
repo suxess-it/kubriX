@@ -72,6 +72,14 @@ export default defineConfig({
       },
       dependencies: ['argocd-login'],
     },
+    {
+      name: 'prime-tests',
+      testMatch: /prime\/prime-.*/,
+      use: {
+        ...devices['Desktop Chrome'],
+      },
+      dependencies: ['argocd-login','portal-login'],
+    },
     // {
     //   name: 'webkit',
     //   use: { ...devices['Desktop Safari'] },
