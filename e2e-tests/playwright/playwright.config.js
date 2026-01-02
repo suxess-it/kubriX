@@ -1,17 +1,18 @@
-// @ts-check
-const { defineConfig, devices } = require('@playwright/test');
+import { defineConfig, devices } from '@playwright/test';
 
 /**
  * Read environment variables from file.
  * https://github.com/motdotla/dotenv
  */
-// require('dotenv').config();
+// import dotenv from 'dotenv';
+// import path from 'path';
+// dotenv.config({ path: path.resolve(__dirname, '.env') });
 
 /**
- * @see https://playwright.dev/docs/test-configuration
+ * See https://playwright.dev/docs/test-configuration.
  */
-module.exports = defineConfig({
-  // testDir: './tests',
+export default defineConfig({
+  // testDir: './portal',
   /* Maximum time one test can run for. */
   timeout: 30 * 1000,
   expect: {
@@ -48,18 +49,29 @@ module.exports = defineConfig({
   /* Configure projects for major browsers */
   projects: [
     {
-      name: 'setup',
-      testMatch: 'auth.github-keycloak.ts',
+      name: 'portal-login',
+      testMatch: 'portal/auth.github-keycloak-login.ts',
     },
     {
-      name: 'chromium',
+      name: 'portal-tests',
+      testMatch: /portal\/portal-.*/,
       use: {
         ...devices['Desktop Chrome'],
       },
-      //wait for setup project to finish first
-      dependencies: ['setup'],
+      dependencies: ['portal-login'],
     },
-
+    {
+      name: 'argocd-login',
+      testMatch: 'argocd/auth.argocd-login.ts',
+    },
+    {
+      name: 'argocd-tests',
+      testMatch: /argocd\/argocd-.*/,
+      use: {
+        ...devices['Desktop Chrome'],
+      },
+      dependencies: ['argocd-login'],
+    },
     // {
     //   name: 'webkit',
     //   use: { ...devices['Desktop Safari'] },
@@ -87,7 +99,7 @@ module.exports = defineConfig({
   ],
 
   /* Folder for test artifacts such as screenshots, videos, traces, etc. */
-  outputDir: '/data/artifacts/',
+  outputDir: 'data/artifacts/',
 
   /* Run your local dev server before starting the tests */
   // webServer: {
