@@ -94,3 +94,11 @@ kubectl delete externalsecret -n backstage sx-cnp-secret
 kubectl rollout restart deployment -n backstage sx-backstage
 kubectl rollout status deployment -n backstage sx-backstage
 ```
+
+You can show the html report when you execute this command in the `e2e-tests/playwright` folder:
+
+```
+npx playwright show-report
+```
+
+or you can select `show browser` or `show trace viewer` in your playwright vscode extension view.
