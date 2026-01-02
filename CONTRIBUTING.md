@@ -42,3 +42,55 @@ You can contribute to kubriX in many ways:
 * Include screenshots for UI changes
 * Ask for review from at least one maintainer
 * Keep your feature branch up-to-date, maintainers will squash-merge the PR
+
+---
+
+# Running E2E tests
+
+We use Playwright for running e2e tests. To run them locally you need to do the following
+
+
+install otpauth dependency:
+
+```
+cd e2e-tests/playwright
+npm install otpauth
+```
+
+get some env entries for the tests
+
+```
+export E2E_KEYCLOAK_DEMOADMIN_PASSWORD=$( kubectl get secret -n keycloak cp-keycloak-users-secret -o=jsonpath='{.data.demoadmin}'  | base64 -d )
+export E2E_KEYCLOAK_DEMOUSER_PASSWORD=$( kubectl get secret -n keycloak cp-keycloak-users-secret -o=jsonpath='{.data.demouser}'  | base64 -d )
+```
+
+and save them in `playwright.env` section of the `settings.json` of vscode:
+
+```
+    "playwright.env": {
+        "E2E_KEYCLOAK_DEMOADMIN_PASSWORD": "xxxxx",
+        "E2E_KEYCLOAK_DEMOUSER_PASSWORD": "xxxxx",
+        "E2E_TEST_GH_USERNAME": "xxxxx",
+        "E2E_TEST_GH_PASSWORD": "xxxxx",
+        "E2E_TEST_GITHUB_OTP": "xxxxx"
+    }
+```
+
+also setup github oauth in backstage in your kubriX setup:
+
+```
+export GITHUB_CLIENTID="<oauth-github-clientid>"
+export GITHUB_CLIENTSECRET="<oauth-github-clientsecret>"
+```
+
+and then execute the following:
+
+```
+export VAULT_HOSTNAME=$(kubectl get ingress -o jsonpath='{.items[*].spec.rules[*].host}' -n vault)
+export VAULT_TOKEN=$(kubectl get secret -n vault vault-init -o=jsonpath='{.data.root_token}'  | base64 -d)
+curl -k --header "X-Vault-Token:$VAULT_TOKEN" --request PATCH --header "Content-Type: application/merge-patch+json" --data "{\"data\": {\"GITHUB_CLIENTSECRET\": \"${GITHUB_CLIENTSECRET}\", \"GITHUB_CLIENTID\": \"${GITHUB_CLIENTID}\"}}" https://${VAULT_HOSTNAME}/v1/kubrix-kv/data/portal/backstage/base
+kubectl delete secret -n backstage sx-cnp-secret
+kubectl delete externalsecret -n backstage sx-cnp-secret
+kubectl rollout restart deployment -n backstage sx-backstage
+kubectl rollout status deployment -n backstage sx-backstage
+```
