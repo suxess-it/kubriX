@@ -365,7 +365,7 @@ jobs:
         run: |
           E2E_KEYCLOAK_DEMOADMIN_PASSWORD=$( kubectl get secret -n keycloak cp-keycloak-users-secret -o=jsonpath='{.data.demoadmin}'  | base64 -d )
           E2E_KEYCLOAK_DEMOUSER_PASSWORD=$( kubectl get secret -n keycloak cp-keycloak-users-secret -o=jsonpath='{.data.demouser}'  | base64 -d )
-          E2E_ARGOCD_ADMIN_PASSWORD=$( kubectl get secret -n grafana grafana-admin-secret  -o=jsonpath='{.data.passwordKey}'  | base64 -d )
+          E2E_ARGOCD_ADMIN_PASSWORD=$( kubectl get secret -n argocd argocd-initial-admin-secret -o=jsonpath={'.data.password'} | base64 -d )
           E2E_ARGOCD_VERSION="v3.2.3+2b6251d"
           testkube run testworkflow -l type=${KUBRIX_TARGET_TYPE} \
             --variable E2E_TEST_GH_USERNAME=${E2E_TEST_GH_USERNAME} \
