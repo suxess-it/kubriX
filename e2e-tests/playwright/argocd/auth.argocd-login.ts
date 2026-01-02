@@ -11,7 +11,7 @@ setup('authenticate', async ({ page }) => {
   await page.getByRole('textbox', { name: 'Username' }).click();
   await page.getByRole('textbox', { name: 'Username' }).fill('admin');
   await page.getByRole('textbox', { name: 'Password' }).click();
-  await page.getByRole('textbox', { name: 'Password' }).fill('M24JfO1lDre6fope');
+  await page.getByRole('textbox', { name: 'Password' }).fill(process.env.E2E_ARGOCD_ADMIN_PASSWORD!);
   await page.getByRole('button', { name: 'Sign In' }).click();
 
   await page.context().storageState({ path: argocdAuthFile });
