@@ -1,7 +1,7 @@
 import { test as setup, expect } from '@playwright/test';
 import path from 'path';
 import fs from "fs";
-import * as OTPAuth from "otpauth"
+import * as OTPAuth from "otpauth";
 
 const totp = new OTPAuth.TOTP({
   issuer: "Raccoon",
