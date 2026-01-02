@@ -14,5 +14,6 @@ setup('authenticate', async ({ page }) => {
   await page.getByRole('textbox', { name: 'Password' }).fill(process.env.E2E_ARGOCD_ADMIN_PASSWORD!);
   await page.getByRole('button', { name: 'Sign In' }).click();
 
+  await page.waitForURL('https://argocd.127-0-0-1.nip.io/applications');
   await page.context().storageState({ path: argocdAuthFile });
 });
