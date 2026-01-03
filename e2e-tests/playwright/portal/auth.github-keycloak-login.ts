@@ -1,7 +1,11 @@
 import { test as setup, expect } from '@playwright/test';
 import path from 'path';
 import fs from "fs";
-import * as OTPAuth from "otpauth"
+import * as OTPAuth from "otpauth";
+
+if (!process.env.E2E_TEST_GITHUB_OTP) {
+  throw new Error("E2E_TEST_GITHUB_OTP must be set to run E2E tests");
+}
 
 const totp = new OTPAuth.TOTP({
   issuer: "Raccoon",
