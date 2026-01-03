@@ -468,6 +468,7 @@ wait_until_apps_synced_healthy() {
             sync_started_seconds="-"
             sync_finished_seconds="-"
             sync_duration="-"
+            operation_phase="-"
         fi
 
         # print app status in beautiful table
