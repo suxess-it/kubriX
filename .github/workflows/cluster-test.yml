@@ -338,7 +338,7 @@ jobs:
           k8sgpt analyze
 
       - name: Update Vault with GitHub OAuth credentials for Testkube tests
-        if: ${{ matrix.target-type  == 'kind-portal' }}
+        if: ${{ matrix.target-type  == 'kind-portal' || matrix.target-type  == 'kind-hub-prime' }}
         env:
           GITHUB_CLIENTID: ${{ secrets.E2E_TEST_GITHUB_CLIENTID }}
           GITHUB_CLIENTSECRET: ${{ secrets.E2E_TEST_GITHUB_CLIENTSECRET }}
@@ -365,12 +365,16 @@ jobs:
         run: |
           E2E_KEYCLOAK_DEMOADMIN_PASSWORD=$( kubectl get secret -n keycloak cp-keycloak-users-secret -o=jsonpath='{.data.demoadmin}'  | base64 -d )
           E2E_KEYCLOAK_DEMOUSER_PASSWORD=$( kubectl get secret -n keycloak cp-keycloak-users-secret -o=jsonpath='{.data.demouser}'  | base64 -d )
+          E2E_ARGOCD_ADMIN_PASSWORD=$( kubectl get secret -n argocd argocd-initial-admin-secret -o=jsonpath={'.data.password'} | base64 -d )
+          E2E_ARGOCD_VERSION="v3.2.3+2b6251d"
           testkube run testworkflow -l type=${KUBRIX_TARGET_TYPE} \
             --variable E2E_TEST_GH_USERNAME=${E2E_TEST_GH_USERNAME} \
             --variable E2E_TEST_GH_PASSWORD=${E2E_TEST_GH_PASSWORD} \
             --variable E2E_TEST_GITHUB_OTP=${E2E_TEST_GITHUB_OTP} \
             --variable E2E_KEYCLOAK_DEMOADMIN_PASSWORD=${E2E_KEYCLOAK_DEMOADMIN_PASSWORD} \
             --variable E2E_KEYCLOAK_DEMOUSER_PASSWORD=${E2E_KEYCLOAK_DEMOUSER_PASSWORD} \
+            --variable E2E_ARGOCD_ADMIN_PASSWORD=${E2E_ARGOCD_ADMIN_PASSWORD} \
+            --variable E2E_ARGOCD_VERSION=${E2E_ARGOCD_VERSION} \
             -f -d
 
       - uses: actions/upload-artifact@v6

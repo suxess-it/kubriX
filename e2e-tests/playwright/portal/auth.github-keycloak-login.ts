@@ -1,7 +1,11 @@
 import { test as setup, expect } from '@playwright/test';
 import path from 'path';
 import fs from "fs";
-import * as OTPAuth from "otpauth"
+import * as OTPAuth from "otpauth";
+
+if (!process.env.E2E_TEST_GITHUB_OTP) {
+  throw new Error("E2E_TEST_GITHUB_OTP must be set to run E2E tests");
+}
 
 const totp = new OTPAuth.TOTP({
   issuer: "Raccoon",
@@ -64,7 +68,7 @@ const keycloakDemoadminAuthFile = path.join(authDir, 'keycloak-demoadmin.json');
 setup('Keycloak Demoadmin Login', async ({ page }) => {
   await page.goto("https://backstage.127-0-0-1.nip.io/");
 
-  await expect(page).toHaveTitle(/kubriX OSS/);
+  await expect(page).toHaveTitle(/kubriX/);
 
   // Open Keycloak Login
   const popupPromise = page.waitForEvent('popup');
@@ -86,7 +90,7 @@ const keycloakDemouserAuthFile = path.join(authDir, 'keycloak-demouser.json');
 setup('Keycloak Demouser Login', async ({ page }) => {
   await page.goto("https://backstage.127-0-0-1.nip.io/");
 
-  await expect(page).toHaveTitle(/kubriX OSS/);
+  await expect(page).toHaveTitle(/kubriX/);
 
   // Open Keycloak Login
   const popupPromise = page.waitForEvent('popup');
