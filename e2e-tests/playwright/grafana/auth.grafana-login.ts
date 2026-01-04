@@ -12,6 +12,6 @@ setup('authenticate', async ({ page }) => {
   await page.locator('input[name="password"]').fill(process.env.E2E_GRAFANA_ADMIN_PASSWORD!);
   await page.locator('button[type="submit"]').click();
 
-  await page.waitForURL('https://grafana.127-0-0-1.nip.io/dashboards');
+  await page.waitForURL('https://grafana.127-0-0-1.nip.io/');
   await page.context().storageState({ path: grafanaAuthFile });
 });
