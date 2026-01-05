@@ -1,0 +1,49 @@
+apiVersion: testworkflows.testkube.io/v1
+kind: TestWorkflow
+metadata:
+  name: kind-security-playwright
+  labels:
+    type: kind-security
+spec:
+  content:
+    git:
+      uri: {{ .Values.default.repoURL }}
+      revision: {{ .Values.default.targetRevision }}
+      paths:
+      - e2e-tests/playwright
+      usernameFrom:
+        secretKeyRef:
+          name: git-credentials
+          key: username
+      tokenFrom:
+        secretKeyRef:
+          name: git-credentials
+          key: token
+  container:
+    image: mcr.microsoft.com/playwright:v1.57.0
+    resources:
+      requests:
+        cpu: 500m
+        memory: 500Mi
+    workingDir: /data/repo/e2e-tests/playwright
+  job:
+    activeDeadlineSeconds:  600
+  steps:
+  - name: Install dependencies
+    shell: "npm ci"
+  - name: Run tests
+    run:
+      shell: |
+        npx playwright test --project=argocd-tests --project=keycloak-tests --project=vault-tests --reporter=list,junit,html --trace on
+      env:
+      - name: PLAYWRIGHT_JUNIT_OUTPUT_NAME
+        value: "/data/repo/e2e-tests/playwright/data/artifacts/junit-report.xml"
+      - name: PLAYWRIGHT_HTML_REPORT
+        value: "/data/repo/e2e-tests/playwright/data/artifacts/playwright-report"
+    steps:
+    - name: Save artifacts
+      condition: always
+      artifacts:
+        workingDir: /data/repo/e2e-tests/playwright/data/artifacts/
+        paths:
+        - '**/*'
