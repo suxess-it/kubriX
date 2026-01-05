@@ -370,6 +370,8 @@ jobs:
           E2E_GRAFANA_ADMIN_PASSWORD=$( kubectl get secret -n grafana grafana-admin-secret -o=jsonpath='{.data.passwordKey}' | base64 -d )
           E2E_KEYCLOAK_ADMIN_PASSWORD=$( kubectl get secret -n keycloak keycloak-admin -o=jsonpath='{.data.admin-password}' | base64 -d )
           E2E_VAULT_ROOT_TOKEN=$( kubectl get secret -n vault vault-init -o jsonpath='{.data.root_token}' | base64 -d )
+          E2E_KARGO_ADMIN_PASSWORD=$( kubectl get secret -n kargo kargo-admin-secret  -o=jsonpath='{.data.ADMIN_ACCOUNT_PASSWORD}'  | base64 -d )
+          E2E_KARGO_VERSION="v1.8.4"
           testkube run testworkflow -l type=${KUBRIX_TARGET_TYPE} \
             --variable E2E_TEST_GH_USERNAME=${E2E_TEST_GH_USERNAME} \
             --variable E2E_TEST_GH_PASSWORD=${E2E_TEST_GH_PASSWORD} \
@@ -381,6 +383,8 @@ jobs:
             --variable E2E_GRAFANA_ADMIN_PASSWORD=${E2E_GRAFANA_ADMIN_PASSWORD} \
             --variable E2E_KEYCLOAK_ADMIN_PASSWORD=${E2E_KEYCLOAK_ADMIN_PASSWORD} \
             --variable E2E_VAULT_ROOT_TOKEN=${E2E_VAULT_ROOT_TOKEN} \
+            --variable E2E_KARGO_ADMIN_PASSWORD=${E2E_KARGO_ADMIN_PASSWORD} \
+            --variable E2E_KARGO_VERSION=${E2E_KARGO_VERSION} \
             -f -d
 
       - uses: actions/upload-artifact@v6

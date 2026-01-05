@@ -77,6 +77,10 @@ export default defineConfig({
       testMatch: 'vault/auth.vault-login.ts',
     },
     {
+      name: 'kargo-login',
+      testMatch: 'kargo/auth.kargo-login.ts',
+    },
+    {
       name: 'argocd-tests',
       testMatch: /argocd\/argocd-.*/,
       use: {
@@ -109,12 +113,20 @@ export default defineConfig({
       dependencies: ['vault-login'],
     },
     {
+      name: 'kargo-tests',
+      testMatch: /kargo\/kargo-.*/,
+      use: {
+        ...devices['Desktop Chrome'],
+      },
+      dependencies: ['kargo-login'],
+    },
+    {
       name: 'prime-tests',
       testMatch: /prime\/prime-.*/,
       use: {
         ...devices['Desktop Chrome'],
       },
-      dependencies: ['argocd-login','portal-login','grafana-login','keycloak-login','vault-login'],
+      dependencies: ['argocd-login','portal-login','grafana-login','keycloak-login','vault-login','kargo-login'],
     },
     // {
     //   name: 'webkit',
