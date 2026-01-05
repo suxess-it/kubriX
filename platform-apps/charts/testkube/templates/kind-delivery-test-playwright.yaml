@@ -34,7 +34,7 @@ spec:
   - name: Run tests
     run:
       shell: |
-        npx playwright test --project=argocd-tests --reporter=list,junit,html --trace on
+        npx playwright test --project=argocd-tests --project=kargo-tests --project=vault-tests --project=keycloak-tests --reporter=list,junit,html --trace on
       env:
       - name: PLAYWRIGHT_JUNIT_OUTPUT_NAME
         value: "/data/repo/e2e-tests/playwright/data/artifacts/junit-report.xml"
