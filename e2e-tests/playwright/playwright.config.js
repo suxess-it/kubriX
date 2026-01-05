@@ -90,7 +90,7 @@ export default defineConfig({
       use: {
         ...devices['Desktop Chrome'],
       },
-      dependencies: ['argocd-login','portal-login'],
+      dependencies: ['argocd-login','portal-login','grafana-login'],
     },
     // {
     //   name: 'webkit',
