@@ -65,6 +65,10 @@ export default defineConfig({
       testMatch: 'argocd/auth.argocd-login.ts',
     },
     {
+      name: 'grafana-login',
+      testMatch: 'grafana/auth.grafana-login.ts',
+    },
+    {
       name: 'argocd-tests',
       testMatch: /argocd\/argocd-.*/,
       use: {
@@ -73,12 +77,20 @@ export default defineConfig({
       dependencies: ['argocd-login'],
     },
     {
+      name: 'grafana-tests',
+      testMatch: /grafana\/grafana-.*/,
+      use: {
+        ...devices['Desktop Chrome'],
+      },
+      dependencies: ['grafana-login'],
+    },
+    {
       name: 'prime-tests',
       testMatch: /prime\/prime-.*/,
       use: {
         ...devices['Desktop Chrome'],
       },
-      dependencies: ['argocd-login','portal-login'],
+      dependencies: ['argocd-login','portal-login','grafana-login'],
     },
     // {
     //   name: 'webkit',
