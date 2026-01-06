@@ -229,7 +229,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>Python</code></h3>
-<h4>Vulnerabilities (6)</h4>
+<h4>Vulnerabilities (7)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -237,6 +237,13 @@
         <th>Severity</th>
         <th>Installed Version</th>
         <th>Fixed Version</th>
+    </tr>
+    <tr>
+        <td><code>aiohttp</code></td>
+        <td>CVE-2025-69223</td>
+        <td>HIGH</td>
+        <td>3.12.12</td>
+        <td>3.13.3</td>
     </tr>
     <tr>
         <td><code>ecdsa</code></td>
