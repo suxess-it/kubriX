@@ -1,9 +1,9 @@
 apiVersion: testworkflows.testkube.io/v1
 kind: TestWorkflow
 metadata:
-  name: kind-delivery-playwright
+  name: kind-observability-playwright
   labels:
-    type: kind-delivery
+    type: kind-observability
 spec:
   content:
     git:
@@ -34,7 +34,7 @@ spec:
   - name: Run tests
     run:
       shell: |
-        npx playwright test --project=argocd-tests --project=kargo-tests --project=vault-tests --project=keycloak-tests --reporter=list,junit,html --trace on
+        npx playwright test --project=argocd-tests --project=grafana-tests --project=vault-tests --project=keycloak-tests --reporter=list,junit,html --trace on
       env:
       - name: PLAYWRIGHT_JUNIT_OUTPUT_NAME
         value: "/data/repo/e2e-tests/playwright/data/artifacts/junit-report.xml"
