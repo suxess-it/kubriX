@@ -53,6 +53,25 @@ test('Grafana Vault Dashboard', async ({ page }) => {
     page.locator('div[title="sx-vault-active"]').getByText('Active', { exact: true })
   ).toBeVisible({ timeout: 20_000 });
 
+  await expect(
+    page.locator('div[title="sx-vault-0"]').getByText('ONLINE', { exact: true })
+  ).toBeVisible({ timeout: 20_000 });
+
+  // unfortunately some 'No data' tiles exist
+  /*
+  await expect
+    .poll(async () => await page.getByText('No data', { exact: true }).count())
+    .toBe(0);
+  */
+});
+
+test('Grafana K8s Namespace Dashboard', async ({ page }) => {
+  test.slow();
+
+  await page.goto("https://grafana.127-0-0-1.nip.io/d/k8s_views_global/kubernetes-views-global?orgId=1&from=now-2h&to=now&timezone=browser&var-datasource=default&var-node=10.240.0.98&var-port=&var-mountpoint=$__all");
+
+  await expect(page.getByRole('region', { name: 'Global CPU Usage' , exact: true })).toBeVisible({ timeout: 20_000 });
+
   // unfortunately some 'No data' tiles exist
   /*
   await expect
