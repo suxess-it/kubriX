@@ -53,6 +53,53 @@ test('Grafana Vault Dashboard', async ({ page }) => {
     page.locator('div[title="sx-vault-active"]').getByText('Active', { exact: true })
   ).toBeVisible({ timeout: 20_000 });
 
+  await expect(
+    page.locator('div[title="sx-vault-0"]').getByText('ONLINE', { exact: true })
+  ).toBeVisible({ timeout: 20_000 });
+
+  // unfortunately some 'No data' tiles exist
+  /*
+  await expect
+    .poll(async () => await page.getByText('No data', { exact: true }).count())
+    .toBe(0);
+  */
+});
+
+test('Grafana K8s Namespace Dashboard', async ({ page }) => {
+  test.slow();
+
+  await page.goto("https://grafana.127-0-0-1.nip.io/d/k8s_views_global/kubernetes-views-global?orgId=1&from=now-2h&to=now&timezone=browser&var-datasource=default&var-node=10.240.0.98&var-port=&var-mountpoint=$__all");
+
+  // check if main panels are there without "No data"
+  const panels = ["Global CPU Usage", "Global RAM Usage", "Kubernetes Resource Count", "Nodes", "Namespaces", "Running Pods",
+    "Cluster CPU Utilization", "Cluster Memory Utilization", "CPU Utilization by namespace", "Memory Utilization by namespace",
+    "CPU Utilization by instance", "Memory Utilization by instance",
+    "Kubernetes Pods QoS classes", "Kubernetes Pods Status Reason",
+    "Container Restarts by namespace",
+    "Global Network Utilization by device", "Network Saturation - Packets dropped", "Network Received by namespace", "Total Network Received (with all virtual devices) by instance",
+    "Network Received (without loopback) by instance", "Network Received (loopback only) by instance"
+  ];
+  for (const panel of panels) {
+    const region = page.getByRole('region', { name: panel, exact: true });
+
+    // If virtualized, this helps “discover” it
+    for (let i = 0; i < 25 && !(await region.count()); i++) {
+      await page.mouse.wheel(0, 800);
+    }
+
+    await expect(region).toHaveCount(1, { timeout: 20_000 });
+
+    // Try to bring into view but don't allow long hangs
+    await region.scrollIntoViewIfNeeded({ timeout: 5_000 }).catch(() => {});
+
+    await expect(region).toBeVisible({ timeout: 20_000 });
+
+    await expect
+      .poll(async () => region.getByText('No data', { exact: true }).count(), { timeout: 20_000 })
+      .toBe(0);
+
+  }
+
   // unfortunately some 'No data' tiles exist
   /*
   await expect
