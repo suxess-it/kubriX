@@ -82,7 +82,15 @@ test('Grafana K8s Namespace Dashboard', async ({ page }) => {
   for (const panel of panels) {
     const region = page.getByRole('region', { name: panel, exact: true });
 
-    await region.scrollIntoViewIfNeeded();
+    // If virtualized, this helps “discover” it
+    for (let i = 0; i < 25 && !(await region.count()); i++) {
+      await page.mouse.wheel(0, 800);
+    }
+
+    await expect(region).toHaveCount(1, { timeout: 20_000 });
+
+    // Try to bring into view but don't allow long hangs
+    await region.scrollIntoViewIfNeeded({ timeout: 5_000 }).catch(() => {});
 
     await expect(region).toBeVisible({ timeout: 20_000 });
 
