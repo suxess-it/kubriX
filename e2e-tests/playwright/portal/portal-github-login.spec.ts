@@ -7,23 +7,31 @@ const authDir = path.join(__dirname, '../.auth');
 const ghAuthFile = path.join(authDir, 'github.json');
 test.use({ storageState: ghAuthFile });
 
-test("Github Login", async ({ page }) => {
-  
-  await page.goto("https://backstage.127-0-0-1.nip.io/");
-  await expect(page).toHaveTitle(/kubriX OSS/);
+test("Team Onboarding with kubrixBot Github user", async ({ page }) => {
+  //await page.goto("https://backstage.127-0-0-1.nip.io/");
+  //await page.getByRole('listitem').filter({ hasText: 'GitHubSign in using' }).getByRole('button').click();
+  await page.goto("https://backstage.127-0-0-1.nip.io/create/templates/default/team-onboarding");
 
-  // Open GitHub login popup
-  // const popupPromise = page.waitForEvent('popup');
-  await page.getByRole('listitem').filter({ hasText: 'GitHubSign in using' }).getByRole('button').click();
-  // const githubPage = await popupPromise;
-  // Optionally handle “Authorize” screen if it appears
-  // const authorizeButton = githubPage.getByRole('button', { name: 'Authorize' });
-  // if (await authorizeButton.isVisible()) {
-  //  await authorizeButton.click();
-  // }
-  // await githubPage.close();
-  await expect(page.getByRole('heading', { name: 'Welcome to kubriX' })).toBeVisible();
-  await page.getByTestId('sidebar-root').getByRole('link', { name: 'Settings' }).click();
-  await page.getByTestId('user-settings-menu').click();
-  await page.getByTestId('sign-out').click();
+  await page.getByRole('button', { name: 'Next' }).click();
+  const page1Promise = page.waitForEvent('popup');
+  await page.getByRole('button', { name: 'Log in' }).click();
+
+  const popup = await page.waitForEvent('popup'); // your page1Promise
+  const authorize = popup.getByRole('button', { name: 'Authorize kubriX-demo' });
+
+  await Promise.race([
+    // Case A: button shows up -> click it
+    authorize.waitFor({ state: 'visible', timeout: 5000 }).then(() => authorize.click()),
+
+    // Case B: popup closes automatically -> do nothing
+    popup.waitForEvent('close')
+  ]);
+
+  // optional: make sure the popup is gone before continuing
+  if (!popup.isClosed()) await popup.close();
+
+  await page.getByRole('button', { name: 'Review' }).click();
+  await page.getByRole('button', { name: 'Create' }).click();
+
+
 });

@@ -51,6 +51,7 @@ export default defineConfig({
     {
       name: 'portal-login',
       testMatch: 'portal/auth.github-keycloak-login.ts',
+      use : {trace : 'off'}
     },
     {
       name: 'portal-tests',

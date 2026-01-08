@@ -29,7 +29,7 @@ async function getFreshTotp(totp: OTPAuth.TOTP): Promise<string> {
 
   const code = totp.generate();
   const afterRemaining = totp.remaining();
-  console.log(`[TOTP] Generated code=${code}, remaining=${afterRemaining}ms`);
+  // console.log(`[TOTP] Generated code=${code}, remaining=${afterRemaining}ms`);
 
   return code;
 }
@@ -38,29 +38,26 @@ const authDir = path.join(__dirname, '../.auth');
 fs.mkdirSync(authDir, { recursive: true });
 
 const ghAuthFile = path.join(authDir, 'github.json');
-setup('authenticate', async ({ page }) => {
-  // Perform authentication steps. Replace these actions with your own.
+setup('Github Login', async ({ page }) => {
+  // Perform authentication steps
   await page.goto('https://github.com/login');
   await page.getByLabel('Username or email address').fill(process.env.E2E_TEST_GH_USERNAME!);
   await page.getByLabel('Password').fill(process.env.E2E_TEST_GH_PASSWORD!);
   await page.getByRole('button', { name: 'Sign in', exact: true }).click();
   
+  // fill in tfa
   await page.getByPlaceholder("XXXXXX").waitFor({ state: 'visible' });
-  // generate at the last second
-  // await waitForSafeTotpWindow();
-  // const code = totp.generate();
   const code = await getFreshTotp(totp);
   await page.getByPlaceholder("XXXXXX").fill(code);
-  // await page.getByRole('button', { name: 'Verify', exact: true }).click();
-  
-  // Wait until the page receives the cookies.
-  //
-  // Sometimes login flow sets cookies in the process of several redirects.
-  // Wait for the final URL to ensure that the cookies are actually set.
   await page.waitForURL('https://github.com/');
 
-  // End of authentication steps.
+  // Login in Backstage
+  await page.goto("https://backstage.127-0-0-1.nip.io/");
+  await expect(page).toHaveTitle(/kubriX OSS/);
 
+  // Open GitHub login popup
+  await page.getByRole('listitem').filter({ hasText: 'GitHubSign in using' }).getByRole('button').click();
+  await expect(page.getByRole('heading', { name: 'Welcome to kubriX' })).toBeVisible();
   await page.context().storageState({ path: ghAuthFile });
 });
 
