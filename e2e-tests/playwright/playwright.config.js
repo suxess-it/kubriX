@@ -40,7 +40,7 @@ export default defineConfig({
     // baseURL: 'http://localhost:3000',
 
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
-    trace: 'on-first-retry',
+    trace: 'on',
     video: 'on',
     ignoreHTTPSErrors: true,
     // storageState: '.auth/user.json',
@@ -51,6 +51,7 @@ export default defineConfig({
     {
       name: 'portal-login',
       testMatch: 'portal/auth.github-keycloak-login.ts',
+      // IMPORTANT: it is crucial that we do not enable 'trace' in login project, so kubrixBot password doesn't get leaked in the traces
       use : {trace : 'off'}
     },
     {
