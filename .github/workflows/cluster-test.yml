@@ -387,11 +387,18 @@ jobs:
             --variable E2E_KARGO_VERSION=${E2E_KARGO_VERSION} \
             -f -d
 
+      - name: Password protect Playwright traces
+        if: always()
+        shell: bash
+        env:
+          E2E_ARTIFACT_PASSWORD: ${{ secrets.E2E_ARTIFACT_PASSWORD }}
+        run: 7z a ./playwright-artifacts.7z ./artifacts -p"$E2E_ARTIFACT_PASSWORD"
+      
       - uses: actions/upload-artifact@v6
         if: always()
         with:
           name: testkube-artifacts-${{ matrix.target-type }}
-          path: artifacts/
+          path: ./playwright-artifacts.7z
           
       - name: mustgather data for troubleshooting
         if: ${{ failure() }}
