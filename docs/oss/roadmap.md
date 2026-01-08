@@ -5,13 +5,6 @@ We are constantly developing kubriX and carefully listen to our customers challe
 This is our current plan for the next features and improvements. It is based on current knowledge and is subject to revision. Details about released features are documented in our [changelog](/CHANGELOG.md).
 
 
-## Q4 2025
-
-* Crossplane v2 Upgrade (Completed)
-* Provide HA configurations (Completed)
-* KaaS Support Extension (Completed)
-* Backup/Recovery Enhancements (Completed)
-
 ## Q1 2026
 
 * Improve Observability Dashboards (in progress)
@@ -36,6 +29,13 @@ This is our current plan for the next features and improvements. It is based on 
 ---
 
 # Finished Milestones
+
+## Q4 2025
+
+* Crossplane v2 Upgrade (Completed)
+* Provide HA configurations (Completed)
+* KaaS Support Extension (Completed)
+* Backup/Recovery Enhancements (Completed)
 
 ## Q3 2025
 
