@@ -7,11 +7,101 @@ const authDir = path.join(__dirname, '../.auth');
 const ghAuthFile = path.join(authDir, 'github.json');
 test.use({ storageState: ghAuthFile });
 
+// ArgoCD Login
+async function loginAndGetAuthedContext() {
+  const baseURL = "https://argocd.127-0-0-1.nip.io";
+  const username = "admin";
+  const password = process.env.E2E_ARGOCD_ADMIN_PASSWORD!;
+
+  const api = await request.newContext({
+    baseURL,
+    ignoreHTTPSErrors: true,
+  });
+
+  const sessionResp = await api.post("/api/v1/session", {
+    headers: { "Content-Type": "application/json" },
+    data: { username, password },
+  });
+  expect(sessionResp.ok()).toBeTruthy();
+
+  const { token } = await sessionResp.json();
+  expect(token).toBeTruthy();
+
+  const authed = await request.newContext({
+    baseURL,
+    ignoreHTTPSErrors: true,
+    extraHTTPHeaders: {
+      Authorization: `Bearer ${token}`,
+      "Content-Type": "application/json",
+    },
+  });
+
+  await api.dispose();
+  return authed;
+}
+
+async function getApp(authed: any, appName: string) {
+  const res = await authed.get(`/api/v1/applications/${encodeURIComponent(appName)}`);
+  expect(res.ok()).toBeTruthy();
+  return await res.json();
+}
+
+async function syncApp(authed: any, appName: string) {
+  // Minimal sync request. You can add prune/dryRun/revision/resources/etc.
+  const res = await authed.post(`/api/v1/applications/${encodeURIComponent(appName)}/sync`, {
+    data: {
+      // Common knobs (uncomment if you need them):
+      prune: true,
+      // dryRun: false,
+      // revision: "kubrixBot:onboarding-team-kubrix",
+      // strategy: { hook: { force: true } }, // depends on your use-case
+      // resources: [{ group: "", kind: "Deployment", name: "my-deploy", namespace: "default" }],
+      // syncOptions: ["CreateNamespace=true"],
+    },
+  });
+
+  // If ArgoCD returns an error, bubble up details:
+  if (!res.ok()) {
+    const body = await res.text();
+    throw new Error(`Sync failed to start (${res.status()}): ${body}`);
+  }
+}
+
+async function waitForOperationToFinish(
+  authed: any,
+  appName: string,
+  timeoutMs = 5 * 60_000,
+  pollMs = 2_000
+) {
+  const deadline = Date.now() + timeoutMs;
+
+  while (Date.now() < deadline) {
+    const app = await getApp(authed, appName);
+
+    const phase = app?.status?.operationState?.phase; // Running | Succeeded | Failed | Error | (or undefined)
+    const syncStatus = app?.status?.sync?.status;
+    const healthStatus = app?.status?.health?.status;
+
+    // If there is no operationState at all, it might mean "nothing is running".
+    // After starting a sync, you usually see operationState.phase=Running quickly.
+    if (phase && phase !== "Running") {
+      return { app, phase, syncStatus, healthStatus };
+    }
+
+    await new Promise((r) => setTimeout(r, pollMs));
+  }
+
+  throw new Error(`Timed out waiting for sync operation to finish for app "${appName}"`);
+}
+
 test("Team Onboarding with kubrixBot Github user", async ({ page }) => {
+  test.slow();
   //await page.goto("https://backstage.127-0-0-1.nip.io/");
   //await page.getByRole('listitem').filter({ hasText: 'GitHubSign in using' }).getByRole('button').click();
-  await page.goto("https://backstage.127-0-0-1.nip.io/create/templates/default/team-onboarding");
+  await page.goto('https://backstage.127-0-0-1.nip.io/create/templates/default/team-onboarding');
 
+  await page.getByRole('textbox', { name: 'Team Organization' }).click();
+  await page.getByRole('textbox', { name: 'Team Organization' }).fill('kubrixBot');
   await page.getByRole('button', { name: 'Next' }).click();
   const page1Promise = page.waitForEvent('popup');
   await page.getByRole('button', { name: 'Log in' }).click();
@@ -32,6 +122,9 @@ test("Team Onboarding with kubrixBot Github user", async ({ page }) => {
 
   await page.getByRole('button', { name: 'Review' }).click();
   await page.getByRole('button', { name: 'Create' }).click();
+
+  await expect(page.getByRole('button', { name: 'Open Pull-Request' })).toBeVisible({ timeout: 30_000 });
+  await expect(page.getByRole('button', { name: 'Open Team-App-Of-Apps Repo' })).toBeVisible({ timeout: 30_000 });
 
   // instead of mergen the PR we switch the target repoUrl and revision to the kubrixBots PR repo/branch
   //  which got created during team onboarding scaffoler template
@@ -67,8 +160,16 @@ test("Team Onboarding with kubrixBot Github user", async ({ page }) => {
   // 3) Disable auto-sync in bootstrap-app (JSON Patch: remove /spec/syncPolicy/automated)
   const disableAutosyncResp = await authed.patch(`/api/v1/applications/sx-bootstrap-app`, {
     data: {
-      patchType: "json",
-      patch: JSON.stringify([{ op: "remove", path: "/spec/syncPolicy/automated" }]),
+      patchType: "merge",
+      patch: JSON.stringify({
+        spec: {
+          syncPolicy: {
+            automated: {
+              enabled: false,
+            },
+          },
+        },
+      }),
     },
   });
   expect(disableAutosyncResp.ok()).toBeTruthy();
@@ -92,11 +193,47 @@ test("Team Onboarding with kubrixBot Github user", async ({ page }) => {
   // 5) Verify
   const appResp = await authed.get(`/api/v1/applications/sx-team-onboarding`);
   expect(appResp.ok()).toBeTruthy();
-  const app = await appResp.json();
+  const teamOnboarding = await appResp.json();
+  expect(teamOnboarding.spec.source.repoURL).toBe("https://github.com/kubrixBot/kubriX.git");
+  expect(teamOnboarding.spec.source.targetRevision).toBe("onboarding-team-kubrix");
 
-  expect(app.spec.source.repoURL).toBe("https://github.com/kubrixBot/kubriX.git");
-  expect(app.spec.source.targetRevision).toBe("onboarding-team-kubrix");
+  // sync argocd app and get sync result
+  const appName = "sx-team-onboarding";
+
+  // 1) Start sync
+  await syncApp(authed, appName);
+
+  // 2) Wait for it to finish
+  const { app, phase, syncStatus, healthStatus } = await waitForOperationToFinish(
+    authed,
+    appName,
+    10 * 60_000, // timeout
+    2_000        // poll
+  );
+
+  // 3) Assert / use results
+  expect(["Succeeded", "Failed", "Error"]).toContain(phase);
+
+  // Typical expectations (adjust to your reality):
+  // - syncStatus should become "Synced"
+  // - healthStatus should become "Healthy" (or might stay Progressing briefly)
+  console.log({ phase, syncStatus, healthStatus });
+  console.log("operation message:", app?.status?.operationState?.message);
+
+  expect(syncStatus).toBe("Synced");
 
   await api.dispose();
   await authed.dispose();
+
+  // delete kubrix-apps repo in kubrixBot org
+  await page.goto('https://github.com/kubrixBot/kubrix-apps');
+  await page.getByRole('link', { name: 'Settings' }).click();
+  const deleteButton = page.getByRole('button', { name: 'Delete this repository' });
+  await deleteButton.scrollIntoViewIfNeeded();
+  await deleteButton.click();
+
+  await page.getByRole('button', { name: 'I want to delete this repository' }).click();
+  await page.getByRole('button', { name: 'I have read and understand' }).click();
+  await page.getByRole('textbox', { name: 'To confirm, type "kubrixBot/' }).fill('kubrixBot/kubrix-apps');
+  await page.getByLabel('Delete kubrixBot/kubrix-apps').getByRole('button', { name: 'Delete this repository' }).click();
 });

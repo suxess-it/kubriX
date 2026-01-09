@@ -57,6 +57,21 @@ setup('Github Login', async ({ page }) => {
 
   // Open GitHub login popup
   await page.getByRole('listitem').filter({ hasText: 'GitHubSign in using' }).getByRole('button').click();
+
+  const popup = await page.waitForEvent('popup'); // your page1Promise
+  const authorize = popup.getByRole('button', { name: 'Authorize kubriX-demo' });
+
+  await Promise.race([
+    // Case A: button shows up -> click it
+    authorize.waitFor({ state: 'visible', timeout: 5000 }).then(() => authorize.click()),
+
+    // Case B: popup closes automatically -> do nothing
+    popup.waitForEvent('close')
+  ]);
+
+  // optional: make sure the popup is gone before continuing
+  if (!popup.isClosed()) await popup.close();
+
   await expect(page.getByRole('heading', { name: 'Welcome to kubriX' })).toBeVisible();
   await page.context().storageState({ path: ghAuthFile });
 });
