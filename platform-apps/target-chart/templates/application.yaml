@@ -33,6 +33,13 @@ spec:
           value: {{ $.Values.default.repoURL }}
         - name: default.targetRevision
           value: {{ $.Values.default.targetRevision }}
+        // additional global parameters so sub-charts can access them
+        - name: global.kubriXPlan
+          value: {{ $.Values.kubriXPlan }}
+        - name: global.repoURL
+          value: {{ $.Values.default.repoURL }}
+        - name: global.targetRevision
+          value: {{ $.Values.default.targetRevision }}
   destination:
     {{- if .destinationNamespaceOverwrite }}
     namespace: {{ .destinationNamespaceOverwrite }}
