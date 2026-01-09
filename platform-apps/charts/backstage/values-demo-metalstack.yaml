@@ -91,13 +91,13 @@ backstage:
       catalog:
         locations:
           - type: url
-            target: https://github.com/kubriX-demo/kubriX-demo-oss/blob/main/backstage-resources/templates/showcase-templates-demo.yaml
+            target: "{{ .Values.global.repoURL }}/blob/{{ .Values.global.targetRevision }}/backstage-resources/templates/showcase-templates-demo.yaml"
             rules:
               - allow: [Template]
           - type: url
-            target: https://github.com/kubriX-demo/kubriX-demo-oss/blob/main/backstage-resources/entities/all.yaml
+            target: "{{ .Values.global.repoURL }}/blob/{{ .Values.global.targetRevision }}/backstage-resources/entities/all.yaml"
           - type: url
-            target: https://github.com/kubriX-demo/kubriX-demo-oss/blob/main/backstage-resources/entities/demo.yaml
+            target: "{{ .Values.global.repoURL }}/blob/{{ .Values.global.targetRevision }}/backstage-resources/entities/demo.yaml"
 
       kubernetes:
         customResources:
