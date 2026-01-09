@@ -74,7 +74,7 @@ test("Team Onboarding with kubrixBot Github user", async ({ page }) => {
   expect(disableAutosyncResp.ok()).toBeTruthy();
 
   // 4) Change repoURL + targetRevision (merge patch)
-  const patchSpecResp = await authed.patch(`/api/v1/applications/sx-team-onboarding-app`, {
+  const patchSpecResp = await authed.patch(`/api/v1/applications/sx-team-onboarding`, {
     data: {
       patchType: "merge",
       patch: JSON.stringify({
