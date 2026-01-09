@@ -1,5 +1,5 @@
 
-<h3>Target <code>registry.k8s.io/ingress-nginx/controller:v1.14.0@sha256:e4127065d0317bd11dc64c4dd38dcf7fb1c3d72e468110b4086e636dbaac943d (alpine 3.22.2)</code></h3>
+<h3>Target <code>registry.k8s.io/ingress-nginx/controller:v1.14.1@sha256:f95a79b85fb93ac3de752c71a5c27d5ceae10a18b61904dec224c1c6a4581e47 (alpine 3.22.2)</code></h3>
 <h4>No Vulnerabilities found</h4>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>dbg</code></h3>
@@ -16,7 +16,7 @@
         <td><code>stdlib</code></td>
         <td>CVE-2025-61729</td>
         <td>HIGH</td>
-        <td>v1.25.3</td>
+        <td>v1.25.4</td>
         <td>1.24.11, 1.25.5</td>
     </tr>
 </table>
@@ -35,7 +35,7 @@
         <td><code>stdlib</code></td>
         <td>CVE-2025-61729</td>
         <td>HIGH</td>
-        <td>v1.25.3</td>
+        <td>v1.25.4</td>
         <td>1.24.11, 1.25.5</td>
     </tr>
 </table>
@@ -54,13 +54,13 @@
         <td><code>stdlib</code></td>
         <td>CVE-2025-61729</td>
         <td>HIGH</td>
-        <td>v1.25.3</td>
+        <td>v1.25.4</td>
         <td>1.24.11, 1.25.5</td>
     </tr>
 </table>
 <h4>No Misconfigurations found</h4>
 
-<h3>Target <code>registry.k8s.io/ingress-nginx/kube-webhook-certgen:v1.6.4@sha256:bcfc926ed57831edf102d62c5c0e259572591df4796ef1420b87f9cf6092497f (debian 12.12)</code></h3>
+<h3>Target <code>registry.k8s.io/ingress-nginx/kube-webhook-certgen:v1.6.5@sha256:03a00eb0e255e8a25fa49926c24cde0f7e12e8d072c445cdf5136ec78b546285 (debian 12.12)</code></h3>
 <h4>No Vulnerabilities found</h4>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>kube-webhook-certgen</code></h3>
@@ -77,7 +77,7 @@
         <td><code>stdlib</code></td>
         <td>CVE-2025-61729</td>
         <td>HIGH</td>
-        <td>v1.25.3</td>
+        <td>v1.25.4</td>
         <td>1.24.11, 1.25.5</td>
     </tr>
 </table>

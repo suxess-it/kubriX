@@ -3,8 +3,8 @@
 <h4>No Vulnerabilities found</h4>
 <h4>No Misconfigurations found</h4>
 
-<h3>Target <code>gcr.io/kubecost1/cost-model:prod-2.9.3 (redhat 9.6)</code></h3>
-<h4>Vulnerabilities (2)</h4>
+<h3>Target <code>gcr.io/kubecost1/cost-model:prod-2.9.5 (redhat 9.7)</code></h3>
+<h4>Vulnerabilities (1)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -14,23 +14,16 @@
         <th>Fixed Version</th>
     </tr>
     <tr>
-        <td><code>expat</code></td>
-        <td>CVE-2025-59375</td>
+        <td><code>gnupg2</code></td>
+        <td>CVE-2025-68973</td>
         <td>HIGH</td>
-        <td>2.5.0-5.el9_6</td>
-        <td>2.5.0-5.el9_7.1</td>
-    </tr>
-    <tr>
-        <td><code>sqlite-libs</code></td>
-        <td>CVE-2025-6965</td>
-        <td>HIGH</td>
-        <td>3.34.1-8.el9_6</td>
-        <td>3.34.1-9.el9_7</td>
+        <td>2.3.3-4.el9</td>
+        <td></td>
     </tr>
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>go/bin/app</code></h3>
-<h4>Vulnerabilities (2)</h4>
+<h4>Vulnerabilities (3)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -41,23 +34,30 @@
     </tr>
     <tr>
         <td><code>stdlib</code></td>
-        <td>CVE-2025-58187</td>
+        <td>CVE-2025-47907</td>
         <td>HIGH</td>
-        <td>v1.25.2</td>
-        <td>1.24.9, 1.25.3</td>
+        <td>v1.24.4</td>
+        <td>1.23.12, 1.24.6</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2025-58183</td>
+        <td>HIGH</td>
+        <td>v1.24.4</td>
+        <td>1.24.8, 1.25.2</td>
     </tr>
     <tr>
         <td><code>stdlib</code></td>
         <td>CVE-2025-61729</td>
         <td>HIGH</td>
-        <td>v1.25.2</td>
+        <td>v1.24.4</td>
         <td>1.24.11, 1.25.5</td>
     </tr>
 </table>
 <h4>No Misconfigurations found</h4>
 
-<h3>Target <code>gcr.io/kubecost1/frontend:prod-2.9.3 (redhat 9.6)</code></h3>
-<h4>Vulnerabilities (2)</h4>
+<h3>Target <code>gcr.io/kubecost1/frontend:prod-2.9.5 (redhat 9.7)</code></h3>
+<h4>Vulnerabilities (1)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -67,24 +67,17 @@
         <th>Fixed Version</th>
     </tr>
     <tr>
-        <td><code>expat</code></td>
-        <td>CVE-2025-59375</td>
+        <td><code>gnupg2</code></td>
+        <td>CVE-2025-68973</td>
         <td>HIGH</td>
-        <td>2.5.0-5.el9_6</td>
-        <td>2.5.0-5.el9_7.1</td>
-    </tr>
-    <tr>
-        <td><code>sqlite-libs</code></td>
-        <td>CVE-2025-6965</td>
-        <td>HIGH</td>
-        <td>3.34.1-8.el9_6</td>
-        <td>3.34.1-9.el9_7</td>
+        <td>2.3.3-4.el9</td>
+        <td></td>
     </tr>
 </table>
 <h4>No Misconfigurations found</h4>
 
 <h3>Target <code>gcr.io/kubecost1/kubecost-modeling:v0.1.31 (redhat 9.6)</code></h3>
-<h4>Vulnerabilities (2)</h4>
+<h4>Vulnerabilities (3)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -99,6 +92,13 @@
         <td>HIGH</td>
         <td>2.5.0-5.el9_6</td>
         <td>2.5.0-5.el9_7.1</td>
+    </tr>
+    <tr>
+        <td><code>gnupg2</code></td>
+        <td>CVE-2025-68973</td>
+        <td>HIGH</td>
+        <td>2.3.3-4.el9</td>
+        <td></td>
     </tr>
     <tr>
         <td><code>sqlite-libs</code></td>
@@ -150,7 +150,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 
-<h3>Target <code>icr.io/ibm-finops/agent:v1.0.3 (redhat 9.6)</code></h3>
+<h3>Target <code>icr.io/ibm-finops/agent:v1.0.6 (redhat 9.7)</code></h3>
 <h4>Vulnerabilities (1)</h4>
 <table>
     <tr>
@@ -161,32 +161,16 @@
         <th>Fixed Version</th>
     </tr>
     <tr>
-        <td><code>sqlite-libs</code></td>
-        <td>CVE-2025-6965</td>
+        <td><code>gnupg2</code></td>
+        <td>CVE-2025-68973</td>
         <td>HIGH</td>
-        <td>3.34.1-8.el9_6</td>
-        <td>3.34.1-9.el9_7</td>
+        <td>2.3.3-4.el9</td>
+        <td></td>
     </tr>
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>go/bin/app</code></h3>
-<h4>Vulnerabilities (1)</h4>
-<table>
-    <tr>
-        <th>Package</th>
-        <th>ID</th>
-        <th>Severity</th>
-        <th>Installed Version</th>
-        <th>Fixed Version</th>
-    </tr>
-    <tr>
-        <td><code>stdlib</code></td>
-        <td>CVE-2025-61729</td>
-        <td>HIGH</td>
-        <td>v1.25.3</td>
-        <td>1.24.11, 1.25.5</td>
-    </tr>
-</table>
+<h4>No Vulnerabilities found</h4>
 <h4>No Misconfigurations found</h4>
 
 <h3>Target <code>bin/prometheus</code></h3>
