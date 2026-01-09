@@ -89,7 +89,7 @@ spec:
                 - group: kargo.akuity.io
                   kind: Project
               appOfAppsRepo:
-                repoURL: https://github.com/${{ parameters.team-org }}/${{ steps['catalogFetch'].output.entity.metadata.name }}-apps
+                repoURL: https://github.com/${{ parameters.teamOrg }}/${{ steps['catalogFetch'].output.entity.metadata.name }}-apps
                 path: demo-apps
                 revision: main
               multiStageKargoAppSet:
