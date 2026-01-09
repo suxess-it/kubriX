@@ -22,7 +22,7 @@ spec:
           description: Select your team name for onboarding
           ui:field: MyGroupsPicker
           ui:options: {}
-        team-org:
+        teamOrg:
           title: Team Organization
           type: string
           description: Which organization should the team belong to
@@ -93,7 +93,7 @@ spec:
                 path: demo-apps
                 revision: main
               multiStageKargoAppSet:
-                organization: ${{ parameters.team-org }}
+                organization: ${{ parameters.teamOrg }}
 
     - id: publish
       name: Publish new Version of team configuration
@@ -129,7 +129,7 @@ spec:
       name: create team-apps Github repo
       action: publish:github
       input:
-        repoUrl: github.com?repo=${{ steps['catalogFetch'].output.entity.metadata.name }}-apps&owner=${{ parameters.team-org }}
+        repoUrl: github.com?repo=${{ steps['catalogFetch'].output.entity.metadata.name }}-apps&owner=${{ parameters.teamOrg }}
         description: team-apps repo for ${{ steps['catalogFetch'].output.entity.metadata.name }}
         token: ${{ secrets.USER_OAUTH_TOKEN }}
         gitAuthorName: ${{ user.entity.metadata.name }}
