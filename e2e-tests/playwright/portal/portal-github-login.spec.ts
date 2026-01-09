@@ -90,11 +90,11 @@ test("Team Onboarding with kubrixBot Github user", async ({ page }) => {
   expect(patchSpecResp.ok()).toBeTruthy();
 
   // 5) Verify
-  const appResp = await authed.get(`/api/v1/applications/sx-teamonboarding-app`);
+  const appResp = await authed.get(`/api/v1/applications/sx-team-onboarding`);
   expect(appResp.ok()).toBeTruthy();
   const app = await appResp.json();
 
-  expect(app.spec.source.repoURL).toBe("https://github.com/kubrixBot/kubrix-local-johnny-2.git");
+  expect(app.spec.source.repoURL).toBe("https://github.com/kubrixBot/kubriX.git");
   expect(app.spec.source.targetRevision).toBe("onboarding-team-kubrix");
 
   await api.dispose();
