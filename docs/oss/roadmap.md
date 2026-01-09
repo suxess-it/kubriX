@@ -5,36 +5,37 @@ We are constantly developing kubriX and carefully listen to our customers challe
 This is our current plan for the next features and improvements. It is based on current knowledge and is subject to revision. Details about released features are documented in our [changelog](/CHANGELOG.md).
 
 
-## Q4 2025
+## Q1 2026
 
-* Crossplane v2 Upgrade (Completed)
-* Provide HA configurations (in progress)
 * Improve Observability Dashboards (in progress)
-* KaaS Support Extension (in progress)
-* Backup/Recovery Enhancements (in progress)
-
-## 2026
-
-* Crossplane-Integration in Dev-Portal
-* Switch from Hashicorp Vault to OpenBao
-* Improve FinOps Capabilities
-* Improve Compliance Adherence
-* Extend Multi Tenancy  / Isolation Options
 * Migration from ingress-nginx to alternatives (Gateway API)
+* Switch from Hashicorp Vault to OpenBao
+* Improve Compliance Adherence
+  
+## Q2 - Q4 2026
+* Improve FinOps Capabilities
+* Extend Multi Tenancy  / Isolation Options
+* Crossplane-Integration in Dev-Portal
 * Auto-Ingest Apps in Dev-Portal
 * App-Delivery Quality-Gates
 * Support Air-Gapped-Installations
+* kubriX AI Capabilities
 * Software-Bill-Of-Materials Support
 * Security-Alerts and Advisories
 * Spoke-Cluster Automation
-* kubriX AI Capabilities
-* Sustainability Integration
 * Integrate Productivity-Metrics
 * kubriX SaaS Control-Plane
-
+* Sustainability Integration
 ---
 
 # Finished Milestones
+
+## Q4 2025
+
+* Crossplane v2 Upgrade (Completed)
+* Provide HA configurations (Completed)
+* KaaS Support Extension (Completed)
+* Backup/Recovery Enhancements (Completed)
 
 ## Q3 2025
 
