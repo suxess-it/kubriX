@@ -30,7 +30,7 @@
 <h4>No Vulnerabilities found</h4>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>Node.js</code></h3>
-<h4>Vulnerabilities (14)</h4>
+<h4>Vulnerabilities (15)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -45,6 +45,13 @@
         <td>HIGH</td>
         <td>1.22.0</td>
         <td>1.24.0</td>
+    </tr>
+    <tr>
+        <td><code>@modelcontextprotocol/sdk</code></td>
+        <td>CVE-2026-0621</td>
+        <td>HIGH</td>
+        <td>1.22.0</td>
+        <td>1.25.2</td>
     </tr>
     <tr>
         <td><code>form-data</code></td>
@@ -140,7 +147,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>Python</code></h3>
-<h4>Vulnerabilities (2)</h4>
+<h4>Vulnerabilities (3)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -162,6 +169,13 @@
         <td>HIGH</td>
         <td>2.5.0</td>
         <td>2.6.0</td>
+    </tr>
+    <tr>
+        <td><code>urllib3</code></td>
+        <td>CVE-2026-21441</td>
+        <td>HIGH</td>
+        <td>2.5.0</td>
+        <td>2.6.3</td>
     </tr>
 </table>
 <h4>No Misconfigurations found</h4>
