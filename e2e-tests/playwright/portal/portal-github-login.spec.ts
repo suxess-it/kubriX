@@ -126,19 +126,53 @@ test("Team Onboarding with kubrixBot Github user", async ({ page }) => {
   await expect(page.getByRole('button', { name: 'Open Pull-Request' })).toBeVisible({ timeout: 30_000 });
   await expect(page.getByRole('button', { name: 'Open Team-App-Of-Apps Repo' })).toBeVisible({ timeout: 30_000 });
 
+  // set vault secrets for team onboarding
+  const vaultURL = "https://vault.127-0-0-1.nip.io";
+  const vaultToken = process.env.E2E_VAULT_ROOT_TOKEN!;
+  const appsetToken = "blabla";
+  const gitPassword = "blabla";
+
+  const apiVault = await request.newContext({
+    baseURL: vaultURL,
+    ignoreHTTPSErrors: true, // equivalent to curl -k
+  });
+
+  const res = await apiVault.post("/v1/kubrix-kv/data/kubrix/delivery", {
+    headers: {
+      "X-Vault-Token": vaultToken,
+      "Content-Type": "application/json",
+    },
+    data: {
+      data: {
+        KUBRIX_ARGOCD_APPSET_TOKEN: appsetToken,
+        KUBRIX_KARGO_GIT_PASSWORD: gitPassword,
+      },
+    },
+  });
+
+  if (!res.ok()) {
+    const body = await res.text();
+    throw new Error(`Vault write failed (${res.status()}): ${body}`);
+  }
+
+  const json = await res.json();
+  console.log("Vault write response:", json);
+
+  await apiVault.dispose();
+
   // instead of mergen the PR we switch the target repoUrl and revision to the kubrixBots PR repo/branch
   //  which got created during team onboarding scaffoler template
   const ARGOCD_SERVER = "https://argocd.127-0-0-1.nip.io"; // e.g. https://argocd.example.com
   const USERNAME = "admin";    // e.g. admin
   const PASSWORD = process.env.E2E_ARGOCD_ADMIN_PASSWORD!;
 
-  // 1) Create an API client (optionally ignore TLS issues in test envs)
+  // Create an API client
   const api = await request.newContext({
     baseURL: ARGOCD_SERVER,
     ignoreHTTPSErrors: true, // remove if you have valid TLS
   });
 
-  // 2) Login → token
+  // Login → token
   const sessionResp = await api.post("/api/v1/session", {
     headers: { "Content-Type": "application/json" },
     data: { username: USERNAME, password: PASSWORD },
@@ -157,7 +191,7 @@ test("Team Onboarding with kubrixBot Github user", async ({ page }) => {
     },
   });
 
-  // 3) Disable auto-sync in bootstrap-app (JSON Patch: remove /spec/syncPolicy/automated)
+  // Disable auto-sync in bootstrap-app (JSON Patch: remove /spec/syncPolicy/automated)
   const disableAutosyncResp = await authed.patch(`/api/v1/applications/sx-bootstrap-app`, {
     data: {
       patchType: "merge",
@@ -174,7 +208,7 @@ test("Team Onboarding with kubrixBot Github user", async ({ page }) => {
   });
   expect(disableAutosyncResp.ok()).toBeTruthy();
 
-  // 4) Change repoURL + targetRevision (merge patch)
+  // Change repoURL + targetRevision (merge patch)
   const patchSpecResp = await authed.patch(`/api/v1/applications/sx-team-onboarding`, {
     data: {
       patchType: "merge",
@@ -190,7 +224,7 @@ test("Team Onboarding with kubrixBot Github user", async ({ page }) => {
   });
   expect(patchSpecResp.ok()).toBeTruthy();
 
-  // 5) Verify
+  // Verify
   const appResp = await authed.get(`/api/v1/applications/sx-team-onboarding`);
   expect(appResp.ok()).toBeTruthy();
   const teamOnboarding = await appResp.json();
