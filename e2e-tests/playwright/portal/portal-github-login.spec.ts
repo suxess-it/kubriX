@@ -74,13 +74,13 @@ test("Team Onboarding with kubrixBot Github user", async ({ page }) => {
   expect(disableAutosyncResp.ok()).toBeTruthy();
 
   // 4) Change repoURL + targetRevision (merge patch)
-  const patchSpecResp = await authed.patch(`/api/v1/applications/sx-teamonboarding-app`, {
+  const patchSpecResp = await authed.patch(`/api/v1/applications/sx-team-onboarding-app`, {
     data: {
       patchType: "merge",
       patch: JSON.stringify({
         spec: {
           source: {
-            repoURL: "https://github.com/kubrixBot/kubrix-local-johnny-2.git",
+            repoURL: "https://github.com/kubrixBot/kubriX.git",
             targetRevision: "onboarding-team-kubrix",
           },
         },
