@@ -258,7 +258,20 @@ test("Team Onboarding with kubrixBot Github user", async ({ page }) => {
 
   await api.dispose();
   await authed.dispose();
+});
 
+test.describe("ArgoCD verify team onboarding state", () => {
+  const argocdAuthFile = path.join(authDir, 'argocd.json');
+  test.use({ storageState: argocdAuthFile });
+  test('ArgoCD team onboarding app', async ({ page }) => {
+    await page.goto('https://argocd.127-0-0-1.nip.io/applications/sx-team-onboarding')
+    await expect(
+      page.locator('.application-status-panel__item-value')
+    ).toHaveText(/Healthy/);
+  });
+});
+
+test("Delete kubrixBot repos", async ({ page }) => {
   // delete kubrix-apps and kubriX repo in kubrixBot org
   await page.goto('https://github.com/kubrixBot/kubrix-apps');
   await page.getByRole('link', { name: 'Settings' }).click();
@@ -280,15 +293,5 @@ test("Team Onboarding with kubrixBot Github user", async ({ page }) => {
   await page.getByRole('textbox', { name: 'To confirm, type "kubrixBot/' }).fill('kubrixBot/kubriX');
   await page.getByLabel('Delete kubrixBot/kubriX').getByRole('button', { name: 'Delete this repository' }).click();
 });
-
-test.describe("ArgoCD verify team onboarding state", () => {
-  const argocdAuthFile = path.join(authDir, 'argocd.json');
-  test.use({ storageState: argocdAuthFile });
-  test('ArgoCD team onboarding app', async ({ page }) => {
-    await page.goto('https://argocd.127-0-0-1.nip.io/applications/sx-team-onboarding')
-    await expect(
-      page.locator('.application-status-panel__item-value')
-    ).toHaveText(/Healthy/);
-  });
-});
+  
 
