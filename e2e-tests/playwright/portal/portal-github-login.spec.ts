@@ -272,10 +272,11 @@ test("Team Onboarding with kubrixBot Github user", async ({ page }) => {
   await page.getByLabel('Delete kubrixBot/kubrix-apps').getByRole('button', { name: 'Delete this repository' }).click();
 });
 
-test('ArgoCD team onboarding app', async ({ browser }) => {
+test.describe("ArgoCD verify team onboarding state", () => {
   const argocdAuthFile = path.join(authDir, 'argocd.json');
-  const context = await browser.newContext({ storageState: argocdAuthFile });
-  const page = await context.newPage();
-  await page.goto('https://argocd.127-0-0-1.nip.io/applications/sx-team-onboarding')
+  test.use({ storageState: argocdAuthFile });
+  test('ArgoCD team onboarding app', async ({ page }) => {
+    await page.goto('https://argocd.127-0-0-1.nip.io/applications/sx-team-onboarding')
+  });
 });
 
