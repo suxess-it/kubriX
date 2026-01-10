@@ -362,6 +362,8 @@ jobs:
           E2E_TEST_GH_USERNAME: ${{ secrets.E2E_TEST_GH_USERNAME }}
           E2E_TEST_GH_PASSWORD: ${{ secrets.E2E_TEST_GH_PASSWORD }}
           E2E_TEST_GITHUB_OTP: ${{ secrets.E2E_TEST_GITHUB_OTP }}
+          E2E_KUBRIX_ARGOCD_APPSET_TOKEN: ${{ secrets.E2E_KUBRIX_ARGOCD_APPSET_TOKEN }}
+          E2E_KUBRIX_KARGO_GIT_PASSWORD: ${{ secrets.E2E_KUBRIX_KARGO_GIT_PASSWORD }}
         run: |
           E2E_KEYCLOAK_DEMOADMIN_PASSWORD=$( kubectl get secret -n keycloak cp-keycloak-users-secret -o=jsonpath='{.data.demoadmin}'  | base64 -d )
           E2E_KEYCLOAK_DEMOUSER_PASSWORD=$( kubectl get secret -n keycloak cp-keycloak-users-secret -o=jsonpath='{.data.demouser}'  | base64 -d )
@@ -385,6 +387,8 @@ jobs:
             --variable E2E_VAULT_ROOT_TOKEN=${E2E_VAULT_ROOT_TOKEN} \
             --variable E2E_KARGO_ADMIN_PASSWORD=${E2E_KARGO_ADMIN_PASSWORD} \
             --variable E2E_KARGO_VERSION=${E2E_KARGO_VERSION} \
+            --variable E2E_KUBRIX_ARGOCD_APPSET_TOKEN=${E2E_KUBRIX_ARGOCD_APPSET_TOKEN} \
+            --variable E2E_KUBRIX_KARGO_GIT_PASSWORD=${E2E_KUBRIX_KARGO_GIT_PASSWORD} \
             -f -d
 
       - name: Password protect Playwright traces

@@ -22,6 +22,11 @@ spec:
           description: Select your team name for onboarding
           ui:field: MyGroupsPicker
           ui:options: {}
+        teamOrg:
+          title: Team Organization
+          type: string
+          description: Which organization should the team belong to
+          default: 'suxess-it'
 
     - title: Choose a location
       required:
@@ -55,15 +60,15 @@ spec:
       name: Fetch the actual team configuration File from Github
       action: fetch:plain:file
       input:
-        url: https://github.com/suxess-it/kubriX/blob/main/platform-apps/charts/team-onboarding/values.yaml
-        targetPath: values.yaml
+        url: https://github.com/suxess-it/kubriX/blob/main/platform-apps/charts/team-onboarding/values-customer.yaml
+        targetPath: values-customer.yaml
 
     - id: replace-if-new
       name: Replace [] if new template
       action: roadiehq:utils:fs:replace
       input:
         files:
-          - file: values.yaml
+          - file: values-customer.yaml
             find: 'teams: []'
             replaceWith: 'teams:'
 
@@ -71,7 +76,7 @@ spec:
       name: Update File with new Team Information
       action: roadiehq:utils:fs:append
       input:
-        path: values.yaml
+        path: values-customer.yaml
         content: >
           
           # new team stanza for team ${{ steps['catalogFetch'].output.entity.metadata.name }}
@@ -84,11 +89,12 @@ spec:
                 - group: kargo.akuity.io
                   kind: Project
               appOfAppsRepo:
-                repoURL: https://github.com/suxess-it/${{ steps['catalogFetch'].output.entity.metadata.name }}-apps
-                path: demo-apps
+                repoURL: https://github.com/${{ parameters.teamOrg }}/${{ steps['catalogFetch'].output.entity.metadata.name }}-apps
+                path: .
                 revision: main
               multiStageKargoAppSet:
-                organization: suxess-it
+                github:
+                  organization: ${{ parameters.teamOrg }}
 
     - id: publish
       name: Publish new Version of team configuration
@@ -124,7 +130,7 @@ spec:
       name: create team-apps Github repo
       action: publish:github
       input:
-        repoUrl: github.com?repo=${{ steps['catalogFetch'].output.entity.metadata.name }}-apps&owner=suxess-it
+        repoUrl: github.com?repo=${{ steps['catalogFetch'].output.entity.metadata.name }}-apps&owner=${{ parameters.teamOrg }}
         description: team-apps repo for ${{ steps['catalogFetch'].output.entity.metadata.name }}
         token: ${{ secrets.USER_OAUTH_TOKEN }}
         gitAuthorName: ${{ user.entity.metadata.name }}
@@ -140,3 +146,5 @@ spec:
     links:
       - title: Open Pull-Request
         url: ${{ steps.publish.output.remoteUrl }}
+      - title: Open Team-App-Of-Apps Repo
+        url: ${{`{{ steps.repocreate.output.remoteUrl }}`}}
