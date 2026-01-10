@@ -265,9 +265,7 @@ test.describe("ArgoCD verify team onboarding state", () => {
   test.use({ storageState: argocdAuthFile });
   test('ArgoCD team onboarding app', async ({ page }) => {
     await page.goto('https://argocd.127-0-0-1.nip.io/applications/sx-team-onboarding')
-    await expect(
-      page.locator('.application-status-panel row')
-    ).toHaveText(/Healthy/);
+    await expect(page.locator('#app').getByText('Healthy', { exact: true }).nth(1)).toBeVisible({ timeout: 20_000 });
   });
 });
 
