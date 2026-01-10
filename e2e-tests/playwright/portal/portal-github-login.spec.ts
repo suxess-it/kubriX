@@ -259,17 +259,26 @@ test("Team Onboarding with kubrixBot Github user", async ({ page }) => {
   await api.dispose();
   await authed.dispose();
 
-  // delete kubrix-apps repo in kubrixBot org
+  // delete kubrix-apps and kubriX repo in kubrixBot org
   await page.goto('https://github.com/kubrixBot/kubrix-apps');
   await page.getByRole('link', { name: 'Settings' }).click();
   const deleteButton = page.getByRole('button', { name: 'Delete this repository' });
   await deleteButton.scrollIntoViewIfNeeded();
   await deleteButton.click();
-
   await page.getByRole('button', { name: 'I want to delete this repository' }).click();
   await page.getByRole('button', { name: 'I have read and understand' }).click();
   await page.getByRole('textbox', { name: 'To confirm, type "kubrixBot/' }).fill('kubrixBot/kubrix-apps');
   await page.getByLabel('Delete kubrixBot/kubrix-apps').getByRole('button', { name: 'Delete this repository' }).click();
+
+  await page.goto('https://github.com/kubrixBot/kubriX');
+  await page.getByRole('link', { name: 'Settings' }).click();
+  const deleteButton = page.getByRole('button', { name: 'Delete this repository' });
+  await deleteButton.scrollIntoViewIfNeeded();
+  await deleteButton.click();
+  await page.getByRole('button', { name: 'I want to delete this repository' }).click();
+  await page.getByRole('button', { name: 'I have read and understand' }).click();
+  await page.getByRole('textbox', { name: 'To confirm, type "kubrixBot/' }).fill('kubrixBot/kubriX');
+  await page.getByLabel('Delete kubrixBot/kubriX').getByRole('button', { name: 'Delete this repository' }).click();
 });
 
 test.describe("ArgoCD verify team onboarding state", () => {
@@ -277,6 +286,9 @@ test.describe("ArgoCD verify team onboarding state", () => {
   test.use({ storageState: argocdAuthFile });
   test('ArgoCD team onboarding app', async ({ page }) => {
     await page.goto('https://argocd.127-0-0-1.nip.io/applications/sx-team-onboarding')
+    await expect(
+      page.locator('.application-status-panel__item-value')
+    ).toHaveText(/Healthy/);
   });
 });
 
