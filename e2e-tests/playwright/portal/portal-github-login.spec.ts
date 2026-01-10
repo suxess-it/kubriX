@@ -101,7 +101,7 @@ test("Team Onboarding with kubrixBot Github user", async ({ page }) => {
   await page.goto('https://backstage.127-0-0-1.nip.io/create/templates/default/team-onboarding');
 
   await page.getByRole('textbox', { name: 'Team Organization' }).click();
-  await page.getByRole('textbox', { name: 'Team Organization' }).fill('kubrixBot');
+  await page.getByRole('textbox', { name: 'Team Organization' }).fill('kubriX-demo');
   await page.getByRole('button', { name: 'Next' }).click();
   const page1Promise = page.waitForEvent('popup');
   await page.getByRole('button', { name: 'Log in' }).click();
