@@ -266,7 +266,7 @@ test.describe("ArgoCD verify team onboarding state", () => {
   test('ArgoCD team onboarding app', async ({ page }) => {
     await page.goto('https://argocd.127-0-0-1.nip.io/applications/sx-team-onboarding')
     await expect(
-      page.locator('.application-status-panel__item-value')
+      page.locator('.application-status-panel row')
     ).toHaveText(/Healthy/);
   });
 });
