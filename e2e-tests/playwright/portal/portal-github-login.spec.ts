@@ -129,8 +129,8 @@ test("Team Onboarding with kubrixBot Github user", async ({ page }) => {
   // set vault secrets for team onboarding
   const vaultURL = "https://vault.127-0-0-1.nip.io";
   const vaultToken = process.env.E2E_VAULT_ROOT_TOKEN!;
-  const appsetToken = "blabla";
-  const gitPassword = "blabla";
+  const appsetToken = process.env.E2E_KUBRIX_ARGOCD_APPSET_TOKEN!;
+  const gitPassword = process.env.E2E_KUBRIX_KARGO_GIT_PASSWORD!;
 
   const apiVault = await request.newContext({
     baseURL: vaultURL,
