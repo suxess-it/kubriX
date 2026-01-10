@@ -42,7 +42,7 @@
         <td>CVE-2025-68973</td>
         <td>HIGH</td>
         <td>2.2.40-1.1</td>
-        <td></td>
+        <td>2.2.40-1.1+deb12u2</td>
     </tr>
     <tr>
         <td><code>jq</code></td>
@@ -98,28 +98,28 @@
         <td>CVE-2025-6020</td>
         <td>HIGH</td>
         <td>1.5.2-6+deb12u1</td>
-        <td></td>
+        <td>1.5.2-6+deb12u2</td>
     </tr>
     <tr>
         <td><code>libpam-modules-bin</code></td>
         <td>CVE-2025-6020</td>
         <td>HIGH</td>
         <td>1.5.2-6+deb12u1</td>
-        <td></td>
+        <td>1.5.2-6+deb12u2</td>
     </tr>
     <tr>
         <td><code>libpam-runtime</code></td>
         <td>CVE-2025-6020</td>
         <td>HIGH</td>
         <td>1.5.2-6+deb12u1</td>
-        <td></td>
+        <td>1.5.2-6+deb12u2</td>
     </tr>
     <tr>
         <td><code>libpam0g</code></td>
         <td>CVE-2025-6020</td>
         <td>HIGH</td>
         <td>1.5.2-6+deb12u1</td>
-        <td></td>
+        <td>1.5.2-6+deb12u2</td>
     </tr>
     <tr>
         <td><code>libperl5.36</code></td>

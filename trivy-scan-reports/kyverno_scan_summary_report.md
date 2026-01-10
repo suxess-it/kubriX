@@ -40,7 +40,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 
-<h3>Target <code>reg.kyverno.io/kyverno/background-controller:v1.16.1 (alpine 3.23.0_rc1)</code></h3>
+<h3>Target <code>reg.kyverno.io/kyverno/background-controller:v1.16.2 (alpine 3.24.0_alpha20251224)</code></h3>
 <h4>No Vulnerabilities found</h4>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>ko-app/background-controller</code></h3>
@@ -77,7 +77,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 
-<h3>Target <code>reg.kyverno.io/kyverno/cleanup-controller:v1.16.1 (alpine 3.23.0_rc1)</code></h3>
+<h3>Target <code>reg.kyverno.io/kyverno/cleanup-controller:v1.16.2 (alpine 3.24.0_alpha20251224)</code></h3>
 <h4>No Vulnerabilities found</h4>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>ko-app/cleanup-controller</code></h3>
@@ -114,7 +114,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 
-<h3>Target <code>reg.kyverno.io/kyverno/kyverno-cli:v1.16.1 (alpine 3.23.0_rc1)</code></h3>
+<h3>Target <code>reg.kyverno.io/kyverno/kyverno-cli:v1.16.2 (alpine 3.24.0_alpha20251224)</code></h3>
 <h4>No Vulnerabilities found</h4>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>ko-app/kubectl-kyverno</code></h3>
@@ -151,7 +151,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 
-<h3>Target <code>reg.kyverno.io/kyverno/kyverno:v1.16.1 (alpine 3.23.0_rc1)</code></h3>
+<h3>Target <code>reg.kyverno.io/kyverno/kyverno:v1.16.2 (alpine 3.24.0_alpha20251224)</code></h3>
 <h4>No Vulnerabilities found</h4>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>ko-app/kyverno</code></h3>
@@ -188,7 +188,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 
-<h3>Target <code>reg.kyverno.io/kyverno/kyvernopre:v1.16.1 (alpine 3.23.0_rc1)</code></h3>
+<h3>Target <code>reg.kyverno.io/kyverno/kyvernopre:v1.16.2 (alpine 3.24.0_alpha20251224)</code></h3>
 <h4>No Vulnerabilities found</h4>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>ko-app/kyverno-init</code></h3>
@@ -225,7 +225,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 
-<h3>Target <code>reg.kyverno.io/kyverno/reports-controller:v1.16.1 (alpine 3.23.0_rc1)</code></h3>
+<h3>Target <code>reg.kyverno.io/kyverno/reports-controller:v1.16.2 (alpine 3.24.0_alpha20251224)</code></h3>
 <h4>No Vulnerabilities found</h4>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>ko-app/reports-controller</code></h3>
