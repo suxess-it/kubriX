@@ -5,6 +5,8 @@ kind: ApplicationSet
 metadata:
   name: {{ $team.name }}-appset
   namespace: adn-{{ .name }}
+  annotations:
+    argocd.argoproj.io/sync-wave: "2"
 spec:
   goTemplate: true
   goTemplateOptions: ["missingkey=error"]
