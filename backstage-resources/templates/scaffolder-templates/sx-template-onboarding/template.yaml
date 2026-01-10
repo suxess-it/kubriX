@@ -90,7 +90,7 @@ spec:
                   kind: Project
               appOfAppsRepo:
                 repoURL: https://github.com/${{ parameters.teamOrg }}/${{ steps['catalogFetch'].output.entity.metadata.name }}-apps
-                path: demo-apps
+                path: .
                 revision: main
               multiStageKargoAppSet:
                 github:
