@@ -92,11 +92,11 @@ backstage:
       catalog:
         locations:
           - type: url
-            target: "{{ .Values.global.repoURL }}/blob/{{ .Values.global.targetRevision }}/backstage-resources/templates/showcase-templates-demo-stack.yaml"
+            target: "{{`{{ .Values.global.repoURL }}`}}/blob/{{`{{ .Values.global.targetRevision }}`}}/backstage-resources/templates/showcase-templates-demo-stack.yaml"
             rules:
               - allow: [Template]
           - type: url
-            target: "{{ .Values.global.repoURL }}/blob/{{ .Values.global.targetRevision }}/backstage-resources/entities/demo-stack.yaml"
+            target: "{{`{{ .Values.global.repoURL }}`}}/blob/{{`{{ .Values.global.targetRevision }}`}}/backstage-resources/entities/demo-stack.yaml"
 
       grafana:
         domain: https://grafana.{{ .kubriX.domain }}
