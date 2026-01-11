@@ -40,7 +40,7 @@ export default defineConfig({
     // baseURL: 'http://localhost:3000',
 
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
-    trace: 'on-first-retry',
+    trace: 'on',
     video: 'on',
     ignoreHTTPSErrors: true,
     // storageState: '.auth/user.json',
@@ -51,6 +51,8 @@ export default defineConfig({
     {
       name: 'portal-login',
       testMatch: 'portal/auth.github-keycloak-login.ts',
+      // IMPORTANT: it is crucial that we do not enable 'trace' in login project, so kubrixBot password doesn't get leaked in the traces
+      use : {trace : 'off'}
     },
     {
       name: 'portal-tests',
@@ -65,6 +67,22 @@ export default defineConfig({
       testMatch: 'argocd/auth.argocd-login.ts',
     },
     {
+      name: 'grafana-login',
+      testMatch: 'grafana/auth.grafana-login.ts',
+    },
+    {
+      name: 'keycloak-login',
+      testMatch: 'keycloak/auth.keycloak-login.ts',
+    },
+    {
+      name: 'vault-login',
+      testMatch: 'vault/auth.vault-login.ts',
+    },
+    {
+      name: 'kargo-login',
+      testMatch: 'kargo/auth.kargo-login.ts',
+    },
+    {
       name: 'argocd-tests',
       testMatch: /argocd\/argocd-.*/,
       use: {
@@ -73,12 +91,44 @@ export default defineConfig({
       dependencies: ['argocd-login'],
     },
     {
+      name: 'grafana-tests',
+      testMatch: /grafana\/grafana-.*/,
+      use: {
+        ...devices['Desktop Chrome'],
+      },
+      dependencies: ['grafana-login'],
+    },
+    {
+      name: 'keycloak-tests',
+      testMatch: /keycloak\/keycloak-.*/,
+      use: {
+        ...devices['Desktop Chrome'],
+      },
+      dependencies: ['keycloak-login'],
+    },
+    {
+      name: 'vault-tests',
+      testMatch: /vault\/vault-.*/,
+      use: {
+        ...devices['Desktop Chrome'],
+      },
+      dependencies: ['vault-login'],
+    },
+    {
+      name: 'kargo-tests',
+      testMatch: /kargo\/kargo-.*/,
+      use: {
+        ...devices['Desktop Chrome'],
+      },
+      dependencies: ['kargo-login'],
+    },
+    {
       name: 'prime-tests',
       testMatch: /prime\/prime-.*/,
       use: {
         ...devices['Desktop Chrome'],
       },
-      dependencies: ['argocd-login','portal-login'],
+      dependencies: ['argocd-login','portal-login','grafana-login','keycloak-login','vault-login','kargo-login'],
     },
     // {
     //   name: 'webkit',

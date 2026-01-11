@@ -2,6 +2,7 @@ default:
   valueFiles:
   - values-kubrix-default.yaml
   - values-cluster-kind.yaml
+  - values-customer.yaml
 
 applications:
   - name: ingress-nginx
@@ -55,3 +56,9 @@ applications:
   - name: backstage
     annotations:
       argocd.argoproj.io/sync-wave: "10"
+
+  - name: team-onboarding
+    destinationNamespaceOverwrite: argocd
+    namespaceResourceTracking: false
+    annotations:
+      argocd.argoproj.io/sync-wave: "15"
