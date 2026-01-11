@@ -6,20 +6,20 @@ backstage:
       - name: NODE_OPTIONS
         value: "--no-node-snapshot"
       - name: NODE_EXTRA_CA_CERTS
-        value: "/kind-kubriX-cacert/ca.crt"
+        value: "/kind-kubrix-cacert/ca.crt"
     extraVolumes:
       - configMap:
-          defaultMode: 420
+          defaultMode: 420 los
           name: rbac-policy
         name: rbac-policy
-      - name: kind-kubriX-cacert
+      - name: kind-kubrix-cacert
         secret:
-          secretName: kind-kubriX-cacert
+          secretName: kind-kubrix-cacert
     extraVolumeMounts:
       - name: rbac-policy
         mountPath: /opt/app-root/src/rbac
-      - name: kind-kubriX-cacert
-        mountPath: /kind-kubriX-cacert
+      - name: kind-kubrix-cacert
+        mountPath: /kind-kubrix-cacert
     appConfig:
       app:
         baseUrl: https://backstage.127-0-0-1.nip.io
