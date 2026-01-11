@@ -684,7 +684,7 @@ if [[ "${KUBRIX_CLUSTER_TYPE}" == "kind" ]] ; then
 
   # create a cacert secret for backstage so backstage trusts internal services
   kubectl get ns backstage >/dev/null 2>&1 || kubectl create ns backstage
-  kubectl create secret generic kind-kubriX-cacert --from-file=ca.crt=${root_cert} -n backstage --dry-run=client -o yaml | kubectl apply -f -
+  kubectl create secret generic kind-kubrix-cacert --from-file=ca.crt=${root_cert} -n backstage --dry-run=client -o yaml | kubectl apply -f -
 
   # vault ca for oidc
   kubectl get ns vault >/dev/null 2>&1 || kubectl create ns vault
