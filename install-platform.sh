@@ -680,7 +680,7 @@ if [[ "${KUBRIX_CLUSTER_TYPE}" == "kind" ]] ; then
   root_cert="/usr/local/share/ca-certificates/kind-kubriX-rootCA.crt"
   root_key="/usr/local/share/ca-certificates/kind-rootCA.key"
   kubectl get ns cert-manager >/dev/null 2>&1 || kubectl create ns cert-manager
-  kubectl create secret tls kind-kubriX-ca-key-pair --key ${root_key} --cert ${root_cert} -n cert-manager --dry-run=client -o yaml | kubectl apply -f -
+  kubectl create secret tls kind-kubrix-ca-key-pair --key ${root_key} --cert ${root_cert} -n cert-manager --dry-run=client -o yaml | kubectl apply -f -
 
   # create a cacert secret for backstage so backstage trusts internal services
   kubectl get ns backstage >/dev/null 2>&1 || kubectl create ns backstage
@@ -818,6 +818,6 @@ kubectl delete -f ./.secrets/secrettemp/pushsecrets.yaml
 
 if [[ "${KUBRIX_CLUSTER_TYPE}" == "kind" ]] ; then
   echo "Installation finished! On KinD clusters we create self-signed certificates for our platform services. You probably need to import this CA cert in your browser to accept the certificates:"
-  kubectl get secret kind-kubriX-ca-key-pair -n cert-manager -o jsonpath="{['data']['tls\.crt']}" | base64 --decode
+  kubectl get secret kind-kubrix-ca-key-pair -n cert-manager -o jsonpath="{['data']['tls\.crt']}" | base64 --decode
 fi
 

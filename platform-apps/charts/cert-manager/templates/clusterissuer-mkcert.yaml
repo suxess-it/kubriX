@@ -5,9 +5,9 @@ metadata:
   {{- if .Values.kindKubriXClusterIssuer.default }}
   name: default-issuer
   {{- else }}
-  name: kind-kubriX-issuer
+  name: kind-kubrix-issuer
   {{- end }}
 spec:
   ca:
-    secretName: kind-kubriX-ca-key-pair
+    secretName: kind-kubrix-ca-key-pair
 {{ end }}
