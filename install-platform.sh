@@ -677,8 +677,8 @@ if [[ "${KUBRIX_CLUSTER_TYPE}" == "kind" ]] ; then
   rm coredns-configmap.yaml
 
   # create install root CA to trust certs
-  root_cert="/usr/local/share/ca-certificates/kind-kubriX-rootCA.crt"
-  root_key="/usr/local/share/ca-certificates/kind-rootCA.key"
+  root_cert="/etc/tls/kind-kubrix-root-tls.crt"
+  root_key="/etc/tls/kind-kubrix-tls.key"
   kubectl get ns cert-manager >/dev/null 2>&1 || kubectl create ns cert-manager
   kubectl create secret tls kind-kubrix-ca-key-pair --key ${root_key} --cert ${root_cert} -n cert-manager --dry-run=client -o yaml | kubectl apply -f -
 
