@@ -1,13 +1,13 @@
-{{- if .Values.mkcertClusterIssuer.enabled }}
+{{- if .Values.kindKubriXClusterIssuer.enabled }}
 apiVersion: cert-manager.io/v1
 kind: ClusterIssuer
 metadata:
-  {{- if .Values.mkcertClusterIssuer.default }}
+  {{- if .Values.kindKubriXClusterIssuer.default }}
   name: default-issuer
   {{- else }}
-  name: mkcert-issuer
+  name: kind-kubrix-issuer
   {{- end }}
 spec:
   ca:
-    secretName: mkcert-ca-key-pair
+    secretName: kind-kubrix-ca-key-pair
 {{ end }}

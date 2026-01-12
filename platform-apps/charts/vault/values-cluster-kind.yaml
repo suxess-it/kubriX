@@ -30,7 +30,7 @@ vault:
             - ALL
           privileged: false
           runAsNonRoot: true
-      # only for kind cluster with mkcert root ca
+      # only for kind cluster with kind-kubriX root ca
       - name: combine-system-and-keycloak-ca
         image: hashicorp/vault:1.20.3              # same base as server to get the original ca-certificates.crt
         command: ["/bin/sh","-c"]
@@ -57,7 +57,7 @@ vault:
           privileged: false
           runAsNonRoot: true
     extraEnvironmentVars:
-      # only for kind cluster with mkcert root ca
+      # only for kind cluster with kind-kubriX root ca
       SSL_CERT_FILE: /vault/kind-bundle-ca/combined-bundle.crt
       VAULT_CACERT: /vault/userconfig/vault-ca/ca.crt
     volumes:
@@ -67,7 +67,7 @@ vault:
         secret:
           secretName: vault-init
           optional: true
-      # only for kind cluster with mkcert root ca
+      # only for kind cluster with kind-kubriX root ca
       - name: vault-ca-cert
         secret:
           defaultMode: 420
@@ -85,7 +85,7 @@ vault:
       - mountPath: /vault/userconfig/vault-ca
         name: vault-ca-cert
         readOnly: true
-      # only for kind cluster with mkcert root ca
+      # only for kind cluster with kind-kubriX root ca
       - name: keycloak-ca
         mountPath: /keycloak-ca
         readOnly: true
