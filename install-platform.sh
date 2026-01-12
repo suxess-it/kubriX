@@ -90,10 +90,6 @@ check_prereqs() {
   check_tool curl "curl -V | head -1"
   check_tool k8sgpt "k8sgpt version"
   
-  if [[ "${KUBRIX_CLUSTER_TYPE}" == "kind" ]] ; then
-    check_tool mkcert "mkcert --version"
-  fi
-
   echo "Prereq checks finished sucessfully."
   echo ""
 }
@@ -680,28 +676,26 @@ if [[ "${KUBRIX_CLUSTER_TYPE}" == "kind" ]] ; then
   kubectl rollout restart deployment coredns -n kube-system
   rm coredns-configmap.yaml
 
-  # create mkcert-issuer root certificate
-  mkcert -install
+  # create install root CA to trust certs
+  root_cert="/etc/tls/kind-kubrix-root-tls.crt"
+  root_key="/etc/tls/kind-kubrix-tls.key"
   kubectl get ns cert-manager >/dev/null 2>&1 || kubectl create ns cert-manager
-  kubectl create secret tls mkcert-ca-key-pair --key "$(mkcert -CAROOT)"/rootCA-key.pem --cert "$(mkcert -CAROOT)"/rootCA.pem -n cert-manager --dry-run=client -o yaml | kubectl apply -f -
+  kubectl create secret tls kind-kubrix-ca-key-pair --key ${root_key} --cert ${root_cert} -n cert-manager --dry-run=client -o yaml | kubectl apply -f -
 
-  # create a cacert secret for backstage so backstage trusts internal services with mkcert certificates
+  # create a cacert secret for backstage so backstage trusts internal services
   kubectl get ns backstage >/dev/null 2>&1 || kubectl create ns backstage
-  kubectl create secret generic mkcert-cacert --from-file=ca.crt="$(mkcert -CAROOT)"/rootCA.pem -n backstage --dry-run=client -o yaml | kubectl apply -f -
+  kubectl create secret generic kind-kubrix-cacert --from-file=ca.crt=${root_cert} -n backstage --dry-run=client -o yaml | kubectl apply -f -
 
   # vault ca for oidc
   kubectl get ns vault >/dev/null 2>&1 || kubectl create ns vault
-  kubectl create secret generic ca-cert --from-file=ca.crt="$(mkcert -CAROOT)"/rootCA.pem -n vault --dry-run=client -o yaml | kubectl apply -f -
+  kubectl create secret generic ca-cert --from-file=ca.crt=${root_cert} -n vault --dry-run=client -o yaml | kubectl apply -f -
 
-  # testkube should also trust every cert signed with our mkcert ca
+  # testkube should also trust every cert signed with our ca
   kubectl get ns testkube >/dev/null 2>&1 || kubectl create ns testkube
-  kubectl create secret generic ca-cert --from-file=ca.crt="$(mkcert -CAROOT)"/rootCA.pem -n testkube --dry-run=client -o yaml | kubectl apply -f -
+  kubectl create secret generic ca-cert --from-file=ca.crt=${root_cert} -n testkube --dry-run=client -o yaml | kubectl apply -f -
 
   # testkube also needs credentials to retrieve testfiles on the kubriX github repo
   kubectl create secret generic git-credentials --from-literal=username=${KUBRIX_REPO_USERNAME} --from-literal=token=${KUBRIX_REPO_PASSWORD} -n testkube --dry-run=client -o yaml | kubectl apply -f -
-
-  # curl should trust all websites with the mkcert cert
-  export CURL_CA_BUNDLE="$(mkcert -CAROOT)"/rootCA-key.pem
 
   echo "installing metrics-server in KinD"
   helm repo add metrics-server https://kubernetes-sigs.github.io/metrics-server/
@@ -824,6 +818,6 @@ kubectl delete -f ./.secrets/secrettemp/pushsecrets.yaml
 
 if [[ "${KUBRIX_CLUSTER_TYPE}" == "kind" ]] ; then
   echo "Installation finished! On KinD clusters we create self-signed certificates for our platform services. You probably need to import this CA cert in your browser to accept the certificates:"
-  kubectl get secret mkcert-ca-key-pair -n cert-manager -o jsonpath="{['data']['tls\.crt']}" | base64 --decode
+  kubectl get secret kind-kubrix-ca-key-pair -n cert-manager -o jsonpath="{['data']['tls\.crt']}" | base64 --decode
 fi
 

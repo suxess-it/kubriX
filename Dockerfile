@@ -1,3 +1,4 @@
+# syntax=docker/dockerfile:1.20
 # docker buildx build --platform linux/amd64,linux/arm64 -t ghcr.io/suxess-it/kubrix-installer:latest --push .
 FROM ubuntu:24.04
 
@@ -26,7 +27,6 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     libnss3-tools util-linux bsdextrautils gettext-base gawk grep sed \
     iproute2 iputils-ping dnsutils openssl \
     apache2-utils \
-    mkcert \
  && rm -rf /var/lib/apt/lists/*
 
 # gomplate
@@ -69,26 +69,15 @@ COPY install-platform.sh /work/install-platform.sh
 RUN chmod +x /work/install-platform.sh
 ENV KUBRIX_INSTALLER=true
 
-# Use a stable, shared CAROOT inside the image (readable to non-root)
-ENV CAROOT=/etc/mkcert
-RUN mkdir -p "$CAROOT" \
- && mkcert -install \
- && chmod -R a+rX "$CAROOT"
-
-# (optional but handy) make mkcert skip failing -install later if CA already exists
-RUN mv /usr/bin/mkcert /usr/bin/mkcert.real && \
-    cat >/usr/bin/mkcert <<'EOF' && \
-    chmod +x /usr/bin/mkcert
-#!/usr/bin/env bash
-set -euo pipefail
-if [[ "$1" == "-install" || "$1" == "install" ]]; then
-  if [[ -f "${CAROOT:-/etc/mkcert}/rootCA-key.pem" ]]; then
-    echo "mkcert: CA already installed, skipping."
-    exit 0
-  fi
-fi
-exec /usr/bin/mkcert.real "$@"
-EOF
+# install CA crt
+RUN --mount=type=secret,id=KIND_KUBRIX_TLS_CRT_PEM \
+    --mount=type=secret,id=KIND_KUBRIX_TLS_KEY_PEM \
+    set -eu; \
+    mkdir -p /etc/tls; \
+    test -s /run/secrets/KIND_KUBRIX_TLS_CRT_PEM; \
+    test -s /run/secrets/KIND_KUBRIX_TLS_KEY_PEM; \
+    cat /run/secrets/KIND_KUBRIX_TLS_CRT_PEM > /etc/tls/kind-kubrix-root-tls.crt; \
+    cat /run/secrets/KIND_KUBRIX_TLS_KEY_PEM > /etc/tls/kind-kubrix-tls.key
 
 # Non-root default (Job can override if needed)
 RUN useradd -m runner && chown -R runner:runner /work
