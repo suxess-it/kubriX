@@ -406,7 +406,13 @@ jobs:
         with:
           name: testkube-artifacts-${{ matrix.target-type }}
           path: ./playwright-artifacts.zip
-          
+
+      - name: mustgather observability
+        if: ${{ failure() && matrix.target-type  == 'kind-observability' }}
+        shell: bash
+        run: |
+          kubectl get pods -o name -n grafana | xargs -I {} kubectl logs -n grafana {} --all-containers=true
+  
       - name: mustgather data for troubleshooting
         if: ${{ failure() }}
         shell: bash
