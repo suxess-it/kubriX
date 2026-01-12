@@ -19,15 +19,17 @@ check_tool() {
 }
 
 check_variable() {
-  variable=$1
-  show_output=$2
-  sane_default="${3:-}"
+  local variable=$1
+  local show_output=$2
+  local sane_default="${3:-}"
+  local allowed="${4:-}"   # e.g. "aws|azure|cloudflare|ionos|stackit"
+
   # check if variable is set
   if [ -z "${!variable:-}" ]; then
     # set variable to a sane default if a sane default is present, else exit with error
-    if [ ! -z "${sane_default}" ]; then
+    if [ -n "${sane_default}" ]; then
       printf -v "${variable}" '%s' "${sane_default}"
-      if [ ${show_output} = "true" ] ; then
+      if [ "${show_output}" = "true" ] ; then
         echo "set ${variable} to sane default '${!variable}'"
       else
         echo "set ${variable} to sane default. Value is a secret."
@@ -35,8 +37,22 @@ check_variable() {
     else
       fail "prereq check failed: variable '${variable}' is blank or not set"
     fi
+  fi
+
+  # validate value if allowed list is provided
+  if [ -n "${allowed}" ]; then
+    case "${!variable}" in
+      ${allowed})
+        : # ok
+        ;;
+      *)
+        fail "prereq check failed: variable '${variable}' has invalid value '${!variable}'. Valid values: ${allowed//|/, }"
+        ;;
+    esac
+  fi
+
   # show value of the variable, unless show_output is false (for omitting output of secrets)
-  elif [ ${show_output} = "true" ] ; then
+  if [ "${show_output}" = "true" ] ; then
     echo "${variable} is set to '${!variable}'"
   else
     echo "${variable} is set. Value is a secret."
@@ -73,7 +89,7 @@ check_prereqs() {
     check_variable KUBRIX_UPSTREAM_REPO_USERNAME "true" "dummy"
     check_variable KUBRIX_UPSTREAM_REPO_PASSWORD "false" " "
     check_variable KUBRIX_DOMAIN "true" "demo-$(printf '%s' "${KUBRIX_REPO}" | sha256_portable | head -c 10).kubrix.cloud"
-    check_variable KUBRIX_DNS_PROVIDER "true" "ionos"
+    check_variable KUBRIX_DNS_PROVIDER "true" "ionos" "aws|azure|cloudflare|ionos|stackit"
     check_variable KUBRIX_CLOUD_PROVIDER "true" "on-prem"
     check_variable KUBRIX_TSHIRT_SIZE "true" "small"
     check_variable KUBRIX_SECURITY_STRICT "true" "false"
