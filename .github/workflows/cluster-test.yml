@@ -242,8 +242,9 @@ jobs:
           build-args: |
             VERSION=${{ steps.ver.outputs.version }}
             VCS_REF=${{ steps.ver.outputs.sha_short }}
-            KIND_KUBRIX_TLS_CRT_PEM=${{ secrets.KIND_KUBRIX_TLS_CRT_PEM }}
-            KIND_KUBRIX_TLS_KEY_PEM=${{ secrets.KIND_KUBRIX_TLS_KEY_PEM }}
+          secrets: |
+            "KIND_KUBRIX_TLS_CRT_PEM=${{ secrets.KIND_KUBRIX_TLS_CRT_PEM }}"
+            "KIND_KUBRIX_TLS_KEY_PEM=${{ secrets.KIND_KUBRIX_TLS_KEY_PEM }}"
   
   create-cluster:
     needs: 

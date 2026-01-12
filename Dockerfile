@@ -71,9 +71,10 @@ RUN chmod +x /work/install-platform.sh
 ENV KUBRIX_INSTALLER=true
 
 # install CA crt
-RUN mkdir -p /etc/tls && \
-  printf '%s' "$KIND_KUBRIX_TLS_CRT_PEM" > /etc/tls/kind-kubrix-root-tls.crt && \
-  printf '%s' "$KIND_KUBRIX_TLS_KEY_PEM" > /etc/tls/kind-kubrix-tls.key
+RUN --mount=type=secret,id=KIND_KUBRIX_TLS_CRT_PEM \
+    --mount=type=secret,id=KIND_KUBRIX_TLS_KEY_PEM \
+    sh -c 'cat /run/secrets/KIND_KUBRIX_TLS_CRT_PEM > /etc/tls/kind-kubrix-root-tls.crt && \
+           cat /run/secrets/KIND_KUBRIX_TLS_KEY_PEM > /etc/tls/kind-kubrix-tls.key
 
 # Non-root default (Job can override if needed)
 RUN useradd -m runner && chown -R runner:runner /work
