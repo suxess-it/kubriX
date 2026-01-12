@@ -2,8 +2,6 @@
 FROM ubuntu:24.04
 
 ARG TARGETARCH
-ARG KIND_KUBRIX_TLS_CRT_PEM
-ARG KIND_KUBRIX_TLS_KEY_PEM
 ENV DEBIAN_FRONTEND=noninteractive
 SHELL ["/bin/bash","-lc"]
 
@@ -73,7 +71,8 @@ ENV KUBRIX_INSTALLER=true
 # install CA crt
 RUN --mount=type=secret,id=KIND_KUBRIX_TLS_CRT_PEM \
     --mount=type=secret,id=KIND_KUBRIX_TLS_KEY_PEM \
-    sh -c 'cat /run/secrets/KIND_KUBRIX_TLS_CRT_PEM > /etc/tls/kind-kubrix-root-tls.crt && \
+    sh -c 'mkdir -p /etc/tls && \
+           cat /run/secrets/KIND_KUBRIX_TLS_CRT_PEM > /etc/tls/kind-kubrix-root-tls.crt && \
            cat /run/secrets/KIND_KUBRIX_TLS_KEY_PEM > /etc/tls/kind-kubrix-tls.key
 
 # Non-root default (Job can override if needed)
