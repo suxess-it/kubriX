@@ -44,7 +44,7 @@ check_variable() {
     if [[ "${!variable}" =~ ^(${allowed})$ ]]; then
       : # valid
     else
-      fail "prereq check failed: variable '${variable}' has invalid value '${!variable}'. Valid values: ${allowed_display}"
+      fail "prereq check failed: variable '${variable}' has invalid value '${!variable}'. Valid values: ${allowed//|/, }"
     fi
   fi
 
