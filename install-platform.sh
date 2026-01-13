@@ -41,7 +41,7 @@ check_variable() {
 
   # validate value if allowed list is provided
   if [ -n "${allowed}" ]; then
-    if [[ "${!variable}" =~ ^(${allowed_pattern})$ ]]; then
+    if [[ "${!variable}" =~ ^(${allowed})$ ]]; then
       : # valid
     else
       fail "prereq check failed: variable '${variable}' has invalid value '${!variable}'. Valid values: ${allowed_display}"
