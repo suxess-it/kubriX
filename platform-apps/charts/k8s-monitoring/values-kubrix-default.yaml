@@ -2,12 +2,12 @@ k8s-monitoring:
 
   cluster:
     name: kubrix
-  destinations:
-    - name: metricsService
+  destinationsMap:
+    metricsService:
       type: prometheus
       url: http://sx-mimir-gateway.mimir.svc/api/v1/push
       tenantId: ''
-    - name: logsService
+    logsService:
       type: loki
       url: http://sx-loki-gateway.loki.svc/loki/api/v1/push
       tenantId: ''
