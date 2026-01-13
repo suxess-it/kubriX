@@ -41,14 +41,11 @@ check_variable() {
 
   # validate value if allowed list is provided
   if [ -n "${allowed}" ]; then
-    case "${!variable}" in
-      ${allowed})
-        : # ok
-        ;;
-      *)
-        fail "prereq check failed: variable '${variable}' has invalid value '${!variable}'. Valid values: ${allowed//|/, }"
-        ;;
-    esac
+    if [[ "${!variable}" =~ ^(${allowed_pattern})$ ]]; then
+      : # valid
+    else
+      fail "prereq check failed: variable '${variable}' has invalid value '${!variable}'. Valid values: ${allowed_display}"
+    fi
   fi
 
   # show value of the variable, unless show_output is false (for omitting output of secrets)
