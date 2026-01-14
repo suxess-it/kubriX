@@ -214,7 +214,7 @@ stringData:
   KUBRIX_GIT_USER_NAME: "<your github username to login to backstage>"  # optional; default: dummy
   KUBRIX_DOMAIN: "" # optional; example: "demo-johnny.kubrix.cloud"
   KUBRIX_DNS_PROVIDER: ""   # required; valid values: ionos, aws, stackit, cloudflare; default: ionos
-  KUBRIX_CLOUD_PROVIDER: ""  # optional; valid values: aks, peak, on-prem; default: on-prem
+  KUBRIX_CLOUD_PROVIDER: ""  # optional; valid values: on-prem, aks, peak, metalstack; default: on-prem
   KUBRIX_TARGET_TYPE: ""    # optional; default: kubrix-oss-stack
   KUBRIX_BOOTSTRAP: true    # optional; true, if you want to clone from upstream repo to your KUBRIX_REPO
   KUBRIX_INSTALLER: true    # required
