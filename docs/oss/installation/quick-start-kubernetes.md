@@ -41,7 +41,7 @@ With this step-by-step guide kubriX with its default kubriX OSS stack gets deplo
 5. optional: set the Cloud Provider, where kubriX gets installed:
 
     default: on-prem  
-    supported: aks, peak
+    supported: aks, peak, metalstack
 
     ```
     export KUBRIX_CLOUD_PROVIDER="aks"
@@ -191,7 +191,7 @@ KUBRIX_REPO_PASSWORD|string|always|-|any non-empty string|access token for your 
 KUBRIX_GIT_USER_NAME|string|-|dummy|any non-empty string|if you want to login in backststage with git user|any non-empty string
 KUBRIX_DOMAIN|string|always|-|any non-empty string|your domain you want to access your kubrix installation; needs to be a valid domain / hosted zone in your DNS provider|any non-empty string
 KUBRIX_DNS_PROVIDER|string|never|`ionos`|`ionos`,`aws`, `azure`, `stackit`, `cloudflare`|
-KUBRIX_CLOUD_PROVIDER|string|never|`on-prem`|`on-prem`,`peak`,`aks`|
+KUBRIX_CLOUD_PROVIDER|string|never|`on-prem`|`on-prem`,`peak`,`aks`,`metalstack`|
 KUBRIX_TARGET_TYPE|string|never|`kubrix-oss-stack`|any valid target-type in your `platform-apps/target-chart` folder|
 KUBRIX_BOOTSTRAP|boolean|never|`false`|`true`,`false`
 KUBRIX_INSTALLER|boolean|never|`true`|`true`,`false`
