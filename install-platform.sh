@@ -87,7 +87,7 @@ check_prereqs() {
     check_variable KUBRIX_UPSTREAM_REPO_PASSWORD "false" " "
     check_variable KUBRIX_DOMAIN "true" "demo-$(printf '%s' "${KUBRIX_REPO}" | sha256_portable | head -c 10).kubrix.cloud"
     check_variable KUBRIX_DNS_PROVIDER "true" "ionos" "none|aws|azure|cloudflare|ionos|stackit"
-    check_variable KUBRIX_CLOUD_PROVIDER "true" "on-prem" "on-prem|aks|peak"
+    check_variable KUBRIX_CLOUD_PROVIDER "true" "on-prem" "on-prem|aks|peak|metalstack"
     check_variable KUBRIX_TSHIRT_SIZE "true" "small"
     check_variable KUBRIX_SECURITY_STRICT "true" "false"
     check_variable KUBRIX_HA_ENABLED "true" "false"
