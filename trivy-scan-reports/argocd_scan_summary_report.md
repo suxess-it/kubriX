@@ -92,85 +92,11 @@
 </table>
 <h4>No Misconfigurations found</h4>
 
-<h3>Target <code>quay.io/argoproj/argocd:v3.2.3 (ubuntu 25.04)</code></h3>
-<h4>Vulnerabilities (5)</h4>
-<table>
-    <tr>
-        <th>Package</th>
-        <th>ID</th>
-        <th>Severity</th>
-        <th>Installed Version</th>
-        <th>Fixed Version</th>
-    </tr>
-    <tr>
-        <td><code>dirmngr</code></td>
-        <td>CVE-2025-68973</td>
-        <td>HIGH</td>
-        <td>2.4.4-2ubuntu23.1</td>
-        <td>2.4.4-2ubuntu23.2</td>
-    </tr>
-    <tr>
-        <td><code>gpg</code></td>
-        <td>CVE-2025-68973</td>
-        <td>HIGH</td>
-        <td>2.4.4-2ubuntu23.1</td>
-        <td>2.4.4-2ubuntu23.2</td>
-    </tr>
-    <tr>
-        <td><code>gpg-agent</code></td>
-        <td>CVE-2025-68973</td>
-        <td>HIGH</td>
-        <td>2.4.4-2ubuntu23.1</td>
-        <td>2.4.4-2ubuntu23.2</td>
-    </tr>
-    <tr>
-        <td><code>gpgconf</code></td>
-        <td>CVE-2025-68973</td>
-        <td>HIGH</td>
-        <td>2.4.4-2ubuntu23.1</td>
-        <td>2.4.4-2ubuntu23.2</td>
-    </tr>
-    <tr>
-        <td><code>gpgv</code></td>
-        <td>CVE-2025-68973</td>
-        <td>HIGH</td>
-        <td>2.4.4-2ubuntu23.1</td>
-        <td>2.4.4-2ubuntu23.2</td>
-    </tr>
-</table>
+<h3>Target <code>quay.io/argoproj/argocd:v3.2.4 (ubuntu 25.04)</code></h3>
+<h4>No Vulnerabilities found</h4>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>usr/local/bin/argocd</code></h3>
-<h4>Vulnerabilities (3)</h4>
-<table>
-    <tr>
-        <th>Package</th>
-        <th>ID</th>
-        <th>Severity</th>
-        <th>Installed Version</th>
-        <th>Fixed Version</th>
-    </tr>
-    <tr>
-        <td><code>github.com/expr-lang/expr</code></td>
-        <td>CVE-2025-68156</td>
-        <td>HIGH</td>
-        <td>v1.17.6</td>
-        <td>1.17.7</td>
-    </tr>
-    <tr>
-        <td><code>stdlib</code></td>
-        <td>CVE-2025-58183</td>
-        <td>HIGH</td>
-        <td>v1.25.0</td>
-        <td>1.24.8, 1.25.2</td>
-    </tr>
-    <tr>
-        <td><code>stdlib</code></td>
-        <td>CVE-2025-61729</td>
-        <td>HIGH</td>
-        <td>v1.25.0</td>
-        <td>1.24.11, 1.25.5</td>
-    </tr>
-</table>
+<h4>No Vulnerabilities found</h4>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>usr/local/bin/helm</code></h3>
 <h4>Vulnerabilities (4)</h4>

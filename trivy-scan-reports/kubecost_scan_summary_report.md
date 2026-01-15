@@ -1,5 +1,5 @@
 
-<h3>Target <code>badouralix/curl-jq:alpine (alpine 3.22.2)</code></h3>
+<h3>Target <code>badouralix/curl-jq:alpine (alpine 3.23.2)</code></h3>
 <h4>No Vulnerabilities found</h4>
 <h4>No Misconfigurations found</h4>
 
@@ -110,7 +110,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>Python</code></h3>
-<h4>Vulnerabilities (6)</h4>
+<h4>Vulnerabilities (8)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -118,6 +118,20 @@
         <th>Severity</th>
         <th>Installed Version</th>
         <th>Fixed Version</th>
+    </tr>
+    <tr>
+        <td><code>jaraco.context</code></td>
+        <td>GHSA-58pv-8j8x-9vj2</td>
+        <td>HIGH</td>
+        <td>5.3.0</td>
+        <td>6.1.0</td>
+    </tr>
+    <tr>
+        <td><code>jaraco.context</code></td>
+        <td>GHSA-58pv-8j8x-9vj2</td>
+        <td>HIGH</td>
+        <td>6.0.1</td>
+        <td>6.1.0</td>
     </tr>
     <tr>
         <td><code>urllib3</code></td>
