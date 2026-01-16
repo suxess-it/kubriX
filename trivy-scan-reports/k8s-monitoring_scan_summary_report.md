@@ -1,6 +1,6 @@
 
 <h3>Target <code>ghcr.io/grafana/alloy-operator:1.5.2 (redhat 9.6)</code></h3>
-<h4>Vulnerabilities (2)</h4>
+<h4>Vulnerabilities (5)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -10,11 +10,32 @@
         <th>Fixed Version</th>
     </tr>
     <tr>
+        <td><code>glibc</code></td>
+        <td>CVE-2026-0861</td>
+        <td>HIGH</td>
+        <td>2.34-168.el9_6.23</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>glibc-common</code></td>
+        <td>CVE-2026-0861</td>
+        <td>HIGH</td>
+        <td>2.34-168.el9_6.23</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>glibc-minimal-langpack</code></td>
+        <td>CVE-2026-0861</td>
+        <td>HIGH</td>
+        <td>2.34-168.el9_6.23</td>
+        <td></td>
+    </tr>
+    <tr>
         <td><code>gnupg2</code></td>
         <td>CVE-2025-68973</td>
         <td>HIGH</td>
         <td>2.3.3-4.el9</td>
-        <td></td>
+        <td>2.3.3-5.el9_7</td>
     </tr>
     <tr>
         <td><code>sqlite-libs</code></td>
