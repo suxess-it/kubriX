@@ -62,8 +62,13 @@ async function syncApp(authed: any, appName: string) {
 
   // If ArgoCD returns an error, bubble up details:
   if (!res.ok()) {
-    const body = await res.text();
-    throw new Error(`Sync failed to start (${res.status()}): ${body}`);
+    const body = await res.text(); 
+    if (typeof body === "string" && body.includes("another operation is already in progress")) {
+      return res
+    }
+    else {
+      throw new Error(`Sync failed to start (${res.status()}): ${body}`);
+    }
   }
 }
 
