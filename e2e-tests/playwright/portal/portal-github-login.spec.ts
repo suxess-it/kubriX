@@ -62,8 +62,13 @@ async function syncApp(authed: any, appName: string) {
 
   // If ArgoCD returns an error, bubble up details:
   if (!res.ok()) {
-    const body = await res.text();
-    throw new Error(`Sync failed to start (${res.status()}): ${body}`);
+    const body = await res.text(); 
+    if (typeof body === "string" && body.includes("another operation is already in progress")) {
+      return res
+    }
+    else {
+      throw new Error(`Sync failed to start (${res.status()}): ${body}`);
+    }
   }
 }
 
@@ -110,8 +115,10 @@ test("Team Onboarding with kubrixBot Github user", async ({ page }) => {
   const authorize = popup.getByRole('button', { name: 'Authorize kubriX-demo' });
 
   await Promise.race([
-    // Case A: button shows up -> click it
-    authorize.waitFor({ state: 'visible', timeout: 5000 }).then(() => authorize.click()),
+  authorize
+    .waitFor({ state: 'visible', timeout: 5000 })
+    .then(() => authorize.click())
+    .then(() => popup.waitForEvent('close')), 
 
     // Case B: popup closes automatically -> do nothing
     popup.waitForEvent('close')
