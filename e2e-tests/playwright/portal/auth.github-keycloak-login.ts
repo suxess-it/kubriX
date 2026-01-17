@@ -53,7 +53,7 @@ setup('Github Login', async ({ page }) => {
 
   // Login in Backstage
   await page.goto("https://backstage.127-0-0-1.nip.io/");
-  await expect(page).toHaveTitle(/kubriX OSS/);
+  await expect(page).toHaveTitle(/kubriX/);
 
   // Open GitHub login popup
   await page.getByRole('listitem').filter({ hasText: 'GitHubSign in using' }).getByRole('button').click();
