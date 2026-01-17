@@ -18,17 +18,17 @@
     </tr>
     <tr>
         <td><code>libc6</code></td>
-        <td>CVE-2026-0861</td>
-        <td>CRITICAL</td>
-        <td>2.36-9+deb12u7</td>
-        <td></td>
-    </tr>
-    <tr>
-        <td><code>libc6</code></td>
         <td>CVE-2025-4802</td>
         <td>HIGH</td>
         <td>2.36-9+deb12u7</td>
         <td>2.36-9+deb12u11</td>
+    </tr>
+    <tr>
+        <td><code>libc6</code></td>
+        <td>CVE-2026-0861</td>
+        <td>HIGH</td>
+        <td>2.36-9+deb12u7</td>
+        <td></td>
     </tr>
 </table>
 <h4>No Misconfigurations found</h4>
@@ -84,7 +84,7 @@
 <h4>No Vulnerabilities found</h4>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>Python</code></h3>
-<h4>Vulnerabilities (4)</h4>
+<h4>Vulnerabilities (5)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -99,6 +99,13 @@
         <td>HIGH</td>
         <td>5.3.0</td>
         <td>6.1.0</td>
+    </tr>
+    <tr>
+        <td><code>pyasn1</code></td>
+        <td>CVE-2026-23490</td>
+        <td>HIGH</td>
+        <td>0.6.1</td>
+        <td>0.6.2</td>
     </tr>
     <tr>
         <td><code>urllib3</code></td>
@@ -153,37 +160,7 @@
 <h4>No Misconfigurations found</h4>
 
 <h3>Target <code>quay.io/minio/mc:RELEASE.2024-11-21T17-21-54Z (redhat 9.5)</code></h3>
-<h4>Vulnerabilities (3)</h4>
-<table>
-    <tr>
-        <th>Package</th>
-        <th>ID</th>
-        <th>Severity</th>
-        <th>Installed Version</th>
-        <th>Fixed Version</th>
-    </tr>
-    <tr>
-        <td><code>glibc</code></td>
-        <td>CVE-2026-0861</td>
-        <td>HIGH</td>
-        <td>2.34-125.el9_5.1</td>
-        <td></td>
-    </tr>
-    <tr>
-        <td><code>glibc-common</code></td>
-        <td>CVE-2026-0861</td>
-        <td>HIGH</td>
-        <td>2.34-125.el9_5.1</td>
-        <td></td>
-    </tr>
-    <tr>
-        <td><code>glibc-minimal-langpack</code></td>
-        <td>CVE-2026-0861</td>
-        <td>HIGH</td>
-        <td>2.34-125.el9_5.1</td>
-        <td></td>
-    </tr>
-</table>
+<h4>No Vulnerabilities found</h4>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>usr/bin/mc</code></h3>
 <h4>Vulnerabilities (6)</h4>
@@ -241,37 +218,7 @@
 <h4>No Misconfigurations found</h4>
 
 <h3>Target <code>quay.io/minio/minio:RELEASE.2024-12-18T13-15-44Z (redhat 9.5)</code></h3>
-<h4>Vulnerabilities (3)</h4>
-<table>
-    <tr>
-        <th>Package</th>
-        <th>ID</th>
-        <th>Severity</th>
-        <th>Installed Version</th>
-        <th>Fixed Version</th>
-    </tr>
-    <tr>
-        <td><code>glibc</code></td>
-        <td>CVE-2026-0861</td>
-        <td>HIGH</td>
-        <td>2.34-125.el9_5.1</td>
-        <td></td>
-    </tr>
-    <tr>
-        <td><code>glibc-common</code></td>
-        <td>CVE-2026-0861</td>
-        <td>HIGH</td>
-        <td>2.34-125.el9_5.1</td>
-        <td></td>
-    </tr>
-    <tr>
-        <td><code>glibc-minimal-langpack</code></td>
-        <td>CVE-2026-0861</td>
-        <td>HIGH</td>
-        <td>2.34-125.el9_5.1</td>
-        <td></td>
-    </tr>
-</table>
+<h4>No Vulnerabilities found</h4>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>usr/bin/mc</code></h3>
 <h4>Vulnerabilities (6)</h4>
