@@ -254,7 +254,7 @@ test("Team Onboarding with kubrixBot Github user", async ({ page }) => {
   console.log({ phase, syncStatus, healthStatus });
   console.log("operation message:", app?.status?.operationState?.message);
 
-  expect(syncStatus).toBe("Synced");
+  // expect(syncStatus).toBe("Synced");
 
   await api.dispose();
   await authed.dispose();
@@ -264,7 +264,8 @@ test.describe("ArgoCD verify team onboarding state", () => {
   const argocdAuthFile = path.join(authDir, 'argocd.json');
   test.use({ storageState: argocdAuthFile });
   test('ArgoCD team onboarding app', async ({ page }) => {
-    await page.goto('https://argocd.127-0-0-1.nip.io/applications/sx-team-onboarding')
+    await page.goto('https://argocd.127-0-0-1.nip.io/applications/sx-team-onboarding');
+    await expect(page.locator('#app').getByText('Synced', { exact: true }).nth(1)).toBeVisible({ timeout: 20_000 });
     await expect(page.locator('#app').getByText('Healthy', { exact: true }).nth(1)).toBeVisible({ timeout: 20_000 });
   });
 });
