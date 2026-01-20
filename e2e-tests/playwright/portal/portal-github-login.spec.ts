@@ -287,7 +287,6 @@ test("Multi-Stage-Kargo App Onboarding", async ({ page }) => {
   await page.getByRole('textbox', { name: 'Description' }).click();
   await page.getByRole('textbox', { name: 'Description' }).fill('this is a e2e test');
   await page.getByRole('button', { name: 'Next' }).click();
-  await page.getByLabel('Owner Available').getByRole('combobox').selectOption('kubrix-demo');
   const page1Promise = page.waitForEvent('popup');
   await page.getByRole('button', { name: 'Log in' }).click();
 
@@ -307,6 +306,7 @@ test("Multi-Stage-Kargo App Onboarding", async ({ page }) => {
   // optional: make sure the popup is gone before continuing
   if (!popup.isClosed()) await popup.close();
 
+  await page.getByLabel('Owner Available').getByRole('combobox').selectOption('kubrix-demo');
   await page.getByRole('button', { name: 'Review' }).click();
   await page.getByRole('button', { name: 'Create' }).click();
 
