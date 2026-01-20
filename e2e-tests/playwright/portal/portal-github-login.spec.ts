@@ -426,6 +426,17 @@ test("Check multi-stage-kubrixbot-app in backstage", async ({ page }) => {
 });
 
 test("Delete kubrixBot repos", async ({ page }) => {
+  // delete kubrix-multi-stage-kubrixbot-app in kubriX-demo org
+  await page.goto('https://github.com/kubriX-demo/kubrix-multi-stage-kubrixbot-app');
+  await page.getByRole('link', { name: 'Settings' }).click();
+  const deleteButtonKubriXMultiStageApp = page.getByRole('button', { name: 'Delete this repository' });
+  await deleteButtonKubriXMultiStageApp.scrollIntoViewIfNeeded();
+  await deleteButtonKubriXMultiStageApp.click();
+  await page.getByRole('button', { name: 'I want to delete this repository' }).click();
+  await page.getByRole('button', { name: 'I have read and understand' }).click();
+  await page.getByRole('textbox', { name: 'To confirm, type "kubriX-demo/' }).fill('kubriX-demo/kubrix-multi-stage-kubrixbot-app');
+  await page.getByLabel('Delete kubriX-demo/kubrix-multi-stage-kubrixbot-app').getByRole('button', { name: 'Delete this repository' }).click();
+
   // delete kubrix-apps in kubriX-demo and kubriX repo in kubrixBot org
   await page.goto('https://github.com/kubriX-demo/kubrix-apps');
   await page.getByRole('link', { name: 'Settings' }).click();
