@@ -268,7 +268,7 @@ test("Team Onboarding with kubrixBot Github user", async ({ page }) => {
   await authed.dispose();
 });
 
-test.describe("ArgoCD verify team onboarding state", () => {
+test.describe("ArgoCD team onboarding app", () => {
   const argocdAuthFile = path.join(authDir, 'argocd.json');
   test.use({ storageState: argocdAuthFile });
   test('ArgoCD team onboarding app', async ({ page }) => {
@@ -276,6 +276,153 @@ test.describe("ArgoCD verify team onboarding state", () => {
     await expect(page.locator('#app').getByText('Synced', { exact: true }).nth(1)).toBeVisible({ timeout: 20_000 });
     await expect(page.locator('#app').getByText('Healthy', { exact: true }).nth(1)).toBeVisible({ timeout: 20_000 });
   });
+});
+
+
+test("Multi-Stage-Kargo App Onboarding", async ({ page }) => {
+  await page.goto('https://backstage.127-0-0-1.nip.io/create/templates/default/multi-stage-app-with-kargo-pipeline');
+
+  await page.getByRole('textbox', { name: 'Name' }).click();
+  await page.getByRole('textbox', { name: 'Name' }).fill('multi-stage-kubrixbot-app');
+  await page.getByRole('textbox', { name: 'Description' }).click();
+  await page.getByRole('textbox', { name: 'Description' }).fill('this is a e2e test');
+  await page.getByRole('button', { name: 'Next' }).click();
+  const page1Promise = page.waitForEvent('popup');
+  await page.getByRole('button', { name: 'Log in' }).click();
+
+  const popup = await page.waitForEvent('popup'); // your page1Promise
+  const authorize = popup.getByRole('button', { name: 'Authorize kubriX-demo' });
+
+  await Promise.race([
+  authorize
+    .waitFor({ state: 'visible', timeout: 5000 })
+    .then(() => authorize.click())
+    .then(() => popup.waitForEvent('close')), 
+
+    // Case B: popup closes automatically -> do nothing
+    popup.waitForEvent('close')
+  ]);
+
+  // optional: make sure the popup is gone before continuing
+  if (!popup.isClosed()) await popup.close();
+
+  await page.getByRole('button', { name: 'Review' }).click();
+  await page.getByRole('button', { name: 'Create' }).click();
+
+  await expect(page.getByRole('button', { name: 'Repos' })).toBeVisible({ timeout: 30_000 });
+  await expect(page.getByRole('button', { name: 'Open in Catalog' })).toBeVisible({ timeout: 30_000 });
+
+
+});
+
+test.describe("ArgoCD verify multi-stage-kubrixbot-app state", () => {
+  const argocdAuthFile = path.join(authDir, 'argocd.json');
+  test.use({ storageState: argocdAuthFile });
+  test('ArgoCD verify multi-stage-kubrixbot-app state', async ({ page }) => {
+    await page.goto('https://argocd.127-0-0-1.nip.io/applications/adn-kubrix/kubrix-multi-stage-kubrixbot-app');
+    await expect(page.locator('#app').getByText('Synced', { exact: true }).nth(1)).toBeVisible({ timeout: 20_000 });
+    await expect(page.locator('#app').getByText('Healthy', { exact: true }).nth(1)).toBeVisible({ timeout: 20_000 });
+  });
+});
+
+test("Check multi-stage-kubrixbot-app podtato head stages", async ({ page }) => {
+  const urls = [
+    'http://kubrix-multi-stage-kubrixbot-app-test.127-0-0-1.nip.io/',
+    'http://kubrix-multi-stage-kubrixbot-app-qa.127-0-0-1.nip.io/',
+    'http://kubrix-multi-stage-kubrixbot-app-prod.127-0-0-1.nip.io/',
+  ];
+
+  for (const url of urls) {
+    const response = await page.goto(url);
+    expect(response?.status()).toBe(200);
+    await expect(page.locator('h1')).toContainText('Hello from podtato head!');
+  }
+});
+
+test("Check multi-stage-kubrixbot-app in backstage", async ({ page }) => {
+  const apps = [
+    'kubrix-multi-stage-kubrixbot-app-test',
+    'kubrix-multi-stage-kubrixbot-app-qa',
+    'kubrix-multi-stage-kubrixbot-app-prod',
+    'kubrix-multi-stage-kubrixbot-app'
+  ];
+  for (const app of apps) {
+    await page.goto('https://backstage.127-0-0-1.nip.io/catalog');
+    await page.getByRole('textbox', { name: 'Search' }).click();
+    await page.getByRole('textbox', { name: 'Search' }).fill(app);
+    await expect(page.getByRole('link', { name: app, exact: true })).toBeVisible();
+    await page.getByRole('link', { name: app, exact: true }).click();
+    // inside the app overview page
+    // ArgoCD Deployment Summary
+    await expect(page.getByRole('heading', { name: 'Deployment Summary' })).toBeVisible();
+    await expect(page.getByRole('cell', { name: 'Synced' })).toBeVisible();
+    await expect(page.getByRole('cell', { name: 'Healthy' })).toBeVisible();
+    // Grafana Dashboard links
+    await expect(page.locator('div').filter({ hasText: /^Dashboards$/ }).first()).toBeVisible();
+    const dashboard_links = [
+      'GRC/Hashicorp Vault',
+      'Kubernetes / System / API Server',
+      'Kubernetes / System / CoreDNS',
+      'Kubernetes / Views / Global',
+      'Kubernetes / Views / Namespaces',
+      'Kubernetes / Views / Nodes',
+      'Kubernetes / Views / Nodes',
+      'Loki Kubernetes Logs'
+    ];
+    for (const link of dashboard_links) {
+      await expect(page.getByRole('link', { name: `${link} , Opens` })).toBeVisible();
+    }
+    // Tabs
+    const tabs = [
+      'Overview',
+      'Docs',
+      'kargo',
+      'Kubernetes', // not for umbrella app
+      'CD',
+      'Pull Requests',
+      'GitHub Issues',
+      'Github Insights',
+      'Grafana-Dashboard', // not for umbrella app
+      'Kyverno Policy Reports',
+      'Security',
+      'API'
+    ];
+    for (const tab of tabs) {
+      // await page.goto(`https://backstage.127-0-0-1.nip.io/catalog/default/component/${app}`);
+      // ignore some tabs for the umbrella app
+      if (app === 'kubrix-multi-stage-kubrixbot-app') {
+        if (tab === 'Kubernetes' || tab === 'Grafana-Dashboard') {
+          continue; // skip these for umbrella app
+        }
+      }
+
+      await expect(page.getByRole('tab', { name: tab, exact: true })).toBeVisible();
+
+      // Check details for CD tab
+      if (tab === 'CD') {
+        // appname in CD card is normally without team prefix, except for the umbrella app
+        let appWithoutPrefix: string;
+        if (app === 'kubrix-multi-stage-kubrixbot-app') {
+          appWithoutPrefix = app;
+        } else {
+          appWithoutPrefix = app.replace(/^kubrix-/, '');
+        }
+        await page.getByRole('tab', { name: tab, exact: true }).click();
+        await expect(page.getByText('Synced')).toBeVisible();
+        await expect(page.getByText('Healthy')).toBeVisible();
+        await page.getByTestId(`${appWithoutPrefix}-card`).getByText(appWithoutPrefix, { exact: true }).click();
+        await expect(page.locator('div').filter({ hasText: appWithoutPrefix}).nth(1)).toBeVisible();
+        await page.getByRole('button', { name: 'Close the drawer' }).click();
+      }
+
+      // Check details for Grafana tab
+      // not possible because grafana is not always installed with the portal
+      // if (tab === 'Grafana-Dashboard') {
+      //   await page.getByRole('tab', { name: tab, exact: true }).click();
+      //   await expect(page.locator('iframe[title*="grafana.127-0-0-1.nip.io/d/k8s_views_ns/"]').contentFrame().getByRole('heading')).toContainText('Welcome to Grafana');
+      // }
+    }
+  }
 });
 
 test("Delete kubrixBot repos", async ({ page }) => {
