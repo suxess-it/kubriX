@@ -320,6 +320,7 @@ test.describe("ArgoCD verify multi-stage-kubrixbot-app state", () => {
   const argocdAuthFile = path.join(authDir, 'argocd.json');
   test.use({ storageState: argocdAuthFile });
   test('ArgoCD verify multi-stage-kubrixbot-app state', async ({ page }) => {
+    test.slow();
     // wait for 1 minute so the appset scm generator picks up the new repo
     await page.waitForTimeout(60_000);
     await page.goto('https://argocd.127-0-0-1.nip.io/applications/adn-kubrix/kubrix-multi-stage-kubrixbot-app');
