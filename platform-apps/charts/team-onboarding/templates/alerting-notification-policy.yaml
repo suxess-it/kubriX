@@ -15,13 +15,15 @@ data:
             - alertname
 {{- if gt (len .Values.teams) 0 }}
           routes:
-{{- range .Values.teams }}
-{{- if .alerting }}
+  {{- range .Values.teams }}
+    {{- if .alerting }}
             - receiver: {{ .name }}
               object_matchers:
                 - - namespace
                   - =~
                   - {{ .name }}-.*
-{{ end -}}
-{{ end -}}
-{{ end -}}
+    {{- end }}
+  {{- end }}
+{{- else }}
+          routes: []
+{{- end }}
