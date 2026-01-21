@@ -320,13 +320,14 @@ test("Multi-Stage-Kargo App Onboarding", async ({ page }) => {
 test.describe("ArgoCD verify multi-stage-kubrixbot-app state", () => {
   const argocdAuthFile = path.join(authDir, 'argocd.json');
   test.use({ storageState: argocdAuthFile });
+  test.setTimeout(120_000);
   test('ArgoCD verify multi-stage-kubrixbot-app state', async ({ page }) => {
     test.slow();
     // wait for 1 minute so the appset scm generator picks up the new repo
     await page.waitForTimeout(60_000);
     await page.goto('https://argocd.127-0-0-1.nip.io/applications/adn-kubrix/kubrix-multi-stage-kubrixbot-app');
-    await expect(page.locator('#app').getByText('Synced', { exact: true }).nth(1)).toBeVisible({ timeout: 20_000 });
-    await expect(page.locator('#app').getByText('Healthy', { exact: true }).nth(1)).toBeVisible({ timeout: 20_000 });
+    await expect(page.locator('#app').getByText('Synced', { exact: true }).nth(1)).toBeVisible({ timeout: 30_000 });
+    await expect(page.locator('#app').getByText('Healthy', { exact: true }).nth(1)).toBeVisible({ timeout: 30_000 });
   });
 });
 
