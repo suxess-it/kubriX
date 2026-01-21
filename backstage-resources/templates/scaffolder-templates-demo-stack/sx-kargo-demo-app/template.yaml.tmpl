@@ -82,16 +82,14 @@ spec:
           fqdn: ${{`{{ parameters.fqdn }}`}}
           team: ${{`{{ steps['catalogFetch'].output.entity.metadata.name }}`}}
           repoUrlRepo: ${{`{{ steps['catalogFetch'].output.entity.metadata.name }}`}}-${{`{{ parameters.application_id }}`}}
-          repoUrlowner: {{ .kubriX.gitRepoOrg }}
-          gitRepoUrl: github.com
+          repoUrlowner: ${{`{{ (parameters.repoUrl | parseRepoUrl).owner }}`}}
     - id: publish-gitopsreposetup
       name: Publish Template Gitops Repo
       action: publish:github
       input:
         sourcePath: ./kargo-gitops
         description: This is Kargo Demo App ${{`{{ parameters.application_id }}`}}
-        #repoUrl: ${{`{{ parameters.repoUrl }}`}}
-        repoUrl: github.com?repo=${{`{{ steps['catalogFetch'].output.entity.metadata.name }}`}}-${{`{{ parameters.application_id }}`}}&owner={{ .kubriX.gitRepoOrg }}
+        repoUrl: github.com?repo=${{`{{ steps['catalogFetch'].output.entity.metadata.name }}`}}-${{`{{ parameters.application_id }}`}}&owner=${{`{{ (parameters.repoUrl | parseRepoUrl).owner }}`}}
         token: ${{`{{ secrets.USER_OAUTH_TOKEN }}`}}
         gitAuthorName: ${{`{{ user.entity.metadata.name }}`}}
         gitAuthorEmail: ${{`{{ user.entity.spec.profile.email }}`}}

@@ -52,7 +52,11 @@ applications:
   - name: testkube
     annotations:
       argocd.argoproj.io/sync-wave: "-5"
-   
+
+  - name: kargo
+    annotations:
+      argocd.argoproj.io/sync-wave: "-5"
+
   - name: backstage
     annotations:
       argocd.argoproj.io/sync-wave: "10"
