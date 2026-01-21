@@ -21,6 +21,11 @@ spec:
           description: Select your team name for onboarding
           ui:field: MyGroupsPicker
           ui:options: {}
+        teamOrg:
+          title: Team Organization
+          type: string
+          description: Which organization should the team belong to
+          default: 'kubriX-demo'
 
     - title: Choose a location
       required:
@@ -54,15 +59,15 @@ spec:
       name: Fetch the actual team configuration File from Github
       action: fetch:plain:file
       input:
-        url: https://github.com/kubriX-demo/kubriX-demo-oss/blob/main/platform-apps/charts/team-onboarding/values-demo-metalstack.yaml
-        targetPath: values-demo-metalstack.yaml
+        url: https://github.com/kubriX-demo/kubriX-demo-oss/blob/main/platform-apps/charts/team-onboarding/values-customer.yaml
+        targetPath: values-customer.yaml
 
     - id: replace-if-new
       name: Replace [] if new template
       action: roadiehq:utils:fs:replace
       input:
         files:
-          - file: values-demo-metalstack.yaml
+          - file: values-customer.yaml
             find: 'teams: []'
             replaceWith: 'teams:'
 
@@ -70,25 +75,25 @@ spec:
       name: Update File with new Team Information
       action: roadiehq:utils:fs:append
       input:
-        path: values-demo-metalstack.yaml
+        path: values-customer.yaml
         content: >
           
           # new team stanza for team ${{ steps['catalogFetch'].output.entity.metadata.name }}
             - name: ${{ steps['catalogFetch'].output.entity.metadata.name }}
               sourceRepos:
-                - '*'
+                - 'https://github.com/${{ parameters.teamOrg }}/${{ steps['catalogFetch'].output.entity.metadata.name }}-*'
               clusterResourceWhitelist:
                 - group: ""
                   kind: Namespace
                 - group: kargo.akuity.io
                   kind: Project
               appOfAppsRepo:
-                repoURL: https://github.com/kubriX-demo/${{ steps['catalogFetch'].output.entity.metadata.name }}-apps
-                path: demo-apps
+                repoURL: https://github.com/${{ parameters.teamOrg }}/${{ steps['catalogFetch'].output.entity.metadata.name }}-apps
+                path: .
                 revision: main
               multiStageKargoAppSet:
                 github:
-                  organization: kubriX-demo
+                  organization: ${{ parameters.teamOrg }}
 
     - id: publish
       name: Publish new Version of team configuration
@@ -110,7 +115,7 @@ spec:
       action: fetch:template
       input:
         url: ./skeleton
-        targetPath: ./team-apps-of-apps
+        targetPath: .
         copyWithoutTemplating: []
         values:
           description: ${{ parameters.description }}
@@ -124,8 +129,7 @@ spec:
       name: create team-apps Github repo
       action: publish:github
       input:
-        sourcePath: ./team-apps-of-apps
-        repoUrl: github.com?repo=${{ steps['catalogFetch'].output.entity.metadata.name }}-apps&owner=kubriX-demo
+        repoUrl: github.com?repo=${{ steps['catalogFetch'].output.entity.metadata.name }}-apps&owner=${{ parameters.teamOrg }}
         description: team-apps repo for ${{ steps['catalogFetch'].output.entity.metadata.name }}
         token: ${{ secrets.USER_OAUTH_TOKEN }}
         gitAuthorName: ${{ user.entity.metadata.name }}

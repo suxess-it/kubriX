@@ -8,7 +8,6 @@ metadata:
     - onboarding
     - example
     - team
-
 spec:
   owner: group:kubrix
   type: onboarding
@@ -80,7 +79,7 @@ spec:
         content: >
           
           # new team stanza for team ${{ steps['catalogFetch'].output.entity.metadata.name }}
-            - name:  ${{ steps['catalogFetch'].output.entity.metadata.name }}
+            - name: ${{ steps['catalogFetch'].output.entity.metadata.name }}
               sourceRepos:
                 - 'https://github.com/${{ parameters.teamOrg }}/${{ steps['catalogFetch'].output.entity.metadata.name }}-*'
               clusterResourceWhitelist:
