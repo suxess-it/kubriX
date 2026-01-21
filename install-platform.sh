@@ -675,12 +675,7 @@ if [[ "${KUBRIX_CLUSTER_TYPE}" == "kind" ]] ; then
   kubectl get configmap coredns -n kube-system -o yaml |  awk '
 /ready/ {
     print;
-    print "        rewrite name keycloak.127-0-0-1.nip.io sx-ingress-nginx-controller.ingress-nginx.svc.cluster.local";
-    print "        rewrite name grafana.127-0-0-1.nip.io sx-ingress-nginx-controller.ingress-nginx.svc.cluster.local";
-    print "        rewrite name argocd.127-0-0-1.nip.io sx-ingress-nginx-controller.ingress-nginx.svc.cluster.local";
-    print "        rewrite name vault.127-0-0-1.nip.io sx-ingress-nginx-controller.ingress-nginx.svc.cluster.local";
-    print "        rewrite name backstage.127-0-0-1.nip.io sx-ingress-nginx-controller.ingress-nginx.svc.cluster.local";
-    print "        rewrite name kargo.127-0-0-1.nip.io sx-ingress-nginx-controller.ingress-nginx.svc.cluster.local";
+    print "        rewrite name regex ([^.]+)\\.127-0-0-1\\.nip\\.io sx-ingress-nginx-controller.ingress-nginx.svc.cluster.local";
     next
 }
 { print }
