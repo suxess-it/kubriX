@@ -683,7 +683,11 @@ if [[ "${KUBRIX_CLUSTER_TYPE}" == "kind" ]] ; then
   cat coredns-configmap.yaml
   kubectl apply -f coredns-configmap.yaml
   kubectl rollout restart deployment coredns -n kube-system
+  kubectl -n kube-system rollout status deployment/coredns
   rm coredns-configmap.yaml
+  nslookup vault.127-0-0-1.nip.io
+  nslookup vault.127-0-0-1.nip.io.
+  nslookup vault.127-0-0-1.nip.io
 
   # create install root CA to trust certs
   root_cert="/etc/tls/kind-kubrix-root-tls.crt"
