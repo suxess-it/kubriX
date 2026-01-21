@@ -675,11 +675,12 @@ if [[ "${KUBRIX_CLUSTER_TYPE}" == "kind" ]] ; then
   kubectl get configmap coredns -n kube-system -o yaml |  awk '
 /ready/ {
     print;
-    print "        rewrite name regex ([^.]+)\\.127-0-0-1\\.nip\\.io sx-ingress-nginx-controller.ingress-nginx.svc.cluster.local";
+    print '        rewrite name regex ^(.*)\.127-0-0-1\.nip\.io$ sx-ingress-nginx-controller.ingress-nginx.svc.cluster.local';
     next
 }
 { print }
 ' > coredns-configmap.yaml
+  cat coredns-configmap.yaml
   kubectl apply -f coredns-configmap.yaml
   kubectl rollout restart deployment coredns -n kube-system
   rm coredns-configmap.yaml
