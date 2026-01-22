@@ -1,5 +1,5 @@
 
-<h3>Target <code>docker.io/grafana/loki-canary:3.6.3 (debian 12.12)</code></h3>
+<h3>Target <code>docker.io/grafana/loki-canary:3.6.4 (debian 12.13)</code></h3>
 <h4>No Vulnerabilities found</h4>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>usr/bin/loki-canary</code></h3>
@@ -95,7 +95,7 @@
     </tr>
     <tr>
         <td><code>jaraco.context</code></td>
-        <td>GHSA-58pv-8j8x-9vj2</td>
+        <td>CVE-2026-23949</td>
         <td>HIGH</td>
         <td>5.3.0</td>
         <td>6.1.0</td>
