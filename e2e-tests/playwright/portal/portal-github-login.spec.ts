@@ -587,6 +587,9 @@ test.describe("Kargo GitOps Promotion - Promote Changes", () => {
     await page.getByRole('button', { name: 'Select' }).first().click();
     await page.getByRole('button', { name: 'Promote' }).click();
     await expect(page.getByLabel('Promotion').getByRole('rowgroup')).toContainText('Succeeded', { timeout: 30_000 });
+    await page.getByRole('button', { name: 'Close' }).click();
+    await expect(await page.locator('[data-testid$="/test"]').getByText('Ready')).toBeVisible();
+    await expect(await page.locator('[data-testid$="/test"]').getByText('Healthy')).toBeVisible();
   });
 
   test('Kargo GitOps Promotion - Promote Changes to QA', async ({ page }) => {
@@ -596,6 +599,9 @@ test.describe("Kargo GitOps Promotion - Promote Changes", () => {
     await page.getByRole('button', { name: 'Select' }).first().click();
     await page.getByRole('button', { name: 'Promote' }).click();
     await expect(page.getByLabel('Promotion').getByRole('rowgroup')).toContainText('Succeeded', { timeout: 30_000 });
+    await page.getByRole('button', { name: 'Close' }).click();
+    await expect(await page.locator('[data-testid$="/qa"]').getByText('Ready')).toBeVisible();
+    await expect(await page.locator('[data-testid$="/qa"]').getByText('Healthy')).toBeVisible();
   });
 
   test('Kargo GitOps Promotion - Promote Changes to Prod', async ({ page }) => {
@@ -605,6 +611,9 @@ test.describe("Kargo GitOps Promotion - Promote Changes", () => {
     await page.getByRole('button', { name: 'Select' }).first().click();
     await page.getByRole('button', { name: 'Promote' }).click();
     await expect(page.getByLabel('Promotion').getByRole('rowgroup')).toContainText('Succeeded', { timeout: 30_000 });
+    await page.getByRole('button', { name: 'Close' }).click();
+    await expect(await page.locator('[data-testid$="/prod"]').getByText('Ready')).toBeVisible();
+    await expect(await page.locator('[data-testid$="/prod"]').getByText('Healthy')).toBeVisible();
   });
 });
 
