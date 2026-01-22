@@ -582,6 +582,8 @@ test.describe("Kargo GitOps Promotion - Promote Changes", () => {
   test('Kargo GitOps Promotion - Promote Changes to Test', async ({ page }) => {
     await page.goto("https://kargo.127-0-0-1.nip.io/project/kubrix-multi-stage-kubrixbot-app-kargo-project");
     await page.getByRole('button', { name: 'Refresh' }).click();
+    // wait 10 seconds so freights are refreshed
+    await page.waitForTimeout(10_000);
     await page.locator('[data-testid$="/test"]').getByRole('button').first().click();
     await page.getByRole('menuitem', { name: 'Promote', exact: true }).locator('span').click();
     await page.getByRole('button', { name: 'Select' }).first().click();
