@@ -60,7 +60,7 @@ export default defineConfig({
       use: {
         ...devices['Desktop Chrome'],
       },
-      dependencies: ['portal-login'],
+      dependencies: ['portal-login','argocd-login','kargo-login'],
     },
     {
       name: 'argocd-login',
