@@ -143,11 +143,11 @@
 <h4>No Vulnerabilities found</h4>
 <h4>No Misconfigurations found</h4>
 
-<h3>Target <code>quay.io/kiwigrid/k8s-sidecar:2.2.1 (alpine 3.22.2)</code></h3>
+<h3>Target <code>quay.io/kiwigrid/k8s-sidecar:2.5.0 (alpine 3.22.2)</code></h3>
 <h4>No Vulnerabilities found</h4>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>Python</code></h3>
-<h4>Vulnerabilities (3)</h4>
+<h4>Vulnerabilities (2)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -164,18 +164,11 @@
         <td>6.1.0</td>
     </tr>
     <tr>
-        <td><code>pyasn1</code></td>
-        <td>CVE-2026-23490</td>
+        <td><code>wheel</code></td>
+        <td>CVE-2026-24049</td>
         <td>HIGH</td>
-        <td>0.6.1</td>
-        <td>0.6.2</td>
-    </tr>
-    <tr>
-        <td><code>urllib3</code></td>
-        <td>CVE-2026-21441</td>
-        <td>HIGH</td>
-        <td>2.6.2</td>
-        <td>2.6.3</td>
+        <td>0.45.1</td>
+        <td>0.46.2</td>
     </tr>
 </table>
 <h4>No Misconfigurations found</h4>

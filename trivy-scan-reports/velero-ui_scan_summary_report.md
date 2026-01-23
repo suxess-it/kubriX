@@ -1,6 +1,6 @@
 
 <h3>Target <code>docker.io/dserio83/velero-api:0.3.1 (debian 12.11)</code></h3>
-<h4>Vulnerabilities (33)</h4>
+<h4>Vulnerabilities (42)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -137,6 +137,20 @@
     </tr>
     <tr>
         <td><code>libpython3.11-minimal</code></td>
+        <td>CVE-2025-15366</td>
+        <td>HIGH</td>
+        <td>3.11.2-6+deb12u6</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>libpython3.11-minimal</code></td>
+        <td>CVE-2025-15367</td>
+        <td>HIGH</td>
+        <td>3.11.2-6+deb12u6</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>libpython3.11-minimal</code></td>
         <td>CVE-2025-8194</td>
         <td>HIGH</td>
         <td>3.11.2-6+deb12u6</td>
@@ -146,6 +160,20 @@
         <td><code>libpython3.11-stdlib</code></td>
         <td>CVE-2025-13836</td>
         <td>CRITICAL</td>
+        <td>3.11.2-6+deb12u6</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>libpython3.11-stdlib</code></td>
+        <td>CVE-2025-15366</td>
+        <td>HIGH</td>
+        <td>3.11.2-6+deb12u6</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>libpython3.11-stdlib</code></td>
+        <td>CVE-2025-15367</td>
+        <td>HIGH</td>
         <td>3.11.2-6+deb12u6</td>
         <td></td>
     </tr>
@@ -206,9 +234,30 @@
         <td>66.1.1-1+deb12u2</td>
     </tr>
     <tr>
+        <td><code>python3-wheel</code></td>
+        <td>CVE-2026-24049</td>
+        <td>HIGH</td>
+        <td>0.38.4-2</td>
+        <td></td>
+    </tr>
+    <tr>
         <td><code>python3.11</code></td>
         <td>CVE-2025-13836</td>
         <td>CRITICAL</td>
+        <td>3.11.2-6+deb12u6</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>python3.11</code></td>
+        <td>CVE-2025-15366</td>
+        <td>HIGH</td>
+        <td>3.11.2-6+deb12u6</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>python3.11</code></td>
+        <td>CVE-2025-15367</td>
+        <td>HIGH</td>
         <td>3.11.2-6+deb12u6</td>
         <td></td>
     </tr>
@@ -223,6 +272,20 @@
         <td><code>python3.11-minimal</code></td>
         <td>CVE-2025-13836</td>
         <td>CRITICAL</td>
+        <td>3.11.2-6+deb12u6</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>python3.11-minimal</code></td>
+        <td>CVE-2025-15366</td>
+        <td>HIGH</td>
+        <td>3.11.2-6+deb12u6</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>python3.11-minimal</code></td>
+        <td>CVE-2025-15367</td>
+        <td>HIGH</td>
         <td>3.11.2-6+deb12u6</td>
         <td></td>
     </tr>
@@ -243,7 +306,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>Python</code></h3>
-<h4>Vulnerabilities (8)</h4>
+<h4>Vulnerabilities (9)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -307,6 +370,13 @@
         <td>HIGH</td>
         <td>2.3.0</td>
         <td>2.6.3</td>
+    </tr>
+    <tr>
+        <td><code>wheel</code></td>
+        <td>CVE-2026-24049</td>
+        <td>HIGH</td>
+        <td>0.45.1</td>
+        <td>0.46.2</td>
     </tr>
 </table>
 <h4>No Misconfigurations found</h4>
@@ -681,7 +751,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>Python</code></h3>
-<h4>Vulnerabilities (8)</h4>
+<h4>Vulnerabilities (9)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -745,6 +815,13 @@
         <td>HIGH</td>
         <td>2.3.0</td>
         <td>2.6.3</td>
+    </tr>
+    <tr>
+        <td><code>wheel</code></td>
+        <td>CVE-2026-24049</td>
+        <td>HIGH</td>
+        <td>0.45.1</td>
+        <td>0.46.2</td>
     </tr>
 </table>
 <h4>No Misconfigurations found</h4>
