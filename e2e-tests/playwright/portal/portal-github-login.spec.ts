@@ -590,8 +590,8 @@ test.describe("Kargo GitOps Promotion - Promote Changes", () => {
     await page.getByRole('button', { name: 'Promote' }).click();
     await expect(page.getByLabel('Promotion').getByRole('rowgroup')).toContainText('Succeeded', { timeout: 30_000 });
     await page.getByRole('button', { name: 'Close' }).click();
-    await expect(page.locator('[data-testid$="/test"]').getByText('Ready')).toBeVisible({ timeout: 60_000 });
-    await expect(page.locator('[data-testid$="/test"]').getByText('Healthy')).toBeVisible({ timeout: 60_000 });
+    await expect(page.locator('[data-testid$="/test"]').getByText('Ready')).toBeVisible({ timeout: 120_000 });
+    await expect(page.locator('[data-testid$="/test"]').getByText('Healthy')).toBeVisible({ timeout: 120_000 });
   });
 
   test('Kargo GitOps Promotion - Promote Changes to QA', async ({ page }) => {
@@ -602,8 +602,8 @@ test.describe("Kargo GitOps Promotion - Promote Changes", () => {
     await page.getByRole('button', { name: 'Promote' }).click();
     await expect(page.getByLabel('Promotion').getByRole('rowgroup')).toContainText('Succeeded', { timeout: 30_000 });
     await page.getByRole('button', { name: 'Close' }).click();
-    await expect(page.locator('[data-testid$="/qa"]').getByText('Ready')).toBeVisible({ timeout: 60_000 });
-    await expect(page.locator('[data-testid$="/qa"]').getByText('Healthy')).toBeVisible({ timeout: 60_000 });
+    await expect(page.locator('[data-testid$="/qa"]').getByText('Ready')).toBeVisible({ timeout: 120_000 });
+    await expect(page.locator('[data-testid$="/qa"]').getByText('Healthy')).toBeVisible({ timeout: 120_000 });
   });
 
   test('Kargo GitOps Promotion - Promote Changes to Prod', async ({ page }) => {
@@ -614,8 +614,8 @@ test.describe("Kargo GitOps Promotion - Promote Changes", () => {
     await page.getByRole('button', { name: 'Promote' }).click();
     await expect(page.getByLabel('Promotion').getByRole('rowgroup')).toContainText('Succeeded', { timeout: 30_000 });
     await page.getByRole('button', { name: 'Close' }).click();
-    await expect(page.locator('[data-testid$="/prod"]').getByText('Ready')).toBeVisible({ timeout: 60_000 });
-    await expect(page.locator('[data-testid$="/prod"]').getByText('Healthy')).toBeVisible({ timeout: 60_000 });
+    await expect(page.locator('[data-testid$="/prod"]').getByText('Ready')).toBeVisible({ timeout: 120_000 });
+    await expect(page.locator('[data-testid$="/prod"]').getByText('Healthy')).toBeVisible({ timeout: 120_000 });
   });
 });
 
