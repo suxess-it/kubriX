@@ -434,6 +434,191 @@ test("Check multi-stage-kubrixbot-app in backstage", async ({ page }) => {
   }
 });
 
+test("Kargo GitOps Promotion - Change Podtato Head Hat Part Number", async ({ page }) => {
+
+const newValuesFileContent = `
+nameOverride: ""
+fullnameOverride: ""
+
+# applies to all deployments in this chart
+replicaCount: 1
+images:
+  repositoryDirname: ghcr.io/podtato-head
+  pullPolicy: IfNotPresent
+  pullSecrets: []
+    # - name: ghcr
+
+# keep ports in sync with podtato-services/main/pkg/provider.go
+entry:
+  repositoryBasename: entry
+  tag: "latest"
+  serviceType: ClusterIP
+  servicePort: 9000
+  env: []
+  #   - name: PODTATO_PART_NUMBER
+  #     value: "01"
+hat:
+  repositoryBasename: hat
+  tag: "latest"
+  serviceType: ClusterIP
+  servicePort: 9001
+  env:
+    - name: PODTATO_PART_NUMBER
+      value: "03"
+leftLeg:
+  repositoryBasename: left-leg
+  tag: "latest"
+  serviceType: ClusterIP
+  servicePort: 9002
+  env: []
+  #   - name: PODTATO_PART_NUMBER
+  #     value: "01"
+leftArm:
+  repositoryBasename: left-arm
+  tag: "latest"
+  serviceType: ClusterIP
+  servicePort: 9003
+  env:
+    - name: PODTATO_PART_NUMBER
+      value: "02"
+rightLeg:
+  repositoryBasename: right-leg
+  tag: "latest"
+  serviceType: ClusterIP
+  servicePort: 9004
+  env:
+    - name: PODTATO_PART_NUMBER
+      value: "01"
+rightArm:
+  repositoryBasename: right-arm
+  tag: "latest"
+  serviceType: ClusterIP
+  servicePort: 9005
+  env: []
+  #   - name: PODTATO_PART_NUMBER
+  #     value: "01"
+
+serviceAccount:
+  # Specifies whether a service account should be created
+  create: true
+  # Annotations to add to the service account
+  annotations: {}
+  # The name of the service account to use.
+  # If not set and create is true, a name is generated using the fullname template
+  name: ""
+
+podAnnotations: {}
+
+# You can learn more about configuring a security context in the Kubernetes docs
+# at https://kubernetes.io/docs/tasks/configure-pod-container/security-context/
+podSecurityContext: {}
+  # fsGroup: 2000
+
+securityContext: {}
+  # capabilities:
+  #   drop:
+  #   - ALL
+  # readOnlyRootFilesystem: true
+  # runAsNonRoot: true
+  # runAsUser: 1000
+
+ingress:
+  enabled: true
+  className: ""
+  annotations: {}
+    # kubernetes.io/tls-acme: "true"
+  tls: []
+  #  - secretName: chart-example-tls
+  #    hosts:
+  #      - chart-example.local
+
+
+
+service:
+  port: 9000
+
+resources: {}
+  # We usually recommend not to specify default resources and to leave this as a conscious
+  # choice for the user. This also increases chances charts run on environments with little
+  # resources, such as Minikube. If you do want to specify resources, uncomment the following
+  # lines, adjust them as necessary, and remove the curly braces after 'resources:'.
+  # limits:
+  #   cpu: 100m
+  #   memory: 128Mi
+  # requests:
+  #   cpu: 5m
+  #   memory: 32Mi
+
+autoscaling:
+  enabled: false
+  minReplicas: 1
+  maxReplicas: 100
+  targetCPUUtilizationPercentage: 80
+  # targetMemoryUtilizationPercentage: 80
+
+nodeSelector: {}
+
+tolerations: []
+
+affinity: {}
+`;
+
+  await page.goto(`https://backstage.127-0-0-1.nip.io/catalog/default/component/kubrix-multi-stage-kubrixbot-app`);
+  const page1Promise = page.waitForEvent('popup');
+  await page.getByRole('link', { name: 'View Source , Opens in a new' }).click();
+  const page1 = await page1Promise;
+  await page1.getByRole('link', { name: 'values.yaml, (File)' }).click();
+  await page1.getByTestId('edit-button').click();
+  await page1.getByRole('textbox', { name: 'Editing values.yaml file' }).fill(newValuesFileContent);
+  await page1.getByRole('button', { name: 'Commit changes...' }).click();
+  await page1.getByRole('button', { name: 'Commit changes', exact: true }).click();
+});
+
+test.describe("Kargo GitOps Promotion - Promote Changes", () => {
+  const kargoAuthFile = path.join(authDir, 'kargo.json');
+  test.use({ storageState: kargoAuthFile });
+  test.setTimeout(300_000);
+  // see https://github.com/akuity/kargo/issues/4956 for better curl/API support
+  test('Kargo GitOps Promotion - Promote Changes to Test', async ({ page }) => {
+    await page.goto("https://kargo.127-0-0-1.nip.io/project/kubrix-multi-stage-kubrixbot-app-kargo-project");
+    await page.getByRole('button', { name: 'Refresh' }).click();
+    // wait 10 seconds so freights are refreshed
+    await page.waitForTimeout(10_000);
+    await page.locator('[data-testid$="/test"]').getByRole('button').first().click();
+    await page.getByRole('menuitem', { name: 'Promote', exact: true }).locator('span').click();
+    await page.getByRole('button', { name: 'Select' }).first().click();
+    await page.getByRole('button', { name: 'Promote' }).click();
+    await expect(page.getByLabel('Promotion').getByRole('rowgroup')).toContainText('Succeeded', { timeout: 30_000 });
+    await page.getByRole('button', { name: 'Close' }).click();
+    await expect(page.locator('[data-testid$="/test"]').getByText('Ready')).toBeVisible({ timeout: 300_000 });
+    await expect(page.locator('[data-testid$="/test"]').getByText('Healthy')).toBeVisible({ timeout: 300_000 });
+  });
+
+  test('Kargo GitOps Promotion - Promote Changes to QA', async ({ page }) => {
+    await page.goto("https://kargo.127-0-0-1.nip.io/project/kubrix-multi-stage-kubrixbot-app-kargo-project");
+    await page.locator('[data-testid$="/qa"]').getByRole('button').first().click();
+    await page.getByRole('menuitem', { name: 'Promote', exact: true }).locator('span').click();
+    await page.getByRole('button', { name: 'Select' }).first().click();
+    await page.getByRole('button', { name: 'Promote' }).click();
+    await expect(page.getByLabel('Promotion').getByRole('rowgroup')).toContainText('Succeeded', { timeout: 30_000 });
+    await page.getByRole('button', { name: 'Close' }).click();
+    await expect(page.locator('[data-testid$="/qa"]').getByText('Ready')).toBeVisible({ timeout: 300_000 });
+    await expect(page.locator('[data-testid$="/qa"]').getByText('Healthy')).toBeVisible({ timeout: 300_000 });
+  });
+
+  test('Kargo GitOps Promotion - Promote Changes to Prod', async ({ page }) => {
+    await page.goto("https://kargo.127-0-0-1.nip.io/project/kubrix-multi-stage-kubrixbot-app-kargo-project");
+    await page.locator('[data-testid$="/prod"]').getByRole('button').first().click();
+    await page.getByRole('menuitem', { name: 'Promote', exact: true }).locator('span').click();
+    await page.getByRole('button', { name: 'Select' }).first().click();
+    await page.getByRole('button', { name: 'Promote' }).click();
+    await expect(page.getByLabel('Promotion').getByRole('rowgroup')).toContainText('Succeeded', { timeout: 30_000 });
+    await page.getByRole('button', { name: 'Close' }).click();
+    await expect(page.locator('[data-testid$="/prod"]').getByText('Ready')).toBeVisible({ timeout: 300_000 });
+    await expect(page.locator('[data-testid$="/prod"]').getByText('Healthy')).toBeVisible({ timeout: 300_000 });
+  });
+});
+
 test("Delete kubrixBot repos", async ({ page }) => {
   // delete kubrix-multi-stage-kubrixbot-app in kubriX-demo org
   await page.goto('https://github.com/kubriX-demo/kubrix-multi-stage-kubrixbot-app');
