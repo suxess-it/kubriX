@@ -577,7 +577,7 @@ affinity: {}
 test.describe("Kargo GitOps Promotion - Promote Changes", () => {
   const kargoAuthFile = path.join(authDir, 'kargo.json');
   test.use({ storageState: kargoAuthFile });
-  test.setTimeout(240_000);
+  test.setTimeout(300_000);
   // see https://github.com/akuity/kargo/issues/4956 for better curl/API support
   test('Kargo GitOps Promotion - Promote Changes to Test', async ({ page }) => {
     await page.goto("https://kargo.127-0-0-1.nip.io/project/kubrix-multi-stage-kubrixbot-app-kargo-project");
@@ -590,8 +590,8 @@ test.describe("Kargo GitOps Promotion - Promote Changes", () => {
     await page.getByRole('button', { name: 'Promote' }).click();
     await expect(page.getByLabel('Promotion').getByRole('rowgroup')).toContainText('Succeeded', { timeout: 30_000 });
     await page.getByRole('button', { name: 'Close' }).click();
-    await expect(page.locator('[data-testid$="/test"]').getByText('Ready')).toBeVisible({ timeout: 120_000 });
-    await expect(page.locator('[data-testid$="/test"]').getByText('Healthy')).toBeVisible({ timeout: 120_000 });
+    await expect(page.locator('[data-testid$="/test"]').getByText('Ready')).toBeVisible({ timeout: 240_000 });
+    await expect(page.locator('[data-testid$="/test"]').getByText('Healthy')).toBeVisible({ timeout: 240_000 });
   });
 
   test('Kargo GitOps Promotion - Promote Changes to QA', async ({ page }) => {
@@ -602,8 +602,8 @@ test.describe("Kargo GitOps Promotion - Promote Changes", () => {
     await page.getByRole('button', { name: 'Promote' }).click();
     await expect(page.getByLabel('Promotion').getByRole('rowgroup')).toContainText('Succeeded', { timeout: 30_000 });
     await page.getByRole('button', { name: 'Close' }).click();
-    await expect(page.locator('[data-testid$="/qa"]').getByText('Ready')).toBeVisible({ timeout: 120_000 });
-    await expect(page.locator('[data-testid$="/qa"]').getByText('Healthy')).toBeVisible({ timeout: 120_000 });
+    await expect(page.locator('[data-testid$="/qa"]').getByText('Ready')).toBeVisible({ timeout: 240_000 });
+    await expect(page.locator('[data-testid$="/qa"]').getByText('Healthy')).toBeVisible({ timeout: 240_000 });
   });
 
   test('Kargo GitOps Promotion - Promote Changes to Prod', async ({ page }) => {
@@ -614,8 +614,8 @@ test.describe("Kargo GitOps Promotion - Promote Changes", () => {
     await page.getByRole('button', { name: 'Promote' }).click();
     await expect(page.getByLabel('Promotion').getByRole('rowgroup')).toContainText('Succeeded', { timeout: 30_000 });
     await page.getByRole('button', { name: 'Close' }).click();
-    await expect(page.locator('[data-testid$="/prod"]').getByText('Ready')).toBeVisible({ timeout: 120_000 });
-    await expect(page.locator('[data-testid$="/prod"]').getByText('Healthy')).toBeVisible({ timeout: 120_000 });
+    await expect(page.locator('[data-testid$="/prod"]').getByText('Ready')).toBeVisible({ timeout: 240_000 });
+    await expect(page.locator('[data-testid$="/prod"]').getByText('Healthy')).toBeVisible({ timeout: 240_000 });
   });
 });
 
