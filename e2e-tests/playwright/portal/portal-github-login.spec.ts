@@ -107,7 +107,8 @@ test("Team Onboarding with kubrixBot Github user", async ({ page }) => {
 
   await page.getByRole('textbox', { name: 'Team Organization' }).click();
   await page.getByRole('textbox', { name: 'Team Organization' }).fill('kubriX-demo');
-  await page.getByRole('textbox', { name: 'Team Repos UID' }).fill(process.env.E2E_TEST_PR_NUMBER!);
+  const teamRepoUID = process.env.E2E_TEST_PR_NUMBER ?? '';
+  await page.getByRole('textbox', { name: 'Team Repos UID' }).fill(`${teamRepoUID}-`);
   await page.getByRole('button', { name: 'Next' }).click();
   const page1Promise = page.waitForEvent('popup');
   await page.getByRole('button', { name: 'Log in' }).click();
@@ -283,8 +284,9 @@ test.describe("ArgoCD team onboarding app", () => {
 test("Multi-Stage-Kargo App Onboarding", async ({ page }) => {
   await page.goto('https://backstage.127-0-0-1.nip.io/create/templates/default/multi-stage-app-with-kargo-pipeline');
 
+  const prefix = process.env.E2E_TEST_PR_NUMBER ?? '';
   await page.getByRole('textbox', { name: 'Name' }).click();
-  await page.getByRole('textbox', { name: 'Name' }).fill('multi-stage-kubrixbot-app');
+  await page.getByRole('textbox', { name: 'Name' }).fill(`${prefix}multi-stage-kubrixbot-app`);
   await page.getByRole('textbox', { name: 'Description' }).click();
   await page.getByRole('textbox', { name: 'Description' }).fill('this is a e2e test');
   await page.getByRole('textbox', { name: 'FQDN' }).fill('127-0-0-1.nip.io');
