@@ -26,6 +26,11 @@ spec:
           type: string
           description: Which organization should the team belong to
           default: 'suxess-it'
+        teamReposUID:
+          title: Team Repos UID
+          type: string
+          description: unique identifier for teams repos in this kubriX cluster
+          default: ""
 
     - title: Choose a location
       required:
@@ -81,14 +86,14 @@ spec:
           # new team stanza for team ${{ steps['catalogFetch'].output.entity.metadata.name }}
             - name: ${{ steps['catalogFetch'].output.entity.metadata.name }}
               sourceRepos:
-                - 'https://github.com/${{ parameters.teamOrg }}/${{ steps['catalogFetch'].output.entity.metadata.name }}-*'
+                - 'https://github.com/${{ parameters.teamOrg }}/${{ steps['catalogFetch'].output.entity.metadata.name }}-${{ parameters.teamReposUID }}*'
               clusterResourceWhitelist:
                 - group: ""
                   kind: Namespace
                 - group: kargo.akuity.io
                   kind: Project
               appOfAppsRepo:
-                repoURL: https://github.com/${{ parameters.teamOrg }}/${{ steps['catalogFetch'].output.entity.metadata.name }}-apps
+                repoURL: https://github.com/${{ parameters.teamOrg }}/${{ steps['catalogFetch'].output.entity.metadata.name }}-${{ parameters.teamReposUID }}apps
                 path: .
                 revision: main
               multiStageKargoAppSet:
@@ -129,7 +134,7 @@ spec:
       name: create team-apps Github repo
       action: publish:github
       input:
-        repoUrl: github.com?repo=${{ steps['catalogFetch'].output.entity.metadata.name }}-apps&owner=${{ parameters.teamOrg }}
+        repoUrl: github.com?repo=${{ steps['catalogFetch'].output.entity.metadata.name }}-${{ parameters.teamReposUID }}apps&owner=${{ parameters.teamOrg }}
         description: team-apps repo for ${{ steps['catalogFetch'].output.entity.metadata.name }}
         token: ${{ secrets.USER_OAUTH_TOKEN }}
         gitAuthorName: ${{ user.entity.metadata.name }}
