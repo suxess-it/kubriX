@@ -286,7 +286,7 @@ test("Multi-Stage-Kargo App Onboarding", async ({ page }) => {
 
   const prefix = process.env.E2E_TEST_PR_NUMBER ?? '';
   await page.getByRole('textbox', { name: 'Name' }).click();
-  await page.getByRole('textbox', { name: 'Name' }).fill(`${prefix}multi-stage-kubrixbot-app`);
+  await page.getByRole('textbox', { name: 'Name' }).fill(`${prefix}-multi-stage-kubrixbot-app`);
   await page.getByRole('textbox', { name: 'Description' }).click();
   await page.getByRole('textbox', { name: 'Description' }).fill('this is a e2e test');
   await page.getByRole('textbox', { name: 'FQDN' }).fill('127-0-0-1.nip.io');
@@ -326,18 +326,20 @@ test.describe("ArgoCD verify multi-stage-kubrixbot-app state", () => {
   test.setTimeout(180_000);
   test('ArgoCD verify multi-stage-kubrixbot-app state', async ({ page }) => {
     // wait for 1 minute so the appset scm generator picks up the new repo
+    const prefix = process.env.E2E_TEST_PR_NUMBER ?? '';
     await page.waitForTimeout(60_000);
-    await page.goto('https://argocd.127-0-0-1.nip.io/applications/adn-kubrix/kubrix-multi-stage-kubrixbot-app');
+    await page.goto(`https://argocd.127-0-0-1.nip.io/applications/adn-kubrix/kubrix-${prefix}-multi-stage-kubrixbot-app`);
     await expect(page.locator('#app').getByText('Synced', { exact: true }).nth(1)).toBeVisible({ timeout: 60_000 });
     await expect(page.locator('#app').getByText('Healthy', { exact: true }).nth(1)).toBeVisible({ timeout: 60_000 });
   });
 });
 
 test("Check multi-stage-kubrixbot-app podtato head stages", async ({ page }) => {
+  const prefix = process.env.E2E_TEST_PR_NUMBER ?? '';
   const urls = [
-    'http://kubrix-multi-stage-kubrixbot-app-test.127-0-0-1.nip.io/',
-    'http://kubrix-multi-stage-kubrixbot-app-qa.127-0-0-1.nip.io/',
-    'http://kubrix-multi-stage-kubrixbot-app-prod.127-0-0-1.nip.io/',
+    `http://kubrix-${prefix}-multi-stage-kubrixbot-app-test.127-0-0-1.nip.io/`,
+    `http://kubrix-${prefix}-multi-stage-kubrixbot-app-qa.127-0-0-1.nip.io/`,
+    `http://kubrix-${prefix}-multi-stage-kubrixbot-app-prod.127-0-0-1.nip.io/`,
   ];
 
   for (const url of urls) {
@@ -348,11 +350,12 @@ test("Check multi-stage-kubrixbot-app podtato head stages", async ({ page }) => 
 });
 
 test("Check multi-stage-kubrixbot-app in backstage", async ({ page }) => {
+  const prefix = process.env.E2E_TEST_PR_NUMBER ?? '';
   const apps = [
-    'kubrix-multi-stage-kubrixbot-app-test',
-    'kubrix-multi-stage-kubrixbot-app-qa',
-    'kubrix-multi-stage-kubrixbot-app-prod',
-    'kubrix-multi-stage-kubrixbot-app'
+    `kubrix-${prefix}-multi-stage-kubrixbot-app-test`,
+    `kubrix-${prefix}-multi-stage-kubrixbot-app-qa`,
+    `kubrix-${prefix}-multi-stage-kubrixbot-app-prod`,
+    `kubrix-${prefix}-multi-stage-kubrixbot-app`
   ];
   for (const app of apps) {
     await page.goto('https://backstage.127-0-0-1.nip.io/catalog');
