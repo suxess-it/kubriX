@@ -107,6 +107,7 @@ test("Team Onboarding with kubrixBot Github user", async ({ page }) => {
 
   await page.getByRole('textbox', { name: 'Team Organization' }).click();
   await page.getByRole('textbox', { name: 'Team Organization' }).fill('kubriX-demo');
+  await page.getByRole('textbox', { name: 'Team Repos UID' }).fill(process.env.E2E_TEST_PR_NUMBER!);
   await page.getByRole('button', { name: 'Next' }).click();
   const page1Promise = page.waitForEvent('popup');
   await page.getByRole('button', { name: 'Log in' }).click();
