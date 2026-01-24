@@ -613,8 +613,8 @@ test.describe("Kargo GitOps Promotion - Promote Changes", () => {
     
       return readyVisible && healthyVisible;
     }, {
-      timeout: 60_000, // total retry time
-      intervals: [2_000], // retry every 2s
+      timeout: 60_000,
+      intervals: [2_000],
     }).toBe(true);
   });
 
@@ -649,8 +649,8 @@ test.describe("Kargo GitOps Promotion - Promote Changes", () => {
     
       return readyVisible && healthyVisible;
     }, {
-      timeout: 60_000, // total retry time
-      intervals: [2_000], // retry every 2s
+      timeout: 60_000,
+      intervals: [2_000],
     }).toBe(true);
   });
 
@@ -685,8 +685,8 @@ test.describe("Kargo GitOps Promotion - Promote Changes", () => {
     
       return readyVisible && healthyVisible;
     }, {
-      timeout: 60_000, // total retry time
-      intervals: [2_000], // retry every 2s
+      timeout: 60_000,
+      intervals: [2_000],
     }).toBe(true);
   });
 });
