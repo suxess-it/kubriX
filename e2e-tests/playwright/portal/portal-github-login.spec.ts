@@ -590,8 +590,32 @@ test.describe("Kargo GitOps Promotion - Promote Changes", () => {
     await page.getByRole('button', { name: 'Promote' }).click();
     await expect(page.getByLabel('Promotion').getByRole('rowgroup')).toContainText('Succeeded', { timeout: 30_000 });
     await page.getByRole('button', { name: 'Close' }).click();
-    await expect(page.locator('[data-testid$="/test"]').getByText('Ready')).toBeVisible({ timeout: 600_000 });
-    await expect(page.locator('[data-testid$="/test"]').getByText('Healthy')).toBeVisible({ timeout: 600_000 });
+    // refresh stage otherwise it is in verification / unknown state too long
+    await expect.poll(async () => {
+      await page
+        .locator('[data-testid$="/test"]')
+        .getByRole('button')
+        .nth(1)
+        .click();
+    
+      await page.getByRole('dialog').getByRole('button', { name: 'Refresh' }).click();
+      await page.getByRole('button', { name: 'Close' }).click();
+    
+      const readyVisible = await page
+        .locator('[data-testid$="/test"]')
+        .getByText('Ready')
+        .isVisible();
+    
+      const healthyVisible = await page
+        .locator('[data-testid$="/test"]')
+        .getByText('Healthy')
+        .isVisible();
+    
+      return readyVisible && healthyVisible;
+    }, {
+      timeout: 60_000,
+      intervals: [2_000],
+    }).toBe(true);
   });
 
   test('Kargo GitOps Promotion - Promote Changes to QA', async ({ page }) => {
@@ -602,8 +626,32 @@ test.describe("Kargo GitOps Promotion - Promote Changes", () => {
     await page.getByRole('button', { name: 'Promote' }).click();
     await expect(page.getByLabel('Promotion').getByRole('rowgroup')).toContainText('Succeeded', { timeout: 30_000 });
     await page.getByRole('button', { name: 'Close' }).click();
-    await expect(page.locator('[data-testid$="/qa"]').getByText('Ready')).toBeVisible({ timeout: 600_000 });
-    await expect(page.locator('[data-testid$="/qa"]').getByText('Healthy')).toBeVisible({ timeout: 600_000 });
+    // refresh stage otherwise it is in verification / unknown state too long
+    await expect.poll(async () => {
+      await page
+        .locator('[data-testid$="/qa"]')
+        .getByRole('button')
+        .nth(1)
+        .click();
+    
+      await page.getByRole('dialog').getByRole('button', { name: 'Refresh' }).click();
+      await page.getByRole('button', { name: 'Close' }).click();
+    
+      const readyVisible = await page
+        .locator('[data-testid$="/qa"]')
+        .getByText('Ready')
+        .isVisible();
+    
+      const healthyVisible = await page
+        .locator('[data-testid$="/qa"]')
+        .getByText('Healthy')
+        .isVisible();
+    
+      return readyVisible && healthyVisible;
+    }, {
+      timeout: 60_000,
+      intervals: [2_000],
+    }).toBe(true);
   });
 
   test('Kargo GitOps Promotion - Promote Changes to Prod', async ({ page }) => {
@@ -614,8 +662,32 @@ test.describe("Kargo GitOps Promotion - Promote Changes", () => {
     await page.getByRole('button', { name: 'Promote' }).click();
     await expect(page.getByLabel('Promotion').getByRole('rowgroup')).toContainText('Succeeded', { timeout: 30_000 });
     await page.getByRole('button', { name: 'Close' }).click();
-    await expect(page.locator('[data-testid$="/prod"]').getByText('Ready')).toBeVisible({ timeout: 600_000 });
-    await expect(page.locator('[data-testid$="/prod"]').getByText('Healthy')).toBeVisible({ timeout: 600_000 });
+    // refresh stage otherwise it is in verification / unknown state too long
+    await expect.poll(async () => {
+      await page
+        .locator('[data-testid$="/prod"]')
+        .getByRole('button')
+        .nth(1)
+        .click();
+    
+      await page.getByRole('dialog').getByRole('button', { name: 'Refresh' }).click();
+      await page.getByRole('button', { name: 'Close' }).click();
+    
+      const readyVisible = await page
+        .locator('[data-testid$="/prod"]')
+        .getByText('Ready')
+        .isVisible();
+    
+      const healthyVisible = await page
+        .locator('[data-testid$="/prod"]')
+        .getByText('Healthy')
+        .isVisible();
+    
+      return readyVisible && healthyVisible;
+    }, {
+      timeout: 60_000,
+      intervals: [2_000],
+    }).toBe(true);
   });
 });
 
