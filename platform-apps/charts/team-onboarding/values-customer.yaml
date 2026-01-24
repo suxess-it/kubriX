@@ -1,1 +1,17 @@
-teams: []
+teams:
+# new team stanza for team kubrix
+  - name: kubrix
+    sourceRepos:
+      - 'https://github.com/kubriX-demo/kubrix-*'
+    clusterResourceWhitelist:
+      - group: ""
+        kind: Namespace
+      - group: kargo.akuity.io
+        kind: Project
+    appOfAppsRepo:
+      repoURL: https://github.com/kubriX-demo/kubrix-apps
+      path: .
+      revision: main
+    multiStageKargoAppSet:
+      github:
+        organization: kubriX-demo
