@@ -286,7 +286,8 @@ test("Multi-Stage-Kargo App Onboarding", async ({ page }) => {
 
   const prefix = process.env.E2E_TEST_PR_NUMBER ?? '';
   await page.getByRole('textbox', { name: 'Name' }).click();
-  await page.getByRole('textbox', { name: 'Name' }).fill(`${prefix}-multi-stage-kubrixbot-app`);
+  // the 'team repos uid' needs to start with a alphabetical character (DNS-1035 label), that is why we add 'abc'
+  await page.getByRole('textbox', { name: 'Name' }).fill(`abc${prefix}-multi-stage-kubrixbot-app`);
   await page.getByRole('textbox', { name: 'Description' }).click();
   await page.getByRole('textbox', { name: 'Description' }).fill('this is a e2e test');
   await page.getByRole('textbox', { name: 'FQDN' }).fill('127-0-0-1.nip.io');
@@ -328,25 +329,25 @@ test.describe("ArgoCD verify multi-stage-kubrixbot-app state", () => {
     // wait for 1 minute so the appset scm generator picks up the new repo
     const prefix = process.env.E2E_TEST_PR_NUMBER ?? '';
     await page.waitForTimeout(60_000);
-    await page.goto(`https://argocd.127-0-0-1.nip.io/applications/adn-kubrix/kubrix-${prefix}-multi-stage-kubrixbot-app`);
+    await page.goto(`https://argocd.127-0-0-1.nip.io/applications/adn-kubrix/kubrix-abc$${prefix}-multi-stage-kubrixbot-app`);
     await expect(page.locator('#app').getByText('Synced', { exact: true }).nth(1)).toBeVisible({ timeout: 60_000 });
     await expect(page.locator('#app').getByText('Healthy', { exact: true }).nth(1)).toBeVisible({ timeout: 60_000 });
   });
   test('ArgoCD verify multi-stage-kubrixbot-app-test state', async ({ page }) => {
     const prefix = process.env.E2E_TEST_PR_NUMBER ?? '';
-    await page.goto(`https://argocd.127-0-0-1.nip.io/applications/adn-kubrix/${prefix}-multi-stage-kubrixbot-app-test`);
+    await page.goto(`https://argocd.127-0-0-1.nip.io/applications/adn-kubrix/abc$${prefix}-multi-stage-kubrixbot-app-test`);
     await expect(page.locator('#app').getByText('Synced', { exact: true }).nth(1)).toBeVisible({ timeout: 60_000 });
     await expect(page.locator('#app').getByText('Healthy', { exact: true }).nth(1)).toBeVisible({ timeout: 60_000 });
   });
   test('ArgoCD verify multi-stage-kubrixbot-app-qa state', async ({ page }) => {
     const prefix = process.env.E2E_TEST_PR_NUMBER ?? '';
-    await page.goto(`https://argocd.127-0-0-1.nip.io/applications/adn-kubrix/${prefix}-multi-stage-kubrixbot-app-qa`);
+    await page.goto(`https://argocd.127-0-0-1.nip.io/applications/adn-kubrix/abc$${prefix}-multi-stage-kubrixbot-app-qa`);
     await expect(page.locator('#app').getByText('Synced', { exact: true }).nth(1)).toBeVisible({ timeout: 60_000 });
     await expect(page.locator('#app').getByText('Healthy', { exact: true }).nth(1)).toBeVisible({ timeout: 60_000 });
   });
   test('ArgoCD verify multi-stage-kubrixbot-app-prod state', async ({ page }) => {
     const prefix = process.env.E2E_TEST_PR_NUMBER ?? '';
-    await page.goto(`https://argocd.127-0-0-1.nip.io/applications/adn-kubrix/${prefix}-multi-stage-kubrixbot-app-prod`);
+    await page.goto(`https://argocd.127-0-0-1.nip.io/applications/adn-kubrix/abc$${prefix}-multi-stage-kubrixbot-app-prod`);
     await expect(page.locator('#app').getByText('Synced', { exact: true }).nth(1)).toBeVisible({ timeout: 60_000 });
     await expect(page.locator('#app').getByText('Healthy', { exact: true }).nth(1)).toBeVisible({ timeout: 60_000 });
   });
@@ -355,9 +356,9 @@ test.describe("ArgoCD verify multi-stage-kubrixbot-app state", () => {
 test("Check multi-stage-kubrixbot-app podtato head stages", async ({ page }) => {
   const prefix = process.env.E2E_TEST_PR_NUMBER ?? '';
   const urls = [
-    `http://kubrix-${prefix}-multi-stage-kubrixbot-app-test.127-0-0-1.nip.io/`,
-    `http://kubrix-${prefix}-multi-stage-kubrixbot-app-qa.127-0-0-1.nip.io/`,
-    `http://kubrix-${prefix}-multi-stage-kubrixbot-app-prod.127-0-0-1.nip.io/`,
+    `http://kubrix-abc$${prefix}-multi-stage-kubrixbot-app-test.127-0-0-1.nip.io/`,
+    `http://kubrix-abc$${prefix}-multi-stage-kubrixbot-app-qa.127-0-0-1.nip.io/`,
+    `http://kubrix-abc$${prefix}-multi-stage-kubrixbot-app-prod.127-0-0-1.nip.io/`,
   ];
 
   for (const url of urls) {
@@ -370,10 +371,10 @@ test("Check multi-stage-kubrixbot-app podtato head stages", async ({ page }) => 
 test("Check multi-stage-kubrixbot-app in backstage", async ({ page }) => {
   const prefix = process.env.E2E_TEST_PR_NUMBER ?? '';
   const apps = [
-    `kubrix-${prefix}-multi-stage-kubrixbot-app-test`,
-    `kubrix-${prefix}-multi-stage-kubrixbot-app-qa`,
-    `kubrix-${prefix}-multi-stage-kubrixbot-app-prod`,
-    `kubrix-${prefix}-multi-stage-kubrixbot-app`
+    `kubrix-abc$${prefix}-multi-stage-kubrixbot-app-test`,
+    `kubrix-abc$${prefix}-multi-stage-kubrixbot-app-qa`,
+    `kubrix-abc$${prefix}-multi-stage-kubrixbot-app-prod`,
+    `kubrix-abc$${prefix}-multi-stage-kubrixbot-app`
   ];
   for (const app of apps) {
     await page.goto('https://backstage.127-0-0-1.nip.io/catalog');
@@ -435,7 +436,7 @@ test("Check multi-stage-kubrixbot-app in backstage", async ({ page }) => {
       if (tab === 'CD') {
         // appname in CD card is normally without team prefix, except for the umbrella app
         let appWithoutPrefix: string;
-        if (app === `kubrix-${prefix}-multi-stage-kubrixbot-app`) {
+        if (app === `kubrix-abc$${prefix}-multi-stage-kubrixbot-app`) {
           appWithoutPrefix = app;
         } else {
           appWithoutPrefix = app.replace(/^kubrix-/, '');
@@ -587,7 +588,7 @@ tolerations: []
 affinity: {}
 `;
   const prefix = process.env.E2E_TEST_PR_NUMBER ?? '';
-  await page.goto(`https://backstage.127-0-0-1.nip.io/catalog/default/component/kubrix-${prefix}-multi-stage-kubrixbot-app`);
+  await page.goto(`https://backstage.127-0-0-1.nip.io/catalog/default/component/kubrix-abc$${prefix}-multi-stage-kubrixbot-app`);
   const page1Promise = page.waitForEvent('popup');
   await page.getByRole('link', { name: 'View Source , Opens in a new' }).click();
   const page1 = await page1Promise;
@@ -605,7 +606,7 @@ test.describe("Kargo GitOps Promotion - Promote Changes", () => {
   // see https://github.com/akuity/kargo/issues/4956 for better curl/API support
   test('Kargo GitOps Promotion - Promote Changes to Test', async ({ page }) => {
     const prefix = process.env.E2E_TEST_PR_NUMBER ?? '';
-    await page.goto(`https://kargo.127-0-0-1.nip.io/project/kubrix-${prefix}-multi-stage-kubrixbot-app-kargo-project`);
+    await page.goto(`https://kargo.127-0-0-1.nip.io/project/kubrix-abc$${prefix}-multi-stage-kubrixbot-app-kargo-project`);
     await page.getByRole('button', { name: 'Refresh' }).click();
     // wait 10 seconds so freights are refreshed
     await page.waitForTimeout(10_000);
@@ -645,7 +646,7 @@ test.describe("Kargo GitOps Promotion - Promote Changes", () => {
 
   test('Kargo GitOps Promotion - Promote Changes to QA', async ({ page }) => {
     const prefix = process.env.E2E_TEST_PR_NUMBER ?? '';
-    await page.goto(`https://kargo.127-0-0-1.nip.io/project/kubrix-${prefix}-multi-stage-kubrixbot-app-kargo-project`);
+    await page.goto(`https://kargo.127-0-0-1.nip.io/project/kubrix-abc$${prefix}-multi-stage-kubrixbot-app-kargo-project`);
     await page.locator('[data-testid$="/qa"]').getByRole('button').first().click();
     await page.getByRole('menuitem', { name: 'Promote', exact: true }).locator('span').click();
     await page.getByRole('button', { name: 'Select' }).first().click();
@@ -682,7 +683,7 @@ test.describe("Kargo GitOps Promotion - Promote Changes", () => {
 
   test('Kargo GitOps Promotion - Promote Changes to Prod', async ({ page }) => {
     const prefix = process.env.E2E_TEST_PR_NUMBER ?? '';
-    await page.goto(`https://kargo.127-0-0-1.nip.io/project/kubrix-${prefix}-multi-stage-kubrixbot-app-kargo-project`);
+    await page.goto(`https://kargo.127-0-0-1.nip.io/project/kubrix-abc$${prefix}-multi-stage-kubrixbot-app-kargo-project`);
     await page.locator('[data-testid$="/prod"]').getByRole('button').first().click();
     await page.getByRole('menuitem', { name: 'Promote', exact: true }).locator('span').click();
     await page.getByRole('button', { name: 'Select' }).first().click();
@@ -722,15 +723,15 @@ test("Delete kubrixBot repos", async ({ page }) => {
   const teamRepoUID = process.env.E2E_TEST_PR_NUMBER ?? '';
  
   // delete kubrix-multi-stage-kubrixbot-app in kubriX-demo org
-  await page.goto(`https://github.com/kubriX-demo/kubrix-${teamRepoUID}-multi-stage-kubrixbot-app`);
+  await page.goto(`https://github.com/kubriX-demo/kubrix-abc$${teamRepoUID}-multi-stage-kubrixbot-app`);
   await page.getByRole('link', { name: 'Settings' }).click();
   const deleteButtonKubriXMultiStageApp = page.getByRole('button', { name: 'Delete this repository' });
   await deleteButtonKubriXMultiStageApp.scrollIntoViewIfNeeded();
   await deleteButtonKubriXMultiStageApp.click();
   await page.getByRole('button', { name: 'I want to delete this repository' }).click();
   await page.getByRole('button', { name: 'I have read and understand' }).click();
-  await page.getByRole('textbox', { name: 'To confirm, type "kubriX-demo/' }).fill(`kubriX-demo/kubrix-${teamRepoUID}-multi-stage-kubrixbot-app`);
-  await page.getByLabel(`Delete kubriX-demo/kubrix-${teamRepoUID}-multi-stage-kubrixbot-app`).getByRole('button', { name: 'Delete this repository' }).click();
+  await page.getByRole('textbox', { name: 'To confirm, type "kubriX-demo/' }).fill(`kubriX-demo/kubrix-abc$${teamRepoUID}-multi-stage-kubrixbot-app`);
+  await page.getByLabel(`Delete kubriX-demo/kubrix-abc$${teamRepoUID}-multi-stage-kubrixbot-app`).getByRole('button', { name: 'Delete this repository' }).click();
 
   // delete kubrix-apps in kubriX-demo and kubriX repo in kubrixBot org
   await page.goto(`https://github.com/kubriX-demo/kubrix-${teamRepoUID}-apps`);
