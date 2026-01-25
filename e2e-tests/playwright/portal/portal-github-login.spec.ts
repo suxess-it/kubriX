@@ -417,7 +417,7 @@ test("Check multi-stage-kubrixbot-app in backstage", async ({ page }) => {
       if (tab === 'CD') {
         // appname in CD card is normally without team prefix, except for the umbrella app
         let appWithoutPrefix: string;
-        if (app === 'kubrix-multi-stage-kubrixbot-app') {
+        if (app === `kubrix-${prefix}-multi-stage-kubrixbot-app`) {
           appWithoutPrefix = app;
         } else {
           appWithoutPrefix = app.replace(/^kubrix-/, '');
@@ -568,8 +568,8 @@ tolerations: []
 
 affinity: {}
 `;
-
-  await page.goto(`https://backstage.127-0-0-1.nip.io/catalog/default/component/kubrix-multi-stage-kubrixbot-app`);
+  const prefix = process.env.E2E_TEST_PR_NUMBER ?? '';
+  await page.goto(`https://backstage.127-0-0-1.nip.io/catalog/default/component/kubrix-${prefix}-multi-stage-kubrixbot-app`);
   const page1Promise = page.waitForEvent('popup');
   await page.getByRole('link', { name: 'View Source , Opens in a new' }).click();
   const page1 = await page1Promise;
@@ -586,7 +586,8 @@ test.describe("Kargo GitOps Promotion - Promote Changes", () => {
   test.setTimeout(800_000);
   // see https://github.com/akuity/kargo/issues/4956 for better curl/API support
   test('Kargo GitOps Promotion - Promote Changes to Test', async ({ page }) => {
-    await page.goto("https://kargo.127-0-0-1.nip.io/project/kubrix-multi-stage-kubrixbot-app-kargo-project");
+    const prefix = process.env.E2E_TEST_PR_NUMBER ?? '';
+    await page.goto(`https://kargo.127-0-0-1.nip.io/project/kubrix-${prefix}-multi-stage-kubrixbot-app-kargo-project`);
     await page.getByRole('button', { name: 'Refresh' }).click();
     // wait 10 seconds so freights are refreshed
     await page.waitForTimeout(10_000);
@@ -625,7 +626,8 @@ test.describe("Kargo GitOps Promotion - Promote Changes", () => {
   });
 
   test('Kargo GitOps Promotion - Promote Changes to QA', async ({ page }) => {
-    await page.goto("https://kargo.127-0-0-1.nip.io/project/kubrix-multi-stage-kubrixbot-app-kargo-project");
+    const prefix = process.env.E2E_TEST_PR_NUMBER ?? '';
+    await page.goto(`https://kargo.127-0-0-1.nip.io/project/kubrix-${prefix}-multi-stage-kubrixbot-app-kargo-project`);
     await page.locator('[data-testid$="/qa"]').getByRole('button').first().click();
     await page.getByRole('menuitem', { name: 'Promote', exact: true }).locator('span').click();
     await page.getByRole('button', { name: 'Select' }).first().click();
@@ -661,7 +663,8 @@ test.describe("Kargo GitOps Promotion - Promote Changes", () => {
   });
 
   test('Kargo GitOps Promotion - Promote Changes to Prod', async ({ page }) => {
-    await page.goto("https://kargo.127-0-0-1.nip.io/project/kubrix-multi-stage-kubrixbot-app-kargo-project");
+    const prefix = process.env.E2E_TEST_PR_NUMBER ?? '';
+    await page.goto(`https://kargo.127-0-0-1.nip.io/project/kubrix-${prefix}-multi-stage-kubrixbot-app-kargo-project`);
     await page.locator('[data-testid$="/prod"]').getByRole('button').first().click();
     await page.getByRole('menuitem', { name: 'Promote', exact: true }).locator('span').click();
     await page.getByRole('button', { name: 'Select' }).first().click();
@@ -698,19 +701,20 @@ test.describe("Kargo GitOps Promotion - Promote Changes", () => {
 });
 
 test("Delete kubrixBot repos", async ({ page }) => {
+  const teamRepoUID = process.env.E2E_TEST_PR_NUMBER ?? '';
+ 
   // delete kubrix-multi-stage-kubrixbot-app in kubriX-demo org
-  await page.goto('https://github.com/kubriX-demo/kubrix-multi-stage-kubrixbot-app');
+  await page.goto(`https://github.com/kubriX-demo/kubrix-${teamRepoUID}-multi-stage-kubrixbot-app`);
   await page.getByRole('link', { name: 'Settings' }).click();
   const deleteButtonKubriXMultiStageApp = page.getByRole('button', { name: 'Delete this repository' });
   await deleteButtonKubriXMultiStageApp.scrollIntoViewIfNeeded();
   await deleteButtonKubriXMultiStageApp.click();
   await page.getByRole('button', { name: 'I want to delete this repository' }).click();
   await page.getByRole('button', { name: 'I have read and understand' }).click();
-  await page.getByRole('textbox', { name: 'To confirm, type "kubriX-demo/' }).fill('kubriX-demo/kubrix-multi-stage-kubrixbot-app');
-  await page.getByLabel('Delete kubriX-demo/kubrix-multi-stage-kubrixbot-app').getByRole('button', { name: 'Delete this repository' }).click();
+  await page.getByRole('textbox', { name: 'To confirm, type "kubriX-demo/' }).fill(`kubriX-demo/kubrix-${teamRepoUID}-multi-stage-kubrixbot-app`);
+  await page.getByLabel(`Delete kubriX-demo/kubrix-${teamRepoUID}-multi-stage-kubrixbot-app`).getByRole('button', { name: 'Delete this repository' }).click();
 
   // delete kubrix-apps in kubriX-demo and kubriX repo in kubrixBot org
-  const teamRepoUID = process.env.E2E_TEST_PR_NUMBER ?? '';
   await page.goto(`https://github.com/kubriX-demo/kubrix-${teamRepoUID}-apps`);
   await page.getByRole('link', { name: 'Settings' }).click();
   const deleteButtonKubriXAppOfApps = page.getByRole('button', { name: 'Delete this repository' });
@@ -722,16 +726,17 @@ test("Delete kubrixBot repos", async ({ page }) => {
   await page.getByLabel(`Delete kubriX-demo/kubrix-${teamRepoUID}-apps`).getByRole('button', { name: 'Delete this repository' }).click();
 
   // delete kubriX fork repo of the bot
-  const kubrixRepo = process.env.E2E_KUBRIX_REPO ?? "kubriX";
-  await page.goto(`https://github.com/kubrixBot/${kubrixRepo}`);
-  await page.getByRole('link', { name: 'Settings' }).click();
-  const deleteButtonKubriX = page.getByRole('button', { name: 'Delete this repository' });
-  await deleteButtonKubriX.scrollIntoViewIfNeeded();
-  await deleteButtonKubriX.click();
-  await page.getByRole('button', { name: 'I want to delete this repository' }).click();
-  await page.getByRole('button', { name: 'I have read and understand' }).click();
-  await page.getByRole('textbox', { name: 'To confirm, type "kubrixBot/' }).fill(`kubrixBot/${kubrixRepo}`);
-  await page.getByLabel(`Delete kubrixBot/${kubrixRepo}`).getByRole('button', { name: 'Delete this repository' }).click();
+  // commented out because with concurrent tests you cannot delete this repo
+  // const kubrixRepo = process.env.E2E_KUBRIX_REPO ?? "kubriX";
+  // await page.goto(`https://github.com/kubrixBot/${kubrixRepo}`);
+  // await page.getByRole('link', { name: 'Settings' }).click();
+  // const deleteButtonKubriX = page.getByRole('button', { name: 'Delete this repository' });
+  // await deleteButtonKubriX.scrollIntoViewIfNeeded();
+  // await deleteButtonKubriX.click();
+  // await page.getByRole('button', { name: 'I want to delete this repository' }).click();
+  // await page.getByRole('button', { name: 'I have read and understand' }).click();
+  // await page.getByRole('textbox', { name: 'To confirm, type "kubrixBot/' }).fill(`kubrixBot/${kubrixRepo}`);
+  // await page.getByLabel(`Delete kubrixBot/${kubrixRepo}`).getByRole('button', { name: 'Delete this repository' }).click();
 });
   
 
