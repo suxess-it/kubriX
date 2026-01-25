@@ -332,19 +332,19 @@ test.describe("ArgoCD verify multi-stage-kubrixbot-app state", () => {
     await expect(page.locator('#app').getByText('Synced', { exact: true }).nth(1)).toBeVisible({ timeout: 60_000 });
     await expect(page.locator('#app').getByText('Healthy', { exact: true }).nth(1)).toBeVisible({ timeout: 60_000 });
   });
-  test('ArgoCD verify multi-stage-kubrixbot-app-test state', async ({ 
+  test('ArgoCD verify multi-stage-kubrixbot-app-test state', async ({ page }) => {
     const prefix = process.env.E2E_TEST_PR_NUMBER ?? '';
     await page.goto(`https://argocd.127-0-0-1.nip.io/applications/adn-kubrix/${prefix}-multi-stage-kubrixbot-app-test`);
     await expect(page.locator('#app').getByText('Synced', { exact: true }).nth(1)).toBeVisible({ timeout: 60_000 });
     await expect(page.locator('#app').getByText('Healthy', { exact: true }).nth(1)).toBeVisible({ timeout: 60_000 });
   });
-  test('ArgoCD verify multi-stage-kubrixbot-app-qa state', async ({ 
+  test('ArgoCD verify multi-stage-kubrixbot-app-qa state', async ({ page }) => {
     const prefix = process.env.E2E_TEST_PR_NUMBER ?? '';
     await page.goto(`https://argocd.127-0-0-1.nip.io/applications/adn-kubrix/${prefix}-multi-stage-kubrixbot-app-qa`);
     await expect(page.locator('#app').getByText('Synced', { exact: true }).nth(1)).toBeVisible({ timeout: 60_000 });
     await expect(page.locator('#app').getByText('Healthy', { exact: true }).nth(1)).toBeVisible({ timeout: 60_000 });
   });
-  test('ArgoCD verify multi-stage-kubrixbot-app-prod state', async ({ 
+  test('ArgoCD verify multi-stage-kubrixbot-app-prod state', async ({ page }) => {
     const prefix = process.env.E2E_TEST_PR_NUMBER ?? '';
     await page.goto(`https://argocd.127-0-0-1.nip.io/applications/adn-kubrix/${prefix}-multi-stage-kubrixbot-app-prod`);
     await expect(page.locator('#app').getByText('Synced', { exact: true }).nth(1)).toBeVisible({ timeout: 60_000 });
