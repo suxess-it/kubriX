@@ -226,7 +226,7 @@ test("Team Onboarding with kubrixBot Github user", async ({ page }) => {
         spec: {
           source: {
             repoURL: `https://github.com/kubrixBot/${kubrixRepo}`,
-            targetRevision: "onboarding-team-kubrix",
+            targetRevision: `onboarding-team-kubrix-${teamRepoUID}`,
           },
         },
       }),
@@ -239,7 +239,7 @@ test("Team Onboarding with kubrixBot Github user", async ({ page }) => {
   expect(appResp.ok()).toBeTruthy();
   const teamOnboarding = await appResp.json();
   expect(teamOnboarding.spec.source.repoURL).toBe(`https://github.com/kubrixBot/${kubrixRepo}`);
-  expect(teamOnboarding.spec.source.targetRevision).toBe("onboarding-team-kubrix");
+  expect(teamOnboarding.spec.source.targetRevision).toBe(`onboarding-team-kubrix-${teamRepoUID}`);
 
   // sync argocd app and get sync result
   const appName = "sx-team-onboarding";
