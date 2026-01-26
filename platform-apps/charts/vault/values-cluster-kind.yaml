@@ -16,7 +16,8 @@ vault:
         - -c
         - | 
             cd /usr/local/libexec/vault
-            curl -vvv https://dl.k8s.io/release/stable.txt
+            curl -Lvvv https://dl.k8s.io/release/stable.txt
+            curl -Lvvv https://cdn.dl.k8s.io/release/stable.txt
             curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
             chmod +x kubectl
             curl -L -o jq https://github.com/stedolan/jq/releases/download/jq-1.8.1/jq-linux64
