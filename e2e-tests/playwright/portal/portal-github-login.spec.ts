@@ -424,7 +424,7 @@ test("Check kubrixbot-app in backstage", async ({ page }) => {
     for (const tab of tabs) {
       // await page.goto(`https://backstage.127-0-0-1.nip.io/catalog/default/component/${app}`);
       // ignore some tabs for the umbrella app
-      if (app === 'kubrix-kubrixbot-app') {
+      if (app === `kubrix-a${prefix}-kubrixbot-app`) {
         if (tab === 'Kubernetes' || tab === 'Grafana-Dashboard') {
           continue; // skip these for umbrella app
         }
