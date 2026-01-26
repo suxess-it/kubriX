@@ -139,30 +139,7 @@
 <h4>No Misconfigurations found</h4>
 
 <h3>Target <code>docker.io/nginxinc/nginx-unprivileged:1.29-alpine (alpine 3.22.2)</code></h3>
-<h4>Vulnerabilities (2)</h4>
-<table>
-    <tr>
-        <th>Package</th>
-        <th>ID</th>
-        <th>Severity</th>
-        <th>Installed Version</th>
-        <th>Fixed Version</th>
-    </tr>
-    <tr>
-        <td><code>libpng</code></td>
-        <td>CVE-2026-22695</td>
-        <td>HIGH</td>
-        <td>1.6.53-r0</td>
-        <td>1.6.54-r0</td>
-    </tr>
-    <tr>
-        <td><code>libpng</code></td>
-        <td>CVE-2026-22801</td>
-        <td>HIGH</td>
-        <td>1.6.53-r0</td>
-        <td>1.6.54-r0</td>
-    </tr>
-</table>
+<h4>No Vulnerabilities found</h4>
 <h4>No Misconfigurations found</h4>
 
 <h3>Target <code>memcached:1.6.39-alpine (alpine 3.23.0)</code></h3>
