@@ -18,41 +18,9 @@ Explore more kubriX tips on our [YouTube Channel](http://www.youtube.com/@kubriX
 
 ---
 
-## 🚀 Quick Start
+## 🚀 Quick Start & Documentation
 
-Choose your preferred setup:
-
-1. **Local KinD setup**  
-   Bootstrap kubriX on a local KinD (Kubernetes in Docker) cluster with your own GitOps repository.  
-   → See [Local KinD Installation Guide](docs/oss/installation/kind.md)
-
-2. **Your preferred remote Kubernetes cluster**  
-   Bootstrap kubriX on your real-world Kubernetes cluster with your own GitOps repository.  
-   → See [Quick-Start Installation Guide](docs/oss/installation/quick-start-kubernetes.md)
-
-3. **Experimental: GitHub Codespaces Playground (read-only)**  
-   Explore kubriX instantly in your browser — no local setup required, but with some limitations at the moment.
-   → See [Codespaces Guide](docs/oss/installation/codespaces.md)
----
-
-## 📚 Documentation
-
-### Open Source (OSS)
-- [Overview](docs/oss/overview.md)
-- [Installation](docs/oss/installation/installation.md)
-- [Configuration](docs/oss/configuration/configuration.md)
-- [User Guide](docs/oss/user-guide/user-guide.md)
-- [Administration](docs/oss/admin-guide/)
-- [API & CLI Reference](docs/oss/api-cli-reference.md)
-
-### Prime (Enterprise)
-- [Overview](docs/prime/overview.md)
-- [Advanced Installation](docs/prime/installation/)
-- [Enterprise Configuration](docs/prime/configuration/)
-- [Advanced Administration](docs/prime/admin-guide/)
-- [Security & Compliance](docs/prime/security-compliance.md)
-
-> **Note:** Prime documentation builds on OSS docs and describes additional enterprise-grade features. Only available in kubrix-prime repository.
+Visit our [product documentation ](https://kubrix.io/docs/getting_started/installation)
 
 ---
 
@@ -89,11 +57,3 @@ We welcome contributions from the community!
 
 kubriX OSS is released under the [Apache License 2.0](LICENSE).  
 You are free to use, modify, and distribute it under the terms of this license.
-
-
-
-
-
-
-
-

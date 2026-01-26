@@ -2,4 +2,6 @@
 
 Guide to get idea how this will work!
 
-ongoing improvement! Have FUN!
+See runbooks in Prime Version!
+
+Have FUN!
