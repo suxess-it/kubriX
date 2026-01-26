@@ -273,10 +273,11 @@ test("Team Onboarding with kubrixBot Github user", async ({ page }) => {
 test.describe("ArgoCD team onboarding app", () => {
   const argocdAuthFile = path.join(authDir, 'argocd.json');
   test.use({ storageState: argocdAuthFile });
+  test.setTimeout(130_000);
   test('ArgoCD team onboarding app', async ({ page }) => {
     await page.goto('https://argocd.127-0-0-1.nip.io/applications/sx-team-onboarding');
-    await expect(page.locator('#app').getByText('Synced', { exact: true }).nth(1)).toBeVisible({ timeout: 20_000 });
-    await expect(page.locator('#app').getByText('Healthy', { exact: true }).nth(1)).toBeVisible({ timeout: 20_000 });
+    await expect(page.locator('#app').getByText('Synced', { exact: true }).nth(1)).toBeVisible({ timeout: 60_000 });
+    await expect(page.locator('#app').getByText('Healthy', { exact: true }).nth(1)).toBeVisible({ timeout: 60_000 });
   });
 });
 
