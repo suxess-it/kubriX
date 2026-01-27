@@ -99,6 +99,65 @@ spec:
         protectDefaultBranch: false
         defaultBranch: main
 
+    - id: get-main-ref
+      name: Get SHA of main
+      action: http:backstage:request
+      input:
+        method: GET
+        url: >-
+          https://api.github.com/repos/${{ (parameters.repoUrl | parseRepoUrl).owner }}/${{ steps['catalogFetch'].output.entity.metadata.name }}-${{ parameters.application_id }}/git/ref/heads/main
+        headers:
+          Authorization: Bearer ${{ secrets.USER_OAUTH_TOKEN }}
+          Accept: application/vnd.github+json
+
+    - id: create-branch-test
+      name: Create branch test from main
+      action: http:backstage:request
+      continueOnError: true
+      input:
+        method: POST
+        url: >-
+          https://api.github.com/repos/${{ (parameters.repoUrl | parseRepoUrl).owner }}/${{ steps['catalogFetch'].output.entity.metadata.name }}-${{ parameters.application_id }}/git/refs
+        headers:
+          Authorization: Bearer ${{ secrets.USER_OAUTH_TOKEN }}
+          Accept: application/vnd.github+json
+          Content-Type: application/json
+        body:
+          ref: refs/heads/test
+          sha: ${{ steps['get-main-ref'].output.body.object.sha }}
+
+    - id: create-branch-qa
+      name: Create branch qa from main
+      action: http:backstage:request
+      continueOnError: true
+      input:
+        method: POST
+        url: >-
+          https://api.github.com/repos/${{ (parameters.repoUrl | parseRepoUrl).owner }}/${{ steps['catalogFetch'].output.entity.metadata.name }}-${{ parameters.application_id }}/git/refs
+        headers:
+          Authorization: Bearer ${{ secrets.USER_OAUTH_TOKEN }}
+          Accept: application/vnd.github+json
+          Content-Type: application/json
+        body:
+          ref: refs/heads/qa
+          sha: ${{ steps['get-main-ref'].output.body.object.sha }}
+
+    - id: create-branch-prod
+      name: Create branch prod from main
+      action: http:backstage:request
+      continueOnError: true
+      input:
+        method: POST
+        url: >-
+          https://api.github.com/repos/${{ (parameters.repoUrl | parseRepoUrl).owner }}/${{ steps['catalogFetch'].output.entity.metadata.name }}-${{ parameters.application_id }}/git/refs
+        headers:
+          Authorization: Bearer ${{ secrets.USER_OAUTH_TOKEN }}
+          Accept: application/vnd.github+json
+          Content-Type: application/json
+        body:
+          ref: refs/heads/prod
+          sha: ${{ steps['get-main-ref'].output.body.object.sha }}
+
     - id: register
       name: Register catalog
       action: catalog:register
