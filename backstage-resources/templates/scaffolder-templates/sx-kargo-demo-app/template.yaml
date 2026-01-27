@@ -101,7 +101,7 @@ spec:
 
     - id: get-main-ref
       name: Get SHA of main
-      action: http:backstage:request
+      action: http:request
       input:
         method: GET
         url: >-
@@ -112,7 +112,7 @@ spec:
 
     - id: create-branch-test
       name: Create branch test from main
-      action: http:backstage:request
+      action: http:request
       continueOnError: true
       input:
         method: POST
@@ -128,7 +128,7 @@ spec:
 
     - id: create-branch-qa
       name: Create branch qa from main
-      action: http:backstage:request
+      action: http:request
       continueOnError: true
       input:
         method: POST
@@ -144,7 +144,7 @@ spec:
 
     - id: create-branch-prod
       name: Create branch prod from main
-      action: http:backstage:request
+      action: http:request
       continueOnError: true
       input:
         method: POST
