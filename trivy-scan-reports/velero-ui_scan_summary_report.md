@@ -306,7 +306,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>Python</code></h3>
-<h4>Vulnerabilities (9)</h4>
+<h4>Vulnerabilities (10)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -328,6 +328,13 @@
         <td>HIGH</td>
         <td>0.19.0</td>
         <td></td>
+    </tr>
+    <tr>
+        <td><code>python-multipart</code></td>
+        <td>CVE-2026-24486</td>
+        <td>HIGH</td>
+        <td>0.0.19</td>
+        <td>0.0.22</td>
     </tr>
     <tr>
         <td><code>setuptools</code></td>
