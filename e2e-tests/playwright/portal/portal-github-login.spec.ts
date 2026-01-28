@@ -369,12 +369,22 @@ test.describe("Kargo GitOps Promotion - Going Live First time", () => {
         return false;
       }
 
-      await stageIcon.click();
+      // Try a *short* click; if it can't be clicked yet, keep polling.
+      try {
+        await stageIcon.click({ timeout: 1000 });
+      } catch {
+        return false;
+      }
       const readyVisible = await page
         .getByRole('tooltip', { name: 'Stage Status: Ready Freight' })
         .isVisible();
-
-      await healthIcon.click();
+      
+      // Try a *short* click; if it can't be clicked yet, keep polling.
+      try {
+        await healthIcon.click({ timeout: 1000 });
+      } catch {
+        return false;
+      }
       const healthyVisible = await page
         .getByRole('tooltip', { name: 'Health Status: Healthy' })
         .isVisible();
