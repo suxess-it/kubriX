@@ -355,20 +355,32 @@ test.describe("Kargo GitOps Promotion - Going Live First time", () => {
     await page.locator('[data-testid$="/test"]').getByRole('button').nth(1).click();
     // refresh stage otherwise it is in verification / unknown state too long
     await expect.poll(async () => {
-
       await page.getByRole('dialog').getByRole('button', { name: 'Refresh' }).click();
 
-      await page.locator('div').filter({ hasText: `kubrix-a${prefix}-kubrixbot-app-kargo-project` }).locator('path').nth(1).click();
-      const readyVisible = await page.getByRole('tooltip', { name: 'Stage Status: Ready Freight' }).isVisible();
+      const row = page
+        .locator('div')
+        .filter({ hasText: `kubrix-a${prefix}-kubrixbot-app-kargo-project` });
 
-      await page.locator('div').filter({ hasText: `kubrix-a${prefix}-kubrixbot-app-kargo-project` }).locator('path').nth(2).click();
-      const healthyVisible = await page.getByRole('tooltip', { name: 'Health Status: Healthy' }).isVisible();
-    
+      const stageIcon = row.locator('path').nth(1);
+      const healthIcon = row.locator('path').nth(2);
+
+      // If not there yet, keep polling
+      if ((await stageIcon.count()) === 0 || (await healthIcon.count()) === 0) {
+        return false;
+      }
+
+      await stageIcon.click();
+      const readyVisible = await page
+        .getByRole('tooltip', { name: 'Stage Status: Ready Freight' })
+        .isVisible();
+
+      await healthIcon.click();
+      const healthyVisible = await page
+        .getByRole('tooltip', { name: 'Health Status: Healthy' })
+        .isVisible();
+
       return readyVisible && healthyVisible;
-    }, {
-      timeout: 60_000,
-      intervals: [2_000],
-    }).toBe(true);
+    }, { timeout: 60_000, intervals: [2_000] }).toBe(true);
   });
 
   test('Kargo GitOps Promotion - Promote to QA', async ({ page }) => {
@@ -383,20 +395,32 @@ test.describe("Kargo GitOps Promotion - Going Live First time", () => {
     await page.locator('[data-testid$="/qa"]').getByRole('button').nth(1).click();
     // refresh stage otherwise it is in verification / unknown state too long
     await expect.poll(async () => {
-
       await page.getByRole('dialog').getByRole('button', { name: 'Refresh' }).click();
 
-      await page.locator('div').filter({ hasText: `kubrix-a${prefix}-kubrixbot-app-kargo-project` }).locator('path').nth(1).click();
-      const readyVisible = await page.getByRole('tooltip', { name: 'Stage Status: Ready Freight' }).isVisible();
+      const row = page
+        .locator('div')
+        .filter({ hasText: `kubrix-a${prefix}-kubrixbot-app-kargo-project` });
 
-      await page.locator('div').filter({ hasText: `kubrix-a${prefix}-kubrixbot-app-kargo-project` }).locator('path').nth(2).click();
-      const healthyVisible = await page.getByRole('tooltip', { name: 'Health Status: Healthy' }).isVisible();
-    
+      const stageIcon = row.locator('path').nth(1);
+      const healthIcon = row.locator('path').nth(2);
+
+      // If not there yet, keep polling
+      if ((await stageIcon.count()) === 0 || (await healthIcon.count()) === 0) {
+        return false;
+      }
+
+      await stageIcon.click();
+      const readyVisible = await page
+        .getByRole('tooltip', { name: 'Stage Status: Ready Freight' })
+        .isVisible();
+
+      await healthIcon.click();
+      const healthyVisible = await page
+        .getByRole('tooltip', { name: 'Health Status: Healthy' })
+        .isVisible();
+
       return readyVisible && healthyVisible;
-    }, {
-      timeout: 60_000,
-      intervals: [2_000],
-    }).toBe(true);
+    }, { timeout: 60_000, intervals: [2_000] }).toBe(true);
   });
 
   test('Kargo GitOps Promotion - Promote to Prod', async ({ page }) => {
@@ -411,20 +435,32 @@ test.describe("Kargo GitOps Promotion - Going Live First time", () => {
     await page.locator('[data-testid$="/prod"]').getByRole('button').nth(1).click();
     // refresh stage otherwise it is in verification / unknown state too long
     await expect.poll(async () => {
-
       await page.getByRole('dialog').getByRole('button', { name: 'Refresh' }).click();
 
-      await page.locator('div').filter({ hasText: `kubrix-a${prefix}-kubrixbot-app-kargo-project` }).locator('path').nth(1).click();
-      const readyVisible = await page.getByRole('tooltip', { name: 'Stage Status: Ready Freight' }).isVisible();
+      const row = page
+        .locator('div')
+        .filter({ hasText: `kubrix-a${prefix}-kubrixbot-app-kargo-project` });
 
-      await page.locator('div').filter({ hasText: `kubrix-a${prefix}-kubrixbot-app-kargo-project` }).locator('path').nth(2).click();
-      const healthyVisible = await page.getByRole('tooltip', { name: 'Health Status: Healthy' }).isVisible();
-    
+      const stageIcon = row.locator('path').nth(1);
+      const healthIcon = row.locator('path').nth(2);
+
+      // If not there yet, keep polling
+      if ((await stageIcon.count()) === 0 || (await healthIcon.count()) === 0) {
+        return false;
+      }
+
+      await stageIcon.click();
+      const readyVisible = await page
+        .getByRole('tooltip', { name: 'Stage Status: Ready Freight' })
+        .isVisible();
+
+      await healthIcon.click();
+      const healthyVisible = await page
+        .getByRole('tooltip', { name: 'Health Status: Healthy' })
+        .isVisible();
+
       return readyVisible && healthyVisible;
-    }, {
-      timeout: 60_000,
-      intervals: [2_000],
-    }).toBe(true);
+    }, { timeout: 60_000, intervals: [2_000] }).toBe(true);
   });
 });
 
@@ -694,20 +730,32 @@ test.describe("Kargo GitOps Promotion - Promote Changes", () => {
     await page.locator('[data-testid$="/test"]').getByRole('button').nth(1).click();
     // refresh stage otherwise it is in verification / unknown state too long
     await expect.poll(async () => {
-
       await page.getByRole('dialog').getByRole('button', { name: 'Refresh' }).click();
 
-      await page.locator('div').filter({ hasText: `kubrix-a${prefix}-kubrixbot-app-kargo-project` }).locator('path').nth(1).click();
-      const readyVisible = await page.getByRole('tooltip', { name: 'Stage Status: Ready Freight' }).isVisible();
+      const row = page
+        .locator('div')
+        .filter({ hasText: `kubrix-a${prefix}-kubrixbot-app-kargo-project` });
 
-      await page.locator('div').filter({ hasText: `kubrix-a${prefix}-kubrixbot-app-kargo-project` }).locator('path').nth(2).click();
-      const healthyVisible = await page.getByRole('tooltip', { name: 'Health Status: Healthy' }).isVisible();
-    
+      const stageIcon = row.locator('path').nth(1);
+      const healthIcon = row.locator('path').nth(2);
+
+      // If not there yet, keep polling
+      if ((await stageIcon.count()) === 0 || (await healthIcon.count()) === 0) {
+        return false;
+      }
+
+      await stageIcon.click();
+      const readyVisible = await page
+        .getByRole('tooltip', { name: 'Stage Status: Ready Freight' })
+        .isVisible();
+
+      await healthIcon.click();
+      const healthyVisible = await page
+        .getByRole('tooltip', { name: 'Health Status: Healthy' })
+        .isVisible();
+
       return readyVisible && healthyVisible;
-    }, {
-      timeout: 60_000,
-      intervals: [2_000],
-    }).toBe(true);
+    }, { timeout: 60_000, intervals: [2_000] }).toBe(true);
   });
 
   test('Kargo GitOps Promotion - Promote Changes to QA', async ({ page }) => {
@@ -722,20 +770,32 @@ test.describe("Kargo GitOps Promotion - Promote Changes", () => {
     await page.locator('[data-testid$="/qa"]').getByRole('button').nth(1).click();
     // refresh stage otherwise it is in verification / unknown state too long
     await expect.poll(async () => {
-
       await page.getByRole('dialog').getByRole('button', { name: 'Refresh' }).click();
 
-      await page.locator('div').filter({ hasText: `kubrix-a${prefix}-kubrixbot-app-kargo-project` }).locator('path').nth(1).click();
-      const readyVisible = await page.getByRole('tooltip', { name: 'Stage Status: Ready Freight' }).isVisible();
+      const row = page
+        .locator('div')
+        .filter({ hasText: `kubrix-a${prefix}-kubrixbot-app-kargo-project` });
 
-      await page.locator('div').filter({ hasText: `kubrix-a${prefix}-kubrixbot-app-kargo-project` }).locator('path').nth(2).click();
-      const healthyVisible = await page.getByRole('tooltip', { name: 'Health Status: Healthy' }).isVisible();
-    
+      const stageIcon = row.locator('path').nth(1);
+      const healthIcon = row.locator('path').nth(2);
+
+      // If not there yet, keep polling
+      if ((await stageIcon.count()) === 0 || (await healthIcon.count()) === 0) {
+        return false;
+      }
+
+      await stageIcon.click();
+      const readyVisible = await page
+        .getByRole('tooltip', { name: 'Stage Status: Ready Freight' })
+        .isVisible();
+
+      await healthIcon.click();
+      const healthyVisible = await page
+        .getByRole('tooltip', { name: 'Health Status: Healthy' })
+        .isVisible();
+
       return readyVisible && healthyVisible;
-    }, {
-      timeout: 60_000,
-      intervals: [2_000],
-    }).toBe(true);
+    }, { timeout: 60_000, intervals: [2_000] }).toBe(true);
   });
 
   test('Kargo GitOps Promotion - Promote Changes to Prod', async ({ page }) => {
@@ -750,20 +810,32 @@ test.describe("Kargo GitOps Promotion - Promote Changes", () => {
     await page.locator('[data-testid$="/prod"]').getByRole('button').nth(1).click();
     // refresh stage otherwise it is in verification / unknown state too long
     await expect.poll(async () => {
-
       await page.getByRole('dialog').getByRole('button', { name: 'Refresh' }).click();
 
-      await page.locator('div').filter({ hasText: `kubrix-a${prefix}-kubrixbot-app-kargo-project` }).locator('path').nth(1).click();
-      const readyVisible = await page.getByRole('tooltip', { name: 'Stage Status: Ready Freight' }).isVisible();
+      const row = page
+        .locator('div')
+        .filter({ hasText: `kubrix-a${prefix}-kubrixbot-app-kargo-project` });
 
-      await page.locator('div').filter({ hasText: `kubrix-a${prefix}-kubrixbot-app-kargo-project` }).locator('path').nth(2).click();
-      const healthyVisible = await page.getByRole('tooltip', { name: 'Health Status: Healthy' }).isVisible();
-    
+      const stageIcon = row.locator('path').nth(1);
+      const healthIcon = row.locator('path').nth(2);
+
+      // If not there yet, keep polling
+      if ((await stageIcon.count()) === 0 || (await healthIcon.count()) === 0) {
+        return false;
+      }
+
+      await stageIcon.click();
+      const readyVisible = await page
+        .getByRole('tooltip', { name: 'Stage Status: Ready Freight' })
+        .isVisible();
+
+      await healthIcon.click();
+      const healthyVisible = await page
+        .getByRole('tooltip', { name: 'Health Status: Healthy' })
+        .isVisible();
+
       return readyVisible && healthyVisible;
-    }, {
-      timeout: 60_000,
-      intervals: [2_000],
-    }).toBe(true);
+    }, { timeout: 60_000, intervals: [2_000] }).toBe(true);
   });
 });
 
