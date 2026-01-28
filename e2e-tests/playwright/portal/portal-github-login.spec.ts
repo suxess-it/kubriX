@@ -358,10 +358,10 @@ test.describe("Kargo GitOps Promotion - Going Live First time", () => {
 
       await page.getByRole('dialog').getByRole('button', { name: 'Refresh' }).click();
 
-      await page.locator('div').filter({ hasText: `kubrix-a${prefix}-kubrixbot-app-kargo-project` }).locator('path').first().click();
+      await page.locator('div').filter({ hasText: `kubrix-a${prefix}-kubrixbot-app-kargo-project` }).locator('path').nth(1).click();
       const readyVisible = await page.getByRole('tooltip', { name: 'Stage Status: Ready Freight' }).isVisible();
 
-      await page.locator('div').filter({ hasText: `kubrix-a${prefix}-kubrixbot-app-kargo-project` }).locator('path').nth(1).click();
+      await page.locator('div').filter({ hasText: `kubrix-a${prefix}-kubrixbot-app-kargo-project` }).locator('path').nth(2).click();
       const healthyVisible = await page.getByRole('tooltip', { name: 'Health Status: Healthy' }).isVisible();
     
       return readyVisible && healthyVisible;
@@ -386,10 +386,10 @@ test.describe("Kargo GitOps Promotion - Going Live First time", () => {
 
       await page.getByRole('dialog').getByRole('button', { name: 'Refresh' }).click();
 
-      await page.locator('div').filter({ hasText: `kubrix-a${prefix}-kubrixbot-app-kargo-project` }).locator('path').first().click();
+      await page.locator('div').filter({ hasText: `kubrix-a${prefix}-kubrixbot-app-kargo-project` }).locator('path').nth(1).click();
       const readyVisible = await page.getByRole('tooltip', { name: 'Stage Status: Ready Freight' }).isVisible();
 
-      await page.locator('div').filter({ hasText: `kubrix-a${prefix}-kubrixbot-app-kargo-project` }).locator('path').nth(1).click();
+      await page.locator('div').filter({ hasText: `kubrix-a${prefix}-kubrixbot-app-kargo-project` }).locator('path').nth(2).click();
       const healthyVisible = await page.getByRole('tooltip', { name: 'Health Status: Healthy' }).isVisible();
     
       return readyVisible && healthyVisible;
@@ -414,10 +414,10 @@ test.describe("Kargo GitOps Promotion - Going Live First time", () => {
 
       await page.getByRole('dialog').getByRole('button', { name: 'Refresh' }).click();
 
-      await page.locator('div').filter({ hasText: `kubrix-a${prefix}-kubrixbot-app-kargo-project` }).locator('path').first().click();
+      await page.locator('div').filter({ hasText: `kubrix-a${prefix}-kubrixbot-app-kargo-project` }).locator('path').nth(1).click();
       const readyVisible = await page.getByRole('tooltip', { name: 'Stage Status: Ready Freight' }).isVisible();
 
-      await page.locator('div').filter({ hasText: `kubrix-a${prefix}-kubrixbot-app-kargo-project` }).locator('path').nth(1).click();
+      await page.locator('div').filter({ hasText: `kubrix-a${prefix}-kubrixbot-app-kargo-project` }).locator('path').nth(2).click();
       const healthyVisible = await page.getByRole('tooltip', { name: 'Health Status: Healthy' }).isVisible();
     
       return readyVisible && healthyVisible;
@@ -697,10 +697,10 @@ test.describe("Kargo GitOps Promotion - Promote Changes", () => {
 
       await page.getByRole('dialog').getByRole('button', { name: 'Refresh' }).click();
 
-      await page.locator('div').filter({ hasText: `kubrix-a${prefix}-kubrixbot-app-kargo-project` }).locator('path').first().click();
+      await page.locator('div').filter({ hasText: `kubrix-a${prefix}-kubrixbot-app-kargo-project` }).locator('path').nth(1).click();
       const readyVisible = await page.getByRole('tooltip', { name: 'Stage Status: Ready Freight' }).isVisible();
 
-      await page.locator('div').filter({ hasText: `kubrix-a${prefix}-kubrixbot-app-kargo-project` }).locator('path').nth(1).click();
+      await page.locator('div').filter({ hasText: `kubrix-a${prefix}-kubrixbot-app-kargo-project` }).locator('path').nth(2).click();
       const healthyVisible = await page.getByRole('tooltip', { name: 'Health Status: Healthy' }).isVisible();
     
       return readyVisible && healthyVisible;
@@ -725,10 +725,10 @@ test.describe("Kargo GitOps Promotion - Promote Changes", () => {
 
       await page.getByRole('dialog').getByRole('button', { name: 'Refresh' }).click();
 
-      await page.locator('div').filter({ hasText: `kubrix-a${prefix}-kubrixbot-app-kargo-project` }).locator('path').first().click();
+      await page.locator('div').filter({ hasText: `kubrix-a${prefix}-kubrixbot-app-kargo-project` }).locator('path').nth(1).click();
       const readyVisible = await page.getByRole('tooltip', { name: 'Stage Status: Ready Freight' }).isVisible();
 
-      await page.locator('div').filter({ hasText: `kubrix-a${prefix}-kubrixbot-app-kargo-project` }).locator('path').nth(1).click();
+      await page.locator('div').filter({ hasText: `kubrix-a${prefix}-kubrixbot-app-kargo-project` }).locator('path').nth(2).click();
       const healthyVisible = await page.getByRole('tooltip', { name: 'Health Status: Healthy' }).isVisible();
     
       return readyVisible && healthyVisible;
@@ -753,10 +753,10 @@ test.describe("Kargo GitOps Promotion - Promote Changes", () => {
 
       await page.getByRole('dialog').getByRole('button', { name: 'Refresh' }).click();
 
-      await page.locator('div').filter({ hasText: `kubrix-a${prefix}-kubrixbot-app-kargo-project` }).locator('path').first().click();
+      await page.locator('div').filter({ hasText: `kubrix-a${prefix}-kubrixbot-app-kargo-project` }).locator('path').nth(1).click();
       const readyVisible = await page.getByRole('tooltip', { name: 'Stage Status: Ready Freight' }).isVisible();
 
-      await page.locator('div').filter({ hasText: `kubrix-a${prefix}-kubrixbot-app-kargo-project` }).locator('path').nth(1).click();
+      await page.locator('div').filter({ hasText: `kubrix-a${prefix}-kubrixbot-app-kargo-project` }).locator('path').nth(2).click();
       const healthyVisible = await page.getByRole('tooltip', { name: 'Health Status: Healthy' }).isVisible();
     
       return readyVisible && healthyVisible;
