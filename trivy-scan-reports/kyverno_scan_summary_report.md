@@ -1,6 +1,6 @@
 
 <h3>Target <code>curlimages/curl:8.10.1 (alpine 3.20.3)</code></h3>
-<h4>Vulnerabilities (4)</h4>
+<h4>Vulnerabilities (8)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -11,10 +11,31 @@
     </tr>
     <tr>
         <td><code>libcrypto3</code></td>
+        <td>CVE-2025-15467</td>
+        <td>CRITICAL</td>
+        <td>3.3.2-r0</td>
+        <td>3.3.6-r0</td>
+    </tr>
+    <tr>
+        <td><code>libcrypto3</code></td>
         <td>CVE-2024-12797</td>
         <td>HIGH</td>
         <td>3.3.2-r0</td>
         <td>3.3.3-r0</td>
+    </tr>
+    <tr>
+        <td><code>libcrypto3</code></td>
+        <td>CVE-2025-69419</td>
+        <td>HIGH</td>
+        <td>3.3.2-r0</td>
+        <td>3.3.6-r0</td>
+    </tr>
+    <tr>
+        <td><code>libssl3</code></td>
+        <td>CVE-2025-15467</td>
+        <td>CRITICAL</td>
+        <td>3.3.2-r0</td>
+        <td>3.3.6-r0</td>
     </tr>
     <tr>
         <td><code>libssl3</code></td>
@@ -22,6 +43,13 @@
         <td>HIGH</td>
         <td>3.3.2-r0</td>
         <td>3.3.3-r0</td>
+    </tr>
+    <tr>
+        <td><code>libssl3</code></td>
+        <td>CVE-2025-69419</td>
+        <td>HIGH</td>
+        <td>3.3.2-r0</td>
+        <td>3.3.6-r0</td>
     </tr>
     <tr>
         <td><code>musl</code></td>
@@ -44,7 +72,7 @@
 <h4>No Vulnerabilities found</h4>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>ko-app/background-controller</code></h3>
-<h4>Vulnerabilities (3)</h4>
+<h4>Vulnerabilities (5)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -52,6 +80,20 @@
         <th>Severity</th>
         <th>Installed Version</th>
         <th>Fixed Version</th>
+    </tr>
+    <tr>
+        <td><code>github.com/kyverno/kyverno</code></td>
+        <td>CVE-2026-22039</td>
+        <td>CRITICAL</td>
+        <td>v1.16.2+dirty</td>
+        <td>1.15.3, 1.16.3</td>
+    </tr>
+    <tr>
+        <td><code>github.com/kyverno/kyverno</code></td>
+        <td>CVE-2026-23881</td>
+        <td>HIGH</td>
+        <td>v1.16.2+dirty</td>
+        <td>1.15.3, 1.16.3</td>
     </tr>
     <tr>
         <td><code>github.com/sigstore/fulcio</code></td>
@@ -81,7 +123,7 @@
 <h4>No Vulnerabilities found</h4>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>ko-app/cleanup-controller</code></h3>
-<h4>Vulnerabilities (3)</h4>
+<h4>Vulnerabilities (5)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -89,6 +131,20 @@
         <th>Severity</th>
         <th>Installed Version</th>
         <th>Fixed Version</th>
+    </tr>
+    <tr>
+        <td><code>github.com/kyverno/kyverno</code></td>
+        <td>CVE-2026-22039</td>
+        <td>CRITICAL</td>
+        <td>v1.16.2+dirty</td>
+        <td>1.15.3, 1.16.3</td>
+    </tr>
+    <tr>
+        <td><code>github.com/kyverno/kyverno</code></td>
+        <td>CVE-2026-23881</td>
+        <td>HIGH</td>
+        <td>v1.16.2+dirty</td>
+        <td>1.15.3, 1.16.3</td>
     </tr>
     <tr>
         <td><code>github.com/sigstore/fulcio</code></td>
@@ -118,7 +174,7 @@
 <h4>No Vulnerabilities found</h4>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>ko-app/kubectl-kyverno</code></h3>
-<h4>Vulnerabilities (3)</h4>
+<h4>Vulnerabilities (5)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -126,6 +182,20 @@
         <th>Severity</th>
         <th>Installed Version</th>
         <th>Fixed Version</th>
+    </tr>
+    <tr>
+        <td><code>github.com/kyverno/kyverno</code></td>
+        <td>CVE-2026-22039</td>
+        <td>CRITICAL</td>
+        <td>v1.16.2+dirty</td>
+        <td>1.15.3, 1.16.3</td>
+    </tr>
+    <tr>
+        <td><code>github.com/kyverno/kyverno</code></td>
+        <td>CVE-2026-23881</td>
+        <td>HIGH</td>
+        <td>v1.16.2+dirty</td>
+        <td>1.15.3, 1.16.3</td>
     </tr>
     <tr>
         <td><code>github.com/sigstore/fulcio</code></td>
@@ -155,7 +225,7 @@
 <h4>No Vulnerabilities found</h4>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>ko-app/kyverno</code></h3>
-<h4>Vulnerabilities (3)</h4>
+<h4>Vulnerabilities (5)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -163,6 +233,20 @@
         <th>Severity</th>
         <th>Installed Version</th>
         <th>Fixed Version</th>
+    </tr>
+    <tr>
+        <td><code>github.com/kyverno/kyverno</code></td>
+        <td>CVE-2026-22039</td>
+        <td>CRITICAL</td>
+        <td>v1.16.2+dirty</td>
+        <td>1.15.3, 1.16.3</td>
+    </tr>
+    <tr>
+        <td><code>github.com/kyverno/kyverno</code></td>
+        <td>CVE-2026-23881</td>
+        <td>HIGH</td>
+        <td>v1.16.2+dirty</td>
+        <td>1.15.3, 1.16.3</td>
     </tr>
     <tr>
         <td><code>github.com/sigstore/fulcio</code></td>
@@ -192,7 +276,7 @@
 <h4>No Vulnerabilities found</h4>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>ko-app/kyverno-init</code></h3>
-<h4>Vulnerabilities (3)</h4>
+<h4>Vulnerabilities (5)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -200,6 +284,20 @@
         <th>Severity</th>
         <th>Installed Version</th>
         <th>Fixed Version</th>
+    </tr>
+    <tr>
+        <td><code>github.com/kyverno/kyverno</code></td>
+        <td>CVE-2026-22039</td>
+        <td>CRITICAL</td>
+        <td>v1.16.2+dirty</td>
+        <td>1.15.3, 1.16.3</td>
+    </tr>
+    <tr>
+        <td><code>github.com/kyverno/kyverno</code></td>
+        <td>CVE-2026-23881</td>
+        <td>HIGH</td>
+        <td>v1.16.2+dirty</td>
+        <td>1.15.3, 1.16.3</td>
     </tr>
     <tr>
         <td><code>github.com/sigstore/fulcio</code></td>
@@ -229,7 +327,7 @@
 <h4>No Vulnerabilities found</h4>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>ko-app/reports-controller</code></h3>
-<h4>Vulnerabilities (3)</h4>
+<h4>Vulnerabilities (5)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -237,6 +335,20 @@
         <th>Severity</th>
         <th>Installed Version</th>
         <th>Fixed Version</th>
+    </tr>
+    <tr>
+        <td><code>github.com/kyverno/kyverno</code></td>
+        <td>CVE-2026-22039</td>
+        <td>CRITICAL</td>
+        <td>v1.16.2+dirty</td>
+        <td>1.15.3, 1.16.3</td>
+    </tr>
+    <tr>
+        <td><code>github.com/kyverno/kyverno</code></td>
+        <td>CVE-2026-23881</td>
+        <td>HIGH</td>
+        <td>v1.16.2+dirty</td>
+        <td>1.15.3, 1.16.3</td>
     </tr>
     <tr>
         <td><code>github.com/sigstore/fulcio</code></td>

@@ -1,22 +1,6 @@
 
-<h3>Target <code>ghcr.io/akuity/kargo:v1.8.6 (wolfi 20230201)</code></h3>
-<h4>Vulnerabilities (1)</h4>
-<table>
-    <tr>
-        <th>Package</th>
-        <th>ID</th>
-        <th>Severity</th>
-        <th>Installed Version</th>
-        <th>Fixed Version</th>
-    </tr>
-    <tr>
-        <td><code>glibc</code></td>
-        <td>CVE-2026-0861</td>
-        <td>HIGH</td>
-        <td>2.42-r5</td>
-        <td>2.42-r6</td>
-    </tr>
-</table>
+<h3>Target <code>ghcr.io/akuity/kargo:v1.8.7 (wolfi 20230201)</code></h3>
+<h4>No Vulnerabilities found</h4>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>usr/bin/helm</code></h3>
 <h4>No Vulnerabilities found</h4>

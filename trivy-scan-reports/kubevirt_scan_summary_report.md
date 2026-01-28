@@ -67,7 +67,7 @@
 <h4>No Misconfigurations found</h4>
 
 <h3>Target <code>quay.io/kubevirt/virt-operator:v1.5.0 (debian 12.6)</code></h3>
-<h4>Vulnerabilities (3)</h4>
+<h4>Vulnerabilities (5)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -92,10 +92,24 @@
     </tr>
     <tr>
         <td><code>libssl3</code></td>
+        <td>CVE-2025-15467</td>
+        <td>CRITICAL</td>
+        <td>3.0.13-1~deb12u1</td>
+        <td>3.0.18-1~deb12u2</td>
+    </tr>
+    <tr>
+        <td><code>libssl3</code></td>
         <td>CVE-2024-6119</td>
         <td>HIGH</td>
         <td>3.0.13-1~deb12u1</td>
         <td>3.0.14-1~deb12u2</td>
+    </tr>
+    <tr>
+        <td><code>libssl3</code></td>
+        <td>CVE-2025-69419</td>
+        <td>HIGH</td>
+        <td>3.0.13-1~deb12u1</td>
+        <td>3.0.18-1~deb12u2</td>
     </tr>
 </table>
 <h4>No Misconfigurations found</h4>

@@ -453,7 +453,7 @@
 <h4>No Misconfigurations found</h4>
 
 <h3>Target <code>docker.io/falcosecurity/falco:0.41.0-debian (debian 12.11)</code></h3>
-<h4>Vulnerabilities (30)</h4>
+<h4>Vulnerabilities (34)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -657,6 +657,34 @@
         <td>CRITICAL</td>
         <td>3.40.1-2+deb12u1</td>
         <td></td>
+    </tr>
+    <tr>
+        <td><code>libssl3</code></td>
+        <td>CVE-2025-15467</td>
+        <td>CRITICAL</td>
+        <td>3.0.16-1~deb12u1</td>
+        <td>3.0.18-1~deb12u2</td>
+    </tr>
+    <tr>
+        <td><code>libssl3</code></td>
+        <td>CVE-2025-69419</td>
+        <td>HIGH</td>
+        <td>3.0.16-1~deb12u1</td>
+        <td>3.0.18-1~deb12u2</td>
+    </tr>
+    <tr>
+        <td><code>openssl</code></td>
+        <td>CVE-2025-15467</td>
+        <td>CRITICAL</td>
+        <td>3.0.16-1~deb12u1</td>
+        <td>3.0.18-1~deb12u2</td>
+    </tr>
+    <tr>
+        <td><code>openssl</code></td>
+        <td>CVE-2025-69419</td>
+        <td>HIGH</td>
+        <td>3.0.16-1~deb12u1</td>
+        <td>3.0.18-1~deb12u2</td>
     </tr>
     <tr>
         <td><code>perl-base</code></td>
