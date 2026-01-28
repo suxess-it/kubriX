@@ -369,9 +369,8 @@ test.describe("Kargo GitOps Promotion - Going Live First time", () => {
         return false;
       }
 
-      // Try a *short* click; if it can't be clicked yet, keep polling.
       try {
-        await stageIcon.click({ timeout: 1000 });
+        await stageIcon.hover({ timeout: 1000 });
       } catch {
         return false;
       }
@@ -379,9 +378,8 @@ test.describe("Kargo GitOps Promotion - Going Live First time", () => {
         .getByRole('tooltip', { name: 'Stage Status: Ready Freight' })
         .isVisible();
       
-      // Try a *short* click; if it can't be clicked yet, keep polling.
       try {
-        await healthIcon.click({ timeout: 1000 });
+         await healthIcon.hover({ timeout: 1000 });
       } catch {
         return false;
       }
@@ -419,12 +417,20 @@ test.describe("Kargo GitOps Promotion - Going Live First time", () => {
         return false;
       }
 
-      await stageIcon.click();
+      try {
+        await stageIcon.hover({ timeout: 1000 });
+      } catch {
+        return false;
+      }
       const readyVisible = await page
         .getByRole('tooltip', { name: 'Stage Status: Ready Freight' })
         .isVisible();
-
-      await healthIcon.click();
+      
+      try {
+         await healthIcon.hover({ timeout: 1000 });
+      } catch {
+        return false;
+      }
       const healthyVisible = await page
         .getByRole('tooltip', { name: 'Health Status: Healthy' })
         .isVisible();
@@ -459,12 +465,20 @@ test.describe("Kargo GitOps Promotion - Going Live First time", () => {
         return false;
       }
 
-      await stageIcon.click();
+      try {
+        await stageIcon.hover({ timeout: 1000 });
+      } catch {
+        return false;
+      }
       const readyVisible = await page
         .getByRole('tooltip', { name: 'Stage Status: Ready Freight' })
         .isVisible();
-
-      await healthIcon.click();
+      
+      try {
+         await healthIcon.hover({ timeout: 1000 });
+      } catch {
+        return false;
+      }
       const healthyVisible = await page
         .getByRole('tooltip', { name: 'Health Status: Healthy' })
         .isVisible();
@@ -754,12 +768,20 @@ test.describe("Kargo GitOps Promotion - Promote Changes", () => {
         return false;
       }
 
-      await stageIcon.click();
+      try {
+        await stageIcon.hover({ timeout: 1000 });
+      } catch {
+        return false;
+      }
       const readyVisible = await page
         .getByRole('tooltip', { name: 'Stage Status: Ready Freight' })
         .isVisible();
-
-      await healthIcon.click();
+      
+      try {
+         await healthIcon.hover({ timeout: 1000 });
+      } catch {
+        return false;
+      }
       const healthyVisible = await page
         .getByRole('tooltip', { name: 'Health Status: Healthy' })
         .isVisible();
@@ -794,12 +816,20 @@ test.describe("Kargo GitOps Promotion - Promote Changes", () => {
         return false;
       }
 
-      await stageIcon.click();
+      try {
+        await stageIcon.hover({ timeout: 1000 });
+      } catch {
+        return false;
+      }
       const readyVisible = await page
         .getByRole('tooltip', { name: 'Stage Status: Ready Freight' })
         .isVisible();
-
-      await healthIcon.click();
+      
+      try {
+         await healthIcon.hover({ timeout: 1000 });
+      } catch {
+        return false;
+      }
       const healthyVisible = await page
         .getByRole('tooltip', { name: 'Health Status: Healthy' })
         .isVisible();
@@ -834,12 +864,20 @@ test.describe("Kargo GitOps Promotion - Promote Changes", () => {
         return false;
       }
 
-      await stageIcon.click();
+      try {
+        await stageIcon.hover({ timeout: 1000 });
+      } catch {
+        return false;
+      }
       const readyVisible = await page
         .getByRole('tooltip', { name: 'Stage Status: Ready Freight' })
         .isVisible();
-
-      await healthIcon.click();
+      
+      try {
+         await healthIcon.hover({ timeout: 1000 });
+      } catch {
+        return false;
+      }
       const healthyVisible = await page
         .getByRole('tooltip', { name: 'Health Status: Healthy' })
         .isVisible();
