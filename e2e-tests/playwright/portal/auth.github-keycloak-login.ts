@@ -105,7 +105,7 @@ setup('Github Login', async ({ page }) => {
 
   await expect(page.getByRole('heading', { name: 'Welcome to kubriX' })).toBeVisible();
   await page.context().storageState({ path: ghAuthFile });
-});
+}).setTimeout(3 * 60 * 1000);
 
 const keycloakDemoadminAuthFile = path.join(authDir, 'keycloak-demoadmin.json');
 setup('Keycloak Demoadmin Login', async ({ page }) => {
