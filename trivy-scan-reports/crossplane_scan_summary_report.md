@@ -1,9 +1,9 @@
 
-<h3>Target <code>xpkg.crossplane.io/crossplane/crossplane:v2.1.1 (debian 12.11)</code></h3>
+<h3>Target <code>xpkg.crossplane.io/crossplane/crossplane:v2.1.3 (debian 12.11)</code></h3>
 <h4>No Vulnerabilities found</h4>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>usr/local/bin/crossplane</code></h3>
-<h4>Vulnerabilities (6)</h4>
+<h4>Vulnerabilities (4)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -32,20 +32,6 @@
         <td>HIGH</td>
         <td>v1.24.5</td>
         <td>1.24.8, 1.25.2</td>
-    </tr>
-    <tr>
-        <td><code>stdlib</code></td>
-        <td>CVE-2025-58186</td>
-        <td>HIGH</td>
-        <td>v1.24.5</td>
-        <td>1.24.8, 1.25.2</td>
-    </tr>
-    <tr>
-        <td><code>stdlib</code></td>
-        <td>CVE-2025-58187</td>
-        <td>HIGH</td>
-        <td>v1.24.5</td>
-        <td>1.24.9, 1.25.3</td>
     </tr>
     <tr>
         <td><code>stdlib</code></td>
