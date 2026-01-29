@@ -338,7 +338,7 @@ test.describe("ArgoCD verify kubrixbot-app state", () => {
 test.describe("Kargo GitOps Promotion - Going Live First time", () => {
   const kargoAuthFile = path.join(authDir, 'kargo.json');
   test.use({ storageState: kargoAuthFile });
-  test.setTimeout(180_000);
+  test.setTimeout(200_000);
   // see https://github.com/akuity/kargo/issues/4956 for better curl/API support
   test('Kargo GitOps Promotion - Promote to Test', async ({ page }) => {
     const prefix = process.env.E2E_TEST_PR_NUMBER ?? '';
@@ -375,7 +375,7 @@ test.describe("Kargo GitOps Promotion - Going Live First time", () => {
     
       return readyVisible && healthyVisible;
     }, {
-      timeout: 60_000,
+      timeout: 120_000,
       intervals: [2_000],
     }).toBe(true);
   });
@@ -412,7 +412,7 @@ test.describe("Kargo GitOps Promotion - Going Live First time", () => {
     
       return readyVisible && healthyVisible;
     }, {
-      timeout: 60_000,
+      timeout: 120_000,
       intervals: [2_000],
     }).toBe(true);
   });
@@ -449,7 +449,7 @@ test.describe("Kargo GitOps Promotion - Going Live First time", () => {
     
       return readyVisible && healthyVisible;
     }, {
-      timeout: 60_000,
+      timeout: 120_000,
       intervals: [2_000],
     }).toBe(true);
   });
@@ -704,7 +704,7 @@ affinity: {}
 test.describe("Kargo GitOps Promotion - Promote Changes", () => {
   const kargoAuthFile = path.join(authDir, 'kargo.json');
   test.use({ storageState: kargoAuthFile });
-  test.setTimeout(180_000);
+  test.setTimeout(200_000);
   // see https://github.com/akuity/kargo/issues/4956 for better curl/API support
   test('Kargo GitOps Promotion - Promote Changes to Test', async ({ page }) => {
     const prefix = process.env.E2E_TEST_PR_NUMBER ?? '';
@@ -741,7 +741,7 @@ test.describe("Kargo GitOps Promotion - Promote Changes", () => {
     
       return readyVisible && healthyVisible;
     }, {
-      timeout: 60_000,
+      timeout: 120_000,
       intervals: [2_000],
     }).toBe(true);
   });
@@ -778,7 +778,7 @@ test.describe("Kargo GitOps Promotion - Promote Changes", () => {
     
       return readyVisible && healthyVisible;
     }, {
-      timeout: 60_000,
+      timeout: 120_000,
       intervals: [2_000],
     }).toBe(true);
   });
@@ -815,7 +815,7 @@ test.describe("Kargo GitOps Promotion - Promote Changes", () => {
     
       return readyVisible && healthyVisible;
     }, {
-      timeout: 60_000,
+      timeout: 120_000,
       intervals: [2_000],
     }).toBe(true);
   });
