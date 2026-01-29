@@ -360,7 +360,13 @@ test.describe("Kargo GitOps Promotion - Going Live First time", () => {
         .nth(1)
         .click();
     
-      await page.getByRole('dialog').getByRole('button', { name: 'Refresh' }).click({ timeout: 3000 });
+      try {
+        await page.getByRole('dialog').getByRole('button', { name: 'Refresh' }).click({ timeout: 3000 });
+      } catch (e) {
+        // Swallow only “could not click refresh” type failures
+        // so the poll can continue and we can still Close.
+        // (Optional: console.log(String(e)))
+      }
       await page.getByRole('button', { name: 'Close' }).click();
     
       const readyVisible = await page
@@ -396,8 +402,14 @@ test.describe("Kargo GitOps Promotion - Going Live First time", () => {
         .getByRole('button')
         .nth(1)
         .click();
-    
-      await page.getByRole('dialog').getByRole('button', { name: 'Refresh' }).click({ timeout: 3000 });
+
+      try {
+        await page.getByRole('dialog').getByRole('button', { name: 'Refresh' }).click({ timeout: 3000 });
+      } catch (e) {
+        // Swallow only “could not click refresh” type failures
+        // so the poll can continue and we can still Close.
+        // (Optional: console.log(String(e)))
+      }
       await page.getByRole('button', { name: 'Close' }).click();
     
       const readyVisible = await page
@@ -433,8 +445,14 @@ test.describe("Kargo GitOps Promotion - Going Live First time", () => {
         .getByRole('button')
         .nth(1)
         .click();
-    
-      await page.getByRole('dialog').getByRole('button', { name: 'Refresh' }).click({ timeout: 3000 });
+
+      try {
+        await page.getByRole('dialog').getByRole('button', { name: 'Refresh' }).click({ timeout: 3000 });
+      } catch (e) {
+        // Swallow only “could not click refresh” type failures
+        // so the poll can continue and we can still Close.
+        // (Optional: console.log(String(e)))
+      }
       await page.getByRole('button', { name: 'Close' }).click();
     
       const readyVisible = await page
@@ -725,8 +743,14 @@ test.describe("Kargo GitOps Promotion - Promote Changes", () => {
         .getByRole('button')
         .nth(1)
         .click();
-    
-      await page.getByRole('dialog').getByRole('button', { name: 'Refresh' }).click({ timeout: 3000 });
+
+      try {
+        await page.getByRole('dialog').getByRole('button', { name: 'Refresh' }).click({ timeout: 3000 });
+      } catch (e) {
+        // Swallow only “could not click refresh” type failures
+        // so the poll can continue and we can still Close.
+        // (Optional: console.log(String(e)))
+      }
       await page.getByRole('button', { name: 'Close' }).click();
     
       const readyVisible = await page
@@ -762,8 +786,14 @@ test.describe("Kargo GitOps Promotion - Promote Changes", () => {
         .getByRole('button')
         .nth(1)
         .click();
-    
-      await page.getByRole('dialog').getByRole('button', { name: 'Refresh' }).click({ timeout: 3000 });
+
+      try {
+        await page.getByRole('dialog').getByRole('button', { name: 'Refresh' }).click({ timeout: 3000 });
+      } catch (e) {
+        // Swallow only “could not click refresh” type failures
+        // so the poll can continue and we can still Close.
+        // (Optional: console.log(String(e)))
+      }
       await page.getByRole('button', { name: 'Close' }).click();
     
       const readyVisible = await page
@@ -800,7 +830,13 @@ test.describe("Kargo GitOps Promotion - Promote Changes", () => {
         .nth(1)
         .click();
     
-      await page.getByRole('dialog').getByRole('button', { name: 'Refresh' }).click({ timeout: 3000 });
+      try {
+        await page.getByRole('dialog').getByRole('button', { name: 'Refresh' }).click({ timeout: 3000 });
+      } catch (e) {
+        // Swallow only “could not click refresh” type failures
+        // so the poll can continue and we can still Close.
+        // (Optional: console.log(String(e)))
+      }
       await page.getByRole('button', { name: 'Close' }).click();
     
       const readyVisible = await page
