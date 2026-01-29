@@ -38,7 +38,7 @@ const authDir = path.join(__dirname, '../.auth');
 fs.mkdirSync(authDir, { recursive: true });
 
 const ghAuthFile = path.join(authDir, 'github.json');
-setup('Github Login', async ({ page }) => {
+setup('Github Login', async ({ page }, testInfo) => {
   // extend timeout because when TOTP retry needs to be made
   testInfo.setTimeout(3 * 60 * 1000);
   // Perform authentication steps
