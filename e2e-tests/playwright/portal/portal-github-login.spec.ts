@@ -360,7 +360,7 @@ test.describe("Kargo GitOps Promotion - Going Live First time", () => {
         .nth(1)
         .click();
     
-      await page.getByRole('dialog').getByRole('button', { name: 'Refresh' }).click();
+      await page.getByRole('dialog').getByRole('button', { name: 'Refresh' }).click({ timeout: 3000 });
       await page.getByRole('button', { name: 'Close' }).click();
     
       const readyVisible = await page
@@ -397,7 +397,7 @@ test.describe("Kargo GitOps Promotion - Going Live First time", () => {
         .nth(1)
         .click();
     
-      await page.getByRole('dialog').getByRole('button', { name: 'Refresh' }).click();
+      await page.getByRole('dialog').getByRole('button', { name: 'Refresh' }).click({ timeout: 3000 });
       await page.getByRole('button', { name: 'Close' }).click();
     
       const readyVisible = await page
@@ -434,7 +434,7 @@ test.describe("Kargo GitOps Promotion - Going Live First time", () => {
         .nth(1)
         .click();
     
-      await page.getByRole('dialog').getByRole('button', { name: 'Refresh' }).click();
+      await page.getByRole('dialog').getByRole('button', { name: 'Refresh' }).click({ timeout: 3000 });
       await page.getByRole('button', { name: 'Close' }).click();
     
       const readyVisible = await page
@@ -726,7 +726,7 @@ test.describe("Kargo GitOps Promotion - Promote Changes", () => {
         .nth(1)
         .click();
     
-      await page.getByRole('dialog').getByRole('button', { name: 'Refresh' }).click();
+      await page.getByRole('dialog').getByRole('button', { name: 'Refresh' }).click({ timeout: 3000 });
       await page.getByRole('button', { name: 'Close' }).click();
     
       const readyVisible = await page
@@ -763,7 +763,7 @@ test.describe("Kargo GitOps Promotion - Promote Changes", () => {
         .nth(1)
         .click();
     
-      await page.getByRole('dialog').getByRole('button', { name: 'Refresh' }).click();
+      await page.getByRole('dialog').getByRole('button', { name: 'Refresh' }).click({ timeout: 3000 });
       await page.getByRole('button', { name: 'Close' }).click();
     
       const readyVisible = await page
@@ -800,7 +800,7 @@ test.describe("Kargo GitOps Promotion - Promote Changes", () => {
         .nth(1)
         .click();
     
-      await page.getByRole('dialog').getByRole('button', { name: 'Refresh' }).click();
+      await page.getByRole('dialog').getByRole('button', { name: 'Refresh' }).click({ timeout: 3000 });
       await page.getByRole('button', { name: 'Close' }).click();
     
       const readyVisible = await page
