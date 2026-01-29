@@ -338,7 +338,7 @@ test.describe("ArgoCD verify kubrixbot-app state", () => {
 test.describe("Kargo GitOps Promotion - Going Live First time", () => {
   const kargoAuthFile = path.join(authDir, 'kargo.json');
   test.use({ storageState: kargoAuthFile });
-  test.setTimeout(800_000);
+  test.setTimeout(180_000);
   // see https://github.com/akuity/kargo/issues/4956 for better curl/API support
   test('Kargo GitOps Promotion - Promote to Test', async ({ page }) => {
     const prefix = process.env.E2E_TEST_PR_NUMBER ?? '';
@@ -352,43 +352,32 @@ test.describe("Kargo GitOps Promotion - Going Live First time", () => {
     await page.getByRole('button', { name: 'Promote' }).click();
     await expect(page.getByLabel('Promotion').getByRole('rowgroup')).toContainText('Succeeded', { timeout: 60_000 });
     await page.getByRole('button', { name: 'Close' }).click();
-    await page.locator('[data-testid$="/test"]').getByRole('button').nth(1).click();
     // refresh stage otherwise it is in verification / unknown state too long
     await expect.poll(async () => {
+      await page
+        .locator('[data-testid$="/test"]')
+        .getByRole('button')
+        .nth(1)
+        .click();
+    
       await page.getByRole('dialog').getByRole('button', { name: 'Refresh' }).click();
-
-      const row = page
-        .locator('div')
-        .filter({ hasText: `kubrix-a${prefix}-kubrixbot-app-kargo-project` });
-
-      const stageIcon = row.locator('path').nth(1);
-      const healthIcon = row.locator('path').nth(2);
-
-      // If not there yet, keep polling
-      if ((await stageIcon.count()) === 0 || (await healthIcon.count()) === 0) {
-        return false;
-      }
-
-      try {
-        await stageIcon.hover({ timeout: 1000 });
-      } catch {
-        return false;
-      }
+      await page.getByRole('button', { name: 'Close' }).click();
+    
       const readyVisible = await page
-        .getByRole('tooltip', { name: 'Stage Status: Ready Freight' })
+        .locator('[data-testid$="/test"]')
+        .getByText('Ready')
         .isVisible();
-      
-      try {
-         await healthIcon.hover({ timeout: 1000 });
-      } catch {
-        return false;
-      }
+    
       const healthyVisible = await page
-        .getByRole('tooltip', { name: 'Health Status: Healthy' })
+        .locator('[data-testid$="/test"]')
+        .getByText('Healthy')
         .isVisible();
-
+    
       return readyVisible && healthyVisible;
-    }, { timeout: 60_000, intervals: [2_000] }).toBe(true);
+    }, {
+      timeout: 60_000,
+      intervals: [2_000],
+    }).toBe(true);
   });
 
   test('Kargo GitOps Promotion - Promote to QA', async ({ page }) => {
@@ -400,43 +389,32 @@ test.describe("Kargo GitOps Promotion - Going Live First time", () => {
     await page.getByRole('button', { name: 'Promote' }).click();
     await expect(page.getByLabel('Promotion').getByRole('rowgroup')).toContainText('Succeeded', { timeout: 60_000 });
     await page.getByRole('button', { name: 'Close' }).click();
-    await page.locator('[data-testid$="/qa"]').getByRole('button').nth(1).click();
     // refresh stage otherwise it is in verification / unknown state too long
     await expect.poll(async () => {
+      await page
+        .locator('[data-testid$="/qa"]')
+        .getByRole('button')
+        .nth(1)
+        .click();
+    
       await page.getByRole('dialog').getByRole('button', { name: 'Refresh' }).click();
-
-      const row = page
-        .locator('div')
-        .filter({ hasText: `kubrix-a${prefix}-kubrixbot-app-kargo-project` });
-
-      const stageIcon = row.locator('path').nth(1);
-      const healthIcon = row.locator('path').nth(2);
-
-      // If not there yet, keep polling
-      if ((await stageIcon.count()) === 0 || (await healthIcon.count()) === 0) {
-        return false;
-      }
-
-      try {
-        await stageIcon.hover({ timeout: 1000 });
-      } catch {
-        return false;
-      }
+      await page.getByRole('button', { name: 'Close' }).click();
+    
       const readyVisible = await page
-        .getByRole('tooltip', { name: 'Stage Status: Ready Freight' })
+        .locator('[data-testid$="/qa"]')
+        .getByText('Ready')
         .isVisible();
-      
-      try {
-         await healthIcon.hover({ timeout: 1000 });
-      } catch {
-        return false;
-      }
+    
       const healthyVisible = await page
-        .getByRole('tooltip', { name: 'Health Status: Healthy' })
+        .locator('[data-testid$="/qa"]')
+        .getByText('Healthy')
         .isVisible();
-
+    
       return readyVisible && healthyVisible;
-    }, { timeout: 60_000, intervals: [2_000] }).toBe(true);
+    }, {
+      timeout: 60_000,
+      intervals: [2_000],
+    }).toBe(true);
   });
 
   test('Kargo GitOps Promotion - Promote to Prod', async ({ page }) => {
@@ -448,43 +426,32 @@ test.describe("Kargo GitOps Promotion - Going Live First time", () => {
     await page.getByRole('button', { name: 'Promote' }).click();
     await expect(page.getByLabel('Promotion').getByRole('rowgroup')).toContainText('Succeeded', { timeout: 60_000 });
     await page.getByRole('button', { name: 'Close' }).click();
-    await page.locator('[data-testid$="/prod"]').getByRole('button').nth(1).click();
     // refresh stage otherwise it is in verification / unknown state too long
     await expect.poll(async () => {
+      await page
+        .locator('[data-testid$="/prod"]')
+        .getByRole('button')
+        .nth(1)
+        .click();
+    
       await page.getByRole('dialog').getByRole('button', { name: 'Refresh' }).click();
-
-      const row = page
-        .locator('div')
-        .filter({ hasText: `kubrix-a${prefix}-kubrixbot-app-kargo-project` });
-
-      const stageIcon = row.locator('path').nth(1);
-      const healthIcon = row.locator('path').nth(2);
-
-      // If not there yet, keep polling
-      if ((await stageIcon.count()) === 0 || (await healthIcon.count()) === 0) {
-        return false;
-      }
-
-      try {
-        await stageIcon.hover({ timeout: 1000 });
-      } catch {
-        return false;
-      }
+      await page.getByRole('button', { name: 'Close' }).click();
+    
       const readyVisible = await page
-        .getByRole('tooltip', { name: 'Stage Status: Ready Freight' })
+        .locator('[data-testid$="/prod"]')
+        .getByText('Ready')
         .isVisible();
-      
-      try {
-         await healthIcon.hover({ timeout: 1000 });
-      } catch {
-        return false;
-      }
+    
       const healthyVisible = await page
-        .getByRole('tooltip', { name: 'Health Status: Healthy' })
+        .locator('[data-testid$="/prod"]')
+        .getByText('Healthy')
         .isVisible();
-
+    
       return readyVisible && healthyVisible;
-    }, { timeout: 60_000, intervals: [2_000] }).toBe(true);
+    }, {
+      timeout: 60_000,
+      intervals: [2_000],
+    }).toBe(true);
   });
 });
 
@@ -737,7 +704,7 @@ affinity: {}
 test.describe("Kargo GitOps Promotion - Promote Changes", () => {
   const kargoAuthFile = path.join(authDir, 'kargo.json');
   test.use({ storageState: kargoAuthFile });
-  test.setTimeout(800_000);
+  test.setTimeout(180_000);
   // see https://github.com/akuity/kargo/issues/4956 for better curl/API support
   test('Kargo GitOps Promotion - Promote Changes to Test', async ({ page }) => {
     const prefix = process.env.E2E_TEST_PR_NUMBER ?? '';
@@ -751,43 +718,32 @@ test.describe("Kargo GitOps Promotion - Promote Changes", () => {
     await page.getByRole('button', { name: 'Promote' }).click();
     await expect(page.getByLabel('Promotion').getByRole('rowgroup')).toContainText('Succeeded', { timeout: 30_000 });
     await page.getByRole('button', { name: 'Close' }).click();
-    await page.locator('[data-testid$="/test"]').getByRole('button').nth(1).click();
     // refresh stage otherwise it is in verification / unknown state too long
     await expect.poll(async () => {
+      await page
+        .locator('[data-testid$="/test"]')
+        .getByRole('button')
+        .nth(1)
+        .click();
+    
       await page.getByRole('dialog').getByRole('button', { name: 'Refresh' }).click();
-
-      const row = page
-        .locator('div')
-        .filter({ hasText: `kubrix-a${prefix}-kubrixbot-app-kargo-project` });
-
-      const stageIcon = row.locator('path').nth(1);
-      const healthIcon = row.locator('path').nth(2);
-
-      // If not there yet, keep polling
-      if ((await stageIcon.count()) === 0 || (await healthIcon.count()) === 0) {
-        return false;
-      }
-
-      try {
-        await stageIcon.hover({ timeout: 1000 });
-      } catch {
-        return false;
-      }
+      await page.getByRole('button', { name: 'Close' }).click();
+    
       const readyVisible = await page
-        .getByRole('tooltip', { name: 'Stage Status: Ready Freight' })
+        .locator('[data-testid$="/test"]')
+        .getByText('Ready')
         .isVisible();
-      
-      try {
-         await healthIcon.hover({ timeout: 1000 });
-      } catch {
-        return false;
-      }
+    
       const healthyVisible = await page
-        .getByRole('tooltip', { name: 'Health Status: Healthy' })
+        .locator('[data-testid$="/test"]')
+        .getByText('Healthy')
         .isVisible();
-
+    
       return readyVisible && healthyVisible;
-    }, { timeout: 60_000, intervals: [2_000] }).toBe(true);
+    }, {
+      timeout: 60_000,
+      intervals: [2_000],
+    }).toBe(true);
   });
 
   test('Kargo GitOps Promotion - Promote Changes to QA', async ({ page }) => {
@@ -799,43 +755,32 @@ test.describe("Kargo GitOps Promotion - Promote Changes", () => {
     await page.getByRole('button', { name: 'Promote' }).click();
     await expect(page.getByLabel('Promotion').getByRole('rowgroup')).toContainText('Succeeded', { timeout: 30_000 });
     await page.getByRole('button', { name: 'Close' }).click();
-    await page.locator('[data-testid$="/qa"]').getByRole('button').nth(1).click();
     // refresh stage otherwise it is in verification / unknown state too long
     await expect.poll(async () => {
+      await page
+        .locator('[data-testid$="/qa"]')
+        .getByRole('button')
+        .nth(1)
+        .click();
+    
       await page.getByRole('dialog').getByRole('button', { name: 'Refresh' }).click();
-
-      const row = page
-        .locator('div')
-        .filter({ hasText: `kubrix-a${prefix}-kubrixbot-app-kargo-project` });
-
-      const stageIcon = row.locator('path').nth(1);
-      const healthIcon = row.locator('path').nth(2);
-
-      // If not there yet, keep polling
-      if ((await stageIcon.count()) === 0 || (await healthIcon.count()) === 0) {
-        return false;
-      }
-
-      try {
-        await stageIcon.hover({ timeout: 1000 });
-      } catch {
-        return false;
-      }
+      await page.getByRole('button', { name: 'Close' }).click();
+    
       const readyVisible = await page
-        .getByRole('tooltip', { name: 'Stage Status: Ready Freight' })
+        .locator('[data-testid$="/qa"]')
+        .getByText('Ready')
         .isVisible();
-      
-      try {
-         await healthIcon.hover({ timeout: 1000 });
-      } catch {
-        return false;
-      }
+    
       const healthyVisible = await page
-        .getByRole('tooltip', { name: 'Health Status: Healthy' })
+        .locator('[data-testid$="/qa"]')
+        .getByText('Healthy')
         .isVisible();
-
+    
       return readyVisible && healthyVisible;
-    }, { timeout: 60_000, intervals: [2_000] }).toBe(true);
+    }, {
+      timeout: 60_000,
+      intervals: [2_000],
+    }).toBe(true);
   });
 
   test('Kargo GitOps Promotion - Promote Changes to Prod', async ({ page }) => {
@@ -847,43 +792,32 @@ test.describe("Kargo GitOps Promotion - Promote Changes", () => {
     await page.getByRole('button', { name: 'Promote' }).click();
     await expect(page.getByLabel('Promotion').getByRole('rowgroup')).toContainText('Succeeded', { timeout: 30_000 });
     await page.getByRole('button', { name: 'Close' }).click();
-    await page.locator('[data-testid$="/prod"]').getByRole('button').nth(1).click();
     // refresh stage otherwise it is in verification / unknown state too long
     await expect.poll(async () => {
+      await page
+        .locator('[data-testid$="/prod"]')
+        .getByRole('button')
+        .nth(1)
+        .click();
+    
       await page.getByRole('dialog').getByRole('button', { name: 'Refresh' }).click();
-
-      const row = page
-        .locator('div')
-        .filter({ hasText: `kubrix-a${prefix}-kubrixbot-app-kargo-project` });
-
-      const stageIcon = row.locator('path').nth(1);
-      const healthIcon = row.locator('path').nth(2);
-
-      // If not there yet, keep polling
-      if ((await stageIcon.count()) === 0 || (await healthIcon.count()) === 0) {
-        return false;
-      }
-
-      try {
-        await stageIcon.hover({ timeout: 1000 });
-      } catch {
-        return false;
-      }
+      await page.getByRole('button', { name: 'Close' }).click();
+    
       const readyVisible = await page
-        .getByRole('tooltip', { name: 'Stage Status: Ready Freight' })
+        .locator('[data-testid$="/prod"]')
+        .getByText('Ready')
         .isVisible();
-      
-      try {
-         await healthIcon.hover({ timeout: 1000 });
-      } catch {
-        return false;
-      }
+    
       const healthyVisible = await page
-        .getByRole('tooltip', { name: 'Health Status: Healthy' })
+        .locator('[data-testid$="/prod"]')
+        .getByText('Healthy')
         .isVisible();
-
+    
       return readyVisible && healthyVisible;
-    }, { timeout: 60_000, intervals: [2_000] }).toBe(true);
+    }, {
+      timeout: 60_000,
+      intervals: [2_000],
+    }).toBe(true);
   });
 });
 
