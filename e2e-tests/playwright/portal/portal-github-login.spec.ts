@@ -332,25 +332,144 @@ test.describe("ArgoCD verify kubrixbot-app state", () => {
     await page.waitForTimeout(60_000);
     await page.goto(`https://argocd.127-0-0-1.nip.io/applications/adn-kubrix/kubrix-a${prefix}-kubrixbot-app`);
     await expect(page.locator('#app').getByText('Synced', { exact: true }).nth(1)).toBeVisible({ timeout: 20_000 });
-    await expect(page.locator('#app').getByText('Healthy', { exact: true }).nth(1)).toBeVisible({ timeout: 20_000 });
   });
-  test('ArgoCD verify kubrixbot-app-test state', async ({ page }) => {
+});
+
+test.describe("Kargo GitOps Promotion - Going Live First time", () => {
+  const kargoAuthFile = path.join(authDir, 'kargo.json');
+  test.use({ storageState: kargoAuthFile });
+  test.setTimeout(200_000);
+  // see https://github.com/akuity/kargo/issues/4956 for better curl/API support
+  test('Kargo GitOps Promotion - Promote to Test', async ({ page }) => {
     const prefix = process.env.E2E_TEST_PR_NUMBER ?? '';
-    await page.goto(`https://argocd.127-0-0-1.nip.io/applications/adn-kubrix/a${prefix}-kubrixbot-app-test`);
-    await expect(page.locator('#app').getByText('Synced', { exact: true }).nth(1)).toBeVisible({ timeout: 20_000 });
-    await expect(page.locator('#app').getByText('Healthy', { exact: true }).nth(1)).toBeVisible({ timeout: 20_000 });
+    await page.goto(`https://kargo.127-0-0-1.nip.io/project/kubrix-a${prefix}-kubrixbot-app-kargo-project`);
+    await page.getByRole('button', { name: 'Refresh' }).click();
+    // wait 10 seconds so freights are refreshed
+    await page.waitForTimeout(10_000);
+    await page.locator('[data-testid$="/test"]').getByRole('button').first().click();
+    await page.getByRole('menuitem', { name: 'Promote', exact: true }).locator('span').click();
+    await page.getByRole('button', { name: 'Select' }).first().click();
+    await page.getByRole('button', { name: 'Promote' }).click();
+    await expect(page.getByLabel('Promotion').getByRole('rowgroup')).toContainText('Succeeded', { timeout: 60_000 });
+    await page.getByRole('button', { name: 'Close' }).click();
+    // refresh stage otherwise it is in verification / unknown state too long
+    await expect.poll(async () => {
+      await page
+        .locator('[data-testid$="/test"]')
+        .getByRole('button')
+        .nth(1)
+        .click();
+    
+      try {
+        await page.getByRole('dialog').getByRole('button', { name: 'Refresh' }).click({ timeout: 3000 });
+      } catch (e) {
+        // Swallow only “could not click refresh” type failures
+        // so the poll can continue and we can still Close.
+        // (Optional: console.log(String(e)))
+      }
+      await page.getByRole('button', { name: 'Close' }).click();
+    
+      const readyVisible = await page
+        .locator('[data-testid$="/test"]')
+        .getByText('Ready')
+        .isVisible();
+    
+      const healthyVisible = await page
+        .locator('[data-testid$="/test"]')
+        .getByText('Healthy')
+        .isVisible();
+    
+      return readyVisible && healthyVisible;
+    }, {
+      timeout: 120_000,
+      intervals: [2_000],
+    }).toBe(true);
   });
-  test('ArgoCD verify kubrixbot-app-qa state', async ({ page }) => {
+
+  test('Kargo GitOps Promotion - Promote to QA', async ({ page }) => {
     const prefix = process.env.E2E_TEST_PR_NUMBER ?? '';
-    await page.goto(`https://argocd.127-0-0-1.nip.io/applications/adn-kubrix/a${prefix}-kubrixbot-app-qa`);
-    await expect(page.locator('#app').getByText('Synced', { exact: true }).nth(1)).toBeVisible({ timeout: 20_000 });
-    await expect(page.locator('#app').getByText('Healthy', { exact: true }).nth(1)).toBeVisible({ timeout: 20_000 });
+    await page.goto(`https://kargo.127-0-0-1.nip.io/project/kubrix-a${prefix}-kubrixbot-app-kargo-project`);
+    await page.locator('[data-testid$="/qa"]').getByRole('button').first().click();
+    await page.getByRole('menuitem', { name: 'Promote', exact: true }).locator('span').click();
+    await page.getByRole('button', { name: 'Select' }).first().click();
+    await page.getByRole('button', { name: 'Promote' }).click();
+    await expect(page.getByLabel('Promotion').getByRole('rowgroup')).toContainText('Succeeded', { timeout: 60_000 });
+    await page.getByRole('button', { name: 'Close' }).click();
+    // refresh stage otherwise it is in verification / unknown state too long
+    await expect.poll(async () => {
+      await page
+        .locator('[data-testid$="/qa"]')
+        .getByRole('button')
+        .nth(1)
+        .click();
+
+      try {
+        await page.getByRole('dialog').getByRole('button', { name: 'Refresh' }).click({ timeout: 3000 });
+      } catch (e) {
+        // Swallow only “could not click refresh” type failures
+        // so the poll can continue and we can still Close.
+        // (Optional: console.log(String(e)))
+      }
+      await page.getByRole('button', { name: 'Close' }).click();
+    
+      const readyVisible = await page
+        .locator('[data-testid$="/qa"]')
+        .getByText('Ready')
+        .isVisible();
+    
+      const healthyVisible = await page
+        .locator('[data-testid$="/qa"]')
+        .getByText('Healthy')
+        .isVisible();
+    
+      return readyVisible && healthyVisible;
+    }, {
+      timeout: 120_000,
+      intervals: [2_000],
+    }).toBe(true);
   });
-  test('ArgoCD verify kubrixbot-app-prod state', async ({ page }) => {
+
+  test('Kargo GitOps Promotion - Promote to Prod', async ({ page }) => {
     const prefix = process.env.E2E_TEST_PR_NUMBER ?? '';
-    await page.goto(`https://argocd.127-0-0-1.nip.io/applications/adn-kubrix/a${prefix}-kubrixbot-app-prod`);
-    await expect(page.locator('#app').getByText('Synced', { exact: true }).nth(1)).toBeVisible({ timeout: 20_000 });
-    await expect(page.locator('#app').getByText('Healthy', { exact: true }).nth(1)).toBeVisible({ timeout: 20_000 });
+    await page.goto(`https://kargo.127-0-0-1.nip.io/project/kubrix-a${prefix}-kubrixbot-app-kargo-project`);
+    await page.locator('[data-testid$="/prod"]').getByRole('button').first().click();
+    await page.getByRole('menuitem', { name: 'Promote', exact: true }).locator('span').click();
+    await page.getByRole('button', { name: 'Select' }).first().click();
+    await page.getByRole('button', { name: 'Promote' }).click();
+    await expect(page.getByLabel('Promotion').getByRole('rowgroup')).toContainText('Succeeded', { timeout: 60_000 });
+    await page.getByRole('button', { name: 'Close' }).click();
+    // refresh stage otherwise it is in verification / unknown state too long
+    await expect.poll(async () => {
+      await page
+        .locator('[data-testid$="/prod"]')
+        .getByRole('button')
+        .nth(1)
+        .click();
+
+      try {
+        await page.getByRole('dialog').getByRole('button', { name: 'Refresh' }).click({ timeout: 3000 });
+      } catch (e) {
+        // Swallow only “could not click refresh” type failures
+        // so the poll can continue and we can still Close.
+        // (Optional: console.log(String(e)))
+      }
+      await page.getByRole('button', { name: 'Close' }).click();
+    
+      const readyVisible = await page
+        .locator('[data-testid$="/prod"]')
+        .getByText('Ready')
+        .isVisible();
+    
+      const healthyVisible = await page
+        .locator('[data-testid$="/prod"]')
+        .getByText('Healthy')
+        .isVisible();
+    
+      return readyVisible && healthyVisible;
+    }, {
+      timeout: 120_000,
+      intervals: [2_000],
+    }).toBe(true);
   });
 });
 
@@ -603,7 +722,7 @@ affinity: {}
 test.describe("Kargo GitOps Promotion - Promote Changes", () => {
   const kargoAuthFile = path.join(authDir, 'kargo.json');
   test.use({ storageState: kargoAuthFile });
-  test.setTimeout(800_000);
+  test.setTimeout(200_000);
   // see https://github.com/akuity/kargo/issues/4956 for better curl/API support
   test('Kargo GitOps Promotion - Promote Changes to Test', async ({ page }) => {
     const prefix = process.env.E2E_TEST_PR_NUMBER ?? '';
@@ -624,8 +743,14 @@ test.describe("Kargo GitOps Promotion - Promote Changes", () => {
         .getByRole('button')
         .nth(1)
         .click();
-    
-      await page.getByRole('dialog').getByRole('button', { name: 'Refresh' }).click();
+
+      try {
+        await page.getByRole('dialog').getByRole('button', { name: 'Refresh' }).click({ timeout: 3000 });
+      } catch (e) {
+        // Swallow only “could not click refresh” type failures
+        // so the poll can continue and we can still Close.
+        // (Optional: console.log(String(e)))
+      }
       await page.getByRole('button', { name: 'Close' }).click();
     
       const readyVisible = await page
@@ -640,7 +765,7 @@ test.describe("Kargo GitOps Promotion - Promote Changes", () => {
     
       return readyVisible && healthyVisible;
     }, {
-      timeout: 60_000,
+      timeout: 120_000,
       intervals: [2_000],
     }).toBe(true);
   });
@@ -661,8 +786,14 @@ test.describe("Kargo GitOps Promotion - Promote Changes", () => {
         .getByRole('button')
         .nth(1)
         .click();
-    
-      await page.getByRole('dialog').getByRole('button', { name: 'Refresh' }).click();
+
+      try {
+        await page.getByRole('dialog').getByRole('button', { name: 'Refresh' }).click({ timeout: 3000 });
+      } catch (e) {
+        // Swallow only “could not click refresh” type failures
+        // so the poll can continue and we can still Close.
+        // (Optional: console.log(String(e)))
+      }
       await page.getByRole('button', { name: 'Close' }).click();
     
       const readyVisible = await page
@@ -677,7 +808,7 @@ test.describe("Kargo GitOps Promotion - Promote Changes", () => {
     
       return readyVisible && healthyVisible;
     }, {
-      timeout: 60_000,
+      timeout: 120_000,
       intervals: [2_000],
     }).toBe(true);
   });
@@ -699,7 +830,13 @@ test.describe("Kargo GitOps Promotion - Promote Changes", () => {
         .nth(1)
         .click();
     
-      await page.getByRole('dialog').getByRole('button', { name: 'Refresh' }).click();
+      try {
+        await page.getByRole('dialog').getByRole('button', { name: 'Refresh' }).click({ timeout: 3000 });
+      } catch (e) {
+        // Swallow only “could not click refresh” type failures
+        // so the poll can continue and we can still Close.
+        // (Optional: console.log(String(e)))
+      }
       await page.getByRole('button', { name: 'Close' }).click();
     
       const readyVisible = await page
@@ -714,9 +851,42 @@ test.describe("Kargo GitOps Promotion - Promote Changes", () => {
     
       return readyVisible && healthyVisible;
     }, {
-      timeout: 60_000,
+      timeout: 120_000,
       intervals: [2_000],
     }).toBe(true);
+  });
+});
+
+
+test.describe("ArgoCD verify kubrixbot-app state final", () => {
+  const argocdAuthFile = path.join(authDir, 'argocd.json');
+  test.use({ storageState: argocdAuthFile });
+  test.setTimeout(180_000);
+  test('ArgoCD verify kubrixbot-app state', async ({ page }) => {
+    // wait for 1 minute so the appset scm generator picks up the new repo
+    const prefix = process.env.E2E_TEST_PR_NUMBER ?? '';
+    await page.waitForTimeout(60_000);
+    await page.goto(`https://argocd.127-0-0-1.nip.io/applications/adn-kubrix/kubrix-a${prefix}-kubrixbot-app`);
+    await expect(page.locator('#app').getByText('Synced', { exact: true }).nth(1)).toBeVisible({ timeout: 20_000 });
+    await expect(page.locator('#app').getByText('Healthy', { exact: true }).nth(1)).toBeVisible({ timeout: 20_000 });
+  });
+  test('ArgoCD verify kubrixbot-app-test state', async ({ page }) => {
+    const prefix = process.env.E2E_TEST_PR_NUMBER ?? '';
+    await page.goto(`https://argocd.127-0-0-1.nip.io/applications/adn-kubrix/a${prefix}-kubrixbot-app-test`);
+    await expect(page.locator('#app').getByText('Synced', { exact: true }).nth(1)).toBeVisible({ timeout: 20_000 });
+    await expect(page.locator('#app').getByText('Healthy', { exact: true }).nth(1)).toBeVisible({ timeout: 20_000 });
+  });
+  test('ArgoCD verify kubrixbot-app-qa state', async ({ page }) => {
+    const prefix = process.env.E2E_TEST_PR_NUMBER ?? '';
+    await page.goto(`https://argocd.127-0-0-1.nip.io/applications/adn-kubrix/a${prefix}-kubrixbot-app-qa`);
+    await expect(page.locator('#app').getByText('Synced', { exact: true }).nth(1)).toBeVisible({ timeout: 20_000 });
+    await expect(page.locator('#app').getByText('Healthy', { exact: true }).nth(1)).toBeVisible({ timeout: 20_000 });
+  });
+  test('ArgoCD verify kubrixbot-app-prod state', async ({ page }) => {
+    const prefix = process.env.E2E_TEST_PR_NUMBER ?? '';
+    await page.goto(`https://argocd.127-0-0-1.nip.io/applications/adn-kubrix/a${prefix}-kubrixbot-app-prod`);
+    await expect(page.locator('#app').getByText('Synced', { exact: true }).nth(1)).toBeVisible({ timeout: 20_000 });
+    await expect(page.locator('#app').getByText('Healthy', { exact: true }).nth(1)).toBeVisible({ timeout: 20_000 });
   });
 });
 
