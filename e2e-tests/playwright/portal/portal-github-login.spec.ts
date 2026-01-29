@@ -786,7 +786,7 @@ test.describe("Kargo GitOps Promotion - Promote Changes", () => {
   test('Kargo GitOps Promotion - Promote Changes to Prod', async ({ page }) => {
     const prefix = process.env.E2E_TEST_PR_NUMBER ?? '';
     await page.goto(`https://kargo.127-0-0-1.nip.io/project/kubrix-a${prefix}-kubrixbot-app-kargo-project`);
-    await page.locator('[data-testid$="/prod"]').getByRole('button').fnth(1).click();
+    await page.locator('[data-testid$="/prod"]').getByRole('button').nth(1).click();
     await page.getByRole('menuitem', { name: 'Promote', exact: true }).locator('span').click();
     await page.getByRole('button', { name: 'Select' }).first().click();
     await page.getByRole('button', { name: 'Promote' }).click();
