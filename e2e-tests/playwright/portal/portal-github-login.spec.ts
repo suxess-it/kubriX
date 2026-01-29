@@ -346,7 +346,7 @@ test.describe("Kargo GitOps Promotion - Going Live First time", () => {
     await page.getByRole('button', { name: 'Refresh' }).click();
     // wait 10 seconds so freights are refreshed
     await page.waitForTimeout(10_000);
-    await page.locator('[data-testid$="/test"]').getByRole('button').nth(1).click();
+    await page.locator('[data-testid$="/test"]').getByRole('button').nth(0).click();
     await page.getByRole('menuitem', { name: 'Promote', exact: true }).locator('span').click();
     await page.getByRole('button', { name: 'Select' }).first().click();
     await page.getByRole('button', { name: 'Promote' }).click();
@@ -357,7 +357,7 @@ test.describe("Kargo GitOps Promotion - Going Live First time", () => {
       await page
         .locator('[data-testid$="/test"]')
         .getByRole('button')
-        .nth(2)
+        .nth(1)
         .click();
     
       await page.getByRole('dialog').getByRole('button', { name: 'Refresh' }).click();
@@ -383,7 +383,7 @@ test.describe("Kargo GitOps Promotion - Going Live First time", () => {
   test('Kargo GitOps Promotion - Promote to QA', async ({ page }) => {
     const prefix = process.env.E2E_TEST_PR_NUMBER ?? '';
     await page.goto(`https://kargo.127-0-0-1.nip.io/project/kubrix-a${prefix}-kubrixbot-app-kargo-project`);
-    await page.locator('[data-testid$="/qa"]').getByRole('button').nth(1).click();
+    await page.locator('[data-testid$="/qa"]').getByRole('button').nth(0).click();
     await page.getByRole('menuitem', { name: 'Promote', exact: true }).locator('span').click();
     await page.getByRole('button', { name: 'Select' }).first().click();
     await page.getByRole('button', { name: 'Promote' }).click();
@@ -394,7 +394,7 @@ test.describe("Kargo GitOps Promotion - Going Live First time", () => {
       await page
         .locator('[data-testid$="/qa"]')
         .getByRole('button')
-        .nth(2)
+        .nth(1)
         .click();
     
       await page.getByRole('dialog').getByRole('button', { name: 'Refresh' }).click();
@@ -420,7 +420,7 @@ test.describe("Kargo GitOps Promotion - Going Live First time", () => {
   test('Kargo GitOps Promotion - Promote to Prod', async ({ page }) => {
     const prefix = process.env.E2E_TEST_PR_NUMBER ?? '';
     await page.goto(`https://kargo.127-0-0-1.nip.io/project/kubrix-a${prefix}-kubrixbot-app-kargo-project`);
-    await page.locator('[data-testid$="/prod"]').getByRole('button').nth(1).click();
+    await page.locator('[data-testid$="/prod"]').getByRole('button').nth(0).click();
     await page.getByRole('menuitem', { name: 'Promote', exact: true }).locator('span').click();
     await page.getByRole('button', { name: 'Select' }).first().click();
     await page.getByRole('button', { name: 'Promote' }).click();
@@ -431,7 +431,7 @@ test.describe("Kargo GitOps Promotion - Going Live First time", () => {
       await page
         .locator('[data-testid$="/prod"]')
         .getByRole('button')
-        .nth(2)
+        .nth(1)
         .click();
     
       await page.getByRole('dialog').getByRole('button', { name: 'Refresh' }).click();
