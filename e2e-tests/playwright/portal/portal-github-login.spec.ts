@@ -346,18 +346,18 @@ test.describe("Kargo GitOps Promotion - Going Live First time", () => {
     await page.getByRole('button', { name: 'Refresh' }).click();
     // wait 10 seconds so freights are refreshed
     await page.waitForTimeout(10_000);
-    await page.locator('[data-testid$="/test"]').getByRole('button').first().click();
+    await page.locator('[data-testid$="/test"]').getByRole('button').nth(0).click();
     await page.getByRole('menuitem', { name: 'Promote', exact: true }).locator('span').click();
     await page.getByRole('button', { name: 'Select' }).first().click();
     await page.getByRole('button', { name: 'Promote' }).click();
-    await expect(page.getByLabel('Promotion').getByRole('rowgroup')).toContainText('Succeeded', { timeout: 60_000 });
+    await expect(page.getByLabel('Promotion', { exact: true }).getByRole('rowgroup')).toContainText('Succeeded', { timeout: 60_000 });
     await page.getByRole('button', { name: 'Close' }).click();
     // refresh stage otherwise it is in verification / unknown state too long
     await expect.poll(async () => {
       await page
         .locator('[data-testid$="/test"]')
         .getByRole('button')
-        .nth(1)
+        .nth(2)
         .click();
     
       try {
@@ -389,18 +389,18 @@ test.describe("Kargo GitOps Promotion - Going Live First time", () => {
   test('Kargo GitOps Promotion - Promote to QA', async ({ page }) => {
     const prefix = process.env.E2E_TEST_PR_NUMBER ?? '';
     await page.goto(`https://kargo.127-0-0-1.nip.io/project/kubrix-a${prefix}-kubrixbot-app-kargo-project`);
-    await page.locator('[data-testid$="/qa"]').getByRole('button').first().click();
+    await page.locator('[data-testid$="/qa"]').getByRole('button').nth(0).click();
     await page.getByRole('menuitem', { name: 'Promote', exact: true }).locator('span').click();
     await page.getByRole('button', { name: 'Select' }).first().click();
     await page.getByRole('button', { name: 'Promote' }).click();
-    await expect(page.getByLabel('Promotion').getByRole('rowgroup')).toContainText('Succeeded', { timeout: 60_000 });
+    await expect(page.getByLabel('Promotion', { exact: true }).getByRole('rowgroup')).toContainText('Succeeded', { timeout: 60_000 });
     await page.getByRole('button', { name: 'Close' }).click();
     // refresh stage otherwise it is in verification / unknown state too long
     await expect.poll(async () => {
       await page
         .locator('[data-testid$="/qa"]')
         .getByRole('button')
-        .nth(1)
+        .nth(2)
         .click();
 
       try {
@@ -432,18 +432,18 @@ test.describe("Kargo GitOps Promotion - Going Live First time", () => {
   test('Kargo GitOps Promotion - Promote to Prod', async ({ page }) => {
     const prefix = process.env.E2E_TEST_PR_NUMBER ?? '';
     await page.goto(`https://kargo.127-0-0-1.nip.io/project/kubrix-a${prefix}-kubrixbot-app-kargo-project`);
-    await page.locator('[data-testid$="/prod"]').getByRole('button').first().click();
+    await page.locator('[data-testid$="/prod"]').getByRole('button').nth(0).click();
     await page.getByRole('menuitem', { name: 'Promote', exact: true }).locator('span').click();
     await page.getByRole('button', { name: 'Select' }).first().click();
     await page.getByRole('button', { name: 'Promote' }).click();
-    await expect(page.getByLabel('Promotion').getByRole('rowgroup')).toContainText('Succeeded', { timeout: 60_000 });
+    await expect(page.getByLabel('Promotion', { exact: true }).getByRole('rowgroup')).toContainText('Succeeded', { timeout: 60_000 });
     await page.getByRole('button', { name: 'Close' }).click();
     // refresh stage otherwise it is in verification / unknown state too long
     await expect.poll(async () => {
       await page
         .locator('[data-testid$="/prod"]')
         .getByRole('button')
-        .nth(1)
+        .nth(2)
         .click();
 
       try {
@@ -730,18 +730,18 @@ test.describe("Kargo GitOps Promotion - Promote Changes", () => {
     await page.getByRole('button', { name: 'Refresh' }).click();
     // wait 10 seconds so freights are refreshed
     await page.waitForTimeout(10_000);
-    await page.locator('[data-testid$="/test"]').getByRole('button').first().click();
+    await page.locator('[data-testid$="/test"]').getByRole('button').nth(1).click();
     await page.getByRole('menuitem', { name: 'Promote', exact: true }).locator('span').click();
     await page.getByRole('button', { name: 'Select' }).first().click();
     await page.getByRole('button', { name: 'Promote' }).click();
-    await expect(page.getByLabel('Promotion').getByRole('rowgroup')).toContainText('Succeeded', { timeout: 30_000 });
+    await expect(page.getByLabel('Promotion', { exact: true }).getByRole('rowgroup')).toContainText('Succeeded', { timeout: 30_000 });
     await page.getByRole('button', { name: 'Close' }).click();
     // refresh stage otherwise it is in verification / unknown state too long
     await expect.poll(async () => {
       await page
         .locator('[data-testid$="/test"]')
         .getByRole('button')
-        .nth(1)
+        .nth(2)
         .click();
 
       try {
@@ -773,18 +773,18 @@ test.describe("Kargo GitOps Promotion - Promote Changes", () => {
   test('Kargo GitOps Promotion - Promote Changes to QA', async ({ page }) => {
     const prefix = process.env.E2E_TEST_PR_NUMBER ?? '';
     await page.goto(`https://kargo.127-0-0-1.nip.io/project/kubrix-a${prefix}-kubrixbot-app-kargo-project`);
-    await page.locator('[data-testid$="/qa"]').getByRole('button').first().click();
+    await page.locator('[data-testid$="/qa"]').getByRole('button').nth(1).click();
     await page.getByRole('menuitem', { name: 'Promote', exact: true }).locator('span').click();
     await page.getByRole('button', { name: 'Select' }).first().click();
     await page.getByRole('button', { name: 'Promote' }).click();
-    await expect(page.getByLabel('Promotion').getByRole('rowgroup')).toContainText('Succeeded', { timeout: 30_000 });
+    await expect(page.getByLabel('Promotion', { exact: true }).getByRole('rowgroup')).toContainText('Succeeded', { timeout: 30_000 });
     await page.getByRole('button', { name: 'Close' }).click();
     // refresh stage otherwise it is in verification / unknown state too long
     await expect.poll(async () => {
       await page
         .locator('[data-testid$="/qa"]')
         .getByRole('button')
-        .nth(1)
+        .nth(2)
         .click();
 
       try {
@@ -816,18 +816,18 @@ test.describe("Kargo GitOps Promotion - Promote Changes", () => {
   test('Kargo GitOps Promotion - Promote Changes to Prod', async ({ page }) => {
     const prefix = process.env.E2E_TEST_PR_NUMBER ?? '';
     await page.goto(`https://kargo.127-0-0-1.nip.io/project/kubrix-a${prefix}-kubrixbot-app-kargo-project`);
-    await page.locator('[data-testid$="/prod"]').getByRole('button').first().click();
+    await page.locator('[data-testid$="/prod"]').getByRole('button').nth(1).click();
     await page.getByRole('menuitem', { name: 'Promote', exact: true }).locator('span').click();
     await page.getByRole('button', { name: 'Select' }).first().click();
     await page.getByRole('button', { name: 'Promote' }).click();
-    await expect(page.getByLabel('Promotion').getByRole('rowgroup')).toContainText('Succeeded', { timeout: 30_000 });
+    await expect(page.getByLabel('Promotion', { exact: true }).getByRole('rowgroup')).toContainText('Succeeded', { timeout: 30_000 });
     await page.getByRole('button', { name: 'Close' }).click();
     // refresh stage otherwise it is in verification / unknown state too long
     await expect.poll(async () => {
       await page
         .locator('[data-testid$="/prod"]')
         .getByRole('button')
-        .nth(1)
+        .nth(2)
         .click();
     
       try {
