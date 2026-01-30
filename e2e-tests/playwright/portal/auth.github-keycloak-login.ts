@@ -38,7 +38,9 @@ const authDir = path.join(__dirname, '../.auth');
 fs.mkdirSync(authDir, { recursive: true });
 
 const ghAuthFile = path.join(authDir, 'github.json');
-setup('Github Login', async ({ page }) => {
+setup('Github Login', async ({ page }, testInfo) => {
+  // extend timeout because when TOTP retry needs to be made
+  testInfo.setTimeout(3 * 60 * 1000);
   // Perform authentication steps
   await page.goto('https://github.com/login');
   await page.getByLabel('Username or email address').fill(process.env.E2E_TEST_GH_USERNAME!);
@@ -46,10 +48,39 @@ setup('Github Login', async ({ page }) => {
   await page.getByRole('button', { name: 'Sign in', exact: true }).click();
   
   // fill in tfa
-  await page.getByPlaceholder("XXXXXX").waitFor({ state: 'visible' });
-  const code = await getFreshTotp(totp);
-  await page.getByPlaceholder("XXXXXX").fill(code);
-  await page.waitForURL('https://github.com/');
+  const TOTP_INPUT = page.getByPlaceholder("XXXXXX");
+  const ERROR_TEXT = 'The two-factor code you entered has already been used or is too old to be used.';
+
+  const MAX_RETRIES = 3;
+
+  for (let attempt = 1; attempt <= MAX_RETRIES; attempt++) {
+    await TOTP_INPUT.waitFor({ state: 'visible' });
+
+    const code = await getFreshTotp(totp);
+    await TOTP_INPUT.fill(code);
+
+    const result = await Promise.race([
+      page.waitForURL('https://github.com/', { timeout: 15000 }).then(() => 'success'),
+      page.getByText(ERROR_TEXT).waitFor({ timeout: 15000 }).then(() => 'error'),
+    ]);
+
+    if (result === 'success') {
+      console.log('Login successful');
+      break;
+    }
+
+    if (attempt === MAX_RETRIES) {
+      throw new Error('TOTP failed too many times');
+    }
+
+    console.warn(`TOTP expired, retrying in 60 seconds (attempt ${attempt})`);
+
+    // Clear input before retry
+    await TOTP_INPUT.fill('');
+
+    // Wait for next TOTP window
+    await page.waitForTimeout(60_000);
+  }
 
   // Login in Backstage
   await page.goto("https://backstage.127-0-0-1.nip.io/");
@@ -62,8 +93,10 @@ setup('Github Login', async ({ page }) => {
   const authorize = popup.getByRole('button', { name: 'Authorize kubriX-demo' });
 
   await Promise.race([
-    // Case A: button shows up -> click it
-    authorize.waitFor({ state: 'visible', timeout: 5000 }).then(() => authorize.click()),
+  authorize
+    .waitFor({ state: 'visible', timeout: 5000 })
+    .then(() => authorize.click())
+    .then(() => popup.waitForEvent('close')), 
 
     // Case B: popup closes automatically -> do nothing
     popup.waitForEvent('close')
@@ -74,7 +107,7 @@ setup('Github Login', async ({ page }) => {
 
   await expect(page.getByRole('heading', { name: 'Welcome to kubriX' })).toBeVisible();
   await page.context().storageState({ path: ghAuthFile });
-});
+})
 
 const keycloakDemoadminAuthFile = path.join(authDir, 'keycloak-demoadmin.json');
 setup('Keycloak Demoadmin Login', async ({ page }) => {

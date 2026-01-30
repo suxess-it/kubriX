@@ -176,7 +176,6 @@ EOF
   echo "rendering values templates ..."
   gomplate --context kubriX=bootstrap/customer-config.yaml --input-dir platform-apps --include *.yaml.tmpl --output-map='platform-apps/{{ .in | strings.ReplaceAll ".yaml.tmpl" ".yaml" }}'
   gomplate --context kubriX=bootstrap/customer-config.yaml --input-dir backstage-resources --include *.yaml.tmpl --output-map='backstage-resources/{{ .in | strings.ReplaceAll ".yaml.tmpl" ".yaml" }}'
-  gomplate --context kubriX=bootstrap/customer-config.yaml --input-dir docs --include *.md.tmpl --output-map='docs/{{ .in | strings.ReplaceAll ".md.tmpl" ".md" }}'
 
   # exclude apps from KUBRIX_APP_EXCLUDE
   if [[ -n "${KUBRIX_APP_EXCLUDE:-}" ]]; then
@@ -675,18 +674,18 @@ if [[ "${KUBRIX_CLUSTER_TYPE}" == "kind" ]] ; then
   kubectl get configmap coredns -n kube-system -o yaml |  awk '
 /ready/ {
     print;
-    print "        rewrite name keycloak.127-0-0-1.nip.io sx-ingress-nginx-controller.ingress-nginx.svc.cluster.local";
-    print "        rewrite name grafana.127-0-0-1.nip.io sx-ingress-nginx-controller.ingress-nginx.svc.cluster.local";
-    print "        rewrite name argocd.127-0-0-1.nip.io sx-ingress-nginx-controller.ingress-nginx.svc.cluster.local";
-    print "        rewrite name vault.127-0-0-1.nip.io sx-ingress-nginx-controller.ingress-nginx.svc.cluster.local";
-    print "        rewrite name backstage.127-0-0-1.nip.io sx-ingress-nginx-controller.ingress-nginx.svc.cluster.local";
-    print "        rewrite name kargo.127-0-0-1.nip.io sx-ingress-nginx-controller.ingress-nginx.svc.cluster.local";
+    print "        rewrite stop {"
+    print "          name regex ^(.*)\\.127-0-0-1\\.nip\\.io\\.?$ sx-ingress-nginx-controller.ingress-nginx.svc.cluster.local"
+    print "          answer auto"
+    print "        }"
     next
 }
 { print }
 ' > coredns-configmap.yaml
+  cat coredns-configmap.yaml
   kubectl apply -f coredns-configmap.yaml
   kubectl rollout restart deployment coredns -n kube-system
+  kubectl -n kube-system rollout status deployment/coredns
   rm coredns-configmap.yaml
 
   # create install root CA to trust certs

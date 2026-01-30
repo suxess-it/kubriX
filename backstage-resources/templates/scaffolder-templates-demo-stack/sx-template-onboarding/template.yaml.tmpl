@@ -21,6 +21,11 @@ spec:
           description: Select your team name for onboarding
           ui:field: MyGroupsPicker
           ui:options: {}
+        teamOrg:
+          title: Team Organization
+          type: string
+          description: Which organization should the team belong to
+          default: {{ .kubriX.gitRepoOrg }}
 
     - title: Choose a location
       required:
@@ -76,27 +81,27 @@ spec:
           # new team stanza for team ${{`{{ steps['catalogFetch'].output.entity.metadata.name }}`}}
             - name: ${{`{{ steps['catalogFetch'].output.entity.metadata.name }}`}}
               sourceRepos:
-                - 'https://github.com/{{ .kubriX.gitRepoOrg }}/${{`{{ steps['catalogFetch'].output.entity.metadata.name }}`}}-*'
+                - 'https://github.com/${{`{{ parameters.teamOrg }}`}}/${{`{{ steps['catalogFetch'].output.entity.metadata.name }}`}}-*'
               clusterResourceWhitelist:
                 - group: ""
                   kind: Namespace
                 - group: kargo.akuity.io
                   kind: Project
               appOfAppsRepo:
-                repoURL: https://github.com/{{ .kubriX.gitRepoOrg }}/${{`{{ steps['catalogFetch'].output.entity.metadata.name }}`}}-apps
-                path: demo-apps
+                repoURL: https://github.com/${{`{{ parameters.teamOrg }}`}}/${{`{{ steps['catalogFetch'].output.entity.metadata.name }}`}}-apps
+                path: .
                 revision: main
               multiStageKargoAppSet:
                 github:
-                  organization: {{ .kubriX.gitRepoOrg }}
+                  organization: ${{`{{ parameters.teamOrg }}`}}
 
     - id: publish
       name: Publish new Version of team configuration
       action: publish:github:pull-request
       input:
         repoUrl: github.com?repo={{ .kubriX.gitRepoName }}&owner={{ .kubriX.gitRepoOrg }}
-        description: Onboarding team ${{`{{ steps['catalogFetch'].output.entity.metadata.name }}`}}
         title: Onboarding team ${{`{{ steps['catalogFetch'].output.entity.metadata.name }}`}}
+        description: Onboarding team ${{`{{ steps['catalogFetch'].output.entity.metadata.name }}`}}
         targetPath: platform-apps/charts/team-onboarding
         branchName: onboarding-team-${{`{{ steps['catalogFetch'].output.entity.metadata.name }}`}}
         targetBranchName: main
@@ -110,7 +115,7 @@ spec:
       action: fetch:template
       input:
         url: ./skeleton
-        targetPath: ./team-apps-of-apps
+        targetPath: .
         copyWithoutTemplating: []
         values:
           description: ${{`{{ parameters.description }}`}}
@@ -124,8 +129,7 @@ spec:
       name: create team-apps Github repo
       action: publish:github
       input:
-        sourcePath: ./team-apps-of-apps
-        repoUrl: github.com?repo=${{`{{ steps['catalogFetch'].output.entity.metadata.name }}`}}-apps&owner={{ .kubriX.gitRepoOrg }}
+        repoUrl: github.com?repo=${{`{{ steps['catalogFetch'].output.entity.metadata.name }}`}}-apps&owner=${{`{{ parameters.teamOrg }}`}}
         description: team-apps repo for ${{`{{ steps['catalogFetch'].output.entity.metadata.name }}`}}
         token: ${{`{{ secrets.USER_OAUTH_TOKEN }}`}}
         gitAuthorName: ${{`{{ user.entity.metadata.name }}`}}

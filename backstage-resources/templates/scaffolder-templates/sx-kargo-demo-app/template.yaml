@@ -6,8 +6,7 @@ metadata:
   description: Run Multi-Stage App provisioned with ArgoCD and promoted with Kargo
   tags:
     - kargo
-    - metalstack
-    - kubex
+    - kubrix
     - example
 spec:
   owner: group:kubrix
@@ -53,6 +52,7 @@ spec:
               - github.com
             allowedOwners:
               - suxess-it
+              - kubrix-demo
             requestUserCredentials:
               secretsKey: USER_OAUTH_TOKEN
               additionalScopes:
@@ -61,7 +61,7 @@ spec:
                   - user
             allowedRepos:
               - will-be-autocomplete-by-template
-
+  
   steps:
     - id: catalogFetch
       name: Fetch component details
@@ -82,21 +82,15 @@ spec:
           description: ${{ parameters.description }}
           fqdn: ${{ parameters.fqdn }}
           team: ${{ steps['catalogFetch'].output.entity.metadata.name }}
-          #team: ${{ parameters.owner }}
-          # multi owner
-          #repoUrl: ${{ parameters.repoUrl }}
-          #repoUrlRepo: ${{ (parameters.repoUrl | parseRepoUrl)["repo"] }}
-          #repoUrlowner: ${{ (parameters.repoUrl | parseRepoUrl)["owner"] }}
           repoUrlRepo: ${{ steps['catalogFetch'].output.entity.metadata.name }}-${{ parameters.application_id }}
-          repoUrlowner: suxess-it
+          repoUrlowner: ${{ (parameters.repoUrl | parseRepoUrl).owner }}
     - id: publish-gitopsreposetup
       name: Publish Template Gitops Repo
       action: publish:github
       input:
         sourcePath: ./kargo-gitops
         description: This is Kargo Demo App ${{ parameters.application_id }}
-        #repoUrl: ${{ parameters.repoUrl }}
-        repoUrl: github.com?repo=${{ steps['catalogFetch'].output.entity.metadata.name }}-${{ parameters.application_id }}&owner=suxess-it
+        repoUrl: github.com?repo=${{ steps['catalogFetch'].output.entity.metadata.name }}-${{ parameters.application_id }}&owner=${{ (parameters.repoUrl | parseRepoUrl).owner }}
         token: ${{ secrets.USER_OAUTH_TOKEN }}
         gitAuthorName: ${{ user.entity.metadata.name }}
         gitAuthorEmail: ${{ user.entity.spec.profile.email }}
