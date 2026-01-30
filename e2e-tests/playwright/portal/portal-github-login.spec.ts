@@ -357,7 +357,7 @@ test.describe("Kargo GitOps Promotion - Going Live First time", () => {
       await page
         .locator('[data-testid$="/test"]')
         .getByRole('button')
-        .nth(1)
+        .nth(2)
         .click();
     
       try {
@@ -400,7 +400,7 @@ test.describe("Kargo GitOps Promotion - Going Live First time", () => {
       await page
         .locator('[data-testid$="/qa"]')
         .getByRole('button')
-        .nth(1)
+        .nth(2)
         .click();
 
       try {
@@ -443,7 +443,7 @@ test.describe("Kargo GitOps Promotion - Going Live First time", () => {
       await page
         .locator('[data-testid$="/prod"]')
         .getByRole('button')
-        .nth(1)
+        .nth(2)
         .click();
 
       try {
