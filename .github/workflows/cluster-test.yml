@@ -358,6 +358,15 @@ jobs:
       - uses: kubeshop/setup-testkube@v1
         with:
           version: 2.4.4
+
+      - uses: suzuki-shunsuke/lock-action@latest
+        with:
+          mode: lock
+          key: default
+          # Try to acquire a lock every 10 seconds until acquiring a lock or 60 seconds pass.
+          max_wait_seconds: "600"
+          wait_interval_seconds: "10"
+          post_unlock: "true"
     
       - name: testkube tests
         env:
@@ -396,6 +405,12 @@ jobs:
             --variable E2E_TEST_PR_NUMBER=${E2E_TEST_PR_NUMBER} \
             -f -d
 
+      - name: Release a lock
+        uses: suzuki-shunsuke/lock-action@latest
+        with:
+          mode: unlock
+          key: default
+      
       - name: Password protect Playwright traces
         if: always()
         shell: bash
