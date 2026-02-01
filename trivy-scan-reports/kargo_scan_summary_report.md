@@ -1,5 +1,5 @@
 
-<h3>Target <code>ghcr.io/akuity/kargo:v1.9.0 (wolfi 20230201)</code></h3>
+<h3>Target <code>ghcr.io/akuity/kargo:v1.9.1 (wolfi 20230201)</code></h3>
 <h4>No Vulnerabilities found</h4>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>usr/bin/helm</code></h3>
