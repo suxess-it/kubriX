@@ -150,6 +150,7 @@ argo-cd:
       annotations:
         nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
         nginx.ingress.kubernetes.io/backend-protocol: "HTTP"
+        nginx.ingress.kubernetes.io/proxy-body-size: "30m"
         cert-manager.io/cluster-issuer: default-issuer
       ingressClassName: nginx
       extraTls:
