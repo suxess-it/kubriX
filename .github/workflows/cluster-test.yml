@@ -326,7 +326,10 @@ jobs:
           ls -l
           INITIAL_ARGOCD_PASSWORD=$( kubectl get secret -n argocd argocd-initial-admin-secret -o=jsonpath={'.data.password'} | base64 -d )
           ./argocd login argocd.127-0-0-1.nip.io --grpc-web --insecure --username admin --password ${INITIAL_ARGOCD_PASSWORD}
-          for app in ${argocd_apps} ; do echo "$app diff" ; ./argocd app diff $app --grpc-web --server-side-diff-max-batch-kb 64 ; done         
+          for app in ${argocd_apps} ; do 
+            echo "$app diff" ;
+            kubectl exec "$(kubectl get pod -n argocd -l app.kubernetes.io/name=argocd-application-controller -o jsonpath='{.items[0].metadata.name}')" -n argocd -- argocd app diff "$app" --core ;
+          done         
           
       - name: kubectl get applications
         if: always()
