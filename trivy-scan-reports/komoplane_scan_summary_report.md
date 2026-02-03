@@ -2,7 +2,7 @@
 <h3>Trivy Returned Empty Report</h3>
 
 <h3>Target <code>komodorio/komoplane:0.1.6 (alpine 3.21.2)</code></h3>
-<h4>Vulnerabilities (8)</h4>
+<h4>Vulnerabilities (10)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -33,6 +33,13 @@
         <td>3.3.6-r0</td>
     </tr>
     <tr>
+        <td><code>libcrypto3</code></td>
+        <td>CVE-2025-69421</td>
+        <td>HIGH</td>
+        <td>3.3.2-r4</td>
+        <td>3.3.6-r0</td>
+    </tr>
+    <tr>
         <td><code>libssl3</code></td>
         <td>CVE-2025-15467</td>
         <td>CRITICAL</td>
@@ -49,6 +56,13 @@
     <tr>
         <td><code>libssl3</code></td>
         <td>CVE-2025-69419</td>
+        <td>HIGH</td>
+        <td>3.3.2-r4</td>
+        <td>3.3.6-r0</td>
+    </tr>
+    <tr>
+        <td><code>libssl3</code></td>
+        <td>CVE-2025-69421</td>
         <td>HIGH</td>
         <td>3.3.2-r4</td>
         <td>3.3.6-r0</td>

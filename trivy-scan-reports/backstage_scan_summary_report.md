@@ -27,7 +27,7 @@
 <h4>No Misconfigurations found</h4>
 
 <h3>Target <code>ghcr.io/suxess-it/sx-backstage:v1.43.3 (wolfi 20230201)</code></h3>
-<h4>Vulnerabilities (3)</h4>
+<h4>Vulnerabilities (10)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -42,6 +42,55 @@
         <td>HIGH</td>
         <td>2.42-r4</td>
         <td>2.42-r6</td>
+    </tr>
+    <tr>
+        <td><code>nodejs-22</code></td>
+        <td>CVE-2026-21636</td>
+        <td>CRITICAL</td>
+        <td>22.21.1-r1</td>
+        <td>22.22.0r0</td>
+    </tr>
+    <tr>
+        <td><code>nodejs-22</code></td>
+        <td>CVE-2025-55130</td>
+        <td>HIGH</td>
+        <td>22.21.1-r1</td>
+        <td>22.22.0r0</td>
+    </tr>
+    <tr>
+        <td><code>nodejs-22</code></td>
+        <td>CVE-2025-55131</td>
+        <td>HIGH</td>
+        <td>22.21.1-r1</td>
+        <td>22.22.0r0</td>
+    </tr>
+    <tr>
+        <td><code>nodejs-22</code></td>
+        <td>CVE-2025-59464</td>
+        <td>HIGH</td>
+        <td>22.21.1-r1</td>
+        <td>22.22.0r0</td>
+    </tr>
+    <tr>
+        <td><code>nodejs-22</code></td>
+        <td>CVE-2025-59465</td>
+        <td>HIGH</td>
+        <td>22.21.1-r1</td>
+        <td>22.22.0r0</td>
+    </tr>
+    <tr>
+        <td><code>nodejs-22</code></td>
+        <td>CVE-2025-59466</td>
+        <td>HIGH</td>
+        <td>22.21.1-r1</td>
+        <td>22.22.0r0</td>
+    </tr>
+    <tr>
+        <td><code>nodejs-22</code></td>
+        <td>CVE-2026-21637</td>
+        <td>HIGH</td>
+        <td>22.21.1-r1</td>
+        <td>22.22.0r0</td>
     </tr>
     <tr>
         <td><code>npm</code></td>
@@ -60,7 +109,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>Node.js</code></h3>
-<h4>Vulnerabilities (108)</h4>
+<h4>Vulnerabilities (109)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -215,6 +264,13 @@
         <td>HIGH</td>
         <td>0.9.0</td>
         <td>0.11.2, 0.12.3</td>
+    </tr>
+    <tr>
+        <td><code>@backstage/plugin-techdocs-node</code></td>
+        <td>CVE-2026-25153</td>
+        <td>HIGH</td>
+        <td>1.13.8</td>
+        <td>1.14.1, 1.13.11</td>
     </tr>
     <tr>
         <td><code>@modelcontextprotocol/sdk</code></td>

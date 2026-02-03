@@ -1,57 +1,6 @@
 
-<h3>Target <code>registry.k8s.io/ingress-nginx/controller:v1.14.2@sha256:fb3e5c0bdff6a498dd5192b11a09ace0739baa9fe6ba519bf5b22425871ce490 (alpine 3.23.2)</code></h3>
-<h4>Vulnerabilities (6)</h4>
-<table>
-    <tr>
-        <th>Package</th>
-        <th>ID</th>
-        <th>Severity</th>
-        <th>Installed Version</th>
-        <th>Fixed Version</th>
-    </tr>
-    <tr>
-        <td><code>libcrypto3</code></td>
-        <td>CVE-2025-15467</td>
-        <td>CRITICAL</td>
-        <td>3.5.4-r0</td>
-        <td>3.5.5-r0</td>
-    </tr>
-    <tr>
-        <td><code>libcrypto3</code></td>
-        <td>CVE-2025-69419</td>
-        <td>HIGH</td>
-        <td>3.5.4-r0</td>
-        <td>3.5.5-r0</td>
-    </tr>
-    <tr>
-        <td><code>libssl3</code></td>
-        <td>CVE-2025-15467</td>
-        <td>CRITICAL</td>
-        <td>3.5.4-r0</td>
-        <td>3.5.5-r0</td>
-    </tr>
-    <tr>
-        <td><code>libssl3</code></td>
-        <td>CVE-2025-69419</td>
-        <td>HIGH</td>
-        <td>3.5.4-r0</td>
-        <td>3.5.5-r0</td>
-    </tr>
-    <tr>
-        <td><code>openssl</code></td>
-        <td>CVE-2025-15467</td>
-        <td>CRITICAL</td>
-        <td>3.5.4-r0</td>
-        <td>3.5.5-r0</td>
-    </tr>
-    <tr>
-        <td><code>openssl</code></td>
-        <td>CVE-2025-69419</td>
-        <td>HIGH</td>
-        <td>3.5.4-r0</td>
-        <td>3.5.5-r0</td>
-    </tr>
-</table>
+<h3>Target <code>registry.k8s.io/ingress-nginx/controller:v1.14.3@sha256:82917be97c0939f6ada1717bb39aa7e66c229d6cfb10dcfc8f1bd42f9efe0f81 (alpine 3.23.2)</code></h3>
+<h4>No Vulnerabilities found</h4>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>dbg</code></h3>
 <h4>No Vulnerabilities found</h4>
@@ -63,7 +12,7 @@
 <h4>No Vulnerabilities found</h4>
 <h4>No Misconfigurations found</h4>
 
-<h3>Target <code>registry.k8s.io/ingress-nginx/kube-webhook-certgen:v1.6.6@sha256:b28e0688be7d1e15fe385053bd4c6b631bc7708c9220632de1b95867e5e7da11 (debian 12.13)</code></h3>
+<h3>Target <code>registry.k8s.io/ingress-nginx/kube-webhook-certgen:v1.6.7@sha256:7c74a715af2c94cb734785b4d3ea1357b4f02b88e1e123c622a9cb68b62f669c (debian 12.13)</code></h3>
 <h4>No Vulnerabilities found</h4>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>kube-webhook-certgen</code></h3>

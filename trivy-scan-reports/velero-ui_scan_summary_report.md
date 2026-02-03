@@ -1,6 +1,6 @@
 
 <h3>Target <code>docker.io/dserio83/velero-api:0.3.1 (debian 12.11)</code></h3>
-<h4>Vulnerabilities (51)</h4>
+<h4>Vulnerabilities (53)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -241,6 +241,13 @@
         <td>3.0.18-1~deb12u2</td>
     </tr>
     <tr>
+        <td><code>libssl3</code></td>
+        <td>CVE-2025-69421</td>
+        <td>HIGH</td>
+        <td>3.0.16-1~deb12u1</td>
+        <td>3.0.18-1~deb12u2</td>
+    </tr>
+    <tr>
         <td><code>openssl</code></td>
         <td>CVE-2025-15467</td>
         <td>CRITICAL</td>
@@ -250,6 +257,13 @@
     <tr>
         <td><code>openssl</code></td>
         <td>CVE-2025-69419</td>
+        <td>HIGH</td>
+        <td>3.0.16-1~deb12u1</td>
+        <td>3.0.18-1~deb12u2</td>
+    </tr>
+    <tr>
+        <td><code>openssl</code></td>
+        <td>CVE-2025-69421</td>
         <td>HIGH</td>
         <td>3.0.16-1~deb12u1</td>
         <td>3.0.18-1~deb12u2</td>
@@ -676,7 +690,7 @@
 <h4>No Misconfigurations found</h4>
 
 <h3>Target <code>docker.io/dserio83/velero-watchdog:0.1.8 (debian 12.10)</code></h3>
-<h4>Vulnerabilities (31)</h4>
+<h4>Vulnerabilities (33)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -861,6 +875,13 @@
         <td>3.0.18-1~deb12u2</td>
     </tr>
     <tr>
+        <td><code>libssl3</code></td>
+        <td>CVE-2025-69421</td>
+        <td>HIGH</td>
+        <td>3.0.15-1~deb12u1</td>
+        <td>3.0.18-1~deb12u2</td>
+    </tr>
+    <tr>
         <td><code>openssl</code></td>
         <td>CVE-2025-15467</td>
         <td>CRITICAL</td>
@@ -870,6 +891,13 @@
     <tr>
         <td><code>openssl</code></td>
         <td>CVE-2025-69419</td>
+        <td>HIGH</td>
+        <td>3.0.15-1~deb12u1</td>
+        <td>3.0.18-1~deb12u2</td>
+    </tr>
+    <tr>
+        <td><code>openssl</code></td>
+        <td>CVE-2025-69421</td>
         <td>HIGH</td>
         <td>3.0.15-1~deb12u1</td>
         <td>3.0.18-1~deb12u2</td>

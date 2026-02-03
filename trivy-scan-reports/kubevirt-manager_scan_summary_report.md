@@ -1,6 +1,6 @@
 
 <h3>Target <code>kubevirtmanager/kubevirt-manager:1.5.0 (alpine 3.20.5)</code></h3>
-<h4>Vulnerabilities (22)</h4>
+<h4>Vulnerabilities (24)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -26,6 +26,13 @@
     <tr>
         <td><code>libcrypto3</code></td>
         <td>CVE-2025-69419</td>
+        <td>HIGH</td>
+        <td>3.3.2-r1</td>
+        <td>3.3.6-r0</td>
+    </tr>
+    <tr>
+        <td><code>libcrypto3</code></td>
+        <td>CVE-2025-69421</td>
         <td>HIGH</td>
         <td>3.3.2-r1</td>
         <td>3.3.6-r0</td>
@@ -89,6 +96,13 @@
     <tr>
         <td><code>libssl3</code></td>
         <td>CVE-2025-69419</td>
+        <td>HIGH</td>
+        <td>3.3.2-r1</td>
+        <td>3.3.6-r0</td>
+    </tr>
+    <tr>
+        <td><code>libssl3</code></td>
+        <td>CVE-2025-69421</td>
         <td>HIGH</td>
         <td>3.3.2-r1</td>
         <td>3.3.6-r0</td>

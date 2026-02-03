@@ -1,6 +1,6 @@
 
 <h3>Target <code>ghcr.io/suxess-it/kubectl:1.33.4 (debian 12.11)</code></h3>
-<h4>Vulnerabilities (32)</h4>
+<h4>Vulnerabilities (34)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -171,6 +171,13 @@
         <td>3.0.18-1~deb12u2</td>
     </tr>
     <tr>
+        <td><code>libssl3</code></td>
+        <td>CVE-2025-69421</td>
+        <td>HIGH</td>
+        <td>3.0.17-1~deb12u2</td>
+        <td>3.0.18-1~deb12u2</td>
+    </tr>
+    <tr>
         <td><code>libxml2</code></td>
         <td>CVE-2025-49794</td>
         <td>CRITICAL</td>
@@ -201,6 +208,13 @@
     <tr>
         <td><code>openssl</code></td>
         <td>CVE-2025-69419</td>
+        <td>HIGH</td>
+        <td>3.0.17-1~deb12u2</td>
+        <td>3.0.18-1~deb12u2</td>
+    </tr>
+    <tr>
+        <td><code>openssl</code></td>
+        <td>CVE-2025-69421</td>
         <td>HIGH</td>
         <td>3.0.17-1~deb12u2</td>
         <td>3.0.18-1~deb12u2</td>
