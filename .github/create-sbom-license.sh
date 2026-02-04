@@ -6,8 +6,8 @@ set -euo pipefail
 #
 # Requirements: jq, trivy, (optional) docker/nerdctl access to pull images
 
-IMAGE_LIST_FILE="${IMAGE_LIST_FILE:-../images-list/image-list.json}"
-OUT_DIR="${OUT_DIR:-../images-list/trivy-sbom-out}"
+IMAGE_LIST_FILE="${IMAGE_LIST_FILE:-../image-list/image-list.json}"
+OUT_DIR="${OUT_DIR:-../image-list/trivy-sbom-out}"
 SBOM_DIR="${SBOM_DIR:-$OUT_DIR/sboms}"
 LICENSE_DIR="${LICENSE_DIR:-$OUT_DIR/licenses}"
 REPORT_TSV="${REPORT_TSV:-$OUT_DIR/licenses-per-image.tsv}"
