@@ -16,7 +16,7 @@ mkdir -p "$SBOM_DIR" "$LICENSE_DIR"
 : > "$REPORT_TSV"
 
 # install trivy
-curl -L https://github.com/aquasecurity/trivy/releases/download/v0.69.0/trivy_0.69.0_Linux-32bit.tar.gz -o trivy.tar.g
+curl -L https://github.com/aquasecurity/trivy/releases/download/v0.69.0/trivy_0.69.0_Linux-32bit.tar.gz -o trivy.tar.gz
 tar -xzvf trivy.tar.gz trivy
 chmod u+x trivy
 
