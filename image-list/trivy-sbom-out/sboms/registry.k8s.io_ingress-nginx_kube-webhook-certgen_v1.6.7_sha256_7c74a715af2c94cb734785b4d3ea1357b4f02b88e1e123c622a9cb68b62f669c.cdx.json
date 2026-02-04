@@ -2,10 +2,10 @@
   "$schema": "http://cyclonedx.org/schema/bom-1.6.schema.json",
   "bomFormat": "CycloneDX",
   "specVersion": "1.6",
-  "serialNumber": "urn:uuid:eecaae8c-98b8-4e15-92fc-8c07d435d0b5",
+  "serialNumber": "urn:uuid:ce106695-7240-49eb-b96c-c7391430f2bc",
   "version": 1,
   "metadata": {
-    "timestamp": "2026-02-04T21:29:47+00:00",
+    "timestamp": "2026-02-04T22:38:37+00:00",
     "tools": {
       "components": [
         {
@@ -103,22 +103,7 @@
   },
   "components": [
     {
-      "bom-ref": "3c5a69c9-94ce-487d-9ce4-e9d99c9e4212",
-      "type": "application",
-      "name": "kube-webhook-certgen",
-      "properties": [
-        {
-          "name": "aquasecurity:trivy:Class",
-          "value": "lang-pkgs"
-        },
-        {
-          "name": "aquasecurity:trivy:Type",
-          "value": "gobinary"
-        }
-      ]
-    },
-    {
-      "bom-ref": "40ba463a-8347-4c40-b178-ab81f85dc50e",
+      "bom-ref": "29198db1-22f2-4811-987f-b83c062f60c6",
       "type": "operating-system",
       "name": "debian",
       "version": "12.13",
@@ -130,6 +115,21 @@
         {
           "name": "aquasecurity:trivy:Type",
           "value": "debian"
+        }
+      ]
+    },
+    {
+      "bom-ref": "519793d2-1e4e-4018-9a36-28c41df14346",
+      "type": "application",
+      "name": "kube-webhook-certgen",
+      "properties": [
+        {
+          "name": "aquasecurity:trivy:Class",
+          "value": "lang-pkgs"
+        },
+        {
+          "name": "aquasecurity:trivy:Type",
+          "value": "gobinary"
         }
       ]
     },
@@ -1636,7 +1636,16 @@
   ],
   "dependencies": [
     {
-      "ref": "3c5a69c9-94ce-487d-9ce4-e9d99c9e4212",
+      "ref": "29198db1-22f2-4811-987f-b83c062f60c6",
+      "dependsOn": [
+        "pkg:deb/debian/base-files@12.4%2Bdeb12u13?arch=amd64&distro=debian-12.13",
+        "pkg:deb/debian/media-types@10.0.0?arch=all&distro=debian-12.13",
+        "pkg:deb/debian/netbase@6.4?arch=all&distro=debian-12.13",
+        "pkg:deb/debian/tzdata@2025b-0%2Bdeb12u2?arch=all&distro=debian-12.13"
+      ]
+    },
+    {
+      "ref": "519793d2-1e4e-4018-9a36-28c41df14346",
       "dependsOn": [
         "pkg:golang/github.com/davecgh/go-spew@v1.1.2-0.20180830191138-d8f796af33cc",
         "pkg:golang/github.com/emicklei/go-restful/v3@v3.13.0",
@@ -1691,15 +1700,6 @@
         "pkg:golang/sigs.k8s.io/structured-merge-diff/v6@v6.3.1",
         "pkg:golang/sigs.k8s.io/yaml@v1.6.0",
         "pkg:golang/stdlib@v1.25.6"
-      ]
-    },
-    {
-      "ref": "40ba463a-8347-4c40-b178-ab81f85dc50e",
-      "dependsOn": [
-        "pkg:deb/debian/base-files@12.4%2Bdeb12u13?arch=amd64&distro=debian-12.13",
-        "pkg:deb/debian/media-types@10.0.0?arch=all&distro=debian-12.13",
-        "pkg:deb/debian/netbase@6.4?arch=all&distro=debian-12.13",
-        "pkg:deb/debian/tzdata@2025b-0%2Bdeb12u2?arch=all&distro=debian-12.13"
       ]
     },
     {
@@ -1933,8 +1933,8 @@
     {
       "ref": "pkg:oci/kube-webhook-certgen@sha256%3A7c74a715af2c94cb734785b4d3ea1357b4f02b88e1e123c622a9cb68b62f669c?arch=amd64&repository_url=registry.k8s.io%2Fingress-nginx%2Fkube-webhook-certgen",
       "dependsOn": [
-        "3c5a69c9-94ce-487d-9ce4-e9d99c9e4212",
-        "40ba463a-8347-4c40-b178-ab81f85dc50e"
+        "29198db1-22f2-4811-987f-b83c062f60c6",
+        "519793d2-1e4e-4018-9a36-28c41df14346"
       ]
     }
   ],

@@ -2,10 +2,10 @@
   "$schema": "http://cyclonedx.org/schema/bom-1.6.schema.json",
   "bomFormat": "CycloneDX",
   "specVersion": "1.6",
-  "serialNumber": "urn:uuid:649791bf-acab-4561-b337-5a462473efdc",
+  "serialNumber": "urn:uuid:073f8055-0a3a-476a-b477-7bb8c9200d62",
   "version": 1,
   "metadata": {
-    "timestamp": "2026-02-04T21:29:39+00:00",
+    "timestamp": "2026-02-04T22:38:28+00:00",
     "tools": {
       "components": [
         {
@@ -59,7 +59,22 @@
   },
   "components": [
     {
-      "bom-ref": "0cf61441-b681-463c-a841-1cb6c482318f",
+      "bom-ref": "ac8cddf8-bf94-49d0-90ba-7a7b62adcf75",
+      "type": "application",
+      "name": "ko-app/reports-controller",
+      "properties": [
+        {
+          "name": "aquasecurity:trivy:Class",
+          "value": "lang-pkgs"
+        },
+        {
+          "name": "aquasecurity:trivy:Type",
+          "value": "gobinary"
+        }
+      ]
+    },
+    {
+      "bom-ref": "b8f15f7b-143f-4a57-bc49-c15416cc12eb",
       "type": "operating-system",
       "name": "alpine",
       "version": "3.24.0_alpha20260127",
@@ -71,21 +86,6 @@
         {
           "name": "aquasecurity:trivy:Type",
           "value": "alpine"
-        }
-      ]
-    },
-    {
-      "bom-ref": "ca88d8d7-b9e6-41e5-8a37-80973c4d962b",
-      "type": "application",
-      "name": "ko-app/reports-controller",
-      "properties": [
-        {
-          "name": "aquasecurity:trivy:Class",
-          "value": "lang-pkgs"
-        },
-        {
-          "name": "aquasecurity:trivy:Type",
-          "value": "gobinary"
         }
       ]
     },
@@ -8592,7 +8592,7 @@
   ],
   "dependencies": [
     {
-      "ref": "ca88d8d7-b9e6-41e5-8a37-80973c4d962b",
+      "ref": "ac8cddf8-bf94-49d0-90ba-7a7b62adcf75",
       "dependsOn": [
         "pkg:golang/github.com/kyverno/kyverno@v1.17.0%2Bdirty"
       ]
@@ -10300,8 +10300,8 @@
     {
       "ref": "pkg:oci/reports-controller@sha256%3Ad5d0358e658b9d1b90954bf666f457bd6af5db36209e9ba792c182f212a11c0b?arch=amd64&repository_url=reg.kyverno.io%2Fkyverno%2Freports-controller",
       "dependsOn": [
-        "0cf61441-b681-463c-a841-1cb6c482318f",
-        "ca88d8d7-b9e6-41e5-8a37-80973c4d962b"
+        "ac8cddf8-bf94-49d0-90ba-7a7b62adcf75",
+        "b8f15f7b-143f-4a57-bc49-c15416cc12eb"
       ]
     }
   ],

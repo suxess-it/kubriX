@@ -2,10 +2,10 @@
   "$schema": "http://cyclonedx.org/schema/bom-1.6.schema.json",
   "bomFormat": "CycloneDX",
   "specVersion": "1.6",
-  "serialNumber": "urn:uuid:0f2c7f2b-30f6-4ee8-a3aa-7bbe49a11d54",
+  "serialNumber": "urn:uuid:fcfde932-cae5-4b72-9a4f-dba991b0e5b8",
   "version": 1,
   "metadata": {
-    "timestamp": "2026-02-04T21:29:05+00:00",
+    "timestamp": "2026-02-04T22:37:44+00:00",
     "tools": {
       "components": [
         {
@@ -139,22 +139,7 @@
   },
   "components": [
     {
-      "bom-ref": "17df6599-0847-483b-a1cb-bb8c2b6d9a82",
-      "type": "application",
-      "name": "usr/bin/mc",
-      "properties": [
-        {
-          "name": "aquasecurity:trivy:Class",
-          "value": "lang-pkgs"
-        },
-        {
-          "name": "aquasecurity:trivy:Type",
-          "value": "gobinary"
-        }
-      ]
-    },
-    {
-      "bom-ref": "211fe162-2780-46d1-931f-3963f60460d4",
+      "bom-ref": "af7cc33f-f465-41b6-98d8-fce5b7bd72ab",
       "type": "operating-system",
       "name": "redhat",
       "version": "9.5",
@@ -166,6 +151,21 @@
         {
           "name": "aquasecurity:trivy:Type",
           "value": "redhat"
+        }
+      ]
+    },
+    {
+      "bom-ref": "e281de71-0834-466f-a796-4d6ffdbcce68",
+      "type": "application",
+      "name": "usr/bin/mc",
+      "properties": [
+        {
+          "name": "aquasecurity:trivy:Class",
+          "value": "lang-pkgs"
+        },
+        {
+          "name": "aquasecurity:trivy:Type",
+          "value": "gobinary"
         }
       ]
     },
@@ -3795,17 +3795,17 @@
   ],
   "dependencies": [
     {
-      "ref": "17df6599-0847-483b-a1cb-bb8c2b6d9a82",
-      "dependsOn": [
-        "pkg:golang/github.com/minio/mc"
-      ]
-    },
-    {
-      "ref": "211fe162-2780-46d1-931f-3963f60460d4",
+      "ref": "af7cc33f-f465-41b6-98d8-fce5b7bd72ab",
       "dependsOn": [
         "pkg:rpm/redhat/coreutils-single@8.32-36.el9?arch=x86_64&distro=redhat-9.5",
         "pkg:rpm/redhat/gpg-pubkey@5a6340b3-6229229e?arch=None&distro=redhat-9.5",
         "pkg:rpm/redhat/gpg-pubkey@fd431d51-4ae0493b?arch=None&distro=redhat-9.5"
+      ]
+    },
+    {
+      "ref": "e281de71-0834-466f-a796-4d6ffdbcce68",
+      "dependsOn": [
+        "pkg:golang/github.com/minio/mc"
       ]
     },
     {
@@ -4311,8 +4311,8 @@
     {
       "ref": "pkg:oci/mc@sha256%3A993e8c454a7ec632923f7e3e61adf1d473261da6354cefd641aedd33a2cfe112?arch=amd64&repository_url=quay.io%2Fminio%2Fmc",
       "dependsOn": [
-        "17df6599-0847-483b-a1cb-bb8c2b6d9a82",
-        "211fe162-2780-46d1-931f-3963f60460d4"
+        "af7cc33f-f465-41b6-98d8-fce5b7bd72ab",
+        "e281de71-0834-466f-a796-4d6ffdbcce68"
       ]
     },
     {

@@ -2,10 +2,10 @@
   "$schema": "http://cyclonedx.org/schema/bom-1.6.schema.json",
   "bomFormat": "CycloneDX",
   "specVersion": "1.6",
-  "serialNumber": "urn:uuid:e34226a0-4aaf-4b6b-8309-f4805cebbc0c",
+  "serialNumber": "urn:uuid:0aa52225-4e46-4a13-8b48-cbe89055e0eb",
   "version": 1,
   "metadata": {
-    "timestamp": "2026-02-04T21:26:32+00:00",
+    "timestamp": "2026-02-04T22:34:35+00:00",
     "tools": {
       "components": [
         {
@@ -151,61 +151,7 @@
   },
   "components": [
     {
-      "bom-ref": "03cd2637-12e6-46b9-9346-ebdf9d1453db",
-      "type": "operating-system",
-      "name": "redhat",
-      "version": "9.7",
-      "properties": [
-        {
-          "name": "aquasecurity:trivy:Class",
-          "value": "os-pkgs"
-        },
-        {
-          "name": "aquasecurity:trivy:Type",
-          "value": "redhat"
-        }
-      ]
-    },
-    {
-      "bom-ref": "533a44a0-32a1-4200-8401-a94c36fab04c",
-      "type": "library",
-      "name": "my-test-package",
-      "version": "1.0",
-      "hashes": [
-        {
-          "alg": "SHA-1",
-          "content": "6d7a67c18613be4b255812111b4619de979abc28"
-        }
-      ],
-      "licenses": [
-        {
-          "license": {
-            "name": "UNKNOWN"
-          }
-        }
-      ],
-      "purl": "pkg:pypi/my-test-package@1.0",
-      "properties": [
-        {
-          "name": "aquasecurity:trivy:FilePath",
-          "value": "app/.venv/lib/python3.12/site-packages/pkg_resources/tests/data/my-test-package_unpacked-egg/my_test_package-1.0-py3.7.egg/EGG-INFO/PKG-INFO"
-        },
-        {
-          "name": "aquasecurity:trivy:LayerDiffID",
-          "value": "sha256:f813ed6205e906cdf88f59cdef642c2fcac1c1b8fae7a51218649b9744a1b169"
-        },
-        {
-          "name": "aquasecurity:trivy:LayerDigest",
-          "value": "sha256:427a5af0b25ed050ef5fcb52b83ec02438fff3f7f16437f85f44305f61d9903d"
-        },
-        {
-          "name": "aquasecurity:trivy:PkgType",
-          "value": "python-pkg"
-        }
-      ]
-    },
-    {
-      "bom-ref": "8dc2cffc-02ac-4cf5-b750-1a3b3f345674",
+      "bom-ref": "6b820bea-da0e-42ab-a477-62e63e8834e0",
       "type": "library",
       "name": "my-test-package",
       "version": "1.0",
@@ -227,6 +173,60 @@
         {
           "name": "aquasecurity:trivy:FilePath",
           "value": "app/.venv/lib/python3.12/site-packages/pkg_resources/tests/data/my-test-package_zipped-egg/my_test_package-1.0-py3.7.egg"
+        },
+        {
+          "name": "aquasecurity:trivy:LayerDiffID",
+          "value": "sha256:f813ed6205e906cdf88f59cdef642c2fcac1c1b8fae7a51218649b9744a1b169"
+        },
+        {
+          "name": "aquasecurity:trivy:LayerDigest",
+          "value": "sha256:427a5af0b25ed050ef5fcb52b83ec02438fff3f7f16437f85f44305f61d9903d"
+        },
+        {
+          "name": "aquasecurity:trivy:PkgType",
+          "value": "python-pkg"
+        }
+      ]
+    },
+    {
+      "bom-ref": "8a1975a0-603c-4361-bb05-2930a20e387e",
+      "type": "operating-system",
+      "name": "redhat",
+      "version": "9.7",
+      "properties": [
+        {
+          "name": "aquasecurity:trivy:Class",
+          "value": "os-pkgs"
+        },
+        {
+          "name": "aquasecurity:trivy:Type",
+          "value": "redhat"
+        }
+      ]
+    },
+    {
+      "bom-ref": "91d3b3ba-a071-4be3-9607-02b97f601951",
+      "type": "library",
+      "name": "my-test-package",
+      "version": "1.0",
+      "hashes": [
+        {
+          "alg": "SHA-1",
+          "content": "6d7a67c18613be4b255812111b4619de979abc28"
+        }
+      ],
+      "licenses": [
+        {
+          "license": {
+            "name": "UNKNOWN"
+          }
+        }
+      ],
+      "purl": "pkg:pypi/my-test-package@1.0",
+      "properties": [
+        {
+          "name": "aquasecurity:trivy:FilePath",
+          "value": "app/.venv/lib/python3.12/site-packages/pkg_resources/tests/data/my-test-package_unpacked-egg/my_test_package-1.0-py3.7.egg/EGG-INFO/PKG-INFO"
         },
         {
           "name": "aquasecurity:trivy:LayerDiffID",
@@ -9257,7 +9257,11 @@
   ],
   "dependencies": [
     {
-      "ref": "03cd2637-12e6-46b9-9346-ebdf9d1453db",
+      "ref": "6b820bea-da0e-42ab-a477-62e63e8834e0",
+      "dependsOn": []
+    },
+    {
+      "ref": "8a1975a0-603c-4361-bb05-2930a20e387e",
       "dependsOn": [
         "pkg:rpm/redhat/alternatives@1.24-2.el9?arch=x86_64&distro=redhat-9.7",
         "pkg:rpm/redhat/gpg-pubkey@5a6340b3-6229229e?arch=None&distro=redhat-9.7",
@@ -9270,19 +9274,15 @@
       ]
     },
     {
-      "ref": "533a44a0-32a1-4200-8401-a94c36fab04c",
-      "dependsOn": []
-    },
-    {
-      "ref": "8dc2cffc-02ac-4cf5-b750-1a3b3f345674",
+      "ref": "91d3b3ba-a071-4be3-9607-02b97f601951",
       "dependsOn": []
     },
     {
       "ref": "pkg:oci/kubecost-modeling@sha256%3Aa484865da59c002a890118b34c27f2611dfa8ee29384bc2b1a65735a2a46e3e7?arch=amd64&repository_url=gcr.io%2Fkubecost1%2Fkubecost-modeling",
       "dependsOn": [
-        "03cd2637-12e6-46b9-9346-ebdf9d1453db",
-        "533a44a0-32a1-4200-8401-a94c36fab04c",
-        "8dc2cffc-02ac-4cf5-b750-1a3b3f345674",
+        "6b820bea-da0e-42ab-a477-62e63e8834e0",
+        "8a1975a0-603c-4361-bb05-2930a20e387e",
+        "91d3b3ba-a071-4be3-9607-02b97f601951",
         "pkg:pypi/annotated-types@0.7.0",
         "pkg:pypi/anyio@4.11.0",
         "pkg:pypi/apscheduler@3.11.1",

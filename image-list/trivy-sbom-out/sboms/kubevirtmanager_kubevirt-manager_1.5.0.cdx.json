@@ -2,10 +2,10 @@
   "$schema": "http://cyclonedx.org/schema/bom-1.6.schema.json",
   "bomFormat": "CycloneDX",
   "specVersion": "1.6",
-  "serialNumber": "urn:uuid:c0f00b37-6698-44ee-99ea-c09cc98a8ecb",
+  "serialNumber": "urn:uuid:66d4dd25-79c0-4c67-bcab-5409157ba9ac",
   "version": 1,
   "metadata": {
-    "timestamp": "2026-02-04T21:28:15+00:00",
+    "timestamp": "2026-02-04T22:36:49+00:00",
     "tools": {
       "components": [
         {
@@ -111,7 +111,7 @@
   },
   "components": [
     {
-      "bom-ref": "754ab100-5d96-4658-8a9b-2f98758345c0",
+      "bom-ref": "5bfa05f2-1d79-4ede-bc98-71fa83d0190d",
       "type": "application",
       "name": "usr/local/bin/kubectl",
       "properties": [
@@ -126,7 +126,7 @@
       ]
     },
     {
-      "bom-ref": "7ea4acf7-c248-4d9c-af81-84dce01139fb",
+      "bom-ref": "66b7cae0-c61a-49f3-aa35-8ff73ffdd088",
       "type": "operating-system",
       "name": "alpine",
       "version": "3.20.5",
@@ -5469,13 +5469,13 @@
   ],
   "dependencies": [
     {
-      "ref": "754ab100-5d96-4658-8a9b-2f98758345c0",
+      "ref": "5bfa05f2-1d79-4ede-bc98-71fa83d0190d",
       "dependsOn": [
         "pkg:golang/k8s.io/kubernetes"
       ]
     },
     {
-      "ref": "7ea4acf7-c248-4d9c-af81-84dce01139fb",
+      "ref": "66b7cae0-c61a-49f3-aa35-8ff73ffdd088",
       "dependsOn": [
         "pkg:apk/alpine/alpine-baselayout@3.6.5-r0?arch=x86_64&distro=3.20.5",
         "pkg:apk/alpine/alpine-keys@2.4-r1?arch=x86_64&distro=3.20.5",
@@ -6395,8 +6395,8 @@
     {
       "ref": "pkg:oci/kubevirt-manager@sha256%3A6bdb107e81b5eb7c06ca0eabdf3637868c96e8e211e8f08c675124a8357ab0c4?arch=amd64&repository_url=index.docker.io%2Fkubevirtmanager%2Fkubevirt-manager",
       "dependsOn": [
-        "754ab100-5d96-4658-8a9b-2f98758345c0",
-        "7ea4acf7-c248-4d9c-af81-84dce01139fb",
+        "5bfa05f2-1d79-4ede-bc98-71fa83d0190d",
+        "66b7cae0-c61a-49f3-aa35-8ff73ffdd088",
         "pkg:npm/%40novnc/novnc@1.5.0"
       ]
     }

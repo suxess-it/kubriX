@@ -2,10 +2,10 @@
   "$schema": "http://cyclonedx.org/schema/bom-1.6.schema.json",
   "bomFormat": "CycloneDX",
   "specVersion": "1.6",
-  "serialNumber": "urn:uuid:b3600411-603e-4d81-852e-e6ee3b7ae217",
+  "serialNumber": "urn:uuid:b8d6a767-53d2-430c-9bd1-a4b092dac1a1",
   "version": 1,
   "metadata": {
-    "timestamp": "2026-02-04T21:29:31+00:00",
+    "timestamp": "2026-02-04T22:38:17+00:00",
     "tools": {
       "components": [
         {
@@ -59,7 +59,22 @@
   },
   "components": [
     {
-      "bom-ref": "2a5688de-1b29-4641-9183-7a52cf598e87",
+      "bom-ref": "1a6e6986-11e7-44bf-902c-be14fe7aee90",
+      "type": "application",
+      "name": "ko-app/kyverno",
+      "properties": [
+        {
+          "name": "aquasecurity:trivy:Class",
+          "value": "lang-pkgs"
+        },
+        {
+          "name": "aquasecurity:trivy:Type",
+          "value": "gobinary"
+        }
+      ]
+    },
+    {
+      "bom-ref": "2210bad5-bd6e-42d7-af20-cf245ade858d",
       "type": "operating-system",
       "name": "alpine",
       "version": "3.24.0_alpha20260127",
@@ -71,21 +86,6 @@
         {
           "name": "aquasecurity:trivy:Type",
           "value": "alpine"
-        }
-      ]
-    },
-    {
-      "bom-ref": "6c1e2613-b90c-455c-8df2-04c1010af707",
-      "type": "application",
-      "name": "ko-app/kyverno",
-      "properties": [
-        {
-          "name": "aquasecurity:trivy:Class",
-          "value": "lang-pkgs"
-        },
-        {
-          "name": "aquasecurity:trivy:Type",
-          "value": "gobinary"
         }
       ]
     },
@@ -8667,7 +8667,7 @@
   ],
   "dependencies": [
     {
-      "ref": "6c1e2613-b90c-455c-8df2-04c1010af707",
+      "ref": "1a6e6986-11e7-44bf-902c-be14fe7aee90",
       "dependsOn": [
         "pkg:golang/github.com/kyverno/kyverno@v1.17.0%2Bdirty"
       ]
@@ -10390,8 +10390,8 @@
     {
       "ref": "pkg:oci/kyverno@sha256%3Aff2ca78b0703c1bcce7f22576f4e3e90d1dd17e710475dc88f3b7f10fc9f019d?arch=amd64&repository_url=reg.kyverno.io%2Fkyverno%2Fkyverno",
       "dependsOn": [
-        "2a5688de-1b29-4641-9183-7a52cf598e87",
-        "6c1e2613-b90c-455c-8df2-04c1010af707"
+        "1a6e6986-11e7-44bf-902c-be14fe7aee90",
+        "2210bad5-bd6e-42d7-af20-cf245ade858d"
       ]
     }
   ],

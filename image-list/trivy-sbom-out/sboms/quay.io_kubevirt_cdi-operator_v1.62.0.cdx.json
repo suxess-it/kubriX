@@ -2,10 +2,10 @@
   "$schema": "http://cyclonedx.org/schema/bom-1.6.schema.json",
   "bomFormat": "CycloneDX",
   "specVersion": "1.6",
-  "serialNumber": "urn:uuid:dcde2a06-4168-4e91-9b26-8549747e3d12",
+  "serialNumber": "urn:uuid:0763d64b-1874-4032-9b32-9b20fa6f8336",
   "version": 1,
   "metadata": {
-    "timestamp": "2026-02-04T21:28:54+00:00",
+    "timestamp": "2026-02-04T22:37:32+00:00",
     "tools": {
       "components": [
         {
@@ -51,7 +51,7 @@
   },
   "components": [
     {
-      "bom-ref": "1595dac2-cd6b-40ef-a70c-77181a8694ae",
+      "bom-ref": "2809ca15-efb6-44d6-ba6e-d0fb3f565576",
       "type": "library",
       "name": "stdlib",
       "version": "v1.23.6",
@@ -76,7 +76,7 @@
       ]
     },
     {
-      "bom-ref": "45a82364-b330-476a-b71e-c995501c3ad8",
+      "bom-ref": "2f5e75e3-eceb-436b-9b6e-8b26455f65de",
       "type": "application",
       "name": "usr/bin/cdi-operator",
       "properties": [
@@ -91,7 +91,7 @@
       ]
     },
     {
-      "bom-ref": "6046a7d9-dd67-4fb3-aabc-9567a1e48046",
+      "bom-ref": "ce092a35-686b-4628-a0bb-e3534c6b9db4",
       "type": "application",
       "name": "usr/bin/csv-generator",
       "properties": [
@@ -106,7 +106,7 @@
       ]
     },
     {
-      "bom-ref": "7a7cb9ae-70ba-4c0e-8d0a-97730380c21a",
+      "bom-ref": "fded5874-6ab7-4367-b559-06788b7f806b",
       "type": "library",
       "name": "stdlib",
       "version": "v1.23.6",
@@ -133,30 +133,30 @@
   ],
   "dependencies": [
     {
-      "ref": "1595dac2-cd6b-40ef-a70c-77181a8694ae",
+      "ref": "2809ca15-efb6-44d6-ba6e-d0fb3f565576",
       "dependsOn": []
     },
     {
-      "ref": "45a82364-b330-476a-b71e-c995501c3ad8",
+      "ref": "2f5e75e3-eceb-436b-9b6e-8b26455f65de",
       "dependsOn": [
-        "7a7cb9ae-70ba-4c0e-8d0a-97730380c21a"
+        "2809ca15-efb6-44d6-ba6e-d0fb3f565576"
       ]
     },
     {
-      "ref": "6046a7d9-dd67-4fb3-aabc-9567a1e48046",
+      "ref": "ce092a35-686b-4628-a0bb-e3534c6b9db4",
       "dependsOn": [
-        "1595dac2-cd6b-40ef-a70c-77181a8694ae"
+        "fded5874-6ab7-4367-b559-06788b7f806b"
       ]
     },
     {
-      "ref": "7a7cb9ae-70ba-4c0e-8d0a-97730380c21a",
+      "ref": "fded5874-6ab7-4367-b559-06788b7f806b",
       "dependsOn": []
     },
     {
       "ref": "pkg:oci/cdi-operator@sha256%3A21fe82706f57bc5378ba17be79d6831b223605ecf1ea6f43f533b1bccae68c50?arch=amd64&repository_url=quay.io%2Fkubevirt%2Fcdi-operator",
       "dependsOn": [
-        "45a82364-b330-476a-b71e-c995501c3ad8",
-        "6046a7d9-dd67-4fb3-aabc-9567a1e48046"
+        "2f5e75e3-eceb-436b-9b6e-8b26455f65de",
+        "ce092a35-686b-4628-a0bb-e3534c6b9db4"
       ]
     }
   ],

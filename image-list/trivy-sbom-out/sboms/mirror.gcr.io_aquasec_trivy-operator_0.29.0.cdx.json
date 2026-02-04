@@ -2,10 +2,10 @@
   "$schema": "http://cyclonedx.org/schema/bom-1.6.schema.json",
   "bomFormat": "CycloneDX",
   "specVersion": "1.6",
-  "serialNumber": "urn:uuid:4eadf287-321b-4a80-aede-81cf08967a5b",
+  "serialNumber": "urn:uuid:5c30739f-d862-49af-8311-7e1ffa09c972",
   "version": 1,
   "metadata": {
-    "timestamp": "2026-02-04T21:28:18+00:00",
+    "timestamp": "2026-02-04T22:36:53+00:00",
     "tools": {
       "components": [
         {
@@ -95,7 +95,22 @@
   },
   "components": [
     {
-      "bom-ref": "8835ecd6-fdd7-4c1c-984d-5afb78780395",
+      "bom-ref": "4a1207b9-9f24-406c-9f6c-67f333b2bb6b",
+      "type": "application",
+      "name": "usr/local/bin/trivy-operator",
+      "properties": [
+        {
+          "name": "aquasecurity:trivy:Class",
+          "value": "lang-pkgs"
+        },
+        {
+          "name": "aquasecurity:trivy:Type",
+          "value": "gobinary"
+        }
+      ]
+    },
+    {
+      "bom-ref": "7e4a56ae-4e9a-44bb-99ff-fa3bf032ac11",
       "type": "operating-system",
       "name": "alpine",
       "version": "3.22.1",
@@ -107,21 +122,6 @@
         {
           "name": "aquasecurity:trivy:Type",
           "value": "alpine"
-        }
-      ]
-    },
-    {
-      "bom-ref": "d71ed28a-39b2-465b-891f-d6873247b578",
-      "type": "application",
-      "name": "usr/local/bin/trivy-operator",
-      "properties": [
-        {
-          "name": "aquasecurity:trivy:Class",
-          "value": "lang-pkgs"
-        },
-        {
-          "name": "aquasecurity:trivy:Type",
-          "value": "gobinary"
         }
       ]
     },
@@ -10578,17 +10578,7 @@
   ],
   "dependencies": [
     {
-      "ref": "8835ecd6-fdd7-4c1c-984d-5afb78780395",
-      "dependsOn": [
-        "pkg:apk/alpine/alpine-baselayout@3.7.0-r0?arch=x86_64&distro=3.22.1",
-        "pkg:apk/alpine/alpine-release@3.22.1-r0?arch=x86_64&distro=3.22.1",
-        "pkg:apk/alpine/apk-tools@2.14.9-r3?arch=x86_64&distro=3.22.1",
-        "pkg:apk/alpine/musl-utils@1.2.5-r10?arch=x86_64&distro=3.22.1",
-        "pkg:apk/alpine/ssl_client@1.37.0-r19?arch=x86_64&distro=3.22.1"
-      ]
-    },
-    {
-      "ref": "d71ed28a-39b2-465b-891f-d6873247b578",
+      "ref": "4a1207b9-9f24-406c-9f6c-67f333b2bb6b",
       "dependsOn": [
         "pkg:golang/cel.dev/expr@v0.24.0",
         "pkg:golang/cloud.google.com/go/auth/oauth2adapt@v0.2.8",
@@ -10978,6 +10968,16 @@
         "pkg:golang/sigs.k8s.io/structured-merge-diff/v6@v6.3.0",
         "pkg:golang/sigs.k8s.io/yaml@v1.6.0",
         "pkg:golang/stdlib@v1.24.7"
+      ]
+    },
+    {
+      "ref": "7e4a56ae-4e9a-44bb-99ff-fa3bf032ac11",
+      "dependsOn": [
+        "pkg:apk/alpine/alpine-baselayout@3.7.0-r0?arch=x86_64&distro=3.22.1",
+        "pkg:apk/alpine/alpine-release@3.22.1-r0?arch=x86_64&distro=3.22.1",
+        "pkg:apk/alpine/apk-tools@2.14.9-r3?arch=x86_64&distro=3.22.1",
+        "pkg:apk/alpine/musl-utils@1.2.5-r10?arch=x86_64&distro=3.22.1",
+        "pkg:apk/alpine/ssl_client@1.37.0-r19?arch=x86_64&distro=3.22.1"
       ]
     },
     {
@@ -12636,8 +12636,8 @@
     {
       "ref": "pkg:oci/trivy-operator@sha256%3A933516010c7ef3d020b84206d0bd87fc92ef09c23c901e9f6d001098c4d4cc5b?arch=amd64&repository_url=mirror.gcr.io%2Faquasec%2Ftrivy-operator",
       "dependsOn": [
-        "8835ecd6-fdd7-4c1c-984d-5afb78780395",
-        "d71ed28a-39b2-465b-891f-d6873247b578"
+        "4a1207b9-9f24-406c-9f6c-67f333b2bb6b",
+        "7e4a56ae-4e9a-44bb-99ff-fa3bf032ac11"
       ]
     }
   ],

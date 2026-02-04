@@ -2,10 +2,10 @@
   "$schema": "http://cyclonedx.org/schema/bom-1.6.schema.json",
   "bomFormat": "CycloneDX",
   "specVersion": "1.6",
-  "serialNumber": "urn:uuid:f4cb0191-afe5-4255-9f90-d96a0d5cde42",
+  "serialNumber": "urn:uuid:1f08481b-fa65-4029-92c1-ef0b6adf8d9c",
   "version": 1,
   "metadata": {
-    "timestamp": "2026-02-04T21:28:41+00:00",
+    "timestamp": "2026-02-04T22:37:18+00:00",
     "tools": {
       "components": [
         {
@@ -107,22 +107,7 @@
   },
   "components": [
     {
-      "bom-ref": "0c887aa6-d336-4615-9f80-1909898c66c3",
-      "type": "application",
-      "name": "startupapicheck",
-      "properties": [
-        {
-          "name": "aquasecurity:trivy:Class",
-          "value": "lang-pkgs"
-        },
-        {
-          "name": "aquasecurity:trivy:Type",
-          "value": "gobinary"
-        }
-      ]
-    },
-    {
-      "bom-ref": "c1834550-4cd4-4dc0-bbdf-731803838cff",
+      "bom-ref": "089854a5-8bd7-4499-b20f-6c60d41e9f25",
       "type": "library",
       "name": "../../",
       "properties": [
@@ -145,7 +130,22 @@
       ]
     },
     {
-      "bom-ref": "d127d344-e74e-49d3-af6d-e300d095e649",
+      "bom-ref": "1be87642-0f2f-45c1-8447-add3ebc91fbc",
+      "type": "application",
+      "name": "startupapicheck",
+      "properties": [
+        {
+          "name": "aquasecurity:trivy:Class",
+          "value": "lang-pkgs"
+        },
+        {
+          "name": "aquasecurity:trivy:Type",
+          "value": "gobinary"
+        }
+      ]
+    },
+    {
+      "bom-ref": "e6065251-b143-43d4-b474-6475229cc8fb",
       "type": "operating-system",
       "name": "debian",
       "version": "12.13",
@@ -2338,9 +2338,13 @@
   ],
   "dependencies": [
     {
-      "ref": "0c887aa6-d336-4615-9f80-1909898c66c3",
+      "ref": "089854a5-8bd7-4499-b20f-6c60d41e9f25",
+      "dependsOn": []
+    },
+    {
+      "ref": "1be87642-0f2f-45c1-8447-add3ebc91fbc",
       "dependsOn": [
-        "c1834550-4cd4-4dc0-bbdf-731803838cff",
+        "089854a5-8bd7-4499-b20f-6c60d41e9f25",
         "pkg:golang/github.com/azure/go-ntlmssp@v0.0.0-20221128193559-754e69321358",
         "pkg:golang/github.com/beorn7/perks@v1.0.1",
         "pkg:golang/github.com/blang/semver/v4@v4.0.0",
@@ -2424,11 +2428,7 @@
       ]
     },
     {
-      "ref": "c1834550-4cd4-4dc0-bbdf-731803838cff",
-      "dependsOn": []
-    },
-    {
-      "ref": "d127d344-e74e-49d3-af6d-e300d095e649",
+      "ref": "e6065251-b143-43d4-b474-6475229cc8fb",
       "dependsOn": [
         "pkg:deb/debian/base-files@12.4%2Bdeb12u13?arch=amd64&distro=debian-12.13",
         "pkg:deb/debian/media-types@10.0.0?arch=all&distro=debian-12.13",
@@ -2775,8 +2775,8 @@
     {
       "ref": "pkg:oci/cert-manager-startupapicheck@sha256%3Ae51a062513381070f43be0a435b029f5d116d6a3e1340deeb8eace5ca7a8a08f?arch=amd64&repository_url=quay.io%2Fjetstack%2Fcert-manager-startupapicheck",
       "dependsOn": [
-        "0c887aa6-d336-4615-9f80-1909898c66c3",
-        "d127d344-e74e-49d3-af6d-e300d095e649"
+        "1be87642-0f2f-45c1-8447-add3ebc91fbc",
+        "e6065251-b143-43d4-b474-6475229cc8fb"
       ]
     }
   ],

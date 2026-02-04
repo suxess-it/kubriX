@@ -2,10 +2,10 @@
   "$schema": "http://cyclonedx.org/schema/bom-1.6.schema.json",
   "bomFormat": "CycloneDX",
   "specVersion": "1.6",
-  "serialNumber": "urn:uuid:d13a2117-a69f-454e-a160-00dc9adfd624",
+  "serialNumber": "urn:uuid:c0cf722c-4139-4c7e-895f-e28c4c83e80d",
   "version": 1,
   "metadata": {
-    "timestamp": "2026-02-04T21:26:51+00:00",
+    "timestamp": "2026-02-04T22:35:09+00:00",
     "tools": {
       "components": [
         {
@@ -59,22 +59,7 @@
   },
   "components": [
     {
-      "bom-ref": "4c40d022-2582-4cae-b983-9047c7916773",
-      "type": "application",
-      "name": "ko-app/readiness-checker",
-      "properties": [
-        {
-          "name": "aquasecurity:trivy:Class",
-          "value": "lang-pkgs"
-        },
-        {
-          "name": "aquasecurity:trivy:Type",
-          "value": "gobinary"
-        }
-      ]
-    },
-    {
-      "bom-ref": "5929913c-ca94-4765-ad28-200af05610d1",
+      "bom-ref": "5036fbaa-1407-4ab8-9769-3c7398f10f49",
       "type": "operating-system",
       "name": "alpine",
       "version": "3.24.0_alpha20251224",
@@ -86,6 +71,21 @@
         {
           "name": "aquasecurity:trivy:Type",
           "value": "alpine"
+        }
+      ]
+    },
+    {
+      "bom-ref": "a0e0328f-f563-4efa-aad8-adf413a84e0c",
+      "type": "application",
+      "name": "ko-app/readiness-checker",
+      "properties": [
+        {
+          "name": "aquasecurity:trivy:Class",
+          "value": "lang-pkgs"
+        },
+        {
+          "name": "aquasecurity:trivy:Type",
+          "value": "gobinary"
         }
       ]
     },
@@ -1292,7 +1292,7 @@
   ],
   "dependencies": [
     {
-      "ref": "4c40d022-2582-4cae-b983-9047c7916773",
+      "ref": "a0e0328f-f563-4efa-aad8-adf413a84e0c",
       "dependsOn": [
         "pkg:golang/github.com/kyverno/kyverno@v1.5.0-rc1.0.20260122002923-b35e0045f4a1%2Bdirty"
       ]
@@ -1540,8 +1540,8 @@
     {
       "ref": "pkg:oci/readiness-checker@sha256%3Ac54c0aa24d536f7a31ed854db4f2b2d6863b41d7d85725e21f80cd318c4e815b?arch=amd64&repository_url=ghcr.io%2Fkyverno%2Freadiness-checker",
       "dependsOn": [
-        "4c40d022-2582-4cae-b983-9047c7916773",
-        "5929913c-ca94-4765-ad28-200af05610d1"
+        "5036fbaa-1407-4ab8-9769-3c7398f10f49",
+        "a0e0328f-f563-4efa-aad8-adf413a84e0c"
       ]
     }
   ],

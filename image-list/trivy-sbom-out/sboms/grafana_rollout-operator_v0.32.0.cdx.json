@@ -2,10 +2,10 @@
   "$schema": "http://cyclonedx.org/schema/bom-1.6.schema.json",
   "bomFormat": "CycloneDX",
   "specVersion": "1.6",
-  "serialNumber": "urn:uuid:47e1e35a-52f1-4d00-badc-2ebf16c0df3d",
+  "serialNumber": "urn:uuid:fcd32c64-0e4d-4314-badf-ed7de787b617",
   "version": 1,
   "metadata": {
-    "timestamp": "2026-02-04T21:27:53+00:00",
+    "timestamp": "2026-02-04T22:36:22+00:00",
     "tools": {
       "components": [
         {
@@ -107,7 +107,22 @@
   },
   "components": [
     {
-      "bom-ref": "44a2d346-6793-4281-98a0-de0eb98abea6",
+      "bom-ref": "39da1c30-9f92-4371-a41a-93f1a09967f6",
+      "type": "application",
+      "name": "bin/rollout-operator",
+      "properties": [
+        {
+          "name": "aquasecurity:trivy:Class",
+          "value": "lang-pkgs"
+        },
+        {
+          "name": "aquasecurity:trivy:Type",
+          "value": "gobinary"
+        }
+      ]
+    },
+    {
+      "bom-ref": "57486f33-5279-4114-8b95-8dbaf6282313",
       "type": "operating-system",
       "name": "debian",
       "version": "12.12",
@@ -119,21 +134,6 @@
         {
           "name": "aquasecurity:trivy:Type",
           "value": "debian"
-        }
-      ]
-    },
-    {
-      "bom-ref": "c0bcc080-55e1-4c4c-be36-9103cc4883a2",
-      "type": "application",
-      "name": "bin/rollout-operator",
-      "properties": [
-        {
-          "name": "aquasecurity:trivy:Class",
-          "value": "lang-pkgs"
-        },
-        {
-          "name": "aquasecurity:trivy:Type",
-          "value": "gobinary"
         }
       ]
     },
@@ -2916,18 +2916,18 @@
   ],
   "dependencies": [
     {
-      "ref": "44a2d346-6793-4281-98a0-de0eb98abea6",
+      "ref": "39da1c30-9f92-4371-a41a-93f1a09967f6",
+      "dependsOn": [
+        "pkg:golang/github.com/grafana/rollout-operator@v0.32.0%2Bdirty"
+      ]
+    },
+    {
+      "ref": "57486f33-5279-4114-8b95-8dbaf6282313",
       "dependsOn": [
         "pkg:deb/debian/base-files@12.4%2Bdeb12u12?arch=amd64&distro=debian-12.12",
         "pkg:deb/debian/media-types@10.0.0?arch=all&distro=debian-12.12",
         "pkg:deb/debian/netbase@6.4?arch=all&distro=debian-12.12",
         "pkg:deb/debian/tzdata@2025b-0%2Bdeb12u2?arch=all&distro=debian-12.12"
-      ]
-    },
-    {
-      "ref": "c0bcc080-55e1-4c4c-be36-9103cc4883a2",
-      "dependsOn": [
-        "pkg:golang/github.com/grafana/rollout-operator@v0.32.0%2Bdirty"
       ]
     },
     {
@@ -3469,8 +3469,8 @@
     {
       "ref": "pkg:oci/rollout-operator@sha256%3Acdb420c0af2cc5b32a33267cdd4aac8cd7867d539975a75dc856b0cfebbadff4?arch=amd64&repository_url=index.docker.io%2Fgrafana%2Frollout-operator",
       "dependsOn": [
-        "44a2d346-6793-4281-98a0-de0eb98abea6",
-        "c0bcc080-55e1-4c4c-be36-9103cc4883a2"
+        "39da1c30-9f92-4371-a41a-93f1a09967f6",
+        "57486f33-5279-4114-8b95-8dbaf6282313"
       ]
     }
   ],

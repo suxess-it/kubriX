@@ -2,10 +2,10 @@
   "$schema": "http://cyclonedx.org/schema/bom-1.6.schema.json",
   "bomFormat": "CycloneDX",
   "specVersion": "1.6",
-  "serialNumber": "urn:uuid:f80516e0-9365-412e-b17b-b29e732e89e7",
+  "serialNumber": "urn:uuid:ef8333b1-32c6-4b1e-b6cc-b482f02b6b13",
   "version": 1,
   "metadata": {
-    "timestamp": "2026-02-04T21:29:27+00:00",
+    "timestamp": "2026-02-04T22:38:12+00:00",
     "tools": {
       "components": [
         {
@@ -59,7 +59,22 @@
   },
   "components": [
     {
-      "bom-ref": "10ad6da1-6da0-407f-81c0-2d1eedb7968f",
+      "bom-ref": "2f318458-a4eb-41f5-aa36-093a0bbdbd20",
+      "type": "application",
+      "name": "ko-app/kubectl-kyverno",
+      "properties": [
+        {
+          "name": "aquasecurity:trivy:Class",
+          "value": "lang-pkgs"
+        },
+        {
+          "name": "aquasecurity:trivy:Type",
+          "value": "gobinary"
+        }
+      ]
+    },
+    {
+      "bom-ref": "b0320a7c-bfc0-4d16-b47d-2bf0b57339df",
       "type": "operating-system",
       "name": "alpine",
       "version": "3.24.0_alpha20260127",
@@ -71,21 +86,6 @@
         {
           "name": "aquasecurity:trivy:Type",
           "value": "alpine"
-        }
-      ]
-    },
-    {
-      "bom-ref": "3c79faa4-c0ba-40b8-9d6e-3911accc978a",
-      "type": "application",
-      "name": "ko-app/kubectl-kyverno",
-      "properties": [
-        {
-          "name": "aquasecurity:trivy:Class",
-          "value": "lang-pkgs"
-        },
-        {
-          "name": "aquasecurity:trivy:Type",
-          "value": "gobinary"
         }
       ]
     },
@@ -9542,7 +9542,7 @@
   ],
   "dependencies": [
     {
-      "ref": "3c79faa4-c0ba-40b8-9d6e-3911accc978a",
+      "ref": "2f318458-a4eb-41f5-aa36-093a0bbdbd20",
       "dependsOn": [
         "pkg:golang/github.com/kyverno/kyverno@v1.17.0%2Bdirty"
       ]
@@ -11440,8 +11440,8 @@
     {
       "ref": "pkg:oci/kyverno-cli@sha256%3Af5058dcbe7e9593c8af1cdd79ecf3a9bfec1ba644f92a3d3270d81ed1116c742?arch=amd64&repository_url=reg.kyverno.io%2Fkyverno%2Fkyverno-cli",
       "dependsOn": [
-        "10ad6da1-6da0-407f-81c0-2d1eedb7968f",
-        "3c79faa4-c0ba-40b8-9d6e-3911accc978a"
+        "2f318458-a4eb-41f5-aa36-093a0bbdbd20",
+        "b0320a7c-bfc0-4d16-b47d-2bf0b57339df"
       ]
     }
   ],

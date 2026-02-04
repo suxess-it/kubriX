@@ -2,10 +2,10 @@
   "$schema": "http://cyclonedx.org/schema/bom-1.6.schema.json",
   "bomFormat": "CycloneDX",
   "specVersion": "1.6",
-  "serialNumber": "urn:uuid:55bfb66f-dd0f-4a99-8bf8-f06c580227c9",
+  "serialNumber": "urn:uuid:8beb81a5-27ff-41ae-aebb-20f6c616944e",
   "version": 1,
   "metadata": {
-    "timestamp": "2026-02-04T21:28:39+00:00",
+    "timestamp": "2026-02-04T22:37:16+00:00",
     "tools": {
       "components": [
         {
@@ -107,7 +107,7 @@
   },
   "components": [
     {
-      "bom-ref": "6ca2526f-3c12-4cfc-a2d3-f08f8003d02a",
+      "bom-ref": "07daacdc-3f6b-4632-99e6-d456d16a9b75",
       "type": "application",
       "name": "app/cmd/controller/controller",
       "properties": [
@@ -122,7 +122,23 @@
       ]
     },
     {
-      "bom-ref": "a50f930b-a84c-4a94-a65e-0c9d0246a8b3",
+      "bom-ref": "8d3f440e-9c3e-46e9-a634-48db93d5a7b3",
+      "type": "operating-system",
+      "name": "debian",
+      "version": "12.13",
+      "properties": [
+        {
+          "name": "aquasecurity:trivy:Class",
+          "value": "os-pkgs"
+        },
+        {
+          "name": "aquasecurity:trivy:Type",
+          "value": "debian"
+        }
+      ]
+    },
+    {
+      "bom-ref": "bb8e5dfe-c7a6-4e84-9736-677b4c505632",
       "type": "library",
       "name": "../../",
       "properties": [
@@ -141,22 +157,6 @@
         {
           "name": "aquasecurity:trivy:PkgType",
           "value": "gobinary"
-        }
-      ]
-    },
-    {
-      "bom-ref": "d14c6d62-3b71-415c-9906-93d5ecfa5999",
-      "type": "operating-system",
-      "name": "debian",
-      "version": "12.13",
-      "properties": [
-        {
-          "name": "aquasecurity:trivy:Class",
-          "value": "os-pkgs"
-        },
-        {
-          "name": "aquasecurity:trivy:Type",
-          "value": "debian"
         }
       ]
     },
@@ -4388,9 +4388,9 @@
   ],
   "dependencies": [
     {
-      "ref": "6ca2526f-3c12-4cfc-a2d3-f08f8003d02a",
+      "ref": "07daacdc-3f6b-4632-99e6-d456d16a9b75",
       "dependsOn": [
-        "a50f930b-a84c-4a94-a65e-0c9d0246a8b3",
+        "bb8e5dfe-c7a6-4e84-9736-677b4c505632",
         "pkg:golang/cloud.google.com/go/auth/oauth2adapt@v0.2.8",
         "pkg:golang/cloud.google.com/go/auth@v0.16.5",
         "pkg:golang/cloud.google.com/go/compute/metadata@v0.9.0",
@@ -4556,17 +4556,17 @@
       ]
     },
     {
-      "ref": "a50f930b-a84c-4a94-a65e-0c9d0246a8b3",
-      "dependsOn": []
-    },
-    {
-      "ref": "d14c6d62-3b71-415c-9906-93d5ecfa5999",
+      "ref": "8d3f440e-9c3e-46e9-a634-48db93d5a7b3",
       "dependsOn": [
         "pkg:deb/debian/base-files@12.4%2Bdeb12u13?arch=amd64&distro=debian-12.13",
         "pkg:deb/debian/media-types@10.0.0?arch=all&distro=debian-12.13",
         "pkg:deb/debian/netbase@6.4?arch=all&distro=debian-12.13",
         "pkg:deb/debian/tzdata@2025b-0%2Bdeb12u2?arch=all&distro=debian-12.13"
       ]
+    },
+    {
+      "ref": "bb8e5dfe-c7a6-4e84-9736-677b4c505632",
+      "dependsOn": []
     },
     {
       "ref": "pkg:deb/debian/base-files@12.4%2Bdeb12u13?arch=amd64&distro=debian-12.13",
@@ -5235,8 +5235,8 @@
     {
       "ref": "pkg:oci/cert-manager-controller@sha256%3Aa07125af5e83ecaa3f48317e79c8fae08f0a36654cec45bf0a3404f651b00387?arch=amd64&repository_url=quay.io%2Fjetstack%2Fcert-manager-controller",
       "dependsOn": [
-        "6ca2526f-3c12-4cfc-a2d3-f08f8003d02a",
-        "d14c6d62-3b71-415c-9906-93d5ecfa5999"
+        "07daacdc-3f6b-4632-99e6-d456d16a9b75",
+        "8d3f440e-9c3e-46e9-a634-48db93d5a7b3"
       ]
     }
   ],

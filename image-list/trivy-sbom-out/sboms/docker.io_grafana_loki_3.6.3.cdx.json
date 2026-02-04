@@ -2,10 +2,10 @@
   "$schema": "http://cyclonedx.org/schema/bom-1.6.schema.json",
   "bomFormat": "CycloneDX",
   "specVersion": "1.6",
-  "serialNumber": "urn:uuid:f4285a65-a813-41eb-b5a3-b8d153fcfeb2",
+  "serialNumber": "urn:uuid:d6ad3b95-edc6-40c5-a934-672f31fabd2c",
   "version": 1,
   "metadata": {
-    "timestamp": "2026-02-04T21:25:50+00:00",
+    "timestamp": "2026-02-04T22:33:30+00:00",
     "tools": {
       "components": [
         {
@@ -111,7 +111,38 @@
   },
   "components": [
     {
-      "bom-ref": "033eaf5e-1d19-4872-b6a2-2bce0501925f",
+      "bom-ref": "1fb3c22e-fb68-46fe-8e5d-289227cf2f90",
+      "type": "operating-system",
+      "name": "debian",
+      "version": "12.12",
+      "properties": [
+        {
+          "name": "aquasecurity:trivy:Class",
+          "value": "os-pkgs"
+        },
+        {
+          "name": "aquasecurity:trivy:Type",
+          "value": "debian"
+        }
+      ]
+    },
+    {
+      "bom-ref": "d99e8b4a-1468-43b6-afed-b9a3b3836029",
+      "type": "application",
+      "name": "usr/bin/loki",
+      "properties": [
+        {
+          "name": "aquasecurity:trivy:Class",
+          "value": "lang-pkgs"
+        },
+        {
+          "name": "aquasecurity:trivy:Type",
+          "value": "gobinary"
+        }
+      ]
+    },
+    {
+      "bom-ref": "dbf0ef25-01f4-4f53-a2b7-7266f845b154",
       "type": "library",
       "name": "./pkg/push",
       "properties": [
@@ -130,37 +161,6 @@
         {
           "name": "aquasecurity:trivy:PkgType",
           "value": "gobinary"
-        }
-      ]
-    },
-    {
-      "bom-ref": "72bb0c2c-3892-4a60-8238-a0703f125150",
-      "type": "application",
-      "name": "usr/bin/loki",
-      "properties": [
-        {
-          "name": "aquasecurity:trivy:Class",
-          "value": "lang-pkgs"
-        },
-        {
-          "name": "aquasecurity:trivy:Type",
-          "value": "gobinary"
-        }
-      ]
-    },
-    {
-      "bom-ref": "df4480a6-7d3c-45a4-b44a-6a538c3dcc12",
-      "type": "operating-system",
-      "name": "debian",
-      "version": "12.12",
-      "properties": [
-        {
-          "name": "aquasecurity:trivy:Class",
-          "value": "os-pkgs"
-        },
-        {
-          "name": "aquasecurity:trivy:Type",
-          "value": "debian"
         }
       ]
     },
@@ -9018,23 +9018,23 @@
   ],
   "dependencies": [
     {
-      "ref": "033eaf5e-1d19-4872-b6a2-2bce0501925f",
-      "dependsOn": []
-    },
-    {
-      "ref": "72bb0c2c-3892-4a60-8238-a0703f125150",
-      "dependsOn": [
-        "pkg:golang/github.com/grafana/loki/v3@3.6.3"
-      ]
-    },
-    {
-      "ref": "df4480a6-7d3c-45a4-b44a-6a538c3dcc12",
+      "ref": "1fb3c22e-fb68-46fe-8e5d-289227cf2f90",
       "dependsOn": [
         "pkg:deb/debian/base-files@12.4%2Bdeb12u12?arch=amd64&distro=debian-12.12",
         "pkg:deb/debian/media-types@10.0.0?arch=all&distro=debian-12.12",
         "pkg:deb/debian/netbase@6.4?arch=all&distro=debian-12.12",
         "pkg:deb/debian/tzdata@2025b-0%2Bdeb12u2?arch=all&distro=debian-12.12"
       ]
+    },
+    {
+      "ref": "d99e8b4a-1468-43b6-afed-b9a3b3836029",
+      "dependsOn": [
+        "pkg:golang/github.com/grafana/loki/v3@3.6.3"
+      ]
+    },
+    {
+      "ref": "dbf0ef25-01f4-4f53-a2b7-7266f845b154",
+      "dependsOn": []
     },
     {
       "ref": "pkg:deb/debian/base-files@12.4%2Bdeb12u12?arch=amd64&distro=debian-12.12",
@@ -9611,7 +9611,7 @@
     {
       "ref": "pkg:golang/github.com/grafana/loki/v3@3.6.3",
       "dependsOn": [
-        "033eaf5e-1d19-4872-b6a2-2bce0501925f",
+        "dbf0ef25-01f4-4f53-a2b7-7266f845b154",
         "pkg:golang/cel.dev/expr@v0.24.0",
         "pkg:golang/cloud.google.com/go/auth/oauth2adapt@v0.2.8",
         "pkg:golang/cloud.google.com/go/auth@v0.17.0",
@@ -10791,8 +10791,8 @@
     {
       "ref": "pkg:oci/loki@sha256%3Acd6e176883a90c21755f0315688668991634143423f75bdedfef41441b0fdc3c?arch=amd64&repository_url=index.docker.io%2Fgrafana%2Floki",
       "dependsOn": [
-        "72bb0c2c-3892-4a60-8238-a0703f125150",
-        "df4480a6-7d3c-45a4-b44a-6a538c3dcc12"
+        "1fb3c22e-fb68-46fe-8e5d-289227cf2f90",
+        "d99e8b4a-1468-43b6-afed-b9a3b3836029"
       ]
     }
   ],

@@ -2,10 +2,10 @@
   "$schema": "http://cyclonedx.org/schema/bom-1.6.schema.json",
   "bomFormat": "CycloneDX",
   "specVersion": "1.6",
-  "serialNumber": "urn:uuid:05981ac9-ccad-4f45-be00-9e850a9ceabe",
+  "serialNumber": "urn:uuid:cdd67526-e8c6-42c0-970d-43e033840d25",
   "version": 1,
   "metadata": {
-    "timestamp": "2026-02-04T21:27:59+00:00",
+    "timestamp": "2026-02-04T22:36:29+00:00",
     "tools": {
       "components": [
         {
@@ -103,30 +103,7 @@
   },
   "components": [
     {
-      "bom-ref": "3b6b2e54-1151-4584-84be-9534accfa165",
-      "type": "library",
-      "name": "./api",
-      "properties": [
-        {
-          "name": "aquasecurity:trivy:LayerDiffID",
-          "value": "sha256:681f77db5c0bb2a57ccd842e9646e792ca961d8281cd5d96289dcdcacf75ca44"
-        },
-        {
-          "name": "aquasecurity:trivy:LayerDigest",
-          "value": "sha256:4ae4062e980c3a1be4def188363aa51dd7629c2f59ff356abddf40f60c6bbfec"
-        },
-        {
-          "name": "aquasecurity:trivy:PkgID",
-          "value": "./api"
-        },
-        {
-          "name": "aquasecurity:trivy:PkgType",
-          "value": "gobinary"
-        }
-      ]
-    },
-    {
-      "bom-ref": "539f2187-7288-4f6f-b672-57809dfbaed6",
+      "bom-ref": "27082bdf-a7e6-4266-b87b-91065ecbe41a",
       "type": "application",
       "name": "bin/vault",
       "properties": [
@@ -141,7 +118,23 @@
       ]
     },
     {
-      "bom-ref": "943ffd68-63d5-4644-94ed-f3daed32b9d7",
+      "bom-ref": "4c0ff06c-291b-4bfb-9b47-4c7c6d2b71de",
+      "type": "operating-system",
+      "name": "alpine",
+      "version": "3.22.1",
+      "properties": [
+        {
+          "name": "aquasecurity:trivy:Class",
+          "value": "os-pkgs"
+        },
+        {
+          "name": "aquasecurity:trivy:Type",
+          "value": "alpine"
+        }
+      ]
+    },
+    {
+      "bom-ref": "901c46d8-8390-4784-9ec3-6d9a0ab43863",
       "type": "library",
       "name": "./api/auth/kubernetes",
       "properties": [
@@ -164,7 +157,30 @@
       ]
     },
     {
-      "bom-ref": "b2570fcb-dea5-4b8a-8713-be61b892b0c4",
+      "bom-ref": "f1066fdd-180b-480b-9659-64dfaa6a52f7",
+      "type": "library",
+      "name": "./api",
+      "properties": [
+        {
+          "name": "aquasecurity:trivy:LayerDiffID",
+          "value": "sha256:681f77db5c0bb2a57ccd842e9646e792ca961d8281cd5d96289dcdcacf75ca44"
+        },
+        {
+          "name": "aquasecurity:trivy:LayerDigest",
+          "value": "sha256:4ae4062e980c3a1be4def188363aa51dd7629c2f59ff356abddf40f60c6bbfec"
+        },
+        {
+          "name": "aquasecurity:trivy:PkgID",
+          "value": "./api"
+        },
+        {
+          "name": "aquasecurity:trivy:PkgType",
+          "value": "gobinary"
+        }
+      ]
+    },
+    {
+      "bom-ref": "f11b51d0-ece1-4cc4-bfb6-de6fd8c8971b",
       "type": "library",
       "name": "./sdk",
       "properties": [
@@ -183,22 +199,6 @@
         {
           "name": "aquasecurity:trivy:PkgType",
           "value": "gobinary"
-        }
-      ]
-    },
-    {
-      "bom-ref": "c21b28c0-66b8-40f1-ac99-c685ef0b38ab",
-      "type": "operating-system",
-      "name": "alpine",
-      "version": "3.22.1",
-      "properties": [
-        {
-          "name": "aquasecurity:trivy:Class",
-          "value": "os-pkgs"
-        },
-        {
-          "name": "aquasecurity:trivy:Type",
-          "value": "alpine"
         }
       ]
     },
@@ -13448,25 +13448,13 @@
   ],
   "dependencies": [
     {
-      "ref": "3b6b2e54-1151-4584-84be-9534accfa165",
-      "dependsOn": []
-    },
-    {
-      "ref": "539f2187-7288-4f6f-b672-57809dfbaed6",
+      "ref": "27082bdf-a7e6-4266-b87b-91065ecbe41a",
       "dependsOn": [
         "pkg:golang/github.com/hashicorp/vault"
       ]
     },
     {
-      "ref": "943ffd68-63d5-4644-94ed-f3daed32b9d7",
-      "dependsOn": []
-    },
-    {
-      "ref": "b2570fcb-dea5-4b8a-8713-be61b892b0c4",
-      "dependsOn": []
-    },
-    {
-      "ref": "c21b28c0-66b8-40f1-ac99-c685ef0b38ab",
+      "ref": "4c0ff06c-291b-4bfb-9b47-4c7c6d2b71de",
       "dependsOn": [
         "pkg:apk/alpine/alpine-baselayout@3.7.0-r0?arch=x86_64&distro=3.22.1",
         "pkg:apk/alpine/alpine-release@3.22.1-r0?arch=x86_64&distro=3.22.1",
@@ -13478,6 +13466,18 @@
         "pkg:apk/alpine/su-exec@0.2-r3?arch=x86_64&distro=3.22.1",
         "pkg:apk/alpine/tzdata@2025b-r0?arch=x86_64&distro=3.22.1"
       ]
+    },
+    {
+      "ref": "901c46d8-8390-4784-9ec3-6d9a0ab43863",
+      "dependsOn": []
+    },
+    {
+      "ref": "f1066fdd-180b-480b-9659-64dfaa6a52f7",
+      "dependsOn": []
+    },
+    {
+      "ref": "f11b51d0-ece1-4cc4-bfb6-de6fd8c8971b",
+      "dependsOn": []
     },
     {
       "ref": "pkg:apk/alpine/alpine-baselayout-data@3.7.0-r0?arch=x86_64&distro=3.22.1",
@@ -14645,9 +14645,9 @@
     {
       "ref": "pkg:golang/github.com/hashicorp/vault",
       "dependsOn": [
-        "3b6b2e54-1151-4584-84be-9534accfa165",
-        "943ffd68-63d5-4644-94ed-f3daed32b9d7",
-        "b2570fcb-dea5-4b8a-8713-be61b892b0c4",
+        "901c46d8-8390-4784-9ec3-6d9a0ab43863",
+        "f1066fdd-180b-480b-9659-64dfaa6a52f7",
+        "f11b51d0-ece1-4cc4-bfb6-de6fd8c8971b",
         "pkg:golang/cel.dev/expr@v0.24.0",
         "pkg:golang/cloud.google.com/go/auth/oauth2adapt@v0.2.8",
         "pkg:golang/cloud.google.com/go/auth@v0.16.5",
@@ -16056,8 +16056,8 @@
     {
       "ref": "pkg:oci/vault@sha256%3A1262354cd28697b7982ea3b9b6f159a996bdaad0b5270765e31b67797ce15bea?arch=amd64&repository_url=index.docker.io%2Fhashicorp%2Fvault",
       "dependsOn": [
-        "539f2187-7288-4f6f-b672-57809dfbaed6",
-        "c21b28c0-66b8-40f1-ac99-c685ef0b38ab"
+        "27082bdf-a7e6-4266-b87b-91065ecbe41a",
+        "4c0ff06c-291b-4bfb-9b47-4c7c6d2b71de"
       ]
     }
   ],

@@ -2,10 +2,10 @@
   "$schema": "http://cyclonedx.org/schema/bom-1.6.schema.json",
   "bomFormat": "CycloneDX",
   "specVersion": "1.6",
-  "serialNumber": "urn:uuid:dc412853-b9ee-4cc7-bafe-28fbee6b2854",
+  "serialNumber": "urn:uuid:72c7f023-ea18-4bce-bf38-ba5f299f18c1",
   "version": 1,
   "metadata": {
-    "timestamp": "2026-02-04T21:28:50+00:00",
+    "timestamp": "2026-02-04T22:37:27+00:00",
     "tools": {
       "components": [
         {
@@ -159,7 +159,7 @@
   },
   "components": [
     {
-      "bom-ref": "310e8c6f-f5fe-43ec-b99e-27b778d4a6be",
+      "bom-ref": "2ed6d12d-220c-4112-a3a0-d050e6f3d0ee",
       "type": "library",
       "group": "org.jctools",
       "name": "jctools-core",
@@ -167,14 +167,14 @@
       "hashes": [
         {
           "alg": "SHA-1",
-          "content": "9ab38ca19877236986db4894ef1400a7ca23db80"
+          "content": "ada4ab671678f956e1cd5067ba94bc340af1d8bf"
         }
       ],
       "purl": "pkg:maven/org.jctools/jctools-core@4.0.5",
       "properties": [
         {
           "name": "aquasecurity:trivy:FilePath",
-          "value": "opt/keycloak/lib/main/org.jctools.jctools-core-4.0.5.jar"
+          "value": "opt/keycloak/lib/main/io.netty.netty-common-4.1.127.Final.jar"
         },
         {
           "name": "aquasecurity:trivy:LayerDiffID",
@@ -191,7 +191,7 @@
       ]
     },
     {
-      "bom-ref": "a4efa30f-630b-4d8b-ad61-4db65fb46c5e",
+      "bom-ref": "52f4a64d-c5e2-424d-b7b1-217325abdc3e",
       "type": "operating-system",
       "name": "redhat",
       "version": "9.7",
@@ -207,7 +207,7 @@
       ]
     },
     {
-      "bom-ref": "fa14acd7-b5d3-4bbc-a33c-1174b08fc265",
+      "bom-ref": "9e43a716-957c-476c-860b-7dacf8f8d3e6",
       "type": "library",
       "group": "org.jctools",
       "name": "jctools-core",
@@ -215,14 +215,14 @@
       "hashes": [
         {
           "alg": "SHA-1",
-          "content": "ada4ab671678f956e1cd5067ba94bc340af1d8bf"
+          "content": "9ab38ca19877236986db4894ef1400a7ca23db80"
         }
       ],
       "purl": "pkg:maven/org.jctools/jctools-core@4.0.5",
       "properties": [
         {
           "name": "aquasecurity:trivy:FilePath",
-          "value": "opt/keycloak/lib/main/io.netty.netty-common-4.1.127.Final.jar"
+          "value": "opt/keycloak/lib/main/org.jctools.jctools-core-4.0.5.jar"
         },
         {
           "name": "aquasecurity:trivy:LayerDiffID",
@@ -7975,11 +7975,11 @@
   ],
   "dependencies": [
     {
-      "ref": "310e8c6f-f5fe-43ec-b99e-27b778d4a6be",
+      "ref": "2ed6d12d-220c-4112-a3a0-d050e6f3d0ee",
       "dependsOn": []
     },
     {
-      "ref": "a4efa30f-630b-4d8b-ad61-4db65fb46c5e",
+      "ref": "52f4a64d-c5e2-424d-b7b1-217325abdc3e",
       "dependsOn": [
         "pkg:rpm/redhat/alternatives@1.24-2.el9?arch=x86_64&distro=redhat-9.7",
         "pkg:rpm/redhat/crypto-policies-scripts@20250905-1.git377cc42.el9_7?arch=noarch&distro=redhat-9.7",
@@ -7987,7 +7987,7 @@
       ]
     },
     {
-      "ref": "fa14acd7-b5d3-4bbc-a33c-1174b08fc265",
+      "ref": "9e43a716-957c-476c-860b-7dacf8f8d3e6",
       "dependsOn": []
     },
     {
@@ -8681,9 +8681,9 @@
     {
       "ref": "pkg:oci/keycloak-operator@sha256%3A37a4028a526e4b59228880df9c490fa8228fe336058bed6d3d02ef83c4438c3a?arch=amd64&repository_url=quay.io%2Fkeycloak%2Fkeycloak-operator",
       "dependsOn": [
-        "310e8c6f-f5fe-43ec-b99e-27b778d4a6be",
-        "a4efa30f-630b-4d8b-ad61-4db65fb46c5e",
-        "fa14acd7-b5d3-4bbc-a33c-1174b08fc265",
+        "2ed6d12d-220c-4112-a3a0-d050e6f3d0ee",
+        "52f4a64d-c5e2-424d-b7b1-217325abdc3e",
+        "9e43a716-957c-476c-860b-7dacf8f8d3e6",
         "pkg:maven/com.aayushatharva.brotli4j/brotli4j@1.16.0",
         "pkg:maven/com.aayushatharva.brotli4j/native-linux-x86_64@1.16.0",
         "pkg:maven/com.aayushatharva.brotli4j/service@1.16.0",

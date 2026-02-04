@@ -2,10 +2,10 @@
   "$schema": "http://cyclonedx.org/schema/bom-1.6.schema.json",
   "bomFormat": "CycloneDX",
   "specVersion": "1.6",
-  "serialNumber": "urn:uuid:7bdf8563-7c94-4c46-9a38-28acf78e8716",
+  "serialNumber": "urn:uuid:945ff734-649b-42ec-aba8-e2f7cdddcac0",
   "version": 1,
   "metadata": {
-    "timestamp": "2026-02-04T21:28:56+00:00",
+    "timestamp": "2026-02-04T22:37:34+00:00",
     "tools": {
       "components": [
         {
@@ -59,7 +59,22 @@
   },
   "components": [
     {
-      "bom-ref": "4bc5c2df-0f52-4955-be5a-ac493b078a8e",
+      "bom-ref": "6790f6dc-ac2d-4f05-86d1-2b632a040501",
+      "type": "application",
+      "name": "plugins/kubevirt-velero-plugin",
+      "properties": [
+        {
+          "name": "aquasecurity:trivy:Class",
+          "value": "lang-pkgs"
+        },
+        {
+          "name": "aquasecurity:trivy:Type",
+          "value": "gobinary"
+        }
+      ]
+    },
+    {
+      "bom-ref": "b5f26cbb-f8e6-418a-a3bf-cb35b14940ab",
       "type": "operating-system",
       "name": "alpine",
       "version": "3.13.12",
@@ -71,21 +86,6 @@
         {
           "name": "aquasecurity:trivy:Type",
           "value": "alpine"
-        }
-      ]
-    },
-    {
-      "bom-ref": "62895185-31ce-4c69-a61a-40876b2b7c0c",
-      "type": "application",
-      "name": "plugins/kubevirt-velero-plugin",
-      "properties": [
-        {
-          "name": "aquasecurity:trivy:Class",
-          "value": "lang-pkgs"
-        },
-        {
-          "name": "aquasecurity:trivy:Type",
-          "value": "gobinary"
         }
       ]
     },
@@ -2955,19 +2955,19 @@
   ],
   "dependencies": [
     {
-      "ref": "4bc5c2df-0f52-4955-be5a-ac493b078a8e",
+      "ref": "6790f6dc-ac2d-4f05-86d1-2b632a040501",
+      "dependsOn": [
+        "pkg:golang/kubevirt.io/kubevirt-velero-plugin"
+      ]
+    },
+    {
+      "ref": "b5f26cbb-f8e6-418a-a3bf-cb35b14940ab",
       "dependsOn": [
         "pkg:apk/alpine/alpine-baselayout@3.2.0-r8?arch=x86_64&distro=3.13.12",
         "pkg:apk/alpine/alpine-keys@2.4-r0?arch=x86_64&distro=3.13.12",
         "pkg:apk/alpine/apk-tools@2.12.7-r0?arch=x86_64&distro=3.13.12",
         "pkg:apk/alpine/libc-utils@0.7.2-r3?arch=x86_64&distro=3.13.12",
         "pkg:apk/alpine/ssl_client@1.32.1-r9?arch=x86_64&distro=3.13.12"
-      ]
-    },
-    {
-      "ref": "62895185-31ce-4c69-a61a-40876b2b7c0c",
-      "dependsOn": [
-        "pkg:golang/kubevirt.io/kubevirt-velero-plugin"
       ]
     },
     {
@@ -3501,8 +3501,8 @@
     {
       "ref": "pkg:oci/kubevirt-velero-plugin@sha256%3A9169abc2e70ec53f5762ad8df27a1a8c4adedf8be45808e4d126c8d496f2046f?arch=amd64&repository_url=quay.io%2Fkubevirt%2Fkubevirt-velero-plugin",
       "dependsOn": [
-        "4bc5c2df-0f52-4955-be5a-ac493b078a8e",
-        "62895185-31ce-4c69-a61a-40876b2b7c0c"
+        "6790f6dc-ac2d-4f05-86d1-2b632a040501",
+        "b5f26cbb-f8e6-418a-a3bf-cb35b14940ab"
       ]
     }
   ],

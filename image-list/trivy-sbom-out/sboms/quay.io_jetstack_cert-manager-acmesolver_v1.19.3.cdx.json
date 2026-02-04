@@ -2,10 +2,10 @@
   "$schema": "http://cyclonedx.org/schema/bom-1.6.schema.json",
   "bomFormat": "CycloneDX",
   "specVersion": "1.6",
-  "serialNumber": "urn:uuid:64879634-f783-40a8-80b3-185a0b63e98d",
+  "serialNumber": "urn:uuid:104f1f98-983b-4966-b660-f182241a5dfb",
   "version": 1,
   "metadata": {
-    "timestamp": "2026-02-04T21:28:35+00:00",
+    "timestamp": "2026-02-04T22:37:13+00:00",
     "tools": {
       "components": [
         {
@@ -107,7 +107,38 @@
   },
   "components": [
     {
-      "bom-ref": "be58cf5f-5e4f-4d57-8bed-6aeb2c46d87f",
+      "bom-ref": "0b2d8618-73d0-4770-b69b-ecadba1dabcd",
+      "type": "operating-system",
+      "name": "debian",
+      "version": "12.13",
+      "properties": [
+        {
+          "name": "aquasecurity:trivy:Class",
+          "value": "os-pkgs"
+        },
+        {
+          "name": "aquasecurity:trivy:Type",
+          "value": "debian"
+        }
+      ]
+    },
+    {
+      "bom-ref": "c822b8e6-f99f-46d6-8dc8-f2b71d35969b",
+      "type": "application",
+      "name": "app/cmd/acmesolver/acmesolver",
+      "properties": [
+        {
+          "name": "aquasecurity:trivy:Class",
+          "value": "lang-pkgs"
+        },
+        {
+          "name": "aquasecurity:trivy:Type",
+          "value": "gobinary"
+        }
+      ]
+    },
+    {
+      "bom-ref": "dac2a245-4d2a-4b79-aa01-a282848d521d",
       "type": "library",
       "name": "../../",
       "properties": [
@@ -125,37 +156,6 @@
         },
         {
           "name": "aquasecurity:trivy:PkgType",
-          "value": "gobinary"
-        }
-      ]
-    },
-    {
-      "bom-ref": "c9bca0db-66d2-4e72-95ef-d83815e64290",
-      "type": "operating-system",
-      "name": "debian",
-      "version": "12.13",
-      "properties": [
-        {
-          "name": "aquasecurity:trivy:Class",
-          "value": "os-pkgs"
-        },
-        {
-          "name": "aquasecurity:trivy:Type",
-          "value": "debian"
-        }
-      ]
-    },
-    {
-      "bom-ref": "e991c7c6-281b-4a4d-a12d-2c7dbb225d0b",
-      "type": "application",
-      "name": "app/cmd/acmesolver/acmesolver",
-      "properties": [
-        {
-          "name": "aquasecurity:trivy:Class",
-          "value": "lang-pkgs"
-        },
-        {
-          "name": "aquasecurity:trivy:Type",
           "value": "gobinary"
         }
       ]
@@ -1413,11 +1413,7 @@
   ],
   "dependencies": [
     {
-      "ref": "be58cf5f-5e4f-4d57-8bed-6aeb2c46d87f",
-      "dependsOn": []
-    },
-    {
-      "ref": "c9bca0db-66d2-4e72-95ef-d83815e64290",
+      "ref": "0b2d8618-73d0-4770-b69b-ecadba1dabcd",
       "dependsOn": [
         "pkg:deb/debian/base-files@12.4%2Bdeb12u13?arch=amd64&distro=debian-12.13",
         "pkg:deb/debian/media-types@10.0.0?arch=all&distro=debian-12.13",
@@ -1426,9 +1422,9 @@
       ]
     },
     {
-      "ref": "e991c7c6-281b-4a4d-a12d-2c7dbb225d0b",
+      "ref": "c822b8e6-f99f-46d6-8dc8-f2b71d35969b",
       "dependsOn": [
-        "be58cf5f-5e4f-4d57-8bed-6aeb2c46d87f",
+        "dac2a245-4d2a-4b79-aa01-a282848d521d",
         "pkg:golang/github.com/beorn7/perks@v1.0.1",
         "pkg:golang/github.com/blang/semver/v4@v4.0.0",
         "pkg:golang/github.com/cert-manager/cert-manager/acmesolver-binary",
@@ -1473,6 +1469,10 @@
         "pkg:golang/sigs.k8s.io/yaml@v1.6.0",
         "pkg:golang/stdlib@v1.25.6"
       ]
+    },
+    {
+      "ref": "dac2a245-4d2a-4b79-aa01-a282848d521d",
+      "dependsOn": []
     },
     {
       "ref": "pkg:deb/debian/base-files@12.4%2Bdeb12u13?arch=amd64&distro=debian-12.13",
@@ -1665,8 +1665,8 @@
     {
       "ref": "pkg:oci/cert-manager-acmesolver@sha256%3A1b98c49764718e09e54f3752daef616874c177445f0a2b5a07975883c47eda25?arch=amd64&repository_url=quay.io%2Fjetstack%2Fcert-manager-acmesolver",
       "dependsOn": [
-        "c9bca0db-66d2-4e72-95ef-d83815e64290",
-        "e991c7c6-281b-4a4d-a12d-2c7dbb225d0b"
+        "0b2d8618-73d0-4770-b69b-ecadba1dabcd",
+        "c822b8e6-f99f-46d6-8dc8-f2b71d35969b"
       ]
     }
   ],

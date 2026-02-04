@@ -2,10 +2,10 @@
   "$schema": "http://cyclonedx.org/schema/bom-1.6.schema.json",
   "bomFormat": "CycloneDX",
   "specVersion": "1.6",
-  "serialNumber": "urn:uuid:eef2f1b1-42a4-48ea-bb80-57c3d9effde1",
+  "serialNumber": "urn:uuid:4bf75c31-cb35-4b8e-ba83-834f0c5c6021",
   "version": 1,
   "metadata": {
-    "timestamp": "2026-02-04T21:25:54+00:00",
+    "timestamp": "2026-02-04T22:33:43+00:00",
     "tools": {
       "components": [
         {
@@ -79,45 +79,7 @@
   },
   "components": [
     {
-      "bom-ref": "058af450-0f21-4006-a17a-b8a7d660c402",
-      "type": "library",
-      "name": "my-test-package",
-      "version": "1.0",
-      "hashes": [
-        {
-          "alg": "SHA-1",
-          "content": "6d7a67c18613be4b255812111b4619de979abc28"
-        }
-      ],
-      "licenses": [
-        {
-          "license": {
-            "name": "UNKNOWN"
-          }
-        }
-      ],
-      "purl": "pkg:pypi/my-test-package@1.0",
-      "properties": [
-        {
-          "name": "aquasecurity:trivy:FilePath",
-          "value": "app/.venv/lib/python3.13/site-packages/pkg_resources/tests/data/my-test-package_zipped-egg/my_test_package-1.0-py3.7.egg"
-        },
-        {
-          "name": "aquasecurity:trivy:LayerDiffID",
-          "value": "sha256:ad705df0c503461ff1991892c91f78b1a02ed81f2e20e3d3a8142609282b0031"
-        },
-        {
-          "name": "aquasecurity:trivy:LayerDigest",
-          "value": "sha256:0751285fa662587f87a04647d508e5ab55871cfb14b5407739dbd159bcd2e4be"
-        },
-        {
-          "name": "aquasecurity:trivy:PkgType",
-          "value": "python-pkg"
-        }
-      ]
-    },
-    {
-      "bom-ref": "31b28f1f-745c-4184-a076-2f739d2c76bc",
+      "bom-ref": "5a6a8ea5-7fe1-44f9-b0ba-94fbcf930cbf",
       "type": "library",
       "name": "my-test-package",
       "version": "1.0",
@@ -155,7 +117,45 @@
       ]
     },
     {
-      "bom-ref": "e4928d33-10d2-4cd2-a497-0bf16838cf2b",
+      "bom-ref": "654497e4-9bb1-4ac7-a00a-0ef697ddc044",
+      "type": "library",
+      "name": "pip",
+      "version": "25.2",
+      "hashes": [
+        {
+          "alg": "SHA-1",
+          "content": "93027e6485f574b6e60d25a013c82425b49307b7"
+        }
+      ],
+      "licenses": [
+        {
+          "license": {
+            "name": "MIT"
+          }
+        }
+      ],
+      "purl": "pkg:pypi/pip@25.2",
+      "properties": [
+        {
+          "name": "aquasecurity:trivy:FilePath",
+          "value": "app/.venv/lib/python3.13/site-packages/pip-25.2.dist-info/METADATA"
+        },
+        {
+          "name": "aquasecurity:trivy:LayerDiffID",
+          "value": "sha256:ad705df0c503461ff1991892c91f78b1a02ed81f2e20e3d3a8142609282b0031"
+        },
+        {
+          "name": "aquasecurity:trivy:LayerDigest",
+          "value": "sha256:0751285fa662587f87a04647d508e5ab55871cfb14b5407739dbd159bcd2e4be"
+        },
+        {
+          "name": "aquasecurity:trivy:PkgType",
+          "value": "python-pkg"
+        }
+      ]
+    },
+    {
+      "bom-ref": "b96e5e24-cb0a-4fb2-9a74-c4426cfa1e9c",
       "type": "library",
       "name": "pip",
       "version": "25.2",
@@ -193,7 +193,7 @@
       ]
     },
     {
-      "bom-ref": "eb38429b-a68b-4a6f-822c-4ae23b5c2739",
+      "bom-ref": "c263d4eb-f260-4601-a72e-21c32d3b66da",
       "type": "operating-system",
       "name": "alpine",
       "version": "3.22.1",
@@ -209,28 +209,28 @@
       ]
     },
     {
-      "bom-ref": "fb39016d-1216-4d4d-bbdd-e37fc64d6c7b",
+      "bom-ref": "de0a4c95-5ac9-4408-99cc-9268a5bfe2ad",
       "type": "library",
-      "name": "pip",
-      "version": "25.2",
+      "name": "my-test-package",
+      "version": "1.0",
       "hashes": [
         {
           "alg": "SHA-1",
-          "content": "93027e6485f574b6e60d25a013c82425b49307b7"
+          "content": "6d7a67c18613be4b255812111b4619de979abc28"
         }
       ],
       "licenses": [
         {
           "license": {
-            "name": "MIT"
+            "name": "UNKNOWN"
           }
         }
       ],
-      "purl": "pkg:pypi/pip@25.2",
+      "purl": "pkg:pypi/my-test-package@1.0",
       "properties": [
         {
           "name": "aquasecurity:trivy:FilePath",
-          "value": "app/.venv/lib/python3.13/site-packages/pip-25.2.dist-info/METADATA"
+          "value": "app/.venv/lib/python3.13/site-packages/pkg_resources/tests/data/my-test-package_zipped-egg/my_test_package-1.0-py3.7.egg"
         },
         {
           "name": "aquasecurity:trivy:LayerDiffID",
@@ -3057,19 +3057,19 @@
   ],
   "dependencies": [
     {
-      "ref": "058af450-0f21-4006-a17a-b8a7d660c402",
+      "ref": "5a6a8ea5-7fe1-44f9-b0ba-94fbcf930cbf",
       "dependsOn": []
     },
     {
-      "ref": "31b28f1f-745c-4184-a076-2f739d2c76bc",
+      "ref": "654497e4-9bb1-4ac7-a00a-0ef697ddc044",
       "dependsOn": []
     },
     {
-      "ref": "e4928d33-10d2-4cd2-a497-0bf16838cf2b",
+      "ref": "b96e5e24-cb0a-4fb2-9a74-c4426cfa1e9c",
       "dependsOn": []
     },
     {
-      "ref": "eb38429b-a68b-4a6f-822c-4ae23b5c2739",
+      "ref": "c263d4eb-f260-4601-a72e-21c32d3b66da",
       "dependsOn": [
         "pkg:apk/alpine/.python-rundeps@20250812.224420?arch=noarch&distro=3.22.1",
         "pkg:apk/alpine/alpine-baselayout@3.7.0-r0?arch=x86_64&distro=3.22.1",
@@ -3082,7 +3082,7 @@
       ]
     },
     {
-      "ref": "fb39016d-1216-4d4d-bbdd-e37fc64d6c7b",
+      "ref": "de0a4c95-5ac9-4408-99cc-9268a5bfe2ad",
       "dependsOn": []
     },
     {
@@ -3281,11 +3281,11 @@
     {
       "ref": "pkg:oci/k8s-sidecar@sha256%3A8c06e1ba643a4625de14b2db65c356f5db6b1482a25fce4754380a2936207338?arch=amd64&repository_url=index.docker.io%2Fkiwigrid%2Fk8s-sidecar",
       "dependsOn": [
-        "058af450-0f21-4006-a17a-b8a7d660c402",
-        "31b28f1f-745c-4184-a076-2f739d2c76bc",
-        "e4928d33-10d2-4cd2-a497-0bf16838cf2b",
-        "eb38429b-a68b-4a6f-822c-4ae23b5c2739",
-        "fb39016d-1216-4d4d-bbdd-e37fc64d6c7b",
+        "5a6a8ea5-7fe1-44f9-b0ba-94fbcf930cbf",
+        "654497e4-9bb1-4ac7-a00a-0ef697ddc044",
+        "b96e5e24-cb0a-4fb2-9a74-c4426cfa1e9c",
+        "c263d4eb-f260-4601-a72e-21c32d3b66da",
+        "de0a4c95-5ac9-4408-99cc-9268a5bfe2ad",
         "pkg:pypi/argparse@1.4.0",
         "pkg:pypi/autocommand@2.2.2",
         "pkg:pypi/backports.tarfile@1.2.0",
