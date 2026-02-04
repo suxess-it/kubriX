@@ -30,6 +30,7 @@ export PATH=$PATH:$(pwd)
 need() { command -v "$1" >/dev/null 2>&1 || { echo "ERROR: missing required tool: $1" >&2; exit 1; }; }
 need jq
 need trivy
+need parlay
 
 if [[ ! -f "$IMAGE_LIST_FILE" ]]; then
   echo "ERROR: image list file not found: $IMAGE_LIST_FILE" >&2
@@ -63,7 +64,8 @@ for image in "${IMAGES[@]}"; do
     echo -e "${image}\t${charts}\tTRIVY_FAILED\t0\t0\t${sbom_file}" >> "$REPORT_TSV"
     continue
   else
-    parlay ecosystems enrich "$sbom_file"
+    parlay ecosystems enrich "$sbom_file" > "${sbom_file}.parlay"
+    mv ${sbom_file}.parlay ${sbom_file}
   fi
 
   # CycloneDX license extraction
