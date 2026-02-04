@@ -64,8 +64,7 @@ for image in "${IMAGES[@]}"; do
     echo -e "${image}\t${charts}\tTRIVY_FAILED\t0\t0\t${sbom_file}" >> "$REPORT_TSV"
     continue
   else
-    parlay ecosystems enrich "$sbom_file" > "${sbom_file}.parlay"
-    mv ${sbom_file}.parlay ${sbom_file}
+    parlay ecosystems enrich "$sbom_file" | jq  > "${sbom_file}.parlay"
   fi
 
   # CycloneDX license extraction
