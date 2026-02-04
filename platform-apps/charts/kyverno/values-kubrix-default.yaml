@@ -7,6 +7,8 @@ kyverno:
     resources:
       limits:
         memory: 1Gi
+
+  # workaround for argocd outofsync because of empty labels
   kyverno-api:
     labels:
-      foo: bar
+      app.kubernetes.io/managed-by: helm
