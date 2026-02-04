@@ -6,11 +6,11 @@ default:
 applications:
   - name: ingress-nginx
     annotations:
-      argocd.argoproj.io/sync-wave: "-11"
+      argocd.argoproj.io/sync-wave: "-9"
 
   - name: cert-manager
     annotations:
-      argocd.argoproj.io/sync-wave: "-10"
+      argocd.argoproj.io/sync-wave: "-9"
 
   - name: crossplane
     annotations:
@@ -24,25 +24,25 @@ applications:
 
   - name: external-secrets
     annotations:
-      argocd.argoproj.io/sync-wave: "-8"
+      argocd.argoproj.io/sync-wave: "-9"
     syncOptions:
       - ServerSideApply=true
 
   - name: k8s-monitoring
     annotations:
       argocd.argoproj.io/compare-options: ServerSideDiff=true
-      argocd.argoproj.io/sync-wave: "-8"
+      argocd.argoproj.io/sync-wave: "-9"
     syncOptions:
       - ServerSideApply=true
 
   - name: vault
     annotations:
-      argocd.argoproj.io/sync-wave: "-7"
+      argocd.argoproj.io/sync-wave: "-9"
 
   - name: cnpg
     annotations:
       argocd.argoproj.io/compare-options: ServerSideDiff=true
-      argocd.argoproj.io/sync-wave: "-6"
+      argocd.argoproj.io/sync-wave: "-9"
     syncOptions:
       - ServerSideApply=true
 
@@ -51,8 +51,13 @@ applications:
       argocd.argoproj.io/sync-wave: "-5"
 
   - name: kargo
+    annotations:
+      argocd.argoproj.io/sync-wave: "-5"
+
 
   - name: argo-rollouts
+    annotations:
+      argocd.argoproj.io/sync-wave: "-5"
     ignoreDifferences:
     - group: apiextensions.k8s.io
       kind: CustomResourceDefinition
@@ -60,6 +65,9 @@ applications:
       - /spec/preserveUnknownFields
 
   - name: testkube
+    annotations:
+      argocd.argoproj.io/sync-wave: "-5"
+
 
   - name: backstage
     annotations:
@@ -69,7 +77,7 @@ applications:
     destinationNamespaceOverwrite: argocd
     namespaceResourceTracking: false
     annotations:
-      argocd.argoproj.io/sync-wave: "15"
+      argocd.argoproj.io/sync-wave: "10"
       
 
 
