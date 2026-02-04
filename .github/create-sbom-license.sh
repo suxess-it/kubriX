@@ -18,7 +18,7 @@ mkdir -p "$SBOM_DIR" "$LICENSE_DIR"
 # install trivy
 curl -L https://github.com/aquasecurity/trivy/releases/download/v0.61.0/trivy_0.61.0_Linux-32bit.tar.gz -o trivy.tar.gz
 tar -xzvf trivy.tar.gz trivy
-chmod u+x tri
+chmod u+x trivy
 
 need() { command -v "$1" >/dev/null 2>&1 || { echo "ERROR: missing required tool: $1" >&2; exit 1; }; }
 need jq
