@@ -19,6 +19,12 @@ mkdir -p "$SBOM_DIR" "$LICENSE_DIR"
 curl -L https://github.com/aquasecurity/trivy/releases/download/v0.61.0/trivy_0.61.0_Linux-32bit.tar.gz -o trivy.tar.gz
 tar -xzvf trivy.tar.gz trivy
 chmod u+x trivy
+
+# install parlay
+curl -L https://github.com/snyk/parlay/releases/download/v0.10.1/parlay_Linux_x86_64.tar.gz -o parlay.tar.gz
+tar -xzvf parlay.tar.gz parlay
+chmod u+x parlay
+
 export PATH=$PATH:$(pwd)
 
 need() { command -v "$1" >/dev/null 2>&1 || { echo "ERROR: missing required tool: $1" >&2; exit 1; }; }
@@ -56,6 +62,8 @@ for image in "${IMAGES[@]}"; do
     echo "WARN: trivy failed for $image (skipping license extraction)" >&2
     echo -e "${image}\t${charts}\tTRIVY_FAILED\t0\t0\t${sbom_file}" >> "$REPORT_TSV"
     continue
+  else
+    parlay ecosystems enrich "$sbom_file"
   fi
 
   # CycloneDX license extraction
