@@ -27,6 +27,8 @@ applications:
   - name: argocd
     annotations:
       argocd.argoproj.io/sync-wave: "-9"
+    syncOptions:
+      - ServerSideApply=true
 
   - name: external-secrets
     annotations:

@@ -12,6 +12,8 @@ applications:
   - name: argocd
     annotations:
       argocd.argoproj.io/sync-wave: "-2"
+    syncOptions:
+      - ServerSideApply=true
 
   - name: k8s-monitoring
     annotations:
