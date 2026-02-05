@@ -2,17 +2,20 @@
   "$schema": "http://cyclonedx.org/schema/bom-1.6.schema.json",
   "bomFormat": "CycloneDX",
   "specVersion": "1.6",
-  "serialNumber": "urn:uuid:954f98d9-b2ff-4e34-93f6-2d998fa35da9",
+  "serialNumber": "urn:uuid:37e20003-78cc-459f-9d17-bfb41baaa90a",
   "version": 1,
   "metadata": {
-    "timestamp": "2026-02-04T23:13:36+00:00",
+    "timestamp": "2026-02-04T23:59:53+00:00",
     "tools": {
       "components": [
         {
           "type": "application",
+          "manufacturer": {
+            "name": "Aqua Security Software Ltd."
+          },
           "group": "aquasecurity",
           "name": "trivy",
-          "version": "0.61.0"
+          "version": "0.69.0"
         }
       ]
     },
@@ -91,6 +94,10 @@
           "value": "https://github.com/cert-manager/cert-manager"
         },
         {
+          "name": "aquasecurity:trivy:Reference",
+          "value": "quay.io/jetstack/cert-manager-webhook:v1.19.3"
+        },
+        {
           "name": "aquasecurity:trivy:RepoDigest",
           "value": "quay.io/jetstack/cert-manager-webhook@sha256:2625754083d5e2d682a4582fd3fab41a0aa79e7c732c90491373c4f3be5e65b7"
         },
@@ -101,13 +108,48 @@
         {
           "name": "aquasecurity:trivy:SchemaVersion",
           "value": "2"
+        },
+        {
+          "name": "aquasecurity:trivy:Size",
+          "value": "69094912"
         }
       ]
     }
   },
   "components": [
     {
-      "bom-ref": "53ca3d50-ce8e-4f50-98c4-958efb5c36f7",
+      "bom-ref": "20b0eefb-a4ca-422e-87f4-d330000d897d",
+      "type": "application",
+      "name": "app/cmd/webhook/webhook",
+      "properties": [
+        {
+          "name": "aquasecurity:trivy:Class",
+          "value": "lang-pkgs"
+        },
+        {
+          "name": "aquasecurity:trivy:Type",
+          "value": "gobinary"
+        }
+      ]
+    },
+    {
+      "bom-ref": "59b834a7-3e42-4d80-a333-0b6723153759",
+      "type": "operating-system",
+      "name": "debian",
+      "version": "12.13",
+      "properties": [
+        {
+          "name": "aquasecurity:trivy:Class",
+          "value": "os-pkgs"
+        },
+        {
+          "name": "aquasecurity:trivy:Type",
+          "value": "debian"
+        }
+      ]
+    },
+    {
+      "bom-ref": "59c67908-eb30-4e78-bee0-da396e2a3915",
       "type": "library",
       "name": "../../",
       "properties": [
@@ -130,37 +172,6 @@
       ]
     },
     {
-      "bom-ref": "6e8f96f2-98a2-408e-8455-65c6203af5ea",
-      "type": "application",
-      "name": "app/cmd/webhook/webhook",
-      "properties": [
-        {
-          "name": "aquasecurity:trivy:Class",
-          "value": "lang-pkgs"
-        },
-        {
-          "name": "aquasecurity:trivy:Type",
-          "value": "gobinary"
-        }
-      ]
-    },
-    {
-      "bom-ref": "ad282605-3e85-4c2e-9dc9-6d3d9160b9f3",
-      "type": "operating-system",
-      "name": "debian",
-      "version": "12.13",
-      "properties": [
-        {
-          "name": "aquasecurity:trivy:Class",
-          "value": "os-pkgs"
-        },
-        {
-          "name": "aquasecurity:trivy:Type",
-          "value": "debian"
-        }
-      ]
-    },
-    {
       "bom-ref": "pkg:deb/debian/base-files@12.4%2Bdeb12u13?arch=amd64&distro=debian-12.13",
       "type": "library",
       "supplier": {
@@ -171,7 +182,7 @@
       "licenses": [
         {
           "license": {
-            "name": "GPL-2.0-or-later"
+            "id": "GPL-2.0-or-later"
           }
         }
       ],
@@ -257,7 +268,7 @@
       "licenses": [
         {
           "license": {
-            "name": "GPL-2.0-only"
+            "id": "GPL-2.0-only"
           }
         }
       ],
@@ -6163,9 +6174,32 @@
     {
       "bom-ref": "pkg:golang/sigs.k8s.io/gateway-api@v1.4.0",
       "type": "library",
+      "supplier": {
+        "name": "Kubernetes SIGs"
+      },
+      "author": "Kubernetes SIGs",
       "name": "sigs.k8s.io/gateway-api",
       "version": "v1.4.0",
+      "licenses": [
+        {
+          "expression": "(Apache-2.0)"
+        }
+      ],
       "purl": "pkg:golang/sigs.k8s.io/gateway-api@v1.4.0",
+      "externalReferences": [
+        {
+          "url": "https://github.com/kubernetes-sigs/gateway-api",
+          "type": "website"
+        },
+        {
+          "url": "https://pkg.go.dev/sigs.k8s.io/gateway-api",
+          "type": "distribution"
+        },
+        {
+          "url": "https://pkg.go.dev/sigs.k8s.io/gateway-api#section-documentation",
+          "type": "documentation"
+        }
+      ],
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
@@ -6182,6 +6216,34 @@
         {
           "name": "aquasecurity:trivy:PkgType",
           "value": "gobinary"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2020-10-07T23:56:16Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2025-12-04T05:26:20Z"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "gateway-api"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "k8s-sig-network"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "kubernetes"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "networking"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "sig-network"
         }
       ]
     },
@@ -6418,13 +6480,9 @@
   ],
   "dependencies": [
     {
-      "ref": "53ca3d50-ce8e-4f50-98c4-958efb5c36f7",
-      "dependsOn": []
-    },
-    {
-      "ref": "6e8f96f2-98a2-408e-8455-65c6203af5ea",
+      "ref": "20b0eefb-a4ca-422e-87f4-d330000d897d",
       "dependsOn": [
-        "53ca3d50-ce8e-4f50-98c4-958efb5c36f7",
+        "59c67908-eb30-4e78-bee0-da396e2a3915",
         "pkg:golang/cel.dev/expr@v0.24.0",
         "pkg:golang/github.com/antlr4-go/antlr/v4@v4.13.1",
         "pkg:golang/github.com/azure/go-ntlmssp@v0.0.0-20221128193559-754e69321358",
@@ -6519,13 +6577,17 @@
       ]
     },
     {
-      "ref": "ad282605-3e85-4c2e-9dc9-6d3d9160b9f3",
+      "ref": "59b834a7-3e42-4d80-a333-0b6723153759",
       "dependsOn": [
         "pkg:deb/debian/base-files@12.4%2Bdeb12u13?arch=amd64&distro=debian-12.13",
         "pkg:deb/debian/media-types@10.0.0?arch=all&distro=debian-12.13",
         "pkg:deb/debian/netbase@6.4?arch=all&distro=debian-12.13",
         "pkg:deb/debian/tzdata@2025b-0%2Bdeb12u2?arch=all&distro=debian-12.13"
       ]
+    },
+    {
+      "ref": "59c67908-eb30-4e78-bee0-da396e2a3915",
+      "dependsOn": []
     },
     {
       "ref": "pkg:deb/debian/base-files@12.4%2Bdeb12u13?arch=amd64&distro=debian-12.13",
@@ -6910,8 +6972,8 @@
     {
       "ref": "pkg:oci/cert-manager-webhook@sha256%3A2625754083d5e2d682a4582fd3fab41a0aa79e7c732c90491373c4f3be5e65b7?arch=amd64&repository_url=quay.io%2Fjetstack%2Fcert-manager-webhook",
       "dependsOn": [
-        "6e8f96f2-98a2-408e-8455-65c6203af5ea",
-        "ad282605-3e85-4c2e-9dc9-6d3d9160b9f3"
+        "20b0eefb-a4ca-422e-87f4-d330000d897d",
+        "59b834a7-3e42-4d80-a333-0b6723153759"
       ]
     }
   ],

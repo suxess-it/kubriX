@@ -2,17 +2,20 @@
   "$schema": "http://cyclonedx.org/schema/bom-1.6.schema.json",
   "bomFormat": "CycloneDX",
   "specVersion": "1.6",
-  "serialNumber": "urn:uuid:fc6861cf-4054-43b6-ac86-30aa152f4fe2",
+  "serialNumber": "urn:uuid:85fd6873-8ceb-4f54-8ff8-5bc4e37010ef",
   "version": 1,
   "metadata": {
-    "timestamp": "2026-02-04T23:13:34+00:00",
+    "timestamp": "2026-02-04T23:59:51+00:00",
     "tools": {
       "components": [
         {
           "type": "application",
+          "manufacturer": {
+            "name": "Aqua Security Software Ltd."
+          },
           "group": "aquasecurity",
           "name": "trivy",
-          "version": "0.61.0"
+          "version": "0.69.0"
         }
       ]
     },
@@ -91,6 +94,10 @@
           "value": "https://github.com/cert-manager/cert-manager"
         },
         {
+          "name": "aquasecurity:trivy:Reference",
+          "value": "quay.io/jetstack/cert-manager-startupapicheck:v1.19.3"
+        },
+        {
           "name": "aquasecurity:trivy:RepoDigest",
           "value": "quay.io/jetstack/cert-manager-startupapicheck@sha256:e51a062513381070f43be0a435b029f5d116d6a3e1340deeb8eace5ca7a8a08f"
         },
@@ -101,44 +108,17 @@
         {
           "name": "aquasecurity:trivy:SchemaVersion",
           "value": "2"
+        },
+        {
+          "name": "aquasecurity:trivy:Size",
+          "value": "35522048"
         }
       ]
     }
   },
   "components": [
     {
-      "bom-ref": "4b66a739-c7e7-40e9-93ab-a6bd22652ae7",
-      "type": "operating-system",
-      "name": "debian",
-      "version": "12.13",
-      "properties": [
-        {
-          "name": "aquasecurity:trivy:Class",
-          "value": "os-pkgs"
-        },
-        {
-          "name": "aquasecurity:trivy:Type",
-          "value": "debian"
-        }
-      ]
-    },
-    {
-      "bom-ref": "c7029711-143d-4f41-83c2-471fa7514c9f",
-      "type": "application",
-      "name": "startupapicheck",
-      "properties": [
-        {
-          "name": "aquasecurity:trivy:Class",
-          "value": "lang-pkgs"
-        },
-        {
-          "name": "aquasecurity:trivy:Type",
-          "value": "gobinary"
-        }
-      ]
-    },
-    {
-      "bom-ref": "d86059d7-6913-4da0-b63b-05e712610515",
+      "bom-ref": "0b2e3452-8d9e-4ed7-b282-8a773ff35572",
       "type": "library",
       "name": "../../",
       "properties": [
@@ -161,6 +141,37 @@
       ]
     },
     {
+      "bom-ref": "24e0a8ba-07c2-482f-b344-48e46083010c",
+      "type": "application",
+      "name": "startupapicheck",
+      "properties": [
+        {
+          "name": "aquasecurity:trivy:Class",
+          "value": "lang-pkgs"
+        },
+        {
+          "name": "aquasecurity:trivy:Type",
+          "value": "gobinary"
+        }
+      ]
+    },
+    {
+      "bom-ref": "f771dceb-1503-4806-b63b-0f57b318dec3",
+      "type": "operating-system",
+      "name": "debian",
+      "version": "12.13",
+      "properties": [
+        {
+          "name": "aquasecurity:trivy:Class",
+          "value": "os-pkgs"
+        },
+        {
+          "name": "aquasecurity:trivy:Type",
+          "value": "debian"
+        }
+      ]
+    },
+    {
       "bom-ref": "pkg:deb/debian/base-files@12.4%2Bdeb12u13?arch=amd64&distro=debian-12.13",
       "type": "library",
       "supplier": {
@@ -171,7 +182,7 @@
       "licenses": [
         {
           "license": {
-            "name": "GPL-2.0-or-later"
+            "id": "GPL-2.0-or-later"
           }
         }
       ],
@@ -257,7 +268,7 @@
       "licenses": [
         {
           "license": {
-            "name": "GPL-2.0-only"
+            "id": "GPL-2.0-only"
           }
         }
       ],
@@ -2338,18 +2349,13 @@
   ],
   "dependencies": [
     {
-      "ref": "4b66a739-c7e7-40e9-93ab-a6bd22652ae7",
-      "dependsOn": [
-        "pkg:deb/debian/base-files@12.4%2Bdeb12u13?arch=amd64&distro=debian-12.13",
-        "pkg:deb/debian/media-types@10.0.0?arch=all&distro=debian-12.13",
-        "pkg:deb/debian/netbase@6.4?arch=all&distro=debian-12.13",
-        "pkg:deb/debian/tzdata@2025b-0%2Bdeb12u2?arch=all&distro=debian-12.13"
-      ]
+      "ref": "0b2e3452-8d9e-4ed7-b282-8a773ff35572",
+      "dependsOn": []
     },
     {
-      "ref": "c7029711-143d-4f41-83c2-471fa7514c9f",
+      "ref": "24e0a8ba-07c2-482f-b344-48e46083010c",
       "dependsOn": [
-        "d86059d7-6913-4da0-b63b-05e712610515",
+        "0b2e3452-8d9e-4ed7-b282-8a773ff35572",
         "pkg:golang/github.com/azure/go-ntlmssp@v0.0.0-20221128193559-754e69321358",
         "pkg:golang/github.com/beorn7/perks@v1.0.1",
         "pkg:golang/github.com/blang/semver/v4@v4.0.0",
@@ -2433,8 +2439,13 @@
       ]
     },
     {
-      "ref": "d86059d7-6913-4da0-b63b-05e712610515",
-      "dependsOn": []
+      "ref": "f771dceb-1503-4806-b63b-0f57b318dec3",
+      "dependsOn": [
+        "pkg:deb/debian/base-files@12.4%2Bdeb12u13?arch=amd64&distro=debian-12.13",
+        "pkg:deb/debian/media-types@10.0.0?arch=all&distro=debian-12.13",
+        "pkg:deb/debian/netbase@6.4?arch=all&distro=debian-12.13",
+        "pkg:deb/debian/tzdata@2025b-0%2Bdeb12u2?arch=all&distro=debian-12.13"
+      ]
     },
     {
       "ref": "pkg:deb/debian/base-files@12.4%2Bdeb12u13?arch=amd64&distro=debian-12.13",
@@ -2775,8 +2786,8 @@
     {
       "ref": "pkg:oci/cert-manager-startupapicheck@sha256%3Ae51a062513381070f43be0a435b029f5d116d6a3e1340deeb8eace5ca7a8a08f?arch=amd64&repository_url=quay.io%2Fjetstack%2Fcert-manager-startupapicheck",
       "dependsOn": [
-        "4b66a739-c7e7-40e9-93ab-a6bd22652ae7",
-        "c7029711-143d-4f41-83c2-471fa7514c9f"
+        "24e0a8ba-07c2-482f-b344-48e46083010c",
+        "f771dceb-1503-4806-b63b-0f57b318dec3"
       ]
     }
   ],

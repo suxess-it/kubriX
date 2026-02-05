@@ -2,17 +2,20 @@
   "$schema": "http://cyclonedx.org/schema/bom-1.6.schema.json",
   "bomFormat": "CycloneDX",
   "specVersion": "1.6",
-  "serialNumber": "urn:uuid:cf48a29c-0451-443a-b750-694ba4485f76",
+  "serialNumber": "urn:uuid:07d08055-55ca-476d-85e5-5b4a00fc3ba7",
   "version": 1,
   "metadata": {
-    "timestamp": "2026-02-04T23:13:53+00:00",
+    "timestamp": "2026-02-05T00:01:10+00:00",
     "tools": {
       "components": [
         {
           "type": "application",
+          "manufacturer": {
+            "name": "Aqua Security Software Ltd."
+          },
           "group": "aquasecurity",
           "name": "trivy",
-          "version": "0.61.0"
+          "version": "0.69.0"
         }
       ]
     },
@@ -91,6 +94,10 @@
           "value": "sha256:835916cada9d9a8872c123b3ddc4f367223f60a9065fe36a5a8960416fdc9399"
         },
         {
+          "name": "aquasecurity:trivy:Reference",
+          "value": "quay.io/kubevirt/virt-operator:v1.5.0"
+        },
+        {
           "name": "aquasecurity:trivy:RepoDigest",
           "value": "quay.io/kubevirt/virt-operator@sha256:1591b45d3f35b857cb13921429b83e8da4e21a35aa54e1c88290baf996c05a2d"
         },
@@ -101,13 +108,63 @@
         {
           "name": "aquasecurity:trivy:SchemaVersion",
           "value": "2"
+        },
+        {
+          "name": "aquasecurity:trivy:Size",
+          "value": "130095616"
         }
       ]
     }
   },
   "components": [
     {
-      "bom-ref": "3e99bf46-cea6-429e-bafb-8cc055a3c6ae",
+      "bom-ref": "42f63790-5a46-435e-8ca9-ac29cecde5ce",
+      "type": "application",
+      "name": "usr/bin/csv-generator",
+      "properties": [
+        {
+          "name": "aquasecurity:trivy:Class",
+          "value": "lang-pkgs"
+        },
+        {
+          "name": "aquasecurity:trivy:Type",
+          "value": "gobinary"
+        }
+      ]
+    },
+    {
+      "bom-ref": "4f3a8293-6459-410c-9c0f-ee3052a7753e",
+      "type": "operating-system",
+      "name": "debian",
+      "version": "12.6",
+      "properties": [
+        {
+          "name": "aquasecurity:trivy:Class",
+          "value": "os-pkgs"
+        },
+        {
+          "name": "aquasecurity:trivy:Type",
+          "value": "debian"
+        }
+      ]
+    },
+    {
+      "bom-ref": "60d17d06-83b3-4056-9161-beb298f42761",
+      "type": "application",
+      "name": "usr/bin/virt-operator",
+      "properties": [
+        {
+          "name": "aquasecurity:trivy:Class",
+          "value": "lang-pkgs"
+        },
+        {
+          "name": "aquasecurity:trivy:Type",
+          "value": "gobinary"
+        }
+      ]
+    },
+    {
+      "bom-ref": "a41e0576-3f78-49d7-a020-999f990a9030",
       "type": "library",
       "name": "stdlib",
       "version": "v1.23.4",
@@ -132,53 +189,7 @@
       ]
     },
     {
-      "bom-ref": "834eb79f-d8c4-448c-9184-f7ea1c235810",
-      "type": "application",
-      "name": "usr/bin/virt-operator",
-      "properties": [
-        {
-          "name": "aquasecurity:trivy:Class",
-          "value": "lang-pkgs"
-        },
-        {
-          "name": "aquasecurity:trivy:Type",
-          "value": "gobinary"
-        }
-      ]
-    },
-    {
-      "bom-ref": "c2b31852-d074-44fe-9143-0d49976ab845",
-      "type": "operating-system",
-      "name": "debian",
-      "version": "12.6",
-      "properties": [
-        {
-          "name": "aquasecurity:trivy:Class",
-          "value": "os-pkgs"
-        },
-        {
-          "name": "aquasecurity:trivy:Type",
-          "value": "debian"
-        }
-      ]
-    },
-    {
-      "bom-ref": "dfb59908-9bb1-4ae9-b342-1553c7fcaf4c",
-      "type": "application",
-      "name": "usr/bin/csv-generator",
-      "properties": [
-        {
-          "name": "aquasecurity:trivy:Class",
-          "value": "lang-pkgs"
-        },
-        {
-          "name": "aquasecurity:trivy:Type",
-          "value": "gobinary"
-        }
-      ]
-    },
-    {
-      "bom-ref": "e5de4e9e-801f-4767-9ba9-7fd309c06afb",
+      "bom-ref": "f88b5a9a-2fde-47ee-a6ba-0427b1f1e5f3",
       "type": "library",
       "name": "stdlib",
       "version": "v1.23.4",
@@ -213,7 +224,7 @@
       "licenses": [
         {
           "license": {
-            "name": "GPL-2.0-or-later"
+            "id": "GPL-2.0-or-later"
           }
         }
       ],
@@ -256,12 +267,12 @@
       "licenses": [
         {
           "license": {
-            "name": "LGPL-2.1-only"
+            "id": "LGPL-2.1-only"
           }
         },
         {
           "license": {
-            "name": "GPL-2.0-only"
+            "id": "GPL-2.0-only"
           }
         }
       ],
@@ -308,22 +319,22 @@
       "licenses": [
         {
           "license": {
-            "name": "Apache-2.0"
+            "id": "Apache-2.0"
           }
         },
         {
           "license": {
-            "name": "Artistic-2.0"
+            "id": "Artistic-2.0"
           }
         },
         {
           "license": {
-            "name": "GPL-1.0-or-later"
+            "id": "GPL-1.0-or-later"
           }
         },
         {
           "license": {
-            "name": "GPL-1.0-only"
+            "id": "GPL-1.0-only"
           }
         }
       ],
@@ -370,7 +381,7 @@
       "licenses": [
         {
           "license": {
-            "name": "GPL-2.0-only"
+            "id": "GPL-2.0-only"
           }
         }
       ],
@@ -452,17 +463,13 @@
   ],
   "dependencies": [
     {
-      "ref": "3e99bf46-cea6-429e-bafb-8cc055a3c6ae",
-      "dependsOn": []
-    },
-    {
-      "ref": "834eb79f-d8c4-448c-9184-f7ea1c235810",
+      "ref": "42f63790-5a46-435e-8ca9-ac29cecde5ce",
       "dependsOn": [
-        "3e99bf46-cea6-429e-bafb-8cc055a3c6ae"
+        "a41e0576-3f78-49d7-a020-999f990a9030"
       ]
     },
     {
-      "ref": "c2b31852-d074-44fe-9143-0d49976ab845",
+      "ref": "4f3a8293-6459-410c-9c0f-ee3052a7753e",
       "dependsOn": [
         "pkg:deb/debian/base-files@12.4%2Bdeb12u6?arch=amd64&distro=debian-12.6",
         "pkg:deb/debian/libc6@2.36-9%2Bdeb12u7?arch=amd64&distro=debian-12.6",
@@ -472,13 +479,17 @@
       ]
     },
     {
-      "ref": "dfb59908-9bb1-4ae9-b342-1553c7fcaf4c",
+      "ref": "60d17d06-83b3-4056-9161-beb298f42761",
       "dependsOn": [
-        "e5de4e9e-801f-4767-9ba9-7fd309c06afb"
+        "f88b5a9a-2fde-47ee-a6ba-0427b1f1e5f3"
       ]
     },
     {
-      "ref": "e5de4e9e-801f-4767-9ba9-7fd309c06afb",
+      "ref": "a41e0576-3f78-49d7-a020-999f990a9030",
+      "dependsOn": []
+    },
+    {
+      "ref": "f88b5a9a-2fde-47ee-a6ba-0427b1f1e5f3",
       "dependsOn": []
     },
     {
@@ -504,9 +515,9 @@
     {
       "ref": "pkg:oci/virt-operator@sha256%3A1591b45d3f35b857cb13921429b83e8da4e21a35aa54e1c88290baf996c05a2d?arch=amd64&repository_url=quay.io%2Fkubevirt%2Fvirt-operator",
       "dependsOn": [
-        "834eb79f-d8c4-448c-9184-f7ea1c235810",
-        "c2b31852-d074-44fe-9143-0d49976ab845",
-        "dfb59908-9bb1-4ae9-b342-1553c7fcaf4c"
+        "42f63790-5a46-435e-8ca9-ac29cecde5ce",
+        "4f3a8293-6459-410c-9c0f-ee3052a7753e",
+        "60d17d06-83b3-4056-9161-beb298f42761"
       ]
     }
   ],

@@ -2,17 +2,20 @@
   "$schema": "http://cyclonedx.org/schema/bom-1.6.schema.json",
   "bomFormat": "CycloneDX",
   "specVersion": "1.6",
-  "serialNumber": "urn:uuid:a2f2eb19-2d3a-4bd7-8c56-d81f9625b3a7",
+  "serialNumber": "urn:uuid:86e41a5f-812a-48ac-a8cd-c7962ae29f15",
   "version": 1,
   "metadata": {
-    "timestamp": "2026-02-04T23:08:52+00:00",
+    "timestamp": "2026-02-04T23:54:54+00:00",
     "tools": {
       "components": [
         {
           "type": "application",
+          "manufacturer": {
+            "name": "Aqua Security Software Ltd."
+          },
           "group": "aquasecurity",
           "name": "trivy",
-          "version": "0.61.0"
+          "version": "0.69.0"
         }
       ]
     },
@@ -95,6 +98,10 @@
           "value": "sha256:06c425ea32fada30ffe48e2bf9eed3666cce2ea088fd8c9de5ed4ed18b15de4f"
         },
         {
+          "name": "aquasecurity:trivy:Reference",
+          "value": "grafana/loki:3.6.3"
+        },
+        {
           "name": "aquasecurity:trivy:RepoDigest",
           "value": "grafana/loki@sha256:cd6e176883a90c21755f0315688668991634143423f75bdedfef41441b0fdc3c"
         },
@@ -105,13 +112,17 @@
         {
           "name": "aquasecurity:trivy:SchemaVersion",
           "value": "2"
+        },
+        {
+          "name": "aquasecurity:trivy:Size",
+          "value": "133050880"
         }
       ]
     }
   },
   "components": [
     {
-      "bom-ref": "c888f180-fa2c-4f3f-a593-5ff7251162b5",
+      "bom-ref": "33abf503-bc8b-4f09-a52c-f3abb3aa3d8c",
       "type": "application",
       "name": "usr/bin/loki",
       "properties": [
@@ -126,7 +137,23 @@
       ]
     },
     {
-      "bom-ref": "cc29689d-3e96-4150-86c1-16086853a404",
+      "bom-ref": "6cfe1713-02f6-47db-ba18-4b727babe1f9",
+      "type": "operating-system",
+      "name": "debian",
+      "version": "12.12",
+      "properties": [
+        {
+          "name": "aquasecurity:trivy:Class",
+          "value": "os-pkgs"
+        },
+        {
+          "name": "aquasecurity:trivy:Type",
+          "value": "debian"
+        }
+      ]
+    },
+    {
+      "bom-ref": "c8597c19-fbf9-4e2a-9458-a784b5b632ef",
       "type": "library",
       "name": "./pkg/push",
       "properties": [
@@ -149,22 +176,6 @@
       ]
     },
     {
-      "bom-ref": "d50e201b-41f5-476d-ab19-9c8aa2c657a0",
-      "type": "operating-system",
-      "name": "debian",
-      "version": "12.12",
-      "properties": [
-        {
-          "name": "aquasecurity:trivy:Class",
-          "value": "os-pkgs"
-        },
-        {
-          "name": "aquasecurity:trivy:Type",
-          "value": "debian"
-        }
-      ]
-    },
-    {
       "bom-ref": "pkg:deb/debian/base-files@12.4%2Bdeb12u12?arch=amd64&distro=debian-12.12",
       "type": "library",
       "supplier": {
@@ -175,7 +186,7 @@
       "licenses": [
         {
           "license": {
-            "name": "GPL-2.0-or-later"
+            "id": "GPL-2.0-or-later"
           }
         }
       ],
@@ -261,7 +272,7 @@
       "licenses": [
         {
           "license": {
-            "name": "GPL-2.0-only"
+            "id": "GPL-2.0-only"
           }
         }
       ],
@@ -26091,23 +26102,23 @@
   ],
   "dependencies": [
     {
-      "ref": "c888f180-fa2c-4f3f-a593-5ff7251162b5",
+      "ref": "33abf503-bc8b-4f09-a52c-f3abb3aa3d8c",
       "dependsOn": [
         "pkg:golang/github.com/grafana/loki/v3@3.6.3"
       ]
     },
     {
-      "ref": "cc29689d-3e96-4150-86c1-16086853a404",
-      "dependsOn": []
-    },
-    {
-      "ref": "d50e201b-41f5-476d-ab19-9c8aa2c657a0",
+      "ref": "6cfe1713-02f6-47db-ba18-4b727babe1f9",
       "dependsOn": [
         "pkg:deb/debian/base-files@12.4%2Bdeb12u12?arch=amd64&distro=debian-12.12",
         "pkg:deb/debian/media-types@10.0.0?arch=all&distro=debian-12.12",
         "pkg:deb/debian/netbase@6.4?arch=all&distro=debian-12.12",
         "pkg:deb/debian/tzdata@2025b-0%2Bdeb12u2?arch=all&distro=debian-12.12"
       ]
+    },
+    {
+      "ref": "c8597c19-fbf9-4e2a-9458-a784b5b632ef",
+      "dependsOn": []
     },
     {
       "ref": "pkg:deb/debian/base-files@12.4%2Bdeb12u12?arch=amd64&distro=debian-12.12",
@@ -26684,7 +26695,7 @@
     {
       "ref": "pkg:golang/github.com/grafana/loki/v3@3.6.3",
       "dependsOn": [
-        "cc29689d-3e96-4150-86c1-16086853a404",
+        "c8597c19-fbf9-4e2a-9458-a784b5b632ef",
         "pkg:golang/cel.dev/expr@v0.24.0",
         "pkg:golang/cloud.google.com/go/auth/oauth2adapt@v0.2.8",
         "pkg:golang/cloud.google.com/go/auth@v0.17.0",
@@ -27864,8 +27875,8 @@
     {
       "ref": "pkg:oci/loki@sha256%3Acd6e176883a90c21755f0315688668991634143423f75bdedfef41441b0fdc3c?arch=amd64&repository_url=index.docker.io%2Fgrafana%2Floki",
       "dependsOn": [
-        "c888f180-fa2c-4f3f-a593-5ff7251162b5",
-        "d50e201b-41f5-476d-ab19-9c8aa2c657a0"
+        "33abf503-bc8b-4f09-a52c-f3abb3aa3d8c",
+        "6cfe1713-02f6-47db-ba18-4b727babe1f9"
       ]
     }
   ],

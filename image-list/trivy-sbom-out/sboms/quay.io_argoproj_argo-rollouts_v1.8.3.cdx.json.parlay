@@ -2,17 +2,20 @@
   "$schema": "http://cyclonedx.org/schema/bom-1.6.schema.json",
   "bomFormat": "CycloneDX",
   "specVersion": "1.6",
-  "serialNumber": "urn:uuid:5d90865d-70ad-4205-adfb-b1b80f4d90c6",
+  "serialNumber": "urn:uuid:acb6c23f-ad2a-4d85-8c72-b921792e0379",
   "version": 1,
   "metadata": {
-    "timestamp": "2026-02-04T23:13:10+00:00",
+    "timestamp": "2026-02-04T23:59:24+00:00",
     "tools": {
       "components": [
         {
           "type": "application",
+          "manufacturer": {
+            "name": "Aqua Security Software Ltd."
+          },
           "group": "aquasecurity",
           "name": "trivy",
-          "version": "0.61.0"
+          "version": "0.69.0"
         }
       ]
     },
@@ -83,6 +86,10 @@
           "value": "sha256:265f91722eb29960a548712f8dca5be653a15bbd68fba969031a4f1623df0d73"
         },
         {
+          "name": "aquasecurity:trivy:Reference",
+          "value": "quay.io/argoproj/argo-rollouts:v1.8.3"
+        },
+        {
           "name": "aquasecurity:trivy:RepoDigest",
           "value": "quay.io/argoproj/argo-rollouts@sha256:2b7be18bd6a3ce627ce0ed63d49e9166720c0b3409404266bbadabd15474d28a"
         },
@@ -93,28 +100,17 @@
         {
           "name": "aquasecurity:trivy:SchemaVersion",
           "value": "2"
+        },
+        {
+          "name": "aquasecurity:trivy:Size",
+          "value": "121987584"
         }
       ]
     }
   },
   "components": [
     {
-      "bom-ref": "d89b4149-2882-4d46-a926-aff95e172777",
-      "type": "application",
-      "name": "bin/rollouts-controller",
-      "properties": [
-        {
-          "name": "aquasecurity:trivy:Class",
-          "value": "lang-pkgs"
-        },
-        {
-          "name": "aquasecurity:trivy:Type",
-          "value": "gobinary"
-        }
-      ]
-    },
-    {
-      "bom-ref": "dc083012-363e-415e-8b56-75aa7773baeb",
+      "bom-ref": "56375368-abfc-45ab-83b7-6381834ce282",
       "type": "operating-system",
       "name": "debian",
       "version": "11.10",
@@ -130,6 +126,21 @@
       ]
     },
     {
+      "bom-ref": "e3ef3fd8-cec0-4cd4-b7f4-7c21c9707a4f",
+      "type": "application",
+      "name": "bin/rollouts-controller",
+      "properties": [
+        {
+          "name": "aquasecurity:trivy:Class",
+          "value": "lang-pkgs"
+        },
+        {
+          "name": "aquasecurity:trivy:Type",
+          "value": "gobinary"
+        }
+      ]
+    },
+    {
       "bom-ref": "pkg:deb/debian/base-files@11.1%2Bdeb11u10?arch=amd64&distro=debian-11.10",
       "type": "library",
       "supplier": {
@@ -140,7 +151,7 @@
       "licenses": [
         {
           "license": {
-            "name": "GPL-2.0-or-later"
+            "id": "GPL-2.0-or-later"
           }
         }
       ],
@@ -183,7 +194,7 @@
       "licenses": [
         {
           "license": {
-            "name": "GPL-2.0-only"
+            "id": "GPL-2.0-only"
           }
         }
       ],
@@ -9964,6 +9975,11 @@
       "name": "github.com/spaceapegames/go-wavefront",
       "version": "v1.8.1",
       "description": "Package wavefront provides a library for interacting with the Wavefront API,\nalong with a writer for sending metrics to a Wavefront proxy.",
+      "licenses": [
+        {
+          "expression": "(Apache-2.0)"
+        }
+      ],
       "purl": "pkg:golang/github.com/spaceapegames/go-wavefront@v1.8.1",
       "externalReferences": [
         {
@@ -11850,6 +11866,11 @@
       "name": "go.opentelemetry.io/otel",
       "version": "v1.22.0",
       "description": "Package otel provides global access to the OpenTelemetry API. The subpackages of\nthe otel package provide an implementation of the OpenTelemetry API.\n\nThe provided API is used to instrument code and measure data about that code's\nperformance and operation. The measured data, by default, is not processed or\ntransmitted anywhere. An implementation of the OpenTelemetry SDK, like the\ndefault SDK implementation (go.opentelemetry.io/otel/sdk), and associated\nexporters are used to process and transport this data.\n\nTo read the getting started guide, see https://opentelemetry.io/docs/languages/go/getting-started/.\n\nTo read more about tracing, see go.opentelemetry.io/otel/trace.\n\nTo read more about metrics, see go.opentelemetry.io/otel/metric.\n\nTo read more about logs, see go.opentelemetry.io/otel/log.\n\nTo read more about propagation, see go.opentelemetry.io/otel/propagation and\ngo.opentelemetry.io/otel/baggage.",
+      "licenses": [
+        {
+          "expression": "(Apache-2.0 OR BSD-3-Clause)"
+        }
+      ],
       "purl": "pkg:golang/go.opentelemetry.io/otel@v1.22.0",
       "externalReferences": [
         {
@@ -11920,6 +11941,11 @@
       "author": "OpenTelemetry - CNCF",
       "name": "go.opentelemetry.io/proto/otlp",
       "version": "v1.0.0",
+      "licenses": [
+        {
+          "expression": "(Apache-2.0)"
+        }
+      ],
       "purl": "pkg:golang/go.opentelemetry.io/proto/otlp@v1.0.0",
       "externalReferences": [
         {
@@ -12043,6 +12069,11 @@
       "name": "go.uber.org/atomic",
       "version": "v1.10.0",
       "description": "Package atomic provides simple wrappers around numerics to enforce atomic\naccess.",
+      "licenses": [
+        {
+          "expression": "(MIT)"
+        }
+      ],
       "purl": "pkg:golang/go.uber.org/atomic@v1.10.0",
       "externalReferences": [
         {
@@ -12182,6 +12213,11 @@
       "name": "go.uber.org/zap",
       "version": "v1.19.0",
       "description": "Package zap provides fast, structured, leveled logging.\n\nFor applications that log in the hot path, reflection-based serialization\nand string formatting are prohibitively expensive - they're CPU-intensive\nand make many small allocations. Put differently, using json.Marshal and\nfmt.Fprintf to log tons of interface{} makes your application slow.\n\nZap takes a different approach. It includes a reflection-free,\nzero-allocation JSON encoder, and the base Logger strives to avoid\nserialization overhead and allocations wherever possible. By building the\nhigh-level SugaredLogger on that foundation, zap lets users choose when\nthey need to count every allocation and when they'd prefer a more familiar,\nloosely typed API.\n\nIn contexts where performance is nice, but not critical, use the\nSugaredLogger. It's 4-10x faster than other structured logging packages and\nsupports both structured and printf-style logging. Like log15 and go-kit,\nthe SugaredLogger's structured logging APIs are loosely typed and accept a\nvariadic number of key-value pairs. (For more advanced use cases, they also\naccept strongly typed fields - see the SugaredLogger.With documentation for\ndetails.)\n\nBy default, loggers are unbuffered. However, since zap's low-level APIs\nallow buffering, calling Sync before letting your process exit is a good\nhabit.\n\nIn the rare contexts where every microsecond and every allocation matter,\nuse the Logger. It's even faster than the SugaredLogger and allocates far\nless, but it only supports strongly-typed, structured logging.\n\nChoosing between the Logger and SugaredLogger doesn't need to be an\napplication-wide decision: converting between the two is simple and\ninexpensive.\n\nThe simplest way to build a Logger is to use zap's opinionated presets:\nNewExample, NewProduction, and NewDevelopment. These presets build a logger\nwith a single function call:\n\nPresets are fine for small projects, but larger projects and organizations\nnaturally require a bit more customization. For most users, zap's Config\nstruct strikes the right balance between flexibility and convenience. See\nthe package-level BasicConfiguration example for sample code.\n\nMore unusual configurations (splitting output between files, sending logs\nto a message queue, etc.) are possible, but require direct use of\ngo.uber.org/zap/zapcore. See the package-level AdvancedConfiguration\nexample for sample code.\n\nThe zap package itself is a relatively thin wrapper around the interfaces\nin go.uber.org/zap/zapcore. Extending zap to support a new encoding (e.g.,\nBSON), a new log sink (e.g., Kafka), or something more exotic (perhaps an\nexception aggregation service, like Sentry or Rollbar) typically requires\nimplementing the zapcore.Encoder, zapcore.WriteSyncer, or zapcore.Core\ninterfaces. See the zapcore documentation for details.\n\nSimilarly, package authors can use the high-performance Encoder and Core\nimplementations in the zapcore package to build their own loggers.\n\nAn FAQ covering everything from installation errors to design decisions is\navailable at https://github.com/uber-go/zap/blob/master/FAQ.md.",
+      "licenses": [
+        {
+          "expression": "(MIT)"
+        }
+      ],
       "purl": "pkg:golang/go.uber.org/zap@v1.19.0",
       "externalReferences": [
         {
@@ -12253,6 +12289,11 @@
       "type": "library",
       "name": "golang.org/x/crypto",
       "version": "v0.27.0",
+      "licenses": [
+        {
+          "expression": "(BSD-3-Clause)"
+        }
+      ],
       "purl": "pkg:golang/golang.org/x/crypto@v0.27.0",
       "externalReferences": [
         {
@@ -12304,6 +12345,11 @@
       "type": "library",
       "name": "golang.org/x/exp",
       "version": "v0.0.0-20220722155223-a9213eeb770e",
+      "licenses": [
+        {
+          "expression": "(BSD-3-Clause)"
+        }
+      ],
       "purl": "pkg:golang/golang.org/x/exp@v0.0.0-20220722155223-a9213eeb770e",
       "externalReferences": [
         {
@@ -12355,6 +12401,11 @@
       "type": "library",
       "name": "golang.org/x/net",
       "version": "v0.29.0",
+      "licenses": [
+        {
+          "expression": "(BSD-3-Clause)"
+        }
+      ],
       "purl": "pkg:golang/golang.org/x/net@v0.29.0",
       "externalReferences": [
         {
@@ -12511,6 +12562,11 @@
       "type": "library",
       "name": "golang.org/x/sys",
       "version": "v0.25.0",
+      "licenses": [
+        {
+          "expression": "(BSD-3-Clause)"
+        }
+      ],
       "purl": "pkg:golang/golang.org/x/sys@v0.25.0",
       "externalReferences": [
         {
@@ -12563,6 +12619,11 @@
       "name": "golang.org/x/term",
       "version": "v0.24.0",
       "description": "Package term provides support functions for dealing with terminals, as\ncommonly found on UNIX systems.\n\nPutting a terminal into raw mode is the most common requirement:\n\nNote that on non-Unix systems os.Stdin.Fd() may not be 0.",
+      "licenses": [
+        {
+          "expression": "(BSD-3-Clause)"
+        }
+      ],
       "purl": "pkg:golang/golang.org/x/term@v0.24.0",
       "externalReferences": [
         {
@@ -12611,6 +12672,11 @@
       "name": "golang.org/x/text",
       "version": "v0.18.0",
       "description": "text is a repository of text-related packages related to internationalization\n(i18n) and localization (l10n), such as character encodings, text\ntransformations, and locale-specific text handling.\n\nThere is a 30 minute video, recorded on 2017-11-30, on the \"State of\ngolang.org/x/text\" at https://www.youtube.com/watch?v=uYrDrMEGu58",
+      "licenses": [
+        {
+          "expression": "(BSD-3-Clause)"
+        }
+      ],
       "purl": "pkg:golang/golang.org/x/text@v0.18.0",
       "externalReferences": [
         {
@@ -12658,6 +12724,11 @@
       "type": "library",
       "name": "golang.org/x/time",
       "version": "v0.5.0",
+      "licenses": [
+        {
+          "expression": "(BSD-3-Clause)"
+        }
+      ],
       "purl": "pkg:golang/golang.org/x/time@v0.5.0",
       "externalReferences": [
         {
@@ -12703,9 +12774,31 @@
     {
       "bom-ref": "pkg:golang/gomodules.xyz/envconfig@v1.3.1-0.20190308184047-426f31af0d45",
       "type": "library",
+      "supplier": {
+        "name": "gomodules",
+        "url": [
+          "https://gomodules.xyz"
+        ]
+      },
+      "author": "gomodules",
       "name": "gomodules.xyz/envconfig",
       "version": "v1.3.1-0.20190308184047-426f31af0d45",
+      "description": "Package envconfig implements decoding of environment variables based on a user\ndefined specification. A typical use is using environment variables for\nconfiguration settings.",
       "purl": "pkg:golang/gomodules.xyz/envconfig@v1.3.1-0.20190308184047-426f31af0d45",
+      "externalReferences": [
+        {
+          "url": "https://github.com/gomodules/envconfig",
+          "type": "website"
+        },
+        {
+          "url": "https://pkg.go.dev/gomodules.xyz/envconfig",
+          "type": "distribution"
+        },
+        {
+          "url": "https://pkg.go.dev/gomodules.xyz/envconfig#section-documentation",
+          "type": "documentation"
+        }
+      ],
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
@@ -12722,6 +12815,14 @@
         {
           "name": "aquasecurity:trivy:PkgType",
           "value": "gobinary"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2014-03-15T18:19:28Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2017-01-24T16:28:13Z"
         }
       ]
     },
@@ -12730,7 +12831,30 @@
       "type": "library",
       "name": "gomodules.xyz/notify",
       "version": "v0.1.1",
+      "licenses": [
+        {
+          "expression": "(Apache-2.0)"
+        }
+      ],
       "purl": "pkg:golang/gomodules.xyz/notify@v0.1.1",
+      "externalReferences": [
+        {
+          "url": "https://github.com/gomodules/notify",
+          "type": "website"
+        },
+        {
+          "url": "https://pkg.go.dev/gomodules.xyz/notify",
+          "type": "distribution"
+        },
+        {
+          "url": "https://github.com/gomodules/notify",
+          "type": "vcs"
+        },
+        {
+          "url": "https://pkg.go.dev/gomodules.xyz/notify#section-documentation",
+          "type": "documentation"
+        }
+      ],
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
@@ -12747,6 +12871,14 @@
         {
           "name": "aquasecurity:trivy:PkgType",
           "value": "gobinary"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2019-08-11T04:51:43Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2020-02-18T08:51:09Z"
         }
       ]
     },
@@ -12763,6 +12895,11 @@
       "name": "google.golang.org/api",
       "version": "v0.162.0",
       "description": "Package api is the root of the packages used to access Google Cloud\nServices. See https://godoc.org/google.golang.org/api for a full list of\nsub-packages.\n\nWithin api there exist numerous clients which connect to Google APIs,\nand various utility packages.\n\nAll clients in sub-packages are configurable via client options. These\noptions are described here: https://godoc.org/google.golang.org/api/option.\n\nAll the clients in sub-packages support authentication via Google\nApplication Default Credentials (see\nhttps://cloud.google.com/docs/authentication/production), or by providing a\nJSON key file for a Service Account. See the authentication examples in\nhttps://godoc.org/google.golang.org/api/transport for more details.\n\nDue to the auto-generated nature of this collection of libraries, complete\nAPIs or specific versions can appear or go away without notice. As a result,\nyou should always locally vendor any API(s) that your code relies upon.\n\nGoogle APIs follow semver as specified by\nhttps://cloud.google.com/apis/design/versioning. The code generator and\nthe code it produces - the libraries in the google.golang.org/api/...\nsubpackages - are beta.\n\nNote that versioning and stability is strictly not communicated through Go\nmodules. Go modules are used only for dependency management.\n\nMany parameters are specified using ints. However, underlying APIs might\noperate on a finer granularity, expecting int64, int32, uint64, or uint32,\nall of whom have different maximum values. Subsequently, specifying an int\nparameter in one of these clients may result in an error from the API\nbecause the value is too large.\n\nTo see the exact type of int that the API expects, you can inspect the API's\ndiscovery doc. A global catalogue pointing to the discovery doc of APIs can\nbe found at https://www.googleapis.com/discovery/v1/apis.\n\nThis field can be found on all Request/Response structs in the generated\nclients. All of these types have the JSON `omitempty` field tag present on\ntheir fields. This means if a type is set to its default value it will not be\nmarshalled. Sometimes you may actually want to send a default value, for\ninstance sending an int of `0`. In this case you can override the `omitempty`\nfeature by adding the field name to the `ForceSendFields` slice. See docs on\nany struct for more details. This may be used to include empty fields in\nPatch requests.\n\nThis field can be found on all Request/Response structs in the generated\nclients. It can be be used to send JSON null values for the listed fields.\nBy default, fields with empty values are omitted from API requests because of\nthe presence of the `omitempty` field tag on all fields. However, any field\nwith an empty value appearing in NullFields will be sent to the server as\nnull. It is an error if a field in this list has a non-empty value. This may\nbe used to include null fields in Patch requests.\n\nAn error returned by a client's Do method may be cast to a *googleapi.Error\nor unwrapped to an *apierror.APIError.\n\nThe https://pkg.go.dev/google.golang.org/api/googleapi#Error type is useful\nfor getting the HTTP status code:\n\nThe https://pkg.go.dev/github.com/googleapis/gax-go/v2/apierror#APIError type\nis useful for inspecting structured details of the underlying API response,\nsuch as the reason for the error and the error domain, which is typically the\nregistered service name of the tool or product that generated the error:\n\nIf an API call returns an Operation, that means it could take some time to\ncomplete the work initiated by the API call. Applications that are interested\nin the end result of the operation they initiated should wait until the\nOperation.Done field indicates it is finished. To do this, use the service's\nOperation client, and a loop, like so:",
+      "licenses": [
+        {
+          "expression": "(BSD-3-Clause)"
+        }
+      ],
       "purl": "pkg:golang/google.golang.org/api@v0.162.0",
       "externalReferences": [
         {
@@ -13095,6 +13232,11 @@
       "author": "Protocol Buffers",
       "name": "google.golang.org/protobuf",
       "version": "v1.35.2",
+      "licenses": [
+        {
+          "expression": "(BSD-3-Clause)"
+        }
+      ],
       "purl": "pkg:golang/google.golang.org/protobuf@v1.35.2",
       "externalReferences": [
         {
@@ -13490,6 +13632,11 @@
       "author": "Kubernetes",
       "name": "k8s.io/api",
       "version": "v0.29.3",
+      "licenses": [
+        {
+          "expression": "(Apache-2.0)"
+        }
+      ],
       "purl": "pkg:golang/k8s.io/api@v0.29.3",
       "externalReferences": [
         {
@@ -13548,6 +13695,11 @@
       "author": "Kubernetes",
       "name": "k8s.io/apiextensions-apiserver",
       "version": "v0.29.3",
+      "licenses": [
+        {
+          "expression": "(Apache-2.0)"
+        }
+      ],
       "purl": "pkg:golang/k8s.io/apiextensions-apiserver@v0.29.3",
       "externalReferences": [
         {
@@ -13610,6 +13762,11 @@
       "author": "Kubernetes",
       "name": "k8s.io/apimachinery",
       "version": "v0.29.3",
+      "licenses": [
+        {
+          "expression": "(Apache-2.0)"
+        }
+      ],
       "purl": "pkg:golang/k8s.io/apimachinery@v0.29.3",
       "externalReferences": [
         {
@@ -13673,6 +13830,11 @@
       "name": "k8s.io/apiserver",
       "version": "v0.29.3",
       "description": "Package apiserver provides the machinery for building Kubernetes-style API servers.\n\nThis library is the foundation for the Kubernetes API server (`kube-apiserver`),\nand is also the primary framework for developers building custom API servers to extend\nthe Kubernetes API.\n\nAn extension API server is a user-provided, standalone web server that registers itself\nwith the main kube-apiserver to handle specific API groups. This allows developers to\nextend Kubernetes with their own APIs that behave like core Kubernetes APIs, complete\nwith typed clients, authentication, authorization, and discovery.\n\nThe `apiserver` library is composed of several key packages:\n\nThe `GenericAPIServer` struct is the heart of any extension server. It is responsible\nfor assembling and running the HTTP serving stack. See the runnable example for a\ndemonstration of how to instantiate a `GenericAPIServer`.\n\nThe mechanism that enables extension API servers is API aggregation. The\nprimary apiserver (typically the kube-apiserver) acts as a proxy, forwarding\nrequests for a specific API group (e.g., /apis/myextension.io/v1) to a\nregistered extension server. The apiserver is configured using\nAPIService objects.\n\nFor most use cases, custom resources (CustomResourceDefinitions) are the\npreferred way to extend the Kubernetes API.\n\nThe `pkg/admission` package provides a way to add admission policies directly\ninto an apiserver. Admission plugins can be used to validate or mutate objects\nduring write operations. The kube-apiserver uses admission plugins to provide\na variety of core system capabilities.\n\nFor most extension use cases dynamic admission control using policies\n(ValidatingAdmissionPolicies or MutatingAdmissionPolicies) or\nwebhooks (ValidatingWebhookConfiguration and MutatingWebhookConfiguration) are the\npreferred way to extend admission control.",
+      "licenses": [
+        {
+          "expression": "(Apache-2.0)"
+        }
+      ],
       "purl": "pkg:golang/k8s.io/apiserver@v0.29.3",
       "externalReferences": [
         {
@@ -13735,6 +13897,11 @@
       "author": "Kubernetes",
       "name": "k8s.io/cli-runtime",
       "version": "v0.29.3",
+      "licenses": [
+        {
+          "expression": "(Apache-2.0)"
+        }
+      ],
       "purl": "pkg:golang/k8s.io/cli-runtime@v0.29.3",
       "externalReferences": [
         {
@@ -13802,6 +13969,11 @@
       "name": "k8s.io/client-go",
       "version": "v0.29.3",
       "description": "Package clientgo is the official Go client for the Kubernetes API. It provides\na standard set of clients and tools for building applications, controllers,\nand operators that communicate with a Kubernetes cluster.\n\nkubernetes: Contains the typed Clientset for interacting with built-in,\nversioned API objects (e.g., Pods, Deployments). This is the most common\nstarting point.\n\ndynamic: Provides a dynamic client that can perform operations on any\nKubernetes object, including Custom Resources (CRs). It is essential for\nbuilding controllers that work with CRDs.\n\ndiscovery: Used to discover the API groups, versions, and resources\nsupported by a Kubernetes cluster.\n\ntools/cache: The foundation of the controller pattern. This package provides\nefficient caching and synchronization mechanisms (Informers and Listers)\nfor building controllers.\n\ntools/clientcmd: Provides methods for loading client configuration from\nkubeconfig files. This is essential for out-of-cluster applications and CLI tools.\n\nrest: Provides a lower-level RESTClient that manages the details of\ncommunicating with the Kubernetes API server. It is useful for advanced\nuse cases that require fine-grained control over requests, such as working\nwith non-standard REST verbs.\n\nThere are two primary ways to configure a client to connect to the API server:\n\nIn-Cluster Configuration: For applications running inside a Kubernetes pod,\nthe `rest.InClusterConfig()` function provides a straightforward way to\nconfigure the client. It automatically uses the pod's service account for\nauthentication and is the recommended approach for controllers and operators.\n\nOut-of-Cluster Configuration: For local development or command-line tools,\nthe `clientcmd` package is used to load configuration from a\nkubeconfig file.\n\nThe `rest.Config` object allows for fine-grained control over client-side\nperformance and reliability. Key settings include:\n\nOnce configured, a client can be used to interact with objects in the cluster.\n\nThe Typed Clientset (`kubernetes` package) provides a strongly typed\ninterface for working with built-in Kubernetes objects.\n\nThe Dynamic Client (`dynamic` package) can work with any object, including\nCustom Resources, using `unstructured.Unstructured` types.\n\nFor Custom Resources (CRDs), the `k8s.io/code-generator` repository\ncontains the tools to generate typed clients, informers, and listers. The\n`sample-controller` is the canonical example of this pattern.\n\nServer-Side Apply is a patching strategy that allows multiple actors to\nshare management of an object by tracking field ownership. This prevents\nactors from inadvertently overwriting each other's changes and provides\na mechanism for resolving conflicts. The `applyconfigurations` package\nprovides the necessary tools for this declarative approach.\n\nRobust error handling is essential when interacting with the API. The\n`k8s.io/apimachinery/pkg/api/errors` package provides functions to inspect\nerrors and check for common conditions, such as whether a resource was not\nfound or already exists. This allows controllers to implement robust,\nidempotent reconciliation logic.\n\nThe controller pattern is central to Kubernetes. A controller observes the\nstate of the cluster and works to bring it to the desired state.\n\nThe `tools/cache` package provides the building blocks for this pattern.\nInformers watch the API server and maintain a local cache, Listers provide\nread-only access to the cache, and Workqueues decouple event detection\nfrom processing.\n\nIn a high-availability deployment where multiple instances of a controller\nare running, leader election (`tools/leaderelection`) is used to ensure\nthat only one instance is active at a time.\n\nClient-side feature gates allow for enabling or disabling experimental\nfeatures in `client-go`. They can be configured via the `rest.Config` object.",
+      "licenses": [
+        {
+          "expression": "(Apache-2.0)"
+        }
+      ],
       "purl": "pkg:golang/k8s.io/client-go@v0.29.3",
       "externalReferences": [
         {
@@ -13851,9 +14023,40 @@
     {
       "bom-ref": "pkg:golang/k8s.io/cloud-provider@v0.29.3",
       "type": "library",
+      "supplier": {
+        "name": "Kubernetes",
+        "url": [
+          "https://kubernetes.io"
+        ]
+      },
+      "author": "Kubernetes",
       "name": "k8s.io/cloud-provider",
       "version": "v0.29.3",
+      "description": "Package cloudprovider supplies interfaces and implementations for cloud service providers.",
+      "licenses": [
+        {
+          "expression": "(Apache-2.0)"
+        }
+      ],
       "purl": "pkg:golang/k8s.io/cloud-provider@v0.29.3",
+      "externalReferences": [
+        {
+          "url": "https://github.com/kubernetes/cloud-provider",
+          "type": "website"
+        },
+        {
+          "url": "https://pkg.go.dev/k8s.io/cloud-provider",
+          "type": "distribution"
+        },
+        {
+          "url": "https://github.com/kubernetes/cloud-provider",
+          "type": "vcs"
+        },
+        {
+          "url": "https://pkg.go.dev/k8s.io/cloud-provider#section-documentation",
+          "type": "documentation"
+        }
+      ],
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
@@ -13870,15 +14073,57 @@
         {
           "name": "aquasecurity:trivy:PkgType",
           "value": "gobinary"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2019-12-11T20:01:43Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2025-12-17T23:39:40Z"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "k8s-sig-cloud-provider"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "k8s-staging"
         }
       ]
     },
     {
       "bom-ref": "pkg:golang/k8s.io/cluster-bootstrap@v0.25.8",
       "type": "library",
+      "supplier": {
+        "name": "Kubernetes",
+        "url": [
+          "https://kubernetes.io"
+        ]
+      },
+      "author": "Kubernetes",
       "name": "k8s.io/cluster-bootstrap",
       "version": "v0.25.8",
+      "licenses": [
+        {
+          "expression": "(Apache-2.0)"
+        }
+      ],
       "purl": "pkg:golang/k8s.io/cluster-bootstrap@v0.25.8",
+      "externalReferences": [
+        {
+          "url": "https://github.com/kubernetes/cluster-bootstrap",
+          "type": "website"
+        },
+        {
+          "url": "https://pkg.go.dev/k8s.io/cluster-bootstrap",
+          "type": "distribution"
+        },
+        {
+          "url": "https://pkg.go.dev/k8s.io/cluster-bootstrap#section-documentation",
+          "type": "documentation"
+        }
+      ],
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
@@ -13895,6 +14140,18 @@
         {
           "name": "aquasecurity:trivy:PkgType",
           "value": "gobinary"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2019-12-11T19:59:23Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2025-12-17T23:44:38Z"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "k8s-staging"
         }
       ]
     },
@@ -13910,6 +14167,11 @@
       "author": "Kubernetes",
       "name": "k8s.io/component-base",
       "version": "v0.29.3",
+      "licenses": [
+        {
+          "expression": "(Apache-2.0)"
+        }
+      ],
       "purl": "pkg:golang/k8s.io/component-base@v0.29.3",
       "externalReferences": [
         {
@@ -13972,6 +14234,11 @@
       "author": "Kubernetes",
       "name": "k8s.io/component-helpers",
       "version": "v0.29.3",
+      "licenses": [
+        {
+          "expression": "(Apache-2.0)"
+        }
+      ],
       "purl": "pkg:golang/k8s.io/component-helpers@v0.29.3",
       "externalReferences": [
         {
@@ -14025,9 +14292,40 @@
     {
       "bom-ref": "pkg:golang/k8s.io/controller-manager@v0.29.3",
       "type": "library",
+      "supplier": {
+        "name": "Kubernetes",
+        "url": [
+          "https://kubernetes.io"
+        ]
+      },
+      "author": "Kubernetes",
       "name": "k8s.io/controller-manager",
       "version": "v0.29.3",
+      "description": "Package controllermanager contains the common library code for\nbuilding a controller-manager. It was based on the common code\nbetween the kube-controller-manager and the cloud-controller-manager.",
+      "licenses": [
+        {
+          "expression": "(Apache-2.0)"
+        }
+      ],
       "purl": "pkg:golang/k8s.io/controller-manager@v0.29.3",
+      "externalReferences": [
+        {
+          "url": "https://github.com/kubernetes/controller-manager",
+          "type": "website"
+        },
+        {
+          "url": "https://pkg.go.dev/k8s.io/controller-manager",
+          "type": "distribution"
+        },
+        {
+          "url": "https://github.com/kubernetes/controller-manager",
+          "type": "vcs"
+        },
+        {
+          "url": "https://pkg.go.dev/k8s.io/controller-manager#section-documentation",
+          "type": "documentation"
+        }
+      ],
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
@@ -14044,6 +14342,22 @@
         {
           "name": "aquasecurity:trivy:PkgType",
           "value": "gobinary"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2020-05-30T08:06:07Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2024-11-21T05:31:56Z"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "k8s-sig-api-machinery"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "k8s-staging"
         }
       ]
     },
@@ -14124,6 +14438,11 @@
       "name": "k8s.io/kms",
       "version": "v0.29.3",
       "description": "Package kms contains the proto definitions for the kms API.",
+      "licenses": [
+        {
+          "expression": "(Apache-2.0)"
+        }
+      ],
       "purl": "pkg:golang/k8s.io/kms@v0.29.3",
       "externalReferences": [
         {
@@ -14245,6 +14564,11 @@
       "author": "Kubernetes",
       "name": "k8s.io/kubectl",
       "version": "v0.29.3",
+      "licenses": [
+        {
+          "expression": "(Apache-2.0)"
+        }
+      ],
       "purl": "pkg:golang/k8s.io/kubectl@v0.29.3",
       "externalReferences": [
         {
@@ -14307,6 +14631,11 @@
       "author": "Kubernetes",
       "name": "k8s.io/kubelet",
       "version": "v0.29.3",
+      "licenses": [
+        {
+          "expression": "(Apache-2.0)"
+        }
+      ],
       "purl": "pkg:golang/k8s.io/kubelet@v0.29.3",
       "externalReferences": [
         {
@@ -14369,6 +14698,11 @@
       "author": "Kubernetes",
       "name": "k8s.io/kubernetes",
       "version": "v1.29.3",
+      "licenses": [
+        {
+          "expression": "(Apache-2.0)"
+        }
+      ],
       "purl": "pkg:golang/k8s.io/kubernetes@v1.29.3",
       "externalReferences": [
         {
@@ -14511,6 +14845,11 @@
       "author": "Kubernetes SIGs",
       "name": "sigs.k8s.io/apiserver-network-proxy/konnectivity-client",
       "version": "v0.28.0",
+      "licenses": [
+        {
+          "expression": "(Apache-2.0)"
+        }
+      ],
       "purl": "pkg:golang/sigs.k8s.io/apiserver-network-proxy/konnectivity-client@v0.28.0",
       "externalReferences": [
         {
@@ -14901,17 +15240,17 @@
   ],
   "dependencies": [
     {
-      "ref": "d89b4149-2882-4d46-a926-aff95e172777",
-      "dependsOn": [
-        "pkg:golang/github.com/argoproj/argo-rollouts@1.8.3"
-      ]
-    },
-    {
-      "ref": "dc083012-363e-415e-8b56-75aa7773baeb",
+      "ref": "56375368-abfc-45ab-83b7-6381834ce282",
       "dependsOn": [
         "pkg:deb/debian/base-files@11.1%2Bdeb11u10?arch=amd64&distro=debian-11.10",
         "pkg:deb/debian/netbase@6.3?arch=all&distro=debian-11.10",
         "pkg:deb/debian/tzdata@2024a-0%2Bdeb11u1?arch=all&distro=debian-11.10"
+      ]
+    },
+    {
+      "ref": "e3ef3fd8-cec0-4cd4-b7f4-7c21c9707a4f",
+      "dependsOn": [
+        "pkg:golang/github.com/argoproj/argo-rollouts@1.8.3"
       ]
     },
     {
@@ -15959,8 +16298,8 @@
     {
       "ref": "pkg:oci/argo-rollouts@sha256%3A2b7be18bd6a3ce627ce0ed63d49e9166720c0b3409404266bbadabd15474d28a?arch=amd64&repository_url=quay.io%2Fargoproj%2Fargo-rollouts",
       "dependsOn": [
-        "d89b4149-2882-4d46-a926-aff95e172777",
-        "dc083012-363e-415e-8b56-75aa7773baeb"
+        "56375368-abfc-45ab-83b7-6381834ce282",
+        "e3ef3fd8-cec0-4cd4-b7f4-7c21c9707a4f"
       ]
     }
   ],

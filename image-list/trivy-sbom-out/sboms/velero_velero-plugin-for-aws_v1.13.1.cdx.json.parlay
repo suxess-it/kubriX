@@ -2,17 +2,20 @@
   "$schema": "http://cyclonedx.org/schema/bom-1.6.schema.json",
   "bomFormat": "CycloneDX",
   "specVersion": "1.6",
-  "serialNumber": "urn:uuid:9cb23646-98bc-4d29-bd26-a0d783846fd9",
+  "serialNumber": "urn:uuid:55805c21-fc12-4d87-8c26-30547224ef09",
   "version": 1,
   "metadata": {
-    "timestamp": "2026-02-04T23:15:18+00:00",
+    "timestamp": "2026-02-05T00:03:27+00:00",
     "tools": {
       "components": [
         {
           "type": "application",
+          "manufacturer": {
+            "name": "Aqua Security Software Ltd."
+          },
           "group": "aquasecurity",
           "name": "trivy",
-          "version": "0.61.0"
+          "version": "0.69.0"
         }
       ]
     },
@@ -39,6 +42,10 @@
           "value": "https://github.com/vmware-tanzu/velero-plugin-for-aws"
         },
         {
+          "name": "aquasecurity:trivy:Reference",
+          "value": "velero/velero-plugin-for-aws:v1.13.1"
+        },
+        {
           "name": "aquasecurity:trivy:RepoDigest",
           "value": "velero/velero-plugin-for-aws@sha256:472d0e486d5d5c23c782b1b123530c7df8645784523ec36ca661a326d47885ff"
         },
@@ -49,17 +56,21 @@
         {
           "name": "aquasecurity:trivy:SchemaVersion",
           "value": "2"
+        },
+        {
+          "name": "aquasecurity:trivy:Size",
+          "value": "105294336"
         }
       ]
     }
   },
   "components": [
     {
-      "bom-ref": "07563dda-e7ba-45f8-be11-1e2d93eff7b7",
+      "bom-ref": "24c85bec-ba83-4385-90c2-f0e0d6f66da0",
       "type": "library",
-      "name": "github.com/vmware-tanzu/velero-plugin-for-aws",
-      "version": "v1.13.1+dirty",
-      "purl": "pkg:golang/github.com/vmware-tanzu/velero-plugin-for-aws@v1.13.1%2Bdirty",
+      "name": "stdlib",
+      "version": "v1.24.9",
+      "purl": "pkg:golang/stdlib@v1.24.9",
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
@@ -71,7 +82,7 @@
         },
         {
           "name": "aquasecurity:trivy:PkgID",
-          "value": "github.com/vmware-tanzu/velero-plugin-for-aws@v1.13.1+dirty"
+          "value": "stdlib@v1.24.9"
         },
         {
           "name": "aquasecurity:trivy:PkgType",
@@ -80,9 +91,9 @@
       ]
     },
     {
-      "bom-ref": "1cad2deb-a217-4860-9011-aae40368ff4f",
+      "bom-ref": "611af4de-ede2-4a58-bba2-61349ec9417c",
       "type": "application",
-      "name": "bin/cp-plugin",
+      "name": "plugins/velero-plugin-for-aws",
       "properties": [
         {
           "name": "aquasecurity:trivy:Class",
@@ -95,11 +106,36 @@
       ]
     },
     {
-      "bom-ref": "20e952d2-39a5-4c19-bc65-c2190477cf40",
+      "bom-ref": "a5fecbaf-ef5d-457f-875a-1c463b05ce0e",
       "type": "library",
+      "supplier": {
+        "name": "VMware Tanzu",
+        "url": [
+          "tanzu.io"
+        ]
+      },
+      "author": "VMware Tanzu",
       "name": "github.com/vmware-tanzu/velero-plugin-for-aws",
       "version": "v1.13.1+dirty",
       "purl": "pkg:golang/github.com/vmware-tanzu/velero-plugin-for-aws@v1.13.1%2Bdirty",
+      "externalReferences": [
+        {
+          "url": "https://github.com/vmware-tanzu/velero-plugin-for-aws",
+          "type": "website"
+        },
+        {
+          "url": "https://pkg.go.dev/github.com/vmware-tanzu/velero-plugin-for-aws",
+          "type": "distribution"
+        },
+        {
+          "url": "https://github.com/vmware-tanzu/velero-plugin-for-aws",
+          "type": "vcs"
+        },
+        {
+          "url": "https://pkg.go.dev/github.com/vmware-tanzu/velero-plugin-for-aws#section-documentation",
+          "type": "documentation"
+        }
+      ],
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
@@ -116,11 +152,93 @@
         {
           "name": "aquasecurity:trivy:PkgType",
           "value": "gobinary"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2019-10-24T14:22:53Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2025-11-04T06:53:49Z"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "velero"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "velero-plugin"
         }
       ]
     },
     {
-      "bom-ref": "483d9467-600d-4e85-b9ca-898ddab1a330",
+      "bom-ref": "e943cdb7-afe2-4c53-b5ad-0a85f6169a5f",
+      "type": "library",
+      "supplier": {
+        "name": "VMware Tanzu",
+        "url": [
+          "tanzu.io"
+        ]
+      },
+      "author": "VMware Tanzu",
+      "name": "github.com/vmware-tanzu/velero-plugin-for-aws",
+      "version": "v1.13.1+dirty",
+      "purl": "pkg:golang/github.com/vmware-tanzu/velero-plugin-for-aws@v1.13.1%2Bdirty",
+      "externalReferences": [
+        {
+          "url": "https://github.com/vmware-tanzu/velero-plugin-for-aws",
+          "type": "website"
+        },
+        {
+          "url": "https://pkg.go.dev/github.com/vmware-tanzu/velero-plugin-for-aws",
+          "type": "distribution"
+        },
+        {
+          "url": "https://github.com/vmware-tanzu/velero-plugin-for-aws",
+          "type": "vcs"
+        },
+        {
+          "url": "https://pkg.go.dev/github.com/vmware-tanzu/velero-plugin-for-aws#section-documentation",
+          "type": "documentation"
+        }
+      ],
+      "properties": [
+        {
+          "name": "aquasecurity:trivy:LayerDiffID",
+          "value": "sha256:e1d9fb54acd5ee2455870029df57ee6f97112d107b924b70fcd57d8398895ebf"
+        },
+        {
+          "name": "aquasecurity:trivy:LayerDigest",
+          "value": "sha256:269d425610bd322d47ede14a5cc505bcefd9c63961fbeedb05ee829b974a3179"
+        },
+        {
+          "name": "aquasecurity:trivy:PkgID",
+          "value": "github.com/vmware-tanzu/velero-plugin-for-aws@v1.13.1+dirty"
+        },
+        {
+          "name": "aquasecurity:trivy:PkgType",
+          "value": "gobinary"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2019-10-24T14:22:53Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2025-11-04T06:53:49Z"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "velero"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "velero-plugin"
+        }
+      ]
+    },
+    {
+      "bom-ref": "f3460e16-35ef-456d-8f6f-aa1bafa71461",
       "type": "library",
       "name": "stdlib",
       "version": "v1.24.9",
@@ -145,34 +263,9 @@
       ]
     },
     {
-      "bom-ref": "770ff429-9a30-4d13-8a1b-02b3c1097b21",
-      "type": "library",
-      "name": "stdlib",
-      "version": "v1.24.9",
-      "purl": "pkg:golang/stdlib@v1.24.9",
-      "properties": [
-        {
-          "name": "aquasecurity:trivy:LayerDiffID",
-          "value": "sha256:e1d9fb54acd5ee2455870029df57ee6f97112d107b924b70fcd57d8398895ebf"
-        },
-        {
-          "name": "aquasecurity:trivy:LayerDigest",
-          "value": "sha256:269d425610bd322d47ede14a5cc505bcefd9c63961fbeedb05ee829b974a3179"
-        },
-        {
-          "name": "aquasecurity:trivy:PkgID",
-          "value": "stdlib@v1.24.9"
-        },
-        {
-          "name": "aquasecurity:trivy:PkgType",
-          "value": "gobinary"
-        }
-      ]
-    },
-    {
-      "bom-ref": "bcca95b1-83bc-4b0e-bd2a-dec3810d86c8",
+      "bom-ref": "fbd64c0d-a5a2-42e3-ade9-7adb328ca10d",
       "type": "application",
-      "name": "plugins/velero-plugin-for-aws",
+      "name": "bin/cp-plugin",
       "properties": [
         {
           "name": "aquasecurity:trivy:Class",
@@ -196,6 +289,11 @@
       "author": "Amazon Web Services",
       "name": "github.com/aws/aws-sdk-go-v2/aws/protocol/eventstream",
       "version": "v1.5.4",
+      "licenses": [
+        {
+          "expression": "(Apache-2.0)"
+        }
+      ],
       "purl": "pkg:golang/github.com/aws/aws-sdk-go-v2/aws/protocol/eventstream@v1.5.4",
       "externalReferences": [
         {
@@ -275,6 +373,11 @@
       "name": "github.com/aws/aws-sdk-go-v2/config",
       "version": "v1.26.3",
       "description": "Package config provides utilities for loading configuration from multiple\nsources that can be used to configure the SDK's API clients, and utilities.\n\nThe config package will load configuration from environment variables, AWS\nshared configuration file (~/.aws/config), and AWS shared credentials file\n(~/.aws/credentials).\n\nUse the LoadDefaultConfig to load configuration from all the SDK's supported\nsources, and resolve credentials using the SDK's default credential chain.\n\nLoadDefaultConfig allows for a variadic list of additional Config sources that can\nprovide one or more configuration values which can be used to programmatically control the resolution\nof a specific value, or allow for broader range of additional configuration sources not supported by the SDK.\nA Config source implements one or more provider interfaces defined in this package. Config sources passed in will\ntake precedence over the default environment and shared config sources used by the SDK. If one or more Config sources\nimplement the same provider interface, priority will be handled by the order in which the sources were passed in.\n\nA number of helpers (prefixed by “With“)  are provided in this package that implement their respective provider\ninterface. These helpers should be used for overriding configuration programmatically at runtime.",
+      "licenses": [
+        {
+          "expression": "(Apache-2.0)"
+        }
+      ],
       "purl": "pkg:golang/github.com/aws/aws-sdk-go-v2/config@v1.26.3",
       "externalReferences": [
         {
@@ -354,6 +457,11 @@
       "name": "github.com/aws/aws-sdk-go-v2/credentials",
       "version": "v1.16.14",
       "description": "Package credentials provides types for retrieving credentials from credentials sources.",
+      "licenses": [
+        {
+          "expression": "(Apache-2.0)"
+        }
+      ],
       "purl": "pkg:golang/github.com/aws/aws-sdk-go-v2/credentials@v1.16.14",
       "externalReferences": [
         {
@@ -433,6 +541,11 @@
       "name": "github.com/aws/aws-sdk-go-v2/feature/ec2/imds",
       "version": "v1.14.11",
       "description": "Package imds provides the API client for interacting with the Amazon EC2\nInstance Metadata Service.\n\nAll Client operation calls have a default timeout. If the operation is not\ncompleted before this timeout expires, the operation will be canceled. This\ntimeout can be overridden through the following:\n\nSee the EC2 IMDS user guide for more information on using the API.\nhttps://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-metadata.html",
+      "licenses": [
+        {
+          "expression": "(Apache-2.0)"
+        }
+      ],
       "purl": "pkg:golang/github.com/aws/aws-sdk-go-v2/feature/ec2/imds@v1.14.11",
       "externalReferences": [
         {
@@ -512,6 +625,11 @@
       "name": "github.com/aws/aws-sdk-go-v2/feature/s3/manager",
       "version": "v1.15.11",
       "description": "Package manager provides utilities to upload and download objects from\nS3 concurrently. Helpful for when working with large objects.",
+      "licenses": [
+        {
+          "expression": "(Apache-2.0)"
+        }
+      ],
       "purl": "pkg:golang/github.com/aws/aws-sdk-go-v2/feature/s3/manager@v1.15.11",
       "externalReferences": [
         {
@@ -668,6 +786,11 @@
       "author": "Amazon Web Services",
       "name": "github.com/aws/aws-sdk-go-v2/internal/endpoints/v2",
       "version": "v2.5.10",
+      "licenses": [
+        {
+          "expression": "(Apache-2.0)"
+        }
+      ],
       "purl": "pkg:golang/github.com/aws/aws-sdk-go-v2/internal/endpoints/v2@v2.5.10",
       "externalReferences": [
         {
@@ -747,6 +870,11 @@
       "name": "github.com/aws/aws-sdk-go-v2/internal/ini",
       "version": "v1.7.2",
       "description": "Package ini implements parsing of the AWS shared config file.",
+      "licenses": [
+        {
+          "expression": "(Apache-2.0)"
+        }
+      ],
       "purl": "pkg:golang/github.com/aws/aws-sdk-go-v2/internal/ini@v1.7.2",
       "externalReferences": [
         {
@@ -825,6 +953,11 @@
       "author": "Amazon Web Services",
       "name": "github.com/aws/aws-sdk-go-v2/internal/v4a",
       "version": "v1.2.10",
+      "licenses": [
+        {
+          "expression": "(Apache-2.0)"
+        }
+      ],
       "purl": "pkg:golang/github.com/aws/aws-sdk-go-v2/internal/v4a@v1.2.10",
       "externalReferences": [
         {
@@ -904,6 +1037,11 @@
       "name": "github.com/aws/aws-sdk-go-v2/service/ec2",
       "version": "v1.143.0",
       "description": "Package ec2 provides the API client, operations, and parameter types for Amazon\nElastic Compute Cloud.\n\nYou can access the features of Amazon Elastic Compute Cloud (Amazon EC2)\nprogrammatically. For more information, see the Amazon EC2 Developer Guide.",
+      "licenses": [
+        {
+          "expression": "(Apache-2.0)"
+        }
+      ],
       "purl": "pkg:golang/github.com/aws/aws-sdk-go-v2/service/ec2@v1.143.0",
       "externalReferences": [
         {
@@ -983,6 +1121,11 @@
       "name": "github.com/aws/aws-sdk-go-v2/service/internal/accept-encoding",
       "version": "v1.10.4",
       "description": "Package acceptencoding provides customizations associated with Accept Encoding Header.\n\nThe Go HTTP client automatically supports accept-encoding and content-encoding\ngzip by default. This default behavior is not desired by the SDK, and prevents\nvalidating the response body's checksum. To prevent this the SDK must manually\ncontrol usage of content-encoding gzip.\n\nTo control content-encoding, the SDK must always set the `Accept-Encoding`\nheader to a value. This prevents the HTTP client from using gzip automatically.\nWhen gzip is enabled on the API client, the SDK's customization will control\ndecompressing the gzip data in order to not break the checksum validation. When\ngzip is disabled, the API client will disable gzip, preventing the HTTP\nclient's default behavior.\n\nAn `EnableAcceptEncodingGzip` option may or may not be present depending on the client using\nthe below middleware. The option if present can be used to enable auto decompressing\ngzip by the SDK.",
+      "licenses": [
+        {
+          "expression": "(Apache-2.0)"
+        }
+      ],
       "purl": "pkg:golang/github.com/aws/aws-sdk-go-v2/service/internal/accept-encoding@v1.10.4",
       "externalReferences": [
         {
@@ -1061,6 +1204,11 @@
       "author": "Amazon Web Services",
       "name": "github.com/aws/aws-sdk-go-v2/service/internal/checksum",
       "version": "v1.2.10",
+      "licenses": [
+        {
+          "expression": "(Apache-2.0)"
+        }
+      ],
       "purl": "pkg:golang/github.com/aws/aws-sdk-go-v2/service/internal/checksum@v1.2.10",
       "externalReferences": [
         {
@@ -1140,6 +1288,11 @@
       "name": "github.com/aws/aws-sdk-go-v2/service/internal/presigned-url",
       "version": "v1.10.10",
       "description": "Package presignedurl provides the customizations for API clients to fill in\npresigned URLs into input parameters.",
+      "licenses": [
+        {
+          "expression": "(Apache-2.0)"
+        }
+      ],
       "purl": "pkg:golang/github.com/aws/aws-sdk-go-v2/service/internal/presigned-url@v1.10.10",
       "externalReferences": [
         {
@@ -1218,6 +1371,11 @@
       "author": "Amazon Web Services",
       "name": "github.com/aws/aws-sdk-go-v2/service/internal/s3shared",
       "version": "v1.16.10",
+      "licenses": [
+        {
+          "expression": "(Apache-2.0)"
+        }
+      ],
       "purl": "pkg:golang/github.com/aws/aws-sdk-go-v2/service/internal/s3shared@v1.16.10",
       "externalReferences": [
         {
@@ -1297,6 +1455,11 @@
       "name": "github.com/aws/aws-sdk-go-v2/service/s3",
       "version": "v1.48.0",
       "description": "Package s3 provides the API client, operations, and parameter types for Amazon\nSimple Storage Service.",
+      "licenses": [
+        {
+          "expression": "(Apache-2.0)"
+        }
+      ],
       "purl": "pkg:golang/github.com/aws/aws-sdk-go-v2/service/s3@v1.48.0",
       "externalReferences": [
         {
@@ -1376,6 +1539,11 @@
       "name": "github.com/aws/aws-sdk-go-v2/service/sso",
       "version": "v1.18.6",
       "description": "Package sso provides the API client, operations, and parameter types for AWS\nSingle Sign-On.\n\nAWS IAM Identity Center (successor to AWS Single Sign-On) Portal is a web\nservice that makes it easy for you to assign user access to IAM Identity Center\nresources such as the AWS access portal. Users can get AWS account applications\nand roles assigned to them and get federated into the application.\n\nAlthough AWS Single Sign-On was renamed, the sso and identitystore API\nnamespaces will continue to retain their original name for backward\ncompatibility purposes. For more information, see IAM Identity Center rename.\n\nThis reference guide describes the IAM Identity Center Portal operations that\nyou can call programatically and includes detailed information on data types and\nerrors.\n\nAWS provides SDKs that consist of libraries and sample code for various\nprogramming languages and platforms, such as Java, Ruby, .Net, iOS, or Android.\nThe SDKs provide a convenient way to create programmatic access to IAM Identity\nCenter and other AWS services. For more information about the AWS SDKs,\nincluding how to download and install them, see Tools for Amazon Web Services.",
+      "licenses": [
+        {
+          "expression": "(Apache-2.0)"
+        }
+      ],
       "purl": "pkg:golang/github.com/aws/aws-sdk-go-v2/service/sso@v1.18.6",
       "externalReferences": [
         {
@@ -1455,6 +1623,11 @@
       "name": "github.com/aws/aws-sdk-go-v2/service/ssooidc",
       "version": "v1.21.6",
       "description": "Package ssooidc provides the API client, operations, and parameter types for\nAWS SSO OIDC.\n\nIAM Identity Center OpenID Connect (OIDC) is a web service that enables a\nclient (such as CLI or a native application) to register with IAM Identity\nCenter. The service also enables the client to fetch the user’s access token\nupon successful authentication and authorization with IAM Identity Center.\n\nIAM Identity Center uses the sso and identitystore API namespaces. IAM Identity\nCenter OpenID Connect uses the sso-oauth namespace.\n\nBefore you begin using this guide, we recommend that you first review the\nfollowing important information about how the IAM Identity Center OIDC service\nworks.\n\nThe IAM Identity Center OIDC service currently implements only the portions\nof the OAuth 2.0 Device Authorization Grant standard (https://tools.ietf.org/html/rfc8628 ) that are necessary to\nenable single sign-on authentication with the CLI.\n\nWith older versions of the CLI, the service only emits OIDC access tokens,\nso to obtain a new token, users must explicitly re-authenticate. To access the\nOIDC flow that supports token refresh and doesn’t require re-authentication,\nupdate to the latest CLI version (1.27.10 for CLI V1 and 2.9.0 for CLI V2) with\nsupport for OIDC token refresh and configurable IAM Identity Center session\ndurations. For more information, see Configure Amazon Web Services access portal session duration.\n\nThe access tokens provided by this service grant access to all Amazon Web\nServices account entitlements assigned to an IAM Identity Center user, not just\na particular application.\n\nThe documentation in this guide does not describe the mechanism to convert\nthe access token into Amazon Web Services Auth (“sigv4”) credentials for use\nwith IAM-protected Amazon Web Services service endpoints. For more information,\nsee GetRoleCredentialsin the IAM Identity Center Portal API Reference Guide.\n\nFor general information about IAM Identity Center, see What is IAM Identity Center? in the IAM Identity\nCenter User Guide.",
+      "licenses": [
+        {
+          "expression": "(Apache-2.0)"
+        }
+      ],
       "purl": "pkg:golang/github.com/aws/aws-sdk-go-v2/service/ssooidc@v1.21.6",
       "externalReferences": [
         {
@@ -1534,6 +1707,11 @@
       "name": "github.com/aws/aws-sdk-go-v2/service/sts",
       "version": "v1.26.7",
       "description": "Package sts provides the API client, operations, and parameter types for AWS\nSecurity Token Service.\n\nSecurity Token Service (STS) enables you to request temporary,\nlimited-privilege credentials for users. This guide provides descriptions of the\nSTS API. For more information about using this service, see Temporary Security Credentials.",
+      "licenses": [
+        {
+          "expression": "(Apache-2.0)"
+        }
+      ],
       "purl": "pkg:golang/github.com/aws/aws-sdk-go-v2/service/sts@v1.26.7",
       "externalReferences": [
         {
@@ -1613,6 +1791,11 @@
       "name": "github.com/aws/aws-sdk-go-v2",
       "version": "v1.24.1",
       "description": "Package sdk is the official AWS SDK v2 for the Go programming language.\n\naws-sdk-go-v2 is the the v2 of the AWS SDK for the Go programming language.\n\nThe best way to get started working with the SDK is to use `go get` to add the\nSDK and desired service clients to your Go dependencies explicitly.\n\nThis example shows how you can use the v2 SDK to make an API request using the\nSDK's Amazon DynamoDB client.",
+      "licenses": [
+        {
+          "expression": "(Apache-2.0)"
+        }
+      ],
       "purl": "pkg:golang/github.com/aws/aws-sdk-go-v2@v1.24.1",
       "externalReferences": [
         {
@@ -1692,6 +1875,11 @@
       "name": "github.com/aws/smithy-go",
       "version": "v1.19.0",
       "description": "Package smithy provides the core components for a Smithy SDK.",
+      "licenses": [
+        {
+          "expression": "(Apache-2.0)"
+        }
+      ],
       "purl": "pkg:golang/github.com/aws/smithy-go@v1.19.0",
       "externalReferences": [
         {
@@ -3144,6 +3332,11 @@
       "author": "HashiCorp",
       "name": "github.com/hashicorp/go-hclog",
       "version": "v0.14.1",
+      "licenses": [
+        {
+          "expression": "(MIT)"
+        }
+      ],
       "purl": "pkg:golang/github.com/hashicorp/go-hclog@v0.14.1",
       "externalReferences": [
         {
@@ -3565,6 +3758,11 @@
       "author": "Kubernetes CSI",
       "name": "github.com/kubernetes-csi/external-snapshotter/client/v8",
       "version": "v8.2.0",
+      "licenses": [
+        {
+          "expression": "(Apache-2.0)"
+        }
+      ],
       "purl": "pkg:golang/github.com/kubernetes-csi/external-snapshotter/client/v8@v8.2.0",
       "externalReferences": [
         {
@@ -3895,6 +4093,11 @@
       "author": "Mitchell Hashimoto",
       "name": "github.com/mitchellh/go-testing-interface",
       "version": "v1.0.0",
+      "licenses": [
+        {
+          "expression": "(MIT)"
+        }
+      ],
       "purl": "pkg:golang/github.com/mitchellh/go-testing-interface@v1.0.0",
       "externalReferences": [
         {
@@ -4854,9 +5057,39 @@
     {
       "bom-ref": "pkg:golang/github.com/vmware-tanzu/velero@v1.17.0",
       "type": "library",
+      "supplier": {
+        "name": "VMware Tanzu",
+        "url": [
+          "tanzu.io"
+        ]
+      },
+      "author": "VMware Tanzu",
       "name": "github.com/vmware-tanzu/velero",
       "version": "v1.17.0",
+      "licenses": [
+        {
+          "expression": "(Apache-2.0)"
+        }
+      ],
       "purl": "pkg:golang/github.com/vmware-tanzu/velero@v1.17.0",
+      "externalReferences": [
+        {
+          "url": "https://github.com/vmware-tanzu/velero",
+          "type": "website"
+        },
+        {
+          "url": "https://pkg.go.dev/github.com/vmware-tanzu/velero",
+          "type": "distribution"
+        },
+        {
+          "url": "https://github.com/vmware-tanzu/velero",
+          "type": "vcs"
+        },
+        {
+          "url": "https://pkg.go.dev/github.com/vmware-tanzu/velero#section-documentation",
+          "type": "documentation"
+        }
+      ],
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
@@ -4873,6 +5106,34 @@
         {
           "name": "aquasecurity:trivy:PkgType",
           "value": "gobinary"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2017-08-02T21:29:38Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2026-01-09T03:17:35Z"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "backup"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "disaster-recovery"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "hacktoberfest"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "kubernetes"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "velero"
         }
       ]
     },
@@ -5860,6 +6121,11 @@
       "author": "Kubernetes",
       "name": "k8s.io/api",
       "version": "v0.33.3",
+      "licenses": [
+        {
+          "expression": "(Apache-2.0)"
+        }
+      ],
       "purl": "pkg:golang/k8s.io/api@v0.33.3",
       "externalReferences": [
         {
@@ -5980,6 +6246,11 @@
       "author": "Kubernetes",
       "name": "k8s.io/apimachinery",
       "version": "v0.33.3",
+      "licenses": [
+        {
+          "expression": "(Apache-2.0)"
+        }
+      ],
       "purl": "pkg:golang/k8s.io/apimachinery@v0.33.3",
       "externalReferences": [
         {
@@ -6043,6 +6314,11 @@
       "name": "k8s.io/client-go",
       "version": "v0.33.3",
       "description": "Package clientgo is the official Go client for the Kubernetes API. It provides\na standard set of clients and tools for building applications, controllers,\nand operators that communicate with a Kubernetes cluster.\n\nkubernetes: Contains the typed Clientset for interacting with built-in,\nversioned API objects (e.g., Pods, Deployments). This is the most common\nstarting point.\n\ndynamic: Provides a dynamic client that can perform operations on any\nKubernetes object, including Custom Resources (CRs). It is essential for\nbuilding controllers that work with CRDs.\n\ndiscovery: Used to discover the API groups, versions, and resources\nsupported by a Kubernetes cluster.\n\ntools/cache: The foundation of the controller pattern. This package provides\nefficient caching and synchronization mechanisms (Informers and Listers)\nfor building controllers.\n\ntools/clientcmd: Provides methods for loading client configuration from\nkubeconfig files. This is essential for out-of-cluster applications and CLI tools.\n\nrest: Provides a lower-level RESTClient that manages the details of\ncommunicating with the Kubernetes API server. It is useful for advanced\nuse cases that require fine-grained control over requests, such as working\nwith non-standard REST verbs.\n\nThere are two primary ways to configure a client to connect to the API server:\n\nIn-Cluster Configuration: For applications running inside a Kubernetes pod,\nthe `rest.InClusterConfig()` function provides a straightforward way to\nconfigure the client. It automatically uses the pod's service account for\nauthentication and is the recommended approach for controllers and operators.\n\nOut-of-Cluster Configuration: For local development or command-line tools,\nthe `clientcmd` package is used to load configuration from a\nkubeconfig file.\n\nThe `rest.Config` object allows for fine-grained control over client-side\nperformance and reliability. Key settings include:\n\nOnce configured, a client can be used to interact with objects in the cluster.\n\nThe Typed Clientset (`kubernetes` package) provides a strongly typed\ninterface for working with built-in Kubernetes objects.\n\nThe Dynamic Client (`dynamic` package) can work with any object, including\nCustom Resources, using `unstructured.Unstructured` types.\n\nFor Custom Resources (CRDs), the `k8s.io/code-generator` repository\ncontains the tools to generate typed clients, informers, and listers. The\n`sample-controller` is the canonical example of this pattern.\n\nServer-Side Apply is a patching strategy that allows multiple actors to\nshare management of an object by tracking field ownership. This prevents\nactors from inadvertently overwriting each other's changes and provides\na mechanism for resolving conflicts. The `applyconfigurations` package\nprovides the necessary tools for this declarative approach.\n\nRobust error handling is essential when interacting with the API. The\n`k8s.io/apimachinery/pkg/api/errors` package provides functions to inspect\nerrors and check for common conditions, such as whether a resource was not\nfound or already exists. This allows controllers to implement robust,\nidempotent reconciliation logic.\n\nThe controller pattern is central to Kubernetes. A controller observes the\nstate of the cluster and works to bring it to the desired state.\n\nThe `tools/cache` package provides the building blocks for this pattern.\nInformers watch the API server and maintain a local cache, Listers provide\nread-only access to the cache, and Workqueues decouple event detection\nfrom processing.\n\nIn a high-availability deployment where multiple instances of a controller\nare running, leader election (`tools/leaderelection`) is used to ensure\nthat only one instance is active at a time.\n\nClient-side feature gates allow for enabling or disabling experimental\nfeatures in `client-go`. They can be configured via the `rest.Config` object.",
+      "licenses": [
+        {
+          "expression": "(Apache-2.0)"
+        }
+      ],
       "purl": "pkg:golang/k8s.io/client-go@v0.33.3",
       "externalReferences": [
         {
@@ -6558,9 +6834,25 @@
   ],
   "dependencies": [
     {
-      "ref": "07563dda-e7ba-45f8-be11-1e2d93eff7b7",
+      "ref": "24c85bec-ba83-4385-90c2-f0e0d6f66da0",
+      "dependsOn": []
+    },
+    {
+      "ref": "611af4de-ede2-4a58-bba2-61349ec9417c",
       "dependsOn": [
-        "770ff429-9a30-4d13-8a1b-02b3c1097b21",
+        "e943cdb7-afe2-4c53-b5ad-0a85f6169a5f"
+      ]
+    },
+    {
+      "ref": "a5fecbaf-ef5d-457f-875a-1c463b05ce0e",
+      "dependsOn": [
+        "f3460e16-35ef-456d-8f6f-aa1bafa71461"
+      ]
+    },
+    {
+      "ref": "e943cdb7-afe2-4c53-b5ad-0a85f6169a5f",
+      "dependsOn": [
+        "24c85bec-ba83-4385-90c2-f0e0d6f66da0",
         "pkg:golang/github.com/aws/aws-sdk-go-v2/aws/protocol/eventstream@v1.5.4",
         "pkg:golang/github.com/aws/aws-sdk-go-v2/config@v1.26.3",
         "pkg:golang/github.com/aws/aws-sdk-go-v2/credentials@v1.16.14",
@@ -6654,29 +6946,13 @@
       ]
     },
     {
-      "ref": "1cad2deb-a217-4860-9011-aae40368ff4f",
-      "dependsOn": [
-        "20e952d2-39a5-4c19-bc65-c2190477cf40"
-      ]
-    },
-    {
-      "ref": "20e952d2-39a5-4c19-bc65-c2190477cf40",
-      "dependsOn": [
-        "483d9467-600d-4e85-b9ca-898ddab1a330"
-      ]
-    },
-    {
-      "ref": "483d9467-600d-4e85-b9ca-898ddab1a330",
+      "ref": "f3460e16-35ef-456d-8f6f-aa1bafa71461",
       "dependsOn": []
     },
     {
-      "ref": "770ff429-9a30-4d13-8a1b-02b3c1097b21",
-      "dependsOn": []
-    },
-    {
-      "ref": "bcca95b1-83bc-4b0e-bd2a-dec3810d86c8",
+      "ref": "fbd64c0d-a5a2-42e3-ade9-7adb328ca10d",
       "dependsOn": [
-        "07563dda-e7ba-45f8-be11-1e2d93eff7b7"
+        "a5fecbaf-ef5d-457f-875a-1c463b05ce0e"
       ]
     },
     {
@@ -7042,8 +7318,8 @@
     {
       "ref": "pkg:oci/velero-plugin-for-aws@sha256%3A472d0e486d5d5c23c782b1b123530c7df8645784523ec36ca661a326d47885ff?arch=amd64&repository_url=index.docker.io%2Fvelero%2Fvelero-plugin-for-aws",
       "dependsOn": [
-        "1cad2deb-a217-4860-9011-aae40368ff4f",
-        "bcca95b1-83bc-4b0e-bd2a-dec3810d86c8"
+        "611af4de-ede2-4a58-bba2-61349ec9417c",
+        "fbd64c0d-a5a2-42e3-ade9-7adb328ca10d"
       ]
     }
   ],

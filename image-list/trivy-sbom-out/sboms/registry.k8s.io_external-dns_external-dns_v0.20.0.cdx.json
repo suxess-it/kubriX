@@ -2,17 +2,20 @@
   "$schema": "http://cyclonedx.org/schema/bom-1.6.schema.json",
   "bomFormat": "CycloneDX",
   "specVersion": "1.6",
-  "serialNumber": "urn:uuid:cce84f78-b860-45f0-9af8-72fd1044ccca",
+  "serialNumber": "urn:uuid:74583ebf-a702-4d13-b8a4-7c0a6fa3fbcc",
   "version": 1,
   "metadata": {
-    "timestamp": "2026-02-04T23:14:49+00:00",
+    "timestamp": "2026-02-05T00:02:37+00:00",
     "tools": {
       "components": [
         {
           "type": "application",
+          "manufacturer": {
+            "name": "Aqua Security Software Ltd."
+          },
           "group": "aquasecurity",
           "name": "trivy",
-          "version": "0.61.0"
+          "version": "0.69.0"
         }
       ]
     },
@@ -87,6 +90,10 @@
           "value": "https://github.com/kubernetes-sigs/external-dns"
         },
         {
+          "name": "aquasecurity:trivy:Reference",
+          "value": "registry.k8s.io/external-dns/external-dns:v0.20.0"
+        },
+        {
           "name": "aquasecurity:trivy:RepoDigest",
           "value": "registry.k8s.io/external-dns/external-dns@sha256:ddc7f4212ed09a21024deb1f470a05240837712e74e4b9f6d1f2632ff10672e7"
         },
@@ -97,13 +104,17 @@
         {
           "name": "aquasecurity:trivy:SchemaVersion",
           "value": "2"
+        },
+        {
+          "name": "aquasecurity:trivy:Size",
+          "value": "147626496"
         }
       ]
     }
   },
   "components": [
     {
-      "bom-ref": "a94b2aff-842b-450e-987f-0859eea5c9e8",
+      "bom-ref": "4adf9fed-0b00-421e-a7b5-27d5a95ff34a",
       "type": "application",
       "name": "ko-app/external-dns",
       "properties": [
@@ -118,7 +129,7 @@
       ]
     },
     {
-      "bom-ref": "bdce21a0-0333-468f-89c4-d54861f537ad",
+      "bom-ref": "f8cc1756-21c8-4a2c-b0cc-e884ef9fa45d",
       "type": "operating-system",
       "name": "debian",
       "version": "12.12",
@@ -144,7 +155,7 @@
       "licenses": [
         {
           "license": {
-            "name": "GPL-2.0-or-later"
+            "id": "GPL-2.0-or-later"
           }
         }
       ],
@@ -230,7 +241,7 @@
       "licenses": [
         {
           "license": {
-            "name": "GPL-2.0-only"
+            "id": "GPL-2.0-only"
           }
         }
       ],
@@ -5111,13 +5122,13 @@
   ],
   "dependencies": [
     {
-      "ref": "a94b2aff-842b-450e-987f-0859eea5c9e8",
+      "ref": "4adf9fed-0b00-421e-a7b5-27d5a95ff34a",
       "dependsOn": [
         "pkg:golang/sigs.k8s.io/external-dns"
       ]
     },
     {
-      "ref": "bdce21a0-0333-468f-89c4-d54861f537ad",
+      "ref": "f8cc1756-21c8-4a2c-b0cc-e884ef9fa45d",
       "dependsOn": [
         "pkg:deb/debian/base-files@12.4%2Bdeb12u12?arch=amd64&distro=debian-12.12",
         "pkg:deb/debian/media-types@10.0.0?arch=all&distro=debian-12.12",
@@ -6104,8 +6115,8 @@
     {
       "ref": "pkg:oci/external-dns@sha256%3Addc7f4212ed09a21024deb1f470a05240837712e74e4b9f6d1f2632ff10672e7?arch=amd64&repository_url=registry.k8s.io%2Fexternal-dns%2Fexternal-dns",
       "dependsOn": [
-        "a94b2aff-842b-450e-987f-0859eea5c9e8",
-        "bdce21a0-0333-468f-89c4-d54861f537ad"
+        "4adf9fed-0b00-421e-a7b5-27d5a95ff34a",
+        "f8cc1756-21c8-4a2c-b0cc-e884ef9fa45d"
       ]
     }
   ],

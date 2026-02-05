@@ -2,17 +2,20 @@
   "$schema": "http://cyclonedx.org/schema/bom-1.6.schema.json",
   "bomFormat": "CycloneDX",
   "specVersion": "1.6",
-  "serialNumber": "urn:uuid:367eed21-7f38-4c88-b0ee-208bce1581a3",
+  "serialNumber": "urn:uuid:f0aed896-04d5-40cc-b6d8-71cf269822f3",
   "version": 1,
   "metadata": {
-    "timestamp": "2026-02-04T23:08:24+00:00",
+    "timestamp": "2026-02-04T23:54:28+00:00",
     "tools": {
       "components": [
         {
           "type": "application",
+          "manufacturer": {
+            "name": "Aqua Security Software Ltd."
+          },
           "group": "aquasecurity",
           "name": "trivy",
-          "version": "0.61.0"
+          "version": "0.69.0"
         }
       ]
     },
@@ -75,6 +78,10 @@
           "value": "sha256:488ca39e89c50c9af1cd08f683ad2c0d95c5e1b0110a8d7b2ba0fffdec0cceac"
         },
         {
+          "name": "aquasecurity:trivy:Reference",
+          "value": "falcosecurity/k8s-metacollector:0.1.1"
+        },
+        {
           "name": "aquasecurity:trivy:RepoDigest",
           "value": "falcosecurity/k8s-metacollector@sha256:0f1b8becfbe4d279d9547a10e1ab3ffd6c64e1b0f087b2a807f299a9db1092d8"
         },
@@ -85,28 +92,17 @@
         {
           "name": "aquasecurity:trivy:SchemaVersion",
           "value": "2"
+        },
+        {
+          "name": "aquasecurity:trivy:Size",
+          "value": "41322496"
         }
       ]
     }
   },
   "components": [
     {
-      "bom-ref": "cba7ae64-46b6-44eb-8939-638a7ad14e97",
-      "type": "application",
-      "name": "meta-collector",
-      "properties": [
-        {
-          "name": "aquasecurity:trivy:Class",
-          "value": "lang-pkgs"
-        },
-        {
-          "name": "aquasecurity:trivy:Type",
-          "value": "gobinary"
-        }
-      ]
-    },
-    {
-      "bom-ref": "d32fa5eb-b829-4080-8f60-94efeea6e79d",
+      "bom-ref": "6cbe98bb-e608-4d58-bb3b-1ede59d3b9cb",
       "type": "operating-system",
       "name": "debian",
       "version": "12.5",
@@ -122,6 +118,21 @@
       ]
     },
     {
+      "bom-ref": "9ee0e5b3-25c2-4991-bc5d-84db588fac09",
+      "type": "application",
+      "name": "meta-collector",
+      "properties": [
+        {
+          "name": "aquasecurity:trivy:Class",
+          "value": "lang-pkgs"
+        },
+        {
+          "name": "aquasecurity:trivy:Type",
+          "value": "gobinary"
+        }
+      ]
+    },
+    {
       "bom-ref": "pkg:deb/debian/base-files@12.4%2Bdeb12u5?arch=amd64&distro=debian-12.5",
       "type": "library",
       "supplier": {
@@ -132,7 +143,7 @@
       "licenses": [
         {
           "license": {
-            "name": "GPL-2.0-or-later"
+            "id": "GPL-2.0-or-later"
           }
         }
       ],
@@ -175,7 +186,7 @@
       "licenses": [
         {
           "license": {
-            "name": "GPL-2.0-only"
+            "id": "GPL-2.0-only"
           }
         }
       ],
@@ -4642,7 +4653,15 @@
   ],
   "dependencies": [
     {
-      "ref": "cba7ae64-46b6-44eb-8939-638a7ad14e97",
+      "ref": "6cbe98bb-e608-4d58-bb3b-1ede59d3b9cb",
+      "dependsOn": [
+        "pkg:deb/debian/base-files@12.4%2Bdeb12u5?arch=amd64&distro=debian-12.5",
+        "pkg:deb/debian/netbase@6.4?arch=all&distro=debian-12.5",
+        "pkg:deb/debian/tzdata@2024a-0%2Bdeb12u1?arch=all&distro=debian-12.5"
+      ]
+    },
+    {
+      "ref": "9ee0e5b3-25c2-4991-bc5d-84db588fac09",
       "dependsOn": [
         "pkg:golang/github.com/beorn7/perks@v1.0.1",
         "pkg:golang/github.com/cespare/xxhash/v2@v2.2.0",
@@ -4708,14 +4727,6 @@
         "pkg:golang/sigs.k8s.io/structured-merge-diff/v4@v4.3.0",
         "pkg:golang/sigs.k8s.io/yaml@v1.3.0",
         "pkg:golang/stdlib@v1.21.1"
-      ]
-    },
-    {
-      "ref": "d32fa5eb-b829-4080-8f60-94efeea6e79d",
-      "dependsOn": [
-        "pkg:deb/debian/base-files@12.4%2Bdeb12u5?arch=amd64&distro=debian-12.5",
-        "pkg:deb/debian/netbase@6.4?arch=all&distro=debian-12.5",
-        "pkg:deb/debian/tzdata@2024a-0%2Bdeb12u1?arch=all&distro=debian-12.5"
       ]
     },
     {
@@ -4989,8 +5000,8 @@
     {
       "ref": "pkg:oci/k8s-metacollector@sha256%3A0f1b8becfbe4d279d9547a10e1ab3ffd6c64e1b0f087b2a807f299a9db1092d8?arch=amd64&repository_url=index.docker.io%2Ffalcosecurity%2Fk8s-metacollector",
       "dependsOn": [
-        "cba7ae64-46b6-44eb-8939-638a7ad14e97",
-        "d32fa5eb-b829-4080-8f60-94efeea6e79d"
+        "6cbe98bb-e608-4d58-bb3b-1ede59d3b9cb",
+        "9ee0e5b3-25c2-4991-bc5d-84db588fac09"
       ]
     }
   ],

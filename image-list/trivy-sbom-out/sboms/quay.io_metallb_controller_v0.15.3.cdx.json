@@ -2,17 +2,20 @@
   "$schema": "http://cyclonedx.org/schema/bom-1.6.schema.json",
   "bomFormat": "CycloneDX",
   "specVersion": "1.6",
-  "serialNumber": "urn:uuid:13a015a8-839e-4174-a653-11aa9337b470",
+  "serialNumber": "urn:uuid:ace6c2ba-31a6-4b0a-9ab5-5269d2ea985c",
   "version": 1,
   "metadata": {
-    "timestamp": "2026-02-04T23:13:55+00:00",
+    "timestamp": "2026-02-05T00:01:16+00:00",
     "tools": {
       "components": [
         {
           "type": "application",
+          "manufacturer": {
+            "name": "Aqua Security Software Ltd."
+          },
           "group": "aquasecurity",
           "name": "trivy",
-          "version": "0.61.0"
+          "version": "0.69.0"
         }
       ]
     },
@@ -131,6 +134,10 @@
           "value": "v0.15.3"
         },
         {
+          "name": "aquasecurity:trivy:Reference",
+          "value": "quay.io/metallb/controller:v0.15.3"
+        },
+        {
           "name": "aquasecurity:trivy:RepoDigest",
           "value": "quay.io/metallb/controller@sha256:6698ccc54c380913816ed1fd0758637ec87dd79da419c4ab170a2c26c158ab89"
         },
@@ -141,28 +148,17 @@
         {
           "name": "aquasecurity:trivy:SchemaVersion",
           "value": "2"
+        },
+        {
+          "name": "aquasecurity:trivy:Size",
+          "value": "52867072"
         }
       ]
     }
   },
   "components": [
     {
-      "bom-ref": "6d14e02f-171a-4929-b39f-f0d72098912b",
-      "type": "application",
-      "name": "controller",
-      "properties": [
-        {
-          "name": "aquasecurity:trivy:Class",
-          "value": "lang-pkgs"
-        },
-        {
-          "name": "aquasecurity:trivy:Type",
-          "value": "gobinary"
-        }
-      ]
-    },
-    {
-      "bom-ref": "de7601ab-2be0-40db-be06-97d5c7270b5b",
+      "bom-ref": "07b818d9-561e-4e50-abdb-8dc7624916e4",
       "type": "operating-system",
       "name": "debian",
       "version": "12.12",
@@ -178,6 +174,21 @@
       ]
     },
     {
+      "bom-ref": "a681b033-5bfd-4fe4-bad0-d786a3a21d8d",
+      "type": "application",
+      "name": "controller",
+      "properties": [
+        {
+          "name": "aquasecurity:trivy:Class",
+          "value": "lang-pkgs"
+        },
+        {
+          "name": "aquasecurity:trivy:Type",
+          "value": "gobinary"
+        }
+      ]
+    },
+    {
       "bom-ref": "pkg:deb/debian/base-files@12.4%2Bdeb12u12?arch=amd64&distro=debian-12.12",
       "type": "library",
       "supplier": {
@@ -188,7 +199,7 @@
       "licenses": [
         {
           "license": {
-            "name": "GPL-2.0-or-later"
+            "id": "GPL-2.0-or-later"
           }
         }
       ],
@@ -274,7 +285,7 @@
       "licenses": [
         {
           "license": {
-            "name": "GPL-2.0-only"
+            "id": "GPL-2.0-only"
           }
         }
       ],
@@ -2255,18 +2266,18 @@
   ],
   "dependencies": [
     {
-      "ref": "6d14e02f-171a-4929-b39f-f0d72098912b",
-      "dependsOn": [
-        "pkg:golang/go.universe.tf/metallb"
-      ]
-    },
-    {
-      "ref": "de7601ab-2be0-40db-be06-97d5c7270b5b",
+      "ref": "07b818d9-561e-4e50-abdb-8dc7624916e4",
       "dependsOn": [
         "pkg:deb/debian/base-files@12.4%2Bdeb12u12?arch=amd64&distro=debian-12.12",
         "pkg:deb/debian/media-types@10.0.0?arch=all&distro=debian-12.12",
         "pkg:deb/debian/netbase@6.4?arch=all&distro=debian-12.12",
         "pkg:deb/debian/tzdata@2025b-0%2Bdeb12u2?arch=all&distro=debian-12.12"
+      ]
+    },
+    {
+      "ref": "a681b033-5bfd-4fe4-bad0-d786a3a21d8d",
+      "dependsOn": [
+        "pkg:golang/go.universe.tf/metallb"
       ]
     },
     {
@@ -2668,8 +2679,8 @@
     {
       "ref": "pkg:oci/controller@sha256%3A6698ccc54c380913816ed1fd0758637ec87dd79da419c4ab170a2c26c158ab89?arch=amd64&repository_url=quay.io%2Fmetallb%2Fcontroller",
       "dependsOn": [
-        "6d14e02f-171a-4929-b39f-f0d72098912b",
-        "de7601ab-2be0-40db-be06-97d5c7270b5b"
+        "07b818d9-561e-4e50-abdb-8dc7624916e4",
+        "a681b033-5bfd-4fe4-bad0-d786a3a21d8d"
       ]
     }
   ],

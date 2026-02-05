@@ -2,17 +2,20 @@
   "$schema": "http://cyclonedx.org/schema/bom-1.6.schema.json",
   "bomFormat": "CycloneDX",
   "specVersion": "1.6",
-  "serialNumber": "urn:uuid:e2e490d4-0458-4ee9-90dd-d47363562f9e",
+  "serialNumber": "urn:uuid:63433a3d-3e77-414c-bf24-f6f229422baf",
   "version": 1,
   "metadata": {
-    "timestamp": "2026-02-04T23:09:26+00:00",
+    "timestamp": "2026-02-04T23:55:35+00:00",
     "tools": {
       "components": [
         {
           "type": "application",
+          "manufacturer": {
+            "name": "Aqua Security Software Ltd."
+          },
           "group": "aquasecurity",
           "name": "trivy",
-          "version": "0.61.0"
+          "version": "0.69.0"
         }
       ]
     },
@@ -55,6 +58,10 @@
           "value": "sha256:f508abec2c47b3b5099daf9e7b11ead2a9396c17ca46654f2f9723c14892e3da"
         },
         {
+          "name": "aquasecurity:trivy:Reference",
+          "value": "ecr-public.aws.com/docker/library/redis:8.2.3-alpine"
+        },
+        {
           "name": "aquasecurity:trivy:RepoDigest",
           "value": "ecr-public.aws.com/docker/library/redis@sha256:08ad0b1d280850169a790dba1393ff7a90aef951fc19632cf4d3ce4f78e679ba"
         },
@@ -65,13 +72,17 @@
         {
           "name": "aquasecurity:trivy:SchemaVersion",
           "value": "2"
+        },
+        {
+          "name": "aquasecurity:trivy:Size",
+          "value": "71394304"
         }
       ]
     }
   },
   "components": [
     {
-      "bom-ref": "8c6bdaed-5d53-46c1-b557-774572106b70",
+      "bom-ref": "23ad6212-aecc-4bf1-9906-1d2da7746340",
       "type": "operating-system",
       "name": "alpine",
       "version": "3.22.3",
@@ -120,6 +131,9 @@
     {
       "bom-ref": "pkg:apk/alpine/alpine-baselayout-data@3.7.0-r0?arch=x86_64&distro=3.22.3",
       "type": "library",
+      "supplier": {
+        "name": "Natanael Copa <ncopa@alpinelinux.org>"
+      },
       "name": "alpine-baselayout-data",
       "version": "3.7.0-r0",
       "hashes": [
@@ -131,7 +145,7 @@
       "licenses": [
         {
           "license": {
-            "name": "GPL-2.0-only"
+            "id": "GPL-2.0-only"
           }
         }
       ],
@@ -166,6 +180,9 @@
     {
       "bom-ref": "pkg:apk/alpine/alpine-baselayout@3.7.0-r0?arch=x86_64&distro=3.22.3",
       "type": "library",
+      "supplier": {
+        "name": "Natanael Copa <ncopa@alpinelinux.org>"
+      },
       "name": "alpine-baselayout",
       "version": "3.7.0-r0",
       "hashes": [
@@ -177,7 +194,7 @@
       "licenses": [
         {
           "license": {
-            "name": "GPL-2.0-only"
+            "id": "GPL-2.0-only"
           }
         }
       ],
@@ -212,6 +229,9 @@
     {
       "bom-ref": "pkg:apk/alpine/alpine-keys@2.5-r0?arch=x86_64&distro=3.22.3",
       "type": "library",
+      "supplier": {
+        "name": "Natanael Copa <ncopa@alpinelinux.org>"
+      },
       "name": "alpine-keys",
       "version": "2.5-r0",
       "hashes": [
@@ -223,7 +243,7 @@
       "licenses": [
         {
           "license": {
-            "name": "MIT"
+            "id": "MIT"
           }
         }
       ],
@@ -258,6 +278,9 @@
     {
       "bom-ref": "pkg:apk/alpine/alpine-release@3.22.3-r0?arch=x86_64&distro=3.22.3",
       "type": "library",
+      "supplier": {
+        "name": "Natanael Copa <ncopa@alpinelinux.org>"
+      },
       "name": "alpine-release",
       "version": "3.22.3-r0",
       "hashes": [
@@ -269,7 +292,7 @@
       "licenses": [
         {
           "license": {
-            "name": "MIT"
+            "id": "MIT"
           }
         }
       ],
@@ -304,6 +327,9 @@
     {
       "bom-ref": "pkg:apk/alpine/apk-tools@2.14.9-r3?arch=x86_64&distro=3.22.3",
       "type": "library",
+      "supplier": {
+        "name": "Natanael Copa <ncopa@alpinelinux.org>"
+      },
       "name": "apk-tools",
       "version": "2.14.9-r3",
       "hashes": [
@@ -315,7 +341,7 @@
       "licenses": [
         {
           "license": {
-            "name": "GPL-2.0-only"
+            "id": "GPL-2.0-only"
           }
         }
       ],
@@ -350,6 +376,9 @@
     {
       "bom-ref": "pkg:apk/alpine/busybox-binsh@1.37.0-r20?arch=x86_64&distro=3.22.3",
       "type": "library",
+      "supplier": {
+        "name": "Sören Tempel <soeren+alpine@soeren-tempel.net>"
+      },
       "name": "busybox-binsh",
       "version": "1.37.0-r20",
       "hashes": [
@@ -361,7 +390,7 @@
       "licenses": [
         {
           "license": {
-            "name": "GPL-2.0-only"
+            "id": "GPL-2.0-only"
           }
         }
       ],
@@ -396,6 +425,9 @@
     {
       "bom-ref": "pkg:apk/alpine/busybox@1.37.0-r20?arch=x86_64&distro=3.22.3",
       "type": "library",
+      "supplier": {
+        "name": "Sören Tempel <soeren+alpine@soeren-tempel.net>"
+      },
       "name": "busybox",
       "version": "1.37.0-r20",
       "hashes": [
@@ -407,7 +439,7 @@
       "licenses": [
         {
           "license": {
-            "name": "GPL-2.0-only"
+            "id": "GPL-2.0-only"
           }
         }
       ],
@@ -442,6 +474,9 @@
     {
       "bom-ref": "pkg:apk/alpine/ca-certificates-bundle@20250911-r0?arch=x86_64&distro=3.22.3",
       "type": "library",
+      "supplier": {
+        "name": "Natanael Copa <ncopa@alpinelinux.org>"
+      },
       "name": "ca-certificates-bundle",
       "version": "20250911-r0",
       "hashes": [
@@ -453,12 +488,12 @@
       "licenses": [
         {
           "license": {
-            "name": "MPL-2.0"
+            "id": "MPL-2.0"
           }
         },
         {
           "license": {
-            "name": "MIT"
+            "id": "MIT"
           }
         }
       ],
@@ -493,6 +528,9 @@
     {
       "bom-ref": "pkg:apk/alpine/libapk2@2.14.9-r3?arch=x86_64&distro=3.22.3",
       "type": "library",
+      "supplier": {
+        "name": "Natanael Copa <ncopa@alpinelinux.org>"
+      },
       "name": "libapk2",
       "version": "2.14.9-r3",
       "hashes": [
@@ -504,7 +542,7 @@
       "licenses": [
         {
           "license": {
-            "name": "GPL-2.0-only"
+            "id": "GPL-2.0-only"
           }
         }
       ],
@@ -539,6 +577,9 @@
     {
       "bom-ref": "pkg:apk/alpine/libcap-ng@0.8.5-r0?arch=x86_64&distro=3.22.3",
       "type": "library",
+      "supplier": {
+        "name": "Natanael Copa <ncopa@alpinelinux.org>"
+      },
       "name": "libcap-ng",
       "version": "0.8.5-r0",
       "hashes": [
@@ -550,12 +591,12 @@
       "licenses": [
         {
           "license": {
-            "name": "GPL-2.0-or-later"
+            "id": "GPL-2.0-or-later"
           }
         },
         {
           "license": {
-            "name": "LGPL-2.1-or-later"
+            "id": "LGPL-2.1-or-later"
           }
         }
       ],
@@ -590,6 +631,9 @@
     {
       "bom-ref": "pkg:apk/alpine/libcrypto3@3.5.5-r0?arch=x86_64&distro=3.22.3",
       "type": "library",
+      "supplier": {
+        "name": "Natanael Copa <ncopa@alpinelinux.org>"
+      },
       "name": "libcrypto3",
       "version": "3.5.5-r0",
       "hashes": [
@@ -601,7 +645,7 @@
       "licenses": [
         {
           "license": {
-            "name": "Apache-2.0"
+            "id": "Apache-2.0"
           }
         }
       ],
@@ -636,6 +680,9 @@
     {
       "bom-ref": "pkg:apk/alpine/libgcc@14.2.0-r6?arch=x86_64&distro=3.22.3",
       "type": "library",
+      "supplier": {
+        "name": "Ariadne Conill <ariadne@dereferenced.org>"
+      },
       "name": "libgcc",
       "version": "14.2.0-r6",
       "hashes": [
@@ -647,12 +694,12 @@
       "licenses": [
         {
           "license": {
-            "name": "GPL-2.0-or-later"
+            "id": "GPL-2.0-or-later"
           }
         },
         {
           "license": {
-            "name": "LGPL-2.1-or-later"
+            "id": "LGPL-2.1-or-later"
           }
         }
       ],
@@ -687,6 +734,9 @@
     {
       "bom-ref": "pkg:apk/alpine/libssl3@3.5.5-r0?arch=x86_64&distro=3.22.3",
       "type": "library",
+      "supplier": {
+        "name": "Natanael Copa <ncopa@alpinelinux.org>"
+      },
       "name": "libssl3",
       "version": "3.5.5-r0",
       "hashes": [
@@ -698,7 +748,7 @@
       "licenses": [
         {
           "license": {
-            "name": "Apache-2.0"
+            "id": "Apache-2.0"
           }
         }
       ],
@@ -733,6 +783,9 @@
     {
       "bom-ref": "pkg:apk/alpine/libstdc%2B%2B@14.2.0-r6?arch=x86_64&distro=3.22.3",
       "type": "library",
+      "supplier": {
+        "name": "Ariadne Conill <ariadne@dereferenced.org>"
+      },
       "name": "libstdc++",
       "version": "14.2.0-r6",
       "hashes": [
@@ -744,12 +797,12 @@
       "licenses": [
         {
           "license": {
-            "name": "GPL-2.0-or-later"
+            "id": "GPL-2.0-or-later"
           }
         },
         {
           "license": {
-            "name": "LGPL-2.1-or-later"
+            "id": "LGPL-2.1-or-later"
           }
         }
       ],
@@ -784,6 +837,9 @@
     {
       "bom-ref": "pkg:apk/alpine/musl-utils@1.2.5-r10?arch=x86_64&distro=3.22.3",
       "type": "library",
+      "supplier": {
+        "name": "Natanael Copa <ncopa@alpinelinux.org>"
+      },
       "name": "musl-utils",
       "version": "1.2.5-r10",
       "hashes": [
@@ -795,17 +851,17 @@
       "licenses": [
         {
           "license": {
-            "name": "MIT"
+            "id": "MIT"
           }
         },
         {
           "license": {
-            "name": "BSD-2-Clause"
+            "id": "BSD-2-Clause"
           }
         },
         {
           "license": {
-            "name": "GPL-2.0-or-later"
+            "id": "GPL-2.0-or-later"
           }
         }
       ],
@@ -840,6 +896,9 @@
     {
       "bom-ref": "pkg:apk/alpine/musl@1.2.5-r10?arch=x86_64&distro=3.22.3",
       "type": "library",
+      "supplier": {
+        "name": "Natanael Copa <ncopa@alpinelinux.org>"
+      },
       "name": "musl",
       "version": "1.2.5-r10",
       "hashes": [
@@ -851,7 +910,7 @@
       "licenses": [
         {
           "license": {
-            "name": "MIT"
+            "id": "MIT"
           }
         }
       ],
@@ -886,6 +945,9 @@
     {
       "bom-ref": "pkg:apk/alpine/scanelf@1.3.8-r1?arch=x86_64&distro=3.22.3",
       "type": "library",
+      "supplier": {
+        "name": "Natanael Copa <ncopa@alpinelinux.org>"
+      },
       "name": "scanelf",
       "version": "1.3.8-r1",
       "hashes": [
@@ -897,7 +959,7 @@
       "licenses": [
         {
           "license": {
-            "name": "GPL-2.0-only"
+            "id": "GPL-2.0-only"
           }
         }
       ],
@@ -932,6 +994,9 @@
     {
       "bom-ref": "pkg:apk/alpine/setpriv@2.41-r9?arch=x86_64&distro=3.22.3",
       "type": "library",
+      "supplier": {
+        "name": "Natanael Copa <ncopa@alpinelinux.org>"
+      },
       "name": "setpriv",
       "version": "2.41-r9",
       "hashes": [
@@ -943,7 +1008,7 @@
       "licenses": [
         {
           "license": {
-            "name": "GPL-2.0-or-later"
+            "id": "GPL-2.0-or-later"
           }
         }
       ],
@@ -978,6 +1043,9 @@
     {
       "bom-ref": "pkg:apk/alpine/ssl_client@1.37.0-r20?arch=x86_64&distro=3.22.3",
       "type": "library",
+      "supplier": {
+        "name": "Sören Tempel <soeren+alpine@soeren-tempel.net>"
+      },
       "name": "ssl_client",
       "version": "1.37.0-r20",
       "hashes": [
@@ -989,7 +1057,7 @@
       "licenses": [
         {
           "license": {
-            "name": "GPL-2.0-only"
+            "id": "GPL-2.0-only"
           }
         }
       ],
@@ -1024,6 +1092,9 @@
     {
       "bom-ref": "pkg:apk/alpine/tzdata@2025c-r0?arch=x86_64&distro=3.22.3",
       "type": "library",
+      "supplier": {
+        "name": "Natanael Copa <ncopa@alpinelinux.org>"
+      },
       "name": "tzdata",
       "version": "2025c-r0",
       "hashes": [
@@ -1070,6 +1141,9 @@
     {
       "bom-ref": "pkg:apk/alpine/zlib@1.3.1-r2?arch=x86_64&distro=3.22.3",
       "type": "library",
+      "supplier": {
+        "name": "Natanael Copa <ncopa@alpinelinux.org>"
+      },
       "name": "zlib",
       "version": "1.3.1-r2",
       "hashes": [
@@ -1081,7 +1155,7 @@
       "licenses": [
         {
           "license": {
-            "name": "Zlib"
+            "id": "Zlib"
           }
         }
       ],
@@ -1116,7 +1190,7 @@
   ],
   "dependencies": [
     {
-      "ref": "8c6bdaed-5d53-46c1-b557-774572106b70",
+      "ref": "23ad6212-aecc-4bf1-9906-1d2da7746340",
       "dependsOn": [
         "pkg:apk/alpine/.redis-rundeps@20260128.024129?arch=noarch&distro=3.22.3",
         "pkg:apk/alpine/alpine-baselayout@3.7.0-r0?arch=x86_64&distro=3.22.3",
@@ -1272,7 +1346,7 @@
     {
       "ref": "pkg:oci/redis@sha256%3A08ad0b1d280850169a790dba1393ff7a90aef951fc19632cf4d3ce4f78e679ba?arch=amd64&repository_url=ecr-public.aws.com%2Fdocker%2Flibrary%2Fredis",
       "dependsOn": [
-        "8c6bdaed-5d53-46c1-b557-774572106b70"
+        "23ad6212-aecc-4bf1-9906-1d2da7746340"
       ]
     }
   ],

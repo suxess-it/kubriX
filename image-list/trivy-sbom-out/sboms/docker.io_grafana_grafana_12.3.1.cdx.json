@@ -2,17 +2,20 @@
   "$schema": "http://cyclonedx.org/schema/bom-1.6.schema.json",
   "bomFormat": "CycloneDX",
   "specVersion": "1.6",
-  "serialNumber": "urn:uuid:eec2df47-729f-407f-a52a-9dd138bea508",
+  "serialNumber": "urn:uuid:71ea09a9-d7c0-4e0e-a936-f89f09732378",
   "version": 1,
   "metadata": {
-    "timestamp": "2026-02-04T23:08:39+00:00",
+    "timestamp": "2026-02-04T23:54:36+00:00",
     "tools": {
       "components": [
         {
           "type": "application",
+          "manufacturer": {
+            "name": "Aqua Security Software Ltd."
+          },
           "group": "aquasecurity",
           "name": "trivy",
-          "version": "0.61.0"
+          "version": "0.69.0"
         }
       ]
     },
@@ -75,6 +78,10 @@
           "value": "https://github.com/grafana/grafana"
         },
         {
+          "name": "aquasecurity:trivy:Reference",
+          "value": "grafana/grafana:12.3.1"
+        },
+        {
           "name": "aquasecurity:trivy:RepoDigest",
           "value": "grafana/grafana@sha256:2175aaa91c96733d86d31cf270d5310b278654b03f5718c59de12a865380a31f"
         },
@@ -85,32 +92,20 @@
         {
           "name": "aquasecurity:trivy:SchemaVersion",
           "value": "2"
+        },
+        {
+          "name": "aquasecurity:trivy:Size",
+          "value": "756294144"
         }
       ]
     }
   },
   "components": [
     {
-      "bom-ref": "000b89e0-d6e2-4610-a1e0-3c05210d6977",
-      "type": "application",
-      "name": "usr/share/grafana/bin/grafana-server",
-      "properties": [
-        {
-          "name": "aquasecurity:trivy:Class",
-          "value": "lang-pkgs"
-        },
-        {
-          "name": "aquasecurity:trivy:Type",
-          "value": "gobinary"
-        }
-      ]
-    },
-    {
-      "bom-ref": "00dff671-2c77-4b80-8bb7-2cfd48007886",
+      "bom-ref": "0addf713-b46b-4eb9-9a40-af1b5e9f0fde",
       "type": "library",
-      "name": "github.com/mattn/go-isatty",
-      "version": "v0.0.20",
-      "purl": "pkg:golang/github.com/mattn/go-isatty@v0.0.20",
+      "name": "github.com/grafana/grafana",
+      "purl": "pkg:golang/github.com/grafana/grafana",
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
@@ -122,7 +117,7 @@
         },
         {
           "name": "aquasecurity:trivy:PkgID",
-          "value": "github.com/mattn/go-isatty@v0.0.20"
+          "value": "github.com/grafana/grafana"
         },
         {
           "name": "aquasecurity:trivy:PkgType",
@@ -131,47 +126,7 @@
       ]
     },
     {
-      "bom-ref": "1e9eb34b-8c66-46b0-98c9-9f038febeb1b",
-      "type": "library",
-      "name": "github.com/mattn/go-colorable",
-      "version": "v0.1.14",
-      "purl": "pkg:golang/github.com/mattn/go-colorable@v0.1.14",
-      "properties": [
-        {
-          "name": "aquasecurity:trivy:LayerDiffID",
-          "value": "sha256:0845f896c5f836fbe80cdfb6f533f939926827a271e4f36762c994a5e1301022"
-        },
-        {
-          "name": "aquasecurity:trivy:LayerDigest",
-          "value": "sha256:a2a0d06388d668279fe14d4d64662b84632c500ea316d12916b04de5f1c2eb11"
-        },
-        {
-          "name": "aquasecurity:trivy:PkgID",
-          "value": "github.com/mattn/go-colorable@v0.1.14"
-        },
-        {
-          "name": "aquasecurity:trivy:PkgType",
-          "value": "gobinary"
-        }
-      ]
-    },
-    {
-      "bom-ref": "235e0fb2-ef25-4aa0-a856-f77718825236",
-      "type": "application",
-      "name": "usr/share/grafana/bin/grafana",
-      "properties": [
-        {
-          "name": "aquasecurity:trivy:Class",
-          "value": "lang-pkgs"
-        },
-        {
-          "name": "aquasecurity:trivy:Type",
-          "value": "gobinary"
-        }
-      ]
-    },
-    {
-      "bom-ref": "29abd0e4-5548-4b34-a823-577c15fd77c7",
+      "bom-ref": "14347538-c9d3-4042-baf7-c9883d22ff70",
       "type": "library",
       "name": "golang.org/x/sys",
       "version": "v0.37.0",
@@ -196,11 +151,11 @@
       ]
     },
     {
-      "bom-ref": "29b70cf8-4947-43c8-a799-9a3fc54e7977",
+      "bom-ref": "14771550-a079-44e3-9876-ce1dc73edba1",
       "type": "library",
-      "name": "github.com/fatih/color",
-      "version": "v1.18.0",
-      "purl": "pkg:golang/github.com/fatih/color@v1.18.0",
+      "name": "golang.org/x/sys",
+      "version": "v0.37.0",
+      "purl": "pkg:golang/golang.org/x/sys@v0.37.0",
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
@@ -212,7 +167,7 @@
         },
         {
           "name": "aquasecurity:trivy:PkgID",
-          "value": "github.com/fatih/color@v1.18.0"
+          "value": "golang.org/x/sys@v0.37.0"
         },
         {
           "name": "aquasecurity:trivy:PkgType",
@@ -221,7 +176,55 @@
       ]
     },
     {
-      "bom-ref": "3dc2a069-1b92-49c3-8bac-99548f047965",
+      "bom-ref": "21b3c8c1-68a4-4677-adaa-12b3bb45b5a4",
+      "type": "library",
+      "name": "github.com/grafana/grafana",
+      "purl": "pkg:golang/github.com/grafana/grafana",
+      "properties": [
+        {
+          "name": "aquasecurity:trivy:LayerDiffID",
+          "value": "sha256:0845f896c5f836fbe80cdfb6f533f939926827a271e4f36762c994a5e1301022"
+        },
+        {
+          "name": "aquasecurity:trivy:LayerDigest",
+          "value": "sha256:a2a0d06388d668279fe14d4d64662b84632c500ea316d12916b04de5f1c2eb11"
+        },
+        {
+          "name": "aquasecurity:trivy:PkgID",
+          "value": "github.com/grafana/grafana"
+        },
+        {
+          "name": "aquasecurity:trivy:PkgType",
+          "value": "gobinary"
+        }
+      ]
+    },
+    {
+      "bom-ref": "2454cf81-2acb-4057-a5d9-f065862e11a4",
+      "type": "library",
+      "name": "github.com/grafana/grafana",
+      "purl": "pkg:golang/github.com/grafana/grafana",
+      "properties": [
+        {
+          "name": "aquasecurity:trivy:LayerDiffID",
+          "value": "sha256:0845f896c5f836fbe80cdfb6f533f939926827a271e4f36762c994a5e1301022"
+        },
+        {
+          "name": "aquasecurity:trivy:LayerDigest",
+          "value": "sha256:a2a0d06388d668279fe14d4d64662b84632c500ea316d12916b04de5f1c2eb11"
+        },
+        {
+          "name": "aquasecurity:trivy:PkgID",
+          "value": "github.com/grafana/grafana"
+        },
+        {
+          "name": "aquasecurity:trivy:PkgType",
+          "value": "gobinary"
+        }
+      ]
+    },
+    {
+      "bom-ref": "456a9f5f-a570-459c-bec9-be72670df556",
       "type": "library",
       "name": "github.com/mattn/go-colorable",
       "version": "v0.1.14",
@@ -246,10 +249,11 @@
       ]
     },
     {
-      "bom-ref": "a6e36551-1cbe-4428-940f-bb070f0d284a",
+      "bom-ref": "4e81017e-0a3c-4fa4-954c-e5fb1dd9c075",
       "type": "library",
-      "name": "github.com/grafana/grafana",
-      "purl": "pkg:golang/github.com/grafana/grafana",
+      "name": "stdlib",
+      "version": "v1.25.5",
+      "purl": "pkg:golang/stdlib@v1.25.5",
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
@@ -261,7 +265,7 @@
         },
         {
           "name": "aquasecurity:trivy:PkgID",
-          "value": "github.com/grafana/grafana"
+          "value": "stdlib@v1.25.5"
         },
         {
           "name": "aquasecurity:trivy:PkgType",
@@ -270,56 +274,7 @@
       ]
     },
     {
-      "bom-ref": "a9e0a234-640a-42c6-b66a-65e3c970049e",
-      "type": "library",
-      "name": "github.com/grafana/grafana",
-      "purl": "pkg:golang/github.com/grafana/grafana",
-      "properties": [
-        {
-          "name": "aquasecurity:trivy:LayerDiffID",
-          "value": "sha256:0845f896c5f836fbe80cdfb6f533f939926827a271e4f36762c994a5e1301022"
-        },
-        {
-          "name": "aquasecurity:trivy:LayerDigest",
-          "value": "sha256:a2a0d06388d668279fe14d4d64662b84632c500ea316d12916b04de5f1c2eb11"
-        },
-        {
-          "name": "aquasecurity:trivy:PkgID",
-          "value": "github.com/grafana/grafana"
-        },
-        {
-          "name": "aquasecurity:trivy:PkgType",
-          "value": "gobinary"
-        }
-      ]
-    },
-    {
-      "bom-ref": "abb1f2e4-2a2c-4135-b618-4c2a2a3bb60d",
-      "type": "library",
-      "name": "github.com/fatih/color",
-      "version": "v1.18.0",
-      "purl": "pkg:golang/github.com/fatih/color@v1.18.0",
-      "properties": [
-        {
-          "name": "aquasecurity:trivy:LayerDiffID",
-          "value": "sha256:0845f896c5f836fbe80cdfb6f533f939926827a271e4f36762c994a5e1301022"
-        },
-        {
-          "name": "aquasecurity:trivy:LayerDigest",
-          "value": "sha256:a2a0d06388d668279fe14d4d64662b84632c500ea316d12916b04de5f1c2eb11"
-        },
-        {
-          "name": "aquasecurity:trivy:PkgID",
-          "value": "github.com/fatih/color@v1.18.0"
-        },
-        {
-          "name": "aquasecurity:trivy:PkgType",
-          "value": "gobinary"
-        }
-      ]
-    },
-    {
-      "bom-ref": "ade3e2d6-3d55-4277-890a-8bcc9d0a1bad",
+      "bom-ref": "52872fa6-4f8b-4dd4-affd-979a306426d9",
       "type": "operating-system",
       "name": "alpine",
       "version": "3.23.0",
@@ -335,7 +290,7 @@
       ]
     },
     {
-      "bom-ref": "b7ea5a78-f97b-410a-bd26-245ecdc3e3a8",
+      "bom-ref": "6c1893d5-9d60-4de7-990b-99c28f32083e",
       "type": "library",
       "name": "github.com/mattn/go-isatty",
       "version": "v0.0.20",
@@ -360,7 +315,82 @@
       ]
     },
     {
-      "bom-ref": "c01f6f5a-da96-4a67-84a3-bb9b3c799917",
+      "bom-ref": "6ee10b97-7e1c-41b5-855e-ebf31599d319",
+      "type": "library",
+      "name": "golang.org/x/sys",
+      "version": "v0.37.0",
+      "purl": "pkg:golang/golang.org/x/sys@v0.37.0",
+      "properties": [
+        {
+          "name": "aquasecurity:trivy:LayerDiffID",
+          "value": "sha256:0845f896c5f836fbe80cdfb6f533f939926827a271e4f36762c994a5e1301022"
+        },
+        {
+          "name": "aquasecurity:trivy:LayerDigest",
+          "value": "sha256:a2a0d06388d668279fe14d4d64662b84632c500ea316d12916b04de5f1c2eb11"
+        },
+        {
+          "name": "aquasecurity:trivy:PkgID",
+          "value": "golang.org/x/sys@v0.37.0"
+        },
+        {
+          "name": "aquasecurity:trivy:PkgType",
+          "value": "gobinary"
+        }
+      ]
+    },
+    {
+      "bom-ref": "839a883d-78c7-477f-aa71-502e72d335d5",
+      "type": "library",
+      "name": "stdlib",
+      "version": "v1.25.5",
+      "purl": "pkg:golang/stdlib@v1.25.5",
+      "properties": [
+        {
+          "name": "aquasecurity:trivy:LayerDiffID",
+          "value": "sha256:0845f896c5f836fbe80cdfb6f533f939926827a271e4f36762c994a5e1301022"
+        },
+        {
+          "name": "aquasecurity:trivy:LayerDigest",
+          "value": "sha256:a2a0d06388d668279fe14d4d64662b84632c500ea316d12916b04de5f1c2eb11"
+        },
+        {
+          "name": "aquasecurity:trivy:PkgID",
+          "value": "stdlib@v1.25.5"
+        },
+        {
+          "name": "aquasecurity:trivy:PkgType",
+          "value": "gobinary"
+        }
+      ]
+    },
+    {
+      "bom-ref": "9e5feeac-be3c-4b2d-9ae4-83c0b7c7ae68",
+      "type": "library",
+      "name": "stdlib",
+      "version": "v1.25.5",
+      "purl": "pkg:golang/stdlib@v1.25.5",
+      "properties": [
+        {
+          "name": "aquasecurity:trivy:LayerDiffID",
+          "value": "sha256:0845f896c5f836fbe80cdfb6f533f939926827a271e4f36762c994a5e1301022"
+        },
+        {
+          "name": "aquasecurity:trivy:LayerDigest",
+          "value": "sha256:a2a0d06388d668279fe14d4d64662b84632c500ea316d12916b04de5f1c2eb11"
+        },
+        {
+          "name": "aquasecurity:trivy:PkgID",
+          "value": "stdlib@v1.25.5"
+        },
+        {
+          "name": "aquasecurity:trivy:PkgType",
+          "value": "gobinary"
+        }
+      ]
+    },
+    {
+      "bom-ref": "9e6ed6ab-f166-497a-af1d-4d774bc2c9f2",
       "type": "library",
       "name": "github.com/fatih/color",
       "version": "v1.18.0",
@@ -385,196 +415,7 @@
       ]
     },
     {
-      "bom-ref": "c5337593-b258-4dda-b0a5-35cd3450c588",
-      "type": "library",
-      "name": "stdlib",
-      "version": "v1.25.5",
-      "purl": "pkg:golang/stdlib@v1.25.5",
-      "properties": [
-        {
-          "name": "aquasecurity:trivy:LayerDiffID",
-          "value": "sha256:0845f896c5f836fbe80cdfb6f533f939926827a271e4f36762c994a5e1301022"
-        },
-        {
-          "name": "aquasecurity:trivy:LayerDigest",
-          "value": "sha256:a2a0d06388d668279fe14d4d64662b84632c500ea316d12916b04de5f1c2eb11"
-        },
-        {
-          "name": "aquasecurity:trivy:PkgID",
-          "value": "stdlib@v1.25.5"
-        },
-        {
-          "name": "aquasecurity:trivy:PkgType",
-          "value": "gobinary"
-        }
-      ]
-    },
-    {
-      "bom-ref": "c5e6a166-6857-4d05-8862-cf7327e59943",
-      "type": "library",
-      "name": "golang.org/x/sys",
-      "version": "v0.37.0",
-      "purl": "pkg:golang/golang.org/x/sys@v0.37.0",
-      "properties": [
-        {
-          "name": "aquasecurity:trivy:LayerDiffID",
-          "value": "sha256:0845f896c5f836fbe80cdfb6f533f939926827a271e4f36762c994a5e1301022"
-        },
-        {
-          "name": "aquasecurity:trivy:LayerDigest",
-          "value": "sha256:a2a0d06388d668279fe14d4d64662b84632c500ea316d12916b04de5f1c2eb11"
-        },
-        {
-          "name": "aquasecurity:trivy:PkgID",
-          "value": "golang.org/x/sys@v0.37.0"
-        },
-        {
-          "name": "aquasecurity:trivy:PkgType",
-          "value": "gobinary"
-        }
-      ]
-    },
-    {
-      "bom-ref": "c8c5bcf6-ed44-4419-8157-3678a636210f",
-      "type": "library",
-      "name": "golang.org/x/sys",
-      "version": "v0.37.0",
-      "purl": "pkg:golang/golang.org/x/sys@v0.37.0",
-      "properties": [
-        {
-          "name": "aquasecurity:trivy:LayerDiffID",
-          "value": "sha256:0845f896c5f836fbe80cdfb6f533f939926827a271e4f36762c994a5e1301022"
-        },
-        {
-          "name": "aquasecurity:trivy:LayerDigest",
-          "value": "sha256:a2a0d06388d668279fe14d4d64662b84632c500ea316d12916b04de5f1c2eb11"
-        },
-        {
-          "name": "aquasecurity:trivy:PkgID",
-          "value": "golang.org/x/sys@v0.37.0"
-        },
-        {
-          "name": "aquasecurity:trivy:PkgType",
-          "value": "gobinary"
-        }
-      ]
-    },
-    {
-      "bom-ref": "cbe03149-a479-4fe6-9fa0-e6ed4a98e2fe",
-      "type": "library",
-      "name": "github.com/mattn/go-colorable",
-      "version": "v0.1.14",
-      "purl": "pkg:golang/github.com/mattn/go-colorable@v0.1.14",
-      "properties": [
-        {
-          "name": "aquasecurity:trivy:LayerDiffID",
-          "value": "sha256:0845f896c5f836fbe80cdfb6f533f939926827a271e4f36762c994a5e1301022"
-        },
-        {
-          "name": "aquasecurity:trivy:LayerDigest",
-          "value": "sha256:a2a0d06388d668279fe14d4d64662b84632c500ea316d12916b04de5f1c2eb11"
-        },
-        {
-          "name": "aquasecurity:trivy:PkgID",
-          "value": "github.com/mattn/go-colorable@v0.1.14"
-        },
-        {
-          "name": "aquasecurity:trivy:PkgType",
-          "value": "gobinary"
-        }
-      ]
-    },
-    {
-      "bom-ref": "e23a3911-ee2e-47a7-8d03-1dc99f884204",
-      "type": "library",
-      "name": "stdlib",
-      "version": "v1.25.5",
-      "purl": "pkg:golang/stdlib@v1.25.5",
-      "properties": [
-        {
-          "name": "aquasecurity:trivy:LayerDiffID",
-          "value": "sha256:0845f896c5f836fbe80cdfb6f533f939926827a271e4f36762c994a5e1301022"
-        },
-        {
-          "name": "aquasecurity:trivy:LayerDigest",
-          "value": "sha256:a2a0d06388d668279fe14d4d64662b84632c500ea316d12916b04de5f1c2eb11"
-        },
-        {
-          "name": "aquasecurity:trivy:PkgID",
-          "value": "stdlib@v1.25.5"
-        },
-        {
-          "name": "aquasecurity:trivy:PkgType",
-          "value": "gobinary"
-        }
-      ]
-    },
-    {
-      "bom-ref": "e3a92fde-5d9d-44c1-8e4f-7098c27b6561",
-      "type": "application",
-      "name": "usr/share/grafana/bin/grafana-cli",
-      "properties": [
-        {
-          "name": "aquasecurity:trivy:Class",
-          "value": "lang-pkgs"
-        },
-        {
-          "name": "aquasecurity:trivy:Type",
-          "value": "gobinary"
-        }
-      ]
-    },
-    {
-      "bom-ref": "e3c0107f-b970-4030-9094-e9b8b1632889",
-      "type": "library",
-      "name": "stdlib",
-      "version": "v1.25.5",
-      "purl": "pkg:golang/stdlib@v1.25.5",
-      "properties": [
-        {
-          "name": "aquasecurity:trivy:LayerDiffID",
-          "value": "sha256:0845f896c5f836fbe80cdfb6f533f939926827a271e4f36762c994a5e1301022"
-        },
-        {
-          "name": "aquasecurity:trivy:LayerDigest",
-          "value": "sha256:a2a0d06388d668279fe14d4d64662b84632c500ea316d12916b04de5f1c2eb11"
-        },
-        {
-          "name": "aquasecurity:trivy:PkgID",
-          "value": "stdlib@v1.25.5"
-        },
-        {
-          "name": "aquasecurity:trivy:PkgType",
-          "value": "gobinary"
-        }
-      ]
-    },
-    {
-      "bom-ref": "e3d9fb71-fce4-472c-97ef-3633eb00c1bf",
-      "type": "library",
-      "name": "github.com/grafana/grafana",
-      "purl": "pkg:golang/github.com/grafana/grafana",
-      "properties": [
-        {
-          "name": "aquasecurity:trivy:LayerDiffID",
-          "value": "sha256:0845f896c5f836fbe80cdfb6f533f939926827a271e4f36762c994a5e1301022"
-        },
-        {
-          "name": "aquasecurity:trivy:LayerDigest",
-          "value": "sha256:a2a0d06388d668279fe14d4d64662b84632c500ea316d12916b04de5f1c2eb11"
-        },
-        {
-          "name": "aquasecurity:trivy:PkgID",
-          "value": "github.com/grafana/grafana"
-        },
-        {
-          "name": "aquasecurity:trivy:PkgType",
-          "value": "gobinary"
-        }
-      ]
-    },
-    {
-      "bom-ref": "ef98802a-f010-4e7e-a428-6732f68f6d0e",
+      "bom-ref": "ab7c8265-a423-4f17-828a-061c8e081071",
       "type": "library",
       "name": "github.com/mattn/go-isatty",
       "version": "v0.0.20",
@@ -599,8 +440,181 @@
       ]
     },
     {
+      "bom-ref": "abecb16a-295a-4efd-8343-cff92003e7bb",
+      "type": "library",
+      "name": "github.com/mattn/go-colorable",
+      "version": "v0.1.14",
+      "purl": "pkg:golang/github.com/mattn/go-colorable@v0.1.14",
+      "properties": [
+        {
+          "name": "aquasecurity:trivy:LayerDiffID",
+          "value": "sha256:0845f896c5f836fbe80cdfb6f533f939926827a271e4f36762c994a5e1301022"
+        },
+        {
+          "name": "aquasecurity:trivy:LayerDigest",
+          "value": "sha256:a2a0d06388d668279fe14d4d64662b84632c500ea316d12916b04de5f1c2eb11"
+        },
+        {
+          "name": "aquasecurity:trivy:PkgID",
+          "value": "github.com/mattn/go-colorable@v0.1.14"
+        },
+        {
+          "name": "aquasecurity:trivy:PkgType",
+          "value": "gobinary"
+        }
+      ]
+    },
+    {
+      "bom-ref": "b39f7d0c-994b-48fe-bbcf-86891f00056f",
+      "type": "application",
+      "name": "usr/share/grafana/bin/grafana-server",
+      "properties": [
+        {
+          "name": "aquasecurity:trivy:Class",
+          "value": "lang-pkgs"
+        },
+        {
+          "name": "aquasecurity:trivy:Type",
+          "value": "gobinary"
+        }
+      ]
+    },
+    {
+      "bom-ref": "c77d9bfc-49ed-4113-906e-d183b70b2783",
+      "type": "application",
+      "name": "usr/share/grafana/bin/grafana",
+      "properties": [
+        {
+          "name": "aquasecurity:trivy:Class",
+          "value": "lang-pkgs"
+        },
+        {
+          "name": "aquasecurity:trivy:Type",
+          "value": "gobinary"
+        }
+      ]
+    },
+    {
+      "bom-ref": "e5e61593-2f1b-48b4-992d-cdbf982a6da4",
+      "type": "application",
+      "name": "usr/share/grafana/bin/grafana-cli",
+      "properties": [
+        {
+          "name": "aquasecurity:trivy:Class",
+          "value": "lang-pkgs"
+        },
+        {
+          "name": "aquasecurity:trivy:Type",
+          "value": "gobinary"
+        }
+      ]
+    },
+    {
+      "bom-ref": "e7e56cf1-6e56-4440-b978-d7f646855902",
+      "type": "library",
+      "name": "github.com/mattn/go-isatty",
+      "version": "v0.0.20",
+      "purl": "pkg:golang/github.com/mattn/go-isatty@v0.0.20",
+      "properties": [
+        {
+          "name": "aquasecurity:trivy:LayerDiffID",
+          "value": "sha256:0845f896c5f836fbe80cdfb6f533f939926827a271e4f36762c994a5e1301022"
+        },
+        {
+          "name": "aquasecurity:trivy:LayerDigest",
+          "value": "sha256:a2a0d06388d668279fe14d4d64662b84632c500ea316d12916b04de5f1c2eb11"
+        },
+        {
+          "name": "aquasecurity:trivy:PkgID",
+          "value": "github.com/mattn/go-isatty@v0.0.20"
+        },
+        {
+          "name": "aquasecurity:trivy:PkgType",
+          "value": "gobinary"
+        }
+      ]
+    },
+    {
+      "bom-ref": "ea3936d1-7d89-4dda-9103-6f64ad53d577",
+      "type": "library",
+      "name": "github.com/mattn/go-colorable",
+      "version": "v0.1.14",
+      "purl": "pkg:golang/github.com/mattn/go-colorable@v0.1.14",
+      "properties": [
+        {
+          "name": "aquasecurity:trivy:LayerDiffID",
+          "value": "sha256:0845f896c5f836fbe80cdfb6f533f939926827a271e4f36762c994a5e1301022"
+        },
+        {
+          "name": "aquasecurity:trivy:LayerDigest",
+          "value": "sha256:a2a0d06388d668279fe14d4d64662b84632c500ea316d12916b04de5f1c2eb11"
+        },
+        {
+          "name": "aquasecurity:trivy:PkgID",
+          "value": "github.com/mattn/go-colorable@v0.1.14"
+        },
+        {
+          "name": "aquasecurity:trivy:PkgType",
+          "value": "gobinary"
+        }
+      ]
+    },
+    {
+      "bom-ref": "f14d2e66-d1b4-4806-baa1-cda18196b691",
+      "type": "library",
+      "name": "github.com/fatih/color",
+      "version": "v1.18.0",
+      "purl": "pkg:golang/github.com/fatih/color@v1.18.0",
+      "properties": [
+        {
+          "name": "aquasecurity:trivy:LayerDiffID",
+          "value": "sha256:0845f896c5f836fbe80cdfb6f533f939926827a271e4f36762c994a5e1301022"
+        },
+        {
+          "name": "aquasecurity:trivy:LayerDigest",
+          "value": "sha256:a2a0d06388d668279fe14d4d64662b84632c500ea316d12916b04de5f1c2eb11"
+        },
+        {
+          "name": "aquasecurity:trivy:PkgID",
+          "value": "github.com/fatih/color@v1.18.0"
+        },
+        {
+          "name": "aquasecurity:trivy:PkgType",
+          "value": "gobinary"
+        }
+      ]
+    },
+    {
+      "bom-ref": "f37c392b-63c3-4a72-8153-2f9c9a0908b9",
+      "type": "library",
+      "name": "github.com/fatih/color",
+      "version": "v1.18.0",
+      "purl": "pkg:golang/github.com/fatih/color@v1.18.0",
+      "properties": [
+        {
+          "name": "aquasecurity:trivy:LayerDiffID",
+          "value": "sha256:0845f896c5f836fbe80cdfb6f533f939926827a271e4f36762c994a5e1301022"
+        },
+        {
+          "name": "aquasecurity:trivy:LayerDigest",
+          "value": "sha256:a2a0d06388d668279fe14d4d64662b84632c500ea316d12916b04de5f1c2eb11"
+        },
+        {
+          "name": "aquasecurity:trivy:PkgID",
+          "value": "github.com/fatih/color@v1.18.0"
+        },
+        {
+          "name": "aquasecurity:trivy:PkgType",
+          "value": "gobinary"
+        }
+      ]
+    },
+    {
       "bom-ref": "pkg:apk/alpine/alpine-baselayout-data@3.7.1-r8?arch=x86_64&distro=3.23.0",
       "type": "library",
+      "supplier": {
+        "name": "Natanael Copa <ncopa@alpinelinux.org>"
+      },
       "name": "alpine-baselayout-data",
       "version": "3.7.1-r8",
       "hashes": [
@@ -612,7 +626,7 @@
       "licenses": [
         {
           "license": {
-            "name": "GPL-2.0-only"
+            "id": "GPL-2.0-only"
           }
         }
       ],
@@ -647,6 +661,9 @@
     {
       "bom-ref": "pkg:apk/alpine/alpine-baselayout@3.7.1-r8?arch=x86_64&distro=3.23.0",
       "type": "library",
+      "supplier": {
+        "name": "Natanael Copa <ncopa@alpinelinux.org>"
+      },
       "name": "alpine-baselayout",
       "version": "3.7.1-r8",
       "hashes": [
@@ -658,7 +675,7 @@
       "licenses": [
         {
           "license": {
-            "name": "GPL-2.0-only"
+            "id": "GPL-2.0-only"
           }
         }
       ],
@@ -693,6 +710,9 @@
     {
       "bom-ref": "pkg:apk/alpine/alpine-keys@2.6-r0?arch=x86_64&distro=3.23.0",
       "type": "library",
+      "supplier": {
+        "name": "Natanael Copa <ncopa@alpinelinux.org>"
+      },
       "name": "alpine-keys",
       "version": "2.6-r0",
       "hashes": [
@@ -704,7 +724,7 @@
       "licenses": [
         {
           "license": {
-            "name": "MIT"
+            "id": "MIT"
           }
         }
       ],
@@ -739,6 +759,9 @@
     {
       "bom-ref": "pkg:apk/alpine/alpine-release@3.23.0-r0?arch=x86_64&distro=3.23.0",
       "type": "library",
+      "supplier": {
+        "name": "Natanael Copa <ncopa@alpinelinux.org>"
+      },
       "name": "alpine-release",
       "version": "3.23.0-r0",
       "hashes": [
@@ -750,7 +773,7 @@
       "licenses": [
         {
           "license": {
-            "name": "MIT"
+            "id": "MIT"
           }
         }
       ],
@@ -785,6 +808,9 @@
     {
       "bom-ref": "pkg:apk/alpine/apk-tools@3.0.1-r1?arch=x86_64&distro=3.23.0",
       "type": "library",
+      "supplier": {
+        "name": "Natanael Copa <ncopa@alpinelinux.org>"
+      },
       "name": "apk-tools",
       "version": "3.0.1-r1",
       "hashes": [
@@ -796,7 +822,7 @@
       "licenses": [
         {
           "license": {
-            "name": "GPL-2.0-only"
+            "id": "GPL-2.0-only"
           }
         }
       ],
@@ -831,6 +857,9 @@
     {
       "bom-ref": "pkg:apk/alpine/bash@5.3.3-r1?arch=x86_64&distro=3.23.0",
       "type": "library",
+      "supplier": {
+        "name": "Natanael Copa <ncopa@alpinelinux.org>"
+      },
       "name": "bash",
       "version": "5.3.3-r1",
       "hashes": [
@@ -842,7 +871,7 @@
       "licenses": [
         {
           "license": {
-            "name": "GPL-3.0-or-later"
+            "id": "GPL-3.0-or-later"
           }
         }
       ],
@@ -877,6 +906,9 @@
     {
       "bom-ref": "pkg:apk/alpine/brotli-libs@1.2.0-r0?arch=x86_64&distro=3.23.0",
       "type": "library",
+      "supplier": {
+        "name": "prspkt <prspkt@protonmail.com>"
+      },
       "name": "brotli-libs",
       "version": "1.2.0-r0",
       "hashes": [
@@ -888,7 +920,7 @@
       "licenses": [
         {
           "license": {
-            "name": "MIT"
+            "id": "MIT"
           }
         }
       ],
@@ -923,6 +955,9 @@
     {
       "bom-ref": "pkg:apk/alpine/busybox-binsh@1.37.0-r29?arch=x86_64&distro=3.23.0",
       "type": "library",
+      "supplier": {
+        "name": "Sören Tempel <soeren+alpine@soeren-tempel.net>"
+      },
       "name": "busybox-binsh",
       "version": "1.37.0-r29",
       "hashes": [
@@ -934,7 +969,7 @@
       "licenses": [
         {
           "license": {
-            "name": "GPL-2.0-only"
+            "id": "GPL-2.0-only"
           }
         }
       ],
@@ -969,6 +1004,9 @@
     {
       "bom-ref": "pkg:apk/alpine/busybox@1.37.0-r29?arch=x86_64&distro=3.23.0",
       "type": "library",
+      "supplier": {
+        "name": "Sören Tempel <soeren+alpine@soeren-tempel.net>"
+      },
       "name": "busybox",
       "version": "1.37.0-r29",
       "hashes": [
@@ -980,7 +1018,7 @@
       "licenses": [
         {
           "license": {
-            "name": "GPL-2.0-only"
+            "id": "GPL-2.0-only"
           }
         }
       ],
@@ -1015,6 +1053,9 @@
     {
       "bom-ref": "pkg:apk/alpine/c-ares@1.34.6-r0?arch=x86_64&distro=3.23.0",
       "type": "library",
+      "supplier": {
+        "name": "Carlo Landmeter <clandmeter@alpinelinux.org>"
+      },
       "name": "c-ares",
       "version": "1.34.6-r0",
       "hashes": [
@@ -1026,7 +1067,7 @@
       "licenses": [
         {
           "license": {
-            "name": "MIT"
+            "id": "MIT"
           }
         }
       ],
@@ -1061,6 +1102,9 @@
     {
       "bom-ref": "pkg:apk/alpine/ca-certificates-bundle@20251003-r0?arch=x86_64&distro=3.23.0",
       "type": "library",
+      "supplier": {
+        "name": "Natanael Copa <ncopa@alpinelinux.org>"
+      },
       "name": "ca-certificates-bundle",
       "version": "20251003-r0",
       "hashes": [
@@ -1072,12 +1116,12 @@
       "licenses": [
         {
           "license": {
-            "name": "MPL-2.0"
+            "id": "MPL-2.0"
           }
         },
         {
           "license": {
-            "name": "MIT"
+            "id": "MIT"
           }
         }
       ],
@@ -1112,6 +1156,9 @@
     {
       "bom-ref": "pkg:apk/alpine/ca-certificates@20251003-r0?arch=x86_64&distro=3.23.0",
       "type": "library",
+      "supplier": {
+        "name": "Natanael Copa <ncopa@alpinelinux.org>"
+      },
       "name": "ca-certificates",
       "version": "20251003-r0",
       "hashes": [
@@ -1123,12 +1170,12 @@
       "licenses": [
         {
           "license": {
-            "name": "MPL-2.0"
+            "id": "MPL-2.0"
           }
         },
         {
           "license": {
-            "name": "MIT"
+            "id": "MIT"
           }
         }
       ],
@@ -1163,6 +1210,9 @@
     {
       "bom-ref": "pkg:apk/alpine/curl@8.17.0-r1?arch=x86_64&distro=3.23.0",
       "type": "library",
+      "supplier": {
+        "name": "Achill Gilgenast <achill@achill.org>"
+      },
       "name": "curl",
       "version": "8.17.0-r1",
       "hashes": [
@@ -1174,7 +1224,7 @@
       "licenses": [
         {
           "license": {
-            "name": "curl"
+            "id": "curl"
           }
         }
       ],
@@ -1209,6 +1259,9 @@
     {
       "bom-ref": "pkg:apk/alpine/libapk@3.0.1-r1?arch=x86_64&distro=3.23.0",
       "type": "library",
+      "supplier": {
+        "name": "Natanael Copa <ncopa@alpinelinux.org>"
+      },
       "name": "libapk",
       "version": "3.0.1-r1",
       "hashes": [
@@ -1220,7 +1273,7 @@
       "licenses": [
         {
           "license": {
-            "name": "GPL-2.0-only"
+            "id": "GPL-2.0-only"
           }
         }
       ],
@@ -1255,6 +1308,9 @@
     {
       "bom-ref": "pkg:apk/alpine/libcrypto3@3.5.4-r0?arch=x86_64&distro=3.23.0",
       "type": "library",
+      "supplier": {
+        "name": "Natanael Copa <ncopa@alpinelinux.org>"
+      },
       "name": "libcrypto3",
       "version": "3.5.4-r0",
       "hashes": [
@@ -1266,7 +1322,7 @@
       "licenses": [
         {
           "license": {
-            "name": "Apache-2.0"
+            "id": "Apache-2.0"
           }
         }
       ],
@@ -1301,6 +1357,9 @@
     {
       "bom-ref": "pkg:apk/alpine/libcurl@8.17.0-r1?arch=x86_64&distro=3.23.0",
       "type": "library",
+      "supplier": {
+        "name": "Achill Gilgenast <achill@achill.org>"
+      },
       "name": "libcurl",
       "version": "8.17.0-r1",
       "hashes": [
@@ -1312,7 +1371,7 @@
       "licenses": [
         {
           "license": {
-            "name": "curl"
+            "id": "curl"
           }
         }
       ],
@@ -1347,6 +1406,9 @@
     {
       "bom-ref": "pkg:apk/alpine/libidn2@2.3.8-r0?arch=x86_64&distro=3.23.0",
       "type": "library",
+      "supplier": {
+        "name": "Natanael Copa <ncopa@alpinelinux.org>"
+      },
       "name": "libidn2",
       "version": "2.3.8-r0",
       "hashes": [
@@ -1358,12 +1420,12 @@
       "licenses": [
         {
           "license": {
-            "name": "GPL-2.0-or-later"
+            "id": "GPL-2.0-or-later"
           }
         },
         {
           "license": {
-            "name": "LGPL-3.0-or-later"
+            "id": "LGPL-3.0-or-later"
           }
         }
       ],
@@ -1398,6 +1460,9 @@
     {
       "bom-ref": "pkg:apk/alpine/libncursesw@6.5_p20251123-r0?arch=x86_64&distro=3.23.0",
       "type": "library",
+      "supplier": {
+        "name": "Natanael Copa <ncopa@alpinelinux.org>"
+      },
       "name": "libncursesw",
       "version": "6.5_p20251123-r0",
       "hashes": [
@@ -1444,6 +1509,9 @@
     {
       "bom-ref": "pkg:apk/alpine/libpsl@0.21.5-r3?arch=x86_64&distro=3.23.0",
       "type": "library",
+      "supplier": {
+        "name": "Natanael Copa <ncopa@alpinelinux.org>"
+      },
       "name": "libpsl",
       "version": "0.21.5-r3",
       "hashes": [
@@ -1455,7 +1523,7 @@
       "licenses": [
         {
           "license": {
-            "name": "MIT"
+            "id": "MIT"
           }
         }
       ],
@@ -1490,6 +1558,9 @@
     {
       "bom-ref": "pkg:apk/alpine/libssl3@3.5.4-r0?arch=x86_64&distro=3.23.0",
       "type": "library",
+      "supplier": {
+        "name": "Natanael Copa <ncopa@alpinelinux.org>"
+      },
       "name": "libssl3",
       "version": "3.5.4-r0",
       "hashes": [
@@ -1501,7 +1572,7 @@
       "licenses": [
         {
           "license": {
-            "name": "Apache-2.0"
+            "id": "Apache-2.0"
           }
         }
       ],
@@ -1536,6 +1607,9 @@
     {
       "bom-ref": "pkg:apk/alpine/libunistring@1.4.1-r0?arch=x86_64&distro=3.23.0",
       "type": "library",
+      "supplier": {
+        "name": "Natanael Copa <ncopa@alpinelinux.org>"
+      },
       "name": "libunistring",
       "version": "1.4.1-r0",
       "hashes": [
@@ -1547,12 +1621,12 @@
       "licenses": [
         {
           "license": {
-            "name": "GPL-2.0-or-later"
+            "id": "GPL-2.0-or-later"
           }
         },
         {
           "license": {
-            "name": "LGPL-3.0-or-later"
+            "id": "LGPL-3.0-or-later"
           }
         }
       ],
@@ -1587,6 +1661,9 @@
     {
       "bom-ref": "pkg:apk/alpine/musl-utils@1.2.5-r21?arch=x86_64&distro=3.23.0",
       "type": "library",
+      "supplier": {
+        "name": "Natanael Copa <ncopa@alpinelinux.org>"
+      },
       "name": "musl-utils",
       "version": "1.2.5-r21",
       "hashes": [
@@ -1598,17 +1675,17 @@
       "licenses": [
         {
           "license": {
-            "name": "MIT"
+            "id": "MIT"
           }
         },
         {
           "license": {
-            "name": "BSD-2-Clause"
+            "id": "BSD-2-Clause"
           }
         },
         {
           "license": {
-            "name": "GPL-2.0-or-later"
+            "id": "GPL-2.0-or-later"
           }
         }
       ],
@@ -1643,6 +1720,9 @@
     {
       "bom-ref": "pkg:apk/alpine/musl@1.2.5-r21?arch=x86_64&distro=3.23.0",
       "type": "library",
+      "supplier": {
+        "name": "Natanael Copa <ncopa@alpinelinux.org>"
+      },
       "name": "musl",
       "version": "1.2.5-r21",
       "hashes": [
@@ -1654,7 +1734,7 @@
       "licenses": [
         {
           "license": {
-            "name": "MIT"
+            "id": "MIT"
           }
         }
       ],
@@ -1689,6 +1769,9 @@
     {
       "bom-ref": "pkg:apk/alpine/ncurses-terminfo-base@6.5_p20251123-r0?arch=x86_64&distro=3.23.0",
       "type": "library",
+      "supplier": {
+        "name": "Natanael Copa <ncopa@alpinelinux.org>"
+      },
       "name": "ncurses-terminfo-base",
       "version": "6.5_p20251123-r0",
       "hashes": [
@@ -1735,6 +1818,9 @@
     {
       "bom-ref": "pkg:apk/alpine/nghttp2-libs@1.68.0-r0?arch=x86_64&distro=3.23.0",
       "type": "library",
+      "supplier": {
+        "name": "Francesco Colista <fcolista@alpinelinux.org>"
+      },
       "name": "nghttp2-libs",
       "version": "1.68.0-r0",
       "hashes": [
@@ -1746,7 +1832,7 @@
       "licenses": [
         {
           "license": {
-            "name": "MIT"
+            "id": "MIT"
           }
         }
       ],
@@ -1781,6 +1867,9 @@
     {
       "bom-ref": "pkg:apk/alpine/nghttp3@1.13.1-r0?arch=x86_64&distro=3.23.0",
       "type": "library",
+      "supplier": {
+        "name": "Jakub Jirutka <jakub@jirutka.cz>"
+      },
       "name": "nghttp3",
       "version": "1.13.1-r0",
       "hashes": [
@@ -1792,7 +1881,7 @@
       "licenses": [
         {
           "license": {
-            "name": "MIT"
+            "id": "MIT"
           }
         }
       ],
@@ -1827,6 +1916,9 @@
     {
       "bom-ref": "pkg:apk/alpine/readline@8.3.1-r0?arch=x86_64&distro=3.23.0",
       "type": "library",
+      "supplier": {
+        "name": "Celeste <cielesti@protonmail.com>"
+      },
       "name": "readline",
       "version": "8.3.1-r0",
       "hashes": [
@@ -1838,7 +1930,7 @@
       "licenses": [
         {
           "license": {
-            "name": "GPL-3.0-or-later"
+            "id": "GPL-3.0-or-later"
           }
         }
       ],
@@ -1873,6 +1965,9 @@
     {
       "bom-ref": "pkg:apk/alpine/scanelf@1.3.8-r2?arch=x86_64&distro=3.23.0",
       "type": "library",
+      "supplier": {
+        "name": "Natanael Copa <ncopa@alpinelinux.org>"
+      },
       "name": "scanelf",
       "version": "1.3.8-r2",
       "hashes": [
@@ -1884,7 +1979,7 @@
       "licenses": [
         {
           "license": {
-            "name": "GPL-2.0-only"
+            "id": "GPL-2.0-only"
           }
         }
       ],
@@ -1919,6 +2014,9 @@
     {
       "bom-ref": "pkg:apk/alpine/ssl_client@1.37.0-r29?arch=x86_64&distro=3.23.0",
       "type": "library",
+      "supplier": {
+        "name": "Sören Tempel <soeren+alpine@soeren-tempel.net>"
+      },
       "name": "ssl_client",
       "version": "1.37.0-r29",
       "hashes": [
@@ -1930,7 +2028,7 @@
       "licenses": [
         {
           "license": {
-            "name": "GPL-2.0-only"
+            "id": "GPL-2.0-only"
           }
         }
       ],
@@ -1965,6 +2063,9 @@
     {
       "bom-ref": "pkg:apk/alpine/tzdata@2025c-r0?arch=x86_64&distro=3.23.0",
       "type": "library",
+      "supplier": {
+        "name": "Natanael Copa <ncopa@alpinelinux.org>"
+      },
       "name": "tzdata",
       "version": "2025c-r0",
       "hashes": [
@@ -2011,6 +2112,9 @@
     {
       "bom-ref": "pkg:apk/alpine/zlib@1.3.1-r2?arch=x86_64&distro=3.23.0",
       "type": "library",
+      "supplier": {
+        "name": "Natanael Copa <ncopa@alpinelinux.org>"
+      },
       "name": "zlib",
       "version": "1.3.1-r2",
       "hashes": [
@@ -2022,7 +2126,7 @@
       "licenses": [
         {
           "license": {
-            "name": "Zlib"
+            "id": "Zlib"
           }
         }
       ],
@@ -2057,6 +2161,9 @@
     {
       "bom-ref": "pkg:apk/alpine/zstd-libs@1.5.7-r2?arch=x86_64&distro=3.23.0",
       "type": "library",
+      "supplier": {
+        "name": "Natanael Copa <ncopa@alpinelinux.org>"
+      },
       "name": "zstd-libs",
       "version": "1.5.7-r2",
       "hashes": [
@@ -2068,12 +2175,12 @@
       "licenses": [
         {
           "license": {
-            "name": "BSD-3-Clause"
+            "id": "BSD-3-Clause"
           }
         },
         {
           "license": {
-            "name": "GPL-2.0-or-later"
+            "id": "GPL-2.0-or-later"
           }
         }
       ],
@@ -16054,121 +16161,41 @@
   ],
   "dependencies": [
     {
-      "ref": "000b89e0-d6e2-4610-a1e0-3c05210d6977",
+      "ref": "0addf713-b46b-4eb9-9a40-af1b5e9f0fde",
       "dependsOn": [
-        "a9e0a234-640a-42c6-b66a-65e3c970049e"
+        "456a9f5f-a570-459c-bec9-be72670df556",
+        "4e81017e-0a3c-4fa4-954c-e5fb1dd9c075",
+        "6ee10b97-7e1c-41b5-855e-ebf31599d319",
+        "ab7c8265-a423-4f17-828a-061c8e081071",
+        "f37c392b-63c3-4a72-8153-2f9c9a0908b9"
       ]
     },
     {
-      "ref": "00dff671-2c77-4b80-8bb7-2cfd48007886",
+      "ref": "14347538-c9d3-4042-baf7-c9883d22ff70",
       "dependsOn": []
     },
     {
-      "ref": "1e9eb34b-8c66-46b0-98c9-9f038febeb1b",
+      "ref": "14771550-a079-44e3-9876-ce1dc73edba1",
       "dependsOn": []
     },
     {
-      "ref": "235e0fb2-ef25-4aa0-a856-f77718825236",
+      "ref": "21b3c8c1-68a4-4677-adaa-12b3bb45b5a4",
       "dependsOn": [
-        "e3d9fb71-fce4-472c-97ef-3633eb00c1bf"
+        "14347538-c9d3-4042-baf7-c9883d22ff70",
+        "6c1893d5-9d60-4de7-990b-99c28f32083e",
+        "839a883d-78c7-477f-aa71-502e72d335d5",
+        "abecb16a-295a-4efd-8343-cff92003e7bb",
+        "f14d2e66-d1b4-4806-baa1-cda18196b691"
       ]
     },
     {
-      "ref": "29abd0e4-5548-4b34-a823-577c15fd77c7",
-      "dependsOn": []
-    },
-    {
-      "ref": "29b70cf8-4947-43c8-a799-9a3fc54e7977",
-      "dependsOn": []
-    },
-    {
-      "ref": "3dc2a069-1b92-49c3-8bac-99548f047965",
-      "dependsOn": []
-    },
-    {
-      "ref": "a6e36551-1cbe-4428-940f-bb070f0d284a",
+      "ref": "2454cf81-2acb-4057-a5d9-f065862e11a4",
       "dependsOn": [
-        "3dc2a069-1b92-49c3-8bac-99548f047965",
-        "c01f6f5a-da96-4a67-84a3-bb9b3c799917",
-        "c8c5bcf6-ed44-4419-8157-3678a636210f",
-        "e3c0107f-b970-4030-9094-e9b8b1632889",
-        "ef98802a-f010-4e7e-a428-6732f68f6d0e"
-      ]
-    },
-    {
-      "ref": "a9e0a234-640a-42c6-b66a-65e3c970049e",
-      "dependsOn": [
-        "abb1f2e4-2a2c-4135-b618-4c2a2a3bb60d",
-        "b7ea5a78-f97b-410a-bd26-245ecdc3e3a8",
-        "c5e6a166-6857-4d05-8862-cf7327e59943",
-        "cbe03149-a479-4fe6-9fa0-e6ed4a98e2fe",
-        "e23a3911-ee2e-47a7-8d03-1dc99f884204"
-      ]
-    },
-    {
-      "ref": "abb1f2e4-2a2c-4135-b618-4c2a2a3bb60d",
-      "dependsOn": []
-    },
-    {
-      "ref": "ade3e2d6-3d55-4277-890a-8bcc9d0a1bad",
-      "dependsOn": [
-        "pkg:apk/alpine/alpine-baselayout@3.7.1-r8?arch=x86_64&distro=3.23.0",
-        "pkg:apk/alpine/alpine-release@3.23.0-r0?arch=x86_64&distro=3.23.0",
-        "pkg:apk/alpine/apk-tools@3.0.1-r1?arch=x86_64&distro=3.23.0",
-        "pkg:apk/alpine/bash@5.3.3-r1?arch=x86_64&distro=3.23.0",
-        "pkg:apk/alpine/ca-certificates@20251003-r0?arch=x86_64&distro=3.23.0",
-        "pkg:apk/alpine/curl@8.17.0-r1?arch=x86_64&distro=3.23.0",
-        "pkg:apk/alpine/musl-utils@1.2.5-r21?arch=x86_64&distro=3.23.0",
-        "pkg:apk/alpine/ssl_client@1.37.0-r29?arch=x86_64&distro=3.23.0",
-        "pkg:apk/alpine/tzdata@2025c-r0?arch=x86_64&distro=3.23.0"
-      ]
-    },
-    {
-      "ref": "b7ea5a78-f97b-410a-bd26-245ecdc3e3a8",
-      "dependsOn": []
-    },
-    {
-      "ref": "c01f6f5a-da96-4a67-84a3-bb9b3c799917",
-      "dependsOn": []
-    },
-    {
-      "ref": "c5337593-b258-4dda-b0a5-35cd3450c588",
-      "dependsOn": []
-    },
-    {
-      "ref": "c5e6a166-6857-4d05-8862-cf7327e59943",
-      "dependsOn": []
-    },
-    {
-      "ref": "c8c5bcf6-ed44-4419-8157-3678a636210f",
-      "dependsOn": []
-    },
-    {
-      "ref": "cbe03149-a479-4fe6-9fa0-e6ed4a98e2fe",
-      "dependsOn": []
-    },
-    {
-      "ref": "e23a3911-ee2e-47a7-8d03-1dc99f884204",
-      "dependsOn": []
-    },
-    {
-      "ref": "e3a92fde-5d9d-44c1-8e4f-7098c27b6561",
-      "dependsOn": [
-        "a6e36551-1cbe-4428-940f-bb070f0d284a"
-      ]
-    },
-    {
-      "ref": "e3c0107f-b970-4030-9094-e9b8b1632889",
-      "dependsOn": []
-    },
-    {
-      "ref": "e3d9fb71-fce4-472c-97ef-3633eb00c1bf",
-      "dependsOn": [
-        "00dff671-2c77-4b80-8bb7-2cfd48007886",
-        "1e9eb34b-8c66-46b0-98c9-9f038febeb1b",
-        "29abd0e4-5548-4b34-a823-577c15fd77c7",
-        "29b70cf8-4947-43c8-a799-9a3fc54e7977",
-        "c5337593-b258-4dda-b0a5-35cd3450c588",
+        "14771550-a079-44e3-9876-ce1dc73edba1",
+        "9e5feeac-be3c-4b2d-9ae4-83c0b7c7ae68",
+        "9e6ed6ab-f166-497a-af1d-4d774bc2c9f2",
+        "e7e56cf1-6e56-4440-b978-d7f646855902",
+        "ea3936d1-7d89-4dda-9103-6f64ad53d577",
         "pkg:golang/buf.build/gen/go/parca-dev/parca/connectrpc/go@v1.18.1-20250703125925-3f0fcf4bff96.1",
         "pkg:golang/buf.build/gen/go/parca-dev/parca/protocolbuffers/go@v1.36.2-20250703125925-3f0fcf4bff96.1",
         "pkg:golang/cel.dev/expr@v0.24.0",
@@ -16712,7 +16739,87 @@
       ]
     },
     {
-      "ref": "ef98802a-f010-4e7e-a428-6732f68f6d0e",
+      "ref": "456a9f5f-a570-459c-bec9-be72670df556",
+      "dependsOn": []
+    },
+    {
+      "ref": "4e81017e-0a3c-4fa4-954c-e5fb1dd9c075",
+      "dependsOn": []
+    },
+    {
+      "ref": "52872fa6-4f8b-4dd4-affd-979a306426d9",
+      "dependsOn": [
+        "pkg:apk/alpine/alpine-baselayout@3.7.1-r8?arch=x86_64&distro=3.23.0",
+        "pkg:apk/alpine/alpine-release@3.23.0-r0?arch=x86_64&distro=3.23.0",
+        "pkg:apk/alpine/apk-tools@3.0.1-r1?arch=x86_64&distro=3.23.0",
+        "pkg:apk/alpine/bash@5.3.3-r1?arch=x86_64&distro=3.23.0",
+        "pkg:apk/alpine/ca-certificates@20251003-r0?arch=x86_64&distro=3.23.0",
+        "pkg:apk/alpine/curl@8.17.0-r1?arch=x86_64&distro=3.23.0",
+        "pkg:apk/alpine/musl-utils@1.2.5-r21?arch=x86_64&distro=3.23.0",
+        "pkg:apk/alpine/ssl_client@1.37.0-r29?arch=x86_64&distro=3.23.0",
+        "pkg:apk/alpine/tzdata@2025c-r0?arch=x86_64&distro=3.23.0"
+      ]
+    },
+    {
+      "ref": "6c1893d5-9d60-4de7-990b-99c28f32083e",
+      "dependsOn": []
+    },
+    {
+      "ref": "6ee10b97-7e1c-41b5-855e-ebf31599d319",
+      "dependsOn": []
+    },
+    {
+      "ref": "839a883d-78c7-477f-aa71-502e72d335d5",
+      "dependsOn": []
+    },
+    {
+      "ref": "9e5feeac-be3c-4b2d-9ae4-83c0b7c7ae68",
+      "dependsOn": []
+    },
+    {
+      "ref": "9e6ed6ab-f166-497a-af1d-4d774bc2c9f2",
+      "dependsOn": []
+    },
+    {
+      "ref": "ab7c8265-a423-4f17-828a-061c8e081071",
+      "dependsOn": []
+    },
+    {
+      "ref": "abecb16a-295a-4efd-8343-cff92003e7bb",
+      "dependsOn": []
+    },
+    {
+      "ref": "b39f7d0c-994b-48fe-bbcf-86891f00056f",
+      "dependsOn": [
+        "0addf713-b46b-4eb9-9a40-af1b5e9f0fde"
+      ]
+    },
+    {
+      "ref": "c77d9bfc-49ed-4113-906e-d183b70b2783",
+      "dependsOn": [
+        "2454cf81-2acb-4057-a5d9-f065862e11a4"
+      ]
+    },
+    {
+      "ref": "e5e61593-2f1b-48b4-992d-cdbf982a6da4",
+      "dependsOn": [
+        "21b3c8c1-68a4-4677-adaa-12b3bb45b5a4"
+      ]
+    },
+    {
+      "ref": "e7e56cf1-6e56-4440-b978-d7f646855902",
+      "dependsOn": []
+    },
+    {
+      "ref": "ea3936d1-7d89-4dda-9103-6f64ad53d577",
+      "dependsOn": []
+    },
+    {
+      "ref": "f14d2e66-d1b4-4806-baa1-cda18196b691",
+      "dependsOn": []
+    },
+    {
+      "ref": "f37c392b-63c3-4a72-8153-2f9c9a0908b9",
       "dependsOn": []
     },
     {
@@ -19144,10 +19251,10 @@
     {
       "ref": "pkg:oci/grafana@sha256%3A2175aaa91c96733d86d31cf270d5310b278654b03f5718c59de12a865380a31f?arch=amd64&repository_url=index.docker.io%2Fgrafana%2Fgrafana",
       "dependsOn": [
-        "000b89e0-d6e2-4610-a1e0-3c05210d6977",
-        "235e0fb2-ef25-4aa0-a856-f77718825236",
-        "ade3e2d6-3d55-4277-890a-8bcc9d0a1bad",
-        "e3a92fde-5d9d-44c1-8e4f-7098c27b6561",
+        "52872fa6-4f8b-4dd4-affd-979a306426d9",
+        "b39f7d0c-994b-48fe-bbcf-86891f00056f",
+        "c77d9bfc-49ed-4113-906e-d183b70b2783",
+        "e5e61593-2f1b-48b4-992d-cdbf982a6da4",
         "pkg:npm/%40grafana-plugins/grafana-azure-monitor-datasource@12.3.1",
         "pkg:npm/%40grafana-plugins/grafana-postgresql-datasource@12.3.1",
         "pkg:npm/%40grafana-plugins/grafana-pyroscope-datasource@12.3.1",

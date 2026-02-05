@@ -2,17 +2,20 @@
   "$schema": "http://cyclonedx.org/schema/bom-1.6.schema.json",
   "bomFormat": "CycloneDX",
   "specVersion": "1.6",
-  "serialNumber": "urn:uuid:2d06db72-825b-4929-b9a6-6ca446820211",
+  "serialNumber": "urn:uuid:829da39c-0ab8-41fc-a8ad-31311ddffae7",
   "version": 1,
   "metadata": {
-    "timestamp": "2026-02-04T23:13:07+00:00",
+    "timestamp": "2026-02-04T23:59:20+00:00",
     "tools": {
       "components": [
         {
           "type": "application",
+          "manufacturer": {
+            "name": "Aqua Security Software Ltd."
+          },
           "group": "aquasecurity",
           "name": "trivy",
-          "version": "0.61.0"
+          "version": "0.69.0"
         }
       ]
     },
@@ -43,6 +46,10 @@
           "value": "The Prometheus Authors <prometheus-developers@googlegroups.com>"
         },
         {
+          "name": "aquasecurity:trivy:Reference",
+          "value": "prom/memcached-exporter:v0.15.4"
+        },
+        {
           "name": "aquasecurity:trivy:RepoDigest",
           "value": "prom/memcached-exporter@sha256:b6763ecb3c47f2408e0398518851b7f8c5fc46232b2649f8c78a321130c54266"
         },
@@ -53,13 +60,17 @@
         {
           "name": "aquasecurity:trivy:SchemaVersion",
           "value": "2"
+        },
+        {
+          "name": "aquasecurity:trivy:Size",
+          "value": "21469696"
         }
       ]
     }
   },
   "components": [
     {
-      "bom-ref": "bfa8556f-7547-4548-8d45-70daf12bf462",
+      "bom-ref": "fb6bb976-90f7-4aee-9bae-aca05ad8a5b5",
       "type": "application",
       "name": "bin/memcached_exporter",
       "properties": [
@@ -751,7 +762,7 @@
   ],
   "dependencies": [
     {
-      "ref": "bfa8556f-7547-4548-8d45-70daf12bf462",
+      "ref": "fb6bb976-90f7-4aee-9bae-aca05ad8a5b5",
       "dependsOn": [
         "pkg:golang/github.com/prometheus/memcached_exporter@v0.15.4"
       ]
@@ -894,7 +905,7 @@
     {
       "ref": "pkg:oci/memcached-exporter@sha256%3Ab6763ecb3c47f2408e0398518851b7f8c5fc46232b2649f8c78a321130c54266?arch=amd64&repository_url=index.docker.io%2Fprom%2Fmemcached-exporter",
       "dependsOn": [
-        "bfa8556f-7547-4548-8d45-70daf12bf462"
+        "fb6bb976-90f7-4aee-9bae-aca05ad8a5b5"
       ]
     }
   ],

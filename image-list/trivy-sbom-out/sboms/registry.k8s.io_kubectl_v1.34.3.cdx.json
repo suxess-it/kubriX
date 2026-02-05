@@ -2,17 +2,20 @@
   "$schema": "http://cyclonedx.org/schema/bom-1.6.schema.json",
   "bomFormat": "CycloneDX",
   "specVersion": "1.6",
-  "serialNumber": "urn:uuid:e2af4bc9-dced-4eb9-9444-73b012032c9b",
+  "serialNumber": "urn:uuid:e4bd15f4-b149-4650-aa59-ddc76fec7a69",
   "version": 1,
   "metadata": {
-    "timestamp": "2026-02-04T23:14:59+00:00",
+    "timestamp": "2026-02-05T00:02:59+00:00",
     "tools": {
       "components": [
         {
           "type": "application",
+          "manufacturer": {
+            "name": "Aqua Security Software Ltd."
+          },
           "group": "aquasecurity",
           "name": "trivy",
-          "version": "0.61.0"
+          "version": "0.69.0"
         }
       ]
     },
@@ -91,6 +94,10 @@
           "value": "Kubernetes Authors"
         },
         {
+          "name": "aquasecurity:trivy:Reference",
+          "value": "registry.k8s.io/kubectl:v1.34.3"
+        },
+        {
           "name": "aquasecurity:trivy:RepoDigest",
           "value": "registry.k8s.io/kubectl@sha256:1c6309bd167feb49b2bc1605bce05973002872fd0d26a2e76499ed0c903ea3cf"
         },
@@ -101,13 +108,32 @@
         {
           "name": "aquasecurity:trivy:SchemaVersion",
           "value": "2"
+        },
+        {
+          "name": "aquasecurity:trivy:Size",
+          "value": "65555456"
         }
       ]
     }
   },
   "components": [
     {
-      "bom-ref": "515a9999-7d1c-487d-af94-44d78a6a734d",
+      "bom-ref": "8e84b963-bbcc-4446-b5b6-e6fbf99c4517",
+      "type": "application",
+      "name": "bin/kubectl",
+      "properties": [
+        {
+          "name": "aquasecurity:trivy:Class",
+          "value": "lang-pkgs"
+        },
+        {
+          "name": "aquasecurity:trivy:Type",
+          "value": "gobinary"
+        }
+      ]
+    },
+    {
+      "bom-ref": "b099a160-a1e5-40b1-8273-f02613080560",
       "type": "application",
       "name": "go-runner",
       "properties": [
@@ -122,7 +148,7 @@
       ]
     },
     {
-      "bom-ref": "8028b970-bea4-4c77-b64b-9b2d9eb2913d",
+      "bom-ref": "c9478f74-e00c-4149-beca-60723fdecb59",
       "type": "library",
       "name": "stdlib",
       "version": "v1.24.11",
@@ -147,7 +173,23 @@
       ]
     },
     {
-      "bom-ref": "93cd615e-49b4-4ab4-857d-488a2d9b50ef",
+      "bom-ref": "d1cc92c5-3a55-4f68-9531-a662e20cb97d",
+      "type": "operating-system",
+      "name": "debian",
+      "version": "12.12",
+      "properties": [
+        {
+          "name": "aquasecurity:trivy:Class",
+          "value": "os-pkgs"
+        },
+        {
+          "name": "aquasecurity:trivy:Type",
+          "value": "debian"
+        }
+      ]
+    },
+    {
+      "bom-ref": "e65a8c21-393c-405c-bc70-7f2df7ebc977",
       "type": "library",
       "name": "stdlib",
       "version": "v1.24.11",
@@ -172,37 +214,6 @@
       ]
     },
     {
-      "bom-ref": "cc03aaaa-0403-431e-a4f0-d45479bc2683",
-      "type": "operating-system",
-      "name": "debian",
-      "version": "12.12",
-      "properties": [
-        {
-          "name": "aquasecurity:trivy:Class",
-          "value": "os-pkgs"
-        },
-        {
-          "name": "aquasecurity:trivy:Type",
-          "value": "debian"
-        }
-      ]
-    },
-    {
-      "bom-ref": "ef5c530a-c03f-45b5-921a-fc9f23f3da51",
-      "type": "application",
-      "name": "bin/kubectl",
-      "properties": [
-        {
-          "name": "aquasecurity:trivy:Class",
-          "value": "lang-pkgs"
-        },
-        {
-          "name": "aquasecurity:trivy:Type",
-          "value": "gobinary"
-        }
-      ]
-    },
-    {
       "bom-ref": "pkg:deb/debian/base-files@12.4%2Bdeb12u12?arch=amd64&distro=debian-12.12",
       "type": "library",
       "supplier": {
@@ -213,7 +224,7 @@
       "licenses": [
         {
           "license": {
-            "name": "GPL-2.0-or-later"
+            "id": "GPL-2.0-or-later"
           }
         }
       ],
@@ -299,7 +310,7 @@
       "licenses": [
         {
           "license": {
-            "name": "GPL-2.0-only"
+            "id": "GPL-2.0-only"
           }
         }
       ],
@@ -2472,21 +2483,23 @@
   ],
   "dependencies": [
     {
-      "ref": "515a9999-7d1c-487d-af94-44d78a6a734d",
+      "ref": "8e84b963-bbcc-4446-b5b6-e6fbf99c4517",
+      "dependsOn": [
+        "pkg:golang/k8s.io/kubernetes@v1.34.3"
+      ]
+    },
+    {
+      "ref": "b099a160-a1e5-40b1-8273-f02613080560",
       "dependsOn": [
         "pkg:golang/k8s.io/release/images/build/go-runner"
       ]
     },
     {
-      "ref": "8028b970-bea4-4c77-b64b-9b2d9eb2913d",
+      "ref": "c9478f74-e00c-4149-beca-60723fdecb59",
       "dependsOn": []
     },
     {
-      "ref": "93cd615e-49b4-4ab4-857d-488a2d9b50ef",
-      "dependsOn": []
-    },
-    {
-      "ref": "cc03aaaa-0403-431e-a4f0-d45479bc2683",
+      "ref": "d1cc92c5-3a55-4f68-9531-a662e20cb97d",
       "dependsOn": [
         "pkg:deb/debian/base-files@12.4%2Bdeb12u12?arch=amd64&distro=debian-12.12",
         "pkg:deb/debian/media-types@10.0.0?arch=all&distro=debian-12.12",
@@ -2495,10 +2508,8 @@
       ]
     },
     {
-      "ref": "ef5c530a-c03f-45b5-921a-fc9f23f3da51",
-      "dependsOn": [
-        "pkg:golang/k8s.io/kubernetes@v1.34.3"
-      ]
+      "ref": "e65a8c21-393c-405c-bc70-7f2df7ebc977",
+      "dependsOn": []
     },
     {
       "ref": "pkg:deb/debian/base-files@12.4%2Bdeb12u12?arch=amd64&distro=debian-12.12",
@@ -2811,7 +2822,7 @@
     {
       "ref": "pkg:golang/k8s.io/kubernetes@v1.34.3",
       "dependsOn": [
-        "8028b970-bea4-4c77-b64b-9b2d9eb2913d",
+        "c9478f74-e00c-4149-beca-60723fdecb59",
         "pkg:golang/github.com/beorn7/perks@v1.0.1",
         "pkg:golang/github.com/blang/semver/v4@v4.0.0",
         "pkg:golang/github.com/cespare/xxhash/v2@v2.3.0",
@@ -2903,7 +2914,7 @@
     {
       "ref": "pkg:golang/k8s.io/release/images/build/go-runner",
       "dependsOn": [
-        "93cd615e-49b4-4ab4-857d-488a2d9b50ef"
+        "e65a8c21-393c-405c-bc70-7f2df7ebc977"
       ]
     },
     {
@@ -2941,9 +2952,9 @@
     {
       "ref": "pkg:oci/kubectl@sha256%3A1c6309bd167feb49b2bc1605bce05973002872fd0d26a2e76499ed0c903ea3cf?arch=amd64&repository_url=registry.k8s.io%2Fkubectl",
       "dependsOn": [
-        "515a9999-7d1c-487d-af94-44d78a6a734d",
-        "cc03aaaa-0403-431e-a4f0-d45479bc2683",
-        "ef5c530a-c03f-45b5-921a-fc9f23f3da51"
+        "8e84b963-bbcc-4446-b5b6-e6fbf99c4517",
+        "b099a160-a1e5-40b1-8273-f02613080560",
+        "d1cc92c5-3a55-4f68-9531-a662e20cb97d"
       ]
     }
   ],

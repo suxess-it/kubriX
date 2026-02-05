@@ -2,17 +2,20 @@
   "$schema": "http://cyclonedx.org/schema/bom-1.6.schema.json",
   "bomFormat": "CycloneDX",
   "specVersion": "1.6",
-  "serialNumber": "urn:uuid:b79e85fd-90fb-41cb-8734-91d7196dd103",
+  "serialNumber": "urn:uuid:68a7fde3-25e9-4065-b9c7-5f1920e40eea",
   "version": 1,
   "metadata": {
-    "timestamp": "2026-02-04T23:08:56+00:00",
+    "timestamp": "2026-02-04T23:54:59+00:00",
     "tools": {
       "components": [
         {
           "type": "application",
+          "manufacturer": {
+            "name": "Aqua Security Software Ltd."
+          },
           "group": "aquasecurity",
           "name": "trivy",
-          "version": "0.61.0"
+          "version": "0.69.0"
         }
       ]
     },
@@ -103,6 +106,10 @@
           "value": "sha256:0c39d4d4587dd16a83a355976070cc2373c0187558bfea77df74146a1efd316a"
         },
         {
+          "name": "aquasecurity:trivy:Reference",
+          "value": "grafana/tempo:2.9.0"
+        },
+        {
           "name": "aquasecurity:trivy:RepoDigest",
           "value": "grafana/tempo@sha256:65a5789759435f1ef696f1953258b9bbdb18eb571d5ce711ff812d2e128288a4"
         },
@@ -113,13 +120,17 @@
         {
           "name": "aquasecurity:trivy:SchemaVersion",
           "value": "2"
+        },
+        {
+          "name": "aquasecurity:trivy:Size",
+          "value": "124601856"
         }
       ]
     }
   },
   "components": [
     {
-      "bom-ref": "47a03dc1-c77e-450d-a8c5-6595a307757d",
+      "bom-ref": "69dc6490-d5c8-4f48-a0ad-5f53852c9408",
       "type": "operating-system",
       "name": "debian",
       "version": "12.12",
@@ -135,7 +146,7 @@
       ]
     },
     {
-      "bom-ref": "847a5419-70c0-4ecd-bfed-7f7b1599b5c2",
+      "bom-ref": "93adabec-61c1-44a6-91cc-3e38b73518a9",
       "type": "application",
       "name": "tempo",
       "properties": [
@@ -160,7 +171,7 @@
       "licenses": [
         {
           "license": {
-            "name": "GPL-2.0-or-later"
+            "id": "GPL-2.0-or-later"
           }
         }
       ],
@@ -246,7 +257,7 @@
       "licenses": [
         {
           "license": {
-            "name": "GPL-2.0-only"
+            "id": "GPL-2.0-only"
           }
         }
       ],
@@ -9628,7 +9639,7 @@
   ],
   "dependencies": [
     {
-      "ref": "47a03dc1-c77e-450d-a8c5-6595a307757d",
+      "ref": "69dc6490-d5c8-4f48-a0ad-5f53852c9408",
       "dependsOn": [
         "pkg:deb/debian/base-files@12.4%2Bdeb12u12?arch=amd64&distro=debian-12.12",
         "pkg:deb/debian/media-types@10.0.0?arch=all&distro=debian-12.12",
@@ -9637,7 +9648,7 @@
       ]
     },
     {
-      "ref": "847a5419-70c0-4ecd-bfed-7f7b1599b5c2",
+      "ref": "93adabec-61c1-44a6-91cc-3e38b73518a9",
       "dependsOn": [
         "pkg:golang/github.com/grafana/tempo@v2.9.0"
       ]
@@ -11521,8 +11532,8 @@
     {
       "ref": "pkg:oci/tempo@sha256%3A65a5789759435f1ef696f1953258b9bbdb18eb571d5ce711ff812d2e128288a4?arch=amd64&repository_url=index.docker.io%2Fgrafana%2Ftempo",
       "dependsOn": [
-        "47a03dc1-c77e-450d-a8c5-6595a307757d",
-        "847a5419-70c0-4ecd-bfed-7f7b1599b5c2"
+        "69dc6490-d5c8-4f48-a0ad-5f53852c9408",
+        "93adabec-61c1-44a6-91cc-3e38b73518a9"
       ]
     }
   ],

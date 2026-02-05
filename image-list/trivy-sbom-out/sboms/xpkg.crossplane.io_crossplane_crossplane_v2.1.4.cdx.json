@@ -2,17 +2,20 @@
   "$schema": "http://cyclonedx.org/schema/bom-1.6.schema.json",
   "bomFormat": "CycloneDX",
   "specVersion": "1.6",
-  "serialNumber": "urn:uuid:d2869951-b5c5-4367-964c-f12684c053e4",
+  "serialNumber": "urn:uuid:d9d4eacd-9dd8-4f95-948c-025b9dde6925",
   "version": 1,
   "metadata": {
-    "timestamp": "2026-02-04T23:15:26+00:00",
+    "timestamp": "2026-02-05T00:03:38+00:00",
     "tools": {
       "components": [
         {
           "type": "application",
+          "manufacturer": {
+            "name": "Aqua Security Software Ltd."
+          },
           "group": "aquasecurity",
           "name": "trivy",
-          "version": "0.61.0"
+          "version": "0.69.0"
         }
       ]
     },
@@ -91,6 +94,10 @@
           "value": "v0.8.16"
         },
         {
+          "name": "aquasecurity:trivy:Reference",
+          "value": "xpkg.crossplane.io/crossplane/crossplane:v2.1.4"
+        },
+        {
           "name": "aquasecurity:trivy:RepoDigest",
           "value": "xpkg.crossplane.io/crossplane/crossplane@sha256:91d7191266fb931cdbc32ab6e21456fc5461ddb5d7debd0532159d5b7ba5c9a0"
         },
@@ -101,13 +108,17 @@
         {
           "name": "aquasecurity:trivy:SchemaVersion",
           "value": "2"
+        },
+        {
+          "name": "aquasecurity:trivy:Size",
+          "value": "76494336"
         }
       ]
     }
   },
   "components": [
     {
-      "bom-ref": "56b1ecbc-4509-4d2e-8f1c-6eaee4527c35",
+      "bom-ref": "4bfc3d32-f66f-4932-b827-423954e5493c",
       "type": "application",
       "name": "usr/local/bin/crossplane",
       "properties": [
@@ -122,7 +133,7 @@
       ]
     },
     {
-      "bom-ref": "5de23738-8907-46ff-9587-56b7851d9dd4",
+      "bom-ref": "9f979a3a-9ec1-4aa8-bece-06b065f55e93",
       "type": "operating-system",
       "name": "debian",
       "version": "12.11",
@@ -148,7 +159,7 @@
       "licenses": [
         {
           "license": {
-            "name": "GPL-2.0-or-later"
+            "id": "GPL-2.0-or-later"
           }
         }
       ],
@@ -191,7 +202,7 @@
       "licenses": [
         {
           "license": {
-            "name": "GPL-2.0-only"
+            "id": "GPL-2.0-only"
           }
         }
       ],
@@ -4773,13 +4784,13 @@
   ],
   "dependencies": [
     {
-      "ref": "56b1ecbc-4509-4d2e-8f1c-6eaee4527c35",
+      "ref": "4bfc3d32-f66f-4932-b827-423954e5493c",
       "dependsOn": [
         "pkg:golang/github.com/crossplane/crossplane/v2@v2.1.4"
       ]
     },
     {
-      "ref": "5de23738-8907-46ff-9587-56b7851d9dd4",
+      "ref": "9f979a3a-9ec1-4aa8-bece-06b065f55e93",
       "dependsOn": [
         "pkg:deb/debian/base-files@12.4%2Bdeb12u11?arch=amd64&distro=debian-12.11",
         "pkg:deb/debian/netbase@6.4?arch=all&distro=debian-12.11",
@@ -5701,8 +5712,8 @@
     {
       "ref": "pkg:oci/crossplane@sha256%3A91d7191266fb931cdbc32ab6e21456fc5461ddb5d7debd0532159d5b7ba5c9a0?arch=amd64&repository_url=xpkg.crossplane.io%2Fcrossplane%2Fcrossplane",
       "dependsOn": [
-        "56b1ecbc-4509-4d2e-8f1c-6eaee4527c35",
-        "5de23738-8907-46ff-9587-56b7851d9dd4"
+        "4bfc3d32-f66f-4932-b827-423954e5493c",
+        "9f979a3a-9ec1-4aa8-bece-06b065f55e93"
       ]
     }
   ],

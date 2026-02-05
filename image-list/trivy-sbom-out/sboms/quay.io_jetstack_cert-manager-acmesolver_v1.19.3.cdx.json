@@ -2,17 +2,20 @@
   "$schema": "http://cyclonedx.org/schema/bom-1.6.schema.json",
   "bomFormat": "CycloneDX",
   "specVersion": "1.6",
-  "serialNumber": "urn:uuid:a1f95a38-ba5f-42e2-9f50-750067ac9225",
+  "serialNumber": "urn:uuid:366225d2-b337-413f-9ddd-6cc61a3fcf79",
   "version": 1,
   "metadata": {
-    "timestamp": "2026-02-04T23:13:26+00:00",
+    "timestamp": "2026-02-04T23:59:43+00:00",
     "tools": {
       "components": [
         {
           "type": "application",
+          "manufacturer": {
+            "name": "Aqua Security Software Ltd."
+          },
           "group": "aquasecurity",
           "name": "trivy",
-          "version": "0.61.0"
+          "version": "0.69.0"
         }
       ]
     },
@@ -91,6 +94,10 @@
           "value": "https://github.com/cert-manager/cert-manager"
         },
         {
+          "name": "aquasecurity:trivy:Reference",
+          "value": "quay.io/jetstack/cert-manager-acmesolver:v1.19.3"
+        },
+        {
           "name": "aquasecurity:trivy:RepoDigest",
           "value": "quay.io/jetstack/cert-manager-acmesolver@sha256:1b98c49764718e09e54f3752daef616874c177445f0a2b5a07975883c47eda25"
         },
@@ -101,13 +108,33 @@
         {
           "name": "aquasecurity:trivy:SchemaVersion",
           "value": "2"
+        },
+        {
+          "name": "aquasecurity:trivy:Size",
+          "value": "18578944"
         }
       ]
     }
   },
   "components": [
     {
-      "bom-ref": "8c6a0271-a6c6-416e-b021-0c8344643db4",
+      "bom-ref": "681887ab-da1d-4eb2-b3a7-1d8118e34601",
+      "type": "operating-system",
+      "name": "debian",
+      "version": "12.13",
+      "properties": [
+        {
+          "name": "aquasecurity:trivy:Class",
+          "value": "os-pkgs"
+        },
+        {
+          "name": "aquasecurity:trivy:Type",
+          "value": "debian"
+        }
+      ]
+    },
+    {
+      "bom-ref": "abb583e4-ac67-4736-aaf5-bfcf01426323",
       "type": "library",
       "name": "../../",
       "properties": [
@@ -130,23 +157,7 @@
       ]
     },
     {
-      "bom-ref": "aba815c3-5827-4686-8262-d0da7ae457e0",
-      "type": "operating-system",
-      "name": "debian",
-      "version": "12.13",
-      "properties": [
-        {
-          "name": "aquasecurity:trivy:Class",
-          "value": "os-pkgs"
-        },
-        {
-          "name": "aquasecurity:trivy:Type",
-          "value": "debian"
-        }
-      ]
-    },
-    {
-      "bom-ref": "f886628b-680b-4735-b9e5-703aecc75eba",
+      "bom-ref": "ce7cc59a-9ca6-454a-9577-8baf2f4a152f",
       "type": "application",
       "name": "app/cmd/acmesolver/acmesolver",
       "properties": [
@@ -171,7 +182,7 @@
       "licenses": [
         {
           "license": {
-            "name": "GPL-2.0-or-later"
+            "id": "GPL-2.0-or-later"
           }
         }
       ],
@@ -257,7 +268,7 @@
       "licenses": [
         {
           "license": {
-            "name": "GPL-2.0-only"
+            "id": "GPL-2.0-only"
           }
         }
       ],
@@ -1413,11 +1424,7 @@
   ],
   "dependencies": [
     {
-      "ref": "8c6a0271-a6c6-416e-b021-0c8344643db4",
-      "dependsOn": []
-    },
-    {
-      "ref": "aba815c3-5827-4686-8262-d0da7ae457e0",
+      "ref": "681887ab-da1d-4eb2-b3a7-1d8118e34601",
       "dependsOn": [
         "pkg:deb/debian/base-files@12.4%2Bdeb12u13?arch=amd64&distro=debian-12.13",
         "pkg:deb/debian/media-types@10.0.0?arch=all&distro=debian-12.13",
@@ -1426,9 +1433,13 @@
       ]
     },
     {
-      "ref": "f886628b-680b-4735-b9e5-703aecc75eba",
+      "ref": "abb583e4-ac67-4736-aaf5-bfcf01426323",
+      "dependsOn": []
+    },
+    {
+      "ref": "ce7cc59a-9ca6-454a-9577-8baf2f4a152f",
       "dependsOn": [
-        "8c6a0271-a6c6-416e-b021-0c8344643db4",
+        "abb583e4-ac67-4736-aaf5-bfcf01426323",
         "pkg:golang/github.com/beorn7/perks@v1.0.1",
         "pkg:golang/github.com/blang/semver/v4@v4.0.0",
         "pkg:golang/github.com/cert-manager/cert-manager/acmesolver-binary",
@@ -1665,8 +1676,8 @@
     {
       "ref": "pkg:oci/cert-manager-acmesolver@sha256%3A1b98c49764718e09e54f3752daef616874c177445f0a2b5a07975883c47eda25?arch=amd64&repository_url=quay.io%2Fjetstack%2Fcert-manager-acmesolver",
       "dependsOn": [
-        "aba815c3-5827-4686-8262-d0da7ae457e0",
-        "f886628b-680b-4735-b9e5-703aecc75eba"
+        "681887ab-da1d-4eb2-b3a7-1d8118e34601",
+        "ce7cc59a-9ca6-454a-9577-8baf2f4a152f"
       ]
     }
   ],

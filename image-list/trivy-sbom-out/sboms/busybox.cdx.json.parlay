@@ -2,17 +2,20 @@
   "$schema": "http://cyclonedx.org/schema/bom-1.6.schema.json",
   "bomFormat": "CycloneDX",
   "specVersion": "1.6",
-  "serialNumber": "urn:uuid:022ce3c2-03d2-4c94-b13b-e446196f00e5",
+  "serialNumber": "urn:uuid:f006bede-30ba-491a-8853-f0d60f984eda",
   "version": 1,
   "metadata": {
-    "timestamp": "2026-02-04T23:07:39+00:00",
+    "timestamp": "2026-02-04T23:53:29+00:00",
     "tools": {
       "components": [
         {
           "type": "application",
+          "manufacturer": {
+            "name": "Aqua Security Software Ltd."
+          },
           "group": "aquasecurity",
           "name": "trivy",
-          "version": "0.61.0"
+          "version": "0.69.0"
         }
       ]
     },
@@ -31,6 +34,10 @@
           "value": "sha256:af3f0f48a24edb84e94aff6f44f5d089203453719d3b2328486d311e61db9b09"
         },
         {
+          "name": "aquasecurity:trivy:Reference",
+          "value": "busybox:latest"
+        },
+        {
           "name": "aquasecurity:trivy:RepoDigest",
           "value": "busybox@sha256:b3255e7dfbcd10cb367af0d409747d511aeb66dfac98cf30e97e87e4207dd76f"
         },
@@ -41,6 +48,10 @@
         {
           "name": "aquasecurity:trivy:SchemaVersion",
           "value": "2"
+        },
+        {
+          "name": "aquasecurity:trivy:Size",
+          "value": "4659200"
         }
       ]
     }

@@ -2,17 +2,20 @@
   "$schema": "http://cyclonedx.org/schema/bom-1.6.schema.json",
   "bomFormat": "CycloneDX",
   "specVersion": "1.6",
-  "serialNumber": "urn:uuid:edde8a84-c7f0-46a6-9703-d612ff6b6395",
+  "serialNumber": "urn:uuid:b2b9b602-3880-42ac-b7de-f04710e7811a",
   "version": 1,
   "metadata": {
-    "timestamp": "2026-02-04T23:14:57+00:00",
+    "timestamp": "2026-02-05T00:02:56+00:00",
     "tools": {
       "components": [
         {
           "type": "application",
+          "manufacturer": {
+            "name": "Aqua Security Software Ltd."
+          },
           "group": "aquasecurity",
           "name": "trivy",
-          "version": "0.61.0"
+          "version": "0.69.0"
         }
       ]
     },
@@ -79,6 +82,10 @@
           "value": "sha256:32acec6855323f46b0b3ed1b193d38312db76b46a107390f6ddaefc9d8a51713"
         },
         {
+          "name": "aquasecurity:trivy:Reference",
+          "value": "registry.k8s.io/kube-state-metrics/kube-state-metrics:v2.17.0"
+        },
+        {
           "name": "aquasecurity:trivy:RepoDigest",
           "value": "registry.k8s.io/kube-state-metrics/kube-state-metrics@sha256:2bbc915567334b13632bf62c0a97084aff72a36e13c4dabd5f2f11c898c5bacd"
         },
@@ -89,28 +96,17 @@
         {
           "name": "aquasecurity:trivy:SchemaVersion",
           "value": "2"
+        },
+        {
+          "name": "aquasecurity:trivy:Size",
+          "value": "63892992"
         }
       ]
     }
   },
   "components": [
     {
-      "bom-ref": "45bc7c83-986f-4d1e-9bf7-cfcfbebdfdcc",
-      "type": "application",
-      "name": "kube-state-metrics",
-      "properties": [
-        {
-          "name": "aquasecurity:trivy:Class",
-          "value": "lang-pkgs"
-        },
-        {
-          "name": "aquasecurity:trivy:Type",
-          "value": "gobinary"
-        }
-      ]
-    },
-    {
-      "bom-ref": "dd9c5454-2b59-4051-a995-6c4d733d5bbf",
+      "bom-ref": "cd19e1ff-c1cf-4aa6-80a8-6040e03f786a",
       "type": "operating-system",
       "name": "debian",
       "version": "12.11",
@@ -126,6 +122,21 @@
       ]
     },
     {
+      "bom-ref": "e98d5ed3-8c52-43a9-b2b6-491b821c8ce5",
+      "type": "application",
+      "name": "kube-state-metrics",
+      "properties": [
+        {
+          "name": "aquasecurity:trivy:Class",
+          "value": "lang-pkgs"
+        },
+        {
+          "name": "aquasecurity:trivy:Type",
+          "value": "gobinary"
+        }
+      ]
+    },
+    {
       "bom-ref": "pkg:deb/debian/base-files@12.4%2Bdeb12u11?arch=amd64&distro=debian-12.11",
       "type": "library",
       "supplier": {
@@ -136,7 +147,7 @@
       "licenses": [
         {
           "license": {
-            "name": "GPL-2.0-or-later"
+            "id": "GPL-2.0-or-later"
           }
         }
       ],
@@ -222,7 +233,7 @@
       "licenses": [
         {
           "license": {
-            "name": "GPL-2.0-only"
+            "id": "GPL-2.0-only"
           }
         }
       ],
@@ -2879,18 +2890,18 @@
   ],
   "dependencies": [
     {
-      "ref": "45bc7c83-986f-4d1e-9bf7-cfcfbebdfdcc",
-      "dependsOn": [
-        "pkg:golang/k8s.io/kube-state-metrics/v2@v2.17.0"
-      ]
-    },
-    {
-      "ref": "dd9c5454-2b59-4051-a995-6c4d733d5bbf",
+      "ref": "cd19e1ff-c1cf-4aa6-80a8-6040e03f786a",
       "dependsOn": [
         "pkg:deb/debian/base-files@12.4%2Bdeb12u11?arch=amd64&distro=debian-12.11",
         "pkg:deb/debian/media-types@10.0.0?arch=all&distro=debian-12.11",
         "pkg:deb/debian/netbase@6.4?arch=all&distro=debian-12.11",
         "pkg:deb/debian/tzdata@2025b-0%2Bdeb12u1?arch=all&distro=debian-12.11"
+      ]
+    },
+    {
+      "ref": "e98d5ed3-8c52-43a9-b2b6-491b821c8ce5",
+      "dependsOn": [
+        "pkg:golang/k8s.io/kube-state-metrics/v2@v2.17.0"
       ]
     },
     {
@@ -3427,8 +3438,8 @@
     {
       "ref": "pkg:oci/kube-state-metrics@sha256%3A2bbc915567334b13632bf62c0a97084aff72a36e13c4dabd5f2f11c898c5bacd?arch=amd64&repository_url=registry.k8s.io%2Fkube-state-metrics%2Fkube-state-metrics",
       "dependsOn": [
-        "45bc7c83-986f-4d1e-9bf7-cfcfbebdfdcc",
-        "dd9c5454-2b59-4051-a995-6c4d733d5bbf"
+        "cd19e1ff-c1cf-4aa6-80a8-6040e03f786a",
+        "e98d5ed3-8c52-43a9-b2b6-491b821c8ce5"
       ]
     }
   ],

@@ -2,17 +2,20 @@
   "$schema": "http://cyclonedx.org/schema/bom-1.6.schema.json",
   "bomFormat": "CycloneDX",
   "specVersion": "1.6",
-  "serialNumber": "urn:uuid:7bdbfe74-12f3-457a-8e37-b0e2225388c6",
+  "serialNumber": "urn:uuid:bf8cd090-f972-43be-857d-a491a5e98b0b",
   "version": 1,
   "metadata": {
-    "timestamp": "2026-02-04T23:09:11+00:00",
+    "timestamp": "2026-02-04T23:55:19+00:00",
     "tools": {
       "components": [
         {
           "type": "application",
+          "manufacturer": {
+            "name": "Aqua Security Software Ltd."
+          },
           "group": "aquasecurity",
           "name": "trivy",
-          "version": "0.61.0"
+          "version": "0.69.0"
         }
       ]
     },
@@ -99,6 +102,10 @@
           "value": "1.29.3-alpine"
         },
         {
+          "name": "aquasecurity:trivy:Reference",
+          "value": "nginxinc/nginx-unprivileged:1.29-alpine"
+        },
+        {
           "name": "aquasecurity:trivy:RepoDigest",
           "value": "nginxinc/nginx-unprivileged@sha256:5aea7cc516b419e3526f47dd1531be31a56a046cfe44754d94f9383e13e2ee99"
         },
@@ -109,13 +116,17 @@
         {
           "name": "aquasecurity:trivy:SchemaVersion",
           "value": "2"
+        },
+        {
+          "name": "aquasecurity:trivy:Size",
+          "value": "54247936"
         }
       ]
     }
   },
   "components": [
     {
-      "bom-ref": "74c862c5-f572-47c4-826f-76a4e7334ad1",
+      "bom-ref": "790c967c-6562-49f3-8280-6de6eb4eb5da",
       "type": "operating-system",
       "name": "alpine",
       "version": "3.22.2",
@@ -133,6 +144,9 @@
     {
       "bom-ref": "pkg:apk/alpine/alpine-baselayout-data@3.7.0-r0?arch=x86_64&distro=3.22.2",
       "type": "library",
+      "supplier": {
+        "name": "Natanael Copa <ncopa@alpinelinux.org>"
+      },
       "name": "alpine-baselayout-data",
       "version": "3.7.0-r0",
       "description": "Alpine base dir structure and init scripts",
@@ -200,6 +214,9 @@
     {
       "bom-ref": "pkg:apk/alpine/alpine-baselayout@3.7.0-r0?arch=x86_64&distro=3.22.2",
       "type": "library",
+      "supplier": {
+        "name": "Natanael Copa <ncopa@alpinelinux.org>"
+      },
       "name": "alpine-baselayout",
       "version": "3.7.0-r0",
       "description": "Alpine base dir structure and init scripts",
@@ -267,6 +284,9 @@
     {
       "bom-ref": "pkg:apk/alpine/alpine-keys@2.5-r0?arch=x86_64&distro=3.22.2",
       "type": "library",
+      "supplier": {
+        "name": "Natanael Copa <ncopa@alpinelinux.org>"
+      },
       "name": "alpine-keys",
       "version": "2.5-r0",
       "description": "Public keys for Alpine Linux packages",
@@ -334,6 +354,9 @@
     {
       "bom-ref": "pkg:apk/alpine/alpine-release@3.22.2-r0?arch=x86_64&distro=3.22.2",
       "type": "library",
+      "supplier": {
+        "name": "Natanael Copa <ncopa@alpinelinux.org>"
+      },
       "name": "alpine-release",
       "version": "3.22.2-r0",
       "description": "Alpine release data",
@@ -346,7 +369,7 @@
       "licenses": [
         {
           "license": {
-            "name": "MIT"
+            "id": "MIT"
           }
         }
       ],
@@ -403,6 +426,9 @@
     {
       "bom-ref": "pkg:apk/alpine/aom-libs@3.12.1-r0?arch=x86_64&distro=3.22.2",
       "type": "library",
+      "supplier": {
+        "name": "Oleg Titov <oleg.titov@gmail.com>"
+      },
       "name": "aom-libs",
       "version": "3.12.1-r0",
       "description": "Alliance for Open Media (AOM) AV1 codec SDK (libraries)",
@@ -470,6 +496,9 @@
     {
       "bom-ref": "pkg:apk/alpine/apk-tools@2.14.9-r3?arch=x86_64&distro=3.22.2",
       "type": "library",
+      "supplier": {
+        "name": "Natanael Copa <ncopa@alpinelinux.org>"
+      },
       "name": "apk-tools",
       "version": "2.14.9-r3",
       "description": "Alpine Package Keeper - package manager for alpine",
@@ -615,6 +644,9 @@
     {
       "bom-ref": "pkg:apk/alpine/busybox-binsh@1.37.0-r19?arch=x86_64&distro=3.22.2",
       "type": "library",
+      "supplier": {
+        "name": "Sören Tempel <soeren+alpine@soeren-tempel.net>"
+      },
       "name": "busybox-binsh",
       "version": "1.37.0-r19",
       "description": "busybox ash /bin/sh",
@@ -682,6 +714,9 @@
     {
       "bom-ref": "pkg:apk/alpine/busybox@1.37.0-r19?arch=x86_64&distro=3.22.2",
       "type": "library",
+      "supplier": {
+        "name": "Sören Tempel <soeren+alpine@soeren-tempel.net>"
+      },
       "name": "busybox",
       "version": "1.37.0-r19",
       "description": "Size optimized toolbox of many common UNIX utilities",
@@ -749,6 +784,9 @@
     {
       "bom-ref": "pkg:apk/alpine/c-ares@1.34.6-r0?arch=x86_64&distro=3.22.2",
       "type": "library",
+      "supplier": {
+        "name": "Carlo Landmeter <clandmeter@alpinelinux.org>"
+      },
       "name": "c-ares",
       "version": "1.34.6-r0",
       "description": "Asynchronous DNS/names resolver library",
@@ -816,6 +854,9 @@
     {
       "bom-ref": "pkg:apk/alpine/ca-certificates-bundle@20250911-r0?arch=x86_64&distro=3.22.2",
       "type": "library",
+      "supplier": {
+        "name": "Natanael Copa <ncopa@alpinelinux.org>"
+      },
       "name": "ca-certificates-bundle",
       "version": "20250911-r0",
       "description": "Pre generated bundle of Mozilla certificates",
@@ -883,6 +924,9 @@
     {
       "bom-ref": "pkg:apk/alpine/ca-certificates@20250911-r0?arch=x86_64&distro=3.22.2",
       "type": "library",
+      "supplier": {
+        "name": "Natanael Copa <ncopa@alpinelinux.org>"
+      },
       "name": "ca-certificates",
       "version": "20250911-r0",
       "description": "Common CA certificates PEM files from Mozilla",
@@ -950,6 +994,9 @@
     {
       "bom-ref": "pkg:apk/alpine/curl@8.14.1-r2?arch=x86_64&distro=3.22.2",
       "type": "library",
+      "supplier": {
+        "name": "fossdd <fossdd@pwned.life>"
+      },
       "name": "curl",
       "version": "8.14.1-r2",
       "description": "URL retrival utility and library",
@@ -1017,6 +1064,9 @@
     {
       "bom-ref": "pkg:apk/alpine/fontconfig@2.15.0-r3?arch=x86_64&distro=3.22.2",
       "type": "library",
+      "supplier": {
+        "name": "Natanael Copa <ncopa@alpinelinux.org>"
+      },
       "name": "fontconfig",
       "version": "2.15.0-r3",
       "description": "Library for configuring and customizing font access",
@@ -1084,6 +1134,9 @@
     {
       "bom-ref": "pkg:apk/alpine/freetype@2.13.3-r0?arch=x86_64&distro=3.22.2",
       "type": "library",
+      "supplier": {
+        "name": "Carlo Landmeter <clandmeter@alpinelinux.org>"
+      },
       "name": "freetype",
       "version": "2.13.3-r0",
       "description": "TrueType font rendering library",
@@ -1151,6 +1204,9 @@
     {
       "bom-ref": "pkg:apk/alpine/geoip@1.6.12-r6?arch=x86_64&distro=3.22.2",
       "type": "library",
+      "supplier": {
+        "name": "Leonardo Arena <rnalrd@alpinelinux.org>"
+      },
       "name": "geoip",
       "version": "1.6.12-r6",
       "description": "Lookup countries by IP addresses",
@@ -1218,6 +1274,9 @@
     {
       "bom-ref": "pkg:apk/alpine/gettext-envsubst@0.24.1-r0?arch=x86_64&distro=3.22.2",
       "type": "library",
+      "supplier": {
+        "name": "Carlo Landmeter <clandmeter@alpinelinux.org>"
+      },
       "name": "gettext-envsubst",
       "version": "0.24.1-r0",
       "description": "GNU gettext envsubst binary",
@@ -1285,6 +1344,9 @@
     {
       "bom-ref": "pkg:apk/alpine/libapk2@2.14.9-r3?arch=x86_64&distro=3.22.2",
       "type": "library",
+      "supplier": {
+        "name": "Natanael Copa <ncopa@alpinelinux.org>"
+      },
       "name": "libapk2",
       "version": "2.14.9-r3",
       "description": "Alpine Package Keeper - package manager for alpine",
@@ -1426,6 +1488,9 @@
     {
       "bom-ref": "pkg:apk/alpine/libbsd@0.12.2-r0?arch=x86_64&distro=3.22.2",
       "type": "library",
+      "supplier": {
+        "name": "Natanael Copa <ncopa@alpinelinux.org>"
+      },
       "name": "libbsd",
       "version": "0.12.2-r0",
       "description": "commonly-used BSD functions not implemented by all libcs",
@@ -1493,6 +1558,9 @@
     {
       "bom-ref": "pkg:apk/alpine/libbz2@1.0.8-r6?arch=x86_64&distro=3.22.2",
       "type": "library",
+      "supplier": {
+        "name": "Natanael Copa <ncopa@alpinelinux.org>"
+      },
       "name": "libbz2",
       "version": "1.0.8-r6",
       "description": "Shared library for bz2",
@@ -1560,6 +1628,9 @@
     {
       "bom-ref": "pkg:apk/alpine/libcrypto3@3.5.4-r0?arch=x86_64&distro=3.22.2",
       "type": "library",
+      "supplier": {
+        "name": "Natanael Copa <ncopa@alpinelinux.org>"
+      },
       "name": "libcrypto3",
       "version": "3.5.4-r0",
       "description": "Crypto library from openssl",
@@ -1627,6 +1698,9 @@
     {
       "bom-ref": "pkg:apk/alpine/libcurl@8.14.1-r2?arch=x86_64&distro=3.22.2",
       "type": "library",
+      "supplier": {
+        "name": "fossdd <fossdd@pwned.life>"
+      },
       "name": "libcurl",
       "version": "8.14.1-r2",
       "description": "The multiprotocol file transfer library",
@@ -1694,6 +1768,9 @@
     {
       "bom-ref": "pkg:apk/alpine/libdav1d@1.5.1-r0?arch=x86_64&distro=3.22.2",
       "type": "library",
+      "supplier": {
+        "name": "Bart Ribbers <bribbers@disroot.org>"
+      },
       "name": "libdav1d",
       "version": "1.5.1-r0",
       "description": "small and fast AV1 Decoder (libraries)",
@@ -1761,6 +1838,9 @@
     {
       "bom-ref": "pkg:apk/alpine/libedit@20250104.3.1-r1?arch=x86_64&distro=3.22.2",
       "type": "library",
+      "supplier": {
+        "name": "Celeste <cielesti@protonmail.com>"
+      },
       "name": "libedit",
       "version": "20250104.3.1-r1",
       "description": "BSD line editing library",
@@ -1828,6 +1908,9 @@
     {
       "bom-ref": "pkg:apk/alpine/libexpat@2.7.3-r0?arch=x86_64&distro=3.22.2",
       "type": "library",
+      "supplier": {
+        "name": "Carlo Landmeter <clandmeter@alpinelinux.org>"
+      },
       "name": "libexpat",
       "version": "2.7.3-r0",
       "description": "XML Parser library written in C (libraries)",
@@ -1895,6 +1978,9 @@
     {
       "bom-ref": "pkg:apk/alpine/libgcc@14.2.0-r6?arch=x86_64&distro=3.22.2",
       "type": "library",
+      "supplier": {
+        "name": "Ariadne Conill <ariadne@dereferenced.org>"
+      },
       "name": "libgcc",
       "version": "14.2.0-r6",
       "description": "GNU C compiler runtime libraries",
@@ -1962,6 +2048,9 @@
     {
       "bom-ref": "pkg:apk/alpine/libgd@2.3.3-r10?arch=x86_64&distro=3.22.2",
       "type": "library",
+      "supplier": {
+        "name": "Carlo Landmeter <clandmeter@alpinelinux.org>"
+      },
       "name": "libgd",
       "version": "2.3.3-r10",
       "description": "Library for the dynamic creation of images by programmers (libraries)",
@@ -2029,6 +2118,9 @@
     {
       "bom-ref": "pkg:apk/alpine/libice@1.1.2-r0?arch=x86_64&distro=3.22.2",
       "type": "library",
+      "supplier": {
+        "name": "Natanael Copa <ncopa@alpinelinux.org>"
+      },
       "name": "libice",
       "version": "1.1.2-r0",
       "description": "X11 Inter-Client Exchange library",
@@ -2096,6 +2188,9 @@
     {
       "bom-ref": "pkg:apk/alpine/libidn2@2.3.7-r0?arch=x86_64&distro=3.22.2",
       "type": "library",
+      "supplier": {
+        "name": "Natanael Copa <ncopa@alpinelinux.org>"
+      },
       "name": "libidn2",
       "version": "2.3.7-r0",
       "description": "Encode/Decode library for internationalized domain names",
@@ -2163,6 +2258,9 @@
     {
       "bom-ref": "pkg:apk/alpine/libintl@0.24.1-r0?arch=x86_64&distro=3.22.2",
       "type": "library",
+      "supplier": {
+        "name": "Carlo Landmeter <clandmeter@alpinelinux.org>"
+      },
       "name": "libintl",
       "version": "0.24.1-r0",
       "description": "GNU gettext runtime library",
@@ -2230,6 +2328,9 @@
     {
       "bom-ref": "pkg:apk/alpine/libjpeg-turbo@3.1.0-r0?arch=x86_64&distro=3.22.2",
       "type": "library",
+      "supplier": {
+        "name": "Natanael Copa <ncopa@alpinelinux.org>"
+      },
       "name": "libjpeg-turbo",
       "version": "3.1.0-r0",
       "description": "Accelerated baseline JPEG compression and decompression library",
@@ -2297,6 +2398,9 @@
     {
       "bom-ref": "pkg:apk/alpine/libmd@1.1.0-r0?arch=x86_64&distro=3.22.2",
       "type": "library",
+      "supplier": {
+        "name": "omni <omni+alpine@hack.org>"
+      },
       "name": "libmd",
       "version": "1.1.0-r0",
       "description": "Message Digest functions from BSD systems",
@@ -2364,6 +2468,9 @@
     {
       "bom-ref": "pkg:apk/alpine/libncursesw@6.5_p20250503-r0?arch=x86_64&distro=3.22.2",
       "type": "library",
+      "supplier": {
+        "name": "Natanael Copa <ncopa@alpinelinux.org>"
+      },
       "name": "libncursesw",
       "version": "6.5_p20250503-r0",
       "description": "Console display library (libncursesw)",
@@ -2431,6 +2538,9 @@
     {
       "bom-ref": "pkg:apk/alpine/libpng@1.6.54-r0?arch=x86_64&distro=3.22.2",
       "type": "library",
+      "supplier": {
+        "name": "Natanael Copa <ncopa@alpinelinux.org>"
+      },
       "name": "libpng",
       "version": "1.6.54-r0",
       "description": "Portable Network Graphics library",
@@ -2498,6 +2608,9 @@
     {
       "bom-ref": "pkg:apk/alpine/libpsl@0.21.5-r3?arch=x86_64&distro=3.22.2",
       "type": "library",
+      "supplier": {
+        "name": "Natanael Copa <ncopa@alpinelinux.org>"
+      },
       "name": "libpsl",
       "version": "0.21.5-r3",
       "description": "C library for the Publix Suffix List",
@@ -2569,6 +2682,9 @@
     {
       "bom-ref": "pkg:apk/alpine/libsharpyuv@1.5.0-r0?arch=x86_64&distro=3.22.2",
       "type": "library",
+      "supplier": {
+        "name": "Natanael Copa <ncopa@alpinelinux.org>"
+      },
       "name": "libsharpyuv",
       "version": "1.5.0-r0",
       "description": "Libraries for working with WebP images (libsharpyuv library)",
@@ -2636,6 +2752,9 @@
     {
       "bom-ref": "pkg:apk/alpine/libsm@1.2.5-r0?arch=x86_64&distro=3.22.2",
       "type": "library",
+      "supplier": {
+        "name": "Natanael Copa <ncopa@alpinelinux.org>"
+      },
       "name": "libsm",
       "version": "1.2.5-r0",
       "description": "X11 Session Management library",
@@ -2703,6 +2822,9 @@
     {
       "bom-ref": "pkg:apk/alpine/libssl3@3.5.4-r0?arch=x86_64&distro=3.22.2",
       "type": "library",
+      "supplier": {
+        "name": "Natanael Copa <ncopa@alpinelinux.org>"
+      },
       "name": "libssl3",
       "version": "3.5.4-r0",
       "description": "SSL shared libraries",
@@ -2770,6 +2892,9 @@
     {
       "bom-ref": "pkg:apk/alpine/libstdc%2B%2B@14.2.0-r6?arch=x86_64&distro=3.22.2",
       "type": "library",
+      "supplier": {
+        "name": "Ariadne Conill <ariadne@dereferenced.org>"
+      },
       "name": "libstdc++",
       "version": "14.2.0-r6",
       "description": "GNU C++ standard runtime library",
@@ -2837,6 +2962,9 @@
     {
       "bom-ref": "pkg:apk/alpine/libunistring@1.3-r0?arch=x86_64&distro=3.22.2",
       "type": "library",
+      "supplier": {
+        "name": "Natanael Copa <ncopa@alpinelinux.org>"
+      },
       "name": "libunistring",
       "version": "1.3-r0",
       "description": "Library for manipulating Unicode strings and C strings",
@@ -2904,6 +3032,9 @@
     {
       "bom-ref": "pkg:apk/alpine/libuuid@2.41-r9?arch=x86_64&distro=3.22.2",
       "type": "library",
+      "supplier": {
+        "name": "Natanael Copa <ncopa@alpinelinux.org>"
+      },
       "name": "libuuid",
       "version": "2.41-r9",
       "description": "DCE compatible Universally Unique Identifier library",
@@ -2971,6 +3102,9 @@
     {
       "bom-ref": "pkg:apk/alpine/libwebp@1.5.0-r0?arch=x86_64&distro=3.22.2",
       "type": "library",
+      "supplier": {
+        "name": "Natanael Copa <ncopa@alpinelinux.org>"
+      },
       "name": "libwebp",
       "version": "1.5.0-r0",
       "description": "Libraries for working with WebP images",
@@ -3038,6 +3172,9 @@
     {
       "bom-ref": "pkg:apk/alpine/libx11@1.8.11-r0?arch=x86_64&distro=3.22.2",
       "type": "library",
+      "supplier": {
+        "name": "Natanael Copa <ncopa@alpinelinux.org>"
+      },
       "name": "libx11",
       "version": "1.8.11-r0",
       "description": "X11 client-side library",
@@ -3105,6 +3242,9 @@
     {
       "bom-ref": "pkg:apk/alpine/libxau@1.0.12-r0?arch=x86_64&distro=3.22.2",
       "type": "library",
+      "supplier": {
+        "name": "Natanael Copa <ncopa@alpinelinux.org>"
+      },
       "name": "libxau",
       "version": "1.0.12-r0",
       "description": "X11 authorisation library",
@@ -3172,6 +3312,9 @@
     {
       "bom-ref": "pkg:apk/alpine/libxcb@1.17.0-r0?arch=x86_64&distro=3.22.2",
       "type": "library",
+      "supplier": {
+        "name": "Natanael Copa <ncopa@alpinelinux.org>"
+      },
       "name": "libxcb",
       "version": "1.17.0-r0",
       "description": "X11 client-side library",
@@ -3239,6 +3382,9 @@
     {
       "bom-ref": "pkg:apk/alpine/libxdmcp@1.1.5-r1?arch=x86_64&distro=3.22.2",
       "type": "library",
+      "supplier": {
+        "name": "Natanael Copa <ncopa@alpinelinux.org>"
+      },
       "name": "libxdmcp",
       "version": "1.1.5-r1",
       "description": "X11 Display Manager Control Protocol library",
@@ -3306,6 +3452,9 @@
     {
       "bom-ref": "pkg:apk/alpine/libxext@1.3.6-r2?arch=x86_64&distro=3.22.2",
       "type": "library",
+      "supplier": {
+        "name": "Natanael Copa <ncopa@alpinelinux.org>"
+      },
       "name": "libxext",
       "version": "1.3.6-r2",
       "description": "X11 miscellaneous extensions library",
@@ -3373,6 +3522,9 @@
     {
       "bom-ref": "pkg:apk/alpine/libxml2@2.13.9-r0?arch=x86_64&distro=3.22.2",
       "type": "library",
+      "supplier": {
+        "name": "Carlo Landmeter <clandmeter@alpinelinux.org>"
+      },
       "name": "libxml2",
       "version": "2.13.9-r0",
       "description": "XML parsing library, version 2",
@@ -3440,6 +3592,9 @@
     {
       "bom-ref": "pkg:apk/alpine/libxpm@3.5.17-r0?arch=x86_64&distro=3.22.2",
       "type": "library",
+      "supplier": {
+        "name": "Natanael Copa <ncopa@alpinelinux.org>"
+      },
       "name": "libxpm",
       "version": "3.5.17-r0",
       "description": "X11 pixmap library",
@@ -3507,6 +3662,9 @@
     {
       "bom-ref": "pkg:apk/alpine/libxslt@1.1.43-r3?arch=x86_64&distro=3.22.2",
       "type": "library",
+      "supplier": {
+        "name": "Natanael Copa <ncopa@alpinelinux.org>"
+      },
       "name": "libxslt",
       "version": "1.1.43-r3",
       "description": "XML stylesheet transformation library",
@@ -3574,6 +3732,9 @@
     {
       "bom-ref": "pkg:apk/alpine/libxt@1.3.1-r0?arch=x86_64&distro=3.22.2",
       "type": "library",
+      "supplier": {
+        "name": "Natanael Copa <ncopa@alpinelinux.org>"
+      },
       "name": "libxt",
       "version": "1.3.1-r0",
       "description": "X11 toolkit intrinsics library",
@@ -3641,6 +3802,9 @@
     {
       "bom-ref": "pkg:apk/alpine/libyuv@0.0.1887.20251502-r1?arch=x86_64&distro=3.22.2",
       "type": "library",
+      "supplier": {
+        "name": "Andy Postnikov <apostnikov@gmail.com>"
+      },
       "name": "libyuv",
       "version": "0.0.1887.20251502-r1",
       "description": "Library for YUV scaling",
@@ -3708,6 +3872,9 @@
     {
       "bom-ref": "pkg:apk/alpine/musl-utils@1.2.5-r10?arch=x86_64&distro=3.22.2",
       "type": "library",
+      "supplier": {
+        "name": "Natanael Copa <ncopa@alpinelinux.org>"
+      },
       "name": "musl-utils",
       "version": "1.2.5-r10",
       "description": "the musl c library (libc) implementation",
@@ -3775,6 +3942,9 @@
     {
       "bom-ref": "pkg:apk/alpine/musl@1.2.5-r10?arch=x86_64&distro=3.22.2",
       "type": "library",
+      "supplier": {
+        "name": "Natanael Copa <ncopa@alpinelinux.org>"
+      },
       "name": "musl",
       "version": "1.2.5-r10",
       "description": "the musl c library (libc) implementation",
@@ -3842,6 +4012,9 @@
     {
       "bom-ref": "pkg:apk/alpine/ncurses-terminfo-base@6.5_p20250503-r0?arch=x86_64&distro=3.22.2",
       "type": "library",
+      "supplier": {
+        "name": "Natanael Copa <ncopa@alpinelinux.org>"
+      },
       "name": "ncurses-terminfo-base",
       "version": "6.5_p20250503-r0",
       "description": "Descriptions of common terminals",
@@ -3909,6 +4082,9 @@
     {
       "bom-ref": "pkg:apk/alpine/nghttp2-libs@1.65.0-r0?arch=x86_64&distro=3.22.2",
       "type": "library",
+      "supplier": {
+        "name": "Francesco Colista <fcolista@alpinelinux.org>"
+      },
       "name": "nghttp2-libs",
       "version": "1.65.0-r0",
       "description": "HTTP/2 C client, server and proxy (libraries)",
@@ -3976,6 +4152,9 @@
     {
       "bom-ref": "pkg:apk/alpine/nginx-module-geoip@1.29.3-r1?arch=x86_64&distro=3.22.2",
       "type": "library",
+      "supplier": {
+        "name": "NGINX Packaging <nginx-packaging@f5.com>"
+      },
       "name": "nginx-module-geoip",
       "version": "1.29.3-r1",
       "hashes": [
@@ -3992,7 +4171,7 @@
         },
         {
           "license": {
-            "name": "BSD-3-Clause"
+            "id": "BSD-3-Clause"
           }
         },
         {
@@ -4032,6 +4211,9 @@
     {
       "bom-ref": "pkg:apk/alpine/nginx-module-image-filter@1.29.3-r1?arch=x86_64&distro=3.22.2",
       "type": "library",
+      "supplier": {
+        "name": "NGINX Packaging <nginx-packaging@f5.com>"
+      },
       "name": "nginx-module-image-filter",
       "version": "1.29.3-r1",
       "hashes": [
@@ -4048,7 +4230,7 @@
         },
         {
           "license": {
-            "name": "BSD-3-Clause"
+            "id": "BSD-3-Clause"
           }
         },
         {
@@ -4088,6 +4270,9 @@
     {
       "bom-ref": "pkg:apk/alpine/nginx-module-njs@1.29.3.0.9.4-r1?arch=x86_64&distro=3.22.2",
       "type": "library",
+      "supplier": {
+        "name": "NGINX Packaging <nginx-packaging@f5.com>"
+      },
       "name": "nginx-module-njs",
       "version": "1.29.3.0.9.4-r1",
       "hashes": [
@@ -4104,7 +4289,7 @@
         },
         {
           "license": {
-            "name": "BSD-3-Clause"
+            "id": "BSD-3-Clause"
           }
         },
         {
@@ -4144,6 +4329,9 @@
     {
       "bom-ref": "pkg:apk/alpine/nginx-module-xslt@1.29.3-r1?arch=x86_64&distro=3.22.2",
       "type": "library",
+      "supplier": {
+        "name": "NGINX Packaging <nginx-packaging@f5.com>"
+      },
       "name": "nginx-module-xslt",
       "version": "1.29.3-r1",
       "hashes": [
@@ -4160,7 +4348,7 @@
         },
         {
           "license": {
-            "name": "BSD-3-Clause"
+            "id": "BSD-3-Clause"
           }
         },
         {
@@ -4200,6 +4388,9 @@
     {
       "bom-ref": "pkg:apk/alpine/nginx@1.29.3-r1?arch=x86_64&distro=3.22.2",
       "type": "library",
+      "supplier": {
+        "name": "NGINX Packaging <nginx-packaging@f5.com>"
+      },
       "name": "nginx",
       "version": "1.29.3-r1",
       "description": "HTTP and reverse proxy server (stable version)",
@@ -4217,7 +4408,7 @@
         },
         {
           "license": {
-            "name": "BSD-3-Clause"
+            "id": "BSD-3-Clause"
           }
         },
         {
@@ -4279,6 +4470,9 @@
     {
       "bom-ref": "pkg:apk/alpine/pcre2@10.46-r0?arch=x86_64&distro=3.22.2",
       "type": "library",
+      "supplier": {
+        "name": "Jakub Jirutka <jakub@jirutka.cz>"
+      },
       "name": "pcre2",
       "version": "10.46-r0",
       "description": "Perl-compatible regular expression library",
@@ -4346,6 +4540,9 @@
     {
       "bom-ref": "pkg:apk/alpine/scanelf@1.3.8-r1?arch=x86_64&distro=3.22.2",
       "type": "library",
+      "supplier": {
+        "name": "Natanael Copa <ncopa@alpinelinux.org>"
+      },
       "name": "scanelf",
       "version": "1.3.8-r1",
       "description": "Scan ELF binaries for stuff",
@@ -4413,6 +4610,9 @@
     {
       "bom-ref": "pkg:apk/alpine/ssl_client@1.37.0-r19?arch=x86_64&distro=3.22.2",
       "type": "library",
+      "supplier": {
+        "name": "Sören Tempel <soeren+alpine@soeren-tempel.net>"
+      },
       "name": "ssl_client",
       "version": "1.37.0-r19",
       "description": "External ssl_client for busybox wget",
@@ -4480,6 +4680,9 @@
     {
       "bom-ref": "pkg:apk/alpine/tiff@4.7.1-r0?arch=x86_64&distro=3.22.2",
       "type": "library",
+      "supplier": {
+        "name": "Michael Mason <ms13sp@gmail.com>"
+      },
       "name": "tiff",
       "version": "4.7.1-r0",
       "description": "Support for the Tag Image File Format or TIFF",
@@ -4547,6 +4750,9 @@
     {
       "bom-ref": "pkg:apk/alpine/tzdata@2025c-r0?arch=x86_64&distro=3.22.2",
       "type": "library",
+      "supplier": {
+        "name": "Natanael Copa <ncopa@alpinelinux.org>"
+      },
       "name": "tzdata",
       "version": "2025c-r0",
       "description": "Timezone data",
@@ -4614,6 +4820,9 @@
     {
       "bom-ref": "pkg:apk/alpine/xz-libs@5.8.1-r0?arch=x86_64&distro=3.22.2",
       "type": "library",
+      "supplier": {
+        "name": "Natanael Copa <ncopa@alpinelinux.org>"
+      },
       "name": "xz-libs",
       "version": "5.8.1-r0",
       "description": "Library and CLI tools for XZ and LZMA compressed files (libraries)",
@@ -4681,6 +4890,9 @@
     {
       "bom-ref": "pkg:apk/alpine/zlib@1.3.1-r2?arch=x86_64&distro=3.22.2",
       "type": "library",
+      "supplier": {
+        "name": "Natanael Copa <ncopa@alpinelinux.org>"
+      },
       "name": "zlib",
       "version": "1.3.1-r2",
       "description": "A compression/decompression Library",
@@ -4826,7 +5038,7 @@
   ],
   "dependencies": [
     {
-      "ref": "74c862c5-f572-47c4-826f-76a4e7334ad1",
+      "ref": "790c967c-6562-49f3-8280-6de6eb4eb5da",
       "dependsOn": [
         "pkg:apk/alpine/alpine-baselayout@3.7.0-r0?arch=x86_64&distro=3.22.2",
         "pkg:apk/alpine/alpine-release@3.22.2-r0?arch=x86_64&distro=3.22.2",
@@ -5355,7 +5567,7 @@
     {
       "ref": "pkg:oci/nginx-unprivileged@sha256%3A5aea7cc516b419e3526f47dd1531be31a56a046cfe44754d94f9383e13e2ee99?arch=amd64&repository_url=index.docker.io%2Fnginxinc%2Fnginx-unprivileged",
       "dependsOn": [
-        "74c862c5-f572-47c4-826f-76a4e7334ad1"
+        "790c967c-6562-49f3-8280-6de6eb4eb5da"
       ]
     }
   ],

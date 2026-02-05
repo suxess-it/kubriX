@@ -2,17 +2,20 @@
   "$schema": "http://cyclonedx.org/schema/bom-1.6.schema.json",
   "bomFormat": "CycloneDX",
   "specVersion": "1.6",
-  "serialNumber": "urn:uuid:9cb23646-98bc-4d29-bd26-a0d783846fd9",
+  "serialNumber": "urn:uuid:55805c21-fc12-4d87-8c26-30547224ef09",
   "version": 1,
   "metadata": {
-    "timestamp": "2026-02-04T23:15:18+00:00",
+    "timestamp": "2026-02-05T00:03:27+00:00",
     "tools": {
       "components": [
         {
           "type": "application",
+          "manufacturer": {
+            "name": "Aqua Security Software Ltd."
+          },
           "group": "aquasecurity",
           "name": "trivy",
-          "version": "0.61.0"
+          "version": "0.69.0"
         }
       ]
     },
@@ -39,6 +42,10 @@
           "value": "https://github.com/vmware-tanzu/velero-plugin-for-aws"
         },
         {
+          "name": "aquasecurity:trivy:Reference",
+          "value": "velero/velero-plugin-for-aws:v1.13.1"
+        },
+        {
           "name": "aquasecurity:trivy:RepoDigest",
           "value": "velero/velero-plugin-for-aws@sha256:472d0e486d5d5c23c782b1b123530c7df8645784523ec36ca661a326d47885ff"
         },
@@ -49,17 +56,21 @@
         {
           "name": "aquasecurity:trivy:SchemaVersion",
           "value": "2"
+        },
+        {
+          "name": "aquasecurity:trivy:Size",
+          "value": "105294336"
         }
       ]
     }
   },
   "components": [
     {
-      "bom-ref": "07563dda-e7ba-45f8-be11-1e2d93eff7b7",
+      "bom-ref": "24c85bec-ba83-4385-90c2-f0e0d6f66da0",
       "type": "library",
-      "name": "github.com/vmware-tanzu/velero-plugin-for-aws",
-      "version": "v1.13.1+dirty",
-      "purl": "pkg:golang/github.com/vmware-tanzu/velero-plugin-for-aws@v1.13.1%2Bdirty",
+      "name": "stdlib",
+      "version": "v1.24.9",
+      "purl": "pkg:golang/stdlib@v1.24.9",
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
@@ -71,7 +82,7 @@
         },
         {
           "name": "aquasecurity:trivy:PkgID",
-          "value": "github.com/vmware-tanzu/velero-plugin-for-aws@v1.13.1+dirty"
+          "value": "stdlib@v1.24.9"
         },
         {
           "name": "aquasecurity:trivy:PkgType",
@@ -80,9 +91,9 @@
       ]
     },
     {
-      "bom-ref": "1cad2deb-a217-4860-9011-aae40368ff4f",
+      "bom-ref": "611af4de-ede2-4a58-bba2-61349ec9417c",
       "type": "application",
-      "name": "bin/cp-plugin",
+      "name": "plugins/velero-plugin-for-aws",
       "properties": [
         {
           "name": "aquasecurity:trivy:Class",
@@ -95,7 +106,7 @@
       ]
     },
     {
-      "bom-ref": "20e952d2-39a5-4c19-bc65-c2190477cf40",
+      "bom-ref": "a5fecbaf-ef5d-457f-875a-1c463b05ce0e",
       "type": "library",
       "name": "github.com/vmware-tanzu/velero-plugin-for-aws",
       "version": "v1.13.1+dirty",
@@ -120,7 +131,32 @@
       ]
     },
     {
-      "bom-ref": "483d9467-600d-4e85-b9ca-898ddab1a330",
+      "bom-ref": "e943cdb7-afe2-4c53-b5ad-0a85f6169a5f",
+      "type": "library",
+      "name": "github.com/vmware-tanzu/velero-plugin-for-aws",
+      "version": "v1.13.1+dirty",
+      "purl": "pkg:golang/github.com/vmware-tanzu/velero-plugin-for-aws@v1.13.1%2Bdirty",
+      "properties": [
+        {
+          "name": "aquasecurity:trivy:LayerDiffID",
+          "value": "sha256:e1d9fb54acd5ee2455870029df57ee6f97112d107b924b70fcd57d8398895ebf"
+        },
+        {
+          "name": "aquasecurity:trivy:LayerDigest",
+          "value": "sha256:269d425610bd322d47ede14a5cc505bcefd9c63961fbeedb05ee829b974a3179"
+        },
+        {
+          "name": "aquasecurity:trivy:PkgID",
+          "value": "github.com/vmware-tanzu/velero-plugin-for-aws@v1.13.1+dirty"
+        },
+        {
+          "name": "aquasecurity:trivy:PkgType",
+          "value": "gobinary"
+        }
+      ]
+    },
+    {
+      "bom-ref": "f3460e16-35ef-456d-8f6f-aa1bafa71461",
       "type": "library",
       "name": "stdlib",
       "version": "v1.24.9",
@@ -145,34 +181,9 @@
       ]
     },
     {
-      "bom-ref": "770ff429-9a30-4d13-8a1b-02b3c1097b21",
-      "type": "library",
-      "name": "stdlib",
-      "version": "v1.24.9",
-      "purl": "pkg:golang/stdlib@v1.24.9",
-      "properties": [
-        {
-          "name": "aquasecurity:trivy:LayerDiffID",
-          "value": "sha256:e1d9fb54acd5ee2455870029df57ee6f97112d107b924b70fcd57d8398895ebf"
-        },
-        {
-          "name": "aquasecurity:trivy:LayerDigest",
-          "value": "sha256:269d425610bd322d47ede14a5cc505bcefd9c63961fbeedb05ee829b974a3179"
-        },
-        {
-          "name": "aquasecurity:trivy:PkgID",
-          "value": "stdlib@v1.24.9"
-        },
-        {
-          "name": "aquasecurity:trivy:PkgType",
-          "value": "gobinary"
-        }
-      ]
-    },
-    {
-      "bom-ref": "bcca95b1-83bc-4b0e-bd2a-dec3810d86c8",
+      "bom-ref": "fbd64c0d-a5a2-42e3-ade9-7adb328ca10d",
       "type": "application",
-      "name": "plugins/velero-plugin-for-aws",
+      "name": "bin/cp-plugin",
       "properties": [
         {
           "name": "aquasecurity:trivy:Class",
@@ -2437,9 +2448,25 @@
   ],
   "dependencies": [
     {
-      "ref": "07563dda-e7ba-45f8-be11-1e2d93eff7b7",
+      "ref": "24c85bec-ba83-4385-90c2-f0e0d6f66da0",
+      "dependsOn": []
+    },
+    {
+      "ref": "611af4de-ede2-4a58-bba2-61349ec9417c",
       "dependsOn": [
-        "770ff429-9a30-4d13-8a1b-02b3c1097b21",
+        "e943cdb7-afe2-4c53-b5ad-0a85f6169a5f"
+      ]
+    },
+    {
+      "ref": "a5fecbaf-ef5d-457f-875a-1c463b05ce0e",
+      "dependsOn": [
+        "f3460e16-35ef-456d-8f6f-aa1bafa71461"
+      ]
+    },
+    {
+      "ref": "e943cdb7-afe2-4c53-b5ad-0a85f6169a5f",
+      "dependsOn": [
+        "24c85bec-ba83-4385-90c2-f0e0d6f66da0",
         "pkg:golang/github.com/aws/aws-sdk-go-v2/aws/protocol/eventstream@v1.5.4",
         "pkg:golang/github.com/aws/aws-sdk-go-v2/config@v1.26.3",
         "pkg:golang/github.com/aws/aws-sdk-go-v2/credentials@v1.16.14",
@@ -2533,29 +2560,13 @@
       ]
     },
     {
-      "ref": "1cad2deb-a217-4860-9011-aae40368ff4f",
-      "dependsOn": [
-        "20e952d2-39a5-4c19-bc65-c2190477cf40"
-      ]
-    },
-    {
-      "ref": "20e952d2-39a5-4c19-bc65-c2190477cf40",
-      "dependsOn": [
-        "483d9467-600d-4e85-b9ca-898ddab1a330"
-      ]
-    },
-    {
-      "ref": "483d9467-600d-4e85-b9ca-898ddab1a330",
+      "ref": "f3460e16-35ef-456d-8f6f-aa1bafa71461",
       "dependsOn": []
     },
     {
-      "ref": "770ff429-9a30-4d13-8a1b-02b3c1097b21",
-      "dependsOn": []
-    },
-    {
-      "ref": "bcca95b1-83bc-4b0e-bd2a-dec3810d86c8",
+      "ref": "fbd64c0d-a5a2-42e3-ade9-7adb328ca10d",
       "dependsOn": [
-        "07563dda-e7ba-45f8-be11-1e2d93eff7b7"
+        "a5fecbaf-ef5d-457f-875a-1c463b05ce0e"
       ]
     },
     {
@@ -2921,8 +2932,8 @@
     {
       "ref": "pkg:oci/velero-plugin-for-aws@sha256%3A472d0e486d5d5c23c782b1b123530c7df8645784523ec36ca661a326d47885ff?arch=amd64&repository_url=index.docker.io%2Fvelero%2Fvelero-plugin-for-aws",
       "dependsOn": [
-        "1cad2deb-a217-4860-9011-aae40368ff4f",
-        "bcca95b1-83bc-4b0e-bd2a-dec3810d86c8"
+        "611af4de-ede2-4a58-bba2-61349ec9417c",
+        "fbd64c0d-a5a2-42e3-ade9-7adb328ca10d"
       ]
     }
   ],

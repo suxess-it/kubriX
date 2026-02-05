@@ -2,17 +2,20 @@
   "$schema": "http://cyclonedx.org/schema/bom-1.6.schema.json",
   "bomFormat": "CycloneDX",
   "specVersion": "1.6",
-  "serialNumber": "urn:uuid:d7a21edc-b156-4da3-a161-61208c5be3e3",
+  "serialNumber": "urn:uuid:f73a0c26-e337-4019-b62b-3a767bb1f110",
   "version": 1,
   "metadata": {
-    "timestamp": "2026-02-04T23:13:51+00:00",
+    "timestamp": "2026-02-05T00:01:00+00:00",
     "tools": {
       "components": [
         {
           "type": "application",
+          "manufacturer": {
+            "name": "Aqua Security Software Ltd."
+          },
           "group": "aquasecurity",
           "name": "trivy",
-          "version": "0.61.0"
+          "version": "0.69.0"
         }
       ]
     },
@@ -43,6 +46,10 @@
           "value": "1.39.2"
         },
         {
+          "name": "aquasecurity:trivy:Reference",
+          "value": "quay.io/kubevirt/kubevirt-velero-plugin:v0.8.0"
+        },
+        {
           "name": "aquasecurity:trivy:RepoDigest",
           "value": "quay.io/kubevirt/kubevirt-velero-plugin@sha256:9169abc2e70ec53f5762ad8df27a1a8c4adedf8be45808e4d126c8d496f2046f"
         },
@@ -53,13 +60,17 @@
         {
           "name": "aquasecurity:trivy:SchemaVersion",
           "value": "2"
+        },
+        {
+          "name": "aquasecurity:trivy:Size",
+          "value": "86225920"
         }
       ]
     }
   },
   "components": [
     {
-      "bom-ref": "a8f51b02-cb3b-4d26-9460-470e1bd150f5",
+      "bom-ref": "025501be-9731-4121-aa16-764f7110a7dc",
       "type": "application",
       "name": "plugins/kubevirt-velero-plugin",
       "properties": [
@@ -74,7 +85,7 @@
       ]
     },
     {
-      "bom-ref": "efeacd8e-bfab-4daf-9d23-5c91768c4bcc",
+      "bom-ref": "75a92a5e-cac1-46d7-a309-ad6bc431763a",
       "type": "operating-system",
       "name": "alpine",
       "version": "3.13.12",
@@ -92,6 +103,9 @@
     {
       "bom-ref": "pkg:apk/alpine/alpine-baselayout@3.2.0-r8?arch=x86_64&distro=3.13.12",
       "type": "library",
+      "supplier": {
+        "name": "Natanael Copa <ncopa@alpinelinux.org>"
+      },
       "name": "alpine-baselayout",
       "version": "3.2.0-r8",
       "description": "Alpine base dir structure and init scripts",
@@ -104,7 +118,7 @@
       "licenses": [
         {
           "license": {
-            "name": "GPL-2.0-only"
+            "id": "GPL-2.0-only"
           }
         }
       ],
@@ -161,6 +175,9 @@
     {
       "bom-ref": "pkg:apk/alpine/alpine-keys@2.4-r0?arch=x86_64&distro=3.13.12",
       "type": "library",
+      "supplier": {
+        "name": "Natanael Copa <ncopa@alpinelinux.org>"
+      },
       "name": "alpine-keys",
       "version": "2.4-r0",
       "description": "Public keys for Alpine Linux packages",
@@ -173,7 +190,7 @@
       "licenses": [
         {
           "license": {
-            "name": "MIT"
+            "id": "MIT"
           }
         }
       ],
@@ -230,6 +247,9 @@
     {
       "bom-ref": "pkg:apk/alpine/apk-tools@2.12.7-r0?arch=x86_64&distro=3.13.12",
       "type": "library",
+      "supplier": {
+        "name": "Natanael Copa <ncopa@alpinelinux.org>"
+      },
       "name": "apk-tools",
       "version": "2.12.7-r0",
       "description": "Alpine Package Keeper - package manager for alpine",
@@ -242,7 +262,7 @@
       "licenses": [
         {
           "license": {
-            "name": "GPL-2.0-only"
+            "id": "GPL-2.0-only"
           }
         }
       ],
@@ -299,6 +319,9 @@
     {
       "bom-ref": "pkg:apk/alpine/busybox@1.32.1-r9?arch=x86_64&distro=3.13.12",
       "type": "library",
+      "supplier": {
+        "name": "Natanael Copa <ncopa@alpinelinux.org>"
+      },
       "name": "busybox",
       "version": "1.32.1-r9",
       "description": "Size optimized toolbox of many common UNIX utilities",
@@ -311,7 +334,7 @@
       "licenses": [
         {
           "license": {
-            "name": "GPL-2.0-only"
+            "id": "GPL-2.0-only"
           }
         }
       ],
@@ -368,6 +391,9 @@
     {
       "bom-ref": "pkg:apk/alpine/ca-certificates-bundle@20220614-r0?arch=x86_64&distro=3.13.12",
       "type": "library",
+      "supplier": {
+        "name": "Natanael Copa <ncopa@alpinelinux.org>"
+      },
       "name": "ca-certificates-bundle",
       "version": "20220614-r0",
       "description": "Pre generated bundle of Mozilla certificates",
@@ -380,12 +406,12 @@
       "licenses": [
         {
           "license": {
-            "name": "MPL-2.0"
+            "id": "MPL-2.0"
           }
         },
         {
           "license": {
-            "name": "MIT"
+            "id": "MIT"
           }
         }
       ],
@@ -442,6 +468,9 @@
     {
       "bom-ref": "pkg:apk/alpine/libc-utils@0.7.2-r3?arch=x86_64&distro=3.13.12",
       "type": "library",
+      "supplier": {
+        "name": "Natanael Copa <ncopa@alpinelinux.org>"
+      },
       "name": "libc-utils",
       "version": "0.7.2-r3",
       "description": "Meta package to pull in correct libc",
@@ -454,12 +483,12 @@
       "licenses": [
         {
           "license": {
-            "name": "BSD-2-Clause"
+            "id": "BSD-2-Clause"
           }
         },
         {
           "license": {
-            "name": "BSD-3-Clause"
+            "id": "BSD-3-Clause"
           }
         }
       ],
@@ -516,6 +545,9 @@
     {
       "bom-ref": "pkg:apk/alpine/libcrypto1.1@1.1.1q-r0?arch=x86_64&distro=3.13.12",
       "type": "library",
+      "supplier": {
+        "name": "Timo Teras <timo.teras@iki.fi>"
+      },
       "name": "libcrypto1.1",
       "version": "1.1.1q-r0",
       "description": "Crypto library from openssl",
@@ -528,7 +560,7 @@
       "licenses": [
         {
           "license": {
-            "name": "OpenSSL"
+            "id": "OpenSSL"
           }
         }
       ],
@@ -585,6 +617,9 @@
     {
       "bom-ref": "pkg:apk/alpine/libssl1.1@1.1.1q-r0?arch=x86_64&distro=3.13.12",
       "type": "library",
+      "supplier": {
+        "name": "Timo Teras <timo.teras@iki.fi>"
+      },
       "name": "libssl1.1",
       "version": "1.1.1q-r0",
       "description": "SSL shared libraries",
@@ -597,7 +632,7 @@
       "licenses": [
         {
           "license": {
-            "name": "OpenSSL"
+            "id": "OpenSSL"
           }
         }
       ],
@@ -665,7 +700,7 @@
       "licenses": [
         {
           "license": {
-            "name": "ISC"
+            "id": "ISC"
           }
         }
       ],
@@ -700,6 +735,9 @@
     {
       "bom-ref": "pkg:apk/alpine/musl-utils@1.2.2-r1?arch=x86_64&distro=3.13.12",
       "type": "library",
+      "supplier": {
+        "name": "Timo Teräs <timo.teras@iki.fi>"
+      },
       "name": "musl-utils",
       "version": "1.2.2-r1",
       "description": "the musl c library (libc) implementation",
@@ -712,17 +750,17 @@
       "licenses": [
         {
           "license": {
-            "name": "MIT"
+            "id": "MIT"
           }
         },
         {
           "license": {
-            "name": "BSD-3-Clause"
+            "id": "BSD-3-Clause"
           }
         },
         {
           "license": {
-            "name": "GPL-2.0-or-later"
+            "id": "GPL-2.0-or-later"
           }
         }
       ],
@@ -779,6 +817,9 @@
     {
       "bom-ref": "pkg:apk/alpine/musl@1.2.2-r1?arch=x86_64&distro=3.13.12",
       "type": "library",
+      "supplier": {
+        "name": "Timo Teräs <timo.teras@iki.fi>"
+      },
       "name": "musl",
       "version": "1.2.2-r1",
       "description": "the musl c library (libc) implementation",
@@ -791,7 +832,7 @@
       "licenses": [
         {
           "license": {
-            "name": "MIT"
+            "id": "MIT"
           }
         }
       ],
@@ -848,6 +889,9 @@
     {
       "bom-ref": "pkg:apk/alpine/scanelf@1.2.8-r0?arch=x86_64&distro=3.13.12",
       "type": "library",
+      "supplier": {
+        "name": "Natanael Copa <ncopa@alpinelinux.org>"
+      },
       "name": "scanelf",
       "version": "1.2.8-r0",
       "description": "Scan ELF binaries for stuff",
@@ -860,7 +904,7 @@
       "licenses": [
         {
           "license": {
-            "name": "GPL-2.0-only"
+            "id": "GPL-2.0-only"
           }
         }
       ],
@@ -917,6 +961,9 @@
     {
       "bom-ref": "pkg:apk/alpine/ssl_client@1.32.1-r9?arch=x86_64&distro=3.13.12",
       "type": "library",
+      "supplier": {
+        "name": "Natanael Copa <ncopa@alpinelinux.org>"
+      },
       "name": "ssl_client",
       "version": "1.32.1-r9",
       "description": "External ssl_client for busybox wget",
@@ -929,7 +976,7 @@
       "licenses": [
         {
           "license": {
-            "name": "GPL-2.0-only"
+            "id": "GPL-2.0-only"
           }
         }
       ],
@@ -986,6 +1033,9 @@
     {
       "bom-ref": "pkg:apk/alpine/zlib@1.2.12-r3?arch=x86_64&distro=3.13.12",
       "type": "library",
+      "supplier": {
+        "name": "Natanael Copa <ncopa@alpinelinux.org>"
+      },
       "name": "zlib",
       "version": "1.2.12-r3",
       "description": "A compression/decompression Library",
@@ -998,7 +1048,7 @@
       "licenses": [
         {
           "license": {
-            "name": "Zlib"
+            "id": "Zlib"
           }
         }
       ],
@@ -1611,6 +1661,11 @@
       "author": "Go kit",
       "name": "github.com/go-kit/kit",
       "version": "v0.13.0",
+      "licenses": [
+        {
+          "expression": "(MIT)"
+        }
+      ],
       "purl": "pkg:golang/github.com/go-kit/kit@v0.13.0",
       "externalReferences": [
         {
@@ -2229,6 +2284,11 @@
       "name": "github.com/golang/glog",
       "version": "v1.2.2",
       "description": "Package glog implements logging analogous to the Google-internal C++ INFO/ERROR/V setup.\nIt provides functions that have a name matched by regex:\n\nIf Context is present, function takes context.Context argument. The\ncontext is used to pass through the Trace Context to log sinks that can make use\nof it.\nIt is recommended to use the context variant of the functions over the non-context\nvariants if a context is available to make sure the Trace Contexts are present\nin logs.\n\nIf Depth is present, this function calls log from a different depth in the call stack.\nThis enables a callee to emit logs that use the callsite information of its caller\nor any other callers in the stack. When depth == 0, the original callee's line\ninformation is emitted. When depth > 0, depth frames are skipped in the call stack\nand the final frame is treated like the original callee to Info.\n\nIf 'f' is present, function formats according to a format specifier.\n\nThis package also provides V-style logging controlled by the -v and -vmodule=file=2 flags.\n\nBasic examples:\n\nSee the documentation for the V function for an explanation of these examples:\n\nLog output is buffered and written periodically using Flush. Programs\nshould call Flush before exiting to guarantee all log output is written.\n\nBy default, all log statements write to files in a temporary directory.\nThis package provides several flags that modify this behavior.\nAs a result, flag.Parse must be called before any logging is done.\n\nOther flags provide aids to debugging.",
+      "licenses": [
+        {
+          "expression": "(Apache-2.0)"
+        }
+      ],
       "purl": "pkg:golang/github.com/golang/glog@v1.2.2",
       "externalReferences": [
         {
@@ -2883,6 +2943,11 @@
       "author": "HashiCorp",
       "name": "github.com/hashicorp/go-hclog",
       "version": "v1.2.2",
+      "licenses": [
+        {
+          "expression": "(MIT)"
+        }
+      ],
       "purl": "pkg:golang/github.com/hashicorp/go-hclog@v1.2.2",
       "externalReferences": [
         {
@@ -3319,6 +3384,24 @@
       "name": "github.com/k8snetworkplumbingwg/network-attachment-definition-client",
       "version": "v0.0.0-20191119172530-79f836b90111",
       "purl": "pkg:golang/github.com/k8snetworkplumbingwg/network-attachment-definition-client@v0.0.0-20191119172530-79f836b90111",
+      "externalReferences": [
+        {
+          "url": "https://github.com/k8snetworkplumbingwg/network-attachment-definition-client",
+          "type": "website"
+        },
+        {
+          "url": "https://pkg.go.dev/github.com/k8snetworkplumbingwg/network-attachment-definition-client",
+          "type": "distribution"
+        },
+        {
+          "url": "https://github.com/k8snetworkplumbingwg/network-attachment-definition-client",
+          "type": "vcs"
+        },
+        {
+          "url": "https://pkg.go.dev/github.com/k8snetworkplumbingwg/network-attachment-definition-client#section-documentation",
+          "type": "documentation"
+        }
+      ],
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
@@ -3335,6 +3418,14 @@
         {
           "name": "aquasecurity:trivy:PkgType",
           "value": "gobinary"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2020-06-26T05:47:23Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2025-06-26T17:29:02Z"
         }
       ]
     },
@@ -3448,9 +3539,39 @@
     {
       "bom-ref": "pkg:golang/github.com/kubernetes-csi/external-snapshotter/client/v4@v4.2.0",
       "type": "library",
+      "supplier": {
+        "name": "Kubernetes CSI",
+        "url": [
+          "https://kubernetes-csi.github.io/"
+        ]
+      },
+      "author": "Kubernetes CSI",
       "name": "github.com/kubernetes-csi/external-snapshotter/client/v4",
       "version": "v4.2.0",
+      "licenses": [
+        {
+          "expression": "(Apache-2.0)"
+        }
+      ],
       "purl": "pkg:golang/github.com/kubernetes-csi/external-snapshotter/client/v4@v4.2.0",
+      "externalReferences": [
+        {
+          "url": "https://github.com/kubernetes-csi/external-snapshotter",
+          "type": "website"
+        },
+        {
+          "url": "https://pkg.go.dev/github.com/kubernetes-csi/external-snapshotter/client/v4",
+          "type": "distribution"
+        },
+        {
+          "url": "https://github.com/kubernetes-csi/external-snapshotter",
+          "type": "vcs"
+        },
+        {
+          "url": "https://pkg.go.dev/github.com/kubernetes-csi/external-snapshotter/client/v4#section-documentation",
+          "type": "documentation"
+        }
+      ],
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
@@ -3467,15 +3588,57 @@
         {
           "name": "aquasecurity:trivy:PkgType",
           "value": "gobinary"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2020-12-18T19:10:24Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2021-08-16T17:05:17Z"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "k8s-sig-storage"
         }
       ]
     },
     {
       "bom-ref": "pkg:golang/github.com/kubernetes-csi/external-snapshotter/client/v7@v7.0.0",
       "type": "library",
+      "supplier": {
+        "name": "Kubernetes CSI",
+        "url": [
+          "https://kubernetes-csi.github.io/"
+        ]
+      },
+      "author": "Kubernetes CSI",
       "name": "github.com/kubernetes-csi/external-snapshotter/client/v7",
       "version": "v7.0.0",
+      "licenses": [
+        {
+          "expression": "(Apache-2.0)"
+        }
+      ],
       "purl": "pkg:golang/github.com/kubernetes-csi/external-snapshotter/client/v7@v7.0.0",
+      "externalReferences": [
+        {
+          "url": "https://github.com/kubernetes-csi/external-snapshotter",
+          "type": "website"
+        },
+        {
+          "url": "https://pkg.go.dev/github.com/kubernetes-csi/external-snapshotter/client/v7",
+          "type": "distribution"
+        },
+        {
+          "url": "https://github.com/kubernetes-csi/external-snapshotter",
+          "type": "vcs"
+        },
+        {
+          "url": "https://pkg.go.dev/github.com/kubernetes-csi/external-snapshotter/client/v7#section-documentation",
+          "type": "documentation"
+        }
+      ],
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
@@ -3492,6 +3655,18 @@
         {
           "name": "aquasecurity:trivy:PkgType",
           "value": "gobinary"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2024-01-31T18:56:30Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2024-01-31T18:56:30Z"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "k8s-sig-storage"
         }
       ]
     },
@@ -3775,6 +3950,11 @@
       "author": "Mitchell Hashimoto",
       "name": "github.com/mitchellh/go-testing-interface",
       "version": "v1.0.0",
+      "licenses": [
+        {
+          "expression": "(MIT)"
+        }
+      ],
       "purl": "pkg:golang/github.com/mitchellh/go-testing-interface@v1.0.0",
       "externalReferences": [
         {
@@ -4166,9 +4346,34 @@
     {
       "bom-ref": "pkg:golang/github.com/openshift/client-go@v0.0.0-20230324103026-3f1513df25e0",
       "type": "library",
+      "supplier": {
+        "name": "OpenShift",
+        "url": [
+          "https://openshift.com"
+        ]
+      },
+      "author": "OpenShift",
       "name": "github.com/openshift/client-go",
       "version": "v0.0.0-20230324103026-3f1513df25e0",
       "purl": "pkg:golang/github.com/openshift/client-go@v0.0.0-20230324103026-3f1513df25e0",
+      "externalReferences": [
+        {
+          "url": "https://github.com/openshift/client-go",
+          "type": "website"
+        },
+        {
+          "url": "https://pkg.go.dev/github.com/openshift/client-go",
+          "type": "distribution"
+        },
+        {
+          "url": "https://github.com/openshift/client-go",
+          "type": "vcs"
+        },
+        {
+          "url": "https://pkg.go.dev/github.com/openshift/client-go#section-documentation",
+          "type": "documentation"
+        }
+      ],
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
@@ -4185,6 +4390,14 @@
         {
           "name": "aquasecurity:trivy:PkgType",
           "value": "gobinary"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2023-07-04T10:21:22Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2026-02-04T00:13:12Z"
         }
       ]
     },
@@ -4193,7 +4406,30 @@
       "type": "library",
       "name": "github.com/openshift/custom-resource-status",
       "version": "v1.1.2",
+      "licenses": [
+        {
+          "expression": "(Apache-2.0)"
+        }
+      ],
       "purl": "pkg:golang/github.com/openshift/custom-resource-status@v1.1.2",
+      "externalReferences": [
+        {
+          "url": "https://github.com/openshift/custom-resource-status",
+          "type": "website"
+        },
+        {
+          "url": "https://pkg.go.dev/github.com/openshift/custom-resource-status",
+          "type": "distribution"
+        },
+        {
+          "url": "https://github.com/openshift/custom-resource-status",
+          "type": "vcs"
+        },
+        {
+          "url": "https://pkg.go.dev/github.com/openshift/custom-resource-status#section-documentation",
+          "type": "documentation"
+        }
+      ],
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
@@ -4210,6 +4446,14 @@
         {
           "name": "aquasecurity:trivy:PkgType",
           "value": "gobinary"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2021-02-21T15:44:47Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2022-02-25T20:19:05Z"
         }
       ]
     },
@@ -4283,6 +4527,11 @@
       "type": "library",
       "name": "github.com/prometheus-operator/prometheus-operator/pkg/apis/monitoring",
       "version": "v0.68.0",
+      "licenses": [
+        {
+          "expression": "(Apache-2.0)"
+        }
+      ],
       "purl": "pkg:golang/github.com/prometheus-operator/prometheus-operator/pkg/apis/monitoring@v0.68.0",
       "externalReferences": [
         {
@@ -4909,9 +5158,39 @@
     {
       "bom-ref": "pkg:golang/github.com/vmware-tanzu/velero@v1.16.0",
       "type": "library",
+      "supplier": {
+        "name": "VMware Tanzu",
+        "url": [
+          "tanzu.io"
+        ]
+      },
+      "author": "VMware Tanzu",
       "name": "github.com/vmware-tanzu/velero",
       "version": "v1.16.0",
+      "licenses": [
+        {
+          "expression": "(Apache-2.0)"
+        }
+      ],
       "purl": "pkg:golang/github.com/vmware-tanzu/velero@v1.16.0",
+      "externalReferences": [
+        {
+          "url": "https://github.com/vmware-tanzu/velero",
+          "type": "website"
+        },
+        {
+          "url": "https://pkg.go.dev/github.com/vmware-tanzu/velero",
+          "type": "distribution"
+        },
+        {
+          "url": "https://github.com/vmware-tanzu/velero",
+          "type": "vcs"
+        },
+        {
+          "url": "https://pkg.go.dev/github.com/vmware-tanzu/velero#section-documentation",
+          "type": "documentation"
+        }
+      ],
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
@@ -4928,6 +5207,34 @@
         {
           "name": "aquasecurity:trivy:PkgType",
           "value": "gobinary"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2017-08-02T21:29:38Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2026-01-09T03:17:35Z"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "backup"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "disaster-recovery"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "hacktoberfest"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "kubernetes"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "velero"
         }
       ]
     },
@@ -5079,6 +5386,11 @@
       "type": "library",
       "name": "golang.org/x/net",
       "version": "v0.37.0",
+      "licenses": [
+        {
+          "expression": "(BSD-3-Clause)"
+        }
+      ],
       "purl": "pkg:golang/golang.org/x/net@v0.37.0",
       "externalReferences": [
         {
@@ -5522,6 +5834,11 @@
       "name": "google.golang.org/grpc",
       "version": "v1.69.4",
       "description": "Package grpc implements an RPC system called gRPC.\n\nSee grpc.io for more information about gRPC.",
+      "licenses": [
+        {
+          "expression": "(Apache-2.0)"
+        }
+      ],
       "purl": "pkg:golang/google.golang.org/grpc@v1.69.4",
       "externalReferences": [
         {
@@ -5902,6 +6219,11 @@
       "author": "Kubernetes",
       "name": "k8s.io/api",
       "version": "v0.31.3",
+      "licenses": [
+        {
+          "expression": "(Apache-2.0)"
+        }
+      ],
       "purl": "pkg:golang/k8s.io/api@v0.31.3",
       "externalReferences": [
         {
@@ -6027,6 +6349,11 @@
       "author": "Kubernetes",
       "name": "k8s.io/apimachinery",
       "version": "v0.31.3",
+      "licenses": [
+        {
+          "expression": "(Apache-2.0)"
+        }
+      ],
       "purl": "pkg:golang/k8s.io/apimachinery@v0.31.3",
       "externalReferences": [
         {
@@ -6090,6 +6417,11 @@
       "name": "k8s.io/client-go",
       "version": "v0.31.3",
       "description": "Package clientgo is the official Go client for the Kubernetes API. It provides\na standard set of clients and tools for building applications, controllers,\nand operators that communicate with a Kubernetes cluster.\n\nkubernetes: Contains the typed Clientset for interacting with built-in,\nversioned API objects (e.g., Pods, Deployments). This is the most common\nstarting point.\n\ndynamic: Provides a dynamic client that can perform operations on any\nKubernetes object, including Custom Resources (CRs). It is essential for\nbuilding controllers that work with CRDs.\n\ndiscovery: Used to discover the API groups, versions, and resources\nsupported by a Kubernetes cluster.\n\ntools/cache: The foundation of the controller pattern. This package provides\nefficient caching and synchronization mechanisms (Informers and Listers)\nfor building controllers.\n\ntools/clientcmd: Provides methods for loading client configuration from\nkubeconfig files. This is essential for out-of-cluster applications and CLI tools.\n\nrest: Provides a lower-level RESTClient that manages the details of\ncommunicating with the Kubernetes API server. It is useful for advanced\nuse cases that require fine-grained control over requests, such as working\nwith non-standard REST verbs.\n\nThere are two primary ways to configure a client to connect to the API server:\n\nIn-Cluster Configuration: For applications running inside a Kubernetes pod,\nthe `rest.InClusterConfig()` function provides a straightforward way to\nconfigure the client. It automatically uses the pod's service account for\nauthentication and is the recommended approach for controllers and operators.\n\nOut-of-Cluster Configuration: For local development or command-line tools,\nthe `clientcmd` package is used to load configuration from a\nkubeconfig file.\n\nThe `rest.Config` object allows for fine-grained control over client-side\nperformance and reliability. Key settings include:\n\nOnce configured, a client can be used to interact with objects in the cluster.\n\nThe Typed Clientset (`kubernetes` package) provides a strongly typed\ninterface for working with built-in Kubernetes objects.\n\nThe Dynamic Client (`dynamic` package) can work with any object, including\nCustom Resources, using `unstructured.Unstructured` types.\n\nFor Custom Resources (CRDs), the `k8s.io/code-generator` repository\ncontains the tools to generate typed clients, informers, and listers. The\n`sample-controller` is the canonical example of this pattern.\n\nServer-Side Apply is a patching strategy that allows multiple actors to\nshare management of an object by tracking field ownership. This prevents\nactors from inadvertently overwriting each other's changes and provides\na mechanism for resolving conflicts. The `applyconfigurations` package\nprovides the necessary tools for this declarative approach.\n\nRobust error handling is essential when interacting with the API. The\n`k8s.io/apimachinery/pkg/api/errors` package provides functions to inspect\nerrors and check for common conditions, such as whether a resource was not\nfound or already exists. This allows controllers to implement robust,\nidempotent reconciliation logic.\n\nThe controller pattern is central to Kubernetes. A controller observes the\nstate of the cluster and works to bring it to the desired state.\n\nThe `tools/cache` package provides the building blocks for this pattern.\nInformers watch the API server and maintain a local cache, Listers provide\nread-only access to the cache, and Workqueues decouple event detection\nfrom processing.\n\nIn a high-availability deployment where multiple instances of a controller\nare running, leader election (`tools/leaderelection`) is used to ensure\nthat only one instance is active at a time.\n\nClient-side feature gates allow for enabling or disabling experimental\nfeatures in `client-go`. They can be configured via the `rest.Config` object.",
+      "licenses": [
+        {
+          "expression": "(Apache-2.0)"
+        }
+      ],
       "purl": "pkg:golang/k8s.io/client-go@v0.31.3",
       "externalReferences": [
         {
@@ -6329,7 +6661,27 @@
       "type": "library",
       "name": "kubevirt.io/api",
       "version": "v1.5.0",
+      "description": "* This file is part of the KubeVirt project\n*\n* Licensed under the Apache License, Version 2.0 (the \"License\");\n* you may not use this file except in compliance with the License.\n* You may obtain a copy of the License at\n*\n*     http://www.apache.org/licenses/LICENSE-2.0\n*\n* Unless required by applicable law or agreed to in writing, software\n* distributed under the License is distributed on an \"AS IS\" BASIS,\n* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\n* See the License for the specific language governing permissions and\n* limitations under the License.\n*\n* Copyright 2019 Red Hat, Inc.\n*",
+      "licenses": [
+        {
+          "expression": "(Apache-2.0)"
+        }
+      ],
       "purl": "pkg:golang/kubevirt.io/api@v1.5.0",
+      "externalReferences": [
+        {
+          "url": "https://github.com/kubevirt/api",
+          "type": "website"
+        },
+        {
+          "url": "https://pkg.go.dev/kubevirt.io/api",
+          "type": "distribution"
+        },
+        {
+          "url": "https://pkg.go.dev/kubevirt.io/api#section-documentation",
+          "type": "documentation"
+        }
+      ],
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
@@ -6346,15 +6698,50 @@
         {
           "name": "aquasecurity:trivy:PkgType",
           "value": "gobinary"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2021-11-29T17:34:24Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2025-11-27T12:38:21Z"
         }
       ]
     },
     {
       "bom-ref": "pkg:golang/kubevirt.io/client-go@v1.5.0",
       "type": "library",
+      "supplier": {
+        "name": "KubeVirt",
+        "url": [
+          "http://kubevirt.io"
+        ]
+      },
+      "author": "KubeVirt",
       "name": "kubevirt.io/client-go",
       "version": "v1.5.0",
+      "description": "* This file is part of the KubeVirt project\n*\n* Licensed under the Apache License, Version 2.0 (the \"License\");\n* you may not use this file except in compliance with the License.\n* You may obtain a copy of the License at\n*\n*     http://www.apache.org/licenses/LICENSE-2.0\n*\n* Unless required by applicable law or agreed to in writing, software\n* distributed under the License is distributed on an \"AS IS\" BASIS,\n* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\n* See the License for the specific language governing permissions and\n* limitations under the License.\n*\n* Copyright 2019 Red Hat, Inc.\n*",
+      "licenses": [
+        {
+          "expression": "(Apache-2.0)"
+        }
+      ],
       "purl": "pkg:golang/kubevirt.io/client-go@v1.5.0",
+      "externalReferences": [
+        {
+          "url": "https://github.com/kubevirt/client-go",
+          "type": "website"
+        },
+        {
+          "url": "https://pkg.go.dev/kubevirt.io/client-go",
+          "type": "distribution"
+        },
+        {
+          "url": "https://pkg.go.dev/kubevirt.io/client-go#section-documentation",
+          "type": "documentation"
+        }
+      ],
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
@@ -6371,15 +6758,49 @@
         {
           "name": "aquasecurity:trivy:PkgType",
           "value": "gobinary"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2019-07-22T11:22:37Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2025-11-27T12:38:23Z"
         }
       ]
     },
     {
       "bom-ref": "pkg:golang/kubevirt.io/containerized-data-importer-api@v1.62.0",
       "type": "library",
+      "supplier": {
+        "name": "KubeVirt",
+        "url": [
+          "http://kubevirt.io"
+        ]
+      },
+      "author": "KubeVirt",
       "name": "kubevirt.io/containerized-data-importer-api",
       "version": "v1.62.0",
+      "licenses": [
+        {
+          "expression": "(Apache-2.0)"
+        }
+      ],
       "purl": "pkg:golang/kubevirt.io/containerized-data-importer-api@v1.62.0",
+      "externalReferences": [
+        {
+          "url": "https://github.com/kubevirt/containerized-data-importer-api",
+          "type": "website"
+        },
+        {
+          "url": "https://pkg.go.dev/kubevirt.io/containerized-data-importer-api",
+          "type": "distribution"
+        },
+        {
+          "url": "https://pkg.go.dev/kubevirt.io/containerized-data-importer-api#section-documentation",
+          "type": "documentation"
+        }
+      ],
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
@@ -6396,15 +6817,44 @@
         {
           "name": "aquasecurity:trivy:PkgType",
           "value": "gobinary"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2021-10-26T16:34:35Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2025-12-09T22:19:26Z"
         }
       ]
     },
     {
       "bom-ref": "pkg:golang/kubevirt.io/controller-lifecycle-operator-sdk/api@v0.0.0-20220329064328-f3cc58c6ed90",
       "type": "library",
+      "supplier": {
+        "name": "KubeVirt",
+        "url": [
+          "http://kubevirt.io"
+        ]
+      },
+      "author": "KubeVirt",
       "name": "kubevirt.io/controller-lifecycle-operator-sdk/api",
       "version": "v0.0.0-20220329064328-f3cc58c6ed90",
       "purl": "pkg:golang/kubevirt.io/controller-lifecycle-operator-sdk/api@v0.0.0-20220329064328-f3cc58c6ed90",
+      "externalReferences": [
+        {
+          "url": "https://github.com/kubevirt/controller-lifecycle-operator-sdk",
+          "type": "website"
+        },
+        {
+          "url": "https://pkg.go.dev/kubevirt.io/controller-lifecycle-operator-sdk/api",
+          "type": "distribution"
+        },
+        {
+          "url": "https://pkg.go.dev/kubevirt.io/controller-lifecycle-operator-sdk/api#section-documentation",
+          "type": "documentation"
+        }
+      ],
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
@@ -6421,6 +6871,14 @@
         {
           "name": "aquasecurity:trivy:PkgType",
           "value": "gobinary"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2022-03-29T06:43:28Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2022-03-29T06:43:28Z"
         }
       ]
     },
@@ -6458,6 +6916,11 @@
       "name": "sigs.k8s.io/controller-runtime",
       "version": "v0.19.3",
       "description": "Package controllerruntime provides tools to construct Kubernetes-style\ncontrollers that manipulate both Kubernetes CRDs and aggregated/built-in\nKubernetes APIs.\n\nIt defines easy helpers for the common use cases when building CRDs, built\non top of customizable layers of abstraction.  Common cases should be easy,\nand uncommon cases should be possible.  In general, controller-runtime tries\nto guide users towards Kubernetes controller best-practices.\n\nThe main entrypoint for controller-runtime is this root package, which\ncontains all of the common types needed to get started building controllers:\n\nThe examples in this package walk through a basic controller setup.  The\nkubebuilder book (https://book.kubebuilder.io) has some more in-depth\nwalkthroughs.\n\ncontroller-runtime favors structs with sane defaults over constructors, so\nit's fairly common to see structs being used directly in controller-runtime.\n\nA brief-ish walkthrough of the layout of this library can be found below. Each\npackage contains more information about how to use it.\n\nFrequently asked questions about using controller-runtime and designing\ncontrollers can be found at\nhttps://github.com/kubernetes-sigs/controller-runtime/blob/main/FAQ.md.\n\nEvery controller and webhook is ultimately run by a Manager (pkg/manager). A\nmanager is responsible for running controllers and webhooks, and setting up\ncommon dependencies, like shared caches and clients, as\nwell as managing leader election (pkg/leaderelection).  Managers are\ngenerally configured to gracefully shut down controllers on pod termination\nby wiring up a signal handler (pkg/manager/signals).\n\nControllers (pkg/controller) use events (pkg/event) to eventually trigger\nreconcile requests.  They may be constructed manually, but are often\nconstructed with a Builder (pkg/builder), which eases the wiring of event\nsources (pkg/source), like Kubernetes API object changes, to event handlers\n(pkg/handler), like \"enqueue a reconcile request for the object owner\".\nPredicates (pkg/predicate) can be used to filter which events actually\ntrigger reconciles.  There are pre-written utilities for the common cases, and\ninterfaces and helpers for advanced cases.\n\nController logic is implemented in terms of Reconcilers (pkg/reconcile).  A\nReconciler implements a function which takes a reconcile Request containing\nthe name and namespace of the object to reconcile, reconciles the object,\nand returns a Response or an error indicating whether to requeue for a\nsecond round of processing.\n\nReconcilers use Clients (pkg/client) to access API objects.  The default\nclient provided by the manager reads from a local shared cache (pkg/cache)\nand writes directly to the API server, but clients can be constructed that\nonly talk to the API server, without a cache.  The Cache will auto-populate\nwith watched objects, as well as when other structured objects are\nrequested. The default split client does not promise to invalidate the cache\nduring writes (nor does it promise sequential create/get coherence), and code\nshould not assume a get immediately following a create/update will return\nthe updated resource. Caches may also have indexes, which can be created via\na FieldIndexer (pkg/client) obtained from the manager.  Indexes can be used to\nquickly and easily look up all objects with certain fields set.  Reconcilers\nmay retrieve event recorders (pkg/recorder) to emit events using the\nmanager.\n\nClients, Caches, and many other things in Kubernetes use Schemes\n(pkg/scheme) to associate Go types to Kubernetes API Kinds\n(Group-Version-Kinds, to be specific).\n\nSimilarly, webhooks (pkg/webhook/admission) may be implemented directly, but\nare often constructed using a builder (pkg/webhook/admission/builder).  They\nare run via a server (pkg/webhook) which is managed by a Manager.\n\nLogging (pkg/log) in controller-runtime is done via structured logs, using a\nlog set of interfaces called logr\n(https://pkg.go.dev/github.com/go-logr/logr).  While controller-runtime\nprovides easy setup for using Zap (https://go.uber.org/zap, pkg/log/zap),\nyou can provide any implementation of logr as the base logger for\ncontroller-runtime.\n\nMetrics (pkg/metrics) provided by controller-runtime are registered into a\ncontroller-runtime-specific Prometheus metrics registry.  The manager can\nserve these by an HTTP endpoint, and additional metrics may be registered to\nthis Registry as normal.\n\nYou can easily build integration and unit tests for your controllers and\nwebhooks using the test Environment (pkg/envtest).  This will automatically\nstand up a copy of etcd and kube-apiserver, and provide the correct options\nto connect to the API server.  It's designed to work well with the Ginkgo\ntesting framework, but should work with any testing setup.\n\nThis example creates a simple application Controller that is configured for ReplicaSets and Pods.\n\n* Create a new application for ReplicaSets that manages Pods owned by the ReplicaSet and calls into\nReplicaSetReconciler.\n\n* Start the application.\n\n\nThis example creates a simple application Controller that is configured for ExampleCRDWithConfigMapRef CRD.\nAny change in the configMap referenced in this Custom Resource will cause the re-reconcile of the parent ExampleCRDWithConfigMapRef\ndue to the implementation of the .Watches method of \"sigs.k8s.io/controller-runtime/pkg/builder\".Builder.\n\n\nThis example creates a simple application Controller that is configured for ReplicaSets and Pods.\nThis application controller will be running leader election with the provided configuration in the manager options.\nIf leader election configuration is not provided, controller runs leader election with default values.\nDefault values taken from: https://github.com/kubernetes/component-base/blob/master/config/v1alpha1/defaults.go\n* defaultLeaseDuration = 15 * time.Second\n* defaultRenewDeadline = 10 * time.Second\n* defaultRetryPeriod   = 2 * time.Second\n\n* Create a new application for ReplicaSets that manages Pods owned by the ReplicaSet and calls into\nReplicaSetReconciler.\n\n* Start the application.",
+      "licenses": [
+        {
+          "expression": "(Apache-2.0)"
+        }
+      ],
       "purl": "pkg:golang/sigs.k8s.io/controller-runtime@v0.19.3",
       "externalReferences": [
         {
@@ -6716,13 +7179,13 @@
   ],
   "dependencies": [
     {
-      "ref": "a8f51b02-cb3b-4d26-9460-470e1bd150f5",
+      "ref": "025501be-9731-4121-aa16-764f7110a7dc",
       "dependsOn": [
         "pkg:golang/kubevirt.io/kubevirt-velero-plugin"
       ]
     },
     {
-      "ref": "efeacd8e-bfab-4daf-9d23-5c91768c4bcc",
+      "ref": "75a92a5e-cac1-46d7-a309-ad6bc431763a",
       "dependsOn": [
         "pkg:apk/alpine/alpine-baselayout@3.2.0-r8?arch=x86_64&distro=3.13.12",
         "pkg:apk/alpine/alpine-keys@2.4-r0?arch=x86_64&distro=3.13.12",
@@ -7262,8 +7725,8 @@
     {
       "ref": "pkg:oci/kubevirt-velero-plugin@sha256%3A9169abc2e70ec53f5762ad8df27a1a8c4adedf8be45808e4d126c8d496f2046f?arch=amd64&repository_url=quay.io%2Fkubevirt%2Fkubevirt-velero-plugin",
       "dependsOn": [
-        "a8f51b02-cb3b-4d26-9460-470e1bd150f5",
-        "efeacd8e-bfab-4daf-9d23-5c91768c4bcc"
+        "025501be-9731-4121-aa16-764f7110a7dc",
+        "75a92a5e-cac1-46d7-a309-ad6bc431763a"
       ]
     }
   ],

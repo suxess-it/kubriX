@@ -2,17 +2,20 @@
   "$schema": "http://cyclonedx.org/schema/bom-1.6.schema.json",
   "bomFormat": "CycloneDX",
   "specVersion": "1.6",
-  "serialNumber": "urn:uuid:104a3213-cbdd-4557-bd5b-be4af0f0c528",
+  "serialNumber": "urn:uuid:9e089e63-934a-4a9d-af80-2862c7f68f84",
   "version": 1,
   "metadata": {
-    "timestamp": "2026-02-04T23:13:33+00:00",
+    "timestamp": "2026-02-04T23:59:48+00:00",
     "tools": {
       "components": [
         {
           "type": "application",
+          "manufacturer": {
+            "name": "Aqua Security Software Ltd."
+          },
           "group": "aquasecurity",
           "name": "trivy",
-          "version": "0.61.0"
+          "version": "0.69.0"
         }
       ]
     },
@@ -91,6 +94,10 @@
           "value": "https://github.com/cert-manager/cert-manager"
         },
         {
+          "name": "aquasecurity:trivy:Reference",
+          "value": "quay.io/jetstack/cert-manager-controller:v1.19.3"
+        },
+        {
           "name": "aquasecurity:trivy:RepoDigest",
           "value": "quay.io/jetstack/cert-manager-controller@sha256:a07125af5e83ecaa3f48317e79c8fae08f0a36654cec45bf0a3404f651b00387"
         },
@@ -101,28 +108,33 @@
         {
           "name": "aquasecurity:trivy:SchemaVersion",
           "value": "2"
+        },
+        {
+          "name": "aquasecurity:trivy:Size",
+          "value": "82845184"
         }
       ]
     }
   },
   "components": [
     {
-      "bom-ref": "1e9c1bbb-2053-4a8d-ac76-dfa756e80c50",
-      "type": "application",
-      "name": "app/cmd/controller/controller",
+      "bom-ref": "4ecf177d-bee6-4da8-8623-0676f1f75d9d",
+      "type": "operating-system",
+      "name": "debian",
+      "version": "12.13",
       "properties": [
         {
           "name": "aquasecurity:trivy:Class",
-          "value": "lang-pkgs"
+          "value": "os-pkgs"
         },
         {
           "name": "aquasecurity:trivy:Type",
-          "value": "gobinary"
+          "value": "debian"
         }
       ]
     },
     {
-      "bom-ref": "43581adf-98c4-4be5-b218-8b8c934a7e1b",
+      "bom-ref": "9cfa8e10-2812-4cc3-9c71-50120e8e7dbd",
       "type": "library",
       "name": "../../",
       "properties": [
@@ -145,18 +157,17 @@
       ]
     },
     {
-      "bom-ref": "ccf702a9-edb1-4073-b677-ff097cd807f5",
-      "type": "operating-system",
-      "name": "debian",
-      "version": "12.13",
+      "bom-ref": "c2b827e3-f496-468a-a336-aac772bebeb4",
+      "type": "application",
+      "name": "app/cmd/controller/controller",
       "properties": [
         {
           "name": "aquasecurity:trivy:Class",
-          "value": "os-pkgs"
+          "value": "lang-pkgs"
         },
         {
           "name": "aquasecurity:trivy:Type",
-          "value": "debian"
+          "value": "gobinary"
         }
       ]
     },
@@ -171,7 +182,7 @@
       "licenses": [
         {
           "license": {
-            "name": "GPL-2.0-or-later"
+            "id": "GPL-2.0-or-later"
           }
         }
       ],
@@ -257,7 +268,7 @@
       "licenses": [
         {
           "license": {
-            "name": "GPL-2.0-only"
+            "id": "GPL-2.0-only"
           }
         }
       ],
@@ -607,9 +618,35 @@
     {
       "bom-ref": "pkg:golang/github.com/akamai/akamaiopen-edgegrid-golang/v12@v12.0.0",
       "type": "library",
+      "supplier": {
+        "name": "Akamai",
+        "url": [
+          "https://techdocs.akamai.com"
+        ]
+      },
+      "author": "Akamai",
       "name": "github.com/akamai/AkamaiOPEN-edgegrid-golang/v12",
       "version": "v12.0.0",
+      "licenses": [
+        {
+          "expression": "(Apache-2.0)"
+        }
+      ],
       "purl": "pkg:golang/github.com/akamai/akamaiopen-edgegrid-golang/v12@v12.0.0",
+      "externalReferences": [
+        {
+          "url": "https://pkg.go.dev/github.com/akamai/akamaiopen-edgegrid-golang/v12",
+          "type": "distribution"
+        },
+        {
+          "url": "https://github.com/akamai/akamaiopen-edgegrid-golang",
+          "type": "vcs"
+        },
+        {
+          "url": "https://pkg.go.dev/github.com/akamai/akamaiopen-edgegrid-golang/v12#section-documentation",
+          "type": "documentation"
+        }
+      ],
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
@@ -626,6 +663,46 @@
         {
           "name": "aquasecurity:trivy:PkgType",
           "value": "gobinary"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2025-09-01T12:03:05Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2025-11-10T09:13:35Z"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "akamai"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "akamai-devexp"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "authentication"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "devexp"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "devexp-edgegrid"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "go"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "golang"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "open"
         }
       ]
     },
@@ -1292,9 +1369,40 @@
     {
       "bom-ref": "pkg:golang/github.com/aws/aws-sdk-go-v2/service/route53@v1.58.4",
       "type": "library",
+      "supplier": {
+        "name": "Amazon Web Services",
+        "url": [
+          "https://amazon.com/aws"
+        ]
+      },
+      "author": "Amazon Web Services",
       "name": "github.com/aws/aws-sdk-go-v2/service/route53",
       "version": "v1.58.4",
+      "description": "Package route53 provides the API client, operations, and parameter types for\nAmazon Route 53.\n\nAmazon Route 53 is a highly available and scalable Domain Name System (DNS) web\nservice.\n\nYou can use Route 53 to:\n\nFor more information, see How domain registration works.\n\nFor more information, see How internet traffic is routed to your website or web application.\n\nFor more information, see How Route 53 checks the health of your resources.",
+      "licenses": [
+        {
+          "expression": "(Apache-2.0)"
+        }
+      ],
       "purl": "pkg:golang/github.com/aws/aws-sdk-go-v2/service/route53@v1.58.4",
+      "externalReferences": [
+        {
+          "url": "https://github.com/aws/aws-sdk-go-v2",
+          "type": "website"
+        },
+        {
+          "url": "https://pkg.go.dev/github.com/aws/aws-sdk-go-v2/service/route53",
+          "type": "distribution"
+        },
+        {
+          "url": "https://github.com/aws/aws-sdk-go-v2",
+          "type": "vcs"
+        },
+        {
+          "url": "https://pkg.go.dev/github.com/aws/aws-sdk-go-v2/service/route53#section-documentation",
+          "type": "documentation"
+        }
+      ],
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
@@ -1311,6 +1419,34 @@
         {
           "name": "aquasecurity:trivy:PkgType",
           "value": "gobinary"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2020-09-29T01:40:02Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2026-01-09T19:14:10Z"
+        },
+        {
+          "name": "ecosystems:owner_location",
+          "value": "United States of America"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "aws"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "aws-sdk"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "go"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "golang"
         }
       ]
     },
@@ -2031,7 +2167,26 @@
       "type": "library",
       "name": "github.com/Azure/azure-sdk-for-go/sdk/resourcemanager/dns/armdns",
       "version": "v1.2.0",
+      "licenses": [
+        {
+          "expression": "(MIT)"
+        }
+      ],
       "purl": "pkg:golang/github.com/azure/azure-sdk-for-go/sdk/resourcemanager/dns/armdns@v1.2.0",
+      "externalReferences": [
+        {
+          "url": "https://pkg.go.dev/github.com/azure/azure-sdk-for-go/sdk/resourcemanager/dns/armdns",
+          "type": "distribution"
+        },
+        {
+          "url": "https://github.com/azure/azure-sdk-for-go",
+          "type": "vcs"
+        },
+        {
+          "url": "https://pkg.go.dev/github.com/azure/azure-sdk-for-go/sdk/resourcemanager/dns/armdns#section-documentation",
+          "type": "documentation"
+        }
+      ],
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
@@ -2048,6 +2203,46 @@
         {
           "name": "aquasecurity:trivy:PkgType",
           "value": "gobinary"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2021-12-07T07:05:07Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2023-11-23T09:43:00Z"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "azure"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "azure-sdk"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "go"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "golang"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "hacktoberfest"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "microsoft"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "rest"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "sdk"
         }
       ]
     },
@@ -2858,6 +3053,11 @@
       "name": "github.com/digitalocean/godo",
       "version": "v1.165.1",
       "description": "Package godo is the DigitalOcean API v2 client for Go.",
+      "licenses": [
+        {
+          "expression": "(BSD-3-Clause OR MIT)"
+        }
+      ],
       "purl": "pkg:golang/github.com/digitalocean/godo@v1.165.1",
       "externalReferences": [
         {
@@ -3259,9 +3459,36 @@
     {
       "bom-ref": "pkg:golang/github.com/go-http-utils/headers@v0.0.0-20181008091004-fed159eddc2a",
       "type": "library",
+      "supplier": {
+        "name": "go-http-utils"
+      },
+      "author": "go-http-utils",
       "name": "github.com/go-http-utils/headers",
       "version": "v0.0.0-20181008091004-fed159eddc2a",
+      "licenses": [
+        {
+          "expression": "(MIT)"
+        }
+      ],
       "purl": "pkg:golang/github.com/go-http-utils/headers@v0.0.0-20181008091004-fed159eddc2a",
+      "externalReferences": [
+        {
+          "url": "https://github.com/go-http-utils/headers",
+          "type": "website"
+        },
+        {
+          "url": "https://pkg.go.dev/github.com/go-http-utils/headers",
+          "type": "distribution"
+        },
+        {
+          "url": "https://github.com/go-http-utils/headers",
+          "type": "vcs"
+        },
+        {
+          "url": "https://pkg.go.dev/github.com/go-http-utils/headers#section-documentation",
+          "type": "documentation"
+        }
+      ],
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
@@ -3278,6 +3505,14 @@
         {
           "name": "aquasecurity:trivy:PkgType",
           "value": "gobinary"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2016-11-16T09:53:40Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2018-10-08T09:10:04Z"
         }
       ]
     },
@@ -3842,6 +4077,11 @@
       "name": "github.com/go-ozzo/ozzo-validation/v4",
       "version": "v4.3.0",
       "description": "Package validation provides configurable and extensible rules for validating data of various types.",
+      "licenses": [
+        {
+          "expression": "(MIT)"
+        }
+      ],
       "purl": "pkg:golang/github.com/go-ozzo/ozzo-validation/v4@v4.3.0",
       "externalReferences": [
         {
@@ -5924,7 +6164,30 @@
       "type": "library",
       "name": "github.com/hashicorp/vault/sdk",
       "version": "v0.20.0",
+      "licenses": [
+        {
+          "expression": "(MPL-2.0)"
+        }
+      ],
       "purl": "pkg:golang/github.com/hashicorp/vault/sdk@v0.20.0",
+      "externalReferences": [
+        {
+          "url": "https://github.com/hashicorp/vault",
+          "type": "website"
+        },
+        {
+          "url": "https://pkg.go.dev/github.com/hashicorp/vault/sdk",
+          "type": "distribution"
+        },
+        {
+          "url": "https://github.com/hashicorp/vault",
+          "type": "vcs"
+        },
+        {
+          "url": "https://pkg.go.dev/github.com/hashicorp/vault/sdk#section-documentation",
+          "type": "documentation"
+        }
+      ],
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
@@ -5941,6 +6204,26 @@
         {
           "name": "aquasecurity:trivy:PkgType",
           "value": "gobinary"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2019-04-15T17:38:08Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2026-02-04T16:14:03Z"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "go"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "secrets"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "vault"
         }
       ]
     },
@@ -6111,9 +6394,35 @@
     {
       "bom-ref": "pkg:golang/github.com/khan/genqlient@v0.8.1",
       "type": "library",
+      "supplier": {
+        "name": "Khan Academy",
+        "url": [
+          "https://www.khanacademy.org/"
+        ]
+      },
+      "author": "Khan Academy",
       "name": "github.com/Khan/genqlient",
       "version": "v0.8.1",
+      "licenses": [
+        {
+          "expression": "(MIT)"
+        }
+      ],
       "purl": "pkg:golang/github.com/khan/genqlient@v0.8.1",
+      "externalReferences": [
+        {
+          "url": "https://pkg.go.dev/github.com/khan/genqlient",
+          "type": "distribution"
+        },
+        {
+          "url": "https://github.com/khan/genqlient",
+          "type": "vcs"
+        },
+        {
+          "url": "https://pkg.go.dev/github.com/khan/genqlient#section-documentation",
+          "type": "documentation"
+        }
+      ],
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
@@ -6130,6 +6439,34 @@
         {
           "name": "aquasecurity:trivy:PkgType",
           "value": "gobinary"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2021-09-16T19:05:16Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2025-05-18T19:07:34Z"
+        },
+        {
+          "name": "ecosystems:owner_location",
+          "value": "Mountain View, CA"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "codegen"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "go"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "golang"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "graphql"
         }
       ]
     },
@@ -6722,9 +7059,36 @@
     {
       "bom-ref": "pkg:golang/github.com/nrdcg/goacmedns@v0.2.0",
       "type": "library",
+      "supplier": {
+        "name": "The Natural Reserve of DNS Clients in Go."
+      },
+      "author": "The Natural Reserve of DNS Clients in Go.",
       "name": "github.com/nrdcg/goacmedns",
       "version": "v0.2.0",
+      "licenses": [
+        {
+          "expression": "(MIT)"
+        }
+      ],
       "purl": "pkg:golang/github.com/nrdcg/goacmedns@v0.2.0",
+      "externalReferences": [
+        {
+          "url": "https://github.com/nrdcg/goacmedns",
+          "type": "website"
+        },
+        {
+          "url": "https://pkg.go.dev/github.com/nrdcg/goacmedns",
+          "type": "distribution"
+        },
+        {
+          "url": "https://github.com/nrdcg/goacmedns",
+          "type": "vcs"
+        },
+        {
+          "url": "https://pkg.go.dev/github.com/nrdcg/goacmedns#section-documentation",
+          "type": "documentation"
+        }
+      ],
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
@@ -6741,15 +7105,66 @@
         {
           "name": "aquasecurity:trivy:PkgType",
           "value": "gobinary"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2018-10-09T22:49:57Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2025-01-09T19:19:13Z"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "acme"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "acme-dns"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "golang"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "golang-library"
         }
       ]
     },
     {
       "bom-ref": "pkg:golang/github.com/pavlo-v-chernykh/keystore-go/v4@v4.5.0",
       "type": "library",
+      "supplier": {
+        "name": "Pavlo Chernykh"
+      },
+      "author": "Pavlo Chernykh",
       "name": "github.com/pavlo-v-chernykh/keystore-go/v4",
       "version": "v4.5.0",
+      "licenses": [
+        {
+          "expression": "(MIT)"
+        }
+      ],
       "purl": "pkg:golang/github.com/pavlo-v-chernykh/keystore-go/v4@v4.5.0",
+      "externalReferences": [
+        {
+          "url": "https://github.com/pavlo-v-chernykh/keystore-go",
+          "type": "website"
+        },
+        {
+          "url": "https://pkg.go.dev/github.com/pavlo-v-chernykh/keystore-go/v4",
+          "type": "distribution"
+        },
+        {
+          "url": "https://github.com/pavlo-v-chernykh/keystore-go",
+          "type": "vcs"
+        },
+        {
+          "url": "https://pkg.go.dev/github.com/pavlo-v-chernykh/keystore-go/v4#section-documentation",
+          "type": "documentation"
+        }
+      ],
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
@@ -6766,6 +7181,38 @@
         {
           "name": "aquasecurity:trivy:PkgType",
           "value": "gobinary"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2020-10-31T10:48:45Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2023-08-31T23:31:16Z"
+        },
+        {
+          "name": "ecosystems:owner_location",
+          "value": "Ukraine"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "decoder"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "encoder"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "golang"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "java"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "keystore"
         }
       ]
     },
@@ -7306,9 +7753,36 @@
     {
       "bom-ref": "pkg:golang/github.com/sosodev/duration@v1.3.1",
       "type": "library",
+      "supplier": {
+        "name": "Kyle"
+      },
+      "author": "Kyle",
       "name": "github.com/sosodev/duration",
       "version": "v1.3.1",
+      "licenses": [
+        {
+          "expression": "(MIT)"
+        }
+      ],
       "purl": "pkg:golang/github.com/sosodev/duration@v1.3.1",
+      "externalReferences": [
+        {
+          "url": "https://github.com/sosodev/duration",
+          "type": "website"
+        },
+        {
+          "url": "https://pkg.go.dev/github.com/sosodev/duration",
+          "type": "distribution"
+        },
+        {
+          "url": "https://github.com/sosodev/duration",
+          "type": "vcs"
+        },
+        {
+          "url": "https://pkg.go.dev/github.com/sosodev/duration#section-documentation",
+          "type": "documentation"
+        }
+      ],
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
@@ -7325,6 +7799,18 @@
         {
           "name": "aquasecurity:trivy:PkgType",
           "value": "gobinary"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2022-05-29T23:23:20Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2024-05-07T20:33:31Z"
+        },
+        {
+          "name": "ecosystems:owner_location",
+          "value": "San Diego, CA"
         }
       ]
     },
@@ -7765,7 +8251,26 @@
       "type": "library",
       "name": "github.com/Venafi/vcert/v5",
       "version": "v5.12.2",
+      "licenses": [
+        {
+          "expression": "(Apache-2.0)"
+        }
+      ],
       "purl": "pkg:golang/github.com/venafi/vcert/v5@v5.12.2",
+      "externalReferences": [
+        {
+          "url": "https://pkg.go.dev/github.com/venafi/vcert/v5",
+          "type": "distribution"
+        },
+        {
+          "url": "https://github.com/venafi/vcert",
+          "type": "vcs"
+        },
+        {
+          "url": "https://pkg.go.dev/github.com/venafi/vcert/v5#section-documentation",
+          "type": "documentation"
+        }
+      ],
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
@@ -7782,6 +8287,34 @@
         {
           "name": "aquasecurity:trivy:PkgType",
           "value": "gobinary"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2023-09-05T03:15:05Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2025-12-14T07:06:04Z"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "certificates"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "golang"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "machine-identity-management"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "venafi-cloud"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "venafi-platform"
         }
       ]
     },
@@ -11104,9 +11637,32 @@
     {
       "bom-ref": "pkg:golang/sigs.k8s.io/gateway-api@v1.4.0",
       "type": "library",
+      "supplier": {
+        "name": "Kubernetes SIGs"
+      },
+      "author": "Kubernetes SIGs",
       "name": "sigs.k8s.io/gateway-api",
       "version": "v1.4.0",
+      "licenses": [
+        {
+          "expression": "(Apache-2.0)"
+        }
+      ],
       "purl": "pkg:golang/sigs.k8s.io/gateway-api@v1.4.0",
+      "externalReferences": [
+        {
+          "url": "https://github.com/kubernetes-sigs/gateway-api",
+          "type": "website"
+        },
+        {
+          "url": "https://pkg.go.dev/sigs.k8s.io/gateway-api",
+          "type": "distribution"
+        },
+        {
+          "url": "https://pkg.go.dev/sigs.k8s.io/gateway-api#section-documentation",
+          "type": "documentation"
+        }
+      ],
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
@@ -11123,6 +11679,34 @@
         {
           "name": "aquasecurity:trivy:PkgType",
           "value": "gobinary"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2020-10-07T23:56:16Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2025-12-04T05:26:20Z"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "gateway-api"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "k8s-sig-network"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "kubernetes"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "networking"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "sig-network"
         }
       ]
     },
@@ -11440,9 +12024,22 @@
   ],
   "dependencies": [
     {
-      "ref": "1e9c1bbb-2053-4a8d-ac76-dfa756e80c50",
+      "ref": "4ecf177d-bee6-4da8-8623-0676f1f75d9d",
       "dependsOn": [
-        "43581adf-98c4-4be5-b218-8b8c934a7e1b",
+        "pkg:deb/debian/base-files@12.4%2Bdeb12u13?arch=amd64&distro=debian-12.13",
+        "pkg:deb/debian/media-types@10.0.0?arch=all&distro=debian-12.13",
+        "pkg:deb/debian/netbase@6.4?arch=all&distro=debian-12.13",
+        "pkg:deb/debian/tzdata@2025b-0%2Bdeb12u2?arch=all&distro=debian-12.13"
+      ]
+    },
+    {
+      "ref": "9cfa8e10-2812-4cc3-9c71-50120e8e7dbd",
+      "dependsOn": []
+    },
+    {
+      "ref": "c2b827e3-f496-468a-a336-aac772bebeb4",
+      "dependsOn": [
+        "9cfa8e10-2812-4cc3-9c71-50120e8e7dbd",
         "pkg:golang/cloud.google.com/go/auth/oauth2adapt@v0.2.8",
         "pkg:golang/cloud.google.com/go/auth@v0.16.5",
         "pkg:golang/cloud.google.com/go/compute/metadata@v0.9.0",
@@ -11605,19 +12202,6 @@
         "pkg:golang/sigs.k8s.io/yaml@v1.6.0",
         "pkg:golang/software.sslmate.com/src/go-pkcs12@v0.6.0",
         "pkg:golang/stdlib@v1.25.6"
-      ]
-    },
-    {
-      "ref": "43581adf-98c4-4be5-b218-8b8c934a7e1b",
-      "dependsOn": []
-    },
-    {
-      "ref": "ccf702a9-edb1-4073-b677-ff097cd807f5",
-      "dependsOn": [
-        "pkg:deb/debian/base-files@12.4%2Bdeb12u13?arch=amd64&distro=debian-12.13",
-        "pkg:deb/debian/media-types@10.0.0?arch=all&distro=debian-12.13",
-        "pkg:deb/debian/netbase@6.4?arch=all&distro=debian-12.13",
-        "pkg:deb/debian/tzdata@2025b-0%2Bdeb12u2?arch=all&distro=debian-12.13"
       ]
     },
     {
@@ -12287,8 +12871,8 @@
     {
       "ref": "pkg:oci/cert-manager-controller@sha256%3Aa07125af5e83ecaa3f48317e79c8fae08f0a36654cec45bf0a3404f651b00387?arch=amd64&repository_url=quay.io%2Fjetstack%2Fcert-manager-controller",
       "dependsOn": [
-        "1e9c1bbb-2053-4a8d-ac76-dfa756e80c50",
-        "ccf702a9-edb1-4073-b677-ff097cd807f5"
+        "4ecf177d-bee6-4da8-8623-0676f1f75d9d",
+        "c2b827e3-f496-468a-a336-aac772bebeb4"
       ]
     }
   ],

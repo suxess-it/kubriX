@@ -2,17 +2,20 @@
   "$schema": "http://cyclonedx.org/schema/bom-1.6.schema.json",
   "bomFormat": "CycloneDX",
   "specVersion": "1.6",
-  "serialNumber": "urn:uuid:ce45cb18-d06a-4d72-a671-1c7cf532250b",
+  "serialNumber": "urn:uuid:8688065e-27d2-4e0b-9a19-807b3a1e24dc",
   "version": 1,
   "metadata": {
-    "timestamp": "2026-02-04T23:14:53+00:00",
+    "timestamp": "2026-02-05T00:02:42+00:00",
     "tools": {
       "components": [
         {
           "type": "application",
+          "manufacturer": {
+            "name": "Aqua Security Software Ltd."
+          },
           "group": "aquasecurity",
           "name": "trivy",
-          "version": "0.61.0"
+          "version": "0.69.0"
         }
       ]
     },
@@ -119,48 +122,30 @@
           "value": "v1.14.3"
         },
         {
+          "name": "aquasecurity:trivy:Reference",
+          "value": "registry.k8s.io/ingress-nginx/controller@sha256:82917be97c0939f6ada1717bb39aa7e66c229d6cfb10dcfc8f1bd42f9efe0f81"
+        },
+        {
           "name": "aquasecurity:trivy:RepoDigest",
           "value": "registry.k8s.io/ingress-nginx/controller@sha256:82917be97c0939f6ada1717bb39aa7e66c229d6cfb10dcfc8f1bd42f9efe0f81"
         },
         {
           "name": "aquasecurity:trivy:SchemaVersion",
           "value": "2"
+        },
+        {
+          "name": "aquasecurity:trivy:Size",
+          "value": "334073856"
         }
       ]
     }
   },
   "components": [
     {
-      "bom-ref": "021b6467-8e59-45dc-b44f-7522477851d1",
+      "bom-ref": "0745dadc-0002-44f9-8cfe-6bdb32bc6084",
       "type": "library",
-      "name": "k8s.io/utils",
-      "version": "v0.0.0-20260108192941-914a6e750570",
-      "purl": "pkg:golang/k8s.io/utils@v0.0.0-20260108192941-914a6e750570",
-      "properties": [
-        {
-          "name": "aquasecurity:trivy:LayerDiffID",
-          "value": "sha256:db192c97076a22c0ee640a48e23b27b110c8d324cb62661e93376ed4aef22daf"
-        },
-        {
-          "name": "aquasecurity:trivy:LayerDigest",
-          "value": "sha256:a1147b64a6784a672dab3ba4c0ed5f640b4b27119226fe31374b4493a70a4e98"
-        },
-        {
-          "name": "aquasecurity:trivy:PkgID",
-          "value": "k8s.io/utils@v0.0.0-20260108192941-914a6e750570"
-        },
-        {
-          "name": "aquasecurity:trivy:PkgType",
-          "value": "gobinary"
-        }
-      ]
-    },
-    {
-      "bom-ref": "06669909-32d1-4a97-99f0-b33febc364f0",
-      "type": "library",
-      "name": "stdlib",
-      "version": "v1.25.6",
-      "purl": "pkg:golang/stdlib@v1.25.6",
+      "name": "k8s.io/ingress-nginx",
+      "purl": "pkg:golang/k8s.io/ingress-nginx",
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
@@ -172,7 +157,7 @@
         },
         {
           "name": "aquasecurity:trivy:PkgID",
-          "value": "stdlib@v1.25.6"
+          "value": "k8s.io/ingress-nginx"
         },
         {
           "name": "aquasecurity:trivy:PkgType",
@@ -181,7 +166,37 @@
       ]
     },
     {
-      "bom-ref": "0d0db98c-98bd-43f9-90bb-bce54f5bbff5",
+      "bom-ref": "123b64bf-ce56-4d32-b2d0-7c9cd81df14b",
+      "type": "application",
+      "name": "nginx-ingress-controller",
+      "properties": [
+        {
+          "name": "aquasecurity:trivy:Class",
+          "value": "lang-pkgs"
+        },
+        {
+          "name": "aquasecurity:trivy:Type",
+          "value": "gobinary"
+        }
+      ]
+    },
+    {
+      "bom-ref": "2bc44e64-c409-4f5b-bd3d-704e69c99b2a",
+      "type": "application",
+      "name": "wait-shutdown",
+      "properties": [
+        {
+          "name": "aquasecurity:trivy:Class",
+          "value": "lang-pkgs"
+        },
+        {
+          "name": "aquasecurity:trivy:Type",
+          "value": "gobinary"
+        }
+      ]
+    },
+    {
+      "bom-ref": "2ce16239-d991-4c2c-b088-64a73c20e1ee",
       "type": "library",
       "name": "github.com/mitchellh/go-ps",
       "version": "v1.0.0",
@@ -206,7 +221,32 @@
       ]
     },
     {
-      "bom-ref": "0da627d0-5c1a-4150-95ec-27f6b4b60007",
+      "bom-ref": "3422e5d4-5a66-4c2d-9bfe-30212c98ba1d",
+      "type": "library",
+      "name": "k8s.io/utils",
+      "version": "v0.0.0-20260108192941-914a6e750570",
+      "purl": "pkg:golang/k8s.io/utils@v0.0.0-20260108192941-914a6e750570",
+      "properties": [
+        {
+          "name": "aquasecurity:trivy:LayerDiffID",
+          "value": "sha256:d648b13433ecfb8c05479f76fd1112f31441f259b2d369011cc762b79230bcfb"
+        },
+        {
+          "name": "aquasecurity:trivy:LayerDigest",
+          "value": "sha256:08b9ab2fac7b351427751a91ad6172bda2abb175badda1075834f6e6efcb0eb9"
+        },
+        {
+          "name": "aquasecurity:trivy:PkgID",
+          "value": "k8s.io/utils@v0.0.0-20260108192941-914a6e750570"
+        },
+        {
+          "name": "aquasecurity:trivy:PkgType",
+          "value": "gobinary"
+        }
+      ]
+    },
+    {
+      "bom-ref": "40d18835-228b-4083-b4c8-52fee96af3f5",
       "type": "operating-system",
       "name": "alpine",
       "version": "3.23.2",
@@ -222,7 +262,56 @@
       ]
     },
     {
-      "bom-ref": "14339116-db24-411e-8de7-a7247923f030",
+      "bom-ref": "473718ac-e39a-4d9b-aa91-2b8253b94a21",
+      "type": "library",
+      "name": "github.com/mitchellh/go-ps",
+      "version": "v1.0.0",
+      "purl": "pkg:golang/github.com/mitchellh/go-ps@v1.0.0",
+      "properties": [
+        {
+          "name": "aquasecurity:trivy:LayerDiffID",
+          "value": "sha256:d9d5f6ec73b1291ebdc23e715d9a75ce443ae5c18b400db518e6e2fdc909de05"
+        },
+        {
+          "name": "aquasecurity:trivy:LayerDigest",
+          "value": "sha256:12ee437a10ca830c54998432d58bf97a6a5f470002b0199cd45791677b758d9c"
+        },
+        {
+          "name": "aquasecurity:trivy:PkgID",
+          "value": "github.com/mitchellh/go-ps@v1.0.0"
+        },
+        {
+          "name": "aquasecurity:trivy:PkgType",
+          "value": "gobinary"
+        }
+      ]
+    },
+    {
+      "bom-ref": "4a8e92ec-d196-4655-8610-6ab9664a9254",
+      "type": "library",
+      "name": "k8s.io/ingress-nginx",
+      "purl": "pkg:golang/k8s.io/ingress-nginx",
+      "properties": [
+        {
+          "name": "aquasecurity:trivy:LayerDiffID",
+          "value": "sha256:d9d5f6ec73b1291ebdc23e715d9a75ce443ae5c18b400db518e6e2fdc909de05"
+        },
+        {
+          "name": "aquasecurity:trivy:LayerDigest",
+          "value": "sha256:12ee437a10ca830c54998432d58bf97a6a5f470002b0199cd45791677b758d9c"
+        },
+        {
+          "name": "aquasecurity:trivy:PkgID",
+          "value": "k8s.io/ingress-nginx"
+        },
+        {
+          "name": "aquasecurity:trivy:PkgType",
+          "value": "gobinary"
+        }
+      ]
+    },
+    {
+      "bom-ref": "508fb018-74b3-4833-b633-6c5c16b25846",
       "type": "library",
       "name": "stdlib",
       "version": "v1.25.6",
@@ -247,72 +336,7 @@
       ]
     },
     {
-      "bom-ref": "14d9b6cf-00c4-4fe6-be39-3ab3cfda1280",
-      "type": "application",
-      "name": "wait-shutdown",
-      "properties": [
-        {
-          "name": "aquasecurity:trivy:Class",
-          "value": "lang-pkgs"
-        },
-        {
-          "name": "aquasecurity:trivy:Type",
-          "value": "gobinary"
-        }
-      ]
-    },
-    {
-      "bom-ref": "2407ab21-a24c-4fd0-9f76-ce3e69c92872",
-      "type": "library",
-      "name": "github.com/go-logr/logr",
-      "version": "v1.4.3",
-      "purl": "pkg:golang/github.com/go-logr/logr@v1.4.3",
-      "properties": [
-        {
-          "name": "aquasecurity:trivy:LayerDiffID",
-          "value": "sha256:db192c97076a22c0ee640a48e23b27b110c8d324cb62661e93376ed4aef22daf"
-        },
-        {
-          "name": "aquasecurity:trivy:LayerDigest",
-          "value": "sha256:a1147b64a6784a672dab3ba4c0ed5f640b4b27119226fe31374b4493a70a4e98"
-        },
-        {
-          "name": "aquasecurity:trivy:PkgID",
-          "value": "github.com/go-logr/logr@v1.4.3"
-        },
-        {
-          "name": "aquasecurity:trivy:PkgType",
-          "value": "gobinary"
-        }
-      ]
-    },
-    {
-      "bom-ref": "39ffe402-36a0-4786-ba87-df4ec0c3bfa2",
-      "type": "library",
-      "name": "github.com/go-logr/logr",
-      "version": "v1.4.3",
-      "purl": "pkg:golang/github.com/go-logr/logr@v1.4.3",
-      "properties": [
-        {
-          "name": "aquasecurity:trivy:LayerDiffID",
-          "value": "sha256:d648b13433ecfb8c05479f76fd1112f31441f259b2d369011cc762b79230bcfb"
-        },
-        {
-          "name": "aquasecurity:trivy:LayerDigest",
-          "value": "sha256:08b9ab2fac7b351427751a91ad6172bda2abb175badda1075834f6e6efcb0eb9"
-        },
-        {
-          "name": "aquasecurity:trivy:PkgID",
-          "value": "github.com/go-logr/logr@v1.4.3"
-        },
-        {
-          "name": "aquasecurity:trivy:PkgType",
-          "value": "gobinary"
-        }
-      ]
-    },
-    {
-      "bom-ref": "41bab8de-9a60-4775-bf12-a6cfa95ee654",
+      "bom-ref": "6c665709-a05f-4c35-a4d1-c06c459eb509",
       "type": "library",
       "name": "k8s.io/apimachinery",
       "version": "v0.35.0",
@@ -320,11 +344,11 @@
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
-          "value": "sha256:d648b13433ecfb8c05479f76fd1112f31441f259b2d369011cc762b79230bcfb"
+          "value": "sha256:d9d5f6ec73b1291ebdc23e715d9a75ce443ae5c18b400db518e6e2fdc909de05"
         },
         {
           "name": "aquasecurity:trivy:LayerDigest",
-          "value": "sha256:08b9ab2fac7b351427751a91ad6172bda2abb175badda1075834f6e6efcb0eb9"
+          "value": "sha256:12ee437a10ca830c54998432d58bf97a6a5f470002b0199cd45791677b758d9c"
         },
         {
           "name": "aquasecurity:trivy:PkgID",
@@ -337,11 +361,10 @@
       ]
     },
     {
-      "bom-ref": "46545887-78eb-4d75-9a5e-89b93fd36194",
+      "bom-ref": "75908276-495c-4235-86d1-396109494e22",
       "type": "library",
-      "name": "stdlib",
-      "version": "v1.25.6",
-      "purl": "pkg:golang/stdlib@v1.25.6",
+      "name": "k8s.io/ingress-nginx",
+      "purl": "pkg:golang/k8s.io/ingress-nginx",
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
@@ -353,7 +376,7 @@
         },
         {
           "name": "aquasecurity:trivy:PkgID",
-          "value": "stdlib@v1.25.6"
+          "value": "k8s.io/ingress-nginx"
         },
         {
           "name": "aquasecurity:trivy:PkgType",
@@ -362,7 +385,7 @@
       ]
     },
     {
-      "bom-ref": "4fe8c4e9-4f7c-4224-bd0f-4c510f452ea1",
+      "bom-ref": "76e4441c-30eb-489a-ae32-2b80fb62bb3d",
       "type": "library",
       "name": "k8s.io/klog/v2",
       "version": "v2.130.1",
@@ -387,7 +410,157 @@
       ]
     },
     {
-      "bom-ref": "5249dc6f-f9a2-4d5e-a69d-7d2fddde90bd",
+      "bom-ref": "808f0bdb-1c19-4dbb-9c48-7e1c854d3b22",
+      "type": "library",
+      "name": "k8s.io/apimachinery",
+      "version": "v0.35.0",
+      "purl": "pkg:golang/k8s.io/apimachinery@v0.35.0",
+      "properties": [
+        {
+          "name": "aquasecurity:trivy:LayerDiffID",
+          "value": "sha256:db192c97076a22c0ee640a48e23b27b110c8d324cb62661e93376ed4aef22daf"
+        },
+        {
+          "name": "aquasecurity:trivy:LayerDigest",
+          "value": "sha256:a1147b64a6784a672dab3ba4c0ed5f640b4b27119226fe31374b4493a70a4e98"
+        },
+        {
+          "name": "aquasecurity:trivy:PkgID",
+          "value": "k8s.io/apimachinery@v0.35.0"
+        },
+        {
+          "name": "aquasecurity:trivy:PkgType",
+          "value": "gobinary"
+        }
+      ]
+    },
+    {
+      "bom-ref": "822dd8cb-6d37-47d0-9185-2b218599b244",
+      "type": "library",
+      "name": "k8s.io/apimachinery",
+      "version": "v0.35.0",
+      "purl": "pkg:golang/k8s.io/apimachinery@v0.35.0",
+      "properties": [
+        {
+          "name": "aquasecurity:trivy:LayerDiffID",
+          "value": "sha256:d648b13433ecfb8c05479f76fd1112f31441f259b2d369011cc762b79230bcfb"
+        },
+        {
+          "name": "aquasecurity:trivy:LayerDigest",
+          "value": "sha256:08b9ab2fac7b351427751a91ad6172bda2abb175badda1075834f6e6efcb0eb9"
+        },
+        {
+          "name": "aquasecurity:trivy:PkgID",
+          "value": "k8s.io/apimachinery@v0.35.0"
+        },
+        {
+          "name": "aquasecurity:trivy:PkgType",
+          "value": "gobinary"
+        }
+      ]
+    },
+    {
+      "bom-ref": "925df3e8-b642-4e18-a093-6215bd05fc36",
+      "type": "library",
+      "name": "stdlib",
+      "version": "v1.25.6",
+      "purl": "pkg:golang/stdlib@v1.25.6",
+      "properties": [
+        {
+          "name": "aquasecurity:trivy:LayerDiffID",
+          "value": "sha256:db192c97076a22c0ee640a48e23b27b110c8d324cb62661e93376ed4aef22daf"
+        },
+        {
+          "name": "aquasecurity:trivy:LayerDigest",
+          "value": "sha256:a1147b64a6784a672dab3ba4c0ed5f640b4b27119226fe31374b4493a70a4e98"
+        },
+        {
+          "name": "aquasecurity:trivy:PkgID",
+          "value": "stdlib@v1.25.6"
+        },
+        {
+          "name": "aquasecurity:trivy:PkgType",
+          "value": "gobinary"
+        }
+      ]
+    },
+    {
+      "bom-ref": "92b70cca-6015-4032-8200-d94a336e21a5",
+      "type": "library",
+      "name": "github.com/spf13/pflag",
+      "version": "v1.0.10",
+      "purl": "pkg:golang/github.com/spf13/pflag@v1.0.10",
+      "properties": [
+        {
+          "name": "aquasecurity:trivy:LayerDiffID",
+          "value": "sha256:db192c97076a22c0ee640a48e23b27b110c8d324cb62661e93376ed4aef22daf"
+        },
+        {
+          "name": "aquasecurity:trivy:LayerDigest",
+          "value": "sha256:a1147b64a6784a672dab3ba4c0ed5f640b4b27119226fe31374b4493a70a4e98"
+        },
+        {
+          "name": "aquasecurity:trivy:PkgID",
+          "value": "github.com/spf13/pflag@v1.0.10"
+        },
+        {
+          "name": "aquasecurity:trivy:PkgType",
+          "value": "gobinary"
+        }
+      ]
+    },
+    {
+      "bom-ref": "9b9bccc1-95f0-4ee3-bc6c-ee6a930cbf33",
+      "type": "library",
+      "name": "k8s.io/klog/v2",
+      "version": "v2.130.1",
+      "purl": "pkg:golang/k8s.io/klog/v2@v2.130.1",
+      "properties": [
+        {
+          "name": "aquasecurity:trivy:LayerDiffID",
+          "value": "sha256:db192c97076a22c0ee640a48e23b27b110c8d324cb62661e93376ed4aef22daf"
+        },
+        {
+          "name": "aquasecurity:trivy:LayerDigest",
+          "value": "sha256:a1147b64a6784a672dab3ba4c0ed5f640b4b27119226fe31374b4493a70a4e98"
+        },
+        {
+          "name": "aquasecurity:trivy:PkgID",
+          "value": "k8s.io/klog/v2@v2.130.1"
+        },
+        {
+          "name": "aquasecurity:trivy:PkgType",
+          "value": "gobinary"
+        }
+      ]
+    },
+    {
+      "bom-ref": "b1144a82-9f10-468b-bd31-58c7c3d88ef2",
+      "type": "library",
+      "name": "k8s.io/klog/v2",
+      "version": "v2.130.1",
+      "purl": "pkg:golang/k8s.io/klog/v2@v2.130.1",
+      "properties": [
+        {
+          "name": "aquasecurity:trivy:LayerDiffID",
+          "value": "sha256:d9d5f6ec73b1291ebdc23e715d9a75ce443ae5c18b400db518e6e2fdc909de05"
+        },
+        {
+          "name": "aquasecurity:trivy:LayerDigest",
+          "value": "sha256:12ee437a10ca830c54998432d58bf97a6a5f470002b0199cd45791677b758d9c"
+        },
+        {
+          "name": "aquasecurity:trivy:PkgID",
+          "value": "k8s.io/klog/v2@v2.130.1"
+        },
+        {
+          "name": "aquasecurity:trivy:PkgType",
+          "value": "gobinary"
+        }
+      ]
+    },
+    {
+      "bom-ref": "c082e58c-c0f1-4474-b256-6b096f1b4a6d",
       "type": "library",
       "name": "github.com/spf13/pflag",
       "version": "v1.0.10",
@@ -412,10 +585,11 @@
       ]
     },
     {
-      "bom-ref": "662f4b27-67bd-4642-b4a2-b8ae0c0d5046",
+      "bom-ref": "c5d3491f-7eae-4935-905f-45f1020af40d",
       "type": "library",
-      "name": "k8s.io/ingress-nginx",
-      "purl": "pkg:golang/k8s.io/ingress-nginx",
+      "name": "github.com/mitchellh/go-ps",
+      "version": "v1.0.0",
+      "purl": "pkg:golang/github.com/mitchellh/go-ps@v1.0.0",
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
@@ -427,7 +601,7 @@
         },
         {
           "name": "aquasecurity:trivy:PkgID",
-          "value": "k8s.io/ingress-nginx"
+          "value": "github.com/mitchellh/go-ps@v1.0.0"
         },
         {
           "name": "aquasecurity:trivy:PkgType",
@@ -436,7 +610,7 @@
       ]
     },
     {
-      "bom-ref": "6659d3b5-753a-4061-a018-67ead6c8a722",
+      "bom-ref": "dfe66f03-0545-4482-9354-a5e42666b5bd",
       "type": "library",
       "name": "k8s.io/utils",
       "version": "v0.0.0-20260108192941-914a6e750570",
@@ -444,11 +618,11 @@
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
-          "value": "sha256:d9d5f6ec73b1291ebdc23e715d9a75ce443ae5c18b400db518e6e2fdc909de05"
+          "value": "sha256:db192c97076a22c0ee640a48e23b27b110c8d324cb62661e93376ed4aef22daf"
         },
         {
           "name": "aquasecurity:trivy:LayerDigest",
-          "value": "sha256:12ee437a10ca830c54998432d58bf97a6a5f470002b0199cd45791677b758d9c"
+          "value": "sha256:a1147b64a6784a672dab3ba4c0ed5f640b4b27119226fe31374b4493a70a4e98"
         },
         {
           "name": "aquasecurity:trivy:PkgID",
@@ -461,7 +635,32 @@
       ]
     },
     {
-      "bom-ref": "75823ad5-5db7-41f6-a090-de6f6ca847e0",
+      "bom-ref": "ed42334c-9ca1-4919-a0e1-8cb6df304c95",
+      "type": "library",
+      "name": "github.com/go-logr/logr",
+      "version": "v1.4.3",
+      "purl": "pkg:golang/github.com/go-logr/logr@v1.4.3",
+      "properties": [
+        {
+          "name": "aquasecurity:trivy:LayerDiffID",
+          "value": "sha256:db192c97076a22c0ee640a48e23b27b110c8d324cb62661e93376ed4aef22daf"
+        },
+        {
+          "name": "aquasecurity:trivy:LayerDigest",
+          "value": "sha256:a1147b64a6784a672dab3ba4c0ed5f640b4b27119226fe31374b4493a70a4e98"
+        },
+        {
+          "name": "aquasecurity:trivy:PkgID",
+          "value": "github.com/go-logr/logr@v1.4.3"
+        },
+        {
+          "name": "aquasecurity:trivy:PkgType",
+          "value": "gobinary"
+        }
+      ]
+    },
+    {
+      "bom-ref": "efbfbd28-357b-403a-a378-50abbf83b096",
       "type": "application",
       "name": "dbg",
       "properties": [
@@ -476,134 +675,11 @@
       ]
     },
     {
-      "bom-ref": "7986ccd6-b262-49ec-b299-5dee06639ccb",
+      "bom-ref": "f0b1a1c2-4715-4311-8a1c-6c7548dbf870",
       "type": "library",
-      "name": "k8s.io/klog/v2",
-      "version": "v2.130.1",
-      "purl": "pkg:golang/k8s.io/klog/v2@v2.130.1",
-      "properties": [
-        {
-          "name": "aquasecurity:trivy:LayerDiffID",
-          "value": "sha256:d9d5f6ec73b1291ebdc23e715d9a75ce443ae5c18b400db518e6e2fdc909de05"
-        },
-        {
-          "name": "aquasecurity:trivy:LayerDigest",
-          "value": "sha256:12ee437a10ca830c54998432d58bf97a6a5f470002b0199cd45791677b758d9c"
-        },
-        {
-          "name": "aquasecurity:trivy:PkgID",
-          "value": "k8s.io/klog/v2@v2.130.1"
-        },
-        {
-          "name": "aquasecurity:trivy:PkgType",
-          "value": "gobinary"
-        }
-      ]
-    },
-    {
-      "bom-ref": "7cbf3d05-a07c-46a6-8bc0-b90f6950abab",
-      "type": "library",
-      "name": "github.com/mitchellh/go-ps",
-      "version": "v1.0.0",
-      "purl": "pkg:golang/github.com/mitchellh/go-ps@v1.0.0",
-      "properties": [
-        {
-          "name": "aquasecurity:trivy:LayerDiffID",
-          "value": "sha256:db192c97076a22c0ee640a48e23b27b110c8d324cb62661e93376ed4aef22daf"
-        },
-        {
-          "name": "aquasecurity:trivy:LayerDigest",
-          "value": "sha256:a1147b64a6784a672dab3ba4c0ed5f640b4b27119226fe31374b4493a70a4e98"
-        },
-        {
-          "name": "aquasecurity:trivy:PkgID",
-          "value": "github.com/mitchellh/go-ps@v1.0.0"
-        },
-        {
-          "name": "aquasecurity:trivy:PkgType",
-          "value": "gobinary"
-        }
-      ]
-    },
-    {
-      "bom-ref": "8202e8b6-5699-4912-b443-174a34de7d6c",
-      "type": "library",
-      "name": "k8s.io/klog/v2",
-      "version": "v2.130.1",
-      "purl": "pkg:golang/k8s.io/klog/v2@v2.130.1",
-      "properties": [
-        {
-          "name": "aquasecurity:trivy:LayerDiffID",
-          "value": "sha256:db192c97076a22c0ee640a48e23b27b110c8d324cb62661e93376ed4aef22daf"
-        },
-        {
-          "name": "aquasecurity:trivy:LayerDigest",
-          "value": "sha256:a1147b64a6784a672dab3ba4c0ed5f640b4b27119226fe31374b4493a70a4e98"
-        },
-        {
-          "name": "aquasecurity:trivy:PkgID",
-          "value": "k8s.io/klog/v2@v2.130.1"
-        },
-        {
-          "name": "aquasecurity:trivy:PkgType",
-          "value": "gobinary"
-        }
-      ]
-    },
-    {
-      "bom-ref": "8d66295a-9de1-405a-8f7c-bd72ac97ec53",
-      "type": "library",
-      "name": "github.com/spf13/pflag",
-      "version": "v1.0.10",
-      "purl": "pkg:golang/github.com/spf13/pflag@v1.0.10",
-      "properties": [
-        {
-          "name": "aquasecurity:trivy:LayerDiffID",
-          "value": "sha256:db192c97076a22c0ee640a48e23b27b110c8d324cb62661e93376ed4aef22daf"
-        },
-        {
-          "name": "aquasecurity:trivy:LayerDigest",
-          "value": "sha256:a1147b64a6784a672dab3ba4c0ed5f640b4b27119226fe31374b4493a70a4e98"
-        },
-        {
-          "name": "aquasecurity:trivy:PkgID",
-          "value": "github.com/spf13/pflag@v1.0.10"
-        },
-        {
-          "name": "aquasecurity:trivy:PkgType",
-          "value": "gobinary"
-        }
-      ]
-    },
-    {
-      "bom-ref": "9ca7e9e3-6121-44de-8faf-f2edaa6b8db4",
-      "type": "library",
-      "name": "k8s.io/ingress-nginx",
-      "purl": "pkg:golang/k8s.io/ingress-nginx",
-      "properties": [
-        {
-          "name": "aquasecurity:trivy:LayerDiffID",
-          "value": "sha256:d9d5f6ec73b1291ebdc23e715d9a75ce443ae5c18b400db518e6e2fdc909de05"
-        },
-        {
-          "name": "aquasecurity:trivy:LayerDigest",
-          "value": "sha256:12ee437a10ca830c54998432d58bf97a6a5f470002b0199cd45791677b758d9c"
-        },
-        {
-          "name": "aquasecurity:trivy:PkgID",
-          "value": "k8s.io/ingress-nginx"
-        },
-        {
-          "name": "aquasecurity:trivy:PkgType",
-          "value": "gobinary"
-        }
-      ]
-    },
-    {
-      "bom-ref": "bb08938a-37ae-4b5b-8694-2ba604eee922",
-      "type": "library",
-      "name": "k8s.io/ingress-nginx",
-      "purl": "pkg:golang/k8s.io/ingress-nginx",
+      "name": "stdlib",
+      "version": "v1.25.6",
+      "purl": "pkg:golang/stdlib@v1.25.6",
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
@@ -615,7 +691,7 @@
         },
         {
           "name": "aquasecurity:trivy:PkgID",
-          "value": "k8s.io/ingress-nginx"
+          "value": "stdlib@v1.25.6"
         },
         {
           "name": "aquasecurity:trivy:PkgType",
@@ -624,32 +700,7 @@
       ]
     },
     {
-      "bom-ref": "d86a8d7f-112c-41d4-8dcb-7d2f6d016935",
-      "type": "library",
-      "name": "k8s.io/utils",
-      "version": "v0.0.0-20260108192941-914a6e750570",
-      "purl": "pkg:golang/k8s.io/utils@v0.0.0-20260108192941-914a6e750570",
-      "properties": [
-        {
-          "name": "aquasecurity:trivy:LayerDiffID",
-          "value": "sha256:d648b13433ecfb8c05479f76fd1112f31441f259b2d369011cc762b79230bcfb"
-        },
-        {
-          "name": "aquasecurity:trivy:LayerDigest",
-          "value": "sha256:08b9ab2fac7b351427751a91ad6172bda2abb175badda1075834f6e6efcb0eb9"
-        },
-        {
-          "name": "aquasecurity:trivy:PkgID",
-          "value": "k8s.io/utils@v0.0.0-20260108192941-914a6e750570"
-        },
-        {
-          "name": "aquasecurity:trivy:PkgType",
-          "value": "gobinary"
-        }
-      ]
-    },
-    {
-      "bom-ref": "e507217b-ed52-41db-8a53-985615b279e6",
+      "bom-ref": "f1e4c0af-6e33-4fa1-8973-637201b01a5a",
       "type": "library",
       "name": "github.com/go-logr/logr",
       "version": "v1.4.3",
@@ -674,23 +725,23 @@
       ]
     },
     {
-      "bom-ref": "e5819b4a-a0f3-44ec-8b45-0a2525491d35",
+      "bom-ref": "f26197a8-5364-4521-9270-112a48be2aa9",
       "type": "library",
-      "name": "k8s.io/apimachinery",
-      "version": "v0.35.0",
-      "purl": "pkg:golang/k8s.io/apimachinery@v0.35.0",
+      "name": "github.com/go-logr/logr",
+      "version": "v1.4.3",
+      "purl": "pkg:golang/github.com/go-logr/logr@v1.4.3",
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
-          "value": "sha256:db192c97076a22c0ee640a48e23b27b110c8d324cb62661e93376ed4aef22daf"
+          "value": "sha256:d648b13433ecfb8c05479f76fd1112f31441f259b2d369011cc762b79230bcfb"
         },
         {
           "name": "aquasecurity:trivy:LayerDigest",
-          "value": "sha256:a1147b64a6784a672dab3ba4c0ed5f640b4b27119226fe31374b4493a70a4e98"
+          "value": "sha256:08b9ab2fac7b351427751a91ad6172bda2abb175badda1075834f6e6efcb0eb9"
         },
         {
           "name": "aquasecurity:trivy:PkgID",
-          "value": "k8s.io/apimachinery@v0.35.0"
+          "value": "github.com/go-logr/logr@v1.4.3"
         },
         {
           "name": "aquasecurity:trivy:PkgType",
@@ -699,11 +750,11 @@
       ]
     },
     {
-      "bom-ref": "ea0e4c0e-4adc-489e-86b3-d9af6522182c",
+      "bom-ref": "f572f546-3ea0-4a18-9efd-d541d4271263",
       "type": "library",
-      "name": "k8s.io/apimachinery",
-      "version": "v0.35.0",
-      "purl": "pkg:golang/k8s.io/apimachinery@v0.35.0",
+      "name": "k8s.io/utils",
+      "version": "v0.0.0-20260108192941-914a6e750570",
+      "purl": "pkg:golang/k8s.io/utils@v0.0.0-20260108192941-914a6e750570",
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
@@ -715,47 +766,7 @@
         },
         {
           "name": "aquasecurity:trivy:PkgID",
-          "value": "k8s.io/apimachinery@v0.35.0"
-        },
-        {
-          "name": "aquasecurity:trivy:PkgType",
-          "value": "gobinary"
-        }
-      ]
-    },
-    {
-      "bom-ref": "f60dfb17-becb-4e3b-a393-a0806f7356e5",
-      "type": "application",
-      "name": "nginx-ingress-controller",
-      "properties": [
-        {
-          "name": "aquasecurity:trivy:Class",
-          "value": "lang-pkgs"
-        },
-        {
-          "name": "aquasecurity:trivy:Type",
-          "value": "gobinary"
-        }
-      ]
-    },
-    {
-      "bom-ref": "fb4cf468-76e9-4083-877e-3aca1558f3f5",
-      "type": "library",
-      "name": "github.com/mitchellh/go-ps",
-      "version": "v1.0.0",
-      "purl": "pkg:golang/github.com/mitchellh/go-ps@v1.0.0",
-      "properties": [
-        {
-          "name": "aquasecurity:trivy:LayerDiffID",
-          "value": "sha256:d9d5f6ec73b1291ebdc23e715d9a75ce443ae5c18b400db518e6e2fdc909de05"
-        },
-        {
-          "name": "aquasecurity:trivy:LayerDigest",
-          "value": "sha256:12ee437a10ca830c54998432d58bf97a6a5f470002b0199cd45791677b758d9c"
-        },
-        {
-          "name": "aquasecurity:trivy:PkgID",
-          "value": "github.com/mitchellh/go-ps@v1.0.0"
+          "value": "k8s.io/utils@v0.0.0-20260108192941-914a6e750570"
         },
         {
           "name": "aquasecurity:trivy:PkgType",
@@ -766,6 +777,9 @@
     {
       "bom-ref": "pkg:apk/alpine/abseil-cpp-base@20250814.1-r0?arch=x86_64&distro=3.23.2",
       "type": "library",
+      "supplier": {
+        "name": "Leon White <badfunkstripe@gmail.com>"
+      },
       "name": "abseil-cpp-base",
       "version": "20250814.1-r0",
       "hashes": [
@@ -777,7 +791,7 @@
       "licenses": [
         {
           "license": {
-            "name": "Apache-2.0"
+            "id": "Apache-2.0"
           }
         }
       ],
@@ -812,6 +826,9 @@
     {
       "bom-ref": "pkg:apk/alpine/abseil-cpp-city@20250814.1-r0?arch=x86_64&distro=3.23.2",
       "type": "library",
+      "supplier": {
+        "name": "Leon White <badfunkstripe@gmail.com>"
+      },
       "name": "abseil-cpp-city",
       "version": "20250814.1-r0",
       "hashes": [
@@ -823,7 +840,7 @@
       "licenses": [
         {
           "license": {
-            "name": "Apache-2.0"
+            "id": "Apache-2.0"
           }
         }
       ],
@@ -858,6 +875,9 @@
     {
       "bom-ref": "pkg:apk/alpine/abseil-cpp-cord-internal@20250814.1-r0?arch=x86_64&distro=3.23.2",
       "type": "library",
+      "supplier": {
+        "name": "Leon White <badfunkstripe@gmail.com>"
+      },
       "name": "abseil-cpp-cord-internal",
       "version": "20250814.1-r0",
       "hashes": [
@@ -869,7 +889,7 @@
       "licenses": [
         {
           "license": {
-            "name": "Apache-2.0"
+            "id": "Apache-2.0"
           }
         }
       ],
@@ -904,6 +924,9 @@
     {
       "bom-ref": "pkg:apk/alpine/abseil-cpp-cord@20250814.1-r0?arch=x86_64&distro=3.23.2",
       "type": "library",
+      "supplier": {
+        "name": "Leon White <badfunkstripe@gmail.com>"
+      },
       "name": "abseil-cpp-cord",
       "version": "20250814.1-r0",
       "hashes": [
@@ -915,7 +938,7 @@
       "licenses": [
         {
           "license": {
-            "name": "Apache-2.0"
+            "id": "Apache-2.0"
           }
         }
       ],
@@ -950,6 +973,9 @@
     {
       "bom-ref": "pkg:apk/alpine/abseil-cpp-cordz-functions@20250814.1-r0?arch=x86_64&distro=3.23.2",
       "type": "library",
+      "supplier": {
+        "name": "Leon White <badfunkstripe@gmail.com>"
+      },
       "name": "abseil-cpp-cordz-functions",
       "version": "20250814.1-r0",
       "hashes": [
@@ -961,7 +987,7 @@
       "licenses": [
         {
           "license": {
-            "name": "Apache-2.0"
+            "id": "Apache-2.0"
           }
         }
       ],
@@ -996,6 +1022,9 @@
     {
       "bom-ref": "pkg:apk/alpine/abseil-cpp-cordz-handle@20250814.1-r0?arch=x86_64&distro=3.23.2",
       "type": "library",
+      "supplier": {
+        "name": "Leon White <badfunkstripe@gmail.com>"
+      },
       "name": "abseil-cpp-cordz-handle",
       "version": "20250814.1-r0",
       "hashes": [
@@ -1007,7 +1036,7 @@
       "licenses": [
         {
           "license": {
-            "name": "Apache-2.0"
+            "id": "Apache-2.0"
           }
         }
       ],
@@ -1042,6 +1071,9 @@
     {
       "bom-ref": "pkg:apk/alpine/abseil-cpp-cordz-info@20250814.1-r0?arch=x86_64&distro=3.23.2",
       "type": "library",
+      "supplier": {
+        "name": "Leon White <badfunkstripe@gmail.com>"
+      },
       "name": "abseil-cpp-cordz-info",
       "version": "20250814.1-r0",
       "hashes": [
@@ -1053,7 +1085,7 @@
       "licenses": [
         {
           "license": {
-            "name": "Apache-2.0"
+            "id": "Apache-2.0"
           }
         }
       ],
@@ -1088,6 +1120,9 @@
     {
       "bom-ref": "pkg:apk/alpine/abseil-cpp-crc-cord-state@20250814.1-r0?arch=x86_64&distro=3.23.2",
       "type": "library",
+      "supplier": {
+        "name": "Leon White <badfunkstripe@gmail.com>"
+      },
       "name": "abseil-cpp-crc-cord-state",
       "version": "20250814.1-r0",
       "hashes": [
@@ -1099,7 +1134,7 @@
       "licenses": [
         {
           "license": {
-            "name": "Apache-2.0"
+            "id": "Apache-2.0"
           }
         }
       ],
@@ -1134,6 +1169,9 @@
     {
       "bom-ref": "pkg:apk/alpine/abseil-cpp-crc-cpu-detect@20250814.1-r0?arch=x86_64&distro=3.23.2",
       "type": "library",
+      "supplier": {
+        "name": "Leon White <badfunkstripe@gmail.com>"
+      },
       "name": "abseil-cpp-crc-cpu-detect",
       "version": "20250814.1-r0",
       "hashes": [
@@ -1145,7 +1183,7 @@
       "licenses": [
         {
           "license": {
-            "name": "Apache-2.0"
+            "id": "Apache-2.0"
           }
         }
       ],
@@ -1180,6 +1218,9 @@
     {
       "bom-ref": "pkg:apk/alpine/abseil-cpp-crc-internal@20250814.1-r0?arch=x86_64&distro=3.23.2",
       "type": "library",
+      "supplier": {
+        "name": "Leon White <badfunkstripe@gmail.com>"
+      },
       "name": "abseil-cpp-crc-internal",
       "version": "20250814.1-r0",
       "hashes": [
@@ -1191,7 +1232,7 @@
       "licenses": [
         {
           "license": {
-            "name": "Apache-2.0"
+            "id": "Apache-2.0"
           }
         }
       ],
@@ -1226,6 +1267,9 @@
     {
       "bom-ref": "pkg:apk/alpine/abseil-cpp-crc32c@20250814.1-r0?arch=x86_64&distro=3.23.2",
       "type": "library",
+      "supplier": {
+        "name": "Leon White <badfunkstripe@gmail.com>"
+      },
       "name": "abseil-cpp-crc32c",
       "version": "20250814.1-r0",
       "hashes": [
@@ -1237,7 +1281,7 @@
       "licenses": [
         {
           "license": {
-            "name": "Apache-2.0"
+            "id": "Apache-2.0"
           }
         }
       ],
@@ -1272,6 +1316,9 @@
     {
       "bom-ref": "pkg:apk/alpine/abseil-cpp-debugging-internal@20250814.1-r0?arch=x86_64&distro=3.23.2",
       "type": "library",
+      "supplier": {
+        "name": "Leon White <badfunkstripe@gmail.com>"
+      },
       "name": "abseil-cpp-debugging-internal",
       "version": "20250814.1-r0",
       "hashes": [
@@ -1283,7 +1330,7 @@
       "licenses": [
         {
           "license": {
-            "name": "Apache-2.0"
+            "id": "Apache-2.0"
           }
         }
       ],
@@ -1318,6 +1365,9 @@
     {
       "bom-ref": "pkg:apk/alpine/abseil-cpp-die-if-null@20250814.1-r0?arch=x86_64&distro=3.23.2",
       "type": "library",
+      "supplier": {
+        "name": "Leon White <badfunkstripe@gmail.com>"
+      },
       "name": "abseil-cpp-die-if-null",
       "version": "20250814.1-r0",
       "hashes": [
@@ -1329,7 +1379,7 @@
       "licenses": [
         {
           "license": {
-            "name": "Apache-2.0"
+            "id": "Apache-2.0"
           }
         }
       ],
@@ -1364,6 +1414,9 @@
     {
       "bom-ref": "pkg:apk/alpine/abseil-cpp-examine-stack@20250814.1-r0?arch=x86_64&distro=3.23.2",
       "type": "library",
+      "supplier": {
+        "name": "Leon White <badfunkstripe@gmail.com>"
+      },
       "name": "abseil-cpp-examine-stack",
       "version": "20250814.1-r0",
       "hashes": [
@@ -1375,7 +1428,7 @@
       "licenses": [
         {
           "license": {
-            "name": "Apache-2.0"
+            "id": "Apache-2.0"
           }
         }
       ],
@@ -1410,6 +1463,9 @@
     {
       "bom-ref": "pkg:apk/alpine/abseil-cpp-exponential-biased@20250814.1-r0?arch=x86_64&distro=3.23.2",
       "type": "library",
+      "supplier": {
+        "name": "Leon White <badfunkstripe@gmail.com>"
+      },
       "name": "abseil-cpp-exponential-biased",
       "version": "20250814.1-r0",
       "hashes": [
@@ -1421,7 +1477,7 @@
       "licenses": [
         {
           "license": {
-            "name": "Apache-2.0"
+            "id": "Apache-2.0"
           }
         }
       ],
@@ -1456,6 +1512,9 @@
     {
       "bom-ref": "pkg:apk/alpine/abseil-cpp-flags-commandlineflag-internal@20250814.1-r0?arch=x86_64&distro=3.23.2",
       "type": "library",
+      "supplier": {
+        "name": "Leon White <badfunkstripe@gmail.com>"
+      },
       "name": "abseil-cpp-flags-commandlineflag-internal",
       "version": "20250814.1-r0",
       "hashes": [
@@ -1467,7 +1526,7 @@
       "licenses": [
         {
           "license": {
-            "name": "Apache-2.0"
+            "id": "Apache-2.0"
           }
         }
       ],
@@ -1502,6 +1561,9 @@
     {
       "bom-ref": "pkg:apk/alpine/abseil-cpp-flags-commandlineflag@20250814.1-r0?arch=x86_64&distro=3.23.2",
       "type": "library",
+      "supplier": {
+        "name": "Leon White <badfunkstripe@gmail.com>"
+      },
       "name": "abseil-cpp-flags-commandlineflag",
       "version": "20250814.1-r0",
       "hashes": [
@@ -1513,7 +1575,7 @@
       "licenses": [
         {
           "license": {
-            "name": "Apache-2.0"
+            "id": "Apache-2.0"
           }
         }
       ],
@@ -1548,6 +1610,9 @@
     {
       "bom-ref": "pkg:apk/alpine/abseil-cpp-flags-config@20250814.1-r0?arch=x86_64&distro=3.23.2",
       "type": "library",
+      "supplier": {
+        "name": "Leon White <badfunkstripe@gmail.com>"
+      },
       "name": "abseil-cpp-flags-config",
       "version": "20250814.1-r0",
       "hashes": [
@@ -1559,7 +1624,7 @@
       "licenses": [
         {
           "license": {
-            "name": "Apache-2.0"
+            "id": "Apache-2.0"
           }
         }
       ],
@@ -1594,6 +1659,9 @@
     {
       "bom-ref": "pkg:apk/alpine/abseil-cpp-flags-internal@20250814.1-r0?arch=x86_64&distro=3.23.2",
       "type": "library",
+      "supplier": {
+        "name": "Leon White <badfunkstripe@gmail.com>"
+      },
       "name": "abseil-cpp-flags-internal",
       "version": "20250814.1-r0",
       "hashes": [
@@ -1605,7 +1673,7 @@
       "licenses": [
         {
           "license": {
-            "name": "Apache-2.0"
+            "id": "Apache-2.0"
           }
         }
       ],
@@ -1640,6 +1708,9 @@
     {
       "bom-ref": "pkg:apk/alpine/abseil-cpp-flags-marshalling@20250814.1-r0?arch=x86_64&distro=3.23.2",
       "type": "library",
+      "supplier": {
+        "name": "Leon White <badfunkstripe@gmail.com>"
+      },
       "name": "abseil-cpp-flags-marshalling",
       "version": "20250814.1-r0",
       "hashes": [
@@ -1651,7 +1722,7 @@
       "licenses": [
         {
           "license": {
-            "name": "Apache-2.0"
+            "id": "Apache-2.0"
           }
         }
       ],
@@ -1686,6 +1757,9 @@
     {
       "bom-ref": "pkg:apk/alpine/abseil-cpp-flags-private-handle-accessor@20250814.1-r0?arch=x86_64&distro=3.23.2",
       "type": "library",
+      "supplier": {
+        "name": "Leon White <badfunkstripe@gmail.com>"
+      },
       "name": "abseil-cpp-flags-private-handle-accessor",
       "version": "20250814.1-r0",
       "hashes": [
@@ -1697,7 +1771,7 @@
       "licenses": [
         {
           "license": {
-            "name": "Apache-2.0"
+            "id": "Apache-2.0"
           }
         }
       ],
@@ -1732,6 +1806,9 @@
     {
       "bom-ref": "pkg:apk/alpine/abseil-cpp-flags-program-name@20250814.1-r0?arch=x86_64&distro=3.23.2",
       "type": "library",
+      "supplier": {
+        "name": "Leon White <badfunkstripe@gmail.com>"
+      },
       "name": "abseil-cpp-flags-program-name",
       "version": "20250814.1-r0",
       "hashes": [
@@ -1743,7 +1820,7 @@
       "licenses": [
         {
           "license": {
-            "name": "Apache-2.0"
+            "id": "Apache-2.0"
           }
         }
       ],
@@ -1778,6 +1855,9 @@
     {
       "bom-ref": "pkg:apk/alpine/abseil-cpp-flags-reflection@20250814.1-r0?arch=x86_64&distro=3.23.2",
       "type": "library",
+      "supplier": {
+        "name": "Leon White <badfunkstripe@gmail.com>"
+      },
       "name": "abseil-cpp-flags-reflection",
       "version": "20250814.1-r0",
       "hashes": [
@@ -1789,7 +1869,7 @@
       "licenses": [
         {
           "license": {
-            "name": "Apache-2.0"
+            "id": "Apache-2.0"
           }
         }
       ],
@@ -1824,6 +1904,9 @@
     {
       "bom-ref": "pkg:apk/alpine/abseil-cpp-hash@20250814.1-r0?arch=x86_64&distro=3.23.2",
       "type": "library",
+      "supplier": {
+        "name": "Leon White <badfunkstripe@gmail.com>"
+      },
       "name": "abseil-cpp-hash",
       "version": "20250814.1-r0",
       "hashes": [
@@ -1835,7 +1918,7 @@
       "licenses": [
         {
           "license": {
-            "name": "Apache-2.0"
+            "id": "Apache-2.0"
           }
         }
       ],
@@ -1870,6 +1953,9 @@
     {
       "bom-ref": "pkg:apk/alpine/abseil-cpp-hashtablez-sampler@20250814.1-r0?arch=x86_64&distro=3.23.2",
       "type": "library",
+      "supplier": {
+        "name": "Leon White <badfunkstripe@gmail.com>"
+      },
       "name": "abseil-cpp-hashtablez-sampler",
       "version": "20250814.1-r0",
       "hashes": [
@@ -1881,7 +1967,7 @@
       "licenses": [
         {
           "license": {
-            "name": "Apache-2.0"
+            "id": "Apache-2.0"
           }
         }
       ],
@@ -1916,6 +2002,9 @@
     {
       "bom-ref": "pkg:apk/alpine/abseil-cpp-int128@20250814.1-r0?arch=x86_64&distro=3.23.2",
       "type": "library",
+      "supplier": {
+        "name": "Leon White <badfunkstripe@gmail.com>"
+      },
       "name": "abseil-cpp-int128",
       "version": "20250814.1-r0",
       "hashes": [
@@ -1927,7 +2016,7 @@
       "licenses": [
         {
           "license": {
-            "name": "Apache-2.0"
+            "id": "Apache-2.0"
           }
         }
       ],
@@ -1962,6 +2051,9 @@
     {
       "bom-ref": "pkg:apk/alpine/abseil-cpp-kernel-timeout-internal@20250814.1-r0?arch=x86_64&distro=3.23.2",
       "type": "library",
+      "supplier": {
+        "name": "Leon White <badfunkstripe@gmail.com>"
+      },
       "name": "abseil-cpp-kernel-timeout-internal",
       "version": "20250814.1-r0",
       "hashes": [
@@ -1973,7 +2065,7 @@
       "licenses": [
         {
           "license": {
-            "name": "Apache-2.0"
+            "id": "Apache-2.0"
           }
         }
       ],
@@ -2008,6 +2100,9 @@
     {
       "bom-ref": "pkg:apk/alpine/abseil-cpp-leak-check@20250814.1-r0?arch=x86_64&distro=3.23.2",
       "type": "library",
+      "supplier": {
+        "name": "Leon White <badfunkstripe@gmail.com>"
+      },
       "name": "abseil-cpp-leak-check",
       "version": "20250814.1-r0",
       "hashes": [
@@ -2019,7 +2114,7 @@
       "licenses": [
         {
           "license": {
-            "name": "Apache-2.0"
+            "id": "Apache-2.0"
           }
         }
       ],
@@ -2054,6 +2149,9 @@
     {
       "bom-ref": "pkg:apk/alpine/abseil-cpp-log-globals@20250814.1-r0?arch=x86_64&distro=3.23.2",
       "type": "library",
+      "supplier": {
+        "name": "Leon White <badfunkstripe@gmail.com>"
+      },
       "name": "abseil-cpp-log-globals",
       "version": "20250814.1-r0",
       "hashes": [
@@ -2065,7 +2163,7 @@
       "licenses": [
         {
           "license": {
-            "name": "Apache-2.0"
+            "id": "Apache-2.0"
           }
         }
       ],
@@ -2100,6 +2198,9 @@
     {
       "bom-ref": "pkg:apk/alpine/abseil-cpp-log-initialize@20250814.1-r0?arch=x86_64&distro=3.23.2",
       "type": "library",
+      "supplier": {
+        "name": "Leon White <badfunkstripe@gmail.com>"
+      },
       "name": "abseil-cpp-log-initialize",
       "version": "20250814.1-r0",
       "hashes": [
@@ -2111,7 +2212,7 @@
       "licenses": [
         {
           "license": {
-            "name": "Apache-2.0"
+            "id": "Apache-2.0"
           }
         }
       ],
@@ -2146,6 +2247,9 @@
     {
       "bom-ref": "pkg:apk/alpine/abseil-cpp-log-internal-check-op@20250814.1-r0?arch=x86_64&distro=3.23.2",
       "type": "library",
+      "supplier": {
+        "name": "Leon White <badfunkstripe@gmail.com>"
+      },
       "name": "abseil-cpp-log-internal-check-op",
       "version": "20250814.1-r0",
       "hashes": [
@@ -2157,7 +2261,7 @@
       "licenses": [
         {
           "license": {
-            "name": "Apache-2.0"
+            "id": "Apache-2.0"
           }
         }
       ],
@@ -2192,6 +2296,9 @@
     {
       "bom-ref": "pkg:apk/alpine/abseil-cpp-log-internal-conditions@20250814.1-r0?arch=x86_64&distro=3.23.2",
       "type": "library",
+      "supplier": {
+        "name": "Leon White <badfunkstripe@gmail.com>"
+      },
       "name": "abseil-cpp-log-internal-conditions",
       "version": "20250814.1-r0",
       "hashes": [
@@ -2203,7 +2310,7 @@
       "licenses": [
         {
           "license": {
-            "name": "Apache-2.0"
+            "id": "Apache-2.0"
           }
         }
       ],
@@ -2238,6 +2345,9 @@
     {
       "bom-ref": "pkg:apk/alpine/abseil-cpp-log-internal-fnmatch@20250814.1-r0?arch=x86_64&distro=3.23.2",
       "type": "library",
+      "supplier": {
+        "name": "Leon White <badfunkstripe@gmail.com>"
+      },
       "name": "abseil-cpp-log-internal-fnmatch",
       "version": "20250814.1-r0",
       "hashes": [
@@ -2249,7 +2359,7 @@
       "licenses": [
         {
           "license": {
-            "name": "Apache-2.0"
+            "id": "Apache-2.0"
           }
         }
       ],
@@ -2284,6 +2394,9 @@
     {
       "bom-ref": "pkg:apk/alpine/abseil-cpp-log-internal-format@20250814.1-r0?arch=x86_64&distro=3.23.2",
       "type": "library",
+      "supplier": {
+        "name": "Leon White <badfunkstripe@gmail.com>"
+      },
       "name": "abseil-cpp-log-internal-format",
       "version": "20250814.1-r0",
       "hashes": [
@@ -2295,7 +2408,7 @@
       "licenses": [
         {
           "license": {
-            "name": "Apache-2.0"
+            "id": "Apache-2.0"
           }
         }
       ],
@@ -2330,6 +2443,9 @@
     {
       "bom-ref": "pkg:apk/alpine/abseil-cpp-log-internal-globals@20250814.1-r0?arch=x86_64&distro=3.23.2",
       "type": "library",
+      "supplier": {
+        "name": "Leon White <badfunkstripe@gmail.com>"
+      },
       "name": "abseil-cpp-log-internal-globals",
       "version": "20250814.1-r0",
       "hashes": [
@@ -2341,7 +2457,7 @@
       "licenses": [
         {
           "license": {
-            "name": "Apache-2.0"
+            "id": "Apache-2.0"
           }
         }
       ],
@@ -2376,6 +2492,9 @@
     {
       "bom-ref": "pkg:apk/alpine/abseil-cpp-log-internal-log-sink-set@20250814.1-r0?arch=x86_64&distro=3.23.2",
       "type": "library",
+      "supplier": {
+        "name": "Leon White <badfunkstripe@gmail.com>"
+      },
       "name": "abseil-cpp-log-internal-log-sink-set",
       "version": "20250814.1-r0",
       "hashes": [
@@ -2387,7 +2506,7 @@
       "licenses": [
         {
           "license": {
-            "name": "Apache-2.0"
+            "id": "Apache-2.0"
           }
         }
       ],
@@ -2422,6 +2541,9 @@
     {
       "bom-ref": "pkg:apk/alpine/abseil-cpp-log-internal-message@20250814.1-r0?arch=x86_64&distro=3.23.2",
       "type": "library",
+      "supplier": {
+        "name": "Leon White <badfunkstripe@gmail.com>"
+      },
       "name": "abseil-cpp-log-internal-message",
       "version": "20250814.1-r0",
       "hashes": [
@@ -2433,7 +2555,7 @@
       "licenses": [
         {
           "license": {
-            "name": "Apache-2.0"
+            "id": "Apache-2.0"
           }
         }
       ],
@@ -2468,6 +2590,9 @@
     {
       "bom-ref": "pkg:apk/alpine/abseil-cpp-log-internal-nullguard@20250814.1-r0?arch=x86_64&distro=3.23.2",
       "type": "library",
+      "supplier": {
+        "name": "Leon White <badfunkstripe@gmail.com>"
+      },
       "name": "abseil-cpp-log-internal-nullguard",
       "version": "20250814.1-r0",
       "hashes": [
@@ -2479,7 +2604,7 @@
       "licenses": [
         {
           "license": {
-            "name": "Apache-2.0"
+            "id": "Apache-2.0"
           }
         }
       ],
@@ -2514,6 +2639,9 @@
     {
       "bom-ref": "pkg:apk/alpine/abseil-cpp-log-internal-proto@20250814.1-r0?arch=x86_64&distro=3.23.2",
       "type": "library",
+      "supplier": {
+        "name": "Leon White <badfunkstripe@gmail.com>"
+      },
       "name": "abseil-cpp-log-internal-proto",
       "version": "20250814.1-r0",
       "hashes": [
@@ -2525,7 +2653,7 @@
       "licenses": [
         {
           "license": {
-            "name": "Apache-2.0"
+            "id": "Apache-2.0"
           }
         }
       ],
@@ -2560,6 +2688,9 @@
     {
       "bom-ref": "pkg:apk/alpine/abseil-cpp-log-internal-structured-proto@20250814.1-r0?arch=x86_64&distro=3.23.2",
       "type": "library",
+      "supplier": {
+        "name": "Leon White <badfunkstripe@gmail.com>"
+      },
       "name": "abseil-cpp-log-internal-structured-proto",
       "version": "20250814.1-r0",
       "hashes": [
@@ -2571,7 +2702,7 @@
       "licenses": [
         {
           "license": {
-            "name": "Apache-2.0"
+            "id": "Apache-2.0"
           }
         }
       ],
@@ -2606,6 +2737,9 @@
     {
       "bom-ref": "pkg:apk/alpine/abseil-cpp-log-sink@20250814.1-r0?arch=x86_64&distro=3.23.2",
       "type": "library",
+      "supplier": {
+        "name": "Leon White <badfunkstripe@gmail.com>"
+      },
       "name": "abseil-cpp-log-sink",
       "version": "20250814.1-r0",
       "hashes": [
@@ -2617,7 +2751,7 @@
       "licenses": [
         {
           "license": {
-            "name": "Apache-2.0"
+            "id": "Apache-2.0"
           }
         }
       ],
@@ -2652,6 +2786,9 @@
     {
       "bom-ref": "pkg:apk/alpine/abseil-cpp-malloc-internal@20250814.1-r0?arch=x86_64&distro=3.23.2",
       "type": "library",
+      "supplier": {
+        "name": "Leon White <badfunkstripe@gmail.com>"
+      },
       "name": "abseil-cpp-malloc-internal",
       "version": "20250814.1-r0",
       "hashes": [
@@ -2663,7 +2800,7 @@
       "licenses": [
         {
           "license": {
-            "name": "Apache-2.0"
+            "id": "Apache-2.0"
           }
         }
       ],
@@ -2698,6 +2835,9 @@
     {
       "bom-ref": "pkg:apk/alpine/abseil-cpp-random-internal-entropy-pool@20250814.1-r0?arch=x86_64&distro=3.23.2",
       "type": "library",
+      "supplier": {
+        "name": "Leon White <badfunkstripe@gmail.com>"
+      },
       "name": "abseil-cpp-random-internal-entropy-pool",
       "version": "20250814.1-r0",
       "hashes": [
@@ -2709,7 +2849,7 @@
       "licenses": [
         {
           "license": {
-            "name": "Apache-2.0"
+            "id": "Apache-2.0"
           }
         }
       ],
@@ -2744,6 +2884,9 @@
     {
       "bom-ref": "pkg:apk/alpine/abseil-cpp-random-internal-platform@20250814.1-r0?arch=x86_64&distro=3.23.2",
       "type": "library",
+      "supplier": {
+        "name": "Leon White <badfunkstripe@gmail.com>"
+      },
       "name": "abseil-cpp-random-internal-platform",
       "version": "20250814.1-r0",
       "hashes": [
@@ -2755,7 +2898,7 @@
       "licenses": [
         {
           "license": {
-            "name": "Apache-2.0"
+            "id": "Apache-2.0"
           }
         }
       ],
@@ -2790,6 +2933,9 @@
     {
       "bom-ref": "pkg:apk/alpine/abseil-cpp-random-internal-randen-hwaes-impl@20250814.1-r0?arch=x86_64&distro=3.23.2",
       "type": "library",
+      "supplier": {
+        "name": "Leon White <badfunkstripe@gmail.com>"
+      },
       "name": "abseil-cpp-random-internal-randen-hwaes-impl",
       "version": "20250814.1-r0",
       "hashes": [
@@ -2801,7 +2947,7 @@
       "licenses": [
         {
           "license": {
-            "name": "Apache-2.0"
+            "id": "Apache-2.0"
           }
         }
       ],
@@ -2836,6 +2982,9 @@
     {
       "bom-ref": "pkg:apk/alpine/abseil-cpp-random-internal-randen-hwaes@20250814.1-r0?arch=x86_64&distro=3.23.2",
       "type": "library",
+      "supplier": {
+        "name": "Leon White <badfunkstripe@gmail.com>"
+      },
       "name": "abseil-cpp-random-internal-randen-hwaes",
       "version": "20250814.1-r0",
       "hashes": [
@@ -2847,7 +2996,7 @@
       "licenses": [
         {
           "license": {
-            "name": "Apache-2.0"
+            "id": "Apache-2.0"
           }
         }
       ],
@@ -2882,6 +3031,9 @@
     {
       "bom-ref": "pkg:apk/alpine/abseil-cpp-random-internal-randen-slow@20250814.1-r0?arch=x86_64&distro=3.23.2",
       "type": "library",
+      "supplier": {
+        "name": "Leon White <badfunkstripe@gmail.com>"
+      },
       "name": "abseil-cpp-random-internal-randen-slow",
       "version": "20250814.1-r0",
       "hashes": [
@@ -2893,7 +3045,7 @@
       "licenses": [
         {
           "license": {
-            "name": "Apache-2.0"
+            "id": "Apache-2.0"
           }
         }
       ],
@@ -2928,6 +3080,9 @@
     {
       "bom-ref": "pkg:apk/alpine/abseil-cpp-random-internal-randen@20250814.1-r0?arch=x86_64&distro=3.23.2",
       "type": "library",
+      "supplier": {
+        "name": "Leon White <badfunkstripe@gmail.com>"
+      },
       "name": "abseil-cpp-random-internal-randen",
       "version": "20250814.1-r0",
       "hashes": [
@@ -2939,7 +3094,7 @@
       "licenses": [
         {
           "license": {
-            "name": "Apache-2.0"
+            "id": "Apache-2.0"
           }
         }
       ],
@@ -2974,6 +3129,9 @@
     {
       "bom-ref": "pkg:apk/alpine/abseil-cpp-random-internal-seed-material@20250814.1-r0?arch=x86_64&distro=3.23.2",
       "type": "library",
+      "supplier": {
+        "name": "Leon White <badfunkstripe@gmail.com>"
+      },
       "name": "abseil-cpp-random-internal-seed-material",
       "version": "20250814.1-r0",
       "hashes": [
@@ -2985,7 +3143,7 @@
       "licenses": [
         {
           "license": {
-            "name": "Apache-2.0"
+            "id": "Apache-2.0"
           }
         }
       ],
@@ -3020,6 +3178,9 @@
     {
       "bom-ref": "pkg:apk/alpine/abseil-cpp-random-seed-gen-exception@20250814.1-r0?arch=x86_64&distro=3.23.2",
       "type": "library",
+      "supplier": {
+        "name": "Leon White <badfunkstripe@gmail.com>"
+      },
       "name": "abseil-cpp-random-seed-gen-exception",
       "version": "20250814.1-r0",
       "hashes": [
@@ -3031,7 +3192,7 @@
       "licenses": [
         {
           "license": {
-            "name": "Apache-2.0"
+            "id": "Apache-2.0"
           }
         }
       ],
@@ -3066,6 +3227,9 @@
     {
       "bom-ref": "pkg:apk/alpine/abseil-cpp-raw-hash-set@20250814.1-r0?arch=x86_64&distro=3.23.2",
       "type": "library",
+      "supplier": {
+        "name": "Leon White <badfunkstripe@gmail.com>"
+      },
       "name": "abseil-cpp-raw-hash-set",
       "version": "20250814.1-r0",
       "hashes": [
@@ -3077,7 +3241,7 @@
       "licenses": [
         {
           "license": {
-            "name": "Apache-2.0"
+            "id": "Apache-2.0"
           }
         }
       ],
@@ -3112,6 +3276,9 @@
     {
       "bom-ref": "pkg:apk/alpine/abseil-cpp-raw-logging-internal@20250814.1-r0?arch=x86_64&distro=3.23.2",
       "type": "library",
+      "supplier": {
+        "name": "Leon White <badfunkstripe@gmail.com>"
+      },
       "name": "abseil-cpp-raw-logging-internal",
       "version": "20250814.1-r0",
       "hashes": [
@@ -3123,7 +3290,7 @@
       "licenses": [
         {
           "license": {
-            "name": "Apache-2.0"
+            "id": "Apache-2.0"
           }
         }
       ],
@@ -3158,6 +3325,9 @@
     {
       "bom-ref": "pkg:apk/alpine/abseil-cpp-spinlock-wait@20250814.1-r0?arch=x86_64&distro=3.23.2",
       "type": "library",
+      "supplier": {
+        "name": "Leon White <badfunkstripe@gmail.com>"
+      },
       "name": "abseil-cpp-spinlock-wait",
       "version": "20250814.1-r0",
       "hashes": [
@@ -3169,7 +3339,7 @@
       "licenses": [
         {
           "license": {
-            "name": "Apache-2.0"
+            "id": "Apache-2.0"
           }
         }
       ],
@@ -3204,6 +3374,9 @@
     {
       "bom-ref": "pkg:apk/alpine/abseil-cpp-stacktrace@20250814.1-r0?arch=x86_64&distro=3.23.2",
       "type": "library",
+      "supplier": {
+        "name": "Leon White <badfunkstripe@gmail.com>"
+      },
       "name": "abseil-cpp-stacktrace",
       "version": "20250814.1-r0",
       "hashes": [
@@ -3215,7 +3388,7 @@
       "licenses": [
         {
           "license": {
-            "name": "Apache-2.0"
+            "id": "Apache-2.0"
           }
         }
       ],
@@ -3250,6 +3423,9 @@
     {
       "bom-ref": "pkg:apk/alpine/abseil-cpp-status@20250814.1-r0?arch=x86_64&distro=3.23.2",
       "type": "library",
+      "supplier": {
+        "name": "Leon White <badfunkstripe@gmail.com>"
+      },
       "name": "abseil-cpp-status",
       "version": "20250814.1-r0",
       "hashes": [
@@ -3261,7 +3437,7 @@
       "licenses": [
         {
           "license": {
-            "name": "Apache-2.0"
+            "id": "Apache-2.0"
           }
         }
       ],
@@ -3296,6 +3472,9 @@
     {
       "bom-ref": "pkg:apk/alpine/abseil-cpp-statusor@20250814.1-r0?arch=x86_64&distro=3.23.2",
       "type": "library",
+      "supplier": {
+        "name": "Leon White <badfunkstripe@gmail.com>"
+      },
       "name": "abseil-cpp-statusor",
       "version": "20250814.1-r0",
       "hashes": [
@@ -3307,7 +3486,7 @@
       "licenses": [
         {
           "license": {
-            "name": "Apache-2.0"
+            "id": "Apache-2.0"
           }
         }
       ],
@@ -3342,6 +3521,9 @@
     {
       "bom-ref": "pkg:apk/alpine/abseil-cpp-str-format-internal@20250814.1-r0?arch=x86_64&distro=3.23.2",
       "type": "library",
+      "supplier": {
+        "name": "Leon White <badfunkstripe@gmail.com>"
+      },
       "name": "abseil-cpp-str-format-internal",
       "version": "20250814.1-r0",
       "hashes": [
@@ -3353,7 +3535,7 @@
       "licenses": [
         {
           "license": {
-            "name": "Apache-2.0"
+            "id": "Apache-2.0"
           }
         }
       ],
@@ -3388,6 +3570,9 @@
     {
       "bom-ref": "pkg:apk/alpine/abseil-cpp-strerror@20250814.1-r0?arch=x86_64&distro=3.23.2",
       "type": "library",
+      "supplier": {
+        "name": "Leon White <badfunkstripe@gmail.com>"
+      },
       "name": "abseil-cpp-strerror",
       "version": "20250814.1-r0",
       "hashes": [
@@ -3399,7 +3584,7 @@
       "licenses": [
         {
           "license": {
-            "name": "Apache-2.0"
+            "id": "Apache-2.0"
           }
         }
       ],
@@ -3434,6 +3619,9 @@
     {
       "bom-ref": "pkg:apk/alpine/abseil-cpp-strings-internal@20250814.1-r0?arch=x86_64&distro=3.23.2",
       "type": "library",
+      "supplier": {
+        "name": "Leon White <badfunkstripe@gmail.com>"
+      },
       "name": "abseil-cpp-strings-internal",
       "version": "20250814.1-r0",
       "hashes": [
@@ -3445,7 +3633,7 @@
       "licenses": [
         {
           "license": {
-            "name": "Apache-2.0"
+            "id": "Apache-2.0"
           }
         }
       ],
@@ -3480,6 +3668,9 @@
     {
       "bom-ref": "pkg:apk/alpine/abseil-cpp-strings@20250814.1-r0?arch=x86_64&distro=3.23.2",
       "type": "library",
+      "supplier": {
+        "name": "Leon White <badfunkstripe@gmail.com>"
+      },
       "name": "abseil-cpp-strings",
       "version": "20250814.1-r0",
       "hashes": [
@@ -3491,7 +3682,7 @@
       "licenses": [
         {
           "license": {
-            "name": "Apache-2.0"
+            "id": "Apache-2.0"
           }
         }
       ],
@@ -3526,6 +3717,9 @@
     {
       "bom-ref": "pkg:apk/alpine/abseil-cpp-symbolize@20250814.1-r0?arch=x86_64&distro=3.23.2",
       "type": "library",
+      "supplier": {
+        "name": "Leon White <badfunkstripe@gmail.com>"
+      },
       "name": "abseil-cpp-symbolize",
       "version": "20250814.1-r0",
       "hashes": [
@@ -3537,7 +3731,7 @@
       "licenses": [
         {
           "license": {
-            "name": "Apache-2.0"
+            "id": "Apache-2.0"
           }
         }
       ],
@@ -3572,6 +3766,9 @@
     {
       "bom-ref": "pkg:apk/alpine/abseil-cpp-synchronization@20250814.1-r0?arch=x86_64&distro=3.23.2",
       "type": "library",
+      "supplier": {
+        "name": "Leon White <badfunkstripe@gmail.com>"
+      },
       "name": "abseil-cpp-synchronization",
       "version": "20250814.1-r0",
       "hashes": [
@@ -3583,7 +3780,7 @@
       "licenses": [
         {
           "license": {
-            "name": "Apache-2.0"
+            "id": "Apache-2.0"
           }
         }
       ],
@@ -3618,6 +3815,9 @@
     {
       "bom-ref": "pkg:apk/alpine/abseil-cpp-throw-delegate@20250814.1-r0?arch=x86_64&distro=3.23.2",
       "type": "library",
+      "supplier": {
+        "name": "Leon White <badfunkstripe@gmail.com>"
+      },
       "name": "abseil-cpp-throw-delegate",
       "version": "20250814.1-r0",
       "hashes": [
@@ -3629,7 +3829,7 @@
       "licenses": [
         {
           "license": {
-            "name": "Apache-2.0"
+            "id": "Apache-2.0"
           }
         }
       ],
@@ -3664,6 +3864,9 @@
     {
       "bom-ref": "pkg:apk/alpine/abseil-cpp-time-zone@20250814.1-r0?arch=x86_64&distro=3.23.2",
       "type": "library",
+      "supplier": {
+        "name": "Leon White <badfunkstripe@gmail.com>"
+      },
       "name": "abseil-cpp-time-zone",
       "version": "20250814.1-r0",
       "hashes": [
@@ -3675,7 +3878,7 @@
       "licenses": [
         {
           "license": {
-            "name": "Apache-2.0"
+            "id": "Apache-2.0"
           }
         }
       ],
@@ -3710,6 +3913,9 @@
     {
       "bom-ref": "pkg:apk/alpine/abseil-cpp-time@20250814.1-r0?arch=x86_64&distro=3.23.2",
       "type": "library",
+      "supplier": {
+        "name": "Leon White <badfunkstripe@gmail.com>"
+      },
       "name": "abseil-cpp-time",
       "version": "20250814.1-r0",
       "hashes": [
@@ -3721,7 +3927,7 @@
       "licenses": [
         {
           "license": {
-            "name": "Apache-2.0"
+            "id": "Apache-2.0"
           }
         }
       ],
@@ -3756,6 +3962,9 @@
     {
       "bom-ref": "pkg:apk/alpine/abseil-cpp-tracing-internal@20250814.1-r0?arch=x86_64&distro=3.23.2",
       "type": "library",
+      "supplier": {
+        "name": "Leon White <badfunkstripe@gmail.com>"
+      },
       "name": "abseil-cpp-tracing-internal",
       "version": "20250814.1-r0",
       "hashes": [
@@ -3767,7 +3976,7 @@
       "licenses": [
         {
           "license": {
-            "name": "Apache-2.0"
+            "id": "Apache-2.0"
           }
         }
       ],
@@ -3802,6 +4011,9 @@
     {
       "bom-ref": "pkg:apk/alpine/abseil-cpp-vlog-config-internal@20250814.1-r0?arch=x86_64&distro=3.23.2",
       "type": "library",
+      "supplier": {
+        "name": "Leon White <badfunkstripe@gmail.com>"
+      },
       "name": "abseil-cpp-vlog-config-internal",
       "version": "20250814.1-r0",
       "hashes": [
@@ -3813,7 +4025,7 @@
       "licenses": [
         {
           "license": {
-            "name": "Apache-2.0"
+            "id": "Apache-2.0"
           }
         }
       ],
@@ -3848,6 +4060,9 @@
     {
       "bom-ref": "pkg:apk/alpine/alpine-baselayout-data@3.7.1-r8?arch=x86_64&distro=3.23.2",
       "type": "library",
+      "supplier": {
+        "name": "Natanael Copa <ncopa@alpinelinux.org>"
+      },
       "name": "alpine-baselayout-data",
       "version": "3.7.1-r8",
       "hashes": [
@@ -3859,7 +4074,7 @@
       "licenses": [
         {
           "license": {
-            "name": "GPL-2.0-only"
+            "id": "GPL-2.0-only"
           }
         }
       ],
@@ -3894,6 +4109,9 @@
     {
       "bom-ref": "pkg:apk/alpine/alpine-baselayout@3.7.1-r8?arch=x86_64&distro=3.23.2",
       "type": "library",
+      "supplier": {
+        "name": "Natanael Copa <ncopa@alpinelinux.org>"
+      },
       "name": "alpine-baselayout",
       "version": "3.7.1-r8",
       "hashes": [
@@ -3905,7 +4123,7 @@
       "licenses": [
         {
           "license": {
-            "name": "GPL-2.0-only"
+            "id": "GPL-2.0-only"
           }
         }
       ],
@@ -3940,6 +4158,9 @@
     {
       "bom-ref": "pkg:apk/alpine/alpine-keys@2.6-r0?arch=x86_64&distro=3.23.2",
       "type": "library",
+      "supplier": {
+        "name": "Natanael Copa <ncopa@alpinelinux.org>"
+      },
       "name": "alpine-keys",
       "version": "2.6-r0",
       "hashes": [
@@ -3951,7 +4172,7 @@
       "licenses": [
         {
           "license": {
-            "name": "MIT"
+            "id": "MIT"
           }
         }
       ],
@@ -3986,6 +4207,9 @@
     {
       "bom-ref": "pkg:apk/alpine/alpine-release@3.23.3-r0?arch=x86_64&distro=3.23.2",
       "type": "library",
+      "supplier": {
+        "name": "Natanael Copa <ncopa@alpinelinux.org>"
+      },
       "name": "alpine-release",
       "version": "3.23.3-r0",
       "hashes": [
@@ -3997,7 +4221,7 @@
       "licenses": [
         {
           "license": {
-            "name": "MIT"
+            "id": "MIT"
           }
         }
       ],
@@ -4032,6 +4256,9 @@
     {
       "bom-ref": "pkg:apk/alpine/apk-tools@3.0.4-r0?arch=x86_64&distro=3.23.2",
       "type": "library",
+      "supplier": {
+        "name": "Natanael Copa <ncopa@alpinelinux.org>"
+      },
       "name": "apk-tools",
       "version": "3.0.4-r0",
       "hashes": [
@@ -4043,7 +4270,7 @@
       "licenses": [
         {
           "license": {
-            "name": "GPL-2.0-only"
+            "id": "GPL-2.0-only"
           }
         }
       ],
@@ -4078,6 +4305,9 @@
     {
       "bom-ref": "pkg:apk/alpine/bash@5.3.3-r1?arch=x86_64&distro=3.23.2",
       "type": "library",
+      "supplier": {
+        "name": "Natanael Copa <ncopa@alpinelinux.org>"
+      },
       "name": "bash",
       "version": "5.3.3-r1",
       "hashes": [
@@ -4089,7 +4319,7 @@
       "licenses": [
         {
           "license": {
-            "name": "GPL-3.0-or-later"
+            "id": "GPL-3.0-or-later"
           }
         }
       ],
@@ -4124,6 +4354,9 @@
     {
       "bom-ref": "pkg:apk/alpine/brotli-libs@1.2.0-r0?arch=x86_64&distro=3.23.2",
       "type": "library",
+      "supplier": {
+        "name": "prspkt <prspkt@protonmail.com>"
+      },
       "name": "brotli-libs",
       "version": "1.2.0-r0",
       "hashes": [
@@ -4135,7 +4368,7 @@
       "licenses": [
         {
           "license": {
-            "name": "MIT"
+            "id": "MIT"
           }
         }
       ],
@@ -4170,6 +4403,9 @@
     {
       "bom-ref": "pkg:apk/alpine/busybox-binsh@1.37.0-r30?arch=x86_64&distro=3.23.2",
       "type": "library",
+      "supplier": {
+        "name": "Sören Tempel <soeren+alpine@soeren-tempel.net>"
+      },
       "name": "busybox-binsh",
       "version": "1.37.0-r30",
       "hashes": [
@@ -4181,7 +4417,7 @@
       "licenses": [
         {
           "license": {
-            "name": "GPL-2.0-only"
+            "id": "GPL-2.0-only"
           }
         }
       ],
@@ -4216,6 +4452,9 @@
     {
       "bom-ref": "pkg:apk/alpine/busybox@1.37.0-r30?arch=x86_64&distro=3.23.2",
       "type": "library",
+      "supplier": {
+        "name": "Sören Tempel <soeren+alpine@soeren-tempel.net>"
+      },
       "name": "busybox",
       "version": "1.37.0-r30",
       "hashes": [
@@ -4227,7 +4466,7 @@
       "licenses": [
         {
           "license": {
-            "name": "GPL-2.0-only"
+            "id": "GPL-2.0-only"
           }
         }
       ],
@@ -4262,6 +4501,9 @@
     {
       "bom-ref": "pkg:apk/alpine/c-ares@1.34.6-r0?arch=x86_64&distro=3.23.2",
       "type": "library",
+      "supplier": {
+        "name": "Carlo Landmeter <clandmeter@alpinelinux.org>"
+      },
       "name": "c-ares",
       "version": "1.34.6-r0",
       "hashes": [
@@ -4273,7 +4515,7 @@
       "licenses": [
         {
           "license": {
-            "name": "MIT"
+            "id": "MIT"
           }
         }
       ],
@@ -4308,6 +4550,9 @@
     {
       "bom-ref": "pkg:apk/alpine/ca-certificates-bundle@20251003-r0?arch=x86_64&distro=3.23.2",
       "type": "library",
+      "supplier": {
+        "name": "Natanael Copa <ncopa@alpinelinux.org>"
+      },
       "name": "ca-certificates-bundle",
       "version": "20251003-r0",
       "hashes": [
@@ -4319,12 +4564,12 @@
       "licenses": [
         {
           "license": {
-            "name": "MPL-2.0"
+            "id": "MPL-2.0"
           }
         },
         {
           "license": {
-            "name": "MIT"
+            "id": "MIT"
           }
         }
       ],
@@ -4359,6 +4604,9 @@
     {
       "bom-ref": "pkg:apk/alpine/ca-certificates@20251003-r0?arch=x86_64&distro=3.23.2",
       "type": "library",
+      "supplier": {
+        "name": "Natanael Copa <ncopa@alpinelinux.org>"
+      },
       "name": "ca-certificates",
       "version": "20251003-r0",
       "hashes": [
@@ -4370,12 +4618,12 @@
       "licenses": [
         {
           "license": {
-            "name": "MPL-2.0"
+            "id": "MPL-2.0"
           }
         },
         {
           "license": {
-            "name": "MIT"
+            "id": "MIT"
           }
         }
       ],
@@ -4410,6 +4658,9 @@
     {
       "bom-ref": "pkg:apk/alpine/curl@8.17.0-r1?arch=x86_64&distro=3.23.2",
       "type": "library",
+      "supplier": {
+        "name": "Achill Gilgenast <achill@achill.org>"
+      },
       "name": "curl",
       "version": "8.17.0-r1",
       "hashes": [
@@ -4421,7 +4672,7 @@
       "licenses": [
         {
           "license": {
-            "name": "curl"
+            "id": "curl"
           }
         }
       ],
@@ -4456,6 +4707,9 @@
     {
       "bom-ref": "pkg:apk/alpine/diffutils@3.12-r0?arch=x86_64&distro=3.23.2",
       "type": "library",
+      "supplier": {
+        "name": "Leonardo Arena <rnalrd@alpinelinux.org>"
+      },
       "name": "diffutils",
       "version": "3.12-r0",
       "hashes": [
@@ -4467,7 +4721,7 @@
       "licenses": [
         {
           "license": {
-            "name": "GPL-3.0-or-later"
+            "id": "GPL-3.0-or-later"
           }
         }
       ],
@@ -4502,6 +4756,9 @@
     {
       "bom-ref": "pkg:apk/alpine/dumb-init@1.2.5-r3?arch=x86_64&distro=3.23.2",
       "type": "library",
+      "supplier": {
+        "name": "Celeste <cielesti@protonmail.com>"
+      },
       "name": "dumb-init",
       "version": "1.2.5-r3",
       "hashes": [
@@ -4513,7 +4770,7 @@
       "licenses": [
         {
           "license": {
-            "name": "MIT"
+            "id": "MIT"
           }
         }
       ],
@@ -4548,6 +4805,9 @@
     {
       "bom-ref": "pkg:apk/alpine/grpc-cpp@1.76.0-r2?arch=x86_64&distro=3.23.2",
       "type": "library",
+      "supplier": {
+        "name": "wener <wenermail@gmail.com>"
+      },
       "name": "grpc-cpp",
       "version": "1.76.0-r2",
       "hashes": [
@@ -4559,17 +4819,17 @@
       "licenses": [
         {
           "license": {
-            "name": "Apache-2.0"
+            "id": "Apache-2.0"
           }
         },
         {
           "license": {
-            "name": "BSD-3-Clause"
+            "id": "BSD-3-Clause"
           }
         },
         {
           "license": {
-            "name": "MIT"
+            "id": "MIT"
           }
         }
       ],
@@ -4604,6 +4864,9 @@
     {
       "bom-ref": "pkg:apk/alpine/grpc@1.76.0-r2?arch=x86_64&distro=3.23.2",
       "type": "library",
+      "supplier": {
+        "name": "wener <wenermail@gmail.com>"
+      },
       "name": "grpc",
       "version": "1.76.0-r2",
       "hashes": [
@@ -4615,17 +4878,17 @@
       "licenses": [
         {
           "license": {
-            "name": "Apache-2.0"
+            "id": "Apache-2.0"
           }
         },
         {
           "license": {
-            "name": "BSD-3-Clause"
+            "id": "BSD-3-Clause"
           }
         },
         {
           "license": {
-            "name": "MIT"
+            "id": "MIT"
           }
         }
       ],
@@ -4660,6 +4923,9 @@
     {
       "bom-ref": "pkg:apk/alpine/icu-data-en@76.1-r1?arch=x86_64&distro=3.23.2",
       "type": "library",
+      "supplier": {
+        "name": "Natanael Copa <ncopa@alpinelinux.org>"
+      },
       "name": "icu-data-en",
       "version": "76.1-r1",
       "hashes": [
@@ -4671,7 +4937,7 @@
       "licenses": [
         {
           "license": {
-            "name": "ICU"
+            "id": "ICU"
           }
         }
       ],
@@ -4706,6 +4972,9 @@
     {
       "bom-ref": "pkg:apk/alpine/icu-libs@76.1-r1?arch=x86_64&distro=3.23.2",
       "type": "library",
+      "supplier": {
+        "name": "Natanael Copa <ncopa@alpinelinux.org>"
+      },
       "name": "icu-libs",
       "version": "76.1-r1",
       "hashes": [
@@ -4717,7 +4986,7 @@
       "licenses": [
         {
           "license": {
-            "name": "ICU"
+            "id": "ICU"
           }
         }
       ],
@@ -4752,6 +5021,9 @@
     {
       "bom-ref": "pkg:apk/alpine/libaddress_sorting@1.76.0-r2?arch=x86_64&distro=3.23.2",
       "type": "library",
+      "supplier": {
+        "name": "wener <wenermail@gmail.com>"
+      },
       "name": "libaddress_sorting",
       "version": "1.76.0-r2",
       "hashes": [
@@ -4763,17 +5035,17 @@
       "licenses": [
         {
           "license": {
-            "name": "Apache-2.0"
+            "id": "Apache-2.0"
           }
         },
         {
           "license": {
-            "name": "BSD-3-Clause"
+            "id": "BSD-3-Clause"
           }
         },
         {
           "license": {
-            "name": "MIT"
+            "id": "MIT"
           }
         }
       ],
@@ -4808,6 +5080,9 @@
     {
       "bom-ref": "pkg:apk/alpine/libapk@3.0.4-r0?arch=x86_64&distro=3.23.2",
       "type": "library",
+      "supplier": {
+        "name": "Natanael Copa <ncopa@alpinelinux.org>"
+      },
       "name": "libapk",
       "version": "3.0.4-r0",
       "hashes": [
@@ -4819,7 +5094,7 @@
       "licenses": [
         {
           "license": {
-            "name": "GPL-2.0-only"
+            "id": "GPL-2.0-only"
           }
         }
       ],
@@ -4854,6 +5129,9 @@
     {
       "bom-ref": "pkg:apk/alpine/libcrypto3@3.5.5-r0?arch=x86_64&distro=3.23.2",
       "type": "library",
+      "supplier": {
+        "name": "Natanael Copa <ncopa@alpinelinux.org>"
+      },
       "name": "libcrypto3",
       "version": "3.5.5-r0",
       "hashes": [
@@ -4865,7 +5143,7 @@
       "licenses": [
         {
           "license": {
-            "name": "Apache-2.0"
+            "id": "Apache-2.0"
           }
         }
       ],
@@ -4900,6 +5178,9 @@
     {
       "bom-ref": "pkg:apk/alpine/libcurl@8.17.0-r1?arch=x86_64&distro=3.23.2",
       "type": "library",
+      "supplier": {
+        "name": "Achill Gilgenast <achill@achill.org>"
+      },
       "name": "libcurl",
       "version": "8.17.0-r1",
       "hashes": [
@@ -4911,7 +5192,7 @@
       "licenses": [
         {
           "license": {
-            "name": "curl"
+            "id": "curl"
           }
         }
       ],
@@ -4946,6 +5227,9 @@
     {
       "bom-ref": "pkg:apk/alpine/libgcc@15.2.0-r2?arch=x86_64&distro=3.23.2",
       "type": "library",
+      "supplier": {
+        "name": "Ariadne Conill <ariadne@dereferenced.org>"
+      },
       "name": "libgcc",
       "version": "15.2.0-r2",
       "hashes": [
@@ -4957,12 +5241,12 @@
       "licenses": [
         {
           "license": {
-            "name": "GPL-2.0-or-later"
+            "id": "GPL-2.0-or-later"
           }
         },
         {
           "license": {
-            "name": "LGPL-2.1-or-later"
+            "id": "LGPL-2.1-or-later"
           }
         }
       ],
@@ -4997,6 +5281,9 @@
     {
       "bom-ref": "pkg:apk/alpine/libgpr@1.76.0-r2?arch=x86_64&distro=3.23.2",
       "type": "library",
+      "supplier": {
+        "name": "wener <wenermail@gmail.com>"
+      },
       "name": "libgpr",
       "version": "1.76.0-r2",
       "hashes": [
@@ -5008,17 +5295,17 @@
       "licenses": [
         {
           "license": {
-            "name": "Apache-2.0"
+            "id": "Apache-2.0"
           }
         },
         {
           "license": {
-            "name": "BSD-3-Clause"
+            "id": "BSD-3-Clause"
           }
         },
         {
           "license": {
-            "name": "MIT"
+            "id": "MIT"
           }
         }
       ],
@@ -5053,6 +5340,9 @@
     {
       "bom-ref": "pkg:apk/alpine/libgrpc@1.76.0-r2?arch=x86_64&distro=3.23.2",
       "type": "library",
+      "supplier": {
+        "name": "wener <wenermail@gmail.com>"
+      },
       "name": "libgrpc",
       "version": "1.76.0-r2",
       "hashes": [
@@ -5064,17 +5354,17 @@
       "licenses": [
         {
           "license": {
-            "name": "Apache-2.0"
+            "id": "Apache-2.0"
           }
         },
         {
           "license": {
-            "name": "BSD-3-Clause"
+            "id": "BSD-3-Clause"
           }
         },
         {
           "license": {
-            "name": "MIT"
+            "id": "MIT"
           }
         }
       ],
@@ -5109,6 +5399,9 @@
     {
       "bom-ref": "pkg:apk/alpine/libgrpc_unsecure@1.76.0-r2?arch=x86_64&distro=3.23.2",
       "type": "library",
+      "supplier": {
+        "name": "wener <wenermail@gmail.com>"
+      },
       "name": "libgrpc_unsecure",
       "version": "1.76.0-r2",
       "hashes": [
@@ -5120,17 +5413,17 @@
       "licenses": [
         {
           "license": {
-            "name": "Apache-2.0"
+            "id": "Apache-2.0"
           }
         },
         {
           "license": {
-            "name": "BSD-3-Clause"
+            "id": "BSD-3-Clause"
           }
         },
         {
           "license": {
-            "name": "MIT"
+            "id": "MIT"
           }
         }
       ],
@@ -5165,6 +5458,9 @@
     {
       "bom-ref": "pkg:apk/alpine/libidn2@2.3.8-r0?arch=x86_64&distro=3.23.2",
       "type": "library",
+      "supplier": {
+        "name": "Natanael Copa <ncopa@alpinelinux.org>"
+      },
       "name": "libidn2",
       "version": "2.3.8-r0",
       "hashes": [
@@ -5176,12 +5472,12 @@
       "licenses": [
         {
           "license": {
-            "name": "GPL-2.0-or-later"
+            "id": "GPL-2.0-or-later"
           }
         },
         {
           "license": {
-            "name": "LGPL-3.0-or-later"
+            "id": "LGPL-3.0-or-later"
           }
         }
       ],
@@ -5216,6 +5512,9 @@
     {
       "bom-ref": "pkg:apk/alpine/libmaxminddb-libs@1.9.1-r0?arch=x86_64&distro=3.23.2",
       "type": "library",
+      "supplier": {
+        "name": "Timo Teräs <timo.teras@iki.fi>"
+      },
       "name": "libmaxminddb-libs",
       "version": "1.9.1-r0",
       "hashes": [
@@ -5227,7 +5526,7 @@
       "licenses": [
         {
           "license": {
-            "name": "Apache-2.0"
+            "id": "Apache-2.0"
           }
         }
       ],
@@ -5262,6 +5561,9 @@
     {
       "bom-ref": "pkg:apk/alpine/libmaxminddb@1.9.1-r0?arch=x86_64&distro=3.23.2",
       "type": "library",
+      "supplier": {
+        "name": "Timo Teräs <timo.teras@iki.fi>"
+      },
       "name": "libmaxminddb",
       "version": "1.9.1-r0",
       "hashes": [
@@ -5273,7 +5575,7 @@
       "licenses": [
         {
           "license": {
-            "name": "Apache-2.0"
+            "id": "Apache-2.0"
           }
         }
       ],
@@ -5308,6 +5610,9 @@
     {
       "bom-ref": "pkg:apk/alpine/libncursesw@6.5_p20251123-r0?arch=x86_64&distro=3.23.2",
       "type": "library",
+      "supplier": {
+        "name": "Natanael Copa <ncopa@alpinelinux.org>"
+      },
       "name": "libncursesw",
       "version": "6.5_p20251123-r0",
       "hashes": [
@@ -5354,6 +5659,9 @@
     {
       "bom-ref": "pkg:apk/alpine/libprotobuf-lite@31.1-r1?arch=x86_64&distro=3.23.2",
       "type": "library",
+      "supplier": {
+        "name": "Natanael Copa <ncopa@alpinelinux.org>"
+      },
       "name": "libprotobuf-lite",
       "version": "31.1-r1",
       "hashes": [
@@ -5365,7 +5673,7 @@
       "licenses": [
         {
           "license": {
-            "name": "BSD-3-Clause"
+            "id": "BSD-3-Clause"
           }
         }
       ],
@@ -5400,6 +5708,9 @@
     {
       "bom-ref": "pkg:apk/alpine/libprotobuf@31.1-r1?arch=x86_64&distro=3.23.2",
       "type": "library",
+      "supplier": {
+        "name": "Natanael Copa <ncopa@alpinelinux.org>"
+      },
       "name": "libprotobuf",
       "version": "31.1-r1",
       "hashes": [
@@ -5411,7 +5722,7 @@
       "licenses": [
         {
           "license": {
-            "name": "BSD-3-Clause"
+            "id": "BSD-3-Clause"
           }
         }
       ],
@@ -5446,6 +5757,9 @@
     {
       "bom-ref": "pkg:apk/alpine/libprotoc@31.1-r1?arch=x86_64&distro=3.23.2",
       "type": "library",
+      "supplier": {
+        "name": "Natanael Copa <ncopa@alpinelinux.org>"
+      },
       "name": "libprotoc",
       "version": "31.1-r1",
       "hashes": [
@@ -5457,7 +5771,7 @@
       "licenses": [
         {
           "license": {
-            "name": "BSD-3-Clause"
+            "id": "BSD-3-Clause"
           }
         }
       ],
@@ -5492,6 +5806,9 @@
     {
       "bom-ref": "pkg:apk/alpine/libpsl@0.21.5-r3?arch=x86_64&distro=3.23.2",
       "type": "library",
+      "supplier": {
+        "name": "Natanael Copa <ncopa@alpinelinux.org>"
+      },
       "name": "libpsl",
       "version": "0.21.5-r3",
       "hashes": [
@@ -5503,7 +5820,7 @@
       "licenses": [
         {
           "license": {
-            "name": "MIT"
+            "id": "MIT"
           }
         }
       ],
@@ -5538,6 +5855,9 @@
     {
       "bom-ref": "pkg:apk/alpine/libssl3@3.5.5-r0?arch=x86_64&distro=3.23.2",
       "type": "library",
+      "supplier": {
+        "name": "Natanael Copa <ncopa@alpinelinux.org>"
+      },
       "name": "libssl3",
       "version": "3.5.5-r0",
       "hashes": [
@@ -5549,7 +5869,7 @@
       "licenses": [
         {
           "license": {
-            "name": "Apache-2.0"
+            "id": "Apache-2.0"
           }
         }
       ],
@@ -5584,6 +5904,9 @@
     {
       "bom-ref": "pkg:apk/alpine/libstdc%2B%2B@15.2.0-r2?arch=x86_64&distro=3.23.2",
       "type": "library",
+      "supplier": {
+        "name": "Ariadne Conill <ariadne@dereferenced.org>"
+      },
       "name": "libstdc++",
       "version": "15.2.0-r2",
       "hashes": [
@@ -5595,12 +5918,12 @@
       "licenses": [
         {
           "license": {
-            "name": "GPL-2.0-or-later"
+            "id": "GPL-2.0-or-later"
           }
         },
         {
           "license": {
-            "name": "LGPL-2.1-or-later"
+            "id": "LGPL-2.1-or-later"
           }
         }
       ],
@@ -5635,6 +5958,9 @@
     {
       "bom-ref": "pkg:apk/alpine/libunistring@1.4.1-r0?arch=x86_64&distro=3.23.2",
       "type": "library",
+      "supplier": {
+        "name": "Natanael Copa <ncopa@alpinelinux.org>"
+      },
       "name": "libunistring",
       "version": "1.4.1-r0",
       "hashes": [
@@ -5646,12 +5972,12 @@
       "licenses": [
         {
           "license": {
-            "name": "GPL-2.0-or-later"
+            "id": "GPL-2.0-or-later"
           }
         },
         {
           "license": {
-            "name": "LGPL-3.0-or-later"
+            "id": "LGPL-3.0-or-later"
           }
         }
       ],
@@ -5686,6 +6012,9 @@
     {
       "bom-ref": "pkg:apk/alpine/libupb_base_lib@1.76.0-r2?arch=x86_64&distro=3.23.2",
       "type": "library",
+      "supplier": {
+        "name": "wener <wenermail@gmail.com>"
+      },
       "name": "libupb_base_lib",
       "version": "1.76.0-r2",
       "hashes": [
@@ -5697,17 +6026,17 @@
       "licenses": [
         {
           "license": {
-            "name": "Apache-2.0"
+            "id": "Apache-2.0"
           }
         },
         {
           "license": {
-            "name": "BSD-3-Clause"
+            "id": "BSD-3-Clause"
           }
         },
         {
           "license": {
-            "name": "MIT"
+            "id": "MIT"
           }
         }
       ],
@@ -5742,6 +6071,9 @@
     {
       "bom-ref": "pkg:apk/alpine/libupb_json_lib@1.76.0-r2?arch=x86_64&distro=3.23.2",
       "type": "library",
+      "supplier": {
+        "name": "wener <wenermail@gmail.com>"
+      },
       "name": "libupb_json_lib",
       "version": "1.76.0-r2",
       "hashes": [
@@ -5753,17 +6085,17 @@
       "licenses": [
         {
           "license": {
-            "name": "Apache-2.0"
+            "id": "Apache-2.0"
           }
         },
         {
           "license": {
-            "name": "BSD-3-Clause"
+            "id": "BSD-3-Clause"
           }
         },
         {
           "license": {
-            "name": "MIT"
+            "id": "MIT"
           }
         }
       ],
@@ -5798,6 +6130,9 @@
     {
       "bom-ref": "pkg:apk/alpine/libupb_mem_lib@1.76.0-r2?arch=x86_64&distro=3.23.2",
       "type": "library",
+      "supplier": {
+        "name": "wener <wenermail@gmail.com>"
+      },
       "name": "libupb_mem_lib",
       "version": "1.76.0-r2",
       "hashes": [
@@ -5809,17 +6144,17 @@
       "licenses": [
         {
           "license": {
-            "name": "Apache-2.0"
+            "id": "Apache-2.0"
           }
         },
         {
           "license": {
-            "name": "BSD-3-Clause"
+            "id": "BSD-3-Clause"
           }
         },
         {
           "license": {
-            "name": "MIT"
+            "id": "MIT"
           }
         }
       ],
@@ -5854,6 +6189,9 @@
     {
       "bom-ref": "pkg:apk/alpine/libupb_message_lib@1.76.0-r2?arch=x86_64&distro=3.23.2",
       "type": "library",
+      "supplier": {
+        "name": "wener <wenermail@gmail.com>"
+      },
       "name": "libupb_message_lib",
       "version": "1.76.0-r2",
       "hashes": [
@@ -5865,17 +6203,17 @@
       "licenses": [
         {
           "license": {
-            "name": "Apache-2.0"
+            "id": "Apache-2.0"
           }
         },
         {
           "license": {
-            "name": "BSD-3-Clause"
+            "id": "BSD-3-Clause"
           }
         },
         {
           "license": {
-            "name": "MIT"
+            "id": "MIT"
           }
         }
       ],
@@ -5910,6 +6248,9 @@
     {
       "bom-ref": "pkg:apk/alpine/libupb_textformat_lib@1.76.0-r2?arch=x86_64&distro=3.23.2",
       "type": "library",
+      "supplier": {
+        "name": "wener <wenermail@gmail.com>"
+      },
       "name": "libupb_textformat_lib",
       "version": "1.76.0-r2",
       "hashes": [
@@ -5921,17 +6262,17 @@
       "licenses": [
         {
           "license": {
-            "name": "Apache-2.0"
+            "id": "Apache-2.0"
           }
         },
         {
           "license": {
-            "name": "BSD-3-Clause"
+            "id": "BSD-3-Clause"
           }
         },
         {
           "license": {
-            "name": "MIT"
+            "id": "MIT"
           }
         }
       ],
@@ -5966,6 +6307,9 @@
     {
       "bom-ref": "pkg:apk/alpine/libxml2@2.13.9-r0?arch=x86_64&distro=3.23.2",
       "type": "library",
+      "supplier": {
+        "name": "Carlo Landmeter <clandmeter@alpinelinux.org>"
+      },
       "name": "libxml2",
       "version": "2.13.9-r0",
       "hashes": [
@@ -5977,7 +6321,7 @@
       "licenses": [
         {
           "license": {
-            "name": "MIT"
+            "id": "MIT"
           }
         }
       ],
@@ -6012,6 +6356,9 @@
     {
       "bom-ref": "pkg:apk/alpine/lmdb@0.9.33-r0?arch=x86_64&distro=3.23.2",
       "type": "library",
+      "supplier": {
+        "name": "Natanael Copa <ncopa@alpinelinux.org>"
+      },
       "name": "lmdb",
       "version": "0.9.33-r0",
       "hashes": [
@@ -6023,7 +6370,7 @@
       "licenses": [
         {
           "license": {
-            "name": "OLDAP-2.8"
+            "id": "OLDAP-2.8"
           }
         }
       ],
@@ -6058,6 +6405,9 @@
     {
       "bom-ref": "pkg:apk/alpine/musl-utils@1.2.5-r21?arch=x86_64&distro=3.23.2",
       "type": "library",
+      "supplier": {
+        "name": "Natanael Copa <ncopa@alpinelinux.org>"
+      },
       "name": "musl-utils",
       "version": "1.2.5-r21",
       "hashes": [
@@ -6069,17 +6419,17 @@
       "licenses": [
         {
           "license": {
-            "name": "MIT"
+            "id": "MIT"
           }
         },
         {
           "license": {
-            "name": "BSD-2-Clause"
+            "id": "BSD-2-Clause"
           }
         },
         {
           "license": {
-            "name": "GPL-2.0-or-later"
+            "id": "GPL-2.0-or-later"
           }
         }
       ],
@@ -6114,6 +6464,9 @@
     {
       "bom-ref": "pkg:apk/alpine/musl@1.2.5-r21?arch=x86_64&distro=3.23.2",
       "type": "library",
+      "supplier": {
+        "name": "Natanael Copa <ncopa@alpinelinux.org>"
+      },
       "name": "musl",
       "version": "1.2.5-r21",
       "hashes": [
@@ -6125,7 +6478,7 @@
       "licenses": [
         {
           "license": {
-            "name": "MIT"
+            "id": "MIT"
           }
         }
       ],
@@ -6160,6 +6513,9 @@
     {
       "bom-ref": "pkg:apk/alpine/ncurses-terminfo-base@6.5_p20251123-r0?arch=x86_64&distro=3.23.2",
       "type": "library",
+      "supplier": {
+        "name": "Natanael Copa <ncopa@alpinelinux.org>"
+      },
       "name": "ncurses-terminfo-base",
       "version": "6.5_p20251123-r0",
       "hashes": [
@@ -6206,6 +6562,9 @@
     {
       "bom-ref": "pkg:apk/alpine/nghttp2-libs@1.68.0-r0?arch=x86_64&distro=3.23.2",
       "type": "library",
+      "supplier": {
+        "name": "Francesco Colista <fcolista@alpinelinux.org>"
+      },
       "name": "nghttp2-libs",
       "version": "1.68.0-r0",
       "hashes": [
@@ -6217,7 +6576,7 @@
       "licenses": [
         {
           "license": {
-            "name": "MIT"
+            "id": "MIT"
           }
         }
       ],
@@ -6252,6 +6611,9 @@
     {
       "bom-ref": "pkg:apk/alpine/nghttp3@1.13.1-r0?arch=x86_64&distro=3.23.2",
       "type": "library",
+      "supplier": {
+        "name": "Jakub Jirutka <jakub@jirutka.cz>"
+      },
       "name": "nghttp3",
       "version": "1.13.1-r0",
       "hashes": [
@@ -6263,7 +6625,7 @@
       "licenses": [
         {
           "license": {
-            "name": "MIT"
+            "id": "MIT"
           }
         }
       ],
@@ -6298,6 +6660,9 @@
     {
       "bom-ref": "pkg:apk/alpine/openssl@3.5.5-r0?arch=x86_64&distro=3.23.2",
       "type": "library",
+      "supplier": {
+        "name": "Natanael Copa <ncopa@alpinelinux.org>"
+      },
       "name": "openssl",
       "version": "3.5.5-r0",
       "hashes": [
@@ -6309,7 +6674,7 @@
       "licenses": [
         {
           "license": {
-            "name": "Apache-2.0"
+            "id": "Apache-2.0"
           }
         }
       ],
@@ -6344,6 +6709,9 @@
     {
       "bom-ref": "pkg:apk/alpine/patch@2.8-r0?arch=x86_64&distro=3.23.2",
       "type": "library",
+      "supplier": {
+        "name": "Natanael Copa <ncopa@alpinelinux.org>"
+      },
       "name": "patch",
       "version": "2.8-r0",
       "hashes": [
@@ -6355,7 +6723,7 @@
       "licenses": [
         {
           "license": {
-            "name": "GPL-3.0-or-later"
+            "id": "GPL-3.0-or-later"
           }
         }
       ],
@@ -6390,6 +6758,9 @@
     {
       "bom-ref": "pkg:apk/alpine/pcre@8.45-r4?arch=x86_64&distro=3.23.2",
       "type": "library",
+      "supplier": {
+        "name": "Natanael Copa <ncopa@alpinelinux.org>"
+      },
       "name": "pcre",
       "version": "8.45-r4",
       "hashes": [
@@ -6401,7 +6772,7 @@
       "licenses": [
         {
           "license": {
-            "name": "BSD-3-Clause"
+            "id": "BSD-3-Clause"
           }
         }
       ],
@@ -6436,6 +6807,9 @@
     {
       "bom-ref": "pkg:apk/alpine/protobuf@31.1-r1?arch=x86_64&distro=3.23.2",
       "type": "library",
+      "supplier": {
+        "name": "Natanael Copa <ncopa@alpinelinux.org>"
+      },
       "name": "protobuf",
       "version": "31.1-r1",
       "hashes": [
@@ -6447,7 +6821,7 @@
       "licenses": [
         {
           "license": {
-            "name": "BSD-3-Clause"
+            "id": "BSD-3-Clause"
           }
         }
       ],
@@ -6482,6 +6856,9 @@
     {
       "bom-ref": "pkg:apk/alpine/protoc@31.1-r1?arch=x86_64&distro=3.23.2",
       "type": "library",
+      "supplier": {
+        "name": "Natanael Copa <ncopa@alpinelinux.org>"
+      },
       "name": "protoc",
       "version": "31.1-r1",
       "hashes": [
@@ -6493,7 +6870,7 @@
       "licenses": [
         {
           "license": {
-            "name": "BSD-3-Clause"
+            "id": "BSD-3-Clause"
           }
         }
       ],
@@ -6528,6 +6905,9 @@
     {
       "bom-ref": "pkg:apk/alpine/re2@2025.11.05-r0?arch=x86_64&distro=3.23.2",
       "type": "library",
+      "supplier": {
+        "name": "Francesco Colista <fcolista@alpinelinux.org>"
+      },
       "name": "re2",
       "version": "2025.11.05-r0",
       "hashes": [
@@ -6539,7 +6919,7 @@
       "licenses": [
         {
           "license": {
-            "name": "BSD-3-Clause"
+            "id": "BSD-3-Clause"
           }
         }
       ],
@@ -6574,6 +6954,9 @@
     {
       "bom-ref": "pkg:apk/alpine/readline@8.3.1-r0?arch=x86_64&distro=3.23.2",
       "type": "library",
+      "supplier": {
+        "name": "Celeste <cielesti@protonmail.com>"
+      },
       "name": "readline",
       "version": "8.3.1-r0",
       "hashes": [
@@ -6585,7 +6968,7 @@
       "licenses": [
         {
           "license": {
-            "name": "GPL-3.0-or-later"
+            "id": "GPL-3.0-or-later"
           }
         }
       ],
@@ -6620,6 +7003,9 @@
     {
       "bom-ref": "pkg:apk/alpine/scanelf@1.3.8-r2?arch=x86_64&distro=3.23.2",
       "type": "library",
+      "supplier": {
+        "name": "Natanael Copa <ncopa@alpinelinux.org>"
+      },
       "name": "scanelf",
       "version": "1.3.8-r2",
       "hashes": [
@@ -6631,7 +7017,7 @@
       "licenses": [
         {
           "license": {
-            "name": "GPL-2.0-only"
+            "id": "GPL-2.0-only"
           }
         }
       ],
@@ -6666,6 +7052,9 @@
     {
       "bom-ref": "pkg:apk/alpine/ssl_client@1.37.0-r30?arch=x86_64&distro=3.23.2",
       "type": "library",
+      "supplier": {
+        "name": "Sören Tempel <soeren+alpine@soeren-tempel.net>"
+      },
       "name": "ssl_client",
       "version": "1.37.0-r30",
       "hashes": [
@@ -6677,7 +7066,7 @@
       "licenses": [
         {
           "license": {
-            "name": "GPL-2.0-only"
+            "id": "GPL-2.0-only"
           }
         }
       ],
@@ -6712,6 +7101,9 @@
     {
       "bom-ref": "pkg:apk/alpine/tzdata@2025c-r0?arch=x86_64&distro=3.23.2",
       "type": "library",
+      "supplier": {
+        "name": "Natanael Copa <ncopa@alpinelinux.org>"
+      },
       "name": "tzdata",
       "version": "2025c-r0",
       "hashes": [
@@ -6758,6 +7150,9 @@
     {
       "bom-ref": "pkg:apk/alpine/xz-libs@5.8.2-r0?arch=x86_64&distro=3.23.2",
       "type": "library",
+      "supplier": {
+        "name": "Natanael Copa <ncopa@alpinelinux.org>"
+      },
       "name": "xz-libs",
       "version": "5.8.2-r0",
       "hashes": [
@@ -6769,12 +7164,12 @@
       "licenses": [
         {
           "license": {
-            "name": "GPL-2.0-or-later"
+            "id": "GPL-2.0-or-later"
           }
         },
         {
           "license": {
-            "name": "0BSD"
+            "id": "0BSD"
           }
         },
         {
@@ -6784,7 +7179,7 @@
         },
         {
           "license": {
-            "name": "LGPL-2.1-or-later"
+            "id": "LGPL-2.1-or-later"
           }
         }
       ],
@@ -6819,6 +7214,9 @@
     {
       "bom-ref": "pkg:apk/alpine/yajl@2.1.0-r9?arch=x86_64&distro=3.23.2",
       "type": "library",
+      "supplier": {
+        "name": "Natanael Copa <ncopa@alpinelinux.org>"
+      },
       "name": "yajl",
       "version": "2.1.0-r9",
       "hashes": [
@@ -6830,7 +7228,7 @@
       "licenses": [
         {
           "license": {
-            "name": "MIT"
+            "id": "MIT"
           }
         }
       ],
@@ -6865,6 +7263,9 @@
     {
       "bom-ref": "pkg:apk/alpine/yaml-cpp@0.8.0-r1?arch=x86_64&distro=3.23.2",
       "type": "library",
+      "supplier": {
+        "name": "Jakub Jirutka <jakub@jirutka.cz>"
+      },
       "name": "yaml-cpp",
       "version": "0.8.0-r1",
       "hashes": [
@@ -6876,7 +7277,7 @@
       "licenses": [
         {
           "license": {
-            "name": "MIT"
+            "id": "MIT"
           }
         }
       ],
@@ -6911,6 +7312,9 @@
     {
       "bom-ref": "pkg:apk/alpine/zlib@1.3.1-r2?arch=x86_64&distro=3.23.2",
       "type": "library",
+      "supplier": {
+        "name": "Natanael Copa <ncopa@alpinelinux.org>"
+      },
       "name": "zlib",
       "version": "1.3.1-r2",
       "hashes": [
@@ -6922,7 +7326,7 @@
       "licenses": [
         {
           "license": {
-            "name": "Zlib"
+            "id": "Zlib"
           }
         }
       ],
@@ -6957,6 +7361,9 @@
     {
       "bom-ref": "pkg:apk/alpine/zstd-libs@1.5.7-r2?arch=x86_64&distro=3.23.2",
       "type": "library",
+      "supplier": {
+        "name": "Natanael Copa <ncopa@alpinelinux.org>"
+      },
       "name": "zstd-libs",
       "version": "1.5.7-r2",
       "hashes": [
@@ -6968,12 +7375,12 @@
       "licenses": [
         {
           "license": {
-            "name": "BSD-3-Clause"
+            "id": "BSD-3-Clause"
           }
         },
         {
           "license": {
-            "name": "GPL-2.0-or-later"
+            "id": "GPL-2.0-or-later"
           }
         }
       ],
@@ -8908,19 +9315,38 @@
   ],
   "dependencies": [
     {
-      "ref": "021b6467-8e59-45dc-b44f-7522477851d1",
+      "ref": "0745dadc-0002-44f9-8cfe-6bdb32bc6084",
+      "dependsOn": [
+        "2ce16239-d991-4c2c-b088-64a73c20e1ee",
+        "3422e5d4-5a66-4c2d-9bfe-30212c98ba1d",
+        "76e4441c-30eb-489a-ae32-2b80fb62bb3d",
+        "822dd8cb-6d37-47d0-9185-2b218599b244",
+        "f0b1a1c2-4715-4311-8a1c-6c7548dbf870",
+        "f26197a8-5364-4521-9270-112a48be2aa9"
+      ]
+    },
+    {
+      "ref": "123b64bf-ce56-4d32-b2d0-7c9cd81df14b",
+      "dependsOn": [
+        "4a8e92ec-d196-4655-8610-6ab9664a9254"
+      ]
+    },
+    {
+      "ref": "2bc44e64-c409-4f5b-bd3d-704e69c99b2a",
+      "dependsOn": [
+        "0745dadc-0002-44f9-8cfe-6bdb32bc6084"
+      ]
+    },
+    {
+      "ref": "2ce16239-d991-4c2c-b088-64a73c20e1ee",
       "dependsOn": []
     },
     {
-      "ref": "06669909-32d1-4a97-99f0-b33febc364f0",
+      "ref": "3422e5d4-5a66-4c2d-9bfe-30212c98ba1d",
       "dependsOn": []
     },
     {
-      "ref": "0d0db98c-98bd-43f9-90bb-bce54f5bbff5",
-      "dependsOn": []
-    },
-    {
-      "ref": "0da627d0-5c1a-4150-95ec-27f6b4b60007",
+      "ref": "40d18835-228b-4083-b4c8-52fee96af3f5",
       "dependsOn": [
         "pkg:apk/alpine/abseil-cpp-crc-cpu-detect@20250814.1-r0?arch=x86_64&distro=3.23.2",
         "pkg:apk/alpine/alpine-baselayout@3.7.1-r8?arch=x86_64&distro=3.23.2",
@@ -8944,88 +9370,19 @@
       ]
     },
     {
-      "ref": "14339116-db24-411e-8de7-a7247923f030",
+      "ref": "473718ac-e39a-4d9b-aa91-2b8253b94a21",
       "dependsOn": []
     },
     {
-      "ref": "14d9b6cf-00c4-4fe6-be39-3ab3cfda1280",
+      "ref": "4a8e92ec-d196-4655-8610-6ab9664a9254",
       "dependsOn": [
-        "bb08938a-37ae-4b5b-8694-2ba604eee922"
-      ]
-    },
-    {
-      "ref": "2407ab21-a24c-4fd0-9f76-ce3e69c92872",
-      "dependsOn": []
-    },
-    {
-      "ref": "39ffe402-36a0-4786-ba87-df4ec0c3bfa2",
-      "dependsOn": []
-    },
-    {
-      "ref": "41bab8de-9a60-4775-bf12-a6cfa95ee654",
-      "dependsOn": []
-    },
-    {
-      "ref": "46545887-78eb-4d75-9a5e-89b93fd36194",
-      "dependsOn": []
-    },
-    {
-      "ref": "4fe8c4e9-4f7c-4224-bd0f-4c510f452ea1",
-      "dependsOn": []
-    },
-    {
-      "ref": "5249dc6f-f9a2-4d5e-a69d-7d2fddde90bd",
-      "dependsOn": []
-    },
-    {
-      "ref": "662f4b27-67bd-4642-b4a2-b8ae0c0d5046",
-      "dependsOn": [
-        "021b6467-8e59-45dc-b44f-7522477851d1",
-        "2407ab21-a24c-4fd0-9f76-ce3e69c92872",
-        "46545887-78eb-4d75-9a5e-89b93fd36194",
-        "7cbf3d05-a07c-46a6-8bc0-b90f6950abab",
-        "8202e8b6-5699-4912-b443-174a34de7d6c",
-        "8d66295a-9de1-405a-8f7c-bd72ac97ec53",
-        "e5819b4a-a0f3-44ec-8b45-0a2525491d35",
-        "pkg:golang/github.com/spf13/cobra@v1.10.2"
-      ]
-    },
-    {
-      "ref": "6659d3b5-753a-4061-a018-67ead6c8a722",
-      "dependsOn": []
-    },
-    {
-      "ref": "75823ad5-5db7-41f6-a090-de6f6ca847e0",
-      "dependsOn": [
-        "662f4b27-67bd-4642-b4a2-b8ae0c0d5046"
-      ]
-    },
-    {
-      "ref": "7986ccd6-b262-49ec-b299-5dee06639ccb",
-      "dependsOn": []
-    },
-    {
-      "ref": "7cbf3d05-a07c-46a6-8bc0-b90f6950abab",
-      "dependsOn": []
-    },
-    {
-      "ref": "8202e8b6-5699-4912-b443-174a34de7d6c",
-      "dependsOn": []
-    },
-    {
-      "ref": "8d66295a-9de1-405a-8f7c-bd72ac97ec53",
-      "dependsOn": []
-    },
-    {
-      "ref": "9ca7e9e3-6121-44de-8faf-f2edaa6b8db4",
-      "dependsOn": [
-        "14339116-db24-411e-8de7-a7247923f030",
-        "5249dc6f-f9a2-4d5e-a69d-7d2fddde90bd",
-        "6659d3b5-753a-4061-a018-67ead6c8a722",
-        "7986ccd6-b262-49ec-b299-5dee06639ccb",
-        "e507217b-ed52-41db-8a53-985615b279e6",
-        "ea0e4c0e-4adc-489e-86b3-d9af6522182c",
-        "fb4cf468-76e9-4083-877e-3aca1558f3f5",
+        "473718ac-e39a-4d9b-aa91-2b8253b94a21",
+        "508fb018-74b3-4833-b633-6c5c16b25846",
+        "6c665709-a05f-4c35-a4d1-c06c459eb509",
+        "b1144a82-9f10-468b-bd31-58c7c3d88ef2",
+        "c082e58c-c0f1-4474-b256-6b096f1b4a6d",
+        "f1e4c0af-6e33-4fa1-8973-637201b01a5a",
+        "f572f546-3ea0-4a18-9efd-d541d4271263",
         "pkg:golang/dario.cat/mergo@v1.0.2",
         "pkg:golang/github.com/beorn7/perks@v1.0.1",
         "pkg:golang/github.com/blang/semver/v4@v4.0.0",
@@ -9104,40 +9461,90 @@
       ]
     },
     {
-      "ref": "bb08938a-37ae-4b5b-8694-2ba604eee922",
+      "ref": "508fb018-74b3-4833-b633-6c5c16b25846",
+      "dependsOn": []
+    },
+    {
+      "ref": "6c665709-a05f-4c35-a4d1-c06c459eb509",
+      "dependsOn": []
+    },
+    {
+      "ref": "75908276-495c-4235-86d1-396109494e22",
       "dependsOn": [
-        "06669909-32d1-4a97-99f0-b33febc364f0",
-        "0d0db98c-98bd-43f9-90bb-bce54f5bbff5",
-        "39ffe402-36a0-4786-ba87-df4ec0c3bfa2",
-        "41bab8de-9a60-4775-bf12-a6cfa95ee654",
-        "4fe8c4e9-4f7c-4224-bd0f-4c510f452ea1",
-        "d86a8d7f-112c-41d4-8dcb-7d2f6d016935"
+        "808f0bdb-1c19-4dbb-9c48-7e1c854d3b22",
+        "925df3e8-b642-4e18-a093-6215bd05fc36",
+        "92b70cca-6015-4032-8200-d94a336e21a5",
+        "9b9bccc1-95f0-4ee3-bc6c-ee6a930cbf33",
+        "c5d3491f-7eae-4935-905f-45f1020af40d",
+        "dfe66f03-0545-4482-9354-a5e42666b5bd",
+        "ed42334c-9ca1-4919-a0e1-8cb6df304c95",
+        "pkg:golang/github.com/spf13/cobra@v1.10.2"
       ]
     },
     {
-      "ref": "d86a8d7f-112c-41d4-8dcb-7d2f6d016935",
+      "ref": "76e4441c-30eb-489a-ae32-2b80fb62bb3d",
       "dependsOn": []
     },
     {
-      "ref": "e507217b-ed52-41db-8a53-985615b279e6",
+      "ref": "808f0bdb-1c19-4dbb-9c48-7e1c854d3b22",
       "dependsOn": []
     },
     {
-      "ref": "e5819b4a-a0f3-44ec-8b45-0a2525491d35",
+      "ref": "822dd8cb-6d37-47d0-9185-2b218599b244",
       "dependsOn": []
     },
     {
-      "ref": "ea0e4c0e-4adc-489e-86b3-d9af6522182c",
+      "ref": "925df3e8-b642-4e18-a093-6215bd05fc36",
       "dependsOn": []
     },
     {
-      "ref": "f60dfb17-becb-4e3b-a393-a0806f7356e5",
+      "ref": "92b70cca-6015-4032-8200-d94a336e21a5",
+      "dependsOn": []
+    },
+    {
+      "ref": "9b9bccc1-95f0-4ee3-bc6c-ee6a930cbf33",
+      "dependsOn": []
+    },
+    {
+      "ref": "b1144a82-9f10-468b-bd31-58c7c3d88ef2",
+      "dependsOn": []
+    },
+    {
+      "ref": "c082e58c-c0f1-4474-b256-6b096f1b4a6d",
+      "dependsOn": []
+    },
+    {
+      "ref": "c5d3491f-7eae-4935-905f-45f1020af40d",
+      "dependsOn": []
+    },
+    {
+      "ref": "dfe66f03-0545-4482-9354-a5e42666b5bd",
+      "dependsOn": []
+    },
+    {
+      "ref": "ed42334c-9ca1-4919-a0e1-8cb6df304c95",
+      "dependsOn": []
+    },
+    {
+      "ref": "efbfbd28-357b-403a-a378-50abbf83b096",
       "dependsOn": [
-        "9ca7e9e3-6121-44de-8faf-f2edaa6b8db4"
+        "75908276-495c-4235-86d1-396109494e22"
       ]
     },
     {
-      "ref": "fb4cf468-76e9-4083-877e-3aca1558f3f5",
+      "ref": "f0b1a1c2-4715-4311-8a1c-6c7548dbf870",
+      "dependsOn": []
+    },
+    {
+      "ref": "f1e4c0af-6e33-4fa1-8973-637201b01a5a",
+      "dependsOn": []
+    },
+    {
+      "ref": "f26197a8-5364-4521-9270-112a48be2aa9",
+      "dependsOn": []
+    },
+    {
+      "ref": "f572f546-3ea0-4a18-9efd-d541d4271263",
       "dependsOn": []
     },
     {
@@ -10693,10 +11100,10 @@
     {
       "ref": "pkg:oci/controller@sha256%3A82917be97c0939f6ada1717bb39aa7e66c229d6cfb10dcfc8f1bd42f9efe0f81?arch=amd64&repository_url=registry.k8s.io%2Fingress-nginx%2Fcontroller",
       "dependsOn": [
-        "0da627d0-5c1a-4150-95ec-27f6b4b60007",
-        "14d9b6cf-00c4-4fe6-be39-3ab3cfda1280",
-        "75823ad5-5db7-41f6-a090-de6f6ca847e0",
-        "f60dfb17-becb-4e3b-a393-a0806f7356e5"
+        "123b64bf-ce56-4d32-b2d0-7c9cd81df14b",
+        "2bc44e64-c409-4f5b-bd3d-704e69c99b2a",
+        "40d18835-228b-4083-b4c8-52fee96af3f5",
+        "efbfbd28-357b-403a-a378-50abbf83b096"
       ]
     }
   ],

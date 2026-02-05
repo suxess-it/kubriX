@@ -2,17 +2,20 @@
   "$schema": "http://cyclonedx.org/schema/bom-1.6.schema.json",
   "bomFormat": "CycloneDX",
   "specVersion": "1.6",
-  "serialNumber": "urn:uuid:68343cb2-0ed8-475d-af01-327e25f300ff",
+  "serialNumber": "urn:uuid:fb79d1ac-3013-4ae2-aaf0-62fab1a4c232",
   "version": 1,
   "metadata": {
-    "timestamp": "2026-02-04T23:08:22+00:00",
+    "timestamp": "2026-02-04T23:54:24+00:00",
     "tools": {
       "components": [
         {
           "type": "application",
+          "manufacturer": {
+            "name": "Aqua Security Software Ltd."
+          },
           "group": "aquasecurity",
           "name": "trivy",
-          "version": "0.61.0"
+          "version": "0.69.0"
         }
       ]
     },
@@ -71,6 +74,10 @@
           "value": "2.31.1"
         },
         {
+          "name": "aquasecurity:trivy:Reference",
+          "value": "falcosecurity/falcosidekick:2.31.1"
+        },
+        {
           "name": "aquasecurity:trivy:RepoDigest",
           "value": "falcosecurity/falcosidekick@sha256:fc0b4b7e4741011018dbd8e1f5311363902e7ca26a601c59efee4ca400b61000"
         },
@@ -81,13 +88,17 @@
         {
           "name": "aquasecurity:trivy:SchemaVersion",
           "value": "2"
+        },
+        {
+          "name": "aquasecurity:trivy:Size",
+          "value": "135632896"
         }
       ]
     }
   },
   "components": [
     {
-      "bom-ref": "6446637f-62f0-4372-8ca5-395a8a6635ed",
+      "bom-ref": "71d88128-ba88-4893-8518-7cc305875358",
       "type": "operating-system",
       "name": "alpine",
       "version": "3.19.6",
@@ -103,7 +114,7 @@
       ]
     },
     {
-      "bom-ref": "8c9a8bf1-0f02-48a1-9f35-fdaef2bc0a43",
+      "bom-ref": "f3dcbd31-3c47-4c14-8c7b-07b10ab23201",
       "type": "application",
       "name": "app/falcosidekick",
       "properties": [
@@ -120,6 +131,9 @@
     {
       "bom-ref": "pkg:apk/alpine/alpine-baselayout-data@3.4.3-r2?arch=x86_64&distro=3.19.6",
       "type": "library",
+      "supplier": {
+        "name": "Natanael Copa <ncopa@alpinelinux.org>"
+      },
       "name": "alpine-baselayout-data",
       "version": "3.4.3-r2",
       "description": "Alpine base dir structure and init scripts",
@@ -187,6 +201,9 @@
     {
       "bom-ref": "pkg:apk/alpine/alpine-baselayout@3.4.3-r2?arch=x86_64&distro=3.19.6",
       "type": "library",
+      "supplier": {
+        "name": "Natanael Copa <ncopa@alpinelinux.org>"
+      },
       "name": "alpine-baselayout",
       "version": "3.4.3-r2",
       "description": "Alpine base dir structure and init scripts",
@@ -254,6 +271,9 @@
     {
       "bom-ref": "pkg:apk/alpine/alpine-keys@2.4-r1?arch=x86_64&distro=3.19.6",
       "type": "library",
+      "supplier": {
+        "name": "Natanael Copa <ncopa@alpinelinux.org>"
+      },
       "name": "alpine-keys",
       "version": "2.4-r1",
       "description": "Public keys for Alpine Linux packages",
@@ -321,6 +341,9 @@
     {
       "bom-ref": "pkg:apk/alpine/apk-tools@2.14.4-r0?arch=x86_64&distro=3.19.6",
       "type": "library",
+      "supplier": {
+        "name": "Natanael Copa <ncopa@alpinelinux.org>"
+      },
       "name": "apk-tools",
       "version": "2.14.4-r0",
       "description": "Alpine Package Keeper - package manager for alpine",
@@ -388,6 +411,9 @@
     {
       "bom-ref": "pkg:apk/alpine/busybox-binsh@1.36.1-r19?arch=x86_64&distro=3.19.6",
       "type": "library",
+      "supplier": {
+        "name": "Sören Tempel <soeren+alpine@soeren-tempel.net>"
+      },
       "name": "busybox-binsh",
       "version": "1.36.1-r19",
       "description": "busybox ash /bin/sh",
@@ -455,6 +481,9 @@
     {
       "bom-ref": "pkg:apk/alpine/busybox@1.36.1-r19?arch=x86_64&distro=3.19.6",
       "type": "library",
+      "supplier": {
+        "name": "Sören Tempel <soeren+alpine@soeren-tempel.net>"
+      },
       "name": "busybox",
       "version": "1.36.1-r19",
       "description": "Size optimized toolbox of many common UNIX utilities",
@@ -522,6 +551,9 @@
     {
       "bom-ref": "pkg:apk/alpine/ca-certificates-bundle@20241121-r1?arch=x86_64&distro=3.19.6",
       "type": "library",
+      "supplier": {
+        "name": "Natanael Copa <ncopa@alpinelinux.org>"
+      },
       "name": "ca-certificates-bundle",
       "version": "20241121-r1",
       "description": "Pre generated bundle of Mozilla certificates",
@@ -589,6 +621,9 @@
     {
       "bom-ref": "pkg:apk/alpine/ca-certificates@20241121-r1?arch=x86_64&distro=3.19.6",
       "type": "library",
+      "supplier": {
+        "name": "Natanael Copa <ncopa@alpinelinux.org>"
+      },
       "name": "ca-certificates",
       "version": "20241121-r1",
       "description": "Common CA certificates PEM files from Mozilla",
@@ -656,6 +691,9 @@
     {
       "bom-ref": "pkg:apk/alpine/gcompat@1.1.0-r4?arch=x86_64&distro=3.19.6",
       "type": "library",
+      "supplier": {
+        "name": "Peter Shkenev <santurysim@gmail.com>"
+      },
       "name": "gcompat",
       "version": "1.1.0-r4",
       "description": "GNU C Library compatibility layer for musl",
@@ -723,6 +761,9 @@
     {
       "bom-ref": "pkg:apk/alpine/libc-utils@0.7.2-r5?arch=x86_64&distro=3.19.6",
       "type": "library",
+      "supplier": {
+        "name": "Natanael Copa <ncopa@alpinelinux.org>"
+      },
       "name": "libc-utils",
       "version": "0.7.2-r5",
       "description": "Meta package to pull in correct libc",
@@ -790,6 +831,9 @@
     {
       "bom-ref": "pkg:apk/alpine/libcrypto3@3.1.7-r1?arch=x86_64&distro=3.19.6",
       "type": "library",
+      "supplier": {
+        "name": "Ariadne Conill <ariadne@dereferenced.org>"
+      },
       "name": "libcrypto3",
       "version": "3.1.7-r1",
       "description": "Crypto library from openssl",
@@ -802,7 +846,7 @@
       "licenses": [
         {
           "license": {
-            "name": "Apache-2.0"
+            "id": "Apache-2.0"
           }
         }
       ],
@@ -859,6 +903,9 @@
     {
       "bom-ref": "pkg:apk/alpine/libssl3@3.1.7-r1?arch=x86_64&distro=3.19.6",
       "type": "library",
+      "supplier": {
+        "name": "Ariadne Conill <ariadne@dereferenced.org>"
+      },
       "name": "libssl3",
       "version": "3.1.7-r1",
       "description": "SSL shared libraries",
@@ -871,7 +918,7 @@
       "licenses": [
         {
           "license": {
-            "name": "Apache-2.0"
+            "id": "Apache-2.0"
           }
         }
       ],
@@ -1088,6 +1135,9 @@
     {
       "bom-ref": "pkg:apk/alpine/musl-utils@1.2.4_git20230717-r4?arch=x86_64&distro=3.19.6",
       "type": "library",
+      "supplier": {
+        "name": "Timo Teräs <timo.teras@iki.fi>"
+      },
       "name": "musl-utils",
       "version": "1.2.4_git20230717-r4",
       "description": "the musl c library (libc) implementation",
@@ -1155,6 +1205,9 @@
     {
       "bom-ref": "pkg:apk/alpine/musl@1.2.4_git20230717-r4?arch=x86_64&distro=3.19.6",
       "type": "library",
+      "supplier": {
+        "name": "Timo Teräs <timo.teras@iki.fi>"
+      },
       "name": "musl",
       "version": "1.2.4_git20230717-r4",
       "description": "the musl c library (libc) implementation",
@@ -1222,6 +1275,9 @@
     {
       "bom-ref": "pkg:apk/alpine/scanelf@1.3.7-r2?arch=x86_64&distro=3.19.6",
       "type": "library",
+      "supplier": {
+        "name": "Natanael Copa <ncopa@alpinelinux.org>"
+      },
       "name": "scanelf",
       "version": "1.3.7-r2",
       "description": "Scan ELF binaries for stuff",
@@ -1289,6 +1345,9 @@
     {
       "bom-ref": "pkg:apk/alpine/ssl_client@1.36.1-r19?arch=x86_64&distro=3.19.6",
       "type": "library",
+      "supplier": {
+        "name": "Sören Tempel <soeren+alpine@soeren-tempel.net>"
+      },
       "name": "ssl_client",
       "version": "1.36.1-r19",
       "description": "External ssl_client for busybox wget",
@@ -1356,6 +1415,9 @@
     {
       "bom-ref": "pkg:apk/alpine/zlib@1.3.1-r0?arch=x86_64&distro=3.19.6",
       "type": "library",
+      "supplier": {
+        "name": "Natanael Copa <ncopa@alpinelinux.org>"
+      },
       "name": "zlib",
       "version": "1.3.1-r0",
       "description": "A compression/decompression Library",
@@ -13421,7 +13483,7 @@
   ],
   "dependencies": [
     {
-      "ref": "6446637f-62f0-4372-8ca5-395a8a6635ed",
+      "ref": "71d88128-ba88-4893-8518-7cc305875358",
       "dependsOn": [
         "pkg:apk/alpine/alpine-baselayout@3.4.3-r2?arch=x86_64&distro=3.19.6",
         "pkg:apk/alpine/alpine-keys@2.4-r1?arch=x86_64&distro=3.19.6",
@@ -13433,7 +13495,7 @@
       ]
     },
     {
-      "ref": "8c9a8bf1-0f02-48a1-9f35-fdaef2bc0a43",
+      "ref": "f3dcbd31-3c47-4c14-8c7b-07b10ab23201",
       "dependsOn": [
         "pkg:golang/github.com/falcosecurity/falcosidekick"
       ]
@@ -14385,8 +14447,8 @@
     {
       "ref": "pkg:oci/falcosidekick@sha256%3Afc0b4b7e4741011018dbd8e1f5311363902e7ca26a601c59efee4ca400b61000?arch=amd64&repository_url=index.docker.io%2Ffalcosecurity%2Ffalcosidekick",
       "dependsOn": [
-        "6446637f-62f0-4372-8ca5-395a8a6635ed",
-        "8c9a8bf1-0f02-48a1-9f35-fdaef2bc0a43"
+        "71d88128-ba88-4893-8518-7cc305875358",
+        "f3dcbd31-3c47-4c14-8c7b-07b10ab23201"
       ]
     }
   ],

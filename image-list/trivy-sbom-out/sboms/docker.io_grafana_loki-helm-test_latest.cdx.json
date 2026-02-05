@@ -2,17 +2,20 @@
   "$schema": "http://cyclonedx.org/schema/bom-1.6.schema.json",
   "bomFormat": "CycloneDX",
   "specVersion": "1.6",
-  "serialNumber": "urn:uuid:36ef9b95-e9de-4146-9ad4-a09387137925",
+  "serialNumber": "urn:uuid:2ebedc22-631c-4562-a412-56bb96b54c6b",
   "version": 1,
   "metadata": {
-    "timestamp": "2026-02-04T23:08:50+00:00",
+    "timestamp": "2026-02-04T23:54:51+00:00",
     "tools": {
       "components": [
         {
           "type": "application",
+          "manufacturer": {
+            "name": "Aqua Security Software Ltd."
+          },
           "group": "aquasecurity",
           "name": "trivy",
-          "version": "0.61.0"
+          "version": "0.69.0"
         }
       ]
     },
@@ -99,6 +102,10 @@
           "value": "https://github.com/grafana/loki"
         },
         {
+          "name": "aquasecurity:trivy:Reference",
+          "value": "grafana/loki-helm-test:latest"
+        },
+        {
           "name": "aquasecurity:trivy:RepoDigest",
           "value": "grafana/loki-helm-test@sha256:3eaef8e537a69fc1e8edc382281752c4ebb84b010dd7103adf805582a9279631"
         },
@@ -109,13 +116,17 @@
         {
           "name": "aquasecurity:trivy:SchemaVersion",
           "value": "2"
+        },
+        {
+          "name": "aquasecurity:trivy:Size",
+          "value": "31125504"
         }
       ]
     }
   },
   "components": [
     {
-      "bom-ref": "0db87a28-5f97-467d-b47b-1a47515e6022",
+      "bom-ref": "10df73b4-80d2-4cfd-8b88-29c4982925b3",
       "type": "operating-system",
       "name": "debian",
       "version": "12.6",
@@ -131,7 +142,7 @@
       ]
     },
     {
-      "bom-ref": "1a8739fc-7ef6-454f-b715-c6a066e99fbc",
+      "bom-ref": "c679f164-0618-43a9-915f-5b6260a9ed4c",
       "type": "application",
       "name": "usr/bin/helm-test",
       "properties": [
@@ -156,7 +167,7 @@
       "licenses": [
         {
           "license": {
-            "name": "GPL-2.0-or-later"
+            "id": "GPL-2.0-or-later"
           }
         }
       ],
@@ -199,12 +210,12 @@
       "licenses": [
         {
           "license": {
-            "name": "LGPL-2.1-only"
+            "id": "LGPL-2.1-only"
           }
         },
         {
           "license": {
-            "name": "GPL-2.0-only"
+            "id": "GPL-2.0-only"
           }
         }
       ],
@@ -251,7 +262,7 @@
       "licenses": [
         {
           "license": {
-            "name": "GPL-2.0-only"
+            "id": "GPL-2.0-only"
           }
         }
       ],
@@ -358,7 +369,7 @@
   ],
   "dependencies": [
     {
-      "ref": "0db87a28-5f97-467d-b47b-1a47515e6022",
+      "ref": "10df73b4-80d2-4cfd-8b88-29c4982925b3",
       "dependsOn": [
         "pkg:deb/debian/base-files@12.4%2Bdeb12u6?arch=amd64&distro=debian-12.6",
         "pkg:deb/debian/libc6@2.36-9%2Bdeb12u7?arch=amd64&distro=debian-12.6",
@@ -367,7 +378,7 @@
       ]
     },
     {
-      "ref": "1a8739fc-7ef6-454f-b715-c6a066e99fbc",
+      "ref": "c679f164-0618-43a9-915f-5b6260a9ed4c",
       "dependsOn": [
         "pkg:golang/stdlib@v1.22.5"
       ]
@@ -395,8 +406,8 @@
     {
       "ref": "pkg:oci/loki-helm-test@sha256%3A3eaef8e537a69fc1e8edc382281752c4ebb84b010dd7103adf805582a9279631?arch=amd64&repository_url=index.docker.io%2Fgrafana%2Floki-helm-test",
       "dependsOn": [
-        "0db87a28-5f97-467d-b47b-1a47515e6022",
-        "1a8739fc-7ef6-454f-b715-c6a066e99fbc"
+        "10df73b4-80d2-4cfd-8b88-29c4982925b3",
+        "c679f164-0618-43a9-915f-5b6260a9ed4c"
       ]
     }
   ],

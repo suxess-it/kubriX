@@ -2,17 +2,20 @@
   "$schema": "http://cyclonedx.org/schema/bom-1.6.schema.json",
   "bomFormat": "CycloneDX",
   "specVersion": "1.6",
-  "serialNumber": "urn:uuid:867c2083-1d9a-41ec-aeeb-c38602c43f17",
+  "serialNumber": "urn:uuid:f5ec3f08-03a4-4c5b-bd31-82e23bd4569e",
   "version": 1,
   "metadata": {
-    "timestamp": "2026-02-04T23:13:28+00:00",
+    "timestamp": "2026-02-04T23:59:45+00:00",
     "tools": {
       "components": [
         {
           "type": "application",
+          "manufacturer": {
+            "name": "Aqua Security Software Ltd."
+          },
           "group": "aquasecurity",
           "name": "trivy",
-          "version": "0.61.0"
+          "version": "0.69.0"
         }
       ]
     },
@@ -91,6 +94,10 @@
           "value": "https://github.com/cert-manager/cert-manager"
         },
         {
+          "name": "aquasecurity:trivy:Reference",
+          "value": "quay.io/jetstack/cert-manager-cainjector:v1.19.3"
+        },
+        {
           "name": "aquasecurity:trivy:RepoDigest",
           "value": "quay.io/jetstack/cert-manager-cainjector@sha256:eb1df56668b6e61bd902febe816568e7e47f47276121bc0e1222890871c61e50"
         },
@@ -101,13 +108,17 @@
         {
           "name": "aquasecurity:trivy:SchemaVersion",
           "value": "2"
+        },
+        {
+          "name": "aquasecurity:trivy:Size",
+          "value": "39063040"
         }
       ]
     }
   },
   "components": [
     {
-      "bom-ref": "00120259-ba9f-447e-9613-a70e717cd1a5",
+      "bom-ref": "0b55638e-d808-44e3-af86-41244d88a62f",
       "type": "application",
       "name": "app/cmd/cainjector/cainjector",
       "properties": [
@@ -122,23 +133,7 @@
       ]
     },
     {
-      "bom-ref": "9b88a0ad-9715-4c90-8bb0-a88634e3480e",
-      "type": "operating-system",
-      "name": "debian",
-      "version": "12.13",
-      "properties": [
-        {
-          "name": "aquasecurity:trivy:Class",
-          "value": "os-pkgs"
-        },
-        {
-          "name": "aquasecurity:trivy:Type",
-          "value": "debian"
-        }
-      ]
-    },
-    {
-      "bom-ref": "e92a0503-06cd-4a35-923c-7d9b7c5c790b",
+      "bom-ref": "3279cb18-590c-4b1c-9d7b-776ca63b9233",
       "type": "library",
       "name": "../../",
       "properties": [
@@ -161,6 +156,22 @@
       ]
     },
     {
+      "bom-ref": "9f70b5d8-3211-47cc-8ae7-939e8be3075f",
+      "type": "operating-system",
+      "name": "debian",
+      "version": "12.13",
+      "properties": [
+        {
+          "name": "aquasecurity:trivy:Class",
+          "value": "os-pkgs"
+        },
+        {
+          "name": "aquasecurity:trivy:Type",
+          "value": "debian"
+        }
+      ]
+    },
+    {
       "bom-ref": "pkg:deb/debian/base-files@12.4%2Bdeb12u13?arch=amd64&distro=debian-12.13",
       "type": "library",
       "supplier": {
@@ -171,7 +182,7 @@
       "licenses": [
         {
           "license": {
-            "name": "GPL-2.0-or-later"
+            "id": "GPL-2.0-or-later"
           }
         }
       ],
@@ -257,7 +268,7 @@
       "licenses": [
         {
           "license": {
-            "name": "GPL-2.0-only"
+            "id": "GPL-2.0-only"
           }
         }
       ],
@@ -4465,6 +4476,11 @@
       "author": "Kubernetes",
       "name": "k8s.io/kube-aggregator",
       "version": "v0.34.1",
+      "licenses": [
+        {
+          "expression": "(Apache-2.0)"
+        }
+      ],
       "purl": "pkg:golang/k8s.io/kube-aggregator@v0.34.1",
       "externalReferences": [
         {
@@ -4699,9 +4715,32 @@
     {
       "bom-ref": "pkg:golang/sigs.k8s.io/gateway-api@v1.4.0",
       "type": "library",
+      "supplier": {
+        "name": "Kubernetes SIGs"
+      },
+      "author": "Kubernetes SIGs",
       "name": "sigs.k8s.io/gateway-api",
       "version": "v1.4.0",
+      "licenses": [
+        {
+          "expression": "(Apache-2.0)"
+        }
+      ],
       "purl": "pkg:golang/sigs.k8s.io/gateway-api@v1.4.0",
+      "externalReferences": [
+        {
+          "url": "https://github.com/kubernetes-sigs/gateway-api",
+          "type": "website"
+        },
+        {
+          "url": "https://pkg.go.dev/sigs.k8s.io/gateway-api",
+          "type": "distribution"
+        },
+        {
+          "url": "https://pkg.go.dev/sigs.k8s.io/gateway-api#section-documentation",
+          "type": "documentation"
+        }
+      ],
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
@@ -4718,6 +4757,34 @@
         {
           "name": "aquasecurity:trivy:PkgType",
           "value": "gobinary"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2020-10-07T23:56:16Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2025-12-04T05:26:20Z"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "gateway-api"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "k8s-sig-network"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "kubernetes"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "networking"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "sig-network"
         }
       ]
     },
@@ -4954,9 +5021,9 @@
   ],
   "dependencies": [
     {
-      "ref": "00120259-ba9f-447e-9613-a70e717cd1a5",
+      "ref": "0b55638e-d808-44e3-af86-41244d88a62f",
       "dependsOn": [
-        "e92a0503-06cd-4a35-923c-7d9b7c5c790b",
+        "3279cb18-590c-4b1c-9d7b-776ca63b9233",
         "pkg:golang/github.com/azure/go-ntlmssp@v0.0.0-20221128193559-754e69321358",
         "pkg:golang/github.com/beorn7/perks@v1.0.1",
         "pkg:golang/github.com/blang/semver/v4@v4.0.0",
@@ -5031,17 +5098,17 @@
       ]
     },
     {
-      "ref": "9b88a0ad-9715-4c90-8bb0-a88634e3480e",
+      "ref": "3279cb18-590c-4b1c-9d7b-776ca63b9233",
+      "dependsOn": []
+    },
+    {
+      "ref": "9f70b5d8-3211-47cc-8ae7-939e8be3075f",
       "dependsOn": [
         "pkg:deb/debian/base-files@12.4%2Bdeb12u13?arch=amd64&distro=debian-12.13",
         "pkg:deb/debian/media-types@10.0.0?arch=all&distro=debian-12.13",
         "pkg:deb/debian/netbase@6.4?arch=all&distro=debian-12.13",
         "pkg:deb/debian/tzdata@2025b-0%2Bdeb12u2?arch=all&distro=debian-12.13"
       ]
-    },
-    {
-      "ref": "e92a0503-06cd-4a35-923c-7d9b7c5c790b",
-      "dependsOn": []
     },
     {
       "ref": "pkg:deb/debian/base-files@12.4%2Bdeb12u13?arch=amd64&distro=debian-12.13",
@@ -5346,8 +5413,8 @@
     {
       "ref": "pkg:oci/cert-manager-cainjector@sha256%3Aeb1df56668b6e61bd902febe816568e7e47f47276121bc0e1222890871c61e50?arch=amd64&repository_url=quay.io%2Fjetstack%2Fcert-manager-cainjector",
       "dependsOn": [
-        "00120259-ba9f-447e-9613-a70e717cd1a5",
-        "9b88a0ad-9715-4c90-8bb0-a88634e3480e"
+        "0b55638e-d808-44e3-af86-41244d88a62f",
+        "9f70b5d8-3211-47cc-8ae7-939e8be3075f"
       ]
     }
   ],

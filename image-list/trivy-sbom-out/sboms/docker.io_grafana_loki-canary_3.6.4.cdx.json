@@ -2,17 +2,20 @@
   "$schema": "http://cyclonedx.org/schema/bom-1.6.schema.json",
   "bomFormat": "CycloneDX",
   "specVersion": "1.6",
-  "serialNumber": "urn:uuid:38a4d1b3-c79d-4d71-8eb6-dda316657eaa",
+  "serialNumber": "urn:uuid:23f4b9ad-5c8d-4aa2-b8b8-2055d804986f",
   "version": 1,
   "metadata": {
-    "timestamp": "2026-02-04T23:08:47+00:00",
+    "timestamp": "2026-02-04T23:54:48+00:00",
     "tools": {
       "components": [
         {
           "type": "application",
+          "manufacturer": {
+            "name": "Aqua Security Software Ltd."
+          },
           "group": "aquasecurity",
           "name": "trivy",
-          "version": "0.61.0"
+          "version": "0.69.0"
         }
       ]
     },
@@ -87,6 +90,10 @@
           "value": "sha256:56a591e56fedbdceae6a2db473a81780b67fa2cb5ea5e576dadaec353fd69923"
         },
         {
+          "name": "aquasecurity:trivy:Reference",
+          "value": "grafana/loki-canary:3.6.4"
+        },
+        {
           "name": "aquasecurity:trivy:RepoDigest",
           "value": "grafana/loki-canary@sha256:259d058e26b2a57542ffda89cc6cf0db1f54376944370015a5d1a68df11d4532"
         },
@@ -97,13 +104,32 @@
         {
           "name": "aquasecurity:trivy:SchemaVersion",
           "value": "2"
+        },
+        {
+          "name": "aquasecurity:trivy:Size",
+          "value": "38614016"
         }
       ]
     }
   },
   "components": [
     {
-      "bom-ref": "b610bc39-f9b0-4b29-9274-f529b66635e7",
+      "bom-ref": "19e1d8e1-c629-41fc-b730-8628ccecaa28",
+      "type": "application",
+      "name": "usr/bin/loki-canary",
+      "properties": [
+        {
+          "name": "aquasecurity:trivy:Class",
+          "value": "lang-pkgs"
+        },
+        {
+          "name": "aquasecurity:trivy:Type",
+          "value": "gobinary"
+        }
+      ]
+    },
+    {
+      "bom-ref": "2acd6888-f95a-45f2-9153-014466870f1f",
       "type": "library",
       "name": "./pkg/push",
       "properties": [
@@ -126,7 +152,7 @@
       ]
     },
     {
-      "bom-ref": "c0a497e3-8c6c-4136-b90e-6894c5f2160c",
+      "bom-ref": "5b8a20f4-c4de-4706-9779-3753d8e6495c",
       "type": "operating-system",
       "name": "debian",
       "version": "12.13",
@@ -142,21 +168,6 @@
       ]
     },
     {
-      "bom-ref": "dc6ca06f-c198-40d5-b9ca-50f5613403d2",
-      "type": "application",
-      "name": "usr/bin/loki-canary",
-      "properties": [
-        {
-          "name": "aquasecurity:trivy:Class",
-          "value": "lang-pkgs"
-        },
-        {
-          "name": "aquasecurity:trivy:Type",
-          "value": "gobinary"
-        }
-      ]
-    },
-    {
       "bom-ref": "pkg:deb/debian/base-files@12.4%2Bdeb12u13?arch=amd64&distro=debian-12.13",
       "type": "library",
       "supplier": {
@@ -167,7 +178,7 @@
       "licenses": [
         {
           "license": {
-            "name": "GPL-2.0-or-later"
+            "id": "GPL-2.0-or-later"
           }
         }
       ],
@@ -253,7 +264,7 @@
       "licenses": [
         {
           "license": {
-            "name": "GPL-2.0-only"
+            "id": "GPL-2.0-only"
           }
         }
       ],
@@ -6185,22 +6196,22 @@
   ],
   "dependencies": [
     {
-      "ref": "b610bc39-f9b0-4b29-9274-f529b66635e7",
+      "ref": "19e1d8e1-c629-41fc-b730-8628ccecaa28",
+      "dependsOn": [
+        "pkg:golang/github.com/grafana/loki/v3@3.6.4"
+      ]
+    },
+    {
+      "ref": "2acd6888-f95a-45f2-9153-014466870f1f",
       "dependsOn": []
     },
     {
-      "ref": "c0a497e3-8c6c-4136-b90e-6894c5f2160c",
+      "ref": "5b8a20f4-c4de-4706-9779-3753d8e6495c",
       "dependsOn": [
         "pkg:deb/debian/base-files@12.4%2Bdeb12u13?arch=amd64&distro=debian-12.13",
         "pkg:deb/debian/media-types@10.0.0?arch=all&distro=debian-12.13",
         "pkg:deb/debian/netbase@6.4?arch=all&distro=debian-12.13",
         "pkg:deb/debian/tzdata@2025b-0%2Bdeb12u2?arch=all&distro=debian-12.13"
-      ]
-    },
-    {
-      "ref": "dc6ca06f-c198-40d5-b9ca-50f5613403d2",
-      "dependsOn": [
-        "pkg:golang/github.com/grafana/loki/v3@3.6.4"
       ]
     },
     {
@@ -6534,7 +6545,7 @@
     {
       "ref": "pkg:golang/github.com/grafana/loki/v3@3.6.4",
       "dependsOn": [
-        "b610bc39-f9b0-4b29-9274-f529b66635e7",
+        "2acd6888-f95a-45f2-9153-014466870f1f",
         "pkg:golang/cloud.google.com/go/auth/oauth2adapt@v0.2.8",
         "pkg:golang/cloud.google.com/go/auth@v0.17.0",
         "pkg:golang/cloud.google.com/go/compute/metadata@v0.9.0",
@@ -7393,8 +7404,8 @@
     {
       "ref": "pkg:oci/loki-canary@sha256%3A259d058e26b2a57542ffda89cc6cf0db1f54376944370015a5d1a68df11d4532?arch=amd64&repository_url=index.docker.io%2Fgrafana%2Floki-canary",
       "dependsOn": [
-        "c0a497e3-8c6c-4136-b90e-6894c5f2160c",
-        "dc6ca06f-c198-40d5-b9ca-50f5613403d2"
+        "19e1d8e1-c629-41fc-b730-8628ccecaa28",
+        "5b8a20f4-c4de-4706-9779-3753d8e6495c"
       ]
     }
   ],

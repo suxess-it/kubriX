@@ -2,17 +2,20 @@
   "$schema": "http://cyclonedx.org/schema/bom-1.6.schema.json",
   "bomFormat": "CycloneDX",
   "specVersion": "1.6",
-  "serialNumber": "urn:uuid:bac08de0-e21b-4467-8377-7d69666112f7",
+  "serialNumber": "urn:uuid:0c971725-4f65-451b-8ebc-782c4b0ff1d3",
   "version": 1,
   "metadata": {
-    "timestamp": "2026-02-04T23:08:14+00:00",
+    "timestamp": "2026-02-04T23:54:12+00:00",
     "tools": {
       "components": [
         {
           "type": "application",
+          "manufacturer": {
+            "name": "Aqua Security Software Ltd."
+          },
           "group": "aquasecurity",
           "name": "trivy",
-          "version": "0.61.0"
+          "version": "0.69.0"
         }
       ]
     },
@@ -55,6 +58,10 @@
           "value": "Chainguard"
         },
         {
+          "name": "aquasecurity:trivy:Reference",
+          "value": "falcosecurity/falcoctl:0.11.0"
+        },
+        {
           "name": "aquasecurity:trivy:RepoDigest",
           "value": "falcosecurity/falcoctl@sha256:4b590b9c49a881a55f6c3121c235057951418d726a9c43c4e1dbe3a5fcf358d3"
         },
@@ -65,28 +72,17 @@
         {
           "name": "aquasecurity:trivy:SchemaVersion",
           "value": "2"
+        },
+        {
+          "name": "aquasecurity:trivy:Size",
+          "value": "105238016"
         }
       ]
     }
   },
   "components": [
     {
-      "bom-ref": "16b791fb-49d5-499e-83ff-12110349c677",
-      "type": "application",
-      "name": "usr/bin/falcoctl",
-      "properties": [
-        {
-          "name": "aquasecurity:trivy:Class",
-          "value": "lang-pkgs"
-        },
-        {
-          "name": "aquasecurity:trivy:Type",
-          "value": "gobinary"
-        }
-      ]
-    },
-    {
-      "bom-ref": "5689b00a-338d-4608-bfa2-8e3a5ed53571",
+      "bom-ref": "a8e76bd6-f703-40fc-848d-50a5e3663295",
       "type": "operating-system",
       "name": "wolfi",
       "version": "20230201",
@@ -98,6 +94,21 @@
         {
           "name": "aquasecurity:trivy:Type",
           "value": "wolfi"
+        }
+      ]
+    },
+    {
+      "bom-ref": "f030e798-865c-4308-9130-38ecd2538354",
+      "type": "application",
+      "name": "usr/bin/falcoctl",
+      "properties": [
+        {
+          "name": "aquasecurity:trivy:Class",
+          "value": "lang-pkgs"
+        },
+        {
+          "name": "aquasecurity:trivy:Type",
+          "value": "gobinary"
         }
       ]
     },
@@ -249,7 +260,7 @@
       "licenses": [
         {
           "license": {
-            "name": "MIT"
+            "id": "MIT"
           }
         }
       ],
@@ -22740,16 +22751,16 @@
   ],
   "dependencies": [
     {
-      "ref": "16b791fb-49d5-499e-83ff-12110349c677",
-      "dependsOn": [
-        "pkg:golang/github.com/falcosecurity/falcoctl"
-      ]
-    },
-    {
-      "ref": "5689b00a-338d-4608-bfa2-8e3a5ed53571",
+      "ref": "a8e76bd6-f703-40fc-848d-50a5e3663295",
       "dependsOn": [
         "pkg:apk/wolfi/tzdata@2025a-r0?arch=x86_64&distro=20230201",
         "pkg:apk/wolfi/wolfi-baselayout@20230201-r16?arch=x86_64&distro=20230201"
+      ]
+    },
+    {
+      "ref": "f030e798-865c-4308-9130-38ecd2538354",
+      "dependsOn": [
+        "pkg:golang/github.com/falcosecurity/falcoctl"
       ]
     },
     {
@@ -24294,8 +24305,8 @@
     {
       "ref": "pkg:oci/falcoctl@sha256%3A4b590b9c49a881a55f6c3121c235057951418d726a9c43c4e1dbe3a5fcf358d3?arch=amd64&repository_url=index.docker.io%2Ffalcosecurity%2Ffalcoctl",
       "dependsOn": [
-        "16b791fb-49d5-499e-83ff-12110349c677",
-        "5689b00a-338d-4608-bfa2-8e3a5ed53571"
+        "a8e76bd6-f703-40fc-848d-50a5e3663295",
+        "f030e798-865c-4308-9130-38ecd2538354"
       ]
     }
   ],

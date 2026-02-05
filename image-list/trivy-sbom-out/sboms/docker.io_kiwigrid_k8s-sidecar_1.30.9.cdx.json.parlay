@@ -2,17 +2,20 @@
   "$schema": "http://cyclonedx.org/schema/bom-1.6.schema.json",
   "bomFormat": "CycloneDX",
   "specVersion": "1.6",
-  "serialNumber": "urn:uuid:e9837569-de34-4303-a60d-bc8ddfc38cb7",
+  "serialNumber": "urn:uuid:8dd0fb8a-2f89-4a2b-9708-5d46a299c090",
   "version": 1,
   "metadata": {
-    "timestamp": "2026-02-04T23:09:00+00:00",
+    "timestamp": "2026-02-04T23:55:04+00:00",
     "tools": {
       "components": [
         {
           "type": "application",
+          "manufacturer": {
+            "name": "Aqua Security Software Ltd."
+          },
           "group": "aquasecurity",
           "name": "trivy",
-          "version": "0.61.0"
+          "version": "0.69.0"
         }
       ]
     },
@@ -63,6 +66,10 @@
           "value": "https://github.com/kiwigrid/k8s-sidecar"
         },
         {
+          "name": "aquasecurity:trivy:Reference",
+          "value": "kiwigrid/k8s-sidecar:1.30.9"
+        },
+        {
           "name": "aquasecurity:trivy:RepoDigest",
           "value": "kiwigrid/k8s-sidecar@sha256:8c06e1ba643a4625de14b2db65c356f5db6b1482a25fce4754380a2936207338"
         },
@@ -73,184 +80,17 @@
         {
           "name": "aquasecurity:trivy:SchemaVersion",
           "value": "2"
+        },
+        {
+          "name": "aquasecurity:trivy:Size",
+          "value": "83795456"
         }
       ]
     }
   },
   "components": [
     {
-      "bom-ref": "038c2c86-0c22-494e-8aa0-637cbd222b47",
-      "type": "operating-system",
-      "name": "alpine",
-      "version": "3.22.1",
-      "properties": [
-        {
-          "name": "aquasecurity:trivy:Class",
-          "value": "os-pkgs"
-        },
-        {
-          "name": "aquasecurity:trivy:Type",
-          "value": "alpine"
-        }
-      ]
-    },
-    {
-      "bom-ref": "480d8f8e-9dfe-4985-bbb4-52c889423eef",
-      "type": "library",
-      "supplier": {
-        "name": "Python Packaging Authority",
-        "url": [
-          "https://www.pypa.io"
-        ]
-      },
-      "author": "Python Packaging Authority",
-      "name": "pip",
-      "version": "25.2",
-      "description": "The PyPA recommended tool for installing Python packages.",
-      "hashes": [
-        {
-          "alg": "SHA-1",
-          "content": "93027e6485f574b6e60d25a013c82425b49307b7"
-        }
-      ],
-      "licenses": [
-        {
-          "expression": "(MIT)"
-        }
-      ],
-      "purl": "pkg:pypi/pip@25.2",
-      "externalReferences": [
-        {
-          "url": "https://pip.pypa.io/",
-          "type": "website"
-        },
-        {
-          "url": "https://pypi.org/project/pip/",
-          "type": "distribution"
-        },
-        {
-          "url": "https://github.com/pypa/pip",
-          "type": "vcs"
-        },
-        {
-          "url": "https://pip.pypa.io",
-          "type": "documentation"
-        }
-      ],
-      "properties": [
-        {
-          "name": "aquasecurity:trivy:FilePath",
-          "value": "app/.venv/lib/python3.13/site-packages/pip-25.2.dist-info/METADATA"
-        },
-        {
-          "name": "aquasecurity:trivy:LayerDiffID",
-          "value": "sha256:ad705df0c503461ff1991892c91f78b1a02ed81f2e20e3d3a8142609282b0031"
-        },
-        {
-          "name": "aquasecurity:trivy:LayerDigest",
-          "value": "sha256:0751285fa662587f87a04647d508e5ab55871cfb14b5407739dbd159bcd2e4be"
-        },
-        {
-          "name": "aquasecurity:trivy:PkgType",
-          "value": "python-pkg"
-        },
-        {
-          "name": "ecosystems:first_release_published_at",
-          "value": "2008-10-28T17:22:10Z"
-        },
-        {
-          "name": "ecosystems:latest_release_published_at",
-          "value": "2025-05-02T15:13:59Z"
-        },
-        {
-          "name": "ecosystems:owner_location",
-          "value": "United States of America"
-        },
-        {
-          "name": "ecosystems:topic",
-          "value": "packaging"
-        },
-        {
-          "name": "ecosystems:topic",
-          "value": "pip"
-        },
-        {
-          "name": "ecosystems:topic",
-          "value": "python"
-        }
-      ]
-    },
-    {
-      "bom-ref": "939f593c-79e4-4f2c-b996-97312ab52b41",
-      "type": "library",
-      "supplier": {
-        "name": "Jaye Heffernan"
-      },
-      "author": "Jaye Heffernan",
-      "name": "my-test-package",
-      "version": "1.0",
-      "description": "A simple test program to investigate packaging and PyPI",
-      "hashes": [
-        {
-          "alg": "SHA-1",
-          "content": "6d7a67c18613be4b255812111b4619de979abc28"
-        }
-      ],
-      "licenses": [
-        {
-          "license": {
-            "name": "UNKNOWN"
-          }
-        }
-      ],
-      "purl": "pkg:pypi/my-test-package@1.0",
-      "externalReferences": [
-        {
-          "url": "https://github.com/aeraquoo/my_test_package",
-          "type": "website"
-        },
-        {
-          "url": "https://pypi.org/project/my-test-package/",
-          "type": "distribution"
-        },
-        {
-          "url": "https://github.com/aeraquoo/my_test_package",
-          "type": "vcs"
-        },
-        {
-          "url": "https://my-test-package.readthedocs.io/",
-          "type": "documentation"
-        }
-      ],
-      "properties": [
-        {
-          "name": "aquasecurity:trivy:FilePath",
-          "value": "app/.venv/lib/python3.13/site-packages/pkg_resources/tests/data/my-test-package_zipped-egg/my_test_package-1.0-py3.7.egg"
-        },
-        {
-          "name": "aquasecurity:trivy:LayerDiffID",
-          "value": "sha256:ad705df0c503461ff1991892c91f78b1a02ed81f2e20e3d3a8142609282b0031"
-        },
-        {
-          "name": "aquasecurity:trivy:LayerDigest",
-          "value": "sha256:0751285fa662587f87a04647d508e5ab55871cfb14b5407739dbd159bcd2e4be"
-        },
-        {
-          "name": "aquasecurity:trivy:PkgType",
-          "value": "python-pkg"
-        },
-        {
-          "name": "ecosystems:first_release_published_at",
-          "value": "2016-03-14T04:06:32Z"
-        },
-        {
-          "name": "ecosystems:latest_release_published_at",
-          "value": "2016-03-14T10:20:12Z"
-        }
-      ]
-    },
-    {
-      "bom-ref": "a1a452a5-bf67-44ec-a634-bc08308d0e0f",
+      "bom-ref": "58e4b804-bfbd-410e-8dc8-ea95798b6ece",
       "type": "library",
       "supplier": {
         "name": "Python Packaging Authority",
@@ -336,7 +176,162 @@
       ]
     },
     {
-      "bom-ref": "d8009037-c9c9-4705-92d3-471b4ccba15a",
+      "bom-ref": "7eb24212-620b-413a-99bb-a6e55e5ad8d2",
+      "type": "library",
+      "supplier": {
+        "name": "Python Packaging Authority",
+        "url": [
+          "https://www.pypa.io"
+        ]
+      },
+      "author": "Python Packaging Authority",
+      "name": "pip",
+      "version": "25.2",
+      "description": "The PyPA recommended tool for installing Python packages.",
+      "hashes": [
+        {
+          "alg": "SHA-1",
+          "content": "93027e6485f574b6e60d25a013c82425b49307b7"
+        }
+      ],
+      "licenses": [
+        {
+          "expression": "(MIT)"
+        }
+      ],
+      "purl": "pkg:pypi/pip@25.2",
+      "externalReferences": [
+        {
+          "url": "https://pip.pypa.io/",
+          "type": "website"
+        },
+        {
+          "url": "https://pypi.org/project/pip/",
+          "type": "distribution"
+        },
+        {
+          "url": "https://github.com/pypa/pip",
+          "type": "vcs"
+        },
+        {
+          "url": "https://pip.pypa.io",
+          "type": "documentation"
+        }
+      ],
+      "properties": [
+        {
+          "name": "aquasecurity:trivy:FilePath",
+          "value": "app/.venv/lib/python3.13/site-packages/pip-25.2.dist-info/METADATA"
+        },
+        {
+          "name": "aquasecurity:trivy:LayerDiffID",
+          "value": "sha256:ad705df0c503461ff1991892c91f78b1a02ed81f2e20e3d3a8142609282b0031"
+        },
+        {
+          "name": "aquasecurity:trivy:LayerDigest",
+          "value": "sha256:0751285fa662587f87a04647d508e5ab55871cfb14b5407739dbd159bcd2e4be"
+        },
+        {
+          "name": "aquasecurity:trivy:PkgType",
+          "value": "python-pkg"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2008-10-28T17:22:10Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2025-05-02T15:13:59Z"
+        },
+        {
+          "name": "ecosystems:owner_location",
+          "value": "United States of America"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "packaging"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "pip"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "python"
+        }
+      ]
+    },
+    {
+      "bom-ref": "a41d41f4-ce5d-4dde-b7d8-37a400c3f964",
+      "type": "library",
+      "supplier": {
+        "name": "Jaye Heffernan"
+      },
+      "author": "Jaye Heffernan",
+      "name": "my-test-package",
+      "version": "1.0",
+      "description": "A simple test program to investigate packaging and PyPI",
+      "hashes": [
+        {
+          "alg": "SHA-1",
+          "content": "6d7a67c18613be4b255812111b4619de979abc28"
+        }
+      ],
+      "licenses": [
+        {
+          "license": {
+            "name": "UNKNOWN"
+          }
+        }
+      ],
+      "purl": "pkg:pypi/my-test-package@1.0",
+      "externalReferences": [
+        {
+          "url": "https://github.com/aeraquoo/my_test_package",
+          "type": "website"
+        },
+        {
+          "url": "https://pypi.org/project/my-test-package/",
+          "type": "distribution"
+        },
+        {
+          "url": "https://github.com/aeraquoo/my_test_package",
+          "type": "vcs"
+        },
+        {
+          "url": "https://my-test-package.readthedocs.io/",
+          "type": "documentation"
+        }
+      ],
+      "properties": [
+        {
+          "name": "aquasecurity:trivy:FilePath",
+          "value": "app/.venv/lib/python3.13/site-packages/pkg_resources/tests/data/my-test-package_zipped-egg/my_test_package-1.0-py3.7.egg"
+        },
+        {
+          "name": "aquasecurity:trivy:LayerDiffID",
+          "value": "sha256:ad705df0c503461ff1991892c91f78b1a02ed81f2e20e3d3a8142609282b0031"
+        },
+        {
+          "name": "aquasecurity:trivy:LayerDigest",
+          "value": "sha256:0751285fa662587f87a04647d508e5ab55871cfb14b5407739dbd159bcd2e4be"
+        },
+        {
+          "name": "aquasecurity:trivy:PkgType",
+          "value": "python-pkg"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2016-03-14T04:06:32Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2016-03-14T10:20:12Z"
+        }
+      ]
+    },
+    {
+      "bom-ref": "ab6ad31f-66f7-4840-a108-c4893aab20f2",
       "type": "library",
       "supplier": {
         "name": "Jaye Heffernan"
@@ -405,6 +400,22 @@
       ]
     },
     {
+      "bom-ref": "b4827e8a-0972-438c-8e7d-b83e81f294e0",
+      "type": "operating-system",
+      "name": "alpine",
+      "version": "3.22.1",
+      "properties": [
+        {
+          "name": "aquasecurity:trivy:Class",
+          "value": "os-pkgs"
+        },
+        {
+          "name": "aquasecurity:trivy:Type",
+          "value": "alpine"
+        }
+      ]
+    },
+    {
       "bom-ref": "pkg:apk/alpine/.python-rundeps@20250812.224420?arch=noarch&distro=3.22.1",
       "type": "library",
       "name": ".python-rundeps",
@@ -438,6 +449,9 @@
     {
       "bom-ref": "pkg:apk/alpine/alpine-baselayout-data@3.7.0-r0?arch=x86_64&distro=3.22.1",
       "type": "library",
+      "supplier": {
+        "name": "Natanael Copa <ncopa@alpinelinux.org>"
+      },
       "name": "alpine-baselayout-data",
       "version": "3.7.0-r0",
       "description": "Alpine base dir structure and init scripts",
@@ -505,6 +519,9 @@
     {
       "bom-ref": "pkg:apk/alpine/alpine-baselayout@3.7.0-r0?arch=x86_64&distro=3.22.1",
       "type": "library",
+      "supplier": {
+        "name": "Natanael Copa <ncopa@alpinelinux.org>"
+      },
       "name": "alpine-baselayout",
       "version": "3.7.0-r0",
       "description": "Alpine base dir structure and init scripts",
@@ -572,6 +589,9 @@
     {
       "bom-ref": "pkg:apk/alpine/alpine-keys@2.5-r0?arch=x86_64&distro=3.22.1",
       "type": "library",
+      "supplier": {
+        "name": "Natanael Copa <ncopa@alpinelinux.org>"
+      },
       "name": "alpine-keys",
       "version": "2.5-r0",
       "description": "Public keys for Alpine Linux packages",
@@ -639,6 +659,9 @@
     {
       "bom-ref": "pkg:apk/alpine/alpine-release@3.22.1-r0?arch=x86_64&distro=3.22.1",
       "type": "library",
+      "supplier": {
+        "name": "Natanael Copa <ncopa@alpinelinux.org>"
+      },
       "name": "alpine-release",
       "version": "3.22.1-r0",
       "description": "Alpine release data",
@@ -651,7 +674,7 @@
       "licenses": [
         {
           "license": {
-            "name": "MIT"
+            "id": "MIT"
           }
         }
       ],
@@ -708,6 +731,9 @@
     {
       "bom-ref": "pkg:apk/alpine/apk-tools@2.14.9-r2?arch=x86_64&distro=3.22.1",
       "type": "library",
+      "supplier": {
+        "name": "Natanael Copa <ncopa@alpinelinux.org>"
+      },
       "name": "apk-tools",
       "version": "2.14.9-r2",
       "description": "Alpine Package Keeper - package manager for alpine",
@@ -775,6 +801,9 @@
     {
       "bom-ref": "pkg:apk/alpine/busybox-binsh@1.37.0-r18?arch=x86_64&distro=3.22.1",
       "type": "library",
+      "supplier": {
+        "name": "Sören Tempel <soeren+alpine@soeren-tempel.net>"
+      },
       "name": "busybox-binsh",
       "version": "1.37.0-r18",
       "description": "busybox ash /bin/sh",
@@ -842,6 +871,9 @@
     {
       "bom-ref": "pkg:apk/alpine/busybox@1.37.0-r18?arch=x86_64&distro=3.22.1",
       "type": "library",
+      "supplier": {
+        "name": "Sören Tempel <soeren+alpine@soeren-tempel.net>"
+      },
       "name": "busybox",
       "version": "1.37.0-r18",
       "description": "Size optimized toolbox of many common UNIX utilities",
@@ -909,6 +941,9 @@
     {
       "bom-ref": "pkg:apk/alpine/ca-certificates-bundle@20250619-r0?arch=x86_64&distro=3.22.1",
       "type": "library",
+      "supplier": {
+        "name": "Natanael Copa <ncopa@alpinelinux.org>"
+      },
       "name": "ca-certificates-bundle",
       "version": "20250619-r0",
       "description": "Pre generated bundle of Mozilla certificates",
@@ -976,6 +1011,9 @@
     {
       "bom-ref": "pkg:apk/alpine/ca-certificates@20250619-r0?arch=x86_64&distro=3.22.1",
       "type": "library",
+      "supplier": {
+        "name": "Natanael Copa <ncopa@alpinelinux.org>"
+      },
       "name": "ca-certificates",
       "version": "20250619-r0",
       "description": "Common CA certificates PEM files from Mozilla",
@@ -1043,6 +1081,9 @@
     {
       "bom-ref": "pkg:apk/alpine/gdbm@1.24-r0?arch=x86_64&distro=3.22.1",
       "type": "library",
+      "supplier": {
+        "name": "Natanael Copa <ncopa@alpinelinux.org>"
+      },
       "name": "gdbm",
       "version": "1.24-r0",
       "description": "GNU dbm is a set of database routines that use extensible hashing",
@@ -1110,6 +1151,9 @@
     {
       "bom-ref": "pkg:apk/alpine/libapk2@2.14.9-r2?arch=x86_64&distro=3.22.1",
       "type": "library",
+      "supplier": {
+        "name": "Natanael Copa <ncopa@alpinelinux.org>"
+      },
       "name": "libapk2",
       "version": "2.14.9-r2",
       "description": "Alpine Package Keeper - package manager for alpine",
@@ -1177,6 +1221,9 @@
     {
       "bom-ref": "pkg:apk/alpine/libbz2@1.0.8-r6?arch=x86_64&distro=3.22.1",
       "type": "library",
+      "supplier": {
+        "name": "Natanael Copa <ncopa@alpinelinux.org>"
+      },
       "name": "libbz2",
       "version": "1.0.8-r6",
       "description": "Shared library for bz2",
@@ -1244,6 +1291,9 @@
     {
       "bom-ref": "pkg:apk/alpine/libcrypto3@3.5.1-r0?arch=x86_64&distro=3.22.1",
       "type": "library",
+      "supplier": {
+        "name": "Natanael Copa <ncopa@alpinelinux.org>"
+      },
       "name": "libcrypto3",
       "version": "3.5.1-r0",
       "description": "Crypto library from openssl",
@@ -1311,6 +1361,9 @@
     {
       "bom-ref": "pkg:apk/alpine/libffi@3.4.8-r0?arch=x86_64&distro=3.22.1",
       "type": "library",
+      "supplier": {
+        "name": "Natanael Copa <ncopa@alpinelinux.org>"
+      },
       "name": "libffi",
       "version": "3.4.8-r0",
       "description": "portable, high level programming interface to various calling conventions.",
@@ -1378,6 +1431,9 @@
     {
       "bom-ref": "pkg:apk/alpine/libncursesw@6.5_p20250503-r0?arch=x86_64&distro=3.22.1",
       "type": "library",
+      "supplier": {
+        "name": "Natanael Copa <ncopa@alpinelinux.org>"
+      },
       "name": "libncursesw",
       "version": "6.5_p20250503-r0",
       "description": "Console display library (libncursesw)",
@@ -1445,6 +1501,9 @@
     {
       "bom-ref": "pkg:apk/alpine/libpanelw@6.5_p20250503-r0?arch=x86_64&distro=3.22.1",
       "type": "library",
+      "supplier": {
+        "name": "Natanael Copa <ncopa@alpinelinux.org>"
+      },
       "name": "libpanelw",
       "version": "6.5_p20250503-r0",
       "description": "Console display library (libpanelw)",
@@ -1512,6 +1571,9 @@
     {
       "bom-ref": "pkg:apk/alpine/libssl3@3.5.1-r0?arch=x86_64&distro=3.22.1",
       "type": "library",
+      "supplier": {
+        "name": "Natanael Copa <ncopa@alpinelinux.org>"
+      },
       "name": "libssl3",
       "version": "3.5.1-r0",
       "description": "SSL shared libraries",
@@ -1579,6 +1641,9 @@
     {
       "bom-ref": "pkg:apk/alpine/libuuid@2.41-r9?arch=x86_64&distro=3.22.1",
       "type": "library",
+      "supplier": {
+        "name": "Natanael Copa <ncopa@alpinelinux.org>"
+      },
       "name": "libuuid",
       "version": "2.41-r9",
       "description": "DCE compatible Universally Unique Identifier library",
@@ -1646,6 +1711,9 @@
     {
       "bom-ref": "pkg:apk/alpine/musl-utils@1.2.5-r10?arch=x86_64&distro=3.22.1",
       "type": "library",
+      "supplier": {
+        "name": "Natanael Copa <ncopa@alpinelinux.org>"
+      },
       "name": "musl-utils",
       "version": "1.2.5-r10",
       "description": "the musl c library (libc) implementation",
@@ -1713,6 +1781,9 @@
     {
       "bom-ref": "pkg:apk/alpine/musl@1.2.5-r10?arch=x86_64&distro=3.22.1",
       "type": "library",
+      "supplier": {
+        "name": "Natanael Copa <ncopa@alpinelinux.org>"
+      },
       "name": "musl",
       "version": "1.2.5-r10",
       "description": "the musl c library (libc) implementation",
@@ -1780,6 +1851,9 @@
     {
       "bom-ref": "pkg:apk/alpine/ncurses-terminfo-base@6.5_p20250503-r0?arch=x86_64&distro=3.22.1",
       "type": "library",
+      "supplier": {
+        "name": "Natanael Copa <ncopa@alpinelinux.org>"
+      },
       "name": "ncurses-terminfo-base",
       "version": "6.5_p20250503-r0",
       "description": "Descriptions of common terminals",
@@ -1847,6 +1921,9 @@
     {
       "bom-ref": "pkg:apk/alpine/readline@8.2.13-r1?arch=x86_64&distro=3.22.1",
       "type": "library",
+      "supplier": {
+        "name": "Celeste <cielesti@protonmail.com>"
+      },
       "name": "readline",
       "version": "8.2.13-r1",
       "description": "GNU readline library",
@@ -1914,6 +1991,9 @@
     {
       "bom-ref": "pkg:apk/alpine/scanelf@1.3.8-r1?arch=x86_64&distro=3.22.1",
       "type": "library",
+      "supplier": {
+        "name": "Natanael Copa <ncopa@alpinelinux.org>"
+      },
       "name": "scanelf",
       "version": "1.3.8-r1",
       "description": "Scan ELF binaries for stuff",
@@ -1981,6 +2061,9 @@
     {
       "bom-ref": "pkg:apk/alpine/sqlite-libs@3.49.2-r1?arch=x86_64&distro=3.22.1",
       "type": "library",
+      "supplier": {
+        "name": "Celeste <cielesti@protonmail.com>"
+      },
       "name": "sqlite-libs",
       "version": "3.49.2-r1",
       "description": "C library that implements an SQL database engine (libraries)",
@@ -1993,7 +2076,7 @@
       "licenses": [
         {
           "license": {
-            "name": "blessing"
+            "id": "blessing"
           }
         }
       ],
@@ -2050,6 +2133,9 @@
     {
       "bom-ref": "pkg:apk/alpine/ssl_client@1.37.0-r18?arch=x86_64&distro=3.22.1",
       "type": "library",
+      "supplier": {
+        "name": "Sören Tempel <soeren+alpine@soeren-tempel.net>"
+      },
       "name": "ssl_client",
       "version": "1.37.0-r18",
       "description": "External ssl_client for busybox wget",
@@ -2117,6 +2203,9 @@
     {
       "bom-ref": "pkg:apk/alpine/tzdata@2025b-r0?arch=x86_64&distro=3.22.1",
       "type": "library",
+      "supplier": {
+        "name": "Natanael Copa <ncopa@alpinelinux.org>"
+      },
       "name": "tzdata",
       "version": "2025b-r0",
       "description": "Timezone data",
@@ -2184,6 +2273,9 @@
     {
       "bom-ref": "pkg:apk/alpine/xz-libs@5.8.1-r0?arch=x86_64&distro=3.22.1",
       "type": "library",
+      "supplier": {
+        "name": "Natanael Copa <ncopa@alpinelinux.org>"
+      },
       "name": "xz-libs",
       "version": "5.8.1-r0",
       "description": "Library and CLI tools for XZ and LZMA compressed files (libraries)",
@@ -2251,6 +2343,9 @@
     {
       "bom-ref": "pkg:apk/alpine/zlib@1.3.1-r2?arch=x86_64&distro=3.22.1",
       "type": "library",
+      "supplier": {
+        "name": "Natanael Copa <ncopa@alpinelinux.org>"
+      },
       "name": "zlib",
       "version": "1.3.1-r2",
       "description": "A compression/decompression Library",
@@ -5306,7 +5401,23 @@
   ],
   "dependencies": [
     {
-      "ref": "038c2c86-0c22-494e-8aa0-637cbd222b47",
+      "ref": "58e4b804-bfbd-410e-8dc8-ea95798b6ece",
+      "dependsOn": []
+    },
+    {
+      "ref": "7eb24212-620b-413a-99bb-a6e55e5ad8d2",
+      "dependsOn": []
+    },
+    {
+      "ref": "a41d41f4-ce5d-4dde-b7d8-37a400c3f964",
+      "dependsOn": []
+    },
+    {
+      "ref": "ab6ad31f-66f7-4840-a108-c4893aab20f2",
+      "dependsOn": []
+    },
+    {
+      "ref": "b4827e8a-0972-438c-8e7d-b83e81f294e0",
       "dependsOn": [
         "pkg:apk/alpine/.python-rundeps@20250812.224420?arch=noarch&distro=3.22.1",
         "pkg:apk/alpine/alpine-baselayout@3.7.0-r0?arch=x86_64&distro=3.22.1",
@@ -5317,22 +5428,6 @@
         "pkg:apk/alpine/ssl_client@1.37.0-r18?arch=x86_64&distro=3.22.1",
         "pkg:apk/alpine/tzdata@2025b-r0?arch=x86_64&distro=3.22.1"
       ]
-    },
-    {
-      "ref": "480d8f8e-9dfe-4985-bbb4-52c889423eef",
-      "dependsOn": []
-    },
-    {
-      "ref": "939f593c-79e4-4f2c-b996-97312ab52b41",
-      "dependsOn": []
-    },
-    {
-      "ref": "a1a452a5-bf67-44ec-a634-bc08308d0e0f",
-      "dependsOn": []
-    },
-    {
-      "ref": "d8009037-c9c9-4705-92d3-471b4ccba15a",
-      "dependsOn": []
     },
     {
       "ref": "pkg:apk/alpine/.python-rundeps@20250812.224420?arch=noarch&distro=3.22.1",
@@ -5530,11 +5625,11 @@
     {
       "ref": "pkg:oci/k8s-sidecar@sha256%3A8c06e1ba643a4625de14b2db65c356f5db6b1482a25fce4754380a2936207338?arch=amd64&repository_url=index.docker.io%2Fkiwigrid%2Fk8s-sidecar",
       "dependsOn": [
-        "038c2c86-0c22-494e-8aa0-637cbd222b47",
-        "480d8f8e-9dfe-4985-bbb4-52c889423eef",
-        "939f593c-79e4-4f2c-b996-97312ab52b41",
-        "a1a452a5-bf67-44ec-a634-bc08308d0e0f",
-        "d8009037-c9c9-4705-92d3-471b4ccba15a",
+        "58e4b804-bfbd-410e-8dc8-ea95798b6ece",
+        "7eb24212-620b-413a-99bb-a6e55e5ad8d2",
+        "a41d41f4-ce5d-4dde-b7d8-37a400c3f964",
+        "ab6ad31f-66f7-4840-a108-c4893aab20f2",
+        "b4827e8a-0972-438c-8e7d-b83e81f294e0",
         "pkg:pypi/argparse@1.4.0",
         "pkg:pypi/autocommand@2.2.2",
         "pkg:pypi/backports.tarfile@1.2.0",

@@ -2,17 +2,20 @@
   "$schema": "http://cyclonedx.org/schema/bom-1.6.schema.json",
   "bomFormat": "CycloneDX",
   "specVersion": "1.6",
-  "serialNumber": "urn:uuid:0aa51b96-4d33-4e25-aa2e-948b26362abb",
+  "serialNumber": "urn:uuid:518cb1de-41cc-4902-b91a-bd2033905a7a",
   "version": 1,
   "metadata": {
-    "timestamp": "2026-02-04T23:12:12+00:00",
+    "timestamp": "2026-02-04T23:58:25+00:00",
     "tools": {
       "components": [
         {
           "type": "application",
+          "manufacturer": {
+            "name": "Aqua Security Software Ltd."
+          },
           "group": "aquasecurity",
           "name": "trivy",
-          "version": "0.61.0"
+          "version": "0.69.0"
         }
       ]
     },
@@ -95,6 +98,10 @@
           "value": "mimir"
         },
         {
+          "name": "aquasecurity:trivy:Reference",
+          "value": "grafana/mimir:3.0.1"
+        },
+        {
           "name": "aquasecurity:trivy:RepoDigest",
           "value": "grafana/mimir@sha256:5f4667c9b7164a376bd555a56b5a7074535303e1924192a267bad7f0b72893f7"
         },
@@ -105,13 +112,17 @@
         {
           "name": "aquasecurity:trivy:SchemaVersion",
           "value": "2"
+        },
+        {
+          "name": "aquasecurity:trivy:Size",
+          "value": "102427136"
         }
       ]
     }
   },
   "components": [
     {
-      "bom-ref": "034251d7-f3a5-416f-87ee-5c37b8a20c4b",
+      "bom-ref": "5feb6c92-e856-41a6-b8f0-7561b9591938",
       "type": "operating-system",
       "name": "debian",
       "version": "12.12",
@@ -127,7 +138,7 @@
       ]
     },
     {
-      "bom-ref": "292e878b-232a-4c32-bcfe-15c0420689b0",
+      "bom-ref": "ae61872f-e35a-42d1-a833-abc1c14b5651",
       "type": "application",
       "name": "bin/mimir",
       "properties": [
@@ -152,7 +163,7 @@
       "licenses": [
         {
           "license": {
-            "name": "GPL-2.0-or-later"
+            "id": "GPL-2.0-or-later"
           }
         }
       ],
@@ -238,7 +249,7 @@
       "licenses": [
         {
           "license": {
-            "name": "GPL-2.0-only"
+            "id": "GPL-2.0-only"
           }
         }
       ],
@@ -22034,7 +22045,7 @@
   ],
   "dependencies": [
     {
-      "ref": "034251d7-f3a5-416f-87ee-5c37b8a20c4b",
+      "ref": "5feb6c92-e856-41a6-b8f0-7561b9591938",
       "dependsOn": [
         "pkg:deb/debian/base-files@12.4%2Bdeb12u12?arch=amd64&distro=debian-12.12",
         "pkg:deb/debian/media-types@10.0.0?arch=all&distro=debian-12.12",
@@ -22043,7 +22054,7 @@
       ]
     },
     {
-      "ref": "292e878b-232a-4c32-bcfe-15c0420689b0",
+      "ref": "ae61872f-e35a-42d1-a833-abc1c14b5651",
       "dependsOn": [
         "pkg:golang/github.com/grafana/mimir@3.0.1"
       ]
@@ -23552,8 +23563,8 @@
     {
       "ref": "pkg:oci/mimir@sha256%3A5f4667c9b7164a376bd555a56b5a7074535303e1924192a267bad7f0b72893f7?arch=amd64&repository_url=index.docker.io%2Fgrafana%2Fmimir",
       "dependsOn": [
-        "034251d7-f3a5-416f-87ee-5c37b8a20c4b",
-        "292e878b-232a-4c32-bcfe-15c0420689b0"
+        "5feb6c92-e856-41a6-b8f0-7561b9591938",
+        "ae61872f-e35a-42d1-a833-abc1c14b5651"
       ]
     }
   ],

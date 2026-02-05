@@ -2,17 +2,20 @@
   "$schema": "http://cyclonedx.org/schema/bom-1.6.schema.json",
   "bomFormat": "CycloneDX",
   "specVersion": "1.6",
-  "serialNumber": "urn:uuid:5d30d693-5a9d-4370-b8ab-178cd6f6ed7e",
+  "serialNumber": "urn:uuid:13cad9b1-2ff5-49d6-aac6-c800c250c86b",
   "version": 1,
   "metadata": {
-    "timestamp": "2026-02-04T23:14:55+00:00",
+    "timestamp": "2026-02-05T00:02:54+00:00",
     "tools": {
       "components": [
         {
           "type": "application",
+          "manufacturer": {
+            "name": "Aqua Security Software Ltd."
+          },
           "group": "aquasecurity",
           "name": "trivy",
-          "version": "0.61.0"
+          "version": "0.69.0"
         }
       ]
     },
@@ -91,34 +94,27 @@
           "value": "https://github.com/kubernetes/ingress-nginx"
         },
         {
+          "name": "aquasecurity:trivy:Reference",
+          "value": "registry.k8s.io/ingress-nginx/kube-webhook-certgen@sha256:7c74a715af2c94cb734785b4d3ea1357b4f02b88e1e123c622a9cb68b62f669c"
+        },
+        {
           "name": "aquasecurity:trivy:RepoDigest",
           "value": "registry.k8s.io/ingress-nginx/kube-webhook-certgen@sha256:7c74a715af2c94cb734785b4d3ea1357b4f02b88e1e123c622a9cb68b62f669c"
         },
         {
           "name": "aquasecurity:trivy:SchemaVersion",
           "value": "2"
+        },
+        {
+          "name": "aquasecurity:trivy:Size",
+          "value": "39643648"
         }
       ]
     }
   },
   "components": [
     {
-      "bom-ref": "2fb882ec-3592-4f26-86a3-74c760d93af9",
-      "type": "application",
-      "name": "kube-webhook-certgen",
-      "properties": [
-        {
-          "name": "aquasecurity:trivy:Class",
-          "value": "lang-pkgs"
-        },
-        {
-          "name": "aquasecurity:trivy:Type",
-          "value": "gobinary"
-        }
-      ]
-    },
-    {
-      "bom-ref": "94f5a5f1-e168-4ebb-8947-f28fef2017db",
+      "bom-ref": "0e726d03-533f-44c4-8a7c-01d7ce92022f",
       "type": "operating-system",
       "name": "debian",
       "version": "12.13",
@@ -134,6 +130,21 @@
       ]
     },
     {
+      "bom-ref": "8e47b89b-34ab-4ebd-856f-3fb306ecf8b8",
+      "type": "application",
+      "name": "kube-webhook-certgen",
+      "properties": [
+        {
+          "name": "aquasecurity:trivy:Class",
+          "value": "lang-pkgs"
+        },
+        {
+          "name": "aquasecurity:trivy:Type",
+          "value": "gobinary"
+        }
+      ]
+    },
+    {
       "bom-ref": "pkg:deb/debian/base-files@12.4%2Bdeb12u13?arch=amd64&distro=debian-12.13",
       "type": "library",
       "supplier": {
@@ -144,7 +155,7 @@
       "licenses": [
         {
           "license": {
-            "name": "GPL-2.0-or-later"
+            "id": "GPL-2.0-or-later"
           }
         }
       ],
@@ -230,7 +241,7 @@
       "licenses": [
         {
           "license": {
-            "name": "GPL-2.0-only"
+            "id": "GPL-2.0-only"
           }
         }
       ],
@@ -1636,8 +1647,33 @@
     {
       "bom-ref": "pkg:golang/github.com/jet/kube-webhook-certgen",
       "type": "library",
+      "supplier": {
+        "name": "Jet.com",
+        "url": [
+          "https://jet.com"
+        ]
+      },
+      "author": "Jet.com",
       "name": "github.com/jet/kube-webhook-certgen",
       "purl": "pkg:golang/github.com/jet/kube-webhook-certgen",
+      "externalReferences": [
+        {
+          "url": "https://github.com/jet/kube-webhook-certgen",
+          "type": "website"
+        },
+        {
+          "url": "https://pkg.go.dev/github.com/jet/kube-webhook-certgen",
+          "type": "distribution"
+        },
+        {
+          "url": "https://github.com/jet/kube-webhook-certgen",
+          "type": "vcs"
+        },
+        {
+          "url": "https://pkg.go.dev/github.com/jet/kube-webhook-certgen#section-documentation",
+          "type": "documentation"
+        }
+      ],
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
@@ -1654,6 +1690,14 @@
         {
           "name": "aquasecurity:trivy:PkgType",
           "value": "gobinary"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2019-05-30T09:04:34Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2021-04-07T16:13:58Z"
         }
       ]
     },
@@ -1966,9 +2010,36 @@
     {
       "bom-ref": "pkg:golang/github.com/onrik/logrus@v0.11.0",
       "type": "library",
+      "supplier": {
+        "name": "Andrey"
+      },
+      "author": "Andrey",
       "name": "github.com/onrik/logrus",
       "version": "v0.11.0",
+      "licenses": [
+        {
+          "expression": "(MIT)"
+        }
+      ],
       "purl": "pkg:golang/github.com/onrik/logrus@v0.11.0",
+      "externalReferences": [
+        {
+          "url": "https://github.com/onrik/logrus",
+          "type": "website"
+        },
+        {
+          "url": "https://pkg.go.dev/github.com/onrik/logrus",
+          "type": "distribution"
+        },
+        {
+          "url": "https://github.com/onrik/logrus",
+          "type": "vcs"
+        },
+        {
+          "url": "https://pkg.go.dev/github.com/onrik/logrus#section-documentation",
+          "type": "documentation"
+        }
+      ],
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
@@ -1985,6 +2056,58 @@
         {
           "name": "aquasecurity:trivy:PkgType",
           "value": "gobinary"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2018-12-25T13:09:38Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2023-06-09T06:31:25Z"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "echo"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "gin"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "gin-gonic"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "gin-middleware"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "golang"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "gorm"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "gorm-orm"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "logging"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "logrus"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "sentry"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "sentry-client"
         }
       ]
     },
@@ -2001,6 +2124,11 @@
       "name": "github.com/sirupsen/logrus",
       "version": "v1.9.4",
       "description": "Package logrus is a structured logger for Go, completely API compatible with the standard library logger.\n\nThe simplest way to use Logrus is simply the package-level exported logger:\n\nOutput:\n\nFor a full guide visit https://github.com/sirupsen/logrus\n\n\nAn example on how to use a hook",
+      "licenses": [
+        {
+          "expression": "(MIT)"
+        }
+      ],
       "purl": "pkg:golang/github.com/sirupsen/logrus@v1.9.4",
       "externalReferences": [
         {
@@ -3251,6 +3379,11 @@
       "author": "Kubernetes",
       "name": "k8s.io/kube-aggregator",
       "version": "v0.35.0",
+      "licenses": [
+        {
+          "expression": "(Apache-2.0)"
+        }
+      ],
       "purl": "pkg:golang/k8s.io/kube-aggregator@v0.35.0",
       "externalReferences": [
         {
@@ -3654,7 +3787,16 @@
   ],
   "dependencies": [
     {
-      "ref": "2fb882ec-3592-4f26-86a3-74c760d93af9",
+      "ref": "0e726d03-533f-44c4-8a7c-01d7ce92022f",
+      "dependsOn": [
+        "pkg:deb/debian/base-files@12.4%2Bdeb12u13?arch=amd64&distro=debian-12.13",
+        "pkg:deb/debian/media-types@10.0.0?arch=all&distro=debian-12.13",
+        "pkg:deb/debian/netbase@6.4?arch=all&distro=debian-12.13",
+        "pkg:deb/debian/tzdata@2025b-0%2Bdeb12u2?arch=all&distro=debian-12.13"
+      ]
+    },
+    {
+      "ref": "8e47b89b-34ab-4ebd-856f-3fb306ecf8b8",
       "dependsOn": [
         "pkg:golang/github.com/davecgh/go-spew@v1.1.2-0.20180830191138-d8f796af33cc",
         "pkg:golang/github.com/emicklei/go-restful/v3@v3.13.0",
@@ -3709,15 +3851,6 @@
         "pkg:golang/sigs.k8s.io/structured-merge-diff/v6@v6.3.1",
         "pkg:golang/sigs.k8s.io/yaml@v1.6.0",
         "pkg:golang/stdlib@v1.25.6"
-      ]
-    },
-    {
-      "ref": "94f5a5f1-e168-4ebb-8947-f28fef2017db",
-      "dependsOn": [
-        "pkg:deb/debian/base-files@12.4%2Bdeb12u13?arch=amd64&distro=debian-12.13",
-        "pkg:deb/debian/media-types@10.0.0?arch=all&distro=debian-12.13",
-        "pkg:deb/debian/netbase@6.4?arch=all&distro=debian-12.13",
-        "pkg:deb/debian/tzdata@2025b-0%2Bdeb12u2?arch=all&distro=debian-12.13"
       ]
     },
     {
@@ -3951,8 +4084,8 @@
     {
       "ref": "pkg:oci/kube-webhook-certgen@sha256%3A7c74a715af2c94cb734785b4d3ea1357b4f02b88e1e123c622a9cb68b62f669c?arch=amd64&repository_url=registry.k8s.io%2Fingress-nginx%2Fkube-webhook-certgen",
       "dependsOn": [
-        "2fb882ec-3592-4f26-86a3-74c760d93af9",
-        "94f5a5f1-e168-4ebb-8947-f28fef2017db"
+        "0e726d03-533f-44c4-8a7c-01d7ce92022f",
+        "8e47b89b-34ab-4ebd-856f-3fb306ecf8b8"
       ]
     }
   ],

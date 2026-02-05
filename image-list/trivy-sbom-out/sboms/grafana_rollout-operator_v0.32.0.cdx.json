@@ -2,17 +2,20 @@
   "$schema": "http://cyclonedx.org/schema/bom-1.6.schema.json",
   "bomFormat": "CycloneDX",
   "specVersion": "1.6",
-  "serialNumber": "urn:uuid:ea255ae8-2a12-4051-b313-8fa908f16d80",
+  "serialNumber": "urn:uuid:b3654904-e912-4ec0-a591-388da4cd8602",
   "version": 1,
   "metadata": {
-    "timestamp": "2026-02-04T23:12:15+00:00",
+    "timestamp": "2026-02-04T23:58:29+00:00",
     "tools": {
       "components": [
         {
           "type": "application",
+          "manufacturer": {
+            "name": "Aqua Security Software Ltd."
+          },
           "group": "aquasecurity",
           "name": "trivy",
-          "version": "0.61.0"
+          "version": "0.69.0"
         }
       ]
     },
@@ -91,6 +94,10 @@
           "value": "rollout-operator"
         },
         {
+          "name": "aquasecurity:trivy:Reference",
+          "value": "grafana/rollout-operator:v0.32.0"
+        },
+        {
           "name": "aquasecurity:trivy:RepoDigest",
           "value": "grafana/rollout-operator@sha256:cdb420c0af2cc5b32a33267cdd4aac8cd7867d539975a75dc856b0cfebbadff4"
         },
@@ -101,28 +108,17 @@
         {
           "name": "aquasecurity:trivy:SchemaVersion",
           "value": "2"
+        },
+        {
+          "name": "aquasecurity:trivy:Size",
+          "value": "87790592"
         }
       ]
     }
   },
   "components": [
     {
-      "bom-ref": "39968fe0-0721-4d92-be10-3e7726da1ce9",
-      "type": "application",
-      "name": "bin/rollout-operator",
-      "properties": [
-        {
-          "name": "aquasecurity:trivy:Class",
-          "value": "lang-pkgs"
-        },
-        {
-          "name": "aquasecurity:trivy:Type",
-          "value": "gobinary"
-        }
-      ]
-    },
-    {
-      "bom-ref": "cacb7923-ac7b-4f32-986e-aef1e81d095c",
+      "bom-ref": "02d229b8-fe14-4094-9151-7d89fc9f24c8",
       "type": "operating-system",
       "name": "debian",
       "version": "12.12",
@@ -138,6 +134,21 @@
       ]
     },
     {
+      "bom-ref": "884cdf5e-1079-468e-9d92-d07f9392240d",
+      "type": "application",
+      "name": "bin/rollout-operator",
+      "properties": [
+        {
+          "name": "aquasecurity:trivy:Class",
+          "value": "lang-pkgs"
+        },
+        {
+          "name": "aquasecurity:trivy:Type",
+          "value": "gobinary"
+        }
+      ]
+    },
+    {
       "bom-ref": "pkg:deb/debian/base-files@12.4%2Bdeb12u12?arch=amd64&distro=debian-12.12",
       "type": "library",
       "supplier": {
@@ -148,7 +159,7 @@
       "licenses": [
         {
           "license": {
-            "name": "GPL-2.0-or-later"
+            "id": "GPL-2.0-or-later"
           }
         }
       ],
@@ -234,7 +245,7 @@
       "licenses": [
         {
           "license": {
-            "name": "GPL-2.0-only"
+            "id": "GPL-2.0-only"
           }
         }
       ],
@@ -2916,18 +2927,18 @@
   ],
   "dependencies": [
     {
-      "ref": "39968fe0-0721-4d92-be10-3e7726da1ce9",
-      "dependsOn": [
-        "pkg:golang/github.com/grafana/rollout-operator@v0.32.0%2Bdirty"
-      ]
-    },
-    {
-      "ref": "cacb7923-ac7b-4f32-986e-aef1e81d095c",
+      "ref": "02d229b8-fe14-4094-9151-7d89fc9f24c8",
       "dependsOn": [
         "pkg:deb/debian/base-files@12.4%2Bdeb12u12?arch=amd64&distro=debian-12.12",
         "pkg:deb/debian/media-types@10.0.0?arch=all&distro=debian-12.12",
         "pkg:deb/debian/netbase@6.4?arch=all&distro=debian-12.12",
         "pkg:deb/debian/tzdata@2025b-0%2Bdeb12u2?arch=all&distro=debian-12.12"
+      ]
+    },
+    {
+      "ref": "884cdf5e-1079-468e-9d92-d07f9392240d",
+      "dependsOn": [
+        "pkg:golang/github.com/grafana/rollout-operator@v0.32.0%2Bdirty"
       ]
     },
     {
@@ -3469,8 +3480,8 @@
     {
       "ref": "pkg:oci/rollout-operator@sha256%3Acdb420c0af2cc5b32a33267cdd4aac8cd7867d539975a75dc856b0cfebbadff4?arch=amd64&repository_url=index.docker.io%2Fgrafana%2Frollout-operator",
       "dependsOn": [
-        "39968fe0-0721-4d92-be10-3e7726da1ce9",
-        "cacb7923-ac7b-4f32-986e-aef1e81d095c"
+        "02d229b8-fe14-4094-9151-7d89fc9f24c8",
+        "884cdf5e-1079-468e-9d92-d07f9392240d"
       ]
     }
   ],

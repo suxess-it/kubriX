@@ -2,17 +2,20 @@
   "$schema": "http://cyclonedx.org/schema/bom-1.6.schema.json",
   "bomFormat": "CycloneDX",
   "specVersion": "1.6",
-  "serialNumber": "urn:uuid:1fec3913-85a0-4c25-93c2-4212e7c5b4d8",
+  "serialNumber": "urn:uuid:ea842f5b-af84-4cf6-9492-e2a04eddbede",
   "version": 1,
   "metadata": {
-    "timestamp": "2026-02-04T23:14:06+00:00",
+    "timestamp": "2026-02-05T00:01:42+00:00",
     "tools": {
       "components": [
         {
           "type": "application",
+          "manufacturer": {
+            "name": "Aqua Security Software Ltd."
+          },
           "group": "aquasecurity",
           "name": "trivy",
-          "version": "0.61.0"
+          "version": "0.69.0"
         }
       ]
     },
@@ -43,6 +46,10 @@
           "value": "The Prometheus Authors <prometheus-developers@googlegroups.com>"
         },
         {
+          "name": "aquasecurity:trivy:Reference",
+          "value": "quay.io/prometheus/node-exporter:v1.10.2"
+        },
+        {
           "name": "aquasecurity:trivy:RepoDigest",
           "value": "quay.io/prometheus/node-exporter@sha256:337ff1d356b68d39cef853e8c6345de11ce7556bb34cda8bd205bcf2ed30b565"
         },
@@ -53,13 +60,17 @@
         {
           "name": "aquasecurity:trivy:SchemaVersion",
           "value": "2"
+        },
+        {
+          "name": "aquasecurity:trivy:Size",
+          "value": "26833920"
         }
       ]
     }
   },
   "components": [
     {
-      "bom-ref": "f61d67a9-7f62-4d84-8336-4cabccefc9cd",
+      "bom-ref": "14e03f1c-6bd5-4a93-b217-74dd04b0d4bd",
       "type": "application",
       "name": "bin/node_exporter",
       "properties": [
@@ -1201,7 +1212,7 @@
   ],
   "dependencies": [
     {
-      "ref": "f61d67a9-7f62-4d84-8336-4cabccefc9cd",
+      "ref": "14e03f1c-6bd5-4a93-b217-74dd04b0d4bd",
       "dependsOn": [
         "pkg:golang/github.com/prometheus/node_exporter@v1.10.2"
       ]
@@ -1434,7 +1445,7 @@
     {
       "ref": "pkg:oci/node-exporter@sha256%3A337ff1d356b68d39cef853e8c6345de11ce7556bb34cda8bd205bcf2ed30b565?arch=amd64&repository_url=quay.io%2Fprometheus%2Fnode-exporter",
       "dependsOn": [
-        "f61d67a9-7f62-4d84-8336-4cabccefc9cd"
+        "14e03f1c-6bd5-4a93-b217-74dd04b0d4bd"
       ]
     }
   ],

@@ -2,17 +2,20 @@
   "$schema": "http://cyclonedx.org/schema/bom-1.6.schema.json",
   "bomFormat": "CycloneDX",
   "specVersion": "1.6",
-  "serialNumber": "urn:uuid:5d90865d-70ad-4205-adfb-b1b80f4d90c6",
+  "serialNumber": "urn:uuid:acb6c23f-ad2a-4d85-8c72-b921792e0379",
   "version": 1,
   "metadata": {
-    "timestamp": "2026-02-04T23:13:10+00:00",
+    "timestamp": "2026-02-04T23:59:24+00:00",
     "tools": {
       "components": [
         {
           "type": "application",
+          "manufacturer": {
+            "name": "Aqua Security Software Ltd."
+          },
           "group": "aquasecurity",
           "name": "trivy",
-          "version": "0.61.0"
+          "version": "0.69.0"
         }
       ]
     },
@@ -83,6 +86,10 @@
           "value": "sha256:265f91722eb29960a548712f8dca5be653a15bbd68fba969031a4f1623df0d73"
         },
         {
+          "name": "aquasecurity:trivy:Reference",
+          "value": "quay.io/argoproj/argo-rollouts:v1.8.3"
+        },
+        {
           "name": "aquasecurity:trivy:RepoDigest",
           "value": "quay.io/argoproj/argo-rollouts@sha256:2b7be18bd6a3ce627ce0ed63d49e9166720c0b3409404266bbadabd15474d28a"
         },
@@ -93,28 +100,17 @@
         {
           "name": "aquasecurity:trivy:SchemaVersion",
           "value": "2"
+        },
+        {
+          "name": "aquasecurity:trivy:Size",
+          "value": "121987584"
         }
       ]
     }
   },
   "components": [
     {
-      "bom-ref": "d89b4149-2882-4d46-a926-aff95e172777",
-      "type": "application",
-      "name": "bin/rollouts-controller",
-      "properties": [
-        {
-          "name": "aquasecurity:trivy:Class",
-          "value": "lang-pkgs"
-        },
-        {
-          "name": "aquasecurity:trivy:Type",
-          "value": "gobinary"
-        }
-      ]
-    },
-    {
-      "bom-ref": "dc083012-363e-415e-8b56-75aa7773baeb",
+      "bom-ref": "56375368-abfc-45ab-83b7-6381834ce282",
       "type": "operating-system",
       "name": "debian",
       "version": "11.10",
@@ -130,6 +126,21 @@
       ]
     },
     {
+      "bom-ref": "e3ef3fd8-cec0-4cd4-b7f4-7c21c9707a4f",
+      "type": "application",
+      "name": "bin/rollouts-controller",
+      "properties": [
+        {
+          "name": "aquasecurity:trivy:Class",
+          "value": "lang-pkgs"
+        },
+        {
+          "name": "aquasecurity:trivy:Type",
+          "value": "gobinary"
+        }
+      ]
+    },
+    {
       "bom-ref": "pkg:deb/debian/base-files@11.1%2Bdeb11u10?arch=amd64&distro=debian-11.10",
       "type": "library",
       "supplier": {
@@ -140,7 +151,7 @@
       "licenses": [
         {
           "license": {
-            "name": "GPL-2.0-or-later"
+            "id": "GPL-2.0-or-later"
           }
         }
       ],
@@ -183,7 +194,7 @@
       "licenses": [
         {
           "license": {
-            "name": "GPL-2.0-only"
+            "id": "GPL-2.0-only"
           }
         }
       ],
@@ -5408,17 +5419,17 @@
   ],
   "dependencies": [
     {
-      "ref": "d89b4149-2882-4d46-a926-aff95e172777",
-      "dependsOn": [
-        "pkg:golang/github.com/argoproj/argo-rollouts@1.8.3"
-      ]
-    },
-    {
-      "ref": "dc083012-363e-415e-8b56-75aa7773baeb",
+      "ref": "56375368-abfc-45ab-83b7-6381834ce282",
       "dependsOn": [
         "pkg:deb/debian/base-files@11.1%2Bdeb11u10?arch=amd64&distro=debian-11.10",
         "pkg:deb/debian/netbase@6.3?arch=all&distro=debian-11.10",
         "pkg:deb/debian/tzdata@2024a-0%2Bdeb11u1?arch=all&distro=debian-11.10"
+      ]
+    },
+    {
+      "ref": "e3ef3fd8-cec0-4cd4-b7f4-7c21c9707a4f",
+      "dependsOn": [
+        "pkg:golang/github.com/argoproj/argo-rollouts@1.8.3"
       ]
     },
     {
@@ -6466,8 +6477,8 @@
     {
       "ref": "pkg:oci/argo-rollouts@sha256%3A2b7be18bd6a3ce627ce0ed63d49e9166720c0b3409404266bbadabd15474d28a?arch=amd64&repository_url=quay.io%2Fargoproj%2Fargo-rollouts",
       "dependsOn": [
-        "d89b4149-2882-4d46-a926-aff95e172777",
-        "dc083012-363e-415e-8b56-75aa7773baeb"
+        "56375368-abfc-45ab-83b7-6381834ce282",
+        "e3ef3fd8-cec0-4cd4-b7f4-7c21c9707a4f"
       ]
     }
   ],

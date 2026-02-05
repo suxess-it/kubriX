@@ -2,17 +2,20 @@
   "$schema": "http://cyclonedx.org/schema/bom-1.6.schema.json",
   "bomFormat": "CycloneDX",
   "specVersion": "1.6",
-  "serialNumber": "urn:uuid:6fd1e011-c042-42c0-b50b-1a334e07832d",
+  "serialNumber": "urn:uuid:9ef0c3b3-0268-4a01-817a-3b161a6864c3",
   "version": 1,
   "metadata": {
-    "timestamp": "2026-02-04T23:15:21+00:00",
+    "timestamp": "2026-02-05T00:03:32+00:00",
     "tools": {
       "components": [
         {
           "type": "application",
+          "manufacturer": {
+            "name": "Aqua Security Software Ltd."
+          },
           "group": "aquasecurity",
           "name": "trivy",
-          "version": "0.61.0"
+          "version": "0.69.0"
         }
       ]
     },
@@ -83,6 +86,10 @@
           "value": "Xun Jiang <jxun@vmware.com>"
         },
         {
+          "name": "aquasecurity:trivy:Reference",
+          "value": "velero/velero:v1.17.1"
+        },
+        {
           "name": "aquasecurity:trivy:RepoDigest",
           "value": "velero/velero@sha256:58f551f0d89a9ef1919771bdc7475c08bc1795a50a51a57b5f14316d68fc3baa"
         },
@@ -93,13 +100,329 @@
         {
           "name": "aquasecurity:trivy:SchemaVersion",
           "value": "2"
+        },
+        {
+          "name": "aquasecurity:trivy:Size",
+          "value": "196702208"
         }
       ]
     }
   },
   "components": [
     {
-      "bom-ref": "0563f510-d8d9-4d79-af5d-99b1f517628e",
+      "bom-ref": "04200cfa-a540-443c-a356-8b60ad282d5a",
+      "type": "library",
+      "supplier": {
+        "name": "Steve Francia",
+        "url": [
+          "http://spf13.com"
+        ]
+      },
+      "author": "Steve Francia",
+      "name": "github.com/spf13/pflag",
+      "version": "v1.0.5",
+      "description": "Package pflag is a drop-in replacement for Go's flag package, implementing\nPOSIX/GNU-style --flags.\n\npflag is compatible with the GNU extensions to the POSIX recommendations\nfor command-line options. See\nhttp://www.gnu.org/software/libc/manual/html_node/Argument-Syntax.html\n\nUsage:\n\npflag is a drop-in replacement of Go's native flag package. If you import\npflag under the name \"flag\" then all code should continue to function\nwith no changes.\n\nThere is one exception to this: if you directly instantiate the Flag struct\nthere is one more field \"Shorthand\" that you will need to set.\nMost code never instantiates this struct directly, and instead uses\nfunctions such as String(), BoolVar(), and Var(), and is therefore\nunaffected.\n\nDefine flags using flag.String(), Bool(), Int(), etc.\n\nThis declares an integer flag, -flagname, stored in the pointer ip, with type *int.\n\nIf you like, you can bind the flag to a variable using the Var() functions.\n\nOr you can create custom flags that satisfy the Value interface (with\npointer receivers) and couple them to flag parsing by\n\nFor such flags, the default value is just the initial value of the variable.\n\nAfter all flags are defined, call\n\nto parse the command line into the defined flags.\n\nFlags may then be used directly. If you're using the flags themselves,\nthey are all pointers; if you bind to variables, they're values.\n\nAfter parsing, the arguments after the flag are available as the\nslice flag.Args() or individually as flag.Arg(i).\nThe arguments are indexed from 0 through flag.NArg()-1.\n\nThe pflag package also defines some new functions that are not in flag,\nthat give one-letter shorthands for flags. You can use these by appending\n'P' to the name of any function that defines a flag.\n\nShorthand letters can be used with single dashes on the command line.\nBoolean shorthand flags can be combined with other shorthand flags.\n\nCommand line flag syntax:\n\nUnlike the flag package, a single dash before an option means something\ndifferent than a double dash. Single dashes signify a series of shorthand\nletters for flags. All but the last shorthand letter must be boolean flags.\n\nFlag parsing stops after the terminator \"--\". Unlike the flag package,\nflags can be interspersed with arguments anywhere on the command line\nbefore this terminator.\n\nInteger flags accept 1234, 0664, 0x1234 and may be negative.\nBoolean flags (in their long form) accept 1, 0, t, f, true, false,\nTRUE, FALSE, True, False.\nDuration flags accept any input valid for time.ParseDuration.\n\nThe default set of command-line flags is controlled by\ntop-level functions.  The FlagSet type allows one to define\nindependent sets of flags, such as to implement subcommands\nin a command-line interface. The methods of FlagSet are\nanalogous to the top-level functions for the command-line\nflag set.",
+      "licenses": [
+        {
+          "expression": "(BSD-3-Clause)"
+        }
+      ],
+      "purl": "pkg:golang/github.com/spf13/pflag@v1.0.5",
+      "externalReferences": [
+        {
+          "url": "https://github.com/spf13/pflag",
+          "type": "website"
+        },
+        {
+          "url": "https://pkg.go.dev/github.com/spf13/pflag",
+          "type": "distribution"
+        },
+        {
+          "url": "https://github.com/spf13/pflag",
+          "type": "vcs"
+        },
+        {
+          "url": "https://pkg.go.dev/github.com/spf13/pflag#section-documentation",
+          "type": "documentation"
+        }
+      ],
+      "properties": [
+        {
+          "name": "aquasecurity:trivy:LayerDiffID",
+          "value": "sha256:56fe943f1fd47c68492437dbdc410e6e5c50e6bd3cf87b6587a781fd8b30abb7"
+        },
+        {
+          "name": "aquasecurity:trivy:LayerDigest",
+          "value": "sha256:43bef5e2b7c9eb21ca5bcd55cae0d1bd5044b1540c54d8a752635e935caaf7d6"
+        },
+        {
+          "name": "aquasecurity:trivy:PkgID",
+          "value": "github.com/spf13/pflag@v1.0.5"
+        },
+        {
+          "name": "aquasecurity:trivy:PkgType",
+          "value": "gobinary"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2017-05-08T18:44:08Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2025-09-02T06:08:29Z"
+        },
+        {
+          "name": "ecosystems:owner_location",
+          "value": "NYC"
+        }
+      ]
+    },
+    {
+      "bom-ref": "09d78dae-c559-4c2e-82f5-29fc5fa69867",
+      "type": "library",
+      "supplier": {
+        "name": "pkg"
+      },
+      "author": "pkg",
+      "name": "github.com/pkg/errors",
+      "version": "v0.9.1",
+      "description": "Package errors provides simple error handling primitives.\n\nThe traditional error handling idiom in Go is roughly akin to\n\nwhich when applied recursively up the call stack results in error reports\nwithout context or debugging information. The errors package allows\nprogrammers to add context to the failure path in their code in a way\nthat does not destroy the original value of the error.\n\nThe errors.Wrap function returns a new error that adds context to the\noriginal error by recording a stack trace at the point Wrap is called,\ntogether with the supplied message. For example\n\nIf additional control is required, the errors.WithStack and\nerrors.WithMessage functions destructure errors.Wrap into its component\noperations: annotating an error with a stack trace and with a message,\nrespectively.\n\nUsing errors.Wrap constructs a stack of errors, adding context to the\npreceding error. Depending on the nature of the error it may be necessary\nto reverse the operation of errors.Wrap to retrieve the original error\nfor inspection. Any error value which implements this interface\n\ncan be inspected by errors.Cause. errors.Cause will recursively retrieve\nthe topmost error that does not implement causer, which is assumed to be\nthe original cause. For example:\n\nAlthough the causer interface is not exported by this package, it is\nconsidered a part of its stable public interface.\n\nAll error values returned from this package implement fmt.Formatter and can\nbe formatted by the fmt package. The following verbs are supported:\n\nNew, Errorf, Wrap, and Wrapf record a stack trace at the point they are\ninvoked. This information can be retrieved with the following interface:\n\nThe returned errors.StackTrace type is defined as\n\nThe Frame type represents a call site in the stack trace. Frame supports\nthe fmt.Formatter interface that can be used for printing information about\nthe stack trace of this error. For example:\n\nAlthough the stackTracer interface is not exported by this package, it is\nconsidered a part of its stable public interface.\n\nSee the documentation for Frame.Format for more details.",
+      "licenses": [
+        {
+          "expression": "(BSD-2-Clause)"
+        }
+      ],
+      "purl": "pkg:golang/github.com/pkg/errors@v0.9.1",
+      "externalReferences": [
+        {
+          "url": "https://github.com/pkg/errors",
+          "type": "website"
+        },
+        {
+          "url": "https://pkg.go.dev/github.com/pkg/errors",
+          "type": "distribution"
+        },
+        {
+          "url": "https://github.com/pkg/errors",
+          "type": "vcs"
+        },
+        {
+          "url": "https://pkg.go.dev/github.com/pkg/errors#section-documentation",
+          "type": "documentation"
+        }
+      ],
+      "properties": [
+        {
+          "name": "aquasecurity:trivy:LayerDiffID",
+          "value": "sha256:79414ea653fa47c16071e7df177805fcb50d0c1e2f4f825796e4c1d17ad6f13c"
+        },
+        {
+          "name": "aquasecurity:trivy:LayerDigest",
+          "value": "sha256:cae9f53ea987ef6399627b40c985c9dd745596a1f595b8107598ffe210ab7c5e"
+        },
+        {
+          "name": "aquasecurity:trivy:PkgID",
+          "value": "github.com/pkg/errors@v0.9.1"
+        },
+        {
+          "name": "aquasecurity:trivy:PkgType",
+          "value": "gobinary"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2016-04-24T12:18:34Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2020-01-14T19:47:44Z"
+        },
+        {
+          "name": "ecosystems:repository_archived",
+          "value": "true"
+        }
+      ]
+    },
+    {
+      "bom-ref": "0da3bd1c-06b0-499b-960b-5460a28c8c9e",
+      "type": "library",
+      "supplier": {
+        "name": "MinIO",
+        "url": [
+          "https://min.io"
+        ]
+      },
+      "author": "MinIO",
+      "name": "github.com/minio/md5-simd",
+      "version": "v1.1.2",
+      "licenses": [
+        {
+          "expression": "(Apache-2.0)"
+        }
+      ],
+      "purl": "pkg:golang/github.com/minio/md5-simd@v1.1.2",
+      "externalReferences": [
+        {
+          "url": "https://github.com/minio/md5-simd",
+          "type": "website"
+        },
+        {
+          "url": "https://pkg.go.dev/github.com/minio/md5-simd",
+          "type": "distribution"
+        },
+        {
+          "url": "https://github.com/minio/md5-simd",
+          "type": "vcs"
+        },
+        {
+          "url": "https://pkg.go.dev/github.com/minio/md5-simd#section-documentation",
+          "type": "documentation"
+        }
+      ],
+      "properties": [
+        {
+          "name": "aquasecurity:trivy:LayerDiffID",
+          "value": "sha256:56fe943f1fd47c68492437dbdc410e6e5c50e6bd3cf87b6587a781fd8b30abb7"
+        },
+        {
+          "name": "aquasecurity:trivy:LayerDigest",
+          "value": "sha256:43bef5e2b7c9eb21ca5bcd55cae0d1bd5044b1540c54d8a752635e935caaf7d6"
+        },
+        {
+          "name": "aquasecurity:trivy:PkgID",
+          "value": "github.com/minio/md5-simd@v1.1.2"
+        },
+        {
+          "name": "aquasecurity:trivy:PkgType",
+          "value": "gobinary"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2020-04-28T21:33:15Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2021-01-07T19:48:44Z"
+        },
+        {
+          "name": "ecosystems:owner_location",
+          "value": "United States of America"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "assembly"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "avx2"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "avx512"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "golang"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "hashing"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "md5"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "performance"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "simd"
+        }
+      ]
+    },
+    {
+      "bom-ref": "22465bed-0201-4944-9762-e517fd254168",
+      "type": "application",
+      "name": "velero-restore-helper",
+      "properties": [
+        {
+          "name": "aquasecurity:trivy:Class",
+          "value": "lang-pkgs"
+        },
+        {
+          "name": "aquasecurity:trivy:Type",
+          "value": "gobinary"
+        }
+      ]
+    },
+    {
+      "bom-ref": "33fe3d40-c621-4a48-8cdd-e7b754fac45d",
+      "type": "library",
+      "name": "stdlib",
+      "version": "v1.24.9",
+      "purl": "pkg:golang/stdlib@v1.24.9",
+      "properties": [
+        {
+          "name": "aquasecurity:trivy:LayerDiffID",
+          "value": "sha256:56fe943f1fd47c68492437dbdc410e6e5c50e6bd3cf87b6587a781fd8b30abb7"
+        },
+        {
+          "name": "aquasecurity:trivy:LayerDigest",
+          "value": "sha256:43bef5e2b7c9eb21ca5bcd55cae0d1bd5044b1540c54d8a752635e935caaf7d6"
+        },
+        {
+          "name": "aquasecurity:trivy:PkgID",
+          "value": "stdlib@v1.24.9"
+        },
+        {
+          "name": "aquasecurity:trivy:PkgType",
+          "value": "gobinary"
+        }
+      ]
+    },
+    {
+      "bom-ref": "602a3e46-7382-4481-8575-ffdffad41df5",
+      "type": "library",
+      "name": "stdlib",
+      "version": "v1.24.9",
+      "purl": "pkg:golang/stdlib@v1.24.9",
+      "properties": [
+        {
+          "name": "aquasecurity:trivy:LayerDiffID",
+          "value": "sha256:56fe943f1fd47c68492437dbdc410e6e5c50e6bd3cf87b6587a781fd8b30abb7"
+        },
+        {
+          "name": "aquasecurity:trivy:LayerDigest",
+          "value": "sha256:43bef5e2b7c9eb21ca5bcd55cae0d1bd5044b1540c54d8a752635e935caaf7d6"
+        },
+        {
+          "name": "aquasecurity:trivy:PkgID",
+          "value": "stdlib@v1.24.9"
+        },
+        {
+          "name": "aquasecurity:trivy:PkgType",
+          "value": "gobinary"
+        }
+      ]
+    },
+    {
+      "bom-ref": "6371e193-973e-495e-bcca-7b9b2803aa6a",
+      "type": "application",
+      "name": "usr/bin/restic",
+      "properties": [
+        {
+          "name": "aquasecurity:trivy:Class",
+          "value": "lang-pkgs"
+        },
+        {
+          "name": "aquasecurity:trivy:Type",
+          "value": "gobinary"
+        }
+      ]
+    },
+    {
+      "bom-ref": "64188dd4-0bb4-466b-815d-7eff34b5fbe5",
       "type": "operating-system",
       "name": "ubuntu",
       "version": "22.04",
@@ -115,7 +438,146 @@
       ]
     },
     {
-      "bom-ref": "05c3474c-9e72-4462-b1f5-d05907c5c8bf",
+      "bom-ref": "65eba838-d60c-41d5-b50e-eb5cc7e6e607",
+      "type": "library",
+      "supplier": {
+        "name": "go-yaml"
+      },
+      "author": "go-yaml",
+      "name": "gopkg.in/yaml.v3",
+      "version": "v3.0.1",
+      "description": "Package yaml implements YAML support for the Go language.\n\nSource code and other details for the project are available at GitHub:",
+      "licenses": [
+        {
+          "expression": "(Apache-2.0 OR MIT)"
+        }
+      ],
+      "purl": "pkg:golang/gopkg.in/yaml.v3@v3.0.1",
+      "externalReferences": [
+        {
+          "url": "https://github.com/go-yaml/yaml",
+          "type": "website"
+        },
+        {
+          "url": "https://pkg.go.dev/gopkg.in/yaml.v3",
+          "type": "distribution"
+        },
+        {
+          "url": "https://github.com/go-yaml/yaml",
+          "type": "vcs"
+        },
+        {
+          "url": "https://pkg.go.dev/gopkg.in/yaml.v3#section-documentation",
+          "type": "documentation"
+        }
+      ],
+      "properties": [
+        {
+          "name": "aquasecurity:trivy:LayerDiffID",
+          "value": "sha256:79414ea653fa47c16071e7df177805fcb50d0c1e2f4f825796e4c1d17ad6f13c"
+        },
+        {
+          "name": "aquasecurity:trivy:LayerDigest",
+          "value": "sha256:cae9f53ea987ef6399627b40c985c9dd745596a1f595b8107598ffe210ab7c5e"
+        },
+        {
+          "name": "aquasecurity:trivy:PkgID",
+          "value": "gopkg.in/yaml.v3@v3.0.1"
+        },
+        {
+          "name": "aquasecurity:trivy:PkgType",
+          "value": "gobinary"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2022-05-21T10:33:21Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2022-05-27T08:35:30Z"
+        }
+      ]
+    },
+    {
+      "bom-ref": "6ae117d4-2d3a-4d17-9079-5e47e160fe9e",
+      "type": "library",
+      "supplier": {
+        "name": "VMware Tanzu",
+        "url": [
+          "tanzu.io"
+        ]
+      },
+      "author": "VMware Tanzu",
+      "name": "github.com/vmware-tanzu/velero",
+      "version": "v1.17.1+dirty",
+      "purl": "pkg:golang/github.com/vmware-tanzu/velero@v1.17.1%2Bdirty",
+      "externalReferences": [
+        {
+          "url": "https://github.com/vmware-tanzu/velero",
+          "type": "website"
+        },
+        {
+          "url": "https://pkg.go.dev/github.com/vmware-tanzu/velero",
+          "type": "distribution"
+        },
+        {
+          "url": "https://github.com/vmware-tanzu/velero",
+          "type": "vcs"
+        },
+        {
+          "url": "https://pkg.go.dev/github.com/vmware-tanzu/velero#section-documentation",
+          "type": "documentation"
+        }
+      ],
+      "properties": [
+        {
+          "name": "aquasecurity:trivy:LayerDiffID",
+          "value": "sha256:56fe943f1fd47c68492437dbdc410e6e5c50e6bd3cf87b6587a781fd8b30abb7"
+        },
+        {
+          "name": "aquasecurity:trivy:LayerDigest",
+          "value": "sha256:43bef5e2b7c9eb21ca5bcd55cae0d1bd5044b1540c54d8a752635e935caaf7d6"
+        },
+        {
+          "name": "aquasecurity:trivy:PkgID",
+          "value": "github.com/vmware-tanzu/velero@v1.17.1+dirty"
+        },
+        {
+          "name": "aquasecurity:trivy:PkgType",
+          "value": "gobinary"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2017-08-02T21:29:38Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2026-01-09T03:17:35Z"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "backup"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "disaster-recovery"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "hacktoberfest"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "kubernetes"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "velero"
+        }
+      ]
+    },
+    {
+      "bom-ref": "791b5a20-1197-4676-b3fd-25988f858d68",
       "type": "library",
       "supplier": {
         "name": "Jsoniter",
@@ -154,11 +616,11 @@
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
-          "value": "sha256:56fe943f1fd47c68492437dbdc410e6e5c50e6bd3cf87b6587a781fd8b30abb7"
+          "value": "sha256:79414ea653fa47c16071e7df177805fcb50d0c1e2f4f825796e4c1d17ad6f13c"
         },
         {
           "name": "aquasecurity:trivy:LayerDigest",
-          "value": "sha256:43bef5e2b7c9eb21ca5bcd55cae0d1bd5044b1540c54d8a752635e935caaf7d6"
+          "value": "sha256:cae9f53ea987ef6399627b40c985c9dd745596a1f595b8107598ffe210ab7c5e"
         },
         {
           "name": "aquasecurity:trivy:PkgID",
@@ -211,7 +673,79 @@
       ]
     },
     {
-      "bom-ref": "0be77107-f9f5-410c-8530-cefce14972ff",
+      "bom-ref": "8f64211e-c1f4-4f5a-be5d-0079ac0405c6",
+      "type": "library",
+      "name": "github.com/modern-go/reflect2",
+      "version": "v1.0.2",
+      "licenses": [
+        {
+          "expression": "(Apache-2.0)"
+        }
+      ],
+      "purl": "pkg:golang/github.com/modern-go/reflect2@v1.0.2",
+      "externalReferences": [
+        {
+          "url": "https://github.com/modern-go/reflect2",
+          "type": "website"
+        },
+        {
+          "url": "https://pkg.go.dev/github.com/modern-go/reflect2",
+          "type": "distribution"
+        },
+        {
+          "url": "https://github.com/modern-go/reflect2",
+          "type": "vcs"
+        },
+        {
+          "url": "https://pkg.go.dev/github.com/modern-go/reflect2#section-documentation",
+          "type": "documentation"
+        }
+      ],
+      "properties": [
+        {
+          "name": "aquasecurity:trivy:LayerDiffID",
+          "value": "sha256:56fe943f1fd47c68492437dbdc410e6e5c50e6bd3cf87b6587a781fd8b30abb7"
+        },
+        {
+          "name": "aquasecurity:trivy:LayerDigest",
+          "value": "sha256:43bef5e2b7c9eb21ca5bcd55cae0d1bd5044b1540c54d8a752635e935caaf7d6"
+        },
+        {
+          "name": "aquasecurity:trivy:PkgID",
+          "value": "github.com/modern-go/reflect2@v1.0.2"
+        },
+        {
+          "name": "aquasecurity:trivy:PkgType",
+          "value": "gobinary"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2018-07-18T01:23:57Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2021-09-11T02:10:30Z"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "go"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "golang"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "reflect"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "reflection"
+        }
+      ]
+    },
+    {
+      "bom-ref": "8ff2026b-c920-4ec0-b5cd-3e02ea5b8b05",
       "type": "library",
       "supplier": {
         "name": "Steve Francia",
@@ -279,768 +813,7 @@
       ]
     },
     {
-      "bom-ref": "0e7eff1c-62e1-4902-865f-400aba549859",
-      "type": "application",
-      "name": "velero-restore-helper",
-      "properties": [
-        {
-          "name": "aquasecurity:trivy:Class",
-          "value": "lang-pkgs"
-        },
-        {
-          "name": "aquasecurity:trivy:Type",
-          "value": "gobinary"
-        }
-      ]
-    },
-    {
-      "bom-ref": "14ec8dad-098a-4342-aa35-84a293591e27",
-      "type": "library",
-      "supplier": {
-        "name": "go-yaml"
-      },
-      "author": "go-yaml",
-      "name": "gopkg.in/yaml.v3",
-      "version": "v3.0.1",
-      "description": "Package yaml implements YAML support for the Go language.\n\nSource code and other details for the project are available at GitHub:",
-      "licenses": [
-        {
-          "expression": "(Apache-2.0 OR MIT)"
-        }
-      ],
-      "purl": "pkg:golang/gopkg.in/yaml.v3@v3.0.1",
-      "externalReferences": [
-        {
-          "url": "https://github.com/go-yaml/yaml",
-          "type": "website"
-        },
-        {
-          "url": "https://pkg.go.dev/gopkg.in/yaml.v3",
-          "type": "distribution"
-        },
-        {
-          "url": "https://github.com/go-yaml/yaml",
-          "type": "vcs"
-        },
-        {
-          "url": "https://pkg.go.dev/gopkg.in/yaml.v3#section-documentation",
-          "type": "documentation"
-        }
-      ],
-      "properties": [
-        {
-          "name": "aquasecurity:trivy:LayerDiffID",
-          "value": "sha256:56fe943f1fd47c68492437dbdc410e6e5c50e6bd3cf87b6587a781fd8b30abb7"
-        },
-        {
-          "name": "aquasecurity:trivy:LayerDigest",
-          "value": "sha256:43bef5e2b7c9eb21ca5bcd55cae0d1bd5044b1540c54d8a752635e935caaf7d6"
-        },
-        {
-          "name": "aquasecurity:trivy:PkgID",
-          "value": "gopkg.in/yaml.v3@v3.0.1"
-        },
-        {
-          "name": "aquasecurity:trivy:PkgType",
-          "value": "gobinary"
-        },
-        {
-          "name": "ecosystems:first_release_published_at",
-          "value": "2022-05-21T10:33:21Z"
-        },
-        {
-          "name": "ecosystems:latest_release_published_at",
-          "value": "2022-05-27T08:35:30Z"
-        }
-      ]
-    },
-    {
-      "bom-ref": "17f8d6fa-a1f6-439b-b0e9-56b6795f473d",
-      "type": "library",
-      "supplier": {
-        "name": "Jsoniter",
-        "url": [
-          "http://jsoniter.com/"
-        ]
-      },
-      "author": "Jsoniter",
-      "name": "github.com/json-iterator/go",
-      "version": "v1.1.12",
-      "description": "Package jsoniter implements encoding and decoding of JSON as defined in\nRFC 4627 and provides interfaces with identical syntax of standard lib encoding/json.\nConverting from encoding/json to jsoniter is no more than replacing the package with jsoniter\nand variable type declarations (if any).\njsoniter interfaces gives 100% compatibility with code using standard lib.\n\n\"JSON and Go\"\n(https://golang.org/doc/articles/json_and_go.html)\ngives a description of how Marshal/Unmarshal operate\nbetween arbitrary or predefined json objects and bytes,\nand it applies to jsoniter.Marshal/Unmarshal as well.\n\nBesides, jsoniter.Iterator provides a different set of interfaces\niterating given bytes/string/reader\nand yielding parsed elements one by one.\nThis set of interfaces reads input as required and gives\nbetter performance.",
-      "licenses": [
-        {
-          "expression": "(MIT)"
-        }
-      ],
-      "purl": "pkg:golang/github.com/json-iterator/go@v1.1.12",
-      "externalReferences": [
-        {
-          "url": "https://github.com/json-iterator/go",
-          "type": "website"
-        },
-        {
-          "url": "https://pkg.go.dev/github.com/json-iterator/go",
-          "type": "distribution"
-        },
-        {
-          "url": "https://github.com/json-iterator/go",
-          "type": "vcs"
-        },
-        {
-          "url": "https://pkg.go.dev/github.com/json-iterator/go#section-documentation",
-          "type": "documentation"
-        }
-      ],
-      "properties": [
-        {
-          "name": "aquasecurity:trivy:LayerDiffID",
-          "value": "sha256:79414ea653fa47c16071e7df177805fcb50d0c1e2f4f825796e4c1d17ad6f13c"
-        },
-        {
-          "name": "aquasecurity:trivy:LayerDigest",
-          "value": "sha256:cae9f53ea987ef6399627b40c985c9dd745596a1f595b8107598ffe210ab7c5e"
-        },
-        {
-          "name": "aquasecurity:trivy:PkgID",
-          "value": "github.com/json-iterator/go@v1.1.12"
-        },
-        {
-          "name": "aquasecurity:trivy:PkgType",
-          "value": "gobinary"
-        },
-        {
-          "name": "ecosystems:first_release_published_at",
-          "value": "2018-08-06T06:07:27Z"
-        },
-        {
-          "name": "ecosystems:latest_release_published_at",
-          "value": "2021-09-11T02:17:26Z"
-        },
-        {
-          "name": "ecosystems:topic",
-          "value": "deserialization"
-        },
-        {
-          "name": "ecosystems:topic",
-          "value": "go"
-        },
-        {
-          "name": "ecosystems:topic",
-          "value": "golang"
-        },
-        {
-          "name": "ecosystems:topic",
-          "value": "json"
-        },
-        {
-          "name": "ecosystems:topic",
-          "value": "json-parser"
-        },
-        {
-          "name": "ecosystems:topic",
-          "value": "parser"
-        },
-        {
-          "name": "ecosystems:topic",
-          "value": "serialization"
-        },
-        {
-          "name": "ecosystems:topic",
-          "value": "serializer"
-        }
-      ]
-    },
-    {
-      "bom-ref": "26c35874-0169-4a33-9ac5-822bb6a17baf",
-      "type": "library",
-      "name": "github.com/modern-go/reflect2",
-      "version": "v1.0.2",
-      "licenses": [
-        {
-          "expression": "(Apache-2.0)"
-        }
-      ],
-      "purl": "pkg:golang/github.com/modern-go/reflect2@v1.0.2",
-      "externalReferences": [
-        {
-          "url": "https://github.com/modern-go/reflect2",
-          "type": "website"
-        },
-        {
-          "url": "https://pkg.go.dev/github.com/modern-go/reflect2",
-          "type": "distribution"
-        },
-        {
-          "url": "https://github.com/modern-go/reflect2",
-          "type": "vcs"
-        },
-        {
-          "url": "https://pkg.go.dev/github.com/modern-go/reflect2#section-documentation",
-          "type": "documentation"
-        }
-      ],
-      "properties": [
-        {
-          "name": "aquasecurity:trivy:LayerDiffID",
-          "value": "sha256:79414ea653fa47c16071e7df177805fcb50d0c1e2f4f825796e4c1d17ad6f13c"
-        },
-        {
-          "name": "aquasecurity:trivy:LayerDigest",
-          "value": "sha256:cae9f53ea987ef6399627b40c985c9dd745596a1f595b8107598ffe210ab7c5e"
-        },
-        {
-          "name": "aquasecurity:trivy:PkgID",
-          "value": "github.com/modern-go/reflect2@v1.0.2"
-        },
-        {
-          "name": "aquasecurity:trivy:PkgType",
-          "value": "gobinary"
-        },
-        {
-          "name": "ecosystems:first_release_published_at",
-          "value": "2018-07-18T01:23:57Z"
-        },
-        {
-          "name": "ecosystems:latest_release_published_at",
-          "value": "2021-09-11T02:10:30Z"
-        },
-        {
-          "name": "ecosystems:topic",
-          "value": "go"
-        },
-        {
-          "name": "ecosystems:topic",
-          "value": "golang"
-        },
-        {
-          "name": "ecosystems:topic",
-          "value": "reflect"
-        },
-        {
-          "name": "ecosystems:topic",
-          "value": "reflection"
-        }
-      ]
-    },
-    {
-      "bom-ref": "271616dc-6e7d-4e92-80c4-9363ff27b55f",
-      "type": "library",
-      "name": "github.com/vmware-tanzu/velero",
-      "version": "v1.17.1+dirty",
-      "purl": "pkg:golang/github.com/vmware-tanzu/velero@v1.17.1%2Bdirty",
-      "properties": [
-        {
-          "name": "aquasecurity:trivy:LayerDiffID",
-          "value": "sha256:56fe943f1fd47c68492437dbdc410e6e5c50e6bd3cf87b6587a781fd8b30abb7"
-        },
-        {
-          "name": "aquasecurity:trivy:LayerDigest",
-          "value": "sha256:43bef5e2b7c9eb21ca5bcd55cae0d1bd5044b1540c54d8a752635e935caaf7d6"
-        },
-        {
-          "name": "aquasecurity:trivy:PkgID",
-          "value": "github.com/vmware-tanzu/velero@v1.17.1+dirty"
-        },
-        {
-          "name": "aquasecurity:trivy:PkgType",
-          "value": "gobinary"
-        }
-      ]
-    },
-    {
-      "bom-ref": "377d4f74-8e2d-4b47-a8d2-8cf4a44b4a53",
-      "type": "library",
-      "name": "github.com/vmware-tanzu/velero",
-      "version": "v1.17.1+dirty",
-      "purl": "pkg:golang/github.com/vmware-tanzu/velero@v1.17.1%2Bdirty",
-      "properties": [
-        {
-          "name": "aquasecurity:trivy:LayerDiffID",
-          "value": "sha256:56fe943f1fd47c68492437dbdc410e6e5c50e6bd3cf87b6587a781fd8b30abb7"
-        },
-        {
-          "name": "aquasecurity:trivy:LayerDigest",
-          "value": "sha256:43bef5e2b7c9eb21ca5bcd55cae0d1bd5044b1540c54d8a752635e935caaf7d6"
-        },
-        {
-          "name": "aquasecurity:trivy:PkgID",
-          "value": "github.com/vmware-tanzu/velero@v1.17.1+dirty"
-        },
-        {
-          "name": "aquasecurity:trivy:PkgType",
-          "value": "gobinary"
-        }
-      ]
-    },
-    {
-      "bom-ref": "4a2c619b-53c6-445b-aa86-64ffa2c9ba49",
-      "type": "library",
-      "name": "stdlib",
-      "version": "v1.24.9",
-      "purl": "pkg:golang/stdlib@v1.24.9",
-      "properties": [
-        {
-          "name": "aquasecurity:trivy:LayerDiffID",
-          "value": "sha256:79414ea653fa47c16071e7df177805fcb50d0c1e2f4f825796e4c1d17ad6f13c"
-        },
-        {
-          "name": "aquasecurity:trivy:LayerDigest",
-          "value": "sha256:cae9f53ea987ef6399627b40c985c9dd745596a1f595b8107598ffe210ab7c5e"
-        },
-        {
-          "name": "aquasecurity:trivy:PkgID",
-          "value": "stdlib@v1.24.9"
-        },
-        {
-          "name": "aquasecurity:trivy:PkgType",
-          "value": "gobinary"
-        }
-      ]
-    },
-    {
-      "bom-ref": "5634c821-69fb-4c4d-ba2a-94fcc1219cca",
-      "type": "application",
-      "name": "usr/bin/restic",
-      "properties": [
-        {
-          "name": "aquasecurity:trivy:Class",
-          "value": "lang-pkgs"
-        },
-        {
-          "name": "aquasecurity:trivy:Type",
-          "value": "gobinary"
-        }
-      ]
-    },
-    {
-      "bom-ref": "57925bd3-bda2-4ad0-9692-499189d08371",
-      "type": "library",
-      "name": "stdlib",
-      "version": "v1.24.9",
-      "purl": "pkg:golang/stdlib@v1.24.9",
-      "properties": [
-        {
-          "name": "aquasecurity:trivy:LayerDiffID",
-          "value": "sha256:56fe943f1fd47c68492437dbdc410e6e5c50e6bd3cf87b6587a781fd8b30abb7"
-        },
-        {
-          "name": "aquasecurity:trivy:LayerDigest",
-          "value": "sha256:43bef5e2b7c9eb21ca5bcd55cae0d1bd5044b1540c54d8a752635e935caaf7d6"
-        },
-        {
-          "name": "aquasecurity:trivy:PkgID",
-          "value": "stdlib@v1.24.9"
-        },
-        {
-          "name": "aquasecurity:trivy:PkgType",
-          "value": "gobinary"
-        }
-      ]
-    },
-    {
-      "bom-ref": "5ba8efe8-f91e-4d41-a791-6d2b7ee6a226",
-      "type": "library",
-      "supplier": {
-        "name": "pkg"
-      },
-      "author": "pkg",
-      "name": "github.com/pkg/errors",
-      "version": "v0.9.1",
-      "description": "Package errors provides simple error handling primitives.\n\nThe traditional error handling idiom in Go is roughly akin to\n\nwhich when applied recursively up the call stack results in error reports\nwithout context or debugging information. The errors package allows\nprogrammers to add context to the failure path in their code in a way\nthat does not destroy the original value of the error.\n\nThe errors.Wrap function returns a new error that adds context to the\noriginal error by recording a stack trace at the point Wrap is called,\ntogether with the supplied message. For example\n\nIf additional control is required, the errors.WithStack and\nerrors.WithMessage functions destructure errors.Wrap into its component\noperations: annotating an error with a stack trace and with a message,\nrespectively.\n\nUsing errors.Wrap constructs a stack of errors, adding context to the\npreceding error. Depending on the nature of the error it may be necessary\nto reverse the operation of errors.Wrap to retrieve the original error\nfor inspection. Any error value which implements this interface\n\ncan be inspected by errors.Cause. errors.Cause will recursively retrieve\nthe topmost error that does not implement causer, which is assumed to be\nthe original cause. For example:\n\nAlthough the causer interface is not exported by this package, it is\nconsidered a part of its stable public interface.\n\nAll error values returned from this package implement fmt.Formatter and can\nbe formatted by the fmt package. The following verbs are supported:\n\nNew, Errorf, Wrap, and Wrapf record a stack trace at the point they are\ninvoked. This information can be retrieved with the following interface:\n\nThe returned errors.StackTrace type is defined as\n\nThe Frame type represents a call site in the stack trace. Frame supports\nthe fmt.Formatter interface that can be used for printing information about\nthe stack trace of this error. For example:\n\nAlthough the stackTracer interface is not exported by this package, it is\nconsidered a part of its stable public interface.\n\nSee the documentation for Frame.Format for more details.",
-      "licenses": [
-        {
-          "expression": "(BSD-2-Clause)"
-        }
-      ],
-      "purl": "pkg:golang/github.com/pkg/errors@v0.9.1",
-      "externalReferences": [
-        {
-          "url": "https://github.com/pkg/errors",
-          "type": "website"
-        },
-        {
-          "url": "https://pkg.go.dev/github.com/pkg/errors",
-          "type": "distribution"
-        },
-        {
-          "url": "https://github.com/pkg/errors",
-          "type": "vcs"
-        },
-        {
-          "url": "https://pkg.go.dev/github.com/pkg/errors#section-documentation",
-          "type": "documentation"
-        }
-      ],
-      "properties": [
-        {
-          "name": "aquasecurity:trivy:LayerDiffID",
-          "value": "sha256:56fe943f1fd47c68492437dbdc410e6e5c50e6bd3cf87b6587a781fd8b30abb7"
-        },
-        {
-          "name": "aquasecurity:trivy:LayerDigest",
-          "value": "sha256:43bef5e2b7c9eb21ca5bcd55cae0d1bd5044b1540c54d8a752635e935caaf7d6"
-        },
-        {
-          "name": "aquasecurity:trivy:PkgID",
-          "value": "github.com/pkg/errors@v0.9.1"
-        },
-        {
-          "name": "aquasecurity:trivy:PkgType",
-          "value": "gobinary"
-        },
-        {
-          "name": "ecosystems:first_release_published_at",
-          "value": "2016-04-24T12:18:34Z"
-        },
-        {
-          "name": "ecosystems:latest_release_published_at",
-          "value": "2020-01-14T19:47:44Z"
-        },
-        {
-          "name": "ecosystems:repository_archived",
-          "value": "true"
-        }
-      ]
-    },
-    {
-      "bom-ref": "5c4e2605-3600-4a25-bba1-54ce1041600b",
-      "type": "library",
-      "name": "stdlib",
-      "version": "v1.24.9",
-      "purl": "pkg:golang/stdlib@v1.24.9",
-      "properties": [
-        {
-          "name": "aquasecurity:trivy:LayerDiffID",
-          "value": "sha256:56fe943f1fd47c68492437dbdc410e6e5c50e6bd3cf87b6587a781fd8b30abb7"
-        },
-        {
-          "name": "aquasecurity:trivy:LayerDigest",
-          "value": "sha256:43bef5e2b7c9eb21ca5bcd55cae0d1bd5044b1540c54d8a752635e935caaf7d6"
-        },
-        {
-          "name": "aquasecurity:trivy:PkgID",
-          "value": "stdlib@v1.24.9"
-        },
-        {
-          "name": "aquasecurity:trivy:PkgType",
-          "value": "gobinary"
-        }
-      ]
-    },
-    {
-      "bom-ref": "5ed4e75e-2159-4561-ac59-6dfb454f571f",
-      "type": "library",
-      "supplier": {
-        "name": "go-yaml"
-      },
-      "author": "go-yaml",
-      "name": "gopkg.in/yaml.v3",
-      "version": "v3.0.1",
-      "description": "Package yaml implements YAML support for the Go language.\n\nSource code and other details for the project are available at GitHub:",
-      "licenses": [
-        {
-          "expression": "(Apache-2.0 OR MIT)"
-        }
-      ],
-      "purl": "pkg:golang/gopkg.in/yaml.v3@v3.0.1",
-      "externalReferences": [
-        {
-          "url": "https://github.com/go-yaml/yaml",
-          "type": "website"
-        },
-        {
-          "url": "https://pkg.go.dev/gopkg.in/yaml.v3",
-          "type": "distribution"
-        },
-        {
-          "url": "https://github.com/go-yaml/yaml",
-          "type": "vcs"
-        },
-        {
-          "url": "https://pkg.go.dev/gopkg.in/yaml.v3#section-documentation",
-          "type": "documentation"
-        }
-      ],
-      "properties": [
-        {
-          "name": "aquasecurity:trivy:LayerDiffID",
-          "value": "sha256:79414ea653fa47c16071e7df177805fcb50d0c1e2f4f825796e4c1d17ad6f13c"
-        },
-        {
-          "name": "aquasecurity:trivy:LayerDigest",
-          "value": "sha256:cae9f53ea987ef6399627b40c985c9dd745596a1f595b8107598ffe210ab7c5e"
-        },
-        {
-          "name": "aquasecurity:trivy:PkgID",
-          "value": "gopkg.in/yaml.v3@v3.0.1"
-        },
-        {
-          "name": "aquasecurity:trivy:PkgType",
-          "value": "gobinary"
-        },
-        {
-          "name": "ecosystems:first_release_published_at",
-          "value": "2022-05-21T10:33:21Z"
-        },
-        {
-          "name": "ecosystems:latest_release_published_at",
-          "value": "2022-05-27T08:35:30Z"
-        }
-      ]
-    },
-    {
-      "bom-ref": "6450ed47-9573-492d-aaad-1c4a1bd98204",
-      "type": "library",
-      "supplier": {
-        "name": "MinIO",
-        "url": [
-          "https://min.io"
-        ]
-      },
-      "author": "MinIO",
-      "name": "github.com/minio/md5-simd",
-      "version": "v1.1.2",
-      "licenses": [
-        {
-          "expression": "(Apache-2.0)"
-        }
-      ],
-      "purl": "pkg:golang/github.com/minio/md5-simd@v1.1.2",
-      "externalReferences": [
-        {
-          "url": "https://github.com/minio/md5-simd",
-          "type": "website"
-        },
-        {
-          "url": "https://pkg.go.dev/github.com/minio/md5-simd",
-          "type": "distribution"
-        },
-        {
-          "url": "https://github.com/minio/md5-simd",
-          "type": "vcs"
-        },
-        {
-          "url": "https://pkg.go.dev/github.com/minio/md5-simd#section-documentation",
-          "type": "documentation"
-        }
-      ],
-      "properties": [
-        {
-          "name": "aquasecurity:trivy:LayerDiffID",
-          "value": "sha256:56fe943f1fd47c68492437dbdc410e6e5c50e6bd3cf87b6587a781fd8b30abb7"
-        },
-        {
-          "name": "aquasecurity:trivy:LayerDigest",
-          "value": "sha256:43bef5e2b7c9eb21ca5bcd55cae0d1bd5044b1540c54d8a752635e935caaf7d6"
-        },
-        {
-          "name": "aquasecurity:trivy:PkgID",
-          "value": "github.com/minio/md5-simd@v1.1.2"
-        },
-        {
-          "name": "aquasecurity:trivy:PkgType",
-          "value": "gobinary"
-        },
-        {
-          "name": "ecosystems:first_release_published_at",
-          "value": "2020-04-28T21:33:15Z"
-        },
-        {
-          "name": "ecosystems:latest_release_published_at",
-          "value": "2021-01-07T19:48:44Z"
-        },
-        {
-          "name": "ecosystems:owner_location",
-          "value": "United States of America"
-        },
-        {
-          "name": "ecosystems:topic",
-          "value": "assembly"
-        },
-        {
-          "name": "ecosystems:topic",
-          "value": "avx2"
-        },
-        {
-          "name": "ecosystems:topic",
-          "value": "avx512"
-        },
-        {
-          "name": "ecosystems:topic",
-          "value": "golang"
-        },
-        {
-          "name": "ecosystems:topic",
-          "value": "hashing"
-        },
-        {
-          "name": "ecosystems:topic",
-          "value": "md5"
-        },
-        {
-          "name": "ecosystems:topic",
-          "value": "performance"
-        },
-        {
-          "name": "ecosystems:topic",
-          "value": "simd"
-        }
-      ]
-    },
-    {
-      "bom-ref": "6648e48b-2748-4402-bebb-e8d2a3eefa9d",
-      "type": "library",
-      "name": "github.com/modern-go/reflect2",
-      "version": "v1.0.2",
-      "licenses": [
-        {
-          "expression": "(Apache-2.0)"
-        }
-      ],
-      "purl": "pkg:golang/github.com/modern-go/reflect2@v1.0.2",
-      "externalReferences": [
-        {
-          "url": "https://github.com/modern-go/reflect2",
-          "type": "website"
-        },
-        {
-          "url": "https://pkg.go.dev/github.com/modern-go/reflect2",
-          "type": "distribution"
-        },
-        {
-          "url": "https://github.com/modern-go/reflect2",
-          "type": "vcs"
-        },
-        {
-          "url": "https://pkg.go.dev/github.com/modern-go/reflect2#section-documentation",
-          "type": "documentation"
-        }
-      ],
-      "properties": [
-        {
-          "name": "aquasecurity:trivy:LayerDiffID",
-          "value": "sha256:56fe943f1fd47c68492437dbdc410e6e5c50e6bd3cf87b6587a781fd8b30abb7"
-        },
-        {
-          "name": "aquasecurity:trivy:LayerDigest",
-          "value": "sha256:43bef5e2b7c9eb21ca5bcd55cae0d1bd5044b1540c54d8a752635e935caaf7d6"
-        },
-        {
-          "name": "aquasecurity:trivy:PkgID",
-          "value": "github.com/modern-go/reflect2@v1.0.2"
-        },
-        {
-          "name": "aquasecurity:trivy:PkgType",
-          "value": "gobinary"
-        },
-        {
-          "name": "ecosystems:first_release_published_at",
-          "value": "2018-07-18T01:23:57Z"
-        },
-        {
-          "name": "ecosystems:latest_release_published_at",
-          "value": "2021-09-11T02:10:30Z"
-        },
-        {
-          "name": "ecosystems:topic",
-          "value": "go"
-        },
-        {
-          "name": "ecosystems:topic",
-          "value": "golang"
-        },
-        {
-          "name": "ecosystems:topic",
-          "value": "reflect"
-        },
-        {
-          "name": "ecosystems:topic",
-          "value": "reflection"
-        }
-      ]
-    },
-    {
-      "bom-ref": "70317628-1a3f-4b27-9983-0e840bf1fc7c",
-      "type": "library",
-      "supplier": {
-        "name": "pkg"
-      },
-      "author": "pkg",
-      "name": "github.com/pkg/errors",
-      "version": "v0.9.1",
-      "description": "Package errors provides simple error handling primitives.\n\nThe traditional error handling idiom in Go is roughly akin to\n\nwhich when applied recursively up the call stack results in error reports\nwithout context or debugging information. The errors package allows\nprogrammers to add context to the failure path in their code in a way\nthat does not destroy the original value of the error.\n\nThe errors.Wrap function returns a new error that adds context to the\noriginal error by recording a stack trace at the point Wrap is called,\ntogether with the supplied message. For example\n\nIf additional control is required, the errors.WithStack and\nerrors.WithMessage functions destructure errors.Wrap into its component\noperations: annotating an error with a stack trace and with a message,\nrespectively.\n\nUsing errors.Wrap constructs a stack of errors, adding context to the\npreceding error. Depending on the nature of the error it may be necessary\nto reverse the operation of errors.Wrap to retrieve the original error\nfor inspection. Any error value which implements this interface\n\ncan be inspected by errors.Cause. errors.Cause will recursively retrieve\nthe topmost error that does not implement causer, which is assumed to be\nthe original cause. For example:\n\nAlthough the causer interface is not exported by this package, it is\nconsidered a part of its stable public interface.\n\nAll error values returned from this package implement fmt.Formatter and can\nbe formatted by the fmt package. The following verbs are supported:\n\nNew, Errorf, Wrap, and Wrapf record a stack trace at the point they are\ninvoked. This information can be retrieved with the following interface:\n\nThe returned errors.StackTrace type is defined as\n\nThe Frame type represents a call site in the stack trace. Frame supports\nthe fmt.Formatter interface that can be used for printing information about\nthe stack trace of this error. For example:\n\nAlthough the stackTracer interface is not exported by this package, it is\nconsidered a part of its stable public interface.\n\nSee the documentation for Frame.Format for more details.",
-      "licenses": [
-        {
-          "expression": "(BSD-2-Clause)"
-        }
-      ],
-      "purl": "pkg:golang/github.com/pkg/errors@v0.9.1",
-      "externalReferences": [
-        {
-          "url": "https://github.com/pkg/errors",
-          "type": "website"
-        },
-        {
-          "url": "https://pkg.go.dev/github.com/pkg/errors",
-          "type": "distribution"
-        },
-        {
-          "url": "https://github.com/pkg/errors",
-          "type": "vcs"
-        },
-        {
-          "url": "https://pkg.go.dev/github.com/pkg/errors#section-documentation",
-          "type": "documentation"
-        }
-      ],
-      "properties": [
-        {
-          "name": "aquasecurity:trivy:LayerDiffID",
-          "value": "sha256:79414ea653fa47c16071e7df177805fcb50d0c1e2f4f825796e4c1d17ad6f13c"
-        },
-        {
-          "name": "aquasecurity:trivy:LayerDigest",
-          "value": "sha256:cae9f53ea987ef6399627b40c985c9dd745596a1f595b8107598ffe210ab7c5e"
-        },
-        {
-          "name": "aquasecurity:trivy:PkgID",
-          "value": "github.com/pkg/errors@v0.9.1"
-        },
-        {
-          "name": "aquasecurity:trivy:PkgType",
-          "value": "gobinary"
-        },
-        {
-          "name": "ecosystems:first_release_published_at",
-          "value": "2016-04-24T12:18:34Z"
-        },
-        {
-          "name": "ecosystems:latest_release_published_at",
-          "value": "2020-01-14T19:47:44Z"
-        },
-        {
-          "name": "ecosystems:repository_archived",
-          "value": "true"
-        }
-      ]
-    },
-    {
-      "bom-ref": "8f3360a2-2f14-4e4e-99d3-7e0348c2690d",
-      "type": "application",
-      "name": "velero-helper",
-      "properties": [
-        {
-          "name": "aquasecurity:trivy:Class",
-          "value": "lang-pkgs"
-        },
-        {
-          "name": "aquasecurity:trivy:Type",
-          "value": "gobinary"
-        }
-      ]
-    },
-    {
-      "bom-ref": "9dea56b6-d4ef-400c-8146-0142febec472",
+      "bom-ref": "9dc82bd5-3510-4470-86dd-311780d11c3a",
       "type": "library",
       "supplier": {
         "name": "Modern Go Programming",
@@ -1078,11 +851,11 @@
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
-          "value": "sha256:79414ea653fa47c16071e7df177805fcb50d0c1e2f4f825796e4c1d17ad6f13c"
+          "value": "sha256:56fe943f1fd47c68492437dbdc410e6e5c50e6bd3cf87b6587a781fd8b30abb7"
         },
         {
           "name": "aquasecurity:trivy:LayerDigest",
-          "value": "sha256:cae9f53ea987ef6399627b40c985c9dd745596a1f595b8107598ffe210ab7c5e"
+          "value": "sha256:43bef5e2b7c9eb21ca5bcd55cae0d1bd5044b1540c54d8a752635e935caaf7d6"
         },
         {
           "name": "aquasecurity:trivy:PkgID",
@@ -1119,7 +892,157 @@
       ]
     },
     {
-      "bom-ref": "a536a8c3-4143-4737-b3d6-bf4b644150bf",
+      "bom-ref": "9e751220-2fa8-41f2-a567-6fc66a7f3f43",
+      "type": "library",
+      "supplier": {
+        "name": "VMware Tanzu",
+        "url": [
+          "tanzu.io"
+        ]
+      },
+      "author": "VMware Tanzu",
+      "name": "github.com/vmware-tanzu/velero",
+      "version": "v1.17.1+dirty",
+      "purl": "pkg:golang/github.com/vmware-tanzu/velero@v1.17.1%2Bdirty",
+      "externalReferences": [
+        {
+          "url": "https://github.com/vmware-tanzu/velero",
+          "type": "website"
+        },
+        {
+          "url": "https://pkg.go.dev/github.com/vmware-tanzu/velero",
+          "type": "distribution"
+        },
+        {
+          "url": "https://github.com/vmware-tanzu/velero",
+          "type": "vcs"
+        },
+        {
+          "url": "https://pkg.go.dev/github.com/vmware-tanzu/velero#section-documentation",
+          "type": "documentation"
+        }
+      ],
+      "properties": [
+        {
+          "name": "aquasecurity:trivy:LayerDiffID",
+          "value": "sha256:56fe943f1fd47c68492437dbdc410e6e5c50e6bd3cf87b6587a781fd8b30abb7"
+        },
+        {
+          "name": "aquasecurity:trivy:LayerDigest",
+          "value": "sha256:43bef5e2b7c9eb21ca5bcd55cae0d1bd5044b1540c54d8a752635e935caaf7d6"
+        },
+        {
+          "name": "aquasecurity:trivy:PkgID",
+          "value": "github.com/vmware-tanzu/velero@v1.17.1+dirty"
+        },
+        {
+          "name": "aquasecurity:trivy:PkgType",
+          "value": "gobinary"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2017-08-02T21:29:38Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2026-01-09T03:17:35Z"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "backup"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "disaster-recovery"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "hacktoberfest"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "kubernetes"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "velero"
+        }
+      ]
+    },
+    {
+      "bom-ref": "a0405245-b153-4f13-ad45-2aa9df724b11",
+      "type": "library",
+      "name": "github.com/modern-go/reflect2",
+      "version": "v1.0.2",
+      "licenses": [
+        {
+          "expression": "(Apache-2.0)"
+        }
+      ],
+      "purl": "pkg:golang/github.com/modern-go/reflect2@v1.0.2",
+      "externalReferences": [
+        {
+          "url": "https://github.com/modern-go/reflect2",
+          "type": "website"
+        },
+        {
+          "url": "https://pkg.go.dev/github.com/modern-go/reflect2",
+          "type": "distribution"
+        },
+        {
+          "url": "https://github.com/modern-go/reflect2",
+          "type": "vcs"
+        },
+        {
+          "url": "https://pkg.go.dev/github.com/modern-go/reflect2#section-documentation",
+          "type": "documentation"
+        }
+      ],
+      "properties": [
+        {
+          "name": "aquasecurity:trivy:LayerDiffID",
+          "value": "sha256:79414ea653fa47c16071e7df177805fcb50d0c1e2f4f825796e4c1d17ad6f13c"
+        },
+        {
+          "name": "aquasecurity:trivy:LayerDigest",
+          "value": "sha256:cae9f53ea987ef6399627b40c985c9dd745596a1f595b8107598ffe210ab7c5e"
+        },
+        {
+          "name": "aquasecurity:trivy:PkgID",
+          "value": "github.com/modern-go/reflect2@v1.0.2"
+        },
+        {
+          "name": "aquasecurity:trivy:PkgType",
+          "value": "gobinary"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2018-07-18T01:23:57Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2021-09-11T02:10:30Z"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "go"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "golang"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "reflect"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "reflection"
+        }
+      ]
+    },
+    {
+      "bom-ref": "b893c8d8-71fa-48f8-b41c-2644dd89e092",
       "type": "library",
       "supplier": {
         "name": "MinIO",
@@ -1218,11 +1141,39 @@
       ]
     },
     {
-      "bom-ref": "a7f67e93-59d9-4245-b3a4-5e8db778ac2d",
+      "bom-ref": "c99323da-1a36-4d83-a481-22f18bb79793",
       "type": "library",
-      "name": "stdlib",
-      "version": "v1.24.9",
-      "purl": "pkg:golang/stdlib@v1.24.9",
+      "supplier": {
+        "name": "go-yaml"
+      },
+      "author": "go-yaml",
+      "name": "gopkg.in/yaml.v3",
+      "version": "v3.0.1",
+      "description": "Package yaml implements YAML support for the Go language.\n\nSource code and other details for the project are available at GitHub:",
+      "licenses": [
+        {
+          "expression": "(Apache-2.0 OR MIT)"
+        }
+      ],
+      "purl": "pkg:golang/gopkg.in/yaml.v3@v3.0.1",
+      "externalReferences": [
+        {
+          "url": "https://github.com/go-yaml/yaml",
+          "type": "website"
+        },
+        {
+          "url": "https://pkg.go.dev/gopkg.in/yaml.v3",
+          "type": "distribution"
+        },
+        {
+          "url": "https://github.com/go-yaml/yaml",
+          "type": "vcs"
+        },
+        {
+          "url": "https://pkg.go.dev/gopkg.in/yaml.v3#section-documentation",
+          "type": "documentation"
+        }
+      ],
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
@@ -1231,6 +1182,39 @@
         {
           "name": "aquasecurity:trivy:LayerDigest",
           "value": "sha256:43bef5e2b7c9eb21ca5bcd55cae0d1bd5044b1540c54d8a752635e935caaf7d6"
+        },
+        {
+          "name": "aquasecurity:trivy:PkgID",
+          "value": "gopkg.in/yaml.v3@v3.0.1"
+        },
+        {
+          "name": "aquasecurity:trivy:PkgType",
+          "value": "gobinary"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2022-05-21T10:33:21Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2022-05-27T08:35:30Z"
+        }
+      ]
+    },
+    {
+      "bom-ref": "ca0870ed-1c0f-41ac-942d-dae04a588835",
+      "type": "library",
+      "name": "stdlib",
+      "version": "v1.24.9",
+      "purl": "pkg:golang/stdlib@v1.24.9",
+      "properties": [
+        {
+          "name": "aquasecurity:trivy:LayerDiffID",
+          "value": "sha256:79414ea653fa47c16071e7df177805fcb50d0c1e2f4f825796e4c1d17ad6f13c"
+        },
+        {
+          "name": "aquasecurity:trivy:LayerDigest",
+          "value": "sha256:cae9f53ea987ef6399627b40c985c9dd745596a1f595b8107598ffe210ab7c5e"
         },
         {
           "name": "aquasecurity:trivy:PkgID",
@@ -1243,7 +1227,7 @@
       ]
     },
     {
-      "bom-ref": "ac401417-8ef2-46e4-b55d-3796180db2d1",
+      "bom-ref": "ce9dc65f-34b6-46f3-9e7d-030c724905d1",
       "type": "application",
       "name": "velero",
       "properties": [
@@ -1258,39 +1242,64 @@
       ]
     },
     {
-      "bom-ref": "d23e4f44-6be4-471c-9e29-968023597cdd",
+      "bom-ref": "d434b43c-f54e-4dac-9f81-08c571106c70",
+      "type": "library",
+      "name": "stdlib",
+      "version": "v1.24.9",
+      "purl": "pkg:golang/stdlib@v1.24.9",
+      "properties": [
+        {
+          "name": "aquasecurity:trivy:LayerDiffID",
+          "value": "sha256:56fe943f1fd47c68492437dbdc410e6e5c50e6bd3cf87b6587a781fd8b30abb7"
+        },
+        {
+          "name": "aquasecurity:trivy:LayerDigest",
+          "value": "sha256:43bef5e2b7c9eb21ca5bcd55cae0d1bd5044b1540c54d8a752635e935caaf7d6"
+        },
+        {
+          "name": "aquasecurity:trivy:PkgID",
+          "value": "stdlib@v1.24.9"
+        },
+        {
+          "name": "aquasecurity:trivy:PkgType",
+          "value": "gobinary"
+        }
+      ]
+    },
+    {
+      "bom-ref": "e996f831-f541-4b9b-895b-2db1e599e775",
       "type": "library",
       "supplier": {
-        "name": "Steve Francia",
+        "name": "Jsoniter",
         "url": [
-          "http://spf13.com"
+          "http://jsoniter.com/"
         ]
       },
-      "author": "Steve Francia",
-      "name": "github.com/spf13/pflag",
-      "version": "v1.0.5",
-      "description": "Package pflag is a drop-in replacement for Go's flag package, implementing\nPOSIX/GNU-style --flags.\n\npflag is compatible with the GNU extensions to the POSIX recommendations\nfor command-line options. See\nhttp://www.gnu.org/software/libc/manual/html_node/Argument-Syntax.html\n\nUsage:\n\npflag is a drop-in replacement of Go's native flag package. If you import\npflag under the name \"flag\" then all code should continue to function\nwith no changes.\n\nThere is one exception to this: if you directly instantiate the Flag struct\nthere is one more field \"Shorthand\" that you will need to set.\nMost code never instantiates this struct directly, and instead uses\nfunctions such as String(), BoolVar(), and Var(), and is therefore\nunaffected.\n\nDefine flags using flag.String(), Bool(), Int(), etc.\n\nThis declares an integer flag, -flagname, stored in the pointer ip, with type *int.\n\nIf you like, you can bind the flag to a variable using the Var() functions.\n\nOr you can create custom flags that satisfy the Value interface (with\npointer receivers) and couple them to flag parsing by\n\nFor such flags, the default value is just the initial value of the variable.\n\nAfter all flags are defined, call\n\nto parse the command line into the defined flags.\n\nFlags may then be used directly. If you're using the flags themselves,\nthey are all pointers; if you bind to variables, they're values.\n\nAfter parsing, the arguments after the flag are available as the\nslice flag.Args() or individually as flag.Arg(i).\nThe arguments are indexed from 0 through flag.NArg()-1.\n\nThe pflag package also defines some new functions that are not in flag,\nthat give one-letter shorthands for flags. You can use these by appending\n'P' to the name of any function that defines a flag.\n\nShorthand letters can be used with single dashes on the command line.\nBoolean shorthand flags can be combined with other shorthand flags.\n\nCommand line flag syntax:\n\nUnlike the flag package, a single dash before an option means something\ndifferent than a double dash. Single dashes signify a series of shorthand\nletters for flags. All but the last shorthand letter must be boolean flags.\n\nFlag parsing stops after the terminator \"--\". Unlike the flag package,\nflags can be interspersed with arguments anywhere on the command line\nbefore this terminator.\n\nInteger flags accept 1234, 0664, 0x1234 and may be negative.\nBoolean flags (in their long form) accept 1, 0, t, f, true, false,\nTRUE, FALSE, True, False.\nDuration flags accept any input valid for time.ParseDuration.\n\nThe default set of command-line flags is controlled by\ntop-level functions.  The FlagSet type allows one to define\nindependent sets of flags, such as to implement subcommands\nin a command-line interface. The methods of FlagSet are\nanalogous to the top-level functions for the command-line\nflag set.",
+      "author": "Jsoniter",
+      "name": "github.com/json-iterator/go",
+      "version": "v1.1.12",
+      "description": "Package jsoniter implements encoding and decoding of JSON as defined in\nRFC 4627 and provides interfaces with identical syntax of standard lib encoding/json.\nConverting from encoding/json to jsoniter is no more than replacing the package with jsoniter\nand variable type declarations (if any).\njsoniter interfaces gives 100% compatibility with code using standard lib.\n\n\"JSON and Go\"\n(https://golang.org/doc/articles/json_and_go.html)\ngives a description of how Marshal/Unmarshal operate\nbetween arbitrary or predefined json objects and bytes,\nand it applies to jsoniter.Marshal/Unmarshal as well.\n\nBesides, jsoniter.Iterator provides a different set of interfaces\niterating given bytes/string/reader\nand yielding parsed elements one by one.\nThis set of interfaces reads input as required and gives\nbetter performance.",
       "licenses": [
         {
-          "expression": "(BSD-3-Clause)"
+          "expression": "(MIT)"
         }
       ],
-      "purl": "pkg:golang/github.com/spf13/pflag@v1.0.5",
+      "purl": "pkg:golang/github.com/json-iterator/go@v1.1.12",
       "externalReferences": [
         {
-          "url": "https://github.com/spf13/pflag",
+          "url": "https://github.com/json-iterator/go",
           "type": "website"
         },
         {
-          "url": "https://pkg.go.dev/github.com/spf13/pflag",
+          "url": "https://pkg.go.dev/github.com/json-iterator/go",
           "type": "distribution"
         },
         {
-          "url": "https://github.com/spf13/pflag",
+          "url": "https://github.com/json-iterator/go",
           "type": "vcs"
         },
         {
-          "url": "https://pkg.go.dev/github.com/spf13/pflag#section-documentation",
+          "url": "https://pkg.go.dev/github.com/json-iterator/go#section-documentation",
           "type": "documentation"
         }
       ],
@@ -1305,7 +1314,7 @@
         },
         {
           "name": "aquasecurity:trivy:PkgID",
-          "value": "github.com/spf13/pflag@v1.0.5"
+          "value": "github.com/json-iterator/go@v1.1.12"
         },
         {
           "name": "aquasecurity:trivy:PkgType",
@@ -1313,20 +1322,141 @@
         },
         {
           "name": "ecosystems:first_release_published_at",
-          "value": "2017-05-08T18:44:08Z"
+          "value": "2018-08-06T06:07:27Z"
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2025-09-02T06:08:29Z"
+          "value": "2021-09-11T02:17:26Z"
         },
         {
-          "name": "ecosystems:owner_location",
-          "value": "NYC"
+          "name": "ecosystems:topic",
+          "value": "deserialization"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "go"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "golang"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "json"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "json-parser"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "parser"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "serialization"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "serializer"
         }
       ]
     },
     {
-      "bom-ref": "ebadef9f-6ef9-4ca8-aa05-521d6af217c9",
+      "bom-ref": "e9d13345-d500-43c4-b867-62ba525c71c1",
+      "type": "application",
+      "name": "velero-helper",
+      "properties": [
+        {
+          "name": "aquasecurity:trivy:Class",
+          "value": "lang-pkgs"
+        },
+        {
+          "name": "aquasecurity:trivy:Type",
+          "value": "gobinary"
+        }
+      ]
+    },
+    {
+      "bom-ref": "ec4dc6dd-78e4-445b-9d08-9963e069194f",
+      "type": "library",
+      "supplier": {
+        "name": "VMware Tanzu",
+        "url": [
+          "tanzu.io"
+        ]
+      },
+      "author": "VMware Tanzu",
+      "name": "github.com/vmware-tanzu/velero",
+      "version": "v1.17.1+dirty",
+      "purl": "pkg:golang/github.com/vmware-tanzu/velero@v1.17.1%2Bdirty",
+      "externalReferences": [
+        {
+          "url": "https://github.com/vmware-tanzu/velero",
+          "type": "website"
+        },
+        {
+          "url": "https://pkg.go.dev/github.com/vmware-tanzu/velero",
+          "type": "distribution"
+        },
+        {
+          "url": "https://github.com/vmware-tanzu/velero",
+          "type": "vcs"
+        },
+        {
+          "url": "https://pkg.go.dev/github.com/vmware-tanzu/velero#section-documentation",
+          "type": "documentation"
+        }
+      ],
+      "properties": [
+        {
+          "name": "aquasecurity:trivy:LayerDiffID",
+          "value": "sha256:56fe943f1fd47c68492437dbdc410e6e5c50e6bd3cf87b6587a781fd8b30abb7"
+        },
+        {
+          "name": "aquasecurity:trivy:LayerDigest",
+          "value": "sha256:43bef5e2b7c9eb21ca5bcd55cae0d1bd5044b1540c54d8a752635e935caaf7d6"
+        },
+        {
+          "name": "aquasecurity:trivy:PkgID",
+          "value": "github.com/vmware-tanzu/velero@v1.17.1+dirty"
+        },
+        {
+          "name": "aquasecurity:trivy:PkgType",
+          "value": "gobinary"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2017-08-02T21:29:38Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2026-01-09T03:17:35Z"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "backup"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "disaster-recovery"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "hacktoberfest"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "kubernetes"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "velero"
+        }
+      ]
+    },
+    {
+      "bom-ref": "ecff0b10-1bd0-4a23-9015-8baff370d0e3",
       "type": "library",
       "supplier": {
         "name": "Modern Go Programming",
@@ -1364,11 +1494,11 @@
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
-          "value": "sha256:56fe943f1fd47c68492437dbdc410e6e5c50e6bd3cf87b6587a781fd8b30abb7"
+          "value": "sha256:79414ea653fa47c16071e7df177805fcb50d0c1e2f4f825796e4c1d17ad6f13c"
         },
         {
           "name": "aquasecurity:trivy:LayerDigest",
-          "value": "sha256:43bef5e2b7c9eb21ca5bcd55cae0d1bd5044b1540c54d8a752635e935caaf7d6"
+          "value": "sha256:cae9f53ea987ef6399627b40c985c9dd745596a1f595b8107598ffe210ab7c5e"
         },
         {
           "name": "aquasecurity:trivy:PkgID",
@@ -1405,11 +1535,39 @@
       ]
     },
     {
-      "bom-ref": "f0130504-e847-4850-8313-222d474fee66",
+      "bom-ref": "edd12843-ba6d-4e5e-b6d8-1dd85bcb6f32",
       "type": "library",
-      "name": "github.com/vmware-tanzu/velero",
-      "version": "v1.17.1+dirty",
-      "purl": "pkg:golang/github.com/vmware-tanzu/velero@v1.17.1%2Bdirty",
+      "supplier": {
+        "name": "pkg"
+      },
+      "author": "pkg",
+      "name": "github.com/pkg/errors",
+      "version": "v0.9.1",
+      "description": "Package errors provides simple error handling primitives.\n\nThe traditional error handling idiom in Go is roughly akin to\n\nwhich when applied recursively up the call stack results in error reports\nwithout context or debugging information. The errors package allows\nprogrammers to add context to the failure path in their code in a way\nthat does not destroy the original value of the error.\n\nThe errors.Wrap function returns a new error that adds context to the\noriginal error by recording a stack trace at the point Wrap is called,\ntogether with the supplied message. For example\n\nIf additional control is required, the errors.WithStack and\nerrors.WithMessage functions destructure errors.Wrap into its component\noperations: annotating an error with a stack trace and with a message,\nrespectively.\n\nUsing errors.Wrap constructs a stack of errors, adding context to the\npreceding error. Depending on the nature of the error it may be necessary\nto reverse the operation of errors.Wrap to retrieve the original error\nfor inspection. Any error value which implements this interface\n\ncan be inspected by errors.Cause. errors.Cause will recursively retrieve\nthe topmost error that does not implement causer, which is assumed to be\nthe original cause. For example:\n\nAlthough the causer interface is not exported by this package, it is\nconsidered a part of its stable public interface.\n\nAll error values returned from this package implement fmt.Formatter and can\nbe formatted by the fmt package. The following verbs are supported:\n\nNew, Errorf, Wrap, and Wrapf record a stack trace at the point they are\ninvoked. This information can be retrieved with the following interface:\n\nThe returned errors.StackTrace type is defined as\n\nThe Frame type represents a call site in the stack trace. Frame supports\nthe fmt.Formatter interface that can be used for printing information about\nthe stack trace of this error. For example:\n\nAlthough the stackTracer interface is not exported by this package, it is\nconsidered a part of its stable public interface.\n\nSee the documentation for Frame.Format for more details.",
+      "licenses": [
+        {
+          "expression": "(BSD-2-Clause)"
+        }
+      ],
+      "purl": "pkg:golang/github.com/pkg/errors@v0.9.1",
+      "externalReferences": [
+        {
+          "url": "https://github.com/pkg/errors",
+          "type": "website"
+        },
+        {
+          "url": "https://pkg.go.dev/github.com/pkg/errors",
+          "type": "distribution"
+        },
+        {
+          "url": "https://github.com/pkg/errors",
+          "type": "vcs"
+        },
+        {
+          "url": "https://pkg.go.dev/github.com/pkg/errors#section-documentation",
+          "type": "documentation"
+        }
+      ],
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
@@ -1421,11 +1579,23 @@
         },
         {
           "name": "aquasecurity:trivy:PkgID",
-          "value": "github.com/vmware-tanzu/velero@v1.17.1+dirty"
+          "value": "github.com/pkg/errors@v0.9.1"
         },
         {
           "name": "aquasecurity:trivy:PkgType",
           "value": "gobinary"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2016-04-24T12:18:34Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2020-01-14T19:47:44Z"
+        },
+        {
+          "name": "ecosystems:repository_archived",
+          "value": "true"
         }
       ]
     },
@@ -1440,7 +1610,7 @@
       "licenses": [
         {
           "license": {
-            "name": "GPL-2.0-or-later"
+            "id": "GPL-2.0-or-later"
           }
         }
       ],
@@ -1483,17 +1653,17 @@
       "licenses": [
         {
           "license": {
-            "name": "GPL-2.0-or-later"
+            "id": "GPL-2.0-or-later"
           }
         },
         {
           "license": {
-            "name": "GPL-2.0-only"
+            "id": "GPL-2.0-only"
           }
         },
         {
           "license": {
-            "name": "MPL-2.0"
+            "id": "MPL-2.0"
           }
         }
       ],
@@ -1536,17 +1706,17 @@
       "licenses": [
         {
           "license": {
-            "name": "LGPL-2.1-only"
+            "id": "LGPL-2.1-only"
           }
         },
         {
           "license": {
-            "name": "GPL-2.0-only"
+            "id": "GPL-2.0-only"
           }
         },
         {
           "license": {
-            "name": "GFDL-1.3-only"
+            "id": "GFDL-1.3-only"
           }
         }
       ],
@@ -1593,22 +1763,22 @@
       "licenses": [
         {
           "license": {
-            "name": "Apache-2.0"
+            "id": "Apache-2.0"
           }
         },
         {
           "license": {
-            "name": "Artistic-2.0"
+            "id": "Artistic-2.0"
           }
         },
         {
           "license": {
-            "name": "GPL-1.0-or-later"
+            "id": "GPL-1.0-or-later"
           }
         },
         {
           "license": {
-            "name": "GPL-1.0-only"
+            "id": "GPL-1.0-only"
           }
         }
       ],
@@ -1655,7 +1825,7 @@
       "licenses": [
         {
           "license": {
-            "name": "GPL-2.0-only"
+            "id": "GPL-2.0-only"
           }
         }
       ],
@@ -1738,7 +1908,7 @@
       "licenses": [
         {
           "license": {
-            "name": "ICU"
+            "id": "ICU"
           }
         }
       ],
@@ -1785,7 +1955,7 @@
       "licenses": [
         {
           "license": {
-            "name": "Zlib"
+            "id": "Zlib"
           }
         }
       ],
@@ -1837,6 +2007,11 @@
       "author": "Google",
       "name": "cel.dev/expr",
       "version": "v0.23.0",
+      "licenses": [
+        {
+          "expression": "(Apache-2.0)"
+        }
+      ],
       "purl": "pkg:golang/cel.dev/expr@v0.23.0",
       "externalReferences": [
         {
@@ -2072,6 +2247,11 @@
       "name": "cloud.google.com/go/compute/metadata",
       "version": "v0.3.0",
       "description": "Package metadata provides access to Google Compute Engine (GCE)\nmetadata and API service accounts.\n\nThis package is a wrapper around the GCE metadata service,\nas documented at https://cloud.google.com/compute/docs/metadata/overview.",
+      "licenses": [
+        {
+          "expression": "(Apache-2.0)"
+        }
+      ],
       "purl": "pkg:golang/cloud.google.com/go/compute/metadata@v0.3.0",
       "externalReferences": [
         {
@@ -2243,6 +2423,11 @@
       "name": "cloud.google.com/go/iam",
       "version": "v0.13.0",
       "description": "Package iam supports the resource-specific operations of Google Cloud\nIAM (Identity and Access Management) for the Google Cloud Libraries.\nSee https://cloud.google.com/iam for more about IAM.\n\nUsers of the Google Cloud Libraries will typically not use this package\ndirectly. Instead they will begin with some resource that supports IAM, like\na pubsub topic, and call its IAM method to get a Handle for that resource.",
+      "licenses": [
+        {
+          "expression": "(Apache-2.0)"
+        }
+      ],
       "purl": "pkg:golang/cloud.google.com/go/iam@v0.13.0",
       "externalReferences": [
         {
@@ -2509,6 +2694,11 @@
       "name": "cloud.google.com/go/storage",
       "version": "v1.28.1",
       "description": "Package storage provides an easy way to work with Google Cloud Storage.\nGoogle Cloud Storage stores data in named objects, which are grouped into buckets.\n\nMore information about Google Cloud Storage is available at\nhttps://cloud.google.com/storage/docs.\n\nSee https://pkg.go.dev/cloud.google.com/go for authentication, timeouts,\nconnection pooling and similar aspects of this package.\n\nTo start working with this package, create a Client:\n\nThe client will use your default application credentials. Clients should be\nreused instead of created as needed. The methods of Client are safe for\nconcurrent use by multiple goroutines.\n\nYou may configure the client by passing in options from the google.golang.org/api/option\npackage. You may also use options defined in this package, such as WithJSONReads.\n\nIf you only wish to access public data, you can create\nan unauthenticated client with\n\nTo use an emulator with this library, you can set the STORAGE_EMULATOR_HOST\nenvironment variable to the address at which your emulator is running. This will\nsend requests to that address instead of to Cloud Storage. You can then create\nand use a client as usual:\n\nPlease note that there is no official emulator for Cloud Storage.\n\nA Google Cloud Storage bucket is a collection of objects. To work with a\nbucket, make a bucket handle:\n\nA handle is a reference to a bucket. You can have a handle even if the\nbucket doesn't exist yet. To create a bucket in Google Cloud Storage,\ncall BucketHandle.Create:\n\nNote that although buckets are associated with projects, bucket names are\nglobal across all projects.\n\nEach bucket has associated metadata, represented in this package by\nBucketAttrs. The third argument to BucketHandle.Create allows you to set\nthe initial BucketAttrs of a bucket. To retrieve a bucket's attributes, use\nBucketHandle.Attrs:\n\nAn object holds arbitrary data as a sequence of bytes, like a file. You\nrefer to objects using a handle, just as with buckets, but unlike buckets\nyou don't explicitly create an object. Instead, the first time you write\nto an object it will be created. You can use the standard Go io.Reader\nand io.Writer interfaces to read and write object data:\n\nObjects also have attributes, which you can fetch with ObjectHandle.Attrs:\n\nListing objects in a bucket is done with the BucketHandle.Objects method:\n\nObjects are listed lexicographically by name. To filter objects\nlexicographically, [Query.StartOffset] and/or [Query.EndOffset] can be used:\n\nIf only a subset of object attributes is needed when listing, specifying this\nsubset using Query.SetAttrSelection may speed up the listing process:\n\nBoth objects and buckets have ACLs (Access Control Lists). An ACL is a list of\nACLRules, each of which specifies the role of a user, group or project. ACLs\nare suitable for fine-grained control, but you may prefer using IAM to control\naccess at the project level (see Cloud Storage IAM docs.\n\nTo list the ACLs of a bucket or object, obtain an ACLHandle and call ACLHandle.List:\n\nYou can also set and delete ACLs.\n\nEvery object has a generation and a metageneration. The generation changes\nwhenever the content changes, and the metageneration changes whenever the\nmetadata changes. Conditions let you check these values before an operation;\nthe operation only executes if the conditions match. You can use conditions to\nprevent race conditions in read-modify-write operations.\n\nFor example, say you've read an object's metadata into objAttrs. Now\nyou want to write to that object, but only if its contents haven't changed\nsince you read it. Here is how to express that:\n\nYou can obtain a URL that lets anyone read or write an object for a limited time.\nSigning a URL requires credentials authorized to sign a URL. To use the same\nauthentication that was used when instantiating the Storage client, use\nBucketHandle.SignedURL.\n\nYou can also sign a URL without creating a client. See the documentation of\nSignedURL for details.\n\nA type of signed request that allows uploads through HTML forms directly to Cloud Storage with\ntemporary permission. Conditions can be applied to restrict how the HTML form is used and exercised\nby a user.\n\nFor more information, please see the XML POST Object docs as well\nas the documentation of BucketHandle.GenerateSignedPostPolicyV4.\n\nIf the GoogleAccessID and PrivateKey option fields are not provided, they will\nbe automatically detected by BucketHandle.SignedURL and\nBucketHandle.GenerateSignedPostPolicyV4 if any of the following are true:\n\nDetecting GoogleAccessID may not be possible if you are authenticated using a\ntoken source or using option.WithHTTPClient. In this case, you can provide a\nservice account email for GoogleAccessID and the client will attempt to sign\nthe URL or Post Policy using that service account.\n\nTo generate the signature, you must have:\n\nErrors returned by this client are often of the type github.com/googleapis/gax-go/v2/apierror.\nThe [apierror.APIError] type can wrap a google.golang.org/grpc/status.Status\nif gRPC was used, or a google.golang.org/api/googleapi.Error if HTTP/REST was used.\nYou might also encounter googleapi.Error directly from HTTP operations.\nThese types of errors can be inspected for more information by using errors.As\nto access the specific underlying error types and retrieve detailed information,\nincluding HTTP or gRPC status codes. For example:\n\nThis library may also return other errors that are not wrapped as [apierror.APIError]. For\nexample, errors with authentication may return cloud.google.com/go/auth.Error.\n\nMethods in this package may retry calls that fail with transient errors.\nRetrying continues indefinitely unless the controlling context is canceled, the\nclient is closed, or a non-transient error is received. To stop retries from\ncontinuing, use context timeouts or cancellation.\n\nThe retry strategy in this library follows best practices for Cloud Storage. By\ndefault, operations are retried only if they are idempotent, and exponential\nbackoff with jitter is employed. In addition, errors are only retried if they\nare defined as transient by the service. See the Cloud Storage retry docs\nfor more information.\n\nUsers can configure non-default retry behavior for a single library call (using\nBucketHandle.Retryer and ObjectHandle.Retryer) or for all calls made by a\nclient (using Client.SetRetry). For example:\n\nYou can add custom headers to any API call made by this package by using\ncallctx.SetHeaders on the context which is passed to the method. For example,\nto add a custom audit logging header:\n\nThis package includes support for the Cloud Storage gRPC API. This\nimplementation uses gRPC rather than the default JSON & XML APIs\nto make requests to Cloud Storage. All methods on the Client support\nthe gRPC API, with the exception of the Client.ServiceAccount, Notification,\nand HMACKey methods.\n\nThe Cloud Storage gRPC API is generally available.\n\nTo create a client which will use gRPC, use the alternate constructor:\n\nOne major advantage of the gRPC API is that it can use Direct Connectivity,\nenabling requests to skip some proxy steps and reducing response latency.\nRequirements to use Direct Connectivity include:\n\nAdditional requirements for Direct Connectivity are documented in the\nCloud Storage gRPC docs. If all requirements are met, the client will\nuse Direct Connectivity by default without requiring any client options\nor environment variables. To disable Direct Connectivity, you can set\nthe environment variable GOOGLE_CLOUD_DISABLE_DIRECT_PATH=true.\n\nDependencies for the gRPC API may slightly increase the size of binaries for\napplications depending on this package. If you are not using gRPC, you can use\nthe build tag `disable_grpc_modules` to opt out of these dependencies and\nreduce the binary size.\n\nThe gRPC client is instrumented with Open Telemetry metrics which export to\nCloud Monitoring by default. More information is available in the\ngRPC client-side metrics documentation, including information about\nroles which must be enabled in order to do the export successfully. To\ndisable this export, you can use the WithDisabledClientMetrics client\noption.\n\nThe gRPC client automatically computes and sends CRC32C checksums for uploads using Writer,\nwhich provides an additional layer of data integrity validation when compared to the HTTP client.\nThis behavior can optionally be disabled by using [Writer.DisableAutoChecksum].\n\nCertain control plane and long-running operations for Cloud Storage (including Folder\nand Managed Folder operations) are supported via the autogenerated Storage Control\nclient, which is available as a subpackage in this module. See package docs at\ncloud.google.com/go/storage/control/apiv2 or reference the Storage Control API docs.",
+      "licenses": [
+        {
+          "expression": "(Apache-2.0)"
+        }
+      ],
       "purl": "pkg:golang/cloud.google.com/go/storage@v1.28.1",
       "externalReferences": [
         {
@@ -2680,6 +2870,11 @@
       "name": "cloud.google.com/go",
       "version": "v0.110.0",
       "description": "Package cloud is the root of the packages used to access Google Cloud\nServices. See https://pkg.go.dev/cloud.google.com/go#section-directories for a\nfull list of sub-modules.\n\nAll clients in sub-packages are configurable via client options. These options\nare described here: https://pkg.go.dev/google.golang.org/api/option.\n\nEndpoint configuration is used to specify the URL to which requests are\nsent. It is used for services that support or require regional endpoints, as\nwell as for other use cases such as testing against fake servers.\n\nFor example, the Vertex AI service recommends that you configure the endpoint to\nthe location with the features you want that is closest to your physical\nlocation or the location of your users. There is no global endpoint for Vertex\nAI. See Vertex AI - Locations for more details. The following example\ndemonstrates configuring a Vertex AI client with a regional endpoint:\n\nAll of the clients support authentication via Google Application Default Credentials,\nor by providing a JSON key file for a Service Account. See examples below.\n\nGoogle Application Default Credentials (ADC) is the recommended way to authorize\nand authenticate clients. For information on how to create and obtain\nApplication Default Credentials, see\nhttps://cloud.google.com/docs/authentication/production. If you have your\nenvironment configured correctly you will not need to pass any extra information\nto the client libraries. Here is an example of a client using ADC to\nauthenticate:\n\nYou can use a file with credentials to authenticate and authorize, such as a\nJSON key file associated with a Google service account. Service Account keys can\nbe created and downloaded from https://console.cloud.google.com/iam-admin/serviceaccounts.\nThis example uses the Secret Manger client, but the same steps apply to the\nall other client libraries this package as well. Example:\n\nIn some cases (for instance, you don't want to store secrets on disk), you can\ncreate credentials from in-memory JSON and use the WithCredentials option.\nThis example uses the Secret Manager client, but the same steps apply to\nall other client libraries as well. Note that scopes can be\nfound at https://developers.google.com/identity/protocols/oauth2/scopes, and\nare also provided in all auto-generated libraries: for example,\ncloud.google.com/go/secretmanager/apiv1 provides DefaultAuthScopes. Example:\n\nBy default, non-streaming methods, like Create or Get, will have a default\ndeadline applied to the context provided at call time, unless a context deadline\nis already set. Streaming methods have no default deadline and will run\nindefinitely. To set timeouts or arrange for cancellation, use\ncontext. Transient errors will be retried when correctness allows.\n\nHere is an example of setting a timeout for an RPC using\ncontext.WithTimeout:\n\nHere is an example of setting a timeout for an RPC using\ngithub.com/googleapis/gax-go/v2.WithTimeout:\n\nHere is an example of how to arrange for an RPC to be canceled, use\ncontext.WithCancel:\n\nDo not attempt to control the initial connection (dialing) of a service by\nsetting a timeout on the context passed to NewClient. Dialing is non-blocking,\nso timeouts would be ineffective and would only interfere with credential\nrefreshing, which uses the same context.\n\nRegardless of which transport is used, request headers can be set in the same\nway using [`callctx.SetHeaders`]setheaders.\n\nHere is a generic example:\n\nThere are a some header keys that Google reserves for internal use that must\nnot be ovewritten. The following header keys are broadly considered reserved\nand should not be conveyed by client library users unless instructed to do so:\n\n* `x-goog-api-client`\n* `x-goog-request-params`\n\nBe sure to check the individual package documentation for other service-specific\nreserved headers. For example, Storage supports a specific auditing header that\nis mentioned in that [module's documentation]storagedocs.\n\nGoogle Cloud services respect system parameterssystem parameters that can be\nused to augment request and/or response behavior. For the most part, they are\nnot needed when using one of the enclosed client libraries. However, those that\nmay be necessary are made available via the [`callctx`]callctx package. If not\npresent there, consider opening an issue on that repo to request a new constant.\n\nConnection pooling differs in clients based on their transport. Cloud\nclients either rely on HTTP or gRPC transports to communicate\nwith Google Cloud.\n\nCloud clients that use HTTP rely on the underlying HTTP transport to cache\nconnections for later re-use. These are cached to the http.MaxIdleConns\nand http.MaxIdleConnsPerHost settings in http.DefaultTransport by default.\n\nFor gRPC clients, connection pooling is configurable. Users of Cloud Client\nLibraries may specify google.golang.org/api/option.WithGRPCConnectionPool\nas a client option to NewClient calls. This configures the underlying gRPC\nconnections to be pooled and accessed in a round robin fashion.\n\nMinimal container images like Alpine lack CA certificates. This causes RPCs to\nappear to hang, because gRPC retries indefinitely. See\nhttps://github.com/googleapis/google-cloud-go/issues/928 for more information.\n\nFor tips on how to write tests against code that calls into our libraries check\nout our Debugging Guide.\n\nFor tips on how to write tests against code that calls into our libraries check\nout our Testing Guide.\n\nMost of the errors returned by the generated clients are wrapped in an\ngithub.com/googleapis/gax-go/v2/apierror.APIError and can be further unwrapped\ninto a google.golang.org/grpc/status.Status or\ngoogle.golang.org/api/googleapi.Error depending on the transport used to make\nthe call (gRPC or REST). Converting your errors to these types can be a useful\nway to get more information about what went wrong while debugging.\n\nAPIError gives access to specific details in the error. The transport-specific\nerrors can still be unwrapped using the APIError.\n\nSemver is used to communicate stability of the sub-modules of this package.\nNote, some stable sub-modules do contain packages, and sometimes features, that\nare considered unstable. If something is unstable it will be explicitly labeled\nas such. Example of package does in an unstable package:\n\nClients that contain alpha and beta in their import path may change or go away\nwithout notice.\n\nClients marked stable will maintain compatibility with future versions for as\nlong as we can reasonably sustain. Incompatible changes might be made in some\nsituations, including:",
+      "licenses": [
+        {
+          "expression": "(Apache-2.0)"
+        }
+      ],
       "purl": "pkg:golang/cloud.google.com/go@v0.110.0",
       "externalReferences": [
         {
@@ -2851,7 +3046,31 @@
       "type": "library",
       "name": "github.com/anacrolix/fuse",
       "version": "v0.2.0",
+      "description": "Package fuse enables writing FUSE file systems on Linux, OS X, and FreeBSD.\n\nOn OS X, it requires OSXFUSE (http://osxfuse.github.com/).\n\nThere are two approaches to writing a FUSE file system.  The first is to speak\nthe low-level message protocol, reading from a Conn using ReadRequest and\nwriting using the various Respond methods.  This approach is closest to\nthe actual interaction with the kernel and can be the simplest one in contexts\nsuch as protocol translators.\n\nServers of synthesized file systems tend to share common\nbookkeeping abstracted away by the second approach, which is to\ncall fs.Serve to serve the FUSE protocol using an implementation of\nthe service methods in the interfaces FS* (file system), Node* (file\nor directory), and Handle* (opened file or directory).\nThere are a daunting number of such methods that can be written,\nbut few are required.\nThe specific methods are described in the documentation for those interfaces.\n\nThe hellofs subdirectory contains a simple illustration of the fs.Serve approach.\n\nThe required and optional methods for the FS, Node, and Handle interfaces\nhave the general form\n\nwhere Op is the name of a FUSE operation. Op reads request\nparameters from req and writes results to resp. An operation whose\nonly result is the error result omits the resp parameter.\n\nMultiple goroutines may call service methods simultaneously; the\nmethods being called are responsible for appropriate\nsynchronization.\n\nThe operation must not hold on to the request or response,\nincluding any []byte fields such as WriteRequest.Data or\nSetxattrRequest.Xattr.\n\nOperations can return errors. The FUSE interface can only\ncommunicate POSIX errno error numbers to file system clients, the\nmessage is not visible to file system clients. The returned error\ncan implement ErrorNumber to control the errno returned. Without\nErrorNumber, a generic errno (EIO) is returned.\n\nError messages will be visible in the debug log as part of the\nresponse.\n\nIn some file systems, some operations\nmay take an undetermined amount of time.  For example, a Read waiting for\na network message or a matching Write might wait indefinitely.  If the request\nis cancelled and no longer needed, the context will be cancelled.\nBlocking operations should select on a receive from ctx.Done() and attempt to\nabort the operation early if the receive succeeds (meaning the channel is closed).\nTo indicate that the operation failed because it was aborted, return syscall.EINTR.\n\nIf an operation does not block for an indefinite amount of time, supporting\ncancellation is not necessary.\n\nAll requests types embed a Header, meaning that the method can\ninspect req.Pid, req.Uid, and req.Gid as necessary to implement\npermission checking. The kernel FUSE layer normally prevents other\nusers from accessing the FUSE file system (to change this, see\nAllowOther), but does not enforce access modes (to change this, see\nDefaultPermissions).\n\nBehavior and metadata of the mounted file system can be changed by\npassing MountOption values to Mount.",
+      "licenses": [
+        {
+          "expression": "(BSD-2-Clause OR BSD-3-Clause OR HPND)"
+        }
+      ],
       "purl": "pkg:golang/github.com/anacrolix/fuse@v0.2.0",
+      "externalReferences": [
+        {
+          "url": "https://github.com/anacrolix/fuse",
+          "type": "website"
+        },
+        {
+          "url": "https://pkg.go.dev/github.com/anacrolix/fuse",
+          "type": "distribution"
+        },
+        {
+          "url": "https://github.com/anacrolix/fuse",
+          "type": "vcs"
+        },
+        {
+          "url": "https://pkg.go.dev/github.com/anacrolix/fuse#section-documentation",
+          "type": "documentation"
+        }
+      ],
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
@@ -2868,6 +3087,34 @@
         {
           "name": "aquasecurity:trivy:PkgType",
           "value": "gobinary"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2021-03-10T18:53:20Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2024-06-11T06:18:49Z"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "fuse"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "go"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "golang"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "macfuse"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "macos"
         }
       ]
     },
@@ -2883,6 +3130,11 @@
       "author": "Amazon Web Services",
       "name": "github.com/aws/aws-sdk-go-v2/aws/protocol/eventstream",
       "version": "v1.5.4",
+      "licenses": [
+        {
+          "expression": "(Apache-2.0)"
+        }
+      ],
       "purl": "pkg:golang/github.com/aws/aws-sdk-go-v2/aws/protocol/eventstream@v1.5.4",
       "externalReferences": [
         {
@@ -2962,6 +3214,11 @@
       "name": "github.com/aws/aws-sdk-go-v2/config",
       "version": "v1.26.3",
       "description": "Package config provides utilities for loading configuration from multiple\nsources that can be used to configure the SDK's API clients, and utilities.\n\nThe config package will load configuration from environment variables, AWS\nshared configuration file (~/.aws/config), and AWS shared credentials file\n(~/.aws/credentials).\n\nUse the LoadDefaultConfig to load configuration from all the SDK's supported\nsources, and resolve credentials using the SDK's default credential chain.\n\nLoadDefaultConfig allows for a variadic list of additional Config sources that can\nprovide one or more configuration values which can be used to programmatically control the resolution\nof a specific value, or allow for broader range of additional configuration sources not supported by the SDK.\nA Config source implements one or more provider interfaces defined in this package. Config sources passed in will\ntake precedence over the default environment and shared config sources used by the SDK. If one or more Config sources\nimplement the same provider interface, priority will be handled by the order in which the sources were passed in.\n\nA number of helpers (prefixed by “With“)  are provided in this package that implement their respective provider\ninterface. These helpers should be used for overriding configuration programmatically at runtime.",
+      "licenses": [
+        {
+          "expression": "(Apache-2.0)"
+        }
+      ],
       "purl": "pkg:golang/github.com/aws/aws-sdk-go-v2/config@v1.26.3",
       "externalReferences": [
         {
@@ -3041,6 +3298,11 @@
       "name": "github.com/aws/aws-sdk-go-v2/credentials",
       "version": "v1.16.14",
       "description": "Package credentials provides types for retrieving credentials from credentials sources.",
+      "licenses": [
+        {
+          "expression": "(Apache-2.0)"
+        }
+      ],
       "purl": "pkg:golang/github.com/aws/aws-sdk-go-v2/credentials@v1.16.14",
       "externalReferences": [
         {
@@ -3120,6 +3382,11 @@
       "name": "github.com/aws/aws-sdk-go-v2/feature/ec2/imds",
       "version": "v1.14.11",
       "description": "Package imds provides the API client for interacting with the Amazon EC2\nInstance Metadata Service.\n\nAll Client operation calls have a default timeout. If the operation is not\ncompleted before this timeout expires, the operation will be canceled. This\ntimeout can be overridden through the following:\n\nSee the EC2 IMDS user guide for more information on using the API.\nhttps://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-metadata.html",
+      "licenses": [
+        {
+          "expression": "(Apache-2.0)"
+        }
+      ],
       "purl": "pkg:golang/github.com/aws/aws-sdk-go-v2/feature/ec2/imds@v1.14.11",
       "externalReferences": [
         {
@@ -3199,6 +3466,11 @@
       "name": "github.com/aws/aws-sdk-go-v2/feature/s3/manager",
       "version": "v1.15.11",
       "description": "Package manager provides utilities to upload and download objects from\nS3 concurrently. Helpful for when working with large objects.",
+      "licenses": [
+        {
+          "expression": "(Apache-2.0)"
+        }
+      ],
       "purl": "pkg:golang/github.com/aws/aws-sdk-go-v2/feature/s3/manager@v1.15.11",
       "externalReferences": [
         {
@@ -3355,6 +3627,11 @@
       "author": "Amazon Web Services",
       "name": "github.com/aws/aws-sdk-go-v2/internal/endpoints/v2",
       "version": "v2.5.10",
+      "licenses": [
+        {
+          "expression": "(Apache-2.0)"
+        }
+      ],
       "purl": "pkg:golang/github.com/aws/aws-sdk-go-v2/internal/endpoints/v2@v2.5.10",
       "externalReferences": [
         {
@@ -3434,6 +3711,11 @@
       "name": "github.com/aws/aws-sdk-go-v2/internal/ini",
       "version": "v1.7.2",
       "description": "Package ini implements parsing of the AWS shared config file.",
+      "licenses": [
+        {
+          "expression": "(Apache-2.0)"
+        }
+      ],
       "purl": "pkg:golang/github.com/aws/aws-sdk-go-v2/internal/ini@v1.7.2",
       "externalReferences": [
         {
@@ -3512,6 +3794,11 @@
       "author": "Amazon Web Services",
       "name": "github.com/aws/aws-sdk-go-v2/internal/v4a",
       "version": "v1.2.10",
+      "licenses": [
+        {
+          "expression": "(Apache-2.0)"
+        }
+      ],
       "purl": "pkg:golang/github.com/aws/aws-sdk-go-v2/internal/v4a@v1.2.10",
       "externalReferences": [
         {
@@ -3591,6 +3878,11 @@
       "name": "github.com/aws/aws-sdk-go-v2/service/internal/accept-encoding",
       "version": "v1.10.4",
       "description": "Package acceptencoding provides customizations associated with Accept Encoding Header.\n\nThe Go HTTP client automatically supports accept-encoding and content-encoding\ngzip by default. This default behavior is not desired by the SDK, and prevents\nvalidating the response body's checksum. To prevent this the SDK must manually\ncontrol usage of content-encoding gzip.\n\nTo control content-encoding, the SDK must always set the `Accept-Encoding`\nheader to a value. This prevents the HTTP client from using gzip automatically.\nWhen gzip is enabled on the API client, the SDK's customization will control\ndecompressing the gzip data in order to not break the checksum validation. When\ngzip is disabled, the API client will disable gzip, preventing the HTTP\nclient's default behavior.\n\nAn `EnableAcceptEncodingGzip` option may or may not be present depending on the client using\nthe below middleware. The option if present can be used to enable auto decompressing\ngzip by the SDK.",
+      "licenses": [
+        {
+          "expression": "(Apache-2.0)"
+        }
+      ],
       "purl": "pkg:golang/github.com/aws/aws-sdk-go-v2/service/internal/accept-encoding@v1.10.4",
       "externalReferences": [
         {
@@ -3669,6 +3961,11 @@
       "author": "Amazon Web Services",
       "name": "github.com/aws/aws-sdk-go-v2/service/internal/checksum",
       "version": "v1.2.10",
+      "licenses": [
+        {
+          "expression": "(Apache-2.0)"
+        }
+      ],
       "purl": "pkg:golang/github.com/aws/aws-sdk-go-v2/service/internal/checksum@v1.2.10",
       "externalReferences": [
         {
@@ -3748,6 +4045,11 @@
       "name": "github.com/aws/aws-sdk-go-v2/service/internal/presigned-url",
       "version": "v1.10.10",
       "description": "Package presignedurl provides the customizations for API clients to fill in\npresigned URLs into input parameters.",
+      "licenses": [
+        {
+          "expression": "(Apache-2.0)"
+        }
+      ],
       "purl": "pkg:golang/github.com/aws/aws-sdk-go-v2/service/internal/presigned-url@v1.10.10",
       "externalReferences": [
         {
@@ -3826,6 +4128,11 @@
       "author": "Amazon Web Services",
       "name": "github.com/aws/aws-sdk-go-v2/service/internal/s3shared",
       "version": "v1.16.10",
+      "licenses": [
+        {
+          "expression": "(Apache-2.0)"
+        }
+      ],
       "purl": "pkg:golang/github.com/aws/aws-sdk-go-v2/service/internal/s3shared@v1.16.10",
       "externalReferences": [
         {
@@ -3905,6 +4212,11 @@
       "name": "github.com/aws/aws-sdk-go-v2/service/s3",
       "version": "v1.48.0",
       "description": "Package s3 provides the API client, operations, and parameter types for Amazon\nSimple Storage Service.",
+      "licenses": [
+        {
+          "expression": "(Apache-2.0)"
+        }
+      ],
       "purl": "pkg:golang/github.com/aws/aws-sdk-go-v2/service/s3@v1.48.0",
       "externalReferences": [
         {
@@ -3984,6 +4296,11 @@
       "name": "github.com/aws/aws-sdk-go-v2/service/sso",
       "version": "v1.18.6",
       "description": "Package sso provides the API client, operations, and parameter types for AWS\nSingle Sign-On.\n\nAWS IAM Identity Center (successor to AWS Single Sign-On) Portal is a web\nservice that makes it easy for you to assign user access to IAM Identity Center\nresources such as the AWS access portal. Users can get AWS account applications\nand roles assigned to them and get federated into the application.\n\nAlthough AWS Single Sign-On was renamed, the sso and identitystore API\nnamespaces will continue to retain their original name for backward\ncompatibility purposes. For more information, see IAM Identity Center rename.\n\nThis reference guide describes the IAM Identity Center Portal operations that\nyou can call programatically and includes detailed information on data types and\nerrors.\n\nAWS provides SDKs that consist of libraries and sample code for various\nprogramming languages and platforms, such as Java, Ruby, .Net, iOS, or Android.\nThe SDKs provide a convenient way to create programmatic access to IAM Identity\nCenter and other AWS services. For more information about the AWS SDKs,\nincluding how to download and install them, see Tools for Amazon Web Services.",
+      "licenses": [
+        {
+          "expression": "(Apache-2.0)"
+        }
+      ],
       "purl": "pkg:golang/github.com/aws/aws-sdk-go-v2/service/sso@v1.18.6",
       "externalReferences": [
         {
@@ -4063,6 +4380,11 @@
       "name": "github.com/aws/aws-sdk-go-v2/service/ssooidc",
       "version": "v1.21.6",
       "description": "Package ssooidc provides the API client, operations, and parameter types for\nAWS SSO OIDC.\n\nIAM Identity Center OpenID Connect (OIDC) is a web service that enables a\nclient (such as CLI or a native application) to register with IAM Identity\nCenter. The service also enables the client to fetch the user’s access token\nupon successful authentication and authorization with IAM Identity Center.\n\nIAM Identity Center uses the sso and identitystore API namespaces. IAM Identity\nCenter OpenID Connect uses the sso-oauth namespace.\n\nBefore you begin using this guide, we recommend that you first review the\nfollowing important information about how the IAM Identity Center OIDC service\nworks.\n\nThe IAM Identity Center OIDC service currently implements only the portions\nof the OAuth 2.0 Device Authorization Grant standard (https://tools.ietf.org/html/rfc8628 ) that are necessary to\nenable single sign-on authentication with the CLI.\n\nWith older versions of the CLI, the service only emits OIDC access tokens,\nso to obtain a new token, users must explicitly re-authenticate. To access the\nOIDC flow that supports token refresh and doesn’t require re-authentication,\nupdate to the latest CLI version (1.27.10 for CLI V1 and 2.9.0 for CLI V2) with\nsupport for OIDC token refresh and configurable IAM Identity Center session\ndurations. For more information, see Configure Amazon Web Services access portal session duration.\n\nThe access tokens provided by this service grant access to all Amazon Web\nServices account entitlements assigned to an IAM Identity Center user, not just\na particular application.\n\nThe documentation in this guide does not describe the mechanism to convert\nthe access token into Amazon Web Services Auth (“sigv4”) credentials for use\nwith IAM-protected Amazon Web Services service endpoints. For more information,\nsee GetRoleCredentialsin the IAM Identity Center Portal API Reference Guide.\n\nFor general information about IAM Identity Center, see What is IAM Identity Center? in the IAM Identity\nCenter User Guide.",
+      "licenses": [
+        {
+          "expression": "(Apache-2.0)"
+        }
+      ],
       "purl": "pkg:golang/github.com/aws/aws-sdk-go-v2/service/ssooidc@v1.21.6",
       "externalReferences": [
         {
@@ -4142,6 +4464,11 @@
       "name": "github.com/aws/aws-sdk-go-v2/service/sts",
       "version": "v1.26.7",
       "description": "Package sts provides the API client, operations, and parameter types for AWS\nSecurity Token Service.\n\nSecurity Token Service (STS) enables you to request temporary,\nlimited-privilege credentials for users. This guide provides descriptions of the\nSTS API. For more information about using this service, see Temporary Security Credentials.",
+      "licenses": [
+        {
+          "expression": "(Apache-2.0)"
+        }
+      ],
       "purl": "pkg:golang/github.com/aws/aws-sdk-go-v2/service/sts@v1.26.7",
       "externalReferences": [
         {
@@ -4221,6 +4548,11 @@
       "name": "github.com/aws/aws-sdk-go-v2",
       "version": "v1.24.1",
       "description": "Package sdk is the official AWS SDK v2 for the Go programming language.\n\naws-sdk-go-v2 is the the v2 of the AWS SDK for the Go programming language.\n\nThe best way to get started working with the SDK is to use `go get` to add the\nSDK and desired service clients to your Go dependencies explicitly.\n\nThis example shows how you can use the v2 SDK to make an API request using the\nSDK's Amazon DynamoDB client.",
+      "licenses": [
+        {
+          "expression": "(Apache-2.0)"
+        }
+      ],
       "purl": "pkg:golang/github.com/aws/aws-sdk-go-v2@v1.24.1",
       "externalReferences": [
         {
@@ -4300,6 +4632,11 @@
       "name": "github.com/aws/smithy-go",
       "version": "v1.19.0",
       "description": "Package smithy provides the core components for a Smithy SDK.",
+      "licenses": [
+        {
+          "expression": "(Apache-2.0)"
+        }
+      ],
       "purl": "pkg:golang/github.com/aws/smithy-go@v1.19.0",
       "externalReferences": [
         {
@@ -4371,6 +4708,11 @@
       "name": "github.com/Azure/azure-sdk-for-go/sdk/azcore",
       "version": "v1.18.1",
       "description": "Package azcore implements an HTTP request/response middleware pipeline used by Azure SDK clients.\n\nThe middleware consists of three components.\n\nA Policy can be implemented in two ways; as a first-class function for a stateless Policy, or as\na method on a type for a stateful Policy.  Note that HTTP requests made via the same pipeline share\nthe same Policy instances, so if a Policy mutates its state it MUST be properly synchronized to\navoid race conditions.\n\nA Policy's Do method is called when an HTTP request wants to be sent over the network. The Do method can\nperform any operation(s) it desires. For example, it can log the outgoing request, mutate the URL, headers,\nand/or query parameters, inject a failure, etc.  Once the Policy has successfully completed its request\nwork, it must call the Next() method on the *policy.Request instance in order to pass the request to the\nnext Policy in the chain.\n\nWhen an HTTP response comes back, the Policy then gets a chance to process the response/error.  The Policy instance\ncan log the response, retry the operation if it failed due to a transient error or timeout, unmarshal the response\nbody, etc.  Once the Policy has successfully completed its response work, it must return the *http.Response\nand error instances to its caller.\n\nTemplate for implementing a stateless Policy:\n\nTemplate for implementing a stateful Policy:\n\nThe Transporter interface is responsible for sending the HTTP request and returning the corresponding\nHTTP response or error.  The Transporter is invoked by the last Policy in the chain.  The default Transporter\nimplementation uses a shared http.Client from the standard library.\n\nThe same stateful/stateless rules for Policy implementations apply to Transporter implementations.\n\nTo use the Policy and Transporter instances, an application passes them to the runtime.NewPipeline function.\n\nThe specified Policy instances form a chain and are invoked in the order provided to NewPipeline\nfollowed by the Transporter.\n\nOnce the Pipeline has been created, create a runtime.Request instance and pass it to Pipeline's Do method.\n\nThe Pipeline.Do method sends the specified Request through the chain of Policy and Transporter\ninstances.  The response/error is then sent through the same chain of Policy instances in reverse\norder.  For example, assuming there are Policy types PolicyA, PolicyB, and PolicyC along with\nTransportA.\n\nThe flow of Request and Response looks like the following:\n\nThe Request instance passed to Pipeline's Do method is a wrapper around an *http.Request.  It also\ncontains some internal state and provides various convenience methods.  You create a Request instance\nby calling the runtime.NewRequest function:\n\nIf the Request should contain a body, call the SetBody method.\n\nA seekable stream is required so that upon retry, the retry Policy instance can seek the stream\nback to the beginning before retrying the network request and re-uploading the body.\n\nOperations like JSON-MERGE-PATCH send a JSON null to indicate a value should be deleted.\n\nThis requirement conflicts with the SDK's default marshalling that specifies \"omitempty\" as\na means to resolve the ambiguity between a field to be excluded and its zero-value.\n\nIn the above example, Name and Count are defined as pointer-to-type to disambiguate between\na missing value (nil) and a zero-value (0) which might have semantic differences.\n\nIn a PATCH operation, any fields left as nil are to have their values preserved.  When updating\na Widget's count, one simply specifies the new value for Count, leaving Name nil.\n\nTo fulfill the requirement for sending a JSON null, the NullValue() function can be used.\n\nThis sends an explict \"null\" for Count, indicating that any current value for Count should be deleted.\n\nWhen the HTTP response is received, the *http.Response is returned directly. Each Policy instance\ncan inspect/mutate the *http.Response.\n\nTo enable logging, set environment variable AZURE_SDK_GO_LOGGING to \"all\" before executing your program.\n\nBy default the logger writes to stderr.  This can be customized by calling log.SetListener, providing\na callback that writes to the desired location.  Any custom logging implementation MUST provide its\nown synchronization to handle concurrent invocations.\n\nSee the docs for the log package for further details.\n\nPageable operations return potentially large data sets spread over multiple GET requests.  The result of\neach GET is a \"page\" of data consisting of a slice of items.\n\nPageable operations can be identified by their New*Pager naming convention and return type of *runtime.Pager[T].\n\nThe call to WidgetClient.NewListWidgetsPager() returns an instance of *runtime.Pager[T] for fetching pages\nand determining if there are more pages to fetch.  No IO calls are made until the NextPage() method is invoked.\n\nLong-running operations (LROs) are operations consisting of an initial request to start the operation followed\nby polling to determine when the operation has reached a terminal state.  An LRO's terminal state is one\nof the following values.\n\nLROs can be identified by their Begin* prefix and their return type of *runtime.Poller[T].\n\nWhen a call to WidgetClient.BeginCreateOrUpdate() returns a nil error, it means that the LRO has started.\nIt does _not_ mean that the widget has been created or updated (or failed to be created/updated).\n\nThe *runtime.Poller[T] provides APIs for determining the state of the LRO.  To wait for the LRO to complete,\ncall the PollUntilDone() method.\n\nThe call to PollUntilDone() will block the current goroutine until the LRO has reached a terminal state or the\ncontext is canceled/timed out.\n\nNote that LROs can take anywhere from several seconds to several minutes.  The duration is operation-dependent.  Due to\nthis variant behavior, pollers do _not_ have a preconfigured time-out.  Use a context with the appropriate cancellation\nmechanism as required.\n\nPollers provide the ability to serialize their state into a \"resume token\" which can be used by another process to\nrecreate the poller.  This is achieved via the runtime.Poller[T].ResumeToken() method.\n\nNote that a token can only be obtained for a poller that's in a non-terminal state.  Also note that any subsequent calls\nto poller.Poll() might change the poller's state.  In this case, a new token should be created.\n\nAfter the token has been obtained, it can be used to recreate an instance of the originating poller.\n\nWhen resuming a poller, no IO is performed, and zero-value arguments can be used for everything but the Options.ResumeToken.\n\nResume tokens are unique per service client and operation.  Attempting to resume a poller for LRO BeginB() with a token from LRO\nBeginA() will result in an error.\n\nThe fake package contains types used for constructing in-memory fake servers used in unit tests.\nThis allows writing tests to cover various success/error conditions without the need for connecting to a live service.\n\nPlease see https://github.com/Azure/azure-sdk-for-go/tree/main/sdk/samples/fakes for details and examples on how to use fakes.",
+      "licenses": [
+        {
+          "expression": "(MIT)"
+        }
+      ],
       "purl": "pkg:golang/github.com/azure/azure-sdk-for-go/sdk/azcore@v1.18.1",
       "externalReferences": [
         {
@@ -4466,6 +4808,11 @@
       "name": "github.com/Azure/azure-sdk-for-go/sdk/azcore",
       "version": "v1.3.0",
       "description": "Package azcore implements an HTTP request/response middleware pipeline used by Azure SDK clients.\n\nThe middleware consists of three components.\n\nA Policy can be implemented in two ways; as a first-class function for a stateless Policy, or as\na method on a type for a stateful Policy.  Note that HTTP requests made via the same pipeline share\nthe same Policy instances, so if a Policy mutates its state it MUST be properly synchronized to\navoid race conditions.\n\nA Policy's Do method is called when an HTTP request wants to be sent over the network. The Do method can\nperform any operation(s) it desires. For example, it can log the outgoing request, mutate the URL, headers,\nand/or query parameters, inject a failure, etc.  Once the Policy has successfully completed its request\nwork, it must call the Next() method on the *policy.Request instance in order to pass the request to the\nnext Policy in the chain.\n\nWhen an HTTP response comes back, the Policy then gets a chance to process the response/error.  The Policy instance\ncan log the response, retry the operation if it failed due to a transient error or timeout, unmarshal the response\nbody, etc.  Once the Policy has successfully completed its response work, it must return the *http.Response\nand error instances to its caller.\n\nTemplate for implementing a stateless Policy:\n\nTemplate for implementing a stateful Policy:\n\nThe Transporter interface is responsible for sending the HTTP request and returning the corresponding\nHTTP response or error.  The Transporter is invoked by the last Policy in the chain.  The default Transporter\nimplementation uses a shared http.Client from the standard library.\n\nThe same stateful/stateless rules for Policy implementations apply to Transporter implementations.\n\nTo use the Policy and Transporter instances, an application passes them to the runtime.NewPipeline function.\n\nThe specified Policy instances form a chain and are invoked in the order provided to NewPipeline\nfollowed by the Transporter.\n\nOnce the Pipeline has been created, create a runtime.Request instance and pass it to Pipeline's Do method.\n\nThe Pipeline.Do method sends the specified Request through the chain of Policy and Transporter\ninstances.  The response/error is then sent through the same chain of Policy instances in reverse\norder.  For example, assuming there are Policy types PolicyA, PolicyB, and PolicyC along with\nTransportA.\n\nThe flow of Request and Response looks like the following:\n\nThe Request instance passed to Pipeline's Do method is a wrapper around an *http.Request.  It also\ncontains some internal state and provides various convenience methods.  You create a Request instance\nby calling the runtime.NewRequest function:\n\nIf the Request should contain a body, call the SetBody method.\n\nA seekable stream is required so that upon retry, the retry Policy instance can seek the stream\nback to the beginning before retrying the network request and re-uploading the body.\n\nOperations like JSON-MERGE-PATCH send a JSON null to indicate a value should be deleted.\n\nThis requirement conflicts with the SDK's default marshalling that specifies \"omitempty\" as\na means to resolve the ambiguity between a field to be excluded and its zero-value.\n\nIn the above example, Name and Count are defined as pointer-to-type to disambiguate between\na missing value (nil) and a zero-value (0) which might have semantic differences.\n\nIn a PATCH operation, any fields left as nil are to have their values preserved.  When updating\na Widget's count, one simply specifies the new value for Count, leaving Name nil.\n\nTo fulfill the requirement for sending a JSON null, the NullValue() function can be used.\n\nThis sends an explict \"null\" for Count, indicating that any current value for Count should be deleted.\n\nWhen the HTTP response is received, the *http.Response is returned directly. Each Policy instance\ncan inspect/mutate the *http.Response.\n\nTo enable logging, set environment variable AZURE_SDK_GO_LOGGING to \"all\" before executing your program.\n\nBy default the logger writes to stderr.  This can be customized by calling log.SetListener, providing\na callback that writes to the desired location.  Any custom logging implementation MUST provide its\nown synchronization to handle concurrent invocations.\n\nSee the docs for the log package for further details.\n\nPageable operations return potentially large data sets spread over multiple GET requests.  The result of\neach GET is a \"page\" of data consisting of a slice of items.\n\nPageable operations can be identified by their New*Pager naming convention and return type of *runtime.Pager[T].\n\nThe call to WidgetClient.NewListWidgetsPager() returns an instance of *runtime.Pager[T] for fetching pages\nand determining if there are more pages to fetch.  No IO calls are made until the NextPage() method is invoked.\n\nLong-running operations (LROs) are operations consisting of an initial request to start the operation followed\nby polling to determine when the operation has reached a terminal state.  An LRO's terminal state is one\nof the following values.\n\nLROs can be identified by their Begin* prefix and their return type of *runtime.Poller[T].\n\nWhen a call to WidgetClient.BeginCreateOrUpdate() returns a nil error, it means that the LRO has started.\nIt does _not_ mean that the widget has been created or updated (or failed to be created/updated).\n\nThe *runtime.Poller[T] provides APIs for determining the state of the LRO.  To wait for the LRO to complete,\ncall the PollUntilDone() method.\n\nThe call to PollUntilDone() will block the current goroutine until the LRO has reached a terminal state or the\ncontext is canceled/timed out.\n\nNote that LROs can take anywhere from several seconds to several minutes.  The duration is operation-dependent.  Due to\nthis variant behavior, pollers do _not_ have a preconfigured time-out.  Use a context with the appropriate cancellation\nmechanism as required.\n\nPollers provide the ability to serialize their state into a \"resume token\" which can be used by another process to\nrecreate the poller.  This is achieved via the runtime.Poller[T].ResumeToken() method.\n\nNote that a token can only be obtained for a poller that's in a non-terminal state.  Also note that any subsequent calls\nto poller.Poll() might change the poller's state.  In this case, a new token should be created.\n\nAfter the token has been obtained, it can be used to recreate an instance of the originating poller.\n\nWhen resuming a poller, no IO is performed, and zero-value arguments can be used for everything but the Options.ResumeToken.\n\nResume tokens are unique per service client and operation.  Attempting to resume a poller for LRO BeginB() with a token from LRO\nBeginA() will result in an error.\n\nThe fake package contains types used for constructing in-memory fake servers used in unit tests.\nThis allows writing tests to cover various success/error conditions without the need for connecting to a live service.\n\nPlease see https://github.com/Azure/azure-sdk-for-go/tree/main/sdk/samples/fakes for details and examples on how to use fakes.",
+      "licenses": [
+        {
+          "expression": "(MIT)"
+        }
+      ],
       "purl": "pkg:golang/github.com/azure/azure-sdk-for-go/sdk/azcore@v1.3.0",
       "externalReferences": [
         {
@@ -4661,6 +5008,11 @@
       "name": "github.com/Azure/azure-sdk-for-go/sdk/internal",
       "version": "v1.1.2",
       "description": "internal contains content for Azure SDK developers.",
+      "licenses": [
+        {
+          "expression": "(MIT)"
+        }
+      ],
       "purl": "pkg:golang/github.com/azure/azure-sdk-for-go/sdk/internal@v1.1.2",
       "externalReferences": [
         {
@@ -4846,9 +5198,39 @@
     {
       "bom-ref": "pkg:golang/github.com/azure/azure-sdk-for-go/sdk/resourcemanager/storage/armstorage@v1.8.0",
       "type": "library",
+      "supplier": {
+        "name": "Microsoft Azure",
+        "url": [
+          "https://docs.microsoft.com/en-us/azure/"
+        ]
+      },
+      "author": "Microsoft Azure",
       "name": "github.com/Azure/azure-sdk-for-go/sdk/resourcemanager/storage/armstorage",
       "version": "v1.8.0",
+      "licenses": [
+        {
+          "expression": "(MIT)"
+        }
+      ],
       "purl": "pkg:golang/github.com/azure/azure-sdk-for-go/sdk/resourcemanager/storage/armstorage@v1.8.0",
+      "externalReferences": [
+        {
+          "url": "https://github.com/Azure/azure-sdk-for-go",
+          "type": "website"
+        },
+        {
+          "url": "https://pkg.go.dev/github.com/azure/azure-sdk-for-go/sdk/resourcemanager/storage/armstorage",
+          "type": "distribution"
+        },
+        {
+          "url": "https://github.com/Azure/azure-sdk-for-go",
+          "type": "vcs"
+        },
+        {
+          "url": "https://pkg.go.dev/github.com/azure/azure-sdk-for-go/sdk/resourcemanager/storage/armstorage#section-documentation",
+          "type": "documentation"
+        }
+      ],
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
@@ -4865,6 +5247,50 @@
         {
           "name": "aquasecurity:trivy:PkgType",
           "value": "gobinary"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2021-10-12T05:42:10Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2025-07-01T02:38:42Z"
+        },
+        {
+          "name": "ecosystems:owner_location",
+          "value": "Redmond, WA & the cloud ☁️"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "azure"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "azure-sdk"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "go"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "golang"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "hacktoberfest"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "microsoft"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "rest"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "sdk"
         }
       ]
     },
@@ -4881,6 +5307,11 @@
       "name": "github.com/Azure/azure-sdk-for-go/sdk/storage/azblob",
       "version": "v0.5.1",
       "description": "This example is a quick-starter and demonstrates how to get started using the Azure Blob Storage SDK for Go.\n\n\nThis example shows how to perform operations on blob conditionally.\n\n\nThis example shows how to download a large stream with intelligent retries. Specifically, if\nthe connection fails while reading, continuing to read from this stream initiates a new\nGetBlob call passing a range that starts from the last byte successfully read before the failure.",
+      "licenses": [
+        {
+          "expression": "(MIT)"
+        }
+      ],
       "purl": "pkg:golang/github.com/azure/azure-sdk-for-go/sdk/storage/azblob@v0.5.1",
       "externalReferences": [
         {
@@ -5197,9 +5628,39 @@
     {
       "bom-ref": "pkg:golang/github.com/bombsimon/logrusr/v3@v3.0.0",
       "type": "library",
+      "supplier": {
+        "name": "Simon Sawert",
+        "url": [
+          "https://sawert.se"
+        ]
+      },
+      "author": "Simon Sawert",
       "name": "github.com/bombsimon/logrusr/v3",
       "version": "v3.0.0",
+      "licenses": [
+        {
+          "expression": "(MIT)"
+        }
+      ],
       "purl": "pkg:golang/github.com/bombsimon/logrusr/v3@v3.0.0",
+      "externalReferences": [
+        {
+          "url": "https://github.com/bombsimon/logrusr",
+          "type": "website"
+        },
+        {
+          "url": "https://pkg.go.dev/github.com/bombsimon/logrusr/v3",
+          "type": "distribution"
+        },
+        {
+          "url": "https://github.com/bombsimon/logrusr",
+          "type": "vcs"
+        },
+        {
+          "url": "https://pkg.go.dev/github.com/bombsimon/logrusr/v3#section-documentation",
+          "type": "documentation"
+        }
+      ],
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
@@ -5216,6 +5677,22 @@
         {
           "name": "aquasecurity:trivy:PkgType",
           "value": "gobinary"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2022-05-03T18:36:22Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2022-10-22T08:39:44Z"
+        },
+        {
+          "name": "ecosystems:owner_location",
+          "value": "Stockholm, Sweden"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "hacktoberfest"
         }
       ]
     },
@@ -5232,6 +5709,11 @@
       "name": "github.com/cenkalti/backoff/v4",
       "version": "v4.2.0",
       "description": "Package backoff implements backoff algorithms for retrying operations.\n\nUse Retry function for retrying operations that may fail.\nIf Retry does not meet your needs,\ncopy/paste the function into your project and modify as you wish.\n\nThere is also Ticker type similar to time.Ticker.\nYou can use it if you need to work with channels.\n\nSee Examples section below for usage examples.",
+      "licenses": [
+        {
+          "expression": "(MIT)"
+        }
+      ],
       "purl": "pkg:golang/github.com/cenkalti/backoff/v4@v4.2.0",
       "externalReferences": [
         {
@@ -5425,9 +5907,40 @@
     {
       "bom-ref": "pkg:golang/github.com/chmduquesne/rollinghash@v4.0.0%2Bincompatible",
       "type": "library",
+      "supplier": {
+        "name": "Christophe-Marie Duquesne",
+        "url": [
+          "http://blog.chmd.fr"
+        ]
+      },
+      "author": "Christophe-Marie Duquesne",
       "name": "github.com/chmduquesne/rollinghash",
       "version": "v4.0.0+incompatible",
+      "description": "Package rollinghash implements rolling versions of some hashes",
+      "licenses": [
+        {
+          "expression": "(MIT)"
+        }
+      ],
       "purl": "pkg:golang/github.com/chmduquesne/rollinghash@v4.0.0%2Bincompatible",
+      "externalReferences": [
+        {
+          "url": "https://github.com/chmduquesne/rollinghash",
+          "type": "website"
+        },
+        {
+          "url": "https://pkg.go.dev/github.com/chmduquesne/rollinghash",
+          "type": "distribution"
+        },
+        {
+          "url": "https://github.com/chmduquesne/rollinghash",
+          "type": "vcs"
+        },
+        {
+          "url": "https://pkg.go.dev/github.com/chmduquesne/rollinghash#section-documentation",
+          "type": "documentation"
+        }
+      ],
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
@@ -5444,6 +5957,18 @@
         {
           "name": "aquasecurity:trivy:PkgType",
           "value": "gobinary"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2016-11-01T18:42:41Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2018-09-09T22:03:57Z"
+        },
+        {
+          "name": "ecosystems:owner_location",
+          "value": "Grenoble, France"
         }
       ]
     },
@@ -5518,6 +6043,11 @@
       "author": "Brian Goff",
       "name": "github.com/cpuguy83/go-md2man/v2",
       "version": "v2.0.2",
+      "licenses": [
+        {
+          "expression": "(MIT)"
+        }
+      ],
       "purl": "pkg:golang/github.com/cpuguy83/go-md2man/v2@v2.0.2",
       "externalReferences": [
         {
@@ -5759,9 +6289,40 @@
     {
       "bom-ref": "pkg:golang/github.com/elithrar/simple-scrypt@v1.3.0",
       "type": "library",
+      "supplier": {
+        "name": "Matt Silverlock",
+        "url": [
+          "https://blog.questionable.services"
+        ]
+      },
+      "author": "Matt Silverlock",
       "name": "github.com/elithrar/simple-scrypt",
       "version": "v1.3.0",
+      "description": "Package scrypt provides a convenience wrapper around Go's existing scrypt package\nthat makes it easier to securely derive strong keys from weak\ninputs (i.e. user passwords).\nThe package provides password generation, constant-time comparison and\nparameter upgrading for scrypt derived keys.",
+      "licenses": [
+        {
+          "expression": "(MIT)"
+        }
+      ],
       "purl": "pkg:golang/github.com/elithrar/simple-scrypt@v1.3.0",
+      "externalReferences": [
+        {
+          "url": "https://github.com/elithrar/simple-scrypt",
+          "type": "website"
+        },
+        {
+          "url": "https://pkg.go.dev/github.com/elithrar/simple-scrypt",
+          "type": "distribution"
+        },
+        {
+          "url": "https://github.com/elithrar/simple-scrypt",
+          "type": "vcs"
+        },
+        {
+          "url": "https://pkg.go.dev/github.com/elithrar/simple-scrypt#section-documentation",
+          "type": "documentation"
+        }
+      ],
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
@@ -5778,6 +6339,38 @@
         {
           "name": "aquasecurity:trivy:PkgType",
           "value": "gobinary"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2016-11-19T15:54:10Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2025-12-25T17:21:04Z"
+        },
+        {
+          "name": "ecosystems:owner_location",
+          "value": "New York City, United States"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "go"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "hash"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "password"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "password-hash"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "scrypt"
         }
       ]
     },
@@ -8030,6 +8623,11 @@
       "author": "Google APIs",
       "name": "github.com/googleapis/enterprise-certificate-proxy",
       "version": "v0.2.3",
+      "licenses": [
+        {
+          "expression": "(Apache-2.0)"
+        }
+      ],
       "purl": "pkg:golang/github.com/googleapis/enterprise-certificate-proxy@v0.2.3",
       "externalReferences": [
         {
@@ -8202,6 +8800,11 @@
       "name": "github.com/googleapis/gax-go/v2",
       "version": "v2.7.1",
       "description": "Package gax contains a set of modules which aid the development of APIs\nfor clients and servers based on gRPC and Google API conventions.\n\nApplication code will rarely need to use this library directly.\nHowever, code generated automatically from API definition files can use it\nto simplify code generation and to provide more convenient and idiomatic API surfaces.",
+      "licenses": [
+        {
+          "expression": "(BSD-3-Clause)"
+        }
+      ],
       "purl": "pkg:golang/github.com/googleapis/gax-go/v2@v2.7.1",
       "externalReferences": [
         {
@@ -8604,6 +9207,11 @@
       "author": "HashiCorp",
       "name": "github.com/hashicorp/go-hclog",
       "version": "v0.14.1",
+      "licenses": [
+        {
+          "expression": "(MIT)"
+        }
+      ],
       "purl": "pkg:golang/github.com/hashicorp/go-hclog@v0.14.1",
       "externalReferences": [
         {
@@ -8923,6 +9531,11 @@
       "name": "github.com/joho/godotenv",
       "version": "v1.3.0",
       "description": "Package godotenv is a go port of the ruby dotenv library (https://github.com/bkeepers/dotenv)\n\nExamples/readme can be found on the GitHub page at https://github.com/joho/godotenv\n\nThe TL;DR is that you make a .env file that looks something like\n\nand then in your go code you can call\n\nand all the env vars declared in .env will be available through os.Getenv(\"SOME_ENV_VAR\")",
+      "licenses": [
+        {
+          "expression": "(MIT)"
+        }
+      ],
       "purl": "pkg:golang/github.com/joho/godotenv@v1.3.0",
       "externalReferences": [
         {
@@ -9133,6 +9746,11 @@
       "author": "Klaus Post",
       "name": "github.com/klauspost/compress",
       "version": "v1.15.14",
+      "licenses": [
+        {
+          "expression": "(Apache-2.0 OR BSD-3-Clause OR MIT)"
+        }
+      ],
       "purl": "pkg:golang/github.com/klauspost/compress@v1.15.14",
       "externalReferences": [
         {
@@ -9406,6 +10024,11 @@
       "name": "github.com/klauspost/cpuid/v2",
       "version": "v2.2.3",
       "description": "Package cpuid provides information about the CPU running the current program.\n\nCPU features are detected on startup, and kept for fast access through the life of the application.\nCurrently x86 / x64 (AMD64) as well as arm64 is supported.\n\nYou can access the CPU information by accessing the shared CPU variable of the cpuid library.\n\nPackage home: https://github.com/klauspost/cpuid",
+      "licenses": [
+        {
+          "expression": "(MIT)"
+        }
+      ],
       "purl": "pkg:golang/github.com/klauspost/cpuid/v2@v2.2.3",
       "externalReferences": [
         {
@@ -9661,6 +10284,11 @@
       "author": "Kubernetes CSI",
       "name": "github.com/kubernetes-csi/external-snapshotter/client/v8",
       "version": "v8.2.0",
+      "licenses": [
+        {
+          "expression": "(Apache-2.0)"
+        }
+      ],
       "purl": "pkg:golang/github.com/kubernetes-csi/external-snapshotter/client/v8@v8.2.0",
       "externalReferences": [
         {
@@ -9714,9 +10342,34 @@
     {
       "bom-ref": "pkg:golang/github.com/kurin/blazer@v0.5.4-0.20211030221322-ba894c124ac6",
       "type": "library",
+      "supplier": {
+        "name": "Toby Burress",
+        "url": [
+          "charles.dog"
+        ]
+      },
+      "author": "Toby Burress",
       "name": "github.com/kurin/blazer",
       "version": "v0.5.4-0.20211030221322-ba894c124ac6",
       "purl": "pkg:golang/github.com/kurin/blazer@v0.5.4-0.20211030221322-ba894c124ac6",
+      "externalReferences": [
+        {
+          "url": "https://github.com/kurin/blazer",
+          "type": "website"
+        },
+        {
+          "url": "https://pkg.go.dev/github.com/kurin/blazer",
+          "type": "distribution"
+        },
+        {
+          "url": "https://github.com/kurin/blazer",
+          "type": "vcs"
+        },
+        {
+          "url": "https://pkg.go.dev/github.com/kurin/blazer#section-documentation",
+          "type": "documentation"
+        }
+      ],
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
@@ -9733,6 +10386,34 @@
         {
           "name": "aquasecurity:trivy:PkgType",
           "value": "gobinary"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2017-07-11T21:07:44Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2019-02-03T22:28:14Z"
+        },
+        {
+          "name": "ecosystems:owner_location",
+          "value": "Seattle, WA"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "b2"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "backblaze"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "go"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "golang"
         }
       ]
     },
@@ -10210,6 +10891,11 @@
       "type": "library",
       "name": "github.com/minio/minio-go/v7",
       "version": "v7.0.46",
+      "licenses": [
+        {
+          "expression": "(Apache-2.0)"
+        }
+      ],
       "purl": "pkg:golang/github.com/minio/minio-go/v7@v7.0.46",
       "externalReferences": [
         {
@@ -10388,6 +11074,11 @@
       "author": "MinIO",
       "name": "github.com/minio/sha256-simd",
       "version": "v1.0.0",
+      "licenses": [
+        {
+          "expression": "(Apache-2.0)"
+        }
+      ],
       "purl": "pkg:golang/github.com/minio/sha256-simd@v1.0.0",
       "externalReferences": [
         {
@@ -10482,6 +11173,11 @@
       "author": "Mitchell Hashimoto",
       "name": "github.com/mitchellh/go-testing-interface",
       "version": "v1.0.0",
+      "licenses": [
+        {
+          "expression": "(MIT)"
+        }
+      ],
       "purl": "pkg:golang/github.com/mitchellh/go-testing-interface@v1.0.0",
       "externalReferences": [
         {
@@ -10861,6 +11557,11 @@
       "name": "github.com/ncw/swift/v2",
       "version": "v2.0.1",
       "description": "Package swift provides an easy to use interface to Swift / Openstack Object Storage / Rackspace Cloud Files\n\nMost of the work is done through the Container*() and Object*() methods.\n\nAll methods are safe to use concurrently in multiple go routines.\n\nAs defined by http://docs.openstack.org/api/openstack-object-storage/1.0/content/Object_Versioning-e1e3230.html#d6e983 one can create a container which allows for version control of files.  The suggested method is to create a version container for holding all non-current files, and a current container for holding the latest version that the file points to.  The container and objects inside it can be used in the standard manner, however, pushing a file multiple times will result in it being copied to the version container and the new file put in it's place.  If the current file is deleted, the previous file in the version container will replace it.  This means that if a file is updated 5 times, it must be deleted 5 times to be completely removed from the system.\n\nThis module specifically allows the enabling/disabling of Rackspace Cloud File CDN management on a container.  This is specific to the Rackspace API and not Swift/Openstack, therefore it has been placed in a submodule.  One can easily create a RsConnection and use it like the standard Connection to access and manipulate containers and objects.",
+      "licenses": [
+        {
+          "expression": "(MIT)"
+        }
+      ],
       "purl": "pkg:golang/github.com/ncw/swift/v2@v2.0.1",
       "externalReferences": [
         {
@@ -10975,9 +11676,34 @@
     {
       "bom-ref": "pkg:golang/github.com/petar/gollrb@v0.0.0-20210522233825-ae3b015fd3e9",
       "type": "library",
+      "supplier": {
+        "name": "Petar Maymounkov",
+        "url": [
+          "http://maymounkov.org"
+        ]
+      },
+      "author": "Petar Maymounkov",
       "name": "github.com/petar/GoLLRB",
       "version": "v0.0.0-20210522233825-ae3b015fd3e9",
       "purl": "pkg:golang/github.com/petar/gollrb@v0.0.0-20210522233825-ae3b015fd3e9",
+      "externalReferences": [
+        {
+          "url": "https://github.com/petar/gollrb",
+          "type": "website"
+        },
+        {
+          "url": "https://pkg.go.dev/github.com/petar/gollrb",
+          "type": "distribution"
+        },
+        {
+          "url": "https://github.com/petar/gollrb",
+          "type": "vcs"
+        },
+        {
+          "url": "https://pkg.go.dev/github.com/petar/gollrb#section-documentation",
+          "type": "documentation"
+        }
+      ],
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
@@ -10994,6 +11720,18 @@
         {
           "name": "aquasecurity:trivy:PkgType",
           "value": "gobinary"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2019-05-14T00:08:32Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2019-05-14T00:08:32Z"
+        },
+        {
+          "name": "ecosystems:owner_location",
+          "value": "Los Altos, CA"
         }
       ]
     },
@@ -11205,6 +11943,11 @@
       "name": "github.com/pkg/sftp",
       "version": "v1.13.5",
       "description": "Package sftp implements the SSH File Transfer Protocol as described in\nhttps://filezilla-project.org/specs/draft-ietf-secsh-filexfer-02.txt",
+      "licenses": [
+        {
+          "expression": "(BSD-2-Clause)"
+        }
+      ],
       "purl": "pkg:golang/github.com/pkg/sftp@v1.13.5",
       "externalReferences": [
         {
@@ -11341,6 +12084,20 @@
       "name": "github.com/project-velero/kopia",
       "version": "v0.0.0-20250722052735-3ea24d208777",
       "purl": "pkg:golang/github.com/project-velero/kopia@v0.0.0-20250722052735-3ea24d208777",
+      "externalReferences": [
+        {
+          "url": "https://pkg.go.dev/github.com/project-velero/kopia",
+          "type": "distribution"
+        },
+        {
+          "url": "https://github.com/project-velero/kopia",
+          "type": "vcs"
+        },
+        {
+          "url": "https://pkg.go.dev/github.com/project-velero/kopia#section-documentation",
+          "type": "documentation"
+        }
+      ],
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
@@ -11357,6 +12114,14 @@
         {
           "name": "aquasecurity:trivy:PkgType",
           "value": "gobinary"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2023-09-14T02:59:43Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2025-02-27T05:13:53Z"
         }
       ]
     },
@@ -11644,9 +12409,40 @@
     {
       "bom-ref": "pkg:golang/github.com/restic/chunker@v0.4.0",
       "type": "library",
+      "supplier": {
+        "name": "The restic backup program",
+        "url": [
+          "https://restic.net"
+        ]
+      },
+      "author": "The restic backup program",
       "name": "github.com/restic/chunker",
       "version": "v0.4.0",
+      "description": "Package chunker implements Content Defined Chunking (CDC) based on a rolling\nRabin Checksum.\n\nThe function RandomPolynomial() returns a new random polynomial of degree 53\nfor use with the chunker. The degree 53 is chosen because it is the largest\nprime below 64-8 = 56, so that the top 8 bits of an uint64 can be used for\noptimising calculations in the chunker.\n\nA random polynomial is chosen selecting 64 random bits, masking away bits\n64..54 and setting bit 53 to one (otherwise the polynomial is not of the\ndesired degree) and bit 0 to one (otherwise the polynomial is trivially\nreducible), so that 51 bits are chosen at random.\n\nThis process is repeated until Irreducible() returns true, then this\npolynomials is returned. If this doesn't happen after 1 million tries, the\nfunction returns an error. The probability for selecting an irreducible\npolynomial at random is about 7.5% ( (2^53-2)/53 / 2^51), so the probability\nthat no irreducible polynomial has been found after 100 tries is lower than\n0.04%.\n\nDuring development the results have been verified using the computational\ndiscrete algebra system GAP, which can be obtained from the website at\nhttp://www.gap-system.org/.\n\nFor filtering a given list of polynomials in hexadecimal coefficient notation,\nthe following script can be used:\n\nAll irreducible polynomials from the list are written to the output.\n\nAn introduction to Rabin Fingerprints/Checksums can be found in the following articles:\n\nMichael O. Rabin (1981): \"Fingerprinting by Random Polynomials\"\nhttp://www.xmailserver.org/rabin.pdf\n\nRoss N. Williams (1993): \"A Painless Guide to CRC Error Detection Algorithms\"\nhttp://www.zlib.net/crc_v3.txt\n\nAndrei Z. Broder (1993): \"Some Applications of Rabin's Fingerprinting Method\"\nhttp://www.xmailserver.org/rabin_apps.pdf\n\nShuhong Gao and Daniel Panario (1997): \"Tests and Constructions of Irreducible Polynomials over Finite Fields\"\nhttp://www.math.clemson.edu/~sgao/papers/GP97a.pdf\n\nAndrew Kadatch, Bob Jenkins (2007): \"Everything we know about CRC but afraid to forget\"\nhttp://crcutil.googlecode.com/files/crc-doc.1.0.pdf",
+      "licenses": [
+        {
+          "expression": "(BSD-2-Clause)"
+        }
+      ],
       "purl": "pkg:golang/github.com/restic/chunker@v0.4.0",
+      "externalReferences": [
+        {
+          "url": "https://github.com/restic/chunker",
+          "type": "website"
+        },
+        {
+          "url": "https://pkg.go.dev/github.com/restic/chunker",
+          "type": "distribution"
+        },
+        {
+          "url": "https://github.com/restic/chunker",
+          "type": "vcs"
+        },
+        {
+          "url": "https://pkg.go.dev/github.com/restic/chunker#section-documentation",
+          "type": "documentation"
+        }
+      ],
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
@@ -11663,15 +12459,49 @@
         {
           "name": "aquasecurity:trivy:PkgType",
           "value": "gobinary"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2016-09-19T15:31:43Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2020-07-20T19:11:28Z"
         }
       ]
     },
     {
       "bom-ref": "pkg:golang/github.com/restic/restic@v0.15.0%2Bdirty",
       "type": "library",
+      "supplier": {
+        "name": "The restic backup program",
+        "url": [
+          "https://restic.net"
+        ]
+      },
+      "author": "The restic backup program",
       "name": "github.com/restic/restic",
       "version": "v0.15.0+dirty",
+      "description": "Package restic gives a (very brief) introduction to the structure of source code.\n\nThe packages are structured so that cmd/ contains the main package for the\nrestic binary, and internal/ contains almost all code in library form. We've\nchosen to use the internal/ path so that the packages cannot be imported by\nother programs. This was done on purpose, at the moment restic is a\ncommand-line program and not a library. This may be revisited at a later\npoint in time.",
       "purl": "pkg:golang/github.com/restic/restic@v0.15.0%2Bdirty",
+      "externalReferences": [
+        {
+          "url": "https://github.com/restic/restic",
+          "type": "website"
+        },
+        {
+          "url": "https://pkg.go.dev/github.com/restic/restic",
+          "type": "distribution"
+        },
+        {
+          "url": "https://github.com/restic/restic",
+          "type": "vcs"
+        },
+        {
+          "url": "https://pkg.go.dev/github.com/restic/restic#section-documentation",
+          "type": "documentation"
+        }
+      ],
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
@@ -11688,6 +12518,38 @@
         {
           "name": "aquasecurity:trivy:PkgType",
           "value": "gobinary"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2016-02-21T12:08:10Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2025-09-21T18:04:58Z"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "backup"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "dedupe"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "deduplication"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "go"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "restic"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "secure-by-default"
         }
       ]
     },
@@ -11758,6 +12620,11 @@
       "name": "github.com/rs/xid",
       "version": "v1.4.0",
       "description": "Package xid is a globally unique id generator suited for web scale\n\nXid is using Mongo Object ID algorithm to generate globally unique ids:\nhttps://docs.mongodb.org/manual/reference/object-id/\n\nThe binary representation of the id is compatible with Mongo 12 bytes Object IDs.\nThe string representation is using base32 hex (w/o padding) for better space efficiency\nwhen stored in that form (20 bytes). The hex variant of base32 is used to retain the\nsortable property of the id.\n\nXid doesn't use base64 because case sensitivity and the 2 non alphanum chars may be an\nissue when transported as a string between various systems. Base36 wasn't retained either\nbecause 1/ it's not standard 2/ the resulting size is not predictable (not bit aligned)\nand 3/ it would not remain sortable. To validate a base32 `xid`, expect a 20 chars long,\nall lowercase sequence of `a` to `v` letters and `0` to `9` numbers (`[0-9a-v]{20}`).\n\nUUID is 16 bytes (128 bits), snowflake is 8 bytes (64 bits), xid stands in between\nwith 12 bytes with a more compact string representation ready for the web and no\nrequired configuration or central generation server.\n\nFeatures:\n\nBest used with xlog's RequestIDHandler (https://godoc.org/github.com/rs/xlog#RequestIDHandler).\n\nReferences:",
+      "licenses": [
+        {
+          "expression": "(MIT)"
+        }
+      ],
       "purl": "pkg:golang/github.com/rs/xid@v1.4.0",
       "externalReferences": [
         {
@@ -12031,6 +12898,11 @@
       "name": "github.com/spf13/cobra",
       "version": "v1.6.1",
       "description": "Package cobra is a commander providing a simple interface to create powerful modern CLI interfaces.\nIn addition to providing an interface, Cobra simultaneously provides a controller to organize your application code.",
+      "licenses": [
+        {
+          "expression": "(Apache-2.0)"
+        }
+      ],
       "purl": "pkg:golang/github.com/spf13/cobra@v1.6.1",
       "externalReferences": [
         {
@@ -12404,9 +13276,39 @@
     {
       "bom-ref": "pkg:golang/github.com/vladimirvivien/gexe@v0.1.1",
       "type": "library",
+      "supplier": {
+        "name": "Vladimir Vivien",
+        "url": [
+          "https://twitter.com/vladimirvivien"
+        ]
+      },
+      "author": "Vladimir Vivien",
       "name": "github.com/vladimirvivien/gexe",
       "version": "v0.1.1",
+      "licenses": [
+        {
+          "expression": "(MIT)"
+        }
+      ],
       "purl": "pkg:golang/github.com/vladimirvivien/gexe@v0.1.1",
+      "externalReferences": [
+        {
+          "url": "https://github.com/vladimirvivien/gexe",
+          "type": "website"
+        },
+        {
+          "url": "https://pkg.go.dev/github.com/vladimirvivien/gexe",
+          "type": "distribution"
+        },
+        {
+          "url": "https://github.com/vladimirvivien/gexe",
+          "type": "vcs"
+        },
+        {
+          "url": "https://pkg.go.dev/github.com/vladimirvivien/gexe#section-documentation",
+          "type": "documentation"
+        }
+      ],
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
@@ -12423,6 +13325,34 @@
         {
           "name": "aquasecurity:trivy:PkgType",
           "value": "gobinary"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2019-10-08T00:46:36Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2025-04-02T14:07:41Z"
+        },
+        {
+          "name": "ecosystems:owner_location",
+          "value": "USA"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "devops"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "go"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "golang"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "scripting"
         }
       ]
     },
@@ -12431,7 +13361,30 @@
       "type": "library",
       "name": "github.com/vmware-tanzu/crash-diagnostics",
       "version": "v0.3.7",
+      "licenses": [
+        {
+          "expression": "(Apache-2.0)"
+        }
+      ],
       "purl": "pkg:golang/github.com/vmware-tanzu/crash-diagnostics@v0.3.7",
+      "externalReferences": [
+        {
+          "url": "https://github.com/vmware-tanzu/crash-diagnostics",
+          "type": "website"
+        },
+        {
+          "url": "https://pkg.go.dev/github.com/vmware-tanzu/crash-diagnostics",
+          "type": "distribution"
+        },
+        {
+          "url": "https://github.com/vmware-tanzu/crash-diagnostics",
+          "type": "vcs"
+        },
+        {
+          "url": "https://pkg.go.dev/github.com/vmware-tanzu/crash-diagnostics#section-documentation",
+          "type": "documentation"
+        }
+      ],
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
@@ -12448,6 +13401,26 @@
         {
           "name": "aquasecurity:trivy:PkgType",
           "value": "gobinary"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2019-10-04T17:25:06Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2025-05-22T10:01:08Z"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "kubernetes"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "kubernetes-cluster"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "troubleshooting"
         }
       ]
     },
@@ -13678,6 +14651,11 @@
       "type": "library",
       "name": "golang.org/x/crypto",
       "version": "v0.36.0",
+      "licenses": [
+        {
+          "expression": "(BSD-3-Clause)"
+        }
+      ],
       "purl": "pkg:golang/golang.org/x/crypto@v0.36.0",
       "externalReferences": [
         {
@@ -13993,6 +14971,11 @@
       "name": "golang.org/x/oauth2",
       "version": "v0.28.0",
       "description": "Package oauth2 provides support for making\nOAuth2 authorized and authenticated HTTP requests,\nas specified in RFC 6749.\nIt can additionally grant authorization with Bearer JWT.",
+      "licenses": [
+        {
+          "expression": "(BSD-3-Clause)"
+        }
+      ],
       "purl": "pkg:golang/golang.org/x/oauth2@v0.28.0",
       "externalReferences": [
         {
@@ -14582,6 +15565,11 @@
       "name": "golang.org/x/xerrors",
       "version": "v0.0.0-20220907171357-04be3eba64a2",
       "description": "Package xerrors implements functions to manipulate errors.\n\nThis package is based on the Go 2 proposal for error values:\n\nhttps://go.dev/design/29934-error-values\n\nThese functions were incorporated into the standard library's errors package\nin Go 1.13:\n- Is\n- As\n- Unwrap\n\nAlso, Errorf's %w verb was incorporated into fmt.Errorf.\n\nNo other features of this package were included in Go 1.13, and at present\nthere are no plans to include any of them.",
+      "licenses": [
+        {
+          "expression": "(BSD-3-Clause)"
+        }
+      ],
       "purl": "pkg:golang/golang.org/x/xerrors@v0.0.0-20220907171357-04be3eba64a2",
       "externalReferences": [
         {
@@ -14700,6 +15688,11 @@
       "name": "google.golang.org/api",
       "version": "v0.114.0",
       "description": "Package api is the root of the packages used to access Google Cloud\nServices. See https://godoc.org/google.golang.org/api for a full list of\nsub-packages.\n\nWithin api there exist numerous clients which connect to Google APIs,\nand various utility packages.\n\nAll clients in sub-packages are configurable via client options. These\noptions are described here: https://godoc.org/google.golang.org/api/option.\n\nAll the clients in sub-packages support authentication via Google\nApplication Default Credentials (see\nhttps://cloud.google.com/docs/authentication/production), or by providing a\nJSON key file for a Service Account. See the authentication examples in\nhttps://godoc.org/google.golang.org/api/transport for more details.\n\nDue to the auto-generated nature of this collection of libraries, complete\nAPIs or specific versions can appear or go away without notice. As a result,\nyou should always locally vendor any API(s) that your code relies upon.\n\nGoogle APIs follow semver as specified by\nhttps://cloud.google.com/apis/design/versioning. The code generator and\nthe code it produces - the libraries in the google.golang.org/api/...\nsubpackages - are beta.\n\nNote that versioning and stability is strictly not communicated through Go\nmodules. Go modules are used only for dependency management.\n\nMany parameters are specified using ints. However, underlying APIs might\noperate on a finer granularity, expecting int64, int32, uint64, or uint32,\nall of whom have different maximum values. Subsequently, specifying an int\nparameter in one of these clients may result in an error from the API\nbecause the value is too large.\n\nTo see the exact type of int that the API expects, you can inspect the API's\ndiscovery doc. A global catalogue pointing to the discovery doc of APIs can\nbe found at https://www.googleapis.com/discovery/v1/apis.\n\nThis field can be found on all Request/Response structs in the generated\nclients. All of these types have the JSON `omitempty` field tag present on\ntheir fields. This means if a type is set to its default value it will not be\nmarshalled. Sometimes you may actually want to send a default value, for\ninstance sending an int of `0`. In this case you can override the `omitempty`\nfeature by adding the field name to the `ForceSendFields` slice. See docs on\nany struct for more details. This may be used to include empty fields in\nPatch requests.\n\nThis field can be found on all Request/Response structs in the generated\nclients. It can be be used to send JSON null values for the listed fields.\nBy default, fields with empty values are omitted from API requests because of\nthe presence of the `omitempty` field tag on all fields. However, any field\nwith an empty value appearing in NullFields will be sent to the server as\nnull. It is an error if a field in this list has a non-empty value. This may\nbe used to include null fields in Patch requests.\n\nAn error returned by a client's Do method may be cast to a *googleapi.Error\nor unwrapped to an *apierror.APIError.\n\nThe https://pkg.go.dev/google.golang.org/api/googleapi#Error type is useful\nfor getting the HTTP status code:\n\nThe https://pkg.go.dev/github.com/googleapis/gax-go/v2/apierror#APIError type\nis useful for inspecting structured details of the underlying API response,\nsuch as the reason for the error and the error domain, which is typically the\nregistered service name of the tool or product that generated the error:\n\nIf an API call returns an Operation, that means it could take some time to\ncomplete the work initiated by the API call. Applications that are interested\nin the end result of the operation they initiated should wait until the\nOperation.Done field indicates it is finished. To do this, use the service's\nOperation client, and a loop, like so:",
+      "licenses": [
+        {
+          "expression": "(BSD-3-Clause)"
+        }
+      ],
       "purl": "pkg:golang/google.golang.org/api@v0.114.0",
       "externalReferences": [
         {
@@ -14759,6 +15752,11 @@
       "name": "google.golang.org/api",
       "version": "v0.241.0",
       "description": "Package api is the root of the packages used to access Google Cloud\nServices. See https://godoc.org/google.golang.org/api for a full list of\nsub-packages.\n\nWithin api there exist numerous clients which connect to Google APIs,\nand various utility packages.\n\nAll clients in sub-packages are configurable via client options. These\noptions are described here: https://godoc.org/google.golang.org/api/option.\n\nAll the clients in sub-packages support authentication via Google\nApplication Default Credentials (see\nhttps://cloud.google.com/docs/authentication/production), or by providing a\nJSON key file for a Service Account. See the authentication examples in\nhttps://godoc.org/google.golang.org/api/transport for more details.\n\nDue to the auto-generated nature of this collection of libraries, complete\nAPIs or specific versions can appear or go away without notice. As a result,\nyou should always locally vendor any API(s) that your code relies upon.\n\nGoogle APIs follow semver as specified by\nhttps://cloud.google.com/apis/design/versioning. The code generator and\nthe code it produces - the libraries in the google.golang.org/api/...\nsubpackages - are beta.\n\nNote that versioning and stability is strictly not communicated through Go\nmodules. Go modules are used only for dependency management.\n\nMany parameters are specified using ints. However, underlying APIs might\noperate on a finer granularity, expecting int64, int32, uint64, or uint32,\nall of whom have different maximum values. Subsequently, specifying an int\nparameter in one of these clients may result in an error from the API\nbecause the value is too large.\n\nTo see the exact type of int that the API expects, you can inspect the API's\ndiscovery doc. A global catalogue pointing to the discovery doc of APIs can\nbe found at https://www.googleapis.com/discovery/v1/apis.\n\nThis field can be found on all Request/Response structs in the generated\nclients. All of these types have the JSON `omitempty` field tag present on\ntheir fields. This means if a type is set to its default value it will not be\nmarshalled. Sometimes you may actually want to send a default value, for\ninstance sending an int of `0`. In this case you can override the `omitempty`\nfeature by adding the field name to the `ForceSendFields` slice. See docs on\nany struct for more details. This may be used to include empty fields in\nPatch requests.\n\nThis field can be found on all Request/Response structs in the generated\nclients. It can be be used to send JSON null values for the listed fields.\nBy default, fields with empty values are omitted from API requests because of\nthe presence of the `omitempty` field tag on all fields. However, any field\nwith an empty value appearing in NullFields will be sent to the server as\nnull. It is an error if a field in this list has a non-empty value. This may\nbe used to include null fields in Patch requests.\n\nAn error returned by a client's Do method may be cast to a *googleapi.Error\nor unwrapped to an *apierror.APIError.\n\nThe https://pkg.go.dev/google.golang.org/api/googleapi#Error type is useful\nfor getting the HTTP status code:\n\nThe https://pkg.go.dev/github.com/googleapis/gax-go/v2/apierror#APIError type\nis useful for inspecting structured details of the underlying API response,\nsuch as the reason for the error and the error domain, which is typically the\nregistered service name of the tool or product that generated the error:\n\nIf an API call returns an Operation, that means it could take some time to\ncomplete the work initiated by the API call. Applications that are interested\nin the end result of the operation they initiated should wait until the\nOperation.Done field indicates it is finished. To do this, use the service's\nOperation client, and a loop, like so:",
+      "licenses": [
+        {
+          "expression": "(BSD-3-Clause)"
+        }
+      ],
       "purl": "pkg:golang/google.golang.org/api@v0.241.0",
       "externalReferences": [
         {
@@ -14933,6 +15931,11 @@
       "author": "Google APIs",
       "name": "google.golang.org/genproto",
       "version": "v0.0.0-20230410155749-daa745c078e1",
+      "licenses": [
+        {
+          "expression": "(Apache-2.0)"
+        }
+      ],
       "purl": "pkg:golang/google.golang.org/genproto@v0.0.0-20230410155749-daa745c078e1",
       "externalReferences": [
         {
@@ -15050,6 +16053,11 @@
       "name": "google.golang.org/grpc",
       "version": "v1.56.3",
       "description": "Package grpc implements an RPC system called gRPC.\n\nSee grpc.io for more information about gRPC.",
+      "licenses": [
+        {
+          "expression": "(Apache-2.0)"
+        }
+      ],
       "purl": "pkg:golang/google.golang.org/grpc@v1.56.3",
       "externalReferences": [
         {
@@ -15638,6 +16646,11 @@
       "author": "Kubernetes",
       "name": "k8s.io/api",
       "version": "v0.33.3",
+      "licenses": [
+        {
+          "expression": "(Apache-2.0)"
+        }
+      ],
       "purl": "pkg:golang/k8s.io/api@v0.33.3",
       "externalReferences": [
         {
@@ -15758,6 +16771,11 @@
       "author": "Kubernetes",
       "name": "k8s.io/apimachinery",
       "version": "v0.33.3",
+      "licenses": [
+        {
+          "expression": "(Apache-2.0)"
+        }
+      ],
       "purl": "pkg:golang/k8s.io/apimachinery@v0.33.3",
       "externalReferences": [
         {
@@ -15820,6 +16838,11 @@
       "author": "Kubernetes",
       "name": "k8s.io/cli-runtime",
       "version": "v0.33.3",
+      "licenses": [
+        {
+          "expression": "(Apache-2.0)"
+        }
+      ],
       "purl": "pkg:golang/k8s.io/cli-runtime@v0.33.3",
       "externalReferences": [
         {
@@ -15887,6 +16910,11 @@
       "name": "k8s.io/client-go",
       "version": "v0.33.3",
       "description": "Package clientgo is the official Go client for the Kubernetes API. It provides\na standard set of clients and tools for building applications, controllers,\nand operators that communicate with a Kubernetes cluster.\n\nkubernetes: Contains the typed Clientset for interacting with built-in,\nversioned API objects (e.g., Pods, Deployments). This is the most common\nstarting point.\n\ndynamic: Provides a dynamic client that can perform operations on any\nKubernetes object, including Custom Resources (CRs). It is essential for\nbuilding controllers that work with CRDs.\n\ndiscovery: Used to discover the API groups, versions, and resources\nsupported by a Kubernetes cluster.\n\ntools/cache: The foundation of the controller pattern. This package provides\nefficient caching and synchronization mechanisms (Informers and Listers)\nfor building controllers.\n\ntools/clientcmd: Provides methods for loading client configuration from\nkubeconfig files. This is essential for out-of-cluster applications and CLI tools.\n\nrest: Provides a lower-level RESTClient that manages the details of\ncommunicating with the Kubernetes API server. It is useful for advanced\nuse cases that require fine-grained control over requests, such as working\nwith non-standard REST verbs.\n\nThere are two primary ways to configure a client to connect to the API server:\n\nIn-Cluster Configuration: For applications running inside a Kubernetes pod,\nthe `rest.InClusterConfig()` function provides a straightforward way to\nconfigure the client. It automatically uses the pod's service account for\nauthentication and is the recommended approach for controllers and operators.\n\nOut-of-Cluster Configuration: For local development or command-line tools,\nthe `clientcmd` package is used to load configuration from a\nkubeconfig file.\n\nThe `rest.Config` object allows for fine-grained control over client-side\nperformance and reliability. Key settings include:\n\nOnce configured, a client can be used to interact with objects in the cluster.\n\nThe Typed Clientset (`kubernetes` package) provides a strongly typed\ninterface for working with built-in Kubernetes objects.\n\nThe Dynamic Client (`dynamic` package) can work with any object, including\nCustom Resources, using `unstructured.Unstructured` types.\n\nFor Custom Resources (CRDs), the `k8s.io/code-generator` repository\ncontains the tools to generate typed clients, informers, and listers. The\n`sample-controller` is the canonical example of this pattern.\n\nServer-Side Apply is a patching strategy that allows multiple actors to\nshare management of an object by tracking field ownership. This prevents\nactors from inadvertently overwriting each other's changes and provides\na mechanism for resolving conflicts. The `applyconfigurations` package\nprovides the necessary tools for this declarative approach.\n\nRobust error handling is essential when interacting with the API. The\n`k8s.io/apimachinery/pkg/api/errors` package provides functions to inspect\nerrors and check for common conditions, such as whether a resource was not\nfound or already exists. This allows controllers to implement robust,\nidempotent reconciliation logic.\n\nThe controller pattern is central to Kubernetes. A controller observes the\nstate of the cluster and works to bring it to the desired state.\n\nThe `tools/cache` package provides the building blocks for this pattern.\nInformers watch the API server and maintain a local cache, Listers provide\nread-only access to the cache, and Workqueues decouple event detection\nfrom processing.\n\nIn a high-availability deployment where multiple instances of a controller\nare running, leader election (`tools/leaderelection`) is used to ensure\nthat only one instance is active at a time.\n\nClient-side feature gates allow for enabling or disabling experimental\nfeatures in `client-go`. They can be configured via the `rest.Config` object.",
+      "licenses": [
+        {
+          "expression": "(Apache-2.0)"
+        }
+      ],
       "purl": "pkg:golang/k8s.io/client-go@v0.33.3",
       "externalReferences": [
         {
@@ -16009,6 +17037,11 @@
       "author": "Kubernetes",
       "name": "k8s.io/kube-aggregator",
       "version": "v0.33.3",
+      "licenses": [
+        {
+          "expression": "(Apache-2.0)"
+        }
+      ],
       "purl": "pkg:golang/k8s.io/kube-aggregator@v0.33.3",
       "externalReferences": [
         {
@@ -16460,7 +17493,39 @@
   ],
   "dependencies": [
     {
-      "ref": "0563f510-d8d9-4d79-af5d-99b1f517628e",
+      "ref": "04200cfa-a540-443c-a356-8b60ad282d5a",
+      "dependsOn": []
+    },
+    {
+      "ref": "09d78dae-c559-4c2e-82f5-29fc5fa69867",
+      "dependsOn": []
+    },
+    {
+      "ref": "0da3bd1c-06b0-499b-960b-5460a28c8c9e",
+      "dependsOn": []
+    },
+    {
+      "ref": "22465bed-0201-4944-9762-e517fd254168",
+      "dependsOn": [
+        "9e751220-2fa8-41f2-a567-6fc66a7f3f43"
+      ]
+    },
+    {
+      "ref": "33fe3d40-c621-4a48-8cdd-e7b754fac45d",
+      "dependsOn": []
+    },
+    {
+      "ref": "602a3e46-7382-4481-8575-ffdffad41df5",
+      "dependsOn": []
+    },
+    {
+      "ref": "6371e193-973e-495e-bcca-7b9b2803aa6a",
+      "dependsOn": [
+        "pkg:golang/github.com/restic/restic@v0.15.0%2Bdirty"
+      ]
+    },
+    {
+      "ref": "64188dd4-0bb4-466b-815d-7eff34b5fbe5",
       "dependsOn": [
         "pkg:deb/ubuntu/base-files@12ubuntu4.7?arch=amd64&distro=ubuntu-22.04",
         "pkg:deb/ubuntu/ca-certificates@20240203~22.04.1?arch=all&distro=ubuntu-22.04",
@@ -16473,124 +17538,20 @@
       ]
     },
     {
-      "ref": "05c3474c-9e72-4462-b1f5-d05907c5c8bf",
+      "ref": "65eba838-d60c-41d5-b50e-eb5cc7e6e607",
       "dependsOn": []
     },
     {
-      "ref": "0be77107-f9f5-410c-8530-cefce14972ff",
-      "dependsOn": []
-    },
-    {
-      "ref": "0e7eff1c-62e1-4902-865f-400aba549859",
+      "ref": "6ae117d4-2d3a-4d17-9079-5e47e160fe9e",
       "dependsOn": [
-        "377d4f74-8e2d-4b47-a8d2-8cf4a44b4a53"
-      ]
-    },
-    {
-      "ref": "14ec8dad-098a-4342-aa35-84a293591e27",
-      "dependsOn": []
-    },
-    {
-      "ref": "17f8d6fa-a1f6-439b-b0e9-56b6795f473d",
-      "dependsOn": []
-    },
-    {
-      "ref": "26c35874-0169-4a33-9ac5-822bb6a17baf",
-      "dependsOn": []
-    },
-    {
-      "ref": "271616dc-6e7d-4e92-80c4-9363ff27b55f",
-      "dependsOn": [
-        "57925bd3-bda2-4ad0-9692-499189d08371"
-      ]
-    },
-    {
-      "ref": "377d4f74-8e2d-4b47-a8d2-8cf4a44b4a53",
-      "dependsOn": [
-        "a7f67e93-59d9-4245-b3a4-5e8db778ac2d"
-      ]
-    },
-    {
-      "ref": "4a2c619b-53c6-445b-aa86-64ffa2c9ba49",
-      "dependsOn": []
-    },
-    {
-      "ref": "5634c821-69fb-4c4d-ba2a-94fcc1219cca",
-      "dependsOn": [
-        "pkg:golang/github.com/restic/restic@v0.15.0%2Bdirty"
-      ]
-    },
-    {
-      "ref": "57925bd3-bda2-4ad0-9692-499189d08371",
-      "dependsOn": []
-    },
-    {
-      "ref": "5ba8efe8-f91e-4d41-a791-6d2b7ee6a226",
-      "dependsOn": []
-    },
-    {
-      "ref": "5c4e2605-3600-4a25-bba1-54ce1041600b",
-      "dependsOn": []
-    },
-    {
-      "ref": "5ed4e75e-2159-4561-ac59-6dfb454f571f",
-      "dependsOn": []
-    },
-    {
-      "ref": "6450ed47-9573-492d-aaad-1c4a1bd98204",
-      "dependsOn": []
-    },
-    {
-      "ref": "6648e48b-2748-4402-bebb-e8d2a3eefa9d",
-      "dependsOn": []
-    },
-    {
-      "ref": "70317628-1a3f-4b27-9983-0e840bf1fc7c",
-      "dependsOn": []
-    },
-    {
-      "ref": "8f3360a2-2f14-4e4e-99d3-7e0348c2690d",
-      "dependsOn": [
-        "271616dc-6e7d-4e92-80c4-9363ff27b55f"
-      ]
-    },
-    {
-      "ref": "9dea56b6-d4ef-400c-8146-0142febec472",
-      "dependsOn": []
-    },
-    {
-      "ref": "a536a8c3-4143-4737-b3d6-bf4b644150bf",
-      "dependsOn": []
-    },
-    {
-      "ref": "a7f67e93-59d9-4245-b3a4-5e8db778ac2d",
-      "dependsOn": []
-    },
-    {
-      "ref": "ac401417-8ef2-46e4-b55d-3796180db2d1",
-      "dependsOn": [
-        "f0130504-e847-4850-8313-222d474fee66"
-      ]
-    },
-    {
-      "ref": "d23e4f44-6be4-471c-9e29-968023597cdd",
-      "dependsOn": []
-    },
-    {
-      "ref": "ebadef9f-6ef9-4ca8-aa05-521d6af217c9",
-      "dependsOn": []
-    },
-    {
-      "ref": "f0130504-e847-4850-8313-222d474fee66",
-      "dependsOn": [
-        "05c3474c-9e72-4462-b1f5-d05907c5c8bf",
-        "14ec8dad-098a-4342-aa35-84a293591e27",
-        "5ba8efe8-f91e-4d41-a791-6d2b7ee6a226",
-        "5c4e2605-3600-4a25-bba1-54ce1041600b",
-        "6450ed47-9573-492d-aaad-1c4a1bd98204",
-        "6648e48b-2748-4402-bebb-e8d2a3eefa9d",
-        "d23e4f44-6be4-471c-9e29-968023597cdd",
-        "ebadef9f-6ef9-4ca8-aa05-521d6af217c9",
+        "04200cfa-a540-443c-a356-8b60ad282d5a",
+        "0da3bd1c-06b0-499b-960b-5460a28c8c9e",
+        "8f64211e-c1f4-4f5a-be5d-0079ac0405c6",
+        "9dc82bd5-3510-4470-86dd-311780d11c3a",
+        "c99323da-1a36-4d83-a481-22f18bb79793",
+        "d434b43c-f54e-4dac-9f81-08c571106c70",
+        "e996f831-f541-4b9b-895b-2db1e599e775",
+        "edd12843-ba6d-4e5e-b6d8-1dd85bcb6f32",
         "pkg:golang/cel.dev/expr@v0.23.0",
         "pkg:golang/cloud.google.com/go/auth/oauth2adapt@v0.2.8",
         "pkg:golang/cloud.google.com/go/auth@v0.16.2",
@@ -16756,6 +17717,78 @@
         "pkg:golang/sigs.k8s.io/structured-merge-diff/v4@v4.6.0",
         "pkg:golang/sigs.k8s.io/yaml@v1.4.0"
       ]
+    },
+    {
+      "ref": "791b5a20-1197-4676-b3fd-25988f858d68",
+      "dependsOn": []
+    },
+    {
+      "ref": "8f64211e-c1f4-4f5a-be5d-0079ac0405c6",
+      "dependsOn": []
+    },
+    {
+      "ref": "8ff2026b-c920-4ec0-b5cd-3e02ea5b8b05",
+      "dependsOn": []
+    },
+    {
+      "ref": "9dc82bd5-3510-4470-86dd-311780d11c3a",
+      "dependsOn": []
+    },
+    {
+      "ref": "9e751220-2fa8-41f2-a567-6fc66a7f3f43",
+      "dependsOn": [
+        "602a3e46-7382-4481-8575-ffdffad41df5"
+      ]
+    },
+    {
+      "ref": "a0405245-b153-4f13-ad45-2aa9df724b11",
+      "dependsOn": []
+    },
+    {
+      "ref": "b893c8d8-71fa-48f8-b41c-2644dd89e092",
+      "dependsOn": []
+    },
+    {
+      "ref": "c99323da-1a36-4d83-a481-22f18bb79793",
+      "dependsOn": []
+    },
+    {
+      "ref": "ca0870ed-1c0f-41ac-942d-dae04a588835",
+      "dependsOn": []
+    },
+    {
+      "ref": "ce9dc65f-34b6-46f3-9e7d-030c724905d1",
+      "dependsOn": [
+        "6ae117d4-2d3a-4d17-9079-5e47e160fe9e"
+      ]
+    },
+    {
+      "ref": "d434b43c-f54e-4dac-9f81-08c571106c70",
+      "dependsOn": []
+    },
+    {
+      "ref": "e996f831-f541-4b9b-895b-2db1e599e775",
+      "dependsOn": []
+    },
+    {
+      "ref": "e9d13345-d500-43c4-b867-62ba525c71c1",
+      "dependsOn": [
+        "ec4dc6dd-78e4-445b-9d08-9963e069194f"
+      ]
+    },
+    {
+      "ref": "ec4dc6dd-78e4-445b-9d08-9963e069194f",
+      "dependsOn": [
+        "33fe3d40-c621-4a48-8cdd-e7b754fac45d"
+      ]
+    },
+    {
+      "ref": "ecff0b10-1bd0-4a23-9015-8baff370d0e3",
+      "dependsOn": []
+    },
+    {
+      "ref": "edd12843-ba6d-4e5e-b6d8-1dd85bcb6f32",
+      "dependsOn": []
     },
     {
       "ref": "pkg:deb/ubuntu/base-files@12ubuntu4.7?arch=amd64&distro=ubuntu-22.04",
@@ -17344,14 +18377,14 @@
     {
       "ref": "pkg:golang/github.com/restic/restic@v0.15.0%2Bdirty",
       "dependsOn": [
-        "0be77107-f9f5-410c-8530-cefce14972ff",
-        "17f8d6fa-a1f6-439b-b0e9-56b6795f473d",
-        "26c35874-0169-4a33-9ac5-822bb6a17baf",
-        "4a2c619b-53c6-445b-aa86-64ffa2c9ba49",
-        "5ed4e75e-2159-4561-ac59-6dfb454f571f",
-        "70317628-1a3f-4b27-9983-0e840bf1fc7c",
-        "9dea56b6-d4ef-400c-8146-0142febec472",
-        "a536a8c3-4143-4737-b3d6-bf4b644150bf",
+        "09d78dae-c559-4c2e-82f5-29fc5fa69867",
+        "65eba838-d60c-41d5-b50e-eb5cc7e6e607",
+        "791b5a20-1197-4676-b3fd-25988f858d68",
+        "8ff2026b-c920-4ec0-b5cd-3e02ea5b8b05",
+        "a0405245-b153-4f13-ad45-2aa9df724b11",
+        "b893c8d8-71fa-48f8-b41c-2644dd89e092",
+        "ca0870ed-1c0f-41ac-942d-dae04a588835",
+        "ecff0b10-1bd0-4a23-9015-8baff370d0e3",
         "pkg:golang/cloud.google.com/go/compute/metadata@v0.3.0",
         "pkg:golang/cloud.google.com/go/iam@v0.13.0",
         "pkg:golang/cloud.google.com/go/storage@v1.28.1",
@@ -17696,11 +18729,11 @@
     {
       "ref": "pkg:oci/velero@sha256%3A58f551f0d89a9ef1919771bdc7475c08bc1795a50a51a57b5f14316d68fc3baa?arch=amd64&repository_url=index.docker.io%2Fvelero%2Fvelero",
       "dependsOn": [
-        "0563f510-d8d9-4d79-af5d-99b1f517628e",
-        "0e7eff1c-62e1-4902-865f-400aba549859",
-        "5634c821-69fb-4c4d-ba2a-94fcc1219cca",
-        "8f3360a2-2f14-4e4e-99d3-7e0348c2690d",
-        "ac401417-8ef2-46e4-b55d-3796180db2d1"
+        "22465bed-0201-4944-9762-e517fd254168",
+        "6371e193-973e-495e-bcca-7b9b2803aa6a",
+        "64188dd4-0bb4-466b-815d-7eff34b5fbe5",
+        "ce9dc65f-34b6-46f3-9e7d-030c724905d1",
+        "e9d13345-d500-43c4-b867-62ba525c71c1"
       ]
     }
   ],
