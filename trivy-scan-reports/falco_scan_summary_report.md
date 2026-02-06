@@ -467,7 +467,7 @@
 <h4>No Misconfigurations found</h4>
 
 <h3>Target <code>docker.io/falcosecurity/falco:0.41.0-debian (debian 12.11)</code></h3>
-<h4>Vulnerabilities (48)</h4>
+<h4>Vulnerabilities (36)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -484,25 +484,11 @@
         <td>2.2.40-1.1+deb12u2</td>
     </tr>
     <tr>
-        <td><code>dirmngr</code></td>
-        <td>CVE-2026-24882</td>
-        <td>HIGH</td>
-        <td>2.2.40-1.1</td>
-        <td></td>
-    </tr>
-    <tr>
         <td><code>gnupg</code></td>
         <td>CVE-2025-68973</td>
         <td>HIGH</td>
         <td>2.2.40-1.1</td>
         <td>2.2.40-1.1+deb12u2</td>
-    </tr>
-    <tr>
-        <td><code>gnupg</code></td>
-        <td>CVE-2026-24882</td>
-        <td>HIGH</td>
-        <td>2.2.40-1.1</td>
-        <td></td>
     </tr>
     <tr>
         <td><code>gnupg-l10n</code></td>
@@ -512,25 +498,11 @@
         <td>2.2.40-1.1+deb12u2</td>
     </tr>
     <tr>
-        <td><code>gnupg-l10n</code></td>
-        <td>CVE-2026-24882</td>
-        <td>HIGH</td>
-        <td>2.2.40-1.1</td>
-        <td></td>
-    </tr>
-    <tr>
         <td><code>gnupg-utils</code></td>
         <td>CVE-2025-68973</td>
         <td>HIGH</td>
         <td>2.2.40-1.1</td>
         <td>2.2.40-1.1+deb12u2</td>
-    </tr>
-    <tr>
-        <td><code>gnupg-utils</code></td>
-        <td>CVE-2026-24882</td>
-        <td>HIGH</td>
-        <td>2.2.40-1.1</td>
-        <td></td>
     </tr>
     <tr>
         <td><code>gnupg2</code></td>
@@ -540,25 +512,11 @@
         <td>2.2.40-1.1+deb12u2</td>
     </tr>
     <tr>
-        <td><code>gnupg2</code></td>
-        <td>CVE-2026-24882</td>
-        <td>HIGH</td>
-        <td>2.2.40-1.1</td>
-        <td></td>
-    </tr>
-    <tr>
         <td><code>gpg</code></td>
         <td>CVE-2025-68973</td>
         <td>HIGH</td>
         <td>2.2.40-1.1</td>
         <td>2.2.40-1.1+deb12u2</td>
-    </tr>
-    <tr>
-        <td><code>gpg</code></td>
-        <td>CVE-2026-24882</td>
-        <td>HIGH</td>
-        <td>2.2.40-1.1</td>
-        <td></td>
     </tr>
     <tr>
         <td><code>gpg-agent</code></td>
@@ -568,25 +526,11 @@
         <td>2.2.40-1.1+deb12u2</td>
     </tr>
     <tr>
-        <td><code>gpg-agent</code></td>
-        <td>CVE-2026-24882</td>
-        <td>HIGH</td>
-        <td>2.2.40-1.1</td>
-        <td></td>
-    </tr>
-    <tr>
         <td><code>gpg-wks-client</code></td>
         <td>CVE-2025-68973</td>
         <td>HIGH</td>
         <td>2.2.40-1.1</td>
         <td>2.2.40-1.1+deb12u2</td>
-    </tr>
-    <tr>
-        <td><code>gpg-wks-client</code></td>
-        <td>CVE-2026-24882</td>
-        <td>HIGH</td>
-        <td>2.2.40-1.1</td>
-        <td></td>
     </tr>
     <tr>
         <td><code>gpg-wks-server</code></td>
@@ -596,25 +540,11 @@
         <td>2.2.40-1.1+deb12u2</td>
     </tr>
     <tr>
-        <td><code>gpg-wks-server</code></td>
-        <td>CVE-2026-24882</td>
-        <td>HIGH</td>
-        <td>2.2.40-1.1</td>
-        <td></td>
-    </tr>
-    <tr>
         <td><code>gpgconf</code></td>
         <td>CVE-2025-68973</td>
         <td>HIGH</td>
         <td>2.2.40-1.1</td>
         <td>2.2.40-1.1+deb12u2</td>
-    </tr>
-    <tr>
-        <td><code>gpgconf</code></td>
-        <td>CVE-2026-24882</td>
-        <td>HIGH</td>
-        <td>2.2.40-1.1</td>
-        <td></td>
     </tr>
     <tr>
         <td><code>gpgsm</code></td>
@@ -624,25 +554,11 @@
         <td>2.2.40-1.1+deb12u2</td>
     </tr>
     <tr>
-        <td><code>gpgsm</code></td>
-        <td>CVE-2026-24882</td>
-        <td>HIGH</td>
-        <td>2.2.40-1.1</td>
-        <td></td>
-    </tr>
-    <tr>
         <td><code>gpgv</code></td>
         <td>CVE-2025-68973</td>
         <td>HIGH</td>
         <td>2.2.40-1.1</td>
         <td>2.2.40-1.1+deb12u2</td>
-    </tr>
-    <tr>
-        <td><code>gpgv</code></td>
-        <td>CVE-2026-24882</td>
-        <td>HIGH</td>
-        <td>2.2.40-1.1</td>
-        <td></td>
     </tr>
     <tr>
         <td><code>jq</code></td>

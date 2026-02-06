@@ -55,7 +55,7 @@
 <h4>No Misconfigurations found</h4>
 
 <h3>Target <code>gcr.io/kubecost1/cost-model:prod-2.9.6 (redhat 9.7)</code></h3>
-<h4>Vulnerabilities (5)</h4>
+<h4>Vulnerabilities (3)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -70,20 +70,6 @@
         <td>HIGH</td>
         <td>2.3.3-4.el9</td>
         <td>2.3.3-5.el9_7</td>
-    </tr>
-    <tr>
-        <td><code>gnupg2</code></td>
-        <td>CVE-2026-24881</td>
-        <td>HIGH</td>
-        <td>2.3.3-4.el9</td>
-        <td></td>
-    </tr>
-    <tr>
-        <td><code>gnupg2</code></td>
-        <td>CVE-2026-24882</td>
-        <td>HIGH</td>
-        <td>2.3.3-4.el9</td>
-        <td></td>
     </tr>
     <tr>
         <td><code>openssl</code></td>
@@ -129,7 +115,7 @@
 <h4>No Misconfigurations found</h4>
 
 <h3>Target <code>gcr.io/kubecost1/frontend:prod-2.9.6 (redhat 9.7)</code></h3>
-<h4>Vulnerabilities (5)</h4>
+<h4>Vulnerabilities (3)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -144,20 +130,6 @@
         <td>HIGH</td>
         <td>2.3.3-4.el9</td>
         <td>2.3.3-5.el9_7</td>
-    </tr>
-    <tr>
-        <td><code>gnupg2</code></td>
-        <td>CVE-2026-24881</td>
-        <td>HIGH</td>
-        <td>2.3.3-4.el9</td>
-        <td></td>
-    </tr>
-    <tr>
-        <td><code>gnupg2</code></td>
-        <td>CVE-2026-24882</td>
-        <td>HIGH</td>
-        <td>2.3.3-4.el9</td>
-        <td></td>
     </tr>
     <tr>
         <td><code>openssl</code></td>
@@ -177,7 +149,7 @@
 <h4>No Misconfigurations found</h4>
 
 <h3>Target <code>gcr.io/kubecost1/kubecost-modeling:v0.1.34 (redhat 9.7)</code></h3>
-<h4>Vulnerabilities (4)</h4>
+<h4>Vulnerabilities (2)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -192,20 +164,6 @@
         <td>HIGH</td>
         <td>2.3.3-4.el9</td>
         <td>2.3.3-5.el9_7</td>
-    </tr>
-    <tr>
-        <td><code>gnupg2</code></td>
-        <td>CVE-2026-24881</td>
-        <td>HIGH</td>
-        <td>2.3.3-4.el9</td>
-        <td></td>
-    </tr>
-    <tr>
-        <td><code>gnupg2</code></td>
-        <td>CVE-2026-24882</td>
-        <td>HIGH</td>
-        <td>2.3.3-4.el9</td>
-        <td></td>
     </tr>
     <tr>
         <td><code>openssl-libs</code></td>
@@ -244,7 +202,7 @@
 <h4>No Misconfigurations found</h4>
 
 <h3>Target <code>icr.io/ibm-finops/agent:v1.0.8 (redhat 9.7)</code></h3>
-<h4>Vulnerabilities (4)</h4>
+<h4>Vulnerabilities (2)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -259,20 +217,6 @@
         <td>HIGH</td>
         <td>2.3.3-4.el9</td>
         <td>2.3.3-5.el9_7</td>
-    </tr>
-    <tr>
-        <td><code>gnupg2</code></td>
-        <td>CVE-2026-24881</td>
-        <td>HIGH</td>
-        <td>2.3.3-4.el9</td>
-        <td></td>
-    </tr>
-    <tr>
-        <td><code>gnupg2</code></td>
-        <td>CVE-2026-24882</td>
-        <td>HIGH</td>
-        <td>2.3.3-4.el9</td>
-        <td></td>
     </tr>
     <tr>
         <td><code>openssl-libs</code></td>

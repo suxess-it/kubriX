@@ -27,7 +27,7 @@
 <h4>No Misconfigurations found</h4>
 
 <h3>Target <code>ghcr.io/suxess-it/sx-backstage:v1.43.3 (wolfi 20230201)</code></h3>
-<h4>Vulnerabilities (10)</h4>
+<h4>Vulnerabilities (13)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -45,52 +45,59 @@
     </tr>
     <tr>
         <td><code>nodejs-22</code></td>
-        <td>CVE-2026-21636</td>
+        <td>CVE-2025-55130</td>
         <td>CRITICAL</td>
         <td>22.21.1-r1</td>
-        <td>22.22.0r0</td>
+        <td>22.22.0-r0</td>
     </tr>
     <tr>
         <td><code>nodejs-22</code></td>
-        <td>CVE-2025-55130</td>
-        <td>HIGH</td>
+        <td>CVE-2026-21636</td>
+        <td>CRITICAL</td>
         <td>22.21.1-r1</td>
-        <td>22.22.0r0</td>
+        <td>22.22.0-r0</td>
     </tr>
     <tr>
         <td><code>nodejs-22</code></td>
         <td>CVE-2025-55131</td>
         <td>HIGH</td>
         <td>22.21.1-r1</td>
-        <td>22.22.0r0</td>
+        <td>22.22.0-r0</td>
     </tr>
     <tr>
         <td><code>nodejs-22</code></td>
         <td>CVE-2025-59464</td>
         <td>HIGH</td>
         <td>22.21.1-r1</td>
-        <td>22.22.0r0</td>
+        <td>22.22.0-r0</td>
     </tr>
     <tr>
         <td><code>nodejs-22</code></td>
         <td>CVE-2025-59465</td>
         <td>HIGH</td>
         <td>22.21.1-r1</td>
-        <td>22.22.0r0</td>
+        <td>22.22.0-r0</td>
     </tr>
     <tr>
         <td><code>nodejs-22</code></td>
         <td>CVE-2025-59466</td>
         <td>HIGH</td>
         <td>22.21.1-r1</td>
-        <td>22.22.0r0</td>
+        <td>22.22.0-r0</td>
     </tr>
     <tr>
         <td><code>nodejs-22</code></td>
         <td>CVE-2026-21637</td>
         <td>HIGH</td>
         <td>22.21.1-r1</td>
-        <td>22.22.0r0</td>
+        <td>22.22.0-r0</td>
+    </tr>
+    <tr>
+        <td><code>npm</code></td>
+        <td>CVE-2026-0775</td>
+        <td>HIGH</td>
+        <td>11.6.4-r0</td>
+        <td>11.9.0-r0</td>
     </tr>
     <tr>
         <td><code>npm</code></td>
@@ -106,10 +113,24 @@
         <td>11.6.4-r0</td>
         <td>11.8.0-r0</td>
     </tr>
+    <tr>
+        <td><code>npm</code></td>
+        <td>CVE-2026-24842</td>
+        <td>HIGH</td>
+        <td>11.6.4-r0</td>
+        <td>11.9.0-r0</td>
+    </tr>
+    <tr>
+        <td><code>npm</code></td>
+        <td>CVE-2026-25547</td>
+        <td>HIGH</td>
+        <td>11.6.4-r0</td>
+        <td>11.9.0-r0</td>
+    </tr>
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>Node.js</code></h3>
-<h4>Vulnerabilities (109)</h4>
+<h4>Vulnerabilities (112)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -273,6 +294,13 @@
         <td>1.14.1, 1.13.11</td>
     </tr>
     <tr>
+        <td><code>@isaacs/brace-expansion</code></td>
+        <td>CVE-2026-25547</td>
+        <td>HIGH</td>
+        <td>5.0.0</td>
+        <td>5.0.1</td>
+    </tr>
+    <tr>
         <td><code>@modelcontextprotocol/sdk</code></td>
         <td>CVE-2025-66414</td>
         <td>HIGH</td>
@@ -285,6 +313,13 @@
         <td>HIGH</td>
         <td>1.22.0</td>
         <td>1.25.2</td>
+    </tr>
+    <tr>
+        <td><code>@modelcontextprotocol/sdk</code></td>
+        <td>CVE-2026-25536</td>
+        <td>HIGH</td>
+        <td>1.22.0</td>
+        <td>1.26.0</td>
     </tr>
     <tr>
         <td><code>fast-xml-parser</code></td>
@@ -362,6 +397,13 @@
         <td>HIGH</td>
         <td>1.3.1</td>
         <td>1.3.2</td>
+    </tr>
+    <tr>
+        <td><code>npm</code></td>
+        <td>CVE-2026-0775</td>
+        <td>HIGH</td>
+        <td>11.6.4</td>
+        <td></td>
     </tr>
     <tr>
         <td><code>qs</code></td>
