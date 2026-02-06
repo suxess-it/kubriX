@@ -1,0 +1,30 @@
+on:
+  workflow_dispatch:
+
+name: create image list
+
+jobs:
+  evaluate:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v6
+
+      - name: create image lists
+        shell: bash
+        run: |
+          bash .github/create-sbom-license.sh
+          
+      - name: commit image list
+        shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git status
+          git add image-list
+          git status
+          echo "check diff and commit"
+          git diff --cached --exit-code || git commit -m "update sbom and license list"
+          git push

@@ -5,6 +5,13 @@ default:
   - values-customer.yaml
 
 applications:
+
+  - name: prometheus-operator-crds
+    annotations:
+      argocd.argoproj.io/sync-wave: "-11"
+    syncOptions:
+      - ServerSideApply=true
+
   - name: ingress-nginx
     annotations:
       argocd.argoproj.io/sync-wave: "-11"
