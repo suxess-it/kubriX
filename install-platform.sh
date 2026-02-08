@@ -439,7 +439,7 @@ wait_until_apps_synced_healthy() {
         if [[ "${sync_status}" != ${synced} ]] || [[ "${health_status}" != ${healthy} ]] ; then
           all_apps_synced="false"
           echo "====== start argocd app details for app ${app} ======"
-          kubectl -n argocd exec -it statefulsets/sx-argocd-application-controller -- argocd app get ${app} --output tree --core || true
+          kubectl exec "$(kubectl get pod -n argocd -l app.kubernetes.io/name=argocd-application-controller -o jsonpath='{.items[0].metadata.name}')" -n argocd -- argocd app get "${app}" --output tree --core || true
           echo "====== end argocd app details for app ${app} ======"
         fi
 
