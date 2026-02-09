@@ -442,37 +442,23 @@ wait_until_apps_synced_healthy() {
     local app="$1"
     local json="$2"
 
-    if has_jq; then
-      jq -r '
-        [
-          (.status.sync.status // "-"),
-          (.status.health.status // "-"),
-          (.status.operationState.phase // "-"),
-          (.status.operationState.startedAt // ""),
-          (.status.operationState.finishedAt // ""),
-          (.status.operationState.message // ""),
-          (.status.conditions[-1].type // ""),
-          (.status.conditions[-1].message // ""),
-          (.spec.destination.namespace // "")
-        ] | @tsv
-      ' <<<"$json"
-      return 0
-    fi
 
-    # fallback (more calls, but still works without jq)
-    local sync_status health_status operation_phase startedAt finishedAt op_msg dest_ns
-    sync_status=$(kubectl get application -n argocd "$app" -o jsonpath='{.status.sync.status}' 2>/dev/null || echo "-")
-    health_status=$(kubectl get application -n argocd "$app" -o jsonpath='{.status.health.status}' 2>/dev/null || echo "-")
-    operation_phase=$(kubectl get application -n argocd "$app" -o jsonpath='{.status.operationState.phase}' 2>/dev/null || echo "-")
-    startedAt=$(kubectl get application -n argocd "$app" -o jsonpath='{.status.operationState.startedAt}' 2>/dev/null || echo "")
-    finishedAt=$(kubectl get application -n argocd "$app" -o jsonpath='{.status.operationState.finishedAt}' 2>/dev/null || echo "")
-    op_msg=$(kubectl get application -n argocd "$app" -o jsonpath='{.status.operationState.message}' 2>/dev/null || echo "")
-    # conditions (fallback cannot reliably get "last" w/o jq); leave empty
-    local cond_type="" cond_msg=""
-    dest_ns=$(kubectl get application -n argocd "$app" -o jsonpath='{.spec.destination.namespace}' 2>/dev/null || echo "")
-    printf "%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\n" \
-      "${sync_status:-"-"}" "${health_status:-"-"}" "${operation_phase:-"-"}" \
-      "${startedAt:-""}" "${finishedAt:-""}" "${op_msg:-""}" "${cond_type:-""}" "${cond_msg:-""}" "${dest_ns:-""}"
+    jq -r '
+      def clean: (tostring | gsub("\t";" ") | gsub("\n";" ") | gsub("\r";" ") | gsub(" +";" "));
+      [
+        (.status.sync.status // "-"),
+        (.status.health.status // "-"),
+        (.status.operationState.phase // "-"),
+        (.status.operationState.startedAt // ""),
+        (.status.operationState.finishedAt // ""),
+        ((.status.operationState.message // "") | clean),
+        ((.status.conditions[-1].type // "") | clean),
+        ((.status.conditions[-1].message // "") | clean),
+        (.spec.destination.namespace // "")
+      ] | @tsv
+    ' <<<"$json"
+    return 0
+
   }
 
   # message precedence: op_msg > cond_type/cond_msg > "-"
