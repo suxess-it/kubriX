@@ -689,7 +689,7 @@ wait_until_apps_synced_healthy() {
 
     # render dashboard ONCE (no duplicate headers)
     render_dashboard "${elapsed_time}" "${ready_count}" "${total_count}" "${deadline_epoch}"
-    echo "$table_buf"
+    printf "%s\n" "$table_buf"
 
     if [ "${all_apps_synced}" = "true" ] ; then
       echo
