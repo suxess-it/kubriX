@@ -3,7 +3,7 @@
 # Safer prologue
 set -Eeuo pipefail
 
-# Debug if requested
+# Debug flag
 if [[ "${KUBRIX_INSTALL_DEBUG:-}" == "true" ]]; then set -x; fi
 
 # Simple error trap
