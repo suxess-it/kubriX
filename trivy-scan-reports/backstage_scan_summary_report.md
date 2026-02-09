@@ -1,6 +1,6 @@
 
 <h3>Target <code>alpine:3.17 (alpine 3.17.10)</code></h3>
-<h4>Vulnerabilities (2)</h4>
+<h4>Vulnerabilities (8)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -8,6 +8,48 @@
         <th>Severity</th>
         <th>Installed Version</th>
         <th>Fixed Version</th>
+    </tr>
+    <tr>
+        <td><code>libcrypto3</code></td>
+        <td>CVE-2025-15467</td>
+        <td>CRITICAL</td>
+        <td>3.0.15-r0</td>
+        <td>3.0.19-r0</td>
+    </tr>
+    <tr>
+        <td><code>libcrypto3</code></td>
+        <td>CVE-2025-69419</td>
+        <td>HIGH</td>
+        <td>3.0.15-r0</td>
+        <td>3.0.19-r0</td>
+    </tr>
+    <tr>
+        <td><code>libcrypto3</code></td>
+        <td>CVE-2025-69421</td>
+        <td>HIGH</td>
+        <td>3.0.15-r0</td>
+        <td>3.0.19-r0</td>
+    </tr>
+    <tr>
+        <td><code>libssl3</code></td>
+        <td>CVE-2025-15467</td>
+        <td>CRITICAL</td>
+        <td>3.0.15-r0</td>
+        <td>3.0.19-r0</td>
+    </tr>
+    <tr>
+        <td><code>libssl3</code></td>
+        <td>CVE-2025-69419</td>
+        <td>HIGH</td>
+        <td>3.0.15-r0</td>
+        <td>3.0.19-r0</td>
+    </tr>
+    <tr>
+        <td><code>libssl3</code></td>
+        <td>CVE-2025-69421</td>
+        <td>HIGH</td>
+        <td>3.0.15-r0</td>
+        <td>3.0.19-r0</td>
     </tr>
     <tr>
         <td><code>musl</code></td>
