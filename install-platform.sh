@@ -365,19 +365,22 @@ create_vault_secrets_for_backstage() {
 }
 
 
-# Drop-in refactor with better UX:
-# - single dashboard refreshed in-place (TTY) instead of tree spam
-# - "MESSAGE" column that explains *why* (from operationState.message / last condition)
-# - only prints details when something changes, or when app is Failed/Error/Degraded
-# - caches argocd controller pod name
-# - reduces kubectl calls (1 JSON fetch per app if jq exists; fallback otherwise)
+# LOG MODE ONLY drop-in refactor:
+# - No tput/clear/cursor tricks (kubectl logs friendly)
+# - One kubectl get -o json per app per loop (jq preferred)
+# - Prints:
+#   * an event line when an app state/message changes
+#   * a concise progress summary every loop
+#   * optional details + k8s evidence only on Failed/Error/Degraded
 #
 # Optional env vars:
-#   VERBOSE_TREE=true          -> print full argocd tree on detail output
-#   DETAIL_ON_PROGRESSING=true -> also show details when Progressing
-#   NO_COLOR=true             -> disable colors/symbols
-#   REFRESH_EVERY=10           -> sleep seconds between polls (default 10)
-#   STUCK_SECONDS=300          -> terminate-op if Running longer than this (default 300)
+#   REFRESH_EVERY=10            (default 10)
+#   STUCK_SECONDS=300           (default 300)
+#   VERBOSE_TREE=true           (default false; full tree on details)
+#   DETAIL_ON_PROGRESSING=true  (default false; also details on Progressing)
+#   NO_COLOR=true               (disable emojis)
+#
+# NOTE: This keeps your special cases (sx-vault, sx-backstage, sx-k8s-monitoring, bootstrap restart).
 
 wait_until_apps_synced_healthy() {
   local apps=$1
@@ -396,23 +399,26 @@ wait_until_apps_synced_healthy() {
 
   # --- helpers ---------------------------------------------------------------
 
-  local is_tty="false"
-  if [ -t 1 ]; then is_tty="true"; fi
-
-  local use_color="true"
-  if [ "${NO_COLOR:-}" != "" ]; then use_color="false"; fi
-
-  local red="" green="" yellow="" dim="" reset=""
-  if [ "${use_color}" = "true" ]; then
-    red=$'\e[31m'; green=$'\e[32m'; yellow=$'\e[33m'; dim=$'\e[2m'; reset=$'\e[0m'
-  fi
-
-  local sym_ok="✅" sym_warn="🟡" sym_bad="🔴" sym_run="🔄"
-  if [ "${use_color}" != "true" ]; then
-    sym_ok="[OK]" sym_warn="[...]" sym_bad="[!!]" sym_run="[>>]"
-  fi
-
   has_jq() { command -v jq >/dev/null 2>&1; }
+
+  # Remove CR/ANSI/control chars, collapse whitespace, cap length
+  clean_msg() {
+    # - strip ANSI escapes
+    # - replace non-printables with space
+    # - collapse whitespace
+    printf "%s" "$1" \
+      | sed -E 's/\x1B\[[0-9;]*[A-Za-z]//g' \
+      | sed 's/[^[:print:]]/ /g' \
+      | sed 's/[[:space:]]\{1,\}/ /g' \
+      | cut -c1-160
+  }
+
+  # accept ISO-ish timestamps like 2026-02-09T12:34:56 (we strip trailing Z before)
+  is_iso_ts() {
+    [[ "$1" =~ ^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}$ ]]
+  }
+
+  now_hms() { date "+%H:%M:%S" 2>/dev/null || echo ""; }
 
   get_argocd_controller_pod() {
     kubectl get pod -n argocd -l app.kubernetes.io/name=argocd-application-controller \
@@ -429,72 +435,39 @@ wait_until_apps_synced_healthy() {
     kubectl exec "${ARGOCD_CONTROLLER_POD}" -n argocd -- "$@"
   }
 
-  # sanitize message to be single-line and delimiter-safe
-  clean_msg() {
-    echo "$1" | tr '\n\r\t' ' ' | sed 's/[[:space:]]\{1,\}/ /g' | cut -c1-120
-  }
-
-  # robust: only accept ISO-like UTC timestamps without Z (we strip Z)
-  is_iso_ts() {
-    [[ "$1" =~ ^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}$ ]]
-  }
-
-  render_dashboard() {
-    local elapsed_time="$1" ready_count="$2" total_count="$3" deadline_epoch="$4"
-
-    if [ "${is_tty}" = "true" ]; then
-      tput civis 2>/dev/null || true
-      tput cup 0 0 2>/dev/null || true
-      tput ed 2>/dev/null || true
-    fi
-
-    local deadline_str
-    deadline_str=$(date -d "@${deadline_epoch}" "+%H:%M:%S" 2>/dev/null || echo "-")
-
-    echo "Waiting for apps: Synced=${synced}, Healthy=${healthy}  |  Ready ${ready_count}/${total_count}  |  Elapsed ${elapsed_time}s / Max ${max_wait_time}s  |  Deadline ${deadline_str}"
-    echo
-    printf "%-32s %-10s %-12s %-10s %-12s %s\n" "APP" "SYNC" "HEALTH" "DUR(s)" "PHASE" "MESSAGE"
-    echo "------------------------------------------------------------------------------------------------------------------------------"
-  }
+  # emojis (can disable)
+  local sym_ok="✅" sym_warn="🟡" sym_bad="🔴" sym_run="🔄"
+  if [ "${NO_COLOR:-}" != "" ]; then
+    sym_ok="[OK]" sym_warn="[...]" sym_bad="[!!]" sym_run="[>>]"
+  fi
 
   print_app_details() {
     local app="$1"
     local reason="$2"
-    echo
-    echo "====== ${sym_bad} details for ${app} (${reason}) ======"
+    printf "\n[%s] %s details (%s)\n" "$(now_hms)" "$app" "$reason"
     if [ "${VERBOSE_TREE}" = "true" ]; then
       argocd_exec argocd app get "${app}" --output tree --core || true
     else
       local tree
       tree="$(argocd_exec argocd app get "${app}" --output tree --core 2>/dev/null || true)"
       if [ -n "$tree" ]; then
-        echo "$tree" | egrep -i 'Degraded|Missing|OutOfSync|Error|Failed|Progressing|CrashLoopBackOff|ImagePull|BackOff|Pending' | head -n 60
-        if ! echo "$tree" | egrep -iq 'Degraded|Missing|OutOfSync|Error|Failed|Progressing|CrashLoopBackOff|ImagePull|BackOff|Pending'; then
-          echo "${dim}(tree has no obvious failing lines; set VERBOSE_TREE=true for full output)${reset}"
-        fi
+        echo "$tree" | egrep -i 'Degraded|Missing|OutOfSync|Error|Failed|Progressing|CrashLoopBackOff|ImagePull|BackOff|Pending|hook' | head -n 80 || true
       else
-        echo "${dim}(no tree output)${reset}"
+        echo "(no tree output)"
       fi
     fi
-    echo "====== end details for ${app} ======"
-    echo
+    printf "[%s] end details %s\n\n" "$(now_hms)" "$app"
   }
 
   print_namespace_evidence() {
     local ns="$1"
     [ -z "$ns" ] && return 0
-    echo "${dim}-- k8s evidence (ns=${ns}) --${reset}"
-    kubectl get pods -n "$ns" 2>/dev/null | egrep -i 'CrashLoopBackOff|ImagePullBackOff|ErrImagePull|CreateContainerConfigError|Error|Pending|Init:' || true
+    printf "[%s] k8s evidence ns=%s\n" "$(now_hms)" "$ns"
+    kubectl get pods -n "$ns" 2>/dev/null \
+      | egrep -i 'CrashLoopBackOff|ImagePullBackOff|ErrImagePull|CreateContainerConfigError|Error|Pending|Init:' || true
     kubectl get events -n "$ns" --sort-by=.lastTimestamp 2>/dev/null | tail -n 12 || true
-    echo "${dim}-- end k8s evidence --${reset}"
+    printf "[%s] end k8s evidence ns=%s\n" "$(now_hms)" "$ns"
   }
-
-  cleanup_ui() {
-    if [ "${is_tty}" = "true" ]; then
-      tput cnorm 2>/dev/null || true
-    fi
-  }
-  trap cleanup_ui EXIT
 
   # --- main loop -------------------------------------------------------------
 
@@ -503,52 +476,58 @@ wait_until_apps_synced_healthy() {
 
   local k8smonitoring_restarted="false"
 
+  # previous states for change detection
   declare -A prev_sync prev_health prev_phase prev_msg
-
-  local now_epoch deadline_epoch
-  now_epoch=$(date +%s 2>/dev/null || echo 0)
-  deadline_epoch=$((now_epoch + max_wait_time))
 
   while [ $SECONDS -lt $end ]; do
     local all_apps_synced="true"
     local ready_count=0
     local total_count=0
-    local elapsed_time=$((SECONDS-start))
 
     # check if sx-boostrap-app already failed and restart sync
     local bootstrap_app="sx-bootstrap-app"
     local operation_state_bootstrap_app
-    operation_state_bootstrap_app=$(kubectl get application -n argocd "${bootstrap_app}" -o jsonpath='{.status.operationState}' 2>/dev/null)
+    operation_state_bootstrap_app=$(kubectl get application -n argocd "${bootstrap_app}" -o jsonpath='{.status.operationState}' 2>/dev/null || true)
     if [ "${operation_state_bootstrap_app}" != "" ] ; then
       local operation_phase_bootstrap_app
-      operation_phase_bootstrap_app=$(kubectl get application -n argocd "${bootstrap_app}" -o jsonpath='{.status.operationState.phase}' 2>/dev/null)
+      operation_phase_bootstrap_app=$(kubectl get application -n argocd "${bootstrap_app}" -o jsonpath='{.status.operationState.phase}' 2>/dev/null || true)
       if [ "${operation_phase_bootstrap_app}" = "Failed" ] || [ "${operation_phase_bootstrap_app}" = "Error" ] ; then
-        echo "sx-boostrap-app sync failed. Restarting sync ..."
+        printf "[%s] %s sync failed -> restarting sync\n" "$(now_hms)" "$bootstrap_app"
         argocd_exec argocd app terminate-op "$bootstrap_app" --core || true
         argocd_exec argocd app sync "$bootstrap_app" --async --core || true
       fi
     fi
 
-    local table_buf=""
+    # summary list of not-ready apps for this loop
+    local not_ready_summary=""
+    local first_not_ready="true"
 
     for app in ${apps} ; do
       total_count=$((total_count+1))
 
-      if ! kubectl get application -n argocd "${app}" >/dev/null 2>&1 ; then
-        all_apps_synced="false"
-        table_buf+=$(printf "%-32s %-10s %-12s %-10s %-12s %s\n" "${app}" "-" "-" "-" "-" "Application not found")
-        continue
-      fi
-
-      # Fetch JSON once per app
+      # Use fully-qualified resource to avoid ambiguity
       local app_json
-      app_json="$(kubectl get application -n argocd "${app}" -o json 2>/dev/null)" || {
+      app_json="$(kubectl get applications.argoproj.io -n argocd "${app}" -o json 2>/dev/null)" || {
         all_apps_synced="false"
-        table_buf+=$(printf "%-32s %-10s %-12s %-10s %-12s %s\n" "${app}" "-" "-" "-" "-" "Failed to fetch Application JSON")
+
+        if [ "${first_not_ready}" = "true" ]; then
+          not_ready_summary+="${app}(not-created)"
+          first_not_ready="false"
+        else
+          not_ready_summary+=", ${app}(not-created)"
+        fi
+
+        # event on transition to not-found
+        if [ "${prev_phase[$app]:-}" != "NOTFOUND" ]; then
+          printf "[%s] %s: Application not found (yet)\n" "$(now_hms)" "$app"
+          prev_phase[$app]="NOTFOUND"
+          prev_sync[$app]="-"
+          prev_health[$app]="-"
+          prev_msg[$app]="Application not found"
+        fi
         continue
       }
 
-      # Extract fields safely (NO TSV parsing)
       local sync_status health_status operation_phase startedAt finishedAt op_msg cond_type cond_msg dest_ns
       if has_jq; then
         sync_status=$(jq -r '.status.sync.status // "-"' <<<"$app_json")
@@ -561,80 +540,66 @@ wait_until_apps_synced_healthy() {
         cond_msg=$(jq -r '.status.conditions[-1].message // ""' <<<"$app_json")
         dest_ns=$(jq -r '.spec.destination.namespace // ""' <<<"$app_json")
       else
-        sync_status=$(kubectl get application -n argocd "$app" -o jsonpath='{.status.sync.status}' 2>/dev/null || echo "-")
-        health_status=$(kubectl get application -n argocd "$app" -o jsonpath='{.status.health.status}' 2>/dev/null || echo "-")
-        operation_phase=$(kubectl get application -n argocd "$app" -o jsonpath='{.status.operationState.phase}' 2>/dev/null || echo "-")
-        startedAt=$(kubectl get application -n argocd "$app" -o jsonpath='{.status.operationState.startedAt}' 2>/dev/null | sed 's/Z$//' || true)
-        finishedAt=$(kubectl get application -n argocd "$app" -o jsonpath='{.status.operationState.finishedAt}' 2>/dev/null | sed 's/Z$//' || true)
-        op_msg=$(kubectl get application -n argocd "$app" -o jsonpath='{.status.operationState.message}' 2>/dev/null || echo "")
+        # fallback uses jsonpath (more calls)
+        sync_status=$(kubectl get applications.argoproj.io -n argocd "$app" -o jsonpath='{.status.sync.status}' 2>/dev/null || echo "-")
+        health_status=$(kubectl get applications.argoproj.io -n argocd "$app" -o jsonpath='{.status.health.status}' 2>/dev/null || echo "-")
+        operation_phase=$(kubectl get applications.argoproj.io -n argocd "$app" -o jsonpath='{.status.operationState.phase}' 2>/dev/null || echo "-")
+        startedAt=$(kubectl get applications.argoproj.io -n argocd "$app" -o jsonpath='{.status.operationState.startedAt}' 2>/dev/null | sed 's/Z$//' || true)
+        finishedAt=$(kubectl get applications.argoproj.io -n argocd "$app" -o jsonpath='{.status.operationState.finishedAt}' 2>/dev/null | sed 's/Z$//' || true)
+        op_msg=$(kubectl get applications.argoproj.io -n argocd "$app" -o jsonpath='{.status.operationState.message}' 2>/dev/null || echo "")
         cond_type=""
         cond_msg=""
-        dest_ns=$(kubectl get application -n argocd "$app" -o jsonpath='{.spec.destination.namespace}' 2>/dev/null || echo "")
+        dest_ns=$(kubectl get applications.argoproj.io -n argocd "$app" -o jsonpath='{.spec.destination.namespace}' 2>/dev/null || echo "")
       fi
 
       # special case for sx-vault
       if [[ "${app}" == "sx-vault" && "${sync_status}" == "${synced}" && "${health_status}" == "${healthy}" ]]; then
         if [ ! -f ./.secrets/secrettemp/secrets-applied ] && [ "${KUBRIX_GENERATE_SECRETS}" = "true" ] ; then
-          echo "sx-vault is synced and healthy — applying pushsecrets"
-          echo
+          printf "[%s] sx-vault is synced and healthy — applying pushsecrets\n" "$(now_hms)"
           kubectl apply -f ./.secrets/secrettemp/pushsecrets.yaml
           touch ./.secrets/secrettemp/secrets-applied
-          echo "--------------------"
         fi
       fi
 
       # special case for sx-backstage
       if [[ "${app}" == "sx-backstage" && "${sync_status}" == "${synced}" ]]; then
         if [ ! -f ./backstage-vault-secrets-created ]; then
-          echo "sx-backstage is synced — creating vault secrets"
-          echo
+          printf "[%s] sx-backstage is synced — creating vault secrets\n" "$(now_hms)"
           create_vault_secrets_for_backstage
           touch ./backstage-vault-secrets-created
-          echo "--------------------"
         fi
       fi
 
       # special case for k8s-monitoring re-sync once
       if [[ "${app}" == "sx-k8s-monitoring" && "${sync_status}" == "${synced}" && "${health_status}" == "${healthy}" ]]; then
         if [ "${k8smonitoring_restarted}" != "true" ]; then
+          printf "[%s] sx-k8s-monitoring healthy -> re-sync once (workaround)\n" "$(now_hms)"
           argocd_exec argocd app sync "$app" --async --core || true
           k8smonitoring_restarted="true"
         fi
       fi
 
-      # compute sync duration safely
+      # compute sync duration safely (optional; used for stuck detection)
       local sync_duration="-"
       if [ -n "${startedAt}" ] && is_iso_ts "${startedAt}"; then
-        local sync_started_seconds sync_finished_seconds now_seconds
-        sync_started_seconds=$(convert_to_seconds "${startedAt}")
-
+        local started_s now_s finished_s
+        started_s=$(convert_to_seconds "${startedAt}")
         if [ -n "${finishedAt}" ] && is_iso_ts "${finishedAt}"; then
-          sync_finished_seconds=$(convert_to_seconds "${finishedAt}")
-          sync_duration=$((sync_finished_seconds - sync_started_seconds))
+          finished_s=$(convert_to_seconds "${finishedAt}")
+          sync_duration=$((finished_s - started_s))
         else
-          now_seconds=$(utc_now_seconds)
-          sync_duration=$((now_seconds - sync_started_seconds))
+          now_s=$(utc_now_seconds)
+          sync_duration=$((now_s - started_s))
         fi
       fi
 
       # stuck detector & restart
-      if [ "${operation_phase}" = "Running" ] && [ "${sync_duration}" != "-" ] && [ "${sync_duration}" -gt "${STUCK_SECONDS}" ] \
+      if { [ "${operation_phase}" = "Running" ] && [ "${sync_duration}" != "-" ] && [ "${sync_duration}" -gt "${STUCK_SECONDS}" ]; } \
          || [ "${operation_phase}" = "Failed" ] || [ "${operation_phase}" = "Error" ]; then
-        echo "sync of app ${app} gets terminated because it took longer than ${STUCK_SECONDS}s or failed (${operation_phase})"
+        printf "[%s] %s sync terminated (phase=%s, dur=%s) -> restart\n" "$(now_hms)" "$app" "$operation_phase" "$sync_duration"
         argocd_exec argocd app terminate-op "$app" --core || true
-        echo "wait for 10 seconds"
         sleep 10
-        echo "restart sync for app ${app}"
         argocd_exec argocd app sync "$app" --async --core || true
-      fi
-
-      # determine readiness
-      local is_ready="false"
-      if [[ "${sync_status}" == "${synced}" && "${health_status}" == "${healthy}" ]]; then
-        is_ready="true"
-        ready_count=$((ready_count+1))
-      else
-        all_apps_synced="false"
       fi
 
       # message precedence: op_msg > condition
@@ -648,16 +613,22 @@ wait_until_apps_synced_healthy() {
       fi
       msg="$(clean_msg "${msg_raw}")"
 
-      local marker="${sym_warn}"
-      if [ "${is_ready}" = "true" ]; then
-        marker="${sym_ok}"
-      elif [ "${operation_phase}" = "Running" ]; then
-        marker="${sym_run}"
-      elif [ "${operation_phase}" = "Failed" ] || [ "${operation_phase}" = "Error" ] || [ "${health_status}" = "Degraded" ]; then
-        marker="${sym_bad}"
+      # determine readiness
+      local is_ready="false"
+      if [[ "${sync_status}" == "${synced}" && "${health_status}" == "${healthy}" ]]; then
+        is_ready="true"
+        ready_count=$((ready_count+1))
+      else
+        all_apps_synced="false"
+        if [ "${first_not_ready}" = "true" ]; then
+          not_ready_summary+="${app}(${sync_status}/${health_status}/${operation_phase})"
+          first_not_ready="false"
+        else
+          not_ready_summary+=", ${app}(${sync_status}/${health_status}/${operation_phase})"
+        fi
       fi
 
-      # change detection
+      # change detection -> event line
       local key="${app}"
       local changed="false"
       if [ "${prev_sync[$key]:-}" != "${sync_status}" ] || [ "${prev_health[$key]:-}" != "${health_status}" ] || \
@@ -667,9 +638,25 @@ wait_until_apps_synced_healthy() {
 
       if [ "${changed}" = "true" ]; then
         local ts
-        ts=$(date "+%H:%M:%S" 2>/dev/null || echo "")
-        echo "[${ts}] ${app}: sync ${prev_sync[$key]:--}->${sync_status}, health ${prev_health[$key]:--}->${health_status}, phase ${prev_phase[$key]:--}->${operation_phase} | ${msg}"
+        ts="$(now_hms)"
 
+        local marker="${sym_warn}"
+        if [ "${is_ready}" = "true" ]; then
+          marker="${sym_ok}"
+        elif [ "${operation_phase}" = "Running" ]; then
+          marker="${sym_run}"
+        elif [ "${operation_phase}" = "Failed" ] || [ "${operation_phase}" = "Error" ] || [ "${health_status}" = "Degraded" ]; then
+          marker="${sym_bad}"
+        fi
+
+        printf '[%s] %s %s: sync %s->%s, health %s->%s, phase %s->%s | %s\n' \
+          "$ts" "$marker" "$app" \
+          "${prev_sync[$key]:--}" "$sync_status" \
+          "${prev_health[$key]:--}" "$health_status" \
+          "${prev_phase[$key]:--}" "$operation_phase" \
+          "$msg"
+
+        # details only when actually useful
         if [ "${operation_phase}" = "Failed" ] || [ "${operation_phase}" = "Error" ] || [ "${health_status}" = "Degraded" ]; then
           print_app_details "${app}" "phase=${operation_phase}, health=${health_status}"
           print_namespace_evidence "${dest_ns}"
@@ -682,39 +669,29 @@ wait_until_apps_synced_healthy() {
       prev_health[$key]="${health_status}"
       prev_phase[$key]="${operation_phase}"
       prev_msg[$key]="${msg}"
-
-      table_buf+=$(printf "%-32s %-10s %-12s %-10s %-12s %s\n" \
-        "${marker} ${app}" "${sync_status:-"-"}" "${health_status:-"-"}" "${sync_duration:-"-"}" "${operation_phase:-"-"}" "${msg}")
     done
 
-    # render dashboard ONCE (no duplicate headers)
-    render_dashboard "${elapsed_time}" "${ready_count}" "${total_count}" "${deadline_epoch}"
-    printf "%s\n" "$table_buf"
+    local elapsed_time=$((SECONDS-start))
+    printf "[%s] Progress: %d/%d ready | elapsed=%ss/%ss\n" "$(now_hms)" "$ready_count" "$total_count" "$elapsed_time" "$max_wait_time"
+    if [ -n "$not_ready_summary" ]; then
+      printf "[%s] Not ready: %s\n" "$(now_hms)" "$(clean_msg "$not_ready_summary")"
+    fi
 
     if [ "${all_apps_synced}" = "true" ] ; then
-      echo
-      echo "${apps} apps are synced and healthy."
+      printf "[%s] All apps are synced and healthy.\n" "$(now_hms)"
       break
     fi
 
-    echo
-    echo "--------------------"
-    echo "elapsed time: ${elapsed_time} seconds"
-    echo "max wait time: ${max_wait_time} seconds"
-    echo "wait another ${REFRESH_EVERY} seconds"
-    echo "hint: set VERBOSE_TREE=true for full trees; DETAIL_ON_PROGRESSING=true for more details"
-    echo "--------------------"
-    show_node_resources
-    echo "--------------------"
+    show_node_resources || true
     sleep "${REFRESH_EVERY}"
   done
 
   if [ "${all_apps_synced}" != "true" ] ; then
-    echo "not all apps synced and healthy after limit reached :("
+    printf "[%s] not all apps synced and healthy after limit reached :(\n" "$(now_hms)"
     analyze_all_unhealthy_apps "${apps}"
     exit 1
   else
-    echo "all apps are synced."
+    printf "[%s] all apps are synced.\n" "$(now_hms)"
   fi
 }
 
