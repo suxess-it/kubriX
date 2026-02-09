@@ -412,7 +412,8 @@ wait_until_apps_synced_healthy() {
     sym_ok="[OK]" sym_warn="[...]" sym_bad="[!!]" sym_run="[>>]"
   fi
 
-  # cache controller pod name once (recomputed if missing)
+  has_jq() { command -v jq >/dev/null 2>&1; }
+
   get_argocd_controller_pod() {
     kubectl get pod -n argocd -l app.kubernetes.io/name=argocd-application-controller \
       -o jsonpath='{.items[0].metadata.name}' 2>/dev/null
@@ -422,61 +423,22 @@ wait_until_apps_synced_healthy() {
   ARGOCD_CONTROLLER_POD="$(get_argocd_controller_pod)"
 
   argocd_exec() {
-    # shellcheck disable=SC2086
     if [ -z "${ARGOCD_CONTROLLER_POD}" ] || ! kubectl get pod -n argocd "${ARGOCD_CONTROLLER_POD}" >/dev/null 2>&1; then
       ARGOCD_CONTROLLER_POD="$(get_argocd_controller_pod)"
     fi
     kubectl exec "${ARGOCD_CONTROLLER_POD}" -n argocd -- "$@"
   }
 
-  # Return app JSON (fastest single fetch). Uses jq if available, otherwise returns empty.
-  has_jq() { command -v jq >/dev/null 2>&1; }
-
-  get_app_json() {
-    kubectl get application -n argocd "$1" -o json 2>/dev/null || return 1
+  # sanitize message to be single-line and delimiter-safe
+  clean_msg() {
+    echo "$1" | tr '\n\r\t' ' ' | sed 's/[[:space:]]\{1,\}/ /g' | cut -c1-120
   }
 
-  # Extract fields from JSON using jq (preferred). Fallback to jsonpath calls if jq missing.
-  # Outputs: sync_status|health_status|operation_phase|startedAt|finishedAt|op_msg|cond_type|cond_msg|dest_ns
-  extract_fields() {
-    local app="$1"
-    local json="$2"
-
-
-    jq -r '
-      def clean: (tostring | gsub("\t";" ") | gsub("\n";" ") | gsub("\r";" ") | gsub(" +";" "));
-      [
-        (.status.sync.status // "-"),
-        (.status.health.status // "-"),
-        (.status.operationState.phase // "-"),
-        (.status.operationState.startedAt // ""),
-        (.status.operationState.finishedAt // ""),
-        ((.status.operationState.message // "") | clean),
-        ((.status.conditions[-1].type // "") | clean),
-        ((.status.conditions[-1].message // "") | clean),
-        (.spec.destination.namespace // "")
-      ] | @tsv
-    ' <<<"$json"
-    return 0
-
+  # robust: only accept ISO-like UTC timestamps without Z (we strip Z)
+  is_iso_ts() {
+    [[ "$1" =~ ^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}$ ]]
   }
 
-  # message precedence: op_msg > cond_type/cond_msg > "-"
-  summarize_message() {
-    local op_msg="$1" cond_type="$2" cond_msg="$3"
-    local msg=""
-    if [ -n "${op_msg}" ]; then
-      msg="${op_msg}"
-    elif [ -n "${cond_type}${cond_msg}" ]; then
-      msg="${cond_type}: ${cond_msg}"
-    else
-      msg="-"
-    fi
-    msg=$(echo "$msg" | tr '\n' ' ' | sed 's/[[:space:]]\{1,\}/ /g' | cut -c1-120)
-    echo "$msg"
-  }
-
-  # dashboard refresh
   render_dashboard() {
     local elapsed_time="$1" ready_count="$2" total_count="$3" deadline_epoch="$4"
 
@@ -495,7 +457,6 @@ wait_until_apps_synced_healthy() {
     echo "------------------------------------------------------------------------------------------------------------------------------"
   }
 
-  # detail printing (tree filtered by default)
   print_app_details() {
     local app="$1"
     local reason="$2"
@@ -504,7 +465,6 @@ wait_until_apps_synced_healthy() {
     if [ "${VERBOSE_TREE}" = "true" ]; then
       argocd_exec argocd app get "${app}" --output tree --core || true
     else
-      # filter tree to the likely interesting lines
       local tree
       tree="$(argocd_exec argocd app get "${app}" --output tree --core 2>/dev/null || true)"
       if [ -n "$tree" ]; then
@@ -520,7 +480,6 @@ wait_until_apps_synced_healthy() {
     echo
   }
 
-  # optional: kubernetes events when degraded (best "why")
   print_namespace_evidence() {
     local ns="$1"
     [ -z "$ns" ] && return 0
@@ -530,7 +489,6 @@ wait_until_apps_synced_healthy() {
     echo "${dim}-- end k8s evidence --${reset}"
   }
 
-  # restore cursor
   cleanup_ui() {
     if [ "${is_tty}" = "true" ]; then
       tput cnorm 2>/dev/null || true
@@ -545,10 +503,8 @@ wait_until_apps_synced_healthy() {
 
   local k8smonitoring_restarted="false"
 
-  # previous states for change detection
   declare -A prev_sync prev_health prev_phase prev_msg
 
-  # deadline epoch for display (best effort)
   local now_epoch deadline_epoch
   now_epoch=$(date +%s 2>/dev/null || echo 0)
   deadline_epoch=$((now_epoch + max_wait_time))
@@ -557,6 +513,7 @@ wait_until_apps_synced_healthy() {
     local all_apps_synced="true"
     local ready_count=0
     local total_count=0
+    local elapsed_time=$((SECONDS-start))
 
     # check if sx-boostrap-app already failed and restart sync
     local bootstrap_app="sx-bootstrap-app"
@@ -572,15 +529,7 @@ wait_until_apps_synced_healthy() {
       fi
     fi
 
-    local elapsed_time=$((SECONDS-start))
-
-    # dashboard header (before rows)
-    # We render header later after we know counts, but if you prefer steady top,
-    # we’ll render with 0/0 then overwrite in TTY; simplest is render after loop builds rows.
     local table_buf=""
-    table_buf+=$(printf "%-32s %-10s %-12s %-10s %-12s %s\n" "APP" "SYNC" "HEALTH" "DUR(s)" "PHASE" "MESSAGE")
-    table_buf+=$'\n'
-    table_buf+="------------------------------------------------------------------------------------------------------------------------------"$'\n'
 
     for app in ${apps} ; do
       total_count=$((total_count+1))
@@ -591,17 +540,37 @@ wait_until_apps_synced_healthy() {
         continue
       fi
 
-      # one fetch for everything
+      # Fetch JSON once per app
       local app_json
-      app_json="$(get_app_json "${app}")" || {
+      app_json="$(kubectl get application -n argocd "${app}" -o json 2>/dev/null)" || {
         all_apps_synced="false"
         table_buf+=$(printf "%-32s %-10s %-12s %-10s %-12s %s\n" "${app}" "-" "-" "-" "-" "Failed to fetch Application JSON")
         continue
       }
 
+      # Extract fields safely (NO TSV parsing)
       local sync_status health_status operation_phase startedAt finishedAt op_msg cond_type cond_msg dest_ns
-      IFS=$'\t' read -r sync_status health_status operation_phase startedAt finishedAt op_msg cond_type cond_msg dest_ns \
-        < <(extract_fields "${app}" "${app_json}")
+      if has_jq; then
+        sync_status=$(jq -r '.status.sync.status // "-"' <<<"$app_json")
+        health_status=$(jq -r '.status.health.status // "-"' <<<"$app_json")
+        operation_phase=$(jq -r '.status.operationState.phase // "-"' <<<"$app_json")
+        startedAt=$(jq -r '.status.operationState.startedAt // ""' <<<"$app_json" | sed 's/Z$//')
+        finishedAt=$(jq -r '.status.operationState.finishedAt // ""' <<<"$app_json" | sed 's/Z$//')
+        op_msg=$(jq -r '.status.operationState.message // ""' <<<"$app_json")
+        cond_type=$(jq -r '.status.conditions[-1].type // ""' <<<"$app_json")
+        cond_msg=$(jq -r '.status.conditions[-1].message // ""' <<<"$app_json")
+        dest_ns=$(jq -r '.spec.destination.namespace // ""' <<<"$app_json")
+      else
+        sync_status=$(kubectl get application -n argocd "$app" -o jsonpath='{.status.sync.status}' 2>/dev/null || echo "-")
+        health_status=$(kubectl get application -n argocd "$app" -o jsonpath='{.status.health.status}' 2>/dev/null || echo "-")
+        operation_phase=$(kubectl get application -n argocd "$app" -o jsonpath='{.status.operationState.phase}' 2>/dev/null || echo "-")
+        startedAt=$(kubectl get application -n argocd "$app" -o jsonpath='{.status.operationState.startedAt}' 2>/dev/null | sed 's/Z$//' || true)
+        finishedAt=$(kubectl get application -n argocd "$app" -o jsonpath='{.status.operationState.finishedAt}' 2>/dev/null | sed 's/Z$//' || true)
+        op_msg=$(kubectl get application -n argocd "$app" -o jsonpath='{.status.operationState.message}' 2>/dev/null || echo "")
+        cond_type=""
+        cond_msg=""
+        dest_ns=$(kubectl get application -n argocd "$app" -o jsonpath='{.spec.destination.namespace}' 2>/dev/null || echo "")
+      fi
 
       # special case for sx-vault
       if [[ "${app}" == "sx-vault" && "${sync_status}" == "${synced}" && "${health_status}" == "${healthy}" ]]; then
@@ -614,7 +583,7 @@ wait_until_apps_synced_healthy() {
         fi
       fi
 
-      # special case for sx-backstage - create vault secrets when backstage is synced.
+      # special case for sx-backstage
       if [[ "${app}" == "sx-backstage" && "${sync_status}" == "${synced}" ]]; then
         if [ ! -f ./backstage-vault-secrets-created ]; then
           echo "sx-backstage is synced — creating vault secrets"
@@ -633,16 +602,14 @@ wait_until_apps_synced_healthy() {
         fi
       fi
 
-      # compute sync duration (UTC timestamps)
+      # compute sync duration safely
       local sync_duration="-"
-      if [ -n "${startedAt}" ]; then
-        local sync_started sync_finished sync_started_seconds sync_finished_seconds now_seconds
-        sync_started=$(echo "${startedAt}" | sed 's/Z$//')
-        sync_finished=$(echo "${finishedAt}" | sed 's/Z$//')
-        sync_started_seconds=$(convert_to_seconds "${sync_started}")
+      if [ -n "${startedAt}" ] && is_iso_ts "${startedAt}"; then
+        local sync_started_seconds sync_finished_seconds now_seconds
+        sync_started_seconds=$(convert_to_seconds "${startedAt}")
 
-        if [ -n "${sync_finished}" ]; then
-          sync_finished_seconds=$(convert_to_seconds "${sync_finished}")
+        if [ -n "${finishedAt}" ] && is_iso_ts "${finishedAt}"; then
+          sync_finished_seconds=$(convert_to_seconds "${finishedAt}")
           sync_duration=$((sync_finished_seconds - sync_started_seconds))
         else
           now_seconds=$(utc_now_seconds)
@@ -650,7 +617,7 @@ wait_until_apps_synced_healthy() {
         fi
       fi
 
-      # stuck detector & restart (same semantics as your original, but clearer)
+      # stuck detector & restart
       if [ "${operation_phase}" = "Running" ] && [ "${sync_duration}" != "-" ] && [ "${sync_duration}" -gt "${STUCK_SECONDS}" ] \
          || [ "${operation_phase}" = "Failed" ] || [ "${operation_phase}" = "Error" ]; then
         echo "sync of app ${app} gets terminated because it took longer than ${STUCK_SECONDS}s or failed (${operation_phase})"
@@ -670,11 +637,17 @@ wait_until_apps_synced_healthy() {
         all_apps_synced="false"
       fi
 
-      # message column
-      local msg
-      msg="$(summarize_message "${op_msg}" "${cond_type}" "${cond_msg}")"
+      # message precedence: op_msg > condition
+      local msg_raw msg
+      if [ -n "${op_msg}" ]; then
+        msg_raw="${op_msg}"
+      elif [ -n "${cond_type}${cond_msg}" ]; then
+        msg_raw="${cond_type}: ${cond_msg}"
+      else
+        msg_raw="-"
+      fi
+      msg="$(clean_msg "${msg_raw}")"
 
-      # nice status marker
       local marker="${sym_warn}"
       if [ "${is_ready}" = "true" ]; then
         marker="${sym_ok}"
@@ -684,7 +657,7 @@ wait_until_apps_synced_healthy() {
         marker="${sym_bad}"
       fi
 
-      # change detection -> print a short transition line + details only when meaningful
+      # change detection
       local key="${app}"
       local changed="false"
       if [ "${prev_sync[$key]:-}" != "${sync_status}" ] || [ "${prev_health[$key]:-}" != "${health_status}" ] || \
@@ -693,16 +666,12 @@ wait_until_apps_synced_healthy() {
       fi
 
       if [ "${changed}" = "true" ]; then
-        # print a concise transition "event" line (outside dashboard)
-        # In TTY, this will appear briefly until next refresh; still useful for logs (non-TTY)
         local ts
         ts=$(date "+%H:%M:%S" 2>/dev/null || echo "")
         echo "[${ts}] ${app}: sync ${prev_sync[$key]:--}->${sync_status}, health ${prev_health[$key]:--}->${health_status}, phase ${prev_phase[$key]:--}->${operation_phase} | ${msg}"
 
-        # show details only when it's actually helpful
         if [ "${operation_phase}" = "Failed" ] || [ "${operation_phase}" = "Error" ] || [ "${health_status}" = "Degraded" ]; then
           print_app_details "${app}" "phase=${operation_phase}, health=${health_status}"
-          # optional k8s evidence (huge UX win for degraded apps)
           print_namespace_evidence "${dest_ns}"
         elif [ "${DETAIL_ON_PROGRESSING}" = "true" ] && [ "${health_status}" = "Progressing" ]; then
           print_app_details "${app}" "health=Progressing"
@@ -718,7 +687,7 @@ wait_until_apps_synced_healthy() {
         "${marker} ${app}" "${sync_status:-"-"}" "${health_status:-"-"}" "${sync_duration:-"-"}" "${operation_phase:-"-"}" "${msg}")
     done
 
-    # render dashboard
+    # render dashboard ONCE (no duplicate headers)
     render_dashboard "${elapsed_time}" "${ready_count}" "${total_count}" "${deadline_epoch}"
     echo "$table_buf"
 
@@ -748,6 +717,7 @@ wait_until_apps_synced_healthy() {
     echo "all apps are synced."
   fi
 }
+
 
 analyze_all_unhealthy_apps() {
   local apps=$1
