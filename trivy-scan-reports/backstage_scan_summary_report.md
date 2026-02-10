@@ -165,7 +165,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>Node.js</code></h3>
-<h4>Vulnerabilities (111)</h4>
+<h4>Vulnerabilities (112)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -355,6 +355,13 @@
         <td>HIGH</td>
         <td>1.22.0</td>
         <td>1.26.0</td>
+    </tr>
+    <tr>
+        <td><code>axios</code></td>
+        <td>CVE-2026-25639</td>
+        <td>HIGH</td>
+        <td>1.12.2</td>
+        <td>1.13.5</td>
     </tr>
     <tr>
         <td><code>fast-xml-parser</code></td>
