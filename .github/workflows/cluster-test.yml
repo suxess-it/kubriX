@@ -392,6 +392,8 @@ jobs:
           E2E_KARGO_VERSION="v1.9.2"
           E2E_MIMIR_USERNAME=$( kubectl get secret -n grafana mimir-read-creds -o jsonpath='{.data.username}' | base64 -d )
           E2E_MIMIR_PASSWORD=$( kubectl get secret -n grafana mimir-read-creds -o jsonpath='{.data.password}' | base64 -d )
+          E2E_LOKI_USERNAME=$( kubectl get secret -n grafana loki-read-creds -o jsonpath='{.data.username}' | base64 -d )
+          E2E_LOKI_PASSWORD=$( kubectl get secret -n grafana loki-read-creds -o jsonpath='{.data.password}' | base64 -d )
           testkube run testworkflow -l type=${KUBRIX_TARGET_TYPE} \
             --variable E2E_TEST_GH_USERNAME=${E2E_TEST_GH_USERNAME} \
             --variable E2E_TEST_GH_PASSWORD=${E2E_TEST_GH_PASSWORD} \
@@ -410,6 +412,8 @@ jobs:
             --variable E2E_TEST_PR_NUMBER=${E2E_TEST_PR_NUMBER} \
             --variable E2E_MIMIR_USERNAME=${E2E_MIMIR_USERNAME} \
             --variable E2E_MIMIR_PASSWORD=${E2E_MIMIR_PASSWORD} \
+            --variable E2E_LOKI_USERNAME=${E2E_LOKI_USERNAME} \
+            --variable E2E_LOKI_PASSWORD=${E2E_LOKI_PASSWORD} \
             -f -d
 
       - name: Release a lock
