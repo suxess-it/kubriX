@@ -131,7 +131,7 @@
     <tr>
         <td><code>libpython3.11-minimal</code></td>
         <td>CVE-2025-13836</td>
-        <td>CRITICAL</td>
+        <td>HIGH</td>
         <td>3.11.2-6+deb12u6</td>
         <td></td>
     </tr>
@@ -166,7 +166,7 @@
     <tr>
         <td><code>libpython3.11-stdlib</code></td>
         <td>CVE-2025-13836</td>
-        <td>CRITICAL</td>
+        <td>HIGH</td>
         <td>3.11.2-6+deb12u6</td>
         <td></td>
     </tr>
@@ -292,7 +292,7 @@
     <tr>
         <td><code>python3.11</code></td>
         <td>CVE-2025-13836</td>
-        <td>CRITICAL</td>
+        <td>HIGH</td>
         <td>3.11.2-6+deb12u6</td>
         <td></td>
     </tr>
@@ -327,7 +327,7 @@
     <tr>
         <td><code>python3.11-minimal</code></td>
         <td>CVE-2025-13836</td>
-        <td>CRITICAL</td>
+        <td>HIGH</td>
         <td>3.11.2-6+deb12u6</td>
         <td></td>
     </tr>
@@ -469,6 +469,13 @@
     </tr>
     <tr>
         <td><code>stdlib</code></td>
+        <td>CVE-2025-68121</td>
+        <td>CRITICAL</td>
+        <td>v1.22.5</td>
+        <td>1.24.13, 1.25.7, 1.26.0-rc.3</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
         <td>CVE-2024-34156</td>
         <td>HIGH</td>
         <td>v1.22.5</td>
@@ -515,13 +522,6 @@
         <td>HIGH</td>
         <td>v1.22.5</td>
         <td>1.24.12, 1.25.6</td>
-    </tr>
-    <tr>
-        <td><code>stdlib</code></td>
-        <td>CVE-2025-68121</td>
-        <td>HIGH</td>
-        <td>v1.22.5</td>
-        <td>1.24.13, 1.25.7, 1.26.0-rc.3</td>
     </tr>
 </table>
 <h4>No Misconfigurations found</h4>
@@ -653,6 +653,13 @@
     </tr>
     <tr>
         <td><code>stdlib</code></td>
+        <td>CVE-2025-68121</td>
+        <td>CRITICAL</td>
+        <td>v1.23.7</td>
+        <td>1.24.13, 1.25.7, 1.26.0-rc.3</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
         <td>CVE-2025-47907</td>
         <td>HIGH</td>
         <td>v1.23.7</td>
@@ -692,13 +699,6 @@
         <td>HIGH</td>
         <td>v1.23.7</td>
         <td>1.24.12, 1.25.6</td>
-    </tr>
-    <tr>
-        <td><code>stdlib</code></td>
-        <td>CVE-2025-68121</td>
-        <td>HIGH</td>
-        <td>v1.23.7</td>
-        <td>1.24.13, 1.25.7, 1.26.0-rc.3</td>
     </tr>
 </table>
 <h4>No Misconfigurations found</h4>

@@ -1,25 +1,9 @@
 
-<h3>Target <code>docker.io/grafana/loki-canary:3.6.4 (debian 12.13)</code></h3>
+<h3>Target <code>docker.io/grafana/loki-canary:3.6.5 (debian 13.3)</code></h3>
 <h4>No Vulnerabilities found</h4>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>usr/bin/loki-canary</code></h3>
-<h4>Vulnerabilities (1)</h4>
-<table>
-    <tr>
-        <th>Package</th>
-        <th>ID</th>
-        <th>Severity</th>
-        <th>Installed Version</th>
-        <th>Fixed Version</th>
-    </tr>
-    <tr>
-        <td><code>stdlib</code></td>
-        <td>CVE-2025-68121</td>
-        <td>HIGH</td>
-        <td>v1.24.12</td>
-        <td>1.24.13, 1.25.7, 1.26.0-rc.3</td>
-    </tr>
-</table>
+<h4>No Vulnerabilities found</h4>
 <h4>No Misconfigurations found</h4>
 
 <h3>Target <code>docker.io/grafana/loki-helm-test:latest (debian 12.6)</code></h3>
@@ -57,6 +41,13 @@
         <th>Severity</th>
         <th>Installed Version</th>
         <th>Fixed Version</th>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2025-68121</td>
+        <td>CRITICAL</td>
+        <td>v1.22.5</td>
+        <td>1.24.13, 1.25.7, 1.26.0-rc.3</td>
     </tr>
     <tr>
         <td><code>stdlib</code></td>
@@ -107,37 +98,14 @@
         <td>v1.22.5</td>
         <td>1.24.12, 1.25.6</td>
     </tr>
-    <tr>
-        <td><code>stdlib</code></td>
-        <td>CVE-2025-68121</td>
-        <td>HIGH</td>
-        <td>v1.22.5</td>
-        <td>1.24.13, 1.25.7, 1.26.0-rc.3</td>
-    </tr>
 </table>
 <h4>No Misconfigurations found</h4>
 
-<h3>Target <code>docker.io/grafana/loki:3.6.4 (debian 12.13)</code></h3>
+<h3>Target <code>docker.io/grafana/loki:3.6.5 (debian 13.3)</code></h3>
 <h4>No Vulnerabilities found</h4>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>usr/bin/loki</code></h3>
-<h4>Vulnerabilities (1)</h4>
-<table>
-    <tr>
-        <th>Package</th>
-        <th>ID</th>
-        <th>Severity</th>
-        <th>Installed Version</th>
-        <th>Fixed Version</th>
-    </tr>
-    <tr>
-        <td><code>stdlib</code></td>
-        <td>CVE-2025-68121</td>
-        <td>HIGH</td>
-        <td>v1.24.12</td>
-        <td>1.24.13, 1.25.7, 1.26.0-rc.3</td>
-    </tr>
-</table>
+<h4>No Vulnerabilities found</h4>
 <h4>No Misconfigurations found</h4>
 
 <h3>Target <code>docker.io/kiwigrid/k8s-sidecar:1.30.9 (alpine 3.22.1)</code></h3>
@@ -320,6 +288,13 @@
     </tr>
     <tr>
         <td><code>stdlib</code></td>
+        <td>CVE-2025-68121</td>
+        <td>CRITICAL</td>
+        <td>v1.25.3</td>
+        <td>1.24.13, 1.25.7, 1.26.0-rc.3</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
         <td>CVE-2025-61726</td>
         <td>HIGH</td>
         <td>v1.25.3</td>
@@ -345,13 +320,6 @@
         <td>HIGH</td>
         <td>v1.25.3</td>
         <td>1.24.12, 1.25.6</td>
-    </tr>
-    <tr>
-        <td><code>stdlib</code></td>
-        <td>CVE-2025-68121</td>
-        <td>HIGH</td>
-        <td>v1.25.3</td>
-        <td>1.24.13, 1.25.7, 1.26.0-rc.3</td>
     </tr>
 </table>
 <h4>No Misconfigurations found</h4>
@@ -392,6 +360,13 @@
     </tr>
     <tr>
         <td><code>stdlib</code></td>
+        <td>CVE-2025-68121</td>
+        <td>CRITICAL</td>
+        <td>v1.23.4</td>
+        <td>1.24.13, 1.25.7, 1.26.0-rc.3</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
         <td>CVE-2025-47907</td>
         <td>HIGH</td>
         <td>v1.23.4</td>
@@ -431,13 +406,6 @@
         <td>HIGH</td>
         <td>v1.23.4</td>
         <td>1.24.12, 1.25.6</td>
-    </tr>
-    <tr>
-        <td><code>stdlib</code></td>
-        <td>CVE-2025-68121</td>
-        <td>HIGH</td>
-        <td>v1.23.4</td>
-        <td>1.24.13, 1.25.7, 1.26.0-rc.3</td>
     </tr>
 </table>
 <h4>No Misconfigurations found</h4>
@@ -478,6 +446,13 @@
     </tr>
     <tr>
         <td><code>stdlib</code></td>
+        <td>CVE-2025-68121</td>
+        <td>CRITICAL</td>
+        <td>v1.23.4</td>
+        <td>1.24.13, 1.25.7, 1.26.0-rc.3</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
         <td>CVE-2025-47907</td>
         <td>HIGH</td>
         <td>v1.23.4</td>
@@ -517,13 +492,6 @@
         <td>HIGH</td>
         <td>v1.23.4</td>
         <td>1.24.12, 1.25.6</td>
-    </tr>
-    <tr>
-        <td><code>stdlib</code></td>
-        <td>CVE-2025-68121</td>
-        <td>HIGH</td>
-        <td>v1.23.4</td>
-        <td>1.24.13, 1.25.7, 1.26.0-rc.3</td>
     </tr>
 </table>
 <h4>No Misconfigurations found</h4>
@@ -567,6 +535,13 @@
     </tr>
     <tr>
         <td><code>stdlib</code></td>
+        <td>CVE-2025-68121</td>
+        <td>CRITICAL</td>
+        <td>v1.23.4</td>
+        <td>1.24.13, 1.25.7, 1.26.0-rc.3</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
         <td>CVE-2025-47907</td>
         <td>HIGH</td>
         <td>v1.23.4</td>
@@ -606,13 +581,6 @@
         <td>HIGH</td>
         <td>v1.23.4</td>
         <td>1.24.12, 1.25.6</td>
-    </tr>
-    <tr>
-        <td><code>stdlib</code></td>
-        <td>CVE-2025-68121</td>
-        <td>HIGH</td>
-        <td>v1.23.4</td>
-        <td>1.24.13, 1.25.7, 1.26.0-rc.3</td>
     </tr>
 </table>
 <h4>No Misconfigurations found</h4>
