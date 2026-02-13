@@ -2,10 +2,10 @@
   "$schema": "http://cyclonedx.org/schema/bom-1.6.schema.json",
   "bomFormat": "CycloneDX",
   "specVersion": "1.6",
-  "serialNumber": "urn:uuid:984c4c6f-7d55-472f-9a6b-bbda80a5ba2c",
+  "serialNumber": "urn:uuid:abd76527-ae7f-4e29-aead-e805dd217941",
   "version": 1,
   "metadata": {
-    "timestamp": "2026-02-13T09:03:06+00:00",
+    "timestamp": "2026-02-13T09:29:17+00:00",
     "tools": {
       "components": [
         {
@@ -90,7 +90,145 @@
   },
   "components": [
     {
-      "bom-ref": "5c436ef6-fd2b-4fbe-b736-3156259e1022",
+      "bom-ref": "57c2c359-5ddb-4874-972c-27d30131ae38",
+      "type": "library",
+      "supplier": {
+        "name": "Jaye Heffernan"
+      },
+      "author": "Jaye Heffernan",
+      "name": "my-test-package",
+      "version": "1.0",
+      "description": "A simple test program to investigate packaging and PyPI",
+      "hashes": [
+        {
+          "alg": "SHA-1",
+          "content": "6d7a67c18613be4b255812111b4619de979abc28"
+        }
+      ],
+      "licenses": [
+        {
+          "license": {
+            "name": "UNKNOWN"
+          }
+        }
+      ],
+      "purl": "pkg:pypi/my-test-package@1.0",
+      "externalReferences": [
+        {
+          "url": "https://github.com/aeraquoo/my_test_package",
+          "type": "website"
+        },
+        {
+          "url": "https://pypi.org/project/my-test-package/",
+          "type": "distribution"
+        },
+        {
+          "url": "https://github.com/aeraquoo/my_test_package",
+          "type": "vcs"
+        },
+        {
+          "url": "https://my-test-package.readthedocs.io/",
+          "type": "documentation"
+        }
+      ],
+      "properties": [
+        {
+          "name": "aquasecurity:trivy:FilePath",
+          "value": "app/.venv/lib/python3.13/site-packages/pkg_resources/tests/data/my-test-package_unpacked-egg/my_test_package-1.0-py3.7.egg/EGG-INFO/PKG-INFO"
+        },
+        {
+          "name": "aquasecurity:trivy:LayerDiffID",
+          "value": "sha256:ad705df0c503461ff1991892c91f78b1a02ed81f2e20e3d3a8142609282b0031"
+        },
+        {
+          "name": "aquasecurity:trivy:LayerDigest",
+          "value": "sha256:0751285fa662587f87a04647d508e5ab55871cfb14b5407739dbd159bcd2e4be"
+        },
+        {
+          "name": "aquasecurity:trivy:PkgType",
+          "value": "python-pkg"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2016-03-14T04:06:32Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2016-03-14T10:20:12Z"
+        }
+      ]
+    },
+    {
+      "bom-ref": "72f08816-e6d4-4b8d-baf4-75776db84a66",
+      "type": "library",
+      "supplier": {
+        "name": "Jaye Heffernan"
+      },
+      "author": "Jaye Heffernan",
+      "name": "my-test-package",
+      "version": "1.0",
+      "description": "A simple test program to investigate packaging and PyPI",
+      "hashes": [
+        {
+          "alg": "SHA-1",
+          "content": "6d7a67c18613be4b255812111b4619de979abc28"
+        }
+      ],
+      "licenses": [
+        {
+          "license": {
+            "name": "UNKNOWN"
+          }
+        }
+      ],
+      "purl": "pkg:pypi/my-test-package@1.0",
+      "externalReferences": [
+        {
+          "url": "https://github.com/aeraquoo/my_test_package",
+          "type": "website"
+        },
+        {
+          "url": "https://pypi.org/project/my-test-package/",
+          "type": "distribution"
+        },
+        {
+          "url": "https://github.com/aeraquoo/my_test_package",
+          "type": "vcs"
+        },
+        {
+          "url": "https://my-test-package.readthedocs.io/",
+          "type": "documentation"
+        }
+      ],
+      "properties": [
+        {
+          "name": "aquasecurity:trivy:FilePath",
+          "value": "app/.venv/lib/python3.13/site-packages/pkg_resources/tests/data/my-test-package_zipped-egg/my_test_package-1.0-py3.7.egg"
+        },
+        {
+          "name": "aquasecurity:trivy:LayerDiffID",
+          "value": "sha256:ad705df0c503461ff1991892c91f78b1a02ed81f2e20e3d3a8142609282b0031"
+        },
+        {
+          "name": "aquasecurity:trivy:LayerDigest",
+          "value": "sha256:0751285fa662587f87a04647d508e5ab55871cfb14b5407739dbd159bcd2e4be"
+        },
+        {
+          "name": "aquasecurity:trivy:PkgType",
+          "value": "python-pkg"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2016-03-14T04:06:32Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2016-03-14T10:20:12Z"
+        }
+      ]
+    },
+    {
+      "bom-ref": "741c14eb-6fd4-486a-8863-34e741be3945",
       "type": "library",
       "supplier": {
         "name": "Python Packaging Authority",
@@ -176,7 +314,7 @@
       ]
     },
     {
-      "bom-ref": "73952dc6-c372-4ce4-8c7e-a924dd140b32",
+      "bom-ref": "9be3ed44-c167-4aba-a72c-05174fbf9268",
       "type": "operating-system",
       "name": "alpine",
       "version": "3.22.1",
@@ -192,76 +330,7 @@
       ]
     },
     {
-      "bom-ref": "8c12493f-b0ec-4aff-a88a-2182c22fd9a4",
-      "type": "library",
-      "supplier": {
-        "name": "Jaye Heffernan"
-      },
-      "author": "Jaye Heffernan",
-      "name": "my-test-package",
-      "version": "1.0",
-      "description": "A simple test program to investigate packaging and PyPI",
-      "hashes": [
-        {
-          "alg": "SHA-1",
-          "content": "6d7a67c18613be4b255812111b4619de979abc28"
-        }
-      ],
-      "licenses": [
-        {
-          "license": {
-            "name": "UNKNOWN"
-          }
-        }
-      ],
-      "purl": "pkg:pypi/my-test-package@1.0",
-      "externalReferences": [
-        {
-          "url": "https://github.com/aeraquoo/my_test_package",
-          "type": "website"
-        },
-        {
-          "url": "https://pypi.org/project/my-test-package/",
-          "type": "distribution"
-        },
-        {
-          "url": "https://github.com/aeraquoo/my_test_package",
-          "type": "vcs"
-        },
-        {
-          "url": "https://my-test-package.readthedocs.io/",
-          "type": "documentation"
-        }
-      ],
-      "properties": [
-        {
-          "name": "aquasecurity:trivy:FilePath",
-          "value": "app/.venv/lib/python3.13/site-packages/pkg_resources/tests/data/my-test-package_unpacked-egg/my_test_package-1.0-py3.7.egg/EGG-INFO/PKG-INFO"
-        },
-        {
-          "name": "aquasecurity:trivy:LayerDiffID",
-          "value": "sha256:ad705df0c503461ff1991892c91f78b1a02ed81f2e20e3d3a8142609282b0031"
-        },
-        {
-          "name": "aquasecurity:trivy:LayerDigest",
-          "value": "sha256:0751285fa662587f87a04647d508e5ab55871cfb14b5407739dbd159bcd2e4be"
-        },
-        {
-          "name": "aquasecurity:trivy:PkgType",
-          "value": "python-pkg"
-        },
-        {
-          "name": "ecosystems:first_release_published_at",
-          "value": "2016-03-14T04:06:32Z"
-        },
-        {
-          "name": "ecosystems:latest_release_published_at",
-          "value": "2016-03-14T10:20:12Z"
-        }
-      ]
-    },
-    {
-      "bom-ref": "ab7df567-6ff3-4537-a600-6ba5ff518883",
+      "bom-ref": "b25e3ea0-c36f-4515-8b7b-fa91684485d8",
       "type": "library",
       "supplier": {
         "name": "Python Packaging Authority",
@@ -343,75 +412,6 @@
         {
           "name": "ecosystems:topic",
           "value": "python"
-        }
-      ]
-    },
-    {
-      "bom-ref": "d7064fc5-4ff0-4345-9802-c7a7e1b95d77",
-      "type": "library",
-      "supplier": {
-        "name": "Jaye Heffernan"
-      },
-      "author": "Jaye Heffernan",
-      "name": "my-test-package",
-      "version": "1.0",
-      "description": "A simple test program to investigate packaging and PyPI",
-      "hashes": [
-        {
-          "alg": "SHA-1",
-          "content": "6d7a67c18613be4b255812111b4619de979abc28"
-        }
-      ],
-      "licenses": [
-        {
-          "license": {
-            "name": "UNKNOWN"
-          }
-        }
-      ],
-      "purl": "pkg:pypi/my-test-package@1.0",
-      "externalReferences": [
-        {
-          "url": "https://github.com/aeraquoo/my_test_package",
-          "type": "website"
-        },
-        {
-          "url": "https://pypi.org/project/my-test-package/",
-          "type": "distribution"
-        },
-        {
-          "url": "https://github.com/aeraquoo/my_test_package",
-          "type": "vcs"
-        },
-        {
-          "url": "https://my-test-package.readthedocs.io/",
-          "type": "documentation"
-        }
-      ],
-      "properties": [
-        {
-          "name": "aquasecurity:trivy:FilePath",
-          "value": "app/.venv/lib/python3.13/site-packages/pkg_resources/tests/data/my-test-package_zipped-egg/my_test_package-1.0-py3.7.egg"
-        },
-        {
-          "name": "aquasecurity:trivy:LayerDiffID",
-          "value": "sha256:ad705df0c503461ff1991892c91f78b1a02ed81f2e20e3d3a8142609282b0031"
-        },
-        {
-          "name": "aquasecurity:trivy:LayerDigest",
-          "value": "sha256:0751285fa662587f87a04647d508e5ab55871cfb14b5407739dbd159bcd2e4be"
-        },
-        {
-          "name": "aquasecurity:trivy:PkgType",
-          "value": "python-pkg"
-        },
-        {
-          "name": "ecosystems:first_release_published_at",
-          "value": "2016-03-14T04:06:32Z"
-        },
-        {
-          "name": "ecosystems:latest_release_published_at",
-          "value": "2016-03-14T10:20:12Z"
         }
       ]
     },
@@ -5401,11 +5401,19 @@
   ],
   "dependencies": [
     {
-      "ref": "5c436ef6-fd2b-4fbe-b736-3156259e1022",
+      "ref": "57c2c359-5ddb-4874-972c-27d30131ae38",
       "dependsOn": []
     },
     {
-      "ref": "73952dc6-c372-4ce4-8c7e-a924dd140b32",
+      "ref": "72f08816-e6d4-4b8d-baf4-75776db84a66",
+      "dependsOn": []
+    },
+    {
+      "ref": "741c14eb-6fd4-486a-8863-34e741be3945",
+      "dependsOn": []
+    },
+    {
+      "ref": "9be3ed44-c167-4aba-a72c-05174fbf9268",
       "dependsOn": [
         "pkg:apk/alpine/.python-rundeps@20250812.224420?arch=noarch&distro=3.22.1",
         "pkg:apk/alpine/alpine-baselayout@3.7.0-r0?arch=x86_64&distro=3.22.1",
@@ -5418,15 +5426,7 @@
       ]
     },
     {
-      "ref": "8c12493f-b0ec-4aff-a88a-2182c22fd9a4",
-      "dependsOn": []
-    },
-    {
-      "ref": "ab7df567-6ff3-4537-a600-6ba5ff518883",
-      "dependsOn": []
-    },
-    {
-      "ref": "d7064fc5-4ff0-4345-9802-c7a7e1b95d77",
+      "ref": "b25e3ea0-c36f-4515-8b7b-fa91684485d8",
       "dependsOn": []
     },
     {
@@ -5625,11 +5625,11 @@
     {
       "ref": "pkg:oci/k8s-sidecar@sha256%3A8c06e1ba643a4625de14b2db65c356f5db6b1482a25fce4754380a2936207338?arch=amd64&repository_url=index.docker.io%2Fkiwigrid%2Fk8s-sidecar",
       "dependsOn": [
-        "5c436ef6-fd2b-4fbe-b736-3156259e1022",
-        "73952dc6-c372-4ce4-8c7e-a924dd140b32",
-        "8c12493f-b0ec-4aff-a88a-2182c22fd9a4",
-        "ab7df567-6ff3-4537-a600-6ba5ff518883",
-        "d7064fc5-4ff0-4345-9802-c7a7e1b95d77",
+        "57c2c359-5ddb-4874-972c-27d30131ae38",
+        "72f08816-e6d4-4b8d-baf4-75776db84a66",
+        "741c14eb-6fd4-486a-8863-34e741be3945",
+        "9be3ed44-c167-4aba-a72c-05174fbf9268",
+        "b25e3ea0-c36f-4515-8b7b-fa91684485d8",
         "pkg:pypi/argparse@1.4.0",
         "pkg:pypi/autocommand@2.2.2",
         "pkg:pypi/backports.tarfile@1.2.0",

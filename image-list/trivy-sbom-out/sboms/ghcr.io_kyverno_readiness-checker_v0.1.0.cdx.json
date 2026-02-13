@@ -2,10 +2,10 @@
   "$schema": "http://cyclonedx.org/schema/bom-1.6.schema.json",
   "bomFormat": "CycloneDX",
   "specVersion": "1.6",
-  "serialNumber": "urn:uuid:fa0ed1cf-199d-4594-b6fd-8601ff22b1ba",
+  "serialNumber": "urn:uuid:ac78ca38-b854-4579-891c-d720970f4c75",
   "version": 1,
   "metadata": {
-    "timestamp": "2026-02-13T09:04:15+00:00",
+    "timestamp": "2026-02-13T09:30:26+00:00",
     "tools": {
       "components": [
         {
@@ -70,7 +70,22 @@
   },
   "components": [
     {
-      "bom-ref": "4b9f3947-b880-49e3-ab86-45225b8413ad",
+      "bom-ref": "112d6c39-011d-4e66-82d5-af0ca387bdf8",
+      "type": "application",
+      "name": "ko-app/readiness-checker",
+      "properties": [
+        {
+          "name": "aquasecurity:trivy:Class",
+          "value": "lang-pkgs"
+        },
+        {
+          "name": "aquasecurity:trivy:Type",
+          "value": "gobinary"
+        }
+      ]
+    },
+    {
+      "bom-ref": "6687e71d-ed18-450c-8040-e9b70d5a18d2",
       "type": "operating-system",
       "name": "alpine",
       "version": "3.24.0_alpha20251224",
@@ -82,21 +97,6 @@
         {
           "name": "aquasecurity:trivy:Type",
           "value": "alpine"
-        }
-      ]
-    },
-    {
-      "bom-ref": "fed25352-1f25-40b7-9de3-b671f0030e75",
-      "type": "application",
-      "name": "ko-app/readiness-checker",
-      "properties": [
-        {
-          "name": "aquasecurity:trivy:Class",
-          "value": "lang-pkgs"
-        },
-        {
-          "name": "aquasecurity:trivy:Type",
-          "value": "gobinary"
         }
       ]
     },
@@ -3505,18 +3505,18 @@
   ],
   "dependencies": [
     {
-      "ref": "4b9f3947-b880-49e3-ab86-45225b8413ad",
+      "ref": "112d6c39-011d-4e66-82d5-af0ca387bdf8",
+      "dependsOn": [
+        "pkg:golang/github.com/kyverno/kyverno@v1.5.0-rc1.0.20260122002923-b35e0045f4a1%2Bdirty"
+      ]
+    },
+    {
+      "ref": "6687e71d-ed18-450c-8040-e9b70d5a18d2",
       "dependsOn": [
         "pkg:apk/alpine/alpine-baselayout-data@3.7.1-r10?arch=noarch&distro=3.24.0_alpha20251224",
         "pkg:apk/alpine/alpine-release@3.24.0_alpha20251224-r0?arch=noarch&distro=3.24.0_alpha20251224",
         "pkg:apk/alpine/ca-certificates-bundle@20251003-r0?arch=noarch&distro=3.24.0_alpha20251224",
         "pkg:apk/alpine/tzdata@2025c-r0?arch=noarch&distro=3.24.0_alpha20251224"
-      ]
-    },
-    {
-      "ref": "fed25352-1f25-40b7-9de3-b671f0030e75",
-      "dependsOn": [
-        "pkg:golang/github.com/kyverno/kyverno@v1.5.0-rc1.0.20260122002923-b35e0045f4a1%2Bdirty"
       ]
     },
     {
@@ -3784,8 +3784,8 @@
     {
       "ref": "pkg:oci/readiness-checker@sha256%3Ac54c0aa24d536f7a31ed854db4f2b2d6863b41d7d85725e21f80cd318c4e815b?arch=amd64&repository_url=ghcr.io%2Fkyverno%2Freadiness-checker",
       "dependsOn": [
-        "4b9f3947-b880-49e3-ab86-45225b8413ad",
-        "fed25352-1f25-40b7-9de3-b671f0030e75"
+        "112d6c39-011d-4e66-82d5-af0ca387bdf8",
+        "6687e71d-ed18-450c-8040-e9b70d5a18d2"
       ]
     }
   ],

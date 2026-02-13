@@ -2,10 +2,10 @@
   "$schema": "http://cyclonedx.org/schema/bom-1.6.schema.json",
   "bomFormat": "CycloneDX",
   "specVersion": "1.6",
-  "serialNumber": "urn:uuid:6fcf17e1-a739-41bc-aaeb-6c4a1e912610",
+  "serialNumber": "urn:uuid:223bed7e-df6d-4d25-b7a1-c3a4293835d5",
   "version": 1,
   "metadata": {
-    "timestamp": "2026-02-13T09:08:09+00:00",
+    "timestamp": "2026-02-13T09:34:02+00:00",
     "tools": {
       "components": [
         {
@@ -106,7 +106,22 @@
   },
   "components": [
     {
-      "bom-ref": "6f06d0d7-b66a-49b0-9085-294c0d7a0ab8",
+      "bom-ref": "0acaadb2-89b2-4321-bbe0-e46ae4050b2e",
+      "type": "application",
+      "name": "kube-state-metrics",
+      "properties": [
+        {
+          "name": "aquasecurity:trivy:Class",
+          "value": "lang-pkgs"
+        },
+        {
+          "name": "aquasecurity:trivy:Type",
+          "value": "gobinary"
+        }
+      ]
+    },
+    {
+      "bom-ref": "958c935b-9718-42c2-bb10-bc6632eeef76",
       "type": "operating-system",
       "name": "debian",
       "version": "12.11",
@@ -118,21 +133,6 @@
         {
           "name": "aquasecurity:trivy:Type",
           "value": "debian"
-        }
-      ]
-    },
-    {
-      "bom-ref": "b3d2f0b3-6394-4c95-9b86-3e33d3ea4b7f",
-      "type": "application",
-      "name": "kube-state-metrics",
-      "properties": [
-        {
-          "name": "aquasecurity:trivy:Class",
-          "value": "lang-pkgs"
-        },
-        {
-          "name": "aquasecurity:trivy:Type",
-          "value": "gobinary"
         }
       ]
     },
@@ -7578,18 +7578,18 @@
   ],
   "dependencies": [
     {
-      "ref": "6f06d0d7-b66a-49b0-9085-294c0d7a0ab8",
+      "ref": "0acaadb2-89b2-4321-bbe0-e46ae4050b2e",
+      "dependsOn": [
+        "pkg:golang/k8s.io/kube-state-metrics/v2@v2.17.0"
+      ]
+    },
+    {
+      "ref": "958c935b-9718-42c2-bb10-bc6632eeef76",
       "dependsOn": [
         "pkg:deb/debian/base-files@12.4%2Bdeb12u11?arch=amd64&distro=debian-12.11",
         "pkg:deb/debian/media-types@10.0.0?arch=all&distro=debian-12.11",
         "pkg:deb/debian/netbase@6.4?arch=all&distro=debian-12.11",
         "pkg:deb/debian/tzdata@2025b-0%2Bdeb12u1?arch=all&distro=debian-12.11"
-      ]
-    },
-    {
-      "ref": "b3d2f0b3-6394-4c95-9b86-3e33d3ea4b7f",
-      "dependsOn": [
-        "pkg:golang/k8s.io/kube-state-metrics/v2@v2.17.0"
       ]
     },
     {
@@ -8126,8 +8126,8 @@
     {
       "ref": "pkg:oci/kube-state-metrics@sha256%3A2bbc915567334b13632bf62c0a97084aff72a36e13c4dabd5f2f11c898c5bacd?arch=amd64&repository_url=registry.k8s.io%2Fkube-state-metrics%2Fkube-state-metrics",
       "dependsOn": [
-        "6f06d0d7-b66a-49b0-9085-294c0d7a0ab8",
-        "b3d2f0b3-6394-4c95-9b86-3e33d3ea4b7f"
+        "0acaadb2-89b2-4321-bbe0-e46ae4050b2e",
+        "958c935b-9718-42c2-bb10-bc6632eeef76"
       ]
     }
   ],

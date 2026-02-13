@@ -2,10 +2,10 @@
   "$schema": "http://cyclonedx.org/schema/bom-1.6.schema.json",
   "bomFormat": "CycloneDX",
   "specVersion": "1.6",
-  "serialNumber": "urn:uuid:0fb52de5-507e-42c6-8bf8-9fcc3235a507",
+  "serialNumber": "urn:uuid:2c9b3121-5ed6-4a32-865d-b3f3df3e66dc",
   "version": 1,
   "metadata": {
-    "timestamp": "2026-02-13T09:08:39+00:00",
+    "timestamp": "2026-02-13T09:34:32+00:00",
     "tools": {
       "components": [
         {
@@ -118,22 +118,7 @@
   },
   "components": [
     {
-      "bom-ref": "66b1ae7a-6819-4e2c-b434-800eb14c7609",
-      "type": "application",
-      "name": "usr/local/bin/crossplane",
-      "properties": [
-        {
-          "name": "aquasecurity:trivy:Class",
-          "value": "lang-pkgs"
-        },
-        {
-          "name": "aquasecurity:trivy:Type",
-          "value": "gobinary"
-        }
-      ]
-    },
-    {
-      "bom-ref": "97ed850d-8ec0-40aa-aff9-bdd713c2a2c6",
+      "bom-ref": "186aad69-2b9e-4943-9cce-bcaad1c89ee4",
       "type": "operating-system",
       "name": "debian",
       "version": "12.11",
@@ -145,6 +130,21 @@
         {
           "name": "aquasecurity:trivy:Type",
           "value": "debian"
+        }
+      ]
+    },
+    {
+      "bom-ref": "9f2dddd2-8768-4c8f-8dbb-6f275e749c1c",
+      "type": "application",
+      "name": "usr/local/bin/crossplane",
+      "properties": [
+        {
+          "name": "aquasecurity:trivy:Class",
+          "value": "lang-pkgs"
+        },
+        {
+          "name": "aquasecurity:trivy:Type",
+          "value": "gobinary"
         }
       ]
     },
@@ -13184,17 +13184,17 @@
   ],
   "dependencies": [
     {
-      "ref": "66b1ae7a-6819-4e2c-b434-800eb14c7609",
-      "dependsOn": [
-        "pkg:golang/github.com/crossplane/crossplane/v2@v2.1.4"
-      ]
-    },
-    {
-      "ref": "97ed850d-8ec0-40aa-aff9-bdd713c2a2c6",
+      "ref": "186aad69-2b9e-4943-9cce-bcaad1c89ee4",
       "dependsOn": [
         "pkg:deb/debian/base-files@12.4%2Bdeb12u11?arch=amd64&distro=debian-12.11",
         "pkg:deb/debian/netbase@6.4?arch=all&distro=debian-12.11",
         "pkg:deb/debian/tzdata@2025b-0%2Bdeb12u1?arch=all&distro=debian-12.11"
+      ]
+    },
+    {
+      "ref": "9f2dddd2-8768-4c8f-8dbb-6f275e749c1c",
+      "dependsOn": [
+        "pkg:golang/github.com/crossplane/crossplane/v2@v2.1.4"
       ]
     },
     {
@@ -14112,8 +14112,8 @@
     {
       "ref": "pkg:oci/crossplane@sha256%3A91d7191266fb931cdbc32ab6e21456fc5461ddb5d7debd0532159d5b7ba5c9a0?arch=amd64&repository_url=xpkg.crossplane.io%2Fcrossplane%2Fcrossplane",
       "dependsOn": [
-        "66b1ae7a-6819-4e2c-b434-800eb14c7609",
-        "97ed850d-8ec0-40aa-aff9-bdd713c2a2c6"
+        "186aad69-2b9e-4943-9cce-bcaad1c89ee4",
+        "9f2dddd2-8768-4c8f-8dbb-6f275e749c1c"
       ]
     }
   ],

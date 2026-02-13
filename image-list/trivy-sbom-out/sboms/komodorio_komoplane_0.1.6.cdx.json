@@ -2,10 +2,10 @@
   "$schema": "http://cyclonedx.org/schema/bom-1.6.schema.json",
   "bomFormat": "CycloneDX",
   "specVersion": "1.6",
-  "serialNumber": "urn:uuid:7aa615bc-9286-4f2a-9bd3-fdcf8e39f828",
+  "serialNumber": "urn:uuid:cacbf47e-b668-4fdc-93e3-088396cde756",
   "version": 1,
   "metadata": {
-    "timestamp": "2026-02-13T09:05:55+00:00",
+    "timestamp": "2026-02-13T09:32:07+00:00",
     "tools": {
       "components": [
         {
@@ -94,7 +94,22 @@
   },
   "components": [
     {
-      "bom-ref": "5df3fb6a-60f5-4808-b30c-60d96ee9b3d7",
+      "bom-ref": "12e8711e-2a9e-4e73-a69f-4df28709155d",
+      "type": "application",
+      "name": "bin/komoplane",
+      "properties": [
+        {
+          "name": "aquasecurity:trivy:Class",
+          "value": "lang-pkgs"
+        },
+        {
+          "name": "aquasecurity:trivy:Type",
+          "value": "gobinary"
+        }
+      ]
+    },
+    {
+      "bom-ref": "7e23737a-f582-4f72-aea2-cbc8d6452df8",
       "type": "operating-system",
       "name": "alpine",
       "version": "3.21.2",
@@ -106,21 +121,6 @@
         {
           "name": "aquasecurity:trivy:Type",
           "value": "alpine"
-        }
-      ]
-    },
-    {
-      "bom-ref": "d642dc3d-ece1-4d2b-8db1-7419ef319b21",
-      "type": "application",
-      "name": "bin/komoplane",
-      "properties": [
-        {
-          "name": "aquasecurity:trivy:Class",
-          "value": "lang-pkgs"
-        },
-        {
-          "name": "aquasecurity:trivy:Type",
-          "value": "gobinary"
         }
       ]
     },
@@ -6440,19 +6440,19 @@
   ],
   "dependencies": [
     {
-      "ref": "5df3fb6a-60f5-4808-b30c-60d96ee9b3d7",
+      "ref": "12e8711e-2a9e-4e73-a69f-4df28709155d",
+      "dependsOn": [
+        "pkg:golang/github.com/komodorio/komoplane@0.1.6"
+      ]
+    },
+    {
+      "ref": "7e23737a-f582-4f72-aea2-cbc8d6452df8",
       "dependsOn": [
         "pkg:apk/alpine/alpine-baselayout@3.6.8-r1?arch=x86_64&distro=3.21.2",
         "pkg:apk/alpine/alpine-release@3.21.2-r0?arch=x86_64&distro=3.21.2",
         "pkg:apk/alpine/apk-tools@2.14.6-r2?arch=x86_64&distro=3.21.2",
         "pkg:apk/alpine/musl-utils@1.2.5-r8?arch=x86_64&distro=3.21.2",
         "pkg:apk/alpine/ssl_client@1.37.0-r9?arch=x86_64&distro=3.21.2"
-      ]
-    },
-    {
-      "ref": "d642dc3d-ece1-4d2b-8db1-7419ef319b21",
-      "dependsOn": [
-        "pkg:golang/github.com/komodorio/komoplane@0.1.6"
       ]
     },
     {
@@ -6919,8 +6919,8 @@
     {
       "ref": "pkg:oci/komoplane@sha256%3A864a4bdb69760097469dd9650ce9ba378d887e578bad022cb57a058bc80d5b43?arch=amd64&repository_url=index.docker.io%2Fkomodorio%2Fkomoplane",
       "dependsOn": [
-        "5df3fb6a-60f5-4808-b30c-60d96ee9b3d7",
-        "d642dc3d-ece1-4d2b-8db1-7419ef319b21"
+        "12e8711e-2a9e-4e73-a69f-4df28709155d",
+        "7e23737a-f582-4f72-aea2-cbc8d6452df8"
       ]
     }
   ],

@@ -2,10 +2,10 @@
   "$schema": "http://cyclonedx.org/schema/bom-1.6.schema.json",
   "bomFormat": "CycloneDX",
   "specVersion": "1.6",
-  "serialNumber": "urn:uuid:c38ad9c9-970c-40c4-b4ee-9e584f8cb744",
+  "serialNumber": "urn:uuid:f5683ffc-15d2-4738-bd57-7ecf452caeab",
   "version": 1,
   "metadata": {
-    "timestamp": "2026-02-13T09:06:10+00:00",
+    "timestamp": "2026-02-13T09:32:19+00:00",
     "tools": {
       "components": [
         {
@@ -74,22 +74,7 @@
   },
   "components": [
     {
-      "bom-ref": "8c7c1eb9-0854-4113-b7b8-0064c91c5de3",
-      "type": "application",
-      "name": "usr/local/bin/nats-server-config-reloader",
-      "properties": [
-        {
-          "name": "aquasecurity:trivy:Class",
-          "value": "lang-pkgs"
-        },
-        {
-          "name": "aquasecurity:trivy:Type",
-          "value": "gobinary"
-        }
-      ]
-    },
-    {
-      "bom-ref": "ccecff74-7b0a-476e-b2c3-0b3f84b54536",
+      "bom-ref": "5cd8747b-14cd-483f-ab40-3309911416c3",
       "type": "operating-system",
       "name": "alpine",
       "version": "3.22.0",
@@ -101,6 +86,21 @@
         {
           "name": "aquasecurity:trivy:Type",
           "value": "alpine"
+        }
+      ]
+    },
+    {
+      "bom-ref": "e59c0d07-5da7-46b1-a378-3e18aecfb97e",
+      "type": "application",
+      "name": "usr/local/bin/nats-server-config-reloader",
+      "properties": [
+        {
+          "name": "aquasecurity:trivy:Class",
+          "value": "lang-pkgs"
+        },
+        {
+          "name": "aquasecurity:trivy:Type",
+          "value": "gobinary"
         }
       ]
     },
@@ -1425,19 +1425,19 @@
   ],
   "dependencies": [
     {
-      "ref": "8c7c1eb9-0854-4113-b7b8-0064c91c5de3",
-      "dependsOn": [
-        "pkg:golang/github.com/nats-io/nack@v0.18.2%2Bdirty"
-      ]
-    },
-    {
-      "ref": "ccecff74-7b0a-476e-b2c3-0b3f84b54536",
+      "ref": "5cd8747b-14cd-483f-ab40-3309911416c3",
       "dependsOn": [
         "pkg:apk/alpine/alpine-baselayout@3.7.0-r0?arch=x86_64&distro=3.22.0",
         "pkg:apk/alpine/alpine-release@3.22.0-r0?arch=x86_64&distro=3.22.0",
         "pkg:apk/alpine/apk-tools@2.14.9-r2?arch=x86_64&distro=3.22.0",
         "pkg:apk/alpine/musl-utils@1.2.5-r10?arch=x86_64&distro=3.22.0",
         "pkg:apk/alpine/ssl_client@1.37.0-r18?arch=x86_64&distro=3.22.0"
+      ]
+    },
+    {
+      "ref": "e59c0d07-5da7-46b1-a378-3e18aecfb97e",
+      "dependsOn": [
+        "pkg:golang/github.com/nats-io/nack@v0.18.2%2Bdirty"
       ]
     },
     {
@@ -1564,8 +1564,8 @@
     {
       "ref": "pkg:oci/nats-server-config-reloader@sha256%3Abca7e221ec6f1221ecd74e2c13b075c913a5bcd998e87a4da4d747033440ee93?arch=amd64&repository_url=index.docker.io%2Fnatsio%2Fnats-server-config-reloader",
       "dependsOn": [
-        "8c7c1eb9-0854-4113-b7b8-0064c91c5de3",
-        "ccecff74-7b0a-476e-b2c3-0b3f84b54536"
+        "5cd8747b-14cd-483f-ab40-3309911416c3",
+        "e59c0d07-5da7-46b1-a378-3e18aecfb97e"
       ]
     }
   ],

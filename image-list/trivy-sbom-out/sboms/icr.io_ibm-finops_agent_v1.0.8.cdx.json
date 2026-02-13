@@ -2,10 +2,10 @@
   "$schema": "http://cyclonedx.org/schema/bom-1.6.schema.json",
   "bomFormat": "CycloneDX",
   "specVersion": "1.6",
-  "serialNumber": "urn:uuid:d13aa825-5f23-4335-988b-01dfe9969628",
+  "serialNumber": "urn:uuid:95265003-948d-42bd-a2e1-96c151a2a370",
   "version": 1,
   "metadata": {
-    "timestamp": "2026-02-13T09:05:53+00:00",
+    "timestamp": "2026-02-13T09:32:04+00:00",
     "tools": {
       "components": [
         {
@@ -182,7 +182,22 @@
   },
   "components": [
     {
-      "bom-ref": "0a75d158-bfe0-4fce-919d-91c56c562bfb",
+      "bom-ref": "425598f0-2f34-4f16-a5fc-6287096cb5fd",
+      "type": "application",
+      "name": "go/bin/app",
+      "properties": [
+        {
+          "name": "aquasecurity:trivy:Class",
+          "value": "lang-pkgs"
+        },
+        {
+          "name": "aquasecurity:trivy:Type",
+          "value": "gobinary"
+        }
+      ]
+    },
+    {
+      "bom-ref": "b04154fc-2ca3-4755-8fbf-7a74b314a10d",
       "type": "operating-system",
       "name": "redhat",
       "version": "9.7",
@@ -194,21 +209,6 @@
         {
           "name": "aquasecurity:trivy:Type",
           "value": "redhat"
-        }
-      ]
-    },
-    {
-      "bom-ref": "ad3fd414-9eca-4036-9b8e-59fe5c0802b4",
-      "type": "application",
-      "name": "go/bin/app",
-      "properties": [
-        {
-          "name": "aquasecurity:trivy:Class",
-          "value": "lang-pkgs"
-        },
-        {
-          "name": "aquasecurity:trivy:Type",
-          "value": "gobinary"
         }
       ]
     },
@@ -27145,7 +27145,13 @@
   ],
   "dependencies": [
     {
-      "ref": "0a75d158-bfe0-4fce-919d-91c56c562bfb",
+      "ref": "425598f0-2f34-4f16-a5fc-6287096cb5fd",
+      "dependsOn": [
+        "pkg:golang/github.com/ibm/finops-agent@v1.0.8"
+      ]
+    },
+    {
+      "ref": "b04154fc-2ca3-4755-8fbf-7a74b314a10d",
       "dependsOn": [
         "pkg:rpm/redhat/alternatives@1.24-2.el9?arch=x86_64&distro=redhat-9.7",
         "pkg:rpm/redhat/gpg-pubkey@5a6340b3-6229229e?arch=None&distro=redhat-9.7",
@@ -27154,12 +27160,6 @@
         "pkg:rpm/redhat/libusbx@1.0.26-1.el9?arch=x86_64&distro=redhat-9.7",
         "pkg:rpm/redhat/microdnf@3.9.1-3.el9?arch=x86_64&distro=redhat-9.7",
         "pkg:rpm/redhat/rootfiles@8.1-35.el9?arch=noarch&distro=redhat-9.7"
-      ]
-    },
-    {
-      "ref": "ad3fd414-9eca-4036-9b8e-59fe5c0802b4",
-      "dependsOn": [
-        "pkg:golang/github.com/ibm/finops-agent@v1.0.8"
       ]
     },
     {
@@ -28120,8 +28120,8 @@
     {
       "ref": "pkg:oci/agent@sha256%3A1d09cf3cf804b41e35b3db8902157cae7cd8479273929a82899ab7a09e3df6b9?arch=amd64&repository_url=icr.io%2Fibm-finops%2Fagent",
       "dependsOn": [
-        "0a75d158-bfe0-4fce-919d-91c56c562bfb",
-        "ad3fd414-9eca-4036-9b8e-59fe5c0802b4"
+        "425598f0-2f34-4f16-a5fc-6287096cb5fd",
+        "b04154fc-2ca3-4755-8fbf-7a74b314a10d"
       ]
     },
     {

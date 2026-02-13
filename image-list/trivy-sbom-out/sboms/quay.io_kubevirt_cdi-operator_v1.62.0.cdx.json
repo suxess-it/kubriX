@@ -2,10 +2,10 @@
   "$schema": "http://cyclonedx.org/schema/bom-1.6.schema.json",
   "bomFormat": "CycloneDX",
   "specVersion": "1.6",
-  "serialNumber": "urn:uuid:3c4bf487-915d-47fb-8fe2-e26c8a4b6085",
+  "serialNumber": "urn:uuid:da68968e-17c4-4814-be4d-cd8870431cce",
   "version": 1,
   "metadata": {
-    "timestamp": "2026-02-13T09:06:55+00:00",
+    "timestamp": "2026-02-13T09:33:00+00:00",
     "tools": {
       "components": [
         {
@@ -62,22 +62,32 @@
   },
   "components": [
     {
-      "bom-ref": "40f30fd5-bd76-4b42-9aea-172e5abf8129",
-      "type": "application",
-      "name": "usr/bin/csv-generator",
+      "bom-ref": "260daf5d-a3d8-41cf-bdc1-169d03e01be2",
+      "type": "library",
+      "name": "stdlib",
+      "version": "v1.23.6",
+      "purl": "pkg:golang/stdlib@v1.23.6",
       "properties": [
         {
-          "name": "aquasecurity:trivy:Class",
-          "value": "lang-pkgs"
+          "name": "aquasecurity:trivy:LayerDiffID",
+          "value": "sha256:645cae053ce8db3ed88998b8a5eb060b888fd8ee477659c19a69a8681347e37c"
         },
         {
-          "name": "aquasecurity:trivy:Type",
+          "name": "aquasecurity:trivy:LayerDigest",
+          "value": "sha256:191d5ef594a82afd80a541eb4e7081283109def75815680a32cc0f3b5939d2a4"
+        },
+        {
+          "name": "aquasecurity:trivy:PkgID",
+          "value": "stdlib@v1.23.6"
+        },
+        {
+          "name": "aquasecurity:trivy:PkgType",
           "value": "gobinary"
         }
       ]
     },
     {
-      "bom-ref": "621d7d5a-1a47-4d64-906f-00365b758cd4",
+      "bom-ref": "68815d26-e24c-46b3-b796-e4746c8d5cf1",
       "type": "operating-system",
       "name": "centos-stream",
       "version": "9",
@@ -93,34 +103,9 @@
       ]
     },
     {
-      "bom-ref": "ef8561eb-b53a-4b69-aaf9-b4cbf9172864",
-      "type": "library",
-      "name": "stdlib",
-      "version": "v1.23.6",
-      "purl": "pkg:golang/stdlib@v1.23.6",
-      "properties": [
-        {
-          "name": "aquasecurity:trivy:LayerDiffID",
-          "value": "sha256:645cae053ce8db3ed88998b8a5eb060b888fd8ee477659c19a69a8681347e37c"
-        },
-        {
-          "name": "aquasecurity:trivy:LayerDigest",
-          "value": "sha256:191d5ef594a82afd80a541eb4e7081283109def75815680a32cc0f3b5939d2a4"
-        },
-        {
-          "name": "aquasecurity:trivy:PkgID",
-          "value": "stdlib@v1.23.6"
-        },
-        {
-          "name": "aquasecurity:trivy:PkgType",
-          "value": "gobinary"
-        }
-      ]
-    },
-    {
-      "bom-ref": "f2dbcabc-b295-4ef9-950c-a565578c49dd",
+      "bom-ref": "79796993-7ed8-464b-b9e6-9069da4da91d",
       "type": "application",
-      "name": "usr/bin/cdi-operator",
+      "name": "usr/bin/csv-generator",
       "properties": [
         {
           "name": "aquasecurity:trivy:Class",
@@ -133,7 +118,7 @@
       ]
     },
     {
-      "bom-ref": "f7460375-b8da-4a81-b95b-fedfdffc2d88",
+      "bom-ref": "c7eb54f5-e8bb-4fb7-a3fb-ccb8e6a7bd49",
       "type": "library",
       "name": "stdlib",
       "version": "v1.23.6",
@@ -156,35 +141,50 @@
           "value": "gobinary"
         }
       ]
+    },
+    {
+      "bom-ref": "f02e68f5-4d02-417d-80cd-7a8a8f96dd9a",
+      "type": "application",
+      "name": "usr/bin/cdi-operator",
+      "properties": [
+        {
+          "name": "aquasecurity:trivy:Class",
+          "value": "lang-pkgs"
+        },
+        {
+          "name": "aquasecurity:trivy:Type",
+          "value": "gobinary"
+        }
+      ]
     }
   ],
   "dependencies": [
     {
-      "ref": "40f30fd5-bd76-4b42-9aea-172e5abf8129",
-      "dependsOn": [
-        "f7460375-b8da-4a81-b95b-fedfdffc2d88"
-      ]
-    },
-    {
-      "ref": "ef8561eb-b53a-4b69-aaf9-b4cbf9172864",
+      "ref": "260daf5d-a3d8-41cf-bdc1-169d03e01be2",
       "dependsOn": []
     },
     {
-      "ref": "f2dbcabc-b295-4ef9-950c-a565578c49dd",
+      "ref": "79796993-7ed8-464b-b9e6-9069da4da91d",
       "dependsOn": [
-        "ef8561eb-b53a-4b69-aaf9-b4cbf9172864"
+        "260daf5d-a3d8-41cf-bdc1-169d03e01be2"
       ]
     },
     {
-      "ref": "f7460375-b8da-4a81-b95b-fedfdffc2d88",
+      "ref": "c7eb54f5-e8bb-4fb7-a3fb-ccb8e6a7bd49",
       "dependsOn": []
+    },
+    {
+      "ref": "f02e68f5-4d02-417d-80cd-7a8a8f96dd9a",
+      "dependsOn": [
+        "c7eb54f5-e8bb-4fb7-a3fb-ccb8e6a7bd49"
+      ]
     },
     {
       "ref": "pkg:oci/cdi-operator@sha256%3A21fe82706f57bc5378ba17be79d6831b223605ecf1ea6f43f533b1bccae68c50?arch=amd64&repository_url=quay.io%2Fkubevirt%2Fcdi-operator",
       "dependsOn": [
-        "40f30fd5-bd76-4b42-9aea-172e5abf8129",
-        "621d7d5a-1a47-4d64-906f-00365b758cd4",
-        "f2dbcabc-b295-4ef9-950c-a565578c49dd"
+        "68815d26-e24c-46b3-b796-e4746c8d5cf1",
+        "79796993-7ed8-464b-b9e6-9069da4da91d",
+        "f02e68f5-4d02-417d-80cd-7a8a8f96dd9a"
       ]
     }
   ],

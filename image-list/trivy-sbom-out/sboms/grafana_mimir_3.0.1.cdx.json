@@ -2,10 +2,10 @@
   "$schema": "http://cyclonedx.org/schema/bom-1.6.schema.json",
   "bomFormat": "CycloneDX",
   "specVersion": "1.6",
-  "serialNumber": "urn:uuid:adeb7238-bdfc-4613-91de-406923ca52d0",
+  "serialNumber": "urn:uuid:83fb8de6-a7ec-4885-8b76-4bfa0156551a",
   "version": 1,
   "metadata": {
-    "timestamp": "2026-02-13T09:05:27+00:00",
+    "timestamp": "2026-02-13T09:31:39+00:00",
     "tools": {
       "components": [
         {
@@ -122,22 +122,7 @@
   },
   "components": [
     {
-      "bom-ref": "8487c1f7-8daa-4deb-8113-1ae9a8318860",
-      "type": "application",
-      "name": "bin/mimir",
-      "properties": [
-        {
-          "name": "aquasecurity:trivy:Class",
-          "value": "lang-pkgs"
-        },
-        {
-          "name": "aquasecurity:trivy:Type",
-          "value": "gobinary"
-        }
-      ]
-    },
-    {
-      "bom-ref": "bea6d27e-2788-479d-b57c-58fb8b6f52ce",
+      "bom-ref": "b8ab540a-eade-4599-8181-c6b5df855d74",
       "type": "operating-system",
       "name": "debian",
       "version": "12.12",
@@ -149,6 +134,21 @@
         {
           "name": "aquasecurity:trivy:Type",
           "value": "debian"
+        }
+      ]
+    },
+    {
+      "bom-ref": "d007a53b-23db-464d-a41b-8333e0d14de9",
+      "type": "application",
+      "name": "bin/mimir",
+      "properties": [
+        {
+          "name": "aquasecurity:trivy:Class",
+          "value": "lang-pkgs"
+        },
+        {
+          "name": "aquasecurity:trivy:Type",
+          "value": "gobinary"
         }
       ]
     },
@@ -22057,18 +22057,18 @@
   ],
   "dependencies": [
     {
-      "ref": "8487c1f7-8daa-4deb-8113-1ae9a8318860",
-      "dependsOn": [
-        "pkg:golang/github.com/grafana/mimir@3.0.1"
-      ]
-    },
-    {
-      "ref": "bea6d27e-2788-479d-b57c-58fb8b6f52ce",
+      "ref": "b8ab540a-eade-4599-8181-c6b5df855d74",
       "dependsOn": [
         "pkg:deb/debian/base-files@12.4%2Bdeb12u12?arch=amd64&distro=debian-12.12",
         "pkg:deb/debian/media-types@10.0.0?arch=all&distro=debian-12.12",
         "pkg:deb/debian/netbase@6.4?arch=all&distro=debian-12.12",
         "pkg:deb/debian/tzdata@2025b-0%2Bdeb12u2?arch=all&distro=debian-12.12"
+      ]
+    },
+    {
+      "ref": "d007a53b-23db-464d-a41b-8333e0d14de9",
+      "dependsOn": [
+        "pkg:golang/github.com/grafana/mimir@3.0.1"
       ]
     },
     {
@@ -23575,8 +23575,8 @@
     {
       "ref": "pkg:oci/mimir@sha256%3A5f4667c9b7164a376bd555a56b5a7074535303e1924192a267bad7f0b72893f7?arch=amd64&repository_url=index.docker.io%2Fgrafana%2Fmimir",
       "dependsOn": [
-        "8487c1f7-8daa-4deb-8113-1ae9a8318860",
-        "bea6d27e-2788-479d-b57c-58fb8b6f52ce"
+        "b8ab540a-eade-4599-8181-c6b5df855d74",
+        "d007a53b-23db-464d-a41b-8333e0d14de9"
       ]
     }
   ],

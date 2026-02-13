@@ -2,10 +2,10 @@
   "$schema": "http://cyclonedx.org/schema/bom-1.6.schema.json",
   "bomFormat": "CycloneDX",
   "specVersion": "1.6",
-  "serialNumber": "urn:uuid:61867c90-598f-427c-a7cf-a409ab18a9d2",
+  "serialNumber": "urn:uuid:18192dba-b8c3-4dff-a179-7a4cf299a969",
   "version": 1,
   "metadata": {
-    "timestamp": "2026-02-13T09:07:58+00:00",
+    "timestamp": "2026-02-13T09:33:53+00:00",
     "tools": {
       "components": [
         {
@@ -114,7 +114,22 @@
   },
   "components": [
     {
-      "bom-ref": "498c8a81-61b1-4da5-94b7-5c16e7af3429",
+      "bom-ref": "6be25b12-1e23-4357-a1a4-6b1ad3fc74c3",
+      "type": "application",
+      "name": "ko-app/external-dns",
+      "properties": [
+        {
+          "name": "aquasecurity:trivy:Class",
+          "value": "lang-pkgs"
+        },
+        {
+          "name": "aquasecurity:trivy:Type",
+          "value": "gobinary"
+        }
+      ]
+    },
+    {
+      "bom-ref": "9336e6d3-443a-4998-a0b9-3cbdfb97233d",
       "type": "operating-system",
       "name": "debian",
       "version": "12.12",
@@ -126,21 +141,6 @@
         {
           "name": "aquasecurity:trivy:Type",
           "value": "debian"
-        }
-      ]
-    },
-    {
-      "bom-ref": "850ce99f-5002-4ba8-a609-ebf51354b85e",
-      "type": "application",
-      "name": "ko-app/external-dns",
-      "properties": [
-        {
-          "name": "aquasecurity:trivy:Class",
-          "value": "lang-pkgs"
-        },
-        {
-          "name": "aquasecurity:trivy:Type",
-          "value": "gobinary"
         }
       ]
     },
@@ -14744,18 +14744,18 @@
   ],
   "dependencies": [
     {
-      "ref": "498c8a81-61b1-4da5-94b7-5c16e7af3429",
+      "ref": "6be25b12-1e23-4357-a1a4-6b1ad3fc74c3",
+      "dependsOn": [
+        "pkg:golang/sigs.k8s.io/external-dns"
+      ]
+    },
+    {
+      "ref": "9336e6d3-443a-4998-a0b9-3cbdfb97233d",
       "dependsOn": [
         "pkg:deb/debian/base-files@12.4%2Bdeb12u12?arch=amd64&distro=debian-12.12",
         "pkg:deb/debian/media-types@10.0.0?arch=all&distro=debian-12.12",
         "pkg:deb/debian/netbase@6.4?arch=all&distro=debian-12.12",
         "pkg:deb/debian/tzdata@2025b-0%2Bdeb12u2?arch=all&distro=debian-12.12"
-      ]
-    },
-    {
-      "ref": "850ce99f-5002-4ba8-a609-ebf51354b85e",
-      "dependsOn": [
-        "pkg:golang/sigs.k8s.io/external-dns"
       ]
     },
     {
@@ -15737,8 +15737,8 @@
     {
       "ref": "pkg:oci/external-dns@sha256%3Addc7f4212ed09a21024deb1f470a05240837712e74e4b9f6d1f2632ff10672e7?arch=amd64&repository_url=registry.k8s.io%2Fexternal-dns%2Fexternal-dns",
       "dependsOn": [
-        "498c8a81-61b1-4da5-94b7-5c16e7af3429",
-        "850ce99f-5002-4ba8-a609-ebf51354b85e"
+        "6be25b12-1e23-4357-a1a4-6b1ad3fc74c3",
+        "9336e6d3-443a-4998-a0b9-3cbdfb97233d"
       ]
     }
   ],

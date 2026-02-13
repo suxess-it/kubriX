@@ -2,10 +2,10 @@
   "$schema": "http://cyclonedx.org/schema/bom-1.6.schema.json",
   "bomFormat": "CycloneDX",
   "specVersion": "1.6",
-  "serialNumber": "urn:uuid:c911b4b7-09c1-4c37-a66d-f050199d6bc6",
+  "serialNumber": "urn:uuid:e146386f-342b-4d1f-8034-f336bf73d7e5",
   "version": 1,
   "metadata": {
-    "timestamp": "2026-02-13T09:06:15+00:00",
+    "timestamp": "2026-02-13T09:32:23+00:00",
     "tools": {
       "components": [
         {
@@ -110,7 +110,22 @@
   },
   "components": [
     {
-      "bom-ref": "d145271b-79f9-42c7-a49a-690fc607abc9",
+      "bom-ref": "2fd9bc91-6cb3-4341-9ab1-c93a7a589a76",
+      "type": "application",
+      "name": "bin/rollouts-controller",
+      "properties": [
+        {
+          "name": "aquasecurity:trivy:Class",
+          "value": "lang-pkgs"
+        },
+        {
+          "name": "aquasecurity:trivy:Type",
+          "value": "gobinary"
+        }
+      ]
+    },
+    {
+      "bom-ref": "fe9e3e00-8bbe-49d4-9b62-143784efd21a",
       "type": "operating-system",
       "name": "debian",
       "version": "11.10",
@@ -122,21 +137,6 @@
         {
           "name": "aquasecurity:trivy:Type",
           "value": "debian"
-        }
-      ]
-    },
-    {
-      "bom-ref": "e1fd4810-1c75-448a-9651-fed6ecb1384f",
-      "type": "application",
-      "name": "bin/rollouts-controller",
-      "properties": [
-        {
-          "name": "aquasecurity:trivy:Class",
-          "value": "lang-pkgs"
-        },
-        {
-          "name": "aquasecurity:trivy:Type",
-          "value": "gobinary"
         }
       ]
     },
@@ -15224,17 +15224,17 @@
   ],
   "dependencies": [
     {
-      "ref": "d145271b-79f9-42c7-a49a-690fc607abc9",
+      "ref": "2fd9bc91-6cb3-4341-9ab1-c93a7a589a76",
+      "dependsOn": [
+        "pkg:golang/github.com/argoproj/argo-rollouts@1.8.3"
+      ]
+    },
+    {
+      "ref": "fe9e3e00-8bbe-49d4-9b62-143784efd21a",
       "dependsOn": [
         "pkg:deb/debian/base-files@11.1%2Bdeb11u10?arch=amd64&distro=debian-11.10",
         "pkg:deb/debian/netbase@6.3?arch=all&distro=debian-11.10",
         "pkg:deb/debian/tzdata@2024a-0%2Bdeb11u1?arch=all&distro=debian-11.10"
-      ]
-    },
-    {
-      "ref": "e1fd4810-1c75-448a-9651-fed6ecb1384f",
-      "dependsOn": [
-        "pkg:golang/github.com/argoproj/argo-rollouts@1.8.3"
       ]
     },
     {
@@ -16282,8 +16282,8 @@
     {
       "ref": "pkg:oci/argo-rollouts@sha256%3A2b7be18bd6a3ce627ce0ed63d49e9166720c0b3409404266bbadabd15474d28a?arch=amd64&repository_url=quay.io%2Fargoproj%2Fargo-rollouts",
       "dependsOn": [
-        "d145271b-79f9-42c7-a49a-690fc607abc9",
-        "e1fd4810-1c75-448a-9651-fed6ecb1384f"
+        "2fd9bc91-6cb3-4341-9ab1-c93a7a589a76",
+        "fe9e3e00-8bbe-49d4-9b62-143784efd21a"
       ]
     }
   ],

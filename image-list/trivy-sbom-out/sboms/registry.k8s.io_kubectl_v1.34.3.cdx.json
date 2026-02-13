@@ -2,10 +2,10 @@
   "$schema": "http://cyclonedx.org/schema/bom-1.6.schema.json",
   "bomFormat": "CycloneDX",
   "specVersion": "1.6",
-  "serialNumber": "urn:uuid:ff997edc-844c-40ec-bc1a-66bd3cbe913c",
+  "serialNumber": "urn:uuid:01ac168a-8f4e-4e2c-b9e3-ef4ec9eb778b",
   "version": 1,
   "metadata": {
-    "timestamp": "2026-02-13T09:08:11+00:00",
+    "timestamp": "2026-02-13T09:34:04+00:00",
     "tools": {
       "components": [
         {
@@ -118,63 +118,7 @@
   },
   "components": [
     {
-      "bom-ref": "12e699b3-fbfe-4a10-bd4f-daede094a5cd",
-      "type": "application",
-      "name": "go-runner",
-      "properties": [
-        {
-          "name": "aquasecurity:trivy:Class",
-          "value": "lang-pkgs"
-        },
-        {
-          "name": "aquasecurity:trivy:Type",
-          "value": "gobinary"
-        }
-      ]
-    },
-    {
-      "bom-ref": "7338fa21-e102-43dc-9a63-c83583a416b5",
-      "type": "operating-system",
-      "name": "debian",
-      "version": "12.12",
-      "properties": [
-        {
-          "name": "aquasecurity:trivy:Class",
-          "value": "os-pkgs"
-        },
-        {
-          "name": "aquasecurity:trivy:Type",
-          "value": "debian"
-        }
-      ]
-    },
-    {
-      "bom-ref": "ba1449c7-165a-417f-b1ff-e373a8cfcc68",
-      "type": "library",
-      "name": "stdlib",
-      "version": "v1.24.11",
-      "purl": "pkg:golang/stdlib@v1.24.11",
-      "properties": [
-        {
-          "name": "aquasecurity:trivy:LayerDiffID",
-          "value": "sha256:331f2d612427ed268704718f05f3746fd3121c2e973ab7d4f15af66070d4acbd"
-        },
-        {
-          "name": "aquasecurity:trivy:LayerDigest",
-          "value": "sha256:6dbefd0bad28ecc119764b1e5feec30d1ad7b9881060602fce8247e093fc9061"
-        },
-        {
-          "name": "aquasecurity:trivy:PkgID",
-          "value": "stdlib@v1.24.11"
-        },
-        {
-          "name": "aquasecurity:trivy:PkgType",
-          "value": "gobinary"
-        }
-      ]
-    },
-    {
-      "bom-ref": "dbf6b622-aa84-4616-9fe7-7a73785cce75",
+      "bom-ref": "704ce204-32e5-483f-a6e3-4efbeb709a7f",
       "type": "library",
       "name": "stdlib",
       "version": "v1.24.11",
@@ -199,9 +143,65 @@
       ]
     },
     {
-      "bom-ref": "f0c36739-9c22-40a2-b0e0-0830cffaf60d",
+      "bom-ref": "96e3b300-c4c6-4ca9-b3e6-4579fad747d1",
+      "type": "operating-system",
+      "name": "debian",
+      "version": "12.12",
+      "properties": [
+        {
+          "name": "aquasecurity:trivy:Class",
+          "value": "os-pkgs"
+        },
+        {
+          "name": "aquasecurity:trivy:Type",
+          "value": "debian"
+        }
+      ]
+    },
+    {
+      "bom-ref": "a90a4b7f-6ed2-40f4-ac2b-5b7061d06553",
       "type": "application",
       "name": "bin/kubectl",
+      "properties": [
+        {
+          "name": "aquasecurity:trivy:Class",
+          "value": "lang-pkgs"
+        },
+        {
+          "name": "aquasecurity:trivy:Type",
+          "value": "gobinary"
+        }
+      ]
+    },
+    {
+      "bom-ref": "c6cead4e-b378-4bba-9f94-0507706fbbbc",
+      "type": "library",
+      "name": "stdlib",
+      "version": "v1.24.11",
+      "purl": "pkg:golang/stdlib@v1.24.11",
+      "properties": [
+        {
+          "name": "aquasecurity:trivy:LayerDiffID",
+          "value": "sha256:331f2d612427ed268704718f05f3746fd3121c2e973ab7d4f15af66070d4acbd"
+        },
+        {
+          "name": "aquasecurity:trivy:LayerDigest",
+          "value": "sha256:6dbefd0bad28ecc119764b1e5feec30d1ad7b9881060602fce8247e093fc9061"
+        },
+        {
+          "name": "aquasecurity:trivy:PkgID",
+          "value": "stdlib@v1.24.11"
+        },
+        {
+          "name": "aquasecurity:trivy:PkgType",
+          "value": "gobinary"
+        }
+      ]
+    },
+    {
+      "bom-ref": "e3910c40-6b7c-496e-828a-297dc9074961",
+      "type": "application",
+      "name": "go-runner",
       "properties": [
         {
           "name": "aquasecurity:trivy:Class",
@@ -6132,13 +6132,11 @@
   ],
   "dependencies": [
     {
-      "ref": "12e699b3-fbfe-4a10-bd4f-daede094a5cd",
-      "dependsOn": [
-        "pkg:golang/k8s.io/release/images/build/go-runner"
-      ]
+      "ref": "704ce204-32e5-483f-a6e3-4efbeb709a7f",
+      "dependsOn": []
     },
     {
-      "ref": "7338fa21-e102-43dc-9a63-c83583a416b5",
+      "ref": "96e3b300-c4c6-4ca9-b3e6-4579fad747d1",
       "dependsOn": [
         "pkg:deb/debian/base-files@12.4%2Bdeb12u12?arch=amd64&distro=debian-12.12",
         "pkg:deb/debian/media-types@10.0.0?arch=all&distro=debian-12.12",
@@ -6147,17 +6145,19 @@
       ]
     },
     {
-      "ref": "ba1449c7-165a-417f-b1ff-e373a8cfcc68",
-      "dependsOn": []
-    },
-    {
-      "ref": "dbf6b622-aa84-4616-9fe7-7a73785cce75",
-      "dependsOn": []
-    },
-    {
-      "ref": "f0c36739-9c22-40a2-b0e0-0830cffaf60d",
+      "ref": "a90a4b7f-6ed2-40f4-ac2b-5b7061d06553",
       "dependsOn": [
         "pkg:golang/k8s.io/kubernetes@v1.34.3"
+      ]
+    },
+    {
+      "ref": "c6cead4e-b378-4bba-9f94-0507706fbbbc",
+      "dependsOn": []
+    },
+    {
+      "ref": "e3910c40-6b7c-496e-828a-297dc9074961",
+      "dependsOn": [
+        "pkg:golang/k8s.io/release/images/build/go-runner"
       ]
     },
     {
@@ -6471,7 +6471,7 @@
     {
       "ref": "pkg:golang/k8s.io/kubernetes@v1.34.3",
       "dependsOn": [
-        "ba1449c7-165a-417f-b1ff-e373a8cfcc68",
+        "c6cead4e-b378-4bba-9f94-0507706fbbbc",
         "pkg:golang/github.com/beorn7/perks@v1.0.1",
         "pkg:golang/github.com/blang/semver/v4@v4.0.0",
         "pkg:golang/github.com/cespare/xxhash/v2@v2.3.0",
@@ -6563,7 +6563,7 @@
     {
       "ref": "pkg:golang/k8s.io/release/images/build/go-runner",
       "dependsOn": [
-        "dbf6b622-aa84-4616-9fe7-7a73785cce75"
+        "704ce204-32e5-483f-a6e3-4efbeb709a7f"
       ]
     },
     {
@@ -6601,9 +6601,9 @@
     {
       "ref": "pkg:oci/kubectl@sha256%3A1c6309bd167feb49b2bc1605bce05973002872fd0d26a2e76499ed0c903ea3cf?arch=amd64&repository_url=registry.k8s.io%2Fkubectl",
       "dependsOn": [
-        "12e699b3-fbfe-4a10-bd4f-daede094a5cd",
-        "7338fa21-e102-43dc-9a63-c83583a416b5",
-        "f0c36739-9c22-40a2-b0e0-0830cffaf60d"
+        "96e3b300-c4c6-4ca9-b3e6-4579fad747d1",
+        "a90a4b7f-6ed2-40f4-ac2b-5b7061d06553",
+        "e3910c40-6b7c-496e-828a-297dc9074961"
       ]
     }
   ],

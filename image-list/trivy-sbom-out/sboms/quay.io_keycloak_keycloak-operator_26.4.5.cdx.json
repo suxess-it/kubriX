@@ -2,10 +2,10 @@
   "$schema": "http://cyclonedx.org/schema/bom-1.6.schema.json",
   "bomFormat": "CycloneDX",
   "specVersion": "1.6",
-  "serialNumber": "urn:uuid:21c288ab-5ec8-42c9-9617-9975188fc353",
+  "serialNumber": "urn:uuid:2b750cbd-97d2-4037-bf1a-5693f31878bb",
   "version": 1,
   "metadata": {
-    "timestamp": "2026-02-13T09:06:47+00:00",
+    "timestamp": "2026-02-13T09:32:53+00:00",
     "tools": {
       "components": [
         {
@@ -170,7 +170,23 @@
   },
   "components": [
     {
-      "bom-ref": "85ce17e2-dfdb-48a4-8f32-9a00b5efc338",
+      "bom-ref": "2b35ffe2-0504-4421-98d2-f7b1f2586f06",
+      "type": "operating-system",
+      "name": "redhat",
+      "version": "9.7",
+      "properties": [
+        {
+          "name": "aquasecurity:trivy:Class",
+          "value": "os-pkgs"
+        },
+        {
+          "name": "aquasecurity:trivy:Type",
+          "value": "redhat"
+        }
+      ]
+    },
+    {
+      "bom-ref": "91954a36-bfd1-43d1-a96a-18c0f1f4dd0c",
       "type": "library",
       "supplier": {
         "name": "JCTools"
@@ -270,23 +286,7 @@
       ]
     },
     {
-      "bom-ref": "c514d977-7b09-4f81-862b-36299464213f",
-      "type": "operating-system",
-      "name": "redhat",
-      "version": "9.7",
-      "properties": [
-        {
-          "name": "aquasecurity:trivy:Class",
-          "value": "os-pkgs"
-        },
-        {
-          "name": "aquasecurity:trivy:Type",
-          "value": "redhat"
-        }
-      ]
-    },
-    {
-      "bom-ref": "e3c3af54-7bcc-4ca7-95ac-c1e0c7bcebde",
+      "bom-ref": "d9418282-b6c5-4ee5-9cc2-39a5c9214a4d",
       "type": "library",
       "supplier": {
         "name": "JCTools"
@@ -19389,11 +19389,7 @@
   ],
   "dependencies": [
     {
-      "ref": "85ce17e2-dfdb-48a4-8f32-9a00b5efc338",
-      "dependsOn": []
-    },
-    {
-      "ref": "c514d977-7b09-4f81-862b-36299464213f",
+      "ref": "2b35ffe2-0504-4421-98d2-f7b1f2586f06",
       "dependsOn": [
         "pkg:rpm/redhat/alternatives@1.24-2.el9?arch=x86_64&distro=redhat-9.7",
         "pkg:rpm/redhat/crypto-policies-scripts@20250905-1.git377cc42.el9_7?arch=noarch&distro=redhat-9.7",
@@ -19401,7 +19397,11 @@
       ]
     },
     {
-      "ref": "e3c3af54-7bcc-4ca7-95ac-c1e0c7bcebde",
+      "ref": "91954a36-bfd1-43d1-a96a-18c0f1f4dd0c",
+      "dependsOn": []
+    },
+    {
+      "ref": "d9418282-b6c5-4ee5-9cc2-39a5c9214a4d",
       "dependsOn": []
     },
     {
@@ -20095,9 +20095,9 @@
     {
       "ref": "pkg:oci/keycloak-operator@sha256%3A37a4028a526e4b59228880df9c490fa8228fe336058bed6d3d02ef83c4438c3a?arch=amd64&repository_url=quay.io%2Fkeycloak%2Fkeycloak-operator",
       "dependsOn": [
-        "85ce17e2-dfdb-48a4-8f32-9a00b5efc338",
-        "c514d977-7b09-4f81-862b-36299464213f",
-        "e3c3af54-7bcc-4ca7-95ac-c1e0c7bcebde",
+        "2b35ffe2-0504-4421-98d2-f7b1f2586f06",
+        "91954a36-bfd1-43d1-a96a-18c0f1f4dd0c",
+        "d9418282-b6c5-4ee5-9cc2-39a5c9214a4d",
         "pkg:maven/com.aayushatharva.brotli4j/brotli4j@1.16.0",
         "pkg:maven/com.aayushatharva.brotli4j/native-linux-x86_64@1.16.0",
         "pkg:maven/com.aayushatharva.brotli4j/service@1.16.0",

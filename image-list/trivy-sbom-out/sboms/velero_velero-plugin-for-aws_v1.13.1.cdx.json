@@ -2,10 +2,10 @@
   "$schema": "http://cyclonedx.org/schema/bom-1.6.schema.json",
   "bomFormat": "CycloneDX",
   "specVersion": "1.6",
-  "serialNumber": "urn:uuid:f47b4912-6717-494f-a55c-7d6c5cfaab11",
+  "serialNumber": "urn:uuid:f32fad3b-5d77-4dfc-9819-9205039f9252",
   "version": 1,
   "metadata": {
-    "timestamp": "2026-02-13T09:08:30+00:00",
+    "timestamp": "2026-02-13T09:34:24+00:00",
     "tools": {
       "components": [
         {
@@ -66,7 +66,7 @@
   },
   "components": [
     {
-      "bom-ref": "2d37b6a2-7a15-42c4-a8d2-8e78cfd9f503",
+      "bom-ref": "37b03ccd-52fe-4c0e-b0ea-41800657ac4a",
       "type": "library",
       "supplier": {
         "name": "VMware Tanzu",
@@ -99,11 +99,11 @@
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
-          "value": "sha256:827af1691d9541fbfca6dded039952fb2c90549dc9d41915069153e776edb8d0"
+          "value": "sha256:e1d9fb54acd5ee2455870029df57ee6f97112d107b924b70fcd57d8398895ebf"
         },
         {
           "name": "aquasecurity:trivy:LayerDigest",
-          "value": "sha256:74a64a0e0cd4127ded774c3046e0bc47dfc0c3a952145ce0529133e8ce11dccb"
+          "value": "sha256:269d425610bd322d47ede14a5cc505bcefd9c63961fbeedb05ee829b974a3179"
         },
         {
           "name": "aquasecurity:trivy:PkgID",
@@ -132,32 +132,22 @@
       ]
     },
     {
-      "bom-ref": "8a364265-8dd4-4420-aad5-cbdc8fce2242",
-      "type": "library",
-      "name": "stdlib",
-      "version": "v1.24.9",
-      "purl": "pkg:golang/stdlib@v1.24.9",
+      "bom-ref": "51418bf6-d6a3-40c1-a1ec-f5b7ab7d44e4",
+      "type": "application",
+      "name": "bin/cp-plugin",
       "properties": [
         {
-          "name": "aquasecurity:trivy:LayerDiffID",
-          "value": "sha256:827af1691d9541fbfca6dded039952fb2c90549dc9d41915069153e776edb8d0"
+          "name": "aquasecurity:trivy:Class",
+          "value": "lang-pkgs"
         },
         {
-          "name": "aquasecurity:trivy:LayerDigest",
-          "value": "sha256:74a64a0e0cd4127ded774c3046e0bc47dfc0c3a952145ce0529133e8ce11dccb"
-        },
-        {
-          "name": "aquasecurity:trivy:PkgID",
-          "value": "stdlib@v1.24.9"
-        },
-        {
-          "name": "aquasecurity:trivy:PkgType",
+          "name": "aquasecurity:trivy:Type",
           "value": "gobinary"
         }
       ]
     },
     {
-      "bom-ref": "bd8f4d3b-9e23-4ae2-a7f1-f7079e074ebd",
+      "bom-ref": "575fb9f2-7ec1-4c5b-b92d-0230bfd92467",
       "type": "application",
       "name": "plugins/velero-plugin-for-aws",
       "properties": [
@@ -172,7 +162,7 @@
       ]
     },
     {
-      "bom-ref": "be35f000-bf1e-4677-8c3f-d33b6d2c0e66",
+      "bom-ref": "82eeb1d4-2b02-4487-af02-d39a72ff8c80",
       "type": "library",
       "supplier": {
         "name": "VMware Tanzu",
@@ -205,11 +195,11 @@
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
-          "value": "sha256:e1d9fb54acd5ee2455870029df57ee6f97112d107b924b70fcd57d8398895ebf"
+          "value": "sha256:827af1691d9541fbfca6dded039952fb2c90549dc9d41915069153e776edb8d0"
         },
         {
           "name": "aquasecurity:trivy:LayerDigest",
-          "value": "sha256:269d425610bd322d47ede14a5cc505bcefd9c63961fbeedb05ee829b974a3179"
+          "value": "sha256:74a64a0e0cd4127ded774c3046e0bc47dfc0c3a952145ce0529133e8ce11dccb"
         },
         {
           "name": "aquasecurity:trivy:PkgID",
@@ -238,7 +228,32 @@
       ]
     },
     {
-      "bom-ref": "cbe1b534-8db6-4fd8-892e-105e3d90892c",
+      "bom-ref": "8d4aa198-6f12-4221-b6fb-b7b7933e6e78",
+      "type": "library",
+      "name": "stdlib",
+      "version": "v1.24.9",
+      "purl": "pkg:golang/stdlib@v1.24.9",
+      "properties": [
+        {
+          "name": "aquasecurity:trivy:LayerDiffID",
+          "value": "sha256:827af1691d9541fbfca6dded039952fb2c90549dc9d41915069153e776edb8d0"
+        },
+        {
+          "name": "aquasecurity:trivy:LayerDigest",
+          "value": "sha256:74a64a0e0cd4127ded774c3046e0bc47dfc0c3a952145ce0529133e8ce11dccb"
+        },
+        {
+          "name": "aquasecurity:trivy:PkgID",
+          "value": "stdlib@v1.24.9"
+        },
+        {
+          "name": "aquasecurity:trivy:PkgType",
+          "value": "gobinary"
+        }
+      ]
+    },
+    {
+      "bom-ref": "d7ee6cb6-636c-49c3-819b-836f3f63cc22",
       "type": "library",
       "name": "stdlib",
       "version": "v1.24.9",
@@ -258,21 +273,6 @@
         },
         {
           "name": "aquasecurity:trivy:PkgType",
-          "value": "gobinary"
-        }
-      ]
-    },
-    {
-      "bom-ref": "ffe91d96-45af-441a-93b4-4a335973c7c5",
-      "type": "application",
-      "name": "bin/cp-plugin",
-      "properties": [
-        {
-          "name": "aquasecurity:trivy:Class",
-          "value": "lang-pkgs"
-        },
-        {
-          "name": "aquasecurity:trivy:Type",
           "value": "gobinary"
         }
       ]
@@ -6860,25 +6860,9 @@
   ],
   "dependencies": [
     {
-      "ref": "2d37b6a2-7a15-42c4-a8d2-8e78cfd9f503",
+      "ref": "37b03ccd-52fe-4c0e-b0ea-41800657ac4a",
       "dependsOn": [
-        "8a364265-8dd4-4420-aad5-cbdc8fce2242"
-      ]
-    },
-    {
-      "ref": "8a364265-8dd4-4420-aad5-cbdc8fce2242",
-      "dependsOn": []
-    },
-    {
-      "ref": "bd8f4d3b-9e23-4ae2-a7f1-f7079e074ebd",
-      "dependsOn": [
-        "be35f000-bf1e-4677-8c3f-d33b6d2c0e66"
-      ]
-    },
-    {
-      "ref": "be35f000-bf1e-4677-8c3f-d33b6d2c0e66",
-      "dependsOn": [
-        "cbe1b534-8db6-4fd8-892e-105e3d90892c",
+        "d7ee6cb6-636c-49c3-819b-836f3f63cc22",
         "pkg:golang/github.com/aws/aws-sdk-go-v2/aws/protocol/eventstream@v1.5.4",
         "pkg:golang/github.com/aws/aws-sdk-go-v2/config@v1.26.3",
         "pkg:golang/github.com/aws/aws-sdk-go-v2/credentials@v1.16.14",
@@ -6972,14 +6956,30 @@
       ]
     },
     {
-      "ref": "cbe1b534-8db6-4fd8-892e-105e3d90892c",
+      "ref": "51418bf6-d6a3-40c1-a1ec-f5b7ab7d44e4",
+      "dependsOn": [
+        "82eeb1d4-2b02-4487-af02-d39a72ff8c80"
+      ]
+    },
+    {
+      "ref": "575fb9f2-7ec1-4c5b-b92d-0230bfd92467",
+      "dependsOn": [
+        "37b03ccd-52fe-4c0e-b0ea-41800657ac4a"
+      ]
+    },
+    {
+      "ref": "82eeb1d4-2b02-4487-af02-d39a72ff8c80",
+      "dependsOn": [
+        "8d4aa198-6f12-4221-b6fb-b7b7933e6e78"
+      ]
+    },
+    {
+      "ref": "8d4aa198-6f12-4221-b6fb-b7b7933e6e78",
       "dependsOn": []
     },
     {
-      "ref": "ffe91d96-45af-441a-93b4-4a335973c7c5",
-      "dependsOn": [
-        "2d37b6a2-7a15-42c4-a8d2-8e78cfd9f503"
-      ]
+      "ref": "d7ee6cb6-636c-49c3-819b-836f3f63cc22",
+      "dependsOn": []
     },
     {
       "ref": "pkg:golang/github.com/aws/aws-sdk-go-v2/aws/protocol/eventstream@v1.5.4",
@@ -7344,8 +7344,8 @@
     {
       "ref": "pkg:oci/velero-plugin-for-aws@sha256%3A472d0e486d5d5c23c782b1b123530c7df8645784523ec36ca661a326d47885ff?arch=amd64&repository_url=index.docker.io%2Fvelero%2Fvelero-plugin-for-aws",
       "dependsOn": [
-        "bd8f4d3b-9e23-4ae2-a7f1-f7079e074ebd",
-        "ffe91d96-45af-441a-93b4-4a335973c7c5"
+        "51418bf6-d6a3-40c1-a1ec-f5b7ab7d44e4",
+        "575fb9f2-7ec1-4c5b-b92d-0230bfd92467"
       ]
     }
   ],

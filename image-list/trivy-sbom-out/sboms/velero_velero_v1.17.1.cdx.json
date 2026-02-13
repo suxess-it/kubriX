@@ -2,10 +2,10 @@
   "$schema": "http://cyclonedx.org/schema/bom-1.6.schema.json",
   "bomFormat": "CycloneDX",
   "specVersion": "1.6",
-  "serialNumber": "urn:uuid:1493dc2b-46d4-4e3a-981e-405c07840cad",
+  "serialNumber": "urn:uuid:bc00509d-a23b-4c48-b071-26f9ef40dd48",
   "version": 1,
   "metadata": {
-    "timestamp": "2026-02-13T09:08:34+00:00",
+    "timestamp": "2026-02-13T09:34:28+00:00",
     "tools": {
       "components": [
         {
@@ -110,7 +110,1302 @@
   },
   "components": [
     {
-      "bom-ref": "06d8c40e-0963-461e-ae3b-f65aebd06f0e",
+      "bom-ref": "0289516d-edc6-432b-8b05-5baca51f5d76",
+      "type": "library",
+      "name": "stdlib",
+      "version": "v1.24.9",
+      "purl": "pkg:golang/stdlib@v1.24.9",
+      "properties": [
+        {
+          "name": "aquasecurity:trivy:LayerDiffID",
+          "value": "sha256:79414ea653fa47c16071e7df177805fcb50d0c1e2f4f825796e4c1d17ad6f13c"
+        },
+        {
+          "name": "aquasecurity:trivy:LayerDigest",
+          "value": "sha256:cae9f53ea987ef6399627b40c985c9dd745596a1f595b8107598ffe210ab7c5e"
+        },
+        {
+          "name": "aquasecurity:trivy:PkgID",
+          "value": "stdlib@v1.24.9"
+        },
+        {
+          "name": "aquasecurity:trivy:PkgType",
+          "value": "gobinary"
+        }
+      ]
+    },
+    {
+      "bom-ref": "1b303b4a-0530-4e8e-a49f-64cfbaa62d8e",
+      "type": "library",
+      "name": "github.com/modern-go/reflect2",
+      "version": "v1.0.2",
+      "licenses": [
+        {
+          "expression": "(Apache-2.0)"
+        }
+      ],
+      "purl": "pkg:golang/github.com/modern-go/reflect2@v1.0.2",
+      "externalReferences": [
+        {
+          "url": "https://github.com/modern-go/reflect2",
+          "type": "website"
+        },
+        {
+          "url": "https://pkg.go.dev/github.com/modern-go/reflect2",
+          "type": "distribution"
+        },
+        {
+          "url": "https://github.com/modern-go/reflect2",
+          "type": "vcs"
+        },
+        {
+          "url": "https://pkg.go.dev/github.com/modern-go/reflect2#section-documentation",
+          "type": "documentation"
+        }
+      ],
+      "properties": [
+        {
+          "name": "aquasecurity:trivy:LayerDiffID",
+          "value": "sha256:56fe943f1fd47c68492437dbdc410e6e5c50e6bd3cf87b6587a781fd8b30abb7"
+        },
+        {
+          "name": "aquasecurity:trivy:LayerDigest",
+          "value": "sha256:43bef5e2b7c9eb21ca5bcd55cae0d1bd5044b1540c54d8a752635e935caaf7d6"
+        },
+        {
+          "name": "aquasecurity:trivy:PkgID",
+          "value": "github.com/modern-go/reflect2@v1.0.2"
+        },
+        {
+          "name": "aquasecurity:trivy:PkgType",
+          "value": "gobinary"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2018-07-18T01:23:57Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2021-09-11T02:10:30Z"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "go"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "golang"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "reflect"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "reflection"
+        }
+      ]
+    },
+    {
+      "bom-ref": "418efd9b-1431-481f-a6ad-3ab8a41b93c5",
+      "type": "application",
+      "name": "velero",
+      "properties": [
+        {
+          "name": "aquasecurity:trivy:Class",
+          "value": "lang-pkgs"
+        },
+        {
+          "name": "aquasecurity:trivy:Type",
+          "value": "gobinary"
+        }
+      ]
+    },
+    {
+      "bom-ref": "4191f702-c4a2-4f03-be6e-80bd5b962615",
+      "type": "library",
+      "supplier": {
+        "name": "Steve Francia",
+        "url": [
+          "http://spf13.com"
+        ]
+      },
+      "author": "Steve Francia",
+      "name": "github.com/spf13/pflag",
+      "version": "v1.0.5",
+      "description": "Package pflag is a drop-in replacement for Go's flag package, implementing\nPOSIX/GNU-style --flags.\n\npflag is compatible with the GNU extensions to the POSIX recommendations\nfor command-line options. See\nhttp://www.gnu.org/software/libc/manual/html_node/Argument-Syntax.html\n\nUsage:\n\npflag is a drop-in replacement of Go's native flag package. If you import\npflag under the name \"flag\" then all code should continue to function\nwith no changes.\n\nThere is one exception to this: if you directly instantiate the Flag struct\nthere is one more field \"Shorthand\" that you will need to set.\nMost code never instantiates this struct directly, and instead uses\nfunctions such as String(), BoolVar(), and Var(), and is therefore\nunaffected.\n\nDefine flags using flag.String(), Bool(), Int(), etc.\n\nThis declares an integer flag, -flagname, stored in the pointer ip, with type *int.\n\nIf you like, you can bind the flag to a variable using the Var() functions.\n\nOr you can create custom flags that satisfy the Value interface (with\npointer receivers) and couple them to flag parsing by\n\nFor such flags, the default value is just the initial value of the variable.\n\nAfter all flags are defined, call\n\nto parse the command line into the defined flags.\n\nFlags may then be used directly. If you're using the flags themselves,\nthey are all pointers; if you bind to variables, they're values.\n\nAfter parsing, the arguments after the flag are available as the\nslice flag.Args() or individually as flag.Arg(i).\nThe arguments are indexed from 0 through flag.NArg()-1.\n\nThe pflag package also defines some new functions that are not in flag,\nthat give one-letter shorthands for flags. You can use these by appending\n'P' to the name of any function that defines a flag.\n\nShorthand letters can be used with single dashes on the command line.\nBoolean shorthand flags can be combined with other shorthand flags.\n\nCommand line flag syntax:\n\nUnlike the flag package, a single dash before an option means something\ndifferent than a double dash. Single dashes signify a series of shorthand\nletters for flags. All but the last shorthand letter must be boolean flags.\n\nFlag parsing stops after the terminator \"--\". Unlike the flag package,\nflags can be interspersed with arguments anywhere on the command line\nbefore this terminator.\n\nInteger flags accept 1234, 0664, 0x1234 and may be negative.\nBoolean flags (in their long form) accept 1, 0, t, f, true, false,\nTRUE, FALSE, True, False.\nDuration flags accept any input valid for time.ParseDuration.\n\nThe default set of command-line flags is controlled by\ntop-level functions.  The FlagSet type allows one to define\nindependent sets of flags, such as to implement subcommands\nin a command-line interface. The methods of FlagSet are\nanalogous to the top-level functions for the command-line\nflag set.",
+      "licenses": [
+        {
+          "expression": "(BSD-3-Clause)"
+        }
+      ],
+      "purl": "pkg:golang/github.com/spf13/pflag@v1.0.5",
+      "externalReferences": [
+        {
+          "url": "https://github.com/spf13/pflag",
+          "type": "website"
+        },
+        {
+          "url": "https://pkg.go.dev/github.com/spf13/pflag",
+          "type": "distribution"
+        },
+        {
+          "url": "https://github.com/spf13/pflag",
+          "type": "vcs"
+        },
+        {
+          "url": "https://pkg.go.dev/github.com/spf13/pflag#section-documentation",
+          "type": "documentation"
+        }
+      ],
+      "properties": [
+        {
+          "name": "aquasecurity:trivy:LayerDiffID",
+          "value": "sha256:79414ea653fa47c16071e7df177805fcb50d0c1e2f4f825796e4c1d17ad6f13c"
+        },
+        {
+          "name": "aquasecurity:trivy:LayerDigest",
+          "value": "sha256:cae9f53ea987ef6399627b40c985c9dd745596a1f595b8107598ffe210ab7c5e"
+        },
+        {
+          "name": "aquasecurity:trivy:PkgID",
+          "value": "github.com/spf13/pflag@v1.0.5"
+        },
+        {
+          "name": "aquasecurity:trivy:PkgType",
+          "value": "gobinary"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2017-05-08T18:44:08Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2025-09-02T06:08:29Z"
+        },
+        {
+          "name": "ecosystems:owner_location",
+          "value": "NYC"
+        }
+      ]
+    },
+    {
+      "bom-ref": "5ec91b51-07da-4ded-83cc-43163d966bb4",
+      "type": "library",
+      "supplier": {
+        "name": "VMware Tanzu",
+        "url": [
+          "tanzu.io"
+        ]
+      },
+      "author": "VMware Tanzu",
+      "name": "github.com/vmware-tanzu/velero",
+      "version": "v1.17.1+dirty",
+      "purl": "pkg:golang/github.com/vmware-tanzu/velero@v1.17.1%2Bdirty",
+      "externalReferences": [
+        {
+          "url": "https://github.com/vmware-tanzu/velero",
+          "type": "website"
+        },
+        {
+          "url": "https://pkg.go.dev/github.com/vmware-tanzu/velero",
+          "type": "distribution"
+        },
+        {
+          "url": "https://github.com/vmware-tanzu/velero",
+          "type": "vcs"
+        },
+        {
+          "url": "https://pkg.go.dev/github.com/vmware-tanzu/velero#section-documentation",
+          "type": "documentation"
+        }
+      ],
+      "properties": [
+        {
+          "name": "aquasecurity:trivy:LayerDiffID",
+          "value": "sha256:56fe943f1fd47c68492437dbdc410e6e5c50e6bd3cf87b6587a781fd8b30abb7"
+        },
+        {
+          "name": "aquasecurity:trivy:LayerDigest",
+          "value": "sha256:43bef5e2b7c9eb21ca5bcd55cae0d1bd5044b1540c54d8a752635e935caaf7d6"
+        },
+        {
+          "name": "aquasecurity:trivy:PkgID",
+          "value": "github.com/vmware-tanzu/velero@v1.17.1+dirty"
+        },
+        {
+          "name": "aquasecurity:trivy:PkgType",
+          "value": "gobinary"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2017-08-02T21:29:38Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2026-01-09T03:17:35Z"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "backup"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "disaster-recovery"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "hacktoberfest"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "kubernetes"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "velero"
+        }
+      ]
+    },
+    {
+      "bom-ref": "6077fdc6-55fa-4691-ac66-1df43c1ab4f4",
+      "type": "library",
+      "name": "stdlib",
+      "version": "v1.24.9",
+      "purl": "pkg:golang/stdlib@v1.24.9",
+      "properties": [
+        {
+          "name": "aquasecurity:trivy:LayerDiffID",
+          "value": "sha256:56fe943f1fd47c68492437dbdc410e6e5c50e6bd3cf87b6587a781fd8b30abb7"
+        },
+        {
+          "name": "aquasecurity:trivy:LayerDigest",
+          "value": "sha256:43bef5e2b7c9eb21ca5bcd55cae0d1bd5044b1540c54d8a752635e935caaf7d6"
+        },
+        {
+          "name": "aquasecurity:trivy:PkgID",
+          "value": "stdlib@v1.24.9"
+        },
+        {
+          "name": "aquasecurity:trivy:PkgType",
+          "value": "gobinary"
+        }
+      ]
+    },
+    {
+      "bom-ref": "64301140-7c6c-4cb0-ba85-1efd51f28911",
+      "type": "library",
+      "supplier": {
+        "name": "VMware Tanzu",
+        "url": [
+          "tanzu.io"
+        ]
+      },
+      "author": "VMware Tanzu",
+      "name": "github.com/vmware-tanzu/velero",
+      "version": "v1.17.1+dirty",
+      "purl": "pkg:golang/github.com/vmware-tanzu/velero@v1.17.1%2Bdirty",
+      "externalReferences": [
+        {
+          "url": "https://github.com/vmware-tanzu/velero",
+          "type": "website"
+        },
+        {
+          "url": "https://pkg.go.dev/github.com/vmware-tanzu/velero",
+          "type": "distribution"
+        },
+        {
+          "url": "https://github.com/vmware-tanzu/velero",
+          "type": "vcs"
+        },
+        {
+          "url": "https://pkg.go.dev/github.com/vmware-tanzu/velero#section-documentation",
+          "type": "documentation"
+        }
+      ],
+      "properties": [
+        {
+          "name": "aquasecurity:trivy:LayerDiffID",
+          "value": "sha256:56fe943f1fd47c68492437dbdc410e6e5c50e6bd3cf87b6587a781fd8b30abb7"
+        },
+        {
+          "name": "aquasecurity:trivy:LayerDigest",
+          "value": "sha256:43bef5e2b7c9eb21ca5bcd55cae0d1bd5044b1540c54d8a752635e935caaf7d6"
+        },
+        {
+          "name": "aquasecurity:trivy:PkgID",
+          "value": "github.com/vmware-tanzu/velero@v1.17.1+dirty"
+        },
+        {
+          "name": "aquasecurity:trivy:PkgType",
+          "value": "gobinary"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2017-08-02T21:29:38Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2026-01-09T03:17:35Z"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "backup"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "disaster-recovery"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "hacktoberfest"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "kubernetes"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "velero"
+        }
+      ]
+    },
+    {
+      "bom-ref": "64994692-df5f-45b8-87ed-b8460b4cceb2",
+      "type": "library",
+      "supplier": {
+        "name": "MinIO",
+        "url": [
+          "https://min.io"
+        ]
+      },
+      "author": "MinIO",
+      "name": "github.com/minio/md5-simd",
+      "version": "v1.1.2",
+      "licenses": [
+        {
+          "expression": "(Apache-2.0)"
+        }
+      ],
+      "purl": "pkg:golang/github.com/minio/md5-simd@v1.1.2",
+      "externalReferences": [
+        {
+          "url": "https://github.com/minio/md5-simd",
+          "type": "website"
+        },
+        {
+          "url": "https://pkg.go.dev/github.com/minio/md5-simd",
+          "type": "distribution"
+        },
+        {
+          "url": "https://github.com/minio/md5-simd",
+          "type": "vcs"
+        },
+        {
+          "url": "https://pkg.go.dev/github.com/minio/md5-simd#section-documentation",
+          "type": "documentation"
+        }
+      ],
+      "properties": [
+        {
+          "name": "aquasecurity:trivy:LayerDiffID",
+          "value": "sha256:79414ea653fa47c16071e7df177805fcb50d0c1e2f4f825796e4c1d17ad6f13c"
+        },
+        {
+          "name": "aquasecurity:trivy:LayerDigest",
+          "value": "sha256:cae9f53ea987ef6399627b40c985c9dd745596a1f595b8107598ffe210ab7c5e"
+        },
+        {
+          "name": "aquasecurity:trivy:PkgID",
+          "value": "github.com/minio/md5-simd@v1.1.2"
+        },
+        {
+          "name": "aquasecurity:trivy:PkgType",
+          "value": "gobinary"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2020-04-28T21:33:15Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2021-01-07T19:48:44Z"
+        },
+        {
+          "name": "ecosystems:owner_location",
+          "value": "United States of America"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "assembly"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "avx2"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "avx512"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "golang"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "hashing"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "md5"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "performance"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "simd"
+        }
+      ]
+    },
+    {
+      "bom-ref": "653e72b7-18c6-49df-aa29-ab0a20974e8e",
+      "type": "library",
+      "name": "stdlib",
+      "version": "v1.24.9",
+      "purl": "pkg:golang/stdlib@v1.24.9",
+      "properties": [
+        {
+          "name": "aquasecurity:trivy:LayerDiffID",
+          "value": "sha256:56fe943f1fd47c68492437dbdc410e6e5c50e6bd3cf87b6587a781fd8b30abb7"
+        },
+        {
+          "name": "aquasecurity:trivy:LayerDigest",
+          "value": "sha256:43bef5e2b7c9eb21ca5bcd55cae0d1bd5044b1540c54d8a752635e935caaf7d6"
+        },
+        {
+          "name": "aquasecurity:trivy:PkgID",
+          "value": "stdlib@v1.24.9"
+        },
+        {
+          "name": "aquasecurity:trivy:PkgType",
+          "value": "gobinary"
+        }
+      ]
+    },
+    {
+      "bom-ref": "6e502c8e-d9e0-4734-b800-c685d446c5d2",
+      "type": "library",
+      "supplier": {
+        "name": "go-yaml"
+      },
+      "author": "go-yaml",
+      "name": "gopkg.in/yaml.v3",
+      "version": "v3.0.1",
+      "description": "Package yaml implements YAML support for the Go language.\n\nSource code and other details for the project are available at GitHub:",
+      "licenses": [
+        {
+          "expression": "(Apache-2.0 OR MIT)"
+        }
+      ],
+      "purl": "pkg:golang/gopkg.in/yaml.v3@v3.0.1",
+      "externalReferences": [
+        {
+          "url": "https://github.com/go-yaml/yaml",
+          "type": "website"
+        },
+        {
+          "url": "https://pkg.go.dev/gopkg.in/yaml.v3",
+          "type": "distribution"
+        },
+        {
+          "url": "https://github.com/go-yaml/yaml",
+          "type": "vcs"
+        },
+        {
+          "url": "https://pkg.go.dev/gopkg.in/yaml.v3#section-documentation",
+          "type": "documentation"
+        }
+      ],
+      "properties": [
+        {
+          "name": "aquasecurity:trivy:LayerDiffID",
+          "value": "sha256:79414ea653fa47c16071e7df177805fcb50d0c1e2f4f825796e4c1d17ad6f13c"
+        },
+        {
+          "name": "aquasecurity:trivy:LayerDigest",
+          "value": "sha256:cae9f53ea987ef6399627b40c985c9dd745596a1f595b8107598ffe210ab7c5e"
+        },
+        {
+          "name": "aquasecurity:trivy:PkgID",
+          "value": "gopkg.in/yaml.v3@v3.0.1"
+        },
+        {
+          "name": "aquasecurity:trivy:PkgType",
+          "value": "gobinary"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2022-05-21T10:33:21Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2022-05-27T08:35:30Z"
+        }
+      ]
+    },
+    {
+      "bom-ref": "7d64123d-e6ed-4c7f-ae84-11f88fac6eb0",
+      "type": "library",
+      "supplier": {
+        "name": "Steve Francia",
+        "url": [
+          "http://spf13.com"
+        ]
+      },
+      "author": "Steve Francia",
+      "name": "github.com/spf13/pflag",
+      "version": "v1.0.5",
+      "description": "Package pflag is a drop-in replacement for Go's flag package, implementing\nPOSIX/GNU-style --flags.\n\npflag is compatible with the GNU extensions to the POSIX recommendations\nfor command-line options. See\nhttp://www.gnu.org/software/libc/manual/html_node/Argument-Syntax.html\n\nUsage:\n\npflag is a drop-in replacement of Go's native flag package. If you import\npflag under the name \"flag\" then all code should continue to function\nwith no changes.\n\nThere is one exception to this: if you directly instantiate the Flag struct\nthere is one more field \"Shorthand\" that you will need to set.\nMost code never instantiates this struct directly, and instead uses\nfunctions such as String(), BoolVar(), and Var(), and is therefore\nunaffected.\n\nDefine flags using flag.String(), Bool(), Int(), etc.\n\nThis declares an integer flag, -flagname, stored in the pointer ip, with type *int.\n\nIf you like, you can bind the flag to a variable using the Var() functions.\n\nOr you can create custom flags that satisfy the Value interface (with\npointer receivers) and couple them to flag parsing by\n\nFor such flags, the default value is just the initial value of the variable.\n\nAfter all flags are defined, call\n\nto parse the command line into the defined flags.\n\nFlags may then be used directly. If you're using the flags themselves,\nthey are all pointers; if you bind to variables, they're values.\n\nAfter parsing, the arguments after the flag are available as the\nslice flag.Args() or individually as flag.Arg(i).\nThe arguments are indexed from 0 through flag.NArg()-1.\n\nThe pflag package also defines some new functions that are not in flag,\nthat give one-letter shorthands for flags. You can use these by appending\n'P' to the name of any function that defines a flag.\n\nShorthand letters can be used with single dashes on the command line.\nBoolean shorthand flags can be combined with other shorthand flags.\n\nCommand line flag syntax:\n\nUnlike the flag package, a single dash before an option means something\ndifferent than a double dash. Single dashes signify a series of shorthand\nletters for flags. All but the last shorthand letter must be boolean flags.\n\nFlag parsing stops after the terminator \"--\". Unlike the flag package,\nflags can be interspersed with arguments anywhere on the command line\nbefore this terminator.\n\nInteger flags accept 1234, 0664, 0x1234 and may be negative.\nBoolean flags (in their long form) accept 1, 0, t, f, true, false,\nTRUE, FALSE, True, False.\nDuration flags accept any input valid for time.ParseDuration.\n\nThe default set of command-line flags is controlled by\ntop-level functions.  The FlagSet type allows one to define\nindependent sets of flags, such as to implement subcommands\nin a command-line interface. The methods of FlagSet are\nanalogous to the top-level functions for the command-line\nflag set.",
+      "licenses": [
+        {
+          "expression": "(BSD-3-Clause)"
+        }
+      ],
+      "purl": "pkg:golang/github.com/spf13/pflag@v1.0.5",
+      "externalReferences": [
+        {
+          "url": "https://github.com/spf13/pflag",
+          "type": "website"
+        },
+        {
+          "url": "https://pkg.go.dev/github.com/spf13/pflag",
+          "type": "distribution"
+        },
+        {
+          "url": "https://github.com/spf13/pflag",
+          "type": "vcs"
+        },
+        {
+          "url": "https://pkg.go.dev/github.com/spf13/pflag#section-documentation",
+          "type": "documentation"
+        }
+      ],
+      "properties": [
+        {
+          "name": "aquasecurity:trivy:LayerDiffID",
+          "value": "sha256:56fe943f1fd47c68492437dbdc410e6e5c50e6bd3cf87b6587a781fd8b30abb7"
+        },
+        {
+          "name": "aquasecurity:trivy:LayerDigest",
+          "value": "sha256:43bef5e2b7c9eb21ca5bcd55cae0d1bd5044b1540c54d8a752635e935caaf7d6"
+        },
+        {
+          "name": "aquasecurity:trivy:PkgID",
+          "value": "github.com/spf13/pflag@v1.0.5"
+        },
+        {
+          "name": "aquasecurity:trivy:PkgType",
+          "value": "gobinary"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2017-05-08T18:44:08Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2025-09-02T06:08:29Z"
+        },
+        {
+          "name": "ecosystems:owner_location",
+          "value": "NYC"
+        }
+      ]
+    },
+    {
+      "bom-ref": "80755bb2-40e8-4d98-b1fb-fe2d13984cf6",
+      "type": "library",
+      "supplier": {
+        "name": "pkg"
+      },
+      "author": "pkg",
+      "name": "github.com/pkg/errors",
+      "version": "v0.9.1",
+      "description": "Package errors provides simple error handling primitives.\n\nThe traditional error handling idiom in Go is roughly akin to\n\nwhich when applied recursively up the call stack results in error reports\nwithout context or debugging information. The errors package allows\nprogrammers to add context to the failure path in their code in a way\nthat does not destroy the original value of the error.\n\nThe errors.Wrap function returns a new error that adds context to the\noriginal error by recording a stack trace at the point Wrap is called,\ntogether with the supplied message. For example\n\nIf additional control is required, the errors.WithStack and\nerrors.WithMessage functions destructure errors.Wrap into its component\noperations: annotating an error with a stack trace and with a message,\nrespectively.\n\nUsing errors.Wrap constructs a stack of errors, adding context to the\npreceding error. Depending on the nature of the error it may be necessary\nto reverse the operation of errors.Wrap to retrieve the original error\nfor inspection. Any error value which implements this interface\n\ncan be inspected by errors.Cause. errors.Cause will recursively retrieve\nthe topmost error that does not implement causer, which is assumed to be\nthe original cause. For example:\n\nAlthough the causer interface is not exported by this package, it is\nconsidered a part of its stable public interface.\n\nAll error values returned from this package implement fmt.Formatter and can\nbe formatted by the fmt package. The following verbs are supported:\n\nNew, Errorf, Wrap, and Wrapf record a stack trace at the point they are\ninvoked. This information can be retrieved with the following interface:\n\nThe returned errors.StackTrace type is defined as\n\nThe Frame type represents a call site in the stack trace. Frame supports\nthe fmt.Formatter interface that can be used for printing information about\nthe stack trace of this error. For example:\n\nAlthough the stackTracer interface is not exported by this package, it is\nconsidered a part of its stable public interface.\n\nSee the documentation for Frame.Format for more details.",
+      "licenses": [
+        {
+          "expression": "(BSD-2-Clause)"
+        }
+      ],
+      "purl": "pkg:golang/github.com/pkg/errors@v0.9.1",
+      "externalReferences": [
+        {
+          "url": "https://github.com/pkg/errors",
+          "type": "website"
+        },
+        {
+          "url": "https://pkg.go.dev/github.com/pkg/errors",
+          "type": "distribution"
+        },
+        {
+          "url": "https://github.com/pkg/errors",
+          "type": "vcs"
+        },
+        {
+          "url": "https://pkg.go.dev/github.com/pkg/errors#section-documentation",
+          "type": "documentation"
+        }
+      ],
+      "properties": [
+        {
+          "name": "aquasecurity:trivy:LayerDiffID",
+          "value": "sha256:79414ea653fa47c16071e7df177805fcb50d0c1e2f4f825796e4c1d17ad6f13c"
+        },
+        {
+          "name": "aquasecurity:trivy:LayerDigest",
+          "value": "sha256:cae9f53ea987ef6399627b40c985c9dd745596a1f595b8107598ffe210ab7c5e"
+        },
+        {
+          "name": "aquasecurity:trivy:PkgID",
+          "value": "github.com/pkg/errors@v0.9.1"
+        },
+        {
+          "name": "aquasecurity:trivy:PkgType",
+          "value": "gobinary"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2016-04-24T12:18:34Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2020-01-14T19:47:44Z"
+        },
+        {
+          "name": "ecosystems:repository_archived",
+          "value": "true"
+        }
+      ]
+    },
+    {
+      "bom-ref": "8aae93f0-6f67-4ebb-a6c3-727ed97713b6",
+      "type": "library",
+      "name": "stdlib",
+      "version": "v1.24.9",
+      "purl": "pkg:golang/stdlib@v1.24.9",
+      "properties": [
+        {
+          "name": "aquasecurity:trivy:LayerDiffID",
+          "value": "sha256:56fe943f1fd47c68492437dbdc410e6e5c50e6bd3cf87b6587a781fd8b30abb7"
+        },
+        {
+          "name": "aquasecurity:trivy:LayerDigest",
+          "value": "sha256:43bef5e2b7c9eb21ca5bcd55cae0d1bd5044b1540c54d8a752635e935caaf7d6"
+        },
+        {
+          "name": "aquasecurity:trivy:PkgID",
+          "value": "stdlib@v1.24.9"
+        },
+        {
+          "name": "aquasecurity:trivy:PkgType",
+          "value": "gobinary"
+        }
+      ]
+    },
+    {
+      "bom-ref": "8cc3b4ec-0867-48bb-a031-a3830336e959",
+      "type": "application",
+      "name": "velero-restore-helper",
+      "properties": [
+        {
+          "name": "aquasecurity:trivy:Class",
+          "value": "lang-pkgs"
+        },
+        {
+          "name": "aquasecurity:trivy:Type",
+          "value": "gobinary"
+        }
+      ]
+    },
+    {
+      "bom-ref": "9f926d6d-5b9f-4ab8-8e27-5e2108fcf531",
+      "type": "library",
+      "supplier": {
+        "name": "VMware Tanzu",
+        "url": [
+          "tanzu.io"
+        ]
+      },
+      "author": "VMware Tanzu",
+      "name": "github.com/vmware-tanzu/velero",
+      "version": "v1.17.1+dirty",
+      "purl": "pkg:golang/github.com/vmware-tanzu/velero@v1.17.1%2Bdirty",
+      "externalReferences": [
+        {
+          "url": "https://github.com/vmware-tanzu/velero",
+          "type": "website"
+        },
+        {
+          "url": "https://pkg.go.dev/github.com/vmware-tanzu/velero",
+          "type": "distribution"
+        },
+        {
+          "url": "https://github.com/vmware-tanzu/velero",
+          "type": "vcs"
+        },
+        {
+          "url": "https://pkg.go.dev/github.com/vmware-tanzu/velero#section-documentation",
+          "type": "documentation"
+        }
+      ],
+      "properties": [
+        {
+          "name": "aquasecurity:trivy:LayerDiffID",
+          "value": "sha256:56fe943f1fd47c68492437dbdc410e6e5c50e6bd3cf87b6587a781fd8b30abb7"
+        },
+        {
+          "name": "aquasecurity:trivy:LayerDigest",
+          "value": "sha256:43bef5e2b7c9eb21ca5bcd55cae0d1bd5044b1540c54d8a752635e935caaf7d6"
+        },
+        {
+          "name": "aquasecurity:trivy:PkgID",
+          "value": "github.com/vmware-tanzu/velero@v1.17.1+dirty"
+        },
+        {
+          "name": "aquasecurity:trivy:PkgType",
+          "value": "gobinary"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2017-08-02T21:29:38Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2026-01-09T03:17:35Z"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "backup"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "disaster-recovery"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "hacktoberfest"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "kubernetes"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "velero"
+        }
+      ]
+    },
+    {
+      "bom-ref": "a230e747-80e9-4ad1-830f-6b1672f6d035",
+      "type": "library",
+      "supplier": {
+        "name": "Jsoniter",
+        "url": [
+          "http://jsoniter.com/"
+        ]
+      },
+      "author": "Jsoniter",
+      "name": "github.com/json-iterator/go",
+      "version": "v1.1.12",
+      "description": "Package jsoniter implements encoding and decoding of JSON as defined in\nRFC 4627 and provides interfaces with identical syntax of standard lib encoding/json.\nConverting from encoding/json to jsoniter is no more than replacing the package with jsoniter\nand variable type declarations (if any).\njsoniter interfaces gives 100% compatibility with code using standard lib.\n\n\"JSON and Go\"\n(https://golang.org/doc/articles/json_and_go.html)\ngives a description of how Marshal/Unmarshal operate\nbetween arbitrary or predefined json objects and bytes,\nand it applies to jsoniter.Marshal/Unmarshal as well.\n\nBesides, jsoniter.Iterator provides a different set of interfaces\niterating given bytes/string/reader\nand yielding parsed elements one by one.\nThis set of interfaces reads input as required and gives\nbetter performance.",
+      "licenses": [
+        {
+          "expression": "(MIT)"
+        }
+      ],
+      "purl": "pkg:golang/github.com/json-iterator/go@v1.1.12",
+      "externalReferences": [
+        {
+          "url": "https://github.com/json-iterator/go",
+          "type": "website"
+        },
+        {
+          "url": "https://pkg.go.dev/github.com/json-iterator/go",
+          "type": "distribution"
+        },
+        {
+          "url": "https://github.com/json-iterator/go",
+          "type": "vcs"
+        },
+        {
+          "url": "https://pkg.go.dev/github.com/json-iterator/go#section-documentation",
+          "type": "documentation"
+        }
+      ],
+      "properties": [
+        {
+          "name": "aquasecurity:trivy:LayerDiffID",
+          "value": "sha256:79414ea653fa47c16071e7df177805fcb50d0c1e2f4f825796e4c1d17ad6f13c"
+        },
+        {
+          "name": "aquasecurity:trivy:LayerDigest",
+          "value": "sha256:cae9f53ea987ef6399627b40c985c9dd745596a1f595b8107598ffe210ab7c5e"
+        },
+        {
+          "name": "aquasecurity:trivy:PkgID",
+          "value": "github.com/json-iterator/go@v1.1.12"
+        },
+        {
+          "name": "aquasecurity:trivy:PkgType",
+          "value": "gobinary"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2018-08-06T06:07:27Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2021-09-11T02:17:26Z"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "deserialization"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "go"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "golang"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "json"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "json-parser"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "parser"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "serialization"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "serializer"
+        }
+      ]
+    },
+    {
+      "bom-ref": "b12adfb5-df93-4be7-8b46-1ffef6c89157",
+      "type": "library",
+      "supplier": {
+        "name": "go-yaml"
+      },
+      "author": "go-yaml",
+      "name": "gopkg.in/yaml.v3",
+      "version": "v3.0.1",
+      "description": "Package yaml implements YAML support for the Go language.\n\nSource code and other details for the project are available at GitHub:",
+      "licenses": [
+        {
+          "expression": "(Apache-2.0 OR MIT)"
+        }
+      ],
+      "purl": "pkg:golang/gopkg.in/yaml.v3@v3.0.1",
+      "externalReferences": [
+        {
+          "url": "https://github.com/go-yaml/yaml",
+          "type": "website"
+        },
+        {
+          "url": "https://pkg.go.dev/gopkg.in/yaml.v3",
+          "type": "distribution"
+        },
+        {
+          "url": "https://github.com/go-yaml/yaml",
+          "type": "vcs"
+        },
+        {
+          "url": "https://pkg.go.dev/gopkg.in/yaml.v3#section-documentation",
+          "type": "documentation"
+        }
+      ],
+      "properties": [
+        {
+          "name": "aquasecurity:trivy:LayerDiffID",
+          "value": "sha256:56fe943f1fd47c68492437dbdc410e6e5c50e6bd3cf87b6587a781fd8b30abb7"
+        },
+        {
+          "name": "aquasecurity:trivy:LayerDigest",
+          "value": "sha256:43bef5e2b7c9eb21ca5bcd55cae0d1bd5044b1540c54d8a752635e935caaf7d6"
+        },
+        {
+          "name": "aquasecurity:trivy:PkgID",
+          "value": "gopkg.in/yaml.v3@v3.0.1"
+        },
+        {
+          "name": "aquasecurity:trivy:PkgType",
+          "value": "gobinary"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2022-05-21T10:33:21Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2022-05-27T08:35:30Z"
+        }
+      ]
+    },
+    {
+      "bom-ref": "b54facab-1872-4ef0-a434-5f670f58d0c6",
+      "type": "library",
+      "supplier": {
+        "name": "Modern Go Programming",
+        "url": [
+          "https://plz.v2p.ro"
+        ]
+      },
+      "author": "Modern Go Programming",
+      "name": "github.com/modern-go/concurrent",
+      "version": "v0.0.0-20180306012644-bacd9c7ef1dd",
+      "licenses": [
+        {
+          "expression": "(Apache-2.0)"
+        }
+      ],
+      "purl": "pkg:golang/github.com/modern-go/concurrent@v0.0.0-20180306012644-bacd9c7ef1dd",
+      "externalReferences": [
+        {
+          "url": "https://github.com/modern-go/concurrent",
+          "type": "website"
+        },
+        {
+          "url": "https://pkg.go.dev/github.com/modern-go/concurrent",
+          "type": "distribution"
+        },
+        {
+          "url": "https://github.com/modern-go/concurrent",
+          "type": "vcs"
+        },
+        {
+          "url": "https://pkg.go.dev/github.com/modern-go/concurrent#section-documentation",
+          "type": "documentation"
+        }
+      ],
+      "properties": [
+        {
+          "name": "aquasecurity:trivy:LayerDiffID",
+          "value": "sha256:56fe943f1fd47c68492437dbdc410e6e5c50e6bd3cf87b6587a781fd8b30abb7"
+        },
+        {
+          "name": "aquasecurity:trivy:LayerDigest",
+          "value": "sha256:43bef5e2b7c9eb21ca5bcd55cae0d1bd5044b1540c54d8a752635e935caaf7d6"
+        },
+        {
+          "name": "aquasecurity:trivy:PkgID",
+          "value": "github.com/modern-go/concurrent@v0.0.0-20180306012644-bacd9c7ef1dd"
+        },
+        {
+          "name": "aquasecurity:trivy:PkgType",
+          "value": "gobinary"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2018-02-28T06:14:59Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2018-03-06T01:26:44Z"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "concurrency"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "concurrent"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "go"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "golang"
+        }
+      ]
+    },
+    {
+      "bom-ref": "c09f9dd2-a65a-43f2-9111-edfdc91ef77e",
+      "type": "library",
+      "supplier": {
+        "name": "Jsoniter",
+        "url": [
+          "http://jsoniter.com/"
+        ]
+      },
+      "author": "Jsoniter",
+      "name": "github.com/json-iterator/go",
+      "version": "v1.1.12",
+      "description": "Package jsoniter implements encoding and decoding of JSON as defined in\nRFC 4627 and provides interfaces with identical syntax of standard lib encoding/json.\nConverting from encoding/json to jsoniter is no more than replacing the package with jsoniter\nand variable type declarations (if any).\njsoniter interfaces gives 100% compatibility with code using standard lib.\n\n\"JSON and Go\"\n(https://golang.org/doc/articles/json_and_go.html)\ngives a description of how Marshal/Unmarshal operate\nbetween arbitrary or predefined json objects and bytes,\nand it applies to jsoniter.Marshal/Unmarshal as well.\n\nBesides, jsoniter.Iterator provides a different set of interfaces\niterating given bytes/string/reader\nand yielding parsed elements one by one.\nThis set of interfaces reads input as required and gives\nbetter performance.",
+      "licenses": [
+        {
+          "expression": "(MIT)"
+        }
+      ],
+      "purl": "pkg:golang/github.com/json-iterator/go@v1.1.12",
+      "externalReferences": [
+        {
+          "url": "https://github.com/json-iterator/go",
+          "type": "website"
+        },
+        {
+          "url": "https://pkg.go.dev/github.com/json-iterator/go",
+          "type": "distribution"
+        },
+        {
+          "url": "https://github.com/json-iterator/go",
+          "type": "vcs"
+        },
+        {
+          "url": "https://pkg.go.dev/github.com/json-iterator/go#section-documentation",
+          "type": "documentation"
+        }
+      ],
+      "properties": [
+        {
+          "name": "aquasecurity:trivy:LayerDiffID",
+          "value": "sha256:56fe943f1fd47c68492437dbdc410e6e5c50e6bd3cf87b6587a781fd8b30abb7"
+        },
+        {
+          "name": "aquasecurity:trivy:LayerDigest",
+          "value": "sha256:43bef5e2b7c9eb21ca5bcd55cae0d1bd5044b1540c54d8a752635e935caaf7d6"
+        },
+        {
+          "name": "aquasecurity:trivy:PkgID",
+          "value": "github.com/json-iterator/go@v1.1.12"
+        },
+        {
+          "name": "aquasecurity:trivy:PkgType",
+          "value": "gobinary"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2018-08-06T06:07:27Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2021-09-11T02:17:26Z"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "deserialization"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "go"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "golang"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "json"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "json-parser"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "parser"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "serialization"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "serializer"
+        }
+      ]
+    },
+    {
+      "bom-ref": "d1828be4-8115-44e1-9b27-fa8046e2e52f",
+      "type": "application",
+      "name": "velero-helper",
+      "properties": [
+        {
+          "name": "aquasecurity:trivy:Class",
+          "value": "lang-pkgs"
+        },
+        {
+          "name": "aquasecurity:trivy:Type",
+          "value": "gobinary"
+        }
+      ]
+    },
+    {
+      "bom-ref": "e2bf8cb0-1b9a-4c56-b831-4a4077abaa0f",
+      "type": "library",
+      "supplier": {
+        "name": "Modern Go Programming",
+        "url": [
+          "https://plz.v2p.ro"
+        ]
+      },
+      "author": "Modern Go Programming",
+      "name": "github.com/modern-go/concurrent",
+      "version": "v0.0.0-20180306012644-bacd9c7ef1dd",
+      "licenses": [
+        {
+          "expression": "(Apache-2.0)"
+        }
+      ],
+      "purl": "pkg:golang/github.com/modern-go/concurrent@v0.0.0-20180306012644-bacd9c7ef1dd",
+      "externalReferences": [
+        {
+          "url": "https://github.com/modern-go/concurrent",
+          "type": "website"
+        },
+        {
+          "url": "https://pkg.go.dev/github.com/modern-go/concurrent",
+          "type": "distribution"
+        },
+        {
+          "url": "https://github.com/modern-go/concurrent",
+          "type": "vcs"
+        },
+        {
+          "url": "https://pkg.go.dev/github.com/modern-go/concurrent#section-documentation",
+          "type": "documentation"
+        }
+      ],
+      "properties": [
+        {
+          "name": "aquasecurity:trivy:LayerDiffID",
+          "value": "sha256:79414ea653fa47c16071e7df177805fcb50d0c1e2f4f825796e4c1d17ad6f13c"
+        },
+        {
+          "name": "aquasecurity:trivy:LayerDigest",
+          "value": "sha256:cae9f53ea987ef6399627b40c985c9dd745596a1f595b8107598ffe210ab7c5e"
+        },
+        {
+          "name": "aquasecurity:trivy:PkgID",
+          "value": "github.com/modern-go/concurrent@v0.0.0-20180306012644-bacd9c7ef1dd"
+        },
+        {
+          "name": "aquasecurity:trivy:PkgType",
+          "value": "gobinary"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2018-02-28T06:14:59Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2018-03-06T01:26:44Z"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "concurrency"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "concurrent"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "go"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "golang"
+        }
+      ]
+    },
+    {
+      "bom-ref": "e939ca78-bb4b-4e34-847d-fad2fe11bc80",
+      "type": "library",
+      "name": "github.com/modern-go/reflect2",
+      "version": "v1.0.2",
+      "licenses": [
+        {
+          "expression": "(Apache-2.0)"
+        }
+      ],
+      "purl": "pkg:golang/github.com/modern-go/reflect2@v1.0.2",
+      "externalReferences": [
+        {
+          "url": "https://github.com/modern-go/reflect2",
+          "type": "website"
+        },
+        {
+          "url": "https://pkg.go.dev/github.com/modern-go/reflect2",
+          "type": "distribution"
+        },
+        {
+          "url": "https://github.com/modern-go/reflect2",
+          "type": "vcs"
+        },
+        {
+          "url": "https://pkg.go.dev/github.com/modern-go/reflect2#section-documentation",
+          "type": "documentation"
+        }
+      ],
+      "properties": [
+        {
+          "name": "aquasecurity:trivy:LayerDiffID",
+          "value": "sha256:79414ea653fa47c16071e7df177805fcb50d0c1e2f4f825796e4c1d17ad6f13c"
+        },
+        {
+          "name": "aquasecurity:trivy:LayerDigest",
+          "value": "sha256:cae9f53ea987ef6399627b40c985c9dd745596a1f595b8107598ffe210ab7c5e"
+        },
+        {
+          "name": "aquasecurity:trivy:PkgID",
+          "value": "github.com/modern-go/reflect2@v1.0.2"
+        },
+        {
+          "name": "aquasecurity:trivy:PkgType",
+          "value": "gobinary"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2018-07-18T01:23:57Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2021-09-11T02:10:30Z"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "go"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "golang"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "reflect"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "reflection"
+        }
+      ]
+    },
+    {
+      "bom-ref": "ed7fceb6-203d-4110-8dc8-5789f84fe030",
       "type": "operating-system",
       "name": "ubuntu",
       "version": "22.04",
@@ -126,744 +1421,7 @@
       ]
     },
     {
-      "bom-ref": "08c988b2-7c07-40a9-aa8c-7b0385b0853f",
-      "type": "library",
-      "name": "stdlib",
-      "version": "v1.24.9",
-      "purl": "pkg:golang/stdlib@v1.24.9",
-      "properties": [
-        {
-          "name": "aquasecurity:trivy:LayerDiffID",
-          "value": "sha256:56fe943f1fd47c68492437dbdc410e6e5c50e6bd3cf87b6587a781fd8b30abb7"
-        },
-        {
-          "name": "aquasecurity:trivy:LayerDigest",
-          "value": "sha256:43bef5e2b7c9eb21ca5bcd55cae0d1bd5044b1540c54d8a752635e935caaf7d6"
-        },
-        {
-          "name": "aquasecurity:trivy:PkgID",
-          "value": "stdlib@v1.24.9"
-        },
-        {
-          "name": "aquasecurity:trivy:PkgType",
-          "value": "gobinary"
-        }
-      ]
-    },
-    {
-      "bom-ref": "316ffe71-aa20-4a2b-a738-0d7be951af19",
-      "type": "library",
-      "supplier": {
-        "name": "Modern Go Programming",
-        "url": [
-          "https://plz.v2p.ro"
-        ]
-      },
-      "author": "Modern Go Programming",
-      "name": "github.com/modern-go/concurrent",
-      "version": "v0.0.0-20180306012644-bacd9c7ef1dd",
-      "licenses": [
-        {
-          "expression": "(Apache-2.0)"
-        }
-      ],
-      "purl": "pkg:golang/github.com/modern-go/concurrent@v0.0.0-20180306012644-bacd9c7ef1dd",
-      "externalReferences": [
-        {
-          "url": "https://github.com/modern-go/concurrent",
-          "type": "website"
-        },
-        {
-          "url": "https://pkg.go.dev/github.com/modern-go/concurrent",
-          "type": "distribution"
-        },
-        {
-          "url": "https://github.com/modern-go/concurrent",
-          "type": "vcs"
-        },
-        {
-          "url": "https://pkg.go.dev/github.com/modern-go/concurrent#section-documentation",
-          "type": "documentation"
-        }
-      ],
-      "properties": [
-        {
-          "name": "aquasecurity:trivy:LayerDiffID",
-          "value": "sha256:79414ea653fa47c16071e7df177805fcb50d0c1e2f4f825796e4c1d17ad6f13c"
-        },
-        {
-          "name": "aquasecurity:trivy:LayerDigest",
-          "value": "sha256:cae9f53ea987ef6399627b40c985c9dd745596a1f595b8107598ffe210ab7c5e"
-        },
-        {
-          "name": "aquasecurity:trivy:PkgID",
-          "value": "github.com/modern-go/concurrent@v0.0.0-20180306012644-bacd9c7ef1dd"
-        },
-        {
-          "name": "aquasecurity:trivy:PkgType",
-          "value": "gobinary"
-        },
-        {
-          "name": "ecosystems:first_release_published_at",
-          "value": "2018-02-28T06:14:59Z"
-        },
-        {
-          "name": "ecosystems:latest_release_published_at",
-          "value": "2018-03-06T01:26:44Z"
-        },
-        {
-          "name": "ecosystems:topic",
-          "value": "concurrency"
-        },
-        {
-          "name": "ecosystems:topic",
-          "value": "concurrent"
-        },
-        {
-          "name": "ecosystems:topic",
-          "value": "go"
-        },
-        {
-          "name": "ecosystems:topic",
-          "value": "golang"
-        }
-      ]
-    },
-    {
-      "bom-ref": "37c35a68-2754-46f2-8533-96e947c2774e",
-      "type": "library",
-      "name": "github.com/modern-go/reflect2",
-      "version": "v1.0.2",
-      "licenses": [
-        {
-          "expression": "(Apache-2.0)"
-        }
-      ],
-      "purl": "pkg:golang/github.com/modern-go/reflect2@v1.0.2",
-      "externalReferences": [
-        {
-          "url": "https://github.com/modern-go/reflect2",
-          "type": "website"
-        },
-        {
-          "url": "https://pkg.go.dev/github.com/modern-go/reflect2",
-          "type": "distribution"
-        },
-        {
-          "url": "https://github.com/modern-go/reflect2",
-          "type": "vcs"
-        },
-        {
-          "url": "https://pkg.go.dev/github.com/modern-go/reflect2#section-documentation",
-          "type": "documentation"
-        }
-      ],
-      "properties": [
-        {
-          "name": "aquasecurity:trivy:LayerDiffID",
-          "value": "sha256:79414ea653fa47c16071e7df177805fcb50d0c1e2f4f825796e4c1d17ad6f13c"
-        },
-        {
-          "name": "aquasecurity:trivy:LayerDigest",
-          "value": "sha256:cae9f53ea987ef6399627b40c985c9dd745596a1f595b8107598ffe210ab7c5e"
-        },
-        {
-          "name": "aquasecurity:trivy:PkgID",
-          "value": "github.com/modern-go/reflect2@v1.0.2"
-        },
-        {
-          "name": "aquasecurity:trivy:PkgType",
-          "value": "gobinary"
-        },
-        {
-          "name": "ecosystems:first_release_published_at",
-          "value": "2018-07-18T01:23:57Z"
-        },
-        {
-          "name": "ecosystems:latest_release_published_at",
-          "value": "2021-09-11T02:10:30Z"
-        },
-        {
-          "name": "ecosystems:topic",
-          "value": "go"
-        },
-        {
-          "name": "ecosystems:topic",
-          "value": "golang"
-        },
-        {
-          "name": "ecosystems:topic",
-          "value": "reflect"
-        },
-        {
-          "name": "ecosystems:topic",
-          "value": "reflection"
-        }
-      ]
-    },
-    {
-      "bom-ref": "3bfb81a8-145a-46e8-bc74-0606394c50ad",
-      "type": "library",
-      "supplier": {
-        "name": "VMware Tanzu",
-        "url": [
-          "tanzu.io"
-        ]
-      },
-      "author": "VMware Tanzu",
-      "name": "github.com/vmware-tanzu/velero",
-      "version": "v1.17.1+dirty",
-      "purl": "pkg:golang/github.com/vmware-tanzu/velero@v1.17.1%2Bdirty",
-      "externalReferences": [
-        {
-          "url": "https://github.com/vmware-tanzu/velero",
-          "type": "website"
-        },
-        {
-          "url": "https://pkg.go.dev/github.com/vmware-tanzu/velero",
-          "type": "distribution"
-        },
-        {
-          "url": "https://github.com/vmware-tanzu/velero",
-          "type": "vcs"
-        },
-        {
-          "url": "https://pkg.go.dev/github.com/vmware-tanzu/velero#section-documentation",
-          "type": "documentation"
-        }
-      ],
-      "properties": [
-        {
-          "name": "aquasecurity:trivy:LayerDiffID",
-          "value": "sha256:56fe943f1fd47c68492437dbdc410e6e5c50e6bd3cf87b6587a781fd8b30abb7"
-        },
-        {
-          "name": "aquasecurity:trivy:LayerDigest",
-          "value": "sha256:43bef5e2b7c9eb21ca5bcd55cae0d1bd5044b1540c54d8a752635e935caaf7d6"
-        },
-        {
-          "name": "aquasecurity:trivy:PkgID",
-          "value": "github.com/vmware-tanzu/velero@v1.17.1+dirty"
-        },
-        {
-          "name": "aquasecurity:trivy:PkgType",
-          "value": "gobinary"
-        },
-        {
-          "name": "ecosystems:first_release_published_at",
-          "value": "2017-08-02T21:29:38Z"
-        },
-        {
-          "name": "ecosystems:latest_release_published_at",
-          "value": "2026-01-09T03:17:35Z"
-        },
-        {
-          "name": "ecosystems:topic",
-          "value": "backup"
-        },
-        {
-          "name": "ecosystems:topic",
-          "value": "disaster-recovery"
-        },
-        {
-          "name": "ecosystems:topic",
-          "value": "hacktoberfest"
-        },
-        {
-          "name": "ecosystems:topic",
-          "value": "kubernetes"
-        },
-        {
-          "name": "ecosystems:topic",
-          "value": "velero"
-        }
-      ]
-    },
-    {
-      "bom-ref": "4236721c-2b1b-4624-9656-d92f40a0a776",
-      "type": "library",
-      "supplier": {
-        "name": "VMware Tanzu",
-        "url": [
-          "tanzu.io"
-        ]
-      },
-      "author": "VMware Tanzu",
-      "name": "github.com/vmware-tanzu/velero",
-      "version": "v1.17.1+dirty",
-      "purl": "pkg:golang/github.com/vmware-tanzu/velero@v1.17.1%2Bdirty",
-      "externalReferences": [
-        {
-          "url": "https://github.com/vmware-tanzu/velero",
-          "type": "website"
-        },
-        {
-          "url": "https://pkg.go.dev/github.com/vmware-tanzu/velero",
-          "type": "distribution"
-        },
-        {
-          "url": "https://github.com/vmware-tanzu/velero",
-          "type": "vcs"
-        },
-        {
-          "url": "https://pkg.go.dev/github.com/vmware-tanzu/velero#section-documentation",
-          "type": "documentation"
-        }
-      ],
-      "properties": [
-        {
-          "name": "aquasecurity:trivy:LayerDiffID",
-          "value": "sha256:56fe943f1fd47c68492437dbdc410e6e5c50e6bd3cf87b6587a781fd8b30abb7"
-        },
-        {
-          "name": "aquasecurity:trivy:LayerDigest",
-          "value": "sha256:43bef5e2b7c9eb21ca5bcd55cae0d1bd5044b1540c54d8a752635e935caaf7d6"
-        },
-        {
-          "name": "aquasecurity:trivy:PkgID",
-          "value": "github.com/vmware-tanzu/velero@v1.17.1+dirty"
-        },
-        {
-          "name": "aquasecurity:trivy:PkgType",
-          "value": "gobinary"
-        },
-        {
-          "name": "ecosystems:first_release_published_at",
-          "value": "2017-08-02T21:29:38Z"
-        },
-        {
-          "name": "ecosystems:latest_release_published_at",
-          "value": "2026-01-09T03:17:35Z"
-        },
-        {
-          "name": "ecosystems:topic",
-          "value": "backup"
-        },
-        {
-          "name": "ecosystems:topic",
-          "value": "disaster-recovery"
-        },
-        {
-          "name": "ecosystems:topic",
-          "value": "hacktoberfest"
-        },
-        {
-          "name": "ecosystems:topic",
-          "value": "kubernetes"
-        },
-        {
-          "name": "ecosystems:topic",
-          "value": "velero"
-        }
-      ]
-    },
-    {
-      "bom-ref": "48c13972-71ba-4497-9751-41982b79c836",
-      "type": "library",
-      "name": "github.com/modern-go/reflect2",
-      "version": "v1.0.2",
-      "licenses": [
-        {
-          "expression": "(Apache-2.0)"
-        }
-      ],
-      "purl": "pkg:golang/github.com/modern-go/reflect2@v1.0.2",
-      "externalReferences": [
-        {
-          "url": "https://github.com/modern-go/reflect2",
-          "type": "website"
-        },
-        {
-          "url": "https://pkg.go.dev/github.com/modern-go/reflect2",
-          "type": "distribution"
-        },
-        {
-          "url": "https://github.com/modern-go/reflect2",
-          "type": "vcs"
-        },
-        {
-          "url": "https://pkg.go.dev/github.com/modern-go/reflect2#section-documentation",
-          "type": "documentation"
-        }
-      ],
-      "properties": [
-        {
-          "name": "aquasecurity:trivy:LayerDiffID",
-          "value": "sha256:56fe943f1fd47c68492437dbdc410e6e5c50e6bd3cf87b6587a781fd8b30abb7"
-        },
-        {
-          "name": "aquasecurity:trivy:LayerDigest",
-          "value": "sha256:43bef5e2b7c9eb21ca5bcd55cae0d1bd5044b1540c54d8a752635e935caaf7d6"
-        },
-        {
-          "name": "aquasecurity:trivy:PkgID",
-          "value": "github.com/modern-go/reflect2@v1.0.2"
-        },
-        {
-          "name": "aquasecurity:trivy:PkgType",
-          "value": "gobinary"
-        },
-        {
-          "name": "ecosystems:first_release_published_at",
-          "value": "2018-07-18T01:23:57Z"
-        },
-        {
-          "name": "ecosystems:latest_release_published_at",
-          "value": "2021-09-11T02:10:30Z"
-        },
-        {
-          "name": "ecosystems:topic",
-          "value": "go"
-        },
-        {
-          "name": "ecosystems:topic",
-          "value": "golang"
-        },
-        {
-          "name": "ecosystems:topic",
-          "value": "reflect"
-        },
-        {
-          "name": "ecosystems:topic",
-          "value": "reflection"
-        }
-      ]
-    },
-    {
-      "bom-ref": "536f8005-00f9-4a58-8dd8-6010ef53c474",
-      "type": "library",
-      "supplier": {
-        "name": "go-yaml"
-      },
-      "author": "go-yaml",
-      "name": "gopkg.in/yaml.v3",
-      "version": "v3.0.1",
-      "description": "Package yaml implements YAML support for the Go language.\n\nSource code and other details for the project are available at GitHub:",
-      "licenses": [
-        {
-          "expression": "(Apache-2.0 OR MIT)"
-        }
-      ],
-      "purl": "pkg:golang/gopkg.in/yaml.v3@v3.0.1",
-      "externalReferences": [
-        {
-          "url": "https://github.com/go-yaml/yaml",
-          "type": "website"
-        },
-        {
-          "url": "https://pkg.go.dev/gopkg.in/yaml.v3",
-          "type": "distribution"
-        },
-        {
-          "url": "https://github.com/go-yaml/yaml",
-          "type": "vcs"
-        },
-        {
-          "url": "https://pkg.go.dev/gopkg.in/yaml.v3#section-documentation",
-          "type": "documentation"
-        }
-      ],
-      "properties": [
-        {
-          "name": "aquasecurity:trivy:LayerDiffID",
-          "value": "sha256:56fe943f1fd47c68492437dbdc410e6e5c50e6bd3cf87b6587a781fd8b30abb7"
-        },
-        {
-          "name": "aquasecurity:trivy:LayerDigest",
-          "value": "sha256:43bef5e2b7c9eb21ca5bcd55cae0d1bd5044b1540c54d8a752635e935caaf7d6"
-        },
-        {
-          "name": "aquasecurity:trivy:PkgID",
-          "value": "gopkg.in/yaml.v3@v3.0.1"
-        },
-        {
-          "name": "aquasecurity:trivy:PkgType",
-          "value": "gobinary"
-        },
-        {
-          "name": "ecosystems:first_release_published_at",
-          "value": "2022-05-21T10:33:21Z"
-        },
-        {
-          "name": "ecosystems:latest_release_published_at",
-          "value": "2022-05-27T08:35:30Z"
-        }
-      ]
-    },
-    {
-      "bom-ref": "693e63df-b182-409c-b19e-f4e8d5c6fc29",
-      "type": "library",
-      "supplier": {
-        "name": "Steve Francia",
-        "url": [
-          "http://spf13.com"
-        ]
-      },
-      "author": "Steve Francia",
-      "name": "github.com/spf13/pflag",
-      "version": "v1.0.5",
-      "description": "Package pflag is a drop-in replacement for Go's flag package, implementing\nPOSIX/GNU-style --flags.\n\npflag is compatible with the GNU extensions to the POSIX recommendations\nfor command-line options. See\nhttp://www.gnu.org/software/libc/manual/html_node/Argument-Syntax.html\n\nUsage:\n\npflag is a drop-in replacement of Go's native flag package. If you import\npflag under the name \"flag\" then all code should continue to function\nwith no changes.\n\nThere is one exception to this: if you directly instantiate the Flag struct\nthere is one more field \"Shorthand\" that you will need to set.\nMost code never instantiates this struct directly, and instead uses\nfunctions such as String(), BoolVar(), and Var(), and is therefore\nunaffected.\n\nDefine flags using flag.String(), Bool(), Int(), etc.\n\nThis declares an integer flag, -flagname, stored in the pointer ip, with type *int.\n\nIf you like, you can bind the flag to a variable using the Var() functions.\n\nOr you can create custom flags that satisfy the Value interface (with\npointer receivers) and couple them to flag parsing by\n\nFor such flags, the default value is just the initial value of the variable.\n\nAfter all flags are defined, call\n\nto parse the command line into the defined flags.\n\nFlags may then be used directly. If you're using the flags themselves,\nthey are all pointers; if you bind to variables, they're values.\n\nAfter parsing, the arguments after the flag are available as the\nslice flag.Args() or individually as flag.Arg(i).\nThe arguments are indexed from 0 through flag.NArg()-1.\n\nThe pflag package also defines some new functions that are not in flag,\nthat give one-letter shorthands for flags. You can use these by appending\n'P' to the name of any function that defines a flag.\n\nShorthand letters can be used with single dashes on the command line.\nBoolean shorthand flags can be combined with other shorthand flags.\n\nCommand line flag syntax:\n\nUnlike the flag package, a single dash before an option means something\ndifferent than a double dash. Single dashes signify a series of shorthand\nletters for flags. All but the last shorthand letter must be boolean flags.\n\nFlag parsing stops after the terminator \"--\". Unlike the flag package,\nflags can be interspersed with arguments anywhere on the command line\nbefore this terminator.\n\nInteger flags accept 1234, 0664, 0x1234 and may be negative.\nBoolean flags (in their long form) accept 1, 0, t, f, true, false,\nTRUE, FALSE, True, False.\nDuration flags accept any input valid for time.ParseDuration.\n\nThe default set of command-line flags is controlled by\ntop-level functions.  The FlagSet type allows one to define\nindependent sets of flags, such as to implement subcommands\nin a command-line interface. The methods of FlagSet are\nanalogous to the top-level functions for the command-line\nflag set.",
-      "licenses": [
-        {
-          "expression": "(BSD-3-Clause)"
-        }
-      ],
-      "purl": "pkg:golang/github.com/spf13/pflag@v1.0.5",
-      "externalReferences": [
-        {
-          "url": "https://github.com/spf13/pflag",
-          "type": "website"
-        },
-        {
-          "url": "https://pkg.go.dev/github.com/spf13/pflag",
-          "type": "distribution"
-        },
-        {
-          "url": "https://github.com/spf13/pflag",
-          "type": "vcs"
-        },
-        {
-          "url": "https://pkg.go.dev/github.com/spf13/pflag#section-documentation",
-          "type": "documentation"
-        }
-      ],
-      "properties": [
-        {
-          "name": "aquasecurity:trivy:LayerDiffID",
-          "value": "sha256:79414ea653fa47c16071e7df177805fcb50d0c1e2f4f825796e4c1d17ad6f13c"
-        },
-        {
-          "name": "aquasecurity:trivy:LayerDigest",
-          "value": "sha256:cae9f53ea987ef6399627b40c985c9dd745596a1f595b8107598ffe210ab7c5e"
-        },
-        {
-          "name": "aquasecurity:trivy:PkgID",
-          "value": "github.com/spf13/pflag@v1.0.5"
-        },
-        {
-          "name": "aquasecurity:trivy:PkgType",
-          "value": "gobinary"
-        },
-        {
-          "name": "ecosystems:first_release_published_at",
-          "value": "2017-05-08T18:44:08Z"
-        },
-        {
-          "name": "ecosystems:latest_release_published_at",
-          "value": "2025-09-02T06:08:29Z"
-        },
-        {
-          "name": "ecosystems:owner_location",
-          "value": "NYC"
-        }
-      ]
-    },
-    {
-      "bom-ref": "78b15674-95c4-4cd3-970a-b7a560c59ccd",
-      "type": "library",
-      "supplier": {
-        "name": "MinIO",
-        "url": [
-          "https://min.io"
-        ]
-      },
-      "author": "MinIO",
-      "name": "github.com/minio/md5-simd",
-      "version": "v1.1.2",
-      "licenses": [
-        {
-          "expression": "(Apache-2.0)"
-        }
-      ],
-      "purl": "pkg:golang/github.com/minio/md5-simd@v1.1.2",
-      "externalReferences": [
-        {
-          "url": "https://github.com/minio/md5-simd",
-          "type": "website"
-        },
-        {
-          "url": "https://pkg.go.dev/github.com/minio/md5-simd",
-          "type": "distribution"
-        },
-        {
-          "url": "https://github.com/minio/md5-simd",
-          "type": "vcs"
-        },
-        {
-          "url": "https://pkg.go.dev/github.com/minio/md5-simd#section-documentation",
-          "type": "documentation"
-        }
-      ],
-      "properties": [
-        {
-          "name": "aquasecurity:trivy:LayerDiffID",
-          "value": "sha256:56fe943f1fd47c68492437dbdc410e6e5c50e6bd3cf87b6587a781fd8b30abb7"
-        },
-        {
-          "name": "aquasecurity:trivy:LayerDigest",
-          "value": "sha256:43bef5e2b7c9eb21ca5bcd55cae0d1bd5044b1540c54d8a752635e935caaf7d6"
-        },
-        {
-          "name": "aquasecurity:trivy:PkgID",
-          "value": "github.com/minio/md5-simd@v1.1.2"
-        },
-        {
-          "name": "aquasecurity:trivy:PkgType",
-          "value": "gobinary"
-        },
-        {
-          "name": "ecosystems:first_release_published_at",
-          "value": "2020-04-28T21:33:15Z"
-        },
-        {
-          "name": "ecosystems:latest_release_published_at",
-          "value": "2021-01-07T19:48:44Z"
-        },
-        {
-          "name": "ecosystems:owner_location",
-          "value": "United States of America"
-        },
-        {
-          "name": "ecosystems:topic",
-          "value": "assembly"
-        },
-        {
-          "name": "ecosystems:topic",
-          "value": "avx2"
-        },
-        {
-          "name": "ecosystems:topic",
-          "value": "avx512"
-        },
-        {
-          "name": "ecosystems:topic",
-          "value": "golang"
-        },
-        {
-          "name": "ecosystems:topic",
-          "value": "hashing"
-        },
-        {
-          "name": "ecosystems:topic",
-          "value": "md5"
-        },
-        {
-          "name": "ecosystems:topic",
-          "value": "performance"
-        },
-        {
-          "name": "ecosystems:topic",
-          "value": "simd"
-        }
-      ]
-    },
-    {
-      "bom-ref": "7d8aae7b-7643-4b03-b0ef-8bd46f263e42",
-      "type": "application",
-      "name": "velero-restore-helper",
-      "properties": [
-        {
-          "name": "aquasecurity:trivy:Class",
-          "value": "lang-pkgs"
-        },
-        {
-          "name": "aquasecurity:trivy:Type",
-          "value": "gobinary"
-        }
-      ]
-    },
-    {
-      "bom-ref": "801a841f-5f1e-4da2-b396-c3e09c9b5825",
-      "type": "library",
-      "name": "stdlib",
-      "version": "v1.24.9",
-      "purl": "pkg:golang/stdlib@v1.24.9",
-      "properties": [
-        {
-          "name": "aquasecurity:trivy:LayerDiffID",
-          "value": "sha256:56fe943f1fd47c68492437dbdc410e6e5c50e6bd3cf87b6587a781fd8b30abb7"
-        },
-        {
-          "name": "aquasecurity:trivy:LayerDigest",
-          "value": "sha256:43bef5e2b7c9eb21ca5bcd55cae0d1bd5044b1540c54d8a752635e935caaf7d6"
-        },
-        {
-          "name": "aquasecurity:trivy:PkgID",
-          "value": "stdlib@v1.24.9"
-        },
-        {
-          "name": "aquasecurity:trivy:PkgType",
-          "value": "gobinary"
-        }
-      ]
-    },
-    {
-      "bom-ref": "9839c59a-884c-4eb5-b96c-5d2cf9f9c7bc",
-      "type": "library",
-      "supplier": {
-        "name": "pkg"
-      },
-      "author": "pkg",
-      "name": "github.com/pkg/errors",
-      "version": "v0.9.1",
-      "description": "Package errors provides simple error handling primitives.\n\nThe traditional error handling idiom in Go is roughly akin to\n\nwhich when applied recursively up the call stack results in error reports\nwithout context or debugging information. The errors package allows\nprogrammers to add context to the failure path in their code in a way\nthat does not destroy the original value of the error.\n\nThe errors.Wrap function returns a new error that adds context to the\noriginal error by recording a stack trace at the point Wrap is called,\ntogether with the supplied message. For example\n\nIf additional control is required, the errors.WithStack and\nerrors.WithMessage functions destructure errors.Wrap into its component\noperations: annotating an error with a stack trace and with a message,\nrespectively.\n\nUsing errors.Wrap constructs a stack of errors, adding context to the\npreceding error. Depending on the nature of the error it may be necessary\nto reverse the operation of errors.Wrap to retrieve the original error\nfor inspection. Any error value which implements this interface\n\ncan be inspected by errors.Cause. errors.Cause will recursively retrieve\nthe topmost error that does not implement causer, which is assumed to be\nthe original cause. For example:\n\nAlthough the causer interface is not exported by this package, it is\nconsidered a part of its stable public interface.\n\nAll error values returned from this package implement fmt.Formatter and can\nbe formatted by the fmt package. The following verbs are supported:\n\nNew, Errorf, Wrap, and Wrapf record a stack trace at the point they are\ninvoked. This information can be retrieved with the following interface:\n\nThe returned errors.StackTrace type is defined as\n\nThe Frame type represents a call site in the stack trace. Frame supports\nthe fmt.Formatter interface that can be used for printing information about\nthe stack trace of this error. For example:\n\nAlthough the stackTracer interface is not exported by this package, it is\nconsidered a part of its stable public interface.\n\nSee the documentation for Frame.Format for more details.",
-      "licenses": [
-        {
-          "expression": "(BSD-2-Clause)"
-        }
-      ],
-      "purl": "pkg:golang/github.com/pkg/errors@v0.9.1",
-      "externalReferences": [
-        {
-          "url": "https://github.com/pkg/errors",
-          "type": "website"
-        },
-        {
-          "url": "https://pkg.go.dev/github.com/pkg/errors",
-          "type": "distribution"
-        },
-        {
-          "url": "https://github.com/pkg/errors",
-          "type": "vcs"
-        },
-        {
-          "url": "https://pkg.go.dev/github.com/pkg/errors#section-documentation",
-          "type": "documentation"
-        }
-      ],
-      "properties": [
-        {
-          "name": "aquasecurity:trivy:LayerDiffID",
-          "value": "sha256:79414ea653fa47c16071e7df177805fcb50d0c1e2f4f825796e4c1d17ad6f13c"
-        },
-        {
-          "name": "aquasecurity:trivy:LayerDigest",
-          "value": "sha256:cae9f53ea987ef6399627b40c985c9dd745596a1f595b8107598ffe210ab7c5e"
-        },
-        {
-          "name": "aquasecurity:trivy:PkgID",
-          "value": "github.com/pkg/errors@v0.9.1"
-        },
-        {
-          "name": "aquasecurity:trivy:PkgType",
-          "value": "gobinary"
-        },
-        {
-          "name": "ecosystems:first_release_published_at",
-          "value": "2016-04-24T12:18:34Z"
-        },
-        {
-          "name": "ecosystems:latest_release_published_at",
-          "value": "2020-01-14T19:47:44Z"
-        },
-        {
-          "name": "ecosystems:repository_archived",
-          "value": "true"
-        }
-      ]
-    },
-    {
-      "bom-ref": "98a4ef9b-2c01-4fe0-859c-e997f4870140",
+      "bom-ref": "f6434a6a-b07a-4d70-b365-eed1fbeac37a",
       "type": "application",
       "name": "usr/bin/restic",
       "properties": [
@@ -878,368 +1436,7 @@
       ]
     },
     {
-      "bom-ref": "a4fbb02a-e89a-4f64-94bf-7a5bc96b595f",
-      "type": "library",
-      "name": "stdlib",
-      "version": "v1.24.9",
-      "purl": "pkg:golang/stdlib@v1.24.9",
-      "properties": [
-        {
-          "name": "aquasecurity:trivy:LayerDiffID",
-          "value": "sha256:56fe943f1fd47c68492437dbdc410e6e5c50e6bd3cf87b6587a781fd8b30abb7"
-        },
-        {
-          "name": "aquasecurity:trivy:LayerDigest",
-          "value": "sha256:43bef5e2b7c9eb21ca5bcd55cae0d1bd5044b1540c54d8a752635e935caaf7d6"
-        },
-        {
-          "name": "aquasecurity:trivy:PkgID",
-          "value": "stdlib@v1.24.9"
-        },
-        {
-          "name": "aquasecurity:trivy:PkgType",
-          "value": "gobinary"
-        }
-      ]
-    },
-    {
-      "bom-ref": "a887c1cf-36c7-4c47-8a0e-20b2c6b89dee",
-      "type": "library",
-      "supplier": {
-        "name": "Steve Francia",
-        "url": [
-          "http://spf13.com"
-        ]
-      },
-      "author": "Steve Francia",
-      "name": "github.com/spf13/pflag",
-      "version": "v1.0.5",
-      "description": "Package pflag is a drop-in replacement for Go's flag package, implementing\nPOSIX/GNU-style --flags.\n\npflag is compatible with the GNU extensions to the POSIX recommendations\nfor command-line options. See\nhttp://www.gnu.org/software/libc/manual/html_node/Argument-Syntax.html\n\nUsage:\n\npflag is a drop-in replacement of Go's native flag package. If you import\npflag under the name \"flag\" then all code should continue to function\nwith no changes.\n\nThere is one exception to this: if you directly instantiate the Flag struct\nthere is one more field \"Shorthand\" that you will need to set.\nMost code never instantiates this struct directly, and instead uses\nfunctions such as String(), BoolVar(), and Var(), and is therefore\nunaffected.\n\nDefine flags using flag.String(), Bool(), Int(), etc.\n\nThis declares an integer flag, -flagname, stored in the pointer ip, with type *int.\n\nIf you like, you can bind the flag to a variable using the Var() functions.\n\nOr you can create custom flags that satisfy the Value interface (with\npointer receivers) and couple them to flag parsing by\n\nFor such flags, the default value is just the initial value of the variable.\n\nAfter all flags are defined, call\n\nto parse the command line into the defined flags.\n\nFlags may then be used directly. If you're using the flags themselves,\nthey are all pointers; if you bind to variables, they're values.\n\nAfter parsing, the arguments after the flag are available as the\nslice flag.Args() or individually as flag.Arg(i).\nThe arguments are indexed from 0 through flag.NArg()-1.\n\nThe pflag package also defines some new functions that are not in flag,\nthat give one-letter shorthands for flags. You can use these by appending\n'P' to the name of any function that defines a flag.\n\nShorthand letters can be used with single dashes on the command line.\nBoolean shorthand flags can be combined with other shorthand flags.\n\nCommand line flag syntax:\n\nUnlike the flag package, a single dash before an option means something\ndifferent than a double dash. Single dashes signify a series of shorthand\nletters for flags. All but the last shorthand letter must be boolean flags.\n\nFlag parsing stops after the terminator \"--\". Unlike the flag package,\nflags can be interspersed with arguments anywhere on the command line\nbefore this terminator.\n\nInteger flags accept 1234, 0664, 0x1234 and may be negative.\nBoolean flags (in their long form) accept 1, 0, t, f, true, false,\nTRUE, FALSE, True, False.\nDuration flags accept any input valid for time.ParseDuration.\n\nThe default set of command-line flags is controlled by\ntop-level functions.  The FlagSet type allows one to define\nindependent sets of flags, such as to implement subcommands\nin a command-line interface. The methods of FlagSet are\nanalogous to the top-level functions for the command-line\nflag set.",
-      "licenses": [
-        {
-          "expression": "(BSD-3-Clause)"
-        }
-      ],
-      "purl": "pkg:golang/github.com/spf13/pflag@v1.0.5",
-      "externalReferences": [
-        {
-          "url": "https://github.com/spf13/pflag",
-          "type": "website"
-        },
-        {
-          "url": "https://pkg.go.dev/github.com/spf13/pflag",
-          "type": "distribution"
-        },
-        {
-          "url": "https://github.com/spf13/pflag",
-          "type": "vcs"
-        },
-        {
-          "url": "https://pkg.go.dev/github.com/spf13/pflag#section-documentation",
-          "type": "documentation"
-        }
-      ],
-      "properties": [
-        {
-          "name": "aquasecurity:trivy:LayerDiffID",
-          "value": "sha256:56fe943f1fd47c68492437dbdc410e6e5c50e6bd3cf87b6587a781fd8b30abb7"
-        },
-        {
-          "name": "aquasecurity:trivy:LayerDigest",
-          "value": "sha256:43bef5e2b7c9eb21ca5bcd55cae0d1bd5044b1540c54d8a752635e935caaf7d6"
-        },
-        {
-          "name": "aquasecurity:trivy:PkgID",
-          "value": "github.com/spf13/pflag@v1.0.5"
-        },
-        {
-          "name": "aquasecurity:trivy:PkgType",
-          "value": "gobinary"
-        },
-        {
-          "name": "ecosystems:first_release_published_at",
-          "value": "2017-05-08T18:44:08Z"
-        },
-        {
-          "name": "ecosystems:latest_release_published_at",
-          "value": "2025-09-02T06:08:29Z"
-        },
-        {
-          "name": "ecosystems:owner_location",
-          "value": "NYC"
-        }
-      ]
-    },
-    {
-      "bom-ref": "c629cd7f-bbcc-4a47-a4e5-0168916d01fe",
-      "type": "library",
-      "supplier": {
-        "name": "Jsoniter",
-        "url": [
-          "http://jsoniter.com/"
-        ]
-      },
-      "author": "Jsoniter",
-      "name": "github.com/json-iterator/go",
-      "version": "v1.1.12",
-      "description": "Package jsoniter implements encoding and decoding of JSON as defined in\nRFC 4627 and provides interfaces with identical syntax of standard lib encoding/json.\nConverting from encoding/json to jsoniter is no more than replacing the package with jsoniter\nand variable type declarations (if any).\njsoniter interfaces gives 100% compatibility with code using standard lib.\n\n\"JSON and Go\"\n(https://golang.org/doc/articles/json_and_go.html)\ngives a description of how Marshal/Unmarshal operate\nbetween arbitrary or predefined json objects and bytes,\nand it applies to jsoniter.Marshal/Unmarshal as well.\n\nBesides, jsoniter.Iterator provides a different set of interfaces\niterating given bytes/string/reader\nand yielding parsed elements one by one.\nThis set of interfaces reads input as required and gives\nbetter performance.",
-      "licenses": [
-        {
-          "expression": "(MIT)"
-        }
-      ],
-      "purl": "pkg:golang/github.com/json-iterator/go@v1.1.12",
-      "externalReferences": [
-        {
-          "url": "https://github.com/json-iterator/go",
-          "type": "website"
-        },
-        {
-          "url": "https://pkg.go.dev/github.com/json-iterator/go",
-          "type": "distribution"
-        },
-        {
-          "url": "https://github.com/json-iterator/go",
-          "type": "vcs"
-        },
-        {
-          "url": "https://pkg.go.dev/github.com/json-iterator/go#section-documentation",
-          "type": "documentation"
-        }
-      ],
-      "properties": [
-        {
-          "name": "aquasecurity:trivy:LayerDiffID",
-          "value": "sha256:56fe943f1fd47c68492437dbdc410e6e5c50e6bd3cf87b6587a781fd8b30abb7"
-        },
-        {
-          "name": "aquasecurity:trivy:LayerDigest",
-          "value": "sha256:43bef5e2b7c9eb21ca5bcd55cae0d1bd5044b1540c54d8a752635e935caaf7d6"
-        },
-        {
-          "name": "aquasecurity:trivy:PkgID",
-          "value": "github.com/json-iterator/go@v1.1.12"
-        },
-        {
-          "name": "aquasecurity:trivy:PkgType",
-          "value": "gobinary"
-        },
-        {
-          "name": "ecosystems:first_release_published_at",
-          "value": "2018-08-06T06:07:27Z"
-        },
-        {
-          "name": "ecosystems:latest_release_published_at",
-          "value": "2021-09-11T02:17:26Z"
-        },
-        {
-          "name": "ecosystems:topic",
-          "value": "deserialization"
-        },
-        {
-          "name": "ecosystems:topic",
-          "value": "go"
-        },
-        {
-          "name": "ecosystems:topic",
-          "value": "golang"
-        },
-        {
-          "name": "ecosystems:topic",
-          "value": "json"
-        },
-        {
-          "name": "ecosystems:topic",
-          "value": "json-parser"
-        },
-        {
-          "name": "ecosystems:topic",
-          "value": "parser"
-        },
-        {
-          "name": "ecosystems:topic",
-          "value": "serialization"
-        },
-        {
-          "name": "ecosystems:topic",
-          "value": "serializer"
-        }
-      ]
-    },
-    {
-      "bom-ref": "c86e04f7-e32c-4748-bb03-4e2c155a3273",
-      "type": "application",
-      "name": "velero",
-      "properties": [
-        {
-          "name": "aquasecurity:trivy:Class",
-          "value": "lang-pkgs"
-        },
-        {
-          "name": "aquasecurity:trivy:Type",
-          "value": "gobinary"
-        }
-      ]
-    },
-    {
-      "bom-ref": "ce7b3eda-35e4-43e6-81d9-e6fed25ebab9",
-      "type": "library",
-      "supplier": {
-        "name": "Jsoniter",
-        "url": [
-          "http://jsoniter.com/"
-        ]
-      },
-      "author": "Jsoniter",
-      "name": "github.com/json-iterator/go",
-      "version": "v1.1.12",
-      "description": "Package jsoniter implements encoding and decoding of JSON as defined in\nRFC 4627 and provides interfaces with identical syntax of standard lib encoding/json.\nConverting from encoding/json to jsoniter is no more than replacing the package with jsoniter\nand variable type declarations (if any).\njsoniter interfaces gives 100% compatibility with code using standard lib.\n\n\"JSON and Go\"\n(https://golang.org/doc/articles/json_and_go.html)\ngives a description of how Marshal/Unmarshal operate\nbetween arbitrary or predefined json objects and bytes,\nand it applies to jsoniter.Marshal/Unmarshal as well.\n\nBesides, jsoniter.Iterator provides a different set of interfaces\niterating given bytes/string/reader\nand yielding parsed elements one by one.\nThis set of interfaces reads input as required and gives\nbetter performance.",
-      "licenses": [
-        {
-          "expression": "(MIT)"
-        }
-      ],
-      "purl": "pkg:golang/github.com/json-iterator/go@v1.1.12",
-      "externalReferences": [
-        {
-          "url": "https://github.com/json-iterator/go",
-          "type": "website"
-        },
-        {
-          "url": "https://pkg.go.dev/github.com/json-iterator/go",
-          "type": "distribution"
-        },
-        {
-          "url": "https://github.com/json-iterator/go",
-          "type": "vcs"
-        },
-        {
-          "url": "https://pkg.go.dev/github.com/json-iterator/go#section-documentation",
-          "type": "documentation"
-        }
-      ],
-      "properties": [
-        {
-          "name": "aquasecurity:trivy:LayerDiffID",
-          "value": "sha256:79414ea653fa47c16071e7df177805fcb50d0c1e2f4f825796e4c1d17ad6f13c"
-        },
-        {
-          "name": "aquasecurity:trivy:LayerDigest",
-          "value": "sha256:cae9f53ea987ef6399627b40c985c9dd745596a1f595b8107598ffe210ab7c5e"
-        },
-        {
-          "name": "aquasecurity:trivy:PkgID",
-          "value": "github.com/json-iterator/go@v1.1.12"
-        },
-        {
-          "name": "aquasecurity:trivy:PkgType",
-          "value": "gobinary"
-        },
-        {
-          "name": "ecosystems:first_release_published_at",
-          "value": "2018-08-06T06:07:27Z"
-        },
-        {
-          "name": "ecosystems:latest_release_published_at",
-          "value": "2021-09-11T02:17:26Z"
-        },
-        {
-          "name": "ecosystems:topic",
-          "value": "deserialization"
-        },
-        {
-          "name": "ecosystems:topic",
-          "value": "go"
-        },
-        {
-          "name": "ecosystems:topic",
-          "value": "golang"
-        },
-        {
-          "name": "ecosystems:topic",
-          "value": "json"
-        },
-        {
-          "name": "ecosystems:topic",
-          "value": "json-parser"
-        },
-        {
-          "name": "ecosystems:topic",
-          "value": "parser"
-        },
-        {
-          "name": "ecosystems:topic",
-          "value": "serialization"
-        },
-        {
-          "name": "ecosystems:topic",
-          "value": "serializer"
-        }
-      ]
-    },
-    {
-      "bom-ref": "d0fbac34-3707-4203-b05c-5c7afed6b8ae",
-      "type": "library",
-      "supplier": {
-        "name": "go-yaml"
-      },
-      "author": "go-yaml",
-      "name": "gopkg.in/yaml.v3",
-      "version": "v3.0.1",
-      "description": "Package yaml implements YAML support for the Go language.\n\nSource code and other details for the project are available at GitHub:",
-      "licenses": [
-        {
-          "expression": "(Apache-2.0 OR MIT)"
-        }
-      ],
-      "purl": "pkg:golang/gopkg.in/yaml.v3@v3.0.1",
-      "externalReferences": [
-        {
-          "url": "https://github.com/go-yaml/yaml",
-          "type": "website"
-        },
-        {
-          "url": "https://pkg.go.dev/gopkg.in/yaml.v3",
-          "type": "distribution"
-        },
-        {
-          "url": "https://github.com/go-yaml/yaml",
-          "type": "vcs"
-        },
-        {
-          "url": "https://pkg.go.dev/gopkg.in/yaml.v3#section-documentation",
-          "type": "documentation"
-        }
-      ],
-      "properties": [
-        {
-          "name": "aquasecurity:trivy:LayerDiffID",
-          "value": "sha256:79414ea653fa47c16071e7df177805fcb50d0c1e2f4f825796e4c1d17ad6f13c"
-        },
-        {
-          "name": "aquasecurity:trivy:LayerDigest",
-          "value": "sha256:cae9f53ea987ef6399627b40c985c9dd745596a1f595b8107598ffe210ab7c5e"
-        },
-        {
-          "name": "aquasecurity:trivy:PkgID",
-          "value": "gopkg.in/yaml.v3@v3.0.1"
-        },
-        {
-          "name": "aquasecurity:trivy:PkgType",
-          "value": "gobinary"
-        },
-        {
-          "name": "ecosystems:first_release_published_at",
-          "value": "2022-05-21T10:33:21Z"
-        },
-        {
-          "name": "ecosystems:latest_release_published_at",
-          "value": "2022-05-27T08:35:30Z"
-        }
-      ]
-    },
-    {
-      "bom-ref": "d7c46c35-b0df-451b-8b89-81690b9783c6",
+      "bom-ref": "f975a962-8139-458a-b79d-e95e5498dcde",
       "type": "library",
       "supplier": {
         "name": "pkg"
@@ -1304,164 +1501,7 @@
       ]
     },
     {
-      "bom-ref": "e59a4fd0-e262-4f53-9e1d-41867f4592e5",
-      "type": "library",
-      "supplier": {
-        "name": "Modern Go Programming",
-        "url": [
-          "https://plz.v2p.ro"
-        ]
-      },
-      "author": "Modern Go Programming",
-      "name": "github.com/modern-go/concurrent",
-      "version": "v0.0.0-20180306012644-bacd9c7ef1dd",
-      "licenses": [
-        {
-          "expression": "(Apache-2.0)"
-        }
-      ],
-      "purl": "pkg:golang/github.com/modern-go/concurrent@v0.0.0-20180306012644-bacd9c7ef1dd",
-      "externalReferences": [
-        {
-          "url": "https://github.com/modern-go/concurrent",
-          "type": "website"
-        },
-        {
-          "url": "https://pkg.go.dev/github.com/modern-go/concurrent",
-          "type": "distribution"
-        },
-        {
-          "url": "https://github.com/modern-go/concurrent",
-          "type": "vcs"
-        },
-        {
-          "url": "https://pkg.go.dev/github.com/modern-go/concurrent#section-documentation",
-          "type": "documentation"
-        }
-      ],
-      "properties": [
-        {
-          "name": "aquasecurity:trivy:LayerDiffID",
-          "value": "sha256:56fe943f1fd47c68492437dbdc410e6e5c50e6bd3cf87b6587a781fd8b30abb7"
-        },
-        {
-          "name": "aquasecurity:trivy:LayerDigest",
-          "value": "sha256:43bef5e2b7c9eb21ca5bcd55cae0d1bd5044b1540c54d8a752635e935caaf7d6"
-        },
-        {
-          "name": "aquasecurity:trivy:PkgID",
-          "value": "github.com/modern-go/concurrent@v0.0.0-20180306012644-bacd9c7ef1dd"
-        },
-        {
-          "name": "aquasecurity:trivy:PkgType",
-          "value": "gobinary"
-        },
-        {
-          "name": "ecosystems:first_release_published_at",
-          "value": "2018-02-28T06:14:59Z"
-        },
-        {
-          "name": "ecosystems:latest_release_published_at",
-          "value": "2018-03-06T01:26:44Z"
-        },
-        {
-          "name": "ecosystems:topic",
-          "value": "concurrency"
-        },
-        {
-          "name": "ecosystems:topic",
-          "value": "concurrent"
-        },
-        {
-          "name": "ecosystems:topic",
-          "value": "go"
-        },
-        {
-          "name": "ecosystems:topic",
-          "value": "golang"
-        }
-      ]
-    },
-    {
-      "bom-ref": "ecd803ae-4846-44a7-aad0-0fb977edcf1f",
-      "type": "library",
-      "supplier": {
-        "name": "VMware Tanzu",
-        "url": [
-          "tanzu.io"
-        ]
-      },
-      "author": "VMware Tanzu",
-      "name": "github.com/vmware-tanzu/velero",
-      "version": "v1.17.1+dirty",
-      "purl": "pkg:golang/github.com/vmware-tanzu/velero@v1.17.1%2Bdirty",
-      "externalReferences": [
-        {
-          "url": "https://github.com/vmware-tanzu/velero",
-          "type": "website"
-        },
-        {
-          "url": "https://pkg.go.dev/github.com/vmware-tanzu/velero",
-          "type": "distribution"
-        },
-        {
-          "url": "https://github.com/vmware-tanzu/velero",
-          "type": "vcs"
-        },
-        {
-          "url": "https://pkg.go.dev/github.com/vmware-tanzu/velero#section-documentation",
-          "type": "documentation"
-        }
-      ],
-      "properties": [
-        {
-          "name": "aquasecurity:trivy:LayerDiffID",
-          "value": "sha256:56fe943f1fd47c68492437dbdc410e6e5c50e6bd3cf87b6587a781fd8b30abb7"
-        },
-        {
-          "name": "aquasecurity:trivy:LayerDigest",
-          "value": "sha256:43bef5e2b7c9eb21ca5bcd55cae0d1bd5044b1540c54d8a752635e935caaf7d6"
-        },
-        {
-          "name": "aquasecurity:trivy:PkgID",
-          "value": "github.com/vmware-tanzu/velero@v1.17.1+dirty"
-        },
-        {
-          "name": "aquasecurity:trivy:PkgType",
-          "value": "gobinary"
-        },
-        {
-          "name": "ecosystems:first_release_published_at",
-          "value": "2017-08-02T21:29:38Z"
-        },
-        {
-          "name": "ecosystems:latest_release_published_at",
-          "value": "2026-01-09T03:17:35Z"
-        },
-        {
-          "name": "ecosystems:topic",
-          "value": "backup"
-        },
-        {
-          "name": "ecosystems:topic",
-          "value": "disaster-recovery"
-        },
-        {
-          "name": "ecosystems:topic",
-          "value": "hacktoberfest"
-        },
-        {
-          "name": "ecosystems:topic",
-          "value": "kubernetes"
-        },
-        {
-          "name": "ecosystems:topic",
-          "value": "velero"
-        }
-      ]
-    },
-    {
-      "bom-ref": "f66fdac4-2371-442f-bbc1-0b8ee1b3de8d",
+      "bom-ref": "fd2937c5-cd01-4061-98de-bad8c9edd4b1",
       "type": "library",
       "supplier": {
         "name": "MinIO",
@@ -1499,11 +1539,11 @@
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
-          "value": "sha256:79414ea653fa47c16071e7df177805fcb50d0c1e2f4f825796e4c1d17ad6f13c"
+          "value": "sha256:56fe943f1fd47c68492437dbdc410e6e5c50e6bd3cf87b6587a781fd8b30abb7"
         },
         {
           "name": "aquasecurity:trivy:LayerDigest",
-          "value": "sha256:cae9f53ea987ef6399627b40c985c9dd745596a1f595b8107598ffe210ab7c5e"
+          "value": "sha256:43bef5e2b7c9eb21ca5bcd55cae0d1bd5044b1540c54d8a752635e935caaf7d6"
         },
         {
           "name": "aquasecurity:trivy:PkgID",
@@ -1556,46 +1596,6 @@
         {
           "name": "ecosystems:topic",
           "value": "simd"
-        }
-      ]
-    },
-    {
-      "bom-ref": "f8051918-1dbf-423c-9255-f7269d1a96a4",
-      "type": "library",
-      "name": "stdlib",
-      "version": "v1.24.9",
-      "purl": "pkg:golang/stdlib@v1.24.9",
-      "properties": [
-        {
-          "name": "aquasecurity:trivy:LayerDiffID",
-          "value": "sha256:79414ea653fa47c16071e7df177805fcb50d0c1e2f4f825796e4c1d17ad6f13c"
-        },
-        {
-          "name": "aquasecurity:trivy:LayerDigest",
-          "value": "sha256:cae9f53ea987ef6399627b40c985c9dd745596a1f595b8107598ffe210ab7c5e"
-        },
-        {
-          "name": "aquasecurity:trivy:PkgID",
-          "value": "stdlib@v1.24.9"
-        },
-        {
-          "name": "aquasecurity:trivy:PkgType",
-          "value": "gobinary"
-        }
-      ]
-    },
-    {
-      "bom-ref": "f92fa87f-b9f3-4ab8-add1-158157f0d9fc",
-      "type": "application",
-      "name": "velero-helper",
-      "properties": [
-        {
-          "name": "aquasecurity:trivy:Class",
-          "value": "lang-pkgs"
-        },
-        {
-          "name": "aquasecurity:trivy:Type",
-          "value": "gobinary"
         }
       ]
     },
@@ -17522,47 +17522,80 @@
   ],
   "dependencies": [
     {
-      "ref": "06d8c40e-0963-461e-ae3b-f65aebd06f0e",
+      "ref": "0289516d-edc6-432b-8b05-5baca51f5d76",
+      "dependsOn": []
+    },
+    {
+      "ref": "1b303b4a-0530-4e8e-a49f-64cfbaa62d8e",
+      "dependsOn": []
+    },
+    {
+      "ref": "418efd9b-1431-481f-a6ad-3ab8a41b93c5",
       "dependsOn": [
-        "pkg:deb/ubuntu/base-files@12ubuntu4.7?arch=amd64&distro=ubuntu-22.04",
-        "pkg:deb/ubuntu/ca-certificates@20240203~22.04.1?arch=all&distro=ubuntu-22.04",
-        "pkg:deb/ubuntu/libc6@2.35-0ubuntu3.11?arch=amd64&distro=ubuntu-22.04",
-        "pkg:deb/ubuntu/libssl3@3.0.2-0ubuntu1.20?arch=amd64&distro=ubuntu-22.04",
-        "pkg:deb/ubuntu/netbase@6.3?arch=all&distro=ubuntu-22.04",
-        "pkg:deb/ubuntu/openssl@3.0.2-0ubuntu1.20?arch=amd64&distro=ubuntu-22.04",
-        "pkg:deb/ubuntu/tzdata@2025b-0ubuntu0.22.04.1?arch=all&distro=ubuntu-22.04",
-        "pkg:deb/ubuntu/zlib1g@1.2.11.dfsg-2ubuntu9.2?arch=amd64&distro=ubuntu-22.04&epoch=1"
+        "9f926d6d-5b9f-4ab8-8e27-5e2108fcf531"
       ]
     },
     {
-      "ref": "08c988b2-7c07-40a9-aa8c-7b0385b0853f",
+      "ref": "4191f702-c4a2-4f03-be6e-80bd5b962615",
       "dependsOn": []
     },
     {
-      "ref": "316ffe71-aa20-4a2b-a738-0d7be951af19",
-      "dependsOn": []
-    },
-    {
-      "ref": "37c35a68-2754-46f2-8533-96e947c2774e",
-      "dependsOn": []
-    },
-    {
-      "ref": "3bfb81a8-145a-46e8-bc74-0606394c50ad",
+      "ref": "5ec91b51-07da-4ded-83cc-43163d966bb4",
       "dependsOn": [
-        "a4fbb02a-e89a-4f64-94bf-7a5bc96b595f"
+        "6077fdc6-55fa-4691-ac66-1df43c1ab4f4"
       ]
     },
     {
-      "ref": "4236721c-2b1b-4624-9656-d92f40a0a776",
+      "ref": "6077fdc6-55fa-4691-ac66-1df43c1ab4f4",
+      "dependsOn": []
+    },
+    {
+      "ref": "64301140-7c6c-4cb0-ba85-1efd51f28911",
       "dependsOn": [
-        "48c13972-71ba-4497-9751-41982b79c836",
-        "536f8005-00f9-4a58-8dd8-6010ef53c474",
-        "78b15674-95c4-4cd3-970a-b7a560c59ccd",
-        "801a841f-5f1e-4da2-b396-c3e09c9b5825",
-        "a887c1cf-36c7-4c47-8a0e-20b2c6b89dee",
-        "c629cd7f-bbcc-4a47-a4e5-0168916d01fe",
-        "d7c46c35-b0df-451b-8b89-81690b9783c6",
-        "e59a4fd0-e262-4f53-9e1d-41867f4592e5",
+        "653e72b7-18c6-49df-aa29-ab0a20974e8e"
+      ]
+    },
+    {
+      "ref": "64994692-df5f-45b8-87ed-b8460b4cceb2",
+      "dependsOn": []
+    },
+    {
+      "ref": "653e72b7-18c6-49df-aa29-ab0a20974e8e",
+      "dependsOn": []
+    },
+    {
+      "ref": "6e502c8e-d9e0-4734-b800-c685d446c5d2",
+      "dependsOn": []
+    },
+    {
+      "ref": "7d64123d-e6ed-4c7f-ae84-11f88fac6eb0",
+      "dependsOn": []
+    },
+    {
+      "ref": "80755bb2-40e8-4d98-b1fb-fe2d13984cf6",
+      "dependsOn": []
+    },
+    {
+      "ref": "8aae93f0-6f67-4ebb-a6c3-727ed97713b6",
+      "dependsOn": []
+    },
+    {
+      "ref": "8cc3b4ec-0867-48bb-a031-a3830336e959",
+      "dependsOn": [
+        "64301140-7c6c-4cb0-ba85-1efd51f28911"
+      ]
+    },
+    {
+      "ref": "9f926d6d-5b9f-4ab8-8e27-5e2108fcf531",
+      "dependsOn": [
+        "1b303b4a-0530-4e8e-a49f-64cfbaa62d8e",
+        "7d64123d-e6ed-4c7f-ae84-11f88fac6eb0",
+        "8aae93f0-6f67-4ebb-a6c3-727ed97713b6",
+        "b12adfb5-df93-4be7-8b46-1ffef6c89157",
+        "b54facab-1872-4ef0-a434-5f670f58d0c6",
+        "c09f9dd2-a65a-43f2-9111-edfdc91ef77e",
+        "f975a962-8139-458a-b79d-e95e5498dcde",
+        "fd2937c5-cd01-4061-98de-bad8c9edd4b1",
         "pkg:golang/cel.dev/expr@v0.23.0",
         "pkg:golang/cloud.google.com/go/auth/oauth2adapt@v0.2.8",
         "pkg:golang/cloud.google.com/go/auth@v0.16.2",
@@ -17730,94 +17763,61 @@
       ]
     },
     {
-      "ref": "48c13972-71ba-4497-9751-41982b79c836",
+      "ref": "a230e747-80e9-4ad1-830f-6b1672f6d035",
       "dependsOn": []
     },
     {
-      "ref": "536f8005-00f9-4a58-8dd8-6010ef53c474",
+      "ref": "b12adfb5-df93-4be7-8b46-1ffef6c89157",
       "dependsOn": []
     },
     {
-      "ref": "693e63df-b182-409c-b19e-f4e8d5c6fc29",
+      "ref": "b54facab-1872-4ef0-a434-5f670f58d0c6",
       "dependsOn": []
     },
     {
-      "ref": "78b15674-95c4-4cd3-970a-b7a560c59ccd",
+      "ref": "c09f9dd2-a65a-43f2-9111-edfdc91ef77e",
       "dependsOn": []
     },
     {
-      "ref": "7d8aae7b-7643-4b03-b0ef-8bd46f263e42",
+      "ref": "d1828be4-8115-44e1-9b27-fa8046e2e52f",
       "dependsOn": [
-        "ecd803ae-4846-44a7-aad0-0fb977edcf1f"
+        "5ec91b51-07da-4ded-83cc-43163d966bb4"
       ]
     },
     {
-      "ref": "801a841f-5f1e-4da2-b396-c3e09c9b5825",
+      "ref": "e2bf8cb0-1b9a-4c56-b831-4a4077abaa0f",
       "dependsOn": []
     },
     {
-      "ref": "9839c59a-884c-4eb5-b96c-5d2cf9f9c7bc",
+      "ref": "e939ca78-bb4b-4e34-847d-fad2fe11bc80",
       "dependsOn": []
     },
     {
-      "ref": "98a4ef9b-2c01-4fe0-859c-e997f4870140",
+      "ref": "ed7fceb6-203d-4110-8dc8-5789f84fe030",
+      "dependsOn": [
+        "pkg:deb/ubuntu/base-files@12ubuntu4.7?arch=amd64&distro=ubuntu-22.04",
+        "pkg:deb/ubuntu/ca-certificates@20240203~22.04.1?arch=all&distro=ubuntu-22.04",
+        "pkg:deb/ubuntu/libc6@2.35-0ubuntu3.11?arch=amd64&distro=ubuntu-22.04",
+        "pkg:deb/ubuntu/libssl3@3.0.2-0ubuntu1.20?arch=amd64&distro=ubuntu-22.04",
+        "pkg:deb/ubuntu/netbase@6.3?arch=all&distro=ubuntu-22.04",
+        "pkg:deb/ubuntu/openssl@3.0.2-0ubuntu1.20?arch=amd64&distro=ubuntu-22.04",
+        "pkg:deb/ubuntu/tzdata@2025b-0ubuntu0.22.04.1?arch=all&distro=ubuntu-22.04",
+        "pkg:deb/ubuntu/zlib1g@1.2.11.dfsg-2ubuntu9.2?arch=amd64&distro=ubuntu-22.04&epoch=1"
+      ]
+    },
+    {
+      "ref": "f6434a6a-b07a-4d70-b365-eed1fbeac37a",
       "dependsOn": [
         "pkg:golang/github.com/restic/restic@v0.15.0%2Bdirty"
       ]
     },
     {
-      "ref": "a4fbb02a-e89a-4f64-94bf-7a5bc96b595f",
+      "ref": "f975a962-8139-458a-b79d-e95e5498dcde",
       "dependsOn": []
     },
     {
-      "ref": "a887c1cf-36c7-4c47-8a0e-20b2c6b89dee",
+      "ref": "fd2937c5-cd01-4061-98de-bad8c9edd4b1",
       "dependsOn": []
-    },
-    {
-      "ref": "c629cd7f-bbcc-4a47-a4e5-0168916d01fe",
-      "dependsOn": []
-    },
-    {
-      "ref": "c86e04f7-e32c-4748-bb03-4e2c155a3273",
-      "dependsOn": [
-        "4236721c-2b1b-4624-9656-d92f40a0a776"
-      ]
-    },
-    {
-      "ref": "ce7b3eda-35e4-43e6-81d9-e6fed25ebab9",
-      "dependsOn": []
-    },
-    {
-      "ref": "d0fbac34-3707-4203-b05c-5c7afed6b8ae",
-      "dependsOn": []
-    },
-    {
-      "ref": "d7c46c35-b0df-451b-8b89-81690b9783c6",
-      "dependsOn": []
-    },
-    {
-      "ref": "e59a4fd0-e262-4f53-9e1d-41867f4592e5",
-      "dependsOn": []
-    },
-    {
-      "ref": "ecd803ae-4846-44a7-aad0-0fb977edcf1f",
-      "dependsOn": [
-        "08c988b2-7c07-40a9-aa8c-7b0385b0853f"
-      ]
-    },
-    {
-      "ref": "f66fdac4-2371-442f-bbc1-0b8ee1b3de8d",
-      "dependsOn": []
-    },
-    {
-      "ref": "f8051918-1dbf-423c-9255-f7269d1a96a4",
-      "dependsOn": []
-    },
-    {
-      "ref": "f92fa87f-b9f3-4ab8-add1-158157f0d9fc",
-      "dependsOn": [
-        "3bfb81a8-145a-46e8-bc74-0606394c50ad"
-      ]
     },
     {
       "ref": "pkg:deb/ubuntu/base-files@12ubuntu4.7?arch=amd64&distro=ubuntu-22.04",
@@ -18406,14 +18406,14 @@
     {
       "ref": "pkg:golang/github.com/restic/restic@v0.15.0%2Bdirty",
       "dependsOn": [
-        "316ffe71-aa20-4a2b-a738-0d7be951af19",
-        "37c35a68-2754-46f2-8533-96e947c2774e",
-        "693e63df-b182-409c-b19e-f4e8d5c6fc29",
-        "9839c59a-884c-4eb5-b96c-5d2cf9f9c7bc",
-        "ce7b3eda-35e4-43e6-81d9-e6fed25ebab9",
-        "d0fbac34-3707-4203-b05c-5c7afed6b8ae",
-        "f66fdac4-2371-442f-bbc1-0b8ee1b3de8d",
-        "f8051918-1dbf-423c-9255-f7269d1a96a4",
+        "0289516d-edc6-432b-8b05-5baca51f5d76",
+        "4191f702-c4a2-4f03-be6e-80bd5b962615",
+        "64994692-df5f-45b8-87ed-b8460b4cceb2",
+        "6e502c8e-d9e0-4734-b800-c685d446c5d2",
+        "80755bb2-40e8-4d98-b1fb-fe2d13984cf6",
+        "a230e747-80e9-4ad1-830f-6b1672f6d035",
+        "e2bf8cb0-1b9a-4c56-b831-4a4077abaa0f",
+        "e939ca78-bb4b-4e34-847d-fad2fe11bc80",
         "pkg:golang/cloud.google.com/go/compute/metadata@v0.3.0",
         "pkg:golang/cloud.google.com/go/iam@v0.13.0",
         "pkg:golang/cloud.google.com/go/storage@v1.28.1",
@@ -18758,11 +18758,11 @@
     {
       "ref": "pkg:oci/velero@sha256%3A58f551f0d89a9ef1919771bdc7475c08bc1795a50a51a57b5f14316d68fc3baa?arch=amd64&repository_url=index.docker.io%2Fvelero%2Fvelero",
       "dependsOn": [
-        "06d8c40e-0963-461e-ae3b-f65aebd06f0e",
-        "7d8aae7b-7643-4b03-b0ef-8bd46f263e42",
-        "98a4ef9b-2c01-4fe0-859c-e997f4870140",
-        "c86e04f7-e32c-4748-bb03-4e2c155a3273",
-        "f92fa87f-b9f3-4ab8-add1-158157f0d9fc"
+        "418efd9b-1431-481f-a6ad-3ab8a41b93c5",
+        "8cc3b4ec-0867-48bb-a031-a3830336e959",
+        "d1828be4-8115-44e1-9b27-fa8046e2e52f",
+        "ed7fceb6-203d-4110-8dc8-5789f84fe030",
+        "f6434a6a-b07a-4d70-b365-eed1fbeac37a"
       ]
     }
   ],
