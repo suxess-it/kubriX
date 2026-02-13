@@ -26,5 +26,5 @@ jobs:
           git add image-list
           git status
           echo "check diff and commit"
-          git diff --cached --exit-code || git commit -m "update sbom and license list"
+          git diff --cached --name-only --exit-code || git commit -m "update sbom and license list"
           git push
