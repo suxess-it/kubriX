@@ -13,6 +13,9 @@ SBOM_DIR="${SBOM_DIR:-$OUT_DIR/sboms}"
 # REPORT_TSV="${REPORT_TSV:-$OUT_DIR/licenses-per-image.tsv}"
 
 mkdir -p "$SBOM_DIR" # "$LICENSE_DIR"
+# empty files
+rm -f "$SBOM_DIR"/*
+
 # : > "$REPORT_TSV"
 
 # install trivy
@@ -60,7 +63,7 @@ for image in "${IMAGES[@]}"; do
   echo "==> SBOM: $image"
   if ! trivy image --quiet --format cyclonedx --output "$sbom_file" "$image"; then
     echo "WARN: trivy failed for $image (skipping license extraction)" >&2
-    echo -e "${image}\t${charts}\tTRIVY_FAILED\t0\t0\t${sbom_file}" >> "$REPORT_TSV"
+    # echo -e "${image}\t${charts}\tTRIVY_FAILED\t0\t0\t${sbom_file}" >> "$REPORT_TSV"
     continue
   else
     parlay ecosystems enrich "$sbom_file" | jq  > "${sbom_file}.parlay"
