@@ -2,10 +2,10 @@
   "$schema": "http://cyclonedx.org/schema/bom-1.6.schema.json",
   "bomFormat": "CycloneDX",
   "specVersion": "1.6",
-  "serialNumber": "urn:uuid:3bab1611-640a-4307-ab93-45a080a8ce3d",
+  "serialNumber": "urn:uuid:bc16620a-ed09-4ac7-b1c1-58103ee8b4f3",
   "version": 1,
   "metadata": {
-    "timestamp": "2026-02-04T23:59:40+00:00",
+    "timestamp": "2026-02-13T09:06:31+00:00",
     "tools": {
       "components": [
         {
@@ -82,7 +82,7 @@
   },
   "components": [
     {
-      "bom-ref": "48cff80a-47e7-4f69-872e-8dfee610b95f",
+      "bom-ref": "689bb25c-ce91-4c72-bb8d-9e919b0ed425",
       "type": "operating-system",
       "name": "alpine",
       "version": "3.20.7",
@@ -105,6 +105,7 @@
       },
       "name": "alpine-baselayout-data",
       "version": "3.6.5-r0",
+      "description": "Alpine base dir structure and init scripts",
       "hashes": [
         {
           "alg": "SHA-1",
@@ -113,12 +114,24 @@
       ],
       "licenses": [
         {
-          "license": {
-            "id": "GPL-2.0-only"
-          }
+          "expression": "(GPL-2.0-only)"
         }
       ],
       "purl": "pkg:apk/alpine/alpine-baselayout-data@3.6.5-r0?arch=x86_64&distro=3.20.7",
+      "externalReferences": [
+        {
+          "url": "https://gitlab.alpinelinux.org/alpine/aports/-/tree/master/main/alpine-baselayout",
+          "type": "website"
+        },
+        {
+          "url": "https://pkgs.alpinelinux.org/package/edge/main/x86_64/alpine-baselayout-data",
+          "type": "distribution"
+        },
+        {
+          "url": "https://gitlab.alpinelinux.org/alpine/aports/-/tree/master/main/alpine-baselayout",
+          "type": "vcs"
+        }
+      ],
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
@@ -143,6 +156,14 @@
         {
           "name": "aquasecurity:trivy:SrcVersion",
           "value": "3.6.5-r0"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2022-11-04T14:43:47Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2025-12-11T13:51:00Z"
         }
       ]
     },
@@ -154,6 +175,7 @@
       },
       "name": "alpine-baselayout",
       "version": "3.6.5-r0",
+      "description": "Alpine base dir structure and init scripts",
       "hashes": [
         {
           "alg": "SHA-1",
@@ -162,12 +184,24 @@
       ],
       "licenses": [
         {
-          "license": {
-            "id": "GPL-2.0-only"
-          }
+          "expression": "(GPL-2.0-only)"
         }
       ],
       "purl": "pkg:apk/alpine/alpine-baselayout@3.6.5-r0?arch=x86_64&distro=3.20.7",
+      "externalReferences": [
+        {
+          "url": "https://gitlab.alpinelinux.org/alpine/aports/-/tree/master/main/alpine-baselayout",
+          "type": "website"
+        },
+        {
+          "url": "https://pkgs.alpinelinux.org/package/edge/main/x86_64/alpine-baselayout",
+          "type": "distribution"
+        },
+        {
+          "url": "https://gitlab.alpinelinux.org/alpine/aports/-/tree/master/main/alpine-baselayout",
+          "type": "vcs"
+        }
+      ],
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
@@ -192,6 +226,14 @@
         {
           "name": "aquasecurity:trivy:SrcVersion",
           "value": "3.6.5-r0"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2022-11-04T14:43:47Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2025-12-11T13:51:00Z"
         }
       ]
     },
@@ -203,6 +245,7 @@
       },
       "name": "alpine-keys",
       "version": "2.4-r1",
+      "description": "Public keys for Alpine Linux packages",
       "hashes": [
         {
           "alg": "SHA-1",
@@ -211,12 +254,24 @@
       ],
       "licenses": [
         {
-          "license": {
-            "id": "MIT"
-          }
+          "expression": "(MIT)"
         }
       ],
       "purl": "pkg:apk/alpine/alpine-keys@2.4-r1?arch=x86_64&distro=3.20.7",
+      "externalReferences": [
+        {
+          "url": "https://alpinelinux.org",
+          "type": "website"
+        },
+        {
+          "url": "https://pkgs.alpinelinux.org/package/edge/main/x86_64/alpine-keys",
+          "type": "distribution"
+        },
+        {
+          "url": "https://alpinelinux.org",
+          "type": "vcs"
+        }
+      ],
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
@@ -241,6 +296,14 @@
         {
           "name": "aquasecurity:trivy:SrcVersion",
           "value": "2.4-r1"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2021-10-18T17:54:17Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2025-09-18T17:13:52Z"
         }
       ]
     },
@@ -252,6 +315,7 @@
       },
       "name": "apk-tools",
       "version": "2.14.4-r1",
+      "description": "Alpine Package Keeper - package manager for alpine",
       "hashes": [
         {
           "alg": "SHA-1",
@@ -260,12 +324,24 @@
       ],
       "licenses": [
         {
-          "license": {
-            "id": "GPL-2.0-only"
-          }
+          "expression": "(GPL-2.0-only)"
         }
       ],
       "purl": "pkg:apk/alpine/apk-tools@2.14.4-r1?arch=x86_64&distro=3.20.7",
+      "externalReferences": [
+        {
+          "url": "https://gitlab.alpinelinux.org/alpine/apk-tools",
+          "type": "website"
+        },
+        {
+          "url": "https://pkgs.alpinelinux.org/package/edge/main/x86_64/apk-tools",
+          "type": "distribution"
+        },
+        {
+          "url": "https://gitlab.alpinelinux.org/alpine/apk-tools",
+          "type": "vcs"
+        }
+      ],
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
@@ -290,6 +366,14 @@
         {
           "name": "aquasecurity:trivy:SrcVersion",
           "value": "2.14.4-r1"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2023-01-19T13:16:41Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2026-01-11T09:55:01Z"
         }
       ]
     },
@@ -301,6 +385,7 @@
       },
       "name": "bash",
       "version": "5.2.26-r0",
+      "description": "The GNU Bourne Again shell",
       "hashes": [
         {
           "alg": "SHA-1",
@@ -309,12 +394,24 @@
       ],
       "licenses": [
         {
-          "license": {
-            "id": "GPL-3.0-or-later"
-          }
+          "expression": "(GPL-3.0-or-later)"
         }
       ],
       "purl": "pkg:apk/alpine/bash@5.2.26-r0?arch=x86_64&distro=3.20.7",
+      "externalReferences": [
+        {
+          "url": "https://www.gnu.org/software/bash/bash.html",
+          "type": "website"
+        },
+        {
+          "url": "https://pkgs.alpinelinux.org/package/edge/main/x86_64/bash",
+          "type": "distribution"
+        },
+        {
+          "url": "https://www.gnu.org/software/bash/bash.html",
+          "type": "vcs"
+        }
+      ],
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
@@ -339,6 +436,14 @@
         {
           "name": "aquasecurity:trivy:SrcVersion",
           "value": "5.2.26-r0"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2022-12-14T02:35:57Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2026-01-25T22:34:20Z"
         }
       ]
     },
@@ -350,6 +455,7 @@
       },
       "name": "bsd-compat-headers",
       "version": "0.7.2-r6",
+      "description": "BSD compatibility headers (cdefs, queue, tree)",
       "hashes": [
         {
           "alg": "SHA-1",
@@ -358,17 +464,24 @@
       ],
       "licenses": [
         {
-          "license": {
-            "id": "BSD-2-Clause"
-          }
-        },
-        {
-          "license": {
-            "id": "BSD-3-Clause"
-          }
+          "expression": "(BSD-2-Clause AND BSD-3-Clause)"
         }
       ],
       "purl": "pkg:apk/alpine/bsd-compat-headers@0.7.2-r6?arch=x86_64&distro=3.20.7",
+      "externalReferences": [
+        {
+          "url": "https://gitlab.alpinelinux.org/alpine/aports",
+          "type": "website"
+        },
+        {
+          "url": "https://pkgs.alpinelinux.org/package/edge/main/x86_64/bsd-compat-headers",
+          "type": "distribution"
+        },
+        {
+          "url": "https://gitlab.alpinelinux.org/alpine/aports",
+          "type": "vcs"
+        }
+      ],
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
@@ -393,6 +506,14 @@
         {
           "name": "aquasecurity:trivy:SrcVersion",
           "value": "0.7.2-r6"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2023-01-22T00:52:12Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2024-02-05T17:40:20Z"
         }
       ]
     },
@@ -404,6 +525,7 @@
       },
       "name": "busybox-binsh",
       "version": "1.36.1-r29",
+      "description": "busybox ash /bin/sh",
       "hashes": [
         {
           "alg": "SHA-1",
@@ -418,6 +540,20 @@
         }
       ],
       "purl": "pkg:apk/alpine/busybox-binsh@1.36.1-r29?arch=x86_64&distro=3.20.7",
+      "externalReferences": [
+        {
+          "url": "https://busybox.net/",
+          "type": "website"
+        },
+        {
+          "url": "https://pkgs.alpinelinux.org/package/edge/main/x86_64/busybox-binsh",
+          "type": "distribution"
+        },
+        {
+          "url": "https://busybox.net/",
+          "type": "vcs"
+        }
+      ],
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
@@ -442,6 +578,14 @@
         {
           "name": "aquasecurity:trivy:SrcVersion",
           "value": "1.36.1-r29"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2023-05-13T18:53:46Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2024-11-19T21:09:16Z"
         }
       ]
     },
@@ -453,6 +597,7 @@
       },
       "name": "busybox",
       "version": "1.36.1-r29",
+      "description": "Size optimized toolbox of many common UNIX utilities",
       "hashes": [
         {
           "alg": "SHA-1",
@@ -467,6 +612,20 @@
         }
       ],
       "purl": "pkg:apk/alpine/busybox@1.36.1-r29?arch=x86_64&distro=3.20.7",
+      "externalReferences": [
+        {
+          "url": "https://busybox.net/",
+          "type": "website"
+        },
+        {
+          "url": "https://pkgs.alpinelinux.org/package/edge/main/x86_64/busybox",
+          "type": "distribution"
+        },
+        {
+          "url": "https://busybox.net/",
+          "type": "vcs"
+        }
+      ],
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
@@ -491,6 +650,14 @@
         {
           "name": "aquasecurity:trivy:SrcVersion",
           "value": "1.36.1-r29"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2023-05-13T18:53:46Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2024-12-13T15:05:48Z"
         }
       ]
     },
@@ -502,6 +669,7 @@
       },
       "name": "c-ares",
       "version": "1.33.1-r0",
+      "description": "Asynchronous DNS/names resolver library",
       "hashes": [
         {
           "alg": "SHA-1",
@@ -510,12 +678,24 @@
       ],
       "licenses": [
         {
-          "license": {
-            "id": "MIT"
-          }
+          "expression": "(MIT)"
         }
       ],
       "purl": "pkg:apk/alpine/c-ares@1.33.1-r0?arch=x86_64&distro=3.20.7",
+      "externalReferences": [
+        {
+          "url": "https://c-ares.org/",
+          "type": "website"
+        },
+        {
+          "url": "https://pkgs.alpinelinux.org/package/edge/main/x86_64/c-ares",
+          "type": "distribution"
+        },
+        {
+          "url": "https://c-ares.org/",
+          "type": "vcs"
+        }
+      ],
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
@@ -540,6 +720,14 @@
         {
           "name": "aquasecurity:trivy:SrcVersion",
           "value": "1.33.1-r0"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2023-01-28T23:14:42Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2025-12-13T12:04:23Z"
         }
       ]
     },
@@ -551,6 +739,7 @@
       },
       "name": "ca-certificates-bundle",
       "version": "20250619-r0",
+      "description": "Pre generated bundle of Mozilla certificates",
       "hashes": [
         {
           "alg": "SHA-1",
@@ -559,17 +748,24 @@
       ],
       "licenses": [
         {
-          "license": {
-            "id": "MPL-2.0"
-          }
-        },
-        {
-          "license": {
-            "id": "MIT"
-          }
+          "expression": "(MPL-2.0 AND MIT)"
         }
       ],
       "purl": "pkg:apk/alpine/ca-certificates-bundle@20250619-r0?arch=x86_64&distro=3.20.7",
+      "externalReferences": [
+        {
+          "url": "https://www.mozilla.org/en-US/about/governance/policies/security-group/certs/",
+          "type": "website"
+        },
+        {
+          "url": "https://pkgs.alpinelinux.org/package/edge/main/x86_64/ca-certificates-bundle",
+          "type": "distribution"
+        },
+        {
+          "url": "https://www.mozilla.org/en-US/about/governance/policies/security-group/certs/",
+          "type": "vcs"
+        }
+      ],
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
@@ -594,6 +790,14 @@
         {
           "name": "aquasecurity:trivy:SrcVersion",
           "value": "20250619-r0"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2023-01-08T21:40:51Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2025-11-10T07:19:26Z"
         }
       ]
     },
@@ -605,6 +809,7 @@
       },
       "name": "frr-dbg",
       "version": "10.4.1_git-r0",
+      "description": "Free Range Routing is a fork of Quagga (debug symbols)",
       "hashes": [
         {
           "alg": "SHA-1",
@@ -619,6 +824,20 @@
         }
       ],
       "purl": "pkg:apk/alpine/frr-dbg@10.4.1_git-r0?arch=x86_64&distro=3.20.7",
+      "externalReferences": [
+        {
+          "url": "https://frrouting.org/",
+          "type": "website"
+        },
+        {
+          "url": "https://pkgs.alpinelinux.org/package/edge/community/x86_64/frr-dbg",
+          "type": "distribution"
+        },
+        {
+          "url": "https://frrouting.org/",
+          "type": "vcs"
+        }
+      ],
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
@@ -643,6 +862,14 @@
         {
           "name": "aquasecurity:trivy:SrcVersion",
           "value": "10.4.1_git-r0"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2023-01-15T10:36:57Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2026-01-07T08:03:53Z"
         }
       ]
     },
@@ -703,6 +930,7 @@
       },
       "name": "frr-doc",
       "version": "10.4.1_git-r0",
+      "description": "Free Range Routing is a fork of Quagga (documentation)",
       "hashes": [
         {
           "alg": "SHA-1",
@@ -717,6 +945,20 @@
         }
       ],
       "purl": "pkg:apk/alpine/frr-doc@10.4.1_git-r0?arch=noarch&distro=3.20.7",
+      "externalReferences": [
+        {
+          "url": "https://frrouting.org/",
+          "type": "website"
+        },
+        {
+          "url": "https://pkgs.alpinelinux.org/package/edge/community/x86_64/frr-doc",
+          "type": "distribution"
+        },
+        {
+          "url": "https://frrouting.org/",
+          "type": "vcs"
+        }
+      ],
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
@@ -741,6 +983,14 @@
         {
           "name": "aquasecurity:trivy:SrcVersion",
           "value": "10.4.1_git-r0"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2023-01-15T10:36:57Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2026-01-07T08:03:53Z"
         }
       ]
     },
@@ -752,6 +1002,7 @@
       },
       "name": "frr",
       "version": "10.4.1_git-r0",
+      "description": "Free Range Routing is a fork of Quagga",
       "hashes": [
         {
           "alg": "SHA-1",
@@ -766,6 +1017,20 @@
         }
       ],
       "purl": "pkg:apk/alpine/frr@10.4.1_git-r0?arch=x86_64&distro=3.20.7",
+      "externalReferences": [
+        {
+          "url": "https://frrouting.org/",
+          "type": "website"
+        },
+        {
+          "url": "https://pkgs.alpinelinux.org/package/edge/community/x86_64/frr",
+          "type": "distribution"
+        },
+        {
+          "url": "https://frrouting.org/",
+          "type": "vcs"
+        }
+      ],
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
@@ -790,6 +1055,14 @@
         {
           "name": "aquasecurity:trivy:SrcVersion",
           "value": "10.4.1_git-r0"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2023-01-15T10:36:57Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2026-01-07T08:03:53Z"
         }
       ]
     },
@@ -801,6 +1074,7 @@
       },
       "name": "gdbm",
       "version": "1.23-r1",
+      "description": "GNU dbm is a set of database routines that use extensible hashing",
       "hashes": [
         {
           "alg": "SHA-1",
@@ -809,12 +1083,24 @@
       ],
       "licenses": [
         {
-          "license": {
-            "id": "GPL-3.0-or-later"
-          }
+          "expression": "(GPL-3.0-or-later)"
         }
       ],
       "purl": "pkg:apk/alpine/gdbm@1.23-r1?arch=x86_64&distro=3.20.7",
+      "externalReferences": [
+        {
+          "url": "https://www.gnu.org/software/gdbm/",
+          "type": "website"
+        },
+        {
+          "url": "https://pkgs.alpinelinux.org/package/edge/main/x86_64/gdbm",
+          "type": "distribution"
+        },
+        {
+          "url": "https://www.gnu.org/software/gdbm/",
+          "type": "vcs"
+        }
+      ],
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
@@ -839,6 +1125,14 @@
         {
           "name": "aquasecurity:trivy:SrcVersion",
           "value": "1.23-r1"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2022-02-06T15:55:16Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2025-07-30T15:19:02Z"
         }
       ]
     },
@@ -850,6 +1144,7 @@
       },
       "name": "iproute2-minimal",
       "version": "6.9.0-r0",
+      "description": "IP Routing Utilities (/sbin/ip only)",
       "hashes": [
         {
           "alg": "SHA-1",
@@ -858,12 +1153,24 @@
       ],
       "licenses": [
         {
-          "license": {
-            "id": "GPL-2.0-or-later"
-          }
+          "expression": "(GPL-2.0-or-later)"
         }
       ],
       "purl": "pkg:apk/alpine/iproute2-minimal@6.9.0-r0?arch=x86_64&distro=3.20.7",
+      "externalReferences": [
+        {
+          "url": "https://wiki.linuxfoundation.org/networking/iproute2",
+          "type": "website"
+        },
+        {
+          "url": "https://pkgs.alpinelinux.org/package/edge/main/x86_64/iproute2-minimal",
+          "type": "distribution"
+        },
+        {
+          "url": "https://wiki.linuxfoundation.org/networking/iproute2",
+          "type": "vcs"
+        }
+      ],
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
@@ -888,6 +1195,14 @@
         {
           "name": "aquasecurity:trivy:SrcVersion",
           "value": "6.9.0-r0"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2023-01-27T23:04:05Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2025-12-10T06:58:51Z"
         }
       ]
     },
@@ -899,6 +1214,7 @@
       },
       "name": "iproute2-ss",
       "version": "6.9.0-r0",
+      "description": "IP Routing Utilities (socket statistics tool)",
       "hashes": [
         {
           "alg": "SHA-1",
@@ -907,12 +1223,24 @@
       ],
       "licenses": [
         {
-          "license": {
-            "id": "GPL-2.0-or-later"
-          }
+          "expression": "(GPL-2.0-or-later)"
         }
       ],
       "purl": "pkg:apk/alpine/iproute2-ss@6.9.0-r0?arch=x86_64&distro=3.20.7",
+      "externalReferences": [
+        {
+          "url": "https://wiki.linuxfoundation.org/networking/iproute2",
+          "type": "website"
+        },
+        {
+          "url": "https://pkgs.alpinelinux.org/package/edge/main/x86_64/iproute2-ss",
+          "type": "distribution"
+        },
+        {
+          "url": "https://wiki.linuxfoundation.org/networking/iproute2",
+          "type": "vcs"
+        }
+      ],
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
@@ -937,6 +1265,14 @@
         {
           "name": "aquasecurity:trivy:SrcVersion",
           "value": "6.9.0-r0"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2023-01-27T23:04:05Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2025-12-10T06:58:51Z"
         }
       ]
     },
@@ -948,6 +1284,7 @@
       },
       "name": "iproute2-tc",
       "version": "6.9.0-r0",
+      "description": "IP Routing Utilities (traffic control and XDP support)",
       "hashes": [
         {
           "alg": "SHA-1",
@@ -956,12 +1293,24 @@
       ],
       "licenses": [
         {
-          "license": {
-            "id": "GPL-2.0-or-later"
-          }
+          "expression": "(GPL-2.0-or-later)"
         }
       ],
       "purl": "pkg:apk/alpine/iproute2-tc@6.9.0-r0?arch=x86_64&distro=3.20.7",
+      "externalReferences": [
+        {
+          "url": "https://wiki.linuxfoundation.org/networking/iproute2",
+          "type": "website"
+        },
+        {
+          "url": "https://pkgs.alpinelinux.org/package/edge/main/x86_64/iproute2-tc",
+          "type": "distribution"
+        },
+        {
+          "url": "https://wiki.linuxfoundation.org/networking/iproute2",
+          "type": "vcs"
+        }
+      ],
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
@@ -986,6 +1335,14 @@
         {
           "name": "aquasecurity:trivy:SrcVersion",
           "value": "6.9.0-r0"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2023-01-27T23:04:05Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2025-12-10T06:58:51Z"
         }
       ]
     },
@@ -997,6 +1354,7 @@
       },
       "name": "iproute2",
       "version": "6.9.0-r0",
+      "description": "IP Routing Utilities",
       "hashes": [
         {
           "alg": "SHA-1",
@@ -1005,12 +1363,24 @@
       ],
       "licenses": [
         {
-          "license": {
-            "id": "GPL-2.0-or-later"
-          }
+          "expression": "(GPL-2.0-or-later)"
         }
       ],
       "purl": "pkg:apk/alpine/iproute2@6.9.0-r0?arch=x86_64&distro=3.20.7",
+      "externalReferences": [
+        {
+          "url": "https://wiki.linuxfoundation.org/networking/iproute2",
+          "type": "website"
+        },
+        {
+          "url": "https://pkgs.alpinelinux.org/package/edge/main/x86_64/iproute2",
+          "type": "distribution"
+        },
+        {
+          "url": "https://wiki.linuxfoundation.org/networking/iproute2",
+          "type": "vcs"
+        }
+      ],
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
@@ -1035,6 +1405,14 @@
         {
           "name": "aquasecurity:trivy:SrcVersion",
           "value": "6.9.0-r0"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2023-01-27T23:04:05Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2025-12-10T06:58:51Z"
         }
       ]
     },
@@ -1042,10 +1420,15 @@
       "bom-ref": "pkg:apk/alpine/json-c@0.17-r0?arch=x86_64&distro=3.20.7",
       "type": "library",
       "supplier": {
-        "name": "Natanael Copa <ncopa@alpinelinux.org>"
+        "name": "json-c",
+        "url": [
+          "https://github.com/json-c/json-c/wiki"
+        ]
       },
+      "author": "json-c",
       "name": "json-c",
       "version": "0.17-r0",
+      "description": "A JSON implementation in C",
       "hashes": [
         {
           "alg": "SHA-1",
@@ -1054,12 +1437,24 @@
       ],
       "licenses": [
         {
-          "license": {
-            "id": "MIT"
-          }
+          "expression": "(MIT)"
         }
       ],
       "purl": "pkg:apk/alpine/json-c@0.17-r0?arch=x86_64&distro=3.20.7",
+      "externalReferences": [
+        {
+          "url": "https://github.com/json-c/json-c/wiki",
+          "type": "website"
+        },
+        {
+          "url": "https://pkgs.alpinelinux.org/package/edge/main/x86_64/json-c",
+          "type": "distribution"
+        },
+        {
+          "url": "https://github.com/json-c/json-c",
+          "type": "vcs"
+        }
+      ],
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
@@ -1084,6 +1479,26 @@
         {
           "name": "aquasecurity:trivy:SrcVersion",
           "value": "0.17-r0"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2023-01-05T07:33:50Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2025-08-19T12:39:18Z"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "c"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "hacktoberfest"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "json"
         }
       ]
     },
@@ -1095,6 +1510,7 @@
       },
       "name": "libbz2",
       "version": "1.0.8-r6",
+      "description": "Shared library for bz2",
       "hashes": [
         {
           "alg": "SHA-1",
@@ -1103,12 +1519,24 @@
       ],
       "licenses": [
         {
-          "license": {
-            "name": "bzip-2-1.0.6"
-          }
+          "expression": "(bzip2-1.0.6)"
         }
       ],
       "purl": "pkg:apk/alpine/libbz2@1.0.8-r6?arch=x86_64&distro=3.20.7",
+      "externalReferences": [
+        {
+          "url": "https://sourceware.org/bzip2/",
+          "type": "website"
+        },
+        {
+          "url": "https://pkgs.alpinelinux.org/package/edge/main/x86_64/libbz2",
+          "type": "distribution"
+        },
+        {
+          "url": "https://sourceware.org/bzip2/",
+          "type": "vcs"
+        }
+      ],
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
@@ -1133,6 +1561,14 @@
         {
           "name": "aquasecurity:trivy:SrcVersion",
           "value": "1.0.8-r6"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2022-11-14T15:43:54Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2023-05-15T03:12:37Z"
         }
       ]
     },
@@ -1144,6 +1580,7 @@
       },
       "name": "libcap2",
       "version": "2.70-r0",
+      "description": "POSIX 1003.1e capabilities (libraries)",
       "hashes": [
         {
           "alg": "SHA-1",
@@ -1152,17 +1589,24 @@
       ],
       "licenses": [
         {
-          "license": {
-            "id": "BSD-3-Clause"
-          }
-        },
-        {
-          "license": {
-            "id": "GPL-2.0-only"
-          }
+          "expression": "(BSD-3-Clause OR GPL-2.0-only)"
         }
       ],
       "purl": "pkg:apk/alpine/libcap2@2.70-r0?arch=x86_64&distro=3.20.7",
+      "externalReferences": [
+        {
+          "url": "https://sites.google.com/site/fullycapable/",
+          "type": "website"
+        },
+        {
+          "url": "https://pkgs.alpinelinux.org/package/edge/main/x86_64/libcap2",
+          "type": "distribution"
+        },
+        {
+          "url": "https://sites.google.com/site/fullycapable/",
+          "type": "vcs"
+        }
+      ],
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
@@ -1187,6 +1631,14 @@
         {
           "name": "aquasecurity:trivy:SrcVersion",
           "value": "2.70-r0"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2022-09-27T01:21:09Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2025-10-26T23:38:29Z"
         }
       ]
     },
@@ -1198,6 +1650,7 @@
       },
       "name": "libcrypto3",
       "version": "3.3.4-r0",
+      "description": "Crypto library from openssl",
       "hashes": [
         {
           "alg": "SHA-1",
@@ -1212,6 +1665,20 @@
         }
       ],
       "purl": "pkg:apk/alpine/libcrypto3@3.3.4-r0?arch=x86_64&distro=3.20.7",
+      "externalReferences": [
+        {
+          "url": "https://www.openssl.org/",
+          "type": "website"
+        },
+        {
+          "url": "https://pkgs.alpinelinux.org/package/edge/main/x86_64/libcrypto3",
+          "type": "distribution"
+        },
+        {
+          "url": "https://www.openssl.org/",
+          "type": "vcs"
+        }
+      ],
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
@@ -1236,6 +1703,14 @@
         {
           "name": "aquasecurity:trivy:SrcVersion",
           "value": "3.3.4-r0"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2023-01-04T05:25:40Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2026-01-27T16:30:14Z"
         }
       ]
     },
@@ -1247,6 +1722,7 @@
       },
       "name": "libedit-dev",
       "version": "20240517.3.1-r0",
+      "description": "BSD line editing library (development files)",
       "hashes": [
         {
           "alg": "SHA-1",
@@ -1255,12 +1731,24 @@
       ],
       "licenses": [
         {
-          "license": {
-            "id": "BSD-3-Clause"
-          }
+          "expression": "(BSD-3-Clause)"
         }
       ],
       "purl": "pkg:apk/alpine/libedit-dev@20240517.3.1-r0?arch=x86_64&distro=3.20.7",
+      "externalReferences": [
+        {
+          "url": "https://www.thrysoee.dk/editline",
+          "type": "website"
+        },
+        {
+          "url": "https://pkgs.alpinelinux.org/package/edge/main/x86_64/libedit-dev",
+          "type": "distribution"
+        },
+        {
+          "url": "https://www.thrysoee.dk/editline",
+          "type": "vcs"
+        }
+      ],
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
@@ -1285,6 +1773,14 @@
         {
           "name": "aquasecurity:trivy:SrcVersion",
           "value": "20240517.3.1-r0"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2022-11-08T15:40:59Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2026-01-23T15:24:07Z"
         }
       ]
     },
@@ -1296,6 +1792,7 @@
       },
       "name": "libedit",
       "version": "20240517.3.1-r0",
+      "description": "BSD line editing library",
       "hashes": [
         {
           "alg": "SHA-1",
@@ -1304,12 +1801,24 @@
       ],
       "licenses": [
         {
-          "license": {
-            "id": "BSD-3-Clause"
-          }
+          "expression": "(BSD-3-Clause)"
         }
       ],
       "purl": "pkg:apk/alpine/libedit@20240517.3.1-r0?arch=x86_64&distro=3.20.7",
+      "externalReferences": [
+        {
+          "url": "https://www.thrysoee.dk/editline",
+          "type": "website"
+        },
+        {
+          "url": "https://pkgs.alpinelinux.org/package/edge/main/x86_64/libedit",
+          "type": "distribution"
+        },
+        {
+          "url": "https://www.thrysoee.dk/editline",
+          "type": "vcs"
+        }
+      ],
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
@@ -1334,6 +1843,14 @@
         {
           "name": "aquasecurity:trivy:SrcVersion",
           "value": "20240517.3.1-r0"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2022-11-08T15:40:59Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2026-01-23T15:24:07Z"
         }
       ]
     },
@@ -1345,6 +1862,7 @@
       },
       "name": "libelf",
       "version": "0.191-r0",
+      "description": "Library to read, modify and create ELF files",
       "hashes": [
         {
           "alg": "SHA-1",
@@ -1353,22 +1871,24 @@
       ],
       "licenses": [
         {
-          "license": {
-            "id": "GPL-3.0-or-later"
-          }
-        },
-        {
-          "license": {
-            "id": "GPL-2.0-or-later"
-          }
-        },
-        {
-          "license": {
-            "id": "LGPL-3.0-or-later"
-          }
+          "expression": "(GPL-3.0-or-later AND ( GPL-2.0-or-later OR LGPL-3.0-or-later ))"
         }
       ],
       "purl": "pkg:apk/alpine/libelf@0.191-r0?arch=x86_64&distro=3.20.7",
+      "externalReferences": [
+        {
+          "url": "https://sourceware.org/elfutils/",
+          "type": "website"
+        },
+        {
+          "url": "https://pkgs.alpinelinux.org/package/edge/main/x86_64/libelf",
+          "type": "distribution"
+        },
+        {
+          "url": "https://sourceware.org/elfutils/",
+          "type": "vcs"
+        }
+      ],
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
@@ -1393,6 +1913,14 @@
         {
           "name": "aquasecurity:trivy:SrcVersion",
           "value": "0.191-r0"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2022-11-23T14:42:42Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2025-12-06T15:38:46Z"
         }
       ]
     },
@@ -1404,6 +1932,7 @@
       },
       "name": "libexpat",
       "version": "2.7.0-r0",
+      "description": "XML Parser library written in C (libraries)",
       "hashes": [
         {
           "alg": "SHA-1",
@@ -1412,12 +1941,24 @@
       ],
       "licenses": [
         {
-          "license": {
-            "id": "MIT"
-          }
+          "expression": "(MIT)"
         }
       ],
       "purl": "pkg:apk/alpine/libexpat@2.7.0-r0?arch=x86_64&distro=3.20.7",
+      "externalReferences": [
+        {
+          "url": "https://libexpat.github.io/",
+          "type": "website"
+        },
+        {
+          "url": "https://pkgs.alpinelinux.org/package/edge/main/x86_64/libexpat",
+          "type": "distribution"
+        },
+        {
+          "url": "https://libexpat.github.io/",
+          "type": "vcs"
+        }
+      ],
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
@@ -1442,6 +1983,14 @@
         {
           "name": "aquasecurity:trivy:SrcVersion",
           "value": "2.7.0-r0"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2022-10-25T18:54:04Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2025-09-28T19:26:00Z"
         }
       ]
     },
@@ -1453,6 +2002,7 @@
       },
       "name": "libffi",
       "version": "3.4.6-r0",
+      "description": "portable, high level programming interface to various calling conventions.",
       "hashes": [
         {
           "alg": "SHA-1",
@@ -1461,12 +2011,24 @@
       ],
       "licenses": [
         {
-          "license": {
-            "id": "MIT"
-          }
+          "expression": "(MIT)"
         }
       ],
       "purl": "pkg:apk/alpine/libffi@3.4.6-r0?arch=x86_64&distro=3.20.7",
+      "externalReferences": [
+        {
+          "url": "https://sourceware.org/libffi/",
+          "type": "website"
+        },
+        {
+          "url": "https://pkgs.alpinelinux.org/package/edge/main/x86_64/libffi",
+          "type": "distribution"
+        },
+        {
+          "url": "https://sourceware.org/libffi/",
+          "type": "vcs"
+        }
+      ],
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
@@ -1491,6 +2053,14 @@
         {
           "name": "aquasecurity:trivy:SrcVersion",
           "value": "3.4.6-r0"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2022-10-27T04:06:21Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2025-08-02T18:07:44Z"
         }
       ]
     },
@@ -1502,6 +2072,7 @@
       },
       "name": "libformw",
       "version": "6.4_p20240420-r2",
+      "description": "Console display library (libformw)",
       "hashes": [
         {
           "alg": "SHA-1",
@@ -1516,6 +2087,20 @@
         }
       ],
       "purl": "pkg:apk/alpine/libformw@6.4_p20240420-r2?arch=x86_64&distro=3.20.7",
+      "externalReferences": [
+        {
+          "url": "https://invisible-island.net/ncurses/",
+          "type": "website"
+        },
+        {
+          "url": "https://pkgs.alpinelinux.org/package/edge/main/x86_64/libformw",
+          "type": "distribution"
+        },
+        {
+          "url": "https://invisible-island.net/ncurses/",
+          "type": "vcs"
+        }
+      ],
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
@@ -1540,6 +2125,14 @@
         {
           "name": "aquasecurity:trivy:SrcVersion",
           "value": "6.4_p20240420-r2"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2023-02-20T17:06:07Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2026-01-07T11:05:47Z"
         }
       ]
     },
@@ -1551,6 +2144,7 @@
       },
       "name": "libgcc",
       "version": "13.2.1_git20240309-r1",
+      "description": "GNU C compiler runtime libraries",
       "hashes": [
         {
           "alg": "SHA-1",
@@ -1570,6 +2164,20 @@
         }
       ],
       "purl": "pkg:apk/alpine/libgcc@13.2.1_git20240309-r1?arch=x86_64&distro=3.20.7",
+      "externalReferences": [
+        {
+          "url": "https://gcc.gnu.org",
+          "type": "website"
+        },
+        {
+          "url": "https://pkgs.alpinelinux.org/package/edge/main/x86_64/libgcc",
+          "type": "distribution"
+        },
+        {
+          "url": "https://gcc.gnu.org",
+          "type": "vcs"
+        }
+      ],
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
@@ -1594,6 +2202,14 @@
         {
           "name": "aquasecurity:trivy:SrcVersion",
           "value": "13.2.1_git20240309-r1"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2023-01-09T02:33:30Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2025-10-30T18:44:13Z"
         }
       ]
     },
@@ -1605,6 +2221,7 @@
       },
       "name": "libmenuw",
       "version": "6.4_p20240420-r2",
+      "description": "Console display library (libmenuw)",
       "hashes": [
         {
           "alg": "SHA-1",
@@ -1619,6 +2236,20 @@
         }
       ],
       "purl": "pkg:apk/alpine/libmenuw@6.4_p20240420-r2?arch=x86_64&distro=3.20.7",
+      "externalReferences": [
+        {
+          "url": "https://invisible-island.net/ncurses/",
+          "type": "website"
+        },
+        {
+          "url": "https://pkgs.alpinelinux.org/package/edge/main/x86_64/libmenuw",
+          "type": "distribution"
+        },
+        {
+          "url": "https://invisible-island.net/ncurses/",
+          "type": "vcs"
+        }
+      ],
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
@@ -1643,6 +2274,14 @@
         {
           "name": "aquasecurity:trivy:SrcVersion",
           "value": "6.4_p20240420-r2"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2023-02-20T17:06:07Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2026-01-07T11:05:47Z"
         }
       ]
     },
@@ -1654,6 +2293,7 @@
       },
       "name": "libmnl",
       "version": "1.0.5-r2",
+      "description": "Library for minimalistic netlink",
       "hashes": [
         {
           "alg": "SHA-1",
@@ -1662,12 +2302,24 @@
       ],
       "licenses": [
         {
-          "license": {
-            "id": "LGPL-2.1-or-later"
-          }
+          "expression": "(LGPL-2.1-or-later)"
         }
       ],
       "purl": "pkg:apk/alpine/libmnl@1.0.5-r2?arch=x86_64&distro=3.20.7",
+      "externalReferences": [
+        {
+          "url": "https://www.netfilter.org/projects/libmnl/",
+          "type": "website"
+        },
+        {
+          "url": "https://pkgs.alpinelinux.org/package/edge/main/x86_64/libmnl",
+          "type": "distribution"
+        },
+        {
+          "url": "https://www.netfilter.org/projects/libmnl/",
+          "type": "vcs"
+        }
+      ],
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
@@ -1692,6 +2344,14 @@
         {
           "name": "aquasecurity:trivy:SrcVersion",
           "value": "1.0.5-r2"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2022-04-08T07:42:41Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2023-05-15T03:12:37Z"
         }
       ]
     },
@@ -1703,6 +2363,7 @@
       },
       "name": "libncurses++",
       "version": "6.4_p20240420-r2",
+      "description": "Console display library (libncurses++)",
       "hashes": [
         {
           "alg": "SHA-1",
@@ -1717,6 +2378,20 @@
         }
       ],
       "purl": "pkg:apk/alpine/libncurses%2B%2B@6.4_p20240420-r2?arch=x86_64&distro=3.20.7",
+      "externalReferences": [
+        {
+          "url": "https://invisible-island.net/ncurses/",
+          "type": "website"
+        },
+        {
+          "url": "https://pkgs.alpinelinux.org/package/edge/main/x86_64/libncurses++",
+          "type": "distribution"
+        },
+        {
+          "url": "https://invisible-island.net/ncurses/",
+          "type": "vcs"
+        }
+      ],
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
@@ -1741,6 +2416,14 @@
         {
           "name": "aquasecurity:trivy:SrcVersion",
           "value": "6.4_p20240420-r2"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2023-04-09T14:19:31Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2026-01-07T11:05:47Z"
         }
       ]
     },
@@ -1752,6 +2435,7 @@
       },
       "name": "libncursesw",
       "version": "6.4_p20240420-r2",
+      "description": "Console display library (libncursesw)",
       "hashes": [
         {
           "alg": "SHA-1",
@@ -1766,6 +2450,20 @@
         }
       ],
       "purl": "pkg:apk/alpine/libncursesw@6.4_p20240420-r2?arch=x86_64&distro=3.20.7",
+      "externalReferences": [
+        {
+          "url": "https://invisible-island.net/ncurses/",
+          "type": "website"
+        },
+        {
+          "url": "https://pkgs.alpinelinux.org/package/edge/main/x86_64/libncursesw",
+          "type": "distribution"
+        },
+        {
+          "url": "https://invisible-island.net/ncurses/",
+          "type": "vcs"
+        }
+      ],
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
@@ -1790,6 +2488,14 @@
         {
           "name": "aquasecurity:trivy:SrcVersion",
           "value": "6.4_p20240420-r2"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2023-02-20T17:06:07Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2026-01-07T11:05:47Z"
         }
       ]
     },
@@ -1801,6 +2507,7 @@
       },
       "name": "libpanelw",
       "version": "6.4_p20240420-r2",
+      "description": "Console display library (libpanelw)",
       "hashes": [
         {
           "alg": "SHA-1",
@@ -1815,6 +2522,20 @@
         }
       ],
       "purl": "pkg:apk/alpine/libpanelw@6.4_p20240420-r2?arch=x86_64&distro=3.20.7",
+      "externalReferences": [
+        {
+          "url": "https://invisible-island.net/ncurses/",
+          "type": "website"
+        },
+        {
+          "url": "https://pkgs.alpinelinux.org/package/edge/main/x86_64/libpanelw",
+          "type": "distribution"
+        },
+        {
+          "url": "https://invisible-island.net/ncurses/",
+          "type": "vcs"
+        }
+      ],
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
@@ -1839,6 +2560,14 @@
         {
           "name": "aquasecurity:trivy:SrcVersion",
           "value": "6.4_p20240420-r2"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2023-02-20T17:06:07Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2026-01-07T11:05:47Z"
         }
       ]
     },
@@ -1850,6 +2579,7 @@
       },
       "name": "libpcre2-16",
       "version": "10.43-r0",
+      "description": "PCRE2 with 16 bit character support",
       "hashes": [
         {
           "alg": "SHA-1",
@@ -1858,12 +2588,24 @@
       ],
       "licenses": [
         {
-          "license": {
-            "id": "BSD-3-Clause"
-          }
+          "expression": "(BSD-3-Clause)"
         }
       ],
       "purl": "pkg:apk/alpine/libpcre2-16@10.43-r0?arch=x86_64&distro=3.20.7",
+      "externalReferences": [
+        {
+          "url": "https://pcre.org/",
+          "type": "website"
+        },
+        {
+          "url": "https://pkgs.alpinelinux.org/package/edge/main/x86_64/libpcre2-16",
+          "type": "distribution"
+        },
+        {
+          "url": "https://pcre.org/",
+          "type": "vcs"
+        }
+      ],
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
@@ -1888,6 +2630,14 @@
         {
           "name": "aquasecurity:trivy:SrcVersion",
           "value": "10.43-r0"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2022-12-12T18:58:08Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2025-11-09T23:26:51Z"
         }
       ]
     },
@@ -1899,6 +2649,7 @@
       },
       "name": "libpcre2-32",
       "version": "10.43-r0",
+      "description": "PCRE2 with 32 bit character support",
       "hashes": [
         {
           "alg": "SHA-1",
@@ -1907,12 +2658,24 @@
       ],
       "licenses": [
         {
-          "license": {
-            "id": "BSD-3-Clause"
-          }
+          "expression": "(BSD-3-Clause)"
         }
       ],
       "purl": "pkg:apk/alpine/libpcre2-32@10.43-r0?arch=x86_64&distro=3.20.7",
+      "externalReferences": [
+        {
+          "url": "https://pcre.org/",
+          "type": "website"
+        },
+        {
+          "url": "https://pkgs.alpinelinux.org/package/edge/main/x86_64/libpcre2-32",
+          "type": "distribution"
+        },
+        {
+          "url": "https://pcre.org/",
+          "type": "vcs"
+        }
+      ],
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
@@ -1937,6 +2700,14 @@
         {
           "name": "aquasecurity:trivy:SrcVersion",
           "value": "10.43-r0"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2022-12-12T18:58:08Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2025-11-09T23:26:51Z"
         }
       ]
     },
@@ -1948,6 +2719,7 @@
       },
       "name": "libssh",
       "version": "0.10.6-r0",
+      "description": "Library for accessing ssh client services through C libraries",
       "hashes": [
         {
           "alg": "SHA-1",
@@ -1956,17 +2728,24 @@
       ],
       "licenses": [
         {
-          "license": {
-            "id": "LGPL-2.1-or-later"
-          }
-        },
-        {
-          "license": {
-            "id": "BSD-2-Clause"
-          }
+          "expression": "(LGPL-2.1-or-later BSD-2-Clause)"
         }
       ],
       "purl": "pkg:apk/alpine/libssh@0.10.6-r0?arch=x86_64&distro=3.20.7",
+      "externalReferences": [
+        {
+          "url": "https://www.libssh.org/",
+          "type": "website"
+        },
+        {
+          "url": "https://pkgs.alpinelinux.org/package/edge/community/x86_64/libssh",
+          "type": "distribution"
+        },
+        {
+          "url": "https://www.libssh.org/",
+          "type": "vcs"
+        }
+      ],
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
@@ -1991,6 +2770,14 @@
         {
           "name": "aquasecurity:trivy:SrcVersion",
           "value": "0.10.6-r0"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2022-09-08T05:01:49Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2025-09-18T11:33:32Z"
         }
       ]
     },
@@ -2002,6 +2789,7 @@
       },
       "name": "libssl3",
       "version": "3.3.4-r0",
+      "description": "SSL shared libraries",
       "hashes": [
         {
           "alg": "SHA-1",
@@ -2016,6 +2804,20 @@
         }
       ],
       "purl": "pkg:apk/alpine/libssl3@3.3.4-r0?arch=x86_64&distro=3.20.7",
+      "externalReferences": [
+        {
+          "url": "https://www.openssl.org/",
+          "type": "website"
+        },
+        {
+          "url": "https://pkgs.alpinelinux.org/package/edge/main/x86_64/libssl3",
+          "type": "distribution"
+        },
+        {
+          "url": "https://www.openssl.org/",
+          "type": "vcs"
+        }
+      ],
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
@@ -2040,6 +2842,14 @@
         {
           "name": "aquasecurity:trivy:SrcVersion",
           "value": "3.3.4-r0"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2023-01-04T05:25:40Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2025-09-30T20:58:10Z"
         }
       ]
     },
@@ -2051,6 +2861,7 @@
       },
       "name": "libstdc++",
       "version": "13.2.1_git20240309-r1",
+      "description": "GNU C++ standard runtime library",
       "hashes": [
         {
           "alg": "SHA-1",
@@ -2070,6 +2881,20 @@
         }
       ],
       "purl": "pkg:apk/alpine/libstdc%2B%2B@13.2.1_git20240309-r1?arch=x86_64&distro=3.20.7",
+      "externalReferences": [
+        {
+          "url": "https://gcc.gnu.org",
+          "type": "website"
+        },
+        {
+          "url": "https://pkgs.alpinelinux.org/package/edge/main/x86_64/libstdc++",
+          "type": "distribution"
+        },
+        {
+          "url": "https://gcc.gnu.org",
+          "type": "vcs"
+        }
+      ],
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
@@ -2094,6 +2919,14 @@
         {
           "name": "aquasecurity:trivy:SrcVersion",
           "value": "13.2.1_git20240309-r1"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2023-01-09T02:33:30Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2025-10-30T18:44:13Z"
         }
       ]
     },
@@ -2105,6 +2938,7 @@
       },
       "name": "libxtables",
       "version": "1.8.10-r3",
+      "description": "Linux kernel firewall, NAT and packet mangling tools (xtables library)",
       "hashes": [
         {
           "alg": "SHA-1",
@@ -2113,12 +2947,24 @@
       ],
       "licenses": [
         {
-          "license": {
-            "id": "GPL-2.0-or-later"
-          }
+          "expression": "(GPL-2.0-or-later)"
         }
       ],
       "purl": "pkg:apk/alpine/libxtables@1.8.10-r3?arch=x86_64&distro=3.20.7",
+      "externalReferences": [
+        {
+          "url": "https://www.netfilter.org/projects/iptables/index.html",
+          "type": "website"
+        },
+        {
+          "url": "https://pkgs.alpinelinux.org/package/edge/main/x86_64/libxtables",
+          "type": "distribution"
+        },
+        {
+          "url": "https://www.netfilter.org/projects/iptables/index.html",
+          "type": "vcs"
+        }
+      ],
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
@@ -2143,6 +2989,14 @@
         {
           "name": "aquasecurity:trivy:SrcVersion",
           "value": "1.8.10-r3"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2023-05-12T17:39:59Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2025-02-02T16:20:13Z"
         }
       ]
     },
@@ -2150,10 +3004,15 @@
       "bom-ref": "pkg:apk/alpine/libyang-dev@2.1.128-r0?arch=x86_64&distro=3.20.7",
       "type": "library",
       "supplier": {
-        "name": "Christian Franke <nobody@nowhere.ws>"
+        "name": "CESNET",
+        "url": [
+          "http://www.cesnet.cz"
+        ]
       },
+      "author": "CESNET",
       "name": "libyang-dev",
       "version": "2.1.128-r0",
+      "description": "YANG data modelling language parser and toolkit (development files)",
       "hashes": [
         {
           "alg": "SHA-1",
@@ -2162,12 +3021,24 @@
       ],
       "licenses": [
         {
-          "license": {
-            "id": "BSD-3-Clause-Clear"
-          }
+          "expression": "(BSD-3-Clause-Clear)"
         }
       ],
       "purl": "pkg:apk/alpine/libyang-dev@2.1.128-r0?arch=x86_64&distro=3.20.7",
+      "externalReferences": [
+        {
+          "url": "https://github.com/CESNET/libyang",
+          "type": "website"
+        },
+        {
+          "url": "https://pkgs.alpinelinux.org/package/edge/community/x86_64/libyang-dev",
+          "type": "distribution"
+        },
+        {
+          "url": "https://github.com/CESNET/libyang",
+          "type": "vcs"
+        }
+      ],
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
@@ -2192,6 +3063,58 @@
         {
           "name": "aquasecurity:trivy:SrcVersion",
           "value": "2.1.128-r0"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2023-01-20T02:33:56Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2025-10-30T18:59:47Z"
+        },
+        {
+          "name": "ecosystems:owner_location",
+          "value": "Prague, Czech Republic"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "c"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "json"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "liberouter"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "modeling-language"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "modeling-tools"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "netconf"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "restconf"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "xml"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "yang"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "yin"
         }
       ]
     },
@@ -2199,10 +3122,15 @@
       "bom-ref": "pkg:apk/alpine/libyang-doc@2.1.128-r0?arch=noarch&distro=3.20.7",
       "type": "library",
       "supplier": {
-        "name": "Christian Franke <nobody@nowhere.ws>"
+        "name": "CESNET",
+        "url": [
+          "http://www.cesnet.cz"
+        ]
       },
+      "author": "CESNET",
       "name": "libyang-doc",
       "version": "2.1.128-r0",
+      "description": "YANG data modelling language parser and toolkit (documentation)",
       "hashes": [
         {
           "alg": "SHA-1",
@@ -2211,12 +3139,24 @@
       ],
       "licenses": [
         {
-          "license": {
-            "id": "BSD-3-Clause-Clear"
-          }
+          "expression": "(BSD-3-Clause-Clear)"
         }
       ],
       "purl": "pkg:apk/alpine/libyang-doc@2.1.128-r0?arch=noarch&distro=3.20.7",
+      "externalReferences": [
+        {
+          "url": "https://github.com/CESNET/libyang",
+          "type": "website"
+        },
+        {
+          "url": "https://pkgs.alpinelinux.org/package/edge/community/x86_64/libyang-doc",
+          "type": "distribution"
+        },
+        {
+          "url": "https://github.com/CESNET/libyang",
+          "type": "vcs"
+        }
+      ],
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
@@ -2241,6 +3181,58 @@
         {
           "name": "aquasecurity:trivy:SrcVersion",
           "value": "2.1.128-r0"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2023-01-20T02:33:56Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2025-10-30T18:59:47Z"
+        },
+        {
+          "name": "ecosystems:owner_location",
+          "value": "Prague, Czech Republic"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "c"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "json"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "liberouter"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "modeling-language"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "modeling-tools"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "netconf"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "restconf"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "xml"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "yang"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "yin"
         }
       ]
     },
@@ -2248,10 +3240,15 @@
       "bom-ref": "pkg:apk/alpine/libyang@2.1.128-r0?arch=x86_64&distro=3.20.7",
       "type": "library",
       "supplier": {
-        "name": "Christian Franke <nobody@nowhere.ws>"
+        "name": "CESNET",
+        "url": [
+          "http://www.cesnet.cz"
+        ]
       },
+      "author": "CESNET",
       "name": "libyang",
       "version": "2.1.128-r0",
+      "description": "YANG data modelling language parser and toolkit",
       "hashes": [
         {
           "alg": "SHA-1",
@@ -2260,12 +3257,24 @@
       ],
       "licenses": [
         {
-          "license": {
-            "id": "BSD-3-Clause-Clear"
-          }
+          "expression": "(BSD-3-Clause-Clear)"
         }
       ],
       "purl": "pkg:apk/alpine/libyang@2.1.128-r0?arch=x86_64&distro=3.20.7",
+      "externalReferences": [
+        {
+          "url": "https://github.com/CESNET/libyang",
+          "type": "website"
+        },
+        {
+          "url": "https://pkgs.alpinelinux.org/package/edge/community/x86_64/libyang",
+          "type": "distribution"
+        },
+        {
+          "url": "https://github.com/CESNET/libyang",
+          "type": "vcs"
+        }
+      ],
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
@@ -2290,6 +3299,58 @@
         {
           "name": "aquasecurity:trivy:SrcVersion",
           "value": "2.1.128-r0"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2023-01-20T02:33:56Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2025-10-30T18:59:47Z"
+        },
+        {
+          "name": "ecosystems:owner_location",
+          "value": "Prague, Czech Republic"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "c"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "json"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "liberouter"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "modeling-language"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "modeling-tools"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "netconf"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "restconf"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "xml"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "yang"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "yin"
         }
       ]
     },
@@ -2301,6 +3362,7 @@
       },
       "name": "lua5.3-libs",
       "version": "5.3.6-r6",
+      "description": "Lua dynamic library runtime",
       "hashes": [
         {
           "alg": "SHA-1",
@@ -2309,12 +3371,24 @@
       ],
       "licenses": [
         {
-          "license": {
-            "id": "MIT"
-          }
+          "expression": "(MIT)"
         }
       ],
       "purl": "pkg:apk/alpine/lua5.3-libs@5.3.6-r6?arch=x86_64&distro=3.20.7",
+      "externalReferences": [
+        {
+          "url": "https://www.lua.org/",
+          "type": "website"
+        },
+        {
+          "url": "https://pkgs.alpinelinux.org/package/edge/main/x86_64/lua5.3-libs",
+          "type": "distribution"
+        },
+        {
+          "url": "https://www.lua.org/",
+          "type": "vcs"
+        }
+      ],
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
@@ -2339,6 +3413,14 @@
         {
           "name": "aquasecurity:trivy:SrcVersion",
           "value": "5.3.6-r6"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2022-08-06T11:47:58Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2023-07-23T22:55:22Z"
         }
       ]
     },
@@ -2350,6 +3432,7 @@
       },
       "name": "mpdecimal",
       "version": "4.0.0-r0",
+      "description": "complete implementation of the General Decimal Arithmetic Specification",
       "hashes": [
         {
           "alg": "SHA-1",
@@ -2358,12 +3441,24 @@
       ],
       "licenses": [
         {
-          "license": {
-            "id": "BSD-2-Clause"
-          }
+          "expression": "(BSD-2-Clause)"
         }
       ],
       "purl": "pkg:apk/alpine/mpdecimal@4.0.0-r0?arch=x86_64&distro=3.20.7",
+      "externalReferences": [
+        {
+          "url": "https://www.bytereef.org/mpdecimal/index.html",
+          "type": "website"
+        },
+        {
+          "url": "https://pkgs.alpinelinux.org/package/edge/main/x86_64/mpdecimal",
+          "type": "distribution"
+        },
+        {
+          "url": "https://www.bytereef.org/mpdecimal/index.html",
+          "type": "vcs"
+        }
+      ],
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
@@ -2388,6 +3483,14 @@
         {
           "name": "aquasecurity:trivy:SrcVersion",
           "value": "4.0.0-r0"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2021-02-10T23:09:07Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2025-05-16T14:49:45Z"
         }
       ]
     },
@@ -2399,6 +3502,7 @@
       },
       "name": "musl-utils",
       "version": "1.2.5-r1",
+      "description": "the musl c library (libc) implementation",
       "hashes": [
         {
           "alg": "SHA-1",
@@ -2407,22 +3511,24 @@
       ],
       "licenses": [
         {
-          "license": {
-            "id": "MIT"
-          }
-        },
-        {
-          "license": {
-            "id": "BSD-2-Clause"
-          }
-        },
-        {
-          "license": {
-            "id": "GPL-2.0-or-later"
-          }
+          "expression": "(MIT AND BSD-2-Clause AND GPL-2.0-or-later)"
         }
       ],
       "purl": "pkg:apk/alpine/musl-utils@1.2.5-r1?arch=x86_64&distro=3.20.7",
+      "externalReferences": [
+        {
+          "url": "https://musl.libc.org/",
+          "type": "website"
+        },
+        {
+          "url": "https://pkgs.alpinelinux.org/package/edge/main/x86_64/musl-utils",
+          "type": "distribution"
+        },
+        {
+          "url": "https://musl.libc.org/",
+          "type": "vcs"
+        }
+      ],
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
@@ -2447,6 +3553,14 @@
         {
           "name": "aquasecurity:trivy:SrcVersion",
           "value": "1.2.5-r1"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2022-11-10T18:24:00Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2025-10-13T04:04:29Z"
         }
       ]
     },
@@ -2458,6 +3572,7 @@
       },
       "name": "musl",
       "version": "1.2.5-r1",
+      "description": "the musl c library (libc) implementation",
       "hashes": [
         {
           "alg": "SHA-1",
@@ -2466,12 +3581,24 @@
       ],
       "licenses": [
         {
-          "license": {
-            "id": "MIT"
-          }
+          "expression": "(MIT)"
         }
       ],
       "purl": "pkg:apk/alpine/musl@1.2.5-r1?arch=x86_64&distro=3.20.7",
+      "externalReferences": [
+        {
+          "url": "https://musl.libc.org/",
+          "type": "website"
+        },
+        {
+          "url": "https://pkgs.alpinelinux.org/package/edge/main/x86_64/musl",
+          "type": "distribution"
+        },
+        {
+          "url": "https://musl.libc.org/",
+          "type": "vcs"
+        }
+      ],
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
@@ -2496,6 +3623,14 @@
         {
           "name": "aquasecurity:trivy:SrcVersion",
           "value": "1.2.5-r1"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2022-11-10T18:24:00Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2025-01-05T00:53:44Z"
         }
       ]
     },
@@ -2507,6 +3642,7 @@
       },
       "name": "ncurses-dev",
       "version": "6.4_p20240420-r2",
+      "description": "Console display library (development files)",
       "hashes": [
         {
           "alg": "SHA-1",
@@ -2521,6 +3657,20 @@
         }
       ],
       "purl": "pkg:apk/alpine/ncurses-dev@6.4_p20240420-r2?arch=x86_64&distro=3.20.7",
+      "externalReferences": [
+        {
+          "url": "https://invisible-island.net/ncurses/",
+          "type": "website"
+        },
+        {
+          "url": "https://pkgs.alpinelinux.org/package/edge/main/x86_64/ncurses-dev",
+          "type": "distribution"
+        },
+        {
+          "url": "https://invisible-island.net/ncurses/",
+          "type": "vcs"
+        }
+      ],
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
@@ -2545,6 +3695,14 @@
         {
           "name": "aquasecurity:trivy:SrcVersion",
           "value": "6.4_p20240420-r2"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2023-01-29T23:25:45Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2026-01-07T11:05:47Z"
         }
       ]
     },
@@ -2556,6 +3714,7 @@
       },
       "name": "ncurses-terminfo-base",
       "version": "6.4_p20240420-r2",
+      "description": "Descriptions of common terminals",
       "hashes": [
         {
           "alg": "SHA-1",
@@ -2570,6 +3729,20 @@
         }
       ],
       "purl": "pkg:apk/alpine/ncurses-terminfo-base@6.4_p20240420-r2?arch=x86_64&distro=3.20.7",
+      "externalReferences": [
+        {
+          "url": "https://invisible-island.net/ncurses/",
+          "type": "website"
+        },
+        {
+          "url": "https://pkgs.alpinelinux.org/package/edge/main/x86_64/ncurses-terminfo-base",
+          "type": "distribution"
+        },
+        {
+          "url": "https://invisible-island.net/ncurses/",
+          "type": "vcs"
+        }
+      ],
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
@@ -2594,6 +3767,14 @@
         {
           "name": "aquasecurity:trivy:SrcVersion",
           "value": "6.4_p20240420-r2"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2023-01-29T23:25:45Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2026-01-07T11:05:47Z"
         }
       ]
     },
@@ -2605,6 +3786,7 @@
       },
       "name": "pcre2-dev",
       "version": "10.43-r0",
+      "description": "Perl-compatible regular expression library (development files)",
       "hashes": [
         {
           "alg": "SHA-1",
@@ -2613,12 +3795,24 @@
       ],
       "licenses": [
         {
-          "license": {
-            "id": "BSD-3-Clause"
-          }
+          "expression": "(BSD-3-Clause)"
         }
       ],
       "purl": "pkg:apk/alpine/pcre2-dev@10.43-r0?arch=x86_64&distro=3.20.7",
+      "externalReferences": [
+        {
+          "url": "https://pcre.org/",
+          "type": "website"
+        },
+        {
+          "url": "https://pkgs.alpinelinux.org/package/edge/main/x86_64/pcre2-dev",
+          "type": "distribution"
+        },
+        {
+          "url": "https://pcre.org/",
+          "type": "vcs"
+        }
+      ],
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
@@ -2643,6 +3837,14 @@
         {
           "name": "aquasecurity:trivy:SrcVersion",
           "value": "10.43-r0"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2022-12-12T18:58:08Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2025-11-09T23:26:51Z"
         }
       ]
     },
@@ -2654,6 +3856,7 @@
       },
       "name": "pcre2",
       "version": "10.43-r0",
+      "description": "Perl-compatible regular expression library",
       "hashes": [
         {
           "alg": "SHA-1",
@@ -2662,12 +3865,24 @@
       ],
       "licenses": [
         {
-          "license": {
-            "id": "BSD-3-Clause"
-          }
+          "expression": "(BSD-3-Clause)"
         }
       ],
       "purl": "pkg:apk/alpine/pcre2@10.43-r0?arch=x86_64&distro=3.20.7",
+      "externalReferences": [
+        {
+          "url": "https://pcre.org/",
+          "type": "website"
+        },
+        {
+          "url": "https://pkgs.alpinelinux.org/package/edge/main/x86_64/pcre2",
+          "type": "distribution"
+        },
+        {
+          "url": "https://pcre.org/",
+          "type": "vcs"
+        }
+      ],
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
@@ -2692,6 +3907,14 @@
         {
           "name": "aquasecurity:trivy:SrcVersion",
           "value": "10.43-r0"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2022-12-12T18:58:08Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2025-11-09T23:26:51Z"
         }
       ]
     },
@@ -2703,6 +3926,7 @@
       },
       "name": "pkgconf",
       "version": "2.2.0-r0",
+      "description": "development framework configuration tools",
       "hashes": [
         {
           "alg": "SHA-1",
@@ -2711,12 +3935,24 @@
       ],
       "licenses": [
         {
-          "license": {
-            "id": "ISC"
-          }
+          "expression": "(ISC)"
         }
       ],
       "purl": "pkg:apk/alpine/pkgconf@2.2.0-r0?arch=x86_64&distro=3.20.7",
+      "externalReferences": [
+        {
+          "url": "https://gitea.treehouse.systems/ariadne/pkgconf",
+          "type": "website"
+        },
+        {
+          "url": "https://pkgs.alpinelinux.org/package/edge/main/x86_64/pkgconf",
+          "type": "distribution"
+        },
+        {
+          "url": "https://gitea.treehouse.systems/ariadne/pkgconf",
+          "type": "vcs"
+        }
+      ],
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
@@ -2741,6 +3977,14 @@
         {
           "name": "aquasecurity:trivy:SrcVersion",
           "value": "2.2.0-r0"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2023-01-22T05:13:30Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2025-06-24T22:58:51Z"
         }
       ]
     },
@@ -2752,6 +3996,7 @@
       },
       "name": "protobuf-c",
       "version": "1.5.0-r0",
+      "description": "Protocol Buffers implementation in C",
       "hashes": [
         {
           "alg": "SHA-1",
@@ -2760,12 +4005,24 @@
       ],
       "licenses": [
         {
-          "license": {
-            "id": "BSD-2-Clause"
-          }
+          "expression": "(BSD-2-Clause)"
         }
       ],
       "purl": "pkg:apk/alpine/protobuf-c@1.5.0-r0?arch=x86_64&distro=3.20.7",
+      "externalReferences": [
+        {
+          "url": "https://github.com/protobuf-c/protobuf-c",
+          "type": "website"
+        },
+        {
+          "url": "https://pkgs.alpinelinux.org/package/edge/main/x86_64/protobuf-c",
+          "type": "distribution"
+        },
+        {
+          "url": "https://github.com/protobuf-c/protobuf-c",
+          "type": "vcs"
+        }
+      ],
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
@@ -2790,6 +4047,14 @@
         {
           "name": "aquasecurity:trivy:SrcVersion",
           "value": "1.5.0-r0"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2022-07-23T04:41:49Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2025-10-02T10:59:03Z"
         }
       ]
     },
@@ -2801,6 +4066,7 @@
       },
       "name": "pyc",
       "version": "3.12.11-r0",
+      "description": "Meta package for pulling in all -pyc packages",
       "hashes": [
         {
           "alg": "SHA-1",
@@ -2809,12 +4075,24 @@
       ],
       "licenses": [
         {
-          "license": {
-            "id": "PSF-2.0"
-          }
+          "expression": "(PSF-2.0)"
         }
       ],
       "purl": "pkg:apk/alpine/pyc@3.12.11-r0?arch=x86_64&distro=3.20.7",
+      "externalReferences": [
+        {
+          "url": "https://www.python.org/",
+          "type": "website"
+        },
+        {
+          "url": "https://pkgs.alpinelinux.org/package/edge/main/x86_64/pyc",
+          "type": "distribution"
+        },
+        {
+          "url": "https://www.python.org/",
+          "type": "vcs"
+        }
+      ],
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
@@ -2839,6 +4117,14 @@
         {
           "name": "aquasecurity:trivy:SrcVersion",
           "value": "3.12.11-r0"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2023-04-18T15:24:10Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2025-10-11T01:16:26Z"
         }
       ]
     },
@@ -2850,6 +4136,7 @@
       },
       "name": "python3-pyc",
       "version": "3.12.11-r0",
+      "description": "High-level scripting language (install .pyc cache files)",
       "hashes": [
         {
           "alg": "SHA-1",
@@ -2858,12 +4145,24 @@
       ],
       "licenses": [
         {
-          "license": {
-            "id": "PSF-2.0"
-          }
+          "expression": "(PSF-2.0)"
         }
       ],
       "purl": "pkg:apk/alpine/python3-pyc@3.12.11-r0?arch=x86_64&distro=3.20.7",
+      "externalReferences": [
+        {
+          "url": "https://www.python.org/",
+          "type": "website"
+        },
+        {
+          "url": "https://pkgs.alpinelinux.org/package/edge/main/x86_64/python3-pyc",
+          "type": "distribution"
+        },
+        {
+          "url": "https://www.python.org/",
+          "type": "vcs"
+        }
+      ],
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
@@ -2888,6 +4187,14 @@
         {
           "name": "aquasecurity:trivy:SrcVersion",
           "value": "3.12.11-r0"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2023-04-18T19:33:01Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2025-10-11T01:16:26Z"
         }
       ]
     },
@@ -2899,6 +4206,7 @@
       },
       "name": "python3-pycache-pyc0",
       "version": "3.12.11-r0",
+      "description": "High-level scripting language (.pyc pycache files)",
       "hashes": [
         {
           "alg": "SHA-1",
@@ -2907,12 +4215,24 @@
       ],
       "licenses": [
         {
-          "license": {
-            "id": "PSF-2.0"
-          }
+          "expression": "(PSF-2.0)"
         }
       ],
       "purl": "pkg:apk/alpine/python3-pycache-pyc0@3.12.11-r0?arch=x86_64&distro=3.20.7",
+      "externalReferences": [
+        {
+          "url": "https://www.python.org/",
+          "type": "website"
+        },
+        {
+          "url": "https://pkgs.alpinelinux.org/package/edge/main/x86_64/python3-pycache-pyc0",
+          "type": "distribution"
+        },
+        {
+          "url": "https://www.python.org/",
+          "type": "vcs"
+        }
+      ],
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
@@ -2937,6 +4257,14 @@
         {
           "name": "aquasecurity:trivy:SrcVersion",
           "value": "3.12.11-r0"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2023-04-18T19:33:01Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2025-10-11T01:16:26Z"
         }
       ]
     },
@@ -2948,6 +4276,7 @@
       },
       "name": "python3",
       "version": "3.12.11-r0",
+      "description": "High-level scripting language",
       "hashes": [
         {
           "alg": "SHA-1",
@@ -2956,12 +4285,24 @@
       ],
       "licenses": [
         {
-          "license": {
-            "id": "PSF-2.0"
-          }
+          "expression": "(PSF-2.0)"
         }
       ],
       "purl": "pkg:apk/alpine/python3@3.12.11-r0?arch=x86_64&distro=3.20.7",
+      "externalReferences": [
+        {
+          "url": "https://www.python.org/",
+          "type": "website"
+        },
+        {
+          "url": "https://pkgs.alpinelinux.org/package/edge/main/x86_64/python3",
+          "type": "distribution"
+        },
+        {
+          "url": "https://www.python.org/",
+          "type": "vcs"
+        }
+      ],
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
@@ -2986,6 +4327,14 @@
         {
           "name": "aquasecurity:trivy:SrcVersion",
           "value": "3.12.11-r0"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2022-12-26T17:44:03Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2025-10-11T01:16:26Z"
         }
       ]
     },
@@ -2997,6 +4346,7 @@
       },
       "name": "readline",
       "version": "8.2.10-r0",
+      "description": "GNU readline library",
       "hashes": [
         {
           "alg": "SHA-1",
@@ -3005,12 +4355,24 @@
       ],
       "licenses": [
         {
-          "license": {
-            "id": "GPL-3.0-or-later"
-          }
+          "expression": "(GPL-3.0-or-later)"
         }
       ],
       "purl": "pkg:apk/alpine/readline@8.2.10-r0?arch=x86_64&distro=3.20.7",
+      "externalReferences": [
+        {
+          "url": "https://tiswww.cwru.edu/php/chet/readline/rltop.html",
+          "type": "website"
+        },
+        {
+          "url": "https://pkgs.alpinelinux.org/package/edge/main/x86_64/readline",
+          "type": "distribution"
+        },
+        {
+          "url": "https://tiswww.cwru.edu/php/chet/readline/rltop.html",
+          "type": "vcs"
+        }
+      ],
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
@@ -3035,14 +4397,30 @@
         {
           "name": "aquasecurity:trivy:SrcVersion",
           "value": "8.2.10-r0"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2022-09-27T10:05:27Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2026-01-23T05:06:31Z"
         }
       ]
     },
     {
       "bom-ref": "pkg:apk/alpine/rtrlib@0.8.0-r4?arch=x86_64&distro=3.20.7",
       "type": "library",
+      "supplier": {
+        "name": "RTRlib",
+        "url": [
+          "https://rtrlib.rpki.net"
+        ]
+      },
+      "author": "RTRlib",
       "name": "rtrlib",
       "version": "0.8.0-r4",
+      "description": "Open-source C implementation of the RPKI/Router Protocol client",
       "hashes": [
         {
           "alg": "SHA-1",
@@ -3051,12 +4429,24 @@
       ],
       "licenses": [
         {
-          "license": {
-            "id": "MIT"
-          }
+          "expression": "(MIT)"
         }
       ],
       "purl": "pkg:apk/alpine/rtrlib@0.8.0-r4?arch=x86_64&distro=3.20.7",
+      "externalReferences": [
+        {
+          "url": "https://github.com/rtrlib/rtrlib",
+          "type": "website"
+        },
+        {
+          "url": "https://pkgs.alpinelinux.org/package/edge/community/x86_64/rtrlib",
+          "type": "distribution"
+        },
+        {
+          "url": "https://github.com/rtrlib/rtrlib",
+          "type": "vcs"
+        }
+      ],
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
@@ -3081,6 +4471,54 @@
         {
           "name": "aquasecurity:trivy:SrcVersion",
           "value": "0.8.0-r4"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2022-10-14T15:22:09Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2024-10-04T15:53:56Z"
+        },
+        {
+          "name": "ecosystems:owner_location",
+          "value": "The Internet"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "bgp"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "c"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "routing"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "rpki"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "rtr"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "rtr-client"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "rtr-server"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "rtrlib"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "security"
         }
       ]
     },
@@ -3092,6 +4530,7 @@
       },
       "name": "scanelf",
       "version": "1.3.7-r2",
+      "description": "Scan ELF binaries for stuff",
       "hashes": [
         {
           "alg": "SHA-1",
@@ -3100,12 +4539,24 @@
       ],
       "licenses": [
         {
-          "license": {
-            "id": "GPL-2.0-only"
-          }
+          "expression": "(GPL-2.0-only)"
         }
       ],
       "purl": "pkg:apk/alpine/scanelf@1.3.7-r2?arch=x86_64&distro=3.20.7",
+      "externalReferences": [
+        {
+          "url": "https://wiki.gentoo.org/wiki/Hardened/PaX_Utilities",
+          "type": "website"
+        },
+        {
+          "url": "https://pkgs.alpinelinux.org/package/edge/main/x86_64/scanelf",
+          "type": "distribution"
+        },
+        {
+          "url": "https://wiki.gentoo.org/wiki/Hardened/PaX_Utilities",
+          "type": "vcs"
+        }
+      ],
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
@@ -3130,6 +4581,14 @@
         {
           "name": "aquasecurity:trivy:SrcVersion",
           "value": "1.3.7-r2"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2023-01-27T02:43:50Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2026-01-05T09:13:38Z"
         }
       ]
     },
@@ -3141,6 +4600,7 @@
       },
       "name": "sqlite-libs",
       "version": "3.45.3-r2",
+      "description": "C library that implements an SQL database engine (libraries)",
       "hashes": [
         {
           "alg": "SHA-1",
@@ -3155,6 +4615,20 @@
         }
       ],
       "purl": "pkg:apk/alpine/sqlite-libs@3.45.3-r2?arch=x86_64&distro=3.20.7",
+      "externalReferences": [
+        {
+          "url": "https://www.sqlite.org/",
+          "type": "website"
+        },
+        {
+          "url": "https://pkgs.alpinelinux.org/package/edge/main/x86_64/sqlite-libs",
+          "type": "distribution"
+        },
+        {
+          "url": "https://www.sqlite.org/",
+          "type": "vcs"
+        }
+      ],
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
@@ -3179,6 +4653,14 @@
         {
           "name": "aquasecurity:trivy:SrcVersion",
           "value": "3.45.3-r2"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2022-12-28T22:38:41Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2026-01-23T04:20:47Z"
         }
       ]
     },
@@ -3190,6 +4672,7 @@
       },
       "name": "ssl_client",
       "version": "1.36.1-r29",
+      "description": "External ssl_client for busybox wget",
       "hashes": [
         {
           "alg": "SHA-1",
@@ -3204,6 +4687,20 @@
         }
       ],
       "purl": "pkg:apk/alpine/ssl_client@1.36.1-r29?arch=x86_64&distro=3.20.7",
+      "externalReferences": [
+        {
+          "url": "https://busybox.net/",
+          "type": "website"
+        },
+        {
+          "url": "https://pkgs.alpinelinux.org/package/edge/main/x86_64/ssl_client",
+          "type": "distribution"
+        },
+        {
+          "url": "https://busybox.net/",
+          "type": "vcs"
+        }
+      ],
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
@@ -3228,6 +4725,14 @@
         {
           "name": "aquasecurity:trivy:SrcVersion",
           "value": "1.36.1-r29"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2023-05-13T18:53:46Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2024-11-19T21:09:16Z"
         }
       ]
     },
@@ -3235,10 +4740,15 @@
       "bom-ref": "pkg:apk/alpine/tini@0.19.0-r3?arch=x86_64&distro=3.20.7",
       "type": "library",
       "supplier": {
-        "name": "Danilo Bürger <danilo@feastr.de>"
+        "name": "Thomas Orozco",
+        "url": [
+          "http://curiousthing.org/"
+        ]
       },
+      "author": "Thomas Orozco",
       "name": "tini",
       "version": "0.19.0-r3",
+      "description": "A tiny but valid init for containers",
       "hashes": [
         {
           "alg": "SHA-1",
@@ -3247,12 +4757,24 @@
       ],
       "licenses": [
         {
-          "license": {
-            "id": "MIT"
-          }
+          "expression": "(MIT)"
         }
       ],
       "purl": "pkg:apk/alpine/tini@0.19.0-r3?arch=x86_64&distro=3.20.7",
+      "externalReferences": [
+        {
+          "url": "https://github.com/krallin/tini",
+          "type": "website"
+        },
+        {
+          "url": "https://pkgs.alpinelinux.org/package/edge/community/x86_64/tini",
+          "type": "distribution"
+        },
+        {
+          "url": "https://github.com/krallin/tini",
+          "type": "vcs"
+        }
+      ],
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
@@ -3277,6 +4799,38 @@
         {
           "name": "aquasecurity:trivy:SrcVersion",
           "value": "0.19.0-r3"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2022-10-14T15:22:08Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2024-03-26T08:35:12Z"
+        },
+        {
+          "name": "ecosystems:owner_location",
+          "value": "London, UK"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "c"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "docker"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "init"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "init-system"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "linux"
         }
       ]
     },
@@ -3288,6 +4842,7 @@
       },
       "name": "xz-libs",
       "version": "5.6.2-r1",
+      "description": "Library and CLI tools for XZ and LZMA compressed files (libraries)",
       "hashes": [
         {
           "alg": "SHA-1",
@@ -3317,6 +4872,20 @@
         }
       ],
       "purl": "pkg:apk/alpine/xz-libs@5.6.2-r1?arch=x86_64&distro=3.20.7",
+      "externalReferences": [
+        {
+          "url": "https://tukaani.org/xz/",
+          "type": "website"
+        },
+        {
+          "url": "https://pkgs.alpinelinux.org/package/edge/main/x86_64/xz-libs",
+          "type": "distribution"
+        },
+        {
+          "url": "https://tukaani.org/xz/",
+          "type": "vcs"
+        }
+      ],
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
@@ -3341,6 +4910,14 @@
         {
           "name": "aquasecurity:trivy:SrcVersion",
           "value": "5.6.2-r1"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2023-01-12T03:31:24Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2026-01-14T19:03:42Z"
         }
       ]
     },
@@ -3352,6 +4929,7 @@
       },
       "name": "zlib-dev",
       "version": "1.3.1-r1",
+      "description": "A compression/decompression Library (development files)",
       "hashes": [
         {
           "alg": "SHA-1",
@@ -3360,12 +4938,24 @@
       ],
       "licenses": [
         {
-          "license": {
-            "id": "Zlib"
-          }
+          "expression": "(Zlib)"
         }
       ],
       "purl": "pkg:apk/alpine/zlib-dev@1.3.1-r1?arch=x86_64&distro=3.20.7",
+      "externalReferences": [
+        {
+          "url": "https://zlib.net/",
+          "type": "website"
+        },
+        {
+          "url": "https://pkgs.alpinelinux.org/package/edge/main/x86_64/zlib-dev",
+          "type": "distribution"
+        },
+        {
+          "url": "https://zlib.net/",
+          "type": "vcs"
+        }
+      ],
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
@@ -3390,6 +4980,14 @@
         {
           "name": "aquasecurity:trivy:SrcVersion",
           "value": "1.3.1-r1"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2022-10-13T21:54:03Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2024-09-18T11:26:19Z"
         }
       ]
     },
@@ -3401,6 +4999,7 @@
       },
       "name": "zlib",
       "version": "1.3.1-r1",
+      "description": "A compression/decompression Library",
       "hashes": [
         {
           "alg": "SHA-1",
@@ -3409,12 +5008,24 @@
       ],
       "licenses": [
         {
-          "license": {
-            "id": "Zlib"
-          }
+          "expression": "(Zlib)"
         }
       ],
       "purl": "pkg:apk/alpine/zlib@1.3.1-r1?arch=x86_64&distro=3.20.7",
+      "externalReferences": [
+        {
+          "url": "https://zlib.net/",
+          "type": "website"
+        },
+        {
+          "url": "https://pkgs.alpinelinux.org/package/edge/main/x86_64/zlib",
+          "type": "distribution"
+        },
+        {
+          "url": "https://zlib.net/",
+          "type": "vcs"
+        }
+      ],
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
@@ -3439,6 +5050,14 @@
         {
           "name": "aquasecurity:trivy:SrcVersion",
           "value": "1.3.1-r1"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2022-10-13T21:54:03Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2024-09-18T11:26:19Z"
         }
       ]
     },
@@ -3446,10 +5065,15 @@
       "bom-ref": "pkg:apk/alpine/zstd-libs@1.5.6-r0?arch=x86_64&distro=3.20.7",
       "type": "library",
       "supplier": {
-        "name": "Natanael Copa <ncopa@alpinelinux.org>"
+        "name": "Meta",
+        "url": [
+          "https://opensource.fb.com"
+        ]
       },
+      "author": "Meta",
       "name": "zstd-libs",
       "version": "1.5.6-r0",
+      "description": "Zstandard - Fast real-time compression algorithm (libraries)",
       "hashes": [
         {
           "alg": "SHA-1",
@@ -3458,17 +5082,24 @@
       ],
       "licenses": [
         {
-          "license": {
-            "id": "BSD-3-Clause"
-          }
-        },
-        {
-          "license": {
-            "id": "GPL-2.0-or-later"
-          }
+          "expression": "(BSD-3-Clause OR GPL-2.0-or-later)"
         }
       ],
       "purl": "pkg:apk/alpine/zstd-libs@1.5.6-r0?arch=x86_64&distro=3.20.7",
+      "externalReferences": [
+        {
+          "url": "https://facebook.github.io/zstd/",
+          "type": "website"
+        },
+        {
+          "url": "https://pkgs.alpinelinux.org/package/edge/main/x86_64/zstd-libs",
+          "type": "distribution"
+        },
+        {
+          "url": "https://github.com/facebook/zstd",
+          "type": "vcs"
+        }
+      ],
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
@@ -3493,13 +5124,25 @@
         {
           "name": "aquasecurity:trivy:SrcVersion",
           "value": "1.5.6-r0"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2023-01-12T07:56:50Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2025-07-28T12:06:44Z"
+        },
+        {
+          "name": "ecosystems:owner_location",
+          "value": "Menlo Park, California"
         }
       ]
     }
   ],
   "dependencies": [
     {
-      "ref": "48cff80a-47e7-4f69-872e-8dfee610b95f",
+      "ref": "689bb25c-ce91-4c72-bb8d-9e919b0ed425",
       "dependsOn": [
         "pkg:apk/alpine/alpine-baselayout@3.6.5-r0?arch=x86_64&distro=3.20.7",
         "pkg:apk/alpine/alpine-keys@2.4-r1?arch=x86_64&distro=3.20.7",
@@ -4006,7 +5649,7 @@
     {
       "ref": "pkg:oci/frr@sha256%3A97a281a1473cae1f762ceab87cbcc53a2e102053877421e8b4606422aae45442?arch=amd64&repository_url=quay.io%2Ffrrouting%2Ffrr",
       "dependsOn": [
-        "48cff80a-47e7-4f69-872e-8dfee610b95f"
+        "689bb25c-ce91-4c72-bb8d-9e919b0ed425"
       ]
     }
   ],

@@ -2,10 +2,10 @@
   "$schema": "http://cyclonedx.org/schema/bom-1.6.schema.json",
   "bomFormat": "CycloneDX",
   "specVersion": "1.6",
-  "serialNumber": "urn:uuid:0e29b134-ec0a-46e9-ba60-949c3c06d7b6",
+  "serialNumber": "urn:uuid:0133e5dd-2dd1-40ab-9e85-6dbd0b3a8b51",
   "version": 1,
   "metadata": {
-    "timestamp": "2026-02-04T23:56:04+00:00",
+    "timestamp": "2026-02-13T09:03:50+00:00",
     "tools": {
       "components": [
         {
@@ -162,26 +162,15 @@
   },
   "components": [
     {
-      "bom-ref": "0cf3785a-5a17-4c28-b7ae-45533b5b1f8d",
-      "type": "operating-system",
-      "name": "redhat",
-      "version": "9.7",
-      "properties": [
-        {
-          "name": "aquasecurity:trivy:Class",
-          "value": "os-pkgs"
-        },
-        {
-          "name": "aquasecurity:trivy:Type",
-          "value": "redhat"
-        }
-      ]
-    },
-    {
-      "bom-ref": "47efaeae-9350-43da-8e45-6b7fe0743c46",
+      "bom-ref": "17435f44-6274-424c-b13e-ae2940ee2b6a",
       "type": "library",
+      "supplier": {
+        "name": "Jaye Heffernan"
+      },
+      "author": "Jaye Heffernan",
       "name": "my-test-package",
       "version": "1.0",
+      "description": "A simple test program to investigate packaging and PyPI",
       "hashes": [
         {
           "alg": "SHA-1",
@@ -196,44 +185,24 @@
         }
       ],
       "purl": "pkg:pypi/my-test-package@1.0",
-      "properties": [
+      "externalReferences": [
         {
-          "name": "aquasecurity:trivy:FilePath",
-          "value": "app/.venv/lib/python3.12/site-packages/pkg_resources/tests/data/my-test-package_zipped-egg/my_test_package-1.0-py3.7.egg"
+          "url": "https://github.com/aeraquoo/my_test_package",
+          "type": "website"
         },
         {
-          "name": "aquasecurity:trivy:LayerDiffID",
-          "value": "sha256:f813ed6205e906cdf88f59cdef642c2fcac1c1b8fae7a51218649b9744a1b169"
+          "url": "https://pypi.org/project/my-test-package/",
+          "type": "distribution"
         },
         {
-          "name": "aquasecurity:trivy:LayerDigest",
-          "value": "sha256:427a5af0b25ed050ef5fcb52b83ec02438fff3f7f16437f85f44305f61d9903d"
+          "url": "https://github.com/aeraquoo/my_test_package",
+          "type": "vcs"
         },
         {
-          "name": "aquasecurity:trivy:PkgType",
-          "value": "python-pkg"
-        }
-      ]
-    },
-    {
-      "bom-ref": "8076a8bf-822c-450f-bac9-d50824498cc4",
-      "type": "library",
-      "name": "my-test-package",
-      "version": "1.0",
-      "hashes": [
-        {
-          "alg": "SHA-1",
-          "content": "6d7a67c18613be4b255812111b4619de979abc28"
+          "url": "https://my-test-package.readthedocs.io/",
+          "type": "documentation"
         }
       ],
-      "licenses": [
-        {
-          "license": {
-            "name": "UNKNOWN"
-          }
-        }
-      ],
-      "purl": "pkg:pypi/my-test-package@1.0",
       "properties": [
         {
           "name": "aquasecurity:trivy:FilePath",
@@ -250,14 +219,112 @@
         {
           "name": "aquasecurity:trivy:PkgType",
           "value": "python-pkg"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2016-03-14T04:06:32Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2016-03-14T10:20:12Z"
+        }
+      ]
+    },
+    {
+      "bom-ref": "4a391b83-c8b5-4ac8-ae1f-8a7c63c98156",
+      "type": "library",
+      "supplier": {
+        "name": "Jaye Heffernan"
+      },
+      "author": "Jaye Heffernan",
+      "name": "my-test-package",
+      "version": "1.0",
+      "description": "A simple test program to investigate packaging and PyPI",
+      "hashes": [
+        {
+          "alg": "SHA-1",
+          "content": "6d7a67c18613be4b255812111b4619de979abc28"
+        }
+      ],
+      "licenses": [
+        {
+          "license": {
+            "name": "UNKNOWN"
+          }
+        }
+      ],
+      "purl": "pkg:pypi/my-test-package@1.0",
+      "externalReferences": [
+        {
+          "url": "https://github.com/aeraquoo/my_test_package",
+          "type": "website"
+        },
+        {
+          "url": "https://pypi.org/project/my-test-package/",
+          "type": "distribution"
+        },
+        {
+          "url": "https://github.com/aeraquoo/my_test_package",
+          "type": "vcs"
+        },
+        {
+          "url": "https://my-test-package.readthedocs.io/",
+          "type": "documentation"
+        }
+      ],
+      "properties": [
+        {
+          "name": "aquasecurity:trivy:FilePath",
+          "value": "app/.venv/lib/python3.12/site-packages/pkg_resources/tests/data/my-test-package_zipped-egg/my_test_package-1.0-py3.7.egg"
+        },
+        {
+          "name": "aquasecurity:trivy:LayerDiffID",
+          "value": "sha256:f813ed6205e906cdf88f59cdef642c2fcac1c1b8fae7a51218649b9744a1b169"
+        },
+        {
+          "name": "aquasecurity:trivy:LayerDigest",
+          "value": "sha256:427a5af0b25ed050ef5fcb52b83ec02438fff3f7f16437f85f44305f61d9903d"
+        },
+        {
+          "name": "aquasecurity:trivy:PkgType",
+          "value": "python-pkg"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2016-03-14T04:06:32Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2016-03-14T10:20:12Z"
+        }
+      ]
+    },
+    {
+      "bom-ref": "cd9c1632-54c7-45ea-8649-2fdf9678d9a9",
+      "type": "operating-system",
+      "name": "redhat",
+      "version": "9.7",
+      "properties": [
+        {
+          "name": "aquasecurity:trivy:Class",
+          "value": "os-pkgs"
+        },
+        {
+          "name": "aquasecurity:trivy:Type",
+          "value": "redhat"
         }
       ]
     },
     {
       "bom-ref": "pkg:pypi/annotated-types@0.7.0",
       "type": "library",
+      "supplier": {
+        "name": "annotated-types"
+      },
+      "author": "annotated-types",
       "name": "annotated-types",
       "version": "0.7.0",
+      "description": "Reusable constraint types to use with typing.Annotated",
       "hashes": [
         {
           "alg": "SHA-1",
@@ -266,12 +333,28 @@
       ],
       "licenses": [
         {
-          "license": {
-            "id": "MIT"
-          }
+          "expression": "(MIT)"
         }
       ],
       "purl": "pkg:pypi/annotated-types@0.7.0",
+      "externalReferences": [
+        {
+          "url": "https://github.com/annotated-types/annotated-types",
+          "type": "website"
+        },
+        {
+          "url": "https://pypi.org/project/annotated-types/",
+          "type": "distribution"
+        },
+        {
+          "url": "https://github.com/annotated-types/annotated-types",
+          "type": "vcs"
+        },
+        {
+          "url": "https://annotated-types.readthedocs.io/",
+          "type": "documentation"
+        }
+      ],
       "properties": [
         {
           "name": "aquasecurity:trivy:FilePath",
@@ -288,14 +371,27 @@
         {
           "name": "aquasecurity:trivy:PkgType",
           "value": "python-pkg"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2022-05-02T17:42:51Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2024-05-20T21:33:24Z"
         }
       ]
     },
     {
       "bom-ref": "pkg:pypi/anyio@4.11.0",
       "type": "library",
+      "supplier": {
+        "name": "Alex Grönholm"
+      },
+      "author": "Alex Grönholm",
       "name": "anyio",
       "version": "4.11.0",
+      "description": "High-level concurrency and networking framework on top of asyncio or Trio",
       "hashes": [
         {
           "alg": "SHA-1",
@@ -304,12 +400,24 @@
       ],
       "licenses": [
         {
-          "license": {
-            "id": "MIT"
-          }
+          "expression": "(MIT)"
         }
       ],
       "purl": "pkg:pypi/anyio@4.11.0",
+      "externalReferences": [
+        {
+          "url": "https://pypi.org/project/anyio/",
+          "type": "distribution"
+        },
+        {
+          "url": "https://github.com/agronholm/anyio",
+          "type": "vcs"
+        },
+        {
+          "url": "https://anyio.readthedocs.io/en/latest/",
+          "type": "documentation"
+        }
+      ],
       "properties": [
         {
           "name": "aquasecurity:trivy:FilePath",
@@ -326,14 +434,43 @@
         {
           "name": "aquasecurity:trivy:PkgType",
           "value": "python-pkg"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2018-10-12T10:06:03Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2026-01-06T11:45:19Z"
+        },
+        {
+          "name": "ecosystems:owner_location",
+          "value": "Nurmijärvi, Finland"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "async-await"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "asyncio"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "trio"
         }
       ]
     },
     {
       "bom-ref": "pkg:pypi/apscheduler@3.11.1",
       "type": "library",
+      "supplier": {
+        "name": "Alex Grönholm"
+      },
+      "author": "Alex Grönholm",
       "name": "APScheduler",
       "version": "3.11.1",
+      "description": "In-process task scheduler with Cron-like capabilities",
       "hashes": [
         {
           "alg": "SHA-1",
@@ -342,12 +479,24 @@
       ],
       "licenses": [
         {
-          "license": {
-            "id": "MIT"
-          }
+          "expression": "(MIT)"
         }
       ],
       "purl": "pkg:pypi/apscheduler@3.11.1",
+      "externalReferences": [
+        {
+          "url": "https://pypi.org/project/apscheduler/",
+          "type": "distribution"
+        },
+        {
+          "url": "https://github.com/agronholm/apscheduler",
+          "type": "vcs"
+        },
+        {
+          "url": "https://apscheduler.readthedocs.io/en/3.x/",
+          "type": "documentation"
+        }
+      ],
       "properties": [
         {
           "name": "aquasecurity:trivy:FilePath",
@@ -364,14 +513,34 @@
         {
           "name": "aquasecurity:trivy:PkgType",
           "value": "python-pkg"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2009-08-01T22:58:22Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2025-12-22T00:39:33Z"
+        },
+        {
+          "name": "ecosystems:owner_location",
+          "value": "Nurmijärvi, Finland"
         }
       ]
     },
     {
       "bom-ref": "pkg:pypi/autocommand@2.2.2",
       "type": "library",
+      "supplier": {
+        "name": "Nathan West",
+        "url": [
+          "https://lucretiel.me"
+        ]
+      },
+      "author": "Nathan West",
       "name": "autocommand",
       "version": "2.2.2",
+      "description": "A library to create a command-line program from a function",
       "hashes": [
         {
           "alg": "SHA-1",
@@ -380,12 +549,28 @@
       ],
       "licenses": [
         {
-          "license": {
-            "id": "LGPL-3.0-only"
-          }
+          "expression": "(LGPL-3.0)"
         }
       ],
       "purl": "pkg:pypi/autocommand@2.2.2",
+      "externalReferences": [
+        {
+          "url": "https://github.com/Lucretiel/autocommand",
+          "type": "website"
+        },
+        {
+          "url": "https://pypi.org/project/autocommand/",
+          "type": "distribution"
+        },
+        {
+          "url": "https://github.com/Lucretiel/autocommand",
+          "type": "vcs"
+        },
+        {
+          "url": "https://autocommand.readthedocs.io/",
+          "type": "documentation"
+        }
+      ],
       "properties": [
         {
           "name": "aquasecurity:trivy:FilePath",
@@ -402,14 +587,46 @@
         {
           "name": "aquasecurity:trivy:PkgType",
           "value": "python-pkg"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2015-03-02T04:54:19Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2022-11-18T19:15:48Z"
+        },
+        {
+          "name": "ecosystems:owner_location",
+          "value": "East Coast, USA"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "library"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "python"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "utility"
         }
       ]
     },
     {
       "bom-ref": "pkg:pypi/backports.tarfile@1.2.0",
       "type": "library",
+      "supplier": {
+        "name": "Jason R. Coombs",
+        "url": [
+          "https://www.jaraco.com"
+        ]
+      },
+      "author": "Jason R. Coombs",
       "name": "backports.tarfile",
       "version": "1.2.0",
+      "description": "Backport of CPython tarfile module",
       "hashes": [
         {
           "alg": "SHA-1",
@@ -418,12 +635,28 @@
       ],
       "licenses": [
         {
-          "license": {
-            "id": "MIT"
-          }
+          "expression": "(MIT)"
         }
       ],
       "purl": "pkg:pypi/backports.tarfile@1.2.0",
+      "externalReferences": [
+        {
+          "url": "https://github.com/jaraco/backports.tarfile",
+          "type": "website"
+        },
+        {
+          "url": "https://pypi.org/project/backports.tarfile/",
+          "type": "distribution"
+        },
+        {
+          "url": "https://github.com/jaraco/backports.tarfile",
+          "type": "vcs"
+        },
+        {
+          "url": "https://backports.tarfile.readthedocs.io/",
+          "type": "documentation"
+        }
+      ],
       "properties": [
         {
           "name": "aquasecurity:trivy:FilePath",
@@ -440,14 +673,34 @@
         {
           "name": "aquasecurity:trivy:PkgType",
           "value": "python-pkg"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2024-04-06T14:35:14Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2024-05-28T17:01:53Z"
+        },
+        {
+          "name": "ecosystems:owner_location",
+          "value": "Pittsburgh, PA, USA"
         }
       ]
     },
     {
       "bom-ref": "pkg:pypi/blinker@1.9.0",
       "type": "library",
+      "supplier": {
+        "name": "Pallets Ecosystem",
+        "url": [
+          "https://palletsprojects.com"
+        ]
+      },
+      "author": "Pallets Ecosystem",
       "name": "blinker",
       "version": "1.9.0",
+      "description": "Fast, simple object-to-object and broadcast signaling",
       "hashes": [
         {
           "alg": "SHA-1",
@@ -456,12 +709,24 @@
       ],
       "licenses": [
         {
-          "license": {
-            "id": "MIT"
-          }
+          "expression": "(MIT)"
         }
       ],
       "purl": "pkg:pypi/blinker@1.9.0",
+      "externalReferences": [
+        {
+          "url": "https://pypi.org/project/blinker/",
+          "type": "distribution"
+        },
+        {
+          "url": "https://github.com/pallets-eco/blinker",
+          "type": "vcs"
+        },
+        {
+          "url": "https://blinker.readthedocs.io",
+          "type": "documentation"
+        }
+      ],
       "properties": [
         {
           "name": "aquasecurity:trivy:FilePath",
@@ -478,14 +743,39 @@
         {
           "name": "aquasecurity:trivy:PkgType",
           "value": "python-pkg"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2010-02-14T19:19:52Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2024-11-08T17:25:46Z"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "blinker"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "python"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "signals"
         }
       ]
     },
     {
       "bom-ref": "pkg:pypi/bracex@2.6",
       "type": "library",
+      "supplier": {
+        "name": "Isaac Muse"
+      },
+      "author": "Isaac Muse",
       "name": "bracex",
       "version": "2.6",
+      "description": "Bash style brace expander.",
       "hashes": [
         {
           "alg": "SHA-1",
@@ -494,12 +784,28 @@
       ],
       "licenses": [
         {
-          "license": {
-            "id": "MIT"
-          }
+          "expression": "(MIT)"
         }
       ],
       "purl": "pkg:pypi/bracex@2.6",
+      "externalReferences": [
+        {
+          "url": "https://github.com/facelessuser/bracex",
+          "type": "website"
+        },
+        {
+          "url": "https://pypi.org/project/bracex/",
+          "type": "distribution"
+        },
+        {
+          "url": "https://github.com/facelessuser/bracex",
+          "type": "vcs"
+        },
+        {
+          "url": "https://bracex.readthedocs.io/",
+          "type": "documentation"
+        }
+      ],
       "properties": [
         {
           "name": "aquasecurity:trivy:FilePath",
@@ -516,14 +822,34 @@
         {
           "name": "aquasecurity:trivy:PkgType",
           "value": "python-pkg"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2018-05-17T06:32:58Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2021-11-04T18:23:48Z"
+        },
+        {
+          "name": "ecosystems:owner_location",
+          "value": "Colorado"
         }
       ]
     },
     {
       "bom-ref": "pkg:pypi/bump-my-version@1.2.4",
       "type": "library",
+      "supplier": {
+        "name": "Calloway",
+        "url": [
+          "http://callowayproject.com/"
+        ]
+      },
+      "author": "Calloway",
       "name": "bump-my-version",
       "version": "1.2.4",
+      "description": "Version bump your Python project",
       "hashes": [
         {
           "alg": "SHA-1",
@@ -532,12 +858,24 @@
       ],
       "licenses": [
         {
-          "license": {
-            "id": "MIT"
-          }
+          "expression": "(Other)"
         }
       ],
       "purl": "pkg:pypi/bump-my-version@1.2.4",
+      "externalReferences": [
+        {
+          "url": "https://pypi.org/project/bump-my-version/",
+          "type": "distribution"
+        },
+        {
+          "url": "https://github.com/callowayproject/bump-my-version",
+          "type": "vcs"
+        },
+        {
+          "url": "https://bump-my-version.readthedocs.io/",
+          "type": "documentation"
+        }
+      ],
       "properties": [
         {
           "name": "aquasecurity:trivy:FilePath",
@@ -554,14 +892,50 @@
         {
           "name": "aquasecurity:trivy:PkgType",
           "value": "python-pkg"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2023-04-14T17:09:02Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2025-12-29T11:59:27Z"
+        },
+        {
+          "name": "ecosystems:owner_location",
+          "value": "United States of America"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "bumpversion"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "hacktoberfest"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "version"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "versioning"
         }
       ]
     },
     {
       "bom-ref": "pkg:pypi/certifi@2025.10.5",
       "type": "library",
+      "supplier": {
+        "name": "Certifi",
+        "url": [
+          "http://certifiio.readthedocs.io/en/latest/"
+        ]
+      },
+      "author": "Certifi",
       "name": "certifi",
       "version": "2025.10.5",
+      "description": "Python package for providing Mozilla's CA Bundle.",
       "hashes": [
         {
           "alg": "SHA-1",
@@ -570,12 +944,28 @@
       ],
       "licenses": [
         {
-          "license": {
-            "id": "MPL-2.0"
-          }
+          "expression": "(MPL-2.0)"
         }
       ],
       "purl": "pkg:pypi/certifi@2025.10.5",
+      "externalReferences": [
+        {
+          "url": "https://github.com/certifi/python-certifi",
+          "type": "website"
+        },
+        {
+          "url": "https://pypi.org/project/certifi/",
+          "type": "distribution"
+        },
+        {
+          "url": "https://github.com/certifi/python-certifi",
+          "type": "vcs"
+        },
+        {
+          "url": "https://certifi.readthedocs.io/",
+          "type": "documentation"
+        }
+      ],
       "properties": [
         {
           "name": "aquasecurity:trivy:FilePath",
@@ -592,14 +982,31 @@
         {
           "name": "aquasecurity:trivy:PkgType",
           "value": "python-pkg"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2011-12-28T07:27:42Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2026-01-04T02:42:40Z"
+        },
+        {
+          "name": "ecosystems:owner_location",
+          "value": "CURL_CA_BUNDLE"
         }
       ]
     },
     {
       "bom-ref": "pkg:pypi/charset-normalizer@3.4.4",
       "type": "library",
+      "supplier": {
+        "name": "TAHRI Ahmed R."
+      },
+      "author": "TAHRI Ahmed R.",
       "name": "charset-normalizer",
       "version": "3.4.4",
+      "description": "The Real First Universal Charset Detector. Open, modern and actively maintained alternative to Chardet.",
       "hashes": [
         {
           "alg": "SHA-1",
@@ -608,12 +1015,24 @@
       ],
       "licenses": [
         {
-          "license": {
-            "id": "MIT"
-          }
+          "expression": "(MIT)"
         }
       ],
       "purl": "pkg:pypi/charset-normalizer@3.4.4",
+      "externalReferences": [
+        {
+          "url": "https://pypi.org/project/charset-normalizer/",
+          "type": "distribution"
+        },
+        {
+          "url": "https://github.com/jawah/charset_normalizer",
+          "type": "vcs"
+        },
+        {
+          "url": "https://charset-normalizer.readthedocs.io/",
+          "type": "documentation"
+        }
+      ],
       "properties": [
         {
           "name": "aquasecurity:trivy:FilePath",
@@ -630,14 +1049,58 @@
         {
           "name": "aquasecurity:trivy:PkgType",
           "value": "python-pkg"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2019-08-02T16:03:53Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2025-10-14T04:40:11Z"
+        },
+        {
+          "name": "ecosystems:owner_location",
+          "value": "Le Mans, France."
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "chardet"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "charset-conversion"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "charset-detection"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "encoding"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "python"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "unicode"
         }
       ]
     },
     {
       "bom-ref": "pkg:pypi/click@8.2.1",
       "type": "library",
+      "supplier": {
+        "name": "Pallets",
+        "url": [
+          "https://palletsprojects.com"
+        ]
+      },
+      "author": "Pallets",
       "name": "click",
       "version": "8.2.1",
+      "description": "Composable command line interface toolkit",
       "hashes": [
         {
           "alg": "SHA-1",
@@ -646,12 +1109,24 @@
       ],
       "licenses": [
         {
-          "license": {
-            "id": "BSD-3-Clause"
-          }
+          "expression": "(BSD-3-Clause)"
         }
       ],
       "purl": "pkg:pypi/click@8.2.1",
+      "externalReferences": [
+        {
+          "url": "https://pypi.org/project/click/",
+          "type": "distribution"
+        },
+        {
+          "url": "https://github.com/pallets/click",
+          "type": "vcs"
+        },
+        {
+          "url": "https://click.palletsprojects.com/",
+          "type": "documentation"
+        }
+      ],
       "properties": [
         {
           "name": "aquasecurity:trivy:FilePath",
@@ -668,14 +1143,46 @@
         {
           "name": "aquasecurity:trivy:PkgType",
           "value": "python-pkg"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2014-04-28T11:24:09Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2025-11-15T20:45:41Z"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "cli"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "click"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "pallets"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "python"
         }
       ]
     },
     {
       "bom-ref": "pkg:pypi/cython@3.1.6",
       "type": "library",
+      "supplier": {
+        "name": "cython",
+        "url": [
+          "http://cython.org"
+        ]
+      },
+      "author": "cython",
       "name": "Cython",
       "version": "3.1.6",
+      "description": "The Cython compiler for writing C extensions in the Python language.",
       "hashes": [
         {
           "alg": "SHA-1",
@@ -684,12 +1191,28 @@
       ],
       "licenses": [
         {
-          "license": {
-            "id": "Apache-2.0"
-          }
+          "expression": "(Apache-2.0)"
         }
       ],
       "purl": "pkg:pypi/cython@3.1.6",
+      "externalReferences": [
+        {
+          "url": "https://cython.org/",
+          "type": "website"
+        },
+        {
+          "url": "https://pypi.org/project/cython/",
+          "type": "distribution"
+        },
+        {
+          "url": "https://github.com/cython/cython",
+          "type": "vcs"
+        },
+        {
+          "url": "https://cython.readthedocs.io/",
+          "type": "documentation"
+        }
+      ],
       "properties": [
         {
           "name": "aquasecurity:trivy:FilePath",
@@ -706,14 +1229,59 @@
         {
           "name": "aquasecurity:trivy:PkgType",
           "value": "python-pkg"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2007-08-31T10:44:22Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2026-01-04T14:14:51Z"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "big-data"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "c"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "cpp"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "cpython"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "cpython-extensions"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "cython"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "performance"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "python"
         }
       ]
     },
     {
       "bom-ref": "pkg:pypi/flask-apscheduler@1.13.1",
       "type": "library",
+      "supplier": {
+        "name": "Vinicius Chiele"
+      },
+      "author": "Vinicius Chiele",
       "name": "Flask-APScheduler",
       "version": "1.13.1",
+      "description": "Adds APScheduler support to Flask",
       "hashes": [
         {
           "alg": "SHA-1",
@@ -722,12 +1290,28 @@
       ],
       "licenses": [
         {
-          "license": {
-            "id": "Apache-2.0"
-          }
+          "expression": "(Apache-2.0)"
         }
       ],
       "purl": "pkg:pypi/flask-apscheduler@1.13.1",
+      "externalReferences": [
+        {
+          "url": "https://github.com/viniciuschiele/flask-apscheduler",
+          "type": "website"
+        },
+        {
+          "url": "https://pypi.org/project/flask-apscheduler/",
+          "type": "distribution"
+        },
+        {
+          "url": "https://github.com/viniciuschiele/flask-apscheduler",
+          "type": "vcs"
+        },
+        {
+          "url": "https://flask-apscheduler.readthedocs.io/",
+          "type": "documentation"
+        }
+      ],
       "properties": [
         {
           "name": "aquasecurity:trivy:FilePath",
@@ -744,14 +1328,54 @@
         {
           "name": "aquasecurity:trivy:PkgType",
           "value": "python-pkg"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2015-05-11T08:27:49Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2023-11-07T12:44:20Z"
+        },
+        {
+          "name": "ecosystems:owner_location",
+          "value": "Dublin, Ireland"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "apscheduler"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "cron-jobs"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "flask"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "flask-extensions"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "scheduler"
         }
       ]
     },
     {
       "bom-ref": "pkg:pypi/flask@3.1.2",
       "type": "library",
+      "supplier": {
+        "name": "Pallets",
+        "url": [
+          "https://palletsprojects.com"
+        ]
+      },
+      "author": "Pallets",
       "name": "Flask",
       "version": "3.1.2",
+      "description": "A simple framework for building complex web applications.",
       "hashes": [
         {
           "alg": "SHA-1",
@@ -760,12 +1384,24 @@
       ],
       "licenses": [
         {
-          "license": {
-            "id": "BSD-3-Clause"
-          }
+          "expression": "(BSD-3-Clause)"
         }
       ],
       "purl": "pkg:pypi/flask@3.1.2",
+      "externalReferences": [
+        {
+          "url": "https://pypi.org/project/flask/",
+          "type": "distribution"
+        },
+        {
+          "url": "https://github.com/pallets/flask",
+          "type": "vcs"
+        },
+        {
+          "url": "https://flask.palletsprojects.com/",
+          "type": "documentation"
+        }
+      ],
       "properties": [
         {
           "name": "aquasecurity:trivy:FilePath",
@@ -782,14 +1418,58 @@
         {
           "name": "aquasecurity:trivy:PkgType",
           "value": "python-pkg"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2010-04-16T14:29:37Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2025-08-19T21:03:19Z"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "flask"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "jinja"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "pallets"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "python"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "web-framework"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "werkzeug"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "wsgi"
         }
       ]
     },
     {
       "bom-ref": "pkg:pypi/gevent@25.9.1",
       "type": "library",
+      "supplier": {
+        "name": "gevent",
+        "url": [
+          "gevent.org"
+        ]
+      },
+      "author": "gevent",
       "name": "gevent",
       "version": "25.9.1",
+      "description": "Coroutine-based network library",
       "hashes": [
         {
           "alg": "SHA-1",
@@ -798,12 +1478,28 @@
       ],
       "licenses": [
         {
-          "license": {
-            "id": "MIT"
-          }
+          "expression": "(MIT)"
         }
       ],
       "purl": "pkg:pypi/gevent@25.9.1",
+      "externalReferences": [
+        {
+          "url": "http://www.gevent.org/",
+          "type": "website"
+        },
+        {
+          "url": "https://pypi.org/project/gevent/",
+          "type": "distribution"
+        },
+        {
+          "url": "https://github.com/gevent/gevent",
+          "type": "vcs"
+        },
+        {
+          "url": "http://www.gevent.org",
+          "type": "documentation"
+        }
+      ],
       "properties": [
         {
           "name": "aquasecurity:trivy:FilePath",
@@ -820,14 +1516,43 @@
         {
           "name": "aquasecurity:trivy:PkgType",
           "value": "python-pkg"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2009-07-20T10:45:09Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2025-09-17T15:41:22Z"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "asyncio"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "coroutines"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "greenlet"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "python"
         }
       ]
     },
     {
       "bom-ref": "pkg:pypi/greenlet@3.2.4",
       "type": "library",
+      "supplier": {
+        "name": "python-greenlet"
+      },
+      "author": "python-greenlet",
       "name": "greenlet",
       "version": "3.2.4",
+      "description": "Lightweight in-process concurrent programming",
       "hashes": [
         {
           "alg": "SHA-1",
@@ -836,10 +1561,28 @@
       ],
       "licenses": [
         {
-          "expression": "MIT AND Python-2.0"
+          "expression": "(MIT OR Python-2.0)"
         }
       ],
       "purl": "pkg:pypi/greenlet@3.2.4",
+      "externalReferences": [
+        {
+          "url": "https://greenlet.readthedocs.io",
+          "type": "website"
+        },
+        {
+          "url": "https://pypi.org/project/greenlet/",
+          "type": "distribution"
+        },
+        {
+          "url": "https://github.com/python-greenlet/greenlet",
+          "type": "vcs"
+        },
+        {
+          "url": "https://greenlet.readthedocs.io",
+          "type": "documentation"
+        }
+      ],
       "properties": [
         {
           "name": "aquasecurity:trivy:FilePath",
@@ -856,14 +1599,30 @@
         {
           "name": "aquasecurity:trivy:PkgType",
           "value": "python-pkg"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2006-01-10T03:14:36Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2026-01-23T15:30:37Z"
         }
       ]
     },
     {
       "bom-ref": "pkg:pypi/gunicorn@23.0.0",
       "type": "library",
+      "supplier": {
+        "name": "Benoit Chesneau",
+        "url": [
+          "http://benoitc.im"
+        ]
+      },
+      "author": "Benoit Chesneau",
       "name": "gunicorn",
       "version": "23.0.0",
+      "description": "WSGI HTTP Server for UNIX",
       "hashes": [
         {
           "alg": "SHA-1",
@@ -872,12 +1631,28 @@
       ],
       "licenses": [
         {
-          "license": {
-            "id": "MIT"
-          }
+          "expression": "(MIT)"
         }
       ],
       "purl": "pkg:pypi/gunicorn@23.0.0",
+      "externalReferences": [
+        {
+          "url": "https://gunicorn.org",
+          "type": "website"
+        },
+        {
+          "url": "https://pypi.org/project/gunicorn/",
+          "type": "distribution"
+        },
+        {
+          "url": "https://github.com/benoitc/gunicorn",
+          "type": "vcs"
+        },
+        {
+          "url": "https://gunicorn.org",
+          "type": "documentation"
+        }
+      ],
       "properties": [
         {
           "name": "aquasecurity:trivy:FilePath",
@@ -894,14 +1669,54 @@
         {
           "name": "aquasecurity:trivy:PkgType",
           "value": "python-pkg"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2010-01-03T21:50:51Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2026-02-07T16:53:49Z"
+        },
+        {
+          "name": "ecosystems:owner_location",
+          "value": "Creil, France"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "http"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "http-server"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "python"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "wsgi"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "wsgi-server"
         }
       ]
     },
     {
       "bom-ref": "pkg:pypi/h11@0.16.0",
       "type": "library",
+      "supplier": {
+        "name": "Hyper",
+        "url": [
+          "http://hyper.readthedocs.org"
+        ]
+      },
+      "author": "Hyper",
       "name": "h11",
       "version": "0.16.0",
+      "description": "A pure-Python, bring-your-own-I/O implementation of HTTP/1.1",
       "hashes": [
         {
           "alg": "SHA-1",
@@ -910,12 +1725,28 @@
       ],
       "licenses": [
         {
-          "license": {
-            "id": "MIT"
-          }
+          "expression": "(MIT)"
         }
       ],
       "purl": "pkg:pypi/h11@0.16.0",
+      "externalReferences": [
+        {
+          "url": "https://github.com/python-hyper/h11",
+          "type": "website"
+        },
+        {
+          "url": "https://pypi.org/project/h11/",
+          "type": "distribution"
+        },
+        {
+          "url": "https://github.com/python-hyper/h11",
+          "type": "vcs"
+        },
+        {
+          "url": "https://h11.readthedocs.io/",
+          "type": "documentation"
+        }
+      ],
       "properties": [
         {
           "name": "aquasecurity:trivy:FilePath",
@@ -932,14 +1763,42 @@
         {
           "name": "aquasecurity:trivy:PkgType",
           "value": "python-pkg"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2023-08-19T04:01:40Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2025-04-24T03:35:24Z"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "http"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "python"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "sans-io"
         }
       ]
     },
     {
       "bom-ref": "pkg:pypi/httpcore@1.0.9",
       "type": "library",
+      "supplier": {
+        "name": "Encode",
+        "url": [
+          "http://www.encode.io/"
+        ]
+      },
+      "author": "Encode",
       "name": "httpcore",
       "version": "1.0.9",
+      "description": "A minimal low-level HTTP client.",
       "hashes": [
         {
           "alg": "SHA-1",
@@ -948,12 +1807,28 @@
       ],
       "licenses": [
         {
-          "license": {
-            "id": "BSD-3-Clause"
-          }
+          "expression": "(BSD-3-Clause)"
         }
       ],
       "purl": "pkg:pypi/httpcore@1.0.9",
+      "externalReferences": [
+        {
+          "url": "https://www.encode.io/httpcore/",
+          "type": "website"
+        },
+        {
+          "url": "https://pypi.org/project/httpcore/",
+          "type": "distribution"
+        },
+        {
+          "url": "https://github.com/encode/httpcore",
+          "type": "vcs"
+        },
+        {
+          "url": "https://www.encode.io/httpcore",
+          "type": "documentation"
+        }
+      ],
       "properties": [
         {
           "name": "aquasecurity:trivy:FilePath",
@@ -970,14 +1845,30 @@
         {
           "name": "aquasecurity:trivy:PkgType",
           "value": "python-pkg"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2019-04-04T17:44:38Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2025-04-24T22:06:20Z"
         }
       ]
     },
     {
       "bom-ref": "pkg:pypi/httpx@0.28.1",
       "type": "library",
+      "supplier": {
+        "name": "Encode",
+        "url": [
+          "http://www.encode.io/"
+        ]
+      },
+      "author": "Encode",
       "name": "httpx",
       "version": "0.28.1",
+      "description": "The next generation HTTP client.",
       "hashes": [
         {
           "alg": "SHA-1",
@@ -986,12 +1877,28 @@
       ],
       "licenses": [
         {
-          "license": {
-            "id": "BSD-3-Clause"
-          }
+          "expression": "(BSD-3-Clause)"
         }
       ],
       "purl": "pkg:pypi/httpx@0.28.1",
+      "externalReferences": [
+        {
+          "url": "https://github.com/encode/httpx",
+          "type": "website"
+        },
+        {
+          "url": "https://pypi.org/project/httpx/",
+          "type": "distribution"
+        },
+        {
+          "url": "https://github.com/encode/httpx",
+          "type": "vcs"
+        },
+        {
+          "url": "https://www.python-httpx.org",
+          "type": "documentation"
+        }
+      ],
       "properties": [
         {
           "name": "aquasecurity:trivy:FilePath",
@@ -1008,14 +1915,46 @@
         {
           "name": "aquasecurity:trivy:PkgType",
           "value": "python-pkg"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2019-07-19T14:23:35Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2024-12-06T15:37:21Z"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "asyncio"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "http"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "python"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "trio"
         }
       ]
     },
     {
       "bom-ref": "pkg:pypi/idna@3.11",
       "type": "library",
+      "supplier": {
+        "name": "Kim Davies",
+        "url": [
+          "http://kimdavies.com/"
+        ]
+      },
+      "author": "Kim Davies",
       "name": "idna",
       "version": "3.11",
+      "description": "Internationalized Domain Names in Applications (IDNA)",
       "hashes": [
         {
           "alg": "SHA-1",
@@ -1024,12 +1963,24 @@
       ],
       "licenses": [
         {
-          "license": {
-            "id": "BSD-3-Clause"
-          }
+          "expression": "(BSD-3-Clause)"
         }
       ],
       "purl": "pkg:pypi/idna@3.11",
+      "externalReferences": [
+        {
+          "url": "https://pypi.org/project/idna/",
+          "type": "distribution"
+        },
+        {
+          "url": "https://github.com/kjd/idna",
+          "type": "vcs"
+        },
+        {
+          "url": "https://idna.readthedocs.io/",
+          "type": "documentation"
+        }
+      ],
       "properties": [
         {
           "name": "aquasecurity:trivy:FilePath",
@@ -1046,14 +1997,50 @@
         {
           "name": "aquasecurity:trivy:PkgType",
           "value": "python-pkg"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2013-07-16T19:29:45Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2025-10-12T14:55:18Z"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "dns"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "hacktoberfest"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "idna"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "python"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "unicode"
         }
       ]
     },
     {
       "bom-ref": "pkg:pypi/importlib-metadata@8.0.0",
       "type": "library",
+      "supplier": {
+        "name": "Python",
+        "url": [
+          "https://www.python.org/"
+        ]
+      },
+      "author": "Python",
       "name": "importlib_metadata",
       "version": "8.0.0",
+      "description": "Read metadata from Python packages",
       "hashes": [
         {
           "alg": "SHA-1",
@@ -1062,12 +2049,24 @@
       ],
       "licenses": [
         {
-          "license": {
-            "id": "Apache-2.0"
-          }
+          "expression": "(Apache-2.0)"
         }
       ],
       "purl": "pkg:pypi/importlib-metadata@8.0.0",
+      "externalReferences": [
+        {
+          "url": "https://pypi.org/project/importlib-metadata/",
+          "type": "distribution"
+        },
+        {
+          "url": "https://github.com/python/importlib_metadata",
+          "type": "vcs"
+        },
+        {
+          "url": "https://importlib-metadata.readthedocs.io/",
+          "type": "documentation"
+        }
+      ],
       "properties": [
         {
           "name": "aquasecurity:trivy:FilePath",
@@ -1084,14 +2083,30 @@
         {
           "name": "aquasecurity:trivy:PkgType",
           "value": "python-pkg"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2018-05-17T17:47:55Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2025-12-21T10:00:18Z"
         }
       ]
     },
     {
       "bom-ref": "pkg:pypi/inflect@7.3.1",
       "type": "library",
+      "supplier": {
+        "name": "Jason R. Coombs",
+        "url": [
+          "https://www.jaraco.com"
+        ]
+      },
+      "author": "Jason R. Coombs",
       "name": "inflect",
       "version": "7.3.1",
+      "description": "Correctly generate plurals, singular nouns, ordinals, indefinite articles",
       "hashes": [
         {
           "alg": "SHA-1",
@@ -1100,12 +2115,24 @@
       ],
       "licenses": [
         {
-          "license": {
-            "id": "MIT"
-          }
+          "expression": "(MIT)"
         }
       ],
       "purl": "pkg:pypi/inflect@7.3.1",
+      "externalReferences": [
+        {
+          "url": "https://pypi.org/project/inflect/",
+          "type": "distribution"
+        },
+        {
+          "url": "https://github.com/jaraco/inflect",
+          "type": "vcs"
+        },
+        {
+          "url": "https://inflect.readthedocs.io/",
+          "type": "documentation"
+        }
+      ],
       "properties": [
         {
           "name": "aquasecurity:trivy:FilePath",
@@ -1122,14 +2149,34 @@
         {
           "name": "aquasecurity:trivy:PkgType",
           "value": "python-pkg"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2010-06-14T02:25:09Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2024-12-28T17:11:15Z"
+        },
+        {
+          "name": "ecosystems:owner_location",
+          "value": "Pittsburgh, PA, USA"
         }
       ]
     },
     {
       "bom-ref": "pkg:pypi/itsdangerous@2.2.0",
       "type": "library",
+      "supplier": {
+        "name": "Pallets",
+        "url": [
+          "https://palletsprojects.com"
+        ]
+      },
+      "author": "Pallets",
       "name": "itsdangerous",
       "version": "2.2.0",
+      "description": "Safely pass data to untrusted environments and back.",
       "hashes": [
         {
           "alg": "SHA-1",
@@ -1138,12 +2185,24 @@
       ],
       "licenses": [
         {
-          "license": {
-            "id": "BSD-3-Clause"
-          }
+          "expression": "(BSD-3-Clause)"
         }
       ],
       "purl": "pkg:pypi/itsdangerous@2.2.0",
+      "externalReferences": [
+        {
+          "url": "https://pypi.org/project/itsdangerous/",
+          "type": "distribution"
+        },
+        {
+          "url": "https://github.com/pallets/itsdangerous",
+          "type": "vcs"
+        },
+        {
+          "url": "https://itsdangerous.palletsprojects.com/",
+          "type": "documentation"
+        }
+      ],
       "properties": [
         {
           "name": "aquasecurity:trivy:FilePath",
@@ -1160,14 +2219,54 @@
         {
           "name": "aquasecurity:trivy:PkgType",
           "value": "python-pkg"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2011-06-24T02:53:45Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2024-04-16T21:28:14Z"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "hmac"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "itsdangerous"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "pallets"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "python"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "security"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "serialization"
         }
       ]
     },
     {
       "bom-ref": "pkg:pypi/jaraco.collections@5.1.0",
       "type": "library",
+      "supplier": {
+        "name": "Jason R. Coombs",
+        "url": [
+          "https://www.jaraco.com"
+        ]
+      },
+      "author": "Jason R. Coombs",
       "name": "jaraco.collections",
       "version": "5.1.0",
+      "description": "Collection objects similar to those in stdlib by jaraco",
       "hashes": [
         {
           "alg": "SHA-1",
@@ -1176,12 +2275,24 @@
       ],
       "licenses": [
         {
-          "license": {
-            "id": "MIT"
-          }
+          "expression": "(MIT)"
         }
       ],
       "purl": "pkg:pypi/jaraco.collections@5.1.0",
+      "externalReferences": [
+        {
+          "url": "https://pypi.org/project/jaraco.collections/",
+          "type": "distribution"
+        },
+        {
+          "url": "https://github.com/jaraco/jaraco.collections",
+          "type": "vcs"
+        },
+        {
+          "url": "https://jaraco.collections.readthedocs.io/",
+          "type": "documentation"
+        }
+      ],
       "properties": [
         {
           "name": "aquasecurity:trivy:FilePath",
@@ -1198,14 +2309,34 @@
         {
           "name": "aquasecurity:trivy:PkgType",
           "value": "python-pkg"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2015-02-16T01:42:51Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2025-06-21T20:03:22Z"
+        },
+        {
+          "name": "ecosystems:owner_location",
+          "value": "Pittsburgh, PA, USA"
         }
       ]
     },
     {
       "bom-ref": "pkg:pypi/jaraco.context@5.3.0",
       "type": "library",
+      "supplier": {
+        "name": "Jason R. Coombs",
+        "url": [
+          "https://www.jaraco.com"
+        ]
+      },
+      "author": "Jason R. Coombs",
       "name": "jaraco.context",
       "version": "5.3.0",
+      "description": "Useful decorators and context managers",
       "hashes": [
         {
           "alg": "SHA-1",
@@ -1214,12 +2345,24 @@
       ],
       "licenses": [
         {
-          "license": {
-            "id": "MIT"
-          }
+          "expression": "(MIT)"
         }
       ],
       "purl": "pkg:pypi/jaraco.context@5.3.0",
+      "externalReferences": [
+        {
+          "url": "https://pypi.org/project/jaraco.context/",
+          "type": "distribution"
+        },
+        {
+          "url": "https://github.com/jaraco/jaraco.context",
+          "type": "vcs"
+        },
+        {
+          "url": "https://jaraco.context.readthedocs.io/",
+          "type": "documentation"
+        }
+      ],
       "properties": [
         {
           "name": "aquasecurity:trivy:FilePath",
@@ -1236,6 +2379,18 @@
         {
           "name": "aquasecurity:trivy:PkgType",
           "value": "python-pkg"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2014-02-16T09:00:53Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2026-01-13T02:53:53Z"
+        },
+        {
+          "name": "ecosystems:owner_location",
+          "value": "Pittsburgh, PA, USA"
         }
       ]
     },
@@ -1244,6 +2399,7 @@
       "type": "library",
       "name": "jaraco.functools",
       "version": "4.0.1",
+      "description": "Functools like those found in stdlib",
       "hashes": [
         {
           "alg": "SHA-1",
@@ -1252,12 +2408,24 @@
       ],
       "licenses": [
         {
-          "license": {
-            "id": "MIT"
-          }
+          "expression": "(MIT)"
         }
       ],
       "purl": "pkg:pypi/jaraco.functools@4.0.1",
+      "externalReferences": [
+        {
+          "url": "https://pypi.org/project/jaraco.functools/",
+          "type": "distribution"
+        },
+        {
+          "url": "https://github.com/jaraco/jaraco.functools",
+          "type": "vcs"
+        },
+        {
+          "url": "https://jaraco.functools.readthedocs.io/",
+          "type": "documentation"
+        }
+      ],
       "properties": [
         {
           "name": "aquasecurity:trivy:FilePath",
@@ -1274,14 +2442,30 @@
         {
           "name": "aquasecurity:trivy:PkgType",
           "value": "python-pkg"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2015-02-01T07:07:00Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2025-12-21T09:29:42Z"
         }
       ]
     },
     {
       "bom-ref": "pkg:pypi/jaraco.text@3.12.1",
       "type": "library",
+      "supplier": {
+        "name": "Jason R. Coombs",
+        "url": [
+          "https://www.jaraco.com"
+        ]
+      },
+      "author": "Jason R. Coombs",
       "name": "jaraco.text",
       "version": "3.12.1",
+      "description": "Module for text manipulation",
       "hashes": [
         {
           "alg": "SHA-1",
@@ -1290,12 +2474,24 @@
       ],
       "licenses": [
         {
-          "license": {
-            "id": "MIT"
-          }
+          "expression": "(MIT)"
         }
       ],
       "purl": "pkg:pypi/jaraco.text@3.12.1",
+      "externalReferences": [
+        {
+          "url": "https://pypi.org/project/jaraco.text/",
+          "type": "distribution"
+        },
+        {
+          "url": "https://github.com/jaraco/jaraco.text",
+          "type": "vcs"
+        },
+        {
+          "url": "https://jaraco.text.readthedocs.io/",
+          "type": "documentation"
+        }
+      ],
       "properties": [
         {
           "name": "aquasecurity:trivy:FilePath",
@@ -1312,14 +2508,34 @@
         {
           "name": "aquasecurity:trivy:PkgType",
           "value": "python-pkg"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2015-02-16T01:39:49Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2026-02-09T23:30:05Z"
+        },
+        {
+          "name": "ecosystems:owner_location",
+          "value": "Pittsburgh, PA, USA"
         }
       ]
     },
     {
       "bom-ref": "pkg:pypi/jinja2@3.1.6",
       "type": "library",
+      "supplier": {
+        "name": "Pallets",
+        "url": [
+          "https://palletsprojects.com"
+        ]
+      },
+      "author": "Pallets",
       "name": "Jinja2",
       "version": "3.1.6",
+      "description": "A very fast and expressive template engine.",
       "hashes": [
         {
           "alg": "SHA-1",
@@ -1328,12 +2544,24 @@
       ],
       "licenses": [
         {
-          "license": {
-            "id": "BSD-3-Clause"
-          }
+          "expression": "(BSD-3-Clause)"
         }
       ],
       "purl": "pkg:pypi/jinja2@3.1.6",
+      "externalReferences": [
+        {
+          "url": "https://pypi.org/project/jinja2/",
+          "type": "distribution"
+        },
+        {
+          "url": "https://github.com/pallets/jinja",
+          "type": "vcs"
+        },
+        {
+          "url": "https://jinja.palletsprojects.com/",
+          "type": "documentation"
+        }
+      ],
       "properties": [
         {
           "name": "aquasecurity:trivy:FilePath",
@@ -1350,14 +2578,51 @@
         {
           "name": "aquasecurity:trivy:PkgType",
           "value": "python-pkg"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2008-06-09T21:03:09Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2025-03-05T20:05:00Z"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "jinja"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "jinja2"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "pallets"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "python"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "template-engine"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "templates"
         }
       ]
     },
     {
       "bom-ref": "pkg:pypi/joblib@1.5.2",
       "type": "library",
+      "supplier": {
+        "name": "joblib"
+      },
+      "author": "joblib",
       "name": "joblib",
       "version": "1.5.2",
+      "description": "Lightweight pipelining with Python functions",
       "hashes": [
         {
           "alg": "SHA-1",
@@ -1366,12 +2631,28 @@
       ],
       "licenses": [
         {
-          "license": {
-            "id": "BSD-3-Clause"
-          }
+          "expression": "(BSD-3-Clause)"
         }
       ],
       "purl": "pkg:pypi/joblib@1.5.2",
+      "externalReferences": [
+        {
+          "url": "https://joblib.readthedocs.io",
+          "type": "website"
+        },
+        {
+          "url": "https://pypi.org/project/joblib/",
+          "type": "distribution"
+        },
+        {
+          "url": "https://github.com/joblib/joblib",
+          "type": "vcs"
+        },
+        {
+          "url": "https://joblib.readthedocs.io/",
+          "type": "documentation"
+        }
+      ],
       "properties": [
         {
           "name": "aquasecurity:trivy:FilePath",
@@ -1388,6 +2669,38 @@
         {
           "name": "aquasecurity:trivy:PkgType",
           "value": "python-pkg"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2008-10-26T14:11:28Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2025-12-15T08:41:44Z"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "caching"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "memoization"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "multiprocessing"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "parallel-computing"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "python"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "threading"
         }
       ]
     },
@@ -1425,8 +2738,16 @@
     {
       "bom-ref": "pkg:pypi/markdown-it-py@4.0.0",
       "type": "library",
+      "supplier": {
+        "name": "Executable Books",
+        "url": [
+          "https://executablebooks.org"
+        ]
+      },
+      "author": "Executable Books",
       "name": "markdown-it-py",
       "version": "4.0.0",
+      "description": "Python port of markdown-it. Markdown parsing, done right!",
       "hashes": [
         {
           "alg": "SHA-1",
@@ -1435,12 +2756,28 @@
       ],
       "licenses": [
         {
-          "license": {
-            "id": "MIT"
-          }
+          "expression": "(MIT)"
         }
       ],
       "purl": "pkg:pypi/markdown-it-py@4.0.0",
+      "externalReferences": [
+        {
+          "url": "https://github.com/executablebooks/markdown-it-py",
+          "type": "website"
+        },
+        {
+          "url": "https://pypi.org/project/markdown-it-py/",
+          "type": "distribution"
+        },
+        {
+          "url": "https://github.com/executablebooks/markdown-it-py",
+          "type": "vcs"
+        },
+        {
+          "url": "https://markdown-it-py.readthedocs.io",
+          "type": "documentation"
+        }
+      ],
       "properties": [
         {
           "name": "aquasecurity:trivy:FilePath",
@@ -1457,14 +2794,42 @@
         {
           "name": "aquasecurity:trivy:PkgType",
           "value": "python-pkg"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2020-03-25T17:41:23Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2025-08-11T12:57:51Z"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "markdown"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "markdown-it"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "markdown-parser"
         }
       ]
     },
     {
       "bom-ref": "pkg:pypi/markupsafe@3.0.3",
       "type": "library",
+      "supplier": {
+        "name": "Pallets",
+        "url": [
+          "https://palletsprojects.com"
+        ]
+      },
+      "author": "Pallets",
       "name": "MarkupSafe",
       "version": "3.0.3",
+      "description": "Safely add untrusted strings to HTML/XML markup.",
       "hashes": [
         {
           "alg": "SHA-1",
@@ -1473,12 +2838,24 @@
       ],
       "licenses": [
         {
-          "license": {
-            "id": "BSD-3-Clause"
-          }
+          "expression": "(BSD-3-Clause)"
         }
       ],
       "purl": "pkg:pypi/markupsafe@3.0.3",
+      "externalReferences": [
+        {
+          "url": "https://pypi.org/project/markupsafe/",
+          "type": "distribution"
+        },
+        {
+          "url": "https://github.com/pallets/markupsafe",
+          "type": "vcs"
+        },
+        {
+          "url": "https://markupsafe.palletsprojects.com/",
+          "type": "documentation"
+        }
+      ],
       "properties": [
         {
           "name": "aquasecurity:trivy:FilePath",
@@ -1495,14 +2872,58 @@
         {
           "name": "aquasecurity:trivy:PkgType",
           "value": "python-pkg"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2010-06-22T19:55:49Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2025-09-27T18:36:05Z"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "html"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "html-escape"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "jinja"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "markupsafe"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "pallets"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "python"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "template-engine"
         }
       ]
     },
     {
       "bom-ref": "pkg:pypi/mdurl@0.1.2",
       "type": "library",
+      "supplier": {
+        "name": "Executable Books",
+        "url": [
+          "https://executablebooks.org"
+        ]
+      },
+      "author": "Executable Books",
       "name": "mdurl",
       "version": "0.1.2",
+      "description": "Markdown URL utilities",
       "hashes": [
         {
           "alg": "SHA-1",
@@ -1511,12 +2932,28 @@
       ],
       "licenses": [
         {
-          "license": {
-            "id": "MIT"
-          }
+          "expression": "(MIT)"
         }
       ],
       "purl": "pkg:pypi/mdurl@0.1.2",
+      "externalReferences": [
+        {
+          "url": "https://github.com/executablebooks/mdurl",
+          "type": "website"
+        },
+        {
+          "url": "https://pypi.org/project/mdurl/",
+          "type": "distribution"
+        },
+        {
+          "url": "https://github.com/executablebooks/mdurl",
+          "type": "vcs"
+        },
+        {
+          "url": "https://mdurl.readthedocs.io/",
+          "type": "documentation"
+        }
+      ],
       "properties": [
         {
           "name": "aquasecurity:trivy:FilePath",
@@ -1533,14 +2970,43 @@
         {
           "name": "aquasecurity:trivy:PkgType",
           "value": "python-pkg"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2021-07-20T16:01:55Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2022-08-14T12:40:09Z"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "commonmark"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "markdown"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "markdown-it"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "url"
         }
       ]
     },
     {
       "bom-ref": "pkg:pypi/more-itertools@10.3.0",
       "type": "library",
+      "supplier": {
+        "name": "more-itertools"
+      },
+      "author": "more-itertools",
       "name": "more-itertools",
       "version": "10.3.0",
+      "description": "More routines for operating on iterables, beyond itertools",
       "hashes": [
         {
           "alg": "SHA-1",
@@ -1549,12 +3015,28 @@
       ],
       "licenses": [
         {
-          "license": {
-            "id": "MIT"
-          }
+          "expression": "(MIT)"
         }
       ],
       "purl": "pkg:pypi/more-itertools@10.3.0",
+      "externalReferences": [
+        {
+          "url": "https://github.com/more-itertools/more-itertools",
+          "type": "website"
+        },
+        {
+          "url": "https://pypi.org/project/more-itertools/",
+          "type": "distribution"
+        },
+        {
+          "url": "https://github.com/more-itertools/more-itertools",
+          "type": "vcs"
+        },
+        {
+          "url": "https://more-itertools.readthedocs.io/en/stable/",
+          "type": "documentation"
+        }
+      ],
       "properties": [
         {
           "name": "aquasecurity:trivy:FilePath",
@@ -1571,14 +3053,30 @@
         {
           "name": "aquasecurity:trivy:PkgType",
           "value": "python-pkg"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2012-04-26T07:26:41Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2025-09-02T15:23:09Z"
         }
       ]
     },
     {
       "bom-ref": "pkg:pypi/numpy@1.26.4",
       "type": "library",
+      "supplier": {
+        "name": "NumPy",
+        "url": [
+          "http://www.numpy.org/"
+        ]
+      },
+      "author": "NumPy",
       "name": "numpy",
       "version": "1.26.4",
+      "description": "Fundamental package for array computing in Python",
       "hashes": [
         {
           "alg": "SHA-1",
@@ -1587,12 +3085,24 @@
       ],
       "licenses": [
         {
-          "license": {
-            "id": "BSD-3-Clause"
-          }
+          "expression": "(BSD-3-Clause OR 0BSD OR MIT OR Zlib OR CC0-1.0)"
         }
       ],
       "purl": "pkg:pypi/numpy@1.26.4",
+      "externalReferences": [
+        {
+          "url": "https://pypi.org/project/numpy/",
+          "type": "distribution"
+        },
+        {
+          "url": "https://github.com/numpy/numpy",
+          "type": "vcs"
+        },
+        {
+          "url": "https://numpy.readthedocs.io/",
+          "type": "documentation"
+        }
+      ],
       "properties": [
         {
           "name": "aquasecurity:trivy:FilePath",
@@ -1609,14 +3119,38 @@
         {
           "name": "aquasecurity:trivy:PkgType",
           "value": "python-pkg"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2006-12-02T02:07:43Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2026-01-31T23:10:25Z"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "numpy"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "python"
         }
       ]
     },
     {
       "bom-ref": "pkg:pypi/packaging@24.2",
       "type": "library",
+      "supplier": {
+        "name": "Python Packaging Authority",
+        "url": [
+          "https://www.pypa.io"
+        ]
+      },
+      "author": "Python Packaging Authority",
       "name": "packaging",
       "version": "24.2",
+      "description": "Core utilities for Python packages",
       "hashes": [
         {
           "alg": "SHA-1",
@@ -1625,17 +3159,24 @@
       ],
       "licenses": [
         {
-          "license": {
-            "id": "Apache-2.0"
-          }
-        },
-        {
-          "license": {
-            "id": "BSD-3-Clause"
-          }
+          "expression": "(Apache-2.0 OR BSD-2-Clause)"
         }
       ],
       "purl": "pkg:pypi/packaging@24.2",
+      "externalReferences": [
+        {
+          "url": "https://pypi.org/project/packaging/",
+          "type": "distribution"
+        },
+        {
+          "url": "https://github.com/pypa/packaging",
+          "type": "vcs"
+        },
+        {
+          "url": "https://packaging.pypa.io/",
+          "type": "documentation"
+        }
+      ],
       "properties": [
         {
           "name": "aquasecurity:trivy:FilePath",
@@ -1652,14 +3193,34 @@
         {
           "name": "aquasecurity:trivy:PkgType",
           "value": "python-pkg"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2014-09-05T00:26:05Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2026-01-21T20:50:37Z"
+        },
+        {
+          "name": "ecosystems:owner_location",
+          "value": "United States of America"
         }
       ]
     },
     {
       "bom-ref": "pkg:pypi/packaging@25.0",
       "type": "library",
+      "supplier": {
+        "name": "Python Packaging Authority",
+        "url": [
+          "https://www.pypa.io"
+        ]
+      },
+      "author": "Python Packaging Authority",
       "name": "packaging",
       "version": "25.0",
+      "description": "Core utilities for Python packages",
       "hashes": [
         {
           "alg": "SHA-1",
@@ -1668,17 +3229,24 @@
       ],
       "licenses": [
         {
-          "license": {
-            "id": "Apache-2.0"
-          }
-        },
-        {
-          "license": {
-            "id": "BSD-3-Clause"
-          }
+          "expression": "(Apache-2.0 OR BSD-2-Clause)"
         }
       ],
       "purl": "pkg:pypi/packaging@25.0",
+      "externalReferences": [
+        {
+          "url": "https://pypi.org/project/packaging/",
+          "type": "distribution"
+        },
+        {
+          "url": "https://github.com/pypa/packaging",
+          "type": "vcs"
+        },
+        {
+          "url": "https://packaging.pypa.io/",
+          "type": "documentation"
+        }
+      ],
       "properties": [
         {
           "name": "aquasecurity:trivy:FilePath",
@@ -1695,14 +3263,34 @@
         {
           "name": "aquasecurity:trivy:PkgType",
           "value": "python-pkg"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2014-09-05T00:26:05Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2026-01-21T20:50:37Z"
+        },
+        {
+          "name": "ecosystems:owner_location",
+          "value": "United States of America"
         }
       ]
     },
     {
       "bom-ref": "pkg:pypi/pandas@2.3.3",
       "type": "library",
+      "supplier": {
+        "name": "pandas",
+        "url": [
+          "http://pandas.pydata.org"
+        ]
+      },
+      "author": "pandas",
       "name": "pandas",
       "version": "2.3.3",
+      "description": "Powerful data structures for data analysis, time series, and statistics",
       "hashes": [
         {
           "alg": "SHA-1",
@@ -1711,12 +3299,24 @@
       ],
       "licenses": [
         {
-          "license": {
-            "id": "BSD-3-Clause"
-          }
+          "expression": "(Other)"
         }
       ],
       "purl": "pkg:pypi/pandas@2.3.3",
+      "externalReferences": [
+        {
+          "url": "https://pypi.org/project/pandas/",
+          "type": "distribution"
+        },
+        {
+          "url": "https://github.com/pandas-dev/pandas",
+          "type": "vcs"
+        },
+        {
+          "url": "https://pandas.readthedocs.io/",
+          "type": "documentation"
+        }
+      ],
       "properties": [
         {
           "name": "aquasecurity:trivy:FilePath",
@@ -1733,14 +3333,54 @@
         {
           "name": "aquasecurity:trivy:PkgType",
           "value": "python-pkg"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2009-12-25T23:58:31Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2026-01-21T15:50:15Z"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "alignment"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "data-analysis"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "data-science"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "flexible"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "pandas"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "python"
         }
       ]
     },
     {
       "bom-ref": "pkg:pypi/patsy@1.0.2",
       "type": "library",
+      "supplier": {
+        "name": "Python for Data",
+        "url": [
+          "http://groups.google.com/forum/?fromgroups#!forum/pydata"
+        ]
+      },
+      "author": "Python for Data",
       "name": "patsy",
       "version": "1.0.2",
+      "description": "A Python package for describing statistical models and for building design matrices.",
       "hashes": [
         {
           "alg": "SHA-1",
@@ -1749,12 +3389,28 @@
       ],
       "licenses": [
         {
-          "license": {
-            "id": "BSD-3-Clause"
-          }
+          "expression": "(BSD-2-Clause)"
         }
       ],
       "purl": "pkg:pypi/patsy@1.0.2",
+      "externalReferences": [
+        {
+          "url": "https://github.com/pydata/patsy",
+          "type": "website"
+        },
+        {
+          "url": "https://pypi.org/project/patsy/",
+          "type": "distribution"
+        },
+        {
+          "url": "https://github.com/pydata/patsy",
+          "type": "vcs"
+        },
+        {
+          "url": "https://patsy.readthedocs.io/",
+          "type": "documentation"
+        }
+      ],
       "properties": [
         {
           "name": "aquasecurity:trivy:FilePath",
@@ -1771,14 +3427,27 @@
         {
           "name": "aquasecurity:trivy:PkgType",
           "value": "python-pkg"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2012-07-10T20:00:34Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2025-10-20T16:17:36Z"
         }
       ]
     },
     {
       "bom-ref": "pkg:pypi/platformdirs@4.2.2",
       "type": "library",
+      "supplier": {
+        "name": "platformdirs"
+      },
+      "author": "platformdirs",
       "name": "platformdirs",
       "version": "4.2.2",
+      "description": "A small Python package for determining appropriate platform-specific dirs, e.g. a `user data dir`.",
       "hashes": [
         {
           "alg": "SHA-1",
@@ -1787,12 +3456,28 @@
       ],
       "licenses": [
         {
-          "license": {
-            "id": "MIT"
-          }
+          "expression": "(MIT)"
         }
       ],
       "purl": "pkg:pypi/platformdirs@4.2.2",
+      "externalReferences": [
+        {
+          "url": "https://github.com/tox-dev/platformdirs",
+          "type": "website"
+        },
+        {
+          "url": "https://pypi.org/project/platformdirs/",
+          "type": "distribution"
+        },
+        {
+          "url": "https://github.com/tox-dev/platformdirs",
+          "type": "vcs"
+        },
+        {
+          "url": "https://platformdirs.readthedocs.io",
+          "type": "documentation"
+        }
+      ],
       "properties": [
         {
           "name": "aquasecurity:trivy:FilePath",
@@ -1809,14 +3494,54 @@
         {
           "name": "aquasecurity:trivy:PkgType",
           "value": "python-pkg"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2021-05-13T11:43:36Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2026-02-12T22:21:52Z"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "appdirs"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "configuration"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "cross-platform"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "hacktoberfest"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "xdg"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "xdg-user-dirs"
         }
       ]
     },
     {
       "bom-ref": "pkg:pypi/pmdarima@2.1.1",
       "type": "library",
+      "supplier": {
+        "name": "alkaline-ml",
+        "url": [
+          "alkaline-ml.com"
+        ]
+      },
+      "author": "alkaline-ml",
       "name": "pmdarima",
       "version": "2.1.1",
+      "description": "Python's forecast::auto.arima equivalent",
       "hashes": [
         {
           "alg": "SHA-1",
@@ -1825,12 +3550,28 @@
       ],
       "licenses": [
         {
-          "license": {
-            "id": "MIT"
-          }
+          "expression": "(MIT)"
         }
       ],
       "purl": "pkg:pypi/pmdarima@2.1.1",
+      "externalReferences": [
+        {
+          "url": "http://alkaline-ml.com/pmdarima",
+          "type": "website"
+        },
+        {
+          "url": "https://pypi.org/project/pmdarima/",
+          "type": "distribution"
+        },
+        {
+          "url": "https://github.com/alkaline-ml/pmdarima",
+          "type": "vcs"
+        },
+        {
+          "url": "http://alkaline-ml.com/pmdarima",
+          "type": "documentation"
+        }
+      ],
       "properties": [
         {
           "name": "aquasecurity:trivy:FilePath",
@@ -1847,14 +3588,67 @@
         {
           "name": "aquasecurity:trivy:PkgType",
           "value": "python-pkg"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2023-10-23T14:06:58Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2025-11-17T16:07:43Z"
+        },
+        {
+          "name": "ecosystems:owner_location",
+          "value": "Plano, TX"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "arima"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "econometrics"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "forecasting"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "forecasting-models"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "machine-learning"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "pmdarima"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "python"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "sarimax"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "time-series"
         }
       ]
     },
     {
       "bom-ref": "pkg:pypi/prompt-toolkit@3.0.52",
       "type": "library",
+      "supplier": {
+        "name": "prompt-toolkit"
+      },
+      "author": "prompt-toolkit",
       "name": "prompt_toolkit",
       "version": "3.0.52",
+      "description": "Library for building powerful interactive command lines in Python",
       "hashes": [
         {
           "alg": "SHA-1",
@@ -1863,12 +3657,28 @@
       ],
       "licenses": [
         {
-          "license": {
-            "id": "BSD-3-Clause"
-          }
+          "expression": "(BSD-3-Clause)"
         }
       ],
       "purl": "pkg:pypi/prompt-toolkit@3.0.52",
+      "externalReferences": [
+        {
+          "url": "https://github.com/prompt-toolkit/python-prompt-toolkit",
+          "type": "website"
+        },
+        {
+          "url": "https://pypi.org/project/prompt-toolkit/",
+          "type": "distribution"
+        },
+        {
+          "url": "https://github.com/prompt-toolkit/python-prompt-toolkit",
+          "type": "vcs"
+        },
+        {
+          "url": "https://python-prompt-toolkit.readthedocs.io/en/stable/",
+          "type": "documentation"
+        }
+      ],
       "properties": [
         {
           "name": "aquasecurity:trivy:FilePath",
@@ -1885,14 +3695,30 @@
         {
           "name": "aquasecurity:trivy:PkgType",
           "value": "python-pkg"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2014-08-01T20:12:17Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2025-08-27T15:23:59Z"
         }
       ]
     },
     {
       "bom-ref": "pkg:pypi/pydantic-core@2.41.5",
       "type": "library",
+      "supplier": {
+        "name": "Pydantic",
+        "url": [
+          "https://pydantic.dev"
+        ]
+      },
+      "author": "Pydantic",
       "name": "pydantic_core",
       "version": "2.41.5",
+      "description": "Core functionality for Pydantic validation and serialization",
       "hashes": [
         {
           "alg": "SHA-1",
@@ -1901,12 +3727,28 @@
       ],
       "licenses": [
         {
-          "license": {
-            "id": "MIT"
-          }
+          "expression": "(MIT)"
         }
       ],
       "purl": "pkg:pypi/pydantic-core@2.41.5",
+      "externalReferences": [
+        {
+          "url": "https://github.com/pydantic/pydantic-core",
+          "type": "website"
+        },
+        {
+          "url": "https://pypi.org/project/pydantic_core/",
+          "type": "distribution"
+        },
+        {
+          "url": "https://github.com/pydantic/pydantic-core",
+          "type": "vcs"
+        },
+        {
+          "url": "https://pydantic_core.readthedocs.io/",
+          "type": "documentation"
+        }
+      ],
       "properties": [
         {
           "name": "aquasecurity:trivy:FilePath",
@@ -1923,14 +3765,58 @@
         {
           "name": "aquasecurity:trivy:PkgType",
           "value": "python-pkg"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2022-04-20T16:59:51Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2025-11-04T13:39:04Z"
+        },
+        {
+          "name": "ecosystems:owner_location",
+          "value": "United Kingdom"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "json-schema"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "parsing"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "pydantic"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "rust"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "schema"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "validation"
         }
       ]
     },
     {
       "bom-ref": "pkg:pypi/pydantic-settings@2.11.0",
       "type": "library",
+      "supplier": {
+        "name": "Pydantic",
+        "url": [
+          "https://pydantic.dev"
+        ]
+      },
+      "author": "Pydantic",
       "name": "pydantic-settings",
       "version": "2.11.0",
+      "description": "Settings management using Pydantic",
       "hashes": [
         {
           "alg": "SHA-1",
@@ -1939,12 +3825,28 @@
       ],
       "licenses": [
         {
-          "license": {
-            "id": "MIT"
-          }
+          "expression": "(MIT)"
         }
       ],
       "purl": "pkg:pypi/pydantic-settings@2.11.0",
+      "externalReferences": [
+        {
+          "url": "https://github.com/pydantic/pydantic-settings",
+          "type": "website"
+        },
+        {
+          "url": "https://pypi.org/project/pydantic-settings/",
+          "type": "distribution"
+        },
+        {
+          "url": "https://github.com/pydantic/pydantic-settings",
+          "type": "vcs"
+        },
+        {
+          "url": "https://docs.pydantic.dev/dev-v2/concepts/pydantic_settings/",
+          "type": "documentation"
+        }
+      ],
       "properties": [
         {
           "name": "aquasecurity:trivy:FilePath",
@@ -1961,14 +3863,54 @@
         {
           "name": "aquasecurity:trivy:PkgType",
           "value": "python-pkg"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2019-08-19T16:44:43Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2025-11-10T14:25:45Z"
+        },
+        {
+          "name": "ecosystems:owner_location",
+          "value": "United Kingdom"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "configuration"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "environment"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "pydantic"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "python"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "settings"
         }
       ]
     },
     {
       "bom-ref": "pkg:pypi/pydantic@2.12.4",
       "type": "library",
+      "supplier": {
+        "name": "Pydantic",
+        "url": [
+          "https://pydantic.dev"
+        ]
+      },
+      "author": "Pydantic",
       "name": "pydantic",
       "version": "2.12.4",
+      "description": "Data validation using Python type hints",
       "hashes": [
         {
           "alg": "SHA-1",
@@ -1977,12 +3919,28 @@
       ],
       "licenses": [
         {
-          "license": {
-            "id": "MIT"
-          }
+          "expression": "(MIT)"
         }
       ],
       "purl": "pkg:pypi/pydantic@2.12.4",
+      "externalReferences": [
+        {
+          "url": "https://github.com/pydantic/pydantic",
+          "type": "website"
+        },
+        {
+          "url": "https://pypi.org/project/pydantic/",
+          "type": "distribution"
+        },
+        {
+          "url": "https://github.com/pydantic/pydantic",
+          "type": "vcs"
+        },
+        {
+          "url": "https://docs.pydantic.dev",
+          "type": "documentation"
+        }
+      ],
       "properties": [
         {
           "name": "aquasecurity:trivy:FilePath",
@@ -1999,14 +3957,75 @@
         {
           "name": "aquasecurity:trivy:PkgType",
           "value": "python-pkg"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2017-05-03T20:58:46Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2025-11-26T15:11:44Z"
+        },
+        {
+          "name": "ecosystems:owner_location",
+          "value": "United Kingdom"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "hints"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "json-schema"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "parsing"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "pydantic"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "python"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "python310"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "python311"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "python312"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "python313"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "python39"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "validation"
         }
       ]
     },
     {
       "bom-ref": "pkg:pypi/pygments@2.19.2",
       "type": "library",
+      "supplier": {
+        "name": "pygments"
+      },
+      "author": "pygments",
       "name": "Pygments",
       "version": "2.19.2",
+      "description": "Pygments is a syntax highlighting package written in Python.",
       "hashes": [
         {
           "alg": "SHA-1",
@@ -2015,12 +4034,28 @@
       ],
       "licenses": [
         {
-          "license": {
-            "id": "BSD-3-Clause"
-          }
+          "expression": "(BSD-2-Clause)"
         }
       ],
       "purl": "pkg:pypi/pygments@2.19.2",
+      "externalReferences": [
+        {
+          "url": "https://pygments.org",
+          "type": "website"
+        },
+        {
+          "url": "https://pypi.org/project/pygments/",
+          "type": "distribution"
+        },
+        {
+          "url": "https://github.com/pygments/pygments",
+          "type": "vcs"
+        },
+        {
+          "url": "https://pygments.org/docs",
+          "type": "documentation"
+        }
+      ],
       "properties": [
         {
           "name": "aquasecurity:trivy:FilePath",
@@ -2037,14 +4072,35 @@
         {
           "name": "aquasecurity:trivy:PkgType",
           "value": "python-pkg"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2006-10-30T10:29:59Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2025-06-21T13:39:07Z"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "python"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "syntax-highlighting"
         }
       ]
     },
     {
       "bom-ref": "pkg:pypi/python-dateutil@2.9.0.post0",
       "type": "library",
+      "supplier": {
+        "name": "dateutil"
+      },
+      "author": "dateutil",
       "name": "python-dateutil",
       "version": "2.9.0.post0",
+      "description": "Extensions to the standard Python datetime module",
       "hashes": [
         {
           "alg": "SHA-1",
@@ -2053,17 +4109,28 @@
       ],
       "licenses": [
         {
-          "license": {
-            "id": "BSD-3-Clause"
-          }
-        },
-        {
-          "license": {
-            "id": "Apache-2.0"
-          }
+          "expression": "(DOC)"
         }
       ],
       "purl": "pkg:pypi/python-dateutil@2.9.0.post0",
+      "externalReferences": [
+        {
+          "url": "https://github.com/dateutil/dateutil",
+          "type": "website"
+        },
+        {
+          "url": "https://pypi.org/project/python-dateutil/",
+          "type": "distribution"
+        },
+        {
+          "url": "https://github.com/dateutil/dateutil",
+          "type": "vcs"
+        },
+        {
+          "url": "https://dateutil.readthedocs.io/en/stable/",
+          "type": "documentation"
+        }
+      ],
       "properties": [
         {
           "name": "aquasecurity:trivy:FilePath",
@@ -2080,14 +4147,54 @@
         {
           "name": "aquasecurity:trivy:PkgType",
           "value": "python-pkg"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2008-08-06T19:11:48Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2024-03-01T03:52:51Z"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "datetime"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "library"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "parsing"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "python"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "time"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "timezones"
         }
       ]
     },
     {
       "bom-ref": "pkg:pypi/python-dotenv@1.2.1",
       "type": "library",
+      "supplier": {
+        "name": "Saurabh Kumar",
+        "url": [
+          "https://saurabh-kumar.com"
+        ]
+      },
+      "author": "Saurabh Kumar",
       "name": "python-dotenv",
       "version": "1.2.1",
+      "description": "Read key-value pairs from a .env file and set them as environment variables",
       "hashes": [
         {
           "alg": "SHA-1",
@@ -2096,12 +4203,24 @@
       ],
       "licenses": [
         {
-          "license": {
-            "id": "BSD-3-Clause"
-          }
+          "expression": "(BSD-3-Clause)"
         }
       ],
       "purl": "pkg:pypi/python-dotenv@1.2.1",
+      "externalReferences": [
+        {
+          "url": "https://pypi.org/project/python-dotenv/",
+          "type": "distribution"
+        },
+        {
+          "url": "https://github.com/theskumar/python-dotenv",
+          "type": "vcs"
+        },
+        {
+          "url": "https://python-dotenv.readthedocs.io/",
+          "type": "documentation"
+        }
+      ],
       "properties": [
         {
           "name": "aquasecurity:trivy:FilePath",
@@ -2118,14 +4237,59 @@
         {
           "name": "aquasecurity:trivy:PkgType",
           "value": "python-pkg"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2014-09-08T08:21:18Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2025-10-26T15:12:09Z"
+        },
+        {
+          "name": "ecosystems:owner_location",
+          "value": "New Delhi, India"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "12-factor-app"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "configuration"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "devops-tools"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "dotenv"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "env"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "environment-variables"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "python"
         }
       ]
     },
     {
       "bom-ref": "pkg:pypi/pytz@2025.2",
       "type": "library",
+      "supplier": {
+        "name": "Stub"
+      },
+      "author": "Stub",
       "name": "pytz",
       "version": "2025.2",
+      "description": "World timezone definitions, modern and historical",
       "hashes": [
         {
           "alg": "SHA-1",
@@ -2134,12 +4298,28 @@
       ],
       "licenses": [
         {
-          "license": {
-            "id": "MIT"
-          }
+          "expression": "(MIT)"
         }
       ],
       "purl": "pkg:pypi/pytz@2025.2",
+      "externalReferences": [
+        {
+          "url": "http://pythonhosted.org/pytz",
+          "type": "website"
+        },
+        {
+          "url": "https://pypi.org/project/pytz/",
+          "type": "distribution"
+        },
+        {
+          "url": "https://github.com/stub42/pytz",
+          "type": "vcs"
+        },
+        {
+          "url": "https://pytz.readthedocs.io/",
+          "type": "documentation"
+        }
+      ],
       "properties": [
         {
           "name": "aquasecurity:trivy:FilePath",
@@ -2156,14 +4336,30 @@
         {
           "name": "aquasecurity:trivy:PkgType",
           "value": "python-pkg"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2005-08-19T06:03:07Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2023-01-14T12:25:02Z"
         }
       ]
     },
     {
       "bom-ref": "pkg:pypi/questionary@2.1.1",
       "type": "library",
+      "supplier": {
+        "name": "Tom Bocklisch",
+        "url": [
+          "https://scm.io"
+        ]
+      },
+      "author": "Tom Bocklisch",
       "name": "questionary",
       "version": "2.1.1",
+      "description": "Python library to build pretty command line user prompts ⭐️",
       "hashes": [
         {
           "alg": "SHA-1",
@@ -2172,12 +4368,28 @@
       ],
       "licenses": [
         {
-          "license": {
-            "id": "MIT"
-          }
+          "expression": "(MIT)"
         }
       ],
       "purl": "pkg:pypi/questionary@2.1.1",
+      "externalReferences": [
+        {
+          "url": "https://github.com/tmbo/questionary",
+          "type": "website"
+        },
+        {
+          "url": "https://pypi.org/project/questionary/",
+          "type": "distribution"
+        },
+        {
+          "url": "https://github.com/tmbo/questionary",
+          "type": "vcs"
+        },
+        {
+          "url": "https://questionary.readthedocs.io/",
+          "type": "documentation"
+        }
+      ],
       "properties": [
         {
           "name": "aquasecurity:trivy:FilePath",
@@ -2194,14 +4406,38 @@
         {
           "name": "aquasecurity:trivy:PkgType",
           "value": "python-pkg"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2018-12-01T21:31:13Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2025-08-28T19:00:19Z"
+        },
+        {
+          "name": "ecosystems:owner_location",
+          "value": "Berlin"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "hacktoberfest"
         }
       ]
     },
     {
       "bom-ref": "pkg:pypi/requests@2.32.5",
       "type": "library",
+      "supplier": {
+        "name": "Python Software Foundation",
+        "url": [
+          "https://python.org/psf/github"
+        ]
+      },
+      "author": "Python Software Foundation",
       "name": "requests",
       "version": "2.32.5",
+      "description": "Python HTTP for Humans.",
       "hashes": [
         {
           "alg": "SHA-1",
@@ -2210,12 +4446,28 @@
       ],
       "licenses": [
         {
-          "license": {
-            "id": "Apache-2.0"
-          }
+          "expression": "(Apache-2.0)"
         }
       ],
       "purl": "pkg:pypi/requests@2.32.5",
+      "externalReferences": [
+        {
+          "url": "https://requests.readthedocs.io",
+          "type": "website"
+        },
+        {
+          "url": "https://pypi.org/project/requests/",
+          "type": "distribution"
+        },
+        {
+          "url": "https://github.com/psf/requests",
+          "type": "vcs"
+        },
+        {
+          "url": "https://requests.readthedocs.io",
+          "type": "documentation"
+        }
+      ],
       "properties": [
         {
           "name": "aquasecurity:trivy:FilePath",
@@ -2232,6 +4484,46 @@
         {
           "name": "aquasecurity:trivy:PkgType",
           "value": "python-pkg"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2023-08-18T19:29:45Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2025-08-18T20:46:00Z"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "client"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "cookies"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "forhumans"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "http"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "humans"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "python"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "python-requests"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "requests"
         }
       ]
     },
@@ -2240,6 +4532,7 @@
       "type": "library",
       "name": "rich-click",
       "version": "1.9.4",
+      "description": "Format click help output nicely with rich",
       "hashes": [
         {
           "alg": "SHA-1",
@@ -2248,12 +4541,28 @@
       ],
       "licenses": [
         {
-          "license": {
-            "name": "MIT License  Copyright (c) 2022 Phil Ewels  Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the \"Software\"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:  The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.  THE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE."
-          }
+          "expression": "(Other)"
         }
       ],
       "purl": "pkg:pypi/rich-click@1.9.4",
+      "externalReferences": [
+        {
+          "url": "https://github.com/ewels/rich-click",
+          "type": "website"
+        },
+        {
+          "url": "https://pypi.org/project/rich-click/",
+          "type": "distribution"
+        },
+        {
+          "url": "https://github.com/ewels/rich-click",
+          "type": "vcs"
+        },
+        {
+          "url": "https://github.com/ewels/rich-click",
+          "type": "documentation"
+        }
+      ],
       "properties": [
         {
           "name": "aquasecurity:trivy:FilePath",
@@ -2270,6 +4579,50 @@
         {
           "name": "aquasecurity:trivy:PkgType",
           "value": "python-pkg"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2022-02-09T22:44:07Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2026-01-31T04:29:26Z"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "cli"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "click"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "colored"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "coloured"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "help"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "python"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "rich"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "styled"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "styles"
         }
       ]
     },
@@ -2278,6 +4631,7 @@
       "type": "library",
       "name": "rich",
       "version": "14.2.0",
+      "description": "Render rich text, tables, progress bars, syntax highlighting, markdown and more to the terminal",
       "hashes": [
         {
           "alg": "SHA-1",
@@ -2286,12 +4640,28 @@
       ],
       "licenses": [
         {
-          "license": {
-            "id": "MIT"
-          }
+          "expression": "(MIT)"
         }
       ],
       "purl": "pkg:pypi/rich@14.2.0",
+      "externalReferences": [
+        {
+          "url": "https://github.com/Textualize/rich",
+          "type": "website"
+        },
+        {
+          "url": "https://pypi.org/project/rich/",
+          "type": "distribution"
+        },
+        {
+          "url": "https://github.com/Textualize/rich",
+          "type": "vcs"
+        },
+        {
+          "url": "https://rich.readthedocs.io/en/latest/",
+          "type": "documentation"
+        }
+      ],
       "properties": [
         {
           "name": "aquasecurity:trivy:FilePath",
@@ -2308,14 +4678,94 @@
         {
           "name": "aquasecurity:trivy:PkgType",
           "value": "python-pkg"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2019-11-10T15:57:05Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2026-02-01T16:20:46Z"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "ansi-colors"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "emoji"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "markdown"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "progress-bar"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "progress-bar-python"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "python"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "python-library"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "python3"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "rich"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "syntax-highlighting"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "tables"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "terminal"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "terminal-color"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "traceback"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "tracebacks-rich"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "tui"
         }
       ]
     },
     {
       "bom-ref": "pkg:pypi/scikit-learn@1.7.2",
       "type": "library",
+      "supplier": {
+        "name": "scikit-learn",
+        "url": [
+          "http://scikit-learn.org"
+        ]
+      },
+      "author": "scikit-learn",
       "name": "scikit-learn",
       "version": "1.7.2",
+      "description": "A set of python modules for machine learning and data mining",
       "hashes": [
         {
           "alg": "SHA-1",
@@ -2324,12 +4774,24 @@
       ],
       "licenses": [
         {
-          "license": {
-            "id": "BSD-3-Clause"
-          }
+          "expression": "(BSD-3-Clause)"
         }
       ],
       "purl": "pkg:pypi/scikit-learn@1.7.2",
+      "externalReferences": [
+        {
+          "url": "https://pypi.org/project/scikit-learn/",
+          "type": "distribution"
+        },
+        {
+          "url": "https://github.com/scikit-learn/scikit-learn",
+          "type": "vcs"
+        },
+        {
+          "url": "https://scikit-learn.readthedocs.io/",
+          "type": "documentation"
+        }
+      ],
       "properties": [
         {
           "name": "aquasecurity:trivy:FilePath",
@@ -2346,14 +4808,50 @@
         {
           "name": "aquasecurity:trivy:PkgType",
           "value": "python-pkg"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2011-09-22T00:03:10Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2025-12-10T07:07:39Z"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "data-analysis"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "data-science"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "machine-learning"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "python"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "statistics"
         }
       ]
     },
     {
       "bom-ref": "pkg:pypi/scipy@1.16.3",
       "type": "library",
+      "supplier": {
+        "name": "SciPy",
+        "url": [
+          "http://www.scipy.org/"
+        ]
+      },
+      "author": "SciPy",
       "name": "scipy",
       "version": "1.16.3",
+      "description": "Fundamental algorithms for scientific computing in Python",
       "hashes": [
         {
           "alg": "SHA-1",
@@ -2362,12 +4860,24 @@
       ],
       "licenses": [
         {
-          "license": {
-            "id": "BSD-3-Clause"
-          }
+          "expression": "(Other)"
         }
       ],
       "purl": "pkg:pypi/scipy@1.16.3",
+      "externalReferences": [
+        {
+          "url": "https://pypi.org/project/scipy/",
+          "type": "distribution"
+        },
+        {
+          "url": "https://github.com/scipy/scipy",
+          "type": "vcs"
+        },
+        {
+          "url": "https://scipy.readthedocs.io/",
+          "type": "documentation"
+        }
+      ],
       "properties": [
         {
           "name": "aquasecurity:trivy:FilePath",
@@ -2384,14 +4894,50 @@
         {
           "name": "aquasecurity:trivy:PkgType",
           "value": "python-pkg"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2017-09-18T10:28:37Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2026-01-10T21:24:33Z"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "algorithms"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "closember"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "python"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "scientific-computing"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "scipy"
         }
       ]
     },
     {
       "bom-ref": "pkg:pypi/setuptools@80.9.0",
       "type": "library",
+      "supplier": {
+        "name": "Python Packaging Authority",
+        "url": [
+          "https://www.pypa.io"
+        ]
+      },
+      "author": "Python Packaging Authority",
       "name": "setuptools",
       "version": "80.9.0",
+      "description": "Easily download, build, install, upgrade, and uninstall Python packages",
       "hashes": [
         {
           "alg": "SHA-1",
@@ -2400,12 +4946,24 @@
       ],
       "licenses": [
         {
-          "license": {
-            "id": "MIT"
-          }
+          "expression": "(MIT)"
         }
       ],
       "purl": "pkg:pypi/setuptools@80.9.0",
+      "externalReferences": [
+        {
+          "url": "https://pypi.org/project/setuptools/",
+          "type": "distribution"
+        },
+        {
+          "url": "https://github.com/pypa/setuptools",
+          "type": "vcs"
+        },
+        {
+          "url": "https://setuptools.pypa.io/",
+          "type": "documentation"
+        }
+      ],
       "properties": [
         {
           "name": "aquasecurity:trivy:FilePath",
@@ -2422,14 +4980,34 @@
         {
           "name": "aquasecurity:trivy:PkgType",
           "value": "python-pkg"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2006-05-12T22:42:46Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2026-02-08T15:08:38Z"
+        },
+        {
+          "name": "ecosystems:owner_location",
+          "value": "United States of America"
         }
       ]
     },
     {
       "bom-ref": "pkg:pypi/six@1.17.0",
       "type": "library",
+      "supplier": {
+        "name": "Benjamin Peterson",
+        "url": [
+          "https://www.locrian.net"
+        ]
+      },
+      "author": "Benjamin Peterson",
       "name": "six",
       "version": "1.17.0",
+      "description": "Python 2 and 3 compatibility utilities",
       "hashes": [
         {
           "alg": "SHA-1",
@@ -2438,12 +5016,28 @@
       ],
       "licenses": [
         {
-          "license": {
-            "id": "MIT"
-          }
+          "expression": "(MIT)"
         }
       ],
       "purl": "pkg:pypi/six@1.17.0",
+      "externalReferences": [
+        {
+          "url": "https://github.com/benjaminp/six",
+          "type": "website"
+        },
+        {
+          "url": "https://pypi.org/project/six/",
+          "type": "distribution"
+        },
+        {
+          "url": "https://github.com/benjaminp/six",
+          "type": "vcs"
+        },
+        {
+          "url": "https://six.readthedocs.io/",
+          "type": "documentation"
+        }
+      ],
       "properties": [
         {
           "name": "aquasecurity:trivy:FilePath",
@@ -2460,14 +5054,27 @@
         {
           "name": "aquasecurity:trivy:PkgType",
           "value": "python-pkg"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2010-06-29T19:56:36Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2024-12-04T17:35:26Z"
         }
       ]
     },
     {
       "bom-ref": "pkg:pypi/sniffio@1.3.1",
       "type": "library",
+      "supplier": {
+        "name": "python-trio"
+      },
+      "author": "python-trio",
       "name": "sniffio",
       "version": "1.3.1",
+      "description": "Sniff out which async library your code is running under",
       "hashes": [
         {
           "alg": "SHA-1",
@@ -2476,17 +5083,28 @@
       ],
       "licenses": [
         {
-          "license": {
-            "id": "MIT"
-          }
-        },
-        {
-          "license": {
-            "id": "Apache-2.0"
-          }
+          "expression": "(MIT OR Apache-2.0)"
         }
       ],
       "purl": "pkg:pypi/sniffio@1.3.1",
+      "externalReferences": [
+        {
+          "url": "https://github.com/python-trio/sniffio",
+          "type": "website"
+        },
+        {
+          "url": "https://pypi.org/project/sniffio/",
+          "type": "distribution"
+        },
+        {
+          "url": "https://github.com/python-trio/sniffio",
+          "type": "vcs"
+        },
+        {
+          "url": "https://sniffio.readthedocs.io/",
+          "type": "documentation"
+        }
+      ],
       "properties": [
         {
           "name": "aquasecurity:trivy:FilePath",
@@ -2503,14 +5121,46 @@
         {
           "name": "aquasecurity:trivy:PkgType",
           "value": "python-pkg"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2018-07-31T04:16:34Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2024-02-25T23:20:01Z"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "async"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "asyncio"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "python"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "trio"
         }
       ]
     },
     {
       "bom-ref": "pkg:pypi/statsmodels@0.14.5",
       "type": "library",
+      "supplier": {
+        "name": "statsmodels",
+        "url": [
+          "http://statsmodels.sourceforge.net/"
+        ]
+      },
+      "author": "statsmodels",
       "name": "statsmodels",
       "version": "0.14.5",
+      "description": "Statistical computations and models for Python",
       "hashes": [
         {
           "alg": "SHA-1",
@@ -2519,12 +5169,28 @@
       ],
       "licenses": [
         {
-          "license": {
-            "id": "BSD-3-Clause"
-          }
+          "expression": "(BSD-3-Clause)"
         }
       ],
       "purl": "pkg:pypi/statsmodels@0.14.5",
+      "externalReferences": [
+        {
+          "url": "https://www.statsmodels.org/",
+          "type": "website"
+        },
+        {
+          "url": "https://pypi.org/project/statsmodels/",
+          "type": "distribution"
+        },
+        {
+          "url": "https://github.com/statsmodels/statsmodels",
+          "type": "vcs"
+        },
+        {
+          "url": "https://www.statsmodels.org/stable/index.html",
+          "type": "documentation"
+        }
+      ],
       "properties": [
         {
           "name": "aquasecurity:trivy:FilePath",
@@ -2541,14 +5207,79 @@
         {
           "name": "aquasecurity:trivy:PkgType",
           "value": "python-pkg"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2012-06-19T14:35:46Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2025-12-05T19:27:35Z"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "count-model"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "data-analysis"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "data-science"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "econometrics"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "forecasting"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "generalized-linear-models"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "hypothesis-testing"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "prediction"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "python"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "regression-models"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "robust-estimation"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "statistics"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "timeseries-analysis"
         }
       ]
     },
     {
       "bom-ref": "pkg:pypi/threadpoolctl@3.6.0",
       "type": "library",
+      "supplier": {
+        "name": "joblib"
+      },
+      "author": "joblib",
       "name": "threadpoolctl",
       "version": "3.6.0",
+      "description": "threadpoolctl",
       "hashes": [
         {
           "alg": "SHA-1",
@@ -2557,12 +5288,28 @@
       ],
       "licenses": [
         {
-          "license": {
-            "id": "BSD-3-Clause"
-          }
+          "expression": "(BSD-3-Clause)"
         }
       ],
       "purl": "pkg:pypi/threadpoolctl@3.6.0",
+      "externalReferences": [
+        {
+          "url": "https://github.com/joblib/threadpoolctl",
+          "type": "website"
+        },
+        {
+          "url": "https://pypi.org/project/threadpoolctl/",
+          "type": "distribution"
+        },
+        {
+          "url": "https://github.com/joblib/threadpoolctl",
+          "type": "vcs"
+        },
+        {
+          "url": "https://threadpoolctl.readthedocs.io/",
+          "type": "documentation"
+        }
+      ],
       "properties": [
         {
           "name": "aquasecurity:trivy:FilePath",
@@ -2579,14 +5326,27 @@
         {
           "name": "aquasecurity:trivy:PkgType",
           "value": "python-pkg"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2019-06-03T13:48:32Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2025-03-13T13:49:21Z"
         }
       ]
     },
     {
       "bom-ref": "pkg:pypi/tomli@2.0.1",
       "type": "library",
+      "supplier": {
+        "name": "Taneli Hukkinen"
+      },
+      "author": "Taneli Hukkinen",
       "name": "tomli",
       "version": "2.0.1",
+      "description": "A lil' TOML parser",
       "hashes": [
         {
           "alg": "SHA-1",
@@ -2595,12 +5355,28 @@
       ],
       "licenses": [
         {
-          "license": {
-            "id": "MIT"
-          }
+          "expression": "(MIT)"
         }
       ],
       "purl": "pkg:pypi/tomli@2.0.1",
+      "externalReferences": [
+        {
+          "url": "https://github.com/hukkin/tomli",
+          "type": "website"
+        },
+        {
+          "url": "https://pypi.org/project/tomli/",
+          "type": "distribution"
+        },
+        {
+          "url": "https://github.com/hukkin/tomli",
+          "type": "vcs"
+        },
+        {
+          "url": "https://tomli.readthedocs.io/",
+          "type": "documentation"
+        }
+      ],
       "properties": [
         {
           "name": "aquasecurity:trivy:FilePath",
@@ -2617,14 +5393,54 @@
         {
           "name": "aquasecurity:trivy:PkgType",
           "value": "python-pkg"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2021-05-27T22:30:12Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2026-01-11T11:21:45Z"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "config"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "parser"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "python"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "toml"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "toml-parser"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "tomli"
         }
       ]
     },
     {
       "bom-ref": "pkg:pypi/tomlkit@0.13.3",
       "type": "library",
+      "supplier": {
+        "name": "Poetry",
+        "url": [
+          "https://python-poetry.org"
+        ]
+      },
+      "author": "Poetry",
       "name": "tomlkit",
       "version": "0.13.3",
+      "description": "Style preserving TOML library",
       "hashes": [
         {
           "alg": "SHA-1",
@@ -2633,12 +5449,28 @@
       ],
       "licenses": [
         {
-          "license": {
-            "id": "MIT"
-          }
+          "expression": "(MIT)"
         }
       ],
       "purl": "pkg:pypi/tomlkit@0.13.3",
+      "externalReferences": [
+        {
+          "url": "https://github.com/sdispater/tomlkit",
+          "type": "website"
+        },
+        {
+          "url": "https://pypi.org/project/tomlkit/",
+          "type": "distribution"
+        },
+        {
+          "url": "https://github.com/sdispater/tomlkit",
+          "type": "vcs"
+        },
+        {
+          "url": "https://tomlkit.readthedocs.io/",
+          "type": "documentation"
+        }
+      ],
       "properties": [
         {
           "name": "aquasecurity:trivy:FilePath",
@@ -2655,14 +5487,27 @@
         {
           "name": "aquasecurity:trivy:PkgType",
           "value": "python-pkg"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2018-07-10T01:54:08Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2026-01-13T01:14:51Z"
         }
       ]
     },
     {
       "bom-ref": "pkg:pypi/typeguard@4.3.0",
       "type": "library",
+      "supplier": {
+        "name": "Alex Grönholm"
+      },
+      "author": "Alex Grönholm",
       "name": "typeguard",
       "version": "4.3.0",
+      "description": "Run-time type checker for Python",
       "hashes": [
         {
           "alg": "SHA-1",
@@ -2671,12 +5516,24 @@
       ],
       "licenses": [
         {
-          "license": {
-            "id": "MIT"
-          }
+          "expression": "(MIT)"
         }
       ],
       "purl": "pkg:pypi/typeguard@4.3.0",
+      "externalReferences": [
+        {
+          "url": "https://pypi.org/project/typeguard/",
+          "type": "distribution"
+        },
+        {
+          "url": "https://github.com/agronholm/typeguard",
+          "type": "vcs"
+        },
+        {
+          "url": "https://typeguard.readthedocs.io/en/latest/",
+          "type": "documentation"
+        }
+      ],
       "properties": [
         {
           "name": "aquasecurity:trivy:FilePath",
@@ -2693,14 +5550,34 @@
         {
           "name": "aquasecurity:trivy:PkgType",
           "value": "python-pkg"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2015-12-29T01:37:32Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2025-06-18T09:56:05Z"
+        },
+        {
+          "name": "ecosystems:owner_location",
+          "value": "Nurmijärvi, Finland"
         }
       ]
     },
     {
       "bom-ref": "pkg:pypi/typing-extensions@4.12.2",
       "type": "library",
+      "supplier": {
+        "name": "Python",
+        "url": [
+          "https://www.python.org/"
+        ]
+      },
+      "author": "Python",
       "name": "typing_extensions",
       "version": "4.12.2",
+      "description": "Backported and Experimental Type Hints for Python 3.9+",
       "hashes": [
         {
           "alg": "SHA-1",
@@ -2709,12 +5586,28 @@
       ],
       "licenses": [
         {
-          "license": {
-            "name": "Python-Software-Foundation-License"
-          }
+          "expression": "(PSF-2.0)"
         }
       ],
       "purl": "pkg:pypi/typing-extensions@4.12.2",
+      "externalReferences": [
+        {
+          "url": "https://github.com/python/typing_extensions",
+          "type": "website"
+        },
+        {
+          "url": "https://pypi.org/project/typing-extensions/",
+          "type": "distribution"
+        },
+        {
+          "url": "https://github.com/python/typing_extensions",
+          "type": "vcs"
+        },
+        {
+          "url": "https://typing-extensions.readthedocs.io/",
+          "type": "documentation"
+        }
+      ],
       "properties": [
         {
           "name": "aquasecurity:trivy:FilePath",
@@ -2731,14 +5624,30 @@
         {
           "name": "aquasecurity:trivy:PkgType",
           "value": "python-pkg"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2017-09-17T12:25:17Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2025-08-25T13:49:24Z"
         }
       ]
     },
     {
       "bom-ref": "pkg:pypi/typing-extensions@4.15.0",
       "type": "library",
+      "supplier": {
+        "name": "Python",
+        "url": [
+          "https://www.python.org/"
+        ]
+      },
+      "author": "Python",
       "name": "typing_extensions",
       "version": "4.15.0",
+      "description": "Backported and Experimental Type Hints for Python 3.9+",
       "hashes": [
         {
           "alg": "SHA-1",
@@ -2747,12 +5656,28 @@
       ],
       "licenses": [
         {
-          "license": {
-            "id": "PSF-2.0"
-          }
+          "expression": "(PSF-2.0)"
         }
       ],
       "purl": "pkg:pypi/typing-extensions@4.15.0",
+      "externalReferences": [
+        {
+          "url": "https://github.com/python/typing_extensions",
+          "type": "website"
+        },
+        {
+          "url": "https://pypi.org/project/typing-extensions/",
+          "type": "distribution"
+        },
+        {
+          "url": "https://github.com/python/typing_extensions",
+          "type": "vcs"
+        },
+        {
+          "url": "https://typing-extensions.readthedocs.io/",
+          "type": "documentation"
+        }
+      ],
       "properties": [
         {
           "name": "aquasecurity:trivy:FilePath",
@@ -2769,14 +5694,30 @@
         {
           "name": "aquasecurity:trivy:PkgType",
           "value": "python-pkg"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2017-09-17T12:25:17Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2025-08-25T13:49:24Z"
         }
       ]
     },
     {
       "bom-ref": "pkg:pypi/typing-inspection@0.4.2",
       "type": "library",
+      "supplier": {
+        "name": "Pydantic",
+        "url": [
+          "https://pydantic.dev"
+        ]
+      },
+      "author": "Pydantic",
       "name": "typing-inspection",
       "version": "0.4.2",
+      "description": "Runtime typing introspection tools",
       "hashes": [
         {
           "alg": "SHA-1",
@@ -2785,12 +5726,28 @@
       ],
       "licenses": [
         {
-          "license": {
-            "id": "MIT"
-          }
+          "expression": "(MIT)"
         }
       ],
       "purl": "pkg:pypi/typing-inspection@0.4.2",
+      "externalReferences": [
+        {
+          "url": "https://github.com/pydantic/typing-inspection",
+          "type": "website"
+        },
+        {
+          "url": "https://pypi.org/project/typing-inspection/",
+          "type": "distribution"
+        },
+        {
+          "url": "https://github.com/pydantic/typing-inspection",
+          "type": "vcs"
+        },
+        {
+          "url": "https://pydantic.github.io/typing-inspection/dev/",
+          "type": "documentation"
+        }
+      ],
       "properties": [
         {
           "name": "aquasecurity:trivy:FilePath",
@@ -2807,14 +5764,34 @@
         {
           "name": "aquasecurity:trivy:PkgType",
           "value": "python-pkg"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2025-02-13T10:25:04Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2025-10-01T02:14:40Z"
+        },
+        {
+          "name": "ecosystems:owner_location",
+          "value": "United Kingdom"
         }
       ]
     },
     {
       "bom-ref": "pkg:pypi/tzdata@2025.2",
       "type": "library",
+      "supplier": {
+        "name": "Python",
+        "url": [
+          "https://www.python.org/"
+        ]
+      },
+      "author": "Python",
       "name": "tzdata",
       "version": "2025.2",
+      "description": "Provider of IANA time zone data",
       "hashes": [
         {
           "alg": "SHA-1",
@@ -2823,12 +5800,28 @@
       ],
       "licenses": [
         {
-          "license": {
-            "id": "Apache-2.0"
-          }
+          "expression": "(Apache-2.0)"
         }
       ],
       "purl": "pkg:pypi/tzdata@2025.2",
+      "externalReferences": [
+        {
+          "url": "https://github.com/python/tzdata",
+          "type": "website"
+        },
+        {
+          "url": "https://pypi.org/project/tzdata/",
+          "type": "distribution"
+        },
+        {
+          "url": "https://github.com/python/tzdata",
+          "type": "vcs"
+        },
+        {
+          "url": "https://tzdata.readthedocs.io",
+          "type": "documentation"
+        }
+      ],
       "properties": [
         {
           "name": "aquasecurity:trivy:FilePath",
@@ -2845,14 +5838,27 @@
         {
           "name": "aquasecurity:trivy:PkgType",
           "value": "python-pkg"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2016-08-20T17:13:36Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2016-11-03T01:18:51Z"
         }
       ]
     },
     {
       "bom-ref": "pkg:pypi/tzlocal@5.3.1",
       "type": "library",
+      "supplier": {
+        "name": "Lennart Regebro"
+      },
+      "author": "Lennart Regebro",
       "name": "tzlocal",
       "version": "5.3.1",
+      "description": "tzinfo object for the local timezone",
       "hashes": [
         {
           "alg": "SHA-1",
@@ -2861,12 +5867,24 @@
       ],
       "licenses": [
         {
-          "license": {
-            "id": "MIT"
-          }
+          "expression": "(MIT)"
         }
       ],
       "purl": "pkg:pypi/tzlocal@5.3.1",
+      "externalReferences": [
+        {
+          "url": "https://pypi.org/project/tzlocal/",
+          "type": "distribution"
+        },
+        {
+          "url": "https://github.com/regebro/tzlocal",
+          "type": "vcs"
+        },
+        {
+          "url": "https://tzlocal.readthedocs.io/",
+          "type": "documentation"
+        }
+      ],
       "properties": [
         {
           "name": "aquasecurity:trivy:FilePath",
@@ -2883,14 +5901,30 @@
         {
           "name": "aquasecurity:trivy:PkgType",
           "value": "python-pkg"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2012-09-11T13:30:04Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2025-03-05T21:17:39Z"
         }
       ]
     },
     {
       "bom-ref": "pkg:pypi/urllib3@2.6.3",
       "type": "library",
+      "supplier": {
+        "name": "urllib3",
+        "url": [
+          "https://urllib3.readthedocs.io"
+        ]
+      },
+      "author": "urllib3",
       "name": "urllib3",
       "version": "2.6.3",
+      "description": "HTTP library with thread-safe connection pooling, file post, and more.",
       "hashes": [
         {
           "alg": "SHA-1",
@@ -2899,12 +5933,24 @@
       ],
       "licenses": [
         {
-          "license": {
-            "id": "MIT"
-          }
+          "expression": "(MIT)"
         }
       ],
       "purl": "pkg:pypi/urllib3@2.6.3",
+      "externalReferences": [
+        {
+          "url": "https://pypi.org/project/urllib3/",
+          "type": "distribution"
+        },
+        {
+          "url": "https://github.com/urllib3/urllib3",
+          "type": "vcs"
+        },
+        {
+          "url": "https://urllib3.readthedocs.io",
+          "type": "documentation"
+        }
+      ],
       "properties": [
         {
           "name": "aquasecurity:trivy:FilePath",
@@ -2921,14 +5967,43 @@
         {
           "name": "aquasecurity:trivy:PkgType",
           "value": "python-pkg"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2009-12-11T08:47:22Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2026-01-07T16:24:42Z"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "http"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "http-client"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "python"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "urllib3"
         }
       ]
     },
     {
       "bom-ref": "pkg:pypi/wcmatch@10.1",
       "type": "library",
+      "supplier": {
+        "name": "Isaac Muse"
+      },
+      "author": "Isaac Muse",
       "name": "wcmatch",
       "version": "10.1",
+      "description": "Wildcard/glob file name matcher.",
       "hashes": [
         {
           "alg": "SHA-1",
@@ -2937,12 +6012,28 @@
       ],
       "licenses": [
         {
-          "license": {
-            "id": "MIT"
-          }
+          "expression": "(MIT)"
         }
       ],
       "purl": "pkg:pypi/wcmatch@10.1",
+      "externalReferences": [
+        {
+          "url": "https://github.com/facelessuser/wcmatch",
+          "type": "website"
+        },
+        {
+          "url": "https://pypi.org/project/wcmatch/",
+          "type": "distribution"
+        },
+        {
+          "url": "https://github.com/facelessuser/wcmatch",
+          "type": "vcs"
+        },
+        {
+          "url": "https://wcmatch.readthedocs.io/",
+          "type": "documentation"
+        }
+      ],
       "properties": [
         {
           "name": "aquasecurity:trivy:FilePath",
@@ -2959,14 +6050,34 @@
         {
           "name": "aquasecurity:trivy:PkgType",
           "value": "python-pkg"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2018-06-06T03:41:14Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2024-05-15T12:51:06Z"
+        },
+        {
+          "name": "ecosystems:owner_location",
+          "value": "Colorado"
         }
       ]
     },
     {
       "bom-ref": "pkg:pypi/wcwidth@0.2.14",
       "type": "library",
+      "supplier": {
+        "name": "Jeff Quast",
+        "url": [
+          "https://jeffquast.com"
+        ]
+      },
+      "author": "Jeff Quast",
       "name": "wcwidth",
       "version": "0.2.14",
+      "description": "Measures the displayed width of unicode strings in a terminal",
       "hashes": [
         {
           "alg": "SHA-1",
@@ -2975,12 +6086,28 @@
       ],
       "licenses": [
         {
-          "license": {
-            "id": "MIT"
-          }
+          "expression": "(MIT)"
         }
       ],
       "purl": "pkg:pypi/wcwidth@0.2.14",
+      "externalReferences": [
+        {
+          "url": "https://github.com/jquast/wcwidth",
+          "type": "website"
+        },
+        {
+          "url": "https://pypi.org/project/wcwidth/",
+          "type": "distribution"
+        },
+        {
+          "url": "https://github.com/jquast/wcwidth",
+          "type": "vcs"
+        },
+        {
+          "url": "https://wcwidth.readthedocs.io/",
+          "type": "documentation"
+        }
+      ],
       "properties": [
         {
           "name": "aquasecurity:trivy:FilePath",
@@ -2997,14 +6124,34 @@
         {
           "name": "aquasecurity:trivy:PkgType",
           "value": "python-pkg"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2014-05-05T02:00:07Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2026-02-06T19:19:39Z"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "wcwidth"
         }
       ]
     },
     {
       "bom-ref": "pkg:pypi/werkzeug@3.1.5",
       "type": "library",
+      "supplier": {
+        "name": "Pallets",
+        "url": [
+          "https://palletsprojects.com"
+        ]
+      },
+      "author": "Pallets",
       "name": "Werkzeug",
       "version": "3.1.5",
+      "description": "The comprehensive WSGI web application library.",
       "hashes": [
         {
           "alg": "SHA-1",
@@ -3013,12 +6160,24 @@
       ],
       "licenses": [
         {
-          "license": {
-            "id": "BSD-3-Clause"
-          }
+          "expression": "(BSD-3-Clause)"
         }
       ],
       "purl": "pkg:pypi/werkzeug@3.1.5",
+      "externalReferences": [
+        {
+          "url": "https://pypi.org/project/werkzeug/",
+          "type": "distribution"
+        },
+        {
+          "url": "https://github.com/pallets/werkzeug",
+          "type": "vcs"
+        },
+        {
+          "url": "https://werkzeug.palletsprojects.com/",
+          "type": "documentation"
+        }
+      ],
       "properties": [
         {
           "name": "aquasecurity:trivy:FilePath",
@@ -3035,14 +6194,50 @@
         {
           "name": "aquasecurity:trivy:PkgType",
           "value": "python-pkg"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2007-12-09T18:32:05Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2026-01-08T17:49:21Z"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "http"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "pallets"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "python"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "werkzeug"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "wsgi"
         }
       ]
     },
     {
       "bom-ref": "pkg:pypi/wheel@0.45.1",
       "type": "library",
+      "supplier": {
+        "name": "Python Packaging Authority",
+        "url": [
+          "https://www.pypa.io"
+        ]
+      },
+      "author": "Python Packaging Authority",
       "name": "wheel",
       "version": "0.45.1",
+      "description": "Command line tool for manipulating wheel files",
       "hashes": [
         {
           "alg": "SHA-1",
@@ -3051,12 +6246,24 @@
       ],
       "licenses": [
         {
-          "license": {
-            "id": "MIT"
-          }
+          "expression": "(MIT)"
         }
       ],
       "purl": "pkg:pypi/wheel@0.45.1",
+      "externalReferences": [
+        {
+          "url": "https://pypi.org/project/wheel/",
+          "type": "distribution"
+        },
+        {
+          "url": "https://github.com/pypa/wheel",
+          "type": "vcs"
+        },
+        {
+          "url": "https://wheel.readthedocs.io/",
+          "type": "documentation"
+        }
+      ],
       "properties": [
         {
           "name": "aquasecurity:trivy:FilePath",
@@ -3073,14 +6280,34 @@
         {
           "name": "aquasecurity:trivy:PkgType",
           "value": "python-pkg"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2012-07-01T07:33:22Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2026-01-22T12:39:48Z"
+        },
+        {
+          "name": "ecosystems:owner_location",
+          "value": "United States of America"
         }
       ]
     },
     {
       "bom-ref": "pkg:pypi/zipp@3.19.2",
       "type": "library",
+      "supplier": {
+        "name": "Jason R. Coombs",
+        "url": [
+          "https://www.jaraco.com"
+        ]
+      },
+      "author": "Jason R. Coombs",
       "name": "zipp",
       "version": "3.19.2",
+      "description": "Backport of pathlib-compatible object wrapper for zip files",
       "hashes": [
         {
           "alg": "SHA-1",
@@ -3089,12 +6316,24 @@
       ],
       "licenses": [
         {
-          "license": {
-            "id": "MIT"
-          }
+          "expression": "(MIT)"
         }
       ],
       "purl": "pkg:pypi/zipp@3.19.2",
+      "externalReferences": [
+        {
+          "url": "https://pypi.org/project/zipp/",
+          "type": "distribution"
+        },
+        {
+          "url": "https://github.com/jaraco/zipp",
+          "type": "vcs"
+        },
+        {
+          "url": "https://zipp.readthedocs.io/",
+          "type": "documentation"
+        }
+      ],
       "properties": [
         {
           "name": "aquasecurity:trivy:FilePath",
@@ -3111,14 +6350,34 @@
         {
           "name": "aquasecurity:trivy:PkgType",
           "value": "python-pkg"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2018-11-15T22:02:57Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2025-06-08T17:06:38Z"
+        },
+        {
+          "name": "ecosystems:owner_location",
+          "value": "Pittsburgh, PA, USA"
         }
       ]
     },
     {
       "bom-ref": "pkg:pypi/zope.event@6.0",
       "type": "library",
+      "supplier": {
+        "name": "Zope",
+        "url": [
+          "https://www.zope.dev"
+        ]
+      },
+      "author": "Zope",
       "name": "zope.event",
       "version": "6.0",
+      "description": "Very basic event publishing system",
       "hashes": [
         {
           "alg": "SHA-1",
@@ -3127,12 +6386,28 @@
       ],
       "licenses": [
         {
-          "license": {
-            "id": "ZPL-2.1"
-          }
+          "expression": "(ZPL-2.1)"
         }
       ],
       "purl": "pkg:pypi/zope.event@6.0",
+      "externalReferences": [
+        {
+          "url": "https://github.com/zopefoundation/zope.event",
+          "type": "website"
+        },
+        {
+          "url": "https://pypi.org/project/zope.event/",
+          "type": "distribution"
+        },
+        {
+          "url": "https://github.com/zopefoundation/zope.event",
+          "type": "vcs"
+        },
+        {
+          "url": "https://zope.event.readthedocs.io/",
+          "type": "documentation"
+        }
+      ],
       "properties": [
         {
           "name": "aquasecurity:trivy:FilePath",
@@ -3149,14 +6424,58 @@
         {
           "name": "aquasecurity:trivy:PkgType",
           "value": "python-pkg"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2007-02-19T10:52:51Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2025-07-22T07:03:59Z"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "dispatch"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "event"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "framework"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "maintained"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "publish"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "python"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "subscribe"
         }
       ]
     },
     {
       "bom-ref": "pkg:pypi/zope.interface@8.0.1",
       "type": "library",
+      "supplier": {
+        "name": "Zope",
+        "url": [
+          "https://www.zope.dev"
+        ]
+      },
+      "author": "Zope",
       "name": "zope.interface",
       "version": "8.0.1",
+      "description": "Interfaces for Python",
       "hashes": [
         {
           "alg": "SHA-1",
@@ -3165,12 +6484,24 @@
       ],
       "licenses": [
         {
-          "license": {
-            "id": "ZPL-2.1"
-          }
+          "expression": "(ZPL-2.1)"
         }
       ],
       "purl": "pkg:pypi/zope.interface@8.0.1",
+      "externalReferences": [
+        {
+          "url": "https://pypi.org/project/zope.interface/",
+          "type": "distribution"
+        },
+        {
+          "url": "https://github.com/zopefoundation/zope.interface",
+          "type": "vcs"
+        },
+        {
+          "url": "https://zopeinterface.readthedocs.io",
+          "type": "documentation"
+        }
+      ],
       "properties": [
         {
           "name": "aquasecurity:trivy:FilePath",
@@ -3187,6 +6518,26 @@
         {
           "name": "aquasecurity:trivy:PkgType",
           "value": "python-pkg"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2007-01-03T16:19:54Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2025-11-15T08:36:36Z"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "interfaces"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "maintained"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "python"
         }
       ]
     },
@@ -16578,7 +19929,15 @@
   ],
   "dependencies": [
     {
-      "ref": "0cf3785a-5a17-4c28-b7ae-45533b5b1f8d",
+      "ref": "17435f44-6274-424c-b13e-ae2940ee2b6a",
+      "dependsOn": []
+    },
+    {
+      "ref": "4a391b83-c8b5-4ac8-ae1f-8a7c63c98156",
+      "dependsOn": []
+    },
+    {
+      "ref": "cd9c1632-54c7-45ea-8649-2fdf9678d9a9",
       "dependsOn": [
         "pkg:rpm/redhat/alternatives@1.24-2.el9?arch=x86_64&distro=redhat-9.7",
         "pkg:rpm/redhat/gpg-pubkey@5a6340b3-6229229e?arch=None&distro=redhat-9.7",
@@ -16591,19 +19950,11 @@
       ]
     },
     {
-      "ref": "47efaeae-9350-43da-8e45-6b7fe0743c46",
-      "dependsOn": []
-    },
-    {
-      "ref": "8076a8bf-822c-450f-bac9-d50824498cc4",
-      "dependsOn": []
-    },
-    {
       "ref": "pkg:oci/kubecost-modeling@sha256%3Aa484865da59c002a890118b34c27f2611dfa8ee29384bc2b1a65735a2a46e3e7?arch=amd64&repository_url=gcr.io%2Fkubecost1%2Fkubecost-modeling",
       "dependsOn": [
-        "0cf3785a-5a17-4c28-b7ae-45533b5b1f8d",
-        "47efaeae-9350-43da-8e45-6b7fe0743c46",
-        "8076a8bf-822c-450f-bac9-d50824498cc4",
+        "17435f44-6274-424c-b13e-ae2940ee2b6a",
+        "4a391b83-c8b5-4ac8-ae1f-8a7c63c98156",
+        "cd9c1632-54c7-45ea-8649-2fdf9678d9a9",
         "pkg:pypi/annotated-types@0.7.0",
         "pkg:pypi/anyio@4.11.0",
         "pkg:pypi/apscheduler@3.11.1",

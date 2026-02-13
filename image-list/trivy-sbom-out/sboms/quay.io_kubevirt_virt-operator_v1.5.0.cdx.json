@@ -2,10 +2,10 @@
   "$schema": "http://cyclonedx.org/schema/bom-1.6.schema.json",
   "bomFormat": "CycloneDX",
   "specVersion": "1.6",
-  "serialNumber": "urn:uuid:07d08055-55ca-476d-85e5-5b4a00fc3ba7",
+  "serialNumber": "urn:uuid:f75121ab-47f1-4413-9a9d-175f4fa80a42",
   "version": 1,
   "metadata": {
-    "timestamp": "2026-02-05T00:01:10+00:00",
+    "timestamp": "2026-02-13T09:07:01+00:00",
     "tools": {
       "components": [
         {
@@ -118,22 +118,7 @@
   },
   "components": [
     {
-      "bom-ref": "42f63790-5a46-435e-8ca9-ac29cecde5ce",
-      "type": "application",
-      "name": "usr/bin/csv-generator",
-      "properties": [
-        {
-          "name": "aquasecurity:trivy:Class",
-          "value": "lang-pkgs"
-        },
-        {
-          "name": "aquasecurity:trivy:Type",
-          "value": "gobinary"
-        }
-      ]
-    },
-    {
-      "bom-ref": "4f3a8293-6459-410c-9c0f-ee3052a7753e",
+      "bom-ref": "33c52ae0-2f6c-460c-b82e-e7057b6587f0",
       "type": "operating-system",
       "name": "debian",
       "version": "12.6",
@@ -149,7 +134,7 @@
       ]
     },
     {
-      "bom-ref": "60d17d06-83b3-4056-9161-beb298f42761",
+      "bom-ref": "98a26b1f-ef90-4a68-93f3-503e5f3819e3",
       "type": "application",
       "name": "usr/bin/virt-operator",
       "properties": [
@@ -164,7 +149,7 @@
       ]
     },
     {
-      "bom-ref": "a41e0576-3f78-49d7-a020-999f990a9030",
+      "bom-ref": "a31bfc5b-7d9c-4c7b-a365-36c1ceb59f78",
       "type": "library",
       "name": "stdlib",
       "version": "v1.23.4",
@@ -189,7 +174,22 @@
       ]
     },
     {
-      "bom-ref": "f88b5a9a-2fde-47ee-a6ba-0427b1f1e5f3",
+      "bom-ref": "b57ea24a-c843-47a1-8b2e-412e6545c70b",
+      "type": "application",
+      "name": "usr/bin/csv-generator",
+      "properties": [
+        {
+          "name": "aquasecurity:trivy:Class",
+          "value": "lang-pkgs"
+        },
+        {
+          "name": "aquasecurity:trivy:Type",
+          "value": "gobinary"
+        }
+      ]
+    },
+    {
+      "bom-ref": "faf337ed-169e-4b23-a30a-97960d1f86c4",
       "type": "library",
       "name": "stdlib",
       "version": "v1.23.4",
@@ -463,13 +463,7 @@
   ],
   "dependencies": [
     {
-      "ref": "42f63790-5a46-435e-8ca9-ac29cecde5ce",
-      "dependsOn": [
-        "a41e0576-3f78-49d7-a020-999f990a9030"
-      ]
-    },
-    {
-      "ref": "4f3a8293-6459-410c-9c0f-ee3052a7753e",
+      "ref": "33c52ae0-2f6c-460c-b82e-e7057b6587f0",
       "dependsOn": [
         "pkg:deb/debian/base-files@12.4%2Bdeb12u6?arch=amd64&distro=debian-12.6",
         "pkg:deb/debian/libc6@2.36-9%2Bdeb12u7?arch=amd64&distro=debian-12.6",
@@ -479,17 +473,23 @@
       ]
     },
     {
-      "ref": "60d17d06-83b3-4056-9161-beb298f42761",
+      "ref": "98a26b1f-ef90-4a68-93f3-503e5f3819e3",
       "dependsOn": [
-        "f88b5a9a-2fde-47ee-a6ba-0427b1f1e5f3"
+        "faf337ed-169e-4b23-a30a-97960d1f86c4"
       ]
     },
     {
-      "ref": "a41e0576-3f78-49d7-a020-999f990a9030",
+      "ref": "a31bfc5b-7d9c-4c7b-a365-36c1ceb59f78",
       "dependsOn": []
     },
     {
-      "ref": "f88b5a9a-2fde-47ee-a6ba-0427b1f1e5f3",
+      "ref": "b57ea24a-c843-47a1-8b2e-412e6545c70b",
+      "dependsOn": [
+        "a31bfc5b-7d9c-4c7b-a365-36c1ceb59f78"
+      ]
+    },
+    {
+      "ref": "faf337ed-169e-4b23-a30a-97960d1f86c4",
       "dependsOn": []
     },
     {
@@ -515,9 +515,9 @@
     {
       "ref": "pkg:oci/virt-operator@sha256%3A1591b45d3f35b857cb13921429b83e8da4e21a35aa54e1c88290baf996c05a2d?arch=amd64&repository_url=quay.io%2Fkubevirt%2Fvirt-operator",
       "dependsOn": [
-        "42f63790-5a46-435e-8ca9-ac29cecde5ce",
-        "4f3a8293-6459-410c-9c0f-ee3052a7753e",
-        "60d17d06-83b3-4056-9161-beb298f42761"
+        "33c52ae0-2f6c-460c-b82e-e7057b6587f0",
+        "98a26b1f-ef90-4a68-93f3-503e5f3819e3",
+        "b57ea24a-c843-47a1-8b2e-412e6545c70b"
       ]
     }
   ],

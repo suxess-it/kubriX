@@ -2,10 +2,10 @@
   "$schema": "http://cyclonedx.org/schema/bom-1.6.schema.json",
   "bomFormat": "CycloneDX",
   "specVersion": "1.6",
-  "serialNumber": "urn:uuid:7e91afbf-1935-4276-9588-0ae24b956bf2",
+  "serialNumber": "urn:uuid:3c4bf487-915d-47fb-8fe2-e26c8a4b6085",
   "version": 1,
   "metadata": {
-    "timestamp": "2026-02-05T00:00:52+00:00",
+    "timestamp": "2026-02-13T09:06:55+00:00",
     "tools": {
       "components": [
         {
@@ -62,7 +62,7 @@
   },
   "components": [
     {
-      "bom-ref": "03d65342-524c-4e8f-9b5d-2e59a78c06f9",
+      "bom-ref": "40f30fd5-bd76-4b42-9aea-172e5abf8129",
       "type": "application",
       "name": "usr/bin/csv-generator",
       "properties": [
@@ -77,7 +77,23 @@
       ]
     },
     {
-      "bom-ref": "497e1d0b-e7e1-4ec3-acc1-aa1680e7241e",
+      "bom-ref": "621d7d5a-1a47-4d64-906f-00365b758cd4",
+      "type": "operating-system",
+      "name": "centos-stream",
+      "version": "9",
+      "properties": [
+        {
+          "name": "aquasecurity:trivy:Class",
+          "value": "os-pkgs"
+        },
+        {
+          "name": "aquasecurity:trivy:Type",
+          "value": "centos-stream"
+        }
+      ]
+    },
+    {
+      "bom-ref": "ef8561eb-b53a-4b69-aaf9-b4cbf9172864",
       "type": "library",
       "name": "stdlib",
       "version": "v1.23.6",
@@ -102,7 +118,7 @@
       ]
     },
     {
-      "bom-ref": "86ea434e-0fef-4523-8d29-0aa8ae03f608",
+      "bom-ref": "f2dbcabc-b295-4ef9-950c-a565578c49dd",
       "type": "application",
       "name": "usr/bin/cdi-operator",
       "properties": [
@@ -117,23 +133,7 @@
       ]
     },
     {
-      "bom-ref": "b6e9b3a3-9560-4c4c-8a5b-bae7c25d0555",
-      "type": "operating-system",
-      "name": "centos-stream",
-      "version": "9",
-      "properties": [
-        {
-          "name": "aquasecurity:trivy:Class",
-          "value": "os-pkgs"
-        },
-        {
-          "name": "aquasecurity:trivy:Type",
-          "value": "centos-stream"
-        }
-      ]
-    },
-    {
-      "bom-ref": "e7aee160-d80d-415b-ba54-df011687e2d6",
+      "bom-ref": "f7460375-b8da-4a81-b95b-fedfdffc2d88",
       "type": "library",
       "name": "stdlib",
       "version": "v1.23.6",
@@ -160,31 +160,31 @@
   ],
   "dependencies": [
     {
-      "ref": "03d65342-524c-4e8f-9b5d-2e59a78c06f9",
+      "ref": "40f30fd5-bd76-4b42-9aea-172e5abf8129",
       "dependsOn": [
-        "e7aee160-d80d-415b-ba54-df011687e2d6"
+        "f7460375-b8da-4a81-b95b-fedfdffc2d88"
       ]
     },
     {
-      "ref": "497e1d0b-e7e1-4ec3-acc1-aa1680e7241e",
+      "ref": "ef8561eb-b53a-4b69-aaf9-b4cbf9172864",
       "dependsOn": []
     },
     {
-      "ref": "86ea434e-0fef-4523-8d29-0aa8ae03f608",
+      "ref": "f2dbcabc-b295-4ef9-950c-a565578c49dd",
       "dependsOn": [
-        "497e1d0b-e7e1-4ec3-acc1-aa1680e7241e"
+        "ef8561eb-b53a-4b69-aaf9-b4cbf9172864"
       ]
     },
     {
-      "ref": "e7aee160-d80d-415b-ba54-df011687e2d6",
+      "ref": "f7460375-b8da-4a81-b95b-fedfdffc2d88",
       "dependsOn": []
     },
     {
       "ref": "pkg:oci/cdi-operator@sha256%3A21fe82706f57bc5378ba17be79d6831b223605ecf1ea6f43f533b1bccae68c50?arch=amd64&repository_url=quay.io%2Fkubevirt%2Fcdi-operator",
       "dependsOn": [
-        "03d65342-524c-4e8f-9b5d-2e59a78c06f9",
-        "86ea434e-0fef-4523-8d29-0aa8ae03f608",
-        "b6e9b3a3-9560-4c4c-8a5b-bae7c25d0555"
+        "40f30fd5-bd76-4b42-9aea-172e5abf8129",
+        "621d7d5a-1a47-4d64-906f-00365b758cd4",
+        "f2dbcabc-b295-4ef9-950c-a565578c49dd"
       ]
     }
   ],

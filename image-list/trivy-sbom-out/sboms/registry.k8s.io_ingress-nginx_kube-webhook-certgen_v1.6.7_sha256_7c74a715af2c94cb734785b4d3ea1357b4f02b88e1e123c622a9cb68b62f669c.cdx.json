@@ -2,10 +2,10 @@
   "$schema": "http://cyclonedx.org/schema/bom-1.6.schema.json",
   "bomFormat": "CycloneDX",
   "specVersion": "1.6",
-  "serialNumber": "urn:uuid:13cad9b1-2ff5-49d6-aac6-c800c250c86b",
+  "serialNumber": "urn:uuid:e2f71632-fcb1-43b9-99ca-86e9fea0cbd3",
   "version": 1,
   "metadata": {
-    "timestamp": "2026-02-05T00:02:54+00:00",
+    "timestamp": "2026-02-13T09:08:07+00:00",
     "tools": {
       "components": [
         {
@@ -114,7 +114,22 @@
   },
   "components": [
     {
-      "bom-ref": "0e726d03-533f-44c4-8a7c-01d7ce92022f",
+      "bom-ref": "f7c6db7c-c731-43d6-9e31-3729565c348a",
+      "type": "application",
+      "name": "kube-webhook-certgen",
+      "properties": [
+        {
+          "name": "aquasecurity:trivy:Class",
+          "value": "lang-pkgs"
+        },
+        {
+          "name": "aquasecurity:trivy:Type",
+          "value": "gobinary"
+        }
+      ]
+    },
+    {
+      "bom-ref": "ffe77b75-c5d0-44fe-a6cd-ab7bc0408833",
       "type": "operating-system",
       "name": "debian",
       "version": "12.13",
@@ -126,21 +141,6 @@
         {
           "name": "aquasecurity:trivy:Type",
           "value": "debian"
-        }
-      ]
-    },
-    {
-      "bom-ref": "8e47b89b-34ab-4ebd-856f-3fb306ecf8b8",
-      "type": "application",
-      "name": "kube-webhook-certgen",
-      "properties": [
-        {
-          "name": "aquasecurity:trivy:Class",
-          "value": "lang-pkgs"
-        },
-        {
-          "name": "aquasecurity:trivy:Type",
-          "value": "gobinary"
         }
       ]
     },
@@ -323,9 +323,31 @@
     {
       "bom-ref": "pkg:golang/github.com/davecgh/go-spew@v1.1.2-0.20180830191138-d8f796af33cc",
       "type": "library",
+      "supplier": {
+        "name": "Dave Collins"
+      },
+      "author": "Dave Collins",
       "name": "github.com/davecgh/go-spew",
       "version": "v1.1.2-0.20180830191138-d8f796af33cc",
       "purl": "pkg:golang/github.com/davecgh/go-spew@v1.1.2-0.20180830191138-d8f796af33cc",
+      "externalReferences": [
+        {
+          "url": "https://github.com/davecgh/go-spew",
+          "type": "website"
+        },
+        {
+          "url": "https://pkg.go.dev/github.com/davecgh/go-spew",
+          "type": "distribution"
+        },
+        {
+          "url": "https://github.com/davecgh/go-spew",
+          "type": "vcs"
+        },
+        {
+          "url": "https://pkg.go.dev/github.com/davecgh/go-spew#section-documentation",
+          "type": "documentation"
+        }
+      ],
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
@@ -342,15 +364,54 @@
         {
           "name": "aquasecurity:trivy:PkgType",
           "value": "gobinary"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2016-08-16T17:40:47Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2018-02-21T23:26:28Z"
         }
       ]
     },
     {
       "bom-ref": "pkg:golang/github.com/emicklei/go-restful/v3@v3.13.0",
       "type": "library",
+      "supplier": {
+        "name": "Ernest Micklei",
+        "url": [
+          "https://ernestmicklei.com"
+        ]
+      },
+      "author": "Ernest Micklei",
       "name": "github.com/emicklei/go-restful/v3",
       "version": "v3.13.0",
+      "description": "Package restful , a lean package for creating REST-style WebServices without magic.\n\n### WebServices and Routes\n\nA WebService has a collection of Route objects that dispatch incoming Http Requests to a function calls.\nTypically, a WebService has a root path (e.g. /users) and defines common MIME types for its routes.\nWebServices must be added to a container (see below) in order to handler Http requests from a server.\n\nA Route is defined by a HTTP method, an URL path and (optionally) the MIME types it consumes (Content-Type) and produces (Accept).\nThis package has the logic to find the best matching Route and if found, call its Function.\n\nThe (*Request, *Response) arguments provide functions for reading information from the request and writing information back to the response.\n\nSee the example https://github.com/emicklei/go-restful/blob/v3/examples/user-resource/restful-user-resource.go with a full implementation.\n\n### Regular expression matching Routes\n\nA Route parameter can be specified using the format \"uri/{var[:regexp]}\" or the special version \"uri/{var:*}\" for matching the tail of the path.\nFor example, /persons/{name:[A-Z][A-Z]} can be used to restrict values for the parameter \"name\" to only contain capital alphabetic characters.\nRegular expressions must use the standard Go syntax as described in the regexp package. (https://code.google.com/p/re2/wiki/Syntax)\nThis feature requires the use of a CurlyRouter.\n\n### Containers\n\nA Container holds a collection of WebServices, Filters and a http.ServeMux for multiplexing http requests.\nUsing the statements \"restful.Add(...) and restful.Filter(...)\" will register WebServices and Filters to the Default Container.\nThe Default container of go-restful uses the http.DefaultServeMux.\nYou can create your own Container and create a new http.Server for that particular container.\n\n### Filters\n\nA filter dynamically intercepts requests and responses to transform or use the information contained in the requests or responses.\nYou can use filters to perform generic logging, measurement, authentication, redirect, set response headers etc.\nIn the restful package there are three hooks into the request,response flow where filters can be added.\nEach filter must define a FilterFunction:\n\nUse the following statement to pass the request,response pair to the next filter or RouteFunction\n\n### Container Filters\n\nThese are processed before any registered WebService.\n\n### WebService Filters\n\nThese are processed before any Route of a WebService.\n\n### Route Filters\n\nThese are processed before calling the function associated with the Route.\n\nSee the example https://github.com/emicklei/go-restful/blob/v3/examples/filters/restful-filters.go with full implementations.\n\n### Response Encoding\n\nTwo encodings are supported: gzip and deflate. To enable this for all responses:\n\nIf a Http request includes the Accept-Encoding header then the response content will be compressed using the specified encoding.\nAlternatively, you can create a Filter that performs the encoding and install it per WebService or Route.\n\nSee the example https://github.com/emicklei/go-restful/blob/v3/examples/encoding/restful-encoding-filter.go\n\n### OPTIONS support\n\nBy installing a pre-defined container filter, your Webservice(s) can respond to the OPTIONS Http request.\n\n### CORS\n\nBy installing the filter of a CrossOriginResourceSharing (CORS), your WebService(s) can handle CORS requests.\n\n### Error Handling\n\nUnexpected things happen. If a request cannot be processed because of a failure, your service needs to tell via the response what happened and why.\nFor this reason HTTP status codes exist and it is important to use the correct code in every exceptional situation.\n\nIf path or query parameters are not valid (content or type) then use http.StatusBadRequest.\n\nDespite a valid URI, the resource requested may not be available\n\nIf the application logic could not process the request (or write the response) then use http.StatusInternalServerError.\n\nThe request has a valid URL but the method (GET,PUT,POST,...) is not allowed.\n\nThe request does not have or has an unknown Accept Header set for this operation.\n\nThe request does not have or has an unknown Content-Type Header set for this operation.\n\n### ServiceError\n\nIn addition to setting the correct (error) Http status code, you can choose to write a ServiceError message on the response.\n\n### Performance options\n\nThis package has several options that affect the performance of your service. It is important to understand them and how you can change it.\n\nDoNotRecover controls whether panics will be caught to return HTTP 500.\nIf set to false, the container will recover from panics.\nDefault value is true\n\nIf content encoding is enabled then the default strategy for getting new gzip/zlib writers and readers is to use a sync.Pool.\nBecause writers are expensive structures, performance is even more improved when using a preloaded cache. You can also inject your own implementation.\n\n### Trouble shooting\n\nThis package has the means to produce detail logging of the complete Http request matching process and filter invocation.\nEnabling this feature requires you to set an implementation of restful.StdLogger (e.g. log.Logger) instance such as:\n\n### Logging\n\nThe restful.SetLogger() method allows you to override the logger used by the package. By default restful\nuses the standard library `log` package and logs to stdout. Different logging packages are supported as\nlong as they conform to `StdLogger` interface defined in the `log` sub-package, writing an adapter for your\npreferred package is simple.\n\n### Resources\n\n(c) 2012-2025, http://ernestmicklei.com. MIT License",
+      "licenses": [
+        {
+          "expression": "(MIT)"
+        }
+      ],
       "purl": "pkg:golang/github.com/emicklei/go-restful/v3@v3.13.0",
+      "externalReferences": [
+        {
+          "url": "https://github.com/emicklei/go-restful",
+          "type": "website"
+        },
+        {
+          "url": "https://pkg.go.dev/github.com/emicklei/go-restful/v3",
+          "type": "distribution"
+        },
+        {
+          "url": "https://github.com/emicklei/go-restful",
+          "type": "vcs"
+        },
+        {
+          "url": "https://pkg.go.dev/github.com/emicklei/go-restful/v3#section-documentation",
+          "type": "documentation"
+        }
+      ],
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
@@ -367,15 +428,75 @@
         {
           "name": "aquasecurity:trivy:PkgType",
           "value": "gobinary"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2019-12-15T07:46:00Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2025-08-14T12:44:48Z"
+        },
+        {
+          "name": "ecosystems:owner_location",
+          "value": "Netherlands"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "customizable"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "go"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "openapi"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "rest"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "routing"
         }
       ]
     },
     {
       "bom-ref": "pkg:golang/github.com/fxamacker/cbor/v2@v2.9.0",
       "type": "library",
+      "supplier": {
+        "name": "Faye Amacker"
+      },
+      "author": "Faye Amacker",
       "name": "github.com/fxamacker/cbor/v2",
       "version": "v2.9.0",
+      "description": "Package cbor is a modern CBOR codec (RFC 8949 & RFC 8742) with CBOR tags,\nGo struct tag options (toarray/keyasint/omitempty/omitzero), Core Deterministic Encoding,\nCTAP2, Canonical CBOR, float64->32->16, and duplicate map key detection.\n\nEncoding options allow \"preferred serialization\" by encoding integers and floats\nto their smallest forms (e.g. float16) when values fit.\n\nStruct tag options \"keyasint\", \"toarray\", \"omitempty\", and \"omitzero\" reduce encoding size\nand reduce programming effort.\n\nFor example, \"toarray\" tag makes struct fields encode to CBOR array elements.  And\n\"keyasint\" makes a field encode to an element of CBOR map with specified int key.\n\nLatest docs can be viewed at https://github.com/fxamacker/cbor#cbor-library-in-go\n\nThe Quick Start guide is at https://github.com/fxamacker/cbor#quick-start\n\nFunction signatures identical to encoding/json include:\n\nStandard interfaces include:\n\nDiagnostic functions translate CBOR data item into Diagnostic Notation:\n\nFunctions that simplify using CBOR Sequences (RFC 8742) include:\n\nCustom encoding and decoding is possible by implementing standard interfaces for\nuser-defined Go types.\n\nCodec functions are available at package-level (using defaults options) or by\ncreating modes from options at runtime.\n\n\"Mode\" in this API means definite way of encoding (EncMode) or decoding (DecMode).\n\nEncMode and DecMode interfaces are created from EncOptions or DecOptions structs.\n\nModes use immutable options to avoid side-effects and simplify concurrency. Behavior of\nmodes won't accidentally change at runtime after they're created.\n\nModes are intended to be reused and are safe for concurrent use.\n\nEncMode and DecMode Interfaces\n\nUsing Default Encoding Mode\n\nUsing Default Decoding Mode\n\nUsing Default Mode of UnmarshalFirst to Decode CBOR Sequences\n\nUsing Extended Diagnostic Notation (EDN) to represent CBOR data\n\nCreating and Using Encoding Modes\n\nPredefined Encoding Options: https://github.com/fxamacker/cbor#predefined-encoding-options\n\nEncoding Options: https://github.com/fxamacker/cbor#encoding-options\n\nDecoding Options: https://github.com/fxamacker/cbor#decoding-options\n\nStruct tags like `cbor:\"name,omitempty\"` and `json:\"name,omitempty\"` work as expected.\nIf both struct tags are specified then `cbor` is used.\n\nStruct tag options like \"keyasint\", \"toarray\", \"omitempty\", and \"omitzero\" make it easy to use\nvery compact formats like COSE and CWT (CBOR Web Tokens) with structs.\n\nThe \"omitzero\" option omits zero values from encoding, matching\n[stdlib encoding/json behavior](https://pkg.go.dev/encoding/json#Marshal).\nWhen specified in the `cbor` tag, the option is always honored.\nWhen specified in the `json` tag, the option is honored when building with Go 1.24+.\n\nFor example, \"toarray\" makes struct fields encode to array elements.  And \"keyasint\"\nmakes struct fields encode to elements of CBOR map with int keys.\n\nhttps://raw.githubusercontent.com/fxamacker/images/master/cbor/v2.0.0/cbor_easy_api.png\n\nStruct tag options are listed at https://github.com/fxamacker/cbor#struct-tags-1\n\nOver 375 tests are included in this package. Cover-guided fuzzing is handled by\na private fuzzer that replaced fxamacker/cbor-fuzz years ago.",
+      "licenses": [
+        {
+          "expression": "(MIT)"
+        }
+      ],
       "purl": "pkg:golang/github.com/fxamacker/cbor/v2@v2.9.0",
+      "externalReferences": [
+        {
+          "url": "https://github.com/fxamacker/cbor",
+          "type": "website"
+        },
+        {
+          "url": "https://pkg.go.dev/github.com/fxamacker/cbor/v2",
+          "type": "distribution"
+        },
+        {
+          "url": "https://github.com/fxamacker/cbor",
+          "type": "vcs"
+        },
+        {
+          "url": "https://pkg.go.dev/github.com/fxamacker/cbor/v2#section-documentation",
+          "type": "documentation"
+        }
+      ],
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
@@ -392,15 +513,107 @@
         {
           "name": "aquasecurity:trivy:PkgType",
           "value": "gobinary"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2020-02-03T05:24:18Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2025-07-14T04:00:34Z"
+        },
+        {
+          "name": "ecosystems:owner_location",
+          "value": "Austin, TX"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "cbor"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "cbor-library"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "codec"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "cose"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "cwt"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "go"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "golang"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "json-alternative"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "rfc-8742"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "rfc-8949"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "serialization"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "std-94"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "tinygo"
         }
       ]
     },
     {
       "bom-ref": "pkg:golang/github.com/go-logr/logr@v1.4.3",
       "type": "library",
+      "supplier": {
+        "name": "go-logr"
+      },
+      "author": "go-logr",
       "name": "github.com/go-logr/logr",
       "version": "v1.4.3",
+      "description": "Package logr defines a general-purpose logging API and abstract interfaces\nto back that API.  Packages in the Go ecosystem can depend on this package,\nwhile callers can implement logging with whatever backend is appropriate.\n\nLogging is done using a Logger instance.  Logger is a concrete type with\nmethods, which defers the actual logging to a LogSink interface.  The main\nmethods of Logger are Info() and Error().  Arguments to Info() and Error()\nare key/value pairs rather than printf-style formatted strings, emphasizing\n\"structured logging\".\n\nWith Go's standard log package, we might write:\n\nWith logr's structured logging, we'd write:\n\nErrors are much the same.  Instead of:\n\nWe'd write:\n\nInfo() and Error() are very similar, but they are separate methods so that\nLogSink implementations can choose to do things like attach additional\ninformation (such as stack traces) on calls to Error(). Error() messages are\nalways logged, regardless of the current verbosity.  If there is no error\ninstance available, passing nil is valid.\n\nOften we want to log information only when the application in \"verbose\nmode\".  To write log lines that are more verbose, Logger has a V() method.\nThe higher the V-level of a log line, the less critical it is considered.\nLog-lines with V-levels that are not enabled (as per the LogSink) will not\nbe written.  Level V(0) is the default, and logger.V(0).Info() has the same\nmeaning as logger.Info().  Negative V-levels have the same meaning as V(0).\nError messages do not have a verbosity level and are always logged.\n\nWhere we might have written:\n\nWe can write:\n\nLogger instances can have name strings so that all messages logged through\nthat instance have additional context.  For example, you might want to add\na subsystem name:\n\nThe WithName() method returns a new Logger, which can be passed to\nconstructors or other functions for further use.  Repeated use of WithName()\nwill accumulate name \"segments\".  These name segments will be joined in some\nway by the LogSink implementation.  It is strongly recommended that name\nsegments contain simple identifiers (letters, digits, and hyphen), and do\nnot contain characters that could muddle the log output or confuse the\njoining operation (e.g. whitespace, commas, periods, slashes, brackets,\nquotes, etc).\n\nLogger instances can store any number of key/value pairs, which will be\nlogged alongside all messages logged through that instance.  For example,\nyou might want to create a Logger instance per managed object:\n\nWith the standard log package, we might write:\n\nWith logr we'd write:\n\nLogger has very few hard rules, with the goal that LogSink implementations\nmight have a lot of freedom to differentiate.  There are, however, some\nthings to consider.\n\nThe log message consists of a constant message attached to the log line.\nThis should generally be a simple description of what's occurring, and should\nnever be a format string.  Variable information can then be attached using\nnamed values.\n\nKeys are arbitrary strings, but should generally be constant values.  Values\nmay be any Go value, but how the value is formatted is determined by the\nLogSink implementation.\n\nLogger instances are meant to be passed around by value. Code that receives\nsuch a value can call its methods without having to check whether the\ninstance is ready for use.\n\nThe zero logger (= Logger{}) is identical to Discard() and discards all log\nentries. Code that receives a Logger by value can simply call it, the methods\nwill never crash. For cases where passing a logger is optional, a pointer to Logger\nshould be used.\n\nKeys are not strictly required to conform to any specification or regex, but\nit is recommended that they:\n\nThese guidelines help ensure that log data is processed properly regardless\nof the log implementation.  For example, log implementations will try to\noutput JSON data or will store data for later database (e.g. SQL) queries.\n\nWhile users are generally free to use key names of their choice, it's\ngenerally best to avoid using the following keys, as they're frequently used\nby implementations:\n\nImplementations are encouraged to make use of these keys to represent the\nabove concepts, when necessary (for example, in a pure-JSON output form, it\nwould be necessary to represent at least message and timestamp as ordinary\nnamed values).\n\nImplementations may choose to give callers access to the underlying\nlogging implementation.  The recommended pattern for this is:\n\nLogger grants access to the sink to enable type assertions like this:\n\nCustom `With*` functions can be implemented by copying the complete\nLogger struct and replacing the sink in the copy:\n\nDon't use New to construct a new Logger with a LogSink retrieved from an\nexisting Logger. Source code attribution might not work correctly and\nunexported fields in Logger get lost.\n\nBeware that the same LogSink instance may be shared by different logger\ninstances. Calling functions that modify the LogSink will affect all of\nthose.",
+      "licenses": [
+        {
+          "expression": "(Apache-2.0)"
+        }
+      ],
       "purl": "pkg:golang/github.com/go-logr/logr@v1.4.3",
+      "externalReferences": [
+        {
+          "url": "https://github.com/go-logr/logr",
+          "type": "website"
+        },
+        {
+          "url": "https://pkg.go.dev/github.com/go-logr/logr",
+          "type": "distribution"
+        },
+        {
+          "url": "https://github.com/go-logr/logr",
+          "type": "vcs"
+        },
+        {
+          "url": "https://pkg.go.dev/github.com/go-logr/logr#section-documentation",
+          "type": "documentation"
+        }
+      ],
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
@@ -417,15 +630,58 @@
         {
           "name": "aquasecurity:trivy:PkgType",
           "value": "gobinary"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2018-06-29T23:58:05Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2025-05-19T04:56:57Z"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "logger"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "logging"
         }
       ]
     },
     {
       "bom-ref": "pkg:golang/github.com/go-openapi/jsonpointer@v0.22.4",
       "type": "library",
+      "supplier": {
+        "name": "OpenAPI Initiative golang toolkit"
+      },
+      "author": "OpenAPI Initiative golang toolkit",
       "name": "github.com/go-openapi/jsonpointer",
       "version": "v0.22.4",
+      "licenses": [
+        {
+          "expression": "(Apache-2.0)"
+        }
+      ],
       "purl": "pkg:golang/github.com/go-openapi/jsonpointer@v0.22.4",
+      "externalReferences": [
+        {
+          "url": "https://github.com/go-openapi/jsonpointer",
+          "type": "website"
+        },
+        {
+          "url": "https://pkg.go.dev/github.com/go-openapi/jsonpointer",
+          "type": "distribution"
+        },
+        {
+          "url": "https://github.com/go-openapi/jsonpointer",
+          "type": "vcs"
+        },
+        {
+          "url": "https://pkg.go.dev/github.com/go-openapi/jsonpointer#section-documentation",
+          "type": "documentation"
+        }
+      ],
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
@@ -442,15 +698,50 @@
         {
           "name": "aquasecurity:trivy:PkgType",
           "value": "gobinary"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2018-10-07T00:19:13Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2025-12-06T13:20:57Z"
         }
       ]
     },
     {
       "bom-ref": "pkg:golang/github.com/go-openapi/jsonreference@v0.21.4",
       "type": "library",
+      "supplier": {
+        "name": "OpenAPI Initiative golang toolkit"
+      },
+      "author": "OpenAPI Initiative golang toolkit",
       "name": "github.com/go-openapi/jsonreference",
       "version": "v0.21.4",
+      "licenses": [
+        {
+          "expression": "(Apache-2.0)"
+        }
+      ],
       "purl": "pkg:golang/github.com/go-openapi/jsonreference@v0.21.4",
+      "externalReferences": [
+        {
+          "url": "https://github.com/go-openapi/jsonreference",
+          "type": "website"
+        },
+        {
+          "url": "https://pkg.go.dev/github.com/go-openapi/jsonreference",
+          "type": "distribution"
+        },
+        {
+          "url": "https://github.com/go-openapi/jsonreference",
+          "type": "vcs"
+        },
+        {
+          "url": "https://pkg.go.dev/github.com/go-openapi/jsonreference#section-documentation",
+          "type": "documentation"
+        }
+      ],
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
@@ -467,15 +758,51 @@
         {
           "name": "aquasecurity:trivy:PkgType",
           "value": "gobinary"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2018-10-07T00:19:29Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2025-12-08T21:48:23Z"
         }
       ]
     },
     {
       "bom-ref": "pkg:golang/github.com/go-openapi/swag/cmdutils@v0.25.4",
       "type": "library",
+      "supplier": {
+        "name": "OpenAPI Initiative golang toolkit"
+      },
+      "author": "OpenAPI Initiative golang toolkit",
       "name": "github.com/go-openapi/swag/cmdutils",
       "version": "v0.25.4",
+      "description": "Package cmdutils brings helpers for CLIs produced by go-openapi",
+      "licenses": [
+        {
+          "expression": "(Apache-2.0)"
+        }
+      ],
       "purl": "pkg:golang/github.com/go-openapi/swag/cmdutils@v0.25.4",
+      "externalReferences": [
+        {
+          "url": "https://github.com/go-openapi/swag",
+          "type": "website"
+        },
+        {
+          "url": "https://pkg.go.dev/github.com/go-openapi/swag/cmdutils",
+          "type": "distribution"
+        },
+        {
+          "url": "https://github.com/go-openapi/swag",
+          "type": "vcs"
+        },
+        {
+          "url": "https://pkg.go.dev/github.com/go-openapi/swag/cmdutils#section-documentation",
+          "type": "documentation"
+        }
+      ],
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
@@ -492,15 +819,51 @@
         {
           "name": "aquasecurity:trivy:PkgType",
           "value": "gobinary"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2025-08-30T09:41:09Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2025-11-25T18:28:48Z"
         }
       ]
     },
     {
       "bom-ref": "pkg:golang/github.com/go-openapi/swag/conv@v0.25.4",
       "type": "library",
+      "supplier": {
+        "name": "OpenAPI Initiative golang toolkit"
+      },
+      "author": "OpenAPI Initiative golang toolkit",
       "name": "github.com/go-openapi/swag/conv",
       "version": "v0.25.4",
+      "description": "Package conv exposes utilities to convert types.\n\nThe Convert and Format families of functions are essentially a shorthand to strconv functions,\nusing the decimal representation of numbers.\n\nFeatures:",
+      "licenses": [
+        {
+          "expression": "(Apache-2.0)"
+        }
+      ],
       "purl": "pkg:golang/github.com/go-openapi/swag/conv@v0.25.4",
+      "externalReferences": [
+        {
+          "url": "https://github.com/go-openapi/swag",
+          "type": "website"
+        },
+        {
+          "url": "https://pkg.go.dev/github.com/go-openapi/swag/conv",
+          "type": "distribution"
+        },
+        {
+          "url": "https://github.com/go-openapi/swag",
+          "type": "vcs"
+        },
+        {
+          "url": "https://pkg.go.dev/github.com/go-openapi/swag/conv#section-documentation",
+          "type": "documentation"
+        }
+      ],
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
@@ -517,15 +880,51 @@
         {
           "name": "aquasecurity:trivy:PkgType",
           "value": "gobinary"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2025-08-30T09:41:09Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2025-11-25T18:28:48Z"
         }
       ]
     },
     {
       "bom-ref": "pkg:golang/github.com/go-openapi/swag/fileutils@v0.25.4",
       "type": "library",
+      "supplier": {
+        "name": "OpenAPI Initiative golang toolkit"
+      },
+      "author": "OpenAPI Initiative golang toolkit",
       "name": "github.com/go-openapi/swag/fileutils",
       "version": "v0.25.4",
+      "description": "Package fileutils exposes utilities to deal with files and paths.\n\nCurrently, there is:",
+      "licenses": [
+        {
+          "expression": "(Apache-2.0)"
+        }
+      ],
       "purl": "pkg:golang/github.com/go-openapi/swag/fileutils@v0.25.4",
+      "externalReferences": [
+        {
+          "url": "https://github.com/go-openapi/swag",
+          "type": "website"
+        },
+        {
+          "url": "https://pkg.go.dev/github.com/go-openapi/swag/fileutils",
+          "type": "distribution"
+        },
+        {
+          "url": "https://github.com/go-openapi/swag",
+          "type": "vcs"
+        },
+        {
+          "url": "https://pkg.go.dev/github.com/go-openapi/swag/fileutils#section-documentation",
+          "type": "documentation"
+        }
+      ],
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
@@ -542,15 +941,51 @@
         {
           "name": "aquasecurity:trivy:PkgType",
           "value": "gobinary"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2025-08-30T09:41:09Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2025-11-25T18:28:48Z"
         }
       ]
     },
     {
       "bom-ref": "pkg:golang/github.com/go-openapi/swag/jsonname@v0.25.4",
       "type": "library",
+      "supplier": {
+        "name": "OpenAPI Initiative golang toolkit"
+      },
+      "author": "OpenAPI Initiative golang toolkit",
       "name": "github.com/go-openapi/swag/jsonname",
       "version": "v0.25.4",
+      "description": "Package jsonname is a provider of json property names from go properties.",
+      "licenses": [
+        {
+          "expression": "(Apache-2.0)"
+        }
+      ],
       "purl": "pkg:golang/github.com/go-openapi/swag/jsonname@v0.25.4",
+      "externalReferences": [
+        {
+          "url": "https://github.com/go-openapi/swag",
+          "type": "website"
+        },
+        {
+          "url": "https://pkg.go.dev/github.com/go-openapi/swag/jsonname",
+          "type": "distribution"
+        },
+        {
+          "url": "https://github.com/go-openapi/swag",
+          "type": "vcs"
+        },
+        {
+          "url": "https://pkg.go.dev/github.com/go-openapi/swag/jsonname#section-documentation",
+          "type": "documentation"
+        }
+      ],
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
@@ -567,15 +1002,51 @@
         {
           "name": "aquasecurity:trivy:PkgType",
           "value": "gobinary"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2025-08-30T09:41:09Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2025-11-25T18:28:48Z"
         }
       ]
     },
     {
       "bom-ref": "pkg:golang/github.com/go-openapi/swag/jsonutils@v0.25.4",
       "type": "library",
+      "supplier": {
+        "name": "OpenAPI Initiative golang toolkit"
+      },
+      "author": "OpenAPI Initiative golang toolkit",
       "name": "github.com/go-openapi/swag/jsonutils",
       "version": "v0.25.4",
+      "description": "Package jsonutils provides helpers to work with JSON.\n\nThese utilities work with dynamic go structures to and from JSON.",
+      "licenses": [
+        {
+          "expression": "(Apache-2.0)"
+        }
+      ],
       "purl": "pkg:golang/github.com/go-openapi/swag/jsonutils@v0.25.4",
+      "externalReferences": [
+        {
+          "url": "https://github.com/go-openapi/swag",
+          "type": "website"
+        },
+        {
+          "url": "https://pkg.go.dev/github.com/go-openapi/swag/jsonutils",
+          "type": "distribution"
+        },
+        {
+          "url": "https://github.com/go-openapi/swag",
+          "type": "vcs"
+        },
+        {
+          "url": "https://pkg.go.dev/github.com/go-openapi/swag/jsonutils#section-documentation",
+          "type": "documentation"
+        }
+      ],
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
@@ -592,15 +1063,51 @@
         {
           "name": "aquasecurity:trivy:PkgType",
           "value": "gobinary"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2025-08-30T09:41:09Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2025-11-25T18:28:48Z"
         }
       ]
     },
     {
       "bom-ref": "pkg:golang/github.com/go-openapi/swag/loading@v0.25.4",
       "type": "library",
+      "supplier": {
+        "name": "OpenAPI Initiative golang toolkit"
+      },
+      "author": "OpenAPI Initiative golang toolkit",
       "name": "github.com/go-openapi/swag/loading",
       "version": "v0.25.4",
+      "description": "Package loading provides tools to load a file from http or from a local file system.",
+      "licenses": [
+        {
+          "expression": "(Apache-2.0)"
+        }
+      ],
       "purl": "pkg:golang/github.com/go-openapi/swag/loading@v0.25.4",
+      "externalReferences": [
+        {
+          "url": "https://github.com/go-openapi/swag",
+          "type": "website"
+        },
+        {
+          "url": "https://pkg.go.dev/github.com/go-openapi/swag/loading",
+          "type": "distribution"
+        },
+        {
+          "url": "https://github.com/go-openapi/swag",
+          "type": "vcs"
+        },
+        {
+          "url": "https://pkg.go.dev/github.com/go-openapi/swag/loading#section-documentation",
+          "type": "documentation"
+        }
+      ],
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
@@ -617,15 +1124,51 @@
         {
           "name": "aquasecurity:trivy:PkgType",
           "value": "gobinary"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2025-08-30T09:41:09Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2025-11-25T18:28:48Z"
         }
       ]
     },
     {
       "bom-ref": "pkg:golang/github.com/go-openapi/swag/mangling@v0.25.4",
       "type": "library",
+      "supplier": {
+        "name": "OpenAPI Initiative golang toolkit"
+      },
+      "author": "OpenAPI Initiative golang toolkit",
       "name": "github.com/go-openapi/swag/mangling",
       "version": "v0.25.4",
+      "description": "Package mangling provides name mangling capabilities.\n\nName mangling is an important stage when generating code:\nit helps construct safe program identifiers that abide by the language rules\nand play along with linters.\n\nExamples:\n\nSuppose we get an object name taken from an API spec: \"json_object\",\n\nWe may generate a legit go type name using NameMangler.ToGoName: \"JsonObject\".\n\nWe may then locate this type in a source file named using NameMangler.ToFileName: \"json_object.go\".\n\nThe methods exposed by the NameMangler are used to generate code in many different contexts, such as:",
+      "licenses": [
+        {
+          "expression": "(Apache-2.0)"
+        }
+      ],
       "purl": "pkg:golang/github.com/go-openapi/swag/mangling@v0.25.4",
+      "externalReferences": [
+        {
+          "url": "https://github.com/go-openapi/swag",
+          "type": "website"
+        },
+        {
+          "url": "https://pkg.go.dev/github.com/go-openapi/swag/mangling",
+          "type": "distribution"
+        },
+        {
+          "url": "https://github.com/go-openapi/swag",
+          "type": "vcs"
+        },
+        {
+          "url": "https://pkg.go.dev/github.com/go-openapi/swag/mangling#section-documentation",
+          "type": "documentation"
+        }
+      ],
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
@@ -642,15 +1185,51 @@
         {
           "name": "aquasecurity:trivy:PkgType",
           "value": "gobinary"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2025-08-30T09:41:09Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2025-11-25T18:28:48Z"
         }
       ]
     },
     {
       "bom-ref": "pkg:golang/github.com/go-openapi/swag/netutils@v0.25.4",
       "type": "library",
+      "supplier": {
+        "name": "OpenAPI Initiative golang toolkit"
+      },
+      "author": "OpenAPI Initiative golang toolkit",
       "name": "github.com/go-openapi/swag/netutils",
       "version": "v0.25.4",
+      "description": "Package netutils provides helpers for network-related tasks.",
+      "licenses": [
+        {
+          "expression": "(Apache-2.0)"
+        }
+      ],
       "purl": "pkg:golang/github.com/go-openapi/swag/netutils@v0.25.4",
+      "externalReferences": [
+        {
+          "url": "https://github.com/go-openapi/swag",
+          "type": "website"
+        },
+        {
+          "url": "https://pkg.go.dev/github.com/go-openapi/swag/netutils",
+          "type": "distribution"
+        },
+        {
+          "url": "https://github.com/go-openapi/swag",
+          "type": "vcs"
+        },
+        {
+          "url": "https://pkg.go.dev/github.com/go-openapi/swag/netutils#section-documentation",
+          "type": "documentation"
+        }
+      ],
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
@@ -667,15 +1246,51 @@
         {
           "name": "aquasecurity:trivy:PkgType",
           "value": "gobinary"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2025-08-30T09:41:09Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2025-11-25T18:28:48Z"
         }
       ]
     },
     {
       "bom-ref": "pkg:golang/github.com/go-openapi/swag/stringutils@v0.25.4",
       "type": "library",
+      "supplier": {
+        "name": "OpenAPI Initiative golang toolkit"
+      },
+      "author": "OpenAPI Initiative golang toolkit",
       "name": "github.com/go-openapi/swag/stringutils",
       "version": "v0.25.4",
+      "description": "Package stringutils exposes helpers to search and process strings.",
+      "licenses": [
+        {
+          "expression": "(Apache-2.0)"
+        }
+      ],
       "purl": "pkg:golang/github.com/go-openapi/swag/stringutils@v0.25.4",
+      "externalReferences": [
+        {
+          "url": "https://github.com/go-openapi/swag",
+          "type": "website"
+        },
+        {
+          "url": "https://pkg.go.dev/github.com/go-openapi/swag/stringutils",
+          "type": "distribution"
+        },
+        {
+          "url": "https://github.com/go-openapi/swag",
+          "type": "vcs"
+        },
+        {
+          "url": "https://pkg.go.dev/github.com/go-openapi/swag/stringutils#section-documentation",
+          "type": "documentation"
+        }
+      ],
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
@@ -692,15 +1307,51 @@
         {
           "name": "aquasecurity:trivy:PkgType",
           "value": "gobinary"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2025-08-30T09:41:09Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2025-11-25T18:28:48Z"
         }
       ]
     },
     {
       "bom-ref": "pkg:golang/github.com/go-openapi/swag/typeutils@v0.25.4",
       "type": "library",
+      "supplier": {
+        "name": "OpenAPI Initiative golang toolkit"
+      },
+      "author": "OpenAPI Initiative golang toolkit",
       "name": "github.com/go-openapi/swag/typeutils",
       "version": "v0.25.4",
+      "description": "Package typeutils exposes utilities to inspect generic types.",
+      "licenses": [
+        {
+          "expression": "(Apache-2.0)"
+        }
+      ],
       "purl": "pkg:golang/github.com/go-openapi/swag/typeutils@v0.25.4",
+      "externalReferences": [
+        {
+          "url": "https://github.com/go-openapi/swag",
+          "type": "website"
+        },
+        {
+          "url": "https://pkg.go.dev/github.com/go-openapi/swag/typeutils",
+          "type": "distribution"
+        },
+        {
+          "url": "https://github.com/go-openapi/swag",
+          "type": "vcs"
+        },
+        {
+          "url": "https://pkg.go.dev/github.com/go-openapi/swag/typeutils#section-documentation",
+          "type": "documentation"
+        }
+      ],
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
@@ -717,15 +1368,51 @@
         {
           "name": "aquasecurity:trivy:PkgType",
           "value": "gobinary"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2025-08-30T09:41:09Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2025-11-25T18:28:48Z"
         }
       ]
     },
     {
       "bom-ref": "pkg:golang/github.com/go-openapi/swag/yamlutils@v0.25.4",
       "type": "library",
+      "supplier": {
+        "name": "OpenAPI Initiative golang toolkit"
+      },
+      "author": "OpenAPI Initiative golang toolkit",
       "name": "github.com/go-openapi/swag/yamlutils",
       "version": "v0.25.4",
+      "description": "Package yamlutils provides utilities to work with YAML documents.",
+      "licenses": [
+        {
+          "expression": "(Apache-2.0)"
+        }
+      ],
       "purl": "pkg:golang/github.com/go-openapi/swag/yamlutils@v0.25.4",
+      "externalReferences": [
+        {
+          "url": "https://github.com/go-openapi/swag",
+          "type": "website"
+        },
+        {
+          "url": "https://pkg.go.dev/github.com/go-openapi/swag/yamlutils",
+          "type": "distribution"
+        },
+        {
+          "url": "https://github.com/go-openapi/swag",
+          "type": "vcs"
+        },
+        {
+          "url": "https://pkg.go.dev/github.com/go-openapi/swag/yamlutils#section-documentation",
+          "type": "documentation"
+        }
+      ],
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
@@ -742,15 +1429,51 @@
         {
           "name": "aquasecurity:trivy:PkgType",
           "value": "gobinary"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2025-08-30T09:41:09Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2025-11-25T18:28:48Z"
         }
       ]
     },
     {
       "bom-ref": "pkg:golang/github.com/go-openapi/swag@v0.25.4",
       "type": "library",
+      "supplier": {
+        "name": "OpenAPI Initiative golang toolkit"
+      },
+      "author": "OpenAPI Initiative golang toolkit",
       "name": "github.com/go-openapi/swag",
       "version": "v0.25.4",
+      "description": "Package swag contains a bunch of helper functions for go-openapi and go-swagger projects.\n\nYou may also use it standalone for your projects.\n\nNOTE: all features that used to be exposed as package-level members (constants, variables,\nfunctions and types) are now deprecated and are superseded by equivalent features in\nmore specialized sub-packages.\nMoving forward, no additional feature will be added to the swag API directly at the root package level,\nwhich remains there for backward-compatibility purposes.\n\nChild modules will continue to evolve or some new ones may be added in the future.\n\ncmdutils      utilities to work with CLIs\n\nconv          type conversion utilities\n\nfileutils     file utilities\n\njsonname      JSON utilities\n\njsonutils     JSON utilities\n\nloading       file loading\n\nmangling      safe name generation\n\nnetutils      networking utilities\n\nstringutils   `string` utilities\n\ntypeutils     `go` types utilities\n\nyamlutils     YAML utilities\n\nThis repo has a few dependencies outside of the standard library:",
+      "licenses": [
+        {
+          "expression": "(Apache-2.0)"
+        }
+      ],
       "purl": "pkg:golang/github.com/go-openapi/swag@v0.25.4",
+      "externalReferences": [
+        {
+          "url": "https://github.com/go-openapi/swag",
+          "type": "website"
+        },
+        {
+          "url": "https://pkg.go.dev/github.com/go-openapi/swag",
+          "type": "distribution"
+        },
+        {
+          "url": "https://github.com/go-openapi/swag",
+          "type": "vcs"
+        },
+        {
+          "url": "https://pkg.go.dev/github.com/go-openapi/swag#section-documentation",
+          "type": "documentation"
+        }
+      ],
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
@@ -767,15 +1490,53 @@
         {
           "name": "aquasecurity:trivy:PkgType",
           "value": "gobinary"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2018-10-07T00:18:58Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2025-11-25T18:28:48Z"
         }
       ]
     },
     {
       "bom-ref": "pkg:golang/github.com/google/gnostic-models@v0.7.1",
       "type": "library",
+      "supplier": {
+        "name": "Google",
+        "url": [
+          "https://opensource.google/"
+        ]
+      },
+      "author": "Google",
       "name": "github.com/google/gnostic-models",
       "version": "v0.7.1",
+      "licenses": [
+        {
+          "expression": "(Apache-2.0)"
+        }
+      ],
       "purl": "pkg:golang/github.com/google/gnostic-models@v0.7.1",
+      "externalReferences": [
+        {
+          "url": "https://github.com/google/gnostic-models",
+          "type": "website"
+        },
+        {
+          "url": "https://pkg.go.dev/github.com/google/gnostic-models",
+          "type": "distribution"
+        },
+        {
+          "url": "https://github.com/google/gnostic-models",
+          "type": "vcs"
+        },
+        {
+          "url": "https://pkg.go.dev/github.com/google/gnostic-models#section-documentation",
+          "type": "documentation"
+        }
+      ],
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
@@ -792,15 +1553,58 @@
         {
           "name": "aquasecurity:trivy:PkgType",
           "value": "gobinary"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2022-04-12T22:34:26Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2025-11-19T16:46:19Z"
+        },
+        {
+          "name": "ecosystems:owner_location",
+          "value": "United States of America"
         }
       ]
     },
     {
       "bom-ref": "pkg:golang/github.com/google/uuid@v1.6.0",
       "type": "library",
+      "supplier": {
+        "name": "Google",
+        "url": [
+          "https://opensource.google/"
+        ]
+      },
+      "author": "Google",
       "name": "github.com/google/uuid",
       "version": "v1.6.0",
+      "description": "Package uuid generates and inspects UUIDs.\n\nUUIDs are based on RFC 4122 and DCE 1.1: Authentication and Security\nServices.\n\nA UUID is a 16 byte (128 bit) array.  UUIDs may be used as keys to\nmaps or compared directly.",
+      "licenses": [
+        {
+          "expression": "(BSD-3-Clause)"
+        }
+      ],
       "purl": "pkg:golang/github.com/google/uuid@v1.6.0",
+      "externalReferences": [
+        {
+          "url": "https://github.com/google/uuid",
+          "type": "website"
+        },
+        {
+          "url": "https://pkg.go.dev/github.com/google/uuid",
+          "type": "distribution"
+        },
+        {
+          "url": "https://github.com/google/uuid",
+          "type": "vcs"
+        },
+        {
+          "url": "https://pkg.go.dev/github.com/google/uuid#section-documentation",
+          "type": "documentation"
+        }
+      ],
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
@@ -817,14 +1621,59 @@
         {
           "name": "aquasecurity:trivy:PkgType",
           "value": "gobinary"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2018-08-27T20:42:32Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2024-01-23T18:54:04Z"
+        },
+        {
+          "name": "ecosystems:owner_location",
+          "value": "United States of America"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "go"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "uuid"
         }
       ]
     },
     {
       "bom-ref": "pkg:golang/github.com/jet/kube-webhook-certgen",
       "type": "library",
+      "supplier": {
+        "name": "Jet.com",
+        "url": [
+          "https://jet.com"
+        ]
+      },
+      "author": "Jet.com",
       "name": "github.com/jet/kube-webhook-certgen",
       "purl": "pkg:golang/github.com/jet/kube-webhook-certgen",
+      "externalReferences": [
+        {
+          "url": "https://github.com/jet/kube-webhook-certgen",
+          "type": "website"
+        },
+        {
+          "url": "https://pkg.go.dev/github.com/jet/kube-webhook-certgen",
+          "type": "distribution"
+        },
+        {
+          "url": "https://github.com/jet/kube-webhook-certgen",
+          "type": "vcs"
+        },
+        {
+          "url": "https://pkg.go.dev/github.com/jet/kube-webhook-certgen#section-documentation",
+          "type": "documentation"
+        }
+      ],
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
@@ -841,15 +1690,54 @@
         {
           "name": "aquasecurity:trivy:PkgType",
           "value": "gobinary"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2019-05-30T09:04:34Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2021-04-07T16:13:58Z"
         }
       ]
     },
     {
       "bom-ref": "pkg:golang/github.com/json-iterator/go@v1.1.12",
       "type": "library",
+      "supplier": {
+        "name": "Jsoniter",
+        "url": [
+          "http://jsoniter.com/"
+        ]
+      },
+      "author": "Jsoniter",
       "name": "github.com/json-iterator/go",
       "version": "v1.1.12",
+      "description": "Package jsoniter implements encoding and decoding of JSON as defined in\nRFC 4627 and provides interfaces with identical syntax of standard lib encoding/json.\nConverting from encoding/json to jsoniter is no more than replacing the package with jsoniter\nand variable type declarations (if any).\njsoniter interfaces gives 100% compatibility with code using standard lib.\n\n\"JSON and Go\"\n(https://golang.org/doc/articles/json_and_go.html)\ngives a description of how Marshal/Unmarshal operate\nbetween arbitrary or predefined json objects and bytes,\nand it applies to jsoniter.Marshal/Unmarshal as well.\n\nBesides, jsoniter.Iterator provides a different set of interfaces\niterating given bytes/string/reader\nand yielding parsed elements one by one.\nThis set of interfaces reads input as required and gives\nbetter performance.",
+      "licenses": [
+        {
+          "expression": "(MIT)"
+        }
+      ],
       "purl": "pkg:golang/github.com/json-iterator/go@v1.1.12",
+      "externalReferences": [
+        {
+          "url": "https://github.com/json-iterator/go",
+          "type": "website"
+        },
+        {
+          "url": "https://pkg.go.dev/github.com/json-iterator/go",
+          "type": "distribution"
+        },
+        {
+          "url": "https://github.com/json-iterator/go",
+          "type": "vcs"
+        },
+        {
+          "url": "https://pkg.go.dev/github.com/json-iterator/go#section-documentation",
+          "type": "documentation"
+        }
+      ],
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
@@ -866,15 +1754,85 @@
         {
           "name": "aquasecurity:trivy:PkgType",
           "value": "gobinary"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2018-08-06T06:07:27Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2021-09-11T02:17:26Z"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "deserialization"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "go"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "golang"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "json"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "json-parser"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "parser"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "serialization"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "serializer"
         }
       ]
     },
     {
       "bom-ref": "pkg:golang/github.com/modern-go/concurrent@v0.0.0-20180306012644-bacd9c7ef1dd",
       "type": "library",
+      "supplier": {
+        "name": "Modern Go Programming",
+        "url": [
+          "https://plz.v2p.ro"
+        ]
+      },
+      "author": "Modern Go Programming",
       "name": "github.com/modern-go/concurrent",
       "version": "v0.0.0-20180306012644-bacd9c7ef1dd",
+      "licenses": [
+        {
+          "expression": "(Apache-2.0)"
+        }
+      ],
       "purl": "pkg:golang/github.com/modern-go/concurrent@v0.0.0-20180306012644-bacd9c7ef1dd",
+      "externalReferences": [
+        {
+          "url": "https://github.com/modern-go/concurrent",
+          "type": "website"
+        },
+        {
+          "url": "https://pkg.go.dev/github.com/modern-go/concurrent",
+          "type": "distribution"
+        },
+        {
+          "url": "https://github.com/modern-go/concurrent",
+          "type": "vcs"
+        },
+        {
+          "url": "https://pkg.go.dev/github.com/modern-go/concurrent#section-documentation",
+          "type": "documentation"
+        }
+      ],
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
@@ -891,6 +1849,30 @@
         {
           "name": "aquasecurity:trivy:PkgType",
           "value": "gobinary"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2018-02-28T06:14:59Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2018-03-06T01:26:44Z"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "concurrency"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "concurrent"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "go"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "golang"
         }
       ]
     },
@@ -900,6 +1882,24 @@
       "name": "github.com/modern-go/reflect2",
       "version": "v1.0.3-0.20250322232337-35a7c28c31ee",
       "purl": "pkg:golang/github.com/modern-go/reflect2@v1.0.3-0.20250322232337-35a7c28c31ee",
+      "externalReferences": [
+        {
+          "url": "https://github.com/modern-go/reflect2",
+          "type": "website"
+        },
+        {
+          "url": "https://pkg.go.dev/github.com/modern-go/reflect2",
+          "type": "distribution"
+        },
+        {
+          "url": "https://github.com/modern-go/reflect2",
+          "type": "vcs"
+        },
+        {
+          "url": "https://pkg.go.dev/github.com/modern-go/reflect2#section-documentation",
+          "type": "documentation"
+        }
+      ],
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
@@ -916,15 +1916,66 @@
         {
           "name": "aquasecurity:trivy:PkgType",
           "value": "gobinary"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2018-07-18T01:23:57Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2021-09-11T02:10:30Z"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "go"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "golang"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "reflect"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "reflection"
         }
       ]
     },
     {
       "bom-ref": "pkg:golang/github.com/munnerz/goautoneg@v0.0.0-20191010083416-a7dc8b61c822",
       "type": "library",
+      "supplier": {
+        "name": "James Munnelly"
+      },
+      "author": "James Munnelly",
       "name": "github.com/munnerz/goautoneg",
       "version": "v0.0.0-20191010083416-a7dc8b61c822",
+      "licenses": [
+        {
+          "expression": "(BSD-3-Clause)"
+        }
+      ],
       "purl": "pkg:golang/github.com/munnerz/goautoneg@v0.0.0-20191010083416-a7dc8b61c822",
+      "externalReferences": [
+        {
+          "url": "https://github.com/munnerz/goautoneg",
+          "type": "website"
+        },
+        {
+          "url": "https://pkg.go.dev/github.com/munnerz/goautoneg",
+          "type": "distribution"
+        },
+        {
+          "url": "https://github.com/munnerz/goautoneg",
+          "type": "vcs"
+        },
+        {
+          "url": "https://pkg.go.dev/github.com/munnerz/goautoneg#section-documentation",
+          "type": "documentation"
+        }
+      ],
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
@@ -941,15 +1992,54 @@
         {
           "name": "aquasecurity:trivy:PkgType",
           "value": "gobinary"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2012-07-07T11:04:53Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2019-10-10T08:34:16Z"
+        },
+        {
+          "name": "ecosystems:owner_location",
+          "value": "Birmingham, United Kingdom"
         }
       ]
     },
     {
       "bom-ref": "pkg:golang/github.com/onrik/logrus@v0.11.0",
       "type": "library",
+      "supplier": {
+        "name": "Andrey"
+      },
+      "author": "Andrey",
       "name": "github.com/onrik/logrus",
       "version": "v0.11.0",
+      "licenses": [
+        {
+          "expression": "(MIT)"
+        }
+      ],
       "purl": "pkg:golang/github.com/onrik/logrus@v0.11.0",
+      "externalReferences": [
+        {
+          "url": "https://github.com/onrik/logrus",
+          "type": "website"
+        },
+        {
+          "url": "https://pkg.go.dev/github.com/onrik/logrus",
+          "type": "distribution"
+        },
+        {
+          "url": "https://github.com/onrik/logrus",
+          "type": "vcs"
+        },
+        {
+          "url": "https://pkg.go.dev/github.com/onrik/logrus#section-documentation",
+          "type": "documentation"
+        }
+      ],
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
@@ -966,15 +2056,98 @@
         {
           "name": "aquasecurity:trivy:PkgType",
           "value": "gobinary"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2018-12-25T13:09:38Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2023-06-09T06:31:25Z"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "echo"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "gin"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "gin-gonic"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "gin-middleware"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "golang"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "gorm"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "gorm-orm"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "logging"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "logrus"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "sentry"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "sentry-client"
         }
       ]
     },
     {
       "bom-ref": "pkg:golang/github.com/sirupsen/logrus@v1.9.4",
       "type": "library",
+      "supplier": {
+        "name": "Simon Eskildsen",
+        "url": [
+          "http://turbopuffer.com"
+        ]
+      },
+      "author": "Simon Eskildsen",
       "name": "github.com/sirupsen/logrus",
       "version": "v1.9.4",
+      "description": "Package logrus is a structured logger for Go, completely API compatible with the standard library logger.\n\nThe simplest way to use Logrus is simply the package-level exported logger:\n\nOutput:\n\nFor a full guide visit https://github.com/sirupsen/logrus\n\n\nAn example on how to use a hook",
+      "licenses": [
+        {
+          "expression": "(MIT)"
+        }
+      ],
       "purl": "pkg:golang/github.com/sirupsen/logrus@v1.9.4",
+      "externalReferences": [
+        {
+          "url": "https://github.com/sirupsen/logrus",
+          "type": "website"
+        },
+        {
+          "url": "https://pkg.go.dev/github.com/sirupsen/logrus",
+          "type": "distribution"
+        },
+        {
+          "url": "https://github.com/sirupsen/logrus",
+          "type": "vcs"
+        },
+        {
+          "url": "https://pkg.go.dev/github.com/sirupsen/logrus#section-documentation",
+          "type": "documentation"
+        }
+      ],
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
@@ -991,15 +2164,70 @@
         {
           "name": "aquasecurity:trivy:PkgType",
           "value": "gobinary"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2014-04-21T13:02:16Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2025-10-23T12:47:52Z"
+        },
+        {
+          "name": "ecosystems:owner_location",
+          "value": "Ottawa, ON"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "go"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "logging"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "logrus"
         }
       ]
     },
     {
       "bom-ref": "pkg:golang/github.com/spf13/cobra@v1.10.2",
       "type": "library",
+      "supplier": {
+        "name": "Steve Francia",
+        "url": [
+          "http://spf13.com"
+        ]
+      },
+      "author": "Steve Francia",
       "name": "github.com/spf13/cobra",
       "version": "v1.10.2",
+      "description": "Package cobra is a commander providing a simple interface to create powerful modern CLI interfaces.\nIn addition to providing an interface, Cobra simultaneously provides a controller to organize your application code.",
+      "licenses": [
+        {
+          "expression": "(Apache-2.0)"
+        }
+      ],
       "purl": "pkg:golang/github.com/spf13/cobra@v1.10.2",
+      "externalReferences": [
+        {
+          "url": "https://github.com/spf13/cobra",
+          "type": "website"
+        },
+        {
+          "url": "https://pkg.go.dev/github.com/spf13/cobra",
+          "type": "distribution"
+        },
+        {
+          "url": "https://github.com/spf13/cobra",
+          "type": "vcs"
+        },
+        {
+          "url": "https://pkg.go.dev/github.com/spf13/cobra#section-documentation",
+          "type": "documentation"
+        }
+      ],
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
@@ -1016,15 +2244,122 @@
         {
           "name": "aquasecurity:trivy:PkgType",
           "value": "gobinary"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2017-10-12T18:25:33Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2025-12-03T23:51:15Z"
+        },
+        {
+          "name": "ecosystems:owner_location",
+          "value": "NYC"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "cli"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "cli-app"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "cobra"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "cobra-generator"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "cobra-library"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "command"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "command-cobra"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "command-line"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "commandline"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "go"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "golang"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "golang-application"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "golang-library"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "posix"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "posix-compliant-flags"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "subcommands"
         }
       ]
     },
     {
       "bom-ref": "pkg:golang/github.com/spf13/pflag@v1.0.10",
       "type": "library",
+      "supplier": {
+        "name": "Steve Francia",
+        "url": [
+          "http://spf13.com"
+        ]
+      },
+      "author": "Steve Francia",
       "name": "github.com/spf13/pflag",
       "version": "v1.0.10",
+      "description": "Package pflag is a drop-in replacement for Go's flag package, implementing\nPOSIX/GNU-style --flags.\n\npflag is compatible with the GNU extensions to the POSIX recommendations\nfor command-line options. See\nhttp://www.gnu.org/software/libc/manual/html_node/Argument-Syntax.html\n\nUsage:\n\npflag is a drop-in replacement of Go's native flag package. If you import\npflag under the name \"flag\" then all code should continue to function\nwith no changes.\n\nThere is one exception to this: if you directly instantiate the Flag struct\nthere is one more field \"Shorthand\" that you will need to set.\nMost code never instantiates this struct directly, and instead uses\nfunctions such as String(), BoolVar(), and Var(), and is therefore\nunaffected.\n\nDefine flags using flag.String(), Bool(), Int(), etc.\n\nThis declares an integer flag, -flagname, stored in the pointer ip, with type *int.\n\nIf you like, you can bind the flag to a variable using the Var() functions.\n\nOr you can create custom flags that satisfy the Value interface (with\npointer receivers) and couple them to flag parsing by\n\nFor such flags, the default value is just the initial value of the variable.\n\nAfter all flags are defined, call\n\nto parse the command line into the defined flags.\n\nFlags may then be used directly. If you're using the flags themselves,\nthey are all pointers; if you bind to variables, they're values.\n\nAfter parsing, the arguments after the flag are available as the\nslice flag.Args() or individually as flag.Arg(i).\nThe arguments are indexed from 0 through flag.NArg()-1.\n\nThe pflag package also defines some new functions that are not in flag,\nthat give one-letter shorthands for flags. You can use these by appending\n'P' to the name of any function that defines a flag.\n\nShorthand letters can be used with single dashes on the command line.\nBoolean shorthand flags can be combined with other shorthand flags.\n\nCommand line flag syntax:\n\nUnlike the flag package, a single dash before an option means something\ndifferent than a double dash. Single dashes signify a series of shorthand\nletters for flags. All but the last shorthand letter must be boolean flags.\n\nFlag parsing stops after the terminator \"--\". Unlike the flag package,\nflags can be interspersed with arguments anywhere on the command line\nbefore this terminator.\n\nInteger flags accept 1234, 0664, 0x1234 and may be negative.\nBoolean flags (in their long form) accept 1, 0, t, f, true, false,\nTRUE, FALSE, True, False.\nDuration flags accept any input valid for time.ParseDuration.\n\nThe default set of command-line flags is controlled by\ntop-level functions.  The FlagSet type allows one to define\nindependent sets of flags, such as to implement subcommands\nin a command-line interface. The methods of FlagSet are\nanalogous to the top-level functions for the command-line\nflag set.",
+      "licenses": [
+        {
+          "expression": "(BSD-3-Clause)"
+        }
+      ],
       "purl": "pkg:golang/github.com/spf13/pflag@v1.0.10",
+      "externalReferences": [
+        {
+          "url": "https://github.com/spf13/pflag",
+          "type": "website"
+        },
+        {
+          "url": "https://pkg.go.dev/github.com/spf13/pflag",
+          "type": "distribution"
+        },
+        {
+          "url": "https://github.com/spf13/pflag",
+          "type": "vcs"
+        },
+        {
+          "url": "https://pkg.go.dev/github.com/spf13/pflag#section-documentation",
+          "type": "documentation"
+        }
+      ],
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
@@ -1041,15 +2376,54 @@
         {
           "name": "aquasecurity:trivy:PkgType",
           "value": "gobinary"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2017-05-08T18:44:08Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2025-09-02T06:08:29Z"
+        },
+        {
+          "name": "ecosystems:owner_location",
+          "value": "NYC"
         }
       ]
     },
     {
       "bom-ref": "pkg:golang/github.com/x448/float16@v0.8.4",
       "type": "library",
+      "supplier": {
+        "name": "Montgomery Edwards⁴⁴⁸"
+      },
+      "author": "Montgomery Edwards⁴⁴⁸",
       "name": "github.com/x448/float16",
       "version": "v0.8.4",
+      "licenses": [
+        {
+          "expression": "(MIT)"
+        }
+      ],
       "purl": "pkg:golang/github.com/x448/float16@v0.8.4",
+      "externalReferences": [
+        {
+          "url": "https://github.com/x448/float16",
+          "type": "website"
+        },
+        {
+          "url": "https://pkg.go.dev/github.com/x448/float16",
+          "type": "distribution"
+        },
+        {
+          "url": "https://github.com/x448/float16",
+          "type": "vcs"
+        },
+        {
+          "url": "https://pkg.go.dev/github.com/x448/float16#section-documentation",
+          "type": "documentation"
+        }
+      ],
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
@@ -1066,6 +2440,46 @@
         {
           "name": "aquasecurity:trivy:PkgType",
           "value": "gobinary"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2019-12-31T20:20:42Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2020-01-17T18:31:28Z"
+        },
+        {
+          "name": "ecosystems:owner_location",
+          "value": "United States"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "binary16"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "float16"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "floating-point"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "go"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "golang"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "half-precision"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "ieee754"
         }
       ]
     },
@@ -1075,6 +2489,16 @@
       "name": "go.yaml.in/yaml/v2",
       "version": "v2.4.3",
       "purl": "pkg:golang/go.yaml.in/yaml/v2@v2.4.3",
+      "externalReferences": [
+        {
+          "url": "https://pkg.go.dev/go.yaml.in/yaml/v2",
+          "type": "distribution"
+        },
+        {
+          "url": "https://pkg.go.dev/go.yaml.in/yaml/v2#section-documentation",
+          "type": "documentation"
+        }
+      ],
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
@@ -1091,6 +2515,14 @@
         {
           "name": "aquasecurity:trivy:PkgType",
           "value": "gobinary"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2025-06-03T08:48:51Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2025-09-11T04:10:14Z"
         }
       ]
     },
@@ -1100,6 +2532,16 @@
       "name": "go.yaml.in/yaml/v3",
       "version": "v3.0.4",
       "purl": "pkg:golang/go.yaml.in/yaml/v3@v3.0.4",
+      "externalReferences": [
+        {
+          "url": "https://pkg.go.dev/go.yaml.in/yaml/v3",
+          "type": "distribution"
+        },
+        {
+          "url": "https://pkg.go.dev/go.yaml.in/yaml/v3#section-documentation",
+          "type": "documentation"
+        }
+      ],
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
@@ -1116,6 +2558,14 @@
         {
           "name": "aquasecurity:trivy:PkgType",
           "value": "gobinary"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2022-05-21T10:33:21Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2025-06-29T14:09:51Z"
         }
       ]
     },
@@ -1124,7 +2574,30 @@
       "type": "library",
       "name": "golang.org/x/net",
       "version": "v0.49.0",
+      "licenses": [
+        {
+          "expression": "(BSD-3-Clause)"
+        }
+      ],
       "purl": "pkg:golang/golang.org/x/net@v0.49.0",
+      "externalReferences": [
+        {
+          "url": "https://cs.opensource.google/go/x/net",
+          "type": "website"
+        },
+        {
+          "url": "https://pkg.go.dev/golang.org/x/net",
+          "type": "distribution"
+        },
+        {
+          "url": "https://cs.opensource.google/go/x/net",
+          "type": "vcs"
+        },
+        {
+          "url": "https://pkg.go.dev/golang.org/x/net#section-documentation",
+          "type": "documentation"
+        }
+      ],
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
@@ -1141,6 +2614,14 @@
         {
           "name": "aquasecurity:trivy:PkgType",
           "value": "gobinary"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2022-10-19T15:28:41Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2026-02-09T17:11:27Z"
         }
       ]
     },
@@ -1149,7 +2630,27 @@
       "type": "library",
       "name": "golang.org/x/oauth2",
       "version": "v0.34.0",
+      "description": "Package oauth2 provides support for making\nOAuth2 authorized and authenticated HTTP requests,\nas specified in RFC 6749.\nIt can additionally grant authorization with Bearer JWT.",
+      "licenses": [
+        {
+          "expression": "(BSD-3-Clause)"
+        }
+      ],
       "purl": "pkg:golang/golang.org/x/oauth2@v0.34.0",
+      "externalReferences": [
+        {
+          "url": "https://cs.opensource.google/go/x/oauth2",
+          "type": "website"
+        },
+        {
+          "url": "https://pkg.go.dev/golang.org/x/oauth2",
+          "type": "distribution"
+        },
+        {
+          "url": "https://pkg.go.dev/golang.org/x/oauth2#section-documentation",
+          "type": "documentation"
+        }
+      ],
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
@@ -1166,6 +2667,14 @@
         {
           "name": "aquasecurity:trivy:PkgType",
           "value": "gobinary"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2022-10-19T16:27:24Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2026-01-12T19:50:33Z"
         }
       ]
     },
@@ -1174,7 +2683,26 @@
       "type": "library",
       "name": "golang.org/x/sys",
       "version": "v0.40.0",
+      "licenses": [
+        {
+          "expression": "(BSD-3-Clause)"
+        }
+      ],
       "purl": "pkg:golang/golang.org/x/sys@v0.40.0",
+      "externalReferences": [
+        {
+          "url": "https://cs.opensource.google/go/x/sys",
+          "type": "website"
+        },
+        {
+          "url": "https://pkg.go.dev/golang.org/x/sys",
+          "type": "distribution"
+        },
+        {
+          "url": "https://pkg.go.dev/golang.org/x/sys#section-documentation",
+          "type": "documentation"
+        }
+      ],
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
@@ -1191,6 +2719,14 @@
         {
           "name": "aquasecurity:trivy:PkgType",
           "value": "gobinary"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2022-10-13T17:17:32Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2026-02-08T05:32:41Z"
         }
       ]
     },
@@ -1199,7 +2735,27 @@
       "type": "library",
       "name": "golang.org/x/term",
       "version": "v0.39.0",
+      "description": "Package term provides support functions for dealing with terminals, as\ncommonly found on UNIX systems.\n\nPutting a terminal into raw mode is the most common requirement:\n\nNote that on non-Unix systems os.Stdin.Fd() may not be 0.",
+      "licenses": [
+        {
+          "expression": "(BSD-3-Clause)"
+        }
+      ],
       "purl": "pkg:golang/golang.org/x/term@v0.39.0",
+      "externalReferences": [
+        {
+          "url": "https://cs.opensource.google/go/x/term",
+          "type": "website"
+        },
+        {
+          "url": "https://pkg.go.dev/golang.org/x/term",
+          "type": "distribution"
+        },
+        {
+          "url": "https://pkg.go.dev/golang.org/x/term#section-documentation",
+          "type": "documentation"
+        }
+      ],
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
@@ -1216,6 +2772,14 @@
         {
           "name": "aquasecurity:trivy:PkgType",
           "value": "gobinary"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2022-09-19T17:04:32Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2026-02-09T16:13:12Z"
         }
       ]
     },
@@ -1224,7 +2788,31 @@
       "type": "library",
       "name": "golang.org/x/text",
       "version": "v0.33.0",
+      "description": "text is a repository of text-related packages related to internationalization\n(i18n) and localization (l10n), such as character encodings, text\ntransformations, and locale-specific text handling.\n\nThere is a 30 minute video, recorded on 2017-11-30, on the \"State of\ngolang.org/x/text\" at https://www.youtube.com/watch?v=uYrDrMEGu58",
+      "licenses": [
+        {
+          "expression": "(BSD-3-Clause)"
+        }
+      ],
       "purl": "pkg:golang/golang.org/x/text@v0.33.0",
+      "externalReferences": [
+        {
+          "url": "https://cs.opensource.google/go/x/text",
+          "type": "website"
+        },
+        {
+          "url": "https://pkg.go.dev/golang.org/x/text",
+          "type": "distribution"
+        },
+        {
+          "url": "https://cs.opensource.google/go/x/text",
+          "type": "vcs"
+        },
+        {
+          "url": "https://pkg.go.dev/golang.org/x/text#section-documentation",
+          "type": "documentation"
+        }
+      ],
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
@@ -1241,6 +2829,14 @@
         {
           "name": "aquasecurity:trivy:PkgType",
           "value": "gobinary"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2017-09-14T09:07:07Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2026-02-09T16:14:29Z"
         }
       ]
     },
@@ -1249,7 +2845,30 @@
       "type": "library",
       "name": "golang.org/x/time",
       "version": "v0.14.0",
+      "licenses": [
+        {
+          "expression": "(BSD-3-Clause)"
+        }
+      ],
       "purl": "pkg:golang/golang.org/x/time@v0.14.0",
+      "externalReferences": [
+        {
+          "url": "https://cs.opensource.google/go/x/time",
+          "type": "website"
+        },
+        {
+          "url": "https://pkg.go.dev/golang.org/x/time",
+          "type": "distribution"
+        },
+        {
+          "url": "https://cs.opensource.google/go/x/time",
+          "type": "vcs"
+        },
+        {
+          "url": "https://pkg.go.dev/golang.org/x/time#section-documentation",
+          "type": "documentation"
+        }
+      ],
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
@@ -1266,15 +2885,49 @@
         {
           "name": "aquasecurity:trivy:PkgType",
           "value": "gobinary"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2022-09-22T22:03:47Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2025-09-16T23:29:52Z"
         }
       ]
     },
     {
       "bom-ref": "pkg:golang/google.golang.org/protobuf@v1.36.11",
       "type": "library",
+      "supplier": {
+        "name": "Protocol Buffers",
+        "url": [
+          "https://developers.google.com/protocol-buffers/"
+        ]
+      },
+      "author": "Protocol Buffers",
       "name": "google.golang.org/protobuf",
       "version": "v1.36.11",
+      "licenses": [
+        {
+          "expression": "(BSD-3-Clause)"
+        }
+      ],
       "purl": "pkg:golang/google.golang.org/protobuf@v1.36.11",
+      "externalReferences": [
+        {
+          "url": "https://github.com/protocolbuffers/protobuf-go",
+          "type": "website"
+        },
+        {
+          "url": "https://pkg.go.dev/google.golang.org/protobuf",
+          "type": "distribution"
+        },
+        {
+          "url": "https://pkg.go.dev/google.golang.org/protobuf#section-documentation",
+          "type": "documentation"
+        }
+      ],
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
@@ -1291,15 +2944,64 @@
         {
           "name": "aquasecurity:trivy:PkgType",
           "value": "gobinary"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2020-03-02T18:51:28Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2025-12-12T08:48:31Z"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "go"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "golang"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "protobufs"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "protocol-buffers"
         }
       ]
     },
     {
       "bom-ref": "pkg:golang/gopkg.in/evanphx/json-patch.v4@v4.13.0",
       "type": "library",
+      "supplier": {
+        "name": "Evan Phoenix",
+        "url": [
+          "https://evanphx.dev"
+        ]
+      },
+      "author": "Evan Phoenix",
       "name": "gopkg.in/evanphx/json-patch.v4",
       "version": "v4.13.0",
       "purl": "pkg:golang/gopkg.in/evanphx/json-patch.v4@v4.13.0",
+      "externalReferences": [
+        {
+          "url": "https://github.com/evanphx/json-patch",
+          "type": "website"
+        },
+        {
+          "url": "https://pkg.go.dev/gopkg.in/evanphx/json-patch.v4",
+          "type": "distribution"
+        },
+        {
+          "url": "https://github.com/evanphx/json-patch",
+          "type": "vcs"
+        },
+        {
+          "url": "https://pkg.go.dev/gopkg.in/evanphx/json-patch.v4#section-documentation",
+          "type": "documentation"
+        }
+      ],
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
@@ -1316,15 +3018,51 @@
         {
           "name": "aquasecurity:trivy:PkgType",
           "value": "gobinary"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2018-09-07T22:16:10Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2021-10-21T16:40:42Z"
+        },
+        {
+          "name": "ecosystems:owner_location",
+          "value": "Los Angeles, CA"
         }
       ]
     },
     {
       "bom-ref": "pkg:golang/gopkg.in/inf.v0@v0.9.1",
       "type": "library",
+      "supplier": {
+        "name": "go-inf"
+      },
+      "author": "go-inf",
       "name": "gopkg.in/inf.v0",
       "version": "v0.9.1",
+      "description": "Package inf (type inf.Dec) implements \"infinite-precision\" decimal\narithmetic.\n\"Infinite precision\" describes two characteristics: practically unlimited\nprecision for decimal number representation and no support for calculating\nwith any specific fixed precision.\n(Although there is no practical limit on precision, inf.Dec can only\nrepresent finite decimals.)\n\nThis package is currently in experimental stage and the API may change.\n\nThis package does NOT support:\n\nFeatures considered for possible addition:",
+      "licenses": [
+        {
+          "expression": "(BSD-3-Clause)"
+        }
+      ],
       "purl": "pkg:golang/gopkg.in/inf.v0@v0.9.1",
+      "externalReferences": [
+        {
+          "url": "https://github.com/go-inf/inf",
+          "type": "website"
+        },
+        {
+          "url": "https://pkg.go.dev/gopkg.in/inf.v0",
+          "type": "distribution"
+        },
+        {
+          "url": "https://pkg.go.dev/gopkg.in/inf.v0#section-documentation",
+          "type": "documentation"
+        }
+      ],
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
@@ -1341,15 +3079,77 @@
         {
           "name": "aquasecurity:trivy:PkgType",
           "value": "gobinary"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2015-09-11T12:57:57Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2018-03-26T17:23:32Z"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "arithmetic"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "decimal"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "go"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "golang"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "math"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "mathematics"
         }
       ]
     },
     {
       "bom-ref": "pkg:golang/k8s.io/api@v0.35.0",
       "type": "library",
+      "supplier": {
+        "name": "Kubernetes",
+        "url": [
+          "https://kubernetes.io"
+        ]
+      },
+      "author": "Kubernetes",
       "name": "k8s.io/api",
       "version": "v0.35.0",
+      "licenses": [
+        {
+          "expression": "(Apache-2.0)"
+        }
+      ],
       "purl": "pkg:golang/k8s.io/api@v0.35.0",
+      "externalReferences": [
+        {
+          "url": "https://github.com/kubernetes/api",
+          "type": "website"
+        },
+        {
+          "url": "https://pkg.go.dev/k8s.io/api",
+          "type": "distribution"
+        },
+        {
+          "url": "https://github.com/kubernetes/api",
+          "type": "vcs"
+        },
+        {
+          "url": "https://pkg.go.dev/k8s.io/api#section-documentation",
+          "type": "documentation"
+        }
+      ],
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
@@ -1366,15 +3166,57 @@
         {
           "name": "aquasecurity:trivy:PkgType",
           "value": "gobinary"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2019-12-11T19:04:35Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2026-02-10T20:17:07Z"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "k8s-staging"
         }
       ]
     },
     {
       "bom-ref": "pkg:golang/k8s.io/apimachinery@v0.35.0",
       "type": "library",
+      "supplier": {
+        "name": "Kubernetes",
+        "url": [
+          "https://kubernetes.io"
+        ]
+      },
+      "author": "Kubernetes",
       "name": "k8s.io/apimachinery",
       "version": "v0.35.0",
+      "licenses": [
+        {
+          "expression": "(Apache-2.0)"
+        }
+      ],
       "purl": "pkg:golang/k8s.io/apimachinery@v0.35.0",
+      "externalReferences": [
+        {
+          "url": "https://github.com/kubernetes/apimachinery",
+          "type": "website"
+        },
+        {
+          "url": "https://pkg.go.dev/k8s.io/apimachinery",
+          "type": "distribution"
+        },
+        {
+          "url": "https://github.com/kubernetes/apimachinery",
+          "type": "vcs"
+        },
+        {
+          "url": "https://pkg.go.dev/k8s.io/apimachinery#section-documentation",
+          "type": "documentation"
+        }
+      ],
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
@@ -1391,15 +3233,54 @@
         {
           "name": "aquasecurity:trivy:PkgType",
           "value": "gobinary"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2019-10-04T11:57:01Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2025-12-04T22:24:03Z"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "k8s-staging"
         }
       ]
     },
     {
       "bom-ref": "pkg:golang/k8s.io/client-go@v0.35.0",
       "type": "library",
+      "supplier": {
+        "name": "Kubernetes",
+        "url": [
+          "https://kubernetes.io"
+        ]
+      },
+      "author": "Kubernetes",
       "name": "k8s.io/client-go",
       "version": "v0.35.0",
+      "description": "Package clientgo is the official Go client for the Kubernetes API. It provides\na standard set of clients and tools for building applications, controllers,\nand operators that communicate with a Kubernetes cluster.\n\nkubernetes: Contains the typed Clientset for interacting with built-in,\nversioned API objects (e.g., Pods, Deployments). This is the most common\nstarting point.\n\ndynamic: Provides a dynamic client that can perform operations on any\nKubernetes object, including Custom Resources (CRs). It is essential for\nbuilding controllers that work with CRDs.\n\ndiscovery: Used to discover the API groups, versions, and resources\nsupported by a Kubernetes cluster.\n\ntools/cache: The foundation of the controller pattern. This package provides\nefficient caching and synchronization mechanisms (Informers and Listers)\nfor building controllers.\n\ntools/clientcmd: Provides methods for loading client configuration from\nkubeconfig files. This is essential for out-of-cluster applications and CLI tools.\n\nrest: Provides a lower-level RESTClient that manages the details of\ncommunicating with the Kubernetes API server. It is useful for advanced\nuse cases that require fine-grained control over requests, such as working\nwith non-standard REST verbs.\n\nThere are two primary ways to configure a client to connect to the API server:\n\nIn-Cluster Configuration: For applications running inside a Kubernetes pod,\nthe `rest.InClusterConfig()` function provides a straightforward way to\nconfigure the client. It automatically uses the pod's service account for\nauthentication and is the recommended approach for controllers and operators.\n\nOut-of-Cluster Configuration: For local development or command-line tools,\nthe `clientcmd` package is used to load configuration from a\nkubeconfig file.\n\nThe `rest.Config` object allows for fine-grained control over client-side\nperformance and reliability. Key settings include:\n\nOnce configured, a client can be used to interact with objects in the cluster.\n\nThe Typed Clientset (`kubernetes` package) provides a strongly typed\ninterface for working with built-in Kubernetes objects.\n\nThe Dynamic Client (`dynamic` package) can work with any object, including\nCustom Resources, using `unstructured.Unstructured` types.\n\nFor Custom Resources (CRDs), the `k8s.io/code-generator` repository\ncontains the tools to generate typed clients, informers, and listers. The\n`sample-controller` is the canonical example of this pattern.\n\nServer-Side Apply is a patching strategy that allows multiple actors to\nshare management of an object by tracking field ownership. This prevents\nactors from inadvertently overwriting each other's changes and provides\na mechanism for resolving conflicts. The `applyconfigurations` package\nprovides the necessary tools for this declarative approach.\n\nRobust error handling is essential when interacting with the API. The\n`k8s.io/apimachinery/pkg/api/errors` package provides functions to inspect\nerrors and check for common conditions, such as whether a resource was not\nfound or already exists. This allows controllers to implement robust,\nidempotent reconciliation logic.\n\nThe controller pattern is central to Kubernetes. A controller observes the\nstate of the cluster and works to bring it to the desired state.\n\nThe `tools/cache` package provides the building blocks for this pattern.\nInformers watch the API server and maintain a local cache, Listers provide\nread-only access to the cache, and Workqueues decouple event detection\nfrom processing.\n\nIn a high-availability deployment where multiple instances of a controller\nare running, leader election (`tools/leaderelection`) is used to ensure\nthat only one instance is active at a time.\n\nClient-side feature gates allow for enabling or disabling experimental\nfeatures in `client-go`. They can be configured via the `rest.Config` object.",
+      "licenses": [
+        {
+          "expression": "(Apache-2.0)"
+        }
+      ],
       "purl": "pkg:golang/k8s.io/client-go@v0.35.0",
+      "externalReferences": [
+        {
+          "url": "https://github.com/kubernetes/client-go",
+          "type": "website"
+        },
+        {
+          "url": "https://pkg.go.dev/k8s.io/client-go",
+          "type": "distribution"
+        },
+        {
+          "url": "https://pkg.go.dev/k8s.io/client-go#section-documentation",
+          "type": "documentation"
+        }
+      ],
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
@@ -1416,15 +3297,58 @@
         {
           "name": "aquasecurity:trivy:PkgType",
           "value": "gobinary"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2019-12-11T19:13:35Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2019-03-13T23:57:26Z"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "k8s-staging"
         }
       ]
     },
     {
       "bom-ref": "pkg:golang/k8s.io/klog/v2@v2.130.1",
       "type": "library",
+      "supplier": {
+        "name": "Kubernetes",
+        "url": [
+          "https://kubernetes.io"
+        ]
+      },
+      "author": "Kubernetes",
       "name": "k8s.io/klog/v2",
       "version": "v2.130.1",
+      "description": "Package klog contains the following functionality:\n\nBasic examples:\n\nSee the documentation for the V function for an explanation of these examples:\n\nLog output is buffered and written periodically using Flush. Programs\nshould call Flush before exiting to guarantee all log output is written.\n\nBy default, all log statements write to standard error.\nThis package provides several flags that modify this behavior.\nAs a result, flag.Parse must be called before any logging is done.",
+      "licenses": [
+        {
+          "expression": "(Apache-2.0)"
+        }
+      ],
       "purl": "pkg:golang/k8s.io/klog/v2@v2.130.1",
+      "externalReferences": [
+        {
+          "url": "https://github.com/kubernetes/klog",
+          "type": "website"
+        },
+        {
+          "url": "https://pkg.go.dev/k8s.io/klog/v2",
+          "type": "distribution"
+        },
+        {
+          "url": "https://github.com/kubernetes/klog",
+          "type": "vcs"
+        },
+        {
+          "url": "https://pkg.go.dev/k8s.io/klog/v2#section-documentation",
+          "type": "documentation"
+        }
+      ],
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
@@ -1441,15 +3365,53 @@
         {
           "name": "aquasecurity:trivy:PkgType",
           "value": "gobinary"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2020-04-08T18:47:44Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2024-06-20T00:51:19Z"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "k8s-sig-architecture"
         }
       ]
     },
     {
       "bom-ref": "pkg:golang/k8s.io/kube-aggregator@v0.35.0",
       "type": "library",
+      "supplier": {
+        "name": "Kubernetes",
+        "url": [
+          "https://kubernetes.io"
+        ]
+      },
+      "author": "Kubernetes",
       "name": "k8s.io/kube-aggregator",
       "version": "v0.35.0",
+      "licenses": [
+        {
+          "expression": "(Apache-2.0)"
+        }
+      ],
       "purl": "pkg:golang/k8s.io/kube-aggregator@v0.35.0",
+      "externalReferences": [
+        {
+          "url": "https://github.com/kubernetes/kube-aggregator",
+          "type": "website"
+        },
+        {
+          "url": "https://pkg.go.dev/k8s.io/kube-aggregator",
+          "type": "distribution"
+        },
+        {
+          "url": "https://pkg.go.dev/k8s.io/kube-aggregator#section-documentation",
+          "type": "documentation"
+        }
+      ],
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
@@ -1466,15 +3428,52 @@
         {
           "name": "aquasecurity:trivy:PkgType",
           "value": "gobinary"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2019-12-11T19:28:30Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2026-02-10T21:54:32Z"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "k8s-staging"
         }
       ]
     },
     {
       "bom-ref": "pkg:golang/k8s.io/kube-openapi@v0.0.0-20251125145642-4e65d59e963e",
       "type": "library",
+      "supplier": {
+        "name": "Kubernetes",
+        "url": [
+          "https://kubernetes.io"
+        ]
+      },
+      "author": "Kubernetes",
       "name": "k8s.io/kube-openapi",
       "version": "v0.0.0-20251125145642-4e65d59e963e",
       "purl": "pkg:golang/k8s.io/kube-openapi@v0.0.0-20251125145642-4e65d59e963e",
+      "externalReferences": [
+        {
+          "url": "https://github.com/kubernetes/kube-openapi",
+          "type": "website"
+        },
+        {
+          "url": "https://pkg.go.dev/k8s.io/kube-openapi",
+          "type": "distribution"
+        },
+        {
+          "url": "https://github.com/kubernetes/kube-openapi",
+          "type": "vcs"
+        },
+        {
+          "url": "https://pkg.go.dev/k8s.io/kube-openapi#section-documentation",
+          "type": "documentation"
+        }
+      ],
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
@@ -1491,15 +3490,48 @@
         {
           "name": "aquasecurity:trivy:PkgType",
           "value": "gobinary"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2018-06-29T01:24:20Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2024-01-17T19:48:47Z"
         }
       ]
     },
     {
       "bom-ref": "pkg:golang/k8s.io/utils@v0.0.0-20260108192941-914a6e750570",
       "type": "library",
+      "supplier": {
+        "name": "Kubernetes",
+        "url": [
+          "https://kubernetes.io"
+        ]
+      },
+      "author": "Kubernetes",
       "name": "k8s.io/utils",
       "version": "v0.0.0-20260108192941-914a6e750570",
       "purl": "pkg:golang/k8s.io/utils@v0.0.0-20260108192941-914a6e750570",
+      "externalReferences": [
+        {
+          "url": "https://github.com/kubernetes/utils",
+          "type": "website"
+        },
+        {
+          "url": "https://pkg.go.dev/k8s.io/utils",
+          "type": "distribution"
+        },
+        {
+          "url": "https://github.com/kubernetes/utils",
+          "type": "vcs"
+        },
+        {
+          "url": "https://pkg.go.dev/k8s.io/utils#section-documentation",
+          "type": "documentation"
+        }
+      ],
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
@@ -1516,15 +3548,58 @@
         {
           "name": "aquasecurity:trivy:PkgType",
           "value": "gobinary"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2018-10-19T22:53:48Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2024-01-02T15:49:12Z"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "golang"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "kubernetes"
         }
       ]
     },
     {
       "bom-ref": "pkg:golang/sigs.k8s.io/json@v0.0.0-20250730193827-2d320260d730",
       "type": "library",
+      "supplier": {
+        "name": "Kubernetes SIGs"
+      },
+      "author": "Kubernetes SIGs",
       "name": "sigs.k8s.io/json",
       "version": "v0.0.0-20250730193827-2d320260d730",
+      "licenses": [
+        {
+          "expression": "(Apache-2.0 OR BSD-3-Clause)"
+        }
+      ],
       "purl": "pkg:golang/sigs.k8s.io/json@v0.0.0-20250730193827-2d320260d730",
+      "externalReferences": [
+        {
+          "url": "https://github.com/kubernetes-sigs/json",
+          "type": "website"
+        },
+        {
+          "url": "https://pkg.go.dev/sigs.k8s.io/json",
+          "type": "distribution"
+        },
+        {
+          "url": "https://github.com/kubernetes-sigs/json",
+          "type": "vcs"
+        },
+        {
+          "url": "https://pkg.go.dev/sigs.k8s.io/json#section-documentation",
+          "type": "documentation"
+        }
+      ],
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
@@ -1541,6 +3616,18 @@
         {
           "name": "aquasecurity:trivy:PkgType",
           "value": "gobinary"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2021-10-20T17:05:58Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2025-07-30T19:38:27Z"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "k8s-sig-api-machinery"
         }
       ]
     },
@@ -1550,6 +3637,16 @@
       "name": "sigs.k8s.io/randfill",
       "version": "v1.0.0",
       "purl": "pkg:golang/sigs.k8s.io/randfill@v1.0.0",
+      "externalReferences": [
+        {
+          "url": "https://pkg.go.dev/sigs.k8s.io/randfill",
+          "type": "distribution"
+        },
+        {
+          "url": "https://pkg.go.dev/sigs.k8s.io/randfill#section-documentation",
+          "type": "documentation"
+        }
+      ],
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
@@ -1566,6 +3663,14 @@
         {
           "name": "aquasecurity:trivy:PkgType",
           "value": "gobinary"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2025-03-04T18:23:53Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2025-03-04T18:23:53Z"
         }
       ]
     },
@@ -1575,6 +3680,16 @@
       "name": "sigs.k8s.io/structured-merge-diff/v6",
       "version": "v6.3.1",
       "purl": "pkg:golang/sigs.k8s.io/structured-merge-diff/v6@v6.3.1",
+      "externalReferences": [
+        {
+          "url": "https://pkg.go.dev/sigs.k8s.io/structured-merge-diff/v6",
+          "type": "distribution"
+        },
+        {
+          "url": "https://pkg.go.dev/sigs.k8s.io/structured-merge-diff/v6#section-documentation",
+          "type": "documentation"
+        }
+      ],
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
@@ -1591,15 +3706,50 @@
         {
           "name": "aquasecurity:trivy:PkgType",
           "value": "gobinary"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2025-04-18T19:25:07Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2025-10-30T18:12:04Z"
         }
       ]
     },
     {
       "bom-ref": "pkg:golang/sigs.k8s.io/yaml@v1.6.0",
       "type": "library",
+      "supplier": {
+        "name": "Kubernetes SIGs"
+      },
+      "author": "Kubernetes SIGs",
       "name": "sigs.k8s.io/yaml",
       "version": "v1.6.0",
+      "licenses": [
+        {
+          "expression": "(Apache-2.0 OR BSD-3-Clause OR MIT)"
+        }
+      ],
       "purl": "pkg:golang/sigs.k8s.io/yaml@v1.6.0",
+      "externalReferences": [
+        {
+          "url": "https://github.com/kubernetes-sigs/yaml",
+          "type": "website"
+        },
+        {
+          "url": "https://pkg.go.dev/sigs.k8s.io/yaml",
+          "type": "distribution"
+        },
+        {
+          "url": "https://github.com/kubernetes-sigs/yaml",
+          "type": "vcs"
+        },
+        {
+          "url": "https://pkg.go.dev/sigs.k8s.io/yaml#section-documentation",
+          "type": "documentation"
+        }
+      ],
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
@@ -1616,6 +3766,18 @@
         {
           "name": "aquasecurity:trivy:PkgType",
           "value": "gobinary"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2017-03-27T23:54:44Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2025-07-24T18:12:28Z"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "k8s-sig-api-machinery"
         }
       ]
     },
@@ -1647,16 +3809,7 @@
   ],
   "dependencies": [
     {
-      "ref": "0e726d03-533f-44c4-8a7c-01d7ce92022f",
-      "dependsOn": [
-        "pkg:deb/debian/base-files@12.4%2Bdeb12u13?arch=amd64&distro=debian-12.13",
-        "pkg:deb/debian/media-types@10.0.0?arch=all&distro=debian-12.13",
-        "pkg:deb/debian/netbase@6.4?arch=all&distro=debian-12.13",
-        "pkg:deb/debian/tzdata@2025b-0%2Bdeb12u2?arch=all&distro=debian-12.13"
-      ]
-    },
-    {
-      "ref": "8e47b89b-34ab-4ebd-856f-3fb306ecf8b8",
+      "ref": "f7c6db7c-c731-43d6-9e31-3729565c348a",
       "dependsOn": [
         "pkg:golang/github.com/davecgh/go-spew@v1.1.2-0.20180830191138-d8f796af33cc",
         "pkg:golang/github.com/emicklei/go-restful/v3@v3.13.0",
@@ -1711,6 +3864,15 @@
         "pkg:golang/sigs.k8s.io/structured-merge-diff/v6@v6.3.1",
         "pkg:golang/sigs.k8s.io/yaml@v1.6.0",
         "pkg:golang/stdlib@v1.25.6"
+      ]
+    },
+    {
+      "ref": "ffe77b75-c5d0-44fe-a6cd-ab7bc0408833",
+      "dependsOn": [
+        "pkg:deb/debian/base-files@12.4%2Bdeb12u13?arch=amd64&distro=debian-12.13",
+        "pkg:deb/debian/media-types@10.0.0?arch=all&distro=debian-12.13",
+        "pkg:deb/debian/netbase@6.4?arch=all&distro=debian-12.13",
+        "pkg:deb/debian/tzdata@2025b-0%2Bdeb12u2?arch=all&distro=debian-12.13"
       ]
     },
     {
@@ -1944,8 +4106,8 @@
     {
       "ref": "pkg:oci/kube-webhook-certgen@sha256%3A7c74a715af2c94cb734785b4d3ea1357b4f02b88e1e123c622a9cb68b62f669c?arch=amd64&repository_url=registry.k8s.io%2Fingress-nginx%2Fkube-webhook-certgen",
       "dependsOn": [
-        "0e726d03-533f-44c4-8a7c-01d7ce92022f",
-        "8e47b89b-34ab-4ebd-856f-3fb306ecf8b8"
+        "f7c6db7c-c731-43d6-9e31-3729565c348a",
+        "ffe77b75-c5d0-44fe-a6cd-ab7bc0408833"
       ]
     }
   ],
