@@ -2,10 +2,10 @@
   "$schema": "http://cyclonedx.org/schema/bom-1.6.schema.json",
   "bomFormat": "CycloneDX",
   "specVersion": "1.6",
-  "serialNumber": "urn:uuid:e2f71632-fcb1-43b9-99ca-86e9fea0cbd3",
+  "serialNumber": "urn:uuid:a0abcb3e-c93b-48ef-bb83-75f837b3eff2",
   "version": 1,
   "metadata": {
-    "timestamp": "2026-02-13T09:08:07+00:00",
+    "timestamp": "2026-02-13T09:34:00+00:00",
     "tools": {
       "components": [
         {
@@ -114,7 +114,7 @@
   },
   "components": [
     {
-      "bom-ref": "f7c6db7c-c731-43d6-9e31-3729565c348a",
+      "bom-ref": "1c0c0c09-5308-4478-b938-373010118016",
       "type": "application",
       "name": "kube-webhook-certgen",
       "properties": [
@@ -129,7 +129,7 @@
       ]
     },
     {
-      "bom-ref": "ffe77b75-c5d0-44fe-a6cd-ab7bc0408833",
+      "bom-ref": "ef122597-28b8-4596-9179-deb0eb29d791",
       "type": "operating-system",
       "name": "debian",
       "version": "12.13",
@@ -167,7 +167,7 @@
         },
         {
           "name": "aquasecurity:trivy:LayerDigest",
-          "value": "sha256:03c9b64681eef07f903b45cfbe5c064db1f1c7f682863b895104ac2680a271a7"
+          "value": "sha256:fab8c4b3fa32236a59c44cc504a69b18788d5c17c045691c2d682267ae8cf468"
         },
         {
           "name": "aquasecurity:trivy:PkgID",
@@ -3809,7 +3809,7 @@
   ],
   "dependencies": [
     {
-      "ref": "f7c6db7c-c731-43d6-9e31-3729565c348a",
+      "ref": "1c0c0c09-5308-4478-b938-373010118016",
       "dependsOn": [
         "pkg:golang/github.com/davecgh/go-spew@v1.1.2-0.20180830191138-d8f796af33cc",
         "pkg:golang/github.com/emicklei/go-restful/v3@v3.13.0",
@@ -3867,7 +3867,7 @@
       ]
     },
     {
-      "ref": "ffe77b75-c5d0-44fe-a6cd-ab7bc0408833",
+      "ref": "ef122597-28b8-4596-9179-deb0eb29d791",
       "dependsOn": [
         "pkg:deb/debian/base-files@12.4%2Bdeb12u13?arch=amd64&distro=debian-12.13",
         "pkg:deb/debian/media-types@10.0.0?arch=all&distro=debian-12.13",
@@ -4106,8 +4106,8 @@
     {
       "ref": "pkg:oci/kube-webhook-certgen@sha256%3A7c74a715af2c94cb734785b4d3ea1357b4f02b88e1e123c622a9cb68b62f669c?arch=amd64&repository_url=registry.k8s.io%2Fingress-nginx%2Fkube-webhook-certgen",
       "dependsOn": [
-        "f7c6db7c-c731-43d6-9e31-3729565c348a",
-        "ffe77b75-c5d0-44fe-a6cd-ab7bc0408833"
+        "1c0c0c09-5308-4478-b938-373010118016",
+        "ef122597-28b8-4596-9179-deb0eb29d791"
       ]
     }
   ],

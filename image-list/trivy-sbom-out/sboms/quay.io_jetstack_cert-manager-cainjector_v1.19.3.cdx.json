@@ -2,10 +2,10 @@
   "$schema": "http://cyclonedx.org/schema/bom-1.6.schema.json",
   "bomFormat": "CycloneDX",
   "specVersion": "1.6",
-  "serialNumber": "urn:uuid:60f05dfc-7c14-44f5-9fd0-5a9e79c35f29",
+  "serialNumber": "urn:uuid:599aa98d-725c-4948-9221-633be755ee7b",
   "version": 1,
   "metadata": {
-    "timestamp": "2026-02-13T09:06:34+00:00",
+    "timestamp": "2026-02-13T09:32:40+00:00",
     "tools": {
       "components": [
         {
@@ -118,23 +118,7 @@
   },
   "components": [
     {
-      "bom-ref": "29b41610-4292-45c2-b2ae-252af6020eb0",
-      "type": "operating-system",
-      "name": "debian",
-      "version": "12.13",
-      "properties": [
-        {
-          "name": "aquasecurity:trivy:Class",
-          "value": "os-pkgs"
-        },
-        {
-          "name": "aquasecurity:trivy:Type",
-          "value": "debian"
-        }
-      ]
-    },
-    {
-      "bom-ref": "3972e7d7-bf8b-4735-ba3c-26fd8a72f455",
+      "bom-ref": "010924c3-cd07-44ad-b75b-fe64440076ba",
       "type": "library",
       "name": "../../",
       "properties": [
@@ -157,7 +141,23 @@
       ]
     },
     {
-      "bom-ref": "f4afab59-1a93-4c3a-9a11-91fcbe0c2934",
+      "bom-ref": "136d1d40-ceb2-40f7-993c-7f39d2eb7411",
+      "type": "operating-system",
+      "name": "debian",
+      "version": "12.13",
+      "properties": [
+        {
+          "name": "aquasecurity:trivy:Class",
+          "value": "os-pkgs"
+        },
+        {
+          "name": "aquasecurity:trivy:Type",
+          "value": "debian"
+        }
+      ]
+    },
+    {
+      "bom-ref": "2d2fe6f4-36f0-470d-b0e2-3353bf9563e3",
       "type": "application",
       "name": "app/cmd/cainjector/cainjector",
       "properties": [
@@ -194,7 +194,7 @@
         },
         {
           "name": "aquasecurity:trivy:LayerDigest",
-          "value": "sha256:03c9b64681eef07f903b45cfbe5c064db1f1c7f682863b895104ac2680a271a7"
+          "value": "sha256:fab8c4b3fa32236a59c44cc504a69b18788d5c17c045691c2d682267ae8cf468"
         },
         {
           "name": "aquasecurity:trivy:PkgID",
@@ -5065,7 +5065,11 @@
   ],
   "dependencies": [
     {
-      "ref": "29b41610-4292-45c2-b2ae-252af6020eb0",
+      "ref": "010924c3-cd07-44ad-b75b-fe64440076ba",
+      "dependsOn": []
+    },
+    {
+      "ref": "136d1d40-ceb2-40f7-993c-7f39d2eb7411",
       "dependsOn": [
         "pkg:deb/debian/base-files@12.4%2Bdeb12u13?arch=amd64&distro=debian-12.13",
         "pkg:deb/debian/media-types@10.0.0?arch=all&distro=debian-12.13",
@@ -5074,13 +5078,9 @@
       ]
     },
     {
-      "ref": "3972e7d7-bf8b-4735-ba3c-26fd8a72f455",
-      "dependsOn": []
-    },
-    {
-      "ref": "f4afab59-1a93-4c3a-9a11-91fcbe0c2934",
+      "ref": "2d2fe6f4-36f0-470d-b0e2-3353bf9563e3",
       "dependsOn": [
-        "3972e7d7-bf8b-4735-ba3c-26fd8a72f455",
+        "010924c3-cd07-44ad-b75b-fe64440076ba",
         "pkg:golang/github.com/azure/go-ntlmssp@v0.0.0-20221128193559-754e69321358",
         "pkg:golang/github.com/beorn7/perks@v1.0.1",
         "pkg:golang/github.com/blang/semver/v4@v4.0.0",
@@ -5457,8 +5457,8 @@
     {
       "ref": "pkg:oci/cert-manager-cainjector@sha256%3Aeb1df56668b6e61bd902febe816568e7e47f47276121bc0e1222890871c61e50?arch=amd64&repository_url=quay.io%2Fjetstack%2Fcert-manager-cainjector",
       "dependsOn": [
-        "29b41610-4292-45c2-b2ae-252af6020eb0",
-        "f4afab59-1a93-4c3a-9a11-91fcbe0c2934"
+        "136d1d40-ceb2-40f7-993c-7f39d2eb7411",
+        "2d2fe6f4-36f0-470d-b0e2-3353bf9563e3"
       ]
     }
   ],

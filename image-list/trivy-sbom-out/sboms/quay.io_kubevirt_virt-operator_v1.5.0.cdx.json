@@ -2,10 +2,10 @@
   "$schema": "http://cyclonedx.org/schema/bom-1.6.schema.json",
   "bomFormat": "CycloneDX",
   "specVersion": "1.6",
-  "serialNumber": "urn:uuid:f75121ab-47f1-4413-9a9d-175f4fa80a42",
+  "serialNumber": "urn:uuid:4babbcd4-5750-4188-a070-dab1287d997c",
   "version": 1,
   "metadata": {
-    "timestamp": "2026-02-13T09:07:01+00:00",
+    "timestamp": "2026-02-13T09:33:05+00:00",
     "tools": {
       "components": [
         {
@@ -118,38 +118,7 @@
   },
   "components": [
     {
-      "bom-ref": "33c52ae0-2f6c-460c-b82e-e7057b6587f0",
-      "type": "operating-system",
-      "name": "debian",
-      "version": "12.6",
-      "properties": [
-        {
-          "name": "aquasecurity:trivy:Class",
-          "value": "os-pkgs"
-        },
-        {
-          "name": "aquasecurity:trivy:Type",
-          "value": "debian"
-        }
-      ]
-    },
-    {
-      "bom-ref": "98a26b1f-ef90-4a68-93f3-503e5f3819e3",
-      "type": "application",
-      "name": "usr/bin/virt-operator",
-      "properties": [
-        {
-          "name": "aquasecurity:trivy:Class",
-          "value": "lang-pkgs"
-        },
-        {
-          "name": "aquasecurity:trivy:Type",
-          "value": "gobinary"
-        }
-      ]
-    },
-    {
-      "bom-ref": "a31bfc5b-7d9c-4c7b-a365-36c1ceb59f78",
+      "bom-ref": "385639d3-9866-4052-8d96-b9ad015b93a1",
       "type": "library",
       "name": "stdlib",
       "version": "v1.23.4",
@@ -174,7 +143,22 @@
       ]
     },
     {
-      "bom-ref": "b57ea24a-c843-47a1-8b2e-412e6545c70b",
+      "bom-ref": "42d8c1a1-eb08-4280-acff-19edbeb8bd20",
+      "type": "application",
+      "name": "usr/bin/virt-operator",
+      "properties": [
+        {
+          "name": "aquasecurity:trivy:Class",
+          "value": "lang-pkgs"
+        },
+        {
+          "name": "aquasecurity:trivy:Type",
+          "value": "gobinary"
+        }
+      ]
+    },
+    {
+      "bom-ref": "beaace62-c7ef-49fc-8d7f-04b3f987bb1e",
       "type": "application",
       "name": "usr/bin/csv-generator",
       "properties": [
@@ -189,7 +173,23 @@
       ]
     },
     {
-      "bom-ref": "faf337ed-169e-4b23-a30a-97960d1f86c4",
+      "bom-ref": "e2e3655d-fda2-444e-ac58-ef727789ed51",
+      "type": "operating-system",
+      "name": "debian",
+      "version": "12.6",
+      "properties": [
+        {
+          "name": "aquasecurity:trivy:Class",
+          "value": "os-pkgs"
+        },
+        {
+          "name": "aquasecurity:trivy:Type",
+          "value": "debian"
+        }
+      ]
+    },
+    {
+      "bom-ref": "f244e988-e332-44fa-8ea5-6d516f5a9cc4",
       "type": "library",
       "name": "stdlib",
       "version": "v1.23.4",
@@ -463,7 +463,23 @@
   ],
   "dependencies": [
     {
-      "ref": "33c52ae0-2f6c-460c-b82e-e7057b6587f0",
+      "ref": "385639d3-9866-4052-8d96-b9ad015b93a1",
+      "dependsOn": []
+    },
+    {
+      "ref": "42d8c1a1-eb08-4280-acff-19edbeb8bd20",
+      "dependsOn": [
+        "f244e988-e332-44fa-8ea5-6d516f5a9cc4"
+      ]
+    },
+    {
+      "ref": "beaace62-c7ef-49fc-8d7f-04b3f987bb1e",
+      "dependsOn": [
+        "385639d3-9866-4052-8d96-b9ad015b93a1"
+      ]
+    },
+    {
+      "ref": "e2e3655d-fda2-444e-ac58-ef727789ed51",
       "dependsOn": [
         "pkg:deb/debian/base-files@12.4%2Bdeb12u6?arch=amd64&distro=debian-12.6",
         "pkg:deb/debian/libc6@2.36-9%2Bdeb12u7?arch=amd64&distro=debian-12.6",
@@ -473,23 +489,7 @@
       ]
     },
     {
-      "ref": "98a26b1f-ef90-4a68-93f3-503e5f3819e3",
-      "dependsOn": [
-        "faf337ed-169e-4b23-a30a-97960d1f86c4"
-      ]
-    },
-    {
-      "ref": "a31bfc5b-7d9c-4c7b-a365-36c1ceb59f78",
-      "dependsOn": []
-    },
-    {
-      "ref": "b57ea24a-c843-47a1-8b2e-412e6545c70b",
-      "dependsOn": [
-        "a31bfc5b-7d9c-4c7b-a365-36c1ceb59f78"
-      ]
-    },
-    {
-      "ref": "faf337ed-169e-4b23-a30a-97960d1f86c4",
+      "ref": "f244e988-e332-44fa-8ea5-6d516f5a9cc4",
       "dependsOn": []
     },
     {
@@ -515,9 +515,9 @@
     {
       "ref": "pkg:oci/virt-operator@sha256%3A1591b45d3f35b857cb13921429b83e8da4e21a35aa54e1c88290baf996c05a2d?arch=amd64&repository_url=quay.io%2Fkubevirt%2Fvirt-operator",
       "dependsOn": [
-        "33c52ae0-2f6c-460c-b82e-e7057b6587f0",
-        "98a26b1f-ef90-4a68-93f3-503e5f3819e3",
-        "b57ea24a-c843-47a1-8b2e-412e6545c70b"
+        "42d8c1a1-eb08-4280-acff-19edbeb8bd20",
+        "beaace62-c7ef-49fc-8d7f-04b3f987bb1e",
+        "e2e3655d-fda2-444e-ac58-ef727789ed51"
       ]
     }
   ],

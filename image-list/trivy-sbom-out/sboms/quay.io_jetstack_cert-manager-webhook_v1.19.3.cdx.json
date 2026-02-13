@@ -2,10 +2,10 @@
   "$schema": "http://cyclonedx.org/schema/bom-1.6.schema.json",
   "bomFormat": "CycloneDX",
   "specVersion": "1.6",
-  "serialNumber": "urn:uuid:b8c040b9-12c7-402c-9120-7437e44e5eea",
+  "serialNumber": "urn:uuid:c4b643ed-5116-456a-a28c-5aaee62ff262",
   "version": 1,
   "metadata": {
-    "timestamp": "2026-02-13T09:06:40+00:00",
+    "timestamp": "2026-02-13T09:32:47+00:00",
     "tools": {
       "components": [
         {
@@ -118,7 +118,23 @@
   },
   "components": [
     {
-      "bom-ref": "17df8084-c761-44c5-ad1d-d3869e0e42ad",
+      "bom-ref": "7f9ae051-7039-4a22-9123-35084f7071ed",
+      "type": "operating-system",
+      "name": "debian",
+      "version": "12.13",
+      "properties": [
+        {
+          "name": "aquasecurity:trivy:Class",
+          "value": "os-pkgs"
+        },
+        {
+          "name": "aquasecurity:trivy:Type",
+          "value": "debian"
+        }
+      ]
+    },
+    {
+      "bom-ref": "a0fbe114-71f4-4163-b958-d2ca494c31ec",
       "type": "library",
       "name": "../../",
       "properties": [
@@ -141,23 +157,7 @@
       ]
     },
     {
-      "bom-ref": "236feb86-68dd-49d7-82a4-505d6cec64a2",
-      "type": "operating-system",
-      "name": "debian",
-      "version": "12.13",
-      "properties": [
-        {
-          "name": "aquasecurity:trivy:Class",
-          "value": "os-pkgs"
-        },
-        {
-          "name": "aquasecurity:trivy:Type",
-          "value": "debian"
-        }
-      ]
-    },
-    {
-      "bom-ref": "53c0eca7-97c3-4142-b86c-dab71cfaf430",
+      "bom-ref": "ef4051dd-01d8-46f2-9970-5fab4b3740d9",
       "type": "application",
       "name": "app/cmd/webhook/webhook",
       "properties": [
@@ -194,7 +194,7 @@
         },
         {
           "name": "aquasecurity:trivy:LayerDigest",
-          "value": "sha256:03c9b64681eef07f903b45cfbe5c064db1f1c7f682863b895104ac2680a271a7"
+          "value": "sha256:fab8c4b3fa32236a59c44cc504a69b18788d5c17c045691c2d682267ae8cf468"
         },
         {
           "name": "aquasecurity:trivy:PkgID",
@@ -6520,11 +6520,7 @@
   ],
   "dependencies": [
     {
-      "ref": "17df8084-c761-44c5-ad1d-d3869e0e42ad",
-      "dependsOn": []
-    },
-    {
-      "ref": "236feb86-68dd-49d7-82a4-505d6cec64a2",
+      "ref": "7f9ae051-7039-4a22-9123-35084f7071ed",
       "dependsOn": [
         "pkg:deb/debian/base-files@12.4%2Bdeb12u13?arch=amd64&distro=debian-12.13",
         "pkg:deb/debian/media-types@10.0.0?arch=all&distro=debian-12.13",
@@ -6533,9 +6529,13 @@
       ]
     },
     {
-      "ref": "53c0eca7-97c3-4142-b86c-dab71cfaf430",
+      "ref": "a0fbe114-71f4-4163-b958-d2ca494c31ec",
+      "dependsOn": []
+    },
+    {
+      "ref": "ef4051dd-01d8-46f2-9970-5fab4b3740d9",
       "dependsOn": [
-        "17df8084-c761-44c5-ad1d-d3869e0e42ad",
+        "a0fbe114-71f4-4163-b958-d2ca494c31ec",
         "pkg:golang/cel.dev/expr@v0.24.0",
         "pkg:golang/github.com/antlr4-go/antlr/v4@v4.13.1",
         "pkg:golang/github.com/azure/go-ntlmssp@v0.0.0-20221128193559-754e69321358",
@@ -7012,8 +7012,8 @@
     {
       "ref": "pkg:oci/cert-manager-webhook@sha256%3A2625754083d5e2d682a4582fd3fab41a0aa79e7c732c90491373c4f3be5e65b7?arch=amd64&repository_url=quay.io%2Fjetstack%2Fcert-manager-webhook",
       "dependsOn": [
-        "236feb86-68dd-49d7-82a4-505d6cec64a2",
-        "53c0eca7-97c3-4142-b86c-dab71cfaf430"
+        "7f9ae051-7039-4a22-9123-35084f7071ed",
+        "ef4051dd-01d8-46f2-9970-5fab4b3740d9"
       ]
     }
   ],
