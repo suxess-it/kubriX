@@ -375,132 +375,129 @@ wait_until_apps_synced_healthy() {
   echo "max wait time: ${max_wait_time}"
 
   start=$SECONDS
-  end=$((SECONDS+${max_wait_time}))
+  end=$((SECONDS+max_wait_time))
 
   k8smonitoring_restarted=false
+
+  # avoid repeating this kubectl get pod 3x in the same loop body
+  local controller_pod
+  controller_pod="$(kubectl get pod -n argocd -l app.kubernetes.io/name=argocd-application-controller \
+    -o jsonpath='{.items[0].metadata.name}')"
 
   while [ $SECONDS -lt $end ]; do
     all_apps_synced="true"
 
-    # check if sx-boostrap-app already failed and restart sync
+    # ---- bootstrap app: one get, then query fields from cached json ----
     bootstrap_app="sx-bootstrap-app"
-    operation_state_bootstrap_app=$(kubectl get application -n argocd ${bootstrap_app} -o jsonpath='{.status.operationState}')
-    if [ "${operation_state_bootstrap_app}" != "" ] ; then
-      operation_phase_bootstrap_app=$(kubectl get application -n argocd ${bootstrap_app} -o jsonpath='{.status.operationState.phase}')
-      if [ "${operation_phase_bootstrap_app}" = "Failed" ] || [ "${operation_phase_bootstrap_app}" = "Error" ] ; then
+    bootstrap_json="$(kubectl get application -n argocd "$bootstrap_app" -o json 2>/dev/null || true)"
+
+    if [ -n "$bootstrap_json" ]; then
+      operation_phase_bootstrap_app="$(jq -r '.status.operationState.phase // ""' <<<"$bootstrap_json")"
+      if [ "$operation_phase_bootstrap_app" = "Failed" ] || [ "$operation_phase_bootstrap_app" = "Error" ]; then
         echo "sx-boostrap-app sync failed. Restarting sync ..."
-        kubectl exec "$(kubectl get pod -n argocd -l app.kubernetes.io/name=argocd-application-controller -o jsonpath='{.items[0].metadata.name}')" -n argocd -- argocd app terminate-op "$bootstrap_app" --core || true
-        kubectl exec "$(kubectl get pod -n argocd -l app.kubernetes.io/name=argocd-application-controller -o jsonpath='{.items[0].metadata.name}')" -n argocd -- argocd app sync "$bootstrap_app" --async --core || true
+        kubectl exec "$controller_pod" -n argocd -- argocd app terminate-op "$bootstrap_app" --core || true
+        kubectl exec "$controller_pod" -n argocd -- argocd app sync "$bootstrap_app" --async --core || true
       fi
     fi
 
-    # print app status in beautiful table
-    printf 'app sync-status health-status sync-duration operation-phase\n' > status-apps.out
+    # ---- table header ----
+    printf 'app\tsync-status\thealth-status\tsync-duration\toperation-phase\n' > status-apps.out
 
-    for app in ${apps} ; do
-      if kubectl get application -n argocd ${app} > /dev/null 2>&1 ; then
-        sync_status=$(kubectl get application -n argocd ${app} -o jsonpath='{.status.sync.status}')
-        health_status=$(kubectl get application -n argocd ${app} -o jsonpath='{.status.health.status}')
+    for app in ${apps}; do
+      # one kubectl per app
+      app_json="$(kubectl get application -n argocd "$app" -o json 2>/dev/null || true)"
 
-        # special case for sx-vault
-        if [[ "${app}" == "sx-vault" && "${sync_status}" == "${synced}" && "${health_status}" == "${healthy}" ]]; then
-          if [ ! -f ./.secrets/secrettemp/secrets-applied ] && [ ${KUBRIX_GENERATE_SECRETS} = "true" ] ; then
-            echo "sx-vault is synced and healthy — applying pushsecrets"
-            echo 
-            kubectl apply -f ./.secrets/secrettemp/pushsecrets.yaml
-            touch ./.secrets/secrettemp/secrets-applied
-            echo "--------------------"
-          fi
-        fi
-
-        # special case for sx-backstage - create vault secrets when backstage is synced.
-        # side note: backstage should be able to fully sync,
-        #   but will be progressing until the vault secrets exist which we create here
-        #   because of externalsecret 'sx-cnp-secret' which waits for these vault secrets
-        if [[ "${app}" == "sx-backstage" && "${sync_status}" == "${synced}" ]]; then
-          if [ ! -f ./backstage-vault-secrets-created ]; then
-            echo "sx-backstage is synced — creating vault secrets"
-            echo 
-            create_vault_secrets_for_backstage
-            touch ./backstage-vault-secrets-created
-            echo "--------------------"
-          fi
-        fi
-
-        # special case for k8s-monitoring to re-sync one time after it deployed sucessfully,
-        # because of a .Capabilities.APIVersions.Has condition in the templates for monitoring.coreos which gets deployed by k8s-monitoring itself
-        if [[ "${app}" == "sx-k8s-monitoring" && "${sync_status}" == "${synced}" && "${health_status}" == "${healthy}" ]]; then
-          if [  "${k8smonitoring_restarted}" != "true" ]; then
-            kubectl exec "$(kubectl get pod -n argocd -l app.kubernetes.io/name=argocd-application-controller -o jsonpath='{.items[0].metadata.name}')" -n argocd -- argocd app sync "$app" --async --core || true
-            k8smonitoring_restarted="true"
-          fi
-        fi
-        
-        if [[ "${sync_status}" != ${synced} ]] || [[ "${health_status}" != ${healthy} ]] ; then
-          all_apps_synced="false"
-          echo "====== start argocd app details for app ${app} ======"
-          kubectl exec "$(kubectl get pod -n argocd -l app.kubernetes.io/name=argocd-application-controller -o jsonpath='{.items[0].metadata.name}')" -n argocd -- argocd app get "${app}" --output tree --core || true
-          echo "====== end argocd app details for app ${app} ======"
-        fi
-
-
-        # check if app sync is stuck and needs to get restarted
-        # if app has no resources, operationState is empty
-        operation_state=$(kubectl get application -n argocd ${app} -o jsonpath='{.status.operationState}')
-        if [ "${operation_state}" != "" ] ; then
-          # from our tests this time is always UTC!
-          sync_started=$(kubectl get application -n argocd ${app} -o jsonpath='{.status.operationState.startedAt}' |sed 's/Z$//')
-          sync_finished=$(kubectl get application -n argocd ${app} -o jsonpath='{.status.operationState.finishedAt}' |sed 's/Z$//')
-          sync_started_seconds=$(convert_to_seconds "${sync_started}")
-
-          # if sync finished, duration is 'finished - started', otherwise its 'now - started'
-          if [ "${sync_finished}" != "" ] ; then
-            sync_finished_seconds=$(convert_to_seconds "${sync_finished}")
-            sync_duration=$((${sync_finished_seconds}-${sync_started_seconds}))
-          else
-            # since '.status.operationState.startedAt' is always UTC (from our tests)
-            #  we need to get 'now' also in UTC
-            now_seconds=$(utc_now_seconds)
-            sync_finished_seconds="-"
-            sync_duration=$((${now_seconds}-${sync_started_seconds}))
-          fi
-          # terminate sync if sync is running and takes longer than 300 seconds (workaround when sync gets stuck)
-          operation_phase=$(kubectl get application -n argocd ${app} -o jsonpath='{.status.operationState.phase}')
-          if [ "${operation_phase}" = "Running" ] && [ ${sync_duration} -gt 300 ] || [ "${operation_phase}" = "Failed" ] || [ "${operation_phase}" = "Error" ] ; then
-            # Terminate the operation for the application
-            echo "sync of app ${app} gets terminated because it took longer than 300 seconds or failed"
-            kubectl exec "$(kubectl get pod -n argocd -l app.kubernetes.io/name=argocd-application-controller -o jsonpath='{.items[0].metadata.name}')" -n argocd -- argocd app terminate-op "$app" --core || true
-            echo "wait for 10 seconds"
-            sleep 10
-            echo "restart sync for app ${app}"
-            kubectl exec "$(kubectl get pod -n argocd -l app.kubernetes.io/name=argocd-application-controller -o jsonpath='{.items[0].metadata.name}')" -n argocd -- argocd app sync "$app" --async --core || true
-          fi
-        else
-            sync_started_seconds="-"
-            sync_finished_seconds="-"
-            sync_duration="-"
-            operation_phase="-"
-        fi
-
-        # print app status in beautiful table
-        printf '%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\n' ${app} ${sync_status} ${health_status} ${sync_duration} ${operation_phase} >> status-apps.out
-
-      else
-        printf '%s - - - -\n' ${app} >> status-apps.out
-        all_apps_synced="false"	
+      if [ -z "$app_json" ]; then
+        printf '%s\t-\t-\t-\t-\n' "$app" >> status-apps.out
+        all_apps_synced="false"
+        continue
       fi
+
+      # query everything from cached json (no more kubectl calls)
+      sync_status="$(jq -r '.status.sync.status // "-"' <<<"$app_json")"
+      health_status="$(jq -r '.status.health.status // "-"' <<<"$app_json")"
+
+      # operationState presence + fields
+      operation_phase="$(jq -r '.status.operationState.phase // "-"' <<<"$app_json")"
+      sync_started="$(jq -r '.status.operationState.startedAt // ""' <<<"$app_json" | sed 's/Z$//')"
+      sync_finished="$(jq -r '.status.operationState.finishedAt // ""' <<<"$app_json" | sed 's/Z$//')"
+
+      # evaluate overall synced/healthy
+      if [[ "$sync_status" != "$synced" || "$health_status" != "$healthy" ]]; then
+        all_apps_synced="false"
+      fi
+
+      # ---- your special cases (use the cached values) ----
+
+      # sx-vault
+      if [[ "$app" == "sx-vault" && "$sync_status" == "$synced" && "$health_status" == "$healthy" ]]; then
+        if [ ! -f ./.secrets/secrettemp/secrets-applied ] && [ "${KUBRIX_GENERATE_SECRETS}" = "true" ]; then
+          echo "sx-vault is synced and healthy — applying pushsecrets"
+          echo
+          kubectl apply -f ./.secrets/secrettemp/pushsecrets.yaml
+          touch ./.secrets/secrettemp/secrets-applied
+          echo "--------------------"
+        fi
+      fi
+
+      # sx-backstage
+      if [[ "$app" == "sx-backstage" && "$sync_status" == "$synced" ]]; then
+        if [ ! -f ./backstage-vault-secrets-created ]; then
+          echo "sx-backstage is synced — creating vault secrets"
+          echo
+          create_vault_secrets_for_backstage
+          touch ./backstage-vault-secrets-created
+          echo "--------------------"
+        fi
+
+      # sx-k8s-monitoring
+      if [[ "$app" == "sx-k8s-monitoring" && "$sync_status" == "$synced" && "$health_status" == "$healthy" ]]; then
+        if [ "$k8smonitoring_restarted" != "true" ]; then
+          kubectl exec "$controller_pod" -n argocd -- argocd app sync "$app" --async --core || true
+          k8smonitoring_restarted="true"
+        fi
+      fi
+
+      # ---- compute sync duration + restart stuck sync, based on cached fields ----
+      if [ -n "$sync_started" ]; then
+        sync_started_seconds="$(convert_to_seconds "$sync_started")"
+
+        if [ -n "$sync_finished" ]; then
+          sync_finished_seconds="$(convert_to_seconds "$sync_finished")"
+          sync_duration=$((sync_finished_seconds - sync_started_seconds))
+        else
+          now_seconds="$(utc_now_seconds)"
+          sync_duration=$((now_seconds - sync_started_seconds))
+        fi
+
+        # terminate+restart if running too long OR failed/error
+        if { [ "$operation_phase" = "Running" ] && [ "$sync_duration" -gt 300 ]; } \
+           || [ "$operation_phase" = "Failed" ] || [ "$operation_phase" = "Error" ]; then
+          echo "sync of app ${app} gets terminated because it took longer than 300 seconds or failed"
+          kubectl exec "$controller_pod" -n argocd -- argocd app terminate-op "$app" --core || true
+          echo "wait for 10 seconds"
+          sleep 10
+          echo "restart sync for app ${app}"
+          kubectl exec "$controller_pod" -n argocd -- argocd app sync "$app" --async --core || true
+        fi
+      else
+        sync_duration="-"
+        operation_phase="-"
+      fi
+
+      # ---- output row ----
+      printf '%s\t%s\t%s\t%s\t%s\n' "$app" "$sync_status" "$health_status" "$sync_duration" "$operation_phase" >> status-apps.out
     done
 
-    # print app status in beautiful table
     cat status-apps.out | column -t
     rm status-apps.out
 
-    if [ ${all_apps_synced} = "true" ] ; then
+    if [ "$all_apps_synced" = "true" ]; then
       echo "${apps} apps are synced"
       break
     fi
 
-    elapsed_time=$((SECONDS-${start}))
+    elapsed_time=$((SECONDS-start))
     echo "--------------------"
     echo "elapsed time: ${elapsed_time} seconds"
     echo "max wait time: ${max_wait_time} seconds"
@@ -508,10 +505,17 @@ wait_until_apps_synced_healthy() {
     echo "--------------------"
     show_node_resources
     echo "--------------------"
+    
+    if [[ "${sync_status}" != ${synced} ]] || [[ "${health_status}" != ${healthy} ]] ; then
+      echo "====== start argocd app details for app ${app} ======"
+      kubectl exec "$controller_pod" -n argocd -- argocd app get "${app}" --output tree --core || true
+      echo "====== end argocd app details for app ${app} ======"
+    fi
+      
     sleep 10
   done
 
-  if [ ${all_apps_synced} != "true" ] ; then
+  if [ "$all_apps_synced" != "true" ]; then
     echo "not all apps synced and healthy after limit reached :("
     analyze_all_unhealthy_apps "${apps}"
     exit 1

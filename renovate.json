@@ -27,6 +27,24 @@
       "patch": {
         "semanticCommitType": "fix"
       }
+    },
+    {
+      "matchDatasources": ["docker"],
+      "matchPackageNames": ["ghcr.io/grafana-community/helm-charts/grafana"],
+      "sourceUrl": "https://github.com/grafana-community/helm-charts",
+      "changelogUrl": "https://github.com/grafana-community/helm-charts/releases/tag/grafana-{{newVersion}}"
+    },
+    {
+      "matchDatasources": ["helm"],
+      "matchPackageNames": ["loki"],
+      "sourceUrl": "https://github.com/grafana/loki",
+      "changelogUrl": "https://github.com/grafana/loki/blob/helm-loki-{{newVersion}}/production/helm/loki/CHANGELOG.md"
+    },
+    {
+      "matchDatasources": ["helm"],
+      "matchPackageNames": ["testkube"],
+      "sourceUrl": "https://github.com/kubeshop/testkube",
+      "changelogUrl": "https://github.com/kubeshop/testkube/releases/tag/{{newVersion}}"
     }
   ]
 }

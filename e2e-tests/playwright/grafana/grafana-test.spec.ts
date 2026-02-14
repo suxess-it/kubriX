@@ -75,7 +75,6 @@ test('Grafana K8s Namespace Dashboard', async ({ page }) => {
     "Cluster CPU Utilization", "Cluster Memory Utilization", "CPU Utilization by namespace", "Memory Utilization by namespace",
     "CPU Utilization by instance", "Memory Utilization by instance",
     "Kubernetes Pods QoS classes", "Kubernetes Pods Status Reason",
-    "Container Restarts by namespace",
     "Global Network Utilization by device", "Network Saturation - Packets dropped", "Network Received by namespace", "Total Network Received (with all virtual devices) by instance",
     "Network Received (without loopback) by instance", "Network Received (loopback only) by instance"
   ];
