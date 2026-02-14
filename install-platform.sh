@@ -449,6 +449,7 @@ wait_until_apps_synced_healthy() {
           touch ./backstage-vault-secrets-created
           echo "--------------------"
         fi
+      fi
 
       # sx-k8s-monitoring
       if [[ "$app" == "sx-k8s-monitoring" && "$sync_status" == "$synced" && "$health_status" == "$healthy" ]]; then
