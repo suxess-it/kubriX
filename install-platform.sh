@@ -487,12 +487,20 @@ wait_until_apps_synced_healthy() {
         operation_phase="-"
       fi
 
-      if [[ "${sync_status}" != ${synced} ]] || [[ "${health_status}" != ${healthy} ]] ; then
-        status_details+=$'\n'"====== start argocd app details for app ${app} ======"$'\n'
-        status_details+="$(kubectl exec "$controller_pod" -n argocd -- argocd app get "$app" --output tree --core 2>&1 || true)"
-        status_details+=$'\n'"====== end argocd app details for app ${app} ======"$'\n'
+      if [[ "$sync_status" != "$synced" || "$health_status" != "$healthy" ]]; then
+        details="$(kubectl get application -n argocd "$app" -o json | jq -r '
+          .status.resources[]
+          | select(.status != "Synced" or .health.status != "Healthy")
+          | "\(.kind)/\(.name) ns=\(.namespace // "-")  sync=\(.status) health=\(.health.status)"
+        ')"
+
+        if [[ -n "$details" ]]; then
+          status_details+=$'\n'"===== ${app} problematic resources ====="$'\n'
+          status_details+="$details"
+          status_details+=$'\n'
+        fi
       fi
-    
+
       # ---- output row ----
       printf '%s\t%s\t%s\t%s\t%s\n' "$app" "$sync_status" "$health_status" "$sync_duration" "$operation_phase" >> status-apps.out
     done
