@@ -386,6 +386,7 @@ wait_until_apps_synced_healthy() {
 
   while [ $SECONDS -lt $end ]; do
     all_apps_synced="true"
+    status_details=""
 
     # ---- bootstrap app: one get, then query fields from cached json ----
     bootstrap_app="sx-bootstrap-app"
@@ -486,6 +487,10 @@ wait_until_apps_synced_healthy() {
         operation_phase="-"
       fi
 
+      if [[ "${sync_status}" != ${synced} ]] || [[ "${health_status}" != ${healthy} ]] ; then
+        status_details="${status_details}\n$( kubectl exec "$controller_pod" -n argocd -- argocd app get "${app}" --output tree --core || true )"
+      fi
+    
       # ---- output row ----
       printf '%s\t%s\t%s\t%s\t%s\n' "$app" "$sync_status" "$health_status" "$sync_duration" "$operation_phase" >> status-apps.out
     done
@@ -506,13 +511,11 @@ wait_until_apps_synced_healthy() {
     echo "--------------------"
     show_node_resources
     echo "--------------------"
+
+    echo "====== start argocd app details for app ${app} ======"
+    echo ${status_details}
+    echo "====== end argocd app details for app ${app} ======"
     
-    if [[ "${sync_status}" != ${synced} ]] || [[ "${health_status}" != ${healthy} ]] ; then
-      echo "====== start argocd app details for app ${app} ======"
-      kubectl exec "$controller_pod" -n argocd -- argocd app get "${app}" --output tree --core || true
-      echo "====== end argocd app details for app ${app} ======"
-    fi
-      
     sleep 10
   done
 
