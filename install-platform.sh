@@ -488,7 +488,9 @@ wait_until_apps_synced_healthy() {
       fi
 
       if [[ "${sync_status}" != ${synced} ]] || [[ "${health_status}" != ${healthy} ]] ; then
-        status_details="${status_details}\n$( kubectl exec "$controller_pod" -n argocd -- argocd app get "${app}" --output tree --core || true )"
+        status_details+=$'\n'"====== start argocd app details for app ${app} ======"$'\n'
+        status_details+="$(kubectl exec "$controller_pod" -n argocd -- argocd app get "$app" --output tree --core 2>&1 || true)"
+        status_details+=$'\n'"====== end argocd app details for app ${app} ======"$'\n'
       fi
     
       # ---- output row ----
@@ -512,9 +514,10 @@ wait_until_apps_synced_healthy() {
     show_node_resources
     echo "--------------------"
 
-    echo "====== start argocd app details for app ${app} ======"
-    echo ${status_details}
-    echo "====== end argocd app details for app ${app} ======"
+    if [[ -n "$status_details" ]]; then
+      printf '%s\n' "===== ArgoCD app details (non-synced/non-healthy) ====="
+      printf '%b\n' "$status_details"
+    fi
     
     sleep 10
   done
