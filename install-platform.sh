@@ -488,6 +488,7 @@ wait_until_apps_synced_healthy() {
       fi
 
       if [[ "$sync_status" != "$synced" || "$health_status" != "$healthy" ]]; then
+        kubectl exec "$controller_pod" -n argocd -- argocd get my-app -o json || true
         details="$(kubectl get application -n argocd "$app" -o json | jq -r '
           .status.resources[]
           | select(.status != "Synced" or .health.status != "Healthy")
