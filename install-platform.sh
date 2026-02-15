@@ -481,40 +481,35 @@ wait_until_apps_synced_healthy() {
 
       if [[ "$sync_status" != "$synced" || "$health_status" != "$healthy" ]]; then
         details="$(
-          kubectl exec "$controller_pod" -n argocd -- \
-            argocd app resources "$app" --core --output tree=detailed 2>/dev/null \
-          | sed -E 's/\x1B\[[0-9;]*[mK]//g; s/^[│├└─ ]+//' \
-          | awk '
-              # skip header and empty lines
-              NR==1 { next }
-              NF < 5 { next }
-              $1=="KIND" { next }
+  kubectl exec "$controller_pod" -n argocd -- \
+    argocd app resources "$app" --core --output tree=detailed 2>/dev/null \
+  | sed -E 's/\x1B\[[0-9;]*[mK]//g; s/^[│├└─ ]+//' \
+  | awk '
+      # skip header / empty
+      NR==1 { next }
+      NF<4 { next }
+      $1=="GROUP" { next }
 
-              {
-                kind=$1
-                ns=$2
-                name=$3
-                status=$4
-                health=$5
-                age=(NF>=6 ? $6 : "-")
+      {
+        # From the right: ... STATUS HEALTH AGE [REASON...]
+        # Your examples show AGE like "80s" / "<unknown>", HEALTH like "Healthy"/"Missing"/"-"
+        # STATUS is typically "Synced"/"OutOfSync"/"Unknown"/"No" (in your output it is "No")
+        age = $NF
+        health = $(NF-1)
+        status = $(NF-2)
 
-                # REASON can contain spaces -> capture remainder after AGE
-                reason=""
-                if (NF>=7) {
-                  reason=$7
-                  for (i=8; i<=NF; i++) reason = reason " " $i
-                }
+        # Everything before STATUS is the identifier columns (group/kind/ns/name etc.)
+        ident = $1
+        for (i=2; i<=NF-3; i++) ident = ident " " $i
 
-                if (status != "Synced" || health != "Healthy") {
-                  if (reason != "")
-                    printf "%s/%s ns=%s sync=%s health=%s age=%s reason=%s\n", kind, name, ns, status, health, age, reason
-                  else
-                    printf "%s/%s ns=%s sync=%s health=%s age=%s\n", kind, name, ns, status, health, age
-                }
-              }
-             ' \
-           || true
-        )"
+        # Filter: only not synced or not healthy
+        if (status != "Synced" || health != "Healthy") {
+          printf "%s  sync=%s  health=%s  age=%s\n", ident, status, health, age
+        }
+      }
+    ' \
+  || true
+)"
 
         if [[ -n "$details" ]]; then
           status_details+=$'\n'"===== ${app} problematic resources ====="$'\n'
