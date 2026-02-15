@@ -1,12 +1,4 @@
-#!/usr/bin/env bash
-
-# Safer prologue
-set -Eeuo pipefail
-
-# Debug if requested
-if [[ "${KUBRIX_INSTALL_DEBUG:-}" == "true" ]]; then set -x; fi
-
-# Simple error trap
+u
 fail() { printf '%s\n' "$1" >&2; exit "${2:-1}"; }
 trap 'fail "Error on line $LINENO"' ERR
 
@@ -491,43 +483,37 @@ wait_until_apps_synced_healthy() {
         details="$(
           kubectl exec "$controller_pod" -n argocd -- \
             argocd app resources "$app" --core --output tree=detailed 2>/dev/null \
-          | sed -E 's/^[[:space:][:punct:]]+//' \
+          | sed -E 's/\x1B\[[0-9;]*[mK]//g; s/^[│├└─ ]+//' \
           | awk '
-              NR==1 {
-                # Build column index map from header
-                for (i=1; i<=NF; i++) col[$i]=i
-
-                kind_i   = col["KIND"]
-                ns_i     = col["NAMESPACE"]
-                name_i   = col["NAME"]
-                status_i = col["STATUS"]
-                health_i = col["HEALTH"]
-                reason_i = col["REASON"]
-
-                # If required columns are missing, bail out (prints nothing)
-                if (!kind_i || !name_i || !status_i || !health_i) exit
-                next
-              }
+              # skip header and empty lines
+              NR==1 { next }
+              NF < 5 { next }
+              $1=="KIND" { next }
 
               {
-                status = $(status_i)
-                health = $(health_i)
+                kind=$1
+                ns=$2
+                name=$3
+                status=$4
+                health=$5
+                age=(NF>=6 ? $6 : "-")
+
+                # REASON can contain spaces -> capture remainder after AGE
+                reason=""
+                if (NF>=7) {
+                  reason=$7
+                  for (i=8; i<=NF; i++) reason = reason " " $i
+                }
 
                 if (status != "Synced" || health != "Healthy") {
-                  kind = $(kind_i)
-                  name = $(name_i)
-                  ns = (ns_i ? $(ns_i) : "-")
-                  reason = (reason_i ? $(reason_i) : "")
-
-                  # Print only unhealthy/out-of-sync resources
                   if (reason != "")
-                    printf "%s/%s ns=%s sync=%s health=%s reason=%s\n", kind, name, ns, status, health, reason
+                    printf "%s/%s ns=%s sync=%s health=%s age=%s reason=%s\n", kind, name, ns, status, health, age, reason
                   else
-                    printf "%s/%s ns=%s sync=%s health=%s\n", kind, name, ns, status, health
+                    printf "%s/%s ns=%s sync=%s health=%s age=%s\n", kind, name, ns, status, health, age
                 }
               }
-            ' \
-          || true
+             ' \
+           || true
         )"
 
         if [[ -n "$details" ]]; then
