@@ -526,7 +526,8 @@ wait_until_apps_synced_healthy() {
                     printf "%s/%s ns=%s sync=%s health=%s\n", kind, name, ns, status, health
                 }
               }
-            '
+            ' \
+          || true
         )"
 
         if [[ -n "$details" ]]; then
