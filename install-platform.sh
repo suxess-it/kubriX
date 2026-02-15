@@ -488,12 +488,18 @@ wait_until_apps_synced_healthy() {
       fi
 
       if [[ "$sync_status" != "$synced" || "$health_status" != "$healthy" ]]; then
-        kubectl exec "$controller_pod" -n argocd -- argocd get "$app" -o json || true
-        details="$(kubectl get application -n argocd "$app" -o json | jq -r '
-          .status.resources[]
-          | select(.status != "Synced" or .health.status != "Healthy")
-          | "\(.kind)/\(.name) ns=\(.namespace // "-")  sync=\(.status) health=\(.health.status)"
-        ')"
+        details="$(
+          kubectl exec "$controller_pod" -n argocd -- \
+            argocd app resources "$app" --core -o json 2>/dev/null \
+          | jq -r '
+              .items[]
+              | select(
+                (.status != "Synced")
+                or ((.health.status // "Unknown") != "Healthy")
+                )
+              | "\(.kind)/\(.name) ns=\(.namespace // "-") sync=\(.status) health=\(.health.status // "-")"
+            '
+          )"
 
         if [[ -n "$details" ]]; then
           status_details+=$'\n'"===== ${app} problematic resources ====="$'\n'
