@@ -490,16 +490,44 @@ wait_until_apps_synced_healthy() {
       if [[ "$sync_status" != "$synced" || "$health_status" != "$healthy" ]]; then
         details="$(
           kubectl exec "$controller_pod" -n argocd -- \
-            argocd app resources "$app" --core -o json 2>/dev/null \
-          | jq -r '
-              .items[]
-              | select(
-                (.status != "Synced")
-                or ((.health.status // "Unknown") != "Healthy")
-                )
-              | "\(.kind)/\(.name) ns=\(.namespace // "-") sync=\(.status) health=\(.health.status // "-")"
+            argocd app resources "$app" --core --output tree=detailed 2>/dev/null \
+          | sed -E 's/^[[:space:][:punct:]]+//' \
+          | awk '
+              NR==1 {
+                # Build column index map from header
+                for (i=1; i<=NF; i++) col[$i]=i
+
+                kind_i   = col["KIND"]
+                ns_i     = col["NAMESPACE"]
+                name_i   = col["NAME"]
+                status_i = col["STATUS"]
+                health_i = col["HEALTH"]
+                reason_i = col["REASON"]
+
+                # If required columns are missing, bail out (prints nothing)
+                if (!kind_i || !name_i || !status_i || !health_i) exit
+                next
+              }
+
+              {
+                status = $(status_i)
+                health = $(health_i)
+
+                if (status != "Synced" || health != "Healthy") {
+                  kind = $(kind_i)
+                  name = $(name_i)
+                  ns = (ns_i ? $(ns_i) : "-")
+                  reason = (reason_i ? $(reason_i) : "")
+
+                  # Print only unhealthy/out-of-sync resources
+                  if (reason != "")
+                    printf "%s/%s ns=%s sync=%s health=%s reason=%s\n", kind, name, ns, status, health, reason
+                  else
+                    printf "%s/%s ns=%s sync=%s health=%s\n", kind, name, ns, status, health
+                }
+              }
             '
-          )"
+        )"
 
         if [[ -n "$details" ]]; then
           status_details+=$'\n'"===== ${app} problematic resources ====="$'\n'
