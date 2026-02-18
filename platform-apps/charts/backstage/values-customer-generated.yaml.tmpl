@@ -34,6 +34,13 @@ backstage:
             development:
               callbackUrl: https://backstage.{{ .kubriX.domain }}/api/auth/oidc/handler/frame
 
+      scaffolder:
+        defaultEnvironment:
+          parameters:
+            defaultdomainName: {{ .kubriX.domain }}
+            defaultrepoName: {{ .kubriX.gitRepoName }}
+            defaultorgName: {{ .kubriX.gitRepoOrg }}
+
       explore:
         tools:
           - title: Announcements
@@ -92,11 +99,11 @@ backstage:
       catalog:
         locations:
           - type: url
-            target: "{{`{{ .Values.global.repoURL }}`}}/blob/{{`{{ .Values.global.targetRevision }}`}}/backstage-resources/templates/showcase-templates-demo-stack.yaml"
+            target: "{{`{{ .Values.global.repoURL }}`}}/blob/{{`{{ .Values.global.targetRevision }}`}}/backstage-resources/templates/showcase-templates.yaml"
             rules:
               - allow: [Template]
           - type: url
-            target: "{{`{{ .Values.global.repoURL }}`}}/blob/{{`{{ .Values.global.targetRevision }}`}}/backstage-resources/entities/demo-stack.yaml"
+            target: "{{`{{ .Values.global.repoURL }}`}}/blob/{{`{{ .Values.global.targetRevision }}`}}/backstage-resources/entities/kubrix-base.yaml"
 
       grafana:
         domain: https://grafana.{{ .kubriX.domain }}

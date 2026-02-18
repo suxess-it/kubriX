@@ -2,11 +2,10 @@
 ingress:
   className: nginx
   annotations:
-    dns.gardener.cloud/class: garden
-    dns.gardener.cloud/dnsnames: ${{values.team}}-${{values.application_id}}-prod.${{values.fqdn}}
-    dns.gardener.cloud/ttl: "180"
+    cert-manager.io/cluster-issuer: default-issuer
+    external-dns.alpha.kubernetes.io/ttl: "60"
   hosts:
-    - host: ${{values.team}}-${{values.application_id}}-prod.${{values.fqdn}}
+    - host: ${{values.team}}-${{values.application_id}}-prod.${{values.defaultdomainName}}
       paths:
         - path: /
           pathType: ImplementationSpecific

@@ -6,6 +6,7 @@ metadata:
   description: Run Multi-Stage App provisioned with ArgoCD and promoted with Kargo
   tags:
     - kargo
+    - metalstack
     - kubrix
     - example
 spec:
@@ -18,27 +19,24 @@ spec:
         - application_id
         - owner
         - description
-        - fqdn
       properties:
         application_id:
           title: Name
           type: string
           description: Unique name of this app
-          default: 'myappnamexx'
+          ui:help: 'Lowercase letters, numbers, hyphens. Example: payment-api'
+          ui:placeholder: 'my-awesome-app'
         description:
           title: Description
           type: string
           description: Help others understand what this app is for.
+          maxLength: 200
         owner:
           title: Team
           type: string
           description: Repoowner Teamname
           ui:field: MyGroupsPicker
           ui:options: {}
-        fqdn:
-          title: FQDN
-          type: string       
-          default: 'suxess-it.com'
     - title: Choose a location
       required:
         - repoUrl
@@ -51,8 +49,7 @@ spec:
             allowedHosts:
               - github.com
             allowedOwners:
-              - suxess-it
-              - kubrix-demo
+              - will-be-autocomplete-by-template
             requestUserCredentials:
               secretsKey: USER_OAUTH_TOKEN
               additionalScopes:
@@ -61,7 +58,7 @@ spec:
                   - user
             allowedRepos:
               - will-be-autocomplete-by-template
-  
+
   steps:
     - id: catalogFetch
       name: Fetch component details
@@ -80,17 +77,18 @@ spec:
         values:
           application_id: ${{ parameters.application_id }}
           description: ${{ parameters.description }}
-          fqdn: ${{ parameters.fqdn }}
+          defaultdomainName: ${{ environment.parameters.defaultdomainName }}
           team: ${{ steps['catalogFetch'].output.entity.metadata.name }}
           repoUrlRepo: ${{ steps['catalogFetch'].output.entity.metadata.name }}-${{ parameters.application_id }}
-          repoUrlowner: ${{ (parameters.repoUrl | parseRepoUrl).owner }}
+          repoUrlowner: ${{ environment.parameters.defaultorgName }}
     - id: publish-gitopsreposetup
       name: Publish Template Gitops Repo
       action: publish:github
       input:
         sourcePath: ./kargo-gitops
         description: This is Kargo Demo App ${{ parameters.application_id }}
-        repoUrl: github.com?repo=${{ steps['catalogFetch'].output.entity.metadata.name }}-${{ parameters.application_id }}&owner=${{ (parameters.repoUrl | parseRepoUrl).owner }}
+        #repoUrl: ${{ parameters.repoUrl }}
+        repoUrl: github.com?repo=${{ steps['catalogFetch'].output.entity.metadata.name }}-${{ parameters.application_id }}&owner=${{ environment.parameters.defaultorgName }}
         token: ${{ secrets.USER_OAUTH_TOKEN }}
         gitAuthorName: ${{ user.entity.metadata.name }}
         gitAuthorEmail: ${{ user.entity.spec.profile.email }}

@@ -22,7 +22,6 @@ spec:
         - instances
         - type
         - environments
-        - argocdtarget
       properties:
         cluster_id:
           title: Name
@@ -55,17 +54,12 @@ spec:
         environments:
           title: Environments
           type: string
-          description: Panned Stage for new Cluster?
+          description: Planned Stage for new Cluster?
           enum:
             - prod
             - test
             - qa
           uniqueItems: true
-        argocdtarget:
-          title: argocd target directory
-          type: string
-          description: Directory where argo application manifest is beeing deployed in team repo
-          default: k3d-apps
 
 ## TODO: Maintenancewindow
     - title: Choose a location
@@ -137,9 +131,6 @@ spec:
           description: ${{ parameters.description }}
           repoUrlRepo: ${{ (parameters.repoUrl | parseRepoUrl)["repo"] }}
           repoUrlowner: ${{ (parameters.repoUrl | parseRepoUrl)["owner"] }}
-          environments: ${{ parameters.environments }}
-          argocdtarget: ${{ parameters.argocdtarget }}
-
 
     - id: pull-request-applicationsetup
       name: make a pr to team-apps repo with additional applicationsetup
@@ -147,7 +138,7 @@ spec:
       input:
         sourcePath: ./applicationsetup
         targetPath: '.'
-        repoUrl: github.com?repo=${{ steps['catalogFetchGroup'].output.entity.metadata.name }}-apps&owner=suxess-it
+        repoUrl: github.com?repo=${{ steps['catalogFetchGroup'].output.entity.metadata.name }}-apps&owner=${{ environment.parameters.defaultorgName }}
         branchName: ${{ parameters.cluster_id }}
         title: argoapps and system config for ${{ parameters.cluster_id }}
         description: argoapps and system config for ${{ parameters.cluster_id }}

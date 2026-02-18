@@ -51,6 +51,13 @@ backstage:
             development:
               callbackUrl: https://backstage.127-0-0-1.nip.io/api/auth/oidc/handler/frame
 
+      scaffolder:
+        defaultEnvironment:
+          parameters:
+            defaultdomainName: 127-0-0-1.nip.io
+            defaultrepoName: kubrix
+            defaultorgName: suxess-it
+
       explore:
         tools:
           - title: Announcements
@@ -109,15 +116,11 @@ backstage:
       catalog:
         locations:
           - type: url
-            target: "{{ .Values.global.repoURL }}/blob/{{ .Values.global.targetRevision }}/catalog-info.yaml"
-          - type: url
             target: "{{ .Values.global.repoURL }}/blob/{{ .Values.global.targetRevision }}/backstage-resources/templates/showcase-templates.yaml"
             rules:
               - allow: [Template]
           - type: url
-            target: "{{ .Values.global.repoURL }}/blob/{{ .Values.global.targetRevision }}/backstage-resources/entities/all.yaml"
-          - type: url
-            target: "{{ .Values.global.repoURL }}/blob/{{ .Values.global.targetRevision }}/backstage-resources/entities/k3d.yaml"
+            target: "{{ .Values.global.repoURL }}/blob/{{ .Values.global.targetRevision }}/backstage-resources/entities/kubrix-base.yaml"
 
       grafana:
         domain: https://grafana.127-0-0-1.nip.io
