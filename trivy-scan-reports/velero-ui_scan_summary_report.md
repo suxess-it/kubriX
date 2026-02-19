@@ -567,7 +567,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>Node.js</code></h3>
-<h4>Vulnerabilities (10)</h4>
+<h4>Vulnerabilities (11)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -596,6 +596,13 @@
         <td>HIGH</td>
         <td>2.0.0</td>
         <td></td>
+    </tr>
+    <tr>
+        <td><code>minimatch</code></td>
+        <td>CVE-2026-26996</td>
+        <td>HIGH</td>
+        <td>9.0.3</td>
+        <td>10.2.1</td>
     </tr>
     <tr>
         <td><code>next</code></td>

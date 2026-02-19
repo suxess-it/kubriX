@@ -69,7 +69,7 @@
 <h4>No Misconfigurations found</h4>
 
 <h3>Target <code>ghcr.io/suxess-it/sx-backstage:v1.43.3 (wolfi 20230201)</code></h3>
-<h4>Vulnerabilities (13)</h4>
+<h4>Vulnerabilities (12)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -143,13 +143,6 @@
     </tr>
     <tr>
         <td><code>npm</code></td>
-        <td>CVE-2026-23745</td>
-        <td>HIGH</td>
-        <td>11.6.4-r0</td>
-        <td>11.8.0-r0</td>
-    </tr>
-    <tr>
-        <td><code>npm</code></td>
         <td>CVE-2026-24001</td>
         <td>HIGH</td>
         <td>11.6.4-r0</td>
@@ -172,7 +165,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>Node.js</code></h3>
-<h4>Vulnerabilities (137)</h4>
+<h4>Vulnerabilities (147)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -368,7 +361,7 @@
         <td>CVE-2026-25639</td>
         <td>HIGH</td>
         <td>1.12.2</td>
-        <td>1.13.5</td>
+        <td>1.13.5, 0.30.3</td>
     </tr>
     <tr>
         <td><code>fast-xml-parser</code></td>
@@ -448,6 +441,62 @@
         <td>3.2.3, 4.0.1</td>
     </tr>
     <tr>
+        <td><code>minimatch</code></td>
+        <td>CVE-2026-26996</td>
+        <td>HIGH</td>
+        <td>10.1.1</td>
+        <td>10.2.1</td>
+    </tr>
+    <tr>
+        <td><code>minimatch</code></td>
+        <td>CVE-2026-26996</td>
+        <td>HIGH</td>
+        <td>3.1.2</td>
+        <td>10.2.1</td>
+    </tr>
+    <tr>
+        <td><code>minimatch</code></td>
+        <td>CVE-2026-26996</td>
+        <td>HIGH</td>
+        <td>3.1.2</td>
+        <td>10.2.1</td>
+    </tr>
+    <tr>
+        <td><code>minimatch</code></td>
+        <td>CVE-2026-26996</td>
+        <td>HIGH</td>
+        <td>3.1.2</td>
+        <td>10.2.1</td>
+    </tr>
+    <tr>
+        <td><code>minimatch</code></td>
+        <td>CVE-2026-26996</td>
+        <td>HIGH</td>
+        <td>5.1.6</td>
+        <td>10.2.1</td>
+    </tr>
+    <tr>
+        <td><code>minimatch</code></td>
+        <td>CVE-2026-26996</td>
+        <td>HIGH</td>
+        <td>7.4.6</td>
+        <td>10.2.1</td>
+    </tr>
+    <tr>
+        <td><code>minimatch</code></td>
+        <td>CVE-2026-26996</td>
+        <td>HIGH</td>
+        <td>9.0.5</td>
+        <td>10.2.1</td>
+    </tr>
+    <tr>
+        <td><code>minimatch</code></td>
+        <td>CVE-2026-26996</td>
+        <td>HIGH</td>
+        <td>9.0.5</td>
+        <td>10.2.1</td>
+    </tr>
+    <tr>
         <td><code>node-forge</code></td>
         <td>CVE-2025-12816</td>
         <td>HIGH</td>
@@ -495,6 +544,20 @@
         <td>HIGH</td>
         <td>5.23.8</td>
         <td>5.27.14</td>
+    </tr>
+    <tr>
+        <td><code>systeminformation</code></td>
+        <td>CVE-2026-26280</td>
+        <td>HIGH</td>
+        <td>5.23.8</td>
+        <td>5.30.8</td>
+    </tr>
+    <tr>
+        <td><code>systeminformation</code></td>
+        <td>CVE-2026-26318</td>
+        <td>HIGH</td>
+        <td>5.23.8</td>
+        <td>5.31.0</td>
     </tr>
     <tr>
         <td><code>tar</code></td>
