@@ -70,6 +70,12 @@ spec:
           description: Owning Team of this VM, target repo for argo application
           ui:field: MyGroupsPicker
           ui:options: {}
+        teamOrg:
+          title: Team Organization
+          type: string
+          description: Which organization should the team belong to
+          ui:help: 'Lowercase letters, numbers, hyphens. if left empty, it will default to the organization of the repoUrl'
+          ui:placeholder: 'kubrix-demo'
     - title: Choose Location
       required:
         - repoUrl
@@ -133,7 +139,7 @@ spec:
       input:
         sourcePath: ./kubevirt-gitops
         description: This is ${{ parameters.application_id }}
-        repoUrl: github.com?repo=${{ steps['catalogFetchGroup'].output.entity.metadata.name }}-${{ parameters.application_id }}&owner=${{ environment.parameters.defaultorgName }}
+        repoUrl: github.com?repo=${{ steps['catalogFetchGroup'].output.entity.metadata.name }}-${{ parameters.application_id }}&owner=${{ parameters.teamOrg or environment.parameters.defaultorgName }}
         token: ${{ secrets.USER_OAUTH_TOKEN }}
         gitAuthorName: ${{ user.entity.metadata.name }}
         gitAuthorEmail: ${{ user.entity.spec.profile.email }}

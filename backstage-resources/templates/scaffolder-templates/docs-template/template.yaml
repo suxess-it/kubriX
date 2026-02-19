@@ -35,6 +35,12 @@ spec:
           description: Owner of the documentation project
           ui:field: MyGroupsPicker
           ui:options: {}
+        teamOrg:
+          title: Team Organization
+          type: string
+          description: Which organization should the team belong to
+          ui:help: 'Lowercase letters, numbers, hyphens. if left empty, it will default to the organization of the repoUrl'
+          ui:placeholder: 'kubrix-demo'
     - title: Choose a location
       required:
         - repoUrl
@@ -83,7 +89,7 @@ spec:
       action: publish:github
       input:
         description: This is ${{ parameters.name }}
-        repoUrl: github.com?repo=${{ steps['catalogFetch'].output.entity.metadata.name }}-${{ parameters.name }}&owner=${{ environment.parameters.defaultorgName }}
+        repoUrl: github.com?repo=${{ steps['catalogFetch'].output.entity.metadata.name }}-${{ parameters.name }}&owner=${{ parameters.teamOrg or environment.parameters.defaultorgName }}
         token: ${{ secrets.USER_OAUTH_TOKEN }}
         gitAuthorName: ${{ user.entity.metadata.name }}
         gitAuthorEmail: ${{ user.entity.spec.profile.email }}

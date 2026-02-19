@@ -60,6 +60,12 @@ spec:
             - test
             - qa
           uniqueItems: true
+        teamOrg:
+          title: Team Organization
+          type: string
+          description: Which organization should the team belong to
+          ui:help: 'Lowercase letters, numbers, hyphens. if left empty, it will default to the organization of the repoUrl'
+          ui:placeholder: 'kubrix-demo'
 
 ## TODO: Maintenancewindow
     - title: Choose a location
@@ -71,14 +77,16 @@ spec:
           type: string
           ui:field: RepoUrlPicker
           ui:options:
+            allowedHosts:
+              - github.com
+            allowedOwners:
+              - will-be-autocomplete-by-template
             requestUserCredentials:
               secretsKey: USER_OAUTH_TOKEN
               additionalScopes:
                 github: 
                   - workflow
                   - user
-            allowedHosts:
-              - github.com
   steps:
     - id: catalogFetchGroup
       name: Fetch Context
@@ -138,7 +146,7 @@ spec:
       input:
         sourcePath: ./applicationsetup
         targetPath: '.'
-        repoUrl: github.com?repo=${{ steps['catalogFetchGroup'].output.entity.metadata.name }}-apps&owner=${{ environment.parameters.defaultorgName }}
+        repoUrl: github.com?repo=${{ steps['catalogFetchGroup'].output.entity.metadata.name }}-apps&owner=${{ parameters.teamOrg or environment.parameters.defaultorgName }}
         branchName: ${{ parameters.cluster_id }}
         title: argoapps and system config for ${{ parameters.cluster_id }}
         description: argoapps and system config for ${{ parameters.cluster_id }}
