@@ -69,7 +69,7 @@
 <h4>No Misconfigurations found</h4>
 
 <h3>Target <code>ghcr.io/suxess-it/sx-backstage:v1.43.3 (wolfi 20230201)</code></h3>
-<h4>Vulnerabilities (12)</h4>
+<h4>Vulnerabilities (14)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -154,6 +154,20 @@
         <td>HIGH</td>
         <td>11.6.4-r0</td>
         <td>11.9.0-r0</td>
+    </tr>
+    <tr>
+        <td><code>npm</code></td>
+        <td>CVE-2026-26960</td>
+        <td>HIGH</td>
+        <td>11.6.4-r0</td>
+        <td>11.10.1-r0</td>
+    </tr>
+    <tr>
+        <td><code>npm</code></td>
+        <td>CVE-2026-26996</td>
+        <td>HIGH</td>
+        <td>11.6.4-r0</td>
+        <td>11.10.1-r0</td>
     </tr>
     <tr>
         <td><code>python-3.14</code></td>
