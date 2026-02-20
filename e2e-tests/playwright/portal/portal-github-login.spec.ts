@@ -291,7 +291,6 @@ test("Multi-Stage-Kargo App Onboarding", async ({ page }) => {
   await page.getByRole('textbox', { name: 'Name' }).fill(`a${prefix}-kubrixbot-app`);
   await page.getByRole('textbox', { name: 'Description' }).click();
   await page.getByRole('textbox', { name: 'Description' }).fill('this is a e2e test');
-  await page.getByRole('textbox', { name: 'FQDN' }).fill('127-0-0-1.nip.io');
   await page.getByRole('button', { name: 'Next' }).click();
   const page1Promise = page.waitForEvent('popup');
   await page.getByRole('button', { name: 'Log in' }).click();
