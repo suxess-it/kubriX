@@ -86,7 +86,7 @@ spec:
           defaultdomainName: ${{ environment.parameters.defaultdomainName }}
           team: ${{ steps['catalogFetch'].output.entity.metadata.name }}
           repoUrlRepo: ${{ steps['catalogFetch'].output.entity.metadata.name }}-${{ parameters.application_id }}
-          repoUrlowner: ${{ environment.parameters.defaultorgName }}
+          repoUrlowner: ${{ parameters.teamOrg or environment.parameters.defaultorgName }}
     - id: publish-gitopsreposetup
       name: Publish Template Gitops Repo
       action: publish:github
