@@ -311,7 +311,6 @@ test("Multi-Stage-Kargo App Onboarding", async ({ page }) => {
   // optional: make sure the popup is gone before continuing
   if (!popup.isClosed()) await popup.close();
 
-  await page.getByLabel('Owner Available').getByRole('combobox').selectOption('kubrix-demo');
   await page.getByRole('button', { name: 'Review' }).click();
   await page.getByRole('button', { name: 'Create' }).click();
 
