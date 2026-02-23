@@ -3,7 +3,7 @@
 set -e
 
 # install trivy
-curl -L https://github.com/aquasecurity/trivy/releases/download/v0.61.0/trivy_0.61.0_Linux-32bit.tar.gz -o trivy.tar.gz
+curl -L https://github.com/aquasecurity/trivy/releases/download/v0.69.1/trivy_0.69.1_Linux-32bit.tar.gz -o trivy.tar.gz
 tar -xzvf trivy.tar.gz trivy
 chmod u+x trivy
 

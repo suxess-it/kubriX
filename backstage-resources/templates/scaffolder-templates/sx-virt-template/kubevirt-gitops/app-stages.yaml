@@ -13,14 +13,6 @@ stages:
         name: warehouse-{{ .Values.appName }}
       sources:
         direct: true
-  - name: "qa"
-    requestedFreight:
-    - origin:
-        kind: Warehouse
-        name: warehouse-{{ .Values.appName }}
-      sources:
-        stages:
-        - test
   - name: "prod"
     requestedFreight:
     - origin:
@@ -28,4 +20,4 @@ stages:
         name: warehouse-{{ .Values.appName }}
       sources:
         stages:
-        - qa
+        - test
