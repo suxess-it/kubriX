@@ -54,9 +54,9 @@ backstage:
       scaffolder:
         defaultEnvironment:
           parameters:
-            defaultdomainName: 127-0-0-1.nip.io
-            defaultrepoName: kubrix
-            defaultorgName: suxess-it
+            defaultDomainName: 127-0-0-1.nip.io
+            defaultRepoName: kubrix
+            defaultOrgName: suxess-it
 
       explore:
         tools:
@@ -116,7 +116,7 @@ backstage:
       catalog:
         locations:
           - type: url
-            target: "{{ .Values.global.repoURL }}/blob/{{ .Values.global.targetRevision }}/backstage-resources/templates/showcase-templates.yaml"
+            target: "{{ .Values.global.repoURL }}/blob/{{ .Values.global.targetRevision }}/backstage-resources/templates/scaffolder-templates.yaml"
             rules:
               - allow: [Template]
           - type: url

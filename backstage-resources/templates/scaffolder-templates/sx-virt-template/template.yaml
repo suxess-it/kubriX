@@ -127,10 +127,10 @@ spec:
           os: ${{ steps['catalogFetch'].output.entity.metadata.name }}
           disk: ${{ parameters.disk }}
           initpwd: ${{ parameters.initpwd }}
-          domainName: ${{ environment.parameters.defaultdomainName }}
+          domainName: ${{ environment.parameters.defaultDomainName }}
           repoUrl: ${{ parameters.repoUrl }}
           repoUrlRepo: ${{ steps['catalogFetchGroup'].output.entity.metadata.name }}-${{ parameters.application_id }}
-          repoUrlowner: ${{ environment.parameters.defaultorgName }}
+          repoUrlowner: ${{ environment.parameters.defaultOrgName }}
           sshkey: ${{ parameters.sshkey }}
 
     - id: publish-gitopsreposetup
@@ -139,7 +139,7 @@ spec:
       input:
         sourcePath: ./kubevirt-gitops
         description: This is ${{ parameters.application_id }}
-        repoUrl: github.com?repo=${{ steps['catalogFetchGroup'].output.entity.metadata.name }}-${{ parameters.application_id }}&owner=${{ parameters.teamOrg or environment.parameters.defaultorgName }}
+        repoUrl: github.com?repo=${{ steps['catalogFetchGroup'].output.entity.metadata.name }}-${{ parameters.application_id }}&owner=${{ parameters.teamOrg or environment.parameters.defaultOrgName }}
         token: ${{ secrets.USER_OAUTH_TOKEN }}
         gitAuthorName: ${{ user.entity.metadata.name }}
         gitAuthorEmail: ${{ user.entity.spec.profile.email }}

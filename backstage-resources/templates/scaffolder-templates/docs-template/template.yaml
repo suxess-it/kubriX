@@ -81,7 +81,7 @@ spec:
           name: ${{ parameters.name }}
           description: ${{ parameters.description }}
           repoUrlRepo: ${{ steps['catalogFetch'].output.entity.metadata.name }}-${{ parameters.name }}
-          repoUrlowner: ${{ environment.parameters.defaultorgName }}
+          repoUrlowner: ${{ environment.parameters.defaultOrgName }}
           owner: ${{ parameters.owner }}
 
     - id: publish
@@ -89,7 +89,7 @@ spec:
       action: publish:github
       input:
         description: This is ${{ parameters.name }}
-        repoUrl: github.com?repo=${{ steps['catalogFetch'].output.entity.metadata.name }}-${{ parameters.name }}&owner=${{ parameters.teamOrg or environment.parameters.defaultorgName }}
+        repoUrl: github.com?repo=${{ steps['catalogFetch'].output.entity.metadata.name }}-${{ parameters.name }}&owner=${{ parameters.teamOrg or environment.parameters.defaultOrgName }}
         token: ${{ secrets.USER_OAUTH_TOKEN }}
         gitAuthorName: ${{ user.entity.metadata.name }}
         gitAuthorEmail: ${{ user.entity.spec.profile.email }}

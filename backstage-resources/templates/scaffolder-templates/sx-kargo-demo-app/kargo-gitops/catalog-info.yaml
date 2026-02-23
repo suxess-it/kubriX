@@ -17,7 +17,7 @@ spec:
       license:
         name: MIT
     servers:
-      - url: http://${{values.defaultdomainName}}
+      - url: http://${{values.defaultDomainName}}
     paths:
       /hat:
         get: show hat
@@ -40,7 +40,7 @@ spec:
       license:
         name: MIT
     servers:
-      - url: http://${{values.defaultdomainName}}
+      - url: http://${{values.defaultDomainName}}
       /left-leg:
         get: show hat
 ---
@@ -62,7 +62,7 @@ spec:
       license:
         name: MIT
     servers:
-      - url: http://${{values.defaultdomainName}}
+      - url: http://${{values.defaultDomainName}}
     paths:
       /entry:
         get: show podtato-head
@@ -79,7 +79,7 @@ metadata:
     - metalstack
     - kubrix
   links:
-    - url: http://${{values.team}}-${{values.application_id}}-prod.${{values.defaultdomainName}}
+    - url: http://${{values.team}}-${{values.application_id}}-prod.${{values.defaultDomainName}}
       title: Prod Instance of ${{values.team}}-${{values.application_id}}
       icon: web
   annotations:
@@ -88,9 +88,9 @@ metadata:
     argocd/app-namespace: adn-${{values.team}}
     argocd/app-name: ${{values.application_id}}-prod
     backstage.io/techdocs-ref: dir:.
-    kargo-project: "https://kargo.${{values.defaultdomainName}}/project/${{values.team}}-${{values.application_id}}-kargo-project"
+    kargo-project: "https://kargo.${{values.defaultDomainName}}/project/${{values.team}}-${{values.application_id}}-kargo-project"
     grafana/dashboard-selector: "(tags @> 'suXess')"
-    grafana/overview-dashboard: "https://grafana.${{values.defaultdomainName}}/d/k8s_views_ns/kubernetes-views-namespaces?orgId=1&refresh=30s&var-datasource=default&var-cluster=kubrix&var-namespace=${{values.team}}-${{values.application_id}}-prod&var-resolution=30s&var-created_by=All"
+    grafana/overview-dashboard: "https://grafana.${{values.defaultDomainName}}/d/k8s_views_ns/kubernetes-views-namespaces?orgId=1&refresh=30s&var-datasource=default&var-cluster=kubrix&var-namespace=${{values.team}}-${{values.application_id}}-prod&var-resolution=30s&var-created_by=All"
 spec:
   type: service
   lifecycle: prod
@@ -123,7 +123,7 @@ metadata:
     - metalstack
     - kubrix
   links:
-    - url: http://${{values.team}}-${{values.application_id}}-qa.${{values.defaultdomainName}}
+    - url: http://${{values.team}}-${{values.application_id}}-qa.${{values.defaultDomainName}}
       title: QA Instance of ${{values.team}}-${{values.application_id}}
       icon: web
   annotations:
@@ -132,9 +132,9 @@ metadata:
     argocd/app-namespace: adn-${{values.team}}
     argocd/app-name: ${{values.application_id}}-qa
     backstage.io/techdocs-ref: dir:.
-    kargo-project: "https://kargo.${{values.defaultdomainName}}/project/${{values.team}}-${{values.application_id}}-kargo-project"
+    kargo-project: "https://kargo.${{values.defaultDomainName}}/project/${{values.team}}-${{values.application_id}}-kargo-project"
     grafana/dashboard-selector: "(tags @> 'suXess')"
-    grafana/overview-dashboard: "https://grafana.${{values.defaultdomainName}}/d/k8s_views_ns/kubernetes-views-namespaces?orgId=1&refresh=30s&var-datasource=default&var-cluster=kubrix&var-namespace=${{values.team}}-${{values.application_id}}-qa&var-resolution=30s&var-created_by=All"
+    grafana/overview-dashboard: "https://grafana.${{values.defaultDomainName}}/d/k8s_views_ns/kubernetes-views-namespaces?orgId=1&refresh=30s&var-datasource=default&var-cluster=kubrix&var-namespace=${{values.team}}-${{values.application_id}}-qa&var-resolution=30s&var-created_by=All"
 spec:
   type: service
   lifecycle: qa
@@ -167,7 +167,7 @@ metadata:
     - metalstack
     - kubrix
   links:
-    - url: http://${{values.team}}-${{values.application_id}}-test.${{values.defaultdomainName}}
+    - url: http://${{values.team}}-${{values.application_id}}-test.${{values.defaultDomainName}}
       title: Test Instance of ${{values.team}}-${{values.application_id}}
       icon: web
   annotations:
@@ -176,9 +176,9 @@ metadata:
     argocd/app-namespace: adn-${{values.team}}
     argocd/app-name: ${{values.application_id}}-test
     backstage.io/techdocs-ref: dir:.
-    kargo-project: "https://kargo.${{values.defaultdomainName}}/project/${{values.team}}-${{values.application_id}}-kargo-project"
+    kargo-project: "https://kargo.${{values.defaultDomainName}}/project/${{values.team}}-${{values.application_id}}-kargo-project"
     grafana/dashboard-selector: "(tags @> 'suXess')"
-    grafana/overview-dashboard: "https://grafana.${{values.defaultdomainName}}/d/k8s_views_ns/kubernetes-views-namespaces?orgId=1&refresh=30s&var-datasource=default&var-cluster=kubrix&var-namespace=${{values.team}}-${{values.application_id}}-test&var-resolution=30s&var-created_by=All"
+    grafana/overview-dashboard: "https://grafana.${{values.defaultDomainName}}/d/k8s_views_ns/kubernetes-views-namespaces?orgId=1&refresh=30s&var-datasource=default&var-cluster=kubrix&var-namespace=${{values.team}}-${{values.application_id}}-test&var-resolution=30s&var-created_by=All"
 spec:
   type: service
   lifecycle: test
@@ -211,7 +211,7 @@ metadata:
     - metalstack
     - kubrix
   links:
-    - url: https://argocd.${{values.defaultdomainName}}/applications/adn-${{values.team}}/${{values.team}}-${{values.application_id}}?resource=
+    - url: https://argocd.${{values.defaultDomainName}}/applications/adn-${{values.team}}/${{values.team}}-${{values.application_id}}?resource=
       title: ArgoCD Application Information of ${{values.team}}-${{values.application_id}}
       icon: web
   annotations:
@@ -219,7 +219,7 @@ metadata:
     argocd/app-namespace: adn-${{values.team}}
     argocd/app-name: ${{values.team}}-${{values.application_id}}
     backstage.io/techdocs-ref: dir:.
-    kargo-project: "https://kargo.${{values.defaultdomainName}}/project/${{values.team}}-${{values.application_id}}-kargo-project"
+    kargo-project: "https://kargo.${{values.defaultDomainName}}/project/${{values.team}}-${{values.application_id}}-kargo-project"
     grafana/dashboard-selector: "(tags @> 'suXess')"
 spec:
   type: service
