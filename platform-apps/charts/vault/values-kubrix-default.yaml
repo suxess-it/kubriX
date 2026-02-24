@@ -159,10 +159,10 @@ openbao:
               export VAULT_TOKEN="$(cat /vault-root-token/root_token)"
 
               if bao status | grep -q "Sealed.*false"; then
-                # enable audit service here so it is enabled before any crossplane requests
-                bao audit enable file file_path=stdout
                 # only run setup when admins group does NOT exist
                 if ! bao read identity/group/name/admins >/dev/null 2>&1; then
+                  # enable audit device once during initial setup
+                  bao audit enable file file_path=stdout
                   # kubernetes auth backend
                   if ! bao read auth/kubernetes/config >/dev/null 2>&1; then
                     bao auth enable kubernetes || true
