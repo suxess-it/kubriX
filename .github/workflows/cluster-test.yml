@@ -268,7 +268,7 @@ jobs:
         uses: jlumbroso/free-disk-space@main
       
       - name: Create k8s Kind Cluster
-        uses: helm/kind-action@v1.13.0
+        uses: helm/kind-action@v1.14.0
         with:
           cluster_name: kubrix-cluster
           config: ${{ github.workspace }}/.github/kind-config.yaml
@@ -389,7 +389,7 @@ jobs:
           E2E_KEYCLOAK_ADMIN_PASSWORD=$( kubectl get secret -n keycloak keycloak-admin -o=jsonpath='{.data.admin-password}' | base64 -d )
           E2E_VAULT_ROOT_TOKEN=$( kubectl get secret -n vault vault-init -o jsonpath='{.data.root_token}' | base64 -d )
           E2E_KARGO_ADMIN_PASSWORD=$( kubectl get secret -n kargo kargo-admin-secret  -o=jsonpath='{.data.ADMIN_ACCOUNT_PASSWORD}'  | base64 -d )
-          E2E_KARGO_VERSION="v1.9.2"
+          E2E_KARGO_VERSION="v1.9.3"
           E2E_MIMIR_USERNAME=$( kubectl get secret -n grafana mimir-read-creds -o jsonpath='{.data.username}' | base64 -d )
           E2E_MIMIR_PASSWORD=$( kubectl get secret -n grafana mimir-read-creds -o jsonpath='{.data.password}' | base64 -d )
           E2E_LOKI_USERNAME=$( kubectl get secret -n grafana loki-read-creds -o jsonpath='{.data.username}' | base64 -d )
