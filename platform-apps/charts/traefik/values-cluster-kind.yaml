@@ -6,11 +6,13 @@ traefik:
     rollingUpdate:
       maxUnavailable: 1
 
+  # listen on different port than ingress-nginx so that we can test a parallel installation with ingress-nginx
+  #   .github/kind-config.yaml also needed to get adjusted to expose both ports
   ports:
-    traefik:
-      # listen on different port than ingress-nginx so that we can test a parallel installation with ingress-nginx
-      #   .github/kind-config.yaml also needed to get adjusted to expose both ports
+    web:
       hostPort: 80
+    websecure:
+      hostPort: 443
 
   service:
     type: ClusterIP
