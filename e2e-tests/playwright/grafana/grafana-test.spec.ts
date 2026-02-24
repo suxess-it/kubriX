@@ -50,11 +50,11 @@ test('Grafana Vault Dashboard', async ({ page }) => {
   await page.goto("https://grafana.127-0-0-1.nip.io/d/vaults/grc-hashicorp-vault?orgId=1&from=now-2h&to=now&timezone=browser&var-datasource=default&var-node=10.240.0.98&var-port=&var-mountpoint=$__all");
 
   await expect(
-    page.locator('div[title="sx-vault-active"]').getByText('Active', { exact: true })
+    page.locator('div[title="sx-vaul-openbao-active"]').getByText('Active', { exact: true })
   ).toBeVisible({ timeout: 20_000 });
 
   await expect(
-    page.locator('div[title="sx-vault-0"]').getByText('ONLINE', { exact: true })
+    page.locator('div[title="sx-vault-openbao-0"]').getByText('ONLINE', { exact: true })
   ).toBeVisible({ timeout: 20_000 });
 
   // unfortunately some 'No data' tiles exist
