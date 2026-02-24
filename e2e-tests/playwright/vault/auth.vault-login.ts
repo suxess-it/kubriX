@@ -12,6 +12,6 @@ setup('authenticate', async ({ page }) => {
   await page.locator('input[name="token"]').fill(process.env.E2E_VAULT_ROOT_TOKEN!);
   await page.locator('#auth-submit').click();
 
-  await page.waitForURL('https://vault.127-0-0-1.nip.io/ui/vault/dashboard**');
+  await page.waitForURL('https://vault.127-0-0-1.nip.io/ui/vault/secrets**');
   await page.context().storageState({ path: vaultAuthFile });
 });
