@@ -5,7 +5,7 @@ traefik:
     traefik:
       # listen on different port than ingress-nginx so that we can test a parallel installation with ingress-nginx
       #   .github/kind-config.yaml also needed to get adjusted to expose both ports
-      hostPort: 8080
+      hostPort: 80
 
   service:
     type: ClusterIP
