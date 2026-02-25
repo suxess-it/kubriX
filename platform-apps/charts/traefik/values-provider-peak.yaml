@@ -1,0 +1,8 @@
+traefik:
+  service:
+    annotations:
+      metallb.universe.tf/address-pool: default-pool
+
+# needs further investigations if that works
+# https://medium.com/@kalyanishah86/setting-up-metallb-traefik-ingress-and-longhorn-storage-for-on-premises-kubernetes-c7f39750f243 is a good source,
+#   it defined more helm values for metallb (need to check if they are needed or we stay similar to ingress-nginx values)

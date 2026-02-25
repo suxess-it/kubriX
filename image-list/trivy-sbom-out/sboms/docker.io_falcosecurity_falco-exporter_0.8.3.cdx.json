@@ -2,10 +2,10 @@
   "$schema": "http://cyclonedx.org/schema/bom-1.6.schema.json",
   "bomFormat": "CycloneDX",
   "specVersion": "1.6",
-  "serialNumber": "urn:uuid:2c8b9e77-8520-4434-9e12-3cf5c99379db",
+  "serialNumber": "urn:uuid:ff0cd253-9c43-48c4-ba54-bb47b60e88b7",
   "version": 1,
   "metadata": {
-    "timestamp": "2026-02-13T09:28:45+00:00",
+    "timestamp": "2026-02-25T14:41:11+00:00",
     "tools": {
       "components": [
         {
@@ -82,22 +82,7 @@
   },
   "components": [
     {
-      "bom-ref": "0e5fe1e4-03a7-4eef-a3a4-4520164b0695",
-      "type": "application",
-      "name": "usr/bin/falco-exporter",
-      "properties": [
-        {
-          "name": "aquasecurity:trivy:Class",
-          "value": "lang-pkgs"
-        },
-        {
-          "name": "aquasecurity:trivy:Type",
-          "value": "gobinary"
-        }
-      ]
-    },
-    {
-      "bom-ref": "fc72990d-48bb-42b3-b5f6-5e39aa0a0a54",
+      "bom-ref": "5f2ec6d8-57a5-47d8-a85e-416772e3a943",
       "type": "operating-system",
       "name": "alpine",
       "version": "3.16.5",
@@ -109,6 +94,21 @@
         {
           "name": "aquasecurity:trivy:Type",
           "value": "alpine"
+        }
+      ]
+    },
+    {
+      "bom-ref": "a2943c95-e1a0-408d-acd3-e5dc22e74433",
+      "type": "application",
+      "name": "usr/bin/falco-exporter",
+      "properties": [
+        {
+          "name": "aquasecurity:trivy:Class",
+          "value": "lang-pkgs"
+        },
+        {
+          "name": "aquasecurity:trivy:Type",
+          "value": "gobinary"
         }
       ]
     },
@@ -394,7 +394,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-01-11T09:55:01Z"
+          "value": "2026-01-29T10:40:34Z"
         }
       ]
     },
@@ -2129,7 +2129,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2024-01-25T20:52:18Z"
+          "value": "2026-02-17T21:52:00Z"
         }
       ]
     },
@@ -2189,7 +2189,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2025-12-23T09:24:02Z"
+          "value": "2026-02-13T06:52:36Z"
         },
         {
           "name": "ecosystems:topic",
@@ -2259,6 +2259,10 @@
         {
           "url": "https://pkg.go.dev/google.golang.org/protobuf",
           "type": "distribution"
+        },
+        {
+          "url": "https://github.com/protocolbuffers/protobuf-go",
+          "type": "vcs"
         },
         {
           "url": "https://pkg.go.dev/google.golang.org/protobuf#section-documentation",
@@ -2336,19 +2340,19 @@
   ],
   "dependencies": [
     {
-      "ref": "0e5fe1e4-03a7-4eef-a3a4-4520164b0695",
-      "dependsOn": [
-        "pkg:golang/github.com/falcosecurity/falco-exporter"
-      ]
-    },
-    {
-      "ref": "fc72990d-48bb-42b3-b5f6-5e39aa0a0a54",
+      "ref": "5f2ec6d8-57a5-47d8-a85e-416772e3a943",
       "dependsOn": [
         "pkg:apk/alpine/alpine-baselayout@3.2.0-r23?arch=x86_64&distro=3.16.5",
         "pkg:apk/alpine/alpine-keys@2.4-r1?arch=x86_64&distro=3.16.5",
         "pkg:apk/alpine/apk-tools@2.12.9-r3?arch=x86_64&distro=3.16.5",
         "pkg:apk/alpine/libc-utils@0.7.2-r3?arch=x86_64&distro=3.16.5",
         "pkg:apk/alpine/ssl_client@1.35.0-r17?arch=x86_64&distro=3.16.5"
+      ]
+    },
+    {
+      "ref": "a2943c95-e1a0-408d-acd3-e5dc22e74433",
+      "dependsOn": [
+        "pkg:golang/github.com/falcosecurity/falco-exporter"
       ]
     },
     {
@@ -2530,8 +2534,8 @@
     {
       "ref": "pkg:oci/falco-exporter@sha256%3A62b81ebb555d118fde03306ef2f4151c303e0c32a2b8bf93bbc2de156d3d1732?arch=amd64&repository_url=index.docker.io%2Ffalcosecurity%2Ffalco-exporter",
       "dependsOn": [
-        "0e5fe1e4-03a7-4eef-a3a4-4520164b0695",
-        "fc72990d-48bb-42b3-b5f6-5e39aa0a0a54"
+        "5f2ec6d8-57a5-47d8-a85e-416772e3a943",
+        "a2943c95-e1a0-408d-acd3-e5dc22e74433"
       ]
     }
   ],
