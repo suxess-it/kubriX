@@ -2,10 +2,10 @@
   "$schema": "http://cyclonedx.org/schema/bom-1.6.schema.json",
   "bomFormat": "CycloneDX",
   "specVersion": "1.6",
-  "serialNumber": "urn:uuid:64949b5f-85d2-4e0f-a953-4f0ad604f7f6",
+  "serialNumber": "urn:uuid:726e5fc9-3efe-438b-8039-b24ac9a8acf2",
   "version": 1,
   "metadata": {
-    "timestamp": "2026-02-13T09:32:45+00:00",
+    "timestamp": "2026-02-25T14:46:25+00:00",
     "tools": {
       "components": [
         {
@@ -118,7 +118,38 @@
   },
   "components": [
     {
-      "bom-ref": "5ca970a5-c027-4057-b28e-2a201facf650",
+      "bom-ref": "0441d5e3-f7d0-4c8d-bd1c-4932272ce571",
+      "type": "application",
+      "name": "startupapicheck",
+      "properties": [
+        {
+          "name": "aquasecurity:trivy:Class",
+          "value": "lang-pkgs"
+        },
+        {
+          "name": "aquasecurity:trivy:Type",
+          "value": "gobinary"
+        }
+      ]
+    },
+    {
+      "bom-ref": "aab467d4-bfc0-4d9e-be14-70e309a176f9",
+      "type": "operating-system",
+      "name": "debian",
+      "version": "12.13",
+      "properties": [
+        {
+          "name": "aquasecurity:trivy:Class",
+          "value": "os-pkgs"
+        },
+        {
+          "name": "aquasecurity:trivy:Type",
+          "value": "debian"
+        }
+      ]
+    },
+    {
+      "bom-ref": "c029bce7-800c-4738-894f-6b54d68ea871",
       "type": "library",
       "name": "../../",
       "properties": [
@@ -136,37 +167,6 @@
         },
         {
           "name": "aquasecurity:trivy:PkgType",
-          "value": "gobinary"
-        }
-      ]
-    },
-    {
-      "bom-ref": "6014e131-bb06-4101-9272-1b108c82e8ad",
-      "type": "operating-system",
-      "name": "debian",
-      "version": "12.13",
-      "properties": [
-        {
-          "name": "aquasecurity:trivy:Class",
-          "value": "os-pkgs"
-        },
-        {
-          "name": "aquasecurity:trivy:Type",
-          "value": "debian"
-        }
-      ]
-    },
-    {
-      "bom-ref": "b8477cc0-6c66-492e-9d92-4cf06e94b4db",
-      "type": "application",
-      "name": "startupapicheck",
-      "properties": [
-        {
-          "name": "aquasecurity:trivy:Class",
-          "value": "lang-pkgs"
-        },
-        {
-          "name": "aquasecurity:trivy:Type",
           "value": "gobinary"
         }
       ]
@@ -1172,11 +1172,6 @@
       "name": "github.com/go-ldap/ldap/v3",
       "version": "v3.4.12",
       "description": "Package ldap provides basic LDAP v3 functionality.\n\nExample_userAuthentication shows how a typical application can verify a login attempt\nRefer to https://github.com/go-ldap/ldap/issues/93 for issues revolving around unauthenticated binds, with zero length passwords",
-      "licenses": [
-        {
-          "expression": "(MIT)"
-        }
-      ],
       "purl": "pkg:golang/github.com/go-ldap/ldap/v3@v3.4.12",
       "externalReferences": [
         {
@@ -3699,11 +3694,25 @@
       "type": "library",
       "name": "go.yaml.in/yaml/v2",
       "version": "v2.4.2",
+      "description": "Package yaml implements YAML support for the Go language.\n\nSource code and other details for the project are available at GitHub:",
+      "licenses": [
+        {
+          "expression": "(Apache-2.0)"
+        }
+      ],
       "purl": "pkg:golang/go.yaml.in/yaml/v2@v2.4.2",
       "externalReferences": [
         {
+          "url": "https://github.com/yaml/go-yaml",
+          "type": "website"
+        },
+        {
           "url": "https://pkg.go.dev/go.yaml.in/yaml/v2",
           "type": "distribution"
+        },
+        {
+          "url": "https://github.com/yaml/go-yaml",
+          "type": "vcs"
         },
         {
           "url": "https://pkg.go.dev/go.yaml.in/yaml/v2#section-documentation",
@@ -3966,10 +3975,6 @@
           "type": "distribution"
         },
         {
-          "url": "https://cs.opensource.google/go/x/sync",
-          "type": "vcs"
-        },
-        {
           "url": "https://pkg.go.dev/golang.org/x/sync#section-documentation",
           "type": "documentation"
         }
@@ -4184,10 +4189,6 @@
           "type": "distribution"
         },
         {
-          "url": "https://cs.opensource.google/go/x/time",
-          "type": "vcs"
-        },
-        {
           "url": "https://pkg.go.dev/golang.org/x/time#section-documentation",
           "type": "documentation"
         }
@@ -4304,6 +4305,10 @@
         {
           "url": "https://pkg.go.dev/google.golang.org/protobuf",
           "type": "distribution"
+        },
+        {
+          "url": "https://github.com/protocolbuffers/protobuf-go",
+          "type": "vcs"
         },
         {
           "url": "https://pkg.go.dev/google.golang.org/protobuf#section-documentation",
@@ -4522,10 +4527,6 @@
           "type": "distribution"
         },
         {
-          "url": "https://github.com/go-yaml/yaml",
-          "type": "vcs"
-        },
-        {
           "url": "https://pkg.go.dev/gopkg.in/yaml.v3#section-documentation",
           "type": "documentation"
         }
@@ -4719,10 +4720,6 @@
           "type": "distribution"
         },
         {
-          "url": "https://github.com/kubernetes/apimachinery",
-          "type": "vcs"
-        },
-        {
           "url": "https://pkg.go.dev/k8s.io/apimachinery#section-documentation",
           "type": "documentation"
         }
@@ -4770,11 +4767,6 @@
       "author": "Kubernetes",
       "name": "k8s.io/cli-runtime",
       "version": "v0.34.1",
-      "licenses": [
-        {
-          "expression": "(Apache-2.0)"
-        }
-      ],
       "purl": "pkg:golang/k8s.io/cli-runtime@v0.34.1",
       "externalReferences": [
         {
@@ -4784,10 +4776,6 @@
         {
           "url": "https://pkg.go.dev/k8s.io/cli-runtime",
           "type": "distribution"
-        },
-        {
-          "url": "https://github.com/kubernetes/cli-runtime",
-          "type": "vcs"
         },
         {
           "url": "https://pkg.go.dev/k8s.io/cli-runtime#section-documentation",
@@ -4858,6 +4846,10 @@
           "type": "distribution"
         },
         {
+          "url": "https://github.com/kubernetes/client-go",
+          "type": "vcs"
+        },
+        {
           "url": "https://pkg.go.dev/k8s.io/client-go#section-documentation",
           "type": "documentation"
         }
@@ -4885,7 +4877,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2019-03-13T23:57:26Z"
+          "value": "2016-10-17T18:15:22Z"
         },
         {
           "name": "ecosystems:topic",
@@ -4993,10 +4985,6 @@
           "type": "distribution"
         },
         {
-          "url": "https://github.com/kubernetes/klog",
-          "type": "vcs"
-        },
-        {
           "url": "https://pkg.go.dev/k8s.io/klog/v2#section-documentation",
           "type": "documentation"
         }
@@ -5086,7 +5074,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2024-01-17T19:48:47Z"
+          "value": "2026-01-27T14:27:50Z"
         }
       ]
     },
@@ -5144,7 +5132,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2024-01-02T15:49:12Z"
+          "value": "2026-02-10T18:56:00Z"
         },
         {
           "name": "ecosystems:topic",
@@ -5180,10 +5168,6 @@
         {
           "url": "https://pkg.go.dev/sigs.k8s.io/controller-runtime",
           "type": "distribution"
-        },
-        {
-          "url": "https://github.com/kubernetes-sigs/controller-runtime",
-          "type": "vcs"
         },
         {
           "url": "https://pkg.go.dev/sigs.k8s.io/controller-runtime#section-documentation",
@@ -5244,10 +5228,6 @@
         {
           "url": "https://pkg.go.dev/sigs.k8s.io/gateway-api",
           "type": "distribution"
-        },
-        {
-          "url": "https://github.com/kubernetes-sigs/gateway-api",
-          "type": "vcs"
         },
         {
           "url": "https://pkg.go.dev/sigs.k8s.io/gateway-api#section-documentation",
@@ -5389,10 +5369,6 @@
         {
           "url": "https://pkg.go.dev/sigs.k8s.io/kustomize/api",
           "type": "distribution"
-        },
-        {
-          "url": "https://github.com/kubernetes-sigs/kustomize",
-          "type": "vcs"
         },
         {
           "url": "https://pkg.go.dev/sigs.k8s.io/kustomize/api#section-documentation",
@@ -5581,7 +5557,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2025-10-30T18:12:04Z"
+          "value": "2026-01-22T20:25:28Z"
         }
       ]
     },
@@ -5608,10 +5584,6 @@
         {
           "url": "https://pkg.go.dev/sigs.k8s.io/yaml",
           "type": "distribution"
-        },
-        {
-          "url": "https://github.com/kubernetes-sigs/yaml",
-          "type": "vcs"
         },
         {
           "url": "https://pkg.go.dev/sigs.k8s.io/yaml#section-documentation",
@@ -5677,22 +5649,9 @@
   ],
   "dependencies": [
     {
-      "ref": "5ca970a5-c027-4057-b28e-2a201facf650",
-      "dependsOn": []
-    },
-    {
-      "ref": "6014e131-bb06-4101-9272-1b108c82e8ad",
+      "ref": "0441d5e3-f7d0-4c8d-bd1c-4932272ce571",
       "dependsOn": [
-        "pkg:deb/debian/base-files@12.4%2Bdeb12u13?arch=amd64&distro=debian-12.13",
-        "pkg:deb/debian/media-types@10.0.0?arch=all&distro=debian-12.13",
-        "pkg:deb/debian/netbase@6.4?arch=all&distro=debian-12.13",
-        "pkg:deb/debian/tzdata@2025b-0%2Bdeb12u2?arch=all&distro=debian-12.13"
-      ]
-    },
-    {
-      "ref": "b8477cc0-6c66-492e-9d92-4cf06e94b4db",
-      "dependsOn": [
-        "5ca970a5-c027-4057-b28e-2a201facf650",
+        "c029bce7-800c-4738-894f-6b54d68ea871",
         "pkg:golang/github.com/azure/go-ntlmssp@v0.0.0-20221128193559-754e69321358",
         "pkg:golang/github.com/beorn7/perks@v1.0.1",
         "pkg:golang/github.com/blang/semver/v4@v4.0.0",
@@ -5774,6 +5733,19 @@
         "pkg:golang/sigs.k8s.io/yaml@v1.6.0",
         "pkg:golang/stdlib@v1.25.6"
       ]
+    },
+    {
+      "ref": "aab467d4-bfc0-4d9e-be14-70e309a176f9",
+      "dependsOn": [
+        "pkg:deb/debian/base-files@12.4%2Bdeb12u13?arch=amd64&distro=debian-12.13",
+        "pkg:deb/debian/media-types@10.0.0?arch=all&distro=debian-12.13",
+        "pkg:deb/debian/netbase@6.4?arch=all&distro=debian-12.13",
+        "pkg:deb/debian/tzdata@2025b-0%2Bdeb12u2?arch=all&distro=debian-12.13"
+      ]
+    },
+    {
+      "ref": "c029bce7-800c-4738-894f-6b54d68ea871",
+      "dependsOn": []
     },
     {
       "ref": "pkg:deb/debian/base-files@12.4%2Bdeb12u13?arch=amd64&distro=debian-12.13",
@@ -6114,8 +6086,8 @@
     {
       "ref": "pkg:oci/cert-manager-startupapicheck@sha256%3Ae51a062513381070f43be0a435b029f5d116d6a3e1340deeb8eace5ca7a8a08f?arch=amd64&repository_url=quay.io%2Fjetstack%2Fcert-manager-startupapicheck",
       "dependsOn": [
-        "6014e131-bb06-4101-9272-1b108c82e8ad",
-        "b8477cc0-6c66-492e-9d92-4cf06e94b4db"
+        "0441d5e3-f7d0-4c8d-bd1c-4932272ce571",
+        "aab467d4-bfc0-4d9e-be14-70e309a176f9"
       ]
     }
   ],

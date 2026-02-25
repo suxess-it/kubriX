@@ -2,10 +2,10 @@
   "$schema": "http://cyclonedx.org/schema/bom-1.6.schema.json",
   "bomFormat": "CycloneDX",
   "specVersion": "1.6",
-  "serialNumber": "urn:uuid:b7937d2d-55ec-4c11-99ec-1313c3db61c0",
+  "serialNumber": "urn:uuid:cd532b3b-3fa1-4e43-9e52-1e7247779466",
   "version": 1,
   "metadata": {
-    "timestamp": "2026-02-13T09:28:37+00:00",
+    "timestamp": "2026-02-25T14:41:03+00:00",
     "tools": {
       "components": [
         {
@@ -102,57 +102,53 @@
   },
   "components": [
     {
-      "bom-ref": "2282163e-9d54-4f4d-b323-bbdd908994c9",
+      "bom-ref": "1bbc77b7-2564-4315-9b06-185e15b636de",
       "type": "library",
-      "supplier": {
-        "name": "Josh Junon"
-      },
-      "author": "Josh Junon",
-      "name": "color-convert",
-      "version": "2.0.1",
-      "description": "Plain color conversion functions",
+      "name": "graceful-fs",
+      "version": "4.2.11",
+      "description": "A drop-in replacement for fs, making various improvements.",
       "hashes": [
         {
           "alg": "SHA-1",
-          "content": "03f26ab8597e0117b7ad15bcfa9f0b31c8375ea9"
+          "content": "21a733b3f7e2ee153041de90fb03d5596934f346"
         }
       ],
       "licenses": [
         {
-          "expression": "(MIT)"
+          "expression": "(ISC)"
         }
       ],
-      "purl": "pkg:npm/color-convert@2.0.1",
+      "purl": "pkg:npm/graceful-fs@4.2.11",
       "externalReferences": [
         {
-          "url": "https://github.com/Qix-/color-convert#readme",
+          "url": "https://github.com/isaacs/node-graceful-fs#readme",
           "type": "website"
         },
         {
-          "url": "https://www.npmjs.com/package/color-convert",
+          "url": "https://www.npmjs.com/package/graceful-fs",
           "type": "distribution"
         },
         {
-          "url": "https://github.com/Qix-/color-convert",
+          "url": "https://github.com/isaacs/node-graceful-fs",
           "type": "vcs"
         }
       ],
       "properties": [
         {
           "name": "aquasecurity:trivy:FilePath",
-          "value": "app/node_modules/color-convert/package.json"
+          "value": "usr/local/lib/node_modules/npm/node_modules/graceful-fs/package.json"
         },
         {
           "name": "aquasecurity:trivy:LayerDiffID",
-          "value": "sha256:2c8f7dfa2b59bec5d0170648aa0e01b3ce473efa9f3b4b0c41bb4081f438bc92"
+          "value": "sha256:63247acccce3471f5d0ce3b2e27f63c216cc9575e9873897df97225e3e04be3f"
         },
         {
           "name": "aquasecurity:trivy:LayerDigest",
-          "value": "sha256:94dbe9dc34ef24c6a79b50dfe9e782c64b8e713797b38309ba783681515c0ef2"
+          "value": "sha256:89059ca18a987694854cd03bb6655f445ec9536917d1f8ac6e65d42e0f17f0dd"
         },
         {
           "name": "aquasecurity:trivy:PkgID",
-          "value": "color-convert@2.0.1"
+          "value": "graceful-fs@4.2.11"
         },
         {
           "name": "aquasecurity:trivy:PkgType",
@@ -160,16 +156,16 @@
         },
         {
           "name": "ecosystems:first_release_published_at",
-          "value": "2011-06-10T04:11:24Z"
+          "value": "2011-07-20T08:49:38Z"
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2025-11-14T18:29:11Z"
+          "value": "2023-03-16T19:30:19Z"
         }
       ]
     },
     {
-      "bom-ref": "346fdb92-0170-4bfb-876d-6dd4c69132e7",
+      "bom-ref": "1d57765c-af6e-460e-a047-373d3f692e5f",
       "type": "library",
       "supplier": {
         "name": "isaacs",
@@ -210,7 +206,7 @@
       "properties": [
         {
           "name": "aquasecurity:trivy:FilePath",
-          "value": "usr/local/lib/node_modules/npm/node_modules/minipass-json-stream/node_modules/minipass/package.json"
+          "value": "usr/local/lib/node_modules/npm/node_modules/minipass-collect/node_modules/minipass/package.json"
         },
         {
           "name": "aquasecurity:trivy:LayerDiffID",
@@ -234,7 +230,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2024-05-24T00:42:21Z"
+          "value": "2026-02-19T00:34:33Z"
         },
         {
           "name": "ecosystems:owner_location",
@@ -243,268 +239,7 @@
       ]
     },
     {
-      "bom-ref": "3a1c0e51-ceef-4fa0-abe7-ed0d954a9ad4",
-      "type": "operating-system",
-      "name": "alpine",
-      "version": "3.19.0",
-      "properties": [
-        {
-          "name": "aquasecurity:trivy:Class",
-          "value": "os-pkgs"
-        },
-        {
-          "name": "aquasecurity:trivy:Type",
-          "value": "alpine"
-        }
-      ]
-    },
-    {
-      "bom-ref": "4006290f-b62e-47da-8e62-0055331cae21",
-      "type": "library",
-      "supplier": {
-        "name": "chalk",
-        "url": [
-          "https://github.com/chalk/chalk"
-        ]
-      },
-      "author": "chalk",
-      "name": "strip-ansi",
-      "version": "7.1.0",
-      "description": "Strip ANSI escape codes from a string",
-      "hashes": [
-        {
-          "alg": "SHA-1",
-          "content": "323ec71c0cdb2dfdcf717f3e324f0b77981d7c58"
-        }
-      ],
-      "licenses": [
-        {
-          "expression": "(MIT)"
-        }
-      ],
-      "purl": "pkg:npm/strip-ansi@7.1.0",
-      "externalReferences": [
-        {
-          "url": "https://github.com/chalk/strip-ansi#readme",
-          "type": "website"
-        },
-        {
-          "url": "https://www.npmjs.com/package/strip-ansi",
-          "type": "distribution"
-        },
-        {
-          "url": "https://github.com/chalk/strip-ansi",
-          "type": "vcs"
-        }
-      ],
-      "properties": [
-        {
-          "name": "aquasecurity:trivy:FilePath",
-          "value": "usr/local/lib/node_modules/npm/node_modules/@isaacs/cliui/node_modules/strip-ansi/package.json"
-        },
-        {
-          "name": "aquasecurity:trivy:LayerDiffID",
-          "value": "sha256:63247acccce3471f5d0ce3b2e27f63c216cc9575e9873897df97225e3e04be3f"
-        },
-        {
-          "name": "aquasecurity:trivy:LayerDigest",
-          "value": "sha256:89059ca18a987694854cd03bb6655f445ec9536917d1f8ac6e65d42e0f17f0dd"
-        },
-        {
-          "name": "aquasecurity:trivy:PkgID",
-          "value": "strip-ansi@7.1.0"
-        },
-        {
-          "name": "aquasecurity:trivy:PkgType",
-          "value": "node-pkg"
-        },
-        {
-          "name": "ecosystems:first_release_published_at",
-          "value": "2013-12-07T23:30:17Z"
-        },
-        {
-          "name": "ecosystems:latest_release_published_at",
-          "value": "2025-09-08T15:05:29Z"
-        }
-      ]
-    },
-    {
-      "bom-ref": "4099ed06-df01-4f9d-98da-4bd956a8cdf0",
-      "type": "library",
-      "supplier": {
-        "name": "chalk",
-        "url": [
-          "https://github.com/chalk/chalk"
-        ]
-      },
-      "author": "chalk",
-      "name": "strip-ansi",
-      "version": "6.0.1",
-      "description": "Strip ANSI escape codes from a string",
-      "hashes": [
-        {
-          "alg": "SHA-1",
-          "content": "892d549c672831716abe655f087946d2644f2852"
-        }
-      ],
-      "licenses": [
-        {
-          "expression": "(MIT)"
-        }
-      ],
-      "purl": "pkg:npm/strip-ansi@6.0.1",
-      "externalReferences": [
-        {
-          "url": "https://github.com/chalk/strip-ansi#readme",
-          "type": "website"
-        },
-        {
-          "url": "https://www.npmjs.com/package/strip-ansi",
-          "type": "distribution"
-        },
-        {
-          "url": "https://github.com/chalk/strip-ansi",
-          "type": "vcs"
-        }
-      ],
-      "properties": [
-        {
-          "name": "aquasecurity:trivy:FilePath",
-          "value": "usr/local/lib/node_modules/npm/node_modules/strip-ansi/package.json"
-        },
-        {
-          "name": "aquasecurity:trivy:LayerDiffID",
-          "value": "sha256:63247acccce3471f5d0ce3b2e27f63c216cc9575e9873897df97225e3e04be3f"
-        },
-        {
-          "name": "aquasecurity:trivy:LayerDigest",
-          "value": "sha256:89059ca18a987694854cd03bb6655f445ec9536917d1f8ac6e65d42e0f17f0dd"
-        },
-        {
-          "name": "aquasecurity:trivy:PkgID",
-          "value": "strip-ansi@6.0.1"
-        },
-        {
-          "name": "aquasecurity:trivy:PkgType",
-          "value": "node-pkg"
-        },
-        {
-          "name": "ecosystems:first_release_published_at",
-          "value": "2013-12-07T23:30:17Z"
-        },
-        {
-          "name": "ecosystems:latest_release_published_at",
-          "value": "2025-09-08T15:05:29Z"
-        }
-      ]
-    },
-    {
-      "bom-ref": "433a701c-d8c8-4312-863e-d61bdef3f3ab",
-      "type": "application",
-      "name": "app/node_modules/@esbuild/linux-x64/bin/esbuild",
-      "properties": [
-        {
-          "name": "aquasecurity:trivy:Class",
-          "value": "lang-pkgs"
-        },
-        {
-          "name": "aquasecurity:trivy:Type",
-          "value": "gobinary"
-        }
-      ]
-    },
-    {
-      "bom-ref": "45e50bd7-ae04-4cb5-9d78-ac5c572696e0",
-      "type": "library",
-      "supplier": {
-        "name": "Mathias Bynens",
-        "url": [
-          "https://mathiasbynens.be/"
-        ]
-      },
-      "author": "Mathias Bynens",
-      "name": "emoji-regex",
-      "version": "9.2.2",
-      "description": "A regular expression to match all Emoji-only symbols as per the Unicode Standard.",
-      "hashes": [
-        {
-          "alg": "SHA-1",
-          "content": "238c48183550d02ab5c0dd37e13d57006dce640a"
-        }
-      ],
-      "licenses": [
-        {
-          "expression": "(MIT)"
-        }
-      ],
-      "purl": "pkg:npm/emoji-regex@9.2.2",
-      "externalReferences": [
-        {
-          "url": "https://mths.be/emoji-regex",
-          "type": "website"
-        },
-        {
-          "url": "https://www.npmjs.com/package/emoji-regex",
-          "type": "distribution"
-        },
-        {
-          "url": "https://github.com/mathiasbynens/emoji-regex",
-          "type": "vcs"
-        }
-      ],
-      "properties": [
-        {
-          "name": "aquasecurity:trivy:FilePath",
-          "value": "usr/local/lib/node_modules/npm/node_modules/wrap-ansi/node_modules/emoji-regex/package.json"
-        },
-        {
-          "name": "aquasecurity:trivy:LayerDiffID",
-          "value": "sha256:63247acccce3471f5d0ce3b2e27f63c216cc9575e9873897df97225e3e04be3f"
-        },
-        {
-          "name": "aquasecurity:trivy:LayerDigest",
-          "value": "sha256:89059ca18a987694854cd03bb6655f445ec9536917d1f8ac6e65d42e0f17f0dd"
-        },
-        {
-          "name": "aquasecurity:trivy:PkgID",
-          "value": "emoji-regex@9.2.2"
-        },
-        {
-          "name": "aquasecurity:trivy:PkgType",
-          "value": "node-pkg"
-        },
-        {
-          "name": "ecosystems:first_release_published_at",
-          "value": "2014-09-28T11:10:47Z"
-        },
-        {
-          "name": "ecosystems:latest_release_published_at",
-          "value": "2025-10-13T08:13:51Z"
-        },
-        {
-          "name": "ecosystems:topic",
-          "value": "emoji"
-        },
-        {
-          "name": "ecosystems:topic",
-          "value": "regex"
-        },
-        {
-          "name": "ecosystems:topic",
-          "value": "regexp"
-        },
-        {
-          "name": "ecosystems:topic",
-          "value": "regular-expression"
-        },
-        {
-          "name": "ecosystems:topic",
-          "value": "unicode"
-        }
-      ]
-    },
-    {
-      "bom-ref": "5573f8b9-fb2f-41a0-b9b3-82cea34911ba",
+      "bom-ref": "1fa784fe-0786-4917-aa5f-7d4aa5d944bf",
       "type": "library",
       "supplier": {
         "name": "isaacs",
@@ -545,7 +280,7 @@
       "properties": [
         {
           "name": "aquasecurity:trivy:FilePath",
-          "value": "usr/local/lib/node_modules/npm/node_modules/minipass-sized/node_modules/minipass/package.json"
+          "value": "usr/local/lib/node_modules/npm/node_modules/minipass-pipeline/node_modules/minipass/package.json"
         },
         {
           "name": "aquasecurity:trivy:LayerDiffID",
@@ -569,7 +304,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2024-05-24T00:42:21Z"
+          "value": "2026-02-19T00:34:33Z"
         },
         {
           "name": "ecosystems:owner_location",
@@ -578,218 +313,7 @@
       ]
     },
     {
-      "bom-ref": "560053e5-9d92-414a-924d-5056068497af",
-      "type": "library",
-      "name": "color-name",
-      "version": "1.1.4",
-      "description": "A list of color names and its values",
-      "hashes": [
-        {
-          "alg": "SHA-1",
-          "content": "411d7c87d5b1dec0d479aa13e3406b5c38ac34f5"
-        }
-      ],
-      "licenses": [
-        {
-          "expression": "(MIT)"
-        }
-      ],
-      "purl": "pkg:npm/color-name@1.1.4",
-      "externalReferences": [
-        {
-          "url": "https://github.com/colorjs/color-name",
-          "type": "website"
-        },
-        {
-          "url": "https://www.npmjs.com/package/color-name",
-          "type": "distribution"
-        },
-        {
-          "url": "https://github.com/colorjs/color-name",
-          "type": "vcs"
-        }
-      ],
-      "properties": [
-        {
-          "name": "aquasecurity:trivy:FilePath",
-          "value": "app/node_modules/color-name/package.json"
-        },
-        {
-          "name": "aquasecurity:trivy:LayerDiffID",
-          "value": "sha256:2c8f7dfa2b59bec5d0170648aa0e01b3ce473efa9f3b4b0c41bb4081f438bc92"
-        },
-        {
-          "name": "aquasecurity:trivy:LayerDigest",
-          "value": "sha256:94dbe9dc34ef24c6a79b50dfe9e782c64b8e713797b38309ba783681515c0ef2"
-        },
-        {
-          "name": "aquasecurity:trivy:PkgID",
-          "value": "color-name@1.1.4"
-        },
-        {
-          "name": "aquasecurity:trivy:PkgType",
-          "value": "node-pkg"
-        },
-        {
-          "name": "ecosystems:first_release_published_at",
-          "value": "2014-11-23T16:18:30Z"
-        },
-        {
-          "name": "ecosystems:latest_release_published_at",
-          "value": "2025-11-12T15:36:02Z"
-        },
-        {
-          "name": "ecosystems:topic",
-          "value": "color"
-        },
-        {
-          "name": "ecosystems:topic",
-          "value": "colorjs"
-        }
-      ]
-    },
-    {
-      "bom-ref": "59142b4d-b4de-45c1-b238-d57d6f520de1",
-      "type": "library",
-      "supplier": {
-        "name": "chalk",
-        "url": [
-          "https://github.com/chalk/chalk"
-        ]
-      },
-      "author": "chalk",
-      "name": "strip-ansi",
-      "version": "6.0.1",
-      "description": "Strip ANSI escape codes from a string",
-      "hashes": [
-        {
-          "alg": "SHA-1",
-          "content": "892d549c672831716abe655f087946d2644f2852"
-        }
-      ],
-      "licenses": [
-        {
-          "expression": "(MIT)"
-        }
-      ],
-      "purl": "pkg:npm/strip-ansi@6.0.1",
-      "externalReferences": [
-        {
-          "url": "https://github.com/chalk/strip-ansi#readme",
-          "type": "website"
-        },
-        {
-          "url": "https://www.npmjs.com/package/strip-ansi",
-          "type": "distribution"
-        },
-        {
-          "url": "https://github.com/chalk/strip-ansi",
-          "type": "vcs"
-        }
-      ],
-      "properties": [
-        {
-          "name": "aquasecurity:trivy:FilePath",
-          "value": "usr/local/lib/node_modules/npm/node_modules/strip-ansi-cjs/package.json"
-        },
-        {
-          "name": "aquasecurity:trivy:LayerDiffID",
-          "value": "sha256:63247acccce3471f5d0ce3b2e27f63c216cc9575e9873897df97225e3e04be3f"
-        },
-        {
-          "name": "aquasecurity:trivy:LayerDigest",
-          "value": "sha256:89059ca18a987694854cd03bb6655f445ec9536917d1f8ac6e65d42e0f17f0dd"
-        },
-        {
-          "name": "aquasecurity:trivy:PkgID",
-          "value": "strip-ansi@6.0.1"
-        },
-        {
-          "name": "aquasecurity:trivy:PkgType",
-          "value": "node-pkg"
-        },
-        {
-          "name": "ecosystems:first_release_published_at",
-          "value": "2013-12-07T23:30:17Z"
-        },
-        {
-          "name": "ecosystems:latest_release_published_at",
-          "value": "2025-09-08T15:05:29Z"
-        }
-      ]
-    },
-    {
-      "bom-ref": "60450b66-52f3-4fb1-91ec-db6dcd4590c1",
-      "type": "library",
-      "supplier": {
-        "name": "Sindre Sorhus",
-        "url": [
-          "https://sindresorhus.com/apps"
-        ]
-      },
-      "author": "Sindre Sorhus",
-      "name": "string-width",
-      "version": "5.1.2",
-      "description": "Get the visual width of a string - the number of columns required to display it",
-      "hashes": [
-        {
-          "alg": "SHA-1",
-          "content": "53ae7a1b3953e86624927fec8421d453d9c88e41"
-        }
-      ],
-      "licenses": [
-        {
-          "expression": "(MIT)"
-        }
-      ],
-      "purl": "pkg:npm/string-width@5.1.2",
-      "externalReferences": [
-        {
-          "url": "https://github.com/sindresorhus/string-width#readme",
-          "type": "website"
-        },
-        {
-          "url": "https://www.npmjs.com/package/string-width",
-          "type": "distribution"
-        },
-        {
-          "url": "https://github.com/sindresorhus/string-width",
-          "type": "vcs"
-        }
-      ],
-      "properties": [
-        {
-          "name": "aquasecurity:trivy:FilePath",
-          "value": "usr/local/lib/node_modules/npm/node_modules/@isaacs/cliui/node_modules/string-width/package.json"
-        },
-        {
-          "name": "aquasecurity:trivy:LayerDiffID",
-          "value": "sha256:63247acccce3471f5d0ce3b2e27f63c216cc9575e9873897df97225e3e04be3f"
-        },
-        {
-          "name": "aquasecurity:trivy:LayerDigest",
-          "value": "sha256:89059ca18a987694854cd03bb6655f445ec9536917d1f8ac6e65d42e0f17f0dd"
-        },
-        {
-          "name": "aquasecurity:trivy:PkgID",
-          "value": "string-width@5.1.2"
-        },
-        {
-          "name": "aquasecurity:trivy:PkgType",
-          "value": "node-pkg"
-        },
-        {
-          "name": "ecosystems:first_release_published_at",
-          "value": "2015-07-16T22:08:17Z"
-        },
-        {
-          "name": "ecosystems:latest_release_published_at",
-          "value": "2026-01-29T03:42:41Z"
-        }
-      ]
-    },
-    {
-      "bom-ref": "6e3f8850-fb22-4088-893f-3a0693cc0dfc",
+      "bom-ref": "220e4903-b1d5-4091-a533-44d530c282e2",
       "type": "library",
       "supplier": {
         "name": "chalk",
@@ -859,7 +383,502 @@
       ]
     },
     {
-      "bom-ref": "76a6b0d9-1a6e-4590-a143-3a2a04bd12c3",
+      "bom-ref": "2c7e7c68-3e77-4cc7-8b05-da857297dffd",
+      "type": "library",
+      "supplier": {
+        "name": "isaacs",
+        "url": [
+          "http://blog.izs.me"
+        ]
+      },
+      "author": "isaacs",
+      "name": "minipass",
+      "version": "3.3.6",
+      "description": "minimal implementation of a PassThrough stream",
+      "hashes": [
+        {
+          "alg": "SHA-1",
+          "content": "fc79b496665e2cdfc4bdaac9c7d7c4b2f4645f2c"
+        }
+      ],
+      "licenses": [
+        {
+          "expression": "(ISC)"
+        }
+      ],
+      "purl": "pkg:npm/minipass@3.3.6",
+      "externalReferences": [
+        {
+          "url": "https://github.com/isaacs/minipass#readme",
+          "type": "website"
+        },
+        {
+          "url": "https://www.npmjs.com/package/minipass",
+          "type": "distribution"
+        },
+        {
+          "url": "https://github.com/isaacs/minipass",
+          "type": "vcs"
+        }
+      ],
+      "properties": [
+        {
+          "name": "aquasecurity:trivy:FilePath",
+          "value": "usr/local/lib/node_modules/npm/node_modules/minipass-flush/node_modules/minipass/package.json"
+        },
+        {
+          "name": "aquasecurity:trivy:LayerDiffID",
+          "value": "sha256:63247acccce3471f5d0ce3b2e27f63c216cc9575e9873897df97225e3e04be3f"
+        },
+        {
+          "name": "aquasecurity:trivy:LayerDigest",
+          "value": "sha256:89059ca18a987694854cd03bb6655f445ec9536917d1f8ac6e65d42e0f17f0dd"
+        },
+        {
+          "name": "aquasecurity:trivy:PkgID",
+          "value": "minipass@3.3.6"
+        },
+        {
+          "name": "aquasecurity:trivy:PkgType",
+          "value": "node-pkg"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2017-03-14T00:11:57Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2026-02-19T00:34:33Z"
+        },
+        {
+          "name": "ecosystems:owner_location",
+          "value": "Oakland CA"
+        }
+      ]
+    },
+    {
+      "bom-ref": "37baae30-f114-4ec5-9008-bc27ea3f1e88",
+      "type": "library",
+      "supplier": {
+        "name": "isaacs",
+        "url": [
+          "http://blog.izs.me"
+        ]
+      },
+      "author": "isaacs",
+      "name": "minipass",
+      "version": "3.3.6",
+      "description": "minimal implementation of a PassThrough stream",
+      "hashes": [
+        {
+          "alg": "SHA-1",
+          "content": "fc79b496665e2cdfc4bdaac9c7d7c4b2f4645f2c"
+        }
+      ],
+      "licenses": [
+        {
+          "expression": "(ISC)"
+        }
+      ],
+      "purl": "pkg:npm/minipass@3.3.6",
+      "externalReferences": [
+        {
+          "url": "https://github.com/isaacs/minipass#readme",
+          "type": "website"
+        },
+        {
+          "url": "https://www.npmjs.com/package/minipass",
+          "type": "distribution"
+        },
+        {
+          "url": "https://github.com/isaacs/minipass",
+          "type": "vcs"
+        }
+      ],
+      "properties": [
+        {
+          "name": "aquasecurity:trivy:FilePath",
+          "value": "usr/local/lib/node_modules/npm/node_modules/minipass-json-stream/node_modules/minipass/package.json"
+        },
+        {
+          "name": "aquasecurity:trivy:LayerDiffID",
+          "value": "sha256:63247acccce3471f5d0ce3b2e27f63c216cc9575e9873897df97225e3e04be3f"
+        },
+        {
+          "name": "aquasecurity:trivy:LayerDigest",
+          "value": "sha256:89059ca18a987694854cd03bb6655f445ec9536917d1f8ac6e65d42e0f17f0dd"
+        },
+        {
+          "name": "aquasecurity:trivy:PkgID",
+          "value": "minipass@3.3.6"
+        },
+        {
+          "name": "aquasecurity:trivy:PkgType",
+          "value": "node-pkg"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2017-03-14T00:11:57Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2026-02-19T00:34:33Z"
+        },
+        {
+          "name": "ecosystems:owner_location",
+          "value": "Oakland CA"
+        }
+      ]
+    },
+    {
+      "bom-ref": "3859bc09-12a3-4b4a-bedc-8af824b4002c",
+      "type": "library",
+      "supplier": {
+        "name": "Josh Junon"
+      },
+      "author": "Josh Junon",
+      "name": "color-convert",
+      "version": "2.0.1",
+      "description": "Plain color conversion functions",
+      "hashes": [
+        {
+          "alg": "SHA-1",
+          "content": "03f26ab8597e0117b7ad15bcfa9f0b31c8375ea9"
+        }
+      ],
+      "licenses": [
+        {
+          "expression": "(MIT)"
+        }
+      ],
+      "purl": "pkg:npm/color-convert@2.0.1",
+      "externalReferences": [
+        {
+          "url": "https://github.com/Qix-/color-convert#readme",
+          "type": "website"
+        },
+        {
+          "url": "https://www.npmjs.com/package/color-convert",
+          "type": "distribution"
+        },
+        {
+          "url": "https://github.com/Qix-/color-convert",
+          "type": "vcs"
+        }
+      ],
+      "properties": [
+        {
+          "name": "aquasecurity:trivy:FilePath",
+          "value": "usr/local/lib/node_modules/npm/node_modules/color-convert/package.json"
+        },
+        {
+          "name": "aquasecurity:trivy:LayerDiffID",
+          "value": "sha256:63247acccce3471f5d0ce3b2e27f63c216cc9575e9873897df97225e3e04be3f"
+        },
+        {
+          "name": "aquasecurity:trivy:LayerDigest",
+          "value": "sha256:89059ca18a987694854cd03bb6655f445ec9536917d1f8ac6e65d42e0f17f0dd"
+        },
+        {
+          "name": "aquasecurity:trivy:PkgID",
+          "value": "color-convert@2.0.1"
+        },
+        {
+          "name": "aquasecurity:trivy:PkgType",
+          "value": "node-pkg"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2011-06-10T04:11:24Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2025-11-14T18:29:11Z"
+        }
+      ]
+    },
+    {
+      "bom-ref": "5543ccc0-e3b7-443f-a668-183621e19722",
+      "type": "library",
+      "supplier": {
+        "name": "Sindre Sorhus",
+        "url": [
+          "https://sindresorhus.com/apps"
+        ]
+      },
+      "author": "Sindre Sorhus",
+      "name": "string-width",
+      "version": "5.1.2",
+      "description": "Get the visual width of a string - the number of columns required to display it",
+      "hashes": [
+        {
+          "alg": "SHA-1",
+          "content": "53ae7a1b3953e86624927fec8421d453d9c88e41"
+        }
+      ],
+      "licenses": [
+        {
+          "expression": "(MIT)"
+        }
+      ],
+      "purl": "pkg:npm/string-width@5.1.2",
+      "externalReferences": [
+        {
+          "url": "https://github.com/sindresorhus/string-width#readme",
+          "type": "website"
+        },
+        {
+          "url": "https://www.npmjs.com/package/string-width",
+          "type": "distribution"
+        },
+        {
+          "url": "https://github.com/sindresorhus/string-width",
+          "type": "vcs"
+        }
+      ],
+      "properties": [
+        {
+          "name": "aquasecurity:trivy:FilePath",
+          "value": "usr/local/lib/node_modules/npm/node_modules/@isaacs/cliui/node_modules/string-width/package.json"
+        },
+        {
+          "name": "aquasecurity:trivy:LayerDiffID",
+          "value": "sha256:63247acccce3471f5d0ce3b2e27f63c216cc9575e9873897df97225e3e04be3f"
+        },
+        {
+          "name": "aquasecurity:trivy:LayerDigest",
+          "value": "sha256:89059ca18a987694854cd03bb6655f445ec9536917d1f8ac6e65d42e0f17f0dd"
+        },
+        {
+          "name": "aquasecurity:trivy:PkgID",
+          "value": "string-width@5.1.2"
+        },
+        {
+          "name": "aquasecurity:trivy:PkgType",
+          "value": "node-pkg"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2015-07-16T22:08:17Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2026-02-18T16:38:40Z"
+        }
+      ]
+    },
+    {
+      "bom-ref": "5558b927-b80c-48a0-9cfb-0ae0763c204d",
+      "type": "library",
+      "supplier": {
+        "name": "chalk",
+        "url": [
+          "https://github.com/chalk/chalk"
+        ]
+      },
+      "author": "chalk",
+      "name": "strip-ansi",
+      "version": "6.0.1",
+      "description": "Strip ANSI escape codes from a string",
+      "hashes": [
+        {
+          "alg": "SHA-1",
+          "content": "892d549c672831716abe655f087946d2644f2852"
+        }
+      ],
+      "licenses": [
+        {
+          "expression": "(MIT)"
+        }
+      ],
+      "purl": "pkg:npm/strip-ansi@6.0.1",
+      "externalReferences": [
+        {
+          "url": "https://github.com/chalk/strip-ansi#readme",
+          "type": "website"
+        },
+        {
+          "url": "https://www.npmjs.com/package/strip-ansi",
+          "type": "distribution"
+        },
+        {
+          "url": "https://github.com/chalk/strip-ansi",
+          "type": "vcs"
+        }
+      ],
+      "properties": [
+        {
+          "name": "aquasecurity:trivy:FilePath",
+          "value": "usr/local/lib/node_modules/npm/node_modules/strip-ansi-cjs/package.json"
+        },
+        {
+          "name": "aquasecurity:trivy:LayerDiffID",
+          "value": "sha256:63247acccce3471f5d0ce3b2e27f63c216cc9575e9873897df97225e3e04be3f"
+        },
+        {
+          "name": "aquasecurity:trivy:LayerDigest",
+          "value": "sha256:89059ca18a987694854cd03bb6655f445ec9536917d1f8ac6e65d42e0f17f0dd"
+        },
+        {
+          "name": "aquasecurity:trivy:PkgID",
+          "value": "strip-ansi@6.0.1"
+        },
+        {
+          "name": "aquasecurity:trivy:PkgType",
+          "value": "node-pkg"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2013-12-07T23:30:17Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2025-09-08T15:05:29Z"
+        }
+      ]
+    },
+    {
+      "bom-ref": "5a6097ac-6171-4d86-9c2e-f552db5bd6a7",
+      "type": "library",
+      "supplier": {
+        "name": "chalk",
+        "url": [
+          "https://github.com/chalk/chalk"
+        ]
+      },
+      "author": "chalk",
+      "name": "strip-ansi",
+      "version": "7.1.0",
+      "description": "Strip ANSI escape codes from a string",
+      "hashes": [
+        {
+          "alg": "SHA-1",
+          "content": "323ec71c0cdb2dfdcf717f3e324f0b77981d7c58"
+        }
+      ],
+      "licenses": [
+        {
+          "expression": "(MIT)"
+        }
+      ],
+      "purl": "pkg:npm/strip-ansi@7.1.0",
+      "externalReferences": [
+        {
+          "url": "https://github.com/chalk/strip-ansi#readme",
+          "type": "website"
+        },
+        {
+          "url": "https://www.npmjs.com/package/strip-ansi",
+          "type": "distribution"
+        },
+        {
+          "url": "https://github.com/chalk/strip-ansi",
+          "type": "vcs"
+        }
+      ],
+      "properties": [
+        {
+          "name": "aquasecurity:trivy:FilePath",
+          "value": "usr/local/lib/node_modules/npm/node_modules/wrap-ansi/node_modules/strip-ansi/package.json"
+        },
+        {
+          "name": "aquasecurity:trivy:LayerDiffID",
+          "value": "sha256:63247acccce3471f5d0ce3b2e27f63c216cc9575e9873897df97225e3e04be3f"
+        },
+        {
+          "name": "aquasecurity:trivy:LayerDigest",
+          "value": "sha256:89059ca18a987694854cd03bb6655f445ec9536917d1f8ac6e65d42e0f17f0dd"
+        },
+        {
+          "name": "aquasecurity:trivy:PkgID",
+          "value": "strip-ansi@7.1.0"
+        },
+        {
+          "name": "aquasecurity:trivy:PkgType",
+          "value": "node-pkg"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2013-12-07T23:30:17Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2025-09-08T15:05:29Z"
+        }
+      ]
+    },
+    {
+      "bom-ref": "5d88936c-ebea-47c6-8c1d-531d64beefe4",
+      "type": "library",
+      "supplier": {
+        "name": "chalk",
+        "url": [
+          "https://github.com/chalk/chalk"
+        ]
+      },
+      "author": "chalk",
+      "name": "strip-ansi",
+      "version": "6.0.1",
+      "description": "Strip ANSI escape codes from a string",
+      "hashes": [
+        {
+          "alg": "SHA-1",
+          "content": "892d549c672831716abe655f087946d2644f2852"
+        }
+      ],
+      "licenses": [
+        {
+          "expression": "(MIT)"
+        }
+      ],
+      "purl": "pkg:npm/strip-ansi@6.0.1",
+      "externalReferences": [
+        {
+          "url": "https://github.com/chalk/strip-ansi#readme",
+          "type": "website"
+        },
+        {
+          "url": "https://www.npmjs.com/package/strip-ansi",
+          "type": "distribution"
+        },
+        {
+          "url": "https://github.com/chalk/strip-ansi",
+          "type": "vcs"
+        }
+      ],
+      "properties": [
+        {
+          "name": "aquasecurity:trivy:FilePath",
+          "value": "usr/local/lib/node_modules/npm/node_modules/strip-ansi/package.json"
+        },
+        {
+          "name": "aquasecurity:trivy:LayerDiffID",
+          "value": "sha256:63247acccce3471f5d0ce3b2e27f63c216cc9575e9873897df97225e3e04be3f"
+        },
+        {
+          "name": "aquasecurity:trivy:LayerDigest",
+          "value": "sha256:89059ca18a987694854cd03bb6655f445ec9536917d1f8ac6e65d42e0f17f0dd"
+        },
+        {
+          "name": "aquasecurity:trivy:PkgID",
+          "value": "strip-ansi@6.0.1"
+        },
+        {
+          "name": "aquasecurity:trivy:PkgType",
+          "value": "node-pkg"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2013-12-07T23:30:17Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2025-09-08T15:05:29Z"
+        }
+      ]
+    },
+    {
+      "bom-ref": "5d973463-d202-4612-b7b3-a6fae9450a36",
       "type": "library",
       "supplier": {
         "name": "Mathias Bynens",
@@ -949,643 +968,7 @@
       ]
     },
     {
-      "bom-ref": "82be13ab-3c1f-4a1c-9c3e-d3e277c6f104",
-      "type": "library",
-      "supplier": {
-        "name": "chalk",
-        "url": [
-          "https://github.com/chalk/chalk"
-        ]
-      },
-      "author": "chalk",
-      "name": "ansi-regex",
-      "version": "6.0.1",
-      "description": "Regular expression for matching ANSI escape codes",
-      "hashes": [
-        {
-          "alg": "SHA-1",
-          "content": "dabd0c9882fb3b8c12222595fb92ad26b60671a1"
-        }
-      ],
-      "licenses": [
-        {
-          "expression": "(MIT)"
-        }
-      ],
-      "purl": "pkg:npm/ansi-regex@6.0.1",
-      "externalReferences": [
-        {
-          "url": "https://github.com/chalk/ansi-regex#readme",
-          "type": "website"
-        },
-        {
-          "url": "https://www.npmjs.com/package/ansi-regex",
-          "type": "distribution"
-        },
-        {
-          "url": "https://github.com/chalk/ansi-regex",
-          "type": "vcs"
-        }
-      ],
-      "properties": [
-        {
-          "name": "aquasecurity:trivy:FilePath",
-          "value": "usr/local/lib/node_modules/npm/node_modules/wrap-ansi/node_modules/ansi-regex/package.json"
-        },
-        {
-          "name": "aquasecurity:trivy:LayerDiffID",
-          "value": "sha256:63247acccce3471f5d0ce3b2e27f63c216cc9575e9873897df97225e3e04be3f"
-        },
-        {
-          "name": "aquasecurity:trivy:LayerDigest",
-          "value": "sha256:89059ca18a987694854cd03bb6655f445ec9536917d1f8ac6e65d42e0f17f0dd"
-        },
-        {
-          "name": "aquasecurity:trivy:PkgID",
-          "value": "ansi-regex@6.0.1"
-        },
-        {
-          "name": "aquasecurity:trivy:PkgType",
-          "value": "node-pkg"
-        },
-        {
-          "name": "ecosystems:first_release_published_at",
-          "value": "2014-06-03T16:59:22Z"
-        },
-        {
-          "name": "ecosystems:latest_release_published_at",
-          "value": "2025-09-08T14:48:14Z"
-        }
-      ]
-    },
-    {
-      "bom-ref": "85429353-da34-499c-8aaa-44a25b25ff48",
-      "type": "library",
-      "supplier": {
-        "name": "Sindre Sorhus",
-        "url": [
-          "https://sindresorhus.com/apps"
-        ]
-      },
-      "author": "Sindre Sorhus",
-      "name": "string-width",
-      "version": "4.2.3",
-      "description": "Get the visual width of a string - the number of columns required to display it",
-      "hashes": [
-        {
-          "alg": "SHA-1",
-          "content": "a5306c15bba6cb123d9f061ca85eb56576c6638f"
-        }
-      ],
-      "licenses": [
-        {
-          "expression": "(MIT)"
-        }
-      ],
-      "purl": "pkg:npm/string-width@4.2.3",
-      "externalReferences": [
-        {
-          "url": "https://github.com/sindresorhus/string-width#readme",
-          "type": "website"
-        },
-        {
-          "url": "https://www.npmjs.com/package/string-width",
-          "type": "distribution"
-        },
-        {
-          "url": "https://github.com/sindresorhus/string-width",
-          "type": "vcs"
-        }
-      ],
-      "properties": [
-        {
-          "name": "aquasecurity:trivy:FilePath",
-          "value": "usr/local/lib/node_modules/npm/node_modules/string-width/package.json"
-        },
-        {
-          "name": "aquasecurity:trivy:LayerDiffID",
-          "value": "sha256:63247acccce3471f5d0ce3b2e27f63c216cc9575e9873897df97225e3e04be3f"
-        },
-        {
-          "name": "aquasecurity:trivy:LayerDigest",
-          "value": "sha256:89059ca18a987694854cd03bb6655f445ec9536917d1f8ac6e65d42e0f17f0dd"
-        },
-        {
-          "name": "aquasecurity:trivy:PkgID",
-          "value": "string-width@4.2.3"
-        },
-        {
-          "name": "aquasecurity:trivy:PkgType",
-          "value": "node-pkg"
-        },
-        {
-          "name": "ecosystems:first_release_published_at",
-          "value": "2015-07-16T22:08:17Z"
-        },
-        {
-          "name": "ecosystems:latest_release_published_at",
-          "value": "2026-01-29T03:42:41Z"
-        }
-      ]
-    },
-    {
-      "bom-ref": "873a9bbd-439e-4270-8b63-ff3a468fe7c7",
-      "type": "library",
-      "name": "graceful-fs",
-      "version": "4.2.11",
-      "description": "A drop-in replacement for fs, making various improvements.",
-      "hashes": [
-        {
-          "alg": "SHA-1",
-          "content": "21a733b3f7e2ee153041de90fb03d5596934f346"
-        }
-      ],
-      "licenses": [
-        {
-          "expression": "(ISC)"
-        }
-      ],
-      "purl": "pkg:npm/graceful-fs@4.2.11",
-      "externalReferences": [
-        {
-          "url": "https://github.com/isaacs/node-graceful-fs#readme",
-          "type": "website"
-        },
-        {
-          "url": "https://www.npmjs.com/package/graceful-fs",
-          "type": "distribution"
-        },
-        {
-          "url": "https://github.com/isaacs/node-graceful-fs",
-          "type": "vcs"
-        }
-      ],
-      "properties": [
-        {
-          "name": "aquasecurity:trivy:FilePath",
-          "value": "usr/local/lib/node_modules/npm/node_modules/graceful-fs/package.json"
-        },
-        {
-          "name": "aquasecurity:trivy:LayerDiffID",
-          "value": "sha256:63247acccce3471f5d0ce3b2e27f63c216cc9575e9873897df97225e3e04be3f"
-        },
-        {
-          "name": "aquasecurity:trivy:LayerDigest",
-          "value": "sha256:89059ca18a987694854cd03bb6655f445ec9536917d1f8ac6e65d42e0f17f0dd"
-        },
-        {
-          "name": "aquasecurity:trivy:PkgID",
-          "value": "graceful-fs@4.2.11"
-        },
-        {
-          "name": "aquasecurity:trivy:PkgType",
-          "value": "node-pkg"
-        },
-        {
-          "name": "ecosystems:first_release_published_at",
-          "value": "2011-07-20T08:49:38Z"
-        },
-        {
-          "name": "ecosystems:latest_release_published_at",
-          "value": "2023-03-16T19:30:19Z"
-        }
-      ]
-    },
-    {
-      "bom-ref": "98f2f666-2e1e-4424-a854-4186956d946d",
-      "type": "library",
-      "supplier": {
-        "name": "chalk",
-        "url": [
-          "https://github.com/chalk/chalk"
-        ]
-      },
-      "author": "chalk",
-      "name": "strip-ansi",
-      "version": "7.1.0",
-      "description": "Strip ANSI escape codes from a string",
-      "hashes": [
-        {
-          "alg": "SHA-1",
-          "content": "323ec71c0cdb2dfdcf717f3e324f0b77981d7c58"
-        }
-      ],
-      "licenses": [
-        {
-          "expression": "(MIT)"
-        }
-      ],
-      "purl": "pkg:npm/strip-ansi@7.1.0",
-      "externalReferences": [
-        {
-          "url": "https://github.com/chalk/strip-ansi#readme",
-          "type": "website"
-        },
-        {
-          "url": "https://www.npmjs.com/package/strip-ansi",
-          "type": "distribution"
-        },
-        {
-          "url": "https://github.com/chalk/strip-ansi",
-          "type": "vcs"
-        }
-      ],
-      "properties": [
-        {
-          "name": "aquasecurity:trivy:FilePath",
-          "value": "usr/local/lib/node_modules/npm/node_modules/wrap-ansi/node_modules/strip-ansi/package.json"
-        },
-        {
-          "name": "aquasecurity:trivy:LayerDiffID",
-          "value": "sha256:63247acccce3471f5d0ce3b2e27f63c216cc9575e9873897df97225e3e04be3f"
-        },
-        {
-          "name": "aquasecurity:trivy:LayerDigest",
-          "value": "sha256:89059ca18a987694854cd03bb6655f445ec9536917d1f8ac6e65d42e0f17f0dd"
-        },
-        {
-          "name": "aquasecurity:trivy:PkgID",
-          "value": "strip-ansi@7.1.0"
-        },
-        {
-          "name": "aquasecurity:trivy:PkgType",
-          "value": "node-pkg"
-        },
-        {
-          "name": "ecosystems:first_release_published_at",
-          "value": "2013-12-07T23:30:17Z"
-        },
-        {
-          "name": "ecosystems:latest_release_published_at",
-          "value": "2025-09-08T15:05:29Z"
-        }
-      ]
-    },
-    {
-      "bom-ref": "9e86dcfe-4801-4ed5-8fc2-dd8a574fe355",
-      "type": "library",
-      "supplier": {
-        "name": "isaacs",
-        "url": [
-          "http://blog.izs.me"
-        ]
-      },
-      "author": "isaacs",
-      "name": "minipass",
-      "version": "3.3.6",
-      "description": "minimal implementation of a PassThrough stream",
-      "hashes": [
-        {
-          "alg": "SHA-1",
-          "content": "fc79b496665e2cdfc4bdaac9c7d7c4b2f4645f2c"
-        }
-      ],
-      "licenses": [
-        {
-          "expression": "(ISC)"
-        }
-      ],
-      "purl": "pkg:npm/minipass@3.3.6",
-      "externalReferences": [
-        {
-          "url": "https://github.com/isaacs/minipass#readme",
-          "type": "website"
-        },
-        {
-          "url": "https://www.npmjs.com/package/minipass",
-          "type": "distribution"
-        },
-        {
-          "url": "https://github.com/isaacs/minipass",
-          "type": "vcs"
-        }
-      ],
-      "properties": [
-        {
-          "name": "aquasecurity:trivy:FilePath",
-          "value": "usr/local/lib/node_modules/npm/node_modules/minipass-flush/node_modules/minipass/package.json"
-        },
-        {
-          "name": "aquasecurity:trivy:LayerDiffID",
-          "value": "sha256:63247acccce3471f5d0ce3b2e27f63c216cc9575e9873897df97225e3e04be3f"
-        },
-        {
-          "name": "aquasecurity:trivy:LayerDigest",
-          "value": "sha256:89059ca18a987694854cd03bb6655f445ec9536917d1f8ac6e65d42e0f17f0dd"
-        },
-        {
-          "name": "aquasecurity:trivy:PkgID",
-          "value": "minipass@3.3.6"
-        },
-        {
-          "name": "aquasecurity:trivy:PkgType",
-          "value": "node-pkg"
-        },
-        {
-          "name": "ecosystems:first_release_published_at",
-          "value": "2017-03-14T00:11:57Z"
-        },
-        {
-          "name": "ecosystems:latest_release_published_at",
-          "value": "2024-05-24T00:42:21Z"
-        },
-        {
-          "name": "ecosystems:owner_location",
-          "value": "Oakland CA"
-        }
-      ]
-    },
-    {
-      "bom-ref": "b4206a80-a684-4bc1-a151-b2848b2c40cd",
-      "type": "library",
-      "supplier": {
-        "name": "isaacs",
-        "url": [
-          "http://blog.izs.me"
-        ]
-      },
-      "author": "isaacs",
-      "name": "minipass",
-      "version": "3.3.6",
-      "description": "minimal implementation of a PassThrough stream",
-      "hashes": [
-        {
-          "alg": "SHA-1",
-          "content": "fc79b496665e2cdfc4bdaac9c7d7c4b2f4645f2c"
-        }
-      ],
-      "licenses": [
-        {
-          "expression": "(ISC)"
-        }
-      ],
-      "purl": "pkg:npm/minipass@3.3.6",
-      "externalReferences": [
-        {
-          "url": "https://github.com/isaacs/minipass#readme",
-          "type": "website"
-        },
-        {
-          "url": "https://www.npmjs.com/package/minipass",
-          "type": "distribution"
-        },
-        {
-          "url": "https://github.com/isaacs/minipass",
-          "type": "vcs"
-        }
-      ],
-      "properties": [
-        {
-          "name": "aquasecurity:trivy:FilePath",
-          "value": "usr/local/lib/node_modules/npm/node_modules/minizlib/node_modules/minipass/package.json"
-        },
-        {
-          "name": "aquasecurity:trivy:LayerDiffID",
-          "value": "sha256:63247acccce3471f5d0ce3b2e27f63c216cc9575e9873897df97225e3e04be3f"
-        },
-        {
-          "name": "aquasecurity:trivy:LayerDigest",
-          "value": "sha256:89059ca18a987694854cd03bb6655f445ec9536917d1f8ac6e65d42e0f17f0dd"
-        },
-        {
-          "name": "aquasecurity:trivy:PkgID",
-          "value": "minipass@3.3.6"
-        },
-        {
-          "name": "aquasecurity:trivy:PkgType",
-          "value": "node-pkg"
-        },
-        {
-          "name": "ecosystems:first_release_published_at",
-          "value": "2017-03-14T00:11:57Z"
-        },
-        {
-          "name": "ecosystems:latest_release_published_at",
-          "value": "2024-05-24T00:42:21Z"
-        },
-        {
-          "name": "ecosystems:owner_location",
-          "value": "Oakland CA"
-        }
-      ]
-    },
-    {
-      "bom-ref": "b4c4b32a-880c-4caf-aa83-ae04bd9476f8",
-      "type": "library",
-      "supplier": {
-        "name": "Josh Junon"
-      },
-      "author": "Josh Junon",
-      "name": "color-convert",
-      "version": "2.0.1",
-      "description": "Plain color conversion functions",
-      "hashes": [
-        {
-          "alg": "SHA-1",
-          "content": "03f26ab8597e0117b7ad15bcfa9f0b31c8375ea9"
-        }
-      ],
-      "licenses": [
-        {
-          "expression": "(MIT)"
-        }
-      ],
-      "purl": "pkg:npm/color-convert@2.0.1",
-      "externalReferences": [
-        {
-          "url": "https://github.com/Qix-/color-convert#readme",
-          "type": "website"
-        },
-        {
-          "url": "https://www.npmjs.com/package/color-convert",
-          "type": "distribution"
-        },
-        {
-          "url": "https://github.com/Qix-/color-convert",
-          "type": "vcs"
-        }
-      ],
-      "properties": [
-        {
-          "name": "aquasecurity:trivy:FilePath",
-          "value": "usr/local/lib/node_modules/npm/node_modules/color-convert/package.json"
-        },
-        {
-          "name": "aquasecurity:trivy:LayerDiffID",
-          "value": "sha256:63247acccce3471f5d0ce3b2e27f63c216cc9575e9873897df97225e3e04be3f"
-        },
-        {
-          "name": "aquasecurity:trivy:LayerDigest",
-          "value": "sha256:89059ca18a987694854cd03bb6655f445ec9536917d1f8ac6e65d42e0f17f0dd"
-        },
-        {
-          "name": "aquasecurity:trivy:PkgID",
-          "value": "color-convert@2.0.1"
-        },
-        {
-          "name": "aquasecurity:trivy:PkgType",
-          "value": "node-pkg"
-        },
-        {
-          "name": "ecosystems:first_release_published_at",
-          "value": "2011-06-10T04:11:24Z"
-        },
-        {
-          "name": "ecosystems:latest_release_published_at",
-          "value": "2025-11-14T18:29:11Z"
-        }
-      ]
-    },
-    {
-      "bom-ref": "c00d817b-58ac-47f2-a852-06f882fe67b1",
-      "type": "library",
-      "supplier": {
-        "name": "isaacs",
-        "url": [
-          "http://blog.izs.me"
-        ]
-      },
-      "author": "isaacs",
-      "name": "minipass",
-      "version": "3.3.6",
-      "description": "minimal implementation of a PassThrough stream",
-      "hashes": [
-        {
-          "alg": "SHA-1",
-          "content": "fc79b496665e2cdfc4bdaac9c7d7c4b2f4645f2c"
-        }
-      ],
-      "licenses": [
-        {
-          "expression": "(ISC)"
-        }
-      ],
-      "purl": "pkg:npm/minipass@3.3.6",
-      "externalReferences": [
-        {
-          "url": "https://github.com/isaacs/minipass#readme",
-          "type": "website"
-        },
-        {
-          "url": "https://www.npmjs.com/package/minipass",
-          "type": "distribution"
-        },
-        {
-          "url": "https://github.com/isaacs/minipass",
-          "type": "vcs"
-        }
-      ],
-      "properties": [
-        {
-          "name": "aquasecurity:trivy:FilePath",
-          "value": "usr/local/lib/node_modules/npm/node_modules/minipass-pipeline/node_modules/minipass/package.json"
-        },
-        {
-          "name": "aquasecurity:trivy:LayerDiffID",
-          "value": "sha256:63247acccce3471f5d0ce3b2e27f63c216cc9575e9873897df97225e3e04be3f"
-        },
-        {
-          "name": "aquasecurity:trivy:LayerDigest",
-          "value": "sha256:89059ca18a987694854cd03bb6655f445ec9536917d1f8ac6e65d42e0f17f0dd"
-        },
-        {
-          "name": "aquasecurity:trivy:PkgID",
-          "value": "minipass@3.3.6"
-        },
-        {
-          "name": "aquasecurity:trivy:PkgType",
-          "value": "node-pkg"
-        },
-        {
-          "name": "ecosystems:first_release_published_at",
-          "value": "2017-03-14T00:11:57Z"
-        },
-        {
-          "name": "ecosystems:latest_release_published_at",
-          "value": "2024-05-24T00:42:21Z"
-        },
-        {
-          "name": "ecosystems:owner_location",
-          "value": "Oakland CA"
-        }
-      ]
-    },
-    {
-      "bom-ref": "c941628d-9d61-4f28-9af6-e7ff31c00226",
-      "type": "library",
-      "supplier": {
-        "name": "isaacs",
-        "url": [
-          "http://blog.izs.me"
-        ]
-      },
-      "author": "isaacs",
-      "name": "minipass",
-      "version": "3.3.6",
-      "description": "minimal implementation of a PassThrough stream",
-      "hashes": [
-        {
-          "alg": "SHA-1",
-          "content": "fc79b496665e2cdfc4bdaac9c7d7c4b2f4645f2c"
-        }
-      ],
-      "licenses": [
-        {
-          "expression": "(ISC)"
-        }
-      ],
-      "purl": "pkg:npm/minipass@3.3.6",
-      "externalReferences": [
-        {
-          "url": "https://github.com/isaacs/minipass#readme",
-          "type": "website"
-        },
-        {
-          "url": "https://www.npmjs.com/package/minipass",
-          "type": "distribution"
-        },
-        {
-          "url": "https://github.com/isaacs/minipass",
-          "type": "vcs"
-        }
-      ],
-      "properties": [
-        {
-          "name": "aquasecurity:trivy:FilePath",
-          "value": "usr/local/lib/node_modules/npm/node_modules/tar/node_modules/fs-minipass/node_modules/minipass/package.json"
-        },
-        {
-          "name": "aquasecurity:trivy:LayerDiffID",
-          "value": "sha256:63247acccce3471f5d0ce3b2e27f63c216cc9575e9873897df97225e3e04be3f"
-        },
-        {
-          "name": "aquasecurity:trivy:LayerDigest",
-          "value": "sha256:89059ca18a987694854cd03bb6655f445ec9536917d1f8ac6e65d42e0f17f0dd"
-        },
-        {
-          "name": "aquasecurity:trivy:PkgID",
-          "value": "minipass@3.3.6"
-        },
-        {
-          "name": "aquasecurity:trivy:PkgType",
-          "value": "node-pkg"
-        },
-        {
-          "name": "ecosystems:first_release_published_at",
-          "value": "2017-03-14T00:11:57Z"
-        },
-        {
-          "name": "ecosystems:latest_release_published_at",
-          "value": "2024-05-24T00:42:21Z"
-        },
-        {
-          "name": "ecosystems:owner_location",
-          "value": "Oakland CA"
-        }
-      ]
-    },
-    {
-      "bom-ref": "cce62575-fbd3-42d4-b000-e22c6f46e15b",
+      "bom-ref": "6e913cc5-3678-4691-bb66-6c335d6d5096",
       "type": "library",
       "supplier": {
         "name": "Sindre Sorhus",
@@ -1650,12 +1033,156 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-01-29T03:42:41Z"
+          "value": "2026-02-18T16:38:40Z"
         }
       ]
     },
     {
-      "bom-ref": "ef87d47b-9d03-4106-a9e6-1625e88326c9",
+      "bom-ref": "76f4ac95-12c6-4077-afe5-229fbcc23a4a",
+      "type": "library",
+      "supplier": {
+        "name": "isaacs",
+        "url": [
+          "http://blog.izs.me"
+        ]
+      },
+      "author": "isaacs",
+      "name": "minipass",
+      "version": "3.3.6",
+      "description": "minimal implementation of a PassThrough stream",
+      "hashes": [
+        {
+          "alg": "SHA-1",
+          "content": "fc79b496665e2cdfc4bdaac9c7d7c4b2f4645f2c"
+        }
+      ],
+      "licenses": [
+        {
+          "expression": "(ISC)"
+        }
+      ],
+      "purl": "pkg:npm/minipass@3.3.6",
+      "externalReferences": [
+        {
+          "url": "https://github.com/isaacs/minipass#readme",
+          "type": "website"
+        },
+        {
+          "url": "https://www.npmjs.com/package/minipass",
+          "type": "distribution"
+        },
+        {
+          "url": "https://github.com/isaacs/minipass",
+          "type": "vcs"
+        }
+      ],
+      "properties": [
+        {
+          "name": "aquasecurity:trivy:FilePath",
+          "value": "usr/local/lib/node_modules/npm/node_modules/tar/node_modules/fs-minipass/node_modules/minipass/package.json"
+        },
+        {
+          "name": "aquasecurity:trivy:LayerDiffID",
+          "value": "sha256:63247acccce3471f5d0ce3b2e27f63c216cc9575e9873897df97225e3e04be3f"
+        },
+        {
+          "name": "aquasecurity:trivy:LayerDigest",
+          "value": "sha256:89059ca18a987694854cd03bb6655f445ec9536917d1f8ac6e65d42e0f17f0dd"
+        },
+        {
+          "name": "aquasecurity:trivy:PkgID",
+          "value": "minipass@3.3.6"
+        },
+        {
+          "name": "aquasecurity:trivy:PkgType",
+          "value": "node-pkg"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2017-03-14T00:11:57Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2026-02-19T00:34:33Z"
+        },
+        {
+          "name": "ecosystems:owner_location",
+          "value": "Oakland CA"
+        }
+      ]
+    },
+    {
+      "bom-ref": "7b0c2e1b-8b28-4922-90cc-2084a9ee1c62",
+      "type": "library",
+      "supplier": {
+        "name": "chalk",
+        "url": [
+          "https://github.com/chalk/chalk"
+        ]
+      },
+      "author": "chalk",
+      "name": "strip-ansi",
+      "version": "7.1.0",
+      "description": "Strip ANSI escape codes from a string",
+      "hashes": [
+        {
+          "alg": "SHA-1",
+          "content": "323ec71c0cdb2dfdcf717f3e324f0b77981d7c58"
+        }
+      ],
+      "licenses": [
+        {
+          "expression": "(MIT)"
+        }
+      ],
+      "purl": "pkg:npm/strip-ansi@7.1.0",
+      "externalReferences": [
+        {
+          "url": "https://github.com/chalk/strip-ansi#readme",
+          "type": "website"
+        },
+        {
+          "url": "https://www.npmjs.com/package/strip-ansi",
+          "type": "distribution"
+        },
+        {
+          "url": "https://github.com/chalk/strip-ansi",
+          "type": "vcs"
+        }
+      ],
+      "properties": [
+        {
+          "name": "aquasecurity:trivy:FilePath",
+          "value": "usr/local/lib/node_modules/npm/node_modules/@isaacs/cliui/node_modules/strip-ansi/package.json"
+        },
+        {
+          "name": "aquasecurity:trivy:LayerDiffID",
+          "value": "sha256:63247acccce3471f5d0ce3b2e27f63c216cc9575e9873897df97225e3e04be3f"
+        },
+        {
+          "name": "aquasecurity:trivy:LayerDigest",
+          "value": "sha256:89059ca18a987694854cd03bb6655f445ec9536917d1f8ac6e65d42e0f17f0dd"
+        },
+        {
+          "name": "aquasecurity:trivy:PkgID",
+          "value": "strip-ansi@7.1.0"
+        },
+        {
+          "name": "aquasecurity:trivy:PkgType",
+          "value": "node-pkg"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2013-12-07T23:30:17Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2025-09-08T15:05:29Z"
+        }
+      ]
+    },
+    {
+      "bom-ref": "866a878d-9252-4f4c-8709-36278b05da6a",
       "type": "library",
       "supplier": {
         "name": "Sindre Sorhus",
@@ -1696,7 +1223,7 @@
       "properties": [
         {
           "name": "aquasecurity:trivy:FilePath",
-          "value": "usr/local/lib/node_modules/npm/node_modules/string-width-cjs/package.json"
+          "value": "usr/local/lib/node_modules/npm/node_modules/string-width/package.json"
         },
         {
           "name": "aquasecurity:trivy:LayerDiffID",
@@ -1720,12 +1247,318 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-01-29T03:42:41Z"
+          "value": "2026-02-18T16:38:40Z"
         }
       ]
     },
     {
-      "bom-ref": "f1f3dba2-e9e5-45d5-8048-afb3041057df",
+      "bom-ref": "945825ba-9385-4989-a175-9443475e3b47",
+      "type": "library",
+      "supplier": {
+        "name": "Mathias Bynens",
+        "url": [
+          "https://mathiasbynens.be/"
+        ]
+      },
+      "author": "Mathias Bynens",
+      "name": "emoji-regex",
+      "version": "9.2.2",
+      "description": "A regular expression to match all Emoji-only symbols as per the Unicode Standard.",
+      "hashes": [
+        {
+          "alg": "SHA-1",
+          "content": "238c48183550d02ab5c0dd37e13d57006dce640a"
+        }
+      ],
+      "licenses": [
+        {
+          "expression": "(MIT)"
+        }
+      ],
+      "purl": "pkg:npm/emoji-regex@9.2.2",
+      "externalReferences": [
+        {
+          "url": "https://mths.be/emoji-regex",
+          "type": "website"
+        },
+        {
+          "url": "https://www.npmjs.com/package/emoji-regex",
+          "type": "distribution"
+        },
+        {
+          "url": "https://github.com/mathiasbynens/emoji-regex",
+          "type": "vcs"
+        }
+      ],
+      "properties": [
+        {
+          "name": "aquasecurity:trivy:FilePath",
+          "value": "usr/local/lib/node_modules/npm/node_modules/wrap-ansi/node_modules/emoji-regex/package.json"
+        },
+        {
+          "name": "aquasecurity:trivy:LayerDiffID",
+          "value": "sha256:63247acccce3471f5d0ce3b2e27f63c216cc9575e9873897df97225e3e04be3f"
+        },
+        {
+          "name": "aquasecurity:trivy:LayerDigest",
+          "value": "sha256:89059ca18a987694854cd03bb6655f445ec9536917d1f8ac6e65d42e0f17f0dd"
+        },
+        {
+          "name": "aquasecurity:trivy:PkgID",
+          "value": "emoji-regex@9.2.2"
+        },
+        {
+          "name": "aquasecurity:trivy:PkgType",
+          "value": "node-pkg"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2014-09-28T11:10:47Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2025-10-13T08:13:51Z"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "emoji"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "regex"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "regexp"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "regular-expression"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "unicode"
+        }
+      ]
+    },
+    {
+      "bom-ref": "98c6494d-7ad5-47bd-8c5e-cebe459babd2",
+      "type": "application",
+      "name": "app/node_modules/@esbuild/linux-x64/bin/esbuild",
+      "properties": [
+        {
+          "name": "aquasecurity:trivy:Class",
+          "value": "lang-pkgs"
+        },
+        {
+          "name": "aquasecurity:trivy:Type",
+          "value": "gobinary"
+        }
+      ]
+    },
+    {
+      "bom-ref": "a2dcf51b-12cf-4243-a76b-8f4d5b541c29",
+      "type": "library",
+      "name": "color-name",
+      "version": "1.1.4",
+      "description": "A list of color names and its values",
+      "hashes": [
+        {
+          "alg": "SHA-1",
+          "content": "411d7c87d5b1dec0d479aa13e3406b5c38ac34f5"
+        }
+      ],
+      "licenses": [
+        {
+          "expression": "(MIT)"
+        }
+      ],
+      "purl": "pkg:npm/color-name@1.1.4",
+      "externalReferences": [
+        {
+          "url": "https://github.com/colorjs/color-name",
+          "type": "website"
+        },
+        {
+          "url": "https://www.npmjs.com/package/color-name",
+          "type": "distribution"
+        },
+        {
+          "url": "https://github.com/colorjs/color-name",
+          "type": "vcs"
+        }
+      ],
+      "properties": [
+        {
+          "name": "aquasecurity:trivy:FilePath",
+          "value": "app/node_modules/color-name/package.json"
+        },
+        {
+          "name": "aquasecurity:trivy:LayerDiffID",
+          "value": "sha256:2c8f7dfa2b59bec5d0170648aa0e01b3ce473efa9f3b4b0c41bb4081f438bc92"
+        },
+        {
+          "name": "aquasecurity:trivy:LayerDigest",
+          "value": "sha256:94dbe9dc34ef24c6a79b50dfe9e782c64b8e713797b38309ba783681515c0ef2"
+        },
+        {
+          "name": "aquasecurity:trivy:PkgID",
+          "value": "color-name@1.1.4"
+        },
+        {
+          "name": "aquasecurity:trivy:PkgType",
+          "value": "node-pkg"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2014-11-23T16:18:30Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2025-11-12T15:36:02Z"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "color"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "colorjs"
+        }
+      ]
+    },
+    {
+      "bom-ref": "a474ca5d-e149-44fe-badf-c0d104b55ec0",
+      "type": "library",
+      "name": "graceful-fs",
+      "version": "4.2.11",
+      "description": "A drop-in replacement for fs, making various improvements.",
+      "hashes": [
+        {
+          "alg": "SHA-1",
+          "content": "21a733b3f7e2ee153041de90fb03d5596934f346"
+        }
+      ],
+      "licenses": [
+        {
+          "expression": "(ISC)"
+        }
+      ],
+      "purl": "pkg:npm/graceful-fs@4.2.11",
+      "externalReferences": [
+        {
+          "url": "https://github.com/isaacs/node-graceful-fs#readme",
+          "type": "website"
+        },
+        {
+          "url": "https://www.npmjs.com/package/graceful-fs",
+          "type": "distribution"
+        },
+        {
+          "url": "https://github.com/isaacs/node-graceful-fs",
+          "type": "vcs"
+        }
+      ],
+      "properties": [
+        {
+          "name": "aquasecurity:trivy:FilePath",
+          "value": "app/node_modules/graceful-fs/package.json"
+        },
+        {
+          "name": "aquasecurity:trivy:LayerDiffID",
+          "value": "sha256:2c8f7dfa2b59bec5d0170648aa0e01b3ce473efa9f3b4b0c41bb4081f438bc92"
+        },
+        {
+          "name": "aquasecurity:trivy:LayerDigest",
+          "value": "sha256:94dbe9dc34ef24c6a79b50dfe9e782c64b8e713797b38309ba783681515c0ef2"
+        },
+        {
+          "name": "aquasecurity:trivy:PkgID",
+          "value": "graceful-fs@4.2.11"
+        },
+        {
+          "name": "aquasecurity:trivy:PkgType",
+          "value": "node-pkg"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2011-07-20T08:49:38Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2023-03-16T19:30:19Z"
+        }
+      ]
+    },
+    {
+      "bom-ref": "aeb4b889-e312-4344-a5a1-4e7cc081e207",
+      "type": "library",
+      "supplier": {
+        "name": "Josh Junon"
+      },
+      "author": "Josh Junon",
+      "name": "color-convert",
+      "version": "2.0.1",
+      "description": "Plain color conversion functions",
+      "hashes": [
+        {
+          "alg": "SHA-1",
+          "content": "03f26ab8597e0117b7ad15bcfa9f0b31c8375ea9"
+        }
+      ],
+      "licenses": [
+        {
+          "expression": "(MIT)"
+        }
+      ],
+      "purl": "pkg:npm/color-convert@2.0.1",
+      "externalReferences": [
+        {
+          "url": "https://github.com/Qix-/color-convert#readme",
+          "type": "website"
+        },
+        {
+          "url": "https://www.npmjs.com/package/color-convert",
+          "type": "distribution"
+        },
+        {
+          "url": "https://github.com/Qix-/color-convert",
+          "type": "vcs"
+        }
+      ],
+      "properties": [
+        {
+          "name": "aquasecurity:trivy:FilePath",
+          "value": "app/node_modules/color-convert/package.json"
+        },
+        {
+          "name": "aquasecurity:trivy:LayerDiffID",
+          "value": "sha256:2c8f7dfa2b59bec5d0170648aa0e01b3ce473efa9f3b4b0c41bb4081f438bc92"
+        },
+        {
+          "name": "aquasecurity:trivy:LayerDigest",
+          "value": "sha256:94dbe9dc34ef24c6a79b50dfe9e782c64b8e713797b38309ba783681515c0ef2"
+        },
+        {
+          "name": "aquasecurity:trivy:PkgID",
+          "value": "color-convert@2.0.1"
+        },
+        {
+          "name": "aquasecurity:trivy:PkgType",
+          "value": "node-pkg"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2011-06-10T04:11:24Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2025-11-14T18:29:11Z"
+        }
+      ]
+    },
+    {
+      "bom-ref": "b904f26b-45d8-4aea-ab09-3af5aba555fb",
       "type": "library",
       "name": "color-name",
       "version": "1.1.4",
@@ -1796,53 +1629,76 @@
       ]
     },
     {
-      "bom-ref": "f5b63d9b-cf39-4d61-8969-feeded616aa9",
+      "bom-ref": "d1341efb-823a-4095-8ec6-3dccb5847f29",
+      "type": "operating-system",
+      "name": "alpine",
+      "version": "3.19.0",
+      "properties": [
+        {
+          "name": "aquasecurity:trivy:Class",
+          "value": "os-pkgs"
+        },
+        {
+          "name": "aquasecurity:trivy:Type",
+          "value": "alpine"
+        }
+      ]
+    },
+    {
+      "bom-ref": "e43bbd6c-b508-4aeb-be1b-befe0e55e801",
       "type": "library",
-      "name": "graceful-fs",
-      "version": "4.2.11",
-      "description": "A drop-in replacement for fs, making various improvements.",
+      "supplier": {
+        "name": "chalk",
+        "url": [
+          "https://github.com/chalk/chalk"
+        ]
+      },
+      "author": "chalk",
+      "name": "ansi-regex",
+      "version": "6.0.1",
+      "description": "Regular expression for matching ANSI escape codes",
       "hashes": [
         {
           "alg": "SHA-1",
-          "content": "21a733b3f7e2ee153041de90fb03d5596934f346"
+          "content": "dabd0c9882fb3b8c12222595fb92ad26b60671a1"
         }
       ],
       "licenses": [
         {
-          "expression": "(ISC)"
+          "expression": "(MIT)"
         }
       ],
-      "purl": "pkg:npm/graceful-fs@4.2.11",
+      "purl": "pkg:npm/ansi-regex@6.0.1",
       "externalReferences": [
         {
-          "url": "https://github.com/isaacs/node-graceful-fs#readme",
+          "url": "https://github.com/chalk/ansi-regex#readme",
           "type": "website"
         },
         {
-          "url": "https://www.npmjs.com/package/graceful-fs",
+          "url": "https://www.npmjs.com/package/ansi-regex",
           "type": "distribution"
         },
         {
-          "url": "https://github.com/isaacs/node-graceful-fs",
+          "url": "https://github.com/chalk/ansi-regex",
           "type": "vcs"
         }
       ],
       "properties": [
         {
           "name": "aquasecurity:trivy:FilePath",
-          "value": "app/node_modules/graceful-fs/package.json"
+          "value": "usr/local/lib/node_modules/npm/node_modules/wrap-ansi/node_modules/ansi-regex/package.json"
         },
         {
           "name": "aquasecurity:trivy:LayerDiffID",
-          "value": "sha256:2c8f7dfa2b59bec5d0170648aa0e01b3ce473efa9f3b4b0c41bb4081f438bc92"
+          "value": "sha256:63247acccce3471f5d0ce3b2e27f63c216cc9575e9873897df97225e3e04be3f"
         },
         {
           "name": "aquasecurity:trivy:LayerDigest",
-          "value": "sha256:94dbe9dc34ef24c6a79b50dfe9e782c64b8e713797b38309ba783681515c0ef2"
+          "value": "sha256:89059ca18a987694854cd03bb6655f445ec9536917d1f8ac6e65d42e0f17f0dd"
         },
         {
           "name": "aquasecurity:trivy:PkgID",
-          "value": "graceful-fs@4.2.11"
+          "value": "ansi-regex@6.0.1"
         },
         {
           "name": "aquasecurity:trivy:PkgType",
@@ -1850,16 +1706,16 @@
         },
         {
           "name": "ecosystems:first_release_published_at",
-          "value": "2011-07-20T08:49:38Z"
+          "value": "2014-06-03T16:59:22Z"
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2023-03-16T19:30:19Z"
+          "value": "2025-09-08T14:48:14Z"
         }
       ]
     },
     {
-      "bom-ref": "fc06f652-894f-4a3d-8ff9-2dbd0af637f9",
+      "bom-ref": "e4b4abd0-ee43-46af-9b96-edd333ea3a70",
       "type": "library",
       "supplier": {
         "name": "isaacs",
@@ -1900,7 +1756,7 @@
       "properties": [
         {
           "name": "aquasecurity:trivy:FilePath",
-          "value": "usr/local/lib/node_modules/npm/node_modules/minipass-collect/node_modules/minipass/package.json"
+          "value": "usr/local/lib/node_modules/npm/node_modules/minipass-sized/node_modules/minipass/package.json"
         },
         {
           "name": "aquasecurity:trivy:LayerDiffID",
@@ -1924,11 +1780,155 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2024-05-24T00:42:21Z"
+          "value": "2026-02-19T00:34:33Z"
         },
         {
           "name": "ecosystems:owner_location",
           "value": "Oakland CA"
+        }
+      ]
+    },
+    {
+      "bom-ref": "e770cc83-edf2-44f0-ae4a-870d880f4d6c",
+      "type": "library",
+      "supplier": {
+        "name": "isaacs",
+        "url": [
+          "http://blog.izs.me"
+        ]
+      },
+      "author": "isaacs",
+      "name": "minipass",
+      "version": "3.3.6",
+      "description": "minimal implementation of a PassThrough stream",
+      "hashes": [
+        {
+          "alg": "SHA-1",
+          "content": "fc79b496665e2cdfc4bdaac9c7d7c4b2f4645f2c"
+        }
+      ],
+      "licenses": [
+        {
+          "expression": "(ISC)"
+        }
+      ],
+      "purl": "pkg:npm/minipass@3.3.6",
+      "externalReferences": [
+        {
+          "url": "https://github.com/isaacs/minipass#readme",
+          "type": "website"
+        },
+        {
+          "url": "https://www.npmjs.com/package/minipass",
+          "type": "distribution"
+        },
+        {
+          "url": "https://github.com/isaacs/minipass",
+          "type": "vcs"
+        }
+      ],
+      "properties": [
+        {
+          "name": "aquasecurity:trivy:FilePath",
+          "value": "usr/local/lib/node_modules/npm/node_modules/minizlib/node_modules/minipass/package.json"
+        },
+        {
+          "name": "aquasecurity:trivy:LayerDiffID",
+          "value": "sha256:63247acccce3471f5d0ce3b2e27f63c216cc9575e9873897df97225e3e04be3f"
+        },
+        {
+          "name": "aquasecurity:trivy:LayerDigest",
+          "value": "sha256:89059ca18a987694854cd03bb6655f445ec9536917d1f8ac6e65d42e0f17f0dd"
+        },
+        {
+          "name": "aquasecurity:trivy:PkgID",
+          "value": "minipass@3.3.6"
+        },
+        {
+          "name": "aquasecurity:trivy:PkgType",
+          "value": "node-pkg"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2017-03-14T00:11:57Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2026-02-19T00:34:33Z"
+        },
+        {
+          "name": "ecosystems:owner_location",
+          "value": "Oakland CA"
+        }
+      ]
+    },
+    {
+      "bom-ref": "f73a3a9e-59e1-47cc-a329-bdd362c17377",
+      "type": "library",
+      "supplier": {
+        "name": "Sindre Sorhus",
+        "url": [
+          "https://sindresorhus.com/apps"
+        ]
+      },
+      "author": "Sindre Sorhus",
+      "name": "string-width",
+      "version": "4.2.3",
+      "description": "Get the visual width of a string - the number of columns required to display it",
+      "hashes": [
+        {
+          "alg": "SHA-1",
+          "content": "a5306c15bba6cb123d9f061ca85eb56576c6638f"
+        }
+      ],
+      "licenses": [
+        {
+          "expression": "(MIT)"
+        }
+      ],
+      "purl": "pkg:npm/string-width@4.2.3",
+      "externalReferences": [
+        {
+          "url": "https://github.com/sindresorhus/string-width#readme",
+          "type": "website"
+        },
+        {
+          "url": "https://www.npmjs.com/package/string-width",
+          "type": "distribution"
+        },
+        {
+          "url": "https://github.com/sindresorhus/string-width",
+          "type": "vcs"
+        }
+      ],
+      "properties": [
+        {
+          "name": "aquasecurity:trivy:FilePath",
+          "value": "usr/local/lib/node_modules/npm/node_modules/string-width-cjs/package.json"
+        },
+        {
+          "name": "aquasecurity:trivy:LayerDiffID",
+          "value": "sha256:63247acccce3471f5d0ce3b2e27f63c216cc9575e9873897df97225e3e04be3f"
+        },
+        {
+          "name": "aquasecurity:trivy:LayerDigest",
+          "value": "sha256:89059ca18a987694854cd03bb6655f445ec9536917d1f8ac6e65d42e0f17f0dd"
+        },
+        {
+          "name": "aquasecurity:trivy:PkgID",
+          "value": "string-width@4.2.3"
+        },
+        {
+          "name": "aquasecurity:trivy:PkgType",
+          "value": "node-pkg"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2015-07-16T22:08:17Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2026-02-18T16:38:40Z"
         }
       ]
     },
@@ -2208,7 +2208,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-01-11T09:55:01Z"
+          "value": "2026-01-29T10:40:34Z"
         }
       ]
     },
@@ -2698,7 +2698,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2025-09-30T20:58:10Z"
+          "value": "2026-01-27T16:30:14Z"
         }
       ]
     },
@@ -4762,7 +4762,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-02-11T17:12:45Z"
+          "value": "2026-02-19T22:01:57Z"
         },
         {
           "name": "ecosystems:owner_location",
@@ -4861,7 +4861,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-02-04T18:24:35Z"
+          "value": "2026-02-19T22:01:59Z"
         },
         {
           "name": "ecosystems:owner_location",
@@ -6336,7 +6336,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2025-12-25T15:26:14Z"
+          "value": "2026-02-22T22:05:33Z"
         },
         {
           "name": "ecosystems:topic",
@@ -6545,13 +6545,6 @@
     {
       "bom-ref": "pkg:npm/%40webassemblyjs/ast@1.14.1",
       "type": "library",
-      "supplier": {
-        "name": "Sven Sauleau",
-        "url": [
-          "https://sauleau.com"
-        ]
-      },
-      "author": "Sven Sauleau",
       "group": "@webassemblyjs",
       "name": "ast",
       "version": "1.14.1",
@@ -6610,10 +6603,6 @@
         {
           "name": "ecosystems:latest_release_published_at",
           "value": "2024-11-06T21:53:36Z"
-        },
-        {
-          "name": "ecosystems:owner_location",
-          "value": "London, UK"
         },
         {
           "name": "ecosystems:topic",
@@ -7543,13 +7532,6 @@
     {
       "bom-ref": "pkg:npm/%40webassemblyjs/utf8@1.13.2",
       "type": "library",
-      "supplier": {
-        "name": "Sven Sauleau",
-        "url": [
-          "https://sauleau.com"
-        ]
-      },
-      "author": "Sven Sauleau",
       "group": "@webassemblyjs",
       "name": "utf8",
       "version": "1.13.2",
@@ -7608,10 +7590,6 @@
         {
           "name": "ecosystems:latest_release_published_at",
           "value": "2024-11-06T21:53:36Z"
-        },
-        {
-          "name": "ecosystems:owner_location",
-          "value": "London, UK"
         },
         {
           "name": "ecosystems:topic",
@@ -8513,7 +8491,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2025-06-08T16:23:04Z"
+          "value": "2026-02-19T15:06:28Z"
         }
       ]
     },
@@ -8611,13 +8589,6 @@
     {
       "bom-ref": "pkg:npm/aggregate-error@3.1.0",
       "type": "library",
-      "supplier": {
-        "name": "Sindre Sorhus",
-        "url": [
-          "https://sindresorhus.com/apps"
-        ]
-      },
-      "author": "Sindre Sorhus",
       "name": "aggregate-error",
       "version": "3.1.0",
       "description": "Create an error from multiple errors",
@@ -8912,7 +8883,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2024-07-12T20:42:13Z"
+          "value": "2026-02-14T15:41:17Z"
         },
         {
           "name": "ecosystems:topic",
@@ -9368,13 +9339,6 @@
     {
       "bom-ref": "pkg:npm/balanced-match@1.0.2",
       "type": "library",
-      "supplier": {
-        "name": "Julian Gruber",
-        "url": [
-          "https://juliangruber.com/"
-        ]
-      },
-      "author": "Julian Gruber",
       "name": "balanced-match",
       "version": "1.0.2",
       "description": "Match balanced character pairs, like \"{\" and \"}\"",
@@ -9431,24 +9395,13 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-02-09T14:50:47Z"
-        },
-        {
-          "name": "ecosystems:owner_location",
-          "value": "Kaufbeuren, Germany"
+          "value": "2026-02-22T11:38:25Z"
         }
       ]
     },
     {
       "bom-ref": "pkg:npm/base64-js@1.5.1",
       "type": "library",
-      "supplier": {
-        "name": "Jameson Little",
-        "url": [
-          "https://jamesonlittle.com"
-        ]
-      },
-      "author": "Jameson Little",
       "name": "base64-js",
       "version": "1.5.1",
       "description": "Base64 encoding/decoding in pure JS",
@@ -9506,10 +9459,6 @@
         {
           "name": "ecosystems:latest_release_published_at",
           "value": "2020-11-11T19:33:48Z"
-        },
-        {
-          "name": "ecosystems:owner_location",
-          "value": "American Fork, UT"
         }
       ]
     },
@@ -9739,7 +9688,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-02-12T08:18:54Z"
+          "value": "2026-02-22T11:37:25Z"
         },
         {
           "name": "ecosystems:owner_location",
@@ -9750,13 +9699,6 @@
     {
       "bom-ref": "pkg:npm/browserslist@4.24.4",
       "type": "library",
-      "supplier": {
-        "name": "Browserslist",
-        "url": [
-          "https://browsersl.ist/"
-        ]
-      },
-      "author": "Browserslist",
       "name": "browserslist",
       "version": "4.24.4",
       "description": "Share target browsers between different front-end tools, like Autoprefixer, Stylelint and babel-env-preset",
@@ -9914,13 +9856,6 @@
     {
       "bom-ref": "pkg:npm/builtins@5.0.1",
       "type": "library",
-      "supplier": {
-        "name": "Julian Gruber",
-        "url": [
-          "https://juliangruber.com/"
-        ]
-      },
-      "author": "Julian Gruber",
       "name": "builtins",
       "version": "5.0.1",
       "description": "List of node.js builtin modules",
@@ -9978,10 +9913,6 @@
         {
           "name": "ecosystems:latest_release_published_at",
           "value": "2024-04-07T21:11:18Z"
-        },
-        {
-          "name": "ecosystems:owner_location",
-          "value": "Kaufbeuren, Germany"
         }
       ]
     },
@@ -10196,13 +10127,20 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-01-23T05:54:19Z"
+          "value": "2026-02-23T06:44:24Z"
         }
       ]
     },
     {
       "bom-ref": "pkg:npm/chalk@5.3.0",
       "type": "library",
+      "supplier": {
+        "name": "chalk",
+        "url": [
+          "https://github.com/chalk/chalk"
+        ]
+      },
+      "author": "chalk",
       "name": "chalk",
       "version": "5.3.0",
       "description": "Terminal string styling done right",
@@ -10455,13 +10393,6 @@
     {
       "bom-ref": "pkg:npm/ci-info@3.9.0",
       "type": "library",
-      "supplier": {
-        "name": "Thomas Watson",
-        "url": [
-          "https://wa.tson.dk"
-        ]
-      },
-      "author": "Thomas Watson",
       "name": "ci-info",
       "version": "3.9.0",
       "description": "Get details about the current Continuous Integration environment",
@@ -10519,10 +10450,6 @@
         {
           "name": "ecosystems:latest_release_published_at",
           "value": "2026-01-29T16:23:16Z"
-        },
-        {
-          "name": "ecosystems:owner_location",
-          "value": "Copenhagen, Denmark"
         }
       ]
     },
@@ -10585,7 +10512,11 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2025-09-23T17:12:11Z"
+          "value": "2026-02-13T21:04:59Z"
+        },
+        {
+          "name": "ecosystems:owner_location",
+          "value": "Austria"
         },
         {
           "name": "ecosystems:topic",
@@ -11334,6 +11265,13 @@
     {
       "bom-ref": "pkg:npm/common-ancestor-path@1.0.1",
       "type": "library",
+      "supplier": {
+        "name": "isaacs",
+        "url": [
+          "http://blog.izs.me"
+        ]
+      },
+      "author": "isaacs",
       "name": "common-ancestor-path",
       "version": "1.0.1",
       "description": "Find the common ancestor of 2 or more paths on Windows or Unix",
@@ -11391,6 +11329,10 @@
         {
           "name": "ecosystems:latest_release_published_at",
           "value": "2025-11-25T05:06:54Z"
+        },
+        {
+          "name": "ecosystems:owner_location",
+          "value": "Oakland CA"
         }
       ]
     },
@@ -12336,7 +12278,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-02-03T09:28:00Z"
+          "value": "2026-02-20T09:28:28Z"
         },
         {
           "name": "ecosystems:owner_location",
@@ -12453,13 +12395,6 @@
     {
       "bom-ref": "pkg:npm/encoding@0.1.13",
       "type": "library",
-      "supplier": {
-        "name": "Andris Reinman",
-        "url": [
-          "https://emailengine.app"
-        ]
-      },
-      "author": "Andris Reinman",
       "name": "encoding",
       "version": "0.1.13",
       "description": "Convert encodings, uses iconv-lite",
@@ -12517,23 +12452,12 @@
         {
           "name": "ecosystems:latest_release_published_at",
           "value": "2020-07-10T07:02:11Z"
-        },
-        {
-          "name": "ecosystems:owner_location",
-          "value": "Tallinn, Estonia"
         }
       ]
     },
     {
       "bom-ref": "pkg:npm/enhanced-resolve@5.18.1",
       "type": "library",
-      "supplier": {
-        "name": "webpack",
-        "url": [
-          "https://webpack.js.org"
-        ]
-      },
-      "author": "webpack",
       "name": "enhanced-resolve",
       "version": "5.18.1",
       "description": "Offers a async require.resolve function. It's highly configurable.",
@@ -12687,13 +12611,6 @@
     {
       "bom-ref": "pkg:npm/err-code@2.0.3",
       "type": "library",
-      "supplier": {
-        "name": "Indigo United",
-        "url": [
-          "http://www.indigounited.com/"
-        ]
-      },
-      "author": "Indigo United",
       "name": "err-code",
       "version": "2.0.3",
       "description": "Create an error with a code",
@@ -12751,10 +12668,6 @@
         {
           "name": "ecosystems:latest_release_published_at",
           "value": "2021-02-05T15:55:03Z"
-        },
-        {
-          "name": "ecosystems:owner_location",
-          "value": "Portugal"
         }
       ]
     },
@@ -13012,17 +12925,13 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-01-19T18:22:22Z"
+          "value": "2026-02-20T14:41:01Z"
         }
       ]
     },
     {
       "bom-ref": "pkg:npm/esrecurse@4.3.0",
       "type": "library",
-      "supplier": {
-        "name": "ECMAScript Tooling"
-      },
-      "author": "ECMAScript Tooling",
       "name": "esrecurse",
       "version": "4.3.0",
       "description": "ECMAScript AST recursive visitor",
@@ -13492,13 +13401,6 @@
     {
       "bom-ref": "pkg:npm/fast-deep-equal@3.1.3",
       "type": "library",
-      "supplier": {
-        "name": "Evgeny",
-        "url": [
-          "https://poberezkin.com"
-        ]
-      },
-      "author": "Evgeny",
       "name": "fast-deep-equal",
       "version": "3.1.3",
       "description": "Fast deep equal",
@@ -13570,13 +13472,6 @@
     {
       "bom-ref": "pkg:npm/fast-uri@3.0.6",
       "type": "library",
-      "supplier": {
-        "name": "Fastify",
-        "url": [
-          "https://fastify.dev"
-        ]
-      },
-      "author": "Fastify",
       "name": "fast-uri",
       "version": "3.0.6",
       "description": "Dependency-free RFC 3986 URI toolbox",
@@ -13634,10 +13529,6 @@
         {
           "name": "ecosystems:latest_release_published_at",
           "value": "2025-08-25T13:16:04Z"
-        },
-        {
-          "name": "ecosystems:owner_location",
-          "value": "United States of America"
         },
         {
           "name": "ecosystems:topic",
@@ -14236,7 +14127,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-02-10T16:28:00Z"
+          "value": "2026-02-19T17:26:33Z"
         },
         {
           "name": "ecosystems:owner_location",
@@ -14317,13 +14208,6 @@
     {
       "bom-ref": "pkg:npm/has-unicode@2.0.1",
       "type": "library",
-      "supplier": {
-        "name": "Rebecca Turner",
-        "url": [
-          "https://kolektiva.social/@iarna"
-        ]
-      },
-      "author": "Rebecca Turner",
       "name": "has-unicode",
       "version": "2.0.1",
       "description": "Try to guess if your terminal supports unicode",
@@ -14381,23 +14265,12 @@
         {
           "name": "ecosystems:latest_release_published_at",
           "value": "2016-06-23T22:10:28Z"
-        },
-        {
-          "name": "ecosystems:owner_location",
-          "value": "Maine, USA"
         }
       ]
     },
     {
       "bom-ref": "pkg:npm/has@1.0.3",
       "type": "library",
-      "supplier": {
-        "name": "Thiago Padilha",
-        "url": [
-          "https://tarruda.github.io"
-        ]
-      },
-      "author": "Thiago Padilha",
       "name": "has",
       "version": "1.0.3",
       "description": "Object.prototype.hasOwnProperty.call shortcut",
@@ -14455,10 +14328,6 @@
         {
           "name": "ecosystems:latest_release_published_at",
           "value": "2023-10-03T17:14:45Z"
-        },
-        {
-          "name": "ecosystems:owner_location",
-          "value": "Recife/Brasil"
         }
       ]
     },
@@ -15112,6 +14981,10 @@
     {
       "bom-ref": "pkg:npm/imurmurhash@0.1.4",
       "type": "library",
+      "supplier": {
+        "name": "Jens Taylor"
+      },
+      "author": "Jens Taylor",
       "name": "imurmurhash",
       "version": "0.1.4",
       "description": "An incremental implementation of MurmurHash3",
@@ -15382,7 +15255,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2025-11-21T18:51:09Z"
+          "value": "2026-02-19T19:41:16Z"
         },
         {
           "name": "ecosystems:owner_location",
@@ -15467,13 +15340,6 @@
     {
       "bom-ref": "pkg:npm/ip@2.0.0",
       "type": "library",
-      "supplier": {
-        "name": "Fedor Indutny",
-        "url": [
-          "https://mean.engineer/@indutny"
-        ]
-      },
-      "author": "Fedor Indutny",
       "name": "ip",
       "version": "2.0.0",
       "description": "[![](https://badge.fury.io/js/ip.svg)](https://www.npmjs.com/package/ip)",
@@ -15531,10 +15397,6 @@
         {
           "name": "ecosystems:latest_release_published_at",
           "value": "2024-02-19T05:13:16Z"
-        },
-        {
-          "name": "ecosystems:owner_location",
-          "value": "USA"
         }
       ]
     },
@@ -15664,7 +15526,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-01-24T09:04:47Z"
+          "value": "2026-02-09T09:37:58Z"
         },
         {
           "name": "ecosystems:owner_location",
@@ -16394,13 +16256,6 @@
     {
       "bom-ref": "pkg:npm/json-schema-traverse@1.0.0",
       "type": "library",
-      "supplier": {
-        "name": "Evgeny",
-        "url": [
-          "https://poberezkin.com"
-        ]
-      },
-      "author": "Evgeny",
       "name": "json-schema-traverse",
       "version": "1.0.0",
       "description": "Traverse JSON Schema passing each schema object to callback",
@@ -16981,7 +16836,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-02-11T17:12:49Z"
+          "value": "2026-02-19T22:02:02Z"
         },
         {
           "name": "ecosystems:owner_location",
@@ -17079,7 +16934,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-02-04T18:24:38Z"
+          "value": "2026-02-19T22:02:04Z"
         },
         {
           "name": "ecosystems:owner_location",
@@ -17177,7 +17032,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-02-04T18:24:41Z"
+          "value": "2026-02-19T22:02:06Z"
         },
         {
           "name": "ecosystems:owner_location",
@@ -17471,7 +17326,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-01-21T23:14:54Z"
+          "value": "2026-02-19T22:02:08Z"
         },
         {
           "name": "ecosystems:owner_location",
@@ -17898,13 +17753,6 @@
     {
       "bom-ref": "pkg:npm/loader-runner@4.3.0",
       "type": "library",
-      "supplier": {
-        "name": "webpack",
-        "url": [
-          "https://webpack.js.org"
-        ]
-      },
-      "author": "webpack",
       "name": "loader-runner",
       "version": "4.3.0",
       "description": "Runs (webpack) loaders",
@@ -18535,7 +18383,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-02-12T18:47:49Z"
+          "value": "2026-02-19T17:18:49Z"
         },
         {
           "name": "ecosystems:owner_location",
@@ -18698,13 +18546,6 @@
     {
       "bom-ref": "pkg:npm/minipass-flush@1.0.5",
       "type": "library",
-      "supplier": {
-        "name": "isaacs",
-        "url": [
-          "http://blog.izs.me"
-        ]
-      },
-      "author": "isaacs",
       "name": "minipass-flush",
       "version": "1.0.5",
       "description": "A Minipass stream that calls a flush function before emitting 'end'",
@@ -18762,10 +18603,6 @@
         {
           "name": "ecosystems:latest_release_published_at",
           "value": "2019-09-30T20:54:48Z"
-        },
-        {
-          "name": "ecosystems:owner_location",
-          "value": "Oakland CA"
         }
       ]
     },
@@ -19042,7 +18879,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2024-05-24T00:42:21Z"
+          "value": "2026-02-19T00:34:33Z"
         },
         {
           "name": "ecosystems:owner_location",
@@ -19116,7 +18953,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2024-05-24T00:42:21Z"
+          "value": "2026-02-19T00:34:33Z"
         },
         {
           "name": "ecosystems:owner_location",
@@ -19906,6 +19743,13 @@
     {
       "bom-ref": "pkg:npm/node-gyp@10.0.1",
       "type": "library",
+      "supplier": {
+        "name": "Node.js",
+        "url": [
+          "https://nodejs.org"
+        ]
+      },
+      "author": "Node.js",
       "name": "node-gyp",
       "version": "10.0.1",
       "description": "Node.js native addon build tool",
@@ -20123,13 +19967,6 @@
     {
       "bom-ref": "pkg:npm/npm-audit-report@5.0.0",
       "type": "library",
-      "supplier": {
-        "name": "npm",
-        "url": [
-          "https://npmjs.com"
-        ]
-      },
-      "author": "npm",
       "name": "npm-audit-report",
       "version": "5.0.0",
       "description": "Given a response from the npm security api, render it into a variety of security reports",
@@ -20189,10 +20026,6 @@
           "value": "2025-10-22T15:28:24Z"
         },
         {
-          "name": "ecosystems:owner_location",
-          "value": "United States of America"
-        },
-        {
           "name": "ecosystems:topic",
           "value": "npm-cli"
         }
@@ -20201,13 +20034,6 @@
     {
       "bom-ref": "pkg:npm/npm-bundled@3.0.0",
       "type": "library",
-      "supplier": {
-        "name": "npm",
-        "url": [
-          "https://npmjs.com"
-        ]
-      },
-      "author": "npm",
       "name": "npm-bundled",
       "version": "3.0.0",
       "description": "list things in node_modules that are bundledDependencies, or transitive dependencies thereof",
@@ -20265,10 +20091,6 @@
         {
           "name": "ecosystems:latest_release_published_at",
           "value": "2025-10-23T17:23:54Z"
-        },
-        {
-          "name": "ecosystems:owner_location",
-          "value": "United States of America"
         },
         {
           "name": "ecosystems:topic",
@@ -20502,13 +20324,6 @@
     {
       "bom-ref": "pkg:npm/npm-packlist@8.0.0",
       "type": "library",
-      "supplier": {
-        "name": "npm",
-        "url": [
-          "https://npmjs.com"
-        ]
-      },
-      "author": "npm",
       "name": "npm-packlist",
       "version": "8.0.0",
       "description": "Get a list of the files to add from a folder into an npm package",
@@ -20565,11 +20380,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2025-10-23T17:57:46Z"
-        },
-        {
-          "name": "ecosystems:owner_location",
-          "value": "United States of America"
+          "value": "2026-02-20T19:41:59Z"
         },
         {
           "name": "ecosystems:topic",
@@ -20647,13 +20458,6 @@
     {
       "bom-ref": "pkg:npm/npm-profile@9.0.0",
       "type": "library",
-      "supplier": {
-        "name": "npm",
-        "url": [
-          "https://npmjs.com"
-        ]
-      },
-      "author": "npm",
       "name": "npm-profile",
       "version": "9.0.0",
       "description": "Library for updating an npmjs.com profile",
@@ -20713,10 +20517,6 @@
           "value": "2025-10-23T17:59:28Z"
         },
         {
-          "name": "ecosystems:owner_location",
-          "value": "United States of America"
-        },
-        {
           "name": "ecosystems:topic",
           "value": "npm-cli"
         }
@@ -20725,13 +20525,6 @@
     {
       "bom-ref": "pkg:npm/npm-registry-fetch@16.1.0",
       "type": "library",
-      "supplier": {
-        "name": "npm",
-        "url": [
-          "https://npmjs.com"
-        ]
-      },
-      "author": "npm",
       "name": "npm-registry-fetch",
       "version": "16.1.0",
       "description": "Fetch-based http client for use with npm registry APIs",
@@ -20789,10 +20582,6 @@
         {
           "name": "ecosystems:latest_release_published_at",
           "value": "2025-11-13T17:34:09Z"
-        },
-        {
-          "name": "ecosystems:owner_location",
-          "value": "United States of America"
         },
         {
           "name": "ecosystems:topic",
@@ -20933,7 +20722,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-01-21T23:15:05Z"
+          "value": "2026-02-19T22:02:23Z"
         },
         {
           "name": "ecosystems:owner_location",
@@ -21446,7 +21235,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2025-11-07T19:34:50Z"
+          "value": "2026-02-19T17:20:00Z"
         },
         {
           "name": "ecosystems:owner_location",
@@ -23120,13 +22909,6 @@
     {
       "bom-ref": "pkg:npm/regenerator-runtime@0.13.4",
       "type": "library",
-      "supplier": {
-        "name": "Meta",
-        "url": [
-          "https://opensource.fb.com"
-        ]
-      },
-      "author": "Meta",
       "name": "regenerator-runtime",
       "version": "0.13.4",
       "description": "Runtime for Regenerator-compiled generator and async functions.",
@@ -23188,10 +22970,6 @@
         {
           "name": "ecosystems:repository_archived",
           "value": "true"
-        },
-        {
-          "name": "ecosystems:owner_location",
-          "value": "Menlo Park, California"
         }
       ]
     },
@@ -23671,13 +23449,6 @@
     {
       "bom-ref": "pkg:npm/serialize-javascript@6.0.2",
       "type": "library",
-      "supplier": {
-        "name": "Yahoo",
-        "url": [
-          "https://developer.yahoo.com/opensource"
-        ]
-      },
-      "author": "Yahoo",
       "name": "serialize-javascript",
       "version": "6.0.2",
       "description": "Serialize JavaScript to a superset of JSON that includes regular expressions and functions.",
@@ -23735,10 +23506,6 @@
         {
           "name": "ecosystems:latest_release_published_at",
           "value": "2025-12-07T13:27:05Z"
-        },
-        {
-          "name": "ecosystems:owner_location",
-          "value": " We're working from home these days. Stay safe."
         },
         {
           "name": "ecosystems:topic",
@@ -23973,10 +23740,6 @@
     {
       "bom-ref": "pkg:npm/shebang-command@2.0.0",
       "type": "library",
-      "supplier": {
-        "name": "Kevin Mårtensson"
-      },
-      "author": "Kevin Mårtensson",
       "name": "shebang-command",
       "version": "2.0.0",
       "description": "Get the command from a shebang",
@@ -24034,10 +23797,6 @@
         {
           "name": "ecosystems:latest_release_published_at",
           "value": "2019-09-06T14:53:25Z"
-        },
-        {
-          "name": "ecosystems:owner_location",
-          "value": "Sweden"
         }
       ]
     },
@@ -24861,13 +24620,6 @@
     {
       "bom-ref": "pkg:npm/spdx-expression-parse@3.0.1",
       "type": "library",
-      "supplier": {
-        "name": "jslicense",
-        "url": [
-          "http://jslicense.org"
-        ]
-      },
-      "author": "jslicense",
       "name": "spdx-expression-parse",
       "version": "3.0.1",
       "description": "parse SPDX license expressions",
@@ -24994,7 +24746,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2025-08-06T15:24:12Z"
+          "value": "2026-02-20T23:02:57Z"
         },
         {
           "name": "ecosystems:topic",
@@ -25249,6 +25001,13 @@
     {
       "bom-ref": "pkg:npm/styled-jsx@5.1.6",
       "type": "library",
+      "supplier": {
+        "name": "Vercel",
+        "url": [
+          "https://vercel.com"
+        ]
+      },
+      "author": "Vercel",
       "name": "styled-jsx",
       "version": "5.1.6",
       "description": "Full CSS support for JSX without compromises",
@@ -25306,6 +25065,10 @@
         {
           "name": "ecosystems:latest_release_published_at",
           "value": "2025-04-30T13:33:43Z"
+        },
+        {
+          "name": "ecosystems:owner_location",
+          "value": "United States of America"
         },
         {
           "name": "ecosystems:topic",
@@ -25476,13 +25239,6 @@
     {
       "bom-ref": "pkg:npm/tapable@2.2.1",
       "type": "library",
-      "supplier": {
-        "name": "webpack",
-        "url": [
-          "https://webpack.js.org"
-        ]
-      },
-      "author": "webpack",
       "name": "tapable",
       "version": "2.2.1",
       "description": "Just a little module for plugins.",
@@ -25629,7 +25385,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-01-27T20:49:56Z"
+          "value": "2026-02-16T01:08:58Z"
         },
         {
           "name": "ecosystems:owner_location",
@@ -25644,13 +25400,6 @@
     {
       "bom-ref": "pkg:npm/terser-webpack-plugin@5.3.14",
       "type": "library",
-      "supplier": {
-        "name": "webpack",
-        "url": [
-          "https://webpack.js.org"
-        ]
-      },
-      "author": "webpack",
       "name": "terser-webpack-plugin",
       "version": "5.3.14",
       "description": "Terser plugin for webpack",
@@ -26415,13 +26164,6 @@
     {
       "bom-ref": "pkg:npm/validate-npm-package-name@5.0.0",
       "type": "library",
-      "supplier": {
-        "name": "npm",
-        "url": [
-          "https://npmjs.com"
-        ]
-      },
-      "author": "npm",
       "name": "validate-npm-package-name",
       "version": "5.0.0",
       "description": "Give me a string and I'll tell you if it's a valid npm package name",
@@ -26481,10 +26223,6 @@
           "value": "2026-01-06T20:02:27Z"
         },
         {
-          "name": "ecosystems:owner_location",
-          "value": "United States of America"
-        },
-        {
           "name": "ecosystems:topic",
           "value": "npm-cli"
         }
@@ -26528,13 +26266,6 @@
     {
       "bom-ref": "pkg:npm/walk-up-path@3.0.1",
       "type": "library",
-      "supplier": {
-        "name": "isaacs",
-        "url": [
-          "http://blog.izs.me"
-        ]
-      },
-      "author": "isaacs",
       "name": "walk-up-path",
       "version": "3.0.1",
       "description": "Given a path string, return a generator that walks up the path, emitting each dirname.",
@@ -26592,10 +26323,6 @@
         {
           "name": "ecosystems:latest_release_published_at",
           "value": "2024-07-08T22:41:10Z"
-        },
-        {
-          "name": "ecosystems:owner_location",
-          "value": "Oakland CA"
         }
       ]
     },
@@ -26814,20 +26541,13 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2025-06-20T15:27:01Z"
+          "value": "2026-02-15T16:58:03Z"
         }
       ]
     },
     {
       "bom-ref": "pkg:npm/webpack@5.98.0",
       "type": "library",
-      "supplier": {
-        "name": "webpack",
-        "url": [
-          "https://webpack.js.org"
-        ]
-      },
-      "author": "webpack",
       "name": "webpack",
       "version": "5.98.0",
       "description": "Packs ECMAScript/CommonJs/AMD modules for the browser. Allows you to split your codebase into multiple bundles, which can be loaded on demand. Supports loaders to preprocess files, i.e. json, jsx, es7, css, less, ... and your custom stuff.",
@@ -26884,7 +26604,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-02-10T15:01:03Z"
+          "value": "2026-02-12T15:19:46Z"
         },
         {
           "name": "ecosystems:topic",
@@ -27237,7 +26957,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2025-09-08T15:10:49Z"
+          "value": "2026-02-20T10:03:54Z"
         }
       ]
     },
@@ -27307,7 +27027,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2025-09-08T15:10:49Z"
+          "value": "2026-02-20T10:03:54Z"
         }
       ]
     },
@@ -27552,15 +27272,97 @@
   ],
   "dependencies": [
     {
-      "ref": "2282163e-9d54-4f4d-b323-bbdd908994c9",
+      "ref": "1bbc77b7-2564-4315-9b06-185e15b636de",
       "dependsOn": []
     },
     {
-      "ref": "346fdb92-0170-4bfb-876d-6dd4c69132e7",
+      "ref": "1d57765c-af6e-460e-a047-373d3f692e5f",
       "dependsOn": []
     },
     {
-      "ref": "3a1c0e51-ceef-4fa0-abe7-ed0d954a9ad4",
+      "ref": "1fa784fe-0786-4917-aa5f-7d4aa5d944bf",
+      "dependsOn": []
+    },
+    {
+      "ref": "220e4903-b1d5-4091-a533-44d530c282e2",
+      "dependsOn": []
+    },
+    {
+      "ref": "2c7e7c68-3e77-4cc7-8b05-da857297dffd",
+      "dependsOn": []
+    },
+    {
+      "ref": "37baae30-f114-4ec5-9008-bc27ea3f1e88",
+      "dependsOn": []
+    },
+    {
+      "ref": "3859bc09-12a3-4b4a-bedc-8af824b4002c",
+      "dependsOn": []
+    },
+    {
+      "ref": "5543ccc0-e3b7-443f-a668-183621e19722",
+      "dependsOn": []
+    },
+    {
+      "ref": "5558b927-b80c-48a0-9cfb-0ae0763c204d",
+      "dependsOn": []
+    },
+    {
+      "ref": "5a6097ac-6171-4d86-9c2e-f552db5bd6a7",
+      "dependsOn": []
+    },
+    {
+      "ref": "5d88936c-ebea-47c6-8c1d-531d64beefe4",
+      "dependsOn": []
+    },
+    {
+      "ref": "5d973463-d202-4612-b7b3-a6fae9450a36",
+      "dependsOn": []
+    },
+    {
+      "ref": "6e913cc5-3678-4691-bb66-6c335d6d5096",
+      "dependsOn": []
+    },
+    {
+      "ref": "76f4ac95-12c6-4077-afe5-229fbcc23a4a",
+      "dependsOn": []
+    },
+    {
+      "ref": "7b0c2e1b-8b28-4922-90cc-2084a9ee1c62",
+      "dependsOn": []
+    },
+    {
+      "ref": "866a878d-9252-4f4c-8709-36278b05da6a",
+      "dependsOn": []
+    },
+    {
+      "ref": "945825ba-9385-4989-a175-9443475e3b47",
+      "dependsOn": []
+    },
+    {
+      "ref": "98c6494d-7ad5-47bd-8c5e-cebe459babd2",
+      "dependsOn": [
+        "pkg:golang/github.com/evanw/esbuild"
+      ]
+    },
+    {
+      "ref": "a2dcf51b-12cf-4243-a76b-8f4d5b541c29",
+      "dependsOn": []
+    },
+    {
+      "ref": "a474ca5d-e149-44fe-badf-c0d104b55ec0",
+      "dependsOn": []
+    },
+    {
+      "ref": "aeb4b889-e312-4344-a5a1-4e7cc081e207",
+      "dependsOn": []
+    },
+    {
+      "ref": "b904f26b-45d8-4aea-ab09-3af5aba555fb",
+      "dependsOn": []
+    },
+    {
+      "ref": "d1341efb-823a-4095-8ec6-3dccb5847f29",
       "dependsOn": [
         "pkg:apk/alpine/alpine-baselayout@3.4.3-r2?arch=x86_64&distro=3.19.0",
         "pkg:apk/alpine/alpine-keys@2.4-r1?arch=x86_64&distro=3.19.0",
@@ -27571,101 +27373,19 @@
       ]
     },
     {
-      "ref": "4006290f-b62e-47da-8e62-0055331cae21",
+      "ref": "e43bbd6c-b508-4aeb-be1b-befe0e55e801",
       "dependsOn": []
     },
     {
-      "ref": "4099ed06-df01-4f9d-98da-4bd956a8cdf0",
+      "ref": "e4b4abd0-ee43-46af-9b96-edd333ea3a70",
       "dependsOn": []
     },
     {
-      "ref": "433a701c-d8c8-4312-863e-d61bdef3f3ab",
-      "dependsOn": [
-        "pkg:golang/github.com/evanw/esbuild"
-      ]
-    },
-    {
-      "ref": "45e50bd7-ae04-4cb5-9d78-ac5c572696e0",
+      "ref": "e770cc83-edf2-44f0-ae4a-870d880f4d6c",
       "dependsOn": []
     },
     {
-      "ref": "5573f8b9-fb2f-41a0-b9b3-82cea34911ba",
-      "dependsOn": []
-    },
-    {
-      "ref": "560053e5-9d92-414a-924d-5056068497af",
-      "dependsOn": []
-    },
-    {
-      "ref": "59142b4d-b4de-45c1-b238-d57d6f520de1",
-      "dependsOn": []
-    },
-    {
-      "ref": "60450b66-52f3-4fb1-91ec-db6dcd4590c1",
-      "dependsOn": []
-    },
-    {
-      "ref": "6e3f8850-fb22-4088-893f-3a0693cc0dfc",
-      "dependsOn": []
-    },
-    {
-      "ref": "76a6b0d9-1a6e-4590-a143-3a2a04bd12c3",
-      "dependsOn": []
-    },
-    {
-      "ref": "82be13ab-3c1f-4a1c-9c3e-d3e277c6f104",
-      "dependsOn": []
-    },
-    {
-      "ref": "85429353-da34-499c-8aaa-44a25b25ff48",
-      "dependsOn": []
-    },
-    {
-      "ref": "873a9bbd-439e-4270-8b63-ff3a468fe7c7",
-      "dependsOn": []
-    },
-    {
-      "ref": "98f2f666-2e1e-4424-a854-4186956d946d",
-      "dependsOn": []
-    },
-    {
-      "ref": "9e86dcfe-4801-4ed5-8fc2-dd8a574fe355",
-      "dependsOn": []
-    },
-    {
-      "ref": "b4206a80-a684-4bc1-a151-b2848b2c40cd",
-      "dependsOn": []
-    },
-    {
-      "ref": "b4c4b32a-880c-4caf-aa83-ae04bd9476f8",
-      "dependsOn": []
-    },
-    {
-      "ref": "c00d817b-58ac-47f2-a852-06f882fe67b1",
-      "dependsOn": []
-    },
-    {
-      "ref": "c941628d-9d61-4f28-9af6-e7ff31c00226",
-      "dependsOn": []
-    },
-    {
-      "ref": "cce62575-fbd3-42d4-b000-e22c6f46e15b",
-      "dependsOn": []
-    },
-    {
-      "ref": "ef87d47b-9d03-4106-a9e6-1625e88326c9",
-      "dependsOn": []
-    },
-    {
-      "ref": "f1f3dba2-e9e5-45d5-8048-afb3041057df",
-      "dependsOn": []
-    },
-    {
-      "ref": "f5b63d9b-cf39-4d61-8969-feeded616aa9",
-      "dependsOn": []
-    },
-    {
-      "ref": "fc06f652-894f-4a3d-8ff9-2dbd0af637f9",
+      "ref": "f73a3a9e-59e1-47cc-a329-bdd362c17377",
       "dependsOn": []
     },
     {
@@ -28978,33 +28698,33 @@
     {
       "ref": "pkg:oci/velero-ui@sha256%3Ab4e1ec6664d349def6dd540e9b9421116f0e8fc5597b4d23fc50898dbd3c155b?arch=amd64&repository_url=index.docker.io%2Fdserio83%2Fvelero-ui",
       "dependsOn": [
-        "2282163e-9d54-4f4d-b323-bbdd908994c9",
-        "346fdb92-0170-4bfb-876d-6dd4c69132e7",
-        "3a1c0e51-ceef-4fa0-abe7-ed0d954a9ad4",
-        "4006290f-b62e-47da-8e62-0055331cae21",
-        "4099ed06-df01-4f9d-98da-4bd956a8cdf0",
-        "433a701c-d8c8-4312-863e-d61bdef3f3ab",
-        "45e50bd7-ae04-4cb5-9d78-ac5c572696e0",
-        "5573f8b9-fb2f-41a0-b9b3-82cea34911ba",
-        "560053e5-9d92-414a-924d-5056068497af",
-        "59142b4d-b4de-45c1-b238-d57d6f520de1",
-        "60450b66-52f3-4fb1-91ec-db6dcd4590c1",
-        "6e3f8850-fb22-4088-893f-3a0693cc0dfc",
-        "76a6b0d9-1a6e-4590-a143-3a2a04bd12c3",
-        "82be13ab-3c1f-4a1c-9c3e-d3e277c6f104",
-        "85429353-da34-499c-8aaa-44a25b25ff48",
-        "873a9bbd-439e-4270-8b63-ff3a468fe7c7",
-        "98f2f666-2e1e-4424-a854-4186956d946d",
-        "9e86dcfe-4801-4ed5-8fc2-dd8a574fe355",
-        "b4206a80-a684-4bc1-a151-b2848b2c40cd",
-        "b4c4b32a-880c-4caf-aa83-ae04bd9476f8",
-        "c00d817b-58ac-47f2-a852-06f882fe67b1",
-        "c941628d-9d61-4f28-9af6-e7ff31c00226",
-        "cce62575-fbd3-42d4-b000-e22c6f46e15b",
-        "ef87d47b-9d03-4106-a9e6-1625e88326c9",
-        "f1f3dba2-e9e5-45d5-8048-afb3041057df",
-        "f5b63d9b-cf39-4d61-8969-feeded616aa9",
-        "fc06f652-894f-4a3d-8ff9-2dbd0af637f9",
+        "1bbc77b7-2564-4315-9b06-185e15b636de",
+        "1d57765c-af6e-460e-a047-373d3f692e5f",
+        "1fa784fe-0786-4917-aa5f-7d4aa5d944bf",
+        "220e4903-b1d5-4091-a533-44d530c282e2",
+        "2c7e7c68-3e77-4cc7-8b05-da857297dffd",
+        "37baae30-f114-4ec5-9008-bc27ea3f1e88",
+        "3859bc09-12a3-4b4a-bedc-8af824b4002c",
+        "5543ccc0-e3b7-443f-a668-183621e19722",
+        "5558b927-b80c-48a0-9cfb-0ae0763c204d",
+        "5a6097ac-6171-4d86-9c2e-f552db5bd6a7",
+        "5d88936c-ebea-47c6-8c1d-531d64beefe4",
+        "5d973463-d202-4612-b7b3-a6fae9450a36",
+        "6e913cc5-3678-4691-bb66-6c335d6d5096",
+        "76f4ac95-12c6-4077-afe5-229fbcc23a4a",
+        "7b0c2e1b-8b28-4922-90cc-2084a9ee1c62",
+        "866a878d-9252-4f4c-8709-36278b05da6a",
+        "945825ba-9385-4989-a175-9443475e3b47",
+        "98c6494d-7ad5-47bd-8c5e-cebe459babd2",
+        "a2dcf51b-12cf-4243-a76b-8f4d5b541c29",
+        "a474ca5d-e149-44fe-badf-c0d104b55ec0",
+        "aeb4b889-e312-4344-a5a1-4e7cc081e207",
+        "b904f26b-45d8-4aea-ab09-3af5aba555fb",
+        "d1341efb-823a-4095-8ec6-3dccb5847f29",
+        "e43bbd6c-b508-4aeb-be1b-befe0e55e801",
+        "e4b4abd0-ee43-46af-9b96-edd333ea3a70",
+        "e770cc83-edf2-44f0-ae4a-870d880f4d6c",
+        "f73a3a9e-59e1-47cc-a329-bdd362c17377",
         "pkg:npm/%40colors/colors@1.5.0",
         "pkg:npm/%40edge-runtime/cookies@6.0.0",
         "pkg:npm/%40edge-runtime/ponyfill@4.0.0",
