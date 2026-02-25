@@ -1,5 +1,5 @@
 eso:
-  providerUrl: "http://sx-vault-openbao-active.vault.svc.cluster.local:8200"
+  providerUrl: "http://sx-vault-active.vault.svc.cluster.local:8200"
   backendName: vault-backend
   secretStore: kubrix-kv
 
@@ -14,7 +14,7 @@ crossplane:
     authbackendroles.token.vault.upbound.io: true
     tokens.vault.vault.upbound.io: true
 
-openbao:
+vault:
   injector:
     enabled: false
   server:
@@ -54,7 +54,7 @@ openbao:
           runAsNonRoot: true
     extraContainers:
       - name: auto-initializer
-        image: quay.io/openbao/openbao:2.5.0
+        image: hashicorp/vault:1.20.3
         env: 
           - name: VAULT_ADDR
             valueFrom:
@@ -69,9 +69,9 @@ openbao:
               sleep 10
               while [ -z $UNSEAL_KEY ]; do
                 sleep 5
-                VAULT_STATUS=$(bao status)
-                if echo "$VAULT_STATUS" | grep -q "Initialized.*false" && [ $HOSTNAME = 'sx-vault-openbao-0' ]; then
-                  export INIT_RESPONSE=$(bao operator init -format=json -key-shares=1 -key-threshold=1)
+                VAULT_STATUS=$(vault status)
+                if echo "$VAULT_STATUS" | grep -q "Initialized.*false" && [ $HOSTNAME = 'sx-vault-0' ]; then
+                  export INIT_RESPONSE=$(vault operator init -format=json -key-shares=1 -key-threshold=1)
                   echo "$INIT_RESPONSE"
                   export UNSEAL_KEY=$(echo "$INIT_RESPONSE" | /usr/local/libexec/vault/jq -r .unseal_keys_b64[0])
                   export ROOT_TOKEN=$(echo "$INIT_RESPONSE" | /usr/local/libexec/vault/jq -r .root_token)
@@ -96,7 +96,7 @@ openbao:
           runAsNonRoot: true
 
       - name: auto-unsealer
-        image: quay.io/openbao/openbao:2.5.0
+        image: hashicorp/vault:1.20.3
         env: 
           - name: VAULT_ADDR
             valueFrom:
@@ -109,16 +109,16 @@ openbao:
         - | 
             while true; do
               sleep 10
-              VAULT_STATUS=$(bao status)
-              if echo "$VAULT_STATUS" | grep -q "Initialized.*false" && [ $HOSTNAME != 'sx-vault-openbao-0' ]; then
+              VAULT_STATUS=$(vault status)
+              if echo "$VAULT_STATUS" | grep -q "Initialized.*false" && [ $HOSTNAME != 'sx-vault-0' ]; then
                 echo joining raft cluster
-                bao operator raft join http://sx-vault-openbao-0.sx-vault-openbao-internal:8200
+                vault operator raft join http://sx-vault-0.sx-vault-internal:8200
                 sleep 5
-              fi
+              fi 
               if echo "$VAULT_STATUS" | grep -q "Initialized.*true"; then
                 if echo "$VAULT_STATUS" | grep -q "Sealed.*true"; then
                   if [ -f /vault-root-token/unseal_key ]; then
-                    bao operator unseal $(cat /vault-root-token/unseal_key)
+                    vault operator unseal $(cat /vault-root-token/unseal_key)
                     sleep 5
                   else
                     echo unseal key not initialized yet  
@@ -141,7 +141,7 @@ openbao:
           privileged: false
           runAsNonRoot: true
       - name: vault-initializer
-        image: quay.io/openbao/openbao:2.5.0
+        image: hashicorp/vault:1.20.3
         env: 
           - name: VAULT_ADDR
             valueFrom:
@@ -158,29 +158,28 @@ openbao:
             if [ -f /vault-root-token/root_token ]; then
               export VAULT_TOKEN="$(cat /vault-root-token/root_token)"
 
-              if bao status | grep -q "Sealed.*false"; then
+              if vault status | grep -q "Sealed.*false"; then
+                # enable audit service here so it is enabled before any crossplane requests
+                vault audit enable file file_path=stdout
                 # only run setup when admins group does NOT exist
-                if ! bao read identity/group/name/admins >/dev/null 2>&1; then
-                  # enable audit device once during initial setup
-                  bao audit enable file file_path=stdout
+                if ! vault read identity/group/name/admins >/dev/null 2>&1; then
                   # kubernetes auth backend
-                  if ! bao read auth/kubernetes/config >/dev/null 2>&1; then
-                    bao auth enable kubernetes || true
-                    bao write auth/kubernetes/config \
+                  if ! vault read auth/kubernetes/config >/dev/null 2>&1; then
+                    vault auth enable kubernetes || true
+                    vault write auth/kubernetes/config \
                       token_reviewer_jwt="$(cat /var/run/secrets/kubernetes.io/serviceaccount/token)" \
                       kubernetes_host="https://${KUBERNETES_PORT_443_TCP_ADDR:-$KUBERNETES_SERVICE_HOST}:443" \
                       kubernetes_ca_cert=@/var/run/secrets/kubernetes.io/serviceaccount/ca.crt
                   fi
 
                   # crossplane role
-                  if ! bao read auth/kubernetes/role/crossplane >/dev/null 2>&1; then
-                    CROSSPLANETOKEN="$(bao token create -display-name=crossplane-token -policy=root -format=json \
+                  if ! vault read auth/kubernetes/role/crossplane >/dev/null 2>&1; then
+                    CROSSPLANETOKEN="$(vault token create -display-name=crossplane-token -policy=root -format=json \
                      | /usr/local/libexec/vault/jq -r '.auth.client_token')"
-                    /usr/local/libexec/vault/kubectl delete secret crossplane-init -n vault --ignore-not-found
                     /usr/local/libexec/vault/kubectl create secret generic crossplane-init -n vault \
-                      --from-literal=credentials='{"token":"'"$CROSSPLANETOKEN"'"}'
+                      --from-literal=credentials='{"token":"'"$CROSSPLANETOKEN"'"}' || true
 
-                    bao write auth/kubernetes/role/crossplane \
+                    vault write auth/kubernetes/role/crossplane \
                       bound_service_account_names="*" \
                       bound_service_account_namespaces=crossplane \
                       policies=crossplane \
@@ -243,9 +242,13 @@ openbao:
           }
 
           storage "raft" {
-            path = "/openbao/data"
+            path = "/vault/data"
           }
-
+          
+          # For integrated raft storage and security
+          # https://developer.hashicorp.com/vault/docs/configuration#disable_mlock
+          disable_mlock = true
+          
           telemetry {
             prometheus_retention_time = "30m"
             disable_hostname = true
@@ -253,7 +256,6 @@ openbao:
           
           service_registration "kubernetes" {}
           plugin_directory = "/usr/local/libexec/vault"
-          unsafe_allow_api_audit_creation = true
       config: |
         allow_audit_log_prefixing: true
   serverTelemetry:

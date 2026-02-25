@@ -135,8 +135,8 @@ test("Team Onboarding with kubrixBot Github user", async ({ page }) => {
   await expect(page.getByRole('button', { name: 'Open Pull-Request' })).toBeVisible({ timeout: 30_000 });
   await expect(page.getByRole('button', { name: 'Open Team-App-Of-Apps Repo' })).toBeVisible({ timeout: 30_000 });
 
-  // set vault secrets for team onboarding
-  const vaultURL = "https://vault.127-0-0-1.nip.io";
+  // set openbao secrets for team onboarding
+  const vaultURL = "https://openbao.127-0-0-1.nip.io";
   const vaultToken = process.env.E2E_VAULT_ROOT_TOKEN!;
   const appsetToken = process.env.E2E_KUBRIX_ARGOCD_APPSET_TOKEN!;
   const gitPassword = process.env.E2E_KUBRIX_KARGO_GIT_PASSWORD!;
@@ -513,7 +513,7 @@ test("Check kubrixbot-app in backstage", async ({ page }) => {
     // does not work in kind-portal tests because there Grafana is not installed!!
     // await expect(page.locator('div').filter({ hasText: /^Dashboards$/ }).first()).toBeVisible();
     // const dashboard_links = [
-    //   'GRC/Hashicorp Vault',
+    //   'GRC/OpenBao',
     //   'Kubernetes / System / API Server',
     //   'Kubernetes / System / CoreDNS',
     //   'Kubernetes / Views / Global',

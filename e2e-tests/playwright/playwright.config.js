@@ -75,8 +75,8 @@ export default defineConfig({
       testMatch: 'keycloak/auth.keycloak-login.ts',
     },
     {
-      name: 'vault-login',
-      testMatch: 'vault/auth.vault-login.ts',
+      name: 'openbao-login',
+      testMatch: 'openbao/auth.openbao-login.ts',
     },
     {
       name: 'kargo-login',
@@ -107,12 +107,12 @@ export default defineConfig({
       dependencies: ['keycloak-login'],
     },
     {
-      name: 'vault-tests',
-      testMatch: /vault\/vault-.*/,
+      name: 'openbao-tests',
+      testMatch: /openbao\/openbao-.*/,
       use: {
         ...devices['Desktop Chrome'],
       },
-      dependencies: ['vault-login'],
+      dependencies: ['openbao-login'],
     },
     {
       name: 'kargo-tests',
@@ -128,7 +128,7 @@ export default defineConfig({
       use: {
         ...devices['Desktop Chrome'],
       },
-      dependencies: ['argocd-login','portal-login','grafana-login','keycloak-login','vault-login','kargo-login'],
+      dependencies: ['argocd-login','portal-login','grafana-login','keycloak-login','openbao-login','kargo-login'],
     },
     // {
     //   name: 'webkit',

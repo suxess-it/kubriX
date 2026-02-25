@@ -2,7 +2,7 @@
 apiVersion: openidclient.keycloak.crossplane.io/v1alpha1
 kind: Client
 metadata:
-  name: vault
+  name: openbao
   annotations:
     argocd.argoproj.io/sync-wave: "5"
     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
@@ -10,19 +10,19 @@ spec:
   deletionPolicy: Delete
   forProvider:
     accessType: CONFIDENTIAL 
-    clientId: vault
-    name: vault
+    clientId: openbao
+    name: openbao
     realmId: {{ .Values.kubrix.keycloak.realm.realmid }}
-    adminUrl: "https://vault{{ .Values.kubrix.keycloak.domainName }}"
-    rootUrl: "https://vault{{ .Values.kubrix.keycloak.domainName }}"
+    adminUrl: "https://openbao{{ .Values.kubrix.keycloak.domainName }}"
+    rootUrl: "https://openbao{{ .Values.kubrix.keycloak.domainName }}"
     directAccessGrantsEnabled: false
     standardFlowEnabled: true
     serviceAccountsEnabled: true
 #    managementPolicies: ["Observe"]
     validRedirectUris:
-      - "https://vault{{ .Values.kubrix.keycloak.domainName }}/ui/vault/auth/oidc/oidc/callback"
+      - "https://openbao{{ .Values.kubrix.keycloak.domainName }}/ui/vault/auth/oidc/oidc/callback"
     clientSecretSecretRef:
-      key: vault
+      key: openbao
       name: keycloak-client-credentials
       namespace: {{ .Release.Namespace }}
     loginTheme: keycloak.v2
