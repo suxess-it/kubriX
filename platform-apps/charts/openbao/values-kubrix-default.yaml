@@ -77,7 +77,7 @@ openbao:
                   export ROOT_TOKEN=$(echo "$INIT_RESPONSE" | /usr/local/libexec/vault/jq -r .root_token)
                   echo "$UNSEAL_KEY"
                   echo "$ROOT_TOKEN"
-                  /usr/local/libexec/vault/kubectl delete secret openbao-init -n openbao
+                  /usr/local/libexec/vault/kubectl delete secret openbao-init -n openbao --ignore-not-found
                   /usr/local/libexec/vault/kubectl create secret generic openbao-init -n openbao --from-literal=unseal_key=${UNSEAL_KEY} --from-literal=root_token=${ROOT_TOKEN}
                 else
                   echo "Vault Initialized"

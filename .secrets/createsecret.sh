@@ -110,7 +110,7 @@ metadata:
     kubrix.io/install: "true"
 spec:
   secretStoreRefs:
-    - name: vault-backend
+    - name: openbao-backend
       kind: ClusterSecretStore
   refreshInterval: 15s
   selector:
