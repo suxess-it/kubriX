@@ -45,8 +45,19 @@ for chart in ${!APPS[@]}; do
       echo "$item"
   done
   echo "'helm template  --include-crds ${chart} "${valuesFiles[@]}" ${setValues} --output-dir ../../../out/${env}/${chart}/${testCase}'"
+
+
+  # temporary exceptions if upstream projects have problems with conform APIs
+  EXTRA_OPTS=""
+  # exception due to https://github.com/kubernetes-sigs/gateway-api/issues/4402
+  if [[ "${chart}" == "traefik" ]] ; then
+    EXTRA_OPTS="-skip CustomResourceDefinition"
+  fi
+
+
   helm template  --include-crds ${chart} ${valuesFiles[@]} ${setValues} | \
     ../../kubeconform -output pretty \
+    ${EXTRA_OPTS} \
     -schema-location default \
     -schema-location "https://raw.githubusercontent.com/suxess-it/kubriX/main/kubeconform-schemas/{{.Group}}/{{.ResourceKind}}_{{.ResourceAPIVersion}}.json" \
     -schema-location "https://raw.githubusercontent.com/yannh/kubernetes-json-schema/master/{{.NormalizedKubernetesVersion}}/{{.ResourceKind}}.json" \
