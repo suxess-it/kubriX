@@ -2,10 +2,10 @@
   "$schema": "http://cyclonedx.org/schema/bom-1.6.schema.json",
   "bomFormat": "CycloneDX",
   "specVersion": "1.6",
-  "serialNumber": "urn:uuid:4de80166-26a1-48b8-aa15-24d4426e1b43",
+  "serialNumber": "urn:uuid:bd840fbb-6c72-457c-b9a8-0c75578d6cd7",
   "version": 1,
   "metadata": {
-    "timestamp": "2026-02-13T09:32:12+00:00",
+    "timestamp": "2026-02-25T14:45:53+00:00",
     "tools": {
       "components": [
         {
@@ -78,7 +78,7 @@
   },
   "components": [
     {
-      "bom-ref": "40cbfd3e-e860-4a32-997e-ad19e4400a23",
+      "bom-ref": "a41912bf-4ea8-4753-9212-1f1d23456fe2",
       "type": "operating-system",
       "name": "alpine",
       "version": "3.23.0",
@@ -355,7 +355,9 @@
       ],
       "licenses": [
         {
-          "expression": "(MIT)"
+          "license": {
+            "id": "MIT"
+          }
         }
       ],
       "purl": "pkg:apk/alpine/alpine-release@3.23.0-r0?arch=x86_64&distro=3.23.0",
@@ -404,7 +406,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2025-12-24T11:03:53Z"
+          "value": "2026-01-27T22:01:27Z"
         }
       ]
     },
@@ -425,7 +427,9 @@
       ],
       "licenses": [
         {
-          "expression": "(GPL-2.0-only)"
+          "license": {
+            "id": "GPL-2.0-only"
+          }
         }
       ],
       "purl": "pkg:apk/alpine/apk-tools@3.0.1-r1?arch=x86_64&distro=3.23.0",
@@ -474,7 +478,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-01-11T09:55:01Z"
+          "value": "2026-01-29T10:40:34Z"
         }
       ]
     },
@@ -567,7 +571,9 @@
       ],
       "licenses": [
         {
-          "expression": "(GPL-2.0-only)"
+          "license": {
+            "id": "GPL-2.0-only"
+          }
         }
       ],
       "purl": "pkg:apk/alpine/busybox@1.37.0-r29?arch=x86_64&distro=3.23.0",
@@ -707,7 +713,9 @@
       ],
       "licenses": [
         {
-          "expression": "(GPL-3.0-or-later)"
+          "license": {
+            "id": "GPL-3.0-or-later"
+          }
         }
       ],
       "purl": "pkg:apk/alpine/gdbm@1.26-r0?arch=x86_64&distro=3.23.0",
@@ -777,7 +785,9 @@
       ],
       "licenses": [
         {
-          "expression": "(GPL-2.0-only)"
+          "license": {
+            "id": "GPL-2.0-only"
+          }
         }
       ],
       "purl": "pkg:apk/alpine/libapk@3.0.1-r1?arch=x86_64&distro=3.23.0",
@@ -826,7 +836,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-01-11T09:55:01Z"
+          "value": "2026-01-29T10:40:34Z"
         }
       ]
     },
@@ -908,7 +918,6 @@
       },
       "name": "libevent",
       "version": "2.1.12-r8",
-      "description": "An event notification library",
       "hashes": [
         {
           "alg": "SHA-1",
@@ -917,24 +926,12 @@
       ],
       "licenses": [
         {
-          "expression": "(BSD-3-Clause)"
+          "license": {
+            "id": "BSD-3-Clause"
+          }
         }
       ],
       "purl": "pkg:apk/alpine/libevent@2.1.12-r8?arch=x86_64&distro=3.23.0",
-      "externalReferences": [
-        {
-          "url": "https://libevent.org/",
-          "type": "website"
-        },
-        {
-          "url": "https://pkgs.alpinelinux.org/package/edge/main/x86_64/libevent",
-          "type": "distribution"
-        },
-        {
-          "url": "https://libevent.org/",
-          "type": "vcs"
-        }
-      ],
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
@@ -959,14 +956,6 @@
         {
           "name": "aquasecurity:trivy:SrcVersion",
           "value": "2.1.12-r8"
-        },
-        {
-          "name": "ecosystems:first_release_published_at",
-          "value": "2022-08-02T08:35:20Z"
-        },
-        {
-          "name": "ecosystems:latest_release_published_at",
-          "value": "2025-01-24T16:52:29Z"
         }
       ]
     },
@@ -978,7 +967,6 @@
       },
       "name": "libsasl",
       "version": "2.1.28-r9",
-      "description": "Cyrus Simple Authentication and Security Layer (SASL) library",
       "hashes": [
         {
           "alg": "SHA-1",
@@ -987,24 +975,17 @@
       ],
       "licenses": [
         {
-          "expression": "(BSD-3-Clause-Attribution AND BSD-4-Clause)"
+          "license": {
+            "id": "BSD-3-Clause-Attribution"
+          }
+        },
+        {
+          "license": {
+            "id": "BSD-4-Clause"
+          }
         }
       ],
       "purl": "pkg:apk/alpine/libsasl@2.1.28-r9?arch=x86_64&distro=3.23.0",
-      "externalReferences": [
-        {
-          "url": "https://www.cyrusimap.org/sasl/",
-          "type": "website"
-        },
-        {
-          "url": "https://pkgs.alpinelinux.org/package/edge/main/x86_64/libsasl",
-          "type": "distribution"
-        },
-        {
-          "url": "https://www.cyrusimap.org/sasl/",
-          "type": "vcs"
-        }
-      ],
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
@@ -1029,14 +1010,6 @@
         {
           "name": "aquasecurity:trivy:SrcVersion",
           "value": "2.1.28-r9"
-        },
-        {
-          "name": "ecosystems:first_release_published_at",
-          "value": "2022-11-06T05:27:08Z"
-        },
-        {
-          "name": "ecosystems:latest_release_published_at",
-          "value": "2025-07-30T04:32:14Z"
         }
       ]
     },
@@ -1106,7 +1079,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2025-09-30T20:58:10Z"
+          "value": "2026-01-27T16:30:14Z"
         }
       ]
     },
@@ -1465,7 +1438,7 @@
   ],
   "dependencies": [
     {
-      "ref": "40cbfd3e-e860-4a32-997e-ad19e4400a23",
+      "ref": "a41912bf-4ea8-4753-9212-1f1d23456fe2",
       "dependsOn": [
         "pkg:apk/alpine/.memcached-rundeps@20251204.192318?arch=noarch&distro=3.23.0",
         "pkg:apk/alpine/alpine-baselayout@3.7.1-r8?arch=x86_64&distro=3.23.0",
@@ -1609,7 +1582,7 @@
     {
       "ref": "pkg:oci/memcached@sha256%3Ac8503d4491edd3110cc07d0465089d3a41cf1daf8645e71149e39a51835e92cd?arch=amd64&repository_url=index.docker.io%2Flibrary%2Fmemcached",
       "dependsOn": [
-        "40cbfd3e-e860-4a32-997e-ad19e4400a23"
+        "a41912bf-4ea8-4753-9212-1f1d23456fe2"
       ]
     }
   ],

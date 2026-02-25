@@ -2,10 +2,10 @@
   "$schema": "http://cyclonedx.org/schema/bom-1.6.schema.json",
   "bomFormat": "CycloneDX",
   "specVersion": "1.6",
-  "serialNumber": "urn:uuid:2c9b3121-5ed6-4a32-865d-b3f3df3e66dc",
+  "serialNumber": "urn:uuid:51ae49d6-d1c9-4274-a946-52ea2b3e30bb",
   "version": 1,
   "metadata": {
-    "timestamp": "2026-02-13T09:34:32+00:00",
+    "timestamp": "2026-02-25T14:48:14+00:00",
     "tools": {
       "components": [
         {
@@ -118,7 +118,22 @@
   },
   "components": [
     {
-      "bom-ref": "186aad69-2b9e-4943-9cce-bcaad1c89ee4",
+      "bom-ref": "1f27ecc6-f707-4829-8f26-3e06067cd8db",
+      "type": "application",
+      "name": "usr/local/bin/crossplane",
+      "properties": [
+        {
+          "name": "aquasecurity:trivy:Class",
+          "value": "lang-pkgs"
+        },
+        {
+          "name": "aquasecurity:trivy:Type",
+          "value": "gobinary"
+        }
+      ]
+    },
+    {
+      "bom-ref": "8598c3c8-ff86-465b-8766-abe821c3116b",
       "type": "operating-system",
       "name": "debian",
       "version": "12.11",
@@ -130,21 +145,6 @@
         {
           "name": "aquasecurity:trivy:Type",
           "value": "debian"
-        }
-      ]
-    },
-    {
-      "bom-ref": "9f2dddd2-8768-4c8f-8dbb-6f275e749c1c",
-      "type": "application",
-      "name": "usr/local/bin/crossplane",
-      "properties": [
-        {
-          "name": "aquasecurity:trivy:Class",
-          "value": "lang-pkgs"
-        },
-        {
-          "name": "aquasecurity:trivy:Type",
-          "value": "gobinary"
         }
       ]
     },
@@ -372,6 +372,13 @@
     {
       "bom-ref": "pkg:golang/dario.cat/mergo@v1.0.2",
       "type": "library",
+      "supplier": {
+        "name": "Dario Castañé",
+        "url": [
+          "dario.cat"
+        ]
+      },
+      "author": "Dario Castañé",
       "name": "dario.cat/mergo",
       "version": "v1.0.2",
       "description": "A helper to merge structs and maps in Golang. Useful for configuration default values, avoiding messy if-statements.\n\nMergo merges same-type structs and maps by setting default values in zero-value fields. Mergo won't merge unexported (private) fields. It will do recursively any exported one. It also won't merge structs inside maps (because they are not addressable using Go reflection).\n\nIt is ready for production use. It is used in several projects by Docker, Google, The Linux Foundation, VMWare, Shopify, etc.\n\n1.0.0\n\nIn 1.0.0 Mergo moves to a vanity URL `dario.cat/mergo`.\n\n0.3.9\n\nPlease keep in mind that a problematic PR broke 0.3.9. We reverted it in 0.3.10. We consider 0.3.10 as stable but not bug-free. . Also, this version adds suppot for go modules.\n\nKeep in mind that in 0.3.2, Mergo changed Merge() and Map() signatures to support transformers. We added an optional/variadic argument so that it won't break the existing code.\n\nIf you were using Mergo before April 6th, 2015, please check your project works as intended after updating your local copy with go get -u dario.cat/mergo. I apologize for any issue caused by its previous behavior and any future bug that Mergo could cause in existing projects after the change (release 0.2.0).\n\nDo your usual installation procedure:\n\nYou can only merge same-type structs with exported fields initialized as zero value of their type and same-types maps. Mergo won't merge unexported (private) fields but will do recursively any exported one. It won't merge empty structs value as they are zero values too. Also, maps will be merged recursively except for structs inside maps (because they are not addressable using Go reflection).\n\nAlso, you can merge overwriting values using the transformer WithOverride.\n\nAdditionally, you can map a map[string]interface{} to a struct (and otherwise, from struct to map), following the same restrictions as in Merge(). Keys are capitalized to find each corresponding exported field.\n\nWarning: if you map a struct to map, it won't do it recursively. Don't expect Mergo to map struct members of your struct as map[string]interface{}. They will be just assigned as values.\n\nHere is a nice example:\n\nTransformers allow to merge specific types differently than in the default behavior. In other words, now you can customize how some types are merged. For example, time.Time is a struct; it doesn't have zero value but IsZero can return true because it has fields with zero value. How can we merge a non-zero time.Time?\n\nIf I can help you, you have an idea or you are using Mergo in your projects, don't hesitate to drop me a line (or a pull request): https://twitter.com/im_dario\n\nWritten by Dario Castañé: https://da.rio.hn\n\nBSD 3-Clause license, as Go language.",
@@ -389,10 +396,6 @@
         {
           "url": "https://pkg.go.dev/dario.cat/mergo",
           "type": "distribution"
-        },
-        {
-          "url": "https://github.com/imdario/mergo",
-          "type": "vcs"
         },
         {
           "url": "https://pkg.go.dev/dario.cat/mergo#section-documentation",
@@ -425,6 +428,10 @@
           "value": "2025-05-07T20:15:06Z"
         },
         {
+          "name": "ecosystems:owner_location",
+          "value": "Barcelona"
+        },
+        {
           "name": "ecosystems:topic",
           "value": "go"
         },
@@ -453,40 +460,9 @@
     {
       "bom-ref": "pkg:golang/github.com/alecthomas/kong@v1.4.0",
       "type": "library",
-      "supplier": {
-        "name": "Alec Thomas",
-        "url": [
-          "http://swapoff.org"
-        ]
-      },
-      "author": "Alec Thomas",
       "name": "github.com/alecthomas/kong",
       "version": "v1.4.0",
-      "description": "Package kong aims to support arbitrarily complex command-line structures with as little developer effort as possible.\n\nHere's an example:\n\nThis can be represented by the following command-line structure:\n\nSee https://github.com/alecthomas/kong for details.",
-      "licenses": [
-        {
-          "expression": "(MIT)"
-        }
-      ],
       "purl": "pkg:golang/github.com/alecthomas/kong@v1.4.0",
-      "externalReferences": [
-        {
-          "url": "https://github.com/alecthomas/kong",
-          "type": "website"
-        },
-        {
-          "url": "https://pkg.go.dev/github.com/alecthomas/kong",
-          "type": "distribution"
-        },
-        {
-          "url": "https://github.com/alecthomas/kong",
-          "type": "vcs"
-        },
-        {
-          "url": "https://pkg.go.dev/github.com/alecthomas/kong#section-documentation",
-          "type": "documentation"
-        }
-      ],
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
@@ -503,50 +479,6 @@
         {
           "name": "aquasecurity:trivy:PkgType",
           "value": "gobinary"
-        },
-        {
-          "name": "ecosystems:first_release_published_at",
-          "value": "2018-09-12T02:17:57Z"
-        },
-        {
-          "name": "ecosystems:latest_release_published_at",
-          "value": "2026-02-06T23:05:08Z"
-        },
-        {
-          "name": "ecosystems:owner_location",
-          "value": "Sydney, Australia"
-        },
-        {
-          "name": "ecosystems:topic",
-          "value": "command-line"
-        },
-        {
-          "name": "ecosystems:topic",
-          "value": "commands"
-        },
-        {
-          "name": "ecosystems:topic",
-          "value": "flags"
-        },
-        {
-          "name": "ecosystems:topic",
-          "value": "go"
-        },
-        {
-          "name": "ecosystems:topic",
-          "value": "golang"
-        },
-        {
-          "name": "ecosystems:topic",
-          "value": "parser"
-        },
-        {
-          "name": "ecosystems:topic",
-          "value": "struct"
-        },
-        {
-          "name": "ecosystems:topic",
-          "value": "tags"
         }
       ]
     },
@@ -651,11 +583,6 @@
       "name": "github.com/aws/aws-sdk-go-v2/config",
       "version": "v1.32.5",
       "description": "Package config provides utilities for loading configuration from multiple\nsources that can be used to configure the SDK's API clients, and utilities.\n\nThe config package will load configuration from environment variables, AWS\nshared configuration file (~/.aws/config), and AWS shared credentials file\n(~/.aws/credentials).\n\nUse the LoadDefaultConfig to load configuration from all the SDK's supported\nsources, and resolve credentials using the SDK's default credential chain.\n\nLoadDefaultConfig allows for a variadic list of additional Config sources that can\nprovide one or more configuration values which can be used to programmatically control the resolution\nof a specific value, or allow for broader range of additional configuration sources not supported by the SDK.\nA Config source implements one or more provider interfaces defined in this package. Config sources passed in will\ntake precedence over the default environment and shared config sources used by the SDK. If one or more Config sources\nimplement the same provider interface, priority will be handled by the order in which the sources were passed in.\n\nA number of helpers (prefixed by “With“)  are provided in this package that implement their respective provider\ninterface. These helpers should be used for overriding configuration programmatically at runtime.",
-      "licenses": [
-        {
-          "expression": "(Apache-2.0)"
-        }
-      ],
       "purl": "pkg:golang/github.com/aws/aws-sdk-go-v2/config@v1.32.5",
       "externalReferences": [
         {
@@ -735,11 +662,6 @@
       "name": "github.com/aws/aws-sdk-go-v2/credentials",
       "version": "v1.19.5",
       "description": "Package credentials provides types for retrieving credentials from credentials sources.",
-      "licenses": [
-        {
-          "expression": "(Apache-2.0)"
-        }
-      ],
       "purl": "pkg:golang/github.com/aws/aws-sdk-go-v2/credentials@v1.19.5",
       "externalReferences": [
         {
@@ -782,7 +704,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-01-09T19:14:10Z"
+          "value": "2026-02-23T19:11:41Z"
         },
         {
           "name": "ecosystems:owner_location",
@@ -866,7 +788,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-01-09T19:14:10Z"
+          "value": "2026-02-23T19:11:41Z"
         },
         {
           "name": "ecosystems:owner_location",
@@ -1027,7 +949,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-01-09T19:14:10Z"
+          "value": "2026-02-23T19:11:41Z"
         },
         {
           "name": "ecosystems:owner_location",
@@ -1148,11 +1070,6 @@
       "name": "github.com/aws/aws-sdk-go-v2/service/ecr",
       "version": "v1.45.1",
       "description": "Package ecr provides the API client, operations, and parameter types for Amazon\nElastic Container Registry.\n\nAmazon Elastic Container Registry (Amazon ECR) is a managed container image\nregistry service. Customers can use the familiar Docker CLI, or their preferred\nclient, to push, pull, and manage images. Amazon ECR provides a secure,\nscalable, and reliable registry for your Docker or Open Container Initiative\n(OCI) images. Amazon ECR supports private repositories with resource-based\npermissions using IAM so that specific users or Amazon EC2 instances can access\nrepositories and images.\n\nAmazon ECR has service endpoints in each supported Region. For more\ninformation, see Amazon ECR endpointsin the Amazon Web Services General Reference.",
-      "licenses": [
-        {
-          "expression": "(Apache-2.0)"
-        }
-      ],
       "purl": "pkg:golang/github.com/aws/aws-sdk-go-v2/service/ecr@v1.45.1",
       "externalReferences": [
         {
@@ -1195,7 +1112,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-01-09T19:14:10Z"
+          "value": "2026-02-23T19:11:41Z"
         },
         {
           "name": "ecosystems:owner_location",
@@ -1232,11 +1149,6 @@
       "name": "github.com/aws/aws-sdk-go-v2/service/ecrpublic",
       "version": "v1.33.2",
       "description": "Package ecrpublic provides the API client, operations, and parameter types for\nAmazon Elastic Container Registry Public.\n\nAmazon Elastic Container Registry Public (Amazon ECR Public) is a managed\ncontainer image registry service. Amazon ECR provides both public and private\nregistries to host your container images. You can use the Docker CLI or your\npreferred client to push, pull, and manage images. Amazon ECR provides a secure,\nscalable, and reliable registry for your Docker or Open Container Initiative\n(OCI) images. Amazon ECR supports public repositories with this API. For\ninformation about the Amazon ECR API for private repositories, see Amazon Elastic Container Registry API Reference.",
-      "licenses": [
-        {
-          "expression": "(Apache-2.0)"
-        }
-      ],
       "purl": "pkg:golang/github.com/aws/aws-sdk-go-v2/service/ecrpublic@v1.33.2",
       "externalReferences": [
         {
@@ -1279,7 +1191,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-01-09T19:14:10Z"
+          "value": "2026-02-23T19:11:41Z"
         },
         {
           "name": "ecosystems:owner_location",
@@ -1447,7 +1359,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-01-09T19:14:10Z"
+          "value": "2026-02-23T19:11:41Z"
         },
         {
           "name": "ecosystems:owner_location",
@@ -1531,11 +1443,6 @@
       "name": "github.com/aws/aws-sdk-go-v2/service/sso",
       "version": "v1.30.7",
       "description": "Package sso provides the API client, operations, and parameter types for AWS\nSingle Sign-On.\n\nAWS IAM Identity Center (successor to AWS Single Sign-On) Portal is a web\nservice that makes it easy for you to assign user access to IAM Identity Center\nresources such as the AWS access portal. Users can get AWS account applications\nand roles assigned to them and get federated into the application.\n\nAlthough AWS Single Sign-On was renamed, the sso and identitystore API\nnamespaces will continue to retain their original name for backward\ncompatibility purposes. For more information, see IAM Identity Center rename.\n\nThis reference guide describes the IAM Identity Center Portal operations that\nyou can call programatically and includes detailed information on data types and\nerrors.\n\nAWS provides SDKs that consist of libraries and sample code for various\nprogramming languages and platforms, such as Java, Ruby, .Net, iOS, or Android.\nThe SDKs provide a convenient way to create programmatic access to IAM Identity\nCenter and other AWS services. For more information about the AWS SDKs,\nincluding how to download and install them, see Tools for Amazon Web Services.",
-      "licenses": [
-        {
-          "expression": "(Apache-2.0)"
-        }
-      ],
       "purl": "pkg:golang/github.com/aws/aws-sdk-go-v2/service/sso@v1.30.7",
       "externalReferences": [
         {
@@ -1578,7 +1485,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-01-09T19:14:10Z"
+          "value": "2026-02-23T19:11:41Z"
         },
         {
           "name": "ecosystems:owner_location",
@@ -1662,7 +1569,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-01-09T19:14:10Z"
+          "value": "2026-02-23T19:11:41Z"
         },
         {
           "name": "ecosystems:owner_location",
@@ -1746,7 +1653,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-01-09T19:14:10Z"
+          "value": "2026-02-23T19:11:41Z"
         },
         {
           "name": "ecosystems:owner_location",
@@ -1914,7 +1821,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2025-12-01T16:06:42Z"
+          "value": "2026-02-20T21:07:26Z"
         },
         {
           "name": "ecosystems:owner_location",
@@ -1942,11 +1849,6 @@
       "author": "Amazon Web Services - Labs",
       "name": "github.com/awslabs/amazon-ecr-credential-helper/ecr-login",
       "version": "v0.10.1",
-      "licenses": [
-        {
-          "expression": "(Apache-2.0)"
-        }
-      ],
       "purl": "pkg:golang/github.com/awslabs/amazon-ecr-credential-helper/ecr-login@v0.10.1",
       "externalReferences": [
         {
@@ -3184,39 +3086,9 @@
     {
       "bom-ref": "pkg:golang/github.com/crossplane/crossplane-runtime/v2@v2.1.0",
       "type": "library",
-      "supplier": {
-        "name": "Crossplane",
-        "url": [
-          "https://crossplane.io"
-        ]
-      },
-      "author": "Crossplane",
       "name": "github.com/crossplane/crossplane-runtime/v2",
       "version": "v2.1.0",
-      "licenses": [
-        {
-          "expression": "(Apache-2.0)"
-        }
-      ],
       "purl": "pkg:golang/github.com/crossplane/crossplane-runtime/v2@v2.1.0",
-      "externalReferences": [
-        {
-          "url": "https://github.com/crossplane/crossplane-runtime",
-          "type": "website"
-        },
-        {
-          "url": "https://pkg.go.dev/github.com/crossplane/crossplane-runtime/v2",
-          "type": "distribution"
-        },
-        {
-          "url": "https://github.com/crossplane/crossplane-runtime",
-          "type": "vcs"
-        },
-        {
-          "url": "https://pkg.go.dev/github.com/crossplane/crossplane-runtime/v2#section-documentation",
-          "type": "documentation"
-        }
-      ],
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
@@ -3233,53 +3105,15 @@
         {
           "name": "aquasecurity:trivy:PkgType",
           "value": "gobinary"
-        },
-        {
-          "name": "ecosystems:first_release_published_at",
-          "value": "2025-08-05T00:56:15Z"
-        },
-        {
-          "name": "ecosystems:latest_release_published_at",
-          "value": "2025-10-24T13:57:22Z"
         }
       ]
     },
     {
       "bom-ref": "pkg:golang/github.com/crossplane/crossplane/v2@v2.1.4",
       "type": "library",
-      "supplier": {
-        "name": "Crossplane",
-        "url": [
-          "https://crossplane.io"
-        ]
-      },
-      "author": "Crossplane",
       "name": "github.com/crossplane/crossplane/v2",
       "version": "v2.1.4",
-      "licenses": [
-        {
-          "expression": "(Apache-2.0)"
-        }
-      ],
       "purl": "pkg:golang/github.com/crossplane/crossplane/v2@v2.1.4",
-      "externalReferences": [
-        {
-          "url": "https://github.com/crossplane/crossplane",
-          "type": "website"
-        },
-        {
-          "url": "https://pkg.go.dev/github.com/crossplane/crossplane/v2",
-          "type": "distribution"
-        },
-        {
-          "url": "https://github.com/crossplane/crossplane",
-          "type": "vcs"
-        },
-        {
-          "url": "https://pkg.go.dev/github.com/crossplane/crossplane/v2#section-documentation",
-          "type": "documentation"
-        }
-      ],
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
@@ -3296,58 +3130,6 @@
         {
           "name": "aquasecurity:trivy:PkgType",
           "value": "gobinary"
-        },
-        {
-          "name": "ecosystems:first_release_published_at",
-          "value": "2025-08-11T13:19:46Z"
-        },
-        {
-          "name": "ecosystems:latest_release_published_at",
-          "value": "2026-01-31T03:56:18Z"
-        },
-        {
-          "name": "ecosystems:topic",
-          "value": "cloud-computing"
-        },
-        {
-          "name": "ecosystems:topic",
-          "value": "cloud-management"
-        },
-        {
-          "name": "ecosystems:topic",
-          "value": "cloud-native"
-        },
-        {
-          "name": "ecosystems:topic",
-          "value": "cncf"
-        },
-        {
-          "name": "ecosystems:topic",
-          "value": "containers"
-        },
-        {
-          "name": "ecosystems:topic",
-          "value": "control-plane"
-        },
-        {
-          "name": "ecosystems:topic",
-          "value": "infrastructure"
-        },
-        {
-          "name": "ecosystems:topic",
-          "value": "infrastructure-as-code"
-        },
-        {
-          "name": "ecosystems:topic",
-          "value": "kubernetes"
-        },
-        {
-          "name": "ecosystems:topic",
-          "value": "multicloud"
-        },
-        {
-          "name": "ecosystems:topic",
-          "value": "serverless"
         }
       ]
     },
@@ -4414,11 +4196,6 @@
       "name": "github.com/go-chi/chi/v5",
       "version": "v5.2.4",
       "description": "Package chi is a small, idiomatic and composable router for building HTTP services.\n\nchi supports the four most recent major versions of Go.\n\nExample:\n\nSee github.com/go-chi/chi/_examples/ for more in-depth examples.\n\nURL patterns allow for easy matching of path components in HTTP\nrequests. The matching components can then be accessed using\nchi.URLParam(). All patterns must begin with a slash.\n\nA simple named placeholder {name} matches any sequence of characters\nup to the next / or the end of the URL. Trailing slashes on paths must\nbe handled explicitly.\n\nA placeholder with a name followed by a colon allows a regular\nexpression match, for example {number:\\\\d+}. The regular expression\nsyntax is Go's normal regexp RE2 syntax, except that / will never be\nmatched. An anonymous regexp pattern is allowed, using an empty string\nbefore the colon in the placeholder, such as {:\\\\d+}\n\nThe special placeholder of asterisk matches the rest of the requested\nURL. Any trailing characters in the pattern are ignored. This is the only\nplaceholder which will match / characters.\n\nExamples:",
-      "licenses": [
-        {
-          "expression": "(MIT)"
-        }
-      ],
       "purl": "pkg:golang/github.com/go-chi/chi/v5@v5.2.4",
       "externalReferences": [
         {
@@ -4759,11 +4536,6 @@
       "name": "github.com/go-openapi/analysis",
       "version": "v0.24.1",
       "description": "Package analysis provides methods to work with a Swagger specification document from\npackage go-openapi/spec.\n\n## Analyzing a specification\n\nAn analysed specification object (type Spec) provides methods to work with swagger definition.\n\n## Flattening or expanding a specification\n\nFlattening a specification bundles all remote $ref in the main spec document.\nDepending on flattening options, additional preprocessing may take place:\n\n## Merging several specifications\n\nMixin several specifications merges all Swagger constructs, and warns about found conflicts.\n\n## Fixing a specification\n\nUnmarshalling a specification with golang json unmarshalling may lead to\nsome unwanted result on present but empty fields.\n\n## Analyzing a Swagger schema\n\nSwagger schemas are analyzed to determine their complexity and qualify their content.",
-      "licenses": [
-        {
-          "expression": "(Apache-2.0)"
-        }
-      ],
       "purl": "pkg:golang/github.com/go-openapi/analysis@v0.24.1",
       "externalReferences": [
         {
@@ -4820,11 +4592,6 @@
       "name": "github.com/go-openapi/errors",
       "version": "v0.22.6",
       "description": "Package errors provides an Error interface and several concrete types\nimplementing this interface to manage API errors and JSON-schema validation\nerrors.\n\nA middleware handler ServeError() is provided to serve the errors types\nit defines.\n\nIt is used throughout the various go-openapi toolkit libraries\n(https://github.com/go-openapi).",
-      "licenses": [
-        {
-          "expression": "(Apache-2.0)"
-        }
-      ],
       "purl": "pkg:golang/github.com/go-openapi/errors@v0.22.6",
       "externalReferences": [
         {
@@ -5001,11 +4768,6 @@
       "name": "github.com/go-openapi/loads",
       "version": "v0.23.2",
       "description": "Package loads provides document loading methods for swagger (OAI v2) API specifications.\n\nIt is used by other go-openapi packages to load and run analysis on local or remote spec documents.",
-      "licenses": [
-        {
-          "expression": "(Apache-2.0)"
-        }
-      ],
       "purl": "pkg:golang/github.com/go-openapi/loads@v0.23.2",
       "externalReferences": [
         {
@@ -5122,11 +4884,6 @@
       "name": "github.com/go-openapi/spec",
       "version": "v0.22.3",
       "description": "Package spec exposes an object model for OpenAPIv2 specifications (swagger).\n\nThe exposed data structures know how to serialize to and deserialize from JSON.",
-      "licenses": [
-        {
-          "expression": "(Apache-2.0)"
-        }
-      ],
       "purl": "pkg:golang/github.com/go-openapi/spec@v0.22.3",
       "externalReferences": [
         {
@@ -5179,11 +4936,6 @@
       "name": "github.com/go-openapi/strfmt",
       "version": "v0.25.0",
       "description": "Package strfmt contains custom string formats\n\nTODO: add info on how to define and register a custom format",
-      "licenses": [
-        {
-          "expression": "(Apache-2.0)"
-        }
-      ],
       "purl": "pkg:golang/github.com/go-openapi/strfmt@v0.25.0",
       "externalReferences": [
         {
@@ -5972,11 +5724,6 @@
       "name": "github.com/go-openapi/validate",
       "version": "v0.25.1",
       "description": "Package validate provides methods to validate a swagger specification,\nas well as tools to validate data against their schema.\n\nThis package follows Swagger 2.0. specification (aka OpenAPI 2.0). Reference\ncan be found here: https://github.com/OAI/OpenAPI-Specification/blob/master/versions/2.0.md.\n\nValidates a spec document (from JSON or YAML) against the JSON schema for swagger,\nthen checks a number of extra rules that can't be expressed in JSON schema.\n\nEntry points:\n\nReported as errors:\n\nReported as warnings:\n\nThe schema validation toolkit validates data against JSON-schema-draft 04 schema.\n\nIt is tested against the full json-schema-testing-suite (https://github.com/json-schema-org/JSON-Schema-Test-Suite),\nexcept for the optional part (bignum, ECMA regexp, ...).\n\nIt supports the complete JSON-schema vocabulary, including keywords not supported by Swagger (e.g. additionalItems, ...)\n\nEntry points:\n\nWith the current version of this package, the following aspects of swagger are not yet supported:",
-      "licenses": [
-        {
-          "expression": "(Apache-2.0)"
-        }
-      ],
       "purl": "pkg:golang/github.com/go-openapi/validate@v0.25.1",
       "externalReferences": [
         {
@@ -6080,7 +5827,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2025-07-15T08:59:08Z"
+          "value": "2026-01-12T17:24:26Z"
         }
       ]
     },
@@ -6398,11 +6145,6 @@
       "name": "github.com/google/certificate-transparency-go",
       "version": "v1.3.2",
       "description": "Package ct holds core types and utilities for Certificate Transparency.",
-      "licenses": [
-        {
-          "expression": "(Apache-2.0)"
-        }
-      ],
       "purl": "pkg:golang/github.com/google/certificate-transparency-go@v1.3.2",
       "externalReferences": [
         {
@@ -6602,35 +6344,9 @@
     {
       "bom-ref": "pkg:golang/github.com/google/go-containerregistry/pkg/authn/k8schain@v0.0.0-20230919002926-dbcd01c402b2",
       "type": "library",
-      "supplier": {
-        "name": "Google",
-        "url": [
-          "https://opensource.google/"
-        ]
-      },
-      "author": "Google",
       "name": "github.com/google/go-containerregistry/pkg/authn/k8schain",
       "version": "v0.0.0-20230919002926-dbcd01c402b2",
-      "description": "Package k8schain exposes an implementation of the authn.Keychain interface\nbased on the semantics the Kubelet follows when pulling the images for a\nPod in Kubernetes.",
       "purl": "pkg:golang/github.com/google/go-containerregistry/pkg/authn/k8schain@v0.0.0-20230919002926-dbcd01c402b2",
-      "externalReferences": [
-        {
-          "url": "https://github.com/google/go-containerregistry",
-          "type": "website"
-        },
-        {
-          "url": "https://pkg.go.dev/github.com/google/go-containerregistry/pkg/authn/k8schain",
-          "type": "distribution"
-        },
-        {
-          "url": "https://github.com/google/go-containerregistry",
-          "type": "vcs"
-        },
-        {
-          "url": "https://pkg.go.dev/github.com/google/go-containerregistry/pkg/authn/k8schain#section-documentation",
-          "type": "documentation"
-        }
-      ],
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
@@ -6647,69 +6363,15 @@
         {
           "name": "aquasecurity:trivy:PkgType",
           "value": "gobinary"
-        },
-        {
-          "name": "ecosystems:latest_release_published_at",
-          "value": "2026-02-10T17:30:46Z"
-        },
-        {
-          "name": "ecosystems:owner_location",
-          "value": "United States of America"
-        },
-        {
-          "name": "ecosystems:topic",
-          "value": "container"
-        },
-        {
-          "name": "ecosystems:topic",
-          "value": "container-registry"
-        },
-        {
-          "name": "ecosystems:topic",
-          "value": "docker"
-        },
-        {
-          "name": "ecosystems:topic",
-          "value": "registry"
         }
       ]
     },
     {
       "bom-ref": "pkg:golang/github.com/google/go-containerregistry/pkg/authn/kubernetes@v0.0.0-20230919002926-dbcd01c402b2",
       "type": "library",
-      "supplier": {
-        "name": "Google",
-        "url": [
-          "https://opensource.google/"
-        ]
-      },
-      "author": "Google",
       "name": "github.com/google/go-containerregistry/pkg/authn/kubernetes",
       "version": "v0.0.0-20230919002926-dbcd01c402b2",
-      "licenses": [
-        {
-          "expression": "(Apache-2.0)"
-        }
-      ],
       "purl": "pkg:golang/github.com/google/go-containerregistry/pkg/authn/kubernetes@v0.0.0-20230919002926-dbcd01c402b2",
-      "externalReferences": [
-        {
-          "url": "https://github.com/google/go-containerregistry",
-          "type": "website"
-        },
-        {
-          "url": "https://pkg.go.dev/github.com/google/go-containerregistry/pkg/authn/kubernetes",
-          "type": "distribution"
-        },
-        {
-          "url": "https://github.com/google/go-containerregistry",
-          "type": "vcs"
-        },
-        {
-          "url": "https://pkg.go.dev/github.com/google/go-containerregistry/pkg/authn/kubernetes#section-documentation",
-          "type": "documentation"
-        }
-      ],
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
@@ -6726,34 +6388,6 @@
         {
           "name": "aquasecurity:trivy:PkgType",
           "value": "gobinary"
-        },
-        {
-          "name": "ecosystems:first_release_published_at",
-          "value": "2022-03-01T18:26:34Z"
-        },
-        {
-          "name": "ecosystems:latest_release_published_at",
-          "value": "2024-01-08T19:52:14Z"
-        },
-        {
-          "name": "ecosystems:owner_location",
-          "value": "United States of America"
-        },
-        {
-          "name": "ecosystems:topic",
-          "value": "container"
-        },
-        {
-          "name": "ecosystems:topic",
-          "value": "container-registry"
-        },
-        {
-          "name": "ecosystems:topic",
-          "value": "docker"
-        },
-        {
-          "name": "ecosystems:topic",
-          "value": "registry"
         }
       ]
     },
@@ -6816,7 +6450,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2025-11-24T22:20:20Z"
+          "value": "2026-02-19T23:46:31Z"
         },
         {
           "name": "ecosystems:owner_location",
@@ -6928,11 +6562,6 @@
       "author": "gRPC Ecosystem",
       "name": "github.com/grpc-ecosystem/grpc-gateway/v2",
       "version": "v2.27.3",
-      "licenses": [
-        {
-          "expression": "(BSD-3-Clause)"
-        }
-      ],
       "purl": "pkg:golang/github.com/grpc-ecosystem/grpc-gateway/v2@v2.27.3",
       "externalReferences": [
         {
@@ -6975,7 +6604,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-02-10T16:34:47Z"
+          "value": "2026-02-17T16:59:59Z"
         },
         {
           "name": "ecosystems:topic",
@@ -7155,11 +6784,6 @@
       "author": "in-toto",
       "name": "github.com/in-toto/attestation",
       "version": "v1.1.2",
-      "licenses": [
-        {
-          "expression": "(Apache-2.0)"
-        }
-      ],
       "purl": "pkg:golang/github.com/in-toto/attestation@v1.1.2",
       "externalReferences": [
         {
@@ -7591,11 +7215,6 @@
       "author": "Let's Encrypt (ISRG)",
       "name": "github.com/letsencrypt/boulder",
       "version": "v0.20251110.0",
-      "licenses": [
-        {
-          "expression": "(MPL-2.0)"
-        }
-      ],
       "purl": "pkg:golang/github.com/letsencrypt/boulder@v0.20251110.0",
       "externalReferences": [
         {
@@ -7638,7 +7257,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-02-02T18:27:55Z"
+          "value": "2026-02-20T23:14:52Z"
         },
         {
           "name": "ecosystems:topic",
@@ -9001,11 +8620,6 @@
       "author": "Secure Systems Lab at NYU",
       "name": "github.com/secure-systems-lab/go-securesystemslib",
       "version": "v0.10.0",
-      "licenses": [
-        {
-          "expression": "(MIT)"
-        }
-      ],
       "purl": "pkg:golang/github.com/secure-systems-lab/go-securesystemslib@v0.10.0",
       "externalReferences": [
         {
@@ -9149,11 +8763,6 @@
       "author": "sigstore",
       "name": "github.com/sigstore/cosign/v2",
       "version": "v2.6.2",
-      "licenses": [
-        {
-          "expression": "(Apache-2.0)"
-        }
-      ],
       "purl": "pkg:golang/github.com/sigstore/cosign/v2@v2.6.2",
       "externalReferences": [
         {
@@ -9265,30 +8874,7 @@
       "type": "library",
       "name": "github.com/sigstore/rekor-tiles/v2",
       "version": "v2.0.1",
-      "licenses": [
-        {
-          "expression": "(Apache-2.0)"
-        }
-      ],
       "purl": "pkg:golang/github.com/sigstore/rekor-tiles/v2@v2.0.1",
-      "externalReferences": [
-        {
-          "url": "https://github.com/sigstore/rekor-tiles",
-          "type": "website"
-        },
-        {
-          "url": "https://pkg.go.dev/github.com/sigstore/rekor-tiles/v2",
-          "type": "distribution"
-        },
-        {
-          "url": "https://github.com/sigstore/rekor-tiles",
-          "type": "vcs"
-        },
-        {
-          "url": "https://pkg.go.dev/github.com/sigstore/rekor-tiles/v2#section-documentation",
-          "type": "documentation"
-        }
-      ],
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
@@ -9305,30 +8891,6 @@
         {
           "name": "aquasecurity:trivy:PkgType",
           "value": "gobinary"
-        },
-        {
-          "name": "ecosystems:first_release_published_at",
-          "value": "2025-10-08T17:36:07Z"
-        },
-        {
-          "name": "ecosystems:latest_release_published_at",
-          "value": "2026-01-15T16:04:01Z"
-        },
-        {
-          "name": "ecosystems:topic",
-          "value": "provenance"
-        },
-        {
-          "name": "ecosystems:topic",
-          "value": "security"
-        },
-        {
-          "name": "ecosystems:topic",
-          "value": "supply-chain"
-        },
-        {
-          "name": "ecosystems:topic",
-          "value": "transparency-log"
         }
       ]
     },
@@ -9344,11 +8906,6 @@
       "author": "sigstore",
       "name": "github.com/sigstore/rekor",
       "version": "v1.5.0",
-      "licenses": [
-        {
-          "expression": "(Apache-2.0)"
-        }
-      ],
       "purl": "pkg:golang/github.com/sigstore/rekor@v1.5.0",
       "externalReferences": [
         {
@@ -9427,11 +8984,6 @@
       "author": "sigstore",
       "name": "github.com/sigstore/sigstore-go",
       "version": "v1.1.4",
-      "licenses": [
-        {
-          "expression": "(Apache-2.0)"
-        }
-      ],
       "purl": "pkg:golang/github.com/sigstore/sigstore-go@v1.1.4",
       "externalReferences": [
         {
@@ -9591,20 +9143,6 @@
       "name": "github.com/sigstore/timestamp-authority/v2",
       "version": "v2.0.3",
       "purl": "pkg:golang/github.com/sigstore/timestamp-authority/v2@v2.0.3",
-      "externalReferences": [
-        {
-          "url": "https://pkg.go.dev/github.com/sigstore/timestamp-authority/v2",
-          "type": "distribution"
-        },
-        {
-          "url": "https://github.com/sigstore/timestamp-authority",
-          "type": "vcs"
-        },
-        {
-          "url": "https://pkg.go.dev/github.com/sigstore/timestamp-authority/v2#section-documentation",
-          "type": "documentation"
-        }
-      ],
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
@@ -9621,14 +9159,6 @@
         {
           "name": "aquasecurity:trivy:PkgType",
           "value": "gobinary"
-        },
-        {
-          "name": "ecosystems:first_release_published_at",
-          "value": "2025-11-14T17:58:26Z"
-        },
-        {
-          "name": "ecosystems:latest_release_published_at",
-          "value": "2025-12-15T16:05:01Z"
         }
       ]
     },
@@ -9645,11 +9175,6 @@
       "name": "github.com/sirupsen/logrus",
       "version": "v1.9.4",
       "description": "Package logrus is a structured logger for Go, completely API compatible with the standard library logger.\n\nThe simplest way to use Logrus is simply the package-level exported logger:\n\nOutput:\n\nFor a full guide visit https://github.com/sirupsen/logrus\n\n\nAn example on how to use a hook",
-      "licenses": [
-        {
-          "expression": "(MIT)"
-        }
-      ],
       "purl": "pkg:golang/github.com/sirupsen/logrus@v1.9.4",
       "externalReferences": [
         {
@@ -10094,11 +9619,6 @@
       "author": "The Update Framework (TUF)",
       "name": "github.com/theupdateframework/go-tuf/v2",
       "version": "v2.4.1",
-      "licenses": [
-        {
-          "expression": "(Apache-2.0)"
-        }
-      ],
       "purl": "pkg:golang/github.com/theupdateframework/go-tuf/v2@v2.4.1",
       "externalReferences": [
         {
@@ -10351,24 +9871,6 @@
       "name": "github.com/transparency-dev/formats",
       "version": "v0.0.0-20251017110053-404c0d5b696c",
       "purl": "pkg:golang/github.com/transparency-dev/formats@v0.0.0-20251017110053-404c0d5b696c",
-      "externalReferences": [
-        {
-          "url": "https://github.com/transparency-dev/formats",
-          "type": "website"
-        },
-        {
-          "url": "https://pkg.go.dev/github.com/transparency-dev/formats",
-          "type": "distribution"
-        },
-        {
-          "url": "https://github.com/transparency-dev/formats",
-          "type": "vcs"
-        },
-        {
-          "url": "https://pkg.go.dev/github.com/transparency-dev/formats#section-documentation",
-          "type": "documentation"
-        }
-      ],
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
@@ -10385,14 +9887,6 @@
         {
           "name": "aquasecurity:trivy:PkgType",
           "value": "gobinary"
-        },
-        {
-          "name": "ecosystems:first_release_published_at",
-          "value": "2022-08-22T11:51:27Z"
-        },
-        {
-          "name": "ecosystems:latest_release_published_at",
-          "value": "2024-01-26T09:02:48Z"
         }
       ]
     },
@@ -11216,11 +10710,25 @@
       "type": "library",
       "name": "go.yaml.in/yaml/v2",
       "version": "v2.4.3",
+      "description": "Package yaml implements YAML support for the Go language.\n\nSource code and other details for the project are available at GitHub:",
+      "licenses": [
+        {
+          "expression": "(Apache-2.0)"
+        }
+      ],
       "purl": "pkg:golang/go.yaml.in/yaml/v2@v2.4.3",
       "externalReferences": [
         {
+          "url": "https://github.com/yaml/go-yaml",
+          "type": "website"
+        },
+        {
           "url": "https://pkg.go.dev/go.yaml.in/yaml/v2",
           "type": "distribution"
+        },
+        {
+          "url": "https://github.com/yaml/go-yaml",
+          "type": "vcs"
         },
         {
           "url": "https://pkg.go.dev/go.yaml.in/yaml/v2#section-documentation",
@@ -11372,10 +10880,6 @@
         {
           "url": "https://pkg.go.dev/golang.org/x/mod",
           "type": "distribution"
-        },
-        {
-          "url": "https://cs.opensource.google/go/x/mod",
-          "type": "vcs"
         },
         {
           "url": "https://pkg.go.dev/golang.org/x/mod#section-documentation",
@@ -11537,10 +11041,6 @@
         {
           "url": "https://pkg.go.dev/golang.org/x/sync",
           "type": "distribution"
-        },
-        {
-          "url": "https://cs.opensource.google/go/x/sync",
-          "type": "vcs"
         },
         {
           "url": "https://pkg.go.dev/golang.org/x/sync#section-documentation",
@@ -11757,10 +11257,6 @@
           "type": "distribution"
         },
         {
-          "url": "https://cs.opensource.google/go/x/time",
-          "type": "vcs"
-        },
-        {
           "url": "https://pkg.go.dev/golang.org/x/time#section-documentation",
           "type": "documentation"
         }
@@ -11905,7 +11401,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2024-01-25T20:52:18Z"
+          "value": "2026-02-17T21:52:00Z"
         }
       ]
     },
@@ -11963,7 +11459,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2024-01-25T20:52:18Z"
+          "value": "2026-02-17T21:52:00Z"
         }
       ]
     },
@@ -12023,7 +11519,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2025-12-23T09:24:02Z"
+          "value": "2026-02-13T06:52:36Z"
         },
         {
           "name": "ecosystems:topic",
@@ -12093,6 +11589,10 @@
         {
           "url": "https://pkg.go.dev/google.golang.org/protobuf",
           "type": "distribution"
+        },
+        {
+          "url": "https://github.com/protocolbuffers/protobuf-go",
+          "type": "vcs"
         },
         {
           "url": "https://pkg.go.dev/google.golang.org/protobuf#section-documentation",
@@ -12452,10 +11952,6 @@
           "type": "distribution"
         },
         {
-          "url": "https://github.com/kubernetes/apimachinery",
-          "type": "vcs"
-        },
-        {
           "url": "https://pkg.go.dev/k8s.io/apimachinery#section-documentation",
           "type": "documentation"
         }
@@ -12584,6 +12080,10 @@
           "type": "distribution"
         },
         {
+          "url": "https://github.com/kubernetes/client-go",
+          "type": "vcs"
+        },
+        {
           "url": "https://pkg.go.dev/k8s.io/client-go#section-documentation",
           "type": "documentation"
         }
@@ -12611,7 +12111,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2019-03-13T23:57:26Z"
+          "value": "2016-10-17T18:15:22Z"
         },
         {
           "name": "ecosystems:topic",
@@ -12719,10 +12219,6 @@
           "type": "distribution"
         },
         {
-          "url": "https://github.com/kubernetes/klog",
-          "type": "vcs"
-        },
-        {
           "url": "https://pkg.go.dev/k8s.io/klog/v2#section-documentation",
           "type": "documentation"
         }
@@ -12812,7 +12308,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2024-01-17T19:48:47Z"
+          "value": "2026-01-27T14:27:50Z"
         }
       ]
     },
@@ -12870,7 +12366,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2024-01-02T15:49:12Z"
+          "value": "2026-02-10T18:56:00Z"
         },
         {
           "name": "ecosystems:topic",
@@ -12892,11 +12388,6 @@
       "name": "sigs.k8s.io/controller-runtime",
       "version": "v0.22.2",
       "description": "Package controllerruntime provides tools to construct Kubernetes-style\ncontrollers that manipulate both Kubernetes CRDs and aggregated/built-in\nKubernetes APIs.\n\nIt defines easy helpers for the common use cases when building CRDs, built\non top of customizable layers of abstraction.  Common cases should be easy,\nand uncommon cases should be possible.  In general, controller-runtime tries\nto guide users towards Kubernetes controller best-practices.\n\nThe main entrypoint for controller-runtime is this root package, which\ncontains all of the common types needed to get started building controllers:\n\nThe examples in this package walk through a basic controller setup.  The\nkubebuilder book (https://book.kubebuilder.io) has some more in-depth\nwalkthroughs.\n\ncontroller-runtime favors structs with sane defaults over constructors, so\nit's fairly common to see structs being used directly in controller-runtime.\n\nA brief-ish walkthrough of the layout of this library can be found below. Each\npackage contains more information about how to use it.\n\nFrequently asked questions about using controller-runtime and designing\ncontrollers can be found at\nhttps://github.com/kubernetes-sigs/controller-runtime/blob/main/FAQ.md.\n\nEvery controller and webhook is ultimately run by a Manager (pkg/manager). A\nmanager is responsible for running controllers and webhooks, and setting up\ncommon dependencies, like shared caches and clients, as\nwell as managing leader election (pkg/leaderelection).  Managers are\ngenerally configured to gracefully shut down controllers on pod termination\nby wiring up a signal handler (pkg/manager/signals).\n\nControllers (pkg/controller) use events (pkg/event) to eventually trigger\nreconcile requests.  They may be constructed manually, but are often\nconstructed with a Builder (pkg/builder), which eases the wiring of event\nsources (pkg/source), like Kubernetes API object changes, to event handlers\n(pkg/handler), like \"enqueue a reconcile request for the object owner\".\nPredicates (pkg/predicate) can be used to filter which events actually\ntrigger reconciles.  There are pre-written utilities for the common cases, and\ninterfaces and helpers for advanced cases.\n\nController logic is implemented in terms of Reconcilers (pkg/reconcile).  A\nReconciler implements a function which takes a reconcile Request containing\nthe name and namespace of the object to reconcile, reconciles the object,\nand returns a Response or an error indicating whether to requeue for a\nsecond round of processing.\n\nReconcilers use Clients (pkg/client) to access API objects.  The default\nclient provided by the manager reads from a local shared cache (pkg/cache)\nand writes directly to the API server, but clients can be constructed that\nonly talk to the API server, without a cache.  The Cache will auto-populate\nwith watched objects, as well as when other structured objects are\nrequested. The default split client does not promise to invalidate the cache\nduring writes (nor does it promise sequential create/get coherence), and code\nshould not assume a get immediately following a create/update will return\nthe updated resource. Caches may also have indexes, which can be created via\na FieldIndexer (pkg/client) obtained from the manager.  Indexes can be used to\nquickly and easily look up all objects with certain fields set.  Reconcilers\nmay retrieve event recorders (pkg/recorder) to emit events using the\nmanager.\n\nClients, Caches, and many other things in Kubernetes use Schemes\n(pkg/scheme) to associate Go types to Kubernetes API Kinds\n(Group-Version-Kinds, to be specific).\n\nSimilarly, webhooks (pkg/webhook/admission) may be implemented directly, but\nare often constructed using a builder (pkg/webhook/admission/builder).  They\nare run via a server (pkg/webhook) which is managed by a Manager.\n\nLogging (pkg/log) in controller-runtime is done via structured logs, using a\nlog set of interfaces called logr\n(https://pkg.go.dev/github.com/go-logr/logr).  While controller-runtime\nprovides easy setup for using Zap (https://go.uber.org/zap, pkg/log/zap),\nyou can provide any implementation of logr as the base logger for\ncontroller-runtime.\n\nMetrics (pkg/metrics) provided by controller-runtime are registered into a\ncontroller-runtime-specific Prometheus metrics registry.  The manager can\nserve these by an HTTP endpoint, and additional metrics may be registered to\nthis Registry as normal.\n\nYou can easily build integration and unit tests for your controllers and\nwebhooks using the test Environment (pkg/envtest).  This will automatically\nstand up a copy of etcd and kube-apiserver, and provide the correct options\nto connect to the API server.  It's designed to work well with the Ginkgo\ntesting framework, but should work with any testing setup.\n\nThis example creates a simple application Controller that is configured for ReplicaSets and Pods.\n\n* Create a new application for ReplicaSets that manages Pods owned by the ReplicaSet and calls into\nReplicaSetReconciler.\n\n* Start the application.\n\n\nThis example creates a simple application Controller that is configured for ExampleCRDWithConfigMapRef CRD.\nAny change in the configMap referenced in this Custom Resource will cause the re-reconcile of the parent ExampleCRDWithConfigMapRef\ndue to the implementation of the .Watches method of \"sigs.k8s.io/controller-runtime/pkg/builder\".Builder.\n\n\nThis example creates a simple application Controller that is configured for ReplicaSets and Pods.\nThis application controller will be running leader election with the provided configuration in the manager options.\nIf leader election configuration is not provided, controller runs leader election with default values.\nDefault values taken from: https://github.com/kubernetes/component-base/blob/master/config/v1alpha1/defaults.go\n* defaultLeaseDuration = 15 * time.Second\n* defaultRenewDeadline = 10 * time.Second\n* defaultRetryPeriod   = 2 * time.Second\n\n* Create a new application for ReplicaSets that manages Pods owned by the ReplicaSet and calls into\nReplicaSetReconciler.\n\n* Start the application.",
-      "licenses": [
-        {
-          "expression": "(Apache-2.0)"
-        }
-      ],
       "purl": "pkg:golang/sigs.k8s.io/controller-runtime@v0.22.2",
       "externalReferences": [
         {
@@ -12906,10 +12397,6 @@
         {
           "url": "https://pkg.go.dev/sigs.k8s.io/controller-runtime",
           "type": "distribution"
-        },
-        {
-          "url": "https://github.com/kubernetes-sigs/controller-runtime",
-          "type": "vcs"
         },
         {
           "url": "https://pkg.go.dev/sigs.k8s.io/controller-runtime#section-documentation",
@@ -13088,7 +12575,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2025-10-30T18:12:04Z"
+          "value": "2026-01-22T20:25:28Z"
         }
       ]
     },
@@ -13115,10 +12602,6 @@
         {
           "url": "https://pkg.go.dev/sigs.k8s.io/yaml",
           "type": "distribution"
-        },
-        {
-          "url": "https://github.com/kubernetes-sigs/yaml",
-          "type": "vcs"
         },
         {
           "url": "https://pkg.go.dev/sigs.k8s.io/yaml#section-documentation",
@@ -13184,17 +12667,17 @@
   ],
   "dependencies": [
     {
-      "ref": "186aad69-2b9e-4943-9cce-bcaad1c89ee4",
+      "ref": "1f27ecc6-f707-4829-8f26-3e06067cd8db",
+      "dependsOn": [
+        "pkg:golang/github.com/crossplane/crossplane/v2@v2.1.4"
+      ]
+    },
+    {
+      "ref": "8598c3c8-ff86-465b-8766-abe821c3116b",
       "dependsOn": [
         "pkg:deb/debian/base-files@12.4%2Bdeb12u11?arch=amd64&distro=debian-12.11",
         "pkg:deb/debian/netbase@6.4?arch=all&distro=debian-12.11",
         "pkg:deb/debian/tzdata@2025b-0%2Bdeb12u1?arch=all&distro=debian-12.11"
-      ]
-    },
-    {
-      "ref": "9f2dddd2-8768-4c8f-8dbb-6f275e749c1c",
-      "dependsOn": [
-        "pkg:golang/github.com/crossplane/crossplane/v2@v2.1.4"
       ]
     },
     {
@@ -14112,8 +13595,8 @@
     {
       "ref": "pkg:oci/crossplane@sha256%3A91d7191266fb931cdbc32ab6e21456fc5461ddb5d7debd0532159d5b7ba5c9a0?arch=amd64&repository_url=xpkg.crossplane.io%2Fcrossplane%2Fcrossplane",
       "dependsOn": [
-        "186aad69-2b9e-4943-9cce-bcaad1c89ee4",
-        "9f2dddd2-8768-4c8f-8dbb-6f275e749c1c"
+        "1f27ecc6-f707-4829-8f26-3e06067cd8db",
+        "8598c3c8-ff86-465b-8766-abe821c3116b"
       ]
     }
   ],

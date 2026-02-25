@@ -2,10 +2,10 @@
   "$schema": "http://cyclonedx.org/schema/bom-1.6.schema.json",
   "bomFormat": "CycloneDX",
   "specVersion": "1.6",
-  "serialNumber": "urn:uuid:ac78ca38-b854-4579-891c-d720970f4c75",
+  "serialNumber": "urn:uuid:81431897-ceff-4496-baa3-47b28acd3409",
   "version": 1,
   "metadata": {
-    "timestamp": "2026-02-13T09:30:26+00:00",
+    "timestamp": "2026-02-25T14:43:37+00:00",
     "tools": {
       "components": [
         {
@@ -70,22 +70,7 @@
   },
   "components": [
     {
-      "bom-ref": "112d6c39-011d-4e66-82d5-af0ca387bdf8",
-      "type": "application",
-      "name": "ko-app/readiness-checker",
-      "properties": [
-        {
-          "name": "aquasecurity:trivy:Class",
-          "value": "lang-pkgs"
-        },
-        {
-          "name": "aquasecurity:trivy:Type",
-          "value": "gobinary"
-        }
-      ]
-    },
-    {
-      "bom-ref": "6687e71d-ed18-450c-8040-e9b70d5a18d2",
+      "bom-ref": "46650e48-6c3c-4f2c-8915-2ddec0eea006",
       "type": "operating-system",
       "name": "alpine",
       "version": "3.24.0_alpha20251224",
@@ -97,6 +82,21 @@
         {
           "name": "aquasecurity:trivy:Type",
           "value": "alpine"
+        }
+      ]
+    },
+    {
+      "bom-ref": "cd7bd5ec-13ca-42f9-bf31-d91caf27be2c",
+      "type": "application",
+      "name": "ko-app/readiness-checker",
+      "properties": [
+        {
+          "name": "aquasecurity:trivy:Class",
+          "value": "lang-pkgs"
+        },
+        {
+          "name": "aquasecurity:trivy:Type",
+          "value": "gobinary"
         }
       ]
     },
@@ -306,7 +306,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2025-12-24T11:03:53Z"
+          "value": "2026-01-27T22:01:27Z"
         }
       ]
     },
@@ -2247,11 +2247,25 @@
       "type": "library",
       "name": "go.yaml.in/yaml/v2",
       "version": "v2.4.3",
+      "description": "Package yaml implements YAML support for the Go language.\n\nSource code and other details for the project are available at GitHub:",
+      "licenses": [
+        {
+          "expression": "(Apache-2.0)"
+        }
+      ],
       "purl": "pkg:golang/go.yaml.in/yaml/v2@v2.4.3",
       "externalReferences": [
         {
+          "url": "https://github.com/yaml/go-yaml",
+          "type": "website"
+        },
+        {
           "url": "https://pkg.go.dev/go.yaml.in/yaml/v2",
           "type": "distribution"
+        },
+        {
+          "url": "https://github.com/yaml/go-yaml",
+          "type": "vcs"
         },
         {
           "url": "https://pkg.go.dev/go.yaml.in/yaml/v2#section-documentation",
@@ -2620,10 +2634,6 @@
           "type": "distribution"
         },
         {
-          "url": "https://cs.opensource.google/go/x/time",
-          "type": "vcs"
-        },
-        {
           "url": "https://pkg.go.dev/golang.org/x/time#section-documentation",
           "type": "documentation"
         }
@@ -2681,6 +2691,10 @@
         {
           "url": "https://pkg.go.dev/google.golang.org/protobuf",
           "type": "distribution"
+        },
+        {
+          "url": "https://github.com/protocolbuffers/protobuf-go",
+          "type": "vcs"
         },
         {
           "url": "https://pkg.go.dev/google.golang.org/protobuf#section-documentation",
@@ -2968,10 +2982,6 @@
           "type": "distribution"
         },
         {
-          "url": "https://github.com/kubernetes/apimachinery",
-          "type": "vcs"
-        },
-        {
           "url": "https://pkg.go.dev/k8s.io/apimachinery#section-documentation",
           "type": "documentation"
         }
@@ -3036,6 +3046,10 @@
           "type": "distribution"
         },
         {
+          "url": "https://github.com/kubernetes/client-go",
+          "type": "vcs"
+        },
+        {
           "url": "https://pkg.go.dev/k8s.io/client-go#section-documentation",
           "type": "documentation"
         }
@@ -3063,7 +3077,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2019-03-13T23:57:26Z"
+          "value": "2016-10-17T18:15:22Z"
         },
         {
           "name": "ecosystems:topic",
@@ -3098,10 +3112,6 @@
         {
           "url": "https://pkg.go.dev/k8s.io/klog/v2",
           "type": "distribution"
-        },
-        {
-          "url": "https://github.com/kubernetes/klog",
-          "type": "vcs"
         },
         {
           "url": "https://pkg.go.dev/k8s.io/klog/v2#section-documentation",
@@ -3193,7 +3203,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2024-01-17T19:48:47Z"
+          "value": "2026-01-27T14:27:50Z"
         }
       ]
     },
@@ -3251,7 +3261,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2024-01-02T15:49:12Z"
+          "value": "2026-02-10T18:56:00Z"
         },
         {
           "name": "ecosystems:topic",
@@ -3409,7 +3419,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2025-10-30T18:12:04Z"
+          "value": "2026-01-22T20:25:28Z"
         }
       ]
     },
@@ -3436,10 +3446,6 @@
         {
           "url": "https://pkg.go.dev/sigs.k8s.io/yaml",
           "type": "distribution"
-        },
-        {
-          "url": "https://github.com/kubernetes-sigs/yaml",
-          "type": "vcs"
         },
         {
           "url": "https://pkg.go.dev/sigs.k8s.io/yaml#section-documentation",
@@ -3505,18 +3511,18 @@
   ],
   "dependencies": [
     {
-      "ref": "112d6c39-011d-4e66-82d5-af0ca387bdf8",
-      "dependsOn": [
-        "pkg:golang/github.com/kyverno/kyverno@v1.5.0-rc1.0.20260122002923-b35e0045f4a1%2Bdirty"
-      ]
-    },
-    {
-      "ref": "6687e71d-ed18-450c-8040-e9b70d5a18d2",
+      "ref": "46650e48-6c3c-4f2c-8915-2ddec0eea006",
       "dependsOn": [
         "pkg:apk/alpine/alpine-baselayout-data@3.7.1-r10?arch=noarch&distro=3.24.0_alpha20251224",
         "pkg:apk/alpine/alpine-release@3.24.0_alpha20251224-r0?arch=noarch&distro=3.24.0_alpha20251224",
         "pkg:apk/alpine/ca-certificates-bundle@20251003-r0?arch=noarch&distro=3.24.0_alpha20251224",
         "pkg:apk/alpine/tzdata@2025c-r0?arch=noarch&distro=3.24.0_alpha20251224"
+      ]
+    },
+    {
+      "ref": "cd7bd5ec-13ca-42f9-bf31-d91caf27be2c",
+      "dependsOn": [
+        "pkg:golang/github.com/kyverno/kyverno@v1.5.0-rc1.0.20260122002923-b35e0045f4a1%2Bdirty"
       ]
     },
     {
@@ -3784,8 +3790,8 @@
     {
       "ref": "pkg:oci/readiness-checker@sha256%3Ac54c0aa24d536f7a31ed854db4f2b2d6863b41d7d85725e21f80cd318c4e815b?arch=amd64&repository_url=ghcr.io%2Fkyverno%2Freadiness-checker",
       "dependsOn": [
-        "112d6c39-011d-4e66-82d5-af0ca387bdf8",
-        "6687e71d-ed18-450c-8040-e9b70d5a18d2"
+        "46650e48-6c3c-4f2c-8915-2ddec0eea006",
+        "cd7bd5ec-13ca-42f9-bf31-d91caf27be2c"
       ]
     }
   ],

@@ -2,10 +2,10 @@
   "$schema": "http://cyclonedx.org/schema/bom-1.6.schema.json",
   "bomFormat": "CycloneDX",
   "specVersion": "1.6",
-  "serialNumber": "urn:uuid:1f72944c-2258-4735-8e8a-14f9e6406b7e",
+  "serialNumber": "urn:uuid:ac0d845b-3005-43ec-b22a-3d6978854956",
   "version": 1,
   "metadata": {
-    "timestamp": "2026-02-13T09:32:11+00:00",
+    "timestamp": "2026-02-25T14:45:52+00:00",
     "tools": {
       "components": [
         {
@@ -122,7 +122,22 @@
   },
   "components": [
     {
-      "bom-ref": "4801916b-39d0-4eb4-9b85-5f96cf474160",
+      "bom-ref": "22ec1fc1-45d2-43eb-a0d7-d8451d519be0",
+      "type": "application",
+      "name": "usr/local/bin/kubectl",
+      "properties": [
+        {
+          "name": "aquasecurity:trivy:Class",
+          "value": "lang-pkgs"
+        },
+        {
+          "name": "aquasecurity:trivy:Type",
+          "value": "gobinary"
+        }
+      ]
+    },
+    {
+      "bom-ref": "471a1d58-112d-4f0e-9ca8-a76b297aa5a6",
       "type": "operating-system",
       "name": "alpine",
       "version": "3.20.5",
@@ -134,21 +149,6 @@
         {
           "name": "aquasecurity:trivy:Type",
           "value": "alpine"
-        }
-      ]
-    },
-    {
-      "bom-ref": "cbe72581-619c-48b9-8d92-1f04adf0011a",
-      "type": "application",
-      "name": "usr/local/bin/kubectl",
-      "properties": [
-        {
-          "name": "aquasecurity:trivy:Class",
-          "value": "lang-pkgs"
-        },
-        {
-          "name": "aquasecurity:trivy:Type",
-          "value": "gobinary"
         }
       ]
     },
@@ -379,7 +379,14 @@
       ],
       "licenses": [
         {
-          "expression": "(BSD-2-Clause AND custom)"
+          "license": {
+            "id": "BSD-2-Clause"
+          }
+        },
+        {
+          "license": {
+            "name": "custom"
+          }
         }
       ],
       "purl": "pkg:apk/alpine/aom-libs@3.9.1-r0?arch=x86_64&distro=3.20.5",
@@ -498,7 +505,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-01-11T09:55:01Z"
+          "value": "2026-01-29T10:40:34Z"
         }
       ]
     },
@@ -951,7 +958,9 @@
       ],
       "licenses": [
         {
-          "expression": "(curl)"
+          "license": {
+            "id": "curl"
+          }
         }
       ],
       "purl": "pkg:apk/alpine/curl@8.11.1-r0?arch=x86_64&distro=3.20.5",
@@ -1021,7 +1030,9 @@
       ],
       "licenses": [
         {
-          "expression": "(MIT)"
+          "license": {
+            "id": "MIT"
+          }
         }
       ],
       "purl": "pkg:apk/alpine/fontconfig@2.15.0-r1?arch=x86_64&distro=3.20.5",
@@ -1091,7 +1102,14 @@
       ],
       "licenses": [
         {
-          "expression": "(FTL OR GPL-2.0-or-later)"
+          "license": {
+            "id": "FTL"
+          }
+        },
+        {
+          "license": {
+            "id": "GPL-2.0-or-later"
+          }
         }
       ],
       "purl": "pkg:apk/alpine/freetype@2.13.2-r0?arch=x86_64&distro=3.20.5",
@@ -1161,7 +1179,9 @@
       ],
       "licenses": [
         {
-          "expression": "(LGPL-2.1-or-later)"
+          "license": {
+            "id": "LGPL-2.1-or-later"
+          }
         }
       ],
       "purl": "pkg:apk/alpine/geoip@1.6.12-r5?arch=x86_64&distro=3.20.5",
@@ -1235,7 +1255,9 @@
       ],
       "licenses": [
         {
-          "expression": "(BSD-2-Clause)"
+          "license": {
+            "id": "BSD-2-Clause"
+          }
         }
       ],
       "purl": "pkg:apk/alpine/libavif@1.0.4-r0?arch=x86_64&distro=3.20.5",
@@ -1445,7 +1467,9 @@
       ],
       "licenses": [
         {
-          "expression": "(Apache-2.0)"
+          "license": {
+            "id": "Apache-2.0"
+          }
         }
       ],
       "purl": "pkg:apk/alpine/libcrypto3@3.3.2-r1?arch=x86_64&distro=3.20.5",
@@ -1515,7 +1539,9 @@
       ],
       "licenses": [
         {
-          "expression": "(curl)"
+          "license": {
+            "id": "curl"
+          }
         }
       ],
       "purl": "pkg:apk/alpine/libcurl@8.11.1-r0?arch=x86_64&distro=3.20.5",
@@ -1585,7 +1611,9 @@
       ],
       "licenses": [
         {
-          "expression": "(BSD-2-Clause)"
+          "license": {
+            "id": "BSD-2-Clause"
+          }
         }
       ],
       "purl": "pkg:apk/alpine/libdav1d@1.4.2-r0?arch=x86_64&distro=3.20.5",
@@ -1655,7 +1683,9 @@
       ],
       "licenses": [
         {
-          "expression": "(BSD-3-Clause)"
+          "license": {
+            "id": "BSD-3-Clause"
+          }
         }
       ],
       "purl": "pkg:apk/alpine/libedit@20240517.3.1-r0?arch=x86_64&distro=3.20.5",
@@ -1725,7 +1755,9 @@
       ],
       "licenses": [
         {
-          "expression": "(MIT)"
+          "license": {
+            "id": "MIT"
+          }
         }
       ],
       "purl": "pkg:apk/alpine/libexpat@2.6.4-r0?arch=x86_64&distro=3.20.5",
@@ -1786,7 +1818,6 @@
       },
       "name": "libgcrypt",
       "version": "1.10.3-r0",
-      "description": "General purpose crypto library based on the code used in GnuPG",
       "hashes": [
         {
           "alg": "SHA-1",
@@ -1795,24 +1826,17 @@
       ],
       "licenses": [
         {
-          "expression": "(LGPL-2.1-or-later AND GPL-2.0-or-later)"
+          "license": {
+            "id": "LGPL-2.1-or-later"
+          }
+        },
+        {
+          "license": {
+            "id": "GPL-2.0-or-later"
+          }
         }
       ],
       "purl": "pkg:apk/alpine/libgcrypt@1.10.3-r0?arch=x86_64&distro=3.20.5",
-      "externalReferences": [
-        {
-          "url": "https://www.gnupg.org/",
-          "type": "website"
-        },
-        {
-          "url": "https://pkgs.alpinelinux.org/package/edge/main/x86_64/libgcrypt",
-          "type": "distribution"
-        },
-        {
-          "url": "https://www.gnupg.org/",
-          "type": "vcs"
-        }
-      ],
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
@@ -1837,14 +1861,6 @@
         {
           "name": "aquasecurity:trivy:SrcVersion",
           "value": "1.10.3-r0"
-        },
-        {
-          "name": "ecosystems:first_release_published_at",
-          "value": "2022-04-27T20:01:49Z"
-        },
-        {
-          "name": "ecosystems:latest_release_published_at",
-          "value": "2026-01-29T20:53:45Z"
         }
       ]
     },
@@ -1865,7 +1881,9 @@
       ],
       "licenses": [
         {
-          "expression": "(GD)"
+          "license": {
+            "id": "GD"
+          }
         }
       ],
       "purl": "pkg:apk/alpine/libgd@2.3.3-r9?arch=x86_64&distro=3.20.5",
@@ -1926,7 +1944,6 @@
       },
       "name": "libgpg-error",
       "version": "1.49-r0",
-      "description": "Support library for libgcrypt",
       "hashes": [
         {
           "alg": "SHA-1",
@@ -1935,24 +1952,17 @@
       ],
       "licenses": [
         {
-          "expression": "(GPL-2.0-or-later AND LGPL-2.1-or-later)"
+          "license": {
+            "id": "GPL-2.0-or-later"
+          }
+        },
+        {
+          "license": {
+            "id": "LGPL-2.1-or-later"
+          }
         }
       ],
       "purl": "pkg:apk/alpine/libgpg-error@1.49-r0?arch=x86_64&distro=3.20.5",
-      "externalReferences": [
-        {
-          "url": "https://www.gnupg.org/",
-          "type": "website"
-        },
-        {
-          "url": "https://pkgs.alpinelinux.org/package/edge/main/x86_64/libgpg-error",
-          "type": "distribution"
-        },
-        {
-          "url": "https://www.gnupg.org/",
-          "type": "vcs"
-        }
-      ],
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
@@ -1977,14 +1987,6 @@
         {
           "name": "aquasecurity:trivy:SrcVersion",
           "value": "1.49-r0"
-        },
-        {
-          "name": "ecosystems:first_release_published_at",
-          "value": "2022-10-24T21:46:47Z"
-        },
-        {
-          "name": "ecosystems:latest_release_published_at",
-          "value": "2025-12-11T14:29:04Z"
         }
       ]
     },
@@ -2005,7 +2007,9 @@
       ],
       "licenses": [
         {
-          "expression": "(X11)"
+          "license": {
+            "name": "X-11"
+          }
         }
       ],
       "purl": "pkg:apk/alpine/libice@1.1.1-r6?arch=x86_64&distro=3.20.5",
@@ -2145,7 +2149,9 @@
       ],
       "licenses": [
         {
-          "expression": "(LGPL-2.1-or-later)"
+          "license": {
+            "id": "LGPL-2.1-or-later"
+          }
         }
       ],
       "purl": "pkg:apk/alpine/libintl@0.22.5-r0?arch=x86_64&distro=3.20.5",
@@ -2215,7 +2221,19 @@
       ],
       "licenses": [
         {
-          "expression": "(BSD-3-Clause AND IJG AND Zlib)"
+          "license": {
+            "id": "BSD-3-Clause"
+          }
+        },
+        {
+          "license": {
+            "id": "IJG"
+          }
+        },
+        {
+          "license": {
+            "id": "Zlib"
+          }
         }
       ],
       "purl": "pkg:apk/alpine/libjpeg-turbo@3.0.3-r0?arch=x86_64&distro=3.20.5",
@@ -2427,7 +2445,9 @@
       ],
       "licenses": [
         {
-          "expression": "(Libpng)"
+          "license": {
+            "id": "Libpng"
+          }
         }
       ],
       "purl": "pkg:apk/alpine/libpng@1.6.44-r0?arch=x86_64&distro=3.20.5",
@@ -2571,7 +2591,9 @@
       ],
       "licenses": [
         {
-          "expression": "(BSD-3-Clause)"
+          "license": {
+            "id": "BSD-3-Clause"
+          }
         }
       ],
       "purl": "pkg:apk/alpine/libsharpyuv@1.3.2-r0?arch=x86_64&distro=3.20.5",
@@ -2641,7 +2663,9 @@
       ],
       "licenses": [
         {
-          "expression": "(MIT)"
+          "license": {
+            "id": "MIT"
+          }
         }
       ],
       "purl": "pkg:apk/alpine/libsm@1.2.4-r4?arch=x86_64&distro=3.20.5",
@@ -2711,7 +2735,9 @@
       ],
       "licenses": [
         {
-          "expression": "(Apache-2.0)"
+          "license": {
+            "id": "Apache-2.0"
+          }
         }
       ],
       "purl": "pkg:apk/alpine/libssl3@3.3.2-r1?arch=x86_64&distro=3.20.5",
@@ -2760,7 +2786,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2025-09-30T20:58:10Z"
+          "value": "2026-01-27T16:30:14Z"
         }
       ]
     },
@@ -2851,7 +2877,9 @@
       ],
       "licenses": [
         {
-          "expression": "(BSD-3-Clause)"
+          "license": {
+            "id": "BSD-3-Clause"
+          }
         }
       ],
       "purl": "pkg:apk/alpine/libuuid@2.40.1-r1?arch=x86_64&distro=3.20.5",
@@ -2921,7 +2949,9 @@
       ],
       "licenses": [
         {
-          "expression": "(BSD-3-Clause)"
+          "license": {
+            "id": "BSD-3-Clause"
+          }
         }
       ],
       "purl": "pkg:apk/alpine/libwebp@1.3.2-r0?arch=x86_64&distro=3.20.5",
@@ -2991,7 +3021,9 @@
       ],
       "licenses": [
         {
-          "expression": "(X11)"
+          "license": {
+            "name": "X-11"
+          }
         }
       ],
       "purl": "pkg:apk/alpine/libx11@1.8.9-r1?arch=x86_64&distro=3.20.5",
@@ -3040,7 +3072,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2025-10-10T19:58:40Z"
+          "value": "2026-02-08T10:03:19Z"
         }
       ]
     },
@@ -3061,7 +3093,9 @@
       ],
       "licenses": [
         {
-          "expression": "(MIT)"
+          "license": {
+            "id": "MIT"
+          }
         }
       ],
       "purl": "pkg:apk/alpine/libxau@1.0.11-r4?arch=x86_64&distro=3.20.5",
@@ -3131,7 +3165,9 @@
       ],
       "licenses": [
         {
-          "expression": "(MIT)"
+          "license": {
+            "id": "MIT"
+          }
         }
       ],
       "purl": "pkg:apk/alpine/libxcb@1.16.1-r0?arch=x86_64&distro=3.20.5",
@@ -3341,7 +3377,9 @@
       ],
       "licenses": [
         {
-          "expression": "(MIT)"
+          "license": {
+            "id": "MIT"
+          }
         }
       ],
       "purl": "pkg:apk/alpine/libxml2@2.12.7-r0?arch=x86_64&distro=3.20.5",
@@ -3481,7 +3519,9 @@
       ],
       "licenses": [
         {
-          "expression": "(X11)"
+          "license": {
+            "name": "X-11"
+          }
         }
       ],
       "purl": "pkg:apk/alpine/libxslt@1.1.39-r1?arch=x86_64&distro=3.20.5",
@@ -3551,7 +3591,9 @@
       ],
       "licenses": [
         {
-          "expression": "(MIT)"
+          "license": {
+            "id": "MIT"
+          }
         }
       ],
       "purl": "pkg:apk/alpine/libxt@1.3.0-r5?arch=x86_64&distro=3.20.5",
@@ -3621,7 +3663,19 @@
       ],
       "licenses": [
         {
-          "expression": "(MIT AND BSD-2-Clause AND GPL-2.0-or-later)"
+          "license": {
+            "id": "MIT"
+          }
+        },
+        {
+          "license": {
+            "id": "BSD-2-Clause"
+          }
+        },
+        {
+          "license": {
+            "id": "GPL-2.0-or-later"
+          }
         }
       ],
       "purl": "pkg:apk/alpine/musl-utils@1.2.5-r0?arch=x86_64&distro=3.20.5",
@@ -3691,7 +3745,9 @@
       ],
       "licenses": [
         {
-          "expression": "(MIT)"
+          "license": {
+            "id": "MIT"
+          }
         }
       ],
       "purl": "pkg:apk/alpine/musl@1.2.5-r0?arch=x86_64&distro=3.20.5",
@@ -4200,7 +4256,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2025-12-07T12:57:34Z"
+          "value": "2026-02-17T08:57:09Z"
         }
       ]
     },
@@ -4433,7 +4489,9 @@
       ],
       "licenses": [
         {
-          "expression": "(libtiff)"
+          "license": {
+            "id": "libtiff"
+          }
         }
       ],
       "purl": "pkg:apk/alpine/tiff@4.6.0t-r0?arch=x86_64&distro=3.20.5",
@@ -4503,7 +4561,9 @@
       ],
       "licenses": [
         {
-          "expression": "(Public-Domain)"
+          "license": {
+            "name": "Public-Domain"
+          }
         }
       ],
       "purl": "pkg:apk/alpine/tzdata@2024b-r0?arch=x86_64&distro=3.20.5",
@@ -4573,7 +4633,24 @@
       ],
       "licenses": [
         {
-          "expression": "(GPL-2.0-or-later AND 0BSD AND Public-Domain AND LGPL-2.1-or-later)"
+          "license": {
+            "id": "GPL-2.0-or-later"
+          }
+        },
+        {
+          "license": {
+            "id": "0BSD"
+          }
+        },
+        {
+          "license": {
+            "name": "Public-Domain"
+          }
+        },
+        {
+          "license": {
+            "id": "LGPL-2.1-or-later"
+          }
         }
       ],
       "purl": "pkg:apk/alpine/xz-libs@5.6.2-r0?arch=x86_64&distro=3.20.5",
@@ -8905,10 +8982,6 @@
           "type": "distribution"
         },
         {
-          "url": "https://cs.opensource.google/go/x/sync",
-          "type": "vcs"
-        },
-        {
           "url": "https://pkg.go.dev/golang.org/x/sync#section-documentation",
           "type": "documentation"
         }
@@ -9123,10 +9196,6 @@
           "type": "distribution"
         },
         {
-          "url": "https://cs.opensource.google/go/x/time",
-          "type": "vcs"
-        },
-        {
           "url": "https://pkg.go.dev/golang.org/x/time#section-documentation",
           "type": "documentation"
         }
@@ -9184,6 +9253,10 @@
         {
           "url": "https://pkg.go.dev/google.golang.org/protobuf",
           "type": "distribution"
+        },
+        {
+          "url": "https://github.com/protocolbuffers/protobuf-go",
+          "type": "vcs"
         },
         {
           "url": "https://pkg.go.dev/google.golang.org/protobuf#section-documentation",
@@ -9407,10 +9480,6 @@
           "type": "distribution"
         },
         {
-          "url": "https://github.com/go-yaml/yaml",
-          "type": "vcs"
-        },
-        {
           "url": "https://pkg.go.dev/gopkg.in/yaml.v3#section-documentation",
           "type": "documentation"
         }
@@ -9525,10 +9594,6 @@
           "type": "distribution"
         },
         {
-          "url": "https://github.com/kubernetes/apimachinery",
-          "type": "vcs"
-        },
-        {
           "url": "https://pkg.go.dev/k8s.io/apimachinery#section-documentation",
           "type": "documentation"
         }
@@ -9584,10 +9649,6 @@
         {
           "url": "https://pkg.go.dev/k8s.io/cli-runtime",
           "type": "distribution"
-        },
-        {
-          "url": "https://github.com/kubernetes/cli-runtime",
-          "type": "vcs"
         },
         {
           "url": "https://pkg.go.dev/k8s.io/cli-runtime#section-documentation",
@@ -9652,6 +9713,10 @@
           "type": "distribution"
         },
         {
+          "url": "https://github.com/kubernetes/client-go",
+          "type": "vcs"
+        },
+        {
           "url": "https://pkg.go.dev/k8s.io/client-go#section-documentation",
           "type": "documentation"
         }
@@ -9679,7 +9744,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2019-03-13T23:57:26Z"
+          "value": "2016-10-17T18:15:22Z"
         },
         {
           "name": "ecosystems:topic",
@@ -9842,10 +9907,6 @@
           "type": "distribution"
         },
         {
-          "url": "https://github.com/kubernetes/klog",
-          "type": "vcs"
-        },
-        {
           "url": "https://pkg.go.dev/k8s.io/klog/v2#section-documentation",
           "type": "documentation"
         }
@@ -9935,7 +9996,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2024-01-17T19:48:47Z"
+          "value": "2026-01-27T14:27:50Z"
         }
       ]
     },
@@ -10184,7 +10245,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2024-01-02T15:49:12Z"
+          "value": "2026-02-10T18:56:00Z"
         },
         {
           "name": "ecosystems:topic",
@@ -10279,10 +10340,6 @@
         {
           "url": "https://pkg.go.dev/sigs.k8s.io/kustomize/api",
           "type": "distribution"
-        },
-        {
-          "url": "https://github.com/kubernetes-sigs/kustomize",
-          "type": "vcs"
         },
         {
           "url": "https://pkg.go.dev/sigs.k8s.io/kustomize/api#section-documentation",
@@ -10535,10 +10592,6 @@
           "type": "distribution"
         },
         {
-          "url": "https://github.com/kubernetes-sigs/yaml",
-          "type": "vcs"
-        },
-        {
           "url": "https://pkg.go.dev/sigs.k8s.io/yaml#section-documentation",
           "type": "documentation"
         }
@@ -10602,17 +10655,9 @@
     {
       "bom-ref": "pkg:npm/%40novnc/novnc@1.5.0",
       "type": "library",
-      "supplier": {
-        "name": "noVNC",
-        "url": [
-          "https://novnc.com"
-        ]
-      },
-      "author": "noVNC",
       "group": "@novnc",
       "name": "novnc",
       "version": "1.5.0",
-      "description": "An HTML5 VNC client",
       "hashes": [
         {
           "alg": "SHA-1",
@@ -10621,24 +10666,12 @@
       ],
       "licenses": [
         {
-          "expression": "(MPL-2.0)"
+          "license": {
+            "id": "MPL-2.0"
+          }
         }
       ],
       "purl": "pkg:npm/%40novnc/novnc@1.5.0",
-      "externalReferences": [
-        {
-          "url": "https://github.com/novnc/noVNC",
-          "type": "website"
-        },
-        {
-          "url": "https://www.npmjs.com/package/@novnc/novnc",
-          "type": "distribution"
-        },
-        {
-          "url": "https://github.com/novnc/noVNC",
-          "type": "vcs"
-        }
-      ],
       "properties": [
         {
           "name": "aquasecurity:trivy:FilePath",
@@ -10659,65 +10692,19 @@
         {
           "name": "aquasecurity:trivy:PkgType",
           "value": "node-pkg"
-        },
-        {
-          "name": "ecosystems:first_release_published_at",
-          "value": "2018-02-02T13:13:02Z"
-        },
-        {
-          "name": "ecosystems:latest_release_published_at",
-          "value": "2025-03-12T19:51:06Z"
-        },
-        {
-          "name": "ecosystems:topic",
-          "value": "arraybuffer"
-        },
-        {
-          "name": "ecosystems:topic",
-          "value": "html"
-        },
-        {
-          "name": "ecosystems:topic",
-          "value": "html-canvas"
-        },
-        {
-          "name": "ecosystems:topic",
-          "value": "html5"
-        },
-        {
-          "name": "ecosystems:topic",
-          "value": "javascript"
-        },
-        {
-          "name": "ecosystems:topic",
-          "value": "modern-browsers"
-        },
-        {
-          "name": "ecosystems:topic",
-          "value": "novnc"
-        },
-        {
-          "name": "ecosystems:topic",
-          "value": "vnc-client"
-        },
-        {
-          "name": "ecosystems:topic",
-          "value": "websockets"
-        },
-        {
-          "name": "ecosystems:topic",
-          "value": "websockify"
-        },
-        {
-          "name": "ecosystems:topic",
-          "value": "wss"
         }
       ]
     }
   ],
   "dependencies": [
     {
-      "ref": "4801916b-39d0-4eb4-9b85-5f96cf474160",
+      "ref": "22ec1fc1-45d2-43eb-a0d7-d8451d519be0",
+      "dependsOn": [
+        "pkg:golang/k8s.io/kubernetes"
+      ]
+    },
+    {
+      "ref": "471a1d58-112d-4f0e-9ca8-a76b297aa5a6",
       "dependsOn": [
         "pkg:apk/alpine/alpine-baselayout@3.6.5-r0?arch=x86_64&distro=3.20.5",
         "pkg:apk/alpine/alpine-keys@2.4-r1?arch=x86_64&distro=3.20.5",
@@ -10731,12 +10718,6 @@
         "pkg:apk/alpine/nginx-module-xslt@1.27.3-r1?arch=x86_64&distro=3.20.5",
         "pkg:apk/alpine/ssl_client@1.36.1-r29?arch=x86_64&distro=3.20.5",
         "pkg:apk/alpine/tzdata@2024b-r0?arch=x86_64&distro=3.20.5"
-      ]
-    },
-    {
-      "ref": "cbe72581-619c-48b9-8d92-1f04adf0011a",
-      "dependsOn": [
-        "pkg:golang/k8s.io/kubernetes"
       ]
     },
     {
@@ -11643,8 +11624,8 @@
     {
       "ref": "pkg:oci/kubevirt-manager@sha256%3A6bdb107e81b5eb7c06ca0eabdf3637868c96e8e211e8f08c675124a8357ab0c4?arch=amd64&repository_url=index.docker.io%2Fkubevirtmanager%2Fkubevirt-manager",
       "dependsOn": [
-        "4801916b-39d0-4eb4-9b85-5f96cf474160",
-        "cbe72581-619c-48b9-8d92-1f04adf0011a",
+        "22ec1fc1-45d2-43eb-a0d7-d8451d519be0",
+        "471a1d58-112d-4f0e-9ca8-a76b297aa5a6",
         "pkg:npm/%40novnc/novnc@1.5.0"
       ]
     }

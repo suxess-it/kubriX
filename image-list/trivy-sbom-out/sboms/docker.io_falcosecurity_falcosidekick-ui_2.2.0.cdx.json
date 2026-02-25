@@ -2,10 +2,10 @@
   "$schema": "http://cyclonedx.org/schema/bom-1.6.schema.json",
   "bomFormat": "CycloneDX",
   "specVersion": "1.6",
-  "serialNumber": "urn:uuid:971160b8-2321-4a5f-93b5-a94fd08fe4d2",
+  "serialNumber": "urn:uuid:8ffbe8c6-02bc-4b9e-b402-5d97b04da468",
   "version": 1,
   "metadata": {
-    "timestamp": "2026-02-13T09:28:53+00:00",
+    "timestamp": "2026-02-25T14:41:24+00:00",
     "tools": {
       "components": [
         {
@@ -102,22 +102,7 @@
   },
   "components": [
     {
-      "bom-ref": "a0496555-1353-4a77-82cf-0d9a3441aa22",
-      "type": "application",
-      "name": "app/falcosidekick-ui",
-      "properties": [
-        {
-          "name": "aquasecurity:trivy:Class",
-          "value": "lang-pkgs"
-        },
-        {
-          "name": "aquasecurity:trivy:Type",
-          "value": "gobinary"
-        }
-      ]
-    },
-    {
-      "bom-ref": "db81c765-6d65-4f61-accc-b67799458e78",
+      "bom-ref": "2d01ac89-dd8e-4d74-aa24-f3828ff5f0a2",
       "type": "operating-system",
       "name": "alpine",
       "version": "3.15.10",
@@ -129,6 +114,21 @@
         {
           "name": "aquasecurity:trivy:Type",
           "value": "alpine"
+        }
+      ]
+    },
+    {
+      "bom-ref": "949ee32a-44d7-430d-aca3-87d9b1ffc164",
+      "type": "application",
+      "name": "app/falcosidekick-ui",
+      "properties": [
+        {
+          "name": "aquasecurity:trivy:Class",
+          "value": "lang-pkgs"
+        },
+        {
+          "name": "aquasecurity:trivy:Type",
+          "value": "gobinary"
         }
       ]
     },
@@ -342,7 +342,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-01-11T09:55:01Z"
+          "value": "2026-01-29T10:40:34Z"
         }
       ]
     },
@@ -2277,7 +2277,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-01-01T10:57:24Z"
+          "value": "2026-02-22T11:50:50Z"
         },
         {
           "name": "ecosystems:owner_location",
@@ -2850,7 +2850,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2023-08-30T15:43:28Z"
+          "value": "2026-02-14T10:19:23Z"
         },
         {
           "name": "ecosystems:owner_location",
@@ -3431,10 +3431,6 @@
           "type": "distribution"
         },
         {
-          "url": "https://cs.opensource.google/go/x/time",
-          "type": "vcs"
-        },
-        {
           "url": "https://pkg.go.dev/golang.org/x/time#section-documentation",
           "type": "documentation"
         }
@@ -3544,10 +3540,6 @@
           "type": "distribution"
         },
         {
-          "url": "https://github.com/go-yaml/yaml",
-          "type": "vcs"
-        },
-        {
           "url": "https://pkg.go.dev/gopkg.in/yaml.v3#section-documentation",
           "type": "documentation"
         }
@@ -3607,7 +3599,18 @@
   ],
   "dependencies": [
     {
-      "ref": "a0496555-1353-4a77-82cf-0d9a3441aa22",
+      "ref": "2d01ac89-dd8e-4d74-aa24-f3828ff5f0a2",
+      "dependsOn": [
+        "pkg:apk/alpine/alpine-baselayout@3.2.0-r18?arch=x86_64&distro=3.15.10",
+        "pkg:apk/alpine/alpine-keys@2.4-r1?arch=x86_64&distro=3.15.10",
+        "pkg:apk/alpine/apk-tools@2.12.7-r3?arch=x86_64&distro=3.15.10",
+        "pkg:apk/alpine/ca-certificates@20230506-r0?arch=x86_64&distro=3.15.10",
+        "pkg:apk/alpine/libc-utils@0.7.2-r3?arch=x86_64&distro=3.15.10",
+        "pkg:apk/alpine/ssl_client@1.34.1-r7?arch=x86_64&distro=3.15.10"
+      ]
+    },
+    {
+      "ref": "949ee32a-44d7-430d-aca3-87d9b1ffc164",
       "dependsOn": [
         "pkg:golang/github.com/falcosecurity/falcosidekick-ui",
         "pkg:golang/github.com/gabriel-vasile/mimetype@v1.4.2",
@@ -3642,17 +3645,6 @@
         "pkg:golang/golang.org/x/tools@v0.12.0",
         "pkg:golang/gopkg.in/yaml.v3@v3.0.1",
         "pkg:golang/stdlib@v1.20.8"
-      ]
-    },
-    {
-      "ref": "db81c765-6d65-4f61-accc-b67799458e78",
-      "dependsOn": [
-        "pkg:apk/alpine/alpine-baselayout@3.2.0-r18?arch=x86_64&distro=3.15.10",
-        "pkg:apk/alpine/alpine-keys@2.4-r1?arch=x86_64&distro=3.15.10",
-        "pkg:apk/alpine/apk-tools@2.12.7-r3?arch=x86_64&distro=3.15.10",
-        "pkg:apk/alpine/ca-certificates@20230506-r0?arch=x86_64&distro=3.15.10",
-        "pkg:apk/alpine/libc-utils@0.7.2-r3?arch=x86_64&distro=3.15.10",
-        "pkg:apk/alpine/ssl_client@1.34.1-r7?arch=x86_64&distro=3.15.10"
       ]
     },
     {
@@ -3887,8 +3879,8 @@
     {
       "ref": "pkg:oci/falcosidekick-ui@sha256%3A0faadedfdff7e6af8be0d7d90efb0638cedc337e4e5c3e57f527da2f6722c851?arch=amd64&repository_url=index.docker.io%2Ffalcosecurity%2Ffalcosidekick-ui",
       "dependsOn": [
-        "a0496555-1353-4a77-82cf-0d9a3441aa22",
-        "db81c765-6d65-4f61-accc-b67799458e78"
+        "2d01ac89-dd8e-4d74-aa24-f3828ff5f0a2",
+        "949ee32a-44d7-430d-aca3-87d9b1ffc164"
       ]
     }
   ],

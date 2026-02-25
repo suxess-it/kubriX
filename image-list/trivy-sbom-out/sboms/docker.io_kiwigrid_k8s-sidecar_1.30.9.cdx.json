@@ -2,10 +2,10 @@
   "$schema": "http://cyclonedx.org/schema/bom-1.6.schema.json",
   "bomFormat": "CycloneDX",
   "specVersion": "1.6",
-  "serialNumber": "urn:uuid:abd76527-ae7f-4e29-aead-e805dd217941",
+  "serialNumber": "urn:uuid:dd327d5f-9d5c-4c4d-86e6-e13652fed598",
   "version": 1,
   "metadata": {
-    "timestamp": "2026-02-13T09:29:17+00:00",
+    "timestamp": "2026-02-25T14:42:06+00:00",
     "tools": {
       "components": [
         {
@@ -90,7 +90,7 @@
   },
   "components": [
     {
-      "bom-ref": "57c2c359-5ddb-4874-972c-27d30131ae38",
+      "bom-ref": "4f10dae0-5209-405f-9762-c58e2dff3336",
       "type": "library",
       "supplier": {
         "name": "Jaye Heffernan"
@@ -159,7 +159,109 @@
       ]
     },
     {
-      "bom-ref": "72f08816-e6d4-4b8d-baf4-75776db84a66",
+      "bom-ref": "4f4d13d8-9b2b-4afd-b010-e0750ebfa99b",
+      "type": "library",
+      "supplier": {
+        "name": "Python Packaging Authority",
+        "url": [
+          "https://www.pypa.io"
+        ]
+      },
+      "author": "Python Packaging Authority",
+      "name": "pip",
+      "version": "25.2",
+      "description": "The PyPA recommended tool for installing Python packages.",
+      "hashes": [
+        {
+          "alg": "SHA-1",
+          "content": "93027e6485f574b6e60d25a013c82425b49307b7"
+        }
+      ],
+      "licenses": [
+        {
+          "expression": "(MIT)"
+        }
+      ],
+      "purl": "pkg:pypi/pip@25.2",
+      "externalReferences": [
+        {
+          "url": "https://pip.pypa.io/",
+          "type": "website"
+        },
+        {
+          "url": "https://pypi.org/project/pip/",
+          "type": "distribution"
+        },
+        {
+          "url": "https://github.com/pypa/pip",
+          "type": "vcs"
+        },
+        {
+          "url": "https://pip.pypa.io",
+          "type": "documentation"
+        }
+      ],
+      "properties": [
+        {
+          "name": "aquasecurity:trivy:FilePath",
+          "value": "app/.venv/lib/python3.13/site-packages/pip-25.2.dist-info/METADATA"
+        },
+        {
+          "name": "aquasecurity:trivy:LayerDiffID",
+          "value": "sha256:ad705df0c503461ff1991892c91f78b1a02ed81f2e20e3d3a8142609282b0031"
+        },
+        {
+          "name": "aquasecurity:trivy:LayerDigest",
+          "value": "sha256:0751285fa662587f87a04647d508e5ab55871cfb14b5407739dbd159bcd2e4be"
+        },
+        {
+          "name": "aquasecurity:trivy:PkgType",
+          "value": "python-pkg"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2008-10-28T17:22:10Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2026-02-05T02:20:16Z"
+        },
+        {
+          "name": "ecosystems:owner_location",
+          "value": "United States of America"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "packaging"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "pip"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "python"
+        }
+      ]
+    },
+    {
+      "bom-ref": "b5228d32-25d0-4364-b538-a18cfca20957",
+      "type": "operating-system",
+      "name": "alpine",
+      "version": "3.22.1",
+      "properties": [
+        {
+          "name": "aquasecurity:trivy:Class",
+          "value": "os-pkgs"
+        },
+        {
+          "name": "aquasecurity:trivy:Type",
+          "value": "alpine"
+        }
+      ]
+    },
+    {
+      "bom-ref": "d10e3cf8-47fd-4214-b9ce-15921237adaf",
       "type": "library",
       "supplier": {
         "name": "Jaye Heffernan"
@@ -228,7 +330,7 @@
       ]
     },
     {
-      "bom-ref": "741c14eb-6fd4-486a-8863-34e741be3945",
+      "bom-ref": "f5983dbb-9ec8-4564-b518-aab92ec4b8d0",
       "type": "library",
       "supplier": {
         "name": "Python Packaging Authority",
@@ -282,108 +384,6 @@
         {
           "name": "aquasecurity:trivy:LayerDigest",
           "value": "sha256:c57d7f5a20901fbbe202cddd0e7efaf9951799e94ad93700ff3e6459df1339fc"
-        },
-        {
-          "name": "aquasecurity:trivy:PkgType",
-          "value": "python-pkg"
-        },
-        {
-          "name": "ecosystems:first_release_published_at",
-          "value": "2008-10-28T17:22:10Z"
-        },
-        {
-          "name": "ecosystems:latest_release_published_at",
-          "value": "2026-02-05T02:20:16Z"
-        },
-        {
-          "name": "ecosystems:owner_location",
-          "value": "United States of America"
-        },
-        {
-          "name": "ecosystems:topic",
-          "value": "packaging"
-        },
-        {
-          "name": "ecosystems:topic",
-          "value": "pip"
-        },
-        {
-          "name": "ecosystems:topic",
-          "value": "python"
-        }
-      ]
-    },
-    {
-      "bom-ref": "9be3ed44-c167-4aba-a72c-05174fbf9268",
-      "type": "operating-system",
-      "name": "alpine",
-      "version": "3.22.1",
-      "properties": [
-        {
-          "name": "aquasecurity:trivy:Class",
-          "value": "os-pkgs"
-        },
-        {
-          "name": "aquasecurity:trivy:Type",
-          "value": "alpine"
-        }
-      ]
-    },
-    {
-      "bom-ref": "b25e3ea0-c36f-4515-8b7b-fa91684485d8",
-      "type": "library",
-      "supplier": {
-        "name": "Python Packaging Authority",
-        "url": [
-          "https://www.pypa.io"
-        ]
-      },
-      "author": "Python Packaging Authority",
-      "name": "pip",
-      "version": "25.2",
-      "description": "The PyPA recommended tool for installing Python packages.",
-      "hashes": [
-        {
-          "alg": "SHA-1",
-          "content": "93027e6485f574b6e60d25a013c82425b49307b7"
-        }
-      ],
-      "licenses": [
-        {
-          "expression": "(MIT)"
-        }
-      ],
-      "purl": "pkg:pypi/pip@25.2",
-      "externalReferences": [
-        {
-          "url": "https://pip.pypa.io/",
-          "type": "website"
-        },
-        {
-          "url": "https://pypi.org/project/pip/",
-          "type": "distribution"
-        },
-        {
-          "url": "https://github.com/pypa/pip",
-          "type": "vcs"
-        },
-        {
-          "url": "https://pip.pypa.io",
-          "type": "documentation"
-        }
-      ],
-      "properties": [
-        {
-          "name": "aquasecurity:trivy:FilePath",
-          "value": "app/.venv/lib/python3.13/site-packages/pip-25.2.dist-info/METADATA"
-        },
-        {
-          "name": "aquasecurity:trivy:LayerDiffID",
-          "value": "sha256:ad705df0c503461ff1991892c91f78b1a02ed81f2e20e3d3a8142609282b0031"
-        },
-        {
-          "name": "aquasecurity:trivy:LayerDigest",
-          "value": "sha256:0751285fa662587f87a04647d508e5ab55871cfb14b5407739dbd159bcd2e4be"
         },
         {
           "name": "aquasecurity:trivy:PkgType",
@@ -724,7 +724,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2025-12-24T11:03:53Z"
+          "value": "2026-01-27T22:01:27Z"
         }
       ]
     },
@@ -794,7 +794,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-01-11T09:55:01Z"
+          "value": "2026-01-29T10:40:34Z"
         }
       ]
     },
@@ -1634,7 +1634,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2025-09-30T20:58:10Z"
+          "value": "2026-01-27T16:30:14Z"
         }
       ]
     },
@@ -2782,7 +2782,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-01-04T02:42:40Z"
+          "value": "2026-02-25T02:54:15Z"
         },
         {
           "name": "ecosystems:owner_location",
@@ -4036,7 +4036,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-02-12T22:21:52Z"
+          "value": "2026-02-16T03:56:08Z"
         },
         {
           "name": "ecosystems:topic",
@@ -5007,7 +5007,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2025-06-18T09:56:05Z"
+          "value": "2026-02-19T16:09:01Z"
         },
         {
           "name": "ecosystems:owner_location",
@@ -5401,19 +5401,15 @@
   ],
   "dependencies": [
     {
-      "ref": "57c2c359-5ddb-4874-972c-27d30131ae38",
+      "ref": "4f10dae0-5209-405f-9762-c58e2dff3336",
       "dependsOn": []
     },
     {
-      "ref": "72f08816-e6d4-4b8d-baf4-75776db84a66",
+      "ref": "4f4d13d8-9b2b-4afd-b010-e0750ebfa99b",
       "dependsOn": []
     },
     {
-      "ref": "741c14eb-6fd4-486a-8863-34e741be3945",
-      "dependsOn": []
-    },
-    {
-      "ref": "9be3ed44-c167-4aba-a72c-05174fbf9268",
+      "ref": "b5228d32-25d0-4364-b538-a18cfca20957",
       "dependsOn": [
         "pkg:apk/alpine/.python-rundeps@20250812.224420?arch=noarch&distro=3.22.1",
         "pkg:apk/alpine/alpine-baselayout@3.7.0-r0?arch=x86_64&distro=3.22.1",
@@ -5426,7 +5422,11 @@
       ]
     },
     {
-      "ref": "b25e3ea0-c36f-4515-8b7b-fa91684485d8",
+      "ref": "d10e3cf8-47fd-4214-b9ce-15921237adaf",
+      "dependsOn": []
+    },
+    {
+      "ref": "f5983dbb-9ec8-4564-b518-aab92ec4b8d0",
       "dependsOn": []
     },
     {
@@ -5625,11 +5625,11 @@
     {
       "ref": "pkg:oci/k8s-sidecar@sha256%3A8c06e1ba643a4625de14b2db65c356f5db6b1482a25fce4754380a2936207338?arch=amd64&repository_url=index.docker.io%2Fkiwigrid%2Fk8s-sidecar",
       "dependsOn": [
-        "57c2c359-5ddb-4874-972c-27d30131ae38",
-        "72f08816-e6d4-4b8d-baf4-75776db84a66",
-        "741c14eb-6fd4-486a-8863-34e741be3945",
-        "9be3ed44-c167-4aba-a72c-05174fbf9268",
-        "b25e3ea0-c36f-4515-8b7b-fa91684485d8",
+        "4f10dae0-5209-405f-9762-c58e2dff3336",
+        "4f4d13d8-9b2b-4afd-b010-e0750ebfa99b",
+        "b5228d32-25d0-4364-b538-a18cfca20957",
+        "d10e3cf8-47fd-4214-b9ce-15921237adaf",
+        "f5983dbb-9ec8-4564-b518-aab92ec4b8d0",
         "pkg:pypi/argparse@1.4.0",
         "pkg:pypi/autocommand@2.2.2",
         "pkg:pypi/backports.tarfile@1.2.0",

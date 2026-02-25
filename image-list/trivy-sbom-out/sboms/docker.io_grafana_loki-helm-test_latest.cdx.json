@@ -2,10 +2,10 @@
   "$schema": "http://cyclonedx.org/schema/bom-1.6.schema.json",
   "bomFormat": "CycloneDX",
   "specVersion": "1.6",
-  "serialNumber": "urn:uuid:b2c566dd-314d-479a-b178-b654db784932",
+  "serialNumber": "urn:uuid:2c5ae3b7-b723-4d23-a8bf-fe033ef6e2b3",
   "version": 1,
   "metadata": {
-    "timestamp": "2026-02-13T09:29:10+00:00",
+    "timestamp": "2026-02-25T14:41:54+00:00",
     "tools": {
       "components": [
         {
@@ -126,7 +126,7 @@
   },
   "components": [
     {
-      "bom-ref": "93a8fa6b-9d73-4b9a-bc13-434452b4aa2f",
+      "bom-ref": "00e62540-ebcf-45d0-89db-79374b47c700",
       "type": "operating-system",
       "name": "debian",
       "version": "12.6",
@@ -142,7 +142,7 @@
       ]
     },
     {
-      "bom-ref": "ae8a0745-2c42-44db-8938-aa00a782fb25",
+      "bom-ref": "d4b5f31e-0337-4013-b073-e18f68c99635",
       "type": "application",
       "name": "usr/bin/helm-test",
       "properties": [
@@ -369,7 +369,7 @@
   ],
   "dependencies": [
     {
-      "ref": "93a8fa6b-9d73-4b9a-bc13-434452b4aa2f",
+      "ref": "00e62540-ebcf-45d0-89db-79374b47c700",
       "dependsOn": [
         "pkg:deb/debian/base-files@12.4%2Bdeb12u6?arch=amd64&distro=debian-12.6",
         "pkg:deb/debian/libc6@2.36-9%2Bdeb12u7?arch=amd64&distro=debian-12.6",
@@ -378,7 +378,7 @@
       ]
     },
     {
-      "ref": "ae8a0745-2c42-44db-8938-aa00a782fb25",
+      "ref": "d4b5f31e-0337-4013-b073-e18f68c99635",
       "dependsOn": [
         "pkg:golang/stdlib@v1.22.5"
       ]
@@ -406,8 +406,8 @@
     {
       "ref": "pkg:oci/loki-helm-test@sha256%3A3eaef8e537a69fc1e8edc382281752c4ebb84b010dd7103adf805582a9279631?arch=amd64&repository_url=index.docker.io%2Fgrafana%2Floki-helm-test",
       "dependsOn": [
-        "93a8fa6b-9d73-4b9a-bc13-434452b4aa2f",
-        "ae8a0745-2c42-44db-8938-aa00a782fb25"
+        "00e62540-ebcf-45d0-89db-79374b47c700",
+        "d4b5f31e-0337-4013-b073-e18f68c99635"
       ]
     }
   ],

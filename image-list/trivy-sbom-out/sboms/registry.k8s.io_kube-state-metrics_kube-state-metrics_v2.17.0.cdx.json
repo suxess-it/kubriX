@@ -2,10 +2,10 @@
   "$schema": "http://cyclonedx.org/schema/bom-1.6.schema.json",
   "bomFormat": "CycloneDX",
   "specVersion": "1.6",
-  "serialNumber": "urn:uuid:223bed7e-df6d-4d25-b7a1-c3a4293835d5",
+  "serialNumber": "urn:uuid:596cd2d2-fff8-4a9a-a530-6a49bb7e8aab",
   "version": 1,
   "metadata": {
-    "timestamp": "2026-02-13T09:34:02+00:00",
+    "timestamp": "2026-02-25T14:47:41+00:00",
     "tools": {
       "components": [
         {
@@ -106,22 +106,7 @@
   },
   "components": [
     {
-      "bom-ref": "0acaadb2-89b2-4321-bbe0-e46ae4050b2e",
-      "type": "application",
-      "name": "kube-state-metrics",
-      "properties": [
-        {
-          "name": "aquasecurity:trivy:Class",
-          "value": "lang-pkgs"
-        },
-        {
-          "name": "aquasecurity:trivy:Type",
-          "value": "gobinary"
-        }
-      ]
-    },
-    {
-      "bom-ref": "958c935b-9718-42c2-bb10-bc6632eeef76",
+      "bom-ref": "8ee15040-e9e2-4752-b41f-6399fe3d277f",
       "type": "operating-system",
       "name": "debian",
       "version": "12.11",
@@ -133,6 +118,21 @@
         {
           "name": "aquasecurity:trivy:Type",
           "value": "debian"
+        }
+      ]
+    },
+    {
+      "bom-ref": "d1dcc3a1-7d4b-43da-9e94-41e2bf839460",
+      "type": "application",
+      "name": "kube-state-metrics",
+      "properties": [
+        {
+          "name": "aquasecurity:trivy:Class",
+          "value": "lang-pkgs"
+        },
+        {
+          "name": "aquasecurity:trivy:Type",
+          "value": "gobinary"
         }
       ]
     },
@@ -324,11 +324,6 @@
       "author": "Google",
       "name": "cel.dev/expr",
       "version": "v0.19.1",
-      "licenses": [
-        {
-          "expression": "(Apache-2.0)"
-        }
-      ],
       "purl": "pkg:golang/cel.dev/expr@v0.19.1",
       "externalReferences": [
         {
@@ -338,6 +333,10 @@
         {
           "url": "https://pkg.go.dev/cel.dev/expr",
           "type": "distribution"
+        },
+        {
+          "url": "https://github.com/google/cel-spec",
+          "type": "vcs"
         },
         {
           "url": "https://pkg.go.dev/cel.dev/expr#section-documentation",
@@ -368,6 +367,10 @@
         {
           "name": "ecosystems:latest_release_published_at",
           "value": "2025-11-08T22:07:56Z"
+        },
+        {
+          "name": "ecosystems:owner_location",
+          "value": "United States of America"
         }
       ]
     },
@@ -864,40 +867,9 @@
     {
       "bom-ref": "pkg:golang/github.com/dgryski/go-jump@v0.0.0-20211018200510-ba001c3ffce0",
       "type": "library",
-      "supplier": {
-        "name": "Damian Gryski",
-        "url": [
-          "https://buymeacoffee.com/dgryski"
-        ]
-      },
-      "author": "Damian Gryski",
       "name": "github.com/dgryski/go-jump",
       "version": "v0.0.0-20211018200510-ba001c3ffce0",
-      "description": "Package jump implements Google's Jump Consistent Hash\n\nFrom the paper \"A Fast, Minimal Memory, Consistent Hash Algorithm\" by John Lamping, Eric Veach (2014).\n\nhttp://arxiv.org/abs/1406.2294",
-      "licenses": [
-        {
-          "expression": "(MIT)"
-        }
-      ],
       "purl": "pkg:golang/github.com/dgryski/go-jump@v0.0.0-20211018200510-ba001c3ffce0",
-      "externalReferences": [
-        {
-          "url": "https://github.com/dgryski/go-jump",
-          "type": "website"
-        },
-        {
-          "url": "https://pkg.go.dev/github.com/dgryski/go-jump",
-          "type": "distribution"
-        },
-        {
-          "url": "https://github.com/dgryski/go-jump",
-          "type": "vcs"
-        },
-        {
-          "url": "https://pkg.go.dev/github.com/dgryski/go-jump#section-documentation",
-          "type": "documentation"
-        }
-      ],
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
@@ -914,18 +886,6 @@
         {
           "name": "aquasecurity:trivy:PkgType",
           "value": "gobinary"
-        },
-        {
-          "name": "ecosystems:first_release_published_at",
-          "value": "2017-04-09T06:50:14Z"
-        },
-        {
-          "name": "ecosystems:latest_release_published_at",
-          "value": "2021-10-18T20:05:10Z"
-        },
-        {
-          "name": "ecosystems:owner_location",
-          "value": "Vancouver, Canada"
         }
       ]
     },
@@ -1673,11 +1633,6 @@
       "name": "github.com/go-viper/mapstructure/v2",
       "version": "v2.3.0",
       "description": "Package mapstructure exposes functionality to convert one arbitrary\nGo type into another, typically to convert a map[string]any\ninto a native Go structure.\n\nThe Go structure can be arbitrarily complex, containing slices,\nother structs, etc. and the decoder will properly decode nested\nmaps and so on into the proper structures in the native Go struct.\nSee the examples to see what the decoder is capable of.\n\nThe simplest function to start with is Decode.\n\nWhen decoding to a struct, mapstructure will use the field name by\ndefault to perform the mapping. For example, if a struct has a field\n\"Username\" then mapstructure will look for a key in the source value\nof \"username\" (case insensitive).\n\nYou can change the behavior of mapstructure by using struct tags.\nThe default struct tag that mapstructure looks for is \"mapstructure\"\nbut you can customize it using DecoderConfig.\n\nTo rename the key that mapstructure looks for, use the \"mapstructure\"\ntag and set a value directly. For example, to change the \"username\" example\nabove to \"user\":\n\nEmbedded structs are treated as if they're another field with that name.\nBy default, the two structs below are equivalent when decoding with\nmapstructure:\n\nThis would require an input that looks like below:\n\nIf your \"person\" value is NOT nested, then you can append \",squash\" to\nyour tag value and mapstructure will treat it as if the embedded struct\nwere part of the struct directly. Example:\n\nNow the following input would be accepted:\n\nWhen decoding from a struct to a map, the squash tag squashes the struct\nfields into a single map. Using the example structs from above:\n\nWill be decoded into a map:\n\nDecoderConfig has a field that changes the behavior of mapstructure\nto always squash embedded structs.\n\nIf there are any unmapped keys in the source value, mapstructure by\ndefault will silently ignore them. You can error by setting ErrorUnused\nin DecoderConfig. If you're using Metadata you can also maintain a slice\nof the unused keys.\n\nYou can also use the \",remain\" suffix on your tag to collect all unused\nvalues in a map. The field with this tag MUST be a map type and should\nprobably be a \"map[string]any\" or \"map[any]any\".\nSee example below:\n\nGiven the input below, Other would be populated with the other\nvalues that weren't used (everything but \"name\"):\n\nWhen decoding from a struct to any other value, you may use the\n\",omitempty\" suffix on your tag to omit that value if it equates to\nthe zero value, or a zero-length element. The zero value of all types is\nspecified in the Go specification.\n\nFor example, the zero type of a numeric type is zero (\"0\"). If the struct\nfield value is zero and a numeric type, the field is empty, and it won't\nbe encoded into the destination type. And likewise for the URLs field, if the\nslice is nil or empty, it won't be encoded into the destination type.\n\nWhen decoding from a struct to any other value, you may use the\n\",omitzero\" suffix on your tag to omit that value if it equates to the zero\nvalue. The zero value of all types is specified in the Go specification.\n\nFor example, the zero type of a numeric type is zero (\"0\"). If the struct\nfield value is zero and a numeric type, the field is empty, and it won't\nbe encoded into the destination type. And likewise for the URLs field, if the\nslice is nil, it won't be encoded into the destination type.\n\nNote that if the field is a slice, and it is empty but not nil, it will\nstill be encoded into the destination type.\n\nSince unexported (private) struct fields cannot be set outside the package\nwhere they are defined, the decoder will simply skip them.\n\nFor this output type definition:\n\nUsing this map as input:\n\nThe following struct will be decoded:\n\nTypes can implement the Unmarshaler interface to control their own decoding. The interface\nbehaves similarly to how UnmarshalJSON does in the standard library. It can be used as an\nalternative or companion to a DecodeHook.\n\nSee the Unmarshaler interface documentation for more details.\n\nmapstructure is highly configurable. See the DecoderConfig struct\nfor other features and options that are supported.",
-      "licenses": [
-        {
-          "expression": "(MIT)"
-        }
-      ],
       "purl": "pkg:golang/github.com/go-viper/mapstructure/v2@v2.3.0",
       "externalReferences": [
         {
@@ -1720,47 +1675,16 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2025-07-15T08:59:08Z"
+          "value": "2026-01-12T17:24:26Z"
         }
       ]
     },
     {
       "bom-ref": "pkg:golang/github.com/gobuffalo/flect@v1.0.3",
       "type": "library",
-      "supplier": {
-        "name": "Buffalo - The Go Web Eco-System",
-        "url": [
-          "https://gobuffalo.io"
-        ]
-      },
-      "author": "Buffalo - The Go Web Eco-System",
       "name": "github.com/gobuffalo/flect",
       "version": "v1.0.3",
-      "description": "Package flect is a new inflection engine to replace [https://github.com/markbates/inflect](https://github.com/markbates/inflect) designed to be more modular, more readable, and easier to fix issues on than the original.",
-      "licenses": [
-        {
-          "expression": "(MIT)"
-        }
-      ],
       "purl": "pkg:golang/github.com/gobuffalo/flect@v1.0.3",
-      "externalReferences": [
-        {
-          "url": "https://github.com/gobuffalo/flect",
-          "type": "website"
-        },
-        {
-          "url": "https://pkg.go.dev/github.com/gobuffalo/flect",
-          "type": "distribution"
-        },
-        {
-          "url": "https://github.com/gobuffalo/flect",
-          "type": "vcs"
-        },
-        {
-          "url": "https://pkg.go.dev/github.com/gobuffalo/flect#section-documentation",
-          "type": "documentation"
-        }
-      ],
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
@@ -1777,30 +1701,6 @@
         {
           "name": "aquasecurity:trivy:PkgType",
           "value": "gobinary"
-        },
-        {
-          "name": "ecosystems:first_release_published_at",
-          "value": "2019-02-12T16:22:13Z"
-        },
-        {
-          "name": "ecosystems:latest_release_published_at",
-          "value": "2024-09-21T13:43:45Z"
-        },
-        {
-          "name": "ecosystems:topic",
-          "value": "go"
-        },
-        {
-          "name": "ecosystems:topic",
-          "value": "gobuffalo"
-        },
-        {
-          "name": "ecosystems:topic",
-          "value": "golang"
-        },
-        {
-          "name": "ecosystems:topic",
-          "value": "inflection"
         }
       ]
     },
@@ -1896,11 +1796,6 @@
       "author": "Google",
       "name": "github.com/google/cel-go",
       "version": "v0.23.2",
-      "licenses": [
-        {
-          "expression": "(Apache-2.0 OR BSD-3-Clause)"
-        }
-      ],
       "purl": "pkg:golang/github.com/google/cel-go@v0.23.2",
       "externalReferences": [
         {
@@ -2213,11 +2108,6 @@
       "author": "gRPC Ecosystem",
       "name": "github.com/grpc-ecosystem/grpc-gateway/v2",
       "version": "v2.24.0",
-      "licenses": [
-        {
-          "expression": "(BSD-3-Clause)"
-        }
-      ],
       "purl": "pkg:golang/github.com/grpc-ecosystem/grpc-gateway/v2@v2.24.0",
       "externalReferences": [
         {
@@ -2260,7 +2150,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-02-10T16:34:47Z"
+          "value": "2026-02-17T16:59:59Z"
         },
         {
           "name": "ecosystems:topic",
@@ -4449,11 +4339,6 @@
       "name": "github.com/stoewer/go-strcase",
       "version": "v1.3.0",
       "description": "Package strcase converts between different kinds of naming formats such as camel case\n(CamelCase), snake case (snake_case) or kebab case (kebab-case). The package is designed\nto work only with strings consisting of standard ASCII letters. Unicode is currently not\nsupported.",
-      "licenses": [
-        {
-          "expression": "(MIT)"
-        }
-      ],
       "purl": "pkg:golang/github.com/stoewer/go-strcase@v1.3.0",
       "externalReferences": [
         {
@@ -4865,11 +4750,6 @@
       "name": "go.opentelemetry.io/otel/exporters/otlp/otlptrace/otlptracegrpc",
       "version": "v1.33.0",
       "description": "Package otlptracegrpc provides an OTLP span exporter using gRPC.\nBy default the telemetry is sent to https://localhost:4317.\n\nExporter should be created using New.\n\nThe environment variables described below can be used for configuration.\n\nOTEL_EXPORTER_OTLP_ENDPOINT, OTEL_EXPORTER_OTLP_TRACES_ENDPOINT (default: \"https://localhost:4317\") -\ntarget to which the exporter sends telemetry.\nThe target syntax is defined in https://github.com/grpc/grpc/blob/master/doc/naming.md.\nThe value must contain a scheme (\"http\" or \"https\") and host.\nThe value may additionally contain a port, and a path.\nThe value should not contain a query string or fragment.\nOTEL_EXPORTER_OTLP_TRACES_ENDPOINT takes precedence over OTEL_EXPORTER_OTLP_ENDPOINT.\nThe configuration can be overridden by WithEndpoint, WithEndpointURL, WithInsecure, and WithGRPCConn options.\n\nOTEL_EXPORTER_OTLP_INSECURE, OTEL_EXPORTER_OTLP_TRACES_INSECURE (default: \"false\") -\nsetting \"true\" disables client transport security for the exporter's gRPC connection.\nYou can use this only when an endpoint is provided without the http or https scheme.\nOTEL_EXPORTER_OTLP_ENDPOINT, OTEL_EXPORTER_OTLP_TRACES_ENDPOINT setting overrides\nthe scheme defined via OTEL_EXPORTER_OTLP_ENDPOINT, OTEL_EXPORTER_OTLP_TRACES_ENDPOINT.\nOTEL_EXPORTER_OTLP_TRACES_INSECURE takes precedence over OTEL_EXPORTER_OTLP_INSECURE.\nThe configuration can be overridden by WithInsecure, WithGRPCConn options.\n\nOTEL_EXPORTER_OTLP_HEADERS, OTEL_EXPORTER_OTLP_TRACES_HEADERS (default: none) -\nkey-value pairs used as gRPC metadata associated with gRPC requests.\nThe value is expected to be represented in a format matching the W3C Baggage HTTP Header Content Format,\nexcept that additional semi-colon delimited metadata is not supported.\nExample value: \"key1=value1,key2=value2\".\nOTEL_EXPORTER_OTLP_TRACES_HEADERS takes precedence over OTEL_EXPORTER_OTLP_HEADERS.\nThe configuration can be overridden by WithHeaders option.\n\nOTEL_EXPORTER_OTLP_TIMEOUT, OTEL_EXPORTER_OTLP_TRACES_TIMEOUT (default: \"10000\") -\nmaximum time in milliseconds the OTLP exporter waits for each batch export.\nOTEL_EXPORTER_OTLP_TRACES_TIMEOUT takes precedence over OTEL_EXPORTER_OTLP_TIMEOUT.\nThe configuration can be overridden by WithTimeout option.\n\nOTEL_EXPORTER_OTLP_COMPRESSION, OTEL_EXPORTER_OTLP_TRACES_COMPRESSION (default: none) -\nthe gRPC compressor the exporter uses.\nSupported value: \"gzip\".\nOTEL_EXPORTER_OTLP_TRACES_COMPRESSION takes precedence over OTEL_EXPORTER_OTLP_COMPRESSION.\nThe configuration can be overridden by WithCompressor, WithGRPCConn options.\n\nOTEL_EXPORTER_OTLP_CERTIFICATE, OTEL_EXPORTER_OTLP_TRACES_CERTIFICATE (default: none) -\nthe filepath to the trusted certificate to use when verifying a server's TLS credentials.\nOTEL_EXPORTER_OTLP_TRACES_CERTIFICATE takes precedence over OTEL_EXPORTER_OTLP_CERTIFICATE.\nThe configuration can be overridden by WithTLSCredentials, WithGRPCConn options.\n\nOTEL_EXPORTER_OTLP_CLIENT_CERTIFICATE, OTEL_EXPORTER_OTLP_TRACES_CLIENT_CERTIFICATE (default: none) -\nthe filepath to the client certificate/chain trust for client's private key to use in mTLS communication in PEM format.\nOTEL_EXPORTER_OTLP_TRACES_CLIENT_CERTIFICATE takes precedence over OTEL_EXPORTER_OTLP_CLIENT_CERTIFICATE.\nThe configuration can be overridden by WithTLSCredentials, WithGRPCConn options.\n\nOTEL_EXPORTER_OTLP_CLIENT_KEY, OTEL_EXPORTER_OTLP_TRACES_CLIENT_KEY (default: none) -\nthe filepath to the client's private key to use in mTLS communication in PEM format.\nOTEL_EXPORTER_OTLP_TRACES_CLIENT_KEY takes precedence over OTEL_EXPORTER_OTLP_CLIENT_KEY.\nThe configuration can be overridden by WithTLSCredentials, WithGRPCConn option.",
-      "licenses": [
-        {
-          "expression": "(Apache-2.0 OR BSD-3-Clause)"
-        }
-      ],
       "purl": "pkg:golang/go.opentelemetry.io/otel/exporters/otlp/otlptrace/otlptracegrpc@v1.33.0",
       "externalReferences": [
         {
@@ -4879,10 +4759,6 @@
         {
           "url": "https://pkg.go.dev/go.opentelemetry.io/otel/exporters/otlp/otlptrace/otlptracegrpc",
           "type": "distribution"
-        },
-        {
-          "url": "https://github.com/open-telemetry/opentelemetry-go",
-          "type": "vcs"
         },
         {
           "url": "https://pkg.go.dev/go.opentelemetry.io/otel/exporters/otlp/otlptrace/otlptracegrpc#section-documentation",
@@ -4945,11 +4821,6 @@
       "name": "go.opentelemetry.io/otel/exporters/otlp/otlptrace",
       "version": "v1.33.0",
       "description": "Package otlptrace contains abstractions for OTLP span exporters.\nSee the official OTLP span exporter implementations:",
-      "licenses": [
-        {
-          "expression": "(Apache-2.0 OR BSD-3-Clause)"
-        }
-      ],
       "purl": "pkg:golang/go.opentelemetry.io/otel/exporters/otlp/otlptrace@v1.33.0",
       "externalReferences": [
         {
@@ -4959,10 +4830,6 @@
         {
           "url": "https://pkg.go.dev/go.opentelemetry.io/otel/exporters/otlp/otlptrace",
           "type": "distribution"
-        },
-        {
-          "url": "https://github.com/open-telemetry/opentelemetry-go",
-          "type": "vcs"
         },
         {
           "url": "https://pkg.go.dev/go.opentelemetry.io/otel/exporters/otlp/otlptrace#section-documentation",
@@ -5328,11 +5195,6 @@
       "author": "OpenTelemetry - CNCF",
       "name": "go.opentelemetry.io/proto/otlp",
       "version": "v1.4.0",
-      "licenses": [
-        {
-          "expression": "(Apache-2.0)"
-        }
-      ],
       "purl": "pkg:golang/go.opentelemetry.io/proto/otlp@v1.4.0",
       "externalReferences": [
         {
@@ -5388,11 +5250,25 @@
       "type": "library",
       "name": "go.yaml.in/yaml/v2",
       "version": "v2.4.2",
+      "description": "Package yaml implements YAML support for the Go language.\n\nSource code and other details for the project are available at GitHub:",
+      "licenses": [
+        {
+          "expression": "(Apache-2.0)"
+        }
+      ],
       "purl": "pkg:golang/go.yaml.in/yaml/v2@v2.4.2",
       "externalReferences": [
         {
+          "url": "https://github.com/yaml/go-yaml",
+          "type": "website"
+        },
+        {
           "url": "https://pkg.go.dev/go.yaml.in/yaml/v2",
           "type": "distribution"
+        },
+        {
+          "url": "https://github.com/yaml/go-yaml",
+          "type": "vcs"
         },
         {
           "url": "https://pkg.go.dev/go.yaml.in/yaml/v2#section-documentation",
@@ -5572,7 +5448,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2024-01-19T08:35:58Z"
+          "value": "2026-02-18T20:32:40Z"
         }
       ]
     },
@@ -5704,10 +5580,6 @@
         {
           "url": "https://pkg.go.dev/golang.org/x/sync",
           "type": "distribution"
-        },
-        {
-          "url": "https://cs.opensource.google/go/x/sync",
-          "type": "vcs"
         },
         {
           "url": "https://pkg.go.dev/golang.org/x/sync#section-documentation",
@@ -5924,10 +5796,6 @@
           "type": "distribution"
         },
         {
-          "url": "https://cs.opensource.google/go/x/time",
-          "type": "vcs"
-        },
-        {
           "url": "https://pkg.go.dev/golang.org/x/time#section-documentation",
           "type": "documentation"
         }
@@ -6013,7 +5881,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2024-01-25T20:52:18Z"
+          "value": "2026-02-17T21:52:00Z"
         }
       ]
     },
@@ -6071,7 +5939,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2024-01-25T20:52:18Z"
+          "value": "2026-02-17T21:52:00Z"
         }
       ]
     },
@@ -6131,7 +5999,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2025-12-23T09:24:02Z"
+          "value": "2026-02-13T06:52:36Z"
         },
         {
           "name": "ecosystems:topic",
@@ -6201,6 +6069,10 @@
         {
           "url": "https://pkg.go.dev/google.golang.org/protobuf",
           "type": "distribution"
+        },
+        {
+          "url": "https://github.com/protocolbuffers/protobuf-go",
+          "type": "vcs"
         },
         {
           "url": "https://pkg.go.dev/google.golang.org/protobuf#section-documentation",
@@ -6489,10 +6361,6 @@
           "type": "distribution"
         },
         {
-          "url": "https://github.com/go-yaml/yaml",
-          "type": "vcs"
-        },
-        {
           "url": "https://pkg.go.dev/gopkg.in/yaml.v3#section-documentation",
           "type": "documentation"
         }
@@ -6536,11 +6404,6 @@
       "author": "Kubernetes",
       "name": "k8s.io/api",
       "version": "v0.33.4",
-      "licenses": [
-        {
-          "expression": "(Apache-2.0)"
-        }
-      ],
       "purl": "pkg:golang/k8s.io/api@v0.33.4",
       "externalReferences": [
         {
@@ -6619,10 +6482,6 @@
           "type": "distribution"
         },
         {
-          "url": "https://github.com/kubernetes/apimachinery",
-          "type": "vcs"
-        },
-        {
           "url": "https://pkg.go.dev/k8s.io/apimachinery#section-documentation",
           "type": "documentation"
         }
@@ -6671,11 +6530,6 @@
       "name": "k8s.io/apiserver",
       "version": "v0.33.0",
       "description": "Package apiserver provides the machinery for building Kubernetes-style API servers.\n\nThis library is the foundation for the Kubernetes API server (`kube-apiserver`),\nand is also the primary framework for developers building custom API servers to extend\nthe Kubernetes API.\n\nAn extension API server is a user-provided, standalone web server that registers itself\nwith the main kube-apiserver to handle specific API groups. This allows developers to\nextend Kubernetes with their own APIs that behave like core Kubernetes APIs, complete\nwith typed clients, authentication, authorization, and discovery.\n\nThe `apiserver` library is composed of several key packages:\n\nThe `GenericAPIServer` struct is the heart of any extension server. It is responsible\nfor assembling and running the HTTP serving stack. See the runnable example for a\ndemonstration of how to instantiate a `GenericAPIServer`.\n\nThe mechanism that enables extension API servers is API aggregation. The\nprimary apiserver (typically the kube-apiserver) acts as a proxy, forwarding\nrequests for a specific API group (e.g., /apis/myextension.io/v1) to a\nregistered extension server. The apiserver is configured using\nAPIService objects.\n\nFor most use cases, custom resources (CustomResourceDefinitions) are the\npreferred way to extend the Kubernetes API.\n\nThe `pkg/admission` package provides a way to add admission policies directly\ninto an apiserver. Admission plugins can be used to validate or mutate objects\nduring write operations. The kube-apiserver uses admission plugins to provide\na variety of core system capabilities.\n\nFor most extension use cases dynamic admission control using policies\n(ValidatingAdmissionPolicies or MutatingAdmissionPolicies) or\nwebhooks (ValidatingWebhookConfiguration and MutatingWebhookConfiguration) are the\npreferred way to extend admission control.",
-      "licenses": [
-        {
-          "expression": "(Apache-2.0)"
-        }
-      ],
       "purl": "pkg:golang/k8s.io/apiserver@v0.33.0",
       "externalReferences": [
         {
@@ -6735,11 +6589,6 @@
       "name": "k8s.io/client-go",
       "version": "v0.33.4",
       "description": "Package clientgo is the official Go client for the Kubernetes API. It provides\na standard set of clients and tools for building applications, controllers,\nand operators that communicate with a Kubernetes cluster.\n\nkubernetes: Contains the typed Clientset for interacting with built-in,\nversioned API objects (e.g., Pods, Deployments). This is the most common\nstarting point.\n\ndynamic: Provides a dynamic client that can perform operations on any\nKubernetes object, including Custom Resources (CRs). It is essential for\nbuilding controllers that work with CRDs.\n\ndiscovery: Used to discover the API groups, versions, and resources\nsupported by a Kubernetes cluster.\n\ntools/cache: The foundation of the controller pattern. This package provides\nefficient caching and synchronization mechanisms (Informers and Listers)\nfor building controllers.\n\ntools/clientcmd: Provides methods for loading client configuration from\nkubeconfig files. This is essential for out-of-cluster applications and CLI tools.\n\nrest: Provides a lower-level RESTClient that manages the details of\ncommunicating with the Kubernetes API server. It is useful for advanced\nuse cases that require fine-grained control over requests, such as working\nwith non-standard REST verbs.\n\nThere are two primary ways to configure a client to connect to the API server:\n\nIn-Cluster Configuration: For applications running inside a Kubernetes pod,\nthe `rest.InClusterConfig()` function provides a straightforward way to\nconfigure the client. It automatically uses the pod's service account for\nauthentication and is the recommended approach for controllers and operators.\n\nOut-of-Cluster Configuration: For local development or command-line tools,\nthe `clientcmd` package is used to load configuration from a\nkubeconfig file.\n\nThe `rest.Config` object allows for fine-grained control over client-side\nperformance and reliability. Key settings include:\n\nOnce configured, a client can be used to interact with objects in the cluster.\n\nThe Typed Clientset (`kubernetes` package) provides a strongly typed\ninterface for working with built-in Kubernetes objects.\n\nThe Dynamic Client (`dynamic` package) can work with any object, including\nCustom Resources, using `unstructured.Unstructured` types.\n\nFor Custom Resources (CRDs), the `k8s.io/code-generator` repository\ncontains the tools to generate typed clients, informers, and listers. The\n`sample-controller` is the canonical example of this pattern.\n\nServer-Side Apply is a patching strategy that allows multiple actors to\nshare management of an object by tracking field ownership. This prevents\nactors from inadvertently overwriting each other's changes and provides\na mechanism for resolving conflicts. The `applyconfigurations` package\nprovides the necessary tools for this declarative approach.\n\nRobust error handling is essential when interacting with the API. The\n`k8s.io/apimachinery/pkg/api/errors` package provides functions to inspect\nerrors and check for common conditions, such as whether a resource was not\nfound or already exists. This allows controllers to implement robust,\nidempotent reconciliation logic.\n\nThe controller pattern is central to Kubernetes. A controller observes the\nstate of the cluster and works to bring it to the desired state.\n\nThe `tools/cache` package provides the building blocks for this pattern.\nInformers watch the API server and maintain a local cache, Listers provide\nread-only access to the cache, and Workqueues decouple event detection\nfrom processing.\n\nIn a high-availability deployment where multiple instances of a controller\nare running, leader election (`tools/leaderelection`) is used to ensure\nthat only one instance is active at a time.\n\nClient-side feature gates allow for enabling or disabling experimental\nfeatures in `client-go`. They can be configured via the `rest.Config` object.",
-      "licenses": [
-        {
-          "expression": "(Apache-2.0)"
-        }
-      ],
       "purl": "pkg:golang/k8s.io/client-go@v0.33.4",
       "externalReferences": [
         {
@@ -6749,6 +6598,10 @@
         {
           "url": "https://pkg.go.dev/k8s.io/client-go",
           "type": "distribution"
+        },
+        {
+          "url": "https://github.com/kubernetes/client-go",
+          "type": "vcs"
         },
         {
           "url": "https://pkg.go.dev/k8s.io/client-go#section-documentation",
@@ -6778,7 +6631,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2019-03-13T23:57:26Z"
+          "value": "2016-10-17T18:15:22Z"
         },
         {
           "name": "ecosystems:topic",
@@ -6798,11 +6651,6 @@
       "author": "Kubernetes",
       "name": "k8s.io/component-base",
       "version": "v0.33.4",
-      "licenses": [
-        {
-          "expression": "(Apache-2.0)"
-        }
-      ],
       "purl": "pkg:golang/k8s.io/component-base@v0.33.4",
       "externalReferences": [
         {
@@ -6884,10 +6732,6 @@
         {
           "url": "https://pkg.go.dev/k8s.io/klog/v2",
           "type": "distribution"
-        },
-        {
-          "url": "https://github.com/kubernetes/klog",
-          "type": "vcs"
         },
         {
           "url": "https://pkg.go.dev/k8s.io/klog/v2#section-documentation",
@@ -6979,42 +6823,16 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2024-01-17T19:48:47Z"
+          "value": "2026-01-27T14:27:50Z"
         }
       ]
     },
     {
       "bom-ref": "pkg:golang/k8s.io/kube-state-metrics/v2@v2.17.0",
       "type": "library",
-      "supplier": {
-        "name": "Kubernetes",
-        "url": [
-          "https://kubernetes.io"
-        ]
-      },
-      "author": "Kubernetes",
       "name": "k8s.io/kube-state-metrics/v2",
       "version": "v2.17.0",
-      "licenses": [
-        {
-          "expression": "(Apache-2.0)"
-        }
-      ],
       "purl": "pkg:golang/k8s.io/kube-state-metrics/v2@v2.17.0",
-      "externalReferences": [
-        {
-          "url": "https://github.com/kubernetes/kube-state-metrics",
-          "type": "website"
-        },
-        {
-          "url": "https://pkg.go.dev/k8s.io/kube-state-metrics/v2",
-          "type": "distribution"
-        },
-        {
-          "url": "https://pkg.go.dev/k8s.io/kube-state-metrics/v2#section-documentation",
-          "type": "documentation"
-        }
-      ],
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
@@ -7031,81 +6849,15 @@
         {
           "name": "aquasecurity:trivy:PkgType",
           "value": "gobinary"
-        },
-        {
-          "name": "ecosystems:first_release_published_at",
-          "value": "2022-11-20T09:37:52Z"
-        },
-        {
-          "name": "ecosystems:latest_release_published_at",
-          "value": "2026-01-18T04:39:08Z"
-        },
-        {
-          "name": "ecosystems:topic",
-          "value": "kubernetes"
-        },
-        {
-          "name": "ecosystems:topic",
-          "value": "kubernetes-exporter"
-        },
-        {
-          "name": "ecosystems:topic",
-          "value": "kubernetes-monitoring"
-        },
-        {
-          "name": "ecosystems:topic",
-          "value": "metrics"
-        },
-        {
-          "name": "ecosystems:topic",
-          "value": "monitoring"
-        },
-        {
-          "name": "ecosystems:topic",
-          "value": "observability"
-        },
-        {
-          "name": "ecosystems:topic",
-          "value": "prometheus"
-        },
-        {
-          "name": "ecosystems:topic",
-          "value": "prometheus-exporter"
         }
       ]
     },
     {
       "bom-ref": "pkg:golang/k8s.io/sample-controller@v0.33.4",
       "type": "library",
-      "supplier": {
-        "name": "Kubernetes",
-        "url": [
-          "https://kubernetes.io"
-        ]
-      },
-      "author": "Kubernetes",
       "name": "k8s.io/sample-controller",
       "version": "v0.33.4",
-      "licenses": [
-        {
-          "expression": "(Apache-2.0)"
-        }
-      ],
       "purl": "pkg:golang/k8s.io/sample-controller@v0.33.4",
-      "externalReferences": [
-        {
-          "url": "https://github.com/kubernetes/sample-controller",
-          "type": "website"
-        },
-        {
-          "url": "https://pkg.go.dev/k8s.io/sample-controller",
-          "type": "distribution"
-        },
-        {
-          "url": "https://pkg.go.dev/k8s.io/sample-controller#section-documentation",
-          "type": "documentation"
-        }
-      ],
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
@@ -7122,18 +6874,6 @@
         {
           "name": "aquasecurity:trivy:PkgType",
           "value": "gobinary"
-        },
-        {
-          "name": "ecosystems:first_release_published_at",
-          "value": "2019-12-11T19:35:31Z"
-        },
-        {
-          "name": "ecosystems:latest_release_published_at",
-          "value": "2026-02-10T22:15:23Z"
-        },
-        {
-          "name": "ecosystems:topic",
-          "value": "k8s-staging"
         }
       ]
     },
@@ -7149,6 +6889,11 @@
       "author": "Kubernetes",
       "name": "k8s.io/utils",
       "version": "v0.0.0-20250604170112-4c0f3b243397",
+      "licenses": [
+        {
+          "expression": "(Apache-2.0)"
+        }
+      ],
       "purl": "pkg:golang/k8s.io/utils@v0.0.0-20250604170112-4c0f3b243397",
       "externalReferences": [
         {
@@ -7191,7 +6936,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2024-01-02T15:49:12Z"
+          "value": "2026-02-10T18:56:00Z"
         },
         {
           "name": "ecosystems:topic",
@@ -7287,10 +7032,6 @@
         {
           "url": "https://pkg.go.dev/sigs.k8s.io/controller-runtime",
           "type": "distribution"
-        },
-        {
-          "url": "https://github.com/kubernetes-sigs/controller-runtime",
-          "type": "vcs"
         },
         {
           "url": "https://pkg.go.dev/sigs.k8s.io/controller-runtime#section-documentation",
@@ -7511,10 +7252,6 @@
           "type": "distribution"
         },
         {
-          "url": "https://github.com/kubernetes-sigs/yaml",
-          "type": "vcs"
-        },
-        {
           "url": "https://pkg.go.dev/sigs.k8s.io/yaml#section-documentation",
           "type": "documentation"
         }
@@ -7578,18 +7315,18 @@
   ],
   "dependencies": [
     {
-      "ref": "0acaadb2-89b2-4321-bbe0-e46ae4050b2e",
-      "dependsOn": [
-        "pkg:golang/k8s.io/kube-state-metrics/v2@v2.17.0"
-      ]
-    },
-    {
-      "ref": "958c935b-9718-42c2-bb10-bc6632eeef76",
+      "ref": "8ee15040-e9e2-4752-b41f-6399fe3d277f",
       "dependsOn": [
         "pkg:deb/debian/base-files@12.4%2Bdeb12u11?arch=amd64&distro=debian-12.11",
         "pkg:deb/debian/media-types@10.0.0?arch=all&distro=debian-12.11",
         "pkg:deb/debian/netbase@6.4?arch=all&distro=debian-12.11",
         "pkg:deb/debian/tzdata@2025b-0%2Bdeb12u1?arch=all&distro=debian-12.11"
+      ]
+    },
+    {
+      "ref": "d1dcc3a1-7d4b-43da-9e94-41e2bf839460",
+      "dependsOn": [
+        "pkg:golang/k8s.io/kube-state-metrics/v2@v2.17.0"
       ]
     },
     {
@@ -8126,8 +7863,8 @@
     {
       "ref": "pkg:oci/kube-state-metrics@sha256%3A2bbc915567334b13632bf62c0a97084aff72a36e13c4dabd5f2f11c898c5bacd?arch=amd64&repository_url=registry.k8s.io%2Fkube-state-metrics%2Fkube-state-metrics",
       "dependsOn": [
-        "0acaadb2-89b2-4321-bbe0-e46ae4050b2e",
-        "958c935b-9718-42c2-bb10-bc6632eeef76"
+        "8ee15040-e9e2-4752-b41f-6399fe3d277f",
+        "d1dcc3a1-7d4b-43da-9e94-41e2bf839460"
       ]
     }
   ],
