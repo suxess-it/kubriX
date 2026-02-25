@@ -1,6 +1,6 @@
 
 <h3>Target <code>kubevirtmanager/kubevirt-manager:1.5.0 (alpine 3.20.5)</code></h3>
-<h4>Vulnerabilities (24)</h4>
+<h4>Vulnerabilities (25)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -78,6 +78,13 @@
         <td>HIGH</td>
         <td>1.6.44-r0</td>
         <td>1.6.54-r0</td>
+    </tr>
+    <tr>
+        <td><code>libpng</code></td>
+        <td>CVE-2026-25646</td>
+        <td>HIGH</td>
+        <td>1.6.44-r0</td>
+        <td>1.6.55-r0</td>
     </tr>
     <tr>
         <td><code>libssl3</code></td>
