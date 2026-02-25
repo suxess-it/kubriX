@@ -30,6 +30,12 @@ applications:
     syncOptions:
       - ServerSideApply=true
 
+  - name: prometheus-operator-crds
+    annotations:
+      argocd.argoproj.io/sync-wave: "-8"
+    syncOptions:
+      - ServerSideApply=true
+
   - name: external-secrets
     annotations:
       argocd.argoproj.io/sync-wave: "-8"

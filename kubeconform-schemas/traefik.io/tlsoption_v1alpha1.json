@@ -1,0 +1,92 @@
+{
+  "description": "TLSOption is the CRD implementation of a Traefik TLS Option, allowing to configure some parameters of the TLS connection.\nMore info: https://doc.traefik.io/traefik/v3.6/reference/routing-configuration/http/tls/tls-certificates/#certificates-stores#tls-options",
+  "properties": {
+    "apiVersion": {
+      "description": "APIVersion defines the versioned schema of this representation of an object.\nServers should convert recognized schemas to the latest internal value, and\nmay reject unrecognized values.\nMore info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources",
+      "type": "string"
+    },
+    "kind": {
+      "description": "Kind is a string value representing the REST resource this object represents.\nServers may infer this from the endpoint the client submits requests to.\nCannot be updated.\nIn CamelCase.\nMore info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
+      "type": "string"
+    },
+    "metadata": {
+      "type": "object"
+    },
+    "spec": {
+      "description": "TLSOptionSpec defines the desired state of a TLSOption.",
+      "properties": {
+        "alpnProtocols": {
+          "description": "ALPNProtocols defines the list of supported application level protocols for the TLS handshake, in order of preference.\nMore info: https://doc.traefik.io/traefik/v3.6/reference/routing-configuration/http/tls/tls-certificates/#certificates-stores#alpn-protocols",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "cipherSuites": {
+          "description": "CipherSuites defines the list of supported cipher suites for TLS versions up to TLS 1.2.\nMore info: https://doc.traefik.io/traefik/v3.6/reference/routing-configuration/http/tls/tls-certificates/#certificates-stores#cipher-suites",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "clientAuth": {
+          "description": "ClientAuth defines the server's policy for TLS Client Authentication.",
+          "properties": {
+            "clientAuthType": {
+              "description": "ClientAuthType defines the client authentication type to apply.",
+              "enum": [
+                "NoClientCert",
+                "RequestClientCert",
+                "RequireAnyClientCert",
+                "VerifyClientCertIfGiven",
+                "RequireAndVerifyClientCert"
+              ],
+              "type": "string"
+            },
+            "secretNames": {
+              "description": "SecretNames defines the names of the referenced Kubernetes Secret storing certificate details.",
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            }
+          },
+          "type": "object"
+        },
+        "curvePreferences": {
+          "description": "CurvePreferences defines the preferred elliptic curves.\nMore info: https://doc.traefik.io/traefik/v3.6/reference/routing-configuration/http/tls/tls-certificates/#certificates-stores#curve-preferences",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "disableSessionTickets": {
+          "description": "DisableSessionTickets disables TLS session resumption via session tickets.",
+          "type": "boolean"
+        },
+        "maxVersion": {
+          "description": "MaxVersion defines the maximum TLS version that Traefik will accept.\nPossible values: VersionTLS10, VersionTLS11, VersionTLS12, VersionTLS13.\nDefault: None.",
+          "type": "string"
+        },
+        "minVersion": {
+          "description": "MinVersion defines the minimum TLS version that Traefik will accept.\nPossible values: VersionTLS10, VersionTLS11, VersionTLS12, VersionTLS13.\nDefault: VersionTLS10.",
+          "type": "string"
+        },
+        "preferServerCipherSuites": {
+          "description": "PreferServerCipherSuites defines whether the server chooses a cipher suite among his own instead of among the client's.\nIt is enabled automatically when minVersion or maxVersion is set.\nDeprecated: https://github.com/golang/go/issues/45430",
+          "type": "boolean"
+        },
+        "sniStrict": {
+          "description": "SniStrict defines whether Traefik allows connections from clients connections that do not specify a server_name extension.",
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    }
+  },
+  "required": [
+    "metadata",
+    "spec"
+  ],
+  "type": "object"
+}

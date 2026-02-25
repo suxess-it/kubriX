@@ -1,0 +1,85 @@
+apiVersion: scaffolder.backstage.io/v1beta3
+kind: Template
+metadata:
+  name: notification-demo
+  title: Send Notification
+  description: Send notifications to users or groups in Backstage
+  tags:
+    - onboarding
+    - example
+    - notification
+    - kubrix
+spec:
+  owner: group:kubrix
+  type: example
+  parameters:
+    - title: Fill in some steps
+      required:
+        - recipients
+        - name
+        - message
+      properties:
+        severity:
+          title: Severity
+          type: string
+          description: Notification severity
+          default: normal
+          enum:
+            - low
+            - normal
+            - high
+            - critical
+        name:
+          title: Notification Title
+          type: string
+          description: Unique name for notification
+          ui:placeholder: 'New Feature Available'
+        message:
+          title: Message
+          type: string
+          description: message
+          ui:placeholder: 'Check out our new dashboard feature!'
+        recipients:
+          title: Recipients
+          type: string
+          description: Recipients of notifications
+          default: broadcast
+          enum:
+            - entity
+            - broadcast
+      dependencies:
+        recipients:
+          oneOf:
+            - properties:
+                recipients:
+                  enum:
+                    - broadcast
+            - properties:
+                recipients:
+                  enum:
+                    - entity
+                entityRefs:
+                  title: Entities
+                  type: array
+                  description: User/Groups to send the notification
+                  items:
+                    type: string
+                  ui:field: MultiEntityPicker
+                  ui:options:
+                    catalogFilter:
+                      - kind: Group
+                      - kind: User
+              required:
+                - entityRefs
+  steps:
+    - id: sendNotification
+      action: notification:send
+      name: Send Notification
+      input:
+        recipients: ${{ parameters.recipients }}
+        entityRefs: ${{ parameters.entityRefs }}
+        title: ${{ parameters.name }}
+        info: ${{ parameters.message }}
+        severity: ${{ parameters.severity }}
+        scope: internal
+        optional: true
