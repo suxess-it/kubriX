@@ -72,7 +72,7 @@
 <h4>No Vulnerabilities found</h4>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>Node.js</code></h3>
-<h4>Vulnerabilities (14)</h4>
+<h4>Vulnerabilities (16)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -89,11 +89,25 @@
         <td>0.12.2, 0.13.2, 0.14.1</td>
     </tr>
     <tr>
+        <td><code>basic-ftp</code></td>
+        <td>CVE-2026-27699</td>
+        <td>CRITICAL</td>
+        <td>5.1.0</td>
+        <td>5.2.0</td>
+    </tr>
+    <tr>
         <td><code>form-data</code></td>
         <td>CVE-2025-7783</td>
         <td>CRITICAL</td>
         <td>2.3.3</td>
         <td>2.5.4, 3.0.4, 4.0.4</td>
+    </tr>
+    <tr>
+        <td><code>hono</code></td>
+        <td>CVE-2026-27700</td>
+        <td>HIGH</td>
+        <td>4.12.0</td>
+        <td>4.12.2</td>
     </tr>
     <tr>
         <td><code>minimatch</code></td>
