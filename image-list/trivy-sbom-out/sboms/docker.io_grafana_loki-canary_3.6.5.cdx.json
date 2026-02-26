@@ -2,10 +2,10 @@
   "$schema": "http://cyclonedx.org/schema/bom-1.6.schema.json",
   "bomFormat": "CycloneDX",
   "specVersion": "1.6",
-  "serialNumber": "urn:uuid:0e1a6d53-aa93-42ff-b43a-517dff4efef4",
+  "serialNumber": "urn:uuid:a6b8ce34-4030-472e-b426-987f45245c29",
   "version": 1,
   "metadata": {
-    "timestamp": "2026-02-13T09:29:09+00:00",
+    "timestamp": "2026-02-25T14:41:48+00:00",
     "tools": {
       "components": [
         {
@@ -114,23 +114,7 @@
   },
   "components": [
     {
-      "bom-ref": "4d58967c-de31-4cd9-876a-e6c4015b667c",
-      "type": "operating-system",
-      "name": "debian",
-      "version": "13.3",
-      "properties": [
-        {
-          "name": "aquasecurity:trivy:Class",
-          "value": "os-pkgs"
-        },
-        {
-          "name": "aquasecurity:trivy:Type",
-          "value": "debian"
-        }
-      ]
-    },
-    {
-      "bom-ref": "84b42047-8633-4e2d-904b-a2c23dd5c428",
+      "bom-ref": "ba7d756f-ec68-4877-a2af-97136fbeea49",
       "type": "library",
       "name": "./pkg/push",
       "properties": [
@@ -153,7 +137,7 @@
       ]
     },
     {
-      "bom-ref": "9251adb1-5ea9-47b7-9f46-178042e6658b",
+      "bom-ref": "c1270f2b-39bb-4bff-846a-7d1c426186ef",
       "type": "application",
       "name": "usr/bin/loki-canary",
       "properties": [
@@ -164,6 +148,22 @@
         {
           "name": "aquasecurity:trivy:Type",
           "value": "gobinary"
+        }
+      ]
+    },
+    {
+      "bom-ref": "eed1c02f-f823-4a0b-bce1-270e35979a8a",
+      "type": "operating-system",
+      "name": "debian",
+      "version": "13.3",
+      "properties": [
+        {
+          "name": "aquasecurity:trivy:Class",
+          "value": "os-pkgs"
+        },
+        {
+          "name": "aquasecurity:trivy:Type",
+          "value": "debian"
         }
       ]
     },
@@ -377,10 +377,6 @@
           "type": "distribution"
         },
         {
-          "url": "https://github.com/googleapis/google-cloud-go",
-          "type": "vcs"
-        },
-        {
           "url": "https://pkg.go.dev/cloud.google.com/go/auth/oauth2adapt#section-documentation",
           "type": "documentation"
         }
@@ -469,10 +465,6 @@
           "type": "distribution"
         },
         {
-          "url": "https://github.com/googleapis/google-cloud-go",
-          "type": "vcs"
-        },
-        {
           "url": "https://pkg.go.dev/cloud.google.com/go/auth#section-documentation",
           "type": "documentation"
         }
@@ -500,7 +492,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-01-21T21:51:53Z"
+          "value": "2026-02-13T17:14:27Z"
         },
         {
           "name": "ecosystems:topic",
@@ -623,6 +615,13 @@
     {
       "bom-ref": "pkg:golang/dario.cat/mergo@v1.0.2",
       "type": "library",
+      "supplier": {
+        "name": "Dario Castañé",
+        "url": [
+          "dario.cat"
+        ]
+      },
+      "author": "Dario Castañé",
       "name": "dario.cat/mergo",
       "version": "v1.0.2",
       "description": "A helper to merge structs and maps in Golang. Useful for configuration default values, avoiding messy if-statements.\n\nMergo merges same-type structs and maps by setting default values in zero-value fields. Mergo won't merge unexported (private) fields. It will do recursively any exported one. It also won't merge structs inside maps (because they are not addressable using Go reflection).\n\nIt is ready for production use. It is used in several projects by Docker, Google, The Linux Foundation, VMWare, Shopify, etc.\n\n1.0.0\n\nIn 1.0.0 Mergo moves to a vanity URL `dario.cat/mergo`.\n\n0.3.9\n\nPlease keep in mind that a problematic PR broke 0.3.9. We reverted it in 0.3.10. We consider 0.3.10 as stable but not bug-free. . Also, this version adds suppot for go modules.\n\nKeep in mind that in 0.3.2, Mergo changed Merge() and Map() signatures to support transformers. We added an optional/variadic argument so that it won't break the existing code.\n\nIf you were using Mergo before April 6th, 2015, please check your project works as intended after updating your local copy with go get -u dario.cat/mergo. I apologize for any issue caused by its previous behavior and any future bug that Mergo could cause in existing projects after the change (release 0.2.0).\n\nDo your usual installation procedure:\n\nYou can only merge same-type structs with exported fields initialized as zero value of their type and same-types maps. Mergo won't merge unexported (private) fields but will do recursively any exported one. It won't merge empty structs value as they are zero values too. Also, maps will be merged recursively except for structs inside maps (because they are not addressable using Go reflection).\n\nAlso, you can merge overwriting values using the transformer WithOverride.\n\nAdditionally, you can map a map[string]interface{} to a struct (and otherwise, from struct to map), following the same restrictions as in Merge(). Keys are capitalized to find each corresponding exported field.\n\nWarning: if you map a struct to map, it won't do it recursively. Don't expect Mergo to map struct members of your struct as map[string]interface{}. They will be just assigned as values.\n\nHere is a nice example:\n\nTransformers allow to merge specific types differently than in the default behavior. In other words, now you can customize how some types are merged. For example, time.Time is a struct; it doesn't have zero value but IsZero can return true because it has fields with zero value. How can we merge a non-zero time.Time?\n\nIf I can help you, you have an idea or you are using Mergo in your projects, don't hesitate to drop me a line (or a pull request): https://twitter.com/im_dario\n\nWritten by Dario Castañé: https://da.rio.hn\n\nBSD 3-Clause license, as Go language.",
@@ -640,10 +639,6 @@
         {
           "url": "https://pkg.go.dev/dario.cat/mergo",
           "type": "distribution"
-        },
-        {
-          "url": "https://github.com/imdario/mergo",
-          "type": "vcs"
         },
         {
           "url": "https://pkg.go.dev/dario.cat/mergo#section-documentation",
@@ -674,6 +669,10 @@
         {
           "name": "ecosystems:latest_release_published_at",
           "value": "2025-05-07T20:15:06Z"
+        },
+        {
+          "name": "ecosystems:owner_location",
+          "value": "Barcelona"
         },
         {
           "name": "ecosystems:topic",
@@ -714,6 +713,11 @@
       "name": "github.com/alecthomas/units",
       "version": "v0.0.0-20240927000941-0f3dac36c52b",
       "description": "Package units provides helpful unit multipliers and functions for Go.\n\nThe goal of this package is to have functionality similar to the time [1] package.\n\n[1] http://golang.org/pkg/time/\n\nIt allows for code like this:",
+      "licenses": [
+        {
+          "expression": "(MIT)"
+        }
+      ],
       "purl": "pkg:golang/github.com/alecthomas/units@v0.0.0-20240927000941-0f3dac36c52b",
       "externalReferences": [
         {
@@ -756,7 +760,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2023-12-02T07:17:11Z"
+          "value": "2024-09-27T00:09:41Z"
         },
         {
           "name": "ecosystems:owner_location",
@@ -1063,7 +1067,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-01-09T19:14:10Z"
+          "value": "2026-02-23T19:11:41Z"
         },
         {
           "name": "ecosystems:owner_location",
@@ -1147,7 +1151,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-01-09T19:14:10Z"
+          "value": "2026-02-23T19:11:41Z"
         },
         {
           "name": "ecosystems:owner_location",
@@ -1308,7 +1312,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-01-09T19:14:10Z"
+          "value": "2026-02-23T19:11:41Z"
         },
         {
           "name": "ecosystems:owner_location",
@@ -1560,7 +1564,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-01-09T19:14:10Z"
+          "value": "2026-02-23T19:11:41Z"
         },
         {
           "name": "ecosystems:owner_location",
@@ -1644,7 +1648,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-01-09T19:14:10Z"
+          "value": "2026-02-23T19:11:41Z"
         },
         {
           "name": "ecosystems:owner_location",
@@ -1728,7 +1732,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-01-09T19:14:10Z"
+          "value": "2026-02-23T19:11:41Z"
         },
         {
           "name": "ecosystems:owner_location",
@@ -1812,7 +1816,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-01-09T19:14:10Z"
+          "value": "2026-02-23T19:11:41Z"
         },
         {
           "name": "ecosystems:owner_location",
@@ -1980,7 +1984,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2025-12-01T16:06:42Z"
+          "value": "2026-02-20T21:07:26Z"
         },
         {
           "name": "ecosystems:owner_location",
@@ -2143,7 +2147,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2025-11-06T17:38:09Z"
+          "value": "2026-01-13T00:39:40Z"
         },
         {
           "name": "ecosystems:owner_location",
@@ -2312,7 +2316,7 @@
           "type": "distribution"
         },
         {
-          "url": "https://github.com/azure/azure-sdk-for-go",
+          "url": "https://github.com/Azure/azure-sdk-for-go",
           "type": "vcs"
         },
         {
@@ -4750,7 +4754,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2025-07-15T08:59:08Z"
+          "value": "2026-01-12T17:24:26Z"
         }
       ]
     },
@@ -5628,7 +5632,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-01-13T07:11:36Z"
+          "value": "2026-02-09T19:15:42Z"
         }
       ]
     },
@@ -6106,7 +6110,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2025-12-11T08:58:11Z"
+          "value": "2026-02-06T11:05:24Z"
         },
         {
           "name": "ecosystems:owner_location",
@@ -6459,7 +6463,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2022-11-23T15:37:39Z"
+          "value": "2025-09-05T09:39:17Z"
         },
         {
           "name": "ecosystems:owner_location",
@@ -6630,7 +6634,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-02-10T16:34:47Z"
+          "value": "2026-02-17T16:59:59Z"
         },
         {
           "name": "ecosystems:topic",
@@ -6721,7 +6725,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-01-13T12:23:43Z"
+          "value": "2026-02-19T11:07:33Z"
         },
         {
           "name": "ecosystems:owner_location",
@@ -10096,7 +10100,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-01-05T22:20:29Z"
+          "value": "2026-02-03T15:50:06Z"
         },
         {
           "name": "ecosystems:topic",
@@ -10167,7 +10171,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-02-03T15:50:06Z"
+          "value": "2026-02-18T15:07:50Z"
         },
         {
           "name": "ecosystems:topic",
@@ -10239,7 +10243,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-01-05T22:20:29Z"
+          "value": "2026-02-18T15:07:50Z"
         },
         {
           "name": "ecosystems:topic",
@@ -11597,7 +11601,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-01-25T10:14:04Z"
+          "value": "2026-02-16T14:41:48Z"
         },
         {
           "name": "ecosystems:topic",
@@ -12777,10 +12781,6 @@
           "type": "distribution"
         },
         {
-          "url": "https://github.com/etcd-io/etcd",
-          "type": "vcs"
-        },
-        {
           "url": "https://pkg.go.dev/go.etcd.io/etcd/api/v3#section-documentation",
           "type": "documentation"
         }
@@ -12808,7 +12808,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2025-12-17T19:39:29Z"
+          "value": "2026-02-13T18:39:11Z"
         },
         {
           "name": "ecosystems:owner_location",
@@ -12911,7 +12911,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2025-12-17T19:39:29Z"
+          "value": "2026-02-13T18:39:11Z"
         },
         {
           "name": "ecosystems:owner_location",
@@ -12988,6 +12988,10 @@
           "type": "distribution"
         },
         {
+          "url": "https://github.com/etcd-io/etcd",
+          "type": "vcs"
+        },
+        {
           "url": "https://pkg.go.dev/go.etcd.io/etcd/client/v3#section-documentation",
           "type": "documentation"
         }
@@ -13015,7 +13019,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2025-12-17T19:39:29Z"
+          "value": "2026-02-13T18:39:11Z"
         },
         {
           "name": "ecosystems:owner_location",
@@ -13298,7 +13302,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-02-02T17:58:20Z"
+          "value": "2026-02-18T11:09:46Z"
         },
         {
           "name": "ecosystems:topic",
@@ -13381,7 +13385,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2025-12-15T19:17:44Z"
+          "value": "2026-02-17T20:54:20Z"
         },
         {
           "name": "ecosystems:topic",
@@ -13465,7 +13469,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-02-02T17:58:20Z"
+          "value": "2026-02-18T11:09:46Z"
         },
         {
           "name": "ecosystems:topic",
@@ -13522,10 +13526,6 @@
           "type": "distribution"
         },
         {
-          "url": "https://github.com/open-telemetry/opentelemetry-collector",
-          "type": "vcs"
-        },
-        {
           "url": "https://pkg.go.dev/go.opentelemetry.io/collector/consumer#section-documentation",
           "type": "documentation"
         }
@@ -13553,7 +13553,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-01-20T09:10:30Z"
+          "value": "2026-02-18T11:09:46Z"
         },
         {
           "name": "ecosystems:topic",
@@ -13609,6 +13609,10 @@
           "type": "distribution"
         },
         {
+          "url": "https://github.com/open-telemetry/opentelemetry-collector",
+          "type": "vcs"
+        },
+        {
           "url": "https://pkg.go.dev/go.opentelemetry.io/collector/featuregate#section-documentation",
           "type": "documentation"
         }
@@ -13636,7 +13640,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-02-02T17:58:20Z"
+          "value": "2026-02-18T11:09:46Z"
         },
         {
           "name": "ecosystems:topic",
@@ -13719,7 +13723,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2025-12-15T19:17:44Z"
+          "value": "2026-02-18T11:09:46Z"
         },
         {
           "name": "ecosystems:topic",
@@ -13776,10 +13780,6 @@
           "type": "distribution"
         },
         {
-          "url": "https://github.com/open-telemetry/opentelemetry-collector",
-          "type": "vcs"
-        },
-        {
           "url": "https://pkg.go.dev/go.opentelemetry.io/collector/pdata#section-documentation",
           "type": "documentation"
         }
@@ -13807,7 +13807,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-02-02T17:58:20Z"
+          "value": "2026-02-18T11:09:46Z"
         },
         {
           "name": "ecosystems:topic",
@@ -13890,7 +13890,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-01-05T19:35:02Z"
+          "value": "2026-02-18T11:09:46Z"
         },
         {
           "name": "ecosystems:topic",
@@ -13946,6 +13946,10 @@
           "type": "distribution"
         },
         {
+          "url": "https://github.com/open-telemetry/opentelemetry-collector",
+          "type": "vcs"
+        },
+        {
           "url": "https://pkg.go.dev/go.opentelemetry.io/collector/processor#section-documentation",
           "type": "documentation"
         }
@@ -13973,7 +13977,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-02-02T17:58:20Z"
+          "value": "2026-02-18T11:09:46Z"
         },
         {
           "name": "ecosystems:topic",
@@ -14140,7 +14144,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2025-12-08T20:14:59Z"
+          "value": "2026-02-02T19:10:47Z"
         }
       ]
     },
@@ -14200,7 +14204,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2025-12-08T20:14:59Z"
+          "value": "2026-02-02T19:10:47Z"
         }
       ]
     },
@@ -14352,10 +14356,6 @@
           "type": "distribution"
         },
         {
-          "url": "https://github.com/open-telemetry/opentelemetry-go-contrib",
-          "type": "vcs"
-        },
-        {
           "url": "https://pkg.go.dev/go.opentelemetry.io/contrib/instrumentation/net/http/httptrace/otelhttptrace#section-documentation",
           "type": "documentation"
         }
@@ -14474,6 +14474,10 @@
         {
           "url": "https://pkg.go.dev/go.opentelemetry.io/contrib/propagators/jaeger",
           "type": "distribution"
+        },
+        {
+          "url": "https://github.com/open-telemetry/opentelemetry-go-contrib",
+          "type": "vcs"
         },
         {
           "url": "https://pkg.go.dev/go.opentelemetry.io/contrib/propagators/jaeger#section-documentation",
@@ -14908,10 +14912,6 @@
           "type": "distribution"
         },
         {
-          "url": "https://github.com/open-telemetry/opentelemetry-go",
-          "type": "vcs"
-        },
-        {
           "url": "https://pkg.go.dev/go.opentelemetry.io/otel/exporters/otlp/otlpmetric/otlpmetrichttp#section-documentation",
           "type": "documentation"
         }
@@ -14986,10 +14986,6 @@
         {
           "url": "https://pkg.go.dev/go.opentelemetry.io/otel/exporters/otlp/otlptrace/otlptracegrpc",
           "type": "distribution"
-        },
-        {
-          "url": "https://github.com/open-telemetry/opentelemetry-go",
-          "type": "vcs"
         },
         {
           "url": "https://pkg.go.dev/go.opentelemetry.io/otel/exporters/otlp/otlptrace/otlptracegrpc#section-documentation",
@@ -15068,6 +15064,10 @@
           "type": "distribution"
         },
         {
+          "url": "https://github.com/open-telemetry/opentelemetry-go",
+          "type": "vcs"
+        },
+        {
           "url": "https://pkg.go.dev/go.opentelemetry.io/otel/exporters/otlp/otlptrace/otlptracehttp#section-documentation",
           "type": "documentation"
         }
@@ -15144,10 +15144,6 @@
           "type": "distribution"
         },
         {
-          "url": "https://github.com/open-telemetry/opentelemetry-go",
-          "type": "vcs"
-        },
-        {
           "url": "https://pkg.go.dev/go.opentelemetry.io/otel/exporters/otlp/otlptrace#section-documentation",
           "type": "documentation"
         }
@@ -15207,7 +15203,7 @@
       "author": "OpenTelemetry - CNCF",
       "name": "go.opentelemetry.io/otel/exporters/prometheus",
       "version": "v0.58.0",
-      "description": "Package prometheus provides a Prometheus Exporter that converts\nOTLP metrics into the Prometheus exposition format and implements\nprometheus.Collector to provide a handler for these metrics.",
+      "description": "Package prometheus provides a Prometheus Exporter that converts\nOTLP metrics into the Prometheus exposition format and implements\nprometheus.Collector to provide a handler for these metrics.\n\nThe Prometheus exporter ignores metrics from the Prometheus bridge. To\nexport these metrics, simply register them directly with the Prometheus\nHandler.",
       "licenses": [
         {
           "expression": "(Apache-2.0 OR BSD-3-Clause)"
@@ -15255,7 +15251,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2025-12-08T16:30:47Z"
+          "value": "2026-02-02T17:46:33Z"
         },
         {
           "name": "ecosystems:topic",
@@ -15380,10 +15376,6 @@
           "type": "distribution"
         },
         {
-          "url": "https://github.com/open-telemetry/opentelemetry-go",
-          "type": "vcs"
-        },
-        {
           "url": "https://pkg.go.dev/go.opentelemetry.io/otel/exporters/stdout/stdoutmetric#section-documentation",
           "type": "documentation"
         }
@@ -15458,10 +15450,6 @@
         {
           "url": "https://pkg.go.dev/go.opentelemetry.io/otel/exporters/stdout/stdouttrace",
           "type": "distribution"
-        },
-        {
-          "url": "https://github.com/open-telemetry/opentelemetry-go",
-          "type": "vcs"
         },
         {
           "url": "https://pkg.go.dev/go.opentelemetry.io/otel/exporters/stdout/stdouttrace#section-documentation",
@@ -15567,7 +15555,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2025-12-08T16:30:47Z"
+          "value": "2026-02-02T17:46:33Z"
         },
         {
           "name": "ecosystems:topic",
@@ -15719,7 +15707,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2025-12-08T16:30:47Z"
+          "value": "2026-02-02T17:46:33Z"
         },
         {
           "name": "ecosystems:topic",
@@ -16113,6 +16101,13 @@
     {
       "bom-ref": "pkg:golang/go.uber.org/atomic@v1.11.0",
       "type": "library",
+      "supplier": {
+        "name": "Uber Go",
+        "url": [
+          "http://uber.github.io/"
+        ]
+      },
+      "author": "Uber Go",
       "name": "go.uber.org/atomic",
       "version": "v1.11.0",
       "description": "Package atomic provides simple wrappers around numerics to enforce atomic\naccess.",
@@ -16130,6 +16125,10 @@
         {
           "url": "https://pkg.go.dev/go.uber.org/atomic",
           "type": "distribution"
+        },
+        {
+          "url": "https://github.com/uber-go/atomic",
+          "type": "vcs"
         },
         {
           "url": "https://pkg.go.dev/go.uber.org/atomic#section-documentation",
@@ -16160,12 +16159,23 @@
         {
           "name": "ecosystems:latest_release_published_at",
           "value": "2023-05-03T17:25:03Z"
+        },
+        {
+          "name": "ecosystems:owner_location",
+          "value": "70+ countries and counting."
         }
       ]
     },
     {
       "bom-ref": "pkg:golang/go.uber.org/goleak@v1.3.0",
       "type": "library",
+      "supplier": {
+        "name": "Uber Go",
+        "url": [
+          "http://uber.github.io/"
+        ]
+      },
+      "author": "Uber Go",
       "name": "go.uber.org/goleak",
       "version": "v1.3.0",
       "description": "Package goleak is a Goroutine leak detector.",
@@ -16183,10 +16193,6 @@
         {
           "url": "https://pkg.go.dev/go.uber.org/goleak",
           "type": "distribution"
-        },
-        {
-          "url": "https://github.com/uber-go/goleak",
-          "type": "vcs"
         },
         {
           "url": "https://pkg.go.dev/go.uber.org/goleak#section-documentation",
@@ -16217,6 +16223,10 @@
         {
           "name": "ecosystems:latest_release_published_at",
           "value": "2023-10-24T16:28:03Z"
+        },
+        {
+          "name": "ecosystems:owner_location",
+          "value": "70+ countries and counting."
         }
       ]
     },
@@ -16536,7 +16546,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2024-01-19T08:35:58Z"
+          "value": "2026-02-18T20:32:40Z"
         }
       ]
     },
@@ -16668,10 +16678,6 @@
         {
           "url": "https://pkg.go.dev/golang.org/x/sync",
           "type": "distribution"
-        },
-        {
-          "url": "https://cs.opensource.google/go/x/sync",
-          "type": "vcs"
         },
         {
           "url": "https://pkg.go.dev/golang.org/x/sync#section-documentation",
@@ -16835,10 +16841,6 @@
           "type": "distribution"
         },
         {
-          "url": "https://cs.opensource.google/go/x/time",
-          "type": "vcs"
-        },
-        {
           "url": "https://pkg.go.dev/golang.org/x/time#section-documentation",
           "type": "documentation"
         }
@@ -16899,10 +16901,6 @@
           "type": "distribution"
         },
         {
-          "url": "https://github.com/googleapis/google-api-go-client",
-          "type": "vcs"
-        },
-        {
           "url": "https://pkg.go.dev/google.golang.org/api#section-documentation",
           "type": "documentation"
         }
@@ -16930,7 +16928,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-02-10T18:37:32Z"
+          "value": "2026-02-23T18:50:45Z"
         },
         {
           "name": "ecosystems:topic",
@@ -16992,7 +16990,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2024-01-25T20:52:18Z"
+          "value": "2026-02-17T21:52:00Z"
         }
       ]
     },
@@ -17050,7 +17048,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2024-01-25T20:52:18Z"
+          "value": "2026-02-17T21:52:00Z"
         }
       ]
     },
@@ -17110,7 +17108,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2025-12-23T09:24:02Z"
+          "value": "2026-02-13T06:52:36Z"
         },
         {
           "name": "ecosystems:topic",
@@ -17180,6 +17178,10 @@
         {
           "url": "https://pkg.go.dev/google.golang.org/protobuf",
           "type": "distribution"
+        },
+        {
+          "url": "https://github.com/protocolbuffers/protobuf-go",
+          "type": "vcs"
         },
         {
           "url": "https://pkg.go.dev/google.golang.org/protobuf#section-documentation",
@@ -17320,10 +17322,6 @@
           "type": "distribution"
         },
         {
-          "url": "https://github.com/go-yaml/yaml",
-          "type": "vcs"
-        },
-        {
           "url": "https://pkg.go.dev/gopkg.in/yaml.v3#section-documentation",
           "type": "documentation"
         }
@@ -17381,10 +17379,6 @@
         {
           "url": "https://pkg.go.dev/k8s.io/apimachinery",
           "type": "distribution"
-        },
-        {
-          "url": "https://github.com/kubernetes/apimachinery",
-          "type": "vcs"
         },
         {
           "url": "https://pkg.go.dev/k8s.io/apimachinery#section-documentation",
@@ -17451,6 +17445,10 @@
           "type": "distribution"
         },
         {
+          "url": "https://github.com/kubernetes/client-go",
+          "type": "vcs"
+        },
+        {
           "url": "https://pkg.go.dev/k8s.io/client-go#section-documentation",
           "type": "documentation"
         }
@@ -17478,7 +17476,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2019-03-13T23:57:26Z"
+          "value": "2016-10-17T18:15:22Z"
         },
         {
           "name": "ecosystems:topic",
@@ -17513,10 +17511,6 @@
         {
           "url": "https://pkg.go.dev/k8s.io/klog/v2",
           "type": "distribution"
-        },
-        {
-          "url": "https://github.com/kubernetes/klog",
-          "type": "vcs"
         },
         {
           "url": "https://pkg.go.dev/k8s.io/klog/v2#section-documentation",
@@ -17608,7 +17602,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2024-01-02T15:49:12Z"
+          "value": "2026-02-10T18:56:00Z"
         },
         {
           "name": "ecosystems:topic",
@@ -17643,10 +17637,6 @@
         {
           "url": "https://pkg.go.dev/sigs.k8s.io/yaml",
           "type": "distribution"
-        },
-        {
-          "url": "https://github.com/kubernetes-sigs/yaml",
-          "type": "vcs"
         },
         {
           "url": "https://pkg.go.dev/sigs.k8s.io/yaml#section-documentation",
@@ -17712,22 +17702,22 @@
   ],
   "dependencies": [
     {
-      "ref": "4d58967c-de31-4cd9-876a-e6c4015b667c",
+      "ref": "ba7d756f-ec68-4877-a2af-97136fbeea49",
+      "dependsOn": []
+    },
+    {
+      "ref": "c1270f2b-39bb-4bff-846a-7d1c426186ef",
+      "dependsOn": [
+        "pkg:golang/github.com/grafana/loki/v3@3.6.5"
+      ]
+    },
+    {
+      "ref": "eed1c02f-f823-4a0b-bce1-270e35979a8a",
       "dependsOn": [
         "pkg:deb/debian/base-files@13.8%2Bdeb13u3?arch=amd64&distro=debian-13.3",
         "pkg:deb/debian/media-types@13.0.0?arch=all&distro=debian-13.3",
         "pkg:deb/debian/netbase@6.5?arch=all&distro=debian-13.3",
         "pkg:deb/debian/tzdata@2025b-4%2Bdeb13u1?arch=all&distro=debian-13.3"
-      ]
-    },
-    {
-      "ref": "84b42047-8633-4e2d-904b-a2c23dd5c428",
-      "dependsOn": []
-    },
-    {
-      "ref": "9251adb1-5ea9-47b7-9f46-178042e6658b",
-      "dependsOn": [
-        "pkg:golang/github.com/grafana/loki/v3@3.6.5"
       ]
     },
     {
@@ -18061,7 +18051,7 @@
     {
       "ref": "pkg:golang/github.com/grafana/loki/v3@3.6.5",
       "dependsOn": [
-        "84b42047-8633-4e2d-904b-a2c23dd5c428",
+        "ba7d756f-ec68-4877-a2af-97136fbeea49",
         "pkg:golang/cloud.google.com/go/auth/oauth2adapt@v0.2.8",
         "pkg:golang/cloud.google.com/go/auth@v0.17.0",
         "pkg:golang/cloud.google.com/go/compute/metadata@v0.9.0",
@@ -18920,8 +18910,8 @@
     {
       "ref": "pkg:oci/loki-canary@sha256%3Afbb984bab74193a35fa23f005651d227b9132c66ce8c642486502d6f1c444fab?arch=amd64&repository_url=index.docker.io%2Fgrafana%2Floki-canary",
       "dependsOn": [
-        "4d58967c-de31-4cd9-876a-e6c4015b667c",
-        "9251adb1-5ea9-47b7-9f46-178042e6658b"
+        "c1270f2b-39bb-4bff-846a-7d1c426186ef",
+        "eed1c02f-f823-4a0b-bce1-270e35979a8a"
       ]
     }
   ],

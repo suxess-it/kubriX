@@ -1,0 +1,12 @@
+nginxIngressClass:
+  enabled: true
+
+traefik:
+  providers:
+    kubernetesIngressNginx:
+      enabled: true
+
+  logs:
+    access:
+      enabled: true
+      format: json
