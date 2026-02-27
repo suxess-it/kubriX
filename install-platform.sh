@@ -1,12 +1,4 @@
-#!/usr/bin/env bash
-
-# Safer prologue
-set -Eeuo pipefail
-
-# Debug if requested
-if [[ "${KUBRIX_INSTALL_DEBUG:-}" == "true" ]]; then set -x; fi
-
-# Simple error trap
+u
 fail() { printf '%s\n' "$1" >&2; exit "${2:-1}"; }
 trap 'fail "Error on line $LINENO"' ERR
 
@@ -386,6 +378,7 @@ wait_until_apps_synced_healthy() {
 
   while [ $SECONDS -lt $end ]; do
     all_apps_synced="true"
+    status_details=""
 
     # ---- bootstrap app: one get, then query fields from cached json ----
     bootstrap_app="sx-bootstrap-app"
@@ -486,6 +479,45 @@ wait_until_apps_synced_healthy() {
         operation_phase="-"
       fi
 
+      if [[ "$sync_status" != "$synced" || "$health_status" != "$healthy" ]]; then
+        details="$(
+  kubectl exec "$controller_pod" -n argocd -- \
+    argocd app resources "$app" --core --output tree=detailed 2>/dev/null \
+  | sed -E 's/\x1B\[[0-9;]*[mK]//g; s/^[│├└─ ]+//' \
+  | awk '
+      # skip header / empty
+      NR==1 { next }
+      NF<4 { next }
+      $1=="GROUP" { next }
+
+      {
+        # From the right: ... STATUS HEALTH AGE [REASON...]
+        # Your examples show AGE like "80s" / "<unknown>", HEALTH like "Healthy"/"Missing"/"-"
+        # STATUS is typically "Synced"/"OutOfSync"/"Unknown"/"No" (in your output it is "No")
+        age = $NF
+        health = $(NF-1)
+        status = $(NF-2)
+
+        # Everything before STATUS is the identifier columns (group/kind/ns/name etc.)
+        ident = $1
+        for (i=2; i<=NF-3; i++) ident = ident " " $i
+
+        # Filter: only not synced or not healthy
+        if (status != "Synced" || health != "Healthy") {
+          printf "%s  sync=%s  health=%s  age=%s\n", ident, status, health, age
+        }
+      }
+    ' \
+  || true
+)"
+
+        if [[ -n "$details" ]]; then
+          status_details+=$'\n'"===== ${app} problematic resources ====="$'\n'
+          status_details+="$details"
+          status_details+=$'\n'
+        fi
+      fi
+
       # ---- output row ----
       printf '%s\t%s\t%s\t%s\t%s\n' "$app" "$sync_status" "$health_status" "$sync_duration" "$operation_phase" >> status-apps.out
     done
@@ -506,6 +538,12 @@ wait_until_apps_synced_healthy() {
     echo "--------------------"
     show_node_resources
     echo "--------------------"
+
+    if [[ -n "$status_details" ]]; then
+      printf '%s\n' "===== ArgoCD app details (non-synced/non-healthy) ====="
+      printf '%b\n' "$status_details"
+    fi
+    
     sleep 10
   done
 
