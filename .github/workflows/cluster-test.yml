@@ -365,7 +365,7 @@ jobs:
           ENTITY_PATH: "/api/catalog/entities/by-name/User/default/kubrixBot"
         run: |
           # Get token from k8s secret
-          EXTERNAL_ACCESS_TOKEN=$(kubectl get secret sx-cnp-secret -o jsonpath='{.data.EXTERNAL_ACCESS_TOKEN}' | base64 -d)
+          EXTERNAL_ACCESS_TOKEN=$(kubectl get secret -n backstage sx-cnp-secret -o jsonpath='{.data.EXTERNAL_ACCESS_TOKEN}' | base64 -d)
           
           MAX_SECONDS=300
           SLEEP_SECONDS=10
