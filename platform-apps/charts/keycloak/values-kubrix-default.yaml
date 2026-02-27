@@ -4,22 +4,35 @@ keycloak:
     enabled: false
 
   readinessProbe:
-    initialDelaySeconds: 20
-    periodSeconds: 20
-    failureThreshold: 10
+    httpGet:
+      path: /health/ready
+      port: 9000
+    initialDelaySeconds: 30
+    periodSeconds: 5
+    failureThreshold: 6
+    timeoutSeconds: 2
   livenessProbe:
-    periodSeconds: 30
-    failureThreshold: 3
-  startupProbe:
+    httpGet:
+      path: /health/ready
+      port: 9000
+    initialDelaySeconds: 30
     periodSeconds: 10
     failureThreshold: 3
+    timeoutSeconds: 2
+  startupProbe:
+    httpGet:
+      path: /health/ready
+      port: 9000
+    failureThreshold: 30
+    periodSeconds: 5
+    timeoutSeconds: 2
 
   resources:
     requests:
       memory: "512Mi"
       cpu: "150m"
     limits:
-      memory: "1Gi"
+      memory: "1536Mi"
       cpu: "1"
 
   networkPolicy:
@@ -30,7 +43,10 @@ keycloak:
       value: "true"
     - name: "health-enabled"
       value: "true"
-
+    - name: KC_CACHE
+      value: local
+    - name: JAVA_OPTS_APPEND
+      value: "-Xms256m -Xmx512m"
     # serviceMonitor: # not yet implemented in keycloak, https://github.com/keycloak/keycloak/issues/40406, we need to create our own servicemonitor
 
   db:
