@@ -252,8 +252,9 @@ jobs:
       - changes
     runs-on: ${{ vars.KUBRIX_GITHUB_RUNNER || 'ubuntu-latest' }}
     if: ${{ needs.create-kubrix-installer-image.result == 'success' || needs.create-kubrix-installer-image.result == 'skipped' }}
-    permissions: 
+    permissions:
       contents: write
+      statuses: read
     strategy:
       fail-fast: false
       matrix:
