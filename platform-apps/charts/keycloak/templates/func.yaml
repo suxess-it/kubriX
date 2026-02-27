@@ -3,6 +3,8 @@ apiVersion: pkg.crossplane.io/v1beta1
 kind: Function
 metadata:
   name: function-extra-resources
+  annotations:
+    argocd.argoproj.io/sync-wave: "-7"
 spec:
   package: xpkg.upbound.io/crossplane-contrib/function-extra-resources:v0.3.0
   runtimeConfigRef:
@@ -12,6 +14,8 @@ apiVersion: pkg.crossplane.io/v1beta1
 kind: Function
 metadata:
   name: function-auto-ready
+  annotations:
+    argocd.argoproj.io/sync-wave: "-7"
 spec:
   package: xpkg.upbound.io/crossplane-contrib/function-auto-ready:v0.6.0
   runtimeConfigRef:
@@ -21,6 +25,8 @@ apiVersion: pkg.crossplane.io/v1beta1
 kind: Function
 metadata:
   name: function-keycloak-builtin-objects
+  annotations:
+    argocd.argoproj.io/sync-wave: "-7"
 spec:
   package: registry.gitlab.com/corewire/images/crossplane/function-keycloak-builtin-objects:v3.1.2
   packagePullPolicy: Always
@@ -34,6 +40,8 @@ apiVersion: pkg.crossplane.io/v1beta1
 kind: DeploymentRuntimeConfig
 metadata:
   name: function-extra-resources-config
+  annotations:
+    argocd.argoproj.io/sync-wave: "-7"
 spec:
   deploymentTemplate:
     spec:
@@ -56,6 +64,8 @@ apiVersion: pkg.crossplane.io/v1beta1
 kind: DeploymentRuntimeConfig
 metadata:
   name: function-auto-ready-config
+  annotations:
+    argocd.argoproj.io/sync-wave: "-7"
 spec:
   deploymentTemplate:
     spec:
@@ -78,6 +88,8 @@ apiVersion: pkg.crossplane.io/v1beta1
 kind: DeploymentRuntimeConfig
 metadata:
   name: function-keycloak-builtin-objects-config
+  annotations:
+    argocd.argoproj.io/sync-wave: "-7"
 spec:
   deploymentTemplate:
     spec:

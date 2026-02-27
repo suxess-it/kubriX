@@ -3,6 +3,7 @@ apiVersion: v1
 kind: ServiceAccount
 metadata:
   annotations:
+    argocd.argoproj.io/sync-wave: "-19"
     app.quarkus.io/quarkus-version: 3.27.0
     app.quarkus.io/vcs-uri: https://github.com/keycloak/keycloak.git
     app.quarkus.io/build-timestamp: 2025-11-12 - 15:30:52 +0000
@@ -15,6 +16,8 @@ metadata:
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRole
 metadata:
+  annotations:
+    argocd.argoproj.io/sync-wave: "-19"
   labels:
     app.kubernetes.io/name: keycloak-operator
   name: keycloak-operator-clusterrole
@@ -32,6 +35,8 @@ metadata:
   labels:
     app.kubernetes.io/name: keycloak-operator
     app.kubernetes.io/version: 26.4.5
+  annotations:
+    argocd.argoproj.io/sync-wave: "-19"
   name: keycloakrealmimportcontroller-cluster-role
 rules:
   - apiGroups:
@@ -78,6 +83,8 @@ metadata:
   labels:
     app.kubernetes.io/name: keycloak-operator
     app.kubernetes.io/version: 26.4.5
+  annotations:
+    argocd.argoproj.io/sync-wave: "-19"
   name: keycloakcontroller-cluster-role
 rules:
   - apiGroups:
@@ -170,6 +177,8 @@ kind: ClusterRoleBinding
 metadata:
   labels:
     app.kubernetes.io/name: keycloak-operator
+  annotations:
+    argocd.argoproj.io/sync-wave: "-19"
   name: keycloak-operator-clusterrole-binding
 roleRef:
   kind: ClusterRole
@@ -185,6 +194,8 @@ kind: Role
 metadata:
   labels:
     app.kubernetes.io/name: keycloak-operator
+  annotations:
+    argocd.argoproj.io/sync-wave: "-19"
   name: keycloak-operator-role
 rules:
   - apiGroups:
@@ -273,6 +284,8 @@ kind: RoleBinding
 metadata:
   labels:
     app.kubernetes.io/name: keycloak-operator
+  annotations:
+    argocd.argoproj.io/sync-wave: "-19"
   name: keycloak-operator-role-binding
 roleRef:
   kind: Role
@@ -288,6 +301,8 @@ metadata:
   labels:
     app.kubernetes.io/name: keycloak-operator
     app.kubernetes.io/version: 26.4.5
+  annotations:
+    argocd.argoproj.io/sync-wave: "-19"
   name: keycloakrealmimportcontroller-role-binding
 roleRef:
   kind: ClusterRole
@@ -303,6 +318,8 @@ metadata:
   labels:
     app.kubernetes.io/name: keycloak-operator
     app.kubernetes.io/version: 26.4.5
+  annotations:
+    argocd.argoproj.io/sync-wave: "-19"
   name: keycloakcontroller-role-binding
 roleRef:
   kind: ClusterRole
@@ -318,6 +335,8 @@ metadata:
   labels:
     app.kubernetes.io/name: keycloak-operator
     app.kubernetes.io/version: 26.4.5
+  annotations:
+    argocd.argoproj.io/sync-wave: "-19"
   name: keycloak-operator-view
 roleRef:
   kind: ClusterRole
@@ -331,6 +350,7 @@ apiVersion: v1
 kind: Service
 metadata:
   annotations:
+    argocd.argoproj.io/sync-wave: "-19"
     app.quarkus.io/quarkus-version: 3.27.0
     app.quarkus.io/vcs-uri: https://github.com/keycloak/keycloak.git
     app.quarkus.io/build-timestamp: 2025-11-12 - 15:30:52 +0000
@@ -353,6 +373,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   annotations:
+    argocd.argoproj.io/sync-wave: "-19"
     app.quarkus.io/quarkus-version: 3.27.0
     app.quarkus.io/vcs-uri: https://github.com/keycloak/keycloak.git
     app.quarkus.io/build-timestamp: 2025-11-12 - 15:30:52 +0000

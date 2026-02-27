@@ -4,14 +4,15 @@ keycloak:
     enabled: false
 
   readinessProbe:
+    initialDelaySeconds: 20
     periodSeconds: 20
-    failureThreshold: 5
+    failureThreshold: 10
   livenessProbe:
-    periodSeconds: 20
-    failureThreshold: 5
+    periodSeconds: 30
+    failureThreshold: 3
   startupProbe:
-    periodSeconds: 20
-    failureThreshold: 5
+    periodSeconds: 10
+    failureThreshold: 3
 
   resources:
     requests:
@@ -151,8 +152,8 @@ cluster:
       comment: keycloak-admin-user
       login: true
       inherit: true
-      superuser: true
-      createdb: true
+      superuser: false
+      createdb: false
       passwordSecret:
         name: cnpg-keycloak-secret
     annotations:

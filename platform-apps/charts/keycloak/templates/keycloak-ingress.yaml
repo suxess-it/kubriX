@@ -4,10 +4,11 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: keycloak-ingress
-  {{- with .Values.kubrix.keycloak.ingress.annotations }}
   annotations:
+    argocd.argoproj.io/sync-wave: "-1"
+    {{- with .Values.kubrix.keycloak.ingress.annotations }}
     {{- toYaml . | nindent 4 }}
-  {{- end }}
+    {{- end }}
 spec:
   ingressClassName: {{ .Values.kubrix.keycloak.ingress.className | default  "nginx" }}
   {{- if .Values.kubrix.keycloak.ingress.tls.enabled }}
