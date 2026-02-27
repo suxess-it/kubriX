@@ -2,10 +2,10 @@
   "$schema": "http://cyclonedx.org/schema/bom-1.6.schema.json",
   "bomFormat": "CycloneDX",
   "specVersion": "1.6",
-  "serialNumber": "urn:uuid:4e7d075d-8b99-41c2-a60c-729ab19ab044",
+  "serialNumber": "urn:uuid:12d1326f-58d6-4b51-b1f9-d89ab789a80f",
   "version": 1,
   "metadata": {
-    "timestamp": "2026-02-13T09:32:18+00:00",
+    "timestamp": "2026-02-25T14:46:00+00:00",
     "tools": {
       "components": [
         {
@@ -70,7 +70,22 @@
   },
   "components": [
     {
-      "bom-ref": "379802c6-6f59-42de-8ba3-558453174126",
+      "bom-ref": "7b223204-29e9-431e-b17c-74fb68a48d52",
+      "type": "application",
+      "name": "usr/local/bin/nats-server",
+      "properties": [
+        {
+          "name": "aquasecurity:trivy:Class",
+          "value": "lang-pkgs"
+        },
+        {
+          "name": "aquasecurity:trivy:Type",
+          "value": "gobinary"
+        }
+      ]
+    },
+    {
+      "bom-ref": "f6e024b8-ffc8-4a5c-8057-9997d3f74632",
       "type": "operating-system",
       "name": "alpine",
       "version": "3.22.1",
@@ -82,21 +97,6 @@
         {
           "name": "aquasecurity:trivy:Type",
           "value": "alpine"
-        }
-      ]
-    },
-    {
-      "bom-ref": "d8c49340-ec48-4fa7-83ae-b517608fe960",
-      "type": "application",
-      "name": "usr/local/bin/nats-server",
-      "properties": [
-        {
-          "name": "aquasecurity:trivy:Class",
-          "value": "lang-pkgs"
-        },
-        {
-          "name": "aquasecurity:trivy:Type",
-          "value": "gobinary"
         }
       ]
     },
@@ -378,7 +378,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2025-12-24T11:03:53Z"
+          "value": "2026-01-27T22:01:27Z"
         }
       ]
     },
@@ -448,7 +448,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-01-11T09:55:01Z"
+          "value": "2026-01-29T10:40:34Z"
         }
       ]
     },
@@ -938,7 +938,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2025-09-30T20:58:10Z"
+          "value": "2026-01-27T16:30:14Z"
         }
       ]
     },
@@ -1959,11 +1959,6 @@
       "type": "library",
       "name": "golang.org/x/crypto",
       "version": "v0.39.0",
-      "licenses": [
-        {
-          "expression": "(BSD-3-Clause)"
-        }
-      ],
       "purl": "pkg:golang/golang.org/x/crypto@v0.39.0",
       "externalReferences": [
         {
@@ -2083,10 +2078,6 @@
           "type": "distribution"
         },
         {
-          "url": "https://cs.opensource.google/go/x/time",
-          "type": "vcs"
-        },
-        {
           "url": "https://pkg.go.dev/golang.org/x/time#section-documentation",
           "type": "documentation"
         }
@@ -2146,7 +2137,13 @@
   ],
   "dependencies": [
     {
-      "ref": "379802c6-6f59-42de-8ba3-558453174126",
+      "ref": "7b223204-29e9-431e-b17c-74fb68a48d52",
+      "dependsOn": [
+        "pkg:golang/github.com/nats-io/nats-server/v2"
+      ]
+    },
+    {
+      "ref": "f6e024b8-ffc8-4a5c-8057-9997d3f74632",
       "dependsOn": [
         "pkg:apk/alpine/alpine-baselayout@3.7.0-r0?arch=x86_64&distro=3.22.1",
         "pkg:apk/alpine/alpine-release@3.22.1-r0?arch=x86_64&distro=3.22.1",
@@ -2155,12 +2152,6 @@
         "pkg:apk/alpine/musl-utils@1.2.5-r10?arch=x86_64&distro=3.22.1",
         "pkg:apk/alpine/ssl_client@1.37.0-r18?arch=x86_64&distro=3.22.1",
         "pkg:apk/alpine/tzdata@2025b-r0?arch=x86_64&distro=3.22.1"
-      ]
-    },
-    {
-      "ref": "d8c49340-ec48-4fa7-83ae-b517608fe960",
-      "dependsOn": [
-        "pkg:golang/github.com/nats-io/nats-server/v2"
       ]
     },
     {
@@ -2334,8 +2325,8 @@
     {
       "ref": "pkg:oci/nats@sha256%3A7dec3f8f1ff181975dbdfc0d903d2a9724659648294dbc2ebb2fa3a294d573a6?arch=amd64&repository_url=index.docker.io%2Flibrary%2Fnats",
       "dependsOn": [
-        "379802c6-6f59-42de-8ba3-558453174126",
-        "d8c49340-ec48-4fa7-83ae-b517608fe960"
+        "7b223204-29e9-431e-b17c-74fb68a48d52",
+        "f6e024b8-ffc8-4a5c-8057-9997d3f74632"
       ]
     }
   ],

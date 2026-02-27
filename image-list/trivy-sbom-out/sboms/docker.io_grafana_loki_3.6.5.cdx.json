@@ -2,10 +2,10 @@
   "$schema": "http://cyclonedx.org/schema/bom-1.6.schema.json",
   "bomFormat": "CycloneDX",
   "specVersion": "1.6",
-  "serialNumber": "urn:uuid:b04828f8-6c72-417e-b4dc-7d2c252c88a8",
+  "serialNumber": "urn:uuid:20072e87-f30f-4d38-baa7-db91b31b2809",
   "version": 1,
   "metadata": {
-    "timestamp": "2026-02-13T09:29:12+00:00",
+    "timestamp": "2026-02-25T14:41:56+00:00",
     "tools": {
       "components": [
         {
@@ -122,7 +122,7 @@
   },
   "components": [
     {
-      "bom-ref": "467780f9-bf6a-42b7-b0e1-06d7fa1cf045",
+      "bom-ref": "5065baa6-ce66-455d-831b-b729f1261f91",
       "type": "operating-system",
       "name": "debian",
       "version": "13.3",
@@ -138,7 +138,7 @@
       ]
     },
     {
-      "bom-ref": "9aa6bbc6-1c1e-4079-8d70-65800de3b268",
+      "bom-ref": "639d284e-657d-4901-8d0a-547d8900f603",
       "type": "library",
       "name": "./pkg/push",
       "properties": [
@@ -161,7 +161,7 @@
       ]
     },
     {
-      "bom-ref": "ce509079-0fe8-48f3-8027-25cd94f0cadf",
+      "bom-ref": "b21c9567-77f5-40b8-85ca-19d93d2e2d42",
       "type": "application",
       "name": "usr/bin/loki",
       "properties": [
@@ -384,6 +384,10 @@
           "type": "distribution"
         },
         {
+          "url": "https://github.com/google/cel-spec",
+          "type": "vcs"
+        },
+        {
           "url": "https://pkg.go.dev/cel.dev/expr#section-documentation",
           "type": "documentation"
         }
@@ -412,6 +416,10 @@
         {
           "name": "ecosystems:latest_release_published_at",
           "value": "2025-11-08T22:07:56Z"
+        },
+        {
+          "name": "ecosystems:owner_location",
+          "value": "United States of America"
         }
       ]
     },
@@ -442,10 +450,6 @@
         {
           "url": "https://pkg.go.dev/cloud.google.com/go/auth/oauth2adapt",
           "type": "distribution"
-        },
-        {
-          "url": "https://github.com/googleapis/google-cloud-go",
-          "type": "vcs"
         },
         {
           "url": "https://pkg.go.dev/cloud.google.com/go/auth/oauth2adapt#section-documentation",
@@ -536,10 +540,6 @@
           "type": "distribution"
         },
         {
-          "url": "https://github.com/googleapis/google-cloud-go",
-          "type": "vcs"
-        },
-        {
           "url": "https://pkg.go.dev/cloud.google.com/go/auth#section-documentation",
           "type": "documentation"
         }
@@ -567,7 +567,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-01-21T21:51:53Z"
+          "value": "2026-02-13T17:14:27Z"
         },
         {
           "name": "ecosystems:topic",
@@ -803,10 +803,6 @@
           "type": "distribution"
         },
         {
-          "url": "https://github.com/googleapis/google-cloud-go",
-          "type": "vcs"
-        },
-        {
           "url": "https://pkg.go.dev/cloud.google.com/go/iam#section-documentation",
           "type": "documentation"
         }
@@ -893,6 +889,10 @@
         {
           "url": "https://pkg.go.dev/cloud.google.com/go/longrunning",
           "type": "distribution"
+        },
+        {
+          "url": "https://github.com/googleapis/google-cloud-go",
+          "type": "vcs"
         },
         {
           "url": "https://pkg.go.dev/cloud.google.com/go/longrunning#section-documentation",
@@ -1141,7 +1141,7 @@
       "author": "Google APIs",
       "name": "cloud.google.com/go/storage",
       "version": "v1.57.0",
-      "description": "Package storage provides an easy way to work with Google Cloud Storage.\nGoogle Cloud Storage stores data in named objects, which are grouped into buckets.\n\nMore information about Google Cloud Storage is available at\nhttps://cloud.google.com/storage/docs.\n\nSee https://pkg.go.dev/cloud.google.com/go for authentication, timeouts,\nconnection pooling and similar aspects of this package.\n\nTo start working with this package, create a Client:\n\nThe client will use your default application credentials. Clients should be\nreused instead of created as needed. The methods of Client are safe for\nconcurrent use by multiple goroutines.\n\nYou may configure the client by passing in options from the google.golang.org/api/option\npackage. You may also use options defined in this package, such as WithJSONReads.\n\nIf you only wish to access public data, you can create\nan unauthenticated client with\n\nTo use an emulator with this library, you can set the STORAGE_EMULATOR_HOST\nenvironment variable to the address at which your emulator is running. This will\nsend requests to that address instead of to Cloud Storage. You can then create\nand use a client as usual:\n\nPlease note that there is no official emulator for Cloud Storage.\n\nA Google Cloud Storage bucket is a collection of objects. To work with a\nbucket, make a bucket handle:\n\nA handle is a reference to a bucket. You can have a handle even if the\nbucket doesn't exist yet. To create a bucket in Google Cloud Storage,\ncall BucketHandle.Create:\n\nNote that although buckets are associated with projects, bucket names are\nglobal across all projects.\n\nEach bucket has associated metadata, represented in this package by\nBucketAttrs. The third argument to BucketHandle.Create allows you to set\nthe initial BucketAttrs of a bucket. To retrieve a bucket's attributes, use\nBucketHandle.Attrs:\n\nAn object holds arbitrary data as a sequence of bytes, like a file. You\nrefer to objects using a handle, just as with buckets, but unlike buckets\nyou don't explicitly create an object. Instead, the first time you write\nto an object it will be created. You can use the standard Go io.Reader\nand io.Writer interfaces to read and write object data:\n\nObjects also have attributes, which you can fetch with ObjectHandle.Attrs:\n\nListing objects in a bucket is done with the BucketHandle.Objects method:\n\nObjects are listed lexicographically by name. To filter objects\nlexicographically, [Query.StartOffset] and/or [Query.EndOffset] can be used:\n\nIf only a subset of object attributes is needed when listing, specifying this\nsubset using Query.SetAttrSelection may speed up the listing process:\n\nBoth objects and buckets have ACLs (Access Control Lists). An ACL is a list of\nACLRules, each of which specifies the role of a user, group or project. ACLs\nare suitable for fine-grained control, but you may prefer using IAM to control\naccess at the project level (see Cloud Storage IAM docs.\n\nTo list the ACLs of a bucket or object, obtain an ACLHandle and call ACLHandle.List:\n\nYou can also set and delete ACLs.\n\nEvery object has a generation and a metageneration. The generation changes\nwhenever the content changes, and the metageneration changes whenever the\nmetadata changes. Conditions let you check these values before an operation;\nthe operation only executes if the conditions match. You can use conditions to\nprevent race conditions in read-modify-write operations.\n\nFor example, say you've read an object's metadata into objAttrs. Now\nyou want to write to that object, but only if its contents haven't changed\nsince you read it. Here is how to express that:\n\nYou can obtain a URL that lets anyone read or write an object for a limited time.\nSigning a URL requires credentials authorized to sign a URL. To use the same\nauthentication that was used when instantiating the Storage client, use\nBucketHandle.SignedURL.\n\nYou can also sign a URL without creating a client. See the documentation of\nSignedURL for details.\n\nA type of signed request that allows uploads through HTML forms directly to Cloud Storage with\ntemporary permission. Conditions can be applied to restrict how the HTML form is used and exercised\nby a user.\n\nFor more information, please see the XML POST Object docs as well\nas the documentation of BucketHandle.GenerateSignedPostPolicyV4.\n\nIf the GoogleAccessID and PrivateKey option fields are not provided, they will\nbe automatically detected by BucketHandle.SignedURL and\nBucketHandle.GenerateSignedPostPolicyV4 if any of the following are true:\n\nDetecting GoogleAccessID may not be possible if you are authenticated using a\ntoken source or using option.WithHTTPClient. In this case, you can provide a\nservice account email for GoogleAccessID and the client will attempt to sign\nthe URL or Post Policy using that service account.\n\nTo generate the signature, you must have:\n\nErrors returned by this client are often of the type github.com/googleapis/gax-go/v2/apierror.\nThe [apierror.APIError] type can wrap a google.golang.org/grpc/status.Status\nif gRPC was used, or a google.golang.org/api/googleapi.Error if HTTP/REST was used.\nYou might also encounter googleapi.Error directly from HTTP operations.\nThese types of errors can be inspected for more information by using errors.As\nto access the specific underlying error types and retrieve detailed information,\nincluding HTTP or gRPC status codes. For example:\n\nThis library may also return other errors that are not wrapped as [apierror.APIError]. For\nexample, errors with authentication may return cloud.google.com/go/auth.Error.\n\nMethods in this package may retry calls that fail with transient errors.\nRetrying continues indefinitely unless the controlling context is canceled, the\nclient is closed, or a non-transient error is received. To stop retries from\ncontinuing, use context timeouts or cancellation.\n\nThe retry strategy in this library follows best practices for Cloud Storage. By\ndefault, operations are retried only if they are idempotent, and exponential\nbackoff with jitter is employed. In addition, errors are only retried if they\nare defined as transient by the service. See the Cloud Storage retry docs\nfor more information.\n\nUsers can configure non-default retry behavior for a single library call (using\nBucketHandle.Retryer and ObjectHandle.Retryer) or for all calls made by a\nclient (using Client.SetRetry). For example:\n\nYou can add custom headers to any API call made by this package by using\ncallctx.SetHeaders on the context which is passed to the method. For example,\nto add a custom audit logging header:\n\nThis package includes support for the Cloud Storage gRPC API. This\nimplementation uses gRPC rather than the default JSON & XML APIs\nto make requests to Cloud Storage. All methods on the Client support\nthe gRPC API, with the exception of the Client.ServiceAccount, Notification,\nand HMACKey methods.\n\nThe Cloud Storage gRPC API is generally available.\n\nTo create a client which will use gRPC, use the alternate constructor:\n\nOne major advantage of the gRPC API is that it can use Direct Connectivity,\nenabling requests to skip some proxy steps and reducing response latency.\nRequirements to use Direct Connectivity include:\n\nAdditional requirements for Direct Connectivity are documented in the\nCloud Storage gRPC docs. If all requirements are met, the client will\nuse Direct Connectivity by default without requiring any client options\nor environment variables. To disable Direct Connectivity, you can set\nthe environment variable GOOGLE_CLOUD_DISABLE_DIRECT_PATH=true.\n\nDependencies for the gRPC API may slightly increase the size of binaries for\napplications depending on this package. If you are not using gRPC, you can use\nthe build tag `disable_grpc_modules` to opt out of these dependencies and\nreduce the binary size.\n\nThe gRPC client is instrumented with Open Telemetry metrics which export to\nCloud Monitoring by default. More information is available in the\ngRPC client-side metrics documentation, including information about\nroles which must be enabled in order to do the export successfully. To\ndisable this export, you can use the WithDisabledClientMetrics client\noption.\n\nThe gRPC client automatically computes and sends CRC32C checksums for uploads using Writer,\nwhich provides an additional layer of data integrity validation when compared to the HTTP client.\nThis behavior can optionally be disabled by using [Writer.DisableAutoChecksum].\n\nCertain control plane and long-running operations for Cloud Storage (including Folder\nand Managed Folder operations) are supported via the autogenerated Storage Control\nclient, which is available as a subpackage in this module. See package docs at\ncloud.google.com/go/storage/control/apiv2 or reference the Storage Control API docs.",
+      "description": "Package storage provides an easy way to work with Google Cloud Storage.\nGoogle Cloud Storage stores data in named objects, which are grouped into buckets.\n\nMore information about Google Cloud Storage is available at\nhttps://cloud.google.com/storage/docs.\n\nSee https://pkg.go.dev/cloud.google.com/go for authentication, timeouts,\nconnection pooling and similar aspects of this package.\n\nTo start working with this package, create a Client:\n\nThe client will use your default application credentials. Clients should be\nreused instead of created as needed. The methods of Client are safe for\nconcurrent use by multiple goroutines.\n\nYou may configure the client by passing in options from the google.golang.org/api/option\npackage. You may also use options defined in this package, such as WithJSONReads.\n\nIf you only wish to access public data, you can create\nan unauthenticated client with\n\nTo use an emulator with this library, you can set the STORAGE_EMULATOR_HOST\nenvironment variable to the address at which your emulator is running. This will\nsend requests to that address instead of to Cloud Storage. You can then create\nand use a client as usual:\n\nPlease note that there is no official emulator for Cloud Storage.\n\nA Google Cloud Storage bucket is a collection of objects. To work with a\nbucket, make a bucket handle:\n\nA handle is a reference to a bucket. You can have a handle even if the\nbucket doesn't exist yet. To create a bucket in Google Cloud Storage,\ncall BucketHandle.Create:\n\nNote that although buckets are associated with projects, bucket names are\nglobal across all projects.\n\nEach bucket has associated metadata, represented in this package by\nBucketAttrs. The third argument to BucketHandle.Create allows you to set\nthe initial BucketAttrs of a bucket. To retrieve a bucket's attributes, use\nBucketHandle.Attrs:\n\nAn object holds arbitrary data as a sequence of bytes, like a file. You\nrefer to objects using a handle, just as with buckets, but unlike buckets\nyou don't explicitly create an object. Instead, the first time you write\nto an object it will be created. You can use the standard Go io.Reader\nand io.Writer interfaces to read and write object data:\n\nObjects also have attributes, which you can fetch with ObjectHandle.Attrs:\n\nListing objects in a bucket is done with the BucketHandle.Objects method:\n\nObjects are listed lexicographically by name. To filter objects\nlexicographically, [Query.StartOffset] and/or [Query.EndOffset] can be used:\n\nIf only a subset of object attributes is needed when listing, specifying this\nsubset using Query.SetAttrSelection may speed up the listing process:\n\nBoth objects and buckets have ACLs (Access Control Lists). An ACL is a list of\nACLRules, each of which specifies the role of a user, group or project. ACLs\nare suitable for fine-grained control, but you may prefer using IAM to control\naccess at the project level (see Cloud Storage IAM docs.\n\nTo list the ACLs of a bucket or object, obtain an ACLHandle and call ACLHandle.List:\n\nYou can also set and delete ACLs.\n\nEvery object has a generation and a metageneration. The generation changes\nwhenever the content changes, and the metageneration changes whenever the\nmetadata changes. Conditions let you check these values before an operation;\nthe operation only executes if the conditions match. You can use conditions to\nprevent race conditions in read-modify-write operations.\n\nFor example, say you've read an object's metadata into objAttrs. Now\nyou want to write to that object, but only if its contents haven't changed\nsince you read it. Here is how to express that:\n\nYou can obtain a URL that lets anyone read or write an object for a limited time.\nSigning a URL requires credentials authorized to sign a URL. To use the same\nauthentication that was used when instantiating the Storage client, use\nBucketHandle.SignedURL.\n\nYou can also sign a URL without creating a client. See the documentation of\nSignedURL for details.\n\nA type of signed request that allows uploads through HTML forms directly to Cloud Storage with\ntemporary permission. Conditions can be applied to restrict how the HTML form is used and exercised\nby a user.\n\nFor more information, please see the XML POST Object docs as well\nas the documentation of BucketHandle.GenerateSignedPostPolicyV4.\n\nIf the GoogleAccessID and PrivateKey option fields are not provided, they will\nbe automatically detected by BucketHandle.SignedURL and\nBucketHandle.GenerateSignedPostPolicyV4 if any of the following are true:\n\nDetecting GoogleAccessID may not be possible if you are authenticated using a\ntoken source or using option.WithHTTPClient. In this case, you can provide a\nservice account email for GoogleAccessID and the client will attempt to sign\nthe URL or Post Policy using that service account.\n\nTo generate the signature, you must have:\n\nErrors returned by this client are often of the type github.com/googleapis/gax-go/v2/apierror.\nThe [apierror.APIError] type can wrap a google.golang.org/grpc/status.Status\nif gRPC was used, or a google.golang.org/api/googleapi.Error if HTTP/REST was used.\nYou might also encounter googleapi.Error directly from HTTP operations.\nThese types of errors can be inspected for more information by using errors.As\nto access the specific underlying error types and retrieve detailed information,\nincluding HTTP or gRPC status codes. For example:\n\nThis library may also return other errors that are not wrapped as [apierror.APIError]. For\nexample, errors with authentication may return cloud.google.com/go/auth.Error.\n\nMethods in this package may retry calls that fail with transient errors.\nRetrying continues indefinitely unless the controlling context is canceled, the\nclient is closed, or a non-transient error is received. To stop retries from\ncontinuing, use context timeouts or cancellation.\n\nThe retry strategy in this library follows best practices for Cloud Storage. By\ndefault, operations are retried only if they are idempotent, and exponential\nbackoff with jitter is employed. In addition, errors are only retried if they\nare defined as transient by the service. See the Cloud Storage retry docs\nfor more information.\n\nUsers can configure non-default retry behavior for a single library call (using\nBucketHandle.Retryer and ObjectHandle.Retryer) or for all calls made by a\nclient (using Client.SetRetry). For example:\n\nYou can add custom headers to any API call made by this package by using\ncallctx.SetHeaders on the context which is passed to the method. For example,\nto add a custom audit logging header:\n\nThis package includes support for the Cloud Storage gRPC API. This\nimplementation uses gRPC rather than the default JSON & XML APIs\nto make requests to Cloud Storage. All methods on the Client support\nthe gRPC API, with the exception of the Client.ServiceAccount, Notification,\nand HMACKey methods.\n\nThe Cloud Storage gRPC API is generally available.\n\nTo create a client which will use gRPC, use the alternate constructor:\n\nOne major advantage of the gRPC API is that it can use Direct Connectivity,\nenabling requests to skip some proxy steps and reducing response latency.\nRequirements to use Direct Connectivity include:\n\nAdditional requirements for Direct Connectivity are documented in the\nCloud Storage gRPC docs. If all requirements are met, the client will\nuse Direct Connectivity by default without requiring any client options\nor environment variables. To disable Direct Connectivity, you can set\nthe environment variable GOOGLE_CLOUD_DISABLE_DIRECT_PATH=true.\n\nDependencies for the gRPC API may slightly increase the size of binaries for\napplications depending on this package. If you are not using gRPC, you can use\nthe build tag `disable_grpc_modules` to opt out of these dependencies and\nreduce the binary size.\n\nThe gRPC client is instrumented with Open Telemetry metrics which export to\nCloud Monitoring by default. More information is available in the\ngRPC client-side metrics documentation, including information about\nroles which must be enabled in order to do the export successfully. To\ndisable this export, you can use the WithDisabledClientMetrics client\noption.\n\nThe client automatically computes and sends CRC32C checksums for uploads using Writer,\nproviding an additional layer of data integrity validation with a slight CPU overhead.\n\nNote: With a chunk size of 0 (no buffering) in JSON uploads, an auto-calculated checksum mismatch\nreturns an error but may leave corrupt data on the server, requiring manual cleanup. This risk does not\napply to single-shot uploads when user-provided checksum is provided.\n\nAutomatic checksumming can be disabled using [Writer.DisableAutoChecksum].\n\nCertain control plane and long-running operations for Cloud Storage (including Folder\nand Managed Folder operations) are supported via the autogenerated Storage Control\nclient, which is available as a subpackage in this module. See package docs at\ncloud.google.com/go/storage/control/apiv2 or reference the Storage Control API docs.",
       "licenses": [
         {
           "expression": "(Apache-2.0)"
@@ -1308,6 +1308,13 @@
     {
       "bom-ref": "pkg:golang/dario.cat/mergo@v1.0.2",
       "type": "library",
+      "supplier": {
+        "name": "Dario Castañé",
+        "url": [
+          "dario.cat"
+        ]
+      },
+      "author": "Dario Castañé",
       "name": "dario.cat/mergo",
       "version": "v1.0.2",
       "description": "A helper to merge structs and maps in Golang. Useful for configuration default values, avoiding messy if-statements.\n\nMergo merges same-type structs and maps by setting default values in zero-value fields. Mergo won't merge unexported (private) fields. It will do recursively any exported one. It also won't merge structs inside maps (because they are not addressable using Go reflection).\n\nIt is ready for production use. It is used in several projects by Docker, Google, The Linux Foundation, VMWare, Shopify, etc.\n\n1.0.0\n\nIn 1.0.0 Mergo moves to a vanity URL `dario.cat/mergo`.\n\n0.3.9\n\nPlease keep in mind that a problematic PR broke 0.3.9. We reverted it in 0.3.10. We consider 0.3.10 as stable but not bug-free. . Also, this version adds suppot for go modules.\n\nKeep in mind that in 0.3.2, Mergo changed Merge() and Map() signatures to support transformers. We added an optional/variadic argument so that it won't break the existing code.\n\nIf you were using Mergo before April 6th, 2015, please check your project works as intended after updating your local copy with go get -u dario.cat/mergo. I apologize for any issue caused by its previous behavior and any future bug that Mergo could cause in existing projects after the change (release 0.2.0).\n\nDo your usual installation procedure:\n\nYou can only merge same-type structs with exported fields initialized as zero value of their type and same-types maps. Mergo won't merge unexported (private) fields but will do recursively any exported one. It won't merge empty structs value as they are zero values too. Also, maps will be merged recursively except for structs inside maps (because they are not addressable using Go reflection).\n\nAlso, you can merge overwriting values using the transformer WithOverride.\n\nAdditionally, you can map a map[string]interface{} to a struct (and otherwise, from struct to map), following the same restrictions as in Merge(). Keys are capitalized to find each corresponding exported field.\n\nWarning: if you map a struct to map, it won't do it recursively. Don't expect Mergo to map struct members of your struct as map[string]interface{}. They will be just assigned as values.\n\nHere is a nice example:\n\nTransformers allow to merge specific types differently than in the default behavior. In other words, now you can customize how some types are merged. For example, time.Time is a struct; it doesn't have zero value but IsZero can return true because it has fields with zero value. How can we merge a non-zero time.Time?\n\nIf I can help you, you have an idea or you are using Mergo in your projects, don't hesitate to drop me a line (or a pull request): https://twitter.com/im_dario\n\nWritten by Dario Castañé: https://da.rio.hn\n\nBSD 3-Clause license, as Go language.",
@@ -1325,10 +1332,6 @@
         {
           "url": "https://pkg.go.dev/dario.cat/mergo",
           "type": "distribution"
-        },
-        {
-          "url": "https://github.com/imdario/mergo",
-          "type": "vcs"
         },
         {
           "url": "https://pkg.go.dev/dario.cat/mergo#section-documentation",
@@ -1361,6 +1364,10 @@
           "value": "2025-05-07T20:15:06Z"
         },
         {
+          "name": "ecosystems:owner_location",
+          "value": "Barcelona"
+        },
+        {
           "name": "ecosystems:topic",
           "value": "go"
         },
@@ -1389,16 +1396,9 @@
     {
       "bom-ref": "pkg:golang/filippo.io/edwards25519@v1.1.0",
       "type": "library",
-      "supplier": {
-        "name": "Filippo Valsorda",
-        "url": [
-          "https://filippo.io"
-        ]
-      },
-      "author": "Filippo Valsorda",
       "name": "filippo.io/edwards25519",
       "version": "v1.1.0",
-      "description": "Package edwards25519 implements group logic for the twisted Edwards curve\n\nThis is better known as the Edwards curve equivalent to Curve25519, and is\nthe curve used by the Ed25519 signature scheme.\n\nMost users don't need this package, and should instead use crypto/ed25519 for\nsignatures, golang.org/x/crypto/curve25519 for Diffie-Hellman, or\ngithub.com/gtank/ristretto255 for prime order group logic.\n\nHowever, developers who do need to interact with low-level edwards25519\noperations can use this package, which is an extended version of\ncrypto/internal/edwards25519 from the standard library repackaged as\nan importable module.",
+      "description": "Package edwards25519 implements group logic for the twisted Edwards curve\n\nThis is better known as the Edwards curve equivalent to Curve25519, and is\nthe curve used by the Ed25519 signature scheme.\n\nMost users don't need this package, and should instead use crypto/ed25519 for\nsignatures, crypto/ecdh for Diffie-Hellman, or github.com/gtank/ristretto255\nfor prime order group logic.\n\nHowever, developers who do need to interact with low-level edwards25519\noperations can use this package, which is an extended version of\ncrypto/internal/fips140/edwards25519 from the standard library repackaged as\nan importable module.",
       "licenses": [
         {
           "expression": "(BSD-3-Clause)"
@@ -1413,6 +1413,10 @@
         {
           "url": "https://pkg.go.dev/filippo.io/edwards25519",
           "type": "distribution"
+        },
+        {
+          "url": "https://github.com/FiloSottile/edwards25519",
+          "type": "vcs"
         },
         {
           "url": "https://pkg.go.dev/filippo.io/edwards25519#section-documentation",
@@ -1442,11 +1446,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2023-12-10T19:13:24Z"
-        },
-        {
-          "name": "ecosystems:owner_location",
-          "value": "Rome, Italy"
+          "value": "2026-02-17T17:23:26Z"
         }
       ]
     },
@@ -1463,6 +1463,11 @@
       "name": "github.com/alecthomas/units",
       "version": "v0.0.0-20240927000941-0f3dac36c52b",
       "description": "Package units provides helpful unit multipliers and functions for Go.\n\nThe goal of this package is to have functionality similar to the time [1] package.\n\n[1] http://golang.org/pkg/time/\n\nIt allows for code like this:",
+      "licenses": [
+        {
+          "expression": "(MIT)"
+        }
+      ],
       "purl": "pkg:golang/github.com/alecthomas/units@v0.0.0-20240927000941-0f3dac36c52b",
       "externalReferences": [
         {
@@ -1505,7 +1510,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2023-12-02T07:17:11Z"
+          "value": "2024-09-27T00:09:41Z"
         },
         {
           "name": "ecosystems:owner_location",
@@ -1703,7 +1708,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2025-12-09T16:12:21Z"
+          "value": "2026-01-14T19:03:29Z"
         },
         {
           "name": "ecosystems:topic",
@@ -1929,7 +1934,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2025-12-02T16:09:54Z"
+          "value": "2026-02-23T19:11:41Z"
         },
         {
           "name": "ecosystems:owner_location",
@@ -2097,7 +2102,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-01-09T19:14:10Z"
+          "value": "2026-02-23T19:11:41Z"
         },
         {
           "name": "ecosystems:owner_location",
@@ -2181,7 +2186,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-01-09T19:14:10Z"
+          "value": "2026-02-23T19:11:41Z"
         },
         {
           "name": "ecosystems:owner_location",
@@ -2342,7 +2347,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-01-09T19:14:10Z"
+          "value": "2026-02-23T19:11:41Z"
         },
         {
           "name": "ecosystems:owner_location",
@@ -2509,7 +2514,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-01-09T19:14:10Z"
+          "value": "2026-02-23T19:11:41Z"
         },
         {
           "name": "ecosystems:owner_location",
@@ -2755,7 +2760,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-01-09T19:14:10Z"
+          "value": "2026-02-23T19:11:41Z"
         },
         {
           "name": "ecosystems:owner_location",
@@ -2839,7 +2844,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-01-09T19:14:10Z"
+          "value": "2026-02-23T19:11:41Z"
         },
         {
           "name": "ecosystems:owner_location",
@@ -2923,7 +2928,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-01-09T19:14:10Z"
+          "value": "2026-02-23T19:11:41Z"
         },
         {
           "name": "ecosystems:owner_location",
@@ -3006,7 +3011,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-01-09T19:14:10Z"
+          "value": "2026-02-23T19:11:41Z"
         },
         {
           "name": "ecosystems:owner_location",
@@ -3090,7 +3095,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-01-28T19:24:43Z"
+          "value": "2026-02-23T19:11:41Z"
         },
         {
           "name": "ecosystems:owner_location",
@@ -3174,7 +3179,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-01-09T19:14:10Z"
+          "value": "2026-02-23T19:11:41Z"
         },
         {
           "name": "ecosystems:owner_location",
@@ -3258,7 +3263,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-01-09T19:14:10Z"
+          "value": "2026-02-23T19:11:41Z"
         },
         {
           "name": "ecosystems:owner_location",
@@ -3342,7 +3347,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-01-09T19:14:10Z"
+          "value": "2026-02-23T19:11:41Z"
         },
         {
           "name": "ecosystems:owner_location",
@@ -3594,7 +3599,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2025-12-01T16:06:42Z"
+          "value": "2026-02-20T21:07:26Z"
         },
         {
           "name": "ecosystems:owner_location",
@@ -3813,7 +3818,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2025-11-06T17:38:09Z"
+          "value": "2026-01-13T00:39:40Z"
         },
         {
           "name": "ecosystems:owner_location",
@@ -3982,7 +3987,7 @@
           "type": "distribution"
         },
         {
-          "url": "https://github.com/azure/azure-sdk-for-go",
+          "url": "https://github.com/Azure/azure-sdk-for-go",
           "type": "vcs"
         },
         {
@@ -4113,7 +4118,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2025-10-16T21:08:31Z"
+          "value": "2026-01-13T05:26:14Z"
         },
         {
           "name": "ecosystems:owner_location",
@@ -5389,7 +5394,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2023-11-28T00:30:11Z"
+          "value": "2026-02-02T19:58:03Z"
         },
         {
           "name": "ecosystems:owner_location",
@@ -7061,7 +7066,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-02-04T06:21:56Z"
+          "value": "2026-02-14T05:17:49Z"
         },
         {
           "name": "ecosystems:topic",
@@ -8619,7 +8624,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2025-07-15T08:59:08Z"
+          "value": "2026-01-12T17:24:26Z"
         }
       ]
     },
@@ -9749,7 +9754,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2024-01-17T00:09:34Z"
+          "value": "2026-02-02T01:29:54Z"
         },
         {
           "name": "ecosystems:owner_location",
@@ -10044,7 +10049,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-01-13T07:11:36Z"
+          "value": "2026-02-09T19:15:42Z"
         }
       ]
     },
@@ -10133,7 +10138,7 @@
           "type": "distribution"
         },
         {
-          "url": "https://github.com/googlecloudplatform/opentelemetry-operations-go",
+          "url": "https://github.com/GoogleCloudPlatform/opentelemetry-operations-go",
           "type": "vcs"
         },
         {
@@ -10164,7 +10169,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2025-09-25T17:18:32Z"
+          "value": "2026-01-16T21:40:50Z"
         }
       ]
     },
@@ -10227,7 +10232,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2025-09-25T17:18:32Z"
+          "value": "2026-01-16T21:40:50Z"
         }
       ]
     },
@@ -10290,7 +10295,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2025-09-25T17:18:32Z"
+          "value": "2026-01-16T21:40:50Z"
         }
       ]
     },
@@ -10874,7 +10879,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2025-12-11T08:58:11Z"
+          "value": "2026-02-06T11:05:24Z"
         },
         {
           "name": "ecosystems:owner_location",
@@ -11252,7 +11257,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2022-11-23T15:37:39Z"
+          "value": "2025-09-05T09:39:17Z"
         },
         {
           "name": "ecosystems:owner_location",
@@ -11423,7 +11428,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-02-10T16:34:47Z"
+          "value": "2026-02-17T16:59:59Z"
         },
         {
           "name": "ecosystems:topic",
@@ -11571,7 +11576,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-01-13T12:23:43Z"
+          "value": "2026-02-19T11:07:33Z"
         },
         {
           "name": "ecosystems:owner_location",
@@ -16284,7 +16289,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-01-05T22:20:29Z"
+          "value": "2026-02-03T15:50:06Z"
         },
         {
           "name": "ecosystems:topic",
@@ -16355,7 +16360,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-02-03T15:50:06Z"
+          "value": "2026-02-18T15:07:50Z"
         },
         {
           "name": "ecosystems:topic",
@@ -16427,7 +16432,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-01-05T22:20:29Z"
+          "value": "2026-02-18T15:07:50Z"
         },
         {
           "name": "ecosystems:topic",
@@ -16717,7 +16722,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2025-12-13T00:09:58Z"
+          "value": "2026-02-23T06:22:40Z"
         },
         {
           "name": "ecosystems:topic",
@@ -17270,7 +17275,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2025-10-03T13:21:05Z"
+          "value": "2026-02-22T15:58:24Z"
         },
         {
           "name": "ecosystems:topic",
@@ -18179,7 +18184,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-01-25T10:14:04Z"
+          "value": "2026-02-16T14:41:48Z"
         },
         {
           "name": "ecosystems:topic",
@@ -20353,6 +20358,10 @@
           "type": "distribution"
         },
         {
+          "url": "https://github.com/etcd-io/bbolt",
+          "type": "vcs"
+        },
+        {
           "url": "https://pkg.go.dev/go.etcd.io/bbolt#section-documentation",
           "type": "documentation"
         }
@@ -20412,10 +20421,6 @@
           "type": "distribution"
         },
         {
-          "url": "https://github.com/etcd-io/etcd",
-          "type": "vcs"
-        },
-        {
           "url": "https://pkg.go.dev/go.etcd.io/etcd/api/v3#section-documentation",
           "type": "documentation"
         }
@@ -20443,7 +20448,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2025-12-17T19:39:29Z"
+          "value": "2026-02-13T18:39:11Z"
         },
         {
           "name": "ecosystems:owner_location",
@@ -20546,7 +20551,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2025-12-17T19:39:29Z"
+          "value": "2026-02-13T18:39:11Z"
         },
         {
           "name": "ecosystems:owner_location",
@@ -20623,6 +20628,10 @@
           "type": "distribution"
         },
         {
+          "url": "https://github.com/etcd-io/etcd",
+          "type": "vcs"
+        },
+        {
           "url": "https://pkg.go.dev/go.etcd.io/etcd/client/v3#section-documentation",
           "type": "documentation"
         }
@@ -20650,7 +20659,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2025-12-17T19:39:29Z"
+          "value": "2026-02-13T18:39:11Z"
         },
         {
           "name": "ecosystems:owner_location",
@@ -20812,6 +20821,10 @@
         {
           "url": "https://pkg.go.dev/go.opencensus.io",
           "type": "distribution"
+        },
+        {
+          "url": "https://github.com/census-instrumentation/opencensus-go",
+          "type": "vcs"
         },
         {
           "url": "https://pkg.go.dev/go.opencensus.io#section-documentation",
@@ -21041,7 +21054,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-02-02T17:58:20Z"
+          "value": "2026-02-18T11:09:46Z"
         },
         {
           "name": "ecosystems:topic",
@@ -21124,7 +21137,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2025-12-15T19:17:44Z"
+          "value": "2026-02-17T20:54:20Z"
         },
         {
           "name": "ecosystems:topic",
@@ -21208,7 +21221,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-02-02T17:58:20Z"
+          "value": "2026-02-18T11:09:46Z"
         },
         {
           "name": "ecosystems:topic",
@@ -21265,10 +21278,6 @@
           "type": "distribution"
         },
         {
-          "url": "https://github.com/open-telemetry/opentelemetry-collector",
-          "type": "vcs"
-        },
-        {
           "url": "https://pkg.go.dev/go.opentelemetry.io/collector/consumer#section-documentation",
           "type": "documentation"
         }
@@ -21296,7 +21305,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-01-20T09:10:30Z"
+          "value": "2026-02-18T11:09:46Z"
         },
         {
           "name": "ecosystems:topic",
@@ -21352,6 +21361,10 @@
           "type": "distribution"
         },
         {
+          "url": "https://github.com/open-telemetry/opentelemetry-collector",
+          "type": "vcs"
+        },
+        {
           "url": "https://pkg.go.dev/go.opentelemetry.io/collector/featuregate#section-documentation",
           "type": "documentation"
         }
@@ -21379,7 +21392,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-02-02T17:58:20Z"
+          "value": "2026-02-18T11:09:46Z"
         },
         {
           "name": "ecosystems:topic",
@@ -21462,7 +21475,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2025-12-15T19:17:44Z"
+          "value": "2026-02-18T11:09:46Z"
         },
         {
           "name": "ecosystems:topic",
@@ -21519,10 +21532,6 @@
           "type": "distribution"
         },
         {
-          "url": "https://github.com/open-telemetry/opentelemetry-collector",
-          "type": "vcs"
-        },
-        {
           "url": "https://pkg.go.dev/go.opentelemetry.io/collector/pdata#section-documentation",
           "type": "documentation"
         }
@@ -21550,7 +21559,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-02-02T17:58:20Z"
+          "value": "2026-02-18T11:09:46Z"
         },
         {
           "name": "ecosystems:topic",
@@ -21633,7 +21642,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-01-05T19:35:02Z"
+          "value": "2026-02-18T11:09:46Z"
         },
         {
           "name": "ecosystems:topic",
@@ -21689,6 +21698,10 @@
           "type": "distribution"
         },
         {
+          "url": "https://github.com/open-telemetry/opentelemetry-collector",
+          "type": "vcs"
+        },
+        {
           "url": "https://pkg.go.dev/go.opentelemetry.io/collector/processor#section-documentation",
           "type": "documentation"
         }
@@ -21716,7 +21729,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-02-02T17:58:20Z"
+          "value": "2026-02-18T11:09:46Z"
         },
         {
           "name": "ecosystems:topic",
@@ -21883,7 +21896,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2025-12-08T20:14:59Z"
+          "value": "2026-02-02T19:10:47Z"
         }
       ]
     },
@@ -21943,7 +21956,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2025-12-08T20:14:59Z"
+          "value": "2026-02-02T19:10:47Z"
         }
       ]
     },
@@ -22155,10 +22168,6 @@
           "type": "distribution"
         },
         {
-          "url": "https://github.com/open-telemetry/opentelemetry-go-contrib",
-          "type": "vcs"
-        },
-        {
           "url": "https://pkg.go.dev/go.opentelemetry.io/contrib/instrumentation/net/http/httptrace/otelhttptrace#section-documentation",
           "type": "documentation"
         }
@@ -22277,6 +22286,10 @@
         {
           "url": "https://pkg.go.dev/go.opentelemetry.io/contrib/propagators/jaeger",
           "type": "distribution"
+        },
+        {
+          "url": "https://github.com/open-telemetry/opentelemetry-go-contrib",
+          "type": "vcs"
         },
         {
           "url": "https://pkg.go.dev/go.opentelemetry.io/contrib/propagators/jaeger#section-documentation",
@@ -22711,10 +22724,6 @@
           "type": "distribution"
         },
         {
-          "url": "https://github.com/open-telemetry/opentelemetry-go",
-          "type": "vcs"
-        },
-        {
           "url": "https://pkg.go.dev/go.opentelemetry.io/otel/exporters/otlp/otlpmetric/otlpmetrichttp#section-documentation",
           "type": "documentation"
         }
@@ -22789,10 +22798,6 @@
         {
           "url": "https://pkg.go.dev/go.opentelemetry.io/otel/exporters/otlp/otlptrace/otlptracegrpc",
           "type": "distribution"
-        },
-        {
-          "url": "https://github.com/open-telemetry/opentelemetry-go",
-          "type": "vcs"
         },
         {
           "url": "https://pkg.go.dev/go.opentelemetry.io/otel/exporters/otlp/otlptrace/otlptracegrpc#section-documentation",
@@ -22871,6 +22876,10 @@
           "type": "distribution"
         },
         {
+          "url": "https://github.com/open-telemetry/opentelemetry-go",
+          "type": "vcs"
+        },
+        {
           "url": "https://pkg.go.dev/go.opentelemetry.io/otel/exporters/otlp/otlptrace/otlptracehttp#section-documentation",
           "type": "documentation"
         }
@@ -22947,10 +22956,6 @@
           "type": "distribution"
         },
         {
-          "url": "https://github.com/open-telemetry/opentelemetry-go",
-          "type": "vcs"
-        },
-        {
           "url": "https://pkg.go.dev/go.opentelemetry.io/otel/exporters/otlp/otlptrace#section-documentation",
           "type": "documentation"
         }
@@ -23010,7 +23015,7 @@
       "author": "OpenTelemetry - CNCF",
       "name": "go.opentelemetry.io/otel/exporters/prometheus",
       "version": "v0.58.0",
-      "description": "Package prometheus provides a Prometheus Exporter that converts\nOTLP metrics into the Prometheus exposition format and implements\nprometheus.Collector to provide a handler for these metrics.",
+      "description": "Package prometheus provides a Prometheus Exporter that converts\nOTLP metrics into the Prometheus exposition format and implements\nprometheus.Collector to provide a handler for these metrics.\n\nThe Prometheus exporter ignores metrics from the Prometheus bridge. To\nexport these metrics, simply register them directly with the Prometheus\nHandler.",
       "licenses": [
         {
           "expression": "(Apache-2.0 OR BSD-3-Clause)"
@@ -23058,7 +23063,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2025-12-08T16:30:47Z"
+          "value": "2026-02-02T17:46:33Z"
         },
         {
           "name": "ecosystems:topic",
@@ -23183,10 +23188,6 @@
           "type": "distribution"
         },
         {
-          "url": "https://github.com/open-telemetry/opentelemetry-go",
-          "type": "vcs"
-        },
-        {
           "url": "https://pkg.go.dev/go.opentelemetry.io/otel/exporters/stdout/stdoutmetric#section-documentation",
           "type": "documentation"
         }
@@ -23261,10 +23262,6 @@
         {
           "url": "https://pkg.go.dev/go.opentelemetry.io/otel/exporters/stdout/stdouttrace",
           "type": "distribution"
-        },
-        {
-          "url": "https://github.com/open-telemetry/opentelemetry-go",
-          "type": "vcs"
         },
         {
           "url": "https://pkg.go.dev/go.opentelemetry.io/otel/exporters/stdout/stdouttrace#section-documentation",
@@ -23370,7 +23367,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2025-12-08T16:30:47Z"
+          "value": "2026-02-02T17:46:33Z"
         },
         {
           "name": "ecosystems:topic",
@@ -23522,7 +23519,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2025-12-08T16:30:47Z"
+          "value": "2026-02-02T17:46:33Z"
         },
         {
           "name": "ecosystems:topic",
@@ -23916,6 +23913,13 @@
     {
       "bom-ref": "pkg:golang/go.uber.org/atomic@v1.11.0",
       "type": "library",
+      "supplier": {
+        "name": "Uber Go",
+        "url": [
+          "http://uber.github.io/"
+        ]
+      },
+      "author": "Uber Go",
       "name": "go.uber.org/atomic",
       "version": "v1.11.0",
       "description": "Package atomic provides simple wrappers around numerics to enforce atomic\naccess.",
@@ -23933,6 +23937,10 @@
         {
           "url": "https://pkg.go.dev/go.uber.org/atomic",
           "type": "distribution"
+        },
+        {
+          "url": "https://github.com/uber-go/atomic",
+          "type": "vcs"
         },
         {
           "url": "https://pkg.go.dev/go.uber.org/atomic#section-documentation",
@@ -23963,12 +23971,23 @@
         {
           "name": "ecosystems:latest_release_published_at",
           "value": "2023-05-03T17:25:03Z"
+        },
+        {
+          "name": "ecosystems:owner_location",
+          "value": "70+ countries and counting."
         }
       ]
     },
     {
       "bom-ref": "pkg:golang/go.uber.org/goleak@v1.3.0",
       "type": "library",
+      "supplier": {
+        "name": "Uber Go",
+        "url": [
+          "http://uber.github.io/"
+        ]
+      },
+      "author": "Uber Go",
       "name": "go.uber.org/goleak",
       "version": "v1.3.0",
       "description": "Package goleak is a Goroutine leak detector.",
@@ -23986,10 +24005,6 @@
         {
           "url": "https://pkg.go.dev/go.uber.org/goleak",
           "type": "distribution"
-        },
-        {
-          "url": "https://github.com/uber-go/goleak",
-          "type": "vcs"
         },
         {
           "url": "https://pkg.go.dev/go.uber.org/goleak#section-documentation",
@@ -24020,6 +24035,10 @@
         {
           "name": "ecosystems:latest_release_published_at",
           "value": "2023-10-24T16:28:03Z"
+        },
+        {
+          "name": "ecosystems:owner_location",
+          "value": "70+ countries and counting."
         }
       ]
     },
@@ -24339,7 +24358,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2024-01-19T08:35:58Z"
+          "value": "2026-02-18T20:32:40Z"
         }
       ]
     },
@@ -24471,10 +24490,6 @@
         {
           "url": "https://pkg.go.dev/golang.org/x/sync",
           "type": "distribution"
-        },
-        {
-          "url": "https://cs.opensource.google/go/x/sync",
-          "type": "vcs"
         },
         {
           "url": "https://pkg.go.dev/golang.org/x/sync#section-documentation",
@@ -24638,10 +24653,6 @@
           "type": "distribution"
         },
         {
-          "url": "https://cs.opensource.google/go/x/time",
-          "type": "vcs"
-        },
-        {
           "url": "https://pkg.go.dev/golang.org/x/time#section-documentation",
           "type": "documentation"
         }
@@ -24679,6 +24690,11 @@
       "name": "golang.org/x/xerrors",
       "version": "v0.0.0-20240903120638-7835f813f4da",
       "description": "Package xerrors implements functions to manipulate errors.\n\nThis package is based on the Go 2 proposal for error values:\n\nhttps://go.dev/design/29934-error-values\n\nThese functions were incorporated into the standard library's errors package\nin Go 1.13:\n- Is\n- As\n- Unwrap\n\nAlso, Errorf's %w verb was incorporated into fmt.Errorf.\n\nNo other features of this package were included in Go 1.13, and at present\nthere are no plans to include any of them.",
+      "licenses": [
+        {
+          "expression": "(BSD-3-Clause)"
+        }
+      ],
       "purl": "pkg:golang/golang.org/x/xerrors@v0.0.0-20240903120638-7835f813f4da",
       "externalReferences": [
         {
@@ -24721,7 +24737,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2023-10-12T00:30:39Z"
+          "value": "2024-09-03T12:06:38Z"
         }
       ]
     },
@@ -24754,10 +24770,6 @@
           "type": "distribution"
         },
         {
-          "url": "https://github.com/googleapis/google-api-go-client",
-          "type": "vcs"
-        },
-        {
           "url": "https://pkg.go.dev/google.golang.org/api#section-documentation",
           "type": "documentation"
         }
@@ -24785,7 +24797,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-02-10T18:37:32Z"
+          "value": "2026-02-23T18:50:45Z"
         },
         {
           "name": "ecosystems:topic",
@@ -24847,7 +24859,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2024-01-25T20:52:18Z"
+          "value": "2026-02-17T21:52:00Z"
         }
       ]
     },
@@ -24905,7 +24917,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2024-01-25T20:52:18Z"
+          "value": "2026-02-17T21:52:00Z"
         }
       ]
     },
@@ -24963,7 +24975,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2024-01-25T20:52:18Z"
+          "value": "2026-02-17T21:52:00Z"
         }
       ]
     },
@@ -25023,7 +25035,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2025-12-23T09:24:02Z"
+          "value": "2026-02-13T06:52:36Z"
         },
         {
           "name": "ecosystems:topic",
@@ -25093,6 +25105,10 @@
         {
           "url": "https://pkg.go.dev/google.golang.org/protobuf",
           "type": "distribution"
+        },
+        {
+          "url": "https://github.com/protocolbuffers/protobuf-go",
+          "type": "vcs"
         },
         {
           "url": "https://pkg.go.dev/google.golang.org/protobuf#section-documentation",
@@ -25314,10 +25330,6 @@
           "type": "distribution"
         },
         {
-          "url": "https://github.com/go-yaml/yaml",
-          "type": "vcs"
-        },
-        {
           "url": "https://pkg.go.dev/gopkg.in/yaml.v3#section-documentation",
           "type": "documentation"
         }
@@ -25375,10 +25387,6 @@
         {
           "url": "https://pkg.go.dev/k8s.io/apimachinery",
           "type": "distribution"
-        },
-        {
-          "url": "https://github.com/kubernetes/apimachinery",
-          "type": "vcs"
         },
         {
           "url": "https://pkg.go.dev/k8s.io/apimachinery#section-documentation",
@@ -25445,6 +25453,10 @@
           "type": "distribution"
         },
         {
+          "url": "https://github.com/kubernetes/client-go",
+          "type": "vcs"
+        },
+        {
           "url": "https://pkg.go.dev/k8s.io/client-go#section-documentation",
           "type": "documentation"
         }
@@ -25472,7 +25484,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2019-03-13T23:57:26Z"
+          "value": "2016-10-17T18:15:22Z"
         },
         {
           "name": "ecosystems:topic",
@@ -25507,10 +25519,6 @@
         {
           "url": "https://pkg.go.dev/k8s.io/klog/v2",
           "type": "distribution"
-        },
-        {
-          "url": "https://github.com/kubernetes/klog",
-          "type": "vcs"
         },
         {
           "url": "https://pkg.go.dev/k8s.io/klog/v2#section-documentation",
@@ -25602,7 +25610,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2024-01-02T15:49:12Z"
+          "value": "2026-02-10T18:56:00Z"
         },
         {
           "name": "ecosystems:topic",
@@ -25835,10 +25843,6 @@
           "type": "distribution"
         },
         {
-          "url": "https://gitlab.com/cznic/sqlite",
-          "type": "vcs"
-        },
-        {
           "url": "https://pkg.go.dev/modernc.org/sqlite#section-documentation",
           "type": "documentation"
         }
@@ -25866,7 +25870,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-02-07T13:47:08Z"
+          "value": "2026-02-18T14:34:42Z"
         },
         {
           "name": "ecosystems:owner_location",
@@ -25965,10 +25969,6 @@
         {
           "url": "https://pkg.go.dev/sigs.k8s.io/yaml",
           "type": "distribution"
-        },
-        {
-          "url": "https://github.com/kubernetes-sigs/yaml",
-          "type": "vcs"
         },
         {
           "url": "https://pkg.go.dev/sigs.k8s.io/yaml#section-documentation",
@@ -26122,7 +26122,7 @@
   ],
   "dependencies": [
     {
-      "ref": "467780f9-bf6a-42b7-b0e1-06d7fa1cf045",
+      "ref": "5065baa6-ce66-455d-831b-b729f1261f91",
       "dependsOn": [
         "pkg:deb/debian/base-files@13.8%2Bdeb13u3?arch=amd64&distro=debian-13.3",
         "pkg:deb/debian/media-types@13.0.0?arch=all&distro=debian-13.3",
@@ -26131,11 +26131,11 @@
       ]
     },
     {
-      "ref": "9aa6bbc6-1c1e-4079-8d70-65800de3b268",
+      "ref": "639d284e-657d-4901-8d0a-547d8900f603",
       "dependsOn": []
     },
     {
-      "ref": "ce509079-0fe8-48f3-8027-25cd94f0cadf",
+      "ref": "b21c9567-77f5-40b8-85ca-19d93d2e2d42",
       "dependsOn": [
         "pkg:golang/github.com/grafana/loki/v3@3.6.5"
       ]
@@ -26715,7 +26715,7 @@
     {
       "ref": "pkg:golang/github.com/grafana/loki/v3@3.6.5",
       "dependsOn": [
-        "9aa6bbc6-1c1e-4079-8d70-65800de3b268",
+        "639d284e-657d-4901-8d0a-547d8900f603",
         "pkg:golang/cel.dev/expr@v0.24.0",
         "pkg:golang/cloud.google.com/go/auth/oauth2adapt@v0.2.8",
         "pkg:golang/cloud.google.com/go/auth@v0.17.0",
@@ -27895,8 +27895,8 @@
     {
       "ref": "pkg:oci/loki@sha256%3A847c287ada0e12603910589f42038c5cdaaad04e248bd1dc6c6e0920a235f427?arch=amd64&repository_url=index.docker.io%2Fgrafana%2Floki",
       "dependsOn": [
-        "467780f9-bf6a-42b7-b0e1-06d7fa1cf045",
-        "ce509079-0fe8-48f3-8027-25cd94f0cadf"
+        "5065baa6-ce66-455d-831b-b729f1261f91",
+        "b21c9567-77f5-40b8-85ca-19d93d2e2d42"
       ]
     }
   ],

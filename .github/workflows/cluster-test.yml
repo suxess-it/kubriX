@@ -252,8 +252,9 @@ jobs:
       - changes
     runs-on: ${{ vars.KUBRIX_GITHUB_RUNNER || 'ubuntu-latest' }}
     if: ${{ needs.create-kubrix-installer-image.result == 'success' || needs.create-kubrix-installer-image.result == 'skipped' }}
-    permissions: 
+    permissions:
       contents: write
+      statuses: read
     strategy:
       fail-fast: false
       matrix:
@@ -356,6 +357,48 @@ jobs:
           kubectl delete externalsecret -n backstage sx-cnp-secret
           kubectl rollout restart deployment -n backstage sx-backstage
           kubectl rollout status deployment -n backstage sx-backstage
+
+      - name: Check if kubrixBot user entity is loaded in backstage
+        if: ${{ matrix.target-type  == 'kind-portal' || matrix.target-type  == 'kind-hub-prime' }}
+        env:
+          BASE_URL: "https://backstage.127-0-0-1.nip.io"
+          ENTITY_PATH: "/api/catalog/entities/by-name/User/default/kubrixBot"
+        run: |
+          # Get token from k8s secret
+          EXTERNAL_ACCESS_TOKEN=$(kubectl get secret -n backstage sx-cnp-secret -o jsonpath='{.data.EXTERNAL_ACCESS_TOKEN}' | base64 -d)
+          
+          MAX_SECONDS=300
+          SLEEP_SECONDS=10
+          ELAPSED=0
+          
+          echo "Waiting for User entity User:default/kubrixBot (timeout: 5 minutes)..."
+          
+          while [ "$ELAPSED" -lt "$MAX_SECONDS" ]; do
+            STATUS=$(curl -k -s -o /dev/null -w "%{http_code}" -H "Authorization: Bearer $EXTERNAL_ACCESS_TOKEN" "$BASE_URL$ENTITY_PATH")
+          
+            case "$STATUS" in
+              200)
+                echo "✅ User entity is available!"
+                exit 0
+                ;;
+              404)
+                echo "⏳ Not found yet... (${ELAPSED}s elapsed)"
+                ;;
+              401|403)
+                echo "❌ Auth error ($STATUS). Token rejected or insufficient RBAC."
+                exit 1
+                ;;
+              *)
+                echo "⚠️ Unexpected HTTP status: $STATUS"
+                ;;
+            esac
+          
+            sleep "$SLEEP_SECONDS"
+            ELAPSED=$((ELAPSED + SLEEP_SECONDS))
+          done
+          
+          echo "❌ Timed out after 5 minutes waiting for User entity."
+          exit 1
 
       # run testkube tests
       - uses: kubeshop/setup-testkube@v1

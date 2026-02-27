@@ -676,7 +676,7 @@ if [[ "${KUBRIX_CLUSTER_TYPE}" == "kind" ]] ; then
 /ready/ {
     print;
     print "        rewrite stop {"
-    print "          name regex ^(.*)\\.127-0-0-1\\.nip\\.io\\.?$ sx-ingress-nginx-controller.ingress-nginx.svc.cluster.local"
+    print "          name regex ^(.*)\\.127-0-0-1\\.nip\\.io\\.?$ sx-traefik.traefik.svc.cluster.local"
     print "          answer auto"
     print "        }"
     next

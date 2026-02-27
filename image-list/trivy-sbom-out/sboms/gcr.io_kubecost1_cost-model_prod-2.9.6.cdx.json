@@ -2,10 +2,10 @@
   "$schema": "http://cyclonedx.org/schema/bom-1.6.schema.json",
   "bomFormat": "CycloneDX",
   "specVersion": "1.6",
-  "serialNumber": "urn:uuid:55d42f77-c3cb-444e-a6c3-6e2f4a33d99d",
+  "serialNumber": "urn:uuid:3e84d52a-2a7e-40ad-ae86-16b660a74586",
   "version": 1,
   "metadata": {
-    "timestamp": "2026-02-13T09:29:52+00:00",
+    "timestamp": "2026-02-25T14:42:56+00:00",
     "tools": {
       "components": [
         {
@@ -250,23 +250,7 @@
   },
   "components": [
     {
-      "bom-ref": "221e138a-e365-4ae2-a05d-e2643bdc1d38",
-      "type": "operating-system",
-      "name": "redhat",
-      "version": "9.7",
-      "properties": [
-        {
-          "name": "aquasecurity:trivy:Class",
-          "value": "os-pkgs"
-        },
-        {
-          "name": "aquasecurity:trivy:Type",
-          "value": "redhat"
-        }
-      ]
-    },
-    {
-      "bom-ref": "245d5512-53e1-4f87-b742-0a5bb130c478",
+      "bom-ref": "06c3bfba-33e9-46fb-b579-9331848a14a4",
       "type": "library",
       "name": "../go-duckdb",
       "properties": [
@@ -289,22 +273,7 @@
       ]
     },
     {
-      "bom-ref": "774f6354-7e27-4fa4-ad42-8228210200cc",
-      "type": "application",
-      "name": "go/bin/app",
-      "properties": [
-        {
-          "name": "aquasecurity:trivy:Class",
-          "value": "lang-pkgs"
-        },
-        {
-          "name": "aquasecurity:trivy:Type",
-          "value": "gobinary"
-        }
-      ]
-    },
-    {
-      "bom-ref": "937d7d58-0a35-487a-bac3-bf66304c181a",
+      "bom-ref": "30b4f487-0750-4999-9e67-ea37bbb69c94",
       "type": "library",
       "name": "../opencost",
       "properties": [
@@ -327,7 +296,38 @@
       ]
     },
     {
-      "bom-ref": "ae0562d9-07f1-48c4-88c6-ac57df2d5275",
+      "bom-ref": "5d0fe446-cf33-4871-85e1-b1d624fcf30b",
+      "type": "application",
+      "name": "go/bin/app",
+      "properties": [
+        {
+          "name": "aquasecurity:trivy:Class",
+          "value": "lang-pkgs"
+        },
+        {
+          "name": "aquasecurity:trivy:Type",
+          "value": "gobinary"
+        }
+      ]
+    },
+    {
+      "bom-ref": "996d59d3-4b23-445d-863b-00bd05077107",
+      "type": "operating-system",
+      "name": "redhat",
+      "version": "9.7",
+      "properties": [
+        {
+          "name": "aquasecurity:trivy:Class",
+          "value": "os-pkgs"
+        },
+        {
+          "name": "aquasecurity:trivy:Type",
+          "value": "redhat"
+        }
+      ]
+    },
+    {
+      "bom-ref": "c1a74072-002a-4623-beb3-4e24a6bd83ae",
       "type": "library",
       "name": "../kubecost-core",
       "properties": [
@@ -350,7 +350,7 @@
       ]
     },
     {
-      "bom-ref": "bf9272cf-d5c9-42bf-94bd-eca49f30d6f0",
+      "bom-ref": "f46998df-f6f1-4097-9382-1c5fbbec426b",
       "type": "library",
       "name": "../opencost/core",
       "properties": [
@@ -400,6 +400,10 @@
           "type": "distribution"
         },
         {
+          "url": "https://github.com/google/cel-spec",
+          "type": "vcs"
+        },
+        {
           "url": "https://pkg.go.dev/cel.dev/expr#section-documentation",
           "type": "documentation"
         }
@@ -428,6 +432,10 @@
         {
           "name": "ecosystems:latest_release_published_at",
           "value": "2025-11-08T22:07:56Z"
+        },
+        {
+          "name": "ecosystems:owner_location",
+          "value": "United States of America"
         }
       ]
     },
@@ -458,10 +466,6 @@
         {
           "url": "https://pkg.go.dev/cloud.google.com/go/auth/oauth2adapt",
           "type": "distribution"
-        },
-        {
-          "url": "https://github.com/googleapis/google-cloud-go",
-          "type": "vcs"
         },
         {
           "url": "https://pkg.go.dev/cloud.google.com/go/auth/oauth2adapt#section-documentation",
@@ -552,10 +556,6 @@
           "type": "distribution"
         },
         {
-          "url": "https://github.com/googleapis/google-cloud-go",
-          "type": "vcs"
-        },
-        {
           "url": "https://pkg.go.dev/cloud.google.com/go/auth#section-documentation",
           "type": "documentation"
         }
@@ -583,7 +583,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-01-21T21:51:53Z"
+          "value": "2026-02-13T17:14:27Z"
         },
         {
           "name": "ecosystems:topic",
@@ -820,10 +820,6 @@
           "type": "distribution"
         },
         {
-          "url": "https://github.com/googleapis/google-cloud-go",
-          "type": "vcs"
-        },
-        {
           "url": "https://pkg.go.dev/cloud.google.com/go/iam#section-documentation",
           "type": "documentation"
         }
@@ -982,7 +978,7 @@
       "author": "Google APIs",
       "name": "cloud.google.com/go/storage",
       "version": "v1.56.0",
-      "description": "Package storage provides an easy way to work with Google Cloud Storage.\nGoogle Cloud Storage stores data in named objects, which are grouped into buckets.\n\nMore information about Google Cloud Storage is available at\nhttps://cloud.google.com/storage/docs.\n\nSee https://pkg.go.dev/cloud.google.com/go for authentication, timeouts,\nconnection pooling and similar aspects of this package.\n\nTo start working with this package, create a Client:\n\nThe client will use your default application credentials. Clients should be\nreused instead of created as needed. The methods of Client are safe for\nconcurrent use by multiple goroutines.\n\nYou may configure the client by passing in options from the google.golang.org/api/option\npackage. You may also use options defined in this package, such as WithJSONReads.\n\nIf you only wish to access public data, you can create\nan unauthenticated client with\n\nTo use an emulator with this library, you can set the STORAGE_EMULATOR_HOST\nenvironment variable to the address at which your emulator is running. This will\nsend requests to that address instead of to Cloud Storage. You can then create\nand use a client as usual:\n\nPlease note that there is no official emulator for Cloud Storage.\n\nA Google Cloud Storage bucket is a collection of objects. To work with a\nbucket, make a bucket handle:\n\nA handle is a reference to a bucket. You can have a handle even if the\nbucket doesn't exist yet. To create a bucket in Google Cloud Storage,\ncall BucketHandle.Create:\n\nNote that although buckets are associated with projects, bucket names are\nglobal across all projects.\n\nEach bucket has associated metadata, represented in this package by\nBucketAttrs. The third argument to BucketHandle.Create allows you to set\nthe initial BucketAttrs of a bucket. To retrieve a bucket's attributes, use\nBucketHandle.Attrs:\n\nAn object holds arbitrary data as a sequence of bytes, like a file. You\nrefer to objects using a handle, just as with buckets, but unlike buckets\nyou don't explicitly create an object. Instead, the first time you write\nto an object it will be created. You can use the standard Go io.Reader\nand io.Writer interfaces to read and write object data:\n\nObjects also have attributes, which you can fetch with ObjectHandle.Attrs:\n\nListing objects in a bucket is done with the BucketHandle.Objects method:\n\nObjects are listed lexicographically by name. To filter objects\nlexicographically, [Query.StartOffset] and/or [Query.EndOffset] can be used:\n\nIf only a subset of object attributes is needed when listing, specifying this\nsubset using Query.SetAttrSelection may speed up the listing process:\n\nBoth objects and buckets have ACLs (Access Control Lists). An ACL is a list of\nACLRules, each of which specifies the role of a user, group or project. ACLs\nare suitable for fine-grained control, but you may prefer using IAM to control\naccess at the project level (see Cloud Storage IAM docs.\n\nTo list the ACLs of a bucket or object, obtain an ACLHandle and call ACLHandle.List:\n\nYou can also set and delete ACLs.\n\nEvery object has a generation and a metageneration. The generation changes\nwhenever the content changes, and the metageneration changes whenever the\nmetadata changes. Conditions let you check these values before an operation;\nthe operation only executes if the conditions match. You can use conditions to\nprevent race conditions in read-modify-write operations.\n\nFor example, say you've read an object's metadata into objAttrs. Now\nyou want to write to that object, but only if its contents haven't changed\nsince you read it. Here is how to express that:\n\nYou can obtain a URL that lets anyone read or write an object for a limited time.\nSigning a URL requires credentials authorized to sign a URL. To use the same\nauthentication that was used when instantiating the Storage client, use\nBucketHandle.SignedURL.\n\nYou can also sign a URL without creating a client. See the documentation of\nSignedURL for details.\n\nA type of signed request that allows uploads through HTML forms directly to Cloud Storage with\ntemporary permission. Conditions can be applied to restrict how the HTML form is used and exercised\nby a user.\n\nFor more information, please see the XML POST Object docs as well\nas the documentation of BucketHandle.GenerateSignedPostPolicyV4.\n\nIf the GoogleAccessID and PrivateKey option fields are not provided, they will\nbe automatically detected by BucketHandle.SignedURL and\nBucketHandle.GenerateSignedPostPolicyV4 if any of the following are true:\n\nDetecting GoogleAccessID may not be possible if you are authenticated using a\ntoken source or using option.WithHTTPClient. In this case, you can provide a\nservice account email for GoogleAccessID and the client will attempt to sign\nthe URL or Post Policy using that service account.\n\nTo generate the signature, you must have:\n\nErrors returned by this client are often of the type github.com/googleapis/gax-go/v2/apierror.\nThe [apierror.APIError] type can wrap a google.golang.org/grpc/status.Status\nif gRPC was used, or a google.golang.org/api/googleapi.Error if HTTP/REST was used.\nYou might also encounter googleapi.Error directly from HTTP operations.\nThese types of errors can be inspected for more information by using errors.As\nto access the specific underlying error types and retrieve detailed information,\nincluding HTTP or gRPC status codes. For example:\n\nThis library may also return other errors that are not wrapped as [apierror.APIError]. For\nexample, errors with authentication may return cloud.google.com/go/auth.Error.\n\nMethods in this package may retry calls that fail with transient errors.\nRetrying continues indefinitely unless the controlling context is canceled, the\nclient is closed, or a non-transient error is received. To stop retries from\ncontinuing, use context timeouts or cancellation.\n\nThe retry strategy in this library follows best practices for Cloud Storage. By\ndefault, operations are retried only if they are idempotent, and exponential\nbackoff with jitter is employed. In addition, errors are only retried if they\nare defined as transient by the service. See the Cloud Storage retry docs\nfor more information.\n\nUsers can configure non-default retry behavior for a single library call (using\nBucketHandle.Retryer and ObjectHandle.Retryer) or for all calls made by a\nclient (using Client.SetRetry). For example:\n\nYou can add custom headers to any API call made by this package by using\ncallctx.SetHeaders on the context which is passed to the method. For example,\nto add a custom audit logging header:\n\nThis package includes support for the Cloud Storage gRPC API. This\nimplementation uses gRPC rather than the default JSON & XML APIs\nto make requests to Cloud Storage. All methods on the Client support\nthe gRPC API, with the exception of the Client.ServiceAccount, Notification,\nand HMACKey methods.\n\nThe Cloud Storage gRPC API is generally available.\n\nTo create a client which will use gRPC, use the alternate constructor:\n\nOne major advantage of the gRPC API is that it can use Direct Connectivity,\nenabling requests to skip some proxy steps and reducing response latency.\nRequirements to use Direct Connectivity include:\n\nAdditional requirements for Direct Connectivity are documented in the\nCloud Storage gRPC docs. If all requirements are met, the client will\nuse Direct Connectivity by default without requiring any client options\nor environment variables. To disable Direct Connectivity, you can set\nthe environment variable GOOGLE_CLOUD_DISABLE_DIRECT_PATH=true.\n\nDependencies for the gRPC API may slightly increase the size of binaries for\napplications depending on this package. If you are not using gRPC, you can use\nthe build tag `disable_grpc_modules` to opt out of these dependencies and\nreduce the binary size.\n\nThe gRPC client is instrumented with Open Telemetry metrics which export to\nCloud Monitoring by default. More information is available in the\ngRPC client-side metrics documentation, including information about\nroles which must be enabled in order to do the export successfully. To\ndisable this export, you can use the WithDisabledClientMetrics client\noption.\n\nThe gRPC client automatically computes and sends CRC32C checksums for uploads using Writer,\nwhich provides an additional layer of data integrity validation when compared to the HTTP client.\nThis behavior can optionally be disabled by using [Writer.DisableAutoChecksum].\n\nCertain control plane and long-running operations for Cloud Storage (including Folder\nand Managed Folder operations) are supported via the autogenerated Storage Control\nclient, which is available as a subpackage in this module. See package docs at\ncloud.google.com/go/storage/control/apiv2 or reference the Storage Control API docs.",
+      "description": "Package storage provides an easy way to work with Google Cloud Storage.\nGoogle Cloud Storage stores data in named objects, which are grouped into buckets.\n\nMore information about Google Cloud Storage is available at\nhttps://cloud.google.com/storage/docs.\n\nSee https://pkg.go.dev/cloud.google.com/go for authentication, timeouts,\nconnection pooling and similar aspects of this package.\n\nTo start working with this package, create a Client:\n\nThe client will use your default application credentials. Clients should be\nreused instead of created as needed. The methods of Client are safe for\nconcurrent use by multiple goroutines.\n\nYou may configure the client by passing in options from the google.golang.org/api/option\npackage. You may also use options defined in this package, such as WithJSONReads.\n\nIf you only wish to access public data, you can create\nan unauthenticated client with\n\nTo use an emulator with this library, you can set the STORAGE_EMULATOR_HOST\nenvironment variable to the address at which your emulator is running. This will\nsend requests to that address instead of to Cloud Storage. You can then create\nand use a client as usual:\n\nPlease note that there is no official emulator for Cloud Storage.\n\nA Google Cloud Storage bucket is a collection of objects. To work with a\nbucket, make a bucket handle:\n\nA handle is a reference to a bucket. You can have a handle even if the\nbucket doesn't exist yet. To create a bucket in Google Cloud Storage,\ncall BucketHandle.Create:\n\nNote that although buckets are associated with projects, bucket names are\nglobal across all projects.\n\nEach bucket has associated metadata, represented in this package by\nBucketAttrs. The third argument to BucketHandle.Create allows you to set\nthe initial BucketAttrs of a bucket. To retrieve a bucket's attributes, use\nBucketHandle.Attrs:\n\nAn object holds arbitrary data as a sequence of bytes, like a file. You\nrefer to objects using a handle, just as with buckets, but unlike buckets\nyou don't explicitly create an object. Instead, the first time you write\nto an object it will be created. You can use the standard Go io.Reader\nand io.Writer interfaces to read and write object data:\n\nObjects also have attributes, which you can fetch with ObjectHandle.Attrs:\n\nListing objects in a bucket is done with the BucketHandle.Objects method:\n\nObjects are listed lexicographically by name. To filter objects\nlexicographically, [Query.StartOffset] and/or [Query.EndOffset] can be used:\n\nIf only a subset of object attributes is needed when listing, specifying this\nsubset using Query.SetAttrSelection may speed up the listing process:\n\nBoth objects and buckets have ACLs (Access Control Lists). An ACL is a list of\nACLRules, each of which specifies the role of a user, group or project. ACLs\nare suitable for fine-grained control, but you may prefer using IAM to control\naccess at the project level (see Cloud Storage IAM docs.\n\nTo list the ACLs of a bucket or object, obtain an ACLHandle and call ACLHandle.List:\n\nYou can also set and delete ACLs.\n\nEvery object has a generation and a metageneration. The generation changes\nwhenever the content changes, and the metageneration changes whenever the\nmetadata changes. Conditions let you check these values before an operation;\nthe operation only executes if the conditions match. You can use conditions to\nprevent race conditions in read-modify-write operations.\n\nFor example, say you've read an object's metadata into objAttrs. Now\nyou want to write to that object, but only if its contents haven't changed\nsince you read it. Here is how to express that:\n\nYou can obtain a URL that lets anyone read or write an object for a limited time.\nSigning a URL requires credentials authorized to sign a URL. To use the same\nauthentication that was used when instantiating the Storage client, use\nBucketHandle.SignedURL.\n\nYou can also sign a URL without creating a client. See the documentation of\nSignedURL for details.\n\nA type of signed request that allows uploads through HTML forms directly to Cloud Storage with\ntemporary permission. Conditions can be applied to restrict how the HTML form is used and exercised\nby a user.\n\nFor more information, please see the XML POST Object docs as well\nas the documentation of BucketHandle.GenerateSignedPostPolicyV4.\n\nIf the GoogleAccessID and PrivateKey option fields are not provided, they will\nbe automatically detected by BucketHandle.SignedURL and\nBucketHandle.GenerateSignedPostPolicyV4 if any of the following are true:\n\nDetecting GoogleAccessID may not be possible if you are authenticated using a\ntoken source or using option.WithHTTPClient. In this case, you can provide a\nservice account email for GoogleAccessID and the client will attempt to sign\nthe URL or Post Policy using that service account.\n\nTo generate the signature, you must have:\n\nErrors returned by this client are often of the type github.com/googleapis/gax-go/v2/apierror.\nThe [apierror.APIError] type can wrap a google.golang.org/grpc/status.Status\nif gRPC was used, or a google.golang.org/api/googleapi.Error if HTTP/REST was used.\nYou might also encounter googleapi.Error directly from HTTP operations.\nThese types of errors can be inspected for more information by using errors.As\nto access the specific underlying error types and retrieve detailed information,\nincluding HTTP or gRPC status codes. For example:\n\nThis library may also return other errors that are not wrapped as [apierror.APIError]. For\nexample, errors with authentication may return cloud.google.com/go/auth.Error.\n\nMethods in this package may retry calls that fail with transient errors.\nRetrying continues indefinitely unless the controlling context is canceled, the\nclient is closed, or a non-transient error is received. To stop retries from\ncontinuing, use context timeouts or cancellation.\n\nThe retry strategy in this library follows best practices for Cloud Storage. By\ndefault, operations are retried only if they are idempotent, and exponential\nbackoff with jitter is employed. In addition, errors are only retried if they\nare defined as transient by the service. See the Cloud Storage retry docs\nfor more information.\n\nUsers can configure non-default retry behavior for a single library call (using\nBucketHandle.Retryer and ObjectHandle.Retryer) or for all calls made by a\nclient (using Client.SetRetry). For example:\n\nYou can add custom headers to any API call made by this package by using\ncallctx.SetHeaders on the context which is passed to the method. For example,\nto add a custom audit logging header:\n\nThis package includes support for the Cloud Storage gRPC API. This\nimplementation uses gRPC rather than the default JSON & XML APIs\nto make requests to Cloud Storage. All methods on the Client support\nthe gRPC API, with the exception of the Client.ServiceAccount, Notification,\nand HMACKey methods.\n\nThe Cloud Storage gRPC API is generally available.\n\nTo create a client which will use gRPC, use the alternate constructor:\n\nOne major advantage of the gRPC API is that it can use Direct Connectivity,\nenabling requests to skip some proxy steps and reducing response latency.\nRequirements to use Direct Connectivity include:\n\nAdditional requirements for Direct Connectivity are documented in the\nCloud Storage gRPC docs. If all requirements are met, the client will\nuse Direct Connectivity by default without requiring any client options\nor environment variables. To disable Direct Connectivity, you can set\nthe environment variable GOOGLE_CLOUD_DISABLE_DIRECT_PATH=true.\n\nDependencies for the gRPC API may slightly increase the size of binaries for\napplications depending on this package. If you are not using gRPC, you can use\nthe build tag `disable_grpc_modules` to opt out of these dependencies and\nreduce the binary size.\n\nThe gRPC client is instrumented with Open Telemetry metrics which export to\nCloud Monitoring by default. More information is available in the\ngRPC client-side metrics documentation, including information about\nroles which must be enabled in order to do the export successfully. To\ndisable this export, you can use the WithDisabledClientMetrics client\noption.\n\nThe client automatically computes and sends CRC32C checksums for uploads using Writer,\nproviding an additional layer of data integrity validation with a slight CPU overhead.\n\nNote: With a chunk size of 0 (no buffering) in JSON uploads, an auto-calculated checksum mismatch\nreturns an error but may leave corrupt data on the server, requiring manual cleanup. This risk does not\napply to single-shot uploads when user-provided checksum is provided.\n\nAutomatic checksumming can be disabled using [Writer.DisableAutoChecksum].\n\nCertain control plane and long-running operations for Cloud Storage (including Folder\nand Managed Folder operations) are supported via the autogenerated Storage Control\nclient, which is available as a subpackage in this module. See package docs at\ncloud.google.com/go/storage/control/apiv2 or reference the Storage Control API docs.",
       "licenses": [
         {
           "expression": "(Apache-2.0)"
@@ -1562,7 +1558,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2025-12-02T16:09:54Z"
+          "value": "2026-02-23T19:11:41Z"
         },
         {
           "name": "ecosystems:owner_location",
@@ -1730,7 +1726,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-01-09T19:14:10Z"
+          "value": "2026-02-23T19:11:41Z"
         },
         {
           "name": "ecosystems:owner_location",
@@ -1814,7 +1810,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-01-09T19:14:10Z"
+          "value": "2026-02-23T19:11:41Z"
         },
         {
           "name": "ecosystems:owner_location",
@@ -2059,7 +2055,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-01-09T19:14:10Z"
+          "value": "2026-02-23T19:11:41Z"
         },
         {
           "name": "ecosystems:owner_location",
@@ -2226,7 +2222,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-01-09T19:14:10Z"
+          "value": "2026-02-23T19:11:41Z"
         },
         {
           "name": "ecosystems:owner_location",
@@ -2310,7 +2306,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-01-12T19:19:35Z"
+          "value": "2026-02-23T19:11:41Z"
         },
         {
           "name": "ecosystems:owner_location",
@@ -2556,7 +2552,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-01-09T19:14:10Z"
+          "value": "2026-02-23T19:11:41Z"
         },
         {
           "name": "ecosystems:owner_location",
@@ -2640,7 +2636,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-01-09T19:14:10Z"
+          "value": "2026-02-23T19:11:41Z"
         },
         {
           "name": "ecosystems:owner_location",
@@ -2723,7 +2719,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-01-09T19:14:10Z"
+          "value": "2026-02-23T19:11:41Z"
         },
         {
           "name": "ecosystems:owner_location",
@@ -2886,7 +2882,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-01-28T19:24:43Z"
+          "value": "2026-02-23T19:11:41Z"
         },
         {
           "name": "ecosystems:owner_location",
@@ -2970,7 +2966,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-01-09T19:14:10Z"
+          "value": "2026-02-23T19:11:41Z"
         },
         {
           "name": "ecosystems:owner_location",
@@ -3054,7 +3050,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-01-09T19:14:10Z"
+          "value": "2026-02-23T19:11:41Z"
         },
         {
           "name": "ecosystems:owner_location",
@@ -3138,7 +3134,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-01-09T19:14:10Z"
+          "value": "2026-02-23T19:11:41Z"
         },
         {
           "name": "ecosystems:owner_location",
@@ -3390,7 +3386,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2025-12-01T16:06:42Z"
+          "value": "2026-02-20T21:07:26Z"
         },
         {
           "name": "ecosystems:owner_location",
@@ -3541,7 +3537,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2025-11-06T17:38:09Z"
+          "value": "2026-01-13T00:39:40Z"
         },
         {
           "name": "ecosystems:owner_location",
@@ -3710,7 +3706,7 @@
           "type": "distribution"
         },
         {
-          "url": "https://github.com/azure/azure-sdk-for-go",
+          "url": "https://github.com/Azure/azure-sdk-for-go",
           "type": "vcs"
         },
         {
@@ -3841,7 +3837,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2025-10-16T21:08:31Z"
+          "value": "2026-01-13T05:26:14Z"
         },
         {
           "name": "ecosystems:owner_location",
@@ -5256,7 +5252,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2023-11-28T00:30:11Z"
+          "value": "2026-02-02T19:58:03Z"
         },
         {
           "name": "ecosystems:owner_location",
@@ -6163,7 +6159,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-01-27T10:18:15Z"
+          "value": "2026-02-24T14:11:02Z"
         },
         {
           "name": "ecosystems:owner_location",
@@ -6897,7 +6893,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2025-07-15T08:59:08Z"
+          "value": "2026-01-12T17:24:26Z"
         }
       ]
     },
@@ -8138,7 +8134,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-01-13T07:11:36Z"
+          "value": "2026-02-09T19:15:42Z"
         }
       ]
     },
@@ -8227,7 +8223,7 @@
           "type": "distribution"
         },
         {
-          "url": "https://github.com/googlecloudplatform/opentelemetry-operations-go",
+          "url": "https://github.com/GoogleCloudPlatform/opentelemetry-operations-go",
           "type": "vcs"
         },
         {
@@ -8258,7 +8254,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2025-09-25T17:18:32Z"
+          "value": "2026-01-16T21:40:50Z"
         }
       ]
     },
@@ -8321,7 +8317,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2025-09-25T17:18:32Z"
+          "value": "2026-01-16T21:40:50Z"
         }
       ]
     },
@@ -8384,7 +8380,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2025-09-25T17:18:32Z"
+          "value": "2026-01-16T21:40:50Z"
         }
       ]
     },
@@ -11302,7 +11298,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2025-09-29T13:35:08Z"
+          "value": "2026-02-17T08:28:43Z"
         },
         {
           "name": "ecosystems:owner_location",
@@ -12437,7 +12433,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-02-10T17:05:59Z"
+          "value": "2026-02-17T20:08:41Z"
         },
         {
           "name": "ecosystems:owner_location",
@@ -15252,7 +15248,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2025-11-20T08:55:22Z"
+          "value": "2026-02-21T12:04:33Z"
         },
         {
           "name": "ecosystems:topic",
@@ -15359,7 +15355,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2025-11-20T08:55:22Z"
+          "value": "2026-02-21T12:04:33Z"
         },
         {
           "name": "ecosystems:topic",
@@ -15790,6 +15786,10 @@
         {
           "url": "https://pkg.go.dev/go.etcd.io/bbolt",
           "type": "distribution"
+        },
+        {
+          "url": "https://github.com/etcd-io/bbolt",
+          "type": "vcs"
         },
         {
           "url": "https://pkg.go.dev/go.etcd.io/bbolt#section-documentation",
@@ -16554,6 +16554,13 @@
     {
       "bom-ref": "pkg:golang/go.uber.org/atomic@v1.11.0",
       "type": "library",
+      "supplier": {
+        "name": "Uber Go",
+        "url": [
+          "http://uber.github.io/"
+        ]
+      },
+      "author": "Uber Go",
       "name": "go.uber.org/atomic",
       "version": "v1.11.0",
       "description": "Package atomic provides simple wrappers around numerics to enforce atomic\naccess.",
@@ -16571,6 +16578,10 @@
         {
           "url": "https://pkg.go.dev/go.uber.org/atomic",
           "type": "distribution"
+        },
+        {
+          "url": "https://github.com/uber-go/atomic",
+          "type": "vcs"
         },
         {
           "url": "https://pkg.go.dev/go.uber.org/atomic#section-documentation",
@@ -16601,6 +16612,10 @@
         {
           "name": "ecosystems:latest_release_published_at",
           "value": "2023-05-03T17:25:03Z"
+        },
+        {
+          "name": "ecosystems:owner_location",
+          "value": "70+ countries and counting."
         }
       ]
     },
@@ -16791,7 +16806,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2024-01-19T08:35:58Z"
+          "value": "2026-02-18T20:32:40Z"
         }
       ]
     },
@@ -16923,10 +16938,6 @@
         {
           "url": "https://pkg.go.dev/golang.org/x/sync",
           "type": "distribution"
-        },
-        {
-          "url": "https://cs.opensource.google/go/x/sync",
-          "type": "vcs"
         },
         {
           "url": "https://pkg.go.dev/golang.org/x/sync#section-documentation",
@@ -17143,10 +17154,6 @@
           "type": "distribution"
         },
         {
-          "url": "https://cs.opensource.google/go/x/time",
-          "type": "vcs"
-        },
-        {
           "url": "https://pkg.go.dev/golang.org/x/time#section-documentation",
           "type": "documentation"
         }
@@ -17184,6 +17191,11 @@
       "name": "golang.org/x/xerrors",
       "version": "v0.0.0-20240903120638-7835f813f4da",
       "description": "Package xerrors implements functions to manipulate errors.\n\nThis package is based on the Go 2 proposal for error values:\n\nhttps://go.dev/design/29934-error-values\n\nThese functions were incorporated into the standard library's errors package\nin Go 1.13:\n- Is\n- As\n- Unwrap\n\nAlso, Errorf's %w verb was incorporated into fmt.Errorf.\n\nNo other features of this package were included in Go 1.13, and at present\nthere are no plans to include any of them.",
+      "licenses": [
+        {
+          "expression": "(BSD-3-Clause)"
+        }
+      ],
       "purl": "pkg:golang/golang.org/x/xerrors@v0.0.0-20240903120638-7835f813f4da",
       "externalReferences": [
         {
@@ -17226,7 +17238,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2023-10-12T00:30:39Z"
+          "value": "2024-09-03T12:06:38Z"
         }
       ]
     },
@@ -17259,10 +17271,6 @@
           "type": "distribution"
         },
         {
-          "url": "https://github.com/googleapis/google-api-go-client",
-          "type": "vcs"
-        },
-        {
           "url": "https://pkg.go.dev/google.golang.org/api#section-documentation",
           "type": "documentation"
         }
@@ -17290,7 +17298,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-02-10T18:37:32Z"
+          "value": "2026-02-23T18:50:45Z"
         },
         {
           "name": "ecosystems:topic",
@@ -17352,7 +17360,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2024-01-25T20:52:18Z"
+          "value": "2026-02-17T21:52:00Z"
         }
       ]
     },
@@ -17410,7 +17418,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2024-01-25T20:52:18Z"
+          "value": "2026-02-17T21:52:00Z"
         }
       ]
     },
@@ -17468,7 +17476,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2024-01-25T20:52:18Z"
+          "value": "2026-02-17T21:52:00Z"
         }
       ]
     },
@@ -17528,7 +17536,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2025-12-23T09:24:02Z"
+          "value": "2026-02-13T06:52:36Z"
         },
         {
           "name": "ecosystems:topic",
@@ -17598,6 +17606,10 @@
         {
           "url": "https://pkg.go.dev/google.golang.org/protobuf",
           "type": "distribution"
+        },
+        {
+          "url": "https://github.com/protocolbuffers/protobuf-go",
+          "type": "vcs"
         },
         {
           "url": "https://pkg.go.dev/google.golang.org/protobuf#section-documentation",
@@ -18031,10 +18043,6 @@
           "type": "distribution"
         },
         {
-          "url": "https://github.com/go-yaml/yaml",
-          "type": "vcs"
-        },
-        {
           "url": "https://pkg.go.dev/gopkg.in/yaml.v3#section-documentation",
           "type": "documentation"
         }
@@ -18161,10 +18169,6 @@
           "type": "distribution"
         },
         {
-          "url": "https://github.com/kubernetes/apimachinery",
-          "type": "vcs"
-        },
-        {
           "url": "https://pkg.go.dev/k8s.io/apimachinery#section-documentation",
           "type": "documentation"
         }
@@ -18229,6 +18233,10 @@
           "type": "distribution"
         },
         {
+          "url": "https://github.com/kubernetes/client-go",
+          "type": "vcs"
+        },
+        {
           "url": "https://pkg.go.dev/k8s.io/client-go#section-documentation",
           "type": "documentation"
         }
@@ -18256,7 +18264,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2019-03-13T23:57:26Z"
+          "value": "2016-10-17T18:15:22Z"
         },
         {
           "name": "ecosystems:topic",
@@ -18291,10 +18299,6 @@
         {
           "url": "https://pkg.go.dev/k8s.io/klog/v2",
           "type": "distribution"
-        },
-        {
-          "url": "https://github.com/kubernetes/klog",
-          "type": "vcs"
         },
         {
           "url": "https://pkg.go.dev/k8s.io/klog/v2#section-documentation",
@@ -18386,7 +18390,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2024-01-17T19:48:47Z"
+          "value": "2026-01-27T14:27:50Z"
         }
       ]
     },
@@ -18444,7 +18448,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2024-01-02T15:49:12Z"
+          "value": "2026-02-10T18:56:00Z"
         },
         {
           "name": "ecosystems:topic",
@@ -18594,10 +18598,6 @@
         {
           "url": "https://pkg.go.dev/sigs.k8s.io/yaml",
           "type": "distribution"
-        },
-        {
-          "url": "https://github.com/kubernetes-sigs/yaml",
-          "type": "vcs"
         },
         {
           "url": "https://pkg.go.dev/sigs.k8s.io/yaml#section-documentation",
@@ -34616,7 +34616,21 @@
   ],
   "dependencies": [
     {
-      "ref": "221e138a-e365-4ae2-a05d-e2643bdc1d38",
+      "ref": "06c3bfba-33e9-46fb-b579-9331848a14a4",
+      "dependsOn": []
+    },
+    {
+      "ref": "30b4f487-0750-4999-9e67-ea37bbb69c94",
+      "dependsOn": []
+    },
+    {
+      "ref": "5d0fe446-cf33-4871-85e1-b1d624fcf30b",
+      "dependsOn": [
+        "pkg:golang/github.com/kubecost/kubecost-cost-model"
+      ]
+    },
+    {
+      "ref": "996d59d3-4b23-445d-863b-00bd05077107",
       "dependsOn": [
         "pkg:rpm/redhat/alternatives@1.24-2.el9?arch=x86_64&distro=redhat-9.7",
         "pkg:rpm/redhat/gpg-pubkey@5a6340b3-6229229e?arch=None&distro=redhat-9.7",
@@ -34630,25 +34644,11 @@
       ]
     },
     {
-      "ref": "245d5512-53e1-4f87-b742-0a5bb130c478",
+      "ref": "c1a74072-002a-4623-beb3-4e24a6bd83ae",
       "dependsOn": []
     },
     {
-      "ref": "774f6354-7e27-4fa4-ad42-8228210200cc",
-      "dependsOn": [
-        "pkg:golang/github.com/kubecost/kubecost-cost-model"
-      ]
-    },
-    {
-      "ref": "937d7d58-0a35-487a-bac3-bf66304c181a",
-      "dependsOn": []
-    },
-    {
-      "ref": "ae0562d9-07f1-48c4-88c6-ac57df2d5275",
-      "dependsOn": []
-    },
-    {
-      "ref": "bf9272cf-d5c9-42bf-94bd-eca49f30d6f0",
+      "ref": "f46998df-f6f1-4097-9382-1c5fbbec426b",
       "dependsOn": []
     },
     {
@@ -35146,10 +35146,10 @@
     {
       "ref": "pkg:golang/github.com/kubecost/kubecost-cost-model",
       "dependsOn": [
-        "245d5512-53e1-4f87-b742-0a5bb130c478",
-        "937d7d58-0a35-487a-bac3-bf66304c181a",
-        "ae0562d9-07f1-48c4-88c6-ac57df2d5275",
-        "bf9272cf-d5c9-42bf-94bd-eca49f30d6f0",
+        "06c3bfba-33e9-46fb-b579-9331848a14a4",
+        "30b4f487-0750-4999-9e67-ea37bbb69c94",
+        "c1a74072-002a-4623-beb3-4e24a6bd83ae",
+        "f46998df-f6f1-4097-9382-1c5fbbec426b",
         "pkg:golang/cel.dev/expr@v0.24.0",
         "pkg:golang/cloud.google.com/go/auth/oauth2adapt@v0.2.8",
         "pkg:golang/cloud.google.com/go/auth@v0.16.3",
@@ -35878,8 +35878,8 @@
     {
       "ref": "pkg:oci/cost-model@sha256%3Aa4355ca61cfa8827a4aa051db9c345cf01eda3799782a5f5d76d45adfbd8a4a3?arch=amd64&repository_url=gcr.io%2Fkubecost1%2Fcost-model",
       "dependsOn": [
-        "221e138a-e365-4ae2-a05d-e2643bdc1d38",
-        "774f6354-7e27-4fa4-ad42-8228210200cc"
+        "5d0fe446-cf33-4871-85e1-b1d624fcf30b",
+        "996d59d3-4b23-445d-863b-00bd05077107"
       ]
     },
     {
