@@ -472,7 +472,7 @@ jobs:
           E2E_ARTIFACT_PASSWORD: ${{ secrets.E2E_ARTIFACT_PASSWORD }}
         run: zip -rP ${E2E_ARTIFACT_PASSWORD} ./playwright-artifacts.zip ./artifacts
 
-      - uses: actions/upload-artifact@v6
+      - uses: actions/upload-artifact@v7
         if: always()
         with:
           name: testkube-artifacts-${{ matrix.target-type }}
