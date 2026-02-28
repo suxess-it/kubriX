@@ -1,5 +1,5 @@
 
-<h3>Target <code>docker.io/nginxinc/nginx-unprivileged:1.29-alpine (alpine 3.22.2)</code></h3>
+<h3>Target <code>docker.io/nginxinc/nginx-unprivileged:1.29-alpine (alpine 3.23.3)</code></h3>
 <h4>Vulnerabilities (1)</h4>
 <table>
     <tr>
@@ -11,19 +11,19 @@
     </tr>
     <tr>
         <td><code>libpng</code></td>
-        <td>CVE-2025-66293</td>
+        <td>CVE-2026-25646</td>
         <td>HIGH</td>
-        <td>1.6.51-r0</td>
-        <td>1.6.53-r0</td>
+        <td>1.6.54-r0</td>
+        <td>1.6.55-r0</td>
     </tr>
 </table>
 <h4>No Misconfigurations found</h4>
 
-<h3>Target <code>grafana/mimir:3.0.0 (debian 12.12)</code></h3>
+<h3>Target <code>grafana/mimir:3.0.1 (debian 12.12)</code></h3>
 <h4>No Vulnerabilities found</h4>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>bin/mimir</code></h3>
-<h4>Vulnerabilities (4)</h4>
+<h4>Vulnerabilities (6)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -33,32 +33,46 @@
         <th>Fixed Version</th>
     </tr>
     <tr>
-        <td><code>stdlib</code></td>
-        <td>CVE-2025-58183</td>
+        <td><code>go.opentelemetry.io/otel/sdk</code></td>
+        <td>CVE-2026-24051</td>
         <td>HIGH</td>
-        <td>v1.25.1</td>
-        <td>1.24.8, 1.25.2</td>
+        <td>v1.38.0</td>
+        <td>1.40.0</td>
     </tr>
     <tr>
         <td><code>stdlib</code></td>
-        <td>CVE-2025-58186</td>
-        <td>HIGH</td>
-        <td>v1.25.1</td>
-        <td>1.24.8, 1.25.2</td>
+        <td>CVE-2025-68121</td>
+        <td>CRITICAL</td>
+        <td>v1.25.4</td>
+        <td>1.24.13, 1.25.7, 1.26.0-rc.3</td>
     </tr>
     <tr>
         <td><code>stdlib</code></td>
-        <td>CVE-2025-58187</td>
+        <td>CVE-2025-61726</td>
         <td>HIGH</td>
-        <td>v1.25.1</td>
-        <td>1.24.9, 1.25.3</td>
+        <td>v1.25.4</td>
+        <td>1.24.12, 1.25.6</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2025-61728</td>
+        <td>HIGH</td>
+        <td>v1.25.4</td>
+        <td>1.24.12, 1.25.6</td>
     </tr>
     <tr>
         <td><code>stdlib</code></td>
         <td>CVE-2025-61729</td>
         <td>HIGH</td>
-        <td>v1.25.1</td>
+        <td>v1.25.4</td>
         <td>1.24.11, 1.25.5</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2025-61730</td>
+        <td>HIGH</td>
+        <td>v1.25.4</td>
+        <td>1.24.12, 1.25.6</td>
     </tr>
 </table>
 <h4>No Misconfigurations found</h4>
@@ -67,7 +81,7 @@
 <h4>No Vulnerabilities found</h4>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>bin/rollout-operator</code></h3>
-<h4>Vulnerabilities (1)</h4>
+<h4>Vulnerabilities (6)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -75,6 +89,34 @@
         <th>Severity</th>
         <th>Installed Version</th>
         <th>Fixed Version</th>
+    </tr>
+    <tr>
+        <td><code>go.opentelemetry.io/otel/sdk</code></td>
+        <td>CVE-2026-24051</td>
+        <td>HIGH</td>
+        <td>v1.38.0</td>
+        <td>1.40.0</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2025-68121</td>
+        <td>CRITICAL</td>
+        <td>v1.25.3</td>
+        <td>1.24.13, 1.25.7, 1.26.0-rc.3</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2025-61726</td>
+        <td>HIGH</td>
+        <td>v1.25.3</td>
+        <td>1.24.12, 1.25.6</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2025-61728</td>
+        <td>HIGH</td>
+        <td>v1.25.3</td>
+        <td>1.24.12, 1.25.6</td>
     </tr>
     <tr>
         <td><code>stdlib</code></td>
@@ -83,6 +125,13 @@
         <td>v1.25.3</td>
         <td>1.24.11, 1.25.5</td>
     </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2025-61730</td>
+        <td>HIGH</td>
+        <td>v1.25.3</td>
+        <td>1.24.12, 1.25.6</td>
+    </tr>
 </table>
 <h4>No Misconfigurations found</h4>
 
@@ -90,7 +139,7 @@
 <h4>No Vulnerabilities found</h4>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>usr/bin/mc</code></h3>
-<h4>Vulnerabilities (8)</h4>
+<h4>Vulnerabilities (10)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -122,6 +171,13 @@
     </tr>
     <tr>
         <td><code>stdlib</code></td>
+        <td>CVE-2025-68121</td>
+        <td>CRITICAL</td>
+        <td>v1.23.4</td>
+        <td>1.24.13, 1.25.7, 1.26.0-rc.3</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
         <td>CVE-2025-47907</td>
         <td>HIGH</td>
         <td>v1.23.4</td>
@@ -136,17 +192,17 @@
     </tr>
     <tr>
         <td><code>stdlib</code></td>
-        <td>CVE-2025-58186</td>
+        <td>CVE-2025-61726</td>
         <td>HIGH</td>
         <td>v1.23.4</td>
-        <td>1.24.8, 1.25.2</td>
+        <td>1.24.12, 1.25.6</td>
     </tr>
     <tr>
         <td><code>stdlib</code></td>
-        <td>CVE-2025-58187</td>
+        <td>CVE-2025-61728</td>
         <td>HIGH</td>
         <td>v1.23.4</td>
-        <td>1.24.9, 1.25.3</td>
+        <td>1.24.12, 1.25.6</td>
     </tr>
     <tr>
         <td><code>stdlib</code></td>
@@ -154,6 +210,13 @@
         <td>HIGH</td>
         <td>v1.23.4</td>
         <td>1.24.11, 1.25.5</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2025-61730</td>
+        <td>HIGH</td>
+        <td>v1.23.4</td>
+        <td>1.24.12, 1.25.6</td>
     </tr>
 </table>
 <h4>No Misconfigurations found</h4>
@@ -162,7 +225,7 @@
 <h4>No Vulnerabilities found</h4>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>usr/bin/mc</code></h3>
-<h4>Vulnerabilities (8)</h4>
+<h4>Vulnerabilities (10)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -194,6 +257,13 @@
     </tr>
     <tr>
         <td><code>stdlib</code></td>
+        <td>CVE-2025-68121</td>
+        <td>CRITICAL</td>
+        <td>v1.23.4</td>
+        <td>1.24.13, 1.25.7, 1.26.0-rc.3</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
         <td>CVE-2025-47907</td>
         <td>HIGH</td>
         <td>v1.23.4</td>
@@ -208,17 +278,17 @@
     </tr>
     <tr>
         <td><code>stdlib</code></td>
-        <td>CVE-2025-58186</td>
+        <td>CVE-2025-61726</td>
         <td>HIGH</td>
         <td>v1.23.4</td>
-        <td>1.24.8, 1.25.2</td>
+        <td>1.24.12, 1.25.6</td>
     </tr>
     <tr>
         <td><code>stdlib</code></td>
-        <td>CVE-2025-58187</td>
+        <td>CVE-2025-61728</td>
         <td>HIGH</td>
         <td>v1.23.4</td>
-        <td>1.24.9, 1.25.3</td>
+        <td>1.24.12, 1.25.6</td>
     </tr>
     <tr>
         <td><code>stdlib</code></td>
@@ -227,10 +297,17 @@
         <td>v1.23.4</td>
         <td>1.24.11, 1.25.5</td>
     </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2025-61730</td>
+        <td>HIGH</td>
+        <td>v1.23.4</td>
+        <td>1.24.12, 1.25.6</td>
+    </tr>
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>usr/bin/minio</code></h3>
-<h4>Vulnerabilities (9)</h4>
+<h4>Vulnerabilities (12)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -254,6 +331,13 @@
         <td>5.2.2</td>
     </tr>
     <tr>
+        <td><code>go.opentelemetry.io/otel/sdk</code></td>
+        <td>CVE-2026-24051</td>
+        <td>HIGH</td>
+        <td>v1.32.0</td>
+        <td>1.40.0</td>
+    </tr>
+    <tr>
         <td><code>golang.org/x/crypto</code></td>
         <td>CVE-2025-22869</td>
         <td>HIGH</td>
@@ -266,6 +350,13 @@
         <td>HIGH</td>
         <td>v0.24.0</td>
         <td>0.27.0</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2025-68121</td>
+        <td>CRITICAL</td>
+        <td>v1.23.4</td>
+        <td>1.24.13, 1.25.7, 1.26.0-rc.3</td>
     </tr>
     <tr>
         <td><code>stdlib</code></td>
@@ -283,17 +374,17 @@
     </tr>
     <tr>
         <td><code>stdlib</code></td>
-        <td>CVE-2025-58186</td>
+        <td>CVE-2025-61726</td>
         <td>HIGH</td>
         <td>v1.23.4</td>
-        <td>1.24.8, 1.25.2</td>
+        <td>1.24.12, 1.25.6</td>
     </tr>
     <tr>
         <td><code>stdlib</code></td>
-        <td>CVE-2025-58187</td>
+        <td>CVE-2025-61728</td>
         <td>HIGH</td>
         <td>v1.23.4</td>
-        <td>1.24.9, 1.25.3</td>
+        <td>1.24.12, 1.25.6</td>
     </tr>
     <tr>
         <td><code>stdlib</code></td>
@@ -301,6 +392,13 @@
         <td>HIGH</td>
         <td>v1.23.4</td>
         <td>1.24.11, 1.25.5</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2025-61730</td>
+        <td>HIGH</td>
+        <td>v1.23.4</td>
+        <td>1.24.12, 1.25.6</td>
     </tr>
 </table>
 <h4>No Misconfigurations found</h4>
