@@ -171,5 +171,21 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>Java</code></h3>
-<h4>No Vulnerabilities found</h4>
+<h4>Vulnerabilities (1)</h4>
+<table>
+    <tr>
+        <th>Package</th>
+        <th>ID</th>
+        <th>Severity</th>
+        <th>Installed Version</th>
+        <th>Fixed Version</th>
+    </tr>
+    <tr>
+        <td><code>com.fasterxml.jackson.core:jackson-core</code></td>
+        <td>GHSA-72hv-8253-57qq</td>
+        <td>HIGH</td>
+        <td>2.19.2</td>
+        <td>2.18.6, 2.21.1, 3.1.0</td>
+    </tr>
+</table>
 <h4>No Misconfigurations found</h4>

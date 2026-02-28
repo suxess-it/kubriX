@@ -1,5 +1,5 @@
 
-<h3>Target <code>ghcr.io/grafana/alloy-operator:1.5.2 (redhat 9.6)</code></h3>
+<h3>Target <code>ghcr.io/grafana/alloy-operator:1.6.0 (redhat 9.6)</code></h3>
 <h4>Vulnerabilities (3)</h4>
 <table>
     <tr>
@@ -33,7 +33,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>usr/local/bin/helm-operator</code></h3>
-<h4>Vulnerabilities (5)</h4>
+<h4>Vulnerabilities (6)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -41,6 +41,13 @@
         <th>Severity</th>
         <th>Installed Version</th>
         <th>Fixed Version</th>
+    </tr>
+    <tr>
+        <td><code>go.opentelemetry.io/otel/sdk</code></td>
+        <td>CVE-2026-24051</td>
+        <td>HIGH</td>
+        <td>v1.37.0</td>
+        <td>1.40.0</td>
     </tr>
     <tr>
         <td><code>stdlib</code></td>
@@ -532,7 +539,7 @@
 <h4>No Vulnerabilities found</h4>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>kube-state-metrics</code></h3>
-<h4>Vulnerabilities (6)</h4>
+<h4>Vulnerabilities (7)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -540,6 +547,13 @@
         <th>Severity</th>
         <th>Installed Version</th>
         <th>Fixed Version</th>
+    </tr>
+    <tr>
+        <td><code>go.opentelemetry.io/otel/sdk</code></td>
+        <td>CVE-2026-24051</td>
+        <td>HIGH</td>
+        <td>v1.33.0</td>
+        <td>1.40.0</td>
     </tr>
     <tr>
         <td><code>stdlib</code></td>

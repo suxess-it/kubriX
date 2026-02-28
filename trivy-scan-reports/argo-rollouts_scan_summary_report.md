@@ -3,7 +3,7 @@
 <h4>No Vulnerabilities found</h4>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>bin/rollouts-controller</code></h3>
-<h4>Vulnerabilities (11)</h4>
+<h4>Vulnerabilities (12)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -25,6 +25,13 @@
         <td>HIGH</td>
         <td>v0.0.0-20191001220047-6db9661140c0</td>
         <td></td>
+    </tr>
+    <tr>
+        <td><code>go.opentelemetry.io/otel/sdk</code></td>
+        <td>CVE-2026-24051</td>
+        <td>HIGH</td>
+        <td>v1.21.0</td>
+        <td>1.40.0</td>
     </tr>
     <tr>
         <td><code>golang.org/x/crypto</code></td>
