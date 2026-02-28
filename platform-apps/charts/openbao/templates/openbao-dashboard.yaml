@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  labels:
+    grafana_dashboard: "1"
+  name: openbao-dashboard
+data:
+  openbao-dashboard.json: |-
+{{ .Files.Get "dashboard-files/openbao-dashboard.json" | indent 4 }}

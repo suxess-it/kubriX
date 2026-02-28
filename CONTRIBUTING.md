@@ -71,7 +71,7 @@ and save them in `playwright.env` section of the `settings.json` of vscode:
             "E2E_ARGOCD_ADMIN_PASSWORD": "kubectl get secret -n argocd argocd-initial-admin-secret -o=jsonpath='{.data.password}' | base64 -d",
             "E2E_GRAFANA_ADMIN_PASSWORD": "kubectl get secret -n grafana grafana-admin-secret  -o=jsonpath='{.data.passwordKey}'  | base64 -d",
             "E2E_KEYCLOAK_ADMIN_PASSWORD": "kubectl get secret -n keycloak  keycloak-admin -o=jsonpath='{.data.admin-password}'  | base64 -d",
-            "E2E_VAULT_ROOT_TOKEN": "kubectl get secret -n vault vault-init -o jsonpath='{.data.root_token}' | base64 -d ",
+            "E2E_VAULT_ROOT_TOKEN": "kubectl get secret -n openbao openbao-init -o jsonpath='{.data.root_token}' | base64 -d ",
             "E2E_KARGO_ADMIN_PASSWORD": "kubectl get secret -n kargo kargo-admin-secret  -o=jsonpath='{.data.ADMIN_ACCOUNT_PASSWORD}'  | base64 -d",
         },
         "E2E_KEYCLOAK_DEMOADMIN_PASSWORD": "xxx",
@@ -103,8 +103,8 @@ export GITHUB_CLIENTSECRET="<oauth-github-clientsecret>"
 and then execute the following:
 
 ```
-export VAULT_HOSTNAME=$(kubectl get ingress -o jsonpath='{.items[*].spec.rules[*].host}' -n vault)
-export VAULT_TOKEN=$(kubectl get secret -n vault vault-init -o=jsonpath='{.data.root_token}'  | base64 -d)
+export VAULT_HOSTNAME=$(kubectl get ingress -o jsonpath='{.items[*].spec.rules[*].host}' -n openbao)
+export VAULT_TOKEN=$(kubectl get secret -n openbao openbao-init -o=jsonpath='{.data.root_token}'  | base64 -d)
 curl -k --header "X-Vault-Token:$VAULT_TOKEN" --request PATCH --header "Content-Type: application/merge-patch+json" --data "{\"data\": {\"GITHUB_CLIENTSECRET\": \"${GITHUB_CLIENTSECRET}\", \"GITHUB_CLIENTID\": \"${GITHUB_CLIENTID}\"}}" https://${VAULT_HOSTNAME}/v1/kubrix-kv/data/portal/backstage/base
 kubectl delete secret -n backstage sx-cnp-secret
 kubectl delete externalsecret -n backstage sx-cnp-secret

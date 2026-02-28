@@ -11,7 +11,7 @@ metadata:
 spec:
   refreshInterval: "15s"
   secretStoreRef:
-    name: vault-backend
+    name: openbao-backend
     kind: ClusterSecretStore
   target:
     name: {{ .name }}-appset-github-token

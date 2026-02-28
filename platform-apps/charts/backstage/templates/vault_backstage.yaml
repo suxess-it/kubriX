@@ -7,7 +7,7 @@ metadata:
     argocd.argoproj.io/sync-wave: "-3"
 spec:
   providerConfigRef:
-    name: vault-crossplane-providerconfig
+    name: openbao-crossplane-providerconfig
   forProvider:
     name: backstage-vault
     policy: |
@@ -26,7 +26,7 @@ spec:
   forProvider:
     roleName: backstage-vault
   providerConfigRef:
-    name: vault-crossplane-providerconfig
+    name: openbao-crossplane-providerconfig
 ---
 apiVersion: vault.vault.upbound.io/v1alpha1
 kind: Token
@@ -41,7 +41,7 @@ spec:
     policies:
       - backstage-vault
   providerConfigRef:
-    name: vault-crossplane-providerconfig
+    name: openbao-crossplane-providerconfig
   writeConnectionSecretToRef:
     namespace: backstage
     name: backstage-vault-token
@@ -57,7 +57,7 @@ metadata:
     argocd.argoproj.io/sync-wave: "-1"
 spec:
   secretStoreRefs:
-    - name: vault-backend
+    - name: openbao-backend
       kind: ClusterSecretStore
   refreshInterval: 15s
   selector:

@@ -1,0 +1,71 @@
+
+apiVersion: vault.vault.upbound.io/v1alpha1
+kind: Policy
+metadata:
+  name: crossplane
+  annotations:
+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+    argocd.argoproj.io/sync-wave: "3"
+spec:
+  providerConfigRef:
+    name: openbao-crossplane-providerconfig
+  forProvider:
+    name: crossplane
+    policy: |
+      path "kubrix-kv/data/*" {
+        capabilities = ["read","list","create","update",]
+      }
+      path "kubrix-kv/metadata/*" {
+        capabilities = ["read","list","create","update",]
+      }  
+---
+apiVersion: vault.vault.upbound.io/v1alpha1
+kind: Policy
+metadata:
+  name: vault-admin
+  annotations:
+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+    argocd.argoproj.io/sync-wave: "3"
+spec:
+  providerConfigRef:
+    name: openbao-crossplane-providerconfig
+  forProvider:
+    name: vault-admin
+    policy: |
+      path "/*" {
+        capabilities = ["create", "read", "update", "delete", "list","sudo"]
+      }
+---
+apiVersion: vault.vault.upbound.io/v1alpha1
+kind: Policy
+metadata:
+  name: editors
+  annotations:
+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+    argocd.argoproj.io/sync-wave: "3"
+spec:
+  providerConfigRef:
+    name: openbao-crossplane-providerconfig
+  forProvider:
+    name: editors
+    policy: |
+      path "/*" {
+        capabilities = ["read","list","update"]
+      }
+---
+apiVersion: vault.vault.upbound.io/v1alpha1
+kind: Policy
+metadata:
+  name: viewers
+  annotations:
+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+    argocd.argoproj.io/sync-wave: "3"
+spec:
+  providerConfigRef:
+    name: openbao-crossplane-providerconfig
+  forProvider:
+    name: viewers
+    policy: |
+      path "/*" {
+        capabilities = ["read","list"]
+      }
