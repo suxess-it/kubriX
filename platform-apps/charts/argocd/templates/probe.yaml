@@ -1,0 +1,16 @@
+apiVersion: monitoring.coreos.com/v1
+kind: Probe
+metadata:
+  name: argocd-probe
+spec:
+  interval: 60s
+  module: https_2xx_insecure
+  prober:
+    path: /probe
+    url: http://sx-blackbox-exporter-prometheus-blackbox-exporter.blackbox-exporter.svc:9115
+  targets:
+    staticConfig:
+      labels:
+        healthcheck: ping
+      static:
+        - https://{{ index .Values "argo-cd" "global" "domain" }}/healthz

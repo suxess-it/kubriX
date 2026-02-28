@@ -17,15 +17,15 @@ applications:
     annotations:
       argocd.argoproj.io/sync-wave: "-9"
 
-  - name: argocd
+  - name: prometheus-operator-crds
     annotations:
       argocd.argoproj.io/sync-wave: "-9"
     syncOptions:
       - ServerSideApply=true
 
-  - name: prometheus-operator-crds
+  - name: argocd
     annotations:
-      argocd.argoproj.io/sync-wave: "-8"
+      argocd.argoproj.io/sync-wave: "-9"
     syncOptions:
       - ServerSideApply=true
 
