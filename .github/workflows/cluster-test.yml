@@ -513,3 +513,13 @@ jobs:
         shell: bash
         run: |
           k8sgpt analyze
+
+      # at the end get infos from all pods to identify OOMs or restarts
+      - name: get and describe all pods
+        if: always()
+        shell: bash
+        run: |
+          echo "===== get all pods ======"
+          kubectl get pods -A
+          echo "describe all pods ====="
+          kubectl describe pod -A
