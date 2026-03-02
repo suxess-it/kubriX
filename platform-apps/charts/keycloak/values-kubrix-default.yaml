@@ -4,14 +4,14 @@ keycloak:
     enabled: false
 
   readinessProbe:
-    periodSeconds: 20
+    periodSeconds: 5
     failureThreshold: 5
   livenessProbe:
     periodSeconds: 20
     failureThreshold: 5
   startupProbe:
-    periodSeconds: 20
-    failureThreshold: 5
+    periodSeconds: 5
+    failureThreshold: 20
 
   resources:
     requests:
