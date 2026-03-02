@@ -66,9 +66,7 @@ openbao:
         - -c
         - |
             while true; do
-              sleep 10
               while [ -z $UNSEAL_KEY ]; do
-                sleep 5
                 VAULT_STATUS=$(bao status)
                 if echo "$VAULT_STATUS" | grep -q "Initialized.*false" && [ $HOSTNAME = 'sx-openbao-0' ]; then
                   export INIT_RESPONSE=$(bao operator init -format=json -key-shares=1 -key-threshold=1)
@@ -82,7 +80,9 @@ openbao:
                 else
                   echo "Vault Initialized"
                 fi
+                sleep 3
               done
+              sleep 3
             done
         volumeMounts:
           - name: plugins
@@ -108,31 +108,34 @@ openbao:
         - -c
         - |
             while true; do
-              sleep 10
               VAULT_STATUS=$(bao status)
               if echo "$VAULT_STATUS" | grep -q "Initialized.*false" && [ $HOSTNAME != 'sx-openbao-0' ]; then
                 echo joining raft cluster
                 bao operator raft join http://sx-openbao-0.sx-openbao-internal:8200
-                sleep 5
+                sleep 3
               fi
               if echo "$VAULT_STATUS" | grep -q "Initialized.*true"; then
                 if echo "$VAULT_STATUS" | grep -q "Sealed.*true"; then
-                  if [ -f /vault-root-token/unseal_key ]; then
-                    bao operator unseal $(cat /vault-root-token/unseal_key)
-                    sleep 5
+                  UNSEAL_KEY=$(/usr/local/libexec/vault/kubectl get secret openbao-init -n openbao -o jsonpath='{.data.unseal_key}' 2>/dev/null | base64 -d)
+                  if [ -n "$UNSEAL_KEY" ]; then
+                    bao operator unseal "$UNSEAL_KEY"
+                    sleep 3
                   else
                     echo unseal key not initialized yet
                   fi
                 else
                   echo vault already unsealed
+                  sleep 60
+                  continue
                 fi
               else
                 echo Vault not initialized yet
               fi
+              sleep 3
             done
         volumeMounts:
-          - name: vault-root-token
-            mountPath: /vault-root-token
+          - name: plugins
+            mountPath: /usr/local/libexec/vault
         securityContext:
           allowPrivilegeEscalation: false
           capabilities:
@@ -153,10 +156,9 @@ openbao:
         - -c
         - |
           while true; do
-            sleep 10
-
-            if [ -f /vault-root-token/root_token ]; then
-              export VAULT_TOKEN="$(cat /vault-root-token/root_token)"
+            VAULT_TOKEN=$(/usr/local/libexec/vault/kubectl get secret openbao-init -n openbao -o jsonpath='{.data.root_token}' 2>/dev/null | base64 -d)
+            if [ -n "$VAULT_TOKEN" ]; then
+              export VAULT_TOKEN
 
               if bao status | grep -q "Sealed.*false"; then
                 # only run setup when admins group does NOT exist
@@ -189,6 +191,8 @@ openbao:
                   fi
                 else
                   echo "setup complete"
+                  sleep 60
+                  continue
                 fi
               else
                 echo "vault still sealed"
@@ -196,10 +200,9 @@ openbao:
             else
               echo "root token not initialized yet"
             fi
+            sleep 3
           done
         volumeMounts:
-          - name: vault-root-token
-            mountPath: /vault-root-token
           - name: plugins
             mountPath: /usr/local/libexec/vault
         securityContext:
@@ -212,10 +215,6 @@ openbao:
     volumes:
       - name: plugins
         emptyDir: {}
-      - name: vault-root-token
-        secret:
-          secretName: openbao-init
-          optional: true
     volumeMounts:
       - mountPath: /usr/local/libexec/vault
         name: plugins
