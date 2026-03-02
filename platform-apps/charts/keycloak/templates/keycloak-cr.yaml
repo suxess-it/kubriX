@@ -21,7 +21,7 @@ spec:
     port: {{ .Values.keycloak.db.port | default 5432 }}
     poolInitialSize: 1
     poolMinSize: 2
-    poolMaxSize: 3
+    poolMaxSize: 20
   http:
     httpEnabled: true
   hostname:
