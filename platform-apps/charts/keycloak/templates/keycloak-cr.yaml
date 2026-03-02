@@ -19,7 +19,7 @@ spec:
     host: "{{ .Release.Name }}-cluster-rw.{{ .Release.Namespace }}.svc.cluster.local"
     database: postgres
     port: {{ .Values.keycloak.db.port | default 5432 }}
-    poolInitialSize: 1
+    poolInitialSize: 2
     poolMinSize: 2
     poolMaxSize: 20
   http:
