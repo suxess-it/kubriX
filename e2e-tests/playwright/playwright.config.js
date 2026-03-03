@@ -52,7 +52,7 @@ export default defineConfig({
       name: 'portal-login',
       testMatch: 'portal/auth.github-keycloak-login.ts',
       // IMPORTANT: it is crucial that we do not enable 'trace' in login project, so kubrixBot password doesn't get leaked in the traces
-      use : {trace : 'off'}
+      // use : {trace : 'off'}
     },
     {
       name: 'portal-tests',
