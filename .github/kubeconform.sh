@@ -54,6 +54,10 @@ for chart in ${!APPS[@]}; do
     EXTRA_OPTS="-skip CustomResourceDefinition"
   fi
 
+  # exception due to https://github.com/cloudnative-pg/charts/issues/753
+  if [[ "${chart}" == "backstage" ]] ; then
+    EXTRA_OPTS="${EXTRA_OPTS} -skip Cluster"
+  fi
 
   helm template  --include-crds ${chart} ${valuesFiles[@]} ${setValues} | \
     ../../kubeconform -output pretty \
