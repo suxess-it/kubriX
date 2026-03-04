@@ -7,10 +7,10 @@ metadata:
     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
     argocd.argoproj.io/sync-wave: "2"
 spec:
-  managementPolicies: ["Observe"]
   forProvider:
     realmId: {{ .Values.kubrix.keycloak.realm.realmid }}
     clientId: realm-management
+    import: true
   providerConfigRef:
     name: "{{ .Release.Name }}-config"
 ---
@@ -22,12 +22,12 @@ metadata:
     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
     argocd.argoproj.io/sync-wave: "3"
 spec:
-  managementPolicies: ["Observe"]
   forProvider:
     realmId: {{ .Values.kubrix.keycloak.realm.realmid }}
     clientIdRef:
       name: realm-management
     name: view-users
+    import: true
   providerConfigRef:
     name: "{{ .Release.Name }}-config"
 ---
@@ -39,12 +39,12 @@ metadata:
     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
     argocd.argoproj.io/sync-wave: "3"
 spec:
-  managementPolicies: ["Observe"]
   forProvider:
     realmId: {{ .Values.kubrix.keycloak.realm.realmid }}
     clientIdRef:
       name: realm-management
     name: query-groups
+    import: true
   providerConfigRef:
     name: "{{ .Release.Name }}-config"
 ---
@@ -56,11 +56,11 @@ metadata:
     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
     argocd.argoproj.io/sync-wave: "3"
 spec:
-  managementPolicies: ["Observe"]
   forProvider:
     realmId: {{ .Values.kubrix.keycloak.realm.realmid }}
     clientIdRef:
       name: realm-management
     name: query-users
+    import: true
   providerConfigRef:
     name: "{{ .Release.Name }}-config"
