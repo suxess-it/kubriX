@@ -109,6 +109,7 @@ test("Team Onboarding with kubrixBot Github user", async ({ page }) => {
   await page.getByRole('textbox', { name: 'Team Organization' }).fill('kubriX-demo');
   const teamRepoUID = process.env.E2E_TEST_PR_NUMBER ?? '';
   await page.getByRole('textbox', { name: 'Team Repos UID' }).fill(`a${teamRepoUID}-`);
+  await page.getByRole('textbox', { name: 'kubriX Repo Target Branch' }).fill(process.env.E2E_TEAM_ONBOARDING_TARGET_BRANCH!);
   await page.getByRole('button', { name: 'Next' }).click();
   const page1Promise = page.waitForEvent('popup');
   await page.getByRole('button', { name: 'Log in' }).click();
@@ -291,7 +292,8 @@ test("Multi-Stage-Kargo App Onboarding", async ({ page }) => {
   await page.getByRole('textbox', { name: 'Name' }).fill(`a${prefix}-kubrixbot-app`);
   await page.getByRole('textbox', { name: 'Description' }).click();
   await page.getByRole('textbox', { name: 'Description' }).fill('this is a e2e test');
-  await page.getByRole('textbox', { name: 'FQDN' }).fill('127-0-0-1.nip.io');
+  await page.getByRole('textbox', { name: 'Team Organization' }).click();
+  await page.getByRole('textbox', { name: 'Team Organization' }).fill('kubriX-demo');
   await page.getByRole('button', { name: 'Next' }).click();
   const page1Promise = page.waitForEvent('popup');
   await page.getByRole('button', { name: 'Log in' }).click();
@@ -312,7 +314,6 @@ test("Multi-Stage-Kargo App Onboarding", async ({ page }) => {
   // optional: make sure the popup is gone before continuing
   if (!popup.isClosed()) await popup.close();
 
-  await page.getByLabel('Owner Available').getByRole('combobox').selectOption('kubrix-demo');
   await page.getByRole('button', { name: 'Review' }).click();
   await page.getByRole('button', { name: 'Create' }).click();
 

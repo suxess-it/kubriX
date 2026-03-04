@@ -1,0 +1,25 @@
+{{- if eq .Values.kubriXPlan "oss" }}
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ template "mimir.fullname" .Subcharts.mimir }}-datasource
+  labels:
+    grafana_datasource: "1"
+data:
+  mimir-datasource.yaml: |-
+    apiVersion: 1
+    datasources:
+    - name: mimir
+      type: prometheus
+      typeName: prometheus
+      uid: mimir
+      basicAuth: false
+      url: http://{{ template "mimir.fullname" .Subcharts.mimir }}-gateway.{{ .Release.Namespace }}.svc:80/prometheus
+      access: proxy
+      isDefault: true
+      jsonData:
+        httpMethod: "POST"
+        prometheusType: "Mimir"
+        prometheusVersion: "2.9.1"
+        timeInterval: 60s
+{{- end }}

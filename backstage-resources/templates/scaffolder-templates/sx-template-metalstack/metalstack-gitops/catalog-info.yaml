@@ -7,10 +7,6 @@ metadata:
     - kubrix
     - template
     - metalstack
-  links:
-    - url: https://grafana-metalstack.platform-engineer.cloud/
-      title: Grafana SRE Metrics
-      icon: web
   annotations:
     github.com/project-slug: ${{values.repoUrlowner}}/${{values.repoUrlRepo}}
     backstage.io/kubernetes-id: ${{values.cluster_id}}
@@ -26,5 +22,4 @@ spec:
   system: ${{values.cluster_id}}
   dependsOn:
     - resource:argocd
-    - resource:metalstack
     - resource:loki

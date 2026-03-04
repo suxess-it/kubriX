@@ -1,0 +1,11 @@
+{{- if .Values.nginxIngressClass.enabled }}
+# this ingress class is needed so traefik serves ingress nginx class ingresses also
+#   when ingress-nginx is not installed anymore
+#   see https://github.com/traefik/traefik-helm-chart/blob/master/EXAMPLES.md#use-kubernetes-ingress-nginx-provider
+apiVersion: networking.k8s.io/v1
+kind: IngressClass
+metadata:
+  name: nginx
+spec:
+  controller: k8s.io/ingress-nginx
+{{- end }}

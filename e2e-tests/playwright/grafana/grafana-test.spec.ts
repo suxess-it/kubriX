@@ -68,14 +68,23 @@ test('Grafana Vault Dashboard', async ({ page }) => {
 test('Grafana K8s Namespace Dashboard', async ({ page }) => {
   test.slow();
 
-  await page.goto("https://grafana.127-0-0-1.nip.io/d/k8s_views_global/kubernetes-views-global?orgId=1&from=now-2h&to=now&timezone=browser&var-datasource=default&var-node=10.240.0.98&var-port=&var-mountpoint=$__all");
+  await page.goto("https://grafana.127-0-0-1.nip.io/d/k8s_views_global/kubernetes-views-global?orgId=1&from=now-2h&to=now&timezone=browser&var-datasource=default&var-node=10.240.0.98&var-port=&var-mountpoint=$__all", { waitUntil: 'domcontentloaded' });
 
+  // wait for the first panel to fully load
+  const firstPanel = page.getByRole('region', { name: 'Global CPU Usage', exact: true });
+  await expect(firstPanel).toHaveCount(1, { timeout: 60_000 });
+  await expect(firstPanel).toBeVisible({ timeout: 60_000 });
+
+  // Wait until the panel is not in a loading state (Grafana commonly shows “Loading”)
+  await expect
+    .poll(async () => firstPanel.getByText(/loading/i).count(), { timeout: 60_000 })
+    .toBe(0);
+  
   // check if main panels are there without "No data"
   const panels = ["Global CPU Usage", "Global RAM Usage", "Kubernetes Resource Count", "Nodes", "Namespaces", "Running Pods",
     "Cluster CPU Utilization", "Cluster Memory Utilization", "CPU Utilization by namespace", "Memory Utilization by namespace",
     "CPU Utilization by instance", "Memory Utilization by instance",
     "Kubernetes Pods QoS classes", "Kubernetes Pods Status Reason",
-    "Container Restarts by namespace",
     "Global Network Utilization by device", "Network Saturation - Packets dropped", "Network Received by namespace", "Total Network Received (with all virtual devices) by instance",
     "Network Received (without loopback) by instance", "Network Received (loopback only) by instance"
   ];

@@ -1,0 +1,35 @@
+traefik:
+# ssome input for traefik on KinD via https://github.com/jcchavezs/traefik-kind and input from ingress-nginx kind values
+
+  updateStrategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 1
+
+  # listen on different port than ingress-nginx so that we can test a parallel installation with ingress-nginx
+  #   .github/kind-config.yaml also needed to get adjusted to expose both ports
+  ports:
+    web:
+      hostPort: 80
+    websecure:
+      hostPort: 443
+
+  service:
+    type: ClusterIP
+
+  nodeSelector:
+    ingress-ready: "true"
+
+  tolerations:
+    - key: "node-role.kubernetes.io/master"
+      operator: "Equal"
+      effect: "NoSchedule"
+    - key: "node-role.kubernetes.io/control-plane"
+      operator: "Equal"
+      effect: "NoSchedule"
+
+  providers:
+    kubernetesIngressNginx:
+      publishService:
+        enabled: false
+      publishStatusAddress: "localhost"

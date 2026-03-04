@@ -26,7 +26,7 @@ backstage:
     image:
       registry: ghcr.io/suxess-it
       repository: sx-backstage
-      tag: v1.43.3
+      tag: v1.47.3
     extraEnvVarsSecrets:
       - sx-cnp-secret
       - backstage-db-secrets
@@ -384,6 +384,10 @@ backstage:
             baseUrl: 'http://localhost:11434'
             model: llama3.1:8b
 
+      kubernetesIngestor:
+        components:
+          enabled: false
+          
 ## pgdb
 cluster:
   type: postgresql

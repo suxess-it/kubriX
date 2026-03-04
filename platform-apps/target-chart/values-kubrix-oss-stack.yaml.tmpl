@@ -15,7 +15,7 @@ default:
 
 applications:
 
-  - name: ingress-nginx
+  - name: traefik
     annotations:
       argocd.argoproj.io/sync-wave: "-11"
 
@@ -38,6 +38,12 @@ applications:
   - name: argocd
     annotations:
       argocd.argoproj.io/sync-wave: "-9"
+    syncOptions:
+      - ServerSideApply=true
+
+  - name: prometheus-operator-crds
+    annotations:
+      argocd.argoproj.io/sync-wave: "-8"
     syncOptions:
       - ServerSideApply=true
 

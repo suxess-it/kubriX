@@ -22,7 +22,6 @@ spec:
         - instances
         - type
         - environments
-        - argocdtarget
       properties:
         cluster_id:
           title: Name
@@ -55,17 +54,18 @@ spec:
         environments:
           title: Environments
           type: string
-          description: Panned Stage for new Cluster?
+          description: Planned Stage for new Cluster?
           enum:
             - prod
             - test
             - qa
           uniqueItems: true
-        argocdtarget:
-          title: argocd target directory
+        teamOrg:
+          title: Team Organization
           type: string
-          description: Directory where argo application manifest is beeing deployed in team repo
-          default: k3d-apps
+          description: Which organization should the team belong to
+          ui:help: 'Lowercase letters, numbers, hyphens. if left empty, it will default to the organization of the repoUrl'
+          ui:placeholder: 'kubrix-demo'
 
 ## TODO: Maintenancewindow
     - title: Choose a location
@@ -77,14 +77,16 @@ spec:
           type: string
           ui:field: RepoUrlPicker
           ui:options:
+            allowedHosts:
+              - github.com
+            allowedOwners:
+              - will-be-autocomplete-by-template
             requestUserCredentials:
               secretsKey: USER_OAUTH_TOKEN
               additionalScopes:
                 github: 
                   - workflow
                   - user
-            allowedHosts:
-              - github.com
   steps:
     - id: catalogFetchGroup
       name: Fetch Context
@@ -137,9 +139,6 @@ spec:
           description: ${{ parameters.description }}
           repoUrlRepo: ${{ (parameters.repoUrl | parseRepoUrl)["repo"] }}
           repoUrlowner: ${{ (parameters.repoUrl | parseRepoUrl)["owner"] }}
-          environments: ${{ parameters.environments }}
-          argocdtarget: ${{ parameters.argocdtarget }}
-
 
     - id: pull-request-applicationsetup
       name: make a pr to team-apps repo with additional applicationsetup
@@ -147,7 +146,7 @@ spec:
       input:
         sourcePath: ./applicationsetup
         targetPath: '.'
-        repoUrl: github.com?repo=${{ steps['catalogFetchGroup'].output.entity.metadata.name }}-apps&owner=suxess-it
+        repoUrl: github.com?repo=${{ steps['catalogFetchGroup'].output.entity.metadata.name }}-apps&owner=${{ parameters.teamOrg or environment.parameters.defaultOrgName }}
         branchName: ${{ parameters.cluster_id }}
         title: argoapps and system config for ${{ parameters.cluster_id }}
         description: argoapps and system config for ${{ parameters.cluster_id }}

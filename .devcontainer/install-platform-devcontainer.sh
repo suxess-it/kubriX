@@ -83,6 +83,12 @@ elif  [[ ${KUBRIX_TARGET_TYPE} == "kind-observability" ]] ; then
 elif  [[ ${KUBRIX_TARGET_TYPE} == "kind-security" ]] ; then
   kubectl create namespace falco --dry-run=client -o yaml | kubectl apply -f -
   kubectl apply -f .devcontainer/falco-nodeport.yaml
+
+elif  [[ ${KUBRIX_TARGET_TYPE} == "kind-hub-prime" ]] ; then
+  kubectl create namespace grafana --dry-run=client -o yaml | kubectl apply -f -
+  kubectl create namespace kargo --dry-run=client -o yaml | kubectl apply -f -
+  kubectl apply -f .devcontainer/grafana-nodeport.yaml
+  kubectl apply -f .devcontainer/kargo-nodeport.yaml
 fi
 
 kubectl create namespace argocd --dry-run=client -o yaml | kubectl apply -f -

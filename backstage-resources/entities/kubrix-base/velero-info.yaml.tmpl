@@ -1,0 +1,17 @@
+{{ if ne .kubriX.clusterType "kind" -}}
+apiVersion: backstage.io/v1alpha1
+kind: Resource
+metadata:
+  name: velero
+  title: velero
+  description: velero Instance for kubriX
+  links: 
+    - url: https://velero.io/docs/main/
+      title: Official Documentation
+      icon: web
+spec:
+  type: secure
+  lifecycle: production
+  owner: kubrix
+  system: kubrix
+{{ end -}}
