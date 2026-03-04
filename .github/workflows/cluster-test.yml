@@ -403,7 +403,7 @@ jobs:
       # run testkube tests
       - uses: kubeshop/setup-testkube@v1
         with:
-          version: 2.4.4
+          version: 2.6.3
 
       - uses: suzuki-shunsuke/lock-action@latest
         with:
@@ -426,7 +426,9 @@ jobs:
           E2E_TEAM_ONBOARDING_TARGET_BRANCH: ${{ github.head_ref || github.ref_name }}
         run: |
           E2E_KEYCLOAK_DEMOADMIN_PASSWORD=$( kubectl get secret -n keycloak cp-keycloak-users-secret -o=jsonpath='{.data.demoadmin}'  | base64 -d )
+          echo "${E2E_KEYCLOAK_DEMOADMIN_PASSWORD}"
           E2E_KEYCLOAK_DEMOUSER_PASSWORD=$( kubectl get secret -n keycloak cp-keycloak-users-secret -o=jsonpath='{.data.demouser}'  | base64 -d )
+          echo "${E2E_KEYCLOAK_DEMOUSER_PASSWORD}"
           E2E_ARGOCD_ADMIN_PASSWORD=$( kubectl get secret -n argocd argocd-initial-admin-secret -o=jsonpath={'.data.password'} | base64 -d )
           E2E_ARGOCD_VERSION="v3.3.2"
           E2E_GRAFANA_ADMIN_PASSWORD=$( kubectl get secret -n grafana grafana-admin-secret -o=jsonpath='{.data.passwordKey}' | base64 -d )
