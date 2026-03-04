@@ -55,7 +55,7 @@ for chart in ${!APPS[@]}; do
   fi
 
   # exception due to https://github.com/cloudnative-pg/charts/issues/753
-  if [[ "${chart}" == "backstage" ]] ; then
+  if [[ "${chart}" == "backstage" || "${chart}" == "keycloak" ]] ; then
     EXTRA_OPTS="${EXTRA_OPTS} -skip Cluster"
   fi
 
