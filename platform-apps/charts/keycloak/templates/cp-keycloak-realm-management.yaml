@@ -7,7 +7,10 @@ metadata:
     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
     argocd.argoproj.io/sync-wave: "2"
 spec:
+  deletionPolicy: Orphan
+  managementPolicies: ["Observe"]
   forProvider:
+    accessType: CONFIDENTIAL 
     realmId: {{ .Values.kubrix.keycloak.realm.realmid }}
     clientId: realm-management
     import: true
