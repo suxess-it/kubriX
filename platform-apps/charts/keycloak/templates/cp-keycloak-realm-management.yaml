@@ -1,0 +1,66 @@
+---
+apiVersion: openidclient.keycloak.crossplane.io/v1alpha1
+kind: Client
+metadata:
+  name: realm-management
+  annotations:
+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+    argocd.argoproj.io/sync-wave: "2"
+spec:
+  managementPolicies: ["Observe"]
+  forProvider:
+    realmId: {{ .Values.kubrix.keycloak.realm.realmid }}
+    clientId: realm-management
+  providerConfigRef:
+    name: "{{ .Release.Name }}-config"
+---
+apiVersion: role.keycloak.crossplane.io/v1alpha1
+kind: Role
+metadata:
+  name: builtin-{{ .Values.kubrix.keycloak.realm.realmid }}-realm-management-view-users
+  annotations:
+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+    argocd.argoproj.io/sync-wave: "3"
+spec:
+  managementPolicies: ["Observe"]
+  forProvider:
+    realmId: {{ .Values.kubrix.keycloak.realm.realmid }}
+    clientIdRef:
+      name: realm-management
+    name: view-users
+  providerConfigRef:
+    name: "{{ .Release.Name }}-config"
+---
+apiVersion: role.keycloak.crossplane.io/v1alpha1
+kind: Role
+metadata:
+  name: builtin-{{ .Values.kubrix.keycloak.realm.realmid }}-realm-management-query-groups
+  annotations:
+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+    argocd.argoproj.io/sync-wave: "3"
+spec:
+  managementPolicies: ["Observe"]
+  forProvider:
+    realmId: {{ .Values.kubrix.keycloak.realm.realmid }}
+    clientIdRef:
+      name: realm-management
+    name: query-groups
+  providerConfigRef:
+    name: "{{ .Release.Name }}-config"
+---
+apiVersion: role.keycloak.crossplane.io/v1alpha1
+kind: Role
+metadata:
+  name: builtin-{{ .Values.kubrix.keycloak.realm.realmid }}-realm-management-query-users
+  annotations:
+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+    argocd.argoproj.io/sync-wave: "3"
+spec:
+  managementPolicies: ["Observe"]
+  forProvider:
+    realmId: {{ .Values.kubrix.keycloak.realm.realmid }}
+    clientIdRef:
+      name: realm-management
+    name: query-users
+  providerConfigRef:
+    name: "{{ .Release.Name }}-config"
