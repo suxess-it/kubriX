@@ -508,6 +508,7 @@ jobs:
           kubectl logs -n argocd statefulset/sx-argocd-application-controller
           kubectl logs -n argocd deployment/sx-argocd-repo-server
           kubectl logs -n argocd deployment/sx-argocd-applicationset-controller
+          kubectl logs -n backstage deployment/sx-backstage
           kubectl get pods -o name -n crossplane | xargs -I {} kubectl logs -n crossplane {} --all-containers=true
 
       - name: final analyzer with k8sgpt
