@@ -384,9 +384,10 @@ backstage:
             baseUrl: 'http://localhost:11434'
             model: llama3.1:8b
 
-  cluster:
-    
-    
+      kubernetesIngestor:
+        components:
+          enabled: false
+          
 ## pgdb
 cluster:
   type: postgresql
@@ -394,8 +395,6 @@ cluster:
   version:
     postgresql: "16"
   cluster:
-    # due to https://github.com/cloudnative-pg/charts/issues/753 we define an empty array for 'externalClusters'
-    externalClusters: []
     instances: 1
     postgresql:
       parameters:
