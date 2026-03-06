@@ -1,0 +1,27 @@
+apiVersion: monitoring.coreos.com/v1
+kind: PrometheusRule
+metadata:
+  name: cert-manager-kubrix-service-status
+  namespace: mimir
+  labels:
+    platform: kubrix
+    service: cert-manager
+spec:
+  groups:
+  - name: kubrix.service.status
+    interval: 30s
+    rules:
+    - record: kubrix_service_status
+      labels:
+        platform: kubrix
+        service: cert-manager
+      expr: |
+        (
+          2 * (scalar(min(probe_success{platform="kubrix",service="cert-manager"})) == bool 0)
+        )
+        +
+        (
+          scalar(max(GRAFANA_ALERTS{namespace="cert-manager"} == bool 1) or vector(0))
+          *
+          (1 - (scalar(min(probe_success{platform="kubrix",service="cert-manager"})) == bool 0))
+        )
