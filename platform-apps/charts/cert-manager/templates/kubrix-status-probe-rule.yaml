@@ -14,13 +14,13 @@ spec:
         platform: kubrix
         service: cert-manager
       static:
-        - http://sx-cert-manager.cert-manager.svc:9402/readyz
+        - http://sx-cert-manager.cert-manager.svc:9402/metrics
 ---
 apiVersion: monitoring.coreos.com/v1
 kind: PrometheusRule
 metadata:
   name: cert-manager-kubrix-service-status
-  namespace: mimir
+  namespace: mimir  
   labels:
     platform: kubrix
     service: cert-manager
