@@ -26,6 +26,4 @@ data:
 {{- if gt (len $routes) 0 }}
         routes:
 {{ toYaml $routes | nindent 10 }}
-{{- else }}
-        routes: []
 {{- end }}
