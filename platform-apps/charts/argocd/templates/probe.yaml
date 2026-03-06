@@ -7,10 +7,11 @@ spec:
   module: https_2xx_insecure
   prober:
     path: /probe
-    url: http://sx-blackbox-exporter-prometheus-blackbox-exporter.blackbox-exporter.svc:9115
+    url: sx-prometheus-blackbox-exporter.prometheus-blackbox-exporter.svc:9115
   targets:
     staticConfig:
       labels:
-        healthcheck: ping
+        platform: kubrix
+        service: argocd
       static:
         - https://{{ index .Values "argo-cd" "global" "domain" }}/healthz

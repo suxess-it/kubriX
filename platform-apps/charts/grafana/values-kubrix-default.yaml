@@ -1,3 +1,6 @@
+kubrixstatus:
+  enabled: true
+
 kubernetesModernDashboards:
   enabled: true
 
@@ -28,6 +31,10 @@ grafana:
       allow_embedding: 'true'
       cookie_samesite: none
       cookie_secure: 'true'
+    unified_alerting.state_history:
+      enabled: 'true'
+      backend: 'prometheus'
+      prometheus_target_datasource_uid: 'mimir'
   ingress:
     ## If true, Grafana Ingress will be created
     ##
@@ -85,6 +92,9 @@ grafana:
 
   initChownData:
     enabled: false
+
+  serviceMonitor:
+    enabled: true
 
 cluster:
   enabled: false
