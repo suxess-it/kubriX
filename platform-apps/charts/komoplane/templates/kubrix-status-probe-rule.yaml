@@ -2,7 +2,7 @@
 apiVersion: monitoring.coreos.com/v1
 kind: Probe
 metadata:
-  name: keycloak-probe
+  name: komoplane-probe
 spec:
   interval: 60s
   module: https_2xx_insecure
@@ -12,19 +12,19 @@ spec:
   targets:
     staticConfig:
       labels:
-        service: keycloak
+        service: komoplane
         platform: kubrix
       static:
-        - http://kubrix-keycloak-service.keycloak.svc:9000/health/ready
+        - https://{{ .Values.komoplane.ingress.hosts[0].host }}/login
 ---
 apiVersion: monitoring.coreos.com/v1
 kind: PrometheusRule
 metadata:
-  name: keycloak-kubrix-service-status
+  name: komoplane-kubrix-service-status
   namespace: mimir
   labels:
     platform: kubrix
-    service: keycloak
+    service: komoplane
 spec:
   groups:
   - name: kubrix.service.status
@@ -33,15 +33,15 @@ spec:
     - record: kubrix_service_status
       labels:
         platform: kubrix
-        service: keycloak
+        service: komoplane
       expr: |
         (
-          2 * (scalar(min(probe_success{platform="kubrix",service="keycloak"})) == bool 0)
+          2 * (scalar(min(probe_success{platform="kubrix",service="komoplane"})) == bool 0)
         )
         +
         (
-          scalar(max(GRAFANA_ALERTS{namespace="keycloak"} == bool 1) or vector(0))
+          scalar(max(GRAFANA_ALERTS{namespace="komoplane"} == bool 1) or vector(0))
           *
-          (1 - (scalar(min(probe_success{platform="kubrix",service="keycloak"})) == bool 0))
+          (1 - (scalar(min(probe_success{platform="kubrix",service="komoplane"})) == bool 0))
         )
 {{- end }}
