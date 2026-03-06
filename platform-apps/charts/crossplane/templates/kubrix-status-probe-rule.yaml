@@ -1,3 +1,4 @@
+{{- if .Values.kubrixStatusRule.enabled }}
 apiVersion: monitoring.coreos.com/v1
 kind: PrometheusRule
 metadata:
@@ -25,3 +26,4 @@ spec:
           *
           (1 - (scalar(min(probe_success{platform="kubrix",service="crossplane"})) == bool 0))
         )
+{{- end }}
