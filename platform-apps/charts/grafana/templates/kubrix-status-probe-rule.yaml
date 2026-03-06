@@ -39,7 +39,7 @@ spec:
         )
         +
         (
-          scalar(max(GRAFANA_ALERTS{namespace="grafana"} == bool 1))
+          scalar(max(GRAFANA_ALERTS{namespace="grafana"} == bool 1) or vector(0))
           *
           (1 - (scalar(min(probe_success{platform="kubrix",service="grafana"})) == bool 0))
         )
