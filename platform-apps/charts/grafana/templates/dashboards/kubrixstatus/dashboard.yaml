@@ -1,0 +1,11 @@
+{{- if .Values.kubrixstatus.enabled -}}
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  labels:
+    grafana_dashboard: "1"
+  name: kubrixstatus
+data:
+{{ (.Files.Glob "dashboard-files/kubrixstatus/*").AsConfig | indent 2 }}
+---
+{{ end -}}

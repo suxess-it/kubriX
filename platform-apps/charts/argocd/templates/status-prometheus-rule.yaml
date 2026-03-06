@@ -1,0 +1,28 @@
+apiVersion: monitoring.coreos.com/v1
+kind: PrometheusRule
+metadata:
+  name: argocd-kubrix-service-status
+  namespace: mimir
+  labels:
+    platform: kubrix
+    service: argocd
+spec:
+  groups:
+  - name: kubrix.service.status
+    interval: 30s
+    rules:
+    # --- Argo CD ---
+    - record: kubrix_service_status
+      labels:
+        platform: kubrix
+        service: argocd
+      expr: |
+        (
+          2 * (scalar(min(probe_success{platform="kubrix",service="argocd"})) == bool 0)
+        )
+        +
+        (
+          scalar(max(GRAFANA_ALERTS{namespace="argocd"} == bool 1))
+          *
+          (1 - (scalar(min(probe_success{platform="kubrix",service="argocd"})) == bool 0))
+        )

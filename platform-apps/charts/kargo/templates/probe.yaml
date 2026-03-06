@@ -1,0 +1,17 @@
+apiVersion: monitoring.coreos.com/v1
+kind: Probe
+metadata:
+  name: kargo-probe
+spec:
+  interval: 60s
+  module: https_2xx_insecure
+  prober:
+    url: sx-prometheus-blackbox-exporter.prometheus-blackbox-exporter.svc:9115
+    path: /probe
+  targets:
+    staticConfig:
+      labels:
+        service: kargo
+        platform: kubrix
+      static:
+        - https://kargo.127-0-0-1.nip.io/.backstage/
