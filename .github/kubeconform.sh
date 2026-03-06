@@ -54,7 +54,6 @@ for chart in ${!APPS[@]}; do
     EXTRA_OPTS="-skip CustomResourceDefinition"
   fi
 
-
   helm template  --include-crds ${chart} ${valuesFiles[@]} ${setValues} | \
     ../../kubeconform -output pretty \
     ${EXTRA_OPTS} \

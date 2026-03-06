@@ -34,6 +34,12 @@ spec:
           description: unique identifier for teams repos in this kubriX cluster
           ui:help: 'Lowercase letters, numbers, hyphens, (we suggest trailing hyphen at the end). if left empty, it will default to the team-name'
           default: ""
+        targetBranch:
+          title: kubriX Repo Target Branch
+          type: string
+          description: Which branch should the team onboarding PR target
+          ui:help: 'Lowercase letters, numbers, hyphens. if left empty, it will default to the organizations defaultTargetBranch value'
+          ui:placeholder: 'main'
 
     - title: Choose a location
       required:
@@ -121,7 +127,7 @@ spec:
         description: Onboarding team ${{ steps['catalogFetch'].output.entity.metadata.name }}
         targetPath: platform-apps/charts/team-onboarding
         branchName: onboarding-team-${{ steps['catalogFetch'].output.entity.metadata.name }}-${{ parameters.teamReposUID or environment.parameters.defaultRepoName }}
-        targetBranchName: main
+        targetBranchName: ${{ parameters.targetBranch or environment.parameters.defaultTargetBranch }}
         update: true
         token: ${{ secrets.USER_OAUTH_TOKEN }}
         gitAuthorName: ${{ user.entity.metadata.name }}
