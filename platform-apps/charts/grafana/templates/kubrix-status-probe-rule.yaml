@@ -14,7 +14,7 @@ spec:
         platform: kubrix
         service: grafana
       static:
-        - https://grafana.127-0-0-1.nip.io/api/health
+        - https://{{ index .Values.grafana.ingress.hosts 0 }}/api/health
 ---
 apiVersion: monitoring.coreos.com/v1
 kind: PrometheusRule

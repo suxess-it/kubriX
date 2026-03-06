@@ -14,7 +14,7 @@ spec:
         service: backstage
         platform: kubrix
       static:
-        - https://backstage.127-0-0-1.nip.io/.backstage/health/v1/liveness
+        - https://{{ .Values.backstage.ingress.host }}/.backstage/health/v1/liveness
 ---
 apiVersion: monitoring.coreos.com/v1
 kind: PrometheusRule
