@@ -1,9 +1,15 @@
 kubernetesAlerts:
   platformTeamContactPoint:
-    receivers: []
+    receivers:
+      - uid: platform-team-default
+        type: teams
+        settings:
+          url: https://myteams-url.com
+        disableResolveMessage: false
 # example:
 #      - uid: platform-team-default
 #        type: teams
 #        settings:
 #          url: https://myteams-url.com
 #        disableResolveMessage: false
+
