@@ -1,3 +1,4 @@
+{{- if .Capabilities.APIVersions.Has "monitoring.coreos.com/v1/PrometheusRule" }}
 {{- range .Values.applications }}
 apiVersion: monitoring.coreos.com/v1
 kind: PrometheusRule
@@ -30,4 +31,5 @@ spec:
           *
           (1 - (scalar(min(probe_success{platform="kubrix",service="{{ .name }}"})) == bool 0))
         )
+{{- end }}
 {{- end }}
