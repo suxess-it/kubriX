@@ -2,7 +2,7 @@
 apiVersion: monitoring.coreos.com/v1
 kind: Probe
 metadata:
-  name: cert-manager-probe
+  name: {{ Release.Namespace }}-probe
 spec:
   interval: 60s
   module: https_2xx_insecure
@@ -13,18 +13,17 @@ spec:
     staticConfig:
       labels:
         platform: kubrix
-        service: cert-manager
+        service: {{ Release.Namespace }}
       static:
         - http://sx-cert-manager.cert-manager.svc:9402/metrics
 ---
 apiVersion: monitoring.coreos.com/v1
 kind: PrometheusRule
 metadata:
-  name: cert-manager-kubrix-service-status
-  namespace: mimir  
+  name: {{ Release.Namespace }}-kubrix-service-status 
   labels:
     platform: kubrix
-    service: cert-manager
+    service: {{ Release.Namespace }}
 spec:
   groups:
   - name: kubrix.service.status
@@ -33,15 +32,15 @@ spec:
     - record: kubrix_service_status
       labels:
         platform: kubrix
-        service: cert-manager
+        service: {{ Release.Namespace }}
       expr: |
         (
-          2 * (scalar(min(probe_success{platform="kubrix",service="cert-manager"})) == bool 0)
+          2 * (scalar(min(probe_success{platform="kubrix",service="{{ Release.Namespace }}"})) == bool 0)
         )
         +
         (
-          scalar(max(GRAFANA_ALERTS{namespace="cert-manager"} == bool 1) or vector(0))
+          scalar(max(GRAFANA_ALERTS{namespace="{{ Release.Namespace }}"} == bool 1) or vector(0))
           *
-          (1 - (scalar(min(probe_success{platform="kubrix",service="cert-manager"})) == bool 0))
+          (1 - (scalar(min(probe_success{platform="kubrix",service="{{ Release.Namespace }}"})) == bool 0))
         )
 {{- end }}
