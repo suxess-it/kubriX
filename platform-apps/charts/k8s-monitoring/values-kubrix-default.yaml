@@ -122,7 +122,7 @@ k8s-monitoring:
           match_expression {
               key      = "kubernetes.io/metadata.name"
               operator = "In"
-              values   = ["mimir", "loki"]
+              values   = ["argo-rollouts","mimir", "loki"]
             }
         }
         rule_selector {
