@@ -36,8 +36,13 @@ grafana:
       cookie_secure: 'true'
     unified_alerting.state_history:
       enabled: 'true'
-      backend: 'prometheus'
+      backend: 'multiple'
+      primary: 'loki'
+      loki_remote_url: 'http://sx-loki-gateway.loki.svc:80'
+      secondaries: 'prometheus'
       prometheus_target_datasource_uid: 'mimir'
+    feature_toggles:
+      alertingCentralAlertHistory: 'true'
   ingress:
     ## If true, Grafana Ingress will be created
     ##
