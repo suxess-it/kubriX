@@ -16,11 +16,22 @@ spec:
         service: {{ .Release.Namespace }}
       expr: |
         (
-          2 * (scalar(min(probe_success{platform="kubrix",service="{{ .Release.Namespace }}"})) == bool 0)
+          2 * scalar(
+            max(GRAFANA_ALERTS{namespace="{{ .Release.Namespace }}", severity="critical"} == bool 1)
+            or vector(0)
+          )
         )
         +
         (
-          scalar(max(GRAFANA_ALERTS{namespace="{{ .Release.Namespace }}"} == bool 1) or vector(0))
+          scalar(
+            max(GRAFANA_ALERTS{namespace="{{ .Release.Namespace }}", severity="warning"} == bool 1)
+            or vector(0)
+          )
           *
-          (1 - (scalar(min(probe_success{platform="kubrix",service="{{ .Release.Namespace }}"})) == bool 0))
+          (
+            1 - scalar(
+              max(GRAFANA_ALERTS{namespace="{{ .Release.Namespace }}", severity="critical"} == bool 1)
+              or vector(0)
+            )
+          )
         )
