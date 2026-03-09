@@ -38,6 +38,8 @@ grafana:
       enabled: 'true'
       backend: 'prometheus'
       prometheus_target_datasource_uid: 'mimir'
+    feature_toggles:
+      alertingCentralAlertHistory: 'true'
   ingress:
     ## If true, Grafana Ingress will be created
     ##
