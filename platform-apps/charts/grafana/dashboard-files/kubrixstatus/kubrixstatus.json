@@ -25,12 +25,18 @@
         "type": "prometheus",
         "uid": "mimir"
       },
-      "description": "Current (last) health per kubriX platform service (from blackbox probe_success).",
+      "description": "Current health per kubriX platform service",
       "fieldConfig": {
         "defaults": {
           "color": {
             "mode": "thresholds"
           },
+          "links": [
+            {
+              "title": "show alerts",
+              "url": "/d/alerts-by-namespace/alerts-by-namespace?var-namespace=${__field.labels.service}"
+            }
+          ],
           "mappings": [
             {
               "options": {
@@ -127,6 +133,12 @@
             },
             "lineWidth": 1
           },
+          "links": [
+            {
+              "title": "show alerts",
+              "url": "/alerting/history?var-LABELS_FILTER=namespace%3D${__field.labels.service}&${__url_time_range}"
+            }
+          ],
           "mappings": [
             {
               "options": {
@@ -214,7 +226,7 @@
   "timepicker": {},
   "timezone": "browser",
   "title": "kubrix status",
-  "uid": "adrh9jn",
-  "version": 15,
+  "uid": "kubrix-status",
+  "version": 7,
   "weekStart": ""
 }
