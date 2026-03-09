@@ -1,7 +1,7 @@
 apiVersion: monitoring.coreos.com/v1
 kind: Probe
 metadata:
-  name: {{ Release.Namespace }}-probe
+  name: backstage-probe
 spec:
   interval: 60s
   module: https_2xx_insecure
@@ -11,7 +11,7 @@ spec:
   targets:
     staticConfig:
       labels:
+        service: backstage
         platform: kubrix
-        service: {{ Release.Namespace }}
       static:
-        - http://sx-cert-manager.cert-manager.svc:9402/
+        - https://{{ .Values.backstage.ingress.host }}/.backstage/health/v1/liveness
