@@ -34,6 +34,12 @@ k8s-monitoring:
           - machine_cpu_cores
           - container_oom_events_total
           - container_cpu_cfs_throttled_seconds_total
+          # keycloak dashboard
+          - container_cpu_usage_seconds_total
+          - container_spec_cpu_quota
+          - container_spec_cpu_period
+          - container_memory_working_set_bytes
+          - container_memory_limit_bytes
     apiServer:
       enabled: true
       metricsTuning:
