@@ -1,7 +1,7 @@
 apiVersion: monitoring.coreos.com/v1
 kind: Probe
 metadata:
-  name: mimir-probe
+  name: mimir-probe-query-frontend
 spec:
   interval: 60s
   module: https_2xx_insecure
@@ -20,7 +20,7 @@ spec:
 apiVersion: monitoring.coreos.com/v1
 kind: Probe
 metadata:
-  name: mimir-probe
+  name: mimir-probe-distributor
 spec:
   interval: 60s
   module: https_2xx_insecure
