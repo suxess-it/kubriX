@@ -1,7 +1,7 @@
 apiVersion: monitoring.coreos.com/v1
 kind: PrometheusRule
 metadata:
-  name: {{. Release.Namespace }}-kubrix-service-status 
+  name: {{ .Release.Namespace }}-kubrix-service-status 
   labels:
     platform: kubrix
     service: {{ .Release.Namespace }}
