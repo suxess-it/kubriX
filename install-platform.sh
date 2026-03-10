@@ -782,22 +782,22 @@ if [[ $( echo $argocd_apps | grep sx-openbao ) ]] ; then
   export VAULT_TOKEN=$(kubectl get secret -n openbao openbao-init -o=jsonpath='{.data.root_token}'  | base64 -d)
 
   # due to issue #422 this step is needed for all clusters
-  GROUP_ALIAS_LIST=$(curl -k --header "X-Vault-Token: $VAULT_TOKEN" --request LIST https://${VAULT_HOSTNAME}/v1/identity/group-alias/id)
+  GROUP_ALIAS_LIST=$(curl -k --header "X-Vault-Namespace: kubrix" --header "X-Vault-Token: $VAULT_TOKEN"  --request LIST https://${VAULT_HOSTNAME}/v1/identity/group-alias/id)
   if [ -z "$(echo "$GROUP_ALIAS_LIST" | jq -r '.data.keys | length')" ] || [ "$(echo "$GROUP_ALIAS_LIST" | jq -r '.data.keys | length')" -eq 0 ]; then
       echo "No group aliases found. Setting up group aliases..."
       # Get the list of identity groups
-      GROUP_LIST=$(curl -k --header "X-Vault-Token: $VAULT_TOKEN" --request LIST https://${VAULT_HOSTNAME}/v1/identity/group/name)
+      GROUP_LIST=$(curl -k --header "X-Vault-Namespace: kubrix" --header "X-Vault-Token: $VAULT_TOKEN" --request LIST https://${VAULT_HOSTNAME}/v1/identity/group/name)
       # Get OIDC accessor
-      ACC=$(curl -k --header "X-Vault-Token: $VAULT_TOKEN" --request GET https://${VAULT_HOSTNAME}/v1/sys/auth | jq -r '.["oidc/"].accessor')
+      ACC=$(curl -k --header "X-Vault-Namespace: kubrix" --header "X-Vault-Token: $VAULT_TOKEN" --request GET https://${VAULT_HOSTNAME}/v1/sys/auth | jq -r '.["oidc/"].accessor')
       echo "OIDC Accessor: $ACC"
       # Iterate over groups and create group aliases
       echo "$GROUP_LIST" | jq -r '.data.keys[]' | while read -r GROUP_NAME; do
           echo "Processing group: $GROUP_NAME"
           # Get Group ID
-          GROUP_ID=$(curl -k --header "X-Vault-Token: $VAULT_TOKEN" --request GET https://${VAULT_HOSTNAME}/v1/identity/group/name/$GROUP_NAME | jq -r '.data.id')
+          GROUP_ID=$(curl -k --header "X-Vault-Namespace: kubrix" --header "X-Vault-Token: $VAULT_TOKEN" --request GET https://${VAULT_HOSTNAME}/v1/identity/group/name/$GROUP_NAME | jq -r '.data.id')
           if [ -n "$GROUP_ID" ] && [ "$GROUP_ID" != "null" ]; then
               # Create Group Alias
-              RESPONSE=$(curl -k --header "X-Vault-Token: $VAULT_TOKEN" --request POST --data '{"name": "'$GROUP_NAME'", "mount_accessor": "'$ACC'", "canonical_id": "'$GROUP_ID'"}' https://${VAULT_HOSTNAME}/v1/identity/group-alias)
+              RESPONSE=$(curl -k --header "X-Vault-Namespace: kubrix" --header "X-Vault-Token: $VAULT_TOKEN" --request POST --data '{"name": "'$GROUP_NAME'", "mount_accessor": "'$ACC'", "canonical_id": "'$GROUP_ID'"}' https://${VAULT_HOSTNAME}/v1/identity/group-alias)
               echo "Group alias created for $GROUP_NAME: $RESPONSE"
           fi
       done
