@@ -14,4 +14,4 @@ spec:
         service: komoplane
         platform: kubrix
       static:
-        - https://{{ .Values.komoplane.ingress.hosts[0].host }}/login
+        - https://{{ (index .Values.komoplane.ingress.hosts 0).host }}/login
