@@ -9,6 +9,7 @@ metadata:
     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
 spec:
   address: "http://sx-openbao-active.{{ .Release.Namespace }}.svc.cluster.local:8200/"
+  namespace: "kubrix"
   credentials:
     source: Secret
     secretRef:
