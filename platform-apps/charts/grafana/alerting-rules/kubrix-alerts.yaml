@@ -1,0 +1,88 @@
+apiVersion: 1
+
+groups:
+  - orgId: 1
+    name: kubrix-probe
+    folder: kubrix-monitoring
+    interval: 1m
+    rules:
+      - uid: KubrixServiceProbeCritical
+        title: KubrixServiceProbeCritical
+        condition: threshold
+        data:
+          - refId: query
+            queryType: prometheus
+            relativeTimeRange:
+              from: 660
+              to: 60
+            datasourceUid: mimir
+            model:
+              datasource:
+                type: prometheus
+                uid: mimir
+              expr: |
+                max by (service, namespace, cluster, instance) (
+                  probe_success{platform="kubrix"}
+                )
+              instant: true
+              intervalMs: 1000
+              maxDataPoints: 43200
+              range: false
+              refId: query
+
+          - refId: reduce
+            queryType: reduce
+            datasourceUid: __expr__
+            relativeTimeRange:
+              from: 0
+              to: 0
+            model:
+              datasource:
+                type: __expr__
+                uid: __expr__
+              expression: query
+              reducer: last
+              refId: reduce
+              type: reduce
+
+          - refId: threshold
+            queryType: threshold
+            datasourceUid: __expr__
+            relativeTimeRange:
+              from: 0
+              to: 0
+            model:
+              conditions:
+                - evaluator:
+                    params:
+                      - 1
+                    type: lt
+                  operator:
+                    type: and
+                  query:
+                    params:
+                      - threshold
+                  reducer:
+                    params: []
+                    type: last
+                  type: query
+              datasource:
+                type: __expr__
+                uid: __expr__
+              expression: reduce
+              intervalMs: 1000
+              maxDataPoints: 43200
+              refId: threshold
+              type: threshold
+
+        noDataState: NoData
+        execErrState: Error
+        for: 1m
+        annotations:
+          description: The defined request to {{ $labels.instance }} for kubrix service {{ $labels.service }} in namespace {{ $labels.namespace }} on cluster {{ $labels.cluster }} is not successful.
+          runbook_url: https://kubrix.io
+          summary: Probe failed for {{ $labels.service }}
+        labels:
+          severity: critical
+        isPaused: false
+        missing_series_evals_to_resolve: 1
