@@ -1,3 +1,4 @@
+{{- if .Values.komoplane.ingress.hosts }}
 apiVersion: monitoring.coreos.com/v1
 kind: Probe
 metadata:
@@ -15,3 +16,4 @@ spec:
         platform: kubrix
       static:
         - https://{{ (index .Values.komoplane.ingress.hosts 0).host }}/login
+{{- end }}
