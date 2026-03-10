@@ -5,6 +5,12 @@ default:
 
 applications:
 
+  - name: prometheus-operator-crds
+    annotations:
+      argocd.argoproj.io/sync-wave: "-10"
+    syncOptions:
+      - ServerSideApply=true
+
   - name: cert-manager
     annotations:
       argocd.argoproj.io/sync-wave: "-10"
@@ -12,12 +18,6 @@ applications:
   - name: crossplane
     annotations:
       argocd.argoproj.io/sync-wave: "-9"
-
-  - name: prometheus-operator-crds
-    annotations:
-      argocd.argoproj.io/sync-wave: "-9"
-    syncOptions:
-      - ServerSideApply=true
 
   - name: argocd
     annotations:

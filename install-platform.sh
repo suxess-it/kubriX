@@ -694,6 +694,9 @@ if [[ "${KUBRIX_CLUSTER_TYPE}" == "kind" ]] ; then
   kubectl -n kube-system rollout status deployment/coredns
   rm coredns-configmap.yaml
 
+  # k8s-monitoring ns needs to get created because all kubrix-status-rules (PrometheusRules) get deployed to it
+  kubectl get ns k8s-monitoring >/dev/null 2>&1 || kubectl create ns k8s-monitoring
+
   # create install root CA to trust certs
   root_cert="/etc/tls/kind-kubrix-root-tls.crt"
   root_key="/etc/tls/kind-kubrix-tls.key"

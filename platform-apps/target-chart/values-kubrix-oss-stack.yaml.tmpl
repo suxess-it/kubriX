@@ -15,6 +15,12 @@ default:
 
 applications:
 
+  - name: prometheus-operator-crds
+    annotations:
+      argocd.argoproj.io/sync-wave: "-11"
+    syncOptions:
+      - ServerSideApply=true
+
   - name: traefik
     annotations:
       argocd.argoproj.io/sync-wave: "-11"
@@ -34,12 +40,6 @@ applications:
   - name: crossplane
     annotations:
       argocd.argoproj.io/sync-wave: "-9"
-
-  - name: prometheus-operator-crds
-    annotations:
-      argocd.argoproj.io/sync-wave: "-9"
-    syncOptions:
-      - ServerSideApply=true
 
   - name: argocd
     annotations:

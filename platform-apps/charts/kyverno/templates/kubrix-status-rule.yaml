@@ -1,8 +1,9 @@
+{{- if .Values.kubrixStatusRule.enabled }}
 apiVersion: monitoring.coreos.com/v1
 kind: PrometheusRule
 metadata:
   name: {{ .Release.Namespace }}-kubrix-service-status
-  namespace: k8s-monitoring
+  namespace: {{ .Values.kubrixStatusRule.namespace | default "k8s-monitoring" }}
   labels:
     platform: kubrix
     service: {{ .Release.Namespace }}
@@ -36,3 +37,4 @@ spec:
             )
           )
         )
+{{- end }}
