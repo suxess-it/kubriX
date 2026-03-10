@@ -150,6 +150,7 @@ test("Team Onboarding with kubrixBot Github user", async ({ page }) => {
   const res = await apiVault.post("/v1/kubrix-kv/data/kubrix/delivery", {
     headers: {
       "X-Vault-Token": vaultToken,
+      "X-Vault-Namespace": "kubrix",
       "Content-Type": "application/json",
     },
     data: {
