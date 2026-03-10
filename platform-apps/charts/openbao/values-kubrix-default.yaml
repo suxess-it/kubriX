@@ -163,12 +163,21 @@ openbao:
               if bao status | grep -q "Sealed.*false"; then
                 # root-namespace operations (sys/ endpoints require root namespace)
                 bao audit list 2>/dev/null | grep -q "file/" || bao audit enable file file_path=stdout
-                bao namespace create kubrix 2>/dev/null || true
+                bao namespace list -namespace="" 2>/dev/null | grep -q "^kubrix/" || bao namespace create -namespace="" kubrix
+
+                # crossplane token in root namespace (root init token is not valid in child namespaces)
+                if ! /usr/local/libexec/vault/kubectl get secret crossplane-init -n openbao >/dev/null 2>&1; then
+                  CROSSPLANETOKEN="$(bao token create -display-name=crossplane-token -policy=root -format=json \
+                   | /usr/local/libexec/vault/jq -r '.auth.client_token')"
+                  /usr/local/libexec/vault/kubectl create secret generic crossplane-init -n openbao \
+                    --from-literal=credentials='{"token":"'"$CROSSPLANETOKEN"'"}'
+                fi
+
                 export VAULT_NAMESPACE=kubrix
 
                 # only run setup when admins group does NOT exist
                 if ! bao read identity/group/name/admins >/dev/null 2>&1; then
-                  # kubernetes auth backend
+                  # kubernetes auth backend (kubrix namespace)
                   if ! bao read auth/kubernetes/config >/dev/null 2>&1; then
                     bao auth enable kubernetes || true
                     bao write auth/kubernetes/config \
@@ -177,14 +186,8 @@ openbao:
                       kubernetes_ca_cert=@/var/run/secrets/kubernetes.io/serviceaccount/ca.crt
                   fi
 
-                  # crossplane role
+                  # crossplane role (kubrix namespace)
                   if ! bao read auth/kubernetes/role/crossplane >/dev/null 2>&1; then
-                    CROSSPLANETOKEN="$(bao token create -display-name=crossplane-token -policy=root -format=json \
-                     | /usr/local/libexec/vault/jq -r '.auth.client_token')"
-                    /usr/local/libexec/vault/kubectl delete secret crossplane-init -n openbao --ignore-not-found
-                    /usr/local/libexec/vault/kubectl create secret generic crossplane-init -n openbao \
-                      --from-literal=credentials='{"token":"'"$CROSSPLANETOKEN"'"}'
-
                     bao write auth/kubernetes/role/crossplane \
                       bound_service_account_names="*" \
                       bound_service_account_namespaces=crossplane \
