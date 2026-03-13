@@ -715,6 +715,7 @@ affinity: {}
   const page1 = await page1Promise;
   await page1.waitForLoadState('domcontentloaded');
   await page1.getByRole('link', { name: 'values.yaml, (File)' }).click();
+  await expect(page1.getByTestId('edit-button')).toBeVisible();
   await page1.getByTestId('edit-button').click();
   await page1.getByRole('textbox', { name: 'Editing values.yaml file' }).fill(newValuesFileContent);
   await page1.getByRole('button', { name: 'Commit changes...' }).click();
