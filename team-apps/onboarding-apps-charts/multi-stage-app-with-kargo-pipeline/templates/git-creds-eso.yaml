@@ -14,7 +14,7 @@ spec:
   refreshInterval: 15s
   secretStoreRef:
     kind: ClusterSecretStore
-    name: vault-backend
+    name: openbao-backend
   target:
     name: {{ .Values.appName }}-git-creds
     template:

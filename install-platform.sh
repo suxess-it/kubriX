@@ -322,27 +322,27 @@ show_node_resources() {
   done
 }
 
-create_vault_secrets_for_backstage() {
+create_openbao_secrets_for_backstage() {
   echo "adding special configuration for sx-backstage"
 
   # create an empty codespaces-secret secret because it is still needed for github codespaces and cannot configured optional in backstage
   kubectl create secret generic -n backstage codespaces-secret --dry-run=client -o yaml | kubectl apply -f -
 
-  # get vault hostname and token for communicating with vault via curl
-  export VAULT_HOSTNAME=$(kubectl get ingress -o jsonpath='{.items[*].spec.rules[*].host}' -n vault)
-  export VAULT_TOKEN=$(kubectl get secret -n vault vault-init -o=jsonpath='{.data.root_token}'  | base64 -d)
+  # get openbao hostname and token for communicating with openbao via curl
+  export VAULT_HOSTNAME=$(kubectl get ingress -o jsonpath='{.items[*].spec.rules[*].host}' -n openbao)
+  export VAULT_TOKEN=$(kubectl get secret -n openbao openbao-init -o=jsonpath='{.data.root_token}'  | base64 -d)
 
-  # set vault address and vault internal address so backstage can communicate with vault
-  curl -k --header "X-Vault-Token:$VAULT_TOKEN" --request POST --data "{\"data\": {\"VAULT_ADDR\": \"https://${VAULT_HOSTNAME}\", \"VAULT_ADDR_INT\": \"http://sx-vault-active.vault.svc.cluster.local:8200\"}}" https://${VAULT_HOSTNAME}/v1/kubrix-kv/data/security/vault/base
+  # set openbao address and openbao internal address so backstage can communicate with openbao
+  curl -k --header "X-Vault-Token:$VAULT_TOKEN" --header "X-Vault-Namespace: kubrix" --request POST --data "{\"data\": {\"VAULT_ADDR\": \"https://${VAULT_HOSTNAME}\", \"VAULT_ADDR_INT\": \"http://sx-openbao-active.openbao.svc.cluster.local:8200\"}}" https://${VAULT_HOSTNAME}/v1/kubrix-kv/data/security/vault/base
 
-  # store env variable KUBRIX_BACKSTAGE_GITHUB_TOKEN in vault
-  curl -k --header "X-Vault-Token:$VAULT_TOKEN" --request PATCH --header "Content-Type: application/merge-patch+json" --data "{\"data\": {\"GITHUB_TOKEN\": \"${KUBRIX_BACKSTAGE_GITHUB_TOKEN}\"}}" https://${VAULT_HOSTNAME}/v1/kubrix-kv/data/portal/backstage/base
+  # store env variable KUBRIX_BACKSTAGE_GITHUB_TOKEN in openbao
+  curl -k --header "X-Vault-Token:$VAULT_TOKEN" --header "X-Vault-Namespace: kubrix" --request PATCH --header "Content-Type: application/merge-patch+json" --data "{\"data\": {\"GITHUB_TOKEN\": \"${KUBRIX_BACKSTAGE_GITHUB_TOKEN}\"}}" https://${VAULT_HOSTNAME}/v1/kubrix-kv/data/portal/backstage/base
 
-  # generate argocd token and store in vault
+  # generate argocd token and store in openbao
   export ARGOCD_AUTH_TOKEN="$( kubectl exec "$(kubectl get pod -n argocd -l app.kubernetes.io/name=argocd-application-controller -o jsonpath='{.items[0].metadata.name}')" -n argocd -- argocd account generate-token --account backstage --core )"
-  curl -k --header "X-Vault-Token:$VAULT_TOKEN" --request PATCH --header "Content-Type: application/merge-patch+json" --data "{\"data\": {\"ARGOCD_AUTH_TOKEN\": \"${ARGOCD_AUTH_TOKEN}\"}}" https://${VAULT_HOSTNAME}/v1/kubrix-kv/data/portal/backstage/base
+  curl -k --header "X-Vault-Token:$VAULT_TOKEN" --header "X-Vault-Namespace: kubrix" --request PATCH --header "Content-Type: application/merge-patch+json" --data "{\"data\": {\"ARGOCD_AUTH_TOKEN\": \"${ARGOCD_AUTH_TOKEN}\"}}" https://${VAULT_HOSTNAME}/v1/kubrix-kv/data/portal/backstage/base
 
-  # generate grafana token if grafana ingress is found and store in vault
+  # generate grafana token if grafana ingress is found and store in openbao
   export GRAFANA_HOSTNAME=$(kubectl get ingress -o jsonpath='{.items[*].spec.rules[*].host}' -n grafana )  
   if [ "${GRAFANA_HOSTNAME}" != "" ]; then
     # check if the grafana user/admin is stored in secret, or use default credentials
@@ -360,7 +360,7 @@ create_vault_secrets_for_backstage() {
   else
     export GRAFANA_TOKEN="dummy"
   fi
-  curl -k --header "X-Vault-Token:$VAULT_TOKEN" --request PATCH --header "Content-Type: application/merge-patch+json" --data "{\"data\": {\"GRAFANA_TOKEN\": \"${GRAFANA_TOKEN}\"}}" https://${VAULT_HOSTNAME}/v1/kubrix-kv/data/portal/backstage/base
+  curl -k --header "X-Vault-Token:$VAULT_TOKEN" --header "X-Vault-Namespace: kubrix" --request PATCH --header "Content-Type: application/merge-patch+json" --data "{\"data\": {\"GRAFANA_TOKEN\": \"${GRAFANA_TOKEN}\"}}" https://${VAULT_HOSTNAME}/v1/kubrix-kv/data/portal/backstage/base
 
 }
 
@@ -429,10 +429,10 @@ wait_until_apps_synced_healthy() {
 
       # ---- your special cases (use the cached values) ----
 
-      # sx-vault
-      if [[ "$app" == "sx-vault" && "$sync_status" == "$synced" && "$health_status" == "$healthy" ]]; then
+      # sx-openbao
+      if [[ "$app" == "sx-openbao" && "$sync_status" == "$synced" && "$health_status" == "$healthy" ]]; then
         if [ ! -f ./.secrets/secrettemp/secrets-applied ] && [ "${KUBRIX_GENERATE_SECRETS}" = "true" ]; then
-          echo "sx-vault is synced and healthy — applying pushsecrets"
+          echo "sx-openbao is synced and healthy — applying pushsecrets"
           echo
           kubectl apply -f ./.secrets/secrettemp/pushsecrets.yaml
           touch ./.secrets/secrettemp/secrets-applied
@@ -442,11 +442,11 @@ wait_until_apps_synced_healthy() {
 
       # sx-backstage
       if [[ "$app" == "sx-backstage" && "$sync_status" == "$synced" ]]; then
-        if [ ! -f ./backstage-vault-secrets-created ]; then
-          echo "sx-backstage is synced — creating vault secrets"
+        if [ ! -f ./backstage-openbao-secrets-created ]; then
+          echo "sx-backstage is synced — creating openbao secrets"
           echo
-          create_vault_secrets_for_backstage
-          touch ./backstage-vault-secrets-created
+          create_openbao_secrets_for_backstage
+          touch ./backstage-openbao-secrets-created
           echo "--------------------"
         fi
       fi
@@ -704,9 +704,9 @@ if [[ "${KUBRIX_CLUSTER_TYPE}" == "kind" ]] ; then
   kubectl get ns backstage >/dev/null 2>&1 || kubectl create ns backstage
   kubectl create secret generic kind-kubrix-cacert --from-file=ca.crt=${root_cert} -n backstage --dry-run=client -o yaml | kubectl apply -f -
 
-  # vault ca for oidc
-  kubectl get ns vault >/dev/null 2>&1 || kubectl create ns vault
-  kubectl create secret generic ca-cert --from-file=ca.crt=${root_cert} -n vault --dry-run=client -o yaml | kubectl apply -f -
+  # openbao ca for oidc
+  kubectl get ns openbao >/dev/null 2>&1 || kubectl create ns openbao
+  kubectl create secret generic ca-cert --from-file=ca.crt=${root_cert} -n openbao --dry-run=client -o yaml | kubectl apply -f -
 
   # testkube should also trust every cert signed with our ca
   kubectl get ns testkube >/dev/null 2>&1 || kubectl create ns testkube
@@ -745,7 +745,7 @@ kubectl exec "$(kubectl get pod -n argocd -l app.kubernetes.io/name=argocd-appli
   echo "Generating default secrets..."
   ./.secrets/createsecret.sh
 # create the secrets.yaml and pushsecrets.yaml but only apply them when KUBRIX_GENERATE_SECRETS is true
-# reason: we always want to delete the pushsecrets at the end so you can manage those secrets via vault
+# reason: we always want to delete the pushsecrets at the end so you can manage those secrets via openbao
 #         so we let createsecret.sh create the secrets.yaml and pushsecrets.yaml, not apply them when KUBRIX_GENERATE_SECRETS is not true, but always delete them at the end of the script
 if [ ${KUBRIX_GENERATE_SECRETS} = "true" ] ; then
   kubectl apply -f ./.secrets/secrettemp/secrets.yaml
@@ -775,29 +775,29 @@ fi
 # max wait for 20 minutes until all apps except backstage and kargo are synced and healthy
 wait_until_apps_synced_healthy "${argocd_apps_without_individual}" "Synced" "Healthy" ${KUBRIX_BOOTSTRAP_MAX_WAIT_TIME}
 
-# if vault is part of this stack, do some special configuration
-if [[ $( echo $argocd_apps | grep sx-vault ) ]] ; then
+# if openbao is part of this stack, do some special configuration
+if [[ $( echo $argocd_apps | grep sx-openbao ) ]] ; then
 
-  export VAULT_HOSTNAME=$(kubectl get ingress -o jsonpath='{.items[*].spec.rules[*].host}' -n vault)
-  export VAULT_TOKEN=$(kubectl get secret -n vault vault-init -o=jsonpath='{.data.root_token}'  | base64 -d)
+  export VAULT_HOSTNAME=$(kubectl get ingress -o jsonpath='{.items[*].spec.rules[*].host}' -n openbao)
+  export VAULT_TOKEN=$(kubectl get secret -n openbao openbao-init -o=jsonpath='{.data.root_token}'  | base64 -d)
 
   # due to issue #422 this step is needed for all clusters
-  GROUP_ALIAS_LIST=$(curl -k --header "X-Vault-Token: $VAULT_TOKEN" --request LIST https://${VAULT_HOSTNAME}/v1/identity/group-alias/id)
+  GROUP_ALIAS_LIST=$(curl -k --header "X-Vault-Namespace: kubrix" --header "X-Vault-Token: $VAULT_TOKEN"  --request LIST https://${VAULT_HOSTNAME}/v1/identity/group-alias/id)
   if [ -z "$(echo "$GROUP_ALIAS_LIST" | jq -r '.data.keys | length')" ] || [ "$(echo "$GROUP_ALIAS_LIST" | jq -r '.data.keys | length')" -eq 0 ]; then
       echo "No group aliases found. Setting up group aliases..."
       # Get the list of identity groups
-      GROUP_LIST=$(curl -k --header "X-Vault-Token: $VAULT_TOKEN" --request LIST https://${VAULT_HOSTNAME}/v1/identity/group/name)
+      GROUP_LIST=$(curl -k --header "X-Vault-Namespace: kubrix" --header "X-Vault-Token: $VAULT_TOKEN" --request LIST https://${VAULT_HOSTNAME}/v1/identity/group/name)
       # Get OIDC accessor
-      ACC=$(curl -k --header "X-Vault-Token: $VAULT_TOKEN" --request GET https://${VAULT_HOSTNAME}/v1/sys/auth | jq -r '.["oidc/"].accessor')
+      ACC=$(curl -k --header "X-Vault-Namespace: kubrix" --header "X-Vault-Token: $VAULT_TOKEN" --request GET https://${VAULT_HOSTNAME}/v1/sys/auth | jq -r '.["oidc/"].accessor')
       echo "OIDC Accessor: $ACC"
       # Iterate over groups and create group aliases
       echo "$GROUP_LIST" | jq -r '.data.keys[]' | while read -r GROUP_NAME; do
           echo "Processing group: $GROUP_NAME"
           # Get Group ID
-          GROUP_ID=$(curl -k --header "X-Vault-Token: $VAULT_TOKEN" --request GET https://${VAULT_HOSTNAME}/v1/identity/group/name/$GROUP_NAME | jq -r '.data.id')
+          GROUP_ID=$(curl -k --header "X-Vault-Namespace: kubrix" --header "X-Vault-Token: $VAULT_TOKEN" --request GET https://${VAULT_HOSTNAME}/v1/identity/group/name/$GROUP_NAME | jq -r '.data.id')
           if [ -n "$GROUP_ID" ] && [ "$GROUP_ID" != "null" ]; then
               # Create Group Alias
-              RESPONSE=$(curl -k --header "X-Vault-Token: $VAULT_TOKEN" --request POST --data '{"name": "'$GROUP_NAME'", "mount_accessor": "'$ACC'", "canonical_id": "'$GROUP_ID'"}' https://${VAULT_HOSTNAME}/v1/identity/group-alias)
+              RESPONSE=$(curl -k --header "X-Vault-Namespace: kubrix" --header "X-Vault-Token: $VAULT_TOKEN" --request POST --data '{"name": "'$GROUP_NAME'", "mount_accessor": "'$ACC'", "canonical_id": "'$GROUP_ID'"}' https://${VAULT_HOSTNAME}/v1/identity/group-alias)
               echo "Group alias created for $GROUP_NAME: $RESPONSE"
           fi
       done
@@ -838,4 +838,3 @@ if [[ "${KUBRIX_CLUSTER_TYPE}" == "kind" ]] ; then
   echo "Installation finished! On KinD clusters we create self-signed certificates for our platform services. You probably need to import this CA cert in your browser to accept the certificates:"
   kubectl get secret kind-kubrix-ca-key-pair -n cert-manager -o jsonpath="{['data']['tls\.crt']}" | base64 --decode
 fi
-

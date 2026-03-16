@@ -11,6 +11,16 @@
       "/.+func\\.yaml$/"
     ]
   },
+  "customManagers": [
+    {
+      "customType": "regex",
+      "fileMatch": ["^platform-apps/charts/openbao/[^/]+\\.yaml$"],
+      "matchStrings": [
+        "image: (?<depName>quay\\.io/openbao/openbao):(?<currentValue>[^\\s]+)"
+      ],
+      "datasourceTemplate": "docker"
+    }
+  ],
   "packageRules": [
     {
       "matchDatasources": [
