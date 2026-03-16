@@ -1,9 +1,9 @@
 
-<h3>Target <code>quay.io/argoproj/argo-rollouts:v1.8.3 (debian 11.10)</code></h3>
+<h3>Target <code>quay.io/argoproj/argo-rollouts:v1.8.4 (debian 11.10)</code></h3>
 <h4>No Vulnerabilities found</h4>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>bin/rollouts-controller</code></h3>
-<h4>Vulnerabilities (11)</h4>
+<h4>Vulnerabilities (12)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -27,17 +27,17 @@
         <td></td>
     </tr>
     <tr>
-        <td><code>golang.org/x/crypto</code></td>
-        <td>CVE-2024-45337</td>
-        <td>CRITICAL</td>
-        <td>v0.27.0</td>
-        <td>0.31.0</td>
+        <td><code>go.opentelemetry.io/otel/sdk</code></td>
+        <td>CVE-2026-24051</td>
+        <td>HIGH</td>
+        <td>v1.21.0</td>
+        <td>1.40.0</td>
     </tr>
     <tr>
         <td><code>golang.org/x/crypto</code></td>
         <td>CVE-2025-22869</td>
         <td>HIGH</td>
-        <td>v0.27.0</td>
+        <td>v0.32.0</td>
         <td>0.35.0</td>
     </tr>
     <tr>
@@ -56,38 +56,45 @@
     </tr>
     <tr>
         <td><code>stdlib</code></td>
-        <td>CVE-2025-47907</td>
-        <td>HIGH</td>
-        <td>v1.23.9</td>
-        <td>1.23.12, 1.24.6</td>
+        <td>CVE-2025-68121</td>
+        <td>CRITICAL</td>
+        <td>v1.23.12</td>
+        <td>1.24.13, 1.25.7, 1.26.0-rc.3</td>
     </tr>
     <tr>
         <td><code>stdlib</code></td>
         <td>CVE-2025-58183</td>
         <td>HIGH</td>
-        <td>v1.23.9</td>
+        <td>v1.23.12</td>
         <td>1.24.8, 1.25.2</td>
     </tr>
     <tr>
         <td><code>stdlib</code></td>
-        <td>CVE-2025-58186</td>
+        <td>CVE-2025-61726</td>
         <td>HIGH</td>
-        <td>v1.23.9</td>
-        <td>1.24.8, 1.25.2</td>
+        <td>v1.23.12</td>
+        <td>1.24.12, 1.25.6</td>
     </tr>
     <tr>
         <td><code>stdlib</code></td>
-        <td>CVE-2025-58187</td>
+        <td>CVE-2025-61728</td>
         <td>HIGH</td>
-        <td>v1.23.9</td>
-        <td>1.24.9, 1.25.3</td>
+        <td>v1.23.12</td>
+        <td>1.24.12, 1.25.6</td>
     </tr>
     <tr>
         <td><code>stdlib</code></td>
         <td>CVE-2025-61729</td>
         <td>HIGH</td>
-        <td>v1.23.9</td>
+        <td>v1.23.12</td>
         <td>1.24.11, 1.25.5</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2025-61730</td>
+        <td>HIGH</td>
+        <td>v1.23.12</td>
+        <td>1.24.12, 1.25.6</td>
     </tr>
 </table>
 <h4>No Misconfigurations found</h4>
