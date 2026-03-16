@@ -136,8 +136,8 @@ test("Team Onboarding with kubrixBot Github user", async ({ page }) => {
   await expect(page.getByRole('button', { name: 'Open Pull-Request' })).toBeVisible({ timeout: 30_000 });
   await expect(page.getByRole('button', { name: 'Open Team-App-Of-Apps Repo' })).toBeVisible({ timeout: 30_000 });
 
-  // set vault secrets for team onboarding
-  const vaultURL = "https://vault.127-0-0-1.nip.io";
+  // set openbao secrets for team onboarding
+  const vaultURL = "https://openbao.127-0-0-1.nip.io";
   const vaultToken = process.env.E2E_VAULT_ROOT_TOKEN!;
   const appsetToken = process.env.E2E_KUBRIX_ARGOCD_APPSET_TOKEN!;
   const gitPassword = process.env.E2E_KUBRIX_KARGO_GIT_PASSWORD!;
@@ -150,6 +150,7 @@ test("Team Onboarding with kubrixBot Github user", async ({ page }) => {
   const res = await apiVault.post("/v1/kubrix-kv/data/kubrix/delivery", {
     headers: {
       "X-Vault-Token": vaultToken,
+      "X-Vault-Namespace": "kubrix",
       "Content-Type": "application/json",
     },
     data: {
@@ -514,7 +515,7 @@ test("Check kubrixbot-app in backstage", async ({ page }) => {
     // does not work in kind-portal tests because there Grafana is not installed!!
     // await expect(page.locator('div').filter({ hasText: /^Dashboards$/ }).first()).toBeVisible();
     // const dashboard_links = [
-    //   'GRC/Hashicorp Vault',
+    //   'GRC/OpenBao',
     //   'Kubernetes / System / API Server',
     //   'Kubernetes / System / CoreDNS',
     //   'Kubernetes / Views / Global',
@@ -709,15 +710,13 @@ tolerations: []
 affinity: {}
 `;
   const prefix = process.env.E2E_TEST_PR_NUMBER ?? '';
-  await page.goto(`https://backstage.127-0-0-1.nip.io/catalog/default/component/kubrix-a${prefix}-kubrixbot-app`);
-  const page1Promise = page.waitForEvent('popup');
-  await page.getByRole('link', { name: 'View Source , Opens in a new' }).click();
-  const page1 = await page1Promise;
-  await page1.getByRole('link', { name: 'values.yaml, (File)' }).click();
-  await page1.getByTestId('edit-button').click();
-  await page1.getByRole('textbox', { name: 'Editing values.yaml file' }).fill(newValuesFileContent);
-  await page1.getByRole('button', { name: 'Commit changes...' }).click();
-  await page1.getByRole('button', { name: 'Commit changes', exact: true }).click();
+  await page.goto(`https://github.com/kubriX-demo/kubrix-a${prefix}-kubrixbot-app/blob/main/values.yaml`)
+  await page.waitForLoadState('domcontentloaded');
+  await expect(page.getByTestId('edit-button')).toBeVisible();
+  await page.getByTestId('edit-button').click();
+  await page.getByRole('textbox', { name: 'Editing values.yaml file' }).fill(newValuesFileContent);
+  await page.getByRole('button', { name: 'Commit changes...' }).click();
+  await page.getByRole('button', { name: 'Commit changes', exact: true }).click();
 });
 
 test.describe("Kargo GitOps Promotion - Promote Changes", () => {
@@ -728,11 +727,17 @@ test.describe("Kargo GitOps Promotion - Promote Changes", () => {
   test('Kargo GitOps Promotion - Promote Changes to Test', async ({ page }) => {
     const prefix = process.env.E2E_TEST_PR_NUMBER ?? '';
     await page.goto(`https://kargo.127-0-0-1.nip.io/project/kubrix-a${prefix}-kubrixbot-app-kargo-project`);
+    await page.waitForLoadState('domcontentloaded');
     await page.getByRole('button', { name: 'Refresh' }).click();
     // wait 10 seconds so freights are refreshed
     await page.waitForTimeout(10_000);
+    // load the site again to mitigate problem in https://github.com/akuity/kargo/issues/5932
+    await page.goto(`https://kargo.127-0-0-1.nip.io/project/kubrix-a${prefix}-kubrixbot-app-kargo-project`);
+    await page.waitForLoadState('domcontentloaded');
     await page.locator('[data-testid$="/test"]').getByRole('button').nth(1).click();
+    await page.waitForTimeout(5_000);
     await page.getByRole('menuitem', { name: 'Promote', exact: true }).locator('span').click();
+    await page.waitForTimeout(5_000);
     await page.getByRole('button', { name: 'Select' }).first().click();
     await page.getByRole('button', { name: 'Promote' }).click();
     await expect(page.getByLabel('Promotion', { exact: true }).getByRole('rowgroup')).toContainText('Succeeded', { timeout: 30_000 });
