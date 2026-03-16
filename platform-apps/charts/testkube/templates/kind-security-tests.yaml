@@ -25,8 +25,8 @@ spec:
         shell: |
           cat /etc/ssl/custom/ca.crt
           echo ${CURL_CA_BUNDLE}
-          curl --insecure -vvI https://vault.127-0-0-1.nip.io 2>&1 | awk 'BEGIN { cert=0 } /^\* SSL connection/ { cert=1 } /^\*/ { if (cert) print }'
-          curl https://vault.127-0-0-1.nip.io
+          curl --insecure -vvI https://openbao.127-0-0-1.nip.io 2>&1 | awk 'BEGIN { cert=0 } /^\* SSL connection/ { cert=1 } /^\*/ { if (cert) print }'
+          curl https://openbao.127-0-0-1.nip.io
 ---
 apiVersion: testworkflows.testkube.io/v1
 kind: TestWorkflow
