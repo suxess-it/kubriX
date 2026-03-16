@@ -708,6 +708,10 @@ if [[ "${KUBRIX_CLUSTER_TYPE}" == "kind" ]] ; then
   kubectl get ns openbao >/dev/null 2>&1 || kubectl create ns openbao
   kubectl create secret generic ca-cert --from-file=ca.crt=${root_cert} -n openbao --dry-run=client -o yaml | kubectl apply -f -
 
+  # temp for migration pipeline check, vault ca for oidc
+  kubectl get ns vault >/dev/null 2>&1 || kubectl create ns openbao
+  kubectl create secret generic ca-cert --from-file=ca.crt=${root_cert} -n vault --dry-run=client -o yaml | kubectl apply -f -
+
   # testkube should also trust every cert signed with our ca
   kubectl get ns testkube >/dev/null 2>&1 || kubectl create ns testkube
   kubectl create secret generic ca-cert --from-file=ca.crt=${root_cert} -n testkube --dry-run=client -o yaml | kubectl apply -f -
