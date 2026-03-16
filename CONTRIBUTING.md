@@ -87,6 +87,7 @@ and save them in `playwright.env` section of the `settings.json` of vscode:
         "E2E_ARGOCD_VERSION": "current-version",
         "E2E_KARGO_VERSION": "current-version",
         "E2E_KUBRIX_REPO": "your-forked-demo-repo",
+        "E2E_TEAM_ONBOARDING_TARGET_BRANCH": "your-current-feature-branch",
         "E2E_KUBRIX_ARGOCD_APPSET_TOKEN": "xxx",
         "E2E_KUBRIX_KARGO_GIT_PASSWORD": "xxx"
     },
