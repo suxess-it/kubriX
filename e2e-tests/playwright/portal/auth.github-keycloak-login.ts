@@ -141,11 +141,18 @@ async function keycloakLogin(page: any, username: string, password: string, auth
     await page1.getByRole('textbox', { name: 'Password' }).fill(password);
     await page1.getByRole('button', { name: 'Sign In' }).click();
 
-    await page.context().storageState({ path: authFile });
-    await page1.close();
-    await expect(page.getByRole('heading', { name: 'Welcome to kubriX' })).toBeVisible();
-    console.log(`[Keycloak login] attempt ${attempt}: success`);
-    return;
+    try {
+      await expect(page.getByRole('heading', { name: 'Welcome to kubriX' })).toBeVisible({ timeout: 60_000 });
+      await page.context().storageState({ path: authFile });
+      if (!page1.isClosed()) await page1.close();
+      console.log(`[Keycloak login] attempt ${attempt}: success`);
+      return;
+    } catch (err) {
+      if (!page1.isClosed()) await page1.close();
+      if (attempt === MAX_RETRIES) throw err;
+      console.warn(`[Keycloak login] attempt ${attempt}: heading not visible after sign-in, retrying...`);
+      await page.waitForTimeout(RETRY_WAIT_MS);
+    }
   }
 }
 
