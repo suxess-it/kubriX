@@ -464,6 +464,7 @@ jobs:
             -f -d
 
       - name: Release a lock
+        if: always()
         uses: suzuki-shunsuke/lock-action@latest
         with:
           mode: unlock
