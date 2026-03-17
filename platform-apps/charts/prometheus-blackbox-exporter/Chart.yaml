@@ -1,6 +1,6 @@
 apiVersion: v2
-name: sx-k8s-monitoring
-description: A Helm chart for k8s-monitoring
+name: sx-blackbox-exporter
+description: A Helm chart for blackbox-exporter
 
 # A chart can be either an 'application' or a 'library' chart.
 #
@@ -24,7 +24,7 @@ version: 0.1.0
 appVersion: "1.0.0"
 
 dependencies:
-  - name: k8s-monitoring
-    alias: k8s-monitoring
-    version: 3.8.4
-    repository: https://grafana.github.io/helm-charts
+  - name: prometheus-blackbox-exporter
+    alias: prometheus-blackbox-exporter
+    version: 11.8.0
+    repository: oci://ghcr.io/prometheus-community/charts
