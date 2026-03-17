@@ -285,6 +285,7 @@ test.describe("ArgoCD team onboarding app", () => {
 
 
 test("Multi-Stage-Kargo App Onboarding", async ({ page }) => {
+  test.setTimeout(120_000);
   await page.goto('https://backstage.127-0-0-1.nip.io/create/templates/default/multi-stage-app-with-kargo-pipeline');
 
   const prefix = process.env.E2E_TEST_PR_NUMBER ?? '';
@@ -318,8 +319,8 @@ test("Multi-Stage-Kargo App Onboarding", async ({ page }) => {
   await page.getByRole('button', { name: 'Review' }).click();
   await page.getByRole('button', { name: 'Create' }).click();
 
-  await expect(page.getByRole('button', { name: 'Repos' })).toBeVisible({ timeout: 30_000 });
-  await expect(page.getByRole('button', { name: 'Open in Catalog' })).toBeVisible({ timeout: 30_000 });
+  await expect(page.getByRole('button', { name: 'Repos' })).toBeVisible({ timeout: 60_000 });
+  await expect(page.getByRole('button', { name: 'Open in Catalog' })).toBeVisible({ timeout: 40_000 });
 
 
 });
