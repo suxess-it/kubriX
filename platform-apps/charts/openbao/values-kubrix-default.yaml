@@ -221,6 +221,10 @@ openbao:
     volumes:
       - name: plugins
         emptyDir: {}
+      - name: vault-root-token
+        secret:
+          secretName: openbao-init
+          optional: true
     volumeMounts:
       - mountPath: /usr/local/libexec/vault
         name: plugins
