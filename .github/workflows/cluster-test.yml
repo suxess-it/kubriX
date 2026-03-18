@@ -62,7 +62,7 @@ jobs:
         with:
           fetch-depth: 0  # needed so the action can diff properly
       - id: filter
-        uses: dorny/paths-filter@v3
+        uses: dorny/paths-filter@v4
         with:
           list-files: json
           # For PRs it compares base..head. For push it compares before..after.
