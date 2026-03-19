@@ -776,6 +776,9 @@ else
   argocd_apps_without_individual="$base_apps_without_individual"
 fi
 
+# k8s-monitoring ns needs to get created because all kubrix-status-rules (PrometheusRules) get deployed to it
+kubectl get ns k8s-monitoring >/dev/null 2>&1 || kubectl create ns k8s-monitoring
+
 # max wait for 20 minutes until all apps except backstage and kargo are synced and healthy
 wait_until_apps_synced_healthy "${argocd_apps_without_individual}" "Synced" "Healthy" ${KUBRIX_BOOTSTRAP_MAX_WAIT_TIME}
 
