@@ -232,7 +232,7 @@ jobs:
      
       - name: Build and push docker
         if: ${{ needs.changes.outputs.dockerImageChanges == 'true' }}
-        uses: docker/build-push-action@v6
+        uses: docker/build-push-action@v7
         with:
           context: .
           push: true
