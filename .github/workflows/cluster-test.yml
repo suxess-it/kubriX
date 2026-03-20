@@ -427,6 +427,14 @@ jobs:
         run: |
           E2E_KEYCLOAK_DEMOADMIN_PASSWORD=$( kubectl get secret -n keycloak cp-keycloak-users-secret -o=jsonpath='{.data.demoadmin}'  | base64 -d )
           kubectl get secret -n keycloak cp-keycloak-users-secret -o yaml
+          data=$(kubectl get secret -n keycloak cp-keycloak-users-secret -o jsonpath='{.data}' 2>/dev/null)
+
+          if [[ -z "$data" || "$data" == "{}" ]]; then
+            echo "keycloak secret empty!!!"
+            kubectl get pods -o name -n external-secrets | xargs -I {} kubectl logs -n external-secrets {} --all-containers=true
+            exit 1 # empty/missing
+          fi
+
           echo "${E2E_KEYCLOAK_DEMOADMIN_PASSWORD}"
           E2E_KEYCLOAK_DEMOUSER_PASSWORD=$( kubectl get secret -n keycloak cp-keycloak-users-secret -o=jsonpath='{.data.demouser}'  | base64 -d )
           echo "${E2E_KEYCLOAK_DEMOUSER_PASSWORD}"
