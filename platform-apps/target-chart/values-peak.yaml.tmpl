@@ -99,11 +99,6 @@ applications:
   - name: kargo
 
   - name: argo-rollouts
-    ignoreDifferences:
-    - group: apiextensions.k8s.io
-      kind: CustomResourceDefinition
-      jsonPointers:
-      - /spec/preserveUnknownFields
       
   - name: grafana
     annotations:
