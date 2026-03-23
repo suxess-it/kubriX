@@ -437,7 +437,7 @@ wait_until_apps_synced_healthy() {
           kubectl apply -f ./.secrets/secrettemp/pushsecrets.yaml
           touch ./.secrets/secrettemp/secrets-applied
           echo "waiting for all pushsecrets to sync..."
-          kubectl wait pushsecret --all-namespaces --selector=kubrix.io/install=true --for=condition=Ready=True --timeout=120s || echo "WARNING: not all pushsecrets synced within timeout"
+          kubectl wait pushsecret --all-namespaces --all --for=condition=Ready=True --timeout=120s || echo "WARNING: not all pushsecrets synced within timeout"
           echo "--------------------"
         fi
       fi
