@@ -185,6 +185,25 @@ EOF
 
 }
 
+boostrap_check_downstream_repo_org() {
+  local gitServer=$(echo $KUBRIX_REPO_URL | awk -F/ '{print $1}')
+  if [[ "$gitServer" == "github.com" ]]; then
+    local owner=$(echo $KUBRIX_REPO_URL | awk -F/ '{print $2}')
+    # get name of the repo
+    local repo=$(echo $KUBRIX_REPO_URL | awk -F/ '{print $3}')
+    # remove .git suffix if it exists
+    repo=${repo%".git"}
+    local repo_json="$(curl -fsSL \
+    -H "Accept: application/vnd.github+json" \
+    -H "Authorization: Bearer ${KUBRIX_REPO_PASSWORD}" \
+    "https://api.github.com/repos/${owner}/${repo}")" \
+    || fail "prereq check failed: unable to read repository '${owner}/${repo}' from GitHub API"
+
+    jq -e '.owner.type == "Organization"' >/dev/null <<<"$repo_json" \
+    || fail "prereq check failed: repository '${owner}/${repo}' is not owned by an organization account"
+  fi
+}
+
 bootstrap_push_to_downstream() {
   echo "Push kubriX gitops files to ${KUBRIX_REPO}"
   git remote add customer ${KUBRIX_REPO_PROTO}${KUBRIX_REPO_PASSWORD}@${KUBRIX_REPO_URL}
@@ -661,6 +680,7 @@ if [ "${KUBRIX_BOOTSTRAP}" = "true" ] ; then
   fi
   mkdir -p bootstrap-kubriX/kubriX-repo
   cd bootstrap-kubriX/kubriX-repo
+  boostrap_check_downstream_repo_org
   bootstrap_clone_from_upstream
   bootstrap_template_downstream_repo
   bootstrap_push_to_downstream
