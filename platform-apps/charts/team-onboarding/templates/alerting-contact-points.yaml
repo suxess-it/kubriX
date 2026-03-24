@@ -1,17 +1,30 @@
-{{- range .Values.teams }}
-{{- if .alerting }}
+{{- if .Values.platformteam.alerting }}
 apiVersion: v1
 kind: ConfigMap
 metadata:
+  name: alerting-contact-points
   labels:
     grafana_alert: "1"
-  name: alerting-contact-points
 data:
-  contact-points-{{ .name }}.yaml: |-
+  contact-points.yaml: |-
     apiVersion: 1
     contactPoints:
-        - orgId: 1
-          name: {{ .name }}
-{{ toYaml .alerting.contactPoints | indent 10 }}
-{{ end -}}
-{{ end -}}
+{{- range $name, $cp := .Values.platformteam.alerting.contactPoints }}
+      - orgId: 1
+        name: {{ $name }}
+        receivers:
+{{ toYaml $cp.receivers | indent 10 }}
+{{- end }}
+{{- range .Values.teams }}
+{{- with .alerting }}
+{{- with .contactPoints }}
+{{- range $name, $cp := . }}
+      - orgId: 1
+        name: {{ $name }}
+        receivers:
+{{ toYaml $cp.receivers | indent 10 }}
+{{- end }}
+{{- end }}
+{{- end }}
+{{- end }}
+{{- end }}
