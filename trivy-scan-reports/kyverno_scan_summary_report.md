@@ -84,10 +84,10 @@
     </tr>
     <tr>
         <td><code>stdlib</code></td>
-        <td>CVE-2025-61730</td>
+        <td>CVE-2026-25679</td>
         <td>HIGH</td>
         <td>v1.25.5</td>
-        <td>1.24.12, 1.25.6</td>
+        <td>1.25.8, 1.26.1</td>
     </tr>
 </table>
 <h4>No Misconfigurations found</h4>
@@ -96,7 +96,7 @@
 <h4>No Vulnerabilities found</h4>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>ko-app/background-controller</code></h3>
-<h4>Vulnerabilities (1)</h4>
+<h4>Vulnerabilities (4)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -106,11 +106,32 @@
         <th>Fixed Version</th>
     </tr>
     <tr>
+        <td><code>github.com/docker/cli</code></td>
+        <td>CVE-2025-15558</td>
+        <td>HIGH</td>
+        <td>v29.0.3+incompatible</td>
+        <td>29.2.0</td>
+    </tr>
+    <tr>
         <td><code>go.opentelemetry.io/otel/sdk</code></td>
         <td>CVE-2026-24051</td>
         <td>HIGH</td>
         <td>v1.39.0</td>
         <td>1.40.0</td>
+    </tr>
+    <tr>
+        <td><code>google.golang.org/grpc</code></td>
+        <td>CVE-2026-33186</td>
+        <td>CRITICAL</td>
+        <td>v1.78.0</td>
+        <td>1.79.3</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-25679</td>
+        <td>HIGH</td>
+        <td>v1.25.7</td>
+        <td>1.25.8, 1.26.1</td>
     </tr>
 </table>
 <h4>No Misconfigurations found</h4>
@@ -119,7 +140,7 @@
 <h4>No Vulnerabilities found</h4>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>ko-app/cleanup-controller</code></h3>
-<h4>Vulnerabilities (1)</h4>
+<h4>Vulnerabilities (4)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -129,11 +150,32 @@
         <th>Fixed Version</th>
     </tr>
     <tr>
+        <td><code>github.com/docker/cli</code></td>
+        <td>CVE-2025-15558</td>
+        <td>HIGH</td>
+        <td>v29.0.3+incompatible</td>
+        <td>29.2.0</td>
+    </tr>
+    <tr>
         <td><code>go.opentelemetry.io/otel/sdk</code></td>
         <td>CVE-2026-24051</td>
         <td>HIGH</td>
         <td>v1.39.0</td>
         <td>1.40.0</td>
+    </tr>
+    <tr>
+        <td><code>google.golang.org/grpc</code></td>
+        <td>CVE-2026-33186</td>
+        <td>CRITICAL</td>
+        <td>v1.78.0</td>
+        <td>1.79.3</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-25679</td>
+        <td>HIGH</td>
+        <td>v1.25.7</td>
+        <td>1.25.8, 1.26.1</td>
     </tr>
 </table>
 <h4>No Misconfigurations found</h4>
@@ -142,7 +184,7 @@
 <h4>No Vulnerabilities found</h4>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>ko-app/kubectl-kyverno</code></h3>
-<h4>Vulnerabilities (1)</h4>
+<h4>Vulnerabilities (4)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -152,11 +194,32 @@
         <th>Fixed Version</th>
     </tr>
     <tr>
+        <td><code>github.com/docker/cli</code></td>
+        <td>CVE-2025-15558</td>
+        <td>HIGH</td>
+        <td>v29.0.3+incompatible</td>
+        <td>29.2.0</td>
+    </tr>
+    <tr>
         <td><code>go.opentelemetry.io/otel/sdk</code></td>
         <td>CVE-2026-24051</td>
         <td>HIGH</td>
         <td>v1.39.0</td>
         <td>1.40.0</td>
+    </tr>
+    <tr>
+        <td><code>google.golang.org/grpc</code></td>
+        <td>CVE-2026-33186</td>
+        <td>CRITICAL</td>
+        <td>v1.78.0</td>
+        <td>1.79.3</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-25679</td>
+        <td>HIGH</td>
+        <td>v1.25.7</td>
+        <td>1.25.8, 1.26.1</td>
     </tr>
 </table>
 <h4>No Misconfigurations found</h4>
@@ -165,7 +228,7 @@
 <h4>No Vulnerabilities found</h4>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>ko-app/kyverno</code></h3>
-<h4>Vulnerabilities (1)</h4>
+<h4>Vulnerabilities (4)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -175,11 +238,32 @@
         <th>Fixed Version</th>
     </tr>
     <tr>
+        <td><code>github.com/docker/cli</code></td>
+        <td>CVE-2025-15558</td>
+        <td>HIGH</td>
+        <td>v29.0.3+incompatible</td>
+        <td>29.2.0</td>
+    </tr>
+    <tr>
         <td><code>go.opentelemetry.io/otel/sdk</code></td>
         <td>CVE-2026-24051</td>
         <td>HIGH</td>
         <td>v1.39.0</td>
         <td>1.40.0</td>
+    </tr>
+    <tr>
+        <td><code>google.golang.org/grpc</code></td>
+        <td>CVE-2026-33186</td>
+        <td>CRITICAL</td>
+        <td>v1.78.0</td>
+        <td>1.79.3</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-25679</td>
+        <td>HIGH</td>
+        <td>v1.25.7</td>
+        <td>1.25.8, 1.26.1</td>
     </tr>
 </table>
 <h4>No Misconfigurations found</h4>
@@ -188,7 +272,7 @@
 <h4>No Vulnerabilities found</h4>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>ko-app/kyverno-init</code></h3>
-<h4>Vulnerabilities (1)</h4>
+<h4>Vulnerabilities (4)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -198,11 +282,32 @@
         <th>Fixed Version</th>
     </tr>
     <tr>
+        <td><code>github.com/docker/cli</code></td>
+        <td>CVE-2025-15558</td>
+        <td>HIGH</td>
+        <td>v29.0.3+incompatible</td>
+        <td>29.2.0</td>
+    </tr>
+    <tr>
         <td><code>go.opentelemetry.io/otel/sdk</code></td>
         <td>CVE-2026-24051</td>
         <td>HIGH</td>
         <td>v1.39.0</td>
         <td>1.40.0</td>
+    </tr>
+    <tr>
+        <td><code>google.golang.org/grpc</code></td>
+        <td>CVE-2026-33186</td>
+        <td>CRITICAL</td>
+        <td>v1.78.0</td>
+        <td>1.79.3</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-25679</td>
+        <td>HIGH</td>
+        <td>v1.25.7</td>
+        <td>1.25.8, 1.26.1</td>
     </tr>
 </table>
 <h4>No Misconfigurations found</h4>
@@ -211,7 +316,7 @@
 <h4>No Vulnerabilities found</h4>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>ko-app/reports-controller</code></h3>
-<h4>Vulnerabilities (1)</h4>
+<h4>Vulnerabilities (4)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -221,11 +326,32 @@
         <th>Fixed Version</th>
     </tr>
     <tr>
+        <td><code>github.com/docker/cli</code></td>
+        <td>CVE-2025-15558</td>
+        <td>HIGH</td>
+        <td>v29.0.3+incompatible</td>
+        <td>29.2.0</td>
+    </tr>
+    <tr>
         <td><code>go.opentelemetry.io/otel/sdk</code></td>
         <td>CVE-2026-24051</td>
         <td>HIGH</td>
         <td>v1.39.0</td>
         <td>1.40.0</td>
+    </tr>
+    <tr>
+        <td><code>google.golang.org/grpc</code></td>
+        <td>CVE-2026-33186</td>
+        <td>CRITICAL</td>
+        <td>v1.78.0</td>
+        <td>1.79.3</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-25679</td>
+        <td>HIGH</td>
+        <td>v1.25.7</td>
+        <td>1.25.8, 1.26.1</td>
     </tr>
 </table>
 <h4>No Misconfigurations found</h4>
@@ -266,10 +392,10 @@
     </tr>
     <tr>
         <td><code>stdlib</code></td>
-        <td>CVE-2025-61730</td>
+        <td>CVE-2026-25679</td>
         <td>HIGH</td>
         <td>v1.24.11</td>
-        <td>1.24.12, 1.25.6</td>
+        <td>1.25.8, 1.26.1</td>
     </tr>
 </table>
 <h4>No Misconfigurations found</h4>
@@ -306,10 +432,10 @@
     </tr>
     <tr>
         <td><code>stdlib</code></td>
-        <td>CVE-2025-61730</td>
+        <td>CVE-2026-25679</td>
         <td>HIGH</td>
         <td>v1.24.11</td>
-        <td>1.24.12, 1.25.6</td>
+        <td>1.25.8, 1.26.1</td>
     </tr>
 </table>
 <h4>No Misconfigurations found</h4>

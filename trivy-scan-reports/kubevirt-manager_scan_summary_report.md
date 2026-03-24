@@ -1,6 +1,6 @@
 
 <h3>Target <code>kubevirtmanager/kubevirt-manager:1.5.0 (alpine 3.20.5)</code></h3>
-<h4>Vulnerabilities (25)</h4>
+<h4>Vulnerabilities (27)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -39,10 +39,24 @@
     </tr>
     <tr>
         <td><code>libexpat</code></td>
+        <td>CVE-2026-32767</td>
+        <td>CRITICAL</td>
+        <td>2.6.4-r0</td>
+        <td>2.7.5-r0</td>
+    </tr>
+    <tr>
+        <td><code>libexpat</code></td>
         <td>CVE-2024-8176</td>
         <td>HIGH</td>
         <td>2.6.4-r0</td>
         <td>2.7.0-r0</td>
+    </tr>
+    <tr>
+        <td><code>libexpat</code></td>
+        <td>CVE-2026-25210</td>
+        <td>HIGH</td>
+        <td>2.6.4-r0</td>
+        <td>2.7.4-r0</td>
     </tr>
     <tr>
         <td><code>libpng</code></td>
@@ -250,10 +264,10 @@
     </tr>
     <tr>
         <td><code>stdlib</code></td>
-        <td>CVE-2025-61730</td>
+        <td>CVE-2026-25679</td>
         <td>HIGH</td>
         <td>v1.23.3</td>
-        <td>1.24.12, 1.25.6</td>
+        <td>1.25.8, 1.26.1</td>
     </tr>
 </table>
 <h4>No Misconfigurations found</h4>

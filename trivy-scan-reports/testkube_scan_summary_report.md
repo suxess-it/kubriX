@@ -1,5 +1,5 @@
 
-<h3>Target <code>docker.io/kubeshop/testkube-api-server:2.6.3 (alpine 3.20.8)</code></h3>
+<h3>Target <code>docker.io/kubeshop/testkube-api-server:2.7.2 (alpine 3.20.8)</code></h3>
 <h4>Vulnerabilities (6)</h4>
 <table>
     <tr>
@@ -64,11 +64,11 @@
         <th>Fixed Version</th>
     </tr>
     <tr>
-        <td><code>go.opentelemetry.io/otel/sdk</code></td>
-        <td>CVE-2026-24051</td>
-        <td>HIGH</td>
-        <td>v1.34.0</td>
-        <td>1.40.0</td>
+        <td><code>google.golang.org/grpc</code></td>
+        <td>CVE-2026-33186</td>
+        <td>CRITICAL</td>
+        <td>v1.79.2</td>
+        <td>1.79.3</td>
     </tr>
 </table>
 <h4>No Misconfigurations found</h4>
@@ -77,7 +77,7 @@
 <h4>No Vulnerabilities found</h4>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>usr/bin/mc</code></h3>
-<h4>Vulnerabilities (8)</h4>
+<h4>Vulnerabilities (9)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -85,6 +85,13 @@
         <th>Severity</th>
         <th>Installed Version</th>
         <th>Fixed Version</th>
+    </tr>
+    <tr>
+        <td><code>google.golang.org/grpc</code></td>
+        <td>CVE-2026-33186</td>
+        <td>CRITICAL</td>
+        <td>v1.71.0</td>
+        <td>1.79.3</td>
     </tr>
     <tr>
         <td><code>stdlib</code></td>
@@ -137,15 +144,15 @@
     </tr>
     <tr>
         <td><code>stdlib</code></td>
-        <td>CVE-2025-61730</td>
+        <td>CVE-2026-25679</td>
         <td>HIGH</td>
         <td>v1.24.3</td>
-        <td>1.24.12, 1.25.6</td>
+        <td>1.25.8, 1.26.1</td>
     </tr>
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>usr/bin/minio</code></h3>
-<h4>Vulnerabilities (9)</h4>
+<h4>Vulnerabilities (11)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -153,6 +160,13 @@
         <th>Severity</th>
         <th>Installed Version</th>
         <th>Fixed Version</th>
+    </tr>
+    <tr>
+        <td><code>github.com/buger/jsonparser</code></td>
+        <td>GHSA-6g7g-w4f8-9c9x</td>
+        <td>HIGH</td>
+        <td>v1.1.1</td>
+        <td></td>
     </tr>
     <tr>
         <td><code>github.com/minio/minio</code></td>
@@ -167,6 +181,13 @@
         <td>HIGH</td>
         <td>v1.35.0</td>
         <td>1.40.0</td>
+    </tr>
+    <tr>
+        <td><code>google.golang.org/grpc</code></td>
+        <td>CVE-2026-33186</td>
+        <td>CRITICAL</td>
+        <td>v1.72.0</td>
+        <td>1.79.3</td>
     </tr>
     <tr>
         <td><code>stdlib</code></td>
@@ -212,10 +233,10 @@
     </tr>
     <tr>
         <td><code>stdlib</code></td>
-        <td>CVE-2025-61730</td>
+        <td>CVE-2026-25679</td>
         <td>HIGH</td>
         <td>v1.24.4</td>
-        <td>1.24.12, 1.25.6</td>
+        <td>1.25.8, 1.26.1</td>
     </tr>
 </table>
 <h4>No Misconfigurations found</h4>
@@ -328,10 +349,10 @@
     </tr>
     <tr>
         <td><code>stdlib</code></td>
-        <td>CVE-2025-61730</td>
+        <td>CVE-2026-25679</td>
         <td>HIGH</td>
         <td>v1.24.4</td>
-        <td>1.24.12, 1.25.6</td>
+        <td>1.25.8, 1.26.1</td>
     </tr>
 </table>
 <h4>No Misconfigurations found</h4>
@@ -444,15 +465,21 @@
     </tr>
     <tr>
         <td><code>stdlib</code></td>
-        <td>CVE-2025-61730</td>
+        <td>CVE-2026-25679</td>
         <td>HIGH</td>
         <td>v1.24.4</td>
-        <td>1.24.12, 1.25.6</td>
+        <td>1.25.8, 1.26.1</td>
     </tr>
 </table>
 <h4>No Misconfigurations found</h4>
 
-<h3>Target <code>us-east1-docker.pkg.dev/testkube-cloud-372110/testkube/mongodb:8.2.3 (ubuntu 24.04)</code></h3>
+<h3>Target <code>us-east1-docker.pkg.dev/testkube-cloud-372110/testkube/mongodb:8.2.5 (ubuntu 24.04)</code></h3>
+<h4>No Vulnerabilities found</h4>
+<h4>No Misconfigurations found</h4>
+<h3>Target <code>Node.js</code></h3>
+<h4>No Vulnerabilities found</h4>
+<h4>No Misconfigurations found</h4>
+<h3>Target <code>opt/bitnami/common/bin/render-template</code></h3>
 <h4>Vulnerabilities (1)</h4>
 <table>
     <tr>
@@ -463,59 +490,16 @@
         <th>Fixed Version</th>
     </tr>
     <tr>
-        <td><code>gpgv</code></td>
-        <td>CVE-2025-68973</td>
-        <td>HIGH</td>
-        <td>2.4.4-2ubuntu17.3</td>
-        <td>2.4.4-2ubuntu17.4</td>
-    </tr>
-</table>
-<h4>No Misconfigurations found</h4>
-<h3>Target <code>Node.js</code></h3>
-<h4>No Vulnerabilities found</h4>
-<h4>No Misconfigurations found</h4>
-<h3>Target <code>opt/bitnami/common/bin/render-template</code></h3>
-<h4>Vulnerabilities (4)</h4>
-<table>
-    <tr>
-        <th>Package</th>
-        <th>ID</th>
-        <th>Severity</th>
-        <th>Installed Version</th>
-        <th>Fixed Version</th>
-    </tr>
-    <tr>
         <td><code>stdlib</code></td>
-        <td>CVE-2025-68121</td>
-        <td>CRITICAL</td>
-        <td>v1.25.5</td>
-        <td>1.24.13, 1.25.7, 1.26.0-rc.3</td>
-    </tr>
-    <tr>
-        <td><code>stdlib</code></td>
-        <td>CVE-2025-61726</td>
+        <td>CVE-2026-25679</td>
         <td>HIGH</td>
-        <td>v1.25.5</td>
-        <td>1.24.12, 1.25.6</td>
-    </tr>
-    <tr>
-        <td><code>stdlib</code></td>
-        <td>CVE-2025-61728</td>
-        <td>HIGH</td>
-        <td>v1.25.5</td>
-        <td>1.24.12, 1.25.6</td>
-    </tr>
-    <tr>
-        <td><code>stdlib</code></td>
-        <td>CVE-2025-61730</td>
-        <td>HIGH</td>
-        <td>v1.25.5</td>
-        <td>1.24.12, 1.25.6</td>
+        <td>v1.25.7</td>
+        <td>1.25.8, 1.26.1</td>
     </tr>
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>opt/bitnami/mongodb/bin/bsondump</code></h3>
-<h4>Vulnerabilities (4)</h4>
+<h4>Vulnerabilities (1)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -526,36 +510,15 @@
     </tr>
     <tr>
         <td><code>stdlib</code></td>
-        <td>CVE-2025-68121</td>
-        <td>CRITICAL</td>
-        <td>v1.25.5</td>
-        <td>1.24.13, 1.25.7, 1.26.0-rc.3</td>
-    </tr>
-    <tr>
-        <td><code>stdlib</code></td>
-        <td>CVE-2025-61726</td>
+        <td>CVE-2026-25679</td>
         <td>HIGH</td>
-        <td>v1.25.5</td>
-        <td>1.24.12, 1.25.6</td>
-    </tr>
-    <tr>
-        <td><code>stdlib</code></td>
-        <td>CVE-2025-61728</td>
-        <td>HIGH</td>
-        <td>v1.25.5</td>
-        <td>1.24.12, 1.25.6</td>
-    </tr>
-    <tr>
-        <td><code>stdlib</code></td>
-        <td>CVE-2025-61730</td>
-        <td>HIGH</td>
-        <td>v1.25.5</td>
-        <td>1.24.12, 1.25.6</td>
+        <td>v1.25.7</td>
+        <td>1.25.8, 1.26.1</td>
     </tr>
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>opt/bitnami/mongodb/bin/mongodump</code></h3>
-<h4>Vulnerabilities (4)</h4>
+<h4>Vulnerabilities (1)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -566,36 +529,15 @@
     </tr>
     <tr>
         <td><code>stdlib</code></td>
-        <td>CVE-2025-68121</td>
-        <td>CRITICAL</td>
-        <td>v1.25.5</td>
-        <td>1.24.13, 1.25.7, 1.26.0-rc.3</td>
-    </tr>
-    <tr>
-        <td><code>stdlib</code></td>
-        <td>CVE-2025-61726</td>
+        <td>CVE-2026-25679</td>
         <td>HIGH</td>
-        <td>v1.25.5</td>
-        <td>1.24.12, 1.25.6</td>
-    </tr>
-    <tr>
-        <td><code>stdlib</code></td>
-        <td>CVE-2025-61728</td>
-        <td>HIGH</td>
-        <td>v1.25.5</td>
-        <td>1.24.12, 1.25.6</td>
-    </tr>
-    <tr>
-        <td><code>stdlib</code></td>
-        <td>CVE-2025-61730</td>
-        <td>HIGH</td>
-        <td>v1.25.5</td>
-        <td>1.24.12, 1.25.6</td>
+        <td>v1.25.7</td>
+        <td>1.25.8, 1.26.1</td>
     </tr>
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>opt/bitnami/mongodb/bin/mongoexport</code></h3>
-<h4>Vulnerabilities (4)</h4>
+<h4>Vulnerabilities (1)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -606,36 +548,15 @@
     </tr>
     <tr>
         <td><code>stdlib</code></td>
-        <td>CVE-2025-68121</td>
-        <td>CRITICAL</td>
-        <td>v1.25.5</td>
-        <td>1.24.13, 1.25.7, 1.26.0-rc.3</td>
-    </tr>
-    <tr>
-        <td><code>stdlib</code></td>
-        <td>CVE-2025-61726</td>
+        <td>CVE-2026-25679</td>
         <td>HIGH</td>
-        <td>v1.25.5</td>
-        <td>1.24.12, 1.25.6</td>
-    </tr>
-    <tr>
-        <td><code>stdlib</code></td>
-        <td>CVE-2025-61728</td>
-        <td>HIGH</td>
-        <td>v1.25.5</td>
-        <td>1.24.12, 1.25.6</td>
-    </tr>
-    <tr>
-        <td><code>stdlib</code></td>
-        <td>CVE-2025-61730</td>
-        <td>HIGH</td>
-        <td>v1.25.5</td>
-        <td>1.24.12, 1.25.6</td>
+        <td>v1.25.7</td>
+        <td>1.25.8, 1.26.1</td>
     </tr>
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>opt/bitnami/mongodb/bin/mongofiles</code></h3>
-<h4>Vulnerabilities (4)</h4>
+<h4>Vulnerabilities (1)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -646,36 +567,15 @@
     </tr>
     <tr>
         <td><code>stdlib</code></td>
-        <td>CVE-2025-68121</td>
-        <td>CRITICAL</td>
-        <td>v1.25.5</td>
-        <td>1.24.13, 1.25.7, 1.26.0-rc.3</td>
-    </tr>
-    <tr>
-        <td><code>stdlib</code></td>
-        <td>CVE-2025-61726</td>
+        <td>CVE-2026-25679</td>
         <td>HIGH</td>
-        <td>v1.25.5</td>
-        <td>1.24.12, 1.25.6</td>
-    </tr>
-    <tr>
-        <td><code>stdlib</code></td>
-        <td>CVE-2025-61728</td>
-        <td>HIGH</td>
-        <td>v1.25.5</td>
-        <td>1.24.12, 1.25.6</td>
-    </tr>
-    <tr>
-        <td><code>stdlib</code></td>
-        <td>CVE-2025-61730</td>
-        <td>HIGH</td>
-        <td>v1.25.5</td>
-        <td>1.24.12, 1.25.6</td>
+        <td>v1.25.7</td>
+        <td>1.25.8, 1.26.1</td>
     </tr>
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>opt/bitnami/mongodb/bin/mongoimport</code></h3>
-<h4>Vulnerabilities (4)</h4>
+<h4>Vulnerabilities (1)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -686,36 +586,15 @@
     </tr>
     <tr>
         <td><code>stdlib</code></td>
-        <td>CVE-2025-68121</td>
-        <td>CRITICAL</td>
-        <td>v1.25.5</td>
-        <td>1.24.13, 1.25.7, 1.26.0-rc.3</td>
-    </tr>
-    <tr>
-        <td><code>stdlib</code></td>
-        <td>CVE-2025-61726</td>
+        <td>CVE-2026-25679</td>
         <td>HIGH</td>
-        <td>v1.25.5</td>
-        <td>1.24.12, 1.25.6</td>
-    </tr>
-    <tr>
-        <td><code>stdlib</code></td>
-        <td>CVE-2025-61728</td>
-        <td>HIGH</td>
-        <td>v1.25.5</td>
-        <td>1.24.12, 1.25.6</td>
-    </tr>
-    <tr>
-        <td><code>stdlib</code></td>
-        <td>CVE-2025-61730</td>
-        <td>HIGH</td>
-        <td>v1.25.5</td>
-        <td>1.24.12, 1.25.6</td>
+        <td>v1.25.7</td>
+        <td>1.25.8, 1.26.1</td>
     </tr>
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>opt/bitnami/mongodb/bin/mongorestore</code></h3>
-<h4>Vulnerabilities (4)</h4>
+<h4>Vulnerabilities (1)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -726,36 +605,15 @@
     </tr>
     <tr>
         <td><code>stdlib</code></td>
-        <td>CVE-2025-68121</td>
-        <td>CRITICAL</td>
-        <td>v1.25.5</td>
-        <td>1.24.13, 1.25.7, 1.26.0-rc.3</td>
-    </tr>
-    <tr>
-        <td><code>stdlib</code></td>
-        <td>CVE-2025-61726</td>
+        <td>CVE-2026-25679</td>
         <td>HIGH</td>
-        <td>v1.25.5</td>
-        <td>1.24.12, 1.25.6</td>
-    </tr>
-    <tr>
-        <td><code>stdlib</code></td>
-        <td>CVE-2025-61728</td>
-        <td>HIGH</td>
-        <td>v1.25.5</td>
-        <td>1.24.12, 1.25.6</td>
-    </tr>
-    <tr>
-        <td><code>stdlib</code></td>
-        <td>CVE-2025-61730</td>
-        <td>HIGH</td>
-        <td>v1.25.5</td>
-        <td>1.24.12, 1.25.6</td>
+        <td>v1.25.7</td>
+        <td>1.25.8, 1.26.1</td>
     </tr>
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>opt/bitnami/mongodb/bin/mongostat</code></h3>
-<h4>Vulnerabilities (4)</h4>
+<h4>Vulnerabilities (1)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -766,35 +624,33 @@
     </tr>
     <tr>
         <td><code>stdlib</code></td>
-        <td>CVE-2025-68121</td>
-        <td>CRITICAL</td>
-        <td>v1.25.5</td>
-        <td>1.24.13, 1.25.7, 1.26.0-rc.3</td>
-    </tr>
-    <tr>
-        <td><code>stdlib</code></td>
-        <td>CVE-2025-61726</td>
+        <td>CVE-2026-25679</td>
         <td>HIGH</td>
-        <td>v1.25.5</td>
-        <td>1.24.12, 1.25.6</td>
-    </tr>
-    <tr>
-        <td><code>stdlib</code></td>
-        <td>CVE-2025-61728</td>
-        <td>HIGH</td>
-        <td>v1.25.5</td>
-        <td>1.24.12, 1.25.6</td>
-    </tr>
-    <tr>
-        <td><code>stdlib</code></td>
-        <td>CVE-2025-61730</td>
-        <td>HIGH</td>
-        <td>v1.25.5</td>
-        <td>1.24.12, 1.25.6</td>
+        <td>v1.25.7</td>
+        <td>1.25.8, 1.26.1</td>
     </tr>
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>opt/bitnami/mongodb/bin/mongotop</code></h3>
+<h4>Vulnerabilities (1)</h4>
+<table>
+    <tr>
+        <th>Package</th>
+        <th>ID</th>
+        <th>Severity</th>
+        <th>Installed Version</th>
+        <th>Fixed Version</th>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-25679</td>
+        <td>HIGH</td>
+        <td>v1.25.7</td>
+        <td>1.25.8, 1.26.1</td>
+    </tr>
+</table>
+<h4>No Misconfigurations found</h4>
+<h3>Target <code>usr/bin/bsondump</code></h3>
 <h4>Vulnerabilities (4)</h4>
 <table>
     <tr>
@@ -827,83 +683,15 @@
     </tr>
     <tr>
         <td><code>stdlib</code></td>
-        <td>CVE-2025-61730</td>
+        <td>CVE-2026-25679</td>
         <td>HIGH</td>
         <td>v1.25.5</td>
-        <td>1.24.12, 1.25.6</td>
-    </tr>
-</table>
-<h4>No Misconfigurations found</h4>
-<h3>Target <code>usr/bin/bsondump</code></h3>
-<h4>Vulnerabilities (8)</h4>
-<table>
-    <tr>
-        <th>Package</th>
-        <th>ID</th>
-        <th>Severity</th>
-        <th>Installed Version</th>
-        <th>Fixed Version</th>
-    </tr>
-    <tr>
-        <td><code>stdlib</code></td>
-        <td>CVE-2025-68121</td>
-        <td>CRITICAL</td>
-        <td>v1.24.0</td>
-        <td>1.24.13, 1.25.7, 1.26.0-rc.3</td>
-    </tr>
-    <tr>
-        <td><code>stdlib</code></td>
-        <td>CVE-2025-22874</td>
-        <td>HIGH</td>
-        <td>v1.24.0</td>
-        <td>1.24.4</td>
-    </tr>
-    <tr>
-        <td><code>stdlib</code></td>
-        <td>CVE-2025-47907</td>
-        <td>HIGH</td>
-        <td>v1.24.0</td>
-        <td>1.23.12, 1.24.6</td>
-    </tr>
-    <tr>
-        <td><code>stdlib</code></td>
-        <td>CVE-2025-58183</td>
-        <td>HIGH</td>
-        <td>v1.24.0</td>
-        <td>1.24.8, 1.25.2</td>
-    </tr>
-    <tr>
-        <td><code>stdlib</code></td>
-        <td>CVE-2025-61726</td>
-        <td>HIGH</td>
-        <td>v1.24.0</td>
-        <td>1.24.12, 1.25.6</td>
-    </tr>
-    <tr>
-        <td><code>stdlib</code></td>
-        <td>CVE-2025-61728</td>
-        <td>HIGH</td>
-        <td>v1.24.0</td>
-        <td>1.24.12, 1.25.6</td>
-    </tr>
-    <tr>
-        <td><code>stdlib</code></td>
-        <td>CVE-2025-61729</td>
-        <td>HIGH</td>
-        <td>v1.24.0</td>
-        <td>1.24.11, 1.25.5</td>
-    </tr>
-    <tr>
-        <td><code>stdlib</code></td>
-        <td>CVE-2025-61730</td>
-        <td>HIGH</td>
-        <td>v1.24.0</td>
-        <td>1.24.12, 1.25.6</td>
+        <td>1.25.8, 1.26.1</td>
     </tr>
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>usr/bin/mongodump</code></h3>
-<h4>Vulnerabilities (8)</h4>
+<h4>Vulnerabilities (4)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -916,62 +704,34 @@
         <td><code>stdlib</code></td>
         <td>CVE-2025-68121</td>
         <td>CRITICAL</td>
-        <td>v1.24.0</td>
+        <td>v1.25.5</td>
         <td>1.24.13, 1.25.7, 1.26.0-rc.3</td>
-    </tr>
-    <tr>
-        <td><code>stdlib</code></td>
-        <td>CVE-2025-22874</td>
-        <td>HIGH</td>
-        <td>v1.24.0</td>
-        <td>1.24.4</td>
-    </tr>
-    <tr>
-        <td><code>stdlib</code></td>
-        <td>CVE-2025-47907</td>
-        <td>HIGH</td>
-        <td>v1.24.0</td>
-        <td>1.23.12, 1.24.6</td>
-    </tr>
-    <tr>
-        <td><code>stdlib</code></td>
-        <td>CVE-2025-58183</td>
-        <td>HIGH</td>
-        <td>v1.24.0</td>
-        <td>1.24.8, 1.25.2</td>
     </tr>
     <tr>
         <td><code>stdlib</code></td>
         <td>CVE-2025-61726</td>
         <td>HIGH</td>
-        <td>v1.24.0</td>
+        <td>v1.25.5</td>
         <td>1.24.12, 1.25.6</td>
     </tr>
     <tr>
         <td><code>stdlib</code></td>
         <td>CVE-2025-61728</td>
         <td>HIGH</td>
-        <td>v1.24.0</td>
+        <td>v1.25.5</td>
         <td>1.24.12, 1.25.6</td>
     </tr>
     <tr>
         <td><code>stdlib</code></td>
-        <td>CVE-2025-61729</td>
+        <td>CVE-2026-25679</td>
         <td>HIGH</td>
-        <td>v1.24.0</td>
-        <td>1.24.11, 1.25.5</td>
-    </tr>
-    <tr>
-        <td><code>stdlib</code></td>
-        <td>CVE-2025-61730</td>
-        <td>HIGH</td>
-        <td>v1.24.0</td>
-        <td>1.24.12, 1.25.6</td>
+        <td>v1.25.5</td>
+        <td>1.25.8, 1.26.1</td>
     </tr>
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>usr/bin/mongoexport</code></h3>
-<h4>Vulnerabilities (8)</h4>
+<h4>Vulnerabilities (4)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -984,62 +744,34 @@
         <td><code>stdlib</code></td>
         <td>CVE-2025-68121</td>
         <td>CRITICAL</td>
-        <td>v1.24.0</td>
+        <td>v1.25.5</td>
         <td>1.24.13, 1.25.7, 1.26.0-rc.3</td>
-    </tr>
-    <tr>
-        <td><code>stdlib</code></td>
-        <td>CVE-2025-22874</td>
-        <td>HIGH</td>
-        <td>v1.24.0</td>
-        <td>1.24.4</td>
-    </tr>
-    <tr>
-        <td><code>stdlib</code></td>
-        <td>CVE-2025-47907</td>
-        <td>HIGH</td>
-        <td>v1.24.0</td>
-        <td>1.23.12, 1.24.6</td>
-    </tr>
-    <tr>
-        <td><code>stdlib</code></td>
-        <td>CVE-2025-58183</td>
-        <td>HIGH</td>
-        <td>v1.24.0</td>
-        <td>1.24.8, 1.25.2</td>
     </tr>
     <tr>
         <td><code>stdlib</code></td>
         <td>CVE-2025-61726</td>
         <td>HIGH</td>
-        <td>v1.24.0</td>
+        <td>v1.25.5</td>
         <td>1.24.12, 1.25.6</td>
     </tr>
     <tr>
         <td><code>stdlib</code></td>
         <td>CVE-2025-61728</td>
         <td>HIGH</td>
-        <td>v1.24.0</td>
+        <td>v1.25.5</td>
         <td>1.24.12, 1.25.6</td>
     </tr>
     <tr>
         <td><code>stdlib</code></td>
-        <td>CVE-2025-61729</td>
+        <td>CVE-2026-25679</td>
         <td>HIGH</td>
-        <td>v1.24.0</td>
-        <td>1.24.11, 1.25.5</td>
-    </tr>
-    <tr>
-        <td><code>stdlib</code></td>
-        <td>CVE-2025-61730</td>
-        <td>HIGH</td>
-        <td>v1.24.0</td>
-        <td>1.24.12, 1.25.6</td>
+        <td>v1.25.5</td>
+        <td>1.25.8, 1.26.1</td>
     </tr>
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>usr/bin/mongofiles</code></h3>
-<h4>Vulnerabilities (8)</h4>
+<h4>Vulnerabilities (4)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -1052,62 +784,34 @@
         <td><code>stdlib</code></td>
         <td>CVE-2025-68121</td>
         <td>CRITICAL</td>
-        <td>v1.24.0</td>
+        <td>v1.25.5</td>
         <td>1.24.13, 1.25.7, 1.26.0-rc.3</td>
-    </tr>
-    <tr>
-        <td><code>stdlib</code></td>
-        <td>CVE-2025-22874</td>
-        <td>HIGH</td>
-        <td>v1.24.0</td>
-        <td>1.24.4</td>
-    </tr>
-    <tr>
-        <td><code>stdlib</code></td>
-        <td>CVE-2025-47907</td>
-        <td>HIGH</td>
-        <td>v1.24.0</td>
-        <td>1.23.12, 1.24.6</td>
-    </tr>
-    <tr>
-        <td><code>stdlib</code></td>
-        <td>CVE-2025-58183</td>
-        <td>HIGH</td>
-        <td>v1.24.0</td>
-        <td>1.24.8, 1.25.2</td>
     </tr>
     <tr>
         <td><code>stdlib</code></td>
         <td>CVE-2025-61726</td>
         <td>HIGH</td>
-        <td>v1.24.0</td>
+        <td>v1.25.5</td>
         <td>1.24.12, 1.25.6</td>
     </tr>
     <tr>
         <td><code>stdlib</code></td>
         <td>CVE-2025-61728</td>
         <td>HIGH</td>
-        <td>v1.24.0</td>
+        <td>v1.25.5</td>
         <td>1.24.12, 1.25.6</td>
     </tr>
     <tr>
         <td><code>stdlib</code></td>
-        <td>CVE-2025-61729</td>
+        <td>CVE-2026-25679</td>
         <td>HIGH</td>
-        <td>v1.24.0</td>
-        <td>1.24.11, 1.25.5</td>
-    </tr>
-    <tr>
-        <td><code>stdlib</code></td>
-        <td>CVE-2025-61730</td>
-        <td>HIGH</td>
-        <td>v1.24.0</td>
-        <td>1.24.12, 1.25.6</td>
+        <td>v1.25.5</td>
+        <td>1.25.8, 1.26.1</td>
     </tr>
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>usr/bin/mongoimport</code></h3>
-<h4>Vulnerabilities (8)</h4>
+<h4>Vulnerabilities (4)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -1120,62 +824,34 @@
         <td><code>stdlib</code></td>
         <td>CVE-2025-68121</td>
         <td>CRITICAL</td>
-        <td>v1.24.0</td>
+        <td>v1.25.5</td>
         <td>1.24.13, 1.25.7, 1.26.0-rc.3</td>
-    </tr>
-    <tr>
-        <td><code>stdlib</code></td>
-        <td>CVE-2025-22874</td>
-        <td>HIGH</td>
-        <td>v1.24.0</td>
-        <td>1.24.4</td>
-    </tr>
-    <tr>
-        <td><code>stdlib</code></td>
-        <td>CVE-2025-47907</td>
-        <td>HIGH</td>
-        <td>v1.24.0</td>
-        <td>1.23.12, 1.24.6</td>
-    </tr>
-    <tr>
-        <td><code>stdlib</code></td>
-        <td>CVE-2025-58183</td>
-        <td>HIGH</td>
-        <td>v1.24.0</td>
-        <td>1.24.8, 1.25.2</td>
     </tr>
     <tr>
         <td><code>stdlib</code></td>
         <td>CVE-2025-61726</td>
         <td>HIGH</td>
-        <td>v1.24.0</td>
+        <td>v1.25.5</td>
         <td>1.24.12, 1.25.6</td>
     </tr>
     <tr>
         <td><code>stdlib</code></td>
         <td>CVE-2025-61728</td>
         <td>HIGH</td>
-        <td>v1.24.0</td>
+        <td>v1.25.5</td>
         <td>1.24.12, 1.25.6</td>
     </tr>
     <tr>
         <td><code>stdlib</code></td>
-        <td>CVE-2025-61729</td>
+        <td>CVE-2026-25679</td>
         <td>HIGH</td>
-        <td>v1.24.0</td>
-        <td>1.24.11, 1.25.5</td>
-    </tr>
-    <tr>
-        <td><code>stdlib</code></td>
-        <td>CVE-2025-61730</td>
-        <td>HIGH</td>
-        <td>v1.24.0</td>
-        <td>1.24.12, 1.25.6</td>
+        <td>v1.25.5</td>
+        <td>1.25.8, 1.26.1</td>
     </tr>
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>usr/bin/mongorestore</code></h3>
-<h4>Vulnerabilities (8)</h4>
+<h4>Vulnerabilities (4)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -1188,62 +864,34 @@
         <td><code>stdlib</code></td>
         <td>CVE-2025-68121</td>
         <td>CRITICAL</td>
-        <td>v1.24.0</td>
+        <td>v1.25.5</td>
         <td>1.24.13, 1.25.7, 1.26.0-rc.3</td>
-    </tr>
-    <tr>
-        <td><code>stdlib</code></td>
-        <td>CVE-2025-22874</td>
-        <td>HIGH</td>
-        <td>v1.24.0</td>
-        <td>1.24.4</td>
-    </tr>
-    <tr>
-        <td><code>stdlib</code></td>
-        <td>CVE-2025-47907</td>
-        <td>HIGH</td>
-        <td>v1.24.0</td>
-        <td>1.23.12, 1.24.6</td>
-    </tr>
-    <tr>
-        <td><code>stdlib</code></td>
-        <td>CVE-2025-58183</td>
-        <td>HIGH</td>
-        <td>v1.24.0</td>
-        <td>1.24.8, 1.25.2</td>
     </tr>
     <tr>
         <td><code>stdlib</code></td>
         <td>CVE-2025-61726</td>
         <td>HIGH</td>
-        <td>v1.24.0</td>
+        <td>v1.25.5</td>
         <td>1.24.12, 1.25.6</td>
     </tr>
     <tr>
         <td><code>stdlib</code></td>
         <td>CVE-2025-61728</td>
         <td>HIGH</td>
-        <td>v1.24.0</td>
+        <td>v1.25.5</td>
         <td>1.24.12, 1.25.6</td>
     </tr>
     <tr>
         <td><code>stdlib</code></td>
-        <td>CVE-2025-61729</td>
+        <td>CVE-2026-25679</td>
         <td>HIGH</td>
-        <td>v1.24.0</td>
-        <td>1.24.11, 1.25.5</td>
-    </tr>
-    <tr>
-        <td><code>stdlib</code></td>
-        <td>CVE-2025-61730</td>
-        <td>HIGH</td>
-        <td>v1.24.0</td>
-        <td>1.24.12, 1.25.6</td>
+        <td>v1.25.5</td>
+        <td>1.25.8, 1.26.1</td>
     </tr>
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>usr/bin/mongostat</code></h3>
-<h4>Vulnerabilities (8)</h4>
+<h4>Vulnerabilities (4)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -1256,62 +904,34 @@
         <td><code>stdlib</code></td>
         <td>CVE-2025-68121</td>
         <td>CRITICAL</td>
-        <td>v1.24.0</td>
+        <td>v1.25.5</td>
         <td>1.24.13, 1.25.7, 1.26.0-rc.3</td>
-    </tr>
-    <tr>
-        <td><code>stdlib</code></td>
-        <td>CVE-2025-22874</td>
-        <td>HIGH</td>
-        <td>v1.24.0</td>
-        <td>1.24.4</td>
-    </tr>
-    <tr>
-        <td><code>stdlib</code></td>
-        <td>CVE-2025-47907</td>
-        <td>HIGH</td>
-        <td>v1.24.0</td>
-        <td>1.23.12, 1.24.6</td>
-    </tr>
-    <tr>
-        <td><code>stdlib</code></td>
-        <td>CVE-2025-58183</td>
-        <td>HIGH</td>
-        <td>v1.24.0</td>
-        <td>1.24.8, 1.25.2</td>
     </tr>
     <tr>
         <td><code>stdlib</code></td>
         <td>CVE-2025-61726</td>
         <td>HIGH</td>
-        <td>v1.24.0</td>
+        <td>v1.25.5</td>
         <td>1.24.12, 1.25.6</td>
     </tr>
     <tr>
         <td><code>stdlib</code></td>
         <td>CVE-2025-61728</td>
         <td>HIGH</td>
-        <td>v1.24.0</td>
+        <td>v1.25.5</td>
         <td>1.24.12, 1.25.6</td>
     </tr>
     <tr>
         <td><code>stdlib</code></td>
-        <td>CVE-2025-61729</td>
+        <td>CVE-2026-25679</td>
         <td>HIGH</td>
-        <td>v1.24.0</td>
-        <td>1.24.11, 1.25.5</td>
-    </tr>
-    <tr>
-        <td><code>stdlib</code></td>
-        <td>CVE-2025-61730</td>
-        <td>HIGH</td>
-        <td>v1.24.0</td>
-        <td>1.24.12, 1.25.6</td>
+        <td>v1.25.5</td>
+        <td>1.25.8, 1.26.1</td>
     </tr>
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>usr/bin/mongotop</code></h3>
-<h4>Vulnerabilities (8)</h4>
+<h4>Vulnerabilities (4)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -1324,57 +944,29 @@
         <td><code>stdlib</code></td>
         <td>CVE-2025-68121</td>
         <td>CRITICAL</td>
-        <td>v1.24.0</td>
+        <td>v1.25.5</td>
         <td>1.24.13, 1.25.7, 1.26.0-rc.3</td>
-    </tr>
-    <tr>
-        <td><code>stdlib</code></td>
-        <td>CVE-2025-22874</td>
-        <td>HIGH</td>
-        <td>v1.24.0</td>
-        <td>1.24.4</td>
-    </tr>
-    <tr>
-        <td><code>stdlib</code></td>
-        <td>CVE-2025-47907</td>
-        <td>HIGH</td>
-        <td>v1.24.0</td>
-        <td>1.23.12, 1.24.6</td>
-    </tr>
-    <tr>
-        <td><code>stdlib</code></td>
-        <td>CVE-2025-58183</td>
-        <td>HIGH</td>
-        <td>v1.24.0</td>
-        <td>1.24.8, 1.25.2</td>
     </tr>
     <tr>
         <td><code>stdlib</code></td>
         <td>CVE-2025-61726</td>
         <td>HIGH</td>
-        <td>v1.24.0</td>
+        <td>v1.25.5</td>
         <td>1.24.12, 1.25.6</td>
     </tr>
     <tr>
         <td><code>stdlib</code></td>
         <td>CVE-2025-61728</td>
         <td>HIGH</td>
-        <td>v1.24.0</td>
+        <td>v1.25.5</td>
         <td>1.24.12, 1.25.6</td>
     </tr>
     <tr>
         <td><code>stdlib</code></td>
-        <td>CVE-2025-61729</td>
+        <td>CVE-2026-25679</td>
         <td>HIGH</td>
-        <td>v1.24.0</td>
-        <td>1.24.11, 1.25.5</td>
-    </tr>
-    <tr>
-        <td><code>stdlib</code></td>
-        <td>CVE-2025-61730</td>
-        <td>HIGH</td>
-        <td>v1.24.0</td>
-        <td>1.24.12, 1.25.6</td>
+        <td>v1.25.5</td>
+        <td>1.25.8, 1.26.1</td>
     </tr>
 </table>
 <h4>No Misconfigurations found</h4>
@@ -1425,64 +1017,10 @@
     </tr>
     <tr>
         <td><code>stdlib</code></td>
-        <td>CVE-2025-61730</td>
+        <td>CVE-2026-25679</td>
         <td>HIGH</td>
         <td>v1.24.6</td>
-        <td>1.24.12, 1.25.6</td>
-    </tr>
-</table>
-<h4>No Misconfigurations found</h4>
-<h3>Target <code>usr/local/bin/wait-for-port</code></h3>
-<h4>Vulnerabilities (6)</h4>
-<table>
-    <tr>
-        <th>Package</th>
-        <th>ID</th>
-        <th>Severity</th>
-        <th>Installed Version</th>
-        <th>Fixed Version</th>
-    </tr>
-    <tr>
-        <td><code>stdlib</code></td>
-        <td>CVE-2025-68121</td>
-        <td>CRITICAL</td>
-        <td>v1.25.0</td>
-        <td>1.24.13, 1.25.7, 1.26.0-rc.3</td>
-    </tr>
-    <tr>
-        <td><code>stdlib</code></td>
-        <td>CVE-2025-58183</td>
-        <td>HIGH</td>
-        <td>v1.25.0</td>
-        <td>1.24.8, 1.25.2</td>
-    </tr>
-    <tr>
-        <td><code>stdlib</code></td>
-        <td>CVE-2025-61726</td>
-        <td>HIGH</td>
-        <td>v1.25.0</td>
-        <td>1.24.12, 1.25.6</td>
-    </tr>
-    <tr>
-        <td><code>stdlib</code></td>
-        <td>CVE-2025-61728</td>
-        <td>HIGH</td>
-        <td>v1.25.0</td>
-        <td>1.24.12, 1.25.6</td>
-    </tr>
-    <tr>
-        <td><code>stdlib</code></td>
-        <td>CVE-2025-61729</td>
-        <td>HIGH</td>
-        <td>v1.25.0</td>
-        <td>1.24.11, 1.25.5</td>
-    </tr>
-    <tr>
-        <td><code>stdlib</code></td>
-        <td>CVE-2025-61730</td>
-        <td>HIGH</td>
-        <td>v1.25.0</td>
-        <td>1.24.12, 1.25.6</td>
+        <td>1.25.8, 1.26.1</td>
     </tr>
 </table>
 <h4>No Misconfigurations found</h4>

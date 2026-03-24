@@ -1,6 +1,6 @@
 
 <h3>Target <code>docker.io/dserio83/velero-api:0.3.1 (debian 12.11)</code></h3>
-<h4>Vulnerabilities (51)</h4>
+<h4>Vulnerabilities (56)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -87,6 +87,13 @@
         <td>2.5.0-1+deb12u2</td>
     </tr>
     <tr>
+        <td><code>libexpat1</code></td>
+        <td>CVE-2026-25210</td>
+        <td>HIGH</td>
+        <td>2.5.0-1+deb12u1</td>
+        <td></td>
+    </tr>
+    <tr>
         <td><code>libldap-2.5-0</code></td>
         <td>CVE-2023-2953</td>
         <td>HIGH</td>
@@ -151,6 +158,13 @@
     </tr>
     <tr>
         <td><code>libpython3.11-minimal</code></td>
+        <td>CVE-2025-69534</td>
+        <td>HIGH</td>
+        <td>3.11.2-6+deb12u6</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>libpython3.11-minimal</code></td>
         <td>CVE-2025-8194</td>
         <td>HIGH</td>
         <td>3.11.2-6+deb12u6</td>
@@ -180,6 +194,13 @@
     <tr>
         <td><code>libpython3.11-stdlib</code></td>
         <td>CVE-2025-15367</td>
+        <td>HIGH</td>
+        <td>3.11.2-6+deb12u6</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>libpython3.11-stdlib</code></td>
+        <td>CVE-2025-69534</td>
         <td>HIGH</td>
         <td>3.11.2-6+deb12u6</td>
         <td></td>
@@ -312,6 +333,13 @@
     </tr>
     <tr>
         <td><code>python3.11</code></td>
+        <td>CVE-2025-69534</td>
+        <td>HIGH</td>
+        <td>3.11.2-6+deb12u6</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>python3.11</code></td>
         <td>CVE-2025-8194</td>
         <td>HIGH</td>
         <td>3.11.2-6+deb12u6</td>
@@ -347,6 +375,13 @@
     </tr>
     <tr>
         <td><code>python3.11-minimal</code></td>
+        <td>CVE-2025-69534</td>
+        <td>HIGH</td>
+        <td>3.11.2-6+deb12u6</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>python3.11-minimal</code></td>
         <td>CVE-2025-8194</td>
         <td>HIGH</td>
         <td>3.11.2-6+deb12u6</td>
@@ -369,7 +404,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>Python</code></h3>
-<h4>Vulnerabilities (10)</h4>
+<h4>Vulnerabilities (11)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -391,6 +426,13 @@
         <td>HIGH</td>
         <td>0.19.0</td>
         <td></td>
+    </tr>
+    <tr>
+        <td><code>pyasn1</code></td>
+        <td>CVE-2026-30922</td>
+        <td>HIGH</td>
+        <td>0.4.6</td>
+        <td>0.6.3</td>
     </tr>
     <tr>
         <td><code>python-multipart</code></td>
@@ -518,10 +560,10 @@
     </tr>
     <tr>
         <td><code>stdlib</code></td>
-        <td>CVE-2025-61730</td>
+        <td>CVE-2026-25679</td>
         <td>HIGH</td>
         <td>v1.22.5</td>
-        <td>1.24.12, 1.25.6</td>
+        <td>1.25.8, 1.26.1</td>
     </tr>
 </table>
 <h4>No Misconfigurations found</h4>
@@ -567,7 +609,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>Node.js</code></h3>
-<h4>Vulnerabilities (14)</h4>
+<h4>Vulnerabilities (16)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -674,6 +716,20 @@
         <td>6.2.0</td>
         <td>7.5.8</td>
     </tr>
+    <tr>
+        <td><code>tar</code></td>
+        <td>CVE-2026-29786</td>
+        <td>HIGH</td>
+        <td>6.2.0</td>
+        <td>7.5.10</td>
+    </tr>
+    <tr>
+        <td><code>tar</code></td>
+        <td>CVE-2026-31802</td>
+        <td>HIGH</td>
+        <td>6.2.0</td>
+        <td>7.5.11</td>
+    </tr>
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>app/node_modules/@esbuild/linux-x64/bin/esbuild</code></h3>
@@ -730,16 +786,16 @@
     </tr>
     <tr>
         <td><code>stdlib</code></td>
-        <td>CVE-2025-61730</td>
+        <td>CVE-2026-25679</td>
         <td>HIGH</td>
         <td>v1.23.7</td>
-        <td>1.24.12, 1.25.6</td>
+        <td>1.25.8, 1.26.1</td>
     </tr>
 </table>
 <h4>No Misconfigurations found</h4>
 
 <h3>Target <code>docker.io/dserio83/velero-watchdog:0.1.8 (debian 12.10)</code></h3>
-<h4>Vulnerabilities (31)</h4>
+<h4>Vulnerabilities (32)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -824,6 +880,13 @@
         <td>HIGH</td>
         <td>2.5.0-1+deb12u1</td>
         <td>2.5.0-1+deb12u2</td>
+    </tr>
+    <tr>
+        <td><code>libexpat1</code></td>
+        <td>CVE-2026-25210</td>
+        <td>HIGH</td>
+        <td>2.5.0-1+deb12u1</td>
+        <td></td>
     </tr>
     <tr>
         <td><code>libgnutls30</code></td>
@@ -968,7 +1031,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>Python</code></h3>
-<h4>Vulnerabilities (9)</h4>
+<h4>Vulnerabilities (10)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -990,6 +1053,13 @@
         <td>HIGH</td>
         <td>0.6.1</td>
         <td>0.6.2</td>
+    </tr>
+    <tr>
+        <td><code>pyasn1</code></td>
+        <td>CVE-2026-30922</td>
+        <td>HIGH</td>
+        <td>0.6.1</td>
+        <td>0.6.3</td>
     </tr>
     <tr>
         <td><code>setuptools</code></td>

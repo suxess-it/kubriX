@@ -3,8 +3,8 @@
 <h4>No Vulnerabilities found</h4>
 <h4>No Misconfigurations found</h4>
 
-<h3>Target <code>ghcr.io/dexidp/dex:v2.44.0 (alpine 3.22.1)</code></h3>
-<h4>Vulnerabilities (6)</h4>
+<h3>Target <code>ghcr.io/dexidp/dex:v2.45.1 (alpine 3.23.3)</code></h3>
+<h4>Vulnerabilities (1)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -14,51 +14,16 @@
         <th>Fixed Version</th>
     </tr>
     <tr>
-        <td><code>libcrypto3</code></td>
-        <td>CVE-2025-15467</td>
-        <td>CRITICAL</td>
-        <td>3.5.1-r0</td>
-        <td>3.5.5-r0</td>
-    </tr>
-    <tr>
-        <td><code>libcrypto3</code></td>
-        <td>CVE-2025-69419</td>
+        <td><code>zlib</code></td>
+        <td>CVE-2026-22184</td>
         <td>HIGH</td>
-        <td>3.5.1-r0</td>
-        <td>3.5.5-r0</td>
-    </tr>
-    <tr>
-        <td><code>libcrypto3</code></td>
-        <td>CVE-2025-69421</td>
-        <td>HIGH</td>
-        <td>3.5.1-r0</td>
-        <td>3.5.5-r0</td>
-    </tr>
-    <tr>
-        <td><code>libssl3</code></td>
-        <td>CVE-2025-15467</td>
-        <td>CRITICAL</td>
-        <td>3.5.1-r0</td>
-        <td>3.5.5-r0</td>
-    </tr>
-    <tr>
-        <td><code>libssl3</code></td>
-        <td>CVE-2025-69419</td>
-        <td>HIGH</td>
-        <td>3.5.1-r0</td>
-        <td>3.5.5-r0</td>
-    </tr>
-    <tr>
-        <td><code>libssl3</code></td>
-        <td>CVE-2025-69421</td>
-        <td>HIGH</td>
-        <td>3.5.1-r0</td>
-        <td>3.5.5-r0</td>
+        <td>1.3.1-r2</td>
+        <td>1.3.2-r0</td>
     </tr>
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>usr/local/bin/dex</code></h3>
-<h4>Vulnerabilities (6)</h4>
+<h4>Vulnerabilities (4)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -68,51 +33,37 @@
         <th>Fixed Version</th>
     </tr>
     <tr>
-        <td><code>stdlib</code></td>
-        <td>CVE-2025-68121</td>
+        <td><code>github.com/russellhaering/goxmldsig</code></td>
+        <td>GHSA-479m-364c-43vc</td>
+        <td>HIGH</td>
+        <td>v1.5.0</td>
+        <td>1.6.0</td>
+    </tr>
+    <tr>
+        <td><code>google.golang.org/grpc</code></td>
+        <td>CVE-2026-33186</td>
         <td>CRITICAL</td>
-        <td>v1.25.0</td>
-        <td>1.24.13, 1.25.7, 1.26.0-rc.3</td>
+        <td>v1.79.1</td>
+        <td>1.79.3</td>
     </tr>
     <tr>
         <td><code>stdlib</code></td>
-        <td>CVE-2025-58183</td>
+        <td>CVE-2026-25679</td>
         <td>HIGH</td>
-        <td>v1.25.0</td>
-        <td>1.24.8, 1.25.2</td>
+        <td>v1.26.0</td>
+        <td>1.25.8, 1.26.1</td>
     </tr>
     <tr>
         <td><code>stdlib</code></td>
-        <td>CVE-2025-61726</td>
+        <td>CVE-2026-27137</td>
         <td>HIGH</td>
-        <td>v1.25.0</td>
-        <td>1.24.12, 1.25.6</td>
-    </tr>
-    <tr>
-        <td><code>stdlib</code></td>
-        <td>CVE-2025-61728</td>
-        <td>HIGH</td>
-        <td>v1.25.0</td>
-        <td>1.24.12, 1.25.6</td>
-    </tr>
-    <tr>
-        <td><code>stdlib</code></td>
-        <td>CVE-2025-61729</td>
-        <td>HIGH</td>
-        <td>v1.25.0</td>
-        <td>1.24.11, 1.25.5</td>
-    </tr>
-    <tr>
-        <td><code>stdlib</code></td>
-        <td>CVE-2025-61730</td>
-        <td>HIGH</td>
-        <td>v1.25.0</td>
-        <td>1.24.12, 1.25.6</td>
+        <td>v1.26.0</td>
+        <td>1.26.1</td>
     </tr>
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>usr/local/bin/docker-entrypoint</code></h3>
-<h4>Vulnerabilities (6)</h4>
+<h4>Vulnerabilities (2)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -123,50 +74,22 @@
     </tr>
     <tr>
         <td><code>stdlib</code></td>
-        <td>CVE-2025-68121</td>
-        <td>CRITICAL</td>
-        <td>v1.25.0</td>
-        <td>1.24.13, 1.25.7, 1.26.0-rc.3</td>
+        <td>CVE-2026-25679</td>
+        <td>HIGH</td>
+        <td>v1.26.0</td>
+        <td>1.25.8, 1.26.1</td>
     </tr>
     <tr>
         <td><code>stdlib</code></td>
-        <td>CVE-2025-58183</td>
+        <td>CVE-2026-27137</td>
         <td>HIGH</td>
-        <td>v1.25.0</td>
-        <td>1.24.8, 1.25.2</td>
-    </tr>
-    <tr>
-        <td><code>stdlib</code></td>
-        <td>CVE-2025-61726</td>
-        <td>HIGH</td>
-        <td>v1.25.0</td>
-        <td>1.24.12, 1.25.6</td>
-    </tr>
-    <tr>
-        <td><code>stdlib</code></td>
-        <td>CVE-2025-61728</td>
-        <td>HIGH</td>
-        <td>v1.25.0</td>
-        <td>1.24.12, 1.25.6</td>
-    </tr>
-    <tr>
-        <td><code>stdlib</code></td>
-        <td>CVE-2025-61729</td>
-        <td>HIGH</td>
-        <td>v1.25.0</td>
-        <td>1.24.11, 1.25.5</td>
-    </tr>
-    <tr>
-        <td><code>stdlib</code></td>
-        <td>CVE-2025-61730</td>
-        <td>HIGH</td>
-        <td>v1.25.0</td>
-        <td>1.24.12, 1.25.6</td>
+        <td>v1.26.0</td>
+        <td>1.26.1</td>
     </tr>
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>usr/local/bin/gomplate</code></h3>
-<h4>Vulnerabilities (8)</h4>
+<h4>Vulnerabilities (4)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -179,62 +102,34 @@
         <td><code>go.opentelemetry.io/otel/sdk</code></td>
         <td>CVE-2026-24051</td>
         <td>HIGH</td>
-        <td>v1.36.0</td>
+        <td>v1.39.0</td>
         <td>1.40.0</td>
+    </tr>
+    <tr>
+        <td><code>google.golang.org/grpc</code></td>
+        <td>CVE-2026-33186</td>
+        <td>CRITICAL</td>
+        <td>v1.77.0</td>
+        <td>1.79.3</td>
     </tr>
     <tr>
         <td><code>stdlib</code></td>
         <td>CVE-2025-68121</td>
         <td>CRITICAL</td>
-        <td>v1.24.5</td>
+        <td>v1.25.6</td>
         <td>1.24.13, 1.25.7, 1.26.0-rc.3</td>
     </tr>
     <tr>
         <td><code>stdlib</code></td>
-        <td>CVE-2025-47907</td>
+        <td>CVE-2026-25679</td>
         <td>HIGH</td>
-        <td>v1.24.5</td>
-        <td>1.23.12, 1.24.6</td>
-    </tr>
-    <tr>
-        <td><code>stdlib</code></td>
-        <td>CVE-2025-58183</td>
-        <td>HIGH</td>
-        <td>v1.24.5</td>
-        <td>1.24.8, 1.25.2</td>
-    </tr>
-    <tr>
-        <td><code>stdlib</code></td>
-        <td>CVE-2025-61726</td>
-        <td>HIGH</td>
-        <td>v1.24.5</td>
-        <td>1.24.12, 1.25.6</td>
-    </tr>
-    <tr>
-        <td><code>stdlib</code></td>
-        <td>CVE-2025-61728</td>
-        <td>HIGH</td>
-        <td>v1.24.5</td>
-        <td>1.24.12, 1.25.6</td>
-    </tr>
-    <tr>
-        <td><code>stdlib</code></td>
-        <td>CVE-2025-61729</td>
-        <td>HIGH</td>
-        <td>v1.24.5</td>
-        <td>1.24.11, 1.25.5</td>
-    </tr>
-    <tr>
-        <td><code>stdlib</code></td>
-        <td>CVE-2025-61730</td>
-        <td>HIGH</td>
-        <td>v1.24.5</td>
-        <td>1.24.12, 1.25.6</td>
+        <td>v1.25.6</td>
+        <td>1.25.8, 1.26.1</td>
     </tr>
 </table>
 <h4>No Misconfigurations found</h4>
 
-<h3>Target <code>quay.io/argoproj/argocd:v3.3.2 (ubuntu 25.10)</code></h3>
+<h3>Target <code>quay.io/argoproj/argocd:v3.3.4 (ubuntu 25.10)</code></h3>
 <h4>No Vulnerabilities found</h4>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>usr/local/bin/argocd</code></h3>
@@ -248,11 +143,11 @@
         <th>Fixed Version</th>
     </tr>
     <tr>
-        <td><code>go.opentelemetry.io/otel/sdk</code></td>
-        <td>CVE-2026-24051</td>
-        <td>HIGH</td>
-        <td>v1.38.0</td>
-        <td>1.40.0</td>
+        <td><code>google.golang.org/grpc</code></td>
+        <td>CVE-2026-33186</td>
+        <td>CRITICAL</td>
+        <td>v1.77.0</td>
+        <td>1.79.3</td>
     </tr>
     <tr>
         <td><code>stdlib</code></td>
@@ -277,15 +172,15 @@
     </tr>
     <tr>
         <td><code>stdlib</code></td>
-        <td>CVE-2025-61730</td>
+        <td>CVE-2026-25679</td>
         <td>HIGH</td>
         <td>v1.25.5</td>
-        <td>1.24.12, 1.25.6</td>
+        <td>1.25.8, 1.26.1</td>
     </tr>
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>usr/local/bin/helm</code></h3>
-<h4>Vulnerabilities (4)</h4>
+<h4>Vulnerabilities (5)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -295,6 +190,13 @@
         <th>Fixed Version</th>
     </tr>
     <tr>
+        <td><code>google.golang.org/grpc</code></td>
+        <td>CVE-2026-33186</td>
+        <td>CRITICAL</td>
+        <td>v1.72.1</td>
+        <td>1.79.3</td>
+    </tr>
+    <tr>
         <td><code>stdlib</code></td>
         <td>CVE-2025-68121</td>
         <td>CRITICAL</td>
@@ -317,10 +219,10 @@
     </tr>
     <tr>
         <td><code>stdlib</code></td>
-        <td>CVE-2025-61730</td>
+        <td>CVE-2026-25679</td>
         <td>HIGH</td>
         <td>v1.24.11</td>
-        <td>1.24.12, 1.25.6</td>
+        <td>1.25.8, 1.26.1</td>
     </tr>
 </table>
 <h4>No Misconfigurations found</h4>
@@ -385,10 +287,10 @@
     </tr>
     <tr>
         <td><code>stdlib</code></td>
-        <td>CVE-2025-61730</td>
+        <td>CVE-2026-25679</td>
         <td>HIGH</td>
         <td>v1.24.0</td>
-        <td>1.24.12, 1.25.6</td>
+        <td>1.25.8, 1.26.1</td>
     </tr>
 </table>
 <h4>No Misconfigurations found</h4>
