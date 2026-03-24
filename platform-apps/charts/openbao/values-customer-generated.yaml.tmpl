@@ -1,0 +1,10 @@
+openbao:
+  server:
+    ingress:
+      hosts:
+        - host: openbao.{{ .kubriX.domain }}
+          paths: []
+      tls: 
+        - secretName: openbao-server-tls
+          hosts:
+            - openbao.{{ .kubriX.domain }}

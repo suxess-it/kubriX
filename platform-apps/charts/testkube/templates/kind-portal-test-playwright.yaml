@@ -20,7 +20,7 @@ spec:
           name: git-credentials
           key: token
   container:
-    image: mcr.microsoft.com/playwright:v1.58.0
+    image: mcr.microsoft.com/playwright:v1.58.2
     resources:
       requests:
         cpu: 500m
@@ -34,7 +34,7 @@ spec:
   - name: Run tests
     run:
       shell: |
-        npx playwright test --project=argocd-tests --project=portal-tests --project=vault-tests --project=keycloak-tests --reporter=list,junit,html
+        npx playwright test --project=argocd-tests --project=portal-tests --project=openbao-tests --project=keycloak-tests --reporter=list,junit,html
       env:
       - name: PLAYWRIGHT_JUNIT_OUTPUT_NAME
         value: "/data/repo/e2e-tests/playwright/data/artifacts/junit-report.xml"

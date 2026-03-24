@@ -5,7 +5,7 @@ apiVersion: batch/v1
 kind: Job
 metadata:
   name: curl-oidc-discovery-url
-  namespace: vault
+  namespace: openbao
   annotations:
     argocd.argoproj.io/sync-wave: "2"
 spec:
@@ -71,14 +71,14 @@ metadata:
     argocd.argoproj.io/sync-wave: "3"
 spec:
   providerConfigRef:
-    name: vault-crossplane-providerconfig
+    name: openbao-crossplane-providerconfig
   forProvider:
     oidcDiscoveryUrl: "https://keycloak{{ .Values.kubrix.keycloak.domainName }}/realms/{{ $.Values.kubrix.keycloak.realm.realmid }}"
-    oidcClientId: vault
+    oidcClientId: openbao
     defaultRole: default
     oidcClientSecretSecretRef:
       name: keycloak-client-credentials
-      key: vault
+      key: openbao
       namespace: keycloak
     type: oidc
     path: oidc
@@ -94,10 +94,10 @@ metadata:
     argocd.argoproj.io/sync-wave: "7"
 spec:
   providerConfigRef:
-    name: vault-crossplane-providerconfig
+    name: openbao-crossplane-providerconfig
   forProvider:
     allowedRedirectUris: 
-    - https://vault{{ .Values.kubrix.keycloak.domainName }}/ui/vault/auth/oidc/oidc/callback
+    - https://openbao{{ .Values.kubrix.keycloak.domainName }}/ui/vault/auth/oidc/oidc/callback
     - http://localhost:8250/oidc/callback
     roleName: default
     userClaim: sub

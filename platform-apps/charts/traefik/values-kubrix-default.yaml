@@ -2,9 +2,14 @@ nginxIngressClass:
   enabled: true
 
 traefik:
+  ingressClass:
+    name: "traefik"
+
   providers:
     kubernetesIngressNginx:
       enabled: true
+      publishService:
+        enabled: true
 
   logs:
     access:

@@ -1,31 +1,76 @@
-{{- $routes := list -}}
-{{- range .Values.teams }}
-  {{- if .alerting }}
-    {{- $routes = append $routes (dict
-      "receiver" .name
-      "object_matchers" (list (list "namespace" "=~" (printf "%s-.*" .name)))
-    ) -}}
+{{- with .Values.platformteam }}
+{{- with .alerting }}
+{{- $state := dict "hasRoutes" false }}
+{{- range $team := $.Values.teams }}
+  {{- with $team.alerting }}
+    {{- if and $team.name .defaultReceiver }}
+      {{- $_ := set $state "hasRoutes" true }}
+    {{- end }}
   {{- end }}
 {{- end }}
-
+{{- with .notificationPolicy }}
+  {{- if gt (len .) 0 }}
+    {{- $_ := set $state "hasRoutes" true }}
+  {{- end }}
+{{- end }}
 apiVersion: v1
 kind: ConfigMap
 metadata:
+  name: alerting-notification-policy
   labels:
     grafana_alert: "1"
-  name: alerting-notification-policy
 data:
   notification-policy.yaml: |-
     apiVersion: 1
     policies:
       - orgId: 1
-        receiver: platform-team-default
+        receiver: {{ .defaultReceiver }}
+{{- with .groupBy }}
         group_by:
-          - grafana_folder
-          - alertname
-{{- if gt (len $routes) 0 }}
+{{ toYaml . | indent 10 }}
+{{- end }}
+{{- if $state.hasRoutes }}
         routes:
-{{ toYaml $routes | nindent 10 }}
-{{- else }}
-        routes: []
+{{- range $team := $.Values.teams }}
+{{- with $team.alerting }}
+{{- if and $team.name .defaultReceiver }}
+          - receiver: {{ .defaultReceiver }}
+            object_matchers:
+              - ["namespace", "=~", {{ printf "%s-.*" $team.name | quote }}]
+{{- with .groupBy }}
+            group_by:
+{{ toYaml . | indent 14 }}
+{{- end }}
+{{- with .notificationPolicy }}
+            routes:
+{{- range . }}
+              - receiver: {{ .receiver }}
+{{- with .object_matchers }}
+                object_matchers:
+{{ toYaml . | indent 18 }}
+{{- end }}
+{{- with .group_by }}
+                group_by:
+{{ toYaml . | indent 18 }}
+{{- end }}
+{{- end }}
+{{- end }}
+{{- end }}
+{{- end }}
+{{- end }}
+{{- end }}
+{{- with .notificationPolicy }}
+{{- range . }}
+          - receiver: {{ .receiver }}
+{{- with .object_matchers }}
+            object_matchers:
+{{ toYaml . | indent 14 }}
+{{- end }}
+{{- with .group_by }}
+            group_by:
+{{ toYaml . | indent 14 }}
+{{- end }}
+{{- end }}
+{{- end }}
+{{- end }}
 {{- end }}

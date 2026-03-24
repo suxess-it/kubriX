@@ -19,7 +19,7 @@ Think about Clustering Techstack Applications:
 -- falco
 -- trivy
 -- k8sgpt
--- Vault
+-- openbao
 (-- Istio/Cilium)
 
 - Resource Management Plane

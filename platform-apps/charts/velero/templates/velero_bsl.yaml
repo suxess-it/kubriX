@@ -10,6 +10,11 @@ spec:
   objectStorage:
     bucket: {{ .Values.backupStorageLocation.config.bucket | default "dummy" }}
     prefix: {{ $clusterName }}
+{{- if .Values.backupStorageLocation.config.usecaCert }}
+    caCertRef:
+      name: {{ .Values.backupStorageLocation.config.caCertSecretName | default "velero-cloud-credentials" }}
+      key: {{ .Values.backupStorageLocation.config.caCertSecretKey | default "caCert" }}
+{{- end }}
   accessMode: ReadWrite
   config:
     region: {{ .Values.backupStorageLocation.config.region | default "us-east-1" }}

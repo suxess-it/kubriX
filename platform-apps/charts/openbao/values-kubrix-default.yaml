@@ -1,0 +1,272 @@
+eso:
+  providerUrl: "http://sx-openbao-active.openbao.svc.cluster.local:8200"
+  backendName: openbao-backend
+  secretStore: kubrix-kv
+
+crossplane:
+  activeMRDs:
+    audits.vault.vault.upbound.io: true
+    mounts.vault.vault.upbound.io: true
+    policies.vault.vault.upbound.io: true
+    authbackendroles.kubernetes.vault.upbound.io: true
+    groups.identity.vault.upbound.io: true
+    secretbackendv2s.kv.vault.upbound.io: true
+    authbackendroles.token.vault.upbound.io: true
+    tokens.vault.vault.upbound.io: true
+
+openbao:
+  injector:
+    enabled: false
+  server:
+    ingress:
+      enabled: true
+      ingressClassName: nginx
+      annotations:
+        external-dns.alpha.kubernetes.io/ttl: "60"
+        cert-manager.io/cluster-issuer: default-issuer
+      hosts: []
+      tls: []
+    extraInitContainers:
+      - name: utility-downloader
+        image: alpine/curl:latest
+        command:
+        - /bin/sh
+        - -c
+        - |
+            set -euo pipefail
+            cd /usr/local/libexec/vault
+            ver="$(curl -fsSL --retry 10 --retry-all-errors --retry-delay 5 \
+              https://dl.k8s.io/release/stable.txt)"
+            curl -fL --retry 10 --retry-all-errors --retry-delay 5 \
+             -o kubectl "https://dl.k8s.io/release/${ver}/bin/linux/amd64/kubectl"
+            chmod +x kubectl
+            curl -L -o jq https://github.com/stedolan/jq/releases/download/jq-1.8.1/jq-linux64
+            chmod +x jq
+        volumeMounts:
+          - name: plugins
+            mountPath: /usr/local/libexec/vault
+        securityContext:
+          allowPrivilegeEscalation: false
+          capabilities:
+            drop:
+            - ALL
+          privileged: false
+          runAsNonRoot: true
+    extraContainers:
+      - name: auto-initializer
+        image: quay.io/openbao/openbao:2.5.1
+        env:
+          - name: VAULT_ADDR
+            valueFrom:
+              secretKeyRef:
+                name: sx-openbao-env-vars
+                key: VAULT_ADDR
+        command:
+        - /bin/sh
+        - -c
+        - |
+            while true; do
+              while [ -z $UNSEAL_KEY ]; do
+                VAULT_STATUS=$(bao status)
+                if echo "$VAULT_STATUS" | grep -q "Initialized.*false" && [ $HOSTNAME = 'sx-openbao-0' ]; then
+                  export INIT_RESPONSE=$(bao operator init -format=json -key-shares=1 -key-threshold=1)
+                  echo "$INIT_RESPONSE"
+                  export UNSEAL_KEY=$(echo "$INIT_RESPONSE" | /usr/local/libexec/vault/jq -r .unseal_keys_b64[0])
+                  export ROOT_TOKEN=$(echo "$INIT_RESPONSE" | /usr/local/libexec/vault/jq -r .root_token)
+                  echo "$UNSEAL_KEY"
+                  echo "$ROOT_TOKEN"
+                  /usr/local/libexec/vault/kubectl delete secret openbao-init -n openbao --ignore-not-found
+                  /usr/local/libexec/vault/kubectl create secret generic openbao-init -n openbao --from-literal=unseal_key=${UNSEAL_KEY} --from-literal=root_token=${ROOT_TOKEN}
+                else
+                  echo "Vault Initialized"
+                fi
+                sleep 3
+              done
+              sleep 3
+            done
+        volumeMounts:
+          - name: plugins
+            mountPath: /usr/local/libexec/vault
+        securityContext:
+          allowPrivilegeEscalation: false
+          capabilities:
+            drop:
+            - ALL
+          privileged: false
+          runAsNonRoot: true
+
+      - name: auto-unsealer
+        image: quay.io/openbao/openbao:2.5.1
+        env:
+          - name: VAULT_ADDR
+            valueFrom:
+              secretKeyRef:
+                name: sx-openbao-env-vars
+                key: VAULT_ADDR
+        command:
+        - /bin/sh
+        - -c
+        - |
+            while true; do
+              VAULT_STATUS=$(bao status)
+              if echo "$VAULT_STATUS" | grep -q "Initialized.*false" && [ $HOSTNAME != 'sx-openbao-0' ]; then
+                echo joining raft cluster
+                bao operator raft join http://sx-openbao-0.sx-openbao-internal:8200
+                sleep 3
+              fi
+              if echo "$VAULT_STATUS" | grep -q "Initialized.*true"; then
+                if echo "$VAULT_STATUS" | grep -q "Sealed.*true"; then
+                  UNSEAL_KEY=$(/usr/local/libexec/vault/kubectl get secret openbao-init -n openbao -o jsonpath='{.data.unseal_key}' 2>/dev/null | base64 -d)
+                  if [ -n "$UNSEAL_KEY" ]; then
+                    bao operator unseal "$UNSEAL_KEY"
+                    sleep 3
+                  else
+                    echo unseal key not initialized yet
+                  fi
+                else
+                  echo vault already unsealed
+                  sleep 60
+                  continue
+                fi
+              else
+                echo Vault not initialized yet
+              fi
+              sleep 3
+            done
+        volumeMounts:
+          - name: plugins
+            mountPath: /usr/local/libexec/vault
+        securityContext:
+          allowPrivilegeEscalation: false
+          capabilities:
+            drop:
+            - ALL
+          privileged: false
+          runAsNonRoot: true
+      - name: vault-initializer
+        image: quay.io/openbao/openbao:2.5.1
+        env:
+          - name: VAULT_ADDR
+            valueFrom:
+              secretKeyRef:
+                name: sx-openbao-env-vars
+                key: VAULT_ADDR
+        command:
+        - /bin/sh
+        - -c
+        - |
+          while true; do
+            VAULT_TOKEN=$(/usr/local/libexec/vault/kubectl get secret openbao-init -n openbao -o jsonpath='{.data.root_token}' 2>/dev/null | base64 -d)
+            if [ -n "$VAULT_TOKEN" ]; then
+              export VAULT_TOKEN
+
+              if bao status | grep -q "Sealed.*false"; then
+                # root-namespace operations (sys/ endpoints require root namespace)
+                bao audit list 2>/dev/null | grep -q "file/" || bao audit enable file file_path=stdout
+                bao namespace list -namespace="" 2>/dev/null | grep -q "^kubrix/" || bao namespace create -namespace="" kubrix
+
+                # crossplane token in root namespace (root init token is not valid in child namespaces)
+                if ! /usr/local/libexec/vault/kubectl get secret crossplane-init -n openbao >/dev/null 2>&1; then
+                  CROSSPLANETOKEN="$(bao token create -display-name=crossplane-token -policy=root -format=json \
+                   | /usr/local/libexec/vault/jq -r '.auth.client_token')"
+                  /usr/local/libexec/vault/kubectl create secret generic crossplane-init -n openbao \
+                    --from-literal=credentials='{"token":"'"$CROSSPLANETOKEN"'"}'
+                fi
+
+                export VAULT_NAMESPACE=kubrix
+
+                # only run setup when admins group does NOT exist
+                if ! bao read identity/group/name/admins >/dev/null 2>&1; then
+                  # kubernetes auth backend (kubrix namespace)
+                  if ! bao read auth/kubernetes/config >/dev/null 2>&1; then
+                    bao auth enable kubernetes || true
+                    bao write auth/kubernetes/config \
+                      token_reviewer_jwt="$(cat /var/run/secrets/kubernetes.io/serviceaccount/token)" \
+                      kubernetes_host="https://${KUBERNETES_PORT_443_TCP_ADDR:-$KUBERNETES_SERVICE_HOST}:443" \
+                      kubernetes_ca_cert=@/var/run/secrets/kubernetes.io/serviceaccount/ca.crt
+                  fi
+
+                  # crossplane role (kubrix namespace)
+                  if ! bao read auth/kubernetes/role/crossplane >/dev/null 2>&1; then
+                    bao write auth/kubernetes/role/crossplane \
+                      bound_service_account_names="*" \
+                      bound_service_account_namespaces=crossplane \
+                      policies=crossplane \
+                      ttl=24h \
+                      audience=crossplane
+                  fi
+                else
+                  echo "setup complete"
+                  sleep 60
+                  continue
+                fi
+              else
+                echo "vault still sealed"
+              fi
+            else
+              echo "root token not initialized yet"
+            fi
+            sleep 3
+          done
+        volumeMounts:
+          - name: plugins
+            mountPath: /usr/local/libexec/vault
+        securityContext:
+          allowPrivilegeEscalation: false
+          capabilities:
+            drop:
+            - ALL
+          privileged: false
+          runAsNonRoot: true
+    volumes:
+      - name: plugins
+        emptyDir: {}
+      - name: vault-root-token
+        secret:
+          secretName: openbao-init
+          optional: true
+    volumeMounts:
+      - mountPath: /usr/local/libexec/vault
+        name: plugins
+        readOnly: false
+    dataStorage:
+      size: 1Gi
+    affinity: {}
+    ha:
+      enabled: true
+      replicas: 1
+      raft:
+        enabled: true
+        setNodeId: true
+        config: |
+          ui = true
+
+          listener "tcp" {
+            tls_disable = 1
+            address = "[::]:8200"
+            cluster_address = "[::]:8201"
+            # Enable unauthenticated metrics access (necessary for Prometheus Operator)
+            telemetry {
+              unauthenticated_metrics_access = "true"
+            }
+          }
+
+          storage "raft" {
+            path = "/openbao/data"
+          }
+
+          telemetry {
+            prometheus_retention_time = "30m"
+            disable_hostname = true
+          }
+
+          service_registration "kubernetes" {}
+          plugin_directory = "/usr/local/libexec/vault"
+          unsafe_allow_api_audit_creation = true
+      config: |
+        allow_audit_log_prefixing: true
+  serverTelemetry:
+    serviceMonitor:
+      enabled: true
+  prometheusRules:
+    enabled: true

@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  labels:
+    grafana_dashboard: "1"
+  name: keycloak-troubleshooting-dashboard
+data:
+  keycloak-troubleshooting-dashboard.json: |-
+{{ .Files.Get "dashboard-files/keycloak-troubleshooting-dashboard.json" | indent 4 }}
