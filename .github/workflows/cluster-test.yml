@@ -432,6 +432,8 @@ jobs:
           if [[ -z "$data" || "$data" == "{}" ]]; then
             echo "keycloak secret empty!!!"
             kubectl get pods -o name -n external-secrets | xargs -I {} kubectl logs -n external-secrets {} --all-containers=true
+            echo "========"
+            kubectl get pods -o name -n openbao | xargs -I {} kubectl logs -n openbao {} --all-containers=true
             exit 1 # empty/missing
           fi
 
