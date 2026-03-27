@@ -1,5 +1,5 @@
 
-<h3>Target <code>docker.io/grafana/tempo:2.9.0 (debian 12.12)</code></h3>
+<h3>Target <code>docker.io/grafana/tempo:2.10.1 (debian 12.13)</code></h3>
 <h4>No Vulnerabilities found</h4>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>tempo</code></h3>
@@ -13,32 +13,32 @@
         <th>Fixed Version</th>
     </tr>
     <tr>
-        <td><code>stdlib</code></td>
-        <td>CVE-2025-58183</td>
+        <td><code>github.com/buger/jsonparser</code></td>
+        <td>GHSA-6g7g-w4f8-9c9x</td>
         <td>HIGH</td>
-        <td>v1.25.1</td>
-        <td>1.24.8, 1.25.2</td>
+        <td>v1.1.1</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>go.opentelemetry.io/otel/sdk</code></td>
+        <td>CVE-2026-24051</td>
+        <td>HIGH</td>
+        <td>v1.39.0</td>
+        <td>1.40.0</td>
+    </tr>
+    <tr>
+        <td><code>google.golang.org/grpc</code></td>
+        <td>CVE-2026-33186</td>
+        <td>CRITICAL</td>
+        <td>v1.78.0</td>
+        <td>1.79.3</td>
     </tr>
     <tr>
         <td><code>stdlib</code></td>
-        <td>CVE-2025-58186</td>
+        <td>CVE-2026-25679</td>
         <td>HIGH</td>
-        <td>v1.25.1</td>
-        <td>1.24.8, 1.25.2</td>
-    </tr>
-    <tr>
-        <td><code>stdlib</code></td>
-        <td>CVE-2025-58187</td>
-        <td>HIGH</td>
-        <td>v1.25.1</td>
-        <td>1.24.9, 1.25.3</td>
-    </tr>
-    <tr>
-        <td><code>stdlib</code></td>
-        <td>CVE-2025-61729</td>
-        <td>HIGH</td>
-        <td>v1.25.1</td>
-        <td>1.24.11, 1.25.5</td>
+        <td>v1.25.7</td>
+        <td>1.25.8, 1.26.1</td>
     </tr>
 </table>
 <h4>No Misconfigurations found</h4>
