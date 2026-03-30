@@ -307,7 +307,7 @@
         <td>GHSA-6g7g-w4f8-9c9x</td>
         <td>HIGH</td>
         <td>v1.1.1</td>
-        <td></td>
+        <td>1.1.2</td>
     </tr>
     <tr>
         <td><code>github.com/golang-jwt/jwt/v4</code></td>

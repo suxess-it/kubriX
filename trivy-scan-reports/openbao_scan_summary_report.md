@@ -39,7 +39,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>bin/bao</code></h3>
-<h4>Vulnerabilities (7)</h4>
+<h4>Vulnerabilities (9)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -54,6 +54,20 @@
         <td>HIGH</td>
         <td>v29.0.3+incompatible</td>
         <td>29.2.0</td>
+    </tr>
+    <tr>
+        <td><code>github.com/openbao/openbao</code></td>
+        <td>CVE-2026-33757</td>
+        <td>CRITICAL</td>
+        <td>v0.0.0-20260223170234-e546fae8cbfe</td>
+        <td>0.0.0-20260325142553-e32103951925</td>
+    </tr>
+    <tr>
+        <td><code>github.com/openbao/openbao</code></td>
+        <td>CVE-2026-33758</td>
+        <td>CRITICAL</td>
+        <td>v0.0.0-20260223170234-e546fae8cbfe</td>
+        <td>0.0.0-20260325133417-6e2b2dd84f0e</td>
     </tr>
     <tr>
         <td><code>github.com/openbao/openbao</code></td>

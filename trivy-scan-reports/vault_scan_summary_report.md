@@ -74,7 +74,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>bin/vault</code></h3>
-<h4>Vulnerabilities (10)</h4>
+<h4>Vulnerabilities (11)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -82,6 +82,13 @@
         <th>Severity</th>
         <th>Installed Version</th>
         <th>Fixed Version</th>
+    </tr>
+    <tr>
+        <td><code>github.com/docker/docker</code></td>
+        <td>CVE-2026-34040</td>
+        <td>HIGH</td>
+        <td>v28.3.3+incompatible</td>
+        <td>29.3.1</td>
     </tr>
     <tr>
         <td><code>github.com/dvsekhvalnov/jose2go</code></td>
@@ -218,7 +225,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>bin/vault</code></h3>
-<h4>Vulnerabilities (7)</h4>
+<h4>Vulnerabilities (8)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -226,6 +233,13 @@
         <th>Severity</th>
         <th>Installed Version</th>
         <th>Fixed Version</th>
+    </tr>
+    <tr>
+        <td><code>github.com/docker/docker</code></td>
+        <td>CVE-2026-34040</td>
+        <td>HIGH</td>
+        <td>v28.4.0+incompatible</td>
+        <td>29.3.1</td>
     </tr>
     <tr>
         <td><code>github.com/jackc/pgproto3/v2</code></td>

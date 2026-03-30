@@ -34,7 +34,7 @@
     </tr>
     <tr>
         <td><code>github.com/russellhaering/goxmldsig</code></td>
-        <td>GHSA-479m-364c-43vc</td>
+        <td>CVE-2026-33487</td>
         <td>HIGH</td>
         <td>v1.5.0</td>
         <td>1.6.0</td>

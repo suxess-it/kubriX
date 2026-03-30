@@ -3,7 +3,7 @@
 <h4>No Vulnerabilities found</h4>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>tempo</code></h3>
-<h4>Vulnerabilities (4)</h4>
+<h4>Vulnerabilities (5)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -13,11 +13,18 @@
         <th>Fixed Version</th>
     </tr>
     <tr>
+        <td><code>github.com/antchfx/xpath</code></td>
+        <td>CVE-2026-32287</td>
+        <td>HIGH</td>
+        <td>v1.3.5</td>
+        <td>1.3.6</td>
+    </tr>
+    <tr>
         <td><code>github.com/buger/jsonparser</code></td>
         <td>GHSA-6g7g-w4f8-9c9x</td>
         <td>HIGH</td>
         <td>v1.1.1</td>
-        <td></td>
+        <td>1.1.2</td>
     </tr>
     <tr>
         <td><code>go.opentelemetry.io/otel/sdk</code></td>

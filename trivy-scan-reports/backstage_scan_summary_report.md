@@ -72,7 +72,7 @@
 <h4>No Vulnerabilities found</h4>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>Node.js</code></h3>
-<h4>Vulnerabilities (60)</h4>
+<h4>Vulnerabilities (69)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -100,14 +100,14 @@
         <td>CVE-2026-33036</td>
         <td>HIGH</td>
         <td>5.3.6</td>
-        <td>5.5.6</td>
+        <td>5.5.6, 4.5.5</td>
     </tr>
     <tr>
         <td><code>fast-xml-parser</code></td>
         <td>CVE-2026-33036</td>
         <td>HIGH</td>
         <td>5.3.7</td>
-        <td>5.5.6</td>
+        <td>5.5.6, 4.5.5</td>
     </tr>
     <tr>
         <td><code>flatted</code></td>
@@ -115,6 +115,13 @@
         <td>HIGH</td>
         <td>3.3.3</td>
         <td>3.4.0</td>
+    </tr>
+    <tr>
+        <td><code>flatted</code></td>
+        <td>CVE-2026-33228</td>
+        <td>HIGH</td>
+        <td>3.3.3</td>
+        <td>3.4.2</td>
     </tr>
     <tr>
         <td><code>minimatch</code></td>
@@ -269,6 +276,62 @@
         <td>HIGH</td>
         <td>2.0.2</td>
         <td>2.1.1</td>
+    </tr>
+    <tr>
+        <td><code>node-forge</code></td>
+        <td>CVE-2026-33891</td>
+        <td>HIGH</td>
+        <td>1.3.3</td>
+        <td>1.4.0</td>
+    </tr>
+    <tr>
+        <td><code>node-forge</code></td>
+        <td>CVE-2026-33894</td>
+        <td>HIGH</td>
+        <td>1.3.3</td>
+        <td>1.4.0</td>
+    </tr>
+    <tr>
+        <td><code>node-forge</code></td>
+        <td>CVE-2026-33895</td>
+        <td>HIGH</td>
+        <td>1.3.3</td>
+        <td>1.4.0</td>
+    </tr>
+    <tr>
+        <td><code>node-forge</code></td>
+        <td>CVE-2026-33896</td>
+        <td>HIGH</td>
+        <td>1.3.3</td>
+        <td>1.4.0</td>
+    </tr>
+    <tr>
+        <td><code>path-to-regexp</code></td>
+        <td>CVE-2026-4867</td>
+        <td>HIGH</td>
+        <td>0.1.12</td>
+        <td>0.1.13</td>
+    </tr>
+    <tr>
+        <td><code>path-to-regexp</code></td>
+        <td>CVE-2026-4926</td>
+        <td>HIGH</td>
+        <td>8.3.0</td>
+        <td>8.4.0</td>
+    </tr>
+    <tr>
+        <td><code>picomatch</code></td>
+        <td>CVE-2026-33671</td>
+        <td>HIGH</td>
+        <td>2.3.1</td>
+        <td>4.0.4, 3.0.2, 2.3.2</td>
+    </tr>
+    <tr>
+        <td><code>picomatch</code></td>
+        <td>CVE-2026-33671</td>
+        <td>HIGH</td>
+        <td>4.0.3</td>
+        <td>4.0.4, 3.0.2, 2.3.2</td>
     </tr>
     <tr>
         <td><code>systeminformation</code></td>

@@ -488,7 +488,7 @@
 <h4>No Misconfigurations found</h4>
 
 <h3>Target <code>docker.io/falcosecurity/falco:0.41.0-debian (debian 12.11)</code></h3>
-<h4>Vulnerabilities (36)</h4>
+<h4>Vulnerabilities (43)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -652,6 +652,20 @@
         <td></td>
     </tr>
     <tr>
+        <td><code>libncursesw6</code></td>
+        <td>CVE-2025-69720</td>
+        <td>HIGH</td>
+        <td>6.4-4</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>libnghttp2-14</code></td>
+        <td>CVE-2026-27135</td>
+        <td>HIGH</td>
+        <td>1.52.0-1+deb12u2</td>
+        <td></td>
+    </tr>
+    <tr>
         <td><code>libpam-modules</code></td>
         <td>CVE-2025-6020</td>
         <td>HIGH</td>
@@ -715,6 +729,41 @@
         <td>3.0.18-1~deb12u2</td>
     </tr>
     <tr>
+        <td><code>libsystemd0</code></td>
+        <td>CVE-2026-29111</td>
+        <td>HIGH</td>
+        <td>252.36-1~deb12u1</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>libtinfo6</code></td>
+        <td>CVE-2025-69720</td>
+        <td>HIGH</td>
+        <td>6.4-4</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>libudev1</code></td>
+        <td>CVE-2026-29111</td>
+        <td>HIGH</td>
+        <td>252.36-1~deb12u1</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>ncurses-base</code></td>
+        <td>CVE-2025-69720</td>
+        <td>HIGH</td>
+        <td>6.4-4</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>ncurses-bin</code></td>
+        <td>CVE-2025-69720</td>
+        <td>HIGH</td>
+        <td>6.4-4</td>
+        <td></td>
+    </tr>
+    <tr>
         <td><code>openssl</code></td>
         <td>CVE-2025-15467</td>
         <td>CRITICAL</td>
@@ -756,7 +805,7 @@
 <h4>No Vulnerabilities found</h4>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>usr/bin/falcoctl</code></h3>
-<h4>Vulnerabilities (16)</h4>
+<h4>Vulnerabilities (17)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -771,6 +820,13 @@
         <td>HIGH</td>
         <td>v27.5.1+incompatible</td>
         <td>29.2.0</td>
+    </tr>
+    <tr>
+        <td><code>github.com/docker/docker</code></td>
+        <td>CVE-2026-34040</td>
+        <td>HIGH</td>
+        <td>v27.5.1+incompatible</td>
+        <td>29.3.1</td>
     </tr>
     <tr>
         <td><code>github.com/golang-jwt/jwt/v4</code></td>
