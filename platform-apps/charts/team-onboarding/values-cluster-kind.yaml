@@ -6,4 +6,42 @@ destinationClusters:
 
 multiStageKargoAppSetHelmRepo: "https://github.com/suxess-it/kubriX"
 
+platformteam:
+  alerting:
+    defaultReceiver: platform-team-default
+    groupBy:
+      - grafana_folder
+      - alertname
+      - namespace
+      - severity
+    contactPoints:
+      platform-team-default:
+        receivers:
+          - uid: platform-team-default
+            type: webhook
+            settings:
+              url: "http://test.kubrix.cloud/alertchannel-default"
+            disableResolveMessage: false
+      platform-team-warning:
+        receivers:
+        - uid: platform-team-warning
+          type: webhook
+          settings:
+            url: "http://test.kubrix.cloud/alertchannel-warning"
+          disableResolveMessage: false
+      platform-team-critical:
+        receivers:
+        - uid: platform-team-critical
+          type: webhook
+          settings:
+            url: "http://test.kubrix.cloud/alertchannel-critical"
+          disableResolveMessage: false
+    notificationPolicy:
+      - receiver: platform-team-warning
+        object_matchers:
+          - ["severity", "=", "warning"]
+      - receiver: platform-team-critical
+        object_matchers:
+          - ["severity", "=", "critical"]
+
 teams: []

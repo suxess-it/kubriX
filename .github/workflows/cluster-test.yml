@@ -62,7 +62,7 @@ jobs:
         with:
           fetch-depth: 0  # needed so the action can diff properly
       - id: filter
-        uses: dorny/paths-filter@v3
+        uses: dorny/paths-filter@v4
         with:
           list-files: json
           # For PRs it compares base..head. For push it compares before..after.
@@ -232,7 +232,7 @@ jobs:
      
       - name: Build and push docker
         if: ${{ needs.changes.outputs.dockerImageChanges == 'true' }}
-        uses: docker/build-push-action@v6
+        uses: docker/build-push-action@v7
         with:
           context: .
           push: true
@@ -426,11 +426,22 @@ jobs:
           E2E_TEAM_ONBOARDING_TARGET_BRANCH: ${{ github.head_ref || github.ref_name }}
         run: |
           E2E_KEYCLOAK_DEMOADMIN_PASSWORD=$( kubectl get secret -n keycloak cp-keycloak-users-secret -o=jsonpath='{.data.demoadmin}'  | base64 -d )
+          kubectl get secret -n keycloak cp-keycloak-users-secret -o yaml
+          data=$(kubectl get secret -n keycloak cp-keycloak-users-secret -o jsonpath='{.data}' 2>/dev/null)
+
+          if [[ -z "$data" || "$data" == "{}" ]]; then
+            echo "keycloak secret empty!!!"
+            kubectl get pods -o name -n external-secrets | xargs -I {} kubectl logs -n external-secrets {} --all-containers=true
+            echo "========"
+            kubectl get pods -o name -n openbao | xargs -I {} kubectl logs -n openbao {} --all-containers=true
+            exit 1 # empty/missing
+          fi
+
           echo "${E2E_KEYCLOAK_DEMOADMIN_PASSWORD}"
           E2E_KEYCLOAK_DEMOUSER_PASSWORD=$( kubectl get secret -n keycloak cp-keycloak-users-secret -o=jsonpath='{.data.demouser}'  | base64 -d )
           echo "${E2E_KEYCLOAK_DEMOUSER_PASSWORD}"
           E2E_ARGOCD_ADMIN_PASSWORD=$( kubectl get secret -n argocd argocd-initial-admin-secret -o=jsonpath={'.data.password'} | base64 -d )
-          E2E_ARGOCD_VERSION="v3.3.4"
+          E2E_ARGOCD_VERSION="v3.3.5"
           E2E_GRAFANA_ADMIN_PASSWORD=$( kubectl get secret -n grafana grafana-admin-secret -o=jsonpath='{.data.passwordKey}' | base64 -d )
           E2E_KEYCLOAK_ADMIN_PASSWORD=$( kubectl get secret -n keycloak keycloak-admin -o=jsonpath='{.data.admin-password}' | base64 -d )
           E2E_VAULT_ROOT_TOKEN=$( kubectl get secret -n openbao openbao-init -o jsonpath='{.data.root_token}' | base64 -d )
