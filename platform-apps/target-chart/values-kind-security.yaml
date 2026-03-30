@@ -76,5 +76,7 @@ applications:
       - ServerSideApply=true
 
   - name: testkube
+    annotations:
+      argocd.argoproj.io/compare-options: ServerSideDiff=true
     syncOptions:
       - ServerSideApply=true
