@@ -59,6 +59,8 @@ applications:
       argocd.argoproj.io/sync-wave: "-5"
 
   - name: testkube
+    syncOptions:
+      - ServerSideApply=true
 
   - name: kargo
    
