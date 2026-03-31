@@ -162,8 +162,12 @@ openbao:
 
               if bao status | grep -q "Sealed.*false"; then
                 # root-namespace operations (sys/ endpoints require root namespace)
-                bao audit list 2>/dev/null | grep -q "file/" || bao audit enable file file_path=stdout
+                echo "date: $(date)"
+                date
+                bao audit list -namespace="" 2>/dev/null | grep -q "file/" || bao audit enable -namespace="" file file_path=stdout
                 bao namespace list -namespace="" 2>/dev/null | grep -q "^kubrix/" || bao namespace create -namespace="" kubrix
+                echo "namespace kubriX created!"
+                echo "date: $(date)"
 
                 # crossplane token in root namespace (root init token is not valid in child namespaces)
                 if ! /usr/local/libexec/vault/kubectl get secret crossplane-init -n openbao >/dev/null 2>&1; then

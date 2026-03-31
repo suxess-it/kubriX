@@ -383,6 +383,59 @@ create_openbao_secrets_for_backstage() {
 
 }
 
+wait_for_openbao_namespace_and_mount() {
+  local timeout_seconds=120
+  local poll_interval=5
+  local deadline=$((SECONDS + timeout_seconds))
+
+  export VAULT_HOSTNAME=$(kubectl get ingress -n openbao -o jsonpath='{.items[*].spec.rules[*].host}')
+  export VAULT_TOKEN=$(kubectl get secret -n openbao openbao-init -o=jsonpath='{.data.root_token}' | base64 -d)
+
+  while [ "$SECONDS" -lt "$deadline" ]; do
+    local now
+    now="$(date -u -Iseconds)"
+    echo "[$now] checking OpenBao namespace and mount readiness..."
+
+    # Check namespace from root context
+    local ns_body
+    ns_body="$(
+      curl -ksS \
+        --header "X-Vault-Token: $VAULT_TOKEN" \
+        --request LIST \
+        "https://${VAULT_HOSTNAME}/v1/sys/namespaces" \
+        2>/dev/null
+    )"
+
+    if ! printf '%s' "$ns_body" | grep -q '"kubrix/"'; then
+      echo "waiting for namespace kubrix/ ..."
+      sleep "$poll_interval"
+      continue
+    fi
+
+    # Check mount inside kubrix/ namespace
+    local mounts_body
+    mounts_body="$(
+      curl -ksS \
+        --header "X-Vault-Token: $VAULT_TOKEN" \
+        --header "X-Vault-Namespace: kubrix/" \
+        "https://${VAULT_HOSTNAME}/v1/sys/mounts" \
+        2>/dev/null
+    )"
+
+    if ! printf '%s' "$mounts_body" | grep -q '"kubrix-kv/"'; then
+      echo "waiting for mount kubrix-kv/ in namespace kubrix/ ..."
+      sleep "$poll_interval"
+      continue
+    fi
+
+    echo "OpenBao namespace kubrix/ and mount kubrix-kv/ are ready"
+    return 0
+  done
+
+  echo "WARNING: OpenBao namespace/mount not ready after ${timeout_seconds}s"
+  return 1
+}
+
 wait_until_apps_synced_healthy() {
   local apps=$1
   local synced=$2
@@ -453,11 +506,16 @@ wait_until_apps_synced_healthy() {
         if [ ! -f ./.secrets/secrettemp/secrets-applied ] && [ "${KUBRIX_GENERATE_SECRETS}" = "true" ]; then
           echo "sx-openbao is synced and healthy — applying pushsecrets"
           echo
-          kubectl apply -f ./.secrets/secrettemp/pushsecrets.yaml
-          touch ./.secrets/secrettemp/secrets-applied
-          echo "waiting for all pushsecrets to sync..."
-          kubectl wait pushsecret --all-namespaces --all --for=condition=Ready=True --timeout=120s || echo "WARNING: not all pushsecrets synced within timeout"
-          echo "--------------------"
+          if wait_for_openbao_namespace_and_mount; then
+            echo "applying pushsecrets"
+            kubectl apply -f ./.secrets/secrettemp/pushsecrets.yaml
+            touch ./.secrets/secrettemp/secrets-applied
+            echo "waiting for all pushsecrets to sync..."
+            kubectl wait pushsecret --all-namespaces --all --for=condition=Ready=True --timeout=120s || echo "WARNING: not all pushsecrets synced within timeout"
+            echo "--------------------"
+          else
+            echo "WARNING: skipping pushsecrets because OpenBao is not ready yet"
+          fi
         fi
       fi
 
