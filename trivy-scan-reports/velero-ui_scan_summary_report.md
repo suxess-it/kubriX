@@ -1,6 +1,6 @@
 
 <h3>Target <code>docker.io/dserio83/velero-api:0.3.1 (debian 12.11)</code></h3>
-<h4>Vulnerabilities (67)</h4>
+<h4>Vulnerabilities (69)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -59,6 +59,13 @@
         <td></td>
     </tr>
     <tr>
+        <td><code>libc-bin</code></td>
+        <td>CVE-2026-4046</td>
+        <td>HIGH</td>
+        <td>2.36-9+deb12u10</td>
+        <td></td>
+    </tr>
+    <tr>
         <td><code>libc6</code></td>
         <td>CVE-2025-4802</td>
         <td>HIGH</td>
@@ -68,6 +75,13 @@
     <tr>
         <td><code>libc6</code></td>
         <td>CVE-2026-0861</td>
+        <td>HIGH</td>
+        <td>2.36-9+deb12u10</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>libc6</code></td>
+        <td>CVE-2026-4046</td>
         <td>HIGH</td>
         <td>2.36-9+deb12u10</td>
         <td></td>
@@ -872,7 +886,7 @@
 <h4>No Misconfigurations found</h4>
 
 <h3>Target <code>docker.io/dserio83/velero-watchdog:0.1.8 (debian 12.10)</code></h3>
-<h4>Vulnerabilities (39)</h4>
+<h4>Vulnerabilities (41)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -931,6 +945,13 @@
         <td></td>
     </tr>
     <tr>
+        <td><code>libc-bin</code></td>
+        <td>CVE-2026-4046</td>
+        <td>HIGH</td>
+        <td>2.36-9+deb12u10</td>
+        <td></td>
+    </tr>
+    <tr>
         <td><code>libc6</code></td>
         <td>CVE-2025-4802</td>
         <td>HIGH</td>
@@ -940,6 +961,13 @@
     <tr>
         <td><code>libc6</code></td>
         <td>CVE-2026-0861</td>
+        <td>HIGH</td>
+        <td>2.36-9+deb12u10</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>libc6</code></td>
+        <td>CVE-2026-4046</td>
         <td>HIGH</td>
         <td>2.36-9+deb12u10</td>
         <td></td>

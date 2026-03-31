@@ -19,7 +19,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 
-<h3>Target <code>quay.io/openbao/openbao:2.5.1 (alpine 3.23.3)</code></h3>
+<h3>Target <code>quay.io/openbao/openbao:2.5.2 (alpine 3.23.3)</code></h3>
 <h4>Vulnerabilities (1)</h4>
 <table>
     <tr>
@@ -39,7 +39,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>bin/bao</code></h3>
-<h4>Vulnerabilities (9)</h4>
+<h4>Vulnerabilities (6)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -57,44 +57,30 @@
     </tr>
     <tr>
         <td><code>github.com/openbao/openbao</code></td>
-        <td>CVE-2026-33757</td>
-        <td>CRITICAL</td>
-        <td>v0.0.0-20260223170234-e546fae8cbfe</td>
-        <td>0.0.0-20260325142553-e32103951925</td>
-    </tr>
-    <tr>
-        <td><code>github.com/openbao/openbao</code></td>
-        <td>CVE-2026-33758</td>
-        <td>CRITICAL</td>
-        <td>v0.0.0-20260223170234-e546fae8cbfe</td>
-        <td>0.0.0-20260325133417-6e2b2dd84f0e</td>
-    </tr>
-    <tr>
-        <td><code>github.com/openbao/openbao</code></td>
         <td>CVE-2024-8185</td>
         <td>HIGH</td>
-        <td>v0.0.0-20260223170234-e546fae8cbfe</td>
+        <td>v0.0.0-20260325160236-932fcf892eba</td>
         <td>2.0.3</td>
     </tr>
     <tr>
         <td><code>github.com/openbao/openbao</code></td>
         <td>CVE-2024-9180</td>
         <td>HIGH</td>
-        <td>v0.0.0-20260223170234-e546fae8cbfe</td>
+        <td>v0.0.0-20260325160236-932fcf892eba</td>
         <td>2.0.3</td>
     </tr>
     <tr>
         <td><code>github.com/openbao/openbao</code></td>
         <td>CVE-2025-59043</td>
         <td>HIGH</td>
-        <td>v0.0.0-20260223170234-e546fae8cbfe</td>
+        <td>v0.0.0-20260325160236-932fcf892eba</td>
         <td>2.4.1</td>
     </tr>
     <tr>
         <td><code>github.com/openbao/openbao</code></td>
         <td>CVE-2025-64761</td>
         <td>HIGH</td>
-        <td>v0.0.0-20260223170234-e546fae8cbfe</td>
+        <td>v0.0.0-20260325160236-932fcf892eba</td>
         <td>2.4.4</td>
     </tr>
     <tr>
@@ -103,13 +89,6 @@
         <td>CRITICAL</td>
         <td>v1.78.0</td>
         <td>1.79.3</td>
-    </tr>
-    <tr>
-        <td><code>stdlib</code></td>
-        <td>CVE-2026-25679</td>
-        <td>HIGH</td>
-        <td>v1.25.7</td>
-        <td>1.25.8, 1.26.1</td>
     </tr>
 </table>
 <h4>No Misconfigurations found</h4>

@@ -21,7 +21,7 @@
     </tr>
     <tr>
         <td><code>github.com/buger/jsonparser</code></td>
-        <td>GHSA-6g7g-w4f8-9c9x</td>
+        <td>CVE-2026-32285</td>
         <td>HIGH</td>
         <td>v1.1.1</td>
         <td>1.1.2</td>

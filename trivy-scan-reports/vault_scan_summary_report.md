@@ -99,7 +99,7 @@
     </tr>
     <tr>
         <td><code>github.com/jackc/pgproto3/v2</code></td>
-        <td>GHSA-jqcq-xjh3-6g23</td>
+        <td>CVE-2026-32286</td>
         <td>HIGH</td>
         <td>v2.3.3</td>
         <td></td>
@@ -243,7 +243,7 @@
     </tr>
     <tr>
         <td><code>github.com/jackc/pgproto3/v2</code></td>
-        <td>GHSA-jqcq-xjh3-6g23</td>
+        <td>CVE-2026-32286</td>
         <td>HIGH</td>
         <td>v2.3.3</td>
         <td></td>
