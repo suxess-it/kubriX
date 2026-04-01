@@ -401,14 +401,14 @@
         <td>CVE-2026-4519</td>
         <td>HIGH</td>
         <td>3.12.12-1.el9_7</td>
-        <td></td>
+        <td>3.12.12-4.el9_7.2</td>
     </tr>
     <tr>
         <td><code>python3.12-libs</code></td>
         <td>CVE-2026-4519</td>
         <td>HIGH</td>
         <td>3.12.12-1.el9_7</td>
-        <td></td>
+        <td>3.12.12-4.el9_7.2</td>
     </tr>
 </table>
 <h4>No Misconfigurations found</h4>
