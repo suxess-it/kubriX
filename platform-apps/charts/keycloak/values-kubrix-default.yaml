@@ -70,7 +70,8 @@ kubrix:
     realm:
       realmid: kubrix
       users: []
-      groups: []
+      groups:
+        - name: backstage-admin      # for service-account permission workaround
     # start with 2FA mobile Authenticators
     mfa:
       enabled: false
