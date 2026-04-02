@@ -72,7 +72,7 @@
 <h4>No Vulnerabilities found</h4>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>Node.js</code></h3>
-<h4>Vulnerabilities (69)</h4>
+<h4>Vulnerabilities (71)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -122,6 +122,20 @@
         <td>HIGH</td>
         <td>3.3.3</td>
         <td>3.4.2</td>
+    </tr>
+    <tr>
+        <td><code>lodash</code></td>
+        <td>CVE-2026-4800</td>
+        <td>HIGH</td>
+        <td>4.17.23</td>
+        <td>4.18.0</td>
+    </tr>
+    <tr>
+        <td><code>lodash-es</code></td>
+        <td>CVE-2026-4800</td>
+        <td>HIGH</td>
+        <td>4.17.23</td>
+        <td>4.18.0</td>
     </tr>
     <tr>
         <td><code>minimatch</code></td>
