@@ -118,7 +118,17 @@ test('Grafana K8s Namespace Dashboard', async ({ page }) => {
 });
 
 
-test('Notification Policy Routes', async ({ page }) => {
+test('Alerting Contact Points', async ({ page }) => {
+
+  await page.goto("https://grafana.127-0-0-1.nip.io/alerting/notifications", { waitUntil: 'domcontentloaded' });
+
+  await expect(page.getByRole('heading', { name: 'platform-team-critical' })).toBeVisible();
+  await expect(page.getByRole('heading', { name: 'platform-team-default' })).toBeVisible();
+  await expect(page.getByRole('heading', { name: 'platform-team-warning' })).toBeVisible();
+});
+
+
+test('Alerting Notification Policy Routes', async ({ page }) => {
 
   await page.goto("https://grafana.127-0-0-1.nip.io/alerting/routes", { waitUntil: 'domcontentloaded' });
 
