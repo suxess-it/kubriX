@@ -135,6 +135,6 @@ test('Alerting Notification Policy Routes', async ({ page }) => {
   // default route should be platform-team-default
   await expect(page.getByTestId('am-root-route-container').locator('div').filter({ hasText: 'Default policyAll alert' }).first().getByText('Delivered to platform-team-default')).toBeVisible();
 
-  await page.getByText('severity = warningProvisionedMore0instanceDelivered to platform-team-').click();
-  await page.getByText('severity = criticalProvisionedMore3instanceDelivered to platform-team-').click();
+  await expect(page.getByText('severity = warningProvisionedMore0instanceDelivered to platform-team-')).toBeVisible();
+  await expect(page.getByText('severity = criticalProvisionedMore3instanceDelivered to platform-team-')).toBeVisible();
 });
