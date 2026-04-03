@@ -844,9 +844,9 @@ cat bootstrap-app-${KUBRIX_TARGET_TYPE}.yaml | sed "s/targetRevision:.*/targetRe
 # create app list
 target_chart_value_file="platform-apps/target-chart/values-${KUBRIX_TARGET_TYPE}.yaml"
 
-base_apps=$(egrep -Ev "team-onboarding" "${target_chart_value_file}" | awk '/^  - name:/ { printf "%s", "sx-"$3" " }')
+base_apps=$(cat "${target_chart_value_file}" | awk '/^  - name:/ { printf "%s", "sx-"$3" " }')
 # list apps which need some sort of special treatment in bootstrap
-base_apps_without_individual=$(egrep -Ev "team-onboarding" "${target_chart_value_file}" | awk '/^  - name:/ { printf "%s", "sx-"$3" " }')
+base_apps_without_individual=$(cat "${target_chart_value_file}" | awk '/^  - name:/ { printf "%s", "sx-"$3" " }')
 
 if [[ -n "${KUBRIX_APP_EXCLUDE:-}" ]]; then
   argocd_apps=$(exclude_apps "$base_apps" "$KUBRIX_APP_EXCLUDE")
