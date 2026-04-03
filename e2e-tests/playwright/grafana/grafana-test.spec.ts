@@ -116,3 +116,15 @@ test('Grafana K8s Namespace Dashboard', async ({ page }) => {
     .toBe(0);
   */
 });
+
+
+test('Notification Policy Routes', async ({ page }) => {
+
+  await page.goto("https://grafana.127-0-0-1.nip.io/alerting/routes", { waitUntil: 'domcontentloaded' });
+
+  // default route should be platform-team-default
+  await expect(page.getByTestId('am-root-route-container').locator('div').filter({ hasText: 'Default policyAll alert' }).first().getByText('Delivered to platform-team-default')).toBeVisible();
+
+  await page.getByText('severity = warningProvisionedMore0instanceDelivered to platform-team-').click();
+  await page.getByText('severity = criticalProvisionedMore3instanceDelivered to platform-team-').click();
+});
