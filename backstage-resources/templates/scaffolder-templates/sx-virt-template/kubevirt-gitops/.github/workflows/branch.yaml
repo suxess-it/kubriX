@@ -15,13 +15,13 @@ jobs:
       - name: checkout
         uses: actions/checkout@v6
       - name: Create stages/test branch
-        uses: peterjgrainger/action-create-branch@v3.0.0
+        uses: peterjgrainger/action-create-branch@v4.0.0
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           branch: 'stages/test'
       - name: Create stages/prod branch
-        uses: peterjgrainger/action-create-branch@v3.0.0
+        uses: peterjgrainger/action-create-branch@v4.0.0
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
