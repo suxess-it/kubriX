@@ -160,7 +160,7 @@ spec:
       name: Wait for GitHub repo to become available
       action: roadiehq:utils:sleep
       input:
-        amount: 90
+        amount: 10
 
     - id: repo-push
       name: Push initial content to team-apps repo
@@ -181,4 +181,4 @@ spec:
       - title: Open Pull-Request
         url: ${{ steps.publish.output.remoteUrl }}
       - title: Open Team-App-Of-Apps Repo
-        url: ${{ steps.repocreate.output.remoteUrl }}
+        url: ${{ steps.repo-create.output.remoteUrl }}
