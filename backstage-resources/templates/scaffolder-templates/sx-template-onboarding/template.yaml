@@ -144,26 +144,41 @@ spec:
         values:
           team: ${{ steps['catalogFetch'].output.entity.metadata.name }}
 
-    - id: repocreate
-      name: create team-apps Github repo
-      action: publish:github
+    - id: repo-create
+      name: Create team-apps GitHub repo
+      action: github:repo:create
       input:
-        sourcePath: ./team-apps-of-apps
         repoUrl: github.com?repo=${{ steps['catalogFetch'].output.entity.metadata.name }}-${{ parameters.teamReposUID }}apps&owner=${{ parameters.teamOrg or environment.parameters.defaultOrgName }}
         description: team-apps repo for ${{ steps['catalogFetch'].output.entity.metadata.name }}
+        repoVisibility: public
+        defaultBranch: main
+        deleteBranchOnMerge: true
+        protectDefaultBranch: false
         token: ${{ secrets.USER_OAUTH_TOKEN }}
+
+    - id: wait-for-github
+      name: Wait for GitHub repo to become available
+      action: roadiehq:utils:sleep
+      input:
+        amount: 10
+
+    - id: repo-push
+      name: Push initial content to team-apps repo
+      action: github:repo:push
+      input:
+        repoUrl: github.com?repo=${{ steps['catalogFetch'].output.entity.metadata.name }}-${{ parameters.teamReposUID }}apps&owner=${{ parameters.teamOrg or environment.parameters.defaultOrgName }}
+        sourcePath: ./team-apps-of-apps
+        defaultBranch: main
         gitAuthorName: ${{ user.entity.metadata.name }}
         gitAuthorEmail: ${{ user.entity.spec.profile.email }}
         gitCommitMessage: Team Onboarding for ${{ steps['catalogFetch'].output.entity.metadata.name }}
-        repoVisibility: public
-        deleteBranchOnMerge: true
         protectDefaultBranch: false
-        defaultBranch: main
-
+        token: ${{ secrets.USER_OAUTH_TOKEN }}
+        
   output:
     remoteUrl: '{{ steps.publish.output.remoteUrl }}'
     links:
       - title: Open Pull-Request
         url: ${{ steps.publish.output.remoteUrl }}
       - title: Open Team-App-Of-Apps Repo
-        url: ${{ steps.repocreate.output.remoteUrl }}
+        url: ${{ steps['repo-push'].output.remoteUrl }}
