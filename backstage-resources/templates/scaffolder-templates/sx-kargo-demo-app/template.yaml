@@ -87,33 +87,50 @@ spec:
           team: ${{ steps['catalogFetch'].output.entity.metadata.name }}
           repoUrlRepo: ${{ steps['catalogFetch'].output.entity.metadata.name }}-${{ parameters.application_id }}
           repoUrlowner: ${{ parameters.teamOrg or environment.parameters.defaultOrgName }}
-    - id: publish-gitopsreposetup
-      name: Publish Template Gitops Repo
-      action: publish:github
+
+    - id: publish-gitopsreposetup-create
+      name: Create Template Gitops Repo
+      action: github:repo:create
       input:
-        sourcePath: ./kargo-gitops
         description: This is Kargo Demo App ${{ parameters.application_id }}
-        #repoUrl: ${{ parameters.repoUrl }}
         repoUrl: github.com?repo=${{ steps['catalogFetch'].output.entity.metadata.name }}-${{ parameters.application_id }}&owner=${{ parameters.teamOrg or environment.parameters.defaultOrgName }}
         token: ${{ secrets.USER_OAUTH_TOKEN }}
-        gitAuthorName: ${{ user.entity.metadata.name }}
-        gitAuthorEmail: ${{ user.entity.spec.profile.email }}
         repoVisibility: public
         deleteBranchOnMerge: true
         protectDefaultBranch: false
         defaultBranch: main
 
+    - id: publish-gitopsreposetup-sleep
+      name: Wait for GitHub repo to become available
+      action: roadiehq:utils:sleep
+      input:
+        amount: 10
+
+    - id: publish-gitopsreposetup-push
+      name: Push Template Gitops Repo content
+      action: github:repo:push
+      input:
+        sourcePath: ./kargo-gitops
+        repoUrl: github.com?repo=${{ steps['catalogFetch'].output.entity.metadata.name }}-${{ parameters.application_id }}&owner=${{ parameters.teamOrg or environment.parameters.defaultOrgName }}
+        token: ${{ secrets.USER_OAUTH_TOKEN }}
+        gitAuthorName: ${{ user.entity.metadata.name }}
+        gitAuthorEmail: ${{ user.entity.spec.profile.email }}
+        gitCommitMessage: Initial commit for ${{ parameters.application_id }}
+        protectDefaultBranch: false
+        defaultBranch: main
+
+        
     - id: register
       name: Register catalog
       action: catalog:register
       input:
-        repoContentsUrl: ${{ steps["publish-gitopsreposetup"].output.repoContentsUrl }}
+        repoContentsUrl: ${{ steps["publish-gitopsreposetup-push"].output.repoContentsUrl }}
         catalogInfoPath: '/catalog-info.yaml'
 
   output:
     links:
       - title: Repository
-        url: ${{ steps["publish-gitopsreposetup"].output.remoteUrl }}
+        url: ${{ steps["publish-gitopsreposetup-push"].output.remoteUrl }}
       - title: Open in catalog
         icon: catalog
         entityRef: ${{ steps.register.output.entityRef }}
