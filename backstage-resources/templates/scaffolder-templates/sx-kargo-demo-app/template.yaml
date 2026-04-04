@@ -130,7 +130,7 @@ spec:
   output:
     links:
       - title: Repository
-        url: ${{ steps["publish-gitopsreposetup-create"].output.remoteUrl }}
+        url: ${{ steps["publish-gitopsreposetup-push"].output.remoteUrl }}
       - title: Open in catalog
         icon: catalog
         entityRef: ${{ steps.register.output.entityRef }}
