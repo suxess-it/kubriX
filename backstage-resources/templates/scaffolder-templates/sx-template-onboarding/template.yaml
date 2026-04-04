@@ -156,6 +156,12 @@ spec:
         protectDefaultBranch: false
         token: ${{ secrets.USER_OAUTH_TOKEN }}
 
+    - id: wait-for-github
+      name: Wait for GitHub repo to become available
+      action: roadiehq:utils:sleep
+      input:
+        amount: 90
+
     - id: repo-push
       name: Push initial content to team-apps repo
       action: github:repo:push
