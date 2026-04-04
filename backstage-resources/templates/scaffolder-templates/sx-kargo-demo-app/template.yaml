@@ -104,7 +104,7 @@ spec:
       name: Wait for GitHub repo to become available
       action: roadiehq:utils:sleep
       input:
-        amount: 90
+        amount: 10
 
     - id: publish-gitopsreposetup-push
       name: Push Template Gitops Repo content
@@ -130,7 +130,7 @@ spec:
   output:
     links:
       - title: Repository
-        url: ${{ steps["publish-gitopsreposetup"].output.remoteUrl }}
+        url: ${{ steps["publish-gitopsreposetup-create"].output.remoteUrl }}
       - title: Open in catalog
         icon: catalog
         entityRef: ${{ steps.register.output.entityRef }}
