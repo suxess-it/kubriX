@@ -102,37 +102,7 @@
 <h4>No Misconfigurations found</h4>
 
 <h3>Target <code>docker.io/minio/minio:RELEASE.2025-06-13T11-33-47Z (redhat 9.6)</code></h3>
-<h4>Vulnerabilities (3)</h4>
-<table>
-    <tr>
-        <th>Package</th>
-        <th>ID</th>
-        <th>Severity</th>
-        <th>Installed Version</th>
-        <th>Fixed Version</th>
-    </tr>
-    <tr>
-        <td><code>glibc</code></td>
-        <td>CVE-2026-4046</td>
-        <td>HIGH</td>
-        <td>2.34-168.el9_6.19</td>
-        <td></td>
-    </tr>
-    <tr>
-        <td><code>glibc-common</code></td>
-        <td>CVE-2026-4046</td>
-        <td>HIGH</td>
-        <td>2.34-168.el9_6.19</td>
-        <td></td>
-    </tr>
-    <tr>
-        <td><code>glibc-minimal-langpack</code></td>
-        <td>CVE-2026-4046</td>
-        <td>HIGH</td>
-        <td>2.34-168.el9_6.19</td>
-        <td></td>
-    </tr>
-</table>
+<h4>No Vulnerabilities found</h4>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>usr/bin/mc</code></h3>
 <h4>Vulnerabilities (9)</h4>
@@ -210,7 +180,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>usr/bin/minio</code></h3>
-<h4>Vulnerabilities (14)</h4>
+<h4>Vulnerabilities (15)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -225,6 +195,13 @@
         <td>HIGH</td>
         <td>v1.1.1</td>
         <td>1.1.2</td>
+    </tr>
+    <tr>
+        <td><code>github.com/go-jose/go-jose/v4</code></td>
+        <td>CVE-2026-34986</td>
+        <td>HIGH</td>
+        <td>v4.1.0</td>
+        <td>4.1.4</td>
     </tr>
     <tr>
         <td><code>github.com/minio/minio</code></td>

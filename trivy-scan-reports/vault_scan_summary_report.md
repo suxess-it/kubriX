@@ -74,7 +74,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>bin/vault</code></h3>
-<h4>Vulnerabilities (11)</h4>
+<h4>Vulnerabilities (13)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -96,6 +96,20 @@
         <td>HIGH</td>
         <td>v1.6.0</td>
         <td>1.7.0</td>
+    </tr>
+    <tr>
+        <td><code>github.com/go-jose/go-jose/v3</code></td>
+        <td>CVE-2026-34986</td>
+        <td>HIGH</td>
+        <td>v3.0.4</td>
+        <td>3.0.5</td>
+    </tr>
+    <tr>
+        <td><code>github.com/go-jose/go-jose/v4</code></td>
+        <td>CVE-2026-34986</td>
+        <td>HIGH</td>
+        <td>v4.1.2</td>
+        <td>4.1.4</td>
     </tr>
     <tr>
         <td><code>github.com/jackc/pgproto3/v2</code></td>
@@ -225,7 +239,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>bin/vault</code></h3>
-<h4>Vulnerabilities (8)</h4>
+<h4>Vulnerabilities (10)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -240,6 +254,20 @@
         <td>HIGH</td>
         <td>v28.4.0+incompatible</td>
         <td>29.3.1</td>
+    </tr>
+    <tr>
+        <td><code>github.com/go-jose/go-jose/v3</code></td>
+        <td>CVE-2026-34986</td>
+        <td>HIGH</td>
+        <td>v3.0.4</td>
+        <td>3.0.5</td>
+    </tr>
+    <tr>
+        <td><code>github.com/go-jose/go-jose/v4</code></td>
+        <td>CVE-2026-34986</td>
+        <td>HIGH</td>
+        <td>v4.1.3</td>
+        <td>4.1.4</td>
     </tr>
     <tr>
         <td><code>github.com/jackc/pgproto3/v2</code></td>

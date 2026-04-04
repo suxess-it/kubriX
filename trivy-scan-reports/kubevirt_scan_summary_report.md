@@ -123,7 +123,7 @@
 <h4>No Misconfigurations found</h4>
 
 <h3>Target <code>quay.io/kubevirt/virt-operator:v1.5.0 (debian 12.6)</code></h3>
-<h4>Vulnerabilities (7)</h4>
+<h4>Vulnerabilities (6)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -142,13 +142,6 @@
     <tr>
         <td><code>libc6</code></td>
         <td>CVE-2026-0861</td>
-        <td>HIGH</td>
-        <td>2.36-9+deb12u7</td>
-        <td></td>
-    </tr>
-    <tr>
-        <td><code>libc6</code></td>
-        <td>CVE-2026-4046</td>
         <td>HIGH</td>
         <td>2.36-9+deb12u7</td>
         <td></td>

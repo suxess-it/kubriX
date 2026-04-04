@@ -39,7 +39,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>bin/bao</code></h3>
-<h4>Vulnerabilities (6)</h4>
+<h4>Vulnerabilities (8)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -54,6 +54,20 @@
         <td>HIGH</td>
         <td>v29.0.3+incompatible</td>
         <td>29.2.0</td>
+    </tr>
+    <tr>
+        <td><code>github.com/go-jose/go-jose/v3</code></td>
+        <td>CVE-2026-34986</td>
+        <td>HIGH</td>
+        <td>v3.0.4</td>
+        <td>3.0.5</td>
+    </tr>
+    <tr>
+        <td><code>github.com/go-jose/go-jose/v4</code></td>
+        <td>CVE-2026-34986</td>
+        <td>HIGH</td>
+        <td>v4.1.3</td>
+        <td>4.1.4</td>
     </tr>
     <tr>
         <td><code>github.com/openbao/openbao</code></td>

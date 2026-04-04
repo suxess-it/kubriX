@@ -80,7 +80,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>usr/local/bin/grpc_health_probe</code></h3>
-<h4>Vulnerabilities (6)</h4>
+<h4>Vulnerabilities (7)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -88,6 +88,13 @@
         <th>Severity</th>
         <th>Installed Version</th>
         <th>Fixed Version</th>
+    </tr>
+    <tr>
+        <td><code>github.com/go-jose/go-jose/v4</code></td>
+        <td>CVE-2026-34986</td>
+        <td>HIGH</td>
+        <td>v4.1.2</td>
+        <td>4.1.4</td>
     </tr>
     <tr>
         <td><code>google.golang.org/grpc</code></td>
@@ -134,7 +141,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>usr/local/bin/kargo</code></h3>
-<h4>Vulnerabilities (7)</h4>
+<h4>Vulnerabilities (8)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -149,6 +156,13 @@
         <td>HIGH</td>
         <td>v29.0.3+incompatible</td>
         <td>29.2.0</td>
+    </tr>
+    <tr>
+        <td><code>github.com/go-jose/go-jose/v4</code></td>
+        <td>CVE-2026-34986</td>
+        <td>HIGH</td>
+        <td>v4.1.3</td>
+        <td>4.1.4</td>
     </tr>
     <tr>
         <td><code>github.com/quic-go/quic-go</code></td>

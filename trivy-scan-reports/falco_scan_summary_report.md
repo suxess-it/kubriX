@@ -488,7 +488,7 @@
 <h4>No Misconfigurations found</h4>
 
 <h3>Target <code>docker.io/falcosecurity/falco:0.41.0-debian (debian 12.11)</code></h3>
-<h4>Vulnerabilities (45)</h4>
+<h4>Vulnerabilities (43)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -603,13 +603,6 @@
         <td></td>
     </tr>
     <tr>
-        <td><code>libc-bin</code></td>
-        <td>CVE-2026-4046</td>
-        <td>HIGH</td>
-        <td>2.36-9+deb12u10</td>
-        <td></td>
-    </tr>
-    <tr>
         <td><code>libc6</code></td>
         <td>CVE-2025-4802</td>
         <td>HIGH</td>
@@ -619,13 +612,6 @@
     <tr>
         <td><code>libc6</code></td>
         <td>CVE-2026-0861</td>
-        <td>HIGH</td>
-        <td>2.36-9+deb12u10</td>
-        <td></td>
-    </tr>
-    <tr>
-        <td><code>libc6</code></td>
-        <td>CVE-2026-4046</td>
         <td>HIGH</td>
         <td>2.36-9+deb12u10</td>
         <td></td>
@@ -819,7 +805,7 @@
 <h4>No Vulnerabilities found</h4>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>usr/bin/falcoctl</code></h3>
-<h4>Vulnerabilities (17)</h4>
+<h4>Vulnerabilities (19)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -841,6 +827,20 @@
         <td>HIGH</td>
         <td>v27.5.1+incompatible</td>
         <td>29.3.1</td>
+    </tr>
+    <tr>
+        <td><code>github.com/go-jose/go-jose/v3</code></td>
+        <td>CVE-2026-34986</td>
+        <td>HIGH</td>
+        <td>v3.0.3</td>
+        <td>3.0.5</td>
+    </tr>
+    <tr>
+        <td><code>github.com/go-jose/go-jose/v4</code></td>
+        <td>CVE-2026-34986</td>
+        <td>HIGH</td>
+        <td>v4.0.4</td>
+        <td>4.1.4</td>
     </tr>
     <tr>
         <td><code>github.com/golang-jwt/jwt/v4</code></td>
