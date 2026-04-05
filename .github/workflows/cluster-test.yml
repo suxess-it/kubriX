@@ -337,6 +337,7 @@ jobs:
         run: |
           kubectl get applications -n argocd
           kubectl get applications -n argocd -o yaml
+          kubectl get cm -n loki -o yaml
           
       - name: analyze with k8sgpt
         if: always()
