@@ -12,7 +12,11 @@ k8s-monitoring:
       type: loki
       url: http://sx-loki-gateway.loki.svc/loki/api/v1/push
       tenantId: ''
-  
+
+  telemetryServices:
+    kube-state-metrics:
+      deploy: true
+
   clusterMetrics:
     enabled: true
     collector: alloy-metrics
