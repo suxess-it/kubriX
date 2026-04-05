@@ -116,3 +116,25 @@ test('Grafana K8s Namespace Dashboard', async ({ page }) => {
     .toBe(0);
   */
 });
+
+
+test('Alerting Contact Points', async ({ page }) => {
+
+  await page.goto("https://grafana.127-0-0-1.nip.io/alerting/notifications", { waitUntil: 'domcontentloaded' });
+
+  await expect(page.getByRole('heading', { name: 'platform-team-critical' })).toBeVisible();
+  await expect(page.getByRole('heading', { name: 'platform-team-default' })).toBeVisible();
+  await expect(page.getByRole('heading', { name: 'platform-team-warning' })).toBeVisible();
+});
+
+
+test('Alerting Notification Policy Routes', async ({ page }) => {
+
+  await page.goto("https://grafana.127-0-0-1.nip.io/alerting/routes", { waitUntil: 'domcontentloaded' });
+
+  // default route should be platform-team-default
+  await expect(page.getByTestId('am-root-route-container').locator('div').filter({ hasText: 'Default policyAll alert' }).first().getByText('Delivered to platform-team-default')).toBeVisible();
+
+  await expect(page.getByText(/severity = warning.*Delivered to platform-team/).getByRole('link', { name: 'platform-team-warning' })).toBeVisible();
+  await expect(page.getByText(/severity = critical.*Delivered to platform-team/).getByRole('link', { name: 'platform-team-critical' })).toBeVisible();
+});
