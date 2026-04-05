@@ -39,18 +39,18 @@ applications:
     annotations:
       argocd.argoproj.io/sync-wave: "-8"
 
+  - name: k8s-monitoring
+    annotations:
+      argocd.argoproj.io/compare-options: ServerSideDiff=true
+      argocd.argoproj.io/sync-wave: "-8"
+    syncOptions:
+      - ServerSideApply=true
+
   - name: openbao
     annotations:
       argocd.argoproj.io/sync-wave: "-7"
 
   - name: cnpg
-    annotations:
-      argocd.argoproj.io/compare-options: ServerSideDiff=true
-      argocd.argoproj.io/sync-wave: "-6"
-    syncOptions:
-      - ServerSideApply=true
-
-  - name: k8s-monitoring
     annotations:
       argocd.argoproj.io/compare-options: ServerSideDiff=true
       argocd.argoproj.io/sync-wave: "-6"
