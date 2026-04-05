@@ -86,6 +86,10 @@ applications:
     syncOptions:
       - ServerSideApply=true
 
-   
+  - name: team-onboarding
+    destinationNamespaceOverwrite: argocd
+    namespaceResourceTracking: false
+    annotations:
+      argocd.argoproj.io/sync-wave: "15"
 
 
