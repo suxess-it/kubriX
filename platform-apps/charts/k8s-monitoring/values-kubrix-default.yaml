@@ -136,6 +136,7 @@ k8s-monitoring:
   podLogsViaLoki:
     enabled: true
     collector: alloy-logs
+    presets: [filesystem-log-reader]
     labelsToKeep:
       - app.kubernetes.io/name
       - container
