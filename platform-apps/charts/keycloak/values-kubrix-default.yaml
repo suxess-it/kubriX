@@ -69,53 +69,8 @@ kubrix:
     domainName: ~
     realm:
       realmid: kubrix
-      users:
-        - name: phac
-          firstName: Philipp
-          lastName: Achmueller
-          email: "philipp.achmueller@kubrix.io"
-        - name: jokl
-          firstName: Johannes
-          lastName: Kleinlercher
-          email: "johannes.kleinlercher@kubrix.io"
-        - name: backstageadmin
-          firstName: MrBackstage
-          lastName: MrAdmin
-          email: "backstageadmin@kubrix.io"
-        - name: demouser
-          firstName: demo
-          lastName: user
-          email: "demouser@kubrix.io"
-        - name: demoadmin
-          firstName: demo
-          lastName: admin
-          email: "demoadmin@kubrix.io"
-        - name: team1user
-          firstName: team1
-          lastName: demouser
-          email: "team1user@kubrix.io"
+      users: []
       groups:
-        - name: admins
-          roles:
-            - grafana-admin
-            - vault-admin
-          members:
-            - backstageadmin
-            - demoadmin
-        - name: viewers
-          roles:
-            - grafana-viewer
-            - vault-viewer
-          members:
-            - team1user
-        - name: editors
-          roles:
-            - grafana-editor
-            - vault-editor
-          members: 
-            - phac
-            - jokl
-            - demouser
         - name: backstage-admin # for service-account permission workaround
     # start with 2FA mobile Authenticators
     mfa:

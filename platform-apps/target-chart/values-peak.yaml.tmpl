@@ -60,6 +60,18 @@ applications:
     syncOptions:
       - ServerSideApply=true
 
+  - name: k8s-monitoring
+    annotations:
+      argocd.argoproj.io/compare-options: ServerSideDiff=true
+      argocd.argoproj.io/sync-wave: "-8"
+    syncOptions:
+      - ServerSideApply=true
+    managedNamespaceMetadata:
+      labels:
+        pod-security.kubernetes.io/enforce: privileged
+        pod-security.kubernetes.io/audit: privileged
+        pod-security.kubernetes.io/warn: privileged
+
   - name: openbao
     annotations:
       argocd.argoproj.io/sync-wave: "-7"
@@ -70,18 +82,6 @@ applications:
       argocd.argoproj.io/sync-wave: "-6"
     syncOptions:
       - ServerSideApply=true
-
-  - name: k8s-monitoring
-    annotations:
-      argocd.argoproj.io/compare-options: ServerSideDiff=true
-      argocd.argoproj.io/sync-wave: "-6"
-    syncOptions:
-      - ServerSideApply=true
-    managedNamespaceMetadata:
-      labels:
-        pod-security.kubernetes.io/enforce: privileged
-        pod-security.kubernetes.io/audit: privileged
-        pod-security.kubernetes.io/warn: privileged
       
   - name: keycloak
     annotations:
