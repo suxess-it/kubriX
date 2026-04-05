@@ -2,7 +2,8 @@ k8s-monitoring:
 
   cluster:
     name: kubrix
-  destinationsMap:
+
+  destinations:
     metricsService:
       type: prometheus
       url: http://sx-mimir-gateway.mimir.svc/api/v1/push
@@ -11,6 +12,7 @@ k8s-monitoring:
       type: loki
       url: http://sx-loki-gateway.loki.svc/loki/api/v1/push
       tenantId: ''
+  
   clusterMetrics:
     enabled: true
     opencost:
@@ -112,32 +114,19 @@ k8s-monitoring:
       enabled: true
     kubeScheduler:
       enabled: true
-  alloy-metrics:
-    logging:
-      level: info
-    enabled: true
-    extraConfig: |
-      mimir.rules.kubernetes "rules" {
-        address = "http://sx-mimir-gateway.mimir.svc"
-        tenant_id = "anonymous"
-
-        rule_namespace_selector {
-          match_expression {
-              key      = "kubernetes.io/metadata.name"
-              operator = "In"
-              values   = ["mimir", "loki"]
-            }
-        }
-        rule_selector {
-            match_labels = {}
-        }
-      }
-
+  
   clusterEvents:
     enabled: true
-  alloy-singleton:
+    collector: alloy-singleton
+  annotationAutodiscovery:
     enabled: true
-  podLogs:
+    collector: alloy-metrics
+  prometheusOperatorObjects:
+    enabled: true
+    collector: alloy-metrics
+    crds:
+      deploy: false
+  podLogsViaLoki:
     enabled: true
     labelsToKeep:
       - app.kubernetes.io/name
@@ -158,15 +147,34 @@ k8s-monitoring:
       - k8s.job.name
       - k8s.node.name
       - stream
-      
-  alloy-logs:
-    enabled: true
-  annotationAutodiscovery:
-    enabled: true
-  prometheusOperatorObjects:
-    enabled: true
-    crds:
-      deploy: false
+  
+  collectors:
+    alloy-metrics:
+      logging:
+        level: info
+      enabled: true
+      extraConfig: |
+        mimir.rules.kubernetes "rules" {
+          address = "http://sx-mimir-gateway.mimir.svc"
+          tenant_id = "anonymous"
+
+          rule_namespace_selector {
+            match_expression {
+                key      = "kubernetes.io/metadata.name"
+                operator = "In"
+                values   = ["mimir", "loki"]
+              }
+          }
+          rule_selector {
+             match_labels = {}
+          }
+        }
+
+    alloy-singleton:
+      enabled: true
+    alloy-logs:
+      enabled: true
+
   integrations:
     alloy:
       instances:
