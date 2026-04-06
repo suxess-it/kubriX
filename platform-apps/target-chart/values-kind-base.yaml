@@ -38,13 +38,6 @@ applications:
     syncOptions:
       - ServerSideApply=true
 
-#  - name: cnpg
-#    annotations:
-#      argocd.argoproj.io/compare-options: ServerSideDiff=true
-#      argocd.argoproj.io/sync-wave: "-6"
-#    syncOptions:
-#      - ServerSideApply=true
-      
   - name: openbao
     annotations:
       argocd.argoproj.io/sync-wave: "-7"
@@ -55,7 +48,7 @@ applications:
       argocd.argoproj.io/sync-wave: "-6"
     syncOptions:
       - ServerSideApply=true
-      
+
   - name: keycloak
     annotations:
       argocd.argoproj.io/sync-wave: "-5"

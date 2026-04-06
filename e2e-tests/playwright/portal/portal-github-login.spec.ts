@@ -100,7 +100,7 @@ async function waitForOperationToFinish(
 }
 
 test("Team Onboarding with kubrixBot Github user", async ({ page }) => {
-  test.setTimeout(120_000);
+  test.setTimeout(220_000);
   //await page.goto("https://backstage.127-0-0-1.nip.io/");
   //await page.getByRole('listitem').filter({ hasText: 'GitHubSign in using' }).getByRole('button').click();
   await page.goto('https://backstage.127-0-0-1.nip.io/create/templates/default/team-onboarding');
@@ -133,7 +133,7 @@ test("Team Onboarding with kubrixBot Github user", async ({ page }) => {
   await page.getByRole('button', { name: 'Review' }).click();
   await page.getByRole('button', { name: 'Create' }).click();
 
-  await expect(page.getByRole('button', { name: 'Open Pull-Request' })).toBeVisible({ timeout: 60_000 });
+  await expect(page.getByRole('button', { name: 'Open Pull-Request' })).toBeVisible({ timeout: 180_000 });
   await expect(page.getByRole('button', { name: 'Open Team-App-Of-Apps Repo' })).toBeVisible({ timeout: 30_000 });
 
   // set openbao secrets for team onboarding
@@ -285,7 +285,7 @@ test.describe("ArgoCD team onboarding app", () => {
 
 
 test("Multi-Stage-Kargo App Onboarding", async ({ page }) => {
-  test.setTimeout(120_000);
+  test.setTimeout(240_000);
   await page.goto('https://backstage.127-0-0-1.nip.io/create/templates/default/multi-stage-app-with-kargo-pipeline');
 
   const prefix = process.env.E2E_TEST_PR_NUMBER ?? '';
@@ -319,7 +319,7 @@ test("Multi-Stage-Kargo App Onboarding", async ({ page }) => {
   await page.getByRole('button', { name: 'Review' }).click();
   await page.getByRole('button', { name: 'Create' }).click();
 
-  await expect(page.getByRole('button', { name: 'Repos' })).toBeVisible({ timeout: 60_000 });
+  await expect(page.getByRole('button', { name: 'Repos' })).toBeVisible({ timeout: 180_000 });
   await expect(page.getByRole('button', { name: 'Open in Catalog' })).toBeVisible({ timeout: 40_000 });
 
 

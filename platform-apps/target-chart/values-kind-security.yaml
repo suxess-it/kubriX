@@ -52,14 +52,14 @@ applications:
       argocd.argoproj.io/sync-wave: "-6"
     syncOptions:
       - ServerSideApply=true
-      
+
   - name: keycloak
     annotations:
       argocd.argoproj.io/sync-wave: "-5"
 
   - name: velero
 
-  - name: velero-ui
+  #- name: velero-ui
 
   - name: minio
 
@@ -76,3 +76,7 @@ applications:
       - ServerSideApply=true
 
   - name: testkube
+    annotations:
+      argocd.argoproj.io/compare-options: ServerSideDiff=true
+    syncOptions:
+      - ServerSideApply=true
