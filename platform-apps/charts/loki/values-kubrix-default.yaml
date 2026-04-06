@@ -31,10 +31,10 @@ loki:
         cert-manager.io/cluster-issuer: default-issuer
       hosts: []
       tls: []
-    nginxConfig:
-      customReadUrl: http://sx-loki-read.loki.svc.cluster.local:3100
-      customWriteUrl: http://sx-loki-write.loki.svc.cluster.local:3100
-      customBackendUrl: http://sx-loki-backend.loki.svc.cluster.local:3100
+    # nginxConfig:
+      # customReadUrl: http://sx-loki-read.loki.svc.cluster.local:3100
+      # customWriteUrl: http://sx-loki-write.loki.svc.cluster.local:3100
+      # customBackendUrl: http://sx-loki-backend.loki.svc.cluster.local:3100
 
   deploymentMode: SimpleScalable
 
