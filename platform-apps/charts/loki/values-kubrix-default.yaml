@@ -98,3 +98,10 @@ loki:
     serviceMonitor:
       # -- If enabled, ServiceMonitor resources for Prometheus Operator are created
       enabled: true
+
+      relabelings:
+        - action: replace
+          sourceLabels: [job]
+          regex: '^([^/]+)/sx-loki-(.+)$'
+          replacement: '$1/loki-$2'
+          targetLabel: job
