@@ -19,8 +19,6 @@ loki:
     querier:
       # Default is 4, if you have enough memory and CPU you can increase, reduce if OOMing
       max_concurrent: 2
-
-  nameOverride: sx-loki
   
   gateway:
     ingress:
@@ -31,10 +29,6 @@ loki:
         cert-manager.io/cluster-issuer: default-issuer
       hosts: []
       tls: []
-    # nginxConfig:
-      # customReadUrl: http://sx-loki-read.loki.svc.cluster.local:3100
-      # customWriteUrl: http://sx-loki-write.loki.svc.cluster.local:3100
-      # customBackendUrl: http://sx-loki-backend.loki.svc.cluster.local:3100
 
   deploymentMode: SimpleScalable
 
@@ -104,3 +98,10 @@ loki:
     serviceMonitor:
       # -- If enabled, ServiceMonitor resources for Prometheus Operator are created
       enabled: true
+
+      relabelings:
+        - action: replace
+          sourceLabels: [job]
+          regex: '^([^/]+)/sx-loki-(.+)$'
+          replacement: '$1/loki-$2'
+          targetLabel: job

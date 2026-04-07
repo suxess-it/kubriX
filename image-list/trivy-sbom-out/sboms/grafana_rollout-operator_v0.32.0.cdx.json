@@ -2,10 +2,10 @@
   "$schema": "http://cyclonedx.org/schema/bom-1.6.schema.json",
   "bomFormat": "CycloneDX",
   "specVersion": "1.6",
-  "serialNumber": "urn:uuid:06600b25-d804-48fa-8456-f9ba327b0b6b",
+  "serialNumber": "urn:uuid:afc63c1e-77ac-472c-9599-7fd98e1a532f",
   "version": 1,
   "metadata": {
-    "timestamp": "2026-02-25T14:45:22+00:00",
+    "timestamp": "2026-04-07T12:47:46+00:00",
     "tools": {
       "components": [
         {
@@ -15,7 +15,7 @@
           },
           "group": "aquasecurity",
           "name": "trivy",
-          "version": "0.69.0"
+          "version": "0.69.2"
         }
       ]
     },
@@ -118,7 +118,22 @@
   },
   "components": [
     {
-      "bom-ref": "18b96f97-b825-4e20-8f20-00a800fd3069",
+      "bom-ref": "494571d2-8ae6-4fa7-8ba5-d91e6d1dbbaa",
+      "type": "application",
+      "name": "bin/rollout-operator",
+      "properties": [
+        {
+          "name": "aquasecurity:trivy:Class",
+          "value": "lang-pkgs"
+        },
+        {
+          "name": "aquasecurity:trivy:Type",
+          "value": "gobinary"
+        }
+      ]
+    },
+    {
+      "bom-ref": "9adf9676-42d1-43ee-ab9f-9cf530ffb6c7",
       "type": "operating-system",
       "name": "debian",
       "version": "12.12",
@@ -130,21 +145,6 @@
         {
           "name": "aquasecurity:trivy:Type",
           "value": "debian"
-        }
-      ]
-    },
-    {
-      "bom-ref": "278d136a-4d0f-4b39-a601-7253d336f81e",
-      "type": "application",
-      "name": "bin/rollout-operator",
-      "properties": [
-        {
-          "name": "aquasecurity:trivy:Class",
-          "value": "lang-pkgs"
-        },
-        {
-          "name": "aquasecurity:trivy:Type",
-          "value": "gobinary"
         }
       ]
     },
@@ -171,7 +171,7 @@
         },
         {
           "name": "aquasecurity:trivy:LayerDigest",
-          "value": "sha256:259db2ee6b876afac49b298219529e5ff850e8efb940856f8397c17d1bab100e"
+          "value": "sha256:fd4aa3667332c2a4837e1b5f395b0555b3c4ec299e38166ae93ee84bad01befa"
         },
         {
           "name": "aquasecurity:trivy:PkgID",
@@ -214,7 +214,7 @@
         },
         {
           "name": "aquasecurity:trivy:LayerDigest",
-          "value": "sha256:e1089d61b200106053b1717881bf0c1c47551478f01569d9224d33cccf3e4692"
+          "value": "sha256:62de241dac5fe19d5f8f4defe034289006ddaa0f2cca735db4718fe2a23e504e"
         },
         {
           "name": "aquasecurity:trivy:PkgID",
@@ -257,7 +257,7 @@
         },
         {
           "name": "aquasecurity:trivy:LayerDigest",
-          "value": "sha256:2e4cf50eeb92ac3a7afe75e15d96a26dee99449f86b46c75b5d95f4418a5bca0"
+          "value": "sha256:bfb59b82a9b65e47d485e53b3e815bca3b3e21a095bd0cb88ced9ac0b48062bf"
         },
         {
           "name": "aquasecurity:trivy:PkgID",
@@ -300,7 +300,7 @@
         },
         {
           "name": "aquasecurity:trivy:LayerDigest",
-          "value": "sha256:56ce5a7a0a8cc3aded9e8cab00fd85f0a1c50376aa9f2318c4e66beb03eadf8f"
+          "value": "sha256:017886f7e1764618ffad6fbd503c42a60076c63adc16355cac80f0f311cae4c9"
         },
         {
           "name": "aquasecurity:trivy:PkgID",
@@ -384,7 +384,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2024-09-27T00:09:41Z"
+          "value": "2026-03-16T01:19:27Z"
         },
         {
           "name": "ecosystems:owner_location",
@@ -928,7 +928,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2025-07-14T04:00:34Z"
+          "value": "2026-03-30T13:23:16Z"
         },
         {
           "name": "ecosystems:owner_location",
@@ -1319,7 +1319,11 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2025-12-06T13:20:57Z"
+          "value": "2026-03-02T21:21:48Z"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "jsonpointer"
         }
       ]
     },
@@ -1379,7 +1383,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2025-12-08T21:48:23Z"
+          "value": "2026-03-02T21:57:17Z"
         }
       ]
     },
@@ -1440,7 +1444,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2025-11-25T18:28:48Z"
+          "value": "2026-03-02T18:12:04Z"
         }
       ]
     },
@@ -2030,7 +2034,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2024-01-25T19:57:30Z"
+          "value": "2026-03-12T14:10:34Z"
         }
       ]
     },
@@ -2156,9 +2160,34 @@
     {
       "bom-ref": "pkg:golang/github.com/grafana/rollout-operator@v0.32.0%2Bdirty",
       "type": "library",
+      "supplier": {
+        "name": "Grafana Labs",
+        "url": [
+          "https://grafana.com"
+        ]
+      },
+      "author": "Grafana Labs",
       "name": "github.com/grafana/rollout-operator",
       "version": "v0.32.0+dirty",
       "purl": "pkg:golang/github.com/grafana/rollout-operator@v0.32.0%2Bdirty",
+      "externalReferences": [
+        {
+          "url": "https://github.com/grafana/rollout-operator",
+          "type": "website"
+        },
+        {
+          "url": "https://pkg.go.dev/github.com/grafana/rollout-operator",
+          "type": "distribution"
+        },
+        {
+          "url": "https://github.com/grafana/rollout-operator",
+          "type": "vcs"
+        },
+        {
+          "url": "https://pkg.go.dev/github.com/grafana/rollout-operator#section-documentation",
+          "type": "documentation"
+        }
+      ],
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
@@ -2175,6 +2204,18 @@
         {
           "name": "aquasecurity:trivy:PkgType",
           "value": "gobinary"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2021-07-16T11:31:04Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2026-03-25T18:07:36Z"
+        },
+        {
+          "name": "ecosystems:owner_location",
+          "value": "Sweden"
         }
       ]
     },
@@ -2696,7 +2737,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2025-09-15T18:14:26Z"
+          "value": "2026-03-14T14:51:56Z"
         },
         {
           "name": "ecosystems:owner_location",
@@ -3453,7 +3494,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2025-10-30T14:20:06Z"
+          "value": "2026-02-28T15:22:44Z"
         },
         {
           "name": "ecosystems:topic",
@@ -3566,6 +3607,11 @@
       "name": "github.com/uber/jaeger-client-go",
       "version": "v2.28.0+incompatible",
       "description": "Package jaeger implements an OpenTracing (http://opentracing.io) Tracer.\n\nFor integration instructions please refer to the README:\n\nhttps://github.com/uber/jaeger-client-go/blob/master/README.md",
+      "licenses": [
+        {
+          "expression": "(Apache-2.0)"
+        }
+      ],
       "purl": "pkg:golang/github.com/uber/jaeger-client-go@v2.28.0%2Bincompatible",
       "externalReferences": [
         {
@@ -3645,6 +3691,11 @@
       "name": "github.com/uber/jaeger-lib",
       "version": "v2.2.0+incompatible",
       "description": "Package jaegerlib is a set of utilities shared by Jaeger backend and Jaeger Go Client.",
+      "licenses": [
+        {
+          "expression": "(Apache-2.0)"
+        }
+      ],
       "purl": "pkg:golang/github.com/uber/jaeger-lib@v2.2.0%2Bincompatible",
       "externalReferences": [
         {
@@ -3935,7 +3986,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-02-02T19:10:47Z"
+          "value": "2026-03-06T20:24:46Z"
         }
       ]
     },
@@ -4054,7 +4105,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-02-02T19:10:47Z"
+          "value": "2026-04-07T08:53:54Z"
         }
       ]
     },
@@ -4114,7 +4165,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-02-02T19:10:47Z"
+          "value": "2026-03-06T20:24:46Z"
         }
       ]
     },
@@ -4147,10 +4198,6 @@
           "type": "distribution"
         },
         {
-          "url": "https://github.com/open-telemetry/opentelemetry-go-contrib",
-          "type": "vcs"
-        },
-        {
           "url": "https://pkg.go.dev/go.opentelemetry.io/contrib/propagators/jaeger#section-documentation",
           "type": "documentation"
         }
@@ -4178,7 +4225,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-02-02T19:10:47Z"
+          "value": "2026-03-06T20:24:46Z"
         }
       ]
     },
@@ -4211,10 +4258,6 @@
           "type": "distribution"
         },
         {
-          "url": "https://github.com/open-telemetry/opentelemetry-go-contrib",
-          "type": "vcs"
-        },
-        {
           "url": "https://pkg.go.dev/go.opentelemetry.io/contrib/samplers/jaegerremote#section-documentation",
           "type": "documentation"
         }
@@ -4242,7 +4285,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-02-02T19:10:47Z"
+          "value": "2026-03-06T20:24:46Z"
         }
       ]
     },
@@ -4378,7 +4421,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-02-02T17:46:33Z"
+          "value": "2026-03-06T19:13:23Z"
         },
         {
           "name": "ecosystems:topic",
@@ -4454,7 +4497,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2025-12-08T16:30:47Z"
+          "value": "2026-03-06T19:13:23Z"
         },
         {
           "name": "ecosystems:topic",
@@ -4534,7 +4577,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-02-02T17:46:33Z"
+          "value": "2026-04-03T08:30:03Z"
         },
         {
           "name": "ecosystems:topic",
@@ -4566,7 +4609,7 @@
       "author": "OpenTelemetry - CNCF",
       "name": "go.opentelemetry.io/otel/exporters/otlp/otlpmetric/otlpmetrichttp",
       "version": "v1.36.0",
-      "description": "Package otlpmetrichttp provides an OTLP metrics exporter using HTTP with protobuf payloads.\nBy default the telemetry is sent to https://localhost:4318/v1/metrics.\n\nExporter should be created using New and used with a metric.PeriodicReader.\n\nThe environment variables described below can be used for configuration.\n\nOTEL_EXPORTER_OTLP_ENDPOINT (default: \"https://localhost:4318\") -\ntarget base URL (\"/v1/metrics\" is appended) to which the exporter sends telemetry.\nThe value must contain a scheme (\"http\" or \"https\") and host.\nThe value may additionally contain a port and a path.\nThe value should not contain a query string or fragment.\nThe configuration can be overridden by OTEL_EXPORTER_OTLP_METRICS_ENDPOINT\nenvironment variable and by WithEndpoint, WithEndpointURL, and WithInsecure options.\n\nOTEL_EXPORTER_OTLP_METRICS_ENDPOINT (default: \"https://localhost:4318/v1/metrics\") -\ntarget URL to which the exporter sends telemetry.\nThe value must contain a scheme (\"http\" or \"https\") and host.\nThe value may additionally contain a port and a path.\nThe value should not contain a query string or fragment.\nThe configuration can be overridden by WithEndpoint, WithEndpointURL, WithInsecure, and WithURLPath options.\n\nOTEL_EXPORTER_OTLP_HEADERS, OTEL_EXPORTER_OTLP_METRICS_HEADERS (default: none) -\nkey-value pairs used as headers associated with HTTP requests.\nThe value is expected to be represented in a format matching the W3C Baggage HTTP Header Content Format,\nexcept that additional semi-colon delimited metadata is not supported.\nExample value: \"key1=value1,key2=value2\".\nOTEL_EXPORTER_OTLP_METRICS_HEADERS takes precedence over OTEL_EXPORTER_OTLP_HEADERS.\nThe configuration can be overridden by WithHeaders option.\n\nOTEL_EXPORTER_OTLP_TIMEOUT, OTEL_EXPORTER_OTLP_METRICS_TIMEOUT (default: \"10000\") -\nmaximum time in milliseconds the OTLP exporter waits for each batch export.\nOTEL_EXPORTER_OTLP_METRICS_TIMEOUT takes precedence over OTEL_EXPORTER_OTLP_TIMEOUT.\nThe configuration can be overridden by WithTimeout option.\n\nOTEL_EXPORTER_OTLP_COMPRESSION, OTEL_EXPORTER_OTLP_METRICS_COMPRESSION (default: none) -\ncompression strategy the exporter uses to compress the HTTP body.\nSupported values: \"gzip\".\nOTEL_EXPORTER_OTLP_METRICS_COMPRESSION takes precedence over OTEL_EXPORTER_OTLP_COMPRESSION.\nThe configuration can be overridden by WithCompression option.\n\nOTEL_EXPORTER_OTLP_CERTIFICATE, OTEL_EXPORTER_OTLP_METRICS_CERTIFICATE (default: none) -\nfilepath to the trusted certificate to use when verifying a server's TLS credentials.\nOTEL_EXPORTER_OTLP_METRICS_CERTIFICATE takes precedence over OTEL_EXPORTER_OTLP_CERTIFICATE.\nThe configuration can be overridden by WithTLSClientConfig option.\n\nOTEL_EXPORTER_OTLP_CLIENT_CERTIFICATE, OTEL_EXPORTER_OTLP_METRICS_CLIENT_CERTIFICATE (default: none) -\nfilepath to the client certificate/chain trust for client's private key to use in mTLS communication in PEM format.\nOTEL_EXPORTER_OTLP_METRICS_CLIENT_CERTIFICATE takes precedence over OTEL_EXPORTER_OTLP_CLIENT_CERTIFICATE.\nThe configuration can be overridden by WithTLSClientConfig option.\n\nOTEL_EXPORTER_OTLP_CLIENT_KEY, OTEL_EXPORTER_OTLP_METRICS_CLIENT_KEY (default: none) -\nfilepath to the client's private key to use in mTLS communication in PEM format.\nOTEL_EXPORTER_OTLP_METRICS_CLIENT_KEY takes precedence over OTEL_EXPORTER_OTLP_CLIENT_KEY.\nThe configuration can be overridden by WithTLSClientConfig option.\n\nOTEL_EXPORTER_OTLP_METRICS_TEMPORALITY_PREFERENCE (default: \"cumulative\") -\naggregation temporality to use on the basis of instrument kind. Supported values:\n\nThe configuration can be overridden by WithTemporalitySelector option.\n\nOTEL_EXPORTER_OTLP_METRICS_DEFAULT_HISTOGRAM_AGGREGATION (default: \"explicit_bucket_histogram\") -\ndefault aggregation to use for histogram instruments. Supported values:\n\nThe configuration can be overridden by WithAggregationSelector option.",
+      "description": "Package otlpmetrichttp provides an OTLP metrics exporter using HTTP with protobuf payloads.\nBy default the telemetry is sent to https://localhost:4318/v1/metrics.\n\nExporter should be created using New and used with a metric.PeriodicReader.\n\nThe environment variables described below can be used for configuration.\n\nOTEL_EXPORTER_OTLP_ENDPOINT (default: \"https://localhost:4318\") -\ntarget base URL (\"/v1/metrics\" is appended) to which the exporter sends telemetry.\nThe value must contain a scheme (\"http\" or \"https\") and host.\nThe value may additionally contain a port and a path.\nThe value should not contain a query string or fragment.\nThe configuration can be overridden by OTEL_EXPORTER_OTLP_METRICS_ENDPOINT\nenvironment variable and by WithEndpoint, WithEndpointURL, and WithInsecure options.\n\nOTEL_EXPORTER_OTLP_METRICS_ENDPOINT (default: \"https://localhost:4318/v1/metrics\") -\ntarget URL to which the exporter sends telemetry.\nThe value must contain a scheme (\"http\" or \"https\") and host.\nThe value may additionally contain a port and a path.\nThe value should not contain a query string or fragment.\nThe configuration can be overridden by WithEndpoint, WithEndpointURL, WithInsecure, and WithURLPath options.\n\nOTEL_EXPORTER_OTLP_INSECURE, OTEL_EXPORTER_OTLP_METRICS_INSECURE (default: \"false\") -\nsetting \"true\" disables client transport security for the exporter's HTTP connection.\nOTEL_EXPORTER_OTLP_METRICS_INSECURE takes precedence over OTEL_EXPORTER_OTLP_INSECURE.\nThe configuration can be overridden by WithInsecure and WithTLSClientConfig options.\n\nOTEL_EXPORTER_OTLP_HEADERS, OTEL_EXPORTER_OTLP_METRICS_HEADERS (default: none) -\nkey-value pairs used as headers associated with HTTP requests.\nThe value is expected to be represented in a format matching the W3C Baggage HTTP Header Content Format,\nexcept that additional semi-colon delimited metadata is not supported.\nExample value: \"key1=value1,key2=value2\".\nOTEL_EXPORTER_OTLP_METRICS_HEADERS takes precedence over OTEL_EXPORTER_OTLP_HEADERS.\nThe configuration can be overridden by WithHeaders option.\n\nOTEL_EXPORTER_OTLP_TIMEOUT, OTEL_EXPORTER_OTLP_METRICS_TIMEOUT (default: \"10000\") -\nmaximum time in milliseconds the OTLP exporter waits for each batch export.\nOTEL_EXPORTER_OTLP_METRICS_TIMEOUT takes precedence over OTEL_EXPORTER_OTLP_TIMEOUT.\nThe configuration can be overridden by WithTimeout option.\n\nOTEL_EXPORTER_OTLP_COMPRESSION, OTEL_EXPORTER_OTLP_METRICS_COMPRESSION (default: none) -\ncompression strategy the exporter uses to compress the HTTP body.\nSupported values: \"gzip\".\nOTEL_EXPORTER_OTLP_METRICS_COMPRESSION takes precedence over OTEL_EXPORTER_OTLP_COMPRESSION.\nThe configuration can be overridden by WithCompression option.\n\nOTEL_EXPORTER_OTLP_CERTIFICATE, OTEL_EXPORTER_OTLP_METRICS_CERTIFICATE (default: none) -\nfilepath to the trusted certificate to use when verifying a server's TLS credentials.\nOTEL_EXPORTER_OTLP_METRICS_CERTIFICATE takes precedence over OTEL_EXPORTER_OTLP_CERTIFICATE.\nThe configuration can be overridden by WithTLSClientConfig option.\n\nOTEL_EXPORTER_OTLP_CLIENT_CERTIFICATE, OTEL_EXPORTER_OTLP_METRICS_CLIENT_CERTIFICATE (default: none) -\nfilepath to the client certificate/chain trust for client's private key to use in mTLS communication in PEM format.\nOTEL_EXPORTER_OTLP_METRICS_CLIENT_CERTIFICATE takes precedence over OTEL_EXPORTER_OTLP_CLIENT_CERTIFICATE.\nThe configuration can be overridden by WithTLSClientConfig option.\n\nOTEL_EXPORTER_OTLP_CLIENT_KEY, OTEL_EXPORTER_OTLP_METRICS_CLIENT_KEY (default: none) -\nfilepath to the client's private key to use in mTLS communication in PEM format.\nOTEL_EXPORTER_OTLP_METRICS_CLIENT_KEY takes precedence over OTEL_EXPORTER_OTLP_CLIENT_KEY.\nThe configuration can be overridden by WithTLSClientConfig option.\n\nOTEL_EXPORTER_OTLP_METRICS_TEMPORALITY_PREFERENCE (default: \"cumulative\") -\naggregation temporality to use on the basis of instrument kind. Supported values:\n\nThe configuration can be overridden by WithTemporalitySelector option.\n\nOTEL_EXPORTER_OTLP_METRICS_DEFAULT_HISTOGRAM_AGGREGATION (default: \"explicit_bucket_histogram\") -\ndefault aggregation to use for histogram instruments. Supported values:\n\nThe configuration can be overridden by WithAggregationSelector option.",
       "licenses": [
         {
           "expression": "(Apache-2.0 OR BSD-3-Clause)"
@@ -4581,6 +4624,10 @@
         {
           "url": "https://pkg.go.dev/go.opentelemetry.io/otel/exporters/otlp/otlpmetric/otlpmetrichttp",
           "type": "distribution"
+        },
+        {
+          "url": "https://github.com/open-telemetry/opentelemetry-go",
+          "type": "vcs"
         },
         {
           "url": "https://pkg.go.dev/go.opentelemetry.io/otel/exporters/otlp/otlpmetric/otlpmetrichttp#section-documentation",
@@ -4610,7 +4657,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-02-02T17:46:33Z"
+          "value": "2026-04-03T08:30:03Z"
         },
         {
           "name": "ecosystems:topic",
@@ -4659,6 +4706,10 @@
           "type": "distribution"
         },
         {
+          "url": "https://github.com/open-telemetry/opentelemetry-go",
+          "type": "vcs"
+        },
+        {
           "url": "https://pkg.go.dev/go.opentelemetry.io/otel/exporters/otlp/otlptrace/otlptracegrpc#section-documentation",
           "type": "documentation"
         }
@@ -4686,7 +4737,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-02-02T17:46:33Z"
+          "value": "2026-04-03T08:30:03Z"
         },
         {
           "name": "ecosystems:topic",
@@ -4735,10 +4786,6 @@
           "type": "distribution"
         },
         {
-          "url": "https://github.com/open-telemetry/opentelemetry-go",
-          "type": "vcs"
-        },
-        {
           "url": "https://pkg.go.dev/go.opentelemetry.io/otel/exporters/otlp/otlptrace/otlptracehttp#section-documentation",
           "type": "documentation"
         }
@@ -4766,7 +4813,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-02-02T17:46:33Z"
+          "value": "2026-04-03T08:30:03Z"
         },
         {
           "name": "ecosystems:topic",
@@ -4842,7 +4889,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-02-02T17:46:33Z"
+          "value": "2026-04-03T08:30:03Z"
         },
         {
           "name": "ecosystems:topic",
@@ -4891,10 +4938,6 @@
           "type": "distribution"
         },
         {
-          "url": "https://github.com/open-telemetry/opentelemetry-go",
-          "type": "vcs"
-        },
-        {
           "url": "https://pkg.go.dev/go.opentelemetry.io/otel/exporters/prometheus#section-documentation",
           "type": "documentation"
         }
@@ -4922,7 +4965,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-02-02T17:46:33Z"
+          "value": "2026-04-03T08:30:03Z"
         },
         {
           "name": "ecosystems:topic",
@@ -4998,7 +5041,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2025-12-08T16:30:47Z"
+          "value": "2026-03-06T19:13:23Z"
         },
         {
           "name": "ecosystems:topic",
@@ -5074,7 +5117,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-02-02T17:46:33Z"
+          "value": "2026-04-03T08:30:03Z"
         },
         {
           "name": "ecosystems:topic",
@@ -5150,7 +5193,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-02-02T17:46:33Z"
+          "value": "2026-04-03T08:30:03Z"
         },
         {
           "name": "ecosystems:topic",
@@ -5226,7 +5269,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-02-02T17:46:33Z"
+          "value": "2026-03-06T19:13:23Z"
         },
         {
           "name": "ecosystems:topic",
@@ -5302,7 +5345,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-02-02T17:46:33Z"
+          "value": "2026-04-03T08:30:03Z"
         },
         {
           "name": "ecosystems:topic",
@@ -5378,7 +5421,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-02-02T17:46:33Z"
+          "value": "2026-03-06T19:13:23Z"
         },
         {
           "name": "ecosystems:topic",
@@ -5454,7 +5497,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-02-02T17:46:33Z"
+          "value": "2026-04-03T08:30:03Z"
         },
         {
           "name": "ecosystems:topic",
@@ -5530,7 +5573,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-02-02T17:46:33Z"
+          "value": "2026-04-03T08:30:03Z"
         },
         {
           "name": "ecosystems:topic",
@@ -5629,13 +5672,6 @@
     {
       "bom-ref": "pkg:golang/go.opentelemetry.io/otel@v1.38.0",
       "type": "library",
-      "supplier": {
-        "name": "OpenTelemetry - CNCF",
-        "url": [
-          "https://opentelemetry.io"
-        ]
-      },
-      "author": "OpenTelemetry - CNCF",
       "name": "go.opentelemetry.io/otel",
       "version": "v1.38.0",
       "description": "Package otel provides global access to the OpenTelemetry API. The subpackages of\nthe otel package provide an implementation of the OpenTelemetry API.\n\nThe provided API is used to instrument code and measure data about that code's\nperformance and operation. The measured data, by default, is not processed or\ntransmitted anywhere. An implementation of the OpenTelemetry SDK, like the\ndefault SDK implementation (go.opentelemetry.io/otel/sdk), and associated\nexporters are used to process and transport this data.\n\nTo read the getting started guide, see https://opentelemetry.io/docs/languages/go/getting-started/.\n\nTo read more about tracing, see go.opentelemetry.io/otel/trace.\n\nTo read more about metrics, see go.opentelemetry.io/otel/metric.\n\nTo read more about logs, see go.opentelemetry.io/otel/log.\n\nTo read more about propagation, see go.opentelemetry.io/otel/propagation and\ngo.opentelemetry.io/otel/baggage.",
@@ -5682,7 +5718,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-02-02T17:46:33Z"
+          "value": "2026-04-03T08:30:03Z"
         },
         {
           "name": "ecosystems:topic",
@@ -5757,7 +5793,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2025-11-03T15:38:58Z"
+          "value": "2026-03-09T19:21:30Z"
         },
         {
           "name": "ecosystems:topic",
@@ -5899,11 +5935,25 @@
       "type": "library",
       "name": "go.yaml.in/yaml/v3",
       "version": "v3.0.4",
+      "description": "Package yaml implements YAML support for the Go language.\n\nSource code and other details for the project are available at GitHub:",
+      "licenses": [
+        {
+          "expression": "(Apache-2.0 OR MIT)"
+        }
+      ],
       "purl": "pkg:golang/go.yaml.in/yaml/v3@v3.0.4",
       "externalReferences": [
         {
+          "url": "https://github.com/yaml/go-yaml",
+          "type": "website"
+        },
+        {
           "url": "https://pkg.go.dev/go.yaml.in/yaml/v3",
           "type": "distribution"
+        },
+        {
+          "url": "https://github.com/yaml/go-yaml",
+          "type": "vcs"
         },
         {
           "url": "https://pkg.go.dev/go.yaml.in/yaml/v3#section-documentation",
@@ -5989,7 +6039,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-02-09T17:11:27Z"
+          "value": "2026-03-12T00:35:42Z"
         }
       ]
     },
@@ -6013,6 +6063,10 @@
         {
           "url": "https://pkg.go.dev/golang.org/x/oauth2",
           "type": "distribution"
+        },
+        {
+          "url": "https://cs.opensource.google/go/x/oauth2",
+          "type": "vcs"
         },
         {
           "url": "https://pkg.go.dev/golang.org/x/oauth2#section-documentation",
@@ -6042,7 +6096,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-01-12T19:50:33Z"
+          "value": "2026-02-11T19:14:10Z"
         }
       ]
     },
@@ -6094,7 +6148,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2025-12-04T00:24:39Z"
+          "value": "2026-02-23T18:54:42Z"
         }
       ]
     },
@@ -6146,7 +6200,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-02-08T05:32:41Z"
+          "value": "2026-03-03T01:51:03Z"
         }
       ]
     },
@@ -6199,7 +6253,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-02-09T16:13:12Z"
+          "value": "2026-03-10T01:43:14Z"
         }
       ]
     },
@@ -6223,10 +6277,6 @@
         {
           "url": "https://pkg.go.dev/golang.org/x/text",
           "type": "distribution"
-        },
-        {
-          "url": "https://cs.opensource.google/go/x/text",
-          "type": "vcs"
         },
         {
           "url": "https://pkg.go.dev/golang.org/x/text#section-documentation",
@@ -6256,7 +6306,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-02-09T16:14:29Z"
+          "value": "2026-03-10T01:41:36Z"
         }
       ]
     },
@@ -6308,7 +6358,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2025-09-16T23:29:52Z"
+          "value": "2026-02-11T19:14:29Z"
         }
       ]
     },
@@ -6324,6 +6374,11 @@
       "author": "Google APIs",
       "name": "google.golang.org/genproto/googleapis/api",
       "version": "v0.0.0-20250707201910-8d1bb00bc6a7",
+      "licenses": [
+        {
+          "expression": "(Apache-2.0)"
+        }
+      ],
       "purl": "pkg:golang/google.golang.org/genproto/googleapis/api@v0.0.0-20250707201910-8d1bb00bc6a7",
       "externalReferences": [
         {
@@ -6366,7 +6421,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-02-17T21:52:00Z"
+          "value": "2026-04-01T02:48:25Z"
         }
       ]
     },
@@ -6424,7 +6479,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-02-17T21:52:00Z"
+          "value": "2026-04-01T02:48:25Z"
         }
       ]
     },
@@ -6484,7 +6539,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-02-13T06:52:36Z"
+          "value": "2026-04-01T07:57:02Z"
         },
         {
           "name": "ecosystems:topic",
@@ -6554,10 +6609,6 @@
         {
           "url": "https://pkg.go.dev/google.golang.org/protobuf",
           "type": "distribution"
-        },
-        {
-          "url": "https://github.com/protocolbuffers/protobuf-go",
-          "type": "vcs"
         },
         {
           "url": "https://pkg.go.dev/google.golang.org/protobuf#section-documentation",
@@ -6971,10 +7022,6 @@
           "type": "distribution"
         },
         {
-          "url": "https://github.com/kubernetes/client-go",
-          "type": "vcs"
-        },
-        {
           "url": "https://pkg.go.dev/k8s.io/client-go#section-documentation",
           "type": "documentation"
         }
@@ -7066,7 +7113,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2024-06-20T00:51:19Z"
+          "value": "2026-03-03T11:17:23Z"
         },
         {
           "name": "ecosystems:topic",
@@ -7128,7 +7175,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-01-27T14:27:50Z"
+          "value": "2026-03-19T00:48:28Z"
         }
       ]
     },
@@ -7191,7 +7238,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-02-10T18:56:00Z"
+          "value": "2026-03-19T19:02:34Z"
         },
         {
           "name": "ecosystems:topic",
@@ -7256,7 +7303,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-01-26T17:45:50Z"
+          "value": "2026-03-05T14:20:21Z"
         },
         {
           "name": "ecosystems:topic",
@@ -7497,18 +7544,18 @@
   ],
   "dependencies": [
     {
-      "ref": "18b96f97-b825-4e20-8f20-00a800fd3069",
+      "ref": "494571d2-8ae6-4fa7-8ba5-d91e6d1dbbaa",
+      "dependsOn": [
+        "pkg:golang/github.com/grafana/rollout-operator@v0.32.0%2Bdirty"
+      ]
+    },
+    {
+      "ref": "9adf9676-42d1-43ee-ab9f-9cf530ffb6c7",
       "dependsOn": [
         "pkg:deb/debian/base-files@12.4%2Bdeb12u12?arch=amd64&distro=debian-12.12",
         "pkg:deb/debian/media-types@10.0.0?arch=all&distro=debian-12.12",
         "pkg:deb/debian/netbase@6.4?arch=all&distro=debian-12.12",
         "pkg:deb/debian/tzdata@2025b-0%2Bdeb12u2?arch=all&distro=debian-12.12"
-      ]
-    },
-    {
-      "ref": "278d136a-4d0f-4b39-a601-7253d336f81e",
-      "dependsOn": [
-        "pkg:golang/github.com/grafana/rollout-operator@v0.32.0%2Bdirty"
       ]
     },
     {
@@ -8050,8 +8097,8 @@
     {
       "ref": "pkg:oci/rollout-operator@sha256%3Acdb420c0af2cc5b32a33267cdd4aac8cd7867d539975a75dc856b0cfebbadff4?arch=amd64&repository_url=index.docker.io%2Fgrafana%2Frollout-operator",
       "dependsOn": [
-        "18b96f97-b825-4e20-8f20-00a800fd3069",
-        "278d136a-4d0f-4b39-a601-7253d336f81e"
+        "494571d2-8ae6-4fa7-8ba5-d91e6d1dbbaa",
+        "9adf9676-42d1-43ee-ab9f-9cf530ffb6c7"
       ]
     }
   ],

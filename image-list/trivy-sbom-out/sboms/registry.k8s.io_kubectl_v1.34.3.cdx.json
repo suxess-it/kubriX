@@ -2,10 +2,10 @@
   "$schema": "http://cyclonedx.org/schema/bom-1.6.schema.json",
   "bomFormat": "CycloneDX",
   "specVersion": "1.6",
-  "serialNumber": "urn:uuid:d01f66f4-eb10-488f-9137-6e74f627dcf9",
+  "serialNumber": "urn:uuid:55909677-7407-4346-9fa4-2317929e502d",
   "version": 1,
   "metadata": {
-    "timestamp": "2026-02-25T14:47:44+00:00",
+    "timestamp": "2026-04-07T12:49:42+00:00",
     "tools": {
       "components": [
         {
@@ -15,7 +15,7 @@
           },
           "group": "aquasecurity",
           "name": "trivy",
-          "version": "0.69.0"
+          "version": "0.69.2"
         }
       ]
     },
@@ -118,7 +118,53 @@
   },
   "components": [
     {
-      "bom-ref": "2c9b6b3f-ab94-49df-8526-5f45eef17d0a",
+      "bom-ref": "243c1f83-56ed-4a53-b2df-2884001d9dfe",
+      "type": "application",
+      "name": "go-runner",
+      "properties": [
+        {
+          "name": "aquasecurity:trivy:Class",
+          "value": "lang-pkgs"
+        },
+        {
+          "name": "aquasecurity:trivy:Type",
+          "value": "gobinary"
+        }
+      ]
+    },
+    {
+      "bom-ref": "2b4fe717-e94e-4e6a-b33a-9d3903c12e74",
+      "type": "application",
+      "name": "bin/kubectl",
+      "properties": [
+        {
+          "name": "aquasecurity:trivy:Class",
+          "value": "lang-pkgs"
+        },
+        {
+          "name": "aquasecurity:trivy:Type",
+          "value": "gobinary"
+        }
+      ]
+    },
+    {
+      "bom-ref": "7fec2a5e-e135-4c95-9f8c-2dc6ba88fae9",
+      "type": "operating-system",
+      "name": "debian",
+      "version": "12.12",
+      "properties": [
+        {
+          "name": "aquasecurity:trivy:Class",
+          "value": "os-pkgs"
+        },
+        {
+          "name": "aquasecurity:trivy:Type",
+          "value": "debian"
+        }
+      ]
+    },
+    {
+      "bom-ref": "da00fb3e-9ac7-4d6c-b055-400b2585602b",
       "type": "library",
       "name": "stdlib",
       "version": "v1.24.11",
@@ -143,53 +189,7 @@
       ]
     },
     {
-      "bom-ref": "55525283-8765-4bd7-b263-fd5c99df6da6",
-      "type": "application",
-      "name": "bin/kubectl",
-      "properties": [
-        {
-          "name": "aquasecurity:trivy:Class",
-          "value": "lang-pkgs"
-        },
-        {
-          "name": "aquasecurity:trivy:Type",
-          "value": "gobinary"
-        }
-      ]
-    },
-    {
-      "bom-ref": "56ea3283-57e0-4e27-924f-5c50603e65f5",
-      "type": "application",
-      "name": "go-runner",
-      "properties": [
-        {
-          "name": "aquasecurity:trivy:Class",
-          "value": "lang-pkgs"
-        },
-        {
-          "name": "aquasecurity:trivy:Type",
-          "value": "gobinary"
-        }
-      ]
-    },
-    {
-      "bom-ref": "b6b44982-9244-4391-ae30-fc99892612af",
-      "type": "operating-system",
-      "name": "debian",
-      "version": "12.12",
-      "properties": [
-        {
-          "name": "aquasecurity:trivy:Class",
-          "value": "os-pkgs"
-        },
-        {
-          "name": "aquasecurity:trivy:Type",
-          "value": "debian"
-        }
-      ]
-    },
-    {
-      "bom-ref": "da8c4eba-6444-4c30-99ee-bd2d0d7d3180",
+      "bom-ref": "ea78f9d7-7687-4872-bb31-da62ae8681d2",
       "type": "library",
       "name": "stdlib",
       "version": "v1.24.11",
@@ -236,7 +236,7 @@
         },
         {
           "name": "aquasecurity:trivy:LayerDigest",
-          "value": "sha256:259db2ee6b876afac49b298219529e5ff850e8efb940856f8397c17d1bab100e"
+          "value": "sha256:fd4aa3667332c2a4837e1b5f395b0555b3c4ec299e38166ae93ee84bad01befa"
         },
         {
           "name": "aquasecurity:trivy:PkgID",
@@ -279,7 +279,7 @@
         },
         {
           "name": "aquasecurity:trivy:LayerDigest",
-          "value": "sha256:e1089d61b200106053b1717881bf0c1c47551478f01569d9224d33cccf3e4692"
+          "value": "sha256:62de241dac5fe19d5f8f4defe034289006ddaa0f2cca735db4718fe2a23e504e"
         },
         {
           "name": "aquasecurity:trivy:PkgID",
@@ -322,7 +322,7 @@
         },
         {
           "name": "aquasecurity:trivy:LayerDigest",
-          "value": "sha256:2e4cf50eeb92ac3a7afe75e15d96a26dee99449f86b46c75b5d95f4418a5bca0"
+          "value": "sha256:bfb59b82a9b65e47d485e53b3e815bca3b3e21a095bd0cb88ced9ac0b48062bf"
         },
         {
           "name": "aquasecurity:trivy:PkgID",
@@ -365,7 +365,7 @@
         },
         {
           "name": "aquasecurity:trivy:LayerDigest",
-          "value": "sha256:56ce5a7a0a8cc3aded9e8cab00fd85f0a1c50376aa9f2318c4e66beb03eadf8f"
+          "value": "sha256:017886f7e1764618ffad6fbd503c42a60076c63adc16355cac80f0f311cae4c9"
         },
         {
           "name": "aquasecurity:trivy:PkgID",
@@ -1096,7 +1096,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2025-07-14T04:00:34Z"
+          "value": "2026-03-30T13:23:16Z"
         },
         {
           "name": "ecosystems:owner_location",
@@ -1342,7 +1342,11 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2025-12-06T13:20:57Z"
+          "value": "2026-03-02T21:21:48Z"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "jsonpointer"
         }
       ]
     },
@@ -1402,7 +1406,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2025-12-08T21:48:23Z"
+          "value": "2026-03-02T21:57:17Z"
         }
       ]
     },
@@ -1463,7 +1467,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2025-11-25T18:28:48Z"
+          "value": "2026-03-02T18:12:04Z"
         }
       ]
     },
@@ -2368,7 +2372,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2025-09-15T18:14:26Z"
+          "value": "2026-03-14T14:51:56Z"
         },
         {
           "name": "ecosystems:owner_location",
@@ -3541,7 +3545,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2025-10-30T14:20:06Z"
+          "value": "2026-02-28T15:22:44Z"
         },
         {
           "name": "ecosystems:topic",
@@ -3641,13 +3645,6 @@
     {
       "bom-ref": "pkg:golang/github.com/spf13/cobra@v1.9.1",
       "type": "library",
-      "supplier": {
-        "name": "Steve Francia",
-        "url": [
-          "http://spf13.com"
-        ]
-      },
-      "author": "Steve Francia",
       "name": "github.com/spf13/cobra",
       "version": "v1.9.1",
       "description": "Package cobra is a commander providing a simple interface to create powerful modern CLI interfaces.\nIn addition to providing an interface, Cobra simultaneously provides a controller to organize your application code.",
@@ -3699,10 +3696,6 @@
         {
           "name": "ecosystems:latest_release_published_at",
           "value": "2025-12-03T23:51:15Z"
-        },
-        {
-          "name": "ecosystems:owner_location",
-          "value": "NYC"
         },
         {
           "name": "ecosystems:topic",
@@ -4070,13 +4063,6 @@
     {
       "bom-ref": "pkg:golang/go.opentelemetry.io/otel@v1.35.0",
       "type": "library",
-      "supplier": {
-        "name": "OpenTelemetry - CNCF",
-        "url": [
-          "https://opentelemetry.io"
-        ]
-      },
-      "author": "OpenTelemetry - CNCF",
       "name": "go.opentelemetry.io/otel",
       "version": "v1.35.0",
       "description": "Package otel provides global access to the OpenTelemetry API. The subpackages of\nthe otel package provide an implementation of the OpenTelemetry API.\n\nThe provided API is used to instrument code and measure data about that code's\nperformance and operation. The measured data, by default, is not processed or\ntransmitted anywhere. An implementation of the OpenTelemetry SDK, like the\ndefault SDK implementation (go.opentelemetry.io/otel/sdk), and associated\nexporters are used to process and transport this data.\n\nTo read the getting started guide, see https://opentelemetry.io/docs/languages/go/getting-started/.\n\nTo read more about tracing, see go.opentelemetry.io/otel/trace.\n\nTo read more about metrics, see go.opentelemetry.io/otel/metric.\n\nTo read more about logs, see go.opentelemetry.io/otel/log.\n\nTo read more about propagation, see go.opentelemetry.io/otel/propagation and\ngo.opentelemetry.io/otel/baggage.",
@@ -4123,7 +4109,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-02-02T17:46:33Z"
+          "value": "2026-04-03T08:30:03Z"
         },
         {
           "name": "ecosystems:topic",
@@ -4205,11 +4191,25 @@
       "type": "library",
       "name": "go.yaml.in/yaml/v3",
       "version": "v3.0.4",
+      "description": "Package yaml implements YAML support for the Go language.\n\nSource code and other details for the project are available at GitHub:",
+      "licenses": [
+        {
+          "expression": "(Apache-2.0 OR MIT)"
+        }
+      ],
       "purl": "pkg:golang/go.yaml.in/yaml/v3@v3.0.4",
       "externalReferences": [
         {
+          "url": "https://github.com/yaml/go-yaml",
+          "type": "website"
+        },
+        {
           "url": "https://pkg.go.dev/go.yaml.in/yaml/v3",
           "type": "distribution"
+        },
+        {
+          "url": "https://github.com/yaml/go-yaml",
+          "type": "vcs"
         },
         {
           "url": "https://pkg.go.dev/go.yaml.in/yaml/v3#section-documentation",
@@ -4295,7 +4295,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-02-09T17:11:27Z"
+          "value": "2026-03-12T00:35:42Z"
         }
       ]
     },
@@ -4319,6 +4319,10 @@
         {
           "url": "https://pkg.go.dev/golang.org/x/oauth2",
           "type": "distribution"
+        },
+        {
+          "url": "https://cs.opensource.google/go/x/oauth2",
+          "type": "vcs"
         },
         {
           "url": "https://pkg.go.dev/golang.org/x/oauth2#section-documentation",
@@ -4348,7 +4352,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-01-12T19:50:33Z"
+          "value": "2026-02-11T19:14:10Z"
         }
       ]
     },
@@ -4400,7 +4404,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2025-12-04T00:24:39Z"
+          "value": "2026-02-23T18:54:42Z"
         }
       ]
     },
@@ -4452,7 +4456,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-02-08T05:32:41Z"
+          "value": "2026-03-03T01:51:03Z"
         }
       ]
     },
@@ -4505,7 +4509,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-02-09T16:13:12Z"
+          "value": "2026-03-10T01:43:14Z"
         }
       ]
     },
@@ -4529,10 +4533,6 @@
         {
           "url": "https://pkg.go.dev/golang.org/x/text",
           "type": "distribution"
-        },
-        {
-          "url": "https://cs.opensource.google/go/x/text",
-          "type": "vcs"
         },
         {
           "url": "https://pkg.go.dev/golang.org/x/text#section-documentation",
@@ -4562,7 +4562,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-02-09T16:14:29Z"
+          "value": "2026-03-10T01:41:36Z"
         }
       ]
     },
@@ -4614,7 +4614,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2025-09-16T23:29:52Z"
+          "value": "2026-02-11T19:14:29Z"
         }
       ]
     },
@@ -4644,10 +4644,6 @@
         {
           "url": "https://pkg.go.dev/google.golang.org/protobuf",
           "type": "distribution"
-        },
-        {
-          "url": "https://github.com/protocolbuffers/protobuf-go",
-          "type": "vcs"
         },
         {
           "url": "https://pkg.go.dev/google.golang.org/protobuf#section-documentation",
@@ -5069,7 +5065,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-02-10T22:43:05Z"
+          "value": "2026-03-19T07:02:16Z"
         },
         {
           "name": "ecosystems:topic",
@@ -5102,10 +5098,6 @@
         {
           "url": "https://pkg.go.dev/k8s.io/client-go",
           "type": "distribution"
-        },
-        {
-          "url": "https://github.com/kubernetes/client-go",
-          "type": "vcs"
         },
         {
           "url": "https://pkg.go.dev/k8s.io/client-go#section-documentation",
@@ -5325,7 +5317,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2024-06-20T00:51:19Z"
+          "value": "2026-03-03T11:17:23Z"
         },
         {
           "name": "ecosystems:topic",
@@ -5387,7 +5379,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-01-27T14:27:50Z"
+          "value": "2026-03-19T00:48:28Z"
         }
       ]
     },
@@ -5440,7 +5432,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-02-11T00:05:52Z"
+          "value": "2026-03-19T08:35:32Z"
         },
         {
           "name": "ecosystems:topic",
@@ -5464,6 +5456,11 @@
       "author": "Kubernetes",
       "name": "k8s.io/kubernetes",
       "version": "v1.34.3",
+      "licenses": [
+        {
+          "expression": "(Apache-2.0)"
+        }
+      ],
       "purl": "pkg:golang/k8s.io/kubernetes@v1.34.3",
       "externalReferences": [
         {
@@ -5502,7 +5499,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-02-10T12:53:13Z"
+          "value": "2026-03-18T18:30:07Z"
         },
         {
           "name": "ecosystems:topic",
@@ -5586,8 +5583,33 @@
     {
       "bom-ref": "pkg:golang/k8s.io/release/images/build/go-runner",
       "type": "library",
+      "supplier": {
+        "name": "Kubernetes",
+        "url": [
+          "https://kubernetes.io"
+        ]
+      },
+      "author": "Kubernetes",
       "name": "k8s.io/release/images/build/go-runner",
       "purl": "pkg:golang/k8s.io/release/images/build/go-runner",
+      "externalReferences": [
+        {
+          "url": "https://github.com/kubernetes/release",
+          "type": "website"
+        },
+        {
+          "url": "https://pkg.go.dev/k8s.io/release/images/build/go-runner",
+          "type": "distribution"
+        },
+        {
+          "url": "https://github.com/kubernetes/release",
+          "type": "vcs"
+        },
+        {
+          "url": "https://pkg.go.dev/k8s.io/release/images/build/go-runner#section-documentation",
+          "type": "documentation"
+        }
+      ],
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
@@ -5604,6 +5626,22 @@
         {
           "name": "aquasecurity:trivy:PkgType",
           "value": "gobinary"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2022-04-06T07:12:56Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2026-03-13T08:39:34Z"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "kubernetes"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "release-infrastructure"
         }
       ]
     },
@@ -5666,7 +5704,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-02-10T18:56:00Z"
+          "value": "2026-03-19T19:02:34Z"
         },
         {
           "name": "ecosystems:topic",
@@ -5893,6 +5931,10 @@
           "type": "distribution"
         },
         {
+          "url": "https://github.com/kubernetes-sigs/kustomize",
+          "type": "vcs"
+        },
+        {
           "url": "https://pkg.go.dev/sigs.k8s.io/kustomize/kyaml#section-documentation",
           "type": "documentation"
         }
@@ -6081,23 +6123,19 @@
   ],
   "dependencies": [
     {
-      "ref": "2c9b6b3f-ab94-49df-8526-5f45eef17d0a",
-      "dependsOn": []
-    },
-    {
-      "ref": "55525283-8765-4bd7-b263-fd5c99df6da6",
-      "dependsOn": [
-        "pkg:golang/k8s.io/kubernetes@v1.34.3"
-      ]
-    },
-    {
-      "ref": "56ea3283-57e0-4e27-924f-5c50603e65f5",
+      "ref": "243c1f83-56ed-4a53-b2df-2884001d9dfe",
       "dependsOn": [
         "pkg:golang/k8s.io/release/images/build/go-runner"
       ]
     },
     {
-      "ref": "b6b44982-9244-4391-ae30-fc99892612af",
+      "ref": "2b4fe717-e94e-4e6a-b33a-9d3903c12e74",
+      "dependsOn": [
+        "pkg:golang/k8s.io/kubernetes@v1.34.3"
+      ]
+    },
+    {
+      "ref": "7fec2a5e-e135-4c95-9f8c-2dc6ba88fae9",
       "dependsOn": [
         "pkg:deb/debian/base-files@12.4%2Bdeb12u12?arch=amd64&distro=debian-12.12",
         "pkg:deb/debian/media-types@10.0.0?arch=all&distro=debian-12.12",
@@ -6106,7 +6144,11 @@
       ]
     },
     {
-      "ref": "da8c4eba-6444-4c30-99ee-bd2d0d7d3180",
+      "ref": "da00fb3e-9ac7-4d6c-b055-400b2585602b",
+      "dependsOn": []
+    },
+    {
+      "ref": "ea78f9d7-7687-4872-bb31-da62ae8681d2",
       "dependsOn": []
     },
     {
@@ -6420,7 +6462,7 @@
     {
       "ref": "pkg:golang/k8s.io/kubernetes@v1.34.3",
       "dependsOn": [
-        "2c9b6b3f-ab94-49df-8526-5f45eef17d0a",
+        "da00fb3e-9ac7-4d6c-b055-400b2585602b",
         "pkg:golang/github.com/beorn7/perks@v1.0.1",
         "pkg:golang/github.com/blang/semver/v4@v4.0.0",
         "pkg:golang/github.com/cespare/xxhash/v2@v2.3.0",
@@ -6512,7 +6554,7 @@
     {
       "ref": "pkg:golang/k8s.io/release/images/build/go-runner",
       "dependsOn": [
-        "da8c4eba-6444-4c30-99ee-bd2d0d7d3180"
+        "ea78f9d7-7687-4872-bb31-da62ae8681d2"
       ]
     },
     {
@@ -6550,9 +6592,9 @@
     {
       "ref": "pkg:oci/kubectl@sha256%3A1c6309bd167feb49b2bc1605bce05973002872fd0d26a2e76499ed0c903ea3cf?arch=amd64&repository_url=registry.k8s.io%2Fkubectl",
       "dependsOn": [
-        "55525283-8765-4bd7-b263-fd5c99df6da6",
-        "56ea3283-57e0-4e27-924f-5c50603e65f5",
-        "b6b44982-9244-4391-ae30-fc99892612af"
+        "243c1f83-56ed-4a53-b2df-2884001d9dfe",
+        "2b4fe717-e94e-4e6a-b33a-9d3903c12e74",
+        "7fec2a5e-e135-4c95-9f8c-2dc6ba88fae9"
       ]
     }
   ],

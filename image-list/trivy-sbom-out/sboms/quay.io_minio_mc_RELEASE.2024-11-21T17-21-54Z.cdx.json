@@ -2,10 +2,10 @@
   "$schema": "http://cyclonedx.org/schema/bom-1.6.schema.json",
   "bomFormat": "CycloneDX",
   "specVersion": "1.6",
-  "serialNumber": "urn:uuid:a23858a0-7a25-4cb8-9447-271d323f9ba3",
+  "serialNumber": "urn:uuid:41971122-85c4-4424-8b69-1b3d576b402b",
   "version": 1,
   "metadata": {
-    "timestamp": "2026-02-25T14:46:53+00:00",
+    "timestamp": "2026-04-07T12:48:58+00:00",
     "tools": {
       "components": [
         {
@@ -15,7 +15,7 @@
           },
           "group": "aquasecurity",
           "name": "trivy",
-          "version": "0.69.0"
+          "version": "0.69.2"
         }
       ]
     },
@@ -150,7 +150,7 @@
   },
   "components": [
     {
-      "bom-ref": "41ce2339-1565-4b6a-9bc1-70d372278fe2",
+      "bom-ref": "4c0c8430-1b71-4f9c-9a37-4e2a122ed18d",
       "type": "operating-system",
       "name": "redhat",
       "version": "9.5",
@@ -166,7 +166,7 @@
       ]
     },
     {
-      "bom-ref": "c1e8b56f-8558-4ae6-a6c1-aa4fb975f7f5",
+      "bom-ref": "beb10d7c-6c2f-4b16-95f3-5510bd02c5d7",
       "type": "application",
       "name": "usr/bin/mc",
       "properties": [
@@ -653,6 +653,11 @@
       "name": "github.com/charmbracelet/bubbletea",
       "version": "v1.1.1",
       "description": "Package tea provides a framework for building rich terminal user interfaces\nbased on the paradigms of The Elm Architecture. It's well-suited for simple\nand complex terminal applications, either inline, full-window, or a mix of\nboth. It's been battle-tested in several large projects and is\nproduction-ready.\n\nA tutorial is available at https://github.com/charmbracelet/bubbletea/tree/master/tutorials\n\nExample programs can be found at https://github.com/charmbracelet/bubbletea/tree/master/examples",
+      "licenses": [
+        {
+          "expression": "(MIT)"
+        }
+      ],
       "purl": "pkg:golang/github.com/charmbracelet/bubbletea@v1.1.1",
       "externalReferences": [
         {
@@ -747,6 +752,11 @@
       "author": "Charm",
       "name": "github.com/charmbracelet/lipgloss",
       "version": "v0.13.0",
+      "licenses": [
+        {
+          "expression": "(MIT)"
+        }
+      ],
       "purl": "pkg:golang/github.com/charmbracelet/lipgloss@v0.13.0",
       "externalReferences": [
         {
@@ -838,6 +848,11 @@
       "name": "github.com/charmbracelet/x/ansi",
       "version": "v0.3.2",
       "description": "Package ansi defines common ANSI escape sequences based on the ECMA-48\nspecs.\n\nAll sequences use 7-bit C1 control codes, which are supported by most\nterminal emulators. OSC sequences are terminated by a BEL for wider\ncompatibility with terminals.",
+      "licenses": [
+        {
+          "expression": "(MIT)"
+        }
+      ],
       "purl": "pkg:golang/github.com/charmbracelet/x/ansi@v0.3.2",
       "externalReferences": [
         {
@@ -900,6 +915,12 @@
       "author": "Charm",
       "name": "github.com/charmbracelet/x/term",
       "version": "v0.2.0",
+      "description": "Package term provides a platform-independent interfaces for interacting with\nTerminal and TTY devices.",
+      "licenses": [
+        {
+          "expression": "(MIT)"
+        }
+      ],
       "purl": "pkg:golang/github.com/charmbracelet/x/term@v0.2.0",
       "externalReferences": [
         {
@@ -1254,6 +1275,11 @@
       "name": "github.com/fatih/color",
       "version": "v1.17.0",
       "description": "Package color is an ANSI color package to output colorized or SGR defined\noutput to the standard output. The API can be used in several way, pick one\nthat suits you.\n\nUse simple and default helper functions with predefined foreground colors:\n\nHowever, there are times when custom color mixes are required. Below are some\nexamples to create custom color objects and use the print functions of each\nseparate color object.\n\nYou can create PrintXxx functions to simplify even more:\n\nYou can also FprintXxx functions to pass your own io.Writer:\n\nOr create SprintXxx functions to mix strings with other non-colorized strings:\n\nWindows support is enabled by default. All Print functions work as intended.\nHowever, only for color.SprintXXX functions, user should use fmt.FprintXXX and\nset the output to color.Output:\n\nUsing with existing code is possible. Just use the Set() method to set the\nstandard output to the given parameters. That way a rewrite of an existing\ncode is not required.\n\nThere might be a case where you want to disable color output (for example to\npipe the standard output of your app to somewhere else). `Color` has support to\ndisable colors both globally and for single color definition. For example\nsuppose you have a CLI app and a `--no-color` bool flag. You can easily disable\nthe color output with:\n\nYou can also disable the color by setting the NO_COLOR environment variable to any value.\n\nIt also has support for single color definitions (local). You can\ndisable/enable color output on the fly:",
+      "licenses": [
+        {
+          "expression": "(MIT)"
+        }
+      ],
       "purl": "pkg:golang/github.com/fatih/color@v1.17.0",
       "externalReferences": [
         {
@@ -1296,7 +1322,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2024-10-03T07:06:28Z"
+          "value": "2026-03-20T08:53:23Z"
         },
         {
           "name": "ecosystems:owner_location",
@@ -1552,7 +1578,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2025-01-25T05:38:06Z"
+          "value": "2025-10-28T00:14:29Z"
         },
         {
           "name": "ecosystems:owner_location",
@@ -2175,6 +2201,11 @@
       "author": "Naveen Mahalingam",
       "name": "github.com/jedib0t/go-pretty/v6",
       "version": "v6.5.9",
+      "licenses": [
+        {
+          "expression": "(MIT)"
+        }
+      ],
       "purl": "pkg:golang/github.com/jedib0t/go-pretty/v6@v6.5.9",
       "externalReferences": [
         {
@@ -2217,7 +2248,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2025-12-23T13:45:53Z"
+          "value": "2026-04-02T20:26:48Z"
         },
         {
           "name": "ecosystems:topic",
@@ -2341,6 +2372,11 @@
       "author": "Klaus Post",
       "name": "github.com/klauspost/compress",
       "version": "v1.17.10",
+      "licenses": [
+        {
+          "expression": "(Apache-2.0 OR BSD-3-Clause OR MIT)"
+        }
+      ],
       "purl": "pkg:golang/github.com/klauspost/compress@v1.17.10",
       "externalReferences": [
         {
@@ -2742,6 +2778,11 @@
       "name": "github.com/lestrrat-go/jwx",
       "version": "v1.2.30",
       "description": "Package jwx contains tools that deal with the various JWx (JOSE)\ntechnologies such as JWT, JWS, JWE, etc in Go.\n\nExamples are stored in a separate Go module (to avoid adding\ndependencies to this module), and thus does not appear in the\nonline documentation for this module.\nYou can find the examples in Github at https://github.com/lestrrat-go/jwx/examples\n\nYou can find more high level documentation at Github (https://github.com/lestrrat-go/jwx)\n\nFAQ style documentation can be found in the repository (https://github.com/lestrrat-go/jwx/tree/develop/v2/docs)",
+      "licenses": [
+        {
+          "expression": "(MIT)"
+        }
+      ],
       "purl": "pkg:golang/github.com/lestrrat-go/jwx@v1.2.30",
       "externalReferences": [
         {
@@ -2932,7 +2973,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2025-09-08T14:15:45Z"
+          "value": "2026-03-28T13:15:33Z"
         },
         {
           "name": "ecosystems:owner_location",
@@ -3274,7 +3315,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-02-17T08:28:43Z"
+          "value": "2026-04-03T00:59:49Z"
         },
         {
           "name": "ecosystems:owner_location",
@@ -3548,6 +3589,11 @@
       "author": "MinIO",
       "name": "github.com/minio/madmin-go/v3",
       "version": "v3.0.70",
+      "licenses": [
+        {
+          "expression": "(AGPL-3.0)"
+        }
+      ],
       "purl": "pkg:golang/github.com/minio/madmin-go/v3@v3.0.70",
       "externalReferences": [
         {
@@ -3823,6 +3869,11 @@
       "type": "library",
       "name": "github.com/minio/minio-go/v7",
       "version": "v7.0.77",
+      "licenses": [
+        {
+          "expression": "(Apache-2.0)"
+        }
+      ],
       "purl": "pkg:golang/github.com/minio/minio-go/v7@v7.0.77",
       "externalReferences": [
         {
@@ -3865,7 +3916,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-01-06T16:59:05Z"
+          "value": "2026-03-25T18:54:16Z"
         },
         {
           "name": "ecosystems:topic",
@@ -3913,6 +3964,11 @@
       "author": "MinIO",
       "name": "github.com/minio/pkg/v3",
       "version": "v3.0.20",
+      "licenses": [
+        {
+          "expression": "(AGPL-3.0)"
+        }
+      ],
       "purl": "pkg:golang/github.com/minio/pkg/v3@v3.0.20",
       "externalReferences": [
         {
@@ -4534,7 +4590,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-01-16T18:33:54Z"
+          "value": "2026-03-04T08:28:19Z"
         }
       ]
     },
@@ -4848,6 +4904,11 @@
       "author": "Prometheus",
       "name": "github.com/prometheus/client_golang",
       "version": "v1.20.4",
+      "licenses": [
+        {
+          "expression": "(Apache-2.0)"
+        }
+      ],
       "purl": "pkg:golang/github.com/prometheus/client_golang@v1.20.4",
       "externalReferences": [
         {
@@ -4969,6 +5030,11 @@
       "author": "Prometheus",
       "name": "github.com/prometheus/common",
       "version": "v0.60.0",
+      "licenses": [
+        {
+          "expression": "(Apache-2.0)"
+        }
+      ],
       "purl": "pkg:golang/github.com/prometheus/common@v0.60.0",
       "externalReferences": [
         {
@@ -5075,7 +5141,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2025-10-30T14:20:06Z"
+          "value": "2026-02-28T15:22:44Z"
         },
         {
           "name": "ecosystems:topic",
@@ -5119,6 +5185,11 @@
       "author": "Prometheus",
       "name": "github.com/prometheus/prom2json",
       "version": "v1.4.1",
+      "licenses": [
+        {
+          "expression": "(Apache-2.0)"
+        }
+      ],
       "purl": "pkg:golang/github.com/prometheus/prom2json@v1.4.1",
       "externalReferences": [
         {
@@ -5177,6 +5248,11 @@
       "author": "Prometheus",
       "name": "github.com/prometheus/prometheus",
       "version": "v0.54.1",
+      "licenses": [
+        {
+          "expression": "(Apache-2.0)"
+        }
+      ],
       "purl": "pkg:golang/github.com/prometheus/prometheus@v0.54.1",
       "externalReferences": [
         {
@@ -5487,6 +5563,11 @@
       "name": "github.com/safchain/ethtool",
       "version": "v0.4.1",
       "description": "The ethtool package aims to provide a library that provides easy access\nto the Linux SIOCETHTOOL ioctl operations. It can be used to retrieve information\nfrom a network device such as statistics, driver related information or even\nthe peer of a VETH interface.\n\nPackage ethtool  aims to provide a library giving a simple access to the\nLinux SIOCETHTOOL ioctl operations. It can be used to retrieve informations\nfrom a network device like statistics, driver related informations or\neven the peer of a VETH interface.\n\nPackage ethtool  aims to provide a library giving a simple access to the\nLinux SIOCETHTOOL ioctl operations. It can be used to retrieve informations\nfrom a network device like statistics, driver related informations or\neven the peer of a VETH interface.",
+      "licenses": [
+        {
+          "expression": "(Apache-2.0)"
+        }
+      ],
       "purl": "pkg:golang/github.com/safchain/ethtool@v0.4.1",
       "externalReferences": [
         {
@@ -5707,6 +5788,11 @@
       "name": "github.com/tidwall/gjson",
       "version": "v1.17.3",
       "description": "Package gjson provides searching for json strings.",
+      "licenses": [
+        {
+          "expression": "(MIT)"
+        }
+      ],
       "purl": "pkg:golang/github.com/tidwall/gjson@v1.17.3",
       "externalReferences": [
         {
@@ -5908,6 +5994,11 @@
       "name": "github.com/tinylib/msgp",
       "version": "v1.2.2",
       "description": "msgp is a code generation tool for\ncreating methods to serialize and de-serialize\nGo data structures to and from MessagePack.\n\nThis package is targeted at the `go generate` tool.\nTo use it, include the following directive in a\ngo source file with types requiring source generation:\n\nThe go generate tool should set the proper environment variables for\nthe generator to execute without any command-line flags. However, the\nfollowing options are supported, if you need them:\n\nFor more information, please read README.md, and the wiki at github.com/tinylib/msgp",
+      "licenses": [
+        {
+          "expression": "(MIT)"
+        }
+      ],
       "purl": "pkg:golang/github.com/tinylib/msgp@v1.2.2",
       "externalReferences": [
         {
@@ -5967,6 +6058,11 @@
       "name": "github.com/tklauser/go-sysconf",
       "version": "v0.3.14",
       "description": "Package sysconf implements the sysconf(3) function and provides the\nassociated SC_* constants to query system configuration values.",
+      "licenses": [
+        {
+          "expression": "(BSD-3-Clause)"
+        }
+      ],
       "purl": "pkg:golang/github.com/tklauser/go-sysconf@v0.3.14",
       "externalReferences": [
         {
@@ -6074,6 +6170,11 @@
       "name": "github.com/tklauser/numcpus",
       "version": "v0.8.0",
       "description": "Package numcpus provides information about the number of CPUs in the system.\n\nIt gets the number of CPUs (online, offline, present, possible or kernel\nmaximum) on Linux, Darwin, FreeBSD, NetBSD, OpenBSD, DragonflyBSD,\nSolaris/Illumos or Windows systems.\n\nOn Linux, the information is retrieved by reading the corresponding CPU\ntopology files in /sys/devices/system/cpu.\n\nOn BSD systems, the information is retrieved using the hw.ncpu and\nhw.ncpuonline sysctls, if supported.\n\nOn Windows systems, the information is retrieved using the\nGetActiveProcessorCount and GetMaximumProcessorCount functions, respectively.\n\nNot all functions are supported on Darwin, FreeBSD, NetBSD, OpenBSD,\nDragonflyBSD, Solaris/Illumos and Windows. ErrNotSupported is returned in\ncase a function is not supported on a particular platform.",
+      "licenses": [
+        {
+          "expression": "(Apache-2.0)"
+        }
+      ],
       "purl": "pkg:golang/github.com/tklauser/numcpus@v0.8.0",
       "externalReferences": [
         {
@@ -6177,6 +6278,11 @@
       "name": "github.com/vbauerster/mpb/v8",
       "version": "v8.8.3",
       "description": "Package mpb is a library for rendering progress bars in terminal applications.",
+      "licenses": [
+        {
+          "expression": "(Unlicense)"
+        }
+      ],
       "purl": "pkg:golang/github.com/vbauerster/mpb/v8@v8.8.3",
       "externalReferences": [
         {
@@ -6331,6 +6437,11 @@
       "author": "etcd-io",
       "name": "go.etcd.io/etcd/api/v3",
       "version": "v3.5.16",
+      "licenses": [
+        {
+          "expression": "(Apache-2.0)"
+        }
+      ],
       "purl": "pkg:golang/go.etcd.io/etcd/api/v3@v3.5.16",
       "externalReferences": [
         {
@@ -6369,7 +6480,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-02-13T18:39:11Z"
+          "value": "2026-04-01T18:29:49Z"
         },
         {
           "name": "ecosystems:owner_location",
@@ -6429,6 +6540,11 @@
       "author": "etcd-io",
       "name": "go.etcd.io/etcd/client/pkg/v3",
       "version": "v3.5.16",
+      "licenses": [
+        {
+          "expression": "(Apache-2.0)"
+        }
+      ],
       "purl": "pkg:golang/go.etcd.io/etcd/client/pkg/v3@v3.5.16",
       "externalReferences": [
         {
@@ -6467,7 +6583,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-02-13T18:39:11Z"
+          "value": "2026-04-01T18:29:49Z"
         },
         {
           "name": "ecosystems:owner_location",
@@ -6528,6 +6644,11 @@
       "name": "go.etcd.io/etcd/client/v3",
       "version": "v3.5.16",
       "description": "Package clientv3 implements the official Go etcd client for v3.\n\nCreate client using `clientv3.New`:\n\nMake sure to close the client after using it. If the client is not closed, the\nconnection will have leaky goroutines.\n\nTo specify a client request timeout, wrap the context with context.WithTimeout:\n\nThe Client has internal state (watchers and leases), so Clients should be reused instead of created as needed.\nClients are safe for concurrent use by multiple goroutines.\n\netcd client returns 2 types of errors:\n\nHere is the example code to handle client errors:\n\nThe grpc load balancer is registered statically and is shared across etcd clients.\nTo enable detailed load balancer logging, set the ETCD_CLIENT_DEBUG environment\nvariable.  E.g. \"ETCD_CLIENT_DEBUG=1\".",
+      "licenses": [
+        {
+          "expression": "(Apache-2.0)"
+        }
+      ],
       "purl": "pkg:golang/go.etcd.io/etcd/client/v3@v3.5.16",
       "externalReferences": [
         {
@@ -6570,7 +6691,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-02-13T18:39:11Z"
+          "value": "2026-04-01T18:29:49Z"
         },
         {
           "name": "ecosystems:owner_location",
@@ -6723,6 +6844,10 @@
           "type": "distribution"
         },
         {
+          "url": "https://github.com/uber-go/zap",
+          "type": "vcs"
+        },
+        {
           "url": "https://pkg.go.dev/go.uber.org/zap#section-documentation",
           "type": "documentation"
         }
@@ -6779,6 +6904,11 @@
       "type": "library",
       "name": "golang.org/x/crypto",
       "version": "v0.27.0",
+      "licenses": [
+        {
+          "expression": "(BSD-3-Clause)"
+        }
+      ],
       "purl": "pkg:golang/golang.org/x/crypto@v0.27.0",
       "externalReferences": [
         {
@@ -6788,10 +6918,6 @@
         {
           "url": "https://pkg.go.dev/golang.org/x/crypto",
           "type": "distribution"
-        },
-        {
-          "url": "https://cs.opensource.google/go/x/crypto",
-          "type": "vcs"
         },
         {
           "url": "https://pkg.go.dev/golang.org/x/crypto#section-documentation",
@@ -6821,7 +6947,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-02-09T16:37:10Z"
+          "value": "2026-03-11T14:17:49Z"
         }
       ]
     },
@@ -6830,6 +6956,11 @@
       "type": "library",
       "name": "golang.org/x/net",
       "version": "v0.29.0",
+      "licenses": [
+        {
+          "expression": "(BSD-3-Clause)"
+        }
+      ],
       "purl": "pkg:golang/golang.org/x/net@v0.29.0",
       "externalReferences": [
         {
@@ -6872,7 +7003,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-02-09T17:11:27Z"
+          "value": "2026-03-12T00:35:42Z"
         }
       ]
     },
@@ -6924,7 +7055,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2025-12-04T00:24:39Z"
+          "value": "2026-02-23T18:54:42Z"
         }
       ]
     },
@@ -6933,6 +7064,11 @@
       "type": "library",
       "name": "golang.org/x/sys",
       "version": "v0.25.0",
+      "licenses": [
+        {
+          "expression": "(BSD-3-Clause)"
+        }
+      ],
       "purl": "pkg:golang/golang.org/x/sys@v0.25.0",
       "externalReferences": [
         {
@@ -6971,7 +7107,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-02-08T05:32:41Z"
+          "value": "2026-03-03T01:51:03Z"
         }
       ]
     },
@@ -6981,6 +7117,11 @@
       "name": "golang.org/x/term",
       "version": "v0.24.0",
       "description": "Package term provides support functions for dealing with terminals, as\ncommonly found on UNIX systems.\n\nPutting a terminal into raw mode is the most common requirement:\n\nNote that on non-Unix systems os.Stdin.Fd() may not be 0.",
+      "licenses": [
+        {
+          "expression": "(BSD-3-Clause)"
+        }
+      ],
       "purl": "pkg:golang/golang.org/x/term@v0.24.0",
       "externalReferences": [
         {
@@ -7019,7 +7160,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-02-09T16:13:12Z"
+          "value": "2026-03-10T01:43:14Z"
         }
       ]
     },
@@ -7029,6 +7170,11 @@
       "name": "golang.org/x/text",
       "version": "v0.18.0",
       "description": "text is a repository of text-related packages related to internationalization\n(i18n) and localization (l10n), such as character encodings, text\ntransformations, and locale-specific text handling.\n\nThere is a 30 minute video, recorded on 2017-11-30, on the \"State of\ngolang.org/x/text\" at https://www.youtube.com/watch?v=uYrDrMEGu58",
+      "licenses": [
+        {
+          "expression": "(BSD-3-Clause)"
+        }
+      ],
       "purl": "pkg:golang/golang.org/x/text@v0.18.0",
       "externalReferences": [
         {
@@ -7038,10 +7184,6 @@
         {
           "url": "https://pkg.go.dev/golang.org/x/text",
           "type": "distribution"
-        },
-        {
-          "url": "https://cs.opensource.google/go/x/text",
-          "type": "vcs"
         },
         {
           "url": "https://pkg.go.dev/golang.org/x/text#section-documentation",
@@ -7071,7 +7213,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-02-09T16:14:29Z"
+          "value": "2026-03-10T01:41:36Z"
         }
       ]
     },
@@ -7129,7 +7271,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-02-17T21:52:00Z"
+          "value": "2026-04-01T02:48:25Z"
         }
       ]
     },
@@ -7187,7 +7329,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-02-17T21:52:00Z"
+          "value": "2026-04-01T02:48:25Z"
         }
       ]
     },
@@ -7204,6 +7346,11 @@
       "name": "google.golang.org/grpc",
       "version": "v1.67.1",
       "description": "Package grpc implements an RPC system called gRPC.\n\nSee grpc.io for more information about gRPC.",
+      "licenses": [
+        {
+          "expression": "(Apache-2.0)"
+        }
+      ],
       "purl": "pkg:golang/google.golang.org/grpc@v1.67.1",
       "externalReferences": [
         {
@@ -7242,7 +7389,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-02-13T06:52:36Z"
+          "value": "2026-04-01T07:57:02Z"
         },
         {
           "name": "ecosystems:topic",
@@ -7312,10 +7459,6 @@
         {
           "url": "https://pkg.go.dev/google.golang.org/protobuf",
           "type": "distribution"
-        },
-        {
-          "url": "https://github.com/protocolbuffers/protobuf-go",
-          "type": "vcs"
         },
         {
           "url": "https://pkg.go.dev/google.golang.org/protobuf#section-documentation",
@@ -7389,10 +7532,6 @@
         {
           "url": "https://pkg.go.dev/gopkg.in/yaml.v2",
           "type": "distribution"
-        },
-        {
-          "url": "https://github.com/go-yaml/yaml",
-          "type": "vcs"
         },
         {
           "url": "https://pkg.go.dev/gopkg.in/yaml.v2#section-documentation",
@@ -8637,7 +8776,7 @@
   ],
   "dependencies": [
     {
-      "ref": "41ce2339-1565-4b6a-9bc1-70d372278fe2",
+      "ref": "4c0c8430-1b71-4f9c-9a37-4e2a122ed18d",
       "dependsOn": [
         "pkg:rpm/redhat/coreutils-single@8.32-36.el9?arch=x86_64&distro=redhat-9.5",
         "pkg:rpm/redhat/gpg-pubkey@5a6340b3-6229229e?arch=None&distro=redhat-9.5",
@@ -8645,7 +8784,7 @@
       ]
     },
     {
-      "ref": "c1e8b56f-8558-4ae6-a6c1-aa4fb975f7f5",
+      "ref": "beb10d7c-6c2f-4b16-95f3-5510bd02c5d7",
       "dependsOn": [
         "pkg:golang/github.com/minio/mc"
       ]
@@ -9153,8 +9292,8 @@
     {
       "ref": "pkg:oci/mc@sha256%3A993e8c454a7ec632923f7e3e61adf1d473261da6354cefd641aedd33a2cfe112?arch=amd64&repository_url=quay.io%2Fminio%2Fmc",
       "dependsOn": [
-        "41ce2339-1565-4b6a-9bc1-70d372278fe2",
-        "c1e8b56f-8558-4ae6-a6c1-aa4fb975f7f5"
+        "4c0c8430-1b71-4f9c-9a37-4e2a122ed18d",
+        "beb10d7c-6c2f-4b16-95f3-5510bd02c5d7"
       ]
     },
     {

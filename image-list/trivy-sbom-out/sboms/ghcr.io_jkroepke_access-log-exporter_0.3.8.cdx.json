@@ -1,0 +1,1360 @@
+{
+  "$schema": "http://cyclonedx.org/schema/bom-1.6.schema.json",
+  "bomFormat": "CycloneDX",
+  "specVersion": "1.6",
+  "serialNumber": "urn:uuid:ed57e517-7339-4790-9870-59af86c87962",
+  "version": 1,
+  "metadata": {
+    "timestamp": "2026-04-07T12:47:21+00:00",
+    "tools": {
+      "components": [
+        {
+          "type": "application",
+          "manufacturer": {
+            "name": "Aqua Security Software Ltd."
+          },
+          "group": "aquasecurity",
+          "name": "trivy",
+          "version": "0.69.2"
+        }
+      ]
+    },
+    "component": {
+      "bom-ref": "pkg:oci/access-log-exporter@sha256%3Ab119a2cf13f868dc2fc596646fb619e5536a15dcca70f316f86eaeab1b1127bf?arch=amd64&repository_url=ghcr.io%2Fjkroepke%2Faccess-log-exporter",
+      "type": "container",
+      "name": "ghcr.io/jkroepke/access-log-exporter:0.3.8",
+      "purl": "pkg:oci/access-log-exporter@sha256%3Ab119a2cf13f868dc2fc596646fb619e5536a15dcca70f316f86eaeab1b1127bf?arch=amd64&repository_url=ghcr.io%2Fjkroepke%2Faccess-log-exporter",
+      "properties": [
+        {
+          "name": "aquasecurity:trivy:DiffID",
+          "value": "sha256:64edb25fdfaa1faaed9f361a207238cd84dca6bae5aa88b0bbb991aca3d997e5"
+        },
+        {
+          "name": "aquasecurity:trivy:DiffID",
+          "value": "sha256:b4544824bb59b4e79df954c176b363cbaf9159f97496ab3a8c84a81ac1414b73"
+        },
+        {
+          "name": "aquasecurity:trivy:ImageID",
+          "value": "sha256:f218db52d2af24f12b323145a7168415764aa8cc32a8c2fa42ab51349e7d4253"
+        },
+        {
+          "name": "aquasecurity:trivy:Labels:org.opencontainers.image.authors",
+          "value": "Jan-Otto Kröpke https://github.com/jkroepke/"
+        },
+        {
+          "name": "aquasecurity:trivy:Labels:org.opencontainers.image.created",
+          "value": "2026-03-26T21:23:40Z"
+        },
+        {
+          "name": "aquasecurity:trivy:Labels:org.opencontainers.image.description",
+          "value": "A Prometheus exporter that receives access logs through the syslog protocol and converts them into metrics."
+        },
+        {
+          "name": "aquasecurity:trivy:Labels:org.opencontainers.image.documentation",
+          "value": "https://github.com/jkroepke/access-log-exporter/wiki"
+        },
+        {
+          "name": "aquasecurity:trivy:Labels:org.opencontainers.image.licenses",
+          "value": "Apache-2.0"
+        },
+        {
+          "name": "aquasecurity:trivy:Labels:org.opencontainers.image.revision",
+          "value": "201973a8a0fa742ea98b31665c9b1b378ae9cc11"
+        },
+        {
+          "name": "aquasecurity:trivy:Labels:org.opencontainers.image.source",
+          "value": "https://github.com/jkroepke/access-log-exporter"
+        },
+        {
+          "name": "aquasecurity:trivy:Labels:org.opencontainers.image.title",
+          "value": "access-log-exporter"
+        },
+        {
+          "name": "aquasecurity:trivy:Labels:org.opencontainers.image.vendor",
+          "value": "Jan-Otto Kröpke"
+        },
+        {
+          "name": "aquasecurity:trivy:Labels:org.opencontainers.image.version",
+          "value": "0.3.8"
+        },
+        {
+          "name": "aquasecurity:trivy:Reference",
+          "value": "ghcr.io/jkroepke/access-log-exporter:0.3.8"
+        },
+        {
+          "name": "aquasecurity:trivy:RepoDigest",
+          "value": "ghcr.io/jkroepke/access-log-exporter@sha256:b119a2cf13f868dc2fc596646fb619e5536a15dcca70f316f86eaeab1b1127bf"
+        },
+        {
+          "name": "aquasecurity:trivy:RepoTag",
+          "value": "ghcr.io/jkroepke/access-log-exporter:0.3.8"
+        },
+        {
+          "name": "aquasecurity:trivy:SchemaVersion",
+          "value": "2"
+        },
+        {
+          "name": "aquasecurity:trivy:Size",
+          "value": "12657664"
+        }
+      ]
+    }
+  },
+  "components": [
+    {
+      "bom-ref": "cca94357-9fe6-4da6-b4aa-dfdc51b8c064",
+      "type": "application",
+      "name": "access-log-exporter",
+      "properties": [
+        {
+          "name": "aquasecurity:trivy:Class",
+          "value": "lang-pkgs"
+        },
+        {
+          "name": "aquasecurity:trivy:Type",
+          "value": "gobinary"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:golang/github.com/beorn7/perks@v1.0.1",
+      "type": "library",
+      "supplier": {
+        "name": "Björn Rabenstein"
+      },
+      "author": "Björn Rabenstein",
+      "name": "github.com/beorn7/perks",
+      "version": "v1.0.1",
+      "licenses": [
+        {
+          "expression": "(MIT)"
+        }
+      ],
+      "purl": "pkg:golang/github.com/beorn7/perks@v1.0.1",
+      "externalReferences": [
+        {
+          "url": "https://github.com/beorn7/perks",
+          "type": "website"
+        },
+        {
+          "url": "https://pkg.go.dev/github.com/beorn7/perks",
+          "type": "distribution"
+        },
+        {
+          "url": "https://github.com/beorn7/perks",
+          "type": "vcs"
+        },
+        {
+          "url": "https://pkg.go.dev/github.com/beorn7/perks#section-documentation",
+          "type": "documentation"
+        }
+      ],
+      "properties": [
+        {
+          "name": "aquasecurity:trivy:LayerDiffID",
+          "value": "sha256:b4544824bb59b4e79df954c176b363cbaf9159f97496ab3a8c84a81ac1414b73"
+        },
+        {
+          "name": "aquasecurity:trivy:LayerDigest",
+          "value": "sha256:22828e252b2acfc13d3149703890bb794f3a3b431e59cba56941d68027a262f5"
+        },
+        {
+          "name": "aquasecurity:trivy:PkgID",
+          "value": "github.com/beorn7/perks@v1.0.1"
+        },
+        {
+          "name": "aquasecurity:trivy:PkgType",
+          "value": "gobinary"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2019-04-14T22:11:40Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2019-07-31T12:00:54Z"
+        },
+        {
+          "name": "ecosystems:owner_location",
+          "value": "Berlin"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:golang/github.com/cespare/xxhash/v2@v2.3.0",
+      "type": "library",
+      "supplier": {
+        "name": "Caleb Spare",
+        "url": [
+          "https://ctrl-c.us"
+        ]
+      },
+      "author": "Caleb Spare",
+      "name": "github.com/cespare/xxhash/v2",
+      "version": "v2.3.0",
+      "description": "Package xxhash implements the 64-bit variant of xxHash (XXH64) as described\nat http://cyan4973.github.io/xxHash/.",
+      "licenses": [
+        {
+          "expression": "(MIT)"
+        }
+      ],
+      "purl": "pkg:golang/github.com/cespare/xxhash/v2@v2.3.0",
+      "externalReferences": [
+        {
+          "url": "https://github.com/cespare/xxhash",
+          "type": "website"
+        },
+        {
+          "url": "https://pkg.go.dev/github.com/cespare/xxhash/v2",
+          "type": "distribution"
+        },
+        {
+          "url": "https://github.com/cespare/xxhash",
+          "type": "vcs"
+        },
+        {
+          "url": "https://pkg.go.dev/github.com/cespare/xxhash/v2#section-documentation",
+          "type": "documentation"
+        }
+      ],
+      "properties": [
+        {
+          "name": "aquasecurity:trivy:LayerDiffID",
+          "value": "sha256:b4544824bb59b4e79df954c176b363cbaf9159f97496ab3a8c84a81ac1414b73"
+        },
+        {
+          "name": "aquasecurity:trivy:LayerDigest",
+          "value": "sha256:22828e252b2acfc13d3149703890bb794f3a3b431e59cba56941d68027a262f5"
+        },
+        {
+          "name": "aquasecurity:trivy:PkgID",
+          "value": "github.com/cespare/xxhash/v2@v2.3.0"
+        },
+        {
+          "name": "aquasecurity:trivy:PkgType",
+          "value": "gobinary"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2019-01-04T01:26:19Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2024-04-04T20:00:10Z"
+        },
+        {
+          "name": "ecosystems:owner_location",
+          "value": "Kirkland, WA"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:golang/github.com/hashicorp/golang-lru@v1.0.2",
+      "type": "library",
+      "supplier": {
+        "name": "HashiCorp",
+        "url": [
+          "https://hashicorp.com"
+        ]
+      },
+      "author": "HashiCorp",
+      "name": "github.com/hashicorp/golang-lru",
+      "version": "v1.0.2",
+      "description": "Package lru provides three different LRU caches of varying sophistication.\n\nCache is a simple LRU cache. It is based on the\nLRU implementation in groupcache:\nhttps://github.com/golang/groupcache/tree/master/lru\n\nTwoQueueCache tracks frequently used and recently used entries separately.\nThis avoids a burst of accesses from taking out frequently used entries,\nat the cost of about 2x computational overhead and some extra bookkeeping.\n\nARCCache is an adaptive replacement cache. It tracks recent evictions as\nwell as recent usage in both the frequent and recent caches. Its\ncomputational overhead is comparable to TwoQueueCache, but the memory\noverhead is linear with the size of the cache.\n\nARC has been patented by IBM, so do not use it if that is problematic for\nyour program.\n\nAll caches in this package take locks while operating, and are therefore\nthread-safe for consumers.",
+      "licenses": [
+        {
+          "expression": "(MPL-2.0)"
+        }
+      ],
+      "purl": "pkg:golang/github.com/hashicorp/golang-lru@v1.0.2",
+      "externalReferences": [
+        {
+          "url": "https://github.com/hashicorp/golang-lru",
+          "type": "website"
+        },
+        {
+          "url": "https://pkg.go.dev/github.com/hashicorp/golang-lru",
+          "type": "distribution"
+        },
+        {
+          "url": "https://github.com/hashicorp/golang-lru",
+          "type": "vcs"
+        },
+        {
+          "url": "https://pkg.go.dev/github.com/hashicorp/golang-lru#section-documentation",
+          "type": "documentation"
+        }
+      ],
+      "properties": [
+        {
+          "name": "aquasecurity:trivy:LayerDiffID",
+          "value": "sha256:b4544824bb59b4e79df954c176b363cbaf9159f97496ab3a8c84a81ac1414b73"
+        },
+        {
+          "name": "aquasecurity:trivy:LayerDigest",
+          "value": "sha256:22828e252b2acfc13d3149703890bb794f3a3b431e59cba56941d68027a262f5"
+        },
+        {
+          "name": "aquasecurity:trivy:PkgID",
+          "value": "github.com/hashicorp/golang-lru@v1.0.2"
+        },
+        {
+          "name": "aquasecurity:trivy:PkgType",
+          "value": "gobinary"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2018-08-30T03:29:55Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2023-08-08T11:23:39Z"
+        },
+        {
+          "name": "ecosystems:owner_location",
+          "value": "San Francisco, CA"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:golang/github.com/jkroepke/access-log-exporter@v0.3.8",
+      "type": "library",
+      "supplier": {
+        "name": "Jan-Otto Kröpke",
+        "url": [
+          "https://jkroepke.de"
+        ]
+      },
+      "author": "Jan-Otto Kröpke",
+      "name": "github.com/jkroepke/access-log-exporter",
+      "version": "v0.3.8",
+      "purl": "pkg:golang/github.com/jkroepke/access-log-exporter@v0.3.8",
+      "externalReferences": [
+        {
+          "url": "https://github.com/jkroepke/access-log-exporter",
+          "type": "website"
+        },
+        {
+          "url": "https://pkg.go.dev/github.com/jkroepke/access-log-exporter",
+          "type": "distribution"
+        },
+        {
+          "url": "https://github.com/jkroepke/access-log-exporter",
+          "type": "vcs"
+        },
+        {
+          "url": "https://pkg.go.dev/github.com/jkroepke/access-log-exporter#section-documentation",
+          "type": "documentation"
+        }
+      ],
+      "properties": [
+        {
+          "name": "aquasecurity:trivy:LayerDiffID",
+          "value": "sha256:b4544824bb59b4e79df954c176b363cbaf9159f97496ab3a8c84a81ac1414b73"
+        },
+        {
+          "name": "aquasecurity:trivy:LayerDigest",
+          "value": "sha256:22828e252b2acfc13d3149703890bb794f3a3b431e59cba56941d68027a262f5"
+        },
+        {
+          "name": "aquasecurity:trivy:PkgID",
+          "value": "github.com/jkroepke/access-log-exporter@v0.3.8"
+        },
+        {
+          "name": "aquasecurity:trivy:PkgType",
+          "value": "gobinary"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2025-08-11T22:51:34Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2026-03-13T07:21:14Z"
+        },
+        {
+          "name": "ecosystems:owner_location",
+          "value": "Hannover, Germany"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "apache2"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "monitoring"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "nginx"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "observability"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "prometheus"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:golang/github.com/kimmachinegun/automemlimit@v0.7.5",
+      "type": "library",
+      "supplier": {
+        "name": "Geon Kim",
+        "url": [
+          "https://www.linkedin.com/in/geon-kim-a81346170/"
+        ]
+      },
+      "author": "Geon Kim",
+      "name": "github.com/KimMachineGun/automemlimit",
+      "version": "v0.7.5",
+      "licenses": [
+        {
+          "expression": "(MIT)"
+        }
+      ],
+      "purl": "pkg:golang/github.com/kimmachinegun/automemlimit@v0.7.5",
+      "externalReferences": [
+        {
+          "url": "https://pkg.go.dev/github.com/kimmachinegun/automemlimit",
+          "type": "distribution"
+        },
+        {
+          "url": "https://github.com/kimmachinegun/automemlimit",
+          "type": "vcs"
+        },
+        {
+          "url": "https://pkg.go.dev/github.com/kimmachinegun/automemlimit#section-documentation",
+          "type": "documentation"
+        }
+      ],
+      "properties": [
+        {
+          "name": "aquasecurity:trivy:LayerDiffID",
+          "value": "sha256:b4544824bb59b4e79df954c176b363cbaf9159f97496ab3a8c84a81ac1414b73"
+        },
+        {
+          "name": "aquasecurity:trivy:LayerDigest",
+          "value": "sha256:22828e252b2acfc13d3149703890bb794f3a3b431e59cba56941d68027a262f5"
+        },
+        {
+          "name": "aquasecurity:trivy:PkgID",
+          "value": "github.com/KimMachineGun/automemlimit@v0.7.5"
+        },
+        {
+          "name": "aquasecurity:trivy:PkgType",
+          "value": "gobinary"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2022-08-24T06:49:46Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2025-10-08T05:39:30Z"
+        },
+        {
+          "name": "ecosystems:owner_location",
+          "value": "Seoul, Republic of Korea"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "golang"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "golang-gc"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:golang/github.com/munnerz/goautoneg@v0.0.0-20191010083416-a7dc8b61c822",
+      "type": "library",
+      "supplier": {
+        "name": "James Munnelly"
+      },
+      "author": "James Munnelly",
+      "name": "github.com/munnerz/goautoneg",
+      "version": "v0.0.0-20191010083416-a7dc8b61c822",
+      "licenses": [
+        {
+          "expression": "(BSD-3-Clause)"
+        }
+      ],
+      "purl": "pkg:golang/github.com/munnerz/goautoneg@v0.0.0-20191010083416-a7dc8b61c822",
+      "externalReferences": [
+        {
+          "url": "https://github.com/munnerz/goautoneg",
+          "type": "website"
+        },
+        {
+          "url": "https://pkg.go.dev/github.com/munnerz/goautoneg",
+          "type": "distribution"
+        },
+        {
+          "url": "https://github.com/munnerz/goautoneg",
+          "type": "vcs"
+        },
+        {
+          "url": "https://pkg.go.dev/github.com/munnerz/goautoneg#section-documentation",
+          "type": "documentation"
+        }
+      ],
+      "properties": [
+        {
+          "name": "aquasecurity:trivy:LayerDiffID",
+          "value": "sha256:b4544824bb59b4e79df954c176b363cbaf9159f97496ab3a8c84a81ac1414b73"
+        },
+        {
+          "name": "aquasecurity:trivy:LayerDigest",
+          "value": "sha256:22828e252b2acfc13d3149703890bb794f3a3b431e59cba56941d68027a262f5"
+        },
+        {
+          "name": "aquasecurity:trivy:PkgID",
+          "value": "github.com/munnerz/goautoneg@v0.0.0-20191010083416-a7dc8b61c822"
+        },
+        {
+          "name": "aquasecurity:trivy:PkgType",
+          "value": "gobinary"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2012-07-07T11:04:53Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2019-10-10T08:34:16Z"
+        },
+        {
+          "name": "ecosystems:owner_location",
+          "value": "Birmingham, United Kingdom"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:golang/github.com/pbnjay/memory@v0.0.0-20210728143218-7b4eea64cf58",
+      "type": "library",
+      "supplier": {
+        "name": "Jeremy Jay",
+        "url": [
+          "https://hachyderm.io/@pbnjay"
+        ]
+      },
+      "author": "Jeremy Jay",
+      "name": "github.com/pbnjay/memory",
+      "version": "v0.0.0-20210728143218-7b4eea64cf58",
+      "description": "Package memory provides a single method reporting total system memory\naccessible to the kernel.",
+      "licenses": [
+        {
+          "expression": "(BSD-3-Clause)"
+        }
+      ],
+      "purl": "pkg:golang/github.com/pbnjay/memory@v0.0.0-20210728143218-7b4eea64cf58",
+      "externalReferences": [
+        {
+          "url": "https://github.com/pbnjay/memory",
+          "type": "website"
+        },
+        {
+          "url": "https://pkg.go.dev/github.com/pbnjay/memory",
+          "type": "distribution"
+        },
+        {
+          "url": "https://github.com/pbnjay/memory",
+          "type": "vcs"
+        },
+        {
+          "url": "https://pkg.go.dev/github.com/pbnjay/memory#section-documentation",
+          "type": "documentation"
+        }
+      ],
+      "properties": [
+        {
+          "name": "aquasecurity:trivy:LayerDiffID",
+          "value": "sha256:b4544824bb59b4e79df954c176b363cbaf9159f97496ab3a8c84a81ac1414b73"
+        },
+        {
+          "name": "aquasecurity:trivy:LayerDigest",
+          "value": "sha256:22828e252b2acfc13d3149703890bb794f3a3b431e59cba56941d68027a262f5"
+        },
+        {
+          "name": "aquasecurity:trivy:PkgID",
+          "value": "github.com/pbnjay/memory@v0.0.0-20210728143218-7b4eea64cf58"
+        },
+        {
+          "name": "aquasecurity:trivy:PkgType",
+          "value": "gobinary"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2019-01-04T14:53:45Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2021-07-28T14:32:18Z"
+        },
+        {
+          "name": "ecosystems:owner_location",
+          "value": "Charlotte, NC"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:golang/github.com/prometheus/client_golang@v1.23.2",
+      "type": "library",
+      "supplier": {
+        "name": "Prometheus",
+        "url": [
+          "https://prometheus.io"
+        ]
+      },
+      "author": "Prometheus",
+      "name": "github.com/prometheus/client_golang",
+      "version": "v1.23.2",
+      "licenses": [
+        {
+          "expression": "(Apache-2.0)"
+        }
+      ],
+      "purl": "pkg:golang/github.com/prometheus/client_golang@v1.23.2",
+      "externalReferences": [
+        {
+          "url": "https://github.com/prometheus/client_golang",
+          "type": "website"
+        },
+        {
+          "url": "https://pkg.go.dev/github.com/prometheus/client_golang",
+          "type": "distribution"
+        },
+        {
+          "url": "https://github.com/prometheus/client_golang",
+          "type": "vcs"
+        },
+        {
+          "url": "https://pkg.go.dev/github.com/prometheus/client_golang#section-documentation",
+          "type": "documentation"
+        }
+      ],
+      "properties": [
+        {
+          "name": "aquasecurity:trivy:LayerDiffID",
+          "value": "sha256:b4544824bb59b4e79df954c176b363cbaf9159f97496ab3a8c84a81ac1414b73"
+        },
+        {
+          "name": "aquasecurity:trivy:LayerDigest",
+          "value": "sha256:22828e252b2acfc13d3149703890bb794f3a3b431e59cba56941d68027a262f5"
+        },
+        {
+          "name": "aquasecurity:trivy:PkgID",
+          "value": "github.com/prometheus/client_golang@v1.23.2"
+        },
+        {
+          "name": "aquasecurity:trivy:PkgType",
+          "value": "gobinary"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2016-08-17T15:48:24Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2025-09-05T14:03:59Z"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:golang/github.com/prometheus/client_model@v0.6.2",
+      "type": "library",
+      "supplier": {
+        "name": "Prometheus",
+        "url": [
+          "https://prometheus.io"
+        ]
+      },
+      "author": "Prometheus",
+      "name": "github.com/prometheus/client_model",
+      "version": "v0.6.2",
+      "licenses": [
+        {
+          "expression": "(Apache-2.0)"
+        }
+      ],
+      "purl": "pkg:golang/github.com/prometheus/client_model@v0.6.2",
+      "externalReferences": [
+        {
+          "url": "https://github.com/prometheus/client_model",
+          "type": "website"
+        },
+        {
+          "url": "https://pkg.go.dev/github.com/prometheus/client_model",
+          "type": "distribution"
+        },
+        {
+          "url": "https://github.com/prometheus/client_model",
+          "type": "vcs"
+        },
+        {
+          "url": "https://pkg.go.dev/github.com/prometheus/client_model#section-documentation",
+          "type": "documentation"
+        }
+      ],
+      "properties": [
+        {
+          "name": "aquasecurity:trivy:LayerDiffID",
+          "value": "sha256:b4544824bb59b4e79df954c176b363cbaf9159f97496ab3a8c84a81ac1414b73"
+        },
+        {
+          "name": "aquasecurity:trivy:LayerDigest",
+          "value": "sha256:22828e252b2acfc13d3149703890bb794f3a3b431e59cba56941d68027a262f5"
+        },
+        {
+          "name": "aquasecurity:trivy:PkgID",
+          "value": "github.com/prometheus/client_model@v0.6.2"
+        },
+        {
+          "name": "aquasecurity:trivy:PkgType",
+          "value": "gobinary"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2019-12-02T18:37:32Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2025-04-11T05:38:16Z"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:golang/github.com/prometheus/common@v0.67.5",
+      "type": "library",
+      "supplier": {
+        "name": "Prometheus",
+        "url": [
+          "https://prometheus.io"
+        ]
+      },
+      "author": "Prometheus",
+      "name": "github.com/prometheus/common",
+      "version": "v0.67.5",
+      "licenses": [
+        {
+          "expression": "(Apache-2.0)"
+        }
+      ],
+      "purl": "pkg:golang/github.com/prometheus/common@v0.67.5",
+      "externalReferences": [
+        {
+          "url": "https://github.com/prometheus/common",
+          "type": "website"
+        },
+        {
+          "url": "https://pkg.go.dev/github.com/prometheus/common",
+          "type": "distribution"
+        },
+        {
+          "url": "https://github.com/prometheus/common",
+          "type": "vcs"
+        },
+        {
+          "url": "https://pkg.go.dev/github.com/prometheus/common#section-documentation",
+          "type": "documentation"
+        }
+      ],
+      "properties": [
+        {
+          "name": "aquasecurity:trivy:LayerDiffID",
+          "value": "sha256:b4544824bb59b4e79df954c176b363cbaf9159f97496ab3a8c84a81ac1414b73"
+        },
+        {
+          "name": "aquasecurity:trivy:LayerDigest",
+          "value": "sha256:22828e252b2acfc13d3149703890bb794f3a3b431e59cba56941d68027a262f5"
+        },
+        {
+          "name": "aquasecurity:trivy:PkgID",
+          "value": "github.com/prometheus/common@v0.67.5"
+        },
+        {
+          "name": "aquasecurity:trivy:PkgType",
+          "value": "gobinary"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2019-01-07T10:31:13Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2024-09-05T12:29:29Z"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:golang/github.com/prometheus/procfs@v0.20.1",
+      "type": "library",
+      "supplier": {
+        "name": "Prometheus",
+        "url": [
+          "https://prometheus.io"
+        ]
+      },
+      "author": "Prometheus",
+      "name": "github.com/prometheus/procfs",
+      "version": "v0.20.1",
+      "description": "Package procfs provides functions to retrieve system, kernel and process\nmetrics from the pseudo-filesystem proc.\n\nExample:",
+      "licenses": [
+        {
+          "expression": "(Apache-2.0)"
+        }
+      ],
+      "purl": "pkg:golang/github.com/prometheus/procfs@v0.20.1",
+      "externalReferences": [
+        {
+          "url": "https://github.com/prometheus/procfs",
+          "type": "website"
+        },
+        {
+          "url": "https://pkg.go.dev/github.com/prometheus/procfs",
+          "type": "distribution"
+        },
+        {
+          "url": "https://github.com/prometheus/procfs",
+          "type": "vcs"
+        },
+        {
+          "url": "https://pkg.go.dev/github.com/prometheus/procfs#section-documentation",
+          "type": "documentation"
+        }
+      ],
+      "properties": [
+        {
+          "name": "aquasecurity:trivy:LayerDiffID",
+          "value": "sha256:b4544824bb59b4e79df954c176b363cbaf9159f97496ab3a8c84a81ac1414b73"
+        },
+        {
+          "name": "aquasecurity:trivy:LayerDigest",
+          "value": "sha256:22828e252b2acfc13d3149703890bb794f3a3b431e59cba56941d68027a262f5"
+        },
+        {
+          "name": "aquasecurity:trivy:PkgID",
+          "value": "github.com/prometheus/procfs@v0.20.1"
+        },
+        {
+          "name": "aquasecurity:trivy:PkgType",
+          "value": "gobinary"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2019-05-29T15:59:44Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2026-02-28T15:22:44Z"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "go"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "kernel"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "process"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "process-metrics"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "procfs"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "prometheus"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "pseudo-filesystem-proc"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:golang/github.com/ua-parser/uap-go@v0.0.0-20251207011819-db9adb27a0b8",
+      "type": "library",
+      "supplier": {
+        "name": "ua-parser"
+      },
+      "author": "ua-parser",
+      "name": "github.com/ua-parser/uap-go",
+      "version": "v0.0.0-20251207011819-db9adb27a0b8",
+      "purl": "pkg:golang/github.com/ua-parser/uap-go@v0.0.0-20251207011819-db9adb27a0b8",
+      "externalReferences": [
+        {
+          "url": "https://github.com/ua-parser/uap-go",
+          "type": "website"
+        },
+        {
+          "url": "https://pkg.go.dev/github.com/ua-parser/uap-go",
+          "type": "distribution"
+        },
+        {
+          "url": "https://github.com/ua-parser/uap-go",
+          "type": "vcs"
+        },
+        {
+          "url": "https://pkg.go.dev/github.com/ua-parser/uap-go#section-documentation",
+          "type": "documentation"
+        }
+      ],
+      "properties": [
+        {
+          "name": "aquasecurity:trivy:LayerDiffID",
+          "value": "sha256:b4544824bb59b4e79df954c176b363cbaf9159f97496ab3a8c84a81ac1414b73"
+        },
+        {
+          "name": "aquasecurity:trivy:LayerDigest",
+          "value": "sha256:22828e252b2acfc13d3149703890bb794f3a3b431e59cba56941d68027a262f5"
+        },
+        {
+          "name": "aquasecurity:trivy:PkgID",
+          "value": "github.com/ua-parser/uap-go@v0.0.0-20251207011819-db9adb27a0b8"
+        },
+        {
+          "name": "aquasecurity:trivy:PkgType",
+          "value": "gobinary"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2019-08-26T21:27:31Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2024-01-13T21:50:29Z"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:golang/go.yaml.in/yaml/v2@v2.4.4",
+      "type": "library",
+      "name": "go.yaml.in/yaml/v2",
+      "version": "v2.4.4",
+      "description": "Package yaml implements YAML support for the Go language.\n\nSource code and other details for the project are available at GitHub:",
+      "purl": "pkg:golang/go.yaml.in/yaml/v2@v2.4.4",
+      "externalReferences": [
+        {
+          "url": "https://github.com/yaml/go-yaml",
+          "type": "website"
+        },
+        {
+          "url": "https://pkg.go.dev/go.yaml.in/yaml/v2",
+          "type": "distribution"
+        },
+        {
+          "url": "https://github.com/yaml/go-yaml",
+          "type": "vcs"
+        },
+        {
+          "url": "https://pkg.go.dev/go.yaml.in/yaml/v2#section-documentation",
+          "type": "documentation"
+        }
+      ],
+      "properties": [
+        {
+          "name": "aquasecurity:trivy:LayerDiffID",
+          "value": "sha256:b4544824bb59b4e79df954c176b363cbaf9159f97496ab3a8c84a81ac1414b73"
+        },
+        {
+          "name": "aquasecurity:trivy:LayerDigest",
+          "value": "sha256:22828e252b2acfc13d3149703890bb794f3a3b431e59cba56941d68027a262f5"
+        },
+        {
+          "name": "aquasecurity:trivy:PkgID",
+          "value": "go.yaml.in/yaml/v2@v2.4.4"
+        },
+        {
+          "name": "aquasecurity:trivy:PkgType",
+          "value": "gobinary"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2025-06-03T08:48:51Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2025-09-11T04:10:14Z"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:golang/go.yaml.in/yaml/v4@v4.0.0-rc.3",
+      "type": "library",
+      "name": "go.yaml.in/yaml/v4",
+      "version": "v4.0.0-rc.3",
+      "description": "Package yaml implements YAML 1.1/1.2 encoding and decoding for Go programs.\n\nFor simple encoding and decoding, use Unmarshal and Marshal:\n\nFor encoding/decoding with options, use Load and Dump:\n\nFor multi-document streams or when you need custom options, use Loader and Dumper:\n\nConfigure YAML processing behavior with functional options:\n\nOr use version-specific option presets for consistent formatting:\n\nOptions can be combined and later options override earlier ones:\n\nLoad options from YAML configuration files:\n\nThis package supports most of YAML 1.2, but preserves some YAML 1.1\nbehavior for backward compatibility:\n\nNewLoader and NewDumper use v4 defaults (2-space indentation, compact\nsequences). The older Marshal and Unmarshal functions use v3 defaults\nfor backward compatibility. Use the options system to select different\nversion defaults if needed.",
+      "licenses": [
+        {
+          "expression": "(Apache-2.0)"
+        }
+      ],
+      "purl": "pkg:golang/go.yaml.in/yaml/v4@v4.0.0-rc.3",
+      "externalReferences": [
+        {
+          "url": "https://github.com/yaml/go-yaml",
+          "type": "website"
+        },
+        {
+          "url": "https://pkg.go.dev/go.yaml.in/yaml/v4",
+          "type": "distribution"
+        },
+        {
+          "url": "https://pkg.go.dev/go.yaml.in/yaml/v4#section-documentation",
+          "type": "documentation"
+        }
+      ],
+      "properties": [
+        {
+          "name": "aquasecurity:trivy:LayerDiffID",
+          "value": "sha256:b4544824bb59b4e79df954c176b363cbaf9159f97496ab3a8c84a81ac1414b73"
+        },
+        {
+          "name": "aquasecurity:trivy:LayerDigest",
+          "value": "sha256:22828e252b2acfc13d3149703890bb794f3a3b431e59cba56941d68027a262f5"
+        },
+        {
+          "name": "aquasecurity:trivy:PkgID",
+          "value": "go.yaml.in/yaml/v4@v4.0.0-rc.3"
+        },
+        {
+          "name": "aquasecurity:trivy:PkgType",
+          "value": "gobinary"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2025-07-30T17:16:08Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2026-01-21T17:38:02Z"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:golang/golang.org/x/sys@v0.42.0",
+      "type": "library",
+      "name": "golang.org/x/sys",
+      "version": "v0.42.0",
+      "licenses": [
+        {
+          "expression": "(BSD-3-Clause)"
+        }
+      ],
+      "purl": "pkg:golang/golang.org/x/sys@v0.42.0",
+      "externalReferences": [
+        {
+          "url": "https://cs.opensource.google/go/x/sys",
+          "type": "website"
+        },
+        {
+          "url": "https://pkg.go.dev/golang.org/x/sys",
+          "type": "distribution"
+        },
+        {
+          "url": "https://pkg.go.dev/golang.org/x/sys#section-documentation",
+          "type": "documentation"
+        }
+      ],
+      "properties": [
+        {
+          "name": "aquasecurity:trivy:LayerDiffID",
+          "value": "sha256:b4544824bb59b4e79df954c176b363cbaf9159f97496ab3a8c84a81ac1414b73"
+        },
+        {
+          "name": "aquasecurity:trivy:LayerDigest",
+          "value": "sha256:22828e252b2acfc13d3149703890bb794f3a3b431e59cba56941d68027a262f5"
+        },
+        {
+          "name": "aquasecurity:trivy:PkgID",
+          "value": "golang.org/x/sys@v0.42.0"
+        },
+        {
+          "name": "aquasecurity:trivy:PkgType",
+          "value": "gobinary"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2022-10-13T17:17:32Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2026-03-03T01:51:03Z"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:golang/google.golang.org/protobuf@v1.36.11",
+      "type": "library",
+      "supplier": {
+        "name": "Protocol Buffers",
+        "url": [
+          "https://developers.google.com/protocol-buffers/"
+        ]
+      },
+      "author": "Protocol Buffers",
+      "name": "google.golang.org/protobuf",
+      "version": "v1.36.11",
+      "licenses": [
+        {
+          "expression": "(BSD-3-Clause)"
+        }
+      ],
+      "purl": "pkg:golang/google.golang.org/protobuf@v1.36.11",
+      "externalReferences": [
+        {
+          "url": "https://github.com/protocolbuffers/protobuf-go",
+          "type": "website"
+        },
+        {
+          "url": "https://pkg.go.dev/google.golang.org/protobuf",
+          "type": "distribution"
+        },
+        {
+          "url": "https://pkg.go.dev/google.golang.org/protobuf#section-documentation",
+          "type": "documentation"
+        }
+      ],
+      "properties": [
+        {
+          "name": "aquasecurity:trivy:LayerDiffID",
+          "value": "sha256:b4544824bb59b4e79df954c176b363cbaf9159f97496ab3a8c84a81ac1414b73"
+        },
+        {
+          "name": "aquasecurity:trivy:LayerDigest",
+          "value": "sha256:22828e252b2acfc13d3149703890bb794f3a3b431e59cba56941d68027a262f5"
+        },
+        {
+          "name": "aquasecurity:trivy:PkgID",
+          "value": "google.golang.org/protobuf@v1.36.11"
+        },
+        {
+          "name": "aquasecurity:trivy:PkgType",
+          "value": "gobinary"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2020-03-02T18:51:28Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2025-12-12T08:48:31Z"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "go"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "golang"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "protobufs"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "protocol-buffers"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:golang/gopkg.in/yaml.v3@v3.0.1",
+      "type": "library",
+      "supplier": {
+        "name": "go-yaml"
+      },
+      "author": "go-yaml",
+      "name": "gopkg.in/yaml.v3",
+      "version": "v3.0.1",
+      "description": "Package yaml implements YAML support for the Go language.\n\nSource code and other details for the project are available at GitHub:",
+      "licenses": [
+        {
+          "expression": "(Apache-2.0 OR MIT)"
+        }
+      ],
+      "purl": "pkg:golang/gopkg.in/yaml.v3@v3.0.1",
+      "externalReferences": [
+        {
+          "url": "https://github.com/go-yaml/yaml",
+          "type": "website"
+        },
+        {
+          "url": "https://pkg.go.dev/gopkg.in/yaml.v3",
+          "type": "distribution"
+        },
+        {
+          "url": "https://pkg.go.dev/gopkg.in/yaml.v3#section-documentation",
+          "type": "documentation"
+        }
+      ],
+      "properties": [
+        {
+          "name": "aquasecurity:trivy:LayerDiffID",
+          "value": "sha256:b4544824bb59b4e79df954c176b363cbaf9159f97496ab3a8c84a81ac1414b73"
+        },
+        {
+          "name": "aquasecurity:trivy:LayerDigest",
+          "value": "sha256:22828e252b2acfc13d3149703890bb794f3a3b431e59cba56941d68027a262f5"
+        },
+        {
+          "name": "aquasecurity:trivy:PkgID",
+          "value": "gopkg.in/yaml.v3@v3.0.1"
+        },
+        {
+          "name": "aquasecurity:trivy:PkgType",
+          "value": "gobinary"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2022-05-21T10:33:21Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2022-05-27T08:35:30Z"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:golang/stdlib@v1.26.1",
+      "type": "library",
+      "name": "stdlib",
+      "version": "v1.26.1",
+      "purl": "pkg:golang/stdlib@v1.26.1",
+      "properties": [
+        {
+          "name": "aquasecurity:trivy:LayerDiffID",
+          "value": "sha256:b4544824bb59b4e79df954c176b363cbaf9159f97496ab3a8c84a81ac1414b73"
+        },
+        {
+          "name": "aquasecurity:trivy:LayerDigest",
+          "value": "sha256:22828e252b2acfc13d3149703890bb794f3a3b431e59cba56941d68027a262f5"
+        },
+        {
+          "name": "aquasecurity:trivy:PkgID",
+          "value": "stdlib@v1.26.1"
+        },
+        {
+          "name": "aquasecurity:trivy:PkgType",
+          "value": "gobinary"
+        }
+      ]
+    }
+  ],
+  "dependencies": [
+    {
+      "ref": "cca94357-9fe6-4da6-b4aa-dfdc51b8c064",
+      "dependsOn": [
+        "pkg:golang/github.com/jkroepke/access-log-exporter@v0.3.8"
+      ]
+    },
+    {
+      "ref": "pkg:golang/github.com/beorn7/perks@v1.0.1",
+      "dependsOn": []
+    },
+    {
+      "ref": "pkg:golang/github.com/cespare/xxhash/v2@v2.3.0",
+      "dependsOn": []
+    },
+    {
+      "ref": "pkg:golang/github.com/hashicorp/golang-lru@v1.0.2",
+      "dependsOn": []
+    },
+    {
+      "ref": "pkg:golang/github.com/jkroepke/access-log-exporter@v0.3.8",
+      "dependsOn": [
+        "pkg:golang/github.com/beorn7/perks@v1.0.1",
+        "pkg:golang/github.com/cespare/xxhash/v2@v2.3.0",
+        "pkg:golang/github.com/hashicorp/golang-lru@v1.0.2",
+        "pkg:golang/github.com/kimmachinegun/automemlimit@v0.7.5",
+        "pkg:golang/github.com/munnerz/goautoneg@v0.0.0-20191010083416-a7dc8b61c822",
+        "pkg:golang/github.com/pbnjay/memory@v0.0.0-20210728143218-7b4eea64cf58",
+        "pkg:golang/github.com/prometheus/client_golang@v1.23.2",
+        "pkg:golang/github.com/prometheus/client_model@v0.6.2",
+        "pkg:golang/github.com/prometheus/common@v0.67.5",
+        "pkg:golang/github.com/prometheus/procfs@v0.20.1",
+        "pkg:golang/github.com/ua-parser/uap-go@v0.0.0-20251207011819-db9adb27a0b8",
+        "pkg:golang/go.yaml.in/yaml/v2@v2.4.4",
+        "pkg:golang/go.yaml.in/yaml/v4@v4.0.0-rc.3",
+        "pkg:golang/golang.org/x/sys@v0.42.0",
+        "pkg:golang/google.golang.org/protobuf@v1.36.11",
+        "pkg:golang/gopkg.in/yaml.v3@v3.0.1",
+        "pkg:golang/stdlib@v1.26.1"
+      ]
+    },
+    {
+      "ref": "pkg:golang/github.com/kimmachinegun/automemlimit@v0.7.5",
+      "dependsOn": []
+    },
+    {
+      "ref": "pkg:golang/github.com/munnerz/goautoneg@v0.0.0-20191010083416-a7dc8b61c822",
+      "dependsOn": []
+    },
+    {
+      "ref": "pkg:golang/github.com/pbnjay/memory@v0.0.0-20210728143218-7b4eea64cf58",
+      "dependsOn": []
+    },
+    {
+      "ref": "pkg:golang/github.com/prometheus/client_golang@v1.23.2",
+      "dependsOn": []
+    },
+    {
+      "ref": "pkg:golang/github.com/prometheus/client_model@v0.6.2",
+      "dependsOn": []
+    },
+    {
+      "ref": "pkg:golang/github.com/prometheus/common@v0.67.5",
+      "dependsOn": []
+    },
+    {
+      "ref": "pkg:golang/github.com/prometheus/procfs@v0.20.1",
+      "dependsOn": []
+    },
+    {
+      "ref": "pkg:golang/github.com/ua-parser/uap-go@v0.0.0-20251207011819-db9adb27a0b8",
+      "dependsOn": []
+    },
+    {
+      "ref": "pkg:golang/go.yaml.in/yaml/v2@v2.4.4",
+      "dependsOn": []
+    },
+    {
+      "ref": "pkg:golang/go.yaml.in/yaml/v4@v4.0.0-rc.3",
+      "dependsOn": []
+    },
+    {
+      "ref": "pkg:golang/golang.org/x/sys@v0.42.0",
+      "dependsOn": []
+    },
+    {
+      "ref": "pkg:golang/google.golang.org/protobuf@v1.36.11",
+      "dependsOn": []
+    },
+    {
+      "ref": "pkg:golang/gopkg.in/yaml.v3@v3.0.1",
+      "dependsOn": []
+    },
+    {
+      "ref": "pkg:golang/stdlib@v1.26.1",
+      "dependsOn": []
+    },
+    {
+      "ref": "pkg:oci/access-log-exporter@sha256%3Ab119a2cf13f868dc2fc596646fb619e5536a15dcca70f316f86eaeab1b1127bf?arch=amd64&repository_url=ghcr.io%2Fjkroepke%2Faccess-log-exporter",
+      "dependsOn": [
+        "cca94357-9fe6-4da6-b4aa-dfdc51b8c064"
+      ]
+    }
+  ],
+  "vulnerabilities": []
+}
