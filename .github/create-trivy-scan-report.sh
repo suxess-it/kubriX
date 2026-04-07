@@ -13,6 +13,7 @@ chmod u+x trivy
 helm plugin install https://github.com/nikhilsbhat/helm-images || true
 
 mkdir -p trivy-scan-reports
+rm -f trivy-scan-reports/*
 
 cd platform-apps/charts
 for chart in $( ls -d */ | sed 's#/##' ); do
