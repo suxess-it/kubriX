@@ -59,3 +59,11 @@ rules:
     resources:
       - virtualmachines
       - virtualmachineinstances
+  - verbs:
+      - get
+      - list
+    apiGroups:
+      - wgpolicyk8s.io
+    resources:
+      - policyreports
+      - clusterpolicyreports
