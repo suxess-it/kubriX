@@ -2,10 +2,10 @@
   "$schema": "http://cyclonedx.org/schema/bom-1.6.schema.json",
   "bomFormat": "CycloneDX",
   "specVersion": "1.6",
-  "serialNumber": "urn:uuid:a23858a0-7a25-4cb8-9447-271d323f9ba3",
+  "serialNumber": "urn:uuid:f2e2ba91-e583-4007-9b24-028b8dabf5ae",
   "version": 1,
   "metadata": {
-    "timestamp": "2026-02-25T14:46:53+00:00",
+    "timestamp": "2026-04-07T12:24:44+00:00",
     "tools": {
       "components": [
         {
@@ -15,7 +15,7 @@
           },
           "group": "aquasecurity",
           "name": "trivy",
-          "version": "0.69.0"
+          "version": "0.69.2"
         }
       ]
     },
@@ -150,7 +150,7 @@
   },
   "components": [
     {
-      "bom-ref": "41ce2339-1565-4b6a-9bc1-70d372278fe2",
+      "bom-ref": "0547c184-4c83-466f-8bed-071fb23f493e",
       "type": "operating-system",
       "name": "redhat",
       "version": "9.5",
@@ -166,7 +166,7 @@
       ]
     },
     {
-      "bom-ref": "c1e8b56f-8558-4ae6-a6c1-aa4fb975f7f5",
+      "bom-ref": "c94043fe-51c8-48d6-abdc-51b1167eeb10",
       "type": "application",
       "name": "usr/bin/mc",
       "properties": [
@@ -900,6 +900,7 @@
       "author": "Charm",
       "name": "github.com/charmbracelet/x/term",
       "version": "v0.2.0",
+      "description": "Package term provides a platform-independent interfaces for interacting with\nTerminal and TTY devices.",
       "purl": "pkg:golang/github.com/charmbracelet/x/term@v0.2.0",
       "externalReferences": [
         {
@@ -1254,6 +1255,11 @@
       "name": "github.com/fatih/color",
       "version": "v1.17.0",
       "description": "Package color is an ANSI color package to output colorized or SGR defined\noutput to the standard output. The API can be used in several way, pick one\nthat suits you.\n\nUse simple and default helper functions with predefined foreground colors:\n\nHowever, there are times when custom color mixes are required. Below are some\nexamples to create custom color objects and use the print functions of each\nseparate color object.\n\nYou can create PrintXxx functions to simplify even more:\n\nYou can also FprintXxx functions to pass your own io.Writer:\n\nOr create SprintXxx functions to mix strings with other non-colorized strings:\n\nWindows support is enabled by default. All Print functions work as intended.\nHowever, only for color.SprintXXX functions, user should use fmt.FprintXXX and\nset the output to color.Output:\n\nUsing with existing code is possible. Just use the Set() method to set the\nstandard output to the given parameters. That way a rewrite of an existing\ncode is not required.\n\nThere might be a case where you want to disable color output (for example to\npipe the standard output of your app to somewhere else). `Color` has support to\ndisable colors both globally and for single color definition. For example\nsuppose you have a CLI app and a `--no-color` bool flag. You can easily disable\nthe color output with:\n\nYou can also disable the color by setting the NO_COLOR environment variable to any value.\n\nIt also has support for single color definitions (local). You can\ndisable/enable color output on the fly:",
+      "licenses": [
+        {
+          "expression": "(MIT)"
+        }
+      ],
       "purl": "pkg:golang/github.com/fatih/color@v1.17.0",
       "externalReferences": [
         {
@@ -1296,7 +1302,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2024-10-03T07:06:28Z"
+          "value": "2026-03-20T08:53:23Z"
         },
         {
           "name": "ecosystems:owner_location",
@@ -1552,7 +1558,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2025-01-25T05:38:06Z"
+          "value": "2025-10-28T00:14:29Z"
         },
         {
           "name": "ecosystems:owner_location",
@@ -2106,39 +2112,9 @@
     {
       "bom-ref": "pkg:golang/github.com/inconshreveable/mousetrap@v1.1.0",
       "type": "library",
-      "supplier": {
-        "name": "Alan Shreve",
-        "url": [
-          "https://inconshreveable.com"
-        ]
-      },
-      "author": "Alan Shreve",
       "name": "github.com/inconshreveable/mousetrap",
       "version": "v1.1.0",
-      "licenses": [
-        {
-          "expression": "(Apache-2.0)"
-        }
-      ],
       "purl": "pkg:golang/github.com/inconshreveable/mousetrap@v1.1.0",
-      "externalReferences": [
-        {
-          "url": "https://github.com/inconshreveable/mousetrap",
-          "type": "website"
-        },
-        {
-          "url": "https://pkg.go.dev/github.com/inconshreveable/mousetrap",
-          "type": "distribution"
-        },
-        {
-          "url": "https://github.com/inconshreveable/mousetrap",
-          "type": "vcs"
-        },
-        {
-          "url": "https://pkg.go.dev/github.com/inconshreveable/mousetrap#section-documentation",
-          "type": "documentation"
-        }
-      ],
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
@@ -2155,14 +2131,6 @@
         {
           "name": "aquasecurity:trivy:PkgType",
           "value": "gobinary"
-        },
-        {
-          "name": "ecosystems:first_release_published_at",
-          "value": "2014-10-17T20:07:13Z"
-        },
-        {
-          "name": "ecosystems:latest_release_published_at",
-          "value": "2022-11-27T22:01:53Z"
         }
       ]
     },
@@ -2217,7 +2185,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2025-12-23T13:45:53Z"
+          "value": "2026-04-02T20:26:48Z"
         },
         {
           "name": "ecosystems:topic",
@@ -2932,7 +2900,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2025-09-08T14:15:45Z"
+          "value": "2026-03-28T13:15:33Z"
         },
         {
           "name": "ecosystems:owner_location",
@@ -3274,7 +3242,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-02-17T08:28:43Z"
+          "value": "2026-04-03T00:59:49Z"
         },
         {
           "name": "ecosystems:owner_location",
@@ -3865,7 +3833,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-01-06T16:59:05Z"
+          "value": "2026-03-25T18:54:16Z"
         },
         {
           "name": "ecosystems:topic",
@@ -4235,39 +4203,9 @@
     {
       "bom-ref": "pkg:golang/github.com/muesli/reflow@v0.3.0",
       "type": "library",
-      "supplier": {
-        "name": "Christian Muehlhaeuser",
-        "url": [
-          "https://fribbledom.com"
-        ]
-      },
-      "author": "Christian Muehlhaeuser",
       "name": "github.com/muesli/reflow",
       "version": "v0.3.0",
-      "licenses": [
-        {
-          "expression": "(MIT)"
-        }
-      ],
       "purl": "pkg:golang/github.com/muesli/reflow@v0.3.0",
-      "externalReferences": [
-        {
-          "url": "https://github.com/muesli/reflow",
-          "type": "website"
-        },
-        {
-          "url": "https://pkg.go.dev/github.com/muesli/reflow",
-          "type": "distribution"
-        },
-        {
-          "url": "https://github.com/muesli/reflow",
-          "type": "vcs"
-        },
-        {
-          "url": "https://pkg.go.dev/github.com/muesli/reflow#section-documentation",
-          "type": "documentation"
-        }
-      ],
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
@@ -4284,42 +4222,6 @@
         {
           "name": "aquasecurity:trivy:PkgType",
           "value": "gobinary"
-        },
-        {
-          "name": "ecosystems:first_release_published_at",
-          "value": "2020-02-10T20:27:03Z"
-        },
-        {
-          "name": "ecosystems:latest_release_published_at",
-          "value": "2021-05-17T09:53:52Z"
-        },
-        {
-          "name": "ecosystems:topic",
-          "value": "ansi"
-        },
-        {
-          "name": "ecosystems:topic",
-          "value": "dedent"
-        },
-        {
-          "name": "ecosystems:topic",
-          "value": "hacktoberfest"
-        },
-        {
-          "name": "ecosystems:topic",
-          "value": "indentation"
-        },
-        {
-          "name": "ecosystems:topic",
-          "value": "margin"
-        },
-        {
-          "name": "ecosystems:topic",
-          "value": "padding"
-        },
-        {
-          "name": "ecosystems:topic",
-          "value": "wordwrap"
         }
       ]
     },
@@ -4335,11 +4237,6 @@
       "author": "Christian Muehlhaeuser",
       "name": "github.com/muesli/termenv",
       "version": "v0.15.2",
-      "licenses": [
-        {
-          "expression": "(MIT)"
-        }
-      ],
       "purl": "pkg:golang/github.com/muesli/termenv@v0.15.2",
       "externalReferences": [
         {
@@ -4534,7 +4431,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-01-16T18:33:54Z"
+          "value": "2026-03-04T08:28:19Z"
         }
       ]
     },
@@ -5075,7 +4972,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2025-10-30T14:20:06Z"
+          "value": "2026-02-28T15:22:44Z"
         },
         {
           "name": "ecosystems:topic",
@@ -6369,7 +6266,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-02-13T18:39:11Z"
+          "value": "2026-04-01T18:29:49Z"
         },
         {
           "name": "ecosystems:owner_location",
@@ -6467,7 +6364,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-02-13T18:39:11Z"
+          "value": "2026-04-01T18:29:49Z"
         },
         {
           "name": "ecosystems:owner_location",
@@ -6570,7 +6467,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-02-13T18:39:11Z"
+          "value": "2026-04-01T18:29:49Z"
         },
         {
           "name": "ecosystems:owner_location",
@@ -6723,6 +6620,10 @@
           "type": "distribution"
         },
         {
+          "url": "https://github.com/uber-go/zap",
+          "type": "vcs"
+        },
+        {
           "url": "https://pkg.go.dev/go.uber.org/zap#section-documentation",
           "type": "documentation"
         }
@@ -6790,10 +6691,6 @@
           "type": "distribution"
         },
         {
-          "url": "https://cs.opensource.google/go/x/crypto",
-          "type": "vcs"
-        },
-        {
           "url": "https://pkg.go.dev/golang.org/x/crypto#section-documentation",
           "type": "documentation"
         }
@@ -6821,7 +6718,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-02-09T16:37:10Z"
+          "value": "2026-03-11T14:17:49Z"
         }
       ]
     },
@@ -6830,6 +6727,11 @@
       "type": "library",
       "name": "golang.org/x/net",
       "version": "v0.29.0",
+      "licenses": [
+        {
+          "expression": "(BSD-3-Clause)"
+        }
+      ],
       "purl": "pkg:golang/golang.org/x/net@v0.29.0",
       "externalReferences": [
         {
@@ -6872,7 +6774,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-02-09T17:11:27Z"
+          "value": "2026-03-12T00:35:42Z"
         }
       ]
     },
@@ -6924,7 +6826,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2025-12-04T00:24:39Z"
+          "value": "2026-02-23T18:54:42Z"
         }
       ]
     },
@@ -6933,6 +6835,11 @@
       "type": "library",
       "name": "golang.org/x/sys",
       "version": "v0.25.0",
+      "licenses": [
+        {
+          "expression": "(BSD-3-Clause)"
+        }
+      ],
       "purl": "pkg:golang/golang.org/x/sys@v0.25.0",
       "externalReferences": [
         {
@@ -6971,7 +6878,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-02-08T05:32:41Z"
+          "value": "2026-03-03T01:51:03Z"
         }
       ]
     },
@@ -6981,6 +6888,11 @@
       "name": "golang.org/x/term",
       "version": "v0.24.0",
       "description": "Package term provides support functions for dealing with terminals, as\ncommonly found on UNIX systems.\n\nPutting a terminal into raw mode is the most common requirement:\n\nNote that on non-Unix systems os.Stdin.Fd() may not be 0.",
+      "licenses": [
+        {
+          "expression": "(BSD-3-Clause)"
+        }
+      ],
       "purl": "pkg:golang/golang.org/x/term@v0.24.0",
       "externalReferences": [
         {
@@ -7019,7 +6931,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-02-09T16:13:12Z"
+          "value": "2026-03-10T01:43:14Z"
         }
       ]
     },
@@ -7038,10 +6950,6 @@
         {
           "url": "https://pkg.go.dev/golang.org/x/text",
           "type": "distribution"
-        },
-        {
-          "url": "https://cs.opensource.google/go/x/text",
-          "type": "vcs"
         },
         {
           "url": "https://pkg.go.dev/golang.org/x/text#section-documentation",
@@ -7071,7 +6979,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-02-09T16:14:29Z"
+          "value": "2026-03-10T01:41:36Z"
         }
       ]
     },
@@ -7129,7 +7037,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-02-17T21:52:00Z"
+          "value": "2026-04-01T02:48:25Z"
         }
       ]
     },
@@ -7187,7 +7095,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-02-17T21:52:00Z"
+          "value": "2026-04-01T02:48:25Z"
         }
       ]
     },
@@ -7242,7 +7150,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-02-13T06:52:36Z"
+          "value": "2026-04-01T07:57:02Z"
         },
         {
           "name": "ecosystems:topic",
@@ -7312,10 +7220,6 @@
         {
           "url": "https://pkg.go.dev/google.golang.org/protobuf",
           "type": "distribution"
-        },
-        {
-          "url": "https://github.com/protocolbuffers/protobuf-go",
-          "type": "vcs"
         },
         {
           "url": "https://pkg.go.dev/google.golang.org/protobuf#section-documentation",
@@ -7389,10 +7293,6 @@
         {
           "url": "https://pkg.go.dev/gopkg.in/yaml.v2",
           "type": "distribution"
-        },
-        {
-          "url": "https://github.com/go-yaml/yaml",
-          "type": "vcs"
         },
         {
           "url": "https://pkg.go.dev/gopkg.in/yaml.v2#section-documentation",
@@ -8637,7 +8537,7 @@
   ],
   "dependencies": [
     {
-      "ref": "41ce2339-1565-4b6a-9bc1-70d372278fe2",
+      "ref": "0547c184-4c83-466f-8bed-071fb23f493e",
       "dependsOn": [
         "pkg:rpm/redhat/coreutils-single@8.32-36.el9?arch=x86_64&distro=redhat-9.5",
         "pkg:rpm/redhat/gpg-pubkey@5a6340b3-6229229e?arch=None&distro=redhat-9.5",
@@ -8645,7 +8545,7 @@
       ]
     },
     {
-      "ref": "c1e8b56f-8558-4ae6-a6c1-aa4fb975f7f5",
+      "ref": "c94043fe-51c8-48d6-abdc-51b1167eeb10",
       "dependsOn": [
         "pkg:golang/github.com/minio/mc"
       ]
@@ -9153,8 +9053,8 @@
     {
       "ref": "pkg:oci/mc@sha256%3A993e8c454a7ec632923f7e3e61adf1d473261da6354cefd641aedd33a2cfe112?arch=amd64&repository_url=quay.io%2Fminio%2Fmc",
       "dependsOn": [
-        "41ce2339-1565-4b6a-9bc1-70d372278fe2",
-        "c1e8b56f-8558-4ae6-a6c1-aa4fb975f7f5"
+        "0547c184-4c83-466f-8bed-071fb23f493e",
+        "c94043fe-51c8-48d6-abdc-51b1167eeb10"
       ]
     },
     {

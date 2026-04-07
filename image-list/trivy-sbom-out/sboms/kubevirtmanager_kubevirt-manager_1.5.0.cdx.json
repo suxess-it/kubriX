@@ -2,10 +2,10 @@
   "$schema": "http://cyclonedx.org/schema/bom-1.6.schema.json",
   "bomFormat": "CycloneDX",
   "specVersion": "1.6",
-  "serialNumber": "urn:uuid:ac0d845b-3005-43ec-b22a-3d6978854956",
+  "serialNumber": "urn:uuid:61cb1f4e-a708-428d-a977-281c0f6fddce",
   "version": 1,
   "metadata": {
-    "timestamp": "2026-02-25T14:45:52+00:00",
+    "timestamp": "2026-04-07T12:23:46+00:00",
     "tools": {
       "components": [
         {
@@ -15,7 +15,7 @@
           },
           "group": "aquasecurity",
           "name": "trivy",
-          "version": "0.69.0"
+          "version": "0.69.2"
         }
       ]
     },
@@ -122,7 +122,7 @@
   },
   "components": [
     {
-      "bom-ref": "22ec1fc1-45d2-43eb-a0d7-d8451d519be0",
+      "bom-ref": "7c3b171c-6050-4a49-953b-23619e979f1a",
       "type": "application",
       "name": "usr/local/bin/kubectl",
       "properties": [
@@ -137,7 +137,7 @@
       ]
     },
     {
-      "bom-ref": "471a1d58-112d-4f0e-9ca8-a76b297aa5a6",
+      "bom-ref": "9ad7adca-491f-4feb-845a-75f7542f891d",
       "type": "operating-system",
       "name": "alpine",
       "version": "3.20.5",
@@ -218,7 +218,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2025-12-11T13:51:00Z"
+          "value": "2026-03-24T07:49:16Z"
         }
       ]
     },
@@ -288,7 +288,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2025-12-11T13:51:00Z"
+          "value": "2026-03-24T07:49:16Z"
         }
       ]
     },
@@ -435,7 +435,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-01-24T15:11:47Z"
+          "value": "2026-04-03T19:20:46Z"
         }
       ]
     },
@@ -505,7 +505,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-01-29T10:40:34Z"
+          "value": "2026-02-25T18:43:29Z"
         }
       ]
     },
@@ -579,7 +579,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2025-12-02T00:42:05Z"
+          "value": "2026-03-27T19:39:09Z"
         },
         {
           "name": "ecosystems:owner_location",
@@ -1009,7 +1009,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-01-07T10:34:13Z"
+          "value": "2026-03-12T21:21:31Z"
         }
       ]
     },
@@ -1030,9 +1030,7 @@
       ],
       "licenses": [
         {
-          "license": {
-            "id": "MIT"
-          }
+          "expression": "(MIT)"
         }
       ],
       "purl": "pkg:apk/alpine/fontconfig@2.15.0-r1?arch=x86_64&distro=3.20.5",
@@ -1102,14 +1100,7 @@
       ],
       "licenses": [
         {
-          "license": {
-            "id": "FTL"
-          }
-        },
-        {
-          "license": {
-            "id": "GPL-2.0-or-later"
-          }
+          "expression": "(FTL OR GPL-2.0-or-later)"
         }
       ],
       "purl": "pkg:apk/alpine/freetype@2.13.2-r0?arch=x86_64&distro=3.20.5",
@@ -1158,7 +1149,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2025-12-20T20:21:21Z"
+          "value": "2026-03-02T10:40:56Z"
         }
       ]
     },
@@ -1306,7 +1297,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-01-12T00:38:38Z"
+          "value": "2026-03-05T15:06:15Z"
         }
       ]
     },
@@ -1518,7 +1509,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-01-27T16:30:14Z"
+          "value": "2026-03-19T07:52:35Z"
         }
       ]
     },
@@ -1590,7 +1581,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-01-07T10:34:13Z"
+          "value": "2026-03-12T21:21:31Z"
         }
       ]
     },
@@ -1806,7 +1797,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2025-09-28T19:26:00Z"
+          "value": "2026-03-18T13:56:41Z"
         }
       ]
     },
@@ -1818,6 +1809,7 @@
       },
       "name": "libgcrypt",
       "version": "1.10.3-r0",
+      "description": "General purpose crypto library based on the code used in GnuPG",
       "hashes": [
         {
           "alg": "SHA-1",
@@ -1826,17 +1818,24 @@
       ],
       "licenses": [
         {
-          "license": {
-            "id": "LGPL-2.1-or-later"
-          }
-        },
-        {
-          "license": {
-            "id": "GPL-2.0-or-later"
-          }
+          "expression": "(LGPL-2.1-or-later AND GPL-2.0-or-later)"
         }
       ],
       "purl": "pkg:apk/alpine/libgcrypt@1.10.3-r0?arch=x86_64&distro=3.20.5",
+      "externalReferences": [
+        {
+          "url": "https://www.gnupg.org/",
+          "type": "website"
+        },
+        {
+          "url": "https://pkgs.alpinelinux.org/package/edge/main/x86_64/libgcrypt",
+          "type": "distribution"
+        },
+        {
+          "url": "https://www.gnupg.org/",
+          "type": "vcs"
+        }
+      ],
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
@@ -1861,6 +1860,14 @@
         {
           "name": "aquasecurity:trivy:SrcVersion",
           "value": "1.10.3-r0"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2022-04-27T20:01:49Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2026-01-29T20:53:45Z"
         }
       ]
     },
@@ -1944,6 +1951,7 @@
       },
       "name": "libgpg-error",
       "version": "1.49-r0",
+      "description": "Support library for libgcrypt",
       "hashes": [
         {
           "alg": "SHA-1",
@@ -1952,17 +1960,24 @@
       ],
       "licenses": [
         {
-          "license": {
-            "id": "GPL-2.0-or-later"
-          }
-        },
-        {
-          "license": {
-            "id": "LGPL-2.1-or-later"
-          }
+          "expression": "(GPL-2.0-or-later AND LGPL-2.1-or-later)"
         }
       ],
       "purl": "pkg:apk/alpine/libgpg-error@1.49-r0?arch=x86_64&distro=3.20.5",
+      "externalReferences": [
+        {
+          "url": "https://www.gnupg.org/",
+          "type": "website"
+        },
+        {
+          "url": "https://pkgs.alpinelinux.org/package/edge/main/x86_64/libgpg-error",
+          "type": "distribution"
+        },
+        {
+          "url": "https://www.gnupg.org/",
+          "type": "vcs"
+        }
+      ],
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
@@ -1987,6 +2002,14 @@
         {
           "name": "aquasecurity:trivy:SrcVersion",
           "value": "1.49-r0"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2022-10-24T21:46:47Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2025-12-11T14:29:04Z"
         }
       ]
     },
@@ -2149,9 +2172,7 @@
       ],
       "licenses": [
         {
-          "license": {
-            "id": "LGPL-2.1-or-later"
-          }
+          "expression": "(LGPL-2.1-or-later)"
         }
       ],
       "purl": "pkg:apk/alpine/libintl@0.22.5-r0?arch=x86_64&distro=3.20.5",
@@ -2445,9 +2466,7 @@
       ],
       "licenses": [
         {
-          "license": {
-            "id": "Libpng"
-          }
+          "expression": "(Libpng)"
         }
       ],
       "purl": "pkg:apk/alpine/libpng@1.6.44-r0?arch=x86_64&distro=3.20.5",
@@ -2496,7 +2515,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-02-10T15:39:14Z"
+          "value": "2026-03-26T08:44:35Z"
         }
       ]
     },
@@ -3356,7 +3375,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2024-04-11T21:39:10Z"
+          "value": "2026-01-31T09:13:02Z"
         }
       ]
     },
@@ -3663,19 +3682,7 @@
       ],
       "licenses": [
         {
-          "license": {
-            "id": "MIT"
-          }
-        },
-        {
-          "license": {
-            "id": "BSD-2-Clause"
-          }
-        },
-        {
-          "license": {
-            "id": "GPL-2.0-or-later"
-          }
+          "expression": "(MIT AND BSD-2-Clause AND GPL-2.0-or-later)"
         }
       ],
       "purl": "pkg:apk/alpine/musl-utils@1.2.5-r0?arch=x86_64&distro=3.20.5",
@@ -3724,7 +3731,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2025-10-13T04:04:29Z"
+          "value": "2026-03-21T19:37:00Z"
         }
       ]
     },
@@ -3745,9 +3752,7 @@
       ],
       "licenses": [
         {
-          "license": {
-            "id": "MIT"
-          }
+          "expression": "(MIT)"
         }
       ],
       "purl": "pkg:apk/alpine/musl@1.2.5-r0?arch=x86_64&distro=3.20.5",
@@ -3796,7 +3801,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2025-01-05T00:53:44Z"
+          "value": "2026-03-21T19:37:00Z"
         }
       ]
     },
@@ -4256,7 +4261,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-02-17T08:57:09Z"
+          "value": "2026-03-26T14:18:28Z"
         }
       ]
     },
@@ -4612,7 +4617,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2025-12-12T21:21:45Z"
+          "value": "2026-03-04T10:10:28Z"
         }
       ]
     },
@@ -4769,7 +4774,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2024-09-18T11:26:19Z"
+          "value": "2026-03-05T10:00:20Z"
         }
       ]
     },
@@ -5553,7 +5558,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2025-07-14T04:00:34Z"
+          "value": "2026-03-30T13:23:16Z"
         },
         {
           "name": "ecosystems:owner_location",
@@ -5799,7 +5804,11 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2025-12-06T13:20:57Z"
+          "value": "2026-03-02T21:21:48Z"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "jsonpointer"
         }
       ]
     },
@@ -5859,7 +5868,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2025-12-08T21:48:23Z"
+          "value": "2026-03-02T21:57:17Z"
         }
       ]
     },
@@ -5920,7 +5929,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2025-11-25T18:28:48Z"
+          "value": "2026-03-02T18:12:04Z"
         }
       ]
     },
@@ -7132,7 +7141,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2025-09-15T18:14:26Z"
+          "value": "2026-03-14T14:51:56Z"
         },
         {
           "name": "ecosystems:owner_location",
@@ -8250,7 +8259,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2025-10-30T14:20:06Z"
+          "value": "2026-02-28T15:22:44Z"
         },
         {
           "name": "ecosystems:topic",
@@ -8350,13 +8359,6 @@
     {
       "bom-ref": "pkg:golang/github.com/spf13/cobra@v1.8.1",
       "type": "library",
-      "supplier": {
-        "name": "Steve Francia",
-        "url": [
-          "http://spf13.com"
-        ]
-      },
-      "author": "Steve Francia",
       "name": "github.com/spf13/cobra",
       "version": "v1.8.1",
       "description": "Package cobra is a commander providing a simple interface to create powerful modern CLI interfaces.\nIn addition to providing an interface, Cobra simultaneously provides a controller to organize your application code.",
@@ -8408,10 +8410,6 @@
         {
           "name": "ecosystems:latest_release_published_at",
           "value": "2025-12-03T23:51:15Z"
-        },
-        {
-          "name": "ecosystems:owner_location",
-          "value": "NYC"
         },
         {
           "name": "ecosystems:topic",
@@ -8779,13 +8777,6 @@
     {
       "bom-ref": "pkg:golang/go.opentelemetry.io/otel@v1.28.0",
       "type": "library",
-      "supplier": {
-        "name": "OpenTelemetry - CNCF",
-        "url": [
-          "https://opentelemetry.io"
-        ]
-      },
-      "author": "OpenTelemetry - CNCF",
       "name": "go.opentelemetry.io/otel",
       "version": "v1.28.0",
       "description": "Package otel provides global access to the OpenTelemetry API. The subpackages of\nthe otel package provide an implementation of the OpenTelemetry API.\n\nThe provided API is used to instrument code and measure data about that code's\nperformance and operation. The measured data, by default, is not processed or\ntransmitted anywhere. An implementation of the OpenTelemetry SDK, like the\ndefault SDK implementation (go.opentelemetry.io/otel/sdk), and associated\nexporters are used to process and transport this data.\n\nTo read the getting started guide, see https://opentelemetry.io/docs/languages/go/getting-started/.\n\nTo read more about tracing, see go.opentelemetry.io/otel/trace.\n\nTo read more about metrics, see go.opentelemetry.io/otel/metric.\n\nTo read more about logs, see go.opentelemetry.io/otel/log.\n\nTo read more about propagation, see go.opentelemetry.io/otel/propagation and\ngo.opentelemetry.io/otel/baggage.",
@@ -8832,7 +8823,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-02-02T17:46:33Z"
+          "value": "2026-04-03T08:30:03Z"
         },
         {
           "name": "ecosystems:topic",
@@ -8904,7 +8895,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-02-09T17:11:27Z"
+          "value": "2026-03-12T00:35:42Z"
         }
       ]
     },
@@ -8928,6 +8919,10 @@
         {
           "url": "https://pkg.go.dev/golang.org/x/oauth2",
           "type": "distribution"
+        },
+        {
+          "url": "https://cs.opensource.google/go/x/oauth2",
+          "type": "vcs"
         },
         {
           "url": "https://pkg.go.dev/golang.org/x/oauth2#section-documentation",
@@ -8957,7 +8952,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-01-12T19:50:33Z"
+          "value": "2026-02-11T19:14:10Z"
         }
       ]
     },
@@ -9009,7 +9004,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2025-12-04T00:24:39Z"
+          "value": "2026-02-23T18:54:42Z"
         }
       ]
     },
@@ -9061,7 +9056,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-02-08T05:32:41Z"
+          "value": "2026-03-03T01:51:03Z"
         }
       ]
     },
@@ -9114,7 +9109,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-02-09T16:13:12Z"
+          "value": "2026-03-10T01:43:14Z"
         }
       ]
     },
@@ -9138,10 +9133,6 @@
         {
           "url": "https://pkg.go.dev/golang.org/x/text",
           "type": "distribution"
-        },
-        {
-          "url": "https://cs.opensource.google/go/x/text",
-          "type": "vcs"
         },
         {
           "url": "https://pkg.go.dev/golang.org/x/text#section-documentation",
@@ -9171,7 +9162,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-02-09T16:14:29Z"
+          "value": "2026-03-10T01:41:36Z"
         }
       ]
     },
@@ -9223,7 +9214,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2025-09-16T23:29:52Z"
+          "value": "2026-02-11T19:14:29Z"
         }
       ]
     },
@@ -9253,10 +9244,6 @@
         {
           "url": "https://pkg.go.dev/google.golang.org/protobuf",
           "type": "distribution"
-        },
-        {
-          "url": "https://github.com/protocolbuffers/protobuf-go",
-          "type": "vcs"
         },
         {
           "url": "https://pkg.go.dev/google.golang.org/protobuf#section-documentation",
@@ -9678,7 +9665,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-02-10T22:43:05Z"
+          "value": "2026-03-19T07:02:16Z"
         },
         {
           "name": "ecosystems:topic",
@@ -9711,10 +9698,6 @@
         {
           "url": "https://pkg.go.dev/k8s.io/client-go",
           "type": "distribution"
-        },
-        {
-          "url": "https://github.com/kubernetes/client-go",
-          "type": "vcs"
         },
         {
           "url": "https://pkg.go.dev/k8s.io/client-go#section-documentation",
@@ -9934,7 +9917,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2024-06-20T00:51:19Z"
+          "value": "2026-03-03T11:17:23Z"
         },
         {
           "name": "ecosystems:topic",
@@ -9996,7 +9979,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-01-27T14:27:50Z"
+          "value": "2026-03-19T00:48:28Z"
         }
       ]
     },
@@ -10049,7 +10032,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-02-11T00:05:52Z"
+          "value": "2026-03-19T08:35:32Z"
         },
         {
           "name": "ecosystems:topic",
@@ -10110,7 +10093,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-02-10T12:53:13Z"
+          "value": "2026-03-18T18:30:07Z"
         },
         {
           "name": "ecosystems:topic",
@@ -10245,7 +10228,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-02-10T18:56:00Z"
+          "value": "2026-03-19T19:02:34Z"
         },
         {
           "name": "ecosystems:topic",
@@ -10470,6 +10453,10 @@
         {
           "url": "https://pkg.go.dev/sigs.k8s.io/kustomize/kyaml",
           "type": "distribution"
+        },
+        {
+          "url": "https://github.com/kubernetes-sigs/kustomize",
+          "type": "vcs"
         },
         {
           "url": "https://pkg.go.dev/sigs.k8s.io/kustomize/kyaml#section-documentation",
@@ -10698,13 +10685,13 @@
   ],
   "dependencies": [
     {
-      "ref": "22ec1fc1-45d2-43eb-a0d7-d8451d519be0",
+      "ref": "7c3b171c-6050-4a49-953b-23619e979f1a",
       "dependsOn": [
         "pkg:golang/k8s.io/kubernetes"
       ]
     },
     {
-      "ref": "471a1d58-112d-4f0e-9ca8-a76b297aa5a6",
+      "ref": "9ad7adca-491f-4feb-845a-75f7542f891d",
       "dependsOn": [
         "pkg:apk/alpine/alpine-baselayout@3.6.5-r0?arch=x86_64&distro=3.20.5",
         "pkg:apk/alpine/alpine-keys@2.4-r1?arch=x86_64&distro=3.20.5",
@@ -11624,8 +11611,8 @@
     {
       "ref": "pkg:oci/kubevirt-manager@sha256%3A6bdb107e81b5eb7c06ca0eabdf3637868c96e8e211e8f08c675124a8357ab0c4?arch=amd64&repository_url=index.docker.io%2Fkubevirtmanager%2Fkubevirt-manager",
       "dependsOn": [
-        "22ec1fc1-45d2-43eb-a0d7-d8451d519be0",
-        "471a1d58-112d-4f0e-9ca8-a76b297aa5a6",
+        "7c3b171c-6050-4a49-953b-23619e979f1a",
+        "9ad7adca-491f-4feb-845a-75f7542f891d",
         "pkg:npm/%40novnc/novnc@1.5.0"
       ]
     }

@@ -2,10 +2,10 @@
   "$schema": "http://cyclonedx.org/schema/bom-1.6.schema.json",
   "bomFormat": "CycloneDX",
   "specVersion": "1.6",
-  "serialNumber": "urn:uuid:0b0599e1-5b42-4676-9c28-8c5c9372bcf5",
+  "serialNumber": "urn:uuid:81d6dfc1-7410-43d8-bb34-e82fe5170f78",
   "version": 1,
   "metadata": {
-    "timestamp": "2026-02-25T14:40:58+00:00",
+    "timestamp": "2026-04-07T12:20:46+00:00",
     "tools": {
       "components": [
         {
@@ -15,7 +15,7 @@
           },
           "group": "aquasecurity",
           "name": "trivy",
-          "version": "0.69.0"
+          "version": "0.69.2"
         }
       ]
     },
@@ -118,22 +118,7 @@
   },
   "components": [
     {
-      "bom-ref": "2196e033-e2bf-4090-8649-bda4962fae79",
-      "type": "application",
-      "name": "usr/local/bin/kubectl",
-      "properties": [
-        {
-          "name": "aquasecurity:trivy:Class",
-          "value": "lang-pkgs"
-        },
-        {
-          "name": "aquasecurity:trivy:Type",
-          "value": "gobinary"
-        }
-      ]
-    },
-    {
-      "bom-ref": "e85f2d21-e1f8-418d-bd86-099565ecb597",
+      "bom-ref": "4e3680e6-3420-40e0-946b-1ddade38b24a",
       "type": "operating-system",
       "name": "debian",
       "version": "12.11",
@@ -145,6 +130,21 @@
         {
           "name": "aquasecurity:trivy:Type",
           "value": "debian"
+        }
+      ]
+    },
+    {
+      "bom-ref": "7e05d2db-bb21-4a63-8848-ecfcd02b27ce",
+      "type": "application",
+      "name": "usr/local/bin/kubectl",
+      "properties": [
+        {
+          "name": "aquasecurity:trivy:Class",
+          "value": "lang-pkgs"
+        },
+        {
+          "name": "aquasecurity:trivy:Type",
+          "value": "gobinary"
         }
       ]
     },
@@ -11381,7 +11381,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2025-07-14T04:00:34Z"
+          "value": "2026-03-30T13:23:16Z"
         },
         {
           "name": "ecosystems:owner_location",
@@ -11627,7 +11627,11 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2025-12-06T13:20:57Z"
+          "value": "2026-03-02T21:21:48Z"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "jsonpointer"
         }
       ]
     },
@@ -11687,7 +11691,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2025-12-08T21:48:23Z"
+          "value": "2026-03-02T21:57:17Z"
         }
       ]
     },
@@ -11748,7 +11752,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2025-11-25T18:28:48Z"
+          "value": "2026-03-02T18:12:04Z"
         }
       ]
     },
@@ -13041,7 +13045,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2025-09-15T18:14:26Z"
+          "value": "2026-03-14T14:51:56Z"
         },
         {
           "name": "ecosystems:owner_location",
@@ -14159,7 +14163,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2025-10-30T14:20:06Z"
+          "value": "2026-02-28T15:22:44Z"
         },
         {
           "name": "ecosystems:topic",
@@ -14259,13 +14263,6 @@
     {
       "bom-ref": "pkg:golang/github.com/spf13/cobra@v1.8.1",
       "type": "library",
-      "supplier": {
-        "name": "Steve Francia",
-        "url": [
-          "http://spf13.com"
-        ]
-      },
-      "author": "Steve Francia",
       "name": "github.com/spf13/cobra",
       "version": "v1.8.1",
       "description": "Package cobra is a commander providing a simple interface to create powerful modern CLI interfaces.\nIn addition to providing an interface, Cobra simultaneously provides a controller to organize your application code.",
@@ -14317,10 +14314,6 @@
         {
           "name": "ecosystems:latest_release_published_at",
           "value": "2025-12-03T23:51:15Z"
-        },
-        {
-          "name": "ecosystems:owner_location",
-          "value": "NYC"
         },
         {
           "name": "ecosystems:topic",
@@ -14664,11 +14657,11 @@
         },
         {
           "name": "ecosystems:first_release_published_at",
-          "value": "2019-03-08T21:16:44Z"
+          "value": "2017-10-02T14:10:28Z"
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-02-10T14:37:00Z"
+          "value": "2026-03-26T11:33:08Z"
         },
         {
           "name": "ecosystems:owner_location",
@@ -14728,7 +14721,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-02-09T17:11:27Z"
+          "value": "2026-03-12T00:35:42Z"
         }
       ]
     },
@@ -14752,6 +14745,10 @@
         {
           "url": "https://pkg.go.dev/golang.org/x/oauth2",
           "type": "distribution"
+        },
+        {
+          "url": "https://cs.opensource.google/go/x/oauth2",
+          "type": "vcs"
         },
         {
           "url": "https://pkg.go.dev/golang.org/x/oauth2#section-documentation",
@@ -14781,7 +14778,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-01-12T19:50:33Z"
+          "value": "2026-02-11T19:14:10Z"
         }
       ]
     },
@@ -14833,7 +14830,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2025-12-04T00:24:39Z"
+          "value": "2026-02-23T18:54:42Z"
         }
       ]
     },
@@ -14885,7 +14882,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-02-08T05:32:41Z"
+          "value": "2026-03-03T01:51:03Z"
         }
       ]
     },
@@ -14938,7 +14935,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-02-09T16:13:12Z"
+          "value": "2026-03-10T01:43:14Z"
         }
       ]
     },
@@ -14962,10 +14959,6 @@
         {
           "url": "https://pkg.go.dev/golang.org/x/text",
           "type": "distribution"
-        },
-        {
-          "url": "https://cs.opensource.google/go/x/text",
-          "type": "vcs"
         },
         {
           "url": "https://pkg.go.dev/golang.org/x/text#section-documentation",
@@ -14995,7 +14988,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-02-09T16:14:29Z"
+          "value": "2026-03-10T01:41:36Z"
         }
       ]
     },
@@ -15047,7 +15040,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2025-09-16T23:29:52Z"
+          "value": "2026-02-11T19:14:29Z"
         }
       ]
     },
@@ -15077,10 +15070,6 @@
         {
           "url": "https://pkg.go.dev/google.golang.org/protobuf",
           "type": "distribution"
-        },
-        {
-          "url": "https://github.com/protocolbuffers/protobuf-go",
-          "type": "vcs"
         },
         {
           "url": "https://pkg.go.dev/google.golang.org/protobuf#section-documentation",
@@ -15302,10 +15291,6 @@
         {
           "url": "https://pkg.go.dev/gopkg.in/yaml.v2",
           "type": "distribution"
-        },
-        {
-          "url": "https://github.com/go-yaml/yaml",
-          "type": "vcs"
         },
         {
           "url": "https://pkg.go.dev/gopkg.in/yaml.v2#section-documentation",
@@ -15567,7 +15552,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-02-10T22:43:05Z"
+          "value": "2026-03-19T07:02:16Z"
         },
         {
           "name": "ecosystems:topic",
@@ -15600,10 +15585,6 @@
         {
           "url": "https://pkg.go.dev/k8s.io/client-go",
           "type": "distribution"
-        },
-        {
-          "url": "https://github.com/kubernetes/client-go",
-          "type": "vcs"
         },
         {
           "url": "https://pkg.go.dev/k8s.io/client-go#section-documentation",
@@ -15823,7 +15804,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2024-06-20T00:51:19Z"
+          "value": "2026-03-03T11:17:23Z"
         },
         {
           "name": "ecosystems:topic",
@@ -15885,7 +15866,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-01-27T14:27:50Z"
+          "value": "2026-03-19T00:48:28Z"
         }
       ]
     },
@@ -15938,7 +15919,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-02-11T00:05:52Z"
+          "value": "2026-03-19T08:35:32Z"
         },
         {
           "name": "ecosystems:topic",
@@ -15999,7 +15980,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-02-10T12:53:13Z"
+          "value": "2026-03-18T18:30:07Z"
         },
         {
           "name": "ecosystems:topic",
@@ -16134,7 +16115,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-02-10T18:56:00Z"
+          "value": "2026-03-19T19:02:34Z"
         },
         {
           "name": "ecosystems:topic",
@@ -16364,6 +16345,10 @@
         {
           "url": "https://pkg.go.dev/sigs.k8s.io/kustomize/kyaml",
           "type": "distribution"
+        },
+        {
+          "url": "https://github.com/kubernetes-sigs/kustomize",
+          "type": "vcs"
         },
         {
           "url": "https://pkg.go.dev/sigs.k8s.io/kustomize/kyaml#section-documentation",
@@ -16623,13 +16608,6 @@
     {
       "bom-ref": "pkg:pypi/aiohappyeyeballs@2.6.1",
       "type": "library",
-      "supplier": {
-        "name": "aio-libs",
-        "url": [
-          "https://github.com/aio-libs/.github/discussions"
-        ]
-      },
-      "author": "aio-libs",
       "name": "aiohappyeyeballs",
       "version": "2.6.1",
       "description": "Happy Eyeballs for asyncio",
@@ -16996,7 +16974,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-01-06T11:45:19Z"
+          "value": "2026-03-24T12:59:08Z"
         },
         {
           "name": "ecosystems:owner_location",
@@ -17316,7 +17294,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2025-10-06T13:54:43Z"
+          "value": "2026-03-19T14:22:23Z"
         },
         {
           "name": "ecosystems:topic",
@@ -17403,7 +17381,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-02-10T22:24:03Z"
+          "value": "2026-03-09T20:51:27Z"
         },
         {
           "name": "ecosystems:owner_location",
@@ -17610,7 +17588,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2025-10-14T04:40:11Z"
+          "value": "2026-04-02T09:25:40Z"
         },
         {
           "name": "ecosystems:owner_location",
@@ -17704,7 +17682,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2025-11-15T20:45:41Z"
+          "value": "2026-04-03T19:14:43Z"
         },
         {
           "name": "ecosystems:topic",
@@ -17939,7 +17917,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2025-03-13T11:52:41Z"
+          "value": "2026-03-26T09:58:15Z"
         },
         {
           "name": "ecosystems:topic",
@@ -18093,7 +18071,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-02-24T09:53:41Z"
+          "value": "2026-04-01T16:23:59Z"
         },
         {
           "name": "ecosystems:topic",
@@ -18321,7 +18299,11 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-01-26T19:22:45Z"
+          "value": "2026-03-12T19:30:53Z"
+        },
+        {
+          "name": "ecosystems:repository_archived",
+          "value": "true"
         }
       ]
     },
@@ -18615,7 +18597,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-02-13T19:51:59Z"
+          "value": "2026-02-25T20:40:41Z"
         },
         {
           "name": "ecosystems:topic",
@@ -19369,13 +19351,6 @@
     {
       "bom-ref": "pkg:pypi/propcache@0.2.1",
       "type": "library",
-      "supplier": {
-        "name": "aio-libs",
-        "url": [
-          "https://github.com/aio-libs/.github/discussions"
-        ]
-      },
-      "author": "aio-libs",
       "name": "propcache",
       "version": "0.2.1",
       "description": "Accelerated property cache",
@@ -19566,7 +19541,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-01-16T18:04:17Z"
+          "value": "2026-03-17T01:06:52Z"
         }
       ]
     },
@@ -19793,7 +19768,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-02-23T17:56:55Z"
+          "value": "2026-03-31T06:48:21Z"
         },
         {
           "name": "ecosystems:owner_location",
@@ -19892,10 +19867,6 @@
         {
           "name": "ecosystems:latest_release_published_at",
           "value": "2025-11-26T15:11:44Z"
-        },
-        {
-          "name": "ecosystems:owner_location",
-          "value": "United Kingdom"
         },
         {
           "name": "ecosystems:topic",
@@ -20096,7 +20067,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2025-10-26T15:12:09Z"
+          "value": "2026-03-01T16:00:25Z"
         },
         {
           "name": "ecosystems:owner_location",
@@ -20284,7 +20255,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-01-25T10:15:54Z"
+          "value": "2026-04-05T20:49:12Z"
         },
         {
           "name": "ecosystems:owner_location",
@@ -20547,10 +20518,6 @@
       "purl": "pkg:pypi/requests@2.32.4",
       "externalReferences": [
         {
-          "url": "https://requests.readthedocs.io",
-          "type": "website"
-        },
-        {
           "url": "https://pypi.org/project/requests/",
           "type": "distribution"
         },
@@ -20586,7 +20553,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2025-08-18T20:46:00Z"
+          "value": "2026-03-30T16:09:13Z"
         },
         {
           "name": "ecosystems:topic",
@@ -21001,7 +20968,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-01-21T18:27:28Z"
+          "value": "2026-04-03T16:50:11Z"
         },
         {
           "name": "ecosystems:topic",
@@ -21083,7 +21050,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-01-18T13:34:09Z"
+          "value": "2026-03-22T18:29:45Z"
         },
         {
           "name": "ecosystems:owner_location",
@@ -21329,7 +21296,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-02-16T23:07:22Z"
+          "value": "2026-04-06T09:23:21Z"
         },
         {
           "name": "ecosystems:topic",
@@ -21681,7 +21648,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2025-10-06T14:08:42Z"
+          "value": "2026-03-01T22:04:09Z"
         },
         {
           "name": "ecosystems:topic",
@@ -21704,13 +21671,7 @@
   ],
   "dependencies": [
     {
-      "ref": "2196e033-e2bf-4090-8649-bda4962fae79",
-      "dependsOn": [
-        "pkg:golang/k8s.io/kubernetes"
-      ]
-    },
-    {
-      "ref": "e85f2d21-e1f8-418d-bd86-099565ecb597",
+      "ref": "4e3680e6-3420-40e0-946b-1ddade38b24a",
       "dependsOn": [
         "pkg:deb/debian/apt@2.6.1?arch=amd64&distro=debian-12.11",
         "pkg:deb/debian/base-passwd@3.6.1?arch=amd64&distro=debian-12.11",
@@ -21750,6 +21711,12 @@
         "pkg:deb/debian/sysvinit-utils@3.06-4?arch=amd64&distro=debian-12.11",
         "pkg:deb/debian/tzdata@2025b-0%2Bdeb12u1?arch=all&distro=debian-12.11",
         "pkg:deb/debian/util-linux@2.38.1-5%2Bdeb12u3?arch=amd64&distro=debian-12.11"
+      ]
+    },
+    {
+      "ref": "7e05d2db-bb21-4a63-8848-ecfcd02b27ce",
+      "dependsOn": [
+        "pkg:golang/k8s.io/kubernetes"
       ]
     },
     {
@@ -23134,8 +23101,8 @@
     {
       "ref": "pkg:oci/velero-api@sha256%3A6b3d9115fee2f391d86f340e7fb11b14836920e1479769703972b4af3385f1ce?arch=amd64&repository_url=index.docker.io%2Fdserio83%2Fvelero-api",
       "dependsOn": [
-        "2196e033-e2bf-4090-8649-bda4962fae79",
-        "e85f2d21-e1f8-418d-bd86-099565ecb597",
+        "4e3680e6-3420-40e0-946b-1ddade38b24a",
+        "7e05d2db-bb21-4a63-8848-ecfcd02b27ce",
         "pkg:pypi/aiofiles@24.1.0",
         "pkg:pypi/aiohappyeyeballs@2.6.1",
         "pkg:pypi/aiohttp@3.12.12",

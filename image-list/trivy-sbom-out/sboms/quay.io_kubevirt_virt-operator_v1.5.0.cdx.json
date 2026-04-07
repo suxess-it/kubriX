@@ -2,10 +2,10 @@
   "$schema": "http://cyclonedx.org/schema/bom-1.6.schema.json",
   "bomFormat": "CycloneDX",
   "specVersion": "1.6",
-  "serialNumber": "urn:uuid:4bfc3dea-b396-4b46-a986-24d6f2a4c544",
+  "serialNumber": "urn:uuid:17971eee-a16a-4471-9be5-7fc2cadd0947",
   "version": 1,
   "metadata": {
-    "timestamp": "2026-02-25T14:46:47+00:00",
+    "timestamp": "2026-04-07T12:24:39+00:00",
     "tools": {
       "components": [
         {
@@ -15,7 +15,7 @@
           },
           "group": "aquasecurity",
           "name": "trivy",
-          "version": "0.69.0"
+          "version": "0.69.2"
         }
       ]
     },
@@ -118,47 +118,7 @@
   },
   "components": [
     {
-      "bom-ref": "52ebb54f-51bb-4e72-93a2-ec6ab4f19d8a",
-      "type": "application",
-      "name": "usr/bin/virt-operator",
-      "properties": [
-        {
-          "name": "aquasecurity:trivy:Class",
-          "value": "lang-pkgs"
-        },
-        {
-          "name": "aquasecurity:trivy:Type",
-          "value": "gobinary"
-        }
-      ]
-    },
-    {
-      "bom-ref": "e3228944-7377-47da-8a0d-297188422574",
-      "type": "library",
-      "name": "stdlib",
-      "version": "v1.23.4",
-      "purl": "pkg:golang/stdlib@v1.23.4",
-      "properties": [
-        {
-          "name": "aquasecurity:trivy:LayerDiffID",
-          "value": "sha256:18ff2daf85c3f0f9e2d6b76d29ad6cc863aa07a9281ec8e87d410cb44b8da84d"
-        },
-        {
-          "name": "aquasecurity:trivy:LayerDigest",
-          "value": "sha256:d1509cbab3189539ad6dbdec5a6d9d160df37dd8ae8394fc8a91117e0dff906c"
-        },
-        {
-          "name": "aquasecurity:trivy:PkgID",
-          "value": "stdlib@v1.23.4"
-        },
-        {
-          "name": "aquasecurity:trivy:PkgType",
-          "value": "gobinary"
-        }
-      ]
-    },
-    {
-      "bom-ref": "e327e928-6725-4dd1-89cd-4a5165e839dc",
+      "bom-ref": "1ead35b3-81aa-4a00-b691-cb82b52657e9",
       "type": "operating-system",
       "name": "debian",
       "version": "12.6",
@@ -174,7 +134,7 @@
       ]
     },
     {
-      "bom-ref": "e78bb108-2dc1-4623-96eb-c1fe8f3d34f6",
+      "bom-ref": "2ea31a38-9020-4d70-8c31-2439351bbd17",
       "type": "library",
       "name": "stdlib",
       "version": "v1.23.4",
@@ -199,7 +159,47 @@
       ]
     },
     {
-      "bom-ref": "faa314ca-a8f9-4785-9983-28ec7c8643cf",
+      "bom-ref": "b815f371-5562-4ec3-ad17-57798827e249",
+      "type": "library",
+      "name": "stdlib",
+      "version": "v1.23.4",
+      "purl": "pkg:golang/stdlib@v1.23.4",
+      "properties": [
+        {
+          "name": "aquasecurity:trivy:LayerDiffID",
+          "value": "sha256:18ff2daf85c3f0f9e2d6b76d29ad6cc863aa07a9281ec8e87d410cb44b8da84d"
+        },
+        {
+          "name": "aquasecurity:trivy:LayerDigest",
+          "value": "sha256:d1509cbab3189539ad6dbdec5a6d9d160df37dd8ae8394fc8a91117e0dff906c"
+        },
+        {
+          "name": "aquasecurity:trivy:PkgID",
+          "value": "stdlib@v1.23.4"
+        },
+        {
+          "name": "aquasecurity:trivy:PkgType",
+          "value": "gobinary"
+        }
+      ]
+    },
+    {
+      "bom-ref": "bdf40dd9-3e1d-49d7-b26f-a1aebc2a2844",
+      "type": "application",
+      "name": "usr/bin/virt-operator",
+      "properties": [
+        {
+          "name": "aquasecurity:trivy:Class",
+          "value": "lang-pkgs"
+        },
+        {
+          "name": "aquasecurity:trivy:Type",
+          "value": "gobinary"
+        }
+      ]
+    },
+    {
+      "bom-ref": "c61f8b20-3e61-43bc-9327-112199b08223",
       "type": "application",
       "name": "usr/bin/csv-generator",
       "properties": [
@@ -236,7 +236,7 @@
         },
         {
           "name": "aquasecurity:trivy:LayerDigest",
-          "value": "sha256:d5fcc14d54812af5ff21e39e370d08fb6e7eb2d28fd63c289b322cded9086b33"
+          "value": "sha256:f531499c6b730fc55a63e5ade55ce2c849bbf03f894248e3a2092689e3749312"
         },
         {
           "name": "aquasecurity:trivy:PkgID",
@@ -284,7 +284,7 @@
         },
         {
           "name": "aquasecurity:trivy:LayerDigest",
-          "value": "sha256:bf28520c35e392ede760b8bc4226ec974d4054393e5af8a5fd28615f36d52eb6"
+          "value": "sha256:b3ae1613dfe7c2ba6ab804da64909f5781fe9774ecf42df3e9932914f38cd8ab"
         },
         {
           "name": "aquasecurity:trivy:PkgID",
@@ -463,17 +463,7 @@
   ],
   "dependencies": [
     {
-      "ref": "52ebb54f-51bb-4e72-93a2-ec6ab4f19d8a",
-      "dependsOn": [
-        "e3228944-7377-47da-8a0d-297188422574"
-      ]
-    },
-    {
-      "ref": "e3228944-7377-47da-8a0d-297188422574",
-      "dependsOn": []
-    },
-    {
-      "ref": "e327e928-6725-4dd1-89cd-4a5165e839dc",
+      "ref": "1ead35b3-81aa-4a00-b691-cb82b52657e9",
       "dependsOn": [
         "pkg:deb/debian/base-files@12.4%2Bdeb12u6?arch=amd64&distro=debian-12.6",
         "pkg:deb/debian/libc6@2.36-9%2Bdeb12u7?arch=amd64&distro=debian-12.6",
@@ -483,13 +473,23 @@
       ]
     },
     {
-      "ref": "e78bb108-2dc1-4623-96eb-c1fe8f3d34f6",
+      "ref": "2ea31a38-9020-4d70-8c31-2439351bbd17",
       "dependsOn": []
     },
     {
-      "ref": "faa314ca-a8f9-4785-9983-28ec7c8643cf",
+      "ref": "b815f371-5562-4ec3-ad17-57798827e249",
+      "dependsOn": []
+    },
+    {
+      "ref": "bdf40dd9-3e1d-49d7-b26f-a1aebc2a2844",
       "dependsOn": [
-        "e78bb108-2dc1-4623-96eb-c1fe8f3d34f6"
+        "b815f371-5562-4ec3-ad17-57798827e249"
+      ]
+    },
+    {
+      "ref": "c61f8b20-3e61-43bc-9327-112199b08223",
+      "dependsOn": [
+        "2ea31a38-9020-4d70-8c31-2439351bbd17"
       ]
     },
     {
@@ -515,9 +515,9 @@
     {
       "ref": "pkg:oci/virt-operator@sha256%3A1591b45d3f35b857cb13921429b83e8da4e21a35aa54e1c88290baf996c05a2d?arch=amd64&repository_url=quay.io%2Fkubevirt%2Fvirt-operator",
       "dependsOn": [
-        "52ebb54f-51bb-4e72-93a2-ec6ab4f19d8a",
-        "e327e928-6725-4dd1-89cd-4a5165e839dc",
-        "faa314ca-a8f9-4785-9983-28ec7c8643cf"
+        "1ead35b3-81aa-4a00-b691-cb82b52657e9",
+        "bdf40dd9-3e1d-49d7-b26f-a1aebc2a2844",
+        "c61f8b20-3e61-43bc-9327-112199b08223"
       ]
     }
   ],
