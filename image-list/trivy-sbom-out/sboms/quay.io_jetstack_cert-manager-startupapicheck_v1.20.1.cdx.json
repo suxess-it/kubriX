@@ -2,10 +2,10 @@
   "$schema": "http://cyclonedx.org/schema/bom-1.6.schema.json",
   "bomFormat": "CycloneDX",
   "specVersion": "1.6",
-  "serialNumber": "urn:uuid:4a8500a8-9af2-4379-85aa-93979db7de75",
+  "serialNumber": "urn:uuid:41386c7c-1e5e-48b3-aaa4-a4e2e5226521",
   "version": 1,
   "metadata": {
-    "timestamp": "2026-04-07T12:24:10+00:00",
+    "timestamp": "2026-04-07T12:48:23+00:00",
     "tools": {
       "components": [
         {
@@ -118,22 +118,7 @@
   },
   "components": [
     {
-      "bom-ref": "b58543c6-5f2c-46fa-917a-35ad6d9a19a9",
-      "type": "application",
-      "name": "startupapicheck",
-      "properties": [
-        {
-          "name": "aquasecurity:trivy:Class",
-          "value": "lang-pkgs"
-        },
-        {
-          "name": "aquasecurity:trivy:Type",
-          "value": "gobinary"
-        }
-      ]
-    },
-    {
-      "bom-ref": "eaabdd7b-7a47-4ab6-856f-93f7228a8b7f",
+      "bom-ref": "02f42b99-b604-4451-b965-6a7370fa5828",
       "type": "library",
       "name": "../../",
       "properties": [
@@ -156,7 +141,7 @@
       ]
     },
     {
-      "bom-ref": "ef041597-37f2-43ba-9d2d-a9c0cf7e7cb9",
+      "bom-ref": "26cf54cb-0d71-4e43-bda9-5cd47d717406",
       "type": "operating-system",
       "name": "debian",
       "version": "12.13",
@@ -168,6 +153,21 @@
         {
           "name": "aquasecurity:trivy:Type",
           "value": "debian"
+        }
+      ]
+    },
+    {
+      "bom-ref": "f50d4551-6548-42d0-bbcd-11c757919bf2",
+      "type": "application",
+      "name": "startupapicheck",
+      "properties": [
+        {
+          "name": "aquasecurity:trivy:Class",
+          "value": "lang-pkgs"
+        },
+        {
+          "name": "aquasecurity:trivy:Type",
+          "value": "gobinary"
         }
       ]
     },
@@ -4673,6 +4673,11 @@
       "author": "Kubernetes",
       "name": "k8s.io/cli-runtime",
       "version": "v0.35.2",
+      "licenses": [
+        {
+          "expression": "(Apache-2.0)"
+        }
+      ],
       "purl": "pkg:golang/k8s.io/cli-runtime@v0.35.2",
       "externalReferences": [
         {
@@ -5061,6 +5066,11 @@
       "name": "sigs.k8s.io/controller-runtime",
       "version": "v0.23.1",
       "description": "Package controllerruntime provides tools to construct Kubernetes-style\ncontrollers that manipulate both Kubernetes CRDs and aggregated/built-in\nKubernetes APIs.\n\nIt defines easy helpers for the common use cases when building CRDs, built\non top of customizable layers of abstraction.  Common cases should be easy,\nand uncommon cases should be possible.  In general, controller-runtime tries\nto guide users towards Kubernetes controller best-practices.\n\nThe main entrypoint for controller-runtime is this root package, which\ncontains all of the common types needed to get started building controllers:\n\nThe examples in this package walk through a basic controller setup.  The\nkubebuilder book (https://book.kubebuilder.io) has some more in-depth\nwalkthroughs.\n\ncontroller-runtime favors structs with sane defaults over constructors, so\nit's fairly common to see structs being used directly in controller-runtime.\n\nA brief-ish walkthrough of the layout of this library can be found below. Each\npackage contains more information about how to use it.\n\nFrequently asked questions about using controller-runtime and designing\ncontrollers can be found at\nhttps://github.com/kubernetes-sigs/controller-runtime/blob/main/FAQ.md.\n\nEvery controller and webhook is ultimately run by a Manager (pkg/manager). A\nmanager is responsible for running controllers and webhooks, and setting up\ncommon dependencies, like shared caches and clients, as\nwell as managing leader election (pkg/leaderelection).  Managers are\ngenerally configured to gracefully shut down controllers on pod termination\nby wiring up a signal handler (pkg/manager/signals).\n\nControllers (pkg/controller) use events (pkg/event) to eventually trigger\nreconcile requests.  They may be constructed manually, but are often\nconstructed with a Builder (pkg/builder), which eases the wiring of event\nsources (pkg/source), like Kubernetes API object changes, to event handlers\n(pkg/handler), like \"enqueue a reconcile request for the object owner\".\nPredicates (pkg/predicate) can be used to filter which events actually\ntrigger reconciles.  There are pre-written utilities for the common cases, and\ninterfaces and helpers for advanced cases.\n\nController logic is implemented in terms of Reconcilers (pkg/reconcile).  A\nReconciler implements a function which takes a reconcile Request containing\nthe name and namespace of the object to reconcile, reconciles the object,\nand returns a Response or an error indicating whether to requeue for a\nsecond round of processing.\n\nReconcilers use Clients (pkg/client) to access API objects.  The default\nclient provided by the manager reads from a local shared cache (pkg/cache)\nand writes directly to the API server, but clients can be constructed that\nonly talk to the API server, without a cache.  The Cache will auto-populate\nwith watched objects, as well as when other structured objects are\nrequested. The default split client does not promise to invalidate the cache\nduring writes (nor does it promise sequential create/get coherence), and code\nshould not assume a get immediately following a create/update will return\nthe updated resource. Caches may also have indexes, which can be created via\na FieldIndexer (pkg/client) obtained from the manager.  Indexes can be used to\nquickly and easily look up all objects with certain fields set.  Reconcilers\nmay retrieve event recorders (pkg/recorder) to emit events using the\nmanager.\n\nClients, Caches, and many other things in Kubernetes use Schemes\n(pkg/scheme) to associate Go types to Kubernetes API Kinds\n(Group-Version-Kinds, to be specific).\n\nSimilarly, webhooks (pkg/webhook/admission) may be implemented directly, but\nare often constructed using a builder (pkg/webhook/admission/builder).  They\nare run via a server (pkg/webhook) which is managed by a Manager.\n\nLogging (pkg/log) in controller-runtime is done via structured logs, using a\nlog set of interfaces called logr\n(https://pkg.go.dev/github.com/go-logr/logr).  While controller-runtime\nprovides easy setup for using Zap (https://go.uber.org/zap, pkg/log/zap),\nyou can provide any implementation of logr as the base logger for\ncontroller-runtime.\n\nMetrics (pkg/metrics) provided by controller-runtime are registered into a\ncontroller-runtime-specific Prometheus metrics registry.  The manager can\nserve these by an HTTP endpoint, and additional metrics may be registered to\nthis Registry as normal.\n\nYou can easily build integration and unit tests for your controllers and\nwebhooks using the test Environment (pkg/envtest).  This will automatically\nstand up a copy of etcd and kube-apiserver, and provide the correct options\nto connect to the API server.  It's designed to work well with the Ginkgo\ntesting framework, but should work with any testing setup.\n\nThis example creates a simple application Controller that is configured for ReplicaSets and Pods.\n\n* Create a new application for ReplicaSets that manages Pods owned by the ReplicaSet and calls into\nReplicaSetReconciler.\n\n* Start the application.\n\n\nThis example creates a simple application Controller that is configured for ExampleCRDWithConfigMapRef CRD.\nAny change in the configMap referenced in this Custom Resource will cause the re-reconcile of the parent ExampleCRDWithConfigMapRef\ndue to the implementation of the .Watches method of \"sigs.k8s.io/controller-runtime/pkg/builder\".Builder.\n\n\nThis example creates a simple application Controller that is configured for ReplicaSets and Pods.\nThis application controller will be running leader election with the provided configuration in the manager options.\nIf leader election configuration is not provided, controller runs leader election with default values.\nDefault values taken from: https://github.com/kubernetes/component-base/blob/master/config/v1alpha1/defaults.go\n* defaultLeaseDuration = 15 * time.Second\n* defaultRenewDeadline = 10 * time.Second\n* defaultRetryPeriod   = 2 * time.Second\n\n* Create a new application for ReplicaSets that manages Pods owned by the ReplicaSet and calls into\nReplicaSetReconciler.\n\n* Start the application.",
+      "licenses": [
+        {
+          "expression": "(Apache-2.0)"
+        }
+      ],
       "purl": "pkg:golang/sigs.k8s.io/controller-runtime@v0.23.1",
       "externalReferences": [
         {
@@ -5110,9 +5120,36 @@
     {
       "bom-ref": "pkg:golang/sigs.k8s.io/gateway-api@v1.5.0",
       "type": "library",
+      "supplier": {
+        "name": "Kubernetes SIGs"
+      },
+      "author": "Kubernetes SIGs",
       "name": "sigs.k8s.io/gateway-api",
       "version": "v1.5.0",
+      "licenses": [
+        {
+          "expression": "(Apache-2.0)"
+        }
+      ],
       "purl": "pkg:golang/sigs.k8s.io/gateway-api@v1.5.0",
+      "externalReferences": [
+        {
+          "url": "https://github.com/kubernetes-sigs/gateway-api",
+          "type": "website"
+        },
+        {
+          "url": "https://pkg.go.dev/sigs.k8s.io/gateway-api",
+          "type": "distribution"
+        },
+        {
+          "url": "https://github.com/kubernetes-sigs/gateway-api",
+          "type": "vcs"
+        },
+        {
+          "url": "https://pkg.go.dev/sigs.k8s.io/gateway-api#section-documentation",
+          "type": "documentation"
+        }
+      ],
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
@@ -5129,6 +5166,34 @@
         {
           "name": "aquasecurity:trivy:PkgType",
           "value": "gobinary"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2020-10-07T23:56:16Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2026-03-13T20:23:39Z"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "gateway-api"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "k8s-sig-network"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "kubernetes"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "networking"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "sig-network"
         }
       ]
     },
@@ -5504,9 +5569,22 @@
   ],
   "dependencies": [
     {
-      "ref": "b58543c6-5f2c-46fa-917a-35ad6d9a19a9",
+      "ref": "02f42b99-b604-4451-b965-6a7370fa5828",
+      "dependsOn": []
+    },
+    {
+      "ref": "26cf54cb-0d71-4e43-bda9-5cd47d717406",
       "dependsOn": [
-        "eaabdd7b-7a47-4ab6-856f-93f7228a8b7f",
+        "pkg:deb/debian/base-files@12.4%2Bdeb12u13?arch=amd64&distro=debian-12.13",
+        "pkg:deb/debian/media-types@10.0.0?arch=all&distro=debian-12.13",
+        "pkg:deb/debian/netbase@6.4?arch=all&distro=debian-12.13",
+        "pkg:deb/debian/tzdata@2025b-0%2Bdeb12u2?arch=all&distro=debian-12.13"
+      ]
+    },
+    {
+      "ref": "f50d4551-6548-42d0-bbcd-11c757919bf2",
+      "dependsOn": [
+        "02f42b99-b604-4451-b965-6a7370fa5828",
         "pkg:golang/github.com/azure/go-ntlmssp@v0.0.0-20221128193559-754e69321358",
         "pkg:golang/github.com/beorn7/perks@v1.0.1",
         "pkg:golang/github.com/blang/semver/v4@v4.0.0",
@@ -5586,19 +5664,6 @@
         "pkg:golang/sigs.k8s.io/structured-merge-diff/v6@v6.3.2",
         "pkg:golang/sigs.k8s.io/yaml@v1.6.0",
         "pkg:golang/stdlib@v1.26.1"
-      ]
-    },
-    {
-      "ref": "eaabdd7b-7a47-4ab6-856f-93f7228a8b7f",
-      "dependsOn": []
-    },
-    {
-      "ref": "ef041597-37f2-43ba-9d2d-a9c0cf7e7cb9",
-      "dependsOn": [
-        "pkg:deb/debian/base-files@12.4%2Bdeb12u13?arch=amd64&distro=debian-12.13",
-        "pkg:deb/debian/media-types@10.0.0?arch=all&distro=debian-12.13",
-        "pkg:deb/debian/netbase@6.4?arch=all&distro=debian-12.13",
-        "pkg:deb/debian/tzdata@2025b-0%2Bdeb12u2?arch=all&distro=debian-12.13"
       ]
     },
     {
@@ -5936,8 +6001,8 @@
     {
       "ref": "pkg:oci/cert-manager-startupapicheck@sha256%3A70859153f82a241c3a40ac581fb5a25f73db16851adc801f0c8a9c9b220ae4ee?arch=amd64&repository_url=quay.io%2Fjetstack%2Fcert-manager-startupapicheck",
       "dependsOn": [
-        "b58543c6-5f2c-46fa-917a-35ad6d9a19a9",
-        "ef041597-37f2-43ba-9d2d-a9c0cf7e7cb9"
+        "26cf54cb-0d71-4e43-bda9-5cd47d717406",
+        "f50d4551-6548-42d0-bbcd-11c757919bf2"
       ]
     }
   ],

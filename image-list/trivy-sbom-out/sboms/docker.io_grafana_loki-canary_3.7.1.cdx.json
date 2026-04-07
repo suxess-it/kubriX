@@ -2,10 +2,10 @@
   "$schema": "http://cyclonedx.org/schema/bom-1.6.schema.json",
   "bomFormat": "CycloneDX",
   "specVersion": "1.6",
-  "serialNumber": "urn:uuid:4b083dac-88ee-461d-8061-2fad85c975ce",
+  "serialNumber": "urn:uuid:0b173355-4c93-40a8-af6c-51bd3a7e7d81",
   "version": 1,
   "metadata": {
-    "timestamp": "2026-04-07T12:21:23+00:00",
+    "timestamp": "2026-04-07T12:45:59+00:00",
     "tools": {
       "components": [
         {
@@ -118,7 +118,38 @@
   },
   "components": [
     {
-      "bom-ref": "149ba5eb-9451-493b-b825-7271fc3b627a",
+      "bom-ref": "162d7368-38b8-4066-853e-f18c8ce33d16",
+      "type": "application",
+      "name": "usr/bin/loki-canary",
+      "properties": [
+        {
+          "name": "aquasecurity:trivy:Class",
+          "value": "lang-pkgs"
+        },
+        {
+          "name": "aquasecurity:trivy:Type",
+          "value": "gobinary"
+        }
+      ]
+    },
+    {
+      "bom-ref": "85599168-5798-4ff5-8327-025a7f220d87",
+      "type": "operating-system",
+      "name": "debian",
+      "version": "13.4",
+      "properties": [
+        {
+          "name": "aquasecurity:trivy:Class",
+          "value": "os-pkgs"
+        },
+        {
+          "name": "aquasecurity:trivy:Type",
+          "value": "debian"
+        }
+      ]
+    },
+    {
+      "bom-ref": "9d341d33-45a2-4244-9e6b-c4632660316f",
       "type": "library",
       "name": "./pkg/push",
       "properties": [
@@ -137,37 +168,6 @@
         {
           "name": "aquasecurity:trivy:PkgType",
           "value": "gobinary"
-        }
-      ]
-    },
-    {
-      "bom-ref": "74f0d40d-094e-4de9-ab33-2356d163e76b",
-      "type": "application",
-      "name": "usr/bin/loki-canary",
-      "properties": [
-        {
-          "name": "aquasecurity:trivy:Class",
-          "value": "lang-pkgs"
-        },
-        {
-          "name": "aquasecurity:trivy:Type",
-          "value": "gobinary"
-        }
-      ]
-    },
-    {
-      "bom-ref": "cc75706e-5b57-4d8a-a0d2-45e05dbf2d9a",
-      "type": "operating-system",
-      "name": "debian",
-      "version": "13.4",
-      "properties": [
-        {
-          "name": "aquasecurity:trivy:Class",
-          "value": "os-pkgs"
-        },
-        {
-          "name": "aquasecurity:trivy:Type",
-          "value": "debian"
         }
       ]
     },
@@ -19565,17 +19565,13 @@
   ],
   "dependencies": [
     {
-      "ref": "149ba5eb-9451-493b-b825-7271fc3b627a",
-      "dependsOn": []
-    },
-    {
-      "ref": "74f0d40d-094e-4de9-ab33-2356d163e76b",
+      "ref": "162d7368-38b8-4066-853e-f18c8ce33d16",
       "dependsOn": [
         "pkg:golang/github.com/grafana/loki/v3@3.7.1"
       ]
     },
     {
-      "ref": "cc75706e-5b57-4d8a-a0d2-45e05dbf2d9a",
+      "ref": "85599168-5798-4ff5-8327-025a7f220d87",
       "dependsOn": [
         "pkg:deb/debian/base-files@13.8%2Bdeb13u4?arch=amd64&distro=debian-13.4",
         "pkg:deb/debian/media-types@13.0.0?arch=all&distro=debian-13.4",
@@ -19583,6 +19579,10 @@
         "pkg:deb/debian/tzdata-legacy@2026a-0%2Bdeb13u1?arch=all&distro=debian-13.4",
         "pkg:deb/debian/tzdata@2026a-0%2Bdeb13u1?arch=all&distro=debian-13.4"
       ]
+    },
+    {
+      "ref": "9d341d33-45a2-4244-9e6b-c4632660316f",
+      "dependsOn": []
     },
     {
       "ref": "pkg:deb/debian/base-files@13.8%2Bdeb13u4?arch=amd64&distro=debian-13.4",
@@ -19979,7 +19979,7 @@
     {
       "ref": "pkg:golang/github.com/grafana/loki/v3@3.7.1",
       "dependsOn": [
-        "149ba5eb-9451-493b-b825-7271fc3b627a",
+        "9d341d33-45a2-4244-9e6b-c4632660316f",
         "pkg:golang/cloud.google.com/go/auth/oauth2adapt@v0.2.8",
         "pkg:golang/cloud.google.com/go/auth@v0.18.2",
         "pkg:golang/cloud.google.com/go/compute/metadata@v0.9.0",
@@ -20913,8 +20913,8 @@
     {
       "ref": "pkg:oci/loki-canary@sha256%3Aab899e05d0e653133e99136042f1e64369478f0a622fcf6e17a9fce4f529abe1?arch=amd64&repository_url=index.docker.io%2Fgrafana%2Floki-canary",
       "dependsOn": [
-        "74f0d40d-094e-4de9-ab33-2356d163e76b",
-        "cc75706e-5b57-4d8a-a0d2-45e05dbf2d9a"
+        "162d7368-38b8-4066-853e-f18c8ce33d16",
+        "85599168-5798-4ff5-8327-025a7f220d87"
       ]
     }
   ],

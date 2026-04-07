@@ -2,10 +2,10 @@
   "$schema": "http://cyclonedx.org/schema/bom-1.6.schema.json",
   "bomFormat": "CycloneDX",
   "specVersion": "1.6",
-  "serialNumber": "urn:uuid:af1c085b-ac06-4f43-af7a-47f9d3d9bb6a",
+  "serialNumber": "urn:uuid:b089d4ac-1a88-4316-88cc-f40f53f1403c",
   "version": 1,
   "metadata": {
-    "timestamp": "2026-04-07T12:23:43+00:00",
+    "timestamp": "2026-04-07T12:47:50+00:00",
     "tools": {
       "components": [
         {
@@ -94,22 +94,7 @@
   },
   "components": [
     {
-      "bom-ref": "7e3990d0-7f6e-4ea1-9184-d4e9f8d24887",
-      "type": "application",
-      "name": "bin/komoplane",
-      "properties": [
-        {
-          "name": "aquasecurity:trivy:Class",
-          "value": "lang-pkgs"
-        },
-        {
-          "name": "aquasecurity:trivy:Type",
-          "value": "gobinary"
-        }
-      ]
-    },
-    {
-      "bom-ref": "f5593c4a-56cf-4a97-8504-9e31ed3bbf1d",
+      "bom-ref": "805fd116-4ae5-445c-95ce-e4c3c65fc8bc",
       "type": "operating-system",
       "name": "alpine",
       "version": "3.23.3",
@@ -121,6 +106,21 @@
         {
           "name": "aquasecurity:trivy:Type",
           "value": "alpine"
+        }
+      ]
+    },
+    {
+      "bom-ref": "f44fe405-c4c2-416e-830a-6c3c9b329bcc",
+      "type": "application",
+      "name": "bin/komoplane",
+      "properties": [
+        {
+          "name": "aquasecurity:trivy:Class",
+          "value": "lang-pkgs"
+        },
+        {
+          "name": "aquasecurity:trivy:Type",
+          "value": "gobinary"
         }
       ]
     },
@@ -1473,9 +1473,39 @@
     {
       "bom-ref": "pkg:golang/github.com/crossplane-contrib/provider-kubernetes@v0.9.0",
       "type": "library",
+      "supplier": {
+        "name": "Crossplane Contrib",
+        "url": [
+          "https://crossplane.io"
+        ]
+      },
+      "author": "Crossplane Contrib",
       "name": "github.com/crossplane-contrib/provider-kubernetes",
       "version": "v0.9.0",
+      "licenses": [
+        {
+          "expression": "(Apache-2.0)"
+        }
+      ],
       "purl": "pkg:golang/github.com/crossplane-contrib/provider-kubernetes@v0.9.0",
+      "externalReferences": [
+        {
+          "url": "https://github.com/crossplane-contrib/provider-kubernetes",
+          "type": "website"
+        },
+        {
+          "url": "https://pkg.go.dev/github.com/crossplane-contrib/provider-kubernetes",
+          "type": "distribution"
+        },
+        {
+          "url": "https://github.com/crossplane-contrib/provider-kubernetes",
+          "type": "vcs"
+        },
+        {
+          "url": "https://pkg.go.dev/github.com/crossplane-contrib/provider-kubernetes#section-documentation",
+          "type": "documentation"
+        }
+      ],
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
@@ -1492,15 +1522,65 @@
         {
           "name": "aquasecurity:trivy:PkgType",
           "value": "gobinary"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2021-08-20T12:28:07Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2026-02-25T17:33:40Z"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "crossplane"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "kubernetes"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "operator"
         }
       ]
     },
     {
       "bom-ref": "pkg:golang/github.com/crossplane/crossplane-runtime@v0.20.0",
       "type": "library",
+      "supplier": {
+        "name": "Crossplane",
+        "url": [
+          "https://crossplane.io"
+        ]
+      },
+      "author": "Crossplane",
       "name": "github.com/crossplane/crossplane-runtime",
       "version": "v0.20.0",
+      "licenses": [
+        {
+          "expression": "(Apache-2.0)"
+        }
+      ],
       "purl": "pkg:golang/github.com/crossplane/crossplane-runtime@v0.20.0",
+      "externalReferences": [
+        {
+          "url": "https://github.com/crossplane/crossplane-runtime",
+          "type": "website"
+        },
+        {
+          "url": "https://pkg.go.dev/github.com/crossplane/crossplane-runtime",
+          "type": "distribution"
+        },
+        {
+          "url": "https://github.com/crossplane/crossplane-runtime",
+          "type": "vcs"
+        },
+        {
+          "url": "https://pkg.go.dev/github.com/crossplane/crossplane-runtime#section-documentation",
+          "type": "documentation"
+        }
+      ],
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
@@ -1517,15 +1597,53 @@
         {
           "name": "aquasecurity:trivy:PkgType",
           "value": "gobinary"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2019-10-26T16:53:13Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2025-05-13T18:08:33Z"
         }
       ]
     },
     {
       "bom-ref": "pkg:golang/github.com/crossplane/crossplane@v1.13.0",
       "type": "library",
+      "supplier": {
+        "name": "Crossplane",
+        "url": [
+          "https://crossplane.io"
+        ]
+      },
+      "author": "Crossplane",
       "name": "github.com/crossplane/crossplane",
       "version": "v1.13.0",
+      "licenses": [
+        {
+          "expression": "(Apache-2.0)"
+        }
+      ],
       "purl": "pkg:golang/github.com/crossplane/crossplane@v1.13.0",
+      "externalReferences": [
+        {
+          "url": "https://github.com/crossplane/crossplane",
+          "type": "website"
+        },
+        {
+          "url": "https://pkg.go.dev/github.com/crossplane/crossplane",
+          "type": "distribution"
+        },
+        {
+          "url": "https://github.com/crossplane/crossplane",
+          "type": "vcs"
+        },
+        {
+          "url": "https://pkg.go.dev/github.com/crossplane/crossplane#section-documentation",
+          "type": "documentation"
+        }
+      ],
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
@@ -1542,6 +1660,58 @@
         {
           "name": "aquasecurity:trivy:PkgType",
           "value": "gobinary"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2018-12-04T15:17:42Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2026-02-03T19:32:39Z"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "cloud-computing"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "cloud-management"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "cloud-native"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "cncf"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "containers"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "control-plane"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "infrastructure"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "infrastructure-as-code"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "kubernetes"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "multicloud"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "serverless"
         }
       ]
     },
@@ -1618,6 +1788,11 @@
       "name": "github.com/emicklei/go-restful/v3",
       "version": "v3.10.2",
       "description": "Package restful , a lean package for creating REST-style WebServices without magic.\n\n### WebServices and Routes\n\nA WebService has a collection of Route objects that dispatch incoming Http Requests to a function calls.\nTypically, a WebService has a root path (e.g. /users) and defines common MIME types for its routes.\nWebServices must be added to a container (see below) in order to handler Http requests from a server.\n\nA Route is defined by a HTTP method, an URL path and (optionally) the MIME types it consumes (Content-Type) and produces (Accept).\nThis package has the logic to find the best matching Route and if found, call its Function.\n\nThe (*Request, *Response) arguments provide functions for reading information from the request and writing information back to the response.\n\nSee the example https://github.com/emicklei/go-restful/blob/v3/examples/user-resource/restful-user-resource.go with a full implementation.\n\n### Regular expression matching Routes\n\nA Route parameter can be specified using the format \"uri/{var[:regexp]}\" or the special version \"uri/{var:*}\" for matching the tail of the path.\nFor example, /persons/{name:[A-Z][A-Z]} can be used to restrict values for the parameter \"name\" to only contain capital alphabetic characters.\nRegular expressions must use the standard Go syntax as described in the regexp package. (https://code.google.com/p/re2/wiki/Syntax)\nThis feature requires the use of a CurlyRouter.\n\n### Containers\n\nA Container holds a collection of WebServices, Filters and a http.ServeMux for multiplexing http requests.\nUsing the statements \"restful.Add(...) and restful.Filter(...)\" will register WebServices and Filters to the Default Container.\nThe Default container of go-restful uses the http.DefaultServeMux.\nYou can create your own Container and create a new http.Server for that particular container.\n\n### Filters\n\nA filter dynamically intercepts requests and responses to transform or use the information contained in the requests or responses.\nYou can use filters to perform generic logging, measurement, authentication, redirect, set response headers etc.\nIn the restful package there are three hooks into the request,response flow where filters can be added.\nEach filter must define a FilterFunction:\n\nUse the following statement to pass the request,response pair to the next filter or RouteFunction\n\n### Container Filters\n\nThese are processed before any registered WebService.\n\n### WebService Filters\n\nThese are processed before any Route of a WebService.\n\n### Route Filters\n\nThese are processed before calling the function associated with the Route.\n\nSee the example https://github.com/emicklei/go-restful/blob/v3/examples/filters/restful-filters.go with full implementations.\n\n### Response Encoding\n\nTwo encodings are supported: gzip and deflate. To enable this for all responses:\n\nIf a Http request includes the Accept-Encoding header then the response content will be compressed using the specified encoding.\nAlternatively, you can create a Filter that performs the encoding and install it per WebService or Route.\n\nSee the example https://github.com/emicklei/go-restful/blob/v3/examples/encoding/restful-encoding-filter.go\n\n### OPTIONS support\n\nBy installing a pre-defined container filter, your Webservice(s) can respond to the OPTIONS Http request.\n\n### CORS\n\nBy installing the filter of a CrossOriginResourceSharing (CORS), your WebService(s) can handle CORS requests.\n\n### Error Handling\n\nUnexpected things happen. If a request cannot be processed because of a failure, your service needs to tell via the response what happened and why.\nFor this reason HTTP status codes exist and it is important to use the correct code in every exceptional situation.\n\nIf path or query parameters are not valid (content or type) then use http.StatusBadRequest.\n\nDespite a valid URI, the resource requested may not be available\n\nIf the application logic could not process the request (or write the response) then use http.StatusInternalServerError.\n\nThe request has a valid URL but the method (GET,PUT,POST,...) is not allowed.\n\nThe request does not have or has an unknown Accept Header set for this operation.\n\nThe request does not have or has an unknown Content-Type Header set for this operation.\n\n### ServiceError\n\nIn addition to setting the correct (error) Http status code, you can choose to write a ServiceError message on the response.\n\n### Performance options\n\nThis package has several options that affect the performance of your service. It is important to understand them and how you can change it.\n\nDoNotRecover controls whether panics will be caught to return HTTP 500.\nIf set to false, the container will recover from panics.\nDefault value is true\n\nIf content encoding is enabled then the default strategy for getting new gzip/zlib writers and readers is to use a sync.Pool.\nBecause writers are expensive structures, performance is even more improved when using a preloaded cache. You can also inject your own implementation.\n\n### Trouble shooting\n\nThis package has the means to produce detail logging of the complete Http request matching process and filter invocation.\nEnabling this feature requires you to set an implementation of restful.StdLogger (e.g. log.Logger) instance such as:\n\n### Logging\n\nThe restful.SetLogger() method allows you to override the logger used by the package. By default restful\nuses the standard library `log` package and logs to stdout. Different logging packages are supported as\nlong as they conform to `StdLogger` interface defined in the `log` sub-package, writing an adapter for your\npreferred package is simple.\n\n### Resources\n\n(c) 2012-2025, http://ernestmicklei.com. MIT License",
+      "licenses": [
+        {
+          "expression": "(MIT)"
+        }
+      ],
       "purl": "pkg:golang/github.com/emicklei/go-restful/v3@v3.10.2",
       "externalReferences": [
         {
@@ -1826,6 +2001,11 @@
       "name": "github.com/go-logr/logr",
       "version": "v1.2.4",
       "description": "Package logr defines a general-purpose logging API and abstract interfaces\nto back that API.  Packages in the Go ecosystem can depend on this package,\nwhile callers can implement logging with whatever backend is appropriate.\n\nLogging is done using a Logger instance.  Logger is a concrete type with\nmethods, which defers the actual logging to a LogSink interface.  The main\nmethods of Logger are Info() and Error().  Arguments to Info() and Error()\nare key/value pairs rather than printf-style formatted strings, emphasizing\n\"structured logging\".\n\nWith Go's standard log package, we might write:\n\nWith logr's structured logging, we'd write:\n\nErrors are much the same.  Instead of:\n\nWe'd write:\n\nInfo() and Error() are very similar, but they are separate methods so that\nLogSink implementations can choose to do things like attach additional\ninformation (such as stack traces) on calls to Error(). Error() messages are\nalways logged, regardless of the current verbosity.  If there is no error\ninstance available, passing nil is valid.\n\nOften we want to log information only when the application in \"verbose\nmode\".  To write log lines that are more verbose, Logger has a V() method.\nThe higher the V-level of a log line, the less critical it is considered.\nLog-lines with V-levels that are not enabled (as per the LogSink) will not\nbe written.  Level V(0) is the default, and logger.V(0).Info() has the same\nmeaning as logger.Info().  Negative V-levels have the same meaning as V(0).\nError messages do not have a verbosity level and are always logged.\n\nWhere we might have written:\n\nWe can write:\n\nLogger instances can have name strings so that all messages logged through\nthat instance have additional context.  For example, you might want to add\na subsystem name:\n\nThe WithName() method returns a new Logger, which can be passed to\nconstructors or other functions for further use.  Repeated use of WithName()\nwill accumulate name \"segments\".  These name segments will be joined in some\nway by the LogSink implementation.  It is strongly recommended that name\nsegments contain simple identifiers (letters, digits, and hyphen), and do\nnot contain characters that could muddle the log output or confuse the\njoining operation (e.g. whitespace, commas, periods, slashes, brackets,\nquotes, etc).\n\nLogger instances can store any number of key/value pairs, which will be\nlogged alongside all messages logged through that instance.  For example,\nyou might want to create a Logger instance per managed object:\n\nWith the standard log package, we might write:\n\nWith logr we'd write:\n\nLogger has very few hard rules, with the goal that LogSink implementations\nmight have a lot of freedom to differentiate.  There are, however, some\nthings to consider.\n\nThe log message consists of a constant message attached to the log line.\nThis should generally be a simple description of what's occurring, and should\nnever be a format string.  Variable information can then be attached using\nnamed values.\n\nKeys are arbitrary strings, but should generally be constant values.  Values\nmay be any Go value, but how the value is formatted is determined by the\nLogSink implementation.\n\nLogger instances are meant to be passed around by value. Code that receives\nsuch a value can call its methods without having to check whether the\ninstance is ready for use.\n\nThe zero logger (= Logger{}) is identical to Discard() and discards all log\nentries. Code that receives a Logger by value can simply call it, the methods\nwill never crash. For cases where passing a logger is optional, a pointer to Logger\nshould be used.\n\nKeys are not strictly required to conform to any specification or regex, but\nit is recommended that they:\n\nThese guidelines help ensure that log data is processed properly regardless\nof the log implementation.  For example, log implementations will try to\noutput JSON data or will store data for later database (e.g. SQL) queries.\n\nWhile users are generally free to use key names of their choice, it's\ngenerally best to avoid using the following keys, as they're frequently used\nby implementations:\n\nImplementations are encouraged to make use of these keys to represent the\nabove concepts, when necessary (for example, in a pure-JSON output form, it\nwould be necessary to represent at least message and timestamp as ordinary\nnamed values).\n\nImplementations may choose to give callers access to the underlying\nlogging implementation.  The recommended pattern for this is:\n\nLogger grants access to the sink to enable type assertions like this:\n\nCustom `With*` functions can be implemented by copying the complete\nLogger struct and replacing the sink in the copy:\n\nDon't use New to construct a new Logger with a LogSink retrieved from an\nexisting Logger. Source code attribution might not work correctly and\nunexported fields in Logger get lost.\n\nBeware that the same LogSink instance may be shared by different logger\ninstances. Calling functions that modify the LogSink will affect all of\nthose.",
+      "licenses": [
+        {
+          "expression": "(Apache-2.0)"
+        }
+      ],
       "purl": "pkg:golang/github.com/go-logr/logr@v1.2.4",
       "externalReferences": [
         {
@@ -2853,6 +3033,11 @@
       "author": "Jellydator",
       "name": "github.com/jellydator/ttlcache/v3",
       "version": "v3.1.0",
+      "licenses": [
+        {
+          "expression": "(MIT)"
+        }
+      ],
       "purl": "pkg:golang/github.com/jellydator/ttlcache/v3@v3.1.0",
       "externalReferences": [
         {
@@ -3150,9 +3335,34 @@
     {
       "bom-ref": "pkg:golang/github.com/komodorio/komoplane@0.2.0",
       "type": "library",
+      "supplier": {
+        "name": "Komodor",
+        "url": [
+          "https://app.komodor.com"
+        ]
+      },
+      "author": "Komodor",
       "name": "github.com/komodorio/komoplane",
       "version": "0.2.0",
       "purl": "pkg:golang/github.com/komodorio/komoplane@0.2.0",
+      "externalReferences": [
+        {
+          "url": "https://github.com/komodorio/komoplane",
+          "type": "website"
+        },
+        {
+          "url": "https://pkg.go.dev/github.com/komodorio/komoplane",
+          "type": "distribution"
+        },
+        {
+          "url": "https://github.com/komodorio/komoplane",
+          "type": "vcs"
+        },
+        {
+          "url": "https://pkg.go.dev/github.com/komodorio/komoplane#section-documentation",
+          "type": "documentation"
+        }
+      ],
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
@@ -3169,6 +3379,38 @@
         {
           "name": "aquasecurity:trivy:PkgType",
           "value": "gobinary"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2023-07-05T21:02:21Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2024-01-14T18:57:22Z"
+        },
+        {
+          "name": "ecosystems:owner_location",
+          "value": "Tel Aviv"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "crossplane"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "gui"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "kubernetes"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "troubleshooting"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "ui"
         }
       ]
     },
@@ -3185,6 +3427,11 @@
       "name": "github.com/labstack/echo/v4",
       "version": "v4.10.2",
       "description": "Package echo implements high performance, minimalist Go web framework.\n\nExample:\n\nLearn more at https://echo.labstack.com",
+      "licenses": [
+        {
+          "expression": "(MIT)"
+        }
+      ],
       "purl": "pkg:golang/github.com/labstack/echo/v4@v4.10.2",
       "externalReferences": [
         {
@@ -4001,6 +4248,11 @@
       "author": "Prometheus",
       "name": "github.com/prometheus/client_golang",
       "version": "v1.15.1",
+      "licenses": [
+        {
+          "expression": "(Apache-2.0)"
+        }
+      ],
       "purl": "pkg:golang/github.com/prometheus/client_golang@v1.15.1",
       "externalReferences": [
         {
@@ -4186,6 +4438,11 @@
       "name": "github.com/prometheus/procfs",
       "version": "v0.10.0",
       "description": "Package procfs provides functions to retrieve system, kernel and process\nmetrics from the pseudo-filesystem proc.\n\nExample:",
+      "licenses": [
+        {
+          "expression": "(Apache-2.0)"
+        }
+      ],
       "purl": "pkg:golang/github.com/prometheus/procfs@v0.10.0",
       "externalReferences": [
         {
@@ -4352,6 +4609,11 @@
       "author": "Steve Francia",
       "name": "github.com/spf13/afero",
       "version": "v1.9.5",
+      "licenses": [
+        {
+          "expression": "(Apache-2.0)"
+        }
+      ],
       "purl": "pkg:golang/github.com/spf13/afero@v1.9.5",
       "externalReferences": [
         {
@@ -5434,6 +5696,11 @@
       "author": "Kubernetes",
       "name": "k8s.io/api",
       "version": "v0.27.3",
+      "licenses": [
+        {
+          "expression": "(Apache-2.0)"
+        }
+      ],
       "purl": "pkg:golang/k8s.io/api@v0.27.3",
       "externalReferences": [
         {
@@ -5496,6 +5763,11 @@
       "author": "Kubernetes",
       "name": "k8s.io/apiextensions-apiserver",
       "version": "v0.27.3",
+      "licenses": [
+        {
+          "expression": "(Apache-2.0)"
+        }
+      ],
       "purl": "pkg:golang/k8s.io/apiextensions-apiserver@v0.27.3",
       "externalReferences": [
         {
@@ -5622,6 +5894,11 @@
       "name": "k8s.io/client-go",
       "version": "v0.27.3",
       "description": "Package clientgo is the official Go client for the Kubernetes API. It provides\na standard set of clients and tools for building applications, controllers,\nand operators that communicate with a Kubernetes cluster.\n\nkubernetes: Contains the typed Clientset for interacting with built-in,\nversioned API objects (e.g., Pods, Deployments). This is the most common\nstarting point.\n\ndynamic: Provides a dynamic client that can perform operations on any\nKubernetes object, including Custom Resources (CRs). It is essential for\nbuilding controllers that work with CRDs.\n\ndiscovery: Used to discover the API groups, versions, and resources\nsupported by a Kubernetes cluster.\n\ntools/cache: The foundation of the controller pattern. This package provides\nefficient caching and synchronization mechanisms (Informers and Listers)\nfor building controllers.\n\ntools/clientcmd: Provides methods for loading client configuration from\nkubeconfig files. This is essential for out-of-cluster applications and CLI tools.\n\nrest: Provides a lower-level RESTClient that manages the details of\ncommunicating with the Kubernetes API server. It is useful for advanced\nuse cases that require fine-grained control over requests, such as working\nwith non-standard REST verbs.\n\nThere are two primary ways to configure a client to connect to the API server:\n\nIn-Cluster Configuration: For applications running inside a Kubernetes pod,\nthe `rest.InClusterConfig()` function provides a straightforward way to\nconfigure the client. It automatically uses the pod's service account for\nauthentication and is the recommended approach for controllers and operators.\n\nOut-of-Cluster Configuration: For local development or command-line tools,\nthe `clientcmd` package is used to load configuration from a\nkubeconfig file.\n\nThe `rest.Config` object allows for fine-grained control over client-side\nperformance and reliability. Key settings include:\n\nOnce configured, a client can be used to interact with objects in the cluster.\n\nThe Typed Clientset (`kubernetes` package) provides a strongly typed\ninterface for working with built-in Kubernetes objects.\n\nThe Dynamic Client (`dynamic` package) can work with any object, including\nCustom Resources, using `unstructured.Unstructured` types.\n\nFor Custom Resources (CRDs), the `k8s.io/code-generator` repository\ncontains the tools to generate typed clients, informers, and listers. The\n`sample-controller` is the canonical example of this pattern.\n\nServer-Side Apply is a patching strategy that allows multiple actors to\nshare management of an object by tracking field ownership. This prevents\nactors from inadvertently overwriting each other's changes and provides\na mechanism for resolving conflicts. The `applyconfigurations` package\nprovides the necessary tools for this declarative approach.\n\nRobust error handling is essential when interacting with the API. The\n`k8s.io/apimachinery/pkg/api/errors` package provides functions to inspect\nerrors and check for common conditions, such as whether a resource was not\nfound or already exists. This allows controllers to implement robust,\nidempotent reconciliation logic.\n\nThe controller pattern is central to Kubernetes. A controller observes the\nstate of the cluster and works to bring it to the desired state.\n\nThe `tools/cache` package provides the building blocks for this pattern.\nInformers watch the API server and maintain a local cache, Listers provide\nread-only access to the cache, and Workqueues decouple event detection\nfrom processing.\n\nIn a high-availability deployment where multiple instances of a controller\nare running, leader election (`tools/leaderelection`) is used to ensure\nthat only one instance is active at a time.\n\nClient-side feature gates allow for enabling or disabling experimental\nfeatures in `client-go`. They can be configured via the `rest.Config` object.",
+      "licenses": [
+        {
+          "expression": "(Apache-2.0)"
+        }
+      ],
       "purl": "pkg:golang/k8s.io/client-go@v0.27.3",
       "externalReferences": [
         {
@@ -5680,6 +5957,11 @@
       "author": "Kubernetes",
       "name": "k8s.io/component-base",
       "version": "v0.27.3",
+      "licenses": [
+        {
+          "expression": "(Apache-2.0)"
+        }
+      ],
       "purl": "pkg:golang/k8s.io/component-base@v0.27.3",
       "externalReferences": [
         {
@@ -5747,6 +6029,11 @@
       "name": "k8s.io/klog/v2",
       "version": "v2.100.1",
       "description": "Package klog contains the following functionality:\n\nBasic examples:\n\nSee the documentation for the V function for an explanation of these examples:\n\nLog output is buffered and written periodically using Flush. Programs\nshould call Flush before exiting to guarantee all log output is written.\n\nBy default, all log statements write to standard error.\nThis package provides several flags that modify this behavior.\nAs a result, flag.Parse must be called before any logging is done.",
+      "licenses": [
+        {
+          "expression": "(Apache-2.0)"
+        }
+      ],
       "purl": "pkg:golang/k8s.io/klog/v2@v2.100.1",
       "externalReferences": [
         {
@@ -5805,6 +6092,11 @@
       "author": "Kubernetes",
       "name": "k8s.io/kube-openapi",
       "version": "v0.0.0-20230525220651-2546d827e515",
+      "licenses": [
+        {
+          "expression": "(Apache-2.0)"
+        }
+      ],
       "purl": "pkg:golang/k8s.io/kube-openapi@v0.0.0-20230525220651-2546d827e515",
       "externalReferences": [
         {
@@ -5863,6 +6155,11 @@
       "author": "Kubernetes",
       "name": "k8s.io/utils",
       "version": "v0.0.0-20230505201702-9f6742963106",
+      "licenses": [
+        {
+          "expression": "(Apache-2.0)"
+        }
+      ],
       "purl": "pkg:golang/k8s.io/utils@v0.0.0-20230505201702-9f6742963106",
       "externalReferences": [
         {
@@ -5927,6 +6224,11 @@
       "name": "sigs.k8s.io/controller-runtime",
       "version": "v0.15.0",
       "description": "Package controllerruntime provides tools to construct Kubernetes-style\ncontrollers that manipulate both Kubernetes CRDs and aggregated/built-in\nKubernetes APIs.\n\nIt defines easy helpers for the common use cases when building CRDs, built\non top of customizable layers of abstraction.  Common cases should be easy,\nand uncommon cases should be possible.  In general, controller-runtime tries\nto guide users towards Kubernetes controller best-practices.\n\nThe main entrypoint for controller-runtime is this root package, which\ncontains all of the common types needed to get started building controllers:\n\nThe examples in this package walk through a basic controller setup.  The\nkubebuilder book (https://book.kubebuilder.io) has some more in-depth\nwalkthroughs.\n\ncontroller-runtime favors structs with sane defaults over constructors, so\nit's fairly common to see structs being used directly in controller-runtime.\n\nA brief-ish walkthrough of the layout of this library can be found below. Each\npackage contains more information about how to use it.\n\nFrequently asked questions about using controller-runtime and designing\ncontrollers can be found at\nhttps://github.com/kubernetes-sigs/controller-runtime/blob/main/FAQ.md.\n\nEvery controller and webhook is ultimately run by a Manager (pkg/manager). A\nmanager is responsible for running controllers and webhooks, and setting up\ncommon dependencies, like shared caches and clients, as\nwell as managing leader election (pkg/leaderelection).  Managers are\ngenerally configured to gracefully shut down controllers on pod termination\nby wiring up a signal handler (pkg/manager/signals).\n\nControllers (pkg/controller) use events (pkg/event) to eventually trigger\nreconcile requests.  They may be constructed manually, but are often\nconstructed with a Builder (pkg/builder), which eases the wiring of event\nsources (pkg/source), like Kubernetes API object changes, to event handlers\n(pkg/handler), like \"enqueue a reconcile request for the object owner\".\nPredicates (pkg/predicate) can be used to filter which events actually\ntrigger reconciles.  There are pre-written utilities for the common cases, and\ninterfaces and helpers for advanced cases.\n\nController logic is implemented in terms of Reconcilers (pkg/reconcile).  A\nReconciler implements a function which takes a reconcile Request containing\nthe name and namespace of the object to reconcile, reconciles the object,\nand returns a Response or an error indicating whether to requeue for a\nsecond round of processing.\n\nReconcilers use Clients (pkg/client) to access API objects.  The default\nclient provided by the manager reads from a local shared cache (pkg/cache)\nand writes directly to the API server, but clients can be constructed that\nonly talk to the API server, without a cache.  The Cache will auto-populate\nwith watched objects, as well as when other structured objects are\nrequested. The default split client does not promise to invalidate the cache\nduring writes (nor does it promise sequential create/get coherence), and code\nshould not assume a get immediately following a create/update will return\nthe updated resource. Caches may also have indexes, which can be created via\na FieldIndexer (pkg/client) obtained from the manager.  Indexes can be used to\nquickly and easily look up all objects with certain fields set.  Reconcilers\nmay retrieve event recorders (pkg/recorder) to emit events using the\nmanager.\n\nClients, Caches, and many other things in Kubernetes use Schemes\n(pkg/scheme) to associate Go types to Kubernetes API Kinds\n(Group-Version-Kinds, to be specific).\n\nSimilarly, webhooks (pkg/webhook/admission) may be implemented directly, but\nare often constructed using a builder (pkg/webhook/admission/builder).  They\nare run via a server (pkg/webhook) which is managed by a Manager.\n\nLogging (pkg/log) in controller-runtime is done via structured logs, using a\nlog set of interfaces called logr\n(https://pkg.go.dev/github.com/go-logr/logr).  While controller-runtime\nprovides easy setup for using Zap (https://go.uber.org/zap, pkg/log/zap),\nyou can provide any implementation of logr as the base logger for\ncontroller-runtime.\n\nMetrics (pkg/metrics) provided by controller-runtime are registered into a\ncontroller-runtime-specific Prometheus metrics registry.  The manager can\nserve these by an HTTP endpoint, and additional metrics may be registered to\nthis Registry as normal.\n\nYou can easily build integration and unit tests for your controllers and\nwebhooks using the test Environment (pkg/envtest).  This will automatically\nstand up a copy of etcd and kube-apiserver, and provide the correct options\nto connect to the API server.  It's designed to work well with the Ginkgo\ntesting framework, but should work with any testing setup.\n\nThis example creates a simple application Controller that is configured for ReplicaSets and Pods.\n\n* Create a new application for ReplicaSets that manages Pods owned by the ReplicaSet and calls into\nReplicaSetReconciler.\n\n* Start the application.\n\n\nThis example creates a simple application Controller that is configured for ExampleCRDWithConfigMapRef CRD.\nAny change in the configMap referenced in this Custom Resource will cause the re-reconcile of the parent ExampleCRDWithConfigMapRef\ndue to the implementation of the .Watches method of \"sigs.k8s.io/controller-runtime/pkg/builder\".Builder.\n\n\nThis example creates a simple application Controller that is configured for ReplicaSets and Pods.\nThis application controller will be running leader election with the provided configuration in the manager options.\nIf leader election configuration is not provided, controller runs leader election with default values.\nDefault values taken from: https://github.com/kubernetes/component-base/blob/master/config/v1alpha1/defaults.go\n* defaultLeaseDuration = 15 * time.Second\n* defaultRenewDeadline = 10 * time.Second\n* defaultRetryPeriod   = 2 * time.Second\n\n* Create a new application for ReplicaSets that manages Pods owned by the ReplicaSet and calls into\nReplicaSetReconciler.\n\n* Start the application.",
+      "licenses": [
+        {
+          "expression": "(Apache-2.0)"
+        }
+      ],
       "purl": "pkg:golang/sigs.k8s.io/controller-runtime@v0.15.0",
       "externalReferences": [
         {
@@ -6181,19 +6483,19 @@
   ],
   "dependencies": [
     {
-      "ref": "7e3990d0-7f6e-4ea1-9184-d4e9f8d24887",
-      "dependsOn": [
-        "pkg:golang/github.com/komodorio/komoplane@0.2.0"
-      ]
-    },
-    {
-      "ref": "f5593c4a-56cf-4a97-8504-9e31ed3bbf1d",
+      "ref": "805fd116-4ae5-445c-95ce-e4c3c65fc8bc",
       "dependsOn": [
         "pkg:apk/alpine/alpine-baselayout@3.7.1-r8?arch=x86_64&distro=3.23.3",
         "pkg:apk/alpine/alpine-release@3.23.3-r0?arch=x86_64&distro=3.23.3",
         "pkg:apk/alpine/apk-tools@3.0.3-r1?arch=x86_64&distro=3.23.3",
         "pkg:apk/alpine/musl-utils@1.2.5-r21?arch=x86_64&distro=3.23.3",
         "pkg:apk/alpine/ssl_client@1.37.0-r30?arch=x86_64&distro=3.23.3"
+      ]
+    },
+    {
+      "ref": "f44fe405-c4c2-416e-830a-6c3c9b329bcc",
+      "dependsOn": [
+        "pkg:golang/github.com/komodorio/komoplane@0.2.0"
       ]
     },
     {
@@ -6669,8 +6971,8 @@
     {
       "ref": "pkg:oci/komoplane@sha256%3Adb4b6fb9e9df066dba0e7a9f5d68311e734e36bd72272b6eb0f86c99e9f8c501?arch=amd64&repository_url=index.docker.io%2Fkomodorio%2Fkomoplane",
       "dependsOn": [
-        "7e3990d0-7f6e-4ea1-9184-d4e9f8d24887",
-        "f5593c4a-56cf-4a97-8504-9e31ed3bbf1d"
+        "805fd116-4ae5-445c-95ce-e4c3c65fc8bc",
+        "f44fe405-c4c2-416e-830a-6c3c9b329bcc"
       ]
     }
   ],

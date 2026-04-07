@@ -2,10 +2,10 @@
   "$schema": "http://cyclonedx.org/schema/bom-1.6.schema.json",
   "bomFormat": "CycloneDX",
   "specVersion": "1.6",
-  "serialNumber": "urn:uuid:c61544f6-548f-4bcf-b3a5-adf216851a5b",
+  "serialNumber": "urn:uuid:05d69976-6100-4de1-beed-67500d98f82c",
   "version": 1,
   "metadata": {
-    "timestamp": "2026-04-07T12:20:54+00:00",
+    "timestamp": "2026-04-07T12:45:43+00:00",
     "tools": {
       "components": [
         {
@@ -82,7 +82,7 @@
   },
   "components": [
     {
-      "bom-ref": "357bedfd-9db1-490f-b2dd-ae6cd166cf4f",
+      "bom-ref": "46cf764d-aeda-420c-a358-bb7baa77148e",
       "type": "operating-system",
       "name": "alpine",
       "version": "3.16.5",
@@ -98,7 +98,7 @@
       ]
     },
     {
-      "bom-ref": "4fcdb177-7d6b-4080-ae22-415874cd14d5",
+      "bom-ref": "d0df7f85-47a3-4074-a2d0-b8ee8a32a12f",
       "type": "application",
       "name": "usr/bin/falco-exporter",
       "properties": [
@@ -2332,7 +2332,7 @@
   ],
   "dependencies": [
     {
-      "ref": "357bedfd-9db1-490f-b2dd-ae6cd166cf4f",
+      "ref": "46cf764d-aeda-420c-a358-bb7baa77148e",
       "dependsOn": [
         "pkg:apk/alpine/alpine-baselayout@3.2.0-r23?arch=x86_64&distro=3.16.5",
         "pkg:apk/alpine/alpine-keys@2.4-r1?arch=x86_64&distro=3.16.5",
@@ -2342,7 +2342,7 @@
       ]
     },
     {
-      "ref": "4fcdb177-7d6b-4080-ae22-415874cd14d5",
+      "ref": "d0df7f85-47a3-4074-a2d0-b8ee8a32a12f",
       "dependsOn": [
         "pkg:golang/github.com/falcosecurity/falco-exporter"
       ]
@@ -2526,8 +2526,8 @@
     {
       "ref": "pkg:oci/falco-exporter@sha256%3A62b81ebb555d118fde03306ef2f4151c303e0c32a2b8bf93bbc2de156d3d1732?arch=amd64&repository_url=index.docker.io%2Ffalcosecurity%2Ffalco-exporter",
       "dependsOn": [
-        "357bedfd-9db1-490f-b2dd-ae6cd166cf4f",
-        "4fcdb177-7d6b-4080-ae22-415874cd14d5"
+        "46cf764d-aeda-420c-a358-bb7baa77148e",
+        "d0df7f85-47a3-4074-a2d0-b8ee8a32a12f"
       ]
     }
   ],

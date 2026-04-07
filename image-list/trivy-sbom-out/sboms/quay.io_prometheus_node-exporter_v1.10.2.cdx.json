@@ -2,10 +2,10 @@
   "$schema": "http://cyclonedx.org/schema/bom-1.6.schema.json",
   "bomFormat": "CycloneDX",
   "specVersion": "1.6",
-  "serialNumber": "urn:uuid:5451cda8-7847-4f20-806e-1591ff4ee5bc",
+  "serialNumber": "urn:uuid:8fbb1a03-60d2-4fca-b509-1e76fdb67ede",
   "version": 1,
   "metadata": {
-    "timestamp": "2026-04-07T12:24:55+00:00",
+    "timestamp": "2026-04-07T12:49:07+00:00",
     "tools": {
       "components": [
         {
@@ -70,7 +70,7 @@
   },
   "components": [
     {
-      "bom-ref": "8a85dd64-355d-4597-a9e5-673154b02ea8",
+      "bom-ref": "39393e16-3611-42f2-b5ea-60b1a54a11df",
       "type": "application",
       "name": "bin/node_exporter",
       "properties": [
@@ -239,9 +239,32 @@
     {
       "bom-ref": "pkg:golang/github.com/beevik/ntp@v1.5.0",
       "type": "library",
+      "supplier": {
+        "name": "Brett Vickers"
+      },
+      "author": "Brett Vickers",
       "name": "github.com/beevik/ntp",
       "version": "v1.5.0",
+      "description": "Package ntp provides an implementation of a Simple NTP (SNTP) client\ncapable of querying the current time from a remote NTP server.  See\nRFC 5905 (https://tools.ietf.org/html/rfc5905) for more details.\n\nThis approach grew out of a go-nuts post by Michael Hofmann:\nhttps://groups.google.com/forum/?fromgroups#!topic/golang-nuts/FlcdMU5fkLQ",
       "purl": "pkg:golang/github.com/beevik/ntp@v1.5.0",
+      "externalReferences": [
+        {
+          "url": "https://github.com/beevik/ntp",
+          "type": "website"
+        },
+        {
+          "url": "https://pkg.go.dev/github.com/beevik/ntp",
+          "type": "distribution"
+        },
+        {
+          "url": "https://github.com/beevik/ntp",
+          "type": "vcs"
+        },
+        {
+          "url": "https://pkg.go.dev/github.com/beevik/ntp#section-documentation",
+          "type": "documentation"
+        }
+      ],
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
@@ -258,6 +281,42 @@
         {
           "name": "aquasecurity:trivy:PkgType",
           "value": "gobinary"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2017-09-30T20:44:01Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2024-05-30T06:44:24Z"
+        },
+        {
+          "name": "ecosystems:owner_location",
+          "value": "Seattle, USA"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "go"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "ntp"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "ntp-client"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "ntp-protocol"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "sntp"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "time"
         }
       ]
     },
@@ -479,9 +538,31 @@
     {
       "bom-ref": "pkg:golang/github.com/dennwc/btrfs@v0.0.0-20241002142654-12ae127e0bf6",
       "type": "library",
+      "supplier": {
+        "name": "Denys Smirnov"
+      },
+      "author": "Denys Smirnov",
       "name": "github.com/dennwc/btrfs",
       "version": "v0.0.0-20241002142654-12ae127e0bf6",
       "purl": "pkg:golang/github.com/dennwc/btrfs@v0.0.0-20241002142654-12ae127e0bf6",
+      "externalReferences": [
+        {
+          "url": "https://github.com/dennwc/btrfs",
+          "type": "website"
+        },
+        {
+          "url": "https://pkg.go.dev/github.com/dennwc/btrfs",
+          "type": "distribution"
+        },
+        {
+          "url": "https://github.com/dennwc/btrfs",
+          "type": "vcs"
+        },
+        {
+          "url": "https://pkg.go.dev/github.com/dennwc/btrfs#section-documentation",
+          "type": "documentation"
+        }
+      ],
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
@@ -498,15 +579,62 @@
         {
           "name": "aquasecurity:trivy:PkgType",
           "value": "gobinary"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2022-04-03T08:03:56Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2023-03-12T21:18:31Z"
+        },
+        {
+          "name": "ecosystems:owner_location",
+          "value": "Tallinn"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "btrfs"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "golang"
         }
       ]
     },
     {
       "bom-ref": "pkg:golang/github.com/dennwc/ioctl@v1.0.0",
       "type": "library",
+      "supplier": {
+        "name": "Denys Smirnov"
+      },
+      "author": "Denys Smirnov",
       "name": "github.com/dennwc/ioctl",
       "version": "v1.0.0",
+      "licenses": [
+        {
+          "expression": "(MIT)"
+        }
+      ],
       "purl": "pkg:golang/github.com/dennwc/ioctl@v1.0.0",
+      "externalReferences": [
+        {
+          "url": "https://github.com/dennwc/ioctl",
+          "type": "website"
+        },
+        {
+          "url": "https://pkg.go.dev/github.com/dennwc/ioctl",
+          "type": "distribution"
+        },
+        {
+          "url": "https://github.com/dennwc/ioctl",
+          "type": "vcs"
+        },
+        {
+          "url": "https://pkg.go.dev/github.com/dennwc/ioctl#section-documentation",
+          "type": "documentation"
+        }
+      ],
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
@@ -523,6 +651,18 @@
         {
           "name": "aquasecurity:trivy:PkgType",
           "value": "gobinary"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2018-10-21T17:54:37Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2018-10-21T18:03:53Z"
+        },
+        {
+          "name": "ecosystems:owner_location",
+          "value": "Tallinn"
         }
       ]
     },
@@ -531,7 +671,30 @@
       "type": "library",
       "name": "github.com/ema/qdisc",
       "version": "v1.0.0",
+      "licenses": [
+        {
+          "expression": "(MIT)"
+        }
+      ],
       "purl": "pkg:golang/github.com/ema/qdisc@v1.0.0",
+      "externalReferences": [
+        {
+          "url": "https://github.com/ema/qdisc",
+          "type": "website"
+        },
+        {
+          "url": "https://pkg.go.dev/github.com/ema/qdisc",
+          "type": "distribution"
+        },
+        {
+          "url": "https://github.com/ema/qdisc",
+          "type": "vcs"
+        },
+        {
+          "url": "https://pkg.go.dev/github.com/ema/qdisc#section-documentation",
+          "type": "documentation"
+        }
+      ],
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
@@ -548,6 +711,14 @@
         {
           "name": "aquasecurity:trivy:PkgType",
           "value": "gobinary"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2018-01-04T10:29:28Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2023-08-18T09:38:35Z"
         }
       ]
     },
@@ -615,9 +786,40 @@
     {
       "bom-ref": "pkg:golang/github.com/hashicorp/go-envparse@v0.1.0",
       "type": "library",
+      "supplier": {
+        "name": "HashiCorp",
+        "url": [
+          "https://hashicorp.com"
+        ]
+      },
+      "author": "HashiCorp",
       "name": "github.com/hashicorp/go-envparse",
       "version": "v0.1.0",
+      "description": "Package envparse is a minimal environment variable parser. It handles empty\nlines, comments, single quotes, double quotes, and JSON escape sequences.\n\nNon-empty or comment lines should be of the form:\n\nWhile extraneous characters are discouraged, an \"export\" prefix, preceding\nwhitespace, and trailing whitespace are all removed:",
+      "licenses": [
+        {
+          "expression": "(MPL-2.0)"
+        }
+      ],
       "purl": "pkg:golang/github.com/hashicorp/go-envparse@v0.1.0",
+      "externalReferences": [
+        {
+          "url": "https://github.com/hashicorp/go-envparse",
+          "type": "website"
+        },
+        {
+          "url": "https://pkg.go.dev/github.com/hashicorp/go-envparse",
+          "type": "distribution"
+        },
+        {
+          "url": "https://github.com/hashicorp/go-envparse",
+          "type": "vcs"
+        },
+        {
+          "url": "https://pkg.go.dev/github.com/hashicorp/go-envparse#section-documentation",
+          "type": "documentation"
+        }
+      ],
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
@@ -634,6 +836,18 @@
         {
           "name": "aquasecurity:trivy:PkgType",
           "value": "gobinary"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2022-09-09T16:02:44Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2022-09-09T16:02:44Z"
+        },
+        {
+          "name": "ecosystems:owner_location",
+          "value": "San Francisco, CA"
         }
       ]
     },
@@ -642,7 +856,30 @@
       "type": "library",
       "name": "github.com/hodgesds/perf-utils",
       "version": "v0.7.0",
+      "licenses": [
+        {
+          "expression": "(MIT)"
+        }
+      ],
       "purl": "pkg:golang/github.com/hodgesds/perf-utils@v0.7.0",
+      "externalReferences": [
+        {
+          "url": "https://github.com/hodgesds/perf-utils",
+          "type": "website"
+        },
+        {
+          "url": "https://pkg.go.dev/github.com/hodgesds/perf-utils",
+          "type": "distribution"
+        },
+        {
+          "url": "https://github.com/hodgesds/perf-utils",
+          "type": "vcs"
+        },
+        {
+          "url": "https://pkg.go.dev/github.com/hodgesds/perf-utils#section-documentation",
+          "type": "documentation"
+        }
+      ],
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
@@ -659,6 +896,14 @@
         {
           "name": "aquasecurity:trivy:PkgType",
           "value": "gobinary"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2019-03-02T00:42:55Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2023-01-14T19:02:53Z"
         }
       ]
     },
@@ -745,9 +990,37 @@
     {
       "bom-ref": "pkg:golang/github.com/jsimonetti/rtnetlink/v2@v2.0.5",
       "type": "library",
+      "supplier": {
+        "name": "Jeroen Simonetti"
+      },
+      "author": "Jeroen Simonetti",
       "name": "github.com/jsimonetti/rtnetlink/v2",
       "version": "v2.0.5",
+      "description": "Package rtnetlink allows the kernel's routing tables to be read and altered.\nNetwork routes, IP addresses, Link parameters, Neighbor setups, Queueing disciplines,\nTraffic classes and Packet classifiers may all be controlled.\nIt is based on netlink messages.\n\nA convenient, high-level API wrapper is available using package rtnl:\nhttps://godoc.org/github.com/jsimonetti/rtnetlink/rtnl.\n\nThe base rtnetlink library xplicitly only exposes a limited low-level API to rtnetlink.\nIt is not the intention (nor wish) to create an iproute2 replacement.\n\nWhen in doubt about your message structure it can always be useful to look at the\nmessage send by iproute2 using 'strace -f -esendmsg' or similar.\n\nAnother (and possibly even more flexible) way would be using 'nlmon' and wireshark.\nnlmod is a special kernel module which allows you to capture all (not just rtnetlink)\nnetlink traffic inside the kernel. Be aware that this might be overwhelming on a system\nwith a lot of netlink traffic.\n\nAt this point use wireshark or tcpdump on the nlmon0 interface to view all netlink traffic.\n\nHave a look at the examples for common uses of rtnetlink.\n\nAdd IP address '127.0.0.2/8' to an interface 'lo'\n\nAdd a route\n\nDelete IP address '127.0.0.2/8' from interface 'lo'\n\nList all IPv4 addresses configured on interface 'lo'\n\nList all interfaces\n\nList all neighbors on interface 'lo'\n\nList all rules\n\nSet the operational state an interface to Down\n\nSet the hw address of an interface\n\nSet the operational state an interface to Up",
+      "licenses": [
+        {
+          "expression": "(MIT)"
+        }
+      ],
       "purl": "pkg:golang/github.com/jsimonetti/rtnetlink/v2@v2.0.5",
+      "externalReferences": [
+        {
+          "url": "https://github.com/jsimonetti/rtnetlink",
+          "type": "website"
+        },
+        {
+          "url": "https://pkg.go.dev/github.com/jsimonetti/rtnetlink/v2",
+          "type": "distribution"
+        },
+        {
+          "url": "https://github.com/jsimonetti/rtnetlink",
+          "type": "vcs"
+        },
+        {
+          "url": "https://pkg.go.dev/github.com/jsimonetti/rtnetlink/v2#section-documentation",
+          "type": "documentation"
+        }
+      ],
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
@@ -764,15 +1037,57 @@
         {
           "name": "aquasecurity:trivy:PkgType",
           "value": "gobinary"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2024-10-02T09:45:54Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2026-02-08T11:55:06Z"
+        },
+        {
+          "name": "ecosystems:owner_location",
+          "value": "Netherlands"
         }
       ]
     },
     {
       "bom-ref": "pkg:golang/github.com/mattn/go-xmlrpc@v0.0.3",
       "type": "library",
+      "supplier": {
+        "name": "mattn",
+        "url": [
+          "https://mattn.kaoriya.net/"
+        ]
+      },
+      "author": "mattn",
       "name": "github.com/mattn/go-xmlrpc",
       "version": "v0.0.3",
+      "licenses": [
+        {
+          "expression": "(MIT)"
+        }
+      ],
       "purl": "pkg:golang/github.com/mattn/go-xmlrpc@v0.0.3",
+      "externalReferences": [
+        {
+          "url": "https://github.com/mattn/go-xmlrpc",
+          "type": "website"
+        },
+        {
+          "url": "https://pkg.go.dev/github.com/mattn/go-xmlrpc",
+          "type": "distribution"
+        },
+        {
+          "url": "https://github.com/mattn/go-xmlrpc",
+          "type": "vcs"
+        },
+        {
+          "url": "https://pkg.go.dev/github.com/mattn/go-xmlrpc#section-documentation",
+          "type": "documentation"
+        }
+      ],
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
@@ -789,15 +1104,66 @@
         {
           "name": "aquasecurity:trivy:PkgType",
           "value": "gobinary"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2019-03-04T07:19:52Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2019-03-04T07:21:25Z"
+        },
+        {
+          "name": "ecosystems:owner_location",
+          "value": "Osaka, Japan"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "go"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "xmlrpc"
         }
       ]
     },
     {
       "bom-ref": "pkg:golang/github.com/mdlayher/ethtool@v0.5.0",
       "type": "library",
+      "supplier": {
+        "name": "Matt Layher",
+        "url": [
+          "https://mdlayher.com/"
+        ]
+      },
+      "author": "Matt Layher",
       "name": "github.com/mdlayher/ethtool",
       "version": "v0.5.0",
+      "description": "Package ethtool allows control of the Linux ethtool generic netlink\ninterface. For more information, see:\nhttps://www.kernel.org/doc/html/latest/networking/ethtool-netlink.html.",
+      "licenses": [
+        {
+          "expression": "(MIT)"
+        }
+      ],
       "purl": "pkg:golang/github.com/mdlayher/ethtool@v0.5.0",
+      "externalReferences": [
+        {
+          "url": "https://github.com/mdlayher/ethtool",
+          "type": "website"
+        },
+        {
+          "url": "https://pkg.go.dev/github.com/mdlayher/ethtool",
+          "type": "distribution"
+        },
+        {
+          "url": "https://github.com/mdlayher/ethtool",
+          "type": "vcs"
+        },
+        {
+          "url": "https://pkg.go.dev/github.com/mdlayher/ethtool#section-documentation",
+          "type": "documentation"
+        }
+      ],
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
@@ -814,6 +1180,38 @@
         {
           "name": "aquasecurity:trivy:PkgType",
           "value": "gobinary"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2021-01-14T22:22:41Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2026-02-02T07:50:30Z"
+        },
+        {
+          "name": "ecosystems:owner_location",
+          "value": "Kalamazoo, MI"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "ethernet"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "golang"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "linux"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "netlink"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "networking"
         }
       ]
     },
@@ -1150,7 +1548,31 @@
       "type": "library",
       "name": "github.com/mdlayher/wifi",
       "version": "v0.6.0",
+      "description": "Package wifi provides access to IEEE 802.11 WiFi device operations on Linux\nusing nl80211.",
+      "licenses": [
+        {
+          "expression": "(MIT)"
+        }
+      ],
       "purl": "pkg:golang/github.com/mdlayher/wifi@v0.6.0",
+      "externalReferences": [
+        {
+          "url": "https://github.com/mdlayher/wifi",
+          "type": "website"
+        },
+        {
+          "url": "https://pkg.go.dev/github.com/mdlayher/wifi",
+          "type": "distribution"
+        },
+        {
+          "url": "https://github.com/mdlayher/wifi",
+          "type": "vcs"
+        },
+        {
+          "url": "https://pkg.go.dev/github.com/mdlayher/wifi#section-documentation",
+          "type": "documentation"
+        }
+      ],
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
@@ -1167,6 +1589,34 @@
         {
           "name": "aquasecurity:trivy:PkgType",
           "value": "gobinary"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2018-07-27T16:38:19Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2026-01-01T11:27:56Z"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "golang"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "linux"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "netlink"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "nl80211"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "wifi"
         }
       ]
     },
@@ -1320,9 +1770,39 @@
     {
       "bom-ref": "pkg:golang/github.com/opencontainers/selinux@v1.12.0",
       "type": "library",
+      "supplier": {
+        "name": "Open Container Initiative",
+        "url": [
+          "https://www.opencontainers.org"
+        ]
+      },
+      "author": "Open Container Initiative",
       "name": "github.com/opencontainers/selinux",
       "version": "v1.12.0",
+      "licenses": [
+        {
+          "expression": "(Apache-2.0)"
+        }
+      ],
       "purl": "pkg:golang/github.com/opencontainers/selinux@v1.12.0",
+      "externalReferences": [
+        {
+          "url": "https://github.com/opencontainers/selinux",
+          "type": "website"
+        },
+        {
+          "url": "https://pkg.go.dev/github.com/opencontainers/selinux",
+          "type": "distribution"
+        },
+        {
+          "url": "https://github.com/opencontainers/selinux",
+          "type": "vcs"
+        },
+        {
+          "url": "https://pkg.go.dev/github.com/opencontainers/selinux#section-documentation",
+          "type": "documentation"
+        }
+      ],
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
@@ -1339,6 +1819,34 @@
         {
           "name": "aquasecurity:trivy:PkgType",
           "value": "gobinary"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2017-03-22T17:01:22Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2025-11-14T16:04:08Z"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "containers"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "docker"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "oci"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "rkt"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "selinux"
         }
       ]
     },
@@ -1347,7 +1855,30 @@
       "type": "library",
       "name": "github.com/prometheus-community/go-runit",
       "version": "v0.1.0",
+      "licenses": [
+        {
+          "expression": "(MIT)"
+        }
+      ],
       "purl": "pkg:golang/github.com/prometheus-community/go-runit@v0.1.0",
+      "externalReferences": [
+        {
+          "url": "https://github.com/prometheus-community/go-runit",
+          "type": "website"
+        },
+        {
+          "url": "https://pkg.go.dev/github.com/prometheus-community/go-runit",
+          "type": "distribution"
+        },
+        {
+          "url": "https://github.com/prometheus-community/go-runit",
+          "type": "vcs"
+        },
+        {
+          "url": "https://pkg.go.dev/github.com/prometheus-community/go-runit#section-documentation",
+          "type": "documentation"
+        }
+      ],
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
@@ -1364,6 +1895,14 @@
         {
           "name": "aquasecurity:trivy:PkgType",
           "value": "gobinary"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2015-06-30T19:56:41Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2023-05-17T12:20:53Z"
         }
       ]
     },
@@ -1642,9 +2181,39 @@
     {
       "bom-ref": "pkg:golang/github.com/prometheus/node_exporter@v1.10.2",
       "type": "library",
+      "supplier": {
+        "name": "Prometheus",
+        "url": [
+          "https://prometheus.io"
+        ]
+      },
+      "author": "Prometheus",
       "name": "github.com/prometheus/node_exporter",
       "version": "v1.10.2",
+      "licenses": [
+        {
+          "expression": "(Apache-2.0)"
+        }
+      ],
       "purl": "pkg:golang/github.com/prometheus/node_exporter@v1.10.2",
+      "externalReferences": [
+        {
+          "url": "https://github.com/prometheus/node_exporter",
+          "type": "website"
+        },
+        {
+          "url": "https://pkg.go.dev/github.com/prometheus/node_exporter",
+          "type": "distribution"
+        },
+        {
+          "url": "https://github.com/prometheus/node_exporter",
+          "type": "vcs"
+        },
+        {
+          "url": "https://pkg.go.dev/github.com/prometheus/node_exporter#section-documentation",
+          "type": "documentation"
+        }
+      ],
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
@@ -1661,6 +2230,50 @@
         {
           "name": "aquasecurity:trivy:PkgType",
           "value": "gobinary"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2016-10-16T12:32:21Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2026-04-04T12:42:44Z"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "host-metrics"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "machine-metrics"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "metrics"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "node-metrics"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "procfs"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "prometheus"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "prometheus-exporter"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "system-information"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "system-metrics"
         }
       ]
     },
@@ -1677,6 +2290,11 @@
       "name": "github.com/prometheus/procfs",
       "version": "v0.19.0",
       "description": "Package procfs provides functions to retrieve system, kernel and process\nmetrics from the pseudo-filesystem proc.\n\nExample:",
+      "licenses": [
+        {
+          "expression": "(Apache-2.0)"
+        }
+      ],
       "purl": "pkg:golang/github.com/prometheus/procfs@v0.19.0",
       "externalReferences": [
         {
@@ -1761,6 +2379,11 @@
       "name": "github.com/safchain/ethtool",
       "version": "v0.6.2",
       "description": "The ethtool package aims to provide a library that provides easy access\nto the Linux SIOCETHTOOL ioctl operations. It can be used to retrieve information\nfrom a network device such as statistics, driver related information or even\nthe peer of a VETH interface.\n\nPackage ethtool  aims to provide a library giving a simple access to the\nLinux SIOCETHTOOL ioctl operations. It can be used to retrieve informations\nfrom a network device like statistics, driver related informations or\neven the peer of a VETH interface.\n\nPackage ethtool  aims to provide a library giving a simple access to the\nLinux SIOCETHTOOL ioctl operations. It can be used to retrieve informations\nfrom a network device like statistics, driver related informations or\neven the peer of a VETH interface.",
+      "licenses": [
+        {
+          "expression": "(Apache-2.0)"
+        }
+      ],
       "purl": "pkg:golang/github.com/safchain/ethtool@v0.6.2",
       "externalReferences": [
         {
@@ -1900,6 +2523,11 @@
       "name": "go.uber.org/atomic",
       "version": "v1.7.0",
       "description": "Package atomic provides simple wrappers around numerics to enforce atomic\naccess.",
+      "licenses": [
+        {
+          "expression": "(MIT)"
+        }
+      ],
       "purl": "pkg:golang/go.uber.org/atomic@v1.7.0",
       "externalReferences": [
         {
@@ -1963,6 +2591,11 @@
       "name": "go.uber.org/multierr",
       "version": "v1.6.0",
       "description": "Package multierr allows combining one or more errors together.\n\nErrors can be combined with the use of the Combine function.\n\nIf only two errors are being combined, the Append function may be used\ninstead.\n\nThe underlying list of errors for a returned error object may be retrieved\nwith the Errors function.\n\nYou sometimes need to append into an error from a loop.\n\nCases like this may require knowledge of whether an individual instance\nfailed. This usually requires introduction of a new variable.\n\nmultierr includes AppendInto to simplify cases like this.\n\nThis will append the error into the err variable, and return true if that\nindividual error was non-nil.\n\nSee AppendInto for more information.\n\nGo makes it possible to modify the return value of a function in a defer\nblock if the function was using named returns. This makes it possible to\nrecord resource cleanup failures from deferred blocks.\n\nmultierr provides the Invoker type and AppendInvoke function to make cases\nlike the above simpler and obviate the need for a closure. The following is\nroughly equivalent to the example above.\n\nSee AppendInvoke and Invoker for more information.\n\nNOTE: If you're modifying an error from inside a defer, you MUST use a named\nreturn value for that function.\n\nErrors returned by Combine and Append MAY implement the following\ninterface.\n\nNote that if you need access to list of errors behind a multierr error, you\nshould prefer using the Errors function. That said, if you need cheap\nread-only access to the underlying errors slice, you can attempt to cast\nthe error to this interface. You MUST handle the failure case gracefully\nbecause errors returned by Combine and Append are not guaranteed to\nimplement this interface.",
+      "licenses": [
+        {
+          "expression": "(MIT)"
+        }
+      ],
       "purl": "pkg:golang/go.uber.org/multierr@v1.6.0",
       "externalReferences": [
         {
@@ -2083,6 +2716,11 @@
       "type": "library",
       "name": "golang.org/x/crypto",
       "version": "v0.42.0",
+      "licenses": [
+        {
+          "expression": "(BSD-3-Clause)"
+        }
+      ],
       "purl": "pkg:golang/golang.org/x/crypto@v0.42.0",
       "externalReferences": [
         {
@@ -2130,6 +2768,11 @@
       "type": "library",
       "name": "golang.org/x/exp",
       "version": "v0.0.0-20250911091902-df9299821621",
+      "licenses": [
+        {
+          "expression": "(BSD-3-Clause)"
+        }
+      ],
       "purl": "pkg:golang/golang.org/x/exp@v0.0.0-20250911091902-df9299821621",
       "externalReferences": [
         {
@@ -2181,6 +2824,11 @@
       "type": "library",
       "name": "golang.org/x/net",
       "version": "v0.44.0",
+      "licenses": [
+        {
+          "expression": "(BSD-3-Clause)"
+        }
+      ],
       "purl": "pkg:golang/golang.org/x/net@v0.44.0",
       "externalReferences": [
         {
@@ -2544,7 +3192,7 @@
   ],
   "dependencies": [
     {
-      "ref": "8a85dd64-355d-4597-a9e5-673154b02ea8",
+      "ref": "39393e16-3611-42f2-b5ea-60b1a54a11df",
       "dependsOn": [
         "pkg:golang/github.com/prometheus/node_exporter@v1.10.2"
       ]
@@ -2777,7 +3425,7 @@
     {
       "ref": "pkg:oci/node-exporter@sha256%3A337ff1d356b68d39cef853e8c6345de11ce7556bb34cda8bd205bcf2ed30b565?arch=amd64&repository_url=quay.io%2Fprometheus%2Fnode-exporter",
       "dependsOn": [
-        "8a85dd64-355d-4597-a9e5-673154b02ea8"
+        "39393e16-3611-42f2-b5ea-60b1a54a11df"
       ]
     }
   ],

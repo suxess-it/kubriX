@@ -2,10 +2,10 @@
   "$schema": "http://cyclonedx.org/schema/bom-1.6.schema.json",
   "bomFormat": "CycloneDX",
   "specVersion": "1.6",
-  "serialNumber": "urn:uuid:42260cb2-3ed0-4212-94d8-7a64f21d46bd",
+  "serialNumber": "urn:uuid:5925e0fe-4454-4011-a098-9e6b8a0ce711",
   "version": 1,
   "metadata": {
-    "timestamp": "2026-04-07T12:23:54+00:00",
+    "timestamp": "2026-04-07T12:48:07+00:00",
     "tools": {
       "components": [
         {
@@ -102,7 +102,7 @@
   },
   "components": [
     {
-      "bom-ref": "a964369d-fe41-4e77-9875-65d4b36d8f75",
+      "bom-ref": "0ad91da9-15ed-4c6a-8aab-ef15a47e523a",
       "type": "operating-system",
       "name": "alpine",
       "version": "3.22.3",
@@ -118,7 +118,7 @@
       ]
     },
     {
-      "bom-ref": "f93c0135-89a3-4342-a921-26d69bd506ee",
+      "bom-ref": "0fcee5fd-8726-4fa4-8ce8-71e17b592ab1",
       "type": "application",
       "name": "usr/local/bin/nats-server",
       "properties": [
@@ -2147,7 +2147,7 @@
   ],
   "dependencies": [
     {
-      "ref": "a964369d-fe41-4e77-9875-65d4b36d8f75",
+      "ref": "0ad91da9-15ed-4c6a-8aab-ef15a47e523a",
       "dependsOn": [
         "pkg:apk/alpine/alpine-baselayout@3.7.0-r0?arch=x86_64&distro=3.22.3",
         "pkg:apk/alpine/alpine-release@3.22.3-r0?arch=x86_64&distro=3.22.3",
@@ -2159,7 +2159,7 @@
       ]
     },
     {
-      "ref": "f93c0135-89a3-4342-a921-26d69bd506ee",
+      "ref": "0fcee5fd-8726-4fa4-8ce8-71e17b592ab1",
       "dependsOn": [
         "pkg:golang/github.com/nats-io/nats-server/v2@v2.12.5"
       ]
@@ -2335,8 +2335,8 @@
     {
       "ref": "pkg:oci/nats@sha256%3Ac1379a8588df47244a4789ede85e8ae7490bd37006bde837e4d6fb6f559cb0ce?arch=amd64&repository_url=index.docker.io%2Flibrary%2Fnats",
       "dependsOn": [
-        "a964369d-fe41-4e77-9875-65d4b36d8f75",
-        "f93c0135-89a3-4342-a921-26d69bd506ee"
+        "0ad91da9-15ed-4c6a-8aab-ef15a47e523a",
+        "0fcee5fd-8726-4fa4-8ce8-71e17b592ab1"
       ]
     }
   ],

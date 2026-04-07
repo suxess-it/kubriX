@@ -2,10 +2,10 @@
   "$schema": "http://cyclonedx.org/schema/bom-1.6.schema.json",
   "bomFormat": "CycloneDX",
   "specVersion": "1.6",
-  "serialNumber": "urn:uuid:ab04d1ff-797a-4561-b960-ebd2d9fd3176",
+  "serialNumber": "urn:uuid:6844ed01-7ed2-4cc7-acb7-bc1e32eda726",
   "version": 1,
   "metadata": {
-    "timestamp": "2026-04-07T12:24:55+00:00",
+    "timestamp": "2026-04-07T12:49:06+00:00",
     "tools": {
       "components": [
         {
@@ -74,7 +74,7 @@
   },
   "components": [
     {
-      "bom-ref": "4e5a2dd0-76ac-4340-b52f-3ea3f0068eb3",
+      "bom-ref": "a6b380fd-6541-4e05-b623-da543bb07075",
       "type": "application",
       "name": "bin/blackbox_exporter",
       "properties": [
@@ -1369,9 +1369,39 @@
     {
       "bom-ref": "pkg:golang/github.com/prometheus/blackbox_exporter@v0.28.0",
       "type": "library",
+      "supplier": {
+        "name": "Prometheus",
+        "url": [
+          "https://prometheus.io"
+        ]
+      },
+      "author": "Prometheus",
       "name": "github.com/prometheus/blackbox_exporter",
       "version": "v0.28.0",
+      "licenses": [
+        {
+          "expression": "(Apache-2.0)"
+        }
+      ],
       "purl": "pkg:golang/github.com/prometheus/blackbox_exporter@v0.28.0",
+      "externalReferences": [
+        {
+          "url": "https://github.com/prometheus/blackbox_exporter",
+          "type": "website"
+        },
+        {
+          "url": "https://pkg.go.dev/github.com/prometheus/blackbox_exporter",
+          "type": "distribution"
+        },
+        {
+          "url": "https://github.com/prometheus/blackbox_exporter",
+          "type": "vcs"
+        },
+        {
+          "url": "https://pkg.go.dev/github.com/prometheus/blackbox_exporter#section-documentation",
+          "type": "documentation"
+        }
+      ],
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
@@ -1388,6 +1418,30 @@
         {
           "name": "aquasecurity:trivy:PkgType",
           "value": "gobinary"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2016-07-16T15:56:00Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2025-12-04T19:23:14Z"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "blackbox-exporter"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "icmp"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "prometheus"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "prometheus-exporter"
         }
       ]
     },
@@ -1592,6 +1646,11 @@
       "author": "Prometheus",
       "name": "github.com/prometheus/exporter-toolkit",
       "version": "v0.15.0",
+      "licenses": [
+        {
+          "expression": "(Apache-2.0)"
+        }
+      ],
       "purl": "pkg:golang/github.com/prometheus/exporter-toolkit@v0.15.0",
       "externalReferences": [
         {
@@ -1831,6 +1890,11 @@
       "author": "quic-go",
       "name": "github.com/quic-go/quic-go",
       "version": "v0.57.1",
+      "licenses": [
+        {
+          "expression": "(MIT)"
+        }
+      ],
       "purl": "pkg:golang/github.com/quic-go/quic-go@v0.57.1",
       "externalReferences": [
         {
@@ -2928,7 +2992,7 @@
   ],
   "dependencies": [
     {
-      "ref": "4e5a2dd0-76ac-4340-b52f-3ea3f0068eb3",
+      "ref": "a6b380fd-6541-4e05-b623-da543bb07075",
       "dependsOn": [
         "pkg:golang/github.com/prometheus/blackbox_exporter@v0.28.0"
       ]
@@ -3146,7 +3210,7 @@
     {
       "ref": "pkg:oci/blackbox-exporter@sha256%3Ae753ff9f3fc458d02cca5eddab5a77e1c175eee484a8925ac7d524f04366c2fc?arch=amd64&repository_url=quay.io%2Fprometheus%2Fblackbox-exporter",
       "dependsOn": [
-        "4e5a2dd0-76ac-4340-b52f-3ea3f0068eb3"
+        "a6b380fd-6541-4e05-b623-da543bb07075"
       ]
     }
   ],

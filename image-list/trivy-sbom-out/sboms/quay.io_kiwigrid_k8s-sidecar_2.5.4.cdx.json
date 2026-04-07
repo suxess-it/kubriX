@@ -2,10 +2,10 @@
   "$schema": "http://cyclonedx.org/schema/bom-1.6.schema.json",
   "bomFormat": "CycloneDX",
   "specVersion": "1.6",
-  "serialNumber": "urn:uuid:cde6042a-9b4b-413b-8a1e-d0c870a367bf",
+  "serialNumber": "urn:uuid:8921e033-9e48-4563-9ed6-ad32a5b6a27e",
   "version": 1,
   "metadata": {
-    "timestamp": "2026-04-07T12:24:31+00:00",
+    "timestamp": "2026-04-07T12:48:50+00:00",
     "tools": {
       "components": [
         {
@@ -90,7 +90,7 @@
   },
   "components": [
     {
-      "bom-ref": "7c8fa6ba-59e9-4cff-b256-2a668b727cd8",
+      "bom-ref": "95fbfb33-6cb0-44b2-a277-bab22c34ce9e",
       "type": "operating-system",
       "name": "alpine",
       "version": "3.23.3",
@@ -1200,6 +1200,7 @@
       },
       "name": "libpanelw",
       "version": "6.5_p20251123-r0",
+      "description": "Console display library (libpanelw)",
       "hashes": [
         {
           "alg": "SHA-1",
@@ -1208,12 +1209,24 @@
       ],
       "licenses": [
         {
-          "license": {
-            "name": "X-11"
-          }
+          "expression": "(X11)"
         }
       ],
       "purl": "pkg:apk/alpine/libpanelw@6.5_p20251123-r0?arch=x86_64&distro=3.23.3",
+      "externalReferences": [
+        {
+          "url": "https://invisible-island.net/ncurses/",
+          "type": "website"
+        },
+        {
+          "url": "https://pkgs.alpinelinux.org/package/edge/main/x86_64/libpanelw",
+          "type": "distribution"
+        },
+        {
+          "url": "https://invisible-island.net/ncurses/",
+          "type": "vcs"
+        }
+      ],
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
@@ -1238,6 +1251,14 @@
         {
           "name": "aquasecurity:trivy:SrcVersion",
           "value": "6.5_p20251123-r0"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2023-02-20T17:06:07Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2026-01-07T11:05:47Z"
         }
       ]
     },
@@ -5124,7 +5145,7 @@
   ],
   "dependencies": [
     {
-      "ref": "7c8fa6ba-59e9-4cff-b256-2a668b727cd8",
+      "ref": "95fbfb33-6cb0-44b2-a277-bab22c34ce9e",
       "dependsOn": [
         "pkg:apk/alpine/.python-rundeps@20260204.200903?arch=noarch&distro=3.23.3",
         "pkg:apk/alpine/alpine-baselayout@3.7.1-r8?arch=x86_64&distro=3.23.3",
@@ -5338,7 +5359,7 @@
     {
       "ref": "pkg:oci/k8s-sidecar@sha256%3A6e9db2cd6630a663dfa9eec59916f8c289d1efa725a6e2d92ec1b5fef31bbd3d?arch=amd64&repository_url=quay.io%2Fkiwigrid%2Fk8s-sidecar",
       "dependsOn": [
-        "7c8fa6ba-59e9-4cff-b256-2a668b727cd8",
+        "95fbfb33-6cb0-44b2-a277-bab22c34ce9e",
         "pkg:pypi/argparse@1.4.0",
         "pkg:pypi/autocommand@2.2.2",
         "pkg:pypi/backports.tarfile@1.2.0",

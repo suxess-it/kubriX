@@ -2,10 +2,10 @@
   "$schema": "http://cyclonedx.org/schema/bom-1.6.schema.json",
   "bomFormat": "CycloneDX",
   "specVersion": "1.6",
-  "serialNumber": "urn:uuid:700f2384-9335-4dc8-a4c4-afa63a12e921",
+  "serialNumber": "urn:uuid:e9fb4149-bf8f-4558-957f-0c22934c6fd5",
   "version": 1,
   "metadata": {
-    "timestamp": "2026-04-07T12:25:46+00:00",
+    "timestamp": "2026-04-07T12:49:59+00:00",
     "tools": {
       "components": [
         {
@@ -86,7 +86,7 @@
   },
   "components": [
     {
-      "bom-ref": "5633bd72-028f-4f0d-8cff-eeb36df542d1",
+      "bom-ref": "77d5d04a-d77f-426a-9fc1-0a24afc092de",
       "type": "application",
       "name": "nix/store/rwlic8idnsphgcpi9qiz4q4g1x746ws6-crossplane-linux-amd64-v2.2.0/bin/crossplane",
       "properties": [
@@ -103,8 +103,33 @@
     {
       "bom-ref": "pkg:golang/github.com/crossplane/crossplane/v2",
       "type": "library",
+      "supplier": {
+        "name": "Crossplane",
+        "url": [
+          "https://crossplane.io"
+        ]
+      },
+      "author": "Crossplane",
       "name": "github.com/crossplane/crossplane/v2",
       "purl": "pkg:golang/github.com/crossplane/crossplane/v2",
+      "externalReferences": [
+        {
+          "url": "https://github.com/crossplane/crossplane",
+          "type": "website"
+        },
+        {
+          "url": "https://pkg.go.dev/github.com/crossplane/crossplane/v2",
+          "type": "distribution"
+        },
+        {
+          "url": "https://github.com/crossplane/crossplane",
+          "type": "vcs"
+        },
+        {
+          "url": "https://pkg.go.dev/github.com/crossplane/crossplane/v2#section-documentation",
+          "type": "documentation"
+        }
+      ],
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
@@ -121,6 +146,58 @@
         {
           "name": "aquasecurity:trivy:PkgType",
           "value": "gobinary"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2025-08-11T13:19:46Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2026-02-17T21:43:28Z"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "cloud-computing"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "cloud-management"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "cloud-native"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "cncf"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "containers"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "control-plane"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "infrastructure"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "infrastructure-as-code"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "kubernetes"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "multicloud"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "serverless"
         }
       ]
     },
@@ -152,7 +229,7 @@
   ],
   "dependencies": [
     {
-      "ref": "5633bd72-028f-4f0d-8cff-eeb36df542d1",
+      "ref": "77d5d04a-d77f-426a-9fc1-0a24afc092de",
       "dependsOn": [
         "pkg:golang/github.com/crossplane/crossplane/v2"
       ]
@@ -170,7 +247,7 @@
     {
       "ref": "pkg:oci/crossplane@sha256%3Abd54cb812893ee28b8c4d8a486c89c06c9b1df11dc6ffa1b405e53a996fed128?arch=amd64&repository_url=xpkg.crossplane.io%2Fcrossplane%2Fcrossplane",
       "dependsOn": [
-        "5633bd72-028f-4f0d-8cff-eeb36df542d1"
+        "77d5d04a-d77f-426a-9fc1-0a24afc092de"
       ]
     }
   ],

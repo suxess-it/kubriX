@@ -2,10 +2,10 @@
   "$schema": "http://cyclonedx.org/schema/bom-1.6.schema.json",
   "bomFormat": "CycloneDX",
   "specVersion": "1.6",
-  "serialNumber": "urn:uuid:5376332b-062a-4e3d-a60f-18d543b9bc56",
+  "serialNumber": "urn:uuid:55909677-7407-4346-9fa4-2317929e502d",
   "version": 1,
   "metadata": {
-    "timestamp": "2026-04-07T12:25:30+00:00",
+    "timestamp": "2026-04-07T12:49:42+00:00",
     "tools": {
       "components": [
         {
@@ -118,32 +118,37 @@
   },
   "components": [
     {
-      "bom-ref": "4ef5d867-2ec2-4bf1-b1ea-dfd212d8e198",
-      "type": "library",
-      "name": "stdlib",
-      "version": "v1.24.11",
-      "purl": "pkg:golang/stdlib@v1.24.11",
+      "bom-ref": "243c1f83-56ed-4a53-b2df-2884001d9dfe",
+      "type": "application",
+      "name": "go-runner",
       "properties": [
         {
-          "name": "aquasecurity:trivy:LayerDiffID",
-          "value": "sha256:d8484e59788ee58f622d720dfc4418128b528c4ad953c6ca9189a7ec7951ed72"
+          "name": "aquasecurity:trivy:Class",
+          "value": "lang-pkgs"
         },
         {
-          "name": "aquasecurity:trivy:LayerDigest",
-          "value": "sha256:0ab45bc80a57978bcf39c85c75dcdba5aadb3a0b85c2e4e7c6047112c12b75a0"
-        },
-        {
-          "name": "aquasecurity:trivy:PkgID",
-          "value": "stdlib@v1.24.11"
-        },
-        {
-          "name": "aquasecurity:trivy:PkgType",
+          "name": "aquasecurity:trivy:Type",
           "value": "gobinary"
         }
       ]
     },
     {
-      "bom-ref": "57654baf-4229-4c8a-9c1b-48c3d898280e",
+      "bom-ref": "2b4fe717-e94e-4e6a-b33a-9d3903c12e74",
+      "type": "application",
+      "name": "bin/kubectl",
+      "properties": [
+        {
+          "name": "aquasecurity:trivy:Class",
+          "value": "lang-pkgs"
+        },
+        {
+          "name": "aquasecurity:trivy:Type",
+          "value": "gobinary"
+        }
+      ]
+    },
+    {
+      "bom-ref": "7fec2a5e-e135-4c95-9f8c-2dc6ba88fae9",
       "type": "operating-system",
       "name": "debian",
       "version": "12.12",
@@ -159,22 +164,7 @@
       ]
     },
     {
-      "bom-ref": "ae0637ea-cf37-45db-bafd-f3b4a722779a",
-      "type": "application",
-      "name": "bin/kubectl",
-      "properties": [
-        {
-          "name": "aquasecurity:trivy:Class",
-          "value": "lang-pkgs"
-        },
-        {
-          "name": "aquasecurity:trivy:Type",
-          "value": "gobinary"
-        }
-      ]
-    },
-    {
-      "bom-ref": "c0cd05d9-a767-4d93-a21d-4fa660f7ba8c",
+      "bom-ref": "da00fb3e-9ac7-4d6c-b055-400b2585602b",
       "type": "library",
       "name": "stdlib",
       "version": "v1.24.11",
@@ -199,16 +189,26 @@
       ]
     },
     {
-      "bom-ref": "e9d63c35-b909-48fd-a8b7-3916a444feb9",
-      "type": "application",
-      "name": "go-runner",
+      "bom-ref": "ea78f9d7-7687-4872-bb31-da62ae8681d2",
+      "type": "library",
+      "name": "stdlib",
+      "version": "v1.24.11",
+      "purl": "pkg:golang/stdlib@v1.24.11",
       "properties": [
         {
-          "name": "aquasecurity:trivy:Class",
-          "value": "lang-pkgs"
+          "name": "aquasecurity:trivy:LayerDiffID",
+          "value": "sha256:d8484e59788ee58f622d720dfc4418128b528c4ad953c6ca9189a7ec7951ed72"
         },
         {
-          "name": "aquasecurity:trivy:Type",
+          "name": "aquasecurity:trivy:LayerDigest",
+          "value": "sha256:0ab45bc80a57978bcf39c85c75dcdba5aadb3a0b85c2e4e7c6047112c12b75a0"
+        },
+        {
+          "name": "aquasecurity:trivy:PkgID",
+          "value": "stdlib@v1.24.11"
+        },
+        {
+          "name": "aquasecurity:trivy:PkgType",
           "value": "gobinary"
         }
       ]
@@ -5456,6 +5456,11 @@
       "author": "Kubernetes",
       "name": "k8s.io/kubernetes",
       "version": "v1.34.3",
+      "licenses": [
+        {
+          "expression": "(Apache-2.0)"
+        }
+      ],
       "purl": "pkg:golang/k8s.io/kubernetes@v1.34.3",
       "externalReferences": [
         {
@@ -5578,8 +5583,33 @@
     {
       "bom-ref": "pkg:golang/k8s.io/release/images/build/go-runner",
       "type": "library",
+      "supplier": {
+        "name": "Kubernetes",
+        "url": [
+          "https://kubernetes.io"
+        ]
+      },
+      "author": "Kubernetes",
       "name": "k8s.io/release/images/build/go-runner",
       "purl": "pkg:golang/k8s.io/release/images/build/go-runner",
+      "externalReferences": [
+        {
+          "url": "https://github.com/kubernetes/release",
+          "type": "website"
+        },
+        {
+          "url": "https://pkg.go.dev/k8s.io/release/images/build/go-runner",
+          "type": "distribution"
+        },
+        {
+          "url": "https://github.com/kubernetes/release",
+          "type": "vcs"
+        },
+        {
+          "url": "https://pkg.go.dev/k8s.io/release/images/build/go-runner#section-documentation",
+          "type": "documentation"
+        }
+      ],
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
@@ -5596,6 +5626,22 @@
         {
           "name": "aquasecurity:trivy:PkgType",
           "value": "gobinary"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2022-04-06T07:12:56Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2026-03-13T08:39:34Z"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "kubernetes"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "release-infrastructure"
         }
       ]
     },
@@ -6077,11 +6123,19 @@
   ],
   "dependencies": [
     {
-      "ref": "4ef5d867-2ec2-4bf1-b1ea-dfd212d8e198",
-      "dependsOn": []
+      "ref": "243c1f83-56ed-4a53-b2df-2884001d9dfe",
+      "dependsOn": [
+        "pkg:golang/k8s.io/release/images/build/go-runner"
+      ]
     },
     {
-      "ref": "57654baf-4229-4c8a-9c1b-48c3d898280e",
+      "ref": "2b4fe717-e94e-4e6a-b33a-9d3903c12e74",
+      "dependsOn": [
+        "pkg:golang/k8s.io/kubernetes@v1.34.3"
+      ]
+    },
+    {
+      "ref": "7fec2a5e-e135-4c95-9f8c-2dc6ba88fae9",
       "dependsOn": [
         "pkg:deb/debian/base-files@12.4%2Bdeb12u12?arch=amd64&distro=debian-12.12",
         "pkg:deb/debian/media-types@10.0.0?arch=all&distro=debian-12.12",
@@ -6090,20 +6144,12 @@
       ]
     },
     {
-      "ref": "ae0637ea-cf37-45db-bafd-f3b4a722779a",
-      "dependsOn": [
-        "pkg:golang/k8s.io/kubernetes@v1.34.3"
-      ]
-    },
-    {
-      "ref": "c0cd05d9-a767-4d93-a21d-4fa660f7ba8c",
+      "ref": "da00fb3e-9ac7-4d6c-b055-400b2585602b",
       "dependsOn": []
     },
     {
-      "ref": "e9d63c35-b909-48fd-a8b7-3916a444feb9",
-      "dependsOn": [
-        "pkg:golang/k8s.io/release/images/build/go-runner"
-      ]
+      "ref": "ea78f9d7-7687-4872-bb31-da62ae8681d2",
+      "dependsOn": []
     },
     {
       "ref": "pkg:deb/debian/base-files@12.4%2Bdeb12u12?arch=amd64&distro=debian-12.12",
@@ -6416,7 +6462,7 @@
     {
       "ref": "pkg:golang/k8s.io/kubernetes@v1.34.3",
       "dependsOn": [
-        "c0cd05d9-a767-4d93-a21d-4fa660f7ba8c",
+        "da00fb3e-9ac7-4d6c-b055-400b2585602b",
         "pkg:golang/github.com/beorn7/perks@v1.0.1",
         "pkg:golang/github.com/blang/semver/v4@v4.0.0",
         "pkg:golang/github.com/cespare/xxhash/v2@v2.3.0",
@@ -6508,7 +6554,7 @@
     {
       "ref": "pkg:golang/k8s.io/release/images/build/go-runner",
       "dependsOn": [
-        "4ef5d867-2ec2-4bf1-b1ea-dfd212d8e198"
+        "ea78f9d7-7687-4872-bb31-da62ae8681d2"
       ]
     },
     {
@@ -6546,9 +6592,9 @@
     {
       "ref": "pkg:oci/kubectl@sha256%3A1c6309bd167feb49b2bc1605bce05973002872fd0d26a2e76499ed0c903ea3cf?arch=amd64&repository_url=registry.k8s.io%2Fkubectl",
       "dependsOn": [
-        "57654baf-4229-4c8a-9c1b-48c3d898280e",
-        "ae0637ea-cf37-45db-bafd-f3b4a722779a",
-        "e9d63c35-b909-48fd-a8b7-3916a444feb9"
+        "243c1f83-56ed-4a53-b2df-2884001d9dfe",
+        "2b4fe717-e94e-4e6a-b33a-9d3903c12e74",
+        "7fec2a5e-e135-4c95-9f8c-2dc6ba88fae9"
       ]
     }
   ],

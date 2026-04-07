@@ -2,10 +2,10 @@
   "$schema": "http://cyclonedx.org/schema/bom-1.6.schema.json",
   "bomFormat": "CycloneDX",
   "specVersion": "1.6",
-  "serialNumber": "urn:uuid:fac8867b-0c9a-442d-9922-fb134f39c807",
+  "serialNumber": "urn:uuid:606f2a0b-15cf-44d7-b865-05898ed2302d",
   "version": 1,
   "metadata": {
-    "timestamp": "2026-04-07T12:23:55+00:00",
+    "timestamp": "2026-04-07T12:48:08+00:00",
     "tools": {
       "components": [
         {
@@ -74,7 +74,7 @@
   },
   "components": [
     {
-      "bom-ref": "0ecfad90-c20d-4e87-abd3-fd207766212e",
+      "bom-ref": "67aa93ae-b8fd-4a05-98e9-688874356850",
       "type": "operating-system",
       "name": "alpine",
       "version": "3.23.3",
@@ -90,7 +90,7 @@
       ]
     },
     {
-      "bom-ref": "51a4efb7-f0d3-4284-8540-a46cc4301882",
+      "bom-ref": "974fc916-f2b7-4d49-bd02-96f6e745ba11",
       "type": "application",
       "name": "usr/local/bin/nats-server-config-reloader",
       "properties": [
@@ -1294,9 +1294,34 @@
     {
       "bom-ref": "pkg:golang/github.com/nats-io/nack@v0.22.3%2Bdirty",
       "type": "library",
+      "supplier": {
+        "name": "NATS - The Edge & Cloud Native Messaging System",
+        "url": [
+          "https://nats.io"
+        ]
+      },
+      "author": "NATS - The Edge & Cloud Native Messaging System",
       "name": "github.com/nats-io/nack",
       "version": "v0.22.3+dirty",
       "purl": "pkg:golang/github.com/nats-io/nack@v0.22.3%2Bdirty",
+      "externalReferences": [
+        {
+          "url": "https://github.com/nats-io/nack",
+          "type": "website"
+        },
+        {
+          "url": "https://pkg.go.dev/github.com/nats-io/nack",
+          "type": "distribution"
+        },
+        {
+          "url": "https://github.com/nats-io/nack",
+          "type": "vcs"
+        },
+        {
+          "url": "https://pkg.go.dev/github.com/nats-io/nack#section-documentation",
+          "type": "documentation"
+        }
+      ],
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
@@ -1313,6 +1338,14 @@
         {
           "name": "aquasecurity:trivy:PkgType",
           "value": "gobinary"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2020-10-05T21:37:13Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2026-02-20T14:19:58Z"
         }
       ]
     },
@@ -1396,7 +1429,7 @@
   ],
   "dependencies": [
     {
-      "ref": "0ecfad90-c20d-4e87-abd3-fd207766212e",
+      "ref": "67aa93ae-b8fd-4a05-98e9-688874356850",
       "dependsOn": [
         "pkg:apk/alpine/alpine-baselayout@3.7.1-r8?arch=x86_64&distro=3.23.3",
         "pkg:apk/alpine/alpine-release@3.23.3-r0?arch=x86_64&distro=3.23.3",
@@ -1406,7 +1439,7 @@
       ]
     },
     {
-      "ref": "51a4efb7-f0d3-4284-8540-a46cc4301882",
+      "ref": "974fc916-f2b7-4d49-bd02-96f6e745ba11",
       "dependsOn": [
         "pkg:golang/github.com/nats-io/nack@v0.22.3%2Bdirty"
       ]
@@ -1534,8 +1567,8 @@
     {
       "ref": "pkg:oci/nats-server-config-reloader@sha256%3Ace508ee14a4be8be63f8e1ca49d4bfbc887a84317fde3718d4e2f254ed285a4b?arch=amd64&repository_url=index.docker.io%2Fnatsio%2Fnats-server-config-reloader",
       "dependsOn": [
-        "0ecfad90-c20d-4e87-abd3-fd207766212e",
-        "51a4efb7-f0d3-4284-8540-a46cc4301882"
+        "67aa93ae-b8fd-4a05-98e9-688874356850",
+        "974fc916-f2b7-4d49-bd02-96f6e745ba11"
       ]
     }
   ],

@@ -2,10 +2,10 @@
   "$schema": "http://cyclonedx.org/schema/bom-1.6.schema.json",
   "bomFormat": "CycloneDX",
   "specVersion": "1.6",
-  "serialNumber": "urn:uuid:3951ca55-76a8-465f-811a-dbe667d943aa",
+  "serialNumber": "urn:uuid:7580bb7a-e82c-4753-8998-9b3c50907aca",
   "version": 1,
   "metadata": {
-    "timestamp": "2026-04-07T12:21:53+00:00",
+    "timestamp": "2026-04-07T12:46:21+00:00",
     "tools": {
       "components": [
         {
@@ -98,22 +98,7 @@
   },
   "components": [
     {
-      "bom-ref": "3a6a5054-6f8f-452b-92ab-8405e6c1402e",
-      "type": "application",
-      "name": "usr/local/bin/traefik",
-      "properties": [
-        {
-          "name": "aquasecurity:trivy:Class",
-          "value": "lang-pkgs"
-        },
-        {
-          "name": "aquasecurity:trivy:Type",
-          "value": "gobinary"
-        }
-      ]
-    },
-    {
-      "bom-ref": "f79a3bb2-331c-4e28-a5e0-aa6f74ccf48a",
+      "bom-ref": "146fc387-ddb9-489b-a23a-13809b654d45",
       "type": "operating-system",
       "name": "alpine",
       "version": "3.23.3",
@@ -125,6 +110,21 @@
         {
           "name": "aquasecurity:trivy:Type",
           "value": "alpine"
+        }
+      ]
+    },
+    {
+      "bom-ref": "bf6829d2-8de0-438a-ae27-7607dcc373c6",
+      "type": "application",
+      "name": "usr/local/bin/traefik",
+      "properties": [
+        {
+          "name": "aquasecurity:trivy:Class",
+          "value": "lang-pkgs"
+        },
+        {
+          "name": "aquasecurity:trivy:Type",
+          "value": "gobinary"
         }
       ]
     },
@@ -27061,13 +27061,7 @@
   ],
   "dependencies": [
     {
-      "ref": "3a6a5054-6f8f-452b-92ab-8405e6c1402e",
-      "dependsOn": [
-        "pkg:golang/github.com/traefik/traefik/v3@v3.6.12"
-      ]
-    },
-    {
-      "ref": "f79a3bb2-331c-4e28-a5e0-aa6f74ccf48a",
+      "ref": "146fc387-ddb9-489b-a23a-13809b654d45",
       "dependsOn": [
         "pkg:apk/alpine/alpine-baselayout@3.7.1-r8?arch=x86_64&distro=3.23.3",
         "pkg:apk/alpine/alpine-release@3.23.3-r0?arch=x86_64&distro=3.23.3",
@@ -27076,6 +27070,12 @@
         "pkg:apk/alpine/musl-utils@1.2.5-r21?arch=x86_64&distro=3.23.3",
         "pkg:apk/alpine/ssl_client@1.37.0-r30?arch=x86_64&distro=3.23.3",
         "pkg:apk/alpine/tzdata@2026a-r0?arch=x86_64&distro=3.23.3"
+      ]
+    },
+    {
+      "ref": "bf6829d2-8de0-438a-ae27-7607dcc373c6",
+      "dependsOn": [
+        "pkg:golang/github.com/traefik/traefik/v3@v3.6.12"
       ]
     },
     {
@@ -28953,8 +28953,8 @@
     {
       "ref": "pkg:oci/traefik@sha256%3A171c9c3565b29f6c133f1c1b43c5d4e5853415198e9e1078c001f8702ff66aec?arch=amd64&repository_url=index.docker.io%2Flibrary%2Ftraefik",
       "dependsOn": [
-        "3a6a5054-6f8f-452b-92ab-8405e6c1402e",
-        "f79a3bb2-331c-4e28-a5e0-aa6f74ccf48a"
+        "146fc387-ddb9-489b-a23a-13809b654d45",
+        "bf6829d2-8de0-438a-ae27-7607dcc373c6"
       ]
     }
   ],

@@ -2,10 +2,10 @@
   "$schema": "http://cyclonedx.org/schema/bom-1.6.schema.json",
   "bomFormat": "CycloneDX",
   "specVersion": "1.6",
-  "serialNumber": "urn:uuid:fbe01f15-6003-4fa2-a528-63d5ebf57c07",
+  "serialNumber": "urn:uuid:8d3d915f-df4d-42a7-9005-44253f75b217",
   "version": 1,
   "metadata": {
-    "timestamp": "2026-04-07T12:21:31+00:00",
+    "timestamp": "2026-04-07T12:46:06+00:00",
     "tools": {
       "components": [
         {
@@ -122,7 +122,22 @@
   },
   "components": [
     {
-      "bom-ref": "2bb51037-c44b-43d1-be61-3c62e3c04632",
+      "bom-ref": "011c3c42-24bd-415c-8063-c316fdfb0308",
+      "type": "application",
+      "name": "tempo",
+      "properties": [
+        {
+          "name": "aquasecurity:trivy:Class",
+          "value": "lang-pkgs"
+        },
+        {
+          "name": "aquasecurity:trivy:Type",
+          "value": "gobinary"
+        }
+      ]
+    },
+    {
+      "bom-ref": "375edf43-2f7e-4cd8-817e-4eadfa4c52d3",
       "type": "operating-system",
       "name": "debian",
       "version": "12.13",
@@ -134,21 +149,6 @@
         {
           "name": "aquasecurity:trivy:Type",
           "value": "debian"
-        }
-      ]
-    },
-    {
-      "bom-ref": "80229e9e-f948-4dda-aa64-f3a43077df60",
-      "type": "application",
-      "name": "tempo",
-      "properties": [
-        {
-          "name": "aquasecurity:trivy:Class",
-          "value": "lang-pkgs"
-        },
-        {
-          "name": "aquasecurity:trivy:Type",
-          "value": "gobinary"
         }
       ]
     },
@@ -28546,18 +28546,18 @@
   ],
   "dependencies": [
     {
-      "ref": "2bb51037-c44b-43d1-be61-3c62e3c04632",
+      "ref": "011c3c42-24bd-415c-8063-c316fdfb0308",
+      "dependsOn": [
+        "pkg:golang/github.com/grafana/tempo@v2.10.1"
+      ]
+    },
+    {
+      "ref": "375edf43-2f7e-4cd8-817e-4eadfa4c52d3",
       "dependsOn": [
         "pkg:deb/debian/base-files@12.4%2Bdeb12u13?arch=amd64&distro=debian-12.13",
         "pkg:deb/debian/media-types@10.0.0?arch=all&distro=debian-12.13",
         "pkg:deb/debian/netbase@6.4?arch=all&distro=debian-12.13",
         "pkg:deb/debian/tzdata@2025b-0%2Bdeb12u2?arch=all&distro=debian-12.13"
-      ]
-    },
-    {
-      "ref": "80229e9e-f948-4dda-aa64-f3a43077df60",
-      "dependsOn": [
-        "pkg:golang/github.com/grafana/tempo@v2.10.1"
       ]
     },
     {
@@ -30464,8 +30464,8 @@
     {
       "ref": "pkg:oci/tempo@sha256%3A9371af1b75b4e057eb77f22dc4dd4d9176cd6985e29f181527be6723b7f29c41?arch=amd64&repository_url=index.docker.io%2Fgrafana%2Ftempo",
       "dependsOn": [
-        "2bb51037-c44b-43d1-be61-3c62e3c04632",
-        "80229e9e-f948-4dda-aa64-f3a43077df60"
+        "011c3c42-24bd-415c-8063-c316fdfb0308",
+        "375edf43-2f7e-4cd8-817e-4eadfa4c52d3"
       ]
     }
   ],

@@ -2,10 +2,10 @@
   "$schema": "http://cyclonedx.org/schema/bom-1.6.schema.json",
   "bomFormat": "CycloneDX",
   "specVersion": "1.6",
-  "serialNumber": "urn:uuid:3d75d98e-e881-4ba3-b77f-0d9d722c621c",
+  "serialNumber": "urn:uuid:a9a6da0d-c6e2-4702-a7a3-178bf12a0228",
   "version": 1,
   "metadata": {
-    "timestamp": "2026-04-07T12:20:59+00:00",
+    "timestamp": "2026-04-07T12:45:47+00:00",
     "tools": {
       "components": [
         {
@@ -82,22 +82,7 @@
   },
   "components": [
     {
-      "bom-ref": "062bab3c-b01a-4c55-9cfa-0aa069b9fe27",
-      "type": "application",
-      "name": "usr/bin/falcoctl",
-      "properties": [
-        {
-          "name": "aquasecurity:trivy:Class",
-          "value": "lang-pkgs"
-        },
-        {
-          "name": "aquasecurity:trivy:Type",
-          "value": "gobinary"
-        }
-      ]
-    },
-    {
-      "bom-ref": "21df352b-1ff1-43fc-9f44-a765951007e8",
+      "bom-ref": "9468f717-f889-4836-90d6-ac1857831973",
       "type": "operating-system",
       "name": "wolfi",
       "version": "20230201",
@@ -109,6 +94,21 @@
         {
           "name": "aquasecurity:trivy:Type",
           "value": "wolfi"
+        }
+      ]
+    },
+    {
+      "bom-ref": "bb40ba25-def5-442c-8c33-f93ee3e8117c",
+      "type": "application",
+      "name": "usr/bin/falcoctl",
+      "properties": [
+        {
+          "name": "aquasecurity:trivy:Class",
+          "value": "lang-pkgs"
+        },
+        {
+          "name": "aquasecurity:trivy:Type",
+          "value": "gobinary"
         }
       ]
     },
@@ -22719,16 +22719,16 @@
   ],
   "dependencies": [
     {
-      "ref": "062bab3c-b01a-4c55-9cfa-0aa069b9fe27",
-      "dependsOn": [
-        "pkg:golang/github.com/falcosecurity/falcoctl"
-      ]
-    },
-    {
-      "ref": "21df352b-1ff1-43fc-9f44-a765951007e8",
+      "ref": "9468f717-f889-4836-90d6-ac1857831973",
       "dependsOn": [
         "pkg:apk/wolfi/tzdata@2025a-r0?arch=x86_64&distro=20230201",
         "pkg:apk/wolfi/wolfi-baselayout@20230201-r16?arch=x86_64&distro=20230201"
+      ]
+    },
+    {
+      "ref": "bb40ba25-def5-442c-8c33-f93ee3e8117c",
+      "dependsOn": [
+        "pkg:golang/github.com/falcosecurity/falcoctl"
       ]
     },
     {
@@ -24273,8 +24273,8 @@
     {
       "ref": "pkg:oci/falcoctl@sha256%3A4b590b9c49a881a55f6c3121c235057951418d726a9c43c4e1dbe3a5fcf358d3?arch=amd64&repository_url=index.docker.io%2Ffalcosecurity%2Ffalcoctl",
       "dependsOn": [
-        "062bab3c-b01a-4c55-9cfa-0aa069b9fe27",
-        "21df352b-1ff1-43fc-9f44-a765951007e8"
+        "9468f717-f889-4836-90d6-ac1857831973",
+        "bb40ba25-def5-442c-8c33-f93ee3e8117c"
       ]
     }
   ],

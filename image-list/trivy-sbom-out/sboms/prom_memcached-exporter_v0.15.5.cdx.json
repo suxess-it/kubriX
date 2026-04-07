@@ -2,10 +2,10 @@
   "$schema": "http://cyclonedx.org/schema/bom-1.6.schema.json",
   "bomFormat": "CycloneDX",
   "specVersion": "1.6",
-  "serialNumber": "urn:uuid:a185d945-f815-42c7-92d5-2e2730f03105",
+  "serialNumber": "urn:uuid:2d852723-0dc8-4ba9-827d-a9676efe4a18",
   "version": 1,
   "metadata": {
-    "timestamp": "2026-04-07T12:23:55+00:00",
+    "timestamp": "2026-04-07T12:48:09+00:00",
     "tools": {
       "components": [
         {
@@ -70,7 +70,7 @@
   },
   "components": [
     {
-      "bom-ref": "01d215b7-b080-40cf-8c5a-08ac660c9f56",
+      "bom-ref": "0e604c9a-058b-44ac-a9e7-da4fc68fa4d4",
       "type": "application",
       "name": "bin/memcached_exporter",
       "properties": [
@@ -615,9 +615,39 @@
     {
       "bom-ref": "pkg:golang/github.com/grobie/gomemcache@v0.0.0-20230213081705-239240bbc445",
       "type": "library",
+      "supplier": {
+        "name": "Tobias Schmidt",
+        "url": [
+          "https://hachyderm.io/@grobie"
+        ]
+      },
+      "author": "Tobias Schmidt",
       "name": "github.com/grobie/gomemcache",
       "version": "v0.0.0-20230213081705-239240bbc445",
+      "licenses": [
+        {
+          "expression": "(Apache-2.0)"
+        }
+      ],
       "purl": "pkg:golang/github.com/grobie/gomemcache@v0.0.0-20230213081705-239240bbc445",
+      "externalReferences": [
+        {
+          "url": "https://github.com/grobie/gomemcache",
+          "type": "website"
+        },
+        {
+          "url": "https://pkg.go.dev/github.com/grobie/gomemcache",
+          "type": "distribution"
+        },
+        {
+          "url": "https://github.com/grobie/gomemcache",
+          "type": "vcs"
+        },
+        {
+          "url": "https://pkg.go.dev/github.com/grobie/gomemcache#section-documentation",
+          "type": "documentation"
+        }
+      ],
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
@@ -634,6 +664,18 @@
         {
           "name": "aquasecurity:trivy:PkgType",
           "value": "gobinary"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2018-02-01T12:26:07Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2023-02-13T08:17:05Z"
+        },
+        {
+          "name": "ecosystems:owner_location",
+          "value": "Berlin"
         }
       ]
     },
@@ -1221,6 +1263,11 @@
       "author": "Prometheus",
       "name": "github.com/prometheus/exporter-toolkit",
       "version": "v0.15.0",
+      "licenses": [
+        {
+          "expression": "(Apache-2.0)"
+        }
+      ],
       "purl": "pkg:golang/github.com/prometheus/exporter-toolkit@v0.15.0",
       "externalReferences": [
         {
@@ -1290,9 +1337,39 @@
     {
       "bom-ref": "pkg:golang/github.com/prometheus/memcached_exporter@v0.15.5",
       "type": "library",
+      "supplier": {
+        "name": "Prometheus",
+        "url": [
+          "https://prometheus.io"
+        ]
+      },
+      "author": "Prometheus",
       "name": "github.com/prometheus/memcached_exporter",
       "version": "v0.15.5",
+      "licenses": [
+        {
+          "expression": "(Apache-2.0)"
+        }
+      ],
       "purl": "pkg:golang/github.com/prometheus/memcached_exporter@v0.15.5",
+      "externalReferences": [
+        {
+          "url": "https://github.com/prometheus/memcached_exporter",
+          "type": "website"
+        },
+        {
+          "url": "https://pkg.go.dev/github.com/prometheus/memcached_exporter",
+          "type": "distribution"
+        },
+        {
+          "url": "https://github.com/prometheus/memcached_exporter",
+          "type": "vcs"
+        },
+        {
+          "url": "https://pkg.go.dev/github.com/prometheus/memcached_exporter#section-documentation",
+          "type": "documentation"
+        }
+      ],
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
@@ -1309,6 +1386,30 @@
         {
           "name": "aquasecurity:trivy:PkgType",
           "value": "gobinary"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2016-10-15T20:16:40Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2026-01-17T09:03:30Z"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "memcached"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "metrics"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "prometheus"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "prometheus-exporter"
         }
       ]
     },
@@ -2014,7 +2115,7 @@
   ],
   "dependencies": [
     {
-      "ref": "01d215b7-b080-40cf-8c5a-08ac660c9f56",
+      "ref": "0e604c9a-058b-44ac-a9e7-da4fc68fa4d4",
       "dependsOn": [
         "pkg:golang/github.com/prometheus/memcached_exporter@v0.15.5"
       ]
@@ -2172,7 +2273,7 @@
     {
       "ref": "pkg:oci/memcached-exporter@sha256%3A92a6ad5a3d3e2dffc75efd4e18d1470fa5703dd79b6bace53fe11312b634578e?arch=amd64&repository_url=index.docker.io%2Fprom%2Fmemcached-exporter",
       "dependsOn": [
-        "01d215b7-b080-40cf-8c5a-08ac660c9f56"
+        "0e604c9a-058b-44ac-a9e7-da4fc68fa4d4"
       ]
     }
   ],

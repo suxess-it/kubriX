@@ -2,10 +2,10 @@
   "$schema": "http://cyclonedx.org/schema/bom-1.6.schema.json",
   "bomFormat": "CycloneDX",
   "specVersion": "1.6",
-  "serialNumber": "urn:uuid:8f82d601-1961-49d4-899d-a61b29ea8f86",
+  "serialNumber": "urn:uuid:3b4a69a7-8c87-4ab3-a116-c8d670c4de73",
   "version": 1,
   "metadata": {
-    "timestamp": "2026-04-07T12:24:29+00:00",
+    "timestamp": "2026-04-07T12:48:47+00:00",
     "tools": {
       "components": [
         {
@@ -170,7 +170,23 @@
   },
   "components": [
     {
-      "bom-ref": "53944119-c19e-4d55-a2b9-843f9418b872",
+      "bom-ref": "5909e7ce-fabe-4709-894d-4127eaf3fe14",
+      "type": "operating-system",
+      "name": "redhat",
+      "version": "9.7",
+      "properties": [
+        {
+          "name": "aquasecurity:trivy:Class",
+          "value": "os-pkgs"
+        },
+        {
+          "name": "aquasecurity:trivy:Type",
+          "value": "redhat"
+        }
+      ]
+    },
+    {
+      "bom-ref": "99d004b9-4617-4cdc-8552-60adda62365f",
       "type": "library",
       "supplier": {
         "name": "JCTools"
@@ -270,7 +286,7 @@
       ]
     },
     {
-      "bom-ref": "719eeead-43c8-40cf-a60e-6b8df89babf7",
+      "bom-ref": "b8ff8354-2dd4-4f92-b93a-8c6e3231b884",
       "type": "library",
       "supplier": {
         "name": "JCTools"
@@ -366,22 +382,6 @@
         {
           "name": "ecosystems:topic",
           "value": "wait-free"
-        }
-      ]
-    },
-    {
-      "bom-ref": "b791d2a8-4e6e-4d12-978e-4837d7fd9e12",
-      "type": "operating-system",
-      "name": "redhat",
-      "version": "9.7",
-      "properties": [
-        {
-          "name": "aquasecurity:trivy:Class",
-          "value": "os-pkgs"
-        },
-        {
-          "name": "aquasecurity:trivy:Type",
-          "value": "redhat"
         }
       ]
     },
@@ -1290,16 +1290,47 @@
     {
       "bom-ref": "pkg:maven/io.fabric8/kubernetes-client-api@7.3.1",
       "type": "library",
+      "supplier": {
+        "name": "fabric8",
+        "url": [
+          "https://fabric8.io/"
+        ]
+      },
+      "author": "fabric8",
       "group": "io.fabric8",
       "name": "kubernetes-client-api",
       "version": "7.3.1",
+      "description": "Java client for Kubernetes and OpenShift",
       "hashes": [
         {
           "alg": "SHA-1",
           "content": "a84625bde8727c1fe40da25d2167ef5c4647d6c4"
         }
       ],
+      "licenses": [
+        {
+          "expression": "(Apache-2.0)"
+        }
+      ],
       "purl": "pkg:maven/io.fabric8/kubernetes-client-api@7.3.1",
+      "externalReferences": [
+        {
+          "url": "https://github.com/fabric8io/kubernetes-client",
+          "type": "website"
+        },
+        {
+          "url": "https://central.sonatype.com/artifact/io.fabric8/kubernetes-client-api/",
+          "type": "distribution"
+        },
+        {
+          "url": "https://github.com/fabric8io/kubernetes-client",
+          "type": "vcs"
+        },
+        {
+          "url": "https://appdoc.app/artifact/io.fabric8/kubernetes-client-api/",
+          "type": "documentation"
+        }
+      ],
       "properties": [
         {
           "name": "aquasecurity:trivy:FilePath",
@@ -1316,22 +1347,105 @@
         {
           "name": "aquasecurity:trivy:PkgType",
           "value": "jar"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2022-06-13T20:58:00Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2026-03-05T12:10:02Z"
+        },
+        {
+          "name": "ecosystems:owner_location",
+          "value": "the cloud"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "dsl"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "java"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "java-client"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "kubernetes"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "kubernetes-client"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "kubernetes-model"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "mock-server"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "mocking-kubernetes"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "openshift"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "openshift-client"
         }
       ]
     },
     {
       "bom-ref": "pkg:maven/io.fabric8/kubernetes-client@7.3.1",
       "type": "library",
+      "supplier": {
+        "name": "fabric8",
+        "url": [
+          "https://fabric8.io/"
+        ]
+      },
+      "author": "fabric8",
       "group": "io.fabric8",
       "name": "kubernetes-client",
       "version": "7.3.1",
+      "description": "Java client for Kubernetes and OpenShift",
       "hashes": [
         {
           "alg": "SHA-1",
           "content": "3427e5b489cba107d0cea3c9515e8943bcc86312"
         }
       ],
+      "licenses": [
+        {
+          "expression": "(Apache-2.0)"
+        }
+      ],
       "purl": "pkg:maven/io.fabric8/kubernetes-client@7.3.1",
+      "externalReferences": [
+        {
+          "url": "https://github.com/fabric8io/kubernetes-client",
+          "type": "website"
+        },
+        {
+          "url": "https://central.sonatype.com/artifact/io.fabric8/kubernetes-client/",
+          "type": "distribution"
+        },
+        {
+          "url": "https://github.com/fabric8io/kubernetes-client",
+          "type": "vcs"
+        },
+        {
+          "url": "https://appdoc.app/artifact/io.fabric8/kubernetes-client/",
+          "type": "documentation"
+        }
+      ],
       "properties": [
         {
           "name": "aquasecurity:trivy:FilePath",
@@ -1348,22 +1462,105 @@
         {
           "name": "aquasecurity:trivy:PkgType",
           "value": "jar"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2015-07-17T15:07:26Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2026-03-05T12:10:02Z"
+        },
+        {
+          "name": "ecosystems:owner_location",
+          "value": "the cloud"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "dsl"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "java"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "java-client"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "kubernetes"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "kubernetes-client"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "kubernetes-model"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "mock-server"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "mocking-kubernetes"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "openshift"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "openshift-client"
         }
       ]
     },
     {
       "bom-ref": "pkg:maven/io.fabric8/kubernetes-httpclient-vertx@7.3.1",
       "type": "library",
+      "supplier": {
+        "name": "fabric8",
+        "url": [
+          "https://fabric8.io/"
+        ]
+      },
+      "author": "fabric8",
       "group": "io.fabric8",
       "name": "kubernetes-httpclient-vertx",
       "version": "7.3.1",
+      "description": "Java client for Kubernetes and OpenShift",
       "hashes": [
         {
           "alg": "SHA-1",
           "content": "9a6537ccce5e15037f7d1c54377030192ffebcb8"
         }
       ],
+      "licenses": [
+        {
+          "expression": "(Apache-2.0)"
+        }
+      ],
       "purl": "pkg:maven/io.fabric8/kubernetes-httpclient-vertx@7.3.1",
+      "externalReferences": [
+        {
+          "url": "https://github.com/fabric8io/kubernetes-client",
+          "type": "website"
+        },
+        {
+          "url": "https://central.sonatype.com/artifact/io.fabric8/kubernetes-httpclient-vertx/",
+          "type": "distribution"
+        },
+        {
+          "url": "https://github.com/fabric8io/kubernetes-client",
+          "type": "vcs"
+        },
+        {
+          "url": "https://appdoc.app/artifact/io.fabric8/kubernetes-httpclient-vertx/",
+          "type": "documentation"
+        }
+      ],
       "properties": [
         {
           "name": "aquasecurity:trivy:FilePath",
@@ -1380,22 +1577,105 @@
         {
           "name": "aquasecurity:trivy:PkgType",
           "value": "jar"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2023-01-19T11:56:04Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2026-03-05T12:10:02Z"
+        },
+        {
+          "name": "ecosystems:owner_location",
+          "value": "the cloud"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "dsl"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "java"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "java-client"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "kubernetes"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "kubernetes-client"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "kubernetes-model"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "mock-server"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "mocking-kubernetes"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "openshift"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "openshift-client"
         }
       ]
     },
     {
       "bom-ref": "pkg:maven/io.fabric8/kubernetes-model-admissionregistration@7.3.1",
       "type": "library",
+      "supplier": {
+        "name": "fabric8",
+        "url": [
+          "https://fabric8.io/"
+        ]
+      },
+      "author": "fabric8",
       "group": "io.fabric8",
       "name": "kubernetes-model-admissionregistration",
       "version": "7.3.1",
+      "description": "Java client for Kubernetes and OpenShift",
       "hashes": [
         {
           "alg": "SHA-1",
           "content": "c7cf738078d3a729d253a9c497cdf4cee9eaa0af"
         }
       ],
+      "licenses": [
+        {
+          "expression": "(Apache-2.0)"
+        }
+      ],
       "purl": "pkg:maven/io.fabric8/kubernetes-model-admissionregistration@7.3.1",
+      "externalReferences": [
+        {
+          "url": "https://github.com/fabric8io/kubernetes-client",
+          "type": "website"
+        },
+        {
+          "url": "https://central.sonatype.com/artifact/io.fabric8/kubernetes-model-admissionregistration/",
+          "type": "distribution"
+        },
+        {
+          "url": "https://github.com/fabric8io/kubernetes-client",
+          "type": "vcs"
+        },
+        {
+          "url": "https://appdoc.app/artifact/io.fabric8/kubernetes-model-admissionregistration/",
+          "type": "documentation"
+        }
+      ],
       "properties": [
         {
           "name": "aquasecurity:trivy:FilePath",
@@ -1412,22 +1692,105 @@
         {
           "name": "aquasecurity:trivy:PkgType",
           "value": "jar"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2020-05-04T10:46:13Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2026-03-05T12:10:02Z"
+        },
+        {
+          "name": "ecosystems:owner_location",
+          "value": "the cloud"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "dsl"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "java"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "java-client"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "kubernetes"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "kubernetes-client"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "kubernetes-model"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "mock-server"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "mocking-kubernetes"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "openshift"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "openshift-client"
         }
       ]
     },
     {
       "bom-ref": "pkg:maven/io.fabric8/kubernetes-model-apiextensions@7.3.1",
       "type": "library",
+      "supplier": {
+        "name": "fabric8",
+        "url": [
+          "https://fabric8.io/"
+        ]
+      },
+      "author": "fabric8",
       "group": "io.fabric8",
       "name": "kubernetes-model-apiextensions",
       "version": "7.3.1",
+      "description": "Java client for Kubernetes and OpenShift",
       "hashes": [
         {
           "alg": "SHA-1",
           "content": "2d6d2d73951751a2c041c5071c16353db797eb35"
         }
       ],
+      "licenses": [
+        {
+          "expression": "(Apache-2.0)"
+        }
+      ],
       "purl": "pkg:maven/io.fabric8/kubernetes-model-apiextensions@7.3.1",
+      "externalReferences": [
+        {
+          "url": "https://github.com/fabric8io/kubernetes-client",
+          "type": "website"
+        },
+        {
+          "url": "https://central.sonatype.com/artifact/io.fabric8/kubernetes-model-apiextensions/",
+          "type": "distribution"
+        },
+        {
+          "url": "https://github.com/fabric8io/kubernetes-client",
+          "type": "vcs"
+        },
+        {
+          "url": "https://appdoc.app/artifact/io.fabric8/kubernetes-model-apiextensions/",
+          "type": "documentation"
+        }
+      ],
       "properties": [
         {
           "name": "aquasecurity:trivy:FilePath",
@@ -1444,22 +1807,105 @@
         {
           "name": "aquasecurity:trivy:PkgType",
           "value": "jar"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2020-05-04T10:46:01Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2026-03-05T12:10:02Z"
+        },
+        {
+          "name": "ecosystems:owner_location",
+          "value": "the cloud"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "dsl"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "java"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "java-client"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "kubernetes"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "kubernetes-client"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "kubernetes-model"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "mock-server"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "mocking-kubernetes"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "openshift"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "openshift-client"
         }
       ]
     },
     {
       "bom-ref": "pkg:maven/io.fabric8/kubernetes-model-apps@7.3.1",
       "type": "library",
+      "supplier": {
+        "name": "fabric8",
+        "url": [
+          "https://fabric8.io/"
+        ]
+      },
+      "author": "fabric8",
       "group": "io.fabric8",
       "name": "kubernetes-model-apps",
       "version": "7.3.1",
+      "description": "Java client for Kubernetes and OpenShift",
       "hashes": [
         {
           "alg": "SHA-1",
           "content": "e3513a12e3848e5b4302ad4df85ee128ba6bd085"
         }
       ],
+      "licenses": [
+        {
+          "expression": "(Apache-2.0)"
+        }
+      ],
       "purl": "pkg:maven/io.fabric8/kubernetes-model-apps@7.3.1",
+      "externalReferences": [
+        {
+          "url": "https://github.com/fabric8io/kubernetes-client",
+          "type": "website"
+        },
+        {
+          "url": "https://central.sonatype.com/artifact/io.fabric8/kubernetes-model-apps/",
+          "type": "distribution"
+        },
+        {
+          "url": "https://github.com/fabric8io/kubernetes-client",
+          "type": "vcs"
+        },
+        {
+          "url": "https://appdoc.app/artifact/io.fabric8/kubernetes-model-apps/",
+          "type": "documentation"
+        }
+      ],
       "properties": [
         {
           "name": "aquasecurity:trivy:FilePath",
@@ -1476,22 +1922,105 @@
         {
           "name": "aquasecurity:trivy:PkgType",
           "value": "jar"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2020-05-04T10:43:36Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2026-03-05T12:10:02Z"
+        },
+        {
+          "name": "ecosystems:owner_location",
+          "value": "the cloud"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "dsl"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "java"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "java-client"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "kubernetes"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "kubernetes-client"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "kubernetes-model"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "mock-server"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "mocking-kubernetes"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "openshift"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "openshift-client"
         }
       ]
     },
     {
       "bom-ref": "pkg:maven/io.fabric8/kubernetes-model-autoscaling@7.3.1",
       "type": "library",
+      "supplier": {
+        "name": "fabric8",
+        "url": [
+          "https://fabric8.io/"
+        ]
+      },
+      "author": "fabric8",
       "group": "io.fabric8",
       "name": "kubernetes-model-autoscaling",
       "version": "7.3.1",
+      "description": "Java client for Kubernetes and OpenShift",
       "hashes": [
         {
           "alg": "SHA-1",
           "content": "f6ccdf1648da21f59283580d83ea109e05d2b631"
         }
       ],
+      "licenses": [
+        {
+          "expression": "(Apache-2.0)"
+        }
+      ],
       "purl": "pkg:maven/io.fabric8/kubernetes-model-autoscaling@7.3.1",
+      "externalReferences": [
+        {
+          "url": "https://github.com/fabric8io/kubernetes-client",
+          "type": "website"
+        },
+        {
+          "url": "https://central.sonatype.com/artifact/io.fabric8/kubernetes-model-autoscaling/",
+          "type": "distribution"
+        },
+        {
+          "url": "https://github.com/fabric8io/kubernetes-client",
+          "type": "vcs"
+        },
+        {
+          "url": "https://appdoc.app/artifact/io.fabric8/kubernetes-model-autoscaling/",
+          "type": "documentation"
+        }
+      ],
       "properties": [
         {
           "name": "aquasecurity:trivy:FilePath",
@@ -1508,22 +2037,105 @@
         {
           "name": "aquasecurity:trivy:PkgType",
           "value": "jar"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2020-05-04T10:34:05Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2026-03-05T12:10:02Z"
+        },
+        {
+          "name": "ecosystems:owner_location",
+          "value": "the cloud"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "dsl"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "java"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "java-client"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "kubernetes"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "kubernetes-client"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "kubernetes-model"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "mock-server"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "mocking-kubernetes"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "openshift"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "openshift-client"
         }
       ]
     },
     {
       "bom-ref": "pkg:maven/io.fabric8/kubernetes-model-batch@7.3.1",
       "type": "library",
+      "supplier": {
+        "name": "fabric8",
+        "url": [
+          "https://fabric8.io/"
+        ]
+      },
+      "author": "fabric8",
       "group": "io.fabric8",
       "name": "kubernetes-model-batch",
       "version": "7.3.1",
+      "description": "Java client for Kubernetes and OpenShift",
       "hashes": [
         {
           "alg": "SHA-1",
           "content": "77b75b50305dbde6d5905bc48b10452e2fd60925"
         }
       ],
+      "licenses": [
+        {
+          "expression": "(Apache-2.0)"
+        }
+      ],
       "purl": "pkg:maven/io.fabric8/kubernetes-model-batch@7.3.1",
+      "externalReferences": [
+        {
+          "url": "https://github.com/fabric8io/kubernetes-client",
+          "type": "website"
+        },
+        {
+          "url": "https://central.sonatype.com/artifact/io.fabric8/kubernetes-model-batch/",
+          "type": "distribution"
+        },
+        {
+          "url": "https://github.com/fabric8io/kubernetes-client",
+          "type": "vcs"
+        },
+        {
+          "url": "https://appdoc.app/artifact/io.fabric8/kubernetes-model-batch/",
+          "type": "documentation"
+        }
+      ],
       "properties": [
         {
           "name": "aquasecurity:trivy:FilePath",
@@ -1540,22 +2152,105 @@
         {
           "name": "aquasecurity:trivy:PkgType",
           "value": "jar"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2020-05-04T10:31:58Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2026-03-05T12:10:02Z"
+        },
+        {
+          "name": "ecosystems:owner_location",
+          "value": "the cloud"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "dsl"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "java"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "java-client"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "kubernetes"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "kubernetes-client"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "kubernetes-model"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "mock-server"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "mocking-kubernetes"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "openshift"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "openshift-client"
         }
       ]
     },
     {
       "bom-ref": "pkg:maven/io.fabric8/kubernetes-model-certificates@7.3.1",
       "type": "library",
+      "supplier": {
+        "name": "fabric8",
+        "url": [
+          "https://fabric8.io/"
+        ]
+      },
+      "author": "fabric8",
       "group": "io.fabric8",
       "name": "kubernetes-model-certificates",
       "version": "7.3.1",
+      "description": "Java client for Kubernetes and OpenShift",
       "hashes": [
         {
           "alg": "SHA-1",
           "content": "39ab3f9e1f4391454bb27f24df8abdf1c162aaf4"
         }
       ],
+      "licenses": [
+        {
+          "expression": "(Apache-2.0)"
+        }
+      ],
       "purl": "pkg:maven/io.fabric8/kubernetes-model-certificates@7.3.1",
+      "externalReferences": [
+        {
+          "url": "https://github.com/fabric8io/kubernetes-client",
+          "type": "website"
+        },
+        {
+          "url": "https://central.sonatype.com/artifact/io.fabric8/kubernetes-model-certificates/",
+          "type": "distribution"
+        },
+        {
+          "url": "https://github.com/fabric8io/kubernetes-client",
+          "type": "vcs"
+        },
+        {
+          "url": "https://appdoc.app/artifact/io.fabric8/kubernetes-model-certificates/",
+          "type": "documentation"
+        }
+      ],
       "properties": [
         {
           "name": "aquasecurity:trivy:FilePath",
@@ -1572,22 +2267,105 @@
         {
           "name": "aquasecurity:trivy:PkgType",
           "value": "jar"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2020-05-04T10:34:23Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2026-03-05T12:10:02Z"
+        },
+        {
+          "name": "ecosystems:owner_location",
+          "value": "the cloud"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "dsl"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "java"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "java-client"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "kubernetes"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "kubernetes-client"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "kubernetes-model"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "mock-server"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "mocking-kubernetes"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "openshift"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "openshift-client"
         }
       ]
     },
     {
       "bom-ref": "pkg:maven/io.fabric8/kubernetes-model-common@7.3.1",
       "type": "library",
+      "supplier": {
+        "name": "fabric8",
+        "url": [
+          "https://fabric8.io/"
+        ]
+      },
+      "author": "fabric8",
       "group": "io.fabric8",
       "name": "kubernetes-model-common",
       "version": "7.3.1",
+      "description": "Java client for Kubernetes and OpenShift",
       "hashes": [
         {
           "alg": "SHA-1",
           "content": "b798b61d2c34ff9fb5203b86c9234a3311fd6a5e"
         }
       ],
+      "licenses": [
+        {
+          "expression": "(Apache-2.0)"
+        }
+      ],
       "purl": "pkg:maven/io.fabric8/kubernetes-model-common@7.3.1",
+      "externalReferences": [
+        {
+          "url": "https://github.com/fabric8io/kubernetes-client",
+          "type": "website"
+        },
+        {
+          "url": "https://central.sonatype.com/artifact/io.fabric8/kubernetes-model-common/",
+          "type": "distribution"
+        },
+        {
+          "url": "https://github.com/fabric8io/kubernetes-client",
+          "type": "vcs"
+        },
+        {
+          "url": "https://appdoc.app/artifact/io.fabric8/kubernetes-model-common/",
+          "type": "documentation"
+        }
+      ],
       "properties": [
         {
           "name": "aquasecurity:trivy:FilePath",
@@ -1604,22 +2382,105 @@
         {
           "name": "aquasecurity:trivy:PkgType",
           "value": "jar"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2019-02-16T06:27:06Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2026-03-05T12:10:02Z"
+        },
+        {
+          "name": "ecosystems:owner_location",
+          "value": "the cloud"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "dsl"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "java"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "java-client"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "kubernetes"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "kubernetes-client"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "kubernetes-model"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "mock-server"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "mocking-kubernetes"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "openshift"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "openshift-client"
         }
       ]
     },
     {
       "bom-ref": "pkg:maven/io.fabric8/kubernetes-model-coordination@7.3.1",
       "type": "library",
+      "supplier": {
+        "name": "fabric8",
+        "url": [
+          "https://fabric8.io/"
+        ]
+      },
+      "author": "fabric8",
       "group": "io.fabric8",
       "name": "kubernetes-model-coordination",
       "version": "7.3.1",
+      "description": "Java client for Kubernetes and OpenShift",
       "hashes": [
         {
           "alg": "SHA-1",
           "content": "3c0d0fbebf33c2b7a09a8b8538ff175f346f8f15"
         }
       ],
+      "licenses": [
+        {
+          "expression": "(Apache-2.0)"
+        }
+      ],
       "purl": "pkg:maven/io.fabric8/kubernetes-model-coordination@7.3.1",
+      "externalReferences": [
+        {
+          "url": "https://github.com/fabric8io/kubernetes-client",
+          "type": "website"
+        },
+        {
+          "url": "https://central.sonatype.com/artifact/io.fabric8/kubernetes-model-coordination/",
+          "type": "distribution"
+        },
+        {
+          "url": "https://github.com/fabric8io/kubernetes-client",
+          "type": "vcs"
+        },
+        {
+          "url": "https://appdoc.app/artifact/io.fabric8/kubernetes-model-coordination/",
+          "type": "documentation"
+        }
+      ],
       "properties": [
         {
           "name": "aquasecurity:trivy:FilePath",
@@ -1636,22 +2497,105 @@
         {
           "name": "aquasecurity:trivy:PkgType",
           "value": "jar"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2020-05-04T10:38:00Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2026-03-05T12:10:02Z"
+        },
+        {
+          "name": "ecosystems:owner_location",
+          "value": "the cloud"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "dsl"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "java"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "java-client"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "kubernetes"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "kubernetes-client"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "kubernetes-model"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "mock-server"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "mocking-kubernetes"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "openshift"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "openshift-client"
         }
       ]
     },
     {
       "bom-ref": "pkg:maven/io.fabric8/kubernetes-model-core@7.3.1",
       "type": "library",
+      "supplier": {
+        "name": "fabric8",
+        "url": [
+          "https://fabric8.io/"
+        ]
+      },
+      "author": "fabric8",
       "group": "io.fabric8",
       "name": "kubernetes-model-core",
       "version": "7.3.1",
+      "description": "Java client for Kubernetes and OpenShift",
       "hashes": [
         {
           "alg": "SHA-1",
           "content": "330ae929d37709611288efa9d9f43d107a9370a9"
         }
       ],
+      "licenses": [
+        {
+          "expression": "(Apache-2.0)"
+        }
+      ],
       "purl": "pkg:maven/io.fabric8/kubernetes-model-core@7.3.1",
+      "externalReferences": [
+        {
+          "url": "https://github.com/fabric8io/kubernetes-client",
+          "type": "website"
+        },
+        {
+          "url": "https://central.sonatype.com/artifact/io.fabric8/kubernetes-model-core/",
+          "type": "distribution"
+        },
+        {
+          "url": "https://github.com/fabric8io/kubernetes-client",
+          "type": "vcs"
+        },
+        {
+          "url": "https://appdoc.app/artifact/io.fabric8/kubernetes-model-core/",
+          "type": "documentation"
+        }
+      ],
       "properties": [
         {
           "name": "aquasecurity:trivy:FilePath",
@@ -1668,22 +2612,105 @@
         {
           "name": "aquasecurity:trivy:PkgType",
           "value": "jar"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2020-05-04T10:37:34Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2026-03-05T12:10:02Z"
+        },
+        {
+          "name": "ecosystems:owner_location",
+          "value": "the cloud"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "dsl"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "java"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "java-client"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "kubernetes"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "kubernetes-client"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "kubernetes-model"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "mock-server"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "mocking-kubernetes"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "openshift"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "openshift-client"
         }
       ]
     },
     {
       "bom-ref": "pkg:maven/io.fabric8/kubernetes-model-discovery@7.3.1",
       "type": "library",
+      "supplier": {
+        "name": "fabric8",
+        "url": [
+          "https://fabric8.io/"
+        ]
+      },
+      "author": "fabric8",
       "group": "io.fabric8",
       "name": "kubernetes-model-discovery",
       "version": "7.3.1",
+      "description": "Java client for Kubernetes and OpenShift",
       "hashes": [
         {
           "alg": "SHA-1",
           "content": "77ab8aa484815b9c4f4eff215baf3ee37dad021f"
         }
       ],
+      "licenses": [
+        {
+          "expression": "(Apache-2.0)"
+        }
+      ],
       "purl": "pkg:maven/io.fabric8/kubernetes-model-discovery@7.3.1",
+      "externalReferences": [
+        {
+          "url": "https://github.com/fabric8io/kubernetes-client",
+          "type": "website"
+        },
+        {
+          "url": "https://central.sonatype.com/artifact/io.fabric8/kubernetes-model-discovery/",
+          "type": "distribution"
+        },
+        {
+          "url": "https://github.com/fabric8io/kubernetes-client",
+          "type": "vcs"
+        },
+        {
+          "url": "https://appdoc.app/artifact/io.fabric8/kubernetes-model-discovery/",
+          "type": "documentation"
+        }
+      ],
       "properties": [
         {
           "name": "aquasecurity:trivy:FilePath",
@@ -1700,22 +2727,105 @@
         {
           "name": "aquasecurity:trivy:PkgType",
           "value": "jar"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2020-05-04T10:30:48Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2026-03-05T12:10:02Z"
+        },
+        {
+          "name": "ecosystems:owner_location",
+          "value": "the cloud"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "dsl"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "java"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "java-client"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "kubernetes"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "kubernetes-client"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "kubernetes-model"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "mock-server"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "mocking-kubernetes"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "openshift"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "openshift-client"
         }
       ]
     },
     {
       "bom-ref": "pkg:maven/io.fabric8/kubernetes-model-events@7.3.1",
       "type": "library",
+      "supplier": {
+        "name": "fabric8",
+        "url": [
+          "https://fabric8.io/"
+        ]
+      },
+      "author": "fabric8",
       "group": "io.fabric8",
       "name": "kubernetes-model-events",
       "version": "7.3.1",
+      "description": "Java client for Kubernetes and OpenShift",
       "hashes": [
         {
           "alg": "SHA-1",
           "content": "ca07a7de17799d7d070f89169fda2be987c13d09"
         }
       ],
+      "licenses": [
+        {
+          "expression": "(Apache-2.0)"
+        }
+      ],
       "purl": "pkg:maven/io.fabric8/kubernetes-model-events@7.3.1",
+      "externalReferences": [
+        {
+          "url": "https://github.com/fabric8io/kubernetes-client",
+          "type": "website"
+        },
+        {
+          "url": "https://central.sonatype.com/artifact/io.fabric8/kubernetes-model-events/",
+          "type": "distribution"
+        },
+        {
+          "url": "https://github.com/fabric8io/kubernetes-client",
+          "type": "vcs"
+        },
+        {
+          "url": "https://appdoc.app/artifact/io.fabric8/kubernetes-model-events/",
+          "type": "documentation"
+        }
+      ],
       "properties": [
         {
           "name": "aquasecurity:trivy:FilePath",
@@ -1732,22 +2842,105 @@
         {
           "name": "aquasecurity:trivy:PkgType",
           "value": "jar"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2020-05-04T10:44:51Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2026-03-05T12:10:02Z"
+        },
+        {
+          "name": "ecosystems:owner_location",
+          "value": "the cloud"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "dsl"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "java"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "java-client"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "kubernetes"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "kubernetes-client"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "kubernetes-model"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "mock-server"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "mocking-kubernetes"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "openshift"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "openshift-client"
         }
       ]
     },
     {
       "bom-ref": "pkg:maven/io.fabric8/kubernetes-model-extensions@7.3.1",
       "type": "library",
+      "supplier": {
+        "name": "fabric8",
+        "url": [
+          "https://fabric8.io/"
+        ]
+      },
+      "author": "fabric8",
       "group": "io.fabric8",
       "name": "kubernetes-model-extensions",
       "version": "7.3.1",
+      "description": "Java client for Kubernetes and OpenShift",
       "hashes": [
         {
           "alg": "SHA-1",
           "content": "e5c66684680821c386f2cfc0254850c766c927a0"
         }
       ],
+      "licenses": [
+        {
+          "expression": "(Apache-2.0)"
+        }
+      ],
       "purl": "pkg:maven/io.fabric8/kubernetes-model-extensions@7.3.1",
+      "externalReferences": [
+        {
+          "url": "https://github.com/fabric8io/kubernetes-client",
+          "type": "website"
+        },
+        {
+          "url": "https://central.sonatype.com/artifact/io.fabric8/kubernetes-model-extensions/",
+          "type": "distribution"
+        },
+        {
+          "url": "https://github.com/fabric8io/kubernetes-client",
+          "type": "vcs"
+        },
+        {
+          "url": "https://appdoc.app/artifact/io.fabric8/kubernetes-model-extensions/",
+          "type": "documentation"
+        }
+      ],
       "properties": [
         {
           "name": "aquasecurity:trivy:FilePath",
@@ -1764,22 +2957,105 @@
         {
           "name": "aquasecurity:trivy:PkgType",
           "value": "jar"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2020-05-04T10:46:05Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2026-03-05T12:10:02Z"
+        },
+        {
+          "name": "ecosystems:owner_location",
+          "value": "the cloud"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "dsl"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "java"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "java-client"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "kubernetes"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "kubernetes-client"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "kubernetes-model"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "mock-server"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "mocking-kubernetes"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "openshift"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "openshift-client"
         }
       ]
     },
     {
       "bom-ref": "pkg:maven/io.fabric8/kubernetes-model-flowcontrol@7.3.1",
       "type": "library",
+      "supplier": {
+        "name": "fabric8",
+        "url": [
+          "https://fabric8.io/"
+        ]
+      },
+      "author": "fabric8",
       "group": "io.fabric8",
       "name": "kubernetes-model-flowcontrol",
       "version": "7.3.1",
+      "description": "Java client for Kubernetes and OpenShift",
       "hashes": [
         {
           "alg": "SHA-1",
           "content": "101b3bb2cfd27c80faced4c57631c14b1d9754ba"
         }
       ],
+      "licenses": [
+        {
+          "expression": "(Apache-2.0)"
+        }
+      ],
       "purl": "pkg:maven/io.fabric8/kubernetes-model-flowcontrol@7.3.1",
+      "externalReferences": [
+        {
+          "url": "https://github.com/fabric8io/kubernetes-client",
+          "type": "website"
+        },
+        {
+          "url": "https://central.sonatype.com/artifact/io.fabric8/kubernetes-model-flowcontrol/",
+          "type": "distribution"
+        },
+        {
+          "url": "https://github.com/fabric8io/kubernetes-client",
+          "type": "vcs"
+        },
+        {
+          "url": "https://appdoc.app/artifact/io.fabric8/kubernetes-model-flowcontrol/",
+          "type": "documentation"
+        }
+      ],
       "properties": [
         {
           "name": "aquasecurity:trivy:FilePath",
@@ -1796,22 +3072,105 @@
         {
           "name": "aquasecurity:trivy:PkgType",
           "value": "jar"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2021-05-19T12:52:11Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2026-03-05T12:10:02Z"
+        },
+        {
+          "name": "ecosystems:owner_location",
+          "value": "the cloud"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "dsl"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "java"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "java-client"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "kubernetes"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "kubernetes-client"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "kubernetes-model"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "mock-server"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "mocking-kubernetes"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "openshift"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "openshift-client"
         }
       ]
     },
     {
       "bom-ref": "pkg:maven/io.fabric8/kubernetes-model-gatewayapi@7.3.1",
       "type": "library",
+      "supplier": {
+        "name": "fabric8",
+        "url": [
+          "https://fabric8.io/"
+        ]
+      },
+      "author": "fabric8",
       "group": "io.fabric8",
       "name": "kubernetes-model-gatewayapi",
       "version": "7.3.1",
+      "description": "Java client for Kubernetes and OpenShift",
       "hashes": [
         {
           "alg": "SHA-1",
           "content": "3dba8baaac35743546fa2cfca8fca5ed6a3196fc"
         }
       ],
+      "licenses": [
+        {
+          "expression": "(Apache-2.0)"
+        }
+      ],
       "purl": "pkg:maven/io.fabric8/kubernetes-model-gatewayapi@7.3.1",
+      "externalReferences": [
+        {
+          "url": "https://github.com/fabric8io/kubernetes-client",
+          "type": "website"
+        },
+        {
+          "url": "https://central.sonatype.com/artifact/io.fabric8/kubernetes-model-gatewayapi/",
+          "type": "distribution"
+        },
+        {
+          "url": "https://github.com/fabric8io/kubernetes-client",
+          "type": "vcs"
+        },
+        {
+          "url": "https://appdoc.app/artifact/io.fabric8/kubernetes-model-gatewayapi/",
+          "type": "documentation"
+        }
+      ],
       "properties": [
         {
           "name": "aquasecurity:trivy:FilePath",
@@ -1828,22 +3187,105 @@
         {
           "name": "aquasecurity:trivy:PkgType",
           "value": "jar"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2022-08-31T13:49:46Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2026-03-05T12:10:02Z"
+        },
+        {
+          "name": "ecosystems:owner_location",
+          "value": "the cloud"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "dsl"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "java"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "java-client"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "kubernetes"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "kubernetes-client"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "kubernetes-model"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "mock-server"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "mocking-kubernetes"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "openshift"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "openshift-client"
         }
       ]
     },
     {
       "bom-ref": "pkg:maven/io.fabric8/kubernetes-model-metrics@7.3.1",
       "type": "library",
+      "supplier": {
+        "name": "fabric8",
+        "url": [
+          "https://fabric8.io/"
+        ]
+      },
+      "author": "fabric8",
       "group": "io.fabric8",
       "name": "kubernetes-model-metrics",
       "version": "7.3.1",
+      "description": "Java client for Kubernetes and OpenShift",
       "hashes": [
         {
           "alg": "SHA-1",
           "content": "d4e1568724ba77b92f07a14945e62592dc9f89d4"
         }
       ],
+      "licenses": [
+        {
+          "expression": "(Apache-2.0)"
+        }
+      ],
       "purl": "pkg:maven/io.fabric8/kubernetes-model-metrics@7.3.1",
+      "externalReferences": [
+        {
+          "url": "https://github.com/fabric8io/kubernetes-client",
+          "type": "website"
+        },
+        {
+          "url": "https://central.sonatype.com/artifact/io.fabric8/kubernetes-model-metrics/",
+          "type": "distribution"
+        },
+        {
+          "url": "https://github.com/fabric8io/kubernetes-client",
+          "type": "vcs"
+        },
+        {
+          "url": "https://appdoc.app/artifact/io.fabric8/kubernetes-model-metrics/",
+          "type": "documentation"
+        }
+      ],
       "properties": [
         {
           "name": "aquasecurity:trivy:FilePath",
@@ -1860,22 +3302,105 @@
         {
           "name": "aquasecurity:trivy:PkgType",
           "value": "jar"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2020-05-04T10:43:51Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2026-03-05T12:10:02Z"
+        },
+        {
+          "name": "ecosystems:owner_location",
+          "value": "the cloud"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "dsl"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "java"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "java-client"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "kubernetes"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "kubernetes-client"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "kubernetes-model"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "mock-server"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "mocking-kubernetes"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "openshift"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "openshift-client"
         }
       ]
     },
     {
       "bom-ref": "pkg:maven/io.fabric8/kubernetes-model-networking@7.3.1",
       "type": "library",
+      "supplier": {
+        "name": "fabric8",
+        "url": [
+          "https://fabric8.io/"
+        ]
+      },
+      "author": "fabric8",
       "group": "io.fabric8",
       "name": "kubernetes-model-networking",
       "version": "7.3.1",
+      "description": "Java client for Kubernetes and OpenShift",
       "hashes": [
         {
           "alg": "SHA-1",
           "content": "135029d61d10d3dc47d41c58d1c60b2b10f0e894"
         }
       ],
+      "licenses": [
+        {
+          "expression": "(Apache-2.0)"
+        }
+      ],
       "purl": "pkg:maven/io.fabric8/kubernetes-model-networking@7.3.1",
+      "externalReferences": [
+        {
+          "url": "https://github.com/fabric8io/kubernetes-client",
+          "type": "website"
+        },
+        {
+          "url": "https://central.sonatype.com/artifact/io.fabric8/kubernetes-model-networking/",
+          "type": "distribution"
+        },
+        {
+          "url": "https://github.com/fabric8io/kubernetes-client",
+          "type": "vcs"
+        },
+        {
+          "url": "https://appdoc.app/artifact/io.fabric8/kubernetes-model-networking/",
+          "type": "documentation"
+        }
+      ],
       "properties": [
         {
           "name": "aquasecurity:trivy:FilePath",
@@ -1892,22 +3417,105 @@
         {
           "name": "aquasecurity:trivy:PkgType",
           "value": "jar"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2020-05-04T10:45:47Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2026-03-05T12:10:02Z"
+        },
+        {
+          "name": "ecosystems:owner_location",
+          "value": "the cloud"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "dsl"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "java"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "java-client"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "kubernetes"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "kubernetes-client"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "kubernetes-model"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "mock-server"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "mocking-kubernetes"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "openshift"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "openshift-client"
         }
       ]
     },
     {
       "bom-ref": "pkg:maven/io.fabric8/kubernetes-model-node@7.3.1",
       "type": "library",
+      "supplier": {
+        "name": "fabric8",
+        "url": [
+          "https://fabric8.io/"
+        ]
+      },
+      "author": "fabric8",
       "group": "io.fabric8",
       "name": "kubernetes-model-node",
       "version": "7.3.1",
+      "description": "Java client for Kubernetes and OpenShift",
       "hashes": [
         {
           "alg": "SHA-1",
           "content": "59c9f1a6e72034e3f7988ef84cafa0d8e6c72738"
         }
       ],
+      "licenses": [
+        {
+          "expression": "(Apache-2.0)"
+        }
+      ],
       "purl": "pkg:maven/io.fabric8/kubernetes-model-node@7.3.1",
+      "externalReferences": [
+        {
+          "url": "https://github.com/fabric8io/kubernetes-client",
+          "type": "website"
+        },
+        {
+          "url": "https://central.sonatype.com/artifact/io.fabric8/kubernetes-model-node/",
+          "type": "distribution"
+        },
+        {
+          "url": "https://github.com/fabric8io/kubernetes-client",
+          "type": "vcs"
+        },
+        {
+          "url": "https://appdoc.app/artifact/io.fabric8/kubernetes-model-node/",
+          "type": "documentation"
+        }
+      ],
       "properties": [
         {
           "name": "aquasecurity:trivy:FilePath",
@@ -1924,22 +3532,105 @@
         {
           "name": "aquasecurity:trivy:PkgType",
           "value": "jar"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2020-11-10T12:29:39Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2026-03-05T12:10:02Z"
+        },
+        {
+          "name": "ecosystems:owner_location",
+          "value": "the cloud"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "dsl"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "java"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "java-client"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "kubernetes"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "kubernetes-client"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "kubernetes-model"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "mock-server"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "mocking-kubernetes"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "openshift"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "openshift-client"
         }
       ]
     },
     {
       "bom-ref": "pkg:maven/io.fabric8/kubernetes-model-policy@7.3.1",
       "type": "library",
+      "supplier": {
+        "name": "fabric8",
+        "url": [
+          "https://fabric8.io/"
+        ]
+      },
+      "author": "fabric8",
       "group": "io.fabric8",
       "name": "kubernetes-model-policy",
       "version": "7.3.1",
+      "description": "Java client for Kubernetes and OpenShift",
       "hashes": [
         {
           "alg": "SHA-1",
           "content": "e5cb9f8ac22b5bb89b643ab94902349ee667e784"
         }
       ],
+      "licenses": [
+        {
+          "expression": "(Apache-2.0)"
+        }
+      ],
       "purl": "pkg:maven/io.fabric8/kubernetes-model-policy@7.3.1",
+      "externalReferences": [
+        {
+          "url": "https://github.com/fabric8io/kubernetes-client",
+          "type": "website"
+        },
+        {
+          "url": "https://central.sonatype.com/artifact/io.fabric8/kubernetes-model-policy/",
+          "type": "distribution"
+        },
+        {
+          "url": "https://github.com/fabric8io/kubernetes-client",
+          "type": "vcs"
+        },
+        {
+          "url": "https://appdoc.app/artifact/io.fabric8/kubernetes-model-policy/",
+          "type": "documentation"
+        }
+      ],
       "properties": [
         {
           "name": "aquasecurity:trivy:FilePath",
@@ -1956,22 +3647,105 @@
         {
           "name": "aquasecurity:trivy:PkgType",
           "value": "jar"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2020-05-04T10:46:11Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2026-03-05T12:10:02Z"
+        },
+        {
+          "name": "ecosystems:owner_location",
+          "value": "the cloud"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "dsl"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "java"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "java-client"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "kubernetes"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "kubernetes-client"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "kubernetes-model"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "mock-server"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "mocking-kubernetes"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "openshift"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "openshift-client"
         }
       ]
     },
     {
       "bom-ref": "pkg:maven/io.fabric8/kubernetes-model-rbac@7.3.1",
       "type": "library",
+      "supplier": {
+        "name": "fabric8",
+        "url": [
+          "https://fabric8.io/"
+        ]
+      },
+      "author": "fabric8",
       "group": "io.fabric8",
       "name": "kubernetes-model-rbac",
       "version": "7.3.1",
+      "description": "Java client for Kubernetes and OpenShift",
       "hashes": [
         {
           "alg": "SHA-1",
           "content": "ee84dfb9e54691ad32e056f13a9263dc7bab10f5"
         }
       ],
+      "licenses": [
+        {
+          "expression": "(Apache-2.0)"
+        }
+      ],
       "purl": "pkg:maven/io.fabric8/kubernetes-model-rbac@7.3.1",
+      "externalReferences": [
+        {
+          "url": "https://github.com/fabric8io/kubernetes-client",
+          "type": "website"
+        },
+        {
+          "url": "https://central.sonatype.com/artifact/io.fabric8/kubernetes-model-rbac/",
+          "type": "distribution"
+        },
+        {
+          "url": "https://github.com/fabric8io/kubernetes-client",
+          "type": "vcs"
+        },
+        {
+          "url": "https://appdoc.app/artifact/io.fabric8/kubernetes-model-rbac/",
+          "type": "documentation"
+        }
+      ],
       "properties": [
         {
           "name": "aquasecurity:trivy:FilePath",
@@ -1988,22 +3762,105 @@
         {
           "name": "aquasecurity:trivy:PkgType",
           "value": "jar"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2020-05-04T10:44:09Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2026-03-05T12:10:02Z"
+        },
+        {
+          "name": "ecosystems:owner_location",
+          "value": "the cloud"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "dsl"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "java"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "java-client"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "kubernetes"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "kubernetes-client"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "kubernetes-model"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "mock-server"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "mocking-kubernetes"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "openshift"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "openshift-client"
         }
       ]
     },
     {
       "bom-ref": "pkg:maven/io.fabric8/kubernetes-model-resource@7.3.1",
       "type": "library",
+      "supplier": {
+        "name": "fabric8",
+        "url": [
+          "https://fabric8.io/"
+        ]
+      },
+      "author": "fabric8",
       "group": "io.fabric8",
       "name": "kubernetes-model-resource",
       "version": "7.3.1",
+      "description": "Java client for Kubernetes and OpenShift",
       "hashes": [
         {
           "alg": "SHA-1",
           "content": "302f2c82c473bb957c46dc11dc1491258f98eaf3"
         }
       ],
+      "licenses": [
+        {
+          "expression": "(Apache-2.0)"
+        }
+      ],
       "purl": "pkg:maven/io.fabric8/kubernetes-model-resource@7.3.1",
+      "externalReferences": [
+        {
+          "url": "https://github.com/fabric8io/kubernetes-client",
+          "type": "website"
+        },
+        {
+          "url": "https://central.sonatype.com/artifact/io.fabric8/kubernetes-model-resource/",
+          "type": "distribution"
+        },
+        {
+          "url": "https://github.com/fabric8io/kubernetes-client",
+          "type": "vcs"
+        },
+        {
+          "url": "https://appdoc.app/artifact/io.fabric8/kubernetes-model-resource/",
+          "type": "documentation"
+        }
+      ],
       "properties": [
         {
           "name": "aquasecurity:trivy:FilePath",
@@ -2020,22 +3877,105 @@
         {
           "name": "aquasecurity:trivy:PkgType",
           "value": "jar"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2023-03-10T15:07:50Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2026-03-05T12:10:02Z"
+        },
+        {
+          "name": "ecosystems:owner_location",
+          "value": "the cloud"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "dsl"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "java"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "java-client"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "kubernetes"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "kubernetes-client"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "kubernetes-model"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "mock-server"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "mocking-kubernetes"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "openshift"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "openshift-client"
         }
       ]
     },
     {
       "bom-ref": "pkg:maven/io.fabric8/kubernetes-model-scheduling@7.3.1",
       "type": "library",
+      "supplier": {
+        "name": "fabric8",
+        "url": [
+          "https://fabric8.io/"
+        ]
+      },
+      "author": "fabric8",
       "group": "io.fabric8",
       "name": "kubernetes-model-scheduling",
       "version": "7.3.1",
+      "description": "Java client for Kubernetes and OpenShift",
       "hashes": [
         {
           "alg": "SHA-1",
           "content": "41c731664e426757801fb78f39ef956d3c6ab708"
         }
       ],
+      "licenses": [
+        {
+          "expression": "(Apache-2.0)"
+        }
+      ],
       "purl": "pkg:maven/io.fabric8/kubernetes-model-scheduling@7.3.1",
+      "externalReferences": [
+        {
+          "url": "https://github.com/fabric8io/kubernetes-client",
+          "type": "website"
+        },
+        {
+          "url": "https://central.sonatype.com/artifact/io.fabric8/kubernetes-model-scheduling/",
+          "type": "distribution"
+        },
+        {
+          "url": "https://github.com/fabric8io/kubernetes-client",
+          "type": "vcs"
+        },
+        {
+          "url": "https://appdoc.app/artifact/io.fabric8/kubernetes-model-scheduling/",
+          "type": "documentation"
+        }
+      ],
       "properties": [
         {
           "name": "aquasecurity:trivy:FilePath",
@@ -2052,22 +3992,105 @@
         {
           "name": "aquasecurity:trivy:PkgType",
           "value": "jar"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2020-05-04T10:45:33Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2026-03-05T12:10:02Z"
+        },
+        {
+          "name": "ecosystems:owner_location",
+          "value": "the cloud"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "dsl"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "java"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "java-client"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "kubernetes"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "kubernetes-client"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "kubernetes-model"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "mock-server"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "mocking-kubernetes"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "openshift"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "openshift-client"
         }
       ]
     },
     {
       "bom-ref": "pkg:maven/io.fabric8/kubernetes-model-storageclass@7.3.1",
       "type": "library",
+      "supplier": {
+        "name": "fabric8",
+        "url": [
+          "https://fabric8.io/"
+        ]
+      },
+      "author": "fabric8",
       "group": "io.fabric8",
       "name": "kubernetes-model-storageclass",
       "version": "7.3.1",
+      "description": "Java client for Kubernetes and OpenShift",
       "hashes": [
         {
           "alg": "SHA-1",
           "content": "19db992964d367af20e480cda565964dada6734a"
         }
       ],
+      "licenses": [
+        {
+          "expression": "(Apache-2.0)"
+        }
+      ],
       "purl": "pkg:maven/io.fabric8/kubernetes-model-storageclass@7.3.1",
+      "externalReferences": [
+        {
+          "url": "https://github.com/fabric8io/kubernetes-client",
+          "type": "website"
+        },
+        {
+          "url": "https://central.sonatype.com/artifact/io.fabric8/kubernetes-model-storageclass/",
+          "type": "distribution"
+        },
+        {
+          "url": "https://github.com/fabric8io/kubernetes-client",
+          "type": "vcs"
+        },
+        {
+          "url": "https://appdoc.app/artifact/io.fabric8/kubernetes-model-storageclass/",
+          "type": "documentation"
+        }
+      ],
       "properties": [
         {
           "name": "aquasecurity:trivy:FilePath",
@@ -2084,22 +4107,105 @@
         {
           "name": "aquasecurity:trivy:PkgType",
           "value": "jar"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2020-05-04T10:44:55Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2026-03-05T12:10:02Z"
+        },
+        {
+          "name": "ecosystems:owner_location",
+          "value": "the cloud"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "dsl"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "java"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "java-client"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "kubernetes"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "kubernetes-client"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "kubernetes-model"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "mock-server"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "mocking-kubernetes"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "openshift"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "openshift-client"
         }
       ]
     },
     {
       "bom-ref": "pkg:maven/io.fabric8/openshift-client-api@7.3.1",
       "type": "library",
+      "supplier": {
+        "name": "fabric8",
+        "url": [
+          "https://fabric8.io/"
+        ]
+      },
+      "author": "fabric8",
       "group": "io.fabric8",
       "name": "openshift-client-api",
       "version": "7.3.1",
+      "description": "Java client for Kubernetes and OpenShift",
       "hashes": [
         {
           "alg": "SHA-1",
           "content": "0604de830898d48cf35a91a325ffafda9ee4f4c6"
         }
       ],
+      "licenses": [
+        {
+          "expression": "(Apache-2.0)"
+        }
+      ],
       "purl": "pkg:maven/io.fabric8/openshift-client-api@7.3.1",
+      "externalReferences": [
+        {
+          "url": "https://github.com/fabric8io/kubernetes-client",
+          "type": "website"
+        },
+        {
+          "url": "https://central.sonatype.com/artifact/io.fabric8/openshift-client-api/",
+          "type": "distribution"
+        },
+        {
+          "url": "https://github.com/fabric8io/kubernetes-client",
+          "type": "vcs"
+        },
+        {
+          "url": "https://appdoc.app/artifact/io.fabric8/openshift-client-api/",
+          "type": "documentation"
+        }
+      ],
       "properties": [
         {
           "name": "aquasecurity:trivy:FilePath",
@@ -2116,22 +4222,105 @@
         {
           "name": "aquasecurity:trivy:PkgType",
           "value": "jar"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2022-06-13T20:57:51Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2026-03-05T12:10:02Z"
+        },
+        {
+          "name": "ecosystems:owner_location",
+          "value": "the cloud"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "dsl"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "java"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "java-client"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "kubernetes"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "kubernetes-client"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "kubernetes-model"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "mock-server"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "mocking-kubernetes"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "openshift"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "openshift-client"
         }
       ]
     },
     {
       "bom-ref": "pkg:maven/io.fabric8/openshift-client@7.3.1",
       "type": "library",
+      "supplier": {
+        "name": "fabric8",
+        "url": [
+          "https://fabric8.io/"
+        ]
+      },
+      "author": "fabric8",
       "group": "io.fabric8",
       "name": "openshift-client",
       "version": "7.3.1",
+      "description": "Java client for Kubernetes and OpenShift",
       "hashes": [
         {
           "alg": "SHA-1",
           "content": "5aad82249060f9ab84cf2752fdceda80270aa786"
         }
       ],
+      "licenses": [
+        {
+          "expression": "(Apache-2.0)"
+        }
+      ],
       "purl": "pkg:maven/io.fabric8/openshift-client@7.3.1",
+      "externalReferences": [
+        {
+          "url": "https://github.com/fabric8io/kubernetes-client",
+          "type": "website"
+        },
+        {
+          "url": "https://central.sonatype.com/artifact/io.fabric8/openshift-client/",
+          "type": "distribution"
+        },
+        {
+          "url": "https://github.com/fabric8io/kubernetes-client",
+          "type": "vcs"
+        },
+        {
+          "url": "https://appdoc.app/artifact/io.fabric8/openshift-client/",
+          "type": "documentation"
+        }
+      ],
       "properties": [
         {
           "name": "aquasecurity:trivy:FilePath",
@@ -2148,22 +4337,105 @@
         {
           "name": "aquasecurity:trivy:PkgType",
           "value": "jar"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2018-09-07T07:39:00Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2026-03-05T12:10:02Z"
+        },
+        {
+          "name": "ecosystems:owner_location",
+          "value": "the cloud"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "dsl"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "java"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "java-client"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "kubernetes"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "kubernetes-client"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "kubernetes-model"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "mock-server"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "mocking-kubernetes"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "openshift"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "openshift-client"
         }
       ]
     },
     {
       "bom-ref": "pkg:maven/io.fabric8/openshift-model-autoscaling@7.3.1",
       "type": "library",
+      "supplier": {
+        "name": "fabric8",
+        "url": [
+          "https://fabric8.io/"
+        ]
+      },
+      "author": "fabric8",
       "group": "io.fabric8",
       "name": "openshift-model-autoscaling",
       "version": "7.3.1",
+      "description": "Java client for Kubernetes and OpenShift",
       "hashes": [
         {
           "alg": "SHA-1",
           "content": "2192faf8a062a71f37af00c357315ce9839a0816"
         }
       ],
+      "licenses": [
+        {
+          "expression": "(Apache-2.0)"
+        }
+      ],
       "purl": "pkg:maven/io.fabric8/openshift-model-autoscaling@7.3.1",
+      "externalReferences": [
+        {
+          "url": "https://github.com/fabric8io/kubernetes-client",
+          "type": "website"
+        },
+        {
+          "url": "https://central.sonatype.com/artifact/io.fabric8/openshift-model-autoscaling/",
+          "type": "distribution"
+        },
+        {
+          "url": "https://github.com/fabric8io/kubernetes-client",
+          "type": "vcs"
+        },
+        {
+          "url": "https://appdoc.app/artifact/io.fabric8/openshift-model-autoscaling/",
+          "type": "documentation"
+        }
+      ],
       "properties": [
         {
           "name": "aquasecurity:trivy:FilePath",
@@ -2180,22 +4452,105 @@
         {
           "name": "aquasecurity:trivy:PkgType",
           "value": "jar"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2024-12-03T11:39:31Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2026-03-05T12:10:02Z"
+        },
+        {
+          "name": "ecosystems:owner_location",
+          "value": "the cloud"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "dsl"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "java"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "java-client"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "kubernetes"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "kubernetes-client"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "kubernetes-model"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "mock-server"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "mocking-kubernetes"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "openshift"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "openshift-client"
         }
       ]
     },
     {
       "bom-ref": "pkg:maven/io.fabric8/openshift-model-config@7.3.1",
       "type": "library",
+      "supplier": {
+        "name": "fabric8",
+        "url": [
+          "https://fabric8.io/"
+        ]
+      },
+      "author": "fabric8",
       "group": "io.fabric8",
       "name": "openshift-model-config",
       "version": "7.3.1",
+      "description": "Java client for Kubernetes and OpenShift",
       "hashes": [
         {
           "alg": "SHA-1",
           "content": "9f339a82154ada07afe289b67f2704c6d9a7ddf7"
         }
       ],
+      "licenses": [
+        {
+          "expression": "(Apache-2.0)"
+        }
+      ],
       "purl": "pkg:maven/io.fabric8/openshift-model-config@7.3.1",
+      "externalReferences": [
+        {
+          "url": "https://github.com/fabric8io/kubernetes-client",
+          "type": "website"
+        },
+        {
+          "url": "https://central.sonatype.com/artifact/io.fabric8/openshift-model-config/",
+          "type": "distribution"
+        },
+        {
+          "url": "https://github.com/fabric8io/kubernetes-client",
+          "type": "vcs"
+        },
+        {
+          "url": "https://appdoc.app/artifact/io.fabric8/openshift-model-config/",
+          "type": "documentation"
+        }
+      ],
       "properties": [
         {
           "name": "aquasecurity:trivy:FilePath",
@@ -2212,22 +4567,105 @@
         {
           "name": "aquasecurity:trivy:PkgType",
           "value": "jar"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2022-07-13T07:09:21Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2026-03-05T12:10:02Z"
+        },
+        {
+          "name": "ecosystems:owner_location",
+          "value": "the cloud"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "dsl"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "java"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "java-client"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "kubernetes"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "kubernetes-client"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "kubernetes-model"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "mock-server"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "mocking-kubernetes"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "openshift"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "openshift-client"
         }
       ]
     },
     {
       "bom-ref": "pkg:maven/io.fabric8/openshift-model-console@7.3.1",
       "type": "library",
+      "supplier": {
+        "name": "fabric8",
+        "url": [
+          "https://fabric8.io/"
+        ]
+      },
+      "author": "fabric8",
       "group": "io.fabric8",
       "name": "openshift-model-console",
       "version": "7.3.1",
+      "description": "Java client for Kubernetes and OpenShift",
       "hashes": [
         {
           "alg": "SHA-1",
           "content": "a9e8856d31292277a774ffc02744358889ee324f"
         }
       ],
+      "licenses": [
+        {
+          "expression": "(Apache-2.0)"
+        }
+      ],
       "purl": "pkg:maven/io.fabric8/openshift-model-console@7.3.1",
+      "externalReferences": [
+        {
+          "url": "https://github.com/fabric8io/kubernetes-client",
+          "type": "website"
+        },
+        {
+          "url": "https://central.sonatype.com/artifact/io.fabric8/openshift-model-console/",
+          "type": "distribution"
+        },
+        {
+          "url": "https://github.com/fabric8io/kubernetes-client",
+          "type": "vcs"
+        },
+        {
+          "url": "https://appdoc.app/artifact/io.fabric8/openshift-model-console/",
+          "type": "documentation"
+        }
+      ],
       "properties": [
         {
           "name": "aquasecurity:trivy:FilePath",
@@ -2244,22 +4682,105 @@
         {
           "name": "aquasecurity:trivy:PkgType",
           "value": "jar"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2020-08-26T10:40:06Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2026-03-05T12:10:02Z"
+        },
+        {
+          "name": "ecosystems:owner_location",
+          "value": "the cloud"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "dsl"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "java"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "java-client"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "kubernetes"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "kubernetes-client"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "kubernetes-model"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "mock-server"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "mocking-kubernetes"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "openshift"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "openshift-client"
         }
       ]
     },
     {
       "bom-ref": "pkg:maven/io.fabric8/openshift-model-hive@7.3.1",
       "type": "library",
+      "supplier": {
+        "name": "fabric8",
+        "url": [
+          "https://fabric8.io/"
+        ]
+      },
+      "author": "fabric8",
       "group": "io.fabric8",
       "name": "openshift-model-hive",
       "version": "7.3.1",
+      "description": "Java client for Kubernetes and OpenShift",
       "hashes": [
         {
           "alg": "SHA-1",
           "content": "781d9831adfb236880025505498eeed7bf9d9d57"
         }
       ],
+      "licenses": [
+        {
+          "expression": "(Apache-2.0)"
+        }
+      ],
       "purl": "pkg:maven/io.fabric8/openshift-model-hive@7.3.1",
+      "externalReferences": [
+        {
+          "url": "https://github.com/fabric8io/kubernetes-client",
+          "type": "website"
+        },
+        {
+          "url": "https://central.sonatype.com/artifact/io.fabric8/openshift-model-hive/",
+          "type": "distribution"
+        },
+        {
+          "url": "https://github.com/fabric8io/kubernetes-client",
+          "type": "vcs"
+        },
+        {
+          "url": "https://appdoc.app/artifact/io.fabric8/openshift-model-hive/",
+          "type": "documentation"
+        }
+      ],
       "properties": [
         {
           "name": "aquasecurity:trivy:FilePath",
@@ -2276,22 +4797,105 @@
         {
           "name": "aquasecurity:trivy:PkgType",
           "value": "jar"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2022-01-24T10:57:49Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2026-03-05T12:10:02Z"
+        },
+        {
+          "name": "ecosystems:owner_location",
+          "value": "the cloud"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "dsl"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "java"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "java-client"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "kubernetes"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "kubernetes-client"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "kubernetes-model"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "mock-server"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "mocking-kubernetes"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "openshift"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "openshift-client"
         }
       ]
     },
     {
       "bom-ref": "pkg:maven/io.fabric8/openshift-model-installer@7.3.1",
       "type": "library",
+      "supplier": {
+        "name": "fabric8",
+        "url": [
+          "https://fabric8.io/"
+        ]
+      },
+      "author": "fabric8",
       "group": "io.fabric8",
       "name": "openshift-model-installer",
       "version": "7.3.1",
+      "description": "DEPRECATED: This module is deprecated and will be removed in a future release. Please migrate away from using this module and its models.",
       "hashes": [
         {
           "alg": "SHA-1",
           "content": "e7de08ed07dd96723b6aedfd633832ef0192e02c"
         }
       ],
+      "licenses": [
+        {
+          "expression": "(Apache-2.0)"
+        }
+      ],
       "purl": "pkg:maven/io.fabric8/openshift-model-installer@7.3.1",
+      "externalReferences": [
+        {
+          "url": "https://github.com/fabric8io/kubernetes-client",
+          "type": "website"
+        },
+        {
+          "url": "https://central.sonatype.com/artifact/io.fabric8/openshift-model-installer/",
+          "type": "distribution"
+        },
+        {
+          "url": "https://github.com/fabric8io/kubernetes-client",
+          "type": "vcs"
+        },
+        {
+          "url": "https://appdoc.app/artifact/io.fabric8/openshift-model-installer/",
+          "type": "documentation"
+        }
+      ],
       "properties": [
         {
           "name": "aquasecurity:trivy:FilePath",
@@ -2308,22 +4912,105 @@
         {
           "name": "aquasecurity:trivy:PkgType",
           "value": "jar"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2022-01-24T10:57:01Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2026-03-05T12:10:02Z"
+        },
+        {
+          "name": "ecosystems:owner_location",
+          "value": "the cloud"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "dsl"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "java"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "java-client"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "kubernetes"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "kubernetes-client"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "kubernetes-model"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "mock-server"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "mocking-kubernetes"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "openshift"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "openshift-client"
         }
       ]
     },
     {
       "bom-ref": "pkg:maven/io.fabric8/openshift-model-machine@7.3.1",
       "type": "library",
+      "supplier": {
+        "name": "fabric8",
+        "url": [
+          "https://fabric8.io/"
+        ]
+      },
+      "author": "fabric8",
       "group": "io.fabric8",
       "name": "openshift-model-machine",
       "version": "7.3.1",
+      "description": "Java client for Kubernetes and OpenShift",
       "hashes": [
         {
           "alg": "SHA-1",
           "content": "72f08121d3755413eeb6807d98116e3aec4dd250"
         }
       ],
+      "licenses": [
+        {
+          "expression": "(Apache-2.0)"
+        }
+      ],
       "purl": "pkg:maven/io.fabric8/openshift-model-machine@7.3.1",
+      "externalReferences": [
+        {
+          "url": "https://github.com/fabric8io/kubernetes-client",
+          "type": "website"
+        },
+        {
+          "url": "https://central.sonatype.com/artifact/io.fabric8/openshift-model-machine/",
+          "type": "distribution"
+        },
+        {
+          "url": "https://github.com/fabric8io/kubernetes-client",
+          "type": "vcs"
+        },
+        {
+          "url": "https://appdoc.app/artifact/io.fabric8/openshift-model-machine/",
+          "type": "documentation"
+        }
+      ],
       "properties": [
         {
           "name": "aquasecurity:trivy:FilePath",
@@ -2340,22 +5027,105 @@
         {
           "name": "aquasecurity:trivy:PkgType",
           "value": "jar"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2021-06-30T12:03:46Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2026-03-05T12:10:02Z"
+        },
+        {
+          "name": "ecosystems:owner_location",
+          "value": "the cloud"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "dsl"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "java"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "java-client"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "kubernetes"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "kubernetes-client"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "kubernetes-model"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "mock-server"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "mocking-kubernetes"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "openshift"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "openshift-client"
         }
       ]
     },
     {
       "bom-ref": "pkg:maven/io.fabric8/openshift-model-machineconfiguration@7.3.1",
       "type": "library",
+      "supplier": {
+        "name": "fabric8",
+        "url": [
+          "https://fabric8.io/"
+        ]
+      },
+      "author": "fabric8",
       "group": "io.fabric8",
       "name": "openshift-model-machineconfiguration",
       "version": "7.3.1",
+      "description": "Java client for Kubernetes and OpenShift",
       "hashes": [
         {
           "alg": "SHA-1",
           "content": "2660e384b4d4dd0810804ccdba7640b125bfc6eb"
         }
       ],
+      "licenses": [
+        {
+          "expression": "(Apache-2.0)"
+        }
+      ],
       "purl": "pkg:maven/io.fabric8/openshift-model-machineconfiguration@7.3.1",
+      "externalReferences": [
+        {
+          "url": "https://github.com/fabric8io/kubernetes-client",
+          "type": "website"
+        },
+        {
+          "url": "https://central.sonatype.com/artifact/io.fabric8/openshift-model-machineconfiguration/",
+          "type": "distribution"
+        },
+        {
+          "url": "https://github.com/fabric8io/kubernetes-client",
+          "type": "vcs"
+        },
+        {
+          "url": "https://appdoc.app/artifact/io.fabric8/openshift-model-machineconfiguration/",
+          "type": "documentation"
+        }
+      ],
       "properties": [
         {
           "name": "aquasecurity:trivy:FilePath",
@@ -2372,22 +5142,105 @@
         {
           "name": "aquasecurity:trivy:PkgType",
           "value": "jar"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2024-12-03T11:38:56Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2026-03-05T12:10:02Z"
+        },
+        {
+          "name": "ecosystems:owner_location",
+          "value": "the cloud"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "dsl"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "java"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "java-client"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "kubernetes"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "kubernetes-client"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "kubernetes-model"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "mock-server"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "mocking-kubernetes"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "openshift"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "openshift-client"
         }
       ]
     },
     {
       "bom-ref": "pkg:maven/io.fabric8/openshift-model-miscellaneous@7.3.1",
       "type": "library",
+      "supplier": {
+        "name": "fabric8",
+        "url": [
+          "https://fabric8.io/"
+        ]
+      },
+      "author": "fabric8",
       "group": "io.fabric8",
       "name": "openshift-model-miscellaneous",
       "version": "7.3.1",
+      "description": "Java client for Kubernetes and OpenShift",
       "hashes": [
         {
           "alg": "SHA-1",
           "content": "0f14bbf3f783b575a54a5742298b57d0497cb551"
         }
       ],
+      "licenses": [
+        {
+          "expression": "(Apache-2.0)"
+        }
+      ],
       "purl": "pkg:maven/io.fabric8/openshift-model-miscellaneous@7.3.1",
+      "externalReferences": [
+        {
+          "url": "https://github.com/fabric8io/kubernetes-client",
+          "type": "website"
+        },
+        {
+          "url": "https://central.sonatype.com/artifact/io.fabric8/openshift-model-miscellaneous/",
+          "type": "distribution"
+        },
+        {
+          "url": "https://github.com/fabric8io/kubernetes-client",
+          "type": "vcs"
+        },
+        {
+          "url": "https://appdoc.app/artifact/io.fabric8/openshift-model-miscellaneous/",
+          "type": "documentation"
+        }
+      ],
       "properties": [
         {
           "name": "aquasecurity:trivy:FilePath",
@@ -2404,22 +5257,105 @@
         {
           "name": "aquasecurity:trivy:PkgType",
           "value": "jar"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2021-06-30T11:51:31Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2026-03-05T12:10:02Z"
+        },
+        {
+          "name": "ecosystems:owner_location",
+          "value": "the cloud"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "dsl"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "java"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "java-client"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "kubernetes"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "kubernetes-client"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "kubernetes-model"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "mock-server"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "mocking-kubernetes"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "openshift"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "openshift-client"
         }
       ]
     },
     {
       "bom-ref": "pkg:maven/io.fabric8/openshift-model-monitoring@7.3.1",
       "type": "library",
+      "supplier": {
+        "name": "fabric8",
+        "url": [
+          "https://fabric8.io/"
+        ]
+      },
+      "author": "fabric8",
       "group": "io.fabric8",
       "name": "openshift-model-monitoring",
       "version": "7.3.1",
+      "description": "Java client for Kubernetes and OpenShift",
       "hashes": [
         {
           "alg": "SHA-1",
           "content": "6dc8f41730c347d1d9a5d570ec7f961eaf2e8d6e"
         }
       ],
+      "licenses": [
+        {
+          "expression": "(Apache-2.0)"
+        }
+      ],
       "purl": "pkg:maven/io.fabric8/openshift-model-monitoring@7.3.1",
+      "externalReferences": [
+        {
+          "url": "https://github.com/fabric8io/kubernetes-client/kubernetes-model-generator/openshift-model-monitoring",
+          "type": "website"
+        },
+        {
+          "url": "https://central.sonatype.com/artifact/io.fabric8/openshift-model-monitoring/",
+          "type": "distribution"
+        },
+        {
+          "url": "https://github.com/fabric8io/kubernetes-client",
+          "type": "vcs"
+        },
+        {
+          "url": "https://appdoc.app/artifact/io.fabric8/openshift-model-monitoring/",
+          "type": "documentation"
+        }
+      ],
       "properties": [
         {
           "name": "aquasecurity:trivy:FilePath",
@@ -2436,22 +5372,105 @@
         {
           "name": "aquasecurity:trivy:PkgType",
           "value": "jar"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2020-08-26T10:42:42Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2026-01-22T08:16:17Z"
+        },
+        {
+          "name": "ecosystems:owner_location",
+          "value": "the cloud"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "dsl"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "java"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "java-client"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "kubernetes"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "kubernetes-client"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "kubernetes-model"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "mock-server"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "mocking-kubernetes"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "openshift"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "openshift-client"
         }
       ]
     },
     {
       "bom-ref": "pkg:maven/io.fabric8/openshift-model-operator@7.3.1",
       "type": "library",
+      "supplier": {
+        "name": "fabric8",
+        "url": [
+          "https://fabric8.io/"
+        ]
+      },
+      "author": "fabric8",
       "group": "io.fabric8",
       "name": "openshift-model-operator",
       "version": "7.3.1",
+      "description": "Java client for Kubernetes and OpenShift",
       "hashes": [
         {
           "alg": "SHA-1",
           "content": "927560dbb839b06bbb91a03aa3cac8712b447b00"
         }
       ],
+      "licenses": [
+        {
+          "expression": "(Apache-2.0)"
+        }
+      ],
       "purl": "pkg:maven/io.fabric8/openshift-model-operator@7.3.1",
+      "externalReferences": [
+        {
+          "url": "https://github.com/fabric8io/kubernetes-client",
+          "type": "website"
+        },
+        {
+          "url": "https://central.sonatype.com/artifact/io.fabric8/openshift-model-operator/",
+          "type": "distribution"
+        },
+        {
+          "url": "https://github.com/fabric8io/kubernetes-client",
+          "type": "vcs"
+        },
+        {
+          "url": "https://appdoc.app/artifact/io.fabric8/openshift-model-operator/",
+          "type": "documentation"
+        }
+      ],
       "properties": [
         {
           "name": "aquasecurity:trivy:FilePath",
@@ -2468,22 +5487,105 @@
         {
           "name": "aquasecurity:trivy:PkgType",
           "value": "jar"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2020-08-26T10:41:39Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2026-03-05T12:10:02Z"
+        },
+        {
+          "name": "ecosystems:owner_location",
+          "value": "the cloud"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "dsl"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "java"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "java-client"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "kubernetes"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "kubernetes-client"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "kubernetes-model"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "mock-server"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "mocking-kubernetes"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "openshift"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "openshift-client"
         }
       ]
     },
     {
       "bom-ref": "pkg:maven/io.fabric8/openshift-model-operatorhub@7.3.1",
       "type": "library",
+      "supplier": {
+        "name": "fabric8",
+        "url": [
+          "https://fabric8.io/"
+        ]
+      },
+      "author": "fabric8",
       "group": "io.fabric8",
       "name": "openshift-model-operatorhub",
       "version": "7.3.1",
+      "description": "Java client for Kubernetes and OpenShift",
       "hashes": [
         {
           "alg": "SHA-1",
           "content": "e0550510ae945f42ea0d3e684fc5660187414981"
         }
       ],
+      "licenses": [
+        {
+          "expression": "(Apache-2.0)"
+        }
+      ],
       "purl": "pkg:maven/io.fabric8/openshift-model-operatorhub@7.3.1",
+      "externalReferences": [
+        {
+          "url": "https://github.com/fabric8io/kubernetes-client",
+          "type": "website"
+        },
+        {
+          "url": "https://central.sonatype.com/artifact/io.fabric8/openshift-model-operatorhub/",
+          "type": "distribution"
+        },
+        {
+          "url": "https://github.com/fabric8io/kubernetes-client",
+          "type": "vcs"
+        },
+        {
+          "url": "https://appdoc.app/artifact/io.fabric8/openshift-model-operatorhub/",
+          "type": "documentation"
+        }
+      ],
       "properties": [
         {
           "name": "aquasecurity:trivy:FilePath",
@@ -2500,22 +5602,105 @@
         {
           "name": "aquasecurity:trivy:PkgType",
           "value": "jar"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2020-08-26T10:41:47Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2026-03-05T12:10:02Z"
+        },
+        {
+          "name": "ecosystems:owner_location",
+          "value": "the cloud"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "dsl"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "java"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "java-client"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "kubernetes"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "kubernetes-client"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "kubernetes-model"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "mock-server"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "mocking-kubernetes"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "openshift"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "openshift-client"
         }
       ]
     },
     {
       "bom-ref": "pkg:maven/io.fabric8/openshift-model-storageversionmigrator@7.3.1",
       "type": "library",
+      "supplier": {
+        "name": "fabric8",
+        "url": [
+          "https://fabric8.io/"
+        ]
+      },
+      "author": "fabric8",
       "group": "io.fabric8",
       "name": "openshift-model-storageversionmigrator",
       "version": "7.3.1",
+      "description": "Java client for Kubernetes and OpenShift",
       "hashes": [
         {
           "alg": "SHA-1",
           "content": "4666601d0c942477a9f091e862a49f3a57ef07cf"
         }
       ],
+      "licenses": [
+        {
+          "expression": "(Apache-2.0)"
+        }
+      ],
       "purl": "pkg:maven/io.fabric8/openshift-model-storageversionmigrator@7.3.1",
+      "externalReferences": [
+        {
+          "url": "https://github.com/fabric8io/kubernetes-client",
+          "type": "website"
+        },
+        {
+          "url": "https://central.sonatype.com/artifact/io.fabric8/openshift-model-storageversionmigrator/",
+          "type": "distribution"
+        },
+        {
+          "url": "https://github.com/fabric8io/kubernetes-client",
+          "type": "vcs"
+        },
+        {
+          "url": "https://appdoc.app/artifact/io.fabric8/openshift-model-storageversionmigrator/",
+          "type": "documentation"
+        }
+      ],
       "properties": [
         {
           "name": "aquasecurity:trivy:FilePath",
@@ -2532,22 +5717,105 @@
         {
           "name": "aquasecurity:trivy:PkgType",
           "value": "jar"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2021-06-30T11:50:57Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2026-03-05T12:10:02Z"
+        },
+        {
+          "name": "ecosystems:owner_location",
+          "value": "the cloud"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "dsl"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "java"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "java-client"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "kubernetes"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "kubernetes-client"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "kubernetes-model"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "mock-server"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "mocking-kubernetes"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "openshift"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "openshift-client"
         }
       ]
     },
     {
       "bom-ref": "pkg:maven/io.fabric8/openshift-model-tuned@7.3.1",
       "type": "library",
+      "supplier": {
+        "name": "fabric8",
+        "url": [
+          "https://fabric8.io/"
+        ]
+      },
+      "author": "fabric8",
       "group": "io.fabric8",
       "name": "openshift-model-tuned",
       "version": "7.3.1",
+      "description": "Java client for Kubernetes and OpenShift",
       "hashes": [
         {
           "alg": "SHA-1",
           "content": "ef7e5e8781fef50494f475ab19eb944a8647671c"
         }
       ],
+      "licenses": [
+        {
+          "expression": "(Apache-2.0)"
+        }
+      ],
       "purl": "pkg:maven/io.fabric8/openshift-model-tuned@7.3.1",
+      "externalReferences": [
+        {
+          "url": "https://github.com/fabric8io/kubernetes-client",
+          "type": "website"
+        },
+        {
+          "url": "https://central.sonatype.com/artifact/io.fabric8/openshift-model-tuned/",
+          "type": "distribution"
+        },
+        {
+          "url": "https://github.com/fabric8io/kubernetes-client",
+          "type": "vcs"
+        },
+        {
+          "url": "https://appdoc.app/artifact/io.fabric8/openshift-model-tuned/",
+          "type": "documentation"
+        }
+      ],
       "properties": [
         {
           "name": "aquasecurity:trivy:FilePath",
@@ -2564,22 +5832,105 @@
         {
           "name": "aquasecurity:trivy:PkgType",
           "value": "jar"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2021-06-30T11:55:33Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2026-03-05T12:10:02Z"
+        },
+        {
+          "name": "ecosystems:owner_location",
+          "value": "the cloud"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "dsl"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "java"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "java-client"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "kubernetes"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "kubernetes-client"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "kubernetes-model"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "mock-server"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "mocking-kubernetes"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "openshift"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "openshift-client"
         }
       ]
     },
     {
       "bom-ref": "pkg:maven/io.fabric8/openshift-model-whereabouts@7.3.1",
       "type": "library",
+      "supplier": {
+        "name": "fabric8",
+        "url": [
+          "https://fabric8.io/"
+        ]
+      },
+      "author": "fabric8",
       "group": "io.fabric8",
       "name": "openshift-model-whereabouts",
       "version": "7.3.1",
+      "description": "Java client for Kubernetes and OpenShift",
       "hashes": [
         {
           "alg": "SHA-1",
           "content": "26e1964c6a108ba4f8f30d635d0b67fbf89e4987"
         }
       ],
+      "licenses": [
+        {
+          "expression": "(Apache-2.0)"
+        }
+      ],
       "purl": "pkg:maven/io.fabric8/openshift-model-whereabouts@7.3.1",
+      "externalReferences": [
+        {
+          "url": "https://github.com/fabric8io/kubernetes-client",
+          "type": "website"
+        },
+        {
+          "url": "https://central.sonatype.com/artifact/io.fabric8/openshift-model-whereabouts/",
+          "type": "distribution"
+        },
+        {
+          "url": "https://github.com/fabric8io/kubernetes-client",
+          "type": "vcs"
+        },
+        {
+          "url": "https://appdoc.app/artifact/io.fabric8/openshift-model-whereabouts/",
+          "type": "documentation"
+        }
+      ],
       "properties": [
         {
           "name": "aquasecurity:trivy:FilePath",
@@ -2596,22 +5947,105 @@
         {
           "name": "aquasecurity:trivy:PkgType",
           "value": "jar"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2021-06-30T11:51:01Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2026-03-05T12:10:02Z"
+        },
+        {
+          "name": "ecosystems:owner_location",
+          "value": "the cloud"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "dsl"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "java"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "java-client"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "kubernetes"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "kubernetes-client"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "kubernetes-model"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "mock-server"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "mocking-kubernetes"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "openshift"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "openshift-client"
         }
       ]
     },
     {
       "bom-ref": "pkg:maven/io.fabric8/openshift-model@7.3.1",
       "type": "library",
+      "supplier": {
+        "name": "fabric8",
+        "url": [
+          "https://fabric8.io/"
+        ]
+      },
+      "author": "fabric8",
       "group": "io.fabric8",
       "name": "openshift-model",
       "version": "7.3.1",
+      "description": "Java client for Kubernetes and OpenShift",
       "hashes": [
         {
           "alg": "SHA-1",
           "content": "bb864393dda5997b625d61a61e7fe3915b961aad"
         }
       ],
+      "licenses": [
+        {
+          "expression": "(Apache-2.0)"
+        }
+      ],
       "purl": "pkg:maven/io.fabric8/openshift-model@7.3.1",
+      "externalReferences": [
+        {
+          "url": "https://github.com/fabric8io/kubernetes-client",
+          "type": "website"
+        },
+        {
+          "url": "https://central.sonatype.com/artifact/io.fabric8/openshift-model/",
+          "type": "distribution"
+        },
+        {
+          "url": "https://github.com/fabric8io/kubernetes-client",
+          "type": "vcs"
+        },
+        {
+          "url": "https://appdoc.app/artifact/io.fabric8/openshift-model/",
+          "type": "documentation"
+        }
+      ],
       "properties": [
         {
           "name": "aquasecurity:trivy:FilePath",
@@ -2628,22 +6062,105 @@
         {
           "name": "aquasecurity:trivy:PkgType",
           "value": "jar"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2020-05-04T10:35:11Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2026-03-05T12:10:02Z"
+        },
+        {
+          "name": "ecosystems:owner_location",
+          "value": "the cloud"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "dsl"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "java"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "java-client"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "kubernetes"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "kubernetes-client"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "kubernetes-model"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "mock-server"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "mocking-kubernetes"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "openshift"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "openshift-client"
         }
       ]
     },
     {
       "bom-ref": "pkg:maven/io.fabric8/zjsonpatch@7.3.1",
       "type": "library",
+      "supplier": {
+        "name": "fabric8",
+        "url": [
+          "https://fabric8.io/"
+        ]
+      },
+      "author": "fabric8",
       "group": "io.fabric8",
       "name": "zjsonpatch",
       "version": "7.3.1",
+      "description": "Java client for Kubernetes and OpenShift",
       "hashes": [
         {
           "alg": "SHA-1",
           "content": "d0d843c8aa8823c74aeeeeb8a9c15b886dd9c642"
         }
       ],
+      "licenses": [
+        {
+          "expression": "(Apache-2.0)"
+        }
+      ],
       "purl": "pkg:maven/io.fabric8/zjsonpatch@7.3.1",
+      "externalReferences": [
+        {
+          "url": "https://github.com/fabric8io/kubernetes-client",
+          "type": "website"
+        },
+        {
+          "url": "https://central.sonatype.com/artifact/io.fabric8/zjsonpatch/",
+          "type": "distribution"
+        },
+        {
+          "url": "https://github.com/fabric8io/kubernetes-client",
+          "type": "vcs"
+        },
+        {
+          "url": "https://appdoc.app/artifact/io.fabric8/zjsonpatch/",
+          "type": "documentation"
+        }
+      ],
       "properties": [
         {
           "name": "aquasecurity:trivy:FilePath",
@@ -2660,6 +6177,58 @@
         {
           "name": "aquasecurity:trivy:PkgType",
           "value": "jar"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2016-06-03T20:44:50Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2026-03-05T12:10:02Z"
+        },
+        {
+          "name": "ecosystems:owner_location",
+          "value": "the cloud"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "dsl"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "java"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "java-client"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "kubernetes"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "kubernetes-client"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "kubernetes-model"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "mock-server"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "mocking-kubernetes"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "openshift"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "openshift-client"
         }
       ]
     },
@@ -2674,6 +6243,11 @@
         {
           "alg": "SHA-1",
           "content": "cca1e7dc2460d0afeebc3fc4a3386eadede08c5a"
+        }
+      ],
+      "licenses": [
+        {
+          "expression": "(Apache-2.0)"
         }
       ],
       "purl": "pkg:maven/io.github.java-diff-utils/java-diff-utils@4.16",
@@ -2765,16 +6339,47 @@
     {
       "bom-ref": "pkg:maven/io.javaoperatorsdk/micrometer-support@5.1.5",
       "type": "library",
+      "supplier": {
+        "name": "Operator Framework",
+        "url": [
+          "https://operatorframework.io/"
+        ]
+      },
+      "author": "Operator Framework",
       "group": "io.javaoperatorsdk",
       "name": "micrometer-support",
       "version": "5.1.5",
+      "description": "Java SDK for implementing Kubernetes operators",
       "hashes": [
         {
           "alg": "SHA-1",
           "content": "f5b3e1a7f92b3b42dd68242d082ef0376f6e9f83"
         }
       ],
+      "licenses": [
+        {
+          "expression": "(Apache-2.0 OR Apache-2.0)"
+        }
+      ],
       "purl": "pkg:maven/io.javaoperatorsdk/micrometer-support@5.1.5",
+      "externalReferences": [
+        {
+          "url": "https://github.com/operator-framework/java-operator-sdk",
+          "type": "website"
+        },
+        {
+          "url": "https://central.sonatype.com/artifact/io.javaoperatorsdk/micrometer-support/",
+          "type": "distribution"
+        },
+        {
+          "url": "https://github.com/operator-framework/java-operator-sdk",
+          "type": "vcs"
+        },
+        {
+          "url": "https://appdoc.app/artifact/io.javaoperatorsdk/micrometer-support/",
+          "type": "documentation"
+        }
+      ],
       "properties": [
         {
           "name": "aquasecurity:trivy:FilePath",
@@ -2791,22 +6396,77 @@
         {
           "name": "aquasecurity:trivy:PkgType",
           "value": "jar"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2021-10-05T09:19:02Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2026-03-25T08:39:07Z"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "hacktoberfest"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "java"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "java-library"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "kubernetes-operator"
         }
       ]
     },
     {
       "bom-ref": "pkg:maven/io.javaoperatorsdk/operator-framework-core@5.1.5",
       "type": "library",
+      "supplier": {
+        "name": "Operator Framework",
+        "url": [
+          "https://operatorframework.io/"
+        ]
+      },
+      "author": "Operator Framework",
       "group": "io.javaoperatorsdk",
       "name": "operator-framework-core",
       "version": "5.1.5",
+      "description": "Core framework for implementing Kubernetes operators",
       "hashes": [
         {
           "alg": "SHA-1",
           "content": "48b324f7dda9b9d0696c863f0a79b42dbcb9f21b"
         }
       ],
+      "licenses": [
+        {
+          "expression": "(Apache-2.0 OR Apache-2.0)"
+        }
+      ],
       "purl": "pkg:maven/io.javaoperatorsdk/operator-framework-core@5.1.5",
+      "externalReferences": [
+        {
+          "url": "https://github.com/operator-framework/java-operator-sdk",
+          "type": "website"
+        },
+        {
+          "url": "https://central.sonatype.com/artifact/io.javaoperatorsdk/operator-framework-core/",
+          "type": "distribution"
+        },
+        {
+          "url": "https://github.com/operator-framework/java-operator-sdk",
+          "type": "vcs"
+        },
+        {
+          "url": "https://appdoc.app/artifact/io.javaoperatorsdk/operator-framework-core/",
+          "type": "documentation"
+        }
+      ],
       "properties": [
         {
           "name": "aquasecurity:trivy:FilePath",
@@ -2823,6 +6483,30 @@
         {
           "name": "aquasecurity:trivy:PkgType",
           "value": "jar"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2020-12-18T17:14:58Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2026-03-25T08:39:07Z"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "hacktoberfest"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "java"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "java-library"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "kubernetes-operator"
         }
       ]
     },
@@ -2844,6 +6528,11 @@
         {
           "alg": "SHA-1",
           "content": "8c2c669afe1377ba4343409dc3d360a07fa1b81c"
+        }
+      ],
+      "licenses": [
+        {
+          "expression": "(The Apache Software License OR  Version 2.0)"
         }
       ],
       "purl": "pkg:maven/io.micrometer/micrometer-commons@1.14.7",
@@ -2936,6 +6625,11 @@
           "content": "8743fcff42005239e0acaf8fd56b509d5b2fd1d2"
         }
       ],
+      "licenses": [
+        {
+          "expression": "(The Apache Software License OR  Version 2.0)"
+        }
+      ],
       "purl": "pkg:maven/io.micrometer/micrometer-core@1.14.7",
       "externalReferences": [
         {
@@ -3024,6 +6718,11 @@
         {
           "alg": "SHA-1",
           "content": "f5a65b5ca7ddb52669efb6c2979181cdbdfbd76d"
+        }
+      ],
+      "licenses": [
+        {
+          "expression": "(The Apache Software License OR  Version 2.0)"
         }
       ],
       "purl": "pkg:maven/io.micrometer/micrometer-observation@1.14.7",
@@ -3180,6 +6879,11 @@
           "content": "efe5cecf79551fda4f5a14c73934e7eedc1e234d"
         }
       ],
+      "licenses": [
+        {
+          "expression": "(Apache-2.0)"
+        }
+      ],
       "purl": "pkg:maven/io.netty/netty-codec-dns@4.1.130.Final",
       "externalReferences": [
         {
@@ -3237,6 +6941,11 @@
         {
           "alg": "SHA-1",
           "content": "559d3ea10f5db4eece73b89f382cde2c48da7e4e"
+        }
+      ],
+      "licenses": [
+        {
+          "expression": "(Apache-2.0)"
         }
       ],
       "purl": "pkg:maven/io.netty/netty-codec-haproxy@4.1.130.Final",
@@ -3767,6 +7476,11 @@
           "content": "a08b6f50ce63a95a426e79f784158a0a670dbbf4"
         }
       ],
+      "licenses": [
+        {
+          "expression": "(Apache-2.0)"
+        }
+      ],
       "purl": "pkg:maven/io.netty/netty-resolver-dns@4.1.130.Final",
       "externalReferences": [
         {
@@ -4022,16 +7736,47 @@
     {
       "bom-ref": "pkg:maven/io.quarkiverse.operatorsdk/quarkus-operator-sdk-common@7.2.3",
       "type": "library",
+      "supplier": {
+        "name": "Quarkiverse Hub",
+        "url": [
+          "https://github.com/quarkiverse/quarkiverse/wiki"
+        ]
+      },
+      "author": "Quarkiverse Hub",
       "group": "io.quarkiverse.operatorsdk",
       "name": "quarkus-operator-sdk-common",
       "version": "7.2.3",
+      "description": "Parent POM for Quarkiverse projects that includes the default release and artifact publishing related configuration",
       "hashes": [
         {
           "alg": "SHA-1",
           "content": "966157ee04a66cf6ab7f15a175f28f0e5ae59e7c"
         }
       ],
+      "licenses": [
+        {
+          "expression": "(Apache-2.0)"
+        }
+      ],
       "purl": "pkg:maven/io.quarkiverse.operatorsdk/quarkus-operator-sdk-common@7.2.3",
+      "externalReferences": [
+        {
+          "url": "https://quarkiverse.io",
+          "type": "website"
+        },
+        {
+          "url": "https://central.sonatype.com/artifact/io.quarkiverse.operatorsdk/quarkus-operator-sdk-common/",
+          "type": "distribution"
+        },
+        {
+          "url": "https://github.com/quarkiverse/quarkus-operator-sdk",
+          "type": "vcs"
+        },
+        {
+          "url": "https://appdoc.app/artifact/io.quarkiverse.operatorsdk/quarkus-operator-sdk-common/",
+          "type": "documentation"
+        }
+      ],
       "properties": [
         {
           "name": "aquasecurity:trivy:FilePath",
@@ -4048,22 +7793,77 @@
         {
           "name": "aquasecurity:trivy:PkgType",
           "value": "jar"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2021-10-12T19:04:08Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2026-03-25T11:54:21Z"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "kubernetes"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "operator"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "quarkus-extension"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "sdk"
         }
       ]
     },
     {
       "bom-ref": "pkg:maven/io.quarkiverse.operatorsdk/quarkus-operator-sdk@7.2.3",
       "type": "library",
+      "supplier": {
+        "name": "Quarkiverse Hub",
+        "url": [
+          "https://github.com/quarkiverse/quarkiverse/wiki"
+        ]
+      },
+      "author": "Quarkiverse Hub",
       "group": "io.quarkiverse.operatorsdk",
       "name": "quarkus-operator-sdk",
       "version": "7.2.3",
+      "description": "Parent POM for Quarkiverse projects that includes the default release and artifact publishing related configuration",
       "hashes": [
         {
           "alg": "SHA-1",
           "content": "b7ffd8ba520ec5b74b2151d4726f3452efee056c"
         }
       ],
+      "licenses": [
+        {
+          "expression": "(Apache-2.0)"
+        }
+      ],
       "purl": "pkg:maven/io.quarkiverse.operatorsdk/quarkus-operator-sdk@7.2.3",
+      "externalReferences": [
+        {
+          "url": "https://quarkiverse.io",
+          "type": "website"
+        },
+        {
+          "url": "https://central.sonatype.com/artifact/io.quarkiverse.operatorsdk/quarkus-operator-sdk/",
+          "type": "distribution"
+        },
+        {
+          "url": "https://github.com/quarkiverse/quarkus-operator-sdk",
+          "type": "vcs"
+        },
+        {
+          "url": "https://appdoc.app/artifact/io.quarkiverse.operatorsdk/quarkus-operator-sdk/",
+          "type": "documentation"
+        }
+      ],
       "properties": [
         {
           "name": "aquasecurity:trivy:FilePath",
@@ -4080,6 +7880,30 @@
         {
           "name": "aquasecurity:trivy:PkgType",
           "value": "jar"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2021-03-09T09:55:05Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2026-03-25T11:54:21Z"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "kubernetes"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "operator"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "quarkus-extension"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "sdk"
         }
       ]
     },
@@ -4191,6 +8015,11 @@
         {
           "alg": "SHA-1",
           "content": "36a2627854b48e3ea8a0a71cbb7570a2730f0d65"
+        }
+      ],
+      "licenses": [
+        {
+          "expression": "(Apache License OR  Version 2.0)"
         }
       ],
       "purl": "pkg:maven/io.quarkus.qute/qute-core@3.27.2",
@@ -4347,6 +8176,11 @@
           "content": "96eaa8f87ed06af27a69e30b66302f8a17cdcdb0"
         }
       ],
+      "licenses": [
+        {
+          "expression": "(The Apache Software License OR  Version 2.0)"
+        }
+      ],
       "purl": "pkg:maven/io.quarkus/quarkus-arc@3.27.2",
       "externalReferences": [
         {
@@ -4435,6 +8269,11 @@
         {
           "alg": "SHA-1",
           "content": "befed6e0b67076f9e406f57e224d2407c0db04b4"
+        }
+      ],
+      "licenses": [
+        {
+          "expression": "(Apache License OR  Version 2.0)"
         }
       ],
       "purl": "pkg:maven/io.quarkus/quarkus-bootstrap-runner@3.27.2",
@@ -4527,6 +8366,11 @@
           "content": "dd78d808d9756dc9b60b2276a521d745a437e720"
         }
       ],
+      "licenses": [
+        {
+          "expression": "(Apache License OR  Version 2.0)"
+        }
+      ],
       "purl": "pkg:maven/io.quarkus/quarkus-classloader-commons@3.27.2",
       "externalReferences": [
         {
@@ -4600,16 +8444,47 @@
     {
       "bom-ref": "pkg:maven/io.quarkus/quarkus-container-image@3.27.2",
       "type": "library",
+      "supplier": {
+        "name": "QuarkusIO",
+        "url": [
+          "https://quarkus.io"
+        ]
+      },
+      "author": "QuarkusIO",
       "group": "io.quarkus",
       "name": "quarkus-container-image",
       "version": "3.27.2",
+      "description": "Build container images of your application",
       "hashes": [
         {
           "alg": "SHA-1",
           "content": "43ff31a970be253b5f8e12ae206306391958a274"
         }
       ],
+      "licenses": [
+        {
+          "expression": "(Apache-2.0)"
+        }
+      ],
       "purl": "pkg:maven/io.quarkus/quarkus-container-image@3.27.2",
+      "externalReferences": [
+        {
+          "url": "https://github.com/quarkusio/quarkus",
+          "type": "website"
+        },
+        {
+          "url": "https://central.sonatype.com/artifact/io.quarkus/quarkus-container-image/",
+          "type": "distribution"
+        },
+        {
+          "url": "https://github.com/quarkusio/quarkus",
+          "type": "vcs"
+        },
+        {
+          "url": "https://appdoc.app/artifact/io.quarkus/quarkus-container-image/",
+          "type": "documentation"
+        }
+      ],
       "properties": [
         {
           "name": "aquasecurity:trivy:FilePath",
@@ -4626,6 +8501,38 @@
         {
           "name": "aquasecurity:trivy:PkgType",
           "value": "jar"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2020-10-06T14:56:47Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2026-03-18T12:06:31Z"
+        },
+        {
+          "name": "ecosystems:owner_location",
+          "value": "The clouds"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "cloud-native"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "hacktoberfest"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "java"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "kubernetes"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "reactive"
         }
       ]
     },
@@ -4647,6 +8554,11 @@
         {
           "alg": "SHA-1",
           "content": "b2293affcd422b1c8df2239f5ad5cbeb028f3fd4"
+        }
+      ],
+      "licenses": [
+        {
+          "expression": "(The Apache Software License OR  Version 2.0)"
         }
       ],
       "purl": "pkg:maven/io.quarkus/quarkus-core@3.27.2",
@@ -4739,6 +8651,11 @@
           "content": "795ba1ac5b47a38a77b71d3748156ac319c5443a"
         }
       ],
+      "licenses": [
+        {
+          "expression": "(The Apache Software License OR  Version 2.0)"
+        }
+      ],
       "purl": "pkg:maven/io.quarkus/quarkus-credentials@3.27.2",
       "externalReferences": [
         {
@@ -4823,6 +8740,11 @@
         {
           "alg": "SHA-1",
           "content": "0c849b13937cdca285e37eda7ad06ed441d29c44"
+        }
+      ],
+      "licenses": [
+        {
+          "expression": "(The Apache Software License OR  Version 2.0)"
         }
       ],
       "purl": "pkg:maven/io.quarkus/quarkus-development-mode-spi@3.27.2",
@@ -4913,6 +8835,11 @@
         {
           "alg": "SHA-1",
           "content": "23cc6205cb5b4b9709079340ba6ab5ac3c498680"
+        }
+      ],
+      "licenses": [
+        {
+          "expression": "(Apache License OR  Version 2.0)"
         }
       ],
       "purl": "pkg:maven/io.quarkus/quarkus-fs-util@1.1.0",
@@ -5141,16 +9068,47 @@
     {
       "bom-ref": "pkg:maven/io.quarkus/quarkus-kubernetes-client-internal@3.27.2",
       "type": "library",
+      "supplier": {
+        "name": "QuarkusIO",
+        "url": [
+          "https://quarkus.io"
+        ]
+      },
+      "author": "QuarkusIO",
       "group": "io.quarkus",
       "name": "quarkus-kubernetes-client-internal",
       "version": "3.27.2",
+      "description": "This module only exists as a separate module to house the configuration that needs to be present on the runtime classpath when the kubernetes extension is used",
       "hashes": [
         {
           "alg": "SHA-1",
           "content": "1bd11dcb8fd5d634ebb6f8c6226d48da24247a24"
         }
       ],
+      "licenses": [
+        {
+          "expression": "(Apache-2.0)"
+        }
+      ],
       "purl": "pkg:maven/io.quarkus/quarkus-kubernetes-client-internal@3.27.2",
+      "externalReferences": [
+        {
+          "url": "https://github.com/quarkusio/quarkus",
+          "type": "website"
+        },
+        {
+          "url": "https://central.sonatype.com/artifact/io.quarkus/quarkus-kubernetes-client-internal/",
+          "type": "distribution"
+        },
+        {
+          "url": "https://github.com/quarkusio/quarkus",
+          "type": "vcs"
+        },
+        {
+          "url": "https://appdoc.app/artifact/io.quarkus/quarkus-kubernetes-client-internal/",
+          "type": "documentation"
+        }
+      ],
       "properties": [
         {
           "name": "aquasecurity:trivy:FilePath",
@@ -5167,22 +9125,85 @@
         {
           "name": "aquasecurity:trivy:PkgType",
           "value": "jar"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2020-03-06T01:14:57Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2026-03-18T12:06:31Z"
+        },
+        {
+          "name": "ecosystems:owner_location",
+          "value": "The clouds"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "cloud-native"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "hacktoberfest"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "java"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "kubernetes"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "reactive"
         }
       ]
     },
     {
       "bom-ref": "pkg:maven/io.quarkus/quarkus-kubernetes-client@3.27.2",
       "type": "library",
+      "supplier": {
+        "name": "QuarkusIO",
+        "url": [
+          "https://quarkus.io"
+        ]
+      },
+      "author": "QuarkusIO",
       "group": "io.quarkus",
       "name": "quarkus-kubernetes-client",
       "version": "3.27.2",
+      "description": "Interact with Kubernetes and develop Kubernetes Operators",
       "hashes": [
         {
           "alg": "SHA-1",
           "content": "8ddb0e6ea59a34b44730c019b6e0b4f9c267a96c"
         }
       ],
+      "licenses": [
+        {
+          "expression": "(Apache-2.0)"
+        }
+      ],
       "purl": "pkg:maven/io.quarkus/quarkus-kubernetes-client@3.27.2",
+      "externalReferences": [
+        {
+          "url": "https://github.com/quarkusio/quarkus",
+          "type": "website"
+        },
+        {
+          "url": "https://central.sonatype.com/artifact/io.quarkus/quarkus-kubernetes-client/",
+          "type": "distribution"
+        },
+        {
+          "url": "https://github.com/quarkusio/quarkus",
+          "type": "vcs"
+        },
+        {
+          "url": "https://appdoc.app/artifact/io.quarkus/quarkus-kubernetes-client/",
+          "type": "documentation"
+        }
+      ],
       "properties": [
         {
           "name": "aquasecurity:trivy:FilePath",
@@ -5199,22 +9220,85 @@
         {
           "name": "aquasecurity:trivy:PkgType",
           "value": "jar"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2019-06-27T11:10:22Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2026-03-18T12:06:31Z"
+        },
+        {
+          "name": "ecosystems:owner_location",
+          "value": "The clouds"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "cloud-native"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "hacktoberfest"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "java"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "kubernetes"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "reactive"
         }
       ]
     },
     {
       "bom-ref": "pkg:maven/io.quarkus/quarkus-kubernetes@3.27.2",
       "type": "library",
+      "supplier": {
+        "name": "QuarkusIO",
+        "url": [
+          "https://quarkus.io"
+        ]
+      },
+      "author": "QuarkusIO",
       "group": "io.quarkus",
       "name": "quarkus-kubernetes",
       "version": "3.27.2",
+      "description": "Generate Kubernetes resources from annotations",
       "hashes": [
         {
           "alg": "SHA-1",
           "content": "edb535420559350202d97a193006404abc665f6e"
         }
       ],
+      "licenses": [
+        {
+          "expression": "(The Apache Software License OR  Version 2.0)"
+        }
+      ],
       "purl": "pkg:maven/io.quarkus/quarkus-kubernetes@3.27.2",
+      "externalReferences": [
+        {
+          "url": "https://github.com/quarkusio/quarkus",
+          "type": "website"
+        },
+        {
+          "url": "https://central.sonatype.com/artifact/io.quarkus/quarkus-kubernetes/",
+          "type": "distribution"
+        },
+        {
+          "url": "https://github.com/quarkusio/quarkus",
+          "type": "vcs"
+        },
+        {
+          "url": "https://appdoc.app/artifact/io.quarkus/quarkus-kubernetes/",
+          "type": "documentation"
+        }
+      ],
       "properties": [
         {
           "name": "aquasecurity:trivy:FilePath",
@@ -5231,6 +9315,38 @@
         {
           "name": "aquasecurity:trivy:PkgType",
           "value": "jar"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2019-04-08T10:02:03Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2026-03-11T07:57:07Z"
+        },
+        {
+          "name": "ecosystems:owner_location",
+          "value": "The clouds"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "cloud-native"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "hacktoberfest"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "java"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "kubernetes"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "reactive"
         }
       ]
     },
@@ -5417,16 +9533,47 @@
     {
       "bom-ref": "pkg:maven/io.quarkus/quarkus-openshift-client@3.27.2",
       "type": "library",
+      "supplier": {
+        "name": "QuarkusIO",
+        "url": [
+          "https://quarkus.io"
+        ]
+      },
+      "author": "QuarkusIO",
       "group": "io.quarkus",
       "name": "quarkus-openshift-client",
       "version": "3.27.2",
+      "description": "Interact with OpenShift and develop OpenShift Operators",
       "hashes": [
         {
           "alg": "SHA-1",
           "content": "e8240f8611237149163585786d674043935bc44c"
         }
       ],
+      "licenses": [
+        {
+          "expression": "(The Apache Software License OR  Version 2.0)"
+        }
+      ],
       "purl": "pkg:maven/io.quarkus/quarkus-openshift-client@3.27.2",
+      "externalReferences": [
+        {
+          "url": "https://github.com/quarkusio/quarkus",
+          "type": "website"
+        },
+        {
+          "url": "https://central.sonatype.com/artifact/io.quarkus/quarkus-openshift-client/",
+          "type": "distribution"
+        },
+        {
+          "url": "https://github.com/quarkusio/quarkus",
+          "type": "vcs"
+        },
+        {
+          "url": "https://appdoc.app/artifact/io.quarkus/quarkus-openshift-client/",
+          "type": "documentation"
+        }
+      ],
       "properties": [
         {
           "name": "aquasecurity:trivy:FilePath",
@@ -5443,6 +9590,38 @@
         {
           "name": "aquasecurity:trivy:PkgType",
           "value": "jar"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2020-10-07T19:41:38Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2026-03-18T12:06:30Z"
+        },
+        {
+          "name": "ecosystems:owner_location",
+          "value": "The clouds"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "cloud-native"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "hacktoberfest"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "java"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "kubernetes"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "reactive"
         }
       ]
     },
@@ -5464,6 +9643,11 @@
         {
           "alg": "SHA-1",
           "content": "ec223881f319d99836c5c425c8fa9044a99baf04"
+        }
+      ],
+      "licenses": [
+        {
+          "expression": "(The Apache Software License OR  Version 2.0)"
         }
       ],
       "purl": "pkg:maven/io.quarkus/quarkus-security-runtime-spi@3.27.2",
@@ -5554,6 +9738,11 @@
         {
           "alg": "SHA-1",
           "content": "36105efea5d0f25fed035fe32ab0abd0d6a7d92d"
+        }
+      ],
+      "licenses": [
+        {
+          "expression": "(The Apache Software License OR  Version 2.0)"
         }
       ],
       "purl": "pkg:maven/io.quarkus/quarkus-smallrye-context-propagation@3.27.2",
@@ -5736,6 +9925,11 @@
           "content": "b60b0d75830f16d0e1abe2e49827bd02c1498272"
         }
       ],
+      "licenses": [
+        {
+          "expression": "(The Apache Software License OR  Version 2.0)"
+        }
+      ],
       "purl": "pkg:maven/io.quarkus/quarkus-tls-registry-spi@3.27.2",
       "externalReferences": [
         {
@@ -5824,6 +10018,11 @@
         {
           "alg": "SHA-1",
           "content": "16301d3bf8ad6ab0d87a89d1e5e2e7f6fe3f5c23"
+        }
+      ],
+      "licenses": [
+        {
+          "expression": "(Apache-2.0)"
         }
       ],
       "purl": "pkg:maven/io.quarkus/quarkus-tls-registry@3.27.2",
@@ -5916,6 +10115,11 @@
           "content": "f0751ae3d7c8fb2dc389a4cfd7c47284f4d12ad7"
         }
       ],
+      "licenses": [
+        {
+          "expression": "(The Apache Software License OR  Version 2.0)"
+        }
+      ],
       "purl": "pkg:maven/io.quarkus/quarkus-vertx-http@3.27.2",
       "externalReferences": [
         {
@@ -6004,6 +10208,11 @@
         {
           "alg": "SHA-1",
           "content": "8c2a9b736d132fd7637c57d8fc345638463f4bd9"
+        }
+      ],
+      "licenses": [
+        {
+          "expression": "(The Apache Software License OR  Version 2.0)"
         }
       ],
       "purl": "pkg:maven/io.quarkus/quarkus-vertx-latebound-mdc-provider@3.27.2",
@@ -6096,6 +10305,11 @@
           "content": "5fcd3610e5ca561d5a25da78486c5bcefbe027bc"
         }
       ],
+      "licenses": [
+        {
+          "expression": "(The Apache Software License OR  Version 2.0)"
+        }
+      ],
       "purl": "pkg:maven/io.quarkus/quarkus-vertx@3.27.2",
       "externalReferences": [
         {
@@ -6184,6 +10398,11 @@
         {
           "alg": "SHA-1",
           "content": "ee559877bfa19fd536fda0f3cc18fe37784a50be"
+        }
+      ],
+      "licenses": [
+        {
+          "expression": "(Apache-2.0)"
         }
       ],
       "purl": "pkg:maven/io.quarkus/quarkus-virtual-threads@3.27.2",
@@ -6340,6 +10559,11 @@
           "content": "4f9225b497147a70687b1aebea23e94098bbd1e9"
         }
       ],
+      "licenses": [
+        {
+          "expression": "(Apache-2.0)"
+        }
+      ],
       "purl": "pkg:maven/io.smallrye.common/smallrye-common-annotation@2.13.9",
       "externalReferences": [
         {
@@ -6404,6 +10628,11 @@
         {
           "alg": "SHA-1",
           "content": "d11e9f9178e2da86a56744748d0a9e359fee398b"
+        }
+      ],
+      "licenses": [
+        {
+          "expression": "(Apache-2.0)"
         }
       ],
       "purl": "pkg:maven/io.smallrye.common/smallrye-common-classloader@2.13.9",
@@ -6472,6 +10701,11 @@
           "content": "ba9b4a94dfbee5433543f53376d42711ed1681d5"
         }
       ],
+      "licenses": [
+        {
+          "expression": "(Apache-2.0)"
+        }
+      ],
       "purl": "pkg:maven/io.smallrye.common/smallrye-common-constraint@2.13.9",
       "externalReferences": [
         {
@@ -6536,6 +10770,11 @@
         {
           "alg": "SHA-1",
           "content": "b9377394edfb1e4fc88b9c2d83825e45f4ca300b"
+        }
+      ],
+      "licenses": [
+        {
+          "expression": "(Apache-2.0)"
         }
       ],
       "purl": "pkg:maven/io.smallrye.common/smallrye-common-cpu@2.13.9",
@@ -6604,6 +10843,11 @@
           "content": "594e9c068c280248346ba679ce37a7b3dc8b064a"
         }
       ],
+      "licenses": [
+        {
+          "expression": "(Apache-2.0)"
+        }
+      ],
       "purl": "pkg:maven/io.smallrye.common/smallrye-common-expression@2.13.9",
       "externalReferences": [
         {
@@ -6668,6 +10912,11 @@
         {
           "alg": "SHA-1",
           "content": "04abcc8ec945fee79efb1f2206392f36f4755c4e"
+        }
+      ],
+      "licenses": [
+        {
+          "expression": "(Apache-2.0)"
         }
       ],
       "purl": "pkg:maven/io.smallrye.common/smallrye-common-function@2.13.9",
@@ -6736,6 +10985,11 @@
           "content": "cce9ab8e2e059541b1acc045fc477a82a9e2d1f7"
         }
       ],
+      "licenses": [
+        {
+          "expression": "(Apache-2.0)"
+        }
+      ],
       "purl": "pkg:maven/io.smallrye.common/smallrye-common-io@2.13.9",
       "externalReferences": [
         {
@@ -6800,6 +11054,11 @@
         {
           "alg": "SHA-1",
           "content": "d0b7df1d117f84512243e8002555f927b26ad518"
+        }
+      ],
+      "licenses": [
+        {
+          "expression": "(Apache-2.0)"
         }
       ],
       "purl": "pkg:maven/io.smallrye.common/smallrye-common-net@2.13.9",
@@ -6868,6 +11127,11 @@
           "content": "ccd86ac14c1e4c5c481d8bd9e2c197a8740d03fc"
         }
       ],
+      "licenses": [
+        {
+          "expression": "(Apache-2.0)"
+        }
+      ],
       "purl": "pkg:maven/io.smallrye.common/smallrye-common-os@2.13.9",
       "externalReferences": [
         {
@@ -6932,6 +11196,11 @@
         {
           "alg": "SHA-1",
           "content": "a2bc547f715ebee3980628cb5fef6d060a45e3b6"
+        }
+      ],
+      "licenses": [
+        {
+          "expression": "(Apache-2.0)"
         }
       ],
       "purl": "pkg:maven/io.smallrye.common/smallrye-common-ref@2.13.9",
@@ -7000,6 +11269,11 @@
           "content": "e5a837dfc8f2b1d4eab008b18d1cb2877ac8b8b9"
         }
       ],
+      "licenses": [
+        {
+          "expression": "(Apache-2.0)"
+        }
+      ],
       "purl": "pkg:maven/io.smallrye.common/smallrye-common-vertx-context@2.13.9",
       "externalReferences": [
         {
@@ -7057,6 +11331,11 @@
         {
           "alg": "SHA-1",
           "content": "f641a40e3cda29155a53b93da0db3ad94749030d"
+        }
+      ],
+      "licenses": [
+        {
+          "expression": "(Apache-2.0)"
         }
       ],
       "purl": "pkg:maven/io.smallrye.config/smallrye-config-common@3.13.4",
@@ -7145,6 +11424,11 @@
           "content": "9469bb0d5deb545c5d09eeee401ea88d2a2829b7"
         }
       ],
+      "licenses": [
+        {
+          "expression": "(Apache-2.0 OR Apache-2.0)"
+        }
+      ],
       "purl": "pkg:maven/io.smallrye.config/smallrye-config-core@3.13.4",
       "externalReferences": [
         {
@@ -7217,13 +11501,37 @@
       "group": "io.smallrye.config",
       "name": "smallrye-config-source-yaml",
       "version": "3.13.4",
+      "description": "SmallRye Parent POM",
       "hashes": [
         {
           "alg": "SHA-1",
           "content": "98974301fe8e81980c0b76c266efc088b553e66b"
         }
       ],
+      "licenses": [
+        {
+          "expression": "(Apache-2.0)"
+        }
+      ],
       "purl": "pkg:maven/io.smallrye.config/smallrye-config-source-yaml@3.13.4",
+      "externalReferences": [
+        {
+          "url": "https://smallrye.io",
+          "type": "website"
+        },
+        {
+          "url": "https://central.sonatype.com/artifact/io.smallrye.config/smallrye-config-source-yaml/",
+          "type": "distribution"
+        },
+        {
+          "url": "https://github.com/smallrye/smallrye-config",
+          "type": "vcs"
+        },
+        {
+          "url": "https://appdoc.app/artifact/io.smallrye.config/smallrye-config-source-yaml/",
+          "type": "documentation"
+        }
+      ],
       "properties": [
         {
           "name": "aquasecurity:trivy:FilePath",
@@ -7240,6 +11548,34 @@
         {
           "name": "aquasecurity:trivy:PkgType",
           "value": "jar"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2019-12-03T21:27:28Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2026-01-28T19:17:24Z"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "config"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "configuration"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "java"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "microprofile"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "microservices"
         }
       ]
     },
@@ -7261,6 +11597,11 @@
         {
           "alg": "SHA-1",
           "content": "35aaedadf40e87cea0bacff4f39b4762bd16c012"
+        }
+      ],
+      "licenses": [
+        {
+          "expression": "(Apache-2.0 OR Apache-2.0)"
         }
       ],
       "purl": "pkg:maven/io.smallrye.config/smallrye-config@3.13.4",
@@ -7347,6 +11688,11 @@
         {
           "alg": "SHA-1",
           "content": "c48dfc13898f9d446b655b7a017a4834d98b4dbe"
+        }
+      ],
+      "licenses": [
+        {
+          "expression": "(Apache-2.0)"
         }
       ],
       "purl": "pkg:maven/io.smallrye.reactive/mutiny-smallrye-context-propagation@2.9.5",
@@ -7455,6 +11801,11 @@
           "content": "0658fd32347470b1fc2a618c291a6ea7bce9abdf"
         }
       ],
+      "licenses": [
+        {
+          "expression": "(Apache-2.0)"
+        }
+      ],
       "purl": "pkg:maven/io.smallrye.reactive/mutiny@2.9.5",
       "externalReferences": [
         {
@@ -7561,6 +11912,11 @@
           "content": "a8ff5660a3af96f20ba6d40b3a6456c002320612"
         }
       ],
+      "licenses": [
+        {
+          "expression": "(The Apache Software License OR  Version 2.0)"
+        }
+      ],
       "purl": "pkg:maven/io.smallrye.reactive/smallrye-mutiny-vertx-auth-common@3.21.3",
       "externalReferences": [
         {
@@ -7641,6 +11997,11 @@
         {
           "alg": "SHA-1",
           "content": "94a81c66ebe187a9bbac43361f8f843bbbfecaf1"
+        }
+      ],
+      "licenses": [
+        {
+          "expression": "(Apache-2.0)"
         }
       ],
       "purl": "pkg:maven/io.smallrye.reactive/smallrye-mutiny-vertx-bridge-common@3.21.3",
@@ -7725,6 +12086,11 @@
           "content": "1dc6919d982c70bd2a64a3df2e523e024dbb9c58"
         }
       ],
+      "licenses": [
+        {
+          "expression": "(Apache-2.0)"
+        }
+      ],
       "purl": "pkg:maven/io.smallrye.reactive/smallrye-mutiny-vertx-core@3.21.3",
       "externalReferences": [
         {
@@ -7805,6 +12171,11 @@
         {
           "alg": "SHA-1",
           "content": "0b4b36261641dbd4e130fb22d2ba4b3b28693689"
+        }
+      ],
+      "licenses": [
+        {
+          "expression": "(Apache-2.0)"
         }
       ],
       "purl": "pkg:maven/io.smallrye.reactive/smallrye-mutiny-vertx-runtime@3.21.3",
@@ -7889,6 +12260,11 @@
           "content": "b6669b4320339aefce224625aaeaf1ee57387158"
         }
       ],
+      "licenses": [
+        {
+          "expression": "(The Apache Software License OR  Version 2.0)"
+        }
+      ],
       "purl": "pkg:maven/io.smallrye.reactive/smallrye-mutiny-vertx-uri-template@3.21.3",
       "externalReferences": [
         {
@@ -7969,6 +12345,11 @@
         {
           "alg": "SHA-1",
           "content": "cfcdec164e8b3d98556eec6051b16c88e00b935c"
+        }
+      ],
+      "licenses": [
+        {
+          "expression": "(Apache-2.0)"
         }
       ],
       "purl": "pkg:maven/io.smallrye.reactive/smallrye-mutiny-vertx-web-common@3.21.3",
@@ -8053,6 +12434,11 @@
           "content": "864472ea946d6b0b9b06bbfa7d58d34bab42318d"
         }
       ],
+      "licenses": [
+        {
+          "expression": "(Apache-2.0)"
+        }
+      ],
       "purl": "pkg:maven/io.smallrye.reactive/smallrye-mutiny-vertx-web@3.21.3",
       "externalReferences": [
         {
@@ -8133,6 +12519,11 @@
         {
           "alg": "SHA-1",
           "content": "208f61c2efd4f889f2fa1025f1ac1682b28aed44"
+        }
+      ],
+      "licenses": [
+        {
+          "expression": "(Apache-2.0)"
         }
       ],
       "purl": "pkg:maven/io.smallrye.reactive/vertx-mutiny-generator@3.21.3",
@@ -8440,6 +12831,11 @@
         {
           "alg": "SHA-1",
           "content": "37d7933fd9a763c8903347826bee526d9aa7f39b"
+        }
+      ],
+      "licenses": [
+        {
+          "expression": "(Apache-2.0 OR Apache-2.0)"
         }
       ],
       "purl": "pkg:maven/io.smallrye/smallrye-fault-tolerance-vertx@6.9.3",
@@ -8770,6 +13166,11 @@
           "content": "4b115c6aba2ee3676b4ac25803de1773506eaeff"
         }
       ],
+      "licenses": [
+        {
+          "expression": "(Eclipse Public License (EPL) OR  Version 1.0 OR Apache-2.0)"
+        }
+      ],
       "purl": "pkg:maven/io.vertx/vertx-auth-common@4.5.23",
       "externalReferences": [
         {
@@ -8861,6 +13262,11 @@
           "content": "a00e24676c73909407f8dc0382295b88509c0d63"
         }
       ],
+      "licenses": [
+        {
+          "expression": "(The Apache Software License OR  Version 2.0 OR Eclipse Public License - v 1.0)"
+        }
+      ],
       "purl": "pkg:maven/io.vertx/vertx-bridge-common@4.5.23",
       "externalReferences": [
         {
@@ -8926,6 +13332,11 @@
         {
           "alg": "SHA-1",
           "content": "d0efbf69dc108cbfe980f83d2a11c3ff3b841203"
+        }
+      ],
+      "licenses": [
+        {
+          "expression": "(EPL-1.0 OR SSPL-1.0 OR Apache-2.0)"
         }
       ],
       "purl": "pkg:maven/io.vertx/vertx-codegen@4.5.23",
@@ -9005,6 +13416,11 @@
         {
           "alg": "SHA-1",
           "content": "f83109594d263d5dc3b8e2d49649a8e13769e28e"
+        }
+      ],
+      "licenses": [
+        {
+          "expression": "(The Apache Software License OR  Version 2.0 OR Eclipse Public License - v 2.0)"
         }
       ],
       "purl": "pkg:maven/io.vertx/vertx-core@4.5.23",
@@ -9100,16 +13516,44 @@
     {
       "bom-ref": "pkg:maven/io.vertx/vertx-web-client@4.5.23",
       "type": "library",
+      "supplier": {
+        "name": "Eclipse Vert.x"
+      },
+      "author": "Eclipse Vert.x",
       "group": "io.vertx",
       "name": "vertx-web-client",
       "version": "4.5.23",
+      "description": "Vert.x 5 Parent pom",
       "hashes": [
         {
           "alg": "SHA-1",
           "content": "80f09036dea414dcfa03f41a5b6b5778f3a82325"
         }
       ],
+      "licenses": [
+        {
+          "expression": "(Apache-2.0 OR EPL-1.0)"
+        }
+      ],
       "purl": "pkg:maven/io.vertx/vertx-web-client@4.5.23",
+      "externalReferences": [
+        {
+          "url": "https://github.com/eclipse-vertx/vertx5-parent",
+          "type": "website"
+        },
+        {
+          "url": "https://central.sonatype.com/artifact/io.vertx/vertx-web-client/",
+          "type": "distribution"
+        },
+        {
+          "url": "https://github.com/vert-x3/vertx-web",
+          "type": "vcs"
+        },
+        {
+          "url": "https://appdoc.app/artifact/io.vertx/vertx-web-client/",
+          "type": "documentation"
+        }
+      ],
       "properties": [
         {
           "name": "aquasecurity:trivy:FilePath",
@@ -9126,6 +13570,42 @@
         {
           "name": "aquasecurity:trivy:PkgType",
           "value": "jar"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2017-02-05T21:55:46Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2026-03-26T13:38:49Z"
+        },
+        {
+          "name": "ecosystems:owner_location",
+          "value": "The multiverse"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "client"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "reactive"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "server"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "sockjs"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "vertx"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "web"
         }
       ]
     },
@@ -9144,6 +13624,11 @@
         {
           "alg": "SHA-1",
           "content": "8f043782d643441ad50f4cfd3aa0e71728d6dbd2"
+        }
+      ],
+      "licenses": [
+        {
+          "expression": "(Apache-2.0 OR EPL-1.0)"
         }
       ],
       "purl": "pkg:maven/io.vertx/vertx-web-common@4.5.23",
@@ -9235,6 +13720,11 @@
         {
           "alg": "SHA-1",
           "content": "0d11afd9769f71e5718ee3082a088e46cf1b1a20"
+        }
+      ],
+      "licenses": [
+        {
+          "expression": "(The Apache Software License OR  Version 2.0 OR Eclipse Public License - v 2.0)"
         }
       ],
       "purl": "pkg:maven/io.vertx/vertx-web@4.5.23",
@@ -9471,6 +13961,11 @@
         {
           "alg": "SHA-1",
           "content": "c7c4a2eb1e40e0ff45ab5e2e52bd77d8c7a75176"
+        }
+      ],
+      "licenses": [
+        {
+          "expression": "(Eclipse Public License (EPL) OR  Version 2.0)"
         }
       ],
       "purl": "pkg:maven/jakarta.el/jakarta.el-api@6.0.1",
@@ -9823,6 +14318,11 @@
           "content": "4febd83e1d9d1561d078af460ecd19532383735c"
         }
       ],
+      "licenses": [
+        {
+          "expression": "(Eclipse Public License 2.0 OR GNU General Public License OR  version 2 with the GNU Classpath Exception)"
+        }
+      ],
       "purl": "pkg:maven/jakarta.json/jakarta.json-api@2.1.3",
       "externalReferences": [
         {
@@ -10049,6 +14549,11 @@
         {
           "alg": "SHA-1",
           "content": "558290505b200b22bcd2396362877beae37f45b6"
+        }
+      ],
+      "licenses": [
+        {
+          "expression": "(BSD-2-Clause)"
         }
       ],
       "purl": "pkg:maven/org.crac/crac@1.5.0",
@@ -10669,6 +15174,11 @@
           "content": "00ca0dfff7058ba18aa4244a0234c45919f01243"
         }
       ],
+      "licenses": [
+        {
+          "expression": "(Apache License 2.0)"
+        }
+      ],
       "purl": "pkg:maven/org.jboss.slf4j/slf4j-jboss-logmanager@2.0.2.Final",
       "externalReferences": [
         {
@@ -10732,6 +15242,11 @@
           "content": "d20be20253b52000a4a9ca1bfe9f119a9515ebf8"
         }
       ],
+      "licenses": [
+        {
+          "expression": "(Apache License 2.0)"
+        }
+      ],
       "purl": "pkg:maven/org.jboss.threads/jboss-threads@3.9.1",
       "externalReferences": [
         {
@@ -10781,16 +15296,47 @@
     {
       "bom-ref": "pkg:maven/org.keycloak/keycloak-common@26.5.4",
       "type": "library",
+      "supplier": {
+        "name": "Keycloak",
+        "url": [
+          "http://www.keycloak.org"
+        ]
+      },
+      "author": "Keycloak",
       "group": "org.keycloak",
       "name": "keycloak-common",
       "version": "26.5.4",
+      "description": "Common library and dependencies shared with server and all adapters",
       "hashes": [
         {
           "alg": "SHA-1",
           "content": "52f6ee5292ecd03b83ed40971b0d40106b58782c"
         }
       ],
+      "licenses": [
+        {
+          "expression": "(Apache-2.0 OR Apache-2.0)"
+        }
+      ],
       "purl": "pkg:maven/org.keycloak/keycloak-common@26.5.4",
+      "externalReferences": [
+        {
+          "url": "http://keycloak.org",
+          "type": "website"
+        },
+        {
+          "url": "https://central.sonatype.com/artifact/org.keycloak/keycloak-common/",
+          "type": "distribution"
+        },
+        {
+          "url": "https://github.com/keycloak/keycloak",
+          "type": "vcs"
+        },
+        {
+          "url": "https://appdoc.app/artifact/org.keycloak/keycloak-common/",
+          "type": "documentation"
+        }
+      ],
       "properties": [
         {
           "name": "aquasecurity:trivy:FilePath",
@@ -10807,22 +15353,73 @@
         {
           "name": "aquasecurity:trivy:PkgType",
           "value": "jar"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2015-10-20T13:40:47Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2026-04-02T14:31:25Z"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "keycloak"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "oidc"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "saml"
         }
       ]
     },
     {
       "bom-ref": "pkg:maven/org.keycloak/keycloak-core@26.5.4",
       "type": "library",
+      "supplier": {
+        "name": "Keycloak",
+        "url": [
+          "http://www.keycloak.org"
+        ]
+      },
+      "author": "Keycloak",
       "group": "org.keycloak",
       "name": "keycloak-core",
       "version": "26.5.4",
+      "description": "Keycloak Core",
       "hashes": [
         {
           "alg": "SHA-1",
           "content": "520f1d6814f0ce27ac21411e3a3ee44e7b5f4a44"
         }
       ],
+      "licenses": [
+        {
+          "expression": "(Apache-2.0 OR Apache-2.0)"
+        }
+      ],
       "purl": "pkg:maven/org.keycloak/keycloak-core@26.5.4",
+      "externalReferences": [
+        {
+          "url": "http://keycloak.org",
+          "type": "website"
+        },
+        {
+          "url": "https://central.sonatype.com/artifact/org.keycloak/keycloak-core/",
+          "type": "distribution"
+        },
+        {
+          "url": "https://github.com/keycloak/keycloak",
+          "type": "vcs"
+        },
+        {
+          "url": "https://appdoc.app/artifact/org.keycloak/keycloak-core/",
+          "type": "documentation"
+        }
+      ],
       "properties": [
         {
           "name": "aquasecurity:trivy:FilePath",
@@ -10839,6 +15436,26 @@
         {
           "name": "aquasecurity:trivy:PkgType",
           "value": "jar"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2013-12-06T14:02:17Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2026-04-02T14:31:25Z"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "keycloak"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "oidc"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "saml"
         }
       ]
     },
@@ -14957,20 +19574,20 @@
   ],
   "dependencies": [
     {
-      "ref": "53944119-c19e-4d55-a2b9-843f9418b872",
-      "dependsOn": []
-    },
-    {
-      "ref": "719eeead-43c8-40cf-a60e-6b8df89babf7",
-      "dependsOn": []
-    },
-    {
-      "ref": "b791d2a8-4e6e-4d12-978e-4837d7fd9e12",
+      "ref": "5909e7ce-fabe-4709-894d-4127eaf3fe14",
       "dependsOn": [
         "pkg:rpm/redhat/alternatives@1.24-2.el9?arch=x86_64&distro=redhat-9.7",
         "pkg:rpm/redhat/crypto-policies-scripts@20250905-1.git377cc42.el9_7?arch=noarch&distro=redhat-9.7",
         "pkg:rpm/redhat/java-21-openjdk-headless@21.0.10.0.7-1.el9?arch=x86_64&distro=redhat-9.7&epoch=1"
       ]
+    },
+    {
+      "ref": "99d004b9-4617-4cdc-8552-60adda62365f",
+      "dependsOn": []
+    },
+    {
+      "ref": "b8ff8354-2dd4-4f92-b93a-8c6e3231b884",
+      "dependsOn": []
     },
     {
       "ref": "pkg:maven/com.aayushatharva.brotli4j/brotli4j@1.16.0",
@@ -15663,9 +20280,9 @@
     {
       "ref": "pkg:oci/keycloak-operator@sha256%3A7ee35565b1a5e72e6873b17d97382520fa5aa652a0ff9ea44f7708edd46f5a41?arch=amd64&repository_url=quay.io%2Fkeycloak%2Fkeycloak-operator",
       "dependsOn": [
-        "53944119-c19e-4d55-a2b9-843f9418b872",
-        "719eeead-43c8-40cf-a60e-6b8df89babf7",
-        "b791d2a8-4e6e-4d12-978e-4837d7fd9e12",
+        "5909e7ce-fabe-4709-894d-4127eaf3fe14",
+        "99d004b9-4617-4cdc-8552-60adda62365f",
+        "b8ff8354-2dd4-4f92-b93a-8c6e3231b884",
         "pkg:maven/com.aayushatharva.brotli4j/brotli4j@1.16.0",
         "pkg:maven/com.aayushatharva.brotli4j/native-linux-x86_64@1.16.0",
         "pkg:maven/com.aayushatharva.brotli4j/service@1.16.0",

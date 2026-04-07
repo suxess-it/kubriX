@@ -2,10 +2,10 @@
   "$schema": "http://cyclonedx.org/schema/bom-1.6.schema.json",
   "bomFormat": "CycloneDX",
   "specVersion": "1.6",
-  "serialNumber": "urn:uuid:e8874047-f822-4ce2-8838-7b99b237677a",
+  "serialNumber": "urn:uuid:687b6362-d318-45b8-9a08-6de2d49aedd0",
   "version": 1,
   "metadata": {
-    "timestamp": "2026-04-07T12:23:47+00:00",
+    "timestamp": "2026-04-07T12:47:55+00:00",
     "tools": {
       "components": [
         {
@@ -78,7 +78,7 @@
   },
   "components": [
     {
-      "bom-ref": "85240985-6829-47e5-bc13-9cb89f5b5f8d",
+      "bom-ref": "c155b74e-cda0-4dcd-8a6a-9c8cd49b9c3e",
       "type": "operating-system",
       "name": "alpine",
       "version": "3.23.3",
@@ -908,6 +908,7 @@
       },
       "name": "libevent",
       "version": "2.1.12-r8",
+      "description": "An event notification library",
       "hashes": [
         {
           "alg": "SHA-1",
@@ -916,12 +917,24 @@
       ],
       "licenses": [
         {
-          "license": {
-            "id": "BSD-3-Clause"
-          }
+          "expression": "(BSD-3-Clause)"
         }
       ],
       "purl": "pkg:apk/alpine/libevent@2.1.12-r8?arch=x86_64&distro=3.23.3",
+      "externalReferences": [
+        {
+          "url": "https://libevent.org/",
+          "type": "website"
+        },
+        {
+          "url": "https://pkgs.alpinelinux.org/package/edge/main/x86_64/libevent",
+          "type": "distribution"
+        },
+        {
+          "url": "https://libevent.org/",
+          "type": "vcs"
+        }
+      ],
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
@@ -946,6 +959,14 @@
         {
           "name": "aquasecurity:trivy:SrcVersion",
           "value": "2.1.12-r8"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2022-08-02T08:35:20Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2025-01-24T16:52:29Z"
         }
       ]
     },
@@ -1442,7 +1463,7 @@
   ],
   "dependencies": [
     {
-      "ref": "85240985-6829-47e5-bc13-9cb89f5b5f8d",
+      "ref": "c155b74e-cda0-4dcd-8a6a-9c8cd49b9c3e",
       "dependsOn": [
         "pkg:apk/alpine/.memcached-rundeps@20260307.003851?arch=noarch&distro=3.23.3",
         "pkg:apk/alpine/alpine-baselayout@3.7.1-r8?arch=x86_64&distro=3.23.3",
@@ -1586,7 +1607,7 @@
     {
       "ref": "pkg:oci/memcached@sha256%3A1c6a2d48c5f561226f1dc54ed37132f83b4cde94b5e3f3e2d88386d028b86a27?arch=amd64&repository_url=index.docker.io%2Flibrary%2Fmemcached",
       "dependsOn": [
-        "85240985-6829-47e5-bc13-9cb89f5b5f8d"
+        "c155b74e-cda0-4dcd-8a6a-9c8cd49b9c3e"
       ]
     }
   ],

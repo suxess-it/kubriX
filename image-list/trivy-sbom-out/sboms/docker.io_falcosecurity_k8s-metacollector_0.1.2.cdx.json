@@ -2,10 +2,10 @@
   "$schema": "http://cyclonedx.org/schema/bom-1.6.schema.json",
   "bomFormat": "CycloneDX",
   "specVersion": "1.6",
-  "serialNumber": "urn:uuid:a3881770-64fd-4fde-9f2d-833a857e4ee2",
+  "serialNumber": "urn:uuid:00f89a11-0512-4546-8e39-c1af3faae67f",
   "version": 1,
   "metadata": {
-    "timestamp": "2026-04-07T12:21:10+00:00",
+    "timestamp": "2026-04-07T12:45:52+00:00",
     "tools": {
       "components": [
         {
@@ -110,7 +110,22 @@
   },
   "components": [
     {
-      "bom-ref": "379b1315-ab08-45aa-af82-e1037972d0d0",
+      "bom-ref": "1665547e-4e5a-412f-a7b5-9fa8abb6f4e9",
+      "type": "application",
+      "name": "meta-collector",
+      "properties": [
+        {
+          "name": "aquasecurity:trivy:Class",
+          "value": "lang-pkgs"
+        },
+        {
+          "name": "aquasecurity:trivy:Type",
+          "value": "gobinary"
+        }
+      ]
+    },
+    {
+      "bom-ref": "8ac135f4-602d-4de0-8b49-47345697199c",
       "type": "operating-system",
       "name": "debian",
       "version": "13.3",
@@ -122,21 +137,6 @@
         {
           "name": "aquasecurity:trivy:Type",
           "value": "debian"
-        }
-      ]
-    },
-    {
-      "bom-ref": "623f3c55-16d1-4177-8792-def55b23cbf2",
-      "type": "application",
-      "name": "meta-collector",
-      "properties": [
-        {
-          "name": "aquasecurity:trivy:Class",
-          "value": "lang-pkgs"
-        },
-        {
-          "name": "aquasecurity:trivy:Type",
-          "value": "gobinary"
         }
       ]
     },
@@ -4538,17 +4538,7 @@
   ],
   "dependencies": [
     {
-      "ref": "379b1315-ab08-45aa-af82-e1037972d0d0",
-      "dependsOn": [
-        "pkg:deb/debian/base-files@13.8%2Bdeb13u3?arch=amd64&distro=debian-13.3",
-        "pkg:deb/debian/media-types@13.0.0?arch=all&distro=debian-13.3",
-        "pkg:deb/debian/netbase@6.5?arch=all&distro=debian-13.3",
-        "pkg:deb/debian/tzdata-legacy@2025b-4%2Bdeb13u1?arch=all&distro=debian-13.3",
-        "pkg:deb/debian/tzdata@2025b-4%2Bdeb13u1?arch=all&distro=debian-13.3"
-      ]
-    },
-    {
-      "ref": "623f3c55-16d1-4177-8792-def55b23cbf2",
+      "ref": "1665547e-4e5a-412f-a7b5-9fa8abb6f4e9",
       "dependsOn": [
         "pkg:golang/github.com/beorn7/perks@v1.0.1",
         "pkg:golang/github.com/cespare/xxhash/v2@v2.3.0",
@@ -4612,6 +4602,16 @@
         "pkg:golang/sigs.k8s.io/structured-merge-diff/v6@v6.3.2-0.20260122202528-d9cc6641c482",
         "pkg:golang/sigs.k8s.io/yaml@v1.6.0",
         "pkg:golang/stdlib@v1.26.1"
+      ]
+    },
+    {
+      "ref": "8ac135f4-602d-4de0-8b49-47345697199c",
+      "dependsOn": [
+        "pkg:deb/debian/base-files@13.8%2Bdeb13u3?arch=amd64&distro=debian-13.3",
+        "pkg:deb/debian/media-types@13.0.0?arch=all&distro=debian-13.3",
+        "pkg:deb/debian/netbase@6.5?arch=all&distro=debian-13.3",
+        "pkg:deb/debian/tzdata-legacy@2025b-4%2Bdeb13u1?arch=all&distro=debian-13.3",
+        "pkg:deb/debian/tzdata@2025b-4%2Bdeb13u1?arch=all&distro=debian-13.3"
       ]
     },
     {
@@ -4885,8 +4885,8 @@
     {
       "ref": "pkg:oci/k8s-metacollector@sha256%3A9e419543db9334ded55ef0990728663a7b14494caa69ba740d4a658852f8be2c?arch=amd64&repository_url=index.docker.io%2Ffalcosecurity%2Fk8s-metacollector",
       "dependsOn": [
-        "379b1315-ab08-45aa-af82-e1037972d0d0",
-        "623f3c55-16d1-4177-8792-def55b23cbf2"
+        "1665547e-4e5a-412f-a7b5-9fa8abb6f4e9",
+        "8ac135f4-602d-4de0-8b49-47345697199c"
       ]
     }
   ],

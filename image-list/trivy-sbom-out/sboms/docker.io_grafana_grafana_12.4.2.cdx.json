@@ -2,10 +2,10 @@
   "$schema": "http://cyclonedx.org/schema/bom-1.6.schema.json",
   "bomFormat": "CycloneDX",
   "specVersion": "1.6",
-  "serialNumber": "urn:uuid:3ec36b02-afb1-4375-9d08-a346f3b237b0",
+  "serialNumber": "urn:uuid:f9013e54-5ee3-4e42-af95-d4fde4b7d93a",
   "version": 1,
   "metadata": {
-    "timestamp": "2026-04-07T12:21:15+00:00",
+    "timestamp": "2026-04-07T12:45:57+00:00",
     "tools": {
       "components": [
         {
@@ -110,7 +110,318 @@
   },
   "components": [
     {
-      "bom-ref": "016c0d5f-5fea-41c5-af8f-49385110efb4",
+      "bom-ref": "08ae1230-10a7-4bd0-bb50-078edc3806b6",
+      "type": "application",
+      "name": "usr/share/grafana/bin/grafana-server",
+      "properties": [
+        {
+          "name": "aquasecurity:trivy:Class",
+          "value": "lang-pkgs"
+        },
+        {
+          "name": "aquasecurity:trivy:Type",
+          "value": "gobinary"
+        }
+      ]
+    },
+    {
+      "bom-ref": "16c78cc8-f30a-4d53-ab45-2477a4120214",
+      "type": "library",
+      "supplier": {
+        "name": "Grafana Labs",
+        "url": [
+          "https://grafana.com"
+        ]
+      },
+      "author": "Grafana Labs",
+      "name": "github.com/grafana/grafana",
+      "purl": "pkg:golang/github.com/grafana/grafana",
+      "externalReferences": [
+        {
+          "url": "https://github.com/grafana/grafana",
+          "type": "website"
+        },
+        {
+          "url": "https://pkg.go.dev/github.com/grafana/grafana",
+          "type": "distribution"
+        },
+        {
+          "url": "https://github.com/grafana/grafana",
+          "type": "vcs"
+        },
+        {
+          "url": "https://pkg.go.dev/github.com/grafana/grafana#section-documentation",
+          "type": "documentation"
+        }
+      ],
+      "properties": [
+        {
+          "name": "aquasecurity:trivy:LayerDiffID",
+          "value": "sha256:8659a3ea452714cb8fc9538686a34fc2093207d0f69311ecadb26c92d8ed1bf0"
+        },
+        {
+          "name": "aquasecurity:trivy:LayerDigest",
+          "value": "sha256:6c89d3e624336e6b0b5a42398e3795d95b04c2d56a5fb830470542e8b495100e"
+        },
+        {
+          "name": "aquasecurity:trivy:PkgID",
+          "value": "github.com/grafana/grafana"
+        },
+        {
+          "name": "aquasecurity:trivy:PkgType",
+          "value": "gobinary"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2023-03-30T15:43:41Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2019-04-29T13:29:28Z"
+        },
+        {
+          "name": "ecosystems:owner_location",
+          "value": "Sweden"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "alerting"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "analytics"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "business-intelligence"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "dashboard"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "data-visualization"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "elasticsearch"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "go"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "grafana"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "hacktoberfest"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "influxdb"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "metrics"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "monitoring"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "mysql"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "postgres"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "prometheus"
+        }
+      ]
+    },
+    {
+      "bom-ref": "2759fbad-4d1c-45fb-a4f6-cb53fe33c459",
+      "type": "library",
+      "supplier": {
+        "name": "mattn",
+        "url": [
+          "https://mattn.kaoriya.net/"
+        ]
+      },
+      "author": "mattn",
+      "name": "github.com/mattn/go-colorable",
+      "version": "v0.1.14",
+      "licenses": [
+        {
+          "expression": "(MIT)"
+        }
+      ],
+      "purl": "pkg:golang/github.com/mattn/go-colorable@v0.1.14",
+      "externalReferences": [
+        {
+          "url": "https://github.com/mattn/go-colorable",
+          "type": "website"
+        },
+        {
+          "url": "https://pkg.go.dev/github.com/mattn/go-colorable",
+          "type": "distribution"
+        },
+        {
+          "url": "https://github.com/mattn/go-colorable",
+          "type": "vcs"
+        },
+        {
+          "url": "https://pkg.go.dev/github.com/mattn/go-colorable#section-documentation",
+          "type": "documentation"
+        }
+      ],
+      "properties": [
+        {
+          "name": "aquasecurity:trivy:LayerDiffID",
+          "value": "sha256:8659a3ea452714cb8fc9538686a34fc2093207d0f69311ecadb26c92d8ed1bf0"
+        },
+        {
+          "name": "aquasecurity:trivy:LayerDigest",
+          "value": "sha256:6c89d3e624336e6b0b5a42398e3795d95b04c2d56a5fb830470542e8b495100e"
+        },
+        {
+          "name": "aquasecurity:trivy:PkgID",
+          "value": "github.com/mattn/go-colorable@v0.1.14"
+        },
+        {
+          "name": "aquasecurity:trivy:PkgType",
+          "value": "gobinary"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2016-04-22T16:06:43Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2025-01-10T08:29:27Z"
+        },
+        {
+          "name": "ecosystems:owner_location",
+          "value": "Osaka, Japan"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "color"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "go"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "golang"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "windows"
+        }
+      ]
+    },
+    {
+      "bom-ref": "2a10d8ac-a808-4241-b845-5dd99c2880bd",
+      "type": "application",
+      "name": "usr/share/grafana/bin/grafana",
+      "properties": [
+        {
+          "name": "aquasecurity:trivy:Class",
+          "value": "lang-pkgs"
+        },
+        {
+          "name": "aquasecurity:trivy:Type",
+          "value": "gobinary"
+        }
+      ]
+    },
+    {
+      "bom-ref": "32b313fd-da18-461f-a5a9-1eef9125eae1",
+      "type": "library",
+      "name": "stdlib",
+      "version": "v1.25.8",
+      "purl": "pkg:golang/stdlib@v1.25.8",
+      "properties": [
+        {
+          "name": "aquasecurity:trivy:LayerDiffID",
+          "value": "sha256:8659a3ea452714cb8fc9538686a34fc2093207d0f69311ecadb26c92d8ed1bf0"
+        },
+        {
+          "name": "aquasecurity:trivy:LayerDigest",
+          "value": "sha256:6c89d3e624336e6b0b5a42398e3795d95b04c2d56a5fb830470542e8b495100e"
+        },
+        {
+          "name": "aquasecurity:trivy:PkgID",
+          "value": "stdlib@v1.25.8"
+        },
+        {
+          "name": "aquasecurity:trivy:PkgType",
+          "value": "gobinary"
+        }
+      ]
+    },
+    {
+      "bom-ref": "392aa4ad-1e4c-45f2-ac3c-0f7bbe072bae",
+      "type": "library",
+      "name": "golang.org/x/sys",
+      "version": "v0.40.0",
+      "licenses": [
+        {
+          "expression": "(BSD-3-Clause)"
+        }
+      ],
+      "purl": "pkg:golang/golang.org/x/sys@v0.40.0",
+      "externalReferences": [
+        {
+          "url": "https://cs.opensource.google/go/x/sys",
+          "type": "website"
+        },
+        {
+          "url": "https://pkg.go.dev/golang.org/x/sys",
+          "type": "distribution"
+        },
+        {
+          "url": "https://pkg.go.dev/golang.org/x/sys#section-documentation",
+          "type": "documentation"
+        }
+      ],
+      "properties": [
+        {
+          "name": "aquasecurity:trivy:LayerDiffID",
+          "value": "sha256:8659a3ea452714cb8fc9538686a34fc2093207d0f69311ecadb26c92d8ed1bf0"
+        },
+        {
+          "name": "aquasecurity:trivy:LayerDigest",
+          "value": "sha256:6c89d3e624336e6b0b5a42398e3795d95b04c2d56a5fb830470542e8b495100e"
+        },
+        {
+          "name": "aquasecurity:trivy:PkgID",
+          "value": "golang.org/x/sys@v0.40.0"
+        },
+        {
+          "name": "aquasecurity:trivy:PkgType",
+          "value": "gobinary"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2022-10-13T17:17:32Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2026-03-03T01:51:03Z"
+        }
+      ]
+    },
+    {
+      "bom-ref": "3b84827d-d8a7-4b1e-9046-6b29ed1d0d2e",
       "type": "library",
       "supplier": {
         "name": "Fatih Arslan",
@@ -198,480 +509,7 @@
       ]
     },
     {
-      "bom-ref": "0f05f487-144e-4cf3-8392-2aebc572de7d",
-      "type": "library",
-      "name": "golang.org/x/sys",
-      "version": "v0.40.0",
-      "licenses": [
-        {
-          "expression": "(BSD-3-Clause)"
-        }
-      ],
-      "purl": "pkg:golang/golang.org/x/sys@v0.40.0",
-      "externalReferences": [
-        {
-          "url": "https://cs.opensource.google/go/x/sys",
-          "type": "website"
-        },
-        {
-          "url": "https://pkg.go.dev/golang.org/x/sys",
-          "type": "distribution"
-        },
-        {
-          "url": "https://pkg.go.dev/golang.org/x/sys#section-documentation",
-          "type": "documentation"
-        }
-      ],
-      "properties": [
-        {
-          "name": "aquasecurity:trivy:LayerDiffID",
-          "value": "sha256:8659a3ea452714cb8fc9538686a34fc2093207d0f69311ecadb26c92d8ed1bf0"
-        },
-        {
-          "name": "aquasecurity:trivy:LayerDigest",
-          "value": "sha256:6c89d3e624336e6b0b5a42398e3795d95b04c2d56a5fb830470542e8b495100e"
-        },
-        {
-          "name": "aquasecurity:trivy:PkgID",
-          "value": "golang.org/x/sys@v0.40.0"
-        },
-        {
-          "name": "aquasecurity:trivy:PkgType",
-          "value": "gobinary"
-        },
-        {
-          "name": "ecosystems:first_release_published_at",
-          "value": "2022-10-13T17:17:32Z"
-        },
-        {
-          "name": "ecosystems:latest_release_published_at",
-          "value": "2026-03-03T01:51:03Z"
-        }
-      ]
-    },
-    {
-      "bom-ref": "1d6e76b4-40ef-4f6c-9441-64c0761ae77e",
-      "type": "library",
-      "supplier": {
-        "name": "Grafana Labs",
-        "url": [
-          "https://grafana.com"
-        ]
-      },
-      "author": "Grafana Labs",
-      "name": "github.com/grafana/grafana",
-      "purl": "pkg:golang/github.com/grafana/grafana",
-      "externalReferences": [
-        {
-          "url": "https://github.com/grafana/grafana",
-          "type": "website"
-        },
-        {
-          "url": "https://pkg.go.dev/github.com/grafana/grafana",
-          "type": "distribution"
-        },
-        {
-          "url": "https://github.com/grafana/grafana",
-          "type": "vcs"
-        },
-        {
-          "url": "https://pkg.go.dev/github.com/grafana/grafana#section-documentation",
-          "type": "documentation"
-        }
-      ],
-      "properties": [
-        {
-          "name": "aquasecurity:trivy:LayerDiffID",
-          "value": "sha256:8659a3ea452714cb8fc9538686a34fc2093207d0f69311ecadb26c92d8ed1bf0"
-        },
-        {
-          "name": "aquasecurity:trivy:LayerDigest",
-          "value": "sha256:6c89d3e624336e6b0b5a42398e3795d95b04c2d56a5fb830470542e8b495100e"
-        },
-        {
-          "name": "aquasecurity:trivy:PkgID",
-          "value": "github.com/grafana/grafana"
-        },
-        {
-          "name": "aquasecurity:trivy:PkgType",
-          "value": "gobinary"
-        },
-        {
-          "name": "ecosystems:first_release_published_at",
-          "value": "2023-03-30T15:43:41Z"
-        },
-        {
-          "name": "ecosystems:latest_release_published_at",
-          "value": "2019-04-29T13:29:28Z"
-        },
-        {
-          "name": "ecosystems:owner_location",
-          "value": "Sweden"
-        },
-        {
-          "name": "ecosystems:topic",
-          "value": "alerting"
-        },
-        {
-          "name": "ecosystems:topic",
-          "value": "analytics"
-        },
-        {
-          "name": "ecosystems:topic",
-          "value": "business-intelligence"
-        },
-        {
-          "name": "ecosystems:topic",
-          "value": "dashboard"
-        },
-        {
-          "name": "ecosystems:topic",
-          "value": "data-visualization"
-        },
-        {
-          "name": "ecosystems:topic",
-          "value": "elasticsearch"
-        },
-        {
-          "name": "ecosystems:topic",
-          "value": "go"
-        },
-        {
-          "name": "ecosystems:topic",
-          "value": "grafana"
-        },
-        {
-          "name": "ecosystems:topic",
-          "value": "hacktoberfest"
-        },
-        {
-          "name": "ecosystems:topic",
-          "value": "influxdb"
-        },
-        {
-          "name": "ecosystems:topic",
-          "value": "metrics"
-        },
-        {
-          "name": "ecosystems:topic",
-          "value": "monitoring"
-        },
-        {
-          "name": "ecosystems:topic",
-          "value": "mysql"
-        },
-        {
-          "name": "ecosystems:topic",
-          "value": "postgres"
-        },
-        {
-          "name": "ecosystems:topic",
-          "value": "prometheus"
-        }
-      ]
-    },
-    {
-      "bom-ref": "38366acf-9b5c-42d4-ad88-06663ad18930",
-      "type": "library",
-      "supplier": {
-        "name": "mattn",
-        "url": [
-          "https://mattn.kaoriya.net/"
-        ]
-      },
-      "author": "mattn",
-      "name": "github.com/mattn/go-colorable",
-      "version": "v0.1.14",
-      "licenses": [
-        {
-          "expression": "(MIT)"
-        }
-      ],
-      "purl": "pkg:golang/github.com/mattn/go-colorable@v0.1.14",
-      "externalReferences": [
-        {
-          "url": "https://github.com/mattn/go-colorable",
-          "type": "website"
-        },
-        {
-          "url": "https://pkg.go.dev/github.com/mattn/go-colorable",
-          "type": "distribution"
-        },
-        {
-          "url": "https://github.com/mattn/go-colorable",
-          "type": "vcs"
-        },
-        {
-          "url": "https://pkg.go.dev/github.com/mattn/go-colorable#section-documentation",
-          "type": "documentation"
-        }
-      ],
-      "properties": [
-        {
-          "name": "aquasecurity:trivy:LayerDiffID",
-          "value": "sha256:8659a3ea452714cb8fc9538686a34fc2093207d0f69311ecadb26c92d8ed1bf0"
-        },
-        {
-          "name": "aquasecurity:trivy:LayerDigest",
-          "value": "sha256:6c89d3e624336e6b0b5a42398e3795d95b04c2d56a5fb830470542e8b495100e"
-        },
-        {
-          "name": "aquasecurity:trivy:PkgID",
-          "value": "github.com/mattn/go-colorable@v0.1.14"
-        },
-        {
-          "name": "aquasecurity:trivy:PkgType",
-          "value": "gobinary"
-        },
-        {
-          "name": "ecosystems:first_release_published_at",
-          "value": "2016-04-22T16:06:43Z"
-        },
-        {
-          "name": "ecosystems:latest_release_published_at",
-          "value": "2025-01-10T08:29:27Z"
-        },
-        {
-          "name": "ecosystems:owner_location",
-          "value": "Osaka, Japan"
-        },
-        {
-          "name": "ecosystems:topic",
-          "value": "color"
-        },
-        {
-          "name": "ecosystems:topic",
-          "value": "go"
-        },
-        {
-          "name": "ecosystems:topic",
-          "value": "golang"
-        },
-        {
-          "name": "ecosystems:topic",
-          "value": "windows"
-        }
-      ]
-    },
-    {
-      "bom-ref": "5269c743-e558-491f-ab2b-fad3789d2a01",
-      "type": "application",
-      "name": "usr/share/grafana/bin/grafana-cli",
-      "properties": [
-        {
-          "name": "aquasecurity:trivy:Class",
-          "value": "lang-pkgs"
-        },
-        {
-          "name": "aquasecurity:trivy:Type",
-          "value": "gobinary"
-        }
-      ]
-    },
-    {
-      "bom-ref": "5569c804-76a9-47a2-9d11-4b6ba0783147",
-      "type": "operating-system",
-      "name": "alpine",
-      "version": "3.23.3",
-      "properties": [
-        {
-          "name": "aquasecurity:trivy:Class",
-          "value": "os-pkgs"
-        },
-        {
-          "name": "aquasecurity:trivy:Type",
-          "value": "alpine"
-        }
-      ]
-    },
-    {
-      "bom-ref": "636aac19-6bae-43e2-8e18-48073ed42103",
-      "type": "library",
-      "name": "stdlib",
-      "version": "v1.25.8",
-      "purl": "pkg:golang/stdlib@v1.25.8",
-      "properties": [
-        {
-          "name": "aquasecurity:trivy:LayerDiffID",
-          "value": "sha256:8659a3ea452714cb8fc9538686a34fc2093207d0f69311ecadb26c92d8ed1bf0"
-        },
-        {
-          "name": "aquasecurity:trivy:LayerDigest",
-          "value": "sha256:6c89d3e624336e6b0b5a42398e3795d95b04c2d56a5fb830470542e8b495100e"
-        },
-        {
-          "name": "aquasecurity:trivy:PkgID",
-          "value": "stdlib@v1.25.8"
-        },
-        {
-          "name": "aquasecurity:trivy:PkgType",
-          "value": "gobinary"
-        }
-      ]
-    },
-    {
-      "bom-ref": "6cf435c3-0ce4-489e-9046-2061fcdf5aee",
-      "type": "application",
-      "name": "usr/share/grafana/bin/grafana-server",
-      "properties": [
-        {
-          "name": "aquasecurity:trivy:Class",
-          "value": "lang-pkgs"
-        },
-        {
-          "name": "aquasecurity:trivy:Type",
-          "value": "gobinary"
-        }
-      ]
-    },
-    {
-      "bom-ref": "70e38193-36a1-4441-9b9b-b7560b6e5cca",
-      "type": "library",
-      "supplier": {
-        "name": "Grafana Labs",
-        "url": [
-          "https://grafana.com"
-        ]
-      },
-      "author": "Grafana Labs",
-      "name": "github.com/grafana/grafana",
-      "purl": "pkg:golang/github.com/grafana/grafana",
-      "externalReferences": [
-        {
-          "url": "https://github.com/grafana/grafana",
-          "type": "website"
-        },
-        {
-          "url": "https://pkg.go.dev/github.com/grafana/grafana",
-          "type": "distribution"
-        },
-        {
-          "url": "https://github.com/grafana/grafana",
-          "type": "vcs"
-        },
-        {
-          "url": "https://pkg.go.dev/github.com/grafana/grafana#section-documentation",
-          "type": "documentation"
-        }
-      ],
-      "properties": [
-        {
-          "name": "aquasecurity:trivy:LayerDiffID",
-          "value": "sha256:8659a3ea452714cb8fc9538686a34fc2093207d0f69311ecadb26c92d8ed1bf0"
-        },
-        {
-          "name": "aquasecurity:trivy:LayerDigest",
-          "value": "sha256:6c89d3e624336e6b0b5a42398e3795d95b04c2d56a5fb830470542e8b495100e"
-        },
-        {
-          "name": "aquasecurity:trivy:PkgID",
-          "value": "github.com/grafana/grafana"
-        },
-        {
-          "name": "aquasecurity:trivy:PkgType",
-          "value": "gobinary"
-        },
-        {
-          "name": "ecosystems:first_release_published_at",
-          "value": "2023-03-30T15:43:41Z"
-        },
-        {
-          "name": "ecosystems:latest_release_published_at",
-          "value": "2019-04-29T13:29:28Z"
-        },
-        {
-          "name": "ecosystems:owner_location",
-          "value": "Sweden"
-        },
-        {
-          "name": "ecosystems:topic",
-          "value": "alerting"
-        },
-        {
-          "name": "ecosystems:topic",
-          "value": "analytics"
-        },
-        {
-          "name": "ecosystems:topic",
-          "value": "business-intelligence"
-        },
-        {
-          "name": "ecosystems:topic",
-          "value": "dashboard"
-        },
-        {
-          "name": "ecosystems:topic",
-          "value": "data-visualization"
-        },
-        {
-          "name": "ecosystems:topic",
-          "value": "elasticsearch"
-        },
-        {
-          "name": "ecosystems:topic",
-          "value": "go"
-        },
-        {
-          "name": "ecosystems:topic",
-          "value": "grafana"
-        },
-        {
-          "name": "ecosystems:topic",
-          "value": "hacktoberfest"
-        },
-        {
-          "name": "ecosystems:topic",
-          "value": "influxdb"
-        },
-        {
-          "name": "ecosystems:topic",
-          "value": "metrics"
-        },
-        {
-          "name": "ecosystems:topic",
-          "value": "monitoring"
-        },
-        {
-          "name": "ecosystems:topic",
-          "value": "mysql"
-        },
-        {
-          "name": "ecosystems:topic",
-          "value": "postgres"
-        },
-        {
-          "name": "ecosystems:topic",
-          "value": "prometheus"
-        }
-      ]
-    },
-    {
-      "bom-ref": "76b47a8c-2409-49ea-b45d-9a250332a05b",
-      "type": "library",
-      "name": "stdlib",
-      "version": "v1.25.8",
-      "purl": "pkg:golang/stdlib@v1.25.8",
-      "properties": [
-        {
-          "name": "aquasecurity:trivy:LayerDiffID",
-          "value": "sha256:8659a3ea452714cb8fc9538686a34fc2093207d0f69311ecadb26c92d8ed1bf0"
-        },
-        {
-          "name": "aquasecurity:trivy:LayerDigest",
-          "value": "sha256:6c89d3e624336e6b0b5a42398e3795d95b04c2d56a5fb830470542e8b495100e"
-        },
-        {
-          "name": "aquasecurity:trivy:PkgID",
-          "value": "stdlib@v1.25.8"
-        },
-        {
-          "name": "aquasecurity:trivy:PkgType",
-          "value": "gobinary"
-        }
-      ]
-    },
-    {
-      "bom-ref": "7bb69530-87a9-416c-9b51-fe0348227c46",
+      "bom-ref": "4b7951d3-8462-467b-9dd0-310fb3dd1a2b",
       "type": "library",
       "supplier": {
         "name": "mattn",
@@ -763,7 +601,795 @@
       ]
     },
     {
-      "bom-ref": "87b32c66-faa9-4c3d-b9df-a190954dee9f",
+      "bom-ref": "506d82f0-122d-4dbf-bdbc-dc40df949739",
+      "type": "library",
+      "name": "golang.org/x/sys",
+      "version": "v0.40.0",
+      "licenses": [
+        {
+          "expression": "(BSD-3-Clause)"
+        }
+      ],
+      "purl": "pkg:golang/golang.org/x/sys@v0.40.0",
+      "externalReferences": [
+        {
+          "url": "https://cs.opensource.google/go/x/sys",
+          "type": "website"
+        },
+        {
+          "url": "https://pkg.go.dev/golang.org/x/sys",
+          "type": "distribution"
+        },
+        {
+          "url": "https://pkg.go.dev/golang.org/x/sys#section-documentation",
+          "type": "documentation"
+        }
+      ],
+      "properties": [
+        {
+          "name": "aquasecurity:trivy:LayerDiffID",
+          "value": "sha256:8659a3ea452714cb8fc9538686a34fc2093207d0f69311ecadb26c92d8ed1bf0"
+        },
+        {
+          "name": "aquasecurity:trivy:LayerDigest",
+          "value": "sha256:6c89d3e624336e6b0b5a42398e3795d95b04c2d56a5fb830470542e8b495100e"
+        },
+        {
+          "name": "aquasecurity:trivy:PkgID",
+          "value": "golang.org/x/sys@v0.40.0"
+        },
+        {
+          "name": "aquasecurity:trivy:PkgType",
+          "value": "gobinary"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2022-10-13T17:17:32Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2026-03-03T01:51:03Z"
+        }
+      ]
+    },
+    {
+      "bom-ref": "5cf6ec9b-454d-4f94-9126-7a7f6453e22b",
+      "type": "library",
+      "supplier": {
+        "name": "mattn",
+        "url": [
+          "https://mattn.kaoriya.net/"
+        ]
+      },
+      "author": "mattn",
+      "name": "github.com/mattn/go-isatty",
+      "version": "v0.0.20",
+      "description": "Package isatty implements interface to isatty",
+      "licenses": [
+        {
+          "expression": "(MIT)"
+        }
+      ],
+      "purl": "pkg:golang/github.com/mattn/go-isatty@v0.0.20",
+      "externalReferences": [
+        {
+          "url": "https://github.com/mattn/go-isatty",
+          "type": "website"
+        },
+        {
+          "url": "https://pkg.go.dev/github.com/mattn/go-isatty",
+          "type": "distribution"
+        },
+        {
+          "url": "https://github.com/mattn/go-isatty",
+          "type": "vcs"
+        },
+        {
+          "url": "https://pkg.go.dev/github.com/mattn/go-isatty#section-documentation",
+          "type": "documentation"
+        }
+      ],
+      "properties": [
+        {
+          "name": "aquasecurity:trivy:LayerDiffID",
+          "value": "sha256:8659a3ea452714cb8fc9538686a34fc2093207d0f69311ecadb26c92d8ed1bf0"
+        },
+        {
+          "name": "aquasecurity:trivy:LayerDigest",
+          "value": "sha256:6c89d3e624336e6b0b5a42398e3795d95b04c2d56a5fb830470542e8b495100e"
+        },
+        {
+          "name": "aquasecurity:trivy:PkgID",
+          "value": "github.com/mattn/go-isatty@v0.0.20"
+        },
+        {
+          "name": "aquasecurity:trivy:PkgType",
+          "value": "gobinary"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2015-12-12T12:33:44Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2023-10-17T07:28:21Z"
+        },
+        {
+          "name": "ecosystems:owner_location",
+          "value": "Osaka, Japan"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "cygwin"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "go"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "golang"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "isatty"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "msys2"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "website"
+        }
+      ]
+    },
+    {
+      "bom-ref": "6354fbd7-e832-4a52-9941-1e072cf40ef3",
+      "type": "library",
+      "supplier": {
+        "name": "mattn",
+        "url": [
+          "https://mattn.kaoriya.net/"
+        ]
+      },
+      "author": "mattn",
+      "name": "github.com/mattn/go-isatty",
+      "version": "v0.0.20",
+      "description": "Package isatty implements interface to isatty",
+      "licenses": [
+        {
+          "expression": "(MIT)"
+        }
+      ],
+      "purl": "pkg:golang/github.com/mattn/go-isatty@v0.0.20",
+      "externalReferences": [
+        {
+          "url": "https://github.com/mattn/go-isatty",
+          "type": "website"
+        },
+        {
+          "url": "https://pkg.go.dev/github.com/mattn/go-isatty",
+          "type": "distribution"
+        },
+        {
+          "url": "https://github.com/mattn/go-isatty",
+          "type": "vcs"
+        },
+        {
+          "url": "https://pkg.go.dev/github.com/mattn/go-isatty#section-documentation",
+          "type": "documentation"
+        }
+      ],
+      "properties": [
+        {
+          "name": "aquasecurity:trivy:LayerDiffID",
+          "value": "sha256:8659a3ea452714cb8fc9538686a34fc2093207d0f69311ecadb26c92d8ed1bf0"
+        },
+        {
+          "name": "aquasecurity:trivy:LayerDigest",
+          "value": "sha256:6c89d3e624336e6b0b5a42398e3795d95b04c2d56a5fb830470542e8b495100e"
+        },
+        {
+          "name": "aquasecurity:trivy:PkgID",
+          "value": "github.com/mattn/go-isatty@v0.0.20"
+        },
+        {
+          "name": "aquasecurity:trivy:PkgType",
+          "value": "gobinary"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2015-12-12T12:33:44Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2023-10-17T07:28:21Z"
+        },
+        {
+          "name": "ecosystems:owner_location",
+          "value": "Osaka, Japan"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "cygwin"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "go"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "golang"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "isatty"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "msys2"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "website"
+        }
+      ]
+    },
+    {
+      "bom-ref": "86946c5d-2d0c-4d60-a8f4-e82cdda51970",
+      "type": "library",
+      "name": "stdlib",
+      "version": "v1.25.8",
+      "purl": "pkg:golang/stdlib@v1.25.8",
+      "properties": [
+        {
+          "name": "aquasecurity:trivy:LayerDiffID",
+          "value": "sha256:8659a3ea452714cb8fc9538686a34fc2093207d0f69311ecadb26c92d8ed1bf0"
+        },
+        {
+          "name": "aquasecurity:trivy:LayerDigest",
+          "value": "sha256:6c89d3e624336e6b0b5a42398e3795d95b04c2d56a5fb830470542e8b495100e"
+        },
+        {
+          "name": "aquasecurity:trivy:PkgID",
+          "value": "stdlib@v1.25.8"
+        },
+        {
+          "name": "aquasecurity:trivy:PkgType",
+          "value": "gobinary"
+        }
+      ]
+    },
+    {
+      "bom-ref": "897c5de4-f9f5-4148-9b32-5a3d0b7f1407",
+      "type": "library",
+      "supplier": {
+        "name": "mattn",
+        "url": [
+          "https://mattn.kaoriya.net/"
+        ]
+      },
+      "author": "mattn",
+      "name": "github.com/mattn/go-colorable",
+      "version": "v0.1.14",
+      "licenses": [
+        {
+          "expression": "(MIT)"
+        }
+      ],
+      "purl": "pkg:golang/github.com/mattn/go-colorable@v0.1.14",
+      "externalReferences": [
+        {
+          "url": "https://github.com/mattn/go-colorable",
+          "type": "website"
+        },
+        {
+          "url": "https://pkg.go.dev/github.com/mattn/go-colorable",
+          "type": "distribution"
+        },
+        {
+          "url": "https://github.com/mattn/go-colorable",
+          "type": "vcs"
+        },
+        {
+          "url": "https://pkg.go.dev/github.com/mattn/go-colorable#section-documentation",
+          "type": "documentation"
+        }
+      ],
+      "properties": [
+        {
+          "name": "aquasecurity:trivy:LayerDiffID",
+          "value": "sha256:8659a3ea452714cb8fc9538686a34fc2093207d0f69311ecadb26c92d8ed1bf0"
+        },
+        {
+          "name": "aquasecurity:trivy:LayerDigest",
+          "value": "sha256:6c89d3e624336e6b0b5a42398e3795d95b04c2d56a5fb830470542e8b495100e"
+        },
+        {
+          "name": "aquasecurity:trivy:PkgID",
+          "value": "github.com/mattn/go-colorable@v0.1.14"
+        },
+        {
+          "name": "aquasecurity:trivy:PkgType",
+          "value": "gobinary"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2016-04-22T16:06:43Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2025-01-10T08:29:27Z"
+        },
+        {
+          "name": "ecosystems:owner_location",
+          "value": "Osaka, Japan"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "color"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "go"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "golang"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "windows"
+        }
+      ]
+    },
+    {
+      "bom-ref": "a4841d74-a62c-46ab-a84f-731375ff04cd",
+      "type": "library",
+      "supplier": {
+        "name": "Grafana Labs",
+        "url": [
+          "https://grafana.com"
+        ]
+      },
+      "author": "Grafana Labs",
+      "name": "github.com/grafana/grafana",
+      "purl": "pkg:golang/github.com/grafana/grafana",
+      "externalReferences": [
+        {
+          "url": "https://github.com/grafana/grafana",
+          "type": "website"
+        },
+        {
+          "url": "https://pkg.go.dev/github.com/grafana/grafana",
+          "type": "distribution"
+        },
+        {
+          "url": "https://github.com/grafana/grafana",
+          "type": "vcs"
+        },
+        {
+          "url": "https://pkg.go.dev/github.com/grafana/grafana#section-documentation",
+          "type": "documentation"
+        }
+      ],
+      "properties": [
+        {
+          "name": "aquasecurity:trivy:LayerDiffID",
+          "value": "sha256:8659a3ea452714cb8fc9538686a34fc2093207d0f69311ecadb26c92d8ed1bf0"
+        },
+        {
+          "name": "aquasecurity:trivy:LayerDigest",
+          "value": "sha256:6c89d3e624336e6b0b5a42398e3795d95b04c2d56a5fb830470542e8b495100e"
+        },
+        {
+          "name": "aquasecurity:trivy:PkgID",
+          "value": "github.com/grafana/grafana"
+        },
+        {
+          "name": "aquasecurity:trivy:PkgType",
+          "value": "gobinary"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2023-03-30T15:43:41Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2019-04-29T13:29:28Z"
+        },
+        {
+          "name": "ecosystems:owner_location",
+          "value": "Sweden"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "alerting"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "analytics"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "business-intelligence"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "dashboard"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "data-visualization"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "elasticsearch"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "go"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "grafana"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "hacktoberfest"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "influxdb"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "metrics"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "monitoring"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "mysql"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "postgres"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "prometheus"
+        }
+      ]
+    },
+    {
+      "bom-ref": "acf96acd-6251-4bdc-91b6-63115c32617d",
+      "type": "library",
+      "supplier": {
+        "name": "Grafana Labs",
+        "url": [
+          "https://grafana.com"
+        ]
+      },
+      "author": "Grafana Labs",
+      "name": "github.com/grafana/grafana",
+      "purl": "pkg:golang/github.com/grafana/grafana",
+      "externalReferences": [
+        {
+          "url": "https://github.com/grafana/grafana",
+          "type": "website"
+        },
+        {
+          "url": "https://pkg.go.dev/github.com/grafana/grafana",
+          "type": "distribution"
+        },
+        {
+          "url": "https://github.com/grafana/grafana",
+          "type": "vcs"
+        },
+        {
+          "url": "https://pkg.go.dev/github.com/grafana/grafana#section-documentation",
+          "type": "documentation"
+        }
+      ],
+      "properties": [
+        {
+          "name": "aquasecurity:trivy:LayerDiffID",
+          "value": "sha256:8659a3ea452714cb8fc9538686a34fc2093207d0f69311ecadb26c92d8ed1bf0"
+        },
+        {
+          "name": "aquasecurity:trivy:LayerDigest",
+          "value": "sha256:6c89d3e624336e6b0b5a42398e3795d95b04c2d56a5fb830470542e8b495100e"
+        },
+        {
+          "name": "aquasecurity:trivy:PkgID",
+          "value": "github.com/grafana/grafana"
+        },
+        {
+          "name": "aquasecurity:trivy:PkgType",
+          "value": "gobinary"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2023-03-30T15:43:41Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2019-04-29T13:29:28Z"
+        },
+        {
+          "name": "ecosystems:owner_location",
+          "value": "Sweden"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "alerting"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "analytics"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "business-intelligence"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "dashboard"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "data-visualization"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "elasticsearch"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "go"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "grafana"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "hacktoberfest"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "influxdb"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "metrics"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "monitoring"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "mysql"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "postgres"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "prometheus"
+        }
+      ]
+    },
+    {
+      "bom-ref": "b001dbf7-d14d-43f6-ad33-44a167319f55",
+      "type": "library",
+      "supplier": {
+        "name": "mattn",
+        "url": [
+          "https://mattn.kaoriya.net/"
+        ]
+      },
+      "author": "mattn",
+      "name": "github.com/mattn/go-colorable",
+      "version": "v0.1.14",
+      "licenses": [
+        {
+          "expression": "(MIT)"
+        }
+      ],
+      "purl": "pkg:golang/github.com/mattn/go-colorable@v0.1.14",
+      "externalReferences": [
+        {
+          "url": "https://github.com/mattn/go-colorable",
+          "type": "website"
+        },
+        {
+          "url": "https://pkg.go.dev/github.com/mattn/go-colorable",
+          "type": "distribution"
+        },
+        {
+          "url": "https://github.com/mattn/go-colorable",
+          "type": "vcs"
+        },
+        {
+          "url": "https://pkg.go.dev/github.com/mattn/go-colorable#section-documentation",
+          "type": "documentation"
+        }
+      ],
+      "properties": [
+        {
+          "name": "aquasecurity:trivy:LayerDiffID",
+          "value": "sha256:8659a3ea452714cb8fc9538686a34fc2093207d0f69311ecadb26c92d8ed1bf0"
+        },
+        {
+          "name": "aquasecurity:trivy:LayerDigest",
+          "value": "sha256:6c89d3e624336e6b0b5a42398e3795d95b04c2d56a5fb830470542e8b495100e"
+        },
+        {
+          "name": "aquasecurity:trivy:PkgID",
+          "value": "github.com/mattn/go-colorable@v0.1.14"
+        },
+        {
+          "name": "aquasecurity:trivy:PkgType",
+          "value": "gobinary"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2016-04-22T16:06:43Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2025-01-10T08:29:27Z"
+        },
+        {
+          "name": "ecosystems:owner_location",
+          "value": "Osaka, Japan"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "color"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "go"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "golang"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "windows"
+        }
+      ]
+    },
+    {
+      "bom-ref": "bb49a71d-eaf5-4e19-ab5f-1f5e363489a7",
+      "type": "operating-system",
+      "name": "alpine",
+      "version": "3.23.3",
+      "properties": [
+        {
+          "name": "aquasecurity:trivy:Class",
+          "value": "os-pkgs"
+        },
+        {
+          "name": "aquasecurity:trivy:Type",
+          "value": "alpine"
+        }
+      ]
+    },
+    {
+      "bom-ref": "c0d0a17a-9c1b-44cc-b2a5-25d2671dc1ea",
+      "type": "library",
+      "supplier": {
+        "name": "Fatih Arslan",
+        "url": [
+          "https://arslan.io"
+        ]
+      },
+      "author": "Fatih Arslan",
+      "name": "github.com/fatih/color",
+      "version": "v1.18.0",
+      "description": "Package color is an ANSI color package to output colorized or SGR defined\noutput to the standard output. The API can be used in several way, pick one\nthat suits you.\n\nUse simple and default helper functions with predefined foreground colors:\n\nHowever, there are times when custom color mixes are required. Below are some\nexamples to create custom color objects and use the print functions of each\nseparate color object.\n\nYou can create PrintXxx functions to simplify even more:\n\nYou can also FprintXxx functions to pass your own io.Writer:\n\nOr create SprintXxx functions to mix strings with other non-colorized strings:\n\nWindows support is enabled by default. All Print functions work as intended.\nHowever, only for color.SprintXXX functions, user should use fmt.FprintXXX and\nset the output to color.Output:\n\nUsing with existing code is possible. Just use the Set() method to set the\nstandard output to the given parameters. That way a rewrite of an existing\ncode is not required.\n\nThere might be a case where you want to disable color output (for example to\npipe the standard output of your app to somewhere else). `Color` has support to\ndisable colors both globally and for single color definition. For example\nsuppose you have a CLI app and a `--no-color` bool flag. You can easily disable\nthe color output with:\n\nYou can also disable the color by setting the NO_COLOR environment variable to any value.\n\nIt also has support for single color definitions (local). You can\ndisable/enable color output on the fly:",
+      "licenses": [
+        {
+          "expression": "(MIT)"
+        }
+      ],
+      "purl": "pkg:golang/github.com/fatih/color@v1.18.0",
+      "externalReferences": [
+        {
+          "url": "https://github.com/fatih/color",
+          "type": "website"
+        },
+        {
+          "url": "https://pkg.go.dev/github.com/fatih/color",
+          "type": "distribution"
+        },
+        {
+          "url": "https://github.com/fatih/color",
+          "type": "vcs"
+        },
+        {
+          "url": "https://pkg.go.dev/github.com/fatih/color#section-documentation",
+          "type": "documentation"
+        }
+      ],
+      "properties": [
+        {
+          "name": "aquasecurity:trivy:LayerDiffID",
+          "value": "sha256:8659a3ea452714cb8fc9538686a34fc2093207d0f69311ecadb26c92d8ed1bf0"
+        },
+        {
+          "name": "aquasecurity:trivy:LayerDigest",
+          "value": "sha256:6c89d3e624336e6b0b5a42398e3795d95b04c2d56a5fb830470542e8b495100e"
+        },
+        {
+          "name": "aquasecurity:trivy:PkgID",
+          "value": "github.com/fatih/color@v1.18.0"
+        },
+        {
+          "name": "aquasecurity:trivy:PkgType",
+          "value": "gobinary"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2016-06-10T11:06:02Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2026-03-20T08:53:23Z"
+        },
+        {
+          "name": "ecosystems:owner_location",
+          "value": "Ankara, TR"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "ansi"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "color"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "coloring"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "go"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "golang"
+        }
+      ]
+    },
+    {
+      "bom-ref": "c69f5356-6276-4c25-b7b8-ac4e81d611b4",
+      "type": "application",
+      "name": "usr/share/grafana/bin/grafana-cli",
+      "properties": [
+        {
+          "name": "aquasecurity:trivy:Class",
+          "value": "lang-pkgs"
+        },
+        {
+          "name": "aquasecurity:trivy:Type",
+          "value": "gobinary"
+        }
+      ]
+    },
+    {
+      "bom-ref": "d704454c-4134-495b-bfa3-96064000b70b",
       "type": "library",
       "name": "./apps/live",
       "properties": [
@@ -786,22 +1412,7 @@
       ]
     },
     {
-      "bom-ref": "8a5470f6-927f-49b6-b871-1e63f1592140",
-      "type": "application",
-      "name": "usr/share/grafana/bin/grafana",
-      "properties": [
-        {
-          "name": "aquasecurity:trivy:Class",
-          "value": "lang-pkgs"
-        },
-        {
-          "name": "aquasecurity:trivy:Type",
-          "value": "gobinary"
-        }
-      ]
-    },
-    {
-      "bom-ref": "8e2e0b27-8329-4361-84ce-1d5de34052e1",
+      "bom-ref": "e3015c3a-1e7e-4767-9a48-61ec0a9c6359",
       "type": "library",
       "name": "golang.org/x/sys",
       "version": "v0.40.0",
@@ -853,38 +1464,39 @@
       ]
     },
     {
-      "bom-ref": "a2d99db2-c7b1-4f0c-ae2b-980ffa906340",
+      "bom-ref": "e680b5ca-ae96-4baa-a97b-cc33daff476e",
       "type": "library",
       "supplier": {
-        "name": "mattn",
+        "name": "Fatih Arslan",
         "url": [
-          "https://mattn.kaoriya.net/"
+          "https://arslan.io"
         ]
       },
-      "author": "mattn",
-      "name": "github.com/mattn/go-colorable",
-      "version": "v0.1.14",
+      "author": "Fatih Arslan",
+      "name": "github.com/fatih/color",
+      "version": "v1.18.0",
+      "description": "Package color is an ANSI color package to output colorized or SGR defined\noutput to the standard output. The API can be used in several way, pick one\nthat suits you.\n\nUse simple and default helper functions with predefined foreground colors:\n\nHowever, there are times when custom color mixes are required. Below are some\nexamples to create custom color objects and use the print functions of each\nseparate color object.\n\nYou can create PrintXxx functions to simplify even more:\n\nYou can also FprintXxx functions to pass your own io.Writer:\n\nOr create SprintXxx functions to mix strings with other non-colorized strings:\n\nWindows support is enabled by default. All Print functions work as intended.\nHowever, only for color.SprintXXX functions, user should use fmt.FprintXXX and\nset the output to color.Output:\n\nUsing with existing code is possible. Just use the Set() method to set the\nstandard output to the given parameters. That way a rewrite of an existing\ncode is not required.\n\nThere might be a case where you want to disable color output (for example to\npipe the standard output of your app to somewhere else). `Color` has support to\ndisable colors both globally and for single color definition. For example\nsuppose you have a CLI app and a `--no-color` bool flag. You can easily disable\nthe color output with:\n\nYou can also disable the color by setting the NO_COLOR environment variable to any value.\n\nIt also has support for single color definitions (local). You can\ndisable/enable color output on the fly:",
       "licenses": [
         {
           "expression": "(MIT)"
         }
       ],
-      "purl": "pkg:golang/github.com/mattn/go-colorable@v0.1.14",
+      "purl": "pkg:golang/github.com/fatih/color@v1.18.0",
       "externalReferences": [
         {
-          "url": "https://github.com/mattn/go-colorable",
+          "url": "https://github.com/fatih/color",
           "type": "website"
         },
         {
-          "url": "https://pkg.go.dev/github.com/mattn/go-colorable",
+          "url": "https://pkg.go.dev/github.com/fatih/color",
           "type": "distribution"
         },
         {
-          "url": "https://github.com/mattn/go-colorable",
+          "url": "https://github.com/fatih/color",
           "type": "vcs"
         },
         {
-          "url": "https://pkg.go.dev/github.com/mattn/go-colorable#section-documentation",
+          "url": "https://pkg.go.dev/github.com/fatih/color#section-documentation",
           "type": "documentation"
         }
       ],
@@ -899,7 +1511,7 @@
         },
         {
           "name": "aquasecurity:trivy:PkgID",
-          "value": "github.com/mattn/go-colorable@v0.1.14"
+          "value": "github.com/fatih/color@v1.18.0"
         },
         {
           "name": "aquasecurity:trivy:PkgType",
@@ -907,19 +1519,27 @@
         },
         {
           "name": "ecosystems:first_release_published_at",
-          "value": "2016-04-22T16:06:43Z"
+          "value": "2016-06-10T11:06:02Z"
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2025-01-10T08:29:27Z"
+          "value": "2026-03-20T08:53:23Z"
         },
         {
           "name": "ecosystems:owner_location",
-          "value": "Osaka, Japan"
+          "value": "Ankara, TR"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "ansi"
         },
         {
           "name": "ecosystems:topic",
           "value": "color"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "coloring"
         },
         {
           "name": "ecosystems:topic",
@@ -928,15 +1548,11 @@
         {
           "name": "ecosystems:topic",
           "value": "golang"
-        },
-        {
-          "name": "ecosystems:topic",
-          "value": "windows"
         }
       ]
     },
     {
-      "bom-ref": "a48e8ed7-5b63-43b6-9733-cc7112188b7d",
+      "bom-ref": "f1cdafbb-81e5-4ff2-b9c2-8cb6e56d66cc",
       "type": "library",
       "name": "stdlib",
       "version": "v1.25.8",
@@ -957,622 +1573,6 @@
         {
           "name": "aquasecurity:trivy:PkgType",
           "value": "gobinary"
-        }
-      ]
-    },
-    {
-      "bom-ref": "b4574fcb-76f9-492f-aaab-9ee4e8675cae",
-      "type": "library",
-      "supplier": {
-        "name": "mattn",
-        "url": [
-          "https://mattn.kaoriya.net/"
-        ]
-      },
-      "author": "mattn",
-      "name": "github.com/mattn/go-colorable",
-      "version": "v0.1.14",
-      "licenses": [
-        {
-          "expression": "(MIT)"
-        }
-      ],
-      "purl": "pkg:golang/github.com/mattn/go-colorable@v0.1.14",
-      "externalReferences": [
-        {
-          "url": "https://github.com/mattn/go-colorable",
-          "type": "website"
-        },
-        {
-          "url": "https://pkg.go.dev/github.com/mattn/go-colorable",
-          "type": "distribution"
-        },
-        {
-          "url": "https://github.com/mattn/go-colorable",
-          "type": "vcs"
-        },
-        {
-          "url": "https://pkg.go.dev/github.com/mattn/go-colorable#section-documentation",
-          "type": "documentation"
-        }
-      ],
-      "properties": [
-        {
-          "name": "aquasecurity:trivy:LayerDiffID",
-          "value": "sha256:8659a3ea452714cb8fc9538686a34fc2093207d0f69311ecadb26c92d8ed1bf0"
-        },
-        {
-          "name": "aquasecurity:trivy:LayerDigest",
-          "value": "sha256:6c89d3e624336e6b0b5a42398e3795d95b04c2d56a5fb830470542e8b495100e"
-        },
-        {
-          "name": "aquasecurity:trivy:PkgID",
-          "value": "github.com/mattn/go-colorable@v0.1.14"
-        },
-        {
-          "name": "aquasecurity:trivy:PkgType",
-          "value": "gobinary"
-        },
-        {
-          "name": "ecosystems:first_release_published_at",
-          "value": "2016-04-22T16:06:43Z"
-        },
-        {
-          "name": "ecosystems:latest_release_published_at",
-          "value": "2025-01-10T08:29:27Z"
-        },
-        {
-          "name": "ecosystems:owner_location",
-          "value": "Osaka, Japan"
-        },
-        {
-          "name": "ecosystems:topic",
-          "value": "color"
-        },
-        {
-          "name": "ecosystems:topic",
-          "value": "go"
-        },
-        {
-          "name": "ecosystems:topic",
-          "value": "golang"
-        },
-        {
-          "name": "ecosystems:topic",
-          "value": "windows"
-        }
-      ]
-    },
-    {
-      "bom-ref": "d491bb40-a118-4b88-9d58-0dbd1c52da5b",
-      "type": "library",
-      "supplier": {
-        "name": "Grafana Labs",
-        "url": [
-          "https://grafana.com"
-        ]
-      },
-      "author": "Grafana Labs",
-      "name": "github.com/grafana/grafana",
-      "purl": "pkg:golang/github.com/grafana/grafana",
-      "externalReferences": [
-        {
-          "url": "https://github.com/grafana/grafana",
-          "type": "website"
-        },
-        {
-          "url": "https://pkg.go.dev/github.com/grafana/grafana",
-          "type": "distribution"
-        },
-        {
-          "url": "https://github.com/grafana/grafana",
-          "type": "vcs"
-        },
-        {
-          "url": "https://pkg.go.dev/github.com/grafana/grafana#section-documentation",
-          "type": "documentation"
-        }
-      ],
-      "properties": [
-        {
-          "name": "aquasecurity:trivy:LayerDiffID",
-          "value": "sha256:8659a3ea452714cb8fc9538686a34fc2093207d0f69311ecadb26c92d8ed1bf0"
-        },
-        {
-          "name": "aquasecurity:trivy:LayerDigest",
-          "value": "sha256:6c89d3e624336e6b0b5a42398e3795d95b04c2d56a5fb830470542e8b495100e"
-        },
-        {
-          "name": "aquasecurity:trivy:PkgID",
-          "value": "github.com/grafana/grafana"
-        },
-        {
-          "name": "aquasecurity:trivy:PkgType",
-          "value": "gobinary"
-        },
-        {
-          "name": "ecosystems:first_release_published_at",
-          "value": "2023-03-30T15:43:41Z"
-        },
-        {
-          "name": "ecosystems:latest_release_published_at",
-          "value": "2019-04-29T13:29:28Z"
-        },
-        {
-          "name": "ecosystems:owner_location",
-          "value": "Sweden"
-        },
-        {
-          "name": "ecosystems:topic",
-          "value": "alerting"
-        },
-        {
-          "name": "ecosystems:topic",
-          "value": "analytics"
-        },
-        {
-          "name": "ecosystems:topic",
-          "value": "business-intelligence"
-        },
-        {
-          "name": "ecosystems:topic",
-          "value": "dashboard"
-        },
-        {
-          "name": "ecosystems:topic",
-          "value": "data-visualization"
-        },
-        {
-          "name": "ecosystems:topic",
-          "value": "elasticsearch"
-        },
-        {
-          "name": "ecosystems:topic",
-          "value": "go"
-        },
-        {
-          "name": "ecosystems:topic",
-          "value": "grafana"
-        },
-        {
-          "name": "ecosystems:topic",
-          "value": "hacktoberfest"
-        },
-        {
-          "name": "ecosystems:topic",
-          "value": "influxdb"
-        },
-        {
-          "name": "ecosystems:topic",
-          "value": "metrics"
-        },
-        {
-          "name": "ecosystems:topic",
-          "value": "monitoring"
-        },
-        {
-          "name": "ecosystems:topic",
-          "value": "mysql"
-        },
-        {
-          "name": "ecosystems:topic",
-          "value": "postgres"
-        },
-        {
-          "name": "ecosystems:topic",
-          "value": "prometheus"
-        }
-      ]
-    },
-    {
-      "bom-ref": "db5e1af8-dd47-4a43-83e9-0f4dc201baa4",
-      "type": "library",
-      "name": "golang.org/x/sys",
-      "version": "v0.40.0",
-      "licenses": [
-        {
-          "expression": "(BSD-3-Clause)"
-        }
-      ],
-      "purl": "pkg:golang/golang.org/x/sys@v0.40.0",
-      "externalReferences": [
-        {
-          "url": "https://cs.opensource.google/go/x/sys",
-          "type": "website"
-        },
-        {
-          "url": "https://pkg.go.dev/golang.org/x/sys",
-          "type": "distribution"
-        },
-        {
-          "url": "https://pkg.go.dev/golang.org/x/sys#section-documentation",
-          "type": "documentation"
-        }
-      ],
-      "properties": [
-        {
-          "name": "aquasecurity:trivy:LayerDiffID",
-          "value": "sha256:8659a3ea452714cb8fc9538686a34fc2093207d0f69311ecadb26c92d8ed1bf0"
-        },
-        {
-          "name": "aquasecurity:trivy:LayerDigest",
-          "value": "sha256:6c89d3e624336e6b0b5a42398e3795d95b04c2d56a5fb830470542e8b495100e"
-        },
-        {
-          "name": "aquasecurity:trivy:PkgID",
-          "value": "golang.org/x/sys@v0.40.0"
-        },
-        {
-          "name": "aquasecurity:trivy:PkgType",
-          "value": "gobinary"
-        },
-        {
-          "name": "ecosystems:first_release_published_at",
-          "value": "2022-10-13T17:17:32Z"
-        },
-        {
-          "name": "ecosystems:latest_release_published_at",
-          "value": "2026-03-03T01:51:03Z"
-        }
-      ]
-    },
-    {
-      "bom-ref": "e17f2ed4-ae2d-47d7-9eb4-f4fcd192b297",
-      "type": "library",
-      "supplier": {
-        "name": "Fatih Arslan",
-        "url": [
-          "https://arslan.io"
-        ]
-      },
-      "author": "Fatih Arslan",
-      "name": "github.com/fatih/color",
-      "version": "v1.18.0",
-      "description": "Package color is an ANSI color package to output colorized or SGR defined\noutput to the standard output. The API can be used in several way, pick one\nthat suits you.\n\nUse simple and default helper functions with predefined foreground colors:\n\nHowever, there are times when custom color mixes are required. Below are some\nexamples to create custom color objects and use the print functions of each\nseparate color object.\n\nYou can create PrintXxx functions to simplify even more:\n\nYou can also FprintXxx functions to pass your own io.Writer:\n\nOr create SprintXxx functions to mix strings with other non-colorized strings:\n\nWindows support is enabled by default. All Print functions work as intended.\nHowever, only for color.SprintXXX functions, user should use fmt.FprintXXX and\nset the output to color.Output:\n\nUsing with existing code is possible. Just use the Set() method to set the\nstandard output to the given parameters. That way a rewrite of an existing\ncode is not required.\n\nThere might be a case where you want to disable color output (for example to\npipe the standard output of your app to somewhere else). `Color` has support to\ndisable colors both globally and for single color definition. For example\nsuppose you have a CLI app and a `--no-color` bool flag. You can easily disable\nthe color output with:\n\nYou can also disable the color by setting the NO_COLOR environment variable to any value.\n\nIt also has support for single color definitions (local). You can\ndisable/enable color output on the fly:",
-      "licenses": [
-        {
-          "expression": "(MIT)"
-        }
-      ],
-      "purl": "pkg:golang/github.com/fatih/color@v1.18.0",
-      "externalReferences": [
-        {
-          "url": "https://github.com/fatih/color",
-          "type": "website"
-        },
-        {
-          "url": "https://pkg.go.dev/github.com/fatih/color",
-          "type": "distribution"
-        },
-        {
-          "url": "https://github.com/fatih/color",
-          "type": "vcs"
-        },
-        {
-          "url": "https://pkg.go.dev/github.com/fatih/color#section-documentation",
-          "type": "documentation"
-        }
-      ],
-      "properties": [
-        {
-          "name": "aquasecurity:trivy:LayerDiffID",
-          "value": "sha256:8659a3ea452714cb8fc9538686a34fc2093207d0f69311ecadb26c92d8ed1bf0"
-        },
-        {
-          "name": "aquasecurity:trivy:LayerDigest",
-          "value": "sha256:6c89d3e624336e6b0b5a42398e3795d95b04c2d56a5fb830470542e8b495100e"
-        },
-        {
-          "name": "aquasecurity:trivy:PkgID",
-          "value": "github.com/fatih/color@v1.18.0"
-        },
-        {
-          "name": "aquasecurity:trivy:PkgType",
-          "value": "gobinary"
-        },
-        {
-          "name": "ecosystems:first_release_published_at",
-          "value": "2016-06-10T11:06:02Z"
-        },
-        {
-          "name": "ecosystems:latest_release_published_at",
-          "value": "2026-03-20T08:53:23Z"
-        },
-        {
-          "name": "ecosystems:owner_location",
-          "value": "Ankara, TR"
-        },
-        {
-          "name": "ecosystems:topic",
-          "value": "ansi"
-        },
-        {
-          "name": "ecosystems:topic",
-          "value": "color"
-        },
-        {
-          "name": "ecosystems:topic",
-          "value": "coloring"
-        },
-        {
-          "name": "ecosystems:topic",
-          "value": "go"
-        },
-        {
-          "name": "ecosystems:topic",
-          "value": "golang"
-        }
-      ]
-    },
-    {
-      "bom-ref": "f448d2e1-92f5-4b39-b8b2-0bd1fc6e182f",
-      "type": "library",
-      "supplier": {
-        "name": "mattn",
-        "url": [
-          "https://mattn.kaoriya.net/"
-        ]
-      },
-      "author": "mattn",
-      "name": "github.com/mattn/go-isatty",
-      "version": "v0.0.20",
-      "description": "Package isatty implements interface to isatty",
-      "licenses": [
-        {
-          "expression": "(MIT)"
-        }
-      ],
-      "purl": "pkg:golang/github.com/mattn/go-isatty@v0.0.20",
-      "externalReferences": [
-        {
-          "url": "https://github.com/mattn/go-isatty",
-          "type": "website"
-        },
-        {
-          "url": "https://pkg.go.dev/github.com/mattn/go-isatty",
-          "type": "distribution"
-        },
-        {
-          "url": "https://github.com/mattn/go-isatty",
-          "type": "vcs"
-        },
-        {
-          "url": "https://pkg.go.dev/github.com/mattn/go-isatty#section-documentation",
-          "type": "documentation"
-        }
-      ],
-      "properties": [
-        {
-          "name": "aquasecurity:trivy:LayerDiffID",
-          "value": "sha256:8659a3ea452714cb8fc9538686a34fc2093207d0f69311ecadb26c92d8ed1bf0"
-        },
-        {
-          "name": "aquasecurity:trivy:LayerDigest",
-          "value": "sha256:6c89d3e624336e6b0b5a42398e3795d95b04c2d56a5fb830470542e8b495100e"
-        },
-        {
-          "name": "aquasecurity:trivy:PkgID",
-          "value": "github.com/mattn/go-isatty@v0.0.20"
-        },
-        {
-          "name": "aquasecurity:trivy:PkgType",
-          "value": "gobinary"
-        },
-        {
-          "name": "ecosystems:first_release_published_at",
-          "value": "2015-12-12T12:33:44Z"
-        },
-        {
-          "name": "ecosystems:latest_release_published_at",
-          "value": "2023-10-17T07:28:21Z"
-        },
-        {
-          "name": "ecosystems:owner_location",
-          "value": "Osaka, Japan"
-        },
-        {
-          "name": "ecosystems:topic",
-          "value": "cygwin"
-        },
-        {
-          "name": "ecosystems:topic",
-          "value": "go"
-        },
-        {
-          "name": "ecosystems:topic",
-          "value": "golang"
-        },
-        {
-          "name": "ecosystems:topic",
-          "value": "isatty"
-        },
-        {
-          "name": "ecosystems:topic",
-          "value": "msys2"
-        },
-        {
-          "name": "ecosystems:topic",
-          "value": "website"
-        }
-      ]
-    },
-    {
-      "bom-ref": "f6292e7b-cbea-4caa-bab1-594586313832",
-      "type": "library",
-      "supplier": {
-        "name": "Fatih Arslan",
-        "url": [
-          "https://arslan.io"
-        ]
-      },
-      "author": "Fatih Arslan",
-      "name": "github.com/fatih/color",
-      "version": "v1.18.0",
-      "description": "Package color is an ANSI color package to output colorized or SGR defined\noutput to the standard output. The API can be used in several way, pick one\nthat suits you.\n\nUse simple and default helper functions with predefined foreground colors:\n\nHowever, there are times when custom color mixes are required. Below are some\nexamples to create custom color objects and use the print functions of each\nseparate color object.\n\nYou can create PrintXxx functions to simplify even more:\n\nYou can also FprintXxx functions to pass your own io.Writer:\n\nOr create SprintXxx functions to mix strings with other non-colorized strings:\n\nWindows support is enabled by default. All Print functions work as intended.\nHowever, only for color.SprintXXX functions, user should use fmt.FprintXXX and\nset the output to color.Output:\n\nUsing with existing code is possible. Just use the Set() method to set the\nstandard output to the given parameters. That way a rewrite of an existing\ncode is not required.\n\nThere might be a case where you want to disable color output (for example to\npipe the standard output of your app to somewhere else). `Color` has support to\ndisable colors both globally and for single color definition. For example\nsuppose you have a CLI app and a `--no-color` bool flag. You can easily disable\nthe color output with:\n\nYou can also disable the color by setting the NO_COLOR environment variable to any value.\n\nIt also has support for single color definitions (local). You can\ndisable/enable color output on the fly:",
-      "licenses": [
-        {
-          "expression": "(MIT)"
-        }
-      ],
-      "purl": "pkg:golang/github.com/fatih/color@v1.18.0",
-      "externalReferences": [
-        {
-          "url": "https://github.com/fatih/color",
-          "type": "website"
-        },
-        {
-          "url": "https://pkg.go.dev/github.com/fatih/color",
-          "type": "distribution"
-        },
-        {
-          "url": "https://github.com/fatih/color",
-          "type": "vcs"
-        },
-        {
-          "url": "https://pkg.go.dev/github.com/fatih/color#section-documentation",
-          "type": "documentation"
-        }
-      ],
-      "properties": [
-        {
-          "name": "aquasecurity:trivy:LayerDiffID",
-          "value": "sha256:8659a3ea452714cb8fc9538686a34fc2093207d0f69311ecadb26c92d8ed1bf0"
-        },
-        {
-          "name": "aquasecurity:trivy:LayerDigest",
-          "value": "sha256:6c89d3e624336e6b0b5a42398e3795d95b04c2d56a5fb830470542e8b495100e"
-        },
-        {
-          "name": "aquasecurity:trivy:PkgID",
-          "value": "github.com/fatih/color@v1.18.0"
-        },
-        {
-          "name": "aquasecurity:trivy:PkgType",
-          "value": "gobinary"
-        },
-        {
-          "name": "ecosystems:first_release_published_at",
-          "value": "2016-06-10T11:06:02Z"
-        },
-        {
-          "name": "ecosystems:latest_release_published_at",
-          "value": "2026-03-20T08:53:23Z"
-        },
-        {
-          "name": "ecosystems:owner_location",
-          "value": "Ankara, TR"
-        },
-        {
-          "name": "ecosystems:topic",
-          "value": "ansi"
-        },
-        {
-          "name": "ecosystems:topic",
-          "value": "color"
-        },
-        {
-          "name": "ecosystems:topic",
-          "value": "coloring"
-        },
-        {
-          "name": "ecosystems:topic",
-          "value": "go"
-        },
-        {
-          "name": "ecosystems:topic",
-          "value": "golang"
-        }
-      ]
-    },
-    {
-      "bom-ref": "f8047c5a-fc7e-4eb3-89ec-31932183fe80",
-      "type": "library",
-      "supplier": {
-        "name": "mattn",
-        "url": [
-          "https://mattn.kaoriya.net/"
-        ]
-      },
-      "author": "mattn",
-      "name": "github.com/mattn/go-isatty",
-      "version": "v0.0.20",
-      "description": "Package isatty implements interface to isatty",
-      "licenses": [
-        {
-          "expression": "(MIT)"
-        }
-      ],
-      "purl": "pkg:golang/github.com/mattn/go-isatty@v0.0.20",
-      "externalReferences": [
-        {
-          "url": "https://github.com/mattn/go-isatty",
-          "type": "website"
-        },
-        {
-          "url": "https://pkg.go.dev/github.com/mattn/go-isatty",
-          "type": "distribution"
-        },
-        {
-          "url": "https://github.com/mattn/go-isatty",
-          "type": "vcs"
-        },
-        {
-          "url": "https://pkg.go.dev/github.com/mattn/go-isatty#section-documentation",
-          "type": "documentation"
-        }
-      ],
-      "properties": [
-        {
-          "name": "aquasecurity:trivy:LayerDiffID",
-          "value": "sha256:8659a3ea452714cb8fc9538686a34fc2093207d0f69311ecadb26c92d8ed1bf0"
-        },
-        {
-          "name": "aquasecurity:trivy:LayerDigest",
-          "value": "sha256:6c89d3e624336e6b0b5a42398e3795d95b04c2d56a5fb830470542e8b495100e"
-        },
-        {
-          "name": "aquasecurity:trivy:PkgID",
-          "value": "github.com/mattn/go-isatty@v0.0.20"
-        },
-        {
-          "name": "aquasecurity:trivy:PkgType",
-          "value": "gobinary"
-        },
-        {
-          "name": "ecosystems:first_release_published_at",
-          "value": "2015-12-12T12:33:44Z"
-        },
-        {
-          "name": "ecosystems:latest_release_published_at",
-          "value": "2023-10-17T07:28:21Z"
-        },
-        {
-          "name": "ecosystems:owner_location",
-          "value": "Osaka, Japan"
-        },
-        {
-          "name": "ecosystems:topic",
-          "value": "cygwin"
-        },
-        {
-          "name": "ecosystems:topic",
-          "value": "go"
-        },
-        {
-          "name": "ecosystems:topic",
-          "value": "golang"
-        },
-        {
-          "name": "ecosystems:topic",
-          "value": "isatty"
-        },
-        {
-          "name": "ecosystems:topic",
-          "value": "msys2"
-        },
-        {
-          "name": "ecosystems:topic",
-          "value": "website"
         }
       ]
     },
@@ -44103,67 +44103,86 @@
   ],
   "dependencies": [
     {
-      "ref": "016c0d5f-5fea-41c5-af8f-49385110efb4",
-      "dependsOn": []
-    },
-    {
-      "ref": "0f05f487-144e-4cf3-8392-2aebc572de7d",
-      "dependsOn": []
-    },
-    {
-      "ref": "1d6e76b4-40ef-4f6c-9441-64c0761ae77e",
+      "ref": "08ae1230-10a7-4bd0-bb50-078edc3806b6",
       "dependsOn": [
-        "016c0d5f-5fea-41c5-af8f-49385110efb4",
-        "0f05f487-144e-4cf3-8392-2aebc572de7d",
-        "a2d99db2-c7b1-4f0c-ae2b-980ffa906340",
-        "a48e8ed7-5b63-43b6-9733-cc7112188b7d",
-        "f448d2e1-92f5-4b39-b8b2-0bd1fc6e182f"
+        "a4841d74-a62c-46ab-a84f-731375ff04cd"
       ]
     },
     {
-      "ref": "38366acf-9b5c-42d4-ad88-06663ad18930",
+      "ref": "16c78cc8-f30a-4d53-ab45-2477a4120214",
+      "dependsOn": [
+        "3b84827d-d8a7-4b1e-9046-6b29ed1d0d2e",
+        "4b7951d3-8462-467b-9dd0-310fb3dd1a2b",
+        "506d82f0-122d-4dbf-bdbc-dc40df949739",
+        "86946c5d-2d0c-4d60-a8f4-e82cdda51970",
+        "897c5de4-f9f5-4148-9b32-5a3d0b7f1407"
+      ]
+    },
+    {
+      "ref": "2759fbad-4d1c-45fb-a4f6-cb53fe33c459",
       "dependsOn": []
     },
     {
-      "ref": "5269c743-e558-491f-ab2b-fad3789d2a01",
+      "ref": "2a10d8ac-a808-4241-b845-5dd99c2880bd",
       "dependsOn": [
-        "1d6e76b4-40ef-4f6c-9441-64c0761ae77e"
+        "acf96acd-6251-4bdc-91b6-63115c32617d"
       ]
     },
     {
-      "ref": "5569c804-76a9-47a2-9d11-4b6ba0783147",
-      "dependsOn": [
-        "pkg:apk/alpine/alpine-baselayout@3.7.1-r8?arch=x86_64&distro=3.23.3",
-        "pkg:apk/alpine/alpine-release@3.23.3-r0?arch=x86_64&distro=3.23.3",
-        "pkg:apk/alpine/apk-tools@3.0.3-r1?arch=x86_64&distro=3.23.3",
-        "pkg:apk/alpine/bash@5.3.3-r1?arch=x86_64&distro=3.23.3",
-        "pkg:apk/alpine/bubblewrap@0.11.0-r2?arch=x86_64&distro=3.23.3",
-        "pkg:apk/alpine/ca-certificates@20251003-r0?arch=x86_64&distro=3.23.3",
-        "pkg:apk/alpine/curl@8.17.0-r1?arch=x86_64&distro=3.23.3",
-        "pkg:apk/alpine/musl-utils@1.2.5-r21?arch=x86_64&distro=3.23.3",
-        "pkg:apk/alpine/ssl_client@1.37.0-r30?arch=x86_64&distro=3.23.3",
-        "pkg:apk/alpine/tzdata@2026a-r0?arch=x86_64&distro=3.23.3"
-      ]
-    },
-    {
-      "ref": "636aac19-6bae-43e2-8e18-48073ed42103",
+      "ref": "32b313fd-da18-461f-a5a9-1eef9125eae1",
       "dependsOn": []
     },
     {
-      "ref": "6cf435c3-0ce4-489e-9046-2061fcdf5aee",
+      "ref": "392aa4ad-1e4c-45f2-ac3c-0f7bbe072bae",
+      "dependsOn": []
+    },
+    {
+      "ref": "3b84827d-d8a7-4b1e-9046-6b29ed1d0d2e",
+      "dependsOn": []
+    },
+    {
+      "ref": "4b7951d3-8462-467b-9dd0-310fb3dd1a2b",
+      "dependsOn": []
+    },
+    {
+      "ref": "506d82f0-122d-4dbf-bdbc-dc40df949739",
+      "dependsOn": []
+    },
+    {
+      "ref": "5cf6ec9b-454d-4f94-9126-7a7f6453e22b",
+      "dependsOn": []
+    },
+    {
+      "ref": "6354fbd7-e832-4a52-9941-1e072cf40ef3",
+      "dependsOn": []
+    },
+    {
+      "ref": "86946c5d-2d0c-4d60-a8f4-e82cdda51970",
+      "dependsOn": []
+    },
+    {
+      "ref": "897c5de4-f9f5-4148-9b32-5a3d0b7f1407",
+      "dependsOn": []
+    },
+    {
+      "ref": "a4841d74-a62c-46ab-a84f-731375ff04cd",
       "dependsOn": [
-        "d491bb40-a118-4b88-9d58-0dbd1c52da5b"
+        "2759fbad-4d1c-45fb-a4f6-cb53fe33c459",
+        "32b313fd-da18-461f-a5a9-1eef9125eae1",
+        "392aa4ad-1e4c-45f2-ac3c-0f7bbe072bae",
+        "5cf6ec9b-454d-4f94-9126-7a7f6453e22b",
+        "e680b5ca-ae96-4baa-a97b-cc33daff476e"
       ]
     },
     {
-      "ref": "70e38193-36a1-4441-9b9b-b7560b6e5cca",
+      "ref": "acf96acd-6251-4bdc-91b6-63115c32617d",
       "dependsOn": [
-        "38366acf-9b5c-42d4-ad88-06663ad18930",
-        "76b47a8c-2409-49ea-b45d-9a250332a05b",
-        "7bb69530-87a9-416c-9b51-fe0348227c46",
-        "87b32c66-faa9-4c3d-b9df-a190954dee9f",
-        "db5e1af8-dd47-4a43-83e9-0f4dc201baa4",
-        "e17f2ed4-ae2d-47d7-9eb4-f4fcd192b297",
+        "6354fbd7-e832-4a52-9941-1e072cf40ef3",
+        "b001dbf7-d14d-43f6-ad33-44a167319f55",
+        "c0d0a17a-9c1b-44cc-b2a5-25d2671dc1ea",
+        "d704454c-4134-495b-bfa3-96064000b70b",
+        "e3015c3a-1e7e-4767-9a48-61ec0a9c6359",
+        "f1cdafbb-81e5-4ff2-b9c2-8cb6e56d66cc",
         "pkg:golang/buf.build/gen/go/parca-dev/parca/connectrpc/go@v1.18.1-20250703125925-3f0fcf4bff96.1",
         "pkg:golang/buf.build/gen/go/parca-dev/parca/protocolbuffers/go@v1.36.2-20250703125925-3f0fcf4bff96.1",
         "pkg:golang/cel.dev/expr@v0.25.1",
@@ -44702,67 +44721,48 @@
       ]
     },
     {
-      "ref": "76b47a8c-2409-49ea-b45d-9a250332a05b",
+      "ref": "b001dbf7-d14d-43f6-ad33-44a167319f55",
       "dependsOn": []
     },
     {
-      "ref": "7bb69530-87a9-416c-9b51-fe0348227c46",
-      "dependsOn": []
-    },
-    {
-      "ref": "87b32c66-faa9-4c3d-b9df-a190954dee9f",
-      "dependsOn": []
-    },
-    {
-      "ref": "8a5470f6-927f-49b6-b871-1e63f1592140",
+      "ref": "bb49a71d-eaf5-4e19-ab5f-1f5e363489a7",
       "dependsOn": [
-        "70e38193-36a1-4441-9b9b-b7560b6e5cca"
+        "pkg:apk/alpine/alpine-baselayout@3.7.1-r8?arch=x86_64&distro=3.23.3",
+        "pkg:apk/alpine/alpine-release@3.23.3-r0?arch=x86_64&distro=3.23.3",
+        "pkg:apk/alpine/apk-tools@3.0.3-r1?arch=x86_64&distro=3.23.3",
+        "pkg:apk/alpine/bash@5.3.3-r1?arch=x86_64&distro=3.23.3",
+        "pkg:apk/alpine/bubblewrap@0.11.0-r2?arch=x86_64&distro=3.23.3",
+        "pkg:apk/alpine/ca-certificates@20251003-r0?arch=x86_64&distro=3.23.3",
+        "pkg:apk/alpine/curl@8.17.0-r1?arch=x86_64&distro=3.23.3",
+        "pkg:apk/alpine/musl-utils@1.2.5-r21?arch=x86_64&distro=3.23.3",
+        "pkg:apk/alpine/ssl_client@1.37.0-r30?arch=x86_64&distro=3.23.3",
+        "pkg:apk/alpine/tzdata@2026a-r0?arch=x86_64&distro=3.23.3"
       ]
     },
     {
-      "ref": "8e2e0b27-8329-4361-84ce-1d5de34052e1",
+      "ref": "c0d0a17a-9c1b-44cc-b2a5-25d2671dc1ea",
       "dependsOn": []
     },
     {
-      "ref": "a2d99db2-c7b1-4f0c-ae2b-980ffa906340",
-      "dependsOn": []
-    },
-    {
-      "ref": "a48e8ed7-5b63-43b6-9733-cc7112188b7d",
-      "dependsOn": []
-    },
-    {
-      "ref": "b4574fcb-76f9-492f-aaab-9ee4e8675cae",
-      "dependsOn": []
-    },
-    {
-      "ref": "d491bb40-a118-4b88-9d58-0dbd1c52da5b",
+      "ref": "c69f5356-6276-4c25-b7b8-ac4e81d611b4",
       "dependsOn": [
-        "636aac19-6bae-43e2-8e18-48073ed42103",
-        "8e2e0b27-8329-4361-84ce-1d5de34052e1",
-        "b4574fcb-76f9-492f-aaab-9ee4e8675cae",
-        "f6292e7b-cbea-4caa-bab1-594586313832",
-        "f8047c5a-fc7e-4eb3-89ec-31932183fe80"
+        "16c78cc8-f30a-4d53-ab45-2477a4120214"
       ]
     },
     {
-      "ref": "db5e1af8-dd47-4a43-83e9-0f4dc201baa4",
+      "ref": "d704454c-4134-495b-bfa3-96064000b70b",
       "dependsOn": []
     },
     {
-      "ref": "e17f2ed4-ae2d-47d7-9eb4-f4fcd192b297",
+      "ref": "e3015c3a-1e7e-4767-9a48-61ec0a9c6359",
       "dependsOn": []
     },
     {
-      "ref": "f448d2e1-92f5-4b39-b8b2-0bd1fc6e182f",
+      "ref": "e680b5ca-ae96-4baa-a97b-cc33daff476e",
       "dependsOn": []
     },
     {
-      "ref": "f6292e7b-cbea-4caa-bab1-594586313832",
-      "dependsOn": []
-    },
-    {
-      "ref": "f8047c5a-fc7e-4eb3-89ec-31932183fe80",
+      "ref": "f1cdafbb-81e5-4ff2-b9c2-8cb6e56d66cc",
       "dependsOn": []
     },
     {
@@ -47195,10 +47195,10 @@
     {
       "ref": "pkg:oci/grafana@sha256%3A83749231c3835e390a3144e5e940203e42b9589761f20ef3169c716e734ad505?arch=amd64&repository_url=index.docker.io%2Fgrafana%2Fgrafana",
       "dependsOn": [
-        "5269c743-e558-491f-ab2b-fad3789d2a01",
-        "5569c804-76a9-47a2-9d11-4b6ba0783147",
-        "6cf435c3-0ce4-489e-9046-2061fcdf5aee",
-        "8a5470f6-927f-49b6-b871-1e63f1592140",
+        "08ae1230-10a7-4bd0-bb50-078edc3806b6",
+        "2a10d8ac-a808-4241-b845-5dd99c2880bd",
+        "bb49a71d-eaf5-4e19-ab5f-1f5e363489a7",
+        "c69f5356-6276-4c25-b7b8-ac4e81d611b4",
         "pkg:npm/%40grafana-plugins/elasticsearch@12.4.2",
         "pkg:npm/%40grafana-plugins/grafana-azure-monitor-datasource@12.4.2",
         "pkg:npm/%40grafana-plugins/grafana-postgresql-datasource@12.4.2",

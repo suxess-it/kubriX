@@ -2,10 +2,10 @@
   "$schema": "http://cyclonedx.org/schema/bom-1.6.schema.json",
   "bomFormat": "CycloneDX",
   "specVersion": "1.6",
-  "serialNumber": "urn:uuid:08652e9f-3e71-44a1-8462-7075923397fc",
+  "serialNumber": "urn:uuid:36171bba-dd98-4904-8a2c-2c6b06ebf070",
   "version": 1,
   "metadata": {
-    "timestamp": "2026-04-07T12:24:07+00:00",
+    "timestamp": "2026-04-07T12:48:21+00:00",
     "tools": {
       "components": [
         {
@@ -118,7 +118,38 @@
   },
   "components": [
     {
-      "bom-ref": "22a7a097-8517-4f9c-8b38-9b21bcff3f48",
+      "bom-ref": "0c0337c8-df88-4928-80a6-c3e69d2b0451",
+      "type": "operating-system",
+      "name": "debian",
+      "version": "12.13",
+      "properties": [
+        {
+          "name": "aquasecurity:trivy:Class",
+          "value": "os-pkgs"
+        },
+        {
+          "name": "aquasecurity:trivy:Type",
+          "value": "debian"
+        }
+      ]
+    },
+    {
+      "bom-ref": "2a68ef48-b840-4baf-95fc-c8b73183c18f",
+      "type": "application",
+      "name": "app/cmd/cainjector/cainjector",
+      "properties": [
+        {
+          "name": "aquasecurity:trivy:Class",
+          "value": "lang-pkgs"
+        },
+        {
+          "name": "aquasecurity:trivy:Type",
+          "value": "gobinary"
+        }
+      ]
+    },
+    {
+      "bom-ref": "f242ee79-d48c-4b62-b351-c91e212983ac",
       "type": "library",
       "name": "../../",
       "properties": [
@@ -137,37 +168,6 @@
         {
           "name": "aquasecurity:trivy:PkgType",
           "value": "gobinary"
-        }
-      ]
-    },
-    {
-      "bom-ref": "464af853-365b-4b31-a86b-4c19b171d104",
-      "type": "application",
-      "name": "app/cmd/cainjector/cainjector",
-      "properties": [
-        {
-          "name": "aquasecurity:trivy:Class",
-          "value": "lang-pkgs"
-        },
-        {
-          "name": "aquasecurity:trivy:Type",
-          "value": "gobinary"
-        }
-      ]
-    },
-    {
-      "bom-ref": "5db33334-7201-46c2-b182-f7852585c983",
-      "type": "operating-system",
-      "name": "debian",
-      "version": "12.13",
-      "properties": [
-        {
-          "name": "aquasecurity:trivy:Class",
-          "value": "os-pkgs"
-        },
-        {
-          "name": "aquasecurity:trivy:Type",
-          "value": "debian"
         }
       ]
     },
@@ -4397,6 +4397,11 @@
       "author": "Kubernetes",
       "name": "k8s.io/kube-aggregator",
       "version": "v0.35.2",
+      "licenses": [
+        {
+          "expression": "(Apache-2.0)"
+        }
+      ],
       "purl": "pkg:golang/k8s.io/kube-aggregator@v0.35.2",
       "externalReferences": [
         {
@@ -4591,6 +4596,11 @@
       "name": "sigs.k8s.io/controller-runtime",
       "version": "v0.23.1",
       "description": "Package controllerruntime provides tools to construct Kubernetes-style\ncontrollers that manipulate both Kubernetes CRDs and aggregated/built-in\nKubernetes APIs.\n\nIt defines easy helpers for the common use cases when building CRDs, built\non top of customizable layers of abstraction.  Common cases should be easy,\nand uncommon cases should be possible.  In general, controller-runtime tries\nto guide users towards Kubernetes controller best-practices.\n\nThe main entrypoint for controller-runtime is this root package, which\ncontains all of the common types needed to get started building controllers:\n\nThe examples in this package walk through a basic controller setup.  The\nkubebuilder book (https://book.kubebuilder.io) has some more in-depth\nwalkthroughs.\n\ncontroller-runtime favors structs with sane defaults over constructors, so\nit's fairly common to see structs being used directly in controller-runtime.\n\nA brief-ish walkthrough of the layout of this library can be found below. Each\npackage contains more information about how to use it.\n\nFrequently asked questions about using controller-runtime and designing\ncontrollers can be found at\nhttps://github.com/kubernetes-sigs/controller-runtime/blob/main/FAQ.md.\n\nEvery controller and webhook is ultimately run by a Manager (pkg/manager). A\nmanager is responsible for running controllers and webhooks, and setting up\ncommon dependencies, like shared caches and clients, as\nwell as managing leader election (pkg/leaderelection).  Managers are\ngenerally configured to gracefully shut down controllers on pod termination\nby wiring up a signal handler (pkg/manager/signals).\n\nControllers (pkg/controller) use events (pkg/event) to eventually trigger\nreconcile requests.  They may be constructed manually, but are often\nconstructed with a Builder (pkg/builder), which eases the wiring of event\nsources (pkg/source), like Kubernetes API object changes, to event handlers\n(pkg/handler), like \"enqueue a reconcile request for the object owner\".\nPredicates (pkg/predicate) can be used to filter which events actually\ntrigger reconciles.  There are pre-written utilities for the common cases, and\ninterfaces and helpers for advanced cases.\n\nController logic is implemented in terms of Reconcilers (pkg/reconcile).  A\nReconciler implements a function which takes a reconcile Request containing\nthe name and namespace of the object to reconcile, reconciles the object,\nand returns a Response or an error indicating whether to requeue for a\nsecond round of processing.\n\nReconcilers use Clients (pkg/client) to access API objects.  The default\nclient provided by the manager reads from a local shared cache (pkg/cache)\nand writes directly to the API server, but clients can be constructed that\nonly talk to the API server, without a cache.  The Cache will auto-populate\nwith watched objects, as well as when other structured objects are\nrequested. The default split client does not promise to invalidate the cache\nduring writes (nor does it promise sequential create/get coherence), and code\nshould not assume a get immediately following a create/update will return\nthe updated resource. Caches may also have indexes, which can be created via\na FieldIndexer (pkg/client) obtained from the manager.  Indexes can be used to\nquickly and easily look up all objects with certain fields set.  Reconcilers\nmay retrieve event recorders (pkg/recorder) to emit events using the\nmanager.\n\nClients, Caches, and many other things in Kubernetes use Schemes\n(pkg/scheme) to associate Go types to Kubernetes API Kinds\n(Group-Version-Kinds, to be specific).\n\nSimilarly, webhooks (pkg/webhook/admission) may be implemented directly, but\nare often constructed using a builder (pkg/webhook/admission/builder).  They\nare run via a server (pkg/webhook) which is managed by a Manager.\n\nLogging (pkg/log) in controller-runtime is done via structured logs, using a\nlog set of interfaces called logr\n(https://pkg.go.dev/github.com/go-logr/logr).  While controller-runtime\nprovides easy setup for using Zap (https://go.uber.org/zap, pkg/log/zap),\nyou can provide any implementation of logr as the base logger for\ncontroller-runtime.\n\nMetrics (pkg/metrics) provided by controller-runtime are registered into a\ncontroller-runtime-specific Prometheus metrics registry.  The manager can\nserve these by an HTTP endpoint, and additional metrics may be registered to\nthis Registry as normal.\n\nYou can easily build integration and unit tests for your controllers and\nwebhooks using the test Environment (pkg/envtest).  This will automatically\nstand up a copy of etcd and kube-apiserver, and provide the correct options\nto connect to the API server.  It's designed to work well with the Ginkgo\ntesting framework, but should work with any testing setup.\n\nThis example creates a simple application Controller that is configured for ReplicaSets and Pods.\n\n* Create a new application for ReplicaSets that manages Pods owned by the ReplicaSet and calls into\nReplicaSetReconciler.\n\n* Start the application.\n\n\nThis example creates a simple application Controller that is configured for ExampleCRDWithConfigMapRef CRD.\nAny change in the configMap referenced in this Custom Resource will cause the re-reconcile of the parent ExampleCRDWithConfigMapRef\ndue to the implementation of the .Watches method of \"sigs.k8s.io/controller-runtime/pkg/builder\".Builder.\n\n\nThis example creates a simple application Controller that is configured for ReplicaSets and Pods.\nThis application controller will be running leader election with the provided configuration in the manager options.\nIf leader election configuration is not provided, controller runs leader election with default values.\nDefault values taken from: https://github.com/kubernetes/component-base/blob/master/config/v1alpha1/defaults.go\n* defaultLeaseDuration = 15 * time.Second\n* defaultRenewDeadline = 10 * time.Second\n* defaultRetryPeriod   = 2 * time.Second\n\n* Create a new application for ReplicaSets that manages Pods owned by the ReplicaSet and calls into\nReplicaSetReconciler.\n\n* Start the application.",
+      "licenses": [
+        {
+          "expression": "(Apache-2.0)"
+        }
+      ],
       "purl": "pkg:golang/sigs.k8s.io/controller-runtime@v0.23.1",
       "externalReferences": [
         {
@@ -4640,9 +4650,36 @@
     {
       "bom-ref": "pkg:golang/sigs.k8s.io/gateway-api@v1.5.0",
       "type": "library",
+      "supplier": {
+        "name": "Kubernetes SIGs"
+      },
+      "author": "Kubernetes SIGs",
       "name": "sigs.k8s.io/gateway-api",
       "version": "v1.5.0",
+      "licenses": [
+        {
+          "expression": "(Apache-2.0)"
+        }
+      ],
       "purl": "pkg:golang/sigs.k8s.io/gateway-api@v1.5.0",
+      "externalReferences": [
+        {
+          "url": "https://github.com/kubernetes-sigs/gateway-api",
+          "type": "website"
+        },
+        {
+          "url": "https://pkg.go.dev/sigs.k8s.io/gateway-api",
+          "type": "distribution"
+        },
+        {
+          "url": "https://github.com/kubernetes-sigs/gateway-api",
+          "type": "vcs"
+        },
+        {
+          "url": "https://pkg.go.dev/sigs.k8s.io/gateway-api#section-documentation",
+          "type": "documentation"
+        }
+      ],
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
@@ -4659,6 +4696,34 @@
         {
           "name": "aquasecurity:trivy:PkgType",
           "value": "gobinary"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2020-10-07T23:56:16Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2026-03-13T20:23:39Z"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "gateway-api"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "k8s-sig-network"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "kubernetes"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "networking"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "sig-network"
         }
       ]
     },
@@ -4900,13 +4965,18 @@
   ],
   "dependencies": [
     {
-      "ref": "22a7a097-8517-4f9c-8b38-9b21bcff3f48",
-      "dependsOn": []
+      "ref": "0c0337c8-df88-4928-80a6-c3e69d2b0451",
+      "dependsOn": [
+        "pkg:deb/debian/base-files@12.4%2Bdeb12u13?arch=amd64&distro=debian-12.13",
+        "pkg:deb/debian/media-types@10.0.0?arch=all&distro=debian-12.13",
+        "pkg:deb/debian/netbase@6.4?arch=all&distro=debian-12.13",
+        "pkg:deb/debian/tzdata@2025b-0%2Bdeb12u2?arch=all&distro=debian-12.13"
+      ]
     },
     {
-      "ref": "464af853-365b-4b31-a86b-4c19b171d104",
+      "ref": "2a68ef48-b840-4baf-95fc-c8b73183c18f",
       "dependsOn": [
-        "22a7a097-8517-4f9c-8b38-9b21bcff3f48",
+        "f242ee79-d48c-4b62-b351-c91e212983ac",
         "pkg:golang/github.com/azure/go-ntlmssp@v0.0.0-20221128193559-754e69321358",
         "pkg:golang/github.com/beorn7/perks@v1.0.1",
         "pkg:golang/github.com/blang/semver/v4@v4.0.0",
@@ -4980,13 +5050,8 @@
       ]
     },
     {
-      "ref": "5db33334-7201-46c2-b182-f7852585c983",
-      "dependsOn": [
-        "pkg:deb/debian/base-files@12.4%2Bdeb12u13?arch=amd64&distro=debian-12.13",
-        "pkg:deb/debian/media-types@10.0.0?arch=all&distro=debian-12.13",
-        "pkg:deb/debian/netbase@6.4?arch=all&distro=debian-12.13",
-        "pkg:deb/debian/tzdata@2025b-0%2Bdeb12u2?arch=all&distro=debian-12.13"
-      ]
+      "ref": "f242ee79-d48c-4b62-b351-c91e212983ac",
+      "dependsOn": []
     },
     {
       "ref": "pkg:deb/debian/base-files@12.4%2Bdeb12u13?arch=amd64&distro=debian-12.13",
@@ -5287,8 +5352,8 @@
     {
       "ref": "pkg:oci/cert-manager-cainjector@sha256%3Aa3ff773a577d8ff6ad1fe9ab4ea0b74873e0341e0aac5d9411f3fc235f51bdf8?arch=amd64&repository_url=quay.io%2Fjetstack%2Fcert-manager-cainjector",
       "dependsOn": [
-        "464af853-365b-4b31-a86b-4c19b171d104",
-        "5db33334-7201-46c2-b182-f7852585c983"
+        "0c0337c8-df88-4928-80a6-c3e69d2b0451",
+        "2a68ef48-b840-4baf-95fc-c8b73183c18f"
       ]
     }
   ],

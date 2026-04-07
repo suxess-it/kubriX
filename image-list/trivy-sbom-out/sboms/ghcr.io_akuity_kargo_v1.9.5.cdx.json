@@ -2,10 +2,10 @@
   "$schema": "http://cyclonedx.org/schema/bom-1.6.schema.json",
   "bomFormat": "CycloneDX",
   "specVersion": "1.6",
-  "serialNumber": "urn:uuid:bbcd56ec-0cac-4c2b-8de3-2ce8a671953b",
+  "serialNumber": "urn:uuid:8554349f-0c43-4287-8b03-4803082a3dad",
   "version": 1,
   "metadata": {
-    "timestamp": "2026-04-07T12:22:21+00:00",
+    "timestamp": "2026-04-07T12:46:51+00:00",
     "tools": {
       "components": [
         {
@@ -70,7 +70,22 @@
   },
   "components": [
     {
-      "bom-ref": "05e33f8a-017a-4be5-bc21-f5fcd5f99d43",
+      "bom-ref": "0dc8bf5b-a7e7-4d69-a0d8-09400f9fb78f",
+      "type": "application",
+      "name": "usr/local/bin/credential-helper",
+      "properties": [
+        {
+          "name": "aquasecurity:trivy:Class",
+          "value": "lang-pkgs"
+        },
+        {
+          "name": "aquasecurity:trivy:Type",
+          "value": "gobinary"
+        }
+      ]
+    },
+    {
+      "bom-ref": "1aac793c-c43f-43b1-a719-acbc3a2c8c8f",
       "type": "operating-system",
       "name": "wolfi",
       "version": "20230201",
@@ -86,34 +101,9 @@
       ]
     },
     {
-      "bom-ref": "1ffae3b1-fd21-47b5-8600-74965d805f8c",
-      "type": "library",
-      "name": "stdlib",
-      "version": "v1.25.5",
-      "purl": "pkg:golang/stdlib@v1.25.5",
-      "properties": [
-        {
-          "name": "aquasecurity:trivy:LayerDiffID",
-          "value": "sha256:a408f374551fa5779cb8dae5a9df0ba85e58a0ce5ff07d2714a5bf3d368c23e2"
-        },
-        {
-          "name": "aquasecurity:trivy:LayerDigest",
-          "value": "sha256:a2b32679b0991018ceb24740769385c0879613b6d1f1234f9d48fd329fc09a8e"
-        },
-        {
-          "name": "aquasecurity:trivy:PkgID",
-          "value": "stdlib@v1.25.5"
-        },
-        {
-          "name": "aquasecurity:trivy:PkgType",
-          "value": "gobinary"
-        }
-      ]
-    },
-    {
-      "bom-ref": "44bc5357-b84b-4d31-884d-1e6e64edbc58",
+      "bom-ref": "3f51c32c-16ed-4a0c-a05a-bf51a2c43dcd",
       "type": "application",
-      "name": "usr/local/bin/credential-helper",
+      "name": "usr/local/bin/kargo",
       "properties": [
         {
           "name": "aquasecurity:trivy:Class",
@@ -126,7 +116,22 @@
       ]
     },
     {
-      "bom-ref": "5d3d935a-a861-48b5-894d-3e7d7da81929",
+      "bom-ref": "416ec0df-c2e7-42cf-8b19-1ba8a51fe6f1",
+      "type": "application",
+      "name": "usr/local/bin/grpc_health_probe",
+      "properties": [
+        {
+          "name": "aquasecurity:trivy:Class",
+          "value": "lang-pkgs"
+        },
+        {
+          "name": "aquasecurity:trivy:Type",
+          "value": "gobinary"
+        }
+      ]
+    },
+    {
+      "bom-ref": "43e0eb9d-9e03-492e-bb3e-39d09da83ac5",
       "type": "library",
       "supplier": {
         "name": "Akuity",
@@ -215,7 +220,7 @@
       ]
     },
     {
-      "bom-ref": "88264c6c-6530-4a15-8fab-84105e437284",
+      "bom-ref": "7de98c99-6842-4410-8aa7-d632eeb19dca",
       "type": "library",
       "name": "./api",
       "properties": [
@@ -238,7 +243,7 @@
       ]
     },
     {
-      "bom-ref": "9a13e8d9-9fc8-41cc-8662-2afb50d0ebf6",
+      "bom-ref": "b31bd650-dbec-48c1-9c2b-cdbb267d0a9d",
       "type": "library",
       "supplier": {
         "name": "Akuity",
@@ -327,22 +332,7 @@
       ]
     },
     {
-      "bom-ref": "9e98a492-89b5-45d8-addc-37b9e1457f5f",
-      "type": "application",
-      "name": "usr/local/bin/grpc_health_probe",
-      "properties": [
-        {
-          "name": "aquasecurity:trivy:Class",
-          "value": "lang-pkgs"
-        },
-        {
-          "name": "aquasecurity:trivy:Type",
-          "value": "gobinary"
-        }
-      ]
-    },
-    {
-      "bom-ref": "a6d9618c-954b-4530-9716-af5ca6063557",
+      "bom-ref": "c1f27893-32da-404d-9c5e-7adb204e4335",
       "type": "library",
       "name": "stdlib",
       "version": "v1.25.5",
@@ -367,16 +357,26 @@
       ]
     },
     {
-      "bom-ref": "bef842cc-6603-4507-a40b-95f4cf84ac72",
-      "type": "application",
-      "name": "usr/local/bin/kargo",
+      "bom-ref": "c216d304-a153-47e6-aaad-1879502e3962",
+      "type": "library",
+      "name": "stdlib",
+      "version": "v1.25.5",
+      "purl": "pkg:golang/stdlib@v1.25.5",
       "properties": [
         {
-          "name": "aquasecurity:trivy:Class",
-          "value": "lang-pkgs"
+          "name": "aquasecurity:trivy:LayerDiffID",
+          "value": "sha256:a408f374551fa5779cb8dae5a9df0ba85e58a0ce5ff07d2714a5bf3d368c23e2"
         },
         {
-          "name": "aquasecurity:trivy:Type",
+          "name": "aquasecurity:trivy:LayerDigest",
+          "value": "sha256:a2b32679b0991018ceb24740769385c0879613b6d1f1234f9d48fd329fc09a8e"
+        },
+        {
+          "name": "aquasecurity:trivy:PkgID",
+          "value": "stdlib@v1.25.5"
+        },
+        {
+          "name": "aquasecurity:trivy:PkgType",
           "value": "gobinary"
         }
       ]
@@ -20667,7 +20667,13 @@
   ],
   "dependencies": [
     {
-      "ref": "05e33f8a-017a-4be5-bc21-f5fcd5f99d43",
+      "ref": "0dc8bf5b-a7e7-4d69-a0d8-09400f9fb78f",
+      "dependsOn": [
+        "43e0eb9d-9e03-492e-bb3e-39d09da83ac5"
+      ]
+    },
+    {
+      "ref": "1aac793c-c43f-43b1-a719-acbc3a2c8c8f",
       "dependsOn": [
         "pkg:apk/wolfi/busybox@1.37.0-r54?arch=x86_64&distro=20230201",
         "pkg:apk/wolfi/ca-certificates@20251003-r3?arch=x86_64&distro=20230201",
@@ -20680,30 +20686,32 @@
       ]
     },
     {
-      "ref": "1ffae3b1-fd21-47b5-8600-74965d805f8c",
-      "dependsOn": []
-    },
-    {
-      "ref": "44bc5357-b84b-4d31-884d-1e6e64edbc58",
+      "ref": "3f51c32c-16ed-4a0c-a05a-bf51a2c43dcd",
       "dependsOn": [
-        "5d3d935a-a861-48b5-894d-3e7d7da81929"
+        "b31bd650-dbec-48c1-9c2b-cdbb267d0a9d"
       ]
     },
     {
-      "ref": "5d3d935a-a861-48b5-894d-3e7d7da81929",
+      "ref": "416ec0df-c2e7-42cf-8b19-1ba8a51fe6f1",
       "dependsOn": [
-        "a6d9618c-954b-4530-9716-af5ca6063557"
+        "pkg:golang/github.com/grpc-ecosystem/grpc-health-probe@v0.4.41"
       ]
     },
     {
-      "ref": "88264c6c-6530-4a15-8fab-84105e437284",
+      "ref": "43e0eb9d-9e03-492e-bb3e-39d09da83ac5",
+      "dependsOn": [
+        "c1f27893-32da-404d-9c5e-7adb204e4335"
+      ]
+    },
+    {
+      "ref": "7de98c99-6842-4410-8aa7-d632eeb19dca",
       "dependsOn": []
     },
     {
-      "ref": "9a13e8d9-9fc8-41cc-8662-2afb50d0ebf6",
+      "ref": "b31bd650-dbec-48c1-9c2b-cdbb267d0a9d",
       "dependsOn": [
-        "1ffae3b1-fd21-47b5-8600-74965d805f8c",
-        "88264c6c-6530-4a15-8fab-84105e437284",
+        "7de98c99-6842-4410-8aa7-d632eeb19dca",
+        "c216d304-a153-47e6-aaad-1879502e3962",
         "pkg:golang/cloud.google.com/go/auth/oauth2adapt@v0.2.8",
         "pkg:golang/cloud.google.com/go/auth@v0.18.0",
         "pkg:golang/cloud.google.com/go/compute/metadata@v0.9.0",
@@ -20930,20 +20938,12 @@
       ]
     },
     {
-      "ref": "9e98a492-89b5-45d8-addc-37b9e1457f5f",
-      "dependsOn": [
-        "pkg:golang/github.com/grpc-ecosystem/grpc-health-probe@v0.4.41"
-      ]
-    },
-    {
-      "ref": "a6d9618c-954b-4530-9716-af5ca6063557",
+      "ref": "c1f27893-32da-404d-9c5e-7adb204e4335",
       "dependsOn": []
     },
     {
-      "ref": "bef842cc-6603-4507-a40b-95f4cf84ac72",
-      "dependsOn": [
-        "9a13e8d9-9fc8-41cc-8662-2afb50d0ebf6"
-      ]
+      "ref": "c216d304-a153-47e6-aaad-1879502e3962",
+      "dependsOn": []
     },
     {
       "ref": "pkg:apk/wolfi/busybox@1.37.0-r54?arch=x86_64&distro=20230201",
@@ -22289,10 +22289,10 @@
     {
       "ref": "pkg:oci/kargo@sha256%3A5271ffadb60bb6e562b086ffe71e473d0cfc3fdd66a21b40fe200f2b76fc878c?arch=amd64&repository_url=ghcr.io%2Fakuity%2Fkargo",
       "dependsOn": [
-        "05e33f8a-017a-4be5-bc21-f5fcd5f99d43",
-        "44bc5357-b84b-4d31-884d-1e6e64edbc58",
-        "9e98a492-89b5-45d8-addc-37b9e1457f5f",
-        "bef842cc-6603-4507-a40b-95f4cf84ac72"
+        "0dc8bf5b-a7e7-4d69-a0d8-09400f9fb78f",
+        "1aac793c-c43f-43b1-a719-acbc3a2c8c8f",
+        "3f51c32c-16ed-4a0c-a05a-bf51a2c43dcd",
+        "416ec0df-c2e7-42cf-8b19-1ba8a51fe6f1"
       ]
     }
   ],

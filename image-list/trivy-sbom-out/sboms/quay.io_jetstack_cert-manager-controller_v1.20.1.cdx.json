@@ -2,10 +2,10 @@
   "$schema": "http://cyclonedx.org/schema/bom-1.6.schema.json",
   "bomFormat": "CycloneDX",
   "specVersion": "1.6",
-  "serialNumber": "urn:uuid:1becb8b4-5e4b-4946-9289-55b6cdbdbfd4",
+  "serialNumber": "urn:uuid:854d3637-7b41-4ff3-ab54-2a1938a29e56",
   "version": 1,
   "metadata": {
-    "timestamp": "2026-04-07T12:24:09+00:00",
+    "timestamp": "2026-04-07T12:48:22+00:00",
     "tools": {
       "components": [
         {
@@ -118,7 +118,7 @@
   },
   "components": [
     {
-      "bom-ref": "01baf2f6-3e3c-41be-a009-6032d4eb8fbd",
+      "bom-ref": "6750c2b0-0ace-4155-871f-60e11e5b923a",
       "type": "library",
       "name": "../../",
       "properties": [
@@ -141,22 +141,7 @@
       ]
     },
     {
-      "bom-ref": "45b6783b-4ae0-4c67-8994-645aea026ab1",
-      "type": "application",
-      "name": "app/cmd/controller/controller",
-      "properties": [
-        {
-          "name": "aquasecurity:trivy:Class",
-          "value": "lang-pkgs"
-        },
-        {
-          "name": "aquasecurity:trivy:Type",
-          "value": "gobinary"
-        }
-      ]
-    },
-    {
-      "bom-ref": "86b39642-0af7-4d8d-86bb-0405dc7ee7c6",
+      "bom-ref": "9d35aafa-a19f-4a3a-9c6d-f9640520ca83",
       "type": "operating-system",
       "name": "debian",
       "version": "12.13",
@@ -168,6 +153,21 @@
         {
           "name": "aquasecurity:trivy:Type",
           "value": "debian"
+        }
+      ]
+    },
+    {
+      "bom-ref": "f1059e63-ba64-4deb-a09f-c3067a43cea9",
+      "type": "application",
+      "name": "app/cmd/controller/controller",
+      "properties": [
+        {
+          "name": "aquasecurity:trivy:Class",
+          "value": "lang-pkgs"
+        },
+        {
+          "name": "aquasecurity:trivy:Type",
+          "value": "gobinary"
         }
       ]
     },
@@ -621,6 +621,20 @@
       "name": "github.com/akamai/AkamaiOPEN-edgegrid-golang/v13",
       "version": "v13.0.0",
       "purl": "pkg:golang/github.com/akamai/akamaiopen-edgegrid-golang/v13@v13.0.0",
+      "externalReferences": [
+        {
+          "url": "https://pkg.go.dev/github.com/akamai/akamaiopen-edgegrid-golang/v13",
+          "type": "distribution"
+        },
+        {
+          "url": "https://github.com/akamai/akamaiopen-edgegrid-golang",
+          "type": "vcs"
+        },
+        {
+          "url": "https://pkg.go.dev/github.com/akamai/akamaiopen-edgegrid-golang/v13#section-documentation",
+          "type": "documentation"
+        }
+      ],
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
@@ -637,6 +651,14 @@
         {
           "name": "aquasecurity:trivy:PkgType",
           "value": "gobinary"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2026-02-23T07:23:31Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2026-02-23T07:23:31Z"
         }
       ]
     },
@@ -1318,6 +1340,11 @@
       "name": "github.com/aws/aws-sdk-go-v2/service/route53",
       "version": "v1.62.2",
       "description": "Package route53 provides the API client, operations, and parameter types for\nAmazon Route 53.\n\nAmazon Route 53 is a highly available and scalable Domain Name System (DNS) web\nservice.\n\nYou can use Route 53 to:\n\nFor more information, see How domain registration works.\n\nFor more information, see How internet traffic is routed to your website or web application.\n\nFor more information, see How Route 53 checks the health of your resources.",
+      "licenses": [
+        {
+          "expression": "(Apache-2.0)"
+        }
+      ],
       "purl": "pkg:golang/github.com/aws/aws-sdk-go-v2/service/route53@v1.62.2",
       "externalReferences": [
         {
@@ -3134,9 +3161,40 @@
     {
       "bom-ref": "pkg:golang/github.com/digitalocean/godo@v1.176.0",
       "type": "library",
+      "supplier": {
+        "name": "DigitalOcean",
+        "url": [
+          "https://digitalocean.com"
+        ]
+      },
+      "author": "DigitalOcean",
       "name": "github.com/digitalocean/godo",
       "version": "v1.176.0",
+      "description": "Package godo is the DigitalOcean API v2 client for Go.",
+      "licenses": [
+        {
+          "expression": "(BSD-3-Clause OR MIT)"
+        }
+      ],
       "purl": "pkg:golang/github.com/digitalocean/godo@v1.176.0",
+      "externalReferences": [
+        {
+          "url": "https://github.com/digitalocean/godo",
+          "type": "website"
+        },
+        {
+          "url": "https://pkg.go.dev/github.com/digitalocean/godo",
+          "type": "distribution"
+        },
+        {
+          "url": "https://github.com/digitalocean/godo",
+          "type": "vcs"
+        },
+        {
+          "url": "https://pkg.go.dev/github.com/digitalocean/godo#section-documentation",
+          "type": "documentation"
+        }
+      ],
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
@@ -3153,6 +3211,38 @@
         {
           "name": "aquasecurity:trivy:PkgType",
           "value": "gobinary"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2014-09-03T14:20:10Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2026-04-01T16:30:27Z"
+        },
+        {
+          "name": "ecosystems:owner_location",
+          "value": "New York, NY"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "api"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "digitalocean"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "go"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "golang"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "hacktoberfest"
         }
       ]
     },
@@ -3554,9 +3644,36 @@
     {
       "bom-ref": "pkg:golang/github.com/go-http-utils/headers@v0.0.0-20181008091004-fed159eddc2a",
       "type": "library",
+      "supplier": {
+        "name": "go-http-utils"
+      },
+      "author": "go-http-utils",
       "name": "github.com/go-http-utils/headers",
       "version": "v0.0.0-20181008091004-fed159eddc2a",
+      "licenses": [
+        {
+          "expression": "(MIT)"
+        }
+      ],
       "purl": "pkg:golang/github.com/go-http-utils/headers@v0.0.0-20181008091004-fed159eddc2a",
+      "externalReferences": [
+        {
+          "url": "https://github.com/go-http-utils/headers",
+          "type": "website"
+        },
+        {
+          "url": "https://pkg.go.dev/github.com/go-http-utils/headers",
+          "type": "distribution"
+        },
+        {
+          "url": "https://github.com/go-http-utils/headers",
+          "type": "vcs"
+        },
+        {
+          "url": "https://pkg.go.dev/github.com/go-http-utils/headers#section-documentation",
+          "type": "documentation"
+        }
+      ],
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
@@ -3573,6 +3690,14 @@
         {
           "name": "aquasecurity:trivy:PkgType",
           "value": "gobinary"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2016-11-16T09:53:40Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2018-10-08T09:10:04Z"
         }
       ]
     },
@@ -4605,6 +4730,11 @@
       "name": "github.com/google/certificate-transparency-go",
       "version": "v1.3.1",
       "description": "Package ct holds core types and utilities for Certificate Transparency.",
+      "licenses": [
+        {
+          "expression": "(Apache-2.0)"
+        }
+      ],
       "purl": "pkg:golang/github.com/google/certificate-transparency-go@v1.3.1",
       "externalReferences": [
         {
@@ -5032,6 +5162,11 @@
       "author": "Google APIs",
       "name": "github.com/googleapis/enterprise-certificate-proxy",
       "version": "v0.3.12",
+      "licenses": [
+        {
+          "expression": "(Apache-2.0)"
+        }
+      ],
       "purl": "pkg:golang/github.com/googleapis/enterprise-certificate-proxy@v0.3.12",
       "externalReferences": [
         {
@@ -5538,7 +5673,30 @@
       "type": "library",
       "name": "github.com/hashicorp/go-hmac-drbg",
       "version": "v0.0.0-20210916214228-a6e5a68489f6",
+      "licenses": [
+        {
+          "expression": "(MIT)"
+        }
+      ],
       "purl": "pkg:golang/github.com/hashicorp/go-hmac-drbg@v0.0.0-20210916214228-a6e5a68489f6",
+      "externalReferences": [
+        {
+          "url": "https://github.com/hashicorp/go-hmac-drbg",
+          "type": "website"
+        },
+        {
+          "url": "https://pkg.go.dev/github.com/hashicorp/go-hmac-drbg",
+          "type": "distribution"
+        },
+        {
+          "url": "https://github.com/hashicorp/go-hmac-drbg",
+          "type": "vcs"
+        },
+        {
+          "url": "https://pkg.go.dev/github.com/hashicorp/go-hmac-drbg#section-documentation",
+          "type": "documentation"
+        }
+      ],
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
@@ -5555,6 +5713,14 @@
         {
           "name": "aquasecurity:trivy:PkgType",
           "value": "gobinary"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2021-09-16T21:42:28Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2021-09-16T21:42:28Z"
         }
       ]
     },
@@ -5764,9 +5930,39 @@
     {
       "bom-ref": "pkg:golang/github.com/hashicorp/go-secure-stdlib/cryptoutil@v0.1.1",
       "type": "library",
+      "supplier": {
+        "name": "HashiCorp",
+        "url": [
+          "https://hashicorp.com"
+        ]
+      },
+      "author": "HashiCorp",
       "name": "github.com/hashicorp/go-secure-stdlib/cryptoutil",
       "version": "v0.1.1",
+      "licenses": [
+        {
+          "expression": "(MPL-2.0)"
+        }
+      ],
       "purl": "pkg:golang/github.com/hashicorp/go-secure-stdlib/cryptoutil@v0.1.1",
+      "externalReferences": [
+        {
+          "url": "https://github.com/hashicorp/go-secure-stdlib",
+          "type": "website"
+        },
+        {
+          "url": "https://pkg.go.dev/github.com/hashicorp/go-secure-stdlib/cryptoutil",
+          "type": "distribution"
+        },
+        {
+          "url": "https://github.com/hashicorp/go-secure-stdlib",
+          "type": "vcs"
+        },
+        {
+          "url": "https://pkg.go.dev/github.com/hashicorp/go-secure-stdlib/cryptoutil#section-documentation",
+          "type": "documentation"
+        }
+      ],
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
@@ -5783,6 +5979,18 @@
         {
           "name": "aquasecurity:trivy:PkgType",
           "value": "gobinary"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2024-11-25T18:35:11Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2025-01-16T00:53:40Z"
+        },
+        {
+          "name": "ecosystems:owner_location",
+          "value": "San Francisco, CA"
         }
       ]
     },
@@ -6145,7 +6353,30 @@
       "type": "library",
       "name": "github.com/hashicorp/vault/sdk",
       "version": "v0.23.0",
+      "licenses": [
+        {
+          "expression": "(MPL-2.0)"
+        }
+      ],
       "purl": "pkg:golang/github.com/hashicorp/vault/sdk@v0.23.0",
+      "externalReferences": [
+        {
+          "url": "https://github.com/hashicorp/vault",
+          "type": "website"
+        },
+        {
+          "url": "https://pkg.go.dev/github.com/hashicorp/vault/sdk",
+          "type": "distribution"
+        },
+        {
+          "url": "https://github.com/hashicorp/vault",
+          "type": "vcs"
+        },
+        {
+          "url": "https://pkg.go.dev/github.com/hashicorp/vault/sdk#section-documentation",
+          "type": "documentation"
+        }
+      ],
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
@@ -6162,6 +6393,26 @@
         {
           "name": "aquasecurity:trivy:PkgType",
           "value": "gobinary"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2019-04-15T17:38:08Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2026-03-23T19:18:26Z"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "go"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "secrets"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "vault"
         }
       ]
     },
@@ -6332,9 +6583,35 @@
     {
       "bom-ref": "pkg:golang/github.com/khan/genqlient@v0.8.1",
       "type": "library",
+      "supplier": {
+        "name": "Khan Academy",
+        "url": [
+          "https://www.khanacademy.org/"
+        ]
+      },
+      "author": "Khan Academy",
       "name": "github.com/Khan/genqlient",
       "version": "v0.8.1",
+      "licenses": [
+        {
+          "expression": "(MIT)"
+        }
+      ],
       "purl": "pkg:golang/github.com/khan/genqlient@v0.8.1",
+      "externalReferences": [
+        {
+          "url": "https://pkg.go.dev/github.com/khan/genqlient",
+          "type": "distribution"
+        },
+        {
+          "url": "https://github.com/khan/genqlient",
+          "type": "vcs"
+        },
+        {
+          "url": "https://pkg.go.dev/github.com/khan/genqlient#section-documentation",
+          "type": "documentation"
+        }
+      ],
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
@@ -6351,6 +6628,34 @@
         {
           "name": "aquasecurity:trivy:PkgType",
           "value": "gobinary"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2021-09-16T19:05:16Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2025-05-18T19:07:34Z"
+        },
+        {
+          "name": "ecosystems:owner_location",
+          "value": "Mountain View, CA"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "codegen"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "go"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "golang"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "graphql"
         }
       ]
     },
@@ -7019,9 +7324,36 @@
     {
       "bom-ref": "pkg:golang/github.com/pavlo-v-chernykh/keystore-go/v4@v4.5.0",
       "type": "library",
+      "supplier": {
+        "name": "Pavlo Chernykh"
+      },
+      "author": "Pavlo Chernykh",
       "name": "github.com/pavlo-v-chernykh/keystore-go/v4",
       "version": "v4.5.0",
+      "licenses": [
+        {
+          "expression": "(MIT)"
+        }
+      ],
       "purl": "pkg:golang/github.com/pavlo-v-chernykh/keystore-go/v4@v4.5.0",
+      "externalReferences": [
+        {
+          "url": "https://github.com/pavlo-v-chernykh/keystore-go",
+          "type": "website"
+        },
+        {
+          "url": "https://pkg.go.dev/github.com/pavlo-v-chernykh/keystore-go/v4",
+          "type": "distribution"
+        },
+        {
+          "url": "https://github.com/pavlo-v-chernykh/keystore-go",
+          "type": "vcs"
+        },
+        {
+          "url": "https://pkg.go.dev/github.com/pavlo-v-chernykh/keystore-go/v4#section-documentation",
+          "type": "documentation"
+        }
+      ],
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
@@ -7038,6 +7370,38 @@
         {
           "name": "aquasecurity:trivy:PkgType",
           "value": "gobinary"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2020-10-31T10:48:45Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2023-08-31T23:31:16Z"
+        },
+        {
+          "name": "ecosystems:owner_location",
+          "value": "Ukraine"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "decoder"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "encoder"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "golang"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "java"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "keystore"
         }
       ]
     },
@@ -7578,9 +7942,36 @@
     {
       "bom-ref": "pkg:golang/github.com/sosodev/duration@v1.3.1",
       "type": "library",
+      "supplier": {
+        "name": "Kyle"
+      },
+      "author": "Kyle",
       "name": "github.com/sosodev/duration",
       "version": "v1.3.1",
+      "licenses": [
+        {
+          "expression": "(MIT)"
+        }
+      ],
       "purl": "pkg:golang/github.com/sosodev/duration@v1.3.1",
+      "externalReferences": [
+        {
+          "url": "https://github.com/sosodev/duration",
+          "type": "website"
+        },
+        {
+          "url": "https://pkg.go.dev/github.com/sosodev/duration",
+          "type": "distribution"
+        },
+        {
+          "url": "https://github.com/sosodev/duration",
+          "type": "vcs"
+        },
+        {
+          "url": "https://pkg.go.dev/github.com/sosodev/duration#section-documentation",
+          "type": "documentation"
+        }
+      ],
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
@@ -7597,6 +7988,18 @@
         {
           "name": "aquasecurity:trivy:PkgType",
           "value": "gobinary"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2022-05-29T23:23:20Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2026-02-22T22:41:59Z"
+        },
+        {
+          "name": "ecosystems:owner_location",
+          "value": "San Diego, CA"
         }
       ]
     },
@@ -7970,7 +8373,30 @@
       "type": "library",
       "name": "github.com/vektah/gqlparser/v2",
       "version": "v2.5.30",
+      "licenses": [
+        {
+          "expression": "(MIT)"
+        }
+      ],
       "purl": "pkg:golang/github.com/vektah/gqlparser/v2@v2.5.30",
+      "externalReferences": [
+        {
+          "url": "https://github.com/vektah/gqlparser",
+          "type": "website"
+        },
+        {
+          "url": "https://pkg.go.dev/github.com/vektah/gqlparser/v2",
+          "type": "distribution"
+        },
+        {
+          "url": "https://github.com/vektah/gqlparser",
+          "type": "vcs"
+        },
+        {
+          "url": "https://pkg.go.dev/github.com/vektah/gqlparser/v2#section-documentation",
+          "type": "documentation"
+        }
+      ],
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
@@ -7987,15 +8413,54 @@
         {
           "name": "aquasecurity:trivy:PkgType",
           "value": "gobinary"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2022-11-17T20:47:00Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2026-02-19T12:08:20Z"
         }
       ]
     },
     {
       "bom-ref": "pkg:golang/github.com/venafi/vcert/v5@v5.12.3",
       "type": "library",
+      "supplier": {
+        "name": "Venafi, A CyberArk Company",
+        "url": [
+          "https://www.venafi.com/"
+        ]
+      },
+      "author": "Venafi, A CyberArk Company",
       "name": "github.com/Venafi/vcert/v5",
       "version": "v5.12.3",
+      "description": "VCert is a Go library, SDK, and command line utility designed to simplify key generation and enrollment of machine identities (also known as SSL/TLS certificates and keys) that comply with enterprise security policy by using the Venafi Platform or Venafi Cloud.",
+      "licenses": [
+        {
+          "expression": "(Apache-2.0)"
+        }
+      ],
       "purl": "pkg:golang/github.com/venafi/vcert/v5@v5.12.3",
+      "externalReferences": [
+        {
+          "url": "https://github.com/Venafi/vcert",
+          "type": "website"
+        },
+        {
+          "url": "https://pkg.go.dev/github.com/venafi/vcert/v5",
+          "type": "distribution"
+        },
+        {
+          "url": "https://github.com/Venafi/vcert",
+          "type": "vcs"
+        },
+        {
+          "url": "https://pkg.go.dev/github.com/venafi/vcert/v5#section-documentation",
+          "type": "documentation"
+        }
+      ],
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
@@ -8012,6 +8477,38 @@
         {
           "name": "aquasecurity:trivy:PkgType",
           "value": "gobinary"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2023-09-05T03:15:05Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2025-12-14T07:06:04Z"
+        },
+        {
+          "name": "ecosystems:owner_location",
+          "value": "Salt Lake City, UT"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "certificates"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "golang"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "machine-identity-management"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "venafi-cloud"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "venafi-platform"
         }
       ]
     },
@@ -8199,6 +8696,11 @@
       "author": "etcd-io",
       "name": "go.etcd.io/etcd/api/v3",
       "version": "v3.6.5",
+      "licenses": [
+        {
+          "expression": "(Apache-2.0)"
+        }
+      ],
       "purl": "pkg:golang/go.etcd.io/etcd/api/v3@v3.6.5",
       "externalReferences": [
         {
@@ -8297,6 +8799,11 @@
       "author": "etcd-io",
       "name": "go.etcd.io/etcd/client/pkg/v3",
       "version": "v3.6.5",
+      "licenses": [
+        {
+          "expression": "(Apache-2.0)"
+        }
+      ],
       "purl": "pkg:golang/go.etcd.io/etcd/client/pkg/v3@v3.6.5",
       "externalReferences": [
         {
@@ -8396,6 +8903,11 @@
       "name": "go.etcd.io/etcd/client/v3",
       "version": "v3.6.5",
       "description": "Package clientv3 implements the official Go etcd client for v3.\n\nCreate client using `clientv3.New`:\n\nMake sure to close the client after using it. If the client is not closed, the\nconnection will have leaky goroutines.\n\nTo specify a client request timeout, wrap the context with context.WithTimeout:\n\nThe Client has internal state (watchers and leases), so Clients should be reused instead of created as needed.\nClients are safe for concurrent use by multiple goroutines.\n\netcd client returns 2 types of errors:\n\nHere is the example code to handle client errors:\n\nThe grpc load balancer is registered statically and is shared across etcd clients.\nTo enable detailed load balancer logging, set the ETCD_CLIENT_DEBUG environment\nvariable.  E.g. \"ETCD_CLIENT_DEBUG=1\".",
+      "licenses": [
+        {
+          "expression": "(Apache-2.0)"
+        }
+      ],
       "purl": "pkg:golang/go.etcd.io/etcd/client/v3@v3.6.5",
       "externalReferences": [
         {
@@ -9990,6 +10502,11 @@
       "name": "google.golang.org/api",
       "version": "v0.269.0",
       "description": "Package api is the root of the packages used to access Google Cloud\nServices. See https://godoc.org/google.golang.org/api for a full list of\nsub-packages.\n\nWithin api there exist numerous clients which connect to Google APIs,\nand various utility packages.\n\nAll clients in sub-packages are configurable via client options. These\noptions are described here: https://godoc.org/google.golang.org/api/option.\n\nAll the clients in sub-packages support authentication via Google\nApplication Default Credentials (see\nhttps://cloud.google.com/docs/authentication/production), or by providing a\nJSON key file for a Service Account. See the authentication examples in\nhttps://godoc.org/google.golang.org/api/transport for more details.\n\nDue to the auto-generated nature of this collection of libraries, complete\nAPIs or specific versions can appear or go away without notice. As a result,\nyou should always locally vendor any API(s) that your code relies upon.\n\nGoogle APIs follow semver as specified by\nhttps://cloud.google.com/apis/design/versioning. The code generator and\nthe code it produces - the libraries in the google.golang.org/api/...\nsubpackages - are beta.\n\nNote that versioning and stability is strictly not communicated through Go\nmodules. Go modules are used only for dependency management.\n\nMany parameters are specified using ints. However, underlying APIs might\noperate on a finer granularity, expecting int64, int32, uint64, or uint32,\nall of whom have different maximum values. Subsequently, specifying an int\nparameter in one of these clients may result in an error from the API\nbecause the value is too large.\n\nTo see the exact type of int that the API expects, you can inspect the API's\ndiscovery doc. A global catalogue pointing to the discovery doc of APIs can\nbe found at https://www.googleapis.com/discovery/v1/apis.\n\nThis field can be found on all Request/Response structs in the generated\nclients. All of these types have the JSON `omitempty` field tag present on\ntheir fields. This means if a type is set to its default value it will not be\nmarshalled. Sometimes you may actually want to send a default value, for\ninstance sending an int of `0`. In this case you can override the `omitempty`\nfeature by adding the field name to the `ForceSendFields` slice. See docs on\nany struct for more details. This may be used to include empty fields in\nPatch requests.\n\nThis field can be found on all Request/Response structs in the generated\nclients. It can be be used to send JSON null values for the listed fields.\nBy default, fields with empty values are omitted from API requests because of\nthe presence of the `omitempty` field tag on all fields. However, any field\nwith an empty value appearing in NullFields will be sent to the server as\nnull. It is an error if a field in this list has a non-empty value. This may\nbe used to include null fields in Patch requests.\n\nAn error returned by a client's Do method may be cast to a *googleapi.Error\nor unwrapped to an *apierror.APIError.\n\nThe https://pkg.go.dev/google.golang.org/api/googleapi#Error type is useful\nfor getting the HTTP status code:\n\nThe https://pkg.go.dev/github.com/googleapis/gax-go/v2/apierror#APIError type\nis useful for inspecting structured details of the underlying API response,\nsuch as the reason for the error and the error domain, which is typically the\nregistered service name of the tool or product that generated the error:\n\nIf an API call returns an Operation, that means it could take some time to\ncomplete the work initiated by the API call. Applications that are interested\nin the end result of the operation they initiated should wait until the\nOperation.Done field indicates it is finished. To do this, use the service's\nOperation client, and a loop, like so:",
+      "licenses": [
+        {
+          "expression": "(BSD-3-Clause)"
+        }
+      ],
       "purl": "pkg:golang/google.golang.org/api@v0.269.0",
       "externalReferences": [
         {
@@ -10111,6 +10628,11 @@
       "author": "Google APIs",
       "name": "google.golang.org/genproto/googleapis/rpc",
       "version": "v0.0.0-20260319201613-d00831a3d3e7",
+      "licenses": [
+        {
+          "expression": "(Apache-2.0)"
+        }
+      ],
       "purl": "pkg:golang/google.golang.org/genproto/googleapis/rpc@v0.0.0-20260319201613-d00831a3d3e7",
       "externalReferences": [
         {
@@ -10877,6 +11399,11 @@
       "name": "k8s.io/apiserver",
       "version": "v0.35.2",
       "description": "Package apiserver provides the machinery for building Kubernetes-style API servers.\n\nThis library is the foundation for the Kubernetes API server (`kube-apiserver`),\nand is also the primary framework for developers building custom API servers to extend\nthe Kubernetes API.\n\nAn extension API server is a user-provided, standalone web server that registers itself\nwith the main kube-apiserver to handle specific API groups. This allows developers to\nextend Kubernetes with their own APIs that behave like core Kubernetes APIs, complete\nwith typed clients, authentication, authorization, and discovery.\n\nThe `apiserver` library is composed of several key packages:\n\nThe `GenericAPIServer` struct is the heart of any extension server. It is responsible\nfor assembling and running the HTTP serving stack. See the runnable example for a\ndemonstration of how to instantiate a `GenericAPIServer`.\n\nThe mechanism that enables extension API servers is API aggregation. The\nprimary apiserver (typically the kube-apiserver) acts as a proxy, forwarding\nrequests for a specific API group (e.g., /apis/myextension.io/v1) to a\nregistered extension server. The apiserver is configured using\nAPIService objects.\n\nFor most use cases, custom resources (CustomResourceDefinitions) are the\npreferred way to extend the Kubernetes API.\n\nThe `pkg/admission` package provides a way to add admission policies directly\ninto an apiserver. Admission plugins can be used to validate or mutate objects\nduring write operations. The kube-apiserver uses admission plugins to provide\na variety of core system capabilities.\n\nFor most extension use cases dynamic admission control using policies\n(ValidatingAdmissionPolicies or MutatingAdmissionPolicies) or\nwebhooks (ValidatingWebhookConfiguration and MutatingWebhookConfiguration) are the\npreferred way to extend admission control.",
+      "licenses": [
+        {
+          "expression": "(Apache-2.0)"
+        }
+      ],
       "purl": "pkg:golang/k8s.io/apiserver@v0.35.2",
       "externalReferences": [
         {
@@ -11321,6 +11848,11 @@
       "name": "sigs.k8s.io/controller-runtime",
       "version": "v0.23.1",
       "description": "Package controllerruntime provides tools to construct Kubernetes-style\ncontrollers that manipulate both Kubernetes CRDs and aggregated/built-in\nKubernetes APIs.\n\nIt defines easy helpers for the common use cases when building CRDs, built\non top of customizable layers of abstraction.  Common cases should be easy,\nand uncommon cases should be possible.  In general, controller-runtime tries\nto guide users towards Kubernetes controller best-practices.\n\nThe main entrypoint for controller-runtime is this root package, which\ncontains all of the common types needed to get started building controllers:\n\nThe examples in this package walk through a basic controller setup.  The\nkubebuilder book (https://book.kubebuilder.io) has some more in-depth\nwalkthroughs.\n\ncontroller-runtime favors structs with sane defaults over constructors, so\nit's fairly common to see structs being used directly in controller-runtime.\n\nA brief-ish walkthrough of the layout of this library can be found below. Each\npackage contains more information about how to use it.\n\nFrequently asked questions about using controller-runtime and designing\ncontrollers can be found at\nhttps://github.com/kubernetes-sigs/controller-runtime/blob/main/FAQ.md.\n\nEvery controller and webhook is ultimately run by a Manager (pkg/manager). A\nmanager is responsible for running controllers and webhooks, and setting up\ncommon dependencies, like shared caches and clients, as\nwell as managing leader election (pkg/leaderelection).  Managers are\ngenerally configured to gracefully shut down controllers on pod termination\nby wiring up a signal handler (pkg/manager/signals).\n\nControllers (pkg/controller) use events (pkg/event) to eventually trigger\nreconcile requests.  They may be constructed manually, but are often\nconstructed with a Builder (pkg/builder), which eases the wiring of event\nsources (pkg/source), like Kubernetes API object changes, to event handlers\n(pkg/handler), like \"enqueue a reconcile request for the object owner\".\nPredicates (pkg/predicate) can be used to filter which events actually\ntrigger reconciles.  There are pre-written utilities for the common cases, and\ninterfaces and helpers for advanced cases.\n\nController logic is implemented in terms of Reconcilers (pkg/reconcile).  A\nReconciler implements a function which takes a reconcile Request containing\nthe name and namespace of the object to reconcile, reconciles the object,\nand returns a Response or an error indicating whether to requeue for a\nsecond round of processing.\n\nReconcilers use Clients (pkg/client) to access API objects.  The default\nclient provided by the manager reads from a local shared cache (pkg/cache)\nand writes directly to the API server, but clients can be constructed that\nonly talk to the API server, without a cache.  The Cache will auto-populate\nwith watched objects, as well as when other structured objects are\nrequested. The default split client does not promise to invalidate the cache\nduring writes (nor does it promise sequential create/get coherence), and code\nshould not assume a get immediately following a create/update will return\nthe updated resource. Caches may also have indexes, which can be created via\na FieldIndexer (pkg/client) obtained from the manager.  Indexes can be used to\nquickly and easily look up all objects with certain fields set.  Reconcilers\nmay retrieve event recorders (pkg/recorder) to emit events using the\nmanager.\n\nClients, Caches, and many other things in Kubernetes use Schemes\n(pkg/scheme) to associate Go types to Kubernetes API Kinds\n(Group-Version-Kinds, to be specific).\n\nSimilarly, webhooks (pkg/webhook/admission) may be implemented directly, but\nare often constructed using a builder (pkg/webhook/admission/builder).  They\nare run via a server (pkg/webhook) which is managed by a Manager.\n\nLogging (pkg/log) in controller-runtime is done via structured logs, using a\nlog set of interfaces called logr\n(https://pkg.go.dev/github.com/go-logr/logr).  While controller-runtime\nprovides easy setup for using Zap (https://go.uber.org/zap, pkg/log/zap),\nyou can provide any implementation of logr as the base logger for\ncontroller-runtime.\n\nMetrics (pkg/metrics) provided by controller-runtime are registered into a\ncontroller-runtime-specific Prometheus metrics registry.  The manager can\nserve these by an HTTP endpoint, and additional metrics may be registered to\nthis Registry as normal.\n\nYou can easily build integration and unit tests for your controllers and\nwebhooks using the test Environment (pkg/envtest).  This will automatically\nstand up a copy of etcd and kube-apiserver, and provide the correct options\nto connect to the API server.  It's designed to work well with the Ginkgo\ntesting framework, but should work with any testing setup.\n\nThis example creates a simple application Controller that is configured for ReplicaSets and Pods.\n\n* Create a new application for ReplicaSets that manages Pods owned by the ReplicaSet and calls into\nReplicaSetReconciler.\n\n* Start the application.\n\n\nThis example creates a simple application Controller that is configured for ExampleCRDWithConfigMapRef CRD.\nAny change in the configMap referenced in this Custom Resource will cause the re-reconcile of the parent ExampleCRDWithConfigMapRef\ndue to the implementation of the .Watches method of \"sigs.k8s.io/controller-runtime/pkg/builder\".Builder.\n\n\nThis example creates a simple application Controller that is configured for ReplicaSets and Pods.\nThis application controller will be running leader election with the provided configuration in the manager options.\nIf leader election configuration is not provided, controller runs leader election with default values.\nDefault values taken from: https://github.com/kubernetes/component-base/blob/master/config/v1alpha1/defaults.go\n* defaultLeaseDuration = 15 * time.Second\n* defaultRenewDeadline = 10 * time.Second\n* defaultRetryPeriod   = 2 * time.Second\n\n* Create a new application for ReplicaSets that manages Pods owned by the ReplicaSet and calls into\nReplicaSetReconciler.\n\n* Start the application.",
+      "licenses": [
+        {
+          "expression": "(Apache-2.0)"
+        }
+      ],
       "purl": "pkg:golang/sigs.k8s.io/controller-runtime@v0.23.1",
       "externalReferences": [
         {
@@ -11370,9 +11902,36 @@
     {
       "bom-ref": "pkg:golang/sigs.k8s.io/gateway-api@v1.5.0",
       "type": "library",
+      "supplier": {
+        "name": "Kubernetes SIGs"
+      },
+      "author": "Kubernetes SIGs",
       "name": "sigs.k8s.io/gateway-api",
       "version": "v1.5.0",
+      "licenses": [
+        {
+          "expression": "(Apache-2.0)"
+        }
+      ],
       "purl": "pkg:golang/sigs.k8s.io/gateway-api@v1.5.0",
+      "externalReferences": [
+        {
+          "url": "https://github.com/kubernetes-sigs/gateway-api",
+          "type": "website"
+        },
+        {
+          "url": "https://pkg.go.dev/sigs.k8s.io/gateway-api",
+          "type": "distribution"
+        },
+        {
+          "url": "https://github.com/kubernetes-sigs/gateway-api",
+          "type": "vcs"
+        },
+        {
+          "url": "https://pkg.go.dev/sigs.k8s.io/gateway-api#section-documentation",
+          "type": "documentation"
+        }
+      ],
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
@@ -11389,6 +11948,34 @@
         {
           "name": "aquasecurity:trivy:PkgType",
           "value": "gobinary"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2020-10-07T23:56:16Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2026-03-13T20:23:39Z"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "gateway-api"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "k8s-sig-network"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "kubernetes"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "networking"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "sig-network"
         }
       ]
     },
@@ -11607,7 +12194,27 @@
       "type": "library",
       "name": "software.sslmate.com/src/go-pkcs12",
       "version": "v0.7.0",
+      "description": "Package pkcs12 implements some of PKCS#12 (also known as P12 or PFX).\nIt is intended for decoding DER-encoded P12/PFX files for use with the crypto/tls\npackage, and for encoding P12/PFX files for use by legacy applications which\ndo not support newer formats.  Since PKCS#12 uses weak encryption\nprimitives, it SHOULD NOT be used for new applications.\n\nNote that only DER-encoded PKCS#12 files are supported, even though PKCS#12\nallows BER encoding.  This is because encoding/asn1 only supports DER.\n\nThis package is forked from golang.org/x/crypto/pkcs12, which is frozen.\nThe implementation is distilled from https://tools.ietf.org/html/rfc7292\nand referenced documents.",
+      "licenses": [
+        {
+          "expression": "(BSD-3-Clause)"
+        }
+      ],
       "purl": "pkg:golang/software.sslmate.com/src/go-pkcs12@v0.7.0",
+      "externalReferences": [
+        {
+          "url": "https://github.com/SSLMate/go-pkcs12",
+          "type": "website"
+        },
+        {
+          "url": "https://pkg.go.dev/software.sslmate.com/src/go-pkcs12",
+          "type": "distribution"
+        },
+        {
+          "url": "https://pkg.go.dev/software.sslmate.com/src/go-pkcs12#section-documentation",
+          "type": "documentation"
+        }
+      ],
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
@@ -11624,6 +12231,38 @@
         {
           "name": "aquasecurity:trivy:PkgType",
           "value": "gobinary"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2022-04-02T15:44:57Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2025-12-22T19:35:21Z"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "certificates"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "p12"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "pfx"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "pkcs12"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "pki"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "webpki"
         }
       ]
     },
@@ -11655,13 +12294,22 @@
   ],
   "dependencies": [
     {
-      "ref": "01baf2f6-3e3c-41be-a009-6032d4eb8fbd",
+      "ref": "6750c2b0-0ace-4155-871f-60e11e5b923a",
       "dependsOn": []
     },
     {
-      "ref": "45b6783b-4ae0-4c67-8994-645aea026ab1",
+      "ref": "9d35aafa-a19f-4a3a-9c6d-f9640520ca83",
       "dependsOn": [
-        "01baf2f6-3e3c-41be-a009-6032d4eb8fbd",
+        "pkg:deb/debian/base-files@12.4%2Bdeb12u13?arch=amd64&distro=debian-12.13",
+        "pkg:deb/debian/media-types@10.0.0?arch=all&distro=debian-12.13",
+        "pkg:deb/debian/netbase@6.4?arch=all&distro=debian-12.13",
+        "pkg:deb/debian/tzdata@2025b-0%2Bdeb12u2?arch=all&distro=debian-12.13"
+      ]
+    },
+    {
+      "ref": "f1059e63-ba64-4deb-a09f-c3067a43cea9",
+      "dependsOn": [
+        "6750c2b0-0ace-4155-871f-60e11e5b923a",
         "pkg:golang/cloud.google.com/go/auth/oauth2adapt@v0.2.8",
         "pkg:golang/cloud.google.com/go/auth@v0.18.2",
         "pkg:golang/cloud.google.com/go/compute/metadata@v0.9.0",
@@ -11828,15 +12476,6 @@
         "pkg:golang/sigs.k8s.io/yaml@v1.6.0",
         "pkg:golang/software.sslmate.com/src/go-pkcs12@v0.7.0",
         "pkg:golang/stdlib@v1.26.1"
-      ]
-    },
-    {
-      "ref": "86b39642-0af7-4d8d-86bb-0405dc7ee7c6",
-      "dependsOn": [
-        "pkg:deb/debian/base-files@12.4%2Bdeb12u13?arch=amd64&distro=debian-12.13",
-        "pkg:deb/debian/media-types@10.0.0?arch=all&distro=debian-12.13",
-        "pkg:deb/debian/netbase@6.4?arch=all&distro=debian-12.13",
-        "pkg:deb/debian/tzdata@2025b-0%2Bdeb12u2?arch=all&distro=debian-12.13"
       ]
     },
     {
@@ -12522,8 +13161,8 @@
     {
       "ref": "pkg:oci/cert-manager-controller@sha256%3A9f9556b4b131554694c67c8229d231b1f7d69b882b5f061a56bafa465f3b22fc?arch=amd64&repository_url=quay.io%2Fjetstack%2Fcert-manager-controller",
       "dependsOn": [
-        "45b6783b-4ae0-4c67-8994-645aea026ab1",
-        "86b39642-0af7-4d8d-86bb-0405dc7ee7c6"
+        "9d35aafa-a19f-4a3a-9c6d-f9640520ca83",
+        "f1059e63-ba64-4deb-a09f-c3067a43cea9"
       ]
     }
   ],
