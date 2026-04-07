@@ -1,8 +1,8 @@
 
-<h3>Target <code>ghcr.io/external-secrets/external-secrets:v1.1.0 (debian 12.12)</code></h3>
+<h3>Target <code>ghcr.io/external-secrets/external-secrets:v2.2.0 (debian 13.4)</code></h3>
 <h4>No Vulnerabilities found</h4>
 <h4>No Misconfigurations found</h4>
-<h3>Target <code>bin/external-secrets</code></h3>
+<h3>Target <code>usr/bin/external-secrets</code></h3>
 <h4>Vulnerabilities (1)</h4>
 <table>
     <tr>
@@ -13,11 +13,11 @@
         <th>Fixed Version</th>
     </tr>
     <tr>
-        <td><code>stdlib</code></td>
-        <td>CVE-2025-61729</td>
+        <td><code>github.com/go-jose/go-jose/v4</code></td>
+        <td>CVE-2026-34986</td>
         <td>HIGH</td>
-        <td>v1.25.3</td>
-        <td>1.24.11, 1.25.5</td>
+        <td>v4.1.3</td>
+        <td>4.1.4</td>
     </tr>
 </table>
 <h4>No Misconfigurations found</h4>

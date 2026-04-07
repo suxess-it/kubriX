@@ -1,9 +1,9 @@
 
-<h3>Target <code>docker.io/grafana/tempo:2.9.0 (debian 12.12)</code></h3>
+<h3>Target <code>docker.io/grafana/tempo:2.10.1 (debian 12.13)</code></h3>
 <h4>No Vulnerabilities found</h4>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>tempo</code></h3>
-<h4>Vulnerabilities (4)</h4>
+<h4>Vulnerabilities (6)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -13,32 +13,46 @@
         <th>Fixed Version</th>
     </tr>
     <tr>
-        <td><code>stdlib</code></td>
-        <td>CVE-2025-58183</td>
+        <td><code>github.com/antchfx/xpath</code></td>
+        <td>CVE-2026-32287</td>
         <td>HIGH</td>
-        <td>v1.25.1</td>
-        <td>1.24.8, 1.25.2</td>
+        <td>v1.3.5</td>
+        <td>1.3.6</td>
+    </tr>
+    <tr>
+        <td><code>github.com/buger/jsonparser</code></td>
+        <td>CVE-2026-32285</td>
+        <td>HIGH</td>
+        <td>v1.1.1</td>
+        <td>1.1.2</td>
+    </tr>
+    <tr>
+        <td><code>github.com/go-jose/go-jose/v4</code></td>
+        <td>CVE-2026-34986</td>
+        <td>HIGH</td>
+        <td>v4.1.3</td>
+        <td>4.1.4</td>
+    </tr>
+    <tr>
+        <td><code>go.opentelemetry.io/otel/sdk</code></td>
+        <td>CVE-2026-24051</td>
+        <td>HIGH</td>
+        <td>v1.39.0</td>
+        <td>1.40.0</td>
+    </tr>
+    <tr>
+        <td><code>google.golang.org/grpc</code></td>
+        <td>CVE-2026-33186</td>
+        <td>CRITICAL</td>
+        <td>v1.78.0</td>
+        <td>1.79.3</td>
     </tr>
     <tr>
         <td><code>stdlib</code></td>
-        <td>CVE-2025-58186</td>
+        <td>CVE-2026-25679</td>
         <td>HIGH</td>
-        <td>v1.25.1</td>
-        <td>1.24.8, 1.25.2</td>
-    </tr>
-    <tr>
-        <td><code>stdlib</code></td>
-        <td>CVE-2025-58187</td>
-        <td>HIGH</td>
-        <td>v1.25.1</td>
-        <td>1.24.9, 1.25.3</td>
-    </tr>
-    <tr>
-        <td><code>stdlib</code></td>
-        <td>CVE-2025-61729</td>
-        <td>HIGH</td>
-        <td>v1.25.1</td>
-        <td>1.24.11, 1.25.5</td>
+        <td>v1.25.7</td>
+        <td>1.25.8, 1.26.1</td>
     </tr>
 </table>
 <h4>No Misconfigurations found</h4>
