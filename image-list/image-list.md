@@ -112,10 +112,6 @@
 * docker.io/traefik:v3.6.12
 ## trivy
 * mirror.gcr.io/aquasec/trivy-operator:0.30.1
-## vault
-* alpine/curl:latest
-* hashicorp/vault:1.20.3
-* hashicorp/vault:1.21.2
 ## velero-ui
 * docker.io/dserio83/velero-api:0.3.1
 * docker.io/dserio83/velero-ui:0.3.1
