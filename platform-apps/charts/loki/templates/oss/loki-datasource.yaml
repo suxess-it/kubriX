@@ -1,3 +1,4 @@
+{{- if eq .Values.kubriXPlan "oss" }}
 apiVersion: v1
 kind: ConfigMap
 metadata:
@@ -22,3 +23,4 @@ data:
             matcherRegex: "^.*?traceI[d|D]=(\\w+).*$"
             name: traceId
             url: '$${__value.raw}'
+{{- end }}
