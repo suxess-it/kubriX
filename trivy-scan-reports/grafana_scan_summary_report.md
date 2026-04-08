@@ -61,7 +61,7 @@
 <h4>No Vulnerabilities found</h4>
 <h4>No Misconfigurations found</h4>
 
-<h3>Target <code>quay.io/kiwigrid/k8s-sidecar:2.5.4 (alpine 3.23.3)</code></h3>
+<h3>Target <code>quay.io/kiwigrid/k8s-sidecar:2.6.0 (alpine 3.23.3)</code></h3>
 <h4>Vulnerabilities (1)</h4>
 <table>
     <tr>
