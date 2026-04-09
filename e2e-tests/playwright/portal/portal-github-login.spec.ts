@@ -501,7 +501,7 @@ test("Check kubrixbot-app in backstage", async ({ page }) => {
     `kubrix-a${prefix}-kubrixbot-app`
   ];
   for (const app of apps) {
-    await page.goto('https://backstage.${BASE_DOMAIN}/catalog');
+    await page.goto(`https://backstage.${BASE_DOMAIN}/catalog`);
     await page.getByRole('textbox', { name: 'Search' }).click();
     await page.getByRole('textbox', { name: 'Search' }).fill(app);
     await expect(page.getByRole('link', { name: app, exact: true })).toBeVisible();
