@@ -4,12 +4,13 @@ import fs from "fs";
 
 const authDir = path.join(__dirname, '../.auth');
 const grafanaAuthFile = path.join(authDir, 'grafana.json');
+const BASE_DOMAIN = process.env.E2E_BASE_DOMAIN ?? '127-0-0-1.nip.io';
 test.use({ storageState: grafanaAuthFile });
 
 test('Grafana Check Datasources', async ({ page }) => {
   test.slow();
 
-  await page.goto("https://grafana.127-0-0-1.nip.io/connections/datasources");
+  await page.goto(`https://grafana.${BASE_DOMAIN}/connections/datasources`);
 
   await expect(page.getByRole('link', { name: 'loki' , exact: true })).toBeVisible({ timeout: 20_000 });
   await expect(page.getByRole('link', { name: 'mimir' , exact: true })).toBeVisible({ timeout: 20_000 });
@@ -17,7 +18,7 @@ test('Grafana Check Datasources', async ({ page }) => {
 
 test('Grafana Loki Logs', async ({ page }) => {
   test.slow();
-  await page.goto("https://grafana.127-0-0-1.nip.io/a/grafana-lokiexplore-app/explore/namespace/grafana/logs?from=now-1h&to=now&var-ds=loki&var-filters=namespace%7C%3D%7Cgrafana&patterns=%5B%5D&var-lineFormat=&var-fields=logger%7C%3D%7C__CV%CE%A9__%7B%22parser%22:%22logfmt%22__gfc__%22value%22:%22settings%22%7D,settings&var-levels=&var-metadata=&var-jsonFields=&var-patterns=&var-lineFilterV2=&var-lineFilters=caseInsensitive,0%7C__gfp__%3D%7CStarting%20Grafana&timezone=browser&var-all-fields=logger%7C%3D%7C__CV%CE%A9__%7B%22parser%22:%22logfmt%22__gfc__%22value%22:%22settings%22%7D,settings&displayedFields=%5B%5D&urlColumns=%5B%5D&visualizationType=%22logs%22&prettifyLogMessage=false&sortOrder=%22Descending%22&wrapLogMessage=false");
+  await page.goto(`https://grafana.${BASE_DOMAIN}/a/grafana-lokiexplore-app/explore/namespace/grafana/logs?from=now-1h&to=now&var-ds=loki&var-filters=namespace%7C%3D%7Cgrafana&patterns=%5B%5D&var-lineFormat=&var-fields=logger%7C%3D%7C__CV%CE%A9__%7B%22parser%22:%22logfmt%22__gfc__%22value%22:%22settings%22%7D,settings&var-levels=&var-metadata=&var-jsonFields=&var-patterns=&var-lineFilterV2=&var-lineFilters=caseInsensitive,0%7C__gfp__%3D%7CStarting%20Grafana&timezone=browser&var-all-fields=logger%7C%3D%7C__CV%CE%A9__%7B%22parser%22:%22logfmt%22__gfc__%22value%22:%22settings%22%7D,settings&displayedFields=%5B%5D&urlColumns=%5B%5D&visualizationType=%22logs%22&prettifyLogMessage=false&sortOrder=%22Descending%22&wrapLogMessage=false`);
 
   await expect
   .poll(async () => {
@@ -30,7 +31,7 @@ test('Grafana Loki Logs', async ({ page }) => {
 
 test('Grafana CNPG Dashboard', async ({ page }) => {
   test.slow();
-  await page.goto("https://grafana.127-0-0-1.nip.io/d/cloudnative-pg/cloudnativepg?orgId=1&from=now-7d&to=now&timezone=browser&var-DS_PROMETHEUS=mimir&var-operatorNamespace=cnpg&var-namespace=keycloak&var-cluster=sx-keycloak-cluster&var-instances=$__all");
+  await page.goto(`https://grafana.${BASE_DOMAIN}/d/cloudnative-pg/cloudnativepg?orgId=1&from=now-7d&to=now&timezone=browser&var-DS_PROMETHEUS=mimir&var-operatorNamespace=cnpg&var-namespace=keycloak&var-cluster=sx-keycloak-cluster&var-instances=$__all`);
 
   await expect(
     page.locator('div[title="sx-keycloak-cluster-1"]').getByText('Yes', { exact: true })
@@ -47,7 +48,7 @@ test('Grafana CNPG Dashboard', async ({ page }) => {
 test('Grafana OpenBao Dashboard', async ({ page }) => {
   test.slow();
 
-  await page.goto("https://grafana.127-0-0-1.nip.io/d/vaults/grc-openbao?orgId=1&from=now-2h&to=now&timezone=browser&var-datasource=default&var-node=10.240.0.98&var-port=&var-mountpoint=$__all");
+  await page.goto(`https://grafana.${BASE_DOMAIN}/d/vaults/grc-openbao?orgId=1&from=now-2h&to=now&timezone=browser&var-datasource=default&var-node=10.240.0.98&var-port=&var-mountpoint=$__all`);
 
   await expect(
     page.locator('div[title="sx-openbao-active"]').getByText('Active', { exact: true })
@@ -68,7 +69,7 @@ test('Grafana OpenBao Dashboard', async ({ page }) => {
 test('Grafana K8s Namespace Dashboard', async ({ page }) => {
   test.slow();
 
-  await page.goto("https://grafana.127-0-0-1.nip.io/d/k8s_views_global/kubernetes-views-global?orgId=1&from=now-2h&to=now&timezone=browser&var-datasource=default&var-node=10.240.0.98&var-port=&var-mountpoint=$__all", { waitUntil: 'domcontentloaded' });
+  await page.goto(`https://grafana.${BASE_DOMAIN}/d/k8s_views_global/kubernetes-views-global?orgId=1&from=now-2h&to=now&timezone=browser&var-datasource=default&var-node=10.240.0.98&var-port=&var-mountpoint=$__all`, { waitUntil: 'domcontentloaded' });
 
   // wait for the first panel to fully load
   const firstPanel = page.getByRole('region', { name: 'Global CPU Usage', exact: true });
@@ -120,7 +121,7 @@ test('Grafana K8s Namespace Dashboard', async ({ page }) => {
 
 test('Alerting Contact Points', async ({ page }) => {
 
-  await page.goto("https://grafana.127-0-0-1.nip.io/alerting/notifications", { waitUntil: 'domcontentloaded' });
+  await page.goto(`https://grafana.${BASE_DOMAIN}/alerting/notifications`, { waitUntil: 'domcontentloaded' });
 
   await expect(page.getByRole('heading', { name: 'platform-team-critical' })).toBeVisible();
   await expect(page.getByRole('heading', { name: 'platform-team-default' })).toBeVisible();
@@ -130,7 +131,7 @@ test('Alerting Contact Points', async ({ page }) => {
 
 test('Alerting Notification Policy Routes', async ({ page }) => {
 
-  await page.goto("https://grafana.127-0-0-1.nip.io/alerting/routes", { waitUntil: 'domcontentloaded' });
+  await page.goto(`https://grafana.${BASE_DOMAIN}/alerting/routes`, { waitUntil: 'domcontentloaded' });
 
   // default route should be platform-team-default
   await expect(page.getByTestId('am-root-route-container').locator('div').filter({ hasText: 'Default policyAll alert' }).first().getByText('Delivered to platform-team-default')).toBeVisible();

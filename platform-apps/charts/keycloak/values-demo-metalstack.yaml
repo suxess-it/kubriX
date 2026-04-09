@@ -18,18 +18,18 @@ kubrix:
           firstName: MrBackstage
           lastName: MrAdmin
           email: "backstageadmin@kubrix.io"
-        - name: demouser
+        - name: demoeditor
           firstName: demo
-          lastName: user
-          email: "demouser@kubrix.io"
+          lastName: editor
+          email: "demoeditor@kubrix.io"
         - name: demoadmin
           firstName: demo
           lastName: admin
           email: "demoadmin@kubrix.io"
-        - name: team1user
-          firstName: team1
-          lastName: demouser
-          email: "team1user@kubrix.io"
+        - name: demoviewer
+          firstName: demo
+          lastName: viewer
+          email: "demoviewer@kubrix.io"
       groups:
         - name: admins
           roles:
@@ -43,7 +43,7 @@ kubrix:
             - grafana-viewer
             - vault-viewer
           members:
-            - team1user
+            - demoviewer
         - name: editors
           roles:
             - grafana-editor
@@ -51,5 +51,5 @@ kubrix:
           members:
             - phac
             - jokl
-            - demouser
+            - demoeditor
         - name: backstage-admin
