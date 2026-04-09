@@ -96,7 +96,7 @@
 <h4>No Vulnerabilities found</h4>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>ko-app/background-controller</code></h3>
-<h4>Vulnerabilities (5)</h4>
+<h4>Vulnerabilities (6)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -125,6 +125,13 @@
         <td>HIGH</td>
         <td>v1.39.0</td>
         <td>1.40.0</td>
+    </tr>
+    <tr>
+        <td><code>go.opentelemetry.io/otel/sdk</code></td>
+        <td>CVE-2026-39883</td>
+        <td>HIGH</td>
+        <td>v1.39.0</td>
+        <td>1.43.0</td>
     </tr>
     <tr>
         <td><code>google.golang.org/grpc</code></td>
@@ -147,7 +154,7 @@
 <h4>No Vulnerabilities found</h4>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>ko-app/cleanup-controller</code></h3>
-<h4>Vulnerabilities (5)</h4>
+<h4>Vulnerabilities (6)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -176,6 +183,13 @@
         <td>HIGH</td>
         <td>v1.39.0</td>
         <td>1.40.0</td>
+    </tr>
+    <tr>
+        <td><code>go.opentelemetry.io/otel/sdk</code></td>
+        <td>CVE-2026-39883</td>
+        <td>HIGH</td>
+        <td>v1.39.0</td>
+        <td>1.43.0</td>
     </tr>
     <tr>
         <td><code>google.golang.org/grpc</code></td>
@@ -198,7 +212,7 @@
 <h4>No Vulnerabilities found</h4>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>ko-app/kubectl-kyverno</code></h3>
-<h4>Vulnerabilities (5)</h4>
+<h4>Vulnerabilities (6)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -227,6 +241,13 @@
         <td>HIGH</td>
         <td>v1.39.0</td>
         <td>1.40.0</td>
+    </tr>
+    <tr>
+        <td><code>go.opentelemetry.io/otel/sdk</code></td>
+        <td>CVE-2026-39883</td>
+        <td>HIGH</td>
+        <td>v1.39.0</td>
+        <td>1.43.0</td>
     </tr>
     <tr>
         <td><code>google.golang.org/grpc</code></td>
@@ -249,7 +270,7 @@
 <h4>No Vulnerabilities found</h4>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>ko-app/kyverno</code></h3>
-<h4>Vulnerabilities (5)</h4>
+<h4>Vulnerabilities (6)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -278,6 +299,13 @@
         <td>HIGH</td>
         <td>v1.39.0</td>
         <td>1.40.0</td>
+    </tr>
+    <tr>
+        <td><code>go.opentelemetry.io/otel/sdk</code></td>
+        <td>CVE-2026-39883</td>
+        <td>HIGH</td>
+        <td>v1.39.0</td>
+        <td>1.43.0</td>
     </tr>
     <tr>
         <td><code>google.golang.org/grpc</code></td>
@@ -300,7 +328,7 @@
 <h4>No Vulnerabilities found</h4>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>ko-app/kyverno-init</code></h3>
-<h4>Vulnerabilities (5)</h4>
+<h4>Vulnerabilities (6)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -329,6 +357,13 @@
         <td>HIGH</td>
         <td>v1.39.0</td>
         <td>1.40.0</td>
+    </tr>
+    <tr>
+        <td><code>go.opentelemetry.io/otel/sdk</code></td>
+        <td>CVE-2026-39883</td>
+        <td>HIGH</td>
+        <td>v1.39.0</td>
+        <td>1.43.0</td>
     </tr>
     <tr>
         <td><code>google.golang.org/grpc</code></td>
@@ -351,7 +386,7 @@
 <h4>No Vulnerabilities found</h4>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>ko-app/reports-controller</code></h3>
-<h4>Vulnerabilities (5)</h4>
+<h4>Vulnerabilities (6)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -380,6 +415,13 @@
         <td>HIGH</td>
         <td>v1.39.0</td>
         <td>1.40.0</td>
+    </tr>
+    <tr>
+        <td><code>go.opentelemetry.io/otel/sdk</code></td>
+        <td>CVE-2026-39883</td>
+        <td>HIGH</td>
+        <td>v1.39.0</td>
+        <td>1.43.0</td>
     </tr>
     <tr>
         <td><code>google.golang.org/grpc</code></td>

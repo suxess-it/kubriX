@@ -488,7 +488,7 @@
 <h4>No Misconfigurations found</h4>
 
 <h3>Target <code>docker.io/falcosecurity/falco:0.41.0-debian (debian 12.11)</code></h3>
-<h4>Vulnerabilities (43)</h4>
+<h4>Vulnerabilities (45)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -729,6 +729,13 @@
         <td>3.0.18-1~deb12u2</td>
     </tr>
     <tr>
+        <td><code>libssl3</code></td>
+        <td>CVE-2026-28390</td>
+        <td>HIGH</td>
+        <td>3.0.16-1~deb12u1</td>
+        <td>3.0.19-1~deb12u2</td>
+    </tr>
+    <tr>
         <td><code>libsystemd0</code></td>
         <td>CVE-2026-29111</td>
         <td>HIGH</td>
@@ -785,6 +792,13 @@
         <td>3.0.18-1~deb12u2</td>
     </tr>
     <tr>
+        <td><code>openssl</code></td>
+        <td>CVE-2026-28390</td>
+        <td>HIGH</td>
+        <td>3.0.16-1~deb12u1</td>
+        <td>3.0.19-1~deb12u2</td>
+    </tr>
+    <tr>
         <td><code>perl-base</code></td>
         <td>CVE-2023-31484</td>
         <td>HIGH</td>
@@ -805,7 +819,7 @@
 <h4>No Vulnerabilities found</h4>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>usr/bin/falcoctl</code></h3>
-<h4>Vulnerabilities (19)</h4>
+<h4>Vulnerabilities (20)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -876,6 +890,13 @@
         <td>HIGH</td>
         <td>v1.33.0</td>
         <td>1.40.0</td>
+    </tr>
+    <tr>
+        <td><code>go.opentelemetry.io/otel/sdk</code></td>
+        <td>CVE-2026-39883</td>
+        <td>HIGH</td>
+        <td>v1.33.0</td>
+        <td>1.43.0</td>
     </tr>
     <tr>
         <td><code>golang.org/x/crypto</code></td>
@@ -1105,7 +1126,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>app/falcosidekick</code></h3>
-<h4>Vulnerabilities (12)</h4>
+<h4>Vulnerabilities (13)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -1127,6 +1148,13 @@
         <td>HIGH</td>
         <td>v1.34.0</td>
         <td>1.40.0</td>
+    </tr>
+    <tr>
+        <td><code>go.opentelemetry.io/otel/sdk</code></td>
+        <td>CVE-2026-39883</td>
+        <td>HIGH</td>
+        <td>v1.34.0</td>
+        <td>1.43.0</td>
     </tr>
     <tr>
         <td><code>golang.org/x/crypto</code></td>

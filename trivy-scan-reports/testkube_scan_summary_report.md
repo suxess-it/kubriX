@@ -54,7 +54,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>bin/app</code></h3>
-<h4>Vulnerabilities (5)</h4>
+<h4>Vulnerabilities (6)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -97,6 +97,13 @@
         <td>HIGH</td>
         <td>v2.12.5</td>
         <td>2.11.15, 2.12.6</td>
+    </tr>
+    <tr>
+        <td><code>go.opentelemetry.io/otel/sdk</code></td>
+        <td>CVE-2026-39883</td>
+        <td>HIGH</td>
+        <td>v1.42.0</td>
+        <td>1.43.0</td>
     </tr>
 </table>
 <h4>No Misconfigurations found</h4>
@@ -180,7 +187,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>usr/bin/minio</code></h3>
-<h4>Vulnerabilities (15)</h4>
+<h4>Vulnerabilities (16)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -237,6 +244,13 @@
         <td>HIGH</td>
         <td>v1.35.0</td>
         <td>1.40.0</td>
+    </tr>
+    <tr>
+        <td><code>go.opentelemetry.io/otel/sdk</code></td>
+        <td>CVE-2026-39883</td>
+        <td>HIGH</td>
+        <td>v1.35.0</td>
+        <td>1.43.0</td>
     </tr>
     <tr>
         <td><code>google.golang.org/grpc</code></td>

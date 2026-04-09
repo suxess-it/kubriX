@@ -74,7 +74,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>go/bin/app</code></h3>
-<h4>Vulnerabilities (10)</h4>
+<h4>Vulnerabilities (11)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -117,6 +117,13 @@
         <td>HIGH</td>
         <td>v1.36.0</td>
         <td>1.40.0</td>
+    </tr>
+    <tr>
+        <td><code>go.opentelemetry.io/otel/sdk</code></td>
+        <td>CVE-2026-39883</td>
+        <td>HIGH</td>
+        <td>v1.36.0</td>
+        <td>1.43.0</td>
     </tr>
     <tr>
         <td><code>google.golang.org/grpc</code></td>
@@ -227,28 +234,28 @@
         <td>CVE-2026-27651</td>
         <td>HIGH</td>
         <td>2:1.20.1-22.el9_6.3</td>
-        <td></td>
+        <td>2:1.20.1-24.el9_7.2</td>
     </tr>
     <tr>
         <td><code>nginx-core</code></td>
         <td>CVE-2026-27654</td>
         <td>HIGH</td>
         <td>2:1.20.1-22.el9_6.3</td>
-        <td></td>
+        <td>2:1.20.1-24.el9_7.2</td>
     </tr>
     <tr>
         <td><code>nginx-core</code></td>
         <td>CVE-2026-27784</td>
         <td>HIGH</td>
         <td>2:1.20.1-22.el9_6.3</td>
-        <td></td>
+        <td>2:1.20.1-24.el9_7.2</td>
     </tr>
     <tr>
         <td><code>nginx-core</code></td>
         <td>CVE-2026-32647</td>
         <td>HIGH</td>
         <td>2:1.20.1-22.el9_6.3</td>
-        <td></td>
+        <td>2:1.20.1-24.el9_7.2</td>
     </tr>
     <tr>
         <td><code>nginx-filesystem</code></td>
@@ -431,7 +438,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>go/bin/app</code></h3>
-<h4>Vulnerabilities (7)</h4>
+<h4>Vulnerabilities (8)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -453,6 +460,13 @@
         <td>HIGH</td>
         <td>v1.36.0</td>
         <td>1.40.0</td>
+    </tr>
+    <tr>
+        <td><code>go.opentelemetry.io/otel/sdk</code></td>
+        <td>CVE-2026-39883</td>
+        <td>HIGH</td>
+        <td>v1.36.0</td>
+        <td>1.43.0</td>
     </tr>
     <tr>
         <td><code>google.golang.org/grpc</code></td>
@@ -493,7 +507,7 @@
 <h4>No Misconfigurations found</h4>
 
 <h3>Target <code>bin/prometheus</code></h3>
-<h4>Vulnerabilities (7)</h4>
+<h4>Vulnerabilities (8)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -515,6 +529,13 @@
         <td>HIGH</td>
         <td>v1.39.0</td>
         <td>1.40.0</td>
+    </tr>
+    <tr>
+        <td><code>go.opentelemetry.io/otel/sdk</code></td>
+        <td>CVE-2026-39883</td>
+        <td>HIGH</td>
+        <td>v1.39.0</td>
+        <td>1.43.0</td>
     </tr>
     <tr>
         <td><code>google.golang.org/grpc</code></td>

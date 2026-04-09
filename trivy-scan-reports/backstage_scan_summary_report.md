@@ -68,48 +68,11 @@
 </table>
 <h4>No Misconfigurations found</h4>
 
-<h3>Target <code>ghcr.io/suxess-it/sx-backstage:v1.47.3 (wolfi 20230201)</code></h3>
-<h4>Vulnerabilities (4)</h4>
-<table>
-    <tr>
-        <th>Package</th>
-        <th>ID</th>
-        <th>Severity</th>
-        <th>Installed Version</th>
-        <th>Fixed Version</th>
-    </tr>
-    <tr>
-        <td><code>npm</code></td>
-        <td>CVE-2026-4800</td>
-        <td>CRITICAL</td>
-        <td>11.11.0-r1</td>
-        <td>11.12.1-r3</td>
-    </tr>
-    <tr>
-        <td><code>python-3.13-base</code></td>
-        <td>CVE-2026-4519</td>
-        <td>HIGH</td>
-        <td>3.13.12-r2</td>
-        <td>3.13.12-r5</td>
-    </tr>
-    <tr>
-        <td><code>python-3.14</code></td>
-        <td>CVE-2026-4519</td>
-        <td>HIGH</td>
-        <td>3.14.3-r2</td>
-        <td>3.14.3-r5</td>
-    </tr>
-    <tr>
-        <td><code>python-3.14-base</code></td>
-        <td>CVE-2026-4519</td>
-        <td>HIGH</td>
-        <td>3.14.3-r2</td>
-        <td>3.14.3-r5</td>
-    </tr>
-</table>
+<h3>Target <code>ghcr.io/suxess-it/sx-backstage:v1.48.5 (wolfi 20230201)</code></h3>
+<h4>No Vulnerabilities found</h4>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>Node.js</code></h3>
-<h4>Vulnerabilities (71)</h4>
+<h4>Vulnerabilities (21)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -119,284 +82,25 @@
         <th>Fixed Version</th>
     </tr>
     <tr>
-        <td><code>@backstage/backend-defaults</code></td>
-        <td>CVE-2026-24046</td>
+        <td><code>basic-ftp</code></td>
+        <td>GHSA-chqc-8p9q-pq6q</td>
         <td>HIGH</td>
-        <td>0.11.1</td>
-        <td>0.12.2, 0.13.2, 0.14.1</td>
+        <td>5.2.0</td>
+        <td>5.2.1</td>
     </tr>
     <tr>
-        <td><code>express-rate-limit</code></td>
-        <td>CVE-2026-30827</td>
+        <td><code>tar</code></td>
+        <td>CVE-2026-23745</td>
         <td>HIGH</td>
-        <td>8.2.1</td>
-        <td>8.2.2, 8.1.1, 8.0.2</td>
+        <td>6.2.1</td>
+        <td>7.5.3</td>
     </tr>
     <tr>
-        <td><code>fast-xml-parser</code></td>
-        <td>CVE-2026-33036</td>
+        <td><code>tar</code></td>
+        <td>CVE-2026-23745</td>
         <td>HIGH</td>
-        <td>5.3.6</td>
-        <td>5.5.6, 4.5.5</td>
-    </tr>
-    <tr>
-        <td><code>fast-xml-parser</code></td>
-        <td>CVE-2026-33036</td>
-        <td>HIGH</td>
-        <td>5.3.7</td>
-        <td>5.5.6, 4.5.5</td>
-    </tr>
-    <tr>
-        <td><code>flatted</code></td>
-        <td>CVE-2026-32141</td>
-        <td>HIGH</td>
-        <td>3.3.3</td>
-        <td>3.4.0</td>
-    </tr>
-    <tr>
-        <td><code>flatted</code></td>
-        <td>CVE-2026-33228</td>
-        <td>HIGH</td>
-        <td>3.3.3</td>
-        <td>3.4.2</td>
-    </tr>
-    <tr>
-        <td><code>lodash</code></td>
-        <td>CVE-2026-4800</td>
-        <td>HIGH</td>
-        <td>4.17.23</td>
-        <td>4.18.0</td>
-    </tr>
-    <tr>
-        <td><code>lodash-es</code></td>
-        <td>CVE-2026-4800</td>
-        <td>HIGH</td>
-        <td>4.17.23</td>
-        <td>4.18.0</td>
-    </tr>
-    <tr>
-        <td><code>minimatch</code></td>
-        <td>CVE-2026-27903</td>
-        <td>HIGH</td>
-        <td>10.2.2</td>
-        <td>10.2.3, 9.0.7, 8.0.6, 7.4.8, 6.2.2, 5.1.8, 4.2.5, 3.1.3</td>
-    </tr>
-    <tr>
-        <td><code>minimatch</code></td>
-        <td>CVE-2026-27903</td>
-        <td>HIGH</td>
-        <td>10.2.2</td>
-        <td>10.2.3, 9.0.7, 8.0.6, 7.4.8, 6.2.2, 5.1.8, 4.2.5, 3.1.3</td>
-    </tr>
-    <tr>
-        <td><code>minimatch</code></td>
-        <td>CVE-2026-27904</td>
-        <td>HIGH</td>
-        <td>10.2.2</td>
-        <td>10.2.3, 9.0.7, 8.0.6, 7.4.8, 6.2.2, 5.1.8, 4.2.5, 3.1.4</td>
-    </tr>
-    <tr>
-        <td><code>minimatch</code></td>
-        <td>CVE-2026-27904</td>
-        <td>HIGH</td>
-        <td>10.2.2</td>
-        <td>10.2.3, 9.0.7, 8.0.6, 7.4.8, 6.2.2, 5.1.8, 4.2.5, 3.1.4</td>
-    </tr>
-    <tr>
-        <td><code>minimatch</code></td>
-        <td>CVE-2026-26996</td>
-        <td>HIGH</td>
-        <td>3.1.2</td>
-        <td>10.2.1, 9.0.6, 8.0.5, 7.4.7, 6.2.1, 5.1.7, 4.2.4, 3.1.3</td>
-    </tr>
-    <tr>
-        <td><code>minimatch</code></td>
-        <td>CVE-2026-26996</td>
-        <td>HIGH</td>
-        <td>3.1.2</td>
-        <td>10.2.1, 9.0.6, 8.0.5, 7.4.7, 6.2.1, 5.1.7, 4.2.4, 3.1.3</td>
-    </tr>
-    <tr>
-        <td><code>minimatch</code></td>
-        <td>CVE-2026-26996</td>
-        <td>HIGH</td>
-        <td>3.1.2</td>
-        <td>10.2.1, 9.0.6, 8.0.5, 7.4.7, 6.2.1, 5.1.7, 4.2.4, 3.1.3</td>
-    </tr>
-    <tr>
-        <td><code>minimatch</code></td>
-        <td>CVE-2026-27903</td>
-        <td>HIGH</td>
-        <td>3.1.2</td>
-        <td>10.2.3, 9.0.7, 8.0.6, 7.4.8, 6.2.2, 5.1.8, 4.2.5, 3.1.3</td>
-    </tr>
-    <tr>
-        <td><code>minimatch</code></td>
-        <td>CVE-2026-27903</td>
-        <td>HIGH</td>
-        <td>3.1.2</td>
-        <td>10.2.3, 9.0.7, 8.0.6, 7.4.8, 6.2.2, 5.1.8, 4.2.5, 3.1.3</td>
-    </tr>
-    <tr>
-        <td><code>minimatch</code></td>
-        <td>CVE-2026-27903</td>
-        <td>HIGH</td>
-        <td>3.1.2</td>
-        <td>10.2.3, 9.0.7, 8.0.6, 7.4.8, 6.2.2, 5.1.8, 4.2.5, 3.1.3</td>
-    </tr>
-    <tr>
-        <td><code>minimatch</code></td>
-        <td>CVE-2026-27904</td>
-        <td>HIGH</td>
-        <td>3.1.2</td>
-        <td>10.2.3, 9.0.7, 8.0.6, 7.4.8, 6.2.2, 5.1.8, 4.2.5, 3.1.4</td>
-    </tr>
-    <tr>
-        <td><code>minimatch</code></td>
-        <td>CVE-2026-27904</td>
-        <td>HIGH</td>
-        <td>3.1.2</td>
-        <td>10.2.3, 9.0.7, 8.0.6, 7.4.8, 6.2.2, 5.1.8, 4.2.5, 3.1.4</td>
-    </tr>
-    <tr>
-        <td><code>minimatch</code></td>
-        <td>CVE-2026-27904</td>
-        <td>HIGH</td>
-        <td>3.1.2</td>
-        <td>10.2.3, 9.0.7, 8.0.6, 7.4.8, 6.2.2, 5.1.8, 4.2.5, 3.1.4</td>
-    </tr>
-    <tr>
-        <td><code>minimatch</code></td>
-        <td>CVE-2026-26996</td>
-        <td>HIGH</td>
-        <td>5.1.6</td>
-        <td>10.2.1, 9.0.6, 8.0.5, 7.4.7, 6.2.1, 5.1.7, 4.2.4, 3.1.3</td>
-    </tr>
-    <tr>
-        <td><code>minimatch</code></td>
-        <td>CVE-2026-27903</td>
-        <td>HIGH</td>
-        <td>5.1.6</td>
-        <td>10.2.3, 9.0.7, 8.0.6, 7.4.8, 6.2.2, 5.1.8, 4.2.5, 3.1.3</td>
-    </tr>
-    <tr>
-        <td><code>minimatch</code></td>
-        <td>CVE-2026-27904</td>
-        <td>HIGH</td>
-        <td>5.1.6</td>
-        <td>10.2.3, 9.0.7, 8.0.6, 7.4.8, 6.2.2, 5.1.8, 4.2.5, 3.1.4</td>
-    </tr>
-    <tr>
-        <td><code>minimatch</code></td>
-        <td>CVE-2026-26996</td>
-        <td>HIGH</td>
-        <td>9.0.5</td>
-        <td>10.2.1, 9.0.6, 8.0.5, 7.4.7, 6.2.1, 5.1.7, 4.2.4, 3.1.3</td>
-    </tr>
-    <tr>
-        <td><code>minimatch</code></td>
-        <td>CVE-2026-27903</td>
-        <td>HIGH</td>
-        <td>9.0.5</td>
-        <td>10.2.3, 9.0.7, 8.0.6, 7.4.8, 6.2.2, 5.1.8, 4.2.5, 3.1.3</td>
-    </tr>
-    <tr>
-        <td><code>minimatch</code></td>
-        <td>CVE-2026-27904</td>
-        <td>HIGH</td>
-        <td>9.0.5</td>
-        <td>10.2.3, 9.0.7, 8.0.6, 7.4.8, 6.2.2, 5.1.8, 4.2.5, 3.1.4</td>
-    </tr>
-    <tr>
-        <td><code>multer</code></td>
-        <td>CVE-2026-2359</td>
-        <td>HIGH</td>
-        <td>2.0.2</td>
-        <td>2.1.0</td>
-    </tr>
-    <tr>
-        <td><code>multer</code></td>
-        <td>CVE-2026-3304</td>
-        <td>HIGH</td>
-        <td>2.0.2</td>
-        <td>2.1.0</td>
-    </tr>
-    <tr>
-        <td><code>multer</code></td>
-        <td>CVE-2026-3520</td>
-        <td>HIGH</td>
-        <td>2.0.2</td>
-        <td>2.1.1</td>
-    </tr>
-    <tr>
-        <td><code>node-forge</code></td>
-        <td>CVE-2026-33891</td>
-        <td>HIGH</td>
-        <td>1.3.3</td>
-        <td>1.4.0</td>
-    </tr>
-    <tr>
-        <td><code>node-forge</code></td>
-        <td>CVE-2026-33894</td>
-        <td>HIGH</td>
-        <td>1.3.3</td>
-        <td>1.4.0</td>
-    </tr>
-    <tr>
-        <td><code>node-forge</code></td>
-        <td>CVE-2026-33895</td>
-        <td>HIGH</td>
-        <td>1.3.3</td>
-        <td>1.4.0</td>
-    </tr>
-    <tr>
-        <td><code>node-forge</code></td>
-        <td>CVE-2026-33896</td>
-        <td>HIGH</td>
-        <td>1.3.3</td>
-        <td>1.4.0</td>
-    </tr>
-    <tr>
-        <td><code>path-to-regexp</code></td>
-        <td>CVE-2026-4867</td>
-        <td>HIGH</td>
-        <td>0.1.12</td>
-        <td>0.1.13</td>
-    </tr>
-    <tr>
-        <td><code>path-to-regexp</code></td>
-        <td>CVE-2026-4926</td>
-        <td>HIGH</td>
-        <td>8.3.0</td>
-        <td>8.4.0</td>
-    </tr>
-    <tr>
-        <td><code>picomatch</code></td>
-        <td>CVE-2026-33671</td>
-        <td>HIGH</td>
-        <td>2.3.1</td>
-        <td>4.0.4, 3.0.2, 2.3.2</td>
-    </tr>
-    <tr>
-        <td><code>picomatch</code></td>
-        <td>CVE-2026-33671</td>
-        <td>HIGH</td>
-        <td>4.0.3</td>
-        <td>4.0.4, 3.0.2, 2.3.2</td>
-    </tr>
-    <tr>
-        <td><code>systeminformation</code></td>
-        <td>CVE-2026-26280</td>
-        <td>HIGH</td>
-        <td>5.30.3</td>
-        <td>5.30.8</td>
-    </tr>
-    <tr>
-        <td><code>systeminformation</code></td>
-        <td>CVE-2026-26318</td>
-        <td>HIGH</td>
-        <td>5.30.3</td>
-        <td>5.31.0</td>
+        <td>6.2.1</td>
+        <td>7.5.3</td>
     </tr>
     <tr>
         <td><code>tar</code></td>
@@ -414,10 +118,52 @@
     </tr>
     <tr>
         <td><code>tar</code></td>
+        <td>CVE-2026-23950</td>
+        <td>HIGH</td>
+        <td>6.2.1</td>
+        <td>7.5.4</td>
+    </tr>
+    <tr>
+        <td><code>tar</code></td>
+        <td>CVE-2026-23950</td>
+        <td>HIGH</td>
+        <td>6.2.1</td>
+        <td>7.5.4</td>
+    </tr>
+    <tr>
+        <td><code>tar</code></td>
         <td>CVE-2026-24842</td>
         <td>HIGH</td>
         <td>6.2.1</td>
         <td>7.5.7</td>
+    </tr>
+    <tr>
+        <td><code>tar</code></td>
+        <td>CVE-2026-24842</td>
+        <td>HIGH</td>
+        <td>6.2.1</td>
+        <td>7.5.7</td>
+    </tr>
+    <tr>
+        <td><code>tar</code></td>
+        <td>CVE-2026-24842</td>
+        <td>HIGH</td>
+        <td>6.2.1</td>
+        <td>7.5.7</td>
+    </tr>
+    <tr>
+        <td><code>tar</code></td>
+        <td>CVE-2026-26960</td>
+        <td>HIGH</td>
+        <td>6.2.1</td>
+        <td>7.5.8</td>
+    </tr>
+    <tr>
+        <td><code>tar</code></td>
+        <td>CVE-2026-26960</td>
+        <td>HIGH</td>
+        <td>6.2.1</td>
+        <td>7.5.8</td>
     </tr>
     <tr>
         <td><code>tar</code></td>
@@ -435,6 +181,20 @@
     </tr>
     <tr>
         <td><code>tar</code></td>
+        <td>CVE-2026-29786</td>
+        <td>HIGH</td>
+        <td>6.2.1</td>
+        <td>7.5.10</td>
+    </tr>
+    <tr>
+        <td><code>tar</code></td>
+        <td>CVE-2026-29786</td>
+        <td>HIGH</td>
+        <td>6.2.1</td>
+        <td>7.5.10</td>
+    </tr>
+    <tr>
+        <td><code>tar</code></td>
         <td>CVE-2026-31802</td>
         <td>HIGH</td>
         <td>6.2.1</td>
@@ -442,142 +202,16 @@
     </tr>
     <tr>
         <td><code>tar</code></td>
-        <td>CVE-2026-29786</td>
-        <td>HIGH</td>
-        <td>7.5.9</td>
-        <td>7.5.10</td>
-    </tr>
-    <tr>
-        <td><code>tar</code></td>
-        <td>CVE-2026-29786</td>
-        <td>HIGH</td>
-        <td>7.5.9</td>
-        <td>7.5.10</td>
-    </tr>
-    <tr>
-        <td><code>tar</code></td>
-        <td>CVE-2026-29786</td>
-        <td>HIGH</td>
-        <td>7.5.9</td>
-        <td>7.5.10</td>
-    </tr>
-    <tr>
-        <td><code>tar</code></td>
-        <td>CVE-2026-29786</td>
-        <td>HIGH</td>
-        <td>7.5.9</td>
-        <td>7.5.10</td>
-    </tr>
-    <tr>
-        <td><code>tar</code></td>
-        <td>CVE-2026-29786</td>
-        <td>HIGH</td>
-        <td>7.5.9</td>
-        <td>7.5.10</td>
-    </tr>
-    <tr>
-        <td><code>tar</code></td>
-        <td>CVE-2026-29786</td>
-        <td>HIGH</td>
-        <td>7.5.9</td>
-        <td>7.5.10</td>
-    </tr>
-    <tr>
-        <td><code>tar</code></td>
-        <td>CVE-2026-29786</td>
-        <td>HIGH</td>
-        <td>7.5.9</td>
-        <td>7.5.10</td>
-    </tr>
-    <tr>
-        <td><code>tar</code></td>
-        <td>CVE-2026-29786</td>
-        <td>HIGH</td>
-        <td>7.5.9</td>
-        <td>7.5.10</td>
-    </tr>
-    <tr>
-        <td><code>tar</code></td>
-        <td>CVE-2026-29786</td>
-        <td>HIGH</td>
-        <td>7.5.9</td>
-        <td>7.5.10</td>
-    </tr>
-    <tr>
-        <td><code>tar</code></td>
-        <td>CVE-2026-29786</td>
-        <td>HIGH</td>
-        <td>7.5.9</td>
-        <td>7.5.10</td>
-    </tr>
-    <tr>
-        <td><code>tar</code></td>
         <td>CVE-2026-31802</td>
         <td>HIGH</td>
-        <td>7.5.9</td>
+        <td>6.2.1</td>
         <td>7.5.11</td>
     </tr>
     <tr>
         <td><code>tar</code></td>
         <td>CVE-2026-31802</td>
         <td>HIGH</td>
-        <td>7.5.9</td>
-        <td>7.5.11</td>
-    </tr>
-    <tr>
-        <td><code>tar</code></td>
-        <td>CVE-2026-31802</td>
-        <td>HIGH</td>
-        <td>7.5.9</td>
-        <td>7.5.11</td>
-    </tr>
-    <tr>
-        <td><code>tar</code></td>
-        <td>CVE-2026-31802</td>
-        <td>HIGH</td>
-        <td>7.5.9</td>
-        <td>7.5.11</td>
-    </tr>
-    <tr>
-        <td><code>tar</code></td>
-        <td>CVE-2026-31802</td>
-        <td>HIGH</td>
-        <td>7.5.9</td>
-        <td>7.5.11</td>
-    </tr>
-    <tr>
-        <td><code>tar</code></td>
-        <td>CVE-2026-31802</td>
-        <td>HIGH</td>
-        <td>7.5.9</td>
-        <td>7.5.11</td>
-    </tr>
-    <tr>
-        <td><code>tar</code></td>
-        <td>CVE-2026-31802</td>
-        <td>HIGH</td>
-        <td>7.5.9</td>
-        <td>7.5.11</td>
-    </tr>
-    <tr>
-        <td><code>tar</code></td>
-        <td>CVE-2026-31802</td>
-        <td>HIGH</td>
-        <td>7.5.9</td>
-        <td>7.5.11</td>
-    </tr>
-    <tr>
-        <td><code>tar</code></td>
-        <td>CVE-2026-31802</td>
-        <td>HIGH</td>
-        <td>7.5.9</td>
-        <td>7.5.11</td>
-    </tr>
-    <tr>
-        <td><code>tar</code></td>
-        <td>CVE-2026-31802</td>
-        <td>HIGH</td>
-        <td>7.5.9</td>
+        <td>6.2.1</td>
         <td>7.5.11</td>
     </tr>
     <tr>
@@ -592,27 +226,6 @@
         <td>CVE-2026-2229</td>
         <td>HIGH</td>
         <td>5.29.0</td>
-        <td>6.24.0, 7.24.0</td>
-    </tr>
-    <tr>
-        <td><code>undici</code></td>
-        <td>CVE-2026-1526</td>
-        <td>HIGH</td>
-        <td>7.22.0</td>
-        <td>6.24.0, 7.24.0</td>
-    </tr>
-    <tr>
-        <td><code>undici</code></td>
-        <td>CVE-2026-1528</td>
-        <td>HIGH</td>
-        <td>7.22.0</td>
-        <td>6.24.0, 7.24.0</td>
-    </tr>
-    <tr>
-        <td><code>undici</code></td>
-        <td>CVE-2026-2229</td>
-        <td>HIGH</td>
-        <td>7.22.0</td>
         <td>6.24.0, 7.24.0</td>
     </tr>
 </table>

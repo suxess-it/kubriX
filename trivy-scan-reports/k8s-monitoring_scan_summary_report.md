@@ -54,7 +54,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>usr/local/bin/helm-operator</code></h3>
-<h4>Vulnerabilities (7)</h4>
+<h4>Vulnerabilities (8)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -69,6 +69,13 @@
         <td>HIGH</td>
         <td>v1.37.0</td>
         <td>1.40.0</td>
+    </tr>
+    <tr>
+        <td><code>go.opentelemetry.io/otel/sdk</code></td>
+        <td>CVE-2026-39883</td>
+        <td>HIGH</td>
+        <td>v1.37.0</td>
+        <td>1.43.0</td>
     </tr>
     <tr>
         <td><code>google.golang.org/grpc</code></td>
@@ -516,7 +523,7 @@
 <h4>No Vulnerabilities found</h4>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>kube-state-metrics</code></h3>
-<h4>Vulnerabilities (6)</h4>
+<h4>Vulnerabilities (7)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -531,6 +538,13 @@
         <td>HIGH</td>
         <td>v1.37.0</td>
         <td>1.40.0</td>
+    </tr>
+    <tr>
+        <td><code>go.opentelemetry.io/otel/sdk</code></td>
+        <td>CVE-2026-39883</td>
+        <td>HIGH</td>
+        <td>v1.37.0</td>
+        <td>1.43.0</td>
     </tr>
     <tr>
         <td><code>google.golang.org/grpc</code></td>
