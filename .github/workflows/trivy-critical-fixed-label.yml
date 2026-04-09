@@ -15,7 +15,7 @@ jobs:
 
     steps:
       - name: Check Trivy diff comment and manage label
-        uses: actions/github-script@v9
+        uses: actions/github-script@v7
         with:
           script: |
             const owner = context.repo.owner;
@@ -25,7 +25,6 @@ jobs:
             const author = context.payload.comment.user?.login || "";
             const labelName = "CVE critical fixed";
 
-            // Only act on the trusted Trivy bot comment format
             const isTrivyComment =
               (author === "github-actions" || author === "github-actions[bot]") &&
               body.includes("Changes Trivy Scan") &&
@@ -39,12 +38,6 @@ jobs:
 
             const lines = body.split(/\r?\n/);
 
-            // Collect removed HTML table rows from the diff, for example:
-            // -    <tr>
-            // -        <td>npm</td>
-            // -        <td>CVE-2026-4800</td>
-            // -        <td>CRITICAL</td>
-            // -    </tr>
             const removedRows = [];
             let currentRow = null;
 
@@ -52,11 +45,9 @@ jobs:
               const line = raw.trim();
 
               // Only removed diff lines; skip file headers like --- a/file
-              if (!line.startsWith("-") || line.startsWith("---")) {
-                continue;
-              }
+              if (!line.startsWith("-") || line.startsWith("---")) continue;
 
-              const content = line.replace(/^-+\s?/, "");
+              const content = line.replace(/^-+\s*/, "");
 
               if (content.includes("<tr>")) {
                 currentRow = [content];
@@ -73,9 +64,9 @@ jobs:
               }
             }
 
-            const criticalRows = removedRows.filter(row => {
+            const fixedCriticalRows = removedRows.filter(row => {
               const tdCount = (row.match(/<td>/g) || []).length;
-              return tdCount >= 4 &&
+              return tdCount >= 3 &&
                 /\bCVE-\d{4}-\d+\b/i.test(row) &&
                 /\bCRITICAL\b/i.test(row);
             });
@@ -87,8 +78,7 @@ jobs:
             });
             const hasLabel = labelsResp.data.some(l => l.name === labelName);
 
-            if (criticalRows.length > 0) {
-              // Ensure label exists
+            if (fixedCriticalRows.length > 0) {
               try {
                 await github.rest.issues.getLabel({
                   owner,
@@ -121,7 +111,7 @@ jobs:
                 core.info(`Label "${labelName}" already present on PR #${issue_number}`);
               }
 
-              core.info(`Matched removed critical rows:\n${criticalRows.join("\n---\n")}`);
+              core.info(`Matched removed CRITICAL rows:\n${fixedCriticalRows.join("\n---\n")}`);
             } else {
               if (hasLabel) {
                 await github.rest.issues.removeLabel({
