@@ -26,7 +26,7 @@ backstage:
     image:
       registry: ghcr.io/suxess-it
       repository: sx-backstage
-      tag: v1.47.3
+      tag: v1.48.5
     extraEnvVarsSecrets:
       - sx-cnp-secret
       - backstage-db-secrets
@@ -36,10 +36,15 @@ backstage:
       - name: NODE_OPTIONS
         value: "--no-node-snapshot"
     extraVolumes:
-      - configMap:
+      - name: rbac-policy
+        projected:
           defaultMode: 420
-          name: rbac-policy
-        name: rbac-policy
+          sources:
+            - configMap:
+                name: rbac-policy
+            - configMap:
+                name: conditional-policies
+                optional: true
     extraVolumeMounts:
       - name: rbac-policy
         mountPath: /opt/app-root/src/rbac
@@ -363,15 +368,16 @@ backstage:
             - policy
             - scaffolder
             - rbac
+            - kyverno
  #           - techdocs
           maxDepth: 1
           admin:
             users:
               - name: user:default/dummyuser
             superUsers:
-              - name: user:default/demoadmin
               - name: user:default/phac008
               - name: user:default/jkleinlercher
+              - name: group:default/admins
           policies-csv-file: /opt/app-root/src/rbac/rbac-policy.csv
           policyFileReload: true
           database:
@@ -387,7 +393,63 @@ backstage:
       kubernetesIngestor:
         components:
           enabled: false
-          
+
+## rbac policies rendered into a single ConfigMap (rbac-policy)
+## Each key in rbac.policies is a named block of CSV lines appended in order.
+## - Add new keys in your customer values file to extend without repeating base entries.
+## - Override an existing key with an empty string ("") to disable that block.
+rbac:
+  policies:
+    # Key = logical name (used for Helm map merging only, not seen by Backstage).
+    authenticated-base: |
+      # Layer 1: baseline for all authenticated users
+      p, role:default/authenticated, catalog-entity, read, allow
+      p, role:default/authenticated, catalog.entity.read, read, allow
+      p, role:default/authenticated, catalog.location.read, read, allow
+      p, role:default/authenticated, scaffolder-template, read, allow
+      p, role:default/authenticated, scaffolder.task.read, read, allow
+      p, role:default/authenticated, kyverno.overview.view, read, allow
+      p, role:default/authenticated, kyverno.policy.view-yaml, read, allow
+      p, role:default/authenticated, kyverno.reports.view, read, allow
+      p, role:default/authenticated, kubernetes.clusters.read, read, allow
+      p, role:default/authenticated, kubernetes.resources.read, read, allow
+      p, role:default/authenticated, kubernetes.proxy, use, allow
+      p, role:default/authenticated, mssv.view.read, read, allow
+    kubrixdev-base: |
+      # Layer 2: kubrixviewers (viewers) - reserved for future viewer-specific permissions
+      # Layer 2: kubrixeditors (editors/kubrix) - advanced developer features
+      p, role:default/kubrixeditors, catalog-entity, update, allow
+      p, role:default/kubrixeditors, catalog.entity.create, create, allow
+      p, role:default/kubrixeditors, catalog.entity.refresh, update, allow
+      p, role:default/kubrixeditors, catalog.location.create, create, allow
+      p, role:default/kubrixeditors, scaffolder-action, use, allow
+      p, role:default/kubrixeditors, scaffolder.template.management, use, allow
+      p, role:default/kubrixeditors, scaffolder.task.create, create, allow
+      p, role:default/kubrixeditors, scaffolder.task.cancel, use, allow
+      p, role:default/kubrixeditors, bulk-import, use, allow
+      p, role:default/kubrixeditors, argocd.view.read, read, allow
+      p, role:default/kubrixeditors, policy-entity.read, read, allow
+      p, role:default/kubrixeditors, policy-entity.create, create, allow
+      p, role:default/kubrixeditors, policy-entity.update, update, allow
+      p, role:default/kubrixeditors, announcement.entity.create, create, allow
+      p, role:default/kubrixeditors, announcement.entity.update, update, allow
+      # Layer 2: kubrixadmins (admins)
+      p, role:default/kubrixadmins, announcement.entity.delete, delete, allow
+      p, role:default/kubrixadmins, policy-entity.delete, delete, allow
+      p, role:default/kubrixadmins, catalog.location.delete, delete, allow
+
+    group-role-mappings: |
+      # Group → role mappings
+      g, group:default/viewers, role:default/authenticated
+      g, group:default/editors, role:default/authenticated
+      g, group:default/kubrix, role:default/authenticated
+      g, group:default/admins, role:default/authenticated
+      g, group:default/viewers, role:default/kubrixviewers
+      g, group:default/editors, role:default/kubrixeditors
+      g, group:default/kubrix, role:default/kubrixeditors
+      g, group:default/admins, role:default/kubrixeditors
+      g, group:default/admins, role:default/kubrixadmins
+
 ## pgdb
 cluster:
   type: postgresql

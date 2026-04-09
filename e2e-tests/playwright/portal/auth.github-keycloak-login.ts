@@ -3,6 +3,8 @@ import path from 'path';
 import fs from "fs";
 import * as OTPAuth from "otpauth";
 
+const BASE_DOMAIN = process.env.E2E_BASE_DOMAIN ?? '127-0-0-1.nip.io';
+
 if (!process.env.E2E_TEST_GITHUB_OTP) {
   throw new Error("E2E_TEST_GITHUB_OTP must be set to run E2E tests");
 }
@@ -83,7 +85,7 @@ setup('Github Login', async ({ page }, testInfo) => {
   }
 
   // Login in Backstage
-  await page.goto("https://backstage.127-0-0-1.nip.io/");
+  await page.goto(`https://backstage.${BASE_DOMAIN}/`);
   await expect(page).toHaveTitle(/kubriX/);
 
   // Open GitHub login popup
@@ -116,7 +118,7 @@ async function keycloakLogin(page: any, username: string, password: string, auth
   for (let attempt = 1; attempt <= MAX_RETRIES; attempt++) {
     console.log(`[Keycloak login] attempt ${attempt}/${MAX_RETRIES} for user '${username}'`);
 
-    await page.goto("https://backstage.127-0-0-1.nip.io/");
+    await page.goto(`https://backstage.${BASE_DOMAIN}/`);
     await expect(page).toHaveTitle(/kubriX/);
 
     const popupPromise = page.waitForEvent('popup');
@@ -155,8 +157,14 @@ setup('Keycloak Demoadmin Login', async ({ page }, testInfo) => {
   await keycloakLogin(page, 'demoadmin', process.env.E2E_KEYCLOAK_DEMOADMIN_PASSWORD!, keycloakDemoadminAuthFile);
 });
 
-const keycloakDemouserAuthFile = path.join(authDir, 'keycloak-demouser.json');
-setup('Keycloak Demouser Login', async ({ page }, testInfo) => {
+const keycloakDemoeditorAuthFile = path.join(authDir, 'keycloak-demoeditor.json');
+setup('Keycloak Demoeditor Login', async ({ page }, testInfo) => {
   testInfo.setTimeout(5 * 60 * 1000);
-  await keycloakLogin(page, 'demouser', process.env.E2E_KEYCLOAK_DEMOUSER_PASSWORD!, keycloakDemouserAuthFile);
+  await keycloakLogin(page, 'demoeditor', process.env.E2E_KEYCLOAK_DEMOEDITOR_PASSWORD!, keycloakDemoeditorAuthFile);
+});
+
+const keycloakDemoviewerAuthFile = path.join(authDir, 'keycloak-demoviewer.json');
+setup('Keycloak Demoviewer Login', async ({ page }, testInfo) => {
+  testInfo.setTimeout(5 * 60 * 1000);
+  await keycloakLogin(page, 'demoviewer', process.env.E2E_KEYCLOAK_DEMOVIEWER_PASSWORD!, keycloakDemoviewerAuthFile);
 });
