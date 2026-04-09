@@ -501,8 +501,10 @@ jobs:
           fi
 
           echo "${E2E_KEYCLOAK_DEMOADMIN_PASSWORD}"
-          E2E_KEYCLOAK_DEMOUSER_PASSWORD=$( kubectl get secret -n keycloak cp-keycloak-users-secret -o=jsonpath='{.data.demouser}'  | base64 -d )
-          echo "${E2E_KEYCLOAK_DEMOUSER_PASSWORD}"
+          E2E_KEYCLOAK_DEMOVIEWER_PASSWORD=$( kubectl get secret -n keycloak cp-keycloak-users-secret -o=jsonpath='{.data.demoviewer}'  | base64 -d )
+          echo "${E2E_KEYCLOAK_DEMOVIEWER_PASSWORD}"
+          E2E_KEYCLOAK_DEMOEDITOR_PASSWORD=$( kubectl get secret -n keycloak cp-keycloak-users-secret -o=jsonpath='{.data.demoeditor}'  | base64 -d )
+          echo "${E2E_KEYCLOAK_DEMOEDITOR_PASSWORD}"
           E2E_ARGOCD_ADMIN_PASSWORD=$( kubectl get secret -n argocd argocd-initial-admin-secret -o=jsonpath={'.data.password'} | base64 -d )
           E2E_ARGOCD_VERSION="v3.3.6"
           E2E_GRAFANA_ADMIN_PASSWORD=$( kubectl get secret -n grafana grafana-admin-secret -o=jsonpath='{.data.passwordKey}' | base64 -d )
@@ -519,7 +521,8 @@ jobs:
             --variable E2E_TEST_GH_PASSWORD=${E2E_TEST_GH_PASSWORD} \
             --variable E2E_TEST_GITHUB_OTP=${E2E_TEST_GITHUB_OTP} \
             --variable E2E_KEYCLOAK_DEMOADMIN_PASSWORD=${E2E_KEYCLOAK_DEMOADMIN_PASSWORD} \
-            --variable E2E_KEYCLOAK_DEMOUSER_PASSWORD=${E2E_KEYCLOAK_DEMOUSER_PASSWORD} \
+            --variable E2E_KEYCLOAK_DEMOEDITOR_PASSWORD=${E2E_KEYCLOAK_DEMOEDITOR_PASSWORD} \
+            --variable E2E_KEYCLOAK_DEMOVIEWER_PASSWORD=${E2E_KEYCLOAK_DEMOVIEWER_PASSWORD} \
             --variable E2E_ARGOCD_ADMIN_PASSWORD=${E2E_ARGOCD_ADMIN_PASSWORD} \
             --variable E2E_ARGOCD_VERSION=${E2E_ARGOCD_VERSION} \
             --variable E2E_GRAFANA_ADMIN_PASSWORD=${E2E_GRAFANA_ADMIN_PASSWORD} \

@@ -67,7 +67,8 @@ and save them in `playwright.env` section of the `settings.json` of vscode:
     "playwright.env": {
         "__comments": {
             "E2E_KEYCLOAK_DEMOADMIN_PASSWORD": "kubectl get secret -n keycloak cp-keycloak-users-secret -o=jsonpath='{.data.demoadmin}'  | base64 -d",
-            "E2E_KEYCLOAK_DEMOUSER_PASSWORD": "kubectl get secret -n keycloak cp-keycloak-users-secret -o=jsonpath='{.data.demouser}'  | base64 -d",
+            "E2E_KEYCLOAK_DEMOEDITOR_PASSWORD": "kubectl get secret -n keycloak cp-keycloak-users-secret -o=jsonpath='{.data.demoeditor}'  | base64 -d",
+            "E2E_KEYCLOAK_DEMOVIEWER_PASSWORD": "kubectl get secret -n keycloak cp-keycloak-users-secret -o=jsonpath='{.data.demoviewer}'  | base64 -d",
             "E2E_ARGOCD_ADMIN_PASSWORD": "kubectl get secret -n argocd argocd-initial-admin-secret -o=jsonpath='{.data.password}' | base64 -d",
             "E2E_GRAFANA_ADMIN_PASSWORD": "kubectl get secret -n grafana grafana-admin-secret  -o=jsonpath='{.data.passwordKey}'  | base64 -d",
             "E2E_KEYCLOAK_ADMIN_PASSWORD": "kubectl get secret -n keycloak  keycloak-admin -o=jsonpath='{.data.admin-password}'  | base64 -d",
@@ -75,7 +76,8 @@ and save them in `playwright.env` section of the `settings.json` of vscode:
             "E2E_KARGO_ADMIN_PASSWORD": "kubectl get secret -n kargo kargo-admin-secret  -o=jsonpath='{.data.ADMIN_ACCOUNT_PASSWORD}'  | base64 -d",
         },
         "E2E_KEYCLOAK_DEMOADMIN_PASSWORD": "xxx",
-        "E2E_KEYCLOAK_DEMOUSER_PASSWORD": "xxx",
+        "E2E_KEYCLOAK_DEMOVIEWER_PASSWORD": "xxx",
+        "E2E_KEYCLOAK_DEMOEDITOR_PASSWORD": "xxx",
         "E2E_GRAFANA_ADMIN_PASSWORD": "xxx",
         "E2E_KEYCLOAK_ADMIN_PASSWORD": "xxx",
         "E2E_VAULT_ROOT_TOKEN": "xxx",
@@ -89,7 +91,8 @@ and save them in `playwright.env` section of the `settings.json` of vscode:
         "E2E_KUBRIX_REPO": "your-forked-demo-repo",
         "E2E_TEAM_ONBOARDING_TARGET_BRANCH": "your-current-feature-branch",
         "E2E_KUBRIX_ARGOCD_APPSET_TOKEN": "xxx",
-        "E2E_KUBRIX_KARGO_GIT_PASSWORD": "xxx"
+        "E2E_KUBRIX_KARGO_GIT_PASSWORD": "xxx",
+        "E2E_BASE_DOMAIN": "if other than 127-0-0-1.nip.io"
     },
     "playwright.showTrace": false
 ```
