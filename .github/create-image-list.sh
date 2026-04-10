@@ -38,7 +38,7 @@ for chart in $( ls -d */ | sed 's#/##' ); do
     valuesFiles=( )
     [[ -f ${chart}/values-kubrix-default.yaml ]] && valuesFiles+=( "-f ${chart}/values-kubrix-default.yaml" )
     [[ -f ${chart}/values-cluster-kind.yaml ]] && valuesFiles+=( "-f ${chart}/values-cluster-kind.yaml" )
-    helm images get ${chart} ${valuesFiles[@]} --log-level error --kind "Deployment,StatefulSet,DaemonSet,CronJob,Job,ReplicaSet,Pod,Alertmanager,Prometheus,ThanosRuler,Grafana,Thanos,Receiver" \
+    helm images get ${chart} ${valuesFiles[@]} --log-level error --kind "Deployment,StatefulSet,DaemonSet,CronJob,Job,ReplicaSet,Pod,Alertmanager,Prometheus,ThanosRuler,Grafana,Thanos,Receiver,Provider,Configuration,Function" \
     | sort -u ); do
     id=$( echo -n "${chart}_$( echo ${image} | awk -F/ '{print $NF}' | sed 's/:/_/g' )" )
     echo "{\"chart\": \"${chart}\", \"image\": \"${image}\", \"id\": \"${id}\"}" >> ../../image-list/image-list-temp.json
