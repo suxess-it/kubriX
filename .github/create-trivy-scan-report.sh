@@ -28,7 +28,7 @@ for chart in $( ls -d */ | sed 's#/##' ); do
   [[ -f ${chart}/values-cluster-kind.yaml ]] && valuesFiles+=( "-f ${chart}/values-cluster-kind.yaml" )
   # this is just for the target where the 'kind' values have their old name. this gets fixed after this commit is in main branch
   [[ -f ${chart}/values-kind.yaml ]] && valuesFiles+=( "-f ${chart}/values-kind.yaml" )
-  helm images get ${chart} ${valuesFiles[@]} --log-level error --kind "Deployment,StatefulSet,DaemonSet,CronJob,Job,ReplicaSet,Pod,Alertmanager,Prometheus,ThanosRuler,Grafana,Thanos,Receiver" | sort -u > ../../trivy-scan-reports/${chart}/images.txt
+  helm images get ${chart} ${valuesFiles[@]} --log-level error --kind "Deployment,StatefulSet,DaemonSet,CronJob,Job,ReplicaSet,Pod,Alertmanager,Prometheus,ThanosRuler,Grafana,Thanos,Receiver,Provider,Configuration,Function" | sort -u > ../../trivy-scan-reports/${chart}/images.txt
   > ../../trivy-scan-reports/${chart}_scan_summary_report.md
   for image in $(cat ../../trivy-scan-reports/${chart}/images.txt) ; do
     output_file=$( echo -n "${chart}_$( echo ${image} | awk -F/ '{print $NF}' )" )
