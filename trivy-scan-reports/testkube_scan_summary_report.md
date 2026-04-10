@@ -1,6 +1,6 @@
 
 <h3>Target <code>docker.io/kubeshop/testkube-api-server:2.8.2 (alpine 3.20.8)</code></h3>
-<h4>Vulnerabilities (6)</h4>
+<h4>Vulnerabilities (8)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -31,6 +31,13 @@
         <td>3.3.6-r0</td>
     </tr>
     <tr>
+        <td><code>libcrypto3</code></td>
+        <td>CVE-2026-28390</td>
+        <td>HIGH</td>
+        <td>3.3.5-r0</td>
+        <td>3.3.7-r0</td>
+    </tr>
+    <tr>
         <td><code>libssl3</code></td>
         <td>CVE-2025-15467</td>
         <td>CRITICAL</td>
@@ -50,6 +57,13 @@
         <td>HIGH</td>
         <td>3.3.5-r0</td>
         <td>3.3.6-r0</td>
+    </tr>
+    <tr>
+        <td><code>libssl3</code></td>
+        <td>CVE-2026-28390</td>
+        <td>HIGH</td>
+        <td>3.3.5-r0</td>
+        <td>3.3.7-r0</td>
     </tr>
 </table>
 <h4>No Misconfigurations found</h4>
@@ -187,7 +201,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>usr/bin/minio</code></h3>
-<h4>Vulnerabilities (16)</h4>
+<h4>Vulnerabilities (17)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -234,6 +248,13 @@
     <tr>
         <td><code>github.com/minio/minio</code></td>
         <td>CVE-2026-34204</td>
+        <td>HIGH</td>
+        <td>v0.0.0-20250613113347-a6c538c5a113+dirty</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>github.com/minio/minio</code></td>
+        <td>CVE-2026-39414</td>
         <td>HIGH</td>
         <td>v0.0.0-20250613113347-a6c538c5a113+dirty</td>
         <td></td>
@@ -312,7 +333,30 @@
 <h4>No Misconfigurations found</h4>
 
 <h3>Target <code>nats:2.12.5-alpine (alpine 3.22.3)</code></h3>
-<h4>No Vulnerabilities found</h4>
+<h4>Vulnerabilities (2)</h4>
+<table>
+    <tr>
+        <th>Package</th>
+        <th>ID</th>
+        <th>Severity</th>
+        <th>Installed Version</th>
+        <th>Fixed Version</th>
+    </tr>
+    <tr>
+        <td><code>libcrypto3</code></td>
+        <td>CVE-2026-28390</td>
+        <td>HIGH</td>
+        <td>3.5.5-r0</td>
+        <td>3.5.6-r0</td>
+    </tr>
+    <tr>
+        <td><code>libssl3</code></td>
+        <td>CVE-2026-28390</td>
+        <td>HIGH</td>
+        <td>3.5.5-r0</td>
+        <td>3.5.6-r0</td>
+    </tr>
+</table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>usr/local/bin/nats-server</code></h3>
 <h4>Vulnerabilities (4)</h4>
@@ -356,7 +400,7 @@
 <h4>No Misconfigurations found</h4>
 
 <h3>Target <code>natsio/nats-server-config-reloader:0.22.3 (alpine 3.23.3)</code></h3>
-<h4>Vulnerabilities (1)</h4>
+<h4>Vulnerabilities (3)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -364,6 +408,20 @@
         <th>Severity</th>
         <th>Installed Version</th>
         <th>Fixed Version</th>
+    </tr>
+    <tr>
+        <td><code>libcrypto3</code></td>
+        <td>CVE-2026-28390</td>
+        <td>HIGH</td>
+        <td>3.5.5-r0</td>
+        <td>3.5.6-r0</td>
+    </tr>
+    <tr>
+        <td><code>libssl3</code></td>
+        <td>CVE-2026-28390</td>
+        <td>HIGH</td>
+        <td>3.5.5-r0</td>
+        <td>3.5.6-r0</td>
     </tr>
     <tr>
         <td><code>zlib</code></td>

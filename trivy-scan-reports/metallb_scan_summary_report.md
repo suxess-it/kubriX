@@ -1,6 +1,6 @@
 
 <h3>Target <code>quay.io/frrouting/frr:10.4.1 (alpine 3.20.7)</code></h3>
-<h4>Vulnerabilities (8)</h4>
+<h4>Vulnerabilities (10)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -31,6 +31,13 @@
         <td>3.3.6-r0</td>
     </tr>
     <tr>
+        <td><code>libcrypto3</code></td>
+        <td>CVE-2026-28390</td>
+        <td>HIGH</td>
+        <td>3.3.4-r0</td>
+        <td>3.3.7-r0</td>
+    </tr>
+    <tr>
         <td><code>libexpat</code></td>
         <td>CVE-2026-25210</td>
         <td>HIGH</td>
@@ -57,6 +64,13 @@
         <td>HIGH</td>
         <td>3.3.4-r0</td>
         <td>3.3.6-r0</td>
+    </tr>
+    <tr>
+        <td><code>libssl3</code></td>
+        <td>CVE-2026-28390</td>
+        <td>HIGH</td>
+        <td>3.3.4-r0</td>
+        <td>3.3.7-r0</td>
     </tr>
     <tr>
         <td><code>sqlite-libs</code></td>
