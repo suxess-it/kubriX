@@ -10,8 +10,7 @@ chmod u+x trivy
 helm plugin install https://github.com/nikhilsbhat/helm-images
 
 # get changed charts between main and PR
-changed_charts=$(
-  diff -qr pr/platform-apps/charts target/platform-apps/charts \
+changed_charts=$( diff -qr pr/platform-apps/charts target/platform-apps/charts \
     | grep -v "platform-apps/charts/image-list" \
     | awk -F/ '{print $4}' \
     | awk -F: '{print $1}' \
@@ -64,8 +63,7 @@ for env in pr target; do
   cd - >/dev/null
 done
 
-changed_images_charts=$(
-  diff -q out/target out/pr \
+changed_images_charts=$( diff -q out/target out/pr \
     | awk '{print $2}' \
     | awk -F/ '{print $3}' \
     | sed 's/-images.txt//g'
