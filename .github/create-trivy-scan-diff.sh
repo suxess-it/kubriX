@@ -7,15 +7,23 @@ tar -xzvf trivy.tar.gz trivy
 chmod u+x trivy
 
 # install helm images plugin
-helm plugin install https://github.com/nikhilsbhat/helm-images
+helm plugin install https://github.com/nikhilsbhat/helm-images || true
 
 # get changed charts between main and PR
-changed_charts=$( diff -qr pr/platform-apps/charts target/platform-apps/charts \
-    | grep -v "platform-apps/charts/image-list" \
+changed_charts="$(
+  {
+    diff -qr pr/platform-apps/charts target/platform-apps/charts || true
+  } \
+    | grep -v "platform-apps/charts/image-list" || true
+)"
+
+changed_charts="$(
+  printf '%s\n' "${changed_charts}" \
     | awk -F/ '{print $4}' \
     | awk -F: '{print $1}' \
+    | sed '/^$/d' \
     | sort -u
-)
+)"
 
 if [[ -z "${changed_charts}" ]]; then
   echo "no changes"
@@ -41,17 +49,10 @@ for env in pr target; do
 
     helm dependency update "${chart}"
 
-    # with different aspect specific values we need to render the charts
-    # with a specific set of values files, not with every file by itself.
-    # since we already install the charts in the kind github actions with
-    # "values-kubrix-default.yaml, values-cluster-kind.yaml"
-    # we use the same set for rendering.
     valuesFiles=()
 
     [[ -f "${chart}/values-kubrix-default.yaml" ]] && valuesFiles+=("-f" "${chart}/values-kubrix-default.yaml")
     [[ -f "${chart}/values-cluster-kind.yaml" ]] && valuesFiles+=("-f" "${chart}/values-cluster-kind.yaml")
-
-    # this is just for the target where the 'kind' values still have the old name.
     [[ -f "${chart}/values-kind.yaml" ]] && valuesFiles+=("-f" "${chart}/values-kind.yaml")
 
     helm images get "${chart}" "${valuesFiles[@]}" \
@@ -63,14 +64,29 @@ for env in pr target; do
   cd - >/dev/null
 done
 
-changed_images_charts=$( diff -q out/target out/pr \
+changed_images_charts="$(
+  {
+    diff -q out/target out/pr || true
+  } \
     | awk '{print $2}' \
     | awk -F/ '{print $3}' \
-    | sed 's/-images.txt//g'
-)
+    | sed 's/-images.txt//g' \
+    | sed '/^$/d' \
+    | sort -u
+)"
 
 echo "charts where images changed between PR and main:"
 echo "${changed_images_charts}"
+
+if [[ -z "${changed_images_charts}" ]]; then
+  echo "no image changes"
+  echo "CRITICAL_FIXED=false" >> "${GITHUB_ENV}"
+
+  diff -U 4 -r out/target/scans out/pr/scans > out/scan-diff.txt || true
+  sed 's/DESCRIPTION_HERE/Changes Trivy Scan/g' pr/.github/pr-diff-template.txt > out/comment-diff-trivy-scan.txt
+  sed -e "/DIFF_HERE/{r out/scan-diff.txt" -e "d}" out/comment-diff-trivy-scan.txt > out/comment-diff-trivy-scan-result.txt
+  exit 0
+fi
 
 # create trivy scan reports per image to see if the scan reports changed
 for chart in ${changed_images_charts}; do
@@ -92,7 +108,6 @@ for chart in ${changed_images_charts}; do
         -o "out/${env}/scans/${chart}/${output_file}.md" \
         "${image}"
 
-      # append file to a scan output per chart to better compare them
       cat "out/${env}/scans/${chart}/${output_file}.md" >> "out/${env}/scans/${chart}/scan_summary.md"
       rm "out/${env}/scans/${chart}/${output_file}.md"
     done < "out/${env}/${chart}-images.txt"
@@ -104,8 +119,8 @@ diff -U 4 -r out/target/scans out/pr/scans > out/scan-diff.txt || true
 sed 's/DESCRIPTION_HERE/Changes Trivy Scan/g' pr/.github/pr-diff-template.txt > out/comment-diff-trivy-scan.txt
 sed -e "/DIFF_HERE/{r out/scan-diff.txt" -e "d}" out/comment-diff-trivy-scan.txt > out/comment-diff-trivy-scan-result.txt
 
-# detect whether the diff contains at least one removed CRITICAL CVE row
 python3 - <<'PY'
+import os
 import re
 from pathlib import Path
 
@@ -118,8 +133,6 @@ current = None
 
 for raw in lines:
     line = raw.strip()
-
-    # only removed diff lines; ignore diff headers like --- a/file
     if not line.startswith("-") or line.startswith("---"):
         continue
 
@@ -141,12 +154,8 @@ fixed_critical_rows = [
     and re.search(r"\bCRITICAL\b", row, re.I)
 ]
 
-github_env = Path(__import__("os").environ["GITHUB_ENV"])
-with github_env.open("a", encoding="utf-8") as f:
+with open(os.environ["GITHUB_ENV"], "a", encoding="utf-8") as f:
     f.write(f"CRITICAL_FIXED={'true' if fixed_critical_rows else 'false'}\n")
 
 print(f"Detected removed CRITICAL CVE rows: {len(fixed_critical_rows)}")
-for row in fixed_critical_rows:
-    print("-----")
-    print(row)
 PY
