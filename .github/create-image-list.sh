@@ -23,7 +23,7 @@ for chart in $( ls -d */ | sed 's#/##' ); do
   valuesFiles=( )
   [[ -f ${chart}/values-kubrix-default.yaml ]] && valuesFiles+=( "-f ${chart}/values-kubrix-default.yaml" )
   [[ -f ${chart}/values-cluster-kind.yaml ]] && valuesFiles+=( "-f ${chart}/values-cluster-kind.yaml" )
-  helm images get ${chart} ${valuesFiles[@]} --log-level error --kind "Deployment,StatefulSet,DaemonSet,CronJob,Job,ReplicaSet,Pod,Alertmanager,Prometheus,ThanosRuler,Grafana,Thanos,Receiver" | sort -u | sed 's/^/* /' >> ../../image-list/image-list.md
+  helm images get ${chart} ${valuesFiles[@]} --log-level error --kind "Deployment,StatefulSet,DaemonSet,CronJob,Job,ReplicaSet,Pod,Alertmanager,Prometheus,ThanosRuler,Grafana,Thanos,Receiver,Provider,Configuration,Function" | sort -u | sed 's/^/* /' >> ../../image-list/image-list.md
 done
 
 echo "create the images json"
@@ -44,5 +44,5 @@ for chart in $( ls -d */ | sed 's#/##' ); do
     echo "{\"chart\": \"${chart}\", \"image\": \"${image}\", \"id\": \"${id}\"}" >> ../../image-list/image-list-temp.json
   done
 done
-jq --slurp '.' ../../image-list/image-list-temp.json > ../../image-list/image-list.json
+jq --slurp '.' ../../image-list/image-listr-temp.json > ../../image-list/image-list.json
 rm ../../image-list/image-list-temp.json
