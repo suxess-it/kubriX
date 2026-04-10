@@ -1,27 +1,29 @@
+name: trivy scan diff
 
 on:
   pull_request:
     types: [opened, synchronize]
     paths:
-      - '.github/workflows/trivy-scan-diff.yaml'
+      - '.github/workflows/trivy-scan-diff.yml'
       - '.github/create-trivy-scan-diff.sh'
       - 'platform-apps/charts/**'
-      
+
 permissions:
   contents: read
+  issues: write
   pull-requests: write
-
-name: trivy scan diff
 
 jobs:
   diff:
     runs-on: ubuntu-latest
+
     steps:
       - name: Checkout PR
         uses: actions/checkout@v6
         with:
-         path: pr
-         fetch-depth: 0
+          path: pr
+          fetch-depth: 0
+
       - name: Checkout Target of PR
         uses: actions/checkout@v6
         with:
@@ -34,6 +36,85 @@ jobs:
         shell: bash
         run: |
           bash pr/.github/create-trivy-scan-diff.sh
+
+      - name: Ensure label exists
+        if: env.CRITICAL_FIXED == 'true'
+        uses: actions/github-script@v9
+        with:
+          script: |
+            const labelName = "CVE critical fixed";
+
+            try {
+              await github.rest.issues.getLabel({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                name: labelName,
+              });
+            } catch (e) {
+              if (e.status === 404) {
+                await github.rest.issues.createLabel({
+                  owner: context.repo.owner,
+                  repo: context.repo.repo,
+                  name: labelName,
+                  color: "0e8a16",
+                  description: "PR removes at least one critical CVE in Trivy diff",
+                });
+              } else {
+                throw e;
+              }
+            }
+
+      - name: Add PR label for fixed critical CVE
+        if: env.CRITICAL_FIXED == 'true'
+        uses: actions/github-script@v9
+        with:
+          script: |
+            const labelName = "CVE critical fixed";
+            const issue_number = context.issue.number;
+
+            const labelsResp = await github.rest.issues.listLabelsOnIssue({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number,
+            });
+
+            const hasLabel = labelsResp.data.some(l => l.name === labelName);
+
+            if (!hasLabel) {
+              await github.rest.issues.addLabels({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number,
+                labels: [labelName],
+              });
+              core.info(`Added label "${labelName}" to PR #${issue_number}`);
+            } else {
+              core.info(`Label "${labelName}" already present on PR #${issue_number}`);
+            }
+
+      - name: Remove PR label when no fixed critical CVE is present
+        if: env.CRITICAL_FIXED != 'true'
+        uses: actions/github-script@v9
+        with:
+          script: |
+            const labelName = "CVE critical fixed";
+            const issue_number = context.issue.number;
+
+            try {
+              await github.rest.issues.removeLabel({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number,
+                name: labelName,
+              });
+              core.info(`Removed label "${labelName}" from PR #${issue_number}`);
+            } catch (e) {
+              if (e.status === 404) {
+                core.info(`Label "${labelName}" not present on PR #${issue_number}`);
+              } else {
+                throw e;
+              }
+            }
 
       - name: PR comment default values with file
         if: env.CHANGES == 'true'
