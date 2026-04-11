@@ -133,6 +133,7 @@ current = None
 
 for raw in lines:
     line = raw.strip()
+
     if not line.startswith("-") or line.startswith("---"):
         continue
 
@@ -154,8 +155,16 @@ fixed_critical_rows = [
     and re.search(r"\bCRITICAL\b", row, re.I)
 ]
 
+fixed_high_rows = [
+    row for row in removed_rows
+    if re.search(r"\bCVE-\d{4}-\d+\b", row, re.I)
+    and re.search(r"\bHIGH\b", row, re.I)
+]
+
 with open(os.environ["GITHUB_ENV"], "a", encoding="utf-8") as f:
     f.write(f"CRITICAL_FIXED={'true' if fixed_critical_rows else 'false'}\n")
+    f.write(f"HIGH_FIXED={'true' if fixed_high_rows else 'false'}\n")
 
 print(f"Detected removed CRITICAL CVE rows: {len(fixed_critical_rows)}")
+print(f"Detected removed HIGH CVE rows: {len(fixed_high_rows)}")
 PY
