@@ -26,7 +26,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>usr/local/bin/trivy-operator</code></h3>
-<h4>Vulnerabilities (6)</h4>
+<h4>Vulnerabilities (7)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -48,6 +48,13 @@
         <td>HIGH</td>
         <td>v4.1.3</td>
         <td>4.1.4</td>
+    </tr>
+    <tr>
+        <td><code>github.com/hashicorp/go-getter</code></td>
+        <td>CVE-2026-4660</td>
+        <td>HIGH</td>
+        <td>v1.8.3</td>
+        <td>1.8.6</td>
     </tr>
     <tr>
         <td><code>github.com/moby/buildkit</code></td>

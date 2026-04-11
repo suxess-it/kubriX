@@ -700,7 +700,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>Node.js</code></h3>
-<h4>Vulnerabilities (16)</h4>
+<h4>Vulnerabilities (17)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -771,6 +771,13 @@
         <td>HIGH</td>
         <td>15.2.3</td>
         <td>14.2.34, 15.0.6, 15.1.10, 15.2.7, 15.3.7, 15.4.9, 15.5.8, 15.6.0-canary.59, 16.0.9, 16.1.0-canary.17</td>
+    </tr>
+    <tr>
+        <td><code>next</code></td>
+        <td>GHSA-q4gf-8mx6-v5v3</td>
+        <td>HIGH</td>
+        <td>15.2.3</td>
+        <td>15.5.15, 16.2.3</td>
     </tr>
     <tr>
         <td><code>serialize-javascript</code></td>

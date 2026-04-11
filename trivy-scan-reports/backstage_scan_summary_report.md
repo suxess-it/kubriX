@@ -72,7 +72,7 @@
 <h4>No Vulnerabilities found</h4>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>Node.js</code></h3>
-<h4>Vulnerabilities (22)</h4>
+<h4>Vulnerabilities (24)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -89,11 +89,25 @@
         <td>1.15.0</td>
     </tr>
     <tr>
+        <td><code>axios</code></td>
+        <td>CVE-2026-40175</td>
+        <td>CRITICAL</td>
+        <td>1.14.0</td>
+        <td>1.15.0</td>
+    </tr>
+    <tr>
         <td><code>basic-ftp</code></td>
         <td>CVE-2026-39983</td>
         <td>HIGH</td>
         <td>5.2.0</td>
         <td>5.2.1</td>
+    </tr>
+    <tr>
+        <td><code>basic-ftp</code></td>
+        <td>GHSA-6v7q-wjvx-w8wg</td>
+        <td>HIGH</td>
+        <td>5.2.0</td>
+        <td>5.2.2</td>
     </tr>
     <tr>
         <td><code>tar</code></td>
