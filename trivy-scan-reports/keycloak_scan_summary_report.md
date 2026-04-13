@@ -73,7 +73,7 @@
 <h4>No Misconfigurations found</h4>
 
 <h3>Target <code>quay.io/keycloak/keycloak-operator:26.5.4 (redhat 9.7)</code></h3>
-<h4>Vulnerabilities (3)</h4>
+<h4>Vulnerabilities (4)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -101,6 +101,13 @@
         <td>CVE-2026-26740</td>
         <td>HIGH</td>
         <td>1:21.0.10.0.7-1.el9</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>libcap</code></td>
+        <td>CVE-2026-4878</td>
+        <td>HIGH</td>
+        <td>2.48-10.el9</td>
         <td></td>
     </tr>
 </table>
@@ -136,7 +143,7 @@
 <h4>No Vulnerabilities found</h4>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>usr/local/bin/provider</code></h3>
-<h4>Vulnerabilities (2)</h4>
+<h4>Vulnerabilities (4)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -158,6 +165,20 @@
         <td>CRITICAL</td>
         <td>v1.79.1</td>
         <td>1.79.3</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-32280</td>
+        <td>HIGH</td>
+        <td>v1.25.8</td>
+        <td>1.25.9, 1.26.2</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-32282</td>
+        <td>HIGH</td>
+        <td>v1.25.8</td>
+        <td>1.25.9, 1.26.2</td>
     </tr>
 </table>
 <h4>No Misconfigurations found</h4>
