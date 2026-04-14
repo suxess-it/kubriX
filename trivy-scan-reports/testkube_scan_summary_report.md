@@ -245,7 +245,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>usr/bin/minio</code></h3>
-<h4>Vulnerabilities (19)</h4>
+<h4>Vulnerabilities (20)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -299,6 +299,13 @@
     <tr>
         <td><code>github.com/minio/minio</code></td>
         <td>CVE-2026-39414</td>
+        <td>HIGH</td>
+        <td>v0.0.0-20250613113347-a6c538c5a113+dirty</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>github.com/minio/minio</code></td>
+        <td>GHSA-9c4q-hq6p-c237</td>
         <td>HIGH</td>
         <td>v0.0.0-20250613113347-a6c538c5a113+dirty</td>
         <td></td>
