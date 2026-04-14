@@ -2,10 +2,10 @@
   "$schema": "http://cyclonedx.org/schema/bom-1.6.schema.json",
   "bomFormat": "CycloneDX",
   "specVersion": "1.6",
-  "serialNumber": "urn:uuid:b7e99ca1-e16f-4fa3-884f-0b8245d2d0b0",
+  "serialNumber": "urn:uuid:be4bb9cd-e642-4e2a-872c-ecb6f72fc6dc",
   "version": 1,
   "metadata": {
-    "timestamp": "2026-04-07T12:48:19+00:00",
+    "timestamp": "2026-04-14T09:27:27+00:00",
     "tools": {
       "components": [
         {
@@ -118,7 +118,38 @@
   },
   "components": [
     {
-      "bom-ref": "13fabfe3-4861-4e1a-af5e-c7d3ba9ec03f",
+      "bom-ref": "187662fe-aaf1-4be5-bb0f-35085d773d2f",
+      "type": "operating-system",
+      "name": "debian",
+      "version": "12.13",
+      "properties": [
+        {
+          "name": "aquasecurity:trivy:Class",
+          "value": "os-pkgs"
+        },
+        {
+          "name": "aquasecurity:trivy:Type",
+          "value": "debian"
+        }
+      ]
+    },
+    {
+      "bom-ref": "1e1cd4fa-64dc-4d63-abea-dd4be2e9086e",
+      "type": "application",
+      "name": "app/cmd/acmesolver/acmesolver",
+      "properties": [
+        {
+          "name": "aquasecurity:trivy:Class",
+          "value": "lang-pkgs"
+        },
+        {
+          "name": "aquasecurity:trivy:Type",
+          "value": "gobinary"
+        }
+      ]
+    },
+    {
+      "bom-ref": "3fc9406f-1a53-4022-952a-12a2575b877b",
       "type": "library",
       "name": "../../",
       "properties": [
@@ -136,37 +167,6 @@
         },
         {
           "name": "aquasecurity:trivy:PkgType",
-          "value": "gobinary"
-        }
-      ]
-    },
-    {
-      "bom-ref": "3b7090e7-636c-4a3d-974c-0a4d6c3b2a7f",
-      "type": "operating-system",
-      "name": "debian",
-      "version": "12.13",
-      "properties": [
-        {
-          "name": "aquasecurity:trivy:Class",
-          "value": "os-pkgs"
-        },
-        {
-          "name": "aquasecurity:trivy:Type",
-          "value": "debian"
-        }
-      ]
-    },
-    {
-      "bom-ref": "a152f5b3-f4ea-463f-b080-ff134c7db199",
-      "type": "application",
-      "name": "app/cmd/acmesolver/acmesolver",
-      "properties": [
-        {
-          "name": "aquasecurity:trivy:Class",
-          "value": "lang-pkgs"
-        },
-        {
-          "name": "aquasecurity:trivy:Type",
           "value": "gobinary"
         }
       ]
@@ -1824,6 +1824,11 @@
       "name": "go.opentelemetry.io/otel/trace",
       "version": "v1.40.0",
       "description": "Package trace provides an implementation of the tracing part of the\nOpenTelemetry API.\n\nTo participate in distributed traces a Span needs to be created for the\noperation being performed as part of a traced workflow. In its simplest form:\n\nA Tracer is unique to the instrumentation and is used to create Spans.\nInstrumentation should be designed to accept a TracerProvider from which it\ncan create its own unique Tracer. Alternatively, the registered global\nTracerProvider from the go.opentelemetry.io/otel package can be used as\na default.\n\nThis package does not conform to the standard Go versioning policy; all of its\ninterfaces may have methods added to them without a package major version bump.\nThis non-standard API evolution could surprise an uninformed implementation\nauthor. They could unknowingly build their implementation in a way that would\nresult in a runtime panic for their users that update to the new API.\n\nThe API is designed to help inform an instrumentation author about this\nnon-standard API evolution. It requires them to choose a default behavior for\nunimplemented interface methods. There are three behavior choices they can\nmake:\n\nAll interfaces in this API embed a corresponding interface from\ngo.opentelemetry.io/otel/trace/embedded. If an author wants the default\nbehavior of their implementations to be a compilation failure, signaling to\ntheir users they need to update to the latest version of that implementation,\nthey need to embed the corresponding interface from\ngo.opentelemetry.io/otel/trace/embedded in their implementation. For\nexample,\n\nIf an author wants the default behavior of their implementations to panic, they\ncan embed the API interface directly.\n\nThis option is not recommended. It will lead to publishing packages that\ncontain runtime panics when users update to newer versions of\ngo.opentelemetry.io/otel/trace, which may be done with a transitive\ndependency.\n\nFinally, an author can embed another implementation in theirs. The embedded\nimplementation will be used for methods not defined by the author. For example,\nan author who wants to default to silently dropping the call can use\ngo.opentelemetry.io/otel/trace/noop:\n\nIt is strongly recommended that authors only embed\ngo.opentelemetry.io/otel/trace/noop if they choose this default behavior.\nThat implementation is the only one OpenTelemetry authors can guarantee will\nfully implement all the API interfaces when a user updates their API.",
+      "licenses": [
+        {
+          "expression": "(Apache-2.0 OR BSD-3-Clause)"
+        }
+      ],
       "purl": "pkg:golang/go.opentelemetry.io/otel/trace@v1.40.0",
       "externalReferences": [
         {
@@ -1833,10 +1838,6 @@
         {
           "url": "https://pkg.go.dev/go.opentelemetry.io/otel/trace",
           "type": "distribution"
-        },
-        {
-          "url": "https://github.com/open-telemetry/opentelemetry-go",
-          "type": "vcs"
         },
         {
           "url": "https://pkg.go.dev/go.opentelemetry.io/otel/trace#section-documentation",
@@ -1866,7 +1867,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2025-08-29T19:42:52Z"
+          "value": "2026-04-03T08:30:03Z"
         },
         {
           "name": "ecosystems:topic",
@@ -2056,10 +2057,6 @@
           "type": "distribution"
         },
         {
-          "url": "https://github.com/uber-go/zap",
-          "type": "vcs"
-        },
-        {
           "url": "https://pkg.go.dev/go.uber.org/zap#section-documentation",
           "type": "documentation"
         }
@@ -2220,7 +2217,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-03-12T00:35:42Z"
+          "value": "2026-04-09T19:17:33Z"
         }
       ]
     },
@@ -2243,6 +2240,10 @@
         {
           "url": "https://pkg.go.dev/golang.org/x/sys",
           "type": "distribution"
+        },
+        {
+          "url": "https://cs.opensource.google/go/x/sys",
+          "type": "vcs"
         },
         {
           "url": "https://pkg.go.dev/golang.org/x/sys#section-documentation",
@@ -2272,7 +2273,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-03-03T01:51:03Z"
+          "value": "2026-03-27T16:08:41Z"
         }
       ]
     },
@@ -2296,6 +2297,10 @@
         {
           "url": "https://pkg.go.dev/golang.org/x/text",
           "type": "distribution"
+        },
+        {
+          "url": "https://cs.opensource.google/go/x/text",
+          "type": "vcs"
         },
         {
           "url": "https://pkg.go.dev/golang.org/x/text#section-documentation",
@@ -2325,7 +2330,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-03-10T01:41:36Z"
+          "value": "2026-04-09T11:43:05Z"
         }
       ]
     },
@@ -2637,6 +2642,10 @@
           "type": "distribution"
         },
         {
+          "url": "https://github.com/kubernetes/apimachinery",
+          "type": "vcs"
+        },
+        {
           "url": "https://pkg.go.dev/k8s.io/apimachinery#section-documentation",
           "type": "documentation"
         }
@@ -2767,6 +2776,10 @@
           "type": "distribution"
         },
         {
+          "url": "https://github.com/kubernetes/klog",
+          "type": "vcs"
+        },
+        {
           "url": "https://pkg.go.dev/k8s.io/klog/v2#section-documentation",
           "type": "documentation"
         }
@@ -2861,7 +2874,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-03-19T00:48:28Z"
+          "value": "2026-03-30T15:44:17Z"
         }
       ]
     },
@@ -2959,10 +2972,6 @@
         {
           "url": "https://pkg.go.dev/sigs.k8s.io/gateway-api",
           "type": "distribution"
-        },
-        {
-          "url": "https://github.com/kubernetes-sigs/gateway-api",
-          "type": "vcs"
         },
         {
           "url": "https://pkg.go.dev/sigs.k8s.io/gateway-api#section-documentation",
@@ -3254,11 +3263,7 @@
   ],
   "dependencies": [
     {
-      "ref": "13fabfe3-4861-4e1a-af5e-c7d3ba9ec03f",
-      "dependsOn": []
-    },
-    {
-      "ref": "3b7090e7-636c-4a3d-974c-0a4d6c3b2a7f",
+      "ref": "187662fe-aaf1-4be5-bb0f-35085d773d2f",
       "dependsOn": [
         "pkg:deb/debian/base-files@12.4%2Bdeb12u13?arch=amd64&distro=debian-12.13",
         "pkg:deb/debian/media-types@10.0.0?arch=all&distro=debian-12.13",
@@ -3267,9 +3272,9 @@
       ]
     },
     {
-      "ref": "a152f5b3-f4ea-463f-b080-ff134c7db199",
+      "ref": "1e1cd4fa-64dc-4d63-abea-dd4be2e9086e",
       "dependsOn": [
-        "13fabfe3-4861-4e1a-af5e-c7d3ba9ec03f",
+        "3fc9406f-1a53-4022-952a-12a2575b877b",
         "pkg:golang/github.com/beorn7/perks@v1.0.1",
         "pkg:golang/github.com/blang/semver/v4@v4.0.0",
         "pkg:golang/github.com/cert-manager/cert-manager/acmesolver-binary",
@@ -3314,6 +3319,10 @@
         "pkg:golang/sigs.k8s.io/yaml@v1.6.0",
         "pkg:golang/stdlib@v1.26.1"
       ]
+    },
+    {
+      "ref": "3fc9406f-1a53-4022-952a-12a2575b877b",
+      "dependsOn": []
     },
     {
       "ref": "pkg:deb/debian/base-files@12.4%2Bdeb12u13?arch=amd64&distro=debian-12.13",
@@ -3506,8 +3515,8 @@
     {
       "ref": "pkg:oci/cert-manager-acmesolver@sha256%3A8ac8b9eaf0b41018f9f5a17a91da0c577f7e9f6f6921bfd189ed0e48628941bd?arch=amd64&repository_url=quay.io%2Fjetstack%2Fcert-manager-acmesolver",
       "dependsOn": [
-        "3b7090e7-636c-4a3d-974c-0a4d6c3b2a7f",
-        "a152f5b3-f4ea-463f-b080-ff134c7db199"
+        "187662fe-aaf1-4be5-bb0f-35085d773d2f",
+        "1e1cd4fa-64dc-4d63-abea-dd4be2e9086e"
       ]
     }
   ],

@@ -2,10 +2,10 @@
   "$schema": "http://cyclonedx.org/schema/bom-1.6.schema.json",
   "bomFormat": "CycloneDX",
   "specVersion": "1.6",
-  "serialNumber": "urn:uuid:55909677-7407-4346-9fa4-2317929e502d",
+  "serialNumber": "urn:uuid:df656a9a-5dea-413b-ba32-429c57e87a7f",
   "version": 1,
   "metadata": {
-    "timestamp": "2026-04-07T12:49:42+00:00",
+    "timestamp": "2026-04-14T09:28:52+00:00",
     "tools": {
       "components": [
         {
@@ -118,53 +118,7 @@
   },
   "components": [
     {
-      "bom-ref": "243c1f83-56ed-4a53-b2df-2884001d9dfe",
-      "type": "application",
-      "name": "go-runner",
-      "properties": [
-        {
-          "name": "aquasecurity:trivy:Class",
-          "value": "lang-pkgs"
-        },
-        {
-          "name": "aquasecurity:trivy:Type",
-          "value": "gobinary"
-        }
-      ]
-    },
-    {
-      "bom-ref": "2b4fe717-e94e-4e6a-b33a-9d3903c12e74",
-      "type": "application",
-      "name": "bin/kubectl",
-      "properties": [
-        {
-          "name": "aquasecurity:trivy:Class",
-          "value": "lang-pkgs"
-        },
-        {
-          "name": "aquasecurity:trivy:Type",
-          "value": "gobinary"
-        }
-      ]
-    },
-    {
-      "bom-ref": "7fec2a5e-e135-4c95-9f8c-2dc6ba88fae9",
-      "type": "operating-system",
-      "name": "debian",
-      "version": "12.12",
-      "properties": [
-        {
-          "name": "aquasecurity:trivy:Class",
-          "value": "os-pkgs"
-        },
-        {
-          "name": "aquasecurity:trivy:Type",
-          "value": "debian"
-        }
-      ]
-    },
-    {
-      "bom-ref": "da00fb3e-9ac7-4d6c-b055-400b2585602b",
+      "bom-ref": "179d1eee-567d-4095-b765-0ccdfff88671",
       "type": "library",
       "name": "stdlib",
       "version": "v1.24.11",
@@ -189,7 +143,37 @@
       ]
     },
     {
-      "bom-ref": "ea78f9d7-7687-4872-bb31-da62ae8681d2",
+      "bom-ref": "728189cc-4039-4b30-b74d-ad731581a759",
+      "type": "application",
+      "name": "go-runner",
+      "properties": [
+        {
+          "name": "aquasecurity:trivy:Class",
+          "value": "lang-pkgs"
+        },
+        {
+          "name": "aquasecurity:trivy:Type",
+          "value": "gobinary"
+        }
+      ]
+    },
+    {
+      "bom-ref": "8b0b5269-8f2f-428e-854c-a976bd5d14c0",
+      "type": "application",
+      "name": "bin/kubectl",
+      "properties": [
+        {
+          "name": "aquasecurity:trivy:Class",
+          "value": "lang-pkgs"
+        },
+        {
+          "name": "aquasecurity:trivy:Type",
+          "value": "gobinary"
+        }
+      ]
+    },
+    {
+      "bom-ref": "cb031841-ba29-4fa4-a20d-4ca450d8bded",
       "type": "library",
       "name": "stdlib",
       "version": "v1.24.11",
@@ -210,6 +194,22 @@
         {
           "name": "aquasecurity:trivy:PkgType",
           "value": "gobinary"
+        }
+      ]
+    },
+    {
+      "bom-ref": "fb75ec2c-236f-44c2-bd8e-a348b98cebf9",
+      "type": "operating-system",
+      "name": "debian",
+      "version": "12.12",
+      "properties": [
+        {
+          "name": "aquasecurity:trivy:Class",
+          "value": "os-pkgs"
+        },
+        {
+          "name": "aquasecurity:trivy:Type",
+          "value": "debian"
         }
       ]
     },
@@ -4013,10 +4013,6 @@
           "type": "distribution"
         },
         {
-          "url": "https://github.com/open-telemetry/opentelemetry-go",
-          "type": "vcs"
-        },
-        {
           "url": "https://pkg.go.dev/go.opentelemetry.io/otel/trace#section-documentation",
           "type": "documentation"
         }
@@ -4044,7 +4040,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2025-08-29T19:42:52Z"
+          "value": "2026-04-03T08:30:03Z"
         },
         {
           "name": "ecosystems:topic",
@@ -4295,7 +4291,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-03-12T00:35:42Z"
+          "value": "2026-04-09T19:17:33Z"
         }
       ]
     },
@@ -4429,6 +4425,10 @@
           "type": "distribution"
         },
         {
+          "url": "https://cs.opensource.google/go/x/sys",
+          "type": "vcs"
+        },
+        {
           "url": "https://pkg.go.dev/golang.org/x/sys#section-documentation",
           "type": "documentation"
         }
@@ -4456,7 +4456,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-03-03T01:51:03Z"
+          "value": "2026-03-27T16:08:41Z"
         }
       ]
     },
@@ -4509,7 +4509,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-03-10T01:43:14Z"
+          "value": "2026-04-09T11:43:42Z"
         }
       ]
     },
@@ -4533,6 +4533,10 @@
         {
           "url": "https://pkg.go.dev/golang.org/x/text",
           "type": "distribution"
+        },
+        {
+          "url": "https://cs.opensource.google/go/x/text",
+          "type": "vcs"
         },
         {
           "url": "https://pkg.go.dev/golang.org/x/text#section-documentation",
@@ -4562,7 +4566,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-03-10T01:41:36Z"
+          "value": "2026-04-09T11:43:05Z"
         }
       ]
     },
@@ -4867,6 +4871,10 @@
           "type": "distribution"
         },
         {
+          "url": "https://github.com/go-yaml/yaml",
+          "type": "vcs"
+        },
+        {
           "url": "https://pkg.go.dev/gopkg.in/yaml.v3#section-documentation",
           "type": "documentation"
         }
@@ -4979,6 +4987,10 @@
         {
           "url": "https://pkg.go.dev/k8s.io/apimachinery",
           "type": "distribution"
+        },
+        {
+          "url": "https://github.com/kubernetes/apimachinery",
+          "type": "vcs"
         },
         {
           "url": "https://pkg.go.dev/k8s.io/apimachinery#section-documentation",
@@ -5098,6 +5110,10 @@
         {
           "url": "https://pkg.go.dev/k8s.io/client-go",
           "type": "distribution"
+        },
+        {
+          "url": "https://github.com/kubernetes/client-go",
+          "type": "vcs"
         },
         {
           "url": "https://pkg.go.dev/k8s.io/client-go#section-documentation",
@@ -5290,6 +5306,10 @@
           "type": "distribution"
         },
         {
+          "url": "https://github.com/kubernetes/klog",
+          "type": "vcs"
+        },
+        {
           "url": "https://pkg.go.dev/k8s.io/klog/v2#section-documentation",
           "type": "documentation"
         }
@@ -5379,7 +5399,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-03-19T00:48:28Z"
+          "value": "2026-03-30T15:44:17Z"
         }
       ]
     },
@@ -5456,11 +5476,6 @@
       "author": "Kubernetes",
       "name": "k8s.io/kubernetes",
       "version": "v1.34.3",
-      "licenses": [
-        {
-          "expression": "(Apache-2.0)"
-        }
-      ],
       "purl": "pkg:golang/k8s.io/kubernetes@v1.34.3",
       "externalReferences": [
         {
@@ -5583,33 +5598,8 @@
     {
       "bom-ref": "pkg:golang/k8s.io/release/images/build/go-runner",
       "type": "library",
-      "supplier": {
-        "name": "Kubernetes",
-        "url": [
-          "https://kubernetes.io"
-        ]
-      },
-      "author": "Kubernetes",
       "name": "k8s.io/release/images/build/go-runner",
       "purl": "pkg:golang/k8s.io/release/images/build/go-runner",
-      "externalReferences": [
-        {
-          "url": "https://github.com/kubernetes/release",
-          "type": "website"
-        },
-        {
-          "url": "https://pkg.go.dev/k8s.io/release/images/build/go-runner",
-          "type": "distribution"
-        },
-        {
-          "url": "https://github.com/kubernetes/release",
-          "type": "vcs"
-        },
-        {
-          "url": "https://pkg.go.dev/k8s.io/release/images/build/go-runner#section-documentation",
-          "type": "documentation"
-        }
-      ],
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
@@ -5626,22 +5616,6 @@
         {
           "name": "aquasecurity:trivy:PkgType",
           "value": "gobinary"
-        },
-        {
-          "name": "ecosystems:first_release_published_at",
-          "value": "2022-04-06T07:12:56Z"
-        },
-        {
-          "name": "ecosystems:latest_release_published_at",
-          "value": "2026-03-13T08:39:34Z"
-        },
-        {
-          "name": "ecosystems:topic",
-          "value": "kubernetes"
-        },
-        {
-          "name": "ecosystems:topic",
-          "value": "release-infrastructure"
         }
       ]
     },
@@ -5931,10 +5905,6 @@
           "type": "distribution"
         },
         {
-          "url": "https://github.com/kubernetes-sigs/kustomize",
-          "type": "vcs"
-        },
-        {
           "url": "https://pkg.go.dev/sigs.k8s.io/kustomize/kyaml#section-documentation",
           "type": "documentation"
         }
@@ -6123,33 +6093,33 @@
   ],
   "dependencies": [
     {
-      "ref": "243c1f83-56ed-4a53-b2df-2884001d9dfe",
+      "ref": "179d1eee-567d-4095-b765-0ccdfff88671",
+      "dependsOn": []
+    },
+    {
+      "ref": "728189cc-4039-4b30-b74d-ad731581a759",
       "dependsOn": [
         "pkg:golang/k8s.io/release/images/build/go-runner"
       ]
     },
     {
-      "ref": "2b4fe717-e94e-4e6a-b33a-9d3903c12e74",
+      "ref": "8b0b5269-8f2f-428e-854c-a976bd5d14c0",
       "dependsOn": [
         "pkg:golang/k8s.io/kubernetes@v1.34.3"
       ]
     },
     {
-      "ref": "7fec2a5e-e135-4c95-9f8c-2dc6ba88fae9",
+      "ref": "cb031841-ba29-4fa4-a20d-4ca450d8bded",
+      "dependsOn": []
+    },
+    {
+      "ref": "fb75ec2c-236f-44c2-bd8e-a348b98cebf9",
       "dependsOn": [
         "pkg:deb/debian/base-files@12.4%2Bdeb12u12?arch=amd64&distro=debian-12.12",
         "pkg:deb/debian/media-types@10.0.0?arch=all&distro=debian-12.12",
         "pkg:deb/debian/netbase@6.4?arch=all&distro=debian-12.12",
         "pkg:deb/debian/tzdata@2025b-0%2Bdeb12u2?arch=all&distro=debian-12.12"
       ]
-    },
-    {
-      "ref": "da00fb3e-9ac7-4d6c-b055-400b2585602b",
-      "dependsOn": []
-    },
-    {
-      "ref": "ea78f9d7-7687-4872-bb31-da62ae8681d2",
-      "dependsOn": []
     },
     {
       "ref": "pkg:deb/debian/base-files@12.4%2Bdeb12u12?arch=amd64&distro=debian-12.12",
@@ -6462,7 +6432,7 @@
     {
       "ref": "pkg:golang/k8s.io/kubernetes@v1.34.3",
       "dependsOn": [
-        "da00fb3e-9ac7-4d6c-b055-400b2585602b",
+        "179d1eee-567d-4095-b765-0ccdfff88671",
         "pkg:golang/github.com/beorn7/perks@v1.0.1",
         "pkg:golang/github.com/blang/semver/v4@v4.0.0",
         "pkg:golang/github.com/cespare/xxhash/v2@v2.3.0",
@@ -6554,7 +6524,7 @@
     {
       "ref": "pkg:golang/k8s.io/release/images/build/go-runner",
       "dependsOn": [
-        "ea78f9d7-7687-4872-bb31-da62ae8681d2"
+        "cb031841-ba29-4fa4-a20d-4ca450d8bded"
       ]
     },
     {
@@ -6592,9 +6562,9 @@
     {
       "ref": "pkg:oci/kubectl@sha256%3A1c6309bd167feb49b2bc1605bce05973002872fd0d26a2e76499ed0c903ea3cf?arch=amd64&repository_url=registry.k8s.io%2Fkubectl",
       "dependsOn": [
-        "243c1f83-56ed-4a53-b2df-2884001d9dfe",
-        "2b4fe717-e94e-4e6a-b33a-9d3903c12e74",
-        "7fec2a5e-e135-4c95-9f8c-2dc6ba88fae9"
+        "728189cc-4039-4b30-b74d-ad731581a759",
+        "8b0b5269-8f2f-428e-854c-a976bd5d14c0",
+        "fb75ec2c-236f-44c2-bd8e-a348b98cebf9"
       ]
     }
   ],

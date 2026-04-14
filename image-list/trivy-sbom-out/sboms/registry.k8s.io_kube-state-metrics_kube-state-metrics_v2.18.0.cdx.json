@@ -2,10 +2,10 @@
   "$schema": "http://cyclonedx.org/schema/bom-1.6.schema.json",
   "bomFormat": "CycloneDX",
   "specVersion": "1.6",
-  "serialNumber": "urn:uuid:c888ae84-257d-476b-95a5-534842ac77f4",
+  "serialNumber": "urn:uuid:edd76182-df14-416b-a923-48acb0a7f24d",
   "version": 1,
   "metadata": {
-    "timestamp": "2026-04-07T12:49:40+00:00",
+    "timestamp": "2026-04-14T09:28:51+00:00",
     "tools": {
       "components": [
         {
@@ -106,7 +106,7 @@
   },
   "components": [
     {
-      "bom-ref": "32f450b9-290d-4ed7-964d-bee52a9e5b48",
+      "bom-ref": "17293192-4a33-4561-a539-b53d20aefaa1",
       "type": "application",
       "name": "kube-state-metrics",
       "properties": [
@@ -121,7 +121,7 @@
       ]
     },
     {
-      "bom-ref": "ba874f3f-fed9-43cf-a7f8-9027c99431d0",
+      "bom-ref": "4ae7ca9b-f269-4eb5-b8da-9df9886b94b7",
       "type": "operating-system",
       "name": "debian",
       "version": "12.13",
@@ -389,11 +389,6 @@
       "name": "github.com/antlr4-go/antlr/v4",
       "version": "v4.13.0",
       "description": "Package antlr implements the Go version of the ANTLR 4 runtime.\n\nANTLR (ANother Tool for Language Recognition) is a powerful parser generator for reading, processing, executing,\nor translating structured text or binary files. It's widely used to build languages, tools, and frameworks.\nFrom a grammar, ANTLR generates a parser that can build parse trees and also generates a listener interface\n(or visitor) that makes it easy to respond to the recognition of phrases of interest.\n\nAt version 4.11.x and prior, the Go runtime was not properly versioned for go modules. After this point, the runtime\nsource code to be imported was held in the `runtime/Go/antlr/v4` directory, and the go.mod file was updated to reflect the version of\nANTLR4 that it is compatible with (I.E. uses the /v4 path).\n\nHowever, this was found to be problematic, as it meant that with the runtime embedded so far underneath the root\nof the repo, the `go get` and related commands could not properly resolve the location of the go runtime source code.\nThis meant that the reference to the runtime in your `go.mod` file would refer to the correct source code, but would not\nlist the release tag such as @4.13.1 - this was confusing, to say the least.\n\nAs of 4.13.0, the runtime is now available as a go module in its own repo, and can be imported as `github.com/antlr4-go/antlr`\n(the go get command should also be used with this path). See the main documentation for the ANTLR4 project for more information,\nwhich is available at ANTLR docs. The documentation for using the Go runtime is available at Go runtime docs.\n\nThis means that if you are using the source code without modules, you should also use the source code in the new repo.\nThough we highly recommend that you use go modules, as they are now idiomatic for Go.\n\nI am aware that this change will prove Hyrum's Law, but am prepared to live with it for the common good.\n\nGo runtime author: Jim Idle jimi@idle.ws\n\nANTLR supports the generation of code in a number of target languages, and the generated code is supported by a\nruntime library, written specifically to support the generated code in the target language. This library is the\nruntime for the Go target.\n\nTo generate code for the go target, it is generally recommended to place the source grammar files in a package of\ntheir own, and use the `.sh` script method of generating code, using the go generate directive. In that same directory\nit is usual, though not required, to place the antlr tool that should be used to generate the code. That does mean\nthat the antlr tool JAR file will be checked in to your source code control though, so you are, of course, free to use any other\nway of specifying the version of the ANTLR tool to use, such as aliasing in `.zshrc` or equivalent, or a profile in\nyour IDE, or configuration in your CI system. Checking in the jar does mean that it is easy to reproduce the build as\nit was at any point in its history.\n\nHere is a general/recommended template for an ANTLR based recognizer in Go:\n\nMake sure that the package statement in your grammar file(s) reflects the go package the generated code will exist in.\n\nThe generate.go file then looks like this:\n\nAnd the generate.sh file will look similar to this:\n\ndepending on whether you want visitors or listeners or any other ANTLR options. Not that another option here\nis to generate the code into a\n\nFrom the command line at the root of your source package (location of go.mo)d) you can then simply issue the command:\n\nWhich will generate the code for the parser, and place it in the parsing package. You can then use the generated code\nby importing the parsing package.\n\nThere are no hard and fast rules on this. It is just a recommendation. You can generate the code in any way and to anywhere you like.\n\nCopyright (c) 2012-2023 The ANTLR Project. All rights reserved.\n\nUse of this file is governed by the BSD 3-clause license, which can be found in the LICENSE.txt file in the project root.",
-      "licenses": [
-        {
-          "expression": "(BSD-3-Clause)"
-        }
-      ],
       "purl": "pkg:golang/github.com/antlr4-go/antlr/v4@v4.13.0",
       "externalReferences": [
         {
@@ -872,40 +867,9 @@
     {
       "bom-ref": "pkg:golang/github.com/dgryski/go-jump@v0.0.0-20211018200510-ba001c3ffce0",
       "type": "library",
-      "supplier": {
-        "name": "Damian Gryski",
-        "url": [
-          "https://buymeacoffee.com/dgryski"
-        ]
-      },
-      "author": "Damian Gryski",
       "name": "github.com/dgryski/go-jump",
       "version": "v0.0.0-20211018200510-ba001c3ffce0",
-      "description": "Package jump implements Google's Jump Consistent Hash\n\nFrom the paper \"A Fast, Minimal Memory, Consistent Hash Algorithm\" by John Lamping, Eric Veach (2014).\n\nhttp://arxiv.org/abs/1406.2294",
-      "licenses": [
-        {
-          "expression": "(MIT)"
-        }
-      ],
       "purl": "pkg:golang/github.com/dgryski/go-jump@v0.0.0-20211018200510-ba001c3ffce0",
-      "externalReferences": [
-        {
-          "url": "https://github.com/dgryski/go-jump",
-          "type": "website"
-        },
-        {
-          "url": "https://pkg.go.dev/github.com/dgryski/go-jump",
-          "type": "distribution"
-        },
-        {
-          "url": "https://github.com/dgryski/go-jump",
-          "type": "vcs"
-        },
-        {
-          "url": "https://pkg.go.dev/github.com/dgryski/go-jump#section-documentation",
-          "type": "documentation"
-        }
-      ],
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
@@ -922,18 +886,6 @@
         {
           "name": "aquasecurity:trivy:PkgType",
           "value": "gobinary"
-        },
-        {
-          "name": "ecosystems:first_release_published_at",
-          "value": "2017-04-09T06:50:14Z"
-        },
-        {
-          "name": "ecosystems:latest_release_published_at",
-          "value": "2021-10-18T20:05:10Z"
-        },
-        {
-          "name": "ecosystems:owner_location",
-          "value": "Vancouver, Canada"
         }
       ]
     },
@@ -1739,40 +1691,9 @@
     {
       "bom-ref": "pkg:golang/github.com/gobuffalo/flect@v1.0.3",
       "type": "library",
-      "supplier": {
-        "name": "Buffalo - The Go Web Eco-System",
-        "url": [
-          "https://gobuffalo.io"
-        ]
-      },
-      "author": "Buffalo - The Go Web Eco-System",
       "name": "github.com/gobuffalo/flect",
       "version": "v1.0.3",
-      "description": "Package flect is a new inflection engine to replace [https://github.com/markbates/inflect](https://github.com/markbates/inflect) designed to be more modular, more readable, and easier to fix issues on than the original.",
-      "licenses": [
-        {
-          "expression": "(MIT)"
-        }
-      ],
       "purl": "pkg:golang/github.com/gobuffalo/flect@v1.0.3",
-      "externalReferences": [
-        {
-          "url": "https://github.com/gobuffalo/flect",
-          "type": "website"
-        },
-        {
-          "url": "https://pkg.go.dev/github.com/gobuffalo/flect",
-          "type": "distribution"
-        },
-        {
-          "url": "https://github.com/gobuffalo/flect",
-          "type": "vcs"
-        },
-        {
-          "url": "https://pkg.go.dev/github.com/gobuffalo/flect#section-documentation",
-          "type": "documentation"
-        }
-      ],
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
@@ -1789,30 +1710,6 @@
         {
           "name": "aquasecurity:trivy:PkgType",
           "value": "gobinary"
-        },
-        {
-          "name": "ecosystems:first_release_published_at",
-          "value": "2019-02-12T16:22:13Z"
-        },
-        {
-          "name": "ecosystems:latest_release_published_at",
-          "value": "2024-09-21T13:43:45Z"
-        },
-        {
-          "name": "ecosystems:topic",
-          "value": "go"
-        },
-        {
-          "name": "ecosystems:topic",
-          "value": "gobuffalo"
-        },
-        {
-          "name": "ecosystems:topic",
-          "value": "golang"
-        },
-        {
-          "name": "ecosystems:topic",
-          "value": "inflection"
         }
       ]
     },
@@ -2040,7 +1937,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-01-29T23:52:27Z"
+          "value": "2026-04-06T17:44:00Z"
         },
         {
           "name": "ecosystems:owner_location",
@@ -4920,11 +4817,6 @@
       "name": "go.opentelemetry.io/contrib/instrumentation/net/http/otelhttp",
       "version": "v0.60.0",
       "description": "Package otelhttp provides an http.Handler and functions that are intended\nto be used to add tracing by wrapping existing handlers.",
-      "licenses": [
-        {
-          "expression": "(Apache-2.0 OR BSD-3-Clause)"
-        }
-      ],
       "purl": "pkg:golang/go.opentelemetry.io/contrib/instrumentation/net/http/otelhttp@v0.60.0",
       "externalReferences": [
         {
@@ -4934,6 +4826,10 @@
         {
           "url": "https://pkg.go.dev/go.opentelemetry.io/contrib/instrumentation/net/http/otelhttp",
           "type": "distribution"
+        },
+        {
+          "url": "https://github.com/open-telemetry/opentelemetry-go-contrib",
+          "type": "vcs"
         },
         {
           "url": "https://pkg.go.dev/go.opentelemetry.io/contrib/instrumentation/net/http/otelhttp#section-documentation",
@@ -4963,7 +4859,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-03-06T20:24:46Z"
+          "value": "2026-04-07T08:53:54Z"
         }
       ]
     },
@@ -5202,13 +5098,6 @@
     {
       "bom-ref": "pkg:golang/go.opentelemetry.io/otel/sdk@v1.37.0",
       "type": "library",
-      "supplier": {
-        "name": "OpenTelemetry - CNCF",
-        "url": [
-          "https://opentelemetry.io"
-        ]
-      },
-      "author": "OpenTelemetry - CNCF",
       "name": "go.opentelemetry.io/otel/sdk",
       "version": "v1.37.0",
       "description": "Package sdk provides the OpenTelemetry default SDK for Go.",
@@ -5226,6 +5115,10 @@
         {
           "url": "https://pkg.go.dev/go.opentelemetry.io/otel/sdk",
           "type": "distribution"
+        },
+        {
+          "url": "https://github.com/open-telemetry/opentelemetry-go",
+          "type": "vcs"
         },
         {
           "url": "https://pkg.go.dev/go.opentelemetry.io/otel/sdk#section-documentation",
@@ -5304,10 +5197,6 @@
           "type": "distribution"
         },
         {
-          "url": "https://github.com/open-telemetry/opentelemetry-go",
-          "type": "vcs"
-        },
-        {
           "url": "https://pkg.go.dev/go.opentelemetry.io/otel/trace#section-documentation",
           "type": "documentation"
         }
@@ -5335,7 +5224,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2025-08-29T19:42:52Z"
+          "value": "2026-04-03T08:30:03Z"
         },
         {
           "name": "ecosystems:topic",
@@ -5622,6 +5511,10 @@
           "type": "distribution"
         },
         {
+          "url": "https://cs.opensource.google/go/x/crypto",
+          "type": "vcs"
+        },
+        {
           "url": "https://pkg.go.dev/golang.org/x/crypto#section-documentation",
           "type": "documentation"
         }
@@ -5649,7 +5542,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-03-11T14:17:49Z"
+          "value": "2026-04-09T15:33:22Z"
         }
       ]
     },
@@ -5756,7 +5649,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-03-12T00:35:42Z"
+          "value": "2026-04-09T19:17:33Z"
         }
       ]
     },
@@ -5890,6 +5783,10 @@
           "type": "distribution"
         },
         {
+          "url": "https://cs.opensource.google/go/x/sys",
+          "type": "vcs"
+        },
+        {
           "url": "https://pkg.go.dev/golang.org/x/sys#section-documentation",
           "type": "documentation"
         }
@@ -5917,7 +5814,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-03-03T01:51:03Z"
+          "value": "2026-03-27T16:08:41Z"
         }
       ]
     },
@@ -5970,7 +5867,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-03-10T01:43:14Z"
+          "value": "2026-04-09T11:43:42Z"
         }
       ]
     },
@@ -5994,6 +5891,10 @@
         {
           "url": "https://pkg.go.dev/golang.org/x/text",
           "type": "distribution"
+        },
+        {
+          "url": "https://cs.opensource.google/go/x/text",
+          "type": "vcs"
         },
         {
           "url": "https://pkg.go.dev/golang.org/x/text#section-documentation",
@@ -6023,7 +5924,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-03-10T01:41:36Z"
+          "value": "2026-04-09T11:43:05Z"
         }
       ]
     },
@@ -6227,6 +6128,10 @@
         {
           "url": "https://pkg.go.dev/google.golang.org/grpc",
           "type": "distribution"
+        },
+        {
+          "url": "https://github.com/grpc/grpc-go",
+          "type": "vcs"
         },
         {
           "url": "https://pkg.go.dev/google.golang.org/grpc#section-documentation",
@@ -6549,6 +6454,10 @@
           "type": "distribution"
         },
         {
+          "url": "https://github.com/go-yaml/yaml",
+          "type": "vcs"
+        },
+        {
           "url": "https://pkg.go.dev/gopkg.in/yaml.v3#section-documentation",
           "type": "documentation"
         }
@@ -6675,6 +6584,10 @@
           "type": "distribution"
         },
         {
+          "url": "https://github.com/kubernetes/apimachinery",
+          "type": "vcs"
+        },
+        {
           "url": "https://pkg.go.dev/k8s.io/apimachinery#section-documentation",
           "type": "documentation"
         }
@@ -6739,6 +6652,10 @@
           "type": "distribution"
         },
         {
+          "url": "https://github.com/kubernetes/apiserver",
+          "type": "vcs"
+        },
+        {
           "url": "https://pkg.go.dev/k8s.io/apiserver#section-documentation",
           "type": "documentation"
         }
@@ -6801,6 +6718,10 @@
         {
           "url": "https://pkg.go.dev/k8s.io/client-go",
           "type": "distribution"
+        },
+        {
+          "url": "https://github.com/kubernetes/client-go",
+          "type": "vcs"
         },
         {
           "url": "https://pkg.go.dev/k8s.io/client-go#section-documentation",
@@ -6938,6 +6859,10 @@
           "type": "distribution"
         },
         {
+          "url": "https://github.com/kubernetes/klog",
+          "type": "vcs"
+        },
+        {
           "url": "https://pkg.go.dev/k8s.io/klog/v2#section-documentation",
           "type": "documentation"
         }
@@ -7027,46 +6952,16 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-03-19T00:48:28Z"
+          "value": "2026-03-30T15:44:17Z"
         }
       ]
     },
     {
       "bom-ref": "pkg:golang/k8s.io/kube-state-metrics/v2@v2.18.0",
       "type": "library",
-      "supplier": {
-        "name": "Kubernetes",
-        "url": [
-          "https://kubernetes.io"
-        ]
-      },
-      "author": "Kubernetes",
       "name": "k8s.io/kube-state-metrics/v2",
       "version": "v2.18.0",
-      "licenses": [
-        {
-          "expression": "(Apache-2.0)"
-        }
-      ],
       "purl": "pkg:golang/k8s.io/kube-state-metrics/v2@v2.18.0",
-      "externalReferences": [
-        {
-          "url": "https://github.com/kubernetes/kube-state-metrics",
-          "type": "website"
-        },
-        {
-          "url": "https://pkg.go.dev/k8s.io/kube-state-metrics/v2",
-          "type": "distribution"
-        },
-        {
-          "url": "https://github.com/kubernetes/kube-state-metrics",
-          "type": "vcs"
-        },
-        {
-          "url": "https://pkg.go.dev/k8s.io/kube-state-metrics/v2#section-documentation",
-          "type": "documentation"
-        }
-      ],
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
@@ -7083,81 +6978,15 @@
         {
           "name": "aquasecurity:trivy:PkgType",
           "value": "gobinary"
-        },
-        {
-          "name": "ecosystems:first_release_published_at",
-          "value": "2022-11-20T09:37:52Z"
-        },
-        {
-          "name": "ecosystems:latest_release_published_at",
-          "value": "2026-01-18T04:39:08Z"
-        },
-        {
-          "name": "ecosystems:topic",
-          "value": "kubernetes"
-        },
-        {
-          "name": "ecosystems:topic",
-          "value": "kubernetes-exporter"
-        },
-        {
-          "name": "ecosystems:topic",
-          "value": "kubernetes-monitoring"
-        },
-        {
-          "name": "ecosystems:topic",
-          "value": "metrics"
-        },
-        {
-          "name": "ecosystems:topic",
-          "value": "monitoring"
-        },
-        {
-          "name": "ecosystems:topic",
-          "value": "observability"
-        },
-        {
-          "name": "ecosystems:topic",
-          "value": "prometheus"
-        },
-        {
-          "name": "ecosystems:topic",
-          "value": "prometheus-exporter"
         }
       ]
     },
     {
       "bom-ref": "pkg:golang/k8s.io/sample-controller@v0.34.3",
       "type": "library",
-      "supplier": {
-        "name": "Kubernetes",
-        "url": [
-          "https://kubernetes.io"
-        ]
-      },
-      "author": "Kubernetes",
       "name": "k8s.io/sample-controller",
       "version": "v0.34.3",
-      "licenses": [
-        {
-          "expression": "(Apache-2.0)"
-        }
-      ],
       "purl": "pkg:golang/k8s.io/sample-controller@v0.34.3",
-      "externalReferences": [
-        {
-          "url": "https://github.com/kubernetes/sample-controller",
-          "type": "website"
-        },
-        {
-          "url": "https://pkg.go.dev/k8s.io/sample-controller",
-          "type": "distribution"
-        },
-        {
-          "url": "https://pkg.go.dev/k8s.io/sample-controller#section-documentation",
-          "type": "documentation"
-        }
-      ],
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
@@ -7174,18 +7003,6 @@
         {
           "name": "aquasecurity:trivy:PkgType",
           "value": "gobinary"
-        },
-        {
-          "name": "ecosystems:first_release_published_at",
-          "value": "2019-12-11T19:35:31Z"
-        },
-        {
-          "name": "ecosystems:latest_release_published_at",
-          "value": "2026-03-19T06:31:08Z"
-        },
-        {
-          "name": "ecosystems:topic",
-          "value": "k8s-staging"
         }
       ]
     },
@@ -7201,6 +7018,11 @@
       "author": "Kubernetes",
       "name": "k8s.io/utils",
       "version": "v0.0.0-20250820121507-0af2bda4dd1d",
+      "licenses": [
+        {
+          "expression": "(Apache-2.0)"
+        }
+      ],
       "purl": "pkg:golang/k8s.io/utils@v0.0.0-20250820121507-0af2bda4dd1d",
       "externalReferences": [
         {
@@ -7278,6 +7100,10 @@
         {
           "url": "https://pkg.go.dev/sigs.k8s.io/apiserver-network-proxy/konnectivity-client",
           "type": "distribution"
+        },
+        {
+          "url": "https://github.com/kubernetes-sigs/apiserver-network-proxy",
+          "type": "vcs"
         },
         {
           "url": "https://pkg.go.dev/sigs.k8s.io/apiserver-network-proxy/konnectivity-client#section-documentation",
@@ -7609,13 +7435,13 @@
   ],
   "dependencies": [
     {
-      "ref": "32f450b9-290d-4ed7-964d-bee52a9e5b48",
+      "ref": "17293192-4a33-4561-a539-b53d20aefaa1",
       "dependsOn": [
         "pkg:golang/k8s.io/kube-state-metrics/v2@v2.18.0"
       ]
     },
     {
-      "ref": "ba874f3f-fed9-43cf-a7f8-9027c99431d0",
+      "ref": "4ae7ca9b-f269-4eb5-b8da-9df9886b94b7",
       "dependsOn": [
         "pkg:deb/debian/base-files@12.4%2Bdeb12u13?arch=amd64&distro=debian-12.13",
         "pkg:deb/debian/media-types@10.0.0?arch=all&distro=debian-12.13",
@@ -8162,8 +7988,8 @@
     {
       "ref": "pkg:oci/kube-state-metrics@sha256%3A1545919b72e3ae035454fc054131e8d0f14b42ef6fc5b2ad5c751cafa6b2130e?arch=amd64&repository_url=registry.k8s.io%2Fkube-state-metrics%2Fkube-state-metrics",
       "dependsOn": [
-        "32f450b9-290d-4ed7-964d-bee52a9e5b48",
-        "ba874f3f-fed9-43cf-a7f8-9027c99431d0"
+        "17293192-4a33-4561-a539-b53d20aefaa1",
+        "4ae7ca9b-f269-4eb5-b8da-9df9886b94b7"
       ]
     }
   ],

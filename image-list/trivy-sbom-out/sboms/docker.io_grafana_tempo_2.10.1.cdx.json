@@ -2,10 +2,10 @@
   "$schema": "http://cyclonedx.org/schema/bom-1.6.schema.json",
   "bomFormat": "CycloneDX",
   "specVersion": "1.6",
-  "serialNumber": "urn:uuid:8d3d915f-df4d-42a7-9005-44253f75b217",
+  "serialNumber": "urn:uuid:49edf6a5-459c-46d4-87ed-471fe33ea60f",
   "version": 1,
   "metadata": {
-    "timestamp": "2026-04-07T12:46:06+00:00",
+    "timestamp": "2026-04-14T09:24:09+00:00",
     "tools": {
       "components": [
         {
@@ -122,7 +122,7 @@
   },
   "components": [
     {
-      "bom-ref": "011c3c42-24bd-415c-8063-c316fdfb0308",
+      "bom-ref": "302be11d-bab5-47d5-8f53-951af0662581",
       "type": "application",
       "name": "tempo",
       "properties": [
@@ -137,7 +137,7 @@
       ]
     },
     {
-      "bom-ref": "375edf43-2f7e-4cd8-817e-4eadfa4c52d3",
+      "bom-ref": "8263264f-e3e5-4533-8d88-927c4598c6b2",
       "type": "operating-system",
       "name": "debian",
       "version": "12.13",
@@ -512,10 +512,6 @@
           "type": "distribution"
         },
         {
-          "url": "https://github.com/googleapis/google-cloud-go",
-          "type": "vcs"
-        },
-        {
           "url": "https://pkg.go.dev/cloud.google.com/go/auth#section-documentation",
           "type": "documentation"
         }
@@ -543,7 +539,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-03-23T17:47:48Z"
+          "value": "2026-04-06T22:09:02Z"
         },
         {
           "name": "ecosystems:topic",
@@ -719,7 +715,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-04-02T16:16:03Z"
+          "value": "2026-04-09T20:31:04Z"
         },
         {
           "name": "ecosystems:topic",
@@ -810,7 +806,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2025-10-08T19:17:02Z"
+          "value": "2026-04-02T16:16:03Z"
         },
         {
           "name": "ecosystems:topic",
@@ -845,16 +841,9 @@
     {
       "bom-ref": "pkg:golang/cloud.google.com/go/storage@v1.58.0",
       "type": "library",
-      "supplier": {
-        "name": "Google APIs",
-        "url": [
-          "https://googleapis.github.io"
-        ]
-      },
-      "author": "Google APIs",
       "name": "cloud.google.com/go/storage",
       "version": "v1.58.0",
-      "description": "Package storage provides an easy way to work with Google Cloud Storage.\nGoogle Cloud Storage stores data in named objects, which are grouped into buckets.\n\nMore information about Google Cloud Storage is available at\nhttps://cloud.google.com/storage/docs.\n\nSee https://pkg.go.dev/cloud.google.com/go for authentication, timeouts,\nconnection pooling and similar aspects of this package.\n\nTo start working with this package, create a Client:\n\nThe client will use your default application credentials. Clients should be\nreused instead of created as needed. The methods of Client are safe for\nconcurrent use by multiple goroutines.\n\nYou may configure the client by passing in options from the google.golang.org/api/option\npackage. You may also use options defined in this package, such as WithJSONReads.\n\nIf you only wish to access public data, you can create\nan unauthenticated client with\n\nTo use an emulator with this library, you can set the STORAGE_EMULATOR_HOST\nenvironment variable to the address at which your emulator is running. This will\nsend requests to that address instead of to Cloud Storage. You can then create\nand use a client as usual:\n\nPlease note that there is no official emulator for Cloud Storage.\n\nA Google Cloud Storage bucket is a collection of objects. To work with a\nbucket, make a bucket handle:\n\nA handle is a reference to a bucket. You can have a handle even if the\nbucket doesn't exist yet. To create a bucket in Google Cloud Storage,\ncall BucketHandle.Create:\n\nNote that although buckets are associated with projects, bucket names are\nglobal across all projects.\n\nEach bucket has associated metadata, represented in this package by\nBucketAttrs. The third argument to BucketHandle.Create allows you to set\nthe initial BucketAttrs of a bucket. To retrieve a bucket's attributes, use\nBucketHandle.Attrs:\n\nAn object holds arbitrary data as a sequence of bytes, like a file. You\nrefer to objects using a handle, just as with buckets, but unlike buckets\nyou don't explicitly create an object. Instead, the first time you write\nto an object it will be created. You can use the standard Go io.Reader\nand io.Writer interfaces to read and write object data:\n\nObjects also have attributes, which you can fetch with ObjectHandle.Attrs:\n\nListing objects in a bucket is done with the BucketHandle.Objects method:\n\nObjects are listed lexicographically by name. To filter objects\nlexicographically, [Query.StartOffset] and/or [Query.EndOffset] can be used:\n\nIf only a subset of object attributes is needed when listing, specifying this\nsubset using Query.SetAttrSelection may speed up the listing process:\n\nBoth objects and buckets have ACLs (Access Control Lists). An ACL is a list of\nACLRules, each of which specifies the role of a user, group or project. ACLs\nare suitable for fine-grained control, but you may prefer using IAM to control\naccess at the project level (see Cloud Storage IAM docs.\n\nTo list the ACLs of a bucket or object, obtain an ACLHandle and call ACLHandle.List:\n\nYou can also set and delete ACLs.\n\nEvery object has a generation and a metageneration. The generation changes\nwhenever the content changes, and the metageneration changes whenever the\nmetadata changes. Conditions let you check these values before an operation;\nthe operation only executes if the conditions match. You can use conditions to\nprevent race conditions in read-modify-write operations.\n\nFor example, say you've read an object's metadata into objAttrs. Now\nyou want to write to that object, but only if its contents haven't changed\nsince you read it. Here is how to express that:\n\nYou can obtain a URL that lets anyone read or write an object for a limited time.\nSigning a URL requires credentials authorized to sign a URL. To use the same\nauthentication that was used when instantiating the Storage client, use\nBucketHandle.SignedURL.\n\nYou can also sign a URL without creating a client. See the documentation of\nSignedURL for details.\n\nA type of signed request that allows uploads through HTML forms directly to Cloud Storage with\ntemporary permission. Conditions can be applied to restrict how the HTML form is used and exercised\nby a user.\n\nFor more information, please see the XML POST Object docs as well\nas the documentation of BucketHandle.GenerateSignedPostPolicyV4.\n\nIf the GoogleAccessID and PrivateKey option fields are not provided, they will\nbe automatically detected by BucketHandle.SignedURL and\nBucketHandle.GenerateSignedPostPolicyV4 if any of the following are true:\n\nDetecting GoogleAccessID may not be possible if you are authenticated using a\ntoken source or using option.WithHTTPClient. In this case, you can provide a\nservice account email for GoogleAccessID and the client will attempt to sign\nthe URL or Post Policy using that service account.\n\nTo generate the signature, you must have:\n\nErrors returned by this client are often of the type github.com/googleapis/gax-go/v2/apierror.\nThe [apierror.APIError] type can wrap a google.golang.org/grpc/status.Status\nif gRPC was used, or a google.golang.org/api/googleapi.Error if HTTP/REST was used.\nYou might also encounter googleapi.Error directly from HTTP operations.\nThese types of errors can be inspected for more information by using errors.As\nto access the specific underlying error types and retrieve detailed information,\nincluding HTTP or gRPC status codes. For example:\n\nThis library may also return other errors that are not wrapped as [apierror.APIError]. For\nexample, errors with authentication may return cloud.google.com/go/auth.Error.\n\nMethods in this package may retry calls that fail with transient errors.\nRetrying continues indefinitely unless the controlling context is canceled, the\nclient is closed, or a non-transient error is received. To stop retries from\ncontinuing, use context timeouts or cancellation.\n\nThe retry strategy in this library follows best practices for Cloud Storage. By\ndefault, operations are retried only if they are idempotent, and exponential\nbackoff with jitter is employed. In addition, errors are only retried if they\nare defined as transient by the service. See the Cloud Storage retry docs\nfor more information.\n\nUsers can configure non-default retry behavior for a single library call (using\nBucketHandle.Retryer and ObjectHandle.Retryer) or for all calls made by a\nclient (using Client.SetRetry). For example:\n\nYou can add custom headers to any API call made by this package by using\ncallctx.SetHeaders on the context which is passed to the method. For example,\nto add a custom audit logging header:\n\nThis package includes support for the Cloud Storage gRPC API. This\nimplementation uses gRPC rather than the default JSON & XML APIs\nto make requests to Cloud Storage. All methods on the Client support\nthe gRPC API, with the exception of the Client.ServiceAccount, Notification,\nand HMACKey methods.\n\nThe Cloud Storage gRPC API is generally available.\n\nTo create a client which will use gRPC, use the alternate constructor:\n\nOne major advantage of the gRPC API is that it can use Direct Connectivity,\nenabling requests to skip some proxy steps and reducing response latency.\nRequirements to use Direct Connectivity include:\n\nAdditional requirements for Direct Connectivity are documented in the\nCloud Storage gRPC docs. If all requirements are met, the client will\nuse Direct Connectivity by default without requiring any client options\nor environment variables. To disable Direct Connectivity, you can set\nthe environment variable GOOGLE_CLOUD_DISABLE_DIRECT_PATH=true.\n\nDependencies for the gRPC API may slightly increase the size of binaries for\napplications depending on this package. If you are not using gRPC, you can use\nthe build tag `disable_grpc_modules` to opt out of these dependencies and\nreduce the binary size.\n\nThe gRPC client is instrumented with Open Telemetry metrics which export to\nCloud Monitoring by default. More information is available in the\ngRPC client-side metrics documentation, including information about\nroles which must be enabled in order to do the export successfully. To\ndisable this export, you can use the WithDisabledClientMetrics client\noption.\n\nThe client automatically computes and sends CRC32C checksums for uploads using Writer,\nproviding an additional layer of data integrity validation with a slight CPU overhead.\n\nNote: With a chunk size of 0 (no buffering) in JSON uploads, an auto-calculated checksum mismatch\nreturns an error but may leave corrupt data on the server, requiring manual cleanup. This risk does not\napply to single-shot uploads when user-provided checksum is provided.\n\nAutomatic checksumming can be disabled using [Writer.DisableAutoChecksum].\n\nCertain control plane and long-running operations for Cloud Storage (including Folder\nand Managed Folder operations) are supported via the autogenerated Storage Control\nclient, which is available as a subpackage in this module. See package docs at\ncloud.google.com/go/storage/control/apiv2 or reference the Storage Control API docs.",
+      "description": "Package storage provides an easy way to work with Google Cloud Storage.\nGoogle Cloud Storage stores data in named objects, which are grouped into buckets.\n\nMore information about Google Cloud Storage is available at\nhttps://cloud.google.com/storage/docs.\n\nSee https://pkg.go.dev/cloud.google.com/go for authentication, timeouts,\nconnection pooling and similar aspects of this package.\n\nTo start working with this package, create a Client:\n\nThe client will use your default application credentials. Clients should be\nreused instead of created as needed. The methods of Client are safe for\nconcurrent use by multiple goroutines.\n\nYou may configure the client by passing in options from the google.golang.org/api/option\npackage. You may also use options defined in this package, such as WithJSONReads.\n\nIf you only wish to access public data, you can create\nan unauthenticated client with\n\nTo use an emulator with this library, you can set the STORAGE_EMULATOR_HOST\nenvironment variable to the address at which your emulator is running. This will\nsend requests to that address instead of to Cloud Storage. You can then create\nand use a client as usual:\n\nPlease note that there is no official emulator for Cloud Storage.\n\nA Google Cloud Storage bucket is a collection of objects. To work with a\nbucket, make a bucket handle:\n\nA handle is a reference to a bucket. You can have a handle even if the\nbucket doesn't exist yet. To create a bucket in Google Cloud Storage,\ncall BucketHandle.Create:\n\nNote that although buckets are associated with projects, bucket names are\nglobal across all projects.\n\nEach bucket has associated metadata, represented in this package by\nBucketAttrs. The third argument to BucketHandle.Create allows you to set\nthe initial BucketAttrs of a bucket. To retrieve a bucket's attributes, use\nBucketHandle.Attrs:\n\nAn object holds arbitrary data as a sequence of bytes, like a file. You\nrefer to objects using a handle, just as with buckets, but unlike buckets\nyou don't explicitly create an object. Instead, the first time you write\nto an object it will be created. You can use the standard Go io.Reader\nand io.Writer interfaces to read and write object data:\n\nObjects also have attributes, which you can fetch with ObjectHandle.Attrs:\n\nListing objects in a bucket is done with the BucketHandle.Objects method:\n\nObjects are listed lexicographically by name. To filter objects\nlexicographically, [Query.StartOffset] and/or [Query.EndOffset] can be used:\n\nIf only a subset of object attributes is needed when listing, specifying this\nsubset using Query.SetAttrSelection may speed up the listing process:\n\nBoth objects and buckets have ACLs (Access Control Lists). An ACL is a list of\nACLRules, each of which specifies the role of a user, group or project. ACLs\nare suitable for fine-grained control, but you may prefer using IAM to control\naccess at the project level (see Cloud Storage IAM docs.\n\nTo list the ACLs of a bucket or object, obtain an ACLHandle and call ACLHandle.List:\n\nYou can also set and delete ACLs.\n\nEvery object has a generation and a metageneration. The generation changes\nwhenever the content changes, and the metageneration changes whenever the\nmetadata changes. Conditions let you check these values before an operation;\nthe operation only executes if the conditions match. You can use conditions to\nprevent race conditions in read-modify-write operations.\n\nFor example, say you've read an object's metadata into objAttrs. Now\nyou want to write to that object, but only if its contents haven't changed\nsince you read it. Here is how to express that:\n\nYou can obtain a URL that lets anyone read or write an object for a limited time.\nSigning a URL requires credentials authorized to sign a URL. To use the same\nauthentication that was used when instantiating the Storage client, use\nBucketHandle.SignedURL.\n\nYou can also sign a URL without creating a client. See the documentation of\nSignedURL for details.\n\nA type of signed request that allows uploads through HTML forms directly to Cloud Storage with\ntemporary permission. Conditions can be applied to restrict how the HTML form is used and exercised\nby a user.\n\nFor more information, please see the XML POST Object docs as well\nas the documentation of BucketHandle.GenerateSignedPostPolicyV4.\n\nIf the GoogleAccessID and PrivateKey option fields are not provided, they will\nbe automatically detected by BucketHandle.SignedURL and\nBucketHandle.GenerateSignedPostPolicyV4 if any of the following are true:\n\nDetecting GoogleAccessID may not be possible if you are authenticated using a\ntoken source or using option.WithHTTPClient. In this case, you can provide a\nservice account email for GoogleAccessID and the client will attempt to sign\nthe URL or Post Policy using that service account.\n\nTo generate the signature, you must have:\n\nErrors returned by this client are often of the type github.com/googleapis/gax-go/v2/apierror.\nThe [apierror.APIError] type can wrap a google.golang.org/grpc/status.Status\nif gRPC was used, or a google.golang.org/api/googleapi.Error if HTTP/REST was used.\nYou might also encounter googleapi.Error directly from HTTP operations.\nThese types of errors can be inspected for more information by using errors.As\nto access the specific underlying error types and retrieve detailed information,\nincluding HTTP or gRPC status codes. For example:\n\nThis library may also return other errors that are not wrapped as [apierror.APIError]. For\nexample, errors with authentication may return cloud.google.com/go/auth.Error.\n\nMethods in this package may retry calls that fail with transient errors.\nRetrying continues indefinitely unless the controlling context is canceled, the\nclient is closed, or a non-transient error is received. To stop retries from\ncontinuing, use context timeouts or cancellation.\n\nThe retry strategy in this library follows best practices for Cloud Storage. By\ndefault, operations are retried only if they are idempotent, and exponential\nbackoff with jitter is employed. In addition, errors are only retried if they\nare defined as transient by the service. See the Cloud Storage retry docs\nfor more information.\n\nUsers can configure non-default retry behavior for a single library call (using\nBucketHandle.Retryer and ObjectHandle.Retryer) or for all calls made by a\nclient (using Client.SetRetry). For example:\n\nYou can add custom headers to any API call made by this package by using\ncallctx.SetHeaders on the context which is passed to the method. For example,\nto add a custom audit logging header:\n\nThis package includes support for the Cloud Storage gRPC API. This\nimplementation uses gRPC rather than the default JSON & XML APIs\nto make requests to Cloud Storage. All methods on the Client support\nthe gRPC API, with the exception of the Client.ServiceAccount, Notification,\nand HMACKey methods.\n\nThe Cloud Storage gRPC API is generally available.\n\nTo create a client which will use gRPC, use the alternate constructor:\n\nOne major advantage of the gRPC API is that it can use Direct Connectivity,\nenabling requests to skip some proxy steps and reducing response latency.\nRequirements to use Direct Connectivity include:\n\nAdditional requirements for Direct Connectivity are documented in the\nCloud Storage gRPC docs. If all requirements are met, the client will\nuse Direct Connectivity by default without requiring any client options\nor environment variables. To disable Direct Connectivity, you can set\nthe environment variable GOOGLE_CLOUD_DISABLE_DIRECT_PATH=true.\n\nDependencies for the gRPC API may slightly increase the size of binaries for\napplications depending on this package. If you are not using gRPC, you can use\nthe build tag `disable_grpc_modules` to opt out of these dependencies and\nreduce the binary size.\n\nThe gRPC client is instrumented with Open Telemetry metrics which export to\nCloud Monitoring by default. More information is available in the\ngRPC client-side metrics documentation, including information about\nroles which must be enabled in order to do the export successfully. To\ndisable this export, you can use the WithDisabledClientMetrics client\noption.\n\nThe client automatically computes and sends CRC32C checksums for uploads using Writer,\nproviding an additional layer of data integrity validation with a slight CPU overhead.\n\nNote: With a chunk size of 0 (no buffering) in JSON uploads, an auto-calculated checksum mismatch\nreturns an error but may leave corrupt data on the server, requiring manual cleanup. This risk does not\napply to single-shot uploads when user-provided checksum is provided.\n\nAutomatic checksumming can be disabled using [Writer.DisableAutoChecksum].\n\nThe parallel upload feature splits a large object into multiple parts and uploads them\nin parallel. It is supported exclusively for gRPC clients. If used with a JSON\nclient, the configuration is ignored and a standard upload is performed.\n\nParallel uploads can yield higher throughput when uploading large objects.\nHowever, there are several things which must be kept in mind when choosing to\nuse this strategy:\n\n**Note:** This feature is currently experimental and its API surface may change\nin future releases. It is not yet recommended for production use.\n\nCertain control plane and long-running operations for Cloud Storage (including Folder\nand Managed Folder operations) are supported via the autogenerated Storage Control\nclient, which is available as a subpackage in this module. See package docs at\ncloud.google.com/go/storage/control/apiv2 or reference the Storage Control API docs.",
       "licenses": [
         {
           "expression": "(Apache-2.0)"
@@ -898,7 +887,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-03-13T06:41:11Z"
+          "value": "2026-04-06T15:05:19Z"
         },
         {
           "name": "ecosystems:topic",
@@ -3409,7 +3398,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-03-03T14:35:32Z"
+          "value": "2026-03-30T18:54:36Z"
         },
         {
           "name": "ecosystems:owner_location",
@@ -6397,7 +6386,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-03-07T22:47:01Z"
+          "value": "2026-03-17T22:52:31Z"
         },
         {
           "name": "ecosystems:topic",
@@ -8535,7 +8524,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-03-12T14:10:34Z"
+          "value": "2026-04-10T13:30:35Z"
         }
       ]
     },
@@ -9259,7 +9248,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-03-25T12:38:20Z"
+          "value": "2026-04-07T10:33:15Z"
         },
         {
           "name": "ecosystems:owner_location",
@@ -12266,7 +12255,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2023-10-17T07:28:21Z"
+          "value": "2026-04-08T12:56:32Z"
         },
         {
           "name": "ecosystems:owner_location",
@@ -12357,7 +12346,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-04-03T00:59:49Z"
+          "value": "2026-04-08T12:37:51Z"
         },
         {
           "name": "ecosystems:owner_location",
@@ -13635,7 +13624,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-03-31T19:27:29Z"
+          "value": "2026-04-13T12:24:53Z"
         },
         {
           "name": "ecosystems:topic",
@@ -13770,7 +13759,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-03-31T19:27:29Z"
+          "value": "2026-04-13T12:24:53Z"
         },
         {
           "name": "ecosystems:topic",
@@ -13841,7 +13830,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-03-31T19:27:29Z"
+          "value": "2026-04-13T12:24:53Z"
         },
         {
           "name": "ecosystems:topic",
@@ -13913,7 +13902,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-03-31T19:27:29Z"
+          "value": "2026-04-13T12:24:53Z"
         },
         {
           "name": "ecosystems:topic",
@@ -14191,7 +14180,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-03-31T19:27:29Z"
+          "value": "2026-04-13T12:24:53Z"
         },
         {
           "name": "ecosystems:topic",
@@ -14468,7 +14457,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-03-31T19:27:29Z"
+          "value": "2026-04-13T12:24:53Z"
         },
         {
           "name": "ecosystems:topic",
@@ -14605,7 +14594,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-03-31T19:27:29Z"
+          "value": "2026-04-13T12:24:53Z"
         },
         {
           "name": "ecosystems:topic",
@@ -14677,7 +14666,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-03-31T19:27:29Z"
+          "value": "2026-04-13T12:24:53Z"
         },
         {
           "name": "ecosystems:topic",
@@ -15868,7 +15857,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-02-11T20:55:43Z"
+          "value": "2026-04-08T18:01:18Z"
         },
         {
           "name": "ecosystems:topic",
@@ -17155,7 +17144,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-02-27T12:05:12Z"
+          "value": "2026-03-29T07:30:53Z"
         },
         {
           "name": "ecosystems:owner_location",
@@ -20110,7 +20099,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2025-12-15T19:17:44Z"
+          "value": "2026-03-31T02:34:44Z"
         },
         {
           "name": "ecosystems:topic",
@@ -20359,7 +20348,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-03-31T02:34:44Z"
+          "value": "2026-04-13T09:09:24Z"
         },
         {
           "name": "ecosystems:topic",
@@ -20443,7 +20432,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-03-31T02:34:44Z"
+          "value": "2026-04-13T09:09:24Z"
         },
         {
           "name": "ecosystems:topic",
@@ -20610,7 +20599,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-03-31T02:34:44Z"
+          "value": "2026-04-13T09:09:24Z"
         },
         {
           "name": "ecosystems:topic",
@@ -20667,10 +20656,6 @@
           "type": "distribution"
         },
         {
-          "url": "https://github.com/open-telemetry/opentelemetry-collector",
-          "type": "vcs"
-        },
-        {
           "url": "https://pkg.go.dev/go.opentelemetry.io/collector/config/confighttp#section-documentation",
           "type": "documentation"
         }
@@ -20698,7 +20683,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-03-31T02:34:44Z"
+          "value": "2026-04-13T09:09:24Z"
         },
         {
           "name": "ecosystems:topic",
@@ -20866,7 +20851,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-03-31T02:34:44Z"
+          "value": "2026-04-13T09:09:24Z"
         },
         {
           "name": "ecosystems:topic",
@@ -20921,6 +20906,10 @@
         {
           "url": "https://pkg.go.dev/go.opentelemetry.io/collector/config/configopaque",
           "type": "distribution"
+        },
+        {
+          "url": "https://github.com/open-telemetry/opentelemetry-collector",
+          "type": "vcs"
         },
         {
           "url": "https://pkg.go.dev/go.opentelemetry.io/collector/config/configopaque#section-documentation",
@@ -21215,10 +21204,6 @@
         {
           "url": "https://pkg.go.dev/go.opentelemetry.io/collector/config/configtls",
           "type": "distribution"
-        },
-        {
-          "url": "https://github.com/open-telemetry/opentelemetry-collector",
-          "type": "vcs"
         },
         {
           "url": "https://pkg.go.dev/go.opentelemetry.io/collector/config/configtls#section-documentation",
@@ -22086,7 +22071,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-01-20T09:10:30Z"
+          "value": "2026-03-31T02:34:44Z"
         },
         {
           "name": "ecosystems:topic",
@@ -22640,6 +22625,10 @@
           "type": "distribution"
         },
         {
+          "url": "https://github.com/open-telemetry/opentelemetry-collector",
+          "type": "vcs"
+        },
+        {
           "url": "https://pkg.go.dev/go.opentelemetry.io/collector/extension#section-documentation",
           "type": "documentation"
         }
@@ -22667,7 +22656,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-03-31T02:34:44Z"
+          "value": "2026-04-13T09:09:24Z"
         },
         {
           "name": "ecosystems:topic",
@@ -22834,7 +22823,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-03-02T14:17:14Z"
+          "value": "2026-03-31T02:34:44Z"
         },
         {
           "name": "ecosystems:topic",
@@ -23137,7 +23126,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-03-02T14:17:14Z"
+          "value": "2026-03-31T02:34:44Z"
         },
         {
           "name": "ecosystems:topic",
@@ -23307,7 +23296,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-03-31T02:34:44Z"
+          "value": "2026-04-13T09:09:24Z"
         },
         {
           "name": "ecosystems:topic",
@@ -23862,10 +23851,6 @@
           "type": "distribution"
         },
         {
-          "url": "https://github.com/open-telemetry/opentelemetry-collector",
-          "type": "vcs"
-        },
-        {
           "url": "https://pkg.go.dev/go.opentelemetry.io/collector/processor#section-documentation",
           "type": "documentation"
         }
@@ -23977,7 +23962,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-03-31T02:34:44Z"
+          "value": "2026-04-13T09:09:24Z"
         },
         {
           "name": "ecosystems:topic",
@@ -24491,10 +24476,6 @@
           "type": "distribution"
         },
         {
-          "url": "https://github.com/open-telemetry/opentelemetry-collector",
-          "type": "vcs"
-        },
-        {
           "url": "https://pkg.go.dev/go.opentelemetry.io/collector/service#section-documentation",
           "type": "documentation"
         }
@@ -24522,7 +24503,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-03-31T02:34:44Z"
+          "value": "2026-04-13T09:09:24Z"
         },
         {
           "name": "ecosystems:topic",
@@ -24809,7 +24790,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-03-06T20:24:46Z"
+          "value": "2026-04-07T08:53:54Z"
         }
       ]
     },
@@ -24961,6 +24942,10 @@
           "type": "distribution"
         },
         {
+          "url": "https://github.com/open-telemetry/opentelemetry-go-contrib",
+          "type": "vcs"
+        },
+        {
           "url": "https://pkg.go.dev/go.opentelemetry.io/contrib/instrumentation/net/http/httptrace/otelhttptrace#section-documentation",
           "type": "documentation"
         }
@@ -25021,6 +25006,10 @@
           "type": "distribution"
         },
         {
+          "url": "https://github.com/open-telemetry/opentelemetry-go-contrib",
+          "type": "vcs"
+        },
+        {
           "url": "https://pkg.go.dev/go.opentelemetry.io/contrib/instrumentation/net/http/otelhttp#section-documentation",
           "type": "documentation"
         }
@@ -25048,7 +25037,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-03-06T20:24:46Z"
+          "value": "2026-04-07T08:53:54Z"
         }
       ]
     },
@@ -25151,7 +25140,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-03-06T20:24:46Z"
+          "value": "2026-04-07T08:53:54Z"
         }
       ]
     },
@@ -25211,7 +25200,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-03-06T20:24:46Z"
+          "value": "2026-04-07T08:53:54Z"
         }
       ]
     },
@@ -25271,7 +25260,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-03-06T20:24:46Z"
+          "value": "2026-04-07T08:53:54Z"
         }
       ]
     },
@@ -25407,7 +25396,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-03-06T19:13:23Z"
+          "value": "2026-04-03T08:30:03Z"
         },
         {
           "name": "ecosystems:topic",
@@ -25430,19 +25419,12 @@
     {
       "bom-ref": "pkg:golang/go.opentelemetry.io/otel/exporters/otlp/otlplog/otlploghttp@v0.14.0",
       "type": "library",
-      "supplier": {
-        "name": "OpenTelemetry - CNCF",
-        "url": [
-          "https://opentelemetry.io"
-        ]
-      },
-      "author": "OpenTelemetry - CNCF",
       "name": "go.opentelemetry.io/otel/exporters/otlp/otlplog/otlploghttp",
       "version": "v0.14.0",
-      "description": "Package otlploghttp provides an OTLP log exporter. The exporter uses HTTP to\ntransport OTLP protobuf payloads.\n\nExporter should be created using New.\n\nThe environment variables described below can be used for configuration.\n\nOTEL_EXPORTER_OTLP_ENDPOINT (default: \"https://localhost:4318\") -\ntarget base URL (\"/v1/logs\" is appended) to which the exporter sends telemetry.\nThe value must contain a scheme (\"http\" or \"https\") and host.\nThe value may additionally contain a port and a path.\nThe value should not contain a query string or fragment.\nThe configuration can be overridden by OTEL_EXPORTER_OTLP_LOGS_ENDPOINT\nenvironment variable and by WithEndpoint, WithEndpointURL, WithInsecure options.\n\nOTEL_EXPORTER_OTLP_LOGS_ENDPOINT (default: \"https://localhost:4318/v1/logs\") -\ntarget URL to which the exporter sends telemetry.\nThe value must contain a scheme (\"http\" or \"https\") and host.\nThe value may additionally contain a port and a path.\nThe value should not contain a query string or fragment.\nThe configuration can be overridden by WithEndpoint, WithEndpointURL, WithInsecure, and WithURLPath options.\n\nOTEL_EXPORTER_OTLP_HEADERS, OTEL_EXPORTER_OTLP_LOGS_HEADERS (default: none) -\nkey-value pairs used as headers associated with HTTP requests.\nThe value is expected to be represented in a format matching the W3C Baggage HTTP Header Content Format,\nexcept that additional semi-colon delimited metadata is not supported.\nExample value: \"key1=value1,key2=value2\".\nOTEL_EXPORTER_OTLP_LOGS_HEADERS takes precedence over OTEL_EXPORTER_OTLP_HEADERS.\nThe configuration can be overridden by WithHeaders option.\n\nOTEL_EXPORTER_OTLP_TIMEOUT, OTEL_EXPORTER_OTLP_LOGS_TIMEOUT (default: \"10000\") -\nmaximum time in milliseconds the OTLP exporter waits for each batch export.\nOTEL_EXPORTER_OTLP_LOGS_TIMEOUT takes precedence over OTEL_EXPORTER_OTLP_TIMEOUT.\nThe configuration can be overridden by WithTimeout option.\n\nOTEL_EXPORTER_OTLP_COMPRESSION, OTEL_EXPORTER_OTLP_LOGS_COMPRESSION (default: none) -\nthe compression strategy the exporter uses to compress the HTTP body.\nSupported value: \"gzip\".\nOTEL_EXPORTER_OTLP_LOGS_COMPRESSION takes precedence over OTEL_EXPORTER_OTLP_COMPRESSION.\nThe configuration can be overridden by WithCompression option.\n\nOTEL_EXPORTER_OTLP_CERTIFICATE, OTEL_EXPORTER_OTLP_LOGS_CERTIFICATE (default: none) -\nthe filepath to the trusted certificate to use when verifying a server's TLS credentials.\nOTEL_EXPORTER_OTLP_LOGS_CERTIFICATE takes precedence over OTEL_EXPORTER_OTLP_CERTIFICATE.\nThe configuration can be overridden by WithTLSClientConfig option.\n\nOTEL_EXPORTER_OTLP_CLIENT_CERTIFICATE, OTEL_EXPORTER_OTLP_LOGS_CLIENT_CERTIFICATE (default: none) -\nthe filepath to the client certificate/chain trust for client's private key to use in mTLS communication in PEM format.\nOTEL_EXPORTER_OTLP_LOGS_CLIENT_CERTIFICATE takes precedence over OTEL_EXPORTER_OTLP_CLIENT_CERTIFICATE.\nThe configuration can be overridden by WithTLSClientConfig option.\n\nOTEL_EXPORTER_OTLP_CLIENT_KEY, OTEL_EXPORTER_OTLP_LOGS_CLIENT_KEY (default: none) -\nthe filepath to the client's private key to use in mTLS communication in PEM format.\nOTEL_EXPORTER_OTLP_LOGS_CLIENT_KEY takes precedence over OTEL_EXPORTER_OTLP_CLIENT_KEY.\nThe configuration can be overridden by WithTLSClientConfig option.",
+      "description": "Package otlploghttp provides an OTLP log exporter. The exporter uses HTTP to\ntransport OTLP protobuf payloads.\n\nExporter should be created using New.\n\nThe environment variables described below can be used for configuration.\n\nOTEL_EXPORTER_OTLP_ENDPOINT (default: \"https://localhost:4318\") -\ntarget base URL (\"/v1/logs\" is appended) to which the exporter sends telemetry.\nThe value must contain a scheme (\"http\" or \"https\") and host.\nThe value may additionally contain a port and a path.\nThe value should not contain a query string or fragment.\nThe configuration can be overridden by OTEL_EXPORTER_OTLP_LOGS_ENDPOINT\nenvironment variable and by WithEndpoint, WithEndpointURL, WithInsecure options.\n\nOTEL_EXPORTER_OTLP_LOGS_ENDPOINT (default: \"https://localhost:4318/v1/logs\") -\ntarget URL to which the exporter sends telemetry.\nThe value must contain a scheme (\"http\" or \"https\") and host.\nThe value may additionally contain a port and a path.\nThe value should not contain a query string or fragment.\nThe configuration can be overridden by WithEndpoint, WithEndpointURL, WithInsecure, and WithURLPath options.\n\nOTEL_EXPORTER_OTLP_INSECURE, OTEL_EXPORTER_OTLP_LOGS_INSECURE (default: \"false\") -\nsetting \"true\" disables client transport security for the exporter's HTTP connection.\nOTEL_EXPORTER_OTLP_LOGS_INSECURE takes precedence over OTEL_EXPORTER_OTLP_INSECURE.\nThe configuration can be overridden by WithInsecure and WithTLSClientConfig options.\n\nOTEL_EXPORTER_OTLP_HEADERS, OTEL_EXPORTER_OTLP_LOGS_HEADERS (default: none) -\nkey-value pairs used as headers associated with HTTP requests.\nThe value is expected to be represented in a format matching the W3C Baggage HTTP Header Content Format,\nexcept that additional semi-colon delimited metadata is not supported.\nExample value: \"key1=value1,key2=value2\".\nOTEL_EXPORTER_OTLP_LOGS_HEADERS takes precedence over OTEL_EXPORTER_OTLP_HEADERS.\nThe configuration can be overridden by WithHeaders option.\n\nOTEL_EXPORTER_OTLP_TIMEOUT, OTEL_EXPORTER_OTLP_LOGS_TIMEOUT (default: \"10000\") -\nmaximum time in milliseconds the OTLP exporter waits for each batch export.\nOTEL_EXPORTER_OTLP_LOGS_TIMEOUT takes precedence over OTEL_EXPORTER_OTLP_TIMEOUT.\nThe configuration can be overridden by WithTimeout option.\n\nOTEL_EXPORTER_OTLP_COMPRESSION, OTEL_EXPORTER_OTLP_LOGS_COMPRESSION (default: none) -\nthe compression strategy the exporter uses to compress the HTTP body.\nSupported value: \"gzip\".\nOTEL_EXPORTER_OTLP_LOGS_COMPRESSION takes precedence over OTEL_EXPORTER_OTLP_COMPRESSION.\nThe configuration can be overridden by WithCompression option.\n\nOTEL_EXPORTER_OTLP_CERTIFICATE, OTEL_EXPORTER_OTLP_LOGS_CERTIFICATE (default: none) -\nthe filepath to the trusted certificate to use when verifying a server's TLS credentials.\nOTEL_EXPORTER_OTLP_LOGS_CERTIFICATE takes precedence over OTEL_EXPORTER_OTLP_CERTIFICATE.\nThe configuration can be overridden by WithTLSClientConfig option.\n\nOTEL_EXPORTER_OTLP_CLIENT_CERTIFICATE, OTEL_EXPORTER_OTLP_LOGS_CLIENT_CERTIFICATE (default: none) -\nthe filepath to the client certificate/chain trust for client's private key to use in mTLS communication in PEM format.\nOTEL_EXPORTER_OTLP_LOGS_CLIENT_CERTIFICATE takes precedence over OTEL_EXPORTER_OTLP_CLIENT_CERTIFICATE.\nThe configuration can be overridden by WithTLSClientConfig option.\n\nOTEL_EXPORTER_OTLP_CLIENT_KEY, OTEL_EXPORTER_OTLP_LOGS_CLIENT_KEY (default: none) -\nthe filepath to the client's private key to use in mTLS communication in PEM format.\nOTEL_EXPORTER_OTLP_LOGS_CLIENT_KEY takes precedence over OTEL_EXPORTER_OTLP_CLIENT_KEY.\nThe configuration can be overridden by WithTLSClientConfig option.",
       "licenses": [
         {
-          "expression": "(Apache-2.0)"
+          "expression": "(Apache-2.0 OR BSD-3-Clause)"
         }
       ],
       "purl": "pkg:golang/go.opentelemetry.io/otel/exporters/otlp/otlplog/otlploghttp@v0.14.0",
@@ -25454,6 +25436,10 @@
         {
           "url": "https://pkg.go.dev/go.opentelemetry.io/otel/exporters/otlp/otlplog/otlploghttp",
           "type": "distribution"
+        },
+        {
+          "url": "https://github.com/open-telemetry/opentelemetry-go",
+          "type": "vcs"
         },
         {
           "url": "https://pkg.go.dev/go.opentelemetry.io/otel/exporters/otlp/otlplog/otlploghttp#section-documentation",
@@ -25483,7 +25469,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-03-06T19:13:23Z"
+          "value": "2026-04-03T08:30:03Z"
         },
         {
           "name": "ecosystems:topic",
@@ -25530,10 +25516,6 @@
         {
           "url": "https://pkg.go.dev/go.opentelemetry.io/otel/exporters/otlp/otlpmetric/otlpmetricgrpc",
           "type": "distribution"
-        },
-        {
-          "url": "https://github.com/open-telemetry/opentelemetry-go",
-          "type": "vcs"
         },
         {
           "url": "https://pkg.go.dev/go.opentelemetry.io/otel/exporters/otlp/otlpmetric/otlpmetricgrpc#section-documentation",
@@ -25755,7 +25737,7 @@
       "author": "OpenTelemetry - CNCF",
       "name": "go.opentelemetry.io/otel/exporters/otlp/otlptrace/otlptracehttp",
       "version": "v1.39.0",
-      "description": "Package otlptracehttp provides an OTLP span exporter using HTTP with protobuf payloads.\nBy default the telemetry is sent to https://localhost:4318/v1/traces.\n\nExporter should be created using New.\n\nThe environment variables described below can be used for configuration.\n\nOTEL_EXPORTER_OTLP_ENDPOINT (default: \"https://localhost:4318\") -\ntarget base URL (\"/v1/traces\" is appended) to which the exporter sends telemetry.\nThe value must contain a scheme (\"http\" or \"https\") and host.\nThe value may additionally contain a port and a path.\nThe value should not contain a query string or fragment.\nThe configuration can be overridden by OTEL_EXPORTER_OTLP_TRACES_ENDPOINT\nenvironment variable and by WithEndpoint, WithEndpointURL, WithInsecure options.\n\nOTEL_EXPORTER_OTLP_TRACES_ENDPOINT (default: \"https://localhost:4318/v1/traces\") -\ntarget URL to which the exporter sends telemetry.\nThe value must contain a scheme (\"http\" or \"https\") and host.\nThe value may additionally contain a port and a path.\nThe value should not contain a query string or fragment.\nThe configuration can be overridden by WithEndpoint, WithEndpointURL, WithInsecure, and WithURLPath options.\n\nOTEL_EXPORTER_OTLP_HEADERS, OTEL_EXPORTER_OTLP_TRACES_HEADERS (default: none) -\nkey-value pairs used as headers associated with HTTP requests.\nThe value is expected to be represented in a format matching the W3C Baggage HTTP Header Content Format,\nexcept that additional semi-colon delimited metadata is not supported.\nExample value: \"key1=value1,key2=value2\".\nOTEL_EXPORTER_OTLP_TRACES_HEADERS takes precedence over OTEL_EXPORTER_OTLP_HEADERS.\nThe configuration can be overridden by WithHeaders option.\n\nOTEL_EXPORTER_OTLP_TIMEOUT, OTEL_EXPORTER_OTLP_TRACES_TIMEOUT (default: \"10000\") -\nmaximum time in milliseconds the OTLP exporter waits for each batch export.\nOTEL_EXPORTER_OTLP_TRACES_TIMEOUT takes precedence over OTEL_EXPORTER_OTLP_TIMEOUT.\nThe configuration can be overridden by WithTimeout option.\n\nOTEL_EXPORTER_OTLP_COMPRESSION, OTEL_EXPORTER_OTLP_TRACES_COMPRESSION (default: none) -\nthe compression strategy the exporter uses to compress the HTTP body.\nSupported value: \"gzip\".\nOTEL_EXPORTER_OTLP_TRACES_COMPRESSION takes precedence over OTEL_EXPORTER_OTLP_COMPRESSION.\nThe configuration can be overridden by WithCompression option.\n\nOTEL_EXPORTER_OTLP_CERTIFICATE, OTEL_EXPORTER_OTLP_TRACES_CERTIFICATE (default: none) -\nthe filepath to the trusted certificate to use when verifying a server's TLS credentials.\nOTEL_EXPORTER_OTLP_TRACES_CERTIFICATE takes precedence over OTEL_EXPORTER_OTLP_CERTIFICATE.\nThe configuration can be overridden by WithTLSClientConfig option.\n\nOTEL_EXPORTER_OTLP_CLIENT_CERTIFICATE, OTEL_EXPORTER_OTLP_TRACES_CLIENT_CERTIFICATE (default: none) -\nthe filepath to the client certificate/chain trust for client's private key to use in mTLS communication in PEM format.\nOTEL_EXPORTER_OTLP_TRACES_CLIENT_CERTIFICATE takes precedence over OTEL_EXPORTER_OTLP_CLIENT_CERTIFICATE.\nThe configuration can be overridden by WithTLSClientConfig option.\n\nOTEL_EXPORTER_OTLP_CLIENT_KEY, OTEL_EXPORTER_OTLP_TRACES_CLIENT_KEY (default: none) -\nthe filepath to the client's private key to use in mTLS communication in PEM format.\nOTEL_EXPORTER_OTLP_TRACES_CLIENT_KEY takes precedence over OTEL_EXPORTER_OTLP_CLIENT_KEY.\nThe configuration can be overridden by WithTLSClientConfig option.",
+      "description": "Package otlptracehttp provides an OTLP span exporter using HTTP with protobuf payloads.\nBy default the telemetry is sent to https://localhost:4318/v1/traces.\n\nExporter should be created using New.\n\nThe environment variables described below can be used for configuration.\n\nOTEL_EXPORTER_OTLP_ENDPOINT (default: \"https://localhost:4318\") -\ntarget base URL (\"/v1/traces\" is appended) to which the exporter sends telemetry.\nThe value must contain a scheme (\"http\" or \"https\") and host.\nThe value may additionally contain a port and a path.\nThe value should not contain a query string or fragment.\nThe configuration can be overridden by OTEL_EXPORTER_OTLP_TRACES_ENDPOINT\nenvironment variable and by WithEndpoint, WithEndpointURL, WithInsecure options.\n\nOTEL_EXPORTER_OTLP_TRACES_ENDPOINT (default: \"https://localhost:4318/v1/traces\") -\ntarget URL to which the exporter sends telemetry.\nThe value must contain a scheme (\"http\" or \"https\") and host.\nThe value may additionally contain a port and a path.\nThe value should not contain a query string or fragment.\nThe configuration can be overridden by WithEndpoint, WithEndpointURL, WithInsecure, and WithURLPath options.\n\nOTEL_EXPORTER_OTLP_INSECURE, OTEL_EXPORTER_OTLP_TRACES_INSECURE (default: \"false\") -\nsetting \"true\" disables client transport security for the exporter's HTTP connection.\nOTEL_EXPORTER_OTLP_TRACES_INSECURE takes precedence over OTEL_EXPORTER_OTLP_INSECURE.\nThe configuration can be overridden by WithInsecure and WithTLSClientConfig options.\n\nOTEL_EXPORTER_OTLP_HEADERS, OTEL_EXPORTER_OTLP_TRACES_HEADERS (default: none) -\nkey-value pairs used as headers associated with HTTP requests.\nThe value is expected to be represented in a format matching the W3C Baggage HTTP Header Content Format,\nexcept that additional semi-colon delimited metadata is not supported.\nExample value: \"key1=value1,key2=value2\".\nOTEL_EXPORTER_OTLP_TRACES_HEADERS takes precedence over OTEL_EXPORTER_OTLP_HEADERS.\nThe configuration can be overridden by WithHeaders option.\n\nOTEL_EXPORTER_OTLP_TIMEOUT, OTEL_EXPORTER_OTLP_TRACES_TIMEOUT (default: \"10000\") -\nmaximum time in milliseconds the OTLP exporter waits for each batch export.\nOTEL_EXPORTER_OTLP_TRACES_TIMEOUT takes precedence over OTEL_EXPORTER_OTLP_TIMEOUT.\nThe configuration can be overridden by WithTimeout option.\n\nOTEL_EXPORTER_OTLP_COMPRESSION, OTEL_EXPORTER_OTLP_TRACES_COMPRESSION (default: none) -\nthe compression strategy the exporter uses to compress the HTTP body.\nSupported value: \"gzip\".\nOTEL_EXPORTER_OTLP_TRACES_COMPRESSION takes precedence over OTEL_EXPORTER_OTLP_COMPRESSION.\nThe configuration can be overridden by WithCompression option.\n\nOTEL_EXPORTER_OTLP_CERTIFICATE, OTEL_EXPORTER_OTLP_TRACES_CERTIFICATE (default: none) -\nthe filepath to the trusted certificate to use when verifying a server's TLS credentials.\nOTEL_EXPORTER_OTLP_TRACES_CERTIFICATE takes precedence over OTEL_EXPORTER_OTLP_CERTIFICATE.\nThe configuration can be overridden by WithTLSClientConfig option.\n\nOTEL_EXPORTER_OTLP_CLIENT_CERTIFICATE, OTEL_EXPORTER_OTLP_TRACES_CLIENT_CERTIFICATE (default: none) -\nthe filepath to the client certificate/chain trust for client's private key to use in mTLS communication in PEM format.\nOTEL_EXPORTER_OTLP_TRACES_CLIENT_CERTIFICATE takes precedence over OTEL_EXPORTER_OTLP_CLIENT_CERTIFICATE.\nThe configuration can be overridden by WithTLSClientConfig option.\n\nOTEL_EXPORTER_OTLP_CLIENT_KEY, OTEL_EXPORTER_OTLP_TRACES_CLIENT_KEY (default: none) -\nthe filepath to the client's private key to use in mTLS communication in PEM format.\nOTEL_EXPORTER_OTLP_TRACES_CLIENT_KEY takes precedence over OTEL_EXPORTER_OTLP_CLIENT_KEY.\nThe configuration can be overridden by WithTLSClientConfig option.",
       "licenses": [
         {
           "expression": "(Apache-2.0 OR BSD-3-Clause)"
@@ -25770,6 +25752,10 @@
         {
           "url": "https://pkg.go.dev/go.opentelemetry.io/otel/exporters/otlp/otlptrace/otlptracehttp",
           "type": "distribution"
+        },
+        {
+          "url": "https://github.com/open-telemetry/opentelemetry-go",
+          "type": "vcs"
         },
         {
           "url": "https://pkg.go.dev/go.opentelemetry.io/otel/exporters/otlp/otlptrace/otlptracehttp#section-documentation",
@@ -25924,6 +25910,10 @@
           "type": "distribution"
         },
         {
+          "url": "https://github.com/open-telemetry/opentelemetry-go",
+          "type": "vcs"
+        },
+        {
           "url": "https://pkg.go.dev/go.opentelemetry.io/otel/exporters/prometheus#section-documentation",
           "type": "documentation"
         }
@@ -26074,6 +26064,10 @@
         {
           "url": "https://pkg.go.dev/go.opentelemetry.io/otel/exporters/stdout/stdoutmetric",
           "type": "distribution"
+        },
+        {
+          "url": "https://github.com/open-telemetry/opentelemetry-go",
+          "type": "vcs"
         },
         {
           "url": "https://pkg.go.dev/go.opentelemetry.io/otel/exporters/stdout/stdoutmetric#section-documentation",
@@ -26456,6 +26450,10 @@
           "type": "distribution"
         },
         {
+          "url": "https://github.com/open-telemetry/opentelemetry-go",
+          "type": "vcs"
+        },
+        {
           "url": "https://pkg.go.dev/go.opentelemetry.io/otel/sdk/metric#section-documentation",
           "type": "documentation"
         }
@@ -26506,13 +26504,6 @@
     {
       "bom-ref": "pkg:golang/go.opentelemetry.io/otel/sdk@v1.39.0",
       "type": "library",
-      "supplier": {
-        "name": "OpenTelemetry - CNCF",
-        "url": [
-          "https://opentelemetry.io"
-        ]
-      },
-      "author": "OpenTelemetry - CNCF",
       "name": "go.opentelemetry.io/otel/sdk",
       "version": "v1.39.0",
       "description": "Package sdk provides the OpenTelemetry default SDK for Go.",
@@ -26530,6 +26521,10 @@
         {
           "url": "https://pkg.go.dev/go.opentelemetry.io/otel/sdk",
           "type": "distribution"
+        },
+        {
+          "url": "https://github.com/open-telemetry/opentelemetry-go",
+          "type": "vcs"
         },
         {
           "url": "https://pkg.go.dev/go.opentelemetry.io/otel/sdk#section-documentation",
@@ -26592,6 +26587,11 @@
       "name": "go.opentelemetry.io/otel/trace",
       "version": "v1.39.0",
       "description": "Package trace provides an implementation of the tracing part of the\nOpenTelemetry API.\n\nTo participate in distributed traces a Span needs to be created for the\noperation being performed as part of a traced workflow. In its simplest form:\n\nA Tracer is unique to the instrumentation and is used to create Spans.\nInstrumentation should be designed to accept a TracerProvider from which it\ncan create its own unique Tracer. Alternatively, the registered global\nTracerProvider from the go.opentelemetry.io/otel package can be used as\na default.\n\nThis package does not conform to the standard Go versioning policy; all of its\ninterfaces may have methods added to them without a package major version bump.\nThis non-standard API evolution could surprise an uninformed implementation\nauthor. They could unknowingly build their implementation in a way that would\nresult in a runtime panic for their users that update to the new API.\n\nThe API is designed to help inform an instrumentation author about this\nnon-standard API evolution. It requires them to choose a default behavior for\nunimplemented interface methods. There are three behavior choices they can\nmake:\n\nAll interfaces in this API embed a corresponding interface from\ngo.opentelemetry.io/otel/trace/embedded. If an author wants the default\nbehavior of their implementations to be a compilation failure, signaling to\ntheir users they need to update to the latest version of that implementation,\nthey need to embed the corresponding interface from\ngo.opentelemetry.io/otel/trace/embedded in their implementation. For\nexample,\n\nIf an author wants the default behavior of their implementations to panic, they\ncan embed the API interface directly.\n\nThis option is not recommended. It will lead to publishing packages that\ncontain runtime panics when users update to newer versions of\ngo.opentelemetry.io/otel/trace, which may be done with a transitive\ndependency.\n\nFinally, an author can embed another implementation in theirs. The embedded\nimplementation will be used for methods not defined by the author. For example,\nan author who wants to default to silently dropping the call can use\ngo.opentelemetry.io/otel/trace/noop:\n\nIt is strongly recommended that authors only embed\ngo.opentelemetry.io/otel/trace/noop if they choose this default behavior.\nThat implementation is the only one OpenTelemetry authors can guarantee will\nfully implement all the API interfaces when a user updates their API.",
+      "licenses": [
+        {
+          "expression": "(Apache-2.0 OR BSD-3-Clause)"
+        }
+      ],
       "purl": "pkg:golang/go.opentelemetry.io/otel/trace@v1.39.0",
       "externalReferences": [
         {
@@ -26601,10 +26601,6 @@
         {
           "url": "https://pkg.go.dev/go.opentelemetry.io/otel/trace",
           "type": "distribution"
-        },
-        {
-          "url": "https://github.com/open-telemetry/opentelemetry-go",
-          "type": "vcs"
         },
         {
           "url": "https://pkg.go.dev/go.opentelemetry.io/otel/trace#section-documentation",
@@ -26634,7 +26630,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2025-08-29T19:42:52Z"
+          "value": "2026-04-03T08:30:03Z"
         },
         {
           "name": "ecosystems:topic",
@@ -26789,13 +26785,6 @@
     {
       "bom-ref": "pkg:golang/go.uber.org/atomic@v1.11.0",
       "type": "library",
-      "supplier": {
-        "name": "Uber Go",
-        "url": [
-          "http://uber.github.io/"
-        ]
-      },
-      "author": "Uber Go",
       "name": "go.uber.org/atomic",
       "version": "v1.11.0",
       "description": "Package atomic provides simple wrappers around numerics to enforce atomic\naccess.",
@@ -26847,10 +26836,6 @@
         {
           "name": "ecosystems:latest_release_published_at",
           "value": "2023-05-03T17:25:03Z"
-        },
-        {
-          "name": "ecosystems:owner_location",
-          "value": "70+ countries and counting."
         }
       ]
     },
@@ -27021,10 +27006,6 @@
         {
           "url": "https://pkg.go.dev/go.uber.org/zap",
           "type": "distribution"
-        },
-        {
-          "url": "https://github.com/uber-go/zap",
-          "type": "vcs"
         },
         {
           "url": "https://pkg.go.dev/go.uber.org/zap#section-documentation",
@@ -27213,6 +27194,10 @@
           "type": "distribution"
         },
         {
+          "url": "https://cs.opensource.google/go/x/crypto",
+          "type": "vcs"
+        },
+        {
           "url": "https://pkg.go.dev/golang.org/x/crypto#section-documentation",
           "type": "documentation"
         }
@@ -27240,7 +27225,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-03-11T14:17:49Z"
+          "value": "2026-04-09T15:33:22Z"
         }
       ]
     },
@@ -27352,7 +27337,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-03-12T00:35:42Z"
+          "value": "2026-04-09T19:17:33Z"
         }
       ]
     },
@@ -27486,6 +27471,10 @@
           "type": "distribution"
         },
         {
+          "url": "https://cs.opensource.google/go/x/sys",
+          "type": "vcs"
+        },
+        {
           "url": "https://pkg.go.dev/golang.org/x/sys#section-documentation",
           "type": "documentation"
         }
@@ -27513,7 +27502,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-03-03T01:51:03Z"
+          "value": "2026-03-27T16:08:41Z"
         }
       ]
     },
@@ -27537,6 +27526,10 @@
         {
           "url": "https://pkg.go.dev/golang.org/x/text",
           "type": "distribution"
+        },
+        {
+          "url": "https://cs.opensource.google/go/x/text",
+          "type": "vcs"
         },
         {
           "url": "https://pkg.go.dev/golang.org/x/text#section-documentation",
@@ -27566,7 +27559,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-03-10T01:41:36Z"
+          "value": "2026-04-09T11:43:05Z"
         }
       ]
     },
@@ -27766,7 +27759,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-04-02T16:02:40Z"
+          "value": "2026-04-07T14:32:30Z"
         },
         {
           "name": "ecosystems:topic",
@@ -27959,7 +27952,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-04-01T02:48:25Z"
+          "value": "2026-04-06T21:00:06Z"
         }
       ]
     },
@@ -27990,6 +27983,10 @@
         {
           "url": "https://pkg.go.dev/google.golang.org/grpc",
           "type": "distribution"
+        },
+        {
+          "url": "https://github.com/grpc/grpc-go",
+          "type": "vcs"
         },
         {
           "url": "https://pkg.go.dev/google.golang.org/grpc#section-documentation",
@@ -28225,6 +28222,10 @@
           "type": "distribution"
         },
         {
+          "url": "https://github.com/go-yaml/yaml",
+          "type": "vcs"
+        },
+        {
           "url": "https://pkg.go.dev/gopkg.in/yaml.v3#section-documentation",
           "type": "documentation"
         }
@@ -28282,6 +28283,10 @@
         {
           "url": "https://pkg.go.dev/k8s.io/apimachinery",
           "type": "distribution"
+        },
+        {
+          "url": "https://github.com/kubernetes/apimachinery",
+          "type": "vcs"
         },
         {
           "url": "https://pkg.go.dev/k8s.io/apimachinery#section-documentation",
@@ -28348,6 +28353,10 @@
           "type": "distribution"
         },
         {
+          "url": "https://github.com/kubernetes/client-go",
+          "type": "vcs"
+        },
+        {
           "url": "https://pkg.go.dev/k8s.io/client-go#section-documentation",
           "type": "documentation"
         }
@@ -28410,6 +28419,10 @@
         {
           "url": "https://pkg.go.dev/k8s.io/klog/v2",
           "type": "distribution"
+        },
+        {
+          "url": "https://github.com/kubernetes/klog",
+          "type": "vcs"
         },
         {
           "url": "https://pkg.go.dev/k8s.io/klog/v2#section-documentation",
@@ -28546,13 +28559,13 @@
   ],
   "dependencies": [
     {
-      "ref": "011c3c42-24bd-415c-8063-c316fdfb0308",
+      "ref": "302be11d-bab5-47d5-8f53-951af0662581",
       "dependsOn": [
         "pkg:golang/github.com/grafana/tempo@v2.10.1"
       ]
     },
     {
-      "ref": "375edf43-2f7e-4cd8-817e-4eadfa4c52d3",
+      "ref": "8263264f-e3e5-4533-8d88-927c4598c6b2",
       "dependsOn": [
         "pkg:deb/debian/base-files@12.4%2Bdeb12u13?arch=amd64&distro=debian-12.13",
         "pkg:deb/debian/media-types@10.0.0?arch=all&distro=debian-12.13",
@@ -30464,8 +30477,8 @@
     {
       "ref": "pkg:oci/tempo@sha256%3A9371af1b75b4e057eb77f22dc4dd4d9176cd6985e29f181527be6723b7f29c41?arch=amd64&repository_url=index.docker.io%2Fgrafana%2Ftempo",
       "dependsOn": [
-        "011c3c42-24bd-415c-8063-c316fdfb0308",
-        "375edf43-2f7e-4cd8-817e-4eadfa4c52d3"
+        "302be11d-bab5-47d5-8f53-951af0662581",
+        "8263264f-e3e5-4533-8d88-927c4598c6b2"
       ]
     }
   ],

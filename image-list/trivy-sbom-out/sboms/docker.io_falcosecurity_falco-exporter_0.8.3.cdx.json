@@ -2,10 +2,10 @@
   "$schema": "http://cyclonedx.org/schema/bom-1.6.schema.json",
   "bomFormat": "CycloneDX",
   "specVersion": "1.6",
-  "serialNumber": "urn:uuid:05d69976-6100-4de1-beed-67500d98f82c",
+  "serialNumber": "urn:uuid:7ed885a4-f100-4fa1-ac6e-96c478a43556",
   "version": 1,
   "metadata": {
-    "timestamp": "2026-04-07T12:45:43+00:00",
+    "timestamp": "2026-04-14T09:23:23+00:00",
     "tools": {
       "components": [
         {
@@ -82,7 +82,7 @@
   },
   "components": [
     {
-      "bom-ref": "46cf764d-aeda-420c-a358-bb7baa77148e",
+      "bom-ref": "2f6ef3f5-4401-409d-991e-ec8f3313f3ca",
       "type": "operating-system",
       "name": "alpine",
       "version": "3.16.5",
@@ -98,7 +98,7 @@
       ]
     },
     {
-      "bom-ref": "d0df7f85-47a3-4074-a2d0-b8ee8a32a12f",
+      "bom-ref": "5183b58a-b664-454c-b822-e23ea4948d4a",
       "type": "application",
       "name": "usr/bin/falco-exporter",
       "properties": [
@@ -394,7 +394,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-02-25T18:43:29Z"
+          "value": "2026-04-13T09:23:00Z"
         }
       ]
     },
@@ -842,7 +842,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-03-21T19:37:00Z"
+          "value": "2026-04-10T15:28:45Z"
         }
       ]
     },
@@ -914,7 +914,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-03-21T19:37:00Z"
+          "value": "2026-04-10T15:28:45Z"
         }
       ]
     },
@@ -1962,7 +1962,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-03-12T00:35:42Z"
+          "value": "2026-04-09T19:17:33Z"
         }
       ]
     },
@@ -1985,6 +1985,10 @@
         {
           "url": "https://pkg.go.dev/golang.org/x/sys",
           "type": "distribution"
+        },
+        {
+          "url": "https://cs.opensource.google/go/x/sys",
+          "type": "vcs"
         },
         {
           "url": "https://pkg.go.dev/golang.org/x/sys#section-documentation",
@@ -2014,7 +2018,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-03-03T01:51:03Z"
+          "value": "2026-03-27T16:08:41Z"
         }
       ]
     },
@@ -2038,6 +2042,10 @@
         {
           "url": "https://pkg.go.dev/golang.org/x/text",
           "type": "distribution"
+        },
+        {
+          "url": "https://cs.opensource.google/go/x/text",
+          "type": "vcs"
         },
         {
           "url": "https://pkg.go.dev/golang.org/x/text#section-documentation",
@@ -2067,7 +2075,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-03-10T01:41:36Z"
+          "value": "2026-04-09T11:43:05Z"
         }
       ]
     },
@@ -2125,7 +2133,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-04-01T02:48:25Z"
+          "value": "2026-04-06T21:00:06Z"
         }
       ]
     },
@@ -2156,6 +2164,10 @@
         {
           "url": "https://pkg.go.dev/google.golang.org/grpc",
           "type": "distribution"
+        },
+        {
+          "url": "https://github.com/grpc/grpc-go",
+          "type": "vcs"
         },
         {
           "url": "https://pkg.go.dev/google.golang.org/grpc#section-documentation",
@@ -2332,7 +2344,7 @@
   ],
   "dependencies": [
     {
-      "ref": "46cf764d-aeda-420c-a358-bb7baa77148e",
+      "ref": "2f6ef3f5-4401-409d-991e-ec8f3313f3ca",
       "dependsOn": [
         "pkg:apk/alpine/alpine-baselayout@3.2.0-r23?arch=x86_64&distro=3.16.5",
         "pkg:apk/alpine/alpine-keys@2.4-r1?arch=x86_64&distro=3.16.5",
@@ -2342,7 +2354,7 @@
       ]
     },
     {
-      "ref": "d0df7f85-47a3-4074-a2d0-b8ee8a32a12f",
+      "ref": "5183b58a-b664-454c-b822-e23ea4948d4a",
       "dependsOn": [
         "pkg:golang/github.com/falcosecurity/falco-exporter"
       ]
@@ -2526,8 +2538,8 @@
     {
       "ref": "pkg:oci/falco-exporter@sha256%3A62b81ebb555d118fde03306ef2f4151c303e0c32a2b8bf93bbc2de156d3d1732?arch=amd64&repository_url=index.docker.io%2Ffalcosecurity%2Ffalco-exporter",
       "dependsOn": [
-        "46cf764d-aeda-420c-a358-bb7baa77148e",
-        "d0df7f85-47a3-4074-a2d0-b8ee8a32a12f"
+        "2f6ef3f5-4401-409d-991e-ec8f3313f3ca",
+        "5183b58a-b664-454c-b822-e23ea4948d4a"
       ]
     }
   ],
