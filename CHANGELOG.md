@@ -15,7 +15,11 @@
 * **traefik:** ingress-nginx gets replaced by traefik. Before you install this release, you have the option to do a smooth migration with assistance of kubriX support. Just contact us or read through the shipped migration runbook.
 * **deps:** Grafana Plugins need to get defined in a new syntax (see example in values-kubrix-default.yaml)
 * **k8s-monitoring:** add new app "prometheus-operator-crds" with sync-wave "-11" (at least very early) to your own target-chart values file. it replaces the prometheus CRDs shipped with k8s-monitoring chart, to prevent circular dependencies between k8s-monitoring and vault. (examples in other "kind" target-chart values files)
-* **deps:** argocd appset CRDs need server-side-apply. Please update your target-chart values file. Details see https://argo-cd.readthedocs.io/en/stable/operator-manual/upgrading/3.2-3.3/ ---------
+* **deps:** argocd appset CRDs need server-side-apply. Please update your target-chart values file. Details see https://argo-cd.readthedocs.io/en/stable/operator-manual/upgrading/3.2-3.3/
+
+### ⚠ BREAKING CHANGES Prime (only available with kubriX prime plan)
+
+* **mimir,loki:** upgrades from kubriX v6 to v7 need to create mimir and loki tenant credentials in vault (see mimir and loki runbooks for details)
 
 ### Features
 
@@ -134,6 +138,30 @@
 * **vault:** replace vault with openbao ([#2610](https://github.com/suxess-it/kubriX/issues/2610)) ([6475de0](https://github.com/suxess-it/kubriX/commit/6475de074c95fa676597e9ffd8a7e0df1b5dcda2))
 * **velero:** add kubevirt-plugin per default and remove azure-plugin ([#1947](https://github.com/suxess-it/kubriX/issues/1947)) ([7c2ce95](https://github.com/suxess-it/kubriX/commit/7c2ce95352061f18b3acd70370cad6ff0486394d))
 
+### Prime Features (only available with kubriX prime plan)
+
+* **cnpg:** add HA configuration ([kubriX-prime/#341](https://github.com/suxess-it/kubriX-prime/issues/341)) ([kubriX-prime/bc31702](https://github.com/suxess-it/kubriX-prime/commit/bc317022f2d2eab51465908cb959401fc9de3065))
+* **codespaces:** add kind-hub-prime ([kubriX-prime/#380](https://github.com/suxess-it/kubriX-prime/issues/380)) ([kubriX-prime/9483010](https://github.com/suxess-it/kubriX-prime/commit/9483010c7503ce33849b689be533e8239ba393a5))
+* **crossplane:** add HA configuration ([kubriX-prime/#330](https://github.com/suxess-it/kubriX-prime/issues/330)) ([kubriX-prime/8768e7f](https://github.com/suxess-it/kubriX-prime/commit/8768e7fa118cd392a847c7997726d3084bd9dbae))
+* **crossplane:** enable crossplane provider HA ([kubriX-prime/#331](https://github.com/suxess-it/kubriX-prime/issues/331)) ([kubriX-prime/d427f1e](https://github.com/suxess-it/kubriX-prime/commit/d427f1e464cfde9432bb5c0fdcd5d2af8c9bc144))
+* **external-dns:** document why external-dns HA implementation is not possible at the moment ([kubriX-prime/#332](https://github.com/suxess-it/kubriX-prime/issues/332)) ([kubriX-prime/e8a30ae](https://github.com/suxess-it/kubriX-prime/commit/e8a30ae00659520af55adcae49023ed55661ae10))
+* **external-secrets:** provide ha configuration ([kubriX-prime/#335](https://github.com/suxess-it/kubriX-prime/issues/335)) ([kubriX-prime/5f0cbc2](https://github.com/suxess-it/kubriX-prime/commit/5f0cbc224e449b0fa36f582ba2bd32b73900f58e))
+* **k8s-monitoring:** ha settings for k8s-monitoring v4 ([kubriX-prime/#438](https://github.com/suxess-it/kubriX-prime/issues/438)) ([kubriX-prime/51f8f7b](https://github.com/suxess-it/kubriX-prime/commit/51f8f7b826ed3ceb4f385ef3aed8998597aa0782))
+* **k8s-monitoring:** reduce destination extension to tempo with dest… ([kubriX-prime/#368](https://github.com/suxess-it/kubriX-prime/issues/368)) ([kubriX-prime/db8c8cd](https://github.com/suxess-it/kubriX-prime/commit/db8c8cd20104554522e8e676ad1f094c7d98944c))
+* **keycloak:** provide HA configuration ([kubriX-prime/#338](https://github.com/suxess-it/kubriX-prime/issues/338)) ([kubriX-prime/63218ce](https://github.com/suxess-it/kubriX-prime/commit/63218ceed674cd05729659bec67698db1e1d292c))
+* **kyverno:** provide HA configuration ([kubriX-prime/#336](https://github.com/suxess-it/kubriX-prime/issues/336)) ([kubriX-prime/8236e46](https://github.com/suxess-it/kubriX-prime/commit/8236e463412a6c81bcb8806bb328eb5703651932))
+* **license:** add NOTICE and third-party license file ([kubriX-prime/#263](https://github.com/suxess-it/kubriX-prime/issues/263)) ([kubriX-prime/41d05c2](https://github.com/suxess-it/kubriX-prime/commit/41d05c2a7e666e353c259612173b2ded8ad00a6e))
+* **mimir,loki:** mimir and loki authentication ([kubriX-prime/#379](https://github.com/suxess-it/kubriX-prime/issues/379)) ([kubriX-prime/7719145](https://github.com/suxess-it/kubriX-prime/commit/77191457c20b8e6912ec03c8bdcf09a971465b9a))
+* **mimir:** add high cpu runbook ([kubriX-prime/#391](https://github.com/suxess-it/kubriX-prime/issues/391)) ([kubriX-prime/3e659e7](https://github.com/suxess-it/kubriX-prime/commit/3e659e76a400959b9126806a555a998731c42824))
+* **pipeline:** add kind-hub-prime stack ([kubriX-prime/#340](https://github.com/suxess-it/kubriX-prime/issues/340)) ([kubriX-prime/5eea94d](https://github.com/suxess-it/kubriX-prime/commit/5eea94d193af6c753615aad615ef03e5bf7d63f8))
+* **pipeline:** add prime playwright tests ([kubriX-prime/#361](https://github.com/suxess-it/kubriX-prime/issues/361)) ([kubriX-prime/a847690](https://github.com/suxess-it/kubriX-prime/commit/a847690c1b230e0ee6f34607b7c8151cd8687038))
+* **pipeline:** add prime values to cluster test ([kubriX-prime/#352](https://github.com/suxess-it/kubriX-prime/issues/352)) ([kubriX-prime/bc8cb1a](https://github.com/suxess-it/kubriX-prime/commit/bc8cb1a437fa04c9130d144f26e3ea8fa737c472))
+* **pipeline:** add tests to e2e prime testworkflow ([kubriX-prime/#363](https://github.com/suxess-it/kubriX-prime/issues/363)) ([kubriX-prime/ad05cfa](https://github.com/suxess-it/kubriX-prime/commit/ad05cfa3b4bb6f153ad92492cd85c240c6744f63))
+* **pipeline:** test ha enabled prime ([kubriX-prime/#354](https://github.com/suxess-it/kubriX-prime/issues/354)) ([kubriX-prime/639b194](https://github.com/suxess-it/kubriX-prime/commit/639b1947ed3eb19a47b48768c924444c2e7e52c0))
+* **runbooks:** Add troubleshooting for mimir compactor 'no space lef… ([kubriX-prime/#376](https://github.com/suxess-it/kubriX-prime/issues/376)) ([kubriX-prime/fd7f622](https://github.com/suxess-it/kubriX-prime/commit/fd7f62260fc8295fc13915af30db9972073ae33e))
+* **spoke-applications:** render ignoreDifferences option ([kubriX-prime/#410](https://github.com/suxess-it/kubriX-prime/issues/410)) ([kubriX-prime/0d5fb0c](https://github.com/suxess-it/kubriX-prime/commit/0d5fb0cd8498b1956c68a55e8a127eb7437c5af4))
+* **spokes:** add cluster-specific values file for spoke-applications ([kubriX-prime/#398](https://github.com/suxess-it/kubriX-prime/issues/398)) ([kubriX-prime/67118b5](https://github.com/suxess-it/kubriX-prime/commit/67118b5017db964051f2f7660cd74640b0c92a2d))
+* **velero:** add velero spoke configuration ([kubriX-prime/#345](https://github.com/suxess-it/kubriX-prime/issues/345)) ([kubriX-prime/e744a8c](https://github.com/suxess-it/kubriX-prime/commit/e744a8c960bd3acc9f900caade5432533f34e46e))
 
 ### Bug Fixes
 
