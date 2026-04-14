@@ -2,10 +2,10 @@
   "$schema": "http://cyclonedx.org/schema/bom-1.6.schema.json",
   "bomFormat": "CycloneDX",
   "specVersion": "1.6",
-  "serialNumber": "urn:uuid:fe4d7b52-fd9f-4b56-ae2b-7fc29bad8d77",
+  "serialNumber": "urn:uuid:6ff2c9a8-56f1-48ca-841c-a72337df897d",
   "version": 1,
   "metadata": {
-    "timestamp": "2026-04-07T12:47:23+00:00",
+    "timestamp": "2026-04-14T09:26:00+00:00",
     "tools": {
       "components": [
         {
@@ -70,7 +70,7 @@
   },
   "components": [
     {
-      "bom-ref": "6d9e6e75-1d45-4146-ad1a-2bb88c50b4b7",
+      "bom-ref": "50ea86de-e3c4-4d6d-a18a-1975a704daeb",
       "type": "application",
       "name": "ko-app/readiness-checker",
       "properties": [
@@ -85,7 +85,7 @@
       ]
     },
     {
-      "bom-ref": "fc841d69-772f-4c4f-a6e7-4f3dc9604239",
+      "bom-ref": "65f100a9-d5d6-44e5-b5dc-88e048ec50f9",
       "type": "operating-system",
       "name": "alpine",
       "version": "3.24.0_alpha20251224",
@@ -2412,7 +2412,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-03-12T00:35:42Z"
+          "value": "2026-04-09T19:17:33Z"
         }
       ]
     },
@@ -2494,6 +2494,10 @@
           "type": "distribution"
         },
         {
+          "url": "https://cs.opensource.google/go/x/sys",
+          "type": "vcs"
+        },
+        {
           "url": "https://pkg.go.dev/golang.org/x/sys#section-documentation",
           "type": "documentation"
         }
@@ -2521,7 +2525,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-03-03T01:51:03Z"
+          "value": "2026-03-27T16:08:41Z"
         }
       ]
     },
@@ -2574,7 +2578,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-03-10T01:43:14Z"
+          "value": "2026-04-09T11:43:42Z"
         }
       ]
     },
@@ -2598,6 +2602,10 @@
         {
           "url": "https://pkg.go.dev/golang.org/x/text",
           "type": "distribution"
+        },
+        {
+          "url": "https://cs.opensource.google/go/x/text",
+          "type": "vcs"
         },
         {
           "url": "https://pkg.go.dev/golang.org/x/text#section-documentation",
@@ -2627,7 +2635,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-03-10T01:41:36Z"
+          "value": "2026-04-09T11:43:05Z"
         }
       ]
     },
@@ -2996,6 +3004,10 @@
           "type": "distribution"
         },
         {
+          "url": "https://github.com/kubernetes/apimachinery",
+          "type": "vcs"
+        },
+        {
           "url": "https://pkg.go.dev/k8s.io/apimachinery#section-documentation",
           "type": "documentation"
         }
@@ -3060,6 +3072,10 @@
           "type": "distribution"
         },
         {
+          "url": "https://github.com/kubernetes/client-go",
+          "type": "vcs"
+        },
+        {
           "url": "https://pkg.go.dev/k8s.io/client-go#section-documentation",
           "type": "documentation"
         }
@@ -3122,6 +3138,10 @@
         {
           "url": "https://pkg.go.dev/k8s.io/klog/v2",
           "type": "distribution"
+        },
+        {
+          "url": "https://github.com/kubernetes/klog",
+          "type": "vcs"
         },
         {
           "url": "https://pkg.go.dev/k8s.io/klog/v2#section-documentation",
@@ -3213,7 +3233,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-03-19T00:48:28Z"
+          "value": "2026-03-30T15:44:17Z"
         }
       ]
     },
@@ -3526,13 +3546,13 @@
   ],
   "dependencies": [
     {
-      "ref": "6d9e6e75-1d45-4146-ad1a-2bb88c50b4b7",
+      "ref": "50ea86de-e3c4-4d6d-a18a-1975a704daeb",
       "dependsOn": [
         "pkg:golang/github.com/kyverno/kyverno@v1.5.0-rc1.0.20260122002923-b35e0045f4a1%2Bdirty"
       ]
     },
     {
-      "ref": "fc841d69-772f-4c4f-a6e7-4f3dc9604239",
+      "ref": "65f100a9-d5d6-44e5-b5dc-88e048ec50f9",
       "dependsOn": [
         "pkg:apk/alpine/alpine-baselayout-data@3.7.1-r10?arch=noarch&distro=3.24.0_alpha20251224",
         "pkg:apk/alpine/alpine-release@3.24.0_alpha20251224-r0?arch=noarch&distro=3.24.0_alpha20251224",
@@ -3805,8 +3825,8 @@
     {
       "ref": "pkg:oci/readiness-checker@sha256%3Ac54c0aa24d536f7a31ed854db4f2b2d6863b41d7d85725e21f80cd318c4e815b?arch=amd64&repository_url=ghcr.io%2Fkyverno%2Freadiness-checker",
       "dependsOn": [
-        "6d9e6e75-1d45-4146-ad1a-2bb88c50b4b7",
-        "fc841d69-772f-4c4f-a6e7-4f3dc9604239"
+        "50ea86de-e3c4-4d6d-a18a-1975a704daeb",
+        "65f100a9-d5d6-44e5-b5dc-88e048ec50f9"
       ]
     }
   ],

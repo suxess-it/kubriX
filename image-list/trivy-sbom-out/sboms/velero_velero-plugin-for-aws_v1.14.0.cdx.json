@@ -2,10 +2,10 @@
   "$schema": "http://cyclonedx.org/schema/bom-1.6.schema.json",
   "bomFormat": "CycloneDX",
   "specVersion": "1.6",
-  "serialNumber": "urn:uuid:995efb44-a358-4daf-9f06-9f376cc33ea7",
+  "serialNumber": "urn:uuid:3987d395-603b-4e77-8a42-dea560544214",
   "version": 1,
   "metadata": {
-    "timestamp": "2026-04-07T12:49:54+00:00",
+    "timestamp": "2026-04-14T09:29:06+00:00",
     "tools": {
       "components": [
         {
@@ -66,7 +66,82 @@
   },
   "components": [
     {
-      "bom-ref": "3dc981fb-91bd-4814-92ac-d37a134af7a5",
+      "bom-ref": "0d5aaad8-25e1-4bf4-800f-1abc6025712b",
+      "type": "library",
+      "name": "stdlib",
+      "version": "v1.25.7",
+      "purl": "pkg:golang/stdlib@v1.25.7",
+      "properties": [
+        {
+          "name": "aquasecurity:trivy:LayerDiffID",
+          "value": "sha256:d10c06458ecf1de8839b5b608f17ab893cfcdb4d4708766e46eb1282e763d965"
+        },
+        {
+          "name": "aquasecurity:trivy:LayerDigest",
+          "value": "sha256:f07d294ee6c49c497ac7a803495269b1ac8d05e73c2621dc7b8a68d5823030ad"
+        },
+        {
+          "name": "aquasecurity:trivy:PkgID",
+          "value": "stdlib@v1.25.7"
+        },
+        {
+          "name": "aquasecurity:trivy:PkgType",
+          "value": "gobinary"
+        }
+      ]
+    },
+    {
+      "bom-ref": "372b8486-7478-4b82-a907-2357871b1ec0",
+      "type": "library",
+      "name": "github.com/vmware-tanzu/velero-plugin-for-aws",
+      "version": "v1.14.0+dirty",
+      "purl": "pkg:golang/github.com/vmware-tanzu/velero-plugin-for-aws@v1.14.0%2Bdirty",
+      "properties": [
+        {
+          "name": "aquasecurity:trivy:LayerDiffID",
+          "value": "sha256:d96790b65076fcb74314f5f2e0a574d29febf3982f5ae06c8e3bca7e5b81ef9c"
+        },
+        {
+          "name": "aquasecurity:trivy:LayerDigest",
+          "value": "sha256:16a4dad749359eaad18ab7a6072e36ae6ccfc7f4fba15ca007d334dfec798d8f"
+        },
+        {
+          "name": "aquasecurity:trivy:PkgID",
+          "value": "github.com/vmware-tanzu/velero-plugin-for-aws@v1.14.0+dirty"
+        },
+        {
+          "name": "aquasecurity:trivy:PkgType",
+          "value": "gobinary"
+        }
+      ]
+    },
+    {
+      "bom-ref": "957664ad-5a99-4f22-897b-352368cbc540",
+      "type": "library",
+      "name": "stdlib",
+      "version": "v1.25.7",
+      "purl": "pkg:golang/stdlib@v1.25.7",
+      "properties": [
+        {
+          "name": "aquasecurity:trivy:LayerDiffID",
+          "value": "sha256:d96790b65076fcb74314f5f2e0a574d29febf3982f5ae06c8e3bca7e5b81ef9c"
+        },
+        {
+          "name": "aquasecurity:trivy:LayerDigest",
+          "value": "sha256:16a4dad749359eaad18ab7a6072e36ae6ccfc7f4fba15ca007d334dfec798d8f"
+        },
+        {
+          "name": "aquasecurity:trivy:PkgID",
+          "value": "stdlib@v1.25.7"
+        },
+        {
+          "name": "aquasecurity:trivy:PkgType",
+          "value": "gobinary"
+        }
+      ]
+    },
+    {
+      "bom-ref": "d45111cd-9ccc-482d-b405-4c0502cd7c55",
       "type": "application",
       "name": "bin/cp-plugin",
       "properties": [
@@ -81,7 +156,7 @@
       ]
     },
     {
-      "bom-ref": "5f4434b1-f6f5-4b97-b485-dc21cee67848",
+      "bom-ref": "e12bc682-aab2-4f48-ab9c-7065eff5fc9a",
       "type": "application",
       "name": "plugins/velero-plugin-for-aws",
       "properties": [
@@ -96,86 +171,11 @@
       ]
     },
     {
-      "bom-ref": "7d56de61-3938-434d-b1c4-d6afbe5f955a",
+      "bom-ref": "e80db6aa-1f89-41df-93dc-92d30f2e3ebb",
       "type": "library",
-      "name": "stdlib",
-      "version": "v1.25.7",
-      "purl": "pkg:golang/stdlib@v1.25.7",
-      "properties": [
-        {
-          "name": "aquasecurity:trivy:LayerDiffID",
-          "value": "sha256:d10c06458ecf1de8839b5b608f17ab893cfcdb4d4708766e46eb1282e763d965"
-        },
-        {
-          "name": "aquasecurity:trivy:LayerDigest",
-          "value": "sha256:f07d294ee6c49c497ac7a803495269b1ac8d05e73c2621dc7b8a68d5823030ad"
-        },
-        {
-          "name": "aquasecurity:trivy:PkgID",
-          "value": "stdlib@v1.25.7"
-        },
-        {
-          "name": "aquasecurity:trivy:PkgType",
-          "value": "gobinary"
-        }
-      ]
-    },
-    {
-      "bom-ref": "c5bb8a90-6229-4763-b1dc-0d6d2dbafb14",
-      "type": "library",
-      "name": "stdlib",
-      "version": "v1.25.7",
-      "purl": "pkg:golang/stdlib@v1.25.7",
-      "properties": [
-        {
-          "name": "aquasecurity:trivy:LayerDiffID",
-          "value": "sha256:d96790b65076fcb74314f5f2e0a574d29febf3982f5ae06c8e3bca7e5b81ef9c"
-        },
-        {
-          "name": "aquasecurity:trivy:LayerDigest",
-          "value": "sha256:16a4dad749359eaad18ab7a6072e36ae6ccfc7f4fba15ca007d334dfec798d8f"
-        },
-        {
-          "name": "aquasecurity:trivy:PkgID",
-          "value": "stdlib@v1.25.7"
-        },
-        {
-          "name": "aquasecurity:trivy:PkgType",
-          "value": "gobinary"
-        }
-      ]
-    },
-    {
-      "bom-ref": "e642fdd6-75df-4d60-9bae-00c6b4e6e706",
-      "type": "library",
-      "supplier": {
-        "name": "VMware Tanzu",
-        "url": [
-          "tanzu.io"
-        ]
-      },
-      "author": "VMware Tanzu",
       "name": "github.com/vmware-tanzu/velero-plugin-for-aws",
       "version": "v1.14.0+dirty",
       "purl": "pkg:golang/github.com/vmware-tanzu/velero-plugin-for-aws@v1.14.0%2Bdirty",
-      "externalReferences": [
-        {
-          "url": "https://github.com/vmware-tanzu/velero-plugin-for-aws",
-          "type": "website"
-        },
-        {
-          "url": "https://pkg.go.dev/github.com/vmware-tanzu/velero-plugin-for-aws",
-          "type": "distribution"
-        },
-        {
-          "url": "https://github.com/vmware-tanzu/velero-plugin-for-aws",
-          "type": "vcs"
-        },
-        {
-          "url": "https://pkg.go.dev/github.com/vmware-tanzu/velero-plugin-for-aws#section-documentation",
-          "type": "documentation"
-        }
-      ],
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
@@ -192,88 +192,6 @@
         {
           "name": "aquasecurity:trivy:PkgType",
           "value": "gobinary"
-        },
-        {
-          "name": "ecosystems:first_release_published_at",
-          "value": "2019-10-24T14:22:53Z"
-        },
-        {
-          "name": "ecosystems:latest_release_published_at",
-          "value": "2026-03-06T08:31:18Z"
-        },
-        {
-          "name": "ecosystems:topic",
-          "value": "velero"
-        },
-        {
-          "name": "ecosystems:topic",
-          "value": "velero-plugin"
-        }
-      ]
-    },
-    {
-      "bom-ref": "fed6cc30-3151-449e-bc0d-69a2af445902",
-      "type": "library",
-      "supplier": {
-        "name": "VMware Tanzu",
-        "url": [
-          "tanzu.io"
-        ]
-      },
-      "author": "VMware Tanzu",
-      "name": "github.com/vmware-tanzu/velero-plugin-for-aws",
-      "version": "v1.14.0+dirty",
-      "purl": "pkg:golang/github.com/vmware-tanzu/velero-plugin-for-aws@v1.14.0%2Bdirty",
-      "externalReferences": [
-        {
-          "url": "https://github.com/vmware-tanzu/velero-plugin-for-aws",
-          "type": "website"
-        },
-        {
-          "url": "https://pkg.go.dev/github.com/vmware-tanzu/velero-plugin-for-aws",
-          "type": "distribution"
-        },
-        {
-          "url": "https://github.com/vmware-tanzu/velero-plugin-for-aws",
-          "type": "vcs"
-        },
-        {
-          "url": "https://pkg.go.dev/github.com/vmware-tanzu/velero-plugin-for-aws#section-documentation",
-          "type": "documentation"
-        }
-      ],
-      "properties": [
-        {
-          "name": "aquasecurity:trivy:LayerDiffID",
-          "value": "sha256:d96790b65076fcb74314f5f2e0a574d29febf3982f5ae06c8e3bca7e5b81ef9c"
-        },
-        {
-          "name": "aquasecurity:trivy:LayerDigest",
-          "value": "sha256:16a4dad749359eaad18ab7a6072e36ae6ccfc7f4fba15ca007d334dfec798d8f"
-        },
-        {
-          "name": "aquasecurity:trivy:PkgID",
-          "value": "github.com/vmware-tanzu/velero-plugin-for-aws@v1.14.0+dirty"
-        },
-        {
-          "name": "aquasecurity:trivy:PkgType",
-          "value": "gobinary"
-        },
-        {
-          "name": "ecosystems:first_release_published_at",
-          "value": "2019-10-24T14:22:53Z"
-        },
-        {
-          "name": "ecosystems:latest_release_published_at",
-          "value": "2026-03-06T08:31:18Z"
-        },
-        {
-          "name": "ecosystems:topic",
-          "value": "velero"
-        },
-        {
-          "name": "ecosystems:topic",
-          "value": "velero-plugin"
         }
       ]
     },
@@ -1042,11 +960,6 @@
       "name": "github.com/aws/aws-sdk-go-v2/service/ec2",
       "version": "v1.143.0",
       "description": "Package ec2 provides the API client, operations, and parameter types for Amazon\nElastic Compute Cloud.\n\nYou can access the features of Amazon Elastic Compute Cloud (Amazon EC2)\nprogrammatically. For more information, see the Amazon EC2 Developer Guide.",
-      "licenses": [
-        {
-          "expression": "(Apache-2.0)"
-        }
-      ],
       "purl": "pkg:golang/github.com/aws/aws-sdk-go-v2/service/ec2@v1.143.0",
       "externalReferences": [
         {
@@ -1507,7 +1420,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-03-31T18:20:16Z"
+          "value": "2026-04-07T18:20:52Z"
         },
         {
           "name": "ecosystems:owner_location",
@@ -3672,11 +3585,6 @@
       "name": "github.com/json-iterator/go",
       "version": "v1.1.12",
       "description": "Package jsoniter implements encoding and decoding of JSON as defined in\nRFC 4627 and provides interfaces with identical syntax of standard lib encoding/json.\nConverting from encoding/json to jsoniter is no more than replacing the package with jsoniter\nand variable type declarations (if any).\njsoniter interfaces gives 100% compatibility with code using standard lib.\n\n\"JSON and Go\"\n(https://golang.org/doc/articles/json_and_go.html)\ngives a description of how Marshal/Unmarshal operate\nbetween arbitrary or predefined json objects and bytes,\nand it applies to jsoniter.Marshal/Unmarshal as well.\n\nBesides, jsoniter.Iterator provides a different set of interfaces\niterating given bytes/string/reader\nand yielding parsed elements one by one.\nThis set of interfaces reads input as required and gives\nbetter performance.",
-      "licenses": [
-        {
-          "expression": "(MIT)"
-        }
-      ],
       "purl": "pkg:golang/github.com/json-iterator/go@v1.1.12",
       "externalReferences": [
         {
@@ -4058,7 +3966,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2023-10-17T07:28:21Z"
+          "value": "2026-04-08T12:56:32Z"
         },
         {
           "name": "ecosystems:owner_location",
@@ -5064,11 +4972,6 @@
       "author": "VMware Tanzu",
       "name": "github.com/vmware-tanzu/velero",
       "version": "v1.18.0",
-      "licenses": [
-        {
-          "expression": "(Apache-2.0)"
-        }
-      ],
       "purl": "pkg:golang/github.com/vmware-tanzu/velero@v1.18.0",
       "externalReferences": [
         {
@@ -5336,7 +5239,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-03-12T00:35:42Z"
+          "value": "2026-04-09T19:17:33Z"
         }
       ]
     },
@@ -5470,6 +5373,10 @@
           "type": "distribution"
         },
         {
+          "url": "https://cs.opensource.google/go/x/sys",
+          "type": "vcs"
+        },
+        {
           "url": "https://pkg.go.dev/golang.org/x/sys#section-documentation",
           "type": "documentation"
         }
@@ -5497,7 +5404,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-03-03T01:51:03Z"
+          "value": "2026-03-27T16:08:41Z"
         }
       ]
     },
@@ -5550,7 +5457,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-03-10T01:43:14Z"
+          "value": "2026-04-09T11:43:42Z"
         }
       ]
     },
@@ -5574,6 +5481,10 @@
         {
           "url": "https://pkg.go.dev/golang.org/x/text",
           "type": "distribution"
+        },
+        {
+          "url": "https://cs.opensource.google/go/x/text",
+          "type": "vcs"
         },
         {
           "url": "https://pkg.go.dev/golang.org/x/text#section-documentation",
@@ -5603,7 +5514,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-03-10T01:41:36Z"
+          "value": "2026-04-09T11:43:05Z"
         }
       ]
     },
@@ -5808,6 +5719,10 @@
         {
           "url": "https://pkg.go.dev/google.golang.org/grpc",
           "type": "distribution"
+        },
+        {
+          "url": "https://github.com/grpc/grpc-go",
+          "type": "vcs"
         },
         {
           "url": "https://pkg.go.dev/google.golang.org/grpc#section-documentation",
@@ -6033,11 +5948,6 @@
       "name": "gopkg.in/inf.v0",
       "version": "v0.9.1",
       "description": "Package inf (type inf.Dec) implements \"infinite-precision\" decimal\narithmetic.\n\"Infinite precision\" describes two characteristics: practically unlimited\nprecision for decimal number representation and no support for calculating\nwith any specific fixed precision.\n(Although there is no practical limit on precision, inf.Dec can only\nrepresent finite decimals.)\n\nThis package is currently in experimental stage and the API may change.\n\nThis package does NOT support:\n\nFeatures considered for possible addition:",
-      "licenses": [
-        {
-          "expression": "(BSD-3-Clause)"
-        }
-      ],
       "purl": "pkg:golang/gopkg.in/inf.v0@v0.9.1",
       "externalReferences": [
         {
@@ -6128,6 +6038,10 @@
         {
           "url": "https://pkg.go.dev/gopkg.in/yaml.v3",
           "type": "distribution"
+        },
+        {
+          "url": "https://github.com/go-yaml/yaml",
+          "type": "vcs"
         },
         {
           "url": "https://pkg.go.dev/gopkg.in/yaml.v3#section-documentation",
@@ -6323,6 +6237,10 @@
           "type": "distribution"
         },
         {
+          "url": "https://github.com/kubernetes/apimachinery",
+          "type": "vcs"
+        },
+        {
           "url": "https://pkg.go.dev/k8s.io/apimachinery#section-documentation",
           "type": "documentation"
         }
@@ -6387,6 +6305,10 @@
           "type": "distribution"
         },
         {
+          "url": "https://github.com/kubernetes/client-go",
+          "type": "vcs"
+        },
+        {
           "url": "https://pkg.go.dev/k8s.io/client-go#section-documentation",
           "type": "documentation"
         }
@@ -6449,6 +6371,10 @@
         {
           "url": "https://pkg.go.dev/k8s.io/klog/v2",
           "type": "distribution"
+        },
+        {
+          "url": "https://github.com/kubernetes/klog",
+          "type": "vcs"
         },
         {
           "url": "https://pkg.go.dev/k8s.io/klog/v2#section-documentation",
@@ -6540,7 +6466,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-03-19T00:48:28Z"
+          "value": "2026-03-30T15:44:17Z"
         }
       ]
     },
@@ -6892,35 +6818,13 @@
   ],
   "dependencies": [
     {
-      "ref": "3dc981fb-91bd-4814-92ac-d37a134af7a5",
-      "dependsOn": [
-        "e642fdd6-75df-4d60-9bae-00c6b4e6e706"
-      ]
-    },
-    {
-      "ref": "5f4434b1-f6f5-4b97-b485-dc21cee67848",
-      "dependsOn": [
-        "fed6cc30-3151-449e-bc0d-69a2af445902"
-      ]
-    },
-    {
-      "ref": "7d56de61-3938-434d-b1c4-d6afbe5f955a",
+      "ref": "0d5aaad8-25e1-4bf4-800f-1abc6025712b",
       "dependsOn": []
     },
     {
-      "ref": "c5bb8a90-6229-4763-b1dc-0d6d2dbafb14",
-      "dependsOn": []
-    },
-    {
-      "ref": "e642fdd6-75df-4d60-9bae-00c6b4e6e706",
+      "ref": "372b8486-7478-4b82-a907-2357871b1ec0",
       "dependsOn": [
-        "7d56de61-3938-434d-b1c4-d6afbe5f955a"
-      ]
-    },
-    {
-      "ref": "fed6cc30-3151-449e-bc0d-69a2af445902",
-      "dependsOn": [
-        "c5bb8a90-6229-4763-b1dc-0d6d2dbafb14",
+        "957664ad-5a99-4f22-897b-352368cbc540",
         "pkg:golang/github.com/aws/aws-sdk-go-v2/aws/protocol/eventstream@v1.5.4",
         "pkg:golang/github.com/aws/aws-sdk-go-v2/config@v1.26.3",
         "pkg:golang/github.com/aws/aws-sdk-go-v2/credentials@v1.16.14",
@@ -7012,6 +6916,28 @@
         "pkg:golang/sigs.k8s.io/randfill@v1.0.0",
         "pkg:golang/sigs.k8s.io/structured-merge-diff/v4@v4.6.0",
         "pkg:golang/sigs.k8s.io/yaml@v1.4.0"
+      ]
+    },
+    {
+      "ref": "957664ad-5a99-4f22-897b-352368cbc540",
+      "dependsOn": []
+    },
+    {
+      "ref": "d45111cd-9ccc-482d-b405-4c0502cd7c55",
+      "dependsOn": [
+        "e80db6aa-1f89-41df-93dc-92d30f2e3ebb"
+      ]
+    },
+    {
+      "ref": "e12bc682-aab2-4f48-ab9c-7065eff5fc9a",
+      "dependsOn": [
+        "372b8486-7478-4b82-a907-2357871b1ec0"
+      ]
+    },
+    {
+      "ref": "e80db6aa-1f89-41df-93dc-92d30f2e3ebb",
+      "dependsOn": [
+        "0d5aaad8-25e1-4bf4-800f-1abc6025712b"
       ]
     },
     {
@@ -7381,8 +7307,8 @@
     {
       "ref": "pkg:oci/velero-plugin-for-aws@sha256%3A7e82f717f44e89671212e0dfce7e061321c386ea84a33bca64a671670ca6c278?arch=amd64&repository_url=index.docker.io%2Fvelero%2Fvelero-plugin-for-aws",
       "dependsOn": [
-        "3dc981fb-91bd-4814-92ac-d37a134af7a5",
-        "5f4434b1-f6f5-4b97-b485-dc21cee67848"
+        "d45111cd-9ccc-482d-b405-4c0502cd7c55",
+        "e12bc682-aab2-4f48-ab9c-7065eff5fc9a"
       ]
     }
   ],

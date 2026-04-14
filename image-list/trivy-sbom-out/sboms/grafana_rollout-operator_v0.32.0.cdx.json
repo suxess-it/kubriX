@@ -2,10 +2,10 @@
   "$schema": "http://cyclonedx.org/schema/bom-1.6.schema.json",
   "bomFormat": "CycloneDX",
   "specVersion": "1.6",
-  "serialNumber": "urn:uuid:afc63c1e-77ac-472c-9599-7fd98e1a532f",
+  "serialNumber": "urn:uuid:9445d619-232c-482b-9edb-4d2e5ff0eba0",
   "version": 1,
   "metadata": {
-    "timestamp": "2026-04-07T12:47:46+00:00",
+    "timestamp": "2026-04-14T09:26:49+00:00",
     "tools": {
       "components": [
         {
@@ -118,22 +118,7 @@
   },
   "components": [
     {
-      "bom-ref": "494571d2-8ae6-4fa7-8ba5-d91e6d1dbbaa",
-      "type": "application",
-      "name": "bin/rollout-operator",
-      "properties": [
-        {
-          "name": "aquasecurity:trivy:Class",
-          "value": "lang-pkgs"
-        },
-        {
-          "name": "aquasecurity:trivy:Type",
-          "value": "gobinary"
-        }
-      ]
-    },
-    {
-      "bom-ref": "9adf9676-42d1-43ee-ab9f-9cf530ffb6c7",
+      "bom-ref": "be788ac6-5c36-43e8-8e41-02c4f9749af2",
       "type": "operating-system",
       "name": "debian",
       "version": "12.12",
@@ -145,6 +130,21 @@
         {
           "name": "aquasecurity:trivy:Type",
           "value": "debian"
+        }
+      ]
+    },
+    {
+      "bom-ref": "d54d1819-7188-4e31-9571-518b3de91c6a",
+      "type": "application",
+      "name": "bin/rollout-operator",
+      "properties": [
+        {
+          "name": "aquasecurity:trivy:Class",
+          "value": "lang-pkgs"
+        },
+        {
+          "name": "aquasecurity:trivy:Type",
+          "value": "gobinary"
         }
       ]
     },
@@ -2034,7 +2034,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-03-12T14:10:34Z"
+          "value": "2026-04-10T13:30:35Z"
         }
       ]
     },
@@ -4078,6 +4078,10 @@
           "type": "distribution"
         },
         {
+          "url": "https://github.com/open-telemetry/opentelemetry-go-contrib",
+          "type": "vcs"
+        },
+        {
           "url": "https://pkg.go.dev/go.opentelemetry.io/contrib/instrumentation/net/http/httptrace/otelhttptrace#section-documentation",
           "type": "documentation"
         }
@@ -4138,6 +4142,10 @@
           "type": "distribution"
         },
         {
+          "url": "https://github.com/open-telemetry/opentelemetry-go-contrib",
+          "type": "vcs"
+        },
+        {
           "url": "https://pkg.go.dev/go.opentelemetry.io/contrib/instrumentation/net/http/otelhttp#section-documentation",
           "type": "documentation"
         }
@@ -4165,7 +4173,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-03-06T20:24:46Z"
+          "value": "2026-04-07T08:53:54Z"
         }
       ]
     },
@@ -4225,7 +4233,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-03-06T20:24:46Z"
+          "value": "2026-04-07T08:53:54Z"
         }
       ]
     },
@@ -4285,7 +4293,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-03-06T20:24:46Z"
+          "value": "2026-04-07T08:53:54Z"
         }
       ]
     },
@@ -4421,7 +4429,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-03-06T19:13:23Z"
+          "value": "2026-04-03T08:30:03Z"
         },
         {
           "name": "ecosystems:topic",
@@ -4444,19 +4452,12 @@
     {
       "bom-ref": "pkg:golang/go.opentelemetry.io/otel/exporters/otlp/otlplog/otlploghttp@v0.12.2",
       "type": "library",
-      "supplier": {
-        "name": "OpenTelemetry - CNCF",
-        "url": [
-          "https://opentelemetry.io"
-        ]
-      },
-      "author": "OpenTelemetry - CNCF",
       "name": "go.opentelemetry.io/otel/exporters/otlp/otlplog/otlploghttp",
       "version": "v0.12.2",
-      "description": "Package otlploghttp provides an OTLP log exporter. The exporter uses HTTP to\ntransport OTLP protobuf payloads.\n\nExporter should be created using New.\n\nThe environment variables described below can be used for configuration.\n\nOTEL_EXPORTER_OTLP_ENDPOINT (default: \"https://localhost:4318\") -\ntarget base URL (\"/v1/logs\" is appended) to which the exporter sends telemetry.\nThe value must contain a scheme (\"http\" or \"https\") and host.\nThe value may additionally contain a port and a path.\nThe value should not contain a query string or fragment.\nThe configuration can be overridden by OTEL_EXPORTER_OTLP_LOGS_ENDPOINT\nenvironment variable and by WithEndpoint, WithEndpointURL, WithInsecure options.\n\nOTEL_EXPORTER_OTLP_LOGS_ENDPOINT (default: \"https://localhost:4318/v1/logs\") -\ntarget URL to which the exporter sends telemetry.\nThe value must contain a scheme (\"http\" or \"https\") and host.\nThe value may additionally contain a port and a path.\nThe value should not contain a query string or fragment.\nThe configuration can be overridden by WithEndpoint, WithEndpointURL, WithInsecure, and WithURLPath options.\n\nOTEL_EXPORTER_OTLP_HEADERS, OTEL_EXPORTER_OTLP_LOGS_HEADERS (default: none) -\nkey-value pairs used as headers associated with HTTP requests.\nThe value is expected to be represented in a format matching the W3C Baggage HTTP Header Content Format,\nexcept that additional semi-colon delimited metadata is not supported.\nExample value: \"key1=value1,key2=value2\".\nOTEL_EXPORTER_OTLP_LOGS_HEADERS takes precedence over OTEL_EXPORTER_OTLP_HEADERS.\nThe configuration can be overridden by WithHeaders option.\n\nOTEL_EXPORTER_OTLP_TIMEOUT, OTEL_EXPORTER_OTLP_LOGS_TIMEOUT (default: \"10000\") -\nmaximum time in milliseconds the OTLP exporter waits for each batch export.\nOTEL_EXPORTER_OTLP_LOGS_TIMEOUT takes precedence over OTEL_EXPORTER_OTLP_TIMEOUT.\nThe configuration can be overridden by WithTimeout option.\n\nOTEL_EXPORTER_OTLP_COMPRESSION, OTEL_EXPORTER_OTLP_LOGS_COMPRESSION (default: none) -\nthe compression strategy the exporter uses to compress the HTTP body.\nSupported value: \"gzip\".\nOTEL_EXPORTER_OTLP_LOGS_COMPRESSION takes precedence over OTEL_EXPORTER_OTLP_COMPRESSION.\nThe configuration can be overridden by WithCompression option.\n\nOTEL_EXPORTER_OTLP_CERTIFICATE, OTEL_EXPORTER_OTLP_LOGS_CERTIFICATE (default: none) -\nthe filepath to the trusted certificate to use when verifying a server's TLS credentials.\nOTEL_EXPORTER_OTLP_LOGS_CERTIFICATE takes precedence over OTEL_EXPORTER_OTLP_CERTIFICATE.\nThe configuration can be overridden by WithTLSClientConfig option.\n\nOTEL_EXPORTER_OTLP_CLIENT_CERTIFICATE, OTEL_EXPORTER_OTLP_LOGS_CLIENT_CERTIFICATE (default: none) -\nthe filepath to the client certificate/chain trust for client's private key to use in mTLS communication in PEM format.\nOTEL_EXPORTER_OTLP_LOGS_CLIENT_CERTIFICATE takes precedence over OTEL_EXPORTER_OTLP_CLIENT_CERTIFICATE.\nThe configuration can be overridden by WithTLSClientConfig option.\n\nOTEL_EXPORTER_OTLP_CLIENT_KEY, OTEL_EXPORTER_OTLP_LOGS_CLIENT_KEY (default: none) -\nthe filepath to the client's private key to use in mTLS communication in PEM format.\nOTEL_EXPORTER_OTLP_LOGS_CLIENT_KEY takes precedence over OTEL_EXPORTER_OTLP_CLIENT_KEY.\nThe configuration can be overridden by WithTLSClientConfig option.",
+      "description": "Package otlploghttp provides an OTLP log exporter. The exporter uses HTTP to\ntransport OTLP protobuf payloads.\n\nExporter should be created using New.\n\nThe environment variables described below can be used for configuration.\n\nOTEL_EXPORTER_OTLP_ENDPOINT (default: \"https://localhost:4318\") -\ntarget base URL (\"/v1/logs\" is appended) to which the exporter sends telemetry.\nThe value must contain a scheme (\"http\" or \"https\") and host.\nThe value may additionally contain a port and a path.\nThe value should not contain a query string or fragment.\nThe configuration can be overridden by OTEL_EXPORTER_OTLP_LOGS_ENDPOINT\nenvironment variable and by WithEndpoint, WithEndpointURL, WithInsecure options.\n\nOTEL_EXPORTER_OTLP_LOGS_ENDPOINT (default: \"https://localhost:4318/v1/logs\") -\ntarget URL to which the exporter sends telemetry.\nThe value must contain a scheme (\"http\" or \"https\") and host.\nThe value may additionally contain a port and a path.\nThe value should not contain a query string or fragment.\nThe configuration can be overridden by WithEndpoint, WithEndpointURL, WithInsecure, and WithURLPath options.\n\nOTEL_EXPORTER_OTLP_INSECURE, OTEL_EXPORTER_OTLP_LOGS_INSECURE (default: \"false\") -\nsetting \"true\" disables client transport security for the exporter's HTTP connection.\nOTEL_EXPORTER_OTLP_LOGS_INSECURE takes precedence over OTEL_EXPORTER_OTLP_INSECURE.\nThe configuration can be overridden by WithInsecure and WithTLSClientConfig options.\n\nOTEL_EXPORTER_OTLP_HEADERS, OTEL_EXPORTER_OTLP_LOGS_HEADERS (default: none) -\nkey-value pairs used as headers associated with HTTP requests.\nThe value is expected to be represented in a format matching the W3C Baggage HTTP Header Content Format,\nexcept that additional semi-colon delimited metadata is not supported.\nExample value: \"key1=value1,key2=value2\".\nOTEL_EXPORTER_OTLP_LOGS_HEADERS takes precedence over OTEL_EXPORTER_OTLP_HEADERS.\nThe configuration can be overridden by WithHeaders option.\n\nOTEL_EXPORTER_OTLP_TIMEOUT, OTEL_EXPORTER_OTLP_LOGS_TIMEOUT (default: \"10000\") -\nmaximum time in milliseconds the OTLP exporter waits for each batch export.\nOTEL_EXPORTER_OTLP_LOGS_TIMEOUT takes precedence over OTEL_EXPORTER_OTLP_TIMEOUT.\nThe configuration can be overridden by WithTimeout option.\n\nOTEL_EXPORTER_OTLP_COMPRESSION, OTEL_EXPORTER_OTLP_LOGS_COMPRESSION (default: none) -\nthe compression strategy the exporter uses to compress the HTTP body.\nSupported value: \"gzip\".\nOTEL_EXPORTER_OTLP_LOGS_COMPRESSION takes precedence over OTEL_EXPORTER_OTLP_COMPRESSION.\nThe configuration can be overridden by WithCompression option.\n\nOTEL_EXPORTER_OTLP_CERTIFICATE, OTEL_EXPORTER_OTLP_LOGS_CERTIFICATE (default: none) -\nthe filepath to the trusted certificate to use when verifying a server's TLS credentials.\nOTEL_EXPORTER_OTLP_LOGS_CERTIFICATE takes precedence over OTEL_EXPORTER_OTLP_CERTIFICATE.\nThe configuration can be overridden by WithTLSClientConfig option.\n\nOTEL_EXPORTER_OTLP_CLIENT_CERTIFICATE, OTEL_EXPORTER_OTLP_LOGS_CLIENT_CERTIFICATE (default: none) -\nthe filepath to the client certificate/chain trust for client's private key to use in mTLS communication in PEM format.\nOTEL_EXPORTER_OTLP_LOGS_CLIENT_CERTIFICATE takes precedence over OTEL_EXPORTER_OTLP_CLIENT_CERTIFICATE.\nThe configuration can be overridden by WithTLSClientConfig option.\n\nOTEL_EXPORTER_OTLP_CLIENT_KEY, OTEL_EXPORTER_OTLP_LOGS_CLIENT_KEY (default: none) -\nthe filepath to the client's private key to use in mTLS communication in PEM format.\nOTEL_EXPORTER_OTLP_LOGS_CLIENT_KEY takes precedence over OTEL_EXPORTER_OTLP_CLIENT_KEY.\nThe configuration can be overridden by WithTLSClientConfig option.",
       "licenses": [
         {
-          "expression": "(Apache-2.0)"
+          "expression": "(Apache-2.0 OR BSD-3-Clause)"
         }
       ],
       "purl": "pkg:golang/go.opentelemetry.io/otel/exporters/otlp/otlplog/otlploghttp@v0.12.2",
@@ -4468,6 +4469,10 @@
         {
           "url": "https://pkg.go.dev/go.opentelemetry.io/otel/exporters/otlp/otlplog/otlploghttp",
           "type": "distribution"
+        },
+        {
+          "url": "https://github.com/open-telemetry/opentelemetry-go",
+          "type": "vcs"
         },
         {
           "url": "https://pkg.go.dev/go.opentelemetry.io/otel/exporters/otlp/otlplog/otlploghttp#section-documentation",
@@ -4497,7 +4502,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-03-06T19:13:23Z"
+          "value": "2026-04-03T08:30:03Z"
         },
         {
           "name": "ecosystems:topic",
@@ -4544,10 +4549,6 @@
         {
           "url": "https://pkg.go.dev/go.opentelemetry.io/otel/exporters/otlp/otlpmetric/otlpmetricgrpc",
           "type": "distribution"
-        },
-        {
-          "url": "https://github.com/open-telemetry/opentelemetry-go",
-          "type": "vcs"
         },
         {
           "url": "https://pkg.go.dev/go.opentelemetry.io/otel/exporters/otlp/otlpmetric/otlpmetricgrpc#section-documentation",
@@ -4769,7 +4770,7 @@
       "author": "OpenTelemetry - CNCF",
       "name": "go.opentelemetry.io/otel/exporters/otlp/otlptrace/otlptracehttp",
       "version": "v1.36.0",
-      "description": "Package otlptracehttp provides an OTLP span exporter using HTTP with protobuf payloads.\nBy default the telemetry is sent to https://localhost:4318/v1/traces.\n\nExporter should be created using New.\n\nThe environment variables described below can be used for configuration.\n\nOTEL_EXPORTER_OTLP_ENDPOINT (default: \"https://localhost:4318\") -\ntarget base URL (\"/v1/traces\" is appended) to which the exporter sends telemetry.\nThe value must contain a scheme (\"http\" or \"https\") and host.\nThe value may additionally contain a port and a path.\nThe value should not contain a query string or fragment.\nThe configuration can be overridden by OTEL_EXPORTER_OTLP_TRACES_ENDPOINT\nenvironment variable and by WithEndpoint, WithEndpointURL, WithInsecure options.\n\nOTEL_EXPORTER_OTLP_TRACES_ENDPOINT (default: \"https://localhost:4318/v1/traces\") -\ntarget URL to which the exporter sends telemetry.\nThe value must contain a scheme (\"http\" or \"https\") and host.\nThe value may additionally contain a port and a path.\nThe value should not contain a query string or fragment.\nThe configuration can be overridden by WithEndpoint, WithEndpointURL, WithInsecure, and WithURLPath options.\n\nOTEL_EXPORTER_OTLP_HEADERS, OTEL_EXPORTER_OTLP_TRACES_HEADERS (default: none) -\nkey-value pairs used as headers associated with HTTP requests.\nThe value is expected to be represented in a format matching the W3C Baggage HTTP Header Content Format,\nexcept that additional semi-colon delimited metadata is not supported.\nExample value: \"key1=value1,key2=value2\".\nOTEL_EXPORTER_OTLP_TRACES_HEADERS takes precedence over OTEL_EXPORTER_OTLP_HEADERS.\nThe configuration can be overridden by WithHeaders option.\n\nOTEL_EXPORTER_OTLP_TIMEOUT, OTEL_EXPORTER_OTLP_TRACES_TIMEOUT (default: \"10000\") -\nmaximum time in milliseconds the OTLP exporter waits for each batch export.\nOTEL_EXPORTER_OTLP_TRACES_TIMEOUT takes precedence over OTEL_EXPORTER_OTLP_TIMEOUT.\nThe configuration can be overridden by WithTimeout option.\n\nOTEL_EXPORTER_OTLP_COMPRESSION, OTEL_EXPORTER_OTLP_TRACES_COMPRESSION (default: none) -\nthe compression strategy the exporter uses to compress the HTTP body.\nSupported value: \"gzip\".\nOTEL_EXPORTER_OTLP_TRACES_COMPRESSION takes precedence over OTEL_EXPORTER_OTLP_COMPRESSION.\nThe configuration can be overridden by WithCompression option.\n\nOTEL_EXPORTER_OTLP_CERTIFICATE, OTEL_EXPORTER_OTLP_TRACES_CERTIFICATE (default: none) -\nthe filepath to the trusted certificate to use when verifying a server's TLS credentials.\nOTEL_EXPORTER_OTLP_TRACES_CERTIFICATE takes precedence over OTEL_EXPORTER_OTLP_CERTIFICATE.\nThe configuration can be overridden by WithTLSClientConfig option.\n\nOTEL_EXPORTER_OTLP_CLIENT_CERTIFICATE, OTEL_EXPORTER_OTLP_TRACES_CLIENT_CERTIFICATE (default: none) -\nthe filepath to the client certificate/chain trust for client's private key to use in mTLS communication in PEM format.\nOTEL_EXPORTER_OTLP_TRACES_CLIENT_CERTIFICATE takes precedence over OTEL_EXPORTER_OTLP_CLIENT_CERTIFICATE.\nThe configuration can be overridden by WithTLSClientConfig option.\n\nOTEL_EXPORTER_OTLP_CLIENT_KEY, OTEL_EXPORTER_OTLP_TRACES_CLIENT_KEY (default: none) -\nthe filepath to the client's private key to use in mTLS communication in PEM format.\nOTEL_EXPORTER_OTLP_TRACES_CLIENT_KEY takes precedence over OTEL_EXPORTER_OTLP_CLIENT_KEY.\nThe configuration can be overridden by WithTLSClientConfig option.",
+      "description": "Package otlptracehttp provides an OTLP span exporter using HTTP with protobuf payloads.\nBy default the telemetry is sent to https://localhost:4318/v1/traces.\n\nExporter should be created using New.\n\nThe environment variables described below can be used for configuration.\n\nOTEL_EXPORTER_OTLP_ENDPOINT (default: \"https://localhost:4318\") -\ntarget base URL (\"/v1/traces\" is appended) to which the exporter sends telemetry.\nThe value must contain a scheme (\"http\" or \"https\") and host.\nThe value may additionally contain a port and a path.\nThe value should not contain a query string or fragment.\nThe configuration can be overridden by OTEL_EXPORTER_OTLP_TRACES_ENDPOINT\nenvironment variable and by WithEndpoint, WithEndpointURL, WithInsecure options.\n\nOTEL_EXPORTER_OTLP_TRACES_ENDPOINT (default: \"https://localhost:4318/v1/traces\") -\ntarget URL to which the exporter sends telemetry.\nThe value must contain a scheme (\"http\" or \"https\") and host.\nThe value may additionally contain a port and a path.\nThe value should not contain a query string or fragment.\nThe configuration can be overridden by WithEndpoint, WithEndpointURL, WithInsecure, and WithURLPath options.\n\nOTEL_EXPORTER_OTLP_INSECURE, OTEL_EXPORTER_OTLP_TRACES_INSECURE (default: \"false\") -\nsetting \"true\" disables client transport security for the exporter's HTTP connection.\nOTEL_EXPORTER_OTLP_TRACES_INSECURE takes precedence over OTEL_EXPORTER_OTLP_INSECURE.\nThe configuration can be overridden by WithInsecure and WithTLSClientConfig options.\n\nOTEL_EXPORTER_OTLP_HEADERS, OTEL_EXPORTER_OTLP_TRACES_HEADERS (default: none) -\nkey-value pairs used as headers associated with HTTP requests.\nThe value is expected to be represented in a format matching the W3C Baggage HTTP Header Content Format,\nexcept that additional semi-colon delimited metadata is not supported.\nExample value: \"key1=value1,key2=value2\".\nOTEL_EXPORTER_OTLP_TRACES_HEADERS takes precedence over OTEL_EXPORTER_OTLP_HEADERS.\nThe configuration can be overridden by WithHeaders option.\n\nOTEL_EXPORTER_OTLP_TIMEOUT, OTEL_EXPORTER_OTLP_TRACES_TIMEOUT (default: \"10000\") -\nmaximum time in milliseconds the OTLP exporter waits for each batch export.\nOTEL_EXPORTER_OTLP_TRACES_TIMEOUT takes precedence over OTEL_EXPORTER_OTLP_TIMEOUT.\nThe configuration can be overridden by WithTimeout option.\n\nOTEL_EXPORTER_OTLP_COMPRESSION, OTEL_EXPORTER_OTLP_TRACES_COMPRESSION (default: none) -\nthe compression strategy the exporter uses to compress the HTTP body.\nSupported value: \"gzip\".\nOTEL_EXPORTER_OTLP_TRACES_COMPRESSION takes precedence over OTEL_EXPORTER_OTLP_COMPRESSION.\nThe configuration can be overridden by WithCompression option.\n\nOTEL_EXPORTER_OTLP_CERTIFICATE, OTEL_EXPORTER_OTLP_TRACES_CERTIFICATE (default: none) -\nthe filepath to the trusted certificate to use when verifying a server's TLS credentials.\nOTEL_EXPORTER_OTLP_TRACES_CERTIFICATE takes precedence over OTEL_EXPORTER_OTLP_CERTIFICATE.\nThe configuration can be overridden by WithTLSClientConfig option.\n\nOTEL_EXPORTER_OTLP_CLIENT_CERTIFICATE, OTEL_EXPORTER_OTLP_TRACES_CLIENT_CERTIFICATE (default: none) -\nthe filepath to the client certificate/chain trust for client's private key to use in mTLS communication in PEM format.\nOTEL_EXPORTER_OTLP_TRACES_CLIENT_CERTIFICATE takes precedence over OTEL_EXPORTER_OTLP_CLIENT_CERTIFICATE.\nThe configuration can be overridden by WithTLSClientConfig option.\n\nOTEL_EXPORTER_OTLP_CLIENT_KEY, OTEL_EXPORTER_OTLP_TRACES_CLIENT_KEY (default: none) -\nthe filepath to the client's private key to use in mTLS communication in PEM format.\nOTEL_EXPORTER_OTLP_TRACES_CLIENT_KEY takes precedence over OTEL_EXPORTER_OTLP_CLIENT_KEY.\nThe configuration can be overridden by WithTLSClientConfig option.",
       "licenses": [
         {
           "expression": "(Apache-2.0 OR BSD-3-Clause)"
@@ -4784,6 +4785,10 @@
         {
           "url": "https://pkg.go.dev/go.opentelemetry.io/otel/exporters/otlp/otlptrace/otlptracehttp",
           "type": "distribution"
+        },
+        {
+          "url": "https://github.com/open-telemetry/opentelemetry-go",
+          "type": "vcs"
         },
         {
           "url": "https://pkg.go.dev/go.opentelemetry.io/otel/exporters/otlp/otlptrace/otlptracehttp#section-documentation",
@@ -4938,6 +4943,10 @@
           "type": "distribution"
         },
         {
+          "url": "https://github.com/open-telemetry/opentelemetry-go",
+          "type": "vcs"
+        },
+        {
           "url": "https://pkg.go.dev/go.opentelemetry.io/otel/exporters/prometheus#section-documentation",
           "type": "documentation"
         }
@@ -5088,6 +5097,10 @@
         {
           "url": "https://pkg.go.dev/go.opentelemetry.io/otel/exporters/stdout/stdoutmetric",
           "type": "distribution"
+        },
+        {
+          "url": "https://github.com/open-telemetry/opentelemetry-go",
+          "type": "vcs"
         },
         {
           "url": "https://pkg.go.dev/go.opentelemetry.io/otel/exporters/stdout/stdoutmetric#section-documentation",
@@ -5470,6 +5483,10 @@
           "type": "distribution"
         },
         {
+          "url": "https://github.com/open-telemetry/opentelemetry-go",
+          "type": "vcs"
+        },
+        {
           "url": "https://pkg.go.dev/go.opentelemetry.io/otel/sdk/metric#section-documentation",
           "type": "documentation"
         }
@@ -5520,13 +5537,6 @@
     {
       "bom-ref": "pkg:golang/go.opentelemetry.io/otel/sdk@v1.38.0",
       "type": "library",
-      "supplier": {
-        "name": "OpenTelemetry - CNCF",
-        "url": [
-          "https://opentelemetry.io"
-        ]
-      },
-      "author": "OpenTelemetry - CNCF",
       "name": "go.opentelemetry.io/otel/sdk",
       "version": "v1.38.0",
       "description": "Package sdk provides the OpenTelemetry default SDK for Go.",
@@ -5544,6 +5554,10 @@
         {
           "url": "https://pkg.go.dev/go.opentelemetry.io/otel/sdk",
           "type": "distribution"
+        },
+        {
+          "url": "https://github.com/open-telemetry/opentelemetry-go",
+          "type": "vcs"
         },
         {
           "url": "https://pkg.go.dev/go.opentelemetry.io/otel/sdk#section-documentation",
@@ -5622,10 +5636,6 @@
           "type": "distribution"
         },
         {
-          "url": "https://github.com/open-telemetry/opentelemetry-go",
-          "type": "vcs"
-        },
-        {
           "url": "https://pkg.go.dev/go.opentelemetry.io/otel/trace#section-documentation",
           "type": "documentation"
         }
@@ -5653,7 +5663,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2025-08-29T19:42:52Z"
+          "value": "2026-04-03T08:30:03Z"
         },
         {
           "name": "ecosystems:topic",
@@ -5808,13 +5818,6 @@
     {
       "bom-ref": "pkg:golang/go.uber.org/atomic@v1.11.0",
       "type": "library",
-      "supplier": {
-        "name": "Uber Go",
-        "url": [
-          "http://uber.github.io/"
-        ]
-      },
-      "author": "Uber Go",
       "name": "go.uber.org/atomic",
       "version": "v1.11.0",
       "description": "Package atomic provides simple wrappers around numerics to enforce atomic\naccess.",
@@ -5866,10 +5869,6 @@
         {
           "name": "ecosystems:latest_release_published_at",
           "value": "2023-05-03T17:25:03Z"
-        },
-        {
-          "name": "ecosystems:owner_location",
-          "value": "70+ countries and counting."
         }
       ]
     },
@@ -6039,7 +6038,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-03-12T00:35:42Z"
+          "value": "2026-04-09T19:17:33Z"
         }
       ]
     },
@@ -6173,6 +6172,10 @@
           "type": "distribution"
         },
         {
+          "url": "https://cs.opensource.google/go/x/sys",
+          "type": "vcs"
+        },
+        {
           "url": "https://pkg.go.dev/golang.org/x/sys#section-documentation",
           "type": "documentation"
         }
@@ -6200,7 +6203,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-03-03T01:51:03Z"
+          "value": "2026-03-27T16:08:41Z"
         }
       ]
     },
@@ -6253,7 +6256,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-03-10T01:43:14Z"
+          "value": "2026-04-09T11:43:42Z"
         }
       ]
     },
@@ -6277,6 +6280,10 @@
         {
           "url": "https://pkg.go.dev/golang.org/x/text",
           "type": "distribution"
+        },
+        {
+          "url": "https://cs.opensource.google/go/x/text",
+          "type": "vcs"
         },
         {
           "url": "https://pkg.go.dev/golang.org/x/text#section-documentation",
@@ -6306,7 +6313,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-03-10T01:41:36Z"
+          "value": "2026-04-09T11:43:05Z"
         }
       ]
     },
@@ -6510,6 +6517,10 @@
         {
           "url": "https://pkg.go.dev/google.golang.org/grpc",
           "type": "distribution"
+        },
+        {
+          "url": "https://github.com/grpc/grpc-go",
+          "type": "vcs"
         },
         {
           "url": "https://pkg.go.dev/google.golang.org/grpc#section-documentation",
@@ -6832,6 +6843,10 @@
           "type": "distribution"
         },
         {
+          "url": "https://github.com/go-yaml/yaml",
+          "type": "vcs"
+        },
+        {
           "url": "https://pkg.go.dev/gopkg.in/yaml.v3#section-documentation",
           "type": "documentation"
         }
@@ -6958,6 +6973,10 @@
           "type": "distribution"
         },
         {
+          "url": "https://github.com/kubernetes/apimachinery",
+          "type": "vcs"
+        },
+        {
           "url": "https://pkg.go.dev/k8s.io/apimachinery#section-documentation",
           "type": "documentation"
         }
@@ -7022,6 +7041,10 @@
           "type": "distribution"
         },
         {
+          "url": "https://github.com/kubernetes/client-go",
+          "type": "vcs"
+        },
+        {
           "url": "https://pkg.go.dev/k8s.io/client-go#section-documentation",
           "type": "documentation"
         }
@@ -7084,6 +7107,10 @@
         {
           "url": "https://pkg.go.dev/k8s.io/klog/v2",
           "type": "distribution"
+        },
+        {
+          "url": "https://github.com/kubernetes/klog",
+          "type": "vcs"
         },
         {
           "url": "https://pkg.go.dev/k8s.io/klog/v2#section-documentation",
@@ -7175,7 +7202,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-03-19T00:48:28Z"
+          "value": "2026-03-30T15:44:17Z"
         }
       ]
     },
@@ -7544,18 +7571,18 @@
   ],
   "dependencies": [
     {
-      "ref": "494571d2-8ae6-4fa7-8ba5-d91e6d1dbbaa",
-      "dependsOn": [
-        "pkg:golang/github.com/grafana/rollout-operator@v0.32.0%2Bdirty"
-      ]
-    },
-    {
-      "ref": "9adf9676-42d1-43ee-ab9f-9cf530ffb6c7",
+      "ref": "be788ac6-5c36-43e8-8e41-02c4f9749af2",
       "dependsOn": [
         "pkg:deb/debian/base-files@12.4%2Bdeb12u12?arch=amd64&distro=debian-12.12",
         "pkg:deb/debian/media-types@10.0.0?arch=all&distro=debian-12.12",
         "pkg:deb/debian/netbase@6.4?arch=all&distro=debian-12.12",
         "pkg:deb/debian/tzdata@2025b-0%2Bdeb12u2?arch=all&distro=debian-12.12"
+      ]
+    },
+    {
+      "ref": "d54d1819-7188-4e31-9571-518b3de91c6a",
+      "dependsOn": [
+        "pkg:golang/github.com/grafana/rollout-operator@v0.32.0%2Bdirty"
       ]
     },
     {
@@ -8097,8 +8124,8 @@
     {
       "ref": "pkg:oci/rollout-operator@sha256%3Acdb420c0af2cc5b32a33267cdd4aac8cd7867d539975a75dc856b0cfebbadff4?arch=amd64&repository_url=index.docker.io%2Fgrafana%2Frollout-operator",
       "dependsOn": [
-        "494571d2-8ae6-4fa7-8ba5-d91e6d1dbbaa",
-        "9adf9676-42d1-43ee-ab9f-9cf530ffb6c7"
+        "be788ac6-5c36-43e8-8e41-02c4f9749af2",
+        "d54d1819-7188-4e31-9571-518b3de91c6a"
       ]
     }
   ],

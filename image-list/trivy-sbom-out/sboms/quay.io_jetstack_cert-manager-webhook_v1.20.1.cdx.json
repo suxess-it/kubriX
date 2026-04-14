@@ -2,10 +2,10 @@
   "$schema": "http://cyclonedx.org/schema/bom-1.6.schema.json",
   "bomFormat": "CycloneDX",
   "specVersion": "1.6",
-  "serialNumber": "urn:uuid:c9f62c3b-00a3-41b2-a442-9e435f0a6ee2",
+  "serialNumber": "urn:uuid:c1c7fabc-b29d-4b9e-a9e7-4b6c0f87b4e2",
   "version": 1,
   "metadata": {
-    "timestamp": "2026-04-07T12:48:26+00:00",
+    "timestamp": "2026-04-14T09:27:34+00:00",
     "tools": {
       "components": [
         {
@@ -118,7 +118,7 @@
   },
   "components": [
     {
-      "bom-ref": "37ead35f-0ccb-4327-b84d-0cf89132d7f1",
+      "bom-ref": "04d57e56-2d5d-4a40-a646-c3bd3cdc309c",
       "type": "operating-system",
       "name": "debian",
       "version": "12.13",
@@ -134,7 +134,22 @@
       ]
     },
     {
-      "bom-ref": "70fc8bc4-110d-4dda-a170-79abe816eb78",
+      "bom-ref": "336b4ae7-ac95-4bbe-9788-7f37e25f23f7",
+      "type": "application",
+      "name": "app/cmd/webhook/webhook",
+      "properties": [
+        {
+          "name": "aquasecurity:trivy:Class",
+          "value": "lang-pkgs"
+        },
+        {
+          "name": "aquasecurity:trivy:Type",
+          "value": "gobinary"
+        }
+      ]
+    },
+    {
+      "bom-ref": "af775040-e070-4954-a8dd-5ccc84eede9d",
       "type": "library",
       "name": "../../",
       "properties": [
@@ -152,21 +167,6 @@
         },
         {
           "name": "aquasecurity:trivy:PkgType",
-          "value": "gobinary"
-        }
-      ]
-    },
-    {
-      "bom-ref": "e4ae75a4-dd51-4729-b930-4ece34af528f",
-      "type": "application",
-      "name": "app/cmd/webhook/webhook",
-      "properties": [
-        {
-          "name": "aquasecurity:trivy:Class",
-          "value": "lang-pkgs"
-        },
-        {
-          "name": "aquasecurity:trivy:Type",
           "value": "gobinary"
         }
       ]
@@ -1990,7 +1990,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-01-29T23:52:27Z"
+          "value": "2026-04-06T17:44:00Z"
         },
         {
           "name": "ecosystems:owner_location",
@@ -3554,6 +3554,10 @@
           "type": "distribution"
         },
         {
+          "url": "https://github.com/open-telemetry/opentelemetry-go-contrib",
+          "type": "vcs"
+        },
+        {
           "url": "https://pkg.go.dev/go.opentelemetry.io/contrib/instrumentation/net/http/otelhttp#section-documentation",
           "type": "documentation"
         }
@@ -3581,7 +3585,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-03-06T20:24:46Z"
+          "value": "2026-04-07T08:53:54Z"
         }
       ]
     },
@@ -3820,13 +3824,6 @@
     {
       "bom-ref": "pkg:golang/go.opentelemetry.io/otel/sdk@v1.40.0",
       "type": "library",
-      "supplier": {
-        "name": "OpenTelemetry - CNCF",
-        "url": [
-          "https://opentelemetry.io"
-        ]
-      },
-      "author": "OpenTelemetry - CNCF",
       "name": "go.opentelemetry.io/otel/sdk",
       "version": "v1.40.0",
       "description": "Package sdk provides the OpenTelemetry default SDK for Go.",
@@ -3844,6 +3841,10 @@
         {
           "url": "https://pkg.go.dev/go.opentelemetry.io/otel/sdk",
           "type": "distribution"
+        },
+        {
+          "url": "https://github.com/open-telemetry/opentelemetry-go",
+          "type": "vcs"
         },
         {
           "url": "https://pkg.go.dev/go.opentelemetry.io/otel/sdk#section-documentation",
@@ -3906,6 +3907,11 @@
       "name": "go.opentelemetry.io/otel/trace",
       "version": "v1.40.0",
       "description": "Package trace provides an implementation of the tracing part of the\nOpenTelemetry API.\n\nTo participate in distributed traces a Span needs to be created for the\noperation being performed as part of a traced workflow. In its simplest form:\n\nA Tracer is unique to the instrumentation and is used to create Spans.\nInstrumentation should be designed to accept a TracerProvider from which it\ncan create its own unique Tracer. Alternatively, the registered global\nTracerProvider from the go.opentelemetry.io/otel package can be used as\na default.\n\nThis package does not conform to the standard Go versioning policy; all of its\ninterfaces may have methods added to them without a package major version bump.\nThis non-standard API evolution could surprise an uninformed implementation\nauthor. They could unknowingly build their implementation in a way that would\nresult in a runtime panic for their users that update to the new API.\n\nThe API is designed to help inform an instrumentation author about this\nnon-standard API evolution. It requires them to choose a default behavior for\nunimplemented interface methods. There are three behavior choices they can\nmake:\n\nAll interfaces in this API embed a corresponding interface from\ngo.opentelemetry.io/otel/trace/embedded. If an author wants the default\nbehavior of their implementations to be a compilation failure, signaling to\ntheir users they need to update to the latest version of that implementation,\nthey need to embed the corresponding interface from\ngo.opentelemetry.io/otel/trace/embedded in their implementation. For\nexample,\n\nIf an author wants the default behavior of their implementations to panic, they\ncan embed the API interface directly.\n\nThis option is not recommended. It will lead to publishing packages that\ncontain runtime panics when users update to newer versions of\ngo.opentelemetry.io/otel/trace, which may be done with a transitive\ndependency.\n\nFinally, an author can embed another implementation in theirs. The embedded\nimplementation will be used for methods not defined by the author. For example,\nan author who wants to default to silently dropping the call can use\ngo.opentelemetry.io/otel/trace/noop:\n\nIt is strongly recommended that authors only embed\ngo.opentelemetry.io/otel/trace/noop if they choose this default behavior.\nThat implementation is the only one OpenTelemetry authors can guarantee will\nfully implement all the API interfaces when a user updates their API.",
+      "licenses": [
+        {
+          "expression": "(Apache-2.0 OR BSD-3-Clause)"
+        }
+      ],
       "purl": "pkg:golang/go.opentelemetry.io/otel/trace@v1.40.0",
       "externalReferences": [
         {
@@ -3915,10 +3921,6 @@
         {
           "url": "https://pkg.go.dev/go.opentelemetry.io/otel/trace",
           "type": "distribution"
-        },
-        {
-          "url": "https://github.com/open-telemetry/opentelemetry-go",
-          "type": "vcs"
         },
         {
           "url": "https://pkg.go.dev/go.opentelemetry.io/otel/trace#section-documentation",
@@ -3948,7 +3950,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2025-08-29T19:42:52Z"
+          "value": "2026-04-03T08:30:03Z"
         },
         {
           "name": "ecosystems:topic",
@@ -4205,10 +4207,6 @@
           "type": "distribution"
         },
         {
-          "url": "https://github.com/uber-go/zap",
-          "type": "vcs"
-        },
-        {
           "url": "https://pkg.go.dev/go.uber.org/zap#section-documentation",
           "type": "documentation"
         }
@@ -4395,6 +4393,10 @@
           "type": "distribution"
         },
         {
+          "url": "https://cs.opensource.google/go/x/crypto",
+          "type": "vcs"
+        },
+        {
           "url": "https://pkg.go.dev/golang.org/x/crypto#section-documentation",
           "type": "documentation"
         }
@@ -4422,7 +4424,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-03-11T14:17:49Z"
+          "value": "2026-04-09T15:33:22Z"
         }
       ]
     },
@@ -4534,7 +4536,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-03-12T00:35:42Z"
+          "value": "2026-04-09T19:17:33Z"
         }
       ]
     },
@@ -4668,6 +4670,10 @@
           "type": "distribution"
         },
         {
+          "url": "https://cs.opensource.google/go/x/sys",
+          "type": "vcs"
+        },
+        {
           "url": "https://pkg.go.dev/golang.org/x/sys#section-documentation",
           "type": "documentation"
         }
@@ -4695,7 +4701,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-03-03T01:51:03Z"
+          "value": "2026-03-27T16:08:41Z"
         }
       ]
     },
@@ -4748,7 +4754,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-03-10T01:43:14Z"
+          "value": "2026-04-09T11:43:42Z"
         }
       ]
     },
@@ -4772,6 +4778,10 @@
         {
           "url": "https://pkg.go.dev/golang.org/x/text",
           "type": "distribution"
+        },
+        {
+          "url": "https://cs.opensource.google/go/x/text",
+          "type": "vcs"
         },
         {
           "url": "https://pkg.go.dev/golang.org/x/text#section-documentation",
@@ -4801,7 +4811,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-03-10T01:41:36Z"
+          "value": "2026-04-09T11:43:05Z"
         }
       ]
     },
@@ -5069,6 +5079,10 @@
         {
           "url": "https://pkg.go.dev/google.golang.org/grpc",
           "type": "distribution"
+        },
+        {
+          "url": "https://github.com/grpc/grpc-go",
+          "type": "vcs"
         },
         {
           "url": "https://pkg.go.dev/google.golang.org/grpc#section-documentation",
@@ -5386,6 +5400,10 @@
           "type": "distribution"
         },
         {
+          "url": "https://github.com/go-yaml/yaml",
+          "type": "vcs"
+        },
+        {
           "url": "https://pkg.go.dev/gopkg.in/yaml.v3#section-documentation",
           "type": "documentation"
         }
@@ -5569,6 +5587,10 @@
           "type": "distribution"
         },
         {
+          "url": "https://github.com/kubernetes/apimachinery",
+          "type": "vcs"
+        },
+        {
           "url": "https://pkg.go.dev/k8s.io/apimachinery#section-documentation",
           "type": "documentation"
         }
@@ -5633,6 +5655,10 @@
           "type": "distribution"
         },
         {
+          "url": "https://github.com/kubernetes/apiserver",
+          "type": "vcs"
+        },
+        {
           "url": "https://pkg.go.dev/k8s.io/apiserver#section-documentation",
           "type": "documentation"
         }
@@ -5695,6 +5721,10 @@
         {
           "url": "https://pkg.go.dev/k8s.io/client-go",
           "type": "distribution"
+        },
+        {
+          "url": "https://github.com/kubernetes/client-go",
+          "type": "vcs"
         },
         {
           "url": "https://pkg.go.dev/k8s.io/client-go#section-documentation",
@@ -5827,6 +5857,10 @@
           "type": "distribution"
         },
         {
+          "url": "https://github.com/kubernetes/klog",
+          "type": "vcs"
+        },
+        {
           "url": "https://pkg.go.dev/k8s.io/klog/v2#section-documentation",
           "type": "documentation"
         }
@@ -5921,7 +5955,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-03-19T00:48:28Z"
+          "value": "2026-03-30T15:44:17Z"
         }
       ]
     },
@@ -6019,6 +6053,10 @@
         {
           "url": "https://pkg.go.dev/sigs.k8s.io/apiserver-network-proxy/konnectivity-client",
           "type": "distribution"
+        },
+        {
+          "url": "https://github.com/kubernetes-sigs/apiserver-network-proxy",
+          "type": "vcs"
         },
         {
           "url": "https://pkg.go.dev/sigs.k8s.io/apiserver-network-proxy/konnectivity-client#section-documentation",
@@ -6140,10 +6178,6 @@
         {
           "url": "https://pkg.go.dev/sigs.k8s.io/gateway-api",
           "type": "distribution"
-        },
-        {
-          "url": "https://github.com/kubernetes-sigs/gateway-api",
-          "type": "vcs"
         },
         {
           "url": "https://pkg.go.dev/sigs.k8s.io/gateway-api#section-documentation",
@@ -6435,7 +6469,7 @@
   ],
   "dependencies": [
     {
-      "ref": "37ead35f-0ccb-4327-b84d-0cf89132d7f1",
+      "ref": "04d57e56-2d5d-4a40-a646-c3bd3cdc309c",
       "dependsOn": [
         "pkg:deb/debian/base-files@12.4%2Bdeb12u13?arch=amd64&distro=debian-12.13",
         "pkg:deb/debian/media-types@10.0.0?arch=all&distro=debian-12.13",
@@ -6444,13 +6478,9 @@
       ]
     },
     {
-      "ref": "70fc8bc4-110d-4dda-a170-79abe816eb78",
-      "dependsOn": []
-    },
-    {
-      "ref": "e4ae75a4-dd51-4729-b930-4ece34af528f",
+      "ref": "336b4ae7-ac95-4bbe-9788-7f37e25f23f7",
       "dependsOn": [
-        "70fc8bc4-110d-4dda-a170-79abe816eb78",
+        "af775040-e070-4954-a8dd-5ccc84eede9d",
         "pkg:golang/cel.dev/expr@v0.25.1",
         "pkg:golang/github.com/antlr4-go/antlr/v4@v4.13.1",
         "pkg:golang/github.com/azure/go-ntlmssp@v0.0.0-20221128193559-754e69321358",
@@ -6542,6 +6572,10 @@
         "pkg:golang/sigs.k8s.io/yaml@v1.6.0",
         "pkg:golang/stdlib@v1.26.1"
       ]
+    },
+    {
+      "ref": "af775040-e070-4954-a8dd-5ccc84eede9d",
+      "dependsOn": []
     },
     {
       "ref": "pkg:deb/debian/base-files@12.4%2Bdeb12u13?arch=amd64&distro=debian-12.13",
@@ -6922,8 +6956,8 @@
     {
       "ref": "pkg:oci/cert-manager-webhook@sha256%3Ab876bcaf46ace2a5e860e8371539a6e1c8ccca54b1988a97c8a7483b3815d985?arch=amd64&repository_url=quay.io%2Fjetstack%2Fcert-manager-webhook",
       "dependsOn": [
-        "37ead35f-0ccb-4327-b84d-0cf89132d7f1",
-        "e4ae75a4-dd51-4729-b930-4ece34af528f"
+        "04d57e56-2d5d-4a40-a646-c3bd3cdc309c",
+        "336b4ae7-ac95-4bbe-9788-7f37e25f23f7"
       ]
     }
   ],
