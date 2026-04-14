@@ -1,6 +1,6 @@
 
 <h3>Target <code>kubevirtmanager/kubevirt-manager:1.5.0 (alpine 3.20.5)</code></h3>
-<h4>Vulnerabilities (28)</h4>
+<h4>Vulnerabilities (30)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -36,6 +36,13 @@
         <td>HIGH</td>
         <td>3.3.2-r1</td>
         <td>3.3.6-r0</td>
+    </tr>
+    <tr>
+        <td><code>libcrypto3</code></td>
+        <td>CVE-2026-28390</td>
+        <td>HIGH</td>
+        <td>3.3.2-r1</td>
+        <td>3.3.7-r0</td>
     </tr>
     <tr>
         <td><code>libexpat</code></td>
@@ -136,6 +143,13 @@
         <td>3.3.6-r0</td>
     </tr>
     <tr>
+        <td><code>libssl3</code></td>
+        <td>CVE-2026-28390</td>
+        <td>HIGH</td>
+        <td>3.3.2-r1</td>
+        <td>3.3.7-r0</td>
+    </tr>
+    <tr>
         <td><code>libxml2</code></td>
         <td>CVE-2024-56171</td>
         <td>CRITICAL</td>
@@ -211,7 +225,7 @@
 <h4>No Vulnerabilities found</h4>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>usr/local/bin/kubectl</code></h3>
-<h4>Vulnerabilities (8)</h4>
+<h4>Vulnerabilities (10)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -275,6 +289,20 @@
         <td>HIGH</td>
         <td>v1.23.3</td>
         <td>1.25.8, 1.26.1</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-32280</td>
+        <td>HIGH</td>
+        <td>v1.23.3</td>
+        <td>1.25.9, 1.26.2</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-32282</td>
+        <td>HIGH</td>
+        <td>v1.23.3</td>
+        <td>1.25.9, 1.26.2</td>
     </tr>
 </table>
 <h4>No Misconfigurations found</h4>

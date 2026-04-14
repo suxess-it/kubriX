@@ -1,6 +1,6 @@
 
 <h3>Target <code>badouralix/curl-jq:alpine (alpine 3.23.3)</code></h3>
-<h4>Vulnerabilities (1)</h4>
+<h4>Vulnerabilities (3)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -8,6 +8,20 @@
         <th>Severity</th>
         <th>Installed Version</th>
         <th>Fixed Version</th>
+    </tr>
+    <tr>
+        <td><code>libcrypto3</code></td>
+        <td>CVE-2026-28390</td>
+        <td>HIGH</td>
+        <td>3.5.5-r0</td>
+        <td>3.5.6-r0</td>
+    </tr>
+    <tr>
+        <td><code>libssl3</code></td>
+        <td>CVE-2026-28390</td>
+        <td>HIGH</td>
+        <td>3.5.5-r0</td>
+        <td>3.5.6-r0</td>
     </tr>
     <tr>
         <td><code>zlib</code></td>
@@ -20,7 +34,7 @@
 <h4>No Misconfigurations found</h4>
 
 <h3>Target <code>gcr.io/kubecost1/cost-model:prod-2.9.6 (redhat 9.7)</code></h3>
-<h4>Vulnerabilities (6)</h4>
+<h4>Vulnerabilities (7)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -51,6 +65,13 @@
         <td></td>
     </tr>
     <tr>
+        <td><code>libcap</code></td>
+        <td>CVE-2026-4878</td>
+        <td>HIGH</td>
+        <td>2.48-10.el9</td>
+        <td></td>
+    </tr>
+    <tr>
         <td><code>libnghttp2</code></td>
         <td>CVE-2026-27135</td>
         <td>HIGH</td>
@@ -74,7 +95,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>go/bin/app</code></h3>
-<h4>Vulnerabilities (10)</h4>
+<h4>Vulnerabilities (13)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -119,6 +140,13 @@
         <td>1.40.0</td>
     </tr>
     <tr>
+        <td><code>go.opentelemetry.io/otel/sdk</code></td>
+        <td>CVE-2026-39883</td>
+        <td>HIGH</td>
+        <td>v1.36.0</td>
+        <td>1.43.0</td>
+    </tr>
+    <tr>
         <td><code>google.golang.org/grpc</code></td>
         <td>CVE-2026-33186</td>
         <td>CRITICAL</td>
@@ -153,11 +181,25 @@
         <td>v1.24.11</td>
         <td>1.25.8, 1.26.1</td>
     </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-32280</td>
+        <td>HIGH</td>
+        <td>v1.24.11</td>
+        <td>1.25.9, 1.26.2</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-32282</td>
+        <td>HIGH</td>
+        <td>v1.24.11</td>
+        <td>1.25.9, 1.26.2</td>
+    </tr>
 </table>
 <h4>No Misconfigurations found</h4>
 
 <h3>Target <code>gcr.io/kubecost1/frontend:prod-2.9.6 (redhat 9.7)</code></h3>
-<h4>Vulnerabilities (18)</h4>
+<h4>Vulnerabilities (11)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -188,6 +230,13 @@
         <td></td>
     </tr>
     <tr>
+        <td><code>libcap</code></td>
+        <td>CVE-2026-4878</td>
+        <td>HIGH</td>
+        <td>2.48-10.el9</td>
+        <td></td>
+    </tr>
+    <tr>
         <td><code>libnghttp2</code></td>
         <td>CVE-2026-27135</td>
         <td>HIGH</td>
@@ -195,88 +244,32 @@
         <td></td>
     </tr>
     <tr>
-        <td><code>nginx</code></td>
-        <td>CVE-2026-27651</td>
-        <td>HIGH</td>
-        <td>2:1.20.1-22.el9_6.3</td>
-        <td></td>
-    </tr>
-    <tr>
-        <td><code>nginx</code></td>
-        <td>CVE-2026-27654</td>
-        <td>HIGH</td>
-        <td>2:1.20.1-22.el9_6.3</td>
-        <td></td>
-    </tr>
-    <tr>
-        <td><code>nginx</code></td>
-        <td>CVE-2026-27784</td>
-        <td>HIGH</td>
-        <td>2:1.20.1-22.el9_6.3</td>
-        <td></td>
-    </tr>
-    <tr>
-        <td><code>nginx</code></td>
-        <td>CVE-2026-32647</td>
-        <td>HIGH</td>
-        <td>2:1.20.1-22.el9_6.3</td>
-        <td></td>
-    </tr>
-    <tr>
         <td><code>nginx-core</code></td>
         <td>CVE-2026-27651</td>
         <td>HIGH</td>
         <td>2:1.20.1-22.el9_6.3</td>
-        <td></td>
+        <td>2:1.20.1-24.el9_7.2</td>
     </tr>
     <tr>
         <td><code>nginx-core</code></td>
         <td>CVE-2026-27654</td>
         <td>HIGH</td>
         <td>2:1.20.1-22.el9_6.3</td>
-        <td></td>
+        <td>2:1.20.1-24.el9_7.2</td>
     </tr>
     <tr>
         <td><code>nginx-core</code></td>
         <td>CVE-2026-27784</td>
         <td>HIGH</td>
         <td>2:1.20.1-22.el9_6.3</td>
-        <td></td>
+        <td>2:1.20.1-24.el9_7.2</td>
     </tr>
     <tr>
         <td><code>nginx-core</code></td>
         <td>CVE-2026-32647</td>
         <td>HIGH</td>
         <td>2:1.20.1-22.el9_6.3</td>
-        <td></td>
-    </tr>
-    <tr>
-        <td><code>nginx-filesystem</code></td>
-        <td>CVE-2026-27651</td>
-        <td>HIGH</td>
-        <td>2:1.20.1-22.el9_6.3</td>
-        <td></td>
-    </tr>
-    <tr>
-        <td><code>nginx-filesystem</code></td>
-        <td>CVE-2026-27654</td>
-        <td>HIGH</td>
-        <td>2:1.20.1-22.el9_6.3</td>
-        <td></td>
-    </tr>
-    <tr>
-        <td><code>nginx-filesystem</code></td>
-        <td>CVE-2026-27784</td>
-        <td>HIGH</td>
-        <td>2:1.20.1-22.el9_6.3</td>
-        <td></td>
-    </tr>
-    <tr>
-        <td><code>nginx-filesystem</code></td>
-        <td>CVE-2026-32647</td>
-        <td>HIGH</td>
-        <td>2:1.20.1-22.el9_6.3</td>
-        <td></td>
+        <td>2:1.20.1-24.el9_7.2</td>
     </tr>
     <tr>
         <td><code>openssl</code></td>
@@ -296,7 +289,7 @@
 <h4>No Misconfigurations found</h4>
 
 <h3>Target <code>gcr.io/kubecost1/kubecost-modeling:v0.1.34 (redhat 9.7)</code></h3>
-<h4>Vulnerabilities (7)</h4>
+<h4>Vulnerabilities (8)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -324,6 +317,13 @@
         <td>CVE-2026-4424</td>
         <td>HIGH</td>
         <td>3.5.3-6.el9_6</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>libcap</code></td>
+        <td>CVE-2026-4878</td>
+        <td>HIGH</td>
+        <td>2.48-10.el9</td>
         <td></td>
     </tr>
     <tr>
@@ -384,7 +384,7 @@
 <h4>No Misconfigurations found</h4>
 
 <h3>Target <code>icr.io/ibm-finops/agent:v1.0.8 (redhat 9.7)</code></h3>
-<h4>Vulnerabilities (5)</h4>
+<h4>Vulnerabilities (6)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -415,6 +415,13 @@
         <td></td>
     </tr>
     <tr>
+        <td><code>libcap</code></td>
+        <td>CVE-2026-4878</td>
+        <td>HIGH</td>
+        <td>2.48-10.el9</td>
+        <td></td>
+    </tr>
+    <tr>
         <td><code>libnghttp2</code></td>
         <td>CVE-2026-27135</td>
         <td>HIGH</td>
@@ -431,7 +438,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>go/bin/app</code></h3>
-<h4>Vulnerabilities (7)</h4>
+<h4>Vulnerabilities (10)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -453,6 +460,13 @@
         <td>HIGH</td>
         <td>v1.36.0</td>
         <td>1.40.0</td>
+    </tr>
+    <tr>
+        <td><code>go.opentelemetry.io/otel/sdk</code></td>
+        <td>CVE-2026-39883</td>
+        <td>HIGH</td>
+        <td>v1.36.0</td>
+        <td>1.43.0</td>
     </tr>
     <tr>
         <td><code>google.golang.org/grpc</code></td>
@@ -489,11 +503,25 @@
         <td>v1.25.5</td>
         <td>1.25.8, 1.26.1</td>
     </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-32280</td>
+        <td>HIGH</td>
+        <td>v1.25.5</td>
+        <td>1.25.9, 1.26.2</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-32282</td>
+        <td>HIGH</td>
+        <td>v1.25.5</td>
+        <td>1.25.9, 1.26.2</td>
+    </tr>
 </table>
 <h4>No Misconfigurations found</h4>
 
 <h3>Target <code>bin/prometheus</code></h3>
-<h4>Vulnerabilities (7)</h4>
+<h4>Vulnerabilities (10)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -517,6 +545,13 @@
         <td>1.40.0</td>
     </tr>
     <tr>
+        <td><code>go.opentelemetry.io/otel/sdk</code></td>
+        <td>CVE-2026-39883</td>
+        <td>HIGH</td>
+        <td>v1.39.0</td>
+        <td>1.43.0</td>
+    </tr>
+    <tr>
         <td><code>google.golang.org/grpc</code></td>
         <td>CVE-2026-33186</td>
         <td>CRITICAL</td>
@@ -551,10 +586,24 @@
         <td>v1.25.5</td>
         <td>1.25.8, 1.26.1</td>
     </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-32280</td>
+        <td>HIGH</td>
+        <td>v1.25.5</td>
+        <td>1.25.9, 1.26.2</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-32282</td>
+        <td>HIGH</td>
+        <td>v1.25.5</td>
+        <td>1.25.9, 1.26.2</td>
+    </tr>
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>bin/promtool</code></h3>
-<h4>Vulnerabilities (6)</h4>
+<h4>Vulnerabilities (8)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -604,6 +653,20 @@
         <td>HIGH</td>
         <td>v1.25.5</td>
         <td>1.25.8, 1.26.1</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-32280</td>
+        <td>HIGH</td>
+        <td>v1.25.5</td>
+        <td>1.25.9, 1.26.2</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-32282</td>
+        <td>HIGH</td>
+        <td>v1.25.5</td>
+        <td>1.25.9, 1.26.2</td>
     </tr>
 </table>
 <h4>No Misconfigurations found</h4>
