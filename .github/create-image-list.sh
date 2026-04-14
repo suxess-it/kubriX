@@ -44,5 +44,5 @@ for chart in $( ls -d */ | sed 's#/##' ); do
     echo "{\"chart\": \"${chart}\", \"image\": \"${image}\", \"id\": \"${id}\"}" >> ../../image-list/image-list-temp.json
   done
 done
-jq --slurp '.' ../../image-list/image-listr-temp.json > ../../image-list/image-list.json
+jq --slurp '.' ../../image-list/image-list-temp.json > ../../image-list/image-list.json
 rm ../../image-list/image-list-temp.json

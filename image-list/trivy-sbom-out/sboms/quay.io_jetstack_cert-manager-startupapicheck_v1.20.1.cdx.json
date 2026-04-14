@@ -2,10 +2,10 @@
   "$schema": "http://cyclonedx.org/schema/bom-1.6.schema.json",
   "bomFormat": "CycloneDX",
   "specVersion": "1.6",
-  "serialNumber": "urn:uuid:41386c7c-1e5e-48b3-aaa4-a4e2e5226521",
+  "serialNumber": "urn:uuid:fb23d41c-3c70-44da-87e9-fcbd549cbace",
   "version": 1,
   "metadata": {
-    "timestamp": "2026-04-07T12:48:23+00:00",
+    "timestamp": "2026-04-14T09:27:33+00:00",
     "tools": {
       "components": [
         {
@@ -118,7 +118,7 @@
   },
   "components": [
     {
-      "bom-ref": "02f42b99-b604-4451-b965-6a7370fa5828",
+      "bom-ref": "03de7881-94ba-46a4-a1dc-39c1624223c9",
       "type": "library",
       "name": "../../",
       "properties": [
@@ -141,7 +141,7 @@
       ]
     },
     {
-      "bom-ref": "26cf54cb-0d71-4e43-bda9-5cd47d717406",
+      "bom-ref": "07596273-1ab0-4d14-b323-f7391d44630d",
       "type": "operating-system",
       "name": "debian",
       "version": "12.13",
@@ -157,7 +157,7 @@
       ]
     },
     {
-      "bom-ref": "f50d4551-6548-42d0-bbcd-11c757919bf2",
+      "bom-ref": "114fe8e8-ca2c-4d50-98f2-feabe4a6a2f2",
       "type": "application",
       "name": "startupapicheck",
       "properties": [
@@ -3312,6 +3312,11 @@
       "name": "go.opentelemetry.io/otel/trace",
       "version": "v1.40.0",
       "description": "Package trace provides an implementation of the tracing part of the\nOpenTelemetry API.\n\nTo participate in distributed traces a Span needs to be created for the\noperation being performed as part of a traced workflow. In its simplest form:\n\nA Tracer is unique to the instrumentation and is used to create Spans.\nInstrumentation should be designed to accept a TracerProvider from which it\ncan create its own unique Tracer. Alternatively, the registered global\nTracerProvider from the go.opentelemetry.io/otel package can be used as\na default.\n\nThis package does not conform to the standard Go versioning policy; all of its\ninterfaces may have methods added to them without a package major version bump.\nThis non-standard API evolution could surprise an uninformed implementation\nauthor. They could unknowingly build their implementation in a way that would\nresult in a runtime panic for their users that update to the new API.\n\nThe API is designed to help inform an instrumentation author about this\nnon-standard API evolution. It requires them to choose a default behavior for\nunimplemented interface methods. There are three behavior choices they can\nmake:\n\nAll interfaces in this API embed a corresponding interface from\ngo.opentelemetry.io/otel/trace/embedded. If an author wants the default\nbehavior of their implementations to be a compilation failure, signaling to\ntheir users they need to update to the latest version of that implementation,\nthey need to embed the corresponding interface from\ngo.opentelemetry.io/otel/trace/embedded in their implementation. For\nexample,\n\nIf an author wants the default behavior of their implementations to panic, they\ncan embed the API interface directly.\n\nThis option is not recommended. It will lead to publishing packages that\ncontain runtime panics when users update to newer versions of\ngo.opentelemetry.io/otel/trace, which may be done with a transitive\ndependency.\n\nFinally, an author can embed another implementation in theirs. The embedded\nimplementation will be used for methods not defined by the author. For example,\nan author who wants to default to silently dropping the call can use\ngo.opentelemetry.io/otel/trace/noop:\n\nIt is strongly recommended that authors only embed\ngo.opentelemetry.io/otel/trace/noop if they choose this default behavior.\nThat implementation is the only one OpenTelemetry authors can guarantee will\nfully implement all the API interfaces when a user updates their API.",
+      "licenses": [
+        {
+          "expression": "(Apache-2.0 OR BSD-3-Clause)"
+        }
+      ],
       "purl": "pkg:golang/go.opentelemetry.io/otel/trace@v1.40.0",
       "externalReferences": [
         {
@@ -3321,10 +3326,6 @@
         {
           "url": "https://pkg.go.dev/go.opentelemetry.io/otel/trace",
           "type": "distribution"
-        },
-        {
-          "url": "https://github.com/open-telemetry/opentelemetry-go",
-          "type": "vcs"
         },
         {
           "url": "https://pkg.go.dev/go.opentelemetry.io/otel/trace#section-documentation",
@@ -3354,7 +3355,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2025-08-29T19:42:52Z"
+          "value": "2026-04-03T08:30:03Z"
         },
         {
           "name": "ecosystems:topic",
@@ -3544,10 +3545,6 @@
           "type": "distribution"
         },
         {
-          "url": "https://github.com/uber-go/zap",
-          "type": "vcs"
-        },
-        {
           "url": "https://pkg.go.dev/go.uber.org/zap#section-documentation",
           "type": "documentation"
         }
@@ -3734,6 +3731,10 @@
           "type": "distribution"
         },
         {
+          "url": "https://cs.opensource.google/go/x/crypto",
+          "type": "vcs"
+        },
+        {
           "url": "https://pkg.go.dev/golang.org/x/crypto#section-documentation",
           "type": "documentation"
         }
@@ -3761,7 +3762,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-03-11T14:17:49Z"
+          "value": "2026-04-09T15:33:22Z"
         }
       ]
     },
@@ -3817,7 +3818,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-03-12T00:35:42Z"
+          "value": "2026-04-09T19:17:33Z"
         }
       ]
     },
@@ -3951,6 +3952,10 @@
           "type": "distribution"
         },
         {
+          "url": "https://cs.opensource.google/go/x/sys",
+          "type": "vcs"
+        },
+        {
           "url": "https://pkg.go.dev/golang.org/x/sys#section-documentation",
           "type": "documentation"
         }
@@ -3978,7 +3983,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-03-03T01:51:03Z"
+          "value": "2026-03-27T16:08:41Z"
         }
       ]
     },
@@ -4031,7 +4036,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-03-10T01:43:14Z"
+          "value": "2026-04-09T11:43:42Z"
         }
       ]
     },
@@ -4055,6 +4060,10 @@
         {
           "url": "https://pkg.go.dev/golang.org/x/text",
           "type": "distribution"
+        },
+        {
+          "url": "https://cs.opensource.google/go/x/text",
+          "type": "vcs"
         },
         {
           "url": "https://pkg.go.dev/golang.org/x/text#section-documentation",
@@ -4084,7 +4093,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-03-10T01:41:36Z"
+          "value": "2026-04-09T11:43:05Z"
         }
       ]
     },
@@ -4443,6 +4452,10 @@
           "type": "distribution"
         },
         {
+          "url": "https://github.com/go-yaml/yaml",
+          "type": "vcs"
+        },
+        {
           "url": "https://pkg.go.dev/gopkg.in/yaml.v3#section-documentation",
           "type": "documentation"
         }
@@ -4626,6 +4639,10 @@
           "type": "distribution"
         },
         {
+          "url": "https://github.com/kubernetes/apimachinery",
+          "type": "vcs"
+        },
+        {
           "url": "https://pkg.go.dev/k8s.io/apimachinery#section-documentation",
           "type": "documentation"
         }
@@ -4755,6 +4772,10 @@
         {
           "url": "https://pkg.go.dev/k8s.io/client-go",
           "type": "distribution"
+        },
+        {
+          "url": "https://github.com/kubernetes/client-go",
+          "type": "vcs"
         },
         {
           "url": "https://pkg.go.dev/k8s.io/client-go#section-documentation",
@@ -4887,6 +4908,10 @@
           "type": "distribution"
         },
         {
+          "url": "https://github.com/kubernetes/klog",
+          "type": "vcs"
+        },
+        {
           "url": "https://pkg.go.dev/k8s.io/klog/v2#section-documentation",
           "type": "documentation"
         }
@@ -4981,7 +5006,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-03-19T00:48:28Z"
+          "value": "2026-03-30T15:44:17Z"
         }
       ]
     },
@@ -5140,10 +5165,6 @@
         {
           "url": "https://pkg.go.dev/sigs.k8s.io/gateway-api",
           "type": "distribution"
-        },
-        {
-          "url": "https://github.com/kubernetes-sigs/gateway-api",
-          "type": "vcs"
         },
         {
           "url": "https://pkg.go.dev/sigs.k8s.io/gateway-api#section-documentation",
@@ -5350,10 +5371,6 @@
         {
           "url": "https://pkg.go.dev/sigs.k8s.io/kustomize/kyaml",
           "type": "distribution"
-        },
-        {
-          "url": "https://github.com/kubernetes-sigs/kustomize",
-          "type": "vcs"
         },
         {
           "url": "https://pkg.go.dev/sigs.k8s.io/kustomize/kyaml#section-documentation",
@@ -5569,11 +5586,11 @@
   ],
   "dependencies": [
     {
-      "ref": "02f42b99-b604-4451-b965-6a7370fa5828",
+      "ref": "03de7881-94ba-46a4-a1dc-39c1624223c9",
       "dependsOn": []
     },
     {
-      "ref": "26cf54cb-0d71-4e43-bda9-5cd47d717406",
+      "ref": "07596273-1ab0-4d14-b323-f7391d44630d",
       "dependsOn": [
         "pkg:deb/debian/base-files@12.4%2Bdeb12u13?arch=amd64&distro=debian-12.13",
         "pkg:deb/debian/media-types@10.0.0?arch=all&distro=debian-12.13",
@@ -5582,9 +5599,9 @@
       ]
     },
     {
-      "ref": "f50d4551-6548-42d0-bbcd-11c757919bf2",
+      "ref": "114fe8e8-ca2c-4d50-98f2-feabe4a6a2f2",
       "dependsOn": [
-        "02f42b99-b604-4451-b965-6a7370fa5828",
+        "03de7881-94ba-46a4-a1dc-39c1624223c9",
         "pkg:golang/github.com/azure/go-ntlmssp@v0.0.0-20221128193559-754e69321358",
         "pkg:golang/github.com/beorn7/perks@v1.0.1",
         "pkg:golang/github.com/blang/semver/v4@v4.0.0",
@@ -6001,8 +6018,8 @@
     {
       "ref": "pkg:oci/cert-manager-startupapicheck@sha256%3A70859153f82a241c3a40ac581fb5a25f73db16851adc801f0c8a9c9b220ae4ee?arch=amd64&repository_url=quay.io%2Fjetstack%2Fcert-manager-startupapicheck",
       "dependsOn": [
-        "26cf54cb-0d71-4e43-bda9-5cd47d717406",
-        "f50d4551-6548-42d0-bbcd-11c757919bf2"
+        "07596273-1ab0-4d14-b323-f7391d44630d",
+        "114fe8e8-ca2c-4d50-98f2-feabe4a6a2f2"
       ]
     }
   ],

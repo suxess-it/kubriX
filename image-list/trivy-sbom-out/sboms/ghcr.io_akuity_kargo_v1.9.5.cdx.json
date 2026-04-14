@@ -2,10 +2,10 @@
   "$schema": "http://cyclonedx.org/schema/bom-1.6.schema.json",
   "bomFormat": "CycloneDX",
   "specVersion": "1.6",
-  "serialNumber": "urn:uuid:8554349f-0c43-4287-8b03-4803082a3dad",
+  "serialNumber": "urn:uuid:e08a4f01-51a3-48b4-83e4-69ec81564a4d",
   "version": 1,
   "metadata": {
-    "timestamp": "2026-04-07T12:46:51+00:00",
+    "timestamp": "2026-04-14T09:25:32+00:00",
     "tools": {
       "components": [
         {
@@ -70,68 +70,32 @@
   },
   "components": [
     {
-      "bom-ref": "0dc8bf5b-a7e7-4d69-a0d8-09400f9fb78f",
-      "type": "application",
-      "name": "usr/local/bin/credential-helper",
+      "bom-ref": "0d49d58b-b274-4691-b32a-80b3def77885",
+      "type": "library",
+      "name": "stdlib",
+      "version": "v1.25.5",
+      "purl": "pkg:golang/stdlib@v1.25.5",
       "properties": [
         {
-          "name": "aquasecurity:trivy:Class",
-          "value": "lang-pkgs"
+          "name": "aquasecurity:trivy:LayerDiffID",
+          "value": "sha256:a408f374551fa5779cb8dae5a9df0ba85e58a0ce5ff07d2714a5bf3d368c23e2"
         },
         {
-          "name": "aquasecurity:trivy:Type",
+          "name": "aquasecurity:trivy:LayerDigest",
+          "value": "sha256:a2b32679b0991018ceb24740769385c0879613b6d1f1234f9d48fd329fc09a8e"
+        },
+        {
+          "name": "aquasecurity:trivy:PkgID",
+          "value": "stdlib@v1.25.5"
+        },
+        {
+          "name": "aquasecurity:trivy:PkgType",
           "value": "gobinary"
         }
       ]
     },
     {
-      "bom-ref": "1aac793c-c43f-43b1-a719-acbc3a2c8c8f",
-      "type": "operating-system",
-      "name": "wolfi",
-      "version": "20230201",
-      "properties": [
-        {
-          "name": "aquasecurity:trivy:Class",
-          "value": "os-pkgs"
-        },
-        {
-          "name": "aquasecurity:trivy:Type",
-          "value": "wolfi"
-        }
-      ]
-    },
-    {
-      "bom-ref": "3f51c32c-16ed-4a0c-a05a-bf51a2c43dcd",
-      "type": "application",
-      "name": "usr/local/bin/kargo",
-      "properties": [
-        {
-          "name": "aquasecurity:trivy:Class",
-          "value": "lang-pkgs"
-        },
-        {
-          "name": "aquasecurity:trivy:Type",
-          "value": "gobinary"
-        }
-      ]
-    },
-    {
-      "bom-ref": "416ec0df-c2e7-42cf-8b19-1ba8a51fe6f1",
-      "type": "application",
-      "name": "usr/local/bin/grpc_health_probe",
-      "properties": [
-        {
-          "name": "aquasecurity:trivy:Class",
-          "value": "lang-pkgs"
-        },
-        {
-          "name": "aquasecurity:trivy:Type",
-          "value": "gobinary"
-        }
-      ]
-    },
-    {
-      "bom-ref": "43e0eb9d-9e03-492e-bb3e-39d09da83ac5",
+      "bom-ref": "1052da65-e482-41ae-8dab-e965f203e431",
       "type": "library",
       "supplier": {
         "name": "Akuity",
@@ -220,7 +184,111 @@
       ]
     },
     {
-      "bom-ref": "7de98c99-6842-4410-8aa7-d632eeb19dca",
+      "bom-ref": "11011159-1ae1-48cc-8979-886f4db4982d",
+      "type": "library",
+      "supplier": {
+        "name": "Akuity",
+        "url": [
+          "https://akuity.io/"
+        ]
+      },
+      "author": "Akuity",
+      "name": "github.com/akuity/kargo",
+      "purl": "pkg:golang/github.com/akuity/kargo",
+      "externalReferences": [
+        {
+          "url": "https://github.com/akuity/kargo",
+          "type": "website"
+        },
+        {
+          "url": "https://pkg.go.dev/github.com/akuity/kargo",
+          "type": "distribution"
+        },
+        {
+          "url": "https://github.com/akuity/kargo",
+          "type": "vcs"
+        },
+        {
+          "url": "https://pkg.go.dev/github.com/akuity/kargo#section-documentation",
+          "type": "documentation"
+        }
+      ],
+      "properties": [
+        {
+          "name": "aquasecurity:trivy:LayerDiffID",
+          "value": "sha256:a408f374551fa5779cb8dae5a9df0ba85e58a0ce5ff07d2714a5bf3d368c23e2"
+        },
+        {
+          "name": "aquasecurity:trivy:LayerDigest",
+          "value": "sha256:a2b32679b0991018ceb24740769385c0879613b6d1f1234f9d48fd329fc09a8e"
+        },
+        {
+          "name": "aquasecurity:trivy:PkgID",
+          "value": "github.com/akuity/kargo"
+        },
+        {
+          "name": "aquasecurity:trivy:PkgType",
+          "value": "gobinary"
+        },
+        {
+          "name": "ecosystems:first_release_published_at",
+          "value": "2023-03-30T16:25:49Z"
+        },
+        {
+          "name": "ecosystems:latest_release_published_at",
+          "value": "2026-03-02T20:00:56Z"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "argocd"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "cd"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "delivery"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "gitops"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "hacktoberfest"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "k8s"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "kubernetes"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "promotions"
+        }
+      ]
+    },
+    {
+      "bom-ref": "5e335c1f-ea4e-4e7a-8571-46dbc0cacc14",
+      "type": "application",
+      "name": "usr/local/bin/kargo",
+      "properties": [
+        {
+          "name": "aquasecurity:trivy:Class",
+          "value": "lang-pkgs"
+        },
+        {
+          "name": "aquasecurity:trivy:Type",
+          "value": "gobinary"
+        }
+      ]
+    },
+    {
+      "bom-ref": "63f9c09c-1fe4-4656-a89b-f870a9992adb",
       "type": "library",
       "name": "./api",
       "properties": [
@@ -243,96 +311,37 @@
       ]
     },
     {
-      "bom-ref": "b31bd650-dbec-48c1-9c2b-cdbb267d0a9d",
-      "type": "library",
-      "supplier": {
-        "name": "Akuity",
-        "url": [
-          "https://akuity.io/"
-        ]
-      },
-      "author": "Akuity",
-      "name": "github.com/akuity/kargo",
-      "purl": "pkg:golang/github.com/akuity/kargo",
-      "externalReferences": [
-        {
-          "url": "https://github.com/akuity/kargo",
-          "type": "website"
-        },
-        {
-          "url": "https://pkg.go.dev/github.com/akuity/kargo",
-          "type": "distribution"
-        },
-        {
-          "url": "https://github.com/akuity/kargo",
-          "type": "vcs"
-        },
-        {
-          "url": "https://pkg.go.dev/github.com/akuity/kargo#section-documentation",
-          "type": "documentation"
-        }
-      ],
+      "bom-ref": "65e06704-51a5-49bb-bf39-539ad0fd9b92",
+      "type": "application",
+      "name": "usr/local/bin/credential-helper",
       "properties": [
         {
-          "name": "aquasecurity:trivy:LayerDiffID",
-          "value": "sha256:a408f374551fa5779cb8dae5a9df0ba85e58a0ce5ff07d2714a5bf3d368c23e2"
+          "name": "aquasecurity:trivy:Class",
+          "value": "lang-pkgs"
         },
         {
-          "name": "aquasecurity:trivy:LayerDigest",
-          "value": "sha256:a2b32679b0991018ceb24740769385c0879613b6d1f1234f9d48fd329fc09a8e"
-        },
-        {
-          "name": "aquasecurity:trivy:PkgID",
-          "value": "github.com/akuity/kargo"
-        },
-        {
-          "name": "aquasecurity:trivy:PkgType",
+          "name": "aquasecurity:trivy:Type",
           "value": "gobinary"
-        },
-        {
-          "name": "ecosystems:first_release_published_at",
-          "value": "2023-03-30T16:25:49Z"
-        },
-        {
-          "name": "ecosystems:latest_release_published_at",
-          "value": "2026-03-02T20:00:56Z"
-        },
-        {
-          "name": "ecosystems:topic",
-          "value": "argocd"
-        },
-        {
-          "name": "ecosystems:topic",
-          "value": "cd"
-        },
-        {
-          "name": "ecosystems:topic",
-          "value": "delivery"
-        },
-        {
-          "name": "ecosystems:topic",
-          "value": "gitops"
-        },
-        {
-          "name": "ecosystems:topic",
-          "value": "hacktoberfest"
-        },
-        {
-          "name": "ecosystems:topic",
-          "value": "k8s"
-        },
-        {
-          "name": "ecosystems:topic",
-          "value": "kubernetes"
-        },
-        {
-          "name": "ecosystems:topic",
-          "value": "promotions"
         }
       ]
     },
     {
-      "bom-ref": "c1f27893-32da-404d-9c5e-7adb204e4335",
+      "bom-ref": "e0d25474-3b18-4c4a-89ee-facf9972b15c",
+      "type": "application",
+      "name": "usr/local/bin/grpc_health_probe",
+      "properties": [
+        {
+          "name": "aquasecurity:trivy:Class",
+          "value": "lang-pkgs"
+        },
+        {
+          "name": "aquasecurity:trivy:Type",
+          "value": "gobinary"
+        }
+      ]
+    },
+    {
+      "bom-ref": "e329a59c-de9a-40a7-b001-d0395a64688c",
       "type": "library",
       "name": "stdlib",
       "version": "v1.25.5",
@@ -357,27 +366,18 @@
       ]
     },
     {
-      "bom-ref": "c216d304-a153-47e6-aaad-1879502e3962",
-      "type": "library",
-      "name": "stdlib",
-      "version": "v1.25.5",
-      "purl": "pkg:golang/stdlib@v1.25.5",
+      "bom-ref": "ede6e189-a5cf-4540-8749-f880d1ef9ac0",
+      "type": "operating-system",
+      "name": "wolfi",
+      "version": "20230201",
       "properties": [
         {
-          "name": "aquasecurity:trivy:LayerDiffID",
-          "value": "sha256:a408f374551fa5779cb8dae5a9df0ba85e58a0ce5ff07d2714a5bf3d368c23e2"
+          "name": "aquasecurity:trivy:Class",
+          "value": "os-pkgs"
         },
         {
-          "name": "aquasecurity:trivy:LayerDigest",
-          "value": "sha256:a2b32679b0991018ceb24740769385c0879613b6d1f1234f9d48fd329fc09a8e"
-        },
-        {
-          "name": "aquasecurity:trivy:PkgID",
-          "value": "stdlib@v1.25.5"
-        },
-        {
-          "name": "aquasecurity:trivy:PkgType",
-          "value": "gobinary"
+          "name": "aquasecurity:trivy:Type",
+          "value": "wolfi"
         }
       ]
     },
@@ -1954,7 +1954,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-03-19T07:52:35Z"
+          "value": "2026-04-08T14:08:45Z"
         }
       ]
     },
@@ -2792,7 +2792,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-01-27T16:30:14Z"
+          "value": "2026-04-08T14:08:45Z"
         }
       ]
     },
@@ -3088,7 +3088,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-01-07T11:05:47Z"
+          "value": "2026-04-11T13:37:59Z"
         }
       ]
     },
@@ -3160,7 +3160,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-01-07T11:05:47Z"
+          "value": "2026-04-11T13:37:59Z"
         }
       ]
     },
@@ -3525,7 +3525,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-01-23T04:20:47Z"
+          "value": "2026-04-11T11:25:45Z"
         }
       ]
     },
@@ -3865,10 +3865,6 @@
           "type": "distribution"
         },
         {
-          "url": "https://github.com/googleapis/google-cloud-go",
-          "type": "vcs"
-        },
-        {
           "url": "https://pkg.go.dev/cloud.google.com/go/auth#section-documentation",
           "type": "documentation"
         }
@@ -3896,7 +3892,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-03-23T17:47:48Z"
+          "value": "2026-04-06T22:09:02Z"
         },
         {
           "name": "ecosystems:topic",
@@ -5047,7 +5043,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-03-26T18:11:26Z"
+          "value": "2026-04-08T18:19:22Z"
         },
         {
           "name": "ecosystems:owner_location",
@@ -6178,7 +6174,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-03-03T14:35:32Z"
+          "value": "2026-03-30T18:54:36Z"
         },
         {
           "name": "ecosystems:owner_location",
@@ -7119,7 +7115,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2025-11-21T03:32:42Z"
+          "value": "2026-04-08T03:20:45Z"
         },
         {
           "name": "ecosystems:topic",
@@ -7325,7 +7321,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-03-25T14:22:32Z"
+          "value": "2026-04-03T14:24:17Z"
         },
         {
           "name": "ecosystems:owner_location",
@@ -10361,7 +10357,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-03-17T23:22:01Z"
+          "value": "2026-04-11T02:19:10Z"
         },
         {
           "name": "ecosystems:owner_location",
@@ -11114,7 +11110,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-03-19T02:38:31Z"
+          "value": "2026-04-07T22:32:53Z"
         },
         {
           "name": "ecosystems:topic",
@@ -12245,7 +12241,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-02-27T04:06:32Z"
+          "value": "2026-04-05T17:56:34Z"
         },
         {
           "name": "ecosystems:owner_location",
@@ -13262,7 +13258,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2023-10-17T07:28:21Z"
+          "value": "2026-04-08T12:56:32Z"
         },
         {
           "name": "ecosystems:owner_location",
@@ -13353,7 +13349,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-04-03T00:59:49Z"
+          "value": "2026-04-08T12:37:51Z"
         },
         {
           "name": "ecosystems:owner_location",
@@ -17212,6 +17208,10 @@
           "type": "distribution"
         },
         {
+          "url": "https://github.com/open-telemetry/opentelemetry-go-contrib",
+          "type": "vcs"
+        },
+        {
           "url": "https://pkg.go.dev/go.opentelemetry.io/contrib/instrumentation/net/http/otelhttp#section-documentation",
           "type": "documentation"
         }
@@ -17239,7 +17239,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-03-06T20:24:46Z"
+          "value": "2026-04-07T08:53:54Z"
         }
       ]
     },
@@ -17348,10 +17348,6 @@
           "type": "distribution"
         },
         {
-          "url": "https://github.com/open-telemetry/opentelemetry-go",
-          "type": "vcs"
-        },
-        {
           "url": "https://pkg.go.dev/go.opentelemetry.io/otel/trace#section-documentation",
           "type": "documentation"
         }
@@ -17379,7 +17375,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2025-08-29T19:42:52Z"
+          "value": "2026-04-03T08:30:03Z"
         },
         {
           "name": "ecosystems:topic",
@@ -17632,10 +17628,6 @@
           "type": "distribution"
         },
         {
-          "url": "https://github.com/uber-go/zap",
-          "type": "vcs"
-        },
-        {
           "url": "https://pkg.go.dev/go.uber.org/zap#section-documentation",
           "type": "documentation"
         }
@@ -17822,6 +17814,10 @@
           "type": "distribution"
         },
         {
+          "url": "https://cs.opensource.google/go/x/crypto",
+          "type": "vcs"
+        },
+        {
           "url": "https://pkg.go.dev/golang.org/x/crypto#section-documentation",
           "type": "documentation"
         }
@@ -17849,7 +17845,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-03-11T14:17:49Z"
+          "value": "2026-04-09T15:33:22Z"
         }
       ]
     },
@@ -17905,7 +17901,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-03-12T00:35:42Z"
+          "value": "2026-04-09T19:17:33Z"
         }
       ]
     },
@@ -17961,7 +17957,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-03-12T00:35:42Z"
+          "value": "2026-04-09T19:17:33Z"
         }
       ]
     },
@@ -18147,6 +18143,10 @@
           "type": "distribution"
         },
         {
+          "url": "https://cs.opensource.google/go/x/sys",
+          "type": "vcs"
+        },
+        {
           "url": "https://pkg.go.dev/golang.org/x/sys#section-documentation",
           "type": "documentation"
         }
@@ -18174,7 +18174,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-03-03T01:51:03Z"
+          "value": "2026-03-27T16:08:41Z"
         }
       ]
     },
@@ -18197,6 +18197,10 @@
         {
           "url": "https://pkg.go.dev/golang.org/x/sys",
           "type": "distribution"
+        },
+        {
+          "url": "https://cs.opensource.google/go/x/sys",
+          "type": "vcs"
         },
         {
           "url": "https://pkg.go.dev/golang.org/x/sys#section-documentation",
@@ -18226,7 +18230,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-03-03T01:51:03Z"
+          "value": "2026-03-27T16:08:41Z"
         }
       ]
     },
@@ -18279,7 +18283,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-03-10T01:43:14Z"
+          "value": "2026-04-09T11:43:42Z"
         }
       ]
     },
@@ -18303,6 +18307,10 @@
         {
           "url": "https://pkg.go.dev/golang.org/x/text",
           "type": "distribution"
+        },
+        {
+          "url": "https://cs.opensource.google/go/x/text",
+          "type": "vcs"
         },
         {
           "url": "https://pkg.go.dev/golang.org/x/text#section-documentation",
@@ -18332,7 +18340,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-03-10T01:41:36Z"
+          "value": "2026-04-09T11:43:05Z"
         }
       ]
     },
@@ -18356,6 +18364,10 @@
         {
           "url": "https://pkg.go.dev/golang.org/x/text",
           "type": "distribution"
+        },
+        {
+          "url": "https://cs.opensource.google/go/x/text",
+          "type": "vcs"
         },
         {
           "url": "https://pkg.go.dev/golang.org/x/text#section-documentation",
@@ -18385,7 +18397,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-03-10T01:41:36Z"
+          "value": "2026-04-09T11:43:05Z"
         }
       ]
     },
@@ -18556,7 +18568,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-04-02T16:02:40Z"
+          "value": "2026-04-07T14:32:30Z"
         },
         {
           "name": "ecosystems:topic",
@@ -18714,6 +18726,10 @@
           "type": "distribution"
         },
         {
+          "url": "https://github.com/grpc/grpc-go",
+          "type": "vcs"
+        },
+        {
           "url": "https://pkg.go.dev/google.golang.org/grpc#section-documentation",
           "type": "documentation"
         }
@@ -18812,6 +18828,10 @@
         {
           "url": "https://pkg.go.dev/google.golang.org/grpc",
           "type": "distribution"
+        },
+        {
+          "url": "https://github.com/grpc/grpc-go",
+          "type": "vcs"
         },
         {
           "url": "https://pkg.go.dev/google.golang.org/grpc#section-documentation",
@@ -19205,6 +19225,10 @@
           "type": "distribution"
         },
         {
+          "url": "https://github.com/go-warnings/warnings",
+          "type": "vcs"
+        },
+        {
           "url": "https://pkg.go.dev/gopkg.in/warnings.v0#section-documentation",
           "type": "documentation"
         }
@@ -19260,6 +19284,10 @@
         {
           "url": "https://pkg.go.dev/gopkg.in/yaml.v3",
           "type": "distribution"
+        },
+        {
+          "url": "https://github.com/go-yaml/yaml",
+          "type": "vcs"
         },
         {
           "url": "https://pkg.go.dev/gopkg.in/yaml.v3#section-documentation",
@@ -19352,7 +19380,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-03-11T23:22:18Z"
+          "value": "2026-04-09T20:27:07Z"
         },
         {
           "name": "ecosystems:topic",
@@ -19538,6 +19566,10 @@
           "type": "distribution"
         },
         {
+          "url": "https://github.com/kubernetes/apimachinery",
+          "type": "vcs"
+        },
+        {
           "url": "https://pkg.go.dev/k8s.io/apimachinery#section-documentation",
           "type": "documentation"
         }
@@ -19600,6 +19632,10 @@
         {
           "url": "https://pkg.go.dev/k8s.io/apiserver",
           "type": "distribution"
+        },
+        {
+          "url": "https://github.com/kubernetes/apiserver",
+          "type": "vcs"
         },
         {
           "url": "https://pkg.go.dev/k8s.io/apiserver#section-documentation",
@@ -19731,6 +19767,10 @@
         {
           "url": "https://pkg.go.dev/k8s.io/client-go",
           "type": "distribution"
+        },
+        {
+          "url": "https://github.com/kubernetes/client-go",
+          "type": "vcs"
         },
         {
           "url": "https://pkg.go.dev/k8s.io/client-go#section-documentation",
@@ -19868,6 +19908,10 @@
           "type": "distribution"
         },
         {
+          "url": "https://github.com/kubernetes/klog",
+          "type": "vcs"
+        },
+        {
           "url": "https://pkg.go.dev/k8s.io/klog/v2#section-documentation",
           "type": "documentation"
         }
@@ -19957,7 +20001,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-03-19T00:48:28Z"
+          "value": "2026-03-30T15:44:17Z"
         }
       ]
     },
@@ -20450,10 +20494,6 @@
           "type": "distribution"
         },
         {
-          "url": "https://github.com/kubernetes-sigs/kustomize",
-          "type": "vcs"
-        },
-        {
           "url": "https://pkg.go.dev/sigs.k8s.io/kustomize/kyaml#section-documentation",
           "type": "documentation"
         }
@@ -20667,51 +20707,14 @@
   ],
   "dependencies": [
     {
-      "ref": "0dc8bf5b-a7e7-4d69-a0d8-09400f9fb78f",
-      "dependsOn": [
-        "43e0eb9d-9e03-492e-bb3e-39d09da83ac5"
-      ]
-    },
-    {
-      "ref": "1aac793c-c43f-43b1-a719-acbc3a2c8c8f",
-      "dependsOn": [
-        "pkg:apk/wolfi/busybox@1.37.0-r54?arch=x86_64&distro=20230201",
-        "pkg:apk/wolfi/ca-certificates@20251003-r3?arch=x86_64&distro=20230201",
-        "pkg:apk/wolfi/git@2.53.0-r0?arch=x86_64&distro=20230201",
-        "pkg:apk/wolfi/gpg-agent@2.4.9-r4?arch=x86_64&distro=20230201",
-        "pkg:apk/wolfi/gpg@2.4.9-r4?arch=x86_64&distro=20230201",
-        "pkg:apk/wolfi/helm-3@3.19.2-r2?arch=x86_64&distro=20230201",
-        "pkg:apk/wolfi/openssh-client@9.9_p2-r41?arch=x86_64&distro=20230201",
-        "pkg:apk/wolfi/tini@0.19.0-r24?arch=x86_64&distro=20230201"
-      ]
-    },
-    {
-      "ref": "3f51c32c-16ed-4a0c-a05a-bf51a2c43dcd",
-      "dependsOn": [
-        "b31bd650-dbec-48c1-9c2b-cdbb267d0a9d"
-      ]
-    },
-    {
-      "ref": "416ec0df-c2e7-42cf-8b19-1ba8a51fe6f1",
-      "dependsOn": [
-        "pkg:golang/github.com/grpc-ecosystem/grpc-health-probe@v0.4.41"
-      ]
-    },
-    {
-      "ref": "43e0eb9d-9e03-492e-bb3e-39d09da83ac5",
-      "dependsOn": [
-        "c1f27893-32da-404d-9c5e-7adb204e4335"
-      ]
-    },
-    {
-      "ref": "7de98c99-6842-4410-8aa7-d632eeb19dca",
+      "ref": "0d49d58b-b274-4691-b32a-80b3def77885",
       "dependsOn": []
     },
     {
-      "ref": "b31bd650-dbec-48c1-9c2b-cdbb267d0a9d",
+      "ref": "1052da65-e482-41ae-8dab-e965f203e431",
       "dependsOn": [
-        "7de98c99-6842-4410-8aa7-d632eeb19dca",
-        "c216d304-a153-47e6-aaad-1879502e3962",
+        "0d49d58b-b274-4691-b32a-80b3def77885",
+        "63f9c09c-1fe4-4656-a89b-f870a9992adb",
         "pkg:golang/cloud.google.com/go/auth/oauth2adapt@v0.2.8",
         "pkg:golang/cloud.google.com/go/auth@v0.18.0",
         "pkg:golang/cloud.google.com/go/compute/metadata@v0.9.0",
@@ -20938,12 +20941,49 @@
       ]
     },
     {
-      "ref": "c1f27893-32da-404d-9c5e-7adb204e4335",
+      "ref": "11011159-1ae1-48cc-8979-886f4db4982d",
+      "dependsOn": [
+        "e329a59c-de9a-40a7-b001-d0395a64688c"
+      ]
+    },
+    {
+      "ref": "5e335c1f-ea4e-4e7a-8571-46dbc0cacc14",
+      "dependsOn": [
+        "1052da65-e482-41ae-8dab-e965f203e431"
+      ]
+    },
+    {
+      "ref": "63f9c09c-1fe4-4656-a89b-f870a9992adb",
       "dependsOn": []
     },
     {
-      "ref": "c216d304-a153-47e6-aaad-1879502e3962",
+      "ref": "65e06704-51a5-49bb-bf39-539ad0fd9b92",
+      "dependsOn": [
+        "11011159-1ae1-48cc-8979-886f4db4982d"
+      ]
+    },
+    {
+      "ref": "e0d25474-3b18-4c4a-89ee-facf9972b15c",
+      "dependsOn": [
+        "pkg:golang/github.com/grpc-ecosystem/grpc-health-probe@v0.4.41"
+      ]
+    },
+    {
+      "ref": "e329a59c-de9a-40a7-b001-d0395a64688c",
       "dependsOn": []
+    },
+    {
+      "ref": "ede6e189-a5cf-4540-8749-f880d1ef9ac0",
+      "dependsOn": [
+        "pkg:apk/wolfi/busybox@1.37.0-r54?arch=x86_64&distro=20230201",
+        "pkg:apk/wolfi/ca-certificates@20251003-r3?arch=x86_64&distro=20230201",
+        "pkg:apk/wolfi/git@2.53.0-r0?arch=x86_64&distro=20230201",
+        "pkg:apk/wolfi/gpg-agent@2.4.9-r4?arch=x86_64&distro=20230201",
+        "pkg:apk/wolfi/gpg@2.4.9-r4?arch=x86_64&distro=20230201",
+        "pkg:apk/wolfi/helm-3@3.19.2-r2?arch=x86_64&distro=20230201",
+        "pkg:apk/wolfi/openssh-client@9.9_p2-r41?arch=x86_64&distro=20230201",
+        "pkg:apk/wolfi/tini@0.19.0-r24?arch=x86_64&distro=20230201"
+      ]
     },
     {
       "ref": "pkg:apk/wolfi/busybox@1.37.0-r54?arch=x86_64&distro=20230201",
@@ -22289,10 +22329,10 @@
     {
       "ref": "pkg:oci/kargo@sha256%3A5271ffadb60bb6e562b086ffe71e473d0cfc3fdd66a21b40fe200f2b76fc878c?arch=amd64&repository_url=ghcr.io%2Fakuity%2Fkargo",
       "dependsOn": [
-        "0dc8bf5b-a7e7-4d69-a0d8-09400f9fb78f",
-        "1aac793c-c43f-43b1-a719-acbc3a2c8c8f",
-        "3f51c32c-16ed-4a0c-a05a-bf51a2c43dcd",
-        "416ec0df-c2e7-42cf-8b19-1ba8a51fe6f1"
+        "5e335c1f-ea4e-4e7a-8571-46dbc0cacc14",
+        "65e06704-51a5-49bb-bf39-539ad0fd9b92",
+        "e0d25474-3b18-4c4a-89ee-facf9972b15c",
+        "ede6e189-a5cf-4540-8749-f880d1ef9ac0"
       ]
     }
   ],

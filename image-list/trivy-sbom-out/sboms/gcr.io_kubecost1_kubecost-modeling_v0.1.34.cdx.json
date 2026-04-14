@@ -2,10 +2,10 @@
   "$schema": "http://cyclonedx.org/schema/bom-1.6.schema.json",
   "bomFormat": "CycloneDX",
   "specVersion": "1.6",
-  "serialNumber": "urn:uuid:d4e39b28-bb56-4f47-b48d-66fcbe6ae0f7",
+  "serialNumber": "urn:uuid:a8bd3c50-967a-4f9e-af39-78fced50bd33",
   "version": 1,
   "metadata": {
-    "timestamp": "2026-04-07T12:46:43+00:00",
+    "timestamp": "2026-04-14T09:25:16+00:00",
     "tools": {
       "components": [
         {
@@ -162,7 +162,23 @@
   },
   "components": [
     {
-      "bom-ref": "b28c8c78-00d9-4e57-9fb9-576796a126c3",
+      "bom-ref": "35ddc453-62cc-4b27-9843-533ef229011c",
+      "type": "operating-system",
+      "name": "redhat",
+      "version": "9.7",
+      "properties": [
+        {
+          "name": "aquasecurity:trivy:Class",
+          "value": "os-pkgs"
+        },
+        {
+          "name": "aquasecurity:trivy:Type",
+          "value": "redhat"
+        }
+      ]
+    },
+    {
+      "bom-ref": "443696ed-d938-4dda-b84e-796d4b773643",
       "type": "library",
       "supplier": {
         "name": "Jaye Heffernan"
@@ -231,23 +247,7 @@
       ]
     },
     {
-      "bom-ref": "ce75f5b7-5798-4624-8e62-91b19bd5bb4a",
-      "type": "operating-system",
-      "name": "redhat",
-      "version": "9.7",
-      "properties": [
-        {
-          "name": "aquasecurity:trivy:Class",
-          "value": "os-pkgs"
-        },
-        {
-          "name": "aquasecurity:trivy:Type",
-          "value": "redhat"
-        }
-      ]
-    },
-    {
-      "bom-ref": "d21bf4e8-5c2d-42d4-8251-7f0e82077e31",
+      "bom-ref": "8a10a6a6-ac8c-4483-acf1-c743a6a33b46",
       "type": "library",
       "supplier": {
         "name": "Jaye Heffernan"
@@ -1515,7 +1515,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2025-09-17T15:41:22Z"
+          "value": "2026-04-08T21:54:11Z"
         },
         {
           "name": "ecosystems:topic",
@@ -1598,7 +1598,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-02-20T20:16:21Z"
+          "value": "2026-04-08T17:02:52Z"
         }
       ]
     },
@@ -2389,6 +2389,13 @@
     {
       "bom-ref": "pkg:pypi/jaraco.functools@4.0.1",
       "type": "library",
+      "supplier": {
+        "name": "Jason R. Coombs",
+        "url": [
+          "https://www.jaraco.com"
+        ]
+      },
+      "author": "Jason R. Coombs",
       "name": "jaraco.functools",
       "version": "4.0.1",
       "description": "Functools like those found in stdlib",
@@ -2442,6 +2449,10 @@
         {
           "name": "ecosystems:latest_release_published_at",
           "value": "2025-12-21T09:29:42Z"
+        },
+        {
+          "name": "ecosystems:owner_location",
+          "value": "Pittsburgh, PA, USA"
         }
       ]
     },
@@ -2812,13 +2823,6 @@
     {
       "bom-ref": "pkg:pypi/markupsafe@3.0.3",
       "type": "library",
-      "supplier": {
-        "name": "Pallets",
-        "url": [
-          "https://palletsprojects.com"
-        ]
-      },
-      "author": "Pallets",
       "name": "MarkupSafe",
       "version": "3.0.3",
       "description": "Safely add untrusted strings to HTML/XML markup.",
@@ -3045,7 +3049,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-04-02T16:17:43Z"
+          "value": "2026-04-09T15:01:32Z"
         }
       ]
     },
@@ -3126,13 +3130,6 @@
     {
       "bom-ref": "pkg:pypi/packaging@24.2",
       "type": "library",
-      "supplier": {
-        "name": "Python Packaging Authority",
-        "url": [
-          "https://www.pypa.io"
-        ]
-      },
-      "author": "Python Packaging Authority",
       "name": "packaging",
       "version": "24.2",
       "description": "Core utilities for Python packages",
@@ -3186,23 +3183,12 @@
         {
           "name": "ecosystems:latest_release_published_at",
           "value": "2026-01-21T20:50:37Z"
-        },
-        {
-          "name": "ecosystems:owner_location",
-          "value": "United States of America"
         }
       ]
     },
     {
       "bom-ref": "pkg:pypi/packaging@25.0",
       "type": "library",
-      "supplier": {
-        "name": "Python Packaging Authority",
-        "url": [
-          "https://www.pypa.io"
-        ]
-      },
-      "author": "Python Packaging Authority",
       "name": "packaging",
       "version": "25.0",
       "description": "Core utilities for Python packages",
@@ -3256,10 +3242,6 @@
         {
           "name": "ecosystems:latest_release_published_at",
           "value": "2026-01-21T20:50:37Z"
-        },
-        {
-          "name": "ecosystems:owner_location",
-          "value": "United States of America"
         }
       ]
     },
@@ -3486,7 +3468,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-03-05T18:34:12Z"
+          "value": "2026-04-09T00:04:09Z"
         },
         {
           "name": "ecosystems:topic",
@@ -3718,7 +3700,7 @@
       "purl": "pkg:pypi/pydantic-core@2.41.5",
       "externalReferences": [
         {
-          "url": "https://github.com/pydantic/pydantic-core",
+          "url": "https://github.com/pydantic/pydantic",
           "type": "website"
         },
         {
@@ -3726,7 +3708,7 @@
           "type": "distribution"
         },
         {
-          "url": "https://github.com/pydantic/pydantic-core",
+          "url": "https://github.com/pydantic/pydantic",
           "type": "vcs"
         },
         {
@@ -3757,11 +3739,11 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-03-31T06:48:21Z"
+          "value": "2026-04-13T09:04:32Z"
         },
         {
-          "name": "ecosystems:owner_location",
-          "value": "United Kingdom"
+          "name": "ecosystems:topic",
+          "value": "hints"
         },
         {
           "name": "ecosystems:topic",
@@ -3777,11 +3759,27 @@
         },
         {
           "name": "ecosystems:topic",
-          "value": "rust"
+          "value": "python"
         },
         {
           "name": "ecosystems:topic",
-          "value": "schema"
+          "value": "python310"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "python311"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "python312"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "python313"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "python39"
         },
         {
           "name": "ecosystems:topic",
@@ -4507,13 +4505,6 @@
     {
       "bom-ref": "pkg:pypi/rich-click@1.9.4",
       "type": "library",
-      "supplier": {
-        "name": "Phil Ewels",
-        "url": [
-          "http://phil.ewels.co.uk"
-        ]
-      },
-      "author": "Phil Ewels",
       "name": "rich-click",
       "version": "1.9.4",
       "description": "Format click help output nicely with rich",
@@ -4571,10 +4562,6 @@
         {
           "name": "ecosystems:latest_release_published_at",
           "value": "2026-01-31T04:29:26Z"
-        },
-        {
-          "name": "ecosystems:owner_location",
-          "value": "Stockholm, Sweden"
         },
         {
           "name": "ecosystems:topic",
@@ -4680,7 +4667,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-02-19T17:23:13Z"
+          "value": "2026-04-12T08:24:02Z"
         },
         {
           "name": "ecosystems:topic",
@@ -19916,11 +19903,7 @@
   ],
   "dependencies": [
     {
-      "ref": "b28c8c78-00d9-4e57-9fb9-576796a126c3",
-      "dependsOn": []
-    },
-    {
-      "ref": "ce75f5b7-5798-4624-8e62-91b19bd5bb4a",
+      "ref": "35ddc453-62cc-4b27-9843-533ef229011c",
       "dependsOn": [
         "pkg:rpm/redhat/alternatives@1.24-2.el9?arch=x86_64&distro=redhat-9.7",
         "pkg:rpm/redhat/gpg-pubkey@5a6340b3-6229229e?arch=None&distro=redhat-9.7",
@@ -19933,15 +19916,19 @@
       ]
     },
     {
-      "ref": "d21bf4e8-5c2d-42d4-8251-7f0e82077e31",
+      "ref": "443696ed-d938-4dda-b84e-796d4b773643",
+      "dependsOn": []
+    },
+    {
+      "ref": "8a10a6a6-ac8c-4483-acf1-c743a6a33b46",
       "dependsOn": []
     },
     {
       "ref": "pkg:oci/kubecost-modeling@sha256%3Aa484865da59c002a890118b34c27f2611dfa8ee29384bc2b1a65735a2a46e3e7?arch=amd64&repository_url=gcr.io%2Fkubecost1%2Fkubecost-modeling",
       "dependsOn": [
-        "b28c8c78-00d9-4e57-9fb9-576796a126c3",
-        "ce75f5b7-5798-4624-8e62-91b19bd5bb4a",
-        "d21bf4e8-5c2d-42d4-8251-7f0e82077e31",
+        "35ddc453-62cc-4b27-9843-533ef229011c",
+        "443696ed-d938-4dda-b84e-796d4b773643",
+        "8a10a6a6-ac8c-4483-acf1-c743a6a33b46",
         "pkg:pypi/annotated-types@0.7.0",
         "pkg:pypi/anyio@4.11.0",
         "pkg:pypi/apscheduler@3.11.1",

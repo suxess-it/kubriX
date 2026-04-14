@@ -2,10 +2,10 @@
   "$schema": "http://cyclonedx.org/schema/bom-1.6.schema.json",
   "bomFormat": "CycloneDX",
   "specVersion": "1.6",
-  "serialNumber": "urn:uuid:606f2a0b-15cf-44d7-b865-05898ed2302d",
+  "serialNumber": "urn:uuid:b44dd26f-71d1-4994-a342-f103ae2dc1e7",
   "version": 1,
   "metadata": {
-    "timestamp": "2026-04-07T12:48:08+00:00",
+    "timestamp": "2026-04-14T09:27:11+00:00",
     "tools": {
       "components": [
         {
@@ -74,7 +74,7 @@
   },
   "components": [
     {
-      "bom-ref": "67aa93ae-b8fd-4a05-98e9-688874356850",
+      "bom-ref": "54720758-e7e2-45cf-8741-8239ae35ffbe",
       "type": "operating-system",
       "name": "alpine",
       "version": "3.23.3",
@@ -90,7 +90,7 @@
       ]
     },
     {
-      "bom-ref": "974fc916-f2b7-4d49-bd02-96f6e745ba11",
+      "bom-ref": "be335598-0afa-4d14-9080-50807a0202c7",
       "type": "application",
       "name": "usr/local/bin/nats-server-config-reloader",
       "properties": [
@@ -456,7 +456,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-02-25T18:43:29Z"
+          "value": "2026-04-13T09:23:00Z"
         }
       ]
     },
@@ -736,7 +736,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-02-25T18:43:29Z"
+          "value": "2026-04-13T09:23:00Z"
         }
       ]
     },
@@ -806,7 +806,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-03-19T07:52:35Z"
+          "value": "2026-04-08T14:08:45Z"
         }
       ]
     },
@@ -876,7 +876,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-01-27T16:30:14Z"
+          "value": "2026-04-08T14:08:45Z"
         }
       ]
     },
@@ -946,7 +946,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-03-21T19:37:00Z"
+          "value": "2026-04-10T15:28:45Z"
         }
       ]
     },
@@ -1016,7 +1016,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-03-21T19:37:00Z"
+          "value": "2026-04-10T15:28:45Z"
         }
       ]
     },
@@ -1370,6 +1370,10 @@
           "type": "distribution"
         },
         {
+          "url": "https://cs.opensource.google/go/x/sys",
+          "type": "vcs"
+        },
+        {
           "url": "https://pkg.go.dev/golang.org/x/sys#section-documentation",
           "type": "documentation"
         }
@@ -1397,7 +1401,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-03-03T01:51:03Z"
+          "value": "2026-03-27T16:08:41Z"
         }
       ]
     },
@@ -1429,7 +1433,7 @@
   ],
   "dependencies": [
     {
-      "ref": "67aa93ae-b8fd-4a05-98e9-688874356850",
+      "ref": "54720758-e7e2-45cf-8741-8239ae35ffbe",
       "dependsOn": [
         "pkg:apk/alpine/alpine-baselayout@3.7.1-r8?arch=x86_64&distro=3.23.3",
         "pkg:apk/alpine/alpine-release@3.23.3-r0?arch=x86_64&distro=3.23.3",
@@ -1439,7 +1443,7 @@
       ]
     },
     {
-      "ref": "974fc916-f2b7-4d49-bd02-96f6e745ba11",
+      "ref": "be335598-0afa-4d14-9080-50807a0202c7",
       "dependsOn": [
         "pkg:golang/github.com/nats-io/nack@v0.22.3%2Bdirty"
       ]
@@ -1567,8 +1571,8 @@
     {
       "ref": "pkg:oci/nats-server-config-reloader@sha256%3Ace508ee14a4be8be63f8e1ca49d4bfbc887a84317fde3718d4e2f254ed285a4b?arch=amd64&repository_url=index.docker.io%2Fnatsio%2Fnats-server-config-reloader",
       "dependsOn": [
-        "67aa93ae-b8fd-4a05-98e9-688874356850",
-        "974fc916-f2b7-4d49-bd02-96f6e745ba11"
+        "54720758-e7e2-45cf-8741-8239ae35ffbe",
+        "be335598-0afa-4d14-9080-50807a0202c7"
       ]
     }
   ],
