@@ -93,7 +93,7 @@
         <td>CVE-2026-40175</td>
         <td>CRITICAL</td>
         <td>1.14.0</td>
-        <td>1.15.0</td>
+        <td>1.15.0, 0.31.0</td>
     </tr>
     <tr>
         <td><code>basic-ftp</code></td>

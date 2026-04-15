@@ -3,7 +3,7 @@
 <h4>No Vulnerabilities found</h4>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>ko-app/readiness-checker</code></h3>
-<h4>Vulnerabilities (13)</h4>
+<h4>Vulnerabilities (16)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -62,6 +62,27 @@
         <td></td>
     </tr>
     <tr>
+        <td><code>github.com/kyverno/kyverno</code></td>
+        <td>GHSA-fmqp-4wfc-w3v7</td>
+        <td>HIGH</td>
+        <td>v1.5.0-rc1.0.20260122002923-b35e0045f4a1+dirty</td>
+        <td>1.16.2</td>
+    </tr>
+    <tr>
+        <td><code>github.com/kyverno/kyverno</code></td>
+        <td>GHSA-q93q-v844-jrqp</td>
+        <td>HIGH</td>
+        <td>v1.5.0-rc1.0.20260122002923-b35e0045f4a1+dirty</td>
+        <td>1.17.0</td>
+    </tr>
+    <tr>
+        <td><code>github.com/kyverno/kyverno</code></td>
+        <td>GHSA-qr4g-8hrp-c4rw</td>
+        <td>HIGH</td>
+        <td>v1.5.0-rc1.0.20260122002923-b35e0045f4a1+dirty</td>
+        <td></td>
+    </tr>
+    <tr>
         <td><code>stdlib</code></td>
         <td>CVE-2025-68121</td>
         <td>CRITICAL</td>
@@ -110,7 +131,7 @@
 <h4>No Vulnerabilities found</h4>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>ko-app/background-controller</code></h3>
-<h4>Vulnerabilities (8)</h4>
+<h4>Vulnerabilities (9)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -132,6 +153,13 @@
         <td>HIGH</td>
         <td>v4.1.3</td>
         <td>4.1.4</td>
+    </tr>
+    <tr>
+        <td><code>github.com/kyverno/kyverno</code></td>
+        <td>GHSA-qr4g-8hrp-c4rw</td>
+        <td>HIGH</td>
+        <td>v1.17.1+dirty</td>
+        <td></td>
     </tr>
     <tr>
         <td><code>go.opentelemetry.io/otel/sdk</code></td>
@@ -182,7 +210,7 @@
 <h4>No Vulnerabilities found</h4>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>ko-app/cleanup-controller</code></h3>
-<h4>Vulnerabilities (8)</h4>
+<h4>Vulnerabilities (9)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -204,6 +232,13 @@
         <td>HIGH</td>
         <td>v4.1.3</td>
         <td>4.1.4</td>
+    </tr>
+    <tr>
+        <td><code>github.com/kyverno/kyverno</code></td>
+        <td>GHSA-qr4g-8hrp-c4rw</td>
+        <td>HIGH</td>
+        <td>v1.17.1+dirty</td>
+        <td></td>
     </tr>
     <tr>
         <td><code>go.opentelemetry.io/otel/sdk</code></td>
@@ -254,7 +289,7 @@
 <h4>No Vulnerabilities found</h4>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>ko-app/kubectl-kyverno</code></h3>
-<h4>Vulnerabilities (8)</h4>
+<h4>Vulnerabilities (9)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -276,6 +311,13 @@
         <td>HIGH</td>
         <td>v4.1.3</td>
         <td>4.1.4</td>
+    </tr>
+    <tr>
+        <td><code>github.com/kyverno/kyverno</code></td>
+        <td>GHSA-qr4g-8hrp-c4rw</td>
+        <td>HIGH</td>
+        <td>v1.17.1+dirty</td>
+        <td></td>
     </tr>
     <tr>
         <td><code>go.opentelemetry.io/otel/sdk</code></td>
@@ -326,7 +368,7 @@
 <h4>No Vulnerabilities found</h4>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>ko-app/kyverno</code></h3>
-<h4>Vulnerabilities (8)</h4>
+<h4>Vulnerabilities (9)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -348,6 +390,13 @@
         <td>HIGH</td>
         <td>v4.1.3</td>
         <td>4.1.4</td>
+    </tr>
+    <tr>
+        <td><code>github.com/kyverno/kyverno</code></td>
+        <td>GHSA-qr4g-8hrp-c4rw</td>
+        <td>HIGH</td>
+        <td>v1.17.1+dirty</td>
+        <td></td>
     </tr>
     <tr>
         <td><code>go.opentelemetry.io/otel/sdk</code></td>
@@ -398,7 +447,7 @@
 <h4>No Vulnerabilities found</h4>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>ko-app/kyverno-init</code></h3>
-<h4>Vulnerabilities (8)</h4>
+<h4>Vulnerabilities (9)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -420,6 +469,13 @@
         <td>HIGH</td>
         <td>v4.1.3</td>
         <td>4.1.4</td>
+    </tr>
+    <tr>
+        <td><code>github.com/kyverno/kyverno</code></td>
+        <td>GHSA-qr4g-8hrp-c4rw</td>
+        <td>HIGH</td>
+        <td>v1.17.1+dirty</td>
+        <td></td>
     </tr>
     <tr>
         <td><code>go.opentelemetry.io/otel/sdk</code></td>
@@ -470,7 +526,7 @@
 <h4>No Vulnerabilities found</h4>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>ko-app/reports-controller</code></h3>
-<h4>Vulnerabilities (8)</h4>
+<h4>Vulnerabilities (9)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -492,6 +548,13 @@
         <td>HIGH</td>
         <td>v4.1.3</td>
         <td>4.1.4</td>
+    </tr>
+    <tr>
+        <td><code>github.com/kyverno/kyverno</code></td>
+        <td>GHSA-qr4g-8hrp-c4rw</td>
+        <td>HIGH</td>
+        <td>v1.17.1+dirty</td>
+        <td></td>
     </tr>
     <tr>
         <td><code>go.opentelemetry.io/otel/sdk</code></td>

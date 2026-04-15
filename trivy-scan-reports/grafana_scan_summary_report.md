@@ -1,6 +1,6 @@
 
 <h3>Target <code>docker.io/grafana/grafana:12.4.2 (alpine 3.23.3)</code></h3>
-<h4>Vulnerabilities (3)</h4>
+<h4>Vulnerabilities (5)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -22,6 +22,20 @@
         <td>HIGH</td>
         <td>3.5.5-r0</td>
         <td>3.5.6-r0</td>
+    </tr>
+    <tr>
+        <td><code>musl</code></td>
+        <td>CVE-2026-40200</td>
+        <td>HIGH</td>
+        <td>1.2.5-r21</td>
+        <td>1.2.5-r23</td>
+    </tr>
+    <tr>
+        <td><code>musl-utils</code></td>
+        <td>CVE-2026-40200</td>
+        <td>HIGH</td>
+        <td>1.2.5-r21</td>
+        <td>1.2.5-r23</td>
     </tr>
     <tr>
         <td><code>zlib</code></td>
@@ -143,7 +157,7 @@
 <h4>No Misconfigurations found</h4>
 
 <h3>Target <code>quay.io/kiwigrid/k8s-sidecar:2.6.0 (alpine 3.23.3)</code></h3>
-<h4>Vulnerabilities (3)</h4>
+<h4>Vulnerabilities (5)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -165,6 +179,20 @@
         <td>HIGH</td>
         <td>3.5.5-r0</td>
         <td>3.5.6-r0</td>
+    </tr>
+    <tr>
+        <td><code>musl</code></td>
+        <td>CVE-2026-40200</td>
+        <td>HIGH</td>
+        <td>1.2.5-r21</td>
+        <td>1.2.5-r23</td>
+    </tr>
+    <tr>
+        <td><code>musl-utils</code></td>
+        <td>CVE-2026-40200</td>
+        <td>HIGH</td>
+        <td>1.2.5-r21</td>
+        <td>1.2.5-r23</td>
     </tr>
     <tr>
         <td><code>zlib</code></td>

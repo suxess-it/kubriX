@@ -1,6 +1,6 @@
 
 <h3>Target <code>quay.io/frrouting/frr:10.4.1 (alpine 3.20.7)</code></h3>
-<h4>Vulnerabilities (10)</h4>
+<h4>Vulnerabilities (14)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -73,11 +73,39 @@
         <td>3.3.7-r0</td>
     </tr>
     <tr>
+        <td><code>musl</code></td>
+        <td>CVE-2026-40200</td>
+        <td>HIGH</td>
+        <td>1.2.5-r1</td>
+        <td>1.2.5-r3</td>
+    </tr>
+    <tr>
+        <td><code>musl-utils</code></td>
+        <td>CVE-2026-40200</td>
+        <td>HIGH</td>
+        <td>1.2.5-r1</td>
+        <td>1.2.5-r3</td>
+    </tr>
+    <tr>
         <td><code>sqlite-libs</code></td>
         <td>CVE-2025-6965</td>
         <td>CRITICAL</td>
         <td>3.45.3-r2</td>
         <td>3.45.3-r3</td>
+    </tr>
+    <tr>
+        <td><code>zlib</code></td>
+        <td>CVE-2026-22184</td>
+        <td>HIGH</td>
+        <td>1.3.1-r1</td>
+        <td>1.3.2-r0</td>
+    </tr>
+    <tr>
+        <td><code>zlib-dev</code></td>
+        <td>CVE-2026-22184</td>
+        <td>HIGH</td>
+        <td>1.3.1-r1</td>
+        <td>1.3.2-r0</td>
     </tr>
 </table>
 <h4>No Misconfigurations found</h4>
