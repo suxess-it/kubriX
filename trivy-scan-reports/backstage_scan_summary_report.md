@@ -86,7 +86,7 @@
         <td>CVE-2025-62718</td>
         <td>CRITICAL</td>
         <td>1.14.0</td>
-        <td>1.15.0</td>
+        <td>1.15.0, 0.31.0</td>
     </tr>
     <tr>
         <td><code>axios</code></td>

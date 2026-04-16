@@ -56,6 +56,13 @@
     </tr>
     <tr>
         <td><code>github.com/kyverno/kyverno</code></td>
+        <td>CVE-2026-40868</td>
+        <td>HIGH</td>
+        <td>v1.5.0-rc1.0.20260122002923-b35e0045f4a1+dirty</td>
+        <td>1.17.0</td>
+    </tr>
+    <tr>
+        <td><code>github.com/kyverno/kyverno</code></td>
         <td>GHSA-459x-q9hg-4gpq</td>
         <td>HIGH</td>
         <td>v1.5.0-rc1.0.20260122002923-b35e0045f4a1+dirty</td>
@@ -67,13 +74,6 @@
         <td>HIGH</td>
         <td>v1.5.0-rc1.0.20260122002923-b35e0045f4a1+dirty</td>
         <td>1.16.2</td>
-    </tr>
-    <tr>
-        <td><code>github.com/kyverno/kyverno</code></td>
-        <td>GHSA-q93q-v844-jrqp</td>
-        <td>HIGH</td>
-        <td>v1.5.0-rc1.0.20260122002923-b35e0045f4a1+dirty</td>
-        <td>1.17.0</td>
     </tr>
     <tr>
         <td><code>github.com/kyverno/kyverno</code></td>
