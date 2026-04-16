@@ -1,0 +1,59 @@
+name: notify-kubrix-prime
+
+on:
+  pull_request:
+    types: [closed]
+
+permissions:
+  contents: read
+  pull-requests: read
+
+jobs:
+  dispatch:
+    if: >
+      github.event.pull_request.merged == true &&
+      github.event.pull_request.base.ref == 'main'
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Build payload
+        id: payload
+        shell: bash
+        run: |
+          labels_json=$(jq -c '[.pull_request.labels[].name]' "$GITHUB_EVENT_PATH")
+
+          jq -n \
+            --arg upstream_repo "${{ github.repository }}" \
+            --arg pr_number "${{ github.event.pull_request.number }}" \
+            --arg pr_title "${{ github.event.pull_request.title }}" \
+            --arg merge_commit_sha "${{ github.event.pull_request.merge_commit_sha }}" \
+            --arg base_branch "${{ github.event.pull_request.base.ref }}" \
+            --arg merged_by "${{ github.event.pull_request.merged_by.login }}" \
+            --argjson labels "$labels_json" \
+            '{
+              event_type: "kubrix_upstream_pr_merged",
+              client_payload: {
+                upstream_repo: $upstream_repo,
+                pr_number: ($pr_number | tonumber),
+                pr_title: $pr_title,
+                merge_commit_sha: $merge_commit_sha,
+                base_branch: $base_branch,
+                merged_by: $merged_by,
+                labels: $labels
+              }
+            }' > dispatch.json
+
+          echo "payload_file=dispatch.json" >> "$GITHUB_OUTPUT"
+
+      - name: Send repository_dispatch to kubrix-prime
+        env:
+          GH_TOKEN: ${{ secrets.KUBRIX_PRIME_DISPATCH_TOKEN }}
+        shell: bash
+        run: |
+          curl --fail-with-body -L \
+            -X POST \
+            -H "Accept: application/vnd.github+json" \
+            -H "Authorization: Bearer ${GH_TOKEN}" \
+            -H "X-GitHub-Api-Version: 2022-11-28" \
+            https://api.github.com/repos/suxess-it/kubriX-prime/dispatches \
+            --data @"${{ steps.payload.outputs.payload_file }}"
