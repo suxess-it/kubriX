@@ -42,7 +42,7 @@
         <td>CVE-2026-27135</td>
         <td>HIGH</td>
         <td>1.43.0-6.el9</td>
-        <td></td>
+        <td>1.43.0-6.el9_7.1</td>
     </tr>
     <tr>
         <td><code>openssl-libs</code></td>
@@ -144,7 +144,7 @@
 <h4>No Misconfigurations found</h4>
 
 <h3>Target <code>ghcr.io/grafana/helm-chart-toolbox-kubectl:0.1.2 (alpine 3.22.2)</code></h3>
-<h4>Vulnerabilities (8)</h4>
+<h4>Vulnerabilities (11)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -208,6 +208,27 @@
         <td>HIGH</td>
         <td>3.5.4-r0</td>
         <td>3.5.6-r0</td>
+    </tr>
+    <tr>
+        <td><code>musl</code></td>
+        <td>CVE-2026-40200</td>
+        <td>HIGH</td>
+        <td>1.2.5-r10</td>
+        <td>1.2.5-r12</td>
+    </tr>
+    <tr>
+        <td><code>musl-utils</code></td>
+        <td>CVE-2026-40200</td>
+        <td>HIGH</td>
+        <td>1.2.5-r10</td>
+        <td>1.2.5-r12</td>
+    </tr>
+    <tr>
+        <td><code>zlib</code></td>
+        <td>CVE-2026-22184</td>
+        <td>HIGH</td>
+        <td>1.3.1-r2</td>
+        <td>1.3.2-r0</td>
     </tr>
 </table>
 <h4>No Misconfigurations found</h4>
@@ -635,7 +656,7 @@
 <h4>No Misconfigurations found</h4>
 
 <h3>Target <code>bin/node_exporter</code></h3>
-<h4>Vulnerabilities (2)</h4>
+<h4>Vulnerabilities (3)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -657,6 +678,13 @@
         <td>HIGH</td>
         <td>v1.26.1</td>
         <td>1.25.9, 1.26.2</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-33810</td>
+        <td>HIGH</td>
+        <td>v1.26.1</td>
+        <td>1.26.2</td>
     </tr>
 </table>
 <h4>No Misconfigurations found</h4>
