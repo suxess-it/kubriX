@@ -1,5 +1,23 @@
 # Changelog
 
+## [7.1.0](https://github.com/suxess-it/kubriX/compare/v7.0.0...v7.1.0) (2026-04-18)
+
+
+### Features
+
+* **deps:** update grafana docker tag to v11.6.1 ([#2633](https://github.com/suxess-it/kubriX/issues/2633)) ([9bbb1fe](https://github.com/suxess-it/kubriX/commit/9bbb1fe1454544e7c9e1a6f6c1e565ed00ef2728))
+* **deps:** update helm release external-secrets to v2.3.0 ([#2664](https://github.com/suxess-it/kubriX/issues/2664)) ([11e1831](https://github.com/suxess-it/kubriX/commit/11e183134cb15a9e2e3a7a22230184e79fa503e2))
+* **deps:** update loki docker tag to v11.7.0 ([#2643](https://github.com/suxess-it/kubriX/issues/2643)) ([8c5811c](https://github.com/suxess-it/kubriX/commit/8c5811cac0b0358a3719189e72710ddb89437c32))
+* **dep:** update vault provider to 3.0.6 ([#2660](https://github.com/suxess-it/kubriX/issues/2660)) ([f6c3501](https://github.com/suxess-it/kubriX/commit/f6c3501d2c0c870c04db8c3836e996fdbef809e6))
+
+
+### Bug Fixes
+
+* **deps:** update helm release cert-manager to v1.20.2 ([#2669](https://github.com/suxess-it/kubriX/issues/2669)) ([a31bfef](https://github.com/suxess-it/kubriX/commit/a31bfeff7e97f73d3c33c3e5a0fc0077309e8feb))
+* **deps:** update helm release komoplane to v0.1.8 ([#2657](https://github.com/suxess-it/kubriX/issues/2657)) ([f776250](https://github.com/suxess-it/kubriX/commit/f776250f2833ec8759ba832396eadcab6e42af6c))
+* **deps:** update helm release traefik to v39.0.8 ([#2685](https://github.com/suxess-it/kubriX/issues/2685)) ([25e60bf](https://github.com/suxess-it/kubriX/commit/25e60bf4a7cb99c9389a986932eff5db65aa883f))
+* **deps:** update xpkg.upbound.io/upbound/provider-vault docker tag to v3.0.7 ([#2688](https://github.com/suxess-it/kubriX/issues/2688)) ([e2e1452](https://github.com/suxess-it/kubriX/commit/e2e1452b4389b2fd8b8422a05d44ca0da2704522))
+
 ## [7.0.0](https://github.com/suxess-it/kubriX/compare/v6.0.0...v7.0.0) (2026-04-14)
 
 
