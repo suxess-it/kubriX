@@ -1,5 +1,5 @@
 
-<h3>Target <code>docker.io/kubeshop/testkube-api-server:2.8.2 (alpine 3.20.8)</code></h3>
+<h3>Target <code>docker.io/kubeshop/testkube-api-server:2.8.3 (alpine 3.20.8)</code></h3>
 <h4>Vulnerabilities (11)</h4>
 <table>
     <tr>
