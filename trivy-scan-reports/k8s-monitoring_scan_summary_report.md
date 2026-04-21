@@ -28,7 +28,7 @@
         <td>CVE-2026-4424</td>
         <td>HIGH</td>
         <td>3.5.3-6.el9_6</td>
-        <td></td>
+        <td>3.5.3-9.el9_7</td>
     </tr>
     <tr>
         <td><code>libcap</code></td>
@@ -61,7 +61,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>usr/local/bin/helm-operator</code></h3>
-<h4>Vulnerabilities (10)</h4>
+<h4>Vulnerabilities (12)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -69,6 +69,13 @@
         <th>Severity</th>
         <th>Installed Version</th>
         <th>Fixed Version</th>
+    </tr>
+    <tr>
+        <td><code>github.com/moby/spdystream</code></td>
+        <td>CVE-2026-35469</td>
+        <td>HIGH</td>
+        <td>v0.5.0</td>
+        <td>0.5.1</td>
     </tr>
     <tr>
         <td><code>go.opentelemetry.io/otel/sdk</code></td>
@@ -135,7 +142,14 @@
     </tr>
     <tr>
         <td><code>stdlib</code></td>
-        <td>CVE-2026-32282</td>
+        <td>CVE-2026-32281</td>
+        <td>HIGH</td>
+        <td>v1.24.10</td>
+        <td>1.25.9, 1.26.2</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-32283</td>
         <td>HIGH</td>
         <td>v1.24.10</td>
         <td>1.25.9, 1.26.2</td>
@@ -233,7 +247,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>usr/bin/kubectl-1.29</code></h3>
-<h4>Vulnerabilities (10)</h4>
+<h4>Vulnerabilities (12)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -241,6 +255,13 @@
         <th>Severity</th>
         <th>Installed Version</th>
         <th>Fixed Version</th>
+    </tr>
+    <tr>
+        <td><code>github.com/moby/spdystream</code></td>
+        <td>CVE-2026-35469</td>
+        <td>HIGH</td>
+        <td>v0.2.0</td>
+        <td>0.5.1</td>
     </tr>
     <tr>
         <td><code>golang.org/x/oauth2</code></td>
@@ -307,7 +328,14 @@
     </tr>
     <tr>
         <td><code>stdlib</code></td>
-        <td>CVE-2026-32282</td>
+        <td>CVE-2026-32281</td>
+        <td>HIGH</td>
+        <td>v1.23.6</td>
+        <td>1.25.9, 1.26.2</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-32283</td>
         <td>HIGH</td>
         <td>v1.23.6</td>
         <td>1.25.9, 1.26.2</td>
@@ -315,7 +343,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>usr/bin/kubectl-1.30</code></h3>
-<h4>Vulnerabilities (10)</h4>
+<h4>Vulnerabilities (12)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -323,6 +351,13 @@
         <th>Severity</th>
         <th>Installed Version</th>
         <th>Fixed Version</th>
+    </tr>
+    <tr>
+        <td><code>github.com/moby/spdystream</code></td>
+        <td>CVE-2026-35469</td>
+        <td>HIGH</td>
+        <td>v0.2.0</td>
+        <td>0.5.1</td>
     </tr>
     <tr>
         <td><code>golang.org/x/oauth2</code></td>
@@ -389,7 +424,14 @@
     </tr>
     <tr>
         <td><code>stdlib</code></td>
-        <td>CVE-2026-32282</td>
+        <td>CVE-2026-32281</td>
+        <td>HIGH</td>
+        <td>v1.23.10</td>
+        <td>1.25.9, 1.26.2</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-32283</td>
         <td>HIGH</td>
         <td>v1.23.10</td>
         <td>1.25.9, 1.26.2</td>
@@ -397,7 +439,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>usr/bin/kubectl-1.31</code></h3>
-<h4>Vulnerabilities (8)</h4>
+<h4>Vulnerabilities (10)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -405,6 +447,13 @@
         <th>Severity</th>
         <th>Installed Version</th>
         <th>Fixed Version</th>
+    </tr>
+    <tr>
+        <td><code>github.com/moby/spdystream</code></td>
+        <td>CVE-2026-35469</td>
+        <td>HIGH</td>
+        <td>v0.4.0</td>
+        <td>0.5.1</td>
     </tr>
     <tr>
         <td><code>golang.org/x/oauth2</code></td>
@@ -457,7 +506,14 @@
     </tr>
     <tr>
         <td><code>stdlib</code></td>
-        <td>CVE-2026-32282</td>
+        <td>CVE-2026-32281</td>
+        <td>HIGH</td>
+        <td>v1.24.9</td>
+        <td>1.25.9, 1.26.2</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-32283</td>
         <td>HIGH</td>
         <td>v1.24.9</td>
         <td>1.25.9, 1.26.2</td>
@@ -465,7 +521,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>usr/bin/kubectl-1.32</code></h3>
-<h4>Vulnerabilities (8)</h4>
+<h4>Vulnerabilities (10)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -473,6 +529,13 @@
         <th>Severity</th>
         <th>Installed Version</th>
         <th>Fixed Version</th>
+    </tr>
+    <tr>
+        <td><code>github.com/moby/spdystream</code></td>
+        <td>CVE-2026-35469</td>
+        <td>HIGH</td>
+        <td>v0.5.0</td>
+        <td>0.5.1</td>
     </tr>
     <tr>
         <td><code>golang.org/x/oauth2</code></td>
@@ -525,7 +588,14 @@
     </tr>
     <tr>
         <td><code>stdlib</code></td>
-        <td>CVE-2026-32282</td>
+        <td>CVE-2026-32281</td>
+        <td>HIGH</td>
+        <td>v1.24.9</td>
+        <td>1.25.9, 1.26.2</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-32283</td>
         <td>HIGH</td>
         <td>v1.24.9</td>
         <td>1.25.9, 1.26.2</td>
@@ -533,7 +603,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>usr/bin/kubectl-1.33</code></h3>
-<h4>Vulnerabilities (7)</h4>
+<h4>Vulnerabilities (9)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -541,6 +611,13 @@
         <th>Severity</th>
         <th>Installed Version</th>
         <th>Fixed Version</th>
+    </tr>
+    <tr>
+        <td><code>github.com/moby/spdystream</code></td>
+        <td>CVE-2026-35469</td>
+        <td>HIGH</td>
+        <td>v0.5.0</td>
+        <td>0.5.1</td>
     </tr>
     <tr>
         <td><code>stdlib</code></td>
@@ -586,7 +663,14 @@
     </tr>
     <tr>
         <td><code>stdlib</code></td>
-        <td>CVE-2026-32282</td>
+        <td>CVE-2026-32281</td>
+        <td>HIGH</td>
+        <td>v1.24.9</td>
+        <td>1.25.9, 1.26.2</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-32283</td>
         <td>HIGH</td>
         <td>v1.24.9</td>
         <td>1.25.9, 1.26.2</td>
@@ -594,7 +678,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>usr/bin/kubectl-1.34</code></h3>
-<h4>Vulnerabilities (7)</h4>
+<h4>Vulnerabilities (9)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -602,6 +686,13 @@
         <th>Severity</th>
         <th>Installed Version</th>
         <th>Fixed Version</th>
+    </tr>
+    <tr>
+        <td><code>github.com/moby/spdystream</code></td>
+        <td>CVE-2026-35469</td>
+        <td>HIGH</td>
+        <td>v0.5.0</td>
+        <td>0.5.1</td>
     </tr>
     <tr>
         <td><code>stdlib</code></td>
@@ -647,7 +738,14 @@
     </tr>
     <tr>
         <td><code>stdlib</code></td>
-        <td>CVE-2026-32282</td>
+        <td>CVE-2026-32281</td>
+        <td>HIGH</td>
+        <td>v1.24.9</td>
+        <td>1.25.9, 1.26.2</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-32283</td>
         <td>HIGH</td>
         <td>v1.24.9</td>
         <td>1.25.9, 1.26.2</td>
@@ -656,7 +754,7 @@
 <h4>No Misconfigurations found</h4>
 
 <h3>Target <code>bin/node_exporter</code></h3>
-<h4>Vulnerabilities (3)</h4>
+<h4>Vulnerabilities (4)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -674,7 +772,14 @@
     </tr>
     <tr>
         <td><code>stdlib</code></td>
-        <td>CVE-2026-32282</td>
+        <td>CVE-2026-32281</td>
+        <td>HIGH</td>
+        <td>v1.26.1</td>
+        <td>1.25.9, 1.26.2</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-32283</td>
         <td>HIGH</td>
         <td>v1.26.1</td>
         <td>1.25.9, 1.26.2</td>
@@ -693,7 +798,7 @@
 <h4>No Vulnerabilities found</h4>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>kube-state-metrics</code></h3>
-<h4>Vulnerabilities (9)</h4>
+<h4>Vulnerabilities (10)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -760,7 +865,14 @@
     </tr>
     <tr>
         <td><code>stdlib</code></td>
-        <td>CVE-2026-32282</td>
+        <td>CVE-2026-32281</td>
+        <td>HIGH</td>
+        <td>v1.25.5</td>
+        <td>1.25.9, 1.26.2</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-32283</td>
         <td>HIGH</td>
         <td>v1.25.5</td>
         <td>1.25.9, 1.26.2</td>

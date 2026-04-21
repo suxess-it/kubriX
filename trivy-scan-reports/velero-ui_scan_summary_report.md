@@ -584,7 +584,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>usr/local/bin/kubectl</code></h3>
-<h4>Vulnerabilities (11)</h4>
+<h4>Vulnerabilities (13)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -592,6 +592,13 @@
         <th>Severity</th>
         <th>Installed Version</th>
         <th>Fixed Version</th>
+    </tr>
+    <tr>
+        <td><code>github.com/moby/spdystream</code></td>
+        <td>CVE-2026-35469</td>
+        <td>HIGH</td>
+        <td>v0.4.0</td>
+        <td>0.5.1</td>
     </tr>
     <tr>
         <td><code>golang.org/x/oauth2</code></td>
@@ -665,7 +672,14 @@
     </tr>
     <tr>
         <td><code>stdlib</code></td>
-        <td>CVE-2026-32282</td>
+        <td>CVE-2026-32281</td>
+        <td>HIGH</td>
+        <td>v1.22.5</td>
+        <td>1.25.9, 1.26.2</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-32283</td>
         <td>HIGH</td>
         <td>v1.22.5</td>
         <td>1.25.9, 1.26.2</td>
@@ -859,7 +873,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>app/node_modules/@esbuild/linux-x64/bin/esbuild</code></h3>
-<h4>Vulnerabilities (9)</h4>
+<h4>Vulnerabilities (10)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -926,7 +940,14 @@
     </tr>
     <tr>
         <td><code>stdlib</code></td>
-        <td>CVE-2026-32282</td>
+        <td>CVE-2026-32281</td>
+        <td>HIGH</td>
+        <td>v1.23.7</td>
+        <td>1.25.9, 1.26.2</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-32283</td>
         <td>HIGH</td>
         <td>v1.23.7</td>
         <td>1.25.9, 1.26.2</td>

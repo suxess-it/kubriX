@@ -1,6 +1,6 @@
 
 <h3>Target <code>nix/store/rwlic8idnsphgcpi9qiz4q4g1x746ws6-crossplane-linux-amd64-v2.2.0/bin/crossplane</code></h3>
-<h4>Vulnerabilities (6)</h4>
+<h4>Vulnerabilities (7)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -46,7 +46,14 @@
     </tr>
     <tr>
         <td><code>stdlib</code></td>
-        <td>CVE-2026-32282</td>
+        <td>CVE-2026-32281</td>
+        <td>HIGH</td>
+        <td>v1.25.5</td>
+        <td>1.25.9, 1.26.2</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-32283</td>
         <td>HIGH</td>
         <td>v1.25.5</td>
         <td>1.25.9, 1.26.2</td>
