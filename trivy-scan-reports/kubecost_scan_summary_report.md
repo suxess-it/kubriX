@@ -1,6 +1,6 @@
 
 <h3>Target <code>badouralix/curl-jq:alpine (alpine 3.23.3)</code></h3>
-<h4>Vulnerabilities (3)</h4>
+<h4>Vulnerabilities (5)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -22,6 +22,20 @@
         <td>HIGH</td>
         <td>3.5.5-r0</td>
         <td>3.5.6-r0</td>
+    </tr>
+    <tr>
+        <td><code>musl</code></td>
+        <td>CVE-2026-40200</td>
+        <td>HIGH</td>
+        <td>1.2.5-r21</td>
+        <td>1.2.5-r23</td>
+    </tr>
+    <tr>
+        <td><code>musl-utils</code></td>
+        <td>CVE-2026-40200</td>
+        <td>HIGH</td>
+        <td>1.2.5-r21</td>
+        <td>1.2.5-r23</td>
     </tr>
     <tr>
         <td><code>zlib</code></td>
@@ -62,7 +76,7 @@
         <td>CVE-2026-4424</td>
         <td>HIGH</td>
         <td>3.5.3-6.el9_6</td>
-        <td></td>
+        <td>3.5.3-9.el9_7</td>
     </tr>
     <tr>
         <td><code>libcap</code></td>
@@ -76,7 +90,7 @@
         <td>CVE-2026-27135</td>
         <td>HIGH</td>
         <td>1.43.0-6.el9</td>
-        <td></td>
+        <td>1.43.0-6.el9_7.1</td>
     </tr>
     <tr>
         <td><code>openssl</code></td>
@@ -95,7 +109,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>go/bin/app</code></h3>
-<h4>Vulnerabilities (13)</h4>
+<h4>Vulnerabilities (14)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -190,7 +204,14 @@
     </tr>
     <tr>
         <td><code>stdlib</code></td>
-        <td>CVE-2026-32282</td>
+        <td>CVE-2026-32281</td>
+        <td>HIGH</td>
+        <td>v1.24.11</td>
+        <td>1.25.9, 1.26.2</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-32283</td>
         <td>HIGH</td>
         <td>v1.24.11</td>
         <td>1.25.9, 1.26.2</td>
@@ -227,7 +248,7 @@
         <td>CVE-2026-4424</td>
         <td>HIGH</td>
         <td>3.5.3-6.el9_6</td>
-        <td></td>
+        <td>3.5.3-9.el9_7</td>
     </tr>
     <tr>
         <td><code>libcap</code></td>
@@ -241,7 +262,7 @@
         <td>CVE-2026-27135</td>
         <td>HIGH</td>
         <td>1.43.0-6.el9</td>
-        <td></td>
+        <td>1.43.0-6.el9_7.1</td>
     </tr>
     <tr>
         <td><code>nginx-core</code></td>
@@ -289,7 +310,7 @@
 <h4>No Misconfigurations found</h4>
 
 <h3>Target <code>gcr.io/kubecost1/kubecost-modeling:v0.1.34 (redhat 9.7)</code></h3>
-<h4>Vulnerabilities (8)</h4>
+<h4>Vulnerabilities (12)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -317,7 +338,7 @@
         <td>CVE-2026-4424</td>
         <td>HIGH</td>
         <td>3.5.3-6.el9_6</td>
-        <td></td>
+        <td>3.5.3-9.el9_7</td>
     </tr>
     <tr>
         <td><code>libcap</code></td>
@@ -331,7 +352,7 @@
         <td>CVE-2026-27135</td>
         <td>HIGH</td>
         <td>1.43.0-6.el9</td>
-        <td></td>
+        <td>1.43.0-6.el9_7.1</td>
     </tr>
     <tr>
         <td><code>openssl-libs</code></td>
@@ -348,11 +369,39 @@
         <td>3.12.12-4.el9_7.2</td>
     </tr>
     <tr>
+        <td><code>python3.12</code></td>
+        <td>CVE-2026-4786</td>
+        <td>HIGH</td>
+        <td>3.12.12-1.el9_7</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>python3.12</code></td>
+        <td>CVE-2026-6100</td>
+        <td>HIGH</td>
+        <td>3.12.12-1.el9_7</td>
+        <td></td>
+    </tr>
+    <tr>
         <td><code>python3.12-libs</code></td>
         <td>CVE-2026-4519</td>
         <td>HIGH</td>
         <td>3.12.12-1.el9_7</td>
         <td>3.12.12-4.el9_7.2</td>
+    </tr>
+    <tr>
+        <td><code>python3.12-libs</code></td>
+        <td>CVE-2026-4786</td>
+        <td>HIGH</td>
+        <td>3.12.12-1.el9_7</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>python3.12-libs</code></td>
+        <td>CVE-2026-6100</td>
+        <td>HIGH</td>
+        <td>3.12.12-1.el9_7</td>
+        <td></td>
     </tr>
 </table>
 <h4>No Misconfigurations found</h4>
@@ -412,7 +461,7 @@
         <td>CVE-2026-4424</td>
         <td>HIGH</td>
         <td>3.5.3-6.el9_6</td>
-        <td></td>
+        <td>3.5.3-9.el9_7</td>
     </tr>
     <tr>
         <td><code>libcap</code></td>
@@ -426,7 +475,7 @@
         <td>CVE-2026-27135</td>
         <td>HIGH</td>
         <td>1.43.0-6.el9</td>
-        <td></td>
+        <td>1.43.0-6.el9_7.1</td>
     </tr>
     <tr>
         <td><code>openssl-libs</code></td>
@@ -438,7 +487,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>go/bin/app</code></h3>
-<h4>Vulnerabilities (10)</h4>
+<h4>Vulnerabilities (11)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -512,7 +561,14 @@
     </tr>
     <tr>
         <td><code>stdlib</code></td>
-        <td>CVE-2026-32282</td>
+        <td>CVE-2026-32281</td>
+        <td>HIGH</td>
+        <td>v1.25.5</td>
+        <td>1.25.9, 1.26.2</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-32283</td>
         <td>HIGH</td>
         <td>v1.25.5</td>
         <td>1.25.9, 1.26.2</td>
@@ -521,7 +577,7 @@
 <h4>No Misconfigurations found</h4>
 
 <h3>Target <code>bin/prometheus</code></h3>
-<h4>Vulnerabilities (10)</h4>
+<h4>Vulnerabilities (11)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -595,7 +651,14 @@
     </tr>
     <tr>
         <td><code>stdlib</code></td>
-        <td>CVE-2026-32282</td>
+        <td>CVE-2026-32281</td>
+        <td>HIGH</td>
+        <td>v1.25.5</td>
+        <td>1.25.9, 1.26.2</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-32283</td>
         <td>HIGH</td>
         <td>v1.25.5</td>
         <td>1.25.9, 1.26.2</td>
@@ -603,7 +666,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>bin/promtool</code></h3>
-<h4>Vulnerabilities (8)</h4>
+<h4>Vulnerabilities (9)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -663,7 +726,14 @@
     </tr>
     <tr>
         <td><code>stdlib</code></td>
-        <td>CVE-2026-32282</td>
+        <td>CVE-2026-32281</td>
+        <td>HIGH</td>
+        <td>v1.25.5</td>
+        <td>1.25.9, 1.26.2</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-32283</td>
         <td>HIGH</td>
         <td>v1.25.5</td>
         <td>1.25.9, 1.26.2</td>

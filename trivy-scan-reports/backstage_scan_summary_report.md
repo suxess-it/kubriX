@@ -82,20 +82,6 @@
         <th>Fixed Version</th>
     </tr>
     <tr>
-        <td><code>axios</code></td>
-        <td>CVE-2025-62718</td>
-        <td>CRITICAL</td>
-        <td>1.14.0</td>
-        <td>1.15.0</td>
-    </tr>
-    <tr>
-        <td><code>axios</code></td>
-        <td>CVE-2026-40175</td>
-        <td>CRITICAL</td>
-        <td>1.14.0</td>
-        <td>1.15.0</td>
-    </tr>
-    <tr>
         <td><code>basic-ftp</code></td>
         <td>CVE-2026-39983</td>
         <td>HIGH</td>
@@ -108,6 +94,20 @@
         <td>HIGH</td>
         <td>5.2.0</td>
         <td>5.2.2</td>
+    </tr>
+    <tr>
+        <td><code>basic-ftp</code></td>
+        <td>GHSA-rp42-5vxx-qpwr</td>
+        <td>HIGH</td>
+        <td>5.2.0</td>
+        <td>5.3.0</td>
+    </tr>
+    <tr>
+        <td><code>protobufjs</code></td>
+        <td>CVE-2026-41242</td>
+        <td>CRITICAL</td>
+        <td>7.5.4</td>
+        <td>8.0.1, 7.5.5</td>
     </tr>
     <tr>
         <td><code>tar</code></td>
