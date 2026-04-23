@@ -68,12 +68,12 @@
 </table>
 <h4>No Misconfigurations found</h4>
 
-<h3>Target <code>curlimages/curl:latest (alpine 3.23.3)</code></h3>
+<h3>Target <code>curlimages/curl:latest (alpine 3.23.4)</code></h3>
 <h4>No Vulnerabilities found</h4>
 <h4>No Misconfigurations found</h4>
 
 <h3>Target <code>quay.io/keycloak/keycloak-operator:26.5.4 (redhat 9.7)</code></h3>
-<h4>Vulnerabilities (4)</h4>
+<h4>Vulnerabilities (7)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -91,6 +91,20 @@
     </tr>
     <tr>
         <td><code>java-21-openjdk-headless</code></td>
+        <td>CVE-2026-22016</td>
+        <td>HIGH</td>
+        <td>1:21.0.10.0.7-1.el9</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>java-21-openjdk-headless</code></td>
+        <td>CVE-2026-22020</td>
+        <td>HIGH</td>
+        <td>1:21.0.10.0.7-1.el9</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>java-21-openjdk-headless</code></td>
         <td>CVE-2026-25646</td>
         <td>HIGH</td>
         <td>1:21.0.10.0.7-1.el9</td>
@@ -99,6 +113,13 @@
     <tr>
         <td><code>java-21-openjdk-headless</code></td>
         <td>CVE-2026-26740</td>
+        <td>HIGH</td>
+        <td>1:21.0.10.0.7-1.el9</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>java-21-openjdk-headless</code></td>
+        <td>CVE-2026-34282</td>
         <td>HIGH</td>
         <td>1:21.0.10.0.7-1.el9</td>
         <td></td>

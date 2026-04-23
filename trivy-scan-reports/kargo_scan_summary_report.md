@@ -18,6 +18,13 @@
     </tr>
     <tr>
         <td><code>helm-3</code></td>
+        <td>CVE-2026-33186</td>
+        <td>CRITICAL</td>
+        <td>3.19.2-r2</td>
+        <td>3.20.1-r1</td>
+    </tr>
+    <tr>
+        <td><code>helm-3</code></td>
         <td>CVE-2025-61732</td>
         <td>HIGH</td>
         <td>3.19.2-r2</td>
@@ -29,13 +36,6 @@
         <td>HIGH</td>
         <td>3.19.2-r2</td>
         <td>3.20.1-r0</td>
-    </tr>
-    <tr>
-        <td><code>helm-3</code></td>
-        <td>CVE-2026-33186</td>
-        <td>HIGH</td>
-        <td>3.19.2-r2</td>
-        <td>3.20.1-r1</td>
     </tr>
 </table>
 <h4>No Misconfigurations found</h4>
