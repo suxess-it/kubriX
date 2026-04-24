@@ -2,7 +2,7 @@
 <h3>Trivy Returned Empty Report</h3>
 
 <h3>Target <code>komodorio/komoplane:0.2.1 (alpine 3.23.3)</code></h3>
-<h4>Vulnerabilities (5)</h4>
+<h4>Vulnerabilities (13)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -13,7 +13,63 @@
     </tr>
     <tr>
         <td><code>libcrypto3</code></td>
+        <td>CVE-2026-31789</td>
+        <td>CRITICAL</td>
+        <td>3.5.5-r0</td>
+        <td>3.5.6-r0</td>
+    </tr>
+    <tr>
+        <td><code>libcrypto3</code></td>
+        <td>CVE-2026-28387</td>
+        <td>HIGH</td>
+        <td>3.5.5-r0</td>
+        <td>3.5.6-r0</td>
+    </tr>
+    <tr>
+        <td><code>libcrypto3</code></td>
+        <td>CVE-2026-28388</td>
+        <td>HIGH</td>
+        <td>3.5.5-r0</td>
+        <td>3.5.6-r0</td>
+    </tr>
+    <tr>
+        <td><code>libcrypto3</code></td>
+        <td>CVE-2026-28389</td>
+        <td>HIGH</td>
+        <td>3.5.5-r0</td>
+        <td>3.5.6-r0</td>
+    </tr>
+    <tr>
+        <td><code>libcrypto3</code></td>
         <td>CVE-2026-28390</td>
+        <td>HIGH</td>
+        <td>3.5.5-r0</td>
+        <td>3.5.6-r0</td>
+    </tr>
+    <tr>
+        <td><code>libssl3</code></td>
+        <td>CVE-2026-31789</td>
+        <td>CRITICAL</td>
+        <td>3.5.5-r0</td>
+        <td>3.5.6-r0</td>
+    </tr>
+    <tr>
+        <td><code>libssl3</code></td>
+        <td>CVE-2026-28387</td>
+        <td>HIGH</td>
+        <td>3.5.5-r0</td>
+        <td>3.5.6-r0</td>
+    </tr>
+    <tr>
+        <td><code>libssl3</code></td>
+        <td>CVE-2026-28388</td>
+        <td>HIGH</td>
+        <td>3.5.5-r0</td>
+        <td>3.5.6-r0</td>
+    </tr>
+    <tr>
+        <td><code>libssl3</code></td>
+        <td>CVE-2026-28389</td>
         <td>HIGH</td>
         <td>3.5.5-r0</td>
         <td>3.5.6-r0</td>

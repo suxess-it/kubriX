@@ -160,11 +160,11 @@
 </table>
 <h4>No Misconfigurations found</h4>
 
-<h3>Target <code>xpkg.upbound.io/crossplane-contrib/provider-keycloak:v2.18.0 (debian 12.12)</code></h3>
+<h3>Target <code>xpkg.upbound.io/crossplane-contrib/provider-keycloak:v2.19.0 (debian 12.12)</code></h3>
 <h4>No Vulnerabilities found</h4>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>usr/local/bin/provider</code></h3>
-<h4>Vulnerabilities (5)</h4>
+<h4>Vulnerabilities (2)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -186,27 +186,6 @@
         <td>CRITICAL</td>
         <td>v1.79.1</td>
         <td>1.79.3</td>
-    </tr>
-    <tr>
-        <td><code>stdlib</code></td>
-        <td>CVE-2026-32280</td>
-        <td>HIGH</td>
-        <td>v1.25.8</td>
-        <td>1.25.9, 1.26.2</td>
-    </tr>
-    <tr>
-        <td><code>stdlib</code></td>
-        <td>CVE-2026-32281</td>
-        <td>HIGH</td>
-        <td>v1.25.8</td>
-        <td>1.25.9, 1.26.2</td>
-    </tr>
-    <tr>
-        <td><code>stdlib</code></td>
-        <td>CVE-2026-32283</td>
-        <td>HIGH</td>
-        <td>v1.25.8</td>
-        <td>1.25.9, 1.26.2</td>
     </tr>
 </table>
 <h4>No Misconfigurations found</h4>

@@ -158,7 +158,7 @@
 <h4>No Misconfigurations found</h4>
 
 <h3>Target <code>ghcr.io/grafana/helm-chart-toolbox-kubectl:0.1.2 (alpine 3.22.2)</code></h3>
-<h4>Vulnerabilities (11)</h4>
+<h4>Vulnerabilities (19)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -176,6 +176,13 @@
     </tr>
     <tr>
         <td><code>libcrypto3</code></td>
+        <td>CVE-2026-31789</td>
+        <td>CRITICAL</td>
+        <td>3.5.4-r0</td>
+        <td>3.5.6-r0</td>
+    </tr>
+    <tr>
+        <td><code>libcrypto3</code></td>
         <td>CVE-2025-69419</td>
         <td>HIGH</td>
         <td>3.5.4-r0</td>
@@ -187,6 +194,27 @@
         <td>HIGH</td>
         <td>3.5.4-r0</td>
         <td>3.5.5-r0</td>
+    </tr>
+    <tr>
+        <td><code>libcrypto3</code></td>
+        <td>CVE-2026-28387</td>
+        <td>HIGH</td>
+        <td>3.5.4-r0</td>
+        <td>3.5.6-r0</td>
+    </tr>
+    <tr>
+        <td><code>libcrypto3</code></td>
+        <td>CVE-2026-28388</td>
+        <td>HIGH</td>
+        <td>3.5.4-r0</td>
+        <td>3.5.6-r0</td>
+    </tr>
+    <tr>
+        <td><code>libcrypto3</code></td>
+        <td>CVE-2026-28389</td>
+        <td>HIGH</td>
+        <td>3.5.4-r0</td>
+        <td>3.5.6-r0</td>
     </tr>
     <tr>
         <td><code>libcrypto3</code></td>
@@ -204,6 +232,13 @@
     </tr>
     <tr>
         <td><code>libssl3</code></td>
+        <td>CVE-2026-31789</td>
+        <td>CRITICAL</td>
+        <td>3.5.4-r0</td>
+        <td>3.5.6-r0</td>
+    </tr>
+    <tr>
+        <td><code>libssl3</code></td>
         <td>CVE-2025-69419</td>
         <td>HIGH</td>
         <td>3.5.4-r0</td>
@@ -215,6 +250,27 @@
         <td>HIGH</td>
         <td>3.5.4-r0</td>
         <td>3.5.5-r0</td>
+    </tr>
+    <tr>
+        <td><code>libssl3</code></td>
+        <td>CVE-2026-28387</td>
+        <td>HIGH</td>
+        <td>3.5.4-r0</td>
+        <td>3.5.6-r0</td>
+    </tr>
+    <tr>
+        <td><code>libssl3</code></td>
+        <td>CVE-2026-28388</td>
+        <td>HIGH</td>
+        <td>3.5.4-r0</td>
+        <td>3.5.6-r0</td>
+    </tr>
+    <tr>
+        <td><code>libssl3</code></td>
+        <td>CVE-2026-28389</td>
+        <td>HIGH</td>
+        <td>3.5.4-r0</td>
+        <td>3.5.6-r0</td>
     </tr>
     <tr>
         <td><code>libssl3</code></td>

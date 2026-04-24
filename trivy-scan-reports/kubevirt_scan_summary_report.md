@@ -165,7 +165,7 @@
 <h4>No Misconfigurations found</h4>
 
 <h3>Target <code>quay.io/kubevirt/virt-operator:v1.5.0 (debian 12.6)</code></h3>
-<h4>Vulnerabilities (7)</h4>
+<h4>Vulnerabilities (11)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -197,6 +197,13 @@
     </tr>
     <tr>
         <td><code>libssl3</code></td>
+        <td>CVE-2026-31789</td>
+        <td>CRITICAL</td>
+        <td>3.0.13-1~deb12u1</td>
+        <td>3.0.19-1~deb12u2</td>
+    </tr>
+    <tr>
+        <td><code>libssl3</code></td>
         <td>CVE-2024-6119</td>
         <td>HIGH</td>
         <td>3.0.13-1~deb12u1</td>
@@ -215,6 +222,27 @@
         <td>HIGH</td>
         <td>3.0.13-1~deb12u1</td>
         <td>3.0.18-1~deb12u2</td>
+    </tr>
+    <tr>
+        <td><code>libssl3</code></td>
+        <td>CVE-2026-28387</td>
+        <td>HIGH</td>
+        <td>3.0.13-1~deb12u1</td>
+        <td>3.0.19-1~deb12u2</td>
+    </tr>
+    <tr>
+        <td><code>libssl3</code></td>
+        <td>CVE-2026-28388</td>
+        <td>HIGH</td>
+        <td>3.0.13-1~deb12u1</td>
+        <td>3.0.19-1~deb12u2</td>
+    </tr>
+    <tr>
+        <td><code>libssl3</code></td>
+        <td>CVE-2026-28389</td>
+        <td>HIGH</td>
+        <td>3.0.13-1~deb12u1</td>
+        <td>3.0.19-1~deb12u2</td>
     </tr>
     <tr>
         <td><code>libssl3</code></td>
