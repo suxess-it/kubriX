@@ -1,6 +1,6 @@
 # syntax=docker/dockerfile:1.23
 # docker buildx build --platform linux/amd64,linux/arm64 -t ghcr.io/suxess-it/kubrix-installer:latest --push .
-FROM ubuntu:24.04
+FROM ubuntu:26.04
 
 ARG TARGETARCH
 ENV DEBIAN_FRONTEND=noninteractive
