@@ -1,5 +1,36 @@
 # Changelog
 
+## [7.1.0](https://github.com/suxess-it/kubriX/compare/v7.0.0...v7.1.0) (2026-04-25)
+
+
+### Features
+
+* **deps:** update grafana docker tag to v11.6.1 ([#2633](https://github.com/suxess-it/kubriX/issues/2633)) ([9bbb1fe](https://github.com/suxess-it/kubriX/commit/9bbb1fe1454544e7c9e1a6f6c1e565ed00ef2728))
+* **deps:** update helm release argo-cd to v9.5.3 ([#2636](https://github.com/suxess-it/kubriX/issues/2636)) ([34b99b7](https://github.com/suxess-it/kubriX/commit/34b99b714a648613f90a30976663cb3cb88a84a0))
+* **deps:** update helm release external-secrets to v2.3.0 ([#2664](https://github.com/suxess-it/kubriX/issues/2664)) ([11e1831](https://github.com/suxess-it/kubriX/commit/11e183134cb15a9e2e3a7a22230184e79fa503e2))
+* **deps:** update helm release openbao to v0.27.2 ([#2654](https://github.com/suxess-it/kubriX/issues/2654)) ([0d9c89c](https://github.com/suxess-it/kubriX/commit/0d9c89cd16125c8ecb8125b2c0275413b3fc6ec8))
+* **deps:** update helm release testkube to v2.9.1 ([#2716](https://github.com/suxess-it/kubriX/issues/2716)) ([0967c73](https://github.com/suxess-it/kubriX/commit/0967c73465b7262be6ebbbb498d9c99b9d8c424f))
+* **deps:** update kargo docker tag to v1.10.0 ([#2690](https://github.com/suxess-it/kubriX/issues/2690)) ([1ca6fd6](https://github.com/suxess-it/kubriX/commit/1ca6fd6c889bbb000cb69d5d77e7e8f90d34d080))
+* **deps:** update loki docker tag to v11.7.0 ([#2643](https://github.com/suxess-it/kubriX/issues/2643)) ([8c5811c](https://github.com/suxess-it/kubriX/commit/8c5811cac0b0358a3719189e72710ddb89437c32))
+* **deps:** update xpkg.upbound.io/crossplane-contrib/provider-keycloak docker tag to v2.19.0 ([#2717](https://github.com/suxess-it/kubriX/issues/2717)) ([2f75950](https://github.com/suxess-it/kubriX/commit/2f759503291de92cfaca6921f950de85519177d1))
+* **dep:** update vault provider to 3.0.6 ([#2660](https://github.com/suxess-it/kubriX/issues/2660)) ([f6c3501](https://github.com/suxess-it/kubriX/commit/f6c3501d2c0c870c04db8c3836e996fdbef809e6))
+
+
+### Bug Fixes
+
+* **deps:** update helm release argo-cd to v9.5.4 ([#2707](https://github.com/suxess-it/kubriX/issues/2707)) ([bc91e4a](https://github.com/suxess-it/kubriX/commit/bc91e4aa457fe5fb61b860138c188d66ee3ea095))
+* **deps:** update helm release cert-manager to v1.20.2 ([#2669](https://github.com/suxess-it/kubriX/issues/2669)) ([a31bfef](https://github.com/suxess-it/kubriX/commit/a31bfeff7e97f73d3c33c3e5a0fc0077309e8feb))
+* **deps:** update helm release crossplane to v2.2.1 ([#2694](https://github.com/suxess-it/kubriX/issues/2694)) ([729c6e4](https://github.com/suxess-it/kubriX/commit/729c6e4b56522646c96972c2934fa17b7d821a0b))
+* **deps:** update helm release k8s-monitoring to v4.0.2 ([#2684](https://github.com/suxess-it/kubriX/issues/2684)) ([3a20783](https://github.com/suxess-it/kubriX/commit/3a20783b357a788770e3ee80c13695a7cc5c914f))
+* **deps:** update helm release komoplane to v0.1.8 ([#2657](https://github.com/suxess-it/kubriX/issues/2657)) ([f776250](https://github.com/suxess-it/kubriX/commit/f776250f2833ec8759ba832396eadcab6e42af6c))
+* **deps:** update helm release kyverno to v3.7.2 ([#2714](https://github.com/suxess-it/kubriX/issues/2714)) ([8fdbeaf](https://github.com/suxess-it/kubriX/commit/8fdbeaf43bea21faed6c925bba02abe74618c0d5))
+* **deps:** update helm release testkube to v2.8.3 ([#2622](https://github.com/suxess-it/kubriX/issues/2622)) ([760e95a](https://github.com/suxess-it/kubriX/commit/760e95a7a014922c110767544f316094c1ae2748))
+* **deps:** update helm release traefik to v39.0.8 ([#2685](https://github.com/suxess-it/kubriX/issues/2685)) ([25e60bf](https://github.com/suxess-it/kubriX/commit/25e60bf4a7cb99c9389a986932eff5db65aa883f))
+* **deps:** update kargo docker tag to v1.10.2 ([#2701](https://github.com/suxess-it/kubriX/issues/2701)) ([04964c7](https://github.com/suxess-it/kubriX/commit/04964c7871bbb01be3321948dffe05b19dc21c41))
+* **deps:** update kargo docker tag to v1.9.6 ([#2677](https://github.com/suxess-it/kubriX/issues/2677)) ([6fea763](https://github.com/suxess-it/kubriX/commit/6fea76336cb7163ed6d3eb7f09eab097f98bd5cc))
+* **deps:** update xpkg.upbound.io/upbound/provider-vault docker tag to v3.0.7 ([#2688](https://github.com/suxess-it/kubriX/issues/2688)) ([e2e1452](https://github.com/suxess-it/kubriX/commit/e2e1452b4389b2fd8b8422a05d44ca0da2704522))
+* **openbao:** fix openbao kubernetes auth token_reviewer_jwt expiry ([#2710](https://github.com/suxess-it/kubriX/issues/2710)) ([6617863](https://github.com/suxess-it/kubriX/commit/66178635f40f21bd20a6fbb0b6118930d665eaa1))
+
 ## [7.0.0](https://github.com/suxess-it/kubriX/compare/v6.0.0...v7.0.0) (2026-04-14)
 
 
