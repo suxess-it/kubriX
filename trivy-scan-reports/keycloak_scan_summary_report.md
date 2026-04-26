@@ -94,7 +94,7 @@
         <td>CVE-2026-22016</td>
         <td>HIGH</td>
         <td>1:21.0.10.0.7-1.el9</td>
-        <td></td>
+        <td>1:21.0.11.0.10-2.el9</td>
     </tr>
     <tr>
         <td><code>java-21-openjdk-headless</code></td>
@@ -122,7 +122,7 @@
         <td>CVE-2026-34282</td>
         <td>HIGH</td>
         <td>1:21.0.10.0.7-1.el9</td>
-        <td></td>
+        <td>1:21.0.11.0.10-2.el9</td>
     </tr>
     <tr>
         <td><code>libcap</code></td>
