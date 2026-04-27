@@ -30,7 +30,6 @@ backstage:
     extraEnvVarsSecrets:
       - sx-cnp-secret
       - backstage-db-secrets
-      - sx-vault-secret
       - sx-oidc-secret
     extraEnvVars:
       - name: NODE_OPTIONS
@@ -345,11 +344,11 @@ backstage:
         unitprefix: '€'
 
       vault:
-        baseUrl: ${VAULT_ADDR_INT}
-        publicUrl: ${VAULT_ADDR}
+        baseUrl: "http://sx-openbao-active.openbao.svc.cluster.local:8200"
         auth:
-          type: static
-          secret: "${VAULT_TOKEN}"
+          type: kubernetes
+          role: backstage-vault
+          authPath: kubernetes
         #secretEngine: "${VAULT_ENGINE}"
         #kvVersion: 2
 
@@ -378,6 +377,7 @@ backstage:
               - name: user:default/phac008
               - name: user:default/jkleinlercher
               - name: group:default/admins
+              - name: user:default/kubrixBot
           policies-csv-file: /opt/app-root/src/rbac/rbac-policy.csv
           policyFileReload: true
           database:
@@ -437,6 +437,7 @@ rbac:
       p, role:default/kubrixadmins, announcement.entity.delete, delete, allow
       p, role:default/kubrixadmins, policy-entity.delete, delete, allow
       p, role:default/kubrixadmins, catalog.location.delete, delete, allow
+      p, role:default/kubrixadmins, catalog-entity, delete, allow
 
     group-role-mappings: |
       # Group → role mappings
@@ -449,6 +450,7 @@ rbac:
       g, group:default/kubrix, role:default/kubrixeditors
       g, group:default/admins, role:default/kubrixeditors
       g, group:default/admins, role:default/kubrixadmins
+      g, user:default/kubrixBot, role:default/kubrixadmins
 
 ## pgdb
 cluster:
