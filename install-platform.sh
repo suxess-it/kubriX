@@ -351,9 +351,6 @@ create_openbao_secrets_for_backstage() {
   export VAULT_HOSTNAME=$(kubectl get ingress -o jsonpath='{.items[*].spec.rules[*].host}' -n openbao)
   export VAULT_TOKEN=$(kubectl get secret -n openbao openbao-init -o=jsonpath='{.data.root_token}'  | base64 -d)
 
-  # set openbao address and openbao internal address so backstage can communicate with openbao
-  curl -k --header "X-Vault-Token:$VAULT_TOKEN" --header "X-Vault-Namespace: kubrix" --request POST --data "{\"data\": {\"VAULT_ADDR\": \"https://${VAULT_HOSTNAME}\", \"VAULT_ADDR_INT\": \"http://sx-openbao-active.openbao.svc.cluster.local:8200\"}}" https://${VAULT_HOSTNAME}/v1/kubrix-kv/data/security/vault/base
-
   # store env variable KUBRIX_BACKSTAGE_GITHUB_TOKEN in openbao
   curl -k --header "X-Vault-Token:$VAULT_TOKEN" --header "X-Vault-Namespace: kubrix" --request PATCH --header "Content-Type: application/merge-patch+json" --data "{\"data\": {\"GITHUB_TOKEN\": \"${KUBRIX_BACKSTAGE_GITHUB_TOKEN}\"}}" https://${VAULT_HOSTNAME}/v1/kubrix-kv/data/portal/backstage/base
 
