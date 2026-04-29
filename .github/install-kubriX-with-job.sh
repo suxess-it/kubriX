@@ -13,16 +13,25 @@ curl -H "Authorization: token ${KUBRIX_REPO_PASSWORD}" \
   -O \
   -L ${MANIFEST_URL}
 
-echo "checking if image got build in this PR and should be used ..."
+echo "checking which kubrix-installer image should be used ..."
+
+IMAGE_TAG="latest"
 if [[ -n "${PR_NUMBER:-}" ]]; then
-  echo "using kubrix-installer:pr-${PR_NUMBER} image"
-  cat install-manifests.yaml \
-   | sed 's,image: ghcr.io/suxess-it/kubrix-installer:latest,image: ghcr.io/suxess-it/kubrix-installer:pr-'"${PR_NUMBER}"',g' \
-   | kubectl apply -f -
+  IMAGE_TAG="pr-${PR_NUMBER}"
+  echo "using kubrix-installer:${IMAGE_TAG} image"
 else
-  echo "using kubrix-installer:latest image"
-  cat install-manifests.yaml | kubectl apply -f -
+  RELEASE_TAG="$(git tag --points-at HEAD --sort=-version:refname | head -n1)"
+  if [[ -n "${RELEASE_TAG}" ]]; then
+    IMAGE_TAG="${RELEASE_TAG}"
+    echo "using kubrix-installer:${IMAGE_TAG} image from release tag"
+  else
+    echo "no release tag found on this commit; using kubrix-installer:latest image"
+  fi
 fi
+
+sed "s,image: ghcr.io/suxess-it/kubrix-installer:latest,image: ghcr.io/suxess-it/kubrix-installer:${IMAGE_TAG},g" \
+  install-manifests.yaml \
+  | kubectl apply -f -
 
 echo "Ensuring namespace exists..."
 kubectl get ns "${NAMESPACE}" >/dev/null
