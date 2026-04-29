@@ -20,7 +20,8 @@ if [[ -n "${PR_NUMBER:-}" ]]; then
   IMAGE_TAG="pr-${PR_NUMBER}"
   echo "using kubrix-installer:${IMAGE_TAG} image"
 else
-  RELEASE_TAG="$(git tag --points-at HEAD --sort=-version:refname | head -n1)"
+  git fetch --tags --force
+  RELEASE_TAG="$(git describe --tags --abbrev=0 2>/dev/null || true)"
   if [[ -n "${RELEASE_TAG}" ]]; then
     IMAGE_TAG="${RELEASE_TAG}"
     echo "using kubrix-installer:${IMAGE_TAG} image from release tag"
