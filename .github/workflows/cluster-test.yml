@@ -263,6 +263,9 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v6
+        with:
+          fetch-depth: 0  # needed so the action can diff properly
+          fetch-tags: true
 
       # free disk space, otherwise we often end with "no space left on device" during testkube tests
       - name: Free Disk Space (Ubuntu)
