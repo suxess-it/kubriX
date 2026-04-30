@@ -301,6 +301,7 @@ jobs:
           KUBRIX_INSTALL_DEBUG: "false"
           KUBRIX_BOOTSTRAP_MAX_WAIT_TIME: ${{ vars.KUBRIX_BOOTSTRAP_MAX_WAIT_TIME }}
           PR_NUMBER: "${{ needs.changes.outputs.dockerImageChanges == 'true' && github.event.number || '' }}"
+          TARGET_BRANCH: ${{ github.base_ref || github.ref_name }}
         shell: bash
         run: |
           kubectl create ns kubrix-install
