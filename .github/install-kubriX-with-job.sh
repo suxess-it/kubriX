@@ -5,6 +5,12 @@ set -euo pipefail
 MANIFEST_URL="https://raw.githubusercontent.com/${GITHUB_REPOSITORY}/refs/heads/${KUBRIX_UPSTREAM_BRANCH:=$KUBRIX_REPO_BRANCH}/install-manifests.yaml"
 NAMESPACE="kubrix-install"
 JOB_NAME="kubrix-install-job"
+IMAGE_REPO="ghcr.io/suxess-it/kubrix-installer"
+IMAGE_TAG="latest"
+
+image_exists() {
+  skopeo inspect "docker://${IMAGE_REPO}:$1" >/dev/null 2>&1
+}
 
 echo "Applying manifest..."
 
@@ -15,22 +21,23 @@ curl -H "Authorization: token ${KUBRIX_REPO_PASSWORD}" \
 
 echo "checking which kubrix-installer image should be used ..."
 
-IMAGE_TAG="latest"
-if [[ -n "${PR_NUMBER:-}" ]]; then
+if [[ -n "${PR_NUMBER:-}" ]] && image_exists "pr-${PR_NUMBER}"; then
   IMAGE_TAG="pr-${PR_NUMBER}"
   echo "using kubrix-installer:${IMAGE_TAG} image"
-else
-  git fetch --tags --force
-  RELEASE_TAG="$(git describe --tags --abbrev=0 2>/dev/null || true)"
-  if [[ -n "${RELEASE_TAG}" ]]; then
-    IMAGE_TAG="${RELEASE_TAG}"
-    echo "using kubrix-installer:${IMAGE_TAG} image from release tag"
+elif [[ -n "${TARGET_BRANCH:-}" ]]; then
+  TARGET_BRANCH_TAG="${TARGET_BRANCH//\//-}"
+
+  if image_exists "${TARGET_BRANCH_TAG}"; then
+    IMAGE_TAG="${TARGET_BRANCH_TAG}"
+    echo "using kubrix-installer:${IMAGE_TAG} image"
   else
-    echo "no release tag found on this commit; using kubrix-installer:latest image"
+    echo "no kubrix-installer:${TARGET_BRANCH_TAG} image found; using latest"
   fi
+else
+  echo "TARGET_BRANCH not set; using latest"
 fi
 
-sed "s,image: ghcr.io/suxess-it/kubrix-installer:latest,image: ghcr.io/suxess-it/kubrix-installer:${IMAGE_TAG},g" \
+sed "s,image: ${IMAGE_REPO}:latest,image: ${IMAGE_REPO}:${IMAGE_TAG},g" \
   install-manifests.yaml \
   | kubectl apply -f -
 
