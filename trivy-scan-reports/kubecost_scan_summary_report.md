@@ -1,6 +1,6 @@
 
 <h3>Target <code>badouralix/curl-jq:alpine (alpine 3.23.3)</code></h3>
-<h4>Vulnerabilities (13)</h4>
+<h4>Vulnerabilities (14)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -92,6 +92,13 @@
         <td>HIGH</td>
         <td>1.2.5-r21</td>
         <td>1.2.5-r23</td>
+    </tr>
+    <tr>
+        <td><code>nghttp2-libs</code></td>
+        <td>CVE-2026-27135</td>
+        <td>HIGH</td>
+        <td>1.68.0-r0</td>
+        <td>1.68.1</td>
     </tr>
     <tr>
         <td><code>zlib</code></td>

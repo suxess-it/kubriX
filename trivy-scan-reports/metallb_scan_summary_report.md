@@ -1,6 +1,6 @@
 
 <h3>Target <code>quay.io/frrouting/frr:10.4.1 (alpine 3.20.7)</code></h3>
-<h4>Vulnerabilities (22)</h4>
+<h4>Vulnerabilities (23)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -8,6 +8,13 @@
         <th>Severity</th>
         <th>Installed Version</th>
         <th>Fixed Version</th>
+    </tr>
+    <tr>
+        <td><code>libcap2</code></td>
+        <td>CVE-2026-4878</td>
+        <td>HIGH</td>
+        <td>2.70-r0</td>
+        <td>2.78-r0</td>
     </tr>
     <tr>
         <td><code>libcrypto3</code></td>
