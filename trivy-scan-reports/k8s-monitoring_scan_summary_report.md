@@ -1,6 +1,6 @@
 
 <h3>Target <code>ghcr.io/grafana/alloy-operator:1.8.0 (redhat 9.6)</code></h3>
-<h4>Vulnerabilities (7)</h4>
+<h4>Vulnerabilities (9)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -15,6 +15,20 @@
         <td>HIGH</td>
         <td>2.3.3-4.el9</td>
         <td>2.3.3-5.el9_7</td>
+    </tr>
+    <tr>
+        <td><code>gnutls</code></td>
+        <td>CVE-2026-33845</td>
+        <td>HIGH</td>
+        <td>3.8.3-6.el9_6.2</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>krb5-libs</code></td>
+        <td>CVE-2026-40356</td>
+        <td>HIGH</td>
+        <td>1.21.1-8.el9_6</td>
+        <td></td>
     </tr>
     <tr>
         <td><code>libarchive</code></td>
@@ -35,7 +49,7 @@
         <td>CVE-2026-4878</td>
         <td>HIGH</td>
         <td>2.48-9.el9_2</td>
-        <td></td>
+        <td>2.48-10.el9_7.1</td>
     </tr>
     <tr>
         <td><code>libnghttp2</code></td>

@@ -129,7 +129,7 @@
         <td>CVE-2026-4878</td>
         <td>HIGH</td>
         <td>2.48-10.el9</td>
-        <td></td>
+        <td>2.48-10.el9_7.1</td>
     </tr>
 </table>
 <h4>No Misconfigurations found</h4>
