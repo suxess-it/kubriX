@@ -1,3 +1,4 @@
+{{- if eq .Values.kubriXPlan "oss" }}
 {{- range $team := .Values.teams }}
 {{- if $team.multiStageKargoAppSet }}
 apiVersion: argoproj.io/v1alpha1
@@ -58,5 +59,6 @@ spec:
           selfHeal: true
           prune: true
 ---
+{{- end }}
 {{- end }}
 {{- end }}
