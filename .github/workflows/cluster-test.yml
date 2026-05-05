@@ -292,7 +292,7 @@ jobs:
         shell: bash
         env:
           REPO_ORG: 'kubriX-demo'
-          REPO_NAME: "kubrix-cluster-test-${{ github.run_id }}"
+          REPO_NAME: "kubrix-cluster-test-${{ github.run_id }}-${{ job.check_run_id }}"
           GH_TOKEN: ${{ secrets.KUBRIX_CUSTOMER_REPO_TOKEN }}
           VIS: "public"
         run: |
@@ -311,7 +311,7 @@ jobs:
           KUBRIX_UPSTREAM_REPO: "https://github.com/${{ github.repository }}"
           KUBRIX_UPSTREAM_BRANCH: ${{ github.head_ref || github.ref_name }}
           KUBRIX_UPSTREAM_REPO_PASSWORD: ${{ secrets.GITHUB_TOKEN }}
-          KUBRIX_REPO: "https://github.com/kubriX-demo/kubrix-cluster-test-${{ github.run_id }}"
+          KUBRIX_REPO: "https://github.com/kubriX-demo/kubrix-cluster-test-${{ github.run_id }}-${{ job.check_run_id }}"
           KUBRIX_REPO_BRANCH: "main"
           KUBRIX_REPO_PASSWORD: ${{ secrets.KUBRIX_CUSTOMER_REPO_TOKEN }}
           KUBRIX_REPO_USERNAME: "dummy"
@@ -434,7 +434,7 @@ jobs:
           E2E_TEST_PR_NUMBER: "${{ github.event.number || '' }}"
           GITHUB_ORG: "kubriX-demo"
           GITHUB_API: "https://api.github.com"
-          KUBRIX_BOOTSTRAP_REPO: ${{ github.run_id }}
+          KUBRIX_REPO: "${{ github.run_id }}-${{ job.check_run_id }}"
         run: |
           set -euo pipefail
           delete_repo_if_exists() {
@@ -487,11 +487,11 @@ jobs:
 
           app_of_apps_repo="kubrix-a${E2E_TEST_PR_NUMBER}-kubrixbot-app"
           gitops_repo="kubrix-a${E2E_TEST_PR_NUMBER}-apps"
-          kubrix_bootstrap_repo="kubrix-cluster-test-${KUBRIX_BOOTSTRAP_REPO}"
+          kubrix_repo="kubrix-cluster-test-${KUBRIX_REPO}"
           
           delete_repo_if_exists "${app_of_apps_repo:-}"
           delete_repo_if_exists "${gitops_repo:-}"
-          delete_repo_if_exists "${kubrix_bootstrap_repo:-}"
+          delete_repo_if_exists "${kubrix_repo:-}"
 
       # run testkube tests
       - uses: kubeshop/setup-testkube@v1
