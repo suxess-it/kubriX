@@ -638,6 +638,7 @@ jobs:
           kubectl describe pod -A
 
       - name: Delete kubriX boostrap repo, if exists
+        if: always()
         env:
           KUBRIX_DELETE_E2E_TESTS_REPO_TOKEN: ${{ secrets.KUBRIX_DELETE_E2E_TESTS_REPO_TOKEN }}
           GITHUB_ORG: "kubriX-demo"
