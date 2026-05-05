@@ -326,7 +326,7 @@ jobs:
         run: |
           kubectl create ns kubrix-install
           kubectl create secret generic kubrix-install-secrets -n kubrix-install \
-            --from-literal KUBRIX_UPSTREAM_REPO=4{KUBRIX_UPSTREAM_REPO} \
+            --from-literal KUBRIX_UPSTREAM_REPO=${KUBRIX_UPSTREAM_REPO} \
             --from-literal KUBRIX_UPSTREAM_BRANCH=${KUBRIX_UPSTREAM_BRANCH} \
             --from-literal KUBRIX_REPO=${KUBRIX_REPO} \
             --from-literal KUBRIX_REPO_BRANCH=${KUBRIX_REPO_BRANCH} \
