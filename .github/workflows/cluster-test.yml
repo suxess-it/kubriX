@@ -514,6 +514,7 @@ jobs:
           E2E_KUBRIX_KARGO_GIT_PASSWORD: ${{ secrets.E2E_KUBRIX_KARGO_GIT_PASSWORD }}
           E2E_TEST_PR_NUMBER: "${{ github.event.number || '' }}"
           E2E_TEAM_ONBOARDING_TARGET_BRANCH: ${{ github.head_ref || github.ref_name }}
+          E2E_KUBRIX_REPO: kubrix-cluster-test-${{ github.run_id }}-${{ job.check_run_id }}
         run: |
           E2E_KEYCLOAK_DEMOADMIN_PASSWORD=$( kubectl get secret -n keycloak cp-keycloak-users-secret -o=jsonpath='{.data.demoadmin}'  | base64 -d )
           kubectl get secret -n keycloak cp-keycloak-users-secret -o yaml
