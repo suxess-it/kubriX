@@ -46,9 +46,6 @@ concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
 
-env:
-  KUBRIX_REPO_BRANCH: ${{ github.head_ref || github.ref_name }}
-  KUBRIX_REPO: "https://github.com/${{ github.repository }}"
   
 jobs:
   changes:
@@ -291,14 +288,37 @@ jobs:
           sudo dpkg -i k8sgpt_amd64.deb
           k8sgpt analyze
 
+      - name: create kubrix customer repo
+        shell: bash
+        env:
+          REPO_ORG: 'kubriX-demo'
+          REPO_NAME: "kubrix-cluster-test-${{ github.run_id }}"
+          GH_TOKEN: ${{ secrets.KUBRIX_CUSTOMER_REPO_TOKEN }}
+          VIS: "public"
+        run: |
+          gh api \
+            --method POST \
+            -H "Accept: application/vnd.github+json" \
+            "/orgs/${REPO_ORG}/repos" \
+            -f name="$REPO_NAME" \
+            -f visibility="$VIS" \
+            -f has_issues=true \
+            -f has_wiki=false
+          echo "Repo created: https://github.com/${REPO_ORG}/${REPO_NAME}"
+
       - name: install kubriX stack
         env:
-          KUBRIX_TARGET_TYPE: ${{ matrix.target-type }}
-          KUBRIX_CLUSTER_TYPE: "kind"
-          KUBRIX_BACKSTAGE_GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          KUBRIX_REPO_PASSWORD: ${{ secrets.GITHUB_TOKEN }}
+          KUBRIX_UPSTREAM_REPO: "https://github.com/${{ github.repository }}"
+          KUBRIX_UPSTREAM_BRANCH: ${{ github.head_ref || github.ref_name }}
+          KUBRIX_UPSTREAM_REPO_PASSWORD: ${{ secrets.GITHUB_TOKEN }}
+          KUBRIX_REPO: "https://github.com/kubriX-demo/kubrix-cluster-test-${{ github.run_id }}"
+          KUBRIX_REPO_BRANCH: "main"
+          KUBRIX_REPO_PASSWORD: ${{ secrets.KUBRIX_CUSTOMER_REPO_TOKEN }}
           KUBRIX_REPO_USERNAME: "dummy"
           KUBRIX_INSTALL_DEBUG: "false"
+          KUBRIX_TARGET_TYPE: ${{ matrix.target-type }}
+          KUBRIX_CLUSTER_TYPE: "kind"
+          KUBRIX_BACKSTAGE_GITHUB_TOKEN: ${{ secrets.KUBRIX_CUSTOMER_REPO_TOKEN }}
           KUBRIX_BOOTSTRAP_MAX_WAIT_TIME: ${{ vars.KUBRIX_BOOTSTRAP_MAX_WAIT_TIME }}
           PR_NUMBER: "${{ needs.changes.outputs.dockerImageChanges == 'true' && github.event.number || '' }}"
           TARGET_BRANCH: ${{ github.base_ref || github.ref_name }}
@@ -306,14 +326,17 @@ jobs:
         run: |
           kubectl create ns kubrix-install
           kubectl create secret generic kubrix-install-secrets -n kubrix-install \
+            --from-literal KUBRIX_UPSTREAM_REPO=4{KUBRIX_UPSTREAM_REPO} \
+            --from-literal KUBRIX_UPSTREAM_BRANCH=${KUBRIX_UPSTREAM_BRANCH} \
+            --from-literal KUBRIX_REPO=${KUBRIX_REPO} \
+            --from-literal KUBRIX_REPO_BRANCH=${KUBRIX_REPO_BRANCH} \
+            --from-literal KUBRIX_REPO_PASSWORD=${KUBRIX_REPO_PASSWORD} \
+            --from-literal KUBRIX_REPO_USERNAME=${KUBRIX_REPO_USERNAME} \
             --from-literal KUBRIX_TARGET_TYPE=${KUBRIX_TARGET_TYPE} \
             --from-literal KUBRIX_CLUSTER_TYPE=${KUBRIX_CLUSTER_TYPE} \
             --from-literal KUBRIX_BACKSTAGE_GITHUB_TOKEN=${KUBRIX_BACKSTAGE_GITHUB_TOKEN} \
-            --from-literal KUBRIX_REPO_PASSWORD=${KUBRIX_REPO_PASSWORD} \
-            --from-literal KUBRIX_REPO_USERNAME=${KUBRIX_REPO_USERNAME} \
-            --from-literal KUBRIX_REPO_BRANCH=${KUBRIX_REPO_BRANCH} \
-            --from-literal KUBRIX_REPO=${KUBRIX_REPO} \
             --from-literal KUBRIX_BOOTSTRAP_MAX_WAIT_TIME=${KUBRIX_BOOTSTRAP_MAX_WAIT_TIME} \
+            --from-literal KUBRIX_BOOTSTRAP=true \
             --from-literal KUBRIX_INSTALLER=true
           bash .github/install-kubriX-with-job.sh
 
@@ -411,6 +434,7 @@ jobs:
           E2E_TEST_PR_NUMBER: "${{ github.event.number || '' }}"
           GITHUB_ORG: "kubriX-demo"
           GITHUB_API: "https://api.github.com"
+          KUBRIX_BOOTSTRAP_REPO: ${{ github.run_id }}
         run: |
           set -euo pipefail
           delete_repo_if_exists() {
@@ -463,9 +487,11 @@ jobs:
 
           app_of_apps_repo="kubrix-a${E2E_TEST_PR_NUMBER}-kubrixbot-app"
           gitops_repo="kubrix-a${E2E_TEST_PR_NUMBER}-apps"
+          kubrix_bootstrap_repo="kubrix-cluster-test-${KUBRIX_BOOTSTRAP_REPO}"
           
           delete_repo_if_exists "${app_of_apps_repo:-}"
           delete_repo_if_exists "${gitops_repo:-}"
+          delete_repo_if_exists "${kubrix_bootstrap_repo:-}"
 
       # run testkube tests
       - uses: kubeshop/setup-testkube@v1
