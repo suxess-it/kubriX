@@ -513,7 +513,7 @@ jobs:
           E2E_KUBRIX_ARGOCD_APPSET_TOKEN: ${{ secrets.E2E_KUBRIX_ARGOCD_APPSET_TOKEN }}
           E2E_KUBRIX_KARGO_GIT_PASSWORD: ${{ secrets.E2E_KUBRIX_KARGO_GIT_PASSWORD }}
           E2E_TEST_PR_NUMBER: "${{ github.event.number || '' }}"
-          E2E_TEAM_ONBOARDING_TARGET_BRANCH: ${{ github.head_ref || github.ref_name }}
+          E2E_TEAM_ONBOARDING_TARGET_BRANCH: "main"
           E2E_KUBRIX_REPO: kubrix-cluster-test-${{ github.run_id }}-${{ job.check_run_id }}
         run: |
           E2E_KEYCLOAK_DEMOADMIN_PASSWORD=$( kubectl get secret -n keycloak cp-keycloak-users-secret -o=jsonpath='{.data.demoadmin}'  | base64 -d )
@@ -566,6 +566,7 @@ jobs:
             --variable E2E_LOKI_USERNAME=${E2E_LOKI_USERNAME} \
             --variable E2E_LOKI_PASSWORD=${E2E_LOKI_PASSWORD} \
             --variable E2E_TEAM_ONBOARDING_TARGET_BRANCH=${E2E_TEAM_ONBOARDING_TARGET_BRANCH} \
+            --variable E2E_KUBRIX_REPO=${E2E_KUBRIX_REPO}
             -f -d
 
       - name: Release a lock
