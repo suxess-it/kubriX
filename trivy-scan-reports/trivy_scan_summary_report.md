@@ -96,7 +96,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>usr/local/bin/trivy-operator</code></h3>
-<h4>Vulnerabilities (11)</h4>
+<h4>Vulnerabilities (12)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -146,6 +146,13 @@
         <td>HIGH</td>
         <td>v0.5.0</td>
         <td>0.5.1</td>
+    </tr>
+    <tr>
+        <td><code>go.opentelemetry.io/otel</code></td>
+        <td>CVE-2026-29181</td>
+        <td>HIGH</td>
+        <td>v1.40.0</td>
+        <td>1.41.0</td>
     </tr>
     <tr>
         <td><code>go.opentelemetry.io/otel/sdk</code></td>

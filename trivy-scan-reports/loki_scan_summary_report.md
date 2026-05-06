@@ -3,7 +3,7 @@
 <h4>No Vulnerabilities found</h4>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>usr/bin/loki-canary</code></h3>
-<h4>Vulnerabilities (5)</h4>
+<h4>Vulnerabilities (7)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -11,6 +11,20 @@
         <th>Severity</th>
         <th>Installed Version</th>
         <th>Fixed Version</th>
+    </tr>
+    <tr>
+        <td><code>github.com/prometheus/prometheus</code></td>
+        <td>CVE-2026-42151</td>
+        <td>HIGH</td>
+        <td>v0.310.1-0.20260320085417-166d20151c0d</td>
+        <td>0.311.3</td>
+    </tr>
+    <tr>
+        <td><code>github.com/prometheus/prometheus</code></td>
+        <td>CVE-2026-42154</td>
+        <td>HIGH</td>
+        <td>v0.310.1-0.20260320085417-166d20151c0d</td>
+        <td>0.311.3</td>
     </tr>
     <tr>
         <td><code>go.opentelemetry.io/otel/sdk</code></td>
@@ -54,7 +68,7 @@
 <h4>No Vulnerabilities found</h4>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>usr/bin/loki</code></h3>
-<h4>Vulnerabilities (6)</h4>
+<h4>Vulnerabilities (8)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -69,6 +83,20 @@
         <td>HIGH</td>
         <td>v4.1.3</td>
         <td>4.1.4</td>
+    </tr>
+    <tr>
+        <td><code>github.com/prometheus/prometheus</code></td>
+        <td>CVE-2026-42151</td>
+        <td>HIGH</td>
+        <td>v0.310.1-0.20260320085417-166d20151c0d</td>
+        <td>0.311.3</td>
+    </tr>
+    <tr>
+        <td><code>github.com/prometheus/prometheus</code></td>
+        <td>CVE-2026-42154</td>
+        <td>HIGH</td>
+        <td>v0.310.1-0.20260320085417-166d20151c0d</td>
+        <td>0.311.3</td>
     </tr>
     <tr>
         <td><code>go.opentelemetry.io/otel/sdk</code></td>
@@ -288,7 +316,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>usr/bin/mc</code></h3>
-<h4>Vulnerabilities (14)</h4>
+<h4>Vulnerabilities (16)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -303,6 +331,20 @@
         <td>HIGH</td>
         <td>v4.5.1</td>
         <td>4.5.2</td>
+    </tr>
+    <tr>
+        <td><code>github.com/prometheus/prometheus</code></td>
+        <td>CVE-2026-42151</td>
+        <td>HIGH</td>
+        <td>v0.54.1</td>
+        <td>0.311.3</td>
+    </tr>
+    <tr>
+        <td><code>github.com/prometheus/prometheus</code></td>
+        <td>CVE-2026-42154</td>
+        <td>HIGH</td>
+        <td>v0.54.1</td>
+        <td>0.311.3</td>
     </tr>
     <tr>
         <td><code>golang.org/x/crypto</code></td>
@@ -418,7 +460,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>usr/bin/mc</code></h3>
-<h4>Vulnerabilities (14)</h4>
+<h4>Vulnerabilities (16)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -433,6 +475,20 @@
         <td>HIGH</td>
         <td>v4.5.1</td>
         <td>4.5.2</td>
+    </tr>
+    <tr>
+        <td><code>github.com/prometheus/prometheus</code></td>
+        <td>CVE-2026-42151</td>
+        <td>HIGH</td>
+        <td>v0.54.1</td>
+        <td>0.311.3</td>
+    </tr>
+    <tr>
+        <td><code>github.com/prometheus/prometheus</code></td>
+        <td>CVE-2026-42154</td>
+        <td>HIGH</td>
+        <td>v0.54.1</td>
+        <td>0.311.3</td>
     </tr>
     <tr>
         <td><code>golang.org/x/crypto</code></td>
@@ -528,7 +584,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>usr/bin/minio</code></h3>
-<h4>Vulnerabilities (19)</h4>
+<h4>Vulnerabilities (21)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -564,6 +620,20 @@
         <td>HIGH</td>
         <td>v5.2.1</td>
         <td>5.2.2</td>
+    </tr>
+    <tr>
+        <td><code>github.com/prometheus/prometheus</code></td>
+        <td>CVE-2026-42151</td>
+        <td>HIGH</td>
+        <td>v0.300.1</td>
+        <td>0.311.3</td>
+    </tr>
+    <tr>
+        <td><code>github.com/prometheus/prometheus</code></td>
+        <td>CVE-2026-42154</td>
+        <td>HIGH</td>
+        <td>v0.300.1</td>
+        <td>0.311.3</td>
     </tr>
     <tr>
         <td><code>go.opentelemetry.io/otel/sdk</code></td>

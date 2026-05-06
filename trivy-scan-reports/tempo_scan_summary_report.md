@@ -3,7 +3,7 @@
 <h4>No Vulnerabilities found</h4>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>tempo</code></h3>
-<h4>Vulnerabilities (10)</h4>
+<h4>Vulnerabilities (14)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -32,6 +32,34 @@
         <td>HIGH</td>
         <td>v4.1.3</td>
         <td>4.1.4</td>
+    </tr>
+    <tr>
+        <td><code>github.com/grafana/tempo</code></td>
+        <td>CVE-2026-21728</td>
+        <td>HIGH</td>
+        <td>v2.10.1</td>
+        <td>2.8.4, 2.9.2, 2.10.2</td>
+    </tr>
+    <tr>
+        <td><code>github.com/prometheus/prometheus</code></td>
+        <td>CVE-2026-42151</td>
+        <td>HIGH</td>
+        <td>v0.307.3</td>
+        <td>0.311.3</td>
+    </tr>
+    <tr>
+        <td><code>github.com/prometheus/prometheus</code></td>
+        <td>CVE-2026-42154</td>
+        <td>HIGH</td>
+        <td>v0.307.3</td>
+        <td>0.311.3</td>
+    </tr>
+    <tr>
+        <td><code>go.opentelemetry.io/otel</code></td>
+        <td>CVE-2026-29181</td>
+        <td>HIGH</td>
+        <td>v1.39.0</td>
+        <td>1.41.0</td>
     </tr>
     <tr>
         <td><code>go.opentelemetry.io/otel/sdk</code></td>

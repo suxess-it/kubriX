@@ -3,7 +3,7 @@
 <h4>No Vulnerabilities found</h4>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>usr/local/bin/traefik</code></h3>
-<h4>Vulnerabilities (7)</h4>
+<h4>Vulnerabilities (10)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -32,6 +32,27 @@
         <td>HIGH</td>
         <td>v4.1.3</td>
         <td>4.1.4</td>
+    </tr>
+    <tr>
+        <td><code>github.com/traefik/traefik/v3</code></td>
+        <td>CVE-2026-35051</td>
+        <td>HIGH</td>
+        <td>v3.6.13</td>
+        <td>3.7.0-rc.2, 3.6.14</td>
+    </tr>
+    <tr>
+        <td><code>github.com/traefik/traefik/v3</code></td>
+        <td>CVE-2026-39858</td>
+        <td>HIGH</td>
+        <td>v3.6.13</td>
+        <td>3.7.0-rc.2, 3.6.14</td>
+    </tr>
+    <tr>
+        <td><code>github.com/traefik/traefik/v3</code></td>
+        <td>CVE-2026-40912</td>
+        <td>HIGH</td>
+        <td>v3.6.13</td>
+        <td>3.7.0-rc.2, 3.6.14</td>
     </tr>
     <tr>
         <td><code>go.opentelemetry.io/otel/sdk</code></td>

@@ -1,6 +1,6 @@
 
 <h3>Target <code>ghcr.io/grafana/alloy-operator:1.8.0 (redhat 9.6)</code></h3>
-<h4>Vulnerabilities (9)</h4>
+<h4>Vulnerabilities (10)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -19,6 +19,13 @@
     <tr>
         <td><code>gnutls</code></td>
         <td>CVE-2026-33845</td>
+        <td>HIGH</td>
+        <td>3.8.3-6.el9_6.2</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>gnutls</code></td>
+        <td>CVE-2026-33846</td>
         <td>HIGH</td>
         <td>3.8.3-6.el9_6.2</td>
         <td></td>
@@ -75,7 +82,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>usr/local/bin/helm-operator</code></h3>
-<h4>Vulnerabilities (12)</h4>
+<h4>Vulnerabilities (13)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -90,6 +97,13 @@
         <td>HIGH</td>
         <td>v0.5.0</td>
         <td>0.5.1</td>
+    </tr>
+    <tr>
+        <td><code>go.opentelemetry.io/otel</code></td>
+        <td>CVE-2026-29181</td>
+        <td>HIGH</td>
+        <td>v1.37.0</td>
+        <td>1.41.0</td>
     </tr>
     <tr>
         <td><code>go.opentelemetry.io/otel/sdk</code></td>
@@ -172,7 +186,7 @@
 <h4>No Misconfigurations found</h4>
 
 <h3>Target <code>ghcr.io/grafana/helm-chart-toolbox-kubectl:0.1.2 (alpine 3.22.2)</code></h3>
-<h4>Vulnerabilities (19)</h4>
+<h4>Vulnerabilities (20)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -306,6 +320,13 @@
         <td>HIGH</td>
         <td>1.2.5-r10</td>
         <td>1.2.5-r12</td>
+    </tr>
+    <tr>
+        <td><code>nghttp2-libs</code></td>
+        <td>CVE-2026-27135</td>
+        <td>HIGH</td>
+        <td>1.65.0-r0</td>
+        <td>1.68.1</td>
     </tr>
     <tr>
         <td><code>zlib</code></td>
@@ -868,7 +889,7 @@
 <h4>No Vulnerabilities found</h4>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>kube-state-metrics</code></h3>
-<h4>Vulnerabilities (10)</h4>
+<h4>Vulnerabilities (11)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -876,6 +897,13 @@
         <th>Severity</th>
         <th>Installed Version</th>
         <th>Fixed Version</th>
+    </tr>
+    <tr>
+        <td><code>go.opentelemetry.io/otel</code></td>
+        <td>CVE-2026-29181</td>
+        <td>HIGH</td>
+        <td>v1.37.0</td>
+        <td>1.41.0</td>
     </tr>
     <tr>
         <td><code>go.opentelemetry.io/otel/sdk</code></td>

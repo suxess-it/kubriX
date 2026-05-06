@@ -578,7 +578,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>usr/bin/mc</code></h3>
-<h4>Vulnerabilities (12)</h4>
+<h4>Vulnerabilities (14)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -586,6 +586,20 @@
         <th>Severity</th>
         <th>Installed Version</th>
         <th>Fixed Version</th>
+    </tr>
+    <tr>
+        <td><code>github.com/prometheus/prometheus</code></td>
+        <td>CVE-2026-42151</td>
+        <td>HIGH</td>
+        <td>v0.303.0</td>
+        <td>0.311.3</td>
+    </tr>
+    <tr>
+        <td><code>github.com/prometheus/prometheus</code></td>
+        <td>CVE-2026-42154</td>
+        <td>HIGH</td>
+        <td>v0.303.0</td>
+        <td>0.311.3</td>
     </tr>
     <tr>
         <td><code>google.golang.org/grpc</code></td>
@@ -674,7 +688,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>usr/bin/minio</code></h3>
-<h4>Vulnerabilities (22)</h4>
+<h4>Vulnerabilities (24)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -734,17 +748,31 @@
     </tr>
     <tr>
         <td><code>github.com/minio/minio</code></td>
-        <td>GHSA-9c4q-hq6p-c237</td>
+        <td>CVE-2026-40344</td>
         <td>HIGH</td>
         <td>v0.0.0-20250613113347-a6c538c5a113+dirty</td>
         <td></td>
     </tr>
     <tr>
         <td><code>github.com/minio/minio</code></td>
-        <td>GHSA-hv4r-mvr4-25vw</td>
+        <td>CVE-2026-41145</td>
         <td>HIGH</td>
         <td>v0.0.0-20250613113347-a6c538c5a113+dirty</td>
         <td></td>
+    </tr>
+    <tr>
+        <td><code>github.com/prometheus/prometheus</code></td>
+        <td>CVE-2026-42151</td>
+        <td>HIGH</td>
+        <td>v0.303.0</td>
+        <td>0.311.3</td>
+    </tr>
+    <tr>
+        <td><code>github.com/prometheus/prometheus</code></td>
+        <td>CVE-2026-42154</td>
+        <td>HIGH</td>
+        <td>v0.303.0</td>
+        <td>0.311.3</td>
     </tr>
     <tr>
         <td><code>go.opentelemetry.io/otel/sdk</code></td>

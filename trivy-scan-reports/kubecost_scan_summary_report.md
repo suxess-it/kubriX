@@ -111,7 +111,7 @@
 <h4>No Misconfigurations found</h4>
 
 <h3>Target <code>gcr.io/kubecost1/cost-model:prod-2.9.6 (redhat 9.7)</code></h3>
-<h4>Vulnerabilities (9)</h4>
+<h4>Vulnerabilities (10)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -130,6 +130,13 @@
     <tr>
         <td><code>gnutls</code></td>
         <td>CVE-2026-33845</td>
+        <td>HIGH</td>
+        <td>3.8.3-9.el9</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>gnutls</code></td>
+        <td>CVE-2026-33846</td>
         <td>HIGH</td>
         <td>3.8.3-9.el9</td>
         <td></td>
@@ -186,7 +193,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>go/bin/app</code></h3>
-<h4>Vulnerabilities (14)</h4>
+<h4>Vulnerabilities (15)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -222,6 +229,13 @@
         <td>HIGH</td>
         <td>v1.5.0</td>
         <td>1.6.0</td>
+    </tr>
+    <tr>
+        <td><code>go.opentelemetry.io/otel</code></td>
+        <td>CVE-2026-29181</td>
+        <td>HIGH</td>
+        <td>v1.36.0</td>
+        <td>1.41.0</td>
     </tr>
     <tr>
         <td><code>go.opentelemetry.io/otel/sdk</code></td>
@@ -297,7 +311,7 @@
 <h4>No Misconfigurations found</h4>
 
 <h3>Target <code>gcr.io/kubecost1/frontend:prod-2.9.6 (redhat 9.7)</code></h3>
-<h4>Vulnerabilities (13)</h4>
+<h4>Vulnerabilities (14)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -316,6 +330,13 @@
     <tr>
         <td><code>gnutls</code></td>
         <td>CVE-2026-33845</td>
+        <td>HIGH</td>
+        <td>3.8.3-9.el9</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>gnutls</code></td>
+        <td>CVE-2026-33846</td>
         <td>HIGH</td>
         <td>3.8.3-9.el9</td>
         <td></td>
@@ -401,7 +422,7 @@
 <h4>No Misconfigurations found</h4>
 
 <h3>Target <code>gcr.io/kubecost1/kubecost-modeling:v0.1.34 (redhat 9.7)</code></h3>
-<h4>Vulnerabilities (14)</h4>
+<h4>Vulnerabilities (15)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -420,6 +441,13 @@
     <tr>
         <td><code>gnutls</code></td>
         <td>CVE-2026-33845</td>
+        <td>HIGH</td>
+        <td>3.8.3-9.el9</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>gnutls</code></td>
+        <td>CVE-2026-33846</td>
         <td>HIGH</td>
         <td>3.8.3-9.el9</td>
         <td></td>
@@ -538,7 +566,7 @@
 <h4>No Misconfigurations found</h4>
 
 <h3>Target <code>icr.io/ibm-finops/agent:v1.0.8 (redhat 9.7)</code></h3>
-<h4>Vulnerabilities (8)</h4>
+<h4>Vulnerabilities (9)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -557,6 +585,13 @@
     <tr>
         <td><code>gnutls</code></td>
         <td>CVE-2026-33845</td>
+        <td>HIGH</td>
+        <td>3.8.3-9.el9</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>gnutls</code></td>
+        <td>CVE-2026-33846</td>
         <td>HIGH</td>
         <td>3.8.3-9.el9</td>
         <td></td>
@@ -606,7 +641,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>go/bin/app</code></h3>
-<h4>Vulnerabilities (11)</h4>
+<h4>Vulnerabilities (12)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -621,6 +656,13 @@
         <td>HIGH</td>
         <td>v4.0.5</td>
         <td>4.1.4</td>
+    </tr>
+    <tr>
+        <td><code>go.opentelemetry.io/otel</code></td>
+        <td>CVE-2026-29181</td>
+        <td>HIGH</td>
+        <td>v1.36.0</td>
+        <td>1.41.0</td>
     </tr>
     <tr>
         <td><code>go.opentelemetry.io/otel/sdk</code></td>
@@ -696,7 +738,7 @@
 <h4>No Misconfigurations found</h4>
 
 <h3>Target <code>bin/prometheus</code></h3>
-<h4>Vulnerabilities (11)</h4>
+<h4>Vulnerabilities (12)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -711,6 +753,13 @@
         <td>HIGH</td>
         <td>v28.5.2+incompatible</td>
         <td>29.3.1</td>
+    </tr>
+    <tr>
+        <td><code>go.opentelemetry.io/otel</code></td>
+        <td>CVE-2026-29181</td>
+        <td>HIGH</td>
+        <td>v1.39.0</td>
+        <td>1.41.0</td>
     </tr>
     <tr>
         <td><code>go.opentelemetry.io/otel/sdk</code></td>
@@ -785,7 +834,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>bin/promtool</code></h3>
-<h4>Vulnerabilities (9)</h4>
+<h4>Vulnerabilities (10)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -800,6 +849,13 @@
         <td>HIGH</td>
         <td>v28.5.2+incompatible</td>
         <td>29.3.1</td>
+    </tr>
+    <tr>
+        <td><code>go.opentelemetry.io/otel</code></td>
+        <td>CVE-2026-29181</td>
+        <td>HIGH</td>
+        <td>v1.39.0</td>
+        <td>1.41.0</td>
     </tr>
     <tr>
         <td><code>google.golang.org/grpc</code></td>

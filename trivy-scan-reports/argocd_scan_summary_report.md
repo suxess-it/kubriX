@@ -207,7 +207,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>usr/local/bin/dex</code></h3>
-<h4>Vulnerabilities (9)</h4>
+<h4>Vulnerabilities (10)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -229,6 +229,13 @@
         <td>HIGH</td>
         <td>v1.5.0</td>
         <td>1.6.0</td>
+    </tr>
+    <tr>
+        <td><code>go.opentelemetry.io/otel</code></td>
+        <td>CVE-2026-29181</td>
+        <td>HIGH</td>
+        <td>v1.39.0</td>
+        <td>1.41.0</td>
     </tr>
     <tr>
         <td><code>google.golang.org/grpc</code></td>
@@ -336,7 +343,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>usr/local/bin/gomplate</code></h3>
-<h4>Vulnerabilities (9)</h4>
+<h4>Vulnerabilities (10)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -351,6 +358,13 @@
         <td>HIGH</td>
         <td>v4.1.3</td>
         <td>4.1.4</td>
+    </tr>
+    <tr>
+        <td><code>go.opentelemetry.io/otel</code></td>
+        <td>CVE-2026-29181</td>
+        <td>HIGH</td>
+        <td>v1.39.0</td>
+        <td>1.41.0</td>
     </tr>
     <tr>
         <td><code>go.opentelemetry.io/otel/sdk</code></td>
@@ -415,7 +429,7 @@
 <h4>No Vulnerabilities found</h4>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>usr/local/bin/argocd</code></h3>
-<h4>Vulnerabilities (8)</h4>
+<h4>Vulnerabilities (9)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -423,6 +437,13 @@
         <th>Severity</th>
         <th>Installed Version</th>
         <th>Fixed Version</th>
+    </tr>
+    <tr>
+        <td><code>go.opentelemetry.io/otel</code></td>
+        <td>CVE-2026-29181</td>
+        <td>HIGH</td>
+        <td>v1.40.0</td>
+        <td>1.41.0</td>
     </tr>
     <tr>
         <td><code>go.opentelemetry.io/otel/sdk</code></td>

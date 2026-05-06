@@ -1,6 +1,6 @@
 
 <h3>Target <code>docker.io/dserio83/velero-api:0.3.1 (debian 12.11)</code></h3>
-<h4>Vulnerabilities (80)</h4>
+<h4>Vulnerabilities (81)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -110,6 +110,13 @@
     <tr>
         <td><code>libgnutls30</code></td>
         <td>CVE-2026-33845</td>
+        <td>CRITICAL</td>
+        <td>3.7.9-2+deb12u5</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>libgnutls30</code></td>
+        <td>CVE-2026-33846</td>
         <td>HIGH</td>
         <td>3.7.9-2+deb12u5</td>
         <td></td>
@@ -1033,7 +1040,7 @@
 <h4>No Misconfigurations found</h4>
 
 <h3>Target <code>docker.io/dserio83/velero-watchdog:0.1.8 (debian 12.10)</code></h3>
-<h4>Vulnerabilities (52)</h4>
+<h4>Vulnerabilities (53)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -1142,6 +1149,13 @@
     </tr>
     <tr>
         <td><code>libgnutls30</code></td>
+        <td>CVE-2026-33845</td>
+        <td>CRITICAL</td>
+        <td>3.7.9-2+deb12u4</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>libgnutls30</code></td>
         <td>CVE-2025-32988</td>
         <td>HIGH</td>
         <td>3.7.9-2+deb12u4</td>
@@ -1156,7 +1170,7 @@
     </tr>
     <tr>
         <td><code>libgnutls30</code></td>
-        <td>CVE-2026-33845</td>
+        <td>CVE-2026-33846</td>
         <td>HIGH</td>
         <td>3.7.9-2+deb12u4</td>
         <td></td>
