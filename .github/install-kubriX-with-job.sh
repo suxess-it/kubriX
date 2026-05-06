@@ -14,7 +14,7 @@ image_exists() {
 
 echo "Applying manifest..."
 
-curl -H "Authorization: token ${KUBRIX_REPO_PASSWORD}" \
+curl -H "Authorization: token ${KUBRIX_UPSTREAM_REPO_PASSWORD:=$KUBRIX_REPO_PASSWORD}" \
   -H 'Accept: application/vnd.github.v3.raw' \
   -O \
   -L ${MANIFEST_URL}
