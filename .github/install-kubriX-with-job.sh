@@ -5,24 +5,41 @@ set -euo pipefail
 MANIFEST_URL="https://raw.githubusercontent.com/${GITHUB_REPOSITORY}/refs/heads/${KUBRIX_UPSTREAM_BRANCH:=$KUBRIX_REPO_BRANCH}/install-manifests.yaml"
 NAMESPACE="kubrix-install"
 JOB_NAME="kubrix-install-job"
+IMAGE_REPO="ghcr.io/suxess-it/kubrix-installer"
+IMAGE_TAG="latest"
+
+image_exists() {
+  skopeo inspect "docker://${IMAGE_REPO}:$1" >/dev/null 2>&1
+}
 
 echo "Applying manifest..."
 
-curl -H "Authorization: token ${KUBRIX_REPO_PASSWORD}" \
+curl -H "Authorization: token ${KUBRIX_UPSTREAM_REPO_PASSWORD:=$KUBRIX_REPO_PASSWORD}" \
   -H 'Accept: application/vnd.github.v3.raw' \
   -O \
   -L ${MANIFEST_URL}
 
-echo "checking if image got build in this PR and should be used ..."
-if [[ -n "${PR_NUMBER:-}" ]]; then
-  echo "using kubrix-installer:pr-${PR_NUMBER} image"
-  cat install-manifests.yaml \
-   | sed 's,image: ghcr.io/suxess-it/kubrix-installer:latest,image: ghcr.io/suxess-it/kubrix-installer:pr-'"${PR_NUMBER}"',g' \
-   | kubectl apply -f -
+echo "checking which kubrix-installer image should be used ..."
+
+if [[ -n "${PR_NUMBER:-}" ]] && image_exists "pr-${PR_NUMBER}"; then
+  IMAGE_TAG="pr-${PR_NUMBER}"
+  echo "using kubrix-installer:${IMAGE_TAG} image"
+elif [[ -n "${TARGET_BRANCH:-}" ]]; then
+  TARGET_BRANCH_TAG="${TARGET_BRANCH//\//-}"
+
+  if image_exists "${TARGET_BRANCH_TAG}"; then
+    IMAGE_TAG="${TARGET_BRANCH_TAG}"
+    echo "using kubrix-installer:${IMAGE_TAG} image"
+  else
+    echo "no kubrix-installer:${TARGET_BRANCH_TAG} image found; using latest"
+  fi
 else
-  echo "using kubrix-installer:latest image"
-  cat install-manifests.yaml | kubectl apply -f -
+  echo "TARGET_BRANCH not set; using latest"
 fi
+
+sed "s,image: ${IMAGE_REPO}:latest,image: ${IMAGE_REPO}:${IMAGE_TAG},g" \
+  install-manifests.yaml \
+  | kubectl apply -f -
 
 echo "Ensuring namespace exists..."
 kubectl get ns "${NAMESPACE}" >/dev/null
