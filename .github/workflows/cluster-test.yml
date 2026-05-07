@@ -294,7 +294,7 @@ jobs:
           REPO_ORG: 'kubriX-demo'
           REPO_NAME: "kubrix-cluster-test-${{ github.run_id }}-${{ job.check_run_id }}"
           GH_TOKEN: ${{ secrets.KUBRIX_CUSTOMER_REPO_TOKEN }}
-          VIS: "public"
+          VIS: "private"
         run: |
           gh api \
             --method POST \
