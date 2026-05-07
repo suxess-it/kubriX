@@ -1,1 +1,32 @@
-teams: []
+teams:
+# new team stanza for team kubrix
+  - name: kubrix
+    sourceRepos:
+      - 'https://github.com/kubriX-demo/kubrix-a25518712864-*'
+    clusterResourceWhitelist:
+      - group: ""
+        kind: Namespace
+      - group: kargo.akuity.io
+        kind: Project
+    appOfAppsRepo:
+      repoURL: https://github.com/kubriX-demo/kubrix-a25518712864-apps
+      path: .
+      revision: main
+    multiStageKargoAppSet:
+      github:
+        organization: kubriX-demo
+    ## prime-only
+    # previewEnvironmentsDefaults:
+    #  enabled: true
+    #  labels:
+    #    - preview
+    #  requeueAfterSeconds: 60
+    #  valuesFiles:
+    #    - values-preview.yaml
+    #admins:
+    #  - adminuser
+    #editors:
+    #  - editoruser
+    #viewers:
+    #  - vieweruser
+    ## end prime-only
