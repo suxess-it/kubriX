@@ -20,3 +20,13 @@ resource "metal_cluster" "sx-cluster" {
     }
   }
 }
+
+data "metal_kubeconfig" "sx-cluster" {
+  id         = metal_cluster.sx-cluster.id
+  expiration = "12h"
+}
+
+output "kubeconfig" {
+  value     = data.metal_kubeconfig.sx-cluster.raw
+  sensitive = true
+}
