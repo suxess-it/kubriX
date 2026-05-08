@@ -26,7 +26,7 @@ spec:
             value: "300"                          # total time to keep trying
           - name: SLEEP_SECONDS
             value: "5"                            # wait between attempts
-{{- if (contains "nip.io" .Values.kubrix.keycloak.domainName ) }}
+{{- if contains "nip.io" (default "" .Values.kubrix.keycloak.domainName) }}
           - name: CURL_CA_BUNDLE
             value: "/etc/ssl/custom/ca.crt"
         volumeMounts:
