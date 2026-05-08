@@ -1,5 +1,5 @@
 
-<h3>Target <code>ghcr.io/akuity/kargo:v1.10.2 (wolfi 20230201)</code></h3>
+<h3>Target <code>ghcr.io/akuity/kargo:v1.10.3 (wolfi 20230201)</code></h3>
 <h4>Vulnerabilities (4)</h4>
 <table>
     <tr>

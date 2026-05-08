@@ -113,7 +113,7 @@
 <h4>No Vulnerabilities found</h4>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>usr/share/grafana/bin/grafana</code></h3>
-<h4>Vulnerabilities (9)</h4>
+<h4>Vulnerabilities (11)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -121,6 +121,13 @@
         <th>Severity</th>
         <th>Installed Version</th>
         <th>Fixed Version</th>
+    </tr>
+    <tr>
+        <td><code>github.com/apache/thrift</code></td>
+        <td>CVE-2026-41602</td>
+        <td>HIGH</td>
+        <td>v0.22.0</td>
+        <td>0.23.0</td>
     </tr>
     <tr>
         <td><code>github.com/go-jose/go-jose/v4</code></td>
@@ -135,6 +142,13 @@
         <td>HIGH</td>
         <td>v1.5.1-0.20250529124718-87c2dc380cec</td>
         <td>2.8.4, 2.9.2, 2.10.2</td>
+    </tr>
+    <tr>
+        <td><code>github.com/grafana/tempo</code></td>
+        <td>CVE-2026-28377</td>
+        <td>HIGH</td>
+        <td>v1.5.1-0.20250529124718-87c2dc380cec</td>
+        <td>2.10.3</td>
     </tr>
     <tr>
         <td><code>github.com/jackc/pgx/v5</code></td>

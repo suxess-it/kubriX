@@ -134,7 +134,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>Java</code></h3>
-<h4>Vulnerabilities (3)</h4>
+<h4>Vulnerabilities (8)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -144,6 +144,20 @@
         <th>Fixed Version</th>
     </tr>
     <tr>
+        <td><code>io.netty:netty-codec</code></td>
+        <td>CVE-2026-42583</td>
+        <td>HIGH</td>
+        <td>4.1.130.Final</td>
+        <td>4.1.133.Final</td>
+    </tr>
+    <tr>
+        <td><code>io.netty:netty-codec-dns</code></td>
+        <td>CVE-2026-42579</td>
+        <td>HIGH</td>
+        <td>4.1.130.Final</td>
+        <td>4.2.13.Final, 4.1.133.Final</td>
+    </tr>
+    <tr>
         <td><code>io.netty:netty-codec-http</code></td>
         <td>CVE-2026-33870</td>
         <td>HIGH</td>
@@ -151,11 +165,32 @@
         <td>4.1.132.Final, 4.2.10.Final</td>
     </tr>
     <tr>
+        <td><code>io.netty:netty-codec-http</code></td>
+        <td>CVE-2026-42584</td>
+        <td>HIGH</td>
+        <td>4.1.130.Final</td>
+        <td>4.2.13.Final, 4.1.133.Final</td>
+    </tr>
+    <tr>
+        <td><code>io.netty:netty-codec-http</code></td>
+        <td>CVE-2026-42587</td>
+        <td>HIGH</td>
+        <td>4.1.130.Final</td>
+        <td>4.2.13.Final, 4.1.133.Final</td>
+    </tr>
+    <tr>
         <td><code>io.netty:netty-codec-http2</code></td>
         <td>CVE-2026-33871</td>
         <td>HIGH</td>
         <td>4.1.130.Final</td>
         <td>4.1.132.Final, 4.2.11.Final</td>
+    </tr>
+    <tr>
+        <td><code>io.netty:netty-codec-http2</code></td>
+        <td>CVE-2026-42587</td>
+        <td>HIGH</td>
+        <td>4.1.130.Final</td>
+        <td>4.2.13.Final, 4.1.133.Final</td>
     </tr>
     <tr>
         <td><code>io.quarkus:quarkus-vertx-http</code></td>

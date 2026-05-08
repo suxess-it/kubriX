@@ -47,11 +47,11 @@
 </table>
 <h4>No Misconfigurations found</h4>
 
-<h3>Target <code>xpkg.upbound.io/upbound/provider-vault:v3.0.7 (debian 12.7)</code></h3>
+<h3>Target <code>xpkg.upbound.io/upbound/provider-vault:v3.0.8 (debian 12.7)</code></h3>
 <h4>No Vulnerabilities found</h4>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>usr/local/bin/provider</code></h3>
-<h4>Vulnerabilities (2)</h4>
+<h4>Vulnerabilities (1)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -66,13 +66,6 @@
         <td>HIGH</td>
         <td>v28.0.0+incompatible</td>
         <td>29.3.1</td>
-    </tr>
-    <tr>
-        <td><code>go.opentelemetry.io/otel</code></td>
-        <td>CVE-2026-29181</td>
-        <td>HIGH</td>
-        <td>v1.39.0</td>
-        <td>1.41.0</td>
     </tr>
 </table>
 <h4>No Misconfigurations found</h4>

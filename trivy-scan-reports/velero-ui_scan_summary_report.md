@@ -1,6 +1,6 @@
 
 <h3>Target <code>docker.io/dserio83/velero-api:0.3.1 (debian 12.11)</code></h3>
-<h4>Vulnerabilities (81)</h4>
+<h4>Vulnerabilities (85)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -117,6 +117,27 @@
     <tr>
         <td><code>libgnutls30</code></td>
         <td>CVE-2026-33846</td>
+        <td>HIGH</td>
+        <td>3.7.9-2+deb12u5</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>libgnutls30</code></td>
+        <td>CVE-2026-3833</td>
+        <td>HIGH</td>
+        <td>3.7.9-2+deb12u5</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>libgnutls30</code></td>
+        <td>CVE-2026-42010</td>
+        <td>HIGH</td>
+        <td>3.7.9-2+deb12u5</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>libgnutls30</code></td>
+        <td>CVE-2026-42011</td>
         <td>HIGH</td>
         <td>3.7.9-2+deb12u5</td>
         <td></td>
@@ -287,6 +308,13 @@
         <td>CVE-2025-7458</td>
         <td>CRITICAL</td>
         <td>3.40.1-2+deb12u1</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>libssh2-1</code></td>
+        <td>CVE-2026-7598</td>
+        <td>HIGH</td>
+        <td>1.10.0-3+b1</td>
         <td></td>
     </tr>
     <tr>
@@ -579,7 +607,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>Python</code></h3>
-<h4>Vulnerabilities (11)</h4>
+<h4>Vulnerabilities (12)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -615,6 +643,13 @@
         <td>HIGH</td>
         <td>0.0.19</td>
         <td>0.0.22</td>
+    </tr>
+    <tr>
+        <td><code>python-multipart</code></td>
+        <td>CVE-2026-42561</td>
+        <td>HIGH</td>
+        <td>0.0.19</td>
+        <td>0.0.27</td>
     </tr>
     <tr>
         <td><code>setuptools</code></td>
@@ -1040,7 +1075,7 @@
 <h4>No Misconfigurations found</h4>
 
 <h3>Target <code>docker.io/dserio83/velero-watchdog:0.1.8 (debian 12.10)</code></h3>
-<h4>Vulnerabilities (53)</h4>
+<h4>Vulnerabilities (57)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -1176,6 +1211,27 @@
         <td></td>
     </tr>
     <tr>
+        <td><code>libgnutls30</code></td>
+        <td>CVE-2026-3833</td>
+        <td>HIGH</td>
+        <td>3.7.9-2+deb12u4</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>libgnutls30</code></td>
+        <td>CVE-2026-42010</td>
+        <td>HIGH</td>
+        <td>3.7.9-2+deb12u4</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>libgnutls30</code></td>
+        <td>CVE-2026-42011</td>
+        <td>HIGH</td>
+        <td>3.7.9-2+deb12u4</td>
+        <td></td>
+    </tr>
+    <tr>
         <td><code>libldap-2.5-0</code></td>
         <td>CVE-2023-2953</td>
         <td>HIGH</td>
@@ -1243,6 +1299,13 @@
         <td>CVE-2025-7458</td>
         <td>CRITICAL</td>
         <td>3.40.1-2+deb12u1</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>libssh2-1</code></td>
+        <td>CVE-2026-7598</td>
+        <td>HIGH</td>
+        <td>1.10.0-3+b1</td>
         <td></td>
     </tr>
     <tr>

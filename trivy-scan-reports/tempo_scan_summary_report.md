@@ -3,7 +3,7 @@
 <h4>No Vulnerabilities found</h4>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>tempo</code></h3>
-<h4>Vulnerabilities (14)</h4>
+<h4>Vulnerabilities (16)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -18,6 +18,13 @@
         <td>HIGH</td>
         <td>v1.3.5</td>
         <td>1.3.6</td>
+    </tr>
+    <tr>
+        <td><code>github.com/apache/thrift</code></td>
+        <td>CVE-2026-41602</td>
+        <td>HIGH</td>
+        <td>v0.22.0</td>
+        <td>0.23.0</td>
     </tr>
     <tr>
         <td><code>github.com/buger/jsonparser</code></td>
@@ -39,6 +46,13 @@
         <td>HIGH</td>
         <td>v2.10.1</td>
         <td>2.8.4, 2.9.2, 2.10.2</td>
+    </tr>
+    <tr>
+        <td><code>github.com/grafana/tempo</code></td>
+        <td>CVE-2026-28377</td>
+        <td>HIGH</td>
+        <td>v2.10.1</td>
+        <td>2.10.3</td>
     </tr>
     <tr>
         <td><code>github.com/prometheus/prometheus</code></td>
