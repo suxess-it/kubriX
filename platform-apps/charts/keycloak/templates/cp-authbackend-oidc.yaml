@@ -51,7 +51,7 @@ spec:
             done
             echo "Timed out after ${TIMEOUT_SECONDS}s waiting for $URL"
             exit 1
-{{- if (contains "nip.io" .Values.kubrix.keycloak.domainName ) }}
+{{- if contains "nip.io" (default "" .Values.kubrix.keycloak.domainName) }}
       volumes:
         - name: ca-cert
           secret:
