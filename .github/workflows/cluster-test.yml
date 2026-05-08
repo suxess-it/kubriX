@@ -635,8 +635,6 @@ jobs:
         if: ${{ failure() }}
         shell: bash
         run: |
-          kubectl logs -n backstage deployment/sx-backstage
-          kubectl get configmap -n backstage -o yaml
           kubectl logs -n argocd statefulset/sx-argocd-application-controller
           kubectl logs -n argocd deployment/sx-argocd-repo-server
           kubectl logs -n argocd deployment/sx-argocd-applicationset-controller
