@@ -492,6 +492,25 @@ jobs:
           delete_repo_if_exists "${app_of_apps_repo:-}"
           delete_repo_if_exists "${gitops_repo:-}"
 
+      - name: add kubrixBot repo for team onboarding fork
+        env:
+          KUBRIXBOT_FORK_READ_TOKEN: ${{ secrets.KUBRIXBOT_FORK_READ_TOKEN }}
+          KUBRIX_FORK_REPO_NAME: "kubrix-cluster-test-${{ github.run_id }}-${{ job.check_run_id }}"
+        run: |
+          kubectl -n argocd apply -f - <<EOF
+          apiVersion: v1
+          kind: Secret
+          metadata:
+            name: kubrixbot-team-onboarding-fork-repo
+            labels:
+              argocd.argoproj.io/secret-type: repository
+          stringData:
+            type: git
+            url: https://github.com/kubrixBot/${KUBRIX_FORK_REPO_NAME}.git
+            username: kubrixBot
+            password: ${KUBRIXBOT_FORK_READ_TOKEN}
+          EOF
+
       # run testkube tests
       - uses: kubeshop/setup-testkube@v1
         with:
