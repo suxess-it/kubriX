@@ -313,7 +313,7 @@
     <tr>
         <td><code>libssh2-1</code></td>
         <td>CVE-2026-7598</td>
-        <td>HIGH</td>
+        <td>CRITICAL</td>
         <td>1.10.0-3+b1</td>
         <td></td>
     </tr>
@@ -861,7 +861,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>Node.js</code></h3>
-<h4>Vulnerabilities (17)</h4>
+<h4>Vulnerabilities (19)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -876,6 +876,20 @@
         <td>HIGH</td>
         <td>7.0.3</td>
         <td>7.0.5, 6.0.6</td>
+    </tr>
+    <tr>
+        <td><code>fast-uri</code></td>
+        <td>CVE-2026-6321</td>
+        <td>HIGH</td>
+        <td>3.0.6</td>
+        <td>3.1.1</td>
+    </tr>
+    <tr>
+        <td><code>fast-uri</code></td>
+        <td>CVE-2026-6322</td>
+        <td>HIGH</td>
+        <td>3.0.6</td>
+        <td>3.1.2</td>
     </tr>
     <tr>
         <td><code>glob</code></td>
@@ -1304,7 +1318,7 @@
     <tr>
         <td><code>libssh2-1</code></td>
         <td>CVE-2026-7598</td>
-        <td>HIGH</td>
+        <td>CRITICAL</td>
         <td>1.10.0-3+b1</td>
         <td></td>
     </tr>

@@ -144,7 +144,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>Node.js</code></h3>
-<h4>Vulnerabilities (39)</h4>
+<h4>Vulnerabilities (44)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -208,6 +208,27 @@
         <td>HIGH</td>
         <td>5.2.0</td>
         <td>5.2.2</td>
+    </tr>
+    <tr>
+        <td><code>fast-uri</code></td>
+        <td>CVE-2026-6321</td>
+        <td>HIGH</td>
+        <td>3.1.0</td>
+        <td>3.1.1</td>
+    </tr>
+    <tr>
+        <td><code>fast-uri</code></td>
+        <td>CVE-2026-6322</td>
+        <td>HIGH</td>
+        <td>3.1.0</td>
+        <td>3.1.2</td>
+    </tr>
+    <tr>
+        <td><code>fast-xml-builder</code></td>
+        <td>CVE-2026-44665</td>
+        <td>HIGH</td>
+        <td>1.1.4</td>
+        <td>1.1.7</td>
     </tr>
     <tr>
         <td><code>tar</code></td>
@@ -404,6 +425,20 @@
         <td>CRITICAL</td>
         <td>3.10.5</td>
         <td>3.11.1</td>
+    </tr>
+    <tr>
+        <td><code>vm2</code></td>
+        <td>CVE-2026-44008</td>
+        <td>CRITICAL</td>
+        <td>3.10.5</td>
+        <td>3.11.2</td>
+    </tr>
+    <tr>
+        <td><code>vm2</code></td>
+        <td>CVE-2026-44009</td>
+        <td>CRITICAL</td>
+        <td>3.10.5</td>
+        <td>3.11.2</td>
     </tr>
     <tr>
         <td><code>vm2</code></td>
