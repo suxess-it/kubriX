@@ -59,6 +59,23 @@ applications:
     annotations:
       argocd.argoproj.io/sync-wave: "-5"
 
+  - name: loki
+    annotations:
+      argocd.argoproj.io/compare-options: ServerSideDiff=true
+      argocd.argoproj.io/sync-wave: "-1"
+    helmOptions:
+      skipCrds: true
+    syncOptions:
+      - ServerSideApply=true
+      
+  - name: grafana
+    annotations:
+      argocd.argoproj.io/compare-options: ServerSideDiff=true
+    syncOptions:
+      - ServerSideApply=true
+
+  - name: mimir
+
   - name: testkube
     annotations:
       argocd.argoproj.io/compare-options: ServerSideDiff=true
