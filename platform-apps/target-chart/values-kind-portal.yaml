@@ -76,6 +76,10 @@ applications:
 
   - name: mimir
 
+  - name: kyverno
+    syncOptions:
+      - ServerSideApply=true
+
   - name: testkube
     annotations:
       argocd.argoproj.io/compare-options: ServerSideDiff=true
