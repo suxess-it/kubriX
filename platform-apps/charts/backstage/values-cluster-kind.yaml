@@ -2,6 +2,9 @@ backstage:
   ingress:
     host: backstage.127-0-0-1.nip.io
   backstage:
+    resources:
+      requests:
+        cpu: 50m
     extraEnvVars:
       - name: NODE_OPTIONS
         value: "--no-node-snapshot"
@@ -128,4 +131,6 @@ backstage:
 
       kubecost:
         baseUrl: https://kubecost.127-0-0-1.nip.io
-        
+
+  
+    
