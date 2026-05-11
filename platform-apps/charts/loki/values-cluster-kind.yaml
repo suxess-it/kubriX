@@ -10,3 +10,9 @@ loki:
         - secretName: loki-gateway-tls
           hosts:
             - logs-monitoring.127-0-0-1.nip.io
+
+  resultsCache:
+    resources:
+      requests:
+        cpu: 50m
+        memory: 256Mi
