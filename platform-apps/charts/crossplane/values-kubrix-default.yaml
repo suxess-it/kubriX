@@ -1,3 +1,57 @@
 crossplane:
   provider:
     defaultActivations: []
+
+kubrix:
+  crossplane:
+    keycloak:
+      provider:
+        package: xpkg.upbound.io/crossplane-contrib/provider-keycloak:v2.19.0
+        replicas: 1
+      providerConfig:
+        name: sx-keycloak-config
+        namespace: keycloak
+        secretRef:
+          name: keycloak-credentials
+          key: credentials
+          namespace: keycloak
+      activeMRDs:
+        authbackends.jwt.vault.upbound.io: true
+        realms.realm.keycloak.crossplane.io: true
+        authbackendroles.jwt.vault.upbound.io: true
+        protocolmappers.client.keycloak.crossplane.io: true
+        roles.role.keycloak.crossplane.io: true
+        roles.group.keycloak.crossplane.io: true
+        groups.group.keycloak.crossplane.io: true
+        users.user.keycloak.crossplane.io: true
+        clientscopes.openidclient.keycloak.crossplane.io: true
+        clientdefaultscopes.openidclient.keycloak.crossplane.io: true
+        clients.openidclient.keycloak.crossplane.io: true
+        memberships.group.keycloak.crossplane.io: true
+        flows.authenticationflow.keycloak.crossplane.io: true
+        executions.authenticationflow.keycloak.crossplane.io: true
+        executionconfigs.authenticationflow.keycloak.crossplane.io: true
+        bindings.authenticationflow.keycloak.crossplane.io: true
+    openbao:
+      provider:
+        package: xpkg.upbound.io/upbound/provider-vault:v3.0.8
+        replicas: 1
+      providerConfig:
+        name: openbao-crossplane-providerconfig
+        namespace: openbao
+        address: http://sx-openbao-active.openbao.svc.cluster.local:8200/
+        vaultNamespace: kubrix
+        secretRef:
+          name: crossplane-init
+          key: credentials
+          namespace: openbao
+        skipChildToken: true
+      activeMRDs:
+        audits.vault.vault.upbound.io: true
+        mounts.vault.vault.upbound.io: true
+        policies.vault.vault.upbound.io: true
+        authbackendroles.kubernetes.vault.upbound.io: true
+        groups.identity.vault.upbound.io: true
+        secretbackendv2s.kv.vault.upbound.io: true
+        authbackendroles.token.vault.upbound.io: true
+        tokens.vault.vault.upbound.io: true

@@ -1,0 +1,80 @@
+{{- $kubrix := default (dict) .Values.kubrix -}}
+{{- $crossplane := default (dict) $kubrix.crossplane -}}
+{{- $openbao := default (dict) $crossplane.openbao -}}
+{{- $provider := default (dict) $openbao.provider -}}
+{{- $providerConfig := default (dict) $openbao.providerConfig -}}
+{{- $secretRef := default (dict) $providerConfig.secretRef -}}
+{{- $replicas := default 1 $provider.replicas -}}
+---
+apiVersion: pkg.crossplane.io/v1
+kind: Provider
+metadata:
+  name: provider-vault
+  annotations:
+    argocd.argoproj.io/sync-wave: "-10"
+spec:
+  package: {{ default "xpkg.upbound.io/upbound/provider-vault:v3.0.8" $provider.package }}
+  runtimeConfigRef:
+    apiVersion: pkg.crossplane.io/v1beta1
+    kind: DeploymentRuntimeConfig
+    name: vault-provider-config
+---
+apiVersion: pkg.crossplane.io/v1beta1
+kind: DeploymentRuntimeConfig
+metadata:
+  name: vault-provider-config
+  annotations:
+    argocd.argoproj.io/sync-wave: "-10"
+spec:
+  deploymentTemplate:
+    spec:
+      replicas: {{ $replicas }}
+      selector: {}
+      template:
+        spec:
+          containers:
+            - name: package-runtime
+              env:
+                - name: LEADER_ELECTION
+                  value: "true"
+          topologySpreadConstraints:
+            - maxSkew: 1
+              topologyKey: kubernetes.io/hostname
+              whenUnsatisfiable: ScheduleAnyway
+              labelSelector:
+                matchLabels:
+                  pkg.crossplane.io/provider: provider-vault
+              matchLabelKeys:
+                - pod-template-hash
+---
+apiVersion: vault.upbound.io/v1beta1
+kind: ProviderConfig
+metadata:
+  name: {{ default "openbao-crossplane-providerconfig" $providerConfig.name | quote }}
+  namespace: {{ default "openbao" $providerConfig.namespace | quote }}
+  annotations:
+    argocd.argoproj.io/sync-wave: "-8"
+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+spec:
+  address: {{ default "http://sx-openbao-active.openbao.svc.cluster.local:8200/" $providerConfig.address | quote }}
+  namespace: {{ default "kubrix" $providerConfig.vaultNamespace | quote }}
+  credentials:
+    source: Secret
+    secretRef:
+      name: {{ default "crossplane-init" $secretRef.name }}
+      key: {{ default "credentials" $secretRef.key }}
+      namespace: {{ default "openbao" $secretRef.namespace | quote }}
+  skip_child_token: {{ default true $providerConfig.skipChildToken }}
+---
+apiVersion: apiextensions.crossplane.io/v1alpha1
+kind: ManagedResourceActivationPolicy
+metadata:
+  name: vault-mrap
+spec:
+  activate:
+{{- $m := $openbao.activeMRDs | default dict }}
+{{- range $mrd, $enabled := $m }}
+{{- if $enabled }}
+    - {{ $mrd }}
+{{- end }}
+{{- end }}
