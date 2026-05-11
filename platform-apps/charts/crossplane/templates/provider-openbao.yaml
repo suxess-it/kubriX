@@ -10,8 +10,6 @@ apiVersion: pkg.crossplane.io/v1
 kind: Provider
 metadata:
   name: provider-vault
-  annotations:
-    argocd.argoproj.io/sync-wave: "-10"
 spec:
   package: {{ default "xpkg.upbound.io/upbound/provider-vault:v3.0.8" $provider.package }}
   runtimeConfigRef:
@@ -23,8 +21,6 @@ apiVersion: pkg.crossplane.io/v1beta1
 kind: DeploymentRuntimeConfig
 metadata:
   name: vault-provider-config
-  annotations:
-    argocd.argoproj.io/sync-wave: "-10"
 spec:
   deploymentTemplate:
     spec:
@@ -52,9 +48,6 @@ kind: ProviderConfig
 metadata:
   name: {{ default "openbao-crossplane-providerconfig" $providerConfig.name | quote }}
   namespace: {{ default "openbao" $providerConfig.namespace | quote }}
-  annotations:
-    argocd.argoproj.io/sync-wave: "-8"
-    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
 spec:
   address: {{ default "http://sx-openbao-active.openbao.svc.cluster.local:8200/" $providerConfig.address | quote }}
   namespace: {{ default "kubrix" $providerConfig.vaultNamespace | quote }}

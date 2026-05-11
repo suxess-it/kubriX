@@ -10,8 +10,6 @@ apiVersion: pkg.crossplane.io/v1
 kind: Provider
 metadata:
   name: provider-keycloak
-  annotations:
-    argocd.argoproj.io/sync-wave: "-10"
 spec:
   package: {{ default "xpkg.upbound.io/crossplane-contrib/provider-keycloak:v2.19.0" $provider.package }}
   runtimeConfigRef:
@@ -21,8 +19,6 @@ apiVersion: pkg.crossplane.io/v1beta1
 kind: DeploymentRuntimeConfig
 metadata:
   name: keycloak-provider-config
-  annotations:
-    argocd.argoproj.io/sync-wave: "-10"
 spec:
   deploymentTemplate:
     spec:
@@ -50,9 +46,6 @@ kind: ProviderConfig
 metadata:
   name: {{ default "sx-keycloak-config" $providerConfig.name | quote }}
   namespace: {{ default "keycloak" $providerConfig.namespace | quote }}
-  annotations:
-    argocd.argoproj.io/sync-wave: "-8"
-    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
 spec:
   credentials:
     source: Secret
