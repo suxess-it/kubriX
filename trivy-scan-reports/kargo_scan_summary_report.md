@@ -1,6 +1,6 @@
 
 <h3>Target <code>ghcr.io/akuity/kargo:v1.10.3 (wolfi 20230201)</code></h3>
-<h4>Vulnerabilities (4)</h4>
+<h4>Vulnerabilities (10)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -37,10 +37,52 @@
         <td>3.19.2-r2</td>
         <td>3.20.1-r0</td>
     </tr>
+    <tr>
+        <td><code>helm-3</code></td>
+        <td>CVE-2026-33811</td>
+        <td>HIGH</td>
+        <td>3.19.2-r2</td>
+        <td>3.20.2-r0</td>
+    </tr>
+    <tr>
+        <td><code>helm-3</code></td>
+        <td>CVE-2026-33814</td>
+        <td>HIGH</td>
+        <td>3.19.2-r2</td>
+        <td>3.20.2-r0</td>
+    </tr>
+    <tr>
+        <td><code>helm-3</code></td>
+        <td>CVE-2026-39820</td>
+        <td>HIGH</td>
+        <td>3.19.2-r2</td>
+        <td>3.20.2-r0</td>
+    </tr>
+    <tr>
+        <td><code>helm-3</code></td>
+        <td>CVE-2026-39836</td>
+        <td>HIGH</td>
+        <td>3.19.2-r2</td>
+        <td>3.20.2-r0</td>
+    </tr>
+    <tr>
+        <td><code>helm-3</code></td>
+        <td>CVE-2026-42499</td>
+        <td>HIGH</td>
+        <td>3.19.2-r2</td>
+        <td>3.20.2-r0</td>
+    </tr>
+    <tr>
+        <td><code>helm-3</code></td>
+        <td>CVE-2026-42501</td>
+        <td>HIGH</td>
+        <td>3.19.2-r2</td>
+        <td>3.20.2-r0</td>
+    </tr>
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>usr/local/bin/credential-helper</code></h3>
-<h4>Vulnerabilities (4)</h4>
+<h4>Vulnerabilities (9)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -77,10 +119,45 @@
         <td>v1.26.1</td>
         <td>1.26.2</td>
     </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-33811</td>
+        <td>HIGH</td>
+        <td>v1.26.1</td>
+        <td>1.25.10, 1.26.3</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-33814</td>
+        <td>HIGH</td>
+        <td>v1.26.1</td>
+        <td>1.25.10, 1.26.3</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-39820</td>
+        <td>HIGH</td>
+        <td>v1.26.1</td>
+        <td>1.25.10, 1.26.3</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-39836</td>
+        <td>HIGH</td>
+        <td>v1.26.1</td>
+        <td>1.25.10, 1.26.3</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-42499</td>
+        <td>HIGH</td>
+        <td>v1.26.1</td>
+        <td>1.25.10, 1.26.3</td>
+    </tr>
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>usr/local/bin/grpc_health_probe</code></h3>
-<h4>Vulnerabilities (5)</h4>
+<h4>Vulnerabilities (10)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -124,10 +201,45 @@
         <td>v1.25.8</td>
         <td>1.25.9, 1.26.2</td>
     </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-33811</td>
+        <td>HIGH</td>
+        <td>v1.25.8</td>
+        <td>1.25.10, 1.26.3</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-33814</td>
+        <td>HIGH</td>
+        <td>v1.25.8</td>
+        <td>1.25.10, 1.26.3</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-39820</td>
+        <td>HIGH</td>
+        <td>v1.25.8</td>
+        <td>1.25.10, 1.26.3</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-39836</td>
+        <td>HIGH</td>
+        <td>v1.25.8</td>
+        <td>1.25.10, 1.26.3</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-42499</td>
+        <td>HIGH</td>
+        <td>v1.25.8</td>
+        <td>1.25.10, 1.26.3</td>
+    </tr>
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>usr/local/bin/kargo</code></h3>
-<h4>Vulnerabilities (5)</h4>
+<h4>Vulnerabilities (10)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -170,6 +282,41 @@
         <td>HIGH</td>
         <td>v1.26.1</td>
         <td>1.26.2</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-33811</td>
+        <td>HIGH</td>
+        <td>v1.26.1</td>
+        <td>1.25.10, 1.26.3</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-33814</td>
+        <td>HIGH</td>
+        <td>v1.26.1</td>
+        <td>1.25.10, 1.26.3</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-39820</td>
+        <td>HIGH</td>
+        <td>v1.26.1</td>
+        <td>1.25.10, 1.26.3</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-39836</td>
+        <td>HIGH</td>
+        <td>v1.26.1</td>
+        <td>1.25.10, 1.26.3</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-42499</td>
+        <td>HIGH</td>
+        <td>v1.26.1</td>
+        <td>1.25.10, 1.26.3</td>
     </tr>
 </table>
 <h4>No Misconfigurations found</h4>

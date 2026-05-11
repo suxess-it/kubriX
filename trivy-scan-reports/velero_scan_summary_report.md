@@ -3,7 +3,7 @@
 <h4>No Vulnerabilities found</h4>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>usr/bin/restic</code></h3>
-<h4>Vulnerabilities (5)</h4>
+<h4>Vulnerabilities (10)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -47,10 +47,45 @@
         <td>v1.25.7</td>
         <td>1.25.9, 1.26.2</td>
     </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-33811</td>
+        <td>HIGH</td>
+        <td>v1.25.7</td>
+        <td>1.25.10, 1.26.3</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-33814</td>
+        <td>HIGH</td>
+        <td>v1.25.7</td>
+        <td>1.25.10, 1.26.3</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-39820</td>
+        <td>HIGH</td>
+        <td>v1.25.7</td>
+        <td>1.25.10, 1.26.3</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-39836</td>
+        <td>HIGH</td>
+        <td>v1.25.7</td>
+        <td>1.25.10, 1.26.3</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-42499</td>
+        <td>HIGH</td>
+        <td>v1.25.7</td>
+        <td>1.25.10, 1.26.3</td>
+    </tr>
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>velero</code></h3>
-<h4>Vulnerabilities (9)</h4>
+<h4>Vulnerabilities (14)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -122,10 +157,45 @@
         <td>v1.25.7</td>
         <td>1.25.9, 1.26.2</td>
     </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-33811</td>
+        <td>HIGH</td>
+        <td>v1.25.7</td>
+        <td>1.25.10, 1.26.3</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-33814</td>
+        <td>HIGH</td>
+        <td>v1.25.7</td>
+        <td>1.25.10, 1.26.3</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-39820</td>
+        <td>HIGH</td>
+        <td>v1.25.7</td>
+        <td>1.25.10, 1.26.3</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-39836</td>
+        <td>HIGH</td>
+        <td>v1.25.7</td>
+        <td>1.25.10, 1.26.3</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-42499</td>
+        <td>HIGH</td>
+        <td>v1.25.7</td>
+        <td>1.25.10, 1.26.3</td>
+    </tr>
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>velero-helper</code></h3>
-<h4>Vulnerabilities (4)</h4>
+<h4>Vulnerabilities (9)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -161,11 +231,46 @@
         <td>HIGH</td>
         <td>v1.25.7</td>
         <td>1.25.9, 1.26.2</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-33811</td>
+        <td>HIGH</td>
+        <td>v1.25.7</td>
+        <td>1.25.10, 1.26.3</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-33814</td>
+        <td>HIGH</td>
+        <td>v1.25.7</td>
+        <td>1.25.10, 1.26.3</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-39820</td>
+        <td>HIGH</td>
+        <td>v1.25.7</td>
+        <td>1.25.10, 1.26.3</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-39836</td>
+        <td>HIGH</td>
+        <td>v1.25.7</td>
+        <td>1.25.10, 1.26.3</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-42499</td>
+        <td>HIGH</td>
+        <td>v1.25.7</td>
+        <td>1.25.10, 1.26.3</td>
     </tr>
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>velero-restore-helper</code></h3>
-<h4>Vulnerabilities (4)</h4>
+<h4>Vulnerabilities (9)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -201,6 +306,41 @@
         <td>HIGH</td>
         <td>v1.25.7</td>
         <td>1.25.9, 1.26.2</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-33811</td>
+        <td>HIGH</td>
+        <td>v1.25.7</td>
+        <td>1.25.10, 1.26.3</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-33814</td>
+        <td>HIGH</td>
+        <td>v1.25.7</td>
+        <td>1.25.10, 1.26.3</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-39820</td>
+        <td>HIGH</td>
+        <td>v1.25.7</td>
+        <td>1.25.10, 1.26.3</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-39836</td>
+        <td>HIGH</td>
+        <td>v1.25.7</td>
+        <td>1.25.10, 1.26.3</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-42499</td>
+        <td>HIGH</td>
+        <td>v1.25.7</td>
+        <td>1.25.10, 1.26.3</td>
     </tr>
 </table>
 <h4>No Misconfigurations found</h4>
@@ -209,7 +349,7 @@
 <h4>No Vulnerabilities found</h4>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>plugins/kubevirt-velero-plugin</code></h3>
-<h4>Vulnerabilities (11)</h4>
+<h4>Vulnerabilities (16)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -295,11 +435,46 @@
         <td>v1.23.6</td>
         <td>1.25.9, 1.26.2</td>
     </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-33811</td>
+        <td>HIGH</td>
+        <td>v1.23.6</td>
+        <td>1.25.10, 1.26.3</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-33814</td>
+        <td>HIGH</td>
+        <td>v1.23.6</td>
+        <td>1.25.10, 1.26.3</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-39820</td>
+        <td>HIGH</td>
+        <td>v1.23.6</td>
+        <td>1.25.10, 1.26.3</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-39836</td>
+        <td>HIGH</td>
+        <td>v1.23.6</td>
+        <td>1.25.10, 1.26.3</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-42499</td>
+        <td>HIGH</td>
+        <td>v1.23.6</td>
+        <td>1.25.10, 1.26.3</td>
+    </tr>
 </table>
 <h4>No Misconfigurations found</h4>
 
 <h3>Target <code>bin/cp-plugin</code></h3>
-<h4>Vulnerabilities (4)</h4>
+<h4>Vulnerabilities (9)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -336,10 +511,45 @@
         <td>v1.25.7</td>
         <td>1.25.9, 1.26.2</td>
     </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-33811</td>
+        <td>HIGH</td>
+        <td>v1.25.7</td>
+        <td>1.25.10, 1.26.3</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-33814</td>
+        <td>HIGH</td>
+        <td>v1.25.7</td>
+        <td>1.25.10, 1.26.3</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-39820</td>
+        <td>HIGH</td>
+        <td>v1.25.7</td>
+        <td>1.25.10, 1.26.3</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-39836</td>
+        <td>HIGH</td>
+        <td>v1.25.7</td>
+        <td>1.25.10, 1.26.3</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-42499</td>
+        <td>HIGH</td>
+        <td>v1.25.7</td>
+        <td>1.25.10, 1.26.3</td>
+    </tr>
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>plugins/velero-plugin-for-aws</code></h3>
-<h4>Vulnerabilities (5)</h4>
+<h4>Vulnerabilities (10)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -382,6 +592,41 @@
         <td>HIGH</td>
         <td>v1.25.7</td>
         <td>1.25.9, 1.26.2</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-33811</td>
+        <td>HIGH</td>
+        <td>v1.25.7</td>
+        <td>1.25.10, 1.26.3</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-33814</td>
+        <td>HIGH</td>
+        <td>v1.25.7</td>
+        <td>1.25.10, 1.26.3</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-39820</td>
+        <td>HIGH</td>
+        <td>v1.25.7</td>
+        <td>1.25.10, 1.26.3</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-39836</td>
+        <td>HIGH</td>
+        <td>v1.25.7</td>
+        <td>1.25.10, 1.26.3</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-42499</td>
+        <td>HIGH</td>
+        <td>v1.25.7</td>
+        <td>1.25.10, 1.26.3</td>
     </tr>
 </table>
 <h4>No Misconfigurations found</h4>

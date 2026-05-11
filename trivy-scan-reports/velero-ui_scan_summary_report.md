@@ -703,7 +703,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>usr/local/bin/kubectl</code></h3>
-<h4>Vulnerabilities (13)</h4>
+<h4>Vulnerabilities (18)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -802,6 +802,41 @@
         <td>HIGH</td>
         <td>v1.22.5</td>
         <td>1.25.9, 1.26.2</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-33811</td>
+        <td>HIGH</td>
+        <td>v1.22.5</td>
+        <td>1.25.10, 1.26.3</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-33814</td>
+        <td>HIGH</td>
+        <td>v1.22.5</td>
+        <td>1.25.10, 1.26.3</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-39820</td>
+        <td>HIGH</td>
+        <td>v1.22.5</td>
+        <td>1.25.10, 1.26.3</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-39836</td>
+        <td>HIGH</td>
+        <td>v1.22.5</td>
+        <td>1.25.10, 1.26.3</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-42499</td>
+        <td>HIGH</td>
+        <td>v1.22.5</td>
+        <td>1.25.10, 1.26.3</td>
     </tr>
 </table>
 <h4>No Misconfigurations found</h4>
@@ -1006,7 +1041,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>app/node_modules/@esbuild/linux-x64/bin/esbuild</code></h3>
-<h4>Vulnerabilities (10)</h4>
+<h4>Vulnerabilities (15)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -1084,6 +1119,41 @@
         <td>HIGH</td>
         <td>v1.23.7</td>
         <td>1.25.9, 1.26.2</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-33811</td>
+        <td>HIGH</td>
+        <td>v1.23.7</td>
+        <td>1.25.10, 1.26.3</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-33814</td>
+        <td>HIGH</td>
+        <td>v1.23.7</td>
+        <td>1.25.10, 1.26.3</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-39820</td>
+        <td>HIGH</td>
+        <td>v1.23.7</td>
+        <td>1.25.10, 1.26.3</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-39836</td>
+        <td>HIGH</td>
+        <td>v1.23.7</td>
+        <td>1.25.10, 1.26.3</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-42499</td>
+        <td>HIGH</td>
+        <td>v1.23.7</td>
+        <td>1.25.10, 1.26.3</td>
     </tr>
 </table>
 <h4>No Misconfigurations found</h4>

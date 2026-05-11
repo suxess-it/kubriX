@@ -1,6 +1,6 @@
 
 <h3>Target <code>bin/blackbox_exporter</code></h3>
-<h4>Vulnerabilities (8)</h4>
+<h4>Vulnerabilities (13)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -64,6 +64,41 @@
         <td>HIGH</td>
         <td>v1.25.5</td>
         <td>1.25.9, 1.26.2</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-33811</td>
+        <td>HIGH</td>
+        <td>v1.25.5</td>
+        <td>1.25.10, 1.26.3</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-33814</td>
+        <td>HIGH</td>
+        <td>v1.25.5</td>
+        <td>1.25.10, 1.26.3</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-39820</td>
+        <td>HIGH</td>
+        <td>v1.25.5</td>
+        <td>1.25.10, 1.26.3</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-39836</td>
+        <td>HIGH</td>
+        <td>v1.25.5</td>
+        <td>1.25.10, 1.26.3</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-42499</td>
+        <td>HIGH</td>
+        <td>v1.25.5</td>
+        <td>1.25.10, 1.26.3</td>
     </tr>
 </table>
 <h4>No Misconfigurations found</h4>
