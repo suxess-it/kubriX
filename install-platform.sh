@@ -117,7 +117,7 @@ detect_date_impl() {
 
 # clone kubriX upstream repo to bootstrap-kubriX/kubriX-repo
 bootstrap_clone_from_upstream() {
-  printf 'bootstrap from upstream repo %s to downstream repo %s' "${KUBRIX_UPSTREAM_REPO}" "${KUBRIX_REPO}\n"
+  printf 'bootstrap from upstream repo %s to downstream repo %s\n' "${KUBRIX_UPSTREAM_REPO}" "${KUBRIX_REPO}"
   printf 'checkout kubriX upstream to %s ...\n' "$(pwd)"
 
   if [ "${KUBRIX_UPSTREAM_REPO_PASSWORD}" != " " ]; then
