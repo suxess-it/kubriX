@@ -607,7 +607,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>Python</code></h3>
-<h4>Vulnerabilities (12)</h4>
+<h4>Vulnerabilities (13)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -692,6 +692,13 @@
         <td>HIGH</td>
         <td>2.3.0</td>
         <td>2.6.3</td>
+    </tr>
+    <tr>
+        <td><code>urllib3</code></td>
+        <td>CVE-2026-44431</td>
+        <td>HIGH</td>
+        <td>2.3.0</td>
+        <td>2.7.0</td>
     </tr>
     <tr>
         <td><code>wheel</code></td>
@@ -896,7 +903,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>Node.js</code></h3>
-<h4>Vulnerabilities (19)</h4>
+<h4>Vulnerabilities (25)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -967,6 +974,48 @@
         <td>CRITICAL</td>
         <td>15.2.3</td>
         <td>15.0.5, 15.1.9, 15.2.6, 15.3.6, 15.4.8, 15.5.7, 16.0.7</td>
+    </tr>
+    <tr>
+        <td><code>next</code></td>
+        <td>CVE-2026-44573</td>
+        <td>HIGH</td>
+        <td>15.2.3</td>
+        <td>15.5.16, 16.2.5</td>
+    </tr>
+    <tr>
+        <td><code>next</code></td>
+        <td>CVE-2026-44575</td>
+        <td>HIGH</td>
+        <td>15.2.3</td>
+        <td>15.5.16, 16.2.5</td>
+    </tr>
+    <tr>
+        <td><code>next</code></td>
+        <td>CVE-2026-44578</td>
+        <td>HIGH</td>
+        <td>15.2.3</td>
+        <td>15.5.16, 16.2.5</td>
+    </tr>
+    <tr>
+        <td><code>next</code></td>
+        <td>CVE-2026-44579</td>
+        <td>HIGH</td>
+        <td>15.2.3</td>
+        <td>15.5.16, 16.2.5</td>
+    </tr>
+    <tr>
+        <td><code>next</code></td>
+        <td>CVE-2026-45109</td>
+        <td>HIGH</td>
+        <td>15.2.3</td>
+        <td>15.5.18, 16.2.6</td>
+    </tr>
+    <tr>
+        <td><code>next</code></td>
+        <td>GHSA-8h8q-6873-q5fj</td>
+        <td>HIGH</td>
+        <td>15.2.3</td>
+        <td>15.5.16, 16.2.5</td>
     </tr>
     <tr>
         <td><code>next</code></td>
@@ -1570,7 +1619,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>Python</code></h3>
-<h4>Vulnerabilities (10)</h4>
+<h4>Vulnerabilities (11)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -1641,6 +1690,13 @@
         <td>HIGH</td>
         <td>2.3.0</td>
         <td>2.6.3</td>
+    </tr>
+    <tr>
+        <td><code>urllib3</code></td>
+        <td>CVE-2026-44431</td>
+        <td>HIGH</td>
+        <td>2.3.0</td>
+        <td>2.7.0</td>
     </tr>
     <tr>
         <td><code>wheel</code></td>

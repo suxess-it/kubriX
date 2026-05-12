@@ -595,7 +595,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>Python</code></h3>
-<h4>Vulnerabilities (2)</h4>
+<h4>Vulnerabilities (4)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -610,6 +610,20 @@
         <td>HIGH</td>
         <td>5.3.0</td>
         <td>6.1.0</td>
+    </tr>
+    <tr>
+        <td><code>urllib3</code></td>
+        <td>CVE-2026-44431</td>
+        <td>HIGH</td>
+        <td>2.6.3</td>
+        <td>2.7.0</td>
+    </tr>
+    <tr>
+        <td><code>urllib3</code></td>
+        <td>CVE-2026-44432</td>
+        <td>HIGH</td>
+        <td>2.6.3</td>
+        <td>2.7.0</td>
     </tr>
     <tr>
         <td><code>wheel</code></td>
