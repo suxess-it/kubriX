@@ -213,7 +213,6 @@ test("Team Onboarding with kubrixBot Github user", async ({ page }) => {
   const operationMessage = app?.status?.operationState?.message;
   console.log({ phase, syncStatus, healthStatus, operationMessage });
 
-  await api.dispose();
   await authed.dispose();
 });
 
