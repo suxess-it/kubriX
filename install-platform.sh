@@ -92,7 +92,7 @@ check_prereqs() {
     check_variable KUBRIX_SECURITY_STRICT "true" "false"
     check_variable KUBRIX_HA_ENABLED "true" "false"
     check_variable KUBRIX_CERT_MANAGER_DNS_PROVIDER "true" "none" "none|aws"
-    check_tool gomplate "gomplate --version"
+    check_tool gomplate "gomplate -h | head"
   fi
 
   # check tools
