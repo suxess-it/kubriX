@@ -203,71 +203,46 @@ test("Team Onboarding with kubrixBot Github user", async ({ page }) => {
     },
   });
 
-  // Disable auto-sync in bootstrap-app (JSON Patch: remove /spec/syncPolicy/automated)
-  const disableAutosyncResp = await authed.patch(`/api/v1/applications/sx-bootstrap-app`, {
-    data: {
-      patchType: "merge",
-      patch: JSON.stringify({
-        spec: {
-          syncPolicy: {
-            automated: {
-              enabled: false,
-            },
-          },
-        },
-      }),
+  // merge team onboarding PR
+  const kubrixOrg     = process.env.E2E_KUBRIX_ORG ?? 'kubriX-demo;
+  const kubrixRepoRaw = process.env.E2E_KUBRIX_REPO ?? 'kubriX';
+  const kubrixRepo    = kubrixRepoRaw.startsWith('https://') ? kubrixRepoRaw.split('/').pop()! : kubrixRepoRaw;
+  const prHref = await page.getByRole('link', { name: /Open Pull-Request/i }).getAttribute('href');
+  const prMatch = prHref?.match(/github\.com\/([^/]+)\/([^/]+)\/pull\/(\d+)/);
+  expect(prMatch, `Could not parse PR URL from page link: ${prHref}`).toBeTruthy();
+  const [, parsedOrg, parsedRepo, prNumber] = prMatch!;
+  console.log(`Merging PR #${prNumber} in ${parsedOrg}/${parsedRepo}`);
+  expect(parsedOrg, `PR org "${parsedOrg}" does not match E2E_KUBRIX_ORG "${kubrixOrg}"`).toBe(kubrixOrg);
+  expect(parsedRepo, `PR repo "${parsedRepo}" does not match E2E_KUBRIX_REPO "${kubrixRepo}"`).toBe(kubrixRepo);
+
+  const ghApiOnboarding = await request.newContext({
+    baseURL: 'https://api.github.com',
+    extraHTTPHeaders: {
+      Authorization: `Bearer ${process.env.E2E_KUBRIX_KARGO_GIT_PASSWORD!}`,
+      Accept: 'application/vnd.github+json',
+      'X-GitHub-Api-Version': '2022-11-28',
     },
   });
-  expect(disableAutosyncResp.ok()).toBeTruthy();
-
-  // Change repoURL + targetRevision (merge patch)
-  const kubrixRepo = process.env.E2E_KUBRIX_REPO ?? "kubriX";
-  const patchSpecResp = await authed.patch(`/api/v1/applications/sx-team-onboarding`, {
-    data: {
-      patchType: "merge",
-      patch: JSON.stringify({
-        spec: {
-          source: {
-            repoURL: `https://github.com/kubrixBot/${kubrixRepo}`,
-            targetRevision: `onboarding-team-kubrix-a${teamRepoUID}-`,
-          },
-        },
-      }),
-    },
-  });
-  expect(patchSpecResp.ok()).toBeTruthy();
-
-  // Verify
-  const appResp = await authed.get(`/api/v1/applications/sx-team-onboarding`);
-  expect(appResp.ok()).toBeTruthy();
-  const teamOnboarding = await appResp.json();
-  expect(teamOnboarding.spec.source.repoURL).toBe(`https://github.com/kubrixBot/${kubrixRepo}`);
-  expect(teamOnboarding.spec.source.targetRevision).toBe(`onboarding-team-kubrix-a${teamRepoUID}-`);
-
-  // sync argocd app and get sync result
-  const appName = "sx-team-onboarding";
-
-  // 1) Start sync
-  await syncApp(authed, appName);
-
-  // 2) Wait for it to finish
-  const { app, phase, syncStatus, healthStatus } = await waitForOperationToFinish(
-    authed,
-    appName,
-    10 * 60_000, // timeout
-    2_000        // poll
+  const mergeResp = await ghApiOnboarding.put(
+    `/repos/${parsedOrg}/${parsedRepo}/pulls/${prNumber}/merge`,
+    { data: { merge_method: 'merge', commit_title: 'chore: team onboarding (E2E test)' } }
   );
+  if (!mergeResp.ok()) {
+    const body = await mergeResp.text();
+    throw new Error(`Failed to merge PR #${prNumber}: ${mergeResp.status()} ${body}`);
+  }
+  console.log(`Merged PR #${prNumber}`);
+  await ghApiOnboarding.dispose();
 
-  // 3) Assert / use results
-  expect(["Succeeded", "Failed", "Error"]).toContain(phase);
-
-  // Typical expectations (adjust to your reality):
-  // - syncStatus should become "Synced"
-  // - healthStatus should become "Healthy" (or might stay Progressing briefly)
-  console.log({ phase, syncStatus, healthStatus });
-  console.log("operation message:", app?.status?.operationState?.message);
-
-  // expect(syncStatus).toBe("Synced");
+  const authed = await loginAndGetAuthedContext();
+  await authed.get('/api/v1/applications/sx-team-onboarding?refresh=hard', {});
+  await syncApp(authed, 'sx-team-onboarding');
+  const { phase, syncStatus, healthStatus, app } = await waitForOperationToFinish(
+    authed, 'sx-team-onboarding', 6 * 60_000, 2_000
+  );
+  const operationMessage = app?.status?.operationState?.message;
+  console.log({ phase, syncStatus, healthStatus, operationMessage });
+  expect(phase, operationMessage ?? 'ArgoCD operation did not reach Succeeded').toBe('Succeeded');
 
   await api.dispose();
   await authed.dispose();
