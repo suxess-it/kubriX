@@ -517,7 +517,7 @@ jobs:
         with:
           version: 2.6.3
 
-      - uses: suzuki-shunsuke/lock-action@v0.1.6
+      - uses: suzuki-shunsuke/lock-action@v0.2.0
         with:
           mode: lock
           key: default
@@ -593,7 +593,7 @@ jobs:
 
       - name: Release a lock
         if: always()
-        uses: suzuki-shunsuke/lock-action@v0.1.6
+        uses: suzuki-shunsuke/lock-action@v0.2.0
         with:
           mode: unlock
           key: default
