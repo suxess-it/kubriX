@@ -172,37 +172,6 @@ test("Team Onboarding with kubrixBot Github user", async ({ page }) => {
 
   await apiVault.dispose();
 
-  // instead of mergen the PR we switch the target repoUrl and revision to the kubrixBots PR repo/branch
-  //  which got created during team onboarding scaffoler template
-  const ARGOCD_SERVER = `https://argocd.${BASE_DOMAIN}`; // e.g. https://argocd.example.com
-  const USERNAME = "admin";    // e.g. admin
-  const PASSWORD = process.env.E2E_ARGOCD_ADMIN_PASSWORD!;
-
-  // Create an API client
-  const api = await request.newContext({
-    baseURL: ARGOCD_SERVER,
-    ignoreHTTPSErrors: true, // remove if you have valid TLS
-  });
-
-  // Login → token
-  const sessionResp = await api.post("/api/v1/session", {
-    headers: { "Content-Type": "application/json" },
-    data: { username: USERNAME, password: PASSWORD },
-  });
-  expect(sessionResp.ok()).toBeTruthy();
-  const { token } = await sessionResp.json();
-  expect(token).toBeTruthy();
-
-  // Recreate context with auth header (clean + convenient)
-  const authed = await request.newContext({
-    baseURL: ARGOCD_SERVER,
-    ignoreHTTPSErrors: true,
-    extraHTTPHeaders: {
-      Authorization: `Bearer ${token}`,
-      "Content-Type": "application/json",
-    },
-  });
-
   // merge team onboarding PR
   const kubrixOrg     = process.env.E2E_KUBRIX_ORG ?? 'kubriX-demo';
   const kubrixRepoRaw = process.env.E2E_KUBRIX_REPO ?? 'kubriX';
