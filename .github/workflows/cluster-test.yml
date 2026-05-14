@@ -308,6 +308,7 @@ jobs:
 
       - name: install kubriX stack
         env:
+          KUBRIX_INSTALL_DEBUG: "true"
           KUBRIX_UPSTREAM_REPO: "https://github.com/${{ github.repository }}"
           KUBRIX_UPSTREAM_BRANCH: ${{ github.head_ref || github.ref_name }}
           KUBRIX_UPSTREAM_REPO_PASSWORD: ${{ secrets.GITHUB_TOKEN }}
