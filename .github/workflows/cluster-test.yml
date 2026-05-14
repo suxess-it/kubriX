@@ -339,7 +339,8 @@ jobs:
             --from-literal KUBRIX_BACKSTAGE_GITHUB_TOKEN=${KUBRIX_BACKSTAGE_GITHUB_TOKEN} \
             --from-literal KUBRIX_BOOTSTRAP_MAX_WAIT_TIME=${KUBRIX_BOOTSTRAP_MAX_WAIT_TIME} \
             --from-literal KUBRIX_BOOTSTRAP=true \
-            --from-literal KUBRIX_INSTALLER=true
+            --from-literal KUBRIX_INSTALLER=true \
+            --from-literal KUBRIX_INSTALL_DEBUG=${KUBRIX_INSTALL_DEBUG}
           bash .github/install-kubriX-with-job.sh
 
       - name: argocd show diff
