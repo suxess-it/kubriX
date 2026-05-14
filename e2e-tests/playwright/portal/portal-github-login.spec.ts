@@ -204,7 +204,7 @@ test("Team Onboarding with kubrixBot Github user", async ({ page }) => {
   });
 
   // merge team onboarding PR
-  const kubrixOrg     = process.env.E2E_KUBRIX_ORG ?? 'kubriX-demo;
+  const kubrixOrg     = process.env.E2E_KUBRIX_ORG ?? 'kubriX-demo';
   const kubrixRepoRaw = process.env.E2E_KUBRIX_REPO ?? 'kubriX';
   const kubrixRepo    = kubrixRepoRaw.startsWith('https://') ? kubrixRepoRaw.split('/').pop()! : kubrixRepoRaw;
   const prHref = await page.getByRole('link', { name: /Open Pull-Request/i }).getAttribute('href');
