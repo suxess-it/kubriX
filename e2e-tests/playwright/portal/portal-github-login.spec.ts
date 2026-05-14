@@ -855,7 +855,7 @@ test("Delete kubrixBot repos", async ({ page }) => {
   await page.getByRole('textbox', { name: 'To confirm, type "kubriX-demo/' }).fill(`kubriX-demo/kubrix-a${teamRepoUID}-kubrixbot-app`);
   await page.getByLabel(`Delete kubriX-demo/kubrix-a${teamRepoUID}-kubrixbot-app`).getByRole('button', { name: 'Delete this repository' }).click();
 
-  // delete kubrix-apps in kubriX-demo and kubriX repo in kubrixBot org
+  // delete kubrix-apps in kubriX-demo org
   await page.goto(`https://github.com/kubriX-demo/kubrix-a${teamRepoUID}-apps`);
   await page.getByRole('link', { name: 'Settings' }).click();
   const deleteButtonKubriXAppOfApps = page.getByRole('button', { name: 'Delete this repository' });
@@ -866,17 +866,6 @@ test("Delete kubrixBot repos", async ({ page }) => {
   await page.getByRole('textbox', { name: 'To confirm, type "kubriX-demo/' }).fill(`kubriX-demo/kubrix-a${teamRepoUID}-apps`);
   await page.getByLabel(`Delete kubriX-demo/kubrix-a${teamRepoUID}-apps`).getByRole('button', { name: 'Delete this repository' }).click();
 
-  // delete kubriX fork repo of the bot
-  const kubrixRepo = process.env.E2E_KUBRIX_REPO ?? "kubriX";
-  await page.goto(`https://github.com/kubrixBot/${kubrixRepo}`);
-  await page.getByRole('link', { name: 'Settings' }).click();
-  const deleteButtonKubriX = page.getByRole('button', { name: 'Delete this repository' });
-  await deleteButtonKubriX.scrollIntoViewIfNeeded();
-  await deleteButtonKubriX.click();
-  await page.getByRole('button', { name: 'I want to delete this repository' }).click();
-  await page.getByRole('button', { name: 'I have read and understand' }).click();
-  await page.getByRole('textbox', { name: 'To confirm, type "kubrixBot/' }).fill(`kubrixBot/${kubrixRepo}`);
-  await page.getByLabel(`Delete kubrixBot/${kubrixRepo}`).getByRole('button', { name: 'Delete this repository' }).click();
 });
   
 
