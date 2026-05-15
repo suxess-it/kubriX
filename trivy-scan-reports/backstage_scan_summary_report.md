@@ -144,7 +144,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>Node.js</code></h3>
-<h4>Vulnerabilities (47)</h4>
+<h4>Vulnerabilities (49)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -250,6 +250,13 @@
         <td>HIGH</td>
         <td>1.1.4</td>
         <td>1.1.7</td>
+    </tr>
+    <tr>
+        <td><code>systeminformation</code></td>
+        <td>CVE-2026-44724</td>
+        <td>HIGH</td>
+        <td>5.31.5</td>
+        <td>5.31.6</td>
     </tr>
     <tr>
         <td><code>tar</code></td>
@@ -460,6 +467,13 @@
         <td>CRITICAL</td>
         <td>3.10.5</td>
         <td>3.11.2</td>
+    </tr>
+    <tr>
+        <td><code>vm2</code></td>
+        <td>CVE-2026-45411</td>
+        <td>CRITICAL</td>
+        <td>3.10.5</td>
+        <td>3.11.3</td>
     </tr>
     <tr>
         <td><code>vm2</code></td>

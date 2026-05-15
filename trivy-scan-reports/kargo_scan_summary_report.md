@@ -239,7 +239,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>usr/local/bin/kargo</code></h3>
-<h4>Vulnerabilities (11)</h4>
+<h4>Vulnerabilities (12)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -247,6 +247,13 @@
         <th>Severity</th>
         <th>Installed Version</th>
         <th>Fixed Version</th>
+    </tr>
+    <tr>
+        <td><code>github.com/go-git/go-billy/v5</code></td>
+        <td>CVE-2026-44973</td>
+        <td>HIGH</td>
+        <td>v5.8.0</td>
+        <td>5.9.0</td>
     </tr>
     <tr>
         <td><code>github.com/go-git/go-git/v5</code></td>

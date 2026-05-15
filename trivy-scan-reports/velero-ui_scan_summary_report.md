@@ -1,6 +1,6 @@
 
 <h3>Target <code>docker.io/dserio83/velero-api:0.3.1 (debian 12.11)</code></h3>
-<h4>Vulnerabilities (85)</h4>
+<h4>Vulnerabilities (92)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -8,6 +8,20 @@
         <th>Severity</th>
         <th>Installed Version</th>
         <th>Fixed Version</th>
+    </tr>
+    <tr>
+        <td><code>curl</code></td>
+        <td>CVE-2026-5773</td>
+        <td>HIGH</td>
+        <td>7.88.1-10+deb12u12</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>curl</code></td>
+        <td>CVE-2026-6276</td>
+        <td>HIGH</td>
+        <td>7.88.1-10+deb12u12</td>
+        <td></td>
     </tr>
     <tr>
         <td><code>git</code></td>
@@ -80,6 +94,34 @@
         <td></td>
     </tr>
     <tr>
+        <td><code>libcurl3-gnutls</code></td>
+        <td>CVE-2026-5773</td>
+        <td>HIGH</td>
+        <td>7.88.1-10+deb12u12</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>libcurl3-gnutls</code></td>
+        <td>CVE-2026-6276</td>
+        <td>HIGH</td>
+        <td>7.88.1-10+deb12u12</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>libcurl4</code></td>
+        <td>CVE-2026-5773</td>
+        <td>HIGH</td>
+        <td>7.88.1-10+deb12u12</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>libcurl4</code></td>
+        <td>CVE-2026-6276</td>
+        <td>HIGH</td>
+        <td>7.88.1-10+deb12u12</td>
+        <td></td>
+    </tr>
+    <tr>
         <td><code>libexpat1</code></td>
         <td>CVE-2023-52425</td>
         <td>HIGH</td>
@@ -101,6 +143,13 @@
         <td></td>
     </tr>
     <tr>
+        <td><code>libexpat1</code></td>
+        <td>CVE-2026-45186</td>
+        <td>HIGH</td>
+        <td>2.5.0-1+deb12u1</td>
+        <td></td>
+    </tr>
+    <tr>
         <td><code>libgcrypt20</code></td>
         <td>CVE-2026-41989</td>
         <td>HIGH</td>
@@ -116,6 +165,13 @@
     </tr>
     <tr>
         <td><code>libgnutls30</code></td>
+        <td>CVE-2026-42010</td>
+        <td>CRITICAL</td>
+        <td>3.7.9-2+deb12u5</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>libgnutls30</code></td>
         <td>CVE-2026-33846</td>
         <td>HIGH</td>
         <td>3.7.9-2+deb12u5</td>
@@ -124,13 +180,6 @@
     <tr>
         <td><code>libgnutls30</code></td>
         <td>CVE-2026-3833</td>
-        <td>HIGH</td>
-        <td>3.7.9-2+deb12u5</td>
-        <td></td>
-    </tr>
-    <tr>
-        <td><code>libgnutls30</code></td>
-        <td>CVE-2026-42010</td>
         <td>HIGH</td>
         <td>3.7.9-2+deb12u5</td>
         <td></td>
@@ -161,7 +210,7 @@
         <td>CVE-2026-27135</td>
         <td>HIGH</td>
         <td>1.52.0-1+deb12u2</td>
-        <td></td>
+        <td>1.52.0-1+deb12u3</td>
     </tr>
     <tr>
         <td><code>libpam-modules</code></td>
@@ -1208,7 +1257,7 @@
 <h4>No Misconfigurations found</h4>
 
 <h3>Target <code>docker.io/dserio83/velero-watchdog:0.1.8 (debian 12.10)</code></h3>
-<h4>Vulnerabilities (57)</h4>
+<h4>Vulnerabilities (64)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -1216,6 +1265,20 @@
         <th>Severity</th>
         <th>Installed Version</th>
         <th>Fixed Version</th>
+    </tr>
+    <tr>
+        <td><code>curl</code></td>
+        <td>CVE-2026-5773</td>
+        <td>HIGH</td>
+        <td>7.88.1-10+deb12u12</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>curl</code></td>
+        <td>CVE-2026-6276</td>
+        <td>HIGH</td>
+        <td>7.88.1-10+deb12u12</td>
+        <td></td>
     </tr>
     <tr>
         <td><code>git</code></td>
@@ -1288,6 +1351,34 @@
         <td></td>
     </tr>
     <tr>
+        <td><code>libcurl3-gnutls</code></td>
+        <td>CVE-2026-5773</td>
+        <td>HIGH</td>
+        <td>7.88.1-10+deb12u12</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>libcurl3-gnutls</code></td>
+        <td>CVE-2026-6276</td>
+        <td>HIGH</td>
+        <td>7.88.1-10+deb12u12</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>libcurl4</code></td>
+        <td>CVE-2026-5773</td>
+        <td>HIGH</td>
+        <td>7.88.1-10+deb12u12</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>libcurl4</code></td>
+        <td>CVE-2026-6276</td>
+        <td>HIGH</td>
+        <td>7.88.1-10+deb12u12</td>
+        <td></td>
+    </tr>
+    <tr>
         <td><code>libexpat1</code></td>
         <td>CVE-2023-52425</td>
         <td>HIGH</td>
@@ -1309,6 +1400,13 @@
         <td></td>
     </tr>
     <tr>
+        <td><code>libexpat1</code></td>
+        <td>CVE-2026-45186</td>
+        <td>HIGH</td>
+        <td>2.5.0-1+deb12u1</td>
+        <td></td>
+    </tr>
+    <tr>
         <td><code>libgcrypt20</code></td>
         <td>CVE-2026-41989</td>
         <td>HIGH</td>
@@ -1318,6 +1416,13 @@
     <tr>
         <td><code>libgnutls30</code></td>
         <td>CVE-2026-33845</td>
+        <td>CRITICAL</td>
+        <td>3.7.9-2+deb12u4</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>libgnutls30</code></td>
+        <td>CVE-2026-42010</td>
         <td>CRITICAL</td>
         <td>3.7.9-2+deb12u4</td>
         <td></td>
@@ -1352,13 +1457,6 @@
     </tr>
     <tr>
         <td><code>libgnutls30</code></td>
-        <td>CVE-2026-42010</td>
-        <td>HIGH</td>
-        <td>3.7.9-2+deb12u4</td>
-        <td></td>
-    </tr>
-    <tr>
-        <td><code>libgnutls30</code></td>
         <td>CVE-2026-42011</td>
         <td>HIGH</td>
         <td>3.7.9-2+deb12u4</td>
@@ -1383,7 +1481,7 @@
         <td>CVE-2026-27135</td>
         <td>HIGH</td>
         <td>1.52.0-1+deb12u2</td>
-        <td></td>
+        <td>1.52.0-1+deb12u3</td>
     </tr>
     <tr>
         <td><code>libpam-modules</code></td>

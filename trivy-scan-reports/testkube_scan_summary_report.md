@@ -1139,7 +1139,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 
-<h3>Target <code>docker.io/kubeshop/testkube-api-server:2.9.1 (alpine 3.23.3)</code></h3>
+<h3>Target <code>docker.io/kubeshop/testkube-api-server:2.9.4 (alpine 3.23.3)</code></h3>
 <h4>Vulnerabilities (14)</h4>
 <table>
     <tr>
@@ -1250,7 +1250,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>bin/app</code></h3>
-<h4>Vulnerabilities (6)</h4>
+<h4>Vulnerabilities (1)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -1265,41 +1265,6 @@
         <td>HIGH</td>
         <td>v28.5.2+incompatible</td>
         <td>29.3.1</td>
-    </tr>
-    <tr>
-        <td><code>stdlib</code></td>
-        <td>CVE-2026-33811</td>
-        <td>HIGH</td>
-        <td>v1.26.2</td>
-        <td>1.25.10, 1.26.3</td>
-    </tr>
-    <tr>
-        <td><code>stdlib</code></td>
-        <td>CVE-2026-33814</td>
-        <td>HIGH</td>
-        <td>v1.26.2</td>
-        <td>1.25.10, 1.26.3</td>
-    </tr>
-    <tr>
-        <td><code>stdlib</code></td>
-        <td>CVE-2026-39820</td>
-        <td>HIGH</td>
-        <td>v1.26.2</td>
-        <td>1.25.10, 1.26.3</td>
-    </tr>
-    <tr>
-        <td><code>stdlib</code></td>
-        <td>CVE-2026-39836</td>
-        <td>HIGH</td>
-        <td>v1.26.2</td>
-        <td>1.25.10, 1.26.3</td>
-    </tr>
-    <tr>
-        <td><code>stdlib</code></td>
-        <td>CVE-2026-42499</td>
-        <td>HIGH</td>
-        <td>v1.26.2</td>
-        <td>1.25.10, 1.26.3</td>
     </tr>
 </table>
 <h4>No Misconfigurations found</h4>
