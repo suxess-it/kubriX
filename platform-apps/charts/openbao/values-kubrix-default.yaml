@@ -54,7 +54,7 @@ openbao:
           runAsNonRoot: true
     extraContainers:
       - name: auto-initializer
-        image: quay.io/openbao/openbao:2.5.2
+        image: quay.io/openbao/openbao:2.5.3
         env:
           - name: VAULT_ADDR
             valueFrom:
@@ -96,7 +96,7 @@ openbao:
           runAsNonRoot: true
 
       - name: auto-unsealer
-        image: quay.io/openbao/openbao:2.5.2
+        image: quay.io/openbao/openbao:2.5.3
         env:
           - name: VAULT_ADDR
             valueFrom:
@@ -144,7 +144,7 @@ openbao:
           privileged: false
           runAsNonRoot: true
       - name: vault-initializer
-        image: quay.io/openbao/openbao:2.5.2
+        image: quay.io/openbao/openbao:2.5.3
         env:
           - name: VAULT_ADDR
             valueFrom:
@@ -185,7 +185,6 @@ openbao:
                   if ! bao read auth/kubernetes/config >/dev/null 2>&1; then
                     bao auth enable kubernetes || true
                     bao write auth/kubernetes/config \
-                      token_reviewer_jwt="$(cat /var/run/secrets/kubernetes.io/serviceaccount/token)" \
                       kubernetes_host="https://${KUBERNETES_PORT_443_TCP_ADDR:-$KUBERNETES_SERVICE_HOST}:443" \
                       kubernetes_ca_cert=@/var/run/secrets/kubernetes.io/serviceaccount/ca.crt
                   fi

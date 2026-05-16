@@ -1,6 +1,6 @@
 # syntax=docker/dockerfile:1.23
 # docker buildx build --platform linux/amd64,linux/arm64 -t ghcr.io/suxess-it/kubrix-installer:latest --push .
-FROM ubuntu:24.04
+FROM ubuntu:26.04
 
 ARG TARGETARCH
 ENV DEBIAN_FRONTEND=noninteractive
@@ -33,7 +33,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 COPY --from=hairyhenderson/gomplate:stable /gomplate /usr/local/bin/gomplate
 
 # k8sgpt
-COPY --from=ghcr.io/k8sgpt-ai/k8sgpt:v0.4.31 /k8sgpt /usr/local/bin/k8sgpt
+COPY --from=ghcr.io/k8sgpt-ai/k8sgpt:v0.4.32 /k8sgpt /usr/local/bin/k8sgpt
 
 # yq (select by TARGETARCH)
 RUN case "${TARGETARCH}" in \

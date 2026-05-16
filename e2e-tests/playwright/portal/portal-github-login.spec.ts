@@ -172,104 +172,47 @@ test("Team Onboarding with kubrixBot Github user", async ({ page }) => {
 
   await apiVault.dispose();
 
-  // instead of mergen the PR we switch the target repoUrl and revision to the kubrixBots PR repo/branch
-  //  which got created during team onboarding scaffoler template
-  const ARGOCD_SERVER = `https://argocd.${BASE_DOMAIN}`; // e.g. https://argocd.example.com
-  const USERNAME = "admin";    // e.g. admin
-  const PASSWORD = process.env.E2E_ARGOCD_ADMIN_PASSWORD!;
+  // merge team onboarding PR
+  const kubrixOrg     = process.env.E2E_KUBRIX_ORG ?? 'kubriX-demo';
+  const kubrixRepoRaw = process.env.E2E_KUBRIX_REPO ?? 'kubriX';
+  const kubrixRepo    = kubrixRepoRaw.startsWith('https://') ? kubrixRepoRaw.split('/').pop()! : kubrixRepoRaw;
+  const prHref = await page.getByRole('link', { name: /Open Pull-Request/i }).getAttribute('href');
+  const prMatch = prHref?.match(/github\.com\/([^/]+)\/([^/]+)\/pull\/(\d+)/);
+  expect(prMatch, `Could not parse PR URL from page link: ${prHref}`).toBeTruthy();
+  const [, parsedOrg, parsedRepo, prNumber] = prMatch!;
+  console.log(`Merging PR #${prNumber} in ${parsedOrg}/${parsedRepo}`);
+  expect(parsedOrg, `PR org "${parsedOrg}" does not match E2E_KUBRIX_ORG "${kubrixOrg}"`).toBe(kubrixOrg);
+  expect(parsedRepo, `PR repo "${parsedRepo}" does not match E2E_KUBRIX_REPO "${kubrixRepo}"`).toBe(kubrixRepo);
 
-  // Create an API client
-  const api = await request.newContext({
-    baseURL: ARGOCD_SERVER,
-    ignoreHTTPSErrors: true, // remove if you have valid TLS
-  });
-
-  // Login → token
-  const sessionResp = await api.post("/api/v1/session", {
-    headers: { "Content-Type": "application/json" },
-    data: { username: USERNAME, password: PASSWORD },
-  });
-  expect(sessionResp.ok()).toBeTruthy();
-  const { token } = await sessionResp.json();
-  expect(token).toBeTruthy();
-
-  // Recreate context with auth header (clean + convenient)
-  const authed = await request.newContext({
-    baseURL: ARGOCD_SERVER,
-    ignoreHTTPSErrors: true,
+  const ghApiOnboarding = await request.newContext({
+    baseURL: 'https://api.github.com',
     extraHTTPHeaders: {
-      Authorization: `Bearer ${token}`,
-      "Content-Type": "application/json",
+      Authorization: `Bearer ${process.env.E2E_KUBRIX_KARGO_GIT_PASSWORD!}`,
+      Accept: 'application/vnd.github+json',
+      'X-GitHub-Api-Version': '2022-11-28',
     },
   });
-
-  // Disable auto-sync in bootstrap-app (JSON Patch: remove /spec/syncPolicy/automated)
-  const disableAutosyncResp = await authed.patch(`/api/v1/applications/sx-bootstrap-app`, {
-    data: {
-      patchType: "merge",
-      patch: JSON.stringify({
-        spec: {
-          syncPolicy: {
-            automated: {
-              enabled: false,
-            },
-          },
-        },
-      }),
-    },
-  });
-  expect(disableAutosyncResp.ok()).toBeTruthy();
-
-  // Change repoURL + targetRevision (merge patch)
-  const kubrixRepo = process.env.E2E_KUBRIX_REPO ?? "kubriX";
-  const patchSpecResp = await authed.patch(`/api/v1/applications/sx-team-onboarding`, {
-    data: {
-      patchType: "merge",
-      patch: JSON.stringify({
-        spec: {
-          source: {
-            repoURL: `https://github.com/kubrixBot/${kubrixRepo}`,
-            targetRevision: `onboarding-team-kubrix-a${teamRepoUID}-`,
-          },
-        },
-      }),
-    },
-  });
-  expect(patchSpecResp.ok()).toBeTruthy();
-
-  // Verify
-  const appResp = await authed.get(`/api/v1/applications/sx-team-onboarding`);
-  expect(appResp.ok()).toBeTruthy();
-  const teamOnboarding = await appResp.json();
-  expect(teamOnboarding.spec.source.repoURL).toBe(`https://github.com/kubrixBot/${kubrixRepo}`);
-  expect(teamOnboarding.spec.source.targetRevision).toBe(`onboarding-team-kubrix-a${teamRepoUID}-`);
-
-  // sync argocd app and get sync result
-  const appName = "sx-team-onboarding";
-
-  // 1) Start sync
-  await syncApp(authed, appName);
-
-  // 2) Wait for it to finish
-  const { app, phase, syncStatus, healthStatus } = await waitForOperationToFinish(
-    authed,
-    appName,
-    10 * 60_000, // timeout
-    2_000        // poll
+  const mergeResp = await ghApiOnboarding.put(
+    `/repos/${parsedOrg}/${parsedRepo}/pulls/${prNumber}/merge`,
+    { data: { merge_method: 'merge', commit_title: 'chore: team onboarding (E2E test)' } }
   );
+  if (!mergeResp.ok()) {
+    const body = await mergeResp.text();
+    throw new Error(`Failed to merge PR #${prNumber}: ${mergeResp.status()} ${body}`);
+  }
+  console.log(`Merged PR #${prNumber}`);
+  await ghApiOnboarding.dispose();
 
-  // 3) Assert / use results
+  const authed = await loginAndGetAuthedContext();
+  await authed.get('/api/v1/applications/sx-team-onboarding?refresh=hard', {});
+  await syncApp(authed, 'sx-team-onboarding');
+  const { phase, syncStatus, healthStatus, app } = await waitForOperationToFinish(
+    authed, 'sx-team-onboarding', 6 * 60_000, 2_000
+  );
   expect(["Succeeded", "Failed", "Error"]).toContain(phase);
+  const operationMessage = app?.status?.operationState?.message;
+  console.log({ phase, syncStatus, healthStatus, operationMessage });
 
-  // Typical expectations (adjust to your reality):
-  // - syncStatus should become "Synced"
-  // - healthStatus should become "Healthy" (or might stay Progressing briefly)
-  console.log({ phase, syncStatus, healthStatus });
-  console.log("operation message:", app?.status?.operationState?.message);
-
-  // expect(syncStatus).toBe("Synced");
-
-  await api.dispose();
   await authed.dispose();
 });
 
@@ -912,7 +855,7 @@ test("Delete kubrixBot repos", async ({ page }) => {
   await page.getByRole('textbox', { name: 'To confirm, type "kubriX-demo/' }).fill(`kubriX-demo/kubrix-a${teamRepoUID}-kubrixbot-app`);
   await page.getByLabel(`Delete kubriX-demo/kubrix-a${teamRepoUID}-kubrixbot-app`).getByRole('button', { name: 'Delete this repository' }).click();
 
-  // delete kubrix-apps in kubriX-demo and kubriX repo in kubrixBot org
+  // delete kubrix-apps in kubriX-demo org
   await page.goto(`https://github.com/kubriX-demo/kubrix-a${teamRepoUID}-apps`);
   await page.getByRole('link', { name: 'Settings' }).click();
   const deleteButtonKubriXAppOfApps = page.getByRole('button', { name: 'Delete this repository' });
@@ -923,18 +866,6 @@ test("Delete kubrixBot repos", async ({ page }) => {
   await page.getByRole('textbox', { name: 'To confirm, type "kubriX-demo/' }).fill(`kubriX-demo/kubrix-a${teamRepoUID}-apps`);
   await page.getByLabel(`Delete kubriX-demo/kubrix-a${teamRepoUID}-apps`).getByRole('button', { name: 'Delete this repository' }).click();
 
-  // delete kubriX fork repo of the bot
-  // commented out because with concurrent tests you cannot delete this repo
-  // const kubrixRepo = process.env.E2E_KUBRIX_REPO ?? "kubriX";
-  // await page.goto(`https://github.com/kubrixBot/${kubrixRepo}`);
-  // await page.getByRole('link', { name: 'Settings' }).click();
-  // const deleteButtonKubriX = page.getByRole('button', { name: 'Delete this repository' });
-  // await deleteButtonKubriX.scrollIntoViewIfNeeded();
-  // await deleteButtonKubriX.click();
-  // await page.getByRole('button', { name: 'I want to delete this repository' }).click();
-  // await page.getByRole('button', { name: 'I have read and understand' }).click();
-  // await page.getByRole('textbox', { name: 'To confirm, type "kubrixBot/' }).fill(`kubrixBot/${kubrixRepo}`);
-  // await page.getByLabel(`Delete kubrixBot/${kubrixRepo}`).getByRole('button', { name: 'Delete this repository' }).click();
 });
   
 

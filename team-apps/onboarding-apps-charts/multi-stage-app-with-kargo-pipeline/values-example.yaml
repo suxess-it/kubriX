@@ -52,3 +52,12 @@ stages:
       sources:
         stages:
         - qa
+## prime feature only
+# optionally overwrite previewEnvironmentsDefaults from team onboarding
+previewEnvironments:
+  labels:
+    - qa
+  requeueAfterSeconds: 1800
+  valuesFiles:
+    - values.yaml
+    - values-qa.yaml

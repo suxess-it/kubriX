@@ -80,7 +80,7 @@ check_prereqs() {
   check_variable KUBRIX_BOOTSTRAP "true" "false"
 
   if [ "${KUBRIX_BOOTSTRAP}" = "true" ] ; then
-    check_variable KUBRIX_BOOTSTRAP_KEEP_HISTORY "true" "false"
+    check_variable KUBRIX_BOOTSTRAP_KEEP_HISTORY "true" "true"
     check_variable KUBRIX_UPSTREAM_REPO "true" "https://github.com/suxess-it/kubriX"
     check_variable KUBRIX_UPSTREAM_BRANCH "true" "main"
     check_variable KUBRIX_UPSTREAM_REPO_USERNAME "true" "dummy"
@@ -92,7 +92,7 @@ check_prereqs() {
     check_variable KUBRIX_SECURITY_STRICT "true" "false"
     check_variable KUBRIX_HA_ENABLED "true" "false"
     check_variable KUBRIX_CERT_MANAGER_DNS_PROVIDER "true" "none" "none|aws"
-    check_tool gomplate "gomplate -v"
+    check_tool gomplate "gomplate -h | head"
   fi
 
   # check tools
@@ -117,7 +117,7 @@ detect_date_impl() {
 
 # clone kubriX upstream repo to bootstrap-kubriX/kubriX-repo
 bootstrap_clone_from_upstream() {
-  printf 'bootstrap from upstream repo %s to downstream repo %s' "${KUBRIX_UPSTREAM_REPO}" "${KUBRIX_REPO}\n"
+  printf 'bootstrap from upstream repo %s to downstream repo %s\n' "${KUBRIX_UPSTREAM_REPO}" "${KUBRIX_REPO}"
   printf 'checkout kubriX upstream to %s ...\n' "$(pwd)"
 
   if [ "${KUBRIX_UPSTREAM_REPO_PASSWORD}" != " " ]; then
@@ -350,9 +350,6 @@ create_openbao_secrets_for_backstage() {
   # get openbao hostname and token for communicating with openbao via curl
   export VAULT_HOSTNAME=$(kubectl get ingress -o jsonpath='{.items[*].spec.rules[*].host}' -n openbao)
   export VAULT_TOKEN=$(kubectl get secret -n openbao openbao-init -o=jsonpath='{.data.root_token}'  | base64 -d)
-
-  # set openbao address and openbao internal address so backstage can communicate with openbao
-  curl -k --header "X-Vault-Token:$VAULT_TOKEN" --header "X-Vault-Namespace: kubrix" --request POST --data "{\"data\": {\"VAULT_ADDR\": \"https://${VAULT_HOSTNAME}\", \"VAULT_ADDR_INT\": \"http://sx-openbao-active.openbao.svc.cluster.local:8200\"}}" https://${VAULT_HOSTNAME}/v1/kubrix-kv/data/security/vault/base
 
   # store env variable KUBRIX_BACKSTAGE_GITHUB_TOKEN in openbao
   curl -k --header "X-Vault-Token:$VAULT_TOKEN" --header "X-Vault-Namespace: kubrix" --request PATCH --header "Content-Type: application/merge-patch+json" --data "{\"data\": {\"GITHUB_TOKEN\": \"${KUBRIX_BACKSTAGE_GITHUB_TOKEN}\"}}" https://${VAULT_HOSTNAME}/v1/kubrix-kv/data/portal/backstage/base

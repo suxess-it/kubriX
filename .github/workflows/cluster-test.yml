@@ -46,9 +46,6 @@ concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
 
-env:
-  KUBRIX_REPO_BRANCH: ${{ github.head_ref || github.ref_name }}
-  KUBRIX_REPO: "https://github.com/${{ github.repository }}"
   
 jobs:
   changes:
@@ -263,6 +260,9 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v6
+        with:
+          fetch-depth: 0  # needed so the action can diff properly
+          fetch-tags: true
 
       # free disk space, otherwise we often end with "no space left on device" during testkube tests
       - name: Free Disk Space (Ubuntu)
@@ -288,29 +288,59 @@ jobs:
           sudo dpkg -i k8sgpt_amd64.deb
           k8sgpt analyze
 
+      - name: create kubrix customer repo
+        shell: bash
+        env:
+          REPO_ORG: 'kubriX-demo'
+          REPO_NAME: "kubrix-cluster-test-${{ github.run_id }}-${{ job.check_run_id }}"
+          GH_TOKEN: ${{ secrets.KUBRIX_CUSTOMER_REPO_TOKEN }}
+          VIS: "private"
+        run: |
+          gh api \
+            --method POST \
+            -H "Accept: application/vnd.github+json" \
+            "/orgs/${REPO_ORG}/repos" \
+            -f name="$REPO_NAME" \
+            -f visibility="$VIS" \
+            -f has_issues=true \
+            -f has_wiki=false
+          echo "Repo created: https://github.com/${REPO_ORG}/${REPO_NAME}"
+
       - name: install kubriX stack
         env:
-          KUBRIX_TARGET_TYPE: ${{ matrix.target-type }}
-          KUBRIX_CLUSTER_TYPE: "kind"
-          KUBRIX_BACKSTAGE_GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          KUBRIX_REPO_PASSWORD: ${{ secrets.GITHUB_TOKEN }}
+          KUBRIX_UPSTREAM_REPO: "https://github.com/${{ github.repository }}"
+          KUBRIX_UPSTREAM_BRANCH: ${{ github.head_ref || github.ref_name }}
+          KUBRIX_UPSTREAM_REPO_PASSWORD: ${{ secrets.GITHUB_TOKEN }}
+          KUBRIX_REPO: "https://github.com/kubriX-demo/kubrix-cluster-test-${{ github.run_id }}-${{ job.check_run_id }}"
+          KUBRIX_REPO_BRANCH: "main"
+          KUBRIX_REPO_PASSWORD: ${{ secrets.KUBRIX_CUSTOMER_REPO_TOKEN }}
           KUBRIX_REPO_USERNAME: "dummy"
           KUBRIX_INSTALL_DEBUG: "false"
+          KUBRIX_TARGET_TYPE: ${{ matrix.target-type }}
+          KUBRIX_CLUSTER_TYPE: "kind"
+          KUBRIX_BACKSTAGE_GITHUB_TOKEN: ${{ secrets.KUBRIX_CUSTOMER_REPO_TOKEN }}
           KUBRIX_BOOTSTRAP_MAX_WAIT_TIME: ${{ vars.KUBRIX_BOOTSTRAP_MAX_WAIT_TIME }}
           PR_NUMBER: "${{ needs.changes.outputs.dockerImageChanges == 'true' && github.event.number || '' }}"
+          TARGET_BRANCH: ${{ github.base_ref || github.ref_name }}
         shell: bash
         run: |
           kubectl create ns kubrix-install
           kubectl create secret generic kubrix-install-secrets -n kubrix-install \
-            --from-literal KUBRIX_TARGET_TYPE=${KUBRIX_TARGET_TYPE} \
-            --from-literal KUBRIX_CLUSTER_TYPE=${KUBRIX_CLUSTER_TYPE} \
-            --from-literal KUBRIX_BACKSTAGE_GITHUB_TOKEN=${KUBRIX_BACKSTAGE_GITHUB_TOKEN} \
+            --from-literal KUBRIX_UPSTREAM_REPO=${KUBRIX_UPSTREAM_REPO} \
+            --from-literal KUBRIX_UPSTREAM_BRANCH=${KUBRIX_UPSTREAM_BRANCH} \
+            --from-literal KUBRIX_REPO=${KUBRIX_REPO} \
+            --from-literal KUBRIX_REPO_BRANCH=${KUBRIX_REPO_BRANCH} \
             --from-literal KUBRIX_REPO_PASSWORD=${KUBRIX_REPO_PASSWORD} \
             --from-literal KUBRIX_REPO_USERNAME=${KUBRIX_REPO_USERNAME} \
-            --from-literal KUBRIX_REPO_BRANCH=${KUBRIX_REPO_BRANCH} \
-            --from-literal KUBRIX_REPO=${KUBRIX_REPO} \
+            --from-literal KUBRIX_TARGET_TYPE=${KUBRIX_TARGET_TYPE} \
+            --from-literal KUBRIX_CLUSTER_TYPE=${KUBRIX_CLUSTER_TYPE} \
+            --from-literal KUBRIX_DOMAIN="127-0-0-1.nip.io" \
+            --from-literal KUBRIX_DNS_PROVIDER="none" \
+            --from-literal KUBRIX_BACKSTAGE_GITHUB_TOKEN=${KUBRIX_BACKSTAGE_GITHUB_TOKEN} \
             --from-literal KUBRIX_BOOTSTRAP_MAX_WAIT_TIME=${KUBRIX_BOOTSTRAP_MAX_WAIT_TIME} \
-            --from-literal KUBRIX_INSTALLER=true
+            --from-literal KUBRIX_BOOTSTRAP=true \
+            --from-literal KUBRIX_INSTALLER=true \
+            --from-literal KUBRIX_INSTALL_DEBUG=${KUBRIX_INSTALL_DEBUG}
           bash .github/install-kubriX-with-job.sh
 
       - name: argocd show diff
@@ -463,12 +493,31 @@ jobs:
           delete_repo_if_exists "${app_of_apps_repo:-}"
           delete_repo_if_exists "${gitops_repo:-}"
 
+      - name: add kubrixBot repo for team onboarding fork
+        env:
+          KUBRIXBOT_FORK_READ_TOKEN: ${{ secrets.KUBRIXBOT_FORK_READ_TOKEN }}
+          KUBRIX_FORK_REPO_NAME: "kubrix-cluster-test-${{ github.run_id }}-${{ job.check_run_id }}"
+        run: |
+          kubectl -n argocd apply -f - <<EOF
+          apiVersion: v1
+          kind: Secret
+          metadata:
+            name: kubrixbot-team-onboarding-fork-repo
+            labels:
+              argocd.argoproj.io/secret-type: repository
+          stringData:
+            type: git
+            url: https://github.com/kubrixBot/${KUBRIX_FORK_REPO_NAME}.git
+            username: kubrixBot
+            password: ${KUBRIXBOT_FORK_READ_TOKEN}
+          EOF
+
       # run testkube tests
       - uses: kubeshop/setup-testkube@v1
         with:
           version: 2.6.3
 
-      - uses: suzuki-shunsuke/lock-action@latest
+      - uses: suzuki-shunsuke/lock-action@v0.2.0
         with:
           mode: lock
           key: default
@@ -486,7 +535,8 @@ jobs:
           E2E_KUBRIX_ARGOCD_APPSET_TOKEN: ${{ secrets.E2E_KUBRIX_ARGOCD_APPSET_TOKEN }}
           E2E_KUBRIX_KARGO_GIT_PASSWORD: ${{ secrets.E2E_KUBRIX_KARGO_GIT_PASSWORD }}
           E2E_TEST_PR_NUMBER: "${{ github.event.number || '' }}"
-          E2E_TEAM_ONBOARDING_TARGET_BRANCH: ${{ github.head_ref || github.ref_name }}
+          E2E_TEAM_ONBOARDING_TARGET_BRANCH: "main"
+          E2E_KUBRIX_REPO: kubrix-cluster-test-${{ github.run_id }}-${{ job.check_run_id }}
         run: |
           E2E_KEYCLOAK_DEMOADMIN_PASSWORD=$( kubectl get secret -n keycloak cp-keycloak-users-secret -o=jsonpath='{.data.demoadmin}'  | base64 -d )
           kubectl get secret -n keycloak cp-keycloak-users-secret -o yaml
@@ -538,11 +588,12 @@ jobs:
             --variable E2E_LOKI_USERNAME=${E2E_LOKI_USERNAME} \
             --variable E2E_LOKI_PASSWORD=${E2E_LOKI_PASSWORD} \
             --variable E2E_TEAM_ONBOARDING_TARGET_BRANCH=${E2E_TEAM_ONBOARDING_TARGET_BRANCH} \
+            --variable E2E_KUBRIX_REPO=${E2E_KUBRIX_REPO} \
             -f -d
 
       - name: Release a lock
         if: always()
-        uses: suzuki-shunsuke/lock-action@latest
+        uses: suzuki-shunsuke/lock-action@v0.2.0
         with:
           mode: unlock
           key: default
@@ -605,3 +656,64 @@ jobs:
           kubectl get pods -A
           echo "describe all pods ====="
           kubectl describe pod -A
+
+      - name: Delete kubriX boostrap repo, if exists
+        if: always()
+        env:
+          KUBRIX_DELETE_E2E_TESTS_REPO_TOKEN: ${{ secrets.KUBRIX_DELETE_E2E_TESTS_REPO_TOKEN }}
+          GITHUB_ORG: "kubriX-demo"
+          GITHUB_API: "https://api.github.com"
+          KUBRIX_REPO: "${{ github.run_id }}-${{ job.check_run_id }}"
+        run: |
+          set -euo pipefail
+          delete_repo_if_exists() {
+            local repo_name="${1:-}"
+
+            if [[ -z "$repo_name" ]]; then
+              echo "Repo name is empty, skipping."
+              return 0
+            fi
+
+            local repo_full_name="${GITHUB_ORG}/${repo_name}"
+
+            echo "Checking ${repo_full_name}..."
+
+            local status
+            status="$(
+              curl -sS -o /dev/null -w "%{http_code}" \
+                -H "Accept: application/vnd.github+json" \
+                -H "Authorization: Bearer ${KUBRIX_DELETE_E2E_TESTS_REPO_TOKEN}" \
+                -H "X-GitHub-Api-Version: 2022-11-28" \
+                "${GITHUB_API}/repos/${repo_full_name}"
+            )"
+
+            if [[ "$status" == "404" ]]; then
+              echo "Not found: ${repo_full_name}"
+              return 0
+            fi
+
+            if [[ "$status" != "200" ]]; then
+              echo "Unexpected status while checking ${repo_full_name}: ${status}" >&2
+              return 1
+            fi
+
+            local delete_status
+            delete_status="$(
+              curl -sS -o /dev/null -w "%{http_code}" -X DELETE \
+                -H "Accept: application/vnd.github+json" \
+                -H "Authorization: Bearer ${KUBRIX_DELETE_E2E_TESTS_REPO_TOKEN}" \
+                -H "X-GitHub-Api-Version: 2022-11-28" \
+                "${GITHUB_API}/repos/${repo_full_name}"
+            )"
+
+            if [[ "$delete_status" == "204" ]]; then
+              echo "Deleted ${repo_full_name}"
+            else
+              echo "Failed to delete ${repo_full_name}, status: ${delete_status}" >&2
+              return 1
+            fi
+          }
+
+          kubrix_repo="kubrix-cluster-test-${KUBRIX_REPO}"
+
+          delete_repo_if_exists "${kubrix_repo:-}"

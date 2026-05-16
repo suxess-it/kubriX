@@ -15,7 +15,8 @@ traefik:
       hostPort: 443
 
   service:
-    type: ClusterIP
+    spec:
+      type: ClusterIP
 
   nodeSelector:
     ingress-ready: "true"
@@ -29,7 +30,7 @@ traefik:
       effect: "NoSchedule"
 
   providers:
-    kubernetesIngressNginx:
+    kubernetesIngressNGINX:
       publishService:
         enabled: false
       publishStatusAddress: "localhost"
