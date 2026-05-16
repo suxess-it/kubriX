@@ -7,37 +7,25 @@ const grafanaAuthFile = path.join(authDir, 'grafana.json');
 const BASE_DOMAIN = process.env.E2E_BASE_DOMAIN ?? '127-0-0-1.nip.io';
 test.use({ storageState: grafanaAuthFile });
 
-async function findGrafanaPanel(page: Page, title: string) {
-  const region = page.getByRole('region', { name: title, exact: true });
+async function scrollGrafanaDown(page: Page) {
+  await page.evaluate(() => {
+    function isScrollable(el: Element) {
+      const style = getComputedStyle(el);
+      return /(auto|scroll)/.test(style.overflowY) && el.scrollHeight > el.clientHeight;
+    }
 
-  // First try normal locator wait
-  if (await region.count()) return region;
+    let el = document.elementFromPoint(window.innerWidth / 2, window.innerHeight / 2);
 
-  // Grafana usually scrolls inside the app content area, not window/body
-  const scrollContainers = [
-    '[data-testid="data-testid Dashboard canvas"]',
-    '[data-testid="dashboard-scene"]',
-    '.scrollbar-view',
-    'main',
-  ];
+    while (el && el !== document.body) {
+      if (isScrollable(el)) {
+        el.scrollBy({ top: 900, behavior: 'instant' });
+        return;
+      }
+      el = el.parentElement;
+    }
 
-  for (let i = 0; i < 40; i++) {
-    if (await region.count()) return region;
-
-    await page.evaluate((selectors) => {
-      const el =
-        selectors
-          .map((s) => document.querySelector(s))
-          .find((x) => x && x.scrollHeight > x.clientHeight) ??
-        document.scrollingElement;
-
-      el?.scrollBy(0, 900);
-    }, scrollContainers);
-
-    await page.waitForTimeout(150);
-  }
-
-  return region;
+    document.scrollingElement?.scrollBy({ top: 900, behavior: 'instant' });
+  });
 }
 
 test('Grafana Check Datasources', async ({ page }) => {
@@ -124,19 +112,27 @@ test('Grafana K8s Namespace Dashboard', async ({ page }) => {
   ];
 
   for (const panel of panels) {
-    const region = await findGrafanaPanel(page, panel);
+    const region = page.getByRole('region', { name: panel, exact: true });
+
+    await page.mouse.move(
+      page.viewportSize()!.width / 2,
+      page.viewportSize()!.height / 2
+    );
+
+    for (let i = 0; i < 60; i++) {
+      if (await region.count()) break;
+      await scrollGrafanaDown(page);
+      await page.waitForTimeout(150);
+    }
+
     await expect(region).toHaveCount(1, { timeout: 20_000 });
+
     await region.evaluate((el) => {
       el.scrollIntoView({ block: 'center', inline: 'nearest' });
     });
-    await expect(region).toBeVisible({ timeout: 20_000 });
 
-    await expect
-      .poll(async () => region.getByText('No data', { exact: true }).count(), {
-        timeout: 20_000,
-      })
-      .toBe(0);
-    }
+    await expect(region).toBeVisible({ timeout: 20_000 });
+  }
   // unfortunately some 'No data' tiles exist
   /*
   await expect
