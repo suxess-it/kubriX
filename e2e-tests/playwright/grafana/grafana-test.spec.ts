@@ -1,4 +1,4 @@
-import { test, expect } from '@playwright/test';
+import { test, expect, type Page } from '@playwright/test';
 import path from 'path';
 import fs from "fs";
 
@@ -111,28 +111,30 @@ test('Grafana K8s Namespace Dashboard', async ({ page }) => {
     "Network Received (without loopback) by instance", "Network Received (loopback only) by instance"
   ];
 
-  for (const panel of panels) {
-    const region = page.getByRole('region', { name: panel, exact: true });
+for (const panel of panels) {
+  const region = page.getByRole('region', { name: panel, exact: true });
 
-    await page.mouse.move(
-      page.viewportSize()!.width / 2,
-      page.viewportSize()!.height / 2
-    );
+  await page.mouse.move(
+    page.viewportSize()!.width / 2,
+    page.viewportSize()!.height / 2
+  );
 
-    for (let i = 0; i < 60; i++) {
-      if (await region.count()) break;
-      await scrollGrafanaDown(page);
-      await page.waitForTimeout(150);
-    }
+  for (let i = 0; i < 80; i++) {
+    if (await region.isVisible().catch(() => false)) break;
 
-    await expect(region).toHaveCount(1, { timeout: 20_000 });
-
-    await region.evaluate((el) => {
-      el.scrollIntoView({ block: 'center', inline: 'nearest' });
-    });
-
-    await expect(region).toBeVisible({ timeout: 20_000 });
+    await scrollGrafanaDown(page);
+    await page.waitForTimeout(150);
   }
+
+  await expect(region).toHaveCount(1, { timeout: 20_000 });
+
+  await region.evaluate((el) => {
+    el.scrollIntoView({ block: 'center', inline: 'nearest' });
+  });
+
+  await expect(region).toBeVisible({ timeout: 20_000 });
+}
+  
   // unfortunately some 'No data' tiles exist
   /*
   await expect
