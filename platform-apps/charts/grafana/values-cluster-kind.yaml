@@ -2,6 +2,8 @@ grafana:
   grafana.ini:
     server:
       root_url: "https://grafana.127-0-0-1.nip.io"
+    feature_toggles:
+      splashScreen: 'false'
   ingress:
     hosts: [grafana.127-0-0-1.nip.io]
     tls:
