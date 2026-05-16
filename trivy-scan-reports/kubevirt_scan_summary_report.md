@@ -256,7 +256,7 @@
         <td>CVE-2026-0861</td>
         <td>HIGH</td>
         <td>2.36-9+deb12u7</td>
-        <td></td>
+        <td>2.36-9+deb12u14</td>
     </tr>
     <tr>
         <td><code>libssl3</code></td>

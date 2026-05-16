@@ -1,6 +1,6 @@
 
 <h3>Target <code>docker.io/dserio83/velero-api:0.3.1 (debian 12.11)</code></h3>
-<h4>Vulnerabilities (92)</h4>
+<h4>Vulnerabilities (96)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -70,7 +70,7 @@
         <td>CVE-2026-0861</td>
         <td>HIGH</td>
         <td>2.36-9+deb12u10</td>
-        <td></td>
+        <td>2.36-9+deb12u14</td>
     </tr>
     <tr>
         <td><code>libc6</code></td>
@@ -84,14 +84,14 @@
         <td>CVE-2026-0861</td>
         <td>HIGH</td>
         <td>2.36-9+deb12u10</td>
-        <td></td>
+        <td>2.36-9+deb12u14</td>
     </tr>
     <tr>
         <td><code>libcap2</code></td>
         <td>CVE-2026-4878</td>
         <td>HIGH</td>
         <td>1:2.66-4+deb12u1</td>
-        <td></td>
+        <td>1:2.66-4+deb12u3</td>
     </tr>
     <tr>
         <td><code>libcurl3-gnutls</code></td>
@@ -249,10 +249,17 @@
     </tr>
     <tr>
         <td><code>libpython3.11-minimal</code></td>
+        <td>CVE-2026-7210</td>
+        <td>CRITICAL</td>
+        <td>3.11.2-6+deb12u6</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>libpython3.11-minimal</code></td>
         <td>CVE-2025-13836</td>
         <td>HIGH</td>
         <td>3.11.2-6+deb12u6</td>
-        <td></td>
+        <td>3.11.2-6+deb12u7</td>
     </tr>
     <tr>
         <td><code>libpython3.11-minimal</code></td>
@@ -280,14 +287,14 @@
         <td>CVE-2025-8194</td>
         <td>HIGH</td>
         <td>3.11.2-6+deb12u6</td>
-        <td></td>
+        <td>3.11.2-6+deb12u7</td>
     </tr>
     <tr>
         <td><code>libpython3.11-minimal</code></td>
         <td>CVE-2026-1299</td>
         <td>HIGH</td>
         <td>3.11.2-6+deb12u6</td>
-        <td></td>
+        <td>3.11.2-6+deb12u7</td>
     </tr>
     <tr>
         <td><code>libpython3.11-minimal</code></td>
@@ -298,10 +305,17 @@
     </tr>
     <tr>
         <td><code>libpython3.11-stdlib</code></td>
+        <td>CVE-2026-7210</td>
+        <td>CRITICAL</td>
+        <td>3.11.2-6+deb12u6</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>libpython3.11-stdlib</code></td>
         <td>CVE-2025-13836</td>
         <td>HIGH</td>
         <td>3.11.2-6+deb12u6</td>
-        <td></td>
+        <td>3.11.2-6+deb12u7</td>
     </tr>
     <tr>
         <td><code>libpython3.11-stdlib</code></td>
@@ -329,14 +343,14 @@
         <td>CVE-2025-8194</td>
         <td>HIGH</td>
         <td>3.11.2-6+deb12u6</td>
-        <td></td>
+        <td>3.11.2-6+deb12u7</td>
     </tr>
     <tr>
         <td><code>libpython3.11-stdlib</code></td>
         <td>CVE-2026-1299</td>
         <td>HIGH</td>
         <td>3.11.2-6+deb12u6</td>
-        <td></td>
+        <td>3.11.2-6+deb12u7</td>
     </tr>
     <tr>
         <td><code>libpython3.11-stdlib</code></td>
@@ -427,7 +441,7 @@
         <td>CVE-2026-29111</td>
         <td>HIGH</td>
         <td>252.38-1~deb12u1</td>
-        <td></td>
+        <td>252.39-1~deb12u2</td>
     </tr>
     <tr>
         <td><code>libtinfo6</code></td>
@@ -441,7 +455,7 @@
         <td>CVE-2026-29111</td>
         <td>HIGH</td>
         <td>252.38-1~deb12u1</td>
-        <td></td>
+        <td>252.39-1~deb12u2</td>
     </tr>
     <tr>
         <td><code>ncurses-base</code></td>
@@ -550,10 +564,17 @@
     </tr>
     <tr>
         <td><code>python3.11</code></td>
+        <td>CVE-2026-7210</td>
+        <td>CRITICAL</td>
+        <td>3.11.2-6+deb12u6</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>python3.11</code></td>
         <td>CVE-2025-13836</td>
         <td>HIGH</td>
         <td>3.11.2-6+deb12u6</td>
-        <td></td>
+        <td>3.11.2-6+deb12u7</td>
     </tr>
     <tr>
         <td><code>python3.11</code></td>
@@ -581,14 +602,14 @@
         <td>CVE-2025-8194</td>
         <td>HIGH</td>
         <td>3.11.2-6+deb12u6</td>
-        <td></td>
+        <td>3.11.2-6+deb12u7</td>
     </tr>
     <tr>
         <td><code>python3.11</code></td>
         <td>CVE-2026-1299</td>
         <td>HIGH</td>
         <td>3.11.2-6+deb12u6</td>
-        <td></td>
+        <td>3.11.2-6+deb12u7</td>
     </tr>
     <tr>
         <td><code>python3.11</code></td>
@@ -599,10 +620,17 @@
     </tr>
     <tr>
         <td><code>python3.11-minimal</code></td>
+        <td>CVE-2026-7210</td>
+        <td>CRITICAL</td>
+        <td>3.11.2-6+deb12u6</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>python3.11-minimal</code></td>
         <td>CVE-2025-13836</td>
         <td>HIGH</td>
         <td>3.11.2-6+deb12u6</td>
-        <td></td>
+        <td>3.11.2-6+deb12u7</td>
     </tr>
     <tr>
         <td><code>python3.11-minimal</code></td>
@@ -630,14 +658,14 @@
         <td>CVE-2025-8194</td>
         <td>HIGH</td>
         <td>3.11.2-6+deb12u6</td>
-        <td></td>
+        <td>3.11.2-6+deb12u7</td>
     </tr>
     <tr>
         <td><code>python3.11-minimal</code></td>
         <td>CVE-2026-1299</td>
         <td>HIGH</td>
         <td>3.11.2-6+deb12u6</td>
-        <td></td>
+        <td>3.11.2-6+deb12u7</td>
     </tr>
     <tr>
         <td><code>python3.11-minimal</code></td>
@@ -1327,7 +1355,7 @@
         <td>CVE-2026-0861</td>
         <td>HIGH</td>
         <td>2.36-9+deb12u10</td>
-        <td></td>
+        <td>2.36-9+deb12u14</td>
     </tr>
     <tr>
         <td><code>libc6</code></td>
@@ -1341,14 +1369,14 @@
         <td>CVE-2026-0861</td>
         <td>HIGH</td>
         <td>2.36-9+deb12u10</td>
-        <td></td>
+        <td>2.36-9+deb12u14</td>
     </tr>
     <tr>
         <td><code>libcap2</code></td>
         <td>CVE-2026-4878</td>
         <td>HIGH</td>
         <td>1:2.66-4</td>
-        <td></td>
+        <td>1:2.66-4+deb12u3</td>
     </tr>
     <tr>
         <td><code>libcurl3-gnutls</code></td>
@@ -1600,7 +1628,7 @@
         <td>CVE-2026-29111</td>
         <td>HIGH</td>
         <td>252.36-1~deb12u1</td>
-        <td></td>
+        <td>252.39-1~deb12u2</td>
     </tr>
     <tr>
         <td><code>libtinfo6</code></td>
@@ -1614,7 +1642,7 @@
         <td>CVE-2026-29111</td>
         <td>HIGH</td>
         <td>252.36-1~deb12u1</td>
-        <td></td>
+        <td>252.39-1~deb12u2</td>
     </tr>
     <tr>
         <td><code>ncurses-base</code></td>
