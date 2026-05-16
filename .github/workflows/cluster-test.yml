@@ -294,7 +294,7 @@ jobs:
           REPO_ORG: 'kubriX-demo'
           REPO_NAME: "kubrix-cluster-test-${{ github.run_id }}-${{ job.check_run_id }}"
           GH_TOKEN: ${{ secrets.KUBRIX_CUSTOMER_REPO_TOKEN }}
-          VIS: "public"
+          VIS: "private"
         run: |
           gh api \
             --method POST \
@@ -339,7 +339,8 @@ jobs:
             --from-literal KUBRIX_BACKSTAGE_GITHUB_TOKEN=${KUBRIX_BACKSTAGE_GITHUB_TOKEN} \
             --from-literal KUBRIX_BOOTSTRAP_MAX_WAIT_TIME=${KUBRIX_BOOTSTRAP_MAX_WAIT_TIME} \
             --from-literal KUBRIX_BOOTSTRAP=true \
-            --from-literal KUBRIX_INSTALLER=true
+            --from-literal KUBRIX_INSTALLER=true \
+            --from-literal KUBRIX_INSTALL_DEBUG=${KUBRIX_INSTALL_DEBUG}
           bash .github/install-kubriX-with-job.sh
 
       - name: argocd show diff
@@ -492,12 +493,31 @@ jobs:
           delete_repo_if_exists "${app_of_apps_repo:-}"
           delete_repo_if_exists "${gitops_repo:-}"
 
+      - name: add kubrixBot repo for team onboarding fork
+        env:
+          KUBRIXBOT_FORK_READ_TOKEN: ${{ secrets.KUBRIXBOT_FORK_READ_TOKEN }}
+          KUBRIX_FORK_REPO_NAME: "kubrix-cluster-test-${{ github.run_id }}-${{ job.check_run_id }}"
+        run: |
+          kubectl -n argocd apply -f - <<EOF
+          apiVersion: v1
+          kind: Secret
+          metadata:
+            name: kubrixbot-team-onboarding-fork-repo
+            labels:
+              argocd.argoproj.io/secret-type: repository
+          stringData:
+            type: git
+            url: https://github.com/kubrixBot/${KUBRIX_FORK_REPO_NAME}.git
+            username: kubrixBot
+            password: ${KUBRIXBOT_FORK_READ_TOKEN}
+          EOF
+
       # run testkube tests
       - uses: kubeshop/setup-testkube@v1
         with:
           version: 2.6.3
 
-      - uses: suzuki-shunsuke/lock-action@v0.1.6
+      - uses: suzuki-shunsuke/lock-action@v0.2.0
         with:
           mode: lock
           key: default
@@ -573,7 +593,7 @@ jobs:
 
       - name: Release a lock
         if: always()
-        uses: suzuki-shunsuke/lock-action@v0.1.6
+        uses: suzuki-shunsuke/lock-action@v0.2.0
         with:
           mode: unlock
           key: default
