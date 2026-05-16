@@ -48,7 +48,7 @@ test('Grafana CNPG Dashboard', async ({ page }) => {
 test('Grafana OpenBao Dashboard', async ({ page }) => {
   test.slow();
 
-  await page.goto(`https://grafana.${BASE_DOMAIN}/d/vaults/grc-openbao?orgId=1&from=now-2h&to=now&timezone=browser&var-datasource=default&var-node=10.240.0.98&var-port=&var-mountpoint=$__all`);
+  await page.goto(`https://grafana.${BASE_DOMAIN}/d/vaults/grc-openbao?orgId=1&from=now-2h&to=now&timezone=browser&var-datasource=default&var-port=&var-mountpoint=$__all`);
 
   await expect(
     page.locator('div[title="sx-openbao-active"]').getByText('Active', { exact: true })
@@ -69,7 +69,7 @@ test('Grafana OpenBao Dashboard', async ({ page }) => {
 test('Grafana K8s Namespace Dashboard', async ({ page }) => {
   test.slow();
 
-  await page.goto(`https://grafana.${BASE_DOMAIN}/d/k8s_views_global/kubernetes-views-global?orgId=1&from=now-2h&to=now&timezone=browser&var-datasource=default&var-node=10.240.0.98&var-port=&var-mountpoint=$__all`, { waitUntil: 'domcontentloaded' });
+  await page.goto(`https://grafana.${BASE_DOMAIN}/d/k8s_views_global/kubernetes-views-global?orgId=1&from=now-2h&to=now&timezone=browser&var-datasource=default&var-port=&var-mountpoint=$__all`, { waitUntil: 'domcontentloaded' });
 
   // wait for the first panel to fully load
   const firstPanel = page.getByRole('region', { name: 'Global CPU Usage', exact: true });
