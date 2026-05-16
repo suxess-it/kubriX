@@ -7,6 +7,39 @@ const grafanaAuthFile = path.join(authDir, 'grafana.json');
 const BASE_DOMAIN = process.env.E2E_BASE_DOMAIN ?? '127-0-0-1.nip.io';
 test.use({ storageState: grafanaAuthFile });
 
+async function findGrafanaPanel(page: Page, title: string) {
+  const region = page.getByRole('region', { name: title, exact: true });
+
+  // First try normal locator wait
+  if (await region.count()) return region;
+
+  // Grafana usually scrolls inside the app content area, not window/body
+  const scrollContainers = [
+    '[data-testid="data-testid Dashboard canvas"]',
+    '[data-testid="dashboard-scene"]',
+    '.scrollbar-view',
+    'main',
+  ];
+
+  for (let i = 0; i < 40; i++) {
+    if (await region.count()) return region;
+
+    await page.evaluate((selectors) => {
+      const el =
+        selectors
+          .map((s) => document.querySelector(s))
+          .find((x) => x && x.scrollHeight > x.clientHeight) ??
+        document.scrollingElement;
+
+      el?.scrollBy(0, 900);
+    }, scrollContainers);
+
+    await page.waitForTimeout(150);
+  }
+
+  return region;
+}
+
 test('Grafana Check Datasources', async ({ page }) => {
   test.slow();
 
@@ -89,27 +122,21 @@ test('Grafana K8s Namespace Dashboard', async ({ page }) => {
     "Global Network Utilization by device", "Network Saturation - Packets dropped", "Network Received by namespace", "Total Network Received (with all virtual devices) by instance",
     "Network Received (without loopback) by instance", "Network Received (loopback only) by instance"
   ];
+
   for (const panel of panels) {
-    const region = page.getByRole('region', { name: panel, exact: true });
-
-    // If virtualized, this helps “discover” it
-    for (let i = 0; i < 25 && !(await region.count()); i++) {
-      await page.mouse.wheel(0, 800);
-    }
-
+    const region = await findGrafanaPanel(page, panel);
     await expect(region).toHaveCount(1, { timeout: 20_000 });
-
-    // Try to bring into view but don't allow long hangs
-    await region.scrollIntoViewIfNeeded({ timeout: 5_000 }).catch(() => {});
-
+    await region.evaluate((el) => {
+      el.scrollIntoView({ block: 'center', inline: 'nearest' });
+    });
     await expect(region).toBeVisible({ timeout: 20_000 });
 
     await expect
-      .poll(async () => region.getByText('No data', { exact: true }).count(), { timeout: 20_000 })
+      .poll(async () => region.getByText('No data', { exact: true }).count(), {
+        timeout: 20_000,
+      })
       .toBe(0);
-
-  }
-
+    }
   // unfortunately some 'No data' tiles exist
   /*
   await expect
