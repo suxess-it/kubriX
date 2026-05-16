@@ -92,7 +92,7 @@ check_prereqs() {
     check_variable KUBRIX_SECURITY_STRICT "true" "false"
     check_variable KUBRIX_HA_ENABLED "true" "false"
     check_variable KUBRIX_CERT_MANAGER_DNS_PROVIDER "true" "none" "none|aws"
-    check_tool gomplate "gomplate -v"
+    check_tool gomplate "gomplate -h | head"
   fi
 
   # check tools
@@ -117,7 +117,7 @@ detect_date_impl() {
 
 # clone kubriX upstream repo to bootstrap-kubriX/kubriX-repo
 bootstrap_clone_from_upstream() {
-  printf 'bootstrap from upstream repo %s to downstream repo %s' "${KUBRIX_UPSTREAM_REPO}" "${KUBRIX_REPO}\n"
+  printf 'bootstrap from upstream repo %s to downstream repo %s\n' "${KUBRIX_UPSTREAM_REPO}" "${KUBRIX_REPO}"
   printf 'checkout kubriX upstream to %s ...\n' "$(pwd)"
 
   if [ "${KUBRIX_UPSTREAM_REPO_PASSWORD}" != " " ]; then
