@@ -1,6 +1,6 @@
 
-<h3>Target <code>docker.io/grafana/grafana:12.4.2 (alpine 3.23.3)</code></h3>
-<h4>Vulnerabilities (3)</h4>
+<h3>Target <code>docker.io/grafana/grafana:12.4.3 (alpine 3.23.3)</code></h3>
+<h4>Vulnerabilities (14)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -11,7 +11,63 @@
     </tr>
     <tr>
         <td><code>libcrypto3</code></td>
+        <td>CVE-2026-31789</td>
+        <td>CRITICAL</td>
+        <td>3.5.5-r0</td>
+        <td>3.5.6-r0</td>
+    </tr>
+    <tr>
+        <td><code>libcrypto3</code></td>
+        <td>CVE-2026-28387</td>
+        <td>HIGH</td>
+        <td>3.5.5-r0</td>
+        <td>3.5.6-r0</td>
+    </tr>
+    <tr>
+        <td><code>libcrypto3</code></td>
+        <td>CVE-2026-28388</td>
+        <td>HIGH</td>
+        <td>3.5.5-r0</td>
+        <td>3.5.6-r0</td>
+    </tr>
+    <tr>
+        <td><code>libcrypto3</code></td>
+        <td>CVE-2026-28389</td>
+        <td>HIGH</td>
+        <td>3.5.5-r0</td>
+        <td>3.5.6-r0</td>
+    </tr>
+    <tr>
+        <td><code>libcrypto3</code></td>
         <td>CVE-2026-28390</td>
+        <td>HIGH</td>
+        <td>3.5.5-r0</td>
+        <td>3.5.6-r0</td>
+    </tr>
+    <tr>
+        <td><code>libssl3</code></td>
+        <td>CVE-2026-31789</td>
+        <td>CRITICAL</td>
+        <td>3.5.5-r0</td>
+        <td>3.5.6-r0</td>
+    </tr>
+    <tr>
+        <td><code>libssl3</code></td>
+        <td>CVE-2026-28387</td>
+        <td>HIGH</td>
+        <td>3.5.5-r0</td>
+        <td>3.5.6-r0</td>
+    </tr>
+    <tr>
+        <td><code>libssl3</code></td>
+        <td>CVE-2026-28388</td>
+        <td>HIGH</td>
+        <td>3.5.5-r0</td>
+        <td>3.5.6-r0</td>
+    </tr>
+    <tr>
+        <td><code>libssl3</code></td>
+        <td>CVE-2026-28389</td>
         <td>HIGH</td>
         <td>3.5.5-r0</td>
         <td>3.5.6-r0</td>
@@ -22,6 +78,27 @@
         <td>HIGH</td>
         <td>3.5.5-r0</td>
         <td>3.5.6-r0</td>
+    </tr>
+    <tr>
+        <td><code>musl</code></td>
+        <td>CVE-2026-40200</td>
+        <td>HIGH</td>
+        <td>1.2.5-r21</td>
+        <td>1.2.5-r23</td>
+    </tr>
+    <tr>
+        <td><code>musl-utils</code></td>
+        <td>CVE-2026-40200</td>
+        <td>HIGH</td>
+        <td>1.2.5-r21</td>
+        <td>1.2.5-r23</td>
+    </tr>
+    <tr>
+        <td><code>nghttp2-libs</code></td>
+        <td>CVE-2026-27135</td>
+        <td>HIGH</td>
+        <td>1.68.0-r0</td>
+        <td>1.68.1</td>
     </tr>
     <tr>
         <td><code>zlib</code></td>
@@ -36,7 +113,7 @@
 <h4>No Vulnerabilities found</h4>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>usr/share/grafana/bin/grafana</code></h3>
-<h4>Vulnerabilities (6)</h4>
+<h4>Vulnerabilities (16)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -46,6 +123,13 @@
         <th>Fixed Version</th>
     </tr>
     <tr>
+        <td><code>github.com/apache/thrift</code></td>
+        <td>CVE-2026-41602</td>
+        <td>HIGH</td>
+        <td>v0.22.0</td>
+        <td>0.23.0</td>
+    </tr>
+    <tr>
         <td><code>github.com/go-jose/go-jose/v4</code></td>
         <td>CVE-2026-34986</td>
         <td>HIGH</td>
@@ -53,11 +137,53 @@
         <td>4.1.4</td>
     </tr>
     <tr>
+        <td><code>github.com/grafana/tempo</code></td>
+        <td>CVE-2026-21728</td>
+        <td>HIGH</td>
+        <td>v1.5.1-0.20250529124718-87c2dc380cec</td>
+        <td>2.8.4, 2.9.2, 2.10.2</td>
+    </tr>
+    <tr>
+        <td><code>github.com/grafana/tempo</code></td>
+        <td>CVE-2026-28377</td>
+        <td>HIGH</td>
+        <td>v1.5.1-0.20250529124718-87c2dc380cec</td>
+        <td>2.10.3</td>
+    </tr>
+    <tr>
+        <td><code>github.com/jackc/pgx/v5</code></td>
+        <td>CVE-2026-33816</td>
+        <td>CRITICAL</td>
+        <td>v5.8.0</td>
+        <td>5.9.0</td>
+    </tr>
+    <tr>
         <td><code>github.com/moby/moby</code></td>
         <td>CVE-2026-34040</td>
         <td>HIGH</td>
         <td>v28.0.1+incompatible</td>
         <td>29.3.1</td>
+    </tr>
+    <tr>
+        <td><code>github.com/prometheus/prometheus</code></td>
+        <td>CVE-2026-42151</td>
+        <td>HIGH</td>
+        <td>v0.303.1</td>
+        <td>0.311.3</td>
+    </tr>
+    <tr>
+        <td><code>github.com/prometheus/prometheus</code></td>
+        <td>CVE-2026-42154</td>
+        <td>HIGH</td>
+        <td>v0.303.1</td>
+        <td>0.311.3</td>
+    </tr>
+    <tr>
+        <td><code>go.opentelemetry.io/otel</code></td>
+        <td>CVE-2026-29181</td>
+        <td>HIGH</td>
+        <td>v1.39.0</td>
+        <td>1.41.0</td>
     </tr>
     <tr>
         <td><code>go.opentelemetry.io/otel/sdk</code></td>
@@ -75,22 +201,43 @@
     </tr>
     <tr>
         <td><code>stdlib</code></td>
-        <td>CVE-2026-32280</td>
+        <td>CVE-2026-33811</td>
         <td>HIGH</td>
-        <td>v1.25.8</td>
-        <td>1.25.9, 1.26.2</td>
+        <td>v1.25.9</td>
+        <td>1.25.10, 1.26.3</td>
     </tr>
     <tr>
         <td><code>stdlib</code></td>
-        <td>CVE-2026-32282</td>
+        <td>CVE-2026-33814</td>
         <td>HIGH</td>
-        <td>v1.25.8</td>
-        <td>1.25.9, 1.26.2</td>
+        <td>v1.25.9</td>
+        <td>1.25.10, 1.26.3</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-39820</td>
+        <td>HIGH</td>
+        <td>v1.25.9</td>
+        <td>1.25.10, 1.26.3</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-39836</td>
+        <td>HIGH</td>
+        <td>v1.25.9</td>
+        <td>1.25.10, 1.26.3</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-42499</td>
+        <td>HIGH</td>
+        <td>v1.25.9</td>
+        <td>1.25.10, 1.26.3</td>
     </tr>
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>usr/share/grafana/bin/grafana-cli</code></h3>
-<h4>Vulnerabilities (2)</h4>
+<h4>Vulnerabilities (5)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -101,22 +248,43 @@
     </tr>
     <tr>
         <td><code>stdlib</code></td>
-        <td>CVE-2026-32280</td>
+        <td>CVE-2026-33811</td>
         <td>HIGH</td>
-        <td>v1.25.8</td>
-        <td>1.25.9, 1.26.2</td>
+        <td>v1.25.9</td>
+        <td>1.25.10, 1.26.3</td>
     </tr>
     <tr>
         <td><code>stdlib</code></td>
-        <td>CVE-2026-32282</td>
+        <td>CVE-2026-33814</td>
         <td>HIGH</td>
-        <td>v1.25.8</td>
-        <td>1.25.9, 1.26.2</td>
+        <td>v1.25.9</td>
+        <td>1.25.10, 1.26.3</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-39820</td>
+        <td>HIGH</td>
+        <td>v1.25.9</td>
+        <td>1.25.10, 1.26.3</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-39836</td>
+        <td>HIGH</td>
+        <td>v1.25.9</td>
+        <td>1.25.10, 1.26.3</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-42499</td>
+        <td>HIGH</td>
+        <td>v1.25.9</td>
+        <td>1.25.10, 1.26.3</td>
     </tr>
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>usr/share/grafana/bin/grafana-server</code></h3>
-<h4>Vulnerabilities (2)</h4>
+<h4>Vulnerabilities (5)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -127,23 +295,44 @@
     </tr>
     <tr>
         <td><code>stdlib</code></td>
-        <td>CVE-2026-32280</td>
+        <td>CVE-2026-33811</td>
         <td>HIGH</td>
-        <td>v1.25.8</td>
-        <td>1.25.9, 1.26.2</td>
+        <td>v1.25.9</td>
+        <td>1.25.10, 1.26.3</td>
     </tr>
     <tr>
         <td><code>stdlib</code></td>
-        <td>CVE-2026-32282</td>
+        <td>CVE-2026-33814</td>
         <td>HIGH</td>
-        <td>v1.25.8</td>
-        <td>1.25.9, 1.26.2</td>
+        <td>v1.25.9</td>
+        <td>1.25.10, 1.26.3</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-39820</td>
+        <td>HIGH</td>
+        <td>v1.25.9</td>
+        <td>1.25.10, 1.26.3</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-39836</td>
+        <td>HIGH</td>
+        <td>v1.25.9</td>
+        <td>1.25.10, 1.26.3</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-42499</td>
+        <td>HIGH</td>
+        <td>v1.25.9</td>
+        <td>1.25.10, 1.26.3</td>
     </tr>
 </table>
 <h4>No Misconfigurations found</h4>
 
 <h3>Target <code>quay.io/kiwigrid/k8s-sidecar:2.6.0 (alpine 3.23.3)</code></h3>
-<h4>Vulnerabilities (3)</h4>
+<h4>Vulnerabilities (13)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -154,7 +343,63 @@
     </tr>
     <tr>
         <td><code>libcrypto3</code></td>
+        <td>CVE-2026-31789</td>
+        <td>CRITICAL</td>
+        <td>3.5.5-r0</td>
+        <td>3.5.6-r0</td>
+    </tr>
+    <tr>
+        <td><code>libcrypto3</code></td>
+        <td>CVE-2026-28387</td>
+        <td>HIGH</td>
+        <td>3.5.5-r0</td>
+        <td>3.5.6-r0</td>
+    </tr>
+    <tr>
+        <td><code>libcrypto3</code></td>
+        <td>CVE-2026-28388</td>
+        <td>HIGH</td>
+        <td>3.5.5-r0</td>
+        <td>3.5.6-r0</td>
+    </tr>
+    <tr>
+        <td><code>libcrypto3</code></td>
+        <td>CVE-2026-28389</td>
+        <td>HIGH</td>
+        <td>3.5.5-r0</td>
+        <td>3.5.6-r0</td>
+    </tr>
+    <tr>
+        <td><code>libcrypto3</code></td>
         <td>CVE-2026-28390</td>
+        <td>HIGH</td>
+        <td>3.5.5-r0</td>
+        <td>3.5.6-r0</td>
+    </tr>
+    <tr>
+        <td><code>libssl3</code></td>
+        <td>CVE-2026-31789</td>
+        <td>CRITICAL</td>
+        <td>3.5.5-r0</td>
+        <td>3.5.6-r0</td>
+    </tr>
+    <tr>
+        <td><code>libssl3</code></td>
+        <td>CVE-2026-28387</td>
+        <td>HIGH</td>
+        <td>3.5.5-r0</td>
+        <td>3.5.6-r0</td>
+    </tr>
+    <tr>
+        <td><code>libssl3</code></td>
+        <td>CVE-2026-28388</td>
+        <td>HIGH</td>
+        <td>3.5.5-r0</td>
+        <td>3.5.6-r0</td>
+    </tr>
+    <tr>
+        <td><code>libssl3</code></td>
+        <td>CVE-2026-28389</td>
         <td>HIGH</td>
         <td>3.5.5-r0</td>
         <td>3.5.6-r0</td>
@@ -167,6 +412,20 @@
         <td>3.5.6-r0</td>
     </tr>
     <tr>
+        <td><code>musl</code></td>
+        <td>CVE-2026-40200</td>
+        <td>HIGH</td>
+        <td>1.2.5-r21</td>
+        <td>1.2.5-r23</td>
+    </tr>
+    <tr>
+        <td><code>musl-utils</code></td>
+        <td>CVE-2026-40200</td>
+        <td>HIGH</td>
+        <td>1.2.5-r21</td>
+        <td>1.2.5-r23</td>
+    </tr>
+    <tr>
         <td><code>zlib</code></td>
         <td>CVE-2026-22184</td>
         <td>HIGH</td>
@@ -176,5 +435,28 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>Python</code></h3>
-<h4>No Vulnerabilities found</h4>
+<h4>Vulnerabilities (2)</h4>
+<table>
+    <tr>
+        <th>Package</th>
+        <th>ID</th>
+        <th>Severity</th>
+        <th>Installed Version</th>
+        <th>Fixed Version</th>
+    </tr>
+    <tr>
+        <td><code>urllib3</code></td>
+        <td>CVE-2026-44431</td>
+        <td>HIGH</td>
+        <td>2.6.3</td>
+        <td>2.7.0</td>
+    </tr>
+    <tr>
+        <td><code>urllib3</code></td>
+        <td>CVE-2026-44432</td>
+        <td>HIGH</td>
+        <td>2.6.3</td>
+        <td>2.7.0</td>
+    </tr>
+</table>
 <h4>No Misconfigurations found</h4>

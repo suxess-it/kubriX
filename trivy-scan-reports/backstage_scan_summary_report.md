@@ -69,10 +69,7 @@
 <h4>No Misconfigurations found</h4>
 
 <h3>Target <code>ghcr.io/suxess-it/sx-backstage:v1.48.5 (wolfi 20230201)</code></h3>
-<h4>No Vulnerabilities found</h4>
-<h4>No Misconfigurations found</h4>
-<h3>Target <code>Node.js</code></h3>
-<h4>Vulnerabilities (24)</h4>
+<h4>Vulnerabilities (9)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -82,18 +79,128 @@
         <th>Fixed Version</th>
     </tr>
     <tr>
-        <td><code>axios</code></td>
-        <td>CVE-2025-62718</td>
-        <td>CRITICAL</td>
-        <td>1.14.0</td>
-        <td>1.15.0</td>
+        <td><code>py3-pip-wheel</code></td>
+        <td>CVE-2025-66418</td>
+        <td>HIGH</td>
+        <td>26.0.1-r2</td>
+        <td>26.1.1-r0</td>
+    </tr>
+    <tr>
+        <td><code>py3-pip-wheel</code></td>
+        <td>CVE-2025-66471</td>
+        <td>HIGH</td>
+        <td>26.0.1-r2</td>
+        <td>26.1.1-r0</td>
+    </tr>
+    <tr>
+        <td><code>py3-pip-wheel</code></td>
+        <td>CVE-2026-21441</td>
+        <td>HIGH</td>
+        <td>26.0.1-r2</td>
+        <td>26.1.1-r0</td>
+    </tr>
+    <tr>
+        <td><code>py3.13-pip</code></td>
+        <td>CVE-2025-66418</td>
+        <td>HIGH</td>
+        <td>26.0.1-r2</td>
+        <td>26.1.1-r0</td>
+    </tr>
+    <tr>
+        <td><code>py3.13-pip</code></td>
+        <td>CVE-2025-66471</td>
+        <td>HIGH</td>
+        <td>26.0.1-r2</td>
+        <td>26.1.1-r0</td>
+    </tr>
+    <tr>
+        <td><code>py3.13-pip</code></td>
+        <td>CVE-2026-21441</td>
+        <td>HIGH</td>
+        <td>26.0.1-r2</td>
+        <td>26.1.1-r0</td>
+    </tr>
+    <tr>
+        <td><code>py3.13-pip-base</code></td>
+        <td>CVE-2025-66418</td>
+        <td>HIGH</td>
+        <td>26.0.1-r2</td>
+        <td>26.1.1-r0</td>
+    </tr>
+    <tr>
+        <td><code>py3.13-pip-base</code></td>
+        <td>CVE-2025-66471</td>
+        <td>HIGH</td>
+        <td>26.0.1-r2</td>
+        <td>26.1.1-r0</td>
+    </tr>
+    <tr>
+        <td><code>py3.13-pip-base</code></td>
+        <td>CVE-2026-21441</td>
+        <td>HIGH</td>
+        <td>26.0.1-r2</td>
+        <td>26.1.1-r0</td>
+    </tr>
+</table>
+<h4>No Misconfigurations found</h4>
+<h3>Target <code>Node.js</code></h3>
+<h4>Vulnerabilities (49)</h4>
+<table>
+    <tr>
+        <th>Package</th>
+        <th>ID</th>
+        <th>Severity</th>
+        <th>Installed Version</th>
+        <th>Fixed Version</th>
+    </tr>
+    <tr>
+        <td><code>@opentelemetry/auto-instrumentations-node</code></td>
+        <td>CVE-2026-44902</td>
+        <td>HIGH</td>
+        <td>0.72.0</td>
+        <td>0.75.0</td>
+    </tr>
+    <tr>
+        <td><code>@opentelemetry/exporter-prometheus</code></td>
+        <td>CVE-2026-44902</td>
+        <td>HIGH</td>
+        <td>0.214.0</td>
+        <td>0.217.0</td>
+    </tr>
+    <tr>
+        <td><code>@opentelemetry/sdk-node</code></td>
+        <td>CVE-2026-44902</td>
+        <td>HIGH</td>
+        <td>0.214.0</td>
+        <td>0.217.0</td>
     </tr>
     <tr>
         <td><code>axios</code></td>
-        <td>CVE-2026-40175</td>
-        <td>CRITICAL</td>
+        <td>CVE-2026-42033</td>
+        <td>HIGH</td>
         <td>1.14.0</td>
-        <td>1.15.0</td>
+        <td>1.15.1, 0.31.1</td>
+    </tr>
+    <tr>
+        <td><code>axios</code></td>
+        <td>CVE-2026-42035</td>
+        <td>HIGH</td>
+        <td>1.14.0</td>
+        <td>1.15.1, 0.31.1</td>
+    </tr>
+    <tr>
+        <td><code>axios</code></td>
+        <td>CVE-2026-42043</td>
+        <td>HIGH</td>
+        <td>1.14.0</td>
+        <td>1.15.1, 0.31.1</td>
+    </tr>
+    <tr>
+        <td><code>axios</code></td>
+        <td>CVE-2026-42264</td>
+        <td>HIGH</td>
+        <td>1.14.0</td>
+        <td>1.15.2</td>
     </tr>
     <tr>
         <td><code>basic-ftp</code></td>
@@ -104,10 +211,52 @@
     </tr>
     <tr>
         <td><code>basic-ftp</code></td>
+        <td>CVE-2026-41324</td>
+        <td>HIGH</td>
+        <td>5.2.0</td>
+        <td>5.3.0</td>
+    </tr>
+    <tr>
+        <td><code>basic-ftp</code></td>
+        <td>CVE-2026-44240</td>
+        <td>HIGH</td>
+        <td>5.2.0</td>
+        <td>5.3.1</td>
+    </tr>
+    <tr>
+        <td><code>basic-ftp</code></td>
         <td>GHSA-6v7q-wjvx-w8wg</td>
         <td>HIGH</td>
         <td>5.2.0</td>
         <td>5.2.2</td>
+    </tr>
+    <tr>
+        <td><code>fast-uri</code></td>
+        <td>CVE-2026-6321</td>
+        <td>HIGH</td>
+        <td>3.1.0</td>
+        <td>3.1.1</td>
+    </tr>
+    <tr>
+        <td><code>fast-uri</code></td>
+        <td>CVE-2026-6322</td>
+        <td>HIGH</td>
+        <td>3.1.0</td>
+        <td>3.1.2</td>
+    </tr>
+    <tr>
+        <td><code>fast-xml-builder</code></td>
+        <td>CVE-2026-44665</td>
+        <td>HIGH</td>
+        <td>1.1.4</td>
+        <td>1.1.7</td>
+    </tr>
+    <tr>
+        <td><code>systeminformation</code></td>
+        <td>CVE-2026-44724</td>
+        <td>HIGH</td>
+        <td>5.31.5</td>
+        <td>5.31.6</td>
     </tr>
     <tr>
         <td><code>tar</code></td>
@@ -249,8 +398,129 @@
         <td>5.29.0</td>
         <td>6.24.0, 7.24.0</td>
     </tr>
+    <tr>
+        <td><code>vm2</code></td>
+        <td>CVE-2026-24118</td>
+        <td>CRITICAL</td>
+        <td>3.10.5</td>
+        <td>3.11.0</td>
+    </tr>
+    <tr>
+        <td><code>vm2</code></td>
+        <td>CVE-2026-24781</td>
+        <td>CRITICAL</td>
+        <td>3.10.5</td>
+        <td>3.11.0</td>
+    </tr>
+    <tr>
+        <td><code>vm2</code></td>
+        <td>CVE-2026-26332</td>
+        <td>CRITICAL</td>
+        <td>3.10.5</td>
+        <td>3.11.0</td>
+    </tr>
+    <tr>
+        <td><code>vm2</code></td>
+        <td>CVE-2026-43997</td>
+        <td>CRITICAL</td>
+        <td>3.10.5</td>
+        <td>3.11.0</td>
+    </tr>
+    <tr>
+        <td><code>vm2</code></td>
+        <td>CVE-2026-43999</td>
+        <td>CRITICAL</td>
+        <td>3.10.5</td>
+        <td>3.11.0</td>
+    </tr>
+    <tr>
+        <td><code>vm2</code></td>
+        <td>CVE-2026-44005</td>
+        <td>CRITICAL</td>
+        <td>3.10.5</td>
+        <td>3.11.0</td>
+    </tr>
+    <tr>
+        <td><code>vm2</code></td>
+        <td>CVE-2026-44006</td>
+        <td>CRITICAL</td>
+        <td>3.10.5</td>
+        <td>3.11.0</td>
+    </tr>
+    <tr>
+        <td><code>vm2</code></td>
+        <td>CVE-2026-44007</td>
+        <td>CRITICAL</td>
+        <td>3.10.5</td>
+        <td>3.11.1</td>
+    </tr>
+    <tr>
+        <td><code>vm2</code></td>
+        <td>CVE-2026-44008</td>
+        <td>CRITICAL</td>
+        <td>3.10.5</td>
+        <td>3.11.2</td>
+    </tr>
+    <tr>
+        <td><code>vm2</code></td>
+        <td>CVE-2026-44009</td>
+        <td>CRITICAL</td>
+        <td>3.10.5</td>
+        <td>3.11.2</td>
+    </tr>
+    <tr>
+        <td><code>vm2</code></td>
+        <td>CVE-2026-45411</td>
+        <td>CRITICAL</td>
+        <td>3.10.5</td>
+        <td>3.11.3</td>
+    </tr>
+    <tr>
+        <td><code>vm2</code></td>
+        <td>CVE-2026-43998</td>
+        <td>HIGH</td>
+        <td>3.10.5</td>
+        <td>3.11.0</td>
+    </tr>
+    <tr>
+        <td><code>vm2</code></td>
+        <td>CVE-2026-44001</td>
+        <td>HIGH</td>
+        <td>3.10.5</td>
+        <td>3.11.0</td>
+    </tr>
+    <tr>
+        <td><code>vm2</code></td>
+        <td>CVE-2026-44004</td>
+        <td>HIGH</td>
+        <td>3.10.5</td>
+        <td>3.11.0</td>
+    </tr>
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>Python</code></h3>
-<h4>No Vulnerabilities found</h4>
+<h4>Vulnerabilities (2)</h4>
+<table>
+    <tr>
+        <th>Package</th>
+        <th>ID</th>
+        <th>Severity</th>
+        <th>Installed Version</th>
+        <th>Fixed Version</th>
+    </tr>
+    <tr>
+        <td><code>urllib3</code></td>
+        <td>CVE-2026-44431</td>
+        <td>HIGH</td>
+        <td>2.6.3</td>
+        <td>2.7.0</td>
+    </tr>
+    <tr>
+        <td><code>urllib3</code></td>
+        <td>CVE-2026-44432</td>
+        <td>HIGH</td>
+        <td>2.6.3</td>
+        <td>2.7.0</td>
+    </tr>
+</table>
 <h4>No Misconfigurations found</h4>

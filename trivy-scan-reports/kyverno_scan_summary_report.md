@@ -1,9 +1,9 @@
 
-<h3>Target <code>ghcr.io/kyverno/readiness-checker:v0.1.0 (alpine 3.24.0_alpha20251224)</code></h3>
+<h3>Target <code>ghcr.io/kyverno/readiness-checker:latest (alpine 3.24.0_alpha20260127)</code></h3>
 <h4>No Vulnerabilities found</h4>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>ko-app/readiness-checker</code></h3>
-<h4>Vulnerabilities (13)</h4>
+<h4>Vulnerabilities (18)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -16,101 +16,187 @@
         <td><code>github.com/kyverno/kyverno</code></td>
         <td>CVE-2026-22039</td>
         <td>CRITICAL</td>
-        <td>v1.5.0-rc1.0.20260122002923-b35e0045f4a1+dirty</td>
+        <td>v1.5.0-rc1.0.20260515132345-6f8bd6226460+dirty</td>
         <td>1.15.3, 1.16.3</td>
     </tr>
     <tr>
         <td><code>github.com/kyverno/kyverno</code></td>
         <td>CVE-2023-47630</td>
         <td>HIGH</td>
-        <td>v1.5.0-rc1.0.20260122002923-b35e0045f4a1+dirty</td>
+        <td>v1.5.0-rc1.0.20260515132345-6f8bd6226460+dirty</td>
         <td>1.10.5</td>
     </tr>
     <tr>
         <td><code>github.com/kyverno/kyverno</code></td>
         <td>CVE-2024-48921</td>
         <td>HIGH</td>
-        <td>v1.5.0-rc1.0.20260122002923-b35e0045f4a1+dirty</td>
+        <td>v1.5.0-rc1.0.20260515132345-6f8bd6226460+dirty</td>
         <td>1.13.0</td>
     </tr>
     <tr>
         <td><code>github.com/kyverno/kyverno</code></td>
         <td>CVE-2025-46342</td>
         <td>HIGH</td>
-        <td>v1.5.0-rc1.0.20260122002923-b35e0045f4a1+dirty</td>
+        <td>v1.5.0-rc1.0.20260515132345-6f8bd6226460+dirty</td>
         <td>1.13.5, 1.14.0</td>
     </tr>
     <tr>
         <td><code>github.com/kyverno/kyverno</code></td>
         <td>CVE-2025-47281</td>
         <td>HIGH</td>
-        <td>v1.5.0-rc1.0.20260122002923-b35e0045f4a1+dirty</td>
+        <td>v1.5.0-rc1.0.20260515132345-6f8bd6226460+dirty</td>
         <td>1.14.2</td>
     </tr>
     <tr>
         <td><code>github.com/kyverno/kyverno</code></td>
         <td>CVE-2026-23881</td>
         <td>HIGH</td>
-        <td>v1.5.0-rc1.0.20260122002923-b35e0045f4a1+dirty</td>
+        <td>v1.5.0-rc1.0.20260515132345-6f8bd6226460+dirty</td>
         <td>1.15.3, 1.16.3</td>
+    </tr>
+    <tr>
+        <td><code>github.com/kyverno/kyverno</code></td>
+        <td>CVE-2026-40868</td>
+        <td>HIGH</td>
+        <td>v1.5.0-rc1.0.20260515132345-6f8bd6226460+dirty</td>
+        <td>1.17.0</td>
+    </tr>
+    <tr>
+        <td><code>github.com/kyverno/kyverno</code></td>
+        <td>CVE-2026-41068</td>
+        <td>HIGH</td>
+        <td>v1.5.0-rc1.0.20260515132345-6f8bd6226460+dirty</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>github.com/kyverno/kyverno</code></td>
+        <td>CVE-2026-41323</td>
+        <td>HIGH</td>
+        <td>v1.5.0-rc1.0.20260515132345-6f8bd6226460+dirty</td>
+        <td>1.17.0</td>
     </tr>
     <tr>
         <td><code>github.com/kyverno/kyverno</code></td>
         <td>GHSA-459x-q9hg-4gpq</td>
         <td>HIGH</td>
-        <td>v1.5.0-rc1.0.20260122002923-b35e0045f4a1+dirty</td>
+        <td>v1.5.0-rc1.0.20260515132345-6f8bd6226460+dirty</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>github.com/kyverno/kyverno</code></td>
+        <td>GHSA-8wfp-579w-6r25</td>
+        <td>HIGH</td>
+        <td>v1.5.0-rc1.0.20260515132345-6f8bd6226460+dirty</td>
+        <td>1.17.0</td>
+    </tr>
+    <tr>
+        <td><code>github.com/kyverno/kyverno</code></td>
+        <td>GHSA-fmqp-4wfc-w3v7</td>
+        <td>HIGH</td>
+        <td>v1.5.0-rc1.0.20260515132345-6f8bd6226460+dirty</td>
+        <td>1.16.2</td>
+    </tr>
+    <tr>
+        <td><code>github.com/kyverno/kyverno</code></td>
+        <td>GHSA-qr4g-8hrp-c4rw</td>
+        <td>HIGH</td>
+        <td>v1.5.0-rc1.0.20260515132345-6f8bd6226460+dirty</td>
         <td></td>
     </tr>
     <tr>
         <td><code>stdlib</code></td>
-        <td>CVE-2025-68121</td>
-        <td>CRITICAL</td>
-        <td>v1.25.5</td>
-        <td>1.24.13, 1.25.7, 1.26.0-rc.3</td>
+        <td>CVE-2026-33811</td>
+        <td>HIGH</td>
+        <td>v1.26.2</td>
+        <td>1.25.10, 1.26.3</td>
     </tr>
     <tr>
         <td><code>stdlib</code></td>
-        <td>CVE-2025-61726</td>
+        <td>CVE-2026-33814</td>
         <td>HIGH</td>
-        <td>v1.25.5</td>
-        <td>1.24.12, 1.25.6</td>
+        <td>v1.26.2</td>
+        <td>1.25.10, 1.26.3</td>
     </tr>
     <tr>
         <td><code>stdlib</code></td>
-        <td>CVE-2025-61728</td>
+        <td>CVE-2026-39820</td>
         <td>HIGH</td>
-        <td>v1.25.5</td>
-        <td>1.24.12, 1.25.6</td>
+        <td>v1.26.2</td>
+        <td>1.25.10, 1.26.3</td>
     </tr>
     <tr>
         <td><code>stdlib</code></td>
-        <td>CVE-2026-25679</td>
+        <td>CVE-2026-39836</td>
         <td>HIGH</td>
-        <td>v1.25.5</td>
-        <td>1.25.8, 1.26.1</td>
+        <td>v1.26.2</td>
+        <td>1.25.10, 1.26.3</td>
     </tr>
     <tr>
         <td><code>stdlib</code></td>
-        <td>CVE-2026-32280</td>
+        <td>CVE-2026-42499</td>
         <td>HIGH</td>
-        <td>v1.25.5</td>
-        <td>1.25.9, 1.26.2</td>
-    </tr>
-    <tr>
-        <td><code>stdlib</code></td>
-        <td>CVE-2026-32282</td>
-        <td>HIGH</td>
-        <td>v1.25.5</td>
-        <td>1.25.9, 1.26.2</td>
+        <td>v1.26.2</td>
+        <td>1.25.10, 1.26.3</td>
     </tr>
 </table>
 <h4>No Misconfigurations found</h4>
 
-<h3>Target <code>reg.kyverno.io/kyverno/background-controller:v1.17.1 (alpine 3.24.0_alpha20260127)</code></h3>
+<h3>Target <code>ghcr.io/kyverno/readiness-checker:v1.18.0 (alpine 3.24.0_alpha20260127)</code></h3>
+<h4>No Vulnerabilities found</h4>
+<h4>No Misconfigurations found</h4>
+<h3>Target <code>ko-app/readiness-checker</code></h3>
+<h4>Vulnerabilities (5)</h4>
+<table>
+    <tr>
+        <th>Package</th>
+        <th>ID</th>
+        <th>Severity</th>
+        <th>Installed Version</th>
+        <th>Fixed Version</th>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-33811</td>
+        <td>HIGH</td>
+        <td>v1.26.2</td>
+        <td>1.25.10, 1.26.3</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-33814</td>
+        <td>HIGH</td>
+        <td>v1.26.2</td>
+        <td>1.25.10, 1.26.3</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-39820</td>
+        <td>HIGH</td>
+        <td>v1.26.2</td>
+        <td>1.25.10, 1.26.3</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-39836</td>
+        <td>HIGH</td>
+        <td>v1.26.2</td>
+        <td>1.25.10, 1.26.3</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-42499</td>
+        <td>HIGH</td>
+        <td>v1.26.2</td>
+        <td>1.25.10, 1.26.3</td>
+    </tr>
+</table>
+<h4>No Misconfigurations found</h4>
+
+<h3>Target <code>reg.kyverno.io/kyverno/background-controller:v1.18.0 (alpine 3.24.0_alpha20260127)</code></h3>
 <h4>No Vulnerabilities found</h4>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>ko-app/background-controller</code></h3>
-<h4>Vulnerabilities (8)</h4>
+<h4>Vulnerabilities (5)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -120,69 +206,48 @@
         <th>Fixed Version</th>
     </tr>
     <tr>
-        <td><code>github.com/docker/cli</code></td>
-        <td>CVE-2025-15558</td>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-33811</td>
         <td>HIGH</td>
-        <td>v29.0.3+incompatible</td>
-        <td>29.2.0</td>
-    </tr>
-    <tr>
-        <td><code>github.com/go-jose/go-jose/v4</code></td>
-        <td>CVE-2026-34986</td>
-        <td>HIGH</td>
-        <td>v4.1.3</td>
-        <td>4.1.4</td>
-    </tr>
-    <tr>
-        <td><code>go.opentelemetry.io/otel/sdk</code></td>
-        <td>CVE-2026-24051</td>
-        <td>HIGH</td>
-        <td>v1.39.0</td>
-        <td>1.40.0</td>
-    </tr>
-    <tr>
-        <td><code>go.opentelemetry.io/otel/sdk</code></td>
-        <td>CVE-2026-39883</td>
-        <td>HIGH</td>
-        <td>v1.39.0</td>
-        <td>1.43.0</td>
-    </tr>
-    <tr>
-        <td><code>google.golang.org/grpc</code></td>
-        <td>CVE-2026-33186</td>
-        <td>CRITICAL</td>
-        <td>v1.78.0</td>
-        <td>1.79.3</td>
+        <td>v1.26.2</td>
+        <td>1.25.10, 1.26.3</td>
     </tr>
     <tr>
         <td><code>stdlib</code></td>
-        <td>CVE-2026-25679</td>
+        <td>CVE-2026-33814</td>
         <td>HIGH</td>
-        <td>v1.25.7</td>
-        <td>1.25.8, 1.26.1</td>
+        <td>v1.26.2</td>
+        <td>1.25.10, 1.26.3</td>
     </tr>
     <tr>
         <td><code>stdlib</code></td>
-        <td>CVE-2026-32280</td>
+        <td>CVE-2026-39820</td>
         <td>HIGH</td>
-        <td>v1.25.7</td>
-        <td>1.25.9, 1.26.2</td>
+        <td>v1.26.2</td>
+        <td>1.25.10, 1.26.3</td>
     </tr>
     <tr>
         <td><code>stdlib</code></td>
-        <td>CVE-2026-32282</td>
+        <td>CVE-2026-39836</td>
         <td>HIGH</td>
-        <td>v1.25.7</td>
-        <td>1.25.9, 1.26.2</td>
+        <td>v1.26.2</td>
+        <td>1.25.10, 1.26.3</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-42499</td>
+        <td>HIGH</td>
+        <td>v1.26.2</td>
+        <td>1.25.10, 1.26.3</td>
     </tr>
 </table>
 <h4>No Misconfigurations found</h4>
 
-<h3>Target <code>reg.kyverno.io/kyverno/cleanup-controller:v1.17.1 (alpine 3.24.0_alpha20260127)</code></h3>
+<h3>Target <code>reg.kyverno.io/kyverno/cleanup-controller:v1.18.0 (alpine 3.24.0_alpha20260127)</code></h3>
 <h4>No Vulnerabilities found</h4>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>ko-app/cleanup-controller</code></h3>
-<h4>Vulnerabilities (8)</h4>
+<h4>Vulnerabilities (5)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -192,69 +257,48 @@
         <th>Fixed Version</th>
     </tr>
     <tr>
-        <td><code>github.com/docker/cli</code></td>
-        <td>CVE-2025-15558</td>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-33811</td>
         <td>HIGH</td>
-        <td>v29.0.3+incompatible</td>
-        <td>29.2.0</td>
-    </tr>
-    <tr>
-        <td><code>github.com/go-jose/go-jose/v4</code></td>
-        <td>CVE-2026-34986</td>
-        <td>HIGH</td>
-        <td>v4.1.3</td>
-        <td>4.1.4</td>
-    </tr>
-    <tr>
-        <td><code>go.opentelemetry.io/otel/sdk</code></td>
-        <td>CVE-2026-24051</td>
-        <td>HIGH</td>
-        <td>v1.39.0</td>
-        <td>1.40.0</td>
-    </tr>
-    <tr>
-        <td><code>go.opentelemetry.io/otel/sdk</code></td>
-        <td>CVE-2026-39883</td>
-        <td>HIGH</td>
-        <td>v1.39.0</td>
-        <td>1.43.0</td>
-    </tr>
-    <tr>
-        <td><code>google.golang.org/grpc</code></td>
-        <td>CVE-2026-33186</td>
-        <td>CRITICAL</td>
-        <td>v1.78.0</td>
-        <td>1.79.3</td>
+        <td>v1.26.2</td>
+        <td>1.25.10, 1.26.3</td>
     </tr>
     <tr>
         <td><code>stdlib</code></td>
-        <td>CVE-2026-25679</td>
+        <td>CVE-2026-33814</td>
         <td>HIGH</td>
-        <td>v1.25.7</td>
-        <td>1.25.8, 1.26.1</td>
+        <td>v1.26.2</td>
+        <td>1.25.10, 1.26.3</td>
     </tr>
     <tr>
         <td><code>stdlib</code></td>
-        <td>CVE-2026-32280</td>
+        <td>CVE-2026-39820</td>
         <td>HIGH</td>
-        <td>v1.25.7</td>
-        <td>1.25.9, 1.26.2</td>
+        <td>v1.26.2</td>
+        <td>1.25.10, 1.26.3</td>
     </tr>
     <tr>
         <td><code>stdlib</code></td>
-        <td>CVE-2026-32282</td>
+        <td>CVE-2026-39836</td>
         <td>HIGH</td>
-        <td>v1.25.7</td>
-        <td>1.25.9, 1.26.2</td>
+        <td>v1.26.2</td>
+        <td>1.25.10, 1.26.3</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-42499</td>
+        <td>HIGH</td>
+        <td>v1.26.2</td>
+        <td>1.25.10, 1.26.3</td>
     </tr>
 </table>
 <h4>No Misconfigurations found</h4>
 
-<h3>Target <code>reg.kyverno.io/kyverno/kyverno-cli:v1.17.1 (alpine 3.24.0_alpha20260127)</code></h3>
+<h3>Target <code>reg.kyverno.io/kyverno/kyverno-cli:v1.18.0 (alpine 3.24.0_alpha20260127)</code></h3>
 <h4>No Vulnerabilities found</h4>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>ko-app/kubectl-kyverno</code></h3>
-<h4>Vulnerabilities (8)</h4>
+<h4>Vulnerabilities (7)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -264,69 +308,62 @@
         <th>Fixed Version</th>
     </tr>
     <tr>
-        <td><code>github.com/docker/cli</code></td>
-        <td>CVE-2025-15558</td>
+        <td><code>github.com/go-git/go-billy/v5</code></td>
+        <td>CVE-2026-44973</td>
         <td>HIGH</td>
-        <td>v29.0.3+incompatible</td>
-        <td>29.2.0</td>
+        <td>v5.8.0</td>
+        <td>5.9.0</td>
     </tr>
     <tr>
-        <td><code>github.com/go-jose/go-jose/v4</code></td>
-        <td>CVE-2026-34986</td>
+        <td><code>github.com/go-git/go-git/v5</code></td>
+        <td>CVE-2026-45022</td>
         <td>HIGH</td>
-        <td>v4.1.3</td>
-        <td>4.1.4</td>
-    </tr>
-    <tr>
-        <td><code>go.opentelemetry.io/otel/sdk</code></td>
-        <td>CVE-2026-24051</td>
-        <td>HIGH</td>
-        <td>v1.39.0</td>
-        <td>1.40.0</td>
-    </tr>
-    <tr>
-        <td><code>go.opentelemetry.io/otel/sdk</code></td>
-        <td>CVE-2026-39883</td>
-        <td>HIGH</td>
-        <td>v1.39.0</td>
-        <td>1.43.0</td>
-    </tr>
-    <tr>
-        <td><code>google.golang.org/grpc</code></td>
-        <td>CVE-2026-33186</td>
-        <td>CRITICAL</td>
-        <td>v1.78.0</td>
-        <td>1.79.3</td>
+        <td>v5.18.0</td>
+        <td>5.19.0</td>
     </tr>
     <tr>
         <td><code>stdlib</code></td>
-        <td>CVE-2026-25679</td>
+        <td>CVE-2026-33811</td>
         <td>HIGH</td>
-        <td>v1.25.7</td>
-        <td>1.25.8, 1.26.1</td>
+        <td>v1.26.2</td>
+        <td>1.25.10, 1.26.3</td>
     </tr>
     <tr>
         <td><code>stdlib</code></td>
-        <td>CVE-2026-32280</td>
+        <td>CVE-2026-33814</td>
         <td>HIGH</td>
-        <td>v1.25.7</td>
-        <td>1.25.9, 1.26.2</td>
+        <td>v1.26.2</td>
+        <td>1.25.10, 1.26.3</td>
     </tr>
     <tr>
         <td><code>stdlib</code></td>
-        <td>CVE-2026-32282</td>
+        <td>CVE-2026-39820</td>
         <td>HIGH</td>
-        <td>v1.25.7</td>
-        <td>1.25.9, 1.26.2</td>
+        <td>v1.26.2</td>
+        <td>1.25.10, 1.26.3</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-39836</td>
+        <td>HIGH</td>
+        <td>v1.26.2</td>
+        <td>1.25.10, 1.26.3</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-42499</td>
+        <td>HIGH</td>
+        <td>v1.26.2</td>
+        <td>1.25.10, 1.26.3</td>
     </tr>
 </table>
 <h4>No Misconfigurations found</h4>
 
-<h3>Target <code>reg.kyverno.io/kyverno/kyverno:v1.17.1 (alpine 3.24.0_alpha20260127)</code></h3>
+<h3>Target <code>reg.kyverno.io/kyverno/kyverno:v1.18.0 (alpine 3.24.0_alpha20260127)</code></h3>
 <h4>No Vulnerabilities found</h4>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>ko-app/kyverno</code></h3>
-<h4>Vulnerabilities (8)</h4>
+<h4>Vulnerabilities (5)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -336,69 +373,48 @@
         <th>Fixed Version</th>
     </tr>
     <tr>
-        <td><code>github.com/docker/cli</code></td>
-        <td>CVE-2025-15558</td>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-33811</td>
         <td>HIGH</td>
-        <td>v29.0.3+incompatible</td>
-        <td>29.2.0</td>
-    </tr>
-    <tr>
-        <td><code>github.com/go-jose/go-jose/v4</code></td>
-        <td>CVE-2026-34986</td>
-        <td>HIGH</td>
-        <td>v4.1.3</td>
-        <td>4.1.4</td>
-    </tr>
-    <tr>
-        <td><code>go.opentelemetry.io/otel/sdk</code></td>
-        <td>CVE-2026-24051</td>
-        <td>HIGH</td>
-        <td>v1.39.0</td>
-        <td>1.40.0</td>
-    </tr>
-    <tr>
-        <td><code>go.opentelemetry.io/otel/sdk</code></td>
-        <td>CVE-2026-39883</td>
-        <td>HIGH</td>
-        <td>v1.39.0</td>
-        <td>1.43.0</td>
-    </tr>
-    <tr>
-        <td><code>google.golang.org/grpc</code></td>
-        <td>CVE-2026-33186</td>
-        <td>CRITICAL</td>
-        <td>v1.78.0</td>
-        <td>1.79.3</td>
+        <td>v1.26.2</td>
+        <td>1.25.10, 1.26.3</td>
     </tr>
     <tr>
         <td><code>stdlib</code></td>
-        <td>CVE-2026-25679</td>
+        <td>CVE-2026-33814</td>
         <td>HIGH</td>
-        <td>v1.25.7</td>
-        <td>1.25.8, 1.26.1</td>
+        <td>v1.26.2</td>
+        <td>1.25.10, 1.26.3</td>
     </tr>
     <tr>
         <td><code>stdlib</code></td>
-        <td>CVE-2026-32280</td>
+        <td>CVE-2026-39820</td>
         <td>HIGH</td>
-        <td>v1.25.7</td>
-        <td>1.25.9, 1.26.2</td>
+        <td>v1.26.2</td>
+        <td>1.25.10, 1.26.3</td>
     </tr>
     <tr>
         <td><code>stdlib</code></td>
-        <td>CVE-2026-32282</td>
+        <td>CVE-2026-39836</td>
         <td>HIGH</td>
-        <td>v1.25.7</td>
-        <td>1.25.9, 1.26.2</td>
+        <td>v1.26.2</td>
+        <td>1.25.10, 1.26.3</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-42499</td>
+        <td>HIGH</td>
+        <td>v1.26.2</td>
+        <td>1.25.10, 1.26.3</td>
     </tr>
 </table>
 <h4>No Misconfigurations found</h4>
 
-<h3>Target <code>reg.kyverno.io/kyverno/kyvernopre:v1.17.1 (alpine 3.24.0_alpha20260127)</code></h3>
+<h3>Target <code>reg.kyverno.io/kyverno/kyvernopre:v1.18.0 (alpine 3.24.0_alpha20260127)</code></h3>
 <h4>No Vulnerabilities found</h4>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>ko-app/kyverno-init</code></h3>
-<h4>Vulnerabilities (8)</h4>
+<h4>Vulnerabilities (5)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -408,141 +424,48 @@
         <th>Fixed Version</th>
     </tr>
     <tr>
-        <td><code>github.com/docker/cli</code></td>
-        <td>CVE-2025-15558</td>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-33811</td>
         <td>HIGH</td>
-        <td>v29.0.3+incompatible</td>
-        <td>29.2.0</td>
-    </tr>
-    <tr>
-        <td><code>github.com/go-jose/go-jose/v4</code></td>
-        <td>CVE-2026-34986</td>
-        <td>HIGH</td>
-        <td>v4.1.3</td>
-        <td>4.1.4</td>
-    </tr>
-    <tr>
-        <td><code>go.opentelemetry.io/otel/sdk</code></td>
-        <td>CVE-2026-24051</td>
-        <td>HIGH</td>
-        <td>v1.39.0</td>
-        <td>1.40.0</td>
-    </tr>
-    <tr>
-        <td><code>go.opentelemetry.io/otel/sdk</code></td>
-        <td>CVE-2026-39883</td>
-        <td>HIGH</td>
-        <td>v1.39.0</td>
-        <td>1.43.0</td>
-    </tr>
-    <tr>
-        <td><code>google.golang.org/grpc</code></td>
-        <td>CVE-2026-33186</td>
-        <td>CRITICAL</td>
-        <td>v1.78.0</td>
-        <td>1.79.3</td>
+        <td>v1.26.2</td>
+        <td>1.25.10, 1.26.3</td>
     </tr>
     <tr>
         <td><code>stdlib</code></td>
-        <td>CVE-2026-25679</td>
+        <td>CVE-2026-33814</td>
         <td>HIGH</td>
-        <td>v1.25.7</td>
-        <td>1.25.8, 1.26.1</td>
+        <td>v1.26.2</td>
+        <td>1.25.10, 1.26.3</td>
     </tr>
     <tr>
         <td><code>stdlib</code></td>
-        <td>CVE-2026-32280</td>
+        <td>CVE-2026-39820</td>
         <td>HIGH</td>
-        <td>v1.25.7</td>
-        <td>1.25.9, 1.26.2</td>
+        <td>v1.26.2</td>
+        <td>1.25.10, 1.26.3</td>
     </tr>
     <tr>
         <td><code>stdlib</code></td>
-        <td>CVE-2026-32282</td>
+        <td>CVE-2026-39836</td>
         <td>HIGH</td>
-        <td>v1.25.7</td>
-        <td>1.25.9, 1.26.2</td>
+        <td>v1.26.2</td>
+        <td>1.25.10, 1.26.3</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-42499</td>
+        <td>HIGH</td>
+        <td>v1.26.2</td>
+        <td>1.25.10, 1.26.3</td>
     </tr>
 </table>
 <h4>No Misconfigurations found</h4>
 
-<h3>Target <code>reg.kyverno.io/kyverno/reports-controller:v1.17.1 (alpine 3.24.0_alpha20260127)</code></h3>
+<h3>Target <code>reg.kyverno.io/kyverno/reports-controller:v1.18.0 (alpine 3.24.0_alpha20260127)</code></h3>
 <h4>No Vulnerabilities found</h4>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>ko-app/reports-controller</code></h3>
-<h4>Vulnerabilities (8)</h4>
-<table>
-    <tr>
-        <th>Package</th>
-        <th>ID</th>
-        <th>Severity</th>
-        <th>Installed Version</th>
-        <th>Fixed Version</th>
-    </tr>
-    <tr>
-        <td><code>github.com/docker/cli</code></td>
-        <td>CVE-2025-15558</td>
-        <td>HIGH</td>
-        <td>v29.0.3+incompatible</td>
-        <td>29.2.0</td>
-    </tr>
-    <tr>
-        <td><code>github.com/go-jose/go-jose/v4</code></td>
-        <td>CVE-2026-34986</td>
-        <td>HIGH</td>
-        <td>v4.1.3</td>
-        <td>4.1.4</td>
-    </tr>
-    <tr>
-        <td><code>go.opentelemetry.io/otel/sdk</code></td>
-        <td>CVE-2026-24051</td>
-        <td>HIGH</td>
-        <td>v1.39.0</td>
-        <td>1.40.0</td>
-    </tr>
-    <tr>
-        <td><code>go.opentelemetry.io/otel/sdk</code></td>
-        <td>CVE-2026-39883</td>
-        <td>HIGH</td>
-        <td>v1.39.0</td>
-        <td>1.43.0</td>
-    </tr>
-    <tr>
-        <td><code>google.golang.org/grpc</code></td>
-        <td>CVE-2026-33186</td>
-        <td>CRITICAL</td>
-        <td>v1.78.0</td>
-        <td>1.79.3</td>
-    </tr>
-    <tr>
-        <td><code>stdlib</code></td>
-        <td>CVE-2026-25679</td>
-        <td>HIGH</td>
-        <td>v1.25.7</td>
-        <td>1.25.8, 1.26.1</td>
-    </tr>
-    <tr>
-        <td><code>stdlib</code></td>
-        <td>CVE-2026-32280</td>
-        <td>HIGH</td>
-        <td>v1.25.7</td>
-        <td>1.25.9, 1.26.2</td>
-    </tr>
-    <tr>
-        <td><code>stdlib</code></td>
-        <td>CVE-2026-32282</td>
-        <td>HIGH</td>
-        <td>v1.25.7</td>
-        <td>1.25.9, 1.26.2</td>
-    </tr>
-</table>
-<h4>No Misconfigurations found</h4>
-
-<h3>Target <code>registry.k8s.io/kubectl:v1.34.3 (debian 12.12)</code></h3>
-<h4>No Vulnerabilities found</h4>
-<h4>No Misconfigurations found</h4>
-<h3>Target <code>bin/kubectl</code></h3>
-<h4>Vulnerabilities (6)</h4>
+<h4>Vulnerabilities (5)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -553,99 +476,38 @@
     </tr>
     <tr>
         <td><code>stdlib</code></td>
-        <td>CVE-2025-68121</td>
-        <td>CRITICAL</td>
-        <td>v1.24.11</td>
-        <td>1.24.13, 1.25.7, 1.26.0-rc.3</td>
-    </tr>
-    <tr>
-        <td><code>stdlib</code></td>
-        <td>CVE-2025-61726</td>
+        <td>CVE-2026-33811</td>
         <td>HIGH</td>
-        <td>v1.24.11</td>
-        <td>1.24.12, 1.25.6</td>
+        <td>v1.26.2</td>
+        <td>1.25.10, 1.26.3</td>
     </tr>
     <tr>
         <td><code>stdlib</code></td>
-        <td>CVE-2025-61728</td>
+        <td>CVE-2026-33814</td>
         <td>HIGH</td>
-        <td>v1.24.11</td>
-        <td>1.24.12, 1.25.6</td>
+        <td>v1.26.2</td>
+        <td>1.25.10, 1.26.3</td>
     </tr>
     <tr>
         <td><code>stdlib</code></td>
-        <td>CVE-2026-25679</td>
+        <td>CVE-2026-39820</td>
         <td>HIGH</td>
-        <td>v1.24.11</td>
-        <td>1.25.8, 1.26.1</td>
+        <td>v1.26.2</td>
+        <td>1.25.10, 1.26.3</td>
     </tr>
     <tr>
         <td><code>stdlib</code></td>
-        <td>CVE-2026-32280</td>
+        <td>CVE-2026-39836</td>
         <td>HIGH</td>
-        <td>v1.24.11</td>
-        <td>1.25.9, 1.26.2</td>
+        <td>v1.26.2</td>
+        <td>1.25.10, 1.26.3</td>
     </tr>
     <tr>
         <td><code>stdlib</code></td>
-        <td>CVE-2026-32282</td>
+        <td>CVE-2026-42499</td>
         <td>HIGH</td>
-        <td>v1.24.11</td>
-        <td>1.25.9, 1.26.2</td>
-    </tr>
-</table>
-<h4>No Misconfigurations found</h4>
-<h3>Target <code>go-runner</code></h3>
-<h4>Vulnerabilities (6)</h4>
-<table>
-    <tr>
-        <th>Package</th>
-        <th>ID</th>
-        <th>Severity</th>
-        <th>Installed Version</th>
-        <th>Fixed Version</th>
-    </tr>
-    <tr>
-        <td><code>stdlib</code></td>
-        <td>CVE-2025-68121</td>
-        <td>CRITICAL</td>
-        <td>v1.24.11</td>
-        <td>1.24.13, 1.25.7, 1.26.0-rc.3</td>
-    </tr>
-    <tr>
-        <td><code>stdlib</code></td>
-        <td>CVE-2025-61726</td>
-        <td>HIGH</td>
-        <td>v1.24.11</td>
-        <td>1.24.12, 1.25.6</td>
-    </tr>
-    <tr>
-        <td><code>stdlib</code></td>
-        <td>CVE-2025-61728</td>
-        <td>HIGH</td>
-        <td>v1.24.11</td>
-        <td>1.24.12, 1.25.6</td>
-    </tr>
-    <tr>
-        <td><code>stdlib</code></td>
-        <td>CVE-2026-25679</td>
-        <td>HIGH</td>
-        <td>v1.24.11</td>
-        <td>1.25.8, 1.26.1</td>
-    </tr>
-    <tr>
-        <td><code>stdlib</code></td>
-        <td>CVE-2026-32280</td>
-        <td>HIGH</td>
-        <td>v1.24.11</td>
-        <td>1.25.9, 1.26.2</td>
-    </tr>
-    <tr>
-        <td><code>stdlib</code></td>
-        <td>CVE-2026-32282</td>
-        <td>HIGH</td>
-        <td>v1.24.11</td>
-        <td>1.25.9, 1.26.2</td>
+        <td>v1.26.2</td>
+        <td>1.25.10, 1.26.3</td>
     </tr>
 </table>
 <h4>No Misconfigurations found</h4>
