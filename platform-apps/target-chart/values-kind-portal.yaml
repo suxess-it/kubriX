@@ -78,6 +78,10 @@ applications:
 
   - name: tempo
 
+  - name: kyverno
+    syncOptions:
+      - ServerSideApply=true
+  
   - name: testkube
     annotations:
       argocd.argoproj.io/compare-options: ServerSideDiff=true
