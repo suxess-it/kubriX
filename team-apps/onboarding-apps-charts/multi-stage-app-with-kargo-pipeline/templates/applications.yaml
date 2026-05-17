@@ -22,6 +22,8 @@ spec:
     helm:
       valueFiles:
       - values-{{ .name }}.yaml
+      valuesObject:
+        kubriXTeamName: {{ $.Values.teamName }}
   destination:
     server: https://kubernetes.default.svc
     namespace: {{ $.Values.teamName }}-{{ $.Values.appName }}-{{ .name }}

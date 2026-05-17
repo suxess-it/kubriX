@@ -91,17 +91,18 @@ setup('Github Login', async ({ page }, testInfo) => {
   // Open GitHub login popup
   await page.getByRole('listitem').filter({ hasText: 'GitHubSign in using' }).getByRole('button').click();
 
-  const popup = await page.waitForEvent('popup'); // your page1Promise
+  const popup = await page.waitForEvent('popup');
   const authorize = popup.getByRole('button', { name: 'Authorize kubriX-demo' });
 
   await Promise.race([
-  authorize
-    .waitFor({ state: 'visible', timeout: 5000 })
-    .then(() => authorize.click())
-    .then(() => popup.waitForEvent('close')), 
-
+    (async () => {
+      await authorize.waitFor({ state: 'attached', timeout: 5000 });
+      await authorize.scrollIntoViewIfNeeded();
+      await authorize.click();
+      await popup.waitForEvent('close');
+    })(),
     // Case B: popup closes automatically -> do nothing
-    popup.waitForEvent('close')
+    popup.waitForEvent('close'),
   ]);
 
   // optional: make sure the popup is gone before continuing
