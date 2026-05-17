@@ -1,5 +1,5 @@
 
-<h3>Target <code>docker.io/grafana/grafana:12.4.3 (alpine 3.23.3)</code></h3>
+<h3>Target <code>docker.io/grafana/grafana:13.0.1 (alpine 3.23.3)</code></h3>
 <h4>Vulnerabilities (14)</h4>
 <table>
     <tr>
@@ -113,7 +113,7 @@
 <h4>No Vulnerabilities found</h4>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>usr/share/grafana/bin/grafana</code></h3>
-<h4>Vulnerabilities (16)</h4>
+<h4>Vulnerabilities (13)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -128,13 +128,6 @@
         <td>HIGH</td>
         <td>v0.22.0</td>
         <td>0.23.0</td>
-    </tr>
-    <tr>
-        <td><code>github.com/go-jose/go-jose/v4</code></td>
-        <td>CVE-2026-34986</td>
-        <td>HIGH</td>
-        <td>v4.1.3</td>
-        <td>4.1.4</td>
     </tr>
     <tr>
         <td><code>github.com/grafana/tempo</code></td>
@@ -161,7 +154,7 @@
         <td><code>github.com/moby/moby</code></td>
         <td>CVE-2026-34040</td>
         <td>HIGH</td>
-        <td>v28.0.1+incompatible</td>
+        <td>v28.5.2+incompatible</td>
         <td>29.3.1</td>
     </tr>
     <tr>
@@ -179,24 +172,10 @@
         <td>0.311.3</td>
     </tr>
     <tr>
-        <td><code>go.opentelemetry.io/otel</code></td>
-        <td>CVE-2026-29181</td>
-        <td>HIGH</td>
-        <td>v1.39.0</td>
-        <td>1.41.0</td>
-    </tr>
-    <tr>
-        <td><code>go.opentelemetry.io/otel/sdk</code></td>
-        <td>CVE-2026-24051</td>
-        <td>HIGH</td>
-        <td>v1.39.0</td>
-        <td>1.40.0</td>
-    </tr>
-    <tr>
         <td><code>go.opentelemetry.io/otel/sdk</code></td>
         <td>CVE-2026-39883</td>
         <td>HIGH</td>
-        <td>v1.39.0</td>
+        <td>v1.42.0</td>
         <td>1.43.0</td>
     </tr>
     <tr>
@@ -236,8 +215,8 @@
     </tr>
 </table>
 <h4>No Misconfigurations found</h4>
-<h3>Target <code>usr/share/grafana/bin/grafana-cli</code></h3>
-<h4>Vulnerabilities (5)</h4>
+<h3>Target <code>usr/share/grafana/data/plugins-bundled/elasticsearch/gpx_grafana_elasticsearch_datasource_linux_amd64</code></h3>
+<h4>Vulnerabilities (12)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -247,85 +226,87 @@
         <th>Fixed Version</th>
     </tr>
     <tr>
+        <td><code>go.opentelemetry.io/otel/sdk</code></td>
+        <td>CVE-2026-39883</td>
+        <td>HIGH</td>
+        <td>v1.42.0</td>
+        <td>1.43.0</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-25679</td>
+        <td>HIGH</td>
+        <td>v1.26.0</td>
+        <td>1.25.8, 1.26.1</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-27137</td>
+        <td>HIGH</td>
+        <td>v1.26.0</td>
+        <td>1.26.1</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-32280</td>
+        <td>HIGH</td>
+        <td>v1.26.0</td>
+        <td>1.25.9, 1.26.2</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-32281</td>
+        <td>HIGH</td>
+        <td>v1.26.0</td>
+        <td>1.25.9, 1.26.2</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-32283</td>
+        <td>HIGH</td>
+        <td>v1.26.0</td>
+        <td>1.25.9, 1.26.2</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-33810</td>
+        <td>HIGH</td>
+        <td>v1.26.0</td>
+        <td>1.26.2</td>
+    </tr>
+    <tr>
         <td><code>stdlib</code></td>
         <td>CVE-2026-33811</td>
         <td>HIGH</td>
-        <td>v1.25.9</td>
+        <td>v1.26.0</td>
         <td>1.25.10, 1.26.3</td>
     </tr>
     <tr>
         <td><code>stdlib</code></td>
         <td>CVE-2026-33814</td>
         <td>HIGH</td>
-        <td>v1.25.9</td>
+        <td>v1.26.0</td>
         <td>1.25.10, 1.26.3</td>
     </tr>
     <tr>
         <td><code>stdlib</code></td>
         <td>CVE-2026-39820</td>
         <td>HIGH</td>
-        <td>v1.25.9</td>
+        <td>v1.26.0</td>
         <td>1.25.10, 1.26.3</td>
     </tr>
     <tr>
         <td><code>stdlib</code></td>
         <td>CVE-2026-39836</td>
         <td>HIGH</td>
-        <td>v1.25.9</td>
+        <td>v1.26.0</td>
         <td>1.25.10, 1.26.3</td>
     </tr>
     <tr>
         <td><code>stdlib</code></td>
         <td>CVE-2026-42499</td>
         <td>HIGH</td>
-        <td>v1.25.9</td>
-        <td>1.25.10, 1.26.3</td>
-    </tr>
-</table>
-<h4>No Misconfigurations found</h4>
-<h3>Target <code>usr/share/grafana/bin/grafana-server</code></h3>
-<h4>Vulnerabilities (5)</h4>
-<table>
-    <tr>
-        <th>Package</th>
-        <th>ID</th>
-        <th>Severity</th>
-        <th>Installed Version</th>
-        <th>Fixed Version</th>
-    </tr>
-    <tr>
-        <td><code>stdlib</code></td>
-        <td>CVE-2026-33811</td>
-        <td>HIGH</td>
-        <td>v1.25.9</td>
-        <td>1.25.10, 1.26.3</td>
-    </tr>
-    <tr>
-        <td><code>stdlib</code></td>
-        <td>CVE-2026-33814</td>
-        <td>HIGH</td>
-        <td>v1.25.9</td>
-        <td>1.25.10, 1.26.3</td>
-    </tr>
-    <tr>
-        <td><code>stdlib</code></td>
-        <td>CVE-2026-39820</td>
-        <td>HIGH</td>
-        <td>v1.25.9</td>
-        <td>1.25.10, 1.26.3</td>
-    </tr>
-    <tr>
-        <td><code>stdlib</code></td>
-        <td>CVE-2026-39836</td>
-        <td>HIGH</td>
-        <td>v1.25.9</td>
-        <td>1.25.10, 1.26.3</td>
-    </tr>
-    <tr>
-        <td><code>stdlib</code></td>
-        <td>CVE-2026-42499</td>
-        <td>HIGH</td>
-        <td>v1.25.9</td>
+        <td>v1.26.0</td>
         <td>1.25.10, 1.26.3</td>
     </tr>
 </table>
