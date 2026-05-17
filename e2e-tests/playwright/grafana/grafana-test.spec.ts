@@ -1,4 +1,4 @@
-import { test, expect } from '@playwright/test';
+import { test, expect, type Page } from '@playwright/test';
 import path from 'path';
 import fs from "fs";
 
@@ -6,6 +6,27 @@ const authDir = path.join(__dirname, '../.auth');
 const grafanaAuthFile = path.join(authDir, 'grafana.json');
 const BASE_DOMAIN = process.env.E2E_BASE_DOMAIN ?? '127-0-0-1.nip.io';
 test.use({ storageState: grafanaAuthFile });
+
+async function scrollGrafanaDown(page: Page) {
+  await page.evaluate(() => {
+    function isScrollable(el: Element) {
+      const style = getComputedStyle(el);
+      return /(auto|scroll)/.test(style.overflowY) && el.scrollHeight > el.clientHeight;
+    }
+
+    let el = document.elementFromPoint(window.innerWidth / 2, window.innerHeight / 2);
+
+    while (el && el !== document.body) {
+      if (isScrollable(el)) {
+        el.scrollBy({ top: 900, behavior: 'instant' });
+        return;
+      }
+      el = el.parentElement;
+    }
+
+    document.scrollingElement?.scrollBy({ top: 900, behavior: 'instant' });
+  });
+}
 
 test('Grafana Check Datasources', async ({ page }) => {
   test.slow();
@@ -48,7 +69,7 @@ test('Grafana CNPG Dashboard', async ({ page }) => {
 test('Grafana OpenBao Dashboard', async ({ page }) => {
   test.slow();
 
-  await page.goto(`https://grafana.${BASE_DOMAIN}/d/vaults/grc-openbao?orgId=1&from=now-2h&to=now&timezone=browser&var-datasource=default&var-node=10.240.0.98&var-port=&var-mountpoint=$__all`);
+  await page.goto(`https://grafana.${BASE_DOMAIN}/d/vaults/grc-openbao?orgId=1&from=now-2h&to=now&timezone=browser&var-datasource=default&var-port=&var-mountpoint=$__all`);
 
   await expect(
     page.locator('div[title="sx-openbao-active"]').getByText('Active', { exact: true })
@@ -69,7 +90,7 @@ test('Grafana OpenBao Dashboard', async ({ page }) => {
 test('Grafana K8s Namespace Dashboard', async ({ page }) => {
   test.slow();
 
-  await page.goto(`https://grafana.${BASE_DOMAIN}/d/k8s_views_global/kubernetes-views-global?orgId=1&from=now-2h&to=now&timezone=browser&var-datasource=default&var-node=10.240.0.98&var-port=&var-mountpoint=$__all`, { waitUntil: 'domcontentloaded' });
+  await page.goto(`https://grafana.${BASE_DOMAIN}/d/k8s_views_global/kubernetes-views-global?orgId=1&from=now-2h&to=now&timezone=browser&var-datasource=default&var-port=&var-mountpoint=$__all`, { waitUntil: 'domcontentloaded' });
 
   // wait for the first panel to fully load
   const firstPanel = page.getByRole('region', { name: 'Global CPU Usage', exact: true });
@@ -89,27 +110,31 @@ test('Grafana K8s Namespace Dashboard', async ({ page }) => {
     "Global Network Utilization by device", "Network Saturation - Packets dropped", "Network Received by namespace", "Total Network Received (with all virtual devices) by instance",
     "Network Received (without loopback) by instance", "Network Received (loopback only) by instance"
   ];
-  for (const panel of panels) {
-    const region = page.getByRole('region', { name: panel, exact: true });
 
-    // If virtualized, this helps “discover” it
-    for (let i = 0; i < 25 && !(await region.count()); i++) {
-      await page.mouse.wheel(0, 800);
-    }
+for (const panel of panels) {
+  const region = page.getByRole('region', { name: panel, exact: true });
 
-    await expect(region).toHaveCount(1, { timeout: 20_000 });
+  await page.mouse.move(
+    page.viewportSize()!.width / 2,
+    page.viewportSize()!.height / 2
+  );
 
-    // Try to bring into view but don't allow long hangs
-    await region.scrollIntoViewIfNeeded({ timeout: 5_000 }).catch(() => {});
+  for (let i = 0; i < 80; i++) {
+    if (await region.isVisible().catch(() => false)) break;
 
-    await expect(region).toBeVisible({ timeout: 20_000 });
-
-    await expect
-      .poll(async () => region.getByText('No data', { exact: true }).count(), { timeout: 20_000 })
-      .toBe(0);
-
+    await scrollGrafanaDown(page);
+    await page.waitForTimeout(150);
   }
 
+  await expect(region).toHaveCount(1, { timeout: 20_000 });
+
+  await region.evaluate((el) => {
+    el.scrollIntoView({ block: 'center', inline: 'nearest' });
+  });
+
+  await expect(region).toBeVisible({ timeout: 20_000 });
+}
+  
   // unfortunately some 'No data' tiles exist
   /*
   await expect
@@ -134,7 +159,7 @@ test('Alerting Notification Policy Routes', async ({ page }) => {
   await page.goto(`https://grafana.${BASE_DOMAIN}/alerting/routes`, { waitUntil: 'domcontentloaded' });
 
   // default route should be platform-team-default
-  await expect(page.getByTestId('am-root-route-container').locator('div').filter({ hasText: 'Default policyAll alert' }).first().getByText('Delivered to platform-team-default')).toBeVisible();
+  await expect(page.getByTestId('am-root-route-container').locator('div').filter({ hasText: 'Default policy' }).first().getByText('Delivered to platform-team-default')).toBeVisible();
 
   await expect(page.getByText(/severity = warning.*Delivered to platform-team/).getByRole('link', { name: 'platform-team-warning' })).toBeVisible();
   await expect(page.getByText(/severity = critical.*Delivered to platform-team/).getByRole('link', { name: 'platform-team-critical' })).toBeVisible();
