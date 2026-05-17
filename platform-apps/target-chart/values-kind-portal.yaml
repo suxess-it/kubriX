@@ -31,10 +31,6 @@ applications:
     syncOptions:
       - ServerSideApply=true
 
-  - name: prometheus-blackbox-exporter
-    annotations:
-      argocd.argoproj.io/sync-wave: "-8"
-
   - name: external-secrets
     annotations:
       argocd.argoproj.io/sync-wave: "-8"
