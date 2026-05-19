@@ -1,6 +1,6 @@
 
 <h3>Target <code>ghcr.io/grafana/alloy-operator:1.8.1 (redhat 9.7)</code></h3>
-<h4>Vulnerabilities (8)</h4>
+<h4>Vulnerabilities (9)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -19,6 +19,13 @@
     <tr>
         <td><code>gnutls</code></td>
         <td>CVE-2026-33846</td>
+        <td>HIGH</td>
+        <td>3.8.3-10.el9_7</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>gnutls</code></td>
+        <td>CVE-2026-42009</td>
         <td>HIGH</td>
         <td>3.8.3-10.el9_7</td>
         <td></td>

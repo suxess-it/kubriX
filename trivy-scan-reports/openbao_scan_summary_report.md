@@ -86,7 +86,7 @@
 <h4>No Vulnerabilities found</h4>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>usr/local/bin/provider</code></h3>
-<h4>Vulnerabilities (6)</h4>
+<h4>Vulnerabilities (8)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -101,6 +101,20 @@
         <td>HIGH</td>
         <td>v28.0.0+incompatible</td>
         <td>29.3.1</td>
+    </tr>
+    <tr>
+        <td><code>github.com/docker/docker</code></td>
+        <td>CVE-2026-41567</td>
+        <td>HIGH</td>
+        <td>v28.0.0+incompatible</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>github.com/docker/docker</code></td>
+        <td>CVE-2026-42306</td>
+        <td>HIGH</td>
+        <td>v28.0.0+incompatible</td>
+        <td></td>
     </tr>
     <tr>
         <td><code>stdlib</code></td>

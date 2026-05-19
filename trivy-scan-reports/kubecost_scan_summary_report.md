@@ -111,7 +111,7 @@
 <h4>No Misconfigurations found</h4>
 
 <h3>Target <code>gcr.io/kubecost1/cost-model:prod-2.9.6 (redhat 9.7)</code></h3>
-<h4>Vulnerabilities (11)</h4>
+<h4>Vulnerabilities (12)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -137,6 +137,13 @@
     <tr>
         <td><code>gnutls</code></td>
         <td>CVE-2026-33846</td>
+        <td>HIGH</td>
+        <td>3.8.3-9.el9</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>gnutls</code></td>
+        <td>CVE-2026-42009</td>
         <td>HIGH</td>
         <td>3.8.3-9.el9</td>
         <td></td>
@@ -353,7 +360,7 @@
 <h4>No Misconfigurations found</h4>
 
 <h3>Target <code>gcr.io/kubecost1/frontend:prod-2.9.6 (redhat 9.7)</code></h3>
-<h4>Vulnerabilities (18)</h4>
+<h4>Vulnerabilities (19)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -379,6 +386,13 @@
     <tr>
         <td><code>gnutls</code></td>
         <td>CVE-2026-33846</td>
+        <td>HIGH</td>
+        <td>3.8.3-9.el9</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>gnutls</code></td>
+        <td>CVE-2026-42009</td>
         <td>HIGH</td>
         <td>3.8.3-9.el9</td>
         <td></td>
@@ -430,14 +444,14 @@
         <td>CVE-2026-42945</td>
         <td>CRITICAL</td>
         <td>2:1.20.1-22.el9_6.3</td>
-        <td></td>
+        <td>2:1.20.1-24.el9_7.3</td>
     </tr>
     <tr>
         <td><code>nginx-core</code></td>
         <td>CVE-2026-42945</td>
         <td>CRITICAL</td>
         <td>2:1.20.1-22.el9_6.3</td>
-        <td></td>
+        <td>2:1.20.1-24.el9_7.3</td>
     </tr>
     <tr>
         <td><code>nginx-core</code></td>
@@ -472,7 +486,7 @@
         <td>CVE-2026-42945</td>
         <td>CRITICAL</td>
         <td>2:1.20.1-22.el9_6.3</td>
-        <td></td>
+        <td>2:1.20.1-24.el9_7.3</td>
     </tr>
     <tr>
         <td><code>openssl</code></td>
@@ -492,7 +506,7 @@
 <h4>No Misconfigurations found</h4>
 
 <h3>Target <code>gcr.io/kubecost1/kubecost-modeling:v0.1.34 (redhat 9.7)</code></h3>
-<h4>Vulnerabilities (16)</h4>
+<h4>Vulnerabilities (17)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -518,6 +532,13 @@
     <tr>
         <td><code>gnutls</code></td>
         <td>CVE-2026-33846</td>
+        <td>HIGH</td>
+        <td>3.8.3-9.el9</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>gnutls</code></td>
+        <td>CVE-2026-42009</td>
         <td>HIGH</td>
         <td>3.8.3-9.el9</td>
         <td></td>
@@ -657,7 +678,7 @@
 <h4>No Misconfigurations found</h4>
 
 <h3>Target <code>icr.io/ibm-finops/agent:v1.0.8 (redhat 9.7)</code></h3>
-<h4>Vulnerabilities (10)</h4>
+<h4>Vulnerabilities (11)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -683,6 +704,13 @@
     <tr>
         <td><code>gnutls</code></td>
         <td>CVE-2026-33846</td>
+        <td>HIGH</td>
+        <td>3.8.3-9.el9</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>gnutls</code></td>
+        <td>CVE-2026-42009</td>
         <td>HIGH</td>
         <td>3.8.3-9.el9</td>
         <td></td>
@@ -871,7 +899,7 @@
 <h4>No Misconfigurations found</h4>
 
 <h3>Target <code>bin/prometheus</code></h3>
-<h4>Vulnerabilities (17)</h4>
+<h4>Vulnerabilities (19)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -886,6 +914,20 @@
         <td>HIGH</td>
         <td>v28.5.2+incompatible</td>
         <td>29.3.1</td>
+    </tr>
+    <tr>
+        <td><code>github.com/docker/docker</code></td>
+        <td>CVE-2026-41567</td>
+        <td>HIGH</td>
+        <td>v28.5.2+incompatible</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>github.com/docker/docker</code></td>
+        <td>CVE-2026-42306</td>
+        <td>HIGH</td>
+        <td>v28.5.2+incompatible</td>
+        <td></td>
     </tr>
     <tr>
         <td><code>go.opentelemetry.io/otel</code></td>
@@ -1002,7 +1044,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>bin/promtool</code></h3>
-<h4>Vulnerabilities (15)</h4>
+<h4>Vulnerabilities (17)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -1017,6 +1059,20 @@
         <td>HIGH</td>
         <td>v28.5.2+incompatible</td>
         <td>29.3.1</td>
+    </tr>
+    <tr>
+        <td><code>github.com/docker/docker</code></td>
+        <td>CVE-2026-41567</td>
+        <td>HIGH</td>
+        <td>v28.5.2+incompatible</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>github.com/docker/docker</code></td>
+        <td>CVE-2026-42306</td>
+        <td>HIGH</td>
+        <td>v28.5.2+incompatible</td>
+        <td></td>
     </tr>
     <tr>
         <td><code>go.opentelemetry.io/otel</code></td>
