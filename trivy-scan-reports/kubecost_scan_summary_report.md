@@ -111,7 +111,7 @@
 <h4>No Misconfigurations found</h4>
 
 <h3>Target <code>gcr.io/kubecost1/cost-model:prod-2.9.6 (redhat 9.7)</code></h3>
-<h4>Vulnerabilities (12)</h4>
+<h4>Vulnerabilities (13)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -119,6 +119,13 @@
         <th>Severity</th>
         <th>Installed Version</th>
         <th>Fixed Version</th>
+    </tr>
+    <tr>
+        <td><code>expat</code></td>
+        <td>CVE-2026-45186</td>
+        <td>HIGH</td>
+        <td>2.5.0-5.el9_7.1</td>
+        <td></td>
     </tr>
     <tr>
         <td><code>gnupg2</code></td>
@@ -160,7 +167,7 @@
         <td>CVE-2026-40356</td>
         <td>HIGH</td>
         <td>1.21.1-8.el9_6</td>
-        <td></td>
+        <td>1.21.1-10.el9_8</td>
     </tr>
     <tr>
         <td><code>libarchive</code></td>
@@ -181,7 +188,7 @@
         <td>CVE-2026-4878</td>
         <td>HIGH</td>
         <td>2.48-10.el9</td>
-        <td>2.48-10.el9_7.1</td>
+        <td>2.48-10.el9_8.1</td>
     </tr>
     <tr>
         <td><code>libnghttp2</code></td>
@@ -360,7 +367,7 @@
 <h4>No Misconfigurations found</h4>
 
 <h3>Target <code>gcr.io/kubecost1/frontend:prod-2.9.6 (redhat 9.7)</code></h3>
-<h4>Vulnerabilities (19)</h4>
+<h4>Vulnerabilities (20)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -368,6 +375,13 @@
         <th>Severity</th>
         <th>Installed Version</th>
         <th>Fixed Version</th>
+    </tr>
+    <tr>
+        <td><code>expat</code></td>
+        <td>CVE-2026-45186</td>
+        <td>HIGH</td>
+        <td>2.5.0-5.el9_7.1</td>
+        <td></td>
     </tr>
     <tr>
         <td><code>gnupg2</code></td>
@@ -409,7 +423,7 @@
         <td>CVE-2026-40356</td>
         <td>HIGH</td>
         <td>1.21.1-8.el9_6</td>
-        <td></td>
+        <td>1.21.1-10.el9_8</td>
     </tr>
     <tr>
         <td><code>libarchive</code></td>
@@ -430,7 +444,7 @@
         <td>CVE-2026-4878</td>
         <td>HIGH</td>
         <td>2.48-10.el9</td>
-        <td>2.48-10.el9_7.1</td>
+        <td>2.48-10.el9_8.1</td>
     </tr>
     <tr>
         <td><code>libnghttp2</code></td>
@@ -444,14 +458,14 @@
         <td>CVE-2026-42945</td>
         <td>CRITICAL</td>
         <td>2:1.20.1-22.el9_6.3</td>
-        <td>2:1.20.1-24.el9_7.3</td>
+        <td>2:1.20.1-28.el9_8.2</td>
     </tr>
     <tr>
         <td><code>nginx-core</code></td>
         <td>CVE-2026-42945</td>
         <td>CRITICAL</td>
         <td>2:1.20.1-22.el9_6.3</td>
-        <td>2:1.20.1-24.el9_7.3</td>
+        <td>2:1.20.1-28.el9_8.2</td>
     </tr>
     <tr>
         <td><code>nginx-core</code></td>
@@ -486,7 +500,7 @@
         <td>CVE-2026-42945</td>
         <td>CRITICAL</td>
         <td>2:1.20.1-22.el9_6.3</td>
-        <td>2:1.20.1-24.el9_7.3</td>
+        <td>2:1.20.1-28.el9_8.2</td>
     </tr>
     <tr>
         <td><code>openssl</code></td>
@@ -506,7 +520,7 @@
 <h4>No Misconfigurations found</h4>
 
 <h3>Target <code>gcr.io/kubecost1/kubecost-modeling:v0.1.34 (redhat 9.7)</code></h3>
-<h4>Vulnerabilities (17)</h4>
+<h4>Vulnerabilities (20)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -514,6 +528,13 @@
         <th>Severity</th>
         <th>Installed Version</th>
         <th>Fixed Version</th>
+    </tr>
+    <tr>
+        <td><code>expat</code></td>
+        <td>CVE-2026-45186</td>
+        <td>HIGH</td>
+        <td>2.5.0-5.el9_7.1</td>
+        <td></td>
     </tr>
     <tr>
         <td><code>gnupg2</code></td>
@@ -555,7 +576,7 @@
         <td>CVE-2026-40356</td>
         <td>HIGH</td>
         <td>1.21.1-8.el9_6</td>
-        <td></td>
+        <td>1.21.1-10.el9_8</td>
     </tr>
     <tr>
         <td><code>libarchive</code></td>
@@ -576,7 +597,7 @@
         <td>CVE-2026-4878</td>
         <td>HIGH</td>
         <td>2.48-10.el9</td>
-        <td>2.48-10.el9_7.1</td>
+        <td>2.48-10.el9_8.1</td>
     </tr>
     <tr>
         <td><code>libnghttp2</code></td>
@@ -594,45 +615,59 @@
     </tr>
     <tr>
         <td><code>python3.12</code></td>
+        <td>CVE-2025-59375</td>
+        <td>HIGH</td>
+        <td>3.12.12-1.el9_7</td>
+        <td>3.12.13-2.el9_8</td>
+    </tr>
+    <tr>
+        <td><code>python3.12</code></td>
         <td>CVE-2026-4519</td>
         <td>HIGH</td>
         <td>3.12.12-1.el9_7</td>
-        <td>3.12.12-4.el9_7.2</td>
+        <td>3.12.13-2.el9_8</td>
     </tr>
     <tr>
         <td><code>python3.12</code></td>
         <td>CVE-2026-4786</td>
         <td>HIGH</td>
         <td>3.12.12-1.el9_7</td>
-        <td>3.12.12-4.el9_7.3</td>
+        <td>3.12.13-2.el9_8</td>
     </tr>
     <tr>
         <td><code>python3.12</code></td>
         <td>CVE-2026-6100</td>
         <td>HIGH</td>
         <td>3.12.12-1.el9_7</td>
-        <td>3.12.12-4.el9_7.3</td>
+        <td>3.12.13-2.el9_8</td>
+    </tr>
+    <tr>
+        <td><code>python3.12-libs</code></td>
+        <td>CVE-2025-59375</td>
+        <td>HIGH</td>
+        <td>3.12.12-1.el9_7</td>
+        <td>3.12.13-2.el9_8</td>
     </tr>
     <tr>
         <td><code>python3.12-libs</code></td>
         <td>CVE-2026-4519</td>
         <td>HIGH</td>
         <td>3.12.12-1.el9_7</td>
-        <td>3.12.12-4.el9_7.2</td>
+        <td>3.12.13-2.el9_8</td>
     </tr>
     <tr>
         <td><code>python3.12-libs</code></td>
         <td>CVE-2026-4786</td>
         <td>HIGH</td>
         <td>3.12.12-1.el9_7</td>
-        <td>3.12.12-4.el9_7.3</td>
+        <td>3.12.13-2.el9_8</td>
     </tr>
     <tr>
         <td><code>python3.12-libs</code></td>
         <td>CVE-2026-6100</td>
         <td>HIGH</td>
         <td>3.12.12-1.el9_7</td>
-        <td>3.12.12-4.el9_7.3</td>
+        <td>3.12.13-2.el9_8</td>
     </tr>
 </table>
 <h4>No Misconfigurations found</h4>
@@ -727,7 +762,7 @@
         <td>CVE-2026-40356</td>
         <td>HIGH</td>
         <td>1.21.1-8.el9_6</td>
-        <td></td>
+        <td>1.21.1-10.el9_8</td>
     </tr>
     <tr>
         <td><code>libarchive</code></td>
@@ -748,7 +783,7 @@
         <td>CVE-2026-4878</td>
         <td>HIGH</td>
         <td>2.48-10.el9</td>
-        <td>2.48-10.el9_7.1</td>
+        <td>2.48-10.el9_8.1</td>
     </tr>
     <tr>
         <td><code>libnghttp2</code></td>

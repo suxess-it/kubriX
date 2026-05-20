@@ -161,42 +161,42 @@
         <td>CVE-2026-33845</td>
         <td>CRITICAL</td>
         <td>3.7.9-2+deb12u5</td>
-        <td></td>
+        <td>3.7.9-2+deb12u7</td>
     </tr>
     <tr>
         <td><code>libgnutls30</code></td>
         <td>CVE-2026-42010</td>
         <td>CRITICAL</td>
         <td>3.7.9-2+deb12u5</td>
-        <td></td>
+        <td>3.7.9-2+deb12u7</td>
     </tr>
     <tr>
         <td><code>libgnutls30</code></td>
         <td>CVE-2026-33846</td>
         <td>HIGH</td>
         <td>3.7.9-2+deb12u5</td>
-        <td></td>
+        <td>3.7.9-2+deb12u7</td>
     </tr>
     <tr>
         <td><code>libgnutls30</code></td>
         <td>CVE-2026-3833</td>
         <td>HIGH</td>
         <td>3.7.9-2+deb12u5</td>
-        <td></td>
+        <td>3.7.9-2+deb12u7</td>
     </tr>
     <tr>
         <td><code>libgnutls30</code></td>
         <td>CVE-2026-42009</td>
         <td>HIGH</td>
         <td>3.7.9-2+deb12u5</td>
-        <td></td>
+        <td>3.7.9-2+deb12u7</td>
     </tr>
     <tr>
         <td><code>libgnutls30</code></td>
         <td>CVE-2026-42011</td>
         <td>HIGH</td>
         <td>3.7.9-2+deb12u5</td>
-        <td></td>
+        <td>3.7.9-2+deb12u7</td>
     </tr>
     <tr>
         <td><code>libldap-2.5-0</code></td>
@@ -1453,14 +1453,14 @@
         <td>CVE-2026-33845</td>
         <td>CRITICAL</td>
         <td>3.7.9-2+deb12u4</td>
-        <td></td>
+        <td>3.7.9-2+deb12u7</td>
     </tr>
     <tr>
         <td><code>libgnutls30</code></td>
         <td>CVE-2026-42010</td>
         <td>CRITICAL</td>
         <td>3.7.9-2+deb12u4</td>
-        <td></td>
+        <td>3.7.9-2+deb12u7</td>
     </tr>
     <tr>
         <td><code>libgnutls30</code></td>
@@ -1481,28 +1481,28 @@
         <td>CVE-2026-33846</td>
         <td>HIGH</td>
         <td>3.7.9-2+deb12u4</td>
-        <td></td>
+        <td>3.7.9-2+deb12u7</td>
     </tr>
     <tr>
         <td><code>libgnutls30</code></td>
         <td>CVE-2026-3833</td>
         <td>HIGH</td>
         <td>3.7.9-2+deb12u4</td>
-        <td></td>
+        <td>3.7.9-2+deb12u7</td>
     </tr>
     <tr>
         <td><code>libgnutls30</code></td>
         <td>CVE-2026-42009</td>
         <td>HIGH</td>
         <td>3.7.9-2+deb12u4</td>
-        <td></td>
+        <td>3.7.9-2+deb12u7</td>
     </tr>
     <tr>
         <td><code>libgnutls30</code></td>
         <td>CVE-2026-42011</td>
         <td>HIGH</td>
         <td>3.7.9-2+deb12u4</td>
-        <td></td>
+        <td>3.7.9-2+deb12u7</td>
     </tr>
     <tr>
         <td><code>libldap-2.5-0</code></td>

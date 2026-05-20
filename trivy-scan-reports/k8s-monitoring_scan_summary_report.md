@@ -42,7 +42,7 @@
         <td>CVE-2026-40356</td>
         <td>HIGH</td>
         <td>1.21.1-8.el9_6</td>
-        <td></td>
+        <td>1.21.1-10.el9_8</td>
     </tr>
     <tr>
         <td><code>libarchive</code></td>
@@ -63,7 +63,7 @@
         <td>CVE-2026-4878</td>
         <td>HIGH</td>
         <td>2.48-10.el9</td>
-        <td>2.48-10.el9_7.1</td>
+        <td>2.48-10.el9_8.1</td>
     </tr>
     <tr>
         <td><code>libnghttp2</code></td>
