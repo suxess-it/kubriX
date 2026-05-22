@@ -18,13 +18,6 @@
     </tr>
     <tr>
         <td><code>helm-3</code></td>
-        <td>CVE-2026-33186</td>
-        <td>CRITICAL</td>
-        <td>3.19.2-r2</td>
-        <td>3.20.1-r1</td>
-    </tr>
-    <tr>
-        <td><code>helm-3</code></td>
         <td>CVE-2025-61732</td>
         <td>HIGH</td>
         <td>3.19.2-r2</td>
@@ -36,6 +29,13 @@
         <td>HIGH</td>
         <td>3.19.2-r2</td>
         <td>3.20.1-r0</td>
+    </tr>
+    <tr>
+        <td><code>helm-3</code></td>
+        <td>CVE-2026-33186</td>
+        <td>HIGH</td>
+        <td>3.19.2-r2</td>
+        <td>3.20.1-r1</td>
     </tr>
     <tr>
         <td><code>helm-3</code></td>
@@ -239,7 +239,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>usr/local/bin/kargo</code></h3>
-<h4>Vulnerabilities (12)</h4>
+<h4>Vulnerabilities (13)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -247,6 +247,13 @@
         <th>Severity</th>
         <th>Installed Version</th>
         <th>Fixed Version</th>
+    </tr>
+    <tr>
+        <td><code>github.com/containerd/containerd</code></td>
+        <td>CVE-2026-46680</td>
+        <td>HIGH</td>
+        <td>v1.7.29</td>
+        <td>1.7.32</td>
     </tr>
     <tr>
         <td><code>github.com/go-git/go-billy/v5</code></td>

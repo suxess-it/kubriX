@@ -1,6 +1,6 @@
 
 <h3>Target <code>alpine:3.17 (alpine 3.17.10)</code></h3>
-<h4>Vulnerabilities (8)</h4>
+<h4>Vulnerabilities (6)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -12,13 +12,6 @@
     <tr>
         <td><code>libcrypto3</code></td>
         <td>CVE-2025-15467</td>
-        <td>CRITICAL</td>
-        <td>3.0.15-r0</td>
-        <td>3.0.19-r0</td>
-    </tr>
-    <tr>
-        <td><code>libcrypto3</code></td>
-        <td>CVE-2025-69419</td>
         <td>HIGH</td>
         <td>3.0.15-r0</td>
         <td>3.0.19-r0</td>
@@ -33,13 +26,6 @@
     <tr>
         <td><code>libssl3</code></td>
         <td>CVE-2025-15467</td>
-        <td>CRITICAL</td>
-        <td>3.0.15-r0</td>
-        <td>3.0.19-r0</td>
-    </tr>
-    <tr>
-        <td><code>libssl3</code></td>
-        <td>CVE-2025-69419</td>
         <td>HIGH</td>
         <td>3.0.15-r0</td>
         <td>3.0.19-r0</td>
@@ -69,10 +55,82 @@
 <h4>No Misconfigurations found</h4>
 
 <h3>Target <code>ghcr.io/suxess-it/sx-backstage:v1.48.5 (wolfi 20230201)</code></h3>
-<h4>No Vulnerabilities found</h4>
+<h4>Vulnerabilities (9)</h4>
+<table>
+    <tr>
+        <th>Package</th>
+        <th>ID</th>
+        <th>Severity</th>
+        <th>Installed Version</th>
+        <th>Fixed Version</th>
+    </tr>
+    <tr>
+        <td><code>py3-pip-wheel</code></td>
+        <td>CVE-2025-66418</td>
+        <td>HIGH</td>
+        <td>26.0.1-r2</td>
+        <td>26.1.1-r0</td>
+    </tr>
+    <tr>
+        <td><code>py3-pip-wheel</code></td>
+        <td>CVE-2025-66471</td>
+        <td>HIGH</td>
+        <td>26.0.1-r2</td>
+        <td>26.1.1-r0</td>
+    </tr>
+    <tr>
+        <td><code>py3-pip-wheel</code></td>
+        <td>CVE-2026-21441</td>
+        <td>HIGH</td>
+        <td>26.0.1-r2</td>
+        <td>26.1.1-r0</td>
+    </tr>
+    <tr>
+        <td><code>py3.13-pip</code></td>
+        <td>CVE-2025-66418</td>
+        <td>HIGH</td>
+        <td>26.0.1-r2</td>
+        <td>26.1.1-r0</td>
+    </tr>
+    <tr>
+        <td><code>py3.13-pip</code></td>
+        <td>CVE-2025-66471</td>
+        <td>HIGH</td>
+        <td>26.0.1-r2</td>
+        <td>26.1.1-r0</td>
+    </tr>
+    <tr>
+        <td><code>py3.13-pip</code></td>
+        <td>CVE-2026-21441</td>
+        <td>HIGH</td>
+        <td>26.0.1-r2</td>
+        <td>26.1.1-r0</td>
+    </tr>
+    <tr>
+        <td><code>py3.13-pip-base</code></td>
+        <td>CVE-2025-66418</td>
+        <td>HIGH</td>
+        <td>26.0.1-r2</td>
+        <td>26.1.1-r0</td>
+    </tr>
+    <tr>
+        <td><code>py3.13-pip-base</code></td>
+        <td>CVE-2025-66471</td>
+        <td>HIGH</td>
+        <td>26.0.1-r2</td>
+        <td>26.1.1-r0</td>
+    </tr>
+    <tr>
+        <td><code>py3.13-pip-base</code></td>
+        <td>CVE-2026-21441</td>
+        <td>HIGH</td>
+        <td>26.0.1-r2</td>
+        <td>26.1.1-r0</td>
+    </tr>
+</table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>Node.js</code></h3>
-<h4>Vulnerabilities (49)</h4>
+<h4>Vulnerabilities (50)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -178,6 +236,13 @@
         <td>HIGH</td>
         <td>1.1.4</td>
         <td>1.1.7</td>
+    </tr>
+    <tr>
+        <td><code>js-cookie</code></td>
+        <td>CVE-2026-46625</td>
+        <td>HIGH</td>
+        <td>2.2.1</td>
+        <td>3.0.7</td>
     </tr>
     <tr>
         <td><code>systeminformation</code></td>
