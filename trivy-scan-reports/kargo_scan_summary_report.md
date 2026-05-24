@@ -1,6 +1,6 @@
 
 <h3>Target <code>ghcr.io/akuity/kargo:v1.10.3 (wolfi 20230201)</code></h3>
-<h4>Vulnerabilities (10)</h4>
+<h4>Vulnerabilities (11)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -78,6 +78,13 @@
         <td>HIGH</td>
         <td>3.19.2-r2</td>
         <td>3.20.2-r0</td>
+    </tr>
+    <tr>
+        <td><code>helm-3</code></td>
+        <td>CVE-2026-46680</td>
+        <td>HIGH</td>
+        <td>3.19.2-r2</td>
+        <td>3.21.0-r1</td>
     </tr>
 </table>
 <h4>No Misconfigurations found</h4>
