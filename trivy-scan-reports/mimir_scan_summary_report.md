@@ -107,7 +107,7 @@
 <h4>No Vulnerabilities found</h4>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>bin/rollout-operator</code></h3>
-<h4>Vulnerabilities (16)</h4>
+<h4>Vulnerabilities (17)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -157,6 +157,13 @@
         <td>HIGH</td>
         <td>v1.25.3</td>
         <td>1.24.12, 1.25.6</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2025-61727</td>
+        <td>HIGH</td>
+        <td>v1.25.3</td>
+        <td>1.24.11, 1.25.5</td>
     </tr>
     <tr>
         <td><code>stdlib</code></td>
@@ -251,7 +258,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>usr/bin/mc</code></h3>
-<h4>Vulnerabilities (18)</h4>
+<h4>Vulnerabilities (32)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -311,10 +318,108 @@
     </tr>
     <tr>
         <td><code>stdlib</code></td>
+        <td>CVE-2025-22871</td>
+        <td>HIGH</td>
+        <td>v1.23.4</td>
+        <td>1.23.8, 1.24.2</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2025-47906</td>
+        <td>HIGH</td>
+        <td>v1.23.4</td>
+        <td>1.23.12, 1.24.6</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2025-47907</td>
+        <td>HIGH</td>
+        <td>v1.23.4</td>
+        <td>1.23.12, 1.24.6</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2025-47912</td>
+        <td>HIGH</td>
+        <td>v1.23.4</td>
+        <td>1.24.8, 1.25.2</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2025-58183</td>
+        <td>HIGH</td>
+        <td>v1.23.4</td>
+        <td>1.24.8, 1.25.2</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2025-58185</td>
+        <td>HIGH</td>
+        <td>v1.23.4</td>
+        <td>1.24.8, 1.25.2</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2025-58186</td>
+        <td>HIGH</td>
+        <td>v1.23.4</td>
+        <td>1.24.8, 1.25.2</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2025-58187</td>
+        <td>HIGH</td>
+        <td>v1.23.4</td>
+        <td>1.24.9, 1.25.3</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2025-58188</td>
+        <td>HIGH</td>
+        <td>v1.23.4</td>
+        <td>1.24.8, 1.25.2</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2025-58189</td>
+        <td>HIGH</td>
+        <td>v1.23.4</td>
+        <td>1.24.8, 1.25.2</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2025-61723</td>
+        <td>HIGH</td>
+        <td>v1.23.4</td>
+        <td>1.24.8, 1.25.2</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2025-61724</td>
+        <td>HIGH</td>
+        <td>v1.23.4</td>
+        <td>1.24.8, 1.25.2</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2025-61725</td>
+        <td>HIGH</td>
+        <td>v1.23.4</td>
+        <td>1.24.8, 1.25.2</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
         <td>CVE-2025-61726</td>
         <td>HIGH</td>
         <td>v1.23.4</td>
         <td>1.24.12, 1.25.6</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2025-61727</td>
+        <td>HIGH</td>
+        <td>v1.23.4</td>
+        <td>1.24.11, 1.25.5</td>
     </tr>
     <tr>
         <td><code>stdlib</code></td>
@@ -409,7 +514,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>usr/bin/mc</code></h3>
-<h4>Vulnerabilities (18)</h4>
+<h4>Vulnerabilities (32)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -469,10 +574,108 @@
     </tr>
     <tr>
         <td><code>stdlib</code></td>
+        <td>CVE-2025-22871</td>
+        <td>HIGH</td>
+        <td>v1.23.4</td>
+        <td>1.23.8, 1.24.2</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2025-47906</td>
+        <td>HIGH</td>
+        <td>v1.23.4</td>
+        <td>1.23.12, 1.24.6</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2025-47907</td>
+        <td>HIGH</td>
+        <td>v1.23.4</td>
+        <td>1.23.12, 1.24.6</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2025-47912</td>
+        <td>HIGH</td>
+        <td>v1.23.4</td>
+        <td>1.24.8, 1.25.2</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2025-58183</td>
+        <td>HIGH</td>
+        <td>v1.23.4</td>
+        <td>1.24.8, 1.25.2</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2025-58185</td>
+        <td>HIGH</td>
+        <td>v1.23.4</td>
+        <td>1.24.8, 1.25.2</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2025-58186</td>
+        <td>HIGH</td>
+        <td>v1.23.4</td>
+        <td>1.24.8, 1.25.2</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2025-58187</td>
+        <td>HIGH</td>
+        <td>v1.23.4</td>
+        <td>1.24.9, 1.25.3</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2025-58188</td>
+        <td>HIGH</td>
+        <td>v1.23.4</td>
+        <td>1.24.8, 1.25.2</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2025-58189</td>
+        <td>HIGH</td>
+        <td>v1.23.4</td>
+        <td>1.24.8, 1.25.2</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2025-61723</td>
+        <td>HIGH</td>
+        <td>v1.23.4</td>
+        <td>1.24.8, 1.25.2</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2025-61724</td>
+        <td>HIGH</td>
+        <td>v1.23.4</td>
+        <td>1.24.8, 1.25.2</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2025-61725</td>
+        <td>HIGH</td>
+        <td>v1.23.4</td>
+        <td>1.24.8, 1.25.2</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
         <td>CVE-2025-61726</td>
         <td>HIGH</td>
         <td>v1.23.4</td>
         <td>1.24.12, 1.25.6</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2025-61727</td>
+        <td>HIGH</td>
+        <td>v1.23.4</td>
+        <td>1.24.11, 1.25.5</td>
     </tr>
     <tr>
         <td><code>stdlib</code></td>
@@ -547,7 +750,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>usr/bin/minio</code></h3>
-<h4>Vulnerabilities (24)</h4>
+<h4>Vulnerabilities (38)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -649,10 +852,108 @@
     </tr>
     <tr>
         <td><code>stdlib</code></td>
+        <td>CVE-2025-22871</td>
+        <td>HIGH</td>
+        <td>v1.23.4</td>
+        <td>1.23.8, 1.24.2</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2025-47906</td>
+        <td>HIGH</td>
+        <td>v1.23.4</td>
+        <td>1.23.12, 1.24.6</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2025-47907</td>
+        <td>HIGH</td>
+        <td>v1.23.4</td>
+        <td>1.23.12, 1.24.6</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2025-47912</td>
+        <td>HIGH</td>
+        <td>v1.23.4</td>
+        <td>1.24.8, 1.25.2</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2025-58183</td>
+        <td>HIGH</td>
+        <td>v1.23.4</td>
+        <td>1.24.8, 1.25.2</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2025-58185</td>
+        <td>HIGH</td>
+        <td>v1.23.4</td>
+        <td>1.24.8, 1.25.2</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2025-58186</td>
+        <td>HIGH</td>
+        <td>v1.23.4</td>
+        <td>1.24.8, 1.25.2</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2025-58187</td>
+        <td>HIGH</td>
+        <td>v1.23.4</td>
+        <td>1.24.9, 1.25.3</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2025-58188</td>
+        <td>HIGH</td>
+        <td>v1.23.4</td>
+        <td>1.24.8, 1.25.2</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2025-58189</td>
+        <td>HIGH</td>
+        <td>v1.23.4</td>
+        <td>1.24.8, 1.25.2</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2025-61723</td>
+        <td>HIGH</td>
+        <td>v1.23.4</td>
+        <td>1.24.8, 1.25.2</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2025-61724</td>
+        <td>HIGH</td>
+        <td>v1.23.4</td>
+        <td>1.24.8, 1.25.2</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2025-61725</td>
+        <td>HIGH</td>
+        <td>v1.23.4</td>
+        <td>1.24.8, 1.25.2</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
         <td>CVE-2025-61726</td>
         <td>HIGH</td>
         <td>v1.23.4</td>
         <td>1.24.12, 1.25.6</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2025-61727</td>
+        <td>HIGH</td>
+        <td>v1.23.4</td>
+        <td>1.24.11, 1.25.5</td>
     </tr>
     <tr>
         <td><code>stdlib</code></td>

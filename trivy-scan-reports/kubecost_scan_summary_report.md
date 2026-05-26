@@ -360,7 +360,7 @@
 <h4>No Misconfigurations found</h4>
 
 <h3>Target <code>gcr.io/kubecost1/frontend:prod-2.9.6 (redhat 9.7)</code></h3>
-<h4>Vulnerabilities (20)</h4>
+<h4>Vulnerabilities (23)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -454,6 +454,13 @@
         <td>2:1.20.1-28.el9_8.2</td>
     </tr>
     <tr>
+        <td><code>nginx</code></td>
+        <td>CVE-2026-9256</td>
+        <td>HIGH</td>
+        <td>2:1.20.1-22.el9_6.3</td>
+        <td></td>
+    </tr>
+    <tr>
         <td><code>nginx-core</code></td>
         <td>CVE-2026-42945</td>
         <td>CRITICAL</td>
@@ -489,11 +496,25 @@
         <td>2:1.20.1-24.el9_7.2</td>
     </tr>
     <tr>
+        <td><code>nginx-core</code></td>
+        <td>CVE-2026-9256</td>
+        <td>HIGH</td>
+        <td>2:1.20.1-22.el9_6.3</td>
+        <td></td>
+    </tr>
+    <tr>
         <td><code>nginx-filesystem</code></td>
         <td>CVE-2026-42945</td>
         <td>CRITICAL</td>
         <td>2:1.20.1-22.el9_6.3</td>
         <td>2:1.20.1-28.el9_8.2</td>
+    </tr>
+    <tr>
+        <td><code>nginx-filesystem</code></td>
+        <td>CVE-2026-9256</td>
+        <td>HIGH</td>
+        <td>2:1.20.1-22.el9_6.3</td>
+        <td></td>
     </tr>
     <tr>
         <td><code>openssl</code></td>
