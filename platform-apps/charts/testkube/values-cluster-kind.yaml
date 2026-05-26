@@ -6,3 +6,14 @@ testkube:
     cliIngress:
       hosts:
         - testkube.127-0-0-1.nip.io
+
+    resources:
+      requests:
+        cpu: 50m
+        memory: 200Mi
+
+  mongodb:
+    resources:
+      requests:
+        cpu: 50m
+        memory: 100Mi
