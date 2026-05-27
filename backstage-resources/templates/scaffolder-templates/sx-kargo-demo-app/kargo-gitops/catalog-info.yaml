@@ -90,7 +90,7 @@ metadata:
     backstage.io/techdocs-ref: dir:.
     kargo-project: "https://kargo.${{values.defaultDomainName}}/project/${{values.team}}-${{values.application_id}}-kargo-project"
     grafana/dashboard-selector: "(tags @> 'suXess')"
-    grafana/overview-dashboard: "https://grafana.${{values.defaultDomainName}}/d/k8s_views_ns/kubernetes-views-namespaces?orgId=1&refresh=30s&var-datasource=default&var-cluster=kubrix&var-namespace=${{values.team}}-${{values.application_id}}-prod&var-resolution=30s&var-created_by=All"
+    grafana/overview-dashboard: "https://grafana.${{values.defaultDomainName}}/d/k8s_views_ns/kubernetes-views-namespaces?orgId=1&refresh=30s&var-datasource=default&var-namespace=${{values.team}}-${{values.application_id}}-prod&var-resolution=30s&var-created_by=All"
 spec:
   type: service
   lifecycle: prod
@@ -134,7 +134,7 @@ metadata:
     backstage.io/techdocs-ref: dir:.
     kargo-project: "https://kargo.${{values.defaultDomainName}}/project/${{values.team}}-${{values.application_id}}-kargo-project"
     grafana/dashboard-selector: "(tags @> 'suXess')"
-    grafana/overview-dashboard: "https://grafana.${{values.defaultDomainName}}/d/k8s_views_ns/kubernetes-views-namespaces?orgId=1&refresh=30s&var-datasource=default&var-cluster=kubrix&var-namespace=${{values.team}}-${{values.application_id}}-qa&var-resolution=30s&var-created_by=All"
+    grafana/overview-dashboard: "https://grafana.${{values.defaultDomainName}}/d/k8s_views_ns/kubernetes-views-namespaces?orgId=1&refresh=30s&var-datasource=default&var-namespace=${{values.team}}-${{values.application_id}}-qa&var-resolution=30s&var-created_by=All"
 spec:
   type: service
   lifecycle: qa
@@ -178,7 +178,7 @@ metadata:
     backstage.io/techdocs-ref: dir:.
     kargo-project: "https://kargo.${{values.defaultDomainName}}/project/${{values.team}}-${{values.application_id}}-kargo-project"
     grafana/dashboard-selector: "(tags @> 'suXess')"
-    grafana/overview-dashboard: "https://grafana.${{values.defaultDomainName}}/d/k8s_views_ns/kubernetes-views-namespaces?orgId=1&refresh=30s&var-datasource=default&var-cluster=kubrix&var-namespace=${{values.team}}-${{values.application_id}}-test&var-resolution=30s&var-created_by=All"
+    grafana/overview-dashboard: "https://grafana.${{values.defaultDomainName}}/d/k8s_views_ns/kubernetes-views-namespaces?orgId=1&refresh=30s&var-datasource=default&var-namespace=${{values.team}}-${{values.application_id}}-test&var-resolution=30s&var-created_by=All"
 spec:
   type: service
   lifecycle: test
