@@ -130,7 +130,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>Node.js</code></h3>
-<h4>Vulnerabilities (50)</h4>
+<h4>Vulnerabilities (51)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -376,6 +376,13 @@
         <td>HIGH</td>
         <td>6.2.1</td>
         <td>7.5.11</td>
+    </tr>
+    <tr>
+        <td><code>tmp</code></td>
+        <td>CVE-2026-44705</td>
+        <td>HIGH</td>
+        <td>0.2.5</td>
+        <td>0.2.6</td>
     </tr>
     <tr>
         <td><code>undici</code></td>

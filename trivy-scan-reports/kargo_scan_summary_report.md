@@ -1,6 +1,6 @@
 
 <h3>Target <code>ghcr.io/akuity/kargo:v1.10.3 (wolfi 20230201)</code></h3>
-<h4>Vulnerabilities (11)</h4>
+<h4>Vulnerabilities (14)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -60,6 +60,27 @@
     </tr>
     <tr>
         <td><code>helm-3</code></td>
+        <td>CVE-2026-39823</td>
+        <td>HIGH</td>
+        <td>3.19.2-r2</td>
+        <td>3.20.2-r0</td>
+    </tr>
+    <tr>
+        <td><code>helm-3</code></td>
+        <td>CVE-2026-39825</td>
+        <td>HIGH</td>
+        <td>3.19.2-r2</td>
+        <td>3.20.2-r0</td>
+    </tr>
+    <tr>
+        <td><code>helm-3</code></td>
+        <td>CVE-2026-39826</td>
+        <td>HIGH</td>
+        <td>3.19.2-r2</td>
+        <td>3.20.2-r0</td>
+    </tr>
+    <tr>
+        <td><code>helm-3</code></td>
         <td>CVE-2026-39836</td>
         <td>HIGH</td>
         <td>3.19.2-r2</td>
@@ -89,7 +110,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>usr/local/bin/credential-helper</code></h3>
-<h4>Vulnerabilities (9)</h4>
+<h4>Vulnerabilities (12)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -149,6 +170,27 @@
     </tr>
     <tr>
         <td><code>stdlib</code></td>
+        <td>CVE-2026-39823</td>
+        <td>HIGH</td>
+        <td>v1.26.1</td>
+        <td>1.25.10, 1.26.3</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-39825</td>
+        <td>HIGH</td>
+        <td>v1.26.1</td>
+        <td>1.25.10, 1.26.3</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-39826</td>
+        <td>HIGH</td>
+        <td>v1.26.1</td>
+        <td>1.25.10, 1.26.3</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
         <td>CVE-2026-39836</td>
         <td>HIGH</td>
         <td>v1.26.1</td>
@@ -164,7 +206,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>usr/local/bin/grpc_health_probe</code></h3>
-<h4>Vulnerabilities (10)</h4>
+<h4>Vulnerabilities (13)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -231,6 +273,27 @@
     </tr>
     <tr>
         <td><code>stdlib</code></td>
+        <td>CVE-2026-39823</td>
+        <td>HIGH</td>
+        <td>v1.25.8</td>
+        <td>1.25.10, 1.26.3</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-39825</td>
+        <td>HIGH</td>
+        <td>v1.25.8</td>
+        <td>1.25.10, 1.26.3</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-39826</td>
+        <td>HIGH</td>
+        <td>v1.25.8</td>
+        <td>1.25.10, 1.26.3</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
         <td>CVE-2026-39836</td>
         <td>HIGH</td>
         <td>v1.25.8</td>
@@ -246,7 +309,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>usr/local/bin/kargo</code></h3>
-<h4>Vulnerabilities (13)</h4>
+<h4>Vulnerabilities (16)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -328,6 +391,27 @@
     <tr>
         <td><code>stdlib</code></td>
         <td>CVE-2026-39820</td>
+        <td>HIGH</td>
+        <td>v1.26.1</td>
+        <td>1.25.10, 1.26.3</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-39823</td>
+        <td>HIGH</td>
+        <td>v1.26.1</td>
+        <td>1.25.10, 1.26.3</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-39825</td>
+        <td>HIGH</td>
+        <td>v1.26.1</td>
+        <td>1.25.10, 1.26.3</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-39826</td>
         <td>HIGH</td>
         <td>v1.26.1</td>
         <td>1.25.10, 1.26.3</td>

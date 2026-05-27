@@ -207,7 +207,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>usr/local/bin/dex</code></h3>
-<h4>Vulnerabilities (15)</h4>
+<h4>Vulnerabilities (18)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -309,6 +309,27 @@
     </tr>
     <tr>
         <td><code>stdlib</code></td>
+        <td>CVE-2026-39823</td>
+        <td>HIGH</td>
+        <td>v1.26.0</td>
+        <td>1.25.10, 1.26.3</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-39825</td>
+        <td>HIGH</td>
+        <td>v1.26.0</td>
+        <td>1.25.10, 1.26.3</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-39826</td>
+        <td>HIGH</td>
+        <td>v1.26.0</td>
+        <td>1.25.10, 1.26.3</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
         <td>CVE-2026-39836</td>
         <td>HIGH</td>
         <td>v1.26.0</td>
@@ -324,7 +345,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>usr/local/bin/docker-entrypoint</code></h3>
-<h4>Vulnerabilities (11)</h4>
+<h4>Vulnerabilities (14)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -398,6 +419,27 @@
     </tr>
     <tr>
         <td><code>stdlib</code></td>
+        <td>CVE-2026-39823</td>
+        <td>HIGH</td>
+        <td>v1.26.0</td>
+        <td>1.25.10, 1.26.3</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-39825</td>
+        <td>HIGH</td>
+        <td>v1.26.0</td>
+        <td>1.25.10, 1.26.3</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-39826</td>
+        <td>HIGH</td>
+        <td>v1.26.0</td>
+        <td>1.25.10, 1.26.3</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
         <td>CVE-2026-39836</td>
         <td>HIGH</td>
         <td>v1.26.0</td>
@@ -413,7 +455,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>usr/local/bin/gomplate</code></h3>
-<h4>Vulnerabilities (17)</h4>
+<h4>Vulnerabilities (20)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -529,6 +571,27 @@
     </tr>
     <tr>
         <td><code>stdlib</code></td>
+        <td>CVE-2026-39823</td>
+        <td>HIGH</td>
+        <td>v1.25.6</td>
+        <td>1.25.10, 1.26.3</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-39825</td>
+        <td>HIGH</td>
+        <td>v1.25.6</td>
+        <td>1.25.10, 1.26.3</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-39826</td>
+        <td>HIGH</td>
+        <td>v1.25.6</td>
+        <td>1.25.10, 1.26.3</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
         <td>CVE-2026-39836</td>
         <td>HIGH</td>
         <td>v1.25.6</td>
@@ -548,7 +611,7 @@
 <h4>No Vulnerabilities found</h4>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>usr/local/bin/argocd</code></h3>
-<h4>Vulnerabilities (16)</h4>
+<h4>Vulnerabilities (19)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -657,6 +720,27 @@
     </tr>
     <tr>
         <td><code>stdlib</code></td>
+        <td>CVE-2026-39823</td>
+        <td>HIGH</td>
+        <td>v1.25.5</td>
+        <td>1.25.10, 1.26.3</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-39825</td>
+        <td>HIGH</td>
+        <td>v1.25.5</td>
+        <td>1.25.10, 1.26.3</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-39826</td>
+        <td>HIGH</td>
+        <td>v1.25.5</td>
+        <td>1.25.10, 1.26.3</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
         <td>CVE-2026-39836</td>
         <td>HIGH</td>
         <td>v1.25.5</td>
@@ -672,7 +756,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>usr/local/bin/helm</code></h3>
-<h4>Vulnerabilities (14)</h4>
+<h4>Vulnerabilities (17)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -767,6 +851,27 @@
     </tr>
     <tr>
         <td><code>stdlib</code></td>
+        <td>CVE-2026-39823</td>
+        <td>HIGH</td>
+        <td>v1.24.11</td>
+        <td>1.25.10, 1.26.3</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-39825</td>
+        <td>HIGH</td>
+        <td>v1.24.11</td>
+        <td>1.25.10, 1.26.3</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-39826</td>
+        <td>HIGH</td>
+        <td>v1.24.11</td>
+        <td>1.25.10, 1.26.3</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
         <td>CVE-2026-39836</td>
         <td>HIGH</td>
         <td>v1.24.11</td>
@@ -782,7 +887,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>usr/local/bin/kustomize</code></h3>
-<h4>Vulnerabilities (27)</h4>
+<h4>Vulnerabilities (30)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -962,6 +1067,27 @@
     <tr>
         <td><code>stdlib</code></td>
         <td>CVE-2026-39820</td>
+        <td>HIGH</td>
+        <td>v1.24.0</td>
+        <td>1.25.10, 1.26.3</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-39823</td>
+        <td>HIGH</td>
+        <td>v1.24.0</td>
+        <td>1.25.10, 1.26.3</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-39825</td>
+        <td>HIGH</td>
+        <td>v1.24.0</td>
+        <td>1.25.10, 1.26.3</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-39826</td>
         <td>HIGH</td>
         <td>v1.24.0</td>
         <td>1.25.10, 1.26.3</td>

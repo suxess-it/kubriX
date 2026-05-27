@@ -1,6 +1,6 @@
 
 <h3>Target <code>usr/bin/cdi-operator</code></h3>
-<h4>Vulnerabilities (26)</h4>
+<h4>Vulnerabilities (29)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -173,6 +173,27 @@
     <tr>
         <td><code>stdlib</code></td>
         <td>CVE-2026-39820</td>
+        <td>HIGH</td>
+        <td>v1.23.6</td>
+        <td>1.25.10, 1.26.3</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-39823</td>
+        <td>HIGH</td>
+        <td>v1.23.6</td>
+        <td>1.25.10, 1.26.3</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-39825</td>
+        <td>HIGH</td>
+        <td>v1.23.6</td>
+        <td>1.25.10, 1.26.3</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-39826</td>
         <td>HIGH</td>
         <td>v1.23.6</td>
         <td>1.25.10, 1.26.3</td>
@@ -194,7 +215,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>usr/bin/csv-generator</code></h3>
-<h4>Vulnerabilities (26)</h4>
+<h4>Vulnerabilities (29)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -367,6 +388,27 @@
     <tr>
         <td><code>stdlib</code></td>
         <td>CVE-2026-39820</td>
+        <td>HIGH</td>
+        <td>v1.23.6</td>
+        <td>1.25.10, 1.26.3</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-39823</td>
+        <td>HIGH</td>
+        <td>v1.23.6</td>
+        <td>1.25.10, 1.26.3</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-39825</td>
+        <td>HIGH</td>
+        <td>v1.23.6</td>
+        <td>1.25.10, 1.26.3</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-39826</td>
         <td>HIGH</td>
         <td>v1.23.6</td>
         <td>1.25.10, 1.26.3</td>
@@ -457,7 +499,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>usr/bin/csv-generator</code></h3>
-<h4>Vulnerabilities (26)</h4>
+<h4>Vulnerabilities (29)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -630,6 +672,27 @@
     <tr>
         <td><code>stdlib</code></td>
         <td>CVE-2026-39820</td>
+        <td>HIGH</td>
+        <td>v1.23.4</td>
+        <td>1.25.10, 1.26.3</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-39823</td>
+        <td>HIGH</td>
+        <td>v1.23.4</td>
+        <td>1.25.10, 1.26.3</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-39825</td>
+        <td>HIGH</td>
+        <td>v1.23.4</td>
+        <td>1.25.10, 1.26.3</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-39826</td>
         <td>HIGH</td>
         <td>v1.23.4</td>
         <td>1.25.10, 1.26.3</td>
@@ -651,7 +714,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>usr/bin/virt-operator</code></h3>
-<h4>Vulnerabilities (26)</h4>
+<h4>Vulnerabilities (29)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -824,6 +887,27 @@
     <tr>
         <td><code>stdlib</code></td>
         <td>CVE-2026-39820</td>
+        <td>HIGH</td>
+        <td>v1.23.4</td>
+        <td>1.25.10, 1.26.3</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-39823</td>
+        <td>HIGH</td>
+        <td>v1.23.4</td>
+        <td>1.25.10, 1.26.3</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-39825</td>
+        <td>HIGH</td>
+        <td>v1.23.4</td>
+        <td>1.25.10, 1.26.3</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-39826</td>
         <td>HIGH</td>
         <td>v1.23.4</td>
         <td>1.25.10, 1.26.3</td>
