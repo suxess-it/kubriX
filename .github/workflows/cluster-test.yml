@@ -328,6 +328,7 @@ jobs:
           kubectl create secret generic kubrix-install-secrets -n kubrix-install \
             --from-literal KUBRIX_UPSTREAM_REPO=${KUBRIX_UPSTREAM_REPO} \
             --from-literal KUBRIX_UPSTREAM_BRANCH=${KUBRIX_UPSTREAM_BRANCH} \
+            --from-literal KUBRIX_UPSTREAM_REPO_PASSWORD=${KUBRIX_UPSTREAM_REPO_PASSWORD} \
             --from-literal KUBRIX_REPO=${KUBRIX_REPO} \
             --from-literal KUBRIX_REPO_BRANCH=${KUBRIX_REPO_BRANCH} \
             --from-literal KUBRIX_REPO_PASSWORD=${KUBRIX_REPO_PASSWORD} \
@@ -434,7 +435,7 @@ jobs:
         if: ${{ matrix.target-type  == 'kind-portal' || matrix.target-type  == 'kind-hub-prime' }}
         env:
           KUBRIX_DELETE_E2E_TESTS_REPO_TOKEN: ${{ secrets.KUBRIX_DELETE_E2E_TESTS_REPO_TOKEN }}
-          E2E_TEST_PR_NUMBER: "${{ github.event.number || '' }}"
+          E2E_TEST_PR_NUMBER: "${{ github.run_id }}"
           GITHUB_ORG: "kubriX-demo"
           GITHUB_API: "https://api.github.com"
         run: |
@@ -534,8 +535,10 @@ jobs:
           E2E_TEST_GITHUB_OTP: ${{ secrets.E2E_TEST_GITHUB_OTP }}
           E2E_KUBRIX_ARGOCD_APPSET_TOKEN: ${{ secrets.E2E_KUBRIX_ARGOCD_APPSET_TOKEN }}
           E2E_KUBRIX_KARGO_GIT_PASSWORD: ${{ secrets.E2E_KUBRIX_KARGO_GIT_PASSWORD }}
-          E2E_TEST_PR_NUMBER: "${{ github.event.number || '' }}"
+          E2E_TEST_PR_NUMBER: "${{ github.run_id }}"
           E2E_TEAM_ONBOARDING_TARGET_BRANCH: "main"
+          E2E_MERGE_PR: "true"
+          E2E_KUBRIX_ORG: kubriX-demo
           E2E_KUBRIX_REPO: kubrix-cluster-test-${{ github.run_id }}-${{ job.check_run_id }}
         run: |
           E2E_KEYCLOAK_DEMOADMIN_PASSWORD=$( kubectl get secret -n keycloak cp-keycloak-users-secret -o=jsonpath='{.data.demoadmin}'  | base64 -d )
@@ -566,6 +569,22 @@ jobs:
           E2E_MIMIR_PASSWORD=$( kubectl get secret -n grafana mimir-read-creds -o jsonpath='{.data.password}' | base64 -d )
           E2E_LOKI_USERNAME=$( kubectl get secret -n grafana loki-read-creds -o jsonpath='{.data.username}' | base64 -d )
           E2E_LOKI_PASSWORD=$( kubectl get secret -n grafana loki-read-creds -o jsonpath='{.data.password}' | base64 -d )
+          # only prime: secrets only exist in kind-hub-prime clusters
+          PRIME_VARS=()
+          if [[ "${KUBRIX_TARGET_TYPE}" == "kind-hub-prime" ]]; then
+            E2E_PGADMIN_ADMIN_PASSWORD=$(kubectl get secret -n cnpg pgadmin-secret -o=jsonpath='{.data.password}'  | base64 -d)
+            E2E_PGADMIN_BACKSTAGE_PASSWORD=$(kubectl get secrets -n backstage cnpg-backstage-secret  -o=jsonpath='{.data.password}' | base64 -d)
+            E2E_PGADMIN_GRAFANA_PASSWORD=$(kubectl get secrets -n grafana cnpg-grafana-secret  -o=jsonpath='{.data.password}' | base64 -d)
+            E2E_PGADMIN_KEYCLOAK_PASSWORD=$(kubectl get secrets -n keycloak cnpg-keycloak-secret  -o=jsonpath='{.data.password}' | base64 -d)
+            E2E_MINO_ADMIN_PASSWORD=$(kubectl get secret -n minio minio-admin-secret -o=jsonpath='{.data.rootPassword}' | base64 -d)
+            PRIME_VARS=(
+              --variable E2E_PGADMIN_ADMIN_PASSWORD=${E2E_PGADMIN_ADMIN_PASSWORD}
+              --variable E2E_PGADMIN_BACKSTAGE_PASSWORD=${E2E_PGADMIN_BACKSTAGE_PASSWORD}
+              --variable E2E_PGADMIN_GRAFANA_PASSWORD=${E2E_PGADMIN_GRAFANA_PASSWORD}
+              --variable E2E_PGADMIN_KEYCLOAK_PASSWORD=${E2E_PGADMIN_KEYCLOAK_PASSWORD}
+              --variable E2E_MERGE_PR=${E2E_MERGE_PR}
+            )
+          fi
           testkube run testworkflow -l type=${KUBRIX_TARGET_TYPE} \
             --variable E2E_TEST_GH_USERNAME=${E2E_TEST_GH_USERNAME} \
             --variable E2E_TEST_GH_PASSWORD=${E2E_TEST_GH_PASSWORD} \
@@ -588,7 +607,9 @@ jobs:
             --variable E2E_LOKI_USERNAME=${E2E_LOKI_USERNAME} \
             --variable E2E_LOKI_PASSWORD=${E2E_LOKI_PASSWORD} \
             --variable E2E_TEAM_ONBOARDING_TARGET_BRANCH=${E2E_TEAM_ONBOARDING_TARGET_BRANCH} \
+            --variable E2E_KUBRIX_ORG=${E2E_KUBRIX_ORG} \
             --variable E2E_KUBRIX_REPO=${E2E_KUBRIX_REPO} \
+            "${PRIME_VARS[@]}" \
             -f -d
 
       - name: Release a lock
@@ -639,6 +660,7 @@ jobs:
           kubectl logs -n argocd statefulset/sx-argocd-application-controller
           kubectl logs -n argocd deployment/sx-argocd-repo-server
           kubectl logs -n argocd deployment/sx-argocd-applicationset-controller
+          kubectl logs -n backstage deployment/sx-backstage
           kubectl get pods -o name -n crossplane | xargs -I {} kubectl logs -n crossplane {} --all-containers=true
 
       - name: final analyzer with k8sgpt
@@ -660,7 +682,7 @@ jobs:
       - name: Delete kubriX boostrap repo, if exists
         if: always()
         env:
-          KUBRIX_DELETE_E2E_TESTS_REPO_TOKEN: ${{ secrets.KUBRIX_DELETE_E2E_TESTS_REPO_TOKEN }}
+          KUBRIX_DELETE_E2E_TESTS_REPO_TOKEN: ${{ secrets.KUBRIX_CUSTOMER_REPO_TOKEN }}
           GITHUB_ORG: "kubriX-demo"
           GITHUB_API: "https://api.github.com"
           KUBRIX_REPO: "${{ github.run_id }}-${{ job.check_run_id }}"

@@ -9,7 +9,7 @@ const authDir = path.join(__dirname, '../.auth');
 const keycloakDemoviewerAuthFile = path.join(authDir, 'keycloak-demoviewer.json');
 test.use({ storageState: keycloakDemoviewerAuthFile });
 
-test('Keycloak Demoviewer Login', async ({ page }) => {
+test('Keycloak Demoviewer Login', { tag: ['@oss'] }, async ({ page }) => {
 
   await page.goto(`https://backstage.${BASE_DOMAIN}/`);
 

@@ -6,6 +6,7 @@ import fs from "fs";
 const BASE_DOMAIN = process.env.E2E_BASE_DOMAIN ?? '127-0-0-1.nip.io';
 const authDir = path.join(__dirname, '../.auth');
 const ghAuthFile = path.join(authDir, 'github.json');
+const KARGO_POLL_INTERVALS = [1_000, 2_000, 3_000, 5_000, 8_000];
 test.use({ storageState: ghAuthFile });
 
 // ArgoCD Login
@@ -100,7 +101,22 @@ async function waitForOperationToFinish(
   throw new Error(`Timed out waiting for sync operation to finish for app "${appName}"`);
 }
 
-test("Team Onboarding with kubrixBot Github user", async ({ page }) => {
+async function openKargoPromoteFlow(stageActionsButton: ReturnType<Parameters<typeof test>[0]['page']['locator']>) {
+  await expect(stageActionsButton).toBeVisible({ timeout: 15_000 });
+  await stageActionsButton.click();
+
+  const promoteMenuItem = stageActionsButton.page().getByRole('menuitem', { name: 'Promote', exact: true });
+  await expect(promoteMenuItem).toBeVisible({ timeout: 15_000 });
+  await promoteMenuItem.click();
+
+  const selectButton = stageActionsButton.page().getByRole('button', { name: 'Select' }).first();
+  await expect(selectButton).toBeVisible({ timeout: 15_000 });
+  await selectButton.click();
+
+  await stageActionsButton.page().getByRole('tab', { name: 'YAML' }).waitFor({ state: 'visible', timeout: 15_000 });
+}
+
+test("Team Onboarding with kubrixBot Github user", { tag: ['@oss'] }, async ({ page }) => {
   test.setTimeout(220_000);
   //await page.goto("https://backstage.${BASE_DOMAIN}/");
   //await page.getByRole('listitem').filter({ hasText: 'GitHubSign in using' }).getByRole('button').click();
@@ -216,7 +232,7 @@ test("Team Onboarding with kubrixBot Github user", async ({ page }) => {
   await authed.dispose();
 });
 
-test.describe("ArgoCD team onboarding app", () => {
+test.describe("ArgoCD team onboarding app", { tag: ['@oss'] }, () => {
   const argocdAuthFile = path.join(authDir, 'argocd.json');
   test.use({ storageState: argocdAuthFile });
   test.setTimeout(130_000);
@@ -228,7 +244,7 @@ test.describe("ArgoCD team onboarding app", () => {
 });
 
 
-test("Multi-Stage-Kargo App Onboarding", async ({ page }) => {
+test("Multi-Stage-Kargo App Onboarding", { tag: ['@oss'] }, async ({ page }) => {
   test.setTimeout(240_000);
   await page.goto(`https://backstage.${BASE_DOMAIN}/create/templates/default/multi-stage-app-with-kargo-pipeline`);
 
@@ -269,20 +285,18 @@ test("Multi-Stage-Kargo App Onboarding", async ({ page }) => {
 
 });
 
-test.describe("ArgoCD verify kubrixbot-app state", () => {
+test.describe("ArgoCD verify kubrixbot-app state", { tag: ['@oss'] }, () => {
   const argocdAuthFile = path.join(authDir, 'argocd.json');
   test.use({ storageState: argocdAuthFile });
   test.setTimeout(180_000);
   test('ArgoCD verify kubrixbot-app state', async ({ page }) => {
-    // wait for 1 minute so the appset scm generator picks up the new repo
     const prefix = process.env.E2E_TEST_PR_NUMBER ?? '';
-    await page.waitForTimeout(60_000);
     await page.goto(`https://argocd.${BASE_DOMAIN}/applications/adn-kubrix/kubrix-a${prefix}-kubrixbot-app`);
-    await expect(page.locator('#app').getByText('Synced', { exact: true }).nth(1)).toBeVisible({ timeout: 20_000 });
+    await expect(page.locator('#app').getByText('Synced', { exact: true }).nth(1)).toBeVisible({ timeout: 90_000 });
   });
 });
 
-test.describe("Kargo GitOps Promotion - Going Live First time", () => {
+test.describe("Kargo GitOps Promotion - Going Live First time", { tag: ['@oss'] }, () => {
   const kargoAuthFile = path.join(authDir, 'kargo.json');
   test.use({ storageState: kargoAuthFile });
   test.setTimeout(200_000);
@@ -291,11 +305,7 @@ test.describe("Kargo GitOps Promotion - Going Live First time", () => {
     const prefix = process.env.E2E_TEST_PR_NUMBER ?? '';
     await page.goto(`https://kargo.${BASE_DOMAIN}/project/kubrix-a${prefix}-kubrixbot-app-kargo-project`);
     await page.getByRole('button', { name: 'Refresh' }).click();
-    // wait 10 seconds so freights are refreshed
-    await page.waitForTimeout(10_000);
-    await page.locator('[data-testid$="/test"]').getByRole('button').nth(0).click();
-    await page.getByRole('menuitem', { name: 'Promote', exact: true }).locator('span').click();
-    await page.getByRole('button', { name: 'Select' }).first().click();
+    await openKargoPromoteFlow(page.locator('[data-testid$="/test"]').getByRole('button').nth(0));
     await page.getByRole('button', { name: 'Promote' }).click();
     await expect(page.getByLabel('Promotion', { exact: true }).getByRole('rowgroup')).toContainText('Succeeded', { timeout: 60_000 });
     await page.getByRole('button', { name: 'Close' }).click();
@@ -329,7 +339,7 @@ test.describe("Kargo GitOps Promotion - Going Live First time", () => {
       return readyVisible && healthyVisible;
     }, {
       timeout: 120_000,
-      intervals: [2_000],
+      intervals: KARGO_POLL_INTERVALS,
     }).toBe(true);
   });
 
@@ -420,7 +430,7 @@ test.describe("Kargo GitOps Promotion - Going Live First time", () => {
   });
 });
 
-test("Check kubrixbot-app podtato head stages", async ({ page }) => {
+test("Check kubrixbot-app podtato head stages", { tag: ['@oss'] }, async ({ page }) => {
   const prefix = process.env.E2E_TEST_PR_NUMBER ?? '';
   const urls = [
     `http://kubrix-a${prefix}-kubrixbot-app-test.${BASE_DOMAIN}/`,
@@ -435,7 +445,7 @@ test("Check kubrixbot-app podtato head stages", async ({ page }) => {
   }
 });
 
-test("Check kubrixbot-app in backstage", async ({ page }) => {
+test("Check kubrixbot-app in backstage", { tag: ['@oss'] }, async ({ page }) => {
   const prefix = process.env.E2E_TEST_PR_NUMBER ?? '';
   const apps = [
     `kubrix-a${prefix}-kubrixbot-app-test`,
@@ -526,7 +536,7 @@ test("Check kubrixbot-app in backstage", async ({ page }) => {
   }
 });
 
-test("Kargo GitOps Promotion - Change Podtato Head Hat Part Number", async ({ page }) => {
+test("Kargo GitOps Promotion - Change Podtato Head Hat Part Number", { tag: ['@oss'] }, async ({ page }) => {
 
 const newValuesFileContent = `
 nameOverride: ""
@@ -664,7 +674,7 @@ affinity: {}
   await page.getByRole('button', { name: 'Commit changes', exact: true }).click();
 });
 
-test.describe("Kargo GitOps Promotion - Promote Changes", () => {
+test.describe("Kargo GitOps Promotion - Promote Changes", { tag: ['@oss'] }, () => {
   const kargoAuthFile = path.join(authDir, 'kargo.json');
   test.use({ storageState: kargoAuthFile });
   test.setTimeout(200_000);
@@ -674,16 +684,10 @@ test.describe("Kargo GitOps Promotion - Promote Changes", () => {
     await page.goto(`https://kargo.${BASE_DOMAIN}/project/kubrix-a${prefix}-kubrixbot-app-kargo-project`);
     await page.waitForLoadState('domcontentloaded');
     await page.getByRole('button', { name: 'Refresh' }).click();
-    // wait 10 seconds so freights are refreshed
-    await page.waitForTimeout(10_000);
     // load the site again to mitigate problem in https://github.com/akuity/kargo/issues/5932
     await page.goto(`https://kargo.${BASE_DOMAIN}/project/kubrix-a${prefix}-kubrixbot-app-kargo-project`);
     await page.waitForLoadState('domcontentloaded');
-    await page.locator('[data-testid$="/test"]').getByRole('button').nth(1).click();
-    await page.waitForTimeout(5_000);
-    await page.getByRole('menuitem', { name: 'Promote', exact: true }).locator('span').click();
-    await page.waitForTimeout(5_000);
-    await page.getByRole('button', { name: 'Select' }).first().click();
+    await openKargoPromoteFlow(page.locator('[data-testid$="/test"]').getByRole('button').nth(1));
     await page.getByRole('button', { name: 'Promote' }).click();
     await expect(page.getByLabel('Promotion', { exact: true }).getByRole('rowgroup')).toContainText('Succeeded', { timeout: 30_000 });
     await page.getByRole('button', { name: 'Close' }).click();
@@ -803,23 +807,21 @@ test.describe("Kargo GitOps Promotion - Promote Changes", () => {
       return readyVisible && healthyVisible;
     }, {
       timeout: 120_000,
-      intervals: [2_000],
+      intervals: KARGO_POLL_INTERVALS,
     }).toBe(true);
   });
 });
 
 
-test.describe("ArgoCD verify kubrixbot-app state final", () => {
+test.describe("ArgoCD verify kubrixbot-app state final", { tag: ['@oss'] }, () => {
   const argocdAuthFile = path.join(authDir, 'argocd.json');
   test.use({ storageState: argocdAuthFile });
   test.setTimeout(180_000);
   test('ArgoCD verify kubrixbot-app state', async ({ page }) => {
-    // wait for 1 minute so the appset scm generator picks up the new repo
     const prefix = process.env.E2E_TEST_PR_NUMBER ?? '';
-    await page.waitForTimeout(60_000);
     await page.goto(`https://argocd.${BASE_DOMAIN}/applications/adn-kubrix/kubrix-a${prefix}-kubrixbot-app`);
-    await expect(page.locator('#app').getByText('Synced', { exact: true }).nth(1)).toBeVisible({ timeout: 20_000 });
-    await expect(page.locator('#app').getByText('Healthy', { exact: true }).nth(1)).toBeVisible({ timeout: 20_000 });
+    await expect(page.locator('#app').getByText('Synced', { exact: true }).nth(1)).toBeVisible({ timeout: 90_000 });
+    await expect(page.locator('#app').getByText('Healthy', { exact: true }).nth(1)).toBeVisible({ timeout: 90_000 });
   });
   test('ArgoCD verify kubrixbot-app-test state', async ({ page }) => {
     const prefix = process.env.E2E_TEST_PR_NUMBER ?? '';
@@ -841,7 +843,7 @@ test.describe("ArgoCD verify kubrixbot-app state final", () => {
   });
 });
 
-test("Delete kubrixBot repos", async ({ page }) => {
+test("Delete kubrixBot repos", { tag: ['@oss'] }, async ({ page }) => {
   const teamRepoUID = process.env.E2E_TEST_PR_NUMBER ?? '';
  
   // delete kubrix-kubrixbot-app in kubriX-demo org
@@ -867,5 +869,3 @@ test("Delete kubrixBot repos", async ({ page }) => {
   await page.getByLabel(`Delete kubriX-demo/kubrix-a${teamRepoUID}-apps`).getByRole('button', { name: 'Delete this repository' }).click();
 
 });
-  
-
