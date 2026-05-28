@@ -59,8 +59,8 @@ export const commonProjects = [
     testMatch: 'keycloak/auth.keycloak-login.ts',
   },
   {
-    name: 'vault-login',
-    testMatch: 'vault/auth.vault-login.ts',
+    name: 'openbao-login',
+    testMatch: 'openbao/auth.openbao-login.ts',
   },
   {
     name: 'kargo-login',
@@ -91,12 +91,12 @@ export const commonProjects = [
     dependencies: ['keycloak-login'],
   },
   {
-    name: 'vault-tests',
-    testMatch: /vault\/vault-.*/,
+    name: 'openbao-tests',
+    testMatch: /openbao\/openbao-.*/,
     use: {
       ...devices['Desktop Chrome'],
     },
-    dependencies: ['vault-login'],
+    dependencies: ['openbao-login'],
   },
   {
     name: 'kargo-tests',
@@ -146,7 +146,7 @@ export const primeProjects = [
       ...devices['Desktop Chrome'],
       viewport: { width: 1920, height: 1080 },
     },
-    dependencies: ['argocd-login', 'portal-login', 'grafana-login', 'keycloak-login', 'vault-login', 'kargo-login'],
+    dependencies: ['argocd-login', 'portal-login', 'grafana-login', 'keycloak-login', 'openbao-login', 'kargo-login'],
   },
   {
     name: 'prime-openbao-rbac-login',
