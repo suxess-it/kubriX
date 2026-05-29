@@ -628,7 +628,23 @@
 <h4>No Misconfigurations found</h4>
 
 <h3>Target <code>docker.io/falcosecurity/falco:0.43.1 (wolfi 20230201)</code></h3>
-<h4>No Vulnerabilities found</h4>
+<h4>Vulnerabilities (1)</h4>
+<table>
+    <tr>
+        <th>Package</th>
+        <th>ID</th>
+        <th>Severity</th>
+        <th>Installed Version</th>
+        <th>Fixed Version</th>
+    </tr>
+    <tr>
+        <td><code>jq</code></td>
+        <td>CVE-2026-32316</td>
+        <td>HIGH</td>
+        <td>1.8.1-r4</td>
+        <td>1.8.1-r5</td>
+    </tr>
+</table>
 <h4>No Misconfigurations found</h4>
 
 <h3>Target <code>docker.io/falcosecurity/falcoctl:0.12.2 (wolfi 20230201)</code></h3>

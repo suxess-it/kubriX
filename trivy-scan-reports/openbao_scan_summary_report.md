@@ -7,7 +7,7 @@
 <h4>No Vulnerabilities found</h4>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>bin/bao</code></h3>
-<h4>Vulnerabilities (12)</h4>
+<h4>Vulnerabilities (13)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -43,6 +43,13 @@
         <td>HIGH</td>
         <td>v0.0.0-20260420191332-988c88d7ef54</td>
         <td>2.4.4</td>
+    </tr>
+    <tr>
+        <td><code>github.com/openbao/openbao</code></td>
+        <td>CVE-2026-45808</td>
+        <td>HIGH</td>
+        <td>v0.0.0-20260420191332-988c88d7ef54</td>
+        <td>2.5.4</td>
     </tr>
     <tr>
         <td><code>stdlib</code></td>
