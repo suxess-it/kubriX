@@ -1,8 +1,3 @@
-const profile = process.env.KUBRIX_PLAYWRIGHT_PROFILE ?? 'oss';
-const configFile = profile === 'prime'
-  ? './playwright.prime.config.js'
-  : './playwright.oss.config.js';
-
-const configModule = require(configFile);
+const configModule = require('./playwright.oss.config.js');
 
 module.exports = configModule.default ?? configModule;
