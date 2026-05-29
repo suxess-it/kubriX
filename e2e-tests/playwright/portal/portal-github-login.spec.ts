@@ -100,7 +100,7 @@ async function waitForOperationToFinish(
   throw new Error(`Timed out waiting for sync operation to finish for app "${appName}"`);
 }
 
-test("Team Onboarding with kubrixBot Github user", async ({ page }) => {
+test("Team Onboarding with kubrixBot Github user", { tag: ['@oss'] }, async ({ page }) => {
   test.setTimeout(220_000);
   //await page.goto("https://backstage.${BASE_DOMAIN}/");
   //await page.getByRole('listitem').filter({ hasText: 'GitHubSign in using' }).getByRole('button').click();
@@ -216,7 +216,7 @@ test("Team Onboarding with kubrixBot Github user", async ({ page }) => {
   await authed.dispose();
 });
 
-test.describe("ArgoCD team onboarding app", () => {
+test.describe("ArgoCD team onboarding app", { tag: ['@oss'] }, () => {
   const argocdAuthFile = path.join(authDir, 'argocd.json');
   test.use({ storageState: argocdAuthFile });
   test.setTimeout(130_000);
@@ -228,7 +228,7 @@ test.describe("ArgoCD team onboarding app", () => {
 });
 
 
-test("Multi-Stage-Kargo App Onboarding", async ({ page }) => {
+test("Multi-Stage-Kargo App Onboarding", { tag: ['@oss'] }, async ({ page }) => {
   test.setTimeout(240_000);
   await page.goto(`https://backstage.${BASE_DOMAIN}/create/templates/default/multi-stage-app-with-kargo-pipeline`);
 
@@ -420,7 +420,7 @@ test.describe("Kargo GitOps Promotion - Going Live First time", () => {
   });
 });
 
-test("Check kubrixbot-app podtato head stages", async ({ page }) => {
+test("Check kubrixbot-app podtato head stages", { tag: ['@oss'] }, async ({ page }) => {
   const prefix = process.env.E2E_TEST_PR_NUMBER ?? '';
   const urls = [
     `http://kubrix-a${prefix}-kubrixbot-app-test.${BASE_DOMAIN}/`,
@@ -435,7 +435,7 @@ test("Check kubrixbot-app podtato head stages", async ({ page }) => {
   }
 });
 
-test("Check kubrixbot-app in backstage", async ({ page }) => {
+test("Check kubrixbot-app in backstage", { tag: ['@oss'] }, async ({ page }) => {
   const prefix = process.env.E2E_TEST_PR_NUMBER ?? '';
   const apps = [
     `kubrix-a${prefix}-kubrixbot-app-test`,
@@ -526,7 +526,7 @@ test("Check kubrixbot-app in backstage", async ({ page }) => {
   }
 });
 
-test("Kargo GitOps Promotion - Change Podtato Head Hat Part Number", async ({ page }) => {
+test("Kargo GitOps Promotion - Change Podtato Head Hat Part Number", { tag: ['@oss'] }, async ({ page }) => {
 
 const newValuesFileContent = `
 nameOverride: ""
@@ -841,7 +841,7 @@ test.describe("ArgoCD verify kubrixbot-app state final", () => {
   });
 });
 
-test("Delete kubrixBot repos", async ({ page }) => {
+test("Delete kubrixBot repos", { tag: ['@oss'] }, async ({ page }) => {
   const teamRepoUID = process.env.E2E_TEST_PR_NUMBER ?? '';
  
   // delete kubrix-kubrixbot-app in kubriX-demo org
@@ -868,4 +868,3 @@ test("Delete kubrixBot repos", async ({ page }) => {
 
 });
   
-

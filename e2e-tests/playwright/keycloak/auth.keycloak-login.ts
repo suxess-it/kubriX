@@ -1,6 +1,7 @@
 import { test as setup, expect } from '@playwright/test';
 import path from 'path';
 import fs from "fs";
+import { reuseStoredAuthState } from '../utils/auth-cache';
 
 const authDir = path.join(__dirname, '../.auth');
 fs.mkdirSync(authDir, { recursive: true });
@@ -8,6 +9,8 @@ const keycloakAuthFile = path.join(authDir, 'keycloak.json');
 const BASE_DOMAIN = process.env.E2E_BASE_DOMAIN ?? '127-0-0-1.nip.io';
 
 setup('authenticate', async ({ page }) => {
+  if (reuseStoredAuthState(keycloakAuthFile, 'keycloak-admin')) return;
+
   await page.goto(`https://keycloak.${BASE_DOMAIN}/`);
   await page.getByRole('textbox', { name: 'username' }).click();
   await page.getByRole('textbox', { name: 'username' }).fill('admin');

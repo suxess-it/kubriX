@@ -1,6 +1,7 @@
 import { test as setup, expect } from '@playwright/test';
 import path from 'path';
 import fs from "fs";
+import { reuseStoredAuthState } from '../utils/auth-cache';
 
 const authDir = path.join(__dirname, '../.auth');
 fs.mkdirSync(authDir, { recursive: true });
@@ -8,6 +9,8 @@ const kargoAuthFile = path.join(authDir, 'kargo.json');
 const BASE_DOMAIN = process.env.E2E_BASE_DOMAIN ?? '127-0-0-1.nip.io';
 
 setup('authenticate', async ({ page }) => {
+  if (reuseStoredAuthState(kargoAuthFile, 'kargo-admin')) return;
+
   await page.goto(`https://kargo.${BASE_DOMAIN}/login`);
   await page.locator('input[name="password"]').click();
   await page.locator('input[name="password"]').fill(process.env.E2E_KARGO_ADMIN_PASSWORD!);
