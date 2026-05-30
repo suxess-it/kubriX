@@ -130,7 +130,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>Node.js</code></h3>
-<h4>Vulnerabilities (51)</h4>
+<h4>Vulnerabilities (62)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -187,6 +187,27 @@
         <td>HIGH</td>
         <td>1.14.0</td>
         <td>1.15.2</td>
+    </tr>
+    <tr>
+        <td><code>axios</code></td>
+        <td>CVE-2026-44492</td>
+        <td>HIGH</td>
+        <td>1.14.0</td>
+        <td>1.16.0, 0.32.0</td>
+    </tr>
+    <tr>
+        <td><code>axios</code></td>
+        <td>CVE-2026-44494</td>
+        <td>HIGH</td>
+        <td>1.14.0</td>
+        <td>1.16.0</td>
+    </tr>
+    <tr>
+        <td><code>axios</code></td>
+        <td>CVE-2026-44495</td>
+        <td>HIGH</td>
+        <td>1.14.0</td>
+        <td>1.15.2, 0.31.1</td>
     </tr>
     <tr>
         <td><code>basic-ftp</code></td>
@@ -477,6 +498,41 @@
     </tr>
     <tr>
         <td><code>vm2</code></td>
+        <td>CVE-2026-47131</td>
+        <td>CRITICAL</td>
+        <td>3.10.5</td>
+        <td>3.11.4</td>
+    </tr>
+    <tr>
+        <td><code>vm2</code></td>
+        <td>CVE-2026-47137</td>
+        <td>CRITICAL</td>
+        <td>3.10.5</td>
+        <td>3.11.4</td>
+    </tr>
+    <tr>
+        <td><code>vm2</code></td>
+        <td>CVE-2026-47140</td>
+        <td>CRITICAL</td>
+        <td>3.10.5</td>
+        <td>3.11.4</td>
+    </tr>
+    <tr>
+        <td><code>vm2</code></td>
+        <td>CVE-2026-47208</td>
+        <td>CRITICAL</td>
+        <td>3.10.5</td>
+        <td>3.11.4</td>
+    </tr>
+    <tr>
+        <td><code>vm2</code></td>
+        <td>CVE-2026-47210</td>
+        <td>CRITICAL</td>
+        <td>3.10.5</td>
+        <td>3.11.4</td>
+    </tr>
+    <tr>
+        <td><code>vm2</code></td>
         <td>CVE-2026-43998</td>
         <td>HIGH</td>
         <td>3.10.5</td>
@@ -495,6 +551,27 @@
         <td>HIGH</td>
         <td>3.10.5</td>
         <td>3.11.0</td>
+    </tr>
+    <tr>
+        <td><code>vm2</code></td>
+        <td>CVE-2026-47135</td>
+        <td>HIGH</td>
+        <td>3.10.5</td>
+        <td>3.11.4</td>
+    </tr>
+    <tr>
+        <td><code>vm2</code></td>
+        <td>CVE-2026-47139</td>
+        <td>HIGH</td>
+        <td>3.10.5</td>
+        <td>3.11.4</td>
+    </tr>
+    <tr>
+        <td><code>vm2</code></td>
+        <td>CVE-2026-47209</td>
+        <td>HIGH</td>
+        <td>3.10.5</td>
+        <td>3.11.4</td>
     </tr>
 </table>
 <h4>No Misconfigurations found</h4>
