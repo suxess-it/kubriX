@@ -1,6 +1,7 @@
 import { test as setup, expect } from '@playwright/test';
 import path from 'path';
 import fs from "fs";
+import { reuseStoredAuthState } from '../utils/auth-cache';
 
 const authDir = path.join(__dirname, '../.auth');
 fs.mkdirSync(authDir, { recursive: true });
@@ -8,6 +9,8 @@ const argocdAuthFile = path.join(authDir, 'argocd.json');
 const BASE_DOMAIN = process.env.E2E_BASE_DOMAIN ?? '127-0-0-1.nip.io';
 
 setup('authenticate', async ({ page }) => {
+  if (reuseStoredAuthState(argocdAuthFile, 'argocd-admin')) return;
+
   await page.goto(`https://argocd.${BASE_DOMAIN}/login?return_url=https%3A%2F%2Fargocd.${BASE_DOMAIN}%2Fapplications`);
   await page.getByRole('textbox', { name: 'Username' }).click();
   await page.getByRole('textbox', { name: 'Username' }).fill('admin');

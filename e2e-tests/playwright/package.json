@@ -3,13 +3,21 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "scripts": {},
+  "scripts": {
+    "test:oss": "KUBRIX_PLAYWRIGHT_PROFILE=oss npx playwright test --config playwright.config.js",
+    "test:smoke": "KUBRIX_PLAYWRIGHT_PROFILE=oss npx playwright test --config playwright.config.js --project=argocd-tests --project=grafana-tests --project=kargo-tests --project=keycloak-tests --project=openbao-tests",
+    "test:prime": "KUBRIX_PLAYWRIGHT_PROFILE=prime npx playwright test --config playwright.config.js --project=prime-complete-tests",
+    "test:rbac": "KUBRIX_PLAYWRIGHT_PROFILE=prime npx playwright test --config playwright.config.js --project=prime-argocd-rbac-login --project=prime-openbao-rbac-login --project=prime-kargo-rbac-login --project=prime-rbac-login --project=prime-grafana-rbac-login --project=prime-pgadmin-rbac-login --project=prime-complete-tests",
+    "test:cleanup": "KUBRIX_PLAYWRIGHT_PROFILE=prime npx playwright test --config playwright.config.js --project=prime-cleanup",
+    "test:all": "KUBRIX_PLAYWRIGHT_PROFILE=prime npx playwright test --config playwright.config.js --grep-invert \"@cleanup|@oss\""
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
     "@playwright/test": "1.59.1",
-    "@types/node": "^25.0.3"
+    "@types/node": "^25.0.3",
+    "dotenv": "^17.4.2"
   },
   "dependencies": {
     "otpauth": "^9.4.1"
