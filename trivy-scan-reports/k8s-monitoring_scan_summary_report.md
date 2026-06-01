@@ -193,7 +193,7 @@
 <h4>No Misconfigurations found</h4>
 
 <h3>Target <code>ghcr.io/grafana/helm-chart-toolbox-kubectl:0.1.2 (alpine 3.22.2)</code></h3>
-<h4>Vulnerabilities (18)</h4>
+<h4>Vulnerabilities (19)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -299,6 +299,13 @@
         <td>HIGH</td>
         <td>3.5.4-r0</td>
         <td>3.5.6-r0</td>
+    </tr>
+    <tr>
+        <td><code>libxml2</code></td>
+        <td>CVE-2026-6732</td>
+        <td>HIGH</td>
+        <td>2.13.9-r0</td>
+        <td>2.13.9-r1</td>
     </tr>
     <tr>
         <td><code>musl</code></td>

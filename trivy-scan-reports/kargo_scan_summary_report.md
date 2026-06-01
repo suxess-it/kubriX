@@ -1,6 +1,6 @@
 
-<h3>Target <code>ghcr.io/akuity/kargo:v1.10.3 (wolfi 20230201)</code></h3>
-<h4>Vulnerabilities (14)</h4>
+<h3>Target <code>ghcr.io/akuity/kargo:v1.10.4 (wolfi 20230201)</code></h3>
+<h4>Vulnerabilities (19)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -81,6 +81,34 @@
     </tr>
     <tr>
         <td><code>helm-3</code></td>
+        <td>CVE-2026-39829</td>
+        <td>HIGH</td>
+        <td>3.19.2-r2</td>
+        <td>3.21.0-r3</td>
+    </tr>
+    <tr>
+        <td><code>helm-3</code></td>
+        <td>CVE-2026-39830</td>
+        <td>HIGH</td>
+        <td>3.19.2-r2</td>
+        <td>3.21.0-r3</td>
+    </tr>
+    <tr>
+        <td><code>helm-3</code></td>
+        <td>CVE-2026-39832</td>
+        <td>HIGH</td>
+        <td>3.19.2-r2</td>
+        <td>3.21.0-r3</td>
+    </tr>
+    <tr>
+        <td><code>helm-3</code></td>
+        <td>CVE-2026-39834</td>
+        <td>HIGH</td>
+        <td>3.19.2-r2</td>
+        <td>3.21.0-r3</td>
+    </tr>
+    <tr>
+        <td><code>helm-3</code></td>
         <td>CVE-2026-39836</td>
         <td>HIGH</td>
         <td>3.19.2-r2</td>
@@ -99,6 +127,13 @@
         <td>HIGH</td>
         <td>3.19.2-r2</td>
         <td>3.20.2-r0</td>
+    </tr>
+    <tr>
+        <td><code>helm-3</code></td>
+        <td>CVE-2026-46597</td>
+        <td>HIGH</td>
+        <td>3.19.2-r2</td>
+        <td>3.21.0-r3</td>
     </tr>
     <tr>
         <td><code>helm-3</code></td>
