@@ -36,7 +36,7 @@ openbao:
           runAsNonRoot: true
       # only for kind cluster with kind-kubriX root ca
       - name: combine-system-and-keycloak-ca
-        image: quay.io/openbao/openbao:2.5.3        # same base as server to get the original ca-certificates.crt
+        image: '{{ .Values.server.image.registry | default "docker.io" }}/{{ .Values.server.image.repository }}:{{ .Values.server.image.tag | default (trimPrefix "v" .Chart.AppVersion) }}'        # same base as server to get the original ca-certificates.crt
         command: ["/bin/sh","-c"]
         args:
           - |
