@@ -54,83 +54,11 @@
 </table>
 <h4>No Misconfigurations found</h4>
 
-<h3>Target <code>ghcr.io/suxess-it/sx-backstage:v1.48.5 (wolfi 20230201)</code></h3>
-<h4>Vulnerabilities (9)</h4>
-<table>
-    <tr>
-        <th>Package</th>
-        <th>ID</th>
-        <th>Severity</th>
-        <th>Installed Version</th>
-        <th>Fixed Version</th>
-    </tr>
-    <tr>
-        <td><code>py3-pip-wheel</code></td>
-        <td>CVE-2025-66418</td>
-        <td>HIGH</td>
-        <td>26.0.1-r2</td>
-        <td>26.1.1-r0</td>
-    </tr>
-    <tr>
-        <td><code>py3-pip-wheel</code></td>
-        <td>CVE-2025-66471</td>
-        <td>HIGH</td>
-        <td>26.0.1-r2</td>
-        <td>26.1.1-r0</td>
-    </tr>
-    <tr>
-        <td><code>py3-pip-wheel</code></td>
-        <td>CVE-2026-21441</td>
-        <td>HIGH</td>
-        <td>26.0.1-r2</td>
-        <td>26.1.1-r0</td>
-    </tr>
-    <tr>
-        <td><code>py3.13-pip</code></td>
-        <td>CVE-2025-66418</td>
-        <td>HIGH</td>
-        <td>26.0.1-r2</td>
-        <td>26.1.1-r0</td>
-    </tr>
-    <tr>
-        <td><code>py3.13-pip</code></td>
-        <td>CVE-2025-66471</td>
-        <td>HIGH</td>
-        <td>26.0.1-r2</td>
-        <td>26.1.1-r0</td>
-    </tr>
-    <tr>
-        <td><code>py3.13-pip</code></td>
-        <td>CVE-2026-21441</td>
-        <td>HIGH</td>
-        <td>26.0.1-r2</td>
-        <td>26.1.1-r0</td>
-    </tr>
-    <tr>
-        <td><code>py3.13-pip-base</code></td>
-        <td>CVE-2025-66418</td>
-        <td>HIGH</td>
-        <td>26.0.1-r2</td>
-        <td>26.1.1-r0</td>
-    </tr>
-    <tr>
-        <td><code>py3.13-pip-base</code></td>
-        <td>CVE-2025-66471</td>
-        <td>HIGH</td>
-        <td>26.0.1-r2</td>
-        <td>26.1.1-r0</td>
-    </tr>
-    <tr>
-        <td><code>py3.13-pip-base</code></td>
-        <td>CVE-2026-21441</td>
-        <td>HIGH</td>
-        <td>26.0.1-r2</td>
-        <td>26.1.1-r0</td>
-    </tr>
-</table>
+<h3>Target <code>ghcr.io/suxess-it/sx-backstage:v1.51.0 (wolfi 20230201)</code></h3>
+<h4>No Vulnerabilities found</h4>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>Node.js</code></h3>
-<h4>Vulnerabilities (62)</h4>
+<h4>Vulnerabilities (31)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -138,27 +66,6 @@
         <th>Severity</th>
         <th>Installed Version</th>
         <th>Fixed Version</th>
-    </tr>
-    <tr>
-        <td><code>@opentelemetry/auto-instrumentations-node</code></td>
-        <td>CVE-2026-44902</td>
-        <td>HIGH</td>
-        <td>0.72.0</td>
-        <td>0.75.0</td>
-    </tr>
-    <tr>
-        <td><code>@opentelemetry/exporter-prometheus</code></td>
-        <td>CVE-2026-44902</td>
-        <td>HIGH</td>
-        <td>0.214.0</td>
-        <td>0.217.0</td>
-    </tr>
-    <tr>
-        <td><code>@opentelemetry/sdk-node</code></td>
-        <td>CVE-2026-44902</td>
-        <td>HIGH</td>
-        <td>0.214.0</td>
-        <td>0.217.0</td>
     </tr>
     <tr>
         <td><code>axios</code></td>
@@ -288,13 +195,6 @@
     </tr>
     <tr>
         <td><code>tar</code></td>
-        <td>CVE-2026-23745</td>
-        <td>HIGH</td>
-        <td>6.2.1</td>
-        <td>7.5.3</td>
-    </tr>
-    <tr>
-        <td><code>tar</code></td>
         <td>CVE-2026-23950</td>
         <td>HIGH</td>
         <td>6.2.1</td>
@@ -306,20 +206,6 @@
         <td>HIGH</td>
         <td>6.2.1</td>
         <td>7.5.4</td>
-    </tr>
-    <tr>
-        <td><code>tar</code></td>
-        <td>CVE-2026-23950</td>
-        <td>HIGH</td>
-        <td>6.2.1</td>
-        <td>7.5.4</td>
-    </tr>
-    <tr>
-        <td><code>tar</code></td>
-        <td>CVE-2026-24842</td>
-        <td>HIGH</td>
-        <td>6.2.1</td>
-        <td>7.5.7</td>
     </tr>
     <tr>
         <td><code>tar</code></td>
@@ -351,13 +237,6 @@
     </tr>
     <tr>
         <td><code>tar</code></td>
-        <td>CVE-2026-26960</td>
-        <td>HIGH</td>
-        <td>6.2.1</td>
-        <td>7.5.8</td>
-    </tr>
-    <tr>
-        <td><code>tar</code></td>
         <td>CVE-2026-29786</td>
         <td>HIGH</td>
         <td>6.2.1</td>
@@ -369,20 +248,6 @@
         <td>HIGH</td>
         <td>6.2.1</td>
         <td>7.5.10</td>
-    </tr>
-    <tr>
-        <td><code>tar</code></td>
-        <td>CVE-2026-29786</td>
-        <td>HIGH</td>
-        <td>6.2.1</td>
-        <td>7.5.10</td>
-    </tr>
-    <tr>
-        <td><code>tar</code></td>
-        <td>CVE-2026-31802</td>
-        <td>HIGH</td>
-        <td>6.2.1</td>
-        <td>7.5.11</td>
     </tr>
     <tr>
         <td><code>tar</code></td>
@@ -419,185 +284,8 @@
         <td>5.29.0</td>
         <td>6.24.0, 7.24.0</td>
     </tr>
-    <tr>
-        <td><code>vm2</code></td>
-        <td>CVE-2026-24118</td>
-        <td>CRITICAL</td>
-        <td>3.10.5</td>
-        <td>3.11.0</td>
-    </tr>
-    <tr>
-        <td><code>vm2</code></td>
-        <td>CVE-2026-24781</td>
-        <td>CRITICAL</td>
-        <td>3.10.5</td>
-        <td>3.11.0</td>
-    </tr>
-    <tr>
-        <td><code>vm2</code></td>
-        <td>CVE-2026-26332</td>
-        <td>CRITICAL</td>
-        <td>3.10.5</td>
-        <td>3.11.0</td>
-    </tr>
-    <tr>
-        <td><code>vm2</code></td>
-        <td>CVE-2026-43997</td>
-        <td>CRITICAL</td>
-        <td>3.10.5</td>
-        <td>3.11.0</td>
-    </tr>
-    <tr>
-        <td><code>vm2</code></td>
-        <td>CVE-2026-43999</td>
-        <td>CRITICAL</td>
-        <td>3.10.5</td>
-        <td>3.11.0</td>
-    </tr>
-    <tr>
-        <td><code>vm2</code></td>
-        <td>CVE-2026-44005</td>
-        <td>CRITICAL</td>
-        <td>3.10.5</td>
-        <td>3.11.0</td>
-    </tr>
-    <tr>
-        <td><code>vm2</code></td>
-        <td>CVE-2026-44006</td>
-        <td>CRITICAL</td>
-        <td>3.10.5</td>
-        <td>3.11.0</td>
-    </tr>
-    <tr>
-        <td><code>vm2</code></td>
-        <td>CVE-2026-44007</td>
-        <td>CRITICAL</td>
-        <td>3.10.5</td>
-        <td>3.11.1</td>
-    </tr>
-    <tr>
-        <td><code>vm2</code></td>
-        <td>CVE-2026-44008</td>
-        <td>CRITICAL</td>
-        <td>3.10.5</td>
-        <td>3.11.2</td>
-    </tr>
-    <tr>
-        <td><code>vm2</code></td>
-        <td>CVE-2026-44009</td>
-        <td>CRITICAL</td>
-        <td>3.10.5</td>
-        <td>3.11.2</td>
-    </tr>
-    <tr>
-        <td><code>vm2</code></td>
-        <td>CVE-2026-45411</td>
-        <td>CRITICAL</td>
-        <td>3.10.5</td>
-        <td>3.11.3</td>
-    </tr>
-    <tr>
-        <td><code>vm2</code></td>
-        <td>CVE-2026-47131</td>
-        <td>CRITICAL</td>
-        <td>3.10.5</td>
-        <td>3.11.4</td>
-    </tr>
-    <tr>
-        <td><code>vm2</code></td>
-        <td>CVE-2026-47137</td>
-        <td>CRITICAL</td>
-        <td>3.10.5</td>
-        <td>3.11.4</td>
-    </tr>
-    <tr>
-        <td><code>vm2</code></td>
-        <td>CVE-2026-47140</td>
-        <td>CRITICAL</td>
-        <td>3.10.5</td>
-        <td>3.11.4</td>
-    </tr>
-    <tr>
-        <td><code>vm2</code></td>
-        <td>CVE-2026-47208</td>
-        <td>CRITICAL</td>
-        <td>3.10.5</td>
-        <td>3.11.4</td>
-    </tr>
-    <tr>
-        <td><code>vm2</code></td>
-        <td>CVE-2026-47210</td>
-        <td>CRITICAL</td>
-        <td>3.10.5</td>
-        <td>3.11.4</td>
-    </tr>
-    <tr>
-        <td><code>vm2</code></td>
-        <td>CVE-2026-43998</td>
-        <td>HIGH</td>
-        <td>3.10.5</td>
-        <td>3.11.0</td>
-    </tr>
-    <tr>
-        <td><code>vm2</code></td>
-        <td>CVE-2026-44001</td>
-        <td>HIGH</td>
-        <td>3.10.5</td>
-        <td>3.11.0</td>
-    </tr>
-    <tr>
-        <td><code>vm2</code></td>
-        <td>CVE-2026-44004</td>
-        <td>HIGH</td>
-        <td>3.10.5</td>
-        <td>3.11.0</td>
-    </tr>
-    <tr>
-        <td><code>vm2</code></td>
-        <td>CVE-2026-47135</td>
-        <td>HIGH</td>
-        <td>3.10.5</td>
-        <td>3.11.4</td>
-    </tr>
-    <tr>
-        <td><code>vm2</code></td>
-        <td>CVE-2026-47139</td>
-        <td>HIGH</td>
-        <td>3.10.5</td>
-        <td>3.11.4</td>
-    </tr>
-    <tr>
-        <td><code>vm2</code></td>
-        <td>CVE-2026-47209</td>
-        <td>HIGH</td>
-        <td>3.10.5</td>
-        <td>3.11.4</td>
-    </tr>
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>Python</code></h3>
-<h4>Vulnerabilities (2)</h4>
-<table>
-    <tr>
-        <th>Package</th>
-        <th>ID</th>
-        <th>Severity</th>
-        <th>Installed Version</th>
-        <th>Fixed Version</th>
-    </tr>
-    <tr>
-        <td><code>urllib3</code></td>
-        <td>CVE-2026-44431</td>
-        <td>HIGH</td>
-        <td>2.6.3</td>
-        <td>2.7.0</td>
-    </tr>
-    <tr>
-        <td><code>urllib3</code></td>
-        <td>CVE-2026-44432</td>
-        <td>HIGH</td>
-        <td>2.6.3</td>
-        <td>2.7.0</td>
-    </tr>
-</table>
+<h4>No Vulnerabilities found</h4>
 <h4>No Misconfigurations found</h4>
