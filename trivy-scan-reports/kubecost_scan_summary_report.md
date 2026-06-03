@@ -139,28 +139,28 @@
         <td>CVE-2026-33845</td>
         <td>HIGH</td>
         <td>3.8.3-9.el9</td>
-        <td></td>
+        <td>3.8.10-4.el9_8</td>
     </tr>
     <tr>
         <td><code>gnutls</code></td>
         <td>CVE-2026-33846</td>
         <td>HIGH</td>
         <td>3.8.3-9.el9</td>
-        <td></td>
+        <td>3.8.10-4.el9_8</td>
     </tr>
     <tr>
         <td><code>gnutls</code></td>
         <td>CVE-2026-42009</td>
         <td>HIGH</td>
         <td>3.8.3-9.el9</td>
-        <td></td>
+        <td>3.8.10-4.el9_8</td>
     </tr>
     <tr>
         <td><code>gnutls</code></td>
         <td>CVE-2026-42010</td>
         <td>HIGH</td>
         <td>3.8.3-9.el9</td>
-        <td></td>
+        <td>3.8.10-4.el9_8</td>
     </tr>
     <tr>
         <td><code>krb5-libs</code></td>
@@ -409,28 +409,28 @@
         <td>CVE-2026-33845</td>
         <td>HIGH</td>
         <td>3.8.3-9.el9</td>
-        <td></td>
+        <td>3.8.10-4.el9_8</td>
     </tr>
     <tr>
         <td><code>gnutls</code></td>
         <td>CVE-2026-33846</td>
         <td>HIGH</td>
         <td>3.8.3-9.el9</td>
-        <td></td>
+        <td>3.8.10-4.el9_8</td>
     </tr>
     <tr>
         <td><code>gnutls</code></td>
         <td>CVE-2026-42009</td>
         <td>HIGH</td>
         <td>3.8.3-9.el9</td>
-        <td></td>
+        <td>3.8.10-4.el9_8</td>
     </tr>
     <tr>
         <td><code>gnutls</code></td>
         <td>CVE-2026-42010</td>
         <td>HIGH</td>
         <td>3.8.3-9.el9</td>
-        <td></td>
+        <td>3.8.10-4.el9_8</td>
     </tr>
     <tr>
         <td><code>krb5-libs</code></td>
@@ -583,28 +583,28 @@
         <td>CVE-2026-33845</td>
         <td>HIGH</td>
         <td>3.8.3-9.el9</td>
-        <td></td>
+        <td>3.8.10-4.el9_8</td>
     </tr>
     <tr>
         <td><code>gnutls</code></td>
         <td>CVE-2026-33846</td>
         <td>HIGH</td>
         <td>3.8.3-9.el9</td>
-        <td></td>
+        <td>3.8.10-4.el9_8</td>
     </tr>
     <tr>
         <td><code>gnutls</code></td>
         <td>CVE-2026-42009</td>
         <td>HIGH</td>
         <td>3.8.3-9.el9</td>
-        <td></td>
+        <td>3.8.10-4.el9_8</td>
     </tr>
     <tr>
         <td><code>gnutls</code></td>
         <td>CVE-2026-42010</td>
         <td>HIGH</td>
         <td>3.8.3-9.el9</td>
-        <td></td>
+        <td>3.8.10-4.el9_8</td>
     </tr>
     <tr>
         <td><code>krb5-libs</code></td>
@@ -769,28 +769,28 @@
         <td>CVE-2026-33845</td>
         <td>HIGH</td>
         <td>3.8.3-9.el9</td>
-        <td></td>
+        <td>3.8.10-4.el9_8</td>
     </tr>
     <tr>
         <td><code>gnutls</code></td>
         <td>CVE-2026-33846</td>
         <td>HIGH</td>
         <td>3.8.3-9.el9</td>
-        <td></td>
+        <td>3.8.10-4.el9_8</td>
     </tr>
     <tr>
         <td><code>gnutls</code></td>
         <td>CVE-2026-42009</td>
         <td>HIGH</td>
         <td>3.8.3-9.el9</td>
-        <td></td>
+        <td>3.8.10-4.el9_8</td>
     </tr>
     <tr>
         <td><code>gnutls</code></td>
         <td>CVE-2026-42010</td>
         <td>HIGH</td>
         <td>3.8.3-9.el9</td>
-        <td></td>
+        <td>3.8.10-4.el9_8</td>
     </tr>
     <tr>
         <td><code>krb5-libs</code></td>
