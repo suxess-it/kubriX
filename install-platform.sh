@@ -447,6 +447,7 @@ wait_until_apps_synced_healthy() {
   end=$((SECONDS+max_wait_time))
 
   k8smonitoring_restarted=false
+  declare -A resynced_healthy_failed=()  # track apps already re-synced for Synced+Healthy+Failed
 
   # avoid repeating this kubectl get pod 3x in the same loop body
   local controller_pod
@@ -552,10 +553,25 @@ wait_until_apps_synced_healthy() {
           sync_duration=$((now_seconds - sync_started_seconds))
         fi
 
-        # terminate+restart if running too long OR failed/error
-        if { [ "$operation_phase" = "Running" ] && [ "$sync_duration" -gt 300 ]; } \
-           || [ "$operation_phase" = "Failed" ] || [ "$operation_phase" = "Error" ]; then
-          echo "sync of app ${app} gets terminated because it took longer than 300 seconds or failed"
+        # terminate+restart if running too long
+        if [ "$operation_phase" = "Running" ] && [ "$sync_duration" -gt 300 ]; then
+          echo "sync of app ${app} gets terminated because it took longer than 300 seconds"
+          kubectl exec "$controller_pod" -n argocd -- argocd app terminate-op "$app" --core || true
+          echo "wait for 10 seconds"
+          sleep 10
+          echo "restart sync for app ${app}"
+          kubectl exec "$controller_pod" -n argocd -- argocd app sync "$app" --async --core || true
+        # re-sync once to clear Failed/Error operation when app is already Synced+Healthy (e.g. failed hook)
+        elif { [ "$operation_phase" = "Failed" ] || [ "$operation_phase" = "Error" ]; } \
+             && [ "$sync_status" = "$synced" ] && [ "$health_status" = "$healthy" ] \
+             && [ -z "${resynced_healthy_failed[$app]+x}" ]; then
+          echo "app ${app} is Synced+Healthy but operation ${operation_phase} — re-syncing once to clear status"
+          kubectl exec "$controller_pod" -n argocd -- argocd app sync "$app" --async --core || true
+          resynced_healthy_failed[$app]=1
+        # terminate+restart if failed/error and NOT Synced+Healthy
+        elif { [ "$operation_phase" = "Failed" ] || [ "$operation_phase" = "Error" ]; } \
+             && { [ "$sync_status" != "$synced" ] || [ "$health_status" != "$healthy" ]; }; then
+          echo "sync of app ${app} failed — restarting sync"
           kubectl exec "$controller_pod" -n argocd -- argocd app terminate-op "$app" --core || true
           echo "wait for 10 seconds"
           sleep 10
@@ -785,9 +801,29 @@ if [[ "${KUBRIX_CLUSTER_TYPE}" == "kind" ]] ; then
   kubectl get ns openbao >/dev/null 2>&1 || kubectl create ns openbao
   kubectl create secret generic ca-cert --from-file=ca.crt=${root_cert} -n openbao --dry-run=client -o yaml | kubectl apply -f -
 
+  # pgadmin in cnpg also needs to trust the kind root CA for Keycloak OIDC metadata discovery
+  kubectl get ns cnpg >/dev/null 2>&1 || kubectl create ns cnpg
+  kubectl create secret generic ca-cert --from-file=ca.crt=${root_cert} -n cnpg --dry-run=client -o yaml | kubectl apply -f -
+
+  # argocd server needs to trust the kind root CA for Keycloak OIDC metadata discovery
+  kubectl get ns argocd >/dev/null 2>&1 || kubectl create ns argocd
+  kubectl create secret generic ca-cert --from-file=ca.crt=${root_cert} -n argocd --dry-run=client -o yaml | kubectl apply -f -
+
+  # kargo needs to trust the kind root CA for Keycloak OIDC metadata discovery
+  kubectl get ns kargo >/dev/null 2>&1 || kubectl create ns kargo
+  kubectl create secret generic kind-kubrix-cacert --from-file=ca.crt=${root_cert} -n kargo --dry-run=client -o yaml | kubectl apply -f -
+
+  # grafana needs to trust the kind root CA for Keycloak OIDC token exchange
+  kubectl get ns grafana >/dev/null 2>&1 || kubectl create ns grafana
+  kubectl create secret generic ca-cert --from-file=ca.crt=${root_cert} -n grafana --dry-run=client -o yaml | kubectl apply -f -
+
   # temp for migration pipeline check, vault ca for oidc
   kubectl get ns vault >/dev/null 2>&1 || kubectl create ns vault
   kubectl create secret generic ca-cert --from-file=ca.crt=${root_cert} -n vault --dry-run=client -o yaml | kubectl apply -f -
+
+  # external-secrets operator needs to trust the kind root CA to connect to openbao via HTTPS
+  kubectl get ns external-secrets >/dev/null 2>&1 || kubectl create ns external-secrets
+  kubectl create secret generic ca-cert --from-file=ca.crt=${root_cert} -n external-secrets --dry-run=client -o yaml | kubectl apply -f -
 
   # testkube should also trust every cert signed with our ca
   kubectl get ns testkube >/dev/null 2>&1 || kubectl create ns testkube
