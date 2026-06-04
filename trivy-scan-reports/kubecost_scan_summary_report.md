@@ -111,7 +111,7 @@
 <h4>No Misconfigurations found</h4>
 
 <h3>Target <code>gcr.io/kubecost1/cost-model:prod-2.9.6 (redhat 9.7)</code></h3>
-<h4>Vulnerabilities (13)</h4>
+<h4>Vulnerabilities (12)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -161,13 +161,6 @@
         <td>HIGH</td>
         <td>3.8.3-9.el9</td>
         <td>3.8.10-4.el9_8</td>
-    </tr>
-    <tr>
-        <td><code>krb5-libs</code></td>
-        <td>CVE-2026-40356</td>
-        <td>HIGH</td>
-        <td>1.21.1-8.el9_6</td>
-        <td>1.21.1-10.el9_8</td>
     </tr>
     <tr>
         <td><code>libarchive</code></td>
@@ -381,7 +374,7 @@
 <h4>No Misconfigurations found</h4>
 
 <h3>Target <code>gcr.io/kubecost1/frontend:prod-2.9.6 (redhat 9.7)</code></h3>
-<h4>Vulnerabilities (23)</h4>
+<h4>Vulnerabilities (22)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -431,13 +424,6 @@
         <td>HIGH</td>
         <td>3.8.3-9.el9</td>
         <td>3.8.10-4.el9_8</td>
-    </tr>
-    <tr>
-        <td><code>krb5-libs</code></td>
-        <td>CVE-2026-40356</td>
-        <td>HIGH</td>
-        <td>1.21.1-8.el9_6</td>
-        <td>1.21.1-10.el9_8</td>
     </tr>
     <tr>
         <td><code>libarchive</code></td>
@@ -555,7 +541,7 @@
 <h4>No Misconfigurations found</h4>
 
 <h3>Target <code>gcr.io/kubecost1/kubecost-modeling:v0.1.34 (redhat 9.7)</code></h3>
-<h4>Vulnerabilities (20)</h4>
+<h4>Vulnerabilities (19)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -605,13 +591,6 @@
         <td>HIGH</td>
         <td>3.8.3-9.el9</td>
         <td>3.8.10-4.el9_8</td>
-    </tr>
-    <tr>
-        <td><code>krb5-libs</code></td>
-        <td>CVE-2026-40356</td>
-        <td>HIGH</td>
-        <td>1.21.1-8.el9_6</td>
-        <td>1.21.1-10.el9_8</td>
     </tr>
     <tr>
         <td><code>libarchive</code></td>
@@ -748,7 +727,7 @@
 <h4>No Misconfigurations found</h4>
 
 <h3>Target <code>icr.io/ibm-finops/agent:v1.0.8 (redhat 9.7)</code></h3>
-<h4>Vulnerabilities (11)</h4>
+<h4>Vulnerabilities (10)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -791,13 +770,6 @@
         <td>HIGH</td>
         <td>3.8.3-9.el9</td>
         <td>3.8.10-4.el9_8</td>
-    </tr>
-    <tr>
-        <td><code>krb5-libs</code></td>
-        <td>CVE-2026-40356</td>
-        <td>HIGH</td>
-        <td>1.21.1-8.el9_6</td>
-        <td>1.21.1-10.el9_8</td>
     </tr>
     <tr>
         <td><code>libarchive</code></td>

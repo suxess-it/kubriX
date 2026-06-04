@@ -1,6 +1,6 @@
 
 <h3>Target <code>ghcr.io/grafana/alloy-operator:1.8.1 (redhat 9.7)</code></h3>
-<h4>Vulnerabilities (9)</h4>
+<h4>Vulnerabilities (8)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -36,13 +36,6 @@
         <td>HIGH</td>
         <td>3.8.3-10.el9_7</td>
         <td>3.8.10-4.el9_8</td>
-    </tr>
-    <tr>
-        <td><code>krb5-libs</code></td>
-        <td>CVE-2026-40356</td>
-        <td>HIGH</td>
-        <td>1.21.1-8.el9_6</td>
-        <td>1.21.1-10.el9_8</td>
     </tr>
     <tr>
         <td><code>libarchive</code></td>
