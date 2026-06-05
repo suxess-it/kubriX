@@ -18,6 +18,29 @@ configs:
           end
           return hs
 
+      apiextensions.crossplane.io/ManagedResourceDefinition:
+        health.lua: |
+          health_status = {}
+          health_status.status = "Progressing"
+          health_status.message = ""
+          if obj.status ~= nil then
+            for i, condition in ipairs(obj.status.conditions) do
+              if condition.type == "Established" then
+                if condition.status == "True" then
+                  health_status.status = "Healthy"
+                  health_status.message = "Resource is up-to-date."
+                  return health_status
+                end
+                if condition.reason == "InactiveManagedResource" then
+                  health_status.status = "Healthy"
+                  health_status.message = "Resource is up-to-date."
+                  return health_status
+                end
+              end
+            end
+          end
+          return health_status
+
     resource.exclusions: |
       - apiGroups:
         - "*"
