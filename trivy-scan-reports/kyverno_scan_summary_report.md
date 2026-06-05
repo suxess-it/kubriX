@@ -3,7 +3,7 @@
 <h4>No Vulnerabilities found</h4>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>ko-app/readiness-checker</code></h3>
-<h4>Vulnerabilities (21)</h4>
+<h4>Vulnerabilities (22)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -16,91 +16,91 @@
         <td><code>github.com/kyverno/kyverno</code></td>
         <td>CVE-2026-22039</td>
         <td>CRITICAL</td>
-        <td>v1.5.0-rc1.0.20260603073443-9ec7bc0f80ff+dirty</td>
+        <td>v1.5.0-rc1.0.20260605150549-e3aa860dd5d3+dirty</td>
         <td>1.15.3, 1.16.3</td>
     </tr>
     <tr>
         <td><code>github.com/kyverno/kyverno</code></td>
         <td>CVE-2023-47630</td>
         <td>HIGH</td>
-        <td>v1.5.0-rc1.0.20260603073443-9ec7bc0f80ff+dirty</td>
+        <td>v1.5.0-rc1.0.20260605150549-e3aa860dd5d3+dirty</td>
         <td>1.10.5</td>
     </tr>
     <tr>
         <td><code>github.com/kyverno/kyverno</code></td>
         <td>CVE-2024-48921</td>
         <td>HIGH</td>
-        <td>v1.5.0-rc1.0.20260603073443-9ec7bc0f80ff+dirty</td>
+        <td>v1.5.0-rc1.0.20260605150549-e3aa860dd5d3+dirty</td>
         <td>1.13.0</td>
     </tr>
     <tr>
         <td><code>github.com/kyverno/kyverno</code></td>
         <td>CVE-2025-46342</td>
         <td>HIGH</td>
-        <td>v1.5.0-rc1.0.20260603073443-9ec7bc0f80ff+dirty</td>
+        <td>v1.5.0-rc1.0.20260605150549-e3aa860dd5d3+dirty</td>
         <td>1.13.5, 1.14.0</td>
     </tr>
     <tr>
         <td><code>github.com/kyverno/kyverno</code></td>
         <td>CVE-2025-47281</td>
         <td>HIGH</td>
-        <td>v1.5.0-rc1.0.20260603073443-9ec7bc0f80ff+dirty</td>
+        <td>v1.5.0-rc1.0.20260605150549-e3aa860dd5d3+dirty</td>
         <td>1.14.2</td>
     </tr>
     <tr>
         <td><code>github.com/kyverno/kyverno</code></td>
         <td>CVE-2026-23881</td>
         <td>HIGH</td>
-        <td>v1.5.0-rc1.0.20260603073443-9ec7bc0f80ff+dirty</td>
+        <td>v1.5.0-rc1.0.20260605150549-e3aa860dd5d3+dirty</td>
         <td>1.15.3, 1.16.3</td>
     </tr>
     <tr>
         <td><code>github.com/kyverno/kyverno</code></td>
         <td>CVE-2026-40868</td>
         <td>HIGH</td>
-        <td>v1.5.0-rc1.0.20260603073443-9ec7bc0f80ff+dirty</td>
+        <td>v1.5.0-rc1.0.20260605150549-e3aa860dd5d3+dirty</td>
         <td>1.17.0</td>
     </tr>
     <tr>
         <td><code>github.com/kyverno/kyverno</code></td>
         <td>CVE-2026-41068</td>
         <td>HIGH</td>
-        <td>v1.5.0-rc1.0.20260603073443-9ec7bc0f80ff+dirty</td>
+        <td>v1.5.0-rc1.0.20260605150549-e3aa860dd5d3+dirty</td>
         <td></td>
     </tr>
     <tr>
         <td><code>github.com/kyverno/kyverno</code></td>
         <td>CVE-2026-41323</td>
         <td>HIGH</td>
-        <td>v1.5.0-rc1.0.20260603073443-9ec7bc0f80ff+dirty</td>
+        <td>v1.5.0-rc1.0.20260605150549-e3aa860dd5d3+dirty</td>
         <td>1.17.0</td>
     </tr>
     <tr>
         <td><code>github.com/kyverno/kyverno</code></td>
         <td>GHSA-459x-q9hg-4gpq</td>
         <td>HIGH</td>
-        <td>v1.5.0-rc1.0.20260603073443-9ec7bc0f80ff+dirty</td>
+        <td>v1.5.0-rc1.0.20260605150549-e3aa860dd5d3+dirty</td>
         <td></td>
     </tr>
     <tr>
         <td><code>github.com/kyverno/kyverno</code></td>
         <td>GHSA-8wfp-579w-6r25</td>
         <td>HIGH</td>
-        <td>v1.5.0-rc1.0.20260603073443-9ec7bc0f80ff+dirty</td>
+        <td>v1.5.0-rc1.0.20260605150549-e3aa860dd5d3+dirty</td>
         <td>1.17.0</td>
     </tr>
     <tr>
         <td><code>github.com/kyverno/kyverno</code></td>
         <td>GHSA-fmqp-4wfc-w3v7</td>
         <td>HIGH</td>
-        <td>v1.5.0-rc1.0.20260603073443-9ec7bc0f80ff+dirty</td>
+        <td>v1.5.0-rc1.0.20260605150549-e3aa860dd5d3+dirty</td>
         <td>1.16.2</td>
     </tr>
     <tr>
         <td><code>github.com/kyverno/kyverno</code></td>
         <td>GHSA-qr4g-8hrp-c4rw</td>
         <td>HIGH</td>
-        <td>v1.5.0-rc1.0.20260603073443-9ec7bc0f80ff+dirty</td>
+        <td>v1.5.0-rc1.0.20260605150549-e3aa860dd5d3+dirty</td>
         <td></td>
     </tr>
     <tr>
@@ -158,6 +158,13 @@
         <td>HIGH</td>
         <td>v1.26.2</td>
         <td>1.25.10, 1.26.3</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-42504</td>
+        <td>HIGH</td>
+        <td>v1.26.2</td>
+        <td>1.25.11, 1.26.4</td>
     </tr>
 </table>
 <h4>No Misconfigurations found</h4>
@@ -166,7 +173,7 @@
 <h4>No Vulnerabilities found</h4>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>ko-app/readiness-checker</code></h3>
-<h4>Vulnerabilities (8)</h4>
+<h4>Vulnerabilities (9)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -230,6 +237,13 @@
         <td>HIGH</td>
         <td>v1.26.2</td>
         <td>1.25.10, 1.26.3</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-42504</td>
+        <td>HIGH</td>
+        <td>v1.26.2</td>
+        <td>1.25.11, 1.26.4</td>
     </tr>
 </table>
 <h4>No Misconfigurations found</h4>
@@ -238,7 +252,7 @@
 <h4>No Vulnerabilities found</h4>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>ko-app/background-controller</code></h3>
-<h4>Vulnerabilities (8)</h4>
+<h4>Vulnerabilities (9)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -302,6 +316,13 @@
         <td>HIGH</td>
         <td>v1.26.2</td>
         <td>1.25.10, 1.26.3</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-42504</td>
+        <td>HIGH</td>
+        <td>v1.26.2</td>
+        <td>1.25.11, 1.26.4</td>
     </tr>
 </table>
 <h4>No Misconfigurations found</h4>
@@ -310,7 +331,7 @@
 <h4>No Vulnerabilities found</h4>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>ko-app/cleanup-controller</code></h3>
-<h4>Vulnerabilities (8)</h4>
+<h4>Vulnerabilities (9)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -375,6 +396,13 @@
         <td>v1.26.2</td>
         <td>1.25.10, 1.26.3</td>
     </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-42504</td>
+        <td>HIGH</td>
+        <td>v1.26.2</td>
+        <td>1.25.11, 1.26.4</td>
+    </tr>
 </table>
 <h4>No Misconfigurations found</h4>
 
@@ -382,7 +410,7 @@
 <h4>No Vulnerabilities found</h4>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>ko-app/kubectl-kyverno</code></h3>
-<h4>Vulnerabilities (10)</h4>
+<h4>Vulnerabilities (11)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -461,6 +489,13 @@
         <td>v1.26.2</td>
         <td>1.25.10, 1.26.3</td>
     </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-42504</td>
+        <td>HIGH</td>
+        <td>v1.26.2</td>
+        <td>1.25.11, 1.26.4</td>
+    </tr>
 </table>
 <h4>No Misconfigurations found</h4>
 
@@ -468,7 +503,7 @@
 <h4>No Vulnerabilities found</h4>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>ko-app/kyverno</code></h3>
-<h4>Vulnerabilities (8)</h4>
+<h4>Vulnerabilities (9)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -532,6 +567,13 @@
         <td>HIGH</td>
         <td>v1.26.2</td>
         <td>1.25.10, 1.26.3</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-42504</td>
+        <td>HIGH</td>
+        <td>v1.26.2</td>
+        <td>1.25.11, 1.26.4</td>
     </tr>
 </table>
 <h4>No Misconfigurations found</h4>
@@ -540,7 +582,7 @@
 <h4>No Vulnerabilities found</h4>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>ko-app/kyverno-init</code></h3>
-<h4>Vulnerabilities (8)</h4>
+<h4>Vulnerabilities (9)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -604,6 +646,13 @@
         <td>HIGH</td>
         <td>v1.26.2</td>
         <td>1.25.10, 1.26.3</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-42504</td>
+        <td>HIGH</td>
+        <td>v1.26.2</td>
+        <td>1.25.11, 1.26.4</td>
     </tr>
 </table>
 <h4>No Misconfigurations found</h4>
@@ -612,7 +661,7 @@
 <h4>No Vulnerabilities found</h4>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>ko-app/reports-controller</code></h3>
-<h4>Vulnerabilities (8)</h4>
+<h4>Vulnerabilities (9)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -676,6 +725,13 @@
         <td>HIGH</td>
         <td>v1.26.2</td>
         <td>1.25.10, 1.26.3</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-42504</td>
+        <td>HIGH</td>
+        <td>v1.26.2</td>
+        <td>1.25.11, 1.26.4</td>
     </tr>
 </table>
 <h4>No Misconfigurations found</h4>

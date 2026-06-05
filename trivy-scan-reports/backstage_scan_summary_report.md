@@ -55,10 +55,26 @@
 <h4>No Misconfigurations found</h4>
 
 <h3>Target <code>ghcr.io/suxess-it/sx-backstage:v1.51.0 (wolfi 20230201)</code></h3>
-<h4>No Vulnerabilities found</h4>
+<h4>Vulnerabilities (1)</h4>
+<table>
+    <tr>
+        <th>Package</th>
+        <th>ID</th>
+        <th>Severity</th>
+        <th>Installed Version</th>
+        <th>Fixed Version</th>
+    </tr>
+    <tr>
+        <td><code>binutils</code></td>
+        <td>CVE-2026-6846</td>
+        <td>HIGH</td>
+        <td>2.46-r1</td>
+        <td>2.46-r2</td>
+    </tr>
+</table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>Node.js</code></h3>
-<h4>Vulnerabilities (31)</h4>
+<h4>Vulnerabilities (35)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -97,6 +113,27 @@
     </tr>
     <tr>
         <td><code>axios</code></td>
+        <td>CVE-2026-44486</td>
+        <td>HIGH</td>
+        <td>1.14.0</td>
+        <td>1.16.0, 0.32.0</td>
+    </tr>
+    <tr>
+        <td><code>axios</code></td>
+        <td>CVE-2026-44487</td>
+        <td>HIGH</td>
+        <td>1.14.0</td>
+        <td>1.16.0, 0.32.0</td>
+    </tr>
+    <tr>
+        <td><code>axios</code></td>
+        <td>CVE-2026-44488</td>
+        <td>HIGH</td>
+        <td>1.14.0</td>
+        <td>1.16.0</td>
+    </tr>
+    <tr>
+        <td><code>axios</code></td>
         <td>CVE-2026-44492</td>
         <td>HIGH</td>
         <td>1.14.0</td>
@@ -115,6 +152,13 @@
         <td>HIGH</td>
         <td>1.14.0</td>
         <td>1.15.2, 0.31.1</td>
+    </tr>
+    <tr>
+        <td><code>axios</code></td>
+        <td>CVE-2026-44496</td>
+        <td>HIGH</td>
+        <td>1.14.0</td>
+        <td>1.16.0, 0.32.0</td>
     </tr>
     <tr>
         <td><code>basic-ftp</code></td>
