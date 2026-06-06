@@ -1,6 +1,6 @@
 
 <h3>Target <code>docker.io/dserio83/velero-api:0.3.1 (debian 12.11)</code></h3>
-<h4>Vulnerabilities (99)</h4>
+<h4>Vulnerabilities (103)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -249,6 +249,13 @@
     </tr>
     <tr>
         <td><code>libpython3.11-minimal</code></td>
+        <td>CVE-2025-13462</td>
+        <td>CRITICAL</td>
+        <td>3.11.2-6+deb12u6</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>libpython3.11-minimal</code></td>
         <td>CVE-2026-7210</td>
         <td>CRITICAL</td>
         <td>3.11.2-6+deb12u6</td>
@@ -286,6 +293,13 @@
         <td><code>libpython3.11-minimal</code></td>
         <td>CVE-2026-6100</td>
         <td>HIGH</td>
+        <td>3.11.2-6+deb12u6</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>libpython3.11-stdlib</code></td>
+        <td>CVE-2025-13462</td>
+        <td>CRITICAL</td>
         <td>3.11.2-6+deb12u6</td>
         <td></td>
     </tr>
@@ -613,6 +627,13 @@
     </tr>
     <tr>
         <td><code>python3.11</code></td>
+        <td>CVE-2025-13462</td>
+        <td>CRITICAL</td>
+        <td>3.11.2-6+deb12u6</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>python3.11</code></td>
         <td>CVE-2026-7210</td>
         <td>CRITICAL</td>
         <td>3.11.2-6+deb12u6</td>
@@ -650,6 +671,13 @@
         <td><code>python3.11</code></td>
         <td>CVE-2026-6100</td>
         <td>HIGH</td>
+        <td>3.11.2-6+deb12u6</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>python3.11-minimal</code></td>
+        <td>CVE-2025-13462</td>
+        <td>CRITICAL</td>
         <td>3.11.2-6+deb12u6</td>
         <td></td>
     </tr>
