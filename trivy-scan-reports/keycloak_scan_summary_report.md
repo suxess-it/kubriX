@@ -122,7 +122,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>Java</code></h3>
-<h4>Vulnerabilities (8)</h4>
+<h4>Vulnerabilities (13)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -144,6 +144,13 @@
         <td>HIGH</td>
         <td>4.1.130.Final</td>
         <td>4.2.13.Final, 4.1.133.Final</td>
+    </tr>
+    <tr>
+        <td><code>io.netty:netty-codec-haproxy</code></td>
+        <td>CVE-2026-44893</td>
+        <td>HIGH</td>
+        <td>4.1.130.Final</td>
+        <td>4.2.15.Final, 4.1.135.Final</td>
     </tr>
     <tr>
         <td><code>io.netty:netty-codec-http</code></td>
@@ -181,6 +188,34 @@
         <td>4.2.13.Final, 4.1.133.Final</td>
     </tr>
     <tr>
+        <td><code>io.netty:netty-handler</code></td>
+        <td>CVE-2026-44249</td>
+        <td>HIGH</td>
+        <td>4.1.130.Final</td>
+        <td>4.2.15.Final, 4.1.135.Final</td>
+    </tr>
+    <tr>
+        <td><code>io.netty:netty-handler</code></td>
+        <td>CVE-2026-45416</td>
+        <td>HIGH</td>
+        <td>4.1.130.Final</td>
+        <td>4.2.15.Final, 4.1.135.Final</td>
+    </tr>
+    <tr>
+        <td><code>io.netty:netty-resolver-dns</code></td>
+        <td>CVE-2026-45674</td>
+        <td>HIGH</td>
+        <td>4.1.130.Final</td>
+        <td>4.2.15.Final, 4.1.135.Final</td>
+    </tr>
+    <tr>
+        <td><code>io.netty:netty-resolver-dns</code></td>
+        <td>CVE-2026-47691</td>
+        <td>HIGH</td>
+        <td>4.1.130.Final</td>
+        <td>4.2.15.Final, 4.1.135.Final</td>
+    </tr>
+    <tr>
         <td><code>io.quarkus:quarkus-vertx-http</code></td>
         <td>CVE-2026-39852</td>
         <td>HIGH</td>
@@ -194,7 +229,7 @@
 <h4>No Vulnerabilities found</h4>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>usr/local/bin/provider</code></h3>
-<h4>Vulnerabilities (11)</h4>
+<h4>Vulnerabilities (10)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -248,13 +283,6 @@
     <tr>
         <td><code>stdlib</code></td>
         <td>CVE-2026-39825</td>
-        <td>HIGH</td>
-        <td>v1.25.9</td>
-        <td>1.25.10, 1.26.3</td>
-    </tr>
-    <tr>
-        <td><code>stdlib</code></td>
-        <td>CVE-2026-39826</td>
         <td>HIGH</td>
         <td>v1.25.9</td>
         <td>1.25.10, 1.26.3</td>

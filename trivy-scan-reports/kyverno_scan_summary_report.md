@@ -3,7 +3,7 @@
 <h4>No Vulnerabilities found</h4>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>ko-app/readiness-checker</code></h3>
-<h4>Vulnerabilities (22)</h4>
+<h4>Vulnerabilities (21)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -140,13 +140,6 @@
     </tr>
     <tr>
         <td><code>stdlib</code></td>
-        <td>CVE-2026-39826</td>
-        <td>HIGH</td>
-        <td>v1.26.2</td>
-        <td>1.25.10, 1.26.3</td>
-    </tr>
-    <tr>
-        <td><code>stdlib</code></td>
         <td>CVE-2026-39836</td>
         <td>HIGH</td>
         <td>v1.26.2</td>
@@ -173,7 +166,7 @@
 <h4>No Vulnerabilities found</h4>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>ko-app/readiness-checker</code></h3>
-<h4>Vulnerabilities (9)</h4>
+<h4>Vulnerabilities (8)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -213,13 +206,6 @@
     <tr>
         <td><code>stdlib</code></td>
         <td>CVE-2026-39825</td>
-        <td>HIGH</td>
-        <td>v1.26.2</td>
-        <td>1.25.10, 1.26.3</td>
-    </tr>
-    <tr>
-        <td><code>stdlib</code></td>
-        <td>CVE-2026-39826</td>
         <td>HIGH</td>
         <td>v1.26.2</td>
         <td>1.25.10, 1.26.3</td>
@@ -252,7 +238,7 @@
 <h4>No Vulnerabilities found</h4>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>ko-app/background-controller</code></h3>
-<h4>Vulnerabilities (9)</h4>
+<h4>Vulnerabilities (8)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -292,13 +278,6 @@
     <tr>
         <td><code>stdlib</code></td>
         <td>CVE-2026-39825</td>
-        <td>HIGH</td>
-        <td>v1.26.2</td>
-        <td>1.25.10, 1.26.3</td>
-    </tr>
-    <tr>
-        <td><code>stdlib</code></td>
-        <td>CVE-2026-39826</td>
         <td>HIGH</td>
         <td>v1.26.2</td>
         <td>1.25.10, 1.26.3</td>
@@ -331,7 +310,7 @@
 <h4>No Vulnerabilities found</h4>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>ko-app/cleanup-controller</code></h3>
-<h4>Vulnerabilities (9)</h4>
+<h4>Vulnerabilities (8)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -377,13 +356,6 @@
     </tr>
     <tr>
         <td><code>stdlib</code></td>
-        <td>CVE-2026-39826</td>
-        <td>HIGH</td>
-        <td>v1.26.2</td>
-        <td>1.25.10, 1.26.3</td>
-    </tr>
-    <tr>
-        <td><code>stdlib</code></td>
         <td>CVE-2026-39836</td>
         <td>HIGH</td>
         <td>v1.26.2</td>
@@ -410,7 +382,7 @@
 <h4>No Vulnerabilities found</h4>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>ko-app/kubectl-kyverno</code></h3>
-<h4>Vulnerabilities (11)</h4>
+<h4>Vulnerabilities (10)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -470,13 +442,6 @@
     </tr>
     <tr>
         <td><code>stdlib</code></td>
-        <td>CVE-2026-39826</td>
-        <td>HIGH</td>
-        <td>v1.26.2</td>
-        <td>1.25.10, 1.26.3</td>
-    </tr>
-    <tr>
-        <td><code>stdlib</code></td>
         <td>CVE-2026-39836</td>
         <td>HIGH</td>
         <td>v1.26.2</td>
@@ -503,7 +468,7 @@
 <h4>No Vulnerabilities found</h4>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>ko-app/kyverno</code></h3>
-<h4>Vulnerabilities (9)</h4>
+<h4>Vulnerabilities (8)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -543,13 +508,6 @@
     <tr>
         <td><code>stdlib</code></td>
         <td>CVE-2026-39825</td>
-        <td>HIGH</td>
-        <td>v1.26.2</td>
-        <td>1.25.10, 1.26.3</td>
-    </tr>
-    <tr>
-        <td><code>stdlib</code></td>
-        <td>CVE-2026-39826</td>
         <td>HIGH</td>
         <td>v1.26.2</td>
         <td>1.25.10, 1.26.3</td>
@@ -582,7 +540,7 @@
 <h4>No Vulnerabilities found</h4>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>ko-app/kyverno-init</code></h3>
-<h4>Vulnerabilities (9)</h4>
+<h4>Vulnerabilities (8)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -622,13 +580,6 @@
     <tr>
         <td><code>stdlib</code></td>
         <td>CVE-2026-39825</td>
-        <td>HIGH</td>
-        <td>v1.26.2</td>
-        <td>1.25.10, 1.26.3</td>
-    </tr>
-    <tr>
-        <td><code>stdlib</code></td>
-        <td>CVE-2026-39826</td>
         <td>HIGH</td>
         <td>v1.26.2</td>
         <td>1.25.10, 1.26.3</td>
@@ -661,7 +612,7 @@
 <h4>No Vulnerabilities found</h4>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>ko-app/reports-controller</code></h3>
-<h4>Vulnerabilities (9)</h4>
+<h4>Vulnerabilities (8)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -701,13 +652,6 @@
     <tr>
         <td><code>stdlib</code></td>
         <td>CVE-2026-39825</td>
-        <td>HIGH</td>
-        <td>v1.26.2</td>
-        <td>1.25.10, 1.26.3</td>
-    </tr>
-    <tr>
-        <td><code>stdlib</code></td>
-        <td>CVE-2026-39826</td>
         <td>HIGH</td>
         <td>v1.26.2</td>
         <td>1.25.10, 1.26.3</td>

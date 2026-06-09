@@ -19,7 +19,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>usr/bin/mc</code></h3>
-<h4>Vulnerabilities (22)</h4>
+<h4>Vulnerabilities (21)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -47,7 +47,7 @@
         <td>CVE-2026-42154</td>
         <td>HIGH</td>
         <td>v0.54.1</td>
-        <td>0.311.3</td>
+        <td>0.311.3, 0.305.2</td>
     </tr>
     <tr>
         <td><code>golang.org/x/crypto</code></td>
@@ -150,13 +150,6 @@
     <tr>
         <td><code>stdlib</code></td>
         <td>CVE-2026-39825</td>
-        <td>HIGH</td>
-        <td>v1.23.4</td>
-        <td>1.25.10, 1.26.3</td>
-    </tr>
-    <tr>
-        <td><code>stdlib</code></td>
-        <td>CVE-2026-39826</td>
         <td>HIGH</td>
         <td>v1.23.4</td>
         <td>1.25.10, 1.26.3</td>
@@ -205,7 +198,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>usr/bin/mc</code></h3>
-<h4>Vulnerabilities (22)</h4>
+<h4>Vulnerabilities (21)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -233,7 +226,7 @@
         <td>CVE-2026-42154</td>
         <td>HIGH</td>
         <td>v0.54.1</td>
-        <td>0.311.3</td>
+        <td>0.311.3, 0.305.2</td>
     </tr>
     <tr>
         <td><code>golang.org/x/crypto</code></td>
@@ -342,13 +335,6 @@
     </tr>
     <tr>
         <td><code>stdlib</code></td>
-        <td>CVE-2026-39826</td>
-        <td>HIGH</td>
-        <td>v1.23.4</td>
-        <td>1.25.10, 1.26.3</td>
-    </tr>
-    <tr>
-        <td><code>stdlib</code></td>
         <td>CVE-2026-39836</td>
         <td>HIGH</td>
         <td>v1.23.4</td>
@@ -371,7 +357,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>usr/bin/minio</code></h3>
-<h4>Vulnerabilities (28)</h4>
+<h4>Vulnerabilities (27)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -427,7 +413,7 @@
         <td>CVE-2026-42154</td>
         <td>HIGH</td>
         <td>v0.300.1</td>
-        <td>0.311.3</td>
+        <td>0.311.3, 0.305.2</td>
     </tr>
     <tr>
         <td><code>go.opentelemetry.io/otel/sdk</code></td>
@@ -544,13 +530,6 @@
     <tr>
         <td><code>stdlib</code></td>
         <td>CVE-2026-39825</td>
-        <td>HIGH</td>
-        <td>v1.23.4</td>
-        <td>1.25.10, 1.26.3</td>
-    </tr>
-    <tr>
-        <td><code>stdlib</code></td>
-        <td>CVE-2026-39826</td>
         <td>HIGH</td>
         <td>v1.23.4</td>
         <td>1.25.10, 1.26.3</td>
