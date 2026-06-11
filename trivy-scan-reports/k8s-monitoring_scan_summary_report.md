@@ -1,6 +1,6 @@
 
 <h3>Target <code>ghcr.io/grafana/alloy-operator:1.8.2 (redhat 9.7)</code></h3>
-<h4>Vulnerabilities (8)</h4>
+<h4>Vulnerabilities (9)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -64,6 +64,13 @@
         <td>HIGH</td>
         <td>1.43.0-6.el9</td>
         <td>1.43.0-6.el9_7.1</td>
+    </tr>
+    <tr>
+        <td><code>openssl-libs</code></td>
+        <td>CVE-2026-45447</td>
+        <td>HIGH</td>
+        <td>1:3.5.1-7.el9_7</td>
+        <td></td>
     </tr>
 </table>
 <h4>No Misconfigurations found</h4>
@@ -186,7 +193,7 @@
 <h4>No Misconfigurations found</h4>
 
 <h3>Target <code>ghcr.io/grafana/helm-chart-toolbox-kubectl:0.1.2 (alpine 3.22.2)</code></h3>
-<h4>Vulnerabilities (19)</h4>
+<h4>Vulnerabilities (21)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -245,6 +252,13 @@
         <td>3.5.6-r0</td>
     </tr>
     <tr>
+        <td><code>libcrypto3</code></td>
+        <td>CVE-2026-45447</td>
+        <td>HIGH</td>
+        <td>3.5.4-r0</td>
+        <td>3.5.7-r0</td>
+    </tr>
+    <tr>
         <td><code>libssl3</code></td>
         <td>CVE-2026-31789</td>
         <td>CRITICAL</td>
@@ -292,6 +306,13 @@
         <td>HIGH</td>
         <td>3.5.4-r0</td>
         <td>3.5.6-r0</td>
+    </tr>
+    <tr>
+        <td><code>libssl3</code></td>
+        <td>CVE-2026-45447</td>
+        <td>HIGH</td>
+        <td>3.5.4-r0</td>
+        <td>3.5.7-r0</td>
     </tr>
     <tr>
         <td><code>libxml2</code></td>

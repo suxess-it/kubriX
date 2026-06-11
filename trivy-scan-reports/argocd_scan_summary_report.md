@@ -1,6 +1,6 @@
 
 <h3>Target <code>ecr-public.aws.com/docker/library/redis:8.2.3-alpine (alpine 3.22.3)</code></h3>
-<h4>Vulnerabilities (13)</h4>
+<h4>Vulnerabilities (15)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -45,6 +45,13 @@
         <td>3.5.6-r0</td>
     </tr>
     <tr>
+        <td><code>libcrypto3</code></td>
+        <td>CVE-2026-45447</td>
+        <td>HIGH</td>
+        <td>3.5.5-r0</td>
+        <td>3.5.7-r0</td>
+    </tr>
+    <tr>
         <td><code>libssl3</code></td>
         <td>CVE-2026-31789</td>
         <td>CRITICAL</td>
@@ -78,6 +85,13 @@
         <td>HIGH</td>
         <td>3.5.5-r0</td>
         <td>3.5.6-r0</td>
+    </tr>
+    <tr>
+        <td><code>libssl3</code></td>
+        <td>CVE-2026-45447</td>
+        <td>HIGH</td>
+        <td>3.5.5-r0</td>
+        <td>3.5.7-r0</td>
     </tr>
     <tr>
         <td><code>musl</code></td>
@@ -104,7 +118,7 @@
 <h4>No Misconfigurations found</h4>
 
 <h3>Target <code>ghcr.io/dexidp/dex:v2.45.1 (alpine 3.23.3)</code></h3>
-<h4>Vulnerabilities (13)</h4>
+<h4>Vulnerabilities (15)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -149,6 +163,13 @@
         <td>3.5.6-r0</td>
     </tr>
     <tr>
+        <td><code>libcrypto3</code></td>
+        <td>CVE-2026-45447</td>
+        <td>HIGH</td>
+        <td>3.5.5-r0</td>
+        <td>3.5.7-r0</td>
+    </tr>
+    <tr>
         <td><code>libssl3</code></td>
         <td>CVE-2026-31789</td>
         <td>CRITICAL</td>
@@ -182,6 +203,13 @@
         <td>HIGH</td>
         <td>3.5.5-r0</td>
         <td>3.5.6-r0</td>
+    </tr>
+    <tr>
+        <td><code>libssl3</code></td>
+        <td>CVE-2026-45447</td>
+        <td>HIGH</td>
+        <td>3.5.5-r0</td>
+        <td>3.5.7-r0</td>
     </tr>
     <tr>
         <td><code>musl</code></td>
@@ -608,7 +636,37 @@
 <h4>No Misconfigurations found</h4>
 
 <h3>Target <code>quay.io/argoproj/argocd:v3.4.3 (ubuntu 25.10)</code></h3>
-<h4>No Vulnerabilities found</h4>
+<h4>Vulnerabilities (3)</h4>
+<table>
+    <tr>
+        <th>Package</th>
+        <th>ID</th>
+        <th>Severity</th>
+        <th>Installed Version</th>
+        <th>Fixed Version</th>
+    </tr>
+    <tr>
+        <td><code>libssl3t64</code></td>
+        <td>CVE-2026-45447</td>
+        <td>HIGH</td>
+        <td>3.5.3-1ubuntu3.3</td>
+        <td>3.5.3-1ubuntu3.4</td>
+    </tr>
+    <tr>
+        <td><code>openssl</code></td>
+        <td>CVE-2026-45447</td>
+        <td>HIGH</td>
+        <td>3.5.3-1ubuntu3.3</td>
+        <td>3.5.3-1ubuntu3.4</td>
+    </tr>
+    <tr>
+        <td><code>openssl-provider-legacy</code></td>
+        <td>CVE-2026-45447</td>
+        <td>HIGH</td>
+        <td>3.5.3-1ubuntu3.3</td>
+        <td>3.5.3-1ubuntu3.4</td>
+    </tr>
+</table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>usr/local/bin/argocd</code></h3>
 <h4>Vulnerabilities (16)</h4>

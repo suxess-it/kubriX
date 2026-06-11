@@ -1,6 +1,6 @@
 
 <h3>Target <code>docker.io/dserio83/velero-api:0.3.1 (debian 12.11)</code></h3>
-<h4>Vulnerabilities (103)</h4>
+<h4>Vulnerabilities (113)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -235,6 +235,13 @@
     </tr>
     <tr>
         <td><code>libperl5.36</code></td>
+        <td>CVE-2026-48959</td>
+        <td>HIGH</td>
+        <td>5.36.0-7+deb12u2</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>libperl5.36</code></td>
         <td>CVE-2026-48962</td>
         <td>HIGH</td>
         <td>5.36.0-7+deb12u2</td>
@@ -297,6 +304,13 @@
         <td></td>
     </tr>
     <tr>
+        <td><code>libpython3.11-minimal</code></td>
+        <td>CVE-2026-9669</td>
+        <td>HIGH</td>
+        <td>3.11.2-6+deb12u6</td>
+        <td></td>
+    </tr>
+    <tr>
         <td><code>libpython3.11-stdlib</code></td>
         <td>CVE-2025-13462</td>
         <td>CRITICAL</td>
@@ -341,6 +355,13 @@
     <tr>
         <td><code>libpython3.11-stdlib</code></td>
         <td>CVE-2026-6100</td>
+        <td>HIGH</td>
+        <td>3.11.2-6+deb12u6</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>libpython3.11-stdlib</code></td>
+        <td>CVE-2026-9669</td>
         <td>HIGH</td>
         <td>3.11.2-6+deb12u6</td>
         <td></td>
@@ -416,6 +437,13 @@
         <td>3.0.19-1~deb12u2</td>
     </tr>
     <tr>
+        <td><code>libssl3</code></td>
+        <td>CVE-2026-45447</td>
+        <td>HIGH</td>
+        <td>3.0.16-1~deb12u1</td>
+        <td>3.0.20-1~deb12u2</td>
+    </tr>
+    <tr>
         <td><code>libtinfo6</code></td>
         <td>CVE-2025-69720</td>
         <td>HIGH</td>
@@ -486,6 +514,13 @@
         <td>3.0.19-1~deb12u2</td>
     </tr>
     <tr>
+        <td><code>openssl</code></td>
+        <td>CVE-2026-45447</td>
+        <td>HIGH</td>
+        <td>3.0.16-1~deb12u1</td>
+        <td>3.0.20-1~deb12u2</td>
+    </tr>
+    <tr>
         <td><code>perl</code></td>
         <td>CVE-2026-42496</td>
         <td>CRITICAL</td>
@@ -509,6 +544,13 @@
     <tr>
         <td><code>perl</code></td>
         <td>CVE-2026-42497</td>
+        <td>HIGH</td>
+        <td>5.36.0-7+deb12u2</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>perl</code></td>
+        <td>CVE-2026-48959</td>
         <td>HIGH</td>
         <td>5.36.0-7+deb12u2</td>
         <td></td>
@@ -557,6 +599,13 @@
     </tr>
     <tr>
         <td><code>perl-base</code></td>
+        <td>CVE-2026-48959</td>
+        <td>HIGH</td>
+        <td>5.36.0-7+deb12u2</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>perl-base</code></td>
         <td>CVE-2026-48962</td>
         <td>HIGH</td>
         <td>5.36.0-7+deb12u2</td>
@@ -593,6 +642,13 @@
     <tr>
         <td><code>perl-modules-5.36</code></td>
         <td>CVE-2026-42497</td>
+        <td>HIGH</td>
+        <td>5.36.0-7+deb12u2</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>perl-modules-5.36</code></td>
+        <td>CVE-2026-48959</td>
         <td>HIGH</td>
         <td>5.36.0-7+deb12u2</td>
         <td></td>
@@ -675,6 +731,13 @@
         <td></td>
     </tr>
     <tr>
+        <td><code>python3.11</code></td>
+        <td>CVE-2026-9669</td>
+        <td>HIGH</td>
+        <td>3.11.2-6+deb12u6</td>
+        <td></td>
+    </tr>
+    <tr>
         <td><code>python3.11-minimal</code></td>
         <td>CVE-2025-13462</td>
         <td>CRITICAL</td>
@@ -719,6 +782,13 @@
     <tr>
         <td><code>python3.11-minimal</code></td>
         <td>CVE-2026-6100</td>
+        <td>HIGH</td>
+        <td>3.11.2-6+deb12u6</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>python3.11-minimal</code></td>
+        <td>CVE-2026-9669</td>
         <td>HIGH</td>
         <td>3.11.2-6+deb12u6</td>
         <td></td>
@@ -1334,7 +1404,7 @@
 <h4>No Misconfigurations found</h4>
 
 <h3>Target <code>docker.io/dserio83/velero-watchdog:0.1.8 (debian 12.10)</code></h3>
-<h4>Vulnerabilities (75)</h4>
+<h4>Vulnerabilities (81)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -1583,6 +1653,13 @@
     </tr>
     <tr>
         <td><code>libperl5.36</code></td>
+        <td>CVE-2026-48959</td>
+        <td>HIGH</td>
+        <td>5.36.0-7+deb12u2</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>libperl5.36</code></td>
         <td>CVE-2026-48962</td>
         <td>HIGH</td>
         <td>5.36.0-7+deb12u2</td>
@@ -1666,6 +1743,13 @@
         <td>3.0.19-1~deb12u2</td>
     </tr>
     <tr>
+        <td><code>libssl3</code></td>
+        <td>CVE-2026-45447</td>
+        <td>HIGH</td>
+        <td>3.0.15-1~deb12u1</td>
+        <td>3.0.20-1~deb12u2</td>
+    </tr>
+    <tr>
         <td><code>libtinfo6</code></td>
         <td>CVE-2025-69720</td>
         <td>HIGH</td>
@@ -1736,6 +1820,13 @@
         <td>3.0.19-1~deb12u2</td>
     </tr>
     <tr>
+        <td><code>openssl</code></td>
+        <td>CVE-2026-45447</td>
+        <td>HIGH</td>
+        <td>3.0.15-1~deb12u1</td>
+        <td>3.0.20-1~deb12u2</td>
+    </tr>
+    <tr>
         <td><code>perl</code></td>
         <td>CVE-2026-42496</td>
         <td>CRITICAL</td>
@@ -1759,6 +1850,13 @@
     <tr>
         <td><code>perl</code></td>
         <td>CVE-2026-42497</td>
+        <td>HIGH</td>
+        <td>5.36.0-7+deb12u2</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>perl</code></td>
+        <td>CVE-2026-48959</td>
         <td>HIGH</td>
         <td>5.36.0-7+deb12u2</td>
         <td></td>
@@ -1807,6 +1905,13 @@
     </tr>
     <tr>
         <td><code>perl-base</code></td>
+        <td>CVE-2026-48959</td>
+        <td>HIGH</td>
+        <td>5.36.0-7+deb12u2</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>perl-base</code></td>
         <td>CVE-2026-48962</td>
         <td>HIGH</td>
         <td>5.36.0-7+deb12u2</td>
@@ -1843,6 +1948,13 @@
     <tr>
         <td><code>perl-modules-5.36</code></td>
         <td>CVE-2026-42497</td>
+        <td>HIGH</td>
+        <td>5.36.0-7+deb12u2</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>perl-modules-5.36</code></td>
+        <td>CVE-2026-48959</td>
         <td>HIGH</td>
         <td>5.36.0-7+deb12u2</td>
         <td></td>

@@ -544,7 +544,7 @@
 <h4>No Misconfigurations found</h4>
 
 <h3>Target <code>docker.io/falcosecurity/falco:0.43.1 (wolfi 20230201)</code></h3>
-<h4>Vulnerabilities (1)</h4>
+<h4>Vulnerabilities (2)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -552,6 +552,13 @@
         <th>Severity</th>
         <th>Installed Version</th>
         <th>Fixed Version</th>
+    </tr>
+    <tr>
+        <td><code>busybox</code></td>
+        <td>CVE-2023-39810</td>
+        <td>HIGH</td>
+        <td>1.37.0-r57</td>
+        <td>1.37.0-r58</td>
     </tr>
     <tr>
         <td><code>jq</code></td>
@@ -925,7 +932,7 @@
 <h4>No Misconfigurations found</h4>
 
 <h3>Target <code>docker.io/falcosecurity/falcosidekick:2.32.0 (alpine 3.22.1)</code></h3>
-<h4>Vulnerabilities (17)</h4>
+<h4>Vulnerabilities (19)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -984,6 +991,13 @@
         <td>3.5.6-r0</td>
     </tr>
     <tr>
+        <td><code>libcrypto3</code></td>
+        <td>CVE-2026-45447</td>
+        <td>HIGH</td>
+        <td>3.5.1-r0</td>
+        <td>3.5.7-r0</td>
+    </tr>
+    <tr>
         <td><code>libssl3</code></td>
         <td>CVE-2026-31789</td>
         <td>CRITICAL</td>
@@ -1031,6 +1045,13 @@
         <td>HIGH</td>
         <td>3.5.1-r0</td>
         <td>3.5.6-r0</td>
+    </tr>
+    <tr>
+        <td><code>libssl3</code></td>
+        <td>CVE-2026-45447</td>
+        <td>HIGH</td>
+        <td>3.5.1-r0</td>
+        <td>3.5.7-r0</td>
     </tr>
     <tr>
         <td><code>musl</code></td>
@@ -1330,7 +1351,7 @@
 <h4>No Misconfigurations found</h4>
 
 <h3>Target <code>docker.io/redis/redis-stack:7.2.0-v11 (ubuntu 22.04)</code></h3>
-<h4>Vulnerabilities (1)</h4>
+<h4>Vulnerabilities (3)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -1345,6 +1366,20 @@
         <td>HIGH</td>
         <td>2.2.27-3ubuntu2.1</td>
         <td>2.2.27-3ubuntu2.5</td>
+    </tr>
+    <tr>
+        <td><code>libssl-dev</code></td>
+        <td>CVE-2026-45447</td>
+        <td>HIGH</td>
+        <td>3.0.2-0ubuntu1.16</td>
+        <td>3.0.2-0ubuntu1.25</td>
+    </tr>
+    <tr>
+        <td><code>libssl3</code></td>
+        <td>CVE-2026-45447</td>
+        <td>HIGH</td>
+        <td>3.0.2-0ubuntu1.16</td>
+        <td>3.0.2-0ubuntu1.25</td>
     </tr>
 </table>
 <h4>No Misconfigurations found</h4>
