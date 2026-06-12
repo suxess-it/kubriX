@@ -70,7 +70,7 @@
         <td>CVE-2026-45447</td>
         <td>HIGH</td>
         <td>1:3.5.1-7.el9_7</td>
-        <td></td>
+        <td>1:3.5.5-4.el9_8</td>
     </tr>
 </table>
 <h4>No Misconfigurations found</h4>
