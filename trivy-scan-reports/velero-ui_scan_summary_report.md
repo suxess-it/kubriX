@@ -1,6 +1,6 @@
 
 <h3>Target <code>docker.io/dserio83/velero-api:0.3.1 (debian 12.11)</code></h3>
-<h4>Vulnerabilities (109)</h4>
+<h4>Vulnerabilities (111)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -363,6 +363,20 @@
         <td><code>libsqlite3-0</code></td>
         <td>CVE-2025-7458</td>
         <td>CRITICAL</td>
+        <td>3.40.1-2+deb12u1</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>libsqlite3-0</code></td>
+        <td>CVE-2026-11822</td>
+        <td>HIGH</td>
+        <td>3.40.1-2+deb12u1</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>libsqlite3-0</code></td>
+        <td>CVE-2026-11824</td>
+        <td>HIGH</td>
         <td>3.40.1-2+deb12u1</td>
         <td></td>
     </tr>
@@ -1071,7 +1085,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>Node.js</code></h3>
-<h4>Vulnerabilities (25)</h4>
+<h4>Vulnerabilities (26)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -1086,6 +1100,13 @@
         <td>HIGH</td>
         <td>7.0.3</td>
         <td>7.0.5, 6.0.6</td>
+    </tr>
+    <tr>
+        <td><code>esbuild</code></td>
+        <td>GHSA-gv7w-rqvm-qjhr</td>
+        <td>HIGH</td>
+        <td>0.25.1</td>
+        <td>0.28.1</td>
     </tr>
     <tr>
         <td><code>fast-uri</code></td>
@@ -1376,7 +1397,7 @@
 <h4>No Misconfigurations found</h4>
 
 <h3>Target <code>docker.io/dserio83/velero-watchdog:0.1.8 (debian 12.10)</code></h3>
-<h4>Vulnerabilities (81)</h4>
+<h4>Vulnerabilities (83)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -1655,6 +1676,20 @@
         <td><code>libsqlite3-0</code></td>
         <td>CVE-2025-7458</td>
         <td>CRITICAL</td>
+        <td>3.40.1-2+deb12u1</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>libsqlite3-0</code></td>
+        <td>CVE-2026-11822</td>
+        <td>HIGH</td>
+        <td>3.40.1-2+deb12u1</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>libsqlite3-0</code></td>
+        <td>CVE-2026-11824</td>
+        <td>HIGH</td>
         <td>3.40.1-2+deb12u1</td>
         <td></td>
     </tr>

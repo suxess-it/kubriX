@@ -1,5 +1,5 @@
 
-<h3>Target <code>alpine/curl:latest (alpine 3.23.4)</code></h3>
+<h3>Target <code>alpine/curl:latest (alpine 3.24.0)</code></h3>
 <h4>Vulnerabilities (2)</h4>
 <table>
     <tr>

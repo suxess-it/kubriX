@@ -544,7 +544,7 @@
 <h4>No Misconfigurations found</h4>
 
 <h3>Target <code>docker.io/falcosecurity/falco:0.43.1 (wolfi 20230201)</code></h3>
-<h4>Vulnerabilities (16)</h4>
+<h4>Vulnerabilities (18)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -556,6 +556,20 @@
     <tr>
         <td><code>busybox</code></td>
         <td>CVE-2023-39810</td>
+        <td>HIGH</td>
+        <td>1.37.0-r57</td>
+        <td>1.37.0-r58</td>
+    </tr>
+    <tr>
+        <td><code>busybox</code></td>
+        <td>CVE-2026-26157</td>
+        <td>HIGH</td>
+        <td>1.37.0-r57</td>
+        <td>1.37.0-r58</td>
+    </tr>
+    <tr>
+        <td><code>busybox</code></td>
+        <td>CVE-2026-26158</td>
         <td>HIGH</td>
         <td>1.37.0-r57</td>
         <td>1.37.0-r58</td>
