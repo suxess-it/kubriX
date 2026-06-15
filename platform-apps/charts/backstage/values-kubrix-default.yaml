@@ -378,6 +378,7 @@ backstage:
               - name: user:default/jkleinlercher
               - name: group:default/admins
               - name: user:default/kubrixBot
+              - name: user:default/kubrixbot
           policies-csv-file: /opt/app-root/src/rbac/rbac-policy.csv
           policyFileReload: true
           database:
@@ -401,10 +402,11 @@ backstage:
 rbac:
   policies:
     # Key = logical name (used for Helm map merging only, not seen by Backstage).
-    authenticated-base: |
-      # Layer 1: baseline for all authenticated users
+    authenticated-catalog-read: |
       p, role:default/authenticated, catalog-entity, read, allow
       p, role:default/authenticated, catalog.entity.read, read, allow
+    authenticated-base: |
+      # Layer 1: baseline for all authenticated users
       p, role:default/authenticated, catalog.location.read, read, allow
       p, role:default/authenticated, scaffolder-template, read, allow
       p, role:default/authenticated, scaffolder.task.read, read, allow
@@ -451,6 +453,7 @@ rbac:
       g, group:default/admins, role:default/kubrixeditors
       g, group:default/admins, role:default/kubrixadmins
       g, user:default/kubrixBot, role:default/kubrixadmins
+      g, user:default/kubrixbot, role:default/kubrixadmins
 
 ## pgdb
 cluster:

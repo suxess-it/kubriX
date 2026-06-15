@@ -1,6 +1,14 @@
 {{- if eq (default false .Values.pgadmin4.enabled) true }}
-{{- $tlsEntry := index .Values.pgadmin4.ingress.tls 0 }}
-{{- $fullHost := index $tlsEntry.hosts 0 }}
+{{- $fullHost := "" }}
+{{- if and .Values.pgadmin4.ingress.tls (gt (len .Values.pgadmin4.ingress.tls) 0) }}
+  {{- $tlsEntry := index .Values.pgadmin4.ingress.tls 0 }}
+  {{- if and $tlsEntry.hosts (gt (len $tlsEntry.hosts) 0) }}
+    {{- $fullHost = index $tlsEntry.hosts 0 }}
+  {{- end }}
+{{- else if and .Values.pgadmin4.ingress.hosts (gt (len .Values.pgadmin4.ingress.hosts) 0) }}
+  {{- $fullHost = (index .Values.pgadmin4.ingress.hosts 0).host }}
+{{- end }}
+{{- if $fullHost }}
 {{- $domainName := regexReplaceAll "^[^.]+\\." $fullHost "" }}
 apiVersion: v1
 kind: ConfigMap
@@ -17,6 +25,9 @@ data:
     CONSOLE_LOG_LEVEL = logging.INFO
     MASTER_PASSWORD_REQUIRED = True
     AUTHENTICATION_SOURCES = ['internal', 'oauth2']
+{{- if .Values.pgadmin4.disableOauth2SslCertVerification }}
+    OAUTH2_SSL_CERT_VERIFICATION = False
+{{- end }}
     OAUTH2_CONFIG = [
       {
         'OAUTH2_NAME': 'keycloak',
@@ -33,4 +44,5 @@ data:
         "OAUTH2_BUTTON_COLOR": "None", "OAUTH2_ICON": "None" 
       }
     ]
+{{- end }}
 {{- end }}
