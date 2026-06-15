@@ -79,6 +79,8 @@ loki:
   # Enable minio for storage
   minio:
     enabled: true
+    containerSecurityContext:
+      allowPrivilegeEscalation: false
 
   # Monitoring section determines which monitoring features to enable
   monitoring:
