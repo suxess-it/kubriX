@@ -36,6 +36,8 @@ mimir:
       size: 5Gi
 
   minio:
+    containerSecurityContext:
+      allowPrivilegeEscalation: false
     persistence:
       size: 10Gi
 
