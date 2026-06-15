@@ -1,6 +1,6 @@
 
-<h3>Target <code>docker.io/grafana/grafana:13.0.1-security-01 (alpine 3.23.3)</code></h3>
-<h4>Vulnerabilities (15)</h4>
+<h3>Target <code>docker.io/grafana/grafana:13.0.2 (alpine 3.23.4)</code></h3>
+<h4>Vulnerabilities (2)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -11,108 +11,17 @@
     </tr>
     <tr>
         <td><code>libcrypto3</code></td>
-        <td>CVE-2026-31789</td>
-        <td>CRITICAL</td>
-        <td>3.5.5-r0</td>
-        <td>3.5.6-r0</td>
-    </tr>
-    <tr>
-        <td><code>libcrypto3</code></td>
-        <td>CVE-2026-28387</td>
-        <td>HIGH</td>
-        <td>3.5.5-r0</td>
-        <td>3.5.6-r0</td>
-    </tr>
-    <tr>
-        <td><code>libcrypto3</code></td>
-        <td>CVE-2026-28388</td>
-        <td>HIGH</td>
-        <td>3.5.5-r0</td>
-        <td>3.5.6-r0</td>
-    </tr>
-    <tr>
-        <td><code>libcrypto3</code></td>
-        <td>CVE-2026-28389</td>
-        <td>HIGH</td>
-        <td>3.5.5-r0</td>
-        <td>3.5.6-r0</td>
-    </tr>
-    <tr>
-        <td><code>libcrypto3</code></td>
-        <td>CVE-2026-28390</td>
-        <td>HIGH</td>
-        <td>3.5.5-r0</td>
-        <td>3.5.6-r0</td>
-    </tr>
-    <tr>
-        <td><code>libcrypto3</code></td>
         <td>CVE-2026-45447</td>
         <td>HIGH</td>
-        <td>3.5.5-r0</td>
+        <td>3.5.6-r0</td>
         <td>3.5.7-r0</td>
-    </tr>
-    <tr>
-        <td><code>libssl3</code></td>
-        <td>CVE-2026-31789</td>
-        <td>CRITICAL</td>
-        <td>3.5.5-r0</td>
-        <td>3.5.6-r0</td>
-    </tr>
-    <tr>
-        <td><code>libssl3</code></td>
-        <td>CVE-2026-28387</td>
-        <td>HIGH</td>
-        <td>3.5.5-r0</td>
-        <td>3.5.6-r0</td>
-    </tr>
-    <tr>
-        <td><code>libssl3</code></td>
-        <td>CVE-2026-28388</td>
-        <td>HIGH</td>
-        <td>3.5.5-r0</td>
-        <td>3.5.6-r0</td>
-    </tr>
-    <tr>
-        <td><code>libssl3</code></td>
-        <td>CVE-2026-28389</td>
-        <td>HIGH</td>
-        <td>3.5.5-r0</td>
-        <td>3.5.6-r0</td>
-    </tr>
-    <tr>
-        <td><code>libssl3</code></td>
-        <td>CVE-2026-28390</td>
-        <td>HIGH</td>
-        <td>3.5.5-r0</td>
-        <td>3.5.6-r0</td>
     </tr>
     <tr>
         <td><code>libssl3</code></td>
         <td>CVE-2026-45447</td>
         <td>HIGH</td>
-        <td>3.5.5-r0</td>
+        <td>3.5.6-r0</td>
         <td>3.5.7-r0</td>
-    </tr>
-    <tr>
-        <td><code>musl</code></td>
-        <td>CVE-2026-40200</td>
-        <td>HIGH</td>
-        <td>1.2.5-r21</td>
-        <td>1.2.5-r23</td>
-    </tr>
-    <tr>
-        <td><code>musl-utils</code></td>
-        <td>CVE-2026-40200</td>
-        <td>HIGH</td>
-        <td>1.2.5-r21</td>
-        <td>1.2.5-r23</td>
-    </tr>
-    <tr>
-        <td><code>zlib</code></td>
-        <td>CVE-2026-22184</td>
-        <td>HIGH</td>
-        <td>1.3.1-r2</td>
-        <td>1.3.2-r0</td>
     </tr>
 </table>
 <h4>No Misconfigurations found</h4>
@@ -120,7 +29,7 @@
 <h4>No Vulnerabilities found</h4>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>usr/share/grafana/bin/grafana</code></h3>
-<h4>Vulnerabilities (18)</h4>
+<h4>Vulnerabilities (4)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -130,129 +39,31 @@
         <th>Fixed Version</th>
     </tr>
     <tr>
-        <td><code>github.com/apache/thrift</code></td>
-        <td>CVE-2026-41602</td>
-        <td>HIGH</td>
-        <td>v0.22.0</td>
-        <td>0.23.0</td>
-    </tr>
-    <tr>
         <td><code>github.com/grafana/tempo</code></td>
         <td>CVE-2026-21728</td>
         <td>HIGH</td>
-        <td>v1.5.1-0.20250529124718-87c2dc380cec</td>
+        <td>v1.5.1-0.20251027222923-cbe5f845dc7b</td>
         <td>2.8.4, 2.9.2, 2.10.2</td>
     </tr>
     <tr>
         <td><code>github.com/grafana/tempo</code></td>
         <td>CVE-2026-28377</td>
         <td>HIGH</td>
-        <td>v1.5.1-0.20250529124718-87c2dc380cec</td>
+        <td>v1.5.1-0.20251027222923-cbe5f845dc7b</td>
         <td>2.10.3</td>
-    </tr>
-    <tr>
-        <td><code>github.com/jackc/pgx/v5</code></td>
-        <td>CVE-2026-33816</td>
-        <td>CRITICAL</td>
-        <td>v5.8.0</td>
-        <td>5.9.0</td>
-    </tr>
-    <tr>
-        <td><code>github.com/moby/moby</code></td>
-        <td>CVE-2026-34040</td>
-        <td>HIGH</td>
-        <td>v28.5.2+incompatible</td>
-        <td>29.3.1</td>
-    </tr>
-    <tr>
-        <td><code>github.com/moby/moby</code></td>
-        <td>CVE-2026-41567</td>
-        <td>HIGH</td>
-        <td>v28.5.2+incompatible</td>
-        <td></td>
-    </tr>
-    <tr>
-        <td><code>github.com/moby/moby</code></td>
-        <td>CVE-2026-42306</td>
-        <td>HIGH</td>
-        <td>v28.5.2+incompatible</td>
-        <td></td>
     </tr>
     <tr>
         <td><code>github.com/prometheus/prometheus</code></td>
         <td>CVE-2026-42151</td>
         <td>HIGH</td>
-        <td>v0.303.1</td>
+        <td>v0.305.3</td>
         <td>0.311.3</td>
-    </tr>
-    <tr>
-        <td><code>github.com/prometheus/prometheus</code></td>
-        <td>CVE-2026-42154</td>
-        <td>HIGH</td>
-        <td>v0.303.1</td>
-        <td>0.311.3, 0.305.2</td>
-    </tr>
-    <tr>
-        <td><code>go.opentelemetry.io/otel/sdk</code></td>
-        <td>CVE-2026-39883</td>
-        <td>HIGH</td>
-        <td>v1.42.0</td>
-        <td>1.43.0</td>
-    </tr>
-    <tr>
-        <td><code>stdlib</code></td>
-        <td>CVE-2026-33811</td>
-        <td>HIGH</td>
-        <td>v1.25.9</td>
-        <td>1.25.10, 1.26.3</td>
-    </tr>
-    <tr>
-        <td><code>stdlib</code></td>
-        <td>CVE-2026-33814</td>
-        <td>HIGH</td>
-        <td>v1.25.9</td>
-        <td>1.25.10, 1.26.3</td>
-    </tr>
-    <tr>
-        <td><code>stdlib</code></td>
-        <td>CVE-2026-39820</td>
-        <td>HIGH</td>
-        <td>v1.25.9</td>
-        <td>1.25.10, 1.26.3</td>
-    </tr>
-    <tr>
-        <td><code>stdlib</code></td>
-        <td>CVE-2026-39823</td>
-        <td>HIGH</td>
-        <td>v1.25.9</td>
-        <td>1.25.10, 1.26.3</td>
-    </tr>
-    <tr>
-        <td><code>stdlib</code></td>
-        <td>CVE-2026-39825</td>
-        <td>HIGH</td>
-        <td>v1.25.9</td>
-        <td>1.25.10, 1.26.3</td>
-    </tr>
-    <tr>
-        <td><code>stdlib</code></td>
-        <td>CVE-2026-39836</td>
-        <td>HIGH</td>
-        <td>v1.25.9</td>
-        <td>1.25.10, 1.26.3</td>
-    </tr>
-    <tr>
-        <td><code>stdlib</code></td>
-        <td>CVE-2026-42499</td>
-        <td>HIGH</td>
-        <td>v1.25.9</td>
-        <td>1.25.10, 1.26.3</td>
     </tr>
     <tr>
         <td><code>stdlib</code></td>
         <td>CVE-2026-42504</td>
         <td>HIGH</td>
-        <td>v1.25.9</td>
+        <td>v1.26.3</td>
         <td>1.25.11, 1.26.4</td>
     </tr>
 </table>
