@@ -1,5 +1,5 @@
 
-<h3>Target <code>ghcr.io/kyverno/readiness-checker:latest (alpine 3.24.0_alpha20260127)</code></h3>
+<h3>Target <code>ghcr.io/kyverno/readiness-checker:latest (alpine 3.24.0)</code></h3>
 <h4>No Vulnerabilities found</h4>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>ko-app/readiness-checker</code></h3>
@@ -16,91 +16,91 @@
         <td><code>github.com/kyverno/kyverno</code></td>
         <td>CVE-2026-22039</td>
         <td>CRITICAL</td>
-        <td>v1.5.0-rc1.0.20260605150549-e3aa860dd5d3+dirty</td>
+        <td>v1.5.0-rc1.0.20260618130132-1f8a2c8748e3+dirty</td>
         <td>1.15.3, 1.16.3</td>
     </tr>
     <tr>
         <td><code>github.com/kyverno/kyverno</code></td>
         <td>CVE-2023-47630</td>
         <td>HIGH</td>
-        <td>v1.5.0-rc1.0.20260605150549-e3aa860dd5d3+dirty</td>
+        <td>v1.5.0-rc1.0.20260618130132-1f8a2c8748e3+dirty</td>
         <td>1.10.5</td>
     </tr>
     <tr>
         <td><code>github.com/kyverno/kyverno</code></td>
         <td>CVE-2024-48921</td>
         <td>HIGH</td>
-        <td>v1.5.0-rc1.0.20260605150549-e3aa860dd5d3+dirty</td>
+        <td>v1.5.0-rc1.0.20260618130132-1f8a2c8748e3+dirty</td>
         <td>1.13.0</td>
     </tr>
     <tr>
         <td><code>github.com/kyverno/kyverno</code></td>
         <td>CVE-2025-46342</td>
         <td>HIGH</td>
-        <td>v1.5.0-rc1.0.20260605150549-e3aa860dd5d3+dirty</td>
+        <td>v1.5.0-rc1.0.20260618130132-1f8a2c8748e3+dirty</td>
         <td>1.13.5, 1.14.0</td>
     </tr>
     <tr>
         <td><code>github.com/kyverno/kyverno</code></td>
         <td>CVE-2025-47281</td>
         <td>HIGH</td>
-        <td>v1.5.0-rc1.0.20260605150549-e3aa860dd5d3+dirty</td>
+        <td>v1.5.0-rc1.0.20260618130132-1f8a2c8748e3+dirty</td>
         <td>1.14.2</td>
     </tr>
     <tr>
         <td><code>github.com/kyverno/kyverno</code></td>
         <td>CVE-2026-23881</td>
         <td>HIGH</td>
-        <td>v1.5.0-rc1.0.20260605150549-e3aa860dd5d3+dirty</td>
+        <td>v1.5.0-rc1.0.20260618130132-1f8a2c8748e3+dirty</td>
         <td>1.15.3, 1.16.3</td>
     </tr>
     <tr>
         <td><code>github.com/kyverno/kyverno</code></td>
         <td>CVE-2026-40868</td>
         <td>HIGH</td>
-        <td>v1.5.0-rc1.0.20260605150549-e3aa860dd5d3+dirty</td>
+        <td>v1.5.0-rc1.0.20260618130132-1f8a2c8748e3+dirty</td>
         <td>1.17.0</td>
     </tr>
     <tr>
         <td><code>github.com/kyverno/kyverno</code></td>
         <td>CVE-2026-41068</td>
         <td>HIGH</td>
-        <td>v1.5.0-rc1.0.20260605150549-e3aa860dd5d3+dirty</td>
+        <td>v1.5.0-rc1.0.20260618130132-1f8a2c8748e3+dirty</td>
         <td></td>
     </tr>
     <tr>
         <td><code>github.com/kyverno/kyverno</code></td>
         <td>CVE-2026-41323</td>
         <td>HIGH</td>
-        <td>v1.5.0-rc1.0.20260605150549-e3aa860dd5d3+dirty</td>
+        <td>v1.5.0-rc1.0.20260618130132-1f8a2c8748e3+dirty</td>
         <td>1.17.0</td>
     </tr>
     <tr>
         <td><code>github.com/kyverno/kyverno</code></td>
         <td>GHSA-459x-q9hg-4gpq</td>
         <td>HIGH</td>
-        <td>v1.5.0-rc1.0.20260605150549-e3aa860dd5d3+dirty</td>
+        <td>v1.5.0-rc1.0.20260618130132-1f8a2c8748e3+dirty</td>
         <td></td>
     </tr>
     <tr>
         <td><code>github.com/kyverno/kyverno</code></td>
         <td>GHSA-8wfp-579w-6r25</td>
         <td>HIGH</td>
-        <td>v1.5.0-rc1.0.20260605150549-e3aa860dd5d3+dirty</td>
+        <td>v1.5.0-rc1.0.20260618130132-1f8a2c8748e3+dirty</td>
         <td>1.17.0</td>
     </tr>
     <tr>
         <td><code>github.com/kyverno/kyverno</code></td>
         <td>GHSA-fmqp-4wfc-w3v7</td>
         <td>HIGH</td>
-        <td>v1.5.0-rc1.0.20260605150549-e3aa860dd5d3+dirty</td>
+        <td>v1.5.0-rc1.0.20260618130132-1f8a2c8748e3+dirty</td>
         <td>1.16.2</td>
     </tr>
     <tr>
         <td><code>github.com/kyverno/kyverno</code></td>
         <td>GHSA-qr4g-8hrp-c4rw</td>
         <td>HIGH</td>
-        <td>v1.5.0-rc1.0.20260605150549-e3aa860dd5d3+dirty</td>
+        <td>v1.5.0-rc1.0.20260618130132-1f8a2c8748e3+dirty</td>
         <td></td>
     </tr>
     <tr>

@@ -55,7 +55,7 @@
 <h4>No Misconfigurations found</h4>
 
 <h3>Target <code>ghcr.io/suxess-it/sx-backstage:v1.51.0 (wolfi 20230201)</code></h3>
-<h4>Vulnerabilities (3)</h4>
+<h4>Vulnerabilities (9)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -85,10 +85,52 @@
         <td>3.6.2-r5</td>
         <td>3.6.3-r0</td>
     </tr>
+    <tr>
+        <td><code>py3-pip-wheel</code></td>
+        <td>CVE-2026-44432</td>
+        <td>HIGH</td>
+        <td>26.1.2-r0</td>
+        <td>26.1.2-r1</td>
+    </tr>
+    <tr>
+        <td><code>py3.13-pip</code></td>
+        <td>CVE-2026-44432</td>
+        <td>HIGH</td>
+        <td>26.1.2-r0</td>
+        <td>26.1.2-r1</td>
+    </tr>
+    <tr>
+        <td><code>py3.13-pip-base</code></td>
+        <td>CVE-2026-44432</td>
+        <td>HIGH</td>
+        <td>26.1.2-r0</td>
+        <td>26.1.2-r1</td>
+    </tr>
+    <tr>
+        <td><code>python-3.13-base</code></td>
+        <td>CVE-2026-7210</td>
+        <td>HIGH</td>
+        <td>3.13.13-r5</td>
+        <td>3.13.14-r0</td>
+    </tr>
+    <tr>
+        <td><code>python-3.14</code></td>
+        <td>CVE-2026-7210</td>
+        <td>HIGH</td>
+        <td>3.14.5-r2</td>
+        <td>3.14.6-r1</td>
+    </tr>
+    <tr>
+        <td><code>python-3.14-base</code></td>
+        <td>CVE-2026-7210</td>
+        <td>HIGH</td>
+        <td>3.14.5-r2</td>
+        <td>3.14.6-r1</td>
+    </tr>
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>Node.js</code></h3>
-<h4>Vulnerabilities (37)</h4>
+<h4>Vulnerabilities (44)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -238,11 +280,53 @@
         <td>1.1.7</td>
     </tr>
     <tr>
+        <td><code>form-data</code></td>
+        <td>CVE-2026-12143</td>
+        <td>HIGH</td>
+        <td>2.5.5</td>
+        <td>2.5.6, 3.0.5, 4.0.6</td>
+    </tr>
+    <tr>
+        <td><code>form-data</code></td>
+        <td>CVE-2026-12143</td>
+        <td>HIGH</td>
+        <td>4.0.5</td>
+        <td>2.5.6, 3.0.5, 4.0.6</td>
+    </tr>
+    <tr>
+        <td><code>hono</code></td>
+        <td>CVE-2026-54290</td>
+        <td>HIGH</td>
+        <td>4.12.12</td>
+        <td>4.12.25</td>
+    </tr>
+    <tr>
+        <td><code>http-proxy-middleware</code></td>
+        <td>CVE-2026-55603</td>
+        <td>HIGH</td>
+        <td>3.0.5</td>
+        <td>3.0.7, 4.1.1</td>
+    </tr>
+    <tr>
         <td><code>js-cookie</code></td>
         <td>CVE-2026-46625</td>
         <td>HIGH</td>
         <td>2.2.1</td>
         <td>3.0.7</td>
+    </tr>
+    <tr>
+        <td><code>multer</code></td>
+        <td>CVE-2026-5079</td>
+        <td>HIGH</td>
+        <td>2.1.1</td>
+        <td>2.2.0, 3.0.0-alpha.2</td>
+    </tr>
+    <tr>
+        <td><code>protobufjs</code></td>
+        <td>CVE-2026-48712</td>
+        <td>HIGH</td>
+        <td>7.5.9</td>
+        <td>7.6.1, 8.4.1</td>
     </tr>
     <tr>
         <td><code>systeminformation</code></td>
@@ -355,6 +439,13 @@
         <td>HIGH</td>
         <td>5.29.0</td>
         <td>6.24.0, 7.24.0</td>
+    </tr>
+    <tr>
+        <td><code>ws</code></td>
+        <td>CVE-2026-48779</td>
+        <td>HIGH</td>
+        <td>8.20.0</td>
+        <td>5.2.5, 6.2.4, 7.5.11, 8.21.0</td>
     </tr>
 </table>
 <h4>No Misconfigurations found</h4>

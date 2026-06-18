@@ -136,7 +136,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>Java</code></h3>
-<h4>Vulnerabilities (14)</h4>
+<h4>Vulnerabilities (15)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -218,6 +218,13 @@
     <tr>
         <td><code>io.netty:netty-handler</code></td>
         <td>CVE-2026-45416</td>
+        <td>HIGH</td>
+        <td>4.1.130.Final</td>
+        <td>4.2.15.Final, 4.1.135.Final</td>
+    </tr>
+    <tr>
+        <td><code>io.netty:netty-handler</code></td>
+        <td>CVE-2026-50010</td>
         <td>HIGH</td>
         <td>4.1.130.Final</td>
         <td>4.2.15.Final, 4.1.135.Final</td>

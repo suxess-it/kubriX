@@ -1,6 +1,6 @@
 
 <h3>Target <code>docker.io/dserio83/velero-api:0.3.1 (debian 12.11)</code></h3>
-<h4>Vulnerabilities (111)</h4>
+<h4>Vulnerabilities (103)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -235,13 +235,6 @@
     </tr>
     <tr>
         <td><code>libperl5.36</code></td>
-        <td>CVE-2026-48959</td>
-        <td>HIGH</td>
-        <td>5.36.0-7+deb12u2</td>
-        <td></td>
-    </tr>
-    <tr>
-        <td><code>libperl5.36</code></td>
         <td>CVE-2026-48962</td>
         <td>HIGH</td>
         <td>5.36.0-7+deb12u2</td>
@@ -256,13 +249,6 @@
     </tr>
     <tr>
         <td><code>libpython3.11-minimal</code></td>
-        <td>CVE-2026-7210</td>
-        <td>CRITICAL</td>
-        <td>3.11.2-6+deb12u6</td>
-        <td></td>
-    </tr>
-    <tr>
-        <td><code>libpython3.11-minimal</code></td>
         <td>CVE-2025-13836</td>
         <td>HIGH</td>
         <td>3.11.2-6+deb12u6</td>
@@ -298,15 +284,8 @@
     </tr>
     <tr>
         <td><code>libpython3.11-minimal</code></td>
-        <td>CVE-2026-9669</td>
-        <td>HIGH</td>
-        <td>3.11.2-6+deb12u6</td>
-        <td></td>
-    </tr>
-    <tr>
-        <td><code>libpython3.11-stdlib</code></td>
         <td>CVE-2026-7210</td>
-        <td>CRITICAL</td>
+        <td>HIGH</td>
         <td>3.11.2-6+deb12u6</td>
         <td></td>
     </tr>
@@ -347,7 +326,7 @@
     </tr>
     <tr>
         <td><code>libpython3.11-stdlib</code></td>
-        <td>CVE-2026-9669</td>
+        <td>CVE-2026-7210</td>
         <td>HIGH</td>
         <td>3.11.2-6+deb12u6</td>
         <td></td>
@@ -550,13 +529,6 @@
     </tr>
     <tr>
         <td><code>perl</code></td>
-        <td>CVE-2026-48959</td>
-        <td>HIGH</td>
-        <td>5.36.0-7+deb12u2</td>
-        <td></td>
-    </tr>
-    <tr>
-        <td><code>perl</code></td>
         <td>CVE-2026-48962</td>
         <td>HIGH</td>
         <td>5.36.0-7+deb12u2</td>
@@ -599,13 +571,6 @@
     </tr>
     <tr>
         <td><code>perl-base</code></td>
-        <td>CVE-2026-48959</td>
-        <td>HIGH</td>
-        <td>5.36.0-7+deb12u2</td>
-        <td></td>
-    </tr>
-    <tr>
-        <td><code>perl-base</code></td>
         <td>CVE-2026-48962</td>
         <td>HIGH</td>
         <td>5.36.0-7+deb12u2</td>
@@ -642,13 +607,6 @@
     <tr>
         <td><code>perl-modules-5.36</code></td>
         <td>CVE-2026-42497</td>
-        <td>HIGH</td>
-        <td>5.36.0-7+deb12u2</td>
-        <td></td>
-    </tr>
-    <tr>
-        <td><code>perl-modules-5.36</code></td>
-        <td>CVE-2026-48959</td>
         <td>HIGH</td>
         <td>5.36.0-7+deb12u2</td>
         <td></td>
@@ -683,13 +641,6 @@
     </tr>
     <tr>
         <td><code>python3.11</code></td>
-        <td>CVE-2026-7210</td>
-        <td>CRITICAL</td>
-        <td>3.11.2-6+deb12u6</td>
-        <td></td>
-    </tr>
-    <tr>
-        <td><code>python3.11</code></td>
         <td>CVE-2025-13836</td>
         <td>HIGH</td>
         <td>3.11.2-6+deb12u6</td>
@@ -725,15 +676,8 @@
     </tr>
     <tr>
         <td><code>python3.11</code></td>
-        <td>CVE-2026-9669</td>
-        <td>HIGH</td>
-        <td>3.11.2-6+deb12u6</td>
-        <td></td>
-    </tr>
-    <tr>
-        <td><code>python3.11-minimal</code></td>
         <td>CVE-2026-7210</td>
-        <td>CRITICAL</td>
+        <td>HIGH</td>
         <td>3.11.2-6+deb12u6</td>
         <td></td>
     </tr>
@@ -774,7 +718,7 @@
     </tr>
     <tr>
         <td><code>python3.11-minimal</code></td>
-        <td>CVE-2026-9669</td>
+        <td>CVE-2026-7210</td>
         <td>HIGH</td>
         <td>3.11.2-6+deb12u6</td>
         <td></td>
@@ -789,7 +733,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>Python</code></h3>
-<h4>Vulnerabilities (13)</h4>
+<h4>Vulnerabilities (16)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -834,6 +778,13 @@
         <td>0.0.27</td>
     </tr>
     <tr>
+        <td><code>python-multipart</code></td>
+        <td>CVE-2026-53539</td>
+        <td>HIGH</td>
+        <td>0.0.19</td>
+        <td>0.0.30</td>
+    </tr>
+    <tr>
         <td><code>setuptools</code></td>
         <td>CVE-2024-6345</td>
         <td>HIGH</td>
@@ -853,6 +804,20 @@
         <td>HIGH</td>
         <td>0.45.3</td>
         <td>0.49.1</td>
+    </tr>
+    <tr>
+        <td><code>starlette</code></td>
+        <td>CVE-2026-48818</td>
+        <td>HIGH</td>
+        <td>0.45.3</td>
+        <td>1.1.0</td>
+    </tr>
+    <tr>
+        <td><code>starlette</code></td>
+        <td>CVE-2026-54283</td>
+        <td>HIGH</td>
+        <td>0.45.3</td>
+        <td>1.3.1</td>
     </tr>
     <tr>
         <td><code>urllib3</code></td>
@@ -1085,7 +1050,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>Node.js</code></h3>
-<h4>Vulnerabilities (26)</h4>
+<h4>Vulnerabilities (25)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -1100,13 +1065,6 @@
         <td>HIGH</td>
         <td>7.0.3</td>
         <td>7.0.5, 6.0.6</td>
-    </tr>
-    <tr>
-        <td><code>esbuild</code></td>
-        <td>GHSA-gv7w-rqvm-qjhr</td>
-        <td>HIGH</td>
-        <td>0.25.1</td>
-        <td>0.28.1</td>
     </tr>
     <tr>
         <td><code>fast-uri</code></td>
@@ -1397,7 +1355,7 @@
 <h4>No Misconfigurations found</h4>
 
 <h3>Target <code>docker.io/dserio83/velero-watchdog:0.1.8 (debian 12.10)</code></h3>
-<h4>Vulnerabilities (83)</h4>
+<h4>Vulnerabilities (79)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -1646,13 +1604,6 @@
     </tr>
     <tr>
         <td><code>libperl5.36</code></td>
-        <td>CVE-2026-48959</td>
-        <td>HIGH</td>
-        <td>5.36.0-7+deb12u2</td>
-        <td></td>
-    </tr>
-    <tr>
-        <td><code>libperl5.36</code></td>
         <td>CVE-2026-48962</td>
         <td>HIGH</td>
         <td>5.36.0-7+deb12u2</td>
@@ -1863,13 +1814,6 @@
     </tr>
     <tr>
         <td><code>perl</code></td>
-        <td>CVE-2026-48959</td>
-        <td>HIGH</td>
-        <td>5.36.0-7+deb12u2</td>
-        <td></td>
-    </tr>
-    <tr>
-        <td><code>perl</code></td>
         <td>CVE-2026-48962</td>
         <td>HIGH</td>
         <td>5.36.0-7+deb12u2</td>
@@ -1912,13 +1856,6 @@
     </tr>
     <tr>
         <td><code>perl-base</code></td>
-        <td>CVE-2026-48959</td>
-        <td>HIGH</td>
-        <td>5.36.0-7+deb12u2</td>
-        <td></td>
-    </tr>
-    <tr>
-        <td><code>perl-base</code></td>
         <td>CVE-2026-48962</td>
         <td>HIGH</td>
         <td>5.36.0-7+deb12u2</td>
@@ -1955,13 +1892,6 @@
     <tr>
         <td><code>perl-modules-5.36</code></td>
         <td>CVE-2026-42497</td>
-        <td>HIGH</td>
-        <td>5.36.0-7+deb12u2</td>
-        <td></td>
-    </tr>
-    <tr>
-        <td><code>perl-modules-5.36</code></td>
-        <td>CVE-2026-48959</td>
         <td>HIGH</td>
         <td>5.36.0-7+deb12u2</td>
         <td></td>
@@ -1990,7 +1920,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>Python</code></h3>
-<h4>Vulnerabilities (11)</h4>
+<h4>Vulnerabilities (13)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -2040,6 +1970,20 @@
         <td>HIGH</td>
         <td>0.45.3</td>
         <td>0.49.1</td>
+    </tr>
+    <tr>
+        <td><code>starlette</code></td>
+        <td>CVE-2026-48818</td>
+        <td>HIGH</td>
+        <td>0.45.3</td>
+        <td>1.1.0</td>
+    </tr>
+    <tr>
+        <td><code>starlette</code></td>
+        <td>CVE-2026-54283</td>
+        <td>HIGH</td>
+        <td>0.45.3</td>
+        <td>1.3.1</td>
     </tr>
     <tr>
         <td><code>urllib3</code></td>

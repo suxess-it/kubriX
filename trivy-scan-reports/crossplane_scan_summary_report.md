@@ -1,5 +1,5 @@
 
-<h3>Target <code>nix/store/8zl8zql6pnb9q575dh00y83dqi6yr73j-crossplane-linux-amd64-v2.3.1/bin/crossplane</code></h3>
+<h3>Target <code>nix/store/m42cvdwx0mz8vnv71v0jclqzq8cq6krx-crossplane-linux-amd64-v2.3.2/bin/crossplane</code></h3>
 <h4>Vulnerabilities (1)</h4>
 <table>
     <tr>
