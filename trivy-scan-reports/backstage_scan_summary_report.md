@@ -130,7 +130,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>Node.js</code></h3>
-<h4>Vulnerabilities (44)</h4>
+<h4>Vulnerabilities (50)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -439,6 +439,48 @@
         <td>HIGH</td>
         <td>5.29.0</td>
         <td>6.24.0, 7.24.0</td>
+    </tr>
+    <tr>
+        <td><code>undici</code></td>
+        <td>CVE-2026-9697</td>
+        <td>HIGH</td>
+        <td>7.24.7</td>
+        <td>7.28.0, 8.5.0</td>
+    </tr>
+    <tr>
+        <td><code>undici</code></td>
+        <td>CVE-2026-9697</td>
+        <td>HIGH</td>
+        <td>7.25.0</td>
+        <td>7.28.0, 8.5.0</td>
+    </tr>
+    <tr>
+        <td><code>undici</code></td>
+        <td>CVE-2026-9697</td>
+        <td>HIGH</td>
+        <td>7.25.0</td>
+        <td>7.28.0, 8.5.0</td>
+    </tr>
+    <tr>
+        <td><code>undici</code></td>
+        <td>CVE-2026-9697</td>
+        <td>HIGH</td>
+        <td>7.25.0</td>
+        <td>7.28.0, 8.5.0</td>
+    </tr>
+    <tr>
+        <td><code>undici</code></td>
+        <td>CVE-2026-9697</td>
+        <td>HIGH</td>
+        <td>7.25.0</td>
+        <td>7.28.0, 8.5.0</td>
+    </tr>
+    <tr>
+        <td><code>undici</code></td>
+        <td>CVE-2026-9697</td>
+        <td>HIGH</td>
+        <td>7.25.0</td>
+        <td>7.28.0, 8.5.0</td>
     </tr>
     <tr>
         <td><code>ws</code></td>
