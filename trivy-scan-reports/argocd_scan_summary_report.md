@@ -635,38 +635,8 @@
 </table>
 <h4>No Misconfigurations found</h4>
 
-<h3>Target <code>quay.io/argoproj/argocd:v3.4.3 (ubuntu 25.10)</code></h3>
-<h4>Vulnerabilities (3)</h4>
-<table>
-    <tr>
-        <th>Package</th>
-        <th>ID</th>
-        <th>Severity</th>
-        <th>Installed Version</th>
-        <th>Fixed Version</th>
-    </tr>
-    <tr>
-        <td><code>libssl3t64</code></td>
-        <td>CVE-2026-45447</td>
-        <td>HIGH</td>
-        <td>3.5.3-1ubuntu3.3</td>
-        <td>3.5.3-1ubuntu3.4</td>
-    </tr>
-    <tr>
-        <td><code>openssl</code></td>
-        <td>CVE-2026-45447</td>
-        <td>HIGH</td>
-        <td>3.5.3-1ubuntu3.3</td>
-        <td>3.5.3-1ubuntu3.4</td>
-    </tr>
-    <tr>
-        <td><code>openssl-provider-legacy</code></td>
-        <td>CVE-2026-45447</td>
-        <td>HIGH</td>
-        <td>3.5.3-1ubuntu3.3</td>
-        <td>3.5.3-1ubuntu3.4</td>
-    </tr>
-</table>
+<h3>Target <code>quay.io/argoproj/argocd:v3.4.4 (ubuntu 25.10)</code></h3>
+<h4>No Vulnerabilities found</h4>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>usr/local/bin/argocd</code></h3>
 <h4>Vulnerabilities (16)</h4>
@@ -910,7 +880,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>usr/local/bin/helm</code></h3>
-<h4>Vulnerabilities (17)</h4>
+<h4>Vulnerabilities (18)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -925,6 +895,13 @@
         <td>HIGH</td>
         <td>v1.7.29</td>
         <td>1.7.32</td>
+    </tr>
+    <tr>
+        <td><code>github.com/containerd/containerd</code></td>
+        <td>CVE-2026-53488</td>
+        <td>HIGH</td>
+        <td>v1.7.29</td>
+        <td>1.7.33</td>
     </tr>
     <tr>
         <td><code>github.com/moby/spdystream</code></td>

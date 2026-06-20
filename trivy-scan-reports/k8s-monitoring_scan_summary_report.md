@@ -75,7 +75,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>usr/local/bin/helm-operator</code></h3>
-<h4>Vulnerabilities (15)</h4>
+<h4>Vulnerabilities (16)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -90,6 +90,13 @@
         <td>HIGH</td>
         <td>v1.7.29</td>
         <td>1.7.32</td>
+    </tr>
+    <tr>
+        <td><code>github.com/containerd/containerd</code></td>
+        <td>CVE-2026-53488</td>
+        <td>HIGH</td>
+        <td>v1.7.29</td>
+        <td>1.7.33</td>
     </tr>
     <tr>
         <td><code>github.com/moby/spdystream</code></td>

@@ -41,7 +41,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>usr/local/bin/helm</code></h3>
-<h4>Vulnerabilities (2)</h4>
+<h4>Vulnerabilities (3)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -58,6 +58,13 @@
         <td>1.7.32</td>
     </tr>
     <tr>
+        <td><code>github.com/containerd/containerd</code></td>
+        <td>CVE-2026-53488</td>
+        <td>HIGH</td>
+        <td>v1.7.30</td>
+        <td>1.7.33</td>
+    </tr>
+    <tr>
         <td><code>stdlib</code></td>
         <td>CVE-2026-42504</td>
         <td>HIGH</td>
@@ -67,7 +74,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>usr/local/bin/kargo</code></h3>
-<h4>Vulnerabilities (2)</h4>
+<h4>Vulnerabilities (3)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -82,6 +89,13 @@
         <td>HIGH</td>
         <td>v1.7.29</td>
         <td>1.7.32</td>
+    </tr>
+    <tr>
+        <td><code>github.com/containerd/containerd</code></td>
+        <td>CVE-2026-53488</td>
+        <td>HIGH</td>
+        <td>v1.7.29</td>
+        <td>1.7.33</td>
     </tr>
     <tr>
         <td><code>stdlib</code></td>

@@ -1,6 +1,9 @@
 
-<h3>Target <code>mirror.gcr.io/aquasec/trivy-operator:0.31.1 (alpine 3.23.4)</code></h3>
-<h4>Vulnerabilities (2)</h4>
+<h3>Target <code>mirror.gcr.io/aquasec/trivy-operator:0.31.2 (alpine 3.24.1)</code></h3>
+<h4>No Vulnerabilities found</h4>
+<h4>No Misconfigurations found</h4>
+<h3>Target <code>usr/local/bin/trivy-operator</code></h3>
+<h4>Vulnerabilities (3)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -10,21 +13,25 @@
         <th>Fixed Version</th>
     </tr>
     <tr>
-        <td><code>libcrypto3</code></td>
-        <td>CVE-2026-45447</td>
+        <td><code>github.com/containerd/containerd/v2</code></td>
+        <td>CVE-2026-53488</td>
         <td>HIGH</td>
-        <td>3.5.6-r0</td>
-        <td>3.5.7-r0</td>
+        <td>v2.3.1</td>
+        <td>2.0.10, 2.1.9, 2.2.5, 2.3.2</td>
     </tr>
     <tr>
-        <td><code>libssl3</code></td>
-        <td>CVE-2026-45447</td>
+        <td><code>github.com/containerd/containerd/v2</code></td>
+        <td>CVE-2026-53489</td>
         <td>HIGH</td>
-        <td>3.5.6-r0</td>
-        <td>3.5.7-r0</td>
+        <td>v2.3.1</td>
+        <td>2.1.9, 2.2.5, 2.3.2</td>
+    </tr>
+    <tr>
+        <td><code>github.com/containerd/containerd/v2</code></td>
+        <td>CVE-2026-53492</td>
+        <td>HIGH</td>
+        <td>v2.3.1</td>
+        <td>2.1.9, 2.2.5, 2.3.2</td>
     </tr>
 </table>
-<h4>No Misconfigurations found</h4>
-<h3>Target <code>usr/local/bin/trivy-operator</code></h3>
-<h4>No Vulnerabilities found</h4>
 <h4>No Misconfigurations found</h4>
