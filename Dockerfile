@@ -1,4 +1,4 @@
-# syntax=docker/dockerfile:1.23
+# syntax=docker/dockerfile:1.25
 # docker buildx build --platform linux/amd64,linux/arm64 -t ghcr.io/suxess-it/kubrix-installer:latest --push .
 FROM ubuntu:26.04
 
