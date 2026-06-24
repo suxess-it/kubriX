@@ -1,6 +1,6 @@
 
 <h3>Target <code>docker.io/dserio83/velero-api:0.3.1 (debian 12.11)</code></h3>
-<h4>Vulnerabilities (103)</h4>
+<h4>Vulnerabilities (104)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -357,6 +357,13 @@
         <td>CVE-2026-11824</td>
         <td>HIGH</td>
         <td>3.40.1-2+deb12u1</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>libssh2-1</code></td>
+        <td>CVE-2026-55200</td>
+        <td>HIGH</td>
+        <td>1.10.0-3+b1</td>
         <td></td>
     </tr>
     <tr>
@@ -1425,7 +1432,7 @@
 <h4>No Misconfigurations found</h4>
 
 <h3>Target <code>docker.io/dserio83/velero-watchdog:0.1.8 (debian 12.10)</code></h3>
-<h4>Vulnerabilities (79)</h4>
+<h4>Vulnerabilities (80)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -1712,6 +1719,13 @@
         <td>CVE-2026-11824</td>
         <td>HIGH</td>
         <td>3.40.1-2+deb12u1</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>libssh2-1</code></td>
+        <td>CVE-2026-55200</td>
+        <td>HIGH</td>
+        <td>1.10.0-3+b1</td>
         <td></td>
     </tr>
     <tr>

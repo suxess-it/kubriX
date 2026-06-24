@@ -54,38 +54,8 @@
 </table>
 <h4>No Misconfigurations found</h4>
 
-<h3>Target <code>curlimages/curl:latest (alpine 3.23.4)</code></h3>
-<h4>Vulnerabilities (3)</h4>
-<table>
-    <tr>
-        <th>Package</th>
-        <th>ID</th>
-        <th>Severity</th>
-        <th>Installed Version</th>
-        <th>Fixed Version</th>
-    </tr>
-    <tr>
-        <td><code>libcrypto3</code></td>
-        <td>CVE-2026-45447</td>
-        <td>HIGH</td>
-        <td>3.5.6-r0</td>
-        <td>3.5.7-r0</td>
-    </tr>
-    <tr>
-        <td><code>libssh2</code></td>
-        <td>CVE-2026-7598</td>
-        <td>HIGH</td>
-        <td>1.11.1-r1</td>
-        <td>1.11.1-r2</td>
-    </tr>
-    <tr>
-        <td><code>libssl3</code></td>
-        <td>CVE-2026-45447</td>
-        <td>HIGH</td>
-        <td>3.5.6-r0</td>
-        <td>3.5.7-r0</td>
-    </tr>
-</table>
+<h3>Target <code>curlimages/curl:latest (alpine 3.24.1)</code></h3>
+<h4>No Vulnerabilities found</h4>
 <h4>No Misconfigurations found</h4>
 
 <h3>Target <code>quay.io/keycloak/keycloak-operator:26.6.1 (redhat 9.7)</code></h3>
@@ -136,7 +106,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>Java</code></h3>
-<h4>Vulnerabilities (15)</h4>
+<h4>Vulnerabilities (17)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -144,6 +114,20 @@
         <th>Severity</th>
         <th>Installed Version</th>
         <th>Fixed Version</th>
+    </tr>
+    <tr>
+        <td><code>com.fasterxml.jackson.core:jackson-databind</code></td>
+        <td>CVE-2026-54512</td>
+        <td>HIGH</td>
+        <td>2.21.2</td>
+        <td>2.18.8, 3.1.4, 2.21.4</td>
+    </tr>
+    <tr>
+        <td><code>com.fasterxml.jackson.core:jackson-databind</code></td>
+        <td>CVE-2026-54513</td>
+        <td>HIGH</td>
+        <td>2.21.2</td>
+        <td>2.18.8, 2.21.4, 3.1.4</td>
     </tr>
     <tr>
         <td><code>io.netty:netty-codec</code></td>
@@ -253,11 +237,11 @@
 </table>
 <h4>No Misconfigurations found</h4>
 
-<h3>Target <code>xpkg.upbound.io/crossplane-contrib/provider-keycloak:v2.19.0 (debian 12.12)</code></h3>
+<h3>Target <code>xpkg.upbound.io/crossplane-contrib/provider-keycloak:v2.20.0 (debian 13.5)</code></h3>
 <h4>No Vulnerabilities found</h4>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>usr/local/bin/provider</code></h3>
-<h4>Vulnerabilities (26)</h4>
+<h4>Vulnerabilities (1)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -272,181 +256,6 @@
         <td>HIGH</td>
         <td>v1.2.0</td>
         <td>1.3.6</td>
-    </tr>
-    <tr>
-        <td><code>golang.org/x/crypto</code></td>
-        <td>CVE-2026-39827</td>
-        <td>HIGH</td>
-        <td>v0.48.0</td>
-        <td>0.52.0</td>
-    </tr>
-    <tr>
-        <td><code>golang.org/x/crypto</code></td>
-        <td>CVE-2026-39828</td>
-        <td>HIGH</td>
-        <td>v0.48.0</td>
-        <td>0.52.0</td>
-    </tr>
-    <tr>
-        <td><code>golang.org/x/crypto</code></td>
-        <td>CVE-2026-39829</td>
-        <td>HIGH</td>
-        <td>v0.48.0</td>
-        <td>0.52.0</td>
-    </tr>
-    <tr>
-        <td><code>golang.org/x/crypto</code></td>
-        <td>CVE-2026-39830</td>
-        <td>HIGH</td>
-        <td>v0.48.0</td>
-        <td>0.52.0</td>
-    </tr>
-    <tr>
-        <td><code>golang.org/x/crypto</code></td>
-        <td>CVE-2026-39835</td>
-        <td>HIGH</td>
-        <td>v0.48.0</td>
-        <td>0.52.0</td>
-    </tr>
-    <tr>
-        <td><code>golang.org/x/crypto</code></td>
-        <td>CVE-2026-42508</td>
-        <td>HIGH</td>
-        <td>v0.48.0</td>
-        <td>0.52.0</td>
-    </tr>
-    <tr>
-        <td><code>golang.org/x/crypto</code></td>
-        <td>CVE-2026-46595</td>
-        <td>HIGH</td>
-        <td>v0.48.0</td>
-        <td>0.52.0</td>
-    </tr>
-    <tr>
-        <td><code>golang.org/x/crypto</code></td>
-        <td>CVE-2026-46597</td>
-        <td>HIGH</td>
-        <td>v0.48.0</td>
-        <td>0.52.0</td>
-    </tr>
-    <tr>
-        <td><code>golang.org/x/net</code></td>
-        <td>CVE-2026-25680</td>
-        <td>HIGH</td>
-        <td>v0.51.0</td>
-        <td>0.55.0</td>
-    </tr>
-    <tr>
-        <td><code>golang.org/x/net</code></td>
-        <td>CVE-2026-25681</td>
-        <td>HIGH</td>
-        <td>v0.51.0</td>
-        <td>0.55.0</td>
-    </tr>
-    <tr>
-        <td><code>golang.org/x/net</code></td>
-        <td>CVE-2026-27136</td>
-        <td>HIGH</td>
-        <td>v0.51.0</td>
-        <td>0.55.0</td>
-    </tr>
-    <tr>
-        <td><code>golang.org/x/net</code></td>
-        <td>CVE-2026-33814</td>
-        <td>HIGH</td>
-        <td>v0.51.0</td>
-        <td>0.53.0</td>
-    </tr>
-    <tr>
-        <td><code>golang.org/x/net</code></td>
-        <td>CVE-2026-39821</td>
-        <td>HIGH</td>
-        <td>v0.51.0</td>
-        <td>0.55.0</td>
-    </tr>
-    <tr>
-        <td><code>golang.org/x/net</code></td>
-        <td>CVE-2026-42502</td>
-        <td>HIGH</td>
-        <td>v0.51.0</td>
-        <td>0.55.0</td>
-    </tr>
-    <tr>
-        <td><code>golang.org/x/net</code></td>
-        <td>CVE-2026-42506</td>
-        <td>HIGH</td>
-        <td>v0.51.0</td>
-        <td>0.55.0</td>
-    </tr>
-    <tr>
-        <td><code>google.golang.org/grpc</code></td>
-        <td>CVE-2026-33186</td>
-        <td>CRITICAL</td>
-        <td>v1.79.1</td>
-        <td>1.79.3</td>
-    </tr>
-    <tr>
-        <td><code>stdlib</code></td>
-        <td>CVE-2026-27145</td>
-        <td>HIGH</td>
-        <td>v1.25.9</td>
-        <td>1.25.11, 1.26.4</td>
-    </tr>
-    <tr>
-        <td><code>stdlib</code></td>
-        <td>CVE-2026-33811</td>
-        <td>HIGH</td>
-        <td>v1.25.9</td>
-        <td>1.25.10, 1.26.3</td>
-    </tr>
-    <tr>
-        <td><code>stdlib</code></td>
-        <td>CVE-2026-33814</td>
-        <td>HIGH</td>
-        <td>v1.25.9</td>
-        <td>1.25.10, 1.26.3</td>
-    </tr>
-    <tr>
-        <td><code>stdlib</code></td>
-        <td>CVE-2026-39820</td>
-        <td>HIGH</td>
-        <td>v1.25.9</td>
-        <td>1.25.10, 1.26.3</td>
-    </tr>
-    <tr>
-        <td><code>stdlib</code></td>
-        <td>CVE-2026-39823</td>
-        <td>HIGH</td>
-        <td>v1.25.9</td>
-        <td>1.25.10, 1.26.3</td>
-    </tr>
-    <tr>
-        <td><code>stdlib</code></td>
-        <td>CVE-2026-39825</td>
-        <td>HIGH</td>
-        <td>v1.25.9</td>
-        <td>1.25.10, 1.26.3</td>
-    </tr>
-    <tr>
-        <td><code>stdlib</code></td>
-        <td>CVE-2026-39836</td>
-        <td>HIGH</td>
-        <td>v1.25.9</td>
-        <td>1.25.10, 1.26.3</td>
-    </tr>
-    <tr>
-        <td><code>stdlib</code></td>
-        <td>CVE-2026-42499</td>
-        <td>HIGH</td>
-        <td>v1.25.9</td>
-        <td>1.25.10, 1.26.3</td>
-    </tr>
-    <tr>
-        <td><code>stdlib</code></td>
-        <td>CVE-2026-42504</td>
-        <td>HIGH</td>
-        <td>v1.25.9</td>
-        <td>1.25.11, 1.26.4</td>
     </tr>
 </table>
 <h4>No Misconfigurations found</h4>
