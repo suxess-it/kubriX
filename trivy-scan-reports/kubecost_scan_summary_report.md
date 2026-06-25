@@ -235,7 +235,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>go/bin/app</code></h3>
-<h4>Vulnerabilities (39)</h4>
+<h4>Vulnerabilities (38)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -491,13 +491,6 @@
     </tr>
     <tr>
         <td><code>stdlib</code></td>
-        <td>CVE-2026-39825</td>
-        <td>HIGH</td>
-        <td>v1.24.11</td>
-        <td>1.25.10, 1.26.3</td>
-    </tr>
-    <tr>
-        <td><code>stdlib</code></td>
         <td>CVE-2026-39836</td>
         <td>HIGH</td>
         <td>v1.24.11</td>
@@ -612,7 +605,7 @@
         <td>CVE-2026-9256</td>
         <td>HIGH</td>
         <td>2:1.20.1-22.el9_6.3</td>
-        <td></td>
+        <td>2:1.20.1-28.el9_8.3</td>
     </tr>
     <tr>
         <td><code>nginx-core</code></td>
@@ -654,7 +647,7 @@
         <td>CVE-2026-9256</td>
         <td>HIGH</td>
         <td>2:1.20.1-22.el9_6.3</td>
-        <td></td>
+        <td>2:1.20.1-28.el9_8.3</td>
     </tr>
     <tr>
         <td><code>nginx-filesystem</code></td>
@@ -668,7 +661,7 @@
         <td>CVE-2026-9256</td>
         <td>HIGH</td>
         <td>2:1.20.1-22.el9_6.3</td>
-        <td></td>
+        <td>2:1.20.1-28.el9_8.3</td>
     </tr>
     <tr>
         <td><code>openssl</code></td>
@@ -984,7 +977,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>go/bin/app</code></h3>
-<h4>Vulnerabilities (35)</h4>
+<h4>Vulnerabilities (34)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -1212,13 +1205,6 @@
     </tr>
     <tr>
         <td><code>stdlib</code></td>
-        <td>CVE-2026-39825</td>
-        <td>HIGH</td>
-        <td>v1.25.5</td>
-        <td>1.25.10, 1.26.3</td>
-    </tr>
-    <tr>
-        <td><code>stdlib</code></td>
         <td>CVE-2026-39836</td>
         <td>HIGH</td>
         <td>v1.25.5</td>
@@ -1242,7 +1228,7 @@
 <h4>No Misconfigurations found</h4>
 
 <h3>Target <code>bin/prometheus</code></h3>
-<h4>Vulnerabilities (37)</h4>
+<h4>Vulnerabilities (36)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -1484,13 +1470,6 @@
     </tr>
     <tr>
         <td><code>stdlib</code></td>
-        <td>CVE-2026-39825</td>
-        <td>HIGH</td>
-        <td>v1.25.5</td>
-        <td>1.25.10, 1.26.3</td>
-    </tr>
-    <tr>
-        <td><code>stdlib</code></td>
         <td>CVE-2026-39836</td>
         <td>HIGH</td>
         <td>v1.25.5</td>
@@ -1513,7 +1492,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>bin/promtool</code></h3>
-<h4>Vulnerabilities (35)</h4>
+<h4>Vulnerabilities (34)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -1735,13 +1714,6 @@
     <tr>
         <td><code>stdlib</code></td>
         <td>CVE-2026-39823</td>
-        <td>HIGH</td>
-        <td>v1.25.5</td>
-        <td>1.25.10, 1.26.3</td>
-    </tr>
-    <tr>
-        <td><code>stdlib</code></td>
-        <td>CVE-2026-39825</td>
         <td>HIGH</td>
         <td>v1.25.5</td>
         <td>1.25.10, 1.26.3</td>

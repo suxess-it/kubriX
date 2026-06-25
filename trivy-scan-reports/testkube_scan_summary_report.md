@@ -1159,7 +1159,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>usr/bin/bsondump</code></h3>
-<h4>Vulnerabilities (24)</h4>
+<h4>Vulnerabilities (23)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -1304,13 +1304,6 @@
     <tr>
         <td><code>stdlib</code></td>
         <td>CVE-2026-39823</td>
-        <td>HIGH</td>
-        <td>v1.25.9</td>
-        <td>1.25.10, 1.26.3</td>
-    </tr>
-    <tr>
-        <td><code>stdlib</code></td>
-        <td>CVE-2026-39825</td>
         <td>HIGH</td>
         <td>v1.25.9</td>
         <td>1.25.10, 1.26.3</td>
@@ -1339,7 +1332,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>usr/bin/mongodump</code></h3>
-<h4>Vulnerabilities (24)</h4>
+<h4>Vulnerabilities (23)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -1484,13 +1477,6 @@
     <tr>
         <td><code>stdlib</code></td>
         <td>CVE-2026-39823</td>
-        <td>HIGH</td>
-        <td>v1.25.9</td>
-        <td>1.25.10, 1.26.3</td>
-    </tr>
-    <tr>
-        <td><code>stdlib</code></td>
-        <td>CVE-2026-39825</td>
         <td>HIGH</td>
         <td>v1.25.9</td>
         <td>1.25.10, 1.26.3</td>
@@ -1519,7 +1505,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>usr/bin/mongoexport</code></h3>
-<h4>Vulnerabilities (24)</h4>
+<h4>Vulnerabilities (23)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -1664,13 +1650,6 @@
     <tr>
         <td><code>stdlib</code></td>
         <td>CVE-2026-39823</td>
-        <td>HIGH</td>
-        <td>v1.25.9</td>
-        <td>1.25.10, 1.26.3</td>
-    </tr>
-    <tr>
-        <td><code>stdlib</code></td>
-        <td>CVE-2026-39825</td>
         <td>HIGH</td>
         <td>v1.25.9</td>
         <td>1.25.10, 1.26.3</td>
@@ -1699,7 +1678,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>usr/bin/mongofiles</code></h3>
-<h4>Vulnerabilities (24)</h4>
+<h4>Vulnerabilities (23)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -1844,13 +1823,6 @@
     <tr>
         <td><code>stdlib</code></td>
         <td>CVE-2026-39823</td>
-        <td>HIGH</td>
-        <td>v1.25.9</td>
-        <td>1.25.10, 1.26.3</td>
-    </tr>
-    <tr>
-        <td><code>stdlib</code></td>
-        <td>CVE-2026-39825</td>
         <td>HIGH</td>
         <td>v1.25.9</td>
         <td>1.25.10, 1.26.3</td>
@@ -1879,7 +1851,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>usr/bin/mongoimport</code></h3>
-<h4>Vulnerabilities (24)</h4>
+<h4>Vulnerabilities (23)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -2024,13 +1996,6 @@
     <tr>
         <td><code>stdlib</code></td>
         <td>CVE-2026-39823</td>
-        <td>HIGH</td>
-        <td>v1.25.9</td>
-        <td>1.25.10, 1.26.3</td>
-    </tr>
-    <tr>
-        <td><code>stdlib</code></td>
-        <td>CVE-2026-39825</td>
         <td>HIGH</td>
         <td>v1.25.9</td>
         <td>1.25.10, 1.26.3</td>
@@ -2059,7 +2024,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>usr/bin/mongorestore</code></h3>
-<h4>Vulnerabilities (24)</h4>
+<h4>Vulnerabilities (23)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -2204,13 +2169,6 @@
     <tr>
         <td><code>stdlib</code></td>
         <td>CVE-2026-39823</td>
-        <td>HIGH</td>
-        <td>v1.25.9</td>
-        <td>1.25.10, 1.26.3</td>
-    </tr>
-    <tr>
-        <td><code>stdlib</code></td>
-        <td>CVE-2026-39825</td>
         <td>HIGH</td>
         <td>v1.25.9</td>
         <td>1.25.10, 1.26.3</td>
@@ -2239,7 +2197,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>usr/bin/mongostat</code></h3>
-<h4>Vulnerabilities (24)</h4>
+<h4>Vulnerabilities (23)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -2384,13 +2342,6 @@
     <tr>
         <td><code>stdlib</code></td>
         <td>CVE-2026-39823</td>
-        <td>HIGH</td>
-        <td>v1.25.9</td>
-        <td>1.25.10, 1.26.3</td>
-    </tr>
-    <tr>
-        <td><code>stdlib</code></td>
-        <td>CVE-2026-39825</td>
         <td>HIGH</td>
         <td>v1.25.9</td>
         <td>1.25.10, 1.26.3</td>
@@ -2419,7 +2370,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>usr/bin/mongotop</code></h3>
-<h4>Vulnerabilities (24)</h4>
+<h4>Vulnerabilities (23)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -2570,13 +2521,6 @@
     </tr>
     <tr>
         <td><code>stdlib</code></td>
-        <td>CVE-2026-39825</td>
-        <td>HIGH</td>
-        <td>v1.25.9</td>
-        <td>1.25.10, 1.26.3</td>
-    </tr>
-    <tr>
-        <td><code>stdlib</code></td>
         <td>CVE-2026-39836</td>
         <td>HIGH</td>
         <td>v1.25.9</td>
@@ -2599,7 +2543,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>usr/local/bin/gosu</code></h3>
-<h4>Vulnerabilities (16)</h4>
+<h4>Vulnerabilities (15)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -2688,13 +2632,6 @@
     <tr>
         <td><code>stdlib</code></td>
         <td>CVE-2026-39823</td>
-        <td>HIGH</td>
-        <td>v1.24.6</td>
-        <td>1.25.10, 1.26.3</td>
-    </tr>
-    <tr>
-        <td><code>stdlib</code></td>
-        <td>CVE-2026-39825</td>
         <td>HIGH</td>
         <td>v1.24.6</td>
         <td>1.25.10, 1.26.3</td>
@@ -2723,7 +2660,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>usr/local/bin/wait-for-port</code></h3>
-<h4>Vulnerabilities (16)</h4>
+<h4>Vulnerabilities (15)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -2812,13 +2749,6 @@
     <tr>
         <td><code>stdlib</code></td>
         <td>CVE-2026-39823</td>
-        <td>HIGH</td>
-        <td>v1.25.0</td>
-        <td>1.25.10, 1.26.3</td>
-    </tr>
-    <tr>
-        <td><code>stdlib</code></td>
-        <td>CVE-2026-39825</td>
         <td>HIGH</td>
         <td>v1.25.0</td>
         <td>1.25.10, 1.26.3</td>
@@ -3123,7 +3053,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>usr/bin/mc</code></h3>
-<h4>Vulnerabilities (36)</h4>
+<h4>Vulnerabilities (35)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -3358,13 +3288,6 @@
     </tr>
     <tr>
         <td><code>stdlib</code></td>
-        <td>CVE-2026-39825</td>
-        <td>HIGH</td>
-        <td>v1.24.3</td>
-        <td>1.25.10, 1.26.3</td>
-    </tr>
-    <tr>
-        <td><code>stdlib</code></td>
         <td>CVE-2026-39836</td>
         <td>HIGH</td>
         <td>v1.24.3</td>
@@ -3387,7 +3310,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>usr/bin/minio</code></h3>
-<h4>Vulnerabilities (47)</h4>
+<h4>Vulnerabilities (46)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -3699,13 +3622,6 @@
     </tr>
     <tr>
         <td><code>stdlib</code></td>
-        <td>CVE-2026-39825</td>
-        <td>HIGH</td>
-        <td>v1.24.4</td>
-        <td>1.25.10, 1.26.3</td>
-    </tr>
-    <tr>
-        <td><code>stdlib</code></td>
         <td>CVE-2026-39836</td>
         <td>HIGH</td>
         <td>v1.24.4</td>
@@ -3955,7 +3871,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>usr/local/bin/nats-server-config-reloader</code></h3>
-<h4>Vulnerabilities (14)</h4>
+<h4>Vulnerabilities (13)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -4030,13 +3946,6 @@
     <tr>
         <td><code>stdlib</code></td>
         <td>CVE-2026-39823</td>
-        <td>HIGH</td>
-        <td>v1.25.6</td>
-        <td>1.25.10, 1.26.3</td>
-    </tr>
-    <tr>
-        <td><code>stdlib</code></td>
-        <td>CVE-2026-39825</td>
         <td>HIGH</td>
         <td>v1.25.6</td>
         <td>1.25.10, 1.26.3</td>

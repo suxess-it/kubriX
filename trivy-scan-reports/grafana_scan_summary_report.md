@@ -58,7 +58,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>usr/share/grafana/data/plugins-bundled/zipkin/gpx_grafana-zipkin-datasource_linux_amd64</code></h3>
-<h4>Vulnerabilities (22)</h4>
+<h4>Vulnerabilities (21)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -189,13 +189,6 @@
     <tr>
         <td><code>stdlib</code></td>
         <td>CVE-2026-39823</td>
-        <td>HIGH</td>
-        <td>v1.25.7</td>
-        <td>1.25.10, 1.26.3</td>
-    </tr>
-    <tr>
-        <td><code>stdlib</code></td>
-        <td>CVE-2026-39825</td>
         <td>HIGH</td>
         <td>v1.25.7</td>
         <td>1.25.10, 1.26.3</td>

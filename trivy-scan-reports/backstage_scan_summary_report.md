@@ -54,8 +54,8 @@
 </table>
 <h4>No Misconfigurations found</h4>
 
-<h3>Target <code>ghcr.io/suxess-it/sx-backstage:v1.51.0 (wolfi 20230201)</code></h3>
-<h4>Vulnerabilities (10)</h4>
+<h3>Target <code>ghcr.io/suxess-it/sx-backstage:v1.51.2 (wolfi 20230201)</code></h3>
+<h4>Vulnerabilities (2)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -63,13 +63,6 @@
         <th>Severity</th>
         <th>Installed Version</th>
         <th>Fixed Version</th>
-    </tr>
-    <tr>
-        <td><code>binutils</code></td>
-        <td>CVE-2026-6846</td>
-        <td>HIGH</td>
-        <td>2.46-r1</td>
-        <td>2.46-r2</td>
     </tr>
     <tr>
         <td><code>libcrypto3</code></td>
@@ -85,59 +78,10 @@
         <td>3.6.2-r5</td>
         <td>3.6.3-r0</td>
     </tr>
-    <tr>
-        <td><code>npm</code></td>
-        <td>CVE-2026-12151</td>
-        <td>HIGH</td>
-        <td>11.16.0-r0</td>
-        <td>11.17.0-r1</td>
-    </tr>
-    <tr>
-        <td><code>py3-pip-wheel</code></td>
-        <td>CVE-2026-44432</td>
-        <td>HIGH</td>
-        <td>26.1.2-r0</td>
-        <td>26.1.2-r1</td>
-    </tr>
-    <tr>
-        <td><code>py3.13-pip</code></td>
-        <td>CVE-2026-44432</td>
-        <td>HIGH</td>
-        <td>26.1.2-r0</td>
-        <td>26.1.2-r1</td>
-    </tr>
-    <tr>
-        <td><code>py3.13-pip-base</code></td>
-        <td>CVE-2026-44432</td>
-        <td>HIGH</td>
-        <td>26.1.2-r0</td>
-        <td>26.1.2-r1</td>
-    </tr>
-    <tr>
-        <td><code>python-3.13-base</code></td>
-        <td>CVE-2026-7210</td>
-        <td>HIGH</td>
-        <td>3.13.13-r5</td>
-        <td>3.13.14-r0</td>
-    </tr>
-    <tr>
-        <td><code>python-3.14</code></td>
-        <td>CVE-2026-7210</td>
-        <td>HIGH</td>
-        <td>3.14.5-r2</td>
-        <td>3.14.6-r1</td>
-    </tr>
-    <tr>
-        <td><code>python-3.14-base</code></td>
-        <td>CVE-2026-7210</td>
-        <td>HIGH</td>
-        <td>3.14.5-r2</td>
-        <td>3.14.6-r1</td>
-    </tr>
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>Node.js</code></h3>
-<h4>Vulnerabilities (63)</h4>
+<h4>Vulnerabilities (90)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -512,6 +456,90 @@
     </tr>
     <tr>
         <td><code>undici</code></td>
+        <td>CVE-2026-12151</td>
+        <td>HIGH</td>
+        <td>7.25.0</td>
+        <td>6.27.0, 7.28.0, 8.5.0</td>
+    </tr>
+    <tr>
+        <td><code>undici</code></td>
+        <td>CVE-2026-12151</td>
+        <td>HIGH</td>
+        <td>7.25.0</td>
+        <td>6.27.0, 7.28.0, 8.5.0</td>
+    </tr>
+    <tr>
+        <td><code>undici</code></td>
+        <td>CVE-2026-12151</td>
+        <td>HIGH</td>
+        <td>7.25.0</td>
+        <td>6.27.0, 7.28.0, 8.5.0</td>
+    </tr>
+    <tr>
+        <td><code>undici</code></td>
+        <td>CVE-2026-12151</td>
+        <td>HIGH</td>
+        <td>7.25.0</td>
+        <td>6.27.0, 7.28.0, 8.5.0</td>
+    </tr>
+    <tr>
+        <td><code>undici</code></td>
+        <td>CVE-2026-12151</td>
+        <td>HIGH</td>
+        <td>7.25.0</td>
+        <td>6.27.0, 7.28.0, 8.5.0</td>
+    </tr>
+    <tr>
+        <td><code>undici</code></td>
+        <td>CVE-2026-12151</td>
+        <td>HIGH</td>
+        <td>7.25.0</td>
+        <td>6.27.0, 7.28.0, 8.5.0</td>
+    </tr>
+    <tr>
+        <td><code>undici</code></td>
+        <td>CVE-2026-12151</td>
+        <td>HIGH</td>
+        <td>7.25.0</td>
+        <td>6.27.0, 7.28.0, 8.5.0</td>
+    </tr>
+    <tr>
+        <td><code>undici</code></td>
+        <td>CVE-2026-12151</td>
+        <td>HIGH</td>
+        <td>7.25.0</td>
+        <td>6.27.0, 7.28.0, 8.5.0</td>
+    </tr>
+    <tr>
+        <td><code>undici</code></td>
+        <td>CVE-2026-12151</td>
+        <td>HIGH</td>
+        <td>7.25.0</td>
+        <td>6.27.0, 7.28.0, 8.5.0</td>
+    </tr>
+    <tr>
+        <td><code>undici</code></td>
+        <td>CVE-2026-6734</td>
+        <td>HIGH</td>
+        <td>7.25.0</td>
+        <td>7.28.0, 8.2.0</td>
+    </tr>
+    <tr>
+        <td><code>undici</code></td>
+        <td>CVE-2026-6734</td>
+        <td>HIGH</td>
+        <td>7.25.0</td>
+        <td>7.28.0, 8.2.0</td>
+    </tr>
+    <tr>
+        <td><code>undici</code></td>
+        <td>CVE-2026-6734</td>
+        <td>HIGH</td>
+        <td>7.25.0</td>
+        <td>7.28.0, 8.2.0</td>
+    </tr>
+    <tr>
+        <td><code>undici</code></td>
         <td>CVE-2026-6734</td>
         <td>HIGH</td>
         <td>7.25.0</td>
@@ -544,6 +572,111 @@
         <td>HIGH</td>
         <td>7.25.0</td>
         <td>7.28.0, 8.2.0</td>
+    </tr>
+    <tr>
+        <td><code>undici</code></td>
+        <td>CVE-2026-6734</td>
+        <td>HIGH</td>
+        <td>7.25.0</td>
+        <td>7.28.0, 8.2.0</td>
+    </tr>
+    <tr>
+        <td><code>undici</code></td>
+        <td>CVE-2026-6734</td>
+        <td>HIGH</td>
+        <td>7.25.0</td>
+        <td>7.28.0, 8.2.0</td>
+    </tr>
+    <tr>
+        <td><code>undici</code></td>
+        <td>CVE-2026-6734</td>
+        <td>HIGH</td>
+        <td>7.25.0</td>
+        <td>7.28.0, 8.2.0</td>
+    </tr>
+    <tr>
+        <td><code>undici</code></td>
+        <td>CVE-2026-6734</td>
+        <td>HIGH</td>
+        <td>7.25.0</td>
+        <td>7.28.0, 8.2.0</td>
+    </tr>
+    <tr>
+        <td><code>undici</code></td>
+        <td>CVE-2026-6734</td>
+        <td>HIGH</td>
+        <td>7.25.0</td>
+        <td>7.28.0, 8.2.0</td>
+    </tr>
+    <tr>
+        <td><code>undici</code></td>
+        <td>CVE-2026-6734</td>
+        <td>HIGH</td>
+        <td>7.25.0</td>
+        <td>7.28.0, 8.2.0</td>
+    </tr>
+    <tr>
+        <td><code>undici</code></td>
+        <td>CVE-2026-9697</td>
+        <td>HIGH</td>
+        <td>7.25.0</td>
+        <td>7.28.0, 8.5.0</td>
+    </tr>
+    <tr>
+        <td><code>undici</code></td>
+        <td>CVE-2026-9697</td>
+        <td>HIGH</td>
+        <td>7.25.0</td>
+        <td>7.28.0, 8.5.0</td>
+    </tr>
+    <tr>
+        <td><code>undici</code></td>
+        <td>CVE-2026-9697</td>
+        <td>HIGH</td>
+        <td>7.25.0</td>
+        <td>7.28.0, 8.5.0</td>
+    </tr>
+    <tr>
+        <td><code>undici</code></td>
+        <td>CVE-2026-9697</td>
+        <td>HIGH</td>
+        <td>7.25.0</td>
+        <td>7.28.0, 8.5.0</td>
+    </tr>
+    <tr>
+        <td><code>undici</code></td>
+        <td>CVE-2026-9697</td>
+        <td>HIGH</td>
+        <td>7.25.0</td>
+        <td>7.28.0, 8.5.0</td>
+    </tr>
+    <tr>
+        <td><code>undici</code></td>
+        <td>CVE-2026-9697</td>
+        <td>HIGH</td>
+        <td>7.25.0</td>
+        <td>7.28.0, 8.5.0</td>
+    </tr>
+    <tr>
+        <td><code>undici</code></td>
+        <td>CVE-2026-9697</td>
+        <td>HIGH</td>
+        <td>7.25.0</td>
+        <td>7.28.0, 8.5.0</td>
+    </tr>
+    <tr>
+        <td><code>undici</code></td>
+        <td>CVE-2026-9697</td>
+        <td>HIGH</td>
+        <td>7.25.0</td>
+        <td>7.28.0, 8.5.0</td>
+    </tr>
+    <tr>
+        <td><code>undici</code></td>
+        <td>CVE-2026-9697</td>
+        <td>HIGH</td>
+        <td>7.25.0</td>
+        <td>7.28.0, 8.5.0</td>
     </tr>
     <tr>
         <td><code>undici</code></td>

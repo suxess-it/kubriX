@@ -3,7 +3,7 @@
 <h4>No Vulnerabilities found</h4>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>usr/bin/loki-canary</code></h3>
-<h4>Vulnerabilities (26)</h4>
+<h4>Vulnerabilities (25)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -168,13 +168,6 @@
     </tr>
     <tr>
         <td><code>stdlib</code></td>
-        <td>CVE-2026-39825</td>
-        <td>HIGH</td>
-        <td>v1.26.2</td>
-        <td>1.25.10, 1.26.3</td>
-    </tr>
-    <tr>
-        <td><code>stdlib</code></td>
         <td>CVE-2026-39836</td>
         <td>HIGH</td>
         <td>v1.26.2</td>
@@ -201,7 +194,7 @@
 <h4>No Vulnerabilities found</h4>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>usr/bin/loki</code></h3>
-<h4>Vulnerabilities (27)</h4>
+<h4>Vulnerabilities (26)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -373,13 +366,6 @@
     </tr>
     <tr>
         <td><code>stdlib</code></td>
-        <td>CVE-2026-39825</td>
-        <td>HIGH</td>
-        <td>v1.26.2</td>
-        <td>1.25.10, 1.26.3</td>
-    </tr>
-    <tr>
-        <td><code>stdlib</code></td>
         <td>CVE-2026-39836</td>
         <td>HIGH</td>
         <td>v1.26.2</td>
@@ -507,7 +493,7 @@
 <h4>No Misconfigurations found</h4>
 
 <h3>Target <code>bin/memcached_exporter</code></h3>
-<h4>Vulnerabilities (28)</h4>
+<h4>Vulnerabilities (27)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -686,13 +672,6 @@
     </tr>
     <tr>
         <td><code>stdlib</code></td>
-        <td>CVE-2026-39825</td>
-        <td>HIGH</td>
-        <td>v1.26.1</td>
-        <td>1.25.10, 1.26.3</td>
-    </tr>
-    <tr>
-        <td><code>stdlib</code></td>
         <td>CVE-2026-39836</td>
         <td>HIGH</td>
         <td>v1.26.1</td>
@@ -735,7 +714,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>usr/bin/mc</code></h3>
-<h4>Vulnerabilities (39)</h4>
+<h4>Vulnerabilities (38)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -985,13 +964,6 @@
     <tr>
         <td><code>stdlib</code></td>
         <td>CVE-2026-39823</td>
-        <td>HIGH</td>
-        <td>v1.23.4</td>
-        <td>1.25.10, 1.26.3</td>
-    </tr>
-    <tr>
-        <td><code>stdlib</code></td>
-        <td>CVE-2026-39825</td>
         <td>HIGH</td>
         <td>v1.23.4</td>
         <td>1.25.10, 1.26.3</td>
@@ -1040,7 +1012,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>usr/bin/mc</code></h3>
-<h4>Vulnerabilities (39)</h4>
+<h4>Vulnerabilities (38)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -1296,13 +1268,6 @@
     </tr>
     <tr>
         <td><code>stdlib</code></td>
-        <td>CVE-2026-39825</td>
-        <td>HIGH</td>
-        <td>v1.23.4</td>
-        <td>1.25.10, 1.26.3</td>
-    </tr>
-    <tr>
-        <td><code>stdlib</code></td>
         <td>CVE-2026-39836</td>
         <td>HIGH</td>
         <td>v1.23.4</td>
@@ -1325,7 +1290,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>usr/bin/minio</code></h3>
-<h4>Vulnerabilities (45)</h4>
+<h4>Vulnerabilities (44)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -1617,13 +1582,6 @@
     <tr>
         <td><code>stdlib</code></td>
         <td>CVE-2026-39823</td>
-        <td>HIGH</td>
-        <td>v1.23.4</td>
-        <td>1.25.10, 1.26.3</td>
-    </tr>
-    <tr>
-        <td><code>stdlib</code></td>
-        <td>CVE-2026-39825</td>
         <td>HIGH</td>
         <td>v1.23.4</td>
         <td>1.25.10, 1.26.3</td>
