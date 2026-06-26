@@ -104,6 +104,13 @@
     </tr>
     <tr>
         <td><code>golang.org/x/crypto</code></td>
+        <td>CVE-2026-39832</td>
+        <td>HIGH</td>
+        <td>v0.45.0</td>
+        <td>0.52.0</td>
+    </tr>
+    <tr>
+        <td><code>golang.org/x/crypto</code></td>
         <td>CVE-2026-39835</td>
         <td>HIGH</td>
         <td>v0.45.0</td>
@@ -237,13 +244,6 @@
     </tr>
     <tr>
         <td><code>stdlib</code></td>
-        <td>CVE-2026-39823</td>
-        <td>HIGH</td>
-        <td>v1.25.8</td>
-        <td>1.25.10, 1.26.3</td>
-    </tr>
-    <tr>
-        <td><code>stdlib</code></td>
         <td>CVE-2026-39836</td>
         <td>HIGH</td>
         <td>v1.25.8</td>
@@ -270,7 +270,7 @@
 <h4>No Vulnerabilities found</h4>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>bin/rollout-operator</code></h3>
-<h4>Vulnerabilities (26)</h4>
+<h4>Vulnerabilities (25)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -435,13 +435,6 @@
     </tr>
     <tr>
         <td><code>stdlib</code></td>
-        <td>CVE-2026-39823</td>
-        <td>HIGH</td>
-        <td>v1.25.3</td>
-        <td>1.25.10, 1.26.3</td>
-    </tr>
-    <tr>
-        <td><code>stdlib</code></td>
         <td>CVE-2026-39836</td>
         <td>HIGH</td>
         <td>v1.25.3</td>
@@ -559,6 +552,13 @@
     <tr>
         <td><code>golang.org/x/crypto</code></td>
         <td>CVE-2026-39830</td>
+        <td>HIGH</td>
+        <td>v0.27.0</td>
+        <td>0.52.0</td>
+    </tr>
+    <tr>
+        <td><code>golang.org/x/crypto</code></td>
+        <td>CVE-2026-39832</td>
         <td>HIGH</td>
         <td>v0.27.0</td>
         <td>0.52.0</td>
@@ -727,13 +727,6 @@
     <tr>
         <td><code>stdlib</code></td>
         <td>CVE-2026-39820</td>
-        <td>HIGH</td>
-        <td>v1.23.4</td>
-        <td>1.25.10, 1.26.3</td>
-    </tr>
-    <tr>
-        <td><code>stdlib</code></td>
-        <td>CVE-2026-39823</td>
         <td>HIGH</td>
         <td>v1.23.4</td>
         <td>1.25.10, 1.26.3</td>
@@ -863,6 +856,13 @@
     </tr>
     <tr>
         <td><code>golang.org/x/crypto</code></td>
+        <td>CVE-2026-39832</td>
+        <td>HIGH</td>
+        <td>v0.27.0</td>
+        <td>0.52.0</td>
+    </tr>
+    <tr>
+        <td><code>golang.org/x/crypto</code></td>
         <td>CVE-2026-39835</td>
         <td>HIGH</td>
         <td>v0.27.0</td>
@@ -1025,13 +1025,6 @@
     <tr>
         <td><code>stdlib</code></td>
         <td>CVE-2026-39820</td>
-        <td>HIGH</td>
-        <td>v1.23.4</td>
-        <td>1.25.10, 1.26.3</td>
-    </tr>
-    <tr>
-        <td><code>stdlib</code></td>
-        <td>CVE-2026-39823</td>
         <td>HIGH</td>
         <td>v1.23.4</td>
         <td>1.25.10, 1.26.3</td>
@@ -1170,6 +1163,13 @@
     <tr>
         <td><code>golang.org/x/crypto</code></td>
         <td>CVE-2026-39830</td>
+        <td>HIGH</td>
+        <td>v0.31.0</td>
+        <td>0.52.0</td>
+    </tr>
+    <tr>
+        <td><code>golang.org/x/crypto</code></td>
+        <td>CVE-2026-39832</td>
         <td>HIGH</td>
         <td>v0.31.0</td>
         <td>0.52.0</td>
@@ -1345,13 +1345,6 @@
     <tr>
         <td><code>stdlib</code></td>
         <td>CVE-2026-39820</td>
-        <td>HIGH</td>
-        <td>v1.23.4</td>
-        <td>1.25.10, 1.26.3</td>
-    </tr>
-    <tr>
-        <td><code>stdlib</code></td>
-        <td>CVE-2026-39823</td>
         <td>HIGH</td>
         <td>v1.23.4</td>
         <td>1.25.10, 1.26.3</td>

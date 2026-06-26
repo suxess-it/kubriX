@@ -330,6 +330,13 @@
     </tr>
     <tr>
         <td><code>golang.org/x/crypto</code></td>
+        <td>CVE-2026-39832</td>
+        <td>HIGH</td>
+        <td>v0.40.0</td>
+        <td>0.52.0</td>
+    </tr>
+    <tr>
+        <td><code>golang.org/x/crypto</code></td>
         <td>CVE-2026-39835</td>
         <td>HIGH</td>
         <td>v0.40.0</td>
@@ -484,13 +491,6 @@
     </tr>
     <tr>
         <td><code>stdlib</code></td>
-        <td>CVE-2026-39823</td>
-        <td>HIGH</td>
-        <td>v1.24.11</td>
-        <td>1.25.10, 1.26.3</td>
-    </tr>
-    <tr>
-        <td><code>stdlib</code></td>
         <td>CVE-2026-39836</td>
         <td>HIGH</td>
         <td>v1.24.11</td>
@@ -514,7 +514,7 @@
 <h4>No Misconfigurations found</h4>
 
 <h3>Target <code>gcr.io/kubecost1/frontend:prod-2.9.6 (redhat 9.7)</code></h3>
-<h4>Vulnerabilities (24)</h4>
+<h4>Vulnerabilities (27)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -602,6 +602,13 @@
     </tr>
     <tr>
         <td><code>nginx</code></td>
+        <td>CVE-2026-42055</td>
+        <td>HIGH</td>
+        <td>2:1.20.1-22.el9_6.3</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>nginx</code></td>
         <td>CVE-2026-9256</td>
         <td>HIGH</td>
         <td>2:1.20.1-22.el9_6.3</td>
@@ -644,6 +651,13 @@
     </tr>
     <tr>
         <td><code>nginx-core</code></td>
+        <td>CVE-2026-42055</td>
+        <td>HIGH</td>
+        <td>2:1.20.1-22.el9_6.3</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>nginx-core</code></td>
         <td>CVE-2026-9256</td>
         <td>HIGH</td>
         <td>2:1.20.1-22.el9_6.3</td>
@@ -655,6 +669,13 @@
         <td>CRITICAL</td>
         <td>2:1.20.1-22.el9_6.3</td>
         <td>2:1.20.1-28.el9_8.2</td>
+    </tr>
+    <tr>
+        <td><code>nginx-filesystem</code></td>
+        <td>CVE-2026-42055</td>
+        <td>HIGH</td>
+        <td>2:1.20.1-22.el9_6.3</td>
+        <td></td>
     </tr>
     <tr>
         <td><code>nginx-filesystem</code></td>
@@ -1044,6 +1065,13 @@
     </tr>
     <tr>
         <td><code>golang.org/x/crypto</code></td>
+        <td>CVE-2026-39832</td>
+        <td>HIGH</td>
+        <td>v0.45.0</td>
+        <td>0.52.0</td>
+    </tr>
+    <tr>
+        <td><code>golang.org/x/crypto</code></td>
         <td>CVE-2026-39835</td>
         <td>HIGH</td>
         <td>v0.45.0</td>
@@ -1198,13 +1226,6 @@
     </tr>
     <tr>
         <td><code>stdlib</code></td>
-        <td>CVE-2026-39823</td>
-        <td>HIGH</td>
-        <td>v1.25.5</td>
-        <td>1.25.10, 1.26.3</td>
-    </tr>
-    <tr>
-        <td><code>stdlib</code></td>
         <td>CVE-2026-39836</td>
         <td>HIGH</td>
         <td>v1.25.5</td>
@@ -1309,6 +1330,13 @@
     </tr>
     <tr>
         <td><code>golang.org/x/crypto</code></td>
+        <td>CVE-2026-39832</td>
+        <td>HIGH</td>
+        <td>v0.46.0</td>
+        <td>0.52.0</td>
+    </tr>
+    <tr>
+        <td><code>golang.org/x/crypto</code></td>
         <td>CVE-2026-39835</td>
         <td>HIGH</td>
         <td>v0.46.0</td>
@@ -1457,13 +1485,6 @@
     <tr>
         <td><code>stdlib</code></td>
         <td>CVE-2026-39820</td>
-        <td>HIGH</td>
-        <td>v1.25.5</td>
-        <td>1.25.10, 1.26.3</td>
-    </tr>
-    <tr>
-        <td><code>stdlib</code></td>
-        <td>CVE-2026-39823</td>
         <td>HIGH</td>
         <td>v1.25.5</td>
         <td>1.25.10, 1.26.3</td>
@@ -1559,6 +1580,13 @@
     </tr>
     <tr>
         <td><code>golang.org/x/crypto</code></td>
+        <td>CVE-2026-39832</td>
+        <td>HIGH</td>
+        <td>v0.46.0</td>
+        <td>0.52.0</td>
+    </tr>
+    <tr>
+        <td><code>golang.org/x/crypto</code></td>
         <td>CVE-2026-39835</td>
         <td>HIGH</td>
         <td>v0.46.0</td>
@@ -1707,13 +1735,6 @@
     <tr>
         <td><code>stdlib</code></td>
         <td>CVE-2026-39820</td>
-        <td>HIGH</td>
-        <td>v1.25.5</td>
-        <td>1.25.10, 1.26.3</td>
-    </tr>
-    <tr>
-        <td><code>stdlib</code></td>
-        <td>CVE-2026-39823</td>
         <td>HIGH</td>
         <td>v1.25.5</td>
         <td>1.25.10, 1.26.3</td>

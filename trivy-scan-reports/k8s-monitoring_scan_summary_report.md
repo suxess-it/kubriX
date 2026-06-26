@@ -149,6 +149,13 @@
     </tr>
     <tr>
         <td><code>golang.org/x/crypto</code></td>
+        <td>CVE-2026-39832</td>
+        <td>HIGH</td>
+        <td>v0.47.0</td>
+        <td>0.52.0</td>
+    </tr>
+    <tr>
+        <td><code>golang.org/x/crypto</code></td>
         <td>CVE-2026-39835</td>
         <td>HIGH</td>
         <td>v0.47.0</td>
@@ -269,13 +276,6 @@
     <tr>
         <td><code>stdlib</code></td>
         <td>CVE-2026-39820</td>
-        <td>HIGH</td>
-        <td>v1.25.8</td>
-        <td>1.25.10, 1.26.3</td>
-    </tr>
-    <tr>
-        <td><code>stdlib</code></td>
-        <td>CVE-2026-39823</td>
         <td>HIGH</td>
         <td>v1.25.8</td>
         <td>1.25.10, 1.26.3</td>
@@ -464,7 +464,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>usr/bin/kubectl-1.29</code></h3>
-<h4>Vulnerabilities (25)</h4>
+<h4>Vulnerabilities (24)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -616,13 +616,6 @@
     <tr>
         <td><code>stdlib</code></td>
         <td>CVE-2026-39820</td>
-        <td>HIGH</td>
-        <td>v1.23.6</td>
-        <td>1.25.10, 1.26.3</td>
-    </tr>
-    <tr>
-        <td><code>stdlib</code></td>
-        <td>CVE-2026-39823</td>
         <td>HIGH</td>
         <td>v1.23.6</td>
         <td>1.25.10, 1.26.3</td>
@@ -651,7 +644,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>usr/bin/kubectl-1.30</code></h3>
-<h4>Vulnerabilities (25)</h4>
+<h4>Vulnerabilities (24)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -809,13 +802,6 @@
     </tr>
     <tr>
         <td><code>stdlib</code></td>
-        <td>CVE-2026-39823</td>
-        <td>HIGH</td>
-        <td>v1.23.10</td>
-        <td>1.25.10, 1.26.3</td>
-    </tr>
-    <tr>
-        <td><code>stdlib</code></td>
         <td>CVE-2026-39836</td>
         <td>HIGH</td>
         <td>v1.23.10</td>
@@ -838,7 +824,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>usr/bin/kubectl-1.31</code></h3>
-<h4>Vulnerabilities (25)</h4>
+<h4>Vulnerabilities (24)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -996,13 +982,6 @@
     </tr>
     <tr>
         <td><code>stdlib</code></td>
-        <td>CVE-2026-39823</td>
-        <td>HIGH</td>
-        <td>v1.24.9</td>
-        <td>1.25.10, 1.26.3</td>
-    </tr>
-    <tr>
-        <td><code>stdlib</code></td>
         <td>CVE-2026-39836</td>
         <td>HIGH</td>
         <td>v1.24.9</td>
@@ -1025,7 +1004,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>usr/bin/kubectl-1.32</code></h3>
-<h4>Vulnerabilities (25)</h4>
+<h4>Vulnerabilities (24)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -1183,13 +1162,6 @@
     </tr>
     <tr>
         <td><code>stdlib</code></td>
-        <td>CVE-2026-39823</td>
-        <td>HIGH</td>
-        <td>v1.24.9</td>
-        <td>1.25.10, 1.26.3</td>
-    </tr>
-    <tr>
-        <td><code>stdlib</code></td>
         <td>CVE-2026-39836</td>
         <td>HIGH</td>
         <td>v1.24.9</td>
@@ -1212,7 +1184,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>usr/bin/kubectl-1.33</code></h3>
-<h4>Vulnerabilities (23)</h4>
+<h4>Vulnerabilities (22)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -1350,13 +1322,6 @@
     <tr>
         <td><code>stdlib</code></td>
         <td>CVE-2026-39820</td>
-        <td>HIGH</td>
-        <td>v1.24.9</td>
-        <td>1.25.10, 1.26.3</td>
-    </tr>
-    <tr>
-        <td><code>stdlib</code></td>
-        <td>CVE-2026-39823</td>
         <td>HIGH</td>
         <td>v1.24.9</td>
         <td>1.25.10, 1.26.3</td>
@@ -1385,7 +1350,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>usr/bin/kubectl-1.34</code></h3>
-<h4>Vulnerabilities (23)</h4>
+<h4>Vulnerabilities (22)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -1523,13 +1488,6 @@
     <tr>
         <td><code>stdlib</code></td>
         <td>CVE-2026-39820</td>
-        <td>HIGH</td>
-        <td>v1.24.9</td>
-        <td>1.25.10, 1.26.3</td>
-    </tr>
-    <tr>
-        <td><code>stdlib</code></td>
-        <td>CVE-2026-39823</td>
         <td>HIGH</td>
         <td>v1.24.9</td>
         <td>1.25.10, 1.26.3</td>
@@ -1592,6 +1550,13 @@
     <tr>
         <td><code>golang.org/x/crypto</code></td>
         <td>CVE-2026-39830</td>
+        <td>HIGH</td>
+        <td>v0.49.0</td>
+        <td>0.52.0</td>
+    </tr>
+    <tr>
+        <td><code>golang.org/x/crypto</code></td>
+        <td>CVE-2026-39832</td>
         <td>HIGH</td>
         <td>v0.49.0</td>
         <td>0.52.0</td>
@@ -1725,13 +1690,6 @@
     <tr>
         <td><code>stdlib</code></td>
         <td>CVE-2026-39820</td>
-        <td>HIGH</td>
-        <td>v1.26.1</td>
-        <td>1.25.10, 1.26.3</td>
-    </tr>
-    <tr>
-        <td><code>stdlib</code></td>
-        <td>CVE-2026-39823</td>
         <td>HIGH</td>
         <td>v1.26.1</td>
         <td>1.25.10, 1.26.3</td>

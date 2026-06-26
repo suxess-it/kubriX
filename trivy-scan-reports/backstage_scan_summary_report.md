@@ -55,7 +55,7 @@
 <h4>No Misconfigurations found</h4>
 
 <h3>Target <code>ghcr.io/suxess-it/sx-backstage:v1.51.2 (wolfi 20230201)</code></h3>
-<h4>Vulnerabilities (2)</h4>
+<h4>Vulnerabilities (3)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -77,6 +77,13 @@
         <td>HIGH</td>
         <td>3.6.2-r5</td>
         <td>3.6.3-r0</td>
+    </tr>
+    <tr>
+        <td><code>node-gyp</code></td>
+        <td>CVE-2026-12151</td>
+        <td>HIGH</td>
+        <td>13.0.0-r0</td>
+        <td>13.0.0-r1</td>
     </tr>
 </table>
 <h4>No Misconfigurations found</h4>
