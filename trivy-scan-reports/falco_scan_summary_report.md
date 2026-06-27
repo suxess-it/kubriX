@@ -1483,7 +1483,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>app/falcosidekick</code></h3>
-<h4>Vulnerabilities (38)</h4>
+<h4>Vulnerabilities (39)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -1505,6 +1505,13 @@
         <td>HIGH</td>
         <td>v4.1.1</td>
         <td>4.1.4</td>
+    </tr>
+    <tr>
+        <td><code>github.com/jackc/pgx/v5</code></td>
+        <td>CVE-2026-33815</td>
+        <td>CRITICAL</td>
+        <td>v5.7.6</td>
+        <td>5.9.0</td>
     </tr>
     <tr>
         <td><code>github.com/jackc/pgx/v5</code></td>

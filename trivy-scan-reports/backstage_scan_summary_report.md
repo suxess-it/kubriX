@@ -88,7 +88,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>Node.js</code></h3>
-<h4>Vulnerabilities (90)</h4>
+<h4>Vulnerabilities (91)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -271,6 +271,13 @@
         <td>HIGH</td>
         <td>2.2.1</td>
         <td>3.0.7</td>
+    </tr>
+    <tr>
+        <td><code>linkify-it</code></td>
+        <td>CVE-2026-48801</td>
+        <td>HIGH</td>
+        <td>5.0.0</td>
+        <td>5.0.1</td>
     </tr>
     <tr>
         <td><code>multer</code></td>
