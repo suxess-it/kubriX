@@ -5,7 +5,11 @@ ingress:
     cert-manager.io/cluster-issuer: default-issuer
     external-dns.alpha.kubernetes.io/ttl: "60"
   hosts:
-    - host: ${{values.team}}-${{values.application_id}}-test.${{values.defaultDomainName}}
+    - host: "{{ .Values.kubriXTeamName }}-${{values.application_id}}-test.{{ .Values.kubriXIngressDomain }}"
       paths:
         - path: /
           pathType: ImplementationSpecific
+  tls:
+    - secretName: ingress-secret
+      hosts:
+        - "{{ .Values.kubriXTeamName }}-${{values.application_id}}-test.{{ .Values.kubriXIngressDomain }}"
