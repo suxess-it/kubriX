@@ -55,7 +55,7 @@ jobs:
       globalChanges: ${{ steps.filter.outputs.globalChanges }}
       targets: ${{ steps.select-targets.outputs.targets }}
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
         with:
           fetch-depth: 0  # needed so the action can diff properly
       - id: filter
@@ -188,7 +188,7 @@ jobs:
     timeout-minutes: 10
 
     steps:         
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
         with:
           fetch-depth: 0
 
@@ -259,7 +259,7 @@ jobs:
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
         with:
           fetch-depth: 0  # needed so the action can diff properly
           fetch-tags: true
