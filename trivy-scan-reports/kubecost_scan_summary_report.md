@@ -125,7 +125,7 @@
 <h4>No Misconfigurations found</h4>
 
 <h3>Target <code>gcr.io/kubecost1/cost-model:prod-2.9.6 (redhat 9.7)</code></h3>
-<h4>Vulnerabilities (14)</h4>
+<h4>Vulnerabilities (17)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -133,6 +133,13 @@
         <th>Severity</th>
         <th>Installed Version</th>
         <th>Fixed Version</th>
+    </tr>
+    <tr>
+        <td><code>acl</code></td>
+        <td>CVE-2026-54369</td>
+        <td>HIGH</td>
+        <td>2.3.1-4.el9</td>
+        <td></td>
     </tr>
     <tr>
         <td><code>expat</code></td>
@@ -177,6 +184,13 @@
         <td>3.8.10-4.el9_8</td>
     </tr>
     <tr>
+        <td><code>libacl</code></td>
+        <td>CVE-2026-54369</td>
+        <td>HIGH</td>
+        <td>2.3.1-4.el9</td>
+        <td></td>
+    </tr>
+    <tr>
         <td><code>libarchive</code></td>
         <td>CVE-2026-4111</td>
         <td>HIGH</td>
@@ -189,6 +203,13 @@
         <td>HIGH</td>
         <td>3.5.3-6.el9_6</td>
         <td>3.5.3-9.el9_7</td>
+    </tr>
+    <tr>
+        <td><code>libattr</code></td>
+        <td>CVE-2026-54371</td>
+        <td>HIGH</td>
+        <td>2.5.1-3.el9</td>
+        <td></td>
     </tr>
     <tr>
         <td><code>libcap</code></td>
@@ -235,7 +256,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>go/bin/app</code></h3>
-<h4>Vulnerabilities (36)</h4>
+<h4>Vulnerabilities (37)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -406,13 +427,6 @@
         <td>0.55.0</td>
     </tr>
     <tr>
-        <td><code>golang.org/x/net</code></td>
-        <td>CVE-2026-42506</td>
-        <td>HIGH</td>
-        <td>v0.42.0</td>
-        <td>0.55.0</td>
-    </tr>
-    <tr>
         <td><code>google.golang.org/grpc</code></td>
         <td>CVE-2026-33186</td>
         <td>CRITICAL</td>
@@ -439,6 +453,13 @@
         <td>HIGH</td>
         <td>v1.24.11</td>
         <td>1.25.8, 1.26.1</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-27145</td>
+        <td>HIGH</td>
+        <td>v1.24.11</td>
+        <td>1.25.11, 1.26.4</td>
     </tr>
     <tr>
         <td><code>stdlib</code></td>
@@ -496,11 +517,18 @@
         <td>v1.24.11</td>
         <td>1.25.10, 1.26.3</td>
     </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-42504</td>
+        <td>HIGH</td>
+        <td>v1.24.11</td>
+        <td>1.25.11, 1.26.4</td>
+    </tr>
 </table>
 <h4>No Misconfigurations found</h4>
 
 <h3>Target <code>gcr.io/kubecost1/frontend:prod-2.9.6 (redhat 9.7)</code></h3>
-<h4>Vulnerabilities (27)</h4>
+<h4>Vulnerabilities (30)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -508,6 +536,13 @@
         <th>Severity</th>
         <th>Installed Version</th>
         <th>Fixed Version</th>
+    </tr>
+    <tr>
+        <td><code>acl</code></td>
+        <td>CVE-2026-54369</td>
+        <td>HIGH</td>
+        <td>2.3.1-4.el9</td>
+        <td></td>
     </tr>
     <tr>
         <td><code>expat</code></td>
@@ -552,6 +587,13 @@
         <td>3.8.10-4.el9_8</td>
     </tr>
     <tr>
+        <td><code>libacl</code></td>
+        <td>CVE-2026-54369</td>
+        <td>HIGH</td>
+        <td>2.3.1-4.el9</td>
+        <td></td>
+    </tr>
+    <tr>
         <td><code>libarchive</code></td>
         <td>CVE-2026-4111</td>
         <td>HIGH</td>
@@ -564,6 +606,13 @@
         <td>HIGH</td>
         <td>3.5.3-6.el9_6</td>
         <td>3.5.3-9.el9_7</td>
+    </tr>
+    <tr>
+        <td><code>libattr</code></td>
+        <td>CVE-2026-54371</td>
+        <td>HIGH</td>
+        <td>2.5.1-3.el9</td>
+        <td></td>
     </tr>
     <tr>
         <td><code>libcap</code></td>
@@ -702,7 +751,7 @@
 <h4>No Misconfigurations found</h4>
 
 <h3>Target <code>gcr.io/kubecost1/kubecost-modeling:v0.1.34 (redhat 9.7)</code></h3>
-<h4>Vulnerabilities (20)</h4>
+<h4>Vulnerabilities (22)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -754,6 +803,13 @@
         <td>3.8.10-4.el9_8</td>
     </tr>
     <tr>
+        <td><code>libacl</code></td>
+        <td>CVE-2026-54369</td>
+        <td>HIGH</td>
+        <td>2.3.1-4.el9</td>
+        <td></td>
+    </tr>
+    <tr>
         <td><code>libarchive</code></td>
         <td>CVE-2026-4111</td>
         <td>HIGH</td>
@@ -766,6 +822,13 @@
         <td>HIGH</td>
         <td>3.5.3-6.el9_6</td>
         <td>3.5.3-9.el9_7</td>
+    </tr>
+    <tr>
+        <td><code>libattr</code></td>
+        <td>CVE-2026-54371</td>
+        <td>HIGH</td>
+        <td>2.5.1-3.el9</td>
+        <td></td>
     </tr>
     <tr>
         <td><code>libcap</code></td>
@@ -895,7 +958,7 @@
 <h4>No Misconfigurations found</h4>
 
 <h3>Target <code>icr.io/ibm-finops/agent:v1.0.8 (redhat 9.7)</code></h3>
-<h4>Vulnerabilities (11)</h4>
+<h4>Vulnerabilities (13)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -940,6 +1003,13 @@
         <td>3.8.10-4.el9_8</td>
     </tr>
     <tr>
+        <td><code>libacl</code></td>
+        <td>CVE-2026-54369</td>
+        <td>HIGH</td>
+        <td>2.3.1-4.el9</td>
+        <td></td>
+    </tr>
+    <tr>
         <td><code>libarchive</code></td>
         <td>CVE-2026-4111</td>
         <td>HIGH</td>
@@ -952,6 +1022,13 @@
         <td>HIGH</td>
         <td>3.5.3-6.el9_6</td>
         <td>3.5.3-9.el9_7</td>
+    </tr>
+    <tr>
+        <td><code>libattr</code></td>
+        <td>CVE-2026-54371</td>
+        <td>HIGH</td>
+        <td>2.5.1-3.el9</td>
+        <td></td>
     </tr>
     <tr>
         <td><code>libcap</code></td>
@@ -984,7 +1061,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>go/bin/app</code></h3>
-<h4>Vulnerabilities (32)</h4>
+<h4>Vulnerabilities (33)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -1127,13 +1204,6 @@
         <td>0.55.0</td>
     </tr>
     <tr>
-        <td><code>golang.org/x/net</code></td>
-        <td>CVE-2026-42506</td>
-        <td>HIGH</td>
-        <td>v0.47.0</td>
-        <td>0.55.0</td>
-    </tr>
-    <tr>
         <td><code>google.golang.org/grpc</code></td>
         <td>CVE-2026-33186</td>
         <td>CRITICAL</td>
@@ -1160,6 +1230,13 @@
         <td>HIGH</td>
         <td>v1.25.5</td>
         <td>1.25.8, 1.26.1</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-27145</td>
+        <td>HIGH</td>
+        <td>v1.25.5</td>
+        <td>1.25.11, 1.26.4</td>
     </tr>
     <tr>
         <td><code>stdlib</code></td>
@@ -1217,11 +1294,18 @@
         <td>v1.25.5</td>
         <td>1.25.10, 1.26.3</td>
     </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-42504</td>
+        <td>HIGH</td>
+        <td>v1.25.5</td>
+        <td>1.25.11, 1.26.4</td>
+    </tr>
 </table>
 <h4>No Misconfigurations found</h4>
 
 <h3>Target <code>bin/prometheus</code></h3>
-<h4>Vulnerabilities (34)</h4>
+<h4>Vulnerabilities (35)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -1378,13 +1462,6 @@
         <td>0.55.0</td>
     </tr>
     <tr>
-        <td><code>golang.org/x/net</code></td>
-        <td>CVE-2026-42506</td>
-        <td>HIGH</td>
-        <td>v0.48.0</td>
-        <td>0.55.0</td>
-    </tr>
-    <tr>
         <td><code>google.golang.org/grpc</code></td>
         <td>CVE-2026-33186</td>
         <td>CRITICAL</td>
@@ -1411,6 +1488,13 @@
         <td>HIGH</td>
         <td>v1.25.5</td>
         <td>1.25.8, 1.26.1</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-27145</td>
+        <td>HIGH</td>
+        <td>v1.25.5</td>
+        <td>1.25.11, 1.26.4</td>
     </tr>
     <tr>
         <td><code>stdlib</code></td>
@@ -1468,10 +1552,17 @@
         <td>v1.25.5</td>
         <td>1.25.10, 1.26.3</td>
     </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-42504</td>
+        <td>HIGH</td>
+        <td>v1.25.5</td>
+        <td>1.25.11, 1.26.4</td>
+    </tr>
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>bin/promtool</code></h3>
-<h4>Vulnerabilities (32)</h4>
+<h4>Vulnerabilities (33)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -1614,13 +1705,6 @@
         <td>0.55.0</td>
     </tr>
     <tr>
-        <td><code>golang.org/x/net</code></td>
-        <td>CVE-2026-42506</td>
-        <td>HIGH</td>
-        <td>v0.48.0</td>
-        <td>0.55.0</td>
-    </tr>
-    <tr>
         <td><code>google.golang.org/grpc</code></td>
         <td>CVE-2026-33186</td>
         <td>CRITICAL</td>
@@ -1647,6 +1731,13 @@
         <td>HIGH</td>
         <td>v1.25.5</td>
         <td>1.25.8, 1.26.1</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-27145</td>
+        <td>HIGH</td>
+        <td>v1.25.5</td>
+        <td>1.25.11, 1.26.4</td>
     </tr>
     <tr>
         <td><code>stdlib</code></td>
@@ -1703,6 +1794,13 @@
         <td>HIGH</td>
         <td>v1.25.5</td>
         <td>1.25.10, 1.26.3</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-42504</td>
+        <td>HIGH</td>
+        <td>v1.25.5</td>
+        <td>1.25.11, 1.26.4</td>
     </tr>
 </table>
 <h4>No Misconfigurations found</h4>

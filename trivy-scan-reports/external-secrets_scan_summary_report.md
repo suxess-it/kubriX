@@ -3,7 +3,7 @@
 <h4>No Vulnerabilities found</h4>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>usr/bin/external-secrets</code></h3>
-<h4>Vulnerabilities (15)</h4>
+<h4>Vulnerabilities (14)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -106,13 +106,6 @@
     <tr>
         <td><code>golang.org/x/net</code></td>
         <td>CVE-2026-42502</td>
-        <td>HIGH</td>
-        <td>v0.54.0</td>
-        <td>0.55.0</td>
-    </tr>
-    <tr>
-        <td><code>golang.org/x/net</code></td>
-        <td>CVE-2026-42506</td>
         <td>HIGH</td>
         <td>v0.54.0</td>
         <td>0.55.0</td>

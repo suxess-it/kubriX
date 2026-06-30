@@ -59,6 +59,20 @@
         <td>2.2.40-1.1+deb12u2</td>
     </tr>
     <tr>
+        <td><code>libacl1</code></td>
+        <td>CVE-2026-54369</td>
+        <td>HIGH</td>
+        <td>2.3.1-3</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>libattr1</code></td>
+        <td>CVE-2026-54371</td>
+        <td>HIGH</td>
+        <td>1:2.5.1-4</td>
+        <td></td>
+    </tr>
+    <tr>
         <td><code>libcap2</code></td>
         <td>CVE-2026-4878</td>
         <td>HIGH</td>
@@ -358,20 +372,6 @@
         <td>HIGH</td>
         <td>3.40.1-2+deb12u1</td>
         <td>3.40.1-2+deb12u2</td>
-    </tr>
-    <tr>
-        <td><code>libsqlite3-0</code></td>
-        <td>CVE-2026-11822</td>
-        <td>HIGH</td>
-        <td>3.40.1-2+deb12u1</td>
-        <td></td>
-    </tr>
-    <tr>
-        <td><code>libsqlite3-0</code></td>
-        <td>CVE-2026-11824</td>
-        <td>HIGH</td>
-        <td>3.40.1-2+deb12u1</td>
-        <td></td>
     </tr>
     <tr>
         <td><code>libssh2-1</code></td>
@@ -899,7 +899,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>usr/local/bin/kubectl</code></h3>
-<h4>Vulnerabilities (23)</h4>
+<h4>Vulnerabilities (24)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -965,13 +965,6 @@
         <td>0.55.0</td>
     </tr>
     <tr>
-        <td><code>golang.org/x/net</code></td>
-        <td>CVE-2026-42506</td>
-        <td>HIGH</td>
-        <td>v0.26.0</td>
-        <td>0.55.0</td>
-    </tr>
-    <tr>
         <td><code>golang.org/x/oauth2</code></td>
         <td>CVE-2025-22868</td>
         <td>HIGH</td>
@@ -1012,6 +1005,13 @@
         <td>HIGH</td>
         <td>v1.22.5</td>
         <td>1.25.8, 1.26.1</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-27145</td>
+        <td>HIGH</td>
+        <td>v1.22.5</td>
+        <td>1.25.11, 1.26.4</td>
     </tr>
     <tr>
         <td><code>stdlib</code></td>
@@ -1068,6 +1068,13 @@
         <td>HIGH</td>
         <td>v1.22.5</td>
         <td>1.25.10, 1.26.3</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-42504</td>
+        <td>HIGH</td>
+        <td>v1.22.5</td>
+        <td>1.25.11, 1.26.4</td>
     </tr>
 </table>
 <h4>No Misconfigurations found</h4>
@@ -1314,7 +1321,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>app/node_modules/@esbuild/linux-x64/bin/esbuild</code></h3>
-<h4>Vulnerabilities (12)</h4>
+<h4>Vulnerabilities (14)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -1350,6 +1357,13 @@
         <td>HIGH</td>
         <td>v1.23.7</td>
         <td>1.25.8, 1.26.1</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-27145</td>
+        <td>HIGH</td>
+        <td>v1.23.7</td>
+        <td>1.25.11, 1.26.4</td>
     </tr>
     <tr>
         <td><code>stdlib</code></td>
@@ -1406,6 +1420,13 @@
         <td>HIGH</td>
         <td>v1.23.7</td>
         <td>1.25.10, 1.26.3</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-42504</td>
+        <td>HIGH</td>
+        <td>v1.23.7</td>
+        <td>1.25.11, 1.26.4</td>
     </tr>
 </table>
 <h4>No Misconfigurations found</h4>
@@ -1468,6 +1489,20 @@
         <td>HIGH</td>
         <td>2.2.40-1.1</td>
         <td>2.2.40-1.1+deb12u2</td>
+    </tr>
+    <tr>
+        <td><code>libacl1</code></td>
+        <td>CVE-2026-54369</td>
+        <td>HIGH</td>
+        <td>2.3.1-3</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>libattr1</code></td>
+        <td>CVE-2026-54371</td>
+        <td>HIGH</td>
+        <td>1:2.5.1-4</td>
+        <td></td>
     </tr>
     <tr>
         <td><code>libcap2</code></td>
@@ -1685,20 +1720,6 @@
         <td>HIGH</td>
         <td>3.40.1-2+deb12u1</td>
         <td>3.40.1-2+deb12u2</td>
-    </tr>
-    <tr>
-        <td><code>libsqlite3-0</code></td>
-        <td>CVE-2026-11822</td>
-        <td>HIGH</td>
-        <td>3.40.1-2+deb12u1</td>
-        <td></td>
-    </tr>
-    <tr>
-        <td><code>libsqlite3-0</code></td>
-        <td>CVE-2026-11824</td>
-        <td>HIGH</td>
-        <td>3.40.1-2+deb12u1</td>
-        <td></td>
     </tr>
     <tr>
         <td><code>libssh2-1</code></td>

@@ -59,7 +59,7 @@
 <h4>No Misconfigurations found</h4>
 
 <h3>Target <code>quay.io/keycloak/keycloak-operator:26.6.1 (redhat 9.7)</code></h3>
-<h4>Vulnerabilities (5)</h4>
+<h4>Vulnerabilities (7)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -94,6 +94,20 @@
         <td>CVE-2026-25646</td>
         <td>HIGH</td>
         <td>1:25.0.3.0.9-1.el9</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>libacl</code></td>
+        <td>CVE-2026-54369</td>
+        <td>HIGH</td>
+        <td>2.3.1-4.el9</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>libattr</code></td>
+        <td>CVE-2026-54371</td>
+        <td>HIGH</td>
+        <td>2.5.1-3.el9</td>
         <td></td>
     </tr>
     <tr>

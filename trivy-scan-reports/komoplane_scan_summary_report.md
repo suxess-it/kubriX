@@ -119,7 +119,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>bin/komoplane</code></h3>
-<h4>Vulnerabilities (23)</h4>
+<h4>Vulnerabilities (24)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -248,11 +248,11 @@
         <td>0.55.0</td>
     </tr>
     <tr>
-        <td><code>golang.org/x/net</code></td>
-        <td>CVE-2026-42506</td>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-27145</td>
         <td>HIGH</td>
-        <td>v0.47.0</td>
-        <td>0.55.0</td>
+        <td>v1.26.2</td>
+        <td>1.25.11, 1.26.4</td>
     </tr>
     <tr>
         <td><code>stdlib</code></td>
@@ -288,6 +288,13 @@
         <td>HIGH</td>
         <td>v1.26.2</td>
         <td>1.25.10, 1.26.3</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-42504</td>
+        <td>HIGH</td>
+        <td>v1.26.2</td>
+        <td>1.25.11, 1.26.4</td>
     </tr>
 </table>
 <h4>No Misconfigurations found</h4>
