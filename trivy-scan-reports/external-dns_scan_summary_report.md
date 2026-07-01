@@ -1,9 +1,9 @@
 
-<h3>Target <code>registry.k8s.io/external-dns/external-dns:v0.20.0 (debian 12.12)</code></h3>
+<h3>Target <code>registry.k8s.io/external-dns/external-dns:v0.21.0 (debian 12.13)</code></h3>
 <h4>No Vulnerabilities found</h4>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>ko-app/external-dns</code></h3>
-<h4>Vulnerabilities (8)</h4>
+<h4>Vulnerabilities (25)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -13,60 +13,179 @@
         <th>Fixed Version</th>
     </tr>
     <tr>
-        <td><code>google.golang.org/grpc</code></td>
-        <td>CVE-2026-33186</td>
-        <td>CRITICAL</td>
-        <td>v1.76.0</td>
-        <td>1.79.3</td>
-    </tr>
-    <tr>
-        <td><code>stdlib</code></td>
-        <td>CVE-2025-68121</td>
-        <td>CRITICAL</td>
-        <td>v1.25.4</td>
-        <td>1.24.13, 1.25.7, 1.26.0-rc.3</td>
-    </tr>
-    <tr>
-        <td><code>stdlib</code></td>
-        <td>CVE-2025-61726</td>
+        <td><code>github.com/projectcontour/contour</code></td>
+        <td>CVE-2026-41246</td>
         <td>HIGH</td>
-        <td>v1.25.4</td>
-        <td>1.24.12, 1.25.6</td>
+        <td>v1.33.3</td>
+        <td>1.31.6, 1.32.5, 1.33.4</td>
+    </tr>
+    <tr>
+        <td><code>golang.org/x/crypto</code></td>
+        <td>CVE-2026-39827</td>
+        <td>HIGH</td>
+        <td>v0.49.0</td>
+        <td>0.52.0</td>
+    </tr>
+    <tr>
+        <td><code>golang.org/x/crypto</code></td>
+        <td>CVE-2026-39828</td>
+        <td>HIGH</td>
+        <td>v0.49.0</td>
+        <td>0.52.0</td>
+    </tr>
+    <tr>
+        <td><code>golang.org/x/crypto</code></td>
+        <td>CVE-2026-39829</td>
+        <td>HIGH</td>
+        <td>v0.49.0</td>
+        <td>0.52.0</td>
+    </tr>
+    <tr>
+        <td><code>golang.org/x/crypto</code></td>
+        <td>CVE-2026-39830</td>
+        <td>HIGH</td>
+        <td>v0.49.0</td>
+        <td>0.52.0</td>
+    </tr>
+    <tr>
+        <td><code>golang.org/x/crypto</code></td>
+        <td>CVE-2026-39832</td>
+        <td>HIGH</td>
+        <td>v0.49.0</td>
+        <td>0.52.0</td>
+    </tr>
+    <tr>
+        <td><code>golang.org/x/crypto</code></td>
+        <td>CVE-2026-39835</td>
+        <td>HIGH</td>
+        <td>v0.49.0</td>
+        <td>0.52.0</td>
+    </tr>
+    <tr>
+        <td><code>golang.org/x/crypto</code></td>
+        <td>CVE-2026-42508</td>
+        <td>HIGH</td>
+        <td>v0.49.0</td>
+        <td>0.52.0</td>
+    </tr>
+    <tr>
+        <td><code>golang.org/x/crypto</code></td>
+        <td>CVE-2026-46595</td>
+        <td>HIGH</td>
+        <td>v0.49.0</td>
+        <td>0.52.0</td>
+    </tr>
+    <tr>
+        <td><code>golang.org/x/crypto</code></td>
+        <td>CVE-2026-46597</td>
+        <td>HIGH</td>
+        <td>v0.49.0</td>
+        <td>0.52.0</td>
+    </tr>
+    <tr>
+        <td><code>golang.org/x/net</code></td>
+        <td>CVE-2026-25681</td>
+        <td>HIGH</td>
+        <td>v0.52.0</td>
+        <td>0.55.0</td>
+    </tr>
+    <tr>
+        <td><code>golang.org/x/net</code></td>
+        <td>CVE-2026-27136</td>
+        <td>HIGH</td>
+        <td>v0.52.0</td>
+        <td>0.55.0</td>
+    </tr>
+    <tr>
+        <td><code>golang.org/x/net</code></td>
+        <td>CVE-2026-33814</td>
+        <td>HIGH</td>
+        <td>v0.52.0</td>
+        <td>0.53.0</td>
+    </tr>
+    <tr>
+        <td><code>golang.org/x/net</code></td>
+        <td>CVE-2026-39821</td>
+        <td>HIGH</td>
+        <td>v0.52.0</td>
+        <td>0.55.0</td>
+    </tr>
+    <tr>
+        <td><code>golang.org/x/net</code></td>
+        <td>CVE-2026-42502</td>
+        <td>HIGH</td>
+        <td>v0.52.0</td>
+        <td>0.55.0</td>
     </tr>
     <tr>
         <td><code>stdlib</code></td>
-        <td>CVE-2025-61728</td>
+        <td>CVE-2026-27145</td>
         <td>HIGH</td>
-        <td>v1.25.4</td>
-        <td>1.24.12, 1.25.6</td>
-    </tr>
-    <tr>
-        <td><code>stdlib</code></td>
-        <td>CVE-2025-61729</td>
-        <td>HIGH</td>
-        <td>v1.25.4</td>
-        <td>1.24.11, 1.25.5</td>
-    </tr>
-    <tr>
-        <td><code>stdlib</code></td>
-        <td>CVE-2026-25679</td>
-        <td>HIGH</td>
-        <td>v1.25.4</td>
-        <td>1.25.8, 1.26.1</td>
+        <td>v1.26.1</td>
+        <td>1.25.11, 1.26.4</td>
     </tr>
     <tr>
         <td><code>stdlib</code></td>
         <td>CVE-2026-32280</td>
         <td>HIGH</td>
-        <td>v1.25.4</td>
+        <td>v1.26.1</td>
         <td>1.25.9, 1.26.2</td>
     </tr>
     <tr>
         <td><code>stdlib</code></td>
-        <td>CVE-2026-32282</td>
+        <td>CVE-2026-32281</td>
         <td>HIGH</td>
-        <td>v1.25.4</td>
+        <td>v1.26.1</td>
         <td>1.25.9, 1.26.2</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-32283</td>
+        <td>HIGH</td>
+        <td>v1.26.1</td>
+        <td>1.25.9, 1.26.2</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-33810</td>
+        <td>HIGH</td>
+        <td>v1.26.1</td>
+        <td>1.26.2</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-33811</td>
+        <td>HIGH</td>
+        <td>v1.26.1</td>
+        <td>1.25.10, 1.26.3</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-33814</td>
+        <td>HIGH</td>
+        <td>v1.26.1</td>
+        <td>1.25.10, 1.26.3</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-39820</td>
+        <td>HIGH</td>
+        <td>v1.26.1</td>
+        <td>1.25.10, 1.26.3</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-39836</td>
+        <td>HIGH</td>
+        <td>v1.26.1</td>
+        <td>1.25.10, 1.26.3</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-42499</td>
+        <td>HIGH</td>
+        <td>v1.26.1</td>
+        <td>1.25.10, 1.26.3</td>
     </tr>
 </table>
 <h4>No Misconfigurations found</h4>
