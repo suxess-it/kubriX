@@ -237,7 +237,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>usr/bin/falco-exporter</code></h3>
-<h4>Vulnerabilities (49)</h4>
+<h4>Vulnerabilities (47)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -266,13 +266,6 @@
         <td>HIGH</td>
         <td>v0.7.0</td>
         <td>0.33.0</td>
-    </tr>
-    <tr>
-        <td><code>golang.org/x/net</code></td>
-        <td>CVE-2026-25680</td>
-        <td>HIGH</td>
-        <td>v0.7.0</td>
-        <td>0.55.0</td>
     </tr>
     <tr>
         <td><code>golang.org/x/net</code></td>
@@ -582,13 +575,6 @@
         <td>v1.17.13</td>
         <td>1.25.10, 1.26.3</td>
     </tr>
-    <tr>
-        <td><code>stdlib</code></td>
-        <td>CVE-2026-42504</td>
-        <td>HIGH</td>
-        <td>v1.17.13</td>
-        <td>1.25.11, 1.26.4</td>
-    </tr>
 </table>
 <h4>No Misconfigurations found</h4>
 
@@ -735,7 +721,7 @@
 <h4>No Vulnerabilities found</h4>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>usr/bin/falcoctl</code></h3>
-<h4>Vulnerabilities (38)</h4>
+<h4>Vulnerabilities (37)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -785,6 +771,13 @@
         <td>HIGH</td>
         <td>v0.5.0</td>
         <td>0.5.1</td>
+    </tr>
+    <tr>
+        <td><code>github.com/sigstore/fulcio</code></td>
+        <td>CVE-2026-49478</td>
+        <td>HIGH</td>
+        <td>v1.8.5</td>
+        <td>1.8.6</td>
     </tr>
     <tr>
         <td><code>github.com/sigstore/rekor</code></td>
@@ -876,13 +869,6 @@
         <td>HIGH</td>
         <td>v0.46.0</td>
         <td>0.52.0</td>
-    </tr>
-    <tr>
-        <td><code>golang.org/x/net</code></td>
-        <td>CVE-2026-25680</td>
-        <td>HIGH</td>
-        <td>v0.48.0</td>
-        <td>0.55.0</td>
     </tr>
     <tr>
         <td><code>golang.org/x/net</code></td>
@@ -1003,13 +989,6 @@
         <td>v1.25.6</td>
         <td>1.25.10, 1.26.3</td>
     </tr>
-    <tr>
-        <td><code>stdlib</code></td>
-        <td>CVE-2026-42504</td>
-        <td>HIGH</td>
-        <td>v1.25.6</td>
-        <td>1.25.11, 1.26.4</td>
-    </tr>
 </table>
 <h4>No Misconfigurations found</h4>
 
@@ -1017,7 +996,7 @@
 <h4>No Vulnerabilities found</h4>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>app/falcosidekick-ui</code></h3>
-<h4>Vulnerabilities (41)</h4>
+<h4>Vulnerabilities (39)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -1137,13 +1116,6 @@
         <td>HIGH</td>
         <td>v0.14.0</td>
         <td>0.33.0</td>
-    </tr>
-    <tr>
-        <td><code>golang.org/x/net</code></td>
-        <td>CVE-2026-25680</td>
-        <td>HIGH</td>
-        <td>v0.14.0</td>
-        <td>0.55.0</td>
     </tr>
     <tr>
         <td><code>golang.org/x/net</code></td>
@@ -1306,13 +1278,6 @@
         <td>v1.20.8</td>
         <td>1.25.10, 1.26.3</td>
     </tr>
-    <tr>
-        <td><code>stdlib</code></td>
-        <td>CVE-2026-42504</td>
-        <td>HIGH</td>
-        <td>v1.20.8</td>
-        <td>1.25.11, 1.26.4</td>
-    </tr>
 </table>
 <h4>No Misconfigurations found</h4>
 
@@ -1462,7 +1427,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>app/falcosidekick</code></h3>
-<h4>Vulnerabilities (38)</h4>
+<h4>Vulnerabilities (36)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -1589,13 +1554,6 @@
         <td>HIGH</td>
         <td>v0.41.0</td>
         <td>0.52.0</td>
-    </tr>
-    <tr>
-        <td><code>golang.org/x/net</code></td>
-        <td>CVE-2026-25680</td>
-        <td>HIGH</td>
-        <td>v0.43.0</td>
-        <td>0.55.0</td>
     </tr>
     <tr>
         <td><code>golang.org/x/net</code></td>
@@ -1730,13 +1688,6 @@
         <td>v1.25.1</td>
         <td>1.25.10, 1.26.3</td>
     </tr>
-    <tr>
-        <td><code>stdlib</code></td>
-        <td>CVE-2026-42504</td>
-        <td>HIGH</td>
-        <td>v1.25.1</td>
-        <td>1.25.11, 1.26.4</td>
-    </tr>
 </table>
 <h4>No Misconfigurations found</h4>
 
@@ -1744,7 +1695,7 @@
 <h4>No Vulnerabilities found</h4>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>meta-collector</code></h3>
-<h4>Vulnerabilities (18)</h4>
+<h4>Vulnerabilities (16)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -1752,13 +1703,6 @@
         <th>Severity</th>
         <th>Installed Version</th>
         <th>Fixed Version</th>
-    </tr>
-    <tr>
-        <td><code>golang.org/x/net</code></td>
-        <td>CVE-2026-25680</td>
-        <td>HIGH</td>
-        <td>v0.49.0</td>
-        <td>0.55.0</td>
     </tr>
     <tr>
         <td><code>golang.org/x/net</code></td>
@@ -1871,13 +1815,6 @@
         <td>HIGH</td>
         <td>v1.26.1</td>
         <td>1.25.10, 1.26.3</td>
-    </tr>
-    <tr>
-        <td><code>stdlib</code></td>
-        <td>CVE-2026-42504</td>
-        <td>HIGH</td>
-        <td>v1.26.1</td>
-        <td>1.25.11, 1.26.4</td>
     </tr>
 </table>
 <h4>No Misconfigurations found</h4>

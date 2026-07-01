@@ -3,7 +3,7 @@
 <h4>No Vulnerabilities found</h4>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>usr/bin/loki-canary</code></h3>
-<h4>Vulnerabilities (24)</h4>
+<h4>Vulnerabilities (22)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -91,13 +91,6 @@
     </tr>
     <tr>
         <td><code>golang.org/x/net</code></td>
-        <td>CVE-2026-25680</td>
-        <td>HIGH</td>
-        <td>v0.52.0</td>
-        <td>0.55.0</td>
-    </tr>
-    <tr>
-        <td><code>golang.org/x/net</code></td>
         <td>CVE-2026-25681</td>
         <td>HIGH</td>
         <td>v0.52.0</td>
@@ -173,13 +166,6 @@
         <td>v1.26.2</td>
         <td>1.25.10, 1.26.3</td>
     </tr>
-    <tr>
-        <td><code>stdlib</code></td>
-        <td>CVE-2026-42504</td>
-        <td>HIGH</td>
-        <td>v1.26.2</td>
-        <td>1.25.11, 1.26.4</td>
-    </tr>
 </table>
 <h4>No Misconfigurations found</h4>
 
@@ -187,7 +173,7 @@
 <h4>No Vulnerabilities found</h4>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>usr/bin/loki</code></h3>
-<h4>Vulnerabilities (25)</h4>
+<h4>Vulnerabilities (23)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -282,13 +268,6 @@
     </tr>
     <tr>
         <td><code>golang.org/x/net</code></td>
-        <td>CVE-2026-25680</td>
-        <td>HIGH</td>
-        <td>v0.52.0</td>
-        <td>0.55.0</td>
-    </tr>
-    <tr>
-        <td><code>golang.org/x/net</code></td>
         <td>CVE-2026-25681</td>
         <td>HIGH</td>
         <td>v0.52.0</td>
@@ -364,13 +343,6 @@
         <td>v1.26.2</td>
         <td>1.25.10, 1.26.3</td>
     </tr>
-    <tr>
-        <td><code>stdlib</code></td>
-        <td>CVE-2026-42504</td>
-        <td>HIGH</td>
-        <td>v1.26.2</td>
-        <td>1.25.11, 1.26.4</td>
-    </tr>
 </table>
 <h4>No Misconfigurations found</h4>
 
@@ -425,7 +397,7 @@
 <h4>No Misconfigurations found</h4>
 
 <h3>Target <code>access-log-exporter</code></h3>
-<h4>Vulnerabilities (2)</h4>
+<h4>Vulnerabilities (1)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -437,13 +409,6 @@
     <tr>
         <td><code>stdlib</code></td>
         <td>CVE-2026-27145</td>
-        <td>HIGH</td>
-        <td>v1.26.3</td>
-        <td>1.25.11, 1.26.4</td>
-    </tr>
-    <tr>
-        <td><code>stdlib</code></td>
-        <td>CVE-2026-42504</td>
         <td>HIGH</td>
         <td>v1.26.3</td>
         <td>1.25.11, 1.26.4</td>
@@ -479,7 +444,7 @@
 <h4>No Misconfigurations found</h4>
 
 <h3>Target <code>bin/memcached_exporter</code></h3>
-<h4>Vulnerabilities (26)</h4>
+<h4>Vulnerabilities (24)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -550,13 +515,6 @@
         <td>HIGH</td>
         <td>v0.49.0</td>
         <td>0.52.0</td>
-    </tr>
-    <tr>
-        <td><code>golang.org/x/net</code></td>
-        <td>CVE-2026-25680</td>
-        <td>HIGH</td>
-        <td>v0.51.0</td>
-        <td>0.55.0</td>
     </tr>
     <tr>
         <td><code>golang.org/x/net</code></td>
@@ -663,13 +621,6 @@
         <td>v1.26.1</td>
         <td>1.25.10, 1.26.3</td>
     </tr>
-    <tr>
-        <td><code>stdlib</code></td>
-        <td>CVE-2026-42504</td>
-        <td>HIGH</td>
-        <td>v1.26.1</td>
-        <td>1.25.11, 1.26.4</td>
-    </tr>
 </table>
 <h4>No Misconfigurations found</h4>
 
@@ -707,7 +658,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>usr/bin/mc</code></h3>
-<h4>Vulnerabilities (37)</h4>
+<h4>Vulnerabilities (35)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -827,13 +778,6 @@
         <td>HIGH</td>
         <td>v0.29.0</td>
         <td>0.33.0</td>
-    </tr>
-    <tr>
-        <td><code>golang.org/x/net</code></td>
-        <td>CVE-2026-25680</td>
-        <td>HIGH</td>
-        <td>v0.29.0</td>
-        <td>0.55.0</td>
     </tr>
     <tr>
         <td><code>golang.org/x/net</code></td>
@@ -967,13 +911,6 @@
         <td>HIGH</td>
         <td>v1.23.4</td>
         <td>1.25.10, 1.26.3</td>
-    </tr>
-    <tr>
-        <td><code>stdlib</code></td>
-        <td>CVE-2026-42504</td>
-        <td>HIGH</td>
-        <td>v1.23.4</td>
-        <td>1.25.11, 1.26.4</td>
     </tr>
 </table>
 <h4>No Misconfigurations found</h4>
@@ -1012,7 +949,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>usr/bin/mc</code></h3>
-<h4>Vulnerabilities (37)</h4>
+<h4>Vulnerabilities (35)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -1132,13 +1069,6 @@
         <td>HIGH</td>
         <td>v0.29.0</td>
         <td>0.33.0</td>
-    </tr>
-    <tr>
-        <td><code>golang.org/x/net</code></td>
-        <td>CVE-2026-25680</td>
-        <td>HIGH</td>
-        <td>v0.29.0</td>
-        <td>0.55.0</td>
     </tr>
     <tr>
         <td><code>golang.org/x/net</code></td>
@@ -1273,17 +1203,10 @@
         <td>v1.23.4</td>
         <td>1.25.10, 1.26.3</td>
     </tr>
-    <tr>
-        <td><code>stdlib</code></td>
-        <td>CVE-2026-42504</td>
-        <td>HIGH</td>
-        <td>v1.23.4</td>
-        <td>1.25.11, 1.26.4</td>
-    </tr>
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>usr/bin/minio</code></h3>
-<h4>Vulnerabilities (43)</h4>
+<h4>Vulnerabilities (41)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -1441,13 +1364,6 @@
     </tr>
     <tr>
         <td><code>golang.org/x/net</code></td>
-        <td>CVE-2026-25680</td>
-        <td>HIGH</td>
-        <td>v0.32.0</td>
-        <td>0.55.0</td>
-    </tr>
-    <tr>
-        <td><code>golang.org/x/net</code></td>
         <td>CVE-2026-25681</td>
         <td>HIGH</td>
         <td>v0.32.0</td>
@@ -1585,13 +1501,6 @@
         <td>HIGH</td>
         <td>v1.23.4</td>
         <td>1.25.10, 1.26.3</td>
-    </tr>
-    <tr>
-        <td><code>stdlib</code></td>
-        <td>CVE-2026-42504</td>
-        <td>HIGH</td>
-        <td>v1.23.4</td>
-        <td>1.25.11, 1.26.4</td>
     </tr>
 </table>
 <h4>No Misconfigurations found</h4>

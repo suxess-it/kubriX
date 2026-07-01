@@ -251,25 +251,9 @@
 </table>
 <h4>No Misconfigurations found</h4>
 
-<h3>Target <code>xpkg.upbound.io/crossplane-contrib/provider-keycloak:v2.20.0 (debian 13.5)</code></h3>
+<h3>Target <code>xpkg.upbound.io/crossplane-contrib/provider-keycloak:v2.21.1 (debian 13.5)</code></h3>
 <h4>No Vulnerabilities found</h4>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>usr/local/bin/provider</code></h3>
-<h4>Vulnerabilities (1)</h4>
-<table>
-    <tr>
-        <th>Package</th>
-        <th>ID</th>
-        <th>Severity</th>
-        <th>Installed Version</th>
-        <th>Fixed Version</th>
-    </tr>
-    <tr>
-        <td><code>github.com/antchfx/xpath</code></td>
-        <td>CVE-2026-32287</td>
-        <td>HIGH</td>
-        <td>v1.2.0</td>
-        <td>1.3.6</td>
-    </tr>
-</table>
+<h4>No Vulnerabilities found</h4>
 <h4>No Misconfigurations found</h4>

@@ -3,7 +3,7 @@
 <h4>No Vulnerabilities found</h4>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>bin/rollouts-controller</code></h3>
-<h4>Vulnerabilities (31)</h4>
+<h4>Vulnerabilities (29)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -102,13 +102,6 @@
         <td>HIGH</td>
         <td>v0.41.0</td>
         <td>0.52.0</td>
-    </tr>
-    <tr>
-        <td><code>golang.org/x/net</code></td>
-        <td>CVE-2026-25680</td>
-        <td>HIGH</td>
-        <td>v0.43.0</td>
-        <td>0.55.0</td>
     </tr>
     <tr>
         <td><code>golang.org/x/net</code></td>
@@ -221,13 +214,6 @@
         <td>HIGH</td>
         <td>v1.24.13</td>
         <td>1.25.10, 1.26.3</td>
-    </tr>
-    <tr>
-        <td><code>stdlib</code></td>
-        <td>CVE-2026-42504</td>
-        <td>HIGH</td>
-        <td>v1.24.13</td>
-        <td>1.25.11, 1.26.4</td>
     </tr>
 </table>
 <h4>No Misconfigurations found</h4>

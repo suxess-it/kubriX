@@ -54,39 +54,9 @@
 </table>
 <h4>No Misconfigurations found</h4>
 
-<h3>Target <code>xpkg.upbound.io/upbound/provider-vault:v3.0.10 (debian 12.7)</code></h3>
+<h3>Target <code>xpkg.upbound.io/upbound/provider-vault:v4.0.0 (debian 12.7)</code></h3>
 <h4>No Vulnerabilities found</h4>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>usr/local/bin/provider</code></h3>
-<h4>Vulnerabilities (3)</h4>
-<table>
-    <tr>
-        <th>Package</th>
-        <th>ID</th>
-        <th>Severity</th>
-        <th>Installed Version</th>
-        <th>Fixed Version</th>
-    </tr>
-    <tr>
-        <td><code>github.com/docker/docker</code></td>
-        <td>CVE-2026-34040</td>
-        <td>HIGH</td>
-        <td>v28.5.2+incompatible</td>
-        <td>29.3.1</td>
-    </tr>
-    <tr>
-        <td><code>github.com/docker/docker</code></td>
-        <td>CVE-2026-41567</td>
-        <td>HIGH</td>
-        <td>v28.5.2+incompatible</td>
-        <td></td>
-    </tr>
-    <tr>
-        <td><code>github.com/docker/docker</code></td>
-        <td>CVE-2026-42306</td>
-        <td>HIGH</td>
-        <td>v28.5.2+incompatible</td>
-        <td></td>
-    </tr>
-</table>
+<h4>No Vulnerabilities found</h4>
 <h4>No Misconfigurations found</h4>
