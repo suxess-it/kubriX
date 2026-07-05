@@ -1,6 +1,6 @@
 
 <h3>Target <code>docker.io/dserio83/velero-api:0.3.1 (debian 12.11)</code></h3>
-<h4>Vulnerabilities (110)</h4>
+<h4>Vulnerabilities (109)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -59,17 +59,17 @@
         <td>2.2.40-1.1+deb12u2</td>
     </tr>
     <tr>
+        <td><code>gzip</code></td>
+        <td>CVE-2026-41992</td>
+        <td>HIGH</td>
+        <td>1.12-1</td>
+        <td></td>
+    </tr>
+    <tr>
         <td><code>libacl1</code></td>
         <td>CVE-2026-54369</td>
         <td>HIGH</td>
         <td>2.3.1-3</td>
-        <td></td>
-    </tr>
-    <tr>
-        <td><code>libattr1</code></td>
-        <td>CVE-2026-54371</td>
-        <td>HIGH</td>
-        <td>1:2.5.1-4</td>
         <td></td>
     </tr>
     <tr>
@@ -383,13 +383,6 @@
     <tr>
         <td><code>libssh2-1</code></td>
         <td>CVE-2026-55200</td>
-        <td>HIGH</td>
-        <td>1.10.0-3+b1</td>
-        <td></td>
-    </tr>
-    <tr>
-        <td><code>libssh2-1</code></td>
-        <td>CVE-2026-58050</td>
         <td>HIGH</td>
         <td>1.10.0-3+b1</td>
         <td></td>
@@ -906,7 +899,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>usr/local/bin/kubectl</code></h3>
-<h4>Vulnerabilities (22)</h4>
+<h4>Vulnerabilities (23)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -1069,6 +1062,13 @@
         <td>v1.22.5</td>
         <td>1.25.10, 1.26.3</td>
     </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-42504</td>
+        <td>HIGH</td>
+        <td>v1.22.5</td>
+        <td>1.25.11, 1.26.4</td>
+    </tr>
 </table>
 <h4>No Misconfigurations found</h4>
 
@@ -1127,7 +1127,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>Node.js</code></h3>
-<h4>Vulnerabilities (25)</h4>
+<h4>Vulnerabilities (26)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -1270,6 +1270,13 @@
         <td>7.0.3</td>
     </tr>
     <tr>
+        <td><code>sigstore</code></td>
+        <td>CVE-2026-48815</td>
+        <td>HIGH</td>
+        <td>2.1.0</td>
+        <td>4.1.1</td>
+    </tr>
+    <tr>
         <td><code>tar</code></td>
         <td>CVE-2026-23745</td>
         <td>HIGH</td>
@@ -1314,7 +1321,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>app/node_modules/@esbuild/linux-x64/bin/esbuild</code></h3>
-<h4>Vulnerabilities (13)</h4>
+<h4>Vulnerabilities (14)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -1414,11 +1421,18 @@
         <td>v1.23.7</td>
         <td>1.25.10, 1.26.3</td>
     </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-42504</td>
+        <td>HIGH</td>
+        <td>v1.23.7</td>
+        <td>1.25.11, 1.26.4</td>
+    </tr>
 </table>
 <h4>No Misconfigurations found</h4>
 
 <h3>Target <code>docker.io/dserio83/velero-watchdog:0.1.8 (debian 12.10)</code></h3>
-<h4>Vulnerabilities (82)</h4>
+<h4>Vulnerabilities (81)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -1477,17 +1491,17 @@
         <td>2.2.40-1.1+deb12u2</td>
     </tr>
     <tr>
+        <td><code>gzip</code></td>
+        <td>CVE-2026-41992</td>
+        <td>HIGH</td>
+        <td>1.12-1</td>
+        <td></td>
+    </tr>
+    <tr>
         <td><code>libacl1</code></td>
         <td>CVE-2026-54369</td>
         <td>HIGH</td>
         <td>2.3.1-3</td>
-        <td></td>
-    </tr>
-    <tr>
-        <td><code>libattr1</code></td>
-        <td>CVE-2026-54371</td>
-        <td>HIGH</td>
-        <td>1:2.5.1-4</td>
         <td></td>
     </tr>
     <tr>
@@ -1717,13 +1731,6 @@
     <tr>
         <td><code>libssh2-1</code></td>
         <td>CVE-2026-55200</td>
-        <td>HIGH</td>
-        <td>1.10.0-3+b1</td>
-        <td></td>
-    </tr>
-    <tr>
-        <td><code>libssh2-1</code></td>
-        <td>CVE-2026-58050</td>
         <td>HIGH</td>
         <td>1.10.0-3+b1</td>
         <td></td>

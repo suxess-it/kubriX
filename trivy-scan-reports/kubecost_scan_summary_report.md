@@ -4,7 +4,7 @@
 <h4>No Misconfigurations found</h4>
 
 <h3>Target <code>gcr.io/kubecost1/cost-model:prod-2.9.6 (redhat 9.7)</code></h3>
-<h4>Vulnerabilities (18)</h4>
+<h4>Vulnerabilities (17)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -91,13 +91,6 @@
         <td>3.5.3-9.el9_7</td>
     </tr>
     <tr>
-        <td><code>libattr</code></td>
-        <td>CVE-2026-54371</td>
-        <td>HIGH</td>
-        <td>2.5.1-3.el9</td>
-        <td></td>
-    </tr>
-    <tr>
         <td><code>libcap</code></td>
         <td>CVE-2026-4878</td>
         <td>HIGH</td>
@@ -142,7 +135,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>go/bin/app</code></h3>
-<h4>Vulnerabilities (35)</h4>
+<h4>Vulnerabilities (36)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -396,11 +389,18 @@
         <td>v1.24.11</td>
         <td>1.25.10, 1.26.3</td>
     </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-42504</td>
+        <td>HIGH</td>
+        <td>v1.24.11</td>
+        <td>1.25.11, 1.26.4</td>
+    </tr>
 </table>
 <h4>No Misconfigurations found</h4>
 
 <h3>Target <code>gcr.io/kubecost1/frontend:prod-2.9.6 (redhat 9.7)</code></h3>
-<h4>Vulnerabilities (31)</h4>
+<h4>Vulnerabilities (30)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -485,13 +485,6 @@
         <td>HIGH</td>
         <td>3.5.3-6.el9_6</td>
         <td>3.5.3-9.el9_7</td>
-    </tr>
-    <tr>
-        <td><code>libattr</code></td>
-        <td>CVE-2026-54371</td>
-        <td>HIGH</td>
-        <td>2.5.1-3.el9</td>
-        <td></td>
     </tr>
     <tr>
         <td><code>libcap</code></td>
@@ -630,7 +623,7 @@
 <h4>No Misconfigurations found</h4>
 
 <h3>Target <code>gcr.io/kubecost1/kubecost-modeling:v0.1.34 (redhat 9.7)</code></h3>
-<h4>Vulnerabilities (23)</h4>
+<h4>Vulnerabilities (22)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -708,13 +701,6 @@
         <td>HIGH</td>
         <td>3.5.3-6.el9_6</td>
         <td>3.5.3-9.el9_7</td>
-    </tr>
-    <tr>
-        <td><code>libattr</code></td>
-        <td>CVE-2026-54371</td>
-        <td>HIGH</td>
-        <td>2.5.1-3.el9</td>
-        <td></td>
     </tr>
     <tr>
         <td><code>libcap</code></td>
@@ -844,7 +830,7 @@
 <h4>No Misconfigurations found</h4>
 
 <h3>Target <code>icr.io/ibm-finops/agent:v1.0.8 (redhat 9.7)</code></h3>
-<h4>Vulnerabilities (14)</h4>
+<h4>Vulnerabilities (13)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -917,13 +903,6 @@
         <td>3.5.3-9.el9_7</td>
     </tr>
     <tr>
-        <td><code>libattr</code></td>
-        <td>CVE-2026-54371</td>
-        <td>HIGH</td>
-        <td>2.5.1-3.el9</td>
-        <td></td>
-    </tr>
-    <tr>
         <td><code>libcap</code></td>
         <td>CVE-2026-4878</td>
         <td>HIGH</td>
@@ -954,7 +933,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>go/bin/app</code></h3>
-<h4>Vulnerabilities (31)</h4>
+<h4>Vulnerabilities (32)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -1180,11 +1159,18 @@
         <td>v1.25.5</td>
         <td>1.25.10, 1.26.3</td>
     </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-42504</td>
+        <td>HIGH</td>
+        <td>v1.25.5</td>
+        <td>1.25.11, 1.26.4</td>
+    </tr>
 </table>
 <h4>No Misconfigurations found</h4>
 
 <h3>Target <code>bin/prometheus</code></h3>
-<h4>Vulnerabilities (33)</h4>
+<h4>Vulnerabilities (34)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -1424,10 +1410,17 @@
         <td>v1.25.5</td>
         <td>1.25.10, 1.26.3</td>
     </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-42504</td>
+        <td>HIGH</td>
+        <td>v1.25.5</td>
+        <td>1.25.11, 1.26.4</td>
+    </tr>
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>bin/promtool</code></h3>
-<h4>Vulnerabilities (31)</h4>
+<h4>Vulnerabilities (32)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -1652,6 +1645,13 @@
         <td>HIGH</td>
         <td>v1.25.5</td>
         <td>1.25.10, 1.26.3</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-42504</td>
+        <td>HIGH</td>
+        <td>v1.25.5</td>
+        <td>1.25.11, 1.26.4</td>
     </tr>
 </table>
 <h4>No Misconfigurations found</h4>

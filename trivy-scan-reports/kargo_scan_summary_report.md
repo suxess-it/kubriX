@@ -3,7 +3,7 @@
 <h4>No Vulnerabilities found</h4>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>usr/local/bin/credential-helper</code></h3>
-<h4>Vulnerabilities (1)</h4>
+<h4>Vulnerabilities (2)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -19,10 +19,17 @@
         <td>v1.26.3</td>
         <td>1.25.11, 1.26.4</td>
     </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-42504</td>
+        <td>HIGH</td>
+        <td>v1.26.3</td>
+        <td>1.25.11, 1.26.4</td>
+    </tr>
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>usr/local/bin/grpc_health_probe</code></h3>
-<h4>Vulnerabilities (5)</h4>
+<h4>Vulnerabilities (6)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -66,10 +73,17 @@
         <td>v1.26.3</td>
         <td>1.25.11, 1.26.4</td>
     </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-42504</td>
+        <td>HIGH</td>
+        <td>v1.26.3</td>
+        <td>1.25.11, 1.26.4</td>
+    </tr>
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>usr/local/bin/helm</code></h3>
-<h4>Vulnerabilities (17)</h4>
+<h4>Vulnerabilities (20)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -191,8 +205,29 @@
         <td>0.55.0</td>
     </tr>
     <tr>
+        <td><code>oras.land/oras-go/v2</code></td>
+        <td>CVE-2026-50151</td>
+        <td>HIGH</td>
+        <td>v2.6.0</td>
+        <td>2.6.1</td>
+    </tr>
+    <tr>
+        <td><code>oras.land/oras-go/v2</code></td>
+        <td>CVE-2026-50163</td>
+        <td>HIGH</td>
+        <td>v2.6.0</td>
+        <td></td>
+    </tr>
+    <tr>
         <td><code>stdlib</code></td>
         <td>CVE-2026-27145</td>
+        <td>HIGH</td>
+        <td>v1.25.10</td>
+        <td>1.25.11, 1.26.4</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-42504</td>
         <td>HIGH</td>
         <td>v1.25.10</td>
         <td>1.25.11, 1.26.4</td>
@@ -200,7 +235,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>usr/local/bin/kargo</code></h3>
-<h4>Vulnerabilities (16)</h4>
+<h4>Vulnerabilities (19)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -315,8 +350,29 @@
         <td>0.55.0</td>
     </tr>
     <tr>
+        <td><code>oras.land/oras-go/v2</code></td>
+        <td>CVE-2026-50151</td>
+        <td>HIGH</td>
+        <td>v2.6.0</td>
+        <td>2.6.1</td>
+    </tr>
+    <tr>
+        <td><code>oras.land/oras-go/v2</code></td>
+        <td>CVE-2026-50163</td>
+        <td>HIGH</td>
+        <td>v2.6.0</td>
+        <td></td>
+    </tr>
+    <tr>
         <td><code>stdlib</code></td>
         <td>CVE-2026-27145</td>
+        <td>HIGH</td>
+        <td>v1.26.3</td>
+        <td>1.25.11, 1.26.4</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-42504</td>
         <td>HIGH</td>
         <td>v1.26.3</td>
         <td>1.25.11, 1.26.4</td>

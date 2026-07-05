@@ -88,7 +88,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>Node.js</code></h3>
-<h4>Vulnerabilities (91)</h4>
+<h4>Vulnerabilities (92)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -271,6 +271,13 @@
         <td>HIGH</td>
         <td>2.2.1</td>
         <td>3.0.7</td>
+    </tr>
+    <tr>
+        <td><code>jsonata</code></td>
+        <td>CVE-2026-52746</td>
+        <td>HIGH</td>
+        <td>2.1.0</td>
+        <td>2.2.0</td>
     </tr>
     <tr>
         <td><code>linkify-it</code></td>
