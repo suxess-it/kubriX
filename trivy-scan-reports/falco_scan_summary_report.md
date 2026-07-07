@@ -237,7 +237,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>usr/bin/falco-exporter</code></h3>
-<h4>Vulnerabilities (48)</h4>
+<h4>Vulnerabilities (47)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -575,18 +575,11 @@
         <td>v1.17.13</td>
         <td>1.25.10, 1.26.3</td>
     </tr>
-    <tr>
-        <td><code>stdlib</code></td>
-        <td>CVE-2026-42504</td>
-        <td>HIGH</td>
-        <td>v1.17.13</td>
-        <td>1.25.11, 1.26.4</td>
-    </tr>
 </table>
 <h4>No Misconfigurations found</h4>
 
 <h3>Target <code>docker.io/falcosecurity/falco:0.43.1 (wolfi 20230201)</code></h3>
-<h4>Vulnerabilities (18)</h4>
+<h4>Vulnerabilities (4)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -623,104 +616,6 @@
         <td>1.8.1-r4</td>
         <td>1.8.1-r5</td>
     </tr>
-    <tr>
-        <td><code>libcrypto3</code></td>
-        <td>CVE-2026-31789</td>
-        <td>CRITICAL</td>
-        <td>3.6.1-r4</td>
-        <td>3.6.2-r0</td>
-    </tr>
-    <tr>
-        <td><code>libcrypto3</code></td>
-        <td>CVE-2026-28386</td>
-        <td>HIGH</td>
-        <td>3.6.1-r4</td>
-        <td>3.6.2-r0</td>
-    </tr>
-    <tr>
-        <td><code>libcrypto3</code></td>
-        <td>CVE-2026-28387</td>
-        <td>HIGH</td>
-        <td>3.6.1-r4</td>
-        <td>3.6.2-r0</td>
-    </tr>
-    <tr>
-        <td><code>libcrypto3</code></td>
-        <td>CVE-2026-28388</td>
-        <td>HIGH</td>
-        <td>3.6.1-r4</td>
-        <td>3.6.2-r0</td>
-    </tr>
-    <tr>
-        <td><code>libcrypto3</code></td>
-        <td>CVE-2026-28389</td>
-        <td>HIGH</td>
-        <td>3.6.1-r4</td>
-        <td>3.6.2-r0</td>
-    </tr>
-    <tr>
-        <td><code>libcrypto3</code></td>
-        <td>CVE-2026-28390</td>
-        <td>HIGH</td>
-        <td>3.6.1-r4</td>
-        <td>3.6.2-r0</td>
-    </tr>
-    <tr>
-        <td><code>libcrypto3</code></td>
-        <td>CVE-2026-45447</td>
-        <td>HIGH</td>
-        <td>3.6.1-r4</td>
-        <td>3.6.3-r0</td>
-    </tr>
-    <tr>
-        <td><code>libssl3</code></td>
-        <td>CVE-2026-31789</td>
-        <td>CRITICAL</td>
-        <td>3.6.1-r4</td>
-        <td>3.6.2-r0</td>
-    </tr>
-    <tr>
-        <td><code>libssl3</code></td>
-        <td>CVE-2026-28386</td>
-        <td>HIGH</td>
-        <td>3.6.1-r4</td>
-        <td>3.6.2-r0</td>
-    </tr>
-    <tr>
-        <td><code>libssl3</code></td>
-        <td>CVE-2026-28387</td>
-        <td>HIGH</td>
-        <td>3.6.1-r4</td>
-        <td>3.6.2-r0</td>
-    </tr>
-    <tr>
-        <td><code>libssl3</code></td>
-        <td>CVE-2026-28388</td>
-        <td>HIGH</td>
-        <td>3.6.1-r4</td>
-        <td>3.6.2-r0</td>
-    </tr>
-    <tr>
-        <td><code>libssl3</code></td>
-        <td>CVE-2026-28389</td>
-        <td>HIGH</td>
-        <td>3.6.1-r4</td>
-        <td>3.6.2-r0</td>
-    </tr>
-    <tr>
-        <td><code>libssl3</code></td>
-        <td>CVE-2026-28390</td>
-        <td>HIGH</td>
-        <td>3.6.1-r4</td>
-        <td>3.6.2-r0</td>
-    </tr>
-    <tr>
-        <td><code>libssl3</code></td>
-        <td>CVE-2026-45447</td>
-        <td>HIGH</td>
-        <td>3.6.1-r4</td>
-        <td>3.6.3-r0</td>
-    </tr>
 </table>
 <h4>No Misconfigurations found</h4>
 
@@ -728,7 +623,7 @@
 <h4>No Vulnerabilities found</h4>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>usr/bin/falcoctl</code></h3>
-<h4>Vulnerabilities (40)</h4>
+<h4>Vulnerabilities (39)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -1010,13 +905,6 @@
         <td>v1.25.6</td>
         <td>1.25.10, 1.26.3</td>
     </tr>
-    <tr>
-        <td><code>stdlib</code></td>
-        <td>CVE-2026-42504</td>
-        <td>HIGH</td>
-        <td>v1.25.6</td>
-        <td>1.25.11, 1.26.4</td>
-    </tr>
 </table>
 <h4>No Misconfigurations found</h4>
 
@@ -1024,7 +912,7 @@
 <h4>No Vulnerabilities found</h4>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>app/falcosidekick-ui</code></h3>
-<h4>Vulnerabilities (40)</h4>
+<h4>Vulnerabilities (39)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -1306,13 +1194,6 @@
         <td>v1.20.8</td>
         <td>1.25.10, 1.26.3</td>
     </tr>
-    <tr>
-        <td><code>stdlib</code></td>
-        <td>CVE-2026-42504</td>
-        <td>HIGH</td>
-        <td>v1.20.8</td>
-        <td>1.25.11, 1.26.4</td>
-    </tr>
 </table>
 <h4>No Misconfigurations found</h4>
 
@@ -1462,7 +1343,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>app/falcosidekick</code></h3>
-<h4>Vulnerabilities (37)</h4>
+<h4>Vulnerabilities (36)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -1723,13 +1604,6 @@
         <td>v1.25.1</td>
         <td>1.25.10, 1.26.3</td>
     </tr>
-    <tr>
-        <td><code>stdlib</code></td>
-        <td>CVE-2026-42504</td>
-        <td>HIGH</td>
-        <td>v1.25.1</td>
-        <td>1.25.11, 1.26.4</td>
-    </tr>
 </table>
 <h4>No Misconfigurations found</h4>
 
@@ -1737,7 +1611,7 @@
 <h4>No Vulnerabilities found</h4>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>meta-collector</code></h3>
-<h4>Vulnerabilities (17)</h4>
+<h4>Vulnerabilities (16)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -1857,13 +1731,6 @@
         <td>HIGH</td>
         <td>v1.26.1</td>
         <td>1.25.10, 1.26.3</td>
-    </tr>
-    <tr>
-        <td><code>stdlib</code></td>
-        <td>CVE-2026-42504</td>
-        <td>HIGH</td>
-        <td>v1.26.1</td>
-        <td>1.25.11, 1.26.4</td>
     </tr>
 </table>
 <h4>No Misconfigurations found</h4>

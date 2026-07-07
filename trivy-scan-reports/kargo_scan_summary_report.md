@@ -3,7 +3,7 @@
 <h4>No Vulnerabilities found</h4>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>usr/local/bin/credential-helper</code></h3>
-<h4>Vulnerabilities (2)</h4>
+<h4>Vulnerabilities (1)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -19,17 +19,10 @@
         <td>v1.26.3</td>
         <td>1.25.11, 1.26.4</td>
     </tr>
-    <tr>
-        <td><code>stdlib</code></td>
-        <td>CVE-2026-42504</td>
-        <td>HIGH</td>
-        <td>v1.26.3</td>
-        <td>1.25.11, 1.26.4</td>
-    </tr>
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>usr/local/bin/grpc_health_probe</code></h3>
-<h4>Vulnerabilities (6)</h4>
+<h4>Vulnerabilities (5)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -73,17 +66,10 @@
         <td>v1.26.3</td>
         <td>1.25.11, 1.26.4</td>
     </tr>
-    <tr>
-        <td><code>stdlib</code></td>
-        <td>CVE-2026-42504</td>
-        <td>HIGH</td>
-        <td>v1.26.3</td>
-        <td>1.25.11, 1.26.4</td>
-    </tr>
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>usr/local/bin/helm</code></h3>
-<h4>Vulnerabilities (20)</h4>
+<h4>Vulnerabilities (19)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -225,17 +211,10 @@
         <td>v1.25.10</td>
         <td>1.25.11, 1.26.4</td>
     </tr>
-    <tr>
-        <td><code>stdlib</code></td>
-        <td>CVE-2026-42504</td>
-        <td>HIGH</td>
-        <td>v1.25.10</td>
-        <td>1.25.11, 1.26.4</td>
-    </tr>
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>usr/local/bin/kargo</code></h3>
-<h4>Vulnerabilities (19)</h4>
+<h4>Vulnerabilities (18)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -366,13 +345,6 @@
     <tr>
         <td><code>stdlib</code></td>
         <td>CVE-2026-27145</td>
-        <td>HIGH</td>
-        <td>v1.26.3</td>
-        <td>1.25.11, 1.26.4</td>
-    </tr>
-    <tr>
-        <td><code>stdlib</code></td>
-        <td>CVE-2026-42504</td>
         <td>HIGH</td>
         <td>v1.26.3</td>
         <td>1.25.11, 1.26.4</td>
