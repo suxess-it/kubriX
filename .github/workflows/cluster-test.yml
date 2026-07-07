@@ -4,9 +4,9 @@ name: kind
 
 # Controls when the workflow will run
 on:
-  # do a full cluster test in main branch and when opening or changing PRs
+  # do a full cluster test in main or maintenance branch and when opening or changing PRs
   push:
-    branches: [ "main" ]
+    branches: [ "main", "release-v7.0"]
     paths:
       - '.github/workflows/cluster-test.yml'
       - '.github/kind-config.yaml'
@@ -248,7 +248,13 @@ jobs:
       - create-kubrix-installer-image
       - changes
     runs-on: ${{ vars.KUBRIX_GITHUB_RUNNER || 'ubuntu-latest' }}
-    if: ${{ needs.create-kubrix-installer-image.result == 'success' || needs.create-kubrix-installer-image.result == 'skipped' }}
+    if: >-
+      ${{
+        (needs.create-kubrix-installer-image.result == 'success' ||
+         needs.create-kubrix-installer-image.result == 'skipped') &&
+        (github.event_name == 'pull_request' ||
+         github.event_name == 'workflow_dispatch')
+      }}
     permissions:
       contents: write
       statuses: read
@@ -274,6 +280,22 @@ jobs:
           cluster_name: kubrix-cluster
           config: ${{ github.workspace }}/.github/kind-config.yaml
           
+      - name: Pre-load podtato-head images into kind
+        shell: bash
+        run: |
+          IMAGES=(
+            ghcr.io/podtato-head/entry:latest
+            ghcr.io/podtato-head/hat:latest
+            ghcr.io/podtato-head/left-leg:latest
+            ghcr.io/podtato-head/left-arm:latest
+            ghcr.io/podtato-head/right-leg:latest
+            ghcr.io/podtato-head/right-arm:latest
+          )
+          for img in "${IMAGES[@]}"; do
+            docker pull "$img"
+            kind load docker-image "$img" --name kubrix-cluster
+          done
+
       - name: install mkcert
         shell: bash
         run: |
@@ -395,18 +417,25 @@ jobs:
           BASE_URL: "https://backstage.127-0-0-1.nip.io"
           ENTITY_PATH: "/api/catalog/entities/by-name/User/default/kubrixBot"
         run: |
-          # Get token from k8s secret
-          EXTERNAL_ACCESS_TOKEN=$(kubectl get secret -n backstage sx-cnp-secret -o jsonpath='{.data.EXTERNAL_ACCESS_TOKEN}' | base64 -d)
-          
           MAX_SECONDS=300
           SLEEP_SECONDS=10
           ELAPSED=0
-          
+
           echo "Waiting for User entity User:default/kubrixBot (timeout: 5 minutes)..."
-          
+
           while [ "$ELAPSED" -lt "$MAX_SECONDS" ]; do
+            # Re-read token each iteration in case ESO hasn't resolved the secret yet after the previous step
+            EXTERNAL_ACCESS_TOKEN=$(kubectl get secret -n backstage sx-cnp-secret -o jsonpath='{.data.EXTERNAL_ACCESS_TOKEN}' 2>/dev/null | base64 -d)
+
+            if [ -z "$EXTERNAL_ACCESS_TOKEN" ]; then
+              echo "⏳ Token not available yet... (${ELAPSED}s elapsed)"
+              sleep "$SLEEP_SECONDS"
+              ELAPSED=$((ELAPSED + SLEEP_SECONDS))
+              continue
+            fi
+
             STATUS=$(curl -k -s -o /dev/null -w "%{http_code}" -H "Authorization: Bearer $EXTERNAL_ACCESS_TOKEN" "$BASE_URL$ENTITY_PATH")
-          
+
             case "$STATUS" in
               200)
                 echo "✅ User entity is available!"
@@ -423,11 +452,11 @@ jobs:
                 echo "⚠️ Unexpected HTTP status: $STATUS"
                 ;;
             esac
-          
+
             sleep "$SLEEP_SECONDS"
             ELAPSED=$((ELAPSED + SLEEP_SECONDS))
           done
-          
+
           echo "❌ Timed out after 5 minutes waiting for User entity."
           exit 1
 
