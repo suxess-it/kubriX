@@ -519,9 +519,11 @@ jobs:
 
           app_of_apps_repo="kubrix-a${E2E_TEST_PR_NUMBER}-kubrixbot-app"
           gitops_repo="kubrix-a${E2E_TEST_PR_NUMBER}-apps"
-          
+          vcluster_repo="kubrix-a${E2E_TEST_PR_NUMBER}-kubrixbot-vcluster"
+  
           delete_repo_if_exists "${app_of_apps_repo:-}"
           delete_repo_if_exists "${gitops_repo:-}"
+          delete_repo_if_exists "${vcluster_repo:-}"
 
       - name: add kubrixBot repo for team onboarding fork
         env:
