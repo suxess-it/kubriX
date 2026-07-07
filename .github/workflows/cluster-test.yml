@@ -248,7 +248,13 @@ jobs:
       - create-kubrix-installer-image
       - changes
     runs-on: ${{ vars.KUBRIX_GITHUB_RUNNER || 'ubuntu-latest' }}
-    if: ${{ needs.create-kubrix-installer-image.result == 'success' || needs.create-kubrix-installer-image.result == 'skipped' }}
+    if: >-
+      ${{
+        (needs.create-kubrix-installer-image.result == 'success' ||
+         needs.create-kubrix-installer-image.result == 'skipped') &&
+        (github.event_name == 'pull_request' ||
+         github.event_name == 'workflow_dispatch')
+      }}
     permissions:
       contents: write
       statuses: read
