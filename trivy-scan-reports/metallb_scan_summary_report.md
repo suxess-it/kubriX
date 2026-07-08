@@ -1,6 +1,6 @@
 
 <h3>Target <code>quay.io/frrouting/frr:10.4.3 (alpine 3.22.3)</code></h3>
-<h4>Vulnerabilities (18)</h4>
+<h4>Vulnerabilities (21)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -64,6 +64,27 @@
         <td>HIGH</td>
         <td>2.7.4-r0</td>
         <td>2.8.1-r0</td>
+    </tr>
+    <tr>
+        <td><code>libexpat</code></td>
+        <td>CVE-2026-56131</td>
+        <td>HIGH</td>
+        <td>2.7.4-r0</td>
+        <td>2.8.2-r0</td>
+    </tr>
+    <tr>
+        <td><code>libexpat</code></td>
+        <td>CVE-2026-56407</td>
+        <td>HIGH</td>
+        <td>2.7.4-r0</td>
+        <td>2.8.2-r0</td>
+    </tr>
+    <tr>
+        <td><code>libexpat</code></td>
+        <td>CVE-2026-56408</td>
+        <td>HIGH</td>
+        <td>2.7.4-r0</td>
+        <td>2.8.2-r0</td>
     </tr>
     <tr>
         <td><code>libssl3</code></td>
@@ -187,13 +208,6 @@
         <td>0.55.0</td>
     </tr>
     <tr>
-        <td><code>golang.org/x/net</code></td>
-        <td>CVE-2026-42502</td>
-        <td>HIGH</td>
-        <td>v0.53.0</td>
-        <td>0.55.0</td>
-    </tr>
-    <tr>
         <td><code>google.golang.org/grpc</code></td>
         <td>CVE-2026-33186</td>
         <td>CRITICAL</td>
@@ -241,6 +255,13 @@
         <td>HIGH</td>
         <td>v1.25.9</td>
         <td>1.25.10, 1.26.3</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-42504</td>
+        <td>HIGH</td>
+        <td>v1.25.9</td>
+        <td>1.25.11, 1.26.4</td>
     </tr>
 </table>
 <h4>No Misconfigurations found</h4>
@@ -324,13 +345,6 @@
         <td>0.55.0</td>
     </tr>
     <tr>
-        <td><code>golang.org/x/net</code></td>
-        <td>CVE-2026-42502</td>
-        <td>HIGH</td>
-        <td>v0.39.0</td>
-        <td>0.55.0</td>
-    </tr>
-    <tr>
         <td><code>google.golang.org/grpc</code></td>
         <td>CVE-2026-33186</td>
         <td>CRITICAL</td>
@@ -399,6 +413,13 @@
         <td>HIGH</td>
         <td>v1.25.8</td>
         <td>1.25.10, 1.26.3</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-42504</td>
+        <td>HIGH</td>
+        <td>v1.25.8</td>
+        <td>1.25.11, 1.26.4</td>
     </tr>
 </table>
 <h4>No Misconfigurations found</h4>
@@ -455,13 +476,6 @@
         <td>0.55.0</td>
     </tr>
     <tr>
-        <td><code>golang.org/x/net</code></td>
-        <td>CVE-2026-42502</td>
-        <td>HIGH</td>
-        <td>v0.39.0</td>
-        <td>0.55.0</td>
-    </tr>
-    <tr>
         <td><code>google.golang.org/grpc</code></td>
         <td>CVE-2026-33186</td>
         <td>CRITICAL</td>
@@ -531,6 +545,13 @@
         <td>v1.25.8</td>
         <td>1.25.10, 1.26.3</td>
     </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-42504</td>
+        <td>HIGH</td>
+        <td>v1.25.8</td>
+        <td>1.25.11, 1.26.4</td>
+    </tr>
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>frr-status</code></h3>
@@ -567,13 +588,6 @@
     <tr>
         <td><code>golang.org/x/net</code></td>
         <td>CVE-2026-39821</td>
-        <td>HIGH</td>
-        <td>v0.39.0</td>
-        <td>0.55.0</td>
-    </tr>
-    <tr>
-        <td><code>golang.org/x/net</code></td>
-        <td>CVE-2026-42502</td>
         <td>HIGH</td>
         <td>v0.39.0</td>
         <td>0.55.0</td>
@@ -640,6 +654,13 @@
         <td>HIGH</td>
         <td>v1.25.8</td>
         <td>1.25.10, 1.26.3</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-42504</td>
+        <td>HIGH</td>
+        <td>v1.25.8</td>
+        <td>1.25.11, 1.26.4</td>
     </tr>
 </table>
 <h4>No Misconfigurations found</h4>
@@ -682,13 +703,6 @@
         <td>0.55.0</td>
     </tr>
     <tr>
-        <td><code>golang.org/x/net</code></td>
-        <td>CVE-2026-42502</td>
-        <td>HIGH</td>
-        <td>v0.39.0</td>
-        <td>0.55.0</td>
-    </tr>
-    <tr>
         <td><code>stdlib</code></td>
         <td>CVE-2026-27145</td>
         <td>HIGH</td>
@@ -751,6 +765,13 @@
         <td>v1.25.8</td>
         <td>1.25.10, 1.26.3</td>
     </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-42504</td>
+        <td>HIGH</td>
+        <td>v1.25.8</td>
+        <td>1.25.11, 1.26.4</td>
+    </tr>
 </table>
 <h4>No Misconfigurations found</h4>
 
@@ -758,7 +779,7 @@
 <h4>No Vulnerabilities found</h4>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>cp-tool</code></h3>
-<h4>Vulnerabilities (6)</h4>
+<h4>Vulnerabilities (7)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -808,6 +829,13 @@
         <td>HIGH</td>
         <td>v1.25.9</td>
         <td>1.25.10, 1.26.3</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-42504</td>
+        <td>HIGH</td>
+        <td>v1.25.9</td>
+        <td>1.25.11, 1.26.4</td>
     </tr>
 </table>
 <h4>No Misconfigurations found</h4>
@@ -857,13 +885,6 @@
         <td>0.55.0</td>
     </tr>
     <tr>
-        <td><code>golang.org/x/net</code></td>
-        <td>CVE-2026-42502</td>
-        <td>HIGH</td>
-        <td>v0.53.0</td>
-        <td>0.55.0</td>
-    </tr>
-    <tr>
         <td><code>google.golang.org/grpc</code></td>
         <td>CVE-2026-33186</td>
         <td>CRITICAL</td>
@@ -911,6 +932,13 @@
         <td>HIGH</td>
         <td>v1.25.9</td>
         <td>1.25.10, 1.26.3</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-42504</td>
+        <td>HIGH</td>
+        <td>v1.25.9</td>
+        <td>1.25.11, 1.26.4</td>
     </tr>
 </table>
 <h4>No Misconfigurations found</h4>
@@ -960,13 +988,6 @@
         <td>0.55.0</td>
     </tr>
     <tr>
-        <td><code>golang.org/x/net</code></td>
-        <td>CVE-2026-42502</td>
-        <td>HIGH</td>
-        <td>v0.53.0</td>
-        <td>0.55.0</td>
-    </tr>
-    <tr>
         <td><code>google.golang.org/grpc</code></td>
         <td>CVE-2026-33186</td>
         <td>CRITICAL</td>
@@ -1014,6 +1035,13 @@
         <td>HIGH</td>
         <td>v1.25.9</td>
         <td>1.25.10, 1.26.3</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-42504</td>
+        <td>HIGH</td>
+        <td>v1.25.9</td>
+        <td>1.25.11, 1.26.4</td>
     </tr>
 </table>
 <h4>No Misconfigurations found</h4>
