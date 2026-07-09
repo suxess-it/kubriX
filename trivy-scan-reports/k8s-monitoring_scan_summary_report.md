@@ -1481,6 +1481,13 @@
 </table>
 <h4>No Misconfigurations found</h4>
 
+<h3>Target <code>ghcr.io/grafana/k8s-injection-controller:main (debian 13.5)</code></h3>
+<h4>No Vulnerabilities found</h4>
+<h4>No Misconfigurations found</h4>
+<h3>Target <code>manager</code></h3>
+<h4>No Vulnerabilities found</h4>
+<h4>No Misconfigurations found</h4>
+
 <h3>Target <code>bin/node_exporter</code></h3>
 <h4>Vulnerabilities (24)</h4>
 <table>

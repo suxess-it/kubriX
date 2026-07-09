@@ -366,7 +366,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 
-<h3>Target <code>quay.io/kiwigrid/k8s-sidecar:2.8.0 (alpine 3.22.4)</code></h3>
+<h3>Target <code>quay.io/kiwigrid/k8s-sidecar:2.8.1 (alpine 3.22.4)</code></h3>
 <h4>Vulnerabilities (2)</h4>
 <table>
     <tr>
