@@ -55,7 +55,7 @@
 <h4>No Misconfigurations found</h4>
 
 <h3>Target <code>ghcr.io/suxess-it/sx-backstage:v1.51.2 (wolfi 20230201)</code></h3>
-<h4>Vulnerabilities (6)</h4>
+<h4>Vulnerabilities (1)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -63,41 +63,6 @@
         <th>Severity</th>
         <th>Installed Version</th>
         <th>Fixed Version</th>
-    </tr>
-    <tr>
-        <td><code>libcrypto3</code></td>
-        <td>CVE-2026-45447</td>
-        <td>HIGH</td>
-        <td>3.6.2-r5</td>
-        <td>3.6.3-r0</td>
-    </tr>
-    <tr>
-        <td><code>libexpat1</code></td>
-        <td>CVE-2026-56131</td>
-        <td>HIGH</td>
-        <td>2.8.1-r1</td>
-        <td>2.8.2-r0</td>
-    </tr>
-    <tr>
-        <td><code>libexpat1</code></td>
-        <td>CVE-2026-56407</td>
-        <td>HIGH</td>
-        <td>2.8.1-r1</td>
-        <td>2.8.2-r0</td>
-    </tr>
-    <tr>
-        <td><code>libexpat1</code></td>
-        <td>CVE-2026-56408</td>
-        <td>HIGH</td>
-        <td>2.8.1-r1</td>
-        <td>2.8.2-r0</td>
-    </tr>
-    <tr>
-        <td><code>libssl3</code></td>
-        <td>CVE-2026-45447</td>
-        <td>HIGH</td>
-        <td>3.6.2-r5</td>
-        <td>3.6.3-r0</td>
     </tr>
     <tr>
         <td><code>node-gyp</code></td>
