@@ -5,6 +5,8 @@ metadata:
   labels:
     grafana_dashboard: "1"
   name: metalstack-dashboards
+  annotations:
+    grafana_folder: {{ required "metalstackDashboards.grafanaFolder must be set when metalstackDashboards.enabled is true" .Values.metalstackDashboards.grafanaFolder | quote }}
 data:
 {{ (.Files.Glob "dashboard-files/metalstack/*").AsConfig | indent 2 }}
 ---
