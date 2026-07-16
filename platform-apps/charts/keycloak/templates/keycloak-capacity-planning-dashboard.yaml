@@ -4,6 +4,8 @@ metadata:
   labels:
     grafana_dashboard: "1"
   name: keycloak-capacity-planning-dashboard
+  annotations:
+    grafana_folder: {{ required "grafanaFolder must be set" .Values.grafanaFolder | quote }}
 data:
   keycloak-capacity-planning-dashboard.json: |-
 {{ .Files.Get "dashboard-files/keycloak-capacity-planning-dashboard.json" | indent 4 }}

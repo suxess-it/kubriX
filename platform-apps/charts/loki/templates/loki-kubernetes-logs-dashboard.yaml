@@ -4,6 +4,8 @@ metadata:
   labels:
     grafana_dashboard: "1"
   name: loki-kubernetes-logs
+  annotations:
+    grafana_folder: {{ required "grafanaFolder must be set" .Values.grafanaFolder | quote }}
 data:
   loki-kubernetes-logs.json: |-
     {
