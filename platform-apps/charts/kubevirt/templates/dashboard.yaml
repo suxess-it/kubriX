@@ -5,6 +5,8 @@ metadata:
     grafana_dashboard: "1"
   name: kubevirt-grafana-dashboard
   namespace: kubevirt
+  annotations:
+    grafana_folder: {{ required "grafanaFolder must be set" .Values.grafanaFolder | quote }}
 data:
   kubevirt-dashboard.json: |-
 {{ .Files.Get "dashboard-files/kubevirt-dashboard.json" | indent 4 }}

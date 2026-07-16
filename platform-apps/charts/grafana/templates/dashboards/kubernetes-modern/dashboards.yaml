@@ -5,6 +5,8 @@ metadata:
   labels:
     grafana_dashboard: "1"
   name: kubernetes-modern-dashboards
+  annotations:
+    grafana_folder: {{ required "kubernetesModernDashboards.grafanaFolder must be set when kubernetesModernDashboards.enabled is true" .Values.kubernetesModernDashboards.grafanaFolder | quote }}
 data:
 {{ (.Files.Glob "dashboard-files/kubernetes-modern/*").AsConfig | indent 2 }}
 ---

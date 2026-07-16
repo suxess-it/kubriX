@@ -4,6 +4,8 @@ metadata:
   labels:
     grafana_dashboard: "1"
   name: openbao-dashboard
+  annotations:
+    grafana_folder: {{ required "grafanaFolder must be set" .Values.grafanaFolder | quote }}
 data:
   openbao-dashboard.json: |-
 {{ .Files.Get "dashboard-files/openbao-dashboard.json" | indent 4 }}
