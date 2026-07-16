@@ -151,7 +151,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>Node.js</code></h3>
-<h4>Vulnerabilities (91)</h4>
+<h4>Vulnerabilities (92)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -362,6 +362,13 @@
         <td>HIGH</td>
         <td>5.31.5</td>
         <td>5.31.6</td>
+    </tr>
+    <tr>
+        <td><code>systeminformation</code></td>
+        <td>CVE-2026-50289</td>
+        <td>HIGH</td>
+        <td>5.31.5</td>
+        <td>5.31.7</td>
     </tr>
     <tr>
         <td><code>tar</code></td>

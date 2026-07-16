@@ -1010,7 +1010,7 @@
         <td>CVE-2026-15308</td>
         <td>HIGH</td>
         <td>3.12.12-1.el9_7</td>
-        <td></td>
+        <td>3.12.13-3.el9_8.1</td>
     </tr>
     <tr>
         <td><code>python3.12</code></td>
@@ -1045,7 +1045,7 @@
         <td>CVE-2026-15308</td>
         <td>HIGH</td>
         <td>3.12.12-1.el9_7</td>
-        <td></td>
+        <td>3.12.13-3.el9_8.1</td>
     </tr>
     <tr>
         <td><code>python3.12-libs</code></td>
