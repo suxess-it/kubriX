@@ -12,6 +12,7 @@ mimir:
   mimir:
     structuredConfig:
       limits:
+        compactor_blocks_retention_period: 30d
         max_global_series_per_user: 500000
         cardinality_analysis_enabled: true
   # continue to use classic arch (https://grafana.com/docs/helm-charts/mimir-distributed/latest/migration-guides/migrate-helm-chart-5.x-to-6.0/#continue-using-classic-architecture-disable-ingest-storage)
@@ -42,3 +43,10 @@ mimir:
   metaMonitoring:
     grafanaAgent:
       enabled: false
+    dashboards:
+      enabled: true
+      annotations:
+        argocd.argoproj.io/sync-options: ServerSideApply=true
+        grafana_folder: "kubriX"
+    serviceMonitor:
+      enabled: true
