@@ -42,6 +42,10 @@ falco:
     config:
       loki:
         hostport: "http://sx-loki.loki.svc.cluster.local:3100"
+        grafanaDashboard:
+          configMap:
+            folder: "kubriX"
+            folderAnnotation: grafana_folder
 
 falco-exporter:
   falco:
