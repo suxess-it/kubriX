@@ -53,6 +53,8 @@ falco-exporter:
   grafanaDashboard:
     enabled: true
     namespace: falco
+    folder: "kubriX"
+    folderAnnotation: grafana_folder
 
   prometheusRules:
     enabled: true
@@ -67,3 +69,5 @@ k8s-metacollector:
         collector:
           name: k8s-metacollector-grafana-dashboard
           namespace: falco
+          folder: "kubriX"
+          folderAnnotation: grafana_folder
