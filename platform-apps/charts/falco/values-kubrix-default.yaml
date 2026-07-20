@@ -42,6 +42,10 @@ falco:
     config:
       loki:
         hostport: "http://sx-loki.loki.svc.cluster.local:3100"
+        grafanaDashboard:
+          configMap:
+            folder: "kubriX"
+            folderAnnotation: grafana_folder
 
 falco-exporter:
   falco:
@@ -53,6 +57,8 @@ falco-exporter:
   grafanaDashboard:
     enabled: true
     namespace: falco
+    folder: "kubriX"
+    folderAnnotation: grafana_folder
 
   prometheusRules:
     enabled: true
@@ -67,3 +73,5 @@ k8s-metacollector:
         collector:
           name: k8s-metacollector-grafana-dashboard
           namespace: falco
+          folder: "kubriX"
+          folderAnnotation: grafana_folder
