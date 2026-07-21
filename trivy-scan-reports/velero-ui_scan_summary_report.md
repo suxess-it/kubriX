@@ -1400,7 +1400,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>Node.js</code></h3>
-<h4>Vulnerabilities (26)</h4>
+<h4>Vulnerabilities (29)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -1408,6 +1408,13 @@
         <th>Severity</th>
         <th>Installed Version</th>
         <th>Fixed Version</th>
+    </tr>
+    <tr>
+        <td><code>brace-expansion</code></td>
+        <td>CVE-2026-13149</td>
+        <td>HIGH</td>
+        <td>2.0.1</td>
+        <td>5.0.7, 1.1.16, 2.1.2</td>
     </tr>
     <tr>
         <td><code>cross-spawn</code></td>
@@ -1551,6 +1558,13 @@
     </tr>
     <tr>
         <td><code>tar</code></td>
+        <td>CVE-2026-59873</td>
+        <td>CRITICAL</td>
+        <td>6.2.0</td>
+        <td>7.5.19</td>
+    </tr>
+    <tr>
+        <td><code>tar</code></td>
         <td>CVE-2026-23745</td>
         <td>HIGH</td>
         <td>6.2.0</td>
@@ -1590,6 +1604,13 @@
         <td>HIGH</td>
         <td>6.2.0</td>
         <td>7.5.11</td>
+    </tr>
+    <tr>
+        <td><code>tar</code></td>
+        <td>CVE-2026-59874</td>
+        <td>HIGH</td>
+        <td>6.2.0</td>
+        <td>7.5.18</td>
     </tr>
 </table>
 <h4>No Misconfigurations found</h4>

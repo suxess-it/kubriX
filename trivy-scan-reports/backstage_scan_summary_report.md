@@ -151,7 +151,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>Node.js</code></h3>
-<h4>Vulnerabilities (93)</h4>
+<h4>Vulnerabilities (110)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -280,6 +280,41 @@
         <td>5.2.2</td>
     </tr>
     <tr>
+        <td><code>brace-expansion</code></td>
+        <td>CVE-2026-13149</td>
+        <td>HIGH</td>
+        <td>1.1.13</td>
+        <td>5.0.7, 1.1.16, 2.1.2</td>
+    </tr>
+    <tr>
+        <td><code>brace-expansion</code></td>
+        <td>CVE-2026-13149</td>
+        <td>HIGH</td>
+        <td>1.1.13</td>
+        <td>5.0.7, 1.1.16, 2.1.2</td>
+    </tr>
+    <tr>
+        <td><code>brace-expansion</code></td>
+        <td>CVE-2026-13149</td>
+        <td>HIGH</td>
+        <td>1.1.13</td>
+        <td>5.0.7, 1.1.16, 2.1.2</td>
+    </tr>
+    <tr>
+        <td><code>brace-expansion</code></td>
+        <td>CVE-2026-13149</td>
+        <td>HIGH</td>
+        <td>2.0.3</td>
+        <td>5.0.7, 1.1.16, 2.1.2</td>
+    </tr>
+    <tr>
+        <td><code>brace-expansion</code></td>
+        <td>CVE-2026-13149</td>
+        <td>HIGH</td>
+        <td>5.0.5</td>
+        <td>5.0.7, 1.1.16, 2.1.2</td>
+    </tr>
+    <tr>
         <td><code>fast-uri</code></td>
         <td>CVE-2026-6321</td>
         <td>HIGH</td>
@@ -336,6 +371,34 @@
         <td>3.0.7</td>
     </tr>
     <tr>
+        <td><code>js-yaml</code></td>
+        <td>CVE-2026-59869</td>
+        <td>HIGH</td>
+        <td>3.14.2</td>
+        <td>3.15.0, 4.3.0</td>
+    </tr>
+    <tr>
+        <td><code>js-yaml</code></td>
+        <td>CVE-2026-59869</td>
+        <td>HIGH</td>
+        <td>3.14.2</td>
+        <td>3.15.0, 4.3.0</td>
+    </tr>
+    <tr>
+        <td><code>js-yaml</code></td>
+        <td>CVE-2026-59869</td>
+        <td>HIGH</td>
+        <td>3.14.2</td>
+        <td>3.15.0, 4.3.0</td>
+    </tr>
+    <tr>
+        <td><code>js-yaml</code></td>
+        <td>CVE-2026-59869</td>
+        <td>HIGH</td>
+        <td>4.1.1</td>
+        <td>3.15.0, 4.3.0</td>
+    </tr>
+    <tr>
         <td><code>jsonata</code></td>
         <td>CVE-2026-52746</td>
         <td>HIGH</td>
@@ -379,6 +442,20 @@
     </tr>
     <tr>
         <td><code>tar</code></td>
+        <td>CVE-2026-59873</td>
+        <td>CRITICAL</td>
+        <td>6.2.1</td>
+        <td>7.5.19</td>
+    </tr>
+    <tr>
+        <td><code>tar</code></td>
+        <td>CVE-2026-59873</td>
+        <td>CRITICAL</td>
+        <td>6.2.1</td>
+        <td>7.5.19</td>
+    </tr>
+    <tr>
+        <td><code>tar</code></td>
         <td>CVE-2026-23745</td>
         <td>HIGH</td>
         <td>6.2.1</td>
@@ -460,6 +537,48 @@
         <td>HIGH</td>
         <td>6.2.1</td>
         <td>7.5.11</td>
+    </tr>
+    <tr>
+        <td><code>tar</code></td>
+        <td>CVE-2026-59874</td>
+        <td>HIGH</td>
+        <td>6.2.1</td>
+        <td>7.5.18</td>
+    </tr>
+    <tr>
+        <td><code>tar</code></td>
+        <td>CVE-2026-59874</td>
+        <td>HIGH</td>
+        <td>6.2.1</td>
+        <td>7.5.18</td>
+    </tr>
+    <tr>
+        <td><code>tar</code></td>
+        <td>CVE-2026-59873</td>
+        <td>CRITICAL</td>
+        <td>7.5.13</td>
+        <td>7.5.19</td>
+    </tr>
+    <tr>
+        <td><code>tar</code></td>
+        <td>CVE-2026-59874</td>
+        <td>HIGH</td>
+        <td>7.5.13</td>
+        <td>7.5.18</td>
+    </tr>
+    <tr>
+        <td><code>tar</code></td>
+        <td>CVE-2026-59873</td>
+        <td>CRITICAL</td>
+        <td>7.5.15</td>
+        <td>7.5.19</td>
+    </tr>
+    <tr>
+        <td><code>tar</code></td>
+        <td>CVE-2026-59874</td>
+        <td>HIGH</td>
+        <td>7.5.15</td>
+        <td>7.5.18</td>
     </tr>
     <tr>
         <td><code>tmp</code></td>
