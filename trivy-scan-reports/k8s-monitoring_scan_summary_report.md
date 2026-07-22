@@ -56,7 +56,7 @@
         <td>CVE-2026-58016</td>
         <td>HIGH</td>
         <td>2.68.4-18.el9_7.1</td>
-        <td></td>
+        <td>2.68.4-19.el9_8.2</td>
     </tr>
     <tr>
         <td><code>gnutls</code></td>
@@ -91,7 +91,7 @@
         <td>CVE-2026-54369</td>
         <td>HIGH</td>
         <td>2.3.1-4.el9</td>
-        <td></td>
+        <td>2.4.0-1.el9_8</td>
     </tr>
     <tr>
         <td><code>libarchive</code></td>
@@ -173,7 +173,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>usr/local/bin/helm-operator</code></h3>
-<h4>Vulnerabilities (31)</h4>
+<h4>Vulnerabilities (32)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -307,6 +307,13 @@
         <td>HIGH</td>
         <td>v0.49.0</td>
         <td>0.55.0</td>
+    </tr>
+    <tr>
+        <td><code>google.golang.org/grpc</code></td>
+        <td>GHSA-hrxh-6v49-42gf</td>
+        <td>HIGH</td>
+        <td>v1.79.3</td>
+        <td>1.82.1</td>
     </tr>
     <tr>
         <td><code>oras.land/oras-go/v2</code></td>
@@ -1541,7 +1548,23 @@
 <h4>No Vulnerabilities found</h4>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>manager</code></h3>
-<h4>No Vulnerabilities found</h4>
+<h4>Vulnerabilities (1)</h4>
+<table>
+    <tr>
+        <th>Package</th>
+        <th>ID</th>
+        <th>Severity</th>
+        <th>Installed Version</th>
+        <th>Fixed Version</th>
+    </tr>
+    <tr>
+        <td><code>google.golang.org/grpc</code></td>
+        <td>GHSA-hrxh-6v49-42gf</td>
+        <td>HIGH</td>
+        <td>v1.80.0</td>
+        <td>1.82.1</td>
+    </tr>
+</table>
 <h4>No Misconfigurations found</h4>
 
 <h3>Target <code>bin/node_exporter</code></h3>
@@ -1736,7 +1759,7 @@
 <h4>No Vulnerabilities found</h4>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>kube-state-metrics</code></h3>
-<h4>Vulnerabilities (1)</h4>
+<h4>Vulnerabilities (2)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -1744,6 +1767,13 @@
         <th>Severity</th>
         <th>Installed Version</th>
         <th>Fixed Version</th>
+    </tr>
+    <tr>
+        <td><code>google.golang.org/grpc</code></td>
+        <td>GHSA-hrxh-6v49-42gf</td>
+        <td>HIGH</td>
+        <td>v1.79.3</td>
+        <td>1.82.1</td>
     </tr>
     <tr>
         <td><code>stdlib</code></td>

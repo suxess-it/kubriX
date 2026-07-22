@@ -3,7 +3,7 @@
 <h4>No Vulnerabilities found</h4>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>usr/local/bin/trivy-operator</code></h3>
-<h4>Vulnerabilities (8)</h4>
+<h4>Vulnerabilities (9)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -53,6 +53,13 @@
         <td>HIGH</td>
         <td>v0.54.0</td>
         <td>0.55.0</td>
+    </tr>
+    <tr>
+        <td><code>google.golang.org/grpc</code></td>
+        <td>GHSA-hrxh-6v49-42gf</td>
+        <td>HIGH</td>
+        <td>v1.80.0</td>
+        <td>1.82.1</td>
     </tr>
     <tr>
         <td><code>oras.land/oras-go/v2</code></td>

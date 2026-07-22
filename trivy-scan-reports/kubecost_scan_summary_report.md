@@ -34,7 +34,7 @@
         <td>CVE-2026-54369</td>
         <td>HIGH</td>
         <td>2.3.1-4.el9</td>
-        <td></td>
+        <td>2.4.0-1.el9_8</td>
     </tr>
     <tr>
         <td><code>curl-minimal</code></td>
@@ -90,7 +90,7 @@
         <td>CVE-2026-58016</td>
         <td>HIGH</td>
         <td>2.68.4-18.el9_7</td>
-        <td></td>
+        <td>2.68.4-19.el9_8.2</td>
     </tr>
     <tr>
         <td><code>gnupg2</code></td>
@@ -132,7 +132,7 @@
         <td>CVE-2026-54369</td>
         <td>HIGH</td>
         <td>2.3.1-4.el9</td>
-        <td></td>
+        <td>2.4.0-1.el9_8</td>
     </tr>
     <tr>
         <td><code>libarchive</code></td>
@@ -235,7 +235,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>go/bin/app</code></h3>
-<h4>Vulnerabilities (36)</h4>
+<h4>Vulnerabilities (37)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -399,6 +399,13 @@
         <td>1.79.3</td>
     </tr>
     <tr>
+        <td><code>google.golang.org/grpc</code></td>
+        <td>GHSA-hrxh-6v49-42gf</td>
+        <td>HIGH</td>
+        <td>v1.74.2</td>
+        <td>1.82.1</td>
+    </tr>
+    <tr>
         <td><code>stdlib</code></td>
         <td>CVE-2025-68121</td>
         <td>CRITICAL</td>
@@ -514,7 +521,7 @@
         <td>CVE-2026-54369</td>
         <td>HIGH</td>
         <td>2.3.1-4.el9</td>
-        <td></td>
+        <td>2.4.0-1.el9_8</td>
     </tr>
     <tr>
         <td><code>curl-minimal</code></td>
@@ -570,7 +577,7 @@
         <td>CVE-2026-58016</td>
         <td>HIGH</td>
         <td>2.68.4-18.el9_7</td>
-        <td></td>
+        <td>2.68.4-19.el9_8.2</td>
     </tr>
     <tr>
         <td><code>gnupg2</code></td>
@@ -612,7 +619,7 @@
         <td>CVE-2026-54369</td>
         <td>HIGH</td>
         <td>2.3.1-4.el9</td>
-        <td></td>
+        <td>2.4.0-1.el9_8</td>
     </tr>
     <tr>
         <td><code>libarchive</code></td>
@@ -870,7 +877,7 @@
         <td>CVE-2026-58016</td>
         <td>HIGH</td>
         <td>2.68.4-18.el9_7</td>
-        <td></td>
+        <td>2.68.4-19.el9_8.2</td>
     </tr>
     <tr>
         <td><code>gnupg2</code></td>
@@ -912,7 +919,7 @@
         <td>CVE-2026-54369</td>
         <td>HIGH</td>
         <td>2.3.1-4.el9</td>
-        <td></td>
+        <td>2.4.0-1.el9_8</td>
     </tr>
     <tr>
         <td><code>libarchive</code></td>
@@ -1168,7 +1175,7 @@
         <td>CVE-2026-58016</td>
         <td>HIGH</td>
         <td>2.68.4-18.el9_7</td>
-        <td></td>
+        <td>2.68.4-19.el9_8.2</td>
     </tr>
     <tr>
         <td><code>gnupg2</code></td>
@@ -1210,7 +1217,7 @@
         <td>CVE-2026-54369</td>
         <td>HIGH</td>
         <td>2.3.1-4.el9</td>
-        <td></td>
+        <td>2.4.0-1.el9_8</td>
     </tr>
     <tr>
         <td><code>libarchive</code></td>
@@ -1299,7 +1306,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>go/bin/app</code></h3>
-<h4>Vulnerabilities (32)</h4>
+<h4>Vulnerabilities (33)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -1435,6 +1442,13 @@
         <td>1.79.3</td>
     </tr>
     <tr>
+        <td><code>google.golang.org/grpc</code></td>
+        <td>GHSA-hrxh-6v49-42gf</td>
+        <td>HIGH</td>
+        <td>v1.74.2</td>
+        <td>1.82.1</td>
+    </tr>
+    <tr>
         <td><code>stdlib</code></td>
         <td>CVE-2025-68121</td>
         <td>CRITICAL</td>
@@ -1536,7 +1550,7 @@
 <h4>No Misconfigurations found</h4>
 
 <h3>Target <code>bin/prometheus</code></h3>
-<h4>Vulnerabilities (34)</h4>
+<h4>Vulnerabilities (35)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -1686,6 +1700,13 @@
         <td>1.79.3</td>
     </tr>
     <tr>
+        <td><code>google.golang.org/grpc</code></td>
+        <td>GHSA-hrxh-6v49-42gf</td>
+        <td>HIGH</td>
+        <td>v1.77.0</td>
+        <td>1.82.1</td>
+    </tr>
+    <tr>
         <td><code>stdlib</code></td>
         <td>CVE-2025-68121</td>
         <td>CRITICAL</td>
@@ -1786,7 +1807,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>bin/promtool</code></h3>
-<h4>Vulnerabilities (32)</h4>
+<h4>Vulnerabilities (33)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -1920,6 +1941,13 @@
         <td>CRITICAL</td>
         <td>v1.77.0</td>
         <td>1.79.3</td>
+    </tr>
+    <tr>
+        <td><code>google.golang.org/grpc</code></td>
+        <td>GHSA-hrxh-6v49-42gf</td>
+        <td>HIGH</td>
+        <td>v1.77.0</td>
+        <td>1.82.1</td>
     </tr>
     <tr>
         <td><code>stdlib</code></td>

@@ -237,7 +237,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>usr/bin/falco-exporter</code></h3>
-<h4>Vulnerabilities (48)</h4>
+<h4>Vulnerabilities (49)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -301,6 +301,13 @@
         <td>CRITICAL</td>
         <td>v1.46.2</td>
         <td>1.79.3</td>
+    </tr>
+    <tr>
+        <td><code>google.golang.org/grpc</code></td>
+        <td>GHSA-hrxh-6v49-42gf</td>
+        <td>HIGH</td>
+        <td>v1.46.2</td>
+        <td>1.82.1</td>
     </tr>
     <tr>
         <td><code>google.golang.org/grpc</code></td>
@@ -728,7 +735,7 @@
 <h4>No Vulnerabilities found</h4>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>usr/bin/falcoctl</code></h3>
-<h4>Vulnerabilities (40)</h4>
+<h4>Vulnerabilities (41)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -911,6 +918,13 @@
         <td>CRITICAL</td>
         <td>v1.78.0</td>
         <td>1.79.3</td>
+    </tr>
+    <tr>
+        <td><code>google.golang.org/grpc</code></td>
+        <td>GHSA-hrxh-6v49-42gf</td>
+        <td>HIGH</td>
+        <td>v1.78.0</td>
+        <td>1.82.1</td>
     </tr>
     <tr>
         <td><code>oras.land/oras-go/v2</code></td>
@@ -1462,7 +1476,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>app/falcosidekick</code></h3>
-<h4>Vulnerabilities (37)</h4>
+<h4>Vulnerabilities (38)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -1626,6 +1640,13 @@
         <td>1.79.3</td>
     </tr>
     <tr>
+        <td><code>google.golang.org/grpc</code></td>
+        <td>GHSA-hrxh-6v49-42gf</td>
+        <td>HIGH</td>
+        <td>v1.75.0</td>
+        <td>1.82.1</td>
+    </tr>
+    <tr>
         <td><code>stdlib</code></td>
         <td>CVE-2025-68121</td>
         <td>CRITICAL</td>
@@ -1737,7 +1758,7 @@
 <h4>No Vulnerabilities found</h4>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>meta-collector</code></h3>
-<h4>Vulnerabilities (17)</h4>
+<h4>Vulnerabilities (18)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -1780,6 +1801,13 @@
         <td>CRITICAL</td>
         <td>v1.78.0</td>
         <td>1.79.3</td>
+    </tr>
+    <tr>
+        <td><code>google.golang.org/grpc</code></td>
+        <td>GHSA-hrxh-6v49-42gf</td>
+        <td>HIGH</td>
+        <td>v1.78.0</td>
+        <td>1.82.1</td>
     </tr>
     <tr>
         <td><code>stdlib</code></td>
