@@ -27,5 +27,5 @@ export const sharedConfig = {
     video: 'retain-on-failure',
     ignoreHTTPSErrors: true,
   },
-  outputDir: 'data/artifacts/',
+  outputDir: 'data/test-results/',
 };
