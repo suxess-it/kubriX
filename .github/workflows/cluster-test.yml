@@ -657,8 +657,11 @@ jobs:
         with:
           report_paths: 'artifacts/**/junit-report.xml'
           check_name: 'Playwright tests (${{ matrix.target-type }})'
+          update_check: true
+          job_name: 'Playwright tests (${{ matrix.target-type }})'
           flaky_summary: true
           include_time_in_summary: true
+
       
       - name: Password protect Playwright traces
         if: always()
