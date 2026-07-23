@@ -256,6 +256,7 @@ jobs:
          github.event_name == 'workflow_dispatch')
       }}
     permissions:
+      checks: write
       contents: write
       statuses: read
     strategy:
@@ -649,6 +650,18 @@ jobs:
         with:
           mode: unlock
           key: default
+
+      - name: Publish Playwright test summary
+        if: always()
+        uses: mikepenz/action-junit-report@v6
+        with:
+          report_paths: 'artifacts/**/junit-report.xml'
+          update_check: true
+          job_name: 'create-cluster (${{ matrix.target-type }})'
+          check_name: 'Playwright tests (${{ matrix.target-type }})'
+          flaky_summary: true
+          include_time_in_summary: true
+          verbose_summary: false
       
       - name: Password protect Playwright traces
         if: always()
@@ -693,6 +706,8 @@ jobs:
           kubectl logs -n argocd deployment/sx-argocd-applicationset-controller
           kubectl logs -n backstage deployment/sx-backstage
           kubectl get pods -o name -n crossplane | xargs -I {} kubectl logs -n crossplane {} --all-containers=true
+          kubectl get pods -o name -n traefik | xargs -I {} kubectl logs -n traefik {} --all-containers=true
+          kubectl get pods -o name -n cnpg | xargs -I {} kubectl logs -n cnpg {} --all-containers=true
 
       - name: final analyzer with k8sgpt
         if: always()
