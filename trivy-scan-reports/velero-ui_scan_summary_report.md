@@ -1442,7 +1442,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>Node.js</code></h3>
-<h4>Vulnerabilities (32)</h4>
+<h4>Vulnerabilities (35)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -1569,6 +1569,27 @@
         <td>HIGH</td>
         <td>15.2.3</td>
         <td>15.5.18, 16.2.6</td>
+    </tr>
+    <tr>
+        <td><code>next</code></td>
+        <td>CVE-2026-64641</td>
+        <td>HIGH</td>
+        <td>15.2.3</td>
+        <td>15.5.21, 16.2.11</td>
+    </tr>
+    <tr>
+        <td><code>next</code></td>
+        <td>CVE-2026-64645</td>
+        <td>HIGH</td>
+        <td>15.2.3</td>
+        <td>15.5.21, 16.2.11</td>
+    </tr>
+    <tr>
+        <td><code>next</code></td>
+        <td>CVE-2026-64649</td>
+        <td>HIGH</td>
+        <td>15.2.3</td>
+        <td>15.5.21, 16.2.11</td>
     </tr>
     <tr>
         <td><code>next</code></td>
