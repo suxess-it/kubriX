@@ -1442,7 +1442,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>Node.js</code></h3>
-<h4>Vulnerabilities (35)</h4>
+<h4>Vulnerabilities (36)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -1618,6 +1618,13 @@
         <td>HIGH</td>
         <td>15.2.3</td>
         <td>15.5.15, 16.2.3</td>
+    </tr>
+    <tr>
+        <td><code>postcss</code></td>
+        <td>CVE-2026-45623</td>
+        <td>HIGH</td>
+        <td>8.4.31</td>
+        <td>8.5.12</td>
     </tr>
     <tr>
         <td><code>serialize-javascript</code></td>
