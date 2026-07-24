@@ -1,6 +1,6 @@
 
 <h3>Target <code>alpine:3.17 (alpine 3.17.10)</code></h3>
-<h4>Vulnerabilities (8)</h4>
+<h4>Vulnerabilities (6)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -12,13 +12,6 @@
     <tr>
         <td><code>libcrypto3</code></td>
         <td>CVE-2025-15467</td>
-        <td>CRITICAL</td>
-        <td>3.0.15-r0</td>
-        <td>3.0.19-r0</td>
-    </tr>
-    <tr>
-        <td><code>libcrypto3</code></td>
-        <td>CVE-2025-69419</td>
         <td>HIGH</td>
         <td>3.0.15-r0</td>
         <td>3.0.19-r0</td>
@@ -33,13 +26,6 @@
     <tr>
         <td><code>libssl3</code></td>
         <td>CVE-2025-15467</td>
-        <td>CRITICAL</td>
-        <td>3.0.15-r0</td>
-        <td>3.0.19-r0</td>
-    </tr>
-    <tr>
-        <td><code>libssl3</code></td>
-        <td>CVE-2025-69419</td>
         <td>HIGH</td>
         <td>3.0.15-r0</td>
         <td>3.0.19-r0</td>
@@ -68,12 +54,8 @@
 </table>
 <h4>No Misconfigurations found</h4>
 
-<h3>Target <code>curlimages/curl:latest (alpine 3.23.3)</code></h3>
-<h4>No Vulnerabilities found</h4>
-<h4>No Misconfigurations found</h4>
-
-<h3>Target <code>quay.io/keycloak/keycloak-operator:26.5.4 (redhat 9.7)</code></h3>
-<h4>Vulnerabilities (4)</h4>
+<h3>Target <code>curlimages/curl:latest (alpine 3.24.1)</code></h3>
+<h4>Vulnerabilities (1)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -83,36 +65,247 @@
         <th>Fixed Version</th>
     </tr>
     <tr>
-        <td><code>java-21-openjdk-headless</code></td>
-        <td>CVE-2025-66293</td>
+        <td><code>c-ares</code></td>
+        <td>CVE-2026-33630</td>
         <td>HIGH</td>
-        <td>1:21.0.10.0.7-1.el9</td>
+        <td>1.34.6-r0</td>
+        <td>1.34.8-r0</td>
+    </tr>
+</table>
+<h4>No Misconfigurations found</h4>
+
+<h3>Target <code>quay.io/keycloak/keycloak-operator:26.6.1 (redhat 9.7)</code></h3>
+<h4>Vulnerabilities (6)</h4>
+<table>
+    <tr>
+        <th>Package</th>
+        <th>ID</th>
+        <th>Severity</th>
+        <th>Installed Version</th>
+        <th>Fixed Version</th>
+    </tr>
+    <tr>
+        <td><code>java-25-openjdk-crypto-adapter</code></td>
+        <td>CVE-2026-22020</td>
+        <td>HIGH</td>
+        <td>1:25.0.3.0.9-1.el9</td>
         <td></td>
     </tr>
     <tr>
-        <td><code>java-21-openjdk-headless</code></td>
+        <td><code>java-25-openjdk-crypto-adapter</code></td>
         <td>CVE-2026-25646</td>
         <td>HIGH</td>
-        <td>1:21.0.10.0.7-1.el9</td>
+        <td>1:25.0.3.0.9-1.el9</td>
         <td></td>
     </tr>
     <tr>
-        <td><code>java-21-openjdk-headless</code></td>
-        <td>CVE-2026-26740</td>
+        <td><code>java-25-openjdk-headless</code></td>
+        <td>CVE-2026-22020</td>
         <td>HIGH</td>
-        <td>1:21.0.10.0.7-1.el9</td>
+        <td>1:25.0.3.0.9-1.el9</td>
         <td></td>
+    </tr>
+    <tr>
+        <td><code>java-25-openjdk-headless</code></td>
+        <td>CVE-2026-25646</td>
+        <td>HIGH</td>
+        <td>1:25.0.3.0.9-1.el9</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>libacl</code></td>
+        <td>CVE-2026-54369</td>
+        <td>HIGH</td>
+        <td>2.3.1-4.el9</td>
+        <td>2.4.0-1.el9_8</td>
     </tr>
     <tr>
         <td><code>libcap</code></td>
         <td>CVE-2026-4878</td>
         <td>HIGH</td>
-        <td>2.48-10.el9</td>
-        <td></td>
+        <td>2.48-10.el9_7.1</td>
+        <td>2.48-10.el9_8.1</td>
     </tr>
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>Java</code></h3>
+<h4>Vulnerabilities (23)</h4>
+<table>
+    <tr>
+        <th>Package</th>
+        <th>ID</th>
+        <th>Severity</th>
+        <th>Installed Version</th>
+        <th>Fixed Version</th>
+    </tr>
+    <tr>
+        <td><code>com.fasterxml.jackson.core:jackson-core</code></td>
+        <td>GHSA-r7wm-3cxj-wff9</td>
+        <td>HIGH</td>
+        <td>2.21.2</td>
+        <td>2.18.8, 2.21.4, 2.22.1</td>
+    </tr>
+    <tr>
+        <td><code>com.fasterxml.jackson.core:jackson-databind</code></td>
+        <td>CVE-2026-54512</td>
+        <td>HIGH</td>
+        <td>2.21.2</td>
+        <td>2.18.8, 3.1.4, 2.21.4</td>
+    </tr>
+    <tr>
+        <td><code>com.fasterxml.jackson.core:jackson-databind</code></td>
+        <td>CVE-2026-54513</td>
+        <td>HIGH</td>
+        <td>2.21.2</td>
+        <td>2.18.8, 2.21.4, 3.1.4</td>
+    </tr>
+    <tr>
+        <td><code>io.netty:netty-codec</code></td>
+        <td>CVE-2026-42583</td>
+        <td>HIGH</td>
+        <td>4.1.130.Final</td>
+        <td>4.1.133.Final</td>
+    </tr>
+    <tr>
+        <td><code>io.netty:netty-codec</code></td>
+        <td>CVE-2026-59901</td>
+        <td>HIGH</td>
+        <td>4.1.130.Final</td>
+        <td>4.1.136.Final</td>
+    </tr>
+    <tr>
+        <td><code>io.netty:netty-codec-dns</code></td>
+        <td>CVE-2026-42579</td>
+        <td>HIGH</td>
+        <td>4.1.130.Final</td>
+        <td>4.2.13.Final, 4.1.133.Final</td>
+    </tr>
+    <tr>
+        <td><code>io.netty:netty-codec-haproxy</code></td>
+        <td>CVE-2026-44893</td>
+        <td>HIGH</td>
+        <td>4.1.130.Final</td>
+        <td>4.2.15.Final, 4.1.135.Final</td>
+    </tr>
+    <tr>
+        <td><code>io.netty:netty-codec-haproxy</code></td>
+        <td>CVE-2026-48059</td>
+        <td>HIGH</td>
+        <td>4.1.130.Final</td>
+        <td>4.2.15.Final, 4.1.135.Final</td>
+    </tr>
+    <tr>
+        <td><code>io.netty:netty-codec-haproxy</code></td>
+        <td>CVE-2026-55851</td>
+        <td>HIGH</td>
+        <td>4.1.130.Final</td>
+        <td>4.2.16.Final, 4.1.136.Final</td>
+    </tr>
+    <tr>
+        <td><code>io.netty:netty-codec-http</code></td>
+        <td>CVE-2026-33870</td>
+        <td>HIGH</td>
+        <td>4.1.130.Final</td>
+        <td>4.1.132.Final, 4.2.10.Final</td>
+    </tr>
+    <tr>
+        <td><code>io.netty:netty-codec-http</code></td>
+        <td>CVE-2026-42584</td>
+        <td>HIGH</td>
+        <td>4.1.130.Final</td>
+        <td>4.2.13.Final, 4.1.133.Final</td>
+    </tr>
+    <tr>
+        <td><code>io.netty:netty-codec-http</code></td>
+        <td>CVE-2026-42587</td>
+        <td>HIGH</td>
+        <td>4.1.130.Final</td>
+        <td>4.2.13.Final, 4.1.133.Final</td>
+    </tr>
+    <tr>
+        <td><code>io.netty:netty-codec-http</code></td>
+        <td>CVE-2026-55831</td>
+        <td>HIGH</td>
+        <td>4.1.130.Final</td>
+        <td>4.2.16.Final, 4.1.136.Final</td>
+    </tr>
+    <tr>
+        <td><code>io.netty:netty-codec-http</code></td>
+        <td>CVE-2026-55833</td>
+        <td>HIGH</td>
+        <td>4.1.130.Final</td>
+        <td>4.2.16.Final, 4.1.136.Final</td>
+    </tr>
+    <tr>
+        <td><code>io.netty:netty-codec-http</code></td>
+        <td>CVE-2026-56745</td>
+        <td>HIGH</td>
+        <td>4.1.130.Final</td>
+        <td>4.2.16.Final, 4.1.136.Final</td>
+    </tr>
+    <tr>
+        <td><code>io.netty:netty-codec-http2</code></td>
+        <td>CVE-2026-33871</td>
+        <td>HIGH</td>
+        <td>4.1.130.Final</td>
+        <td>4.1.132.Final, 4.2.11.Final</td>
+    </tr>
+    <tr>
+        <td><code>io.netty:netty-codec-http2</code></td>
+        <td>CVE-2026-42587</td>
+        <td>HIGH</td>
+        <td>4.1.130.Final</td>
+        <td>4.2.13.Final, 4.1.133.Final</td>
+    </tr>
+    <tr>
+        <td><code>io.netty:netty-handler</code></td>
+        <td>CVE-2026-44249</td>
+        <td>HIGH</td>
+        <td>4.1.130.Final</td>
+        <td>4.2.15.Final, 4.1.135.Final</td>
+    </tr>
+    <tr>
+        <td><code>io.netty:netty-handler</code></td>
+        <td>CVE-2026-45416</td>
+        <td>HIGH</td>
+        <td>4.1.130.Final</td>
+        <td>4.2.15.Final, 4.1.135.Final</td>
+    </tr>
+    <tr>
+        <td><code>io.netty:netty-handler</code></td>
+        <td>CVE-2026-50010</td>
+        <td>HIGH</td>
+        <td>4.1.130.Final</td>
+        <td>4.2.15.Final, 4.1.135.Final</td>
+    </tr>
+    <tr>
+        <td><code>io.netty:netty-resolver-dns</code></td>
+        <td>CVE-2026-45674</td>
+        <td>HIGH</td>
+        <td>4.1.130.Final</td>
+        <td>4.2.15.Final, 4.1.135.Final</td>
+    </tr>
+    <tr>
+        <td><code>io.netty:netty-resolver-dns</code></td>
+        <td>CVE-2026-47691</td>
+        <td>HIGH</td>
+        <td>4.1.130.Final</td>
+        <td>4.2.15.Final, 4.1.135.Final</td>
+    </tr>
+    <tr>
+        <td><code>io.quarkus:quarkus-vertx-http</code></td>
+        <td>CVE-2026-39852</td>
+        <td>HIGH</td>
+        <td>3.33.1</td>
+        <td>3.20.6.1, 3.27.3.1, 3.33.1.1, 3.35.1.1</td>
+    </tr>
+</table>
+<h4>No Misconfigurations found</h4>
+
+<h3>Target <code>xpkg.upbound.io/crossplane-contrib/provider-keycloak:v2.21.1 (debian 13.5)</code></h3>
+<h4>No Vulnerabilities found</h4>
+<h4>No Misconfigurations found</h4>
+<h3>Target <code>usr/local/bin/provider</code></h3>
 <h4>Vulnerabilities (2)</h4>
 <table>
     <tr>
@@ -123,62 +316,18 @@
         <th>Fixed Version</th>
     </tr>
     <tr>
-        <td><code>io.netty:netty-codec-http</code></td>
-        <td>CVE-2026-33870</td>
-        <td>HIGH</td>
-        <td>4.1.130.Final</td>
-        <td>4.1.132.Final, 4.2.10.Final</td>
-    </tr>
-    <tr>
-        <td><code>io.netty:netty-codec-http2</code></td>
-        <td>CVE-2026-33871</td>
-        <td>HIGH</td>
-        <td>4.1.130.Final</td>
-        <td>4.1.132.Final, 4.2.11.Final</td>
-    </tr>
-</table>
-<h4>No Misconfigurations found</h4>
-
-<h3>Target <code>xpkg.upbound.io/crossplane-contrib/provider-keycloak:v2.18.0 (debian 12.12)</code></h3>
-<h4>No Vulnerabilities found</h4>
-<h4>No Misconfigurations found</h4>
-<h3>Target <code>usr/local/bin/provider</code></h3>
-<h4>Vulnerabilities (4)</h4>
-<table>
-    <tr>
-        <th>Package</th>
-        <th>ID</th>
-        <th>Severity</th>
-        <th>Installed Version</th>
-        <th>Fixed Version</th>
-    </tr>
-    <tr>
-        <td><code>github.com/antchfx/xpath</code></td>
-        <td>CVE-2026-32287</td>
-        <td>HIGH</td>
-        <td>v1.2.0</td>
-        <td>1.3.6</td>
-    </tr>
-    <tr>
         <td><code>google.golang.org/grpc</code></td>
-        <td>CVE-2026-33186</td>
-        <td>CRITICAL</td>
-        <td>v1.79.1</td>
-        <td>1.79.3</td>
+        <td>GHSA-hrxh-6v49-42gf</td>
+        <td>HIGH</td>
+        <td>v1.81.1</td>
+        <td>1.82.1</td>
     </tr>
     <tr>
         <td><code>stdlib</code></td>
-        <td>CVE-2026-32280</td>
+        <td>CVE-2026-39822</td>
         <td>HIGH</td>
-        <td>v1.25.8</td>
-        <td>1.25.9, 1.26.2</td>
-    </tr>
-    <tr>
-        <td><code>stdlib</code></td>
-        <td>CVE-2026-32282</td>
-        <td>HIGH</td>
-        <td>v1.25.8</td>
-        <td>1.25.9, 1.26.2</td>
+        <td>v1.25.11</td>
+        <td>1.25.12, 1.26.5, 1.27.0-rc.2</td>
     </tr>
 </table>
 <h4>No Misconfigurations found</h4>
