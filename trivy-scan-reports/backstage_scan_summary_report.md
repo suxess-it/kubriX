@@ -55,7 +55,7 @@
 <h4>No Misconfigurations found</h4>
 
 <h3>Target <code>ghcr.io/suxess-it/sx-backstage:v1.51.2 (wolfi 20230201)</code></h3>
-<h4>Vulnerabilities (4)</h4>
+<h4>Vulnerabilities (7)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -92,10 +92,31 @@
         <td>3.11.15-r8</td>
         <td>3.11.15-r9</td>
     </tr>
+    <tr>
+        <td><code>python-3.13-base</code></td>
+        <td>CVE-2026-15308</td>
+        <td>HIGH</td>
+        <td>3.13.14-r2</td>
+        <td>3.13.14-r3</td>
+    </tr>
+    <tr>
+        <td><code>python-3.14</code></td>
+        <td>CVE-2026-15308</td>
+        <td>HIGH</td>
+        <td>3.14.6-r3</td>
+        <td>3.14.6-r4</td>
+    </tr>
+    <tr>
+        <td><code>python-3.14-base</code></td>
+        <td>CVE-2026-15308</td>
+        <td>HIGH</td>
+        <td>3.14.6-r3</td>
+        <td>3.14.6-r4</td>
+    </tr>
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>Node.js</code></h3>
-<h4>Vulnerabilities (114)</h4>
+<h4>Vulnerabilities (119)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -253,6 +274,27 @@
     </tr>
     <tr>
         <td><code>brace-expansion</code></td>
+        <td>CVE-2026-14257</td>
+        <td>HIGH</td>
+        <td>1.1.13</td>
+        <td>5.0.8</td>
+    </tr>
+    <tr>
+        <td><code>brace-expansion</code></td>
+        <td>CVE-2026-14257</td>
+        <td>HIGH</td>
+        <td>1.1.13</td>
+        <td>5.0.8</td>
+    </tr>
+    <tr>
+        <td><code>brace-expansion</code></td>
+        <td>CVE-2026-14257</td>
+        <td>HIGH</td>
+        <td>1.1.13</td>
+        <td>5.0.8</td>
+    </tr>
+    <tr>
+        <td><code>brace-expansion</code></td>
         <td>CVE-2026-13149</td>
         <td>HIGH</td>
         <td>2.0.3</td>
@@ -260,10 +302,24 @@
     </tr>
     <tr>
         <td><code>brace-expansion</code></td>
+        <td>CVE-2026-14257</td>
+        <td>HIGH</td>
+        <td>2.0.3</td>
+        <td>5.0.8</td>
+    </tr>
+    <tr>
+        <td><code>brace-expansion</code></td>
         <td>CVE-2026-13149</td>
         <td>HIGH</td>
         <td>5.0.5</td>
         <td>5.0.7, 1.1.16, 2.1.2</td>
+    </tr>
+    <tr>
+        <td><code>brace-expansion</code></td>
+        <td>CVE-2026-14257</td>
+        <td>HIGH</td>
+        <td>5.0.5</td>
+        <td>5.0.8</td>
     </tr>
     <tr>
         <td><code>fast-uri</code></td>

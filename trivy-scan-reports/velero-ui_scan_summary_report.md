@@ -1,6 +1,6 @@
 
 <h3>Target <code>docker.io/dserio83/velero-api:0.3.1 (debian 12.11)</code></h3>
-<h4>Vulnerabilities (152)</h4>
+<h4>Vulnerabilities (156)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -487,6 +487,13 @@
     </tr>
     <tr>
         <td><code>libpython3.11-minimal</code></td>
+        <td>CVE-2026-15308</td>
+        <td>HIGH</td>
+        <td>3.11.2-6+deb12u6</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>libpython3.11-minimal</code></td>
         <td>CVE-2026-3644</td>
         <td>HIGH</td>
         <td>3.11.2-6+deb12u6</td>
@@ -530,6 +537,13 @@
     <tr>
         <td><code>libpython3.11-stdlib</code></td>
         <td>CVE-2026-11940</td>
+        <td>HIGH</td>
+        <td>3.11.2-6+deb12u6</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>libpython3.11-stdlib</code></td>
+        <td>CVE-2026-15308</td>
         <td>HIGH</td>
         <td>3.11.2-6+deb12u6</td>
         <td></td>
@@ -977,6 +991,13 @@
     </tr>
     <tr>
         <td><code>python3.11</code></td>
+        <td>CVE-2026-15308</td>
+        <td>HIGH</td>
+        <td>3.11.2-6+deb12u6</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>python3.11</code></td>
         <td>CVE-2026-3644</td>
         <td>HIGH</td>
         <td>3.11.2-6+deb12u6</td>
@@ -1020,6 +1041,13 @@
     <tr>
         <td><code>python3.11-minimal</code></td>
         <td>CVE-2026-11940</td>
+        <td>HIGH</td>
+        <td>3.11.2-6+deb12u6</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>python3.11-minimal</code></td>
+        <td>CVE-2026-15308</td>
         <td>HIGH</td>
         <td>3.11.2-6+deb12u6</td>
         <td></td>
@@ -1442,7 +1470,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>Node.js</code></h3>
-<h4>Vulnerabilities (36)</h4>
+<h4>Vulnerabilities (38)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -1457,6 +1485,13 @@
         <td>HIGH</td>
         <td>2.0.1</td>
         <td>5.0.7, 1.1.16, 2.1.2</td>
+    </tr>
+    <tr>
+        <td><code>brace-expansion</code></td>
+        <td>CVE-2026-14257</td>
+        <td>HIGH</td>
+        <td>2.0.1</td>
+        <td>5.0.8</td>
     </tr>
     <tr>
         <td><code>cross-spawn</code></td>
@@ -1625,6 +1660,13 @@
         <td>HIGH</td>
         <td>8.4.31</td>
         <td>8.5.12</td>
+    </tr>
+    <tr>
+        <td><code>postcss</code></td>
+        <td>GHSA-r28c-9q8g-f849</td>
+        <td>HIGH</td>
+        <td>8.4.31</td>
+        <td>8.5.18</td>
     </tr>
     <tr>
         <td><code>serialize-javascript</code></td>
