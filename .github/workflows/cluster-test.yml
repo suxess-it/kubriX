@@ -716,6 +716,7 @@ jobs:
           KUBRIX_DELETE_E2E_TESTS_REPO_TOKEN: ${{ secrets.KUBRIX_CUSTOMER_REPO_TOKEN }}
           GITHUB_ORG: "kubriX-demo"
           GITHUB_API: "https://api.github.com"
+          E2E_TEST_PR_NUMBER: "${{ github.run_id }}"
           KUBRIX_REPO: "${{ github.run_id }}-${{ job.check_run_id }}"
         run: |
           set -euo pipefail
@@ -768,5 +769,11 @@ jobs:
           }
 
           kubrix_repo="kubrix-cluster-test-${KUBRIX_REPO}"
-
+          app_of_apps_repo="kubrix-a${E2E_TEST_PR_NUMBER}-kubrixbot-app"
+          gitops_repo="kubrix-a${E2E_TEST_PR_NUMBER}-apps"
+          vcluster_repo="kubrix-a${E2E_TEST_PR_NUMBER}-kubrixbot-vcluster"
+  
+          delete_repo_if_exists "${app_of_apps_repo:-}"
+          delete_repo_if_exists "${gitops_repo:-}"
+          delete_repo_if_exists "${vcluster_repo:-}"
           delete_repo_if_exists "${kubrix_repo:-}"
