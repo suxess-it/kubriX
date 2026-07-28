@@ -1,6 +1,6 @@
 
 <h3>Target <code>ghcr.io/grafana/alloy-operator:1.10.0 (redhat 9.7)</code></h3>
-<h4>Vulnerabilities (23)</h4>
+<h4>Vulnerabilities (21)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -19,13 +19,6 @@
     <tr>
         <td><code>curl-minimal</code></td>
         <td>CVE-2026-11586</td>
-        <td>HIGH</td>
-        <td>7.76.1-35.el9_7.3</td>
-        <td></td>
-    </tr>
-    <tr>
-        <td><code>curl-minimal</code></td>
-        <td>CVE-2026-12064</td>
         <td>HIGH</td>
         <td>7.76.1-35.el9_7.3</td>
         <td></td>
@@ -124,13 +117,6 @@
     <tr>
         <td><code>libcurl-minimal</code></td>
         <td>CVE-2026-11586</td>
-        <td>HIGH</td>
-        <td>7.76.1-35.el9_7.3</td>
-        <td></td>
-    </tr>
-    <tr>
-        <td><code>libcurl-minimal</code></td>
-        <td>CVE-2026-12064</td>
         <td>HIGH</td>
         <td>7.76.1-35.el9_7.3</td>
         <td></td>

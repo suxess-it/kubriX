@@ -75,7 +75,7 @@
 <h4>No Misconfigurations found</h4>
 
 <h3>Target <code>quay.io/keycloak/keycloak-operator:26.6.1 (redhat 9.7)</code></h3>
-<h4>Vulnerabilities (6)</h4>
+<h4>Vulnerabilities (8)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -99,6 +99,13 @@
         <td></td>
     </tr>
     <tr>
+        <td><code>java-25-openjdk-crypto-adapter</code></td>
+        <td>CVE-2026-47063</td>
+        <td>HIGH</td>
+        <td>1:25.0.3.0.9-1.el9</td>
+        <td></td>
+    </tr>
+    <tr>
         <td><code>java-25-openjdk-headless</code></td>
         <td>CVE-2026-22020</td>
         <td>HIGH</td>
@@ -108,6 +115,13 @@
     <tr>
         <td><code>java-25-openjdk-headless</code></td>
         <td>CVE-2026-25646</td>
+        <td>HIGH</td>
+        <td>1:25.0.3.0.9-1.el9</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>java-25-openjdk-headless</code></td>
+        <td>CVE-2026-47063</td>
         <td>HIGH</td>
         <td>1:25.0.3.0.9-1.el9</td>
         <td></td>

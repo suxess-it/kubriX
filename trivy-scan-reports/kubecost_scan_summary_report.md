@@ -20,7 +20,7 @@
 <h4>No Misconfigurations found</h4>
 
 <h3>Target <code>gcr.io/kubecost1/cost-model:prod-2.9.6 (redhat 9.7)</code></h3>
-<h4>Vulnerabilities (29)</h4>
+<h4>Vulnerabilities (27)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -46,13 +46,6 @@
     <tr>
         <td><code>curl-minimal</code></td>
         <td>CVE-2026-11586</td>
-        <td>HIGH</td>
-        <td>7.76.1-34.el9</td>
-        <td></td>
-    </tr>
-    <tr>
-        <td><code>curl-minimal</code></td>
-        <td>CVE-2026-12064</td>
         <td>HIGH</td>
         <td>7.76.1-34.el9</td>
         <td></td>
@@ -165,13 +158,6 @@
     <tr>
         <td><code>libcurl-minimal</code></td>
         <td>CVE-2026-11586</td>
-        <td>HIGH</td>
-        <td>7.76.1-34.el9</td>
-        <td></td>
-    </tr>
-    <tr>
-        <td><code>libcurl-minimal</code></td>
-        <td>CVE-2026-12064</td>
         <td>HIGH</td>
         <td>7.76.1-34.el9</td>
         <td></td>
@@ -507,7 +493,7 @@
 <h4>No Misconfigurations found</h4>
 
 <h3>Target <code>gcr.io/kubecost1/frontend:prod-2.9.6 (redhat 9.7)</code></h3>
-<h4>Vulnerabilities (42)</h4>
+<h4>Vulnerabilities (40)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -533,13 +519,6 @@
     <tr>
         <td><code>curl-minimal</code></td>
         <td>CVE-2026-11586</td>
-        <td>HIGH</td>
-        <td>7.76.1-34.el9</td>
-        <td></td>
-    </tr>
-    <tr>
-        <td><code>curl-minimal</code></td>
-        <td>CVE-2026-12064</td>
         <td>HIGH</td>
         <td>7.76.1-34.el9</td>
         <td></td>
@@ -652,13 +631,6 @@
     <tr>
         <td><code>libcurl-minimal</code></td>
         <td>CVE-2026-11586</td>
-        <td>HIGH</td>
-        <td>7.76.1-34.el9</td>
-        <td></td>
-    </tr>
-    <tr>
-        <td><code>libcurl-minimal</code></td>
-        <td>CVE-2026-12064</td>
         <td>HIGH</td>
         <td>7.76.1-34.el9</td>
         <td></td>
@@ -814,7 +786,7 @@
 <h4>No Misconfigurations found</h4>
 
 <h3>Target <code>gcr.io/kubecost1/kubecost-modeling:v0.1.34 (redhat 9.7)</code></h3>
-<h4>Vulnerabilities (36)</h4>
+<h4>Vulnerabilities (34)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -833,13 +805,6 @@
     <tr>
         <td><code>curl-minimal</code></td>
         <td>CVE-2026-11586</td>
-        <td>HIGH</td>
-        <td>7.76.1-34.el9</td>
-        <td></td>
-    </tr>
-    <tr>
-        <td><code>curl-minimal</code></td>
-        <td>CVE-2026-12064</td>
         <td>HIGH</td>
         <td>7.76.1-34.el9</td>
         <td></td>
@@ -952,13 +917,6 @@
     <tr>
         <td><code>libcurl-minimal</code></td>
         <td>CVE-2026-11586</td>
-        <td>HIGH</td>
-        <td>7.76.1-34.el9</td>
-        <td></td>
-    </tr>
-    <tr>
-        <td><code>libcurl-minimal</code></td>
-        <td>CVE-2026-12064</td>
         <td>HIGH</td>
         <td>7.76.1-34.el9</td>
         <td></td>
@@ -1119,7 +1077,7 @@
 <h4>No Misconfigurations found</h4>
 
 <h3>Target <code>icr.io/ibm-finops/agent:v1.0.8 (redhat 9.7)</code></h3>
-<h4>Vulnerabilities (25)</h4>
+<h4>Vulnerabilities (23)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -1138,13 +1096,6 @@
     <tr>
         <td><code>curl-minimal</code></td>
         <td>CVE-2026-11586</td>
-        <td>HIGH</td>
-        <td>7.76.1-34.el9</td>
-        <td></td>
-    </tr>
-    <tr>
-        <td><code>curl-minimal</code></td>
-        <td>CVE-2026-12064</td>
         <td>HIGH</td>
         <td>7.76.1-34.el9</td>
         <td></td>
@@ -1250,13 +1201,6 @@
     <tr>
         <td><code>libcurl-minimal</code></td>
         <td>CVE-2026-11586</td>
-        <td>HIGH</td>
-        <td>7.76.1-34.el9</td>
-        <td></td>
-    </tr>
-    <tr>
-        <td><code>libcurl-minimal</code></td>
-        <td>CVE-2026-12064</td>
         <td>HIGH</td>
         <td>7.76.1-34.el9</td>
         <td></td>
