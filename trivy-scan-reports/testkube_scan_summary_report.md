@@ -78,7 +78,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>opt/bitnami/mongodb/bin/bsondump</code></h3>
-<h4>Vulnerabilities (17)</h4>
+<h4>Vulnerabilities (18)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -184,6 +184,13 @@
         <td>HIGH</td>
         <td>v0.36.0</td>
         <td>0.55.0</td>
+    </tr>
+    <tr>
+        <td><code>golang.org/x/text</code></td>
+        <td>CVE-2026-56852</td>
+        <td>HIGH</td>
+        <td>v0.25.0</td>
+        <td>0.39.0</td>
     </tr>
     <tr>
         <td><code>stdlib</code></td>
@@ -209,7 +216,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>opt/bitnami/mongodb/bin/mongodump</code></h3>
-<h4>Vulnerabilities (17)</h4>
+<h4>Vulnerabilities (18)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -315,6 +322,13 @@
         <td>HIGH</td>
         <td>v0.36.0</td>
         <td>0.55.0</td>
+    </tr>
+    <tr>
+        <td><code>golang.org/x/text</code></td>
+        <td>CVE-2026-56852</td>
+        <td>HIGH</td>
+        <td>v0.25.0</td>
+        <td>0.39.0</td>
     </tr>
     <tr>
         <td><code>stdlib</code></td>
@@ -340,7 +354,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>opt/bitnami/mongodb/bin/mongoexport</code></h3>
-<h4>Vulnerabilities (17)</h4>
+<h4>Vulnerabilities (18)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -446,6 +460,13 @@
         <td>HIGH</td>
         <td>v0.36.0</td>
         <td>0.55.0</td>
+    </tr>
+    <tr>
+        <td><code>golang.org/x/text</code></td>
+        <td>CVE-2026-56852</td>
+        <td>HIGH</td>
+        <td>v0.25.0</td>
+        <td>0.39.0</td>
     </tr>
     <tr>
         <td><code>stdlib</code></td>
@@ -471,7 +492,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>opt/bitnami/mongodb/bin/mongofiles</code></h3>
-<h4>Vulnerabilities (17)</h4>
+<h4>Vulnerabilities (18)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -577,6 +598,13 @@
         <td>HIGH</td>
         <td>v0.36.0</td>
         <td>0.55.0</td>
+    </tr>
+    <tr>
+        <td><code>golang.org/x/text</code></td>
+        <td>CVE-2026-56852</td>
+        <td>HIGH</td>
+        <td>v0.25.0</td>
+        <td>0.39.0</td>
     </tr>
     <tr>
         <td><code>stdlib</code></td>
@@ -602,7 +630,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>opt/bitnami/mongodb/bin/mongoimport</code></h3>
-<h4>Vulnerabilities (17)</h4>
+<h4>Vulnerabilities (18)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -708,6 +736,13 @@
         <td>HIGH</td>
         <td>v0.36.0</td>
         <td>0.55.0</td>
+    </tr>
+    <tr>
+        <td><code>golang.org/x/text</code></td>
+        <td>CVE-2026-56852</td>
+        <td>HIGH</td>
+        <td>v0.25.0</td>
+        <td>0.39.0</td>
     </tr>
     <tr>
         <td><code>stdlib</code></td>
@@ -733,7 +768,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>opt/bitnami/mongodb/bin/mongorestore</code></h3>
-<h4>Vulnerabilities (17)</h4>
+<h4>Vulnerabilities (18)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -839,6 +874,13 @@
         <td>HIGH</td>
         <td>v0.36.0</td>
         <td>0.55.0</td>
+    </tr>
+    <tr>
+        <td><code>golang.org/x/text</code></td>
+        <td>CVE-2026-56852</td>
+        <td>HIGH</td>
+        <td>v0.25.0</td>
+        <td>0.39.0</td>
     </tr>
     <tr>
         <td><code>stdlib</code></td>
@@ -864,7 +906,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>opt/bitnami/mongodb/bin/mongostat</code></h3>
-<h4>Vulnerabilities (17)</h4>
+<h4>Vulnerabilities (18)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -970,6 +1012,13 @@
         <td>HIGH</td>
         <td>v0.36.0</td>
         <td>0.55.0</td>
+    </tr>
+    <tr>
+        <td><code>golang.org/x/text</code></td>
+        <td>CVE-2026-56852</td>
+        <td>HIGH</td>
+        <td>v0.25.0</td>
+        <td>0.39.0</td>
     </tr>
     <tr>
         <td><code>stdlib</code></td>
@@ -995,7 +1044,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>opt/bitnami/mongodb/bin/mongotop</code></h3>
-<h4>Vulnerabilities (17)</h4>
+<h4>Vulnerabilities (18)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -1103,6 +1152,13 @@
         <td>0.55.0</td>
     </tr>
     <tr>
+        <td><code>golang.org/x/text</code></td>
+        <td>CVE-2026-56852</td>
+        <td>HIGH</td>
+        <td>v0.25.0</td>
+        <td>0.39.0</td>
+    </tr>
+    <tr>
         <td><code>stdlib</code></td>
         <td>CVE-2026-27145</td>
         <td>HIGH</td>
@@ -1126,7 +1182,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>usr/bin/bsondump</code></h3>
-<h4>Vulnerabilities (21)</h4>
+<h4>Vulnerabilities (22)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -1225,6 +1281,13 @@
         <td>HIGH</td>
         <td>v0.47.0</td>
         <td>0.55.0</td>
+    </tr>
+    <tr>
+        <td><code>golang.org/x/text</code></td>
+        <td>CVE-2026-56852</td>
+        <td>HIGH</td>
+        <td>v0.31.0</td>
+        <td>0.39.0</td>
     </tr>
     <tr>
         <td><code>stdlib</code></td>
@@ -1285,7 +1348,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>usr/bin/mongodump</code></h3>
-<h4>Vulnerabilities (21)</h4>
+<h4>Vulnerabilities (22)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -1384,6 +1447,13 @@
         <td>HIGH</td>
         <td>v0.47.0</td>
         <td>0.55.0</td>
+    </tr>
+    <tr>
+        <td><code>golang.org/x/text</code></td>
+        <td>CVE-2026-56852</td>
+        <td>HIGH</td>
+        <td>v0.31.0</td>
+        <td>0.39.0</td>
     </tr>
     <tr>
         <td><code>stdlib</code></td>
@@ -1444,7 +1514,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>usr/bin/mongoexport</code></h3>
-<h4>Vulnerabilities (21)</h4>
+<h4>Vulnerabilities (22)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -1543,6 +1613,13 @@
         <td>HIGH</td>
         <td>v0.47.0</td>
         <td>0.55.0</td>
+    </tr>
+    <tr>
+        <td><code>golang.org/x/text</code></td>
+        <td>CVE-2026-56852</td>
+        <td>HIGH</td>
+        <td>v0.31.0</td>
+        <td>0.39.0</td>
     </tr>
     <tr>
         <td><code>stdlib</code></td>
@@ -1603,7 +1680,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>usr/bin/mongofiles</code></h3>
-<h4>Vulnerabilities (21)</h4>
+<h4>Vulnerabilities (22)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -1702,6 +1779,13 @@
         <td>HIGH</td>
         <td>v0.47.0</td>
         <td>0.55.0</td>
+    </tr>
+    <tr>
+        <td><code>golang.org/x/text</code></td>
+        <td>CVE-2026-56852</td>
+        <td>HIGH</td>
+        <td>v0.31.0</td>
+        <td>0.39.0</td>
     </tr>
     <tr>
         <td><code>stdlib</code></td>
@@ -1762,7 +1846,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>usr/bin/mongoimport</code></h3>
-<h4>Vulnerabilities (21)</h4>
+<h4>Vulnerabilities (22)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -1861,6 +1945,13 @@
         <td>HIGH</td>
         <td>v0.47.0</td>
         <td>0.55.0</td>
+    </tr>
+    <tr>
+        <td><code>golang.org/x/text</code></td>
+        <td>CVE-2026-56852</td>
+        <td>HIGH</td>
+        <td>v0.31.0</td>
+        <td>0.39.0</td>
     </tr>
     <tr>
         <td><code>stdlib</code></td>
@@ -1921,7 +2012,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>usr/bin/mongorestore</code></h3>
-<h4>Vulnerabilities (21)</h4>
+<h4>Vulnerabilities (22)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -2020,6 +2111,13 @@
         <td>HIGH</td>
         <td>v0.47.0</td>
         <td>0.55.0</td>
+    </tr>
+    <tr>
+        <td><code>golang.org/x/text</code></td>
+        <td>CVE-2026-56852</td>
+        <td>HIGH</td>
+        <td>v0.31.0</td>
+        <td>0.39.0</td>
     </tr>
     <tr>
         <td><code>stdlib</code></td>
@@ -2080,7 +2178,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>usr/bin/mongostat</code></h3>
-<h4>Vulnerabilities (21)</h4>
+<h4>Vulnerabilities (22)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -2179,6 +2277,13 @@
         <td>HIGH</td>
         <td>v0.47.0</td>
         <td>0.55.0</td>
+    </tr>
+    <tr>
+        <td><code>golang.org/x/text</code></td>
+        <td>CVE-2026-56852</td>
+        <td>HIGH</td>
+        <td>v0.31.0</td>
+        <td>0.39.0</td>
     </tr>
     <tr>
         <td><code>stdlib</code></td>
@@ -2239,7 +2344,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>usr/bin/mongotop</code></h3>
-<h4>Vulnerabilities (21)</h4>
+<h4>Vulnerabilities (22)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -2338,6 +2443,13 @@
         <td>HIGH</td>
         <td>v0.47.0</td>
         <td>0.55.0</td>
+    </tr>
+    <tr>
+        <td><code>golang.org/x/text</code></td>
+        <td>CVE-2026-56852</td>
+        <td>HIGH</td>
+        <td>v0.31.0</td>
+        <td>0.39.0</td>
     </tr>
     <tr>
         <td><code>stdlib</code></td>
@@ -2799,7 +2911,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>bin/app</code></h3>
-<h4>Vulnerabilities (5)</h4>
+<h4>Vulnerabilities (6)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -2828,6 +2940,13 @@
         <td>HIGH</td>
         <td>v28.5.2+incompatible</td>
         <td></td>
+    </tr>
+    <tr>
+        <td><code>golang.org/x/text</code></td>
+        <td>CVE-2026-56852</td>
+        <td>HIGH</td>
+        <td>v0.38.0</td>
+        <td>0.39.0</td>
     </tr>
     <tr>
         <td><code>google.golang.org/grpc</code></td>
@@ -2873,7 +2992,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>usr/bin/mc</code></h3>
-<h4>Vulnerabilities (34)</h4>
+<h4>Vulnerabilities (35)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -2993,6 +3112,13 @@
         <td>HIGH</td>
         <td>v0.39.0</td>
         <td>0.55.0</td>
+    </tr>
+    <tr>
+        <td><code>golang.org/x/text</code></td>
+        <td>CVE-2026-56852</td>
+        <td>HIGH</td>
+        <td>v0.24.0</td>
+        <td>0.39.0</td>
     </tr>
     <tr>
         <td><code>google.golang.org/grpc</code></td>
@@ -3123,7 +3249,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>usr/bin/minio</code></h3>
-<h4>Vulnerabilities (45)</h4>
+<h4>Vulnerabilities (46)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -3327,6 +3453,13 @@
         <td>HIGH</td>
         <td>v0.39.0</td>
         <td>0.55.0</td>
+    </tr>
+    <tr>
+        <td><code>golang.org/x/text</code></td>
+        <td>CVE-2026-56852</td>
+        <td>HIGH</td>
+        <td>v0.24.0</td>
+        <td>0.39.0</td>
     </tr>
     <tr>
         <td><code>google.golang.org/grpc</code></td>

@@ -170,7 +170,7 @@
 <h4>No Vulnerabilities found</h4>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>controller</code></h3>
-<h4>Vulnerabilities (15)</h4>
+<h4>Vulnerabilities (16)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -213,6 +213,13 @@
         <td>HIGH</td>
         <td>v0.53.0</td>
         <td>0.55.0</td>
+    </tr>
+    <tr>
+        <td><code>golang.org/x/text</code></td>
+        <td>CVE-2026-56852</td>
+        <td>HIGH</td>
+        <td>v0.36.0</td>
+        <td>0.39.0</td>
     </tr>
     <tr>
         <td><code>google.golang.org/grpc</code></td>
@@ -314,7 +321,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>frr-k8s</code></h3>
-<h4>Vulnerabilities (19)</h4>
+<h4>Vulnerabilities (20)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -364,6 +371,13 @@
         <td>HIGH</td>
         <td>v0.39.0</td>
         <td>0.55.0</td>
+    </tr>
+    <tr>
+        <td><code>golang.org/x/text</code></td>
+        <td>CVE-2026-56852</td>
+        <td>HIGH</td>
+        <td>v0.24.0</td>
+        <td>0.39.0</td>
     </tr>
     <tr>
         <td><code>google.golang.org/grpc</code></td>
@@ -459,7 +473,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>frr-metrics</code></h3>
-<h4>Vulnerabilities (19)</h4>
+<h4>Vulnerabilities (20)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -509,6 +523,13 @@
         <td>HIGH</td>
         <td>v0.39.0</td>
         <td>0.55.0</td>
+    </tr>
+    <tr>
+        <td><code>golang.org/x/text</code></td>
+        <td>CVE-2026-56852</td>
+        <td>HIGH</td>
+        <td>v0.24.0</td>
+        <td>0.39.0</td>
     </tr>
     <tr>
         <td><code>google.golang.org/grpc</code></td>
@@ -604,7 +625,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>frr-status</code></h3>
-<h4>Vulnerabilities (15)</h4>
+<h4>Vulnerabilities (16)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -640,6 +661,13 @@
         <td>HIGH</td>
         <td>v0.39.0</td>
         <td>0.55.0</td>
+    </tr>
+    <tr>
+        <td><code>golang.org/x/text</code></td>
+        <td>CVE-2026-56852</td>
+        <td>HIGH</td>
+        <td>v0.24.0</td>
+        <td>0.39.0</td>
     </tr>
     <tr>
         <td><code>stdlib</code></td>
@@ -721,7 +749,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>statuscleaner</code></h3>
-<h4>Vulnerabilities (15)</h4>
+<h4>Vulnerabilities (16)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -757,6 +785,13 @@
         <td>HIGH</td>
         <td>v0.39.0</td>
         <td>0.55.0</td>
+    </tr>
+    <tr>
+        <td><code>golang.org/x/text</code></td>
+        <td>CVE-2026-56852</td>
+        <td>HIGH</td>
+        <td>v0.24.0</td>
+        <td>0.39.0</td>
     </tr>
     <tr>
         <td><code>stdlib</code></td>
@@ -910,7 +945,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>frr-metrics</code></h3>
-<h4>Vulnerabilities (15)</h4>
+<h4>Vulnerabilities (16)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -953,6 +988,13 @@
         <td>HIGH</td>
         <td>v0.53.0</td>
         <td>0.55.0</td>
+    </tr>
+    <tr>
+        <td><code>golang.org/x/text</code></td>
+        <td>CVE-2026-56852</td>
+        <td>HIGH</td>
+        <td>v0.36.0</td>
+        <td>0.39.0</td>
     </tr>
     <tr>
         <td><code>google.golang.org/grpc</code></td>
@@ -1027,7 +1069,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>speaker</code></h3>
-<h4>Vulnerabilities (15)</h4>
+<h4>Vulnerabilities (16)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -1070,6 +1112,13 @@
         <td>HIGH</td>
         <td>v0.53.0</td>
         <td>0.55.0</td>
+    </tr>
+    <tr>
+        <td><code>golang.org/x/text</code></td>
+        <td>CVE-2026-56852</td>
+        <td>HIGH</td>
+        <td>v0.36.0</td>
+        <td>0.39.0</td>
     </tr>
     <tr>
         <td><code>google.golang.org/grpc</code></td>

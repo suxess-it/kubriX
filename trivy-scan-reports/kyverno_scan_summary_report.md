@@ -110,7 +110,7 @@
 <h4>No Vulnerabilities found</h4>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>ko-app/readiness-checker</code></h3>
-<h4>Vulnerabilities (11)</h4>
+<h4>Vulnerabilities (12)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -139,6 +139,13 @@
         <td>HIGH</td>
         <td>v0.53.0</td>
         <td>0.55.0</td>
+    </tr>
+    <tr>
+        <td><code>golang.org/x/text</code></td>
+        <td>CVE-2026-56852</td>
+        <td>HIGH</td>
+        <td>v0.36.0</td>
+        <td>0.39.0</td>
     </tr>
     <tr>
         <td><code>stdlib</code></td>
@@ -203,7 +210,7 @@
 <h4>No Vulnerabilities found</h4>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>ko-app/background-controller</code></h3>
-<h4>Vulnerabilities (25)</h4>
+<h4>Vulnerabilities (26)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -309,6 +316,13 @@
         <td>HIGH</td>
         <td>v0.53.0</td>
         <td>0.55.0</td>
+    </tr>
+    <tr>
+        <td><code>golang.org/x/text</code></td>
+        <td>CVE-2026-56852</td>
+        <td>HIGH</td>
+        <td>v0.36.0</td>
+        <td>0.39.0</td>
     </tr>
     <tr>
         <td><code>google.golang.org/grpc</code></td>
@@ -394,7 +408,7 @@
 <h4>No Vulnerabilities found</h4>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>ko-app/cleanup-controller</code></h3>
-<h4>Vulnerabilities (25)</h4>
+<h4>Vulnerabilities (26)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -502,6 +516,13 @@
         <td>0.55.0</td>
     </tr>
     <tr>
+        <td><code>golang.org/x/text</code></td>
+        <td>CVE-2026-56852</td>
+        <td>HIGH</td>
+        <td>v0.36.0</td>
+        <td>0.39.0</td>
+    </tr>
+    <tr>
         <td><code>google.golang.org/grpc</code></td>
         <td>GHSA-hrxh-6v49-42gf</td>
         <td>HIGH</td>
@@ -585,7 +606,7 @@
 <h4>No Vulnerabilities found</h4>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>ko-app/kubectl-kyverno</code></h3>
-<h4>Vulnerabilities (27)</h4>
+<h4>Vulnerabilities (28)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -707,6 +728,13 @@
         <td>0.55.0</td>
     </tr>
     <tr>
+        <td><code>golang.org/x/text</code></td>
+        <td>CVE-2026-56852</td>
+        <td>HIGH</td>
+        <td>v0.36.0</td>
+        <td>0.39.0</td>
+    </tr>
+    <tr>
         <td><code>google.golang.org/grpc</code></td>
         <td>GHSA-hrxh-6v49-42gf</td>
         <td>HIGH</td>
@@ -790,7 +818,7 @@
 <h4>No Vulnerabilities found</h4>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>ko-app/kyverno</code></h3>
-<h4>Vulnerabilities (25)</h4>
+<h4>Vulnerabilities (26)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -896,6 +924,13 @@
         <td>HIGH</td>
         <td>v0.53.0</td>
         <td>0.55.0</td>
+    </tr>
+    <tr>
+        <td><code>golang.org/x/text</code></td>
+        <td>CVE-2026-56852</td>
+        <td>HIGH</td>
+        <td>v0.36.0</td>
+        <td>0.39.0</td>
     </tr>
     <tr>
         <td><code>google.golang.org/grpc</code></td>
@@ -981,7 +1016,7 @@
 <h4>No Vulnerabilities found</h4>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>ko-app/kyverno-init</code></h3>
-<h4>Vulnerabilities (25)</h4>
+<h4>Vulnerabilities (26)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -1087,6 +1122,13 @@
         <td>HIGH</td>
         <td>v0.53.0</td>
         <td>0.55.0</td>
+    </tr>
+    <tr>
+        <td><code>golang.org/x/text</code></td>
+        <td>CVE-2026-56852</td>
+        <td>HIGH</td>
+        <td>v0.36.0</td>
+        <td>0.39.0</td>
     </tr>
     <tr>
         <td><code>google.golang.org/grpc</code></td>
@@ -1172,7 +1214,7 @@
 <h4>No Vulnerabilities found</h4>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>ko-app/reports-controller</code></h3>
-<h4>Vulnerabilities (25)</h4>
+<h4>Vulnerabilities (26)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -1278,6 +1320,13 @@
         <td>HIGH</td>
         <td>v0.53.0</td>
         <td>0.55.0</td>
+    </tr>
+    <tr>
+        <td><code>golang.org/x/text</code></td>
+        <td>CVE-2026-56852</td>
+        <td>HIGH</td>
+        <td>v0.36.0</td>
+        <td>0.39.0</td>
     </tr>
     <tr>
         <td><code>google.golang.org/grpc</code></td>

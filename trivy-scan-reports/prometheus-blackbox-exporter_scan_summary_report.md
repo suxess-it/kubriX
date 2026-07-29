@@ -1,6 +1,6 @@
 
 <h3>Target <code>bin/blackbox_exporter</code></h3>
-<h4>Vulnerabilities (29)</h4>
+<h4>Vulnerabilities (30)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -99,6 +99,13 @@
         <td>HIGH</td>
         <td>v0.47.0</td>
         <td>0.55.0</td>
+    </tr>
+    <tr>
+        <td><code>golang.org/x/text</code></td>
+        <td>CVE-2026-56852</td>
+        <td>HIGH</td>
+        <td>v0.31.0</td>
+        <td>0.39.0</td>
     </tr>
     <tr>
         <td><code>google.golang.org/grpc</code></td>
