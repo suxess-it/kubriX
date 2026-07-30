@@ -143,7 +143,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>Java</code></h3>
-<h4>Vulnerabilities (23)</h4>
+<h4>Vulnerabilities (24)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -312,6 +312,13 @@
         <td>HIGH</td>
         <td>3.33.1</td>
         <td>3.20.6.1, 3.27.3.1, 3.33.1.1, 3.35.1.1</td>
+    </tr>
+    <tr>
+        <td><code>io.quarkus:quarkus-vertx-http</code></td>
+        <td>CVE-2026-50559</td>
+        <td>HIGH</td>
+        <td>3.33.1</td>
+        <td>3.20.6.2, 3.27.4.1, 3.33.2.1, 3.36.3, 3.37.0</td>
     </tr>
 </table>
 <h4>No Misconfigurations found</h4>
