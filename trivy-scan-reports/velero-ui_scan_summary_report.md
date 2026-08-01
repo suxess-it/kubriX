@@ -1,6 +1,6 @@
 
 <h3>Target <code>docker.io/dserio83/velero-api:0.3.1 (debian 12.11)</code></h3>
-<h4>Vulnerabilities (155)</h4>
+<h4>Vulnerabilities (151)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -47,13 +47,6 @@
     <tr>
         <td><code>curl</code></td>
         <td>CVE-2026-8927</td>
-        <td>HIGH</td>
-        <td>7.88.1-10+deb12u12</td>
-        <td></td>
-    </tr>
-    <tr>
-        <td><code>curl</code></td>
-        <td>CVE-2026-8932</td>
         <td>HIGH</td>
         <td>7.88.1-10+deb12u12</td>
         <td></td>
@@ -157,13 +150,6 @@
         <td></td>
     </tr>
     <tr>
-        <td><code>libcurl3-gnutls</code></td>
-        <td>CVE-2026-8932</td>
-        <td>HIGH</td>
-        <td>7.88.1-10+deb12u12</td>
-        <td></td>
-    </tr>
-    <tr>
         <td><code>libcurl4</code></td>
         <td>CVE-2026-12064</td>
         <td>HIGH</td>
@@ -199,13 +185,6 @@
         <td></td>
     </tr>
     <tr>
-        <td><code>libcurl4</code></td>
-        <td>CVE-2026-8932</td>
-        <td>HIGH</td>
-        <td>7.88.1-10+deb12u12</td>
-        <td></td>
-    </tr>
-    <tr>
         <td><code>libexpat1</code></td>
         <td>CVE-2023-52425</td>
         <td>HIGH</td>
@@ -229,13 +208,6 @@
     <tr>
         <td><code>libexpat1</code></td>
         <td>CVE-2026-45186</td>
-        <td>HIGH</td>
-        <td>2.5.0-1+deb12u1</td>
-        <td></td>
-    </tr>
-    <tr>
-        <td><code>libexpat1</code></td>
-        <td>CVE-2026-56131</td>
         <td>HIGH</td>
         <td>2.5.0-1+deb12u1</td>
         <td></td>
@@ -1097,7 +1069,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>Python</code></h3>
-<h4>Vulnerabilities (18)</h4>
+<h4>Vulnerabilities (19)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -1126,6 +1098,13 @@
         <td>HIGH</td>
         <td>0.4.6</td>
         <td>0.6.3</td>
+    </tr>
+    <tr>
+        <td><code>pyasn1</code></td>
+        <td>CVE-2026-59884</td>
+        <td>HIGH</td>
+        <td>0.4.6</td>
+        <td>0.6.4</td>
     </tr>
     <tr>
         <td><code>pyasn1</code></td>
@@ -1491,7 +1470,7 @@
         <td>CVE-2026-14257</td>
         <td>HIGH</td>
         <td>2.0.1</td>
-        <td>5.0.8</td>
+        <td>5.0.8, 3.0.3, 2.1.3, 1.1.17</td>
     </tr>
     <tr>
         <td><code>cross-spawn</code></td>
@@ -1866,7 +1845,7 @@
 <h4>No Misconfigurations found</h4>
 
 <h3>Target <code>docker.io/dserio83/velero-watchdog:0.1.8 (debian 12.10)</code></h3>
-<h4>Vulnerabilities (125)</h4>
+<h4>Vulnerabilities (121)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -1913,13 +1892,6 @@
     <tr>
         <td><code>curl</code></td>
         <td>CVE-2026-8927</td>
-        <td>HIGH</td>
-        <td>7.88.1-10+deb12u12</td>
-        <td></td>
-    </tr>
-    <tr>
-        <td><code>curl</code></td>
-        <td>CVE-2026-8932</td>
         <td>HIGH</td>
         <td>7.88.1-10+deb12u12</td>
         <td></td>
@@ -2023,13 +1995,6 @@
         <td></td>
     </tr>
     <tr>
-        <td><code>libcurl3-gnutls</code></td>
-        <td>CVE-2026-8932</td>
-        <td>HIGH</td>
-        <td>7.88.1-10+deb12u12</td>
-        <td></td>
-    </tr>
-    <tr>
         <td><code>libcurl4</code></td>
         <td>CVE-2026-12064</td>
         <td>HIGH</td>
@@ -2065,13 +2030,6 @@
         <td></td>
     </tr>
     <tr>
-        <td><code>libcurl4</code></td>
-        <td>CVE-2026-8932</td>
-        <td>HIGH</td>
-        <td>7.88.1-10+deb12u12</td>
-        <td></td>
-    </tr>
-    <tr>
         <td><code>libexpat1</code></td>
         <td>CVE-2023-52425</td>
         <td>HIGH</td>
@@ -2095,13 +2053,6 @@
     <tr>
         <td><code>libexpat1</code></td>
         <td>CVE-2026-45186</td>
-        <td>HIGH</td>
-        <td>2.5.0-1+deb12u1</td>
-        <td></td>
-    </tr>
-    <tr>
-        <td><code>libexpat1</code></td>
-        <td>CVE-2026-56131</td>
         <td>HIGH</td>
         <td>2.5.0-1+deb12u1</td>
         <td></td>
@@ -2753,7 +2704,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>Python</code></h3>
-<h4>Vulnerabilities (15)</h4>
+<h4>Vulnerabilities (16)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -2782,6 +2733,13 @@
         <td>HIGH</td>
         <td>0.6.1</td>
         <td>0.6.3</td>
+    </tr>
+    <tr>
+        <td><code>pyasn1</code></td>
+        <td>CVE-2026-59884</td>
+        <td>HIGH</td>
+        <td>0.6.1</td>
+        <td>0.6.4</td>
     </tr>
     <tr>
         <td><code>pyasn1</code></td>

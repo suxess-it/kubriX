@@ -415,7 +415,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>Python</code></h3>
-<h4>Vulnerabilities (3)</h4>
+<h4>Vulnerabilities (4)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -430,6 +430,13 @@
         <td>HIGH</td>
         <td>48.0.0</td>
         <td>48.0.1</td>
+    </tr>
+    <tr>
+        <td><code>pyasn1</code></td>
+        <td>CVE-2026-59884</td>
+        <td>HIGH</td>
+        <td>0.6.3</td>
+        <td>0.6.4</td>
     </tr>
     <tr>
         <td><code>pyasn1</code></td>

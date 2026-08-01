@@ -55,7 +55,7 @@
 <h4>No Misconfigurations found</h4>
 
 <h3>Target <code>ghcr.io/suxess-it/sx-backstage:v1.51.2 (wolfi 20230201)</code></h3>
-<h4>Vulnerabilities (2)</h4>
+<h4>Vulnerabilities (8)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -65,6 +65,20 @@
         <th>Fixed Version</th>
     </tr>
     <tr>
+        <td><code>libcrypto3</code></td>
+        <td>CVE-2026-45447</td>
+        <td>HIGH</td>
+        <td>3.6.2-r5</td>
+        <td>3.6.3-r0</td>
+    </tr>
+    <tr>
+        <td><code>libssl3</code></td>
+        <td>CVE-2026-45447</td>
+        <td>HIGH</td>
+        <td>3.6.2-r5</td>
+        <td>3.6.3-r0</td>
+    </tr>
+    <tr>
         <td><code>npm</code></td>
         <td>CVE-2026-14257</td>
         <td>HIGH</td>
@@ -72,7 +86,35 @@
         <td>12.0.1-r2</td>
     </tr>
     <tr>
+        <td><code>python-3.11-base</code></td>
+        <td>CVE-2026-3644</td>
+        <td>HIGH</td>
+        <td>3.11.15-r8</td>
+        <td>3.11.15-r9</td>
+    </tr>
+    <tr>
+        <td><code>python-3.11-base</code></td>
+        <td>CVE-2026-4224</td>
+        <td>HIGH</td>
+        <td>3.11.15-r8</td>
+        <td>3.11.15-r9</td>
+    </tr>
+    <tr>
+        <td><code>python-3.13-base</code></td>
+        <td>CVE-2026-15308</td>
+        <td>HIGH</td>
+        <td>3.13.14-r2</td>
+        <td>3.13.14-r3</td>
+    </tr>
+    <tr>
         <td><code>python-3.14</code></td>
+        <td>CVE-2026-15308</td>
+        <td>HIGH</td>
+        <td>3.14.6-r3</td>
+        <td>3.14.6-r4</td>
+    </tr>
+    <tr>
+        <td><code>python-3.14-base</code></td>
         <td>CVE-2026-15308</td>
         <td>HIGH</td>
         <td>3.14.6-r3</td>
@@ -242,21 +284,21 @@
         <td>CVE-2026-14257</td>
         <td>HIGH</td>
         <td>1.1.13</td>
-        <td>5.0.8</td>
+        <td>5.0.8, 3.0.3, 2.1.3, 1.1.17</td>
     </tr>
     <tr>
         <td><code>brace-expansion</code></td>
         <td>CVE-2026-14257</td>
         <td>HIGH</td>
         <td>1.1.13</td>
-        <td>5.0.8</td>
+        <td>5.0.8, 3.0.3, 2.1.3, 1.1.17</td>
     </tr>
     <tr>
         <td><code>brace-expansion</code></td>
         <td>CVE-2026-14257</td>
         <td>HIGH</td>
         <td>1.1.13</td>
-        <td>5.0.8</td>
+        <td>5.0.8, 3.0.3, 2.1.3, 1.1.17</td>
     </tr>
     <tr>
         <td><code>brace-expansion</code></td>
@@ -270,7 +312,7 @@
         <td>CVE-2026-14257</td>
         <td>HIGH</td>
         <td>2.0.3</td>
-        <td>5.0.8</td>
+        <td>5.0.8, 3.0.3, 2.1.3, 1.1.17</td>
     </tr>
     <tr>
         <td><code>brace-expansion</code></td>
@@ -284,7 +326,7 @@
         <td>CVE-2026-14257</td>
         <td>HIGH</td>
         <td>5.0.5</td>
-        <td>5.0.8</td>
+        <td>5.0.8, 3.0.3, 2.1.3, 1.1.17</td>
     </tr>
     <tr>
         <td><code>fast-uri</code></td>
