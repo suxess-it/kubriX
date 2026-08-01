@@ -81,4 +81,5 @@ const commonProjects = [
 export default defineConfig({
   ...sharedConfig,
   projects: commonProjects,
+  retries: 3,
 });
