@@ -1,5 +1,6 @@
 teamName: ${{values.team}}
 appName: ${{values.application_id}}
+defaultIngressDomain: ${{values.defaultDomainName}}
 repoUrl: https://github.com/${{values.repoUrlowner}}/${{values.team}}-${{values.application_id}}
 appType: helm
 appNamespace:
@@ -8,7 +9,7 @@ appNamespace:
     kubrix.io/kyverno: kubevirt-rolebinding
 stages:
   - name: "test"
-    targetClusterStage: dev
+    targetClusterStage: test
     requestedFreight:
     - origin:
         kind: Warehouse
@@ -16,7 +17,7 @@ stages:
       sources:
         direct: true
   - name: "qa"
-    targetClusterStage: dev
+    targetClusterStage: test
     requestedFreight:
     - origin:
         kind: Warehouse
@@ -25,7 +26,7 @@ stages:
         stages:
         - test
   - name: "prod"
-    targetClusterStage: dev
+    targetClusterStage: prod
     requestedFreight:
     - origin:
         kind: Warehouse

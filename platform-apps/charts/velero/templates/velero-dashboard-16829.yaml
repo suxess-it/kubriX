@@ -4,6 +4,8 @@ metadata:
   labels:
     grafana_dashboard: "1"
   name: velero-dashboard-16829
+  annotations:
+    grafana_folder: {{ required "grafanaFolder must be set" .Values.grafanaFolder | quote }}
 data:
   velero-dashboard-16829.json: |-
 {{ .Files.Get "dashboard-files/velero-dashboard-16829.json" | indent 4 }}

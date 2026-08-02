@@ -1,3 +1,5 @@
+grafanaFolder: "kubriX"
+
 argo-cd:
   global:
     domain: ~
@@ -14,6 +16,10 @@ argo-cd:
     cm:
       application.resourceTrackingMethod: annotation
       accounts.backstage: apiKey
+
+      resource.customizations.ignoreDifferences.argoproj.io_Application: |
+        jqPathExpressions:
+          - .metadata.finalizers[]? | select(. == "post-delete-finalizer.argocd.argoproj.io" or . == "post-delete-finalizer.argocd.argoproj.io/cleanup" or . == "pre-delete-finalizer.argocd.argoproj.io" or . == "pre-delete-finalizer.argocd.argoproj.io/cleanup")
 
       resource.customizations: |
         argoproj.io/Application:

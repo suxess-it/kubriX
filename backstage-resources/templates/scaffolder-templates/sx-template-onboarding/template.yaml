@@ -110,6 +110,8 @@ spec:
                 repoURL: https://github.com/${{ parameters.teamOrg or environment.parameters.defaultOrgName }}/${{ steps['catalogFetch'].output.entity.metadata.name }}-${{ parameters.teamReposUID }}apps
                 path: .
                 revision: main
+              ## prime-only
+              # multiStageKargoAppSetSpoke:
               multiStageKargoAppSet:
                 github:
                   organization: ${{ parameters.teamOrg or environment.parameters.defaultOrgName }}
