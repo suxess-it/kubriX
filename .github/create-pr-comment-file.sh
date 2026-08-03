@@ -6,6 +6,27 @@ testCase=$1
 valuesFilesList=$2
 setValues=$3
 
+echo "changes: $CHANGED_APPS"
+
+declare -A APPS=()
+
+if [[ -z "${CHANGED_APPS:-}" || "${CHANGED_APPS}" == "[]" ]]; then
+  # All apps = all direct subdirectories of platform-apps/charts
+  while IFS= read -r app; do
+    APPS["$app"]=1
+  done < <(find pr/platform-apps/charts -mindepth 1 -maxdepth 1 -type d -printf '%f\n')
+else
+  mapfile -t CHANGED < <(jq -r '.[]' <<<"$CHANGED_APPS")
+
+  for f in "${CHANGED[@]}"; do
+    if [[ "$f" =~ ^platform-apps/charts/([^/]+)/ ]]; then
+      APPS["${BASH_REMATCH[1]}"]=1
+    fi
+  done
+fi
+
+echo "diff apps: ${!APPS[@]}"
+
 mkdir -p out/pr
 mkdir -p out/target
 mkdir -p out-default-values/pr
@@ -13,7 +34,8 @@ mkdir -p out-default-values/target
 mkdir -p comment-files
 for env in pr target; do
   cd ${env}/platform-apps/charts
-  for chart in $( ls -d */ | sed 's#/##' ); do
+  for chart in ${!APPS[@]}; do
+    [[ -d "${chart}" ]] || continue
     echo ${chart}
     helm dependency update ${chart}
     # with different aspect specific values we need to render the charts with a specific set of values files, not with every file by itself.
@@ -119,7 +141,6 @@ else
   # outpout empty matrix so matrix build is ignored
   echo "matrix={\"files\": []}"
 fi
-
 
 
 
