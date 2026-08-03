@@ -1,12 +1,11 @@
 // @ts-check
-import { test, expect, request, type Locator, type Page } from '@playwright/test';
+import { request, type Locator, type Page } from '@playwright/test';
+import { test, expect } from '../fixtures/github-auth';
 import path from 'path';
-import fs from "fs";
 
 const BASE_DOMAIN = process.env.E2E_BASE_DOMAIN ?? '127-0-0-1.nip.io';
 const authDir = path.join(__dirname, '../.auth');
-const ghAuthFile = path.join(authDir, 'github.json');
-test.use({ storageState: ghAuthFile });
+const KARGO_POLL_INTERVALS = [1_000, 2_000, 3_000, 5_000, 8_000];
 
 // ArgoCD Login
 async function loginAndGetAuthedContext() {
@@ -273,20 +272,18 @@ test("Multi-Stage-Kargo App Onboarding", { tag: ['@oss'] }, async ({ page }) => 
 
 });
 
-test.describe("ArgoCD verify kubrixbot-app state", () => {
+test.describe("ArgoCD verify kubrixbot-app state", { tag: ['@oss'] }, () => {
   const argocdAuthFile = path.join(authDir, 'argocd.json');
   test.use({ storageState: argocdAuthFile });
   test.setTimeout(180_000);
   test('ArgoCD verify kubrixbot-app state', async ({ page }) => {
-    // wait for 1 minute so the appset scm generator picks up the new repo
     const prefix = process.env.E2E_TEST_PR_NUMBER ?? '';
-    await page.waitForTimeout(60_000);
     await page.goto(`https://argocd.${BASE_DOMAIN}/applications/adn-kubrix/kubrix-a${prefix}-kubrixbot-app`);
-    await expect(page.locator('#app').getByText('Synced', { exact: true }).nth(1)).toBeVisible({ timeout: 20_000 });
+    await expect(page.locator('#app').getByText('Synced', { exact: true }).nth(1)).toBeVisible({ timeout: 90_000 });
   });
 });
 
-test.describe("Kargo GitOps Promotion - Going Live First time", () => {
+test.describe("Kargo GitOps Promotion - Going Live First time", { tag: ['@oss'] }, () => {
   const kargoAuthFile = path.join(authDir, 'kargo.json');
   test.use({ storageState: kargoAuthFile });
   test.setTimeout(200_000);
@@ -333,7 +330,7 @@ test.describe("Kargo GitOps Promotion - Going Live First time", () => {
       return readyVisible && healthyVisible;
     }, {
       timeout: 120_000,
-      intervals: [2_000],
+      intervals: KARGO_POLL_INTERVALS,
     }).toBe(true);
   });
 
@@ -670,7 +667,7 @@ affinity: {}
   await page.getByRole('button', { name: 'Commit changes', exact: true }).click();
 });
 
-test.describe("Kargo GitOps Promotion - Promote Changes", () => {
+test.describe("Kargo GitOps Promotion - Promote Changes", { tag: ['@oss'] }, () => {
   const kargoAuthFile = path.join(authDir, 'kargo.json');
   test.use({ storageState: kargoAuthFile });
   test.setTimeout(200_000);
@@ -723,7 +720,7 @@ test.describe("Kargo GitOps Promotion - Promote Changes", () => {
       return readyVisible && healthyVisible;
     }, {
       timeout: 120_000,
-      intervals: [2_000],
+      intervals: KARGO_POLL_INTERVALS,
     }).toBe(true);
   });
 
@@ -815,17 +812,15 @@ test.describe("Kargo GitOps Promotion - Promote Changes", () => {
 });
 
 
-test.describe("ArgoCD verify kubrixbot-app state final", () => {
+test.describe("ArgoCD verify kubrixbot-app state final", { tag: ['@oss'] }, () => {
   const argocdAuthFile = path.join(authDir, 'argocd.json');
   test.use({ storageState: argocdAuthFile });
   test.setTimeout(180_000);
   test('ArgoCD verify kubrixbot-app state', async ({ page }) => {
-    // wait for 1 minute so the appset scm generator picks up the new repo
     const prefix = process.env.E2E_TEST_PR_NUMBER ?? '';
-    await page.waitForTimeout(60_000);
     await page.goto(`https://argocd.${BASE_DOMAIN}/applications/adn-kubrix/kubrix-a${prefix}-kubrixbot-app`);
-    await expect(page.locator('#app').getByText('Synced', { exact: true }).nth(1)).toBeVisible({ timeout: 20_000 });
-    await expect(page.locator('#app').getByText('Healthy', { exact: true }).nth(1)).toBeVisible({ timeout: 20_000 });
+    await expect(page.locator('#app').getByText('Synced', { exact: true }).nth(1)).toBeVisible({ timeout: 90_000 });
+    await expect(page.locator('#app').getByText('Healthy', { exact: true }).nth(1)).toBeVisible({ timeout: 90_000 });
   });
   test('ArgoCD verify kubrixbot-app-test state', async ({ page }) => {
     const prefix = process.env.E2E_TEST_PR_NUMBER ?? '';
