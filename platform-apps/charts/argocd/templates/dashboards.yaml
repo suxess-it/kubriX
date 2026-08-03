@@ -5,6 +5,7 @@ metadata:
     grafana_dashboard: "1"
   annotations:
     argocd.argoproj.io/sync-options: ServerSideApply=true
+    grafana_folder: {{ required "grafanaFolder must be set" .Values.grafanaFolder | quote }}
   name: argocd-dashboards
 data:
 {{- $files := .Files.Glob "dashboard-files/*" }}

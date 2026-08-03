@@ -5,6 +5,8 @@ metadata:
     grafana_dashboard: "1"
   name: kyverno-dashboard
   namespace: kyverno
+  annotations:
+    grafana_folder: {{ required "grafanaFolder must be set" .Values.grafanaFolder | quote }}
 data:
   kyverno-dashboard.json: |-
 {{ .Files.Get "dashboard-files/kyverno-dashboard.json" | indent 4 }}

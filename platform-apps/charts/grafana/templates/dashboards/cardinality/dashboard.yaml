@@ -5,6 +5,8 @@ metadata:
   labels:
     grafana_dashboard: "1"
   name: cardinality-dashboards
+  annotations:
+    grafana_folder: {{ required "cardinalityDashboards.grafanaFolder must be set when cardinalityDashboards.enabled is true" .Values.cardinalityDashboards.grafanaFolder | quote }}
 data:
 {{ (.Files.Glob "dashboard-files/cardinality/*").AsConfig | indent 2 }}
 ---
