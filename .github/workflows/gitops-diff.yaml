@@ -29,9 +29,22 @@ jobs:
           path: target
           ref: ${{ github.event.pull_request.base.ref }}
 
+      - id: filter
+        uses: dorny/paths-filter@v4
+        with:
+          list-files: json
+          filters: |
+            appChanges:
+              - 'platform-apps/charts/**'
+            globalChanges:
+              - '.github/workflows/gitops-diff.yaml'
+              - '.github/create-pr-comment-file.sh'
+
       - name: diff charts
         id: diffStep
         shell: bash
+        env:
+          CHANGED_APPS: ${{ steps.filter.outputs.appChanges_files }}
         run: |
           bash pr/.github/create-pr-comment-file.sh ${{ matrix.testCase }} ${{ matrix.valuesFiles }} "${{ matrix.setValues }}"
 
@@ -45,6 +58,7 @@ jobs:
     needs: diff
     outputs:
       matrix: ${{ steps.mk.outputs.matrix }}
+      default_values_matrix: ${{ steps.mk.outputs.default_values_matrix }}
     steps:
       - name: Download artifact
         uses: actions/download-artifact@v8
@@ -57,14 +71,20 @@ jobs:
         shell: bash
         run: |
           # Collect file paths (null-delimited so spaces are safe)
-          mapfile -d '' files < <(find . -type f -name "comment-result*" -print0)
+          mapfile -d '' files < <(find . -type f -name "comment-result*" -print0 | sort -z)
 
           # build: {"files":["path1","path2",...]}
           json=$(printf '%s\0' "${files[@]}" \
-            | jq -R -s -c 'split("\u0000")[:-1] | {files:.}')
+            | jq -R -s -c 'split("\u0000") | map(select(length > 0)) | {files:.}')
+
+          mapfile -d '' default_values_files < <(find . -type f -name "comment-default-values-result-*" -print0 | sort -z)
+          default_values_json=$(printf '%s\0' "${default_values_files[@]}" \
+            | jq -R -s -c 'split("\u0000") | map(select(length > 0)) | {files:.}')
 
           echo "matrix=$json"
           echo "matrix=$json" >> "$GITHUB_OUTPUT"
+          echo "default_values_matrix=$default_values_json"
+          echo "default_values_matrix=$default_values_json" >> "$GITHUB_OUTPUT"
           
   create-template-render-diff-comment:
     needs: gen-matrix-from-artifact
@@ -89,8 +109,12 @@ jobs:
 
 
   create-default-value-diff-comment:
-    needs: diff
+    needs: gen-matrix-from-artifact
     runs-on: ubuntu-latest
+    if: ${{ fromJSON(needs.gen-matrix-from-artifact.outputs.default_values_matrix).files[0] }}
+    strategy:
+      matrix: ${{ fromJSON(needs.gen-matrix-from-artifact.outputs.default_values_matrix) }}
+      max-parallel: 1
     steps:
 
       - uses: actions/download-artifact@v8
@@ -104,4 +128,4 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          file-path: comment-files/comment-default-values-result.txt
+          file-path: ${{matrix.files}}
