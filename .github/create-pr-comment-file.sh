@@ -68,8 +68,8 @@ csplit -f comment-files/comment out/diff.txt --elide-empty-files /^diff\ \-U/ '{
 
 comment_files_csplit=$( find comment-files -type f | sort )
 
-# Define the maximum size in bytes
-MAX_SIZE=131072
+# Leave room for the comment template and metadata added by the comment action.
+MAX_SIZE=60000
 
 # Initialize output file counter and base name
 OUTPUT_BASE_NAME="combined_file_${testCase}"
@@ -120,9 +120,17 @@ done
 
 echo "Concatenation completed. Total output files: $output_file_count."
 
-# default values comparison (we assume they will not be bigger than comment size limit)
-sed  's/DESCRIPTION_HERE/Changes Default Values/g' pr/.github/pr-diff-template.txt > out/comment-diff-default-values.txt
-sed  -e "/DIFF_HERE/{r out/default-values-diff.txt" -e "d}" out/comment-diff-default-values.txt > comment-files/comment-default-values-result.txt
+# Split the default values comparison into independently wrapped PR comments.
+rm -f out/default-values-diff-part-* comment-files/comment-default-values-result-*.txt
+if [[ -s out/default-values-diff.txt ]]; then
+  split -C "${MAX_SIZE}" -d -a 4 out/default-values-diff.txt out/default-values-diff-part-
+
+  for default_values_diff_part in out/default-values-diff-part-*; do
+    part_number=${default_values_diff_part##*-}
+    sed 's/DESCRIPTION_HERE/Changes Default Values/g' pr/.github/pr-diff-template.txt > out/comment-diff-default-values.txt
+    sed -e "/DIFF_HERE/{r ${default_values_diff_part}" -e "d}" out/comment-diff-default-values.txt > "comment-files/comment-default-values-result-${part_number}.txt"
+  done
+fi
 
 if ls combined_file* 1> /dev/null 2>&1 ; then
   echo "all files:"
@@ -141,7 +149,6 @@ else
   # outpout empty matrix so matrix build is ignored
   echo "matrix={\"files\": []}"
 fi
-
 
 
 
