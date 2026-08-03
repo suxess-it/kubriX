@@ -1,5 +1,5 @@
 // @ts-check
-import { test, expect, request } from '@playwright/test';
+import { test, expect, request, type Locator, type Page } from '@playwright/test';
 import path from 'path';
 import fs from "fs";
 
@@ -100,6 +100,44 @@ async function waitForOperationToFinish(
   throw new Error(`Timed out waiting for sync operation to finish for app "${appName}"`);
 }
 
+async function completeGithubLoginPopup(page: Page, loginButton: Locator) {
+  const popupPromise = page.waitForEvent('popup');
+  await loginButton.click();
+
+  const popup = await popupPromise;
+  if (popup.isClosed()) return;
+
+  const authorize = popup.getByRole('button', { name: 'Authorize kubriX-demo' });
+  const outcome = await Promise.race([
+    popup.waitForEvent('close').then(() => 'closed'),
+    authorize.waitFor({ state: 'visible', timeout: 10_000 }).then(() => 'authorize'),
+  ]);
+
+  if (outcome === 'authorize' && !popup.isClosed()) {
+    const popupClosedPromise = popup.waitForEvent('close');
+    await authorize.click();
+    await popupClosedPromise;
+  }
+
+  if (!popup.isClosed()) await popup.close();
+}
+
+async function handleGithubLoginRequired(page: Page, expectedContent: Locator) {
+  const loginDialog = page.getByRole('dialog', { name: 'Login Required' });
+  const firstVisible = await Promise.race([
+    expectedContent.waitFor({ state: 'visible', timeout: 15_000 }).then(() => 'content'),
+    loginDialog.waitFor({ state: 'visible', timeout: 15_000 }).then(() => 'login'),
+  ]);
+
+  if (firstVisible === 'login' || await loginDialog.isVisible()) {
+    await completeGithubLoginPopup(
+      page,
+      loginDialog.getByRole('button', { name: 'Log in' }),
+    );
+    await expect(loginDialog).toBeHidden({ timeout: 15_000 });
+  }
+}
+
 test("Team Onboarding with kubrixBot Github user", { tag: ['@oss'] }, async ({ page }) => {
   test.setTimeout(220_000);
   //await page.goto("https://backstage.${BASE_DOMAIN}/");
@@ -112,24 +150,7 @@ test("Team Onboarding with kubrixBot Github user", { tag: ['@oss'] }, async ({ p
   await page.getByRole('textbox', { name: 'Team Repos UID' }).fill(`a${teamRepoUID}-`);
   await page.getByRole('textbox', { name: 'kubriX Repo Target Branch' }).fill(process.env.E2E_TEAM_ONBOARDING_TARGET_BRANCH!);
   await page.getByRole('button', { name: 'Next' }).click();
-  const page1Promise = page.waitForEvent('popup');
-  await page.getByRole('button', { name: 'Log in' }).click();
-
-  const popup = await page.waitForEvent('popup'); // your page1Promise
-  const authorize = popup.getByRole('button', { name: 'Authorize kubriX-demo' });
-
-  await Promise.race([
-  authorize
-    .waitFor({ state: 'visible', timeout: 5000 })
-    .then(() => authorize.click())
-    .then(() => popup.waitForEvent('close')), 
-
-    // Case B: popup closes automatically -> do nothing
-    popup.waitForEvent('close')
-  ]);
-
-  // optional: make sure the popup is gone before continuing
-  if (!popup.isClosed()) await popup.close();
+  await completeGithubLoginPopup(page, page.getByRole('button', { name: 'Log in' }));
 
   await page.getByRole('button', { name: 'Review' }).click();
   await page.getByRole('button', { name: 'Create' }).click();
@@ -241,24 +262,7 @@ test("Multi-Stage-Kargo App Onboarding", { tag: ['@oss'] }, async ({ page }) => 
   await page.getByRole('textbox', { name: 'Team Organization' }).click();
   await page.getByRole('textbox', { name: 'Team Organization' }).fill('kubriX-demo');
   await page.getByRole('button', { name: 'Next' }).click();
-  const page1Promise = page.waitForEvent('popup');
-  await page.getByRole('button', { name: 'Log in' }).click();
-
-  const popup = await page.waitForEvent('popup'); // your page1Promise
-  const authorize = popup.getByRole('button', { name: 'Authorize kubriX-demo' });
-
-  await Promise.race([
-  authorize
-    .waitFor({ state: 'visible', timeout: 5000 })
-    .then(() => authorize.click())
-    .then(() => popup.waitForEvent('close')), 
-
-    // Case B: popup closes automatically -> do nothing
-    popup.waitForEvent('close')
-  ]);
-
-  // optional: make sure the popup is gone before continuing
-  if (!popup.isClosed()) await popup.close();
+  await completeGithubLoginPopup(page, page.getByRole('button', { name: 'Log in' }));
 
   await page.getByRole('button', { name: 'Review' }).click();
   await page.getByRole('button', { name: 'Create' }).click();
@@ -452,7 +456,9 @@ test("Check kubrixbot-app in backstage", { tag: ['@oss'] }, async ({ page }) => 
     
     // inside the app overview page
     // ArgoCD Deployment Summary
-    await expect(page.getByRole('heading', { name: 'Deployment Summary' })).toBeVisible();
+    const deploymentSummary = page.getByRole('heading', { name: 'Deployment Summary' });
+    await handleGithubLoginRequired(page, deploymentSummary);
+    await expect(deploymentSummary).toBeVisible({ timeout: 30_000 });
     await expect(page.getByRole('cell', { name: 'Synced' })).toBeVisible();
     await expect(page.getByRole('cell', { name: 'Healthy' })).toBeVisible();
     
