@@ -29,9 +29,22 @@ jobs:
           path: target
           ref: ${{ github.event.pull_request.base.ref }}
 
+      - id: filter
+        uses: dorny/paths-filter@v4
+        with:
+          list-files: json
+          filters: |
+            appChanges:
+              - 'platform-apps/charts/**'
+            globalChanges:
+              - '.github/workflows/gitops-diff.yaml'
+              - '.github/create-pr-comment-file.sh'
+
       - name: diff charts
         id: diffStep
         shell: bash
+        env:
+          CHANGED_APPS: ${{ steps.filter.outputs.appChanges_files }}
         run: |
           bash pr/.github/create-pr-comment-file.sh ${{ matrix.testCase }} ${{ matrix.valuesFiles }} "${{ matrix.setValues }}"
 
