@@ -2,7 +2,7 @@ import { devices, defineConfig } from '@playwright/test';
 
 import { sharedConfig } from './playwright.base.js';
 
-const commonProjects = [
+export const commonProjects = [
   {
     name: 'portal-login',
     testMatch: 'portal/auth.github-keycloak-login.ts',
