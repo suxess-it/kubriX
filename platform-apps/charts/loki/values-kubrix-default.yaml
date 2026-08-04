@@ -1,6 +1,8 @@
 grafanaFolder: "kubriX"
 
 loki:
+  ignoreMinioDeprecation: true # workaround for https://github.com/suxess-it/kubriX/issues/2921
+
   loki:
     commonConfig:
       replication_factor: 1 # since replicas is set to 1
