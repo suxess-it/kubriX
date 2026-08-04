@@ -22,6 +22,11 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v7
 
+      - name: Setup Helm
+        uses: azure/setup-helm@v4
+        with:
+          version: v3.19.2
+      
       - id: filter
         uses: dorny/paths-filter@v4
         with:
