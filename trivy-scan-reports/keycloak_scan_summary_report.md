@@ -157,7 +157,7 @@
         <td>GHSA-r7wm-3cxj-wff9</td>
         <td>HIGH</td>
         <td>2.21.2</td>
-        <td>2.18.8, 2.21.4, 2.22.1</td>
+        <td>2.18.8, 2.21.4</td>
     </tr>
     <tr>
         <td><code>com.fasterxml.jackson.core:jackson-databind</code></td>

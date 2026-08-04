@@ -1069,7 +1069,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>Python</code></h3>
-<h4>Vulnerabilities (19)</h4>
+<h4>Vulnerabilities (20)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -1084,6 +1084,13 @@
         <td>HIGH</td>
         <td>3.12.12</td>
         <td>3.13.3</td>
+    </tr>
+    <tr>
+        <td><code>aiohttp</code></td>
+        <td>CVE-2026-69244</td>
+        <td>HIGH</td>
+        <td>3.12.12</td>
+        <td>3.14.3</td>
     </tr>
     <tr>
         <td><code>ecdsa</code></td>
@@ -1449,7 +1456,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>Node.js</code></h3>
-<h4>Vulnerabilities (38)</h4>
+<h4>Vulnerabilities (40)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -1473,6 +1480,13 @@
         <td>5.0.8, 3.0.3, 2.1.3, 1.1.17</td>
     </tr>
     <tr>
+        <td><code>brace-expansion</code></td>
+        <td>CVE-2026-69152</td>
+        <td>HIGH</td>
+        <td>2.0.1</td>
+        <td>1.1.18, 2.1.4, 3.0.6, 5.0.9</td>
+    </tr>
+    <tr>
         <td><code>cross-spawn</code></td>
         <td>CVE-2024-21538</td>
         <td>HIGH</td>
@@ -1492,6 +1506,13 @@
         <td>HIGH</td>
         <td>3.0.6</td>
         <td>2.4.3, 3.1.4, 4.1.1</td>
+    </tr>
+    <tr>
+        <td><code>fast-uri</code></td>
+        <td>CVE-2026-18446</td>
+        <td>HIGH</td>
+        <td>3.0.6</td>
+        <td>2.4.4, 3.1.5, 4.1.2</td>
     </tr>
     <tr>
         <td><code>fast-uri</code></td>

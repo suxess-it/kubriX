@@ -179,5 +179,21 @@
 <h4>No Vulnerabilities found</h4>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>Python</code></h3>
-<h4>No Vulnerabilities found</h4>
+<h4>Vulnerabilities (1)</h4>
+<table>
+    <tr>
+        <th>Package</th>
+        <th>ID</th>
+        <th>Severity</th>
+        <th>Installed Version</th>
+        <th>Fixed Version</th>
+    </tr>
+    <tr>
+        <td><code>cryptography</code></td>
+        <td>CVE-2026-69247</td>
+        <td>HIGH</td>
+        <td>49.0.0</td>
+        <td>50.0.0</td>
+    </tr>
+</table>
 <h4>No Misconfigurations found</h4>
