@@ -29,6 +29,9 @@ if [[ -z "${changed_charts}" ]]; then
   echo "no changes"
   echo "CHANGES=false" >> "${GITHUB_ENV}"
   echo "CRITICAL_FIXED=false" >> "${GITHUB_ENV}"
+  echo "HIGH_FIXED=false" >> "${GITHUB_ENV}"
+  echo "CRITICAL_INTRODUCED=false" >> "${GITHUB_ENV}"
+  echo "HIGH_INTRODUCED=false" >> "${GITHUB_ENV}"
   exit 0
 else
   echo "CHANGES=true" >> "${GITHUB_ENV}"
@@ -81,6 +84,9 @@ echo "${changed_images_charts}"
 if [[ -z "${changed_images_charts}" ]]; then
   echo "no image changes"
   echo "CRITICAL_FIXED=false" >> "${GITHUB_ENV}"
+  echo "HIGH_FIXED=false" >> "${GITHUB_ENV}"
+  echo "CRITICAL_INTRODUCED=false" >> "${GITHUB_ENV}"
+  echo "HIGH_INTRODUCED=false" >> "${GITHUB_ENV}"
 
   diff -U 4 -r out/target/scans out/pr/scans > out/scan-diff.txt || true
   sed 's/DESCRIPTION_HERE/Changes Trivy Scan/g' pr/.github/pr-diff-template.txt > out/comment-diff-trivy-scan.txt
@@ -127,44 +133,58 @@ from pathlib import Path
 diff_path = Path("out/scan-diff.txt")
 diff = diff_path.read_text(encoding="utf-8") if diff_path.exists() else ""
 
-lines = diff.splitlines()
-removed_rows = []
-current = None
+def extract_changed_rows(lines, direction):
+    rows = []
+    current = None
 
-for raw in lines:
-    line = raw.strip()
+    for raw in lines:
+        if raw.startswith(direction * 3):
+            current = None
+            continue
 
-    if not line.startswith("-") or line.startswith("---"):
-        continue
+        if not raw.startswith(direction):
+            current = None
+            continue
 
-    content = re.sub(r"^-+\s*", "", line)
+        content = raw[1:].strip()
 
-    if "<tr>" in content:
-        current = [content]
-        continue
+        if "<tr>" in content:
+            current = [content]
+        elif current is not None:
+            current.append(content)
 
-    if current is not None:
-        current.append(content)
-        if "</tr>" in content:
-            removed_rows.append("\n".join(current))
+        if current is not None and "</tr>" in content:
+            rows.append("\n".join(current))
             current = None
 
-fixed_critical_rows = [
-    row for row in removed_rows
-    if re.search(r"\bCVE-\d{4}-\d+\b", row, re.I)
-    and re.search(r"\bCRITICAL\b", row, re.I)
-]
+    return rows
 
-fixed_high_rows = [
-    row for row in removed_rows
-    if re.search(r"\bCVE-\d{4}-\d+\b", row, re.I)
-    and re.search(r"\bHIGH\b", row, re.I)
-]
+
+def vulnerability_rows(rows, severity):
+    return [
+        row for row in rows
+        if re.search(r"\bCVE-\d{4}-\d+\b", row, re.I)
+        and re.search(rf"\b{severity}\b", row, re.I)
+    ]
+
+
+lines = diff.splitlines()
+removed_rows = extract_changed_rows(lines, "-")
+added_rows = extract_changed_rows(lines, "+")
+
+fixed_critical_rows = vulnerability_rows(removed_rows, "CRITICAL")
+fixed_high_rows = vulnerability_rows(removed_rows, "HIGH")
+introduced_critical_rows = vulnerability_rows(added_rows, "CRITICAL")
+introduced_high_rows = vulnerability_rows(added_rows, "HIGH")
 
 with open(os.environ["GITHUB_ENV"], "a", encoding="utf-8") as f:
     f.write(f"CRITICAL_FIXED={'true' if fixed_critical_rows else 'false'}\n")
     f.write(f"HIGH_FIXED={'true' if fixed_high_rows else 'false'}\n")
+    f.write(f"CRITICAL_INTRODUCED={'true' if introduced_critical_rows else 'false'}\n")
+    f.write(f"HIGH_INTRODUCED={'true' if introduced_high_rows else 'false'}\n")
 
 print(f"Detected removed CRITICAL CVE rows: {len(fixed_critical_rows)}")
 print(f"Detected removed HIGH CVE rows: {len(fixed_high_rows)}")
+print(f"Detected added CRITICAL CVE rows: {len(introduced_critical_rows)}")
+print(f"Detected added HIGH CVE rows: {len(introduced_high_rows)}")
 PY
