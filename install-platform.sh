@@ -537,7 +537,7 @@ wait_until_apps_synced_healthy() {
       fi
 
       # refresh when degraded because CRDs are sometimes degraded too early and a refresh helps
-      if [[ "$health_status" == "Degraded" || "$health_status" == "Progressing" ]] ; then
+      if [[ "$health_status" == "Degraded" || "$health_status" == "Progressing" || "$sync_status" == "Unknown" || "$sync_status" == "OutOfSync" ]] ; then
         kubectl exec "$controller_pod" -n argocd -- argocd app get "$app" --refresh --core >/dev/null 2>&1 || true
       fi
       
