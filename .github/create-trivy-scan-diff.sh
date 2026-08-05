@@ -1,6 +1,8 @@
 #!/bin/bash
 set -euo pipefail
 
+script_dir="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
+
 # install trivy
 curl -L https://github.com/aquasecurity/trivy/releases/download/v0.69.2/trivy_0.69.2_Linux-64bit.tar.gz -o trivy.tar.gz
 tar -xzvf trivy.tar.gz trivy
@@ -125,66 +127,7 @@ diff -U 4 -r out/target/scans out/pr/scans > out/scan-diff.txt || true
 sed 's/DESCRIPTION_HERE/Changes Trivy Scan/g' pr/.github/pr-diff-template.txt > out/comment-diff-trivy-scan.txt
 sed -e "/DIFF_HERE/{r out/scan-diff.txt" -e "d}" out/comment-diff-trivy-scan.txt > out/comment-diff-trivy-scan-result.txt
 
-python3 - <<'PY'
-import os
-import re
-from pathlib import Path
-
-diff_path = Path("out/scan-diff.txt")
-diff = diff_path.read_text(encoding="utf-8") if diff_path.exists() else ""
-
-def extract_changed_rows(lines, direction):
-    rows = []
-    current = None
-
-    for raw in lines:
-        if raw.startswith(direction * 3):
-            current = None
-            continue
-
-        if not raw.startswith(direction):
-            current = None
-            continue
-
-        content = raw[1:].strip()
-
-        if "<tr>" in content:
-            current = [content]
-        elif current is not None:
-            current.append(content)
-
-        if current is not None and "</tr>" in content:
-            rows.append("\n".join(current))
-            current = None
-
-    return rows
-
-
-def vulnerability_rows(rows, severity):
-    return [
-        row for row in rows
-        if re.search(r"\bCVE-\d{4}-\d+\b", row, re.I)
-        and re.search(rf"\b{severity}\b", row, re.I)
-    ]
-
-
-lines = diff.splitlines()
-removed_rows = extract_changed_rows(lines, "-")
-added_rows = extract_changed_rows(lines, "+")
-
-fixed_critical_rows = vulnerability_rows(removed_rows, "CRITICAL")
-fixed_high_rows = vulnerability_rows(removed_rows, "HIGH")
-introduced_critical_rows = vulnerability_rows(added_rows, "CRITICAL")
-introduced_high_rows = vulnerability_rows(added_rows, "HIGH")
-
-with open(os.environ["GITHUB_ENV"], "a", encoding="utf-8") as f:
-    f.write(f"CRITICAL_FIXED={'true' if fixed_critical_rows else 'false'}\n")
-    f.write(f"HIGH_FIXED={'true' if fixed_high_rows else 'false'}\n")
-    f.write(f"CRITICAL_INTRODUCED={'true' if introduced_critical_rows else 'false'}\n")
-    f.write(f"HIGH_INTRODUCED={'true' if introduced_high_rows else 'false'}\n")
-
-print(f"Detected removed CRITICAL CVE rows: {len(fixed_critical_rows)}")
-print(f"Detected removed HIGH CVE rows: {len(fixed_high_rows)}")
-print(f"Detected added CRITICAL CVE rows: {len(introduced_critical_rows)}")
-print(f"Detected added HIGH CVE rows: {len(introduced_high_rows)}")
-PY
+python3 "${script_dir}/trivy-scan-diff.py" \
+  --target-dir out/target/scans \
+  --pr-dir out/pr/scans \
+  --github-env "${GITHUB_ENV}"
