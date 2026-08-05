@@ -125,7 +125,25 @@ class TrivyScanDiffTest(unittest.TestCase):
                 [("github.com/antchfx/xpath", "CVE-2026-32287", "HIGH", "v1.2.0")],
             ),
         )
-        self.assert_counts(findings, introduced_high=1)
+        self.assert_counts(findings, fixed_critical=1, introduced_high=1)
+
+    def test_ghsa_vulnerability_can_be_introduced(self):
+        findings = self.compare(
+            summary("example/image", "binary", []),
+            summary(
+                "example/image",
+                "binary",
+                [
+                    (
+                        "github.com/getkin/kin-openapi",
+                        "GHSA-r277-6w6q-xmqw",
+                        "CRITICAL",
+                        "v0.133.0",
+                    )
+                ],
+            ),
+        )
+        self.assert_counts(findings, introduced_critical=1)
 
     def test_medium_changes_do_not_set_high_or_critical_findings(self):
         findings = self.compare(

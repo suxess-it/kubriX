@@ -5,7 +5,10 @@ import re
 from html.parser import HTMLParser
 from pathlib import Path
 
-CVE_PATTERN = re.compile(r"CVE-\d{4}-\d+", re.IGNORECASE)
+VULNERABILITY_ID_PATTERN = re.compile(
+    r"(?:CVE-\d{4}-\d+|GHSA-[0-9A-Z]{4}(?:-[0-9A-Z]{4}){2})",
+    re.IGNORECASE,
+)
 SEVERITIES = {"UNKNOWN", "LOW", "MEDIUM", "HIGH", "CRITICAL"}
 
 
@@ -72,9 +75,9 @@ class TrivySummaryParser(HTMLParser):
         if len(cells) < 3:
             return
 
-        cve_match = CVE_PATTERN.fullmatch(cells[1])
+        vulnerability_id_match = VULNERABILITY_ID_PATTERN.fullmatch(cells[1])
         severity = cells[2].upper()
-        if not cve_match or severity not in SEVERITIES:
+        if not vulnerability_id_match or severity not in SEVERITIES:
             return
 
         self.vulnerabilities.add(
@@ -83,7 +86,7 @@ class TrivySummaryParser(HTMLParser):
                 self.image,
                 self.target,
                 cells[0],
-                cve_match.group(0).upper(),
+                vulnerability_id_match.group(0).upper(),
                 severity,
             )
         )
@@ -118,9 +121,9 @@ def compare_vulnerabilities(target, pr):
 
 
 def format_identity(identity):
-    chart, image, target, package, cve, _ = identity
+    chart, image, target, package, vulnerability_id, _ = identity
     context = image or "unknown image"
-    return f"{chart} | {context} | {target} | {package} | {cve}"
+    return f"{chart} | {context} | {target} | {package} | {vulnerability_id}"
 
 
 def print_findings(label, findings):
@@ -154,10 +157,12 @@ def main():
 
     print(f"Target vulnerabilities: {len(target)}")
     print(f"PR vulnerabilities: {len(pr)}")
-    print_findings("Fixed CRITICAL CVEs", findings["fixed_critical"])
-    print_findings("Fixed HIGH CVEs", findings["fixed_high"])
-    print_findings("Introduced CRITICAL CVEs", findings["introduced_critical"])
-    print_findings("Introduced HIGH CVEs", findings["introduced_high"])
+    print_findings("Fixed CRITICAL vulnerabilities", findings["fixed_critical"])
+    print_findings("Fixed HIGH vulnerabilities", findings["fixed_high"])
+    print_findings(
+        "Introduced CRITICAL vulnerabilities", findings["introduced_critical"]
+    )
+    print_findings("Introduced HIGH vulnerabilities", findings["introduced_high"])
     write_flags(args.github_env, findings)
 
 
