@@ -31,7 +31,7 @@
         <td>CVE-2026-50163</td>
         <td>HIGH</td>
         <td>v2.6.1</td>
-        <td></td>
+        <td>2.6.2</td>
     </tr>
 </table>
 <h4>No Misconfigurations found</h4>

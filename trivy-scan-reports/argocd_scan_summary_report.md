@@ -994,7 +994,7 @@
         <td>CVE-2026-50163</td>
         <td>HIGH</td>
         <td>v2.6.0</td>
-        <td></td>
+        <td>2.6.2</td>
     </tr>
     <tr>
         <td><code>stdlib</code></td>
@@ -1473,7 +1473,7 @@
         <td>CVE-2026-50163</td>
         <td>HIGH</td>
         <td>v2.6.0</td>
-        <td></td>
+        <td>2.6.2</td>
     </tr>
     <tr>
         <td><code>stdlib</code></td>
