@@ -143,7 +143,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>Java</code></h3>
-<h4>Vulnerabilities (25)</h4>
+<h4>Vulnerabilities (27)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -172,6 +172,20 @@
         <td>HIGH</td>
         <td>2.21.2</td>
         <td>2.18.8, 2.21.4, 3.1.4</td>
+    </tr>
+    <tr>
+        <td><code>io.micrometer:micrometer-core</code></td>
+        <td>CVE-2026-40983</td>
+        <td>HIGH</td>
+        <td>1.16.3</td>
+        <td>1.16.6, 1.15.12</td>
+    </tr>
+    <tr>
+        <td><code>io.micrometer:micrometer-core</code></td>
+        <td>CVE-2026-40984</td>
+        <td>HIGH</td>
+        <td>1.16.3</td>
+        <td>1.16.6, 1.15.12</td>
     </tr>
     <tr>
         <td><code>io.netty:netty-codec</code></td>

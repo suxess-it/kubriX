@@ -3,7 +3,7 @@
 <h4>No Vulnerabilities found</h4>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>Node.js</code></h3>
-<h4>Vulnerabilities (1)</h4>
+<h4>Vulnerabilities (2)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -18,6 +18,13 @@
         <td>HIGH</td>
         <td>3.13.1</td>
         <td>3.15.0, 4.3.0</td>
+    </tr>
+    <tr>
+        <td><code>js-yaml</code></td>
+        <td>GHSA-5p4m-2wfm-xmqj</td>
+        <td>HIGH</td>
+        <td>3.13.1</td>
+        <td>4.3.1, 3.15.1</td>
     </tr>
 </table>
 <h4>No Misconfigurations found</h4>

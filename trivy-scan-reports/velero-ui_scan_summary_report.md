@@ -1,6 +1,6 @@
 
 <h3>Target <code>docker.io/dserio83/velero-api:0.3.1 (debian 12.11)</code></h3>
-<h4>Vulnerabilities (151)</h4>
+<h4>Vulnerabilities (154)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -40,6 +40,13 @@
     <tr>
         <td><code>curl</code></td>
         <td>CVE-2026-8286</td>
+        <td>HIGH</td>
+        <td>7.88.1-10+deb12u12</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>curl</code></td>
+        <td>CVE-2026-8458</td>
         <td>HIGH</td>
         <td>7.88.1-10+deb12u12</td>
         <td></td>
@@ -144,6 +151,13 @@
     </tr>
     <tr>
         <td><code>libcurl3-gnutls</code></td>
+        <td>CVE-2026-8458</td>
+        <td>HIGH</td>
+        <td>7.88.1-10+deb12u12</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>libcurl3-gnutls</code></td>
         <td>CVE-2026-8927</td>
         <td>HIGH</td>
         <td>7.88.1-10+deb12u12</td>
@@ -173,6 +187,13 @@
     <tr>
         <td><code>libcurl4</code></td>
         <td>CVE-2026-8286</td>
+        <td>HIGH</td>
+        <td>7.88.1-10+deb12u12</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>libcurl4</code></td>
+        <td>CVE-2026-8458</td>
         <td>HIGH</td>
         <td>7.88.1-10+deb12u12</td>
         <td></td>
@@ -1866,7 +1887,7 @@
 <h4>No Misconfigurations found</h4>
 
 <h3>Target <code>docker.io/dserio83/velero-watchdog:0.1.8 (debian 12.10)</code></h3>
-<h4>Vulnerabilities (121)</h4>
+<h4>Vulnerabilities (124)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -1906,6 +1927,13 @@
     <tr>
         <td><code>curl</code></td>
         <td>CVE-2026-8286</td>
+        <td>HIGH</td>
+        <td>7.88.1-10+deb12u12</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>curl</code></td>
+        <td>CVE-2026-8458</td>
         <td>HIGH</td>
         <td>7.88.1-10+deb12u12</td>
         <td></td>
@@ -2010,6 +2038,13 @@
     </tr>
     <tr>
         <td><code>libcurl3-gnutls</code></td>
+        <td>CVE-2026-8458</td>
+        <td>HIGH</td>
+        <td>7.88.1-10+deb12u12</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>libcurl3-gnutls</code></td>
         <td>CVE-2026-8927</td>
         <td>HIGH</td>
         <td>7.88.1-10+deb12u12</td>
@@ -2039,6 +2074,13 @@
     <tr>
         <td><code>libcurl4</code></td>
         <td>CVE-2026-8286</td>
+        <td>HIGH</td>
+        <td>7.88.1-10+deb12u12</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>libcurl4</code></td>
+        <td>CVE-2026-8458</td>
         <td>HIGH</td>
         <td>7.88.1-10+deb12u12</td>
         <td></td>
