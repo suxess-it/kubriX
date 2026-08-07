@@ -256,7 +256,7 @@
 <h4>No Vulnerabilities found</h4>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>ko-app/kubectl-kyverno</code></h3>
-<h4>Vulnerabilities (8)</h4>
+<h4>Vulnerabilities (9)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -278,6 +278,13 @@
         <td>HIGH</td>
         <td>v5.18.0</td>
         <td>5.19.0</td>
+    </tr>
+    <tr>
+        <td><code>github.com/go-git/go-git/v5</code></td>
+        <td>CVE-2026-71556</td>
+        <td>HIGH</td>
+        <td>v5.18.0</td>
+        <td>5.19.2</td>
     </tr>
     <tr>
         <td><code>github.com/sigstore/fulcio</code></td>

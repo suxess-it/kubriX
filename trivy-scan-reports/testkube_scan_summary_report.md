@@ -1924,7 +1924,23 @@
 <h4>No Vulnerabilities found</h4>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>bin/app</code></h3>
-<h4>No Vulnerabilities found</h4>
+<h4>Vulnerabilities (1)</h4>
+<table>
+    <tr>
+        <th>Package</th>
+        <th>ID</th>
+        <th>Severity</th>
+        <th>Installed Version</th>
+        <th>Fixed Version</th>
+    </tr>
+    <tr>
+        <td><code>github.com/go-git/go-git/v6</code></td>
+        <td>CVE-2026-71556</td>
+        <td>HIGH</td>
+        <td>v6.0.0-alpha.4</td>
+        <td>6.0.0-alpha.5</td>
+    </tr>
+</table>
 <h4>No Misconfigurations found</h4>
 
 <h3>Target <code>docker.io/minio/minio:RELEASE.2025-06-13T11-33-47Z (redhat 9.6)</code></h3>

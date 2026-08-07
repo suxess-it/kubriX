@@ -588,7 +588,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>usr/local/bin/gomplate</code></h3>
-<h4>Vulnerabilities (35)</h4>
+<h4>Vulnerabilities (36)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -610,6 +610,13 @@
         <td>HIGH</td>
         <td>v5.16.4</td>
         <td>5.19.0</td>
+    </tr>
+    <tr>
+        <td><code>github.com/go-git/go-git/v5</code></td>
+        <td>CVE-2026-71556</td>
+        <td>HIGH</td>
+        <td>v5.16.4</td>
+        <td>5.19.2</td>
     </tr>
     <tr>
         <td><code>github.com/go-jose/go-jose/v4</code></td>
@@ -945,7 +952,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>usr/local/bin/argocd</code></h3>
-<h4>Vulnerabilities (20)</h4>
+<h4>Vulnerabilities (21)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -967,6 +974,13 @@
         <td>HIGH</td>
         <td>v5.14.0</td>
         <td>5.19.0</td>
+    </tr>
+    <tr>
+        <td><code>github.com/go-git/go-git/v5</code></td>
+        <td>CVE-2026-71556</td>
+        <td>HIGH</td>
+        <td>v5.14.0</td>
+        <td>5.19.2</td>
     </tr>
     <tr>
         <td><code>golang.org/x/text</code></td>

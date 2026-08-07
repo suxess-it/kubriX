@@ -1,150 +1,23 @@
 
-<h3>Target <code>docker.io/grafana/loki-canary:3.7.3 (debian 13.5)</code></h3>
+<h3>Target <code>docker.io/grafana/loki-canary:3.7.6 (debian 13.6)</code></h3>
 <h4>No Vulnerabilities found</h4>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>usr/bin/loki-canary</code></h3>
-<h4>Vulnerabilities (3)</h4>
-<table>
-    <tr>
-        <th>Package</th>
-        <th>ID</th>
-        <th>Severity</th>
-        <th>Installed Version</th>
-        <th>Fixed Version</th>
-    </tr>
-    <tr>
-        <td><code>golang.org/x/text</code></td>
-        <td>CVE-2026-56852</td>
-        <td>HIGH</td>
-        <td>v0.37.0</td>
-        <td>0.39.0</td>
-    </tr>
-    <tr>
-        <td><code>google.golang.org/grpc</code></td>
-        <td>GHSA-hrxh-6v49-42gf</td>
-        <td>HIGH</td>
-        <td>v1.81.1</td>
-        <td>1.82.1</td>
-    </tr>
-    <tr>
-        <td><code>stdlib</code></td>
-        <td>CVE-2026-39822</td>
-        <td>HIGH</td>
-        <td>v1.26.4</td>
-        <td>1.25.12, 1.26.5, 1.27.0-rc.2</td>
-    </tr>
-</table>
+<h4>No Vulnerabilities found</h4>
 <h4>No Misconfigurations found</h4>
 
-<h3>Target <code>docker.io/grafana/loki:3.7.3 (debian 13.5)</code></h3>
+<h3>Target <code>docker.io/grafana/loki:3.7.6 (debian 13.6)</code></h3>
 <h4>No Vulnerabilities found</h4>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>usr/bin/loki</code></h3>
-<h4>Vulnerabilities (4)</h4>
-<table>
-    <tr>
-        <th>Package</th>
-        <th>ID</th>
-        <th>Severity</th>
-        <th>Installed Version</th>
-        <th>Fixed Version</th>
-    </tr>
-    <tr>
-        <td><code>github.com/apache/thrift</code></td>
-        <td>CVE-2026-41602</td>
-        <td>HIGH</td>
-        <td>v0.22.0</td>
-        <td>0.23.0</td>
-    </tr>
-    <tr>
-        <td><code>golang.org/x/text</code></td>
-        <td>CVE-2026-56852</td>
-        <td>HIGH</td>
-        <td>v0.37.0</td>
-        <td>0.39.0</td>
-    </tr>
-    <tr>
-        <td><code>google.golang.org/grpc</code></td>
-        <td>GHSA-hrxh-6v49-42gf</td>
-        <td>HIGH</td>
-        <td>v1.81.1</td>
-        <td>1.82.1</td>
-    </tr>
-    <tr>
-        <td><code>stdlib</code></td>
-        <td>CVE-2026-39822</td>
-        <td>HIGH</td>
-        <td>v1.26.4</td>
-        <td>1.25.12, 1.26.5, 1.27.0-rc.2</td>
-    </tr>
-</table>
+<h4>No Vulnerabilities found</h4>
 <h4>No Misconfigurations found</h4>
 
-<h3>Target <code>docker.io/kiwigrid/k8s-sidecar:2.8.0 (alpine 3.22.4)</code></h3>
-<h4>Vulnerabilities (2)</h4>
-<table>
-    <tr>
-        <th>Package</th>
-        <th>ID</th>
-        <th>Severity</th>
-        <th>Installed Version</th>
-        <th>Fixed Version</th>
-    </tr>
-    <tr>
-        <td><code>libcrypto3</code></td>
-        <td>CVE-2026-45447</td>
-        <td>HIGH</td>
-        <td>3.5.6-r0</td>
-        <td>3.5.7-r0</td>
-    </tr>
-    <tr>
-        <td><code>libssl3</code></td>
-        <td>CVE-2026-45447</td>
-        <td>HIGH</td>
-        <td>3.5.6-r0</td>
-        <td>3.5.7-r0</td>
-    </tr>
-</table>
+<h3>Target <code>docker.io/kiwigrid/k8s-sidecar:2.10.1 (alpine 3.22.4)</code></h3>
+<h4>No Vulnerabilities found</h4>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>Python</code></h3>
-<h4>Vulnerabilities (4)</h4>
-<table>
-    <tr>
-        <th>Package</th>
-        <th>ID</th>
-        <th>Severity</th>
-        <th>Installed Version</th>
-        <th>Fixed Version</th>
-    </tr>
-    <tr>
-        <td><code>cryptography</code></td>
-        <td>CVE-2026-69247</td>
-        <td>HIGH</td>
-        <td>49.0.0</td>
-        <td>50.0.0</td>
-    </tr>
-    <tr>
-        <td><code>pyasn1</code></td>
-        <td>CVE-2026-59884</td>
-        <td>HIGH</td>
-        <td>0.6.3</td>
-        <td>0.6.4</td>
-    </tr>
-    <tr>
-        <td><code>pyasn1</code></td>
-        <td>CVE-2026-59885</td>
-        <td>HIGH</td>
-        <td>0.6.3</td>
-        <td>0.6.4</td>
-    </tr>
-    <tr>
-        <td><code>pyasn1</code></td>
-        <td>CVE-2026-59886</td>
-        <td>HIGH</td>
-        <td>0.6.3</td>
-        <td>0.6.4</td>
-    </tr>
-</table>
+<h4>No Vulnerabilities found</h4>
 <h4>No Misconfigurations found</h4>
 
 <h3>Target <code>docker.io/nginxinc/nginx-unprivileged:1.31-alpine (alpine 3.24.1)</code></h3>
@@ -152,26 +25,10 @@
 <h4>No Misconfigurations found</h4>
 
 <h3>Target <code>access-log-exporter</code></h3>
-<h4>Vulnerabilities (1)</h4>
-<table>
-    <tr>
-        <th>Package</th>
-        <th>ID</th>
-        <th>Severity</th>
-        <th>Installed Version</th>
-        <th>Fixed Version</th>
-    </tr>
-    <tr>
-        <td><code>stdlib</code></td>
-        <td>CVE-2026-39822</td>
-        <td>HIGH</td>
-        <td>v1.26.4</td>
-        <td>1.25.12, 1.26.5, 1.27.0-rc.2</td>
-    </tr>
-</table>
+<h4>No Vulnerabilities found</h4>
 <h4>No Misconfigurations found</h4>
 
-<h3>Target <code>memcached:1.6.42-alpine (alpine 3.24.1)</code></h3>
+<h3>Target <code>memcached:1.6.45-alpine (alpine 3.24.1)</code></h3>
 <h4>No Vulnerabilities found</h4>
 <h4>No Misconfigurations found</h4>
 
