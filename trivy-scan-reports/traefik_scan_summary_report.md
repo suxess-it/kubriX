@@ -1,39 +1,9 @@
 
-<h3>Target <code>docker.io/traefik:v3.6.12 (alpine 3.23.3)</code></h3>
-<h4>Vulnerabilities (3)</h4>
-<table>
-    <tr>
-        <th>Package</th>
-        <th>ID</th>
-        <th>Severity</th>
-        <th>Installed Version</th>
-        <th>Fixed Version</th>
-    </tr>
-    <tr>
-        <td><code>libcrypto3</code></td>
-        <td>CVE-2026-28390</td>
-        <td>HIGH</td>
-        <td>3.5.5-r0</td>
-        <td>3.5.6-r0</td>
-    </tr>
-    <tr>
-        <td><code>libssl3</code></td>
-        <td>CVE-2026-28390</td>
-        <td>HIGH</td>
-        <td>3.5.5-r0</td>
-        <td>3.5.6-r0</td>
-    </tr>
-    <tr>
-        <td><code>zlib</code></td>
-        <td>CVE-2026-22184</td>
-        <td>HIGH</td>
-        <td>1.3.1-r2</td>
-        <td>1.3.2-r0</td>
-    </tr>
-</table>
+<h3>Target <code>docker.io/traefik:v3.7.5 (alpine 3.23.5)</code></h3>
+<h4>No Vulnerabilities found</h4>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>usr/local/bin/traefik</code></h3>
-<h4>Vulnerabilities (5)</h4>
+<h4>Vulnerabilities (8)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -43,39 +13,60 @@
         <th>Fixed Version</th>
     </tr>
     <tr>
-        <td><code>github.com/docker/docker</code></td>
-        <td>CVE-2026-34040</td>
-        <td>HIGH</td>
-        <td>v28.5.2+incompatible</td>
-        <td>29.3.1</td>
+        <td><code>github.com/traefik/traefik/v3</code></td>
+        <td>CVE-2026-65600</td>
+        <td>CRITICAL</td>
+        <td>v3.7.5</td>
+        <td>3.6.23, 3.7.7</td>
     </tr>
     <tr>
-        <td><code>github.com/go-jose/go-jose/v4</code></td>
-        <td>CVE-2026-34986</td>
+        <td><code>github.com/traefik/traefik/v3</code></td>
+        <td>CVE-2026-54763</td>
         <td>HIGH</td>
-        <td>v4.1.3</td>
-        <td>4.1.4</td>
+        <td>v3.7.5</td>
+        <td>3.6.22, 3.7.6</td>
     </tr>
     <tr>
-        <td><code>go.opentelemetry.io/otel/sdk</code></td>
-        <td>CVE-2026-39883</td>
+        <td><code>github.com/traefik/traefik/v3</code></td>
+        <td>CVE-2026-67309</td>
         <td>HIGH</td>
-        <td>v1.41.0</td>
-        <td>1.43.0</td>
+        <td>v3.7.5</td>
+        <td>3.7.8</td>
+    </tr>
+    <tr>
+        <td><code>github.com/traefik/traefik/v3</code></td>
+        <td>CVE-2026-71324</td>
+        <td>HIGH</td>
+        <td>v3.7.5</td>
+        <td>3.6.24, 3.7.9</td>
+    </tr>
+    <tr>
+        <td><code>github.com/traefik/traefik/v3</code></td>
+        <td>CVE-2026-71327</td>
+        <td>HIGH</td>
+        <td>v3.7.5</td>
+        <td>3.6.25, 3.7.10</td>
+    </tr>
+    <tr>
+        <td><code>golang.org/x/text</code></td>
+        <td>CVE-2026-56852</td>
+        <td>HIGH</td>
+        <td>v0.37.0</td>
+        <td>0.39.0</td>
+    </tr>
+    <tr>
+        <td><code>google.golang.org/grpc</code></td>
+        <td>GHSA-hrxh-6v49-42gf</td>
+        <td>HIGH</td>
+        <td>v1.80.0</td>
+        <td>1.82.1</td>
     </tr>
     <tr>
         <td><code>stdlib</code></td>
-        <td>CVE-2026-32280</td>
+        <td>CVE-2026-39822</td>
         <td>HIGH</td>
-        <td>v1.25.8</td>
-        <td>1.25.9, 1.26.2</td>
-    </tr>
-    <tr>
-        <td><code>stdlib</code></td>
-        <td>CVE-2026-32282</td>
-        <td>HIGH</td>
-        <td>v1.25.8</td>
-        <td>1.25.9, 1.26.2</td>
+        <td>v1.25.11</td>
+        <td>1.25.12, 1.26.5, 1.27.0-rc.2</td>
     </tr>
 </table>
 <h4>No Misconfigurations found</h4>
