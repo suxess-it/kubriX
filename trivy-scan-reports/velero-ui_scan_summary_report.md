@@ -1477,7 +1477,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>Node.js</code></h3>
-<h4>Vulnerabilities (40)</h4>
+<h4>Vulnerabilities (42)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -1583,6 +1583,20 @@
         <td>HIGH</td>
         <td>9.0.3</td>
         <td>10.2.3, 9.0.7, 8.0.6, 7.4.8, 6.2.2, 5.1.8, 4.2.5, 3.1.4</td>
+    </tr>
+    <tr>
+        <td><code>nanoid</code></td>
+        <td>CVE-2026-67213</td>
+        <td>HIGH</td>
+        <td>3.3.11</td>
+        <td>3.3.17, 5.1.6</td>
+    </tr>
+    <tr>
+        <td><code>nanoid</code></td>
+        <td>CVE-2026-67214</td>
+        <td>HIGH</td>
+        <td>3.3.11</td>
+        <td>3.3.16, 5.1.16</td>
     </tr>
     <tr>
         <td><code>next</code></td>
