@@ -396,14 +396,14 @@
         <td>CVE-2026-6321</td>
         <td>HIGH</td>
         <td>3.1.0</td>
-        <td>3.1.1</td>
+        <td>3.1.1, 2.4.1</td>
     </tr>
     <tr>
         <td><code>fast-uri</code></td>
         <td>CVE-2026-6322</td>
         <td>HIGH</td>
         <td>3.1.0</td>
-        <td>3.1.2</td>
+        <td>3.1.2, 2.4.1</td>
     </tr>
     <tr>
         <td><code>fast-xml-builder</code></td>
