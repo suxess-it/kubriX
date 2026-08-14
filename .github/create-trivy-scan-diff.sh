@@ -57,8 +57,11 @@ for env in pr target; do
     valuesFiles=()
 
     [[ -f "${chart}/values-kubrix-default.yaml" ]] && valuesFiles+=("-f" "${chart}/values-kubrix-default.yaml")
+    [[ -f "${chart}/values-kubrix-default-prime.yaml" ]] && valuesFiles+=("-f" "${chart}/values-kubrix-default-prime.yaml")
     [[ -f "${chart}/values-cluster-kind.yaml" ]] && valuesFiles+=("-f" "${chart}/values-cluster-kind.yaml")
+    [[ -f "${chart}/values-cluster-kind-prime.yaml" ]] && valuesFiles+=("-f" "${chart}/values-cluster-kind-prime.yaml")
     [[ -f "${chart}/values-kind.yaml" ]] && valuesFiles+=("-f" "${chart}/values-kind.yaml")
+    [[ -f "${chart}/values-kind-prime.yaml" ]] && valuesFiles+=("-f" "${chart}/values-kind-prime.yaml")
 
     helm images get "${chart}" "${valuesFiles[@]}" \
       --log-level error \
