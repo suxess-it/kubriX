@@ -1,7 +1,7 @@
 {{- with .Values.platformteam }}
 {{- with .alerting }}
 {{- $state := dict "hasRoutes" false }}
-{{- range $team := $.Values.teams }}
+{{- range $team := (include "team-onboarding.teams" $ | fromYamlArray) }}
   {{- with $team.alerting }}
     {{- if and $team.name .defaultReceiver }}
       {{- $_ := set $state "hasRoutes" true }}
@@ -31,7 +31,7 @@ data:
 {{- end }}
 {{- if $state.hasRoutes }}
         routes:
-{{- range $team := $.Values.teams }}
+{{- range $team := (include "team-onboarding.teams" $ | fromYamlArray) }}
 {{- with $team.alerting }}
 {{- if and $team.name .defaultReceiver }}
           - receiver: {{ .defaultReceiver }}
