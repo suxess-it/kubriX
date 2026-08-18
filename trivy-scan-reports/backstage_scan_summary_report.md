@@ -130,7 +130,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>Node.js</code></h3>
-<h4>Vulnerabilities (146)</h4>
+<h4>Vulnerabilities (151)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -1153,6 +1153,41 @@
         <td>HIGH</td>
         <td>7.28.0</td>
         <td>7.29.0, 8.9.0</td>
+    </tr>
+    <tr>
+        <td><code>vm2</code></td>
+        <td>CVE-2026-47686</td>
+        <td>CRITICAL</td>
+        <td>3.11.5</td>
+        <td>3.11.6</td>
+    </tr>
+    <tr>
+        <td><code>vm2</code></td>
+        <td>CVE-2026-47698</td>
+        <td>CRITICAL</td>
+        <td>3.11.5</td>
+        <td>3.11.6</td>
+    </tr>
+    <tr>
+        <td><code>vm2</code></td>
+        <td>GHSA-m5w8-4gq2-6f8x</td>
+        <td>CRITICAL</td>
+        <td>3.11.5</td>
+        <td>3.11.6</td>
+    </tr>
+    <tr>
+        <td><code>vm2</code></td>
+        <td>CVE-2026-47683</td>
+        <td>HIGH</td>
+        <td>3.11.5</td>
+        <td>3.11.6</td>
+    </tr>
+    <tr>
+        <td><code>vm2</code></td>
+        <td>GHSA-v836-6xw4-9cx3</td>
+        <td>HIGH</td>
+        <td>3.11.5</td>
+        <td>3.11.6</td>
     </tr>
     <tr>
         <td><code>ws</code></td>
