@@ -798,7 +798,7 @@
 <h4>No Vulnerabilities found</h4>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>usr/bin/falcoctl</code></h3>
-<h4>Vulnerabilities (50)</h4>
+<h4>Vulnerabilities (53)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -841,6 +841,13 @@
         <td>HIGH</td>
         <td>v4.1.3</td>
         <td>4.1.4</td>
+    </tr>
+    <tr>
+        <td><code>github.com/moby/go-archive</code></td>
+        <td>CVE-2026-17106</td>
+        <td>HIGH</td>
+        <td>v0.1.0</td>
+        <td>0.3.0</td>
     </tr>
     <tr>
         <td><code>github.com/moby/spdystream</code></td>
@@ -946,6 +953,20 @@
         <td>HIGH</td>
         <td>v0.46.0</td>
         <td>0.52.0</td>
+    </tr>
+    <tr>
+        <td><code>golang.org/x/mod</code></td>
+        <td>CVE-2026-56864</td>
+        <td>HIGH</td>
+        <td>v0.31.0</td>
+        <td>0.40.0</td>
+    </tr>
+    <tr>
+        <td><code>golang.org/x/mod</code></td>
+        <td>CVE-2026-56865</td>
+        <td>HIGH</td>
+        <td>v0.31.0</td>
+        <td>0.40.0</td>
     </tr>
     <tr>
         <td><code>golang.org/x/net</code></td>

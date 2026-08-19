@@ -3,7 +3,7 @@
 <h4>No Vulnerabilities found</h4>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>usr/local/bin/traefik</code></h3>
-<h4>Vulnerabilities (16)</h4>
+<h4>Vulnerabilities (18)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -46,6 +46,20 @@
         <td>HIGH</td>
         <td>v3.7.5</td>
         <td>3.6.25, 3.7.10</td>
+    </tr>
+    <tr>
+        <td><code>golang.org/x/mod</code></td>
+        <td>CVE-2026-56864</td>
+        <td>HIGH</td>
+        <td>v0.35.0</td>
+        <td>0.40.0</td>
+    </tr>
+    <tr>
+        <td><code>golang.org/x/mod</code></td>
+        <td>CVE-2026-56865</td>
+        <td>HIGH</td>
+        <td>v0.35.0</td>
+        <td>0.40.0</td>
     </tr>
     <tr>
         <td><code>golang.org/x/net</code></td>

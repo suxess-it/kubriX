@@ -1,6 +1,6 @@
 
 <h3>Target <code>nix/store/dqhyq0s8d3iyfpabnl77lcwnyhmlvxli-crossplane-linux-amd64-v2.3.4/bin/crossplane</code></h3>
-<h4>Vulnerabilities (8)</h4>
+<h4>Vulnerabilities (10)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -8,6 +8,20 @@
         <th>Severity</th>
         <th>Installed Version</th>
         <th>Fixed Version</th>
+    </tr>
+    <tr>
+        <td><code>golang.org/x/mod</code></td>
+        <td>CVE-2026-56864</td>
+        <td>HIGH</td>
+        <td>v0.37.0</td>
+        <td>0.40.0</td>
+    </tr>
+    <tr>
+        <td><code>golang.org/x/mod</code></td>
+        <td>CVE-2026-56865</td>
+        <td>HIGH</td>
+        <td>v0.37.0</td>
+        <td>0.40.0</td>
     </tr>
     <tr>
         <td><code>stdlib</code></td>

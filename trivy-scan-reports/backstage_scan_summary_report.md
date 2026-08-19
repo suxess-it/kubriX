@@ -55,7 +55,7 @@
 <h4>No Misconfigurations found</h4>
 
 <h3>Target <code>ghcr.io/suxess-it/sx-backstage:v1.51.2 (wolfi 20230201)</code></h3>
-<h4>Vulnerabilities (9)</h4>
+<h4>Vulnerabilities (13)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -93,6 +93,20 @@
         <td>12.0.1-r2</td>
     </tr>
     <tr>
+        <td><code>python-3.10-base</code></td>
+        <td>CVE-2026-15308</td>
+        <td>HIGH</td>
+        <td>3.10.20-r10</td>
+        <td>3.10.21-r0</td>
+    </tr>
+    <tr>
+        <td><code>python-3.11-base</code></td>
+        <td>CVE-2026-15308</td>
+        <td>HIGH</td>
+        <td>3.11.15-r8</td>
+        <td>3.11.16-r1</td>
+    </tr>
+    <tr>
         <td><code>python-3.11-base</code></td>
         <td>CVE-2026-3644</td>
         <td>HIGH</td>
@@ -105,6 +119,20 @@
         <td>HIGH</td>
         <td>3.11.15-r8</td>
         <td>3.11.15-r9</td>
+    </tr>
+    <tr>
+        <td><code>python-3.12-base</code></td>
+        <td>CVE-2026-15308</td>
+        <td>HIGH</td>
+        <td>3.12.13-r10</td>
+        <td>3.12.14-r2</td>
+    </tr>
+    <tr>
+        <td><code>python-3.12-base</code></td>
+        <td>CVE-2026-4786</td>
+        <td>HIGH</td>
+        <td>3.12.13-r10</td>
+        <td>3.12.14-r2</td>
     </tr>
     <tr>
         <td><code>python-3.13-base</code></td>

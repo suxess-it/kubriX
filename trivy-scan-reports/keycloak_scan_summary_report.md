@@ -348,7 +348,7 @@
 <h4>No Vulnerabilities found</h4>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>usr/local/bin/provider</code></h3>
-<h4>Vulnerabilities (10)</h4>
+<h4>Vulnerabilities (12)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -363,6 +363,20 @@
         <td>CRITICAL</td>
         <td>v0.133.0</td>
         <td>0.144.0</td>
+    </tr>
+    <tr>
+        <td><code>golang.org/x/mod</code></td>
+        <td>CVE-2026-56864</td>
+        <td>HIGH</td>
+        <td>v0.36.0</td>
+        <td>0.40.0</td>
+    </tr>
+    <tr>
+        <td><code>golang.org/x/mod</code></td>
+        <td>CVE-2026-56865</td>
+        <td>HIGH</td>
+        <td>v0.36.0</td>
+        <td>0.40.0</td>
     </tr>
     <tr>
         <td><code>golang.org/x/text</code></td>
