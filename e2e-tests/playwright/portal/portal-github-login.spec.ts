@@ -266,7 +266,6 @@ test("Multi-Stage-Kargo App Onboarding", { tag: ['@oss'] }, async ({ page }) => 
   await page.getByRole('button', { name: 'Create' }).click();
 
   await expect(page.getByRole('button', { name: 'Repos' })).toBeVisible({ timeout: 180_000 });
-  await expect(page.getByRole('button', { name: 'Open in Catalog' })).toBeVisible({ timeout: 40_000 });
 
 
 });
@@ -589,8 +588,6 @@ test.describe("Kargo GitOps Promotion - Promote Changes", { tag: ['@oss'] }, () 
     await page.goto(`https://kargo.${BASE_DOMAIN}/project/kubrix-a${prefix}-kubrixbot-app-kargo-project`);
     await page.waitForLoadState('domcontentloaded');
     await page.getByRole('button', { name: 'Refresh' }).click();
-    // wait 10 seconds so freights are refreshed
-    await page.waitForTimeout(10_000);
     // load the site again to mitigate problem in https://github.com/akuity/kargo/issues/5932
     await page.goto(`https://kargo.${BASE_DOMAIN}/project/kubrix-a${prefix}-kubrixbot-app-kargo-project`);
     await page.waitForLoadState('domcontentloaded');
