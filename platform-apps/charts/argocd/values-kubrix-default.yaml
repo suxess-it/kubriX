@@ -4,6 +4,10 @@ argo-cd:
   global:
     domain: ~
 
+    # workaround for https://github.com/suxess-it/kubriX-prime/issues/763 (needs to get removed when https://github.com/suxess-it/kubriX-prime/issues/763 is solved)
+    networkPolicy:
+      create: false
+
   configs:
     params:
       server.insecure: true
