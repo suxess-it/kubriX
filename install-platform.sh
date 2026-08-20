@@ -787,6 +787,11 @@ if [[ "${KUBRIX_CLUSTER_TYPE}" == "kind" ]] ; then
   kubectl -n kube-system rollout status deployment/coredns
   rm coredns-configmap.yaml
 
+  # remove kindnet limits as a workaround for https://github.com/suxess-it/kubriX-prime/issues/763
+  kubectl -n kube-system patch ds kindnet --type=json \
+    -p='[{"op":"remove","path":"/spec/template/spec/containers/0/resources/limits"}]'
+  kubectl -n kube-system rollout status ds/kindnet
+
   # create install root CA to trust certs
   root_cert="/etc/tls/kind-kubrix-root-tls.crt"
   root_key="/etc/tls/kind-kubrix-tls.key"
