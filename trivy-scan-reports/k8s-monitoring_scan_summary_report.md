@@ -28,7 +28,7 @@
         <td>CVE-2026-8286</td>
         <td>HIGH</td>
         <td>7.76.1-40.el9</td>
-        <td></td>
+        <td>7.76.1-40.el9_8.5</td>
     </tr>
     <tr>
         <td><code>curl-minimal</code></td>
@@ -42,7 +42,7 @@
         <td>CVE-2026-9547</td>
         <td>HIGH</td>
         <td>7.76.1-40.el9</td>
-        <td></td>
+        <td>7.76.1-40.el9_8.5</td>
     </tr>
     <tr>
         <td><code>glib2</code></td>
@@ -77,7 +77,7 @@
         <td>CVE-2026-8286</td>
         <td>HIGH</td>
         <td>7.76.1-40.el9</td>
-        <td></td>
+        <td>7.76.1-40.el9_8.5</td>
     </tr>
     <tr>
         <td><code>libcurl-minimal</code></td>
@@ -91,7 +91,7 @@
         <td>CVE-2026-9547</td>
         <td>HIGH</td>
         <td>7.76.1-40.el9</td>
-        <td></td>
+        <td>7.76.1-40.el9_8.5</td>
     </tr>
 </table>
 <h4>No Misconfigurations found</h4>

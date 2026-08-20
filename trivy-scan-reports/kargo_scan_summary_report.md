@@ -1,6 +1,6 @@
 
 <h3>Target <code>ghcr.io/akuity/kargo:v1.11.0 (wolfi 20230201)</code></h3>
-<h4>Vulnerabilities (3)</h4>
+<h4>Vulnerabilities (2)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -10,25 +10,18 @@
         <th>Fixed Version</th>
     </tr>
     <tr>
-        <td><code>gnupg-gpgconf</code></td>
-        <td>CVE-2026-24882</td>
+        <td><code>busybox</code></td>
+        <td>CVE-2026-38753</td>
         <td>HIGH</td>
-        <td>2.4.9-r8</td>
-        <td>2.4.9-r10</td>
+        <td>1.37.0-r61</td>
+        <td>1.38.0-r0</td>
     </tr>
     <tr>
-        <td><code>gpg</code></td>
-        <td>CVE-2026-24882</td>
+        <td><code>busybox</code></td>
+        <td>CVE-2026-38754</td>
         <td>HIGH</td>
-        <td>2.4.9-r8</td>
-        <td>2.4.9-r10</td>
-    </tr>
-    <tr>
-        <td><code>gpg-agent</code></td>
-        <td>CVE-2026-24882</td>
-        <td>HIGH</td>
-        <td>2.4.9-r8</td>
-        <td>2.4.9-r10</td>
+        <td>1.37.0-r61</td>
+        <td>1.38.0-r0</td>
     </tr>
 </table>
 <h4>No Misconfigurations found</h4>

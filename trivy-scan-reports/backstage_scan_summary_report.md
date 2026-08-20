@@ -55,7 +55,7 @@
 <h4>No Misconfigurations found</h4>
 
 <h3>Target <code>ghcr.io/suxess-it/sx-backstage:v1.51.2 (wolfi 20230201)</code></h3>
-<h4>Vulnerabilities (13)</h4>
+<h4>Vulnerabilities (1)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -65,100 +65,16 @@
         <th>Fixed Version</th>
     </tr>
     <tr>
-        <td><code>libcrypto3</code></td>
-        <td>CVE-2026-45447</td>
-        <td>HIGH</td>
-        <td>3.6.2-r5</td>
-        <td>3.6.3-r0</td>
-    </tr>
-    <tr>
-        <td><code>libssl3</code></td>
-        <td>CVE-2026-45447</td>
-        <td>HIGH</td>
-        <td>3.6.2-r5</td>
-        <td>3.6.3-r0</td>
-    </tr>
-    <tr>
         <td><code>nodejs-22</code></td>
         <td>CVE-2026-58043</td>
         <td>HIGH</td>
         <td>22.22.3-r1</td>
         <td>22.23.2-r0</td>
     </tr>
-    <tr>
-        <td><code>npm</code></td>
-        <td>CVE-2026-14257</td>
-        <td>HIGH</td>
-        <td>12.0.1-r1</td>
-        <td>12.0.1-r2</td>
-    </tr>
-    <tr>
-        <td><code>python-3.10-base</code></td>
-        <td>CVE-2026-15308</td>
-        <td>HIGH</td>
-        <td>3.10.20-r10</td>
-        <td>3.10.21-r0</td>
-    </tr>
-    <tr>
-        <td><code>python-3.11-base</code></td>
-        <td>CVE-2026-15308</td>
-        <td>HIGH</td>
-        <td>3.11.15-r8</td>
-        <td>3.11.16-r1</td>
-    </tr>
-    <tr>
-        <td><code>python-3.11-base</code></td>
-        <td>CVE-2026-3644</td>
-        <td>HIGH</td>
-        <td>3.11.15-r8</td>
-        <td>3.11.15-r9</td>
-    </tr>
-    <tr>
-        <td><code>python-3.11-base</code></td>
-        <td>CVE-2026-4224</td>
-        <td>HIGH</td>
-        <td>3.11.15-r8</td>
-        <td>3.11.15-r9</td>
-    </tr>
-    <tr>
-        <td><code>python-3.12-base</code></td>
-        <td>CVE-2026-15308</td>
-        <td>HIGH</td>
-        <td>3.12.13-r10</td>
-        <td>3.12.14-r2</td>
-    </tr>
-    <tr>
-        <td><code>python-3.12-base</code></td>
-        <td>CVE-2026-4786</td>
-        <td>HIGH</td>
-        <td>3.12.13-r10</td>
-        <td>3.12.14-r2</td>
-    </tr>
-    <tr>
-        <td><code>python-3.13-base</code></td>
-        <td>CVE-2026-15308</td>
-        <td>HIGH</td>
-        <td>3.13.14-r2</td>
-        <td>3.13.14-r3</td>
-    </tr>
-    <tr>
-        <td><code>python-3.14</code></td>
-        <td>CVE-2026-15308</td>
-        <td>HIGH</td>
-        <td>3.14.6-r3</td>
-        <td>3.14.6-r4</td>
-    </tr>
-    <tr>
-        <td><code>python-3.14-base</code></td>
-        <td>CVE-2026-15308</td>
-        <td>HIGH</td>
-        <td>3.14.6-r3</td>
-        <td>3.14.6-r4</td>
-    </tr>
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>Node.js</code></h3>
-<h4>Vulnerabilities (151)</h4>
+<h4>Vulnerabilities (146)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -1183,41 +1099,6 @@
         <td>7.29.0, 8.9.0</td>
     </tr>
     <tr>
-        <td><code>vm2</code></td>
-        <td>CVE-2026-47686</td>
-        <td>CRITICAL</td>
-        <td>3.11.5</td>
-        <td>3.11.6</td>
-    </tr>
-    <tr>
-        <td><code>vm2</code></td>
-        <td>CVE-2026-47698</td>
-        <td>CRITICAL</td>
-        <td>3.11.5</td>
-        <td>3.11.6</td>
-    </tr>
-    <tr>
-        <td><code>vm2</code></td>
-        <td>GHSA-m5w8-4gq2-6f8x</td>
-        <td>CRITICAL</td>
-        <td>3.11.5</td>
-        <td>3.11.6</td>
-    </tr>
-    <tr>
-        <td><code>vm2</code></td>
-        <td>CVE-2026-47683</td>
-        <td>HIGH</td>
-        <td>3.11.5</td>
-        <td>3.11.6</td>
-    </tr>
-    <tr>
-        <td><code>vm2</code></td>
-        <td>GHSA-v836-6xw4-9cx3</td>
-        <td>HIGH</td>
-        <td>3.11.5</td>
-        <td>3.11.6</td>
-    </tr>
-    <tr>
         <td><code>ws</code></td>
         <td>CVE-2026-48779</td>
         <td>HIGH</td>
@@ -1227,7 +1108,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>Python</code></h3>
-<h4>Vulnerabilities (1)</h4>
+<h4>Vulnerabilities (3)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -1237,11 +1118,25 @@
         <th>Fixed Version</th>
     </tr>
     <tr>
+        <td><code>msgpack</code></td>
+        <td>GHSA-6v7p-g79w-8964</td>
+        <td>HIGH</td>
+        <td>1.1.2</td>
+        <td>1.2.1</td>
+    </tr>
+    <tr>
         <td><code>pymdown-extensions</code></td>
         <td>CVE-2026-67422</td>
         <td>HIGH</td>
         <td>10.21.3</td>
         <td>11.0.1</td>
+    </tr>
+    <tr>
+        <td><code>setuptools</code></td>
+        <td>CVE-2025-47273</td>
+        <td>HIGH</td>
+        <td>70.3.0</td>
+        <td>78.1.1</td>
     </tr>
 </table>
 <h4>No Misconfigurations found</h4>
