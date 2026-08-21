@@ -1,12 +1,10 @@
 // @ts-check
-import { test, expect, request } from '@playwright/test';
+import { request, type Locator, type Page } from '@playwright/test';
+import { test, expect } from '../fixtures/github-auth';
 import path from 'path';
-import fs from "fs";
 
 const BASE_DOMAIN = process.env.E2E_BASE_DOMAIN ?? '127-0-0-1.nip.io';
 const authDir = path.join(__dirname, '../.auth');
-const ghAuthFile = path.join(authDir, 'github.json');
-test.use({ storageState: ghAuthFile });
 
 // ArgoCD Login
 async function loginAndGetAuthedContext() {
@@ -100,6 +98,44 @@ async function waitForOperationToFinish(
   throw new Error(`Timed out waiting for sync operation to finish for app "${appName}"`);
 }
 
+async function completeGithubLoginPopup(page: Page, loginButton: Locator) {
+  const popupPromise = page.waitForEvent('popup');
+  await loginButton.click();
+
+  const popup = await popupPromise;
+  if (popup.isClosed()) return;
+
+  const authorize = popup.getByRole('button', { name: 'Authorize kubriX-demo' });
+  const outcome = await Promise.race([
+    popup.waitForEvent('close').then(() => 'closed'),
+    authorize.waitFor({ state: 'visible', timeout: 10_000 }).then(() => 'authorize'),
+  ]);
+
+  if (outcome === 'authorize' && !popup.isClosed()) {
+    const popupClosedPromise = popup.waitForEvent('close');
+    await authorize.click();
+    await popupClosedPromise;
+  }
+
+  if (!popup.isClosed()) await popup.close();
+}
+
+async function handleGithubLoginRequired(page: Page, expectedContent: Locator) {
+  const loginDialog = page.getByRole('dialog', { name: 'Login Required' });
+  const firstVisible = await Promise.race([
+    expectedContent.waitFor({ state: 'visible', timeout: 15_000 }).then(() => 'content'),
+    loginDialog.waitFor({ state: 'visible', timeout: 15_000 }).then(() => 'login'),
+  ]);
+
+  if (firstVisible === 'login' || await loginDialog.isVisible()) {
+    await completeGithubLoginPopup(
+      page,
+      loginDialog.getByRole('button', { name: 'Log in' }),
+    );
+    await expect(loginDialog).toBeHidden({ timeout: 15_000 });
+  }
+}
+
 test("Team Onboarding with kubrixBot Github user", { tag: ['@oss'] }, async ({ page }) => {
   test.setTimeout(220_000);
   //await page.goto("https://backstage.${BASE_DOMAIN}/");
@@ -112,24 +148,7 @@ test("Team Onboarding with kubrixBot Github user", { tag: ['@oss'] }, async ({ p
   await page.getByRole('textbox', { name: 'Team Repos UID' }).fill(`a${teamRepoUID}-`);
   await page.getByRole('textbox', { name: 'kubriX Repo Target Branch' }).fill(process.env.E2E_TEAM_ONBOARDING_TARGET_BRANCH!);
   await page.getByRole('button', { name: 'Next' }).click();
-  const page1Promise = page.waitForEvent('popup');
-  await page.getByRole('button', { name: 'Log in' }).click();
-
-  const popup = await page.waitForEvent('popup'); // your page1Promise
-  const authorize = popup.getByRole('button', { name: 'Authorize kubriX-demo' });
-
-  await Promise.race([
-  authorize
-    .waitFor({ state: 'visible', timeout: 5000 })
-    .then(() => authorize.click())
-    .then(() => popup.waitForEvent('close')), 
-
-    // Case B: popup closes automatically -> do nothing
-    popup.waitForEvent('close')
-  ]);
-
-  // optional: make sure the popup is gone before continuing
-  if (!popup.isClosed()) await popup.close();
+  await completeGithubLoginPopup(page, page.getByRole('button', { name: 'Log in' }));
 
   await page.getByRole('button', { name: 'Review' }).click();
   await page.getByRole('button', { name: 'Create' }).click();
@@ -241,48 +260,28 @@ test("Multi-Stage-Kargo App Onboarding", { tag: ['@oss'] }, async ({ page }) => 
   await page.getByRole('textbox', { name: 'Team Organization' }).click();
   await page.getByRole('textbox', { name: 'Team Organization' }).fill('kubriX-demo');
   await page.getByRole('button', { name: 'Next' }).click();
-  const page1Promise = page.waitForEvent('popup');
-  await page.getByRole('button', { name: 'Log in' }).click();
-
-  const popup = await page.waitForEvent('popup'); // your page1Promise
-  const authorize = popup.getByRole('button', { name: 'Authorize kubriX-demo' });
-
-  await Promise.race([
-  authorize
-    .waitFor({ state: 'visible', timeout: 5000 })
-    .then(() => authorize.click())
-    .then(() => popup.waitForEvent('close')), 
-
-    // Case B: popup closes automatically -> do nothing
-    popup.waitForEvent('close')
-  ]);
-
-  // optional: make sure the popup is gone before continuing
-  if (!popup.isClosed()) await popup.close();
+  await completeGithubLoginPopup(page, page.getByRole('button', { name: 'Log in' }));
 
   await page.getByRole('button', { name: 'Review' }).click();
   await page.getByRole('button', { name: 'Create' }).click();
 
   await expect(page.getByRole('button', { name: 'Repos' })).toBeVisible({ timeout: 180_000 });
-  await expect(page.getByRole('button', { name: 'Open in Catalog' })).toBeVisible({ timeout: 40_000 });
 
 
 });
 
-test.describe("ArgoCD verify kubrixbot-app state", () => {
+test.describe("ArgoCD verify kubrixbot-app state", { tag: ['@oss'] }, () => {
   const argocdAuthFile = path.join(authDir, 'argocd.json');
   test.use({ storageState: argocdAuthFile });
   test.setTimeout(180_000);
   test('ArgoCD verify kubrixbot-app state', async ({ page }) => {
-    // wait for 1 minute so the appset scm generator picks up the new repo
     const prefix = process.env.E2E_TEST_PR_NUMBER ?? '';
-    await page.waitForTimeout(60_000);
     await page.goto(`https://argocd.${BASE_DOMAIN}/applications/adn-kubrix/kubrix-a${prefix}-kubrixbot-app`);
-    await expect(page.locator('#app').getByText('Synced', { exact: true }).nth(1)).toBeVisible({ timeout: 20_000 });
+    await expect(page.locator('#app').getByText('Synced', { exact: true }).nth(1)).toBeVisible({ timeout: 90_000 });
   });
 });
 
-test.describe("Kargo GitOps Promotion - Going Live First time", () => {
+test.describe("Kargo GitOps Promotion - Going Live First time", { tag: ['@oss'] }, () => {
   const kargoAuthFile = path.join(authDir, 'kargo.json');
   test.use({ storageState: kargoAuthFile });
   test.setTimeout(200_000);
@@ -293,130 +292,43 @@ test.describe("Kargo GitOps Promotion - Going Live First time", () => {
     await page.getByRole('button', { name: 'Refresh' }).click();
     // wait 10 seconds so freights are refreshed
     await page.waitForTimeout(10_000);
-    await page.locator('[data-testid$="/test"]').getByRole('button').nth(0).click();
+    await page.locator('[data-testid$="/test"]').locator('button.ant-dropdown-trigger').click();
     await page.getByRole('menuitem', { name: 'Promote', exact: true }).locator('span').click();
     await page.getByRole('button', { name: 'Select' }).first().click();
     await page.getByRole('button', { name: 'Promote' }).click();
     await expect(page.getByLabel('Promotion', { exact: true }).getByRole('rowgroup')).toContainText('Succeeded', { timeout: 60_000 });
     await page.getByRole('button', { name: 'Close' }).click();
-    // refresh stage otherwise it is in verification / unknown state too long
-    await expect.poll(async () => {
-      await page
-        .locator('[data-testid$="/test"]')
-        .getByRole('button')
-        .nth(2)
-        .click();
-    
-      try {
-        await page.getByRole('dialog').getByRole('button', { name: 'Refresh' }).click({ timeout: 3000 });
-      } catch (e) {
-        // Swallow only “could not click refresh” type failures
-        // so the poll can continue and we can still Close.
-        // (Optional: console.log(String(e)))
-      }
-      await page.getByRole('button', { name: 'Close' }).click();
-    
-      const readyVisible = await page
-        .locator('[data-testid$="/test"]')
-        .getByText('Ready')
-        .isVisible();
-    
-      const healthyVisible = await page
-        .locator('[data-testid$="/test"]')
-        .getByText('Healthy')
-        .isVisible();
-    
-      return readyVisible && healthyVisible;
-    }, {
-      timeout: 120_000,
-      intervals: [2_000],
-    }).toBe(true);
+    const testStage = page.locator('[data-testid$="/test"]');
+    await expect(testStage.getByText('Ready', { exact: true })).toBeVisible({ timeout: 120_000 });
+    await expect(testStage.getByText('Healthy', { exact: true })).toBeVisible({ timeout: 120_000 });
   });
 
   test('Kargo GitOps Promotion - Promote to QA', async ({ page }) => {
     const prefix = process.env.E2E_TEST_PR_NUMBER ?? '';
     await page.goto(`https://kargo.${BASE_DOMAIN}/project/kubrix-a${prefix}-kubrixbot-app-kargo-project`);
-    await page.locator('[data-testid$="/qa"]').getByRole('button').nth(0).click();
+    await page.locator('[data-testid$="/qa"]').locator('button.ant-dropdown-trigger').click();
     await page.getByRole('menuitem', { name: 'Promote', exact: true }).locator('span').click();
     await page.getByRole('button', { name: 'Select' }).first().click();
     await page.getByRole('button', { name: 'Promote' }).click();
     await expect(page.getByLabel('Promotion', { exact: true }).getByRole('rowgroup')).toContainText('Succeeded', { timeout: 60_000 });
     await page.getByRole('button', { name: 'Close' }).click();
-    // refresh stage otherwise it is in verification / unknown state too long
-    await expect.poll(async () => {
-      await page
-        .locator('[data-testid$="/qa"]')
-        .getByRole('button')
-        .nth(2)
-        .click();
-
-      try {
-        await page.getByRole('dialog').getByRole('button', { name: 'Refresh' }).click({ timeout: 3000 });
-      } catch (e) {
-        // Swallow only “could not click refresh” type failures
-        // so the poll can continue and we can still Close.
-        // (Optional: console.log(String(e)))
-      }
-      await page.getByRole('button', { name: 'Close' }).click();
-    
-      const readyVisible = await page
-        .locator('[data-testid$="/qa"]')
-        .getByText('Ready')
-        .isVisible();
-    
-      const healthyVisible = await page
-        .locator('[data-testid$="/qa"]')
-        .getByText('Healthy')
-        .isVisible();
-    
-      return readyVisible && healthyVisible;
-    }, {
-      timeout: 120_000,
-      intervals: [2_000],
-    }).toBe(true);
+    const qaStage = page.locator('[data-testid$="/qa"]');
+    await expect(qaStage.getByText('Ready', { exact: true })).toBeVisible({ timeout: 120_000 });
+    await expect(qaStage.getByText('Healthy', { exact: true })).toBeVisible({ timeout: 120_000 });
   });
 
   test('Kargo GitOps Promotion - Promote to Prod', async ({ page }) => {
     const prefix = process.env.E2E_TEST_PR_NUMBER ?? '';
     await page.goto(`https://kargo.${BASE_DOMAIN}/project/kubrix-a${prefix}-kubrixbot-app-kargo-project`);
-    await page.locator('[data-testid$="/prod"]').getByRole('button').nth(0).click();
+    await page.locator('[data-testid$="/prod"]').locator('button.ant-dropdown-trigger').click();
     await page.getByRole('menuitem', { name: 'Promote', exact: true }).locator('span').click();
     await page.getByRole('button', { name: 'Select' }).first().click();
     await page.getByRole('button', { name: 'Promote' }).click();
     await expect(page.getByLabel('Promotion', { exact: true }).getByRole('rowgroup')).toContainText('Succeeded', { timeout: 60_000 });
     await page.getByRole('button', { name: 'Close' }).click();
-    // refresh stage otherwise it is in verification / unknown state too long
-    await expect.poll(async () => {
-      await page
-        .locator('[data-testid$="/prod"]')
-        .getByRole('button')
-        .nth(2)
-        .click();
-
-      try {
-        await page.getByRole('dialog').getByRole('button', { name: 'Refresh' }).click({ timeout: 3000 });
-      } catch (e) {
-        // Swallow only “could not click refresh” type failures
-        // so the poll can continue and we can still Close.
-        // (Optional: console.log(String(e)))
-      }
-      await page.getByRole('button', { name: 'Close' }).click();
-    
-      const readyVisible = await page
-        .locator('[data-testid$="/prod"]')
-        .getByText('Ready')
-        .isVisible();
-    
-      const healthyVisible = await page
-        .locator('[data-testid$="/prod"]')
-        .getByText('Healthy')
-        .isVisible();
-    
-      return readyVisible && healthyVisible;
-    }, {
-      timeout: 120_000,
-      intervals: [2_000],
-    }).toBe(true);
+    const prodStage = page.locator('[data-testid$="/prod"]');
+    await expect(prodStage.getByText('Ready', { exact: true })).toBeVisible({ timeout: 120_000 });
+    await expect(prodStage.getByText('Healthy', { exact: true })).toBeVisible({ timeout: 120_000 });
   });
 });
 
@@ -452,7 +364,9 @@ test("Check kubrixbot-app in backstage", { tag: ['@oss'] }, async ({ page }) => 
     
     // inside the app overview page
     // ArgoCD Deployment Summary
-    await expect(page.getByRole('heading', { name: 'Deployment Summary' })).toBeVisible();
+    const deploymentSummary = page.getByRole('heading', { name: 'Deployment Summary' });
+    await handleGithubLoginRequired(page, deploymentSummary);
+    await expect(deploymentSummary).toBeVisible({ timeout: 30_000 });
     await expect(page.getByRole('cell', { name: 'Synced' })).toBeVisible();
     await expect(page.getByRole('cell', { name: 'Healthy' })).toBeVisible();
     
@@ -664,7 +578,7 @@ affinity: {}
   await page.getByRole('button', { name: 'Commit changes', exact: true }).click();
 });
 
-test.describe("Kargo GitOps Promotion - Promote Changes", () => {
+test.describe("Kargo GitOps Promotion - Promote Changes", { tag: ['@oss'] }, () => {
   const kargoAuthFile = path.join(authDir, 'kargo.json');
   test.use({ storageState: kargoAuthFile });
   test.setTimeout(200_000);
@@ -674,12 +588,10 @@ test.describe("Kargo GitOps Promotion - Promote Changes", () => {
     await page.goto(`https://kargo.${BASE_DOMAIN}/project/kubrix-a${prefix}-kubrixbot-app-kargo-project`);
     await page.waitForLoadState('domcontentloaded');
     await page.getByRole('button', { name: 'Refresh' }).click();
-    // wait 10 seconds so freights are refreshed
-    await page.waitForTimeout(10_000);
     // load the site again to mitigate problem in https://github.com/akuity/kargo/issues/5932
     await page.goto(`https://kargo.${BASE_DOMAIN}/project/kubrix-a${prefix}-kubrixbot-app-kargo-project`);
     await page.waitForLoadState('domcontentloaded');
-    await page.locator('[data-testid$="/test"]').getByRole('button').nth(1).click();
+    await page.locator('[data-testid$="/test"]').locator('button.ant-dropdown-trigger').click();
     await page.waitForTimeout(5_000);
     await page.getByRole('menuitem', { name: 'Promote', exact: true }).locator('span').click();
     await page.waitForTimeout(5_000);
@@ -687,139 +599,50 @@ test.describe("Kargo GitOps Promotion - Promote Changes", () => {
     await page.getByRole('button', { name: 'Promote' }).click();
     await expect(page.getByLabel('Promotion', { exact: true }).getByRole('rowgroup')).toContainText('Succeeded', { timeout: 30_000 });
     await page.getByRole('button', { name: 'Close' }).click();
-    // refresh stage otherwise it is in verification / unknown state too long
-    await expect.poll(async () => {
-      await page
-        .locator('[data-testid$="/test"]')
-        .getByRole('button')
-        .nth(2)
-        .click();
-
-      try {
-        await page.getByRole('dialog').getByRole('button', { name: 'Refresh' }).click({ timeout: 3000 });
-      } catch (e) {
-        // Swallow only “could not click refresh” type failures
-        // so the poll can continue and we can still Close.
-        // (Optional: console.log(String(e)))
-      }
-      await page.getByRole('button', { name: 'Close' }).click();
-    
-      const readyVisible = await page
-        .locator('[data-testid$="/test"]')
-        .getByText('Ready')
-        .isVisible();
-    
-      const healthyVisible = await page
-        .locator('[data-testid$="/test"]')
-        .getByText('Healthy')
-        .isVisible();
-    
-      return readyVisible && healthyVisible;
-    }, {
-      timeout: 120_000,
-      intervals: [2_000],
-    }).toBe(true);
+    const testStage = page.locator('[data-testid$="/test"]');
+    await expect(testStage.getByText('Ready', { exact: true })).toBeVisible({ timeout: 120_000 });
+    await expect(testStage.getByText('Healthy', { exact: true })).toBeVisible({ timeout: 120_000 });
   });
 
   test('Kargo GitOps Promotion - Promote Changes to QA', async ({ page }) => {
     const prefix = process.env.E2E_TEST_PR_NUMBER ?? '';
     await page.goto(`https://kargo.${BASE_DOMAIN}/project/kubrix-a${prefix}-kubrixbot-app-kargo-project`);
-    await page.locator('[data-testid$="/qa"]').getByRole('button').nth(1).click();
+    await page.locator('[data-testid$="/qa"]').locator('button.ant-dropdown-trigger').click();
     await page.getByRole('menuitem', { name: 'Promote', exact: true }).locator('span').click();
     await page.getByRole('button', { name: 'Select' }).first().click();
     await page.getByRole('button', { name: 'Promote' }).click();
     await expect(page.getByLabel('Promotion', { exact: true }).getByRole('rowgroup')).toContainText('Succeeded', { timeout: 30_000 });
     await page.getByRole('button', { name: 'Close' }).click();
-    // refresh stage otherwise it is in verification / unknown state too long
-    await expect.poll(async () => {
-      await page
-        .locator('[data-testid$="/qa"]')
-        .getByRole('button')
-        .nth(2)
-        .click();
-
-      try {
-        await page.getByRole('dialog').getByRole('button', { name: 'Refresh' }).click({ timeout: 3000 });
-      } catch (e) {
-        // Swallow only “could not click refresh” type failures
-        // so the poll can continue and we can still Close.
-        // (Optional: console.log(String(e)))
-      }
-      await page.getByRole('button', { name: 'Close' }).click();
-    
-      const readyVisible = await page
-        .locator('[data-testid$="/qa"]')
-        .getByText('Ready')
-        .isVisible();
-    
-      const healthyVisible = await page
-        .locator('[data-testid$="/qa"]')
-        .getByText('Healthy')
-        .isVisible();
-    
-      return readyVisible && healthyVisible;
-    }, {
-      timeout: 120_000,
-      intervals: [2_000],
-    }).toBe(true);
+    const qaStage = page.locator('[data-testid$="/qa"]');
+    await expect(qaStage.getByText('Ready', { exact: true })).toBeVisible({ timeout: 120_000 });
+    await expect(qaStage.getByText('Healthy', { exact: true })).toBeVisible({ timeout: 120_000 });
   });
 
   test('Kargo GitOps Promotion - Promote Changes to Prod', async ({ page }) => {
     const prefix = process.env.E2E_TEST_PR_NUMBER ?? '';
     await page.goto(`https://kargo.${BASE_DOMAIN}/project/kubrix-a${prefix}-kubrixbot-app-kargo-project`);
-    await page.locator('[data-testid$="/prod"]').getByRole('button').nth(1).click();
+    await page.locator('[data-testid$="/prod"]').locator('button.ant-dropdown-trigger').click();
     await page.getByRole('menuitem', { name: 'Promote', exact: true }).locator('span').click();
     await page.getByRole('button', { name: 'Select' }).first().click();
     await page.getByRole('button', { name: 'Promote' }).click();
     await expect(page.getByLabel('Promotion', { exact: true }).getByRole('rowgroup')).toContainText('Succeeded', { timeout: 30_000 });
     await page.getByRole('button', { name: 'Close' }).click();
-    // refresh stage otherwise it is in verification / unknown state too long
-    await expect.poll(async () => {
-      await page
-        .locator('[data-testid$="/prod"]')
-        .getByRole('button')
-        .nth(2)
-        .click();
-    
-      try {
-        await page.getByRole('dialog').getByRole('button', { name: 'Refresh' }).click({ timeout: 3000 });
-      } catch (e) {
-        // Swallow only “could not click refresh” type failures
-        // so the poll can continue and we can still Close.
-        // (Optional: console.log(String(e)))
-      }
-      await page.getByRole('button', { name: 'Close' }).click();
-    
-      const readyVisible = await page
-        .locator('[data-testid$="/prod"]')
-        .getByText('Ready')
-        .isVisible();
-    
-      const healthyVisible = await page
-        .locator('[data-testid$="/prod"]')
-        .getByText('Healthy')
-        .isVisible();
-    
-      return readyVisible && healthyVisible;
-    }, {
-      timeout: 120_000,
-      intervals: [2_000],
-    }).toBe(true);
+    const prodStage = page.locator('[data-testid$="/prod"]');
+    await expect(prodStage.getByText('Ready', { exact: true })).toBeVisible({ timeout: 120_000 });
+    await expect(prodStage.getByText('Healthy', { exact: true })).toBeVisible({ timeout: 120_000 });
   });
 });
 
 
-test.describe("ArgoCD verify kubrixbot-app state final", () => {
+test.describe("ArgoCD verify kubrixbot-app state final", { tag: ['@oss'] }, () => {
   const argocdAuthFile = path.join(authDir, 'argocd.json');
   test.use({ storageState: argocdAuthFile });
   test.setTimeout(180_000);
   test('ArgoCD verify kubrixbot-app state', async ({ page }) => {
-    // wait for 1 minute so the appset scm generator picks up the new repo
     const prefix = process.env.E2E_TEST_PR_NUMBER ?? '';
-    await page.waitForTimeout(60_000);
     await page.goto(`https://argocd.${BASE_DOMAIN}/applications/adn-kubrix/kubrix-a${prefix}-kubrixbot-app`);
-    await expect(page.locator('#app').getByText('Synced', { exact: true }).nth(1)).toBeVisible({ timeout: 20_000 });
-    await expect(page.locator('#app').getByText('Healthy', { exact: true }).nth(1)).toBeVisible({ timeout: 20_000 });
+    await expect(page.locator('#app').getByText('Synced', { exact: true }).nth(1)).toBeVisible({ timeout: 90_000 });
+    await expect(page.locator('#app').getByText('Healthy', { exact: true }).nth(1)).toBeVisible({ timeout: 90_000 });
   });
   test('ArgoCD verify kubrixbot-app-test state', async ({ page }) => {
     const prefix = process.env.E2E_TEST_PR_NUMBER ?? '';

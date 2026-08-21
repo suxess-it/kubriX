@@ -22,6 +22,10 @@ spec:
           key: {{ $user.name }}
           namespace: {{ $.Release.Namespace }}
         temporary: false # should be set to true in production
+    {{- with $user.attributes }}
+    attributes:
+      {{- toYaml . | nindent 6 }}
+    {{- end }}
   deletionPolicy: "Delete"
   providerConfigRef:
     name: "{{ $.Release.Name }}-config"

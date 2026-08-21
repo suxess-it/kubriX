@@ -1,4 +1,8 @@
+grafanaFolder: "kubriX"
+
 loki:
+  ignoreMinioDeprecation: true # workaround for https://github.com/suxess-it/kubriX/issues/2921
+
   loki:
     commonConfig:
       replication_factor: 1 # since replicas is set to 1
@@ -86,6 +90,8 @@ loki:
     dashboards:
       # -- If enabled, create configmap with dashboards for monitoring Loki
       enabled: true
+      annotations:
+        grafana_folder: "kubriX"
     # Recording rules for monitoring Loki, required for some dashboards
     rules:
       # -- If enabled, create PrometheusRule resource with Loki recording rules

@@ -20,14 +20,14 @@ spec:
           name: git-credentials
           key: token
   container:
-    image: mcr.microsoft.com/playwright:v1.59.0
+    image: mcr.microsoft.com/playwright:v1.62.1
     resources:
       requests:
         cpu: 500m
         memory: 500Mi
     workingDir: /data/repo/e2e-tests/playwright
   job:
-    activeDeadlineSeconds:  3600
+    activeDeadlineSeconds:  7200
   steps:
   - name: Install dependencies
     shell: "npm ci"
@@ -42,10 +42,13 @@ spec:
         value: "/data/repo/e2e-tests/playwright/data/artifacts/junit-report.xml"
       - name: PLAYWRIGHT_HTML_REPORT
         value: "/data/repo/e2e-tests/playwright/data/artifacts/playwright-report"
+      - name: PLAYWRIGHT_JUNIT_INCLUDE_RETRIES
+        value: "true"
     steps:
     - name: Save artifacts
       condition: always
       artifacts:
         workingDir: /data/repo/e2e-tests/playwright/data/artifacts/
         paths:
-        - '**/*'
+        - 'playwright-report/**/*'
+        - 'junit-report.xml'

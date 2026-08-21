@@ -24,9 +24,10 @@ test('Keycloak Demoviewer Login', { tag: ['@oss'] }, async ({ page }) => {
   await expect(page.getByRole('link', { name: 'RBAC' })).not.toBeVisible();
   await expect(page.getByRole('link', { name: 'RBAC' })).toBeHidden();
 
-  // Check that the Create button is not visible in the catalog for viewers
+  // Check that the Create button (top-right of the catalog page, not the
+  // sidebar nav item) is not visible in the catalog for viewers
   await page.goto(`https://backstage.${BASE_DOMAIN}/catalog`);
-  await expect(page.getByRole('link', { name: 'Create' })).not.toBeVisible();
+  await expect(page.getByRole('main').getByRole('button', { name: 'Create', exact: true })).not.toBeVisible();
 
   // Check that no Choose buttons are visible on the create page for viewers
   await page.goto(`https://backstage.${BASE_DOMAIN}/create`);
