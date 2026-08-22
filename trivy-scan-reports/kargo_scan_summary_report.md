@@ -1,6 +1,6 @@
 
-<h3>Target <code>ghcr.io/akuity/kargo:v1.11.0 (wolfi 20230201)</code></h3>
-<h4>Vulnerabilities (2)</h4>
+<h3>Target <code>ghcr.io/akuity/kargo:v1.11.2 (wolfi 20230201)</code></h3>
+<h4>Vulnerabilities (4)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -22,6 +22,20 @@
         <td>HIGH</td>
         <td>1.37.0-r61</td>
         <td>1.38.0-r0</td>
+    </tr>
+    <tr>
+        <td><code>libcrypto3</code></td>
+        <td>CVE-2026-14456</td>
+        <td>HIGH</td>
+        <td>3.6.3-r4</td>
+        <td>3.6.3-r5</td>
+    </tr>
+    <tr>
+        <td><code>libssl3</code></td>
+        <td>CVE-2026-14456</td>
+        <td>HIGH</td>
+        <td>3.6.3-r4</td>
+        <td>3.6.3-r5</td>
     </tr>
 </table>
 <h4>No Misconfigurations found</h4>
