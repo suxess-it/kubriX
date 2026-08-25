@@ -1011,7 +1011,7 @@
 <h4>No Misconfigurations found</h4>
 
 <h3>Target <code>bin/prometheus</code></h3>
-<h4>Vulnerabilities (44)</h4>
+<h4>Vulnerabilities (43)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -1019,13 +1019,6 @@
         <th>Severity</th>
         <th>Installed Version</th>
         <th>Fixed Version</th>
-    </tr>
-    <tr>
-        <td><code>github.com/docker/docker</code></td>
-        <td>CVE-2026-34040</td>
-        <td>HIGH</td>
-        <td>v28.5.2+incompatible</td>
-        <td>29.3.1</td>
     </tr>
     <tr>
         <td><code>github.com/docker/docker</code></td>
@@ -1331,7 +1324,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>bin/promtool</code></h3>
-<h4>Vulnerabilities (42)</h4>
+<h4>Vulnerabilities (41)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -1339,13 +1332,6 @@
         <th>Severity</th>
         <th>Installed Version</th>
         <th>Fixed Version</th>
-    </tr>
-    <tr>
-        <td><code>github.com/docker/docker</code></td>
-        <td>CVE-2026-34040</td>
-        <td>HIGH</td>
-        <td>v28.5.2+incompatible</td>
-        <td>29.3.1</td>
     </tr>
     <tr>
         <td><code>github.com/docker/docker</code></td>

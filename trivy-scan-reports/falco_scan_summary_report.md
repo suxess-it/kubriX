@@ -656,7 +656,7 @@
 <h4>No Misconfigurations found</h4>
 
 <h3>Target <code>docker.io/falcosecurity/falco:0.43.1 (wolfi 20230201)</code></h3>
-<h4>Vulnerabilities (22)</h4>
+<h4>Vulnerabilities (6)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -707,118 +707,6 @@
         <td>1.8.1-r4</td>
         <td>1.8.1-r5</td>
     </tr>
-    <tr>
-        <td><code>libcrypto3</code></td>
-        <td>CVE-2026-31789</td>
-        <td>CRITICAL</td>
-        <td>3.6.1-r4</td>
-        <td>3.6.2-r0</td>
-    </tr>
-    <tr>
-        <td><code>libcrypto3</code></td>
-        <td>CVE-2026-14456</td>
-        <td>HIGH</td>
-        <td>3.6.1-r4</td>
-        <td>3.6.3-r5</td>
-    </tr>
-    <tr>
-        <td><code>libcrypto3</code></td>
-        <td>CVE-2026-28386</td>
-        <td>HIGH</td>
-        <td>3.6.1-r4</td>
-        <td>3.6.2-r0</td>
-    </tr>
-    <tr>
-        <td><code>libcrypto3</code></td>
-        <td>CVE-2026-28387</td>
-        <td>HIGH</td>
-        <td>3.6.1-r4</td>
-        <td>3.6.2-r0</td>
-    </tr>
-    <tr>
-        <td><code>libcrypto3</code></td>
-        <td>CVE-2026-28388</td>
-        <td>HIGH</td>
-        <td>3.6.1-r4</td>
-        <td>3.6.2-r0</td>
-    </tr>
-    <tr>
-        <td><code>libcrypto3</code></td>
-        <td>CVE-2026-28389</td>
-        <td>HIGH</td>
-        <td>3.6.1-r4</td>
-        <td>3.6.2-r0</td>
-    </tr>
-    <tr>
-        <td><code>libcrypto3</code></td>
-        <td>CVE-2026-28390</td>
-        <td>HIGH</td>
-        <td>3.6.1-r4</td>
-        <td>3.6.2-r0</td>
-    </tr>
-    <tr>
-        <td><code>libcrypto3</code></td>
-        <td>CVE-2026-45447</td>
-        <td>HIGH</td>
-        <td>3.6.1-r4</td>
-        <td>3.6.3-r0</td>
-    </tr>
-    <tr>
-        <td><code>libssl3</code></td>
-        <td>CVE-2026-31789</td>
-        <td>CRITICAL</td>
-        <td>3.6.1-r4</td>
-        <td>3.6.2-r0</td>
-    </tr>
-    <tr>
-        <td><code>libssl3</code></td>
-        <td>CVE-2026-14456</td>
-        <td>HIGH</td>
-        <td>3.6.1-r4</td>
-        <td>3.6.3-r5</td>
-    </tr>
-    <tr>
-        <td><code>libssl3</code></td>
-        <td>CVE-2026-28386</td>
-        <td>HIGH</td>
-        <td>3.6.1-r4</td>
-        <td>3.6.2-r0</td>
-    </tr>
-    <tr>
-        <td><code>libssl3</code></td>
-        <td>CVE-2026-28387</td>
-        <td>HIGH</td>
-        <td>3.6.1-r4</td>
-        <td>3.6.2-r0</td>
-    </tr>
-    <tr>
-        <td><code>libssl3</code></td>
-        <td>CVE-2026-28388</td>
-        <td>HIGH</td>
-        <td>3.6.1-r4</td>
-        <td>3.6.2-r0</td>
-    </tr>
-    <tr>
-        <td><code>libssl3</code></td>
-        <td>CVE-2026-28389</td>
-        <td>HIGH</td>
-        <td>3.6.1-r4</td>
-        <td>3.6.2-r0</td>
-    </tr>
-    <tr>
-        <td><code>libssl3</code></td>
-        <td>CVE-2026-28390</td>
-        <td>HIGH</td>
-        <td>3.6.1-r4</td>
-        <td>3.6.2-r0</td>
-    </tr>
-    <tr>
-        <td><code>libssl3</code></td>
-        <td>CVE-2026-45447</td>
-        <td>HIGH</td>
-        <td>3.6.1-r4</td>
-        <td>3.6.3-r0</td>
-    </tr>
 </table>
 <h4>No Misconfigurations found</h4>
 
@@ -826,7 +714,7 @@
 <h4>No Vulnerabilities found</h4>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>usr/bin/falcoctl</code></h3>
-<h4>Vulnerabilities (53)</h4>
+<h4>Vulnerabilities (52)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -841,13 +729,6 @@
         <td>HIGH</td>
         <td>v29.0.3+incompatible</td>
         <td>29.2.0</td>
-    </tr>
-    <tr>
-        <td><code>github.com/docker/docker</code></td>
-        <td>CVE-2026-34040</td>
-        <td>HIGH</td>
-        <td>v28.5.2+incompatible</td>
-        <td>29.3.1</td>
     </tr>
     <tr>
         <td><code>github.com/docker/docker</code></td>
