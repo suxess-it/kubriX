@@ -1,6 +1,6 @@
 
 <h3>Target <code>ghcr.io/grafana/alloy-operator:1.11.1 (redhat 9.8)</code></h3>
-<h4>Vulnerabilities (12)</h4>
+<h4>Vulnerabilities (14)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -92,6 +92,20 @@
         <td>HIGH</td>
         <td>7.76.1-40.el9</td>
         <td>7.76.1-40.el9_8.5</td>
+    </tr>
+    <tr>
+        <td><code>sqlite-libs</code></td>
+        <td>CVE-2026-11822</td>
+        <td>HIGH</td>
+        <td>3.34.1-10.el9_8</td>
+        <td>3.34.1-11.el9_8</td>
+    </tr>
+    <tr>
+        <td><code>sqlite-libs</code></td>
+        <td>CVE-2026-11824</td>
+        <td>HIGH</td>
+        <td>3.34.1-10.el9_8</td>
+        <td>3.34.1-11.el9_8</td>
     </tr>
 </table>
 <h4>No Misconfigurations found</h4>
@@ -200,7 +214,7 @@
 <h4>No Misconfigurations found</h4>
 
 <h3>Target <code>ghcr.io/grafana/helm-chart-toolbox-kubectl:0.1.2 (alpine 3.22.2)</code></h3>
-<h4>Vulnerabilities (22)</h4>
+<h4>Vulnerabilities (24)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -236,6 +250,13 @@
         <td>HIGH</td>
         <td>3.5.4-r0</td>
         <td>3.5.5-r0</td>
+    </tr>
+    <tr>
+        <td><code>libcrypto3</code></td>
+        <td>CVE-2026-14456</td>
+        <td>HIGH</td>
+        <td>3.5.4-r0</td>
+        <td>3.5.8-r0</td>
     </tr>
     <tr>
         <td><code>libcrypto3</code></td>
@@ -292,6 +313,13 @@
         <td>HIGH</td>
         <td>3.5.4-r0</td>
         <td>3.5.5-r0</td>
+    </tr>
+    <tr>
+        <td><code>libssl3</code></td>
+        <td>CVE-2026-14456</td>
+        <td>HIGH</td>
+        <td>3.5.4-r0</td>
+        <td>3.5.8-r0</td>
     </tr>
     <tr>
         <td><code>libssl3</code></td>

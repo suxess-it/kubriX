@@ -612,6 +612,20 @@
         <td>3.40.1-2+deb12u2</td>
     </tr>
     <tr>
+        <td><code>libsqlite3-0</code></td>
+        <td>CVE-2026-11822</td>
+        <td>HIGH</td>
+        <td>3.40.1-2+deb12u1</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>libsqlite3-0</code></td>
+        <td>CVE-2026-11824</td>
+        <td>HIGH</td>
+        <td>3.40.1-2+deb12u1</td>
+        <td></td>
+    </tr>
+    <tr>
         <td><code>libssh2-1</code></td>
         <td>CVE-2026-58050</td>
         <td>HIGH</td>
@@ -645,13 +659,6 @@
         <td>HIGH</td>
         <td>3.0.16-1~deb12u1</td>
         <td>3.0.18-1~deb12u2</td>
-    </tr>
-    <tr>
-        <td><code>libssl3</code></td>
-        <td>CVE-2026-14456</td>
-        <td>HIGH</td>
-        <td>3.0.16-1~deb12u1</td>
-        <td></td>
     </tr>
     <tr>
         <td><code>libssl3</code></td>
@@ -757,13 +764,6 @@
         <td>HIGH</td>
         <td>3.0.16-1~deb12u1</td>
         <td>3.0.18-1~deb12u2</td>
-    </tr>
-    <tr>
-        <td><code>openssl</code></td>
-        <td>CVE-2026-14456</td>
-        <td>HIGH</td>
-        <td>3.0.16-1~deb12u1</td>
-        <td></td>
     </tr>
     <tr>
         <td><code>openssl</code></td>
@@ -2590,6 +2590,20 @@
         <td>3.40.1-2+deb12u2</td>
     </tr>
     <tr>
+        <td><code>libsqlite3-0</code></td>
+        <td>CVE-2026-11822</td>
+        <td>HIGH</td>
+        <td>3.40.1-2+deb12u1</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>libsqlite3-0</code></td>
+        <td>CVE-2026-11824</td>
+        <td>HIGH</td>
+        <td>3.40.1-2+deb12u1</td>
+        <td></td>
+    </tr>
+    <tr>
         <td><code>libssh2-1</code></td>
         <td>CVE-2026-58050</td>
         <td>HIGH</td>
@@ -2623,13 +2637,6 @@
         <td>HIGH</td>
         <td>3.0.15-1~deb12u1</td>
         <td>3.0.18-1~deb12u2</td>
-    </tr>
-    <tr>
-        <td><code>libssl3</code></td>
-        <td>CVE-2026-14456</td>
-        <td>HIGH</td>
-        <td>3.0.15-1~deb12u1</td>
-        <td></td>
     </tr>
     <tr>
         <td><code>libssl3</code></td>
@@ -2735,13 +2742,6 @@
         <td>HIGH</td>
         <td>3.0.15-1~deb12u1</td>
         <td>3.0.18-1~deb12u2</td>
-    </tr>
-    <tr>
-        <td><code>openssl</code></td>
-        <td>CVE-2026-14456</td>
-        <td>HIGH</td>
-        <td>3.0.15-1~deb12u1</td>
-        <td></td>
     </tr>
     <tr>
         <td><code>openssl</code></td>

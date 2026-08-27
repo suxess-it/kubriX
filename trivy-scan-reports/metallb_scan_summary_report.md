@@ -1,6 +1,6 @@
 
 <h3>Target <code>quay.io/frrouting/frr:10.4.3 (alpine 3.22.3)</code></h3>
-<h4>Vulnerabilities (44)</h4>
+<h4>Vulnerabilities (46)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -29,6 +29,13 @@
         <td>CRITICAL</td>
         <td>3.5.5-r0</td>
         <td>3.5.6-r0</td>
+    </tr>
+    <tr>
+        <td><code>libcrypto3</code></td>
+        <td>CVE-2026-14456</td>
+        <td>HIGH</td>
+        <td>3.5.5-r0</td>
+        <td>3.5.8-r0</td>
     </tr>
     <tr>
         <td><code>libcrypto3</code></td>
@@ -85,6 +92,13 @@
         <td>CRITICAL</td>
         <td>3.5.5-r0</td>
         <td>3.5.6-r0</td>
+    </tr>
+    <tr>
+        <td><code>libssl3</code></td>
+        <td>CVE-2026-14456</td>
+        <td>HIGH</td>
+        <td>3.5.5-r0</td>
+        <td>3.5.8-r0</td>
     </tr>
     <tr>
         <td><code>libssl3</code></td>
@@ -505,7 +519,7 @@
 <h4>No Misconfigurations found</h4>
 
 <h3>Target <code>quay.io/metallb/frr-k8s:v0.0.25 (alpine 3.23.4)</code></h3>
-<h4>Vulnerabilities (2)</h4>
+<h4>Vulnerabilities (4)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -516,10 +530,24 @@
     </tr>
     <tr>
         <td><code>libcrypto3</code></td>
+        <td>CVE-2026-14456</td>
+        <td>HIGH</td>
+        <td>3.5.6-r0</td>
+        <td>3.5.8-r0</td>
+    </tr>
+    <tr>
+        <td><code>libcrypto3</code></td>
         <td>CVE-2026-45447</td>
         <td>HIGH</td>
         <td>3.5.6-r0</td>
         <td>3.5.7-r0</td>
+    </tr>
+    <tr>
+        <td><code>libssl3</code></td>
+        <td>CVE-2026-14456</td>
+        <td>HIGH</td>
+        <td>3.5.6-r0</td>
+        <td>3.5.8-r0</td>
     </tr>
     <tr>
         <td><code>libssl3</code></td>

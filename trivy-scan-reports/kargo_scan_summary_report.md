@@ -1,6 +1,6 @@
 
 <h3>Target <code>ghcr.io/akuity/kargo:v1.11.2 (wolfi 20230201)</code></h3>
-<h4>Vulnerabilities (4)</h4>
+<h4>Vulnerabilities (3)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -8,13 +8,6 @@
         <th>Severity</th>
         <th>Installed Version</th>
         <th>Fixed Version</th>
-    </tr>
-    <tr>
-        <td><code>busybox</code></td>
-        <td>CVE-2026-38753</td>
-        <td>HIGH</td>
-        <td>1.37.0-r61</td>
-        <td>1.38.0-r0</td>
     </tr>
     <tr>
         <td><code>busybox</code></td>

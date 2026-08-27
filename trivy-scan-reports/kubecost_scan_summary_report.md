@@ -1,6 +1,6 @@
 
 <h3>Target <code>badouralix/curl-jq:alpine (alpine 3.24.1)</code></h3>
-<h4>Vulnerabilities (1)</h4>
+<h4>Vulnerabilities (3)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -15,6 +15,20 @@
         <td>HIGH</td>
         <td>1.34.6-r0</td>
         <td>1.34.8-r0</td>
+    </tr>
+    <tr>
+        <td><code>libcrypto3</code></td>
+        <td>CVE-2026-14456</td>
+        <td>HIGH</td>
+        <td>3.5.7-r0</td>
+        <td>3.5.8-r0</td>
+    </tr>
+    <tr>
+        <td><code>libssl3</code></td>
+        <td>CVE-2026-14456</td>
+        <td>HIGH</td>
+        <td>3.5.7-r0</td>
+        <td>3.5.8-r0</td>
     </tr>
 </table>
 <h4>No Misconfigurations found</h4>
@@ -136,7 +150,7 @@
 <h4>No Misconfigurations found</h4>
 
 <h3>Target <code>icr.io/kubecost/cost-model:2.9.7 (redhat 9.8)</code></h3>
-<h4>Vulnerabilities (13)</h4>
+<h4>Vulnerabilities (15)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -235,6 +249,20 @@
         <td>HIGH</td>
         <td>7.76.1-40.el9</td>
         <td>7.76.1-40.el9_8.5</td>
+    </tr>
+    <tr>
+        <td><code>sqlite-libs</code></td>
+        <td>CVE-2026-11822</td>
+        <td>HIGH</td>
+        <td>3.34.1-10.el9_8</td>
+        <td>3.34.1-11.el9_8</td>
+    </tr>
+    <tr>
+        <td><code>sqlite-libs</code></td>
+        <td>CVE-2026-11824</td>
+        <td>HIGH</td>
+        <td>3.34.1-10.el9_8</td>
+        <td>3.34.1-11.el9_8</td>
     </tr>
 </table>
 <h4>No Misconfigurations found</h4>
@@ -574,7 +602,7 @@
 <h4>No Misconfigurations found</h4>
 
 <h3>Target <code>icr.io/kubecost/frontend:2.9.7 (redhat 9.8)</code></h3>
-<h4>Vulnerabilities (19)</h4>
+<h4>Vulnerabilities (24)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -683,6 +711,13 @@
     </tr>
     <tr>
         <td><code>nginx</code></td>
+        <td>CVE-2026-60005</td>
+        <td>HIGH</td>
+        <td>2:1.20.1-28.el9_8.2</td>
+        <td>2:1.20.1-28.el9_8.5</td>
+    </tr>
+    <tr>
+        <td><code>nginx</code></td>
         <td>CVE-2026-9256</td>
         <td>HIGH</td>
         <td>2:1.20.1-28.el9_8.2</td>
@@ -694,6 +729,13 @@
         <td>HIGH</td>
         <td>2:1.20.1-28.el9_8.2</td>
         <td>2:1.20.1-28.el9_8.4</td>
+    </tr>
+    <tr>
+        <td><code>nginx-core</code></td>
+        <td>CVE-2026-60005</td>
+        <td>HIGH</td>
+        <td>2:1.20.1-28.el9_8.2</td>
+        <td>2:1.20.1-28.el9_8.5</td>
     </tr>
     <tr>
         <td><code>nginx-core</code></td>
@@ -711,16 +753,37 @@
     </tr>
     <tr>
         <td><code>nginx-filesystem</code></td>
+        <td>CVE-2026-60005</td>
+        <td>HIGH</td>
+        <td>2:1.20.1-28.el9_8.2</td>
+        <td>2:1.20.1-28.el9_8.5</td>
+    </tr>
+    <tr>
+        <td><code>nginx-filesystem</code></td>
         <td>CVE-2026-9256</td>
         <td>HIGH</td>
         <td>2:1.20.1-28.el9_8.2</td>
         <td>2:1.20.1-28.el9_8.3</td>
+    </tr>
+    <tr>
+        <td><code>sqlite-libs</code></td>
+        <td>CVE-2026-11822</td>
+        <td>HIGH</td>
+        <td>3.34.1-10.el9_8</td>
+        <td>3.34.1-11.el9_8</td>
+    </tr>
+    <tr>
+        <td><code>sqlite-libs</code></td>
+        <td>CVE-2026-11824</td>
+        <td>HIGH</td>
+        <td>3.34.1-10.el9_8</td>
+        <td>3.34.1-11.el9_8</td>
     </tr>
 </table>
 <h4>No Misconfigurations found</h4>
 
 <h3>Target <code>icr.io/kubecost/modeling:v0.1.34 (redhat 9.7)</code></h3>
-<h4>Vulnerabilities (34)</h4>
+<h4>Vulnerabilities (38)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -906,6 +969,13 @@
     </tr>
     <tr>
         <td><code>python3.12</code></td>
+        <td>CVE-2026-11940</td>
+        <td>HIGH</td>
+        <td>3.12.12-1.el9_7</td>
+        <td>3.12.14-1.el9_8</td>
+    </tr>
+    <tr>
+        <td><code>python3.12</code></td>
         <td>CVE-2026-15308</td>
         <td>HIGH</td>
         <td>3.12.12-1.el9_7</td>
@@ -941,6 +1011,13 @@
     </tr>
     <tr>
         <td><code>python3.12-libs</code></td>
+        <td>CVE-2026-11940</td>
+        <td>HIGH</td>
+        <td>3.12.12-1.el9_7</td>
+        <td>3.12.14-1.el9_8</td>
+    </tr>
+    <tr>
+        <td><code>python3.12-libs</code></td>
         <td>CVE-2026-15308</td>
         <td>HIGH</td>
         <td>3.12.12-1.el9_7</td>
@@ -966,6 +1043,20 @@
         <td>HIGH</td>
         <td>3.12.12-1.el9_7</td>
         <td>3.12.13-2.el9_8</td>
+    </tr>
+    <tr>
+        <td><code>sqlite-libs</code></td>
+        <td>CVE-2026-11822</td>
+        <td>HIGH</td>
+        <td>3.34.1-9.el9_7</td>
+        <td>3.34.1-11.el9_8</td>
+    </tr>
+    <tr>
+        <td><code>sqlite-libs</code></td>
+        <td>CVE-2026-11824</td>
+        <td>HIGH</td>
+        <td>3.34.1-9.el9_7</td>
+        <td>3.34.1-11.el9_8</td>
     </tr>
 </table>
 <h4>No Misconfigurations found</h4>

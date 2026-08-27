@@ -55,7 +55,7 @@
 <h4>No Misconfigurations found</h4>
 
 <h3>Target <code>curlimages/curl:latest (alpine 3.24.1)</code></h3>
-<h4>Vulnerabilities (1)</h4>
+<h4>Vulnerabilities (3)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -71,11 +71,25 @@
         <td>1.34.6-r0</td>
         <td>1.34.8-r0</td>
     </tr>
+    <tr>
+        <td><code>libcrypto3</code></td>
+        <td>CVE-2026-14456</td>
+        <td>HIGH</td>
+        <td>3.5.7-r0</td>
+        <td>3.5.8-r0</td>
+    </tr>
+    <tr>
+        <td><code>libssl3</code></td>
+        <td>CVE-2026-14456</td>
+        <td>HIGH</td>
+        <td>3.5.7-r0</td>
+        <td>3.5.8-r0</td>
+    </tr>
 </table>
 <h4>No Misconfigurations found</h4>
 
 <h3>Target <code>quay.io/keycloak/keycloak-operator:26.6.1 (redhat 9.7)</code></h3>
-<h4>Vulnerabilities (8)</h4>
+<h4>Vulnerabilities (10)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -139,6 +153,20 @@
         <td>HIGH</td>
         <td>2.48-10.el9_7.1</td>
         <td>2.48-10.el9_8.1</td>
+    </tr>
+    <tr>
+        <td><code>sqlite-libs</code></td>
+        <td>CVE-2026-11822</td>
+        <td>HIGH</td>
+        <td>3.34.1-9.el9_7</td>
+        <td>3.34.1-11.el9_8</td>
+    </tr>
+    <tr>
+        <td><code>sqlite-libs</code></td>
+        <td>CVE-2026-11824</td>
+        <td>HIGH</td>
+        <td>3.34.1-9.el9_7</td>
+        <td>3.34.1-11.el9_8</td>
     </tr>
 </table>
 <h4>No Misconfigurations found</h4>

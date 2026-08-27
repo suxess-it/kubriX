@@ -2,7 +2,7 @@
 <h3>Trivy Returned Empty Report</h3>
 
 <h3>Target <code>komodorio/komoplane:0.2.1 (alpine 3.23.3)</code></h3>
-<h4>Vulnerabilities (15)</h4>
+<h4>Vulnerabilities (17)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -17,6 +17,13 @@
         <td>CRITICAL</td>
         <td>3.5.5-r0</td>
         <td>3.5.6-r0</td>
+    </tr>
+    <tr>
+        <td><code>libcrypto3</code></td>
+        <td>CVE-2026-14456</td>
+        <td>HIGH</td>
+        <td>3.5.5-r0</td>
+        <td>3.5.8-r0</td>
     </tr>
     <tr>
         <td><code>libcrypto3</code></td>
@@ -59,6 +66,13 @@
         <td>CRITICAL</td>
         <td>3.5.5-r0</td>
         <td>3.5.6-r0</td>
+    </tr>
+    <tr>
+        <td><code>libssl3</code></td>
+        <td>CVE-2026-14456</td>
+        <td>HIGH</td>
+        <td>3.5.5-r0</td>
+        <td>3.5.8-r0</td>
     </tr>
     <tr>
         <td><code>libssl3</code></td>
@@ -119,7 +133,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>bin/komoplane</code></h3>
-<h4>Vulnerabilities (33)</h4>
+<h4>Vulnerabilities (34)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -141,6 +155,13 @@
         <td>HIGH</td>
         <td>v3.2.2+incompatible</td>
         <td></td>
+    </tr>
+    <tr>
+        <td><code>github.com/labstack/echo/v4</code></td>
+        <td>CVE-2026-55677</td>
+        <td>HIGH</td>
+        <td>v4.10.2</td>
+        <td>4.15.3</td>
     </tr>
     <tr>
         <td><code>golang.org/x/crypto</code></td>

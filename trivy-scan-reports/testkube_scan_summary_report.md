@@ -2985,7 +2985,30 @@
 <h4>No Misconfigurations found</h4>
 
 <h3>Target <code>docker.io/kubeshop/testkube-api-server:2.12.2 (alpine 3.24.1)</code></h3>
-<h4>No Vulnerabilities found</h4>
+<h4>Vulnerabilities (2)</h4>
+<table>
+    <tr>
+        <th>Package</th>
+        <th>ID</th>
+        <th>Severity</th>
+        <th>Installed Version</th>
+        <th>Fixed Version</th>
+    </tr>
+    <tr>
+        <td><code>libcrypto3</code></td>
+        <td>CVE-2026-14456</td>
+        <td>HIGH</td>
+        <td>3.5.7-r0</td>
+        <td>3.5.8-r0</td>
+    </tr>
+    <tr>
+        <td><code>libssl3</code></td>
+        <td>CVE-2026-14456</td>
+        <td>HIGH</td>
+        <td>3.5.7-r0</td>
+        <td>3.5.8-r0</td>
+    </tr>
+</table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>bin/app</code></h3>
 <h4>Vulnerabilities (1)</h4>
@@ -3008,7 +3031,7 @@
 <h4>No Misconfigurations found</h4>
 
 <h3>Target <code>docker.io/kubeshop/testkube-kubectl:1.36.2 (alpine 3.24.1)</code></h3>
-<h4>Vulnerabilities (17)</h4>
+<h4>Vulnerabilities (19)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -3081,6 +3104,13 @@
         <td>8.21.0-r0</td>
     </tr>
     <tr>
+        <td><code>libcrypto3</code></td>
+        <td>CVE-2026-14456</td>
+        <td>HIGH</td>
+        <td>3.5.7-r0</td>
+        <td>3.5.8-r0</td>
+    </tr>
+    <tr>
         <td><code>libcurl</code></td>
         <td>CVE-2026-11352</td>
         <td>HIGH</td>
@@ -3135,6 +3165,13 @@
         <td>HIGH</td>
         <td>8.20.0-r1</td>
         <td>8.21.0-r0</td>
+    </tr>
+    <tr>
+        <td><code>libssl3</code></td>
+        <td>CVE-2026-14456</td>
+        <td>HIGH</td>
+        <td>3.5.7-r0</td>
+        <td>3.5.8-r0</td>
     </tr>
 </table>
 <h4>No Misconfigurations found</h4>
@@ -3987,7 +4024,30 @@
 <h4>No Misconfigurations found</h4>
 
 <h3>Target <code>nats:2.14.3-alpine (alpine 3.22.5)</code></h3>
-<h4>No Vulnerabilities found</h4>
+<h4>Vulnerabilities (2)</h4>
+<table>
+    <tr>
+        <th>Package</th>
+        <th>ID</th>
+        <th>Severity</th>
+        <th>Installed Version</th>
+        <th>Fixed Version</th>
+    </tr>
+    <tr>
+        <td><code>libcrypto3</code></td>
+        <td>CVE-2026-14456</td>
+        <td>HIGH</td>
+        <td>3.5.7-r0</td>
+        <td>3.5.8-r0</td>
+    </tr>
+    <tr>
+        <td><code>libssl3</code></td>
+        <td>CVE-2026-14456</td>
+        <td>HIGH</td>
+        <td>3.5.7-r0</td>
+        <td>3.5.8-r0</td>
+    </tr>
+</table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>usr/local/bin/nats-server</code></h3>
 <h4>Vulnerabilities (9)</h4>
@@ -4066,7 +4126,7 @@
 <h4>No Misconfigurations found</h4>
 
 <h3>Target <code>natsio/nats-server-config-reloader:0.23.0 (alpine 3.23.3)</code></h3>
-<h4>Vulnerabilities (15)</h4>
+<h4>Vulnerabilities (17)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -4081,6 +4141,13 @@
         <td>CRITICAL</td>
         <td>3.5.5-r0</td>
         <td>3.5.6-r0</td>
+    </tr>
+    <tr>
+        <td><code>libcrypto3</code></td>
+        <td>CVE-2026-14456</td>
+        <td>HIGH</td>
+        <td>3.5.5-r0</td>
+        <td>3.5.8-r0</td>
     </tr>
     <tr>
         <td><code>libcrypto3</code></td>
@@ -4123,6 +4190,13 @@
         <td>CRITICAL</td>
         <td>3.5.5-r0</td>
         <td>3.5.6-r0</td>
+    </tr>
+    <tr>
+        <td><code>libssl3</code></td>
+        <td>CVE-2026-14456</td>
+        <td>HIGH</td>
+        <td>3.5.5-r0</td>
+        <td>3.5.8-r0</td>
     </tr>
     <tr>
         <td><code>libssl3</code></td>
