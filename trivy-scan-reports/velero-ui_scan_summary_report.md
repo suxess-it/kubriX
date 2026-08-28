@@ -1,6 +1,6 @@
 
 <h3>Target <code>docker.io/dserio83/velero-api:0.3.1 (debian 12.11)</code></h3>
-<h4>Vulnerabilities (163)</h4>
+<h4>Vulnerabilities (164)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -250,6 +250,13 @@
     <tr>
         <td><code>libexpat1</code></td>
         <td>CVE-2026-56408</td>
+        <td>HIGH</td>
+        <td>2.5.0-1+deb12u1</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>libexpat1</code></td>
+        <td>CVE-2026-66046</td>
         <td>HIGH</td>
         <td>2.5.0-1+deb12u1</td>
         <td></td>
@@ -1596,7 +1603,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>Node.js</code></h3>
-<h4>Vulnerabilities (43)</h4>
+<h4>Vulnerabilities (44)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -1807,6 +1814,13 @@
         <td>HIGH</td>
         <td>15.2.3</td>
         <td>15.5.15, 16.2.3</td>
+    </tr>
+    <tr>
+        <td><code>pacote</code></td>
+        <td>CVE-2026-9496</td>
+        <td>HIGH</td>
+        <td>17.0.4</td>
+        <td>21.5.1</td>
     </tr>
     <tr>
         <td><code>postcss</code></td>
@@ -2076,7 +2090,7 @@
 <h4>No Misconfigurations found</h4>
 
 <h3>Target <code>docker.io/dserio83/velero-watchdog:0.1.8 (debian 12.10)</code></h3>
-<h4>Vulnerabilities (133)</h4>
+<h4>Vulnerabilities (134)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -2326,6 +2340,13 @@
     <tr>
         <td><code>libexpat1</code></td>
         <td>CVE-2026-56408</td>
+        <td>HIGH</td>
+        <td>2.5.0-1+deb12u1</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>libexpat1</code></td>
+        <td>CVE-2026-66046</td>
         <td>HIGH</td>
         <td>2.5.0-1+deb12u1</td>
         <td></td>
