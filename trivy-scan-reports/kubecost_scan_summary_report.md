@@ -53,7 +53,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>go/bin/app</code></h3>
-<h4>Vulnerabilities (12)</h4>
+<h4>Vulnerabilities (13)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -61,6 +61,13 @@
         <th>Severity</th>
         <th>Installed Version</th>
         <th>Fixed Version</th>
+    </tr>
+    <tr>
+        <td><code>golang.org/x/crypto</code></td>
+        <td>CVE-2026-56854</td>
+        <td>CRITICAL</td>
+        <td>v0.52.0</td>
+        <td>0.55.0</td>
     </tr>
     <tr>
         <td><code>golang.org/x/net</code></td>
@@ -267,7 +274,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>go/bin/app</code></h3>
-<h4>Vulnerabilities (46)</h4>
+<h4>Vulnerabilities (47)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -324,6 +331,13 @@
         <td>HIGH</td>
         <td>v1.36.0</td>
         <td>1.43.0</td>
+    </tr>
+    <tr>
+        <td><code>golang.org/x/crypto</code></td>
+        <td>CVE-2026-56854</td>
+        <td>CRITICAL</td>
+        <td>v0.40.0</td>
+        <td>0.55.0</td>
     </tr>
     <tr>
         <td><code>golang.org/x/crypto</code></td>
@@ -1102,7 +1116,7 @@
 <h4>No Misconfigurations found</h4>
 
 <h3>Target <code>bin/prometheus</code></h3>
-<h4>Vulnerabilities (43)</h4>
+<h4>Vulnerabilities (44)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -1145,6 +1159,13 @@
         <td>HIGH</td>
         <td>v1.39.0</td>
         <td>1.43.0</td>
+    </tr>
+    <tr>
+        <td><code>golang.org/x/crypto</code></td>
+        <td>CVE-2026-56854</td>
+        <td>CRITICAL</td>
+        <td>v0.46.0</td>
+        <td>0.55.0</td>
     </tr>
     <tr>
         <td><code>golang.org/x/crypto</code></td>
@@ -1415,7 +1436,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>bin/promtool</code></h3>
-<h4>Vulnerabilities (41)</h4>
+<h4>Vulnerabilities (42)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -1444,6 +1465,13 @@
         <td>HIGH</td>
         <td>v1.39.0</td>
         <td>1.41.0</td>
+    </tr>
+    <tr>
+        <td><code>golang.org/x/crypto</code></td>
+        <td>CVE-2026-56854</td>
+        <td>CRITICAL</td>
+        <td>v0.46.0</td>
+        <td>0.55.0</td>
     </tr>
     <tr>
         <td><code>golang.org/x/crypto</code></td>

@@ -1,6 +1,6 @@
 
 <h3>Target <code>ghcr.io/akuity/kargo:v1.11.2 (wolfi 20230201)</code></h3>
-<h4>Vulnerabilities (3)</h4>
+<h4>Vulnerabilities (1)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -15,20 +15,6 @@
         <td>HIGH</td>
         <td>1.37.0-r61</td>
         <td>1.38.0-r0</td>
-    </tr>
-    <tr>
-        <td><code>libcrypto3</code></td>
-        <td>CVE-2026-14456</td>
-        <td>HIGH</td>
-        <td>3.6.3-r4</td>
-        <td>3.6.3-r5</td>
-    </tr>
-    <tr>
-        <td><code>libssl3</code></td>
-        <td>CVE-2026-14456</td>
-        <td>HIGH</td>
-        <td>3.6.3-r4</td>
-        <td>3.6.3-r5</td>
     </tr>
 </table>
 <h4>No Misconfigurations found</h4>
@@ -101,7 +87,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>usr/local/bin/helm</code></h3>
-<h4>Vulnerabilities (14)</h4>
+<h4>Vulnerabilities (15)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -116,6 +102,13 @@
         <td>HIGH</td>
         <td>v1.7.32</td>
         <td>1.7.33</td>
+    </tr>
+    <tr>
+        <td><code>golang.org/x/crypto</code></td>
+        <td>CVE-2026-56854</td>
+        <td>CRITICAL</td>
+        <td>v0.53.0</td>
+        <td>0.55.0</td>
     </tr>
     <tr>
         <td><code>golang.org/x/net</code></td>
@@ -211,7 +204,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>usr/local/bin/kargo</code></h3>
-<h4>Vulnerabilities (11)</h4>
+<h4>Vulnerabilities (12)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -226,6 +219,13 @@
         <td>HIGH</td>
         <td>v5.19.1</td>
         <td>5.19.2</td>
+    </tr>
+    <tr>
+        <td><code>golang.org/x/crypto</code></td>
+        <td>CVE-2026-56854</td>
+        <td>CRITICAL</td>
+        <td>v0.53.0</td>
+        <td>0.55.0</td>
     </tr>
     <tr>
         <td><code>golang.org/x/text</code></td>
