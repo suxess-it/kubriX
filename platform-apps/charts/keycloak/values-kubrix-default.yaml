@@ -4,6 +4,9 @@ keycloak:
   mode: production
   fullnameOverride: kubrix-keycloak-service
 
+  image:
+    tag: "26.6.1"
+
   admin:
     existingSecret: keycloak-admin
     existingSecretUsernameKey: admin-username
