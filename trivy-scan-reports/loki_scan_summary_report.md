@@ -3,7 +3,7 @@
 <h4>No Vulnerabilities found</h4>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>usr/bin/loki-canary</code></h3>
-<h4>Vulnerabilities (9)</h4>
+<h4>Vulnerabilities (10)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -18,6 +18,13 @@
         <td>CRITICAL</td>
         <td>v0.53.0</td>
         <td>0.55.0</td>
+    </tr>
+    <tr>
+        <td><code>google.golang.org/grpc</code></td>
+        <td>CVE-2026-84304</td>
+        <td>HIGH</td>
+        <td>v1.82.1</td>
+        <td>1.83.1</td>
     </tr>
     <tr>
         <td><code>stdlib</code></td>
@@ -82,7 +89,7 @@
 <h4>No Vulnerabilities found</h4>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>usr/bin/loki</code></h3>
-<h4>Vulnerabilities (9)</h4>
+<h4>Vulnerabilities (10)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -97,6 +104,13 @@
         <td>CRITICAL</td>
         <td>v0.53.0</td>
         <td>0.55.0</td>
+    </tr>
+    <tr>
+        <td><code>google.golang.org/grpc</code></td>
+        <td>CVE-2026-84304</td>
+        <td>HIGH</td>
+        <td>v1.82.1</td>
+        <td>1.83.1</td>
     </tr>
     <tr>
         <td><code>stdlib</code></td>
@@ -188,30 +202,7 @@
 <h4>No Misconfigurations found</h4>
 
 <h3>Target <code>docker.io/nginxinc/nginx-unprivileged:1.31-alpine (alpine 3.24.1)</code></h3>
-<h4>Vulnerabilities (2)</h4>
-<table>
-    <tr>
-        <th>Package</th>
-        <th>ID</th>
-        <th>Severity</th>
-        <th>Installed Version</th>
-        <th>Fixed Version</th>
-    </tr>
-    <tr>
-        <td><code>libexpat</code></td>
-        <td>CVE-2026-66046</td>
-        <td>HIGH</td>
-        <td>2.8.3-r0</td>
-        <td>2.8.4-r0</td>
-    </tr>
-    <tr>
-        <td><code>libexpat</code></td>
-        <td>CVE-2026-76641</td>
-        <td>HIGH</td>
-        <td>2.8.3-r0</td>
-        <td>2.8.4-r0</td>
-    </tr>
-</table>
+<h4>No Vulnerabilities found</h4>
 <h4>No Misconfigurations found</h4>
 
 <h3>Target <code>access-log-exporter</code></h3>
@@ -292,7 +283,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>usr/bin/mc</code></h3>
-<h4>Vulnerabilities (47)</h4>
+<h4>Vulnerabilities (48)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -468,6 +459,13 @@
         <td>CRITICAL</td>
         <td>v1.67.1</td>
         <td>1.79.3</td>
+    </tr>
+    <tr>
+        <td><code>google.golang.org/grpc</code></td>
+        <td>CVE-2026-84304</td>
+        <td>HIGH</td>
+        <td>v1.67.1</td>
+        <td>1.83.1</td>
     </tr>
     <tr>
         <td><code>google.golang.org/grpc</code></td>
@@ -660,7 +658,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>usr/bin/mc</code></h3>
-<h4>Vulnerabilities (47)</h4>
+<h4>Vulnerabilities (48)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -839,6 +837,13 @@
     </tr>
     <tr>
         <td><code>google.golang.org/grpc</code></td>
+        <td>CVE-2026-84304</td>
+        <td>HIGH</td>
+        <td>v1.67.1</td>
+        <td>1.83.1</td>
+    </tr>
+    <tr>
+        <td><code>google.golang.org/grpc</code></td>
         <td>GHSA-hrxh-6v49-42gf</td>
         <td>HIGH</td>
         <td>v1.67.1</td>
@@ -1001,7 +1006,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>usr/bin/minio</code></h3>
-<h4>Vulnerabilities (53)</h4>
+<h4>Vulnerabilities (55)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -1016,6 +1021,13 @@
         <td>HIGH</td>
         <td>v0.21.0</td>
         <td>0.23.0</td>
+    </tr>
+    <tr>
+        <td><code>github.com/apache/thrift</code></td>
+        <td>CVE-2026-43871</td>
+        <td>HIGH</td>
+        <td>v0.21.0</td>
+        <td>0.24.0</td>
     </tr>
     <tr>
         <td><code>github.com/buger/jsonparser</code></td>
@@ -1219,6 +1231,13 @@
         <td>CRITICAL</td>
         <td>v1.69.0</td>
         <td>1.79.3</td>
+    </tr>
+    <tr>
+        <td><code>google.golang.org/grpc</code></td>
+        <td>CVE-2026-84304</td>
+        <td>HIGH</td>
+        <td>v1.69.0</td>
+        <td>1.83.1</td>
     </tr>
     <tr>
         <td><code>google.golang.org/grpc</code></td>

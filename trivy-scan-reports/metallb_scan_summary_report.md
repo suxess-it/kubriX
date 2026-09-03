@@ -1,6 +1,6 @@
 
 <h3>Target <code>quay.io/frrouting/frr:10.4.3 (alpine 3.22.3)</code></h3>
-<h4>Vulnerabilities (46)</h4>
+<h4>Vulnerabilities (48)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -85,6 +85,20 @@
         <td>HIGH</td>
         <td>2.7.4-r0</td>
         <td>2.8.2-r0</td>
+    </tr>
+    <tr>
+        <td><code>libexpat</code></td>
+        <td>CVE-2026-66046</td>
+        <td>HIGH</td>
+        <td>2.7.4-r0</td>
+        <td>2.8.4-r0</td>
+    </tr>
+    <tr>
+        <td><code>libexpat</code></td>
+        <td>CVE-2026-76641</td>
+        <td>HIGH</td>
+        <td>2.7.4-r0</td>
+        <td>2.8.4-r0</td>
     </tr>
     <tr>
         <td><code>libssl3</code></td>
@@ -338,7 +352,7 @@
 <h4>No Vulnerabilities found</h4>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>controller</code></h3>
-<h4>Vulnerabilities (24)</h4>
+<h4>Vulnerabilities (25)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -402,6 +416,13 @@
         <td>CRITICAL</td>
         <td>v1.72.1</td>
         <td>1.79.3</td>
+    </tr>
+    <tr>
+        <td><code>google.golang.org/grpc</code></td>
+        <td>CVE-2026-84304</td>
+        <td>HIGH</td>
+        <td>v1.72.1</td>
+        <td>1.83.1</td>
     </tr>
     <tr>
         <td><code>google.golang.org/grpc</code></td>
@@ -559,7 +580,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>frr-k8s</code></h3>
-<h4>Vulnerabilities (28)</h4>
+<h4>Vulnerabilities (29)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -630,6 +651,13 @@
         <td>CRITICAL</td>
         <td>v1.68.1</td>
         <td>1.79.3</td>
+    </tr>
+    <tr>
+        <td><code>google.golang.org/grpc</code></td>
+        <td>CVE-2026-84304</td>
+        <td>HIGH</td>
+        <td>v1.68.1</td>
+        <td>1.83.1</td>
     </tr>
     <tr>
         <td><code>google.golang.org/grpc</code></td>
@@ -767,7 +795,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>frr-metrics</code></h3>
-<h4>Vulnerabilities (28)</h4>
+<h4>Vulnerabilities (29)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -838,6 +866,13 @@
         <td>CRITICAL</td>
         <td>v1.68.1</td>
         <td>1.79.3</td>
+    </tr>
+    <tr>
+        <td><code>google.golang.org/grpc</code></td>
+        <td>CVE-2026-84304</td>
+        <td>HIGH</td>
+        <td>v1.68.1</td>
+        <td>1.83.1</td>
     </tr>
     <tr>
         <td><code>google.golang.org/grpc</code></td>
@@ -1456,7 +1491,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>frr-metrics</code></h3>
-<h4>Vulnerabilities (24)</h4>
+<h4>Vulnerabilities (25)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -1520,6 +1555,13 @@
         <td>CRITICAL</td>
         <td>v1.72.1</td>
         <td>1.79.3</td>
+    </tr>
+    <tr>
+        <td><code>google.golang.org/grpc</code></td>
+        <td>CVE-2026-84304</td>
+        <td>HIGH</td>
+        <td>v1.72.1</td>
+        <td>1.83.1</td>
     </tr>
     <tr>
         <td><code>google.golang.org/grpc</code></td>
@@ -1636,7 +1678,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>speaker</code></h3>
-<h4>Vulnerabilities (24)</h4>
+<h4>Vulnerabilities (25)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -1700,6 +1742,13 @@
         <td>CRITICAL</td>
         <td>v1.72.1</td>
         <td>1.79.3</td>
+    </tr>
+    <tr>
+        <td><code>google.golang.org/grpc</code></td>
+        <td>CVE-2026-84304</td>
+        <td>HIGH</td>
+        <td>v1.72.1</td>
+        <td>1.83.1</td>
     </tr>
     <tr>
         <td><code>google.golang.org/grpc</code></td>

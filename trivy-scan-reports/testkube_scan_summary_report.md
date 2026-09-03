@@ -3446,7 +3446,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>usr/bin/mc</code></h3>
-<h4>Vulnerabilities (44)</h4>
+<h4>Vulnerabilities (45)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -3594,6 +3594,13 @@
         <td>CRITICAL</td>
         <td>v1.71.0</td>
         <td>1.79.3</td>
+    </tr>
+    <tr>
+        <td><code>google.golang.org/grpc</code></td>
+        <td>CVE-2026-84304</td>
+        <td>HIGH</td>
+        <td>v1.71.0</td>
+        <td>1.83.1</td>
     </tr>
     <tr>
         <td><code>google.golang.org/grpc</code></td>
@@ -3766,7 +3773,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>usr/bin/minio</code></h3>
-<h4>Vulnerabilities (55)</h4>
+<h4>Vulnerabilities (57)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -3781,6 +3788,13 @@
         <td>HIGH</td>
         <td>v0.21.0</td>
         <td>0.23.0</td>
+    </tr>
+    <tr>
+        <td><code>github.com/apache/thrift</code></td>
+        <td>CVE-2026-43871</td>
+        <td>HIGH</td>
+        <td>v0.21.0</td>
+        <td>0.24.0</td>
     </tr>
     <tr>
         <td><code>github.com/buger/jsonparser</code></td>
@@ -3998,6 +4012,13 @@
         <td>CRITICAL</td>
         <td>v1.72.0</td>
         <td>1.79.3</td>
+    </tr>
+    <tr>
+        <td><code>google.golang.org/grpc</code></td>
+        <td>CVE-2026-84304</td>
+        <td>HIGH</td>
+        <td>v1.72.0</td>
+        <td>1.83.1</td>
     </tr>
     <tr>
         <td><code>google.golang.org/grpc</code></td>

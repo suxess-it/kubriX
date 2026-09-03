@@ -1,6 +1,6 @@
 
 <h3>Target <code>badouralix/curl-jq:alpine (alpine 3.24.1)</code></h3>
-<h4>Vulnerabilities (3)</h4>
+<h4>Vulnerabilities (5)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -15,6 +15,20 @@
         <td>HIGH</td>
         <td>1.34.6-r0</td>
         <td>1.34.8-r0</td>
+    </tr>
+    <tr>
+        <td><code>jq</code></td>
+        <td>CVE-2026-32316</td>
+        <td>HIGH</td>
+        <td>1.8.1-r0</td>
+        <td>1.8.2-r0</td>
+    </tr>
+    <tr>
+        <td><code>jq</code></td>
+        <td>CVE-2026-40164</td>
+        <td>HIGH</td>
+        <td>1.8.1-r0</td>
+        <td>1.8.2-r0</td>
     </tr>
     <tr>
         <td><code>libcrypto3</code></td>
@@ -53,7 +67,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>go/bin/app</code></h3>
-<h4>Vulnerabilities (13)</h4>
+<h4>Vulnerabilities (14)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -82,6 +96,13 @@
         <td>HIGH</td>
         <td>v0.37.0</td>
         <td>0.39.0</td>
+    </tr>
+    <tr>
+        <td><code>google.golang.org/grpc</code></td>
+        <td>CVE-2026-84304</td>
+        <td>HIGH</td>
+        <td>v1.79.3</td>
+        <td>1.83.1</td>
     </tr>
     <tr>
         <td><code>google.golang.org/grpc</code></td>
@@ -274,7 +295,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>go/bin/app</code></h3>
-<h4>Vulnerabilities (47)</h4>
+<h4>Vulnerabilities (48)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -457,6 +478,13 @@
         <td>CRITICAL</td>
         <td>v1.74.2</td>
         <td>1.79.3</td>
+    </tr>
+    <tr>
+        <td><code>google.golang.org/grpc</code></td>
+        <td>CVE-2026-84304</td>
+        <td>HIGH</td>
+        <td>v1.74.2</td>
+        <td>1.83.1</td>
     </tr>
     <tr>
         <td><code>google.golang.org/grpc</code></td>
@@ -1116,7 +1144,7 @@
 <h4>No Misconfigurations found</h4>
 
 <h3>Target <code>bin/prometheus</code></h3>
-<h4>Vulnerabilities (44)</h4>
+<h4>Vulnerabilities (45)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -1281,6 +1309,13 @@
     </tr>
     <tr>
         <td><code>google.golang.org/grpc</code></td>
+        <td>CVE-2026-84304</td>
+        <td>HIGH</td>
+        <td>v1.77.0</td>
+        <td>1.83.1</td>
+    </tr>
+    <tr>
+        <td><code>google.golang.org/grpc</code></td>
         <td>GHSA-hrxh-6v49-42gf</td>
         <td>HIGH</td>
         <td>v1.77.0</td>
@@ -1436,7 +1471,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>bin/promtool</code></h3>
-<h4>Vulnerabilities (42)</h4>
+<h4>Vulnerabilities (43)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -1584,6 +1619,13 @@
         <td>CRITICAL</td>
         <td>v1.77.0</td>
         <td>1.79.3</td>
+    </tr>
+    <tr>
+        <td><code>google.golang.org/grpc</code></td>
+        <td>CVE-2026-84304</td>
+        <td>HIGH</td>
+        <td>v1.77.0</td>
+        <td>1.83.1</td>
     </tr>
     <tr>
         <td><code>google.golang.org/grpc</code></td>

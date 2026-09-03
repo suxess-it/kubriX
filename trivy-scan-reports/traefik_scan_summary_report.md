@@ -26,7 +26,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>usr/local/bin/traefik</code></h3>
-<h4>Vulnerabilities (11)</h4>
+<h4>Vulnerabilities (12)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -55,6 +55,13 @@
         <td>HIGH</td>
         <td>v0.37.0</td>
         <td>0.40.0</td>
+    </tr>
+    <tr>
+        <td><code>google.golang.org/grpc</code></td>
+        <td>CVE-2026-84304</td>
+        <td>HIGH</td>
+        <td>v1.82.1</td>
+        <td>1.83.1</td>
     </tr>
     <tr>
         <td><code>stdlib</code></td>

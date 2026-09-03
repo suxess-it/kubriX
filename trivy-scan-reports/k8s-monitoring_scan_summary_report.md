@@ -110,7 +110,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>usr/local/bin/helm-operator</code></h3>
-<h4>Vulnerabilities (14)</h4>
+<h4>Vulnerabilities (15)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -132,6 +132,13 @@
         <td>HIGH</td>
         <td>v0.38.0</td>
         <td>0.39.0</td>
+    </tr>
+    <tr>
+        <td><code>google.golang.org/grpc</code></td>
+        <td>CVE-2026-84304</td>
+        <td>HIGH</td>
+        <td>v1.80.0</td>
+        <td>1.83.1</td>
     </tr>
     <tr>
         <td><code>google.golang.org/grpc</code></td>
@@ -221,7 +228,7 @@
 <h4>No Misconfigurations found</h4>
 
 <h3>Target <code>ghcr.io/grafana/helm-chart-toolbox-kubectl:0.1.2 (alpine 3.22.2)</code></h3>
-<h4>Vulnerabilities (24)</h4>
+<h4>Vulnerabilities (26)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -236,6 +243,20 @@
         <td>HIGH</td>
         <td>1.34.5-r0</td>
         <td>1.34.8-r0</td>
+    </tr>
+    <tr>
+        <td><code>jq</code></td>
+        <td>CVE-2026-32316</td>
+        <td>HIGH</td>
+        <td>1.8.0-r0</td>
+        <td>1.8.2-r0</td>
+    </tr>
+    <tr>
+        <td><code>jq</code></td>
+        <td>CVE-2026-40164</td>
+        <td>HIGH</td>
+        <td>1.8.0-r0</td>
+        <td>1.8.2-r0</td>
     </tr>
     <tr>
         <td><code>libcrypto3</code></td>
@@ -1827,7 +1848,7 @@
 <h4>No Vulnerabilities found</h4>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>kube-state-metrics</code></h3>
-<h4>Vulnerabilities (13)</h4>
+<h4>Vulnerabilities (14)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -1856,6 +1877,13 @@
         <td>HIGH</td>
         <td>v0.37.0</td>
         <td>0.39.0</td>
+    </tr>
+    <tr>
+        <td><code>google.golang.org/grpc</code></td>
+        <td>CVE-2026-84304</td>
+        <td>HIGH</td>
+        <td>v1.79.3</td>
+        <td>1.83.1</td>
     </tr>
     <tr>
         <td><code>google.golang.org/grpc</code></td>

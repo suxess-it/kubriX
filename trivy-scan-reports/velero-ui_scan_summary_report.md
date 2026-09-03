@@ -1,6 +1,6 @@
 
 <h3>Target <code>docker.io/dserio83/velero-api:0.3.1 (debian 12.11)</code></h3>
-<h4>Vulnerabilities (156)</h4>
+<h4>Vulnerabilities (158)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -675,10 +675,24 @@
         <td>3.0.20-1~deb12u2</td>
     </tr>
     <tr>
+        <td><code>libsystemd0</code></td>
+        <td>CVE-2026-16742</td>
+        <td>HIGH</td>
+        <td>252.38-1~deb12u1</td>
+        <td></td>
+    </tr>
+    <tr>
         <td><code>libtinfo6</code></td>
         <td>CVE-2025-69720</td>
         <td>HIGH</td>
         <td>6.4-4</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>libudev1</code></td>
+        <td>CVE-2026-16742</td>
+        <td>HIGH</td>
+        <td>252.38-1~deb12u1</td>
         <td></td>
     </tr>
     <tr>
@@ -1547,7 +1561,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>Node.js</code></h3>
-<h4>Vulnerabilities (44)</h4>
+<h4>Vulnerabilities (49)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -1576,6 +1590,20 @@
         <td>HIGH</td>
         <td>2.0.1</td>
         <td>1.1.18, 2.1.4, 3.0.6, 5.0.9</td>
+    </tr>
+    <tr>
+        <td><code>browserslist</code></td>
+        <td>CVE-2026-73088</td>
+        <td>HIGH</td>
+        <td>4.24.4</td>
+        <td>4.28.7</td>
+    </tr>
+    <tr>
+        <td><code>browserslist</code></td>
+        <td>CVE-2026-73089</td>
+        <td>HIGH</td>
+        <td>4.24.4</td>
+        <td>4.28.7</td>
     </tr>
     <tr>
         <td><code>cross-spawn</code></td>
@@ -1618,6 +1646,20 @@
         <td>HIGH</td>
         <td>3.0.6</td>
         <td>3.1.2, 2.4.1</td>
+    </tr>
+    <tr>
+        <td><code>fast-uri</code></td>
+        <td>CVE-2026-75975</td>
+        <td>HIGH</td>
+        <td>3.0.6</td>
+        <td>2.4.5, 3.1.6, 4.1.3</td>
+    </tr>
+    <tr>
+        <td><code>fast-uri</code></td>
+        <td>CVE-2026-76172</td>
+        <td>HIGH</td>
+        <td>3.0.6</td>
+        <td>2.4.5, 3.1.6, 4.1.3</td>
     </tr>
     <tr>
         <td><code>glob</code></td>
@@ -1667,6 +1709,13 @@
         <td>HIGH</td>
         <td>3.3.11</td>
         <td>3.3.16, 5.1.16</td>
+    </tr>
+    <tr>
+        <td><code>nanoid</code></td>
+        <td>CVE-2026-73086</td>
+        <td>HIGH</td>
+        <td>3.3.11</td>
+        <td>3.3.12, 5.1.11</td>
     </tr>
     <tr>
         <td><code>next</code></td>
@@ -2034,7 +2083,7 @@
 <h4>No Misconfigurations found</h4>
 
 <h3>Target <code>docker.io/dserio83/velero-watchdog:0.1.8 (debian 12.10)</code></h3>
-<h4>Vulnerabilities (126)</h4>
+<h4>Vulnerabilities (128)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -2611,10 +2660,24 @@
         <td>3.0.20-1~deb12u2</td>
     </tr>
     <tr>
+        <td><code>libsystemd0</code></td>
+        <td>CVE-2026-16742</td>
+        <td>HIGH</td>
+        <td>252.36-1~deb12u1</td>
+        <td></td>
+    </tr>
+    <tr>
         <td><code>libtinfo6</code></td>
         <td>CVE-2025-69720</td>
         <td>HIGH</td>
         <td>6.4-4</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>libudev1</code></td>
+        <td>CVE-2026-16742</td>
+        <td>HIGH</td>
+        <td>252.36-1~deb12u1</td>
         <td></td>
     </tr>
     <tr>

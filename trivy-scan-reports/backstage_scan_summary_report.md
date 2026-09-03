@@ -74,7 +74,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>Node.js</code></h3>
-<h4>Vulnerabilities (155)</h4>
+<h4>Vulnerabilities (158)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -350,6 +350,20 @@
         <td>3.1.2, 2.4.1</td>
     </tr>
     <tr>
+        <td><code>fast-uri</code></td>
+        <td>CVE-2026-75975</td>
+        <td>HIGH</td>
+        <td>3.1.0</td>
+        <td>2.4.5, 3.1.6, 4.1.3</td>
+    </tr>
+    <tr>
+        <td><code>fast-uri</code></td>
+        <td>CVE-2026-76172</td>
+        <td>HIGH</td>
+        <td>3.1.0</td>
+        <td>2.4.5, 3.1.6, 4.1.3</td>
+    </tr>
+    <tr>
         <td><code>fast-xml-builder</code></td>
         <td>CVE-2026-44665</td>
         <td>HIGH</td>
@@ -502,6 +516,13 @@
         <td>HIGH</td>
         <td>2.1.1</td>
         <td>2.2.0, 3.0.0-alpha.2</td>
+    </tr>
+    <tr>
+        <td><code>mysql2</code></td>
+        <td>GHSA-3f6p-5ww8-9rcr</td>
+        <td>HIGH</td>
+        <td>3.20.0</td>
+        <td>3.22.0</td>
     </tr>
     <tr>
         <td><code>protobufjs</code></td>
