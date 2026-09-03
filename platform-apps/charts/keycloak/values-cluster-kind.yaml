@@ -1,3 +1,19 @@
+keycloak:
+  hostname:
+    hostname: "https://keycloak.127-0-0-1.nip.io"
+    admin: "https://keycloak.127-0-0-1.nip.io"
+  ingress:
+    public:
+      hosts:
+        - host: "keycloak.127-0-0-1.nip.io"
+          paths:
+            - path: /
+              pathType: Prefix
+      tls:
+        - hosts:
+            - "keycloak.127-0-0-1.nip.io"
+          secretName: keycloak-server-tls
+
 kubrix:
   keycloak:
     domainName: .127-0-0-1.nip.io

@@ -1,3 +1,19 @@
 kubrix:
   keycloak:
     domainName: .{{ .kubriX.domain }}
+
+keycloak:
+  hostname:
+    hostname: "https://keycloak.{{ .kubriX.domain }}"
+    admin: "https://keycloak.{{ .kubriX.domain }}"
+  ingress:
+    public:
+      hosts:
+        - host: "keycloak.{{ .kubriX.domain }}"
+          paths:
+            - path: /
+              pathType: Prefix
+      tls:
+        - hosts:
+            - "keycloak.{{ .kubriX.domain }}"
+          secretName: keycloak-server-tls

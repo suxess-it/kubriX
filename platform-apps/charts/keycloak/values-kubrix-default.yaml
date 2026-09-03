@@ -1,19 +1,58 @@
 grafanaFolder: "kubriX"
 
 keycloak:
-  ingress:
-  # ingress tls not implemented yet, we need to create our own ingress resource
-    enabled: false
+  mode: production
+  fullnameOverride: kubrix-keycloak-service
 
-  readinessProbe:
-    periodSeconds: 5
-    failureThreshold: 5
-  livenessProbe:
-    periodSeconds: 20
-    failureThreshold: 5
-  startupProbe:
-    periodSeconds: 5
-    failureThreshold: 20
+  image:
+    tag: "26.6.1"
+
+  admin:
+    existingSecret: keycloak-admin
+    existingSecretUsernameKey: admin-username
+    existingSecretPasswordKey: admin-password
+
+  hostname:
+    strict: false
+    backchannelDynamic: true
+
+  proxy:
+    headers: xforwarded
+
+  database:
+    external:
+      vendor: postgres
+      host: "sx-keycloak-cluster-rw.keycloak.svc.cluster.local"
+      port: 5432
+      name: postgres
+      username: keycloak
+      existingSecret: cp-keycloak-externaldb-secret
+      existingSecretPasswordKey: POSTGRES_PASSWORD
+      pool:
+        initialSize: 2
+        minSize: 2
+        maxSize: 20
+    transaction:
+      xaEnabled: false
+
+  ingress:
+    public:
+      enabled: true
+      ingressClassName: nginx
+      annotations:
+        external-dns.alpha.kubernetes.io/ttl: "60"
+        cert-manager.io/cluster-issuer: default-issuer
+
+  probes:
+    readiness:
+      periodSeconds: 5
+      failureThreshold: 5
+    liveness:
+      periodSeconds: 20
+      failureThreshold: 5
+    startup:
+      periodSeconds: 5
+      failureThreshold: 20
 
   resources:
     requests:
@@ -26,48 +65,39 @@ keycloak:
   networkPolicy:
     enabled: false
 
-  additionalOptions:
-    - name: health-enabled
-      value: "true"
-    - name: log
-      value: console
-    - name: log-console-color
-      value: "true"
-    - name: metrics-enabled
-      value: "true"
-    - name: event-metrics-user-enabled
-      value: "true"
-    - name: event-metrics-user-tags
-      value: "realm,idp,clientId"
-    - name: cache-metrics-histograms-enabled
-      value: "true"
-    - name: http-metrics-histograms-enabled
-      value: "true"
-    - name: http-metrics-slos
-      value: "5,10,25,50,250,500,1000,2500,5000,10000"
-    # serviceMonitor: # not yet implemented in keycloak, https://github.com/keycloak/keycloak/issues/40406, we need to create our own servicemonitor
+  features:
+    enabled:
+      - authorization
+    disabled:
+      - step-up-authentication
 
-  db:
-    usernameSecret:
-      name: cp-keycloak-externaldb-secret
-      key: POSTGRES_USER
-    passwordSecret:
-      name: cp-keycloak-externaldb-secret
-      key: POSTGRES_PASSWORD
-    port: 5432
+  health:
+    enabled: true
+
+  metrics:
+    enabled: true
+    userEvents: true
+    cacheHistograms: true
+    serviceMonitor:
+      enabled: true
+
+  logging:
+    console:
+      output: json
+
+  extraEnv:
+    - name: KC_LOG_CONSOLE_COLOR
+      value: "true"
+    - name: KC_HTTP_METRICS_HISTOGRAMS_ENABLED
+      value: "true"
+    - name: KC_HTTP_METRICS_SLOS
+      value: "5,10,25,50,250,500,1000,2500,5000,10000"
+    - name: KC_EVENT_METRICS_USER_TAGS
+      value: "realm,idp,clientId"
 
 #### kubrix
 kubrix:
   keycloak:
-    ingress:
-      enabled: true
-      tls:
-        enabled: true
-        secretName: keycloak-server-tls
-      annotations:
-        external-dns.alpha.kubernetes.io/ttl: "60"
-        cert-manager.io/cluster-issuer: default-issuer
-      className: nginx
     domainName: ~
     realm:
       realmid: kubrix

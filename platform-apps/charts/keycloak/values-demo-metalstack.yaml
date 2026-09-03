@@ -1,3 +1,19 @@
+keycloak:
+  hostname:
+    hostname: "https://keycloak.demo.kubrix.cloud"
+    admin: "https://keycloak.demo.kubrix.cloud"
+  ingress:
+    public:
+      hosts:
+        - host: "keycloak.demo.kubrix.cloud"
+          paths:
+            - path: /
+              pathType: Prefix
+      tls:
+        - hosts:
+            - "keycloak.demo.kubrix.cloud"
+          secretName: keycloak-server-tls
+
 kubrix:
   keycloak:
     domainName: .demo.kubrix.cloud
