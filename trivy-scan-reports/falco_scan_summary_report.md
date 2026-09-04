@@ -1749,7 +1749,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>app/falcosidekick</code></h3>
-<h4>Vulnerabilities (50)</h4>
+<h4>Vulnerabilities (51)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -1792,6 +1792,13 @@
         <td>CRITICAL</td>
         <td>v5.7.6</td>
         <td>5.9.0</td>
+    </tr>
+    <tr>
+        <td><code>github.com/rabbitmq/amqp091-go</code></td>
+        <td>CVE-2026-79921</td>
+        <td>HIGH</td>
+        <td>v1.10.0</td>
+        <td>1.13.0</td>
     </tr>
     <tr>
         <td><code>go.opentelemetry.io/otel</code></td>

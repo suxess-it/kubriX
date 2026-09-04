@@ -3773,7 +3773,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>usr/bin/minio</code></h3>
-<h4>Vulnerabilities (57)</h4>
+<h4>Vulnerabilities (58)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -3872,6 +3872,13 @@
         <td>HIGH</td>
         <td>v0.303.0</td>
         <td>0.311.3, 0.305.2</td>
+    </tr>
+    <tr>
+        <td><code>github.com/rabbitmq/amqp091-go</code></td>
+        <td>CVE-2026-79921</td>
+        <td>HIGH</td>
+        <td>v1.10.0</td>
+        <td>1.13.0</td>
     </tr>
     <tr>
         <td><code>go.opentelemetry.io/otel/sdk</code></td>
