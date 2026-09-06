@@ -1472,7 +1472,7 @@
 <h4>No Misconfigurations found</h4>
 
 <h3>Target <code>quay.io/kiwigrid/k8s-sidecar:2.10.1 (alpine 3.22.4)</code></h3>
-<h4>Vulnerabilities (2)</h4>
+<h4>Vulnerabilities (8)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -1494,6 +1494,48 @@
         <td>HIGH</td>
         <td>3.5.7-r0</td>
         <td>3.5.8-r0</td>
+    </tr>
+    <tr>
+        <td><code>libuuid</code></td>
+        <td>CVE-2026-53612</td>
+        <td>HIGH</td>
+        <td>2.41-r9</td>
+        <td>2.41.6-r0</td>
+    </tr>
+    <tr>
+        <td><code>libuuid</code></td>
+        <td>CVE-2026-53613</td>
+        <td>HIGH</td>
+        <td>2.41-r9</td>
+        <td>2.41.6-r0</td>
+    </tr>
+    <tr>
+        <td><code>libuuid</code></td>
+        <td>CVE-2026-53614</td>
+        <td>HIGH</td>
+        <td>2.41-r9</td>
+        <td>2.41.6-r0</td>
+    </tr>
+    <tr>
+        <td><code>libuuid</code></td>
+        <td>CVE-2026-76642</td>
+        <td>HIGH</td>
+        <td>2.41-r9</td>
+        <td>2.41.6-r0</td>
+    </tr>
+    <tr>
+        <td><code>libuuid</code></td>
+        <td>CVE-2026-78408</td>
+        <td>HIGH</td>
+        <td>2.41-r9</td>
+        <td>2.41.6-r1</td>
+    </tr>
+    <tr>
+        <td><code>libuuid</code></td>
+        <td>CVE-2026-78410</td>
+        <td>HIGH</td>
+        <td>2.41-r9</td>
+        <td>2.41.6-r0</td>
     </tr>
 </table>
 <h4>No Misconfigurations found</h4>

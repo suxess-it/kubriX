@@ -3097,7 +3097,7 @@
 <h4>No Misconfigurations found</h4>
 
 <h3>Target <code>docker.io/kubeshop/testkube-api-server:2.12.2 (alpine 3.24.1)</code></h3>
-<h4>Vulnerabilities (4)</h4>
+<h4>Vulnerabilities (2)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -3112,20 +3112,6 @@
         <td>HIGH</td>
         <td>3.5.7-r0</td>
         <td>3.5.8-r0</td>
-    </tr>
-    <tr>
-        <td><code>libexpat</code></td>
-        <td>CVE-2026-66046</td>
-        <td>HIGH</td>
-        <td>2.8.2-r0</td>
-        <td>2.8.4-r0</td>
-    </tr>
-    <tr>
-        <td><code>libexpat</code></td>
-        <td>CVE-2026-76641</td>
-        <td>HIGH</td>
-        <td>2.8.2-r0</td>
-        <td>2.8.4-r0</td>
     </tr>
     <tr>
         <td><code>libssl3</code></td>

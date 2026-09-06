@@ -172,7 +172,7 @@
 <h4>No Misconfigurations found</h4>
 
 <h3>Target <code>docker.io/kiwigrid/k8s-sidecar:2.10.1 (alpine 3.22.4)</code></h3>
-<h4>Vulnerabilities (2)</h4>
+<h4>Vulnerabilities (8)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -195,6 +195,48 @@
         <td>3.5.7-r0</td>
         <td>3.5.8-r0</td>
     </tr>
+    <tr>
+        <td><code>libuuid</code></td>
+        <td>CVE-2026-53612</td>
+        <td>HIGH</td>
+        <td>2.41-r9</td>
+        <td>2.41.6-r0</td>
+    </tr>
+    <tr>
+        <td><code>libuuid</code></td>
+        <td>CVE-2026-53613</td>
+        <td>HIGH</td>
+        <td>2.41-r9</td>
+        <td>2.41.6-r0</td>
+    </tr>
+    <tr>
+        <td><code>libuuid</code></td>
+        <td>CVE-2026-53614</td>
+        <td>HIGH</td>
+        <td>2.41-r9</td>
+        <td>2.41.6-r0</td>
+    </tr>
+    <tr>
+        <td><code>libuuid</code></td>
+        <td>CVE-2026-76642</td>
+        <td>HIGH</td>
+        <td>2.41-r9</td>
+        <td>2.41.6-r0</td>
+    </tr>
+    <tr>
+        <td><code>libuuid</code></td>
+        <td>CVE-2026-78408</td>
+        <td>HIGH</td>
+        <td>2.41-r9</td>
+        <td>2.41.6-r1</td>
+    </tr>
+    <tr>
+        <td><code>libuuid</code></td>
+        <td>CVE-2026-78410</td>
+        <td>HIGH</td>
+        <td>2.41-r9</td>
+        <td>2.41.6-r0</td>
+    </tr>
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>Python</code></h3>
@@ -202,7 +244,65 @@
 <h4>No Misconfigurations found</h4>
 
 <h3>Target <code>docker.io/nginxinc/nginx-unprivileged:1.31-alpine (alpine 3.24.1)</code></h3>
-<h4>No Vulnerabilities found</h4>
+<h4>Vulnerabilities (7)</h4>
+<table>
+    <tr>
+        <th>Package</th>
+        <th>ID</th>
+        <th>Severity</th>
+        <th>Installed Version</th>
+        <th>Fixed Version</th>
+    </tr>
+    <tr>
+        <td><code>libuuid</code></td>
+        <td>CVE-2026-53612</td>
+        <td>HIGH</td>
+        <td>2.42.1-r0</td>
+        <td>2.42.3-r0</td>
+    </tr>
+    <tr>
+        <td><code>libuuid</code></td>
+        <td>CVE-2026-53613</td>
+        <td>HIGH</td>
+        <td>2.42.1-r0</td>
+        <td>2.42.3-r0</td>
+    </tr>
+    <tr>
+        <td><code>libuuid</code></td>
+        <td>CVE-2026-53614</td>
+        <td>HIGH</td>
+        <td>2.42.1-r0</td>
+        <td>2.42.3-r0</td>
+    </tr>
+    <tr>
+        <td><code>libuuid</code></td>
+        <td>CVE-2026-76642</td>
+        <td>HIGH</td>
+        <td>2.42.1-r0</td>
+        <td>2.42.3-r0</td>
+    </tr>
+    <tr>
+        <td><code>libuuid</code></td>
+        <td>CVE-2026-78408</td>
+        <td>HIGH</td>
+        <td>2.42.1-r0</td>
+        <td>2.42.3-r1</td>
+    </tr>
+    <tr>
+        <td><code>libuuid</code></td>
+        <td>CVE-2026-78409</td>
+        <td>HIGH</td>
+        <td>2.42.1-r0</td>
+        <td>2.42.3-r0</td>
+    </tr>
+    <tr>
+        <td><code>libuuid</code></td>
+        <td>CVE-2026-78410</td>
+        <td>HIGH</td>
+        <td>2.42.1-r0</td>
+        <td>2.42.3-r0</td>
+    </tr>
+</table>
 <h4>No Misconfigurations found</h4>
 
 <h3>Target <code>access-log-exporter</code></h3>

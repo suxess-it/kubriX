@@ -1,6 +1,6 @@
 
 <h3>Target <code>docker.io/dserio83/velero-api:0.3.1 (debian 12.11)</code></h3>
-<h4>Vulnerabilities (190)</h4>
+<h4>Vulnerabilities (188)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -285,20 +285,6 @@
     <tr>
         <td><code>libexpat1</code></td>
         <td>CVE-2026-45186</td>
-        <td>HIGH</td>
-        <td>2.5.0-1+deb12u1</td>
-        <td></td>
-    </tr>
-    <tr>
-        <td><code>libexpat1</code></td>
-        <td>CVE-2026-56408</td>
-        <td>HIGH</td>
-        <td>2.5.0-1+deb12u1</td>
-        <td>2.5.0-1+deb12u3</td>
-    </tr>
-    <tr>
-        <td><code>libexpat1</code></td>
-        <td>CVE-2026-66046</td>
         <td>HIGH</td>
         <td>2.5.0-1+deb12u1</td>
         <td></td>
@@ -721,14 +707,14 @@
         <td>CVE-2026-58050</td>
         <td>HIGH</td>
         <td>1.10.0-3+b1</td>
-        <td></td>
+        <td>1.10.0-3+deb12u1</td>
     </tr>
     <tr>
         <td><code>libssh2-1</code></td>
         <td>CVE-2026-7598</td>
         <td>HIGH</td>
         <td>1.10.0-3+b1</td>
-        <td></td>
+        <td>1.10.0-3+deb12u1</td>
     </tr>
     <tr>
         <td><code>libssl3</code></td>
@@ -2307,7 +2293,7 @@
 <h4>No Misconfigurations found</h4>
 
 <h3>Target <code>docker.io/dserio83/velero-watchdog:0.1.8 (debian 12.10)</code></h3>
-<h4>Vulnerabilities (160)</h4>
+<h4>Vulnerabilities (158)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -2592,20 +2578,6 @@
     <tr>
         <td><code>libexpat1</code></td>
         <td>CVE-2026-45186</td>
-        <td>HIGH</td>
-        <td>2.5.0-1+deb12u1</td>
-        <td></td>
-    </tr>
-    <tr>
-        <td><code>libexpat1</code></td>
-        <td>CVE-2026-56408</td>
-        <td>HIGH</td>
-        <td>2.5.0-1+deb12u1</td>
-        <td>2.5.0-1+deb12u3</td>
-    </tr>
-    <tr>
-        <td><code>libexpat1</code></td>
-        <td>CVE-2026-66046</td>
         <td>HIGH</td>
         <td>2.5.0-1+deb12u1</td>
         <td></td>
@@ -2930,14 +2902,14 @@
         <td>CVE-2026-58050</td>
         <td>HIGH</td>
         <td>1.10.0-3+b1</td>
-        <td></td>
+        <td>1.10.0-3+deb12u1</td>
     </tr>
     <tr>
         <td><code>libssh2-1</code></td>
         <td>CVE-2026-7598</td>
         <td>HIGH</td>
         <td>1.10.0-3+b1</td>
-        <td></td>
+        <td>1.10.0-3+deb12u1</td>
     </tr>
     <tr>
         <td><code>libssl3</code></td>
