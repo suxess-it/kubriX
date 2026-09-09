@@ -3,7 +3,7 @@
 <h4>No Vulnerabilities found</h4>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>Node.js</code></h3>
-<h4>Vulnerabilities (2)</h4>
+<h4>Vulnerabilities (3)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -18,6 +18,13 @@
         <td>HIGH</td>
         <td>3.13.1</td>
         <td>3.15.0, 4.3.0</td>
+    </tr>
+    <tr>
+        <td><code>js-yaml</code></td>
+        <td>CVE-2026-84375</td>
+        <td>HIGH</td>
+        <td>3.13.1</td>
+        <td>4.3.2, 3.15.2</td>
     </tr>
     <tr>
         <td><code>js-yaml</code></td>
@@ -3097,7 +3104,7 @@
 <h4>No Misconfigurations found</h4>
 
 <h3>Target <code>docker.io/kubeshop/testkube-api-server:2.12.2 (alpine 3.24.1)</code></h3>
-<h4>Vulnerabilities (2)</h4>
+<h4>Vulnerabilities (4)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -3114,6 +3121,20 @@
         <td>3.5.8-r0</td>
     </tr>
     <tr>
+        <td><code>libexpat</code></td>
+        <td>CVE-2026-76956</td>
+        <td>HIGH</td>
+        <td>2.8.2-r0</td>
+        <td>2.8.4-r0</td>
+    </tr>
+    <tr>
+        <td><code>libexpat</code></td>
+        <td>CVE-2026-76957</td>
+        <td>HIGH</td>
+        <td>2.8.2-r0</td>
+        <td>2.8.4-r0</td>
+    </tr>
+    <tr>
         <td><code>libssl3</code></td>
         <td>CVE-2026-14456</td>
         <td>HIGH</td>
@@ -3123,7 +3144,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>bin/app</code></h3>
-<h4>Vulnerabilities (1)</h4>
+<h4>Vulnerabilities (2)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -3138,6 +3159,13 @@
         <td>HIGH</td>
         <td>v6.0.0-alpha.4</td>
         <td>6.0.0-alpha.5</td>
+    </tr>
+    <tr>
+        <td><code>google.golang.org/grpc</code></td>
+        <td>CVE-2026-84445</td>
+        <td>HIGH</td>
+        <td>v1.83.1</td>
+        <td>1.82.2, 1.83.2, 1.85.0-dev.0.20260825072537-93e31b48545e</td>
     </tr>
 </table>
 <h4>No Misconfigurations found</h4>
@@ -3432,7 +3460,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>usr/bin/mc</code></h3>
-<h4>Vulnerabilities (45)</h4>
+<h4>Vulnerabilities (46)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -3587,6 +3615,13 @@
         <td>HIGH</td>
         <td>v1.71.0</td>
         <td>1.83.1</td>
+    </tr>
+    <tr>
+        <td><code>google.golang.org/grpc</code></td>
+        <td>CVE-2026-84445</td>
+        <td>HIGH</td>
+        <td>v1.71.0</td>
+        <td>1.82.2, 1.83.2, 1.85.0-dev.0.20260825072537-93e31b48545e</td>
     </tr>
     <tr>
         <td><code>google.golang.org/grpc</code></td>
@@ -3759,7 +3794,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>usr/bin/minio</code></h3>
-<h4>Vulnerabilities (58)</h4>
+<h4>Vulnerabilities (59)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -4012,6 +4047,13 @@
         <td>HIGH</td>
         <td>v1.72.0</td>
         <td>1.83.1</td>
+    </tr>
+    <tr>
+        <td><code>google.golang.org/grpc</code></td>
+        <td>CVE-2026-84445</td>
+        <td>HIGH</td>
+        <td>v1.72.0</td>
+        <td>1.82.2, 1.83.2, 1.85.0-dev.0.20260825072537-93e31b48545e</td>
     </tr>
     <tr>
         <td><code>google.golang.org/grpc</code></td>

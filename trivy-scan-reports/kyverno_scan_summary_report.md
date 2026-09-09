@@ -16,91 +16,91 @@
         <td><code>github.com/kyverno/kyverno</code></td>
         <td>CVE-2026-22039</td>
         <td>CRITICAL</td>
-        <td>v1.5.0-rc1.0.20260908143926-7cd6c0185cfb+dirty</td>
+        <td>v1.5.0-rc1.0.20260909040836-b458f43a845a+dirty</td>
         <td>1.15.3, 1.16.3</td>
     </tr>
     <tr>
         <td><code>github.com/kyverno/kyverno</code></td>
         <td>CVE-2023-47630</td>
         <td>HIGH</td>
-        <td>v1.5.0-rc1.0.20260908143926-7cd6c0185cfb+dirty</td>
+        <td>v1.5.0-rc1.0.20260909040836-b458f43a845a+dirty</td>
         <td>1.10.5</td>
     </tr>
     <tr>
         <td><code>github.com/kyverno/kyverno</code></td>
         <td>CVE-2024-48921</td>
         <td>HIGH</td>
-        <td>v1.5.0-rc1.0.20260908143926-7cd6c0185cfb+dirty</td>
+        <td>v1.5.0-rc1.0.20260909040836-b458f43a845a+dirty</td>
         <td>1.13.0</td>
     </tr>
     <tr>
         <td><code>github.com/kyverno/kyverno</code></td>
         <td>CVE-2025-46342</td>
         <td>HIGH</td>
-        <td>v1.5.0-rc1.0.20260908143926-7cd6c0185cfb+dirty</td>
+        <td>v1.5.0-rc1.0.20260909040836-b458f43a845a+dirty</td>
         <td>1.13.5, 1.14.0</td>
     </tr>
     <tr>
         <td><code>github.com/kyverno/kyverno</code></td>
         <td>CVE-2025-47281</td>
         <td>HIGH</td>
-        <td>v1.5.0-rc1.0.20260908143926-7cd6c0185cfb+dirty</td>
+        <td>v1.5.0-rc1.0.20260909040836-b458f43a845a+dirty</td>
         <td>1.14.2</td>
     </tr>
     <tr>
         <td><code>github.com/kyverno/kyverno</code></td>
         <td>CVE-2026-23881</td>
         <td>HIGH</td>
-        <td>v1.5.0-rc1.0.20260908143926-7cd6c0185cfb+dirty</td>
+        <td>v1.5.0-rc1.0.20260909040836-b458f43a845a+dirty</td>
         <td>1.15.3, 1.16.3</td>
     </tr>
     <tr>
         <td><code>github.com/kyverno/kyverno</code></td>
         <td>CVE-2026-40868</td>
         <td>HIGH</td>
-        <td>v1.5.0-rc1.0.20260908143926-7cd6c0185cfb+dirty</td>
+        <td>v1.5.0-rc1.0.20260909040836-b458f43a845a+dirty</td>
         <td>1.17.0</td>
     </tr>
     <tr>
         <td><code>github.com/kyverno/kyverno</code></td>
         <td>CVE-2026-41068</td>
         <td>HIGH</td>
-        <td>v1.5.0-rc1.0.20260908143926-7cd6c0185cfb+dirty</td>
+        <td>v1.5.0-rc1.0.20260909040836-b458f43a845a+dirty</td>
         <td></td>
     </tr>
     <tr>
         <td><code>github.com/kyverno/kyverno</code></td>
         <td>CVE-2026-41323</td>
         <td>HIGH</td>
-        <td>v1.5.0-rc1.0.20260908143926-7cd6c0185cfb+dirty</td>
+        <td>v1.5.0-rc1.0.20260909040836-b458f43a845a+dirty</td>
         <td>1.17.0</td>
     </tr>
     <tr>
         <td><code>github.com/kyverno/kyverno</code></td>
         <td>GHSA-459x-q9hg-4gpq</td>
         <td>HIGH</td>
-        <td>v1.5.0-rc1.0.20260908143926-7cd6c0185cfb+dirty</td>
+        <td>v1.5.0-rc1.0.20260909040836-b458f43a845a+dirty</td>
         <td></td>
     </tr>
     <tr>
         <td><code>github.com/kyverno/kyverno</code></td>
         <td>GHSA-8wfp-579w-6r25</td>
         <td>HIGH</td>
-        <td>v1.5.0-rc1.0.20260908143926-7cd6c0185cfb+dirty</td>
+        <td>v1.5.0-rc1.0.20260909040836-b458f43a845a+dirty</td>
         <td>1.17.0</td>
     </tr>
     <tr>
         <td><code>github.com/kyverno/kyverno</code></td>
         <td>GHSA-fmqp-4wfc-w3v7</td>
         <td>HIGH</td>
-        <td>v1.5.0-rc1.0.20260908143926-7cd6c0185cfb+dirty</td>
+        <td>v1.5.0-rc1.0.20260909040836-b458f43a845a+dirty</td>
         <td>1.16.2</td>
     </tr>
     <tr>
         <td><code>github.com/kyverno/kyverno</code></td>
         <td>GHSA-qr4g-8hrp-c4rw</td>
         <td>HIGH</td>
-        <td>v1.5.0-rc1.0.20260908143926-7cd6c0185cfb+dirty</td>
+        <td>v1.5.0-rc1.0.20260909040836-b458f43a845a+dirty</td>
         <td></td>
     </tr>
 </table>
@@ -182,7 +182,7 @@
 <h4>No Vulnerabilities found</h4>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>ko-app/background-controller</code></h3>
-<h4>Vulnerabilities (12)</h4>
+<h4>Vulnerabilities (13)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -218,6 +218,13 @@
         <td>HIGH</td>
         <td>v1.83.0</td>
         <td>1.83.1</td>
+    </tr>
+    <tr>
+        <td><code>google.golang.org/grpc</code></td>
+        <td>CVE-2026-84445</td>
+        <td>HIGH</td>
+        <td>v1.83.0</td>
+        <td>1.82.2, 1.83.2, 1.85.0-dev.0.20260825072537-93e31b48545e</td>
     </tr>
     <tr>
         <td><code>stdlib</code></td>
@@ -282,7 +289,7 @@
 <h4>No Vulnerabilities found</h4>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>ko-app/cleanup-controller</code></h3>
-<h4>Vulnerabilities (12)</h4>
+<h4>Vulnerabilities (13)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -318,6 +325,13 @@
         <td>HIGH</td>
         <td>v1.83.0</td>
         <td>1.83.1</td>
+    </tr>
+    <tr>
+        <td><code>google.golang.org/grpc</code></td>
+        <td>CVE-2026-84445</td>
+        <td>HIGH</td>
+        <td>v1.83.0</td>
+        <td>1.82.2, 1.83.2, 1.85.0-dev.0.20260825072537-93e31b48545e</td>
     </tr>
     <tr>
         <td><code>stdlib</code></td>
@@ -382,7 +396,7 @@
 <h4>No Vulnerabilities found</h4>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>ko-app/kubectl-kyverno</code></h3>
-<h4>Vulnerabilities (12)</h4>
+<h4>Vulnerabilities (13)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -418,6 +432,13 @@
         <td>HIGH</td>
         <td>v1.83.0</td>
         <td>1.83.1</td>
+    </tr>
+    <tr>
+        <td><code>google.golang.org/grpc</code></td>
+        <td>CVE-2026-84445</td>
+        <td>HIGH</td>
+        <td>v1.83.0</td>
+        <td>1.82.2, 1.83.2, 1.85.0-dev.0.20260825072537-93e31b48545e</td>
     </tr>
     <tr>
         <td><code>stdlib</code></td>
@@ -482,7 +503,7 @@
 <h4>No Vulnerabilities found</h4>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>ko-app/kyverno</code></h3>
-<h4>Vulnerabilities (12)</h4>
+<h4>Vulnerabilities (13)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -518,6 +539,13 @@
         <td>HIGH</td>
         <td>v1.83.0</td>
         <td>1.83.1</td>
+    </tr>
+    <tr>
+        <td><code>google.golang.org/grpc</code></td>
+        <td>CVE-2026-84445</td>
+        <td>HIGH</td>
+        <td>v1.83.0</td>
+        <td>1.82.2, 1.83.2, 1.85.0-dev.0.20260825072537-93e31b48545e</td>
     </tr>
     <tr>
         <td><code>stdlib</code></td>
@@ -582,7 +610,7 @@
 <h4>No Vulnerabilities found</h4>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>ko-app/kyverno-init</code></h3>
-<h4>Vulnerabilities (12)</h4>
+<h4>Vulnerabilities (13)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -618,6 +646,13 @@
         <td>HIGH</td>
         <td>v1.83.0</td>
         <td>1.83.1</td>
+    </tr>
+    <tr>
+        <td><code>google.golang.org/grpc</code></td>
+        <td>CVE-2026-84445</td>
+        <td>HIGH</td>
+        <td>v1.83.0</td>
+        <td>1.82.2, 1.83.2, 1.85.0-dev.0.20260825072537-93e31b48545e</td>
     </tr>
     <tr>
         <td><code>stdlib</code></td>
@@ -682,7 +717,7 @@
 <h4>No Vulnerabilities found</h4>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>ko-app/reports-controller</code></h3>
-<h4>Vulnerabilities (12)</h4>
+<h4>Vulnerabilities (13)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -718,6 +753,13 @@
         <td>HIGH</td>
         <td>v1.83.0</td>
         <td>1.83.1</td>
+    </tr>
+    <tr>
+        <td><code>google.golang.org/grpc</code></td>
+        <td>CVE-2026-84445</td>
+        <td>HIGH</td>
+        <td>v1.83.0</td>
+        <td>1.82.2, 1.83.2, 1.85.0-dev.0.20260825072537-93e31b48545e</td>
     </tr>
     <tr>
         <td><code>stdlib</code></td>

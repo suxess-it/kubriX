@@ -74,7 +74,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>Node.js</code></h3>
-<h4>Vulnerabilities (158)</h4>
+<h4>Vulnerabilities (164)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -435,6 +435,27 @@
     </tr>
     <tr>
         <td><code>js-yaml</code></td>
+        <td>CVE-2026-84375</td>
+        <td>HIGH</td>
+        <td>3.14.2</td>
+        <td>4.3.2, 3.15.2</td>
+    </tr>
+    <tr>
+        <td><code>js-yaml</code></td>
+        <td>CVE-2026-84375</td>
+        <td>HIGH</td>
+        <td>3.14.2</td>
+        <td>4.3.2, 3.15.2</td>
+    </tr>
+    <tr>
+        <td><code>js-yaml</code></td>
+        <td>CVE-2026-84375</td>
+        <td>HIGH</td>
+        <td>3.14.2</td>
+        <td>4.3.2, 3.15.2</td>
+    </tr>
+    <tr>
+        <td><code>js-yaml</code></td>
         <td>GHSA-5p4m-2wfm-xmqj</td>
         <td>HIGH</td>
         <td>3.14.2</td>
@@ -460,6 +481,13 @@
         <td>HIGH</td>
         <td>4.1.1</td>
         <td>3.15.0, 4.3.0</td>
+    </tr>
+    <tr>
+        <td><code>js-yaml</code></td>
+        <td>CVE-2026-84375</td>
+        <td>HIGH</td>
+        <td>4.1.1</td>
+        <td>4.3.2, 3.15.2</td>
     </tr>
     <tr>
         <td><code>js-yaml</code></td>
@@ -516,6 +544,20 @@
         <td>HIGH</td>
         <td>2.1.1</td>
         <td>2.2.0, 3.0.0-alpha.2</td>
+    </tr>
+    <tr>
+        <td><code>multer</code></td>
+        <td>CVE-2026-77078</td>
+        <td>HIGH</td>
+        <td>2.1.1</td>
+        <td>2.3.0</td>
+    </tr>
+    <tr>
+        <td><code>multer</code></td>
+        <td>CVE-2026-82333</td>
+        <td>HIGH</td>
+        <td>2.1.1</td>
+        <td>2.3.0</td>
     </tr>
     <tr>
         <td><code>mysql2</code></td>
