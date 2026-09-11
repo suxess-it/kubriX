@@ -26,7 +26,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>usr/local/bin/traefik</code></h3>
-<h4>Vulnerabilities (13)</h4>
+<h4>Vulnerabilities (17)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -36,9 +36,37 @@
         <th>Fixed Version</th>
     </tr>
     <tr>
+        <td><code>github.com/traefik/traefik/v3</code></td>
+        <td>CVE-2026-88007</td>
+        <td>CRITICAL</td>
+        <td>v3.7.10</td>
+        <td>3.7.13</td>
+    </tr>
+    <tr>
+        <td><code>github.com/traefik/traefik/v3</code></td>
+        <td>CVE-2026-88004</td>
+        <td>HIGH</td>
+        <td>v3.7.10</td>
+        <td>3.7.13</td>
+    </tr>
+    <tr>
+        <td><code>github.com/traefik/traefik/v3</code></td>
+        <td>CVE-2026-88008</td>
+        <td>HIGH</td>
+        <td>v3.7.10</td>
+        <td>3.7.13</td>
+    </tr>
+    <tr>
+        <td><code>github.com/traefik/traefik/v3</code></td>
+        <td>CVE-2026-88009</td>
+        <td>HIGH</td>
+        <td>v3.7.10</td>
+        <td>3.7.13</td>
+    </tr>
+    <tr>
         <td><code>golang.org/x/crypto</code></td>
         <td>CVE-2026-56854</td>
-        <td>CRITICAL</td>
+        <td>HIGH</td>
         <td>v0.54.0</td>
         <td>0.55.0</td>
     </tr>

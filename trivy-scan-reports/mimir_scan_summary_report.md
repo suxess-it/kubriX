@@ -502,13 +502,6 @@
     </tr>
     <tr>
         <td><code>golang.org/x/crypto</code></td>
-        <td>CVE-2026-56854</td>
-        <td>CRITICAL</td>
-        <td>v0.27.0</td>
-        <td>0.55.0</td>
-    </tr>
-    <tr>
-        <td><code>golang.org/x/crypto</code></td>
         <td>CVE-2024-45337</td>
         <td>HIGH</td>
         <td>v0.27.0</td>
@@ -590,6 +583,13 @@
         <td>HIGH</td>
         <td>v0.27.0</td>
         <td>0.52.0</td>
+    </tr>
+    <tr>
+        <td><code>golang.org/x/crypto</code></td>
+        <td>CVE-2026-56854</td>
+        <td>HIGH</td>
+        <td>v0.27.0</td>
+        <td>0.55.0</td>
     </tr>
     <tr>
         <td><code>golang.org/x/net</code></td>
@@ -884,13 +884,6 @@
     </tr>
     <tr>
         <td><code>golang.org/x/crypto</code></td>
-        <td>CVE-2026-56854</td>
-        <td>CRITICAL</td>
-        <td>v0.27.0</td>
-        <td>0.55.0</td>
-    </tr>
-    <tr>
-        <td><code>golang.org/x/crypto</code></td>
         <td>CVE-2024-45337</td>
         <td>HIGH</td>
         <td>v0.27.0</td>
@@ -972,6 +965,13 @@
         <td>HIGH</td>
         <td>v0.27.0</td>
         <td>0.52.0</td>
+    </tr>
+    <tr>
+        <td><code>golang.org/x/crypto</code></td>
+        <td>CVE-2026-56854</td>
+        <td>HIGH</td>
+        <td>v0.27.0</td>
+        <td>0.55.0</td>
     </tr>
     <tr>
         <td><code>golang.org/x/net</code></td>
@@ -1295,13 +1295,6 @@
     </tr>
     <tr>
         <td><code>golang.org/x/crypto</code></td>
-        <td>CVE-2026-56854</td>
-        <td>CRITICAL</td>
-        <td>v0.31.0</td>
-        <td>0.55.0</td>
-    </tr>
-    <tr>
-        <td><code>golang.org/x/crypto</code></td>
         <td>CVE-2025-22869</td>
         <td>HIGH</td>
         <td>v0.31.0</td>
@@ -1376,6 +1369,13 @@
         <td>HIGH</td>
         <td>v0.31.0</td>
         <td>0.52.0</td>
+    </tr>
+    <tr>
+        <td><code>golang.org/x/crypto</code></td>
+        <td>CVE-2026-56854</td>
+        <td>HIGH</td>
+        <td>v0.31.0</td>
+        <td>0.55.0</td>
     </tr>
     <tr>
         <td><code>golang.org/x/net</code></td>

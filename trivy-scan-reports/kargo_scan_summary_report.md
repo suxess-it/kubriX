@@ -120,7 +120,7 @@
     <tr>
         <td><code>golang.org/x/crypto</code></td>
         <td>CVE-2026-56854</td>
-        <td>CRITICAL</td>
+        <td>HIGH</td>
         <td>v0.53.0</td>
         <td>0.55.0</td>
     </tr>
@@ -251,7 +251,7 @@
     <tr>
         <td><code>golang.org/x/crypto</code></td>
         <td>CVE-2026-56854</td>
-        <td>CRITICAL</td>
+        <td>HIGH</td>
         <td>v0.53.0</td>
         <td>0.55.0</td>
     </tr>
