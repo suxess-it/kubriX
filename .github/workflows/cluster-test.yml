@@ -609,12 +609,24 @@ jobs:
             E2E_PGADMIN_GRAFANA_PASSWORD=$(kubectl get secrets -n grafana cnpg-grafana-secret  -o=jsonpath='{.data.password}' | base64 -d)
             E2E_PGADMIN_KEYCLOAK_PASSWORD=$(kubectl get secrets -n keycloak cnpg-keycloak-secret  -o=jsonpath='{.data.password}' | base64 -d)
             E2E_MINO_ADMIN_PASSWORD=$(kubectl get secret -n minio minio-admin-secret -o=jsonpath='{.data.rootPassword}' | base64 -d)
+            E2E_KEYCLOAK_KUBRIXVIEWER_PASSWORD=$(kubectl get secret -n keycloak cp-keycloak-users-secret -o=jsonpath='{.data.kubrixviewer}' | base64 -d)
+            E2E_KEYCLOAK_KUBRIXEDITOR_PASSWORD=$(kubectl get secret -n keycloak cp-keycloak-users-secret -o=jsonpath='{.data.kubrixeditor}' | base64 -d)
+            E2E_KEYCLOAK_KUBRIXADMIN_PASSWORD=$(kubectl get secret -n keycloak cp-keycloak-users-secret -o=jsonpath='{.data.kubrixadmin}' | base64 -d)
+            E2E_KEYCLOAK_KUBRIXCONTROLVIEWER_PASSWORD=$(kubectl get secret -n keycloak cp-keycloak-users-secret -o=jsonpath='{.data.kubrixcontrolviewer}' | base64 -d)
+            E2E_KEYCLOAK_KUBRIXCONTROLEDITOR_PASSWORD=$(kubectl get secret -n keycloak cp-keycloak-users-secret -o=jsonpath='{.data.kubrixcontroleditor}' | base64 -d)
+            E2E_KEYCLOAK_KUBRIXCONTROLADMIN_PASSWORD=$(kubectl get secret -n keycloak cp-keycloak-users-secret -o=jsonpath='{.data.kubrixcontroladmin}' | base64 -d)
             PRIME_VARS=(
               --variable E2E_PGADMIN_ADMIN_PASSWORD=${E2E_PGADMIN_ADMIN_PASSWORD}
               --variable E2E_PGADMIN_BACKSTAGE_PASSWORD=${E2E_PGADMIN_BACKSTAGE_PASSWORD}
               --variable E2E_PGADMIN_GRAFANA_PASSWORD=${E2E_PGADMIN_GRAFANA_PASSWORD}
               --variable E2E_PGADMIN_KEYCLOAK_PASSWORD=${E2E_PGADMIN_KEYCLOAK_PASSWORD}
               --variable E2E_MERGE_PR=${E2E_MERGE_PR}
+              --variable E2E_KEYCLOAK_KUBRIXVIEWER_PASSWORD=${E2E_KEYCLOAK_KUBRIXVIEWER_PASSWORD}
+              --variable E2E_KEYCLOAK_KUBRIXEDITOR_PASSWORD=${E2E_KEYCLOAK_KUBRIXEDITOR_PASSWORD}
+              --variable E2E_KEYCLOAK_KUBRIXADMIN_PASSWORD=${E2E_KEYCLOAK_KUBRIXADMIN_PASSWORD}
+              --variable E2E_KEYCLOAK_KUBRIXCONTROLVIEWER_PASSWORD=${E2E_KEYCLOAK_KUBRIXCONTROLVIEWER_PASSWORD}
+              --variable E2E_KEYCLOAK_KUBRIXCONTROLEDITOR_PASSWORD=${E2E_KEYCLOAK_KUBRIXCONTROLEDITOR_PASSWORD}
+              --variable E2E_KEYCLOAK_KUBRIXCONTROLADMIN_PASSWORD=${E2E_KEYCLOAK_KUBRIXCONTROLADMIN_PASSWORD}
             )
           fi
           testkube run testworkflow -l type=${KUBRIX_TARGET_TYPE} \
@@ -708,6 +720,10 @@ jobs:
           kubectl get pods -o name -n crossplane | xargs -I {} kubectl logs -n crossplane {} --all-containers=true
           kubectl get pods -o name -n traefik | xargs -I {} kubectl logs -n traefik {} --all-containers=true
           kubectl get pods -o name -n cnpg | xargs -I {} kubectl logs -n cnpg {} --all-containers=true
+          echo "===== grafana-folder-adopter status configmap ======"
+          kubectl get cm -n keycloak grafana-folder-adopter-status -o jsonpath='{.data}' | jq . || true
+          echo "===== grafana-folder-adopter / keycloak-member-sync job pod logs ======"
+          kubectl get pods -o name -n keycloak | { grep -E "grafana-folder-adopter|keycloak-member-sync" || true; } | xargs -I {} kubectl logs -n keycloak {} --all-containers=true || true
 
       - name: final analyzer with k8sgpt
         if: always()
