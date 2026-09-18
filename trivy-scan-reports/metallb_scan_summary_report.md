@@ -1,6 +1,6 @@
 
 <h3>Target <code>quay.io/frrouting/frr:10.4.3 (alpine 3.22.3)</code></h3>
-<h4>Vulnerabilities (47)</h4>
+<h4>Vulnerabilities (48)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -78,6 +78,13 @@
         <td>HIGH</td>
         <td>2.7.4-r0</td>
         <td>2.8.1-r0</td>
+    </tr>
+    <tr>
+        <td><code>libexpat</code></td>
+        <td>CVE-2026-66046</td>
+        <td>HIGH</td>
+        <td>2.7.4-r0</td>
+        <td>2.8.4-r0</td>
     </tr>
     <tr>
         <td><code>libexpat</code></td>

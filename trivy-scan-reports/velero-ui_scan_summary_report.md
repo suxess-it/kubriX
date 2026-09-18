@@ -1,6 +1,6 @@
 
 <h3>Target <code>docker.io/dserio83/velero-api:0.3.1 (debian 12.11)</code></h3>
-<h4>Vulnerabilities (189)</h4>
+<h4>Vulnerabilities (193)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -291,6 +291,13 @@
     </tr>
     <tr>
         <td><code>libexpat1</code></td>
+        <td>CVE-2026-66046</td>
+        <td>HIGH</td>
+        <td>2.5.0-1+deb12u1</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>libexpat1</code></td>
         <td>CVE-2026-76957</td>
         <td>HIGH</td>
         <td>2.5.0-1+deb12u1</td>
@@ -470,6 +477,27 @@
         <td>HIGH</td>
         <td>1.5.2-6+deb12u1</td>
         <td>1.5.2-6+deb12u2</td>
+    </tr>
+    <tr>
+        <td><code>libpcre2-8-0</code></td>
+        <td>CVE-2026-86145</td>
+        <td>HIGH</td>
+        <td>10.42-1</td>
+        <td>10.42-1+deb12u1</td>
+    </tr>
+    <tr>
+        <td><code>libpcre2-8-0</code></td>
+        <td>CVE-2026-89157</td>
+        <td>HIGH</td>
+        <td>10.42-1</td>
+        <td>10.42-1+deb12u1</td>
+    </tr>
+    <tr>
+        <td><code>libpcre2-8-0</code></td>
+        <td>CVE-2026-89161</td>
+        <td>HIGH</td>
+        <td>10.42-1</td>
+        <td>10.42-1+deb12u1</td>
     </tr>
     <tr>
         <td><code>libperl5.36</code></td>
@@ -2321,7 +2349,7 @@
 <h4>No Misconfigurations found</h4>
 
 <h3>Target <code>docker.io/dserio83/velero-watchdog:0.1.8 (debian 12.10)</code></h3>
-<h4>Vulnerabilities (159)</h4>
+<h4>Vulnerabilities (163)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -2612,6 +2640,13 @@
     </tr>
     <tr>
         <td><code>libexpat1</code></td>
+        <td>CVE-2026-66046</td>
+        <td>HIGH</td>
+        <td>2.5.0-1+deb12u1</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>libexpat1</code></td>
         <td>CVE-2026-76957</td>
         <td>HIGH</td>
         <td>2.5.0-1+deb12u1</td>
@@ -2805,6 +2840,27 @@
         <td>HIGH</td>
         <td>1.5.2-6+deb12u1</td>
         <td>1.5.2-6+deb12u2</td>
+    </tr>
+    <tr>
+        <td><code>libpcre2-8-0</code></td>
+        <td>CVE-2026-86145</td>
+        <td>HIGH</td>
+        <td>10.42-1</td>
+        <td>10.42-1+deb12u1</td>
+    </tr>
+    <tr>
+        <td><code>libpcre2-8-0</code></td>
+        <td>CVE-2026-89157</td>
+        <td>HIGH</td>
+        <td>10.42-1</td>
+        <td>10.42-1+deb12u1</td>
+    </tr>
+    <tr>
+        <td><code>libpcre2-8-0</code></td>
+        <td>CVE-2026-89161</td>
+        <td>HIGH</td>
+        <td>10.42-1</td>
+        <td>10.42-1+deb12u1</td>
     </tr>
     <tr>
         <td><code>libperl5.36</code></td>

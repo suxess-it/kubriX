@@ -110,7 +110,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>usr/local/bin/helm-operator</code></h3>
-<h4>Vulnerabilities (16)</h4>
+<h4>Vulnerabilities (17)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -164,6 +164,13 @@
     <tr>
         <td><code>oras.land/oras-go/v2</code></td>
         <td>CVE-2026-50163</td>
+        <td>HIGH</td>
+        <td>v2.6.0</td>
+        <td>2.6.2</td>
+    </tr>
+    <tr>
+        <td><code>oras.land/oras-go/v2</code></td>
+        <td>CVE-2026-85731</td>
         <td>HIGH</td>
         <td>v2.6.0</td>
         <td>2.6.2</td>

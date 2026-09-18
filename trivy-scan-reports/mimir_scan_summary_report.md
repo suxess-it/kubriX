@@ -186,7 +186,7 @@
 <h4>No Misconfigurations found</h4>
 
 <h3>Target <code>docker.io/nginxinc/nginx-unprivileged:1.29-alpine (alpine 3.23.4)</code></h3>
-<h4>Vulnerabilities (35)</h4>
+<h4>Vulnerabilities (36)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -362,6 +362,13 @@
         <td>HIGH</td>
         <td>2.7.5-r0</td>
         <td>2.8.1-r0</td>
+    </tr>
+    <tr>
+        <td><code>libexpat</code></td>
+        <td>CVE-2026-66046</td>
+        <td>HIGH</td>
+        <td>2.7.5-r0</td>
+        <td>2.8.4-r0</td>
     </tr>
     <tr>
         <td><code>libexpat</code></td>
@@ -1207,7 +1214,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>usr/bin/minio</code></h3>
-<h4>Vulnerabilities (57)</h4>
+<h4>Vulnerabilities (66)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -1271,6 +1278,69 @@
         <td>HIGH</td>
         <td>v0.300.1</td>
         <td>0.311.3, 0.305.2</td>
+    </tr>
+    <tr>
+        <td><code>github.com/rabbitmq/amqp091-go</code></td>
+        <td>CVE-2026-77405</td>
+        <td>CRITICAL</td>
+        <td>v1.10.0</td>
+        <td>1.13.0</td>
+    </tr>
+    <tr>
+        <td><code>github.com/rabbitmq/amqp091-go</code></td>
+        <td>CVE-2026-77408</td>
+        <td>CRITICAL</td>
+        <td>v1.10.0</td>
+        <td>1.13.0</td>
+    </tr>
+    <tr>
+        <td><code>github.com/rabbitmq/amqp091-go</code></td>
+        <td>CVE-2026-77411</td>
+        <td>CRITICAL</td>
+        <td>v1.10.0</td>
+        <td>1.13.0</td>
+    </tr>
+    <tr>
+        <td><code>github.com/rabbitmq/amqp091-go</code></td>
+        <td>CVE-2026-77403</td>
+        <td>HIGH</td>
+        <td>v1.10.0</td>
+        <td>1.13.0</td>
+    </tr>
+    <tr>
+        <td><code>github.com/rabbitmq/amqp091-go</code></td>
+        <td>CVE-2026-77404</td>
+        <td>HIGH</td>
+        <td>v1.10.0</td>
+        <td>1.13.0</td>
+    </tr>
+    <tr>
+        <td><code>github.com/rabbitmq/amqp091-go</code></td>
+        <td>CVE-2026-77406</td>
+        <td>HIGH</td>
+        <td>v1.10.0</td>
+        <td>1.13.0</td>
+    </tr>
+    <tr>
+        <td><code>github.com/rabbitmq/amqp091-go</code></td>
+        <td>CVE-2026-77407</td>
+        <td>HIGH</td>
+        <td>v1.10.0</td>
+        <td>1.13.0</td>
+    </tr>
+    <tr>
+        <td><code>github.com/rabbitmq/amqp091-go</code></td>
+        <td>CVE-2026-77410</td>
+        <td>HIGH</td>
+        <td>v1.10.0</td>
+        <td>1.13.0</td>
+    </tr>
+    <tr>
+        <td><code>github.com/rabbitmq/amqp091-go</code></td>
+        <td>CVE-2026-77412</td>
+        <td>HIGH</td>
+        <td>v1.10.0</td>
+        <td>1.13.0</td>
     </tr>
     <tr>
         <td><code>github.com/rabbitmq/amqp091-go</code></td>
