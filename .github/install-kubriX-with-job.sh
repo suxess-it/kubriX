@@ -115,6 +115,7 @@ follow_logs_until_done() {
   done
 
   # Final non-following log fetch to catch remaining buffered output
+  evho "final log fetch"
   kubectl logs -n "${NAMESPACE}" "pod/${POD}" --all-containers=true \
     --since=5m || true
 }
@@ -123,6 +124,8 @@ follow_logs_until_done &
 LOGS_PID=$!
 
 MAX_WAIT_SECONDS="${KUBRIX_BOOTSTRAP_MAX_WAIT_TIME:-2100}"
+# add some extra time otherwise this job stops installation too early
+MAX_WAIT_SECONDS=$((MAX_WAIT_SECONDS + 600))
 START_TIME="$(date +%s)"
 
 while true; do
