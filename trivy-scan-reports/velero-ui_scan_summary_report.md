@@ -1,6 +1,6 @@
 
 <h3>Target <code>docker.io/dserio83/velero-api:0.3.1 (debian 12.11)</code></h3>
-<h4>Vulnerabilities (193)</h4>
+<h4>Vulnerabilities (197)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -619,6 +619,13 @@
         <td></td>
     </tr>
     <tr>
+        <td><code>libpython3.11-minimal</code></td>
+        <td>CVE-2026-8328</td>
+        <td>HIGH</td>
+        <td>3.11.2-6+deb12u6</td>
+        <td></td>
+    </tr>
+    <tr>
         <td><code>libpython3.11-stdlib</code></td>
         <td>CVE-2025-13836</td>
         <td>HIGH</td>
@@ -670,6 +677,13 @@
     <tr>
         <td><code>libpython3.11-stdlib</code></td>
         <td>CVE-2026-7210</td>
+        <td>HIGH</td>
+        <td>3.11.2-6+deb12u6</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>libpython3.11-stdlib</code></td>
+        <td>CVE-2026-8328</td>
         <td>HIGH</td>
         <td>3.11.2-6+deb12u6</td>
         <td></td>
@@ -1228,6 +1242,13 @@
         <td></td>
     </tr>
     <tr>
+        <td><code>python3.11</code></td>
+        <td>CVE-2026-8328</td>
+        <td>HIGH</td>
+        <td>3.11.2-6+deb12u6</td>
+        <td></td>
+    </tr>
+    <tr>
         <td><code>python3.11-minimal</code></td>
         <td>CVE-2025-13836</td>
         <td>HIGH</td>
@@ -1279,6 +1300,13 @@
     <tr>
         <td><code>python3.11-minimal</code></td>
         <td>CVE-2026-7210</td>
+        <td>HIGH</td>
+        <td>3.11.2-6+deb12u6</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>python3.11-minimal</code></td>
+        <td>CVE-2026-8328</td>
         <td>HIGH</td>
         <td>3.11.2-6+deb12u6</td>
         <td></td>
@@ -1363,7 +1391,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>Python</code></h3>
-<h4>Vulnerabilities (20)</h4>
+<h4>Vulnerabilities (21)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -1385,6 +1413,13 @@
         <td>HIGH</td>
         <td>3.12.12</td>
         <td>3.14.3</td>
+    </tr>
+    <tr>
+        <td><code>anyio</code></td>
+        <td>CVE-2026-63374</td>
+        <td>CRITICAL</td>
+        <td>4.8.0</td>
+        <td>4.14.2</td>
     </tr>
     <tr>
         <td><code>ecdsa</code></td>
@@ -3502,7 +3537,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>Python</code></h3>
-<h4>Vulnerabilities (16)</h4>
+<h4>Vulnerabilities (17)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -3510,6 +3545,13 @@
         <th>Severity</th>
         <th>Installed Version</th>
         <th>Fixed Version</th>
+    </tr>
+    <tr>
+        <td><code>anyio</code></td>
+        <td>CVE-2026-63374</td>
+        <td>CRITICAL</td>
+        <td>4.8.0</td>
+        <td>4.14.2</td>
     </tr>
     <tr>
         <td><code>h11</code></td>

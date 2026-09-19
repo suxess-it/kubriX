@@ -1117,7 +1117,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>Python</code></h3>
-<h4>Vulnerabilities (4)</h4>
+<h4>Vulnerabilities (5)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -1125,6 +1125,13 @@
         <th>Severity</th>
         <th>Installed Version</th>
         <th>Fixed Version</th>
+    </tr>
+    <tr>
+        <td><code>anyio</code></td>
+        <td>CVE-2026-63374</td>
+        <td>CRITICAL</td>
+        <td>4.11.0</td>
+        <td>4.14.2</td>
     </tr>
     <tr>
         <td><code>jaraco.context</code></td>
