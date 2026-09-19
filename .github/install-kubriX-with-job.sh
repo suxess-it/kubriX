@@ -115,6 +115,7 @@ follow_logs_until_done() {
   done
 
   # Final non-following log fetch to catch remaining buffered output
+  evho "final log fetch"
   kubectl logs -n "${NAMESPACE}" "pod/${POD}" --all-containers=true \
     --since=5m || true
 }
