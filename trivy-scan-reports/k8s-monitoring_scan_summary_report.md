@@ -1,6 +1,6 @@
 
 <h3>Target <code>ghcr.io/grafana/alloy-operator:1.11.1 (redhat 9.8)</code></h3>
-<h4>Vulnerabilities (14)</h4>
+<h4>Vulnerabilities (21)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -92,6 +92,55 @@
         <td>HIGH</td>
         <td>7.76.1-40.el9</td>
         <td>7.76.1-40.el9_8.5</td>
+    </tr>
+    <tr>
+        <td><code>libevent</code></td>
+        <td>CVE-2026-63382</td>
+        <td>HIGH</td>
+        <td>2.1.12-8.el9_4</td>
+        <td>2.1.13-1.el9_8</td>
+    </tr>
+    <tr>
+        <td><code>libevent</code></td>
+        <td>CVE-2026-63383</td>
+        <td>HIGH</td>
+        <td>2.1.12-8.el9_4</td>
+        <td>2.1.13-1.el9_8</td>
+    </tr>
+    <tr>
+        <td><code>libevent</code></td>
+        <td>CVE-2026-63384</td>
+        <td>HIGH</td>
+        <td>2.1.12-8.el9_4</td>
+        <td>2.1.13-1.el9_8</td>
+    </tr>
+    <tr>
+        <td><code>libevent</code></td>
+        <td>CVE-2026-63385</td>
+        <td>HIGH</td>
+        <td>2.1.12-8.el9_4</td>
+        <td>2.1.13-1.el9_8</td>
+    </tr>
+    <tr>
+        <td><code>libevent</code></td>
+        <td>CVE-2026-63387</td>
+        <td>HIGH</td>
+        <td>2.1.12-8.el9_4</td>
+        <td>2.1.13-1.el9_8</td>
+    </tr>
+    <tr>
+        <td><code>libevent</code></td>
+        <td>CVE-2026-63388</td>
+        <td>HIGH</td>
+        <td>2.1.12-8.el9_4</td>
+        <td>2.1.13-1.el9_8</td>
+    </tr>
+    <tr>
+        <td><code>openssl-libs</code></td>
+        <td>CVE-2026-14456</td>
+        <td>HIGH</td>
+        <td>1:3.5.5-4.el9_8</td>
+        <td>1:3.5.8-1.el9_8</td>
     </tr>
     <tr>
         <td><code>sqlite-libs</code></td>

@@ -185,7 +185,7 @@
 <h4>No Misconfigurations found</h4>
 
 <h3>Target <code>icr.io/kubecost/cost-model:2.9.7 (redhat 9.8)</code></h3>
-<h4>Vulnerabilities (15)</h4>
+<h4>Vulnerabilities (23)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -284,6 +284,62 @@
         <td>HIGH</td>
         <td>7.76.1-40.el9</td>
         <td>7.76.1-40.el9_8.5</td>
+    </tr>
+    <tr>
+        <td><code>libevent</code></td>
+        <td>CVE-2026-63382</td>
+        <td>HIGH</td>
+        <td>2.1.12-8.el9_4</td>
+        <td>2.1.13-1.el9_8</td>
+    </tr>
+    <tr>
+        <td><code>libevent</code></td>
+        <td>CVE-2026-63383</td>
+        <td>HIGH</td>
+        <td>2.1.12-8.el9_4</td>
+        <td>2.1.13-1.el9_8</td>
+    </tr>
+    <tr>
+        <td><code>libevent</code></td>
+        <td>CVE-2026-63384</td>
+        <td>HIGH</td>
+        <td>2.1.12-8.el9_4</td>
+        <td>2.1.13-1.el9_8</td>
+    </tr>
+    <tr>
+        <td><code>libevent</code></td>
+        <td>CVE-2026-63385</td>
+        <td>HIGH</td>
+        <td>2.1.12-8.el9_4</td>
+        <td>2.1.13-1.el9_8</td>
+    </tr>
+    <tr>
+        <td><code>libevent</code></td>
+        <td>CVE-2026-63387</td>
+        <td>HIGH</td>
+        <td>2.1.12-8.el9_4</td>
+        <td>2.1.13-1.el9_8</td>
+    </tr>
+    <tr>
+        <td><code>libevent</code></td>
+        <td>CVE-2026-63388</td>
+        <td>HIGH</td>
+        <td>2.1.12-8.el9_4</td>
+        <td>2.1.13-1.el9_8</td>
+    </tr>
+    <tr>
+        <td><code>openssl</code></td>
+        <td>CVE-2026-14456</td>
+        <td>HIGH</td>
+        <td>1:3.5.5-4.el9_8</td>
+        <td>1:3.5.8-1.el9_8</td>
+    </tr>
+    <tr>
+        <td><code>openssl-libs</code></td>
+        <td>CVE-2026-14456</td>
+        <td>HIGH</td>
+        <td>1:3.5.5-4.el9_8</td>
+        <td>1:3.5.8-1.el9_8</td>
     </tr>
     <tr>
         <td><code>sqlite-libs</code></td>
@@ -658,7 +714,7 @@
 <h4>No Misconfigurations found</h4>
 
 <h3>Target <code>icr.io/kubecost/frontend:2.9.7 (redhat 9.8)</code></h3>
-<h4>Vulnerabilities (24)</h4>
+<h4>Vulnerabilities (32)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -759,6 +815,48 @@
         <td>7.76.1-40.el9_8.5</td>
     </tr>
     <tr>
+        <td><code>libevent</code></td>
+        <td>CVE-2026-63382</td>
+        <td>HIGH</td>
+        <td>2.1.12-8.el9_4</td>
+        <td>2.1.13-1.el9_8</td>
+    </tr>
+    <tr>
+        <td><code>libevent</code></td>
+        <td>CVE-2026-63383</td>
+        <td>HIGH</td>
+        <td>2.1.12-8.el9_4</td>
+        <td>2.1.13-1.el9_8</td>
+    </tr>
+    <tr>
+        <td><code>libevent</code></td>
+        <td>CVE-2026-63384</td>
+        <td>HIGH</td>
+        <td>2.1.12-8.el9_4</td>
+        <td>2.1.13-1.el9_8</td>
+    </tr>
+    <tr>
+        <td><code>libevent</code></td>
+        <td>CVE-2026-63385</td>
+        <td>HIGH</td>
+        <td>2.1.12-8.el9_4</td>
+        <td>2.1.13-1.el9_8</td>
+    </tr>
+    <tr>
+        <td><code>libevent</code></td>
+        <td>CVE-2026-63387</td>
+        <td>HIGH</td>
+        <td>2.1.12-8.el9_4</td>
+        <td>2.1.13-1.el9_8</td>
+    </tr>
+    <tr>
+        <td><code>libevent</code></td>
+        <td>CVE-2026-63388</td>
+        <td>HIGH</td>
+        <td>2.1.12-8.el9_4</td>
+        <td>2.1.13-1.el9_8</td>
+    </tr>
+    <tr>
         <td><code>nginx</code></td>
         <td>CVE-2026-42055</td>
         <td>HIGH</td>
@@ -820,6 +918,20 @@
         <td>HIGH</td>
         <td>2:1.20.1-28.el9_8.2</td>
         <td>2:1.20.1-28.el9_8.3</td>
+    </tr>
+    <tr>
+        <td><code>openssl</code></td>
+        <td>CVE-2026-14456</td>
+        <td>HIGH</td>
+        <td>1:3.5.5-4.el9_8</td>
+        <td>1:3.5.8-1.el9_8</td>
+    </tr>
+    <tr>
+        <td><code>openssl-libs</code></td>
+        <td>CVE-2026-14456</td>
+        <td>HIGH</td>
+        <td>1:3.5.5-4.el9_8</td>
+        <td>1:3.5.8-1.el9_8</td>
     </tr>
     <tr>
         <td><code>sqlite-libs</code></td>
@@ -839,7 +951,7 @@
 <h4>No Misconfigurations found</h4>
 
 <h3>Target <code>icr.io/kubecost/modeling:v0.1.34 (redhat 9.7)</code></h3>
-<h4>Vulnerabilities (38)</h4>
+<h4>Vulnerabilities (45)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -996,6 +1108,48 @@
         <td>7.76.1-40.el9_8.5</td>
     </tr>
     <tr>
+        <td><code>libevent</code></td>
+        <td>CVE-2026-63382</td>
+        <td>HIGH</td>
+        <td>2.1.12-8.el9_4</td>
+        <td>2.1.13-1.el9_8</td>
+    </tr>
+    <tr>
+        <td><code>libevent</code></td>
+        <td>CVE-2026-63383</td>
+        <td>HIGH</td>
+        <td>2.1.12-8.el9_4</td>
+        <td>2.1.13-1.el9_8</td>
+    </tr>
+    <tr>
+        <td><code>libevent</code></td>
+        <td>CVE-2026-63384</td>
+        <td>HIGH</td>
+        <td>2.1.12-8.el9_4</td>
+        <td>2.1.13-1.el9_8</td>
+    </tr>
+    <tr>
+        <td><code>libevent</code></td>
+        <td>CVE-2026-63385</td>
+        <td>HIGH</td>
+        <td>2.1.12-8.el9_4</td>
+        <td>2.1.13-1.el9_8</td>
+    </tr>
+    <tr>
+        <td><code>libevent</code></td>
+        <td>CVE-2026-63387</td>
+        <td>HIGH</td>
+        <td>2.1.12-8.el9_4</td>
+        <td>2.1.13-1.el9_8</td>
+    </tr>
+    <tr>
+        <td><code>libevent</code></td>
+        <td>CVE-2026-63388</td>
+        <td>HIGH</td>
+        <td>2.1.12-8.el9_4</td>
+        <td>2.1.13-1.el9_8</td>
+    </tr>
+    <tr>
         <td><code>libnghttp2</code></td>
         <td>CVE-2026-27135</td>
         <td>HIGH</td>
@@ -1008,6 +1162,13 @@
         <td>HIGH</td>
         <td>1:3.5.1-4.el9_7</td>
         <td>1:3.5.1-7.el9_7</td>
+    </tr>
+    <tr>
+        <td><code>openssl-libs</code></td>
+        <td>CVE-2026-14456</td>
+        <td>HIGH</td>
+        <td>1:3.5.1-4.el9_7</td>
+        <td>1:3.5.8-1.el9_8</td>
     </tr>
     <tr>
         <td><code>openssl-libs</code></td>
