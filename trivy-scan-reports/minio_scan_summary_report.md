@@ -1,6 +1,6 @@
 
 <h3>Target <code>quay.io/minio/mc:RELEASE.2024-11-21T17-21-54Z (redhat 9.5)</code></h3>
-<h4>Vulnerabilities (2)</h4>
+<h4>Vulnerabilities (6)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -22,6 +22,34 @@
         <td>HIGH</td>
         <td>2.48-9.el9_2</td>
         <td>2.48-10.el9_8.1</td>
+    </tr>
+    <tr>
+        <td><code>pcre2</code></td>
+        <td>CVE-2026-86145</td>
+        <td>HIGH</td>
+        <td>10.40-6.el9</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>pcre2</code></td>
+        <td>CVE-2026-89161</td>
+        <td>HIGH</td>
+        <td>10.40-6.el9</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>pcre2-syntax</code></td>
+        <td>CVE-2026-86145</td>
+        <td>HIGH</td>
+        <td>10.40-6.el9</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>pcre2-syntax</code></td>
+        <td>CVE-2026-89161</td>
+        <td>HIGH</td>
+        <td>10.40-6.el9</td>
+        <td></td>
     </tr>
 </table>
 <h4>No Misconfigurations found</h4>
@@ -382,7 +410,7 @@
 <h4>No Misconfigurations found</h4>
 
 <h3>Target <code>quay.io/minio/minio:RELEASE.2024-12-18T13-15-44Z (redhat 9.5)</code></h3>
-<h4>Vulnerabilities (2)</h4>
+<h4>Vulnerabilities (6)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -404,6 +432,34 @@
         <td>HIGH</td>
         <td>2.48-9.el9_2</td>
         <td>2.48-10.el9_8.1</td>
+    </tr>
+    <tr>
+        <td><code>pcre2</code></td>
+        <td>CVE-2026-86145</td>
+        <td>HIGH</td>
+        <td>10.40-6.el9</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>pcre2</code></td>
+        <td>CVE-2026-89161</td>
+        <td>HIGH</td>
+        <td>10.40-6.el9</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>pcre2-syntax</code></td>
+        <td>CVE-2026-86145</td>
+        <td>HIGH</td>
+        <td>10.40-6.el9</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>pcre2-syntax</code></td>
+        <td>CVE-2026-89161</td>
+        <td>HIGH</td>
+        <td>10.40-6.el9</td>
+        <td></td>
     </tr>
 </table>
 <h4>No Misconfigurations found</h4>

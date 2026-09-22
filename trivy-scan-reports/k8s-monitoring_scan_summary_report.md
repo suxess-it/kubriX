@@ -1,6 +1,6 @@
 
 <h3>Target <code>ghcr.io/grafana/alloy-operator:1.11.1 (redhat 9.8)</code></h3>
-<h4>Vulnerabilities (21)</h4>
+<h4>Vulnerabilities (29)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -11,20 +11,6 @@
     </tr>
     <tr>
         <td><code>curl-minimal</code></td>
-        <td>CVE-2026-11352</td>
-        <td>HIGH</td>
-        <td>7.76.1-40.el9</td>
-        <td></td>
-    </tr>
-    <tr>
-        <td><code>curl-minimal</code></td>
-        <td>CVE-2026-11586</td>
-        <td>HIGH</td>
-        <td>7.76.1-40.el9</td>
-        <td></td>
-    </tr>
-    <tr>
-        <td><code>curl-minimal</code></td>
         <td>CVE-2026-8286</td>
         <td>HIGH</td>
         <td>7.76.1-40.el9</td>
@@ -32,10 +18,17 @@
     </tr>
     <tr>
         <td><code>curl-minimal</code></td>
-        <td>CVE-2026-8925</td>
+        <td>CVE-2026-8458</td>
         <td>HIGH</td>
         <td>7.76.1-40.el9</td>
-        <td></td>
+        <td>7.76.1-40.el9_8.7</td>
+    </tr>
+    <tr>
+        <td><code>curl-minimal</code></td>
+        <td>CVE-2026-8927</td>
+        <td>HIGH</td>
+        <td>7.76.1-40.el9</td>
+        <td>7.76.1-40.el9_8.7</td>
     </tr>
     <tr>
         <td><code>curl-minimal</code></td>
@@ -59,17 +52,10 @@
         <td>2.4.0-1.el9_8</td>
     </tr>
     <tr>
-        <td><code>libcurl-minimal</code></td>
-        <td>CVE-2026-11352</td>
+        <td><code>libblkid</code></td>
+        <td>CVE-2026-53613</td>
         <td>HIGH</td>
-        <td>7.76.1-40.el9</td>
-        <td></td>
-    </tr>
-    <tr>
-        <td><code>libcurl-minimal</code></td>
-        <td>CVE-2026-11586</td>
-        <td>HIGH</td>
-        <td>7.76.1-40.el9</td>
+        <td>2.37.4-25.el9</td>
         <td></td>
     </tr>
     <tr>
@@ -81,10 +67,17 @@
     </tr>
     <tr>
         <td><code>libcurl-minimal</code></td>
-        <td>CVE-2026-8925</td>
+        <td>CVE-2026-8458</td>
         <td>HIGH</td>
         <td>7.76.1-40.el9</td>
-        <td></td>
+        <td>7.76.1-40.el9_8.7</td>
+    </tr>
+    <tr>
+        <td><code>libcurl-minimal</code></td>
+        <td>CVE-2026-8927</td>
+        <td>HIGH</td>
+        <td>7.76.1-40.el9</td>
+        <td>7.76.1-40.el9_8.7</td>
     </tr>
     <tr>
         <td><code>libcurl-minimal</code></td>
@@ -136,11 +129,74 @@
         <td>2.1.13-1.el9_8</td>
     </tr>
     <tr>
+        <td><code>libmount</code></td>
+        <td>CVE-2026-53613</td>
+        <td>HIGH</td>
+        <td>2.37.4-25.el9</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>libsmartcols</code></td>
+        <td>CVE-2026-53613</td>
+        <td>HIGH</td>
+        <td>2.37.4-25.el9</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>libuuid</code></td>
+        <td>CVE-2026-53613</td>
+        <td>HIGH</td>
+        <td>2.37.4-25.el9</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>libxml2</code></td>
+        <td>CVE-2026-74860</td>
+        <td>HIGH</td>
+        <td>2.9.13-14.el9_8.1</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>libxml2</code></td>
+        <td>CVE-2026-86140</td>
+        <td>HIGH</td>
+        <td>2.9.13-14.el9_8.1</td>
+        <td></td>
+    </tr>
+    <tr>
         <td><code>openssl-libs</code></td>
         <td>CVE-2026-14456</td>
         <td>HIGH</td>
         <td>1:3.5.5-4.el9_8</td>
         <td>1:3.5.8-1.el9_8</td>
+    </tr>
+    <tr>
+        <td><code>pcre2</code></td>
+        <td>CVE-2026-86145</td>
+        <td>HIGH</td>
+        <td>10.40-6.el9</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>pcre2</code></td>
+        <td>CVE-2026-89161</td>
+        <td>HIGH</td>
+        <td>10.40-6.el9</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>pcre2-syntax</code></td>
+        <td>CVE-2026-86145</td>
+        <td>HIGH</td>
+        <td>10.40-6.el9</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>pcre2-syntax</code></td>
+        <td>CVE-2026-89161</td>
+        <td>HIGH</td>
+        <td>10.40-6.el9</td>
+        <td></td>
     </tr>
     <tr>
         <td><code>sqlite-libs</code></td>
