@@ -29,7 +29,7 @@ spec:
       serviceAccountName: minio-sa
       containers:
         - name: minio-make-bucket
-          image: "quay.io/minio/mc:RELEASE.2024-11-21T17-21-54Z"
+          image: "docker.io/pgsty/mc:RELEASE.2026-09-13T00-00-00Z"
           imagePullPolicy: IfNotPresent
           command: [ "/bin/sh", "/config/initialize" ]
           env:
@@ -48,7 +48,7 @@ spec:
             requests:
               memory: 128Mi
         - name: minio-make-user
-          image: "quay.io/minio/mc:RELEASE.2024-11-21T17-21-54Z"
+          image: "docker.io/pgsty/mc:RELEASE.2026-09-13T00-00-00Z"
           imagePullPolicy: IfNotPresent
           command: [ "/bin/sh", "/config/add-user" ]
           env:
