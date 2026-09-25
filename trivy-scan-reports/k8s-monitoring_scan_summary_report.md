@@ -154,14 +154,14 @@
         <td>CVE-2026-74860</td>
         <td>HIGH</td>
         <td>2.9.13-14.el9_8.1</td>
-        <td></td>
+        <td>2.9.13-14.el9_8.5</td>
     </tr>
     <tr>
         <td><code>libxml2</code></td>
         <td>CVE-2026-86140</td>
         <td>HIGH</td>
         <td>2.9.13-14.el9_8.1</td>
-        <td></td>
+        <td>2.9.13-14.el9_8.5</td>
     </tr>
     <tr>
         <td><code>openssl-libs</code></td>

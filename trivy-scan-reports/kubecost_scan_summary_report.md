@@ -213,7 +213,7 @@
 <h4>No Misconfigurations found</h4>
 
 <h3>Target <code>icr.io/kubecost/cost-model:2.9.7 (redhat 9.8)</code></h3>
-<h4>Vulnerabilities (35)</h4>
+<h4>Vulnerabilities (37)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -260,6 +260,20 @@
     <tr>
         <td><code>expat</code></td>
         <td>CVE-2026-66046</td>
+        <td>HIGH</td>
+        <td>2.5.0-6.el9_8.1</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>expat</code></td>
+        <td>CVE-2026-76641</td>
+        <td>HIGH</td>
+        <td>2.5.0-6.el9_8.1</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>expat</code></td>
+        <td>CVE-2026-93990</td>
         <td>HIGH</td>
         <td>2.5.0-6.el9_8.1</td>
         <td></td>
@@ -388,14 +402,14 @@
         <td>CVE-2026-74860</td>
         <td>HIGH</td>
         <td>2.9.13-14.el9_7</td>
-        <td></td>
+        <td>2.9.13-14.el9_8.5</td>
     </tr>
     <tr>
         <td><code>libxml2</code></td>
         <td>CVE-2026-86140</td>
         <td>HIGH</td>
         <td>2.9.13-14.el9_7</td>
-        <td></td>
+        <td>2.9.13-14.el9_8.5</td>
     </tr>
     <tr>
         <td><code>openssl</code></td>
@@ -826,7 +840,7 @@
 <h4>No Misconfigurations found</h4>
 
 <h3>Target <code>icr.io/kubecost/frontend:2.9.7 (redhat 9.8)</code></h3>
-<h4>Vulnerabilities (44)</h4>
+<h4>Vulnerabilities (46)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -873,6 +887,20 @@
     <tr>
         <td><code>expat</code></td>
         <td>CVE-2026-66046</td>
+        <td>HIGH</td>
+        <td>2.5.0-6.el9_8.1</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>expat</code></td>
+        <td>CVE-2026-76641</td>
+        <td>HIGH</td>
+        <td>2.5.0-6.el9_8.1</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>expat</code></td>
+        <td>CVE-2026-93990</td>
         <td>HIGH</td>
         <td>2.5.0-6.el9_8.1</td>
         <td></td>
@@ -1001,14 +1029,14 @@
         <td>CVE-2026-74860</td>
         <td>HIGH</td>
         <td>2.9.13-14.el9_7</td>
-        <td></td>
+        <td>2.9.13-14.el9_8.5</td>
     </tr>
     <tr>
         <td><code>libxml2</code></td>
         <td>CVE-2026-86140</td>
         <td>HIGH</td>
         <td>2.9.13-14.el9_7</td>
-        <td></td>
+        <td>2.9.13-14.el9_8.5</td>
     </tr>
     <tr>
         <td><code>nginx</code></td>
@@ -1147,7 +1175,7 @@
 <h4>No Misconfigurations found</h4>
 
 <h3>Target <code>icr.io/kubecost/modeling:v0.1.34 (redhat 9.7)</code></h3>
-<h4>Vulnerabilities (54)</h4>
+<h4>Vulnerabilities (56)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -1194,6 +1222,20 @@
     <tr>
         <td><code>expat</code></td>
         <td>CVE-2026-66046</td>
+        <td>HIGH</td>
+        <td>2.5.0-5.el9_7.1</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>expat</code></td>
+        <td>CVE-2026-76641</td>
+        <td>HIGH</td>
+        <td>2.5.0-5.el9_7.1</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>expat</code></td>
+        <td>CVE-2026-93990</td>
         <td>HIGH</td>
         <td>2.5.0-5.el9_7.1</td>
         <td></td>
@@ -1378,14 +1420,14 @@
         <td>CVE-2026-74860</td>
         <td>HIGH</td>
         <td>2.9.13-14.el9_7</td>
-        <td></td>
+        <td>2.9.13-14.el9_8.5</td>
     </tr>
     <tr>
         <td><code>libxml2</code></td>
         <td>CVE-2026-86140</td>
         <td>HIGH</td>
         <td>2.9.13-14.el9_7</td>
-        <td></td>
+        <td>2.9.13-14.el9_8.5</td>
     </tr>
     <tr>
         <td><code>openssl-libs</code></td>
