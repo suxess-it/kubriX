@@ -39,6 +39,12 @@ mimir:
   minio:
     persistence:
       size: 10Gi
+    image:
+      repository: docker.io/pgsty/silo
+      tag: RELEASE.2026-09-03T13-18-01Z
+    mcImage:
+      repository: docker.io/pgsty/mc
+      tag: RELEASE.2026-09-13T00-00-00Z
 
   metaMonitoring:
     grafanaAgent:
