@@ -1,5 +1,5 @@
 
-<h3>Target <code>ghcr.io/grafana/alloy-operator:1.11.1 (redhat 9.8)</code></h3>
+<h3>Target <code>ghcr.io/grafana/alloy-operator:1.12.1 (redhat 9.8)</code></h3>
 <h4>Vulnerabilities (29)</h4>
 <table>
     <tr>
@@ -250,7 +250,7 @@
         <td>CVE-2026-84445</td>
         <td>HIGH</td>
         <td>v1.80.0</td>
-        <td>1.82.2, 1.83.2, 1.85.0-dev.0.20260825072537-93e31b48545e</td>
+        <td>1.82.2, 1.83.2, 1.84.0-dev.0.20260825144003-d5a41119e0e3, 1.85.0-dev.0.20260825072537-93e31b48545e</td>
     </tr>
     <tr>
         <td><code>google.golang.org/grpc</code></td>
@@ -1963,11 +1963,11 @@
 </table>
 <h4>No Misconfigurations found</h4>
 
-<h3>Target <code>registry.k8s.io/kube-state-metrics/kube-state-metrics:v2.19.1 (debian 13.5)</code></h3>
+<h3>Target <code>registry.k8s.io/kube-state-metrics/kube-state-metrics:v2.20.0 (debian 13.6)</code></h3>
 <h4>No Vulnerabilities found</h4>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>kube-state-metrics</code></h3>
-<h4>Vulnerabilities (15)</h4>
+<h4>Vulnerabilities (4)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -1980,22 +1980,8 @@
         <td><code>golang.org/x/crypto</code></td>
         <td>CVE-2026-56854</td>
         <td>HIGH</td>
-        <td>v0.52.0</td>
+        <td>v0.54.0</td>
         <td>0.55.0</td>
-    </tr>
-    <tr>
-        <td><code>golang.org/x/net</code></td>
-        <td>CVE-2026-46600</td>
-        <td>HIGH</td>
-        <td>v0.55.0</td>
-        <td>0.56.0</td>
-    </tr>
-    <tr>
-        <td><code>golang.org/x/text</code></td>
-        <td>CVE-2026-56852</td>
-        <td>HIGH</td>
-        <td>v0.37.0</td>
-        <td>0.39.0</td>
     </tr>
     <tr>
         <td><code>google.golang.org/grpc</code></td>
@@ -2009,7 +1995,7 @@
         <td>CVE-2026-84445</td>
         <td>HIGH</td>
         <td>v1.79.3</td>
-        <td>1.82.2, 1.83.2, 1.85.0-dev.0.20260825072537-93e31b48545e</td>
+        <td>1.82.2, 1.83.2, 1.84.0-dev.0.20260825144003-d5a41119e0e3, 1.85.0-dev.0.20260825072537-93e31b48545e</td>
     </tr>
     <tr>
         <td><code>google.golang.org/grpc</code></td>
@@ -2017,69 +2003,6 @@
         <td>HIGH</td>
         <td>v1.79.3</td>
         <td>1.82.1</td>
-    </tr>
-    <tr>
-        <td><code>stdlib</code></td>
-        <td>CVE-2026-33818</td>
-        <td>HIGH</td>
-        <td>v1.26.4</td>
-        <td>1.25.13, 1.26.6, 1.27.0-rc.3</td>
-    </tr>
-    <tr>
-        <td><code>stdlib</code></td>
-        <td>CVE-2026-39821</td>
-        <td>HIGH</td>
-        <td>v1.26.4</td>
-        <td>1.25.13, 1.26.6, 1.27.0-rc.3</td>
-    </tr>
-    <tr>
-        <td><code>stdlib</code></td>
-        <td>CVE-2026-39822</td>
-        <td>HIGH</td>
-        <td>v1.26.4</td>
-        <td>1.25.12, 1.26.5, 1.27.0-rc.2</td>
-    </tr>
-    <tr>
-        <td><code>stdlib</code></td>
-        <td>CVE-2026-46600</td>
-        <td>HIGH</td>
-        <td>v1.26.4</td>
-        <td>1.26.6, 1.27.0-rc.3</td>
-    </tr>
-    <tr>
-        <td><code>stdlib</code></td>
-        <td>CVE-2026-56853</td>
-        <td>HIGH</td>
-        <td>v1.26.4</td>
-        <td>1.25.13, 1.26.6, 1.27.0-rc.3</td>
-    </tr>
-    <tr>
-        <td><code>stdlib</code></td>
-        <td>CVE-2026-56858</td>
-        <td>HIGH</td>
-        <td>v1.26.4</td>
-        <td>1.25.13, 1.26.6, 1.27.0-rc.3</td>
-    </tr>
-    <tr>
-        <td><code>stdlib</code></td>
-        <td>CVE-2026-56859</td>
-        <td>HIGH</td>
-        <td>v1.26.4</td>
-        <td>1.25.13, 1.26.6, 1.27.0-rc.3</td>
-    </tr>
-    <tr>
-        <td><code>stdlib</code></td>
-        <td>CVE-2026-56860</td>
-        <td>HIGH</td>
-        <td>v1.26.4</td>
-        <td>1.25.13, 1.26.6, 1.27.0-rc.3</td>
-    </tr>
-    <tr>
-        <td><code>stdlib</code></td>
-        <td>CVE-2026-56862</td>
-        <td>HIGH</td>
-        <td>v1.26.4</td>
-        <td>1.25.13, 1.26.6, 1.27.0-rc.3</td>
     </tr>
 </table>
 <h4>No Misconfigurations found</h4>
