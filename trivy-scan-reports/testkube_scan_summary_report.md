@@ -2023,7 +2023,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 
-<h3>Target <code>docker.io/kubeshop/testkube-api-server:2.13.2 (alpine 3.24.1)</code></h3>
+<h3>Target <code>docker.io/kubeshop/testkube-api-server:2.13.3 (alpine 3.24.1)</code></h3>
 <h4>Vulnerabilities (7)</h4>
 <table>
     <tr>

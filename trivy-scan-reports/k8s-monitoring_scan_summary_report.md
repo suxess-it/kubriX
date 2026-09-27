@@ -1,6 +1,6 @@
 
 <h3>Target <code>ghcr.io/grafana/alloy-operator:1.12.1 (redhat 9.8)</code></h3>
-<h4>Vulnerabilities (29)</h4>
+<h4>Vulnerabilities (30)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -169,6 +169,13 @@
         <td>HIGH</td>
         <td>1:3.5.5-4.el9_8</td>
         <td>1:3.5.8-1.el9_8</td>
+    </tr>
+    <tr>
+        <td><code>openssl-libs</code></td>
+        <td>CVE-2026-54876</td>
+        <td>HIGH</td>
+        <td>1:3.5.5-4.el9_8</td>
+        <td></td>
     </tr>
     <tr>
         <td><code>pcre2</code></td>

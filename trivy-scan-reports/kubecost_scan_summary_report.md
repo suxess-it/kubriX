@@ -213,7 +213,7 @@
 <h4>No Misconfigurations found</h4>
 
 <h3>Target <code>icr.io/kubecost/cost-model:2.9.7 (redhat 9.8)</code></h3>
-<h4>Vulnerabilities (37)</h4>
+<h4>Vulnerabilities (39)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -419,11 +419,25 @@
         <td>1:3.5.8-1.el9_8</td>
     </tr>
     <tr>
+        <td><code>openssl</code></td>
+        <td>CVE-2026-54876</td>
+        <td>HIGH</td>
+        <td>1:3.5.5-4.el9_8</td>
+        <td></td>
+    </tr>
+    <tr>
         <td><code>openssl-libs</code></td>
         <td>CVE-2026-14456</td>
         <td>HIGH</td>
         <td>1:3.5.5-4.el9_8</td>
         <td>1:3.5.8-1.el9_8</td>
+    </tr>
+    <tr>
+        <td><code>openssl-libs</code></td>
+        <td>CVE-2026-54876</td>
+        <td>HIGH</td>
+        <td>1:3.5.5-4.el9_8</td>
+        <td></td>
     </tr>
     <tr>
         <td><code>pcre2</code></td>
@@ -840,7 +854,7 @@
 <h4>No Misconfigurations found</h4>
 
 <h3>Target <code>icr.io/kubecost/frontend:2.9.7 (redhat 9.8)</code></h3>
-<h4>Vulnerabilities (46)</h4>
+<h4>Vulnerabilities (48)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -1109,11 +1123,25 @@
         <td>1:3.5.8-1.el9_8</td>
     </tr>
     <tr>
+        <td><code>openssl</code></td>
+        <td>CVE-2026-54876</td>
+        <td>HIGH</td>
+        <td>1:3.5.5-4.el9_8</td>
+        <td></td>
+    </tr>
+    <tr>
         <td><code>openssl-libs</code></td>
         <td>CVE-2026-14456</td>
         <td>HIGH</td>
         <td>1:3.5.5-4.el9_8</td>
         <td>1:3.5.8-1.el9_8</td>
+    </tr>
+    <tr>
+        <td><code>openssl-libs</code></td>
+        <td>CVE-2026-54876</td>
+        <td>HIGH</td>
+        <td>1:3.5.5-4.el9_8</td>
+        <td></td>
     </tr>
     <tr>
         <td><code>pcre2</code></td>
@@ -1175,7 +1203,7 @@
 <h4>No Misconfigurations found</h4>
 
 <h3>Target <code>icr.io/kubecost/modeling:v0.1.34 (redhat 9.7)</code></h3>
-<h4>Vulnerabilities (56)</h4>
+<h4>Vulnerabilities (57)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -1449,6 +1477,13 @@
         <td>HIGH</td>
         <td>1:3.5.1-4.el9_7</td>
         <td>1:3.5.5-4.el9_8</td>
+    </tr>
+    <tr>
+        <td><code>openssl-libs</code></td>
+        <td>CVE-2026-54876</td>
+        <td>HIGH</td>
+        <td>1:3.5.1-4.el9_7</td>
+        <td></td>
     </tr>
     <tr>
         <td><code>pcre2</code></td>

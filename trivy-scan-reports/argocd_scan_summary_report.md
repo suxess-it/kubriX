@@ -1048,7 +1048,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 
-<h3>Target <code>quay.io/argoproj/argocd:v3.5.1 (ubuntu 26.04)</code></h3>
+<h3>Target <code>quay.io/argoproj/argocd:v3.5.3 (ubuntu 26.04)</code></h3>
 <h4>No Vulnerabilities found</h4>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>usr/bin/pebble</code></h3>

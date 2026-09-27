@@ -118,7 +118,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 
-<h3>Target <code>xpkg.upbound.io/crossplane-contrib/provider-keycloak:v3.0.2 (debian 13.6)</code></h3>
+<h3>Target <code>xpkg.upbound.io/crossplane-contrib/provider-keycloak:v3.1.0 (debian 13.6)</code></h3>
 <h4>No Vulnerabilities found</h4>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>usr/local/bin/provider</code></h3>
