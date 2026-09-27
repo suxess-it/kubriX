@@ -296,13 +296,6 @@ jobs:
             docker pull "$img"
             kind load docker-image "$img" --name kubrix-cluster
           done
-
-      - name: install mkcert
-        shell: bash
-        run: |
-          curl -JLO "https://dl.filippo.io/mkcert/latest?for=linux/amd64"
-          chmod +x mkcert-v*-linux-amd64
-          sudo cp mkcert-v*-linux-amd64 /usr/local/bin/mkcert
     
       - name: install k8sgpt
         shell: bash
