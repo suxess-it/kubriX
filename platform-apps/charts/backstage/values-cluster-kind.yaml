@@ -122,6 +122,8 @@ backstage:
               - allow: [Template]
           - type: url
             target: "{{ .Values.global.repoURL }}/blob/{{ .Values.global.targetRevision }}/backstage-resources/entities/kubrix-base.yaml"
+          - type: url
+            target: "{{ .Values.global.repoURL }}/blob/{{ .Values.global.targetRevision }}/backstage-resources/entities/kubrix-oss.yaml"
 
       grafana:
         domain: https://grafana.127-0-0-1.nip.io

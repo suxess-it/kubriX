@@ -1,4 +1,4 @@
-{{- range .Values.teams }}
+{{- range (include "team-onboarding.teams" . | fromYamlArray) }}
 {{- if .multiStageKargoAppSet }}
 apiVersion: external-secrets.io/v1
 kind: ExternalSecret

@@ -271,12 +271,23 @@ jobs:
           fetch-depth: 0  # needed so the action can diff properly
           fetch-tags: true
 
+      - name: Generate E2E test identifier
+        shell: bash
+        env:
+          JOB_INDEX: ${{ strategy.job-index }}
+          RUN_ATTEMPT: ${{ github.run_attempt }}
+        run: |
+          uid=$(printf '%s' "${GITHUB_RUN_ID}-${JOB_INDEX}-${RUN_ATTEMPT}" \
+            | sha256sum | cut -c1-10)
+          echo "E2E_TEST_PR_NUMBER=${uid}" >> "$GITHUB_ENV"
+          echo "E2E test identifier: ${uid}"
+
       # free disk space, otherwise we often end with "no space left on device" during testkube tests
       - name: Free Disk Space (Ubuntu)
         uses: jlumbroso/free-disk-space@main
       
       - name: Create k8s Kind Cluster
-        uses: helm/kind-action@v1.14.0
+        uses: helm/kind-action@v1.15.0
         with:
           cluster_name: kubrix-cluster
           config: ${{ github.workspace }}/.github/kind-config.yaml
@@ -296,13 +307,6 @@ jobs:
             docker pull "$img"
             kind load docker-image "$img" --name kubrix-cluster
           done
-
-      - name: install mkcert
-        shell: bash
-        run: |
-          curl -JLO "https://dl.filippo.io/mkcert/latest?for=linux/amd64"
-          chmod +x mkcert-v*-linux-amd64
-          sudo cp mkcert-v*-linux-amd64 /usr/local/bin/mkcert
     
       - name: install k8sgpt
         shell: bash
@@ -465,7 +469,6 @@ jobs:
         if: ${{ matrix.target-type  == 'kind-portal' || matrix.target-type  == 'kind-hub-prime' }}
         env:
           KUBRIX_DELETE_E2E_TESTS_REPO_TOKEN: ${{ secrets.KUBRIX_DELETE_E2E_TESTS_REPO_TOKEN }}
-          E2E_TEST_PR_NUMBER: "${{ github.run_id }}"
           GITHUB_ORG: "kubriX-demo"
           GITHUB_API: "https://api.github.com"
         run: |
@@ -550,14 +553,14 @@ jobs:
         with:
           version: 2.6.3
 
-      - uses: suzuki-shunsuke/lock-action@v0.2.0
-        with:
-          mode: lock
-          key: default
+     # - uses: suzuki-shunsuke/lock-action@v0.2.0
+     #   with:
+     #     mode: lock
+     #     key: default
           # Try to acquire a lock every 10 seconds until acquiring a lock or 60 seconds pass.
-          max_wait_seconds: "1800"
-          wait_interval_seconds: "10"
-          post_unlock: "true"
+     #     max_wait_seconds: "1800"
+     #     wait_interval_seconds: "10"
+     #     post_unlock: "true"
     
       - name: testkube tests
         env:
@@ -567,7 +570,6 @@ jobs:
           E2E_TEST_GITHUB_OTP: ${{ secrets.E2E_TEST_GITHUB_OTP }}
           E2E_KUBRIX_ARGOCD_APPSET_TOKEN: ${{ secrets.E2E_KUBRIX_ARGOCD_APPSET_TOKEN }}
           E2E_KUBRIX_KARGO_GIT_PASSWORD: ${{ secrets.E2E_KUBRIX_KARGO_GIT_PASSWORD }}
-          E2E_TEST_PR_NUMBER: "${{ github.run_id }}"
           E2E_TEAM_ONBOARDING_TARGET_BRANCH: "main"
           E2E_MERGE_PR: "true"
           E2E_KUBRIX_ORG: kubriX-demo
@@ -591,7 +593,7 @@ jobs:
           E2E_KEYCLOAK_DEMOEDITOR_PASSWORD=$( kubectl get secret -n keycloak cp-keycloak-users-secret -o=jsonpath='{.data.demoeditor}'  | base64 -d )
           echo "${E2E_KEYCLOAK_DEMOEDITOR_PASSWORD}"
           E2E_ARGOCD_ADMIN_PASSWORD=$( kubectl get secret -n argocd argocd-initial-admin-secret -o=jsonpath={'.data.password'} | base64 -d )
-          E2E_ARGOCD_VERSION="v3.4"
+          E2E_ARGOCD_VERSION="v3.5"
           E2E_GRAFANA_ADMIN_PASSWORD=$( kubectl get secret -n grafana grafana-admin-secret -o=jsonpath='{.data.passwordKey}' | base64 -d )
           E2E_KEYCLOAK_ADMIN_PASSWORD=$( kubectl get secret -n keycloak keycloak-admin -o=jsonpath='{.data.admin-password}' | base64 -d )
           E2E_VAULT_ROOT_TOKEN=$( kubectl get secret -n openbao openbao-init -o jsonpath='{.data.root_token}' | base64 -d )
@@ -609,12 +611,24 @@ jobs:
             E2E_PGADMIN_GRAFANA_PASSWORD=$(kubectl get secrets -n grafana cnpg-grafana-secret  -o=jsonpath='{.data.password}' | base64 -d)
             E2E_PGADMIN_KEYCLOAK_PASSWORD=$(kubectl get secrets -n keycloak cnpg-keycloak-secret  -o=jsonpath='{.data.password}' | base64 -d)
             E2E_MINO_ADMIN_PASSWORD=$(kubectl get secret -n minio minio-admin-secret -o=jsonpath='{.data.rootPassword}' | base64 -d)
+            E2E_KEYCLOAK_KUBRIXVIEWER_PASSWORD=$(kubectl get secret -n keycloak cp-keycloak-users-secret -o=jsonpath='{.data.kubrixviewer}' | base64 -d)
+            E2E_KEYCLOAK_KUBRIXEDITOR_PASSWORD=$(kubectl get secret -n keycloak cp-keycloak-users-secret -o=jsonpath='{.data.kubrixeditor}' | base64 -d)
+            E2E_KEYCLOAK_KUBRIXADMIN_PASSWORD=$(kubectl get secret -n keycloak cp-keycloak-users-secret -o=jsonpath='{.data.kubrixadmin}' | base64 -d)
+            E2E_KEYCLOAK_KUBRIXCONTROLVIEWER_PASSWORD=$(kubectl get secret -n keycloak cp-keycloak-users-secret -o=jsonpath='{.data.kubrixcontrolviewer}' | base64 -d)
+            E2E_KEYCLOAK_KUBRIXCONTROLEDITOR_PASSWORD=$(kubectl get secret -n keycloak cp-keycloak-users-secret -o=jsonpath='{.data.kubrixcontroleditor}' | base64 -d)
+            E2E_KEYCLOAK_KUBRIXCONTROLADMIN_PASSWORD=$(kubectl get secret -n keycloak cp-keycloak-users-secret -o=jsonpath='{.data.kubrixcontroladmin}' | base64 -d)
             PRIME_VARS=(
               --variable E2E_PGADMIN_ADMIN_PASSWORD=${E2E_PGADMIN_ADMIN_PASSWORD}
               --variable E2E_PGADMIN_BACKSTAGE_PASSWORD=${E2E_PGADMIN_BACKSTAGE_PASSWORD}
               --variable E2E_PGADMIN_GRAFANA_PASSWORD=${E2E_PGADMIN_GRAFANA_PASSWORD}
               --variable E2E_PGADMIN_KEYCLOAK_PASSWORD=${E2E_PGADMIN_KEYCLOAK_PASSWORD}
               --variable E2E_MERGE_PR=${E2E_MERGE_PR}
+              --variable E2E_KEYCLOAK_KUBRIXVIEWER_PASSWORD=${E2E_KEYCLOAK_KUBRIXVIEWER_PASSWORD}
+              --variable E2E_KEYCLOAK_KUBRIXEDITOR_PASSWORD=${E2E_KEYCLOAK_KUBRIXEDITOR_PASSWORD}
+              --variable E2E_KEYCLOAK_KUBRIXADMIN_PASSWORD=${E2E_KEYCLOAK_KUBRIXADMIN_PASSWORD}
+              --variable E2E_KEYCLOAK_KUBRIXCONTROLVIEWER_PASSWORD=${E2E_KEYCLOAK_KUBRIXCONTROLVIEWER_PASSWORD}
+              --variable E2E_KEYCLOAK_KUBRIXCONTROLEDITOR_PASSWORD=${E2E_KEYCLOAK_KUBRIXCONTROLEDITOR_PASSWORD}
+              --variable E2E_KEYCLOAK_KUBRIXCONTROLADMIN_PASSWORD=${E2E_KEYCLOAK_KUBRIXCONTROLADMIN_PASSWORD}
             )
           fi
           testkube run testworkflow -l type=${KUBRIX_TARGET_TYPE} \
@@ -644,12 +658,12 @@ jobs:
             "${PRIME_VARS[@]}" \
             -f -d
 
-      - name: Release a lock
-        if: always()
-        uses: suzuki-shunsuke/lock-action@v0.2.0
-        with:
-          mode: unlock
-          key: default
+   #   - name: Release a lock
+   #     if: always()
+   #     uses: suzuki-shunsuke/lock-action@v0.2.0
+   #     with:
+   #       mode: unlock
+   #       key: default
 
       - name: Publish Playwright test summary
         if: always()
@@ -708,6 +722,10 @@ jobs:
           kubectl get pods -o name -n crossplane | xargs -I {} kubectl logs -n crossplane {} --all-containers=true
           kubectl get pods -o name -n traefik | xargs -I {} kubectl logs -n traefik {} --all-containers=true
           kubectl get pods -o name -n cnpg | xargs -I {} kubectl logs -n cnpg {} --all-containers=true
+          echo "===== grafana-folder-adopter status configmap ======"
+          kubectl get cm -n keycloak grafana-folder-adopter-status -o jsonpath='{.data}' | jq . || true
+          echo "===== grafana-folder-adopter / keycloak-member-sync job pod logs ======"
+          kubectl get pods -o name -n keycloak | { grep -E "grafana-folder-adopter|keycloak-member-sync" || true; } | xargs -I {} kubectl logs -n keycloak {} --all-containers=true || true
 
       - name: final analyzer with k8sgpt
         if: always()
@@ -731,7 +749,6 @@ jobs:
           KUBRIX_DELETE_E2E_TESTS_REPO_TOKEN: ${{ secrets.KUBRIX_CUSTOMER_REPO_TOKEN }}
           GITHUB_ORG: "kubriX-demo"
           GITHUB_API: "https://api.github.com"
-          E2E_TEST_PR_NUMBER: "${{ github.run_id }}"
           KUBRIX_REPO: "${{ github.run_id }}-${{ job.check_run_id }}"
         run: |
           set -euo pipefail

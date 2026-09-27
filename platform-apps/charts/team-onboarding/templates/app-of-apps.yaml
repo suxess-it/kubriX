@@ -1,4 +1,4 @@
-{{- range .Values.teams }}
+{{- range (include "team-onboarding.teams" . | fromYamlArray) }}
 {{- if .appOfAppsRepo -}}
 apiVersion: argoproj.io/v1alpha1
 kind: Application

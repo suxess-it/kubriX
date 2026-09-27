@@ -15,7 +15,7 @@ data:
         receivers:
 {{ toYaml $cp.receivers | indent 10 }}
 {{- end }}
-{{- range .Values.teams }}
+{{- range (include "team-onboarding.teams" . | fromYamlArray) }}
 {{- with .alerting }}
 {{- with .contactPoints }}
 {{- range $name, $cp := . }}

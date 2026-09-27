@@ -25,6 +25,7 @@ metadata:
     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
     argocd.argoproj.io/sync-wave: "3"
 spec:
+  managementPolicies: ["Observe"]
   forProvider:
     realmId: {{ .Values.kubrix.keycloak.realm.realmid }}
     clientIdRef:
@@ -42,6 +43,7 @@ metadata:
     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
     argocd.argoproj.io/sync-wave: "3"
 spec:
+  managementPolicies: ["Observe"]
   forProvider:
     realmId: {{ .Values.kubrix.keycloak.realm.realmid }}
     clientIdRef:
@@ -59,6 +61,7 @@ metadata:
     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
     argocd.argoproj.io/sync-wave: "3"
 spec:
+  managementPolicies: ["Observe"]
   forProvider:
     realmId: {{ .Values.kubrix.keycloak.realm.realmid }}
     clientIdRef:
