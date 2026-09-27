@@ -280,7 +280,7 @@ jobs:
           uid=$(printf '%s' "${GITHUB_RUN_ID}-${JOB_INDEX}-${RUN_ATTEMPT}" \
             | sha256sum | cut -c1-10)
           echo "E2E_TEST_PR_NUMBER=${uid}" >> "$GITHUB_ENV"
-          echo "E2E test identifier: ${uid}
+          echo "E2E test identifier: ${uid}"
 
       # free disk space, otherwise we often end with "no space left on device" during testkube tests
       - name: Free Disk Space (Ubuntu)
