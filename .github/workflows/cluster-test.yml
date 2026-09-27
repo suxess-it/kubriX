@@ -271,6 +271,17 @@ jobs:
           fetch-depth: 0  # needed so the action can diff properly
           fetch-tags: true
 
+      - name: Generate E2E test identifier
+        shell: bash
+        env:
+          JOB_INDEX: ${{ strategy.job-index }}
+          RUN_ATTEMPT: ${{ github.run_attempt }}
+        run: |
+          uid=$(printf '%s' "${GITHUB_RUN_ID}-${JOB_INDEX}-${RUN_ATTEMPT}" \
+            | sha256sum | cut -c1-10)
+          echo "E2E_TEST_PR_NUMBER=${uid}" >> "$GITHUB_ENV"
+          echo "E2E test identifier: ${uid}"
+
       # free disk space, otherwise we often end with "no space left on device" during testkube tests
       - name: Free Disk Space (Ubuntu)
         uses: jlumbroso/free-disk-space@main
@@ -458,7 +469,6 @@ jobs:
         if: ${{ matrix.target-type  == 'kind-portal' || matrix.target-type  == 'kind-hub-prime' }}
         env:
           KUBRIX_DELETE_E2E_TESTS_REPO_TOKEN: ${{ secrets.KUBRIX_DELETE_E2E_TESTS_REPO_TOKEN }}
-          E2E_TEST_PR_NUMBER: "${{ github.run_id }}"
           GITHUB_ORG: "kubriX-demo"
           GITHUB_API: "https://api.github.com"
         run: |
@@ -543,14 +553,14 @@ jobs:
         with:
           version: 2.6.3
 
-      - uses: suzuki-shunsuke/lock-action@v0.2.0
-        with:
-          mode: lock
-          key: default
+     # - uses: suzuki-shunsuke/lock-action@v0.2.0
+     #   with:
+     #     mode: lock
+     #     key: default
           # Try to acquire a lock every 10 seconds until acquiring a lock or 60 seconds pass.
-          max_wait_seconds: "1800"
-          wait_interval_seconds: "10"
-          post_unlock: "true"
+     #     max_wait_seconds: "1800"
+     #     wait_interval_seconds: "10"
+     #     post_unlock: "true"
     
       - name: testkube tests
         env:
@@ -560,7 +570,6 @@ jobs:
           E2E_TEST_GITHUB_OTP: ${{ secrets.E2E_TEST_GITHUB_OTP }}
           E2E_KUBRIX_ARGOCD_APPSET_TOKEN: ${{ secrets.E2E_KUBRIX_ARGOCD_APPSET_TOKEN }}
           E2E_KUBRIX_KARGO_GIT_PASSWORD: ${{ secrets.E2E_KUBRIX_KARGO_GIT_PASSWORD }}
-          E2E_TEST_PR_NUMBER: "${{ github.run_id }}"
           E2E_TEAM_ONBOARDING_TARGET_BRANCH: "main"
           E2E_MERGE_PR: "true"
           E2E_KUBRIX_ORG: kubriX-demo
@@ -649,12 +658,12 @@ jobs:
             "${PRIME_VARS[@]}" \
             -f -d
 
-      - name: Release a lock
-        if: always()
-        uses: suzuki-shunsuke/lock-action@v0.2.0
-        with:
-          mode: unlock
-          key: default
+   #   - name: Release a lock
+   #     if: always()
+   #     uses: suzuki-shunsuke/lock-action@v0.2.0
+   #     with:
+   #       mode: unlock
+   #       key: default
 
       - name: Publish Playwright test summary
         if: always()
@@ -740,7 +749,6 @@ jobs:
           KUBRIX_DELETE_E2E_TESTS_REPO_TOKEN: ${{ secrets.KUBRIX_CUSTOMER_REPO_TOKEN }}
           GITHUB_ORG: "kubriX-demo"
           GITHUB_API: "https://api.github.com"
-          E2E_TEST_PR_NUMBER: "${{ github.run_id }}"
           KUBRIX_REPO: "${{ github.run_id }}-${{ job.check_run_id }}"
         run: |
           set -euo pipefail
