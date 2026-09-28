@@ -64,14 +64,6 @@ applications:
   #- name: velero-ui
 
   - name: minio
-
-  - name: falco
-    annotations:
-      argocd.argoproj.io/compare-options: ServerSideDiff=true
-    helmOptions:
-      skipCrds: true
-    syncOptions:
-      - ServerSideApply=true
      
   - name: kyverno
     syncOptions:
