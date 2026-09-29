@@ -10,6 +10,7 @@ VULNERABILITY_ID_PATTERN = re.compile(
     re.IGNORECASE,
 )
 SEVERITIES = {"UNKNOWN", "LOW", "MEDIUM", "HIGH", "CRITICAL"}
+TABLE_SEVERITIES = ("CRITICAL", "HIGH")
 
 
 def normalize_image(target):
@@ -120,6 +121,52 @@ def compare_vulnerabilities(target, pr):
     }
 
 
+def component_cves(vulnerabilities):
+    """Project CVE and GHSA findings onto the identity used by release notes."""
+    return {
+        (chart, vulnerability_id, severity)
+        for chart, _, _, _, vulnerability_id, severity in vulnerabilities
+        if severity in TABLE_SEVERITIES
+    }
+
+
+def fixed_component_cves(target, current):
+    """Return CVEs that disappeared completely from a component."""
+    current_ids = {
+        (chart, vulnerability_id)
+        for chart, _, _, _, vulnerability_id, _ in current
+    }
+    fixed = {}
+    for chart, vulnerability_id, severity in component_cves(target):
+        key = (chart, vulnerability_id)
+        if key in current_ids:
+            continue
+        if severity == "CRITICAL" or key not in fixed:
+            fixed[key] = severity
+    return {
+        (chart, vulnerability_id, severity)
+        for (chart, vulnerability_id), severity in fixed.items()
+    }
+
+
+def format_fixed_cve_table(fixed):
+    grouped = {}
+    for chart, vulnerability_id, severity in fixed:
+        grouped.setdefault((severity, chart), set()).add(vulnerability_id)
+
+    lines = [
+        "| Severity | Component | CVEs |",
+        "|----------|-----------|------|",
+    ]
+    for severity in TABLE_SEVERITIES:
+        for _, chart in sorted(key for key in grouped if key[0] == severity):
+            vulnerability_ids = ", ".join(sorted(grouped[(severity, chart)]))
+            lines.append(
+                f"| {severity.title()} | {chart} | {vulnerability_ids} |"
+            )
+    return "\n".join(lines) + "\n"
+
+
 def format_identity(identity):
     chart, image, target, package, vulnerability_id, _ = identity
     context = image or "unknown image"
@@ -149,6 +196,11 @@ def main():
     parser.add_argument("--target-dir", required=True, type=Path)
     parser.add_argument("--pr-dir", required=True, type=Path)
     parser.add_argument("--github-env", required=True, type=Path)
+    parser.add_argument(
+        "--fixed-cve-table",
+        type=Path,
+        help="write a changelog-ready table of fixed CRITICAL/HIGH CVEs and GHSAs",
+    )
     args = parser.parse_args()
 
     target = load_vulnerabilities(args.target_dir)
@@ -164,6 +216,11 @@ def main():
     )
     print_findings("Introduced HIGH vulnerabilities", findings["introduced_high"])
     write_flags(args.github_env, findings)
+    if args.fixed_cve_table:
+        fixed = fixed_component_cves(target, pr)
+        args.fixed_cve_table.write_text(
+            format_fixed_cve_table(fixed), encoding="utf-8"
+        )
 
 
 if __name__ == "__main__":

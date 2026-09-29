@@ -1,3 +1,28 @@
+# apis
+apiVersion: backstage.io/v1alpha1
+kind: API
+metadata:
+  name: ${{values.team}}-${{values.application_id}}-vm-api
+  description: HTTP API for VM ${{values.team}}-${{values.application_id}}
+spec:
+  type: openapi
+  lifecycle: production
+  owner: "${{values.team}}"
+  system: ${{values.application_id}}
+  definition: |
+    openapi: "3.0.0"
+    info:
+      version: 1.0.0
+      title: VM HTTP API (${{values.application_id}})
+      license:
+        name: Apache 2.0
+    servers:
+      - url: http://${{values.team}}-${{values.application_id}}.${{values.domainName}}:8080
+    paths:
+      /:
+        get:
+          summary: VM service root
+---
 apiVersion: backstage.io/v1alpha1
 kind: Component
 metadata:
@@ -11,9 +36,9 @@ metadata:
     github.com/project-slug: ${{values.repoUrlowner}}/${{values.repoUrlRepo}}
     backstage.io/kubernetes-id: ${{values.application_id}}
     kubecost.com/deployment-name: ${{values.application_id}}
-    argocd/app-name: ${{values.application_id}}
+    argocd/app-name: ${{values.team}}-${{values.application_id}}-prod
     argocd/app-namespace: adn-${{values.team}}
-    backstage.io/kubernetes-namespace: ${{values.team}}-${{values.application_id}}
+    backstage.io/kubernetes-namespace: ${{values.team}}-${{values.application_id}}-prod
     backstage.io/kubernetes-label-selector: app=${{values.application_id}}
     kubevirt-manager: "https://kubevirt-manager.${{values.domainName}}/"
     kargo-project: "https://kargo.${{values.domainName}}/project/${{values.team}}-${{values.application_id}}-kargo-project"
@@ -35,6 +60,8 @@ spec:
     - resource:loki
     - resource:backstage
   subcomponentOf: ${{values.team}}-${{values.application_id}}
+  providesApis:
+    - ${{values.team}}-${{values.application_id}}-vm-api
 ---
 apiVersion: backstage.io/v1alpha1
 kind: Component
@@ -49,9 +76,9 @@ metadata:
     github.com/project-slug: ${{values.repoUrlowner}}/${{values.repoUrlRepo}}
     backstage.io/kubernetes-id: ${{values.application_id}}
     kubecost.com/deployment-name: ${{values.application_id}}
-    argocd/app-name: ${{values.application_id}}
+    argocd/app-name: ${{values.team}}-${{values.application_id}}-test
     argocd/app-namespace: adn-${{values.team}}
-    backstage.io/kubernetes-namespace: ${{values.team}}-${{values.application_id}}
+    backstage.io/kubernetes-namespace: ${{values.team}}-${{values.application_id}}-test
     backstage.io/kubernetes-label-selector: app=${{values.application_id}}
     kubevirt-manager: "https://kubevirt-manager.${{values.domainName}}/"
     kargo-project: "https://kargo.${{values.domainName}}/project/${{values.team}}-${{values.application_id}}-kargo-project"
@@ -73,6 +100,8 @@ spec:
     - resource:loki
     - resource:backstage
   subcomponentOf: ${{values.team}}-${{values.application_id}}
+  providesApis:
+    - ${{values.team}}-${{values.application_id}}-vm-api
 ---
 apiVersion: backstage.io/v1alpha1
 kind: Component
@@ -87,7 +116,7 @@ metadata:
     github.com/project-slug: ${{values.repoUrlowner}}/${{values.repoUrlRepo}}
     backstage.io/kubernetes-id: ${{values.application_id}}
     kubecost.com/deployment-name: ${{values.application_id}}
-    argocd/app-name: ${{values.application_id}}
+    argocd/app-name: kubrix-${{values.team}}-${{values.application_id}}
     argocd/app-namespace: adn-${{values.team}}
     kubevirt-manager: "https://kubevirt-manager.${{values.domainName}}/"
     kargo-project: "https://kargo.${{values.domainName}}/project/${{values.team}}-${{values.application_id}}-kargo-project"
@@ -109,3 +138,5 @@ spec:
     - resource:loki
     - resource:backstage
   subcomponentOf: ${{values.team}}-${{values.application_id}}
+  providesApis:
+    - ${{values.team}}-${{values.application_id}}-vm-api
