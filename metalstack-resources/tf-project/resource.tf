@@ -1,6 +1,6 @@
 resource "metal_cluster" "sx-cluster" {
-  name       = "sx-cluster"
-  kubernetes = "1.28.10"
+  name       = var.cluster_name
+  kubernetes = var.kubernetes_version
   partition  = "eqx-mu4"
   workers = [
     {

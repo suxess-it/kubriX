@@ -13,7 +13,7 @@ chmod u+x trivy
 helm plugin install https://github.com/nikhilsbhat/helm-images || true
 
 mkdir -p trivy-scan-reports
-rm -f trivy-scan-reports/*
+find trivy-scan-reports -maxdepth 1 -type f ! -name vulnerability-risk-assessment.md -delete
 
 cd platform-apps/charts
 for chart in $( ls -d */ | sed 's#/##' ); do
@@ -33,9 +33,13 @@ for chart in $( ls -d */ | sed 's#/##' ); do
   for image in $(cat ../../trivy-scan-reports/${chart}/images.txt) ; do
     output_file=$( echo -n "${chart}_$( echo ${image} | awk -F/ '{print $NF}' )" )
     ../../trivy image --scanners vuln --severity HIGH,CRITICAL -f template --template "@../../.github/trivy-scan-markdown.tpl" -o ../../trivy-scan-reports/${chart}/${output_file}.md ${image}
+    printf '<h2>Image <code>%s</code></h2>\n' "${image}" >> ../../trivy-scan-reports/${chart}_scan_summary_report.md
     cat ../../trivy-scan-reports/${chart}/${output_file}.md >> ../../trivy-scan-reports/${chart}_scan_summary_report.md
   done
   rm -rf ../../trivy-scan-reports/${chart}
 done
 cd -
+if [[ -f .github/create-vulnerability-risk-assessment.py ]]; then
+  .github/create-vulnerability-risk-assessment.py
+fi
 rm trivy trivy.tar.gz
