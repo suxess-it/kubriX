@@ -1,3 +1,4 @@
+{{- if eq .Values.kubriXPlan "oss" }}
 {{- range .Values.stages }}
 apiVersion: argoproj.io/v1alpha1
 kind: Application
@@ -8,7 +9,7 @@ metadata:
     kargo.akuity.io/authorized-stage: {{ tpl $.Values.kargoProject $ }}:{{ .name }}
     {{- if $.Values.appDefinition }}
       {{- with $.Values.appDefinition.annotations }}
-        {{- toYaml . | nindent 4 }}
+        {{- tpl (toYaml .) $ | nindent 4 }}
       {{- end }}
     {{- end }}
   finalizers:
@@ -57,4 +58,5 @@ spec:
   {{- end }}
 {{- end }}
 ---
+{{- end }}
 {{- end }}

@@ -3,28 +3,22 @@ set -euo pipefail
 
 script_dir="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
 
-# install trivy
-curl -L https://github.com/aquasecurity/trivy/releases/download/v0.69.2/trivy_0.69.2_Linux-64bit.tar.gz -o trivy.tar.gz
-tar -xzvf trivy.tar.gz trivy
-chmod u+x trivy
-
-# install helm images plugin
-helm plugin install https://github.com/nikhilsbhat/helm-images || true
-
-# get changed charts between main and PR
+# Get changed charts between the target and current trees. Comparing each chart
+# separately also handles charts that exist on only one side.
 changed_charts="$(
-  {
-    diff -qr pr/platform-apps/charts target/platform-apps/charts || true
-  } \
-    | grep -v "platform-apps/charts/image-list" || true
-)"
-
-changed_charts="$(
-  printf '%s\n' "${changed_charts}" \
-    | awk -F/ '{print $4}' \
-    | awk -F: '{print $1}' \
-    | sed '/^$/d' \
-    | sort -u
+  for chart_dir in pr/platform-apps/charts/* target/platform-apps/charts/*; do
+    [[ -d "${chart_dir}" ]] || continue
+    basename -- "${chart_dir}"
+  done \
+    | sort -u \
+    | while IFS= read -r chart; do
+        [[ "${chart}" == "image-list" ]] && continue
+        if ! diff -qr \
+          "pr/platform-apps/charts/${chart}" \
+          "target/platform-apps/charts/${chart}" >/dev/null 2>&1; then
+          printf '%s\n' "${chart}"
+        fi
+      done
 )"
 
 if [[ -z "${changed_charts}" ]]; then
@@ -39,6 +33,12 @@ else
   echo "CHANGES=true" >> "${GITHUB_ENV}"
 fi
 
+# install tools only when chart changes need inspection
+curl -L https://github.com/aquasecurity/trivy/releases/download/v0.69.2/trivy_0.69.2_Linux-64bit.tar.gz -o trivy.tar.gz
+tar -xzvf trivy.tar.gz trivy
+chmod u+x trivy
+helm plugin install https://github.com/nikhilsbhat/helm-images || true
+
 echo "charts which differ between main and PR:"
 echo "${changed_charts}"
 
@@ -51,6 +51,12 @@ for env in pr target; do
 
   for chart in ${changed_charts}; do
     echo "get images for chart: ${chart}"
+
+    if [[ ! -d "${chart}" ]]; then
+      echo "chart '${chart}' does not exist in ${env}"
+      : > "../../../out/${env}/${chart}-images.txt"
+      continue
+    fi
 
     helm dependency update "${chart}"
 

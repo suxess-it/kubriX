@@ -76,6 +76,10 @@ applications:
     annotations:
       argocd.argoproj.io/sync-wave: "-7"
 
+  - name: prometheus-blackbox-exporter
+    annotations:
+      argocd.argoproj.io/sync-wave: "-7"
+
   - name: cnpg
     annotations:
       argocd.argoproj.io/compare-options: ServerSideDiff=true

@@ -51,6 +51,14 @@ backstage:
       app:
         title: kubriX OSS
         baseUrl: ~
+        doraMetrics:
+          collection:
+            initialDays: 30
+          environments:
+            - name: Production
+              branch: main
+              isProduction: true
+              label: "^CVE"
 
       organization:
         name: kubriX OSS

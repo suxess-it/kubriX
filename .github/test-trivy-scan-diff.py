@@ -177,6 +177,123 @@ class TrivyScanDiffTest(unittest.TestCase):
         pr = target.replace(":v1.0.0", ":v2.0.0").replace("v1.25.11", "v1.25.8")
         self.assert_counts(self.compare(target, pr))
 
+    def test_fixed_cve_table_deduplicates_per_component(self):
+        target = set()
+        target.update(
+            trivy_scan_diff.parse_summary(
+                summary(
+                    "example/image-a",
+                    "binary-a",
+                    [
+                        ("package-a", "CVE-2026-22222", "HIGH", "1.0.0"),
+                        ("package-b", "CVE-2026-11111", "CRITICAL", "1.0.0"),
+                        ("package-c", "GHSA-1111-2222-3333", "HIGH", "1.0.0"),
+                        ("package-d", "CVE-2026-44444", "MEDIUM", "1.0.0"),
+                    ],
+                ),
+                "component-b",
+            )
+        )
+        target.update(
+            trivy_scan_diff.parse_summary(
+                summary(
+                    "example/image-b",
+                    "binary-b",
+                    [("package-e", "CVE-2026-22222", "HIGH", "1.0.0")],
+                ),
+                "component-b",
+            )
+        )
+        target.update(
+            trivy_scan_diff.parse_summary(
+                summary(
+                    "example/image-c",
+                    "binary-c",
+                    [("package-f", "CVE-2026-33333", "HIGH", "1.0.0")],
+                ),
+                "component-a",
+            )
+        )
+
+        table = trivy_scan_diff.format_fixed_cve_table(
+            trivy_scan_diff.fixed_component_cves(target, set())
+        )
+
+        self.assertEqual(
+            table,
+            "| Severity | Component | CVEs |\n"
+            "|----------|-----------|------|\n"
+            "| Critical | component-b | CVE-2026-11111 |\n"
+            "| High | component-a | CVE-2026-33333 |\n"
+            "| High | component-b | CVE-2026-22222, GHSA-1111-2222-3333 |\n",
+        )
+
+    def test_cve_still_present_elsewhere_in_component_is_not_fixed(self):
+        target = trivy_scan_diff.parse_summary(
+            summary(
+                "example/image-a",
+                "old-binary",
+                [("old-package", "CVE-2026-11111", "HIGH", "1.0.0")],
+            ),
+            "component",
+        )
+        current = trivy_scan_diff.parse_summary(
+            summary(
+                "example/image-b",
+                "new-binary",
+                [("new-package", "CVE-2026-11111", "HIGH", "2.0.0")],
+            ),
+            "component",
+        )
+
+        self.assertEqual(
+            trivy_scan_diff.fixed_component_cves(target, current), set()
+        )
+
+    def test_cve_with_changed_severity_is_not_fixed(self):
+        target = trivy_scan_diff.parse_summary(
+            summary(
+                "example/image",
+                "binary",
+                [("package", "CVE-2026-11111", "HIGH", "1.0.0")],
+            ),
+            "component",
+        )
+        current = trivy_scan_diff.parse_summary(
+            summary(
+                "example/image",
+                "binary",
+                [("package", "CVE-2026-11111", "MEDIUM", "2.0.0")],
+            ),
+            "component",
+        )
+
+        self.assertEqual(
+            trivy_scan_diff.fixed_component_cves(target, current), set()
+        )
+
+    def test_ghsa_still_present_in_component_is_not_fixed(self):
+        target = trivy_scan_diff.parse_summary(
+            summary(
+                "example/image-a",
+                "old-binary",
+                [("old-package", "GHSA-1111-2222-3333", "HIGH", "1.0.0")],
+            ),
+            "component",
+        )
+        current = trivy_scan_diff.parse_summary(
+            summary(
+                "example/image-b",
+                "new-binary",
+                [("new-package", "GHSA-1111-2222-3333", "HIGH", "2.0.0")],
+            ),
+            "component",
+        )
+
+        self.assertEqual(
+            trivy_scan_diff.fixed_component_cves(target, current), set()
+        )
+
     def test_recursive_loading_and_environment_flags(self):
         with tempfile.TemporaryDirectory() as tmp:
             root = Path(tmp)
