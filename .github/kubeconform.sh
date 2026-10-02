@@ -54,6 +54,16 @@ for chart in ${!APPS[@]}; do
     EXTRA_OPTS="-skip CustomResourceDefinition"
   fi
 
+  # exception due to https://github.com/suxess-it/kubriX-prime/issues/970
+  if [[ "${chart}" == "spoke-applications" ]] ; then
+    continue
+  fi
+
+  # exception due to https://github.com/suxess-it/kubriX-prime/issues/971
+  if [[ "${chart}" == "backstage" ]] ; then
+    EXTRA_OPTS="-skip KubernetesClusterMarker"
+  fi
+  
   helm template  --include-crds ${chart} ${valuesFiles[@]} ${setValues} | \
     ../../kubeconform -output pretty \
     ${EXTRA_OPTS} \

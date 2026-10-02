@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "test:unit": "playwright test --config playwright.unit.config.js",
     "test:oss": "KUBRIX_PLAYWRIGHT_PROFILE=oss npx playwright test --config playwright.config.js",
     "test:smoke": "KUBRIX_PLAYWRIGHT_PROFILE=oss npx playwright test --config playwright.config.js --project=argocd-tests --project=grafana-tests --project=kargo-tests --project=keycloak-tests --project=openbao-tests",
     "test:prime": "KUBRIX_PLAYWRIGHT_PROFILE=prime npx playwright test --config playwright.config.js --project=prime-complete-tests",

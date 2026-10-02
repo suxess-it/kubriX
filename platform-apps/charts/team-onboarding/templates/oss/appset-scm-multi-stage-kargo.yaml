@@ -48,6 +48,8 @@ spec:
         helm:
           valueFiles:
           - $values/app-stages.yaml
+          valuesObject:
+            kubriXPlan: oss
       - repoURL: '{{`{{ .url }}`}}'
         targetRevision: main
         ref: values
