@@ -1,6 +1,7 @@
+<h2>Image <code>ghcr.io/grafana/alloy-operator:1.12.1</code></h2>
 
 <h3>Target <code>ghcr.io/grafana/alloy-operator:1.12.1 (redhat 9.8)</code></h3>
-<h4>Vulnerabilities (30)</h4>
+<h4>Vulnerabilities (34)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -178,6 +179,27 @@
         <td></td>
     </tr>
     <tr>
+        <td><code>openssl-libs</code></td>
+        <td>CVE-2026-75804</td>
+        <td>HIGH</td>
+        <td>1:3.5.5-4.el9_8</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>openssl-libs</code></td>
+        <td>CVE-2026-84782</td>
+        <td>HIGH</td>
+        <td>1:3.5.5-4.el9_8</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>pcre2</code></td>
+        <td>CVE-2026-103111</td>
+        <td>HIGH</td>
+        <td>10.40-6.el9</td>
+        <td></td>
+    </tr>
+    <tr>
         <td><code>pcre2</code></td>
         <td>CVE-2026-86145</td>
         <td>HIGH</td>
@@ -187,6 +209,13 @@
     <tr>
         <td><code>pcre2</code></td>
         <td>CVE-2026-89161</td>
+        <td>HIGH</td>
+        <td>10.40-6.el9</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>pcre2-syntax</code></td>
+        <td>CVE-2026-103111</td>
         <td>HIGH</td>
         <td>10.40-6.el9</td>
         <td></td>
@@ -352,6 +381,7 @@
     </tr>
 </table>
 <h4>No Misconfigurations found</h4>
+<h2>Image <code>ghcr.io/grafana/helm-chart-toolbox-kubectl:0.1.2</code></h2>
 
 <h3>Target <code>ghcr.io/grafana/helm-chart-toolbox-kubectl:0.1.2 (alpine 3.22.2)</code></h3>
 <h4>Vulnerabilities (26)</h4>
@@ -1893,6 +1923,7 @@
     </tr>
 </table>
 <h4>No Misconfigurations found</h4>
+<h2>Image <code>quay.io/prometheus/node-exporter:v1.12.1</code></h2>
 
 <h3>Target <code>bin/node_exporter</code></h3>
 <h4>Vulnerabilities (9)</h4>
@@ -1969,6 +2000,7 @@
     </tr>
 </table>
 <h4>No Misconfigurations found</h4>
+<h2>Image <code>registry.k8s.io/kube-state-metrics/kube-state-metrics:v2.20.0</code></h2>
 
 <h3>Target <code>registry.k8s.io/kube-state-metrics/kube-state-metrics:v2.20.0 (debian 13.6)</code></h3>
 <h4>No Vulnerabilities found</h4>

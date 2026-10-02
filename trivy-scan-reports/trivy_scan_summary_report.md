@@ -1,3 +1,4 @@
+<h2>Image <code>mirror.gcr.io/aquasec/trivy-operator:0.34.0</code></h2>
 
 <h3>Target <code>mirror.gcr.io/aquasec/trivy-operator:0.34.0 (alpine 3.24.1)</code></h3>
 <h4>Vulnerabilities (2)</h4>

@@ -1,3 +1,4 @@
+<h2>Image <code>kubevirtmanager/kubevirt-manager:1.5.0</code></h2>
 
 <h3>Target <code>kubevirtmanager/kubevirt-manager:1.5.0 (alpine 3.20.5)</code></h3>
 <h4>Vulnerabilities (38)</h4>

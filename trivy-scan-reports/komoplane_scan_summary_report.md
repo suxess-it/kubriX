@@ -1,5 +1,7 @@
+<h2>Image <code>busybox</code></h2>
 
 <h3>Trivy Returned Empty Report</h3>
+<h2>Image <code>komodorio/komoplane:0.2.1</code></h2>
 
 <h3>Target <code>komodorio/komoplane:0.2.1 (alpine 3.23.3)</code></h3>
 <h4>Vulnerabilities (17)</h4>

@@ -1,3 +1,4 @@
+<h2>Image <code>quay.io/argoproj/argo-rollouts:v1.10.0</code></h2>
 
 <h3>Target <code>quay.io/argoproj/argo-rollouts:v1.10.0 (debian 12.15)</code></h3>
 <h4>No Vulnerabilities found</h4>

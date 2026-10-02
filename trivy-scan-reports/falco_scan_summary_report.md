@@ -1,3 +1,4 @@
+<h2>Image <code>appropriate/curl</code></h2>
 
 <h3>Target <code>appropriate/curl (alpine 3.7.0)</code></h3>
 <h4>Vulnerabilities (28)</h4>
@@ -207,8 +208,10 @@
     </tr>
 </table>
 <h4>No Misconfigurations found</h4>
+<h2>Image <code>busybox</code></h2>
 
 <h3>Trivy Returned Empty Report</h3>
+<h2>Image <code>docker.io/falcosecurity/falco-exporter:0.8.3</code></h2>
 
 <h3>Target <code>docker.io/falcosecurity/falco-exporter:0.8.3 (alpine 3.16.5)</code></h3>
 <h4>Vulnerabilities (2)</h4>
@@ -668,6 +671,7 @@
     </tr>
 </table>
 <h4>No Misconfigurations found</h4>
+<h2>Image <code>docker.io/falcosecurity/falco:0.43.1</code></h2>
 
 <h3>Target <code>docker.io/falcosecurity/falco:0.43.1 (wolfi 20230201)</code></h3>
 <h4>Vulnerabilities (23)</h4>
@@ -842,6 +846,7 @@
     </tr>
 </table>
 <h4>No Misconfigurations found</h4>
+<h2>Image <code>docker.io/falcosecurity/falcoctl:0.12.2</code></h2>
 
 <h3>Target <code>docker.io/falcosecurity/falcoctl:0.12.2 (wolfi 20230201)</code></h3>
 <h4>No Vulnerabilities found</h4>
@@ -1250,6 +1255,7 @@
     </tr>
 </table>
 <h4>No Misconfigurations found</h4>
+<h2>Image <code>docker.io/falcosecurity/falcosidekick-ui:2.2.0</code></h2>
 
 <h3>Target <code>docker.io/falcosecurity/falcosidekick-ui:2.2.0 (alpine 3.15.10)</code></h3>
 <h4>No Vulnerabilities found</h4>
@@ -1623,6 +1629,7 @@
     </tr>
 </table>
 <h4>No Misconfigurations found</h4>
+<h2>Image <code>docker.io/falcosecurity/falcosidekick:2.32.0</code></h2>
 
 <h3>Target <code>docker.io/falcosecurity/falcosidekick:2.32.0 (alpine 3.22.1)</code></h3>
 <h4>Vulnerabilities (21)</h4>
@@ -2222,6 +2229,7 @@
     </tr>
 </table>
 <h4>No Misconfigurations found</h4>
+<h2>Image <code>docker.io/falcosecurity/k8s-metacollector:0.1.4</code></h2>
 
 <h3>Target <code>docker.io/falcosecurity/k8s-metacollector:0.1.4 (debian 13.6)</code></h3>
 <h4>No Vulnerabilities found</h4>
@@ -2229,9 +2237,10 @@
 <h3>Target <code>meta-collector</code></h3>
 <h4>No Vulnerabilities found</h4>
 <h4>No Misconfigurations found</h4>
+<h2>Image <code>docker.io/redis/redis-stack:7.2.0-v11</code></h2>
 
 <h3>Target <code>docker.io/redis/redis-stack:7.2.0-v11 (ubuntu 22.04)</code></h3>
-<h4>Vulnerabilities (3)</h4>
+<h4>Vulnerabilities (5)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -2255,11 +2264,25 @@
         <td>3.0.2-0ubuntu1.25</td>
     </tr>
     <tr>
+        <td><code>libssl-dev</code></td>
+        <td>CVE-2026-84782</td>
+        <td>HIGH</td>
+        <td>3.0.2-0ubuntu1.16</td>
+        <td>3.0.2-0ubuntu1.30</td>
+    </tr>
+    <tr>
         <td><code>libssl3</code></td>
         <td>CVE-2026-45447</td>
         <td>HIGH</td>
         <td>3.0.2-0ubuntu1.16</td>
         <td>3.0.2-0ubuntu1.25</td>
+    </tr>
+    <tr>
+        <td><code>libssl3</code></td>
+        <td>CVE-2026-84782</td>
+        <td>HIGH</td>
+        <td>3.0.2-0ubuntu1.16</td>
+        <td>3.0.2-0ubuntu1.30</td>
     </tr>
 </table>
 <h4>No Misconfigurations found</h4>

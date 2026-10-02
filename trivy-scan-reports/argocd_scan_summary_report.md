@@ -1,3 +1,4 @@
+<h2>Image <code>ecr-public.aws.com/docker/library/redis:8.6.4-alpine</code></h2>
 
 <h3>Target <code>ecr-public.aws.com/docker/library/redis:8.6.4-alpine (alpine 3.23.5)</code></h3>
 <h4>Vulnerabilities (8)</h4>
@@ -67,6 +68,7 @@
     </tr>
 </table>
 <h4>No Misconfigurations found</h4>
+<h2>Image <code>ghcr.io/dexidp/dex:v2.45.1</code></h2>
 
 <h3>Target <code>ghcr.io/dexidp/dex:v2.45.1 (alpine 3.23.3)</code></h3>
 <h4>Vulnerabilities (17)</h4>
@@ -1047,9 +1049,40 @@
     </tr>
 </table>
 <h4>No Misconfigurations found</h4>
+<h2>Image <code>quay.io/argoproj/argocd:v3.5.3</code></h2>
 
 <h3>Target <code>quay.io/argoproj/argocd:v3.5.3 (ubuntu 26.04)</code></h3>
-<h4>No Vulnerabilities found</h4>
+<h4>Vulnerabilities (3)</h4>
+<table>
+    <tr>
+        <th>Package</th>
+        <th>ID</th>
+        <th>Severity</th>
+        <th>Installed Version</th>
+        <th>Fixed Version</th>
+    </tr>
+    <tr>
+        <td><code>libssl3t64</code></td>
+        <td>CVE-2026-84782</td>
+        <td>HIGH</td>
+        <td>3.5.5-1ubuntu3.5</td>
+        <td>3.5.5-1ubuntu3.6</td>
+    </tr>
+    <tr>
+        <td><code>openssl</code></td>
+        <td>CVE-2026-84782</td>
+        <td>HIGH</td>
+        <td>3.5.5-1ubuntu3.5</td>
+        <td>3.5.5-1ubuntu3.6</td>
+    </tr>
+    <tr>
+        <td><code>openssl-provider-legacy</code></td>
+        <td>CVE-2026-84782</td>
+        <td>HIGH</td>
+        <td>3.5.5-1ubuntu3.5</td>
+        <td>3.5.5-1ubuntu3.6</td>
+    </tr>
+</table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>usr/bin/pebble</code></h3>
 <h4>Vulnerabilities (21)</h4>

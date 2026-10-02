@@ -1,3 +1,4 @@
+<h2>Image <code>docker.io/grafana/mimir:3.2.0</code></h2>
 
 <h3>Target <code>docker.io/grafana/mimir:3.2.0 (debian 13.5)</code></h3>
 <h4>No Vulnerabilities found</h4>
@@ -84,6 +85,7 @@
     </tr>
 </table>
 <h4>No Misconfigurations found</h4>
+<h2>Image <code>docker.io/grafana/rollout-operator:v0.38.1</code></h2>
 
 <h3>Target <code>docker.io/grafana/rollout-operator:v0.38.1 (debian 13.6)</code></h3>
 <h4>No Vulnerabilities found</h4>
@@ -184,9 +186,10 @@
     </tr>
 </table>
 <h4>No Misconfigurations found</h4>
+<h2>Image <code>docker.io/nginxinc/nginx-unprivileged:1.29-alpine</code></h2>
 
 <h3>Target <code>docker.io/nginxinc/nginx-unprivileged:1.29-alpine (alpine 3.23.4)</code></h3>
-<h4>Vulnerabilities (38)</h4>
+<h4>Vulnerabilities (42)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -461,11 +464,40 @@
         <td>2.13.9-r0</td>
         <td>2.13.9-r1</td>
     </tr>
+    <tr>
+        <td><code>pcre2</code></td>
+        <td>CVE-2026-103111</td>
+        <td>HIGH</td>
+        <td>10.47-r0</td>
+        <td>10.49-r0</td>
+    </tr>
+    <tr>
+        <td><code>pcre2</code></td>
+        <td>CVE-2026-86145</td>
+        <td>HIGH</td>
+        <td>10.47-r0</td>
+        <td>10.48-r0</td>
+    </tr>
+    <tr>
+        <td><code>pcre2</code></td>
+        <td>CVE-2026-89157</td>
+        <td>HIGH</td>
+        <td>10.47-r0</td>
+        <td>10.48-r0</td>
+    </tr>
+    <tr>
+        <td><code>pcre2</code></td>
+        <td>CVE-2026-89161</td>
+        <td>HIGH</td>
+        <td>10.47-r0</td>
+        <td>10.48-r0</td>
+    </tr>
 </table>
 <h4>No Misconfigurations found</h4>
+<h2>Image <code>docker.io/pgsty/mc:RELEASE.2026-09-13T00-00-00Z</code></h2>
 
 <h3>Target <code>docker.io/pgsty/mc:RELEASE.2026-09-13T00-00-00Z (redhat 9.8)</code></h3>
-<h4>Vulnerabilities (4)</h4>
+<h4>Vulnerabilities (6)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -473,6 +505,13 @@
         <th>Severity</th>
         <th>Installed Version</th>
         <th>Fixed Version</th>
+    </tr>
+    <tr>
+        <td><code>pcre2</code></td>
+        <td>CVE-2026-103111</td>
+        <td>HIGH</td>
+        <td>10.40-6.el9</td>
+        <td></td>
     </tr>
     <tr>
         <td><code>pcre2</code></td>
@@ -484,6 +523,13 @@
     <tr>
         <td><code>pcre2</code></td>
         <td>CVE-2026-89161</td>
+        <td>HIGH</td>
+        <td>10.40-6.el9</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>pcre2-syntax</code></td>
+        <td>CVE-2026-103111</td>
         <td>HIGH</td>
         <td>10.40-6.el9</td>
         <td></td>
@@ -507,9 +553,10 @@
 <h3>Target <code>usr/bin/mc</code></h3>
 <h4>No Vulnerabilities found</h4>
 <h4>No Misconfigurations found</h4>
+<h2>Image <code>docker.io/pgsty/silo:RELEASE.2026-09-03T13-18-01Z</code></h2>
 
 <h3>Target <code>docker.io/pgsty/silo:RELEASE.2026-09-03T13-18-01Z (redhat 9.8)</code></h3>
-<h4>Vulnerabilities (4)</h4>
+<h4>Vulnerabilities (6)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -517,6 +564,13 @@
         <th>Severity</th>
         <th>Installed Version</th>
         <th>Fixed Version</th>
+    </tr>
+    <tr>
+        <td><code>pcre2</code></td>
+        <td>CVE-2026-103111</td>
+        <td>HIGH</td>
+        <td>10.40-6.el9</td>
+        <td></td>
     </tr>
     <tr>
         <td><code>pcre2</code></td>
@@ -528,6 +582,13 @@
     <tr>
         <td><code>pcre2</code></td>
         <td>CVE-2026-89161</td>
+        <td>HIGH</td>
+        <td>10.40-6.el9</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>pcre2-syntax</code></td>
+        <td>CVE-2026-103111</td>
         <td>HIGH</td>
         <td>10.40-6.el9</td>
         <td></td>

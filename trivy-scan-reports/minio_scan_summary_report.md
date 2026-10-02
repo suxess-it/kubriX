@@ -1,6 +1,7 @@
+<h2>Image <code>docker.io/pgsty/mc:RELEASE.2026-09-13T00-00-00Z</code></h2>
 
 <h3>Target <code>docker.io/pgsty/mc:RELEASE.2026-09-13T00-00-00Z (redhat 9.8)</code></h3>
-<h4>Vulnerabilities (4)</h4>
+<h4>Vulnerabilities (6)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -8,6 +9,13 @@
         <th>Severity</th>
         <th>Installed Version</th>
         <th>Fixed Version</th>
+    </tr>
+    <tr>
+        <td><code>pcre2</code></td>
+        <td>CVE-2026-103111</td>
+        <td>HIGH</td>
+        <td>10.40-6.el9</td>
+        <td></td>
     </tr>
     <tr>
         <td><code>pcre2</code></td>
@@ -19,6 +27,13 @@
     <tr>
         <td><code>pcre2</code></td>
         <td>CVE-2026-89161</td>
+        <td>HIGH</td>
+        <td>10.40-6.el9</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>pcre2-syntax</code></td>
+        <td>CVE-2026-103111</td>
         <td>HIGH</td>
         <td>10.40-6.el9</td>
         <td></td>
@@ -42,9 +57,10 @@
 <h3>Target <code>usr/bin/mc</code></h3>
 <h4>No Vulnerabilities found</h4>
 <h4>No Misconfigurations found</h4>
+<h2>Image <code>docker.io/pgsty/silo:RELEASE.2026-09-03T13-18-01Z</code></h2>
 
 <h3>Target <code>docker.io/pgsty/silo:RELEASE.2026-09-03T13-18-01Z (redhat 9.8)</code></h3>
-<h4>Vulnerabilities (4)</h4>
+<h4>Vulnerabilities (6)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -52,6 +68,13 @@
         <th>Severity</th>
         <th>Installed Version</th>
         <th>Fixed Version</th>
+    </tr>
+    <tr>
+        <td><code>pcre2</code></td>
+        <td>CVE-2026-103111</td>
+        <td>HIGH</td>
+        <td>10.40-6.el9</td>
+        <td></td>
     </tr>
     <tr>
         <td><code>pcre2</code></td>
@@ -63,6 +86,13 @@
     <tr>
         <td><code>pcre2</code></td>
         <td>CVE-2026-89161</td>
+        <td>HIGH</td>
+        <td>10.40-6.el9</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>pcre2-syntax</code></td>
+        <td>CVE-2026-103111</td>
         <td>HIGH</td>
         <td>10.40-6.el9</td>
         <td></td>

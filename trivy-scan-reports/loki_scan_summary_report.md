@@ -1,3 +1,4 @@
+<h2>Image <code>docker.io/grafana/loki-canary:3.7.8</code></h2>
 
 <h3>Target <code>docker.io/grafana/loki-canary:3.7.8 (debian 13.7)</code></h3>
 <h4>No Vulnerabilities found</h4>
@@ -70,6 +71,7 @@
     </tr>
 </table>
 <h4>No Misconfigurations found</h4>
+<h2>Image <code>docker.io/grafana/loki-helm-test:latest</code></h2>
 
 <h3>Target <code>docker.io/grafana/loki-helm-test:latest (debian 13.7)</code></h3>
 <h4>No Vulnerabilities found</h4>
@@ -77,6 +79,7 @@
 <h3>Target <code>usr/bin/helm-test</code></h3>
 <h4>No Vulnerabilities found</h4>
 <h4>No Misconfigurations found</h4>
+<h2>Image <code>docker.io/grafana/loki:3.7.8</code></h2>
 
 <h3>Target <code>docker.io/grafana/loki:3.7.8 (debian 13.7)</code></h3>
 <h4>No Vulnerabilities found</h4>
@@ -84,6 +87,7 @@
 <h3>Target <code>usr/bin/loki</code></h3>
 <h4>No Vulnerabilities found</h4>
 <h4>No Misconfigurations found</h4>
+<h2>Image <code>docker.io/kiwigrid/k8s-sidecar:2.11.2</code></h2>
 
 <h3>Target <code>docker.io/kiwigrid/k8s-sidecar:2.11.2 (alpine 3.22.4)</code></h3>
 <h4>Vulnerabilities (6)</h4>
@@ -140,19 +144,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>Python</code></h3>
-<h4>No Vulnerabilities found</h4>
-<h4>No Misconfigurations found</h4>
-
-<h3>Target <code>docker.io/library/memcached:1.6.45-alpine (alpine 3.24.2)</code></h3>
-<h4>No Vulnerabilities found</h4>
-<h4>No Misconfigurations found</h4>
-
-<h3>Target <code>docker.io/nginxinc/nginx-unprivileged:1.31-alpine (alpine 3.24.2)</code></h3>
-<h4>No Vulnerabilities found</h4>
-<h4>No Misconfigurations found</h4>
-
-<h3>Target <code>docker.io/pgsty/mc:RELEASE.2026-09-13T00-00-00Z (redhat 9.8)</code></h3>
-<h4>Vulnerabilities (4)</h4>
+<h4>Vulnerabilities (2)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -160,6 +152,67 @@
         <th>Severity</th>
         <th>Installed Version</th>
         <th>Fixed Version</th>
+    </tr>
+    <tr>
+        <td><code>urllib3</code></td>
+        <td>CVE-2026-97687</td>
+        <td>HIGH</td>
+        <td>2.7.0</td>
+        <td>2.8.0</td>
+    </tr>
+    <tr>
+        <td><code>urllib3</code></td>
+        <td>CVE-2026-97689</td>
+        <td>HIGH</td>
+        <td>2.7.0</td>
+        <td>2.8.0</td>
+    </tr>
+</table>
+<h4>No Misconfigurations found</h4>
+<h2>Image <code>docker.io/library/memcached:1.6.45-alpine</code></h2>
+
+<h3>Target <code>docker.io/library/memcached:1.6.45-alpine (alpine 3.24.2)</code></h3>
+<h4>No Vulnerabilities found</h4>
+<h4>No Misconfigurations found</h4>
+<h2>Image <code>docker.io/nginxinc/nginx-unprivileged:1.31-alpine</code></h2>
+
+<h3>Target <code>docker.io/nginxinc/nginx-unprivileged:1.31-alpine (alpine 3.24.2)</code></h3>
+<h4>Vulnerabilities (1)</h4>
+<table>
+    <tr>
+        <th>Package</th>
+        <th>ID</th>
+        <th>Severity</th>
+        <th>Installed Version</th>
+        <th>Fixed Version</th>
+    </tr>
+    <tr>
+        <td><code>pcre2</code></td>
+        <td>CVE-2026-103111</td>
+        <td>HIGH</td>
+        <td>10.48-r0</td>
+        <td>10.49-r0</td>
+    </tr>
+</table>
+<h4>No Misconfigurations found</h4>
+<h2>Image <code>docker.io/pgsty/mc:RELEASE.2026-09-13T00-00-00Z</code></h2>
+
+<h3>Target <code>docker.io/pgsty/mc:RELEASE.2026-09-13T00-00-00Z (redhat 9.8)</code></h3>
+<h4>Vulnerabilities (6)</h4>
+<table>
+    <tr>
+        <th>Package</th>
+        <th>ID</th>
+        <th>Severity</th>
+        <th>Installed Version</th>
+        <th>Fixed Version</th>
+    </tr>
+    <tr>
+        <td><code>pcre2</code></td>
+        <td>CVE-2026-103111</td>
+        <td>HIGH</td>
+        <td>10.40-6.el9</td>
+        <td></td>
     </tr>
     <tr>
         <td><code>pcre2</code></td>
@@ -171,6 +224,13 @@
     <tr>
         <td><code>pcre2</code></td>
         <td>CVE-2026-89161</td>
+        <td>HIGH</td>
+        <td>10.40-6.el9</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>pcre2-syntax</code></td>
+        <td>CVE-2026-103111</td>
         <td>HIGH</td>
         <td>10.40-6.el9</td>
         <td></td>
@@ -194,9 +254,10 @@
 <h3>Target <code>usr/bin/mc</code></h3>
 <h4>No Vulnerabilities found</h4>
 <h4>No Misconfigurations found</h4>
+<h2>Image <code>docker.io/pgsty/silo:RELEASE.2026-09-03T13-18-01Z</code></h2>
 
 <h3>Target <code>docker.io/pgsty/silo:RELEASE.2026-09-03T13-18-01Z (redhat 9.8)</code></h3>
-<h4>Vulnerabilities (4)</h4>
+<h4>Vulnerabilities (6)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -204,6 +265,13 @@
         <th>Severity</th>
         <th>Installed Version</th>
         <th>Fixed Version</th>
+    </tr>
+    <tr>
+        <td><code>pcre2</code></td>
+        <td>CVE-2026-103111</td>
+        <td>HIGH</td>
+        <td>10.40-6.el9</td>
+        <td></td>
     </tr>
     <tr>
         <td><code>pcre2</code></td>
@@ -215,6 +283,13 @@
     <tr>
         <td><code>pcre2</code></td>
         <td>CVE-2026-89161</td>
+        <td>HIGH</td>
+        <td>10.40-6.el9</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>pcre2-syntax</code></td>
+        <td>CVE-2026-103111</td>
         <td>HIGH</td>
         <td>10.40-6.el9</td>
         <td></td>
@@ -327,6 +402,7 @@
     </tr>
 </table>
 <h4>No Misconfigurations found</h4>
+<h2>Image <code>docker.io/prom/memcached-exporter:v0.17.0</code></h2>
 
 <h3>Target <code>bin/memcached_exporter</code></h3>
 <h4>Vulnerabilities (1)</h4>
@@ -347,7 +423,11 @@
     </tr>
 </table>
 <h4>No Misconfigurations found</h4>
+<h2>Image <code>ghcr.io/jkroepke/access-log-exporter:0.4.21</code></h2>
 
+<h3>Target <code>ghcr.io/jkroepke/access-log-exporter:0.4.21 (debian 13.7)</code></h3>
+<h4>No Vulnerabilities found</h4>
+<h4>No Misconfigurations found</h4>
 <h3>Target <code>access-log-exporter</code></h3>
 <h4>No Vulnerabilities found</h4>
 <h4>No Misconfigurations found</h4>

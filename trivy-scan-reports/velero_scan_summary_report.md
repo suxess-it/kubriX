@@ -1,6 +1,30 @@
+<h2>Image <code>docker.io/velero/velero:v1.18.2</code></h2>
 
 <h3>Target <code>docker.io/velero/velero:v1.18.2 (ubuntu 22.04)</code></h3>
-<h4>No Vulnerabilities found</h4>
+<h4>Vulnerabilities (2)</h4>
+<table>
+    <tr>
+        <th>Package</th>
+        <th>ID</th>
+        <th>Severity</th>
+        <th>Installed Version</th>
+        <th>Fixed Version</th>
+    </tr>
+    <tr>
+        <td><code>libssl3</code></td>
+        <td>CVE-2026-84782</td>
+        <td>HIGH</td>
+        <td>3.0.2-0ubuntu1.25</td>
+        <td>3.0.2-0ubuntu1.30</td>
+    </tr>
+    <tr>
+        <td><code>openssl</code></td>
+        <td>CVE-2026-84782</td>
+        <td>HIGH</td>
+        <td>3.0.2-0ubuntu1.25</td>
+        <td>3.0.2-0ubuntu1.30</td>
+    </tr>
+</table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>usr/bin/restic</code></h3>
 <h4>Vulnerabilities (14)</h4>
@@ -372,6 +396,7 @@
     </tr>
 </table>
 <h4>No Misconfigurations found</h4>
+<h2>Image <code>quay.io/kubevirt/kubevirt-velero-plugin:v0.8.0</code></h2>
 
 <h3>Target <code>quay.io/kubevirt/kubevirt-velero-plugin:v0.8.0 (alpine 3.13.12)</code></h3>
 <h4>No Vulnerabilities found</h4>
@@ -612,6 +637,7 @@
     </tr>
 </table>
 <h4>No Misconfigurations found</h4>
+<h2>Image <code>velero/velero-plugin-for-aws:v1.14.0</code></h2>
 
 <h3>Target <code>bin/cp-plugin</code></h3>
 <h4>Vulnerabilities (19)</h4>

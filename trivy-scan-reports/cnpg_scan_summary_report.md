@@ -1,3 +1,4 @@
+<h2>Image <code>ghcr.io/cloudnative-pg/cloudnative-pg:1.30.1</code></h2>
 
 <h3>Target <code>ghcr.io/cloudnative-pg/cloudnative-pg:1.30.1 (debian 13.7)</code></h3>
 <h4>No Vulnerabilities found</h4>

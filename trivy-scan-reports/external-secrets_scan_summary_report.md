@@ -1,3 +1,4 @@
+<h2>Image <code>ghcr.io/external-secrets/external-secrets:v2.11.0</code></h2>
 
 <h3>Target <code>ghcr.io/external-secrets/external-secrets:v2.11.0 (debian 13.6)</code></h3>
 <h4>No Vulnerabilities found</h4>

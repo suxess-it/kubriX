@@ -1,6 +1,30 @@
+<h2>Image <code>docker.io/kubeshop/bitnami-mongodb:8.3.8</code></h2>
 
 <h3>Target <code>docker.io/kubeshop/bitnami-mongodb:8.3.8 (ubuntu 24.04)</code></h3>
-<h4>No Vulnerabilities found</h4>
+<h4>Vulnerabilities (2)</h4>
+<table>
+    <tr>
+        <th>Package</th>
+        <th>ID</th>
+        <th>Severity</th>
+        <th>Installed Version</th>
+        <th>Fixed Version</th>
+    </tr>
+    <tr>
+        <td><code>libssl3t64</code></td>
+        <td>CVE-2026-84782</td>
+        <td>HIGH</td>
+        <td>3.0.13-0ubuntu3.12</td>
+        <td>3.0.13-0ubuntu3.16</td>
+    </tr>
+    <tr>
+        <td><code>openssl</code></td>
+        <td>CVE-2026-84782</td>
+        <td>HIGH</td>
+        <td>3.0.13-0ubuntu3.12</td>
+        <td>3.0.13-0ubuntu3.16</td>
+    </tr>
+</table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>Node.js</code></h3>
 <h4>Vulnerabilities (3)</h4>
@@ -2022,9 +2046,10 @@
     </tr>
 </table>
 <h4>No Misconfigurations found</h4>
+<h2>Image <code>docker.io/kubeshop/testkube-api-server:2.14.0</code></h2>
 
-<h3>Target <code>docker.io/kubeshop/testkube-api-server:2.13.3 (alpine 3.24.1)</code></h3>
-<h4>Vulnerabilities (7)</h4>
+<h3>Target <code>docker.io/kubeshop/testkube-api-server:2.14.0 (alpine 3.24.1)</code></h3>
+<h4>Vulnerabilities (11)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -2082,10 +2107,43 @@
         <td>3.5.7-r0</td>
         <td>3.5.8-r0</td>
     </tr>
+    <tr>
+        <td><code>pcre2</code></td>
+        <td>CVE-2026-103111</td>
+        <td>HIGH</td>
+        <td>10.47-r1</td>
+        <td>10.49-r0</td>
+    </tr>
+    <tr>
+        <td><code>pcre2</code></td>
+        <td>CVE-2026-86145</td>
+        <td>HIGH</td>
+        <td>10.47-r1</td>
+        <td>10.48-r0</td>
+    </tr>
+    <tr>
+        <td><code>pcre2</code></td>
+        <td>CVE-2026-89157</td>
+        <td>HIGH</td>
+        <td>10.47-r1</td>
+        <td>10.48-r0</td>
+    </tr>
+    <tr>
+        <td><code>pcre2</code></td>
+        <td>CVE-2026-89161</td>
+        <td>HIGH</td>
+        <td>10.47-r1</td>
+        <td>10.48-r0</td>
+    </tr>
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>bin/app</code></h3>
-<h4>Vulnerabilities (1)</h4>
+<h4>No Vulnerabilities found</h4>
+<h4>No Misconfigurations found</h4>
+<h2>Image <code>docker.io/kubeshop/testkube-kubectl:1.36.3</code></h2>
+
+<h3>Target <code>docker.io/kubeshop/testkube-kubectl:1.36.3 (alpine 3.24.1)</code></h3>
+<h4>Vulnerabilities (2)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -2095,17 +2153,135 @@
         <th>Fixed Version</th>
     </tr>
     <tr>
-        <td><code>google.golang.org/grpc</code></td>
-        <td>CVE-2026-84445</td>
+        <td><code>libcrypto3</code></td>
+        <td>CVE-2026-14456</td>
         <td>HIGH</td>
-        <td>v1.83.1</td>
-        <td>1.82.2, 1.83.2, 1.84.0-dev.0.20260825144003-d5a41119e0e3, 1.85.0-dev.0.20260825072537-93e31b48545e</td>
+        <td>3.5.7-r0</td>
+        <td>3.5.8-r0</td>
+    </tr>
+    <tr>
+        <td><code>libssl3</code></td>
+        <td>CVE-2026-14456</td>
+        <td>HIGH</td>
+        <td>3.5.7-r0</td>
+        <td>3.5.8-r0</td>
     </tr>
 </table>
 <h4>No Misconfigurations found</h4>
+<h3>Target <code>usr/local/bin/kubectl</code></h3>
+<h4>Vulnerabilities (14)</h4>
+<table>
+    <tr>
+        <th>Package</th>
+        <th>ID</th>
+        <th>Severity</th>
+        <th>Installed Version</th>
+        <th>Fixed Version</th>
+    </tr>
+    <tr>
+        <td><code>golang.org/x/net</code></td>
+        <td>CVE-2026-25681</td>
+        <td>HIGH</td>
+        <td>v0.49.0</td>
+        <td>0.55.0</td>
+    </tr>
+    <tr>
+        <td><code>golang.org/x/net</code></td>
+        <td>CVE-2026-27136</td>
+        <td>HIGH</td>
+        <td>v0.49.0</td>
+        <td>0.55.0</td>
+    </tr>
+    <tr>
+        <td><code>golang.org/x/net</code></td>
+        <td>CVE-2026-33814</td>
+        <td>HIGH</td>
+        <td>v0.49.0</td>
+        <td>0.53.0</td>
+    </tr>
+    <tr>
+        <td><code>golang.org/x/net</code></td>
+        <td>CVE-2026-39821</td>
+        <td>HIGH</td>
+        <td>v0.49.0</td>
+        <td>0.55.0</td>
+    </tr>
+    <tr>
+        <td><code>golang.org/x/net</code></td>
+        <td>CVE-2026-46600</td>
+        <td>HIGH</td>
+        <td>v0.49.0</td>
+        <td>0.56.0</td>
+    </tr>
+    <tr>
+        <td><code>golang.org/x/text</code></td>
+        <td>CVE-2026-56852</td>
+        <td>HIGH</td>
+        <td>v0.33.0</td>
+        <td>0.39.0</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-33818</td>
+        <td>HIGH</td>
+        <td>v1.26.5</td>
+        <td>1.25.13, 1.26.6, 1.27.0-rc.3</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-39821</td>
+        <td>HIGH</td>
+        <td>v1.26.5</td>
+        <td>1.25.13, 1.26.6, 1.27.0-rc.3</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-46600</td>
+        <td>HIGH</td>
+        <td>v1.26.5</td>
+        <td>1.26.6, 1.27.0-rc.3</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-56853</td>
+        <td>HIGH</td>
+        <td>v1.26.5</td>
+        <td>1.25.13, 1.26.6, 1.27.0-rc.3</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-56858</td>
+        <td>HIGH</td>
+        <td>v1.26.5</td>
+        <td>1.25.13, 1.26.6, 1.27.0-rc.3</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-56859</td>
+        <td>HIGH</td>
+        <td>v1.26.5</td>
+        <td>1.25.13, 1.26.6, 1.27.0-rc.3</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-56860</td>
+        <td>HIGH</td>
+        <td>v1.26.5</td>
+        <td>1.25.13, 1.26.6, 1.27.0-rc.3</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-56862</td>
+        <td>HIGH</td>
+        <td>v1.26.5</td>
+        <td>1.25.13, 1.26.6, 1.27.0-rc.3</td>
+    </tr>
+</table>
+<h4>No Misconfigurations found</h4>
+<h2>Image <code>docker.io/kubeshop/testkube-minio:2025.10</code></h2>
 
 <h3>Target <code>docker.io/kubeshop/testkube-minio:2025.10 (debian 12.14)</code></h3>
-<h4>Vulnerabilities (75)</h4>
+<h4>Vulnerabilities (78)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -2333,6 +2509,13 @@
     </tr>
     <tr>
         <td><code>libpcre2-8-0</code></td>
+        <td>CVE-2026-103111</td>
+        <td>HIGH</td>
+        <td>10.42-1</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>libpcre2-8-0</code></td>
         <td>CVE-2026-86145</td>
         <td>HIGH</td>
         <td>10.42-1</td>
@@ -2400,6 +2583,13 @@
         <td>HIGH</td>
         <td>1.10.0-3+b1</td>
         <td>1.10.0-3+deb12u1</td>
+    </tr>
+    <tr>
+        <td><code>libssl3</code></td>
+        <td>CVE-2026-84782</td>
+        <td>HIGH</td>
+        <td>3.0.20-1~deb12u2</td>
+        <td></td>
     </tr>
     <tr>
         <td><code>libsystemd0</code></td>
@@ -2504,6 +2694,13 @@
         <td>CVE-2025-69720</td>
         <td>HIGH</td>
         <td>6.4-4</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>openssl</code></td>
+        <td>CVE-2026-84782</td>
+        <td>HIGH</td>
+        <td>3.0.20-1~deb12u2</td>
         <td></td>
     </tr>
     <tr>
@@ -3594,101 +3791,15 @@
     </tr>
 </table>
 <h4>No Misconfigurations found</h4>
+<h2>Image <code>nats:2.15.0-alpine</code></h2>
 
-<h3>Target <code>nats:2.14.5-alpine (alpine 3.22.5)</code></h3>
-<h4>Vulnerabilities (2)</h4>
-<table>
-    <tr>
-        <th>Package</th>
-        <th>ID</th>
-        <th>Severity</th>
-        <th>Installed Version</th>
-        <th>Fixed Version</th>
-    </tr>
-    <tr>
-        <td><code>libcrypto3</code></td>
-        <td>CVE-2026-14456</td>
-        <td>HIGH</td>
-        <td>3.5.7-r0</td>
-        <td>3.5.8-r0</td>
-    </tr>
-    <tr>
-        <td><code>libssl3</code></td>
-        <td>CVE-2026-14456</td>
-        <td>HIGH</td>
-        <td>3.5.7-r0</td>
-        <td>3.5.8-r0</td>
-    </tr>
-</table>
+<h3>Target <code>nats:2.15.0-alpine (alpine 3.22.6)</code></h3>
+<h4>No Vulnerabilities found</h4>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>usr/local/bin/nats-server</code></h3>
-<h4>Vulnerabilities (8)</h4>
-<table>
-    <tr>
-        <th>Package</th>
-        <th>ID</th>
-        <th>Severity</th>
-        <th>Installed Version</th>
-        <th>Fixed Version</th>
-    </tr>
-    <tr>
-        <td><code>stdlib</code></td>
-        <td>CVE-2026-33818</td>
-        <td>HIGH</td>
-        <td>v1.26.5</td>
-        <td>1.25.13, 1.26.6, 1.27.0-rc.3</td>
-    </tr>
-    <tr>
-        <td><code>stdlib</code></td>
-        <td>CVE-2026-39821</td>
-        <td>HIGH</td>
-        <td>v1.26.5</td>
-        <td>1.25.13, 1.26.6, 1.27.0-rc.3</td>
-    </tr>
-    <tr>
-        <td><code>stdlib</code></td>
-        <td>CVE-2026-46600</td>
-        <td>HIGH</td>
-        <td>v1.26.5</td>
-        <td>1.26.6, 1.27.0-rc.3</td>
-    </tr>
-    <tr>
-        <td><code>stdlib</code></td>
-        <td>CVE-2026-56853</td>
-        <td>HIGH</td>
-        <td>v1.26.5</td>
-        <td>1.25.13, 1.26.6, 1.27.0-rc.3</td>
-    </tr>
-    <tr>
-        <td><code>stdlib</code></td>
-        <td>CVE-2026-56858</td>
-        <td>HIGH</td>
-        <td>v1.26.5</td>
-        <td>1.25.13, 1.26.6, 1.27.0-rc.3</td>
-    </tr>
-    <tr>
-        <td><code>stdlib</code></td>
-        <td>CVE-2026-56859</td>
-        <td>HIGH</td>
-        <td>v1.26.5</td>
-        <td>1.25.13, 1.26.6, 1.27.0-rc.3</td>
-    </tr>
-    <tr>
-        <td><code>stdlib</code></td>
-        <td>CVE-2026-56860</td>
-        <td>HIGH</td>
-        <td>v1.26.5</td>
-        <td>1.25.13, 1.26.6, 1.27.0-rc.3</td>
-    </tr>
-    <tr>
-        <td><code>stdlib</code></td>
-        <td>CVE-2026-56862</td>
-        <td>HIGH</td>
-        <td>v1.26.5</td>
-        <td>1.25.13, 1.26.6, 1.27.0-rc.3</td>
-    </tr>
-</table>
+<h4>No Vulnerabilities found</h4>
 <h4>No Misconfigurations found</h4>
+<h2>Image <code>natsio/nats-server-config-reloader:0.24.0</code></h2>
 
 <h3>Target <code>natsio/nats-server-config-reloader:0.24.0 (alpine 3.24.1)</code></h3>
 <h4>Vulnerabilities (2)</h4>
