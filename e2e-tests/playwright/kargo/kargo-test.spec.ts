@@ -7,8 +7,7 @@ const kargoAuthFile = path.join(authDir, 'kargo.json');
 const BASE_DOMAIN = process.env.E2E_BASE_DOMAIN ?? '127-0-0-1.nip.io';
 test.use({ storageState: kargoAuthFile });
 
-// since the vault root token won't get stored in the browser we will not be logged in in this test
-test('Kargo Version Check', async ({ page }) => {
+test('Kargo Check', async ({ page }) => {
   await page.goto(`https://kargo.${BASE_DOMAIN}/`);
-  await expect(page.getByRole('complementary')).toContainText(process.env.E2E_KARGO_VERSION!);
+  await expect(page.getByRole('complementary')).toContainText('Logout');
 });
