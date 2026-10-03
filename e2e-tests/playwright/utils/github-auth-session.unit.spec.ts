@@ -21,7 +21,10 @@ test.describe('GitHub auth state classification', () => {
 
   test('classifies Backstage protected catalog, sign-in, and auth redirect pages', () => {
     expect(
-      classifyBackstageAuthState('https://backstage.example.com/catalog', 'kubriX', false, false, true),
+      classifyBackstageAuthState('https://backstage.example.com/catalog', 'kubriX', false, false),
+    ).toBe('unknown');
+    expect(
+      classifyBackstageAuthState('https://backstage.example.com/catalog', 'kubriX', false, true),
     ).toBe('catalog');
     expect(
       classifyBackstageAuthState('https://backstage.example.com/catalog', 'kubriX', true, true),

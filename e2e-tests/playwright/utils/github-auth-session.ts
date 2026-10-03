@@ -86,14 +86,13 @@ export function classifyBackstageAuthState(
   title: string,
   githubSignInVisible: boolean,
   catalogVisible: boolean,
-  protectedCatalogPage = false,
 ): BackstageAuthState {
   const lowerUrl = url.toLowerCase();
   const lowerTitle = title.toLowerCase();
 
   if (githubSignInVisible) return 'sign-in';
   if (lowerUrl.includes('/api/auth/') || lowerUrl.includes('/auth/github')) return 'auth-redirect';
-  if ((catalogVisible || protectedCatalogPage) && lowerUrl.includes('/catalog')) return 'catalog';
+  if (catalogVisible && lowerUrl.includes('/catalog')) return 'catalog';
   if (lowerTitle.includes('sign in')) return 'sign-in';
 
   return 'unknown';
@@ -226,19 +225,18 @@ export async function validateBackstageSession(page: Page): Promise<{ valid: boo
 
   const githubSignIn = page.getByText('Sign in using GitHub', { exact: true });
   const catalogSearch = page.getByRole('textbox', { name: /search/i });
-  const catalogHeading = page.getByRole('heading', { name: /catalog/i }).first();
-  const githubSignInVisible = await githubSignIn.isVisible({ timeout: 3_000 }).catch(() => false);
-  const catalogVisible =
-    (await catalogSearch.isVisible({ timeout: 15_000 }).catch(() => false)) ||
-    (await catalogHeading.isVisible({ timeout: 2_000 }).catch(() => false));
-  const protectedCatalogPage =
-    page.url().startsWith(`https://backstage.${BASE_DOMAIN}/catalog`);
+  // The URL and page title can look valid while Backstage still renders sign-in.
+  // Wait for the catalog control that the E2E tests actually need.
+  const catalogVisible = await catalogSearch
+    .waitFor({ state: 'visible', timeout: 15_000 })
+    .then(() => true)
+    .catch(() => false);
+  const githubSignInVisible = await githubSignIn.isVisible().catch(() => false);
   const state = classifyBackstageAuthState(
     page.url(),
     await page.title(),
     githubSignInVisible,
     catalogVisible,
-    !githubSignInVisible && protectedCatalogPage,
   );
 
   return { valid: state === 'catalog', state };
