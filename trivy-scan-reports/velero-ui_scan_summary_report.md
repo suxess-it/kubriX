@@ -1920,7 +1920,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>Node.js</code></h3>
-<h4>Vulnerabilities (55)</h4>
+<h4>Vulnerabilities (56)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -2047,6 +2047,13 @@
         <td>HIGH</td>
         <td>10.3.10</td>
         <td>11.1.0, 10.5.0</td>
+    </tr>
+    <tr>
+        <td><code>http-cache-semantics</code></td>
+        <td>CVE-2026-93748</td>
+        <td>HIGH</td>
+        <td>4.1.1</td>
+        <td></td>
     </tr>
     <tr>
         <td><code>ip</code></td>

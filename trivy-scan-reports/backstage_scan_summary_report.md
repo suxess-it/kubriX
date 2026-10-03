@@ -160,7 +160,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>Node.js</code></h3>
-<h4>Vulnerabilities (228)</h4>
+<h4>Vulnerabilities (231)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -168,6 +168,13 @@
         <th>Severity</th>
         <th>Installed Version</th>
         <th>Fixed Version</th>
+    </tr>
+    <tr>
+        <td><code>@fastify/busboy</code></td>
+        <td>CVE-2026-19481</td>
+        <td>HIGH</td>
+        <td>2.1.1</td>
+        <td>3.2.1</td>
     </tr>
     <tr>
         <td><code>@grpc/grpc-js</code></td>
@@ -527,6 +534,13 @@
         <td>1.1.18, 2.1.4, 3.0.6, 5.0.9</td>
     </tr>
     <tr>
+        <td><code>braces</code></td>
+        <td>CVE-2026-93687</td>
+        <td>HIGH</td>
+        <td>3.0.3</td>
+        <td></td>
+    </tr>
+    <tr>
         <td><code>fast-uri</code></td>
         <td>CVE-2026-13676</td>
         <td>HIGH</td>
@@ -609,6 +623,13 @@
         <td>HIGH</td>
         <td>4.12.12</td>
         <td>4.12.25</td>
+    </tr>
+    <tr>
+        <td><code>http-cache-semantics</code></td>
+        <td>CVE-2026-93748</td>
+        <td>HIGH</td>
+        <td>4.2.0</td>
+        <td></td>
     </tr>
     <tr>
         <td><code>http-proxy-middleware</code></td>
