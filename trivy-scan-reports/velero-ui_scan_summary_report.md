@@ -498,7 +498,7 @@
         <td>CVE-2026-103111</td>
         <td>HIGH</td>
         <td>10.42-1</td>
-        <td></td>
+        <td>10.42-1+deb12u2</td>
     </tr>
     <tr>
         <td><code>libpcre2-8-0</code></td>
@@ -3003,7 +3003,7 @@
         <td>CVE-2026-103111</td>
         <td>HIGH</td>
         <td>10.42-1</td>
-        <td></td>
+        <td>10.42-1+deb12u2</td>
     </tr>
     <tr>
         <td><code>libpcre2-8-0</code></td>
