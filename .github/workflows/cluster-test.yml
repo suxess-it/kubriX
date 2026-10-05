@@ -165,17 +165,10 @@ jobs:
         run: |
           set -euo pipefail
 
-          global='${{ steps.build-matrix-global.outputs.targets }}'
-          app='${{ steps.build-matrix-app.outputs.targets }}'
+          # Temporary diagnosis draft: rerun only this fresh-cluster target.
+          echo 'targets=["kind-security"]' >> "$GITHUB_OUTPUT"
+          exit 0
 
-          # prefer global if it's non-empty JSON array and not '[]'
-          if [[ -n "$global" && "$global" != "null" ]]; then
-            printf "targets=%s\n" "$global"
-            printf "targets=%s\n" "$global" >> "$GITHUB_OUTPUT"
-          else
-            printf "targets=%s\n" "$app"
-            printf "targets=%s\n" "$app" >> "$GITHUB_OUTPUT"
-          fi
 
   create-kubrix-installer-image:
     # we check in each step with 
@@ -308,6 +301,14 @@ jobs:
             kind load docker-image "$img" --name kubrix-cluster
           done
     
+      - name: Start OpenBao bootstrap diagnosis
+        shell: bash
+        run: |
+          mkdir -p openbao-diagnosis
+          printf '%s\n' "run=$GITHUB_RUN_ID attempt=$GITHUB_RUN_ATTEMPT sha=$GITHUB_SHA" > openbao-diagnosis/run.txt
+          RUNNER_TRACKING_ID="" setsid bash .github/diagnose-openbao.sh > openbao-diagnosis/collector.log 2>&1 &
+          echo "$!" > openbao-diagnosis/collector.pid
+
       - name: install k8sgpt
         shell: bash
         run: |
@@ -664,6 +665,32 @@ jobs:
    #     with:
    #       mode: unlock
    #       key: default
+
+      - name: Stop and package OpenBao bootstrap diagnosis
+        if: always()
+        shell: bash
+        env:
+          E2E_ARTIFACT_PASSWORD: ${{ secrets.E2E_ARTIFACT_PASSWORD }}
+        run: |
+          if [[ -f openbao-diagnosis/collector.pid ]]; then
+            kill -TERM -- "-$(cat openbao-diagnosis/collector.pid)" 2>/dev/null || true
+            sleep 1
+            kill -KILL -- "-$(cat openbao-diagnosis/collector.pid)" 2>/dev/null || true
+          fi
+          [[ -d openbao-diagnosis ]] || exit 0
+          # Provider debug and audit logs can contain sensitive data.
+          # Never upload plaintext; use the existing protected-artifact password.
+          : "${E2E_ARTIFACT_PASSWORD:?E2E_ARTIFACT_PASSWORD must be configured}"
+          zip -qrP "$E2E_ARTIFACT_PASSWORD" openbao-diagnosis.zip openbao-diagnosis
+
+      - name: Upload OpenBao bootstrap diagnosis
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: openbao-diagnosis-${{ matrix.target-type }}-${{ github.run_id }}-${{ github.run_attempt }}
+          path: openbao-diagnosis.zip
+          retention-days: 7
+          if-no-files-found: warn
 
       - name: Publish Playwright test summary
         if: always()
