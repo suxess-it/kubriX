@@ -264,18 +264,7 @@ jobs:
           fetch-depth: 0  # needed so the action can diff properly
           fetch-tags: true
 
-      - name: Generate E2E test identifier
-        shell: bash
-        env:
-          JOB_INDEX: ${{ strategy.job-index }}
-          RUN_ATTEMPT: ${{ github.run_attempt }}
-        run: |
-          uid=$(printf '%s' "${GITHUB_RUN_ID}-${JOB_INDEX}-${RUN_ATTEMPT}" \
-            | sha256sum | cut -c1-10)
-          echo "E2E_TEST_PR_NUMBER=${uid}" >> "$GITHUB_ENV"
-          echo "E2E test identifier: ${uid}"
-
-      # free disk space, otherwise we often end with "no space left on device" during testkube tests
+      # Free disk space for the bootstrap cluster.
       - name: Free Disk Space (Ubuntu)
         uses: jlumbroso/free-disk-space@main
       
@@ -285,22 +274,6 @@ jobs:
           cluster_name: kubrix-cluster
           config: ${{ github.workspace }}/.github/kind-config.yaml
 
-      - name: Pre-load podtato-head images into kind
-        shell: bash
-        run: |
-          IMAGES=(
-            ghcr.io/podtato-head/entry:latest
-            ghcr.io/podtato-head/hat:latest
-            ghcr.io/podtato-head/left-leg:latest
-            ghcr.io/podtato-head/left-arm:latest
-            ghcr.io/podtato-head/right-leg:latest
-            ghcr.io/podtato-head/right-arm:latest
-          )
-          for img in "${IMAGES[@]}"; do
-            docker pull "$img"
-            kind load docker-image "$img" --name kubrix-cluster
-          done
-    
       - name: Start OpenBao bootstrap diagnosis
         shell: bash
         run: |
@@ -372,6 +345,32 @@ jobs:
             --from-literal KUBRIX_INSTALL_DEBUG=${KUBRIX_INSTALL_DEBUG}
           bash .github/install-kubriX-with-job.sh
 
+      - name: Stop and package OpenBao bootstrap diagnosis
+        if: always()
+        shell: bash
+        env:
+          E2E_ARTIFACT_PASSWORD: ${{ secrets.E2E_ARTIFACT_PASSWORD }}
+        run: |
+          if [[ -f openbao-diagnosis/collector.pid ]]; then
+            kill -TERM -- "-$(cat openbao-diagnosis/collector.pid)" 2>/dev/null || true
+            sleep 1
+            kill -KILL -- "-$(cat openbao-diagnosis/collector.pid)" 2>/dev/null || true
+          fi
+          [[ -d openbao-diagnosis ]] || exit 0
+          # Provider debug and audit logs can contain sensitive data.
+          # Never upload plaintext; use the existing protected-artifact password.
+          : "${E2E_ARTIFACT_PASSWORD:?E2E_ARTIFACT_PASSWORD must be configured}"
+          zip -qrP "$E2E_ARTIFACT_PASSWORD" openbao-diagnosis.zip openbao-diagnosis
+
+      - name: Upload OpenBao bootstrap diagnosis
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: openbao-diagnosis-${{ matrix.target-type }}-${{ github.run_id }}-${{ github.run_attempt }}
+          path: openbao-diagnosis.zip
+          retention-days: 7
+          if-no-files-found: warn
+
       - name: argocd show diff
         continue-on-error: true
         if: always()
@@ -403,320 +402,6 @@ jobs:
         run: |
           k8sgpt analyze
 
-      - name: Update Openbao with GitHub OAuth credentials for Testkube tests
-        if: ${{ matrix.target-type  == 'kind-portal' || matrix.target-type  == 'kind-hub-prime' }}
-        env:
-          GITHUB_CLIENTID: ${{ secrets.E2E_TEST_GITHUB_CLIENTID }}
-          GITHUB_CLIENTSECRET: ${{ secrets.E2E_TEST_GITHUB_CLIENTSECRET }}
-        run: |
-          export VAULT_HOSTNAME=$(kubectl get ingress -o jsonpath='{.items[*].spec.rules[*].host}' -n openbao)
-          export VAULT_TOKEN=$(kubectl get secret -n openbao openbao-init -o=jsonpath='{.data.root_token}'  | base64 -d)
-          curl -k --header "X-Vault-Token:$VAULT_TOKEN" --header "X-Vault-Namespace: kubrix" --request PATCH --header "Content-Type: application/merge-patch+json" --data "{\"data\": {\"GITHUB_CLIENTSECRET\": \"${GITHUB_CLIENTSECRET}\", \"GITHUB_CLIENTID\": \"${GITHUB_CLIENTID}\"}}" https://${VAULT_HOSTNAME}/v1/kubrix-kv/data/portal/backstage/base
-          kubectl delete secret -n backstage sx-cnp-secret
-          kubectl delete externalsecret -n backstage sx-cnp-secret
-          kubectl rollout restart deployment -n backstage sx-backstage
-          kubectl rollout status deployment -n backstage sx-backstage
-
-      - name: Check if kubrixBot user entity is loaded in backstage
-        if: ${{ matrix.target-type  == 'kind-portal' || matrix.target-type  == 'kind-hub-prime' }}
-        env:
-          BASE_URL: "https://backstage.127-0-0-1.nip.io"
-          ENTITY_PATH: "/api/catalog/entities/by-name/User/default/kubrixBot"
-        run: |
-          MAX_SECONDS=300
-          SLEEP_SECONDS=10
-          ELAPSED=0
-
-          echo "Waiting for User entity User:default/kubrixBot (timeout: 5 minutes)..."
-
-          while [ "$ELAPSED" -lt "$MAX_SECONDS" ]; do
-            # Re-read token each iteration in case ESO hasn't resolved the secret yet after the previous step
-            EXTERNAL_ACCESS_TOKEN=$(kubectl get secret -n backstage sx-cnp-secret -o jsonpath='{.data.EXTERNAL_ACCESS_TOKEN}' 2>/dev/null | base64 -d)
-
-            if [ -z "$EXTERNAL_ACCESS_TOKEN" ]; then
-              echo "⏳ Token not available yet... (${ELAPSED}s elapsed)"
-              sleep "$SLEEP_SECONDS"
-              ELAPSED=$((ELAPSED + SLEEP_SECONDS))
-              continue
-            fi
-
-            STATUS=$(curl -k -s -o /dev/null -w "%{http_code}" -H "Authorization: Bearer $EXTERNAL_ACCESS_TOKEN" "$BASE_URL$ENTITY_PATH")
-
-            case "$STATUS" in
-              200)
-                echo "✅ User entity is available!"
-                exit 0
-                ;;
-              404)
-                echo "⏳ Not found yet... (${ELAPSED}s elapsed)"
-                ;;
-              401|403)
-                echo "❌ Auth error ($STATUS). Token rejected or insufficient RBAC."
-                exit 1
-                ;;
-              *)
-                echo "⚠️ Unexpected HTTP status: $STATUS"
-                ;;
-            esac
-
-            sleep "$SLEEP_SECONDS"
-            ELAPSED=$((ELAPSED + SLEEP_SECONDS))
-          done
-
-          echo "❌ Timed out after 5 minutes waiting for User entity."
-          exit 1
-
-      - name: Delete app-of-apps and kubrixBot app repo, if exists
-        if: ${{ matrix.target-type  == 'kind-portal' || matrix.target-type  == 'kind-hub-prime' }}
-        env:
-          KUBRIX_DELETE_E2E_TESTS_REPO_TOKEN: ${{ secrets.KUBRIX_DELETE_E2E_TESTS_REPO_TOKEN }}
-          GITHUB_ORG: "kubriX-demo"
-          GITHUB_API: "https://api.github.com"
-        run: |
-          set -euo pipefail
-          delete_repo_if_exists() {
-            local repo_name="${1:-}"
-          
-            if [[ -z "$repo_name" ]]; then
-              echo "Repo name is empty, skipping."
-              return 0
-            fi
-          
-            local repo_full_name="${GITHUB_ORG}/${repo_name}"
-          
-            echo "Checking ${repo_full_name}..."
-          
-            local status
-            status="$(
-              curl -sS -o /dev/null -w "%{http_code}" \
-                -H "Accept: application/vnd.github+json" \
-                -H "Authorization: Bearer ${KUBRIX_DELETE_E2E_TESTS_REPO_TOKEN}" \
-                -H "X-GitHub-Api-Version: 2022-11-28" \
-                "${GITHUB_API}/repos/${repo_full_name}"
-            )"
-          
-            if [[ "$status" == "404" ]]; then
-              echo "Not found: ${repo_full_name}"
-              return 0
-            fi
-          
-            if [[ "$status" != "200" ]]; then
-              echo "Unexpected status while checking ${repo_full_name}: ${status}" >&2
-              return 1
-            fi
-          
-            local delete_status
-            delete_status="$(
-              curl -sS -o /dev/null -w "%{http_code}" -X DELETE \
-                -H "Accept: application/vnd.github+json" \
-                -H "Authorization: Bearer ${KUBRIX_DELETE_E2E_TESTS_REPO_TOKEN}" \
-                -H "X-GitHub-Api-Version: 2022-11-28" \
-                "${GITHUB_API}/repos/${repo_full_name}"
-            )"
-          
-            if [[ "$delete_status" == "204" ]]; then
-              echo "Deleted ${repo_full_name}"
-            else
-              echo "Failed to delete ${repo_full_name}, status: ${delete_status}" >&2
-              return 1
-            fi
-          }
-
-          app_of_apps_repo="kubrix-a${E2E_TEST_PR_NUMBER}-kubrixbot-app"
-          gitops_repo="kubrix-a${E2E_TEST_PR_NUMBER}-apps"
-          vcluster_repo="kubrix-a${E2E_TEST_PR_NUMBER}-kubrixbot-vcluster"
-  
-          delete_repo_if_exists "${app_of_apps_repo:-}"
-          delete_repo_if_exists "${gitops_repo:-}"
-          delete_repo_if_exists "${vcluster_repo:-}"
-
-      - name: add kubrixBot repo for team onboarding fork
-        env:
-          KUBRIXBOT_FORK_READ_TOKEN: ${{ secrets.KUBRIXBOT_FORK_READ_TOKEN }}
-          KUBRIX_FORK_REPO_NAME: "kubrix-cluster-test-${{ github.run_id }}-${{ job.check_run_id }}"
-        run: |
-          kubectl -n argocd apply -f - <<EOF
-          apiVersion: v1
-          kind: Secret
-          metadata:
-            name: kubrixbot-team-onboarding-fork-repo
-            labels:
-              argocd.argoproj.io/secret-type: repository
-          stringData:
-            type: git
-            url: https://github.com/kubrixBot/${KUBRIX_FORK_REPO_NAME}.git
-            username: kubrixBot
-            password: ${KUBRIXBOT_FORK_READ_TOKEN}
-          EOF
-
-      # run testkube tests
-      - uses: kubeshop/setup-testkube@v1
-        with:
-          version: 2.6.3
-
-     # - uses: suzuki-shunsuke/lock-action@v0.2.0
-     #   with:
-     #     mode: lock
-     #     key: default
-          # Try to acquire a lock every 10 seconds until acquiring a lock or 60 seconds pass.
-     #     max_wait_seconds: "1800"
-     #     wait_interval_seconds: "10"
-     #     post_unlock: "true"
-    
-      - name: testkube tests
-        env:
-          KUBRIX_TARGET_TYPE: ${{ matrix.target-type }}
-          E2E_TEST_GH_USERNAME: ${{ secrets.E2E_TEST_GH_USERNAME }}
-          E2E_TEST_GH_PASSWORD: ${{ secrets.E2E_TEST_GH_PASSWORD }}
-          E2E_TEST_GITHUB_OTP: ${{ secrets.E2E_TEST_GITHUB_OTP }}
-          E2E_KUBRIX_ARGOCD_APPSET_TOKEN: ${{ secrets.E2E_KUBRIX_ARGOCD_APPSET_TOKEN }}
-          E2E_KUBRIX_KARGO_GIT_PASSWORD: ${{ secrets.E2E_KUBRIX_KARGO_GIT_PASSWORD }}
-          E2E_TEAM_ONBOARDING_TARGET_BRANCH: "main"
-          E2E_MERGE_PR: "true"
-          E2E_KUBRIX_ORG: kubriX-demo
-          E2E_KUBRIX_REPO: kubrix-cluster-test-${{ github.run_id }}-${{ job.check_run_id }}
-        run: |
-          E2E_KEYCLOAK_DEMOADMIN_PASSWORD=$( kubectl get secret -n keycloak cp-keycloak-users-secret -o=jsonpath='{.data.demoadmin}'  | base64 -d )
-          kubectl get secret -n keycloak cp-keycloak-users-secret -o yaml
-          data=$(kubectl get secret -n keycloak cp-keycloak-users-secret -o jsonpath='{.data}' 2>/dev/null)
-
-          if [[ -z "$data" || "$data" == "{}" ]]; then
-            echo "keycloak secret empty!!!"
-            kubectl get pods -o name -n external-secrets | xargs -I {} kubectl logs -n external-secrets {} --all-containers=true
-            echo "========"
-            kubectl get pods -o name -n openbao | xargs -I {} kubectl logs -n openbao {} --all-containers=true
-            exit 1 # empty/missing
-          fi
-
-          echo "${E2E_KEYCLOAK_DEMOADMIN_PASSWORD}"
-          E2E_KEYCLOAK_DEMOVIEWER_PASSWORD=$( kubectl get secret -n keycloak cp-keycloak-users-secret -o=jsonpath='{.data.demoviewer}'  | base64 -d )
-          echo "${E2E_KEYCLOAK_DEMOVIEWER_PASSWORD}"
-          E2E_KEYCLOAK_DEMOEDITOR_PASSWORD=$( kubectl get secret -n keycloak cp-keycloak-users-secret -o=jsonpath='{.data.demoeditor}'  | base64 -d )
-          echo "${E2E_KEYCLOAK_DEMOEDITOR_PASSWORD}"
-          E2E_ARGOCD_ADMIN_PASSWORD=$( kubectl get secret -n argocd argocd-initial-admin-secret -o=jsonpath={'.data.password'} | base64 -d )
-          E2E_ARGOCD_VERSION="v3.5"
-          E2E_GRAFANA_ADMIN_PASSWORD=$( kubectl get secret -n grafana grafana-admin-secret -o=jsonpath='{.data.passwordKey}' | base64 -d )
-          E2E_KEYCLOAK_ADMIN_PASSWORD=$( kubectl get secret -n keycloak keycloak-admin -o=jsonpath='{.data.admin-password}' | base64 -d )
-          E2E_VAULT_ROOT_TOKEN=$( kubectl get secret -n openbao openbao-init -o jsonpath='{.data.root_token}' | base64 -d )
-          E2E_KARGO_ADMIN_PASSWORD=$( kubectl get secret -n kargo kargo-admin-secret  -o=jsonpath='{.data.ADMIN_ACCOUNT_PASSWORD}'  | base64 -d )
-          E2E_KARGO_VERSION="v1.11"
-          E2E_MIMIR_USERNAME=$( kubectl get secret -n grafana mimir-read-creds -o jsonpath='{.data.username}' | base64 -d )
-          E2E_MIMIR_PASSWORD=$( kubectl get secret -n grafana mimir-read-creds -o jsonpath='{.data.password}' | base64 -d )
-          E2E_LOKI_USERNAME=$( kubectl get secret -n grafana loki-read-creds -o jsonpath='{.data.username}' | base64 -d )
-          E2E_LOKI_PASSWORD=$( kubectl get secret -n grafana loki-read-creds -o jsonpath='{.data.password}' | base64 -d )
-          # only prime: secrets only exist in kind-hub-prime clusters
-          PRIME_VARS=()
-          if [[ "${KUBRIX_TARGET_TYPE}" == "kind-hub-prime" ]]; then
-            E2E_PGADMIN_ADMIN_PASSWORD=$(kubectl get secret -n cnpg pgadmin-secret -o=jsonpath='{.data.password}'  | base64 -d)
-            E2E_PGADMIN_BACKSTAGE_PASSWORD=$(kubectl get secrets -n backstage cnpg-backstage-secret  -o=jsonpath='{.data.password}' | base64 -d)
-            E2E_PGADMIN_GRAFANA_PASSWORD=$(kubectl get secrets -n grafana cnpg-grafana-secret  -o=jsonpath='{.data.password}' | base64 -d)
-            E2E_PGADMIN_KEYCLOAK_PASSWORD=$(kubectl get secrets -n keycloak cnpg-keycloak-secret  -o=jsonpath='{.data.password}' | base64 -d)
-            E2E_MINO_ADMIN_PASSWORD=$(kubectl get secret -n minio minio-admin-secret -o=jsonpath='{.data.rootPassword}' | base64 -d)
-            E2E_KEYCLOAK_KUBRIXVIEWER_PASSWORD=$(kubectl get secret -n keycloak cp-keycloak-users-secret -o=jsonpath='{.data.kubrixviewer}' | base64 -d)
-            E2E_KEYCLOAK_KUBRIXEDITOR_PASSWORD=$(kubectl get secret -n keycloak cp-keycloak-users-secret -o=jsonpath='{.data.kubrixeditor}' | base64 -d)
-            E2E_KEYCLOAK_KUBRIXADMIN_PASSWORD=$(kubectl get secret -n keycloak cp-keycloak-users-secret -o=jsonpath='{.data.kubrixadmin}' | base64 -d)
-            E2E_KEYCLOAK_KUBRIXCONTROLVIEWER_PASSWORD=$(kubectl get secret -n keycloak cp-keycloak-users-secret -o=jsonpath='{.data.kubrixcontrolviewer}' | base64 -d)
-            E2E_KEYCLOAK_KUBRIXCONTROLEDITOR_PASSWORD=$(kubectl get secret -n keycloak cp-keycloak-users-secret -o=jsonpath='{.data.kubrixcontroleditor}' | base64 -d)
-            E2E_KEYCLOAK_KUBRIXCONTROLADMIN_PASSWORD=$(kubectl get secret -n keycloak cp-keycloak-users-secret -o=jsonpath='{.data.kubrixcontroladmin}' | base64 -d)
-            PRIME_VARS=(
-              --variable E2E_PGADMIN_ADMIN_PASSWORD=${E2E_PGADMIN_ADMIN_PASSWORD}
-              --variable E2E_PGADMIN_BACKSTAGE_PASSWORD=${E2E_PGADMIN_BACKSTAGE_PASSWORD}
-              --variable E2E_PGADMIN_GRAFANA_PASSWORD=${E2E_PGADMIN_GRAFANA_PASSWORD}
-              --variable E2E_PGADMIN_KEYCLOAK_PASSWORD=${E2E_PGADMIN_KEYCLOAK_PASSWORD}
-              --variable E2E_MERGE_PR=${E2E_MERGE_PR}
-              --variable E2E_KEYCLOAK_KUBRIXVIEWER_PASSWORD=${E2E_KEYCLOAK_KUBRIXVIEWER_PASSWORD}
-              --variable E2E_KEYCLOAK_KUBRIXEDITOR_PASSWORD=${E2E_KEYCLOAK_KUBRIXEDITOR_PASSWORD}
-              --variable E2E_KEYCLOAK_KUBRIXADMIN_PASSWORD=${E2E_KEYCLOAK_KUBRIXADMIN_PASSWORD}
-              --variable E2E_KEYCLOAK_KUBRIXCONTROLVIEWER_PASSWORD=${E2E_KEYCLOAK_KUBRIXCONTROLVIEWER_PASSWORD}
-              --variable E2E_KEYCLOAK_KUBRIXCONTROLEDITOR_PASSWORD=${E2E_KEYCLOAK_KUBRIXCONTROLEDITOR_PASSWORD}
-              --variable E2E_KEYCLOAK_KUBRIXCONTROLADMIN_PASSWORD=${E2E_KEYCLOAK_KUBRIXCONTROLADMIN_PASSWORD}
-            )
-          fi
-          testkube run testworkflow -l type=${KUBRIX_TARGET_TYPE} \
-            --variable E2E_TEST_GH_USERNAME=${E2E_TEST_GH_USERNAME} \
-            --variable E2E_TEST_GH_PASSWORD=${E2E_TEST_GH_PASSWORD} \
-            --variable E2E_TEST_GITHUB_OTP=${E2E_TEST_GITHUB_OTP} \
-            --variable E2E_KEYCLOAK_DEMOADMIN_PASSWORD=${E2E_KEYCLOAK_DEMOADMIN_PASSWORD} \
-            --variable E2E_KEYCLOAK_DEMOEDITOR_PASSWORD=${E2E_KEYCLOAK_DEMOEDITOR_PASSWORD} \
-            --variable E2E_KEYCLOAK_DEMOVIEWER_PASSWORD=${E2E_KEYCLOAK_DEMOVIEWER_PASSWORD} \
-            --variable E2E_ARGOCD_ADMIN_PASSWORD=${E2E_ARGOCD_ADMIN_PASSWORD} \
-            --variable E2E_ARGOCD_VERSION=${E2E_ARGOCD_VERSION} \
-            --variable E2E_GRAFANA_ADMIN_PASSWORD=${E2E_GRAFANA_ADMIN_PASSWORD} \
-            --variable E2E_KEYCLOAK_ADMIN_PASSWORD=${E2E_KEYCLOAK_ADMIN_PASSWORD} \
-            --variable E2E_VAULT_ROOT_TOKEN=${E2E_VAULT_ROOT_TOKEN} \
-            --variable E2E_KARGO_ADMIN_PASSWORD=${E2E_KARGO_ADMIN_PASSWORD} \
-            --variable E2E_KARGO_VERSION=${E2E_KARGO_VERSION} \
-            --variable E2E_KUBRIX_ARGOCD_APPSET_TOKEN=${E2E_KUBRIX_ARGOCD_APPSET_TOKEN} \
-            --variable E2E_KUBRIX_KARGO_GIT_PASSWORD=${E2E_KUBRIX_KARGO_GIT_PASSWORD} \
-            --variable E2E_TEST_PR_NUMBER=${E2E_TEST_PR_NUMBER} \
-            --variable E2E_MIMIR_USERNAME=${E2E_MIMIR_USERNAME} \
-            --variable E2E_MIMIR_PASSWORD=${E2E_MIMIR_PASSWORD} \
-            --variable E2E_LOKI_USERNAME=${E2E_LOKI_USERNAME} \
-            --variable E2E_LOKI_PASSWORD=${E2E_LOKI_PASSWORD} \
-            --variable E2E_TEAM_ONBOARDING_TARGET_BRANCH=${E2E_TEAM_ONBOARDING_TARGET_BRANCH} \
-            --variable E2E_KUBRIX_ORG=${E2E_KUBRIX_ORG} \
-            --variable E2E_KUBRIX_REPO=${E2E_KUBRIX_REPO} \
-            "${PRIME_VARS[@]}" \
-            -f -d
-
-   #   - name: Release a lock
-   #     if: always()
-   #     uses: suzuki-shunsuke/lock-action@v0.2.0
-   #     with:
-   #       mode: unlock
-   #       key: default
-
-      - name: Stop and package OpenBao bootstrap diagnosis
-        if: always()
-        shell: bash
-        env:
-          E2E_ARTIFACT_PASSWORD: ${{ secrets.E2E_ARTIFACT_PASSWORD }}
-        run: |
-          if [[ -f openbao-diagnosis/collector.pid ]]; then
-            kill -TERM -- "-$(cat openbao-diagnosis/collector.pid)" 2>/dev/null || true
-            sleep 1
-            kill -KILL -- "-$(cat openbao-diagnosis/collector.pid)" 2>/dev/null || true
-          fi
-          [[ -d openbao-diagnosis ]] || exit 0
-          # Provider debug and audit logs can contain sensitive data.
-          # Never upload plaintext; use the existing protected-artifact password.
-          : "${E2E_ARTIFACT_PASSWORD:?E2E_ARTIFACT_PASSWORD must be configured}"
-          zip -qrP "$E2E_ARTIFACT_PASSWORD" openbao-diagnosis.zip openbao-diagnosis
-
-      - name: Upload OpenBao bootstrap diagnosis
-        if: always()
-        uses: actions/upload-artifact@v7
-        with:
-          name: openbao-diagnosis-${{ matrix.target-type }}-${{ github.run_id }}-${{ github.run_attempt }}
-          path: openbao-diagnosis.zip
-          retention-days: 7
-          if-no-files-found: warn
-
-      - name: Publish Playwright test summary
-        if: always()
-        uses: mikepenz/action-junit-report@v6
-        with:
-          report_paths: 'artifacts/**/junit-report.xml'
-          update_check: true
-          job_name: 'create-cluster (${{ matrix.target-type }})'
-          check_name: 'Playwright tests (${{ matrix.target-type }})'
-          flaky_summary: true
-          include_time_in_summary: true
-          verbose_summary: false
-      
-      - name: Password protect Playwright traces
-        if: always()
-        shell: bash
-        env:
-          E2E_ARTIFACT_PASSWORD: ${{ secrets.E2E_ARTIFACT_PASSWORD }}
-        run: zip -rP ${E2E_ARTIFACT_PASSWORD} ./playwright-artifacts.zip ./artifacts
-
-      - uses: actions/upload-artifact@v7
-        if: always()
-        with:
-          name: testkube-artifacts-${{ matrix.target-type }}
-          path: ./playwright-artifacts.zip
-          
       - name: mustgather data for troubleshooting
         if: ${{ failure() }}
         shell: bash
@@ -828,11 +513,5 @@ jobs:
           }
 
           kubrix_repo="kubrix-cluster-test-${KUBRIX_REPO}"
-          app_of_apps_repo="kubrix-a${E2E_TEST_PR_NUMBER}-kubrixbot-app"
-          gitops_repo="kubrix-a${E2E_TEST_PR_NUMBER}-apps"
-          vcluster_repo="kubrix-a${E2E_TEST_PR_NUMBER}-kubrixbot-vcluster"
   
-          delete_repo_if_exists "${app_of_apps_repo:-}"
-          delete_repo_if_exists "${gitops_repo:-}"
-          delete_repo_if_exists "${vcluster_repo:-}"
           delete_repo_if_exists "${kubrix_repo:-}"
