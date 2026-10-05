@@ -30,6 +30,9 @@ spec:
         spec:
           containers:
             - name: package-runtime
+              # Temporary diagnosis draft; remove before merging.
+              args:
+                - --debug
               env:
                 - name: LEADER_ELECTION
                   value: "true"

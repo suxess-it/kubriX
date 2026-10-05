@@ -135,6 +135,27 @@ while true; do
     break
   fi
 
+  # Temporary diagnosis mode: finish as soon as OpenBao and its Groups are ready.
+  # Other retained apps may still be progressing; do not wait for the full stack.
+  if [[ "${KUBRIX_DIAGNOSE_OPENBAO_ONLY:-false}" == "true" ]]; then
+    OPENBAO_JSON="$(kubectl get application sx-openbao -n argocd -o json 2>/dev/null || true)"
+    GROUPS_JSON="$(kubectl get groups.identity.vault.upbound.io -o json 2>/dev/null || true)"
+    if jq -e '.status.sync.status == "Synced" and .status.health.status == "Healthy"' \
+         <<<"$OPENBAO_JSON" >/dev/null 2>&1 &&
+       jq -e '["admins","editors","viewers"] as $expected |
+         [.items[] | select(.metadata.name as $name | $expected | index($name))] |
+         length == 3 and all(.[];
+           (.metadata.annotations["crossplane.io/external-name"] // "") != "" and
+           any(.status.conditions[]?; .type == "Ready" and .status == "True"))' \
+         <<<"$GROUPS_JSON" >/dev/null 2>&1; then
+      echo "OpenBao is Synced/Healthy and admins, editors, viewers are Ready with external IDs."
+      echo "Stopping the installer Job; remaining applications are outside this diagnosis."
+      kill "${LOGS_PID}" 2>/dev/null || true
+      kubectl delete job "$JOB_NAME" -n "$NAMESPACE" --wait=true --timeout=30s
+      exit 0
+    fi
+  fi
+
   COMPLETE="$(kubectl get job "${JOB}" -n "${NAMESPACE}" -o jsonpath='{.status.conditions[?(@.type=="Complete")].status}' || true)"
   FAILED="$(kubectl get job "${JOB}" -n "${NAMESPACE}" -o jsonpath='{.status.conditions[?(@.type=="Failed")].status}' || true)"
 
