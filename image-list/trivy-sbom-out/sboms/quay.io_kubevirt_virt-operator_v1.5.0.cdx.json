@@ -2,10 +2,10 @@
   "$schema": "http://cyclonedx.org/schema/bom-1.6.schema.json",
   "bomFormat": "CycloneDX",
   "specVersion": "1.6",
-  "serialNumber": "urn:uuid:501e958c-74e1-4a8c-95b0-98aeacd0d8f2",
+  "serialNumber": "urn:uuid:4029ae71-f9cd-42ac-af8e-777be0fc92db",
   "version": 1,
   "metadata": {
-    "timestamp": "2026-04-14T09:28:07+00:00",
+    "timestamp": "2026-10-05T07:45:07+00:00",
     "tools": {
       "components": [
         {
@@ -118,23 +118,7 @@
   },
   "components": [
     {
-      "bom-ref": "17f77007-f22a-40bf-aa75-57b6f4383733",
-      "type": "operating-system",
-      "name": "debian",
-      "version": "12.6",
-      "properties": [
-        {
-          "name": "aquasecurity:trivy:Class",
-          "value": "os-pkgs"
-        },
-        {
-          "name": "aquasecurity:trivy:Type",
-          "value": "debian"
-        }
-      ]
-    },
-    {
-      "bom-ref": "28e8ef5e-1eb1-45ec-aaea-2294036341f6",
+      "bom-ref": "15a9004b-90ac-4c59-8203-f7a105808769",
       "type": "library",
       "name": "stdlib",
       "version": "v1.23.4",
@@ -159,22 +143,23 @@
       ]
     },
     {
-      "bom-ref": "345210ab-ea07-47d2-8e26-9091aab47a5a",
-      "type": "application",
-      "name": "usr/bin/csv-generator",
+      "bom-ref": "20463f72-220d-4a04-b689-7e4eb51fb83b",
+      "type": "operating-system",
+      "name": "debian",
+      "version": "12.6",
       "properties": [
         {
           "name": "aquasecurity:trivy:Class",
-          "value": "lang-pkgs"
+          "value": "os-pkgs"
         },
         {
           "name": "aquasecurity:trivy:Type",
-          "value": "gobinary"
+          "value": "debian"
         }
       ]
     },
     {
-      "bom-ref": "40544825-7cfe-437d-b761-fe0b1db23acd",
+      "bom-ref": "72f882c8-19b2-49a5-b277-aa87631234d1",
       "type": "application",
       "name": "usr/bin/virt-operator",
       "properties": [
@@ -189,7 +174,22 @@
       ]
     },
     {
-      "bom-ref": "b376a438-4e04-4518-9c35-f28a9625c7ca",
+      "bom-ref": "d5693909-6ad6-4cb7-92c7-ee4abbc66877",
+      "type": "application",
+      "name": "usr/bin/csv-generator",
+      "properties": [
+        {
+          "name": "aquasecurity:trivy:Class",
+          "value": "lang-pkgs"
+        },
+        {
+          "name": "aquasecurity:trivy:Type",
+          "value": "gobinary"
+        }
+      ]
+    },
+    {
+      "bom-ref": "e1d91f59-63c7-4d00-adf5-afb9cf3bc0ac",
       "type": "library",
       "name": "stdlib",
       "version": "v1.23.4",
@@ -463,7 +463,11 @@
   ],
   "dependencies": [
     {
-      "ref": "17f77007-f22a-40bf-aa75-57b6f4383733",
+      "ref": "15a9004b-90ac-4c59-8203-f7a105808769",
+      "dependsOn": []
+    },
+    {
+      "ref": "20463f72-220d-4a04-b689-7e4eb51fb83b",
       "dependsOn": [
         "pkg:deb/debian/base-files@12.4%2Bdeb12u6?arch=amd64&distro=debian-12.6",
         "pkg:deb/debian/libc6@2.36-9%2Bdeb12u7?arch=amd64&distro=debian-12.6",
@@ -473,23 +477,19 @@
       ]
     },
     {
-      "ref": "28e8ef5e-1eb1-45ec-aaea-2294036341f6",
-      "dependsOn": []
-    },
-    {
-      "ref": "345210ab-ea07-47d2-8e26-9091aab47a5a",
+      "ref": "72f882c8-19b2-49a5-b277-aa87631234d1",
       "dependsOn": [
-        "28e8ef5e-1eb1-45ec-aaea-2294036341f6"
+        "15a9004b-90ac-4c59-8203-f7a105808769"
       ]
     },
     {
-      "ref": "40544825-7cfe-437d-b761-fe0b1db23acd",
+      "ref": "d5693909-6ad6-4cb7-92c7-ee4abbc66877",
       "dependsOn": [
-        "b376a438-4e04-4518-9c35-f28a9625c7ca"
+        "e1d91f59-63c7-4d00-adf5-afb9cf3bc0ac"
       ]
     },
     {
-      "ref": "b376a438-4e04-4518-9c35-f28a9625c7ca",
+      "ref": "e1d91f59-63c7-4d00-adf5-afb9cf3bc0ac",
       "dependsOn": []
     },
     {
@@ -515,9 +515,9 @@
     {
       "ref": "pkg:oci/virt-operator@sha256%3A1591b45d3f35b857cb13921429b83e8da4e21a35aa54e1c88290baf996c05a2d?arch=amd64&repository_url=quay.io%2Fkubevirt%2Fvirt-operator",
       "dependsOn": [
-        "17f77007-f22a-40bf-aa75-57b6f4383733",
-        "345210ab-ea07-47d2-8e26-9091aab47a5a",
-        "40544825-7cfe-437d-b761-fe0b1db23acd"
+        "20463f72-220d-4a04-b689-7e4eb51fb83b",
+        "72f882c8-19b2-49a5-b277-aa87631234d1",
+        "d5693909-6ad6-4cb7-92c7-ee4abbc66877"
       ]
     }
   ],

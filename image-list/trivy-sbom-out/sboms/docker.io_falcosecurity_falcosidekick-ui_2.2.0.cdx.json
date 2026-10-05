@@ -2,10 +2,10 @@
   "$schema": "http://cyclonedx.org/schema/bom-1.6.schema.json",
   "bomFormat": "CycloneDX",
   "specVersion": "1.6",
-  "serialNumber": "urn:uuid:85f53090-7935-449a-af2e-a5c48ba30cf7",
+  "serialNumber": "urn:uuid:fb4769ca-2d16-4734-a4dd-2d0388aab72b",
   "version": 1,
   "metadata": {
-    "timestamp": "2026-04-14T09:23:33+00:00",
+    "timestamp": "2026-10-05T07:40:27+00:00",
     "tools": {
       "components": [
         {
@@ -102,7 +102,7 @@
   },
   "components": [
     {
-      "bom-ref": "7dc73ff7-c0ed-487c-b41d-079ebe550af4",
+      "bom-ref": "1031e12a-c4ee-4891-9adb-dc49e93f2e28",
       "type": "operating-system",
       "name": "alpine",
       "version": "3.15.10",
@@ -118,7 +118,7 @@
       ]
     },
     {
-      "bom-ref": "eb08b00e-708e-4070-a840-cf13a25cf63a",
+      "bom-ref": "8bb21c0f-7153-4f75-ae40-62165a7caeee",
       "type": "application",
       "name": "app/falcosidekick-ui",
       "properties": [
@@ -278,8 +278,12 @@
       "bom-ref": "pkg:apk/alpine/apk-tools@2.12.7-r3?arch=x86_64&distro=3.15.10",
       "type": "library",
       "supplier": {
-        "name": "Natanael Copa <ncopa@alpinelinux.org>"
+        "name": "alpine",
+        "url": [
+          ""
+        ]
       },
+      "author": "alpine",
       "name": "apk-tools",
       "version": "2.12.7-r3",
       "description": "Alpine Package Keeper - package manager for alpine",
@@ -342,7 +346,11 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-04-13T09:23:00Z"
+          "value": "2026-07-28T13:11:31Z"
+        },
+        {
+          "name": "ecosystems:owner_location",
+          "value": ""
         }
       ]
     },
@@ -414,7 +422,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2024-12-13T15:05:48Z"
+          "value": "2026-07-24T11:50:59Z"
         }
       ]
     },
@@ -484,7 +492,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2025-11-10T07:19:26Z"
+          "value": "2026-06-13T14:25:12Z"
         }
       ]
     },
@@ -554,7 +562,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2025-11-10T07:19:26Z"
+          "value": "2026-06-13T14:25:12Z"
         }
       ]
     },
@@ -1151,7 +1159,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2024-11-19T21:09:16Z"
+          "value": "2026-07-24T11:50:59Z"
         }
       ]
     },
@@ -1293,7 +1301,7 @@
       "author": "Gabriel Vasile",
       "name": "github.com/gabriel-vasile/mimetype",
       "version": "v1.4.2",
-      "description": "Package mimetype uses magic number signatures to detect the MIME type of a file.\n\nFile formats are stored in a hierarchy with application/octet-stream at its root.\nFor example, the hierarchy for HTML format is application/octet-stream ->\ntext/plain -> text/html.\n\n\nPure io.Readers (meaning those without a Seek method) cannot be read twice.\nThis means that once DetectReader has been called on an io.Reader, that reader\nis missing the bytes representing the header of the file.\nTo detect the MIME type and then reuse the input, use a buffer, io.TeeReader,\nand io.MultiReader to create a new reader containing the original, unaltered data.\n\nIf the input is an io.ReadSeeker instead, call input.Seek(0, io.SeekStart)\nbefore reusing it.\n\n\nUse Extend to add support for a file format which is not detected by mimetype.\n\nhttps://www.garykessler.net/library/file_sigs.html and\nhttps://github.com/file/file/tree/master/magic/Magdir\nhave signatures for a multitude of file formats.\n\n\nConsidering the definition of a binary file as \"a computer file that is not\na text file\", they can differentiated by searching for the text/plain MIME\nin their MIME hierarchy.",
+      "description": "Package mimetype uses magic number signatures to detect the MIME type of a file.",
       "licenses": [
         {
           "expression": "(MIT)"
@@ -1341,7 +1349,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-02-01T06:52:37Z"
+          "value": "2026-07-23T13:59:44Z"
         },
         {
           "name": "ecosystems:owner_location",
@@ -1390,6 +1398,7 @@
       "author": "OpenAPI Initiative golang toolkit",
       "name": "github.com/go-openapi/jsonpointer",
       "version": "v0.20.0",
+      "description": "Package jsonpointer provides a golang implementation for json pointers.",
       "licenses": [
         {
           "expression": "(Apache-2.0)"
@@ -1437,7 +1446,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-03-02T21:21:48Z"
+          "value": "2026-09-24T19:42:48Z"
         },
         {
           "name": "ecosystems:topic",
@@ -1501,7 +1510,11 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-03-02T21:57:17Z"
+          "value": "2026-09-25T20:39:42Z"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "jsonreference"
         }
       ]
     },
@@ -1514,7 +1527,7 @@
       "author": "OpenAPI Initiative golang toolkit",
       "name": "github.com/go-openapi/spec",
       "version": "v0.20.9",
-      "description": "Package spec exposes an object model for OpenAPIv2 specifications (swagger).\n\nThe exposed data structures know how to serialize to and deserialize from JSON.",
+      "description": "Package spec exposes an object model for OpenAPIv2 specifications (swagger).",
       "licenses": [
         {
           "expression": "(Apache-2.0)"
@@ -1562,7 +1575,15 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-03-03T00:30:19Z"
+          "value": "2026-09-03T18:57:26Z"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "openapi"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "swagger2"
         }
       ]
     },
@@ -1575,7 +1596,7 @@
       "author": "OpenAPI Initiative golang toolkit",
       "name": "github.com/go-openapi/swag",
       "version": "v0.22.4",
-      "description": "Package swag contains a bunch of helper functions for go-openapi and go-swagger projects.\n\nYou may also use it standalone for your projects.\n\nNOTE: all features that used to be exposed as package-level members (constants, variables,\nfunctions and types) are now deprecated and are superseded by equivalent features in\nmore specialized sub-packages.\nMoving forward, no additional feature will be added to the swag API directly at the root package level,\nwhich remains there for backward-compatibility purposes.\n\nChild modules will continue to evolve or some new ones may be added in the future.\n\ncmdutils      utilities to work with CLIs\n\nconv          type conversion utilities\n\nfileutils     file utilities\n\njsonname      JSON utilities\n\njsonutils     JSON utilities\n\nloading       file loading\n\nmangling      safe name generation\n\nnetutils      networking utilities\n\nstringutils   `string` utilities\n\ntypeutils     `go` types utilities\n\nyamlutils     YAML utilities\n\nThis repo has a few dependencies outside of the standard library:",
+      "description": "Package swag contains a bunch of helper functions for go-openapi and go-swagger projects.",
       "licenses": [
         {
           "expression": "(Apache-2.0)"
@@ -1623,7 +1644,15 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-03-02T18:12:04Z"
+          "value": "2026-09-04T19:20:18Z"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "openapi"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "swagger2"
         }
       ]
     },
@@ -1683,7 +1712,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2023-01-05T16:04:36Z"
+          "value": "2026-09-28T02:30:05Z"
         },
         {
           "name": "ecosystems:owner_location",
@@ -1759,7 +1788,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2023-01-30T04:27:26Z"
+          "value": "2026-09-20T19:06:25Z"
         },
         {
           "name": "ecosystems:owner_location",
@@ -1800,7 +1829,7 @@
       "author": "Go Playgound",
       "name": "github.com/go-playground/validator/v10",
       "version": "v10.15.0",
-      "description": "Package validator implements value validations for structs and individual fields\nbased on tags.\n\nIt can also handle Cross-Field and Cross-Struct validation for nested structs\nand has the ability to dive into arrays and maps of any type.\n\nsee more examples https://github.com/go-playground/validator/tree/master/_examples\n\nValidator is designed to be thread-safe and used as a singleton instance.\nIt caches information about your struct and validations,\nin essence only parsing your validation tags once per struct type.\nUsing multiple instances neglects the benefit of caching.\nThe not thread-safe functions are explicitly marked as such in the documentation.\n\nDoing things this way is actually the way the standard library does, see the\nfile.Open method here:\n\nThe authors return type \"error\" to avoid the issue discussed in the following,\nwhere err is always != nil:\n\nValidator only InvalidValidationError for bad validation input, nil or\nValidationErrors as type error; so, in your code all you need to do is check\nif the error returned is not nil, and if it's not check if error is\nInvalidValidationError ( if necessary, most of the time it isn't ) type cast\nit to type ValidationErrors like so err.(validator.ValidationErrors).\n\nCustom Validation functions can be added. Example:\n\nCustom types can implement the Valuer interface to return the value that should\nbe validated. This is useful when a type wraps another value and you want\nvalidation to run against the unwrapped value.\n\nThe library also supports types like sql/driver.Valuer using\nRegisterCustomTypeFunc. See _examples/valuer/main.go and\n_examples/custom/main.go for both approaches.\n\nCross-Field Validation can be done via the following tags:\n\nIf, however, some custom cross-field validation is required, it can be done\nusing a custom validation.\n\nWhy not just have cross-fields validation tags (i.e. only eqcsfield and not\neqfield)?\n\nThe reason is efficiency. If you want to check a field within the same struct\n\"eqfield\" only has to find the field on the same struct (1 level). But, if we\nused \"eqcsfield\" it could be multiple levels down. Example:\n\nMultiple validators on a field will process in the order defined. Example:\n\nBad Validator definitions are not handled by the library. Example:\n\nBaked In Cross-Field validation only compares fields on the same struct.\nIf Cross-Field + Cross-Struct validation is needed you should implement your\nown custom validator.\n\nComma (\",\") is the default separator of validation tags. If you wish to\nhave a comma included within the parameter (i.e. excludesall=,) you will need to\nuse the UTF-8 hex representation 0x2C, which is replaced in the code as a comma,\nso the above will become excludesall=0x2C.\n\nPipe (\"|\") is the 'or' validation tags deparator. If you wish to\nhave a pipe included within the parameter i.e. excludesall=| you will need to\nuse the UTF-8 hex representation 0x7C, which is replaced in the code as a pipe,\nso the above will become excludesall=0x7C\n\nHere is a list of the current built in validators:\n\nTells the validation to skip this struct field; this is particularly\nhandy in ignoring embedded structs from being validated. (Usage: -)\n\nThis is the 'or' operator allowing multiple validators to be used and\naccepted. (Usage: rgb|rgba) <-- this would allow either rgb or rgba\ncolors to be accepted. This can also be combined with 'and' for example\n( Usage: omitempty,rgb|rgba)\n\nWhen a field that is a nested struct is encountered, and contains this flag\nany validation on the nested struct will be run, but none of the nested\nstruct fields will be validated. This is useful if inside of your program\nyou know the struct will be valid, but need to verify it has been assigned.\nNOTE: only \"required\" and \"omitempty\" can be used on a struct itself.\n\nSame as structonly tag except that any struct level validations will not run.\n\nAllows conditional validation, for example, if a field is not set with\na value (Determined by the \"required\" validator) then other validation\nsuch as min or max won't run, but if a value is set validation will run.\n\nAllows to skip the validation if the value is nil (same as omitempty, but\nonly for the nil-values).\n\nAllows to skip the validation if the value is a zero value.\nFor pointers, it checks if the pointer is nil or the underlying value is a zero value.\nFor slices and maps, it checks if the value is nil or empty.\nOtherwise, behaves the same as omitempty.\n\nThis tells the validator to dive into a slice, array or map and validate that\nlevel of the slice, array or map with the validation tags that follow.\nMultidimensional nesting is also supported, each level you wish to dive will\nrequire another dive tag. dive has some sub-tags, 'keys' & 'endkeys', please see\nthe Keys & EndKeys section just below.\n\nExample #1\n\nExample #2\n\nKeys & EndKeys\n\nThese are to be used together directly after the dive tag and tells the validator\nthat anything between 'keys' and 'endkeys' applies to the keys of a map and not the\nvalues; think of it like the 'dive' tag, but for map keys instead of values.\nMultidimensional nesting is also supported, each level you wish to validate will\nrequire another 'keys' and 'endkeys' tag. These tags are only valid for maps.\n\nExample #1\n\nExample #2\n\nThis validates that the value is not the data types default zero value.\nFor numbers ensures value is not zero. For strings ensures value is\nnot \"\". For booleans ensures value is not false. For slices, maps, pointers, interfaces, channels and functions\nensures the value is not nil. For structs ensures value is not the zero value when using WithRequiredStructEnabled.\n\nThe field under validation must be present and not empty only if all\nthe other specified fields are equal to the value following the specified\nfield. For strings ensures value is not \"\". For slices, maps, pointers,\ninterfaces, channels and functions ensures the value is not nil. For structs ensures value is not the zero value.\nUsing the same field name multiple times in the parameters will result in a panic at runtime.\n\nExamples:\n\nThe field under validation must be present and not empty unless all\nthe other specified fields are equal to the value following the specified\nfield. For strings ensures value is not \"\". For slices, maps, pointers,\ninterfaces, channels and functions ensures the value is not nil. For structs ensures value is not the zero value.\n\nExamples:\n\nThe field under validation must be present and not empty only if any\nof the other specified fields are present. For strings ensures value is\nnot \"\". For slices, maps, pointers, interfaces, channels and functions\nensures the value is not nil. For structs ensures value is not the zero value.\n\nExamples:\n\nThe field under validation must be present and not empty only if all\nof the other specified fields are present. For strings ensures value is\nnot \"\". For slices, maps, pointers, interfaces, channels and functions\nensures the value is not nil. For structs ensures value is not the zero value.\n\nExample:\n\nThe field under validation must be present and not empty only when any\nof the other specified fields are not present. For strings ensures value is\nnot \"\". For slices, maps, pointers, interfaces, channels and functions\nensures the value is not nil. For structs ensures value is not the zero value.\n\nExamples:\n\nThe field under validation must be present and not empty only when all\nof the other specified fields are not present. For strings ensures value is\nnot \"\". For slices, maps, pointers, interfaces, channels and functions\nensures the value is not nil. For structs ensures value is not the zero value.\n\nExample:\n\nThe field under validation must not be present or not empty only if all\nthe other specified fields are equal to the value following the specified\nfield. For strings ensures value is not \"\". For slices, maps, pointers,\ninterfaces, channels and functions ensures the value is not nil. For structs ensures value is not the zero value.\n\nExamples:\n\nThe field under validation must not be present or empty unless all\nthe other specified fields are equal to the value following the specified\nfield. For strings ensures value is not \"\". For slices, maps, pointers,\ninterfaces, channels and functions ensures the value is not nil. For structs ensures value is not the zero value.\n\nExamples:\n\nThis validates that the value is the default value and is almost the\nopposite of required.\n\nFor numbers, length will ensure that the value is\nequal to the parameter given. For strings, it checks that\nthe string length is exactly that number of characters. For slices,\narrays, and maps, validates the number of items.\n\nExample #1\n\nExample #2 (time.Duration)\n\nFor time.Duration, len will ensure that the value is equal to the duration given\nin the parameter.\n\nFor numbers, max will ensure that the value is\nless than or equal to the parameter given. For strings, it checks\nthat the string length is at most that number of characters. For\nslices, arrays, and maps, validates the number of items.\n\nExample #1\n\nExample #2 (time.Duration)\n\nFor time.Duration, max will ensure that the value is less than or equal to the\nduration given in the parameter.\n\nFor numbers, min will ensure that the value is\ngreater or equal to the parameter given. For strings, it checks that\nthe string length is at least that number of characters. For slices,\narrays, and maps, validates the number of items.\n\nExample #1\n\nExample #2 (time.Duration)\n\nFor time.Duration, min will ensure that the value is greater than or equal to\nthe duration given in the parameter.\n\nFor strings & numbers, eq will ensure that the value is\nequal to the parameter given. For slices, arrays, and maps,\nvalidates the number of items.\n\nExample #1\n\nExample #2 (time.Duration)\n\nFor time.Duration, eq will ensure that the value is equal to the duration given\nin the parameter.\n\nFor strings & numbers, ne will ensure that the value is not\nequal to the parameter given. For slices, arrays, and maps,\nvalidates the number of items.\n\nExample #1\n\nExample #2 (time.Duration)\n\nFor time.Duration, ne will ensure that the value is not equal to the duration\ngiven in the parameter.\n\nFor strings, ints, and uints, oneof will ensure that the value\nis one of the values in the parameter.  The parameter should be\na list of values separated by whitespace. Values may be\nstrings or numbers. To match strings with spaces in them, include\nthe target string between single quotes. Kind of like an 'enum'.\n\nWorks the same as oneof but is case insensitive and therefore only accepts strings.\n\nFor numbers, this will ensure that the value is greater than the\nparameter given. For strings, it checks that the string length\nis greater than that number of characters. For slices, arrays\nand maps it validates the number of items.\n\nExample #1\n\nExample #2 (time.Time)\n\nFor time.Time ensures the time value is greater than time.Now.UTC().\n\nExample #3 (time.Duration)\n\nFor time.Duration, gt will ensure that the value is greater than the duration\ngiven in the parameter.\n\nSame as 'min' above. Kept both to make terminology with 'len' easier.\n\nExample #1\n\nExample #2 (time.Time)\n\nFor time.Time ensures the time value is greater than or equal to time.Now.UTC().\n\nExample #3 (time.Duration)\n\nFor time.Duration, gte will ensure that the value is greater than or equal to\nthe duration given in the parameter.\n\nFor numbers, this will ensure that the value is less than the parameter given.\nFor strings, it checks that the string length is less than that number of\ncharacters. For slices, arrays, and maps it validates the number of items.\n\nExample #1\n\nExample #2 (time.Time)\n\nFor time.Time ensures the time value is less than time.Now.UTC().\n\nExample #3 (time.Duration)\n\nFor time.Duration, lt will ensure that the value is less than the duration given\nin the parameter.\n\nSame as 'max' above. Kept both to make terminology with 'len' easier.\n\nExample #1\n\nExample #2 (time.Time)\n\nFor time.Time ensures the time value is less than or equal to time.Now.UTC().\n\nExample #3 (time.Duration)\n\nFor time.Duration, lte will ensure that the value is less than or equal to the\nduration given in the parameter.\n\nThis will validate the field value against another fields value either within\na struct or passed in field.\n\nExample #1:\n\nExample #2:\n\nField Equals Another Field (relative)\n\nThis does the same as eqfield except that it validates the field provided relative\nto the top level struct.\n\nThis will validate the field value against another fields value either within\na struct or passed in field.\n\nExamples:\n\nField Does Not Equal Another Field (relative)\n\nThis does the same as nefield except that it validates the field provided\nrelative to the top level struct.\n\nOnly valid for Numbers, time.Duration and time.Time types, this will validate\nthe field value against another fields value either within a struct or passed in\nfield. usage examples are for validation of a Start and End date:\n\nExample #1:\n\nExample #2:\n\nThis does the same as gtfield except that it validates the field provided\nrelative to the top level struct.\n\nOnly valid for Numbers, time.Duration and time.Time types, this will validate\nthe field value against another fields value either within a struct or passed in\nfield. usage examples are for validation of a Start and End date:\n\nExample #1:\n\nExample #2:\n\nThis does the same as gtefield except that it validates the field provided relative\nto the top level struct.\n\nOnly valid for Numbers, time.Duration and time.Time types, this will validate\nthe field value against another fields value either within a struct or passed in\nfield. usage examples are for validation of a Start and End date:\n\nExample #1:\n\nExample #2:\n\nThis does the same as ltfield except that it validates the field provided relative\nto the top level struct.\n\nOnly valid for Numbers, time.Duration and time.Time types, this will validate\nthe field value against another fields value either within a struct or passed in\nfield. usage examples are for validation of a Start and End date:\n\nExample #1:\n\nExample #2:\n\nThis does the same as ltefield except that it validates the field provided relative\nto the top level struct.\n\nThis does the same as contains except for struct fields. It should only be used\nwith string types. See the behavior of reflect.Value.String() for behavior on\nother types.\n\nThis does the same as excludes except for struct fields. It should only be used\nwith string types. See the behavior of reflect.Value.String() for behavior on\nother types.\n\nFor arrays & slices, unique will ensure that there are no duplicates.\nFor maps, unique will ensure that there are no duplicate values.\nFor slices of struct, unique will ensure that there are no duplicate values\nin a field of the struct specified via a parameter.\n\nThis validates that an object responds to a method that can return error or bool.\nBy default it expects an interface `Validate() error` and check that the method\ndoes not return an error. Other methods can be specified using two signatures:\nIf the method returns an error, it check if the return value is nil.\nIf the method returns a boolean, it checks if the value is true.\n\nThis validates that a string value contains ASCII alpha characters only\n\nThis validates that a string value contains ASCII alpha characters and spaces only\n\nThis validates that a string value contains ASCII alphanumeric characters only\n\nThis validates that a string value contains ASCII alphanumeric characters and spaces only\n\nThis validates that a string value contains unicode alpha characters only\n\nThis validates that a string value contains unicode alphanumeric characters only\n\nThis validates that a string value can successfully be parsed into a boolean with strconv.ParseBool\n\nThis validates that a string value contains number values only.\nFor integers or float it returns true.\n\nThis validates that a string value contains a basic numeric value.\nbasic excludes exponents etc...\nfor integers or float it returns true.\n\nThis validates that a string value contains a valid hexadecimal.\n\nThis validates that a string value contains a valid hex color including\nhashtag (#)\n\nThis validates that a string value contains only lowercase characters. An empty string is not a valid lowercase string.\n\nThis validates that a string value contains only uppercase characters. An empty string is not a valid uppercase string.\n\nThis validates that a string value contains a valid rgb color\n\nThis validates that a string value contains a valid rgba color\n\nThis validates that a string value contains a valid hsl color\n\nThis validates that a string value contains a valid hsla color\n\nThis validates that a string value contains a valid cmyk color\n\nThis validates that a string value contains a valid E.164 Phone number\nhttps://en.wikipedia.org/wiki/E.164 (ex. +1123456789)\n\nThis validates that a string value contains a valid email\nThis may not conform to all possibilities of any rfc standard, but neither\ndoes any email provider accept all possibilities.\n\nThis validates that a string value is valid JSON\n\nThis validates that a string value is a valid JWT\n\nThis validates that a string value contains a valid file path and that\nthe file exists on the machine.\nThis is done using os.Stat, which is a platform independent function.\n\nThis validates that a string value contains a valid file path and that\nthe file exists on the machine and is an image.\nThis is done using os.Stat and github.com/gabriel-vasile/mimetype\n\nThis validates that a string value contains a valid file path but does not\nvalidate the existence of that file.\nThis is done using os.Stat, which is a platform independent function.\n\nThis validates that a string value contains a valid url\nThis will accept any url the golang request uri accepts but must contain\na schema for example http:// or rtmp://\n\nThis validates that a string value contains a valid uri\nThis will accept any uri the golang request uri accepts\n\nThis validates that a string value contains a valid URN\naccording to the RFC 2141 spec.\n\nThis validates that a string value contains a valid bas324 value.\nAlthough an empty string is valid base32 this will report an empty string\nas an error, if you wish to accept an empty string as valid you can use\nthis with the omitempty tag.\n\nThis validates that a string value contains a valid base64 value.\nAlthough an empty string is valid base64 this will report an empty string\nas an error, if you wish to accept an empty string as valid you can use\nthis with the omitempty tag.\n\nThis validates that a string value contains a valid base64 URL safe value\naccording the RFC4648 spec.\nAlthough an empty string is a valid base64 URL safe value, this will report\nan empty string as an error, if you wish to accept an empty string as valid\nyou can use this with the omitempty tag.\n\nThis validates that a string value contains a valid base64 URL safe value,\nbut without = padding, according the RFC4648 spec, section 3.2.\nAlthough an empty string is a valid base64 URL safe value, this will report\nan empty string as an error, if you wish to accept an empty string as valid\nyou can use this with the omitempty tag.\n\nThis validates that a string value contains a valid bitcoin address.\nThe format of the string is checked to ensure it matches one of the three formats\nP2PKH, P2SH and performs checksum validation.\n\nBitcoin Bech32 Address (segwit)\n\nThis validates that a string value contains a valid bitcoin Bech32 address as defined\nby bip-0173 (https://github.com/bitcoin/bips/blob/master/bip-0173.mediawiki)\nSpecial thanks to Pieter Wuille for providing reference implementations.\n\nThis validates that a string value contains a valid ethereum address.\nThe format of the string is checked to ensure it matches the standard Ethereum address format.\n\nThis validates that a string value contains the substring value.\n\nThis validates that a string value contains any Unicode code points\nin the substring value.\n\nThis validates that a string value contains the supplied rune value.\n\nThis validates that a string value does not contain the substring value.\n\nThis validates that a string value does not contain any Unicode code\npoints in the substring value.\n\nThis validates that a string value does not contain the supplied rune value.\n\nThis validates that a string value starts with the supplied string value\n\nThis validates that a string value ends with the supplied string value\n\nThis validates that a string value does not start with the supplied string value\n\nThis validates that a string value does not end with the supplied string value\n\nThis validates that a string value contains a valid isbn10 or isbn13 value.\n\nThis validates that a string value contains a valid isbn10 value.\n\nThis validates that a string value contains a valid isbn13 value.\n\nThis validates that a string value contains a valid UUID. Uppercase UUID values will not pass - use `uuid_rfc4122` instead.\n\nThis validates that a string value contains a valid version 3 UUID.  Uppercase UUID values will not pass - use `uuid3_rfc4122` instead.\n\nThis validates that a string value contains a valid version 4 UUID.  Uppercase UUID values will not pass - use `uuid4_rfc4122` instead.\n\nThis validates that a string value contains a valid version 5 UUID.  Uppercase UUID values will not pass - use `uuid5_rfc4122` instead.\n\nThis validates that a string value contains a valid ULID value.\n\nThis validates that a string value contains only ASCII characters.\nNOTE: if the string is blank, this validates as true.\n\nThis validates that a string value contains only printable ASCII characters.\nNOTE: if the string is blank, this validates as true.\n\nThis validates that a string value contains one or more multibyte characters.\nNOTE: if the string is blank, this validates as true.\n\nThis validates that a string value contains a valid DataURI.\nNOTE: this will also validate that the data portion is valid base64\n\nThis validates that a string value contains a valid latitude.\n\nThis validates that a string value contains a valid longitude.\n\nThis validates that a string value contains a valid U.S. Employer Identification Number.\n\nThis validates that a string value contains a valid U.S. Social Security Number.\n\nThis validates that a string value contains a valid IP Address.\n\nThis validates that a string value contains a valid v4 IP Address.\n\nThis validates that a string value contains a valid v6 IP Address.\n\nThis validates that a string value contains a valid CIDR Address.\n\nThis validates that a string value contains a valid v4 CIDR Address.\n\nThis validates that a string value contains a valid v6 CIDR Address.\n\nThis validates that a string value contains a valid resolvable TCP Address.\n\nThis validates that a string value contains a valid resolvable v4 TCP Address.\n\nThis validates that a string value contains a valid resolvable v6 TCP Address.\n\nThis validates that a string value contains a valid resolvable UDP Address.\n\nThis validates that a string value contains a valid resolvable v4 UDP Address.\n\nThis validates that a string value contains a valid resolvable v6 UDP Address.\n\nThis validates that a string value contains a valid resolvable IP Address.\n\nThis validates that a string value contains a valid resolvable v4 IP Address.\n\nThis validates that a string value contains a valid resolvable v6 IP Address.\n\nThis validates that a string value contains a valid Unix Address.\n\nThis validates that a Unix domain socket file exists at the specified path.\nIt checks both filesystem-based sockets and Linux abstract sockets (prefixed with @).\nFor filesystem sockets, it verifies the path exists and is a socket file.\nFor abstract sockets on Linux, it checks /proc/net/unix.\n\nThis validates that a string value contains a valid MAC Address.\n\nNote: See Go's ParseMAC for accepted formats and types:\n\nThis validates that a string value is a valid Hostname according to RFC 952 https://tools.ietf.org/html/rfc952\n\nThis validates that a string value is a valid Hostname according to RFC 1123 https://tools.ietf.org/html/rfc1123\n\nFull Qualified Domain Name (FQDN)\n\nThis validates that a string value contains a valid FQDN.\n\nThis validates that a string value appears to be an HTML element tag\nincluding those described at https://developer.mozilla.org/en-US/docs/Web/HTML/Element\n\nThis validates that a string value is a proper character reference in decimal\nor hexadecimal format\n\nThis validates that a string value is percent-encoded (URL encoded) according\nto https://tools.ietf.org/html/rfc3986#section-2.1\n\nThis validates that a string value contains a valid directory and that\nit exists on the machine.\nThis is done using os.Stat, which is a platform independent function.\n\nThis validates that a string value contains a valid directory but does\nnot validate the existence of that directory.\nThis is done using os.Stat, which is a platform independent function.\nIt is safest to suffix the string with os.PathSeparator if the directory\nmay not exist at the time of validation.\n\nThis validates that a string value contains a valid DNS hostname and port that\ncan be used to validate fields typically passed to sockets and connections.\n\nThis validates that the value falls within the valid port number range of 1 to 65,535.\n\nThis validates that a string value is a valid datetime based on the supplied datetime format.\nSupplied format must match the official Go time format layout as documented in https://golang.org/pkg/time/\n\nThis validates that a string value is a valid country code based on iso3166-1 alpha-2 standard.\nsee: https://www.iso.org/iso-3166-country-codes.html\n\nThis validates that a string value is a valid country code based on iso3166-1 alpha-3 standard.\nsee: https://www.iso.org/iso-3166-country-codes.html\n\nThis validates that a string value is a valid country code based on iso3166-1 alpha-numeric standard.\nsee: https://www.iso.org/iso-3166-country-codes.html\n\nThis validates that a string value is a valid BCP 47 language tag, as parsed by language.Parse.\nMore information on https://pkg.go.dev/golang.org/x/text/language\n\nBIC (SWIFT code - 2022 standard)\n\nThis validates that a string value is a valid Business Identifier Code (SWIFT code), defined in ISO 9362:2022.\nMore information on https://www.iso.org/standard/84108.html\n\nBIC (SWIFT code - 2014 standard)\n\nThis validates that a string value is a valid Business Identifier Code (SWIFT code), defined in ISO 9362:2014.\nMore information on https://www.iso.org/standard/60390.html\n\nThis validates that a string value is a valid dns RFC 1035 label, defined in RFC 1035.\nMore information on https://datatracker.ietf.org/doc/html/rfc1035\n\nThis validates that a string value is a valid time zone based on the time zone database present on the system.\nAlthough empty value and Local value are allowed by time.LoadLocation golang function, they are not allowed by this validator.\nMore information on https://golang.org/pkg/time/#LoadLocation\n\nThis validates that a string value is a valid semver version, defined in Semantic Versioning 2.0.0.\nMore information on https://semver.org/\n\nThis validates that a string value is a valid cve id, defined in cve mitre.\nMore information on https://cve.mitre.org/\n\nThis validates that a string value contains a valid credit card number using Luhn algorithm.\n\nThis validates that a string or (u)int value contains a valid checksum using the Luhn algorithm.\n\nThis validates that a string is a valid 24 character hexadecimal string or valid connection string.\n\nExample:\n\nThis validates that a string value contains a valid cron expression.\n\nThis validates that a string is valid for use with SpiceDb for the indicated purpose. If no purpose is given, a purpose of 'id' is assumed.\n\nAlias Validators and Tags\nNOTE: When returning an error, the tag returned in \"FieldError\" will be\nthe alias tag unless the dive tag is part of the alias. Everything after the\ndive tag is not reported as the alias tag. Also, the \"ActualTag\" in the before\ncase will be the actual tag within the alias that failed.\n\nHere is a list of the current built in alias tags:\n\nValidator notes:\n\nA collection of validation rules that are frequently needed but are more\ncomplex than the ones found in the baked in validators.\nA non standard validator must be registered manually like you would\nwith your own custom validation functions.\n\nExample of registration and use:\n\nHere is a list of the current non standard validators:\n\nThis package panics when bad input is provided, this is by design, bad code like\nthat should not make it to production.",
+      "description": "Package validator implements value validations for structs and individual fields based on tags.",
       "licenses": [
         {
           "expression": "(MIT)"
@@ -1848,7 +1877,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-03-27T10:00:35Z"
+          "value": "2026-09-20T18:18:55Z"
         },
         {
           "name": "ecosystems:owner_location",
@@ -1877,7 +1906,7 @@
       "author": "golang-jwt",
       "name": "github.com/golang-jwt/jwt",
       "version": "v3.2.2+incompatible",
-      "description": "Package jwt is a Go implementation of JSON Web Tokens: http://self-issued.info/docs/draft-jones-json-web-token.html\n\nSee README.md for more info.",
+      "description": "Package jwt is a Go implementation of JSON Web Tokens: http://self-issued.info/docs/draft-jones-json-web-token.html",
       "licenses": [
         {
           "expression": "(MIT)"
@@ -2024,6 +2053,13 @@
     {
       "bom-ref": "pkg:golang/github.com/issif/redisearch-go@v1.1.2-0.20220629142418-f66689e2ff5c",
       "type": "library",
+      "supplier": {
+        "name": "Thomas Labarussias",
+        "url": [
+          "https://thomas.labarussias.fr"
+        ]
+      },
+      "author": "Thomas Labarussias",
       "name": "github.com/Issif/redisearch-go",
       "version": "v1.1.2-0.20220629142418-f66689e2ff5c",
       "purl": "pkg:golang/github.com/issif/redisearch-go@v1.1.2-0.20220629142418-f66689e2ff5c",
@@ -2069,6 +2105,10 @@
         {
           "name": "ecosystems:latest_release_published_at",
           "value": "2021-04-22T14:44:14Z"
+        },
+        {
+          "name": "ecosystems:owner_location",
+          "value": "France"
         }
       ]
     },
@@ -2084,7 +2124,7 @@
       "author": "Josh Bleecher Snyder",
       "name": "github.com/josharian/intern",
       "version": "v1.0.0",
-      "description": "Package intern interns strings.\nInterning is best effort only.\nInterned strings may be removed automatically\nat any time without notification.\nAll functions may be called concurrently\nwith themselves and each other.",
+      "description": "Package intern interns strings.",
       "licenses": [
         {
           "expression": "(MIT)"
@@ -2149,7 +2189,7 @@
       "author": "Kyle Banks",
       "name": "github.com/KyleBanks/depth",
       "version": "v1.2.1",
-      "description": "Package depth provides the ability to traverse and retrieve Go source code dependencies in the form of\ninternal and external packages.\n\nFor example, the dependencies of the stdlib `strings` package can be resolved like so:\n\nFor additional customization, simply set the appropriate flags on the `Tree` before resolving:",
+      "description": "Package depth provides the ability to traverse and retrieve Go source code dependencies in the form of internal and external packages.",
       "licenses": [
         {
           "expression": "(MIT)"
@@ -2233,7 +2273,7 @@
       "author": "LabStack LLC",
       "name": "github.com/labstack/echo/v4",
       "version": "v4.11.1",
-      "description": "Package echo implements high performance, minimalist Go web framework.\n\nExample:\n\nLearn more at https://echo.labstack.com",
+      "description": "Package echo implements high performance, minimalist Go web framework.",
       "licenses": [
         {
           "expression": "(MIT)"
@@ -2281,7 +2321,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-02-22T11:50:50Z"
+          "value": "2026-09-27T22:45:34Z"
         },
         {
           "name": "ecosystems:owner_location",
@@ -2400,7 +2440,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2023-12-20T12:59:22Z"
+          "value": "2026-04-19T22:12:38Z"
         },
         {
           "name": "ecosystems:owner_location",
@@ -2487,11 +2527,11 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2024-01-31T10:04:06Z"
+          "value": "2026-07-22T17:39:29Z"
         },
         {
           "name": "ecosystems:owner_location",
-          "value": "Milky Way"
+          "value": "Italy"
         },
         {
           "name": "ecosystems:topic",
@@ -2533,7 +2573,6 @@
       "supplier": {
         "name": "Free and open source software developed at VK",
         "url": [
-          "http://opensource.mail.ru",
           "http://tarantool.org"
         ]
       },
@@ -2679,7 +2718,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2025-01-10T08:29:27Z"
+          "value": "2026-05-29T14:40:24Z"
         },
         {
           "name": "ecosystems:owner_location",
@@ -2763,7 +2802,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-04-08T12:56:32Z"
+          "value": "2026-07-23T16:45:22Z"
         },
         {
           "name": "ecosystems:owner_location",
@@ -2961,7 +3000,7 @@
       "author": "Swaggo",
       "name": "github.com/swaggo/swag",
       "version": "v1.16.1",
-      "description": "Package swag converts Go annotations to Swagger Documentation 2.0.\nSee https://github.com/swaggo/swag for more information about swag.",
+      "description": "Package swag converts Go annotations to Swagger Documentation 2.0.",
       "licenses": [
         {
           "expression": "(MIT)"
@@ -3049,7 +3088,7 @@
       "author": "Aliaksandr Valialkin",
       "name": "github.com/valyala/bytebufferpool",
       "version": "v1.0.0",
-      "description": "Package bytebufferpool implements a pool of byte buffers\nwith anti-fragmentation protection.\n\nThe pool may waste limited amount of memory due to fragmentation.\nThis amount equals to the maximum total size of the byte buffers\nin concurrent use.",
+      "description": "Package bytebufferpool implements a pool of byte buffers with anti-fragmentation protection.",
       "licenses": [
         {
           "expression": "(MIT)"
@@ -3117,7 +3156,7 @@
       "author": "Aliaksandr Valialkin",
       "name": "github.com/valyala/fasttemplate",
       "version": "v1.2.2",
-      "description": "Package fasttemplate implements simple and fast template library.\n\nFasttemplate is faster than text/template, strings.Replace\nand strings.Replacer.\n\nFasttemplate ideally fits for fast and simple placeholders' substitutions.",
+      "description": "Package fasttemplate implements simple and fast template library.",
       "licenses": [
         {
           "expression": "(MIT)"
@@ -3245,7 +3284,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-04-09T15:33:22Z"
+          "value": "2026-09-08T18:05:01Z"
         }
       ]
     },
@@ -3301,7 +3340,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-04-09T19:17:33Z"
+          "value": "2026-09-08T19:18:02Z"
         }
       ]
     },
@@ -3357,7 +3396,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-03-27T16:08:41Z"
+          "value": "2026-08-31T19:43:43Z"
         }
       ]
     },
@@ -3366,7 +3405,7 @@
       "type": "library",
       "name": "golang.org/x/text",
       "version": "v0.12.0",
-      "description": "text is a repository of text-related packages related to internationalization\n(i18n) and localization (l10n), such as character encodings, text\ntransformations, and locale-specific text handling.\n\nThere is a 30 minute video, recorded on 2017-11-30, on the \"State of\ngolang.org/x/text\" at https://www.youtube.com/watch?v=uYrDrMEGu58",
+      "description": "text is a repository of text-related packages related to internationalization (i18n) and localization (l10n), such as character encodings, text transformations, and locale-specific text handling.",
       "licenses": [
         {
           "expression": "(BSD-3-Clause)"
@@ -3414,7 +3453,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-04-09T11:43:05Z"
+          "value": "2026-09-08T16:29:55Z"
         }
       ]
     },
@@ -3437,6 +3476,10 @@
         {
           "url": "https://pkg.go.dev/golang.org/x/time",
           "type": "distribution"
+        },
+        {
+          "url": "https://cs.opensource.google/go/x/time",
+          "type": "vcs"
         },
         {
           "url": "https://pkg.go.dev/golang.org/x/time#section-documentation",
@@ -3466,7 +3509,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-02-11T19:14:29Z"
+          "value": "2026-08-19T17:16:18Z"
         }
       ]
     },
@@ -3489,6 +3532,10 @@
         {
           "url": "https://pkg.go.dev/golang.org/x/tools",
           "type": "distribution"
+        },
+        {
+          "url": "https://cs.opensource.google/go/x/tools",
+          "type": "vcs"
         },
         {
           "url": "https://pkg.go.dev/golang.org/x/tools#section-documentation",
@@ -3518,7 +3565,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-04-09T21:00:41Z"
+          "value": "2026-10-02T18:49:45Z"
         }
       ]
     },
@@ -3531,7 +3578,7 @@
       "author": "go-yaml",
       "name": "gopkg.in/yaml.v3",
       "version": "v3.0.1",
-      "description": "Package yaml implements YAML support for the Go language.\n\nSource code and other details for the project are available at GitHub:",
+      "description": "Package yaml implements YAML support for the Go language.",
       "licenses": [
         {
           "expression": "(Apache-2.0 OR MIT)"
@@ -3580,6 +3627,10 @@
         {
           "name": "ecosystems:latest_release_published_at",
           "value": "2022-05-27T08:35:30Z"
+        },
+        {
+          "name": "ecosystems:repository_archived",
+          "value": "true"
         }
       ]
     },
@@ -3611,7 +3662,7 @@
   ],
   "dependencies": [
     {
-      "ref": "7dc73ff7-c0ed-487c-b41d-079ebe550af4",
+      "ref": "1031e12a-c4ee-4891-9adb-dc49e93f2e28",
       "dependsOn": [
         "pkg:apk/alpine/alpine-baselayout@3.2.0-r18?arch=x86_64&distro=3.15.10",
         "pkg:apk/alpine/alpine-keys@2.4-r1?arch=x86_64&distro=3.15.10",
@@ -3622,7 +3673,7 @@
       ]
     },
     {
-      "ref": "eb08b00e-708e-4070-a840-cf13a25cf63a",
+      "ref": "8bb21c0f-7153-4f75-ae40-62165a7caeee",
       "dependsOn": [
         "pkg:golang/github.com/falcosecurity/falcosidekick-ui",
         "pkg:golang/github.com/gabriel-vasile/mimetype@v1.4.2",
@@ -3891,8 +3942,8 @@
     {
       "ref": "pkg:oci/falcosidekick-ui@sha256%3A0faadedfdff7e6af8be0d7d90efb0638cedc337e4e5c3e57f527da2f6722c851?arch=amd64&repository_url=index.docker.io%2Ffalcosecurity%2Ffalcosidekick-ui",
       "dependsOn": [
-        "7dc73ff7-c0ed-487c-b41d-079ebe550af4",
-        "eb08b00e-708e-4070-a840-cf13a25cf63a"
+        "1031e12a-c4ee-4891-9adb-dc49e93f2e28",
+        "8bb21c0f-7153-4f75-ae40-62165a7caeee"
       ]
     }
   ],
