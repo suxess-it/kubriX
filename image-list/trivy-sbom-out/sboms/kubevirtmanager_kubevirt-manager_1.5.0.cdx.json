@@ -2,10 +2,10 @@
   "$schema": "http://cyclonedx.org/schema/bom-1.6.schema.json",
   "bomFormat": "CycloneDX",
   "specVersion": "1.6",
-  "serialNumber": "urn:uuid:e95deb2a-64e4-4581-bcb8-47e6c0bea32f",
+  "serialNumber": "urn:uuid:af0a02b7-2d19-4e46-9a30-89e73cdc412f",
   "version": 1,
   "metadata": {
-    "timestamp": "2026-04-14T09:26:58+00:00",
+    "timestamp": "2026-10-05T07:44:19+00:00",
     "tools": {
       "components": [
         {
@@ -122,7 +122,22 @@
   },
   "components": [
     {
-      "bom-ref": "2ddb8e95-6431-44eb-a730-9fc883d6ff32",
+      "bom-ref": "5ad9f4e3-53d9-4fa6-b94f-05eb2a74bdc3",
+      "type": "application",
+      "name": "usr/local/bin/kubectl",
+      "properties": [
+        {
+          "name": "aquasecurity:trivy:Class",
+          "value": "lang-pkgs"
+        },
+        {
+          "name": "aquasecurity:trivy:Type",
+          "value": "gobinary"
+        }
+      ]
+    },
+    {
+      "bom-ref": "cdff629a-3435-4fa3-9db4-4913aafdb4a0",
       "type": "operating-system",
       "name": "alpine",
       "version": "3.20.5",
@@ -134,21 +149,6 @@
         {
           "name": "aquasecurity:trivy:Type",
           "value": "alpine"
-        }
-      ]
-    },
-    {
-      "bom-ref": "ffcea8e8-e50c-49d1-9789-ad0f11f72a36",
-      "type": "application",
-      "name": "usr/local/bin/kubectl",
-      "properties": [
-        {
-          "name": "aquasecurity:trivy:Class",
-          "value": "lang-pkgs"
-        },
-        {
-          "name": "aquasecurity:trivy:Type",
-          "value": "gobinary"
         }
       ]
     },
@@ -169,7 +169,9 @@
       ],
       "licenses": [
         {
-          "expression": "(GPL-2.0-only)"
+          "license": {
+            "id": "GPL-2.0-only"
+          }
         }
       ],
       "purl": "pkg:apk/alpine/alpine-baselayout-data@3.6.5-r0?arch=x86_64&distro=3.20.5",
@@ -239,7 +241,9 @@
       ],
       "licenses": [
         {
-          "expression": "(GPL-2.0-only)"
+          "license": {
+            "id": "GPL-2.0-only"
+          }
         }
       ],
       "purl": "pkg:apk/alpine/alpine-baselayout@3.6.5-r0?arch=x86_64&distro=3.20.5",
@@ -379,7 +383,14 @@
       ],
       "licenses": [
         {
-          "expression": "(BSD-2-Clause AND custom)"
+          "license": {
+            "id": "BSD-2-Clause"
+          }
+        },
+        {
+          "license": {
+            "name": "custom"
+          }
         }
       ],
       "purl": "pkg:apk/alpine/aom-libs@3.9.1-r0?arch=x86_64&distro=3.20.5",
@@ -428,7 +439,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-04-03T19:20:46Z"
+          "value": "2026-05-24T21:23:54Z"
         }
       ]
     },
@@ -436,8 +447,12 @@
       "bom-ref": "pkg:apk/alpine/apk-tools@2.14.4-r1?arch=x86_64&distro=3.20.5",
       "type": "library",
       "supplier": {
-        "name": "Natanael Copa <ncopa@alpinelinux.org>"
+        "name": "alpine",
+        "url": [
+          ""
+        ]
       },
+      "author": "alpine",
       "name": "apk-tools",
       "version": "2.14.4-r1",
       "description": "Alpine Package Keeper - package manager for alpine",
@@ -449,7 +464,9 @@
       ],
       "licenses": [
         {
-          "expression": "(GPL-2.0-only)"
+          "license": {
+            "id": "GPL-2.0-only"
+          }
         }
       ],
       "purl": "pkg:apk/alpine/apk-tools@2.14.4-r1?arch=x86_64&distro=3.20.5",
@@ -498,7 +515,11 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-04-13T09:23:00Z"
+          "value": "2026-07-28T13:11:31Z"
+        },
+        {
+          "name": "ecosystems:owner_location",
+          "value": ""
         }
       ]
     },
@@ -648,7 +669,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2024-11-19T21:09:16Z"
+          "value": "2026-07-24T11:50:59Z"
         }
       ]
     },
@@ -720,7 +741,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2024-12-13T15:05:48Z"
+          "value": "2026-07-24T11:50:59Z"
         }
       ]
     },
@@ -741,7 +762,9 @@
       ],
       "licenses": [
         {
-          "expression": "(MIT)"
+          "license": {
+            "id": "MIT"
+          }
         }
       ],
       "purl": "pkg:apk/alpine/c-ares@1.33.1-r0?arch=x86_64&distro=3.20.5",
@@ -790,7 +813,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2025-12-13T12:04:23Z"
+          "value": "2026-07-08T19:44:19Z"
         }
       ]
     },
@@ -860,7 +883,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2025-11-10T07:19:26Z"
+          "value": "2026-06-13T14:25:12Z"
         }
       ]
     },
@@ -881,7 +904,14 @@
       ],
       "licenses": [
         {
-          "expression": "(MPL-2.0 AND MIT)"
+          "license": {
+            "id": "MPL-2.0"
+          }
+        },
+        {
+          "license": {
+            "id": "MIT"
+          }
         }
       ],
       "purl": "pkg:apk/alpine/ca-certificates@20241121-r1?arch=x86_64&distro=3.20.5",
@@ -930,7 +960,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2025-11-10T07:19:26Z"
+          "value": "2026-06-13T14:25:12Z"
         }
       ]
     },
@@ -942,7 +972,7 @@
       },
       "name": "curl",
       "version": "8.11.1-r0",
-      "description": "URL retrival utility and library",
+      "description": "URL retrieval utility and library",
       "hashes": [
         {
           "alg": "SHA-1",
@@ -951,7 +981,9 @@
       ],
       "licenses": [
         {
-          "expression": "(curl)"
+          "license": {
+            "id": "curl"
+          }
         }
       ],
       "purl": "pkg:apk/alpine/curl@8.11.1-r0?arch=x86_64&distro=3.20.5",
@@ -1000,7 +1032,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-03-12T21:21:31Z"
+          "value": "2026-06-30T11:23:53Z"
         }
       ]
     },
@@ -1021,7 +1053,9 @@
       ],
       "licenses": [
         {
-          "expression": "(MIT)"
+          "license": {
+            "id": "MIT"
+          }
         }
       ],
       "purl": "pkg:apk/alpine/fontconfig@2.15.0-r1?arch=x86_64&distro=3.20.5",
@@ -1070,7 +1104,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2025-08-05T12:33:16Z"
+          "value": "2026-06-19T22:43:44Z"
         }
       ]
     },
@@ -1091,7 +1125,14 @@
       ],
       "licenses": [
         {
-          "expression": "(FTL OR GPL-2.0-or-later)"
+          "license": {
+            "id": "FTL"
+          }
+        },
+        {
+          "license": {
+            "id": "GPL-2.0-or-later"
+          }
         }
       ],
       "purl": "pkg:apk/alpine/freetype@2.13.2-r0?arch=x86_64&distro=3.20.5",
@@ -1140,7 +1181,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-03-02T10:40:56Z"
+          "value": "2026-04-29T14:07:13Z"
         }
       ]
     },
@@ -1161,7 +1202,9 @@
       ],
       "licenses": [
         {
-          "expression": "(LGPL-2.1-or-later)"
+          "license": {
+            "id": "LGPL-2.1-or-later"
+          }
         }
       ],
       "purl": "pkg:apk/alpine/geoip@1.6.12-r5?arch=x86_64&distro=3.20.5",
@@ -1235,7 +1278,9 @@
       ],
       "licenses": [
         {
-          "expression": "(BSD-2-Clause)"
+          "license": {
+            "id": "BSD-2-Clause"
+          }
         }
       ],
       "purl": "pkg:apk/alpine/libavif@1.0.4-r0?arch=x86_64&distro=3.20.5",
@@ -1284,7 +1329,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-04-10T08:10:08Z"
+          "value": "2026-06-16T06:56:12Z"
         }
       ]
     },
@@ -1445,7 +1490,9 @@
       ],
       "licenses": [
         {
-          "expression": "(Apache-2.0)"
+          "license": {
+            "id": "Apache-2.0"
+          }
         }
       ],
       "purl": "pkg:apk/alpine/libcrypto3@3.3.2-r1?arch=x86_64&distro=3.20.5",
@@ -1494,7 +1541,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-04-08T14:08:45Z"
+          "value": "2026-06-10T07:44:04Z"
         }
       ]
     },
@@ -1515,7 +1562,9 @@
       ],
       "licenses": [
         {
-          "expression": "(curl)"
+          "license": {
+            "id": "curl"
+          }
         }
       ],
       "purl": "pkg:apk/alpine/libcurl@8.11.1-r0?arch=x86_64&distro=3.20.5",
@@ -1564,7 +1613,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-03-12T21:21:31Z"
+          "value": "2026-06-30T11:23:53Z"
         }
       ]
     },
@@ -1585,7 +1634,9 @@
       ],
       "licenses": [
         {
-          "expression": "(BSD-2-Clause)"
+          "license": {
+            "id": "BSD-2-Clause"
+          }
         }
       ],
       "purl": "pkg:apk/alpine/libdav1d@1.4.2-r0?arch=x86_64&distro=3.20.5",
@@ -1634,7 +1685,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-01-02T17:20:08Z"
+          "value": "2026-07-15T06:00:24Z"
         }
       ]
     },
@@ -1655,7 +1706,9 @@
       ],
       "licenses": [
         {
-          "expression": "(BSD-3-Clause)"
+          "license": {
+            "id": "BSD-3-Clause"
+          }
         }
       ],
       "purl": "pkg:apk/alpine/libedit@20240517.3.1-r0?arch=x86_64&distro=3.20.5",
@@ -1704,7 +1757,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-01-23T15:24:07Z"
+          "value": "2026-05-15T07:56:49Z"
         }
       ]
     },
@@ -1725,7 +1778,9 @@
       ],
       "licenses": [
         {
-          "expression": "(MIT)"
+          "license": {
+            "id": "MIT"
+          }
         }
       ],
       "purl": "pkg:apk/alpine/libexpat@2.6.4-r0?arch=x86_64&distro=3.20.5",
@@ -1774,7 +1829,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-03-18T13:56:41Z"
+          "value": "2026-06-26T14:22:27Z"
         }
       ]
     },
@@ -1795,7 +1850,14 @@
       ],
       "licenses": [
         {
-          "expression": "(LGPL-2.1-or-later AND GPL-2.0-or-later)"
+          "license": {
+            "id": "LGPL-2.1-or-later"
+          }
+        },
+        {
+          "license": {
+            "id": "GPL-2.0-or-later"
+          }
         }
       ],
       "purl": "pkg:apk/alpine/libgcrypt@1.10.3-r0?arch=x86_64&distro=3.20.5",
@@ -1844,7 +1906,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-01-29T20:53:45Z"
+          "value": "2026-04-16T17:03:08Z"
         }
       ]
     },
@@ -1865,7 +1927,9 @@
       ],
       "licenses": [
         {
-          "expression": "(GD)"
+          "license": {
+            "id": "GD"
+          }
         }
       ],
       "purl": "pkg:apk/alpine/libgd@2.3.3-r9?arch=x86_64&distro=3.20.5",
@@ -1935,7 +1999,14 @@
       ],
       "licenses": [
         {
-          "expression": "(GPL-2.0-or-later AND LGPL-2.1-or-later)"
+          "license": {
+            "id": "GPL-2.0-or-later"
+          }
+        },
+        {
+          "license": {
+            "id": "LGPL-2.1-or-later"
+          }
         }
       ],
       "purl": "pkg:apk/alpine/libgpg-error@1.49-r0?arch=x86_64&distro=3.20.5",
@@ -1984,7 +2055,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2025-12-11T14:29:04Z"
+          "value": "2026-05-14T09:55:11Z"
         }
       ]
     },
@@ -2005,7 +2076,9 @@
       ],
       "licenses": [
         {
-          "expression": "(X11)"
+          "license": {
+            "name": "X-11"
+          }
         }
       ],
       "purl": "pkg:apk/alpine/libice@1.1.1-r6?arch=x86_64&distro=3.20.5",
@@ -2145,7 +2218,9 @@
       ],
       "licenses": [
         {
-          "expression": "(LGPL-2.1-or-later)"
+          "license": {
+            "id": "LGPL-2.1-or-later"
+          }
         }
       ],
       "purl": "pkg:apk/alpine/libintl@0.22.5-r0?arch=x86_64&distro=3.20.5",
@@ -2194,7 +2269,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2025-07-22T19:40:22Z"
+          "value": "2026-04-18T21:49:18Z"
         }
       ]
     },
@@ -2215,7 +2290,19 @@
       ],
       "licenses": [
         {
-          "expression": "(BSD-3-Clause AND IJG AND Zlib)"
+          "license": {
+            "id": "BSD-3-Clause"
+          }
+        },
+        {
+          "license": {
+            "id": "IJG"
+          }
+        },
+        {
+          "license": {
+            "id": "Zlib"
+          }
         }
       ],
       "purl": "pkg:apk/alpine/libjpeg-turbo@3.0.3-r0?arch=x86_64&distro=3.20.5",
@@ -2334,7 +2421,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2023-06-14T03:26:12Z"
+          "value": "2026-05-18T11:07:46Z"
         }
       ]
     },
@@ -2406,7 +2493,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-04-11T13:37:59Z"
+          "value": "2026-05-24T07:36:39Z"
         }
       ]
     },
@@ -2427,7 +2514,9 @@
       ],
       "licenses": [
         {
-          "expression": "(Libpng)"
+          "license": {
+            "id": "Libpng"
+          }
         }
       ],
       "purl": "pkg:apk/alpine/libpng@1.6.44-r0?arch=x86_64&distro=3.20.5",
@@ -2476,7 +2565,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-04-09T19:31:59Z"
+          "value": "2026-05-16T10:20:54Z"
         }
       ]
     },
@@ -2484,8 +2573,9 @@
       "bom-ref": "pkg:apk/alpine/libpsl@0.21.5-r1?arch=x86_64&distro=3.20.5",
       "type": "library",
       "supplier": {
-        "name": "Natanael Copa <ncopa@alpinelinux.org>"
+        "name": "Tim Rühsen"
       },
+      "author": "Tim Rühsen",
       "name": "libpsl",
       "version": "0.21.5-r1",
       "description": "C library for the Publix Suffix List",
@@ -2497,7 +2587,9 @@
       ],
       "licenses": [
         {
-          "expression": "(MIT)"
+          "license": {
+            "id": "MIT"
+          }
         }
       ],
       "purl": "pkg:apk/alpine/libpsl@0.21.5-r1?arch=x86_64&distro=3.20.5",
@@ -2549,6 +2641,10 @@
           "value": "2024-10-05T12:41:08Z"
         },
         {
+          "name": "ecosystems:owner_location",
+          "value": "near Hamburg, Germany"
+        },
+        {
           "name": "ecosystems:topic",
           "value": "hacktoberfest"
         }
@@ -2571,7 +2667,9 @@
       ],
       "licenses": [
         {
-          "expression": "(BSD-3-Clause)"
+          "license": {
+            "id": "BSD-3-Clause"
+          }
         }
       ],
       "purl": "pkg:apk/alpine/libsharpyuv@1.3.2-r0?arch=x86_64&distro=3.20.5",
@@ -2641,7 +2739,9 @@
       ],
       "licenses": [
         {
-          "expression": "(MIT)"
+          "license": {
+            "id": "MIT"
+          }
         }
       ],
       "purl": "pkg:apk/alpine/libsm@1.2.4-r4?arch=x86_64&distro=3.20.5",
@@ -2711,7 +2811,9 @@
       ],
       "licenses": [
         {
-          "expression": "(Apache-2.0)"
+          "license": {
+            "id": "Apache-2.0"
+          }
         }
       ],
       "purl": "pkg:apk/alpine/libssl3@3.3.2-r1?arch=x86_64&distro=3.20.5",
@@ -2760,7 +2862,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-04-08T14:08:45Z"
+          "value": "2026-06-10T07:44:04Z"
         }
       ]
     },
@@ -2781,7 +2883,14 @@
       ],
       "licenses": [
         {
-          "expression": "(GPL-2.0-or-later OR LGPL-3.0-or-later)"
+          "license": {
+            "id": "GPL-2.0-or-later"
+          }
+        },
+        {
+          "license": {
+            "id": "LGPL-3.0-or-later"
+          }
         }
       ],
       "purl": "pkg:apk/alpine/libunistring@1.2-r0?arch=x86_64&distro=3.20.5",
@@ -2830,7 +2939,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2025-11-28T13:19:11Z"
+          "value": "2026-04-16T17:03:10Z"
         }
       ]
     },
@@ -2851,7 +2960,9 @@
       ],
       "licenses": [
         {
-          "expression": "(BSD-3-Clause)"
+          "license": {
+            "id": "BSD-3-Clause"
+          }
         }
       ],
       "purl": "pkg:apk/alpine/libuuid@2.40.1-r1?arch=x86_64&distro=3.20.5",
@@ -2900,7 +3011,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-04-09T18:56:19Z"
+          "value": "2026-08-11T08:38:20Z"
         }
       ]
     },
@@ -2921,7 +3032,9 @@
       ],
       "licenses": [
         {
-          "expression": "(BSD-3-Clause)"
+          "license": {
+            "id": "BSD-3-Clause"
+          }
         }
       ],
       "purl": "pkg:apk/alpine/libwebp@1.3.2-r0?arch=x86_64&distro=3.20.5",
@@ -2991,7 +3104,9 @@
       ],
       "licenses": [
         {
-          "expression": "(X11)"
+          "license": {
+            "name": "X-11"
+          }
         }
       ],
       "purl": "pkg:apk/alpine/libx11@1.8.9-r1?arch=x86_64&distro=3.20.5",
@@ -3061,7 +3176,9 @@
       ],
       "licenses": [
         {
-          "expression": "(MIT)"
+          "license": {
+            "id": "MIT"
+          }
         }
       ],
       "purl": "pkg:apk/alpine/libxau@1.0.11-r4?arch=x86_64&distro=3.20.5",
@@ -3131,7 +3248,9 @@
       ],
       "licenses": [
         {
-          "expression": "(MIT)"
+          "license": {
+            "id": "MIT"
+          }
         }
       ],
       "purl": "pkg:apk/alpine/libxcb@1.16.1-r0?arch=x86_64&distro=3.20.5",
@@ -3180,7 +3299,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2025-11-21T22:54:10Z"
+          "value": "2026-05-02T07:57:20Z"
         }
       ]
     },
@@ -3341,7 +3460,9 @@
       ],
       "licenses": [
         {
-          "expression": "(MIT)"
+          "license": {
+            "id": "MIT"
+          }
         }
       ],
       "purl": "pkg:apk/alpine/libxml2@2.12.7-r0?arch=x86_64&distro=3.20.5",
@@ -3390,7 +3511,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2025-09-09T08:36:02Z"
+          "value": "2026-05-28T09:40:38Z"
         }
       ]
     },
@@ -3411,7 +3532,9 @@
       ],
       "licenses": [
         {
-          "expression": "(X11)"
+          "license": {
+            "name": "X-11"
+          }
         }
       ],
       "purl": "pkg:apk/alpine/libxpm@3.5.17-r0?arch=x86_64&distro=3.20.5",
@@ -3460,7 +3583,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-01-31T09:13:03Z"
+          "value": "2026-04-21T13:54:16Z"
         }
       ]
     },
@@ -3481,7 +3604,9 @@
       ],
       "licenses": [
         {
-          "expression": "(X11)"
+          "license": {
+            "name": "X-11"
+          }
         }
       ],
       "purl": "pkg:apk/alpine/libxslt@1.1.39-r1?arch=x86_64&distro=3.20.5",
@@ -3551,7 +3676,9 @@
       ],
       "licenses": [
         {
-          "expression": "(MIT)"
+          "license": {
+            "id": "MIT"
+          }
         }
       ],
       "purl": "pkg:apk/alpine/libxt@1.3.0-r5?arch=x86_64&distro=3.20.5",
@@ -3621,7 +3748,19 @@
       ],
       "licenses": [
         {
-          "expression": "(MIT AND BSD-2-Clause AND GPL-2.0-or-later)"
+          "license": {
+            "id": "MIT"
+          }
+        },
+        {
+          "license": {
+            "id": "BSD-2-Clause"
+          }
+        },
+        {
+          "license": {
+            "id": "GPL-2.0-or-later"
+          }
         }
       ],
       "purl": "pkg:apk/alpine/musl-utils@1.2.5-r0?arch=x86_64&distro=3.20.5",
@@ -3691,7 +3830,9 @@
       ],
       "licenses": [
         {
-          "expression": "(MIT)"
+          "license": {
+            "id": "MIT"
+          }
         }
       ],
       "purl": "pkg:apk/alpine/musl@1.2.5-r0?arch=x86_64&distro=3.20.5",
@@ -3812,7 +3953,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-04-11T13:37:59Z"
+          "value": "2026-05-24T07:36:39Z"
         }
       ]
     },
@@ -3833,7 +3974,9 @@
       ],
       "licenses": [
         {
-          "expression": "(MIT)"
+          "license": {
+            "id": "MIT"
+          }
         }
       ],
       "purl": "pkg:apk/alpine/nghttp2-libs@1.62.1-r0?arch=x86_64&distro=3.20.5",
@@ -3882,7 +4025,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2025-11-02T21:11:36Z"
+          "value": "2026-07-31T06:34:36Z"
         }
       ]
     },
@@ -4200,7 +4343,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-03-26T14:18:28Z"
+          "value": "2026-07-23T13:40:04Z"
         }
       ]
     },
@@ -4221,7 +4364,9 @@
       ],
       "licenses": [
         {
-          "expression": "(BSD-3-Clause)"
+          "license": {
+            "id": "BSD-3-Clause"
+          }
         }
       ],
       "purl": "pkg:apk/alpine/pcre2@10.43-r0?arch=x86_64&distro=3.20.5",
@@ -4270,7 +4415,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2025-11-09T23:26:51Z"
+          "value": "2026-05-02T07:57:20Z"
         }
       ]
     },
@@ -4412,7 +4557,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2024-11-19T21:09:16Z"
+          "value": "2026-07-24T11:50:59Z"
         }
       ]
     },
@@ -4433,7 +4578,9 @@
       ],
       "licenses": [
         {
-          "expression": "(libtiff)"
+          "license": {
+            "id": "libtiff"
+          }
         }
       ],
       "purl": "pkg:apk/alpine/tiff@4.6.0t-r0?arch=x86_64&distro=3.20.5",
@@ -4482,7 +4629,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2025-09-19T22:57:09Z"
+          "value": "2026-07-19T21:27:17Z"
         }
       ]
     },
@@ -4503,7 +4650,9 @@
       ],
       "licenses": [
         {
-          "expression": "(Public-Domain)"
+          "license": {
+            "name": "Public-Domain"
+          }
         }
       ],
       "purl": "pkg:apk/alpine/tzdata@2024b-r0?arch=x86_64&distro=3.20.5",
@@ -4552,7 +4701,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-03-04T10:10:28Z"
+          "value": "2026-07-13T21:26:57Z"
         }
       ]
     },
@@ -4573,7 +4722,24 @@
       ],
       "licenses": [
         {
-          "expression": "(GPL-2.0-or-later AND 0BSD AND Public-Domain AND LGPL-2.1-or-later)"
+          "license": {
+            "id": "GPL-2.0-or-later"
+          }
+        },
+        {
+          "license": {
+            "id": "0BSD"
+          }
+        },
+        {
+          "license": {
+            "name": "Public-Domain"
+          }
+        },
+        {
+          "license": {
+            "id": "LGPL-2.1-or-later"
+          }
         }
       ],
       "purl": "pkg:apk/alpine/xz-libs@5.6.2-r0?arch=x86_64&distro=3.20.5",
@@ -4622,7 +4788,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-01-14T19:03:42Z"
+          "value": "2026-04-25T12:53:30Z"
         }
       ]
     },
@@ -4643,7 +4809,9 @@
       ],
       "licenses": [
         {
-          "expression": "(Zlib)"
+          "license": {
+            "id": "Zlib"
+          }
         }
       ],
       "purl": "pkg:apk/alpine/zlib@1.3.1-r1?arch=x86_64&distro=3.20.5",
@@ -4717,7 +4885,14 @@
       ],
       "licenses": [
         {
-          "expression": "(BSD-3-Clause OR GPL-2.0-or-later)"
+          "license": {
+            "id": "BSD-3-Clause"
+          }
+        },
+        {
+          "license": {
+            "id": "GPL-2.0-or-later"
+          }
         }
       ],
       "purl": "pkg:apk/alpine/zstd-libs@1.5.6-r0?arch=x86_64&distro=3.20.5",
@@ -4937,7 +5112,7 @@
       "author": "Caleb Spare",
       "name": "github.com/cespare/xxhash/v2",
       "version": "v2.3.0",
-      "description": "Package xxhash implements the 64-bit variant of xxHash (XXH64) as described\nat http://cyan4973.github.io/xxHash/.",
+      "description": "Package xxhash implements the 64-bit variant of xxHash (XXH64) as described at http://cyan4973.github.io/xxHash/.",
       "licenses": [
         {
           "expression": "(MIT)"
@@ -4996,9 +5171,13 @@
     {
       "bom-ref": "pkg:golang/github.com/chai2010/gettext-go@v1.0.2",
       "type": "library",
+      "supplier": {
+        "name": "柴树杉"
+      },
+      "author": "柴树杉",
       "name": "github.com/chai2010/gettext-go",
       "version": "v1.0.2",
-      "description": "Package gettext implements a basic GNU's gettext library.\n\nExample:\n\nTranslate directory struct(\"./examples/locale.zip\"):\n\nSee:\n\nPlease report bugs to <chaishushan{AT}gmail.com>.\nThanks!",
+      "description": "Package gettext implements a basic GNU's gettext library.",
       "licenses": [
         {
           "expression": "(BSD-3-Clause)"
@@ -5047,6 +5226,10 @@
         {
           "name": "ecosystems:latest_release_published_at",
           "value": "2024-04-10T05:39:05Z"
+        },
+        {
+          "name": "ecosystems:owner_location",
+          "value": "中国"
         },
         {
           "name": "ecosystems:topic",
@@ -5154,7 +5337,7 @@
       "author": "Distribution",
       "name": "github.com/distribution/reference",
       "version": "v0.6.0",
-      "description": "Package reference provides a general type to represent any way of referencing images within the registry.\nIts main purpose is to abstract tags and digests (content-addressable hash).\n\nGrammar",
+      "description": "Package reference provides a general type to represent any way of referencing images within the registry.",
       "licenses": [
         {
           "expression": "(Apache-2.0)"
@@ -5218,7 +5401,7 @@
       "author": "Ernest Micklei",
       "name": "github.com/emicklei/go-restful/v3",
       "version": "v3.11.0",
-      "description": "Package restful , a lean package for creating REST-style WebServices without magic.\n\n### WebServices and Routes\n\nA WebService has a collection of Route objects that dispatch incoming Http Requests to a function calls.\nTypically, a WebService has a root path (e.g. /users) and defines common MIME types for its routes.\nWebServices must be added to a container (see below) in order to handler Http requests from a server.\n\nA Route is defined by a HTTP method, an URL path and (optionally) the MIME types it consumes (Content-Type) and produces (Accept).\nThis package has the logic to find the best matching Route and if found, call its Function.\n\nThe (*Request, *Response) arguments provide functions for reading information from the request and writing information back to the response.\n\nSee the example https://github.com/emicklei/go-restful/blob/v3/examples/user-resource/restful-user-resource.go with a full implementation.\n\n### Regular expression matching Routes\n\nA Route parameter can be specified using the format \"uri/{var[:regexp]}\" or the special version \"uri/{var:*}\" for matching the tail of the path.\nFor example, /persons/{name:[A-Z][A-Z]} can be used to restrict values for the parameter \"name\" to only contain capital alphabetic characters.\nRegular expressions must use the standard Go syntax as described in the regexp package. (https://code.google.com/p/re2/wiki/Syntax)\nThis feature requires the use of a CurlyRouter.\n\n### Containers\n\nA Container holds a collection of WebServices, Filters and a http.ServeMux for multiplexing http requests.\nUsing the statements \"restful.Add(...) and restful.Filter(...)\" will register WebServices and Filters to the Default Container.\nThe Default container of go-restful uses the http.DefaultServeMux.\nYou can create your own Container and create a new http.Server for that particular container.\n\n### Filters\n\nA filter dynamically intercepts requests and responses to transform or use the information contained in the requests or responses.\nYou can use filters to perform generic logging, measurement, authentication, redirect, set response headers etc.\nIn the restful package there are three hooks into the request,response flow where filters can be added.\nEach filter must define a FilterFunction:\n\nUse the following statement to pass the request,response pair to the next filter or RouteFunction\n\n### Container Filters\n\nThese are processed before any registered WebService.\n\n### WebService Filters\n\nThese are processed before any Route of a WebService.\n\n### Route Filters\n\nThese are processed before calling the function associated with the Route.\n\nSee the example https://github.com/emicklei/go-restful/blob/v3/examples/filters/restful-filters.go with full implementations.\n\n### Response Encoding\n\nTwo encodings are supported: gzip and deflate. To enable this for all responses:\n\nIf a Http request includes the Accept-Encoding header then the response content will be compressed using the specified encoding.\nAlternatively, you can create a Filter that performs the encoding and install it per WebService or Route.\n\nSee the example https://github.com/emicklei/go-restful/blob/v3/examples/encoding/restful-encoding-filter.go\n\n### OPTIONS support\n\nBy installing a pre-defined container filter, your Webservice(s) can respond to the OPTIONS Http request.\n\n### CORS\n\nBy installing the filter of a CrossOriginResourceSharing (CORS), your WebService(s) can handle CORS requests.\n\n### Error Handling\n\nUnexpected things happen. If a request cannot be processed because of a failure, your service needs to tell via the response what happened and why.\nFor this reason HTTP status codes exist and it is important to use the correct code in every exceptional situation.\n\nIf path or query parameters are not valid (content or type) then use http.StatusBadRequest.\n\nDespite a valid URI, the resource requested may not be available\n\nIf the application logic could not process the request (or write the response) then use http.StatusInternalServerError.\n\nThe request has a valid URL but the method (GET,PUT,POST,...) is not allowed.\n\nThe request does not have or has an unknown Accept Header set for this operation.\n\nThe request does not have or has an unknown Content-Type Header set for this operation.\n\n### ServiceError\n\nIn addition to setting the correct (error) Http status code, you can choose to write a ServiceError message on the response.\n\n### Performance options\n\nThis package has several options that affect the performance of your service. It is important to understand them and how you can change it.\n\nDoNotRecover controls whether panics will be caught to return HTTP 500.\nIf set to false, the container will recover from panics.\nDefault value is true\n\nIf content encoding is enabled then the default strategy for getting new gzip/zlib writers and readers is to use a sync.Pool.\nBecause writers are expensive structures, performance is even more improved when using a preloaded cache. You can also inject your own implementation.\n\n### Trouble shooting\n\nThis package has the means to produce detail logging of the complete Http request matching process and filter invocation.\nEnabling this feature requires you to set an implementation of restful.StdLogger (e.g. log.Logger) instance such as:\n\n### Logging\n\nThe restful.SetLogger() method allows you to override the logger used by the package. By default restful\nuses the standard library `log` package and logs to stdout. Different logging packages are supported as\nlong as they conform to `StdLogger` interface defined in the `log` sub-package, writing an adapter for your\npreferred package is simple.\n\n### Resources\n\n(c) 2012-2025, http://ernestmicklei.com. MIT License",
+      "description": "Package restful , a lean package for creating REST-style WebServices without magic.",
       "licenses": [
         {
           "expression": "(MIT)"
@@ -5363,7 +5546,7 @@
       "author": "Fatih Arslan",
       "name": "github.com/fatih/camelcase",
       "version": "v1.0.0",
-      "description": "Package camelcase is a micro package to split the words of a camelcase type\nstring into a slice of words.",
+      "description": "Package camelcase is a micro package to split the words of a camelcase type string into a slice of words.",
       "licenses": [
         {
           "expression": "(MIT)"
@@ -5428,7 +5611,7 @@
       "author": "Faye Amacker",
       "name": "github.com/fxamacker/cbor/v2",
       "version": "v2.7.0",
-      "description": "Package cbor is a modern CBOR codec (RFC 8949 & RFC 8742) with CBOR tags,\nGo struct tag options (toarray/keyasint/omitempty/omitzero), Core Deterministic Encoding,\nCTAP2, Canonical CBOR, float64->32->16, and duplicate map key detection.\n\nEncoding options allow \"preferred serialization\" by encoding integers and floats\nto their smallest forms (e.g. float16) when values fit.\n\nStruct tag options \"keyasint\", \"toarray\", \"omitempty\", and \"omitzero\" reduce encoding size\nand reduce programming effort.\n\nFor example, \"toarray\" tag makes struct fields encode to CBOR array elements.  And\n\"keyasint\" makes a field encode to an element of CBOR map with specified int key.\n\nLatest docs can be viewed at https://github.com/fxamacker/cbor#cbor-library-in-go\n\nThe Quick Start guide is at https://github.com/fxamacker/cbor#quick-start\n\nFunction signatures identical to encoding/json include:\n\nStandard interfaces include:\n\nDiagnostic functions translate CBOR data item into Diagnostic Notation:\n\nFunctions that simplify using CBOR Sequences (RFC 8742) include:\n\nCustom encoding and decoding is possible by implementing standard interfaces for\nuser-defined Go types.\n\nCodec functions are available at package-level (using defaults options) or by\ncreating modes from options at runtime.\n\n\"Mode\" in this API means definite way of encoding (EncMode) or decoding (DecMode).\n\nEncMode and DecMode interfaces are created from EncOptions or DecOptions structs.\n\nModes use immutable options to avoid side-effects and simplify concurrency. Behavior of\nmodes won't accidentally change at runtime after they're created.\n\nModes are intended to be reused and are safe for concurrent use.\n\nEncMode and DecMode Interfaces\n\nUsing Default Encoding Mode\n\nUsing Default Decoding Mode\n\nUsing Default Mode of UnmarshalFirst to Decode CBOR Sequences\n\nUsing Extended Diagnostic Notation (EDN) to represent CBOR data\n\nCreating and Using Encoding Modes\n\nPredefined Encoding Options: https://github.com/fxamacker/cbor#predefined-encoding-options\n\nEncoding Options: https://github.com/fxamacker/cbor#encoding-options\n\nDecoding Options: https://github.com/fxamacker/cbor#decoding-options\n\nStruct tags like `cbor:\"name,omitempty\"` and `json:\"name,omitempty\"` work as expected.\nIf both struct tags are specified then `cbor` is used.\n\nStruct tag options like \"keyasint\", \"toarray\", \"omitempty\", and \"omitzero\" make it easy to use\nvery compact formats like COSE and CWT (CBOR Web Tokens) with structs.\n\nThe \"omitzero\" option omits zero values from encoding, matching\n[stdlib encoding/json behavior](https://pkg.go.dev/encoding/json#Marshal).\nWhen specified in the `cbor` tag, the option is always honored.\nWhen specified in the `json` tag, the option is honored when building with Go 1.24+.\n\nFor example, \"toarray\" makes struct fields encode to array elements.  And \"keyasint\"\nmakes struct fields encode to elements of CBOR map with int keys.\n\nhttps://raw.githubusercontent.com/fxamacker/images/master/cbor/v2.0.0/cbor_easy_api.png\n\nStruct tag options are listed at https://github.com/fxamacker/cbor#struct-tags-1\n\nOver 375 tests are included in this package. Cover-guided fuzzing is handled by\na private fuzzer that replaced fxamacker/cbor-fuzz years ago.",
+      "description": "Package cbor is a modern CBOR codec (RFC 8949 & RFC 8742) with CBOR tags, Go struct tag options (toarray/keyasint/omitempty/omitzero), Core Deterministic Encoding, CTAP2, Canonical CBOR, float64->32->16, and duplicate map key detection.",
       "licenses": [
         {
           "expression": "(MIT)"
@@ -5476,7 +5659,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-03-30T13:23:16Z"
+          "value": "2026-09-14T17:12:54Z"
         },
         {
           "name": "ecosystems:owner_location",
@@ -5545,7 +5728,7 @@
       "author": "go-errors",
       "name": "github.com/go-errors/errors",
       "version": "v1.4.2",
-      "description": "Package errors provides errors that have stack-traces.\n\nThis is particularly useful when you want to understand the\nstate of execution when an error was returned unexpectedly.\n\nIt provides the type *Error which implements the standard\ngolang error interface, so you can use this library interchangably\nwith code that is expecting a normal error return.\n\nFor example:\n\nThis can be called as follows:\n\nThis package was original written to allow reporting to Bugsnag,\nbut after I found similar packages by Facebook and Dropbox, it\nwas moved to one canonical location so everyone can benefit.",
+      "description": "Package errors provides errors that have stack-traces.",
       "licenses": [
         {
           "expression": "(MIT)"
@@ -5606,7 +5789,7 @@
       "author": "go-logr",
       "name": "github.com/go-logr/logr",
       "version": "v1.4.2",
-      "description": "Package logr defines a general-purpose logging API and abstract interfaces\nto back that API.  Packages in the Go ecosystem can depend on this package,\nwhile callers can implement logging with whatever backend is appropriate.\n\nLogging is done using a Logger instance.  Logger is a concrete type with\nmethods, which defers the actual logging to a LogSink interface.  The main\nmethods of Logger are Info() and Error().  Arguments to Info() and Error()\nare key/value pairs rather than printf-style formatted strings, emphasizing\n\"structured logging\".\n\nWith Go's standard log package, we might write:\n\nWith logr's structured logging, we'd write:\n\nErrors are much the same.  Instead of:\n\nWe'd write:\n\nInfo() and Error() are very similar, but they are separate methods so that\nLogSink implementations can choose to do things like attach additional\ninformation (such as stack traces) on calls to Error(). Error() messages are\nalways logged, regardless of the current verbosity.  If there is no error\ninstance available, passing nil is valid.\n\nOften we want to log information only when the application in \"verbose\nmode\".  To write log lines that are more verbose, Logger has a V() method.\nThe higher the V-level of a log line, the less critical it is considered.\nLog-lines with V-levels that are not enabled (as per the LogSink) will not\nbe written.  Level V(0) is the default, and logger.V(0).Info() has the same\nmeaning as logger.Info().  Negative V-levels have the same meaning as V(0).\nError messages do not have a verbosity level and are always logged.\n\nWhere we might have written:\n\nWe can write:\n\nLogger instances can have name strings so that all messages logged through\nthat instance have additional context.  For example, you might want to add\na subsystem name:\n\nThe WithName() method returns a new Logger, which can be passed to\nconstructors or other functions for further use.  Repeated use of WithName()\nwill accumulate name \"segments\".  These name segments will be joined in some\nway by the LogSink implementation.  It is strongly recommended that name\nsegments contain simple identifiers (letters, digits, and hyphen), and do\nnot contain characters that could muddle the log output or confuse the\njoining operation (e.g. whitespace, commas, periods, slashes, brackets,\nquotes, etc).\n\nLogger instances can store any number of key/value pairs, which will be\nlogged alongside all messages logged through that instance.  For example,\nyou might want to create a Logger instance per managed object:\n\nWith the standard log package, we might write:\n\nWith logr we'd write:\n\nLogger has very few hard rules, with the goal that LogSink implementations\nmight have a lot of freedom to differentiate.  There are, however, some\nthings to consider.\n\nThe log message consists of a constant message attached to the log line.\nThis should generally be a simple description of what's occurring, and should\nnever be a format string.  Variable information can then be attached using\nnamed values.\n\nKeys are arbitrary strings, but should generally be constant values.  Values\nmay be any Go value, but how the value is formatted is determined by the\nLogSink implementation.\n\nLogger instances are meant to be passed around by value. Code that receives\nsuch a value can call its methods without having to check whether the\ninstance is ready for use.\n\nThe zero logger (= Logger{}) is identical to Discard() and discards all log\nentries. Code that receives a Logger by value can simply call it, the methods\nwill never crash. For cases where passing a logger is optional, a pointer to Logger\nshould be used.\n\nKeys are not strictly required to conform to any specification or regex, but\nit is recommended that they:\n\nThese guidelines help ensure that log data is processed properly regardless\nof the log implementation.  For example, log implementations will try to\noutput JSON data or will store data for later database (e.g. SQL) queries.\n\nWhile users are generally free to use key names of their choice, it's\ngenerally best to avoid using the following keys, as they're frequently used\nby implementations:\n\nImplementations are encouraged to make use of these keys to represent the\nabove concepts, when necessary (for example, in a pure-JSON output form, it\nwould be necessary to represent at least message and timestamp as ordinary\nnamed values).\n\nImplementations may choose to give callers access to the underlying\nlogging implementation.  The recommended pattern for this is:\n\nLogger grants access to the sink to enable type assertions like this:\n\nCustom `With*` functions can be implemented by copying the complete\nLogger struct and replacing the sink in the copy:\n\nDon't use New to construct a new Logger with a LogSink retrieved from an\nexisting Logger. Source code attribution might not work correctly and\nunexported fields in Logger get lost.\n\nBeware that the same LogSink instance may be shared by different logger\ninstances. Calling functions that modify the LogSink will affect all of\nthose.",
+      "description": "Package logr defines a general-purpose logging API and abstract interfaces to back that API.",
       "licenses": [
         {
           "expression": "(Apache-2.0)"
@@ -5654,7 +5837,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2025-05-19T04:56:57Z"
+          "value": "2026-07-20T18:51:02Z"
         },
         {
           "name": "ecosystems:topic",
@@ -5675,6 +5858,7 @@
       "author": "OpenAPI Initiative golang toolkit",
       "name": "github.com/go-openapi/jsonpointer",
       "version": "v0.21.0",
+      "description": "Package jsonpointer provides a golang implementation for json pointers.",
       "licenses": [
         {
           "expression": "(Apache-2.0)"
@@ -5722,7 +5906,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-03-02T21:21:48Z"
+          "value": "2026-09-24T19:42:48Z"
         },
         {
           "name": "ecosystems:topic",
@@ -5733,36 +5917,9 @@
     {
       "bom-ref": "pkg:golang/github.com/go-openapi/jsonreference@v0.20.2",
       "type": "library",
-      "supplier": {
-        "name": "OpenAPI Initiative golang toolkit"
-      },
-      "author": "OpenAPI Initiative golang toolkit",
       "name": "github.com/go-openapi/jsonreference",
       "version": "v0.20.2",
-      "licenses": [
-        {
-          "expression": "(Apache-2.0)"
-        }
-      ],
       "purl": "pkg:golang/github.com/go-openapi/jsonreference@v0.20.2",
-      "externalReferences": [
-        {
-          "url": "https://github.com/go-openapi/jsonreference",
-          "type": "website"
-        },
-        {
-          "url": "https://pkg.go.dev/github.com/go-openapi/jsonreference",
-          "type": "distribution"
-        },
-        {
-          "url": "https://github.com/go-openapi/jsonreference",
-          "type": "vcs"
-        },
-        {
-          "url": "https://pkg.go.dev/github.com/go-openapi/jsonreference#section-documentation",
-          "type": "documentation"
-        }
-      ],
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
@@ -5779,14 +5936,6 @@
         {
           "name": "aquasecurity:trivy:PkgType",
           "value": "gobinary"
-        },
-        {
-          "name": "ecosystems:first_release_published_at",
-          "value": "2018-10-07T00:19:29Z"
-        },
-        {
-          "name": "ecosystems:latest_release_published_at",
-          "value": "2026-03-02T21:57:17Z"
         }
       ]
     },
@@ -5799,7 +5948,7 @@
       "author": "OpenAPI Initiative golang toolkit",
       "name": "github.com/go-openapi/swag",
       "version": "v0.23.0",
-      "description": "Package swag contains a bunch of helper functions for go-openapi and go-swagger projects.\n\nYou may also use it standalone for your projects.\n\nNOTE: all features that used to be exposed as package-level members (constants, variables,\nfunctions and types) are now deprecated and are superseded by equivalent features in\nmore specialized sub-packages.\nMoving forward, no additional feature will be added to the swag API directly at the root package level,\nwhich remains there for backward-compatibility purposes.\n\nChild modules will continue to evolve or some new ones may be added in the future.\n\ncmdutils      utilities to work with CLIs\n\nconv          type conversion utilities\n\nfileutils     file utilities\n\njsonname      JSON utilities\n\njsonutils     JSON utilities\n\nloading       file loading\n\nmangling      safe name generation\n\nnetutils      networking utilities\n\nstringutils   `string` utilities\n\ntypeutils     `go` types utilities\n\nyamlutils     YAML utilities\n\nThis repo has a few dependencies outside of the standard library:",
+      "description": "Package swag contains a bunch of helper functions for go-openapi and go-swagger projects.",
       "licenses": [
         {
           "expression": "(Apache-2.0)"
@@ -5847,7 +5996,15 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-03-02T18:12:04Z"
+          "value": "2026-09-04T19:20:18Z"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "openapi"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "swagger2"
         }
       ]
     },
@@ -5990,7 +6147,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2024-03-06T06:45:40Z"
+          "value": "2026-10-05T03:31:26Z"
         },
         {
           "name": "ecosystems:topic",
@@ -6022,7 +6179,7 @@
       "author": "Google",
       "name": "github.com/google/btree",
       "version": "v1.0.1",
-      "description": "Package btree implements in-memory B-Trees of arbitrary degree.\n\nbtree implements an in-memory B-Tree for use as an ordered data structure.\nIt is not meant for persistent storage solutions.\n\nIt has a flatter structure than an equivalent red-black or other binary tree,\nwhich in some cases yields better memory usage and/or performance.\nSee some discussion on the matter here:\n\nNote, though, that this project is in no way related to the C++ B-Tree\nimplementation written about there.\n\nWithin this tree, each node contains a slice of items and a (possibly nil)\nslice of children.  For basic numeric values or raw structs, this can cause\nefficiency differences when compared to equivalent C++ template code that\nstores values in arrays within the node:\n\nThese issues don't tend to matter, though, when working with strings or other\nheap-allocated structures, since C++-equivalent structures also must store\npointers and also distribute their values across the heap.\n\nThis implementation is designed to be a drop-in replacement to gollrb.LLRB\ntrees, (http://github.com/petar/gollrb), an excellent and probably the most\nwidely used ordered tree implementation in the Go ecosystem currently.\nIts functions, therefore, exactly mirror those of\nllrb.LLRB where possible.  Unlike gollrb, though, we currently don't\nsupport storing multiple equivalent values.\n\nThere are two implementations; those suffixed with 'G' are generics, usable\nfor any type, and require a passed-in \"less\" function to define their ordering.\nThose without this prefix are specific to the 'Item' interface, and use\nits 'Less' function for ordering.",
+      "description": "Package btree implements in-memory B-Trees of arbitrary degree.",
       "licenses": [
         {
           "expression": "(Apache-2.0)"
@@ -6071,6 +6228,10 @@
         {
           "name": "ecosystems:latest_release_published_at",
           "value": "2024-08-21T16:26:17Z"
+        },
+        {
+          "name": "ecosystems:repository_archived",
+          "value": "true"
         },
         {
           "name": "ecosystems:owner_location",
@@ -6308,7 +6469,7 @@
       "author": "Google",
       "name": "github.com/google/shlex",
       "version": "v0.0.0-20191202100458-e7afc7fbc510",
-      "description": "Package shlex implements a simple lexer which splits input in to tokens using\nshell-style rules for quoting and commenting.\n\nThe basic use case uses the default ASCII lexer to split a string into sub-strings:\n\nTo process a stream of strings:\n\nTo access the raw token stream (which includes tokens for comments):",
+      "description": "Package shlex implements a simple lexer which splits input in to tokens using shell-style rules for quoting and commenting.",
       "licenses": [
         {
           "expression": "(Apache-2.0)"
@@ -6380,7 +6541,7 @@
       "author": "Google",
       "name": "github.com/google/uuid",
       "version": "v1.6.0",
-      "description": "Package uuid generates and inspects UUIDs.\n\nUUIDs are based on RFC 4122 and DCE 1.1: Authentication and Security\nServices.\n\nA UUID is a 16 byte (128 bit) array.  UUIDs may be used as keys to\nmaps or compared directly.",
+      "description": "Package uuid generates and inspects UUIDs.",
       "licenses": [
         {
           "expression": "(BSD-3-Clause)"
@@ -6456,7 +6617,7 @@
       "author": "Gorilla web toolkit",
       "name": "github.com/gorilla/websocket",
       "version": "v1.5.0",
-      "description": "Package websocket implements the WebSocket protocol defined in RFC 6455.\n\nThe Conn type represents a WebSocket connection. A server application calls\nthe Upgrader.Upgrade method from an HTTP request handler to get a *Conn:\n\nCall the connection's WriteMessage and ReadMessage methods to send and\nreceive messages as a slice of bytes. This snippet of code shows how to echo\nmessages using these methods:\n\nIn above snippet of code, p is a []byte and messageType is an int with value\nwebsocket.BinaryMessage or websocket.TextMessage.\n\nAn application can also send and receive messages using the io.WriteCloser\nand io.Reader interfaces. To send a message, call the connection NextWriter\nmethod to get an io.WriteCloser, write the message to the writer and close\nthe writer when done. To receive a message, call the connection NextReader\nmethod to get an io.Reader and read until io.EOF is returned. This snippet\nshows how to echo messages using the NextWriter and NextReader methods:\n\nThe WebSocket protocol distinguishes between text and binary data messages.\nText messages are interpreted as UTF-8 encoded text. The interpretation of\nbinary messages is left to the application.\n\nThis package uses the TextMessage and BinaryMessage integer constants to\nidentify the two data message types. The ReadMessage and NextReader methods\nreturn the type of the received message. The messageType argument to the\nWriteMessage and NextWriter methods specifies the type of a sent message.\n\nIt is the application's responsibility to ensure that text messages are\nvalid UTF-8 encoded text.\n\nThe WebSocket protocol defines three types of control messages: close, ping\nand pong. Call the connection WriteControl, WriteMessage or NextWriter\nmethods to send a control message to the peer.\n\nConnections handle received close messages by calling the handler function\nset with the SetCloseHandler method and by returning a *CloseError from the\nNextReader, ReadMessage or the message Read method. The default close\nhandler sends a close message to the peer.\n\nConnections handle received ping messages by calling the handler function\nset with the SetPingHandler method. The default ping handler sends a pong\nmessage to the peer.\n\nConnections handle received pong messages by calling the handler function\nset with the SetPongHandler method. The default pong handler does nothing.\nIf an application sends ping messages, then the application should set a\npong handler to receive the corresponding pong.\n\nThe control message handler functions are called from the NextReader,\nReadMessage and message reader Read methods. The default close and ping\nhandlers can block these methods for a short time when the handler writes to\nthe connection.\n\nThe application must read the connection to process close, ping and pong\nmessages sent from the peer. If the application is not otherwise interested\nin messages from the peer, then the application should start a goroutine to\nread and discard messages from the peer. A simple example is:\n\nConnections support one concurrent reader and one concurrent writer.\n\nApplications are responsible for ensuring that no more than one goroutine\ncalls the write methods (NextWriter, SetWriteDeadline, WriteMessage,\nWriteJSON, EnableWriteCompression, SetCompressionLevel) concurrently and\nthat no more than one goroutine calls the read methods (NextReader,\nSetReadDeadline, ReadMessage, ReadJSON, SetPongHandler, SetPingHandler)\nconcurrently.\n\nThe Close and WriteControl methods can be called concurrently with all other\nmethods.\n\nWeb browsers allow Javascript applications to open a WebSocket connection to\nany host. It's up to the server to enforce an origin policy using the Origin\nrequest header sent by the browser.\n\nThe Upgrader calls the function specified in the CheckOrigin field to check\nthe origin. If the CheckOrigin function returns false, then the Upgrade\nmethod fails the WebSocket handshake with HTTP status 403.\n\nIf the CheckOrigin field is nil, then the Upgrader uses a safe default: fail\nthe handshake if the Origin request header is present and the Origin host is\nnot equal to the Host request header.\n\nThe deprecated package-level Upgrade function does not perform origin\nchecking. The application is responsible for checking the Origin header\nbefore calling the Upgrade function.\n\nConnections buffer network input and output to reduce the number\nof system calls when reading or writing messages.\n\nWrite buffers are also used for constructing WebSocket frames. See RFC 6455,\nSection 5 for a discussion of message framing. A WebSocket frame header is\nwritten to the network each time a write buffer is flushed to the network.\nDecreasing the size of the write buffer can increase the amount of framing\noverhead on the connection.\n\nThe buffer sizes in bytes are specified by the ReadBufferSize and\nWriteBufferSize fields in the Dialer and Upgrader. The Dialer uses a default\nsize of 4096 when a buffer size field is set to zero. The Upgrader reuses\nbuffers created by the HTTP server when a buffer size field is set to zero.\nThe HTTP server buffers have a size of 4096 at the time of this writing.\n\nThe buffer sizes do not limit the size of a message that can be read or\nwritten by a connection.\n\nBuffers are held for the lifetime of the connection by default. If the\nDialer or Upgrader WriteBufferPool field is set, then a connection holds the\nwrite buffer only when writing a message.\n\nApplications should tune the buffer sizes to balance memory use and\nperformance. Increasing the buffer size uses more memory, but can reduce the\nnumber of system calls to read or write the network. In the case of writing,\nincreasing the buffer size can reduce the number of frame headers written to\nthe network.\n\nSome guidelines for setting buffer parameters are:\n\nLimit the buffer sizes to the maximum expected message size. Buffers larger\nthan the largest message do not provide any benefit.\n\nDepending on the distribution of message sizes, setting the buffer size to\na value less than the maximum expected message size can greatly reduce memory\nuse with a small impact on performance. Here's an example: If 99% of the\nmessages are smaller than 256 bytes and the maximum message size is 512\nbytes, then a buffer size of 256 bytes will result in 1.01 more system calls\nthan a buffer size of 512 bytes. The memory savings is 50%.\n\nA write buffer pool is useful when the application has a modest number\nwrites over a large number of connections. when buffers are pooled, a larger\nbuffer size has a reduced impact on total memory use and has the benefit of\nreducing system calls and frame overhead.\n\nPer message compression extensions (RFC 7692) are experimentally supported\nby this package in a limited capacity. Setting the EnableCompression option\nto true in Dialer or Upgrader will attempt to negotiate per message deflate\nsupport.\n\nIf compression was successfully negotiated with the connection's peer, any\nmessage received in compressed form will be automatically decompressed.\nAll Read methods will return uncompressed bytes.\n\nPer message compression of messages written to a connection can be enabled\nor disabled by calling the corresponding Conn method:\n\nCurrently this package does not support compression with \"context takeover\".\nThis means that messages must be compressed and decompressed in isolation,\nwithout retaining sliding window or dictionary state across messages. For\nmore details refer to RFC 7692.\n\nUse of compression is experimental and may result in decreased performance.",
+      "description": "Package websocket implements the WebSocket protocol defined in RFC 6455.",
       "licenses": [
         {
           "expression": "(BSD-2-Clause)"
@@ -6548,7 +6709,7 @@
       "author": "Greg Jones",
       "name": "github.com/gregjones/httpcache",
       "version": "v0.0.0-20190611155906-901d90724c79",
-      "description": "Package httpcache provides a http.RoundTripper implementation that works as a\nmostly RFC-compliant cache for http responses.\n\nIt is only suitable for use as a 'private' cache (i.e. for a web-browser or an API-client\nand not for a shared proxy).",
+      "description": "Package httpcache provides a http.RoundTripper implementation that works as a mostly RFC-compliant cache for http responses.",
       "licenses": [
         {
           "expression": "(MIT)"
@@ -6628,9 +6789,9 @@
       "bom-ref": "pkg:golang/github.com/jonboulle/clockwork@v0.4.0",
       "type": "library",
       "supplier": {
-        "name": "Jonathan Boulle"
+        "name": "Nell Boulle"
       },
-      "author": "Jonathan Boulle",
+      "author": "Nell Boulle",
       "name": "github.com/jonboulle/clockwork",
       "version": "v0.4.0",
       "description": "Package clockwork contains a simple fake clock for Go.",
@@ -6701,7 +6862,7 @@
       "author": "Josh Bleecher Snyder",
       "name": "github.com/josharian/intern",
       "version": "v1.0.0",
-      "description": "Package intern interns strings.\nInterning is best effort only.\nInterned strings may be removed automatically\nat any time without notification.\nAll functions may be called concurrently\nwith themselves and each other.",
+      "description": "Package intern interns strings.",
       "licenses": [
         {
           "expression": "(MIT)"
@@ -6769,7 +6930,7 @@
       "author": "Jsoniter",
       "name": "github.com/json-iterator/go",
       "version": "v1.1.12",
-      "description": "Package jsoniter implements encoding and decoding of JSON as defined in\nRFC 4627 and provides interfaces with identical syntax of standard lib encoding/json.\nConverting from encoding/json to jsoniter is no more than replacing the package with jsoniter\nand variable type declarations (if any).\njsoniter interfaces gives 100% compatibility with code using standard lib.\n\n\"JSON and Go\"\n(https://golang.org/doc/articles/json_and_go.html)\ngives a description of how Marshal/Unmarshal operate\nbetween arbitrary or predefined json objects and bytes,\nand it applies to jsoniter.Marshal/Unmarshal as well.\n\nBesides, jsoniter.Iterator provides a different set of interfaces\niterating given bytes/string/reader\nand yielding parsed elements one by one.\nThis set of interfaces reads input as required and gives\nbetter performance.",
+      "description": "Package jsoniter implements encoding and decoding of JSON as defined in RFC 4627 and provides interfaces with identical syntax of standard lib encoding/json.",
       "licenses": [
         {
           "expression": "(MIT)"
@@ -6820,6 +6981,10 @@
           "value": "2021-09-11T02:17:26Z"
         },
         {
+          "name": "ecosystems:repository_archived",
+          "value": "true"
+        },
+        {
           "name": "ecosystems:topic",
           "value": "deserialization"
         },
@@ -6862,7 +7027,7 @@
       "author": "Jordan Liggitt",
       "name": "github.com/liggitt/tabwriter",
       "version": "v0.0.0-20181228230101-89fcab3d43de",
-      "description": "Package tabwriter implements a write filter (tabwriter.Writer) that\ntranslates tabbed columns in input into properly aligned text.\n\nIt is a drop-in replacement for the golang text/tabwriter package (https://golang.org/pkg/text/tabwriter),\nbased on that package at https://github.com/golang/go/tree/cf2c2ea89d09d486bb018b1817c5874388038c3a\nwith support for additional features.\n\nThe package is using the Elastic Tabstops algorithm described at\nhttp://nickgravgaard.com/elastictabstops/index.html.",
+      "description": "Package tabwriter implements a write filter (tabwriter.Writer) that translates tabbed columns in input into properly aligned text.",
       "licenses": [
         {
           "expression": "(BSD-3-Clause)"
@@ -7004,7 +7169,6 @@
       "supplier": {
         "name": "Free and open source software developed at VK",
         "url": [
-          "http://opensource.mail.ru",
           "http://tarantool.org"
         ]
       },
@@ -7103,7 +7267,7 @@
       "author": "Hiroya Fujinami",
       "name": "github.com/MakeNowJust/heredoc",
       "version": "v1.0.0",
-      "description": "Package heredoc provides creation of here-documents from raw strings.\n\nGolang supports raw-string syntax.\n\nBut raw-string cannot recognize indentation. Thus such content is an indented string, equivalent to\n\nI dont't want this!\n\nHowever this problem is solved by package heredoc.\n\nIs equivalent to",
+      "description": "Package heredoc provides creation of here-documents from raw strings.",
       "licenses": [
         {
           "expression": "(MIT)"
@@ -7147,7 +7311,7 @@
         },
         {
           "name": "ecosystems:first_release_published_at",
-          "value": "2019-08-23T03:24:15Z"
+          "value": "2017-11-13T09:18:38Z"
         },
         {
           "name": "ecosystems:latest_release_published_at",
@@ -7309,7 +7473,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2024-07-23T13:25:06Z"
+          "value": "2026-04-13T17:36:51Z"
         }
       ]
     },
@@ -7325,7 +7489,7 @@
       "author": "Moby",
       "name": "github.com/moby/term",
       "version": "v0.5.0",
-      "description": "Package term provides structures and helper functions to work with\nterminal (state, sizes).",
+      "description": "Package term provides structures and helper functions to work with terminal (state, sizes).",
       "licenses": [
         {
           "expression": "(Apache-2.0)"
@@ -7459,6 +7623,13 @@
     {
       "bom-ref": "pkg:golang/github.com/modern-go/reflect2@v1.0.2",
       "type": "library",
+      "supplier": {
+        "name": "Modern Go Programming",
+        "url": [
+          "https://plz.v2p.ro"
+        ]
+      },
+      "author": "Modern Go Programming",
       "name": "github.com/modern-go/reflect2",
       "version": "v1.0.2",
       "licenses": [
@@ -7531,6 +7702,13 @@
     {
       "bom-ref": "pkg:golang/github.com/monochromegane/go-gitignore@v0.0.0-20200626010858-205db1a8cc00",
       "type": "library",
+      "supplier": {
+        "name": "monochromegane",
+        "url": [
+          "http://blog.monochromegane.com/"
+        ]
+      },
+      "author": "monochromegane",
       "name": "github.com/monochromegane/go-gitignore",
       "version": "v0.0.0-20200626010858-205db1a8cc00",
       "licenses": [
@@ -7581,6 +7759,10 @@
         {
           "name": "ecosystems:latest_release_published_at",
           "value": "2020-06-26T01:08:58Z"
+        },
+        {
+          "name": "ecosystems:owner_location",
+          "value": "Fukuoka, Japan"
         }
       ]
     },
@@ -7595,7 +7777,7 @@
       "version": "v0.0.0-20191010083416-a7dc8b61c822",
       "licenses": [
         {
-          "expression": "(BSD-3-Clause)"
+          "expression": "(Other)"
         }
       ],
       "purl": "pkg:golang/github.com/munnerz/goautoneg@v0.0.0-20191010083416-a7dc8b61c822",
@@ -7724,7 +7906,7 @@
       "author": "Open Container Initiative",
       "name": "github.com/opencontainers/go-digest",
       "version": "v1.0.0",
-      "description": "Package digest provides a generalized type to opaquely represent message\ndigests and their operations within the registry. The Digest type is\ndesigned to serve as a flexible identifier in a content-addressable system.\nMore importantly, it provides tools and wrappers to work with\nhash.Hash-based digests with little effort.\n\nThe format of a digest is simply a string with two parts, dubbed the\n\"algorithm\" and the \"digest\", separated by a colon:\n\nAn example of a sha256 digest representation follows:\n\nThe \"algorithm\" portion defines both the hashing algorithm used to calculate\nthe digest and the encoding of the resulting digest, which defaults to \"hex\"\nif not otherwise specified. Currently, all supported algorithms have their\ndigests encoded in hex strings.\n\nIn the example above, the string \"sha256\" is the algorithm and the hex bytes\nare the \"digest\".\n\nBecause the Digest type is simply a string, once a valid Digest is\nobtained, comparisons are cheap, quick and simple to express with the\nstandard equality operator.\n\nThe main benefit of using the Digest type is simple verification against a\ngiven digest. The Verifier interface, modeled after the stdlib hash.Hash\ninterface, provides a common write sink for digest verification. After\nwriting is complete, calling the Verifier.Verified method will indicate\nwhether or not the stream of bytes matches the target digest.\n\nIn addition to the above, we intend to add the following features to this\npackage:\n\n1. A Digester type that supports write sink digest calculation.\n\n2. Suspend and resume of ongoing digest calculations to support efficient digest verification in the registry.",
+      "description": "Package digest provides a generalized type to opaquely represent message digests and their operations within the registry.",
       "licenses": [
         {
           "expression": "(Apache-2.0 OR CC-BY-SA-4.0)"
@@ -7872,7 +8054,7 @@
       "author": "pkg",
       "name": "github.com/pkg/errors",
       "version": "v0.9.1",
-      "description": "Package errors provides simple error handling primitives.\n\nThe traditional error handling idiom in Go is roughly akin to\n\nwhich when applied recursively up the call stack results in error reports\nwithout context or debugging information. The errors package allows\nprogrammers to add context to the failure path in their code in a way\nthat does not destroy the original value of the error.\n\nThe errors.Wrap function returns a new error that adds context to the\noriginal error by recording a stack trace at the point Wrap is called,\ntogether with the supplied message. For example\n\nIf additional control is required, the errors.WithStack and\nerrors.WithMessage functions destructure errors.Wrap into its component\noperations: annotating an error with a stack trace and with a message,\nrespectively.\n\nUsing errors.Wrap constructs a stack of errors, adding context to the\npreceding error. Depending on the nature of the error it may be necessary\nto reverse the operation of errors.Wrap to retrieve the original error\nfor inspection. Any error value which implements this interface\n\ncan be inspected by errors.Cause. errors.Cause will recursively retrieve\nthe topmost error that does not implement causer, which is assumed to be\nthe original cause. For example:\n\nAlthough the causer interface is not exported by this package, it is\nconsidered a part of its stable public interface.\n\nAll error values returned from this package implement fmt.Formatter and can\nbe formatted by the fmt package. The following verbs are supported:\n\nNew, Errorf, Wrap, and Wrapf record a stack trace at the point they are\ninvoked. This information can be retrieved with the following interface:\n\nThe returned errors.StackTrace type is defined as\n\nThe Frame type represents a call site in the stack trace. Frame supports\nthe fmt.Formatter interface that can be used for printing information about\nthe stack trace of this error. For example:\n\nAlthough the stackTracer interface is not exported by this package, it is\nconsidered a part of its stable public interface.\n\nSee the documentation for Frame.Format for more details.",
+      "description": "Package errors provides simple error handling primitives.",
       "licenses": [
         {
           "expression": "(BSD-2-Clause)"
@@ -7921,10 +8103,6 @@
         {
           "name": "ecosystems:latest_release_published_at",
           "value": "2020-01-14T19:47:44Z"
-        },
-        {
-          "name": "ecosystems:repository_archived",
-          "value": "true"
         }
       ]
     },
@@ -7987,7 +8165,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2025-09-05T14:03:59Z"
+          "value": "2026-07-24T06:32:04Z"
         }
       ]
     },
@@ -8050,7 +8228,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2025-04-11T05:38:16Z"
+          "value": "2026-08-31T09:02:46Z"
         }
       ]
     },
@@ -8129,7 +8307,7 @@
       "author": "Prometheus",
       "name": "github.com/prometheus/procfs",
       "version": "v0.15.1",
-      "description": "Package procfs provides functions to retrieve system, kernel and process\nmetrics from the pseudo-filesystem proc.\n\nExample:",
+      "description": "Package procfs provides functions to retrieve system, kernel and process metrics from the pseudo-filesystem proc.",
       "licenses": [
         {
           "expression": "(Apache-2.0)"
@@ -8177,7 +8355,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-02-28T15:22:44Z"
+          "value": "2026-08-28T13:53:50Z"
         },
         {
           "name": "ecosystems:topic",
@@ -8218,7 +8396,7 @@
       "author": "Russ Ross",
       "name": "github.com/russross/blackfriday/v2",
       "version": "v2.1.0",
-      "description": "Package blackfriday is a markdown processor.\n\nIt translates plain text with simple formatting rules into an AST, which can\nthen be further processed to HTML (provided by Blackfriday itself) or other\nformats (provided by the community).\n\nThe simplest way to invoke Blackfriday is to call the Run function. It will\ntake a text input and produce a text output in HTML (or other format).\n\nA slightly more sophisticated way to use Blackfriday is to create a Markdown\nprocessor and to call Parse, which returns a syntax tree for the input\ndocument. You can leverage Blackfriday's parsing for content extraction from\nmarkdown documents. You can assign a custom renderer and set various options\nto the Markdown processor.\n\nIf you're interested in calling Blackfriday from command line, see\nhttps://github.com/russross/blackfriday-tool.\n\nBlackfriday includes an algorithm for creating sanitized anchor names\ncorresponding to a given input text. This algorithm is used to create\nanchors for headings when AutoHeadingIDs extension is enabled. The\nalgorithm is specified below, so that other packages can create\ncompatible anchor names and links to those anchors.\n\nThe algorithm iterates over the input text, interpreted as UTF-8,\none Unicode code point (rune) at a time. All runes that are letters (category L)\nor numbers (category N) are considered valid characters. They are mapped to\nlower case, and included in the output. All other runes are considered\ninvalid characters. Invalid characters that precede the first valid character,\nas well as invalid character that follow the last valid character\nare dropped completely. All other sequences of invalid characters\nbetween two valid characters are replaced with a single dash character '-'.\n\nSanitizedAnchorName exposes this functionality, and can be used to\ncreate compatible links to the anchor names generated by blackfriday.\nThis algorithm is also implemented in a small standalone package at\ngithub.com/shurcooL/sanitized_anchor_name. It can be useful for clients\nthat want a small package and don't need full functionality of blackfriday.",
+      "description": "Package blackfriday is a markdown processor.",
       "licenses": [
         {
           "expression": "(BSD-2-Clause)"
@@ -8277,9 +8455,16 @@
     {
       "bom-ref": "pkg:golang/github.com/spf13/cobra@v1.8.1",
       "type": "library",
+      "supplier": {
+        "name": "Steve Francia",
+        "url": [
+          "http://spf13.com"
+        ]
+      },
+      "author": "Steve Francia",
       "name": "github.com/spf13/cobra",
       "version": "v1.8.1",
-      "description": "Package cobra is a commander providing a simple interface to create powerful modern CLI interfaces.\nIn addition to providing an interface, Cobra simultaneously provides a controller to organize your application code.",
+      "description": "Package cobra is a commander providing a simple interface to create powerful modern CLI interfaces.",
       "licenses": [
         {
           "expression": "(Apache-2.0)"
@@ -8328,6 +8513,10 @@
         {
           "name": "ecosystems:latest_release_published_at",
           "value": "2025-12-03T23:51:15Z"
+        },
+        {
+          "name": "ecosystems:owner_location",
+          "value": "NYC"
         },
         {
           "name": "ecosystems:topic",
@@ -8407,7 +8596,7 @@
       "author": "Steve Francia",
       "name": "github.com/spf13/pflag",
       "version": "v1.0.5",
-      "description": "Package pflag is a drop-in replacement for Go's flag package, implementing\nPOSIX/GNU-style --flags.\n\npflag is compatible with the GNU extensions to the POSIX recommendations\nfor command-line options. See\nhttp://www.gnu.org/software/libc/manual/html_node/Argument-Syntax.html\n\nUsage:\n\npflag is a drop-in replacement of Go's native flag package. If you import\npflag under the name \"flag\" then all code should continue to function\nwith no changes.\n\nThere is one exception to this: if you directly instantiate the Flag struct\nthere is one more field \"Shorthand\" that you will need to set.\nMost code never instantiates this struct directly, and instead uses\nfunctions such as String(), BoolVar(), and Var(), and is therefore\nunaffected.\n\nDefine flags using flag.String(), Bool(), Int(), etc.\n\nThis declares an integer flag, -flagname, stored in the pointer ip, with type *int.\n\nIf you like, you can bind the flag to a variable using the Var() functions.\n\nOr you can create custom flags that satisfy the Value interface (with\npointer receivers) and couple them to flag parsing by\n\nFor such flags, the default value is just the initial value of the variable.\n\nAfter all flags are defined, call\n\nto parse the command line into the defined flags.\n\nFlags may then be used directly. If you're using the flags themselves,\nthey are all pointers; if you bind to variables, they're values.\n\nAfter parsing, the arguments after the flag are available as the\nslice flag.Args() or individually as flag.Arg(i).\nThe arguments are indexed from 0 through flag.NArg()-1.\n\nThe pflag package also defines some new functions that are not in flag,\nthat give one-letter shorthands for flags. You can use these by appending\n'P' to the name of any function that defines a flag.\n\nShorthand letters can be used with single dashes on the command line.\nBoolean shorthand flags can be combined with other shorthand flags.\n\nCommand line flag syntax:\n\nUnlike the flag package, a single dash before an option means something\ndifferent than a double dash. Single dashes signify a series of shorthand\nletters for flags. All but the last shorthand letter must be boolean flags.\n\nFlag parsing stops after the terminator \"--\". Unlike the flag package,\nflags can be interspersed with arguments anywhere on the command line\nbefore this terminator.\n\nInteger flags accept 1234, 0664, 0x1234 and may be negative.\nBoolean flags (in their long form) accept 1, 0, t, f, true, false,\nTRUE, FALSE, True, False.\nDuration flags accept any input valid for time.ParseDuration.\n\nThe default set of command-line flags is controlled by\ntop-level functions.  The FlagSet type allows one to define\nindependent sets of flags, such as to implement subcommands\nin a command-line interface. The methods of FlagSet are\nanalogous to the top-level functions for the command-line\nflag set.",
+      "description": "Package pflag is a drop-in replacement for Go's flag package, implementing POSIX/GNU-style --flags.",
       "licenses": [
         {
           "expression": "(BSD-3-Clause)"
@@ -8628,7 +8817,6 @@
       "author": "OpenTelemetry - CNCF",
       "name": "go.opentelemetry.io/otel/trace",
       "version": "v1.28.0",
-      "description": "Package trace provides an implementation of the tracing part of the\nOpenTelemetry API.\n\nTo participate in distributed traces a Span needs to be created for the\noperation being performed as part of a traced workflow. In its simplest form:\n\nA Tracer is unique to the instrumentation and is used to create Spans.\nInstrumentation should be designed to accept a TracerProvider from which it\ncan create its own unique Tracer. Alternatively, the registered global\nTracerProvider from the go.opentelemetry.io/otel package can be used as\na default.\n\nThis package does not conform to the standard Go versioning policy; all of its\ninterfaces may have methods added to them without a package major version bump.\nThis non-standard API evolution could surprise an uninformed implementation\nauthor. They could unknowingly build their implementation in a way that would\nresult in a runtime panic for their users that update to the new API.\n\nThe API is designed to help inform an instrumentation author about this\nnon-standard API evolution. It requires them to choose a default behavior for\nunimplemented interface methods. There are three behavior choices they can\nmake:\n\nAll interfaces in this API embed a corresponding interface from\ngo.opentelemetry.io/otel/trace/embedded. If an author wants the default\nbehavior of their implementations to be a compilation failure, signaling to\ntheir users they need to update to the latest version of that implementation,\nthey need to embed the corresponding interface from\ngo.opentelemetry.io/otel/trace/embedded in their implementation. For\nexample,\n\nIf an author wants the default behavior of their implementations to panic, they\ncan embed the API interface directly.\n\nThis option is not recommended. It will lead to publishing packages that\ncontain runtime panics when users update to newer versions of\ngo.opentelemetry.io/otel/trace, which may be done with a transitive\ndependency.\n\nFinally, an author can embed another implementation in theirs. The embedded\nimplementation will be used for methods not defined by the author. For example,\nan author who wants to default to silently dropping the call can use\ngo.opentelemetry.io/otel/trace/noop:\n\nIt is strongly recommended that authors only embed\ngo.opentelemetry.io/otel/trace/noop if they choose this default behavior.\nThat implementation is the only one OpenTelemetry authors can guarantee will\nfully implement all the API interfaces when a user updates their API.",
       "licenses": [
         {
           "expression": "(Apache-2.0 OR BSD-3-Clause)"
@@ -8643,6 +8831,10 @@
         {
           "url": "https://pkg.go.dev/go.opentelemetry.io/otel/trace",
           "type": "distribution"
+        },
+        {
+          "url": "https://github.com/open-telemetry/opentelemetry-go",
+          "type": "vcs"
         },
         {
           "url": "https://pkg.go.dev/go.opentelemetry.io/otel/trace#section-documentation",
@@ -8672,7 +8864,11 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-04-03T08:30:03Z"
+          "value": "2026-10-02T08:10:46Z"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "logging"
         },
         {
           "name": "ecosystems:topic",
@@ -8691,9 +8887,16 @@
     {
       "bom-ref": "pkg:golang/go.opentelemetry.io/otel@v1.28.0",
       "type": "library",
+      "supplier": {
+        "name": "OpenTelemetry - CNCF",
+        "url": [
+          "https://opentelemetry.io"
+        ]
+      },
+      "author": "OpenTelemetry - CNCF",
       "name": "go.opentelemetry.io/otel",
       "version": "v1.28.0",
-      "description": "Package otel provides global access to the OpenTelemetry API. The subpackages of\nthe otel package provide an implementation of the OpenTelemetry API.\n\nThe provided API is used to instrument code and measure data about that code's\nperformance and operation. The measured data, by default, is not processed or\ntransmitted anywhere. An implementation of the OpenTelemetry SDK, like the\ndefault SDK implementation (go.opentelemetry.io/otel/sdk), and associated\nexporters are used to process and transport this data.\n\nTo read the getting started guide, see https://opentelemetry.io/docs/languages/go/getting-started/.\n\nTo read more about tracing, see go.opentelemetry.io/otel/trace.\n\nTo read more about metrics, see go.opentelemetry.io/otel/metric.\n\nTo read more about logs, see go.opentelemetry.io/otel/log.\n\nTo read more about propagation, see go.opentelemetry.io/otel/propagation and\ngo.opentelemetry.io/otel/baggage.",
+      "description": "Package otel provides global access to the OpenTelemetry API.",
       "licenses": [
         {
           "expression": "(Apache-2.0 OR BSD-3-Clause)"
@@ -8708,6 +8911,10 @@
         {
           "url": "https://pkg.go.dev/go.opentelemetry.io/otel",
           "type": "distribution"
+        },
+        {
+          "url": "https://github.com/open-telemetry/opentelemetry-go",
+          "type": "vcs"
         },
         {
           "url": "https://pkg.go.dev/go.opentelemetry.io/otel#section-documentation",
@@ -8737,7 +8944,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-04-03T08:30:03Z"
+          "value": "2026-10-02T08:10:46Z"
         },
         {
           "name": "ecosystems:topic",
@@ -8809,7 +9016,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-04-09T19:17:33Z"
+          "value": "2026-09-08T19:18:02Z"
         }
       ]
     },
@@ -8818,7 +9025,7 @@
       "type": "library",
       "name": "golang.org/x/oauth2",
       "version": "v0.23.0",
-      "description": "Package oauth2 provides support for making\nOAuth2 authorized and authenticated HTTP requests,\nas specified in RFC 6749.\nIt can additionally grant authorization with Bearer JWT.",
+      "description": "Package oauth2 provides support for making OAuth2 authorized and authenticated HTTP requests, as specified in RFC 6749.",
       "licenses": [
         {
           "expression": "(BSD-3-Clause)"
@@ -8866,7 +9073,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-02-11T19:14:10Z"
+          "value": "2026-08-25T21:41:43Z"
         }
       ]
     },
@@ -8889,6 +9096,10 @@
         {
           "url": "https://pkg.go.dev/golang.org/x/sync",
           "type": "distribution"
+        },
+        {
+          "url": "https://cs.opensource.google/go/x/sync",
+          "type": "vcs"
         },
         {
           "url": "https://pkg.go.dev/golang.org/x/sync#section-documentation",
@@ -8918,7 +9129,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-02-23T18:54:42Z"
+          "value": "2026-08-31T03:04:41Z"
         }
       ]
     },
@@ -8974,7 +9185,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-03-27T16:08:41Z"
+          "value": "2026-08-31T19:43:43Z"
         }
       ]
     },
@@ -8983,7 +9194,7 @@
       "type": "library",
       "name": "golang.org/x/term",
       "version": "v0.25.0",
-      "description": "Package term provides support functions for dealing with terminals, as\ncommonly found on UNIX systems.\n\nPutting a terminal into raw mode is the most common requirement:\n\nNote that on non-Unix systems os.Stdin.Fd() may not be 0.",
+      "description": "Package term provides support functions for dealing with terminals, as commonly found on UNIX systems.",
       "licenses": [
         {
           "expression": "(BSD-3-Clause)"
@@ -8998,6 +9209,10 @@
         {
           "url": "https://pkg.go.dev/golang.org/x/term",
           "type": "distribution"
+        },
+        {
+          "url": "https://cs.opensource.google/go/x/term",
+          "type": "vcs"
         },
         {
           "url": "https://pkg.go.dev/golang.org/x/term#section-documentation",
@@ -9027,7 +9242,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-04-09T11:43:42Z"
+          "value": "2026-09-08T16:27:41Z"
         }
       ]
     },
@@ -9036,7 +9251,7 @@
       "type": "library",
       "name": "golang.org/x/text",
       "version": "v0.19.0",
-      "description": "text is a repository of text-related packages related to internationalization\n(i18n) and localization (l10n), such as character encodings, text\ntransformations, and locale-specific text handling.\n\nThere is a 30 minute video, recorded on 2017-11-30, on the \"State of\ngolang.org/x/text\" at https://www.youtube.com/watch?v=uYrDrMEGu58",
+      "description": "text is a repository of text-related packages related to internationalization (i18n) and localization (l10n), such as character encodings, text transformations, and locale-specific text handling.",
       "licenses": [
         {
           "expression": "(BSD-3-Clause)"
@@ -9084,7 +9299,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-04-09T11:43:05Z"
+          "value": "2026-09-08T16:29:55Z"
         }
       ]
     },
@@ -9107,6 +9322,10 @@
         {
           "url": "https://pkg.go.dev/golang.org/x/time",
           "type": "distribution"
+        },
+        {
+          "url": "https://cs.opensource.google/go/x/time",
+          "type": "vcs"
         },
         {
           "url": "https://pkg.go.dev/golang.org/x/time#section-documentation",
@@ -9136,7 +9355,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-02-11T19:14:29Z"
+          "value": "2026-08-19T17:16:18Z"
         }
       ]
     },
@@ -9168,6 +9387,10 @@
           "type": "distribution"
         },
         {
+          "url": "https://github.com/protocolbuffers/protobuf-go",
+          "type": "vcs"
+        },
+        {
           "url": "https://pkg.go.dev/google.golang.org/protobuf#section-documentation",
           "type": "documentation"
         }
@@ -9195,7 +9418,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2025-12-12T08:48:31Z"
+          "value": "2026-08-10T13:29:45Z"
         },
         {
           "name": "ecosystems:topic",
@@ -9274,7 +9497,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2021-10-21T16:40:42Z"
+          "value": "2025-01-28T17:43:52Z"
         },
         {
           "name": "ecosystems:owner_location",
@@ -9291,10 +9514,10 @@
       "author": "go-inf",
       "name": "gopkg.in/inf.v0",
       "version": "v0.9.1",
-      "description": "Package inf (type inf.Dec) implements \"infinite-precision\" decimal\narithmetic.\n\"Infinite precision\" describes two characteristics: practically unlimited\nprecision for decimal number representation and no support for calculating\nwith any specific fixed precision.\n(Although there is no practical limit on precision, inf.Dec can only\nrepresent finite decimals.)\n\nThis package is currently in experimental stage and the API may change.\n\nThis package does NOT support:\n\nFeatures considered for possible addition:",
+      "description": "Package inf (type inf.Dec) implements \"infinite-precision\" decimal arithmetic.",
       "licenses": [
         {
-          "expression": "(BSD-3-Clause)"
+          "expression": "(Other)"
         }
       ],
       "purl": "pkg:golang/gopkg.in/inf.v0@v0.9.1",
@@ -9306,6 +9529,10 @@
         {
           "url": "https://pkg.go.dev/gopkg.in/inf.v0",
           "type": "distribution"
+        },
+        {
+          "url": "https://github.com/go-inf/inf",
+          "type": "vcs"
         },
         {
           "url": "https://pkg.go.dev/gopkg.in/inf.v0#section-documentation",
@@ -9372,7 +9599,7 @@
       "author": "go-yaml",
       "name": "gopkg.in/yaml.v3",
       "version": "v3.0.1",
-      "description": "Package yaml implements YAML support for the Go language.\n\nSource code and other details for the project are available at GitHub:",
+      "description": "Package yaml implements YAML support for the Go language.",
       "licenses": [
         {
           "expression": "(Apache-2.0 OR MIT)"
@@ -9421,6 +9648,10 @@
         {
           "name": "ecosystems:latest_release_published_at",
           "value": "2022-05-27T08:35:30Z"
+        },
+        {
+          "name": "ecosystems:repository_archived",
+          "value": "true"
         }
       ]
     },
@@ -9477,7 +9708,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-02-10T20:17:07Z"
+          "value": "2026-09-23T20:45:45Z"
         },
         {
           "name": "ecosystems:topic",
@@ -9538,7 +9769,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2025-12-04T22:24:03Z"
+          "value": "2026-09-23T20:28:20Z"
         },
         {
           "name": "ecosystems:topic",
@@ -9568,6 +9799,10 @@
           "type": "distribution"
         },
         {
+          "url": "https://github.com/kubernetes/cli-runtime",
+          "type": "vcs"
+        },
+        {
           "url": "https://pkg.go.dev/k8s.io/cli-runtime#section-documentation",
           "type": "documentation"
         }
@@ -9595,7 +9830,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-03-19T07:02:16Z"
+          "value": "2026-09-23T23:27:04Z"
         },
         {
           "name": "ecosystems:topic",
@@ -9618,7 +9853,7 @@
       },
       "author": "Kubernetes",
       "name": "k8s.io/client-go",
-      "description": "Package clientgo is the official Go client for the Kubernetes API. It provides\na standard set of clients and tools for building applications, controllers,\nand operators that communicate with a Kubernetes cluster.\n\nkubernetes: Contains the typed Clientset for interacting with built-in,\nversioned API objects (e.g., Pods, Deployments). This is the most common\nstarting point.\n\ndynamic: Provides a dynamic client that can perform operations on any\nKubernetes object, including Custom Resources (CRs). It is essential for\nbuilding controllers that work with CRDs.\n\ndiscovery: Used to discover the API groups, versions, and resources\nsupported by a Kubernetes cluster.\n\ntools/cache: The foundation of the controller pattern. This package provides\nefficient caching and synchronization mechanisms (Informers and Listers)\nfor building controllers.\n\ntools/clientcmd: Provides methods for loading client configuration from\nkubeconfig files. This is essential for out-of-cluster applications and CLI tools.\n\nrest: Provides a lower-level RESTClient that manages the details of\ncommunicating with the Kubernetes API server. It is useful for advanced\nuse cases that require fine-grained control over requests, such as working\nwith non-standard REST verbs.\n\nThere are two primary ways to configure a client to connect to the API server:\n\nIn-Cluster Configuration: For applications running inside a Kubernetes pod,\nthe `rest.InClusterConfig()` function provides a straightforward way to\nconfigure the client. It automatically uses the pod's service account for\nauthentication and is the recommended approach for controllers and operators.\n\nOut-of-Cluster Configuration: For local development or command-line tools,\nthe `clientcmd` package is used to load configuration from a\nkubeconfig file.\n\nThe `rest.Config` object allows for fine-grained control over client-side\nperformance and reliability. Key settings include:\n\nOnce configured, a client can be used to interact with objects in the cluster.\n\nThe Typed Clientset (`kubernetes` package) provides a strongly typed\ninterface for working with built-in Kubernetes objects.\n\nThe Dynamic Client (`dynamic` package) can work with any object, including\nCustom Resources, using `unstructured.Unstructured` types.\n\nFor Custom Resources (CRDs), the `k8s.io/code-generator` repository\ncontains the tools to generate typed clients, informers, and listers. The\n`sample-controller` is the canonical example of this pattern.\n\nServer-Side Apply is a patching strategy that allows multiple actors to\nshare management of an object by tracking field ownership. This prevents\nactors from inadvertently overwriting each other's changes and provides\na mechanism for resolving conflicts. The `applyconfigurations` package\nprovides the necessary tools for this declarative approach.\n\nRobust error handling is essential when interacting with the API. The\n`k8s.io/apimachinery/pkg/api/errors` package provides functions to inspect\nerrors and check for common conditions, such as whether a resource was not\nfound or already exists. This allows controllers to implement robust,\nidempotent reconciliation logic.\n\nThe controller pattern is central to Kubernetes. A controller observes the\nstate of the cluster and works to bring it to the desired state.\n\nThe `tools/cache` package provides the building blocks for this pattern.\nInformers watch the API server and maintain a local cache, Listers provide\nread-only access to the cache, and Workqueues decouple event detection\nfrom processing.\n\nIn a high-availability deployment where multiple instances of a controller\nare running, leader election (`tools/leaderelection`) is used to ensure\nthat only one instance is active at a time.\n\nClient-side feature gates allow for enabling or disabling experimental\nfeatures in `client-go`. They can be configured via the `rest.Config` object.",
+      "description": "Package clientgo is the official Go client for the Kubernetes API.",
       "purl": "pkg:golang/k8s.io/client-go",
       "externalReferences": [
         {
@@ -9661,7 +9896,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2016-10-17T18:15:22Z"
+          "value": "2026-09-23T21:10:43Z"
         },
         {
           "name": "ecosystems:topic",
@@ -9722,7 +9957,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-02-10T21:03:34Z"
+          "value": "2026-09-23T21:32:41Z"
         },
         {
           "name": "ecosystems:topic",
@@ -9787,7 +10022,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2024-11-21T04:28:48Z"
+          "value": "2026-09-23T21:39:57Z"
         },
         {
           "name": "ecosystems:topic",
@@ -9798,40 +10033,9 @@
     {
       "bom-ref": "pkg:golang/k8s.io/klog/v2@v2.130.1",
       "type": "library",
-      "supplier": {
-        "name": "Kubernetes",
-        "url": [
-          "https://kubernetes.io"
-        ]
-      },
-      "author": "Kubernetes",
       "name": "k8s.io/klog/v2",
       "version": "v2.130.1",
-      "description": "Package klog contains the following functionality:\n\nBasic examples:\n\nSee the documentation for the V function for an explanation of these examples:\n\nLog output is buffered and written periodically using Flush. Programs\nshould call Flush before exiting to guarantee all log output is written.\n\nBy default, all log statements write to standard error.\nThis package provides several flags that modify this behavior.\nAs a result, flag.Parse must be called before any logging is done.",
-      "licenses": [
-        {
-          "expression": "(Apache-2.0)"
-        }
-      ],
       "purl": "pkg:golang/k8s.io/klog/v2@v2.130.1",
-      "externalReferences": [
-        {
-          "url": "https://github.com/kubernetes/klog",
-          "type": "website"
-        },
-        {
-          "url": "https://pkg.go.dev/k8s.io/klog/v2",
-          "type": "distribution"
-        },
-        {
-          "url": "https://github.com/kubernetes/klog",
-          "type": "vcs"
-        },
-        {
-          "url": "https://pkg.go.dev/k8s.io/klog/v2#section-documentation",
-          "type": "documentation"
-        }
-      ],
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
@@ -9848,18 +10052,6 @@
         {
           "name": "aquasecurity:trivy:PkgType",
           "value": "gobinary"
-        },
-        {
-          "name": "ecosystems:first_release_published_at",
-          "value": "2020-04-08T18:47:44Z"
-        },
-        {
-          "name": "ecosystems:latest_release_published_at",
-          "value": "2026-03-03T11:17:23Z"
-        },
-        {
-          "name": "ecosystems:topic",
-          "value": "k8s-sig-architecture"
         }
       ]
     },
@@ -9875,6 +10067,11 @@
       "author": "Kubernetes",
       "name": "k8s.io/kube-openapi",
       "version": "v0.0.0-20241105132330-32ad38e42d3f",
+      "licenses": [
+        {
+          "expression": "(Apache-2.0)"
+        }
+      ],
       "purl": "pkg:golang/k8s.io/kube-openapi@v0.0.0-20241105132330-32ad38e42d3f",
       "externalReferences": [
         {
@@ -9913,11 +10110,11 @@
         },
         {
           "name": "ecosystems:first_release_published_at",
-          "value": "2018-06-29T01:24:20Z"
+          "value": "2017-08-30T10:06:54Z"
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-03-30T15:44:17Z"
+          "value": "2026-06-24T04:16:17Z"
         }
       ]
     },
@@ -9941,6 +10138,10 @@
         {
           "url": "https://pkg.go.dev/k8s.io/kubectl",
           "type": "distribution"
+        },
+        {
+          "url": "https://github.com/kubernetes/kubectl",
+          "type": "vcs"
         },
         {
           "url": "https://pkg.go.dev/k8s.io/kubectl#section-documentation",
@@ -9970,7 +10171,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-03-19T08:35:32Z"
+          "value": "2026-09-24T01:06:33Z"
         },
         {
           "name": "ecosystems:topic",
@@ -10004,6 +10205,10 @@
           "type": "distribution"
         },
         {
+          "url": "https://github.com/kubernetes/kubernetes",
+          "type": "vcs"
+        },
+        {
           "url": "https://pkg.go.dev/k8s.io/kubernetes#section-documentation",
           "type": "documentation"
         }
@@ -10031,7 +10236,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-03-18T18:30:07Z"
+          "value": "2026-09-23T17:06:22Z"
         },
         {
           "name": "ecosystems:topic",
@@ -10104,7 +10309,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2024-11-21T05:07:17Z"
+          "value": "2026-09-23T23:18:38Z"
         },
         {
           "name": "ecosystems:topic",
@@ -10115,34 +10320,9 @@
     {
       "bom-ref": "pkg:golang/k8s.io/utils@v0.0.0-20241104100929-3ea5e8cea738",
       "type": "library",
-      "supplier": {
-        "name": "Kubernetes",
-        "url": [
-          "https://kubernetes.io"
-        ]
-      },
-      "author": "Kubernetes",
       "name": "k8s.io/utils",
       "version": "v0.0.0-20241104100929-3ea5e8cea738",
       "purl": "pkg:golang/k8s.io/utils@v0.0.0-20241104100929-3ea5e8cea738",
-      "externalReferences": [
-        {
-          "url": "https://github.com/kubernetes/utils",
-          "type": "website"
-        },
-        {
-          "url": "https://pkg.go.dev/k8s.io/utils",
-          "type": "distribution"
-        },
-        {
-          "url": "https://github.com/kubernetes/utils",
-          "type": "vcs"
-        },
-        {
-          "url": "https://pkg.go.dev/k8s.io/utils#section-documentation",
-          "type": "documentation"
-        }
-      ],
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
@@ -10159,22 +10339,6 @@
         {
           "name": "aquasecurity:trivy:PkgType",
           "value": "gobinary"
-        },
-        {
-          "name": "ecosystems:first_release_published_at",
-          "value": "2018-10-19T22:53:48Z"
-        },
-        {
-          "name": "ecosystems:latest_release_published_at",
-          "value": "2026-03-19T19:02:34Z"
-        },
-        {
-          "name": "ecosystems:topic",
-          "value": "golang"
-        },
-        {
-          "name": "ecosystems:topic",
-          "value": "kubernetes"
         }
       ]
     },
@@ -10263,6 +10427,10 @@
           "type": "distribution"
         },
         {
+          "url": "https://github.com/kubernetes-sigs/kustomize",
+          "type": "vcs"
+        },
+        {
           "url": "https://pkg.go.dev/sigs.k8s.io/kustomize/api#section-documentation",
           "type": "documentation"
         }
@@ -10290,7 +10458,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-02-09T15:53:24Z"
+          "value": "2026-09-30T12:35:18Z"
         },
         {
           "name": "ecosystems:topic",
@@ -10328,6 +10496,10 @@
           "type": "distribution"
         },
         {
+          "url": "https://github.com/kubernetes-sigs/kustomize",
+          "type": "vcs"
+        },
+        {
           "url": "https://pkg.go.dev/sigs.k8s.io/kustomize/kustomize/v5#section-documentation",
           "type": "documentation"
         }
@@ -10355,7 +10527,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-02-09T16:11:22Z"
+          "value": "2026-09-30T12:50:38Z"
         },
         {
           "name": "ecosystems:topic",
@@ -10376,7 +10548,7 @@
       "author": "Kubernetes SIGs",
       "name": "sigs.k8s.io/kustomize/kyaml",
       "version": "v0.18.1",
-      "description": "Package kyaml contains libraries for reading and writing Kubernetes Resource configuration\nas yaml.\n\nIndividual Resources are manipulated using the yaml package.\n\nCollections of Resources are manipulated using the kio package.",
+      "description": "Package kyaml contains libraries for reading and writing Kubernetes Resource configuration as yaml.",
       "licenses": [
         {
           "expression": "(Apache-2.0)"
@@ -10391,6 +10563,10 @@
         {
           "url": "https://pkg.go.dev/sigs.k8s.io/kustomize/kyaml",
           "type": "distribution"
+        },
+        {
+          "url": "https://github.com/kubernetes-sigs/kustomize",
+          "type": "vcs"
         },
         {
           "url": "https://pkg.go.dev/sigs.k8s.io/kustomize/kyaml#section-documentation",
@@ -10420,7 +10596,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-02-09T01:51:09Z"
+          "value": "2026-09-28T22:26:17Z"
         },
         {
           "name": "ecosystems:topic",
@@ -10435,6 +10611,10 @@
     {
       "bom-ref": "pkg:golang/sigs.k8s.io/structured-merge-diff/v4@v4.4.2",
       "type": "library",
+      "supplier": {
+        "name": "Kubernetes SIGs"
+      },
+      "author": "Kubernetes SIGs",
       "name": "sigs.k8s.io/structured-merge-diff/v4",
       "version": "v4.4.2",
       "licenses": [
@@ -10451,6 +10631,10 @@
         {
           "url": "https://pkg.go.dev/sigs.k8s.io/structured-merge-diff/v4",
           "type": "distribution"
+        },
+        {
+          "url": "https://github.com/kubernetes-sigs/structured-merge-diff",
+          "type": "vcs"
         },
         {
           "url": "https://pkg.go.dev/sigs.k8s.io/structured-merge-diff/v4#section-documentation",
@@ -10511,6 +10695,10 @@
         {
           "url": "https://pkg.go.dev/sigs.k8s.io/yaml",
           "type": "distribution"
+        },
+        {
+          "url": "https://github.com/kubernetes-sigs/yaml",
+          "type": "vcs"
         },
         {
           "url": "https://pkg.go.dev/sigs.k8s.io/yaml#section-documentation",
@@ -10576,17 +10764,9 @@
     {
       "bom-ref": "pkg:npm/%40novnc/novnc@1.5.0",
       "type": "library",
-      "supplier": {
-        "name": "noVNC",
-        "url": [
-          "https://novnc.com"
-        ]
-      },
-      "author": "noVNC",
       "group": "@novnc",
       "name": "novnc",
       "version": "1.5.0",
-      "description": "An HTML5 VNC client",
       "hashes": [
         {
           "alg": "SHA-1",
@@ -10595,24 +10775,12 @@
       ],
       "licenses": [
         {
-          "expression": "(MPL-2.0)"
+          "license": {
+            "id": "MPL-2.0"
+          }
         }
       ],
       "purl": "pkg:npm/%40novnc/novnc@1.5.0",
-      "externalReferences": [
-        {
-          "url": "https://github.com/novnc/noVNC",
-          "type": "website"
-        },
-        {
-          "url": "https://www.npmjs.com/package/@novnc/novnc",
-          "type": "distribution"
-        },
-        {
-          "url": "https://github.com/novnc/noVNC",
-          "type": "vcs"
-        }
-      ],
       "properties": [
         {
           "name": "aquasecurity:trivy:FilePath",
@@ -10633,65 +10801,19 @@
         {
           "name": "aquasecurity:trivy:PkgType",
           "value": "node-pkg"
-        },
-        {
-          "name": "ecosystems:first_release_published_at",
-          "value": "2018-02-02T13:13:02Z"
-        },
-        {
-          "name": "ecosystems:latest_release_published_at",
-          "value": "2025-03-12T19:51:06Z"
-        },
-        {
-          "name": "ecosystems:topic",
-          "value": "arraybuffer"
-        },
-        {
-          "name": "ecosystems:topic",
-          "value": "html"
-        },
-        {
-          "name": "ecosystems:topic",
-          "value": "html-canvas"
-        },
-        {
-          "name": "ecosystems:topic",
-          "value": "html5"
-        },
-        {
-          "name": "ecosystems:topic",
-          "value": "javascript"
-        },
-        {
-          "name": "ecosystems:topic",
-          "value": "modern-browsers"
-        },
-        {
-          "name": "ecosystems:topic",
-          "value": "novnc"
-        },
-        {
-          "name": "ecosystems:topic",
-          "value": "vnc-client"
-        },
-        {
-          "name": "ecosystems:topic",
-          "value": "websockets"
-        },
-        {
-          "name": "ecosystems:topic",
-          "value": "websockify"
-        },
-        {
-          "name": "ecosystems:topic",
-          "value": "wss"
         }
       ]
     }
   ],
   "dependencies": [
     {
-      "ref": "2ddb8e95-6431-44eb-a730-9fc883d6ff32",
+      "ref": "5ad9f4e3-53d9-4fa6-b94f-05eb2a74bdc3",
+      "dependsOn": [
+        "pkg:golang/k8s.io/kubernetes"
+      ]
+    },
+    {
+      "ref": "cdff629a-3435-4fa3-9db4-4913aafdb4a0",
       "dependsOn": [
         "pkg:apk/alpine/alpine-baselayout@3.6.5-r0?arch=x86_64&distro=3.20.5",
         "pkg:apk/alpine/alpine-keys@2.4-r1?arch=x86_64&distro=3.20.5",
@@ -10705,12 +10827,6 @@
         "pkg:apk/alpine/nginx-module-xslt@1.27.3-r1?arch=x86_64&distro=3.20.5",
         "pkg:apk/alpine/ssl_client@1.36.1-r29?arch=x86_64&distro=3.20.5",
         "pkg:apk/alpine/tzdata@2024b-r0?arch=x86_64&distro=3.20.5"
-      ]
-    },
-    {
-      "ref": "ffcea8e8-e50c-49d1-9789-ad0f11f72a36",
-      "dependsOn": [
-        "pkg:golang/k8s.io/kubernetes"
       ]
     },
     {
@@ -11617,8 +11733,8 @@
     {
       "ref": "pkg:oci/kubevirt-manager@sha256%3A6bdb107e81b5eb7c06ca0eabdf3637868c96e8e211e8f08c675124a8357ab0c4?arch=amd64&repository_url=index.docker.io%2Fkubevirtmanager%2Fkubevirt-manager",
       "dependsOn": [
-        "2ddb8e95-6431-44eb-a730-9fc883d6ff32",
-        "ffcea8e8-e50c-49d1-9789-ad0f11f72a36",
+        "5ad9f4e3-53d9-4fa6-b94f-05eb2a74bdc3",
+        "cdff629a-3435-4fa3-9db4-4913aafdb4a0",
         "pkg:npm/%40novnc/novnc@1.5.0"
       ]
     }
