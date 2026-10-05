@@ -2,10 +2,10 @@
   "$schema": "http://cyclonedx.org/schema/bom-1.6.schema.json",
   "bomFormat": "CycloneDX",
   "specVersion": "1.6",
-  "serialNumber": "urn:uuid:c223ab8a-c1b0-4eca-a875-e8d7f6ba1909",
+  "serialNumber": "urn:uuid:11ff2f99-ff4b-4c4a-9ef9-dd8c1b3d52bd",
   "version": 1,
   "metadata": {
-    "timestamp": "2026-04-14T09:28:22+00:00",
+    "timestamp": "2026-10-05T07:45:17+00:00",
     "tools": {
       "components": [
         {
@@ -74,7 +74,7 @@
   },
   "components": [
     {
-      "bom-ref": "d0bf144e-acc3-44ca-abb2-228b882186ad",
+      "bom-ref": "ebba0729-744d-4e51-96ac-0377c7e64ead",
       "type": "application",
       "name": "bin/blackbox_exporter",
       "properties": [
@@ -92,12 +92,12 @@
       "bom-ref": "pkg:golang/cel.dev/expr@v0.24.0",
       "type": "library",
       "supplier": {
-        "name": "Google",
+        "name": "Common Expression Language",
         "url": [
-          "https://opensource.google/"
+          "cel.dev"
         ]
       },
-      "author": "Google",
+      "author": "Common Expression Language",
       "name": "cel.dev/expr",
       "version": "v0.24.0",
       "licenses": [
@@ -108,7 +108,7 @@
       "purl": "pkg:golang/cel.dev/expr@v0.24.0",
       "externalReferences": [
         {
-          "url": "https://github.com/google/cel-spec",
+          "url": "https://github.com/cel-expr/cel-spec",
           "type": "website"
         },
         {
@@ -116,7 +116,7 @@
           "type": "distribution"
         },
         {
-          "url": "https://github.com/google/cel-spec",
+          "url": "https://github.com/cel-expr/cel-spec",
           "type": "vcs"
         },
         {
@@ -147,11 +147,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2025-11-08T22:07:56Z"
-        },
-        {
-          "name": "ecosystems:owner_location",
-          "value": "United States of America"
+          "value": "2026-07-29T19:55:59Z"
         }
       ]
     },
@@ -167,7 +163,7 @@
       "author": "Alec Thomas",
       "name": "github.com/alecthomas/kingpin/v2",
       "version": "v2.4.0",
-      "description": "Package kingpin provides command line interfaces like this:\n\nFrom code like this:",
+      "description": "Package kingpin provides command line interfaces like this:",
       "licenses": [
         {
           "expression": "(MIT)"
@@ -251,7 +247,7 @@
       "author": "Alec Thomas",
       "name": "github.com/alecthomas/units",
       "version": "v0.0.0-20240927000941-0f3dac36c52b",
-      "description": "Package units provides helpful unit multipliers and functions for Go.\n\nThe goal of this package is to have functionality similar to the time [1] package.\n\n[1] http://golang.org/pkg/time/\n\nIt allows for code like this:",
+      "description": "Package units provides helpful unit multipliers and functions for Go.",
       "licenses": [
         {
           "expression": "(MIT)"
@@ -299,7 +295,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-03-16T01:19:27Z"
+          "value": "2026-05-04T00:36:13Z"
         },
         {
           "name": "ecosystems:owner_location",
@@ -363,7 +359,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-03-24T18:02:38Z"
+          "value": "2026-09-30T00:30:16Z"
         },
         {
           "name": "ecosystems:owner_location",
@@ -380,7 +376,7 @@
       "author": "antlr4-go",
       "name": "github.com/antlr4-go/antlr/v4",
       "version": "v4.13.1",
-      "description": "Package antlr implements the Go version of the ANTLR 4 runtime.\n\nANTLR (ANother Tool for Language Recognition) is a powerful parser generator for reading, processing, executing,\nor translating structured text or binary files. It's widely used to build languages, tools, and frameworks.\nFrom a grammar, ANTLR generates a parser that can build parse trees and also generates a listener interface\n(or visitor) that makes it easy to respond to the recognition of phrases of interest.\n\nAt version 4.11.x and prior, the Go runtime was not properly versioned for go modules. After this point, the runtime\nsource code to be imported was held in the `runtime/Go/antlr/v4` directory, and the go.mod file was updated to reflect the version of\nANTLR4 that it is compatible with (I.E. uses the /v4 path).\n\nHowever, this was found to be problematic, as it meant that with the runtime embedded so far underneath the root\nof the repo, the `go get` and related commands could not properly resolve the location of the go runtime source code.\nThis meant that the reference to the runtime in your `go.mod` file would refer to the correct source code, but would not\nlist the release tag such as @4.13.1 - this was confusing, to say the least.\n\nAs of 4.13.0, the runtime is now available as a go module in its own repo, and can be imported as `github.com/antlr4-go/antlr`\n(the go get command should also be used with this path). See the main documentation for the ANTLR4 project for more information,\nwhich is available at ANTLR docs. The documentation for using the Go runtime is available at Go runtime docs.\n\nThis means that if you are using the source code without modules, you should also use the source code in the new repo.\nThough we highly recommend that you use go modules, as they are now idiomatic for Go.\n\nI am aware that this change will prove Hyrum's Law, but am prepared to live with it for the common good.\n\nGo runtime author: Jim Idle jimi@idle.ws\n\nANTLR supports the generation of code in a number of target languages, and the generated code is supported by a\nruntime library, written specifically to support the generated code in the target language. This library is the\nruntime for the Go target.\n\nTo generate code for the go target, it is generally recommended to place the source grammar files in a package of\ntheir own, and use the `.sh` script method of generating code, using the go generate directive. In that same directory\nit is usual, though not required, to place the antlr tool that should be used to generate the code. That does mean\nthat the antlr tool JAR file will be checked in to your source code control though, so you are, of course, free to use any other\nway of specifying the version of the ANTLR tool to use, such as aliasing in `.zshrc` or equivalent, or a profile in\nyour IDE, or configuration in your CI system. Checking in the jar does mean that it is easy to reproduce the build as\nit was at any point in its history.\n\nHere is a general/recommended template for an ANTLR based recognizer in Go:\n\nMake sure that the package statement in your grammar file(s) reflects the go package the generated code will exist in.\n\nThe generate.go file then looks like this:\n\nAnd the generate.sh file will look similar to this:\n\ndepending on whether you want visitors or listeners or any other ANTLR options. Not that another option here\nis to generate the code into a\n\nFrom the command line at the root of your source package (location of go.mo)d) you can then simply issue the command:\n\nWhich will generate the code for the parser, and place it in the parsing package. You can then use the generated code\nby importing the parsing package.\n\nThere are no hard and fast rules on this. It is just a recommendation. You can generate the code in any way and to anywhere you like.\n\nCopyright (c) 2012-2023 The ANTLR Project. All rights reserved.\n\nUse of this file is governed by the BSD 3-clause license, which can be found in the LICENSE.txt file in the project root.",
+      "description": "Package antlr implements the Go version of the ANTLR 4 runtime.",
       "licenses": [
         {
           "expression": "(BSD-3-Clause)"
@@ -508,7 +504,7 @@
       "author": "Caleb Spare",
       "name": "github.com/cespare/xxhash/v2",
       "version": "v2.3.0",
-      "description": "Package xxhash implements the 64-bit variant of xxHash (XXH64) as described\nat http://cyan4973.github.io/xxHash/.",
+      "description": "Package xxhash implements the 64-bit variant of xxHash (XXH64) as described at http://cyan4973.github.io/xxHash/.",
       "licenses": [
         {
           "expression": "(MIT)"
@@ -656,7 +652,7 @@
       "author": "golang-jwt",
       "name": "github.com/golang-jwt/jwt/v5",
       "version": "v5.3.0",
-      "description": "Package jwt is a Go implementation of JSON Web Tokens: http://self-issued.info/docs/draft-jones-json-web-token.html\n\nSee README.md for more info.",
+      "description": "Package jwt is a Go implementation of JSON Web Tokens: http://self-issued.info/docs/draft-jones-json-web-token.html",
       "licenses": [
         {
           "expression": "(MIT)"
@@ -791,39 +787,11 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-04-06T17:44:00Z"
+          "value": "2026-08-07T20:32:57Z"
         },
         {
           "name": "ecosystems:owner_location",
           "value": "United States of America"
-        },
-        {
-          "name": "ecosystems:topic",
-          "value": "cel"
-        },
-        {
-          "name": "ecosystems:topic",
-          "value": "expression"
-        },
-        {
-          "name": "ecosystems:topic",
-          "value": "expression-evaluator"
-        },
-        {
-          "name": "ecosystems:topic",
-          "value": "expression-language"
-        },
-        {
-          "name": "ecosystems:topic",
-          "value": "expression-parser"
-        },
-        {
-          "name": "ecosystems:topic",
-          "value": "go"
-        },
-        {
-          "name": "ecosystems:topic",
-          "value": "golang"
         }
       ]
     },
@@ -839,7 +807,7 @@
       "author": "Google",
       "name": "github.com/google/uuid",
       "version": "v1.6.0",
-      "description": "Package uuid generates and inspects UUIDs.\n\nUUIDs are based on RFC 4122 and DCE 1.1: Authentication and Security\nServices.\n\nA UUID is a 16 byte (128 bit) array.  UUIDs may be used as keys to\nmaps or compared directly.",
+      "description": "Package uuid generates and inspects UUIDs.",
       "licenses": [
         {
           "expression": "(BSD-3-Clause)"
@@ -995,7 +963,7 @@
       "author": "Matt Layher",
       "name": "github.com/mdlayher/socket",
       "version": "v0.4.1",
-      "description": "Package socket provides a low-level network connection type which integrates\nwith Go's runtime network poller to provide asynchronous I/O and deadline\nsupport.\n\nThis package focuses on UNIX-like operating systems which make use of BSD\nsockets system call APIs. It is meant to be used as a foundation for the\ncreation of operating system-specific socket packages, for socket families\nsuch as Linux's AF_NETLINK, AF_PACKET, or AF_VSOCK. This package should not\nbe used directly in end user applications.\n\nAny use of package socket should be guarded by build tags, as one would also\nuse when importing the syscall or golang.org/x/sys packages.",
+      "description": "Package socket provides a low-level network connection type which integrates with Go's runtime network poller to provide asynchronous I/O and deadline support.",
       "licenses": [
         {
           "expression": "(MIT)"
@@ -1043,7 +1011,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2024-03-15T15:39:10Z"
+          "value": "2026-09-06T13:21:57Z"
         },
         {
           "name": "ecosystems:owner_location",
@@ -1063,7 +1031,7 @@
       "author": "Matt Layher",
       "name": "github.com/mdlayher/vsock",
       "version": "v1.2.1",
-      "description": "Package vsock provides access to Linux VM sockets (AF_VSOCK) for\ncommunication between a hypervisor and its virtual machines.\n\nThe types in this package implement interfaces provided by package net and\nmay be used in applications that expect a net.Listener or net.Conn.",
+      "description": "Package vsock provides access to Linux VM sockets (AF_VSOCK) for communication between a hypervisor and its virtual machines.",
       "licenses": [
         {
           "expression": "(MIT)"
@@ -1111,7 +1079,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2023-04-29T14:19:24Z"
+          "value": "2026-05-26T06:47:18Z"
         },
         {
           "name": "ecosystems:owner_location",
@@ -1151,12 +1119,7 @@
       "author": "Miek Gieben",
       "name": "github.com/miekg/dns",
       "version": "v1.1.68",
-      "description": "Package dns implements a full featured interface to the Domain Name System.\nBoth server- and client-side programming is supported. The package allows\ncomplete control over what is sent out to the DNS. The API follows the\nless-is-more principle, by presenting a small, clean interface.\n\nIt supports (asynchronous) querying/replying, incoming/outgoing zone transfers,\nTSIG, EDNS0, dynamic updates, notifies and DNSSEC validation/signing.\n\nNote that domain names MUST be fully qualified before sending them, unqualified\nnames in a message will result in a packing failure.\n\nResource records are native types. They are not stored in wire format. Basic\nusage pattern for creating a new resource record:\n\nOr directly from a string:\n\nOr when the default origin (.) and TTL (3600) and class (IN) suit you:\n\nOr even:\n\nIn the DNS messages are exchanged, these messages contain resource records\n(sets). Use pattern for creating a message:\n\nOr when not certain if the domain name is fully qualified:\n\nThe message m is now a message with the question section set to ask the MX\nrecords for the miek.nl. zone.\n\nThe following is slightly more verbose, but more flexible:\n\nAfter creating a message it can be sent. Basic use pattern for synchronous\nquerying the DNS at a server configured on 127.0.0.1 and port 53:\n\nSuppressing multiple outstanding queries (with the same question, type and\nclass) is as easy as setting:\n\nMore advanced options are available using a net.Dialer and the corresponding API.\nFor example it is possible to set a timeout, or to specify a source IP address\nand port to use for the connection:\n\nIf these \"advanced\" features are not needed, a simple UDP query can be sent,\nwith:\n\nWhen this functions returns you will get DNS message. A DNS message consists\nout of four sections.\nThe question section: in.Question, the answer section: in.Answer,\nthe authority section: in.Ns and the additional section: in.Extra.\n\nEach of these sections (except the Question section) contain a []RR. Basic\nuse pattern for accessing the rdata of a TXT RR as the first RR in\nthe Answer section:\n\nBoth domain names and TXT character strings are converted to presentation form\nboth when unpacked and when converted to strings.\n\nFor TXT character strings, tabs, carriage returns and line feeds will be\nconverted to \\t, \\r and \\n respectively. Back slashes and quotations marks will\nbe escaped. Bytes below 32 and above 127 will be converted to \\DDD form.\n\nFor domain names, in addition to the above rules brackets, periods, spaces,\nsemicolons and the at symbol are escaped.\n\nDNSSEC (DNS Security Extension) adds a layer of security to the DNS. It uses\npublic key cryptography to sign resource records. The public keys are stored in\nDNSKEY records and the signatures in RRSIG records.\n\nRequesting DNSSEC information for a zone is done by adding the DO (DNSSEC OK)\nbit to a request.\n\nSignature generation, signature verification and key generation are all supported.\n\nDynamic updates reuses the DNS message format, but renames three of the\nsections. Question is Zone, Answer is Prerequisite, Authority is Update, only\nthe Additional is not renamed. See RFC 2136 for the gory details.\n\nYou can set a rather complex set of rules for the existence of absence of\ncertain resource records or names in a zone to specify if resource records\nshould be added or removed. The table from RFC 2136 supplemented with the Go\nDNS function shows which functions exist to specify the prerequisites.\n\nThe prerequisite section can also be left empty. If you have decided on the\nprerequisites you can tell what RRs should be added or deleted. The next table\nshows the options you have and what functions to call.\n\nAn TSIG or transaction signature adds a HMAC TSIG record to each message sent.\nThe supported algorithms include: HmacSHA1, HmacSHA256 and HmacSHA512.\n\nBasic use pattern when querying with a TSIG name \"axfr.\" (note that these key names\nmust be fully qualified - as they are domain names) and the base64 secret\n\"so6ZGir4GPAqINNh9U5c3A==\":\n\nIf an incoming message contains a TSIG record it MUST be the last record in\nthe additional section (RFC2845 3.2).  This means that you should make the\ncall to SetTsig last, right before executing the query.  If you make any\nchanges to the RRset after calling SetTsig() the signature will be incorrect.\n\nWhen requesting an zone transfer (almost all TSIG usage is when requesting zone\ntransfers), with TSIG, this is the basic use pattern. In this example we\nrequest an AXFR for miek.nl. with TSIG key named \"axfr.\" and secret\n\"so6ZGir4GPAqINNh9U5c3A==\" and using the server 176.58.119.54:\n\nYou can now read the records from the transfer as they come in. Each envelope\nis checked with TSIG. If something is not correct an error is returned.\n\nA custom TSIG implementation can be used. This requires additional code to\nperform any session establishment and signature generation/verification. The\nclient must be configured with an implementation of the TsigProvider interface:\n\nBasic use pattern validating and replying to a message that has TSIG set.\n\nRFC 6895 sets aside a range of type codes for private use. This range is 65,280\n- 65,534 (0xFF00 - 0xFFFE). When experimenting with new Resource Records these\ncan be used, before requesting an official type code from IANA.\n\nSee https://miek.nl/2014/september/21/idn-and-private-rr-in-go-dns/ for more\ninformation.\n\nEDNS0 is an extension mechanism for the DNS defined in RFC 2671 and updated by\nRFC 6891. It defines a new RR type, the OPT RR, which is then completely\nabused.\n\nBasic use pattern for creating an (empty) OPT RR:\n\nThe rdata of an OPT RR consists out of a slice of EDNS0 (RFC 6891) interfaces.\nCurrently only a few have been standardized: EDNS0_NSID (RFC 5001) and\nEDNS0_SUBNET (RFC 7871). Note that these options may be combined in an OPT RR.\nBasic use pattern for a server to check if (and which) options are set:\n\nSIG(0)\n\nFrom RFC 2931:\n\nIt works like TSIG, except that SIG(0) uses public key cryptography, instead of\nthe shared secret approach in TSIG. Supported algorithms: ECDSAP256SHA256,\nECDSAP384SHA384, RSASHA1, RSASHA256 and RSASHA512.\n\nSigning subsequent messages in multi-message sessions is not implemented.",
-      "licenses": [
-        {
-          "expression": "(BSD-3-Clause)"
-        }
-      ],
+      "description": "Package dns implements a full featured interface to the Domain Name System.",
       "purl": "pkg:golang/github.com/miekg/dns@v1.1.68",
       "externalReferences": [
         {
@@ -1199,7 +1162,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-01-22T08:23:52Z"
+          "value": "2026-08-19T05:07:32Z"
         },
         {
           "name": "ecosystems:topic",
@@ -1230,7 +1193,7 @@
       "version": "v0.0.0-20191010083416-a7dc8b61c822",
       "licenses": [
         {
-          "expression": "(BSD-3-Clause)"
+          "expression": "(Other)"
         }
       ],
       "purl": "pkg:golang/github.com/munnerz/goautoneg@v0.0.0-20191010083416-a7dc8b61c822",
@@ -1450,7 +1413,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2025-09-05T14:03:59Z"
+          "value": "2026-07-24T06:32:04Z"
         }
       ]
     },
@@ -1513,7 +1476,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2025-04-11T05:38:16Z"
+          "value": "2026-08-31T09:02:46Z"
         }
       ]
     },
@@ -1634,7 +1597,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-03-29T12:34:40Z"
+          "value": "2026-09-24T14:45:38Z"
         },
         {
           "name": "ecosystems:topic",
@@ -1670,7 +1633,7 @@
       "author": "Prometheus",
       "name": "github.com/prometheus/procfs",
       "version": "v0.16.1",
-      "description": "Package procfs provides functions to retrieve system, kernel and process\nmetrics from the pseudo-filesystem proc.\n\nExample:",
+      "description": "Package procfs provides functions to retrieve system, kernel and process metrics from the pseudo-filesystem proc.",
       "licenses": [
         {
           "expression": "(Apache-2.0)"
@@ -1718,7 +1681,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-02-28T15:22:44Z"
+          "value": "2026-08-28T13:53:50Z"
         },
         {
           "name": "ecosystems:topic",
@@ -1754,7 +1717,10 @@
       "bom-ref": "pkg:golang/github.com/quic-go/qpack@v0.6.0",
       "type": "library",
       "supplier": {
-        "name": "quic-go"
+        "name": "quic-go",
+        "url": [
+          "quic-go.net"
+        ]
       },
       "author": "quic-go",
       "name": "github.com/quic-go/qpack",
@@ -1826,7 +1792,10 @@
       "bom-ref": "pkg:golang/github.com/quic-go/quic-go@v0.57.1",
       "type": "library",
       "supplier": {
-        "name": "quic-go"
+        "name": "quic-go",
+        "url": [
+          "quic-go.net"
+        ]
       },
       "author": "quic-go",
       "name": "github.com/quic-go/quic-go",
@@ -1873,7 +1842,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-01-11T08:39:34Z"
+          "value": "2026-09-22T05:27:26Z"
         },
         {
           "name": "ecosystems:topic",
@@ -1890,6 +1859,10 @@
         {
           "name": "ecosystems:topic",
           "value": "protocol"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "qlog"
         },
         {
           "name": "ecosystems:topic",
@@ -1914,7 +1887,7 @@
       "author": "A. Stoewer",
       "name": "github.com/stoewer/go-strcase",
       "version": "v1.2.0",
-      "description": "Package strcase converts between different kinds of naming formats such as camel case\n(CamelCase), snake case (snake_case) or kebab case (kebab-case). The package is designed\nto work only with strings consisting of standard ASCII letters. Unicode is currently not\nsupported.",
+      "description": "Package strcase converts between different kinds of naming formats such as camel case (CamelCase), snake case (snake_case) or kebab case (kebab-case).",
       "purl": "pkg:golang/github.com/stoewer/go-strcase@v1.2.0",
       "externalReferences": [
         {
@@ -1992,6 +1965,13 @@
     {
       "bom-ref": "pkg:golang/github.com/xhit/go-str2duration/v2@v2.1.0",
       "type": "library",
+      "supplier": {
+        "name": "Santiago De la Cruz",
+        "url": [
+          "https://stgo.do"
+        ]
+      },
+      "author": "Santiago De la Cruz",
       "name": "github.com/xhit/go-str2duration/v2",
       "version": "v2.1.0",
       "licenses": [
@@ -2041,7 +2021,11 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2022-12-07T00:32:32Z"
+          "value": "2026-09-14T14:40:41Z"
+        },
+        {
+          "name": "ecosystems:owner_location",
+          "value": "Dominican Republic"
         },
         {
           "name": "ecosystems:topic",
@@ -2087,10 +2071,6 @@
           "type": "distribution"
         },
         {
-          "url": "https://github.com/yaml/go-yaml",
-          "type": "vcs"
-        },
-        {
           "url": "https://pkg.go.dev/go.yaml.in/yaml/v2#section-documentation",
           "type": "documentation"
         }
@@ -2118,16 +2098,23 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2025-09-11T04:10:14Z"
+          "value": "2026-03-06T22:01:45Z"
         }
       ]
     },
     {
       "bom-ref": "pkg:golang/go.yaml.in/yaml/v3@v3.0.4",
       "type": "library",
+      "supplier": {
+        "name": "The YAML Project",
+        "url": [
+          "http://yaml.org"
+        ]
+      },
+      "author": "The YAML Project",
       "name": "go.yaml.in/yaml/v3",
       "version": "v3.0.4",
-      "description": "Package yaml implements YAML support for the Go language.\n\nSource code and other details for the project are available at GitHub:",
+      "description": "Package yaml implements YAML support for the Go language.",
       "licenses": [
         {
           "expression": "(Apache-2.0 OR MIT)"
@@ -2175,7 +2162,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2025-06-29T14:09:51Z"
+          "value": "2026-07-26T14:51:55Z"
         }
       ]
     },
@@ -2184,11 +2171,6 @@
       "type": "library",
       "name": "golang.org/x/crypto",
       "version": "v0.45.0",
-      "licenses": [
-        {
-          "expression": "(BSD-3-Clause)"
-        }
-      ],
       "purl": "pkg:golang/golang.org/x/crypto@v0.45.0",
       "externalReferences": [
         {
@@ -2231,7 +2213,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-04-09T15:33:22Z"
+          "value": "2026-09-08T18:05:01Z"
         }
       ]
     },
@@ -2282,7 +2264,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-03-12T15:32:36Z"
+          "value": "2026-06-11T19:45:20Z"
         }
       ]
     },
@@ -2291,11 +2273,6 @@
       "type": "library",
       "name": "golang.org/x/net",
       "version": "v0.47.0",
-      "licenses": [
-        {
-          "expression": "(BSD-3-Clause)"
-        }
-      ],
       "purl": "pkg:golang/golang.org/x/net@v0.47.0",
       "externalReferences": [
         {
@@ -2338,7 +2315,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-04-09T19:17:33Z"
+          "value": "2026-09-08T19:18:02Z"
         }
       ]
     },
@@ -2347,7 +2324,7 @@
       "type": "library",
       "name": "golang.org/x/oauth2",
       "version": "v0.32.0",
-      "description": "Package oauth2 provides support for making\nOAuth2 authorized and authenticated HTTP requests,\nas specified in RFC 6749.\nIt can additionally grant authorization with Bearer JWT.",
+      "description": "Package oauth2 provides support for making OAuth2 authorized and authenticated HTTP requests, as specified in RFC 6749.",
       "licenses": [
         {
           "expression": "(BSD-3-Clause)"
@@ -2395,7 +2372,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-02-11T19:14:10Z"
+          "value": "2026-08-25T21:41:43Z"
         }
       ]
     },
@@ -2404,11 +2381,6 @@
       "type": "library",
       "name": "golang.org/x/sync",
       "version": "v0.18.0",
-      "licenses": [
-        {
-          "expression": "(BSD-3-Clause)"
-        }
-      ],
       "purl": "pkg:golang/golang.org/x/sync@v0.18.0",
       "externalReferences": [
         {
@@ -2418,6 +2390,10 @@
         {
           "url": "https://pkg.go.dev/golang.org/x/sync",
           "type": "distribution"
+        },
+        {
+          "url": "https://cs.opensource.google/go/x/sync",
+          "type": "vcs"
         },
         {
           "url": "https://pkg.go.dev/golang.org/x/sync#section-documentation",
@@ -2447,7 +2423,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-02-23T18:54:42Z"
+          "value": "2026-08-31T03:04:41Z"
         }
       ]
     },
@@ -2456,11 +2432,6 @@
       "type": "library",
       "name": "golang.org/x/sys",
       "version": "v0.38.0",
-      "licenses": [
-        {
-          "expression": "(BSD-3-Clause)"
-        }
-      ],
       "purl": "pkg:golang/golang.org/x/sys@v0.38.0",
       "externalReferences": [
         {
@@ -2503,7 +2474,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-03-27T16:08:41Z"
+          "value": "2026-08-31T19:43:43Z"
         }
       ]
     },
@@ -2512,12 +2483,7 @@
       "type": "library",
       "name": "golang.org/x/text",
       "version": "v0.31.0",
-      "description": "text is a repository of text-related packages related to internationalization\n(i18n) and localization (l10n), such as character encodings, text\ntransformations, and locale-specific text handling.\n\nThere is a 30 minute video, recorded on 2017-11-30, on the \"State of\ngolang.org/x/text\" at https://www.youtube.com/watch?v=uYrDrMEGu58",
-      "licenses": [
-        {
-          "expression": "(BSD-3-Clause)"
-        }
-      ],
+      "description": "text is a repository of text-related packages related to internationalization (i18n) and localization (l10n), such as character encodings, text transformations, and locale-specific text handling.",
       "purl": "pkg:golang/golang.org/x/text@v0.31.0",
       "externalReferences": [
         {
@@ -2560,7 +2526,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-04-09T11:43:05Z"
+          "value": "2026-09-08T16:29:55Z"
         }
       ]
     },
@@ -2569,11 +2535,6 @@
       "type": "library",
       "name": "golang.org/x/time",
       "version": "v0.13.0",
-      "licenses": [
-        {
-          "expression": "(BSD-3-Clause)"
-        }
-      ],
       "purl": "pkg:golang/golang.org/x/time@v0.13.0",
       "externalReferences": [
         {
@@ -2583,6 +2544,10 @@
         {
           "url": "https://pkg.go.dev/golang.org/x/time",
           "type": "distribution"
+        },
+        {
+          "url": "https://cs.opensource.google/go/x/time",
+          "type": "vcs"
         },
         {
           "url": "https://pkg.go.dev/golang.org/x/time#section-documentation",
@@ -2612,7 +2577,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-02-11T19:14:29Z"
+          "value": "2026-08-19T17:16:18Z"
         }
       ]
     },
@@ -2670,7 +2635,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-04-01T02:48:25Z"
+          "value": "2026-06-22T17:59:28Z"
         }
       ]
     },
@@ -2728,7 +2693,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-04-01T02:48:25Z"
+          "value": "2026-06-22T17:59:28Z"
         }
       ]
     },
@@ -2744,7 +2709,7 @@
       "author": "grpc",
       "name": "google.golang.org/grpc",
       "version": "v1.77.0",
-      "description": "Package grpc implements an RPC system called gRPC.\n\nSee grpc.io for more information about gRPC.",
+      "description": "Package grpc implements an RPC system called gRPC.",
       "licenses": [
         {
           "expression": "(Apache-2.0)"
@@ -2792,7 +2757,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-04-01T07:57:02Z"
+          "value": "2026-09-17T20:03:25Z"
         },
         {
           "name": "ecosystems:topic",
@@ -2864,6 +2829,10 @@
           "type": "distribution"
         },
         {
+          "url": "https://github.com/protocolbuffers/protobuf-go",
+          "type": "vcs"
+        },
+        {
           "url": "https://pkg.go.dev/google.golang.org/protobuf#section-documentation",
           "type": "documentation"
         }
@@ -2891,7 +2860,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2025-12-12T08:48:31Z"
+          "value": "2026-08-10T13:29:45Z"
         },
         {
           "name": "ecosystems:topic",
@@ -2939,7 +2908,7 @@
   ],
   "dependencies": [
     {
-      "ref": "d0bf144e-acc3-44ca-abb2-228b882186ad",
+      "ref": "ebba0729-744d-4e51-96ac-0377c7e64ead",
       "dependsOn": [
         "pkg:golang/github.com/prometheus/blackbox_exporter@v0.28.0"
       ]
@@ -3157,7 +3126,7 @@
     {
       "ref": "pkg:oci/blackbox-exporter@sha256%3Ae753ff9f3fc458d02cca5eddab5a77e1c175eee484a8925ac7d524f04366c2fc?arch=amd64&repository_url=quay.io%2Fprometheus%2Fblackbox-exporter",
       "dependsOn": [
-        "d0bf144e-acc3-44ca-abb2-228b882186ad"
+        "ebba0729-744d-4e51-96ac-0377c7e64ead"
       ]
     }
   ],

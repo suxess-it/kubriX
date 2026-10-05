@@ -2,10 +2,10 @@
   "$schema": "http://cyclonedx.org/schema/bom-1.6.schema.json",
   "bomFormat": "CycloneDX",
   "specVersion": "1.6",
-  "serialNumber": "urn:uuid:7ed885a4-f100-4fa1-ac6e-96c478a43556",
+  "serialNumber": "urn:uuid:a5a17118-ae33-45a6-995c-5f0ee046979c",
   "version": 1,
   "metadata": {
-    "timestamp": "2026-04-14T09:23:23+00:00",
+    "timestamp": "2026-10-05T07:40:15+00:00",
     "tools": {
       "components": [
         {
@@ -82,7 +82,7 @@
   },
   "components": [
     {
-      "bom-ref": "2f6ef3f5-4401-409d-991e-ec8f3313f3ca",
+      "bom-ref": "3fe45c5f-f2f0-42d5-8238-ae61d5a00bc3",
       "type": "operating-system",
       "name": "alpine",
       "version": "3.16.5",
@@ -98,7 +98,7 @@
       ]
     },
     {
-      "bom-ref": "5183b58a-b664-454c-b822-e23ea4948d4a",
+      "bom-ref": "7f335bf1-9e43-49ad-8c78-2b4ba90d13a2",
       "type": "application",
       "name": "usr/bin/falco-exporter",
       "properties": [
@@ -330,8 +330,12 @@
       "bom-ref": "pkg:apk/alpine/apk-tools@2.12.9-r3?arch=x86_64&distro=3.16.5",
       "type": "library",
       "supplier": {
-        "name": "Natanael Copa <ncopa@alpinelinux.org>"
+        "name": "alpine",
+        "url": [
+          ""
+        ]
       },
+      "author": "alpine",
       "name": "apk-tools",
       "version": "2.12.9-r3",
       "description": "Alpine Package Keeper - package manager for alpine",
@@ -394,7 +398,11 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-04-13T09:23:00Z"
+          "value": "2026-07-28T13:11:31Z"
+        },
+        {
+          "name": "ecosystems:owner_location",
+          "value": ""
         }
       ]
     },
@@ -466,7 +474,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2024-12-13T15:05:48Z"
+          "value": "2026-07-24T11:50:59Z"
         }
       ]
     },
@@ -543,7 +551,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2025-11-10T07:19:26Z"
+          "value": "2026-06-13T14:25:12Z"
         }
       ]
     },
@@ -1058,7 +1066,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2024-11-19T21:09:16Z"
+          "value": "2026-07-24T11:50:59Z"
         }
       ]
     },
@@ -1210,7 +1218,7 @@
       "author": "Caleb Spare",
       "name": "github.com/cespare/xxhash/v2",
       "version": "v2.1.2",
-      "description": "Package xxhash implements the 64-bit variant of xxHash (XXH64) as described\nat http://cyan4973.github.io/xxHash/.",
+      "description": "Package xxhash implements the 64-bit variant of xxHash (XXH64) as described at http://cyan4973.github.io/xxHash/.",
       "licenses": [
         {
           "expression": "(MIT)"
@@ -1352,6 +1360,13 @@
     {
       "bom-ref": "pkg:golang/github.com/falcosecurity/falco-exporter",
       "type": "library",
+      "supplier": {
+        "name": "Falco",
+        "url": [
+          "https://falco.org"
+        ]
+      },
+      "author": "Falco",
       "name": "github.com/falcosecurity/falco-exporter",
       "purl": "pkg:golang/github.com/falcosecurity/falco-exporter",
       "externalReferences": [
@@ -1396,6 +1411,10 @@
         {
           "name": "ecosystems:latest_release_published_at",
           "value": "2024-03-14T10:23:25Z"
+        },
+        {
+          "name": "ecosystems:repository_archived",
+          "value": "true"
         },
         {
           "name": "ecosystems:topic",
@@ -1474,7 +1493,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2024-03-06T06:45:40Z"
+          "value": "2026-10-05T03:31:26Z"
         },
         {
           "name": "ecosystems:topic",
@@ -1620,7 +1639,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2025-09-05T14:03:59Z"
+          "value": "2026-07-24T06:32:04Z"
         }
       ]
     },
@@ -1683,7 +1702,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2025-04-11T05:38:16Z"
+          "value": "2026-08-31T09:02:46Z"
         }
       ]
     },
@@ -1762,7 +1781,7 @@
       "author": "Prometheus",
       "name": "github.com/prometheus/procfs",
       "version": "v0.7.3",
-      "description": "Package procfs provides functions to retrieve system, kernel and process\nmetrics from the pseudo-filesystem proc.\n\nExample:",
+      "description": "Package procfs provides functions to retrieve system, kernel and process metrics from the pseudo-filesystem proc.",
       "licenses": [
         {
           "expression": "(Apache-2.0)"
@@ -1810,7 +1829,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-02-28T15:22:44Z"
+          "value": "2026-08-28T13:53:50Z"
         },
         {
           "name": "ecosystems:topic",
@@ -1854,7 +1873,7 @@
       "author": "Steve Francia",
       "name": "github.com/spf13/pflag",
       "version": "v1.0.5",
-      "description": "Package pflag is a drop-in replacement for Go's flag package, implementing\nPOSIX/GNU-style --flags.\n\npflag is compatible with the GNU extensions to the POSIX recommendations\nfor command-line options. See\nhttp://www.gnu.org/software/libc/manual/html_node/Argument-Syntax.html\n\nUsage:\n\npflag is a drop-in replacement of Go's native flag package. If you import\npflag under the name \"flag\" then all code should continue to function\nwith no changes.\n\nThere is one exception to this: if you directly instantiate the Flag struct\nthere is one more field \"Shorthand\" that you will need to set.\nMost code never instantiates this struct directly, and instead uses\nfunctions such as String(), BoolVar(), and Var(), and is therefore\nunaffected.\n\nDefine flags using flag.String(), Bool(), Int(), etc.\n\nThis declares an integer flag, -flagname, stored in the pointer ip, with type *int.\n\nIf you like, you can bind the flag to a variable using the Var() functions.\n\nOr you can create custom flags that satisfy the Value interface (with\npointer receivers) and couple them to flag parsing by\n\nFor such flags, the default value is just the initial value of the variable.\n\nAfter all flags are defined, call\n\nto parse the command line into the defined flags.\n\nFlags may then be used directly. If you're using the flags themselves,\nthey are all pointers; if you bind to variables, they're values.\n\nAfter parsing, the arguments after the flag are available as the\nslice flag.Args() or individually as flag.Arg(i).\nThe arguments are indexed from 0 through flag.NArg()-1.\n\nThe pflag package also defines some new functions that are not in flag,\nthat give one-letter shorthands for flags. You can use these by appending\n'P' to the name of any function that defines a flag.\n\nShorthand letters can be used with single dashes on the command line.\nBoolean shorthand flags can be combined with other shorthand flags.\n\nCommand line flag syntax:\n\nUnlike the flag package, a single dash before an option means something\ndifferent than a double dash. Single dashes signify a series of shorthand\nletters for flags. All but the last shorthand letter must be boolean flags.\n\nFlag parsing stops after the terminator \"--\". Unlike the flag package,\nflags can be interspersed with arguments anywhere on the command line\nbefore this terminator.\n\nInteger flags accept 1234, 0664, 0x1234 and may be negative.\nBoolean flags (in their long form) accept 1, 0, t, f, true, false,\nTRUE, FALSE, True, False.\nDuration flags accept any input valid for time.ParseDuration.\n\nThe default set of command-line flags is controlled by\ntop-level functions.  The FlagSet type allows one to define\nindependent sets of flags, such as to implement subcommands\nin a command-line interface. The methods of FlagSet are\nanalogous to the top-level functions for the command-line\nflag set.",
+      "description": "Package pflag is a drop-in replacement for Go's flag package, implementing POSIX/GNU-style --flags.",
       "licenses": [
         {
           "expression": "(BSD-3-Clause)"
@@ -1962,7 +1981,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-04-09T19:17:33Z"
+          "value": "2026-09-08T19:18:02Z"
         }
       ]
     },
@@ -2018,7 +2037,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-03-27T16:08:41Z"
+          "value": "2026-08-31T19:43:43Z"
         }
       ]
     },
@@ -2027,7 +2046,7 @@
       "type": "library",
       "name": "golang.org/x/text",
       "version": "v0.7.0",
-      "description": "text is a repository of text-related packages related to internationalization\n(i18n) and localization (l10n), such as character encodings, text\ntransformations, and locale-specific text handling.\n\nThere is a 30 minute video, recorded on 2017-11-30, on the \"State of\ngolang.org/x/text\" at https://www.youtube.com/watch?v=uYrDrMEGu58",
+      "description": "text is a repository of text-related packages related to internationalization (i18n) and localization (l10n), such as character encodings, text transformations, and locale-specific text handling.",
       "licenses": [
         {
           "expression": "(BSD-3-Clause)"
@@ -2075,7 +2094,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-04-09T11:43:05Z"
+          "value": "2026-09-08T16:29:55Z"
         }
       ]
     },
@@ -2133,7 +2152,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-04-06T21:00:06Z"
+          "value": "2026-10-05T00:32:07Z"
         }
       ]
     },
@@ -2149,7 +2168,7 @@
       "author": "grpc",
       "name": "google.golang.org/grpc",
       "version": "v1.46.2",
-      "description": "Package grpc implements an RPC system called gRPC.\n\nSee grpc.io for more information about gRPC.",
+      "description": "Package grpc implements an RPC system called gRPC.",
       "licenses": [
         {
           "expression": "(Apache-2.0)"
@@ -2197,7 +2216,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-04-01T07:57:02Z"
+          "value": "2026-09-17T20:03:25Z"
         },
         {
           "name": "ecosystems:topic",
@@ -2269,6 +2288,10 @@
           "type": "distribution"
         },
         {
+          "url": "https://github.com/protocolbuffers/protobuf-go",
+          "type": "vcs"
+        },
+        {
           "url": "https://pkg.go.dev/google.golang.org/protobuf#section-documentation",
           "type": "documentation"
         }
@@ -2296,7 +2319,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2025-12-12T08:48:31Z"
+          "value": "2026-08-10T13:29:45Z"
         },
         {
           "name": "ecosystems:topic",
@@ -2344,7 +2367,7 @@
   ],
   "dependencies": [
     {
-      "ref": "2f6ef3f5-4401-409d-991e-ec8f3313f3ca",
+      "ref": "3fe45c5f-f2f0-42d5-8238-ae61d5a00bc3",
       "dependsOn": [
         "pkg:apk/alpine/alpine-baselayout@3.2.0-r23?arch=x86_64&distro=3.16.5",
         "pkg:apk/alpine/alpine-keys@2.4-r1?arch=x86_64&distro=3.16.5",
@@ -2354,7 +2377,7 @@
       ]
     },
     {
-      "ref": "5183b58a-b664-454c-b822-e23ea4948d4a",
+      "ref": "7f335bf1-9e43-49ad-8c78-2b4ba90d13a2",
       "dependsOn": [
         "pkg:golang/github.com/falcosecurity/falco-exporter"
       ]
@@ -2538,8 +2561,8 @@
     {
       "ref": "pkg:oci/falco-exporter@sha256%3A62b81ebb555d118fde03306ef2f4151c303e0c32a2b8bf93bbc2de156d3d1732?arch=amd64&repository_url=index.docker.io%2Ffalcosecurity%2Ffalco-exporter",
       "dependsOn": [
-        "2f6ef3f5-4401-409d-991e-ec8f3313f3ca",
-        "5183b58a-b664-454c-b822-e23ea4948d4a"
+        "3fe45c5f-f2f0-42d5-8238-ae61d5a00bc3",
+        "7f335bf1-9e43-49ad-8c78-2b4ba90d13a2"
       ]
     }
   ],
