@@ -160,7 +160,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>Node.js</code></h3>
-<h4>Vulnerabilities (231)</h4>
+<h4>Vulnerabilities (246)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -175,6 +175,20 @@
         <td>HIGH</td>
         <td>2.1.1</td>
         <td>3.2.1</td>
+    </tr>
+    <tr>
+        <td><code>@graphql-tools/utils</code></td>
+        <td>CVE-2026-104852</td>
+        <td>HIGH</td>
+        <td>8.13.1</td>
+        <td>12.0.1</td>
+    </tr>
+    <tr>
+        <td><code>@graphql-tools/utils</code></td>
+        <td>CVE-2026-104852</td>
+        <td>HIGH</td>
+        <td>8.9.0</td>
+        <td>12.0.1</td>
     </tr>
     <tr>
         <td><code>@grpc/grpc-js</code></td>
@@ -541,6 +555,13 @@
         <td></td>
     </tr>
     <tr>
+        <td><code>compression</code></td>
+        <td>CVE-2026-87776</td>
+        <td>HIGH</td>
+        <td>1.8.1</td>
+        <td>1.8.2</td>
+    </tr>
+    <tr>
         <td><code>fast-uri</code></td>
         <td>CVE-2026-13676</td>
         <td>HIGH</td>
@@ -819,6 +840,13 @@
         <td>HIGH</td>
         <td>7.5.9</td>
         <td>7.6.1, 8.4.1</td>
+    </tr>
+    <tr>
+        <td><code>proxy-addr</code></td>
+        <td>CVE-2026-90711</td>
+        <td>CRITICAL</td>
+        <td>2.0.7</td>
+        <td>2.0.8</td>
     </tr>
     <tr>
         <td><code>systeminformation</code></td>
@@ -1697,6 +1725,20 @@
     </tr>
     <tr>
         <td><code>vm2</code></td>
+        <td>CVE-2026-100721</td>
+        <td>CRITICAL</td>
+        <td>3.11.6</td>
+        <td>3.12.2</td>
+    </tr>
+    <tr>
+        <td><code>vm2</code></td>
+        <td>CVE-2026-92934</td>
+        <td>CRITICAL</td>
+        <td>3.11.6</td>
+        <td>3.11.8</td>
+    </tr>
+    <tr>
+        <td><code>vm2</code></td>
         <td>CVE-2026-92935</td>
         <td>CRITICAL</td>
         <td>3.11.6</td>
@@ -1746,6 +1788,20 @@
     </tr>
     <tr>
         <td><code>vm2</code></td>
+        <td>CVE-2026-92946</td>
+        <td>CRITICAL</td>
+        <td>3.11.6</td>
+        <td>3.11.7</td>
+    </tr>
+    <tr>
+        <td><code>vm2</code></td>
+        <td>CVE-2026-92947</td>
+        <td>CRITICAL</td>
+        <td>3.11.6</td>
+        <td>3.11.7</td>
+    </tr>
+    <tr>
+        <td><code>vm2</code></td>
         <td>CVE-2026-92948</td>
         <td>CRITICAL</td>
         <td>3.11.6</td>
@@ -1760,8 +1816,50 @@
     </tr>
     <tr>
         <td><code>vm2</code></td>
+        <td>CVE-2026-92953</td>
+        <td>CRITICAL</td>
+        <td>3.11.6</td>
+        <td>3.11.8</td>
+    </tr>
+    <tr>
+        <td><code>vm2</code></td>
+        <td>CVE-2026-92954</td>
+        <td>CRITICAL</td>
+        <td>3.11.6</td>
+        <td>3.11.8</td>
+    </tr>
+    <tr>
+        <td><code>vm2</code></td>
+        <td>CVE-2026-92955</td>
+        <td>CRITICAL</td>
+        <td>3.11.6</td>
+        <td>3.11.8</td>
+    </tr>
+    <tr>
+        <td><code>vm2</code></td>
+        <td>CVE-2026-92956</td>
+        <td>CRITICAL</td>
+        <td>3.11.6</td>
+        <td>3.11.7</td>
+    </tr>
+    <tr>
+        <td><code>vm2</code></td>
         <td>CVE-2026-92957</td>
         <td>CRITICAL</td>
+        <td>3.11.6</td>
+        <td>3.11.7</td>
+    </tr>
+    <tr>
+        <td><code>vm2</code></td>
+        <td>CVE-2026-100722</td>
+        <td>HIGH</td>
+        <td>3.11.6</td>
+        <td>3.12.2</td>
+    </tr>
+    <tr>
+        <td><code>vm2</code></td>
+        <td>CVE-2026-92942</td>
+        <td>HIGH</td>
         <td>3.11.6</td>
         <td>3.11.7</td>
     </tr>
@@ -1778,6 +1876,13 @@
         <td>HIGH</td>
         <td>3.11.6</td>
         <td>3.11.7</td>
+    </tr>
+    <tr>
+        <td><code>vm2</code></td>
+        <td>CVE-2026-92959</td>
+        <td>HIGH</td>
+        <td>3.11.6</td>
+        <td>3.11.8</td>
     </tr>
     <tr>
         <td><code>ws</code></td>

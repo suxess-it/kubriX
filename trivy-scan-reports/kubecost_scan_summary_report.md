@@ -1306,7 +1306,7 @@
 <h2>Image <code>icr.io/kubecost/modeling:v0.1.34</code></h2>
 
 <h3>Target <code>icr.io/kubecost/modeling:v0.1.34 (redhat 9.7)</code></h3>
-<h4>Vulnerabilities (64)</h4>
+<h4>Vulnerabilities (66)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -1667,6 +1667,13 @@
     </tr>
     <tr>
         <td><code>python3.12</code></td>
+        <td>CVE-2026-19445</td>
+        <td>HIGH</td>
+        <td>3.12.12-1.el9_7</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>python3.12</code></td>
         <td>CVE-2026-19553</td>
         <td>HIGH</td>
         <td>3.12.12-1.el9_7</td>
@@ -1713,6 +1720,13 @@
         <td>HIGH</td>
         <td>3.12.12-1.el9_7</td>
         <td>3.12.13-3.el9_8.1</td>
+    </tr>
+    <tr>
+        <td><code>python3.12-libs</code></td>
+        <td>CVE-2026-19445</td>
+        <td>HIGH</td>
+        <td>3.12.12-1.el9_7</td>
+        <td></td>
     </tr>
     <tr>
         <td><code>python3.12-libs</code></td>
