@@ -1,7 +1,7 @@
 <h2>Image <code>docker.io/dserio83/velero-api:0.3.1</code></h2>
 
 <h3>Target <code>docker.io/dserio83/velero-api:0.3.1 (debian 12.11)</code></h3>
-<h4>Vulnerabilities (206)</h4>
+<h4>Vulnerabilities (210)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -614,6 +614,13 @@
     </tr>
     <tr>
         <td><code>libpython3.11-minimal</code></td>
+        <td>CVE-2026-19445</td>
+        <td>HIGH</td>
+        <td>3.11.2-6+deb12u6</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>libpython3.11-minimal</code></td>
         <td>CVE-2026-19553</td>
         <td>HIGH</td>
         <td>3.11.2-6+deb12u6</td>
@@ -678,6 +685,13 @@
     <tr>
         <td><code>libpython3.11-stdlib</code></td>
         <td>CVE-2026-15308</td>
+        <td>HIGH</td>
+        <td>3.11.2-6+deb12u6</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>libpython3.11-stdlib</code></td>
+        <td>CVE-2026-19445</td>
         <td>HIGH</td>
         <td>3.11.2-6+deb12u6</td>
         <td></td>
@@ -1265,6 +1279,13 @@
     </tr>
     <tr>
         <td><code>python3.11</code></td>
+        <td>CVE-2026-19445</td>
+        <td>HIGH</td>
+        <td>3.11.2-6+deb12u6</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>python3.11</code></td>
         <td>CVE-2026-19553</td>
         <td>HIGH</td>
         <td>3.11.2-6+deb12u6</td>
@@ -1329,6 +1350,13 @@
     <tr>
         <td><code>python3.11-minimal</code></td>
         <td>CVE-2026-15308</td>
+        <td>HIGH</td>
+        <td>3.11.2-6+deb12u6</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>python3.11-minimal</code></td>
+        <td>CVE-2026-19445</td>
         <td>HIGH</td>
         <td>3.11.2-6+deb12u6</td>
         <td></td>
@@ -1927,7 +1955,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>Node.js</code></h3>
-<h4>Vulnerabilities (57)</h4>
+<h4>Vulnerabilities (58)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -2257,6 +2285,13 @@
         <td>HIGH</td>
         <td>0.33.5</td>
         <td>0.35.4</td>
+    </tr>
+    <tr>
+        <td><code>sharp</code></td>
+        <td>GHSA-wq5f-xc86-pv6w</td>
+        <td>HIGH</td>
+        <td>0.33.5</td>
+        <td>0.35.5</td>
     </tr>
     <tr>
         <td><code>sigstore</code></td>

@@ -160,7 +160,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>Node.js</code></h3>
-<h4>Vulnerabilities (246)</h4>
+<h4>Vulnerabilities (247)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -210,6 +210,13 @@
         <td>HIGH</td>
         <td>1.14.3</td>
         <td>1.9.16, 1.10.12, 1.11.4, 1.12.7, 1.13.5, 1.14.4</td>
+    </tr>
+    <tr>
+        <td><code>@modelcontextprotocol/sdk</code></td>
+        <td>CVE-2026-104850</td>
+        <td>HIGH</td>
+        <td>1.29.0</td>
+        <td>1.31.0</td>
     </tr>
     <tr>
         <td><code>@opentelemetry/propagator-jaeger</code></td>
