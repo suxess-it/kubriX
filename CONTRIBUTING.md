@@ -35,13 +35,22 @@ You can contribute to kubriX in many ways:
 
 # Branching & Pull Request Workflow
 
-* Use a feature, fix or chore branch (feat/my-new-feature)
+* Use a feature, fix or chore branch without forward slashes (for example, `feat-my-new-feature`)
 * Keep main branch clean—only merged via PR
 * PR title format (conventional commits recommended: fix:, feat:, docs:…) - we release with Release-Please
 * Link related Issues in PR description
 * Include screenshots for UI changes
 * Ask for review from at least one maintainer
 * Keep your feature branch up-to-date, maintainers will squash-merge the PR
+
+Enable the repository's Git hooks once after cloning:
+
+```bash
+git config --local core.hooksPath .githooks
+```
+
+The hooks prevent local branches whose names contain a forward slash. The
+server-side GitHub ruleset remains the authoritative enforcement.
 
 ---
 
