@@ -57,6 +57,7 @@ applications:
 
   - name: keycloak
     annotations:
+      argocd.argoproj.io/compare-options: ServerSideDiff=true
       argocd.argoproj.io/sync-wave: "-5"
     syncOptions:
       - ServerSideApply=true
