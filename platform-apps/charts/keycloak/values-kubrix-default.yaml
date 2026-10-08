@@ -135,7 +135,13 @@ cluster:
 ## keep watch scope + RBAC namespaced, identical to the former hand-crafted manifests
 keycloak-operator-helm:
   operator:
+    image: quay.io/keycloak/keycloak-operator:26.7.4
     envs:
+      RELATED_IMAGE_KEYCLOAK: quay.io/keycloak/keycloak:26.7.4
+      kc:
+        operator:
+          keycloak:
+            image: quay.io/keycloak/keycloak:26.7.4
       QUARKUS_OPERATOR_SDK_CONTROLLERS_KEYCLOAKCONTROLLER_NAMESPACES: JOSDK_WATCH_CURRENT
       QUARKUS_OPERATOR_SDK_CONTROLLERS_KEYCLOAKOIDCCLIENTCONTROLLER_NAMESPACES: JOSDK_WATCH_CURRENT
       QUARKUS_OPERATOR_SDK_CONTROLLERS_KEYCLOAKREALMIMPORTCONTROLLER_NAMESPACES: JOSDK_WATCH_CURRENT
