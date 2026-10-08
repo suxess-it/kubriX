@@ -26,6 +26,19 @@
         "image: (?<depName>quay\\.io/openbao/openbao):(?<currentValue>[^\\s]+)"
       ],
       "datasourceTemplate": "docker"
+    },
+    {
+      "customType": "regex",
+      "managerFilePatterns": [
+        "/^platform-apps\\/charts\\/testkube\\/templates\\/kind-(portal|delivery|security|observability)-test-playwright\\.yaml$/"
+      ],
+      "matchStrings": [
+        "image:\\s*mcr\\.microsoft\\.com/playwright:v(?<currentValue>\\d+\\.\\d+\\.\\d+)"
+      ],
+      "depNameTemplate": "@playwright/test",
+      "datasourceTemplate": "npm",
+      "versioningTemplate": "npm",
+      "autoReplaceStringTemplate": "image: mcr.microsoft.com/playwright:v{{{newValue}}}"
     }
   ],
   "packageRules": [
@@ -74,6 +87,13 @@
       ],
       "sourceUrl": "https://github.com/kubeshop/testkube",
       "changelogUrl": "https://github.com/kubeshop/testkube/releases/tag/{{newVersion}}"
+    },
+    {
+      "matchPackageNames": [
+        "@playwright/test"
+      ],
+      "groupName": "Playwright",
+      "groupSlug": "playwright"
     }
   ]
 }
