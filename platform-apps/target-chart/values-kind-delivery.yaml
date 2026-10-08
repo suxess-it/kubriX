@@ -58,6 +58,8 @@ applications:
   - name: keycloak
     annotations:
       argocd.argoproj.io/sync-wave: "-5"
+    syncOptions:
+      - ServerSideApply=true
 
   - name: kargo
 
