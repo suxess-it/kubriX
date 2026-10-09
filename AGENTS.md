@@ -26,6 +26,7 @@ Key areas:
 - Prefer existing shell helpers in `.github/` over creating new validation logic.
 - Preserve YAML formatting and ordering where possible; many diffs are reviewed as rendered GitOps output.
 - When touching Helm charts, update the specific chart only unless a shared target/profile change is required.
+- Branch names must not contain forward slashes (`/`). Use hyphens instead, for example `feat-my-change` instead of `feat/my-change`, because slash-containing branch names are incompatible with the Backstage integration.
 
 
 Also respect these behavioral guidelines:
