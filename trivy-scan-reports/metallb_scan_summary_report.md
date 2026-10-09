@@ -1,7 +1,7 @@
 <h2>Image <code>quay.io/frrouting/frr:10.4.3</code></h2>
 
 <h3>Target <code>quay.io/frrouting/frr:10.4.3 (alpine 3.22.3)</code></h3>
-<h4>Vulnerabilities (62)</h4>
+<h4>Vulnerabilities (66)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -194,6 +194,13 @@
     </tr>
     <tr>
         <td><code>pyc</code></td>
+        <td>CVE-2026-19445</td>
+        <td>HIGH</td>
+        <td>3.12.12-r0</td>
+        <td>3.12.15-r0</td>
+    </tr>
+    <tr>
+        <td><code>pyc</code></td>
         <td>CVE-2026-19553</td>
         <td>HIGH</td>
         <td>3.12.12-r0</td>
@@ -257,6 +264,13 @@
     </tr>
     <tr>
         <td><code>python3</code></td>
+        <td>CVE-2026-19445</td>
+        <td>HIGH</td>
+        <td>3.12.12-r0</td>
+        <td>3.12.15-r0</td>
+    </tr>
+    <tr>
+        <td><code>python3</code></td>
         <td>CVE-2026-19553</td>
         <td>HIGH</td>
         <td>3.12.12-r0</td>
@@ -317,6 +331,13 @@
         <td>HIGH</td>
         <td>3.12.12-r0</td>
         <td>3.12.14-r0</td>
+    </tr>
+    <tr>
+        <td><code>python3-pyc</code></td>
+        <td>CVE-2026-19445</td>
+        <td>HIGH</td>
+        <td>3.12.12-r0</td>
+        <td>3.12.15-r0</td>
     </tr>
     <tr>
         <td><code>python3-pyc</code></td>
@@ -380,6 +401,13 @@
         <td>HIGH</td>
         <td>3.12.12-r0</td>
         <td>3.12.14-r0</td>
+    </tr>
+    <tr>
+        <td><code>python3-pycache-pyc0</code></td>
+        <td>CVE-2026-19445</td>
+        <td>HIGH</td>
+        <td>3.12.12-r0</td>
+        <td>3.12.15-r0</td>
     </tr>
     <tr>
         <td><code>python3-pycache-pyc0</code></td>
@@ -452,7 +480,7 @@
 <h4>No Vulnerabilities found</h4>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>controller</code></h3>
-<h4>Vulnerabilities (26)</h4>
+<h4>Vulnerabilities (28)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -642,6 +670,20 @@
         <td>HIGH</td>
         <td>v1.25.9</td>
         <td>1.25.13, 1.26.6, 1.27.0-rc.3</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-78667</td>
+        <td>HIGH</td>
+        <td>v1.25.9</td>
+        <td>1.26.9, 1.27.2</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-97031</td>
+        <td>HIGH</td>
+        <td>v1.25.9</td>
+        <td>1.26.9, 1.27.2</td>
     </tr>
 </table>
 <h4>No Misconfigurations found</h4>
@@ -688,7 +730,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>frr-k8s</code></h3>
-<h4>Vulnerabilities (30)</h4>
+<h4>Vulnerabilities (32)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -906,11 +948,25 @@
         <td>HIGH</td>
         <td>v1.25.8</td>
         <td>1.25.13, 1.26.6, 1.27.0-rc.3</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-78667</td>
+        <td>HIGH</td>
+        <td>v1.25.8</td>
+        <td>1.26.9, 1.27.2</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-97031</td>
+        <td>HIGH</td>
+        <td>v1.25.8</td>
+        <td>1.26.9, 1.27.2</td>
     </tr>
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>frr-metrics</code></h3>
-<h4>Vulnerabilities (30)</h4>
+<h4>Vulnerabilities (32)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -1129,10 +1185,24 @@
         <td>v1.25.8</td>
         <td>1.25.13, 1.26.6, 1.27.0-rc.3</td>
     </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-78667</td>
+        <td>HIGH</td>
+        <td>v1.25.8</td>
+        <td>1.26.9, 1.27.2</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-97031</td>
+        <td>HIGH</td>
+        <td>v1.25.8</td>
+        <td>1.26.9, 1.27.2</td>
+    </tr>
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>frr-status</code></h3>
-<h4>Vulnerabilities (24)</h4>
+<h4>Vulnerabilities (26)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -1308,11 +1378,25 @@
         <td>HIGH</td>
         <td>v1.25.8</td>
         <td>1.25.13, 1.26.6, 1.27.0-rc.3</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-78667</td>
+        <td>HIGH</td>
+        <td>v1.25.8</td>
+        <td>1.26.9, 1.27.2</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-97031</td>
+        <td>HIGH</td>
+        <td>v1.25.8</td>
+        <td>1.26.9, 1.27.2</td>
     </tr>
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>statuscleaner</code></h3>
-<h4>Vulnerabilities (24)</h4>
+<h4>Vulnerabilities (26)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -1488,6 +1572,20 @@
         <td>HIGH</td>
         <td>v1.25.8</td>
         <td>1.25.13, 1.26.6, 1.27.0-rc.3</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-78667</td>
+        <td>HIGH</td>
+        <td>v1.25.8</td>
+        <td>1.26.9, 1.27.2</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-97031</td>
+        <td>HIGH</td>
+        <td>v1.25.8</td>
+        <td>1.26.9, 1.27.2</td>
     </tr>
 </table>
 <h4>No Misconfigurations found</h4>
@@ -1497,7 +1595,7 @@
 <h4>No Vulnerabilities found</h4>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>cp-tool</code></h3>
-<h4>Vulnerabilities (15)</h4>
+<h4>Vulnerabilities (17)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -1610,11 +1708,25 @@
         <td>HIGH</td>
         <td>v1.25.9</td>
         <td>1.25.13, 1.26.6, 1.27.0-rc.3</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-78667</td>
+        <td>HIGH</td>
+        <td>v1.25.9</td>
+        <td>1.26.9, 1.27.2</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-97031</td>
+        <td>HIGH</td>
+        <td>v1.25.9</td>
+        <td>1.26.9, 1.27.2</td>
     </tr>
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>frr-metrics</code></h3>
-<h4>Vulnerabilities (26)</h4>
+<h4>Vulnerabilities (28)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -1804,11 +1916,25 @@
         <td>HIGH</td>
         <td>v1.25.9</td>
         <td>1.25.13, 1.26.6, 1.27.0-rc.3</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-78667</td>
+        <td>HIGH</td>
+        <td>v1.25.9</td>
+        <td>1.26.9, 1.27.2</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-97031</td>
+        <td>HIGH</td>
+        <td>v1.25.9</td>
+        <td>1.26.9, 1.27.2</td>
     </tr>
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>speaker</code></h3>
-<h4>Vulnerabilities (26)</h4>
+<h4>Vulnerabilities (28)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -1998,6 +2124,20 @@
         <td>HIGH</td>
         <td>v1.25.9</td>
         <td>1.25.13, 1.26.6, 1.27.0-rc.3</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-78667</td>
+        <td>HIGH</td>
+        <td>v1.25.9</td>
+        <td>1.26.9, 1.27.2</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-97031</td>
+        <td>HIGH</td>
+        <td>v1.25.9</td>
+        <td>1.26.9, 1.27.2</td>
     </tr>
 </table>
 <h4>No Misconfigurations found</h4>
