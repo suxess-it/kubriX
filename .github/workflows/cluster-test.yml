@@ -167,7 +167,7 @@ jobs:
           declare -A TARGETS=()
           for target in ${CLUSTER_TEST_TARGET_TYPES}; do
             [[ -f "platform-apps/target-chart/values-$target.yaml" ]] || continue
-            enabled_apps=$(bash .github/render-target-applications.sh "$target" | yq -r 'select(.kind == "Application") | .metadata.name')
+            enabled_apps=$(bash .github/render-target-applications.sh "$target" | yq --no-doc -r 'select(.kind == "Application") | .metadata.name')
             for app in "${!APPS[@]}"; do
               if grep -Fxq -- "sx-$app" <<< "$enabled_apps"; then
                 TARGETS["$target"]=1

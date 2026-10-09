@@ -75,5 +75,23 @@ for profile in "$chart"/values-*.yaml; do
   helm lint "$chart" -f "$chart/values-kubrix-default.yaml" -f "$profile" > /dev/null
   helm template "$chart" -f "$chart/values-kubrix-default.yaml" -f "$profile" > "$test_dir/direct.yaml"
   diff -u "$test_dir/direct.yaml" "$test_dir/$target.yaml"
+  # Exercise the actual installer/CI discovery expressions, not a copy of them.
+  target_chart_value_args=( -f "$chart/values-kubrix-default.yaml" -f "$profile" )
+  eval "$(sed -n '/^base_apps=$(helm template /p' install-platform.sh)"
+  read -r -a discovered_apps <<< "$base_apps"
+  expected_count=$(yq ea '[select(.kind == "Application")] | length' "$test_dir/$target.yaml")
+  [[ ${#discovered_apps[@]} == "$expected_count" ]] || {
+    echo "Installer discovery contains extra tokens for $target: $base_apps" >&2
+    exit 1
+  }
+  for app in "${discovered_apps[@]}"; do
+    [[ "$app" == sx-* ]] || { echo "Unexpected installer application: $app" >&2; exit 1; }
+  done
+  eval "$(sed -n '/enabled_apps=$(bash .github\/render-target-applications.sh /p' .github/workflows/cluster-test.yml)"
+  mapfile -t ci_apps <<< "$enabled_apps"
+  [[ ${#ci_apps[@]} == "$expected_count" ]] || {
+    echo "CI discovery contains extra tokens for $target: $enabled_apps" >&2
+    exit 1
+  }
 done
 echo "Target application compatibility, layering, exclusion, and profile checks passed."

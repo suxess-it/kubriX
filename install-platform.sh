@@ -902,7 +902,7 @@ while IFS= read -r value_file; do
     fail "Missing target values file: platform-apps/target-chart/$value_file"
   fi
 done <<< "$bootstrap_value_files"
-base_apps=$(helm template platform-apps/target-chart "${target_chart_value_args[@]}" | yq -r 'select(.kind == "Application") | .metadata.name' | tr '\n' ' ')
+base_apps=$(helm template platform-apps/target-chart "${target_chart_value_args[@]}" | yq --no-doc -r 'select(.kind == "Application") | .metadata.name' | tr '\n' ' ')
 # list apps which need some sort of special treatment in bootstrap
 base_apps_without_individual="$base_apps"
 
