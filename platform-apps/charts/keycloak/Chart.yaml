@@ -28,3 +28,8 @@ dependencies:
     version: 0.8.1
     repository: https://cloudnative-pg.github.io/charts
     condition: cluster.enabled
+  # NOTE: bumping this also upgrades the Keycloak server (RELATED_IMAGE_KEYCLOAK) and migrates
+  # the DB schema irreversibly - take a DB dump before syncing.
+  - name: keycloak-operator-helm
+    repository: oci://quay.io/keycloak
+    version: 26.8.0
