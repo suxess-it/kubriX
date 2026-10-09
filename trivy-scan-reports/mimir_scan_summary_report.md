@@ -4,7 +4,7 @@
 <h4>No Vulnerabilities found</h4>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>usr/bin/mimir</code></h3>
-<h4>Vulnerabilities (10)</h4>
+<h4>Vulnerabilities (12)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -83,6 +83,20 @@
         <td>v1.26.5</td>
         <td>1.25.13, 1.26.6, 1.27.0-rc.3</td>
     </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-78667</td>
+        <td>HIGH</td>
+        <td>v1.26.5</td>
+        <td>1.26.9, 1.27.2</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-97031</td>
+        <td>HIGH</td>
+        <td>v1.26.5</td>
+        <td>1.26.9, 1.27.2</td>
+    </tr>
 </table>
 <h4>No Misconfigurations found</h4>
 <h2>Image <code>docker.io/grafana/rollout-operator:v0.38.1</code></h2>
@@ -91,7 +105,7 @@
 <h4>No Vulnerabilities found</h4>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>usr/bin/rollout-operator</code></h3>
-<h4>Vulnerabilities (12)</h4>
+<h4>Vulnerabilities (14)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -184,12 +198,26 @@
         <td>v1.26.5</td>
         <td>1.25.13, 1.26.6, 1.27.0-rc.3</td>
     </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-78667</td>
+        <td>HIGH</td>
+        <td>v1.26.5</td>
+        <td>1.26.9, 1.27.2</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-97031</td>
+        <td>HIGH</td>
+        <td>v1.26.5</td>
+        <td>1.26.9, 1.27.2</td>
+    </tr>
 </table>
 <h4>No Misconfigurations found</h4>
 <h2>Image <code>docker.io/nginxinc/nginx-unprivileged:1.29-alpine</code></h2>
 
 <h3>Target <code>docker.io/nginxinc/nginx-unprivileged:1.29-alpine (alpine 3.23.4)</code></h3>
-<h4>Vulnerabilities (42)</h4>
+<h4>Vulnerabilities (43)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -492,6 +520,13 @@
         <td>10.47-r0</td>
         <td>10.48-r0</td>
     </tr>
+    <tr>
+        <td><code>tiff</code></td>
+        <td>CVE-2026-4775</td>
+        <td>HIGH</td>
+        <td>4.7.1-r0</td>
+        <td>4.7.2-r0</td>
+    </tr>
 </table>
 <h4>No Misconfigurations found</h4>
 <h2>Image <code>docker.io/pgsty/mc:RELEASE.2026-09-13T00-00-00Z</code></h2>
@@ -551,7 +586,30 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>usr/bin/mc</code></h3>
-<h4>No Vulnerabilities found</h4>
+<h4>Vulnerabilities (2)</h4>
+<table>
+    <tr>
+        <th>Package</th>
+        <th>ID</th>
+        <th>Severity</th>
+        <th>Installed Version</th>
+        <th>Fixed Version</th>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-78667</td>
+        <td>HIGH</td>
+        <td>v1.27.1</td>
+        <td>1.26.9, 1.27.2</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-97031</td>
+        <td>HIGH</td>
+        <td>v1.27.1</td>
+        <td>1.26.9, 1.27.2</td>
+    </tr>
+</table>
 <h4>No Misconfigurations found</h4>
 <h2>Image <code>docker.io/pgsty/silo:RELEASE.2026-09-03T13-18-01Z</code></h2>
 
@@ -610,10 +668,33 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>usr/bin/mcli</code></h3>
-<h4>No Vulnerabilities found</h4>
+<h4>Vulnerabilities (2)</h4>
+<table>
+    <tr>
+        <th>Package</th>
+        <th>ID</th>
+        <th>Severity</th>
+        <th>Installed Version</th>
+        <th>Fixed Version</th>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-78667</td>
+        <td>HIGH</td>
+        <td>v1.27.1</td>
+        <td>1.26.9, 1.27.2</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-97031</td>
+        <td>HIGH</td>
+        <td>v1.27.1</td>
+        <td>1.26.9, 1.27.2</td>
+    </tr>
+</table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>usr/bin/silo</code></h3>
-<h4>Vulnerabilities (11)</h4>
+<h4>Vulnerabilities (13)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -698,6 +779,20 @@
         <td>HIGH</td>
         <td>v1.10.0</td>
         <td>1.13.0</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-78667</td>
+        <td>HIGH</td>
+        <td>v1.27.1</td>
+        <td>1.26.9, 1.27.2</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-97031</td>
+        <td>HIGH</td>
+        <td>v1.27.1</td>
+        <td>1.26.9, 1.27.2</td>
     </tr>
 </table>
 <h4>No Misconfigurations found</h4>

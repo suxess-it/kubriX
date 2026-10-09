@@ -1,7 +1,7 @@
 <h2>Image <code>quay.io/prometheus/blackbox-exporter:v0.28.0</code></h2>
 
 <h3>Target <code>bin/blackbox_exporter</code></h3>
-<h4>Vulnerabilities (41)</h4>
+<h4>Vulnerabilities (43)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -296,6 +296,20 @@
         <td>HIGH</td>
         <td>v1.25.5</td>
         <td>1.25.13, 1.26.6, 1.27.0-rc.3</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-78667</td>
+        <td>HIGH</td>
+        <td>v1.25.5</td>
+        <td>1.26.9, 1.27.2</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-97031</td>
+        <td>HIGH</td>
+        <td>v1.25.5</td>
+        <td>1.26.9, 1.27.2</td>
     </tr>
 </table>
 <h4>No Misconfigurations found</h4>
