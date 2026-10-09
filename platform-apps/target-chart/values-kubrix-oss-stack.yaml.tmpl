@@ -1,3 +1,4 @@
+applicationDict: true
 default:
   valueFiles:
   - values-kubrix-default.yaml
@@ -15,115 +16,51 @@ default:
 
 applications:
 
-  - name: prometheus-operator-crds
-    annotations:
-      argocd.argoproj.io/sync-wave: "-11"
-    syncOptions:
-      - ServerSideApply=true
-
-  - name: traefik
-    annotations:
-      argocd.argoproj.io/sync-wave: "-11"
-
-  - name: cert-manager
-    annotations:
-      argocd.argoproj.io/sync-wave: "-10"
-
   {{ if ne .kubriX.clusterType "kind" -}}
-  - name: external-dns
-    annotations:
-      argocd.argoproj.io/sync-wave: "-9"
+  external-dns:
+    enabled: true
     valueFiles:
-      - values-dns-{{ .kubriX.dnsProvider }}.yaml
+    - values-dns-{{ .kubriX.dnsProvider }}.yaml
+
   {{ end -}}
   
-  - name: crossplane
+  loki:
+    enabled: true
     annotations:
-      argocd.argoproj.io/sync-wave: "-9"
+      argocd.argoproj.io/sync-wave: '-1'
 
-  - name: argocd
-    annotations:
-      argocd.argoproj.io/sync-wave: "-9"
-    syncOptions:
-      - ServerSideApply=true
+  kargo:
+    enabled: true
 
-  - name: external-secrets
-    annotations:
-      argocd.argoproj.io/sync-wave: "-8"
-    syncOptions:
-      - ServerSideApply=true
+  argo-rollouts:
+    enabled: true
 
-  - name: k8s-monitoring
-    annotations:
-      argocd.argoproj.io/compare-options: ServerSideDiff=true
-      argocd.argoproj.io/sync-wave: "-8"
-    syncOptions:
-      - ServerSideApply=true
+  grafana:
+    enabled: true
 
-  - name: openbao
-    annotations:
-      argocd.argoproj.io/sync-wave: "-7"
-
-  - name: cnpg
-    annotations:
-      argocd.argoproj.io/compare-options: ServerSideDiff=true
-      argocd.argoproj.io/sync-wave: "-6"
-    syncOptions:
-      - ServerSideApply=true
-      
-  - name: keycloak
-    annotations:
-      argocd.argoproj.io/sync-wave: "-5"
-
-  - name: loki
-    annotations:
-      argocd.argoproj.io/compare-options: ServerSideDiff=true
-      argocd.argoproj.io/sync-wave: "-1"
-    helmOptions:
-      skipCrds: true
-    syncOptions:
-      - ServerSideApply=true
-
-  - name: kargo
-
-  - name: argo-rollouts
-      
-  - name: grafana
-    annotations:
-      argocd.argoproj.io/compare-options: ServerSideDiff=true
-    syncOptions:
-      - ServerSideApply=true
-
-  - name: mimir
+  mimir:
+    enabled: true
 
   {{ if ne .kubriX.clusterType "kind" -}}
 
-  - name: falco
-    annotations:
-      argocd.argoproj.io/compare-options: ServerSideDiff=true
-    helmOptions:
-      skipCrds: true
-    syncOptions:
-      - ServerSideApply=true
+  falco:
+    enabled: true
 
-  - name: kyverno
-    syncOptions:
-      - ServerSideApply=true
+  kyverno:
+    enabled: true
 
-  - name: velero
+  velero:
+    enabled: true
 
- #- name: velero-ui
+ # velero-ui can be enabled in customer values.
 
-  - name: minio
+  minio:
+    enabled: true
 
   {{ end -}}
 
-  - name: backstage
-    annotations:
-      argocd.argoproj.io/sync-wave: "10"
+  backstage:
+    enabled: true
 
-  - name: team-onboarding
-    destinationNamespaceOverwrite: argocd
-    namespaceResourceTracking: false
-    annotations:
-      argocd.argoproj.io/sync-wave: "15"
+  team-onboarding:
+    enabled: true

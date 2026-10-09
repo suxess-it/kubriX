@@ -1,3 +1,4 @@
+applicationDict: true
 default:
   valueFiles:
   - values-kubrix-default.yaml
@@ -15,142 +16,73 @@ default:
 
 applications:
 
-  - name: prometheus-operator-crds
-    annotations:
-      argocd.argoproj.io/sync-wave: "-12"
-    syncOptions:
-      - ServerSideApply=true
+  metallb:
+    enabled: true
 
-  - name: metallb
+  prometheus-operator-crds:
     annotations:
-      argocd.argoproj.io/sync-wave: "-12"
+      argocd.argoproj.io/sync-wave: '-8'
+
+  k8s-monitoring:
     managedNamespaceMetadata:
       labels:
         pod-security.kubernetes.io/enforce: privileged
         pod-security.kubernetes.io/audit: privileged
         pod-security.kubernetes.io/warn: privileged
 
-  - name: traefik
+  prometheus-blackbox-exporter:
+    enabled: true
     annotations:
-      argocd.argoproj.io/sync-wave: "-11"
+      argocd.argoproj.io/sync-wave: '-7'
 
-  - name: cert-manager
+  loki:
+    enabled: true
     annotations:
-      argocd.argoproj.io/sync-wave: "-10"
+      argocd.argoproj.io/sync-wave: '-1'
 
-  - name: crossplane
-    annotations:
-      argocd.argoproj.io/sync-wave: "-9"
+  kargo:
+    enabled: true
 
-  - name: argocd
-    annotations:
-      argocd.argoproj.io/sync-wave: "-9"
-    syncOptions:
-      - ServerSideApply=true
+  argo-rollouts:
+    enabled: true
 
-  - name: prometheus-operator-crds
-    annotations:
-      argocd.argoproj.io/sync-wave: "-8"
-    syncOptions:
-      - ServerSideApply=true
+  grafana:
+    enabled: true
 
-  - name: external-secrets
-    annotations:
-      argocd.argoproj.io/sync-wave: "-8"
-    syncOptions:
-      - ServerSideApply=true
+  mimir:
+    enabled: true
 
-  - name: k8s-monitoring
-    annotations:
-      argocd.argoproj.io/compare-options: ServerSideDiff=true
-      argocd.argoproj.io/sync-wave: "-8"
-    syncOptions:
-      - ServerSideApply=true
+  falco:
+    enabled: true
     managedNamespaceMetadata:
       labels:
         pod-security.kubernetes.io/enforce: privileged
         pod-security.kubernetes.io/audit: privileged
         pod-security.kubernetes.io/warn: privileged
 
-  - name: openbao
-    annotations:
-      argocd.argoproj.io/sync-wave: "-7"
+  kyverno:
+    enabled: true
 
-  - name: prometheus-blackbox-exporter
-    annotations:
-      argocd.argoproj.io/sync-wave: "-7"
-
-  - name: cnpg
-    annotations:
-      argocd.argoproj.io/compare-options: ServerSideDiff=true
-      argocd.argoproj.io/sync-wave: "-6"
-    syncOptions:
-      - ServerSideApply=true
-      
-  - name: keycloak
-    annotations:
-      argocd.argoproj.io/sync-wave: "-5"
-
-  - name: loki
-    annotations:
-      argocd.argoproj.io/compare-options: ServerSideDiff=true
-      argocd.argoproj.io/sync-wave: "-1"
-    helmOptions:
-      skipCrds: true
-    syncOptions:
-      - ServerSideApply=true
-
-  - name: kargo
-
-  - name: argo-rollouts
-      
-  - name: grafana
-    annotations:
-      argocd.argoproj.io/compare-options: ServerSideDiff=true
-    syncOptions:
-      - ServerSideApply=true
-
-  - name: mimir
-
-  - name: falco
-    annotations:
-      argocd.argoproj.io/compare-options: ServerSideDiff=true
-    helmOptions:
-      skipCrds: true
-    syncOptions:
-      - ServerSideApply=true
+  velero:
+    enabled: true
     managedNamespaceMetadata:
       labels:
         pod-security.kubernetes.io/enforce: privileged
         pod-security.kubernetes.io/audit: privileged
         pod-security.kubernetes.io/warn: privileged
 
-  - name: kyverno
-    syncOptions:
-      - ServerSideApply=true
+# velero-ui can be enabled in customer values.
 
-  - name: velero
+  minio:
+    enabled: true
+
+  backstage:
+    enabled: true
     managedNamespaceMetadata:
       labels:
         pod-security.kubernetes.io/enforce: privileged
         pod-security.kubernetes.io/audit: privileged
         pod-security.kubernetes.io/warn: privileged
 
-#  - name: velero-ui
-
-  - name: minio
-
-  - name: backstage
-    annotations:
-      argocd.argoproj.io/sync-wave: "10"
-    managedNamespaceMetadata:
-      labels:
-        pod-security.kubernetes.io/enforce: privileged
-        pod-security.kubernetes.io/audit: privileged
-        pod-security.kubernetes.io/warn: privileged
-
-  - name: team-onboarding
-    destinationNamespaceOverwrite: argocd
-    namespaceResourceTracking: false
-    annotations:
-      argocd.argoproj.io/sync-wave: "15"
+  team-onboarding:
+    enabled: true

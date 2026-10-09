@@ -1,76 +1,16 @@
+applicationDict: true
 default:
   valueFiles:
   - values-kubrix-default.yaml
   - values-cluster-kind.yaml
   - values-customer-generated.yaml
   - values-customer.yaml
-
 applications:
-
-  - name: prometheus-operator-crds
-    annotations:
-      argocd.argoproj.io/sync-wave: "-11"
-    syncOptions:
-      - ServerSideApply=true
-
-  - name: traefik
-    annotations:
-      argocd.argoproj.io/sync-wave: "-11"
-
-  - name: cert-manager
-    annotations:
-      argocd.argoproj.io/sync-wave: "-10"
-
-  - name: crossplane
-    annotations:
-      argocd.argoproj.io/sync-wave: "-9"
-
-  - name: argocd
-    annotations:
-      argocd.argoproj.io/sync-wave: "-9"
-    syncOptions:
-      - ServerSideApply=true
-
-  - name: external-secrets
-    annotations:
-      argocd.argoproj.io/sync-wave: "-8"
-    syncOptions:
-      - ServerSideApply=true
-
-  - name: k8s-monitoring
-    annotations:
-      argocd.argoproj.io/compare-options: ServerSideDiff=true
-      argocd.argoproj.io/sync-wave: "-8"
-    syncOptions:
-      - ServerSideApply=true
-
-  - name: openbao
-    annotations:
-      argocd.argoproj.io/sync-wave: "-7"
-
-  - name: cnpg
-    annotations:
-      argocd.argoproj.io/compare-options: ServerSideDiff=true
-      argocd.argoproj.io/sync-wave: "-6"
-    syncOptions:
-      - ServerSideApply=true
-
-  - name: keycloak
-    annotations:
-      argocd.argoproj.io/sync-wave: "-5"
-
-  - name: velero
-
-  #- name: velero-ui
-
-  - name: minio
-     
-  - name: kyverno
-    syncOptions:
-      - ServerSideApply=true
-
-  - name: testkube
-    annotations:
-      argocd.argoproj.io/compare-options: ServerSideDiff=true
-    syncOptions:
-      - ServerSideApply=true
+  velero:
+    enabled: true
+  minio:
+    enabled: true
+  kyverno:
+    enabled: true
+  testkube:
+    enabled: true

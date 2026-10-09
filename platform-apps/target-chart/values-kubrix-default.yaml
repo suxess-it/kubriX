@@ -1,0 +1,132 @@
+# Shared stack and application settings; profiles override only their differences.
+applicationDict: true
+applications:
+  prometheus-operator-crds:
+    enabled: true
+    annotations:
+      argocd.argoproj.io/sync-wave: '-11'
+    syncOptions:
+    - ServerSideApply=true
+  traefik:
+    enabled: true
+    annotations:
+      argocd.argoproj.io/sync-wave: '-11'
+  cert-manager:
+    enabled: true
+    annotations:
+      argocd.argoproj.io/sync-wave: '-10'
+  crossplane:
+    enabled: true
+    annotations:
+      argocd.argoproj.io/sync-wave: '-9'
+  argocd:
+    enabled: true
+    annotations:
+      argocd.argoproj.io/sync-wave: '-9'
+    syncOptions:
+    - ServerSideApply=true
+  external-secrets:
+    enabled: true
+    annotations:
+      argocd.argoproj.io/sync-wave: '-8'
+    syncOptions:
+    - ServerSideApply=true
+  prometheus-blackbox-exporter:
+    enabled: false
+    annotations:
+      argocd.argoproj.io/sync-wave: '-8'
+  k8s-monitoring:
+    enabled: true
+    annotations:
+      argocd.argoproj.io/compare-options: ServerSideDiff=true
+      argocd.argoproj.io/sync-wave: '-8'
+    syncOptions:
+    - ServerSideApply=true
+  openbao:
+    enabled: true
+    annotations:
+      argocd.argoproj.io/sync-wave: '-7'
+  cnpg:
+    enabled: true
+    annotations:
+      argocd.argoproj.io/compare-options: ServerSideDiff=true
+      argocd.argoproj.io/sync-wave: '-6'
+    syncOptions:
+    - ServerSideApply=true
+  keycloak:
+    enabled: true
+    annotations:
+      argocd.argoproj.io/sync-wave: '-5'
+  loki:
+    enabled: false
+    annotations:
+      argocd.argoproj.io/compare-options: ServerSideDiff=true
+    helmOptions:
+      skipCrds: true
+    syncOptions:
+    - ServerSideApply=true
+  grafana:
+    enabled: false
+    annotations:
+      argocd.argoproj.io/compare-options: ServerSideDiff=true
+    syncOptions:
+    - ServerSideApply=true
+  mimir:
+    enabled: false
+  tempo:
+    enabled: false
+  testkube:
+    enabled: false
+    annotations:
+      argocd.argoproj.io/compare-options: ServerSideDiff=true
+    syncOptions:
+    - ServerSideApply=true
+  team-onboarding:
+    enabled: false
+    destinationNamespaceOverwrite: argocd
+    namespaceResourceTracking: false
+    annotations:
+      argocd.argoproj.io/sync-wave: '15'
+  kargo:
+    enabled: false
+  argo-rollouts:
+    enabled: false
+  backstage:
+    enabled: false
+    annotations:
+      argocd.argoproj.io/sync-wave: '10'
+  falco:
+    enabled: false
+    annotations:
+      argocd.argoproj.io/compare-options: ServerSideDiff=true
+    helmOptions:
+      skipCrds: true
+    syncOptions:
+    - ServerSideApply=true
+  kubecost:
+    enabled: false
+  kyverno:
+    enabled: false
+    syncOptions:
+    - ServerSideApply=true
+  external-dns:
+    enabled: false
+    annotations:
+      argocd.argoproj.io/sync-wave: '-9'
+  kubevirt-manager:
+    enabled: false
+  kubevirt:
+    enabled: false
+  velero:
+    enabled: false
+  minio:
+    enabled: false
+  metallb:
+    enabled: false
+    annotations:
+      argocd.argoproj.io/sync-wave: '-12'
+    managedNamespaceMetadata:
+      labels:
+        pod-security.kubernetes.io/enforce: privileged
+        pod-security.kubernetes.io/audit: privileged
+        pod-security.kubernetes.io/warn: privileged

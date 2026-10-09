@@ -14,6 +14,11 @@ on:
       - 'platform-apps/charts/**'
       - 'platform-apps/target-chart/templates/**'
       - 'platform-apps/target-chart/values.yaml'
+      - 'platform-apps/target-chart/values-kubrix-default.yaml'
+      - '.github/render-target-applications.sh'
+      - '.github/tests/target-applications.sh'
+      - 'bootstrap-app-kind*.yaml'
+      - 'platform-apps/target-chart/values-customer.yaml'
       - 'platform-apps/target-chart/values-kind*'
       - 'Dockerfile'
       - 'install-platform.sh'
@@ -29,6 +34,11 @@ on:
       - 'platform-apps/charts/**'
       - 'platform-apps/target-chart/templates/**'
       - 'platform-apps/target-chart/values.yaml'
+      - 'platform-apps/target-chart/values-kubrix-default.yaml'
+      - '.github/render-target-applications.sh'
+      - '.github/tests/target-applications.sh'
+      - 'bootstrap-app-kind*.yaml'
+      - 'platform-apps/target-chart/values-customer.yaml'
       - 'platform-apps/target-chart/values-kind*'
       - 'Dockerfile'
       - 'install-platform.sh'
@@ -76,6 +86,11 @@ jobs:
                - 'e2e-tests/**'
                - 'platform-apps/target-chart/templates/**'
                - 'platform-apps/target-chart/values.yaml'
+               - 'platform-apps/target-chart/values-kubrix-default.yaml'
+               - '.github/render-target-applications.sh'
+               - '.github/tests/target-applications.sh'
+               - 'bootstrap-app-kind*.yaml'
+               - 'platform-apps/target-chart/values-customer.yaml'
                - 'platform-apps/target-chart/values-kind*'
                - '.github/install-kubriX-with-job.sh'
                - 'install-manifests.yaml'
@@ -106,7 +121,19 @@ jobs:
           echo "targets=$TARGETS_JSON" >> "$GITHUB_OUTPUT"
 
 
-      # Derive app names from changed paths and check which of target-types reference them
+      - name: Install target rendering tools
+        if: steps.filter.outputs.appChanges == 'true' || steps.filter.outputs.globalChanges == 'true'
+        run: |
+          curl -fsSL https://get.helm.sh/helm-v3.19.2-linux-amd64.tar.gz | tar -xz
+          sudo install linux-amd64/helm /usr/local/bin/helm
+          curl -fsSL -o yq https://github.com/mikefarah/yq/releases/download/v4.47.1/yq_linux_amd64
+          sudo install yq /usr/local/bin/yq
+
+      - name: Test target application rendering
+        if: steps.filter.outputs.globalChanges == 'true'
+        run: bash .github/tests/target-applications.sh
+
+      # Derive app names from changed paths and check enabled, inherited applications.
       - id: build-matrix-app
         name: Build app target matrix from changed files
         if: steps.filter.outputs.appChanges == 'true' && steps.filter.outputs.globalChanges == 'false'
@@ -136,14 +163,14 @@ jobs:
 
           echo "Changed apps: ${!APPS[@]}"
 
-          # For any app that changed, see which of the 4 targets mention it
+          # Render each profile once so inherited applications are included.
           declare -A TARGETS=()
-          for app in "${!APPS[@]}"; do
-            for file in ${CLUSTER_TEST_TARGET_TYPES}; do
-              # Skip missing files quietly (useful for monorepos)
-              [[ -f "platform-apps/target-chart/values-$file.yaml" ]] || continue
-              if grep -q -- "$app" "platform-apps/target-chart/values-$file.yaml"; then
-                TARGETS["$file"]=1
+          for target in ${CLUSTER_TEST_TARGET_TYPES}; do
+            [[ -f "platform-apps/target-chart/values-$target.yaml" ]] || continue
+            enabled_apps=$(bash .github/render-target-applications.sh "$target" | yq --no-doc -r 'select(.kind == "Application") | .metadata.name')
+            for app in "${!APPS[@]}"; do
+              if grep -Fxq -- "sx-$app" <<< "$enabled_apps"; then
+                TARGETS["$target"]=1
               fi
             done
           done
@@ -378,8 +405,7 @@ jobs:
           KUBRIX_TARGET_TYPE: ${{ matrix.target-type }}
         shell: bash
         run: |
-          target_chart_values_file=platform-apps/target-chart/values-$(echo ${KUBRIX_TARGET_TYPE} | awk '{print tolower($0)}').yaml
-          argocd_apps=$(cat $target_chart_values_file | awk '/^  - name:/ { printf "%s", "sx-"$3" "}' )
+          argocd_apps=$(kubectl get applications -n argocd -o jsonpath='{range .items[?(@.metadata.name!="sx-bootstrap-app")]}{.metadata.name}{" "}{end}')
           curl -kL -o argocd https://argocd.127-0-0-1.nip.io/download/argocd-linux-amd64
           chmod u+x argocd
           INITIAL_ARGOCD_PASSWORD=$( kubectl get secret -n argocd argocd-initial-admin-secret -o=jsonpath={'.data.password'} | base64 -d )

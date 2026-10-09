@@ -1,5 +1,17 @@
 {{- if eq .Values.kubriXPlan "oss" }}
-{{- range .Values.applications }}
+{{- $applications := .Values.applications }}
+{{- if .Values.applicationDict }}
+{{- if not (kindIs "map" $applications) }}
+{{- fail "applicationDict=true requires applications to be a dictionary; migrate the profile or keep legacy bootstrap values layers" }}
+{{- end }}
+{{- $applications = list }}
+{{- range $name, $application := .Values.applications }}
+{{- if $application.enabled }}
+{{- $applications = append $applications (merge (dict "name" $name) (deepCopy $application)) }}
+{{- end }}
+{{- end }}
+{{- end }}
+{{- range $applications }}
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
