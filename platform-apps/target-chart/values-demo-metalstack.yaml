@@ -1,122 +1,41 @@
+applicationDict: true
 default:
   valueFiles:
   - values-kubrix-default.yaml
   - values-provider-metalstack.yaml
   - values-demo-metalstack.yaml
-
 applications:
-
-  - name: prometheus-operator-crds
-    annotations:
-      argocd.argoproj.io/sync-wave: "-11"
-    syncOptions:
-      - ServerSideApply=true
-
-  - name: traefik
-    annotations:
-      argocd.argoproj.io/sync-wave: "-11"
-
-  - name: cert-manager
-    annotations:
-      argocd.argoproj.io/sync-wave: "-10"
-
-  - name: external-dns
-    annotations:
-      argocd.argoproj.io/sync-wave: "-9"
+  external-dns:
+    enabled: true
     valueFiles:
-      - values-dns-ionos.yaml
-
-  - name: crossplane
+    - values-dns-ionos.yaml
+  prometheus-blackbox-exporter:
+    enabled: true
+  loki:
+    enabled: true
     annotations:
-      argocd.argoproj.io/sync-wave: "-9"
-
-  - name: argocd
-    annotations:
-      argocd.argoproj.io/sync-wave: "-9"
-    syncOptions:
-      - ServerSideApply=true
-
-  - name: external-secrets
-    annotations:
-      argocd.argoproj.io/sync-wave: "-8"
-    syncOptions:
-      - ServerSideApply=true
-
-  - name: prometheus-blackbox-exporter
-    annotations:
-      argocd.argoproj.io/sync-wave: "-8"
-
-  - name: k8s-monitoring
-    annotations:
-      argocd.argoproj.io/compare-options: ServerSideDiff=true
-      argocd.argoproj.io/sync-wave: "-8"
-    syncOptions:
-      - ServerSideApply=true
-
-  - name: openbao
-    annotations:
-      argocd.argoproj.io/sync-wave: "-7"
-
-  - name: cnpg
-    annotations:
-      argocd.argoproj.io/compare-options: ServerSideDiff=true
-      argocd.argoproj.io/sync-wave: "-6"
-    syncOptions:
-      - ServerSideApply=true
-
-  - name: keycloak
-    annotations:
-      argocd.argoproj.io/sync-wave: "-5"
-
-  - name: loki
-    annotations:
-      argocd.argoproj.io/compare-options: ServerSideDiff=true
-      argocd.argoproj.io/sync-wave: "-1"
-    helmOptions:
-      skipCrds: true
-    syncOptions:
-      - ServerSideApply=true
-
-  - name: kargo
-
-  - name: argo-rollouts
-      
-  - name: grafana
-    annotations:
-      argocd.argoproj.io/compare-options: ServerSideDiff=true
-    syncOptions:
-      - ServerSideApply=true
-
-  - name: mimir
-
-  - name: falco
-    annotations:
-      argocd.argoproj.io/compare-options: ServerSideDiff=true
-    helmOptions:
-      skipCrds: true
-    syncOptions:
-      - ServerSideApply=true
-
-  - name: kyverno
-    syncOptions:
-      - ServerSideApply=true
-
-  - name: kubevirt-manager
-
-  - name: kubevirt
-
-  - name: velero
-
-  #- name: velero-ui
-
-  - name: minio
-
-  - name: backstage
-    annotations:
-      argocd.argoproj.io/sync-wave: "10"
-
-  - name: team-onboarding
-    destinationNamespaceOverwrite: argocd
-    namespaceResourceTracking: false
-    annotations:
-      argocd.argoproj.io/sync-wave: "15"
+      argocd.argoproj.io/sync-wave: '-1'
+  kargo:
+    enabled: true
+  argo-rollouts:
+    enabled: true
+  grafana:
+    enabled: true
+  mimir:
+    enabled: true
+  falco:
+    enabled: true
+  kyverno:
+    enabled: true
+  kubevirt-manager:
+    enabled: true
+  kubevirt:
+    enabled: true
+  velero:
+    enabled: true
+  minio:
+    enabled: true
+  backstage:
+    enabled: true
+  team-onboarding:
+    enabled: true

@@ -3,8 +3,6 @@ set -euo pipefail
 
 # Config you can tweak
 HELM_VALUES_FILE=$1
-HELM_SELECTOR=templates/application.yaml
-CHART_ROOT=platform-apps/target-chart
 
 emit_stream() {
   # Reads YAML from stdin (note trailing "-")
@@ -79,7 +77,9 @@ process_stream() {
 }
 
 # Helm render → yq emit → process
-helm template "$CHART_ROOT" -f "$CHART_ROOT/$HELM_VALUES_FILE" -s "$HELM_SELECTOR" \
+target=${HELM_VALUES_FILE#values-}
+target=${target%.yaml}
+bash .github/render-target-applications.sh "$target" \
 | emit_stream \
 | process_stream
 

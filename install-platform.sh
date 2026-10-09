@@ -180,7 +180,15 @@ EOF
   # exclude apps from KUBRIX_APP_EXCLUDE
   if [[ -n "${KUBRIX_APP_EXCLUDE:-}" ]]; then
     echo "exclude apps $KUBRIX_APP_EXCLUDE from platform-apps/target-chart/values-${KUBRIX_TARGET_TYPE}.yaml"
-    yq e '((env(KUBRIX_APP_EXCLUDE) // "") | split(" ") | map(select(length>0))) as $ex | .applications |= map(. as $a | select(($ex | contains([$a.name])) | not))' -i platform-apps/target-chart/values-${KUBRIX_TARGET_TYPE}.yaml
+    target_values="platform-apps/target-chart/values-${KUBRIX_TARGET_TYPE}.yaml"
+    if [[ $(yq -r '.applications | type' "$target_values") == '!!map' ]]; then
+      # Override inherited defaults rather than deleting the application entry.
+      for excluded_app in ${KUBRIX_APP_EXCLUDE}; do
+        EXCLUDED_APP="$excluded_app" yq e '.applications[strenv(EXCLUDED_APP)].enabled = false' -i "$target_values"
+      done
+    else
+      yq e '((env(KUBRIX_APP_EXCLUDE) // "") | split(" ") | map(select(length>0))) as $ex | .applications |= map(. as $a | select(($ex | contains([$a.name])) | not))' -i "$target_values"
+    fi
   fi
 
 }
@@ -883,11 +891,20 @@ KUBRIX_REPO_SED=$( printf '%s' "${KUBRIX_REPO}" | sed -e 's/[\/&]/\\&/g' );
 cat bootstrap-app-${KUBRIX_TARGET_TYPE}.yaml | sed "s/targetRevision:.*/targetRevision: ${KUBRIX_REPO_BRANCH_SED}/g" | sed "s/repoURL:.*/repoURL: ${KUBRIX_REPO_SED}/g" | kubectl apply -n argocd -f -
 
 # create app list
-target_chart_value_file="platform-apps/target-chart/values-${KUBRIX_TARGET_TYPE}.yaml"
-
-base_apps=$(cat "${target_chart_value_file}" | awk '/^  - name:/ { printf "%s", "sx-"$3" " }')
+# Keep discovery self-contained: older customer repositories do not have the
+# rendering helper shipped with new kubriX versions.
+target_chart_value_args=()
+bootstrap_value_files=$(yq -r '.spec.source.helm.valueFiles[]' "bootstrap-app-${KUBRIX_TARGET_TYPE}.yaml")
+while IFS= read -r value_file; do
+  if [[ -f "platform-apps/target-chart/$value_file" ]]; then
+    target_chart_value_args+=( -f "platform-apps/target-chart/$value_file" )
+  elif [[ $(yq -r '.spec.source.helm.ignoreMissingValueFiles // false' "bootstrap-app-${KUBRIX_TARGET_TYPE}.yaml") != true ]]; then
+    fail "Missing target values file: platform-apps/target-chart/$value_file"
+  fi
+done <<< "$bootstrap_value_files"
+base_apps=$(helm template platform-apps/target-chart "${target_chart_value_args[@]}" | yq -r 'select(.kind == "Application") | .metadata.name' | tr '\n' ' ')
 # list apps which need some sort of special treatment in bootstrap
-base_apps_without_individual=$(cat "${target_chart_value_file}" | awk '/^  - name:/ { printf "%s", "sx-"$3" " }')
+base_apps_without_individual="$base_apps"
 
 if [[ -n "${KUBRIX_APP_EXCLUDE:-}" ]]; then
   argocd_apps=$(exclude_apps "$base_apps" "$KUBRIX_APP_EXCLUDE")
