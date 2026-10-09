@@ -63,7 +63,11 @@ applications:
       - ServerSideApply=true
 
   - name: keycloak
-
+    ignoreDifferences:
+      - group: rbac.authorization.k8s.io
+        kind: RoleBinding
+        jqPathExpressions:
+          - '.metadata.labels["app.kubernetes.io/version"]'
   - name: kargo
 
   - name: kubecost

@@ -59,8 +59,11 @@ applications:
     annotations:
       argocd.argoproj.io/compare-options: ServerSideDiff=true
       argocd.argoproj.io/sync-wave: "-5"
-    syncOptions:
-      - ServerSideApply=true
+    ignoreDifferences:
+      - group: rbac.authorization.k8s.io
+        kind: RoleBinding
+        jqPathExpressions:
+          - '.metadata.labels["app.kubernetes.io/version"]'
 
   - name: kargo
 

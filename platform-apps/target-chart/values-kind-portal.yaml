@@ -58,6 +58,11 @@ applications:
   - name: keycloak
     annotations:
       argocd.argoproj.io/sync-wave: "-5"
+    ignoreDifferences:
+      - group: rbac.authorization.k8s.io
+        kind: RoleBinding
+        jqPathExpressions:
+          - '.metadata.labels["app.kubernetes.io/version"]'
 
   - name: testkube
     annotations:
