@@ -54,15 +54,14 @@ applications:
       argocd.argoproj.io/sync-wave: "-10"
     syncOptions:
       - ServerSideApply=true
-  
+
   - name: keycloak
     annotations:
+      argocd.argoproj.io/compare-options: ServerSideDiff=true
       argocd.argoproj.io/sync-wave: "-5"
-    ignoreDifferences:
-      - group: rbac.authorization.k8s.io
-        kind: RoleBinding
-        jqPathExpressions:
-          - '.metadata.labels["app.kubernetes.io/version"]'
+    syncOptions:
+      - ServerSideApply=true
+
 
   - name: testkube
     annotations:
