@@ -53,6 +53,9 @@ helm template platform-apps/target-chart \
 
 The installer and CI use `.github/render-target-applications.sh <target>` to load
 the target values files declared by the corresponding bootstrap Application.
+The installer status table lists applications by numeric sync wave and then
+alphabetically within the same wave. Missing sync-wave annotations mean wave `0`.
+
 `KUBRIX_APP_EXCLUDE` sets dictionary entries to `enabled: false` in the generated
 target profile, including applications inherited from the common stack.
 

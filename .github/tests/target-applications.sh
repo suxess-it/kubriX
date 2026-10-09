@@ -66,6 +66,38 @@ EXCLUDED_APP=external-secrets yq '.applications[strenv(EXCLUDED_APP)].enabled = 
 helm template "$chart" -f "$chart/values-kubrix-default.yaml" -f "$test_dir/excluded.yaml" > "$test_dir/excluded-render.yaml"
 yq ea -e '[select(.metadata.name == "sx-external-secrets")] | length == 0' "$test_dir/excluded-render.yaml" > /dev/null
 
+# Installer status order follows numeric sync waves, then application names.
+cat > "$test_dir/waves.yaml" <<'YAML'
+default:
+  valueFiles: [values-kubrix-default.yaml]
+applications:
+  - name: aaa-ten
+    annotations:
+      argocd.argoproj.io/sync-wave: "10"
+  - name: bbb-zero
+    annotations:
+      argocd.argoproj.io/sync-wave: "0"
+  - name: ccc-default
+  - name: ddd-two
+    annotations:
+      argocd.argoproj.io/sync-wave: "2"
+  - name: mmm-minus-two
+    annotations:
+      argocd.argoproj.io/sync-wave: "-2"
+  - name: zzz-minus-eleven
+    annotations:
+      argocd.argoproj.io/sync-wave: "-11"
+YAML
+yq '.applications |= (map({"key": .name, "value": (. | del(.name) | .enabled = true)}) | from_entries) | .applicationDict = true' "$test_dir/waves.yaml" > "$test_dir/waves-dictionary.yaml"
+for format in waves waves-dictionary; do
+  target_chart_value_args=( -f "$test_dir/$format.yaml" )
+  eval "$(sed -n '/^base_apps=$(helm template /p' install-platform.sh)"
+  [[ "$base_apps" == "sx-zzz-minus-eleven sx-mmm-minus-two sx-bbb-zero sx-ccc-default sx-ddd-two sx-aaa-ten " ]] || {
+    echo "Incorrect installer sync-wave order ($format): $base_apps" >&2
+    exit 1
+  }
+done
+
 # Bootstrap discovery must match the layered chart render for every static profile.
 for profile in "$chart"/values-*.yaml; do
   target=${profile##*/values-}
