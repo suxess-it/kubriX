@@ -17,7 +17,7 @@ applications:
 
   - name: prometheus-operator-crds
     annotations:
-      argocd.argoproj.io/sync-wave: "-12"
+      argocd.argoproj.io/sync-wave: "-10"
     syncOptions:
       - ServerSideApply=true
 
@@ -32,7 +32,7 @@ applications:
 
   - name: traefik
     annotations:
-      argocd.argoproj.io/sync-wave: "-11"
+      argocd.argoproj.io/sync-wave: "-10"
 
   - name: cert-manager
     annotations:
@@ -40,7 +40,7 @@ applications:
 
   - name: crossplane
     annotations:
-      argocd.argoproj.io/sync-wave: "-9"
+      argocd.argoproj.io/sync-wave: "-10"
 
   - name: argocd
     annotations:
@@ -48,15 +48,9 @@ applications:
     syncOptions:
       - ServerSideApply=true
 
-  - name: prometheus-operator-crds
-    annotations:
-      argocd.argoproj.io/sync-wave: "-8"
-    syncOptions:
-      - ServerSideApply=true
-
   - name: external-secrets
     annotations:
-      argocd.argoproj.io/sync-wave: "-8"
+      argocd.argoproj.io/sync-wave: "-10"
     syncOptions:
       - ServerSideApply=true
 
@@ -74,7 +68,7 @@ applications:
 
   - name: openbao
     annotations:
-      argocd.argoproj.io/sync-wave: "-7"
+      argocd.argoproj.io/sync-wave: "-8"
 
   - name: prometheus-blackbox-exporter
     annotations:
@@ -83,7 +77,7 @@ applications:
   - name: cnpg
     annotations:
       argocd.argoproj.io/compare-options: ServerSideDiff=true
-      argocd.argoproj.io/sync-wave: "-6"
+      argocd.argoproj.io/sync-wave: "-10"
     syncOptions:
       - ServerSideApply=true
       
