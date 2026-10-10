@@ -5,25 +5,13 @@
 
 ### ⚠ BREAKING CHANGES
 
-* **external-dns:** ExternalDNS now uses `external-dns.kubernetes.io/` instead of `external-dns.alpha.kubernetes.io/`. The latter remains readable temporarily with the compatibility flag and must be migrated before the kubriX release following v9.0.0.
-* **deps:** Upgrade the tempo Helm chart from 2.4.0 to 3.0.0.
-* **deps:** for external-dns the default annotation prefix is now external-dns.kubernetes.io/, with no fallback on external-dns.alpha.kubernetes.io/
-* **deps:** Upgrade the prometheus-operator-crds Helm chart from 31.0.1 to 32.0.1.
-* **deps:** Upgrade the docker-in-docker Dev Container Feature from major version 2 to major version 4.
-* **deps:** Upgrade the grafana Helm chart from 12.11.2 to 13.2.6.
-* **deps:** Upgrade the Crossplane provider-keycloak package from 2.24.1 to 3.0.2.
-* **keycloak:** for update form keycloak 26.6.1 to 26.7.4 see https://www.keycloak.org/docs/26.7.4/upgrading/#migration-changes (for all versions from 26.6.1)
-* **deps:** argocd got updated from 3.4 to 3.5. read through https://argo-cd.readthedocs.io/en/stable/operator-manual/upgrading/3.4-3.5/ for the upgrade path
-* **deps:** Upgrade the loki Helm chart from 13.7.2 to 18.3.0.
-* **deps:** Upgrade the argo-cd Helm chart from 9.7.1 to 10.2.2.
-* **deps:** Upgrade the traefik Helm chart from 40.3.0 to 41.0.1.
-* **deps:** Upgrade the prometheus-operator-crds Helm chart from 30.0.1 to 31.0.0.
-* **deps:** Upgrade the Crossplane provider-vault package from 3.0.10 to 4.0.0.
-* **deps:** Upgrade the prometheus-operator-crds Helm chart from 29.0.0 to 30.0.0.
-* **deps:** Upgrade the prometheus-operator-crds Helm chart from 28.0.1 to 29.0.0.
-* **deps:** grafana 13 introduced breaking changes according to https://grafana.com/docs/grafana/latest/whatsnew/whats-new-in-v13-0/#breaking-changes
-* **deps:** refactor(chart)!: support only Proxy v3.6+ & Kubernetes v25+ #​1718 by @​mloiseleur fix(providers)!: kubernetesIngressNginx => kubernetesIngressNGINX #​1714 by @​mloiseleur fix(service)!: align syntax with upstream #​1686 by @​parkerfath
-* **deps:** Upgrade the kubriX installer base image from ubuntu:24.04 to ubuntu:26.04.
+* **external-dns:** The default annotation prefix changes from `external-dns.alpha.kubernetes.io/` to `external-dns.kubernetes.io/`. Migrate annotations such as `external-dns.alpha.kubernetes.io/hostname`, `external-dns.alpha.kubernetes.io/target`, and `external-dns.alpha.kubernetes.io/ttl` to `external-dns.kubernetes.io/hostname`, `external-dns.kubernetes.io/target`, and `external-dns.kubernetes.io/ttl`. kubriX temporarily enables `enable-legacy-annotation-prefix`, allowing both prefixes during an ingress-by-ingress migration; the new prefix takes precedence when both are present. Legacy annotations must be migrated before the kubriX release following v9.0.0.
+* **tempo:** Tempo is upgraded from major version 2 to 3. Review custom Tempo configuration and compatibility of existing trace storage before upgrading. The standard kubriX deployment remains monolithic; Kafka is not required for this deployment mode. Follow the [Tempo migration guide](https://grafana.com/docs/tempo/latest/set-up-for-tracing/setup-tempo/upgrade/).
+* **argocd:** Argo CD is upgraded to 3.5. Review the [3.3 to 3.4](https://argo-cd.readthedocs.io/en/stable/operator-manual/upgrading/3.3-3.4/) and [3.4 to 3.5](https://argo-cd.readthedocs.io/en/stable/operator-manual/upgrading/3.4-3.5/) migration guides. Customers using their own Helm charts must check compatibility with Helm 4 rendering; custom UI extensions must support React 19.
+* **grafana:** Grafana is upgraded to major version 13. Customers using additional plugins, custom RBAC, or integrations with Grafana APIs must review the [Grafana 13 breaking changes](https://grafana.com/docs/grafana/latest/whatsnew/whats-new-in-v13-0/#breaking-changes), including datasource API changes from numeric IDs to UIDs and removal of the Image Renderer plugin.
+* **keycloak:** Keycloak is upgraded to 26.7.4. For the upgrade from the kubriX-prime 7.0.0 baseline (26.5.4), review all intervening [Keycloak migration changes](https://www.keycloak.org/docs/26.7.4/upgrading/#migration-changes), especially when using custom clients, protocol mappers, themes, or integrations.
+* **crossplane-provider-keycloak:** The provider is upgraded from major version 2 to 3. Customers maintaining their own Keycloak managed resources must review the [provider release notes](https://github.com/crossplane-contrib/provider-keycloak/releases/tag/v3.0.0) for CRD schema and API-version changes before upgrading.
+* **crossplane-provider-vault:** The provider is upgraded from major version 3 to 4. Customers maintaining their own Vault managed resources must review the [provider release notes](https://github.com/upbound/provider-vault/releases/tag/v4.0.0) for changed resource schemas before upgrading.
 
 ### Features
 
