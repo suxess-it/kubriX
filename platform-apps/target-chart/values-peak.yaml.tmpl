@@ -20,8 +20,6 @@ applications:
     enabled: true
 
   prometheus-operator-crds:
-    annotations:
-      argocd.argoproj.io/sync-wave: '-8'
 
   k8s-monitoring:
     managedNamespaceMetadata:
@@ -32,13 +30,9 @@ applications:
 
   prometheus-blackbox-exporter:
     enabled: true
-    annotations:
-      argocd.argoproj.io/sync-wave: '-7'
 
   loki:
     enabled: true
-    annotations:
-      argocd.argoproj.io/sync-wave: '-1'
 
   kargo:
     enabled: true
