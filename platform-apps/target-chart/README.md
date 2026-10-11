@@ -83,13 +83,14 @@ are subsequently aligned with the tested Prime installation order:
 
 | Wave | Applications |
 | --- | --- |
-| -10 | prometheus-operator-crds, traefik, cert-manager, external-secrets, crossplane |
+| -10 | prometheus-operator-crds, traefik, cert-manager, external-secrets, crossplane, external-dns |
 | -8 | openbao, prometheus-blackbox-exporter |
 | -6 | argocd, cnpg, loki, mimir, keycloak, k8s-monitoring |
 | 0 | Remaining applications, including backstage and team-onboarding |
 
-Provider prerequisites retain their earlier waves: MetalLB at -12 and
-external-dns at -9. Profiles inherit shared waves instead of overriding them.
+MetalLB retains its earlier wave at -12. External DNS starts with the base
+controllers at -10, using pre-provisioned provider credentials. Profiles inherit
+shared waves instead of overriding them.
 Peak's former duplicate `prometheus-operator-crds` entry is rendered once.
 
 The installer creates Backstage tokens only when Backstage is selected, after
