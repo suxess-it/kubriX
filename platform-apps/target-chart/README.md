@@ -78,9 +78,23 @@ optionally load target-chart `values-customer.yaml` last. Profile files supplied
 by kubriX now use dictionary mode and require the shared defaults layer.
 Do not mix a list-based profile with dictionary defaults.
 
-Migration preserves the rendered Applications and their settings. Peak formerly
-contained two entries for `prometheus-operator-crds`; its dictionary retains the
-last definition (sync wave `-8`) and renders it once.
+Dictionary conversion preserves application settings. The shared sync waves
+are subsequently aligned with the tested Prime installation order:
+
+| Wave | Applications |
+| --- | --- |
+| -10 | prometheus-operator-crds, traefik, cert-manager, external-secrets, crossplane |
+| -8 | openbao, prometheus-blackbox-exporter |
+| -6 | argocd, cnpg, loki, mimir, keycloak, k8s-monitoring |
+| 0 | Remaining applications, including backstage and team-onboarding |
+
+Provider prerequisites retain their earlier waves: MetalLB at -12 and
+external-dns at -9. Profiles inherit shared waves instead of overriding them.
+Peak's former duplicate `prometheus-operator-crds` entry is rendered once.
+
+The installer creates Backstage tokens only when Backstage is selected, after
+ArgoCD and any selected Grafana are Synced and Healthy. `[sync-debug]` logs
+report installer-triggered sync retries and ArgoCD's per-operation retry counts.
 
 ## Validation
 
