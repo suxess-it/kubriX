@@ -11,17 +11,9 @@ applications:
   cnpg:
     enabled: false
   cert-manager:
-    annotations:
-      argocd.argoproj.io/sync-wave: '-3'
   argocd:
-    annotations:
-      argocd.argoproj.io/sync-wave: '-2'
   k8s-monitoring:
-    annotations:
-      argocd.argoproj.io/sync-wave: '-1'
   crossplane:
-    annotations:
-      argocd.argoproj.io/sync-wave: '-1'
   grafana:
     enabled: true
   mimir:
@@ -33,9 +25,7 @@ applications:
   falco:
     enabled: true
   external-secrets:
-    annotations: null
   keycloak:
-    annotations: null
   kargo:
     enabled: true
   kubecost:
