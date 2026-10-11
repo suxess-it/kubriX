@@ -349,6 +349,21 @@ show_node_resources() {
   done
 }
 
+# Check readiness without blocking reconciliation of other apps in the wait loop.
+app_is_synced_healthy() {
+  local app_json
+  app_json="$(kubectl get application -n argocd "$1" -o json 2>/dev/null)" || return 1
+  jq -e '.status.sync.status == "Synced" and .status.health.status == "Healthy"' \
+    >/dev/null <<<"$app_json"
+}
+
+backstage_token_dependencies_ready() {
+  app_is_synced_healthy sx-argocd || return 1
+  if [[ " $argocd_apps " == *" sx-grafana "* ]]; then
+    app_is_synced_healthy sx-grafana || return 1
+  fi
+}
+
 create_openbao_secrets_for_backstage() {
   echo "adding special configuration for sx-backstage"
 
@@ -360,15 +375,18 @@ create_openbao_secrets_for_backstage() {
   export VAULT_TOKEN=$(kubectl get secret -n openbao openbao-init -o=jsonpath='{.data.root_token}'  | base64 -d)
 
   # store env variable KUBRIX_BACKSTAGE_GITHUB_TOKEN in openbao
-  curl -k --header "X-Vault-Token:$VAULT_TOKEN" --header "X-Vault-Namespace: kubrix" --request PATCH --header "Content-Type: application/merge-patch+json" --data "{\"data\": {\"GITHUB_TOKEN\": \"${KUBRIX_BACKSTAGE_GITHUB_TOKEN}\"}}" https://${VAULT_HOSTNAME}/v1/kubrix-kv/data/portal/backstage/base
+  curl -fkSs --header "X-Vault-Token:$VAULT_TOKEN" --header "X-Vault-Namespace: kubrix" --request PATCH --header "Content-Type: application/merge-patch+json" --data "{\"data\": {\"GITHUB_TOKEN\": \"${KUBRIX_BACKSTAGE_GITHUB_TOKEN}\"}}" https://${VAULT_HOSTNAME}/v1/kubrix-kv/data/portal/backstage/base
 
   # generate argocd token and store in openbao
-  export ARGOCD_AUTH_TOKEN="$( kubectl exec "$(kubectl get pod -n argocd -l app.kubernetes.io/name=argocd-application-controller -o jsonpath='{.items[0].metadata.name}')" -n argocd -- argocd account generate-token --account backstage --core )"
-  curl -k --header "X-Vault-Token:$VAULT_TOKEN" --header "X-Vault-Namespace: kubrix" --request PATCH --header "Content-Type: application/merge-patch+json" --data "{\"data\": {\"ARGOCD_AUTH_TOKEN\": \"${ARGOCD_AUTH_TOKEN}\"}}" https://${VAULT_HOSTNAME}/v1/kubrix-kv/data/portal/backstage/base
+  ARGOCD_AUTH_TOKEN="$( kubectl exec "$(kubectl get pod -n argocd -l app.kubernetes.io/name=argocd-application-controller -o jsonpath='{.items[0].metadata.name}')" -n argocd -- argocd account generate-token --account backstage --core )"
+  test -n "$ARGOCD_AUTH_TOKEN"
+  export ARGOCD_AUTH_TOKEN
+  curl -fkSs --header "X-Vault-Token:$VAULT_TOKEN" --header "X-Vault-Namespace: kubrix" --request PATCH --header "Content-Type: application/merge-patch+json" --data "{\"data\": {\"ARGOCD_AUTH_TOKEN\": \"${ARGOCD_AUTH_TOKEN}\"}}" https://${VAULT_HOSTNAME}/v1/kubrix-kv/data/portal/backstage/base
 
-  # generate grafana token if grafana ingress is found and store in openbao
-  export GRAFANA_HOSTNAME=$(kubectl get ingress -o jsonpath='{.items[*].spec.rules[*].host}' -n grafana )  
-  if [ "${GRAFANA_HOSTNAME}" != "" ]; then
+  # Only contact Grafana when it is selected for installation.
+  if [[ " $argocd_apps " == *" sx-grafana "* ]]; then
+    GRAFANA_HOSTNAME=$(kubectl get ingress -o jsonpath='{.items[*].spec.rules[*].host}' -n grafana)
+    test -n "$GRAFANA_HOSTNAME"
     # check if the grafana user/admin is stored in secret, or use default credentials
     if kubectl get secret grafana-admin-secret -n grafana &>/dev/null; then
       export GRAFANA_USER=$(kubectl get secret -n grafana grafana-admin-secret -o=jsonpath='{.data.userKey }'  | base64 -d)
@@ -379,12 +397,12 @@ create_openbao_secrets_for_backstage() {
       export GRAFANA_PASSWORD="prom-operator"
     fi
 
-    ID=$( curl -k -X POST https://${GRAFANA_HOSTNAME}/api/serviceaccounts --user "${GRAFANA_USER}:${GRAFANA_PASSWORD}" -H "Content-Type: application/json" -d '{"name": "backstage","role": "Viewer","isDisabled": false}' | jq -r .id )
-    export GRAFANA_TOKEN=$(curl -k -X POST https://${GRAFANA_HOSTNAME}/api/serviceaccounts/${ID}/tokens --user "${GRAFANA_USER}:${GRAFANA_PASSWORD}" -H "Content-Type: application/json" -d '{"name": "backstage"}' | jq -r .key)
+    ID=$( curl -fkSs -X POST https://${GRAFANA_HOSTNAME}/api/serviceaccounts --user "${GRAFANA_USER}:${GRAFANA_PASSWORD}" -H "Content-Type: application/json" -d '{"name": "backstage","role": "Viewer","isDisabled": false}' | jq -er '.id | select(. != null)' )
+    GRAFANA_TOKEN=$(curl -fkSs -X POST https://${GRAFANA_HOSTNAME}/api/serviceaccounts/${ID}/tokens --user "${GRAFANA_USER}:${GRAFANA_PASSWORD}" -H "Content-Type: application/json" -d '{"name": "backstage"}' | jq -er '.key | select(type == "string" and length > 0)')
   else
     export GRAFANA_TOKEN="dummy"
   fi
-  curl -k --header "X-Vault-Token:$VAULT_TOKEN" --header "X-Vault-Namespace: kubrix" --request PATCH --header "Content-Type: application/merge-patch+json" --data "{\"data\": {\"GRAFANA_TOKEN\": \"${GRAFANA_TOKEN}\"}}" https://${VAULT_HOSTNAME}/v1/kubrix-kv/data/portal/backstage/base
+  curl -fkSs --header "X-Vault-Token:$VAULT_TOKEN" --header "X-Vault-Namespace: kubrix" --request PATCH --header "Content-Type: application/merge-patch+json" --data "{\"data\": {\"GRAFANA_TOKEN\": \"${GRAFANA_TOKEN}\"}}" https://${VAULT_HOSTNAME}/v1/kubrix-kv/data/portal/backstage/base
 
 }
 
@@ -455,6 +473,8 @@ wait_until_apps_synced_healthy() {
   end=$((SECONDS+max_wait_time))
 
   k8smonitoring_restarted=false
+  declare -A installer_sync_attempts=()
+  declare -A last_argocd_retry_count=()
   declare -A resynced_healthy_failed=()  # track apps already re-synced for Synced+Healthy+Failed
 
   # avoid repeating this kubectl get pod 3x in the same loop body
@@ -472,6 +492,8 @@ wait_until_apps_synced_healthy() {
     if [ -n "$bootstrap_json" ]; then
       operation_phase_bootstrap_app="$(jq -r '.status.operationState.phase // ""' <<<"$bootstrap_json")"
       if [ "$operation_phase_bootstrap_app" = "Failed" ] || [ "$operation_phase_bootstrap_app" = "Error" ]; then
+        installer_sync_attempts["$bootstrap_app"]=$(( ${installer_sync_attempts["$bootstrap_app"]:-0} + 1 ))
+        echo "[sync-debug] app=$bootstrap_app installer-retry=${installer_sync_attempts[$bootstrap_app]} reason=bootstrap-$operation_phase_bootstrap_app"
         echo "sx-boostrap-app sync failed. Restarting sync ..."
         kubectl exec "$controller_pod" -n argocd -- argocd app terminate-op "$bootstrap_app" --core || true
         kubectl exec "$controller_pod" -n argocd -- argocd app sync "$bootstrap_app" --async --core || true
@@ -494,6 +516,15 @@ wait_until_apps_synced_healthy() {
       # query everything from cached json (no more kubectl calls)
       sync_status="$(jq -r '.status.sync.status // "-"' <<<"$app_json")"
       health_status="$(jq -r '.status.health.status // "-"' <<<"$app_json")"
+
+      # ArgoCD's retry counter belongs to the current operation; installer retries
+      # are counted separately because starting a new operation resets it.
+      local retry_count
+      retry_count="$(jq -r '.status.operationState.retryCount // 0' <<<"$app_json")"
+      if [[ "${last_argocd_retry_count[$app]:-}" != "$retry_count" ]]; then
+        echo "[sync-debug] app=$app argocd-operation-retries=$retry_count"
+        last_argocd_retry_count["$app"]="$retry_count"
+      fi
 
       # operationState presence + fields
       operation_phase="$(jq -r '.status.operationState.phase // "-"' <<<"$app_json")"
@@ -527,7 +558,7 @@ wait_until_apps_synced_healthy() {
 
       # sx-backstage
       if [[ "$app" == "sx-backstage" && "$sync_status" == "$synced" ]]; then
-        if [ ! -f ./backstage-openbao-secrets-created ]; then
+        if [ ! -f ./backstage-openbao-secrets-created ] && backstage_token_dependencies_ready; then
           echo "sx-backstage is synced — creating openbao secrets"
           echo
           create_openbao_secrets_for_backstage
@@ -563,6 +594,8 @@ wait_until_apps_synced_healthy() {
 
         # terminate+restart if running too long
         if [ "$operation_phase" = "Running" ] && [ "$sync_duration" -gt 300 ]; then
+          installer_sync_attempts["$app"]=$(( ${installer_sync_attempts["$app"]:-0} + 1 ))
+          echo "[sync-debug] app=$app installer-retry=${installer_sync_attempts[$app]} reason=running-over-300s sync=$sync_status health=$health_status operation=$operation_phase"
           echo "sync of app ${app} gets terminated because it took longer than 300 seconds"
           kubectl exec "$controller_pod" -n argocd -- argocd app terminate-op "$app" --core || true
           echo "wait for 10 seconds"
@@ -573,12 +606,16 @@ wait_until_apps_synced_healthy() {
         elif { [ "$operation_phase" = "Failed" ] || [ "$operation_phase" = "Error" ]; } \
              && [ "$sync_status" = "$synced" ] && [ "$health_status" = "$healthy" ] \
              && [ -z "${resynced_healthy_failed[$app]+x}" ]; then
+          installer_sync_attempts["$app"]=$(( ${installer_sync_attempts["$app"]:-0} + 1 ))
+          echo "[sync-debug] app=$app installer-retry=${installer_sync_attempts[$app]} reason=clear-failed-operation sync=$sync_status health=$health_status operation=$operation_phase"
           echo "app ${app} is Synced+Healthy but operation ${operation_phase} — re-syncing once to clear status"
           kubectl exec "$controller_pod" -n argocd -- argocd app sync "$app" --async --core || true
           resynced_healthy_failed[$app]=1
         # terminate+restart if failed/error and NOT Synced+Healthy
         elif { [ "$operation_phase" = "Failed" ] || [ "$operation_phase" = "Error" ]; } \
              && { [ "$sync_status" != "$synced" ] || [ "$health_status" != "$healthy" ]; }; then
+          installer_sync_attempts["$app"]=$(( ${installer_sync_attempts["$app"]:-0} + 1 ))
+          echo "[sync-debug] app=$app installer-retry=${installer_sync_attempts[$app]} reason=failed-or-error sync=$sync_status health=$health_status operation=$operation_phase"
           echo "sync of app ${app} failed — restarting sync"
           kubectl exec "$controller_pod" -n argocd -- argocd app terminate-op "$app" --core || true
           echo "wait for 10 seconds"
@@ -612,6 +649,11 @@ wait_until_apps_synced_healthy() {
     show_node_resources
     echo "--------------------"
     sleep 10
+  done
+
+  echo "[sync-debug] installer sync retries during this wait:"
+  for app in sx-bootstrap-app ${apps}; do
+    echo "[sync-debug] app=$app installer-retries=${installer_sync_attempts[$app]:-0} latest-argocd-operation-retries=${last_argocd_retry_count[$app]:-0}"
   done
 
   if [ "$all_apps_synced" != "true" ]; then
