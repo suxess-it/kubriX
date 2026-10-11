@@ -94,8 +94,9 @@ shared waves instead of overriding them.
 Peak's former duplicate `prometheus-operator-crds` entry is rendered once.
 
 The installer creates Backstage tokens only when Backstage is selected, after
-ArgoCD and any selected Grafana are Synced and Healthy. `[sync-debug]` logs
-report installer-triggered sync retries and ArgoCD's per-operation retry counts.
+ArgoCD and any selected Grafana are Synced and Healthy. Detailed `[sync-debug]` logs report installer-triggered sync retries and changes
+to ArgoCD's per-operation retry counts only when `KUBRIX_INSTALL_DEBUG=true`.
+The per-application retry summary at the end of each wait is always printed.
 
 ## Validation
 
