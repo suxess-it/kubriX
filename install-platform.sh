@@ -493,7 +493,9 @@ wait_until_apps_synced_healthy() {
       operation_phase_bootstrap_app="$(jq -r '.status.operationState.phase // ""' <<<"$bootstrap_json")"
       if [ "$operation_phase_bootstrap_app" = "Failed" ] || [ "$operation_phase_bootstrap_app" = "Error" ]; then
         installer_sync_attempts["$bootstrap_app"]=$(( ${installer_sync_attempts["$bootstrap_app"]:-0} + 1 ))
-        echo "[sync-debug] app=$bootstrap_app installer-retry=${installer_sync_attempts[$bootstrap_app]} reason=bootstrap-$operation_phase_bootstrap_app"
+        if [[ "${KUBRIX_INSTALL_DEBUG:-}" == "true" ]]; then
+          echo "[sync-debug] app=$bootstrap_app installer-retry=${installer_sync_attempts[$bootstrap_app]} reason=bootstrap-$operation_phase_bootstrap_app"
+        fi
         echo "sx-boostrap-app sync failed. Restarting sync ..."
         kubectl exec "$controller_pod" -n argocd -- argocd app terminate-op "$bootstrap_app" --core || true
         kubectl exec "$controller_pod" -n argocd -- argocd app sync "$bootstrap_app" --async --core || true
@@ -522,7 +524,9 @@ wait_until_apps_synced_healthy() {
       local retry_count
       retry_count="$(jq -r '.status.operationState.retryCount // 0' <<<"$app_json")"
       if [[ "${last_argocd_retry_count[$app]:-}" != "$retry_count" ]]; then
-        echo "[sync-debug] app=$app argocd-operation-retries=$retry_count"
+        if [[ "${KUBRIX_INSTALL_DEBUG:-}" == "true" ]]; then
+          echo "[sync-debug] app=$app argocd-operation-retries=$retry_count"
+        fi
         last_argocd_retry_count["$app"]="$retry_count"
       fi
 
@@ -595,7 +599,9 @@ wait_until_apps_synced_healthy() {
         # terminate+restart if running too long
         if [ "$operation_phase" = "Running" ] && [ "$sync_duration" -gt 300 ]; then
           installer_sync_attempts["$app"]=$(( ${installer_sync_attempts["$app"]:-0} + 1 ))
-          echo "[sync-debug] app=$app installer-retry=${installer_sync_attempts[$app]} reason=running-over-300s sync=$sync_status health=$health_status operation=$operation_phase"
+          if [[ "${KUBRIX_INSTALL_DEBUG:-}" == "true" ]]; then
+            echo "[sync-debug] app=$app installer-retry=${installer_sync_attempts[$app]} reason=running-over-300s sync=$sync_status health=$health_status operation=$operation_phase"
+          fi
           echo "sync of app ${app} gets terminated because it took longer than 300 seconds"
           kubectl exec "$controller_pod" -n argocd -- argocd app terminate-op "$app" --core || true
           echo "wait for 10 seconds"
@@ -607,7 +613,9 @@ wait_until_apps_synced_healthy() {
              && [ "$sync_status" = "$synced" ] && [ "$health_status" = "$healthy" ] \
              && [ -z "${resynced_healthy_failed[$app]+x}" ]; then
           installer_sync_attempts["$app"]=$(( ${installer_sync_attempts["$app"]:-0} + 1 ))
-          echo "[sync-debug] app=$app installer-retry=${installer_sync_attempts[$app]} reason=clear-failed-operation sync=$sync_status health=$health_status operation=$operation_phase"
+          if [[ "${KUBRIX_INSTALL_DEBUG:-}" == "true" ]]; then
+            echo "[sync-debug] app=$app installer-retry=${installer_sync_attempts[$app]} reason=clear-failed-operation sync=$sync_status health=$health_status operation=$operation_phase"
+          fi
           echo "app ${app} is Synced+Healthy but operation ${operation_phase} — re-syncing once to clear status"
           kubectl exec "$controller_pod" -n argocd -- argocd app sync "$app" --async --core || true
           resynced_healthy_failed[$app]=1
@@ -615,7 +623,9 @@ wait_until_apps_synced_healthy() {
         elif { [ "$operation_phase" = "Failed" ] || [ "$operation_phase" = "Error" ]; } \
              && { [ "$sync_status" != "$synced" ] || [ "$health_status" != "$healthy" ]; }; then
           installer_sync_attempts["$app"]=$(( ${installer_sync_attempts["$app"]:-0} + 1 ))
-          echo "[sync-debug] app=$app installer-retry=${installer_sync_attempts[$app]} reason=failed-or-error sync=$sync_status health=$health_status operation=$operation_phase"
+          if [[ "${KUBRIX_INSTALL_DEBUG:-}" == "true" ]]; then
+            echo "[sync-debug] app=$app installer-retry=${installer_sync_attempts[$app]} reason=failed-or-error sync=$sync_status health=$health_status operation=$operation_phase"
+          fi
           echo "sync of app ${app} failed — restarting sync"
           kubectl exec "$controller_pod" -n argocd -- argocd app terminate-op "$app" --core || true
           echo "wait for 10 seconds"
