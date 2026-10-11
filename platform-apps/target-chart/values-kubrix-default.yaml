@@ -56,7 +56,10 @@ applications:
   keycloak:
     enabled: true
     annotations:
+      argocd.argoproj.io/compare-options: ServerSideDiff=true
       argocd.argoproj.io/sync-wave: '-5'
+    syncOptions:
+    - ServerSideApply=true
   loki:
     enabled: false
     annotations:
