@@ -6,7 +6,7 @@ name: kind
 on:
   # do a full cluster test in main or maintenance branch and when opening or changing PRs
   push:
-    branches: [ "main", "release-v7.0"]
+    branches: [ "main", "release-*"]
     paths:
       - '.github/workflows/cluster-test.yml'
       - '.github/kind-config.yaml'
