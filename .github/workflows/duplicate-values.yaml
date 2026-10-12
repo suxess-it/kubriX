@@ -1,0 +1,67 @@
+on:
+  pull_request:
+    types: [opened, synchronize]
+    paths:
+      - '.github/workflows/duplicate-values.yaml'
+      - '.github/find-duplicate-values.sh'
+      - 'platform-apps/charts/**'
+
+permissions:
+  contents: read
+  pull-requests: write
+
+name: duplicate-values
+
+jobs:
+  duplicate-values:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix: ${{ fromJson(vars.GITOPS_DIFF_TESTCASES) }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+
+      - name: Find duplicate values
+        shell: bash
+        run: |
+          mkdir -p comment-files
+          .github/find-duplicate-values.sh \
+            "${{ matrix.testCase }}" \
+            "${{ matrix.valuesFiles }}" \
+            "${{ matrix.setValues }}" \
+            "comment-files/comment-duplicate-values-${{ matrix.testCase }}.md"
+
+      - uses: actions/upload-artifact@v7
+        with:
+          name: duplicate-values-comment-${{ matrix.testCase }}
+          path: comment-files/
+
+  create-duplicate-values-comment:
+    needs: duplicate-values
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/download-artifact@v8
+        with:
+          pattern: duplicate-values-comment-*
+          path: comment-files/
+          merge-multiple: true
+
+      - name: Combine duplicate values reports
+        shell: bash
+        run: |
+          {
+            echo "# Duplicate Helm Values"
+            echo
+            for file in $(find comment-files -type f -name 'comment-duplicate-values-*.md' | sort); do
+              sed '1d' "${file}"
+              echo
+            done
+          } > comment-files/comment-duplicate-values-result.md
+
+      - name: PR comment duplicate values
+        uses: thollander/actions-comment-pull-request@v3
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          file-path: comment-files/comment-duplicate-values-result.md
