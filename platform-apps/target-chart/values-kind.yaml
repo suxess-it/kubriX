@@ -1,92 +1,34 @@
+applicationDict: true
 default:
   valueFiles:
   - values-kubrix-default.yaml
   - values-cluster-kind.yaml
-
 applications:
-
-  - name: prometheus-operator-crds
-    annotations:
-      argocd.argoproj.io/sync-wave: "-10"
-    syncOptions:
-      - ServerSideApply=true
-
-  - name: cert-manager
-    annotations:
-      argocd.argoproj.io/sync-wave: "-10"
-
-  - name: argocd
-    annotations:
-      argocd.argoproj.io/sync-wave: "-9"
-    syncOptions:
-      - ServerSideApply=true
-
-  - name: k8s-monitoring
-    annotations:
-      argocd.argoproj.io/compare-options: ServerSideDiff=true
-      argocd.argoproj.io/sync-wave: "-8"
-    syncOptions:
-      - ServerSideApply=true
-  
-  - name: crossplane
-    annotations:
-      argocd.argoproj.io/sync-wave: "-10"
-
-  - name: grafana
-    annotations:
-      argocd.argoproj.io/compare-options: ServerSideDiff=true
-    syncOptions:
-      - ServerSideApply=true
-
-  - name: mimir
-
-  - name: loki
-    annotations:
-      argocd.argoproj.io/sync-wave: "-1"
-      argocd.argoproj.io/compare-options: ServerSideDiff=true
-    helmOptions:
-      skipCrds: true
-    syncOptions:
-      - ServerSideApply=true
-
-  - name: tempo
-
-  - name: falco
-    annotations:
-      argocd.argoproj.io/compare-options: ServerSideDiff=true
-    helmOptions:
-      skipCrds: true
-    syncOptions:
-      - ServerSideApply=true
-
-  - name: external-secrets
-    annotations:
-      argocd.argoproj.io/sync-wave: "-10"
-    syncOptions:
-      - ServerSideApply=true
-
-  - name: keycloak
-    annotations:
-      argocd.argoproj.io/sync-wave: "-5"
-    syncOptions:
-      - ServerSideApply=true
-
-  - name: kargo
-
-  - name: kubecost
-
-  - name: argo-rollouts
-      
-  - name: kyverno
-    syncOptions:
-      - ServerSideApply=true
-      
-  - name: backstage
-    annotations:
-      argocd.argoproj.io/sync-wave: "10"
-
-  - name: team-onboarding
-    destinationNamespaceOverwrite: argocd
-    namespaceResourceTracking: false
-    annotations:
-      argocd.argoproj.io/sync-wave: "15"
+  traefik:
+    enabled: false
+  openbao:
+    enabled: false
+  cnpg:
+    enabled: false
+  grafana:
+    enabled: true
+  mimir:
+    enabled: true
+  loki:
+    enabled: true
+  tempo:
+    enabled: true
+  falco:
+    enabled: true
+  kargo:
+    enabled: true
+  kubecost:
+    enabled: true
+  argo-rollouts:
+    enabled: true
+  kyverno:
+    enabled: true
+  backstage:
+    enabled: true
+  team-onboarding:
+    enabled: true
