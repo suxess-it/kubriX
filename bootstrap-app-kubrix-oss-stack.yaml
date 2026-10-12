@@ -12,8 +12,11 @@ spec:
     targetRevision: main
     path: platform-apps/target-chart
     helm:
+      ignoreMissingValueFiles: true
       valueFiles:
+        - values-kubrix-default.yaml
         - values-kubrix-oss-stack.yaml
+        - values-customer.yaml
       parameters:
         - name: default.repoURL
           value: $ARGOCD_APP_SOURCE_REPO_URL
