@@ -1,13 +1,13 @@
 # Target applications
 
-The target chart renders the platform's Argo CD Applications. Dictionary mode lets
+The target chart renders the platform's Argo CD Applications. Map mode lets
 Helm merge individual application settings across values files.
 
-## Dictionary mode
+## Map mode
 
 New bootstrap Applications load these target-chart values files in order:
 
-1. `values-kubrix-default.yaml`: enables dictionary mode, defines the common stack,
+1. `values-kubrix-default.yaml`: enables map mode, defines the common stack,
    and configures optional applications without enabling them.
 2. `values-<target>.yaml`: enables additional applications and overrides settings
    for the target.
@@ -28,7 +28,7 @@ applications:
     destinationNamespaceOverwrite: custom
 ```
 
-The dictionary key supplies the chart name, Application name (`sx-<key>`), and
+The map key supplies the chart name, Application name (`sx-<key>`), and
 default destination namespace. A `name` field does not override the key. New
 applications need `enabled: true`; existing applications inherit their enabled
 setting. Setting `enabled: false` omits the Application. With automated pruning,
@@ -56,12 +56,12 @@ the target values files declared by the corresponding bootstrap Application.
 The installer status table lists applications by numeric sync wave and then
 alphabetically within the same wave. Missing sync-wave annotations mean wave `0`.
 
-`KUBRIX_APP_EXCLUDE` sets dictionary entries to `enabled: false` in the generated
+`KUBRIX_APP_EXCLUDE` sets map entries to `enabled: false` in the generated
 target profile, including applications inherited from the common stack.
 
 ## Existing installations
 
-`values.yaml` retains `applicationDict: false` and contains no dictionary defaults.
+`values.yaml` retains `applicationMap: false` and contains no map defaults.
 Existing customer bootstrap Applications that load their own list-based target
 profiles continue to work without modification:
 
@@ -72,13 +72,13 @@ applications:
       - ServerSideApply=true
 ```
 
-To migrate, convert the application's list into dictionary entries, load
+To migrate, convert the application's list into map entries, load
 `values-kubrix-default.yaml` before the profile in the bootstrap Application, and
 optionally load target-chart `values-customer.yaml` last. Profile files supplied
-by kubriX now use dictionary mode and require the shared defaults layer.
-Do not mix a list-based profile with dictionary defaults.
+by kubriX now use map mode and require the shared defaults layer.
+Do not mix a list-based profile with map defaults.
 
-Dictionary conversion preserves application settings. The shared sync waves
+Map conversion preserves application settings. The shared sync waves
 are subsequently aligned with the tested Prime installation order:
 
 | Wave | Applications |
