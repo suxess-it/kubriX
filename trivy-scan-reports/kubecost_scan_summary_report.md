@@ -111,7 +111,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>go/bin/app</code></h3>
-<h4>Vulnerabilities (17)</h4>
+<h4>Vulnerabilities (19)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -133,6 +133,13 @@
         <td>HIGH</td>
         <td>v0.55.0</td>
         <td>0.56.0</td>
+    </tr>
+    <tr>
+        <td><code>golang.org/x/net</code></td>
+        <td>CVE-2026-78669</td>
+        <td>HIGH</td>
+        <td>v0.55.0</td>
+        <td>0.60.0</td>
     </tr>
     <tr>
         <td><code>golang.org/x/text</code></td>
@@ -234,6 +241,13 @@
     </tr>
     <tr>
         <td><code>stdlib</code></td>
+        <td>CVE-2026-78669</td>
+        <td>HIGH</td>
+        <td>v1.26.4</td>
+        <td>1.26.9, 1.27.2</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
         <td>CVE-2026-97031</td>
         <td>HIGH</td>
         <td>v1.26.4</td>
@@ -244,7 +258,7 @@
 <h2>Image <code>icr.io/kubecost/cost-model:2.9.7</code></h2>
 
 <h3>Target <code>icr.io/kubecost/cost-model:2.9.7 (redhat 9.8)</code></h3>
-<h4>Vulnerabilities (46)</h4>
+<h4>Vulnerabilities (44)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -472,13 +486,6 @@
     </tr>
     <tr>
         <td><code>openssl</code></td>
-        <td>CVE-2026-75804</td>
-        <td>HIGH</td>
-        <td>1:3.5.5-4.el9_8</td>
-        <td></td>
-    </tr>
-    <tr>
-        <td><code>openssl</code></td>
         <td>CVE-2026-84782</td>
         <td>HIGH</td>
         <td>1:3.5.5-4.el9_8</td>
@@ -490,13 +497,6 @@
         <td>HIGH</td>
         <td>1:3.5.5-4.el9_8</td>
         <td>1:3.5.8-1.el9_8</td>
-    </tr>
-    <tr>
-        <td><code>openssl-libs</code></td>
-        <td>CVE-2026-75804</td>
-        <td>HIGH</td>
-        <td>1:3.5.5-4.el9_8</td>
-        <td></td>
     </tr>
     <tr>
         <td><code>openssl-libs</code></td>
@@ -578,7 +578,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>go/bin/app</code></h3>
-<h4>Vulnerabilities (51)</h4>
+<h4>Vulnerabilities (53)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -747,6 +747,13 @@
         <td>HIGH</td>
         <td>v0.42.0</td>
         <td>0.56.0</td>
+    </tr>
+    <tr>
+        <td><code>golang.org/x/net</code></td>
+        <td>CVE-2026-78669</td>
+        <td>HIGH</td>
+        <td>v0.42.0</td>
+        <td>0.60.0</td>
     </tr>
     <tr>
         <td><code>golang.org/x/text</code></td>
@@ -939,6 +946,13 @@
     </tr>
     <tr>
         <td><code>stdlib</code></td>
+        <td>CVE-2026-78669</td>
+        <td>HIGH</td>
+        <td>v1.24.11</td>
+        <td>1.26.9, 1.27.2</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
         <td>CVE-2026-97031</td>
         <td>HIGH</td>
         <td>v1.24.11</td>
@@ -949,7 +963,7 @@
 <h2>Image <code>icr.io/kubecost/frontend:2.9.7</code></h2>
 
 <h3>Target <code>icr.io/kubecost/frontend:2.9.7 (redhat 9.8)</code></h3>
-<h4>Vulnerabilities (55)</h4>
+<h4>Vulnerabilities (53)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -1240,13 +1254,6 @@
     </tr>
     <tr>
         <td><code>openssl</code></td>
-        <td>CVE-2026-75804</td>
-        <td>HIGH</td>
-        <td>1:3.5.5-4.el9_8</td>
-        <td></td>
-    </tr>
-    <tr>
-        <td><code>openssl</code></td>
         <td>CVE-2026-84782</td>
         <td>HIGH</td>
         <td>1:3.5.5-4.el9_8</td>
@@ -1258,13 +1265,6 @@
         <td>HIGH</td>
         <td>1:3.5.5-4.el9_8</td>
         <td>1:3.5.8-1.el9_8</td>
-    </tr>
-    <tr>
-        <td><code>openssl-libs</code></td>
-        <td>CVE-2026-75804</td>
-        <td>HIGH</td>
-        <td>1:3.5.5-4.el9_8</td>
-        <td></td>
     </tr>
     <tr>
         <td><code>openssl-libs</code></td>
@@ -1348,7 +1348,7 @@
 <h2>Image <code>icr.io/kubecost/modeling:v0.1.34</code></h2>
 
 <h3>Target <code>icr.io/kubecost/modeling:v0.1.34 (redhat 9.7)</code></h3>
-<h4>Vulnerabilities (68)</h4>
+<h4>Vulnerabilities (67)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -1646,13 +1646,6 @@
     </tr>
     <tr>
         <td><code>openssl-libs</code></td>
-        <td>CVE-2026-75804</td>
-        <td>HIGH</td>
-        <td>1:3.5.1-4.el9_7</td>
-        <td></td>
-    </tr>
-    <tr>
-        <td><code>openssl-libs</code></td>
         <td>CVE-2026-84782</td>
         <td>HIGH</td>
         <td>1:3.5.1-4.el9_7</td>
@@ -1899,7 +1892,7 @@
 <h2>Image <code>quay.io/prometheus/prometheus:v3.9.1</code></h2>
 
 <h3>Target <code>bin/prometheus</code></h3>
-<h4>Vulnerabilities (48)</h4>
+<h4>Vulnerabilities (50)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -2049,6 +2042,13 @@
         <td>0.56.0</td>
     </tr>
     <tr>
+        <td><code>golang.org/x/net</code></td>
+        <td>CVE-2026-78669</td>
+        <td>HIGH</td>
+        <td>v0.48.0</td>
+        <td>0.60.0</td>
+    </tr>
+    <tr>
         <td><code>golang.org/x/text</code></td>
         <td>CVE-2026-56852</td>
         <td>HIGH</td>
@@ -2239,6 +2239,13 @@
     </tr>
     <tr>
         <td><code>stdlib</code></td>
+        <td>CVE-2026-78669</td>
+        <td>HIGH</td>
+        <td>v1.25.5</td>
+        <td>1.26.9, 1.27.2</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
         <td>CVE-2026-97031</td>
         <td>HIGH</td>
         <td>v1.25.5</td>
@@ -2247,7 +2254,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>bin/promtool</code></h3>
-<h4>Vulnerabilities (46)</h4>
+<h4>Vulnerabilities (48)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -2383,6 +2390,13 @@
         <td>0.56.0</td>
     </tr>
     <tr>
+        <td><code>golang.org/x/net</code></td>
+        <td>CVE-2026-78669</td>
+        <td>HIGH</td>
+        <td>v0.48.0</td>
+        <td>0.60.0</td>
+    </tr>
+    <tr>
         <td><code>golang.org/x/text</code></td>
         <td>CVE-2026-56852</td>
         <td>HIGH</td>
@@ -2567,6 +2581,13 @@
     <tr>
         <td><code>stdlib</code></td>
         <td>CVE-2026-78667</td>
+        <td>HIGH</td>
+        <td>v1.25.5</td>
+        <td>1.26.9, 1.27.2</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-78669</td>
         <td>HIGH</td>
         <td>v1.25.5</td>
         <td>1.26.9, 1.27.2</td>

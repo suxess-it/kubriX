@@ -45,7 +45,7 @@
 <h4>No Vulnerabilities found</h4>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>usr/share/grafana/bin/grafana</code></h3>
-<h4>Vulnerabilities (2)</h4>
+<h4>Vulnerabilities (4)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -55,8 +55,22 @@
         <th>Fixed Version</th>
     </tr>
     <tr>
+        <td><code>golang.org/x/net</code></td>
+        <td>CVE-2026-78669</td>
+        <td>HIGH</td>
+        <td>v0.58.0</td>
+        <td>0.60.0</td>
+    </tr>
+    <tr>
         <td><code>stdlib</code></td>
         <td>CVE-2026-78667</td>
+        <td>HIGH</td>
+        <td>v1.26.6</td>
+        <td>1.26.9, 1.27.2</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-78669</td>
         <td>HIGH</td>
         <td>v1.26.6</td>
         <td>1.26.9, 1.27.2</td>
@@ -71,7 +85,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>usr/share/grafana/data/plugins-bundled/elasticsearch/gpx_grafana_elasticsearch_datasource_linux_amd64</code></h3>
-<h4>Vulnerabilities (2)</h4>
+<h4>Vulnerabilities (4)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -81,8 +95,22 @@
         <th>Fixed Version</th>
     </tr>
     <tr>
+        <td><code>golang.org/x/net</code></td>
+        <td>CVE-2026-78669</td>
+        <td>HIGH</td>
+        <td>v0.58.0</td>
+        <td>0.60.0</td>
+    </tr>
+    <tr>
         <td><code>stdlib</code></td>
         <td>CVE-2026-78667</td>
+        <td>HIGH</td>
+        <td>v1.26.7</td>
+        <td>1.26.9, 1.27.2</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-78669</td>
         <td>HIGH</td>
         <td>v1.26.7</td>
         <td>1.26.9, 1.27.2</td>
@@ -97,7 +125,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>usr/share/grafana/data/plugins-bundled/grafana-postgresql-datasource/gpx_grafana_postgresql_datasource_linux_amd64</code></h3>
-<h4>Vulnerabilities (3)</h4>
+<h4>Vulnerabilities (5)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -105,6 +133,13 @@
         <th>Severity</th>
         <th>Installed Version</th>
         <th>Fixed Version</th>
+    </tr>
+    <tr>
+        <td><code>golang.org/x/net</code></td>
+        <td>CVE-2026-78669</td>
+        <td>HIGH</td>
+        <td>v0.58.0</td>
+        <td>0.60.0</td>
     </tr>
     <tr>
         <td><code>google.golang.org/grpc</code></td>
@@ -116,6 +151,13 @@
     <tr>
         <td><code>stdlib</code></td>
         <td>CVE-2026-78667</td>
+        <td>HIGH</td>
+        <td>v1.26.7</td>
+        <td>1.26.9, 1.27.2</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-78669</td>
         <td>HIGH</td>
         <td>v1.26.7</td>
         <td>1.26.9, 1.27.2</td>
@@ -130,7 +172,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>usr/share/grafana/data/plugins-bundled/grafana-pyroscope-datasource/gpx_grafana-pyroscope-datasource_linux_amd64</code></h3>
-<h4>Vulnerabilities (2)</h4>
+<h4>Vulnerabilities (4)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -140,8 +182,22 @@
         <th>Fixed Version</th>
     </tr>
     <tr>
+        <td><code>golang.org/x/net</code></td>
+        <td>CVE-2026-78669</td>
+        <td>HIGH</td>
+        <td>v0.58.0</td>
+        <td>0.60.0</td>
+    </tr>
+    <tr>
         <td><code>stdlib</code></td>
         <td>CVE-2026-78667</td>
+        <td>HIGH</td>
+        <td>v1.26.7</td>
+        <td>1.26.9, 1.27.2</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-78669</td>
         <td>HIGH</td>
         <td>v1.26.7</td>
         <td>1.26.9, 1.27.2</td>
@@ -156,7 +212,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>usr/share/grafana/data/plugins-bundled/influxdb/gpx_grafana_influxdb_datasource_linux_amd64</code></h3>
-<h4>Vulnerabilities (3)</h4>
+<h4>Vulnerabilities (5)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -164,6 +220,13 @@
         <th>Severity</th>
         <th>Installed Version</th>
         <th>Fixed Version</th>
+    </tr>
+    <tr>
+        <td><code>golang.org/x/net</code></td>
+        <td>CVE-2026-78669</td>
+        <td>HIGH</td>
+        <td>v0.58.0</td>
+        <td>0.60.0</td>
     </tr>
     <tr>
         <td><code>google.golang.org/grpc</code></td>
@@ -175,6 +238,13 @@
     <tr>
         <td><code>stdlib</code></td>
         <td>CVE-2026-78667</td>
+        <td>HIGH</td>
+        <td>v1.26.7</td>
+        <td>1.26.9, 1.27.2</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-78669</td>
         <td>HIGH</td>
         <td>v1.26.7</td>
         <td>1.26.9, 1.27.2</td>
@@ -189,7 +259,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>usr/share/grafana/data/plugins-bundled/jaeger/gpx_grafana-jaeger-datasource_linux_amd64</code></h3>
-<h4>Vulnerabilities (3)</h4>
+<h4>Vulnerabilities (5)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -197,6 +267,13 @@
         <th>Severity</th>
         <th>Installed Version</th>
         <th>Fixed Version</th>
+    </tr>
+    <tr>
+        <td><code>golang.org/x/net</code></td>
+        <td>CVE-2026-78669</td>
+        <td>HIGH</td>
+        <td>v0.58.0</td>
+        <td>0.60.0</td>
     </tr>
     <tr>
         <td><code>google.golang.org/grpc</code></td>
@@ -208,6 +285,13 @@
     <tr>
         <td><code>stdlib</code></td>
         <td>CVE-2026-78667</td>
+        <td>HIGH</td>
+        <td>v1.26.7</td>
+        <td>1.26.9, 1.27.2</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-78669</td>
         <td>HIGH</td>
         <td>v1.26.7</td>
         <td>1.26.9, 1.27.2</td>
@@ -222,7 +306,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>usr/share/grafana/data/plugins-bundled/loki/gpx_grafana-loki-datasource_linux_amd64</code></h3>
-<h4>Vulnerabilities (2)</h4>
+<h4>Vulnerabilities (4)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -232,8 +316,22 @@
         <th>Fixed Version</th>
     </tr>
     <tr>
+        <td><code>golang.org/x/net</code></td>
+        <td>CVE-2026-78669</td>
+        <td>HIGH</td>
+        <td>v0.58.0</td>
+        <td>0.60.0</td>
+    </tr>
+    <tr>
         <td><code>stdlib</code></td>
         <td>CVE-2026-78667</td>
+        <td>HIGH</td>
+        <td>v1.26.7</td>
+        <td>1.26.9, 1.27.2</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-78669</td>
         <td>HIGH</td>
         <td>v1.26.7</td>
         <td>1.26.9, 1.27.2</td>
@@ -248,7 +346,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>usr/share/grafana/data/plugins-bundled/mssql/gpx_grafana-mssql-datasource_linux_amd64</code></h3>
-<h4>Vulnerabilities (2)</h4>
+<h4>Vulnerabilities (4)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -258,8 +356,22 @@
         <th>Fixed Version</th>
     </tr>
     <tr>
+        <td><code>golang.org/x/net</code></td>
+        <td>CVE-2026-78669</td>
+        <td>HIGH</td>
+        <td>v0.58.0</td>
+        <td>0.60.0</td>
+    </tr>
+    <tr>
         <td><code>stdlib</code></td>
         <td>CVE-2026-78667</td>
+        <td>HIGH</td>
+        <td>v1.26.7</td>
+        <td>1.26.9, 1.27.2</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-78669</td>
         <td>HIGH</td>
         <td>v1.26.7</td>
         <td>1.26.9, 1.27.2</td>
@@ -274,7 +386,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>usr/share/grafana/data/plugins-bundled/mysql/gpx_grafana-mysql-datasource_linux_amd64</code></h3>
-<h4>Vulnerabilities (2)</h4>
+<h4>Vulnerabilities (4)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -284,8 +396,22 @@
         <th>Fixed Version</th>
     </tr>
     <tr>
+        <td><code>golang.org/x/net</code></td>
+        <td>CVE-2026-78669</td>
+        <td>HIGH</td>
+        <td>v0.58.0</td>
+        <td>0.60.0</td>
+    </tr>
+    <tr>
         <td><code>stdlib</code></td>
         <td>CVE-2026-78667</td>
+        <td>HIGH</td>
+        <td>v1.26.7</td>
+        <td>1.26.9, 1.27.2</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-78669</td>
         <td>HIGH</td>
         <td>v1.26.7</td>
         <td>1.26.9, 1.27.2</td>
@@ -300,7 +426,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>usr/share/grafana/data/plugins-bundled/opentsdb/gpx_grafana-opentsdb-datasource_linux_amd64</code></h3>
-<h4>Vulnerabilities (2)</h4>
+<h4>Vulnerabilities (4)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -310,8 +436,22 @@
         <th>Fixed Version</th>
     </tr>
     <tr>
+        <td><code>golang.org/x/net</code></td>
+        <td>CVE-2026-78669</td>
+        <td>HIGH</td>
+        <td>v0.58.0</td>
+        <td>0.60.0</td>
+    </tr>
+    <tr>
         <td><code>stdlib</code></td>
         <td>CVE-2026-78667</td>
+        <td>HIGH</td>
+        <td>v1.26.6</td>
+        <td>1.26.9, 1.27.2</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-78669</td>
         <td>HIGH</td>
         <td>v1.26.6</td>
         <td>1.26.9, 1.27.2</td>
@@ -326,7 +466,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>usr/share/grafana/data/plugins-bundled/prometheus/gpx_grafana-prometheus-datasource_linux_amd64</code></h3>
-<h4>Vulnerabilities (3)</h4>
+<h4>Vulnerabilities (5)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -334,6 +474,13 @@
         <th>Severity</th>
         <th>Installed Version</th>
         <th>Fixed Version</th>
+    </tr>
+    <tr>
+        <td><code>golang.org/x/net</code></td>
+        <td>CVE-2026-78669</td>
+        <td>HIGH</td>
+        <td>v0.58.0</td>
+        <td>0.60.0</td>
     </tr>
     <tr>
         <td><code>google.golang.org/grpc</code></td>
@@ -351,6 +498,13 @@
     </tr>
     <tr>
         <td><code>stdlib</code></td>
+        <td>CVE-2026-78669</td>
+        <td>HIGH</td>
+        <td>v1.26.7</td>
+        <td>1.26.9, 1.27.2</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
         <td>CVE-2026-97031</td>
         <td>HIGH</td>
         <td>v1.26.7</td>
@@ -359,7 +513,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>usr/share/grafana/data/plugins-bundled/stackdriver/gpx_grafana_cloudmonitoring_datasource_linux_amd64</code></h3>
-<h4>Vulnerabilities (4)</h4>
+<h4>Vulnerabilities (6)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -367,6 +521,13 @@
         <th>Severity</th>
         <th>Installed Version</th>
         <th>Fixed Version</th>
+    </tr>
+    <tr>
+        <td><code>golang.org/x/net</code></td>
+        <td>CVE-2026-78669</td>
+        <td>HIGH</td>
+        <td>v0.58.0</td>
+        <td>0.60.0</td>
     </tr>
     <tr>
         <td><code>google.golang.org/grpc</code></td>
@@ -391,6 +552,13 @@
     </tr>
     <tr>
         <td><code>stdlib</code></td>
+        <td>CVE-2026-78669</td>
+        <td>HIGH</td>
+        <td>v1.26.7</td>
+        <td>1.26.9, 1.27.2</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
         <td>CVE-2026-97031</td>
         <td>HIGH</td>
         <td>v1.26.7</td>
@@ -399,7 +567,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>usr/share/grafana/data/plugins-bundled/tempo/gpx_grafana-tempo-datasource_linux_amd64</code></h3>
-<h4>Vulnerabilities (4)</h4>
+<h4>Vulnerabilities (6)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -423,8 +591,22 @@
         <td>2.10.3</td>
     </tr>
     <tr>
+        <td><code>golang.org/x/net</code></td>
+        <td>CVE-2026-78669</td>
+        <td>HIGH</td>
+        <td>v0.58.0</td>
+        <td>0.60.0</td>
+    </tr>
+    <tr>
         <td><code>stdlib</code></td>
         <td>CVE-2026-78667</td>
+        <td>HIGH</td>
+        <td>v1.26.7</td>
+        <td>1.26.9, 1.27.2</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-78669</td>
         <td>HIGH</td>
         <td>v1.26.7</td>
         <td>1.26.9, 1.27.2</td>
@@ -439,7 +621,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>usr/share/grafana/data/plugins-bundled/zipkin/gpx_grafana-zipkin-datasource_linux_amd64</code></h3>
-<h4>Vulnerabilities (2)</h4>
+<h4>Vulnerabilities (4)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -449,8 +631,22 @@
         <th>Fixed Version</th>
     </tr>
     <tr>
+        <td><code>golang.org/x/net</code></td>
+        <td>CVE-2026-78669</td>
+        <td>HIGH</td>
+        <td>v0.58.0</td>
+        <td>0.60.0</td>
+    </tr>
+    <tr>
         <td><code>stdlib</code></td>
         <td>CVE-2026-78667</td>
+        <td>HIGH</td>
+        <td>v1.26.7</td>
+        <td>1.26.9, 1.27.2</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-78669</td>
         <td>HIGH</td>
         <td>v1.26.7</td>
         <td>1.26.9, 1.27.2</td>
@@ -464,64 +660,13 @@
     </tr>
 </table>
 <h4>No Misconfigurations found</h4>
-<h2>Image <code>quay.io/kiwigrid/k8s-sidecar:2.11.2</code></h2>
+<h2>Image <code>quay.io/kiwigrid/k8s-sidecar:2.14.1</code></h2>
 
-<h3>Target <code>quay.io/kiwigrid/k8s-sidecar:2.11.2 (alpine 3.22.4)</code></h3>
-<h4>Vulnerabilities (6)</h4>
-<table>
-    <tr>
-        <th>Package</th>
-        <th>ID</th>
-        <th>Severity</th>
-        <th>Installed Version</th>
-        <th>Fixed Version</th>
-    </tr>
-    <tr>
-        <td><code>libuuid</code></td>
-        <td>CVE-2026-53612</td>
-        <td>HIGH</td>
-        <td>2.41-r9</td>
-        <td>2.41.6-r0</td>
-    </tr>
-    <tr>
-        <td><code>libuuid</code></td>
-        <td>CVE-2026-53613</td>
-        <td>HIGH</td>
-        <td>2.41-r9</td>
-        <td>2.41.6-r0</td>
-    </tr>
-    <tr>
-        <td><code>libuuid</code></td>
-        <td>CVE-2026-53614</td>
-        <td>HIGH</td>
-        <td>2.41-r9</td>
-        <td>2.41.6-r0</td>
-    </tr>
-    <tr>
-        <td><code>libuuid</code></td>
-        <td>CVE-2026-76642</td>
-        <td>HIGH</td>
-        <td>2.41-r9</td>
-        <td>2.41.6-r0</td>
-    </tr>
-    <tr>
-        <td><code>libuuid</code></td>
-        <td>CVE-2026-78408</td>
-        <td>HIGH</td>
-        <td>2.41-r9</td>
-        <td>2.41.6-r1</td>
-    </tr>
-    <tr>
-        <td><code>libuuid</code></td>
-        <td>CVE-2026-78410</td>
-        <td>HIGH</td>
-        <td>2.41-r9</td>
-        <td>2.41.6-r0</td>
-    </tr>
-</table>
+<h3>Target <code>quay.io/kiwigrid/k8s-sidecar:2.14.1 (alpine 3.24.2)</code></h3>
+<h4>No Vulnerabilities found</h4>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>Python</code></h3>
-<h4>Vulnerabilities (2)</h4>
+<h4>Vulnerabilities (4)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -529,6 +674,20 @@
         <th>Severity</th>
         <th>Installed Version</th>
         <th>Fixed Version</th>
+    </tr>
+    <tr>
+        <td><code>msgpack</code></td>
+        <td>GHSA-6v7p-g79w-8964</td>
+        <td>HIGH</td>
+        <td>1.1.2</td>
+        <td>1.2.1</td>
+    </tr>
+    <tr>
+        <td><code>setuptools</code></td>
+        <td>CVE-2025-47273</td>
+        <td>HIGH</td>
+        <td>70.3.0</td>
+        <td>78.1.1</td>
     </tr>
     <tr>
         <td><code>urllib3</code></td>

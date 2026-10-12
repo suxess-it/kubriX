@@ -1,7 +1,7 @@
-<h2>Image <code>ghcr.io/grafana/alloy-operator:1.12.1</code></h2>
+<h2>Image <code>ghcr.io/grafana/alloy-operator:1.13.0</code></h2>
 
-<h3>Target <code>ghcr.io/grafana/alloy-operator:1.12.1 (redhat 9.8)</code></h3>
-<h4>Vulnerabilities (35)</h4>
+<h3>Target <code>ghcr.io/grafana/alloy-operator:1.13.0 (redhat 9.8)</code></h3>
+<h4>Vulnerabilities (34)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -187,13 +187,6 @@
     </tr>
     <tr>
         <td><code>openssl-libs</code></td>
-        <td>CVE-2026-75804</td>
-        <td>HIGH</td>
-        <td>1:3.5.5-4.el9_8</td>
-        <td></td>
-    </tr>
-    <tr>
-        <td><code>openssl-libs</code></td>
         <td>CVE-2026-84782</td>
         <td>HIGH</td>
         <td>1:3.5.5-4.el9_8</td>
@@ -258,7 +251,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>usr/local/bin/helm-operator</code></h3>
-<h4>Vulnerabilities (19)</h4>
+<h4>Vulnerabilities (21)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -273,6 +266,13 @@
         <td>HIGH</td>
         <td>v0.53.0</td>
         <td>0.55.0</td>
+    </tr>
+    <tr>
+        <td><code>golang.org/x/net</code></td>
+        <td>CVE-2026-78669</td>
+        <td>HIGH</td>
+        <td>v0.56.0</td>
+        <td>0.60.0</td>
     </tr>
     <tr>
         <td><code>golang.org/x/text</code></td>
@@ -389,6 +389,13 @@
     <tr>
         <td><code>stdlib</code></td>
         <td>CVE-2026-78667</td>
+        <td>HIGH</td>
+        <td>v1.26.4</td>
+        <td>1.26.9, 1.27.2</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-78669</td>
         <td>HIGH</td>
         <td>v1.26.4</td>
         <td>1.26.9, 1.27.2</td>
@@ -599,7 +606,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>usr/bin/kubectl-1.29</code></h3>
-<h4>Vulnerabilities (33)</h4>
+<h4>Vulnerabilities (35)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -656,6 +663,13 @@
         <td>HIGH</td>
         <td>v0.23.0</td>
         <td>0.56.0</td>
+    </tr>
+    <tr>
+        <td><code>golang.org/x/net</code></td>
+        <td>CVE-2026-78669</td>
+        <td>HIGH</td>
+        <td>v0.23.0</td>
+        <td>0.60.0</td>
     </tr>
     <tr>
         <td><code>golang.org/x/oauth2</code></td>
@@ -828,6 +842,13 @@
     <tr>
         <td><code>stdlib</code></td>
         <td>CVE-2026-78667</td>
+        <td>HIGH</td>
+        <td>v1.23.6</td>
+        <td>1.26.9, 1.27.2</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-78669</td>
         <td>HIGH</td>
         <td>v1.23.6</td>
         <td>1.26.9, 1.27.2</td>
@@ -842,7 +863,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>usr/bin/kubectl-1.30</code></h3>
-<h4>Vulnerabilities (33)</h4>
+<h4>Vulnerabilities (35)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -899,6 +920,13 @@
         <td>HIGH</td>
         <td>v0.23.0</td>
         <td>0.56.0</td>
+    </tr>
+    <tr>
+        <td><code>golang.org/x/net</code></td>
+        <td>CVE-2026-78669</td>
+        <td>HIGH</td>
+        <td>v0.23.0</td>
+        <td>0.60.0</td>
     </tr>
     <tr>
         <td><code>golang.org/x/oauth2</code></td>
@@ -1077,6 +1105,13 @@
     </tr>
     <tr>
         <td><code>stdlib</code></td>
+        <td>CVE-2026-78669</td>
+        <td>HIGH</td>
+        <td>v1.23.10</td>
+        <td>1.26.9, 1.27.2</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
         <td>CVE-2026-97031</td>
         <td>HIGH</td>
         <td>v1.23.10</td>
@@ -1085,7 +1120,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>usr/bin/kubectl-1.31</code></h3>
-<h4>Vulnerabilities (33)</h4>
+<h4>Vulnerabilities (35)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -1142,6 +1177,13 @@
         <td>HIGH</td>
         <td>v0.26.0</td>
         <td>0.56.0</td>
+    </tr>
+    <tr>
+        <td><code>golang.org/x/net</code></td>
+        <td>CVE-2026-78669</td>
+        <td>HIGH</td>
+        <td>v0.26.0</td>
+        <td>0.60.0</td>
     </tr>
     <tr>
         <td><code>golang.org/x/oauth2</code></td>
@@ -1320,6 +1362,13 @@
     </tr>
     <tr>
         <td><code>stdlib</code></td>
+        <td>CVE-2026-78669</td>
+        <td>HIGH</td>
+        <td>v1.24.9</td>
+        <td>1.26.9, 1.27.2</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
         <td>CVE-2026-97031</td>
         <td>HIGH</td>
         <td>v1.24.9</td>
@@ -1328,7 +1377,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>usr/bin/kubectl-1.32</code></h3>
-<h4>Vulnerabilities (33)</h4>
+<h4>Vulnerabilities (35)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -1385,6 +1434,13 @@
         <td>HIGH</td>
         <td>v0.30.0</td>
         <td>0.56.0</td>
+    </tr>
+    <tr>
+        <td><code>golang.org/x/net</code></td>
+        <td>CVE-2026-78669</td>
+        <td>HIGH</td>
+        <td>v0.30.0</td>
+        <td>0.60.0</td>
     </tr>
     <tr>
         <td><code>golang.org/x/oauth2</code></td>
@@ -1563,6 +1619,13 @@
     </tr>
     <tr>
         <td><code>stdlib</code></td>
+        <td>CVE-2026-78669</td>
+        <td>HIGH</td>
+        <td>v1.24.9</td>
+        <td>1.26.9, 1.27.2</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
         <td>CVE-2026-97031</td>
         <td>HIGH</td>
         <td>v1.24.9</td>
@@ -1571,7 +1634,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>usr/bin/kubectl-1.33</code></h3>
-<h4>Vulnerabilities (31)</h4>
+<h4>Vulnerabilities (33)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -1621,6 +1684,13 @@
         <td>HIGH</td>
         <td>v0.38.0</td>
         <td>0.56.0</td>
+    </tr>
+    <tr>
+        <td><code>golang.org/x/net</code></td>
+        <td>CVE-2026-78669</td>
+        <td>HIGH</td>
+        <td>v0.38.0</td>
+        <td>0.60.0</td>
     </tr>
     <tr>
         <td><code>golang.org/x/text</code></td>
@@ -1786,6 +1856,13 @@
     <tr>
         <td><code>stdlib</code></td>
         <td>CVE-2026-78667</td>
+        <td>HIGH</td>
+        <td>v1.24.9</td>
+        <td>1.26.9, 1.27.2</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-78669</td>
         <td>HIGH</td>
         <td>v1.24.9</td>
         <td>1.26.9, 1.27.2</td>
@@ -1800,7 +1877,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>usr/bin/kubectl-1.34</code></h3>
-<h4>Vulnerabilities (31)</h4>
+<h4>Vulnerabilities (33)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -1850,6 +1927,13 @@
         <td>HIGH</td>
         <td>v0.38.0</td>
         <td>0.56.0</td>
+    </tr>
+    <tr>
+        <td><code>golang.org/x/net</code></td>
+        <td>CVE-2026-78669</td>
+        <td>HIGH</td>
+        <td>v0.38.0</td>
+        <td>0.60.0</td>
     </tr>
     <tr>
         <td><code>golang.org/x/text</code></td>
@@ -2015,6 +2099,13 @@
     <tr>
         <td><code>stdlib</code></td>
         <td>CVE-2026-78667</td>
+        <td>HIGH</td>
+        <td>v1.24.9</td>
+        <td>1.26.9, 1.27.2</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-78669</td>
         <td>HIGH</td>
         <td>v1.24.9</td>
         <td>1.26.9, 1.27.2</td>
@@ -2031,7 +2122,7 @@
 <h2>Image <code>quay.io/prometheus/node-exporter:v1.12.1</code></h2>
 
 <h3>Target <code>bin/node_exporter</code></h3>
-<h4>Vulnerabilities (11)</h4>
+<h4>Vulnerabilities (13)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -2046,6 +2137,13 @@
         <td>HIGH</td>
         <td>v0.54.0</td>
         <td>0.55.0</td>
+    </tr>
+    <tr>
+        <td><code>golang.org/x/net</code></td>
+        <td>CVE-2026-78669</td>
+        <td>HIGH</td>
+        <td>v0.57.0</td>
+        <td>0.60.0</td>
     </tr>
     <tr>
         <td><code>stdlib</code></td>
@@ -2112,6 +2210,13 @@
     </tr>
     <tr>
         <td><code>stdlib</code></td>
+        <td>CVE-2026-78669</td>
+        <td>HIGH</td>
+        <td>v1.26.5</td>
+        <td>1.26.9, 1.27.2</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
         <td>CVE-2026-97031</td>
         <td>HIGH</td>
         <td>v1.26.5</td>
@@ -2125,7 +2230,7 @@
 <h4>No Vulnerabilities found</h4>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>kube-state-metrics</code></h3>
-<h4>Vulnerabilities (6)</h4>
+<h4>Vulnerabilities (8)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -2140,6 +2245,13 @@
         <td>HIGH</td>
         <td>v0.54.0</td>
         <td>0.55.0</td>
+    </tr>
+    <tr>
+        <td><code>golang.org/x/net</code></td>
+        <td>CVE-2026-78669</td>
+        <td>HIGH</td>
+        <td>v0.57.0</td>
+        <td>0.60.0</td>
     </tr>
     <tr>
         <td><code>google.golang.org/grpc</code></td>
@@ -2165,6 +2277,13 @@
     <tr>
         <td><code>stdlib</code></td>
         <td>CVE-2026-78667</td>
+        <td>HIGH</td>
+        <td>v1.26.6</td>
+        <td>1.26.9, 1.27.2</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-78669</td>
         <td>HIGH</td>
         <td>v1.26.6</td>
         <td>1.26.9, 1.27.2</td>
