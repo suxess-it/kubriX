@@ -1,8 +1,8 @@
 {{- if eq .Values.kubriXPlan "oss" }}
 {{- $applications := .Values.applications }}
-{{- if .Values.applicationDict }}
+{{- if .Values.applicationMap }}
 {{- if not (kindIs "map" $applications) }}
-{{- fail "applicationDict=true requires applications to be a dictionary; migrate the profile or keep legacy bootstrap values layers" }}
+{{- fail "applicationMap=true requires applications to be a map; migrate the profile or keep legacy bootstrap values layers" }}
 {{- end }}
 {{- $applications = list }}
 {{- range $name, $application := .Values.applications }}

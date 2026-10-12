@@ -27,20 +27,20 @@ applications:
       labels:
         owner: platform
 YAML
-# Supply the same configuration through dictionary mode and compare all fields.
-yq '.applications |= (map({"key": .name, "value": (. | del(.name) | .enabled = true)}) | from_entries) | .applicationDict = true' "$test_dir/legacy.yaml" > "$test_dir/dictionary.yaml"
+# Supply the same configuration through map mode and compare all fields.
+yq '.applications |= (map({"key": .name, "value": (. | del(.name) | .enabled = true)}) | from_entries) | .applicationMap = true' "$test_dir/legacy.yaml" > "$test_dir/map.yaml"
 helm template "$chart" -f "$test_dir/legacy.yaml" > "$test_dir/legacy-render.yaml"
-helm template "$chart" -f "$test_dir/dictionary.yaml" > "$test_dir/dictionary-render.yaml"
-for format in legacy dictionary; do
+helm template "$chart" -f "$test_dir/map.yaml" > "$test_dir/map-render.yaml"
+for format in legacy map; do
   yq ea -o=json -I=0 '[.] | sort_by(.metadata.name)' "$test_dir/$format-render.yaml" > "$test_dir/$format.json"
 done
-diff -u "$test_dir/legacy.json" "$test_dir/dictionary.json"
-# A list loaded with dictionary mode should fail clearly rather than prune apps.
-if helm template "$chart" -f "$test_dir/legacy.yaml" --set applicationDict=true > "$test_dir/invalid.yaml" 2> "$test_dir/invalid.log"; then
-  echo "Expected list/dictionary mode mismatch to fail" >&2
+diff -u "$test_dir/legacy.json" "$test_dir/map.json"
+# A list loaded with map mode should fail clearly rather than prune apps.
+if helm template "$chart" -f "$test_dir/legacy.yaml" --set applicationMap=true > "$test_dir/invalid.yaml" 2> "$test_dir/invalid.log"; then
+  echo "Expected list/map mode mismatch to fail" >&2
   exit 1
 fi
-grep -q 'applicationDict=true requires applications to be a dictionary' "$test_dir/invalid.log"
+grep -q 'applicationMap=true requires applications to be a map' "$test_dir/invalid.log"
 
 # A partial customer override must retain shared settings and omit disabled apps.
 cat > "$test_dir/customer.yaml" <<'YAML'
@@ -88,8 +88,8 @@ applications:
     annotations:
       argocd.argoproj.io/sync-wave: "-11"
 YAML
-yq '.applications |= (map({"key": .name, "value": (. | del(.name) | .enabled = true)}) | from_entries) | .applicationDict = true' "$test_dir/waves.yaml" > "$test_dir/waves-dictionary.yaml"
-for format in waves waves-dictionary; do
+yq '.applications |= (map({"key": .name, "value": (. | del(.name) | .enabled = true)}) | from_entries) | .applicationMap = true' "$test_dir/waves.yaml" > "$test_dir/waves-map.yaml"
+for format in waves waves-map; do
   target_chart_value_args=( -f "$test_dir/$format.yaml" )
   eval "$(sed -n '/^base_apps=$(helm template /p' install-platform.sh)"
   [[ "$base_apps" == "sx-zzz-minus-eleven sx-mmm-minus-two sx-bbb-zero sx-ccc-default sx-ddd-two sx-aaa-ten " ]] || {
