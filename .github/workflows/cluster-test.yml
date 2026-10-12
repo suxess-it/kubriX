@@ -6,7 +6,7 @@ name: kind
 on:
   # do a full cluster test in main or maintenance branch and when opening or changing PRs
   push:
-    branches: [ "main", "release-v7.0"]
+    branches: [ "main", "release-v*"]
     paths:
       - '.github/workflows/cluster-test.yml'
       - '.github/kind-config.yaml'
@@ -14,6 +14,11 @@ on:
       - 'platform-apps/charts/**'
       - 'platform-apps/target-chart/templates/**'
       - 'platform-apps/target-chart/values.yaml'
+      - 'platform-apps/target-chart/values-kubrix-default.yaml'
+      - '.github/render-target-applications.sh'
+      - '.github/tests/target-applications.sh'
+      - 'bootstrap-app-kind*.yaml'
+      - 'platform-apps/target-chart/values-customer.yaml'
       - 'platform-apps/target-chart/values-kind*'
       - 'Dockerfile'
       - 'install-platform.sh'
@@ -29,6 +34,11 @@ on:
       - 'platform-apps/charts/**'
       - 'platform-apps/target-chart/templates/**'
       - 'platform-apps/target-chart/values.yaml'
+      - 'platform-apps/target-chart/values-kubrix-default.yaml'
+      - '.github/render-target-applications.sh'
+      - '.github/tests/target-applications.sh'
+      - 'bootstrap-app-kind*.yaml'
+      - 'platform-apps/target-chart/values-customer.yaml'
       - 'platform-apps/target-chart/values-kind*'
       - 'Dockerfile'
       - 'install-platform.sh'
@@ -71,11 +81,17 @@ jobs:
             appChanges:
               - 'platform-apps/charts/**'
             globalChanges:
+               - 'Dockerfile'
                - '.github/workflows/cluster-test.yml'
                - '.github/kind-config.yaml'
                - 'e2e-tests/**'
                - 'platform-apps/target-chart/templates/**'
                - 'platform-apps/target-chart/values.yaml'
+               - 'platform-apps/target-chart/values-kubrix-default.yaml'
+               - '.github/render-target-applications.sh'
+               - '.github/tests/target-applications.sh'
+               - 'bootstrap-app-kind*.yaml'
+               - 'platform-apps/target-chart/values-customer.yaml'
                - 'platform-apps/target-chart/values-kind*'
                - '.github/install-kubriX-with-job.sh'
                - 'install-manifests.yaml'
@@ -106,7 +122,19 @@ jobs:
           echo "targets=$TARGETS_JSON" >> "$GITHUB_OUTPUT"
 
 
-      # Derive app names from changed paths and check which of target-types reference them
+      - name: Install target rendering tools
+        if: steps.filter.outputs.appChanges == 'true' || steps.filter.outputs.globalChanges == 'true'
+        run: |
+          curl -fsSL https://get.helm.sh/helm-v3.19.2-linux-amd64.tar.gz | tar -xz
+          sudo install linux-amd64/helm /usr/local/bin/helm
+          curl -fsSL -o yq https://github.com/mikefarah/yq/releases/download/v4.47.1/yq_linux_amd64
+          sudo install yq /usr/local/bin/yq
+
+      - name: Test target application rendering
+        if: steps.filter.outputs.globalChanges == 'true'
+        run: bash .github/tests/target-applications.sh
+
+      # Derive app names from changed paths and check enabled, inherited applications.
       - id: build-matrix-app
         name: Build app target matrix from changed files
         if: steps.filter.outputs.appChanges == 'true' && steps.filter.outputs.globalChanges == 'false'
@@ -136,14 +164,14 @@ jobs:
 
           echo "Changed apps: ${!APPS[@]}"
 
-          # For any app that changed, see which of the 4 targets mention it
+          # Render each profile once so inherited applications are included.
           declare -A TARGETS=()
-          for app in "${!APPS[@]}"; do
-            for file in ${CLUSTER_TEST_TARGET_TYPES}; do
-              # Skip missing files quietly (useful for monorepos)
-              [[ -f "platform-apps/target-chart/values-$file.yaml" ]] || continue
-              if grep -q -- "$app" "platform-apps/target-chart/values-$file.yaml"; then
-                TARGETS["$file"]=1
+          for target in ${CLUSTER_TEST_TARGET_TYPES}; do
+            [[ -f "platform-apps/target-chart/values-$target.yaml" ]] || continue
+            enabled_apps=$(bash .github/render-target-applications.sh "$target" | yq --no-doc -r 'select(.kind == "Application") | .metadata.name')
+            for app in "${!APPS[@]}"; do
+              if grep -Fxq -- "sx-$app" <<< "$enabled_apps"; then
+                TARGETS["$target"]=1
               fi
             done
           done
@@ -287,7 +315,7 @@ jobs:
         uses: jlumbroso/free-disk-space@main
       
       - name: Create k8s Kind Cluster
-        uses: helm/kind-action@v1.15.0
+        uses: helm/kind-action@v1.15.1
         with:
           cluster_name: kubrix-cluster
           config: ${{ github.workspace }}/.github/kind-config.yaml
@@ -378,8 +406,7 @@ jobs:
           KUBRIX_TARGET_TYPE: ${{ matrix.target-type }}
         shell: bash
         run: |
-          target_chart_values_file=platform-apps/target-chart/values-$(echo ${KUBRIX_TARGET_TYPE} | awk '{print tolower($0)}').yaml
-          argocd_apps=$(cat $target_chart_values_file | awk '/^  - name:/ { printf "%s", "sx-"$3" "}' )
+          argocd_apps=$(kubectl get applications -n argocd -o jsonpath='{range .items[?(@.metadata.name!="sx-bootstrap-app")]}{.metadata.name}{" "}{end}')
           curl -kL -o argocd https://argocd.127-0-0-1.nip.io/download/argocd-linux-amd64
           chmod u+x argocd
           INITIAL_ARGOCD_PASSWORD=$( kubectl get secret -n argocd argocd-initial-admin-secret -o=jsonpath={'.data.password'} | base64 -d )
@@ -598,7 +625,6 @@ jobs:
           E2E_KEYCLOAK_ADMIN_PASSWORD=$( kubectl get secret -n keycloak keycloak-admin -o=jsonpath='{.data.admin-password}' | base64 -d )
           E2E_VAULT_ROOT_TOKEN=$( kubectl get secret -n openbao openbao-init -o jsonpath='{.data.root_token}' | base64 -d )
           E2E_KARGO_ADMIN_PASSWORD=$( kubectl get secret -n kargo kargo-admin-secret  -o=jsonpath='{.data.ADMIN_ACCOUNT_PASSWORD}'  | base64 -d )
-          E2E_KARGO_VERSION="v1.11"
           E2E_MIMIR_USERNAME=$( kubectl get secret -n grafana mimir-read-creds -o jsonpath='{.data.username}' | base64 -d )
           E2E_MIMIR_PASSWORD=$( kubectl get secret -n grafana mimir-read-creds -o jsonpath='{.data.password}' | base64 -d )
           E2E_LOKI_USERNAME=$( kubectl get secret -n grafana loki-read-creds -o jsonpath='{.data.username}' | base64 -d )
@@ -644,7 +670,6 @@ jobs:
             --variable E2E_KEYCLOAK_ADMIN_PASSWORD=${E2E_KEYCLOAK_ADMIN_PASSWORD} \
             --variable E2E_VAULT_ROOT_TOKEN=${E2E_VAULT_ROOT_TOKEN} \
             --variable E2E_KARGO_ADMIN_PASSWORD=${E2E_KARGO_ADMIN_PASSWORD} \
-            --variable E2E_KARGO_VERSION=${E2E_KARGO_VERSION} \
             --variable E2E_KUBRIX_ARGOCD_APPSET_TOKEN=${E2E_KUBRIX_ARGOCD_APPSET_TOKEN} \
             --variable E2E_KUBRIX_KARGO_GIT_PASSWORD=${E2E_KUBRIX_KARGO_GIT_PASSWORD} \
             --variable E2E_TEST_PR_NUMBER=${E2E_TEST_PR_NUMBER} \
@@ -746,7 +771,7 @@ jobs:
       - name: Delete kubriX boostrap repo, if exists
         if: always()
         env:
-          KUBRIX_DELETE_E2E_TESTS_REPO_TOKEN: ${{ secrets.KUBRIX_CUSTOMER_REPO_TOKEN }}
+          KUBRIX_DELETE_E2E_TESTS_REPO_TOKEN: ${{ secrets.KUBRIX_DELETE_E2E_TESTS_REPO_TOKEN }}
           GITHUB_ORG: "kubriX-demo"
           GITHUB_API: "https://api.github.com"
           KUBRIX_REPO: "${{ github.run_id }}-${{ job.check_run_id }}"
