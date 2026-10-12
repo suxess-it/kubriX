@@ -17,6 +17,7 @@ on:
       - 'platform-apps/target-chart/values-kubrix-default.yaml'
       - '.github/render-target-applications.sh'
       - '.github/tests/target-applications.sh'
+      - '.github/tests/installer-sync-diagnostics.sh'
       - 'bootstrap-app-kind*.yaml'
       - 'platform-apps/target-chart/values-customer.yaml'
       - 'platform-apps/target-chart/values-kind*'
@@ -37,6 +38,7 @@ on:
       - 'platform-apps/target-chart/values-kubrix-default.yaml'
       - '.github/render-target-applications.sh'
       - '.github/tests/target-applications.sh'
+      - '.github/tests/installer-sync-diagnostics.sh'
       - 'bootstrap-app-kind*.yaml'
       - 'platform-apps/target-chart/values-customer.yaml'
       - 'platform-apps/target-chart/values-kind*'
@@ -68,6 +70,8 @@ jobs:
       - uses: actions/checkout@v7
         with:
           fetch-depth: 0  # needed so the action can diff properly
+      - name: Test installer sync diagnostics
+        run: bash .github/tests/installer-sync-diagnostics.sh
       - id: filter
         uses: dorny/paths-filter@v4
         with:
@@ -90,6 +94,7 @@ jobs:
                - 'platform-apps/target-chart/values-kubrix-default.yaml'
                - '.github/render-target-applications.sh'
                - '.github/tests/target-applications.sh'
+               - '.github/tests/installer-sync-diagnostics.sh'
                - 'bootstrap-app-kind*.yaml'
                - 'platform-apps/target-chart/values-customer.yaml'
                - 'platform-apps/target-chart/values-kind*'
@@ -371,6 +376,7 @@ jobs:
           KUBRIX_REPO_PASSWORD: ${{ secrets.KUBRIX_CUSTOMER_REPO_TOKEN }}
           KUBRIX_REPO_USERNAME: "dummy"
           KUBRIX_INSTALL_DEBUG: "false"
+          KUBRIX_SYNC_DEBUG: "true"
           KUBRIX_TARGET_TYPE: ${{ matrix.target-type }}
           KUBRIX_CLUSTER_TYPE: "kind"
           KUBRIX_BACKSTAGE_GITHUB_TOKEN: ${{ secrets.KUBRIX_CUSTOMER_REPO_TOKEN }}
@@ -396,6 +402,7 @@ jobs:
             --from-literal KUBRIX_BOOTSTRAP_MAX_WAIT_TIME=${KUBRIX_BOOTSTRAP_MAX_WAIT_TIME} \
             --from-literal KUBRIX_BOOTSTRAP=true \
             --from-literal KUBRIX_INSTALLER=true \
+            --from-literal KUBRIX_SYNC_DEBUG=${KUBRIX_SYNC_DEBUG} \
             --from-literal KUBRIX_INSTALL_DEBUG=${KUBRIX_INSTALL_DEBUG}
           bash .github/install-kubriX-with-job.sh
 
@@ -603,7 +610,6 @@ jobs:
           E2E_KUBRIX_REPO: kubrix-cluster-test-${{ github.run_id }}-${{ job.check_run_id }}
         run: |
           E2E_KEYCLOAK_DEMOADMIN_PASSWORD=$( kubectl get secret -n keycloak cp-keycloak-users-secret -o=jsonpath='{.data.demoadmin}'  | base64 -d )
-          kubectl get secret -n keycloak cp-keycloak-users-secret -o yaml
           data=$(kubectl get secret -n keycloak cp-keycloak-users-secret -o jsonpath='{.data}' 2>/dev/null)
 
           if [[ -z "$data" || "$data" == "{}" ]]; then
@@ -614,11 +620,8 @@ jobs:
             exit 1 # empty/missing
           fi
 
-          echo "${E2E_KEYCLOAK_DEMOADMIN_PASSWORD}"
           E2E_KEYCLOAK_DEMOVIEWER_PASSWORD=$( kubectl get secret -n keycloak cp-keycloak-users-secret -o=jsonpath='{.data.demoviewer}'  | base64 -d )
-          echo "${E2E_KEYCLOAK_DEMOVIEWER_PASSWORD}"
           E2E_KEYCLOAK_DEMOEDITOR_PASSWORD=$( kubectl get secret -n keycloak cp-keycloak-users-secret -o=jsonpath='{.data.demoeditor}'  | base64 -d )
-          echo "${E2E_KEYCLOAK_DEMOEDITOR_PASSWORD}"
           E2E_ARGOCD_ADMIN_PASSWORD=$( kubectl get secret -n argocd argocd-initial-admin-secret -o=jsonpath={'.data.password'} | base64 -d )
           E2E_ARGOCD_VERSION="v3.5"
           E2E_GRAFANA_ADMIN_PASSWORD=$( kubectl get secret -n grafana grafana-admin-secret -o=jsonpath='{.data.passwordKey}' | base64 -d )
