@@ -79,14 +79,14 @@ by kubriX now use map mode and require the shared defaults layer.
 Do not mix a list-based profile with map defaults.
 
 Map conversion preserves application settings. The shared sync waves
-are subsequently aligned with the tested Prime installation order:
+use the same three main phases in OSS and Prime. This change merges the former
+waves -6 and 0; CI must validate stability and installation time before merge:
 
 | Wave | Applications |
 | --- | --- |
 | -10 | prometheus-operator-crds, traefik, cert-manager, external-secrets, crossplane, external-dns |
 | -8 | openbao, prometheus-blackbox-exporter |
-| -6 | argocd, cnpg, loki, mimir, keycloak, k8s-monitoring |
-| 0 | Remaining applications, including backstage and team-onboarding |
+| 0 | argocd, cnpg, loki, mimir, keycloak, k8s-monitoring and remaining applications, including backstage and team-onboarding |
 
 MetalLB retains its earlier wave at -12. External DNS starts with the base
 controllers at -10, using pre-provisioned provider credentials. Profiles inherit
@@ -94,9 +94,35 @@ shared waves instead of overriding them.
 Peak's former duplicate `prometheus-operator-crds` entry is rendered once.
 
 The installer creates Backstage tokens only when Backstage is selected, after
-ArgoCD and any selected Grafana are Synced and Healthy. Detailed `[sync-debug]` logs report installer-triggered sync retries and changes
-to ArgoCD's per-operation retry counts only when `KUBRIX_INSTALL_DEBUG=true`.
-The per-application retry summary at the end of each wait is always printed.
+ArgoCD and any selected Grafana are Synced and Healthy. Set
+`KUBRIX_SYNC_DEBUG=true` for state transitions, condition types, failed resource
+identifiers and retry details without shell xtrace. Kind CI enables it explicitly.
+Existing `KUBRIX_INSTALL_DEBUG=true` also enables these details.
+
+Each wait always prints a per-app summary: installer retries, latest and maximum
+observed ArgoCD operation retry counts, distinct observed failed operations,
+readiness regressions and seconds to first observed Synced/Healthy status.
+A retry count belongs to one operation, so its maximum is not a total retry count.
+Polling can miss short transitions; first readiness is not sustained readiness.
+Failed operation counts include failed hooks even for Synced/Healthy apps.
+Diagnostics use cached Application JSON and never initiate additional syncs.
+
+`[sync-timing]` marks installation start/end separately from image build, cluster
+creation and Playwright, plus the duration of each application wait.
+Installation duration includes installer bootstrap/setup and final cleanup.
+If installation aborts, the success end marker is absent; use the failure timestamp.
+Each wait has an ID: deduplicate replayed installer logs by wait ID and app
+(or the exact event line) before comparing counters.
+
+Before merging, compare each executed kind profile with 2–3 successful runs of
+the same profile on main, including full `kind-hub-prime` in Prime.
+Require successful installation and existing E2E tests. Investigate extra failed
+operations, readiness regressions, repeated 300-second restarts and resource
+pressure even if retries eventually recover. Compare medians/ranges of stack
+installation time separately from the other CI stages; one green run does not
+establish stability. Keep the current timeout/retry and Backstage-token guards.
+If convergence or timing regresses, restore the six former -6 applications to
+wave -6 rather than masking the regression with longer timeouts.
 
 ## Validation
 
