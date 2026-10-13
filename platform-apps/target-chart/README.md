@@ -124,6 +124,17 @@ establish stability. Keep the current timeout/retry and Backstage-token guards.
 If convergence or timing regresses, restore the six former -6 applications to
 wave -6 rather than masking the regression with longer timeouts.
 
+The 300-second recovery watchdog remains active even for Synced/Healthy resources
+because sync hooks can still be stuck. Recovery re-reads the current operation,
+does not terminate a newer operation, and waits up to 30 seconds (bounded by the
+overall wait deadline) for Running/Terminating and pending operation state to
+clear. Incomplete termination is deferred to the next installer loop. Natural
+successful completion skips the restart. Monitoring's extra resync also waits
+for an idle operation. Retry counters count accepted recovery sync requests;
+deferred/rejected requests are logged separately. ArgoCD can still start an
+operation between the final read and sync submission; rejected submissions are
+deferred rather than assumed successful.
+
 ## Validation
 
 Run the compatibility, customer override, exclusion, and static profile checks
