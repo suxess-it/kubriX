@@ -467,8 +467,75 @@ sync_debug_printf() {
 
 # Observe cached Application status only; diagnostics never trigger a sync.
 # KUBRIX_SYNC_DEBUG enables state transitions without enabling shell xtrace.
+# Resource-level reasons from the cached Application status, only when debug is on.
+# Do not dump manifests, Secret data, or credentials embedded in common error forms.
+observe_resource_diagnostics() {
+  [[ "${KUBRIX_SYNC_DEBUG:-false}" == "true" || "${KUBRIX_INSTALL_DEBUG:-false}" == "true" ]] || return 0
+  local app="$1" app_json="$2" snapshot row
+  snapshot="$(jq -c '
+    def resource_key: [.group // "", .kind // "", .namespace // "", .name // ""] | join("/");
+    def safe_message($kind):
+      if $kind == "Secret" then
+        if . == null or . == "" then "" else "[Secret message omitted]" end
+      else
+        (. // "" | tostring
+          | gsub("(?i)bearer [A-Za-z0-9._~+/=-]+"; "Bearer [REDACTED]")
+          | gsub("(?i)(password|token|authorization|client_secret|root_token)[=:][^ ,;]+"; "[REDACTED credential]")
+          | gsub("https?://[^ /:@]+:[^ /@]+@"; "https://[REDACTED]@")
+          | .[0:1000])
+      end;
+    . as $application
+    | (.status.operationState // {}) as $operation
+    | ($operation.syncResult.resources // []) as $results
+    | [
+        (.status.resources // [])[]
+        | . as $resource
+        | select((.status // "-") != "Synced"
+            or (.health.status != null and .health.status != "Healthy"))
+        | ($results | map(select(resource_key == ($resource | resource_key))) | first // {}) as $result
+        | {
+            source: "resource", resource: resource_key,
+            sync: (.status // "-"), health: (.health.status // "not-assessed"),
+            healthMessage: (.health.message | safe_message($resource.kind))
+          }
+          + (if $operation.phase == "Running" or $operation.phase == "Failed" or $operation.phase == "Error" then
+              {operationStartedAt: ($operation.startedAt // ""),
+               operationResourceStatus: ($result.status // ""),
+               operationMessage: ($result.message | safe_message($resource.kind))}
+            else {} end),
+        ($results[]
+          | select(($operation.phase == "Running" or $operation.phase == "Failed" or $operation.phase == "Error")
+              and (.hookPhase == "Failed" or .hookPhase == "Error"))
+          | . as $hook
+          | {source: "hook", resource: resource_key, hookPhase: .hookPhase,
+             operationStartedAt: ($operation.startedAt // ""),
+             message: (.message | safe_message($hook.kind))}),
+        ($application.status.conditions[]?
+          | {source: "application-condition", type: .type, message: (.message | safe_message(""))}),
+        (if ($operation.phase == "Failed" or $operation.phase == "Error") and ($operation.message // "") != "" then
+          {source: "operation", phase: $operation.phase,
+           operationStartedAt: ($operation.startedAt // ""),
+           message: ($operation.message | safe_message(""))}
+         else empty end)
+      ] | sort_by(.source, .resource // "", .type // "")
+  ' <<<"$app_json")" || { echo "[sync-debug] app=$app resource-diagnostics=unavailable"; return 0; }
+  if [[ "${diagnostic_resource_snapshot[$app]:-[]}" != "$snapshot" ]]; then
+    if [[ "$snapshot" == "[]" ]]; then
+      sync_debug_printf '[sync-resource] wait=%s elapsed=%ss app=%s issues-cleared=true\n' \
+        "$sync_wait_id" "$((SECONDS-start))" "$app"
+    else
+      while IFS= read -r row; do
+        sync_debug_printf '[sync-resource] wait=%s elapsed=%ss app=%s %s\n' \
+          "$sync_wait_id" "$((SECONDS-start))" "$app" "$row"
+      done < <(jq -c '.[]' <<<"$snapshot")
+    fi
+    diagnostic_resource_snapshot["$app"]="$snapshot"
+  fi
+}
+
 observe_sync_diagnostics() {
   local app="$1" app_json="$2"
+  observe_resource_diagnostics "$app" "$app_json"
   local sync health phase operation retry conditions failed_resources
   local elapsed=$((SECONDS-start))
   IFS=$'\t' read -r sync health phase operation retry conditions failed_resources < <(
@@ -603,6 +670,8 @@ wait_until_apps_synced_healthy() {
   local sync_wait_id="$(utc_now_seconds)-$start"
   sync_debug_printf '[sync-timing] wait=%s event=start max-wait=%ss\n' "$sync_wait_id" "$max_wait_time"
   declare -A diagnostic_last_state=() diagnostic_first_ready=() diagnostic_was_ready=()
+  declare -A last_status_refresh=()
+  declare -A diagnostic_resource_snapshot=()
   declare -A diagnostic_regressions=() diagnostic_max_retry=() diagnostic_failures=() diagnostic_seen_failure=()
 
   k8smonitoring_restarted=false
@@ -643,11 +712,28 @@ wait_until_apps_synced_healthy() {
         continue
       fi
 
-      observe_sync_diagnostics "$app" "$app_json"
-
       # query everything from cached json (no more kubectl calls)
       sync_status="$(jq -r '.status.sync.status // "-"' <<<"$app_json")"
       health_status="$(jq -r '.status.health.status // "-"' <<<"$app_json")"
+
+      # Normal refresh also helps stale Unknown/OutOfSync status. Reuse its JSON
+      # immediately, but throttle requests so parallel starts do not flood ArgoCD.
+      if [[ "$health_status" == "Degraded" || "$health_status" == "Progressing" || "$health_status" == "Unknown" \
+         || "$sync_status" == "Unknown" || "$sync_status" == "OutOfSync" ]] \
+         && (( SECONDS - ${last_status_refresh[$app]:--30} >= 30 )); then
+        last_status_refresh["$app"]=$SECONDS
+        local refreshed_json
+        if refreshed_json="$(kubectl exec "$controller_pod" -n argocd -- argocd app get "$app" --refresh --core -o json 2>/dev/null)" \
+           && jq -e --arg app "$app" '.metadata.name == $app and (.status | type == "object")' >/dev/null <<<"$refreshed_json"; then
+          app_json="$refreshed_json"
+          sync_status="$(jq -r '.status.sync.status // "-"' <<<"$app_json")"
+          health_status="$(jq -r '.status.health.status // "-"' <<<"$app_json")"
+          sync_debug_printf '[sync-debug] app=%s refresh=normal sync=%s health=%s\n' "$app" "$sync_status" "$health_status"
+        else
+          sync_debug_printf '[sync-debug] app=%s refresh=unavailable using=cached-status\n' "$app"
+        fi
+      fi
+      observe_sync_diagnostics "$app" "$app_json"
 
       # ArgoCD's retry counter belongs to the current operation; installer retries
       # are counted separately because starting a new operation resets it.
@@ -712,11 +798,6 @@ wait_until_apps_synced_healthy() {
         fi
       fi
 
-      # refresh when degraded because CRDs are sometimes degraded too early and a refresh helps
-      if [[ "$health_status" == "Degraded" || "$health_status" == "Progressing" ]] ; then
-        kubectl exec "$controller_pod" -n argocd -- argocd app get "$app" --refresh --core >/dev/null 2>&1 || true
-      fi
-      
       # ---- compute sync duration + restart stuck sync, based on cached fields ----
       if [ -n "$sync_started" ]; then
         sync_started_seconds="$(convert_to_seconds "$sync_started")"
