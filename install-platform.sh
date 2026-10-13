@@ -514,6 +514,72 @@ observe_sync_diagnostics() {
   fi
 }
 
+# Serialize recovery with the live operation; keep the 300s watchdog for hooks.
+restart_app_sync() {
+  local app="$1" expected_start="$2" reason="$3"
+  local current_json phase started pending deadline
+  current_json="$(kubectl get application -n argocd "$app" -o json 2>/dev/null)" || return 1
+  phase="$(jq -r '.status.operationState.phase // ""' <<<"$current_json")"
+  started="$(jq -r '.status.operationState.startedAt // ""' <<<"$current_json")"
+  if [[ -n "$expected_start" && "${started%Z}" != "${expected_start%Z}" ]]; then
+    echo "[sync-debug] app=$app recovery=deferred reason=newer-operation"
+    return 1
+  fi
+  if [[ "$phase" == "Succeeded" && "$reason" != "monitoring-resync" ]]; then
+    echo "[sync-debug] app=$app recovery=skipped reason=operation-completed"
+    return 1
+  fi
+  pending="$(jq -r '.operation != null' <<<"$current_json")"
+  if [[ "$reason" == "monitoring-resync" && ( "$phase" == "Running" || "$phase" == "Terminating" || "$pending" == "true" ) ]]; then
+    return 1
+  fi
+  if [[ "$phase" == "Running" && "$reason" != "running-over-300s" ]]; then
+    echo "[sync-debug] app=$app recovery=deferred reason=operation-running"
+    return 1
+  fi
+  if [[ "$phase" == "Running" ]]; then
+    # The cached Running state may have completed while other apps were checked.
+    kubectl exec "$controller_pod" -n argocd -- argocd app terminate-op "$app" --core || true
+  fi
+
+  deadline=$((SECONDS + 30))
+  if (( deadline > end )); then deadline=$end; fi
+  while (( SECONDS < deadline )); do
+    current_json="$(kubectl get application -n argocd "$app" -o json 2>/dev/null)" || return 1
+    phase="$(jq -r '.status.operationState.phase // ""' <<<"$current_json")"
+    local observed_start
+    observed_start="$(jq -r '.status.operationState.startedAt // ""' <<<"$current_json")"
+    if [[ "$observed_start" != "$started" ]]; then
+      echo "[sync-debug] app=$app recovery=deferred reason=newer-operation"
+      return 1
+    fi
+    pending="$(jq -r '.operation != null' <<<"$current_json")"
+    if [[ "$phase" != "Running" && "$phase" != "Terminating" && "$pending" != "true" ]]; then
+      break
+    fi
+    sleep 2
+  done
+  if [[ "$phase" == "Running" || "$phase" == "Terminating" || "$pending" == "true" ]] || (( SECONDS >= end )); then
+    echo "[sync-debug] app=$app recovery=deferred reason=operation-still-active"
+    return 1
+  fi
+  if [[ "$phase" == "Succeeded" && "$reason" != "monitoring-resync" ]]; then
+    echo "[sync-debug] app=$app recovery=skipped reason=operation-completed"
+    return 1
+  fi
+  # ArgoCD may start an automated operation between this read and the command.
+  # A rejected sync is deferred to the next loop, never treated as recovery.
+  if kubectl exec "$controller_pod" -n argocd -- argocd app sync "$app" --async --core; then
+    if [[ "$reason" != "monitoring-resync" ]]; then
+      installer_sync_attempts["$app"]=$(( ${installer_sync_attempts[$app]:-0} + 1 ))
+      echo "[sync-debug] app=$app installer-retry=${installer_sync_attempts[$app]} reason=$reason"
+    fi
+    return 0
+  fi
+  echo "[sync-debug] app=$app recovery=deferred reason=sync-request-rejected"
+  return 1
+}
+
 wait_until_apps_synced_healthy() {
   local apps=$1
   local synced=$2
@@ -553,13 +619,7 @@ wait_until_apps_synced_healthy() {
       observe_sync_diagnostics "$bootstrap_app" "$bootstrap_json"
       operation_phase_bootstrap_app="$(jq -r '.status.operationState.phase // ""' <<<"$bootstrap_json")"
       if [ "$operation_phase_bootstrap_app" = "Failed" ] || [ "$operation_phase_bootstrap_app" = "Error" ]; then
-        installer_sync_attempts["$bootstrap_app"]=$(( ${installer_sync_attempts["$bootstrap_app"]:-0} + 1 ))
-        if [[ "${KUBRIX_SYNC_DEBUG:-false}" == "true" || "${KUBRIX_INSTALL_DEBUG:-false}" == "true" ]]; then
-          echo "[sync-debug] app=$bootstrap_app installer-retry=${installer_sync_attempts[$bootstrap_app]} reason=bootstrap-$operation_phase_bootstrap_app"
-        fi
-        echo "sx-boostrap-app sync failed. Restarting sync ..."
-        kubectl exec "$controller_pod" -n argocd -- argocd app terminate-op "$bootstrap_app" --core || true
-        kubectl exec "$controller_pod" -n argocd -- argocd app sync "$bootstrap_app" --async --core || true
+        restart_app_sync "$bootstrap_app" "$(jq -r '.status.operationState.startedAt // ""' <<<"$bootstrap_json")" "bootstrap-$operation_phase_bootstrap_app" || true
       fi
     fi
 
@@ -637,8 +697,11 @@ wait_until_apps_synced_healthy() {
       # sx-k8s-monitoring
       if [[ "$app" == "sx-k8s-monitoring" && "$sync_status" == "$synced" && "$health_status" == "$healthy" ]]; then
         if [ "$k8smonitoring_restarted" != "true" ]; then
-          kubectl exec "$controller_pod" -n argocd -- argocd app sync "$app" --async --core || true
-          k8smonitoring_restarted="true"
+          all_apps_synced="false"
+          if restart_app_sync "$app" "" "monitoring-resync"; then
+            k8smonitoring_restarted="true"
+            all_apps_synced="false"
+          fi
         fi
       fi
 
@@ -659,42 +722,22 @@ wait_until_apps_synced_healthy() {
           sync_duration=$((now_seconds - sync_started_seconds))
         fi
 
-        # terminate+restart if running too long
+        # Recover stuck hooks/syncs even when resources are Synced+Healthy.
         if [ "$operation_phase" = "Running" ] && [ "$sync_duration" -gt 300 ]; then
-          installer_sync_attempts["$app"]=$(( ${installer_sync_attempts["$app"]:-0} + 1 ))
-          if [[ "${KUBRIX_SYNC_DEBUG:-false}" == "true" || "${KUBRIX_INSTALL_DEBUG:-false}" == "true" ]]; then
-            echo "[sync-debug] app=$app installer-retry=${installer_sync_attempts[$app]} reason=running-over-300s sync=$sync_status health=$health_status operation=$operation_phase"
-          fi
-          echo "sync of app ${app} gets terminated because it took longer than 300 seconds"
-          kubectl exec "$controller_pod" -n argocd -- argocd app terminate-op "$app" --core || true
-          echo "wait for 10 seconds"
-          sleep 10
-          echo "restart sync for app ${app}"
-          kubectl exec "$controller_pod" -n argocd -- argocd app sync "$app" --async --core || true
-        # re-sync once to clear Failed/Error operation when app is already Synced+Healthy (e.g. failed hook)
+          echo "sync of app ${app} exceeded 300 seconds — requesting recovery"
+          all_apps_synced="false"
+          restart_app_sync "$app" "$sync_started" "running-over-300s" || true
         elif { [ "$operation_phase" = "Failed" ] || [ "$operation_phase" = "Error" ]; } \
              && [ "$sync_status" = "$synced" ] && [ "$health_status" = "$healthy" ] \
              && [ -z "${resynced_healthy_failed[$app]+x}" ]; then
-          installer_sync_attempts["$app"]=$(( ${installer_sync_attempts["$app"]:-0} + 1 ))
-          if [[ "${KUBRIX_SYNC_DEBUG:-false}" == "true" || "${KUBRIX_INSTALL_DEBUG:-false}" == "true" ]]; then
-            echo "[sync-debug] app=$app installer-retry=${installer_sync_attempts[$app]} reason=clear-failed-operation sync=$sync_status health=$health_status operation=$operation_phase"
+          all_apps_synced="false"
+          if restart_app_sync "$app" "$sync_started" "clear-failed-operation"; then
+            resynced_healthy_failed[$app]=1
+            all_apps_synced="false"
           fi
-          echo "app ${app} is Synced+Healthy but operation ${operation_phase} — re-syncing once to clear status"
-          kubectl exec "$controller_pod" -n argocd -- argocd app sync "$app" --async --core || true
-          resynced_healthy_failed[$app]=1
-        # terminate+restart if failed/error and NOT Synced+Healthy
         elif { [ "$operation_phase" = "Failed" ] || [ "$operation_phase" = "Error" ]; } \
              && { [ "$sync_status" != "$synced" ] || [ "$health_status" != "$healthy" ]; }; then
-          installer_sync_attempts["$app"]=$(( ${installer_sync_attempts["$app"]:-0} + 1 ))
-          if [[ "${KUBRIX_SYNC_DEBUG:-false}" == "true" || "${KUBRIX_INSTALL_DEBUG:-false}" == "true" ]]; then
-            echo "[sync-debug] app=$app installer-retry=${installer_sync_attempts[$app]} reason=failed-or-error sync=$sync_status health=$health_status operation=$operation_phase"
-          fi
-          echo "sync of app ${app} failed — restarting sync"
-          kubectl exec "$controller_pod" -n argocd -- argocd app terminate-op "$app" --core || true
-          echo "wait for 10 seconds"
-          sleep 10
-          echo "restart sync for app ${app}"
-          kubectl exec "$controller_pod" -n argocd -- argocd app sync "$app" --async --core || true
+          restart_app_sync "$app" "$sync_started" "failed-or-error" || true
         fi
       else
         sync_duration="-"
