@@ -9,6 +9,7 @@ synced=Synced
 healthy=Healthy
 KUBRIX_SYNC_DEBUG=true
 declare -A diagnostic_last_state=() diagnostic_first_ready=() diagnostic_was_ready=()
+declare -A diagnostic_resource_snapshot=()
 declare -A diagnostic_regressions=() diagnostic_max_retry=() diagnostic_failures=() diagnostic_seen_failure=()
 log=$(mktemp)
 trap 'rm -f "$log"' EXIT
@@ -151,3 +152,54 @@ grep -q '\[sync-recovery\].*action=terminate' "$log"
 grep -q '\[sync-recovery\].*reason=operation-still-active' "$log"
 grep -q '\[sync-recovery\].*reason=sync-request-rejected' "$log"
 echo "Default/debug output and visible recovery warning checks passed."
+
+# Resource reasons: omit healthy/unassessed resources, retain drift/degradation,
+# distinguish operation/hook errors, deduplicate, and suppress in default mode.
+KUBRIX_SYNC_DEBUG=true
+resource_log=$(mktemp)
+trap 'rm -f "$log" "$resource_log"; rm -rf "$mock_dir"' EXIT
+resource_status='{"status":{"resources":[
+  {"kind":"Deployment","namespace":"app","name":"ok","status":"Synced","health":{"status":"Healthy"}},
+  {"kind":"ConfigMap","namespace":"app","name":"config","status":"Synced"},
+  {"group":"apps","kind":"Deployment","namespace":"app","name":"broken","status":"Synced","health":{"status":"Degraded","message":"Progress deadline exceeded"}},
+  {"kind":"Service","namespace":"app","name":"drift","status":"OutOfSync","health":{"status":"Healthy"}},
+  {"kind":"Secret","namespace":"app","name":"credentials","status":"OutOfSync","health":{"message":"do-not-print-secret"}}
+],"conditions":[{"type":"ComparisonError","message":"cache unavailable"}],"operationState":{"phase":"Failed","startedAt":"2026-10-13T00:00:00Z","message":"Bearer FAKE-CREDENTIAL password=FAKE-PASSWORD","syncResult":{"resources":[
+  {"kind":"Service","namespace":"app","name":"drift","status":"SyncFailed","message":"immutable field"},
+  {"kind":"Job","namespace":"app","name":"hook","hookPhase":"Failed","message":"BackoffLimitExceeded"}
+]}}}}'
+observe_resource_diagnostics sx-resources "$resource_status" > "$resource_log"
+grep -q 'Progress deadline exceeded' "$resource_log"
+grep -q 'immutable field' "$resource_log"
+grep -q 'BackoffLimitExceeded' "$resource_log"
+grep -q 'cache unavailable' "$resource_log"
+if grep -qE 'FAKE-CREDENTIAL|FAKE-PASSWORD|do-not-print-secret|app/ok|app/config' "$resource_log"; then exit 1; fi
+before_lines=$(wc -l < "$resource_log")
+observe_resource_diagnostics sx-resources "$resource_status" >> "$resource_log"
+[[ $(wc -l < "$resource_log") == "$before_lines" ]]
+changed_status=$(jq '.status.resources[2].health.message = "different reason"' <<< "$resource_status")
+observe_resource_diagnostics sx-resources "$changed_status" >> "$resource_log"
+grep -q 'different reason' "$resource_log"
+observe_resource_diagnostics sx-resources '{}' >> "$resource_log"
+grep -q 'issues-cleared=true' "$resource_log"
+KUBRIX_SYNC_DEBUG=false
+before_lines=$(wc -l < "$resource_log")
+observe_resource_diagnostics sx-quiet-resources "$resource_status" >> "$resource_log"
+[[ $(wc -l < "$resource_log") == "$before_lines" ]]
+echo "Resource-level reasons, filtering, deduplication, redaction and debug gating checks passed."
+
+# The real wait loop consumes the refreshed JSON rather than the stale snapshot.
+kubectl() {
+  if [[ "$*" == *"get pod"* ]]; then
+    printf '%s' mock-controller
+  elif [[ "$*" == *"--refresh"* ]]; then
+    printf '%s' '{"metadata":{"name":"sx-refresh"},"status":{"sync":{"status":"Synced"},"health":{"status":"Healthy"}}}'
+  else
+    printf '%s' '{"metadata":{"name":"sx-refresh"},"status":{"sync":{"status":"OutOfSync"},"health":{"status":"Unknown"}}}'
+  fi
+}
+KUBRIX_SYNC_DEBUG=true
+refresh_output=$(wait_until_apps_synced_healthy "sx-refresh" Synced Healthy 10)
+grep -q 'refresh=normal sync=Synced health=Healthy' <<< "$refresh_output"
+grep -q 'all-ready=true' <<< "$refresh_output"
+echo "Normal refresh consumes updated Application JSON in the same loop."
