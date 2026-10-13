@@ -99,20 +99,27 @@ ArgoCD and any selected Grafana are Synced and Healthy. Set
 identifiers and retry details without shell xtrace. Kind CI enables it explicitly.
 Existing `KUBRIX_INSTALL_DEBUG=true` also enables these details.
 
-Each wait always prints a per-app summary: installer retries, latest and maximum
-observed ArgoCD operation retry counts, distinct observed failed operations,
-readiness regressions and seconds to first observed Synced/Healthy status.
+Without debug, `[sync-recovery]` reports actual recovery actions, incomplete
+termination and rejected sync requests. Normal completion/newer-operation
+deferrals are debug-only. Each wait prints a compact `[sync-summary]` with total
+accepted recovery syncs, observed failed operations and readiness regressions;
+only apps with noteworthy counters or no observed readiness get individual rows.
+Successful installation ends with `[install-summary]` and its elapsed seconds.
+
+With debug enabled, each app also gets full statistics: latest/maximum observed
+ArgoCD operation retry counts and seconds to first observed Synced/Healthy status.
 A retry count belongs to one operation, so its maximum is not a total retry count.
 Polling can miss short transitions; first readiness is not sustained readiness.
 Failed operation counts include failed hooks even for Synced/Healthy apps.
-Diagnostics use cached Application JSON and never initiate additional syncs.
+Counters are collected in both modes; diagnostic observation never initiates syncs.
 
-`[sync-timing]` marks installation start/end separately from image build, cluster
-creation and Playwright, plus the duration of each application wait.
+Debug-only `[sync-timing]` marks installation start/end separately from image
+build, cluster creation and Playwright, plus the duration of each application wait.
 Installation duration includes installer bootstrap/setup and final cleanup.
-If installation aborts, the success end marker is absent; use the failure timestamp.
-Each wait has an ID: deduplicate replayed installer logs by wait ID and app
-(or the exact event line) before comparing counters.
+If installation aborts, the success end summary/marker is absent; use the failure
+timestamp. Each wait has an ID: deduplicate replayed installer logs by wait ID
+and app (or the exact event line) before comparing counters.
+`KUBRIX_SYNC_DEBUG` defaults to false; kind CI explicitly enables it.
 
 Before merging, compare each executed kind profile with 2–3 successful runs of
 the same profile on main, including full `kind-hub-prime` in Prime.
