@@ -60,3 +60,73 @@ wait_until_apps_synced_healthy "sx-example" Synced Healthy 10 >> "$log"
 grep -q 'event=end .*all-ready=true' "$log"
 grep -q 'app=sx-example installer-retries=0 .*observed-failed-operations=0 readiness-regressions=0 first-ready-after=' "$log"
 echo "Installer diagnostic failure deduplication, retry reset, readiness regression and quiet-mode checks passed."
+
+# Recovery must not race a live operation or disable the stuck-hook watchdog.
+mock_dir=$(mktemp -d)
+trap 'rm -f "$log"; rm -rf "$mock_dir"' EXIT
+end=$((SECONDS + 1000))
+controller_pod=mock-controller
+declare -A installer_sync_attempts=()
+kubectl() {
+  if [[ "$1" == get ]]; then
+    cat "$mock_dir/status.json"
+  elif [[ "$*" == *"terminate-op"* ]]; then
+    echo terminate >> "$mock_dir/commands"
+    case "$mock_mode" in
+      terminate) printf '%s' "$failed_state" > "$mock_dir/status.json" ;;
+      complete) printf '%s' "$success_state" > "$mock_dir/status.json" ;;
+      newer) printf '%s' "$newer_state" > "$mock_dir/status.json" ;;
+    esac
+  elif [[ "$*" == *"app sync"* ]]; then
+    echo sync >> "$mock_dir/commands"
+    [[ "$mock_mode" != rejected ]]
+  fi
+}
+sleep() { SECONDS=$((SECONDS + $1)); }
+running_state='{"operation":{},"status":{"operationState":{"phase":"Running","startedAt":"2026-10-12T00:00:00Z"}}}'
+failed_state='{"status":{"operationState":{"phase":"Failed","startedAt":"2026-10-12T00:00:00Z"}}}'
+success_state='{"status":{"operationState":{"phase":"Succeeded","startedAt":"2026-10-12T00:00:00Z"}}}'
+newer_state='{"operation":{},"status":{"operationState":{"phase":"Running","startedAt":"2026-10-12T00:01:00Z"}}}'
+reset_recovery() {
+  printf '%s' "$1" > "$mock_dir/status.json"
+  : > "$mock_dir/commands"
+  installer_sync_attempts=()
+  mock_mode="$2"
+}
+reset_recovery "$running_state" terminate
+restart_app_sync sx-example 2026-10-12T00:00:00 running-over-300s >> "$log"
+[[ $(cat "$mock_dir/commands") == $'terminate\nsync' ]]
+[[ ${installer_sync_attempts[sx-example]} == 1 ]]
+
+# Natural completion between terminate and restart needs no further sync.
+reset_recovery "$running_state" complete
+if restart_app_sync sx-example 2026-10-12T00:00:00 running-over-300s >> "$log"; then exit 1; fi
+[[ $(cat "$mock_dir/commands") == terminate ]]
+[[ ${installer_sync_attempts[sx-example]:-0} == 0 ]]
+
+# A newer automated operation must never be terminated.
+reset_recovery "$newer_state" terminate
+if restart_app_sync sx-example 2026-10-12T00:00:00 running-over-300s >> "$log"; then exit 1; fi
+[[ ! -s "$mock_dir/commands" ]]
+reset_recovery "$running_state" newer
+if restart_app_sync sx-example 2026-10-12T00:00:00 running-over-300s >> "$log"; then exit 1; fi
+[[ $(cat "$mock_dir/commands") == terminate ]]
+
+# Incomplete termination is bounded and must not submit a new sync.
+reset_recovery "$running_state" stuck
+before=$SECONDS
+if restart_app_sync sx-example 2026-10-12T00:00:00 running-over-300s >> "$log"; then exit 1; fi
+[[ $((SECONDS-before)) -ge 30 && $((SECONDS-before)) -le 32 ]]
+[[ $(cat "$mock_dir/commands") == terminate ]]
+reset_recovery "$running_state" terminate
+if restart_app_sync sx-example "" monitoring-resync >> "$log"; then exit 1; fi
+[[ ! -s "$mock_dir/commands" ]]
+
+# Failed operations can restart directly; rejection is not counted as success.
+reset_recovery "$failed_state" terminate
+restart_app_sync sx-example 2026-10-12T00:00:00 failed-or-error >> "$log"
+[[ $(cat "$mock_dir/commands") == sync ]]
+reset_recovery "$failed_state" rejected
+if restart_app_sync sx-example 2026-10-12T00:00:00 failed-or-error >> "$log"; then exit 1; fi
+[[ ${installer_sync_attempts[sx-example]:-0} == 0 ]]
+echo "Serialized sync recovery and stuck-hook watchdog checks passed."
