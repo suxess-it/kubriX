@@ -142,6 +142,27 @@ deferred/rejected requests are logged separately. ArgoCD can still start an
 operation between the final read and sync submission; rejected submissions are
 deferred rather than assumed successful.
 
+Debug-only `[sync-resource]` rows identify non-Synced or unhealthy resources
+with group/kind/namespace/name, sync/health status and available health messages.
+Resources that are Synced and have no health assessment (e.g. ConfigMaps) are
+omitted. Application condition messages and failed operation/hook messages are
+also included; operation reasons carry their operation start timestamp to
+distinguish them from live resource health. A Succeeded operation does not
+contribute old failure messages. Each app emits a snapshot only when the
+reported resource status/reason changes, and an issues-cleared marker afterwards.
+Messages are limited to 1000 characters, common credential patterns are
+redacted and Secret resource messages are omitted. Manifests/Secret data are
+never dumped. OutOfSync alone may have no explanatory message in Application
+status; these rows do not include a manifest diff or container logs.
+
+Normal ArgoCD refresh is requested for Degraded/Progressing/Unknown health or
+Unknown/OutOfSync sync status, at most once every 30 seconds per app. The
+returned Application JSON is evaluated in the same loop; if refresh fails,
+cached status is retained. This applies independently of debug mode. There is
+no hard refresh and no extra resource CLI call per app. This extends the
+approaches proposed in OSS PRs #2229 (resource detail output) and #2797 (refresh
+conditions).
+
 ## Validation
 
 Run the compatibility, customer override, exclusion, and static profile checks
