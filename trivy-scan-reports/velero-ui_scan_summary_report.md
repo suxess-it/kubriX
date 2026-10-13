@@ -1,7 +1,7 @@
 <h2>Image <code>docker.io/dserio83/velero-api:0.3.1</code></h2>
 
 <h3>Target <code>docker.io/dserio83/velero-api:0.3.1 (debian 12.11)</code></h3>
-<h4>Vulnerabilities (213)</h4>
+<h4>Vulnerabilities (211)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -359,20 +359,6 @@
         <td>HIGH</td>
         <td>3.7.9-2+deb12u5</td>
         <td>3.7.9-2+deb12u7</td>
-    </tr>
-    <tr>
-        <td><code>libgnutls30</code></td>
-        <td>CVE-2026-88647</td>
-        <td>HIGH</td>
-        <td>3.7.9-2+deb12u5</td>
-        <td></td>
-    </tr>
-    <tr>
-        <td><code>libgnutls30</code></td>
-        <td>CVE-2026-88648</td>
-        <td>HIGH</td>
-        <td>3.7.9-2+deb12u5</td>
-        <td></td>
     </tr>
     <tr>
         <td><code>libgssapi-krb5-2</code></td>
@@ -2611,7 +2597,7 @@
 <h2>Image <code>docker.io/dserio83/velero-watchdog:0.1.8</code></h2>
 
 <h3>Target <code>docker.io/dserio83/velero-watchdog:0.1.8 (debian 12.10)</code></h3>
-<h4>Vulnerabilities (171)</h4>
+<h4>Vulnerabilities (169)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -2983,20 +2969,6 @@
         <td>HIGH</td>
         <td>3.7.9-2+deb12u4</td>
         <td>3.7.9-2+deb12u7</td>
-    </tr>
-    <tr>
-        <td><code>libgnutls30</code></td>
-        <td>CVE-2026-88647</td>
-        <td>HIGH</td>
-        <td>3.7.9-2+deb12u4</td>
-        <td></td>
-    </tr>
-    <tr>
-        <td><code>libgnutls30</code></td>
-        <td>CVE-2026-88648</td>
-        <td>HIGH</td>
-        <td>3.7.9-2+deb12u4</td>
-        <td></td>
     </tr>
     <tr>
         <td><code>libgssapi-krb5-2</code></td>
