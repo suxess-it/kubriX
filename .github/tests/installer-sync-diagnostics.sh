@@ -203,3 +203,34 @@ refresh_output=$(wait_until_apps_synced_healthy "sx-refresh" Synced Healthy 10)
 grep -q 'refresh=normal sync=Synced health=Healthy' <<< "$refresh_output"
 grep -q 'all-ready=true' <<< "$refresh_output"
 echo "Normal refresh consumes updated Application JSON in the same loop."
+
+# Force refresh is gated by selection and successful token provisioning.
+source <(sed -n '/^force_backstage_external_secret_refresh() {/,/^sync_debug_printf() {/p' install-platform.sh | sed '$d')
+(
+  cd "$mock_dir"
+  argocd_apps="sx-argocd"
+  utc_now_seconds() { echo 1791918000; }
+  kubectl() {
+    printf '%s\n' "$*" >> force-commands
+    [[ "${refresh_mode:-success}" == success ]]
+  }
+  : > force-commands
+  force_backstage_external_secret_refresh
+  [[ ! -s force-commands ]]
+  argocd_apps="sx-argocd sx-backstage"
+  force_backstage_external_secret_refresh
+  [[ ! -s force-commands ]]
+  touch backstage-openbao-secrets-created
+  refresh_mode=failed
+  force_backstage_external_secret_refresh
+  [[ ! -f backstage-external-secret-refresh-requested ]]
+  refresh_mode=success
+  force_backstage_external_secret_refresh > force-log
+  [[ -f backstage-external-secret-refresh-requested ]]
+  [[ $(wc -l < force-commands) -eq 2 ]]
+  grep -q 'annotate externalsecret.external-secrets.io sx-cnp-secret -n backstage force-sync=1791918000 --overwrite --request-timeout=10s' force-commands
+  grep -q 'force-sync=requested' force-log
+  force_backstage_external_secret_refresh
+  [[ $(wc -l < force-commands) -eq 2 ]]
+)
+echo "Backstage force-refresh selection, token readiness, retry and once-only checks passed."
