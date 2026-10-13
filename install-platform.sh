@@ -459,6 +459,22 @@ wait_for_openbao_namespace_and_mount() {
   return 1
 }
 
+# Request one ESO refresh after token provisioning; retry only a rejected request.
+# This does not restart an ArgoCD sync or delete the managed Kubernetes Secret.
+force_backstage_external_secret_refresh() {
+  [[ " $argocd_apps " == *" sx-backstage "* ]] || return 0
+  [[ -f ./backstage-openbao-secrets-created ]] || return 0
+  [[ ! -f ./backstage-external-secret-refresh-requested ]] || return 0
+
+  if kubectl annotate externalsecret.external-secrets.io sx-cnp-secret -n backstage \
+    "force-sync=$(utc_now_seconds)" --overwrite --request-timeout=10s >/dev/null 2>&1; then
+    touch ./backstage-external-secret-refresh-requested
+    echo "[secret-refresh] app=sx-backstage resource=backstage/sx-cnp-secret force-sync=requested"
+  else
+    sync_debug_printf '%s\n' "[secret-refresh] app=sx-backstage resource=backstage/sx-cnp-secret force-sync=deferred retry=next-loop"
+  fi
+}
+
 sync_debug_printf() {
   if [[ "${KUBRIX_SYNC_DEBUG:-false}" == "true" || "${KUBRIX_INSTALL_DEBUG:-false}" == "true" ]]; then
     printf "$@"
@@ -785,6 +801,10 @@ wait_until_apps_synced_healthy() {
           touch ./backstage-openbao-secrets-created
           echo "--------------------"
         fi
+      fi
+
+      if [[ "$app" == "sx-backstage" ]]; then
+        force_backstage_external_secret_refresh
       fi
 
       # sx-k8s-monitoring
