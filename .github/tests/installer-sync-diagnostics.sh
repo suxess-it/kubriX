@@ -2,7 +2,7 @@
 # Tests cached-status diagnostics without a cluster or installer side effects.
 set -euo pipefail
 cd "$(dirname "$0")/../.."
-source <(sed -n '/^observe_sync_diagnostics() {/,/^wait_until_apps_synced_healthy() {/p' install-platform.sh | sed '$d')
+source <(sed -n '/^sync_debug_printf() {/,/^wait_until_apps_synced_healthy() {/p' install-platform.sh | sed '$d')
 start=$SECONDS
 sync_wait_id=test-wait
 synced=Synced
@@ -57,9 +57,25 @@ kubectl() {
 }
 column() { cat; }
 wait_until_apps_synced_healthy "sx-example" Synced Healthy 10 >> "$log"
-grep -q 'event=end .*all-ready=true' "$log"
-grep -q 'app=sx-example installer-retries=0 .*observed-failed-operations=0 readiness-regressions=0 first-ready-after=' "$log"
+grep -q '\[sync-summary\].*all-ready=true' "$log"
+grep -q 'recovery-syncs=0 observed-failed-operations=0 readiness-regressions=0 all-ready=true' "$log"
+if grep -q '\[sync-debug\].*installer-retries=0' "$log"; then
+  echo "Quiet wait should not print detailed app statistics" >&2
+  exit 1
+fi
 echo "Installer diagnostic failure deduplication, retry reset, readiness regression and quiet-mode checks passed."
+
+# With debug enabled, retain internal markers and full per-app statistics.
+debug_wait_output=$(KUBRIX_SYNC_DEBUG=true wait_until_apps_synced_healthy "sx-example" Synced Healthy 10)
+grep -q '\[sync-timing\].*event=end' <<< "$debug_wait_output"
+grep -q '\[sync-debug\].*app=sx-example installer-retries=0' <<< "$debug_wait_output"
+unset KUBRIX_SYNC_DEBUG
+default_wait_output=$(wait_until_apps_synced_healthy "sx-example" Synced Healthy 10)
+grep -q '\[sync-summary\].*all-ready=true' <<< "$default_wait_output"
+if grep -qE '\[sync-debug\]|\[sync-timing\]' <<< "$default_wait_output"; then
+  echo "Default mode should not emit detailed diagnostics or internal markers" >&2
+  exit 1
+fi
 
 # Recovery must not race a live operation or disable the stuck-hook watchdog.
 mock_dir=$(mktemp -d)
@@ -130,3 +146,8 @@ reset_recovery "$failed_state" rejected
 if restart_app_sync sx-example 2026-10-12T00:00:00 failed-or-error >> "$log"; then exit 1; fi
 [[ ${installer_sync_attempts[sx-example]:-0} == 0 ]]
 echo "Serialized sync recovery and stuck-hook watchdog checks passed."
+
+grep -q '\[sync-recovery\].*action=terminate' "$log"
+grep -q '\[sync-recovery\].*reason=operation-still-active' "$log"
+grep -q '\[sync-recovery\].*reason=sync-request-rejected' "$log"
+echo "Default/debug output and visible recovery warning checks passed."
