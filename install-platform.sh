@@ -459,6 +459,12 @@ wait_for_openbao_namespace_and_mount() {
   return 1
 }
 
+sync_debug_printf() {
+  if [[ "${KUBRIX_SYNC_DEBUG:-false}" == "true" || "${KUBRIX_INSTALL_DEBUG:-false}" == "true" ]]; then
+    printf "$@"
+  fi
+}
+
 # Observe cached Application status only; diagnostics never trigger a sync.
 # KUBRIX_SYNC_DEBUG enables state transitions without enabling shell xtrace.
 observe_sync_diagnostics() {
@@ -481,7 +487,7 @@ observe_sync_diagnostics() {
   local state="$sync/$health/$phase/$conditions/$failed_resources"
   if [[ "${diagnostic_last_state[$app]:-}" != "$state" ]]; then
     if [[ "${KUBRIX_SYNC_DEBUG:-false}" == "true" || "${KUBRIX_INSTALL_DEBUG:-false}" == "true" ]]; then
-      printf '[sync-debug] wait=%s elapsed=%ss app=%s sync=%s health=%s operation=%s conditions=%s failed-resources=%s\n' \
+      sync_debug_printf '[sync-debug] wait=%s elapsed=%ss app=%s sync=%s health=%s operation=%s conditions=%s failed-resources=%s\n' \
         "$sync_wait_id" "$elapsed" "$app" "$sync" "$health" "$phase" "$conditions" "$failed_resources"
     fi
     diagnostic_last_state["$app"]="$state"
@@ -494,7 +500,7 @@ observe_sync_diagnostics() {
   else
     if [[ "${diagnostic_was_ready[$app]:-false}" == "true" ]]; then
       diagnostic_regressions["$app"]=$(( ${diagnostic_regressions[$app]:-0} + 1 ))
-      printf '[sync-debug] wait=%s elapsed=%ss app=%s readiness-regression=%s sync=%s health=%s\n' \
+      sync_debug_printf '[sync-debug] wait=%s elapsed=%ss app=%s readiness-regression=%s sync=%s health=%s\n' \
         "$sync_wait_id" "$elapsed" "$app" "${diagnostic_regressions[$app]}" "$sync" "$health"
     fi
     diagnostic_was_ready["$app"]=false
@@ -508,7 +514,7 @@ observe_sync_diagnostics() {
     if [[ -z "${diagnostic_seen_failure[$error_key]+x}" ]]; then
       diagnostic_seen_failure["$error_key"]=true
       diagnostic_failures["$app"]=$(( ${diagnostic_failures[$app]:-0} + 1 ))
-      printf '[sync-debug] wait=%s elapsed=%ss app=%s observed-failed-operations=%s conditions=%s failed-resources=%s\n' \
+      sync_debug_printf '[sync-debug] wait=%s elapsed=%ss app=%s observed-failed-operations=%s conditions=%s failed-resources=%s\n' \
         "$sync_wait_id" "$elapsed" "$app" "${diagnostic_failures[$app]}" "$conditions" "$failed_resources"
     fi
   fi
@@ -522,11 +528,11 @@ restart_app_sync() {
   phase="$(jq -r '.status.operationState.phase // ""' <<<"$current_json")"
   started="$(jq -r '.status.operationState.startedAt // ""' <<<"$current_json")"
   if [[ -n "$expected_start" && "${started%Z}" != "${expected_start%Z}" ]]; then
-    echo "[sync-debug] app=$app recovery=deferred reason=newer-operation"
+    sync_debug_printf '%s\n' "[sync-debug] app=$app recovery=deferred reason=newer-operation"
     return 1
   fi
   if [[ "$phase" == "Succeeded" && "$reason" != "monitoring-resync" ]]; then
-    echo "[sync-debug] app=$app recovery=skipped reason=operation-completed"
+    sync_debug_printf '%s\n' "[sync-debug] app=$app recovery=skipped reason=operation-completed"
     return 1
   fi
   pending="$(jq -r '.operation != null' <<<"$current_json")"
@@ -534,11 +540,12 @@ restart_app_sync() {
     return 1
   fi
   if [[ "$phase" == "Running" && "$reason" != "running-over-300s" ]]; then
-    echo "[sync-debug] app=$app recovery=deferred reason=operation-running"
+    sync_debug_printf '%s\n' "[sync-debug] app=$app recovery=deferred reason=operation-running"
     return 1
   fi
   if [[ "$phase" == "Running" ]]; then
     # The cached Running state may have completed while other apps were checked.
+    echo "[sync-recovery] app=$app action=terminate reason=$reason"
     kubectl exec "$controller_pod" -n argocd -- argocd app terminate-op "$app" --core || true
   fi
 
@@ -550,7 +557,7 @@ restart_app_sync() {
     local observed_start
     observed_start="$(jq -r '.status.operationState.startedAt // ""' <<<"$current_json")"
     if [[ "$observed_start" != "$started" ]]; then
-      echo "[sync-debug] app=$app recovery=deferred reason=newer-operation"
+      sync_debug_printf '%s\n' "[sync-debug] app=$app recovery=deferred reason=newer-operation"
       return 1
     fi
     pending="$(jq -r '.operation != null' <<<"$current_json")"
@@ -560,11 +567,11 @@ restart_app_sync() {
     sleep 2
   done
   if [[ "$phase" == "Running" || "$phase" == "Terminating" || "$pending" == "true" ]] || (( SECONDS >= end )); then
-    echo "[sync-debug] app=$app recovery=deferred reason=operation-still-active"
+    echo "[sync-recovery] app=$app recovery=deferred reason=operation-still-active"
     return 1
   fi
   if [[ "$phase" == "Succeeded" && "$reason" != "monitoring-resync" ]]; then
-    echo "[sync-debug] app=$app recovery=skipped reason=operation-completed"
+    sync_debug_printf '%s\n' "[sync-debug] app=$app recovery=skipped reason=operation-completed"
     return 1
   fi
   # ArgoCD may start an automated operation between this read and the command.
@@ -572,11 +579,11 @@ restart_app_sync() {
   if kubectl exec "$controller_pod" -n argocd -- argocd app sync "$app" --async --core; then
     if [[ "$reason" != "monitoring-resync" ]]; then
       installer_sync_attempts["$app"]=$(( ${installer_sync_attempts[$app]:-0} + 1 ))
-      echo "[sync-debug] app=$app installer-retry=${installer_sync_attempts[$app]} reason=$reason"
+      echo "[sync-recovery] app=$app installer-retry=${installer_sync_attempts[$app]} reason=$reason"
     fi
     return 0
   fi
-  echo "[sync-debug] app=$app recovery=deferred reason=sync-request-rejected"
+  echo "[sync-recovery] app=$app recovery=deferred reason=sync-request-rejected"
   return 1
 }
 
@@ -594,7 +601,7 @@ wait_until_apps_synced_healthy() {
   end=$((SECONDS+max_wait_time))
 
   local sync_wait_id="$(utc_now_seconds)-$start"
-  printf '[sync-timing] wait=%s event=start max-wait=%ss\n' "$sync_wait_id" "$max_wait_time"
+  sync_debug_printf '[sync-timing] wait=%s event=start max-wait=%ss\n' "$sync_wait_id" "$max_wait_time"
   declare -A diagnostic_last_state=() diagnostic_first_ready=() diagnostic_was_ready=()
   declare -A diagnostic_regressions=() diagnostic_max_retry=() diagnostic_failures=() diagnostic_seen_failure=()
 
@@ -724,7 +731,7 @@ wait_until_apps_synced_healthy() {
 
         # Recover stuck hooks/syncs even when resources are Synced+Healthy.
         if [ "$operation_phase" = "Running" ] && [ "$sync_duration" -gt 300 ]; then
-          echo "sync of app ${app} exceeded 300 seconds — requesting recovery"
+          sync_debug_printf '%s\n' "sync of app ${app} exceeded 300 seconds — requesting recovery"
           all_apps_synced="false"
           restart_app_sync "$app" "$sync_started" "running-over-300s" || true
         elif { [ "$operation_phase" = "Failed" ] || [ "$operation_phase" = "Error" ]; } \
@@ -767,12 +774,21 @@ wait_until_apps_synced_healthy() {
     sleep 10
   done
 
-  echo "[sync-debug] installer sync retries during this wait:"
+  local recovery_total=0 failures_total=0 regressions_total=0
   for app in sx-bootstrap-app ${apps}; do
-    echo "[sync-debug] wait=$sync_wait_id app=$app installer-retries=${installer_sync_attempts[$app]:-0} latest-argocd-operation-retries=${last_argocd_retry_count[$app]:-0} max-observed-argocd-operation-retries=${diagnostic_max_retry[$app]:-0} observed-failed-operations=${diagnostic_failures[$app]:-0} readiness-regressions=${diagnostic_regressions[$app]:-0} first-ready-after=${diagnostic_first_ready[$app]:-never}"
+    recovery_total=$((recovery_total + ${installer_sync_attempts[$app]:-0}))
+    failures_total=$((failures_total + ${diagnostic_failures[$app]:-0}))
+    regressions_total=$((regressions_total + ${diagnostic_regressions[$app]:-0}))
   done
-
-  printf '[sync-timing] wait=%s event=end elapsed=%ss all-ready=%s\n' "$sync_wait_id" "$((SECONDS-start))" "$all_apps_synced"
+  echo "[sync-summary] wait=$sync_wait_id elapsed=$((SECONDS-start))s recovery-syncs=$recovery_total observed-failed-operations=$failures_total readiness-regressions=$regressions_total all-ready=$all_apps_synced"
+  for app in sx-bootstrap-app ${apps}; do
+    if (( ${installer_sync_attempts[$app]:-0} > 0 || ${diagnostic_failures[$app]:-0} > 0 || ${diagnostic_regressions[$app]:-0} > 0 )) \
+       || { [[ "$app" != "sx-bootstrap-app" ]] && [[ -z "${diagnostic_first_ready[$app]+x}" ]]; }; then
+      echo "[sync-summary] app=$app recovery-syncs=${installer_sync_attempts[$app]:-0} observed-failed-operations=${diagnostic_failures[$app]:-0} readiness-regressions=${diagnostic_regressions[$app]:-0}"
+    fi
+    sync_debug_printf '%s\n' "[sync-debug] wait=$sync_wait_id app=$app installer-retries=${installer_sync_attempts[$app]:-0} latest-argocd-operation-retries=${last_argocd_retry_count[$app]:-0} max-observed-argocd-operation-retries=${diagnostic_max_retry[$app]:-0} observed-failed-operations=${diagnostic_failures[$app]:-0} readiness-regressions=${diagnostic_regressions[$app]:-0} first-ready-after=${diagnostic_first_ready[$app]:-never}"
+  done
+  sync_debug_printf '[sync-timing] wait=%s event=end elapsed=%ss all-ready=%s\n' "$sync_wait_id" "$((SECONDS-start))" "$all_apps_synced"
 
   if [ "$all_apps_synced" != "true" ]; then
     echo "not all apps synced and healthy after limit reached :("
@@ -882,7 +898,7 @@ exclude_apps() {
 
 # main starts here
 installation_started_seconds=$SECONDS
-echo "[sync-timing] event=installation-start"
+sync_debug_printf '%s\n' "[sync-timing] event=installation-start"
 
 # version from ENV
 echo "Version: ${APP_VERSION:-unknown}"
@@ -1146,4 +1162,6 @@ if [[ "${KUBRIX_CLUSTER_TYPE}" == "kind" ]] ; then
   kubectl get secret kind-kubrix-ca-key-pair -n cert-manager -o jsonpath="{['data']['tls\.crt']}" | base64 --decode
 fi
 
-printf '[sync-timing] event=installation-end elapsed=%ss\n' "$((SECONDS-installation_started_seconds))"
+sync_debug_printf '[sync-timing] event=installation-end elapsed=%ss\n' "$((SECONDS-installation_started_seconds))"
+
+printf '[install-summary] elapsed=%ss\n' "$((SECONDS-installation_started_seconds))"
