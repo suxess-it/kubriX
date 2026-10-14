@@ -468,8 +468,11 @@ force_backstage_external_secret_refresh() {
 
   local refresh_output refresh_exit_code refresh_error
   backstage_secret_refresh_attempts=$(( ${backstage_secret_refresh_attempts:-0} + 1 ))
-  if refresh_output="$(kubectl annotate externalsecret.external-secrets.io sx-cnp-secret -n backstage \
-    "force-sync=$(utc_now_seconds)" --overwrite --request-timeout=10s 2>&1)"; then
+  # A non-default --request-timeout prevents client-go from falling back to
+  # in-cluster credentials when no kubeconfig exists. Bound the whole process
+  # instead, preserving both ServiceAccount and explicit kubeconfig support.
+  if refresh_output="$(timeout 20s kubectl annotate externalsecret.external-secrets.io sx-cnp-secret -n backstage \
+    "force-sync=$(utc_now_seconds)" --overwrite 2>&1)"; then
     touch ./backstage-external-secret-refresh-requested
     unset backstage_secret_refresh_last_error
     echo "[secret-refresh] app=sx-backstage resource=backstage/sx-cnp-secret force-sync=requested attempts=$backstage_secret_refresh_attempts"
