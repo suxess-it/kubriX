@@ -208,11 +208,16 @@ echo "Normal refresh consumes updated Application JSON in the same loop."
 source <(sed -n '/^force_backstage_external_secret_refresh() {/,/^sync_debug_printf() {/p' install-platform.sh | sed '$d')
 (
   cd "$mock_dir"
+  KUBRIX_SYNC_DEBUG=false
   argocd_apps="sx-argocd"
   utc_now_seconds() { echo 1791918000; }
   kubectl() {
     printf '%s\n' "$*" >> force-commands
-    [[ "${refresh_mode:-success}" == success ]]
+    if [[ "${refresh_mode:-success}" != success ]]; then
+      printf '%s\n' 'Error from server (Forbidden): cannot patch externalsecrets' \
+        'Bearer FAKE-CREDENTIAL token=FAKE-TOKEN' >&2
+      return 7
+    fi
   }
   : > force-commands
   force_backstage_external_secret_refresh
@@ -222,15 +227,26 @@ source <(sed -n '/^force_backstage_external_secret_refresh() {/,/^sync_debug_pri
   [[ ! -s force-commands ]]
   touch backstage-openbao-secrets-created
   refresh_mode=failed
-  force_backstage_external_secret_refresh
+  force_backstage_external_secret_refresh > force-error-log
   [[ ! -f backstage-external-secret-refresh-requested ]]
+  grep -q 'exit-code=7.*cannot patch externalsecrets' force-error-log
+  [[ $(wc -l < force-error-log) -eq 1 ]]
+  if grep -qE 'FAKE-CREDENTIAL|FAKE-TOKEN' force-error-log; then exit 1; fi
+  # Same error stays quiet by default, but the request is still retried.
+  force_backstage_external_secret_refresh >> force-error-log
+  [[ $(wc -l < force-error-log) -eq 1 ]]
+  [[ $(wc -l < force-commands) -eq 2 ]]
+  [[ ! -f backstage-external-secret-refresh-requested ]]
+  KUBRIX_SYNC_DEBUG=true
+  force_backstage_external_secret_refresh >> force-error-log
+  grep -q 'attempt=3 exit-code=7.*error=unchanged' force-error-log
   refresh_mode=success
   force_backstage_external_secret_refresh > force-log
   [[ -f backstage-external-secret-refresh-requested ]]
-  [[ $(wc -l < force-commands) -eq 2 ]]
+  [[ $(wc -l < force-commands) -eq 4 ]]
   grep -q 'annotate externalsecret.external-secrets.io sx-cnp-secret -n backstage force-sync=1791918000 --overwrite --request-timeout=10s' force-commands
-  grep -q 'force-sync=requested' force-log
+  grep -q 'force-sync=requested attempts=4' force-log
   force_backstage_external_secret_refresh
-  [[ $(wc -l < force-commands) -eq 2 ]]
+  [[ $(wc -l < force-commands) -eq 4 ]]
 )
-echo "Backstage force-refresh selection, token readiness, retry and once-only checks passed."
+echo "Backstage force-refresh selection, token readiness, visible/redacted errors, retry and once-only checks passed."
