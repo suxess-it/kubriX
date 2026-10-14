@@ -9,13 +9,13 @@ spec:
   provider: {{ .Values.backupStorageLocation.provider | default "aws" }}
   objectStorage:
     bucket: {{ .Values.backupStorageLocation.config.bucket | default "dummy" }}
-    prefix: {{ $clusterName }}
+    prefix: {{ .Values.backupStorageLocation.config.prefix | default $clusterName }}
 {{- if .Values.backupStorageLocation.config.usecaCert }}
     caCertRef:
       name: {{ .Values.backupStorageLocation.config.caCertSecretName | default "velero-cloud-credentials" }}
       key: {{ .Values.backupStorageLocation.config.caCertSecretKey | default "caCert" }}
 {{- end }}
-  accessMode: ReadWrite
+  accessMode: {{ .Values.backupStorageLocation.accessMode | default "ReadWrite" }}
   config:
     region: {{ .Values.backupStorageLocation.config.region | default "us-east-1" }}
     s3Url: {{ .Values.backupStorageLocation.config.s3Url }}
