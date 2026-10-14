@@ -102,18 +102,10 @@ loki:
     rules:
       # -- If enabled, create PrometheusRule resource with Loki recording rules
       enabled: true
-      # -- Include alerting rules
-      alerting: true
-      # -- Additional groups to add to the rules file
-      additionalGroups: []
+    # -- Include alerting rules
+    alerts:
+      enabled: true
     # ServiceMonitor configuration
     serviceMonitor:
       # -- If enabled, ServiceMonitor resources for Prometheus Operator are created
       enabled: true
-
-      relabelings:
-        - action: replace
-          sourceLabels: [job]
-          regex: '^([^/]+)/sx-loki-(.+)$'
-          replacement: '$1/loki-$2'
-          targetLabel: job

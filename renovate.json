@@ -26,6 +26,19 @@
         "image: (?<depName>quay\\.io/openbao/openbao):(?<currentValue>[^\\s]+)"
       ],
       "datasourceTemplate": "docker"
+    },
+    {
+      "customType": "regex",
+      "managerFilePatterns": [
+        "/^platform-apps\\/charts\\/testkube\\/templates\\/kind-(portal|delivery|security|observability)-test-playwright\\.yaml$/"
+      ],
+      "matchStrings": [
+        "image:\\s*mcr\\.microsoft\\.com/playwright:v(?<currentValue>\\d+\\.\\d+\\.\\d+)"
+      ],
+      "depNameTemplate": "@playwright/test",
+      "datasourceTemplate": "npm",
+      "versioningTemplate": "npm",
+      "autoReplaceStringTemplate": "image: mcr.microsoft.com/playwright:v{{{newValue}}}"
     }
   ],
   "packageRules": [
@@ -36,7 +49,7 @@
       ],
       "major": {
         "semanticCommitType": "feat",
-        "commitBody": "BREAKING CHANGE: new upstream major version"
+        "commitBody": "BREAKING CHANGE: Upgrade {{{depName}}} from {{{currentValue}}} to {{{newValue}}}."
       },
       "minor": {
         "semanticCommitType": "feat"
@@ -74,6 +87,25 @@
       ],
       "sourceUrl": "https://github.com/kubeshop/testkube",
       "changelogUrl": "https://github.com/kubeshop/testkube/releases/tag/{{newVersion}}"
+    },
+    {
+      "matchPackageNames": [
+        "@playwright/test"
+      ],
+      "groupName": "Playwright",
+      "groupSlug": "playwright"
+    },
+    {
+      "matchManagers": [
+        "helmv3"
+      ],
+      "matchPackageNames": [
+        "cluster"
+      ],
+      "matchFileNames": [
+        "platform-apps/charts/**/Chart.yaml"
+      ],
+      "additionalBranchPrefix": "{{parentDir}}-"
     }
   ]
 }

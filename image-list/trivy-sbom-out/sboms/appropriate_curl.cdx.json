@@ -2,10 +2,10 @@
   "$schema": "http://cyclonedx.org/schema/bom-1.6.schema.json",
   "bomFormat": "CycloneDX",
   "specVersion": "1.6",
-  "serialNumber": "urn:uuid:b3eefa9b-1fbb-4282-8216-e26e0b2ff683",
+  "serialNumber": "urn:uuid:47ec7c84-4b35-430c-8511-3adf67f46836",
   "version": 1,
   "metadata": {
-    "timestamp": "2026-04-14T09:22:56+00:00",
+    "timestamp": "2026-10-05T07:39:46+00:00",
     "tools": {
       "components": [
         {
@@ -66,7 +66,7 @@
   },
   "components": [
     {
-      "bom-ref": "5f90f627-a8aa-4e5c-9287-2c51896d1535",
+      "bom-ref": "cfe7ccc9-38b0-4d77-99bf-c705a441562d",
       "type": "operating-system",
       "name": "alpine",
       "version": "3.7.0",
@@ -229,8 +229,12 @@
       "bom-ref": "pkg:apk/alpine/apk-tools@2.8.2-r0?arch=x86_64&distro=3.7.0",
       "type": "library",
       "supplier": {
-        "name": "Natanael Copa <ncopa@alpinelinux.org>"
+        "name": "alpine",
+        "url": [
+          ""
+        ]
       },
+      "author": "alpine",
       "name": "apk-tools",
       "version": "2.8.2-r0",
       "description": "Alpine Package Keeper - package manager for alpine",
@@ -293,7 +297,11 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-04-13T09:23:00Z"
+          "value": "2026-07-28T13:11:31Z"
+        },
+        {
+          "name": "ecosystems:owner_location",
+          "value": ""
         }
       ]
     },
@@ -365,7 +373,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2024-12-13T15:05:48Z"
+          "value": "2026-07-24T11:50:59Z"
         }
       ]
     },
@@ -442,7 +450,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2025-11-10T07:19:26Z"
+          "value": "2026-06-13T14:25:12Z"
         }
       ]
     },
@@ -454,7 +462,7 @@
       },
       "name": "curl",
       "version": "7.59.0-r0",
-      "description": "URL retrival utility and library",
+      "description": "URL retrieval utility and library",
       "hashes": [
         {
           "alg": "SHA-1",
@@ -514,7 +522,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-03-12T21:21:31Z"
+          "value": "2026-06-30T11:23:53Z"
         }
       ]
     },
@@ -658,7 +666,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-03-12T21:21:31Z"
+          "value": "2026-06-30T11:23:53Z"
         }
       ]
     },
@@ -828,7 +836,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2025-11-01T08:21:37Z"
+          "value": "2026-06-23T14:07:43Z"
         }
       ]
     },
@@ -1133,7 +1141,7 @@
   ],
   "dependencies": [
     {
-      "ref": "5f90f627-a8aa-4e5c-9287-2c51896d1535",
+      "ref": "cfe7ccc9-38b0-4d77-99bf-c705a441562d",
       "dependsOn": [
         "pkg:apk/alpine/alpine-baselayout@3.0.5-r2?arch=x86_64&distro=3.7.0",
         "pkg:apk/alpine/alpine-keys@2.1-r1?arch=x86_64&distro=3.7.0",
@@ -1249,7 +1257,7 @@
     {
       "ref": "pkg:oci/curl@sha256%3Ac8bf5bbec6397465a247c2bb3e589bb77e4f62ff88a027175ecb2d9e4f12c9d7?arch=amd64&repository_url=index.docker.io%2Fappropriate%2Fcurl",
       "dependsOn": [
-        "5f90f627-a8aa-4e5c-9287-2c51896d1535"
+        "cfe7ccc9-38b0-4d77-99bf-c705a441562d"
       ]
     }
   ],

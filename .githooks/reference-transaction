@@ -1,0 +1,23 @@
+#!/bin/sh
+
+[ "$1" = "prepared" ] || exit 0
+
+blocked=0
+
+while read -r _old_oid new_oid ref_name; do
+  # Allow deleting an existing branch whose name contains a slash.
+  case "$new_oid" in
+    *[!0]*) ;;
+    *) continue ;;
+  esac
+
+  case "$ref_name" in
+    refs/heads/*/*)
+      echo "error: branch names containing '/' are not allowed in this repository" >&2
+      echo "invalid branch: ${ref_name#refs/heads/}" >&2
+      blocked=1
+      ;;
+  esac
+done
+
+exit "$blocked"

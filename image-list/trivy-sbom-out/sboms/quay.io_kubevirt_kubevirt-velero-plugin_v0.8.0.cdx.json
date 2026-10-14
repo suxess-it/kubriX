@@ -2,10 +2,10 @@
   "$schema": "http://cyclonedx.org/schema/bom-1.6.schema.json",
   "bomFormat": "CycloneDX",
   "specVersion": "1.6",
-  "serialNumber": "urn:uuid:9f5cf683-42ae-442d-a448-2181ec84ce64",
+  "serialNumber": "urn:uuid:698def52-747c-4629-9882-b7ab720bfd19",
   "version": 1,
   "metadata": {
-    "timestamp": "2026-04-14T09:28:05+00:00",
+    "timestamp": "2026-10-05T07:45:05+00:00",
     "tools": {
       "components": [
         {
@@ -70,7 +70,7 @@
   },
   "components": [
     {
-      "bom-ref": "80863bc8-110b-4236-98aa-54ec93b8c9b3",
+      "bom-ref": "12184346-a1ca-4de9-82df-8042902ff66f",
       "type": "application",
       "name": "plugins/kubevirt-velero-plugin",
       "properties": [
@@ -85,7 +85,7 @@
       ]
     },
     {
-      "bom-ref": "b4612f63-b379-4d0f-8920-f06f18f601d4",
+      "bom-ref": "9bc219d6-6f44-4e65-8d62-acd855bcdb69",
       "type": "operating-system",
       "name": "alpine",
       "version": "3.13.12",
@@ -248,8 +248,12 @@
       "bom-ref": "pkg:apk/alpine/apk-tools@2.12.7-r0?arch=x86_64&distro=3.13.12",
       "type": "library",
       "supplier": {
-        "name": "Natanael Copa <ncopa@alpinelinux.org>"
+        "name": "alpine",
+        "url": [
+          ""
+        ]
       },
+      "author": "alpine",
       "name": "apk-tools",
       "version": "2.12.7-r0",
       "description": "Alpine Package Keeper - package manager for alpine",
@@ -312,7 +316,11 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-04-13T09:23:00Z"
+          "value": "2026-07-28T13:11:31Z"
+        },
+        {
+          "name": "ecosystems:owner_location",
+          "value": ""
         }
       ]
     },
@@ -384,7 +392,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2024-12-13T15:05:48Z"
+          "value": "2026-07-24T11:50:59Z"
         }
       ]
     },
@@ -461,7 +469,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2025-11-10T07:19:26Z"
+          "value": "2026-06-13T14:25:12Z"
         }
       ]
     },
@@ -1026,7 +1034,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2024-11-19T21:09:16Z"
+          "value": "2026-07-24T11:50:59Z"
         }
       ]
     },
@@ -1178,7 +1186,7 @@
       "author": "Caleb Spare",
       "name": "github.com/cespare/xxhash/v2",
       "version": "v2.3.0",
-      "description": "Package xxhash implements the 64-bit variant of xxHash (XXH64) as described\nat http://cyan4973.github.io/xxHash/.",
+      "description": "Package xxhash implements the 64-bit variant of xxHash (XXH64) as described at http://cyan4973.github.io/xxHash/.",
       "licenses": [
         {
           "expression": "(MIT)"
@@ -1301,7 +1309,7 @@
       "author": "Ernest Micklei",
       "name": "github.com/emicklei/go-restful/v3",
       "version": "v3.11.0",
-      "description": "Package restful , a lean package for creating REST-style WebServices without magic.\n\n### WebServices and Routes\n\nA WebService has a collection of Route objects that dispatch incoming Http Requests to a function calls.\nTypically, a WebService has a root path (e.g. /users) and defines common MIME types for its routes.\nWebServices must be added to a container (see below) in order to handler Http requests from a server.\n\nA Route is defined by a HTTP method, an URL path and (optionally) the MIME types it consumes (Content-Type) and produces (Accept).\nThis package has the logic to find the best matching Route and if found, call its Function.\n\nThe (*Request, *Response) arguments provide functions for reading information from the request and writing information back to the response.\n\nSee the example https://github.com/emicklei/go-restful/blob/v3/examples/user-resource/restful-user-resource.go with a full implementation.\n\n### Regular expression matching Routes\n\nA Route parameter can be specified using the format \"uri/{var[:regexp]}\" or the special version \"uri/{var:*}\" for matching the tail of the path.\nFor example, /persons/{name:[A-Z][A-Z]} can be used to restrict values for the parameter \"name\" to only contain capital alphabetic characters.\nRegular expressions must use the standard Go syntax as described in the regexp package. (https://code.google.com/p/re2/wiki/Syntax)\nThis feature requires the use of a CurlyRouter.\n\n### Containers\n\nA Container holds a collection of WebServices, Filters and a http.ServeMux for multiplexing http requests.\nUsing the statements \"restful.Add(...) and restful.Filter(...)\" will register WebServices and Filters to the Default Container.\nThe Default container of go-restful uses the http.DefaultServeMux.\nYou can create your own Container and create a new http.Server for that particular container.\n\n### Filters\n\nA filter dynamically intercepts requests and responses to transform or use the information contained in the requests or responses.\nYou can use filters to perform generic logging, measurement, authentication, redirect, set response headers etc.\nIn the restful package there are three hooks into the request,response flow where filters can be added.\nEach filter must define a FilterFunction:\n\nUse the following statement to pass the request,response pair to the next filter or RouteFunction\n\n### Container Filters\n\nThese are processed before any registered WebService.\n\n### WebService Filters\n\nThese are processed before any Route of a WebService.\n\n### Route Filters\n\nThese are processed before calling the function associated with the Route.\n\nSee the example https://github.com/emicklei/go-restful/blob/v3/examples/filters/restful-filters.go with full implementations.\n\n### Response Encoding\n\nTwo encodings are supported: gzip and deflate. To enable this for all responses:\n\nIf a Http request includes the Accept-Encoding header then the response content will be compressed using the specified encoding.\nAlternatively, you can create a Filter that performs the encoding and install it per WebService or Route.\n\nSee the example https://github.com/emicklei/go-restful/blob/v3/examples/encoding/restful-encoding-filter.go\n\n### OPTIONS support\n\nBy installing a pre-defined container filter, your Webservice(s) can respond to the OPTIONS Http request.\n\n### CORS\n\nBy installing the filter of a CrossOriginResourceSharing (CORS), your WebService(s) can handle CORS requests.\n\n### Error Handling\n\nUnexpected things happen. If a request cannot be processed because of a failure, your service needs to tell via the response what happened and why.\nFor this reason HTTP status codes exist and it is important to use the correct code in every exceptional situation.\n\nIf path or query parameters are not valid (content or type) then use http.StatusBadRequest.\n\nDespite a valid URI, the resource requested may not be available\n\nIf the application logic could not process the request (or write the response) then use http.StatusInternalServerError.\n\nThe request has a valid URL but the method (GET,PUT,POST,...) is not allowed.\n\nThe request does not have or has an unknown Accept Header set for this operation.\n\nThe request does not have or has an unknown Content-Type Header set for this operation.\n\n### ServiceError\n\nIn addition to setting the correct (error) Http status code, you can choose to write a ServiceError message on the response.\n\n### Performance options\n\nThis package has several options that affect the performance of your service. It is important to understand them and how you can change it.\n\nDoNotRecover controls whether panics will be caught to return HTTP 500.\nIf set to false, the container will recover from panics.\nDefault value is true\n\nIf content encoding is enabled then the default strategy for getting new gzip/zlib writers and readers is to use a sync.Pool.\nBecause writers are expensive structures, performance is even more improved when using a preloaded cache. You can also inject your own implementation.\n\n### Trouble shooting\n\nThis package has the means to produce detail logging of the complete Http request matching process and filter invocation.\nEnabling this feature requires you to set an implementation of restful.StdLogger (e.g. log.Logger) instance such as:\n\n### Logging\n\nThe restful.SetLogger() method allows you to override the logger used by the package. By default restful\nuses the standard library `log` package and logs to stdout. Different logging packages are supported as\nlong as they conform to `StdLogger` interface defined in the `log` sub-package, writing an adapter for your\npreferred package is simple.\n\n### Resources\n\n(c) 2012-2025, http://ernestmicklei.com. MIT License",
+      "description": "Package restful , a lean package for creating REST-style WebServices without magic.",
       "licenses": [
         {
           "expression": "(MIT)"
@@ -1451,7 +1459,7 @@
       "author": "Fatih Arslan",
       "name": "github.com/fatih/color",
       "version": "v1.18.0",
-      "description": "Package color is an ANSI color package to output colorized or SGR defined\noutput to the standard output. The API can be used in several way, pick one\nthat suits you.\n\nUse simple and default helper functions with predefined foreground colors:\n\nHowever, there are times when custom color mixes are required. Below are some\nexamples to create custom color objects and use the print functions of each\nseparate color object.\n\nYou can create PrintXxx functions to simplify even more:\n\nYou can also FprintXxx functions to pass your own io.Writer:\n\nOr create SprintXxx functions to mix strings with other non-colorized strings:\n\nWindows support is enabled by default. All Print functions work as intended.\nHowever, only for color.SprintXXX functions, user should use fmt.FprintXXX and\nset the output to color.Output:\n\nUsing with existing code is possible. Just use the Set() method to set the\nstandard output to the given parameters. That way a rewrite of an existing\ncode is not required.\n\nThere might be a case where you want to disable color output (for example to\npipe the standard output of your app to somewhere else). `Color` has support to\ndisable colors both globally and for single color definition. For example\nsuppose you have a CLI app and a `--no-color` bool flag. You can easily disable\nthe color output with:\n\nYou can also disable the color by setting the NO_COLOR environment variable to any value.\n\nIt also has support for single color definitions (local). You can\ndisable/enable color output on the fly:",
+      "description": "Package color is an ANSI color package to output colorized or SGR defined output to the standard output.",
       "licenses": [
         {
           "expression": "(MIT)"
@@ -1536,7 +1544,7 @@
       "author": "Faye Amacker",
       "name": "github.com/fxamacker/cbor/v2",
       "version": "v2.7.0",
-      "description": "Package cbor is a modern CBOR codec (RFC 8949 & RFC 8742) with CBOR tags,\nGo struct tag options (toarray/keyasint/omitempty/omitzero), Core Deterministic Encoding,\nCTAP2, Canonical CBOR, float64->32->16, and duplicate map key detection.\n\nEncoding options allow \"preferred serialization\" by encoding integers and floats\nto their smallest forms (e.g. float16) when values fit.\n\nStruct tag options \"keyasint\", \"toarray\", \"omitempty\", and \"omitzero\" reduce encoding size\nand reduce programming effort.\n\nFor example, \"toarray\" tag makes struct fields encode to CBOR array elements.  And\n\"keyasint\" makes a field encode to an element of CBOR map with specified int key.\n\nLatest docs can be viewed at https://github.com/fxamacker/cbor#cbor-library-in-go\n\nThe Quick Start guide is at https://github.com/fxamacker/cbor#quick-start\n\nFunction signatures identical to encoding/json include:\n\nStandard interfaces include:\n\nDiagnostic functions translate CBOR data item into Diagnostic Notation:\n\nFunctions that simplify using CBOR Sequences (RFC 8742) include:\n\nCustom encoding and decoding is possible by implementing standard interfaces for\nuser-defined Go types.\n\nCodec functions are available at package-level (using defaults options) or by\ncreating modes from options at runtime.\n\n\"Mode\" in this API means definite way of encoding (EncMode) or decoding (DecMode).\n\nEncMode and DecMode interfaces are created from EncOptions or DecOptions structs.\n\nModes use immutable options to avoid side-effects and simplify concurrency. Behavior of\nmodes won't accidentally change at runtime after they're created.\n\nModes are intended to be reused and are safe for concurrent use.\n\nEncMode and DecMode Interfaces\n\nUsing Default Encoding Mode\n\nUsing Default Decoding Mode\n\nUsing Default Mode of UnmarshalFirst to Decode CBOR Sequences\n\nUsing Extended Diagnostic Notation (EDN) to represent CBOR data\n\nCreating and Using Encoding Modes\n\nPredefined Encoding Options: https://github.com/fxamacker/cbor#predefined-encoding-options\n\nEncoding Options: https://github.com/fxamacker/cbor#encoding-options\n\nDecoding Options: https://github.com/fxamacker/cbor#decoding-options\n\nStruct tags like `cbor:\"name,omitempty\"` and `json:\"name,omitempty\"` work as expected.\nIf both struct tags are specified then `cbor` is used.\n\nStruct tag options like \"keyasint\", \"toarray\", \"omitempty\", and \"omitzero\" make it easy to use\nvery compact formats like COSE and CWT (CBOR Web Tokens) with structs.\n\nThe \"omitzero\" option omits zero values from encoding, matching\n[stdlib encoding/json behavior](https://pkg.go.dev/encoding/json#Marshal).\nWhen specified in the `cbor` tag, the option is always honored.\nWhen specified in the `json` tag, the option is honored when building with Go 1.24+.\n\nFor example, \"toarray\" makes struct fields encode to array elements.  And \"keyasint\"\nmakes struct fields encode to elements of CBOR map with int keys.\n\nhttps://raw.githubusercontent.com/fxamacker/images/master/cbor/v2.0.0/cbor_easy_api.png\n\nStruct tag options are listed at https://github.com/fxamacker/cbor#struct-tags-1\n\nOver 375 tests are included in this package. Cover-guided fuzzing is handled by\na private fuzzer that replaced fxamacker/cbor-fuzz years ago.",
+      "description": "Package cbor is a modern CBOR codec (RFC 8949 & RFC 8742) with CBOR tags, Go struct tag options (toarray/keyasint/omitempty/omitzero), Core Deterministic Encoding, CTAP2, Canonical CBOR, float64->32->16, and duplicate map key detection.",
       "licenses": [
         {
           "expression": "(MIT)"
@@ -1584,7 +1592,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-03-30T13:23:16Z"
+          "value": "2026-09-14T17:12:54Z"
         },
         {
           "name": "ecosystems:owner_location",
@@ -1735,7 +1743,7 @@
       "author": "Go kit",
       "name": "github.com/go-kit/log",
       "version": "v0.2.1",
-      "description": "Package log provides a structured logger.\n\nStructured logging produces logs easily consumed later by humans or\nmachines. Humans might be interested in debugging errors, or tracing\nspecific requests. Machines might be interested in counting interesting\nevents, or aggregating information for off-line processing. In both cases,\nit is important that the log messages are structured and actionable.\nPackage log is designed to encourage both of these best practices.\n\nThe fundamental interface is Logger. Loggers create log events from\nkey/value data. The Logger interface has a single method, Log, which\naccepts a sequence of alternating key/value pairs, which this package names\nkeyvals.\n\nHere is an example of a function using a Logger to create log events.\n\nThe keys in the above example are \"taskID\" and \"event\". The values are\ntask.ID, \"starting task\", and \"task complete\". Every key is followed\nimmediately by its value.\n\nKeys are usually plain strings. Values may be any type that has a sensible\nencoding in the chosen log format. With structured logging it is a good\nidea to log simple values without formatting them. This practice allows\nthe chosen logger to encode values in the most appropriate way.\n\nA contextual logger stores keyvals that it includes in all log events.\nBuilding appropriate contextual loggers reduces repetition and aids\nconsistency in the resulting log output. With, WithPrefix, and WithSuffix\nadd context to a logger. We can use With to improve the RunTask example.\n\nThe improved version emits the same log events as the original for the\nfirst and last calls to Log. Passing the contextual logger to taskHelper\nenables each log event created by taskHelper to include the task.ID even\nthough taskHelper does not have access to that value. Using contextual\nloggers this way simplifies producing log output that enables tracing the\nlife cycle of individual tasks. (See the Contextual example for the full\ncode of the above snippet.)\n\nA Valuer function stored in a contextual logger generates a new value each\ntime an event is logged. The Valuer example demonstrates how this feature\nworks.\n\nValuers provide the basis for consistently logging timestamps and source\ncode location. The log package defines several valuers for that purpose.\nSee Timestamp, DefaultTimestamp, DefaultTimestampUTC, Caller, and\nDefaultCaller. A common logger initialization sequence that ensures all log\nentries contain a timestamp and source location looks like this:\n\nApplications with multiple goroutines want each log event written to the\nsame logger to remain separate from other log events. Package log provides\ntwo simple solutions for concurrent safe logging.\n\nNewSyncWriter wraps an io.Writer and serializes each call to its Write\nmethod. Using a SyncWriter has the benefit that the smallest practical\nportion of the logging logic is performed within a mutex, but it requires\nthe formatting Logger to make only one call to Write per log event.\n\nNewSyncLogger wraps any Logger and serializes each call to its Log method.\nUsing a SyncLogger has the benefit that it guarantees each log event is\nhandled atomically within the wrapped logger, but it typically serializes\nboth the formatting and output logic. Use a SyncLogger if the formatting\nlogger may perform multiple writes per log event.\n\nThis package relies on the practice of wrapping or decorating loggers with\nother loggers to provide composable pieces of functionality. It also means\nthat Logger.Log must return an error because some\nimplementations—especially those that output log data to an io.Writer—may\nencounter errors that cannot be handled locally. This in turn means that\nLoggers that wrap other loggers should return errors from the wrapped\nlogger up the stack.\n\nFortunately, the decorator pattern also provides a way to avoid the\nnecessity to check for errors every time an application calls Logger.Log.\nAn application required to panic whenever its Logger encounters\nan error could initialize its logger as follows.",
+      "description": "Package log provides a structured logger.",
       "licenses": [
         {
           "expression": "(MIT)"
@@ -1796,7 +1804,7 @@
       "author": "go-logfmt",
       "name": "github.com/go-logfmt/logfmt",
       "version": "v0.6.0",
-      "description": "Package logfmt implements utilities to marshal and unmarshal data in the\nlogfmt format. The logfmt format records key/value pairs in a way that\nbalances readability for humans and simplicity of computer parsing. It is\nmost commonly used as a more human friendly alternative to JSON for\nstructured logging.",
+      "description": "Package logfmt implements utilities to marshal and unmarshal data in the logfmt format.",
       "licenses": [
         {
           "expression": "(MIT)"
@@ -1877,7 +1885,7 @@
       "author": "go-logr",
       "name": "github.com/go-logr/logr",
       "version": "v1.4.2",
-      "description": "Package logr defines a general-purpose logging API and abstract interfaces\nto back that API.  Packages in the Go ecosystem can depend on this package,\nwhile callers can implement logging with whatever backend is appropriate.\n\nLogging is done using a Logger instance.  Logger is a concrete type with\nmethods, which defers the actual logging to a LogSink interface.  The main\nmethods of Logger are Info() and Error().  Arguments to Info() and Error()\nare key/value pairs rather than printf-style formatted strings, emphasizing\n\"structured logging\".\n\nWith Go's standard log package, we might write:\n\nWith logr's structured logging, we'd write:\n\nErrors are much the same.  Instead of:\n\nWe'd write:\n\nInfo() and Error() are very similar, but they are separate methods so that\nLogSink implementations can choose to do things like attach additional\ninformation (such as stack traces) on calls to Error(). Error() messages are\nalways logged, regardless of the current verbosity.  If there is no error\ninstance available, passing nil is valid.\n\nOften we want to log information only when the application in \"verbose\nmode\".  To write log lines that are more verbose, Logger has a V() method.\nThe higher the V-level of a log line, the less critical it is considered.\nLog-lines with V-levels that are not enabled (as per the LogSink) will not\nbe written.  Level V(0) is the default, and logger.V(0).Info() has the same\nmeaning as logger.Info().  Negative V-levels have the same meaning as V(0).\nError messages do not have a verbosity level and are always logged.\n\nWhere we might have written:\n\nWe can write:\n\nLogger instances can have name strings so that all messages logged through\nthat instance have additional context.  For example, you might want to add\na subsystem name:\n\nThe WithName() method returns a new Logger, which can be passed to\nconstructors or other functions for further use.  Repeated use of WithName()\nwill accumulate name \"segments\".  These name segments will be joined in some\nway by the LogSink implementation.  It is strongly recommended that name\nsegments contain simple identifiers (letters, digits, and hyphen), and do\nnot contain characters that could muddle the log output or confuse the\njoining operation (e.g. whitespace, commas, periods, slashes, brackets,\nquotes, etc).\n\nLogger instances can store any number of key/value pairs, which will be\nlogged alongside all messages logged through that instance.  For example,\nyou might want to create a Logger instance per managed object:\n\nWith the standard log package, we might write:\n\nWith logr we'd write:\n\nLogger has very few hard rules, with the goal that LogSink implementations\nmight have a lot of freedom to differentiate.  There are, however, some\nthings to consider.\n\nThe log message consists of a constant message attached to the log line.\nThis should generally be a simple description of what's occurring, and should\nnever be a format string.  Variable information can then be attached using\nnamed values.\n\nKeys are arbitrary strings, but should generally be constant values.  Values\nmay be any Go value, but how the value is formatted is determined by the\nLogSink implementation.\n\nLogger instances are meant to be passed around by value. Code that receives\nsuch a value can call its methods without having to check whether the\ninstance is ready for use.\n\nThe zero logger (= Logger{}) is identical to Discard() and discards all log\nentries. Code that receives a Logger by value can simply call it, the methods\nwill never crash. For cases where passing a logger is optional, a pointer to Logger\nshould be used.\n\nKeys are not strictly required to conform to any specification or regex, but\nit is recommended that they:\n\nThese guidelines help ensure that log data is processed properly regardless\nof the log implementation.  For example, log implementations will try to\noutput JSON data or will store data for later database (e.g. SQL) queries.\n\nWhile users are generally free to use key names of their choice, it's\ngenerally best to avoid using the following keys, as they're frequently used\nby implementations:\n\nImplementations are encouraged to make use of these keys to represent the\nabove concepts, when necessary (for example, in a pure-JSON output form, it\nwould be necessary to represent at least message and timestamp as ordinary\nnamed values).\n\nImplementations may choose to give callers access to the underlying\nlogging implementation.  The recommended pattern for this is:\n\nLogger grants access to the sink to enable type assertions like this:\n\nCustom `With*` functions can be implemented by copying the complete\nLogger struct and replacing the sink in the copy:\n\nDon't use New to construct a new Logger with a LogSink retrieved from an\nexisting Logger. Source code attribution might not work correctly and\nunexported fields in Logger get lost.\n\nBeware that the same LogSink instance may be shared by different logger\ninstances. Calling functions that modify the LogSink will affect all of\nthose.",
+      "description": "Package logr defines a general-purpose logging API and abstract interfaces to back that API.",
       "licenses": [
         {
           "expression": "(Apache-2.0)"
@@ -1925,7 +1933,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2025-05-19T04:56:57Z"
+          "value": "2026-07-20T18:51:02Z"
         },
         {
           "name": "ecosystems:topic",
@@ -1946,6 +1954,7 @@
       "author": "OpenAPI Initiative golang toolkit",
       "name": "github.com/go-openapi/jsonpointer",
       "version": "v0.21.0",
+      "description": "Package jsonpointer provides a golang implementation for json pointers.",
       "licenses": [
         {
           "expression": "(Apache-2.0)"
@@ -1993,7 +2002,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-03-02T21:21:48Z"
+          "value": "2026-09-24T19:42:48Z"
         },
         {
           "name": "ecosystems:topic",
@@ -2004,36 +2013,9 @@
     {
       "bom-ref": "pkg:golang/github.com/go-openapi/jsonreference@v0.20.2",
       "type": "library",
-      "supplier": {
-        "name": "OpenAPI Initiative golang toolkit"
-      },
-      "author": "OpenAPI Initiative golang toolkit",
       "name": "github.com/go-openapi/jsonreference",
       "version": "v0.20.2",
-      "licenses": [
-        {
-          "expression": "(Apache-2.0)"
-        }
-      ],
       "purl": "pkg:golang/github.com/go-openapi/jsonreference@v0.20.2",
-      "externalReferences": [
-        {
-          "url": "https://github.com/go-openapi/jsonreference",
-          "type": "website"
-        },
-        {
-          "url": "https://pkg.go.dev/github.com/go-openapi/jsonreference",
-          "type": "distribution"
-        },
-        {
-          "url": "https://github.com/go-openapi/jsonreference",
-          "type": "vcs"
-        },
-        {
-          "url": "https://pkg.go.dev/github.com/go-openapi/jsonreference#section-documentation",
-          "type": "documentation"
-        }
-      ],
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
@@ -2050,14 +2032,6 @@
         {
           "name": "aquasecurity:trivy:PkgType",
           "value": "gobinary"
-        },
-        {
-          "name": "ecosystems:first_release_published_at",
-          "value": "2018-10-07T00:19:29Z"
-        },
-        {
-          "name": "ecosystems:latest_release_published_at",
-          "value": "2026-03-02T21:57:17Z"
         }
       ]
     },
@@ -2070,7 +2044,7 @@
       "author": "OpenAPI Initiative golang toolkit",
       "name": "github.com/go-openapi/swag",
       "version": "v0.23.0",
-      "description": "Package swag contains a bunch of helper functions for go-openapi and go-swagger projects.\n\nYou may also use it standalone for your projects.\n\nNOTE: all features that used to be exposed as package-level members (constants, variables,\nfunctions and types) are now deprecated and are superseded by equivalent features in\nmore specialized sub-packages.\nMoving forward, no additional feature will be added to the swag API directly at the root package level,\nwhich remains there for backward-compatibility purposes.\n\nChild modules will continue to evolve or some new ones may be added in the future.\n\ncmdutils      utilities to work with CLIs\n\nconv          type conversion utilities\n\nfileutils     file utilities\n\njsonname      JSON utilities\n\njsonutils     JSON utilities\n\nloading       file loading\n\nmangling      safe name generation\n\nnetutils      networking utilities\n\nstringutils   `string` utilities\n\ntypeutils     `go` types utilities\n\nyamlutils     YAML utilities\n\nThis repo has a few dependencies outside of the standard library:",
+      "description": "Package swag contains a bunch of helper functions for go-openapi and go-swagger projects.",
       "licenses": [
         {
           "expression": "(Apache-2.0)"
@@ -2118,7 +2092,15 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-03-02T18:12:04Z"
+          "value": "2026-09-04T19:20:18Z"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "openapi"
+        },
+        {
+          "name": "ecosystems:topic",
+          "value": "swagger2"
         }
       ]
     },
@@ -2181,7 +2163,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2018-02-08T21:06:56Z"
+          "value": "2026-08-28T15:19:40Z"
         },
         {
           "name": "ecosystems:topic",
@@ -2282,26 +2264,7 @@
       "type": "library",
       "name": "github.com/golang/glog",
       "version": "v1.2.2",
-      "description": "Package glog implements logging analogous to the Google-internal C++ INFO/ERROR/V setup.\nIt provides functions that have a name matched by regex:\n\nIf Context is present, function takes context.Context argument. The\ncontext is used to pass through the Trace Context to log sinks that can make use\nof it.\nIt is recommended to use the context variant of the functions over the non-context\nvariants if a context is available to make sure the Trace Contexts are present\nin logs.\n\nIf Depth is present, this function calls log from a different depth in the call stack.\nThis enables a callee to emit logs that use the callsite information of its caller\nor any other callers in the stack. When depth == 0, the original callee's line\ninformation is emitted. When depth > 0, depth frames are skipped in the call stack\nand the final frame is treated like the original callee to Info.\n\nIf 'f' is present, function formats according to a format specifier.\n\nThis package also provides V-style logging controlled by the -v and -vmodule=file=2 flags.\n\nBasic examples:\n\nSee the documentation for the V function for an explanation of these examples:\n\nLog output is buffered and written periodically using Flush. Programs\nshould call Flush before exiting to guarantee all log output is written.\n\nBy default, all log statements write to files in a temporary directory.\nThis package provides several flags that modify this behavior.\nAs a result, flag.Parse must be called before any logging is done.\n\nOther flags provide aids to debugging.",
       "purl": "pkg:golang/github.com/golang/glog@v1.2.2",
-      "externalReferences": [
-        {
-          "url": "https://github.com/golang/glog",
-          "type": "website"
-        },
-        {
-          "url": "https://pkg.go.dev/github.com/golang/glog",
-          "type": "distribution"
-        },
-        {
-          "url": "https://github.com/golang/glog",
-          "type": "vcs"
-        },
-        {
-          "url": "https://pkg.go.dev/github.com/golang/glog#section-documentation",
-          "type": "documentation"
-        }
-      ],
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
@@ -2318,14 +2281,6 @@
         {
           "name": "aquasecurity:trivy:PkgType",
           "value": "gobinary"
-        },
-        {
-          "name": "ecosystems:first_release_published_at",
-          "value": "2021-08-20T11:53:15Z"
-        },
-        {
-          "name": "ecosystems:latest_release_published_at",
-          "value": "2025-04-29T08:43:26Z"
         }
       ]
     },
@@ -2341,7 +2296,7 @@
       "author": "Go",
       "name": "github.com/golang/groupcache",
       "version": "v0.0.0-20210331224755-41bb18bfe9da",
-      "description": "Package groupcache provides a data loading mechanism with caching\nand de-duplication that works across a set of peer processes.\n\nEach data Get first consults its local cache, otherwise delegates\nto the requested key's canonical owner, which then checks its cache\nor finally gets the data.  In the common case, many concurrent\ncache misses across a set of peers for the same key result in just\none cache fill.",
+      "description": "Package groupcache provides a data loading mechanism with caching and de-duplication that works across a set of peer processes.",
       "licenses": [
         {
           "expression": "(Apache-2.0)"
@@ -2514,7 +2469,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2024-03-06T06:45:40Z"
+          "value": "2026-10-05T03:31:26Z"
         },
         {
           "name": "ecosystems:topic",
@@ -2764,7 +2719,7 @@
       "author": "Google",
       "name": "github.com/google/uuid",
       "version": "v1.6.0",
-      "description": "Package uuid generates and inspects UUIDs.\n\nUUIDs are based on RFC 4122 and DCE 1.1: Authentication and Security\nServices.\n\nA UUID is a 16 byte (128 bit) array.  UUIDs may be used as keys to\nmaps or compared directly.",
+      "description": "Package uuid generates and inspects UUIDs.",
       "licenses": [
         {
           "expression": "(BSD-3-Clause)"
@@ -2840,7 +2795,7 @@
       "author": "Gorilla web toolkit",
       "name": "github.com/gorilla/websocket",
       "version": "v1.5.0",
-      "description": "Package websocket implements the WebSocket protocol defined in RFC 6455.\n\nThe Conn type represents a WebSocket connection. A server application calls\nthe Upgrader.Upgrade method from an HTTP request handler to get a *Conn:\n\nCall the connection's WriteMessage and ReadMessage methods to send and\nreceive messages as a slice of bytes. This snippet of code shows how to echo\nmessages using these methods:\n\nIn above snippet of code, p is a []byte and messageType is an int with value\nwebsocket.BinaryMessage or websocket.TextMessage.\n\nAn application can also send and receive messages using the io.WriteCloser\nand io.Reader interfaces. To send a message, call the connection NextWriter\nmethod to get an io.WriteCloser, write the message to the writer and close\nthe writer when done. To receive a message, call the connection NextReader\nmethod to get an io.Reader and read until io.EOF is returned. This snippet\nshows how to echo messages using the NextWriter and NextReader methods:\n\nThe WebSocket protocol distinguishes between text and binary data messages.\nText messages are interpreted as UTF-8 encoded text. The interpretation of\nbinary messages is left to the application.\n\nThis package uses the TextMessage and BinaryMessage integer constants to\nidentify the two data message types. The ReadMessage and NextReader methods\nreturn the type of the received message. The messageType argument to the\nWriteMessage and NextWriter methods specifies the type of a sent message.\n\nIt is the application's responsibility to ensure that text messages are\nvalid UTF-8 encoded text.\n\nThe WebSocket protocol defines three types of control messages: close, ping\nand pong. Call the connection WriteControl, WriteMessage or NextWriter\nmethods to send a control message to the peer.\n\nConnections handle received close messages by calling the handler function\nset with the SetCloseHandler method and by returning a *CloseError from the\nNextReader, ReadMessage or the message Read method. The default close\nhandler sends a close message to the peer.\n\nConnections handle received ping messages by calling the handler function\nset with the SetPingHandler method. The default ping handler sends a pong\nmessage to the peer.\n\nConnections handle received pong messages by calling the handler function\nset with the SetPongHandler method. The default pong handler does nothing.\nIf an application sends ping messages, then the application should set a\npong handler to receive the corresponding pong.\n\nThe control message handler functions are called from the NextReader,\nReadMessage and message reader Read methods. The default close and ping\nhandlers can block these methods for a short time when the handler writes to\nthe connection.\n\nThe application must read the connection to process close, ping and pong\nmessages sent from the peer. If the application is not otherwise interested\nin messages from the peer, then the application should start a goroutine to\nread and discard messages from the peer. A simple example is:\n\nConnections support one concurrent reader and one concurrent writer.\n\nApplications are responsible for ensuring that no more than one goroutine\ncalls the write methods (NextWriter, SetWriteDeadline, WriteMessage,\nWriteJSON, EnableWriteCompression, SetCompressionLevel) concurrently and\nthat no more than one goroutine calls the read methods (NextReader,\nSetReadDeadline, ReadMessage, ReadJSON, SetPongHandler, SetPingHandler)\nconcurrently.\n\nThe Close and WriteControl methods can be called concurrently with all other\nmethods.\n\nWeb browsers allow Javascript applications to open a WebSocket connection to\nany host. It's up to the server to enforce an origin policy using the Origin\nrequest header sent by the browser.\n\nThe Upgrader calls the function specified in the CheckOrigin field to check\nthe origin. If the CheckOrigin function returns false, then the Upgrade\nmethod fails the WebSocket handshake with HTTP status 403.\n\nIf the CheckOrigin field is nil, then the Upgrader uses a safe default: fail\nthe handshake if the Origin request header is present and the Origin host is\nnot equal to the Host request header.\n\nThe deprecated package-level Upgrade function does not perform origin\nchecking. The application is responsible for checking the Origin header\nbefore calling the Upgrade function.\n\nConnections buffer network input and output to reduce the number\nof system calls when reading or writing messages.\n\nWrite buffers are also used for constructing WebSocket frames. See RFC 6455,\nSection 5 for a discussion of message framing. A WebSocket frame header is\nwritten to the network each time a write buffer is flushed to the network.\nDecreasing the size of the write buffer can increase the amount of framing\noverhead on the connection.\n\nThe buffer sizes in bytes are specified by the ReadBufferSize and\nWriteBufferSize fields in the Dialer and Upgrader. The Dialer uses a default\nsize of 4096 when a buffer size field is set to zero. The Upgrader reuses\nbuffers created by the HTTP server when a buffer size field is set to zero.\nThe HTTP server buffers have a size of 4096 at the time of this writing.\n\nThe buffer sizes do not limit the size of a message that can be read or\nwritten by a connection.\n\nBuffers are held for the lifetime of the connection by default. If the\nDialer or Upgrader WriteBufferPool field is set, then a connection holds the\nwrite buffer only when writing a message.\n\nApplications should tune the buffer sizes to balance memory use and\nperformance. Increasing the buffer size uses more memory, but can reduce the\nnumber of system calls to read or write the network. In the case of writing,\nincreasing the buffer size can reduce the number of frame headers written to\nthe network.\n\nSome guidelines for setting buffer parameters are:\n\nLimit the buffer sizes to the maximum expected message size. Buffers larger\nthan the largest message do not provide any benefit.\n\nDepending on the distribution of message sizes, setting the buffer size to\na value less than the maximum expected message size can greatly reduce memory\nuse with a small impact on performance. Here's an example: If 99% of the\nmessages are smaller than 256 bytes and the maximum message size is 512\nbytes, then a buffer size of 256 bytes will result in 1.01 more system calls\nthan a buffer size of 512 bytes. The memory savings is 50%.\n\nA write buffer pool is useful when the application has a modest number\nwrites over a large number of connections. when buffers are pooled, a larger\nbuffer size has a reduced impact on total memory use and has the benefit of\nreducing system calls and frame overhead.\n\nPer message compression extensions (RFC 7692) are experimentally supported\nby this package in a limited capacity. Setting the EnableCompression option\nto true in Dialer or Upgrader will attempt to negotiate per message deflate\nsupport.\n\nIf compression was successfully negotiated with the connection's peer, any\nmessage received in compressed form will be automatically decompressed.\nAll Read methods will return uncompressed bytes.\n\nPer message compression of messages written to a connection can be enabled\nor disabled by calling the corresponding Conn method:\n\nCurrently this package does not support compression with \"context takeover\".\nThis means that messages must be compressed and decompressed in isolation,\nwithout retaining sliding window or dictionary state across messages. For\nmore details refer to RFC 7692.\n\nUse of compression is experimental and may result in decreased performance.",
+      "description": "Package websocket implements the WebSocket protocol defined in RFC 6455.",
       "licenses": [
         {
           "expression": "(BSD-2-Clause)"
@@ -2994,12 +2949,7 @@
       "author": "HashiCorp",
       "name": "github.com/hashicorp/go-plugin",
       "version": "v1.6.0",
-      "description": "The plugin package exposes functions and helpers for communicating to\nplugins which are implemented as standalone binary applications.\n\nplugin.Client fully manages the lifecycle of executing the application,\nconnecting to it, and returning the RPC client for dispensing plugins.\n\nplugin.Serve fully manages listeners to expose an RPC server from a binary\nthat plugin.Client can connect to.",
-      "licenses": [
-        {
-          "expression": "(MPL-2.0)"
-        }
-      ],
+      "description": "The plugin package exposes functions and helpers for communicating to plugins which are implemented as standalone binary applications.",
       "purl": "pkg:golang/github.com/hashicorp/go-plugin@v1.6.0",
       "externalReferences": [
         {
@@ -3042,7 +2992,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2025-08-11T15:38:02Z"
+          "value": "2026-04-29T04:54:59Z"
         },
         {
           "name": "ecosystems:owner_location",
@@ -3120,9 +3070,16 @@
     {
       "bom-ref": "pkg:golang/github.com/imdario/mergo@v0.3.16",
       "type": "library",
+      "supplier": {
+        "name": "Dario Castañé",
+        "url": [
+          "dario.cat"
+        ]
+      },
+      "author": "Dario Castañé",
       "name": "github.com/imdario/mergo",
       "version": "v0.3.16",
-      "description": "A helper to merge structs and maps in Golang. Useful for configuration default values, avoiding messy if-statements.\n\nMergo merges same-type structs and maps by setting default values in zero-value fields. Mergo won't merge unexported (private) fields. It will do recursively any exported one. It also won't merge structs inside maps (because they are not addressable using Go reflection).\n\nIt is ready for production use. It is used in several projects by Docker, Google, The Linux Foundation, VMWare, Shopify, etc.\n\nPlease keep in mind that a problematic PR broke 0.3.9. We reverted it in 0.3.10. We consider 0.3.10 as stable but not bug-free. . Also, this version adds suppot for go modules.\n\nKeep in mind that in 0.3.2, Mergo changed Merge() and Map() signatures to support transformers. We added an optional/variadic argument so that it won't break the existing code.\n\nIf you were using Mergo before April 6th, 2015, please check your project works as intended after updating your local copy with go get -u github.com/imdario/mergo. I apologize for any issue caused by its previous behavior and any future bug that Mergo could cause in existing projects after the change (release 0.2.0).\n\nDo your usual installation procedure:\n\nYou can only merge same-type structs with exported fields initialized as zero value of their type and same-types maps. Mergo won't merge unexported (private) fields but will do recursively any exported one. It won't merge empty structs value as they are zero values too. Also, maps will be merged recursively except for structs inside maps (because they are not addressable using Go reflection).\n\nAlso, you can merge overwriting values using the transformer WithOverride.\n\nAdditionally, you can map a map[string]interface{} to a struct (and otherwise, from struct to map), following the same restrictions as in Merge(). Keys are capitalized to find each corresponding exported field.\n\nWarning: if you map a struct to map, it won't do it recursively. Don't expect Mergo to map struct members of your struct as map[string]interface{}. They will be just assigned as values.\n\nHere is a nice example:\n\nTransformers allow to merge specific types differently than in the default behavior. In other words, now you can customize how some types are merged. For example, time.Time is a struct; it doesn't have zero value but IsZero can return true because it has fields with zero value. How can we merge a non-zero time.Time?\n\nIf I can help you, you have an idea or you are using Mergo in your projects, don't hesitate to drop me a line (or a pull request): https://twitter.com/im_dario\n\nWritten by Dario Castañé: https://da.rio.hn\n\nBSD 3-Clause license, as Go language.",
+      "description": "A helper to merge structs and maps in Golang.",
       "licenses": [
         {
           "expression": "(BSD-3-Clause)"
@@ -3173,6 +3130,10 @@
           "value": "2025-05-07T20:15:06Z"
         },
         {
+          "name": "ecosystems:owner_location",
+          "value": "Barcelona"
+        },
+        {
           "name": "ecosystems:topic",
           "value": "go"
         },
@@ -3210,7 +3171,7 @@
       "author": "Josh Bleecher Snyder",
       "name": "github.com/josharian/intern",
       "version": "v1.0.0",
-      "description": "Package intern interns strings.\nInterning is best effort only.\nInterned strings may be removed automatically\nat any time without notification.\nAll functions may be called concurrently\nwith themselves and each other.",
+      "description": "Package intern interns strings.",
       "licenses": [
         {
           "expression": "(MIT)"
@@ -3278,7 +3239,7 @@
       "author": "Jsoniter",
       "name": "github.com/json-iterator/go",
       "version": "v1.1.12",
-      "description": "Package jsoniter implements encoding and decoding of JSON as defined in\nRFC 4627 and provides interfaces with identical syntax of standard lib encoding/json.\nConverting from encoding/json to jsoniter is no more than replacing the package with jsoniter\nand variable type declarations (if any).\njsoniter interfaces gives 100% compatibility with code using standard lib.\n\n\"JSON and Go\"\n(https://golang.org/doc/articles/json_and_go.html)\ngives a description of how Marshal/Unmarshal operate\nbetween arbitrary or predefined json objects and bytes,\nand it applies to jsoniter.Marshal/Unmarshal as well.\n\nBesides, jsoniter.Iterator provides a different set of interfaces\niterating given bytes/string/reader\nand yielding parsed elements one by one.\nThis set of interfaces reads input as required and gives\nbetter performance.",
+      "description": "Package jsoniter implements encoding and decoding of JSON as defined in RFC 4627 and provides interfaces with identical syntax of standard lib encoding/json.",
       "licenses": [
         {
           "expression": "(MIT)"
@@ -3327,6 +3288,10 @@
         {
           "name": "ecosystems:latest_release_published_at",
           "value": "2021-09-11T02:17:26Z"
+        },
+        {
+          "name": "ecosystems:repository_archived",
+          "value": "true"
         },
         {
           "name": "ecosystems:topic",
@@ -3399,11 +3364,6 @@
       "author": "Klaus Post",
       "name": "github.com/klauspost/compress",
       "version": "v1.17.11",
-      "licenses": [
-        {
-          "expression": "(Apache-2.0 OR BSD-3-Clause OR MIT)"
-        }
-      ],
       "purl": "pkg:golang/github.com/klauspost/compress@v1.17.11",
       "externalReferences": [
         {
@@ -3446,7 +3406,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-02-05T15:29:14Z"
+          "value": "2026-09-25T08:00:35Z"
         },
         {
           "name": "ecosystems:owner_location",
@@ -3550,7 +3510,6 @@
       "supplier": {
         "name": "Free and open source software developed at VK",
         "url": [
-          "http://opensource.mail.ru",
           "http://tarantool.org"
         ]
       },
@@ -3696,7 +3655,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2025-01-10T08:29:27Z"
+          "value": "2026-05-29T14:40:24Z"
         },
         {
           "name": "ecosystems:owner_location",
@@ -3780,7 +3739,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-04-08T12:56:32Z"
+          "value": "2026-07-23T16:45:22Z"
         },
         {
           "name": "ecosystems:owner_location",
@@ -3824,11 +3783,6 @@
       "author": "Mitchell Hashimoto",
       "name": "github.com/mitchellh/go-testing-interface",
       "version": "v1.0.0",
-      "licenses": [
-        {
-          "expression": "(MIT)"
-        }
-      ],
       "purl": "pkg:golang/github.com/mitchellh/go-testing-interface@v1.0.0",
       "externalReferences": [
         {
@@ -3965,6 +3919,13 @@
     {
       "bom-ref": "pkg:golang/github.com/modern-go/reflect2@v1.0.2",
       "type": "library",
+      "supplier": {
+        "name": "Modern Go Programming",
+        "url": [
+          "https://plz.v2p.ro"
+        ]
+      },
+      "author": "Modern Go Programming",
       "name": "github.com/modern-go/reflect2",
       "version": "v1.0.2",
       "licenses": [
@@ -4045,7 +4006,7 @@
       "version": "v0.0.0-20191010083416-a7dc8b61c822",
       "licenses": [
         {
-          "expression": "(BSD-3-Clause)"
+          "expression": "(Other)"
         }
       ],
       "purl": "pkg:golang/github.com/munnerz/goautoneg@v0.0.0-20191010083416-a7dc8b61c822",
@@ -4107,7 +4068,7 @@
       "author": "OK Log",
       "name": "github.com/oklog/run",
       "version": "v1.1.0",
-      "description": "Package run implements an actor-runner with deterministic teardown. It is\nsomewhat similar to package errgroup, except it does not require actor\ngoroutines to understand context semantics. This makes it suitable for use in\nmore circumstances; for example, goroutines which are handling connections\nfrom net.Listeners, or scanning input from a closable io.Reader.",
+      "description": "Package run implements an actor-runner with deterministic teardown.",
       "licenses": [
         {
           "expression": "(Apache-2.0)"
@@ -4213,7 +4174,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2023-07-05T10:01:38Z"
+          "value": "2026-09-30T19:41:37Z"
         }
       ]
     },
@@ -4271,7 +4232,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-04-14T00:01:27Z"
+          "value": "2026-10-03T21:11:19Z"
         }
       ]
     },
@@ -4309,7 +4270,7 @@
       "author": "pkg",
       "name": "github.com/pkg/errors",
       "version": "v0.9.1",
-      "description": "Package errors provides simple error handling primitives.\n\nThe traditional error handling idiom in Go is roughly akin to\n\nwhich when applied recursively up the call stack results in error reports\nwithout context or debugging information. The errors package allows\nprogrammers to add context to the failure path in their code in a way\nthat does not destroy the original value of the error.\n\nThe errors.Wrap function returns a new error that adds context to the\noriginal error by recording a stack trace at the point Wrap is called,\ntogether with the supplied message. For example\n\nIf additional control is required, the errors.WithStack and\nerrors.WithMessage functions destructure errors.Wrap into its component\noperations: annotating an error with a stack trace and with a message,\nrespectively.\n\nUsing errors.Wrap constructs a stack of errors, adding context to the\npreceding error. Depending on the nature of the error it may be necessary\nto reverse the operation of errors.Wrap to retrieve the original error\nfor inspection. Any error value which implements this interface\n\ncan be inspected by errors.Cause. errors.Cause will recursively retrieve\nthe topmost error that does not implement causer, which is assumed to be\nthe original cause. For example:\n\nAlthough the causer interface is not exported by this package, it is\nconsidered a part of its stable public interface.\n\nAll error values returned from this package implement fmt.Formatter and can\nbe formatted by the fmt package. The following verbs are supported:\n\nNew, Errorf, Wrap, and Wrapf record a stack trace at the point they are\ninvoked. This information can be retrieved with the following interface:\n\nThe returned errors.StackTrace type is defined as\n\nThe Frame type represents a call site in the stack trace. Frame supports\nthe fmt.Formatter interface that can be used for printing information about\nthe stack trace of this error. For example:\n\nAlthough the stackTracer interface is not exported by this package, it is\nconsidered a part of its stable public interface.\n\nSee the documentation for Frame.Format for more details.",
+      "description": "Package errors provides simple error handling primitives.",
       "licenses": [
         {
           "expression": "(BSD-2-Clause)"
@@ -4358,16 +4319,19 @@
         {
           "name": "ecosystems:latest_release_published_at",
           "value": "2020-01-14T19:47:44Z"
-        },
-        {
-          "name": "ecosystems:repository_archived",
-          "value": "true"
         }
       ]
     },
     {
       "bom-ref": "pkg:golang/github.com/prometheus-operator/prometheus-operator/pkg/apis/monitoring@v0.68.0",
       "type": "library",
+      "supplier": {
+        "name": "prometheus-operator",
+        "url": [
+          "https://prometheus-operator.dev/"
+        ]
+      },
+      "author": "prometheus-operator",
       "name": "github.com/prometheus-operator/prometheus-operator/pkg/apis/monitoring",
       "version": "v0.68.0",
       "purl": "pkg:golang/github.com/prometheus-operator/prometheus-operator/pkg/apis/monitoring@v0.68.0",
@@ -4412,7 +4376,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-03-25T10:21:53Z"
+          "value": "2026-09-23T12:53:18Z"
         },
         {
           "name": "ecosystems:topic",
@@ -4486,7 +4450,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2025-09-05T14:03:59Z"
+          "value": "2026-07-24T06:32:04Z"
         }
       ]
     },
@@ -4549,7 +4513,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2025-04-11T05:38:16Z"
+          "value": "2026-08-31T09:02:46Z"
         }
       ]
     },
@@ -4628,7 +4592,7 @@
       "author": "Prometheus",
       "name": "github.com/prometheus/procfs",
       "version": "v0.15.1",
-      "description": "Package procfs provides functions to retrieve system, kernel and process\nmetrics from the pseudo-filesystem proc.\n\nExample:",
+      "description": "Package procfs provides functions to retrieve system, kernel and process metrics from the pseudo-filesystem proc.",
       "licenses": [
         {
           "expression": "(Apache-2.0)"
@@ -4676,7 +4640,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-02-28T15:22:44Z"
+          "value": "2026-08-28T13:53:50Z"
         },
         {
           "name": "ecosystems:topic",
@@ -4720,7 +4684,7 @@
       "author": "Simon Eskildsen",
       "name": "github.com/sirupsen/logrus",
       "version": "v1.9.3",
-      "description": "Package logrus is a structured logger for Go, completely API compatible with the standard library logger.\n\nThe simplest way to use Logrus is simply the package-level exported logger:\n\nOutput:\n\nFor a full guide visit https://github.com/sirupsen/logrus\n\n\nAn example on how to use a hook",
+      "description": "Package logrus is a structured logger for Go, completely API compatible with the standard library logger.",
       "licenses": [
         {
           "expression": "(MIT)"
@@ -4768,7 +4732,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2025-10-23T12:47:52Z"
+          "value": "2026-08-25T18:05:09Z"
         },
         {
           "name": "ecosystems:owner_location",
@@ -4791,9 +4755,16 @@
     {
       "bom-ref": "pkg:golang/github.com/spf13/cobra@v1.8.1",
       "type": "library",
+      "supplier": {
+        "name": "Steve Francia",
+        "url": [
+          "http://spf13.com"
+        ]
+      },
+      "author": "Steve Francia",
       "name": "github.com/spf13/cobra",
       "version": "v1.8.1",
-      "description": "Package cobra is a commander providing a simple interface to create powerful modern CLI interfaces.\nIn addition to providing an interface, Cobra simultaneously provides a controller to organize your application code.",
+      "description": "Package cobra is a commander providing a simple interface to create powerful modern CLI interfaces.",
       "licenses": [
         {
           "expression": "(Apache-2.0)"
@@ -4842,6 +4813,10 @@
         {
           "name": "ecosystems:latest_release_published_at",
           "value": "2025-12-03T23:51:15Z"
+        },
+        {
+          "name": "ecosystems:owner_location",
+          "value": "NYC"
         },
         {
           "name": "ecosystems:topic",
@@ -4921,7 +4896,7 @@
       "author": "Steve Francia",
       "name": "github.com/spf13/pflag",
       "version": "v1.0.5",
-      "description": "Package pflag is a drop-in replacement for Go's flag package, implementing\nPOSIX/GNU-style --flags.\n\npflag is compatible with the GNU extensions to the POSIX recommendations\nfor command-line options. See\nhttp://www.gnu.org/software/libc/manual/html_node/Argument-Syntax.html\n\nUsage:\n\npflag is a drop-in replacement of Go's native flag package. If you import\npflag under the name \"flag\" then all code should continue to function\nwith no changes.\n\nThere is one exception to this: if you directly instantiate the Flag struct\nthere is one more field \"Shorthand\" that you will need to set.\nMost code never instantiates this struct directly, and instead uses\nfunctions such as String(), BoolVar(), and Var(), and is therefore\nunaffected.\n\nDefine flags using flag.String(), Bool(), Int(), etc.\n\nThis declares an integer flag, -flagname, stored in the pointer ip, with type *int.\n\nIf you like, you can bind the flag to a variable using the Var() functions.\n\nOr you can create custom flags that satisfy the Value interface (with\npointer receivers) and couple them to flag parsing by\n\nFor such flags, the default value is just the initial value of the variable.\n\nAfter all flags are defined, call\n\nto parse the command line into the defined flags.\n\nFlags may then be used directly. If you're using the flags themselves,\nthey are all pointers; if you bind to variables, they're values.\n\nAfter parsing, the arguments after the flag are available as the\nslice flag.Args() or individually as flag.Arg(i).\nThe arguments are indexed from 0 through flag.NArg()-1.\n\nThe pflag package also defines some new functions that are not in flag,\nthat give one-letter shorthands for flags. You can use these by appending\n'P' to the name of any function that defines a flag.\n\nShorthand letters can be used with single dashes on the command line.\nBoolean shorthand flags can be combined with other shorthand flags.\n\nCommand line flag syntax:\n\nUnlike the flag package, a single dash before an option means something\ndifferent than a double dash. Single dashes signify a series of shorthand\nletters for flags. All but the last shorthand letter must be boolean flags.\n\nFlag parsing stops after the terminator \"--\". Unlike the flag package,\nflags can be interspersed with arguments anywhere on the command line\nbefore this terminator.\n\nInteger flags accept 1234, 0664, 0x1234 and may be negative.\nBoolean flags (in their long form) accept 1, 0, t, f, true, false,\nTRUE, FALSE, True, False.\nDuration flags accept any input valid for time.ParseDuration.\n\nThe default set of command-line flags is controlled by\ntop-level functions.  The FlagSet type allows one to define\nindependent sets of flags, such as to implement subcommands\nin a command-line interface. The methods of FlagSet are\nanalogous to the top-level functions for the command-line\nflag set.",
+      "description": "Package pflag is a drop-in replacement for Go's flag package, implementing POSIX/GNU-style --flags.",
       "licenses": [
         {
           "expression": "(BSD-3-Clause)"
@@ -4981,12 +4956,9 @@
       "bom-ref": "pkg:golang/github.com/vmware-tanzu/velero@v1.16.0",
       "type": "library",
       "supplier": {
-        "name": "VMware Tanzu",
-        "url": [
-          "tanzu.io"
-        ]
+        "name": "velero-io"
       },
-      "author": "VMware Tanzu",
+      "author": "velero-io",
       "name": "github.com/vmware-tanzu/velero",
       "version": "v1.16.0",
       "purl": "pkg:golang/github.com/vmware-tanzu/velero@v1.16.0",
@@ -5031,7 +5003,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-03-02T09:42:25Z"
+          "value": "2026-09-24T07:50:44Z"
         },
         {
           "name": "ecosystems:topic",
@@ -5199,7 +5171,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-03-12T15:32:36Z"
+          "value": "2026-06-11T19:45:20Z"
         }
       ]
     },
@@ -5255,7 +5227,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-04-09T19:17:33Z"
+          "value": "2026-09-08T19:18:02Z"
         }
       ]
     },
@@ -5264,7 +5236,7 @@
       "type": "library",
       "name": "golang.org/x/oauth2",
       "version": "v0.27.0",
-      "description": "Package oauth2 provides support for making\nOAuth2 authorized and authenticated HTTP requests,\nas specified in RFC 6749.\nIt can additionally grant authorization with Bearer JWT.",
+      "description": "Package oauth2 provides support for making OAuth2 authorized and authenticated HTTP requests, as specified in RFC 6749.",
       "licenses": [
         {
           "expression": "(BSD-3-Clause)"
@@ -5312,7 +5284,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-02-11T19:14:10Z"
+          "value": "2026-08-25T21:41:43Z"
         }
       ]
     },
@@ -5321,11 +5293,6 @@
       "type": "library",
       "name": "golang.org/x/sys",
       "version": "v0.32.0",
-      "licenses": [
-        {
-          "expression": "(BSD-3-Clause)"
-        }
-      ],
       "purl": "pkg:golang/golang.org/x/sys@v0.32.0",
       "externalReferences": [
         {
@@ -5368,7 +5335,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-03-27T16:08:41Z"
+          "value": "2026-08-31T19:43:43Z"
         }
       ]
     },
@@ -5377,7 +5344,7 @@
       "type": "library",
       "name": "golang.org/x/term",
       "version": "v0.30.0",
-      "description": "Package term provides support functions for dealing with terminals, as\ncommonly found on UNIX systems.\n\nPutting a terminal into raw mode is the most common requirement:\n\nNote that on non-Unix systems os.Stdin.Fd() may not be 0.",
+      "description": "Package term provides support functions for dealing with terminals, as commonly found on UNIX systems.",
       "licenses": [
         {
           "expression": "(BSD-3-Clause)"
@@ -5392,6 +5359,10 @@
         {
           "url": "https://pkg.go.dev/golang.org/x/term",
           "type": "distribution"
+        },
+        {
+          "url": "https://cs.opensource.google/go/x/term",
+          "type": "vcs"
         },
         {
           "url": "https://pkg.go.dev/golang.org/x/term#section-documentation",
@@ -5421,7 +5392,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-04-09T11:43:42Z"
+          "value": "2026-09-08T16:27:41Z"
         }
       ]
     },
@@ -5430,7 +5401,7 @@
       "type": "library",
       "name": "golang.org/x/text",
       "version": "v0.23.0",
-      "description": "text is a repository of text-related packages related to internationalization\n(i18n) and localization (l10n), such as character encodings, text\ntransformations, and locale-specific text handling.\n\nThere is a 30 minute video, recorded on 2017-11-30, on the \"State of\ngolang.org/x/text\" at https://www.youtube.com/watch?v=uYrDrMEGu58",
+      "description": "text is a repository of text-related packages related to internationalization (i18n) and localization (l10n), such as character encodings, text transformations, and locale-specific text handling.",
       "licenses": [
         {
           "expression": "(BSD-3-Clause)"
@@ -5478,7 +5449,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-04-09T11:43:05Z"
+          "value": "2026-09-08T16:29:55Z"
         }
       ]
     },
@@ -5501,6 +5472,10 @@
         {
           "url": "https://pkg.go.dev/golang.org/x/time",
           "type": "distribution"
+        },
+        {
+          "url": "https://cs.opensource.google/go/x/time",
+          "type": "vcs"
         },
         {
           "url": "https://pkg.go.dev/golang.org/x/time#section-documentation",
@@ -5530,7 +5505,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-02-11T19:14:29Z"
+          "value": "2026-08-19T17:16:18Z"
         }
       ]
     },
@@ -5647,7 +5622,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-04-01T02:48:25Z"
+          "value": "2026-06-22T17:59:28Z"
         }
       ]
     },
@@ -5663,7 +5638,7 @@
       "author": "grpc",
       "name": "google.golang.org/grpc",
       "version": "v1.69.4",
-      "description": "Package grpc implements an RPC system called gRPC.\n\nSee grpc.io for more information about gRPC.",
+      "description": "Package grpc implements an RPC system called gRPC.",
       "purl": "pkg:golang/google.golang.org/grpc@v1.69.4",
       "externalReferences": [
         {
@@ -5706,7 +5681,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-04-01T07:57:02Z"
+          "value": "2026-09-17T20:03:25Z"
         },
         {
           "name": "ecosystems:topic",
@@ -5778,6 +5753,10 @@
           "type": "distribution"
         },
         {
+          "url": "https://github.com/protocolbuffers/protobuf-go",
+          "type": "vcs"
+        },
+        {
           "url": "https://pkg.go.dev/google.golang.org/protobuf#section-documentation",
           "type": "documentation"
         }
@@ -5805,7 +5784,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2025-12-12T08:48:31Z"
+          "value": "2026-08-10T13:29:45Z"
         },
         {
           "name": "ecosystems:topic",
@@ -5834,10 +5813,10 @@
       "author": "go-inf",
       "name": "gopkg.in/inf.v0",
       "version": "v0.9.1",
-      "description": "Package inf (type inf.Dec) implements \"infinite-precision\" decimal\narithmetic.\n\"Infinite precision\" describes two characteristics: practically unlimited\nprecision for decimal number representation and no support for calculating\nwith any specific fixed precision.\n(Although there is no practical limit on precision, inf.Dec can only\nrepresent finite decimals.)\n\nThis package is currently in experimental stage and the API may change.\n\nThis package does NOT support:\n\nFeatures considered for possible addition:",
+      "description": "Package inf (type inf.Dec) implements \"infinite-precision\" decimal arithmetic.",
       "licenses": [
         {
-          "expression": "(BSD-3-Clause)"
+          "expression": "(Other)"
         }
       ],
       "purl": "pkg:golang/gopkg.in/inf.v0@v0.9.1",
@@ -5849,6 +5828,10 @@
         {
           "url": "https://pkg.go.dev/gopkg.in/inf.v0",
           "type": "distribution"
+        },
+        {
+          "url": "https://github.com/go-inf/inf",
+          "type": "vcs"
         },
         {
           "url": "https://pkg.go.dev/gopkg.in/inf.v0#section-documentation",
@@ -5915,7 +5898,7 @@
       "author": "go-yaml",
       "name": "gopkg.in/yaml.v2",
       "version": "v2.4.0",
-      "description": "Package yaml implements YAML support for the Go language.\n\nSource code and other details for the project are available at GitHub:",
+      "description": "Package yaml implements YAML support for the Go language.",
       "licenses": [
         {
           "expression": "(Apache-2.0)"
@@ -5930,6 +5913,10 @@
         {
           "url": "https://pkg.go.dev/gopkg.in/yaml.v2",
           "type": "distribution"
+        },
+        {
+          "url": "https://github.com/go-yaml/yaml",
+          "type": "vcs"
         },
         {
           "url": "https://pkg.go.dev/gopkg.in/yaml.v2#section-documentation",
@@ -5976,7 +5963,7 @@
       "author": "go-yaml",
       "name": "gopkg.in/yaml.v3",
       "version": "v3.0.1",
-      "description": "Package yaml implements YAML support for the Go language.\n\nSource code and other details for the project are available at GitHub:",
+      "description": "Package yaml implements YAML support for the Go language.",
       "licenses": [
         {
           "expression": "(Apache-2.0 OR MIT)"
@@ -6025,6 +6012,10 @@
         {
           "name": "ecosystems:latest_release_published_at",
           "value": "2022-05-27T08:35:30Z"
+        },
+        {
+          "name": "ecosystems:repository_archived",
+          "value": "true"
         }
       ]
     },
@@ -6082,7 +6073,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-02-10T20:17:07Z"
+          "value": "2026-09-23T20:45:45Z"
         },
         {
           "name": "ecosystems:topic",
@@ -6144,7 +6135,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-02-10T22:28:42Z"
+          "value": "2026-09-23T23:10:09Z"
         },
         {
           "name": "ecosystems:topic",
@@ -6206,7 +6197,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2025-12-04T22:24:03Z"
+          "value": "2026-09-23T20:28:20Z"
         },
         {
           "name": "ecosystems:topic",
@@ -6226,7 +6217,7 @@
       "author": "Kubernetes",
       "name": "k8s.io/client-go",
       "version": "v0.31.3",
-      "description": "Package clientgo is the official Go client for the Kubernetes API. It provides\na standard set of clients and tools for building applications, controllers,\nand operators that communicate with a Kubernetes cluster.\n\nkubernetes: Contains the typed Clientset for interacting with built-in,\nversioned API objects (e.g., Pods, Deployments). This is the most common\nstarting point.\n\ndynamic: Provides a dynamic client that can perform operations on any\nKubernetes object, including Custom Resources (CRs). It is essential for\nbuilding controllers that work with CRDs.\n\ndiscovery: Used to discover the API groups, versions, and resources\nsupported by a Kubernetes cluster.\n\ntools/cache: The foundation of the controller pattern. This package provides\nefficient caching and synchronization mechanisms (Informers and Listers)\nfor building controllers.\n\ntools/clientcmd: Provides methods for loading client configuration from\nkubeconfig files. This is essential for out-of-cluster applications and CLI tools.\n\nrest: Provides a lower-level RESTClient that manages the details of\ncommunicating with the Kubernetes API server. It is useful for advanced\nuse cases that require fine-grained control over requests, such as working\nwith non-standard REST verbs.\n\nThere are two primary ways to configure a client to connect to the API server:\n\nIn-Cluster Configuration: For applications running inside a Kubernetes pod,\nthe `rest.InClusterConfig()` function provides a straightforward way to\nconfigure the client. It automatically uses the pod's service account for\nauthentication and is the recommended approach for controllers and operators.\n\nOut-of-Cluster Configuration: For local development or command-line tools,\nthe `clientcmd` package is used to load configuration from a\nkubeconfig file.\n\nThe `rest.Config` object allows for fine-grained control over client-side\nperformance and reliability. Key settings include:\n\nOnce configured, a client can be used to interact with objects in the cluster.\n\nThe Typed Clientset (`kubernetes` package) provides a strongly typed\ninterface for working with built-in Kubernetes objects.\n\nThe Dynamic Client (`dynamic` package) can work with any object, including\nCustom Resources, using `unstructured.Unstructured` types.\n\nFor Custom Resources (CRDs), the `k8s.io/code-generator` repository\ncontains the tools to generate typed clients, informers, and listers. The\n`sample-controller` is the canonical example of this pattern.\n\nServer-Side Apply is a patching strategy that allows multiple actors to\nshare management of an object by tracking field ownership. This prevents\nactors from inadvertently overwriting each other's changes and provides\na mechanism for resolving conflicts. The `applyconfigurations` package\nprovides the necessary tools for this declarative approach.\n\nRobust error handling is essential when interacting with the API. The\n`k8s.io/apimachinery/pkg/api/errors` package provides functions to inspect\nerrors and check for common conditions, such as whether a resource was not\nfound or already exists. This allows controllers to implement robust,\nidempotent reconciliation logic.\n\nThe controller pattern is central to Kubernetes. A controller observes the\nstate of the cluster and works to bring it to the desired state.\n\nThe `tools/cache` package provides the building blocks for this pattern.\nInformers watch the API server and maintain a local cache, Listers provide\nread-only access to the cache, and Workqueues decouple event detection\nfrom processing.\n\nIn a high-availability deployment where multiple instances of a controller\nare running, leader election (`tools/leaderelection`) is used to ensure\nthat only one instance is active at a time.\n\nClient-side feature gates allow for enabling or disabling experimental\nfeatures in `client-go`. They can be configured via the `rest.Config` object.",
+      "description": "Package clientgo is the official Go client for the Kubernetes API.",
       "purl": "pkg:golang/k8s.io/client-go@v0.31.3",
       "externalReferences": [
         {
@@ -6269,7 +6260,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2016-10-17T18:15:22Z"
+          "value": "2026-09-23T21:10:43Z"
         },
         {
           "name": "ecosystems:topic",
@@ -6280,40 +6271,9 @@
     {
       "bom-ref": "pkg:golang/k8s.io/klog/v2@v2.130.1",
       "type": "library",
-      "supplier": {
-        "name": "Kubernetes",
-        "url": [
-          "https://kubernetes.io"
-        ]
-      },
-      "author": "Kubernetes",
       "name": "k8s.io/klog/v2",
       "version": "v2.130.1",
-      "description": "Package klog contains the following functionality:\n\nBasic examples:\n\nSee the documentation for the V function for an explanation of these examples:\n\nLog output is buffered and written periodically using Flush. Programs\nshould call Flush before exiting to guarantee all log output is written.\n\nBy default, all log statements write to standard error.\nThis package provides several flags that modify this behavior.\nAs a result, flag.Parse must be called before any logging is done.",
-      "licenses": [
-        {
-          "expression": "(Apache-2.0)"
-        }
-      ],
       "purl": "pkg:golang/k8s.io/klog/v2@v2.130.1",
-      "externalReferences": [
-        {
-          "url": "https://github.com/kubernetes/klog",
-          "type": "website"
-        },
-        {
-          "url": "https://pkg.go.dev/k8s.io/klog/v2",
-          "type": "distribution"
-        },
-        {
-          "url": "https://github.com/kubernetes/klog",
-          "type": "vcs"
-        },
-        {
-          "url": "https://pkg.go.dev/k8s.io/klog/v2#section-documentation",
-          "type": "documentation"
-        }
-      ],
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
@@ -6330,18 +6290,6 @@
         {
           "name": "aquasecurity:trivy:PkgType",
           "value": "gobinary"
-        },
-        {
-          "name": "ecosystems:first_release_published_at",
-          "value": "2020-04-08T18:47:44Z"
-        },
-        {
-          "name": "ecosystems:latest_release_published_at",
-          "value": "2026-03-03T11:17:23Z"
-        },
-        {
-          "name": "ecosystems:topic",
-          "value": "k8s-sig-architecture"
         }
       ]
     },
@@ -6395,45 +6343,20 @@
         },
         {
           "name": "ecosystems:first_release_published_at",
-          "value": "2018-06-29T01:24:20Z"
+          "value": "2017-08-30T10:06:54Z"
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-03-30T15:44:17Z"
+          "value": "2026-06-24T04:16:17Z"
         }
       ]
     },
     {
       "bom-ref": "pkg:golang/k8s.io/utils@v0.0.0-20240711033017-18e509b52bc8",
       "type": "library",
-      "supplier": {
-        "name": "Kubernetes",
-        "url": [
-          "https://kubernetes.io"
-        ]
-      },
-      "author": "Kubernetes",
       "name": "k8s.io/utils",
       "version": "v0.0.0-20240711033017-18e509b52bc8",
       "purl": "pkg:golang/k8s.io/utils@v0.0.0-20240711033017-18e509b52bc8",
-      "externalReferences": [
-        {
-          "url": "https://github.com/kubernetes/utils",
-          "type": "website"
-        },
-        {
-          "url": "https://pkg.go.dev/k8s.io/utils",
-          "type": "distribution"
-        },
-        {
-          "url": "https://github.com/kubernetes/utils",
-          "type": "vcs"
-        },
-        {
-          "url": "https://pkg.go.dev/k8s.io/utils#section-documentation",
-          "type": "documentation"
-        }
-      ],
       "properties": [
         {
           "name": "aquasecurity:trivy:LayerDiffID",
@@ -6450,22 +6373,6 @@
         {
           "name": "aquasecurity:trivy:PkgType",
           "value": "gobinary"
-        },
-        {
-          "name": "ecosystems:first_release_published_at",
-          "value": "2018-10-19T22:53:48Z"
-        },
-        {
-          "name": "ecosystems:latest_release_published_at",
-          "value": "2026-03-19T19:02:34Z"
-        },
-        {
-          "name": "ecosystems:topic",
-          "value": "golang"
-        },
-        {
-          "name": "ecosystems:topic",
-          "value": "kubernetes"
         }
       ]
     },
@@ -6602,7 +6509,7 @@
       "author": "Kubernetes SIGs",
       "name": "sigs.k8s.io/controller-runtime",
       "version": "v0.19.3",
-      "description": "Package controllerruntime provides tools to construct Kubernetes-style\ncontrollers that manipulate both Kubernetes CRDs and aggregated/built-in\nKubernetes APIs.\n\nIt defines easy helpers for the common use cases when building CRDs, built\non top of customizable layers of abstraction.  Common cases should be easy,\nand uncommon cases should be possible.  In general, controller-runtime tries\nto guide users towards Kubernetes controller best-practices.\n\nThe main entrypoint for controller-runtime is this root package, which\ncontains all of the common types needed to get started building controllers:\n\nThe examples in this package walk through a basic controller setup.  The\nkubebuilder book (https://book.kubebuilder.io) has some more in-depth\nwalkthroughs.\n\ncontroller-runtime favors structs with sane defaults over constructors, so\nit's fairly common to see structs being used directly in controller-runtime.\n\nA brief-ish walkthrough of the layout of this library can be found below. Each\npackage contains more information about how to use it.\n\nFrequently asked questions about using controller-runtime and designing\ncontrollers can be found at\nhttps://github.com/kubernetes-sigs/controller-runtime/blob/main/FAQ.md.\n\nEvery controller and webhook is ultimately run by a Manager (pkg/manager). A\nmanager is responsible for running controllers and webhooks, and setting up\ncommon dependencies, like shared caches and clients, as\nwell as managing leader election (pkg/leaderelection).  Managers are\ngenerally configured to gracefully shut down controllers on pod termination\nby wiring up a signal handler (pkg/manager/signals).\n\nControllers (pkg/controller) use events (pkg/event) to eventually trigger\nreconcile requests.  They may be constructed manually, but are often\nconstructed with a Builder (pkg/builder), which eases the wiring of event\nsources (pkg/source), like Kubernetes API object changes, to event handlers\n(pkg/handler), like \"enqueue a reconcile request for the object owner\".\nPredicates (pkg/predicate) can be used to filter which events actually\ntrigger reconciles.  There are pre-written utilities for the common cases, and\ninterfaces and helpers for advanced cases.\n\nController logic is implemented in terms of Reconcilers (pkg/reconcile).  A\nReconciler implements a function which takes a reconcile Request containing\nthe name and namespace of the object to reconcile, reconciles the object,\nand returns a Response or an error indicating whether to requeue for a\nsecond round of processing.\n\nReconcilers use Clients (pkg/client) to access API objects.  The default\nclient provided by the manager reads from a local shared cache (pkg/cache)\nand writes directly to the API server, but clients can be constructed that\nonly talk to the API server, without a cache.  The Cache will auto-populate\nwith watched objects, as well as when other structured objects are\nrequested. The default split client does not promise to invalidate the cache\nduring writes (nor does it promise sequential create/get coherence), and code\nshould not assume a get immediately following a create/update will return\nthe updated resource. Caches may also have indexes, which can be created via\na FieldIndexer (pkg/client) obtained from the manager.  Indexes can be used to\nquickly and easily look up all objects with certain fields set.  Reconcilers\nmay retrieve event recorders (pkg/recorder) to emit events using the\nmanager.\n\nClients, Caches, and many other things in Kubernetes use Schemes\n(pkg/scheme) to associate Go types to Kubernetes API Kinds\n(Group-Version-Kinds, to be specific).\n\nSimilarly, webhooks (pkg/webhook/admission) may be implemented directly, but\nare often constructed using a builder (pkg/webhook/admission/builder).  They\nare run via a server (pkg/webhook) which is managed by a Manager.\n\nLogging (pkg/log) in controller-runtime is done via structured logs, using a\nlog set of interfaces called logr\n(https://pkg.go.dev/github.com/go-logr/logr).  While controller-runtime\nprovides easy setup for using Zap (https://go.uber.org/zap, pkg/log/zap),\nyou can provide any implementation of logr as the base logger for\ncontroller-runtime.\n\nMetrics (pkg/metrics) provided by controller-runtime are registered into a\ncontroller-runtime-specific Prometheus metrics registry.  The manager can\nserve these by an HTTP endpoint, and additional metrics may be registered to\nthis Registry as normal.\n\nYou can easily build integration and unit tests for your controllers and\nwebhooks using the test Environment (pkg/envtest).  This will automatically\nstand up a copy of etcd and kube-apiserver, and provide the correct options\nto connect to the API server.  It's designed to work well with the Ginkgo\ntesting framework, but should work with any testing setup.\n\nThis example creates a simple application Controller that is configured for ReplicaSets and Pods.\n\n* Create a new application for ReplicaSets that manages Pods owned by the ReplicaSet and calls into\nReplicaSetReconciler.\n\n* Start the application.\n\n\nThis example creates a simple application Controller that is configured for ExampleCRDWithConfigMapRef CRD.\nAny change in the configMap referenced in this Custom Resource will cause the re-reconcile of the parent ExampleCRDWithConfigMapRef\ndue to the implementation of the .Watches method of \"sigs.k8s.io/controller-runtime/pkg/builder\".Builder.\n\n\nThis example creates a simple application Controller that is configured for ReplicaSets and Pods.\nThis application controller will be running leader election with the provided configuration in the manager options.\nIf leader election configuration is not provided, controller runs leader election with default values.\nDefault values taken from: https://github.com/kubernetes/component-base/blob/master/config/v1alpha1/defaults.go\n* defaultLeaseDuration = 15 * time.Second\n* defaultRenewDeadline = 10 * time.Second\n* defaultRetryPeriod   = 2 * time.Second\n\n* Create a new application for ReplicaSets that manages Pods owned by the ReplicaSet and calls into\nReplicaSetReconciler.\n\n* Start the application.",
+      "description": "Package controllerruntime provides tools to construct Kubernetes-style controllers that manipulate both Kubernetes CRDs and aggregated/built-in Kubernetes APIs.",
       "purl": "pkg:golang/sigs.k8s.io/controller-runtime@v0.19.3",
       "externalReferences": [
         {
@@ -6612,6 +6519,10 @@
         {
           "url": "https://pkg.go.dev/sigs.k8s.io/controller-runtime",
           "type": "distribution"
+        },
+        {
+          "url": "https://github.com/kubernetes-sigs/controller-runtime",
+          "type": "vcs"
         },
         {
           "url": "https://pkg.go.dev/sigs.k8s.io/controller-runtime#section-documentation",
@@ -6641,7 +6552,7 @@
         },
         {
           "name": "ecosystems:latest_release_published_at",
-          "value": "2026-03-05T14:20:21Z"
+          "value": "2026-09-30T23:29:52Z"
         },
         {
           "name": "ecosystems:topic",
@@ -6716,6 +6627,10 @@
     {
       "bom-ref": "pkg:golang/sigs.k8s.io/structured-merge-diff/v4@v4.4.1",
       "type": "library",
+      "supplier": {
+        "name": "Kubernetes SIGs"
+      },
+      "author": "Kubernetes SIGs",
       "name": "sigs.k8s.io/structured-merge-diff/v4",
       "version": "v4.4.1",
       "licenses": [
@@ -6732,6 +6647,10 @@
         {
           "url": "https://pkg.go.dev/sigs.k8s.io/structured-merge-diff/v4",
           "type": "distribution"
+        },
+        {
+          "url": "https://github.com/kubernetes-sigs/structured-merge-diff",
+          "type": "vcs"
         },
         {
           "url": "https://pkg.go.dev/sigs.k8s.io/structured-merge-diff/v4#section-documentation",
@@ -6792,6 +6711,10 @@
         {
           "url": "https://pkg.go.dev/sigs.k8s.io/yaml",
           "type": "distribution"
+        },
+        {
+          "url": "https://github.com/kubernetes-sigs/yaml",
+          "type": "vcs"
         },
         {
           "url": "https://pkg.go.dev/sigs.k8s.io/yaml#section-documentation",
@@ -6857,13 +6780,13 @@
   ],
   "dependencies": [
     {
-      "ref": "80863bc8-110b-4236-98aa-54ec93b8c9b3",
+      "ref": "12184346-a1ca-4de9-82df-8042902ff66f",
       "dependsOn": [
         "pkg:golang/kubevirt.io/kubevirt-velero-plugin"
       ]
     },
     {
-      "ref": "b4612f63-b379-4d0f-8920-f06f18f601d4",
+      "ref": "9bc219d6-6f44-4e65-8d62-acd855bcdb69",
       "dependsOn": [
         "pkg:apk/alpine/alpine-baselayout@3.2.0-r8?arch=x86_64&distro=3.13.12",
         "pkg:apk/alpine/alpine-keys@2.4-r0?arch=x86_64&distro=3.13.12",
@@ -7403,8 +7326,8 @@
     {
       "ref": "pkg:oci/kubevirt-velero-plugin@sha256%3A9169abc2e70ec53f5762ad8df27a1a8c4adedf8be45808e4d126c8d496f2046f?arch=amd64&repository_url=quay.io%2Fkubevirt%2Fkubevirt-velero-plugin",
       "dependsOn": [
-        "80863bc8-110b-4236-98aa-54ec93b8c9b3",
-        "b4612f63-b379-4d0f-8920-f06f18f601d4"
+        "12184346-a1ca-4de9-82df-8042902ff66f",
+        "9bc219d6-6f44-4e65-8d62-acd855bcdb69"
       ]
     }
   ],
