@@ -466,12 +466,31 @@ force_backstage_external_secret_refresh() {
   [[ -f ./backstage-openbao-secrets-created ]] || return 0
   [[ ! -f ./backstage-external-secret-refresh-requested ]] || return 0
 
-  if kubectl annotate externalsecret.external-secrets.io sx-cnp-secret -n backstage \
-    "force-sync=$(utc_now_seconds)" --overwrite --request-timeout=10s >/dev/null 2>&1; then
+  local refresh_output refresh_exit_code refresh_error
+  backstage_secret_refresh_attempts=$(( ${backstage_secret_refresh_attempts:-0} + 1 ))
+  if refresh_output="$(kubectl annotate externalsecret.external-secrets.io sx-cnp-secret -n backstage \
+    "force-sync=$(utc_now_seconds)" --overwrite --request-timeout=10s 2>&1)"; then
     touch ./backstage-external-secret-refresh-requested
-    echo "[secret-refresh] app=sx-backstage resource=backstage/sx-cnp-secret force-sync=requested"
+    unset backstage_secret_refresh_last_error
+    echo "[secret-refresh] app=sx-backstage resource=backstage/sx-cnp-secret force-sync=requested attempts=$backstage_secret_refresh_attempts"
   else
-    sync_debug_printf '%s\n' "[secret-refresh] app=sx-backstage resource=backstage/sx-cnp-secret force-sync=deferred retry=next-loop"
+    refresh_exit_code=$?
+    # Keep kubectl errors visible in default mode, redact common credentials,
+    # and encode as one JSON string so multiline errors cannot inject log lines.
+    refresh_error="$(jq -Rsc '
+      gsub("(?i)bearer [A-Za-z0-9._~+/=-]+"; "Bearer [REDACTED]")
+      | gsub("(?i)(password|token|authorization|client_secret|root_token)[=:][^ ,;]+"; "[REDACTED credential]")
+      | gsub("https?://[^ /:@]+:[^ /@]+@"; "https://[REDACTED]@")
+      | .[0:1000]
+    ' <<<"$refresh_output")"
+    if [[ "${backstage_secret_refresh_last_error:-}" != "$refresh_exit_code:$refresh_error" ]]; then
+      printf '[secret-refresh] app=sx-backstage resource=backstage/sx-cnp-secret force-sync=deferred attempt=%s exit-code=%s retry=next-loop error=%s\n' \
+        "$backstage_secret_refresh_attempts" "$refresh_exit_code" "$refresh_error"
+      backstage_secret_refresh_last_error="$refresh_exit_code:$refresh_error"
+    else
+      sync_debug_printf '[secret-refresh] app=sx-backstage resource=backstage/sx-cnp-secret force-sync=deferred attempt=%s exit-code=%s retry=next-loop error=unchanged\n' \
+        "$backstage_secret_refresh_attempts" "$refresh_exit_code"
+    fi
   fi
 }
 
