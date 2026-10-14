@@ -211,7 +211,14 @@ source <(sed -n '/^force_backstage_external_secret_refresh() {/,/^sync_debug_pri
   KUBRIX_SYNC_DEBUG=false
   argocd_apps="sx-argocd"
   utc_now_seconds() { echo 1791918000; }
+  timeout() {
+    [[ "$1" == 20s && "$2" == kubectl ]] || return 99
+    shift
+    "$@"
+  }
   kubectl() {
+    # No kubectl config overrides: preserve automatic in-cluster auth.
+    [[ "$*" != *"--request-timeout"* ]] || return 99
     printf '%s\n' "$*" >> force-commands
     if [[ "${refresh_mode:-success}" != success ]]; then
       printf '%s\n' 'Error from server (Forbidden): cannot patch externalsecrets' \
@@ -244,7 +251,7 @@ source <(sed -n '/^force_backstage_external_secret_refresh() {/,/^sync_debug_pri
   force_backstage_external_secret_refresh > force-log
   [[ -f backstage-external-secret-refresh-requested ]]
   [[ $(wc -l < force-commands) -eq 4 ]]
-  grep -q 'annotate externalsecret.external-secrets.io sx-cnp-secret -n backstage force-sync=1791918000 --overwrite --request-timeout=10s' force-commands
+  grep -q 'annotate externalsecret.external-secrets.io sx-cnp-secret -n backstage force-sync=1791918000 --overwrite' force-commands
   grep -q 'force-sync=requested attempts=4' force-log
   force_backstage_external_secret_refresh
   [[ $(wc -l < force-commands) -eq 4 ]]
