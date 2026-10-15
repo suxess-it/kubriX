@@ -257,3 +257,153 @@ source <(sed -n '/^force_backstage_external_secret_refresh() {/,/^sync_debug_pri
   [[ $(wc -l < force-commands) -eq 4 ]]
 )
 echo "Backstage force-refresh selection, token readiness, visible/redacted errors, retry and once-only checks passed."
+
+# Real Git credential protocol: credentials must stay scoped to one invocation.
+source <(sed -n '/^git_with_credentials() (/,/^# clone kubriX upstream/p' install-platform.sh | sed '$d')
+(
+  auth_dir=$(mktemp -d)
+  trap 'rm -rf "$auth_dir"' EXIT
+  export GIT_CONFIG_GLOBAL="$auth_dir/global" GIT_CONFIG_NOSYSTEM=1
+  export AUTH_UP_USER=upstream-user AUTH_UP_TOKEN='upstream-token-special:@/?'
+  export AUTH_CUSTOMER_USER=customer-user AUTH_CUSTOMER_TOKEN='customer-token-special:@/?'
+  git config --global credential.helper "store --file=$auth_dir/credentials"
+  printf 'protocol=https\nhost=github.com\n\n' > "$auth_dir/request"
+  git_with_credentials AUTH_UP_USER AUTH_UP_TOKEN https://github.com/org/upstream.git \
+    credential fill < "$auth_dir/request" > "$auth_dir/upstream"
+  git_with_credentials AUTH_CUSTOMER_USER AUTH_CUSTOMER_TOKEN https://github.com/org/customer.git \
+    credential fill < "$auth_dir/request" > "$auth_dir/customer"
+  grep -Fxq "username=$AUTH_UP_USER" "$auth_dir/upstream"
+  grep -Fxq "password=$AUTH_UP_TOKEN" "$auth_dir/upstream"
+  grep -Fxq "username=$AUTH_CUSTOMER_USER" "$auth_dir/customer"
+  grep -Fxq "password=$AUTH_CUSTOMER_TOKEN" "$auth_dir/customer"
+  # No credential persistence, including pre-existing global credential stores.
+  git_with_credentials AUTH_CUSTOMER_USER AUTH_CUSTOMER_TOKEN https://github.com/org/customer.git \
+    credential approve < "$auth_dir/customer"
+  [[ ! -e "$auth_dir/credentials" ]]
+  printf 'protocol=https\nhost=other.example\n\n' > "$auth_dir/other"
+  if git_with_credentials AUTH_UP_USER AUTH_UP_TOKEN https://github.com/org/upstream.git \
+    credential fill < "$auth_dir/other" > "$auth_dir/refused" 2>/dev/null; then
+    echo "Credentials must not be provided to another host" >&2
+    exit 1
+  fi
+  if grep -q 'token-special' "$auth_dir/refused" "$auth_dir/global"; then exit 1; fi
+  (
+    set -x
+    git_with_credentials AUTH_UP_USER AUTH_UP_TOKEN https://github.com/org/upstream.git \
+      credential fill < "$auth_dir/request" > /dev/null
+  ) 2> "$auth_dir/trace"
+  if grep -q 'token-special' "$auth_dir/trace"; then exit 1; fi
+)
+echo "Real Git credential separation, host scoping, non-persistence and xtrace checks passed."
+
+# Real HTTP Git backend: exercise actual bootstrap functions and customer clone.
+python3 - <<'PY_GIT_AUTH'
+import base64
+import http.server
+import os
+import pathlib
+import subprocess
+import tempfile
+import threading
+import urllib.parse
+
+def run(*args, **kwargs):
+    result = subprocess.run(args, stdout=subprocess.PIPE, stderr=subprocess.PIPE, **kwargs)
+    if result.returncode:
+        print(result.stdout.decode(), result.stderr.decode())
+        result.check_returncode()
+    return result
+
+with tempfile.TemporaryDirectory() as tmp:
+    root = pathlib.Path(tmp)
+    source = pathlib.Path('install-platform.sh').read_text()
+    helper = source[source.index('git_with_credentials() ('):source.index('bootstrap_template_downstream_repo() {')]
+    push = source[source.index('bootstrap_push_to_downstream() {'):source.index('# Current UTC epoch seconds')]
+    (root / 'functions.sh').write_text(helper + push)
+    for name in ('upstream.git', 'customer.git', 'orphan.git'):
+        run('git', 'init', '--bare', '--initial-branch=main', str(root / name))
+        run('git', '-C', str(root / name), 'config', 'http.receivepack', 'true')
+    run('git', 'clone', str(root / 'upstream.git'), str(root / 'seed'))
+    run('git', '-C', str(root / 'seed'), 'config', 'user.name', 'Fixture')
+    run('git', '-C', str(root / 'seed'), 'config', 'user.email', 'fixture@example.invalid')
+    (root / 'seed' / 'seed.txt').write_text('upstream\n')
+    run('git', '-C', str(root / 'seed'), 'add', '.')
+    run('git', '-C', str(root / 'seed'), 'commit', '-m', 'seed')
+    run('git', '-C', str(root / 'seed'), 'push', 'origin', 'main')
+    backend = pathlib.Path(run('git', '--exec-path').stdout.decode().strip()) / 'git-http-backend'
+    seen = []
+
+    class Handler(http.server.BaseHTTPRequestHandler):
+        def log_message(self, *args):
+            pass
+
+        def handle_git(self):
+            url = urllib.parse.urlsplit(self.path)
+            path = url.path
+            upstream = path.startswith('/upstream.git/')
+            expected = 'upstream-user:upstream-token' if upstream else 'customer-user:customer-token'
+            auth = self.headers.get('Authorization', '')
+            valid = auth == 'Basic ' + base64.b64encode(expected.encode()).decode()
+            if not valid:
+                self.send_response(401)
+                self.send_header('WWW-Authenticate', 'Basic realm="fixture"')
+                self.send_header('Content-Length', '0')
+                self.end_headers()
+                return
+            seen.append(('upstream' if upstream else 'customer', self.command))
+            # Exercise an actual same-host redirect without credentials in URL.
+            if path.startswith('/customer.git/') and self.command == 'GET':
+                self.send_response(307)
+                self.send_header('Location', '/canonical' + self.path)
+                self.send_header('Content-Length', '0')
+                self.end_headers()
+                return
+            path = path.removeprefix('/canonical')
+            env = dict(os.environ, GIT_PROJECT_ROOT=str(root), GIT_HTTP_EXPORT_ALL='1',
+                       PATH_INFO=path, QUERY_STRING=url.query, REQUEST_METHOD=self.command,
+                       CONTENT_TYPE=self.headers.get('Content-Type', ''),
+                       CONTENT_LENGTH=self.headers.get('Content-Length', '0'), REMOTE_USER='fixture')
+            body = self.rfile.read(int(env['CONTENT_LENGTH']))
+            response = run(str(backend), input=body, env=env).stdout
+            headers, _, content = response.partition(b'\r\n\r\n')
+            self.send_response(200)
+            for line in headers.decode().splitlines():
+                key, value = line.split(':', 1)
+                if key.lower() != 'status':
+                    self.send_header(key, value.strip())
+            self.end_headers()
+            self.wfile.write(content)
+
+        do_GET = handle_git
+        do_POST = handle_git
+
+    server = http.server.ThreadingHTTPServer(('127.0.0.1', 0), Handler)
+    thread = threading.Thread(target=server.serve_forever, daemon=True)
+    thread.start()
+    base = 'http://127.0.0.1:' + str(server.server_port)
+    env = dict(os.environ, KUBRIX_UPSTREAM_REPO=base + '/upstream.git',
+               KUBRIX_UPSTREAM_REPO_USERNAME='upstream-user', KUBRIX_UPSTREAM_REPO_PASSWORD='upstream-token',
+               KUBRIX_REPO_USERNAME='customer-user', KUBRIX_REPO_PASSWORD='customer-token',
+               KUBRIX_UPSTREAM_BRANCH='main', KUBRIX_REPO_PROTO='http://',
+               GIT_CONFIG_NOSYSTEM='1', GIT_CONFIG_GLOBAL=str(root / 'empty-global'))
+    for keep, target in [('true', 'customer.git'), ('false', 'orphan.git')]:
+        work = root / ('work-' + keep)
+        work.mkdir()
+        env.update(KUBRIX_BOOTSTRAP_KEEP_HISTORY=keep, KUBRIX_REPO=base + '/' + target)
+        script = '''set -euo pipefail
+source "$1"
+bootstrap_clone_from_upstream
+printf 'customer\n' > customer.txt
+bootstrap_push_to_downstream
+if git config --get-regexp 'credential|remote.*url' | grep -qE 'upstream-token|customer-token'; then exit 1; fi
+git_with_credentials KUBRIX_REPO_USERNAME KUBRIX_REPO_PASSWORD "$KUBRIX_REPO" clone "$KUBRIX_REPO" verify
+test -f verify/customer.txt
+'''
+        run('bash', '-c', script, 'test', str(root / 'functions.sh'), env=env, cwd=work)
+        count = run('git', '--git-dir', str(root / target), 'rev-list', '--count', 'main').stdout.strip()
+        assert count == (b'2' if keep == 'true' else b'1'), count
+    server.shutdown()
+    assert ('upstream', 'GET') in seen and ('customer', 'POST') in seen
+    print('Real authenticated HTTP clone/push/re-clone passed with distinct upstream/customer credentials, redirect, and both history modes.')
+
+PY_GIT_AUTH
