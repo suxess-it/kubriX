@@ -280,7 +280,23 @@
 <h2>Image <code>quay.io/argoproj/argocd:v3.5.4</code></h2>
 
 <h3>Target <code>quay.io/argoproj/argocd:v3.5.4 (ubuntu 26.04)</code></h3>
-<h4>No Vulnerabilities found</h4>
+<h4>Vulnerabilities (1)</h4>
+<table>
+    <tr>
+        <th>Package</th>
+        <th>ID</th>
+        <th>Severity</th>
+        <th>Installed Version</th>
+        <th>Fixed Version</th>
+    </tr>
+    <tr>
+        <td><code>libcurl3t64-gnutls</code></td>
+        <td>CVE-2026-92392</td>
+        <td>HIGH</td>
+        <td>8.18.0-1ubuntu2.7</td>
+        <td>8.18.0-1ubuntu2.8</td>
+    </tr>
+</table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>usr/bin/pebble</code></h3>
 <h4>Vulnerabilities (25)</h4>

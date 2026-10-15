@@ -258,7 +258,7 @@
 <h2>Image <code>icr.io/kubecost/cost-model:2.9.7</code></h2>
 
 <h3>Target <code>icr.io/kubecost/cost-model:2.9.7 (redhat 9.8)</code></h3>
-<h4>Vulnerabilities (44)</h4>
+<h4>Vulnerabilities (50)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -345,13 +345,6 @@
         <td></td>
     </tr>
     <tr>
-        <td><code>gnutls</code></td>
-        <td>CVE-2026-88648</td>
-        <td>HIGH</td>
-        <td>3.8.10-4.el9_8</td>
-        <td></td>
-    </tr>
-    <tr>
         <td><code>libacl</code></td>
         <td>CVE-2026-54369</td>
         <td>HIGH</td>
@@ -361,6 +354,13 @@
     <tr>
         <td><code>libblkid</code></td>
         <td>CVE-2026-53613</td>
+        <td>HIGH</td>
+        <td>2.37.4-25.el9</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>libblkid</code></td>
+        <td>CVE-2026-53615</td>
         <td>HIGH</td>
         <td>2.37.4-25.el9</td>
         <td></td>
@@ -443,8 +443,22 @@
         <td></td>
     </tr>
     <tr>
+        <td><code>libfdisk</code></td>
+        <td>CVE-2026-53615</td>
+        <td>HIGH</td>
+        <td>2.37.4-25.el9</td>
+        <td></td>
+    </tr>
+    <tr>
         <td><code>libmount</code></td>
         <td>CVE-2026-53613</td>
+        <td>HIGH</td>
+        <td>2.37.4-25.el9</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>libmount</code></td>
+        <td>CVE-2026-53615</td>
         <td>HIGH</td>
         <td>2.37.4-25.el9</td>
         <td></td>
@@ -457,8 +471,22 @@
         <td></td>
     </tr>
     <tr>
+        <td><code>libsmartcols</code></td>
+        <td>CVE-2026-53615</td>
+        <td>HIGH</td>
+        <td>2.37.4-25.el9</td>
+        <td></td>
+    </tr>
+    <tr>
         <td><code>libuuid</code></td>
         <td>CVE-2026-53613</td>
+        <td>HIGH</td>
+        <td>2.37.4-25.el9</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>libuuid</code></td>
+        <td>CVE-2026-53615</td>
         <td>HIGH</td>
         <td>2.37.4-25.el9</td>
         <td></td>
@@ -569,8 +597,22 @@
         <td></td>
     </tr>
     <tr>
+        <td><code>util-linux</code></td>
+        <td>CVE-2026-53615</td>
+        <td>HIGH</td>
+        <td>2.37.4-25.el9</td>
+        <td></td>
+    </tr>
+    <tr>
         <td><code>util-linux-core</code></td>
         <td>CVE-2026-53613</td>
+        <td>HIGH</td>
+        <td>2.37.4-25.el9</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>util-linux-core</code></td>
+        <td>CVE-2026-53615</td>
         <td>HIGH</td>
         <td>2.37.4-25.el9</td>
         <td></td>
@@ -963,7 +1005,7 @@
 <h2>Image <code>icr.io/kubecost/frontend:2.9.7</code></h2>
 
 <h3>Target <code>icr.io/kubecost/frontend:2.9.7 (redhat 9.8)</code></h3>
-<h4>Vulnerabilities (53)</h4>
+<h4>Vulnerabilities (59)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -1050,13 +1092,6 @@
         <td></td>
     </tr>
     <tr>
-        <td><code>gnutls</code></td>
-        <td>CVE-2026-88648</td>
-        <td>HIGH</td>
-        <td>3.8.10-4.el9_8</td>
-        <td></td>
-    </tr>
-    <tr>
         <td><code>libacl</code></td>
         <td>CVE-2026-54369</td>
         <td>HIGH</td>
@@ -1066,6 +1101,13 @@
     <tr>
         <td><code>libblkid</code></td>
         <td>CVE-2026-53613</td>
+        <td>HIGH</td>
+        <td>2.37.4-25.el9</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>libblkid</code></td>
+        <td>CVE-2026-53615</td>
         <td>HIGH</td>
         <td>2.37.4-25.el9</td>
         <td></td>
@@ -1148,8 +1190,22 @@
         <td></td>
     </tr>
     <tr>
+        <td><code>libfdisk</code></td>
+        <td>CVE-2026-53615</td>
+        <td>HIGH</td>
+        <td>2.37.4-25.el9</td>
+        <td></td>
+    </tr>
+    <tr>
         <td><code>libmount</code></td>
         <td>CVE-2026-53613</td>
+        <td>HIGH</td>
+        <td>2.37.4-25.el9</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>libmount</code></td>
+        <td>CVE-2026-53615</td>
         <td>HIGH</td>
         <td>2.37.4-25.el9</td>
         <td></td>
@@ -1162,8 +1218,22 @@
         <td></td>
     </tr>
     <tr>
+        <td><code>libsmartcols</code></td>
+        <td>CVE-2026-53615</td>
+        <td>HIGH</td>
+        <td>2.37.4-25.el9</td>
+        <td></td>
+    </tr>
+    <tr>
         <td><code>libuuid</code></td>
         <td>CVE-2026-53613</td>
+        <td>HIGH</td>
+        <td>2.37.4-25.el9</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>libuuid</code></td>
+        <td>CVE-2026-53615</td>
         <td>HIGH</td>
         <td>2.37.4-25.el9</td>
         <td></td>
@@ -1337,8 +1407,22 @@
         <td></td>
     </tr>
     <tr>
+        <td><code>util-linux</code></td>
+        <td>CVE-2026-53615</td>
+        <td>HIGH</td>
+        <td>2.37.4-25.el9</td>
+        <td></td>
+    </tr>
+    <tr>
         <td><code>util-linux-core</code></td>
         <td>CVE-2026-53613</td>
+        <td>HIGH</td>
+        <td>2.37.4-25.el9</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>util-linux-core</code></td>
+        <td>CVE-2026-53615</td>
         <td>HIGH</td>
         <td>2.37.4-25.el9</td>
         <td></td>
@@ -1348,7 +1432,7 @@
 <h2>Image <code>icr.io/kubecost/modeling:v0.1.34</code></h2>
 
 <h3>Target <code>icr.io/kubecost/modeling:v0.1.34 (redhat 9.7)</code></h3>
-<h4>Vulnerabilities (67)</h4>
+<h4>Vulnerabilities (70)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -1470,13 +1554,6 @@
         <td></td>
     </tr>
     <tr>
-        <td><code>gnutls</code></td>
-        <td>CVE-2026-88648</td>
-        <td>HIGH</td>
-        <td>3.8.3-9.el9</td>
-        <td></td>
-    </tr>
-    <tr>
         <td><code>libacl</code></td>
         <td>CVE-2026-54369</td>
         <td>HIGH</td>
@@ -1500,6 +1577,13 @@
     <tr>
         <td><code>libblkid</code></td>
         <td>CVE-2026-53613</td>
+        <td>HIGH</td>
+        <td>2.37.4-21.el9</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>libblkid</code></td>
+        <td>CVE-2026-53615</td>
         <td>HIGH</td>
         <td>2.37.4-21.el9</td>
         <td></td>
@@ -1589,6 +1673,13 @@
         <td></td>
     </tr>
     <tr>
+        <td><code>libmount</code></td>
+        <td>CVE-2026-53615</td>
+        <td>HIGH</td>
+        <td>2.37.4-21.el9</td>
+        <td></td>
+    </tr>
+    <tr>
         <td><code>libnghttp2</code></td>
         <td>CVE-2026-27135</td>
         <td>HIGH</td>
@@ -1603,8 +1694,22 @@
         <td></td>
     </tr>
     <tr>
+        <td><code>libsmartcols</code></td>
+        <td>CVE-2026-53615</td>
+        <td>HIGH</td>
+        <td>2.37.4-21.el9</td>
+        <td></td>
+    </tr>
+    <tr>
         <td><code>libuuid</code></td>
         <td>CVE-2026-53613</td>
+        <td>HIGH</td>
+        <td>2.37.4-21.el9</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>libuuid</code></td>
+        <td>CVE-2026-53615</td>
         <td>HIGH</td>
         <td>2.37.4-21.el9</td>
         <td></td>

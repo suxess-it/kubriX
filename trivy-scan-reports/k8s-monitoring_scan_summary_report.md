@@ -1,7 +1,7 @@
 <h2>Image <code>ghcr.io/grafana/alloy-operator:1.13.0</code></h2>
 
 <h3>Target <code>ghcr.io/grafana/alloy-operator:1.13.0 (redhat 9.8)</code></h3>
-<h4>Vulnerabilities (34)</h4>
+<h4>Vulnerabilities (37)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -53,13 +53,6 @@
         <td></td>
     </tr>
     <tr>
-        <td><code>gnutls</code></td>
-        <td>CVE-2026-88648</td>
-        <td>HIGH</td>
-        <td>3.8.10-4.el9_8</td>
-        <td></td>
-    </tr>
-    <tr>
         <td><code>libacl</code></td>
         <td>CVE-2026-54369</td>
         <td>HIGH</td>
@@ -69,6 +62,13 @@
     <tr>
         <td><code>libblkid</code></td>
         <td>CVE-2026-53613</td>
+        <td>HIGH</td>
+        <td>2.37.4-25.el9</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>libblkid</code></td>
+        <td>CVE-2026-53615</td>
         <td>HIGH</td>
         <td>2.37.4-25.el9</td>
         <td></td>
@@ -151,6 +151,13 @@
         <td></td>
     </tr>
     <tr>
+        <td><code>libmount</code></td>
+        <td>CVE-2026-53615</td>
+        <td>HIGH</td>
+        <td>2.37.4-25.el9</td>
+        <td></td>
+    </tr>
+    <tr>
         <td><code>libsmartcols</code></td>
         <td>CVE-2026-53613</td>
         <td>HIGH</td>
@@ -158,8 +165,22 @@
         <td></td>
     </tr>
     <tr>
+        <td><code>libsmartcols</code></td>
+        <td>CVE-2026-53615</td>
+        <td>HIGH</td>
+        <td>2.37.4-25.el9</td>
+        <td></td>
+    </tr>
+    <tr>
         <td><code>libuuid</code></td>
         <td>CVE-2026-53613</td>
+        <td>HIGH</td>
+        <td>2.37.4-25.el9</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>libuuid</code></td>
+        <td>CVE-2026-53615</td>
         <td>HIGH</td>
         <td>2.37.4-25.el9</td>
         <td></td>
