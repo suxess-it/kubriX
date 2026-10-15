@@ -115,6 +115,33 @@ detect_date_impl() {
   echo unknown
 }
 
+# Scope credentials to one Git process; keep tokens out of URLs and git config.
+# Arguments are variable names, so even shell xtrace cannot print their values.
+git_with_credentials() (
+  set +x
+  local username_variable="$1" password_variable="$2" repository="$3"
+  shift 3
+  export KUBRIX_GIT_AUTH_USERNAME="${!username_variable}"
+  export KUBRIX_GIT_AUTH_PASSWORD="${!password_variable}"
+  export KUBRIX_GIT_AUTH_PROTOCOL="${repository%%://*}"
+  local authority="${repository#*://}"
+  export KUBRIX_GIT_AUTH_HOST="${authority%%/*}"
+  export GIT_TERMINAL_PROMPT=0 GIT_ASKPASS=/bin/false
+  git -c credential.helper= -c credential.helper='!f() {
+    [ "$1" = get ] || return 0
+    protocol= host=
+    while IFS= read -r line && [ -n "$line" ]; do
+      case "$line" in
+        protocol=*) protocol=${line#protocol=} ;;
+        host=*) host=${line#host=} ;;
+      esac
+    done
+    [ "$protocol" = "$KUBRIX_GIT_AUTH_PROTOCOL" ] &&
+      [ "$host" = "$KUBRIX_GIT_AUTH_HOST" ] || return 0
+    printf "username=%s\npassword=%s\n" "$KUBRIX_GIT_AUTH_USERNAME" "$KUBRIX_GIT_AUTH_PASSWORD"
+  }; f' "$@"
+)
+
 # clone kubriX upstream repo to bootstrap-kubriX/kubriX-repo
 bootstrap_clone_from_upstream() {
   printf 'bootstrap from upstream repo %s to downstream repo %s\n' "${KUBRIX_UPSTREAM_REPO}" "${KUBRIX_REPO}"
@@ -125,7 +152,7 @@ bootstrap_clone_from_upstream() {
     KUBRIX_UPSTREAM_REPO_PROTO=$(echo ${KUBRIX_UPSTREAM_REPO} | grep :// | sed "s,^\(.*://\).*,\1,")
     # remove the protocol from url
     KUBRIX_UPSTREAM_REPO_URL=$(echo ${KUBRIX_UPSTREAM_REPO} | sed "s,^${KUBRIX_REPO_PROTO},,")
-    git clone ${KUBRIX_UPSTREAM_REPO_PROTO}${KUBRIX_UPSTREAM_REPO_USERNAME}:${KUBRIX_UPSTREAM_REPO_PASSWORD}@${KUBRIX_UPSTREAM_REPO_URL} .
+    git_with_credentials KUBRIX_UPSTREAM_REPO_USERNAME KUBRIX_UPSTREAM_REPO_PASSWORD "$KUBRIX_UPSTREAM_REPO" clone "$KUBRIX_UPSTREAM_REPO" .
   else
     git clone ${KUBRIX_UPSTREAM_REPO} .
   fi
@@ -214,14 +241,14 @@ boostrap_check_downstream_repo_org() {
 
 bootstrap_push_to_downstream() {
   echo "Push kubriX gitops files to ${KUBRIX_REPO}"
-  git remote add customer ${KUBRIX_REPO_PROTO}${KUBRIX_REPO_PASSWORD}@${KUBRIX_REPO_URL}
+  git remote add customer "$KUBRIX_REPO"
   git add -A
   git commit -a -m "add customer specific modifications during bootstrap"
 
   if [ "${KUBRIX_BOOTSTRAP_KEEP_HISTORY}" != "true" ]; then
-    git push --set-upstream customer publish:main
+    git_with_credentials KUBRIX_REPO_USERNAME KUBRIX_REPO_PASSWORD "$KUBRIX_REPO" push --set-upstream customer publish:main
   else
-    git push --set-upstream customer ${KUBRIX_UPSTREAM_BRANCH}:main
+    git_with_credentials KUBRIX_REPO_USERNAME KUBRIX_REPO_PASSWORD "$KUBRIX_REPO" push --set-upstream customer "${KUBRIX_UPSTREAM_BRANCH}:main"
   fi
 }
 
@@ -1071,7 +1098,7 @@ if [ ${KUBRIX_INSTALLER} = "true" ] ; then
   cd "$HOME"
   printf 'checkout kubriX to %s ...\n' "$(pwd)/kubriX"
   mkdir kubriX
-  git clone ${KUBRIX_REPO_PROTO}${KUBRIX_REPO_USERNAME}:${KUBRIX_REPO_PASSWORD}@${KUBRIX_REPO_URL} kubriX
+  git_with_credentials KUBRIX_REPO_USERNAME KUBRIX_REPO_PASSWORD "$KUBRIX_REPO" clone "$KUBRIX_REPO" kubriX
   cd kubriX
   git checkout "${KUBRIX_REPO_BRANCH}"
 fi
