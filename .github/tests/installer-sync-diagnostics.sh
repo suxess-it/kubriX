@@ -407,3 +407,152 @@ test -f verify/customer.txt
     print('Real authenticated HTTP clone/push/re-clone passed with distinct upstream/customer credentials, redirect, and both history modes.')
 
 PY_GIT_AUTH
+
+# OpenBao duplicate-group recovery must work without debug logging.
+(
+  source <(sed -n '/^read_openbao_group_for_recovery() (/,/^sync_debug_printf() {/p' install-platform.sh | sed '$d')
+  recovery_dir=$(mktemp -d)
+  trap 'rm -rf "$recovery_dir"' EXIT
+  unset KUBRIX_SYNC_DEBUG KUBRIX_INSTALL_DEBUG
+  declare -A openbao_adopted_groups=()
+  group_id=9f7c104d-f634-4229-572e-eba5900b6b10.WBgQIF
+  message="create failed: async create failed: failed to create the resource: [{0 failed to create identity group \"editors\", reason=group already exists with path=\"/identity/group/name/editors\", id=\"$group_id\"  []}]"
+  jq -n --arg message "$message" '{items:[{
+    metadata:{name:"editors",uid:"group-uid",resourceVersion:"42",annotations:{"keep":"annotation"}},
+    spec:{providerConfigRef:{name:"openbao-crossplane-providerconfig"},forProvider:{name:"editors",type:"external"}},
+    status:{conditions:[{type:"Ready",status:"False"},{type:"Synced",status:"False",message:$message}]}
+  }]}' > "$recovery_dir/base.json"
+  timeout() { shift; "$@"; }
+  kubectl() {
+    if [[ "$1 $2" == 'get groups.identity.vault.upbound.io' ]]; then
+      cat "$recovery_dir/group.json"
+    elif [[ "$1 $2" == 'get secret' ]]; then
+      printf '%s' '{"token":"test-only-token"}' | base64
+    elif [[ "$1 $2" == 'get endpoints' ]]; then
+      printf '%s' test-openbao-pod
+    elif [[ "$1" == exec ]]; then
+      local token
+      token=$(cat)
+      [[ "$token" == test-only-token ]] || return 1
+      [[ "$*" == *'-c openbao'* ]] || return 1
+      [[ "$*" == *'VAULT_NAMESPACE=kubrix'* ]] || return 1
+      [[ "${!#}" == "$group_id" ]] || return 1
+      [[ "$mock_mode" != read-failed ]] || return 1
+      jq -n --arg id "${live_id:-$group_id}" --arg name "${live_name:-editors}" --arg type "${live_type:-external}" '{data:{id:$id,name:$name,type:$type}}'
+    elif [[ "$1" == patch ]]; then
+      [[ "$mock_mode" != conflict ]] || return 1
+      [[ "$2 $3" == 'groups.identity.vault.upbound.io editors' ]] || return 1
+      local patch="${!#}"
+      jq -e --arg id "$group_id" '
+        .[0] == {op:"test",path:"/metadata/uid",value:"group-uid"}
+        and .[1] == {op:"test",path:"/metadata/resourceVersion",value:"42"}
+        and .[2].value["crossplane.io/external-name"] == $id
+        and .[2].value.keep == "annotation"
+      ' >/dev/null <<< "$patch" || return 1
+      echo patch >> "$recovery_dir/patches"
+      jq --arg id "$group_id" '.items[0].metadata.annotations["crossplane.io/external-name"]=$id' \
+        "$recovery_dir/group.json" > "$recovery_dir/next.json"
+      mv "$recovery_dir/next.json" "$recovery_dir/group.json"
+    else
+      echo "Unexpected recovery command" >&2; return 1
+    fi
+  }
+  reset_recovery() {
+    cp "$recovery_dir/base.json" "$recovery_dir/group.json"
+    : > "$recovery_dir/patches"
+    openbao_adopted_groups=()
+    mock_mode=ok
+    live_name=editors
+    live_id=$group_id
+    live_type=external
+  }
+  reset_recovery
+  recover_openbao_groups > "$recovery_dir/output"
+  [[ $(wc -l < "$recovery_dir/patches") == 1 ]]
+  recover_openbao_groups >> "$recovery_dir/output"
+  [[ $(wc -l < "$recovery_dir/patches") == 1 ]]
+  jq '.items[0].status.conditions=[{type:"Ready",status:"True"}]' "$recovery_dir/group.json" > "$recovery_dir/next.json"
+  mv "$recovery_dir/next.json" "$recovery_dir/group.json"
+  if recover_openbao_groups >> "$recovery_dir/output"; then echo 'Expected recovery completion' >&2; exit 1; fi
+  grep -q 'result=ready' "$recovery_dir/output"
+  grep -q 'action=adopt-existing-group' "$recovery_dir/output"
+  ! grep -q test-only-token "$recovery_dir/output"
+
+  for filter in \
+    '.items[0].metadata.annotations["crossplane.io/external-name"]="owned"' \
+    '.items[0].metadata.name="other"' \
+    '.items[0].spec.providerConfigRef.name="other"' \
+    '.items[0].metadata.namespace="other"' \
+    '.items[0].metadata.deletionTimestamp="2026-10-16T00:00:00Z"' \
+    '.items[0].spec.forProvider.name="admins"' \
+    '.items[0].status.conditions=[{type:"Ready",status:"True"}]' \
+    '.items[0].status.conditions[1].message="other create error"' \
+    '.items[0].status.conditions[1].message |= gsub("editors";"viewers")'; do
+    reset_recovery
+    jq "$filter" "$recovery_dir/group.json" > "$recovery_dir/next.json"
+    mv "$recovery_dir/next.json" "$recovery_dir/group.json"
+    if recover_openbao_groups; then echo "Unexpected adoption for $filter" >&2; exit 1; fi
+    [[ ! -s "$recovery_dir/patches" ]]
+  done
+  for mock_mode in read-failed conflict; do
+    cp "$recovery_dir/base.json" "$recovery_dir/group.json"
+    if recover_openbao_groups; then echo 'Unexpected adoption on failure' >&2; exit 1; fi
+    [[ ! -s "$recovery_dir/patches" ]]
+  done
+  reset_recovery
+  live_name=admins
+  if recover_openbao_groups; then echo 'Unexpected adoption of mismatched live group' >&2; exit 1; fi
+  [[ ! -s "$recovery_dir/patches" ]]
+  for mismatch in id type; do
+    reset_recovery
+    if [[ "$mismatch" == id ]]; then live_id=another-id; else live_type=internal; fi
+    if recover_openbao_groups; then echo 'Unexpected adoption of mismatched identity' >&2; exit 1; fi
+    [[ ! -s "$recovery_dir/patches" ]]
+  done
+  # A temporary list error must preserve the interlock after adoption.
+  reset_recovery
+  recover_openbao_groups >/dev/null
+  mv "$recovery_dir/group.json" "$recovery_dir/saved.json"
+  recover_openbao_groups
+  mv "$recovery_dir/saved.json" "$recovery_dir/group.json"
+
+  # Exercise the real wait-loop integration: defer the stuck-hook watchdog
+  # while Crossplane observes the group, then resume failed-sync recovery.
+  reset_recovery
+  eval "$(declare -f kubectl | sed '1s/kubectl/recovery_kubectl/')"
+  jq -n '{status:{sync:{status:"OutOfSync"},health:{status:"Degraded"},operationState:{phase:"Running",startedAt:"2026-10-15T00:00:00Z"}}}' > "$recovery_dir/app.json"
+  kubectl() {
+    if [[ "$1 $2" == 'get application' ]]; then
+      if [[ "$*" == *sx-bootstrap-app* ]]; then
+        printf '%s' '{"status":{"sync":{"status":"Synced"},"health":{"status":"Healthy"},"operationState":{"phase":"Succeeded"}}}'
+      else
+        cat "$recovery_dir/app.json"
+      fi
+    elif [[ "$1 $2" == 'get pod' ]]; then
+      printf '%s' mock-controller
+    elif [[ "$1" == exec && "$*" == *'argocd app get'* ]]; then
+      cat "$recovery_dir/app.json"
+    else
+      recovery_kubectl "$@"
+    fi
+  }
+  sleep() {
+    SECONDS=$((SECONDS + 31))
+    jq '.items[0].status.conditions=[{type:"Ready",status:"True"}]' "$recovery_dir/group.json" > "$recovery_dir/next.json"
+    mv "$recovery_dir/next.json" "$recovery_dir/group.json"
+    printf '%s' '{"status":{"sync":{"status":"Synced"},"health":{"status":"Healthy"},"operationState":{"phase":"Failed","startedAt":"2026-10-15T00:00:00Z","finishedAt":"2026-10-15T00:00:01Z"}}}' > "$recovery_dir/app.json"
+  }
+  restart_app_sync() {
+    [[ "$3" == clear-failed-operation ]] || { echo 'Restarted sync before adopted group was ready' >&2; exit 1; }
+    echo resync >> "$recovery_dir/resyncs"
+  }
+  convert_to_seconds() { printf '%s' 0; }
+  show_node_resources() { :; }
+  column() { cat; }
+  KUBRIX_GENERATE_SECRETS=false
+  wait_until_apps_synced_healthy sx-openbao Synced Healthy 500 > "$recovery_dir/wait-output"
+  [[ $(wc -l < "$recovery_dir/patches") == 1 ]]
+  [[ $(wc -l < "$recovery_dir/resyncs") == 1 ]]
+  grep -q 'result=ready' "$recovery_dir/wait-output"
+  echo 'OpenBao group recovery: verified adoption, UID/version guards, readiness, idempotency and exclusions passed.'
+)
