@@ -6,18 +6,6 @@ kubrix:
     realm:
       realmid: kubrix
       users:
-        - name: phac
-          firstName: Philipp
-          lastName: Achmueller
-          email: "philipp.achmueller@kubrix.io"
-        - name: jokl
-          firstName: Johannes
-          lastName: Kleinlercher
-          email: "johannes.kleinlercher@kubrix.io"
-        - name: backstageadmin
-          firstName: MrBackstage
-          lastName: MrAdmin
-          email: "backstageadmin@kubrix.io"
         - name: demoeditor
           firstName: demo
           lastName: editor
@@ -36,7 +24,6 @@ kubrix:
             - grafana-admin
             - vault-admin
           members:
-            - backstageadmin
             - demoadmin
         - name: viewers
           roles:
@@ -49,7 +36,5 @@ kubrix:
             - grafana-editor
             - vault-editor
           members:
-            - phac
-            - jokl
             - demoeditor
         - name: backstage-admin      # for service-account permission workaround

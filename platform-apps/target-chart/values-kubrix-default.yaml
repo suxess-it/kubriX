@@ -49,34 +49,34 @@ applications:
   argocd:
     enabled: true
     annotations:
-      argocd.argoproj.io/sync-wave: '-6'
+      argocd.argoproj.io/sync-wave: '0'
     syncOptions:
     - ServerSideApply=true
   k8s-monitoring:
     enabled: true
     annotations:
-      argocd.argoproj.io/sync-wave: '-6'
+      argocd.argoproj.io/sync-wave: '0'
       argocd.argoproj.io/compare-options: ServerSideDiff=true
     syncOptions:
     - ServerSideApply=true
   cnpg:
     enabled: true
     annotations:
-      argocd.argoproj.io/sync-wave: '-6'
+      argocd.argoproj.io/sync-wave: '0'
       argocd.argoproj.io/compare-options: ServerSideDiff=true
     syncOptions:
     - ServerSideApply=true
   keycloak:
     enabled: true
     annotations:
-      argocd.argoproj.io/sync-wave: '-6'
+      argocd.argoproj.io/sync-wave: '0'
       argocd.argoproj.io/compare-options: ServerSideDiff=true
     syncOptions:
     - ServerSideApply=true
   loki:
     enabled: false
     annotations:
-      argocd.argoproj.io/sync-wave: '-6'
+      argocd.argoproj.io/sync-wave: '0'
       argocd.argoproj.io/compare-options: ServerSideDiff=true
     helmOptions:
       skipCrds: true
@@ -85,7 +85,7 @@ applications:
   mimir:
     enabled: false
     annotations:
-      argocd.argoproj.io/sync-wave: '-6'
+      argocd.argoproj.io/sync-wave: '0'
   grafana:
     enabled: false
     annotations:
