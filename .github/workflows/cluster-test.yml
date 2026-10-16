@@ -510,7 +510,7 @@ jobs:
 
       - name: Create repository cleanup token
         id: repo-cleanup-token
-        if: always()
+        if: ${{ matrix.target-type == 'kind-portal' || matrix.target-type == 'kind-hub-prime' }}
         uses: actions/create-github-app-token@v3
         with:
           client-id: ${{ vars.KUBRIX_CI_REPOS_APP_CLIENT_ID }}
@@ -772,10 +772,20 @@ jobs:
           echo "describe all pods ====="
           kubectl describe pod -A
 
+      - name: Create final repository cleanup token
+        id: repo-final-cleanup-token
+        if: always()
+        uses: actions/create-github-app-token@v3
+        with:
+          client-id: ${{ vars.KUBRIX_CI_REPOS_APP_CLIENT_ID }}
+          private-key: ${{ secrets.KUBRIX_CI_REPOS_APP_PRIVATE_KEY }}
+          owner: kubriX-demo
+          permission-administration: write
+
       - name: Delete kubriX boostrap repo, if exists
         if: always()
         env:
-          KUBRIX_DELETE_E2E_TESTS_REPO_TOKEN: ${{ steps.repo-cleanup-token.outputs.token }}
+          KUBRIX_DELETE_E2E_TESTS_REPO_TOKEN: ${{ steps.repo-final-cleanup-token.outputs.token }}
           GITHUB_ORG: "kubriX-demo"
           GITHUB_API: "https://api.github.com"
           KUBRIX_REPO: "${{ github.run_id }}-${{ job.check_run_id }}"
