@@ -150,6 +150,10 @@ argo-cd:
       serviceMonitor:
         enabled: true
 
+    image:
+      # overwrite due to aws registry pull limits
+      repository: docker.io/library/redis
+
   server:
     ingress:
       enabled: true
@@ -191,3 +195,4 @@ argo-cd:
       enabled: true
       serviceMonitor:
         enabled: true
+
