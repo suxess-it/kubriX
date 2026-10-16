@@ -597,6 +597,16 @@ jobs:
      #     wait_interval_seconds: "10"
      #     post_unlock: "true"
     
+      - name: Create repository test token
+        id: repo-test-token
+        uses: actions/create-github-app-token@v3
+        with:
+          client-id: ${{ vars.KUBRIX_CI_REPOS_APP_CLIENT_ID }}
+          private-key: ${{ secrets.KUBRIX_CI_REPOS_APP_PRIVATE_KEY }}
+          owner: kubriX-demo
+          permission-contents: write
+          permission-pull-requests: write
+
       - name: testkube tests
         env:
           KUBRIX_TARGET_TYPE: ${{ matrix.target-type }}
@@ -604,7 +614,7 @@ jobs:
           E2E_TEST_GH_PASSWORD: ${{ secrets.E2E_TEST_GH_PASSWORD }}
           E2E_TEST_GITHUB_OTP: ${{ secrets.E2E_TEST_GITHUB_OTP }}
           E2E_KUBRIX_ARGOCD_APPSET_TOKEN: ${{ secrets.E2E_KUBRIX_ARGOCD_APPSET_TOKEN }}
-          E2E_KUBRIX_KARGO_GIT_PASSWORD: ${{ secrets.E2E_KUBRIX_KARGO_GIT_PASSWORD }}
+          E2E_KUBRIX_KARGO_GIT_PASSWORD: ${{ steps.repo-test-token.outputs.token }}
           E2E_TEAM_ONBOARDING_TARGET_BRANCH: "main"
           E2E_MERGE_PR: "true"
           E2E_KUBRIX_ORG: kubriX-demo
