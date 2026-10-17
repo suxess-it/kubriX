@@ -1,0 +1,50 @@
+name: Monitor GitHub API budget
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  monitor:
+    runs-on: ubuntu-latest
+    timeout-minutes: 50
+    steps:
+      - uses: actions/checkout@v7
+
+      - name: Create monitoring installation token
+        id: monitor-token
+        uses: actions/create-github-app-token@v3
+        with:
+          client-id: ${{ vars.KUBRIX_CI_REPOS_APP_CLIENT_ID }}
+          private-key: ${{ secrets.KUBRIX_CI_REPOS_APP_PRIVATE_KEY }}
+          owner: kubriX-demo
+          permission-contents: read
+
+      - name: Monitor budget every 10 seconds for 45 minutes
+        env:
+          GH_TOKEN: ${{ steps.monitor-token.outputs.token }}
+        shell: bash
+        run: |
+          deadline=$((SECONDS + 45 * 60))
+          echo "Monitoring the shared kubriX-demo installation budget for 45 minutes."
+          echo "Run this workflow alongside cluster tests; it does not inspect the token inside Backstage."
+
+          while (( SECONDS < deadline )); do
+            next_sample=$((SECONDS + 10))
+            # Keep samples in the log without adding hundreds of summary sections.
+            GITHUB_STEP_SUMMARY= bash .github/log-github-rate-limit.sh monitor
+
+            # Account for request duration; slow requests never overlap or trigger a catch-up burst.
+            wait_seconds=$((next_sample - SECONDS))
+            remaining_seconds=$((deadline - SECONDS))
+            if (( wait_seconds > remaining_seconds )); then
+              wait_seconds=$remaining_seconds
+            fi
+            if (( wait_seconds > 0 )); then
+              sleep "$wait_seconds"
+            fi
+          done
+
+          echo "GitHub API budget monitoring finished."
