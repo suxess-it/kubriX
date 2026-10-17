@@ -375,6 +375,17 @@ jobs:
             -f has_wiki=false
           echo "Repo created: https://github.com/${REPO_ORG}/${REPO_NAME}"
 
+      - name: Create installer repository token
+        id: repo-installer-token
+        uses: actions/create-github-app-token@v3
+        with:
+          client-id: ${{ vars.KUBRIX_CI_REPOS_APP_CLIENT_ID }}
+          private-key: ${{ secrets.KUBRIX_CI_REPOS_APP_PRIVATE_KEY }}
+          owner: kubriX-demo
+          repositories: kubrix-cluster-test-${{ github.run_id }}-${{ job.check_run_id }}
+          permission-contents: write
+          permission-workflows: write
+
       - name: install kubriX stack
         env:
           KUBRIX_UPSTREAM_REPO: "https://github.com/${{ github.repository }}"
@@ -382,7 +393,7 @@ jobs:
           KUBRIX_UPSTREAM_REPO_PASSWORD: ${{ secrets.GITHUB_TOKEN }}
           KUBRIX_REPO: "https://github.com/kubriX-demo/kubrix-cluster-test-${{ github.run_id }}-${{ job.check_run_id }}"
           KUBRIX_REPO_BRANCH: "main"
-          KUBRIX_REPO_PASSWORD: ${{ secrets.KUBRIX_CUSTOMER_REPO_TOKEN }}
+          KUBRIX_REPO_PASSWORD: ${{ steps.repo-installer-token.outputs.token }}
           KUBRIX_REPO_USERNAME: "dummy"
           KUBRIX_INSTALL_DEBUG: "false"
           KUBRIX_SYNC_DEBUG: "true"
