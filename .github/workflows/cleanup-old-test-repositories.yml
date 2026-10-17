@@ -1,0 +1,50 @@
+name: Cleanup old test repositories
+
+on:
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: 'Preview only (disable to delete matching repos older than 6 hours)'
+        type: boolean
+        default: true
+        required: true
+
+permissions:
+  contents: read
+
+concurrency:
+  group: cleanup-old-test-repositories
+  cancel-in-progress: false
+
+jobs:
+  cleanup:
+    # The prime mirror must not start another cleanup against the same org.
+    if: github.repository == 'suxess-it/kubriX'
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v7
+
+      - name: Verify cleanup selection safeguards
+        run: python3 .github/tests/test-cleanup-old-test-repositories.py
+
+      - name: Create cleanup installation token
+        id: cleanup-token
+        uses: actions/create-github-app-token@v3
+        with:
+          client-id: ${{ vars.KUBRIX_CI_REPOS_APP_CLIENT_ID }}
+          private-key: ${{ secrets.KUBRIX_CI_REPOS_APP_PRIVATE_KEY }}
+          owner: kubriX-demo
+          permission-administration: write
+
+      - name: Preview or delete old test repositories
+        env:
+          GH_TOKEN: ${{ steps.cleanup-token.outputs.token }}
+          DRY_RUN: ${{ inputs.dry_run }}
+        shell: bash
+        run: |
+          args=()
+          if [[ "$DRY_RUN" == 'false' ]]; then
+            args+=(--delete)
+          fi
+          python3 .github/cleanup-old-test-repositories.py "${args[@]}"
