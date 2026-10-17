@@ -495,17 +495,22 @@ jobs:
           kubectl rollout restart deployment -n backstage sx-backstage
           kubectl rollout status deployment -n backstage sx-backstage
 
-      - name: Check if kubrixBot user entity is loaded in backstage
-        if: ${{ matrix.target-type  == 'kind-portal' || matrix.target-type  == 'kind-hub-prime' }}
+      - name: Wait for Backstage user entities
+        if: ${{ matrix.target-type == 'kind-portal' || matrix.target-type == 'kind-delivery' || matrix.target-type == 'kind-hub-prime' }}
         env:
+          TARGET_TYPE: ${{ matrix.target-type }}
           BASE_URL: "https://backstage.127-0-0-1.nip.io"
-          ENTITY_PATH: "/api/catalog/entities/by-name/User/default/kubrixBot"
         run: |
           MAX_SECONDS=300
           SLEEP_SECONDS=10
           ELAPSED=0
+          USERS=(demoadmin demoeditor demoviewer)
+          # Delivery does not run GitHub portal login tests or require the GitHub catalog user.
+          if [[ "$TARGET_TYPE" != "kind-delivery" ]]; then
+            USERS+=(kubrixBot)
+          fi
 
-          echo "Waiting for User entity User:default/kubrixBot (timeout: 5 minutes)..."
+          echo "Waiting for required Backstage User entities (timeout: 5 minutes)..."
 
           while [ "$ELAPSED" -lt "$MAX_SECONDS" ]; do
             # Re-read token each iteration in case ESO hasn't resolved the secret yet after the previous step
@@ -518,30 +523,34 @@ jobs:
               continue
             fi
 
-            STATUS=$(curl -k -s -o /dev/null -w "%{http_code}" -H "Authorization: Bearer $EXTERNAL_ACCESS_TOKEN" "$BASE_URL$ENTITY_PATH")
+            MISSING_USERS=()
+            for USER_NAME in "${USERS[@]}"; do
+              STATUS=$(curl -k -s -o /dev/null -w "%{http_code}" -H "Authorization: Bearer $EXTERNAL_ACCESS_TOKEN" "$BASE_URL/api/catalog/entities/by-name/User/default/$USER_NAME")
 
-            case "$STATUS" in
-              200)
-                echo "✅ User entity is available!"
-                exit 0
-                ;;
-              404)
-                echo "⏳ Not found yet... (${ELAPSED}s elapsed)"
-                ;;
-              401|403)
-                echo "❌ Auth error ($STATUS). Token rejected or insufficient RBAC."
-                exit 1
-                ;;
-              *)
-                echo "⚠️ Unexpected HTTP status: $STATUS"
-                ;;
-            esac
+              case "$STATUS" in
+                200)
+                  ;;
+                401|403)
+                  echo "❌ Auth error ($STATUS) for $USER_NAME. Token rejected or insufficient RBAC."
+                  exit 1
+                  ;;
+                *)
+                  MISSING_USERS+=("$USER_NAME")
+                  echo "⏳ User:default/$USER_NAME not ready (HTTP $STATUS, ${ELAPSED}s elapsed)"
+                  ;;
+              esac
+            done
+
+            if [ "${#MISSING_USERS[@]}" -eq 0 ]; then
+              echo "✅ All required Backstage User entities are available!"
+              exit 0
+            fi
 
             sleep "$SLEEP_SECONDS"
             ELAPSED=$((ELAPSED + SLEEP_SECONDS))
           done
 
-          echo "❌ Timed out after 5 minutes waiting for User entity."
+          echo "❌ Timed out after 5 minutes waiting for User entities."
           exit 1
 
       - name: Create repository cleanup token
