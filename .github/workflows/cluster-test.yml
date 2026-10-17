@@ -525,7 +525,16 @@ jobs:
 
             MISSING_USERS=()
             for USER_NAME in "${USERS[@]}"; do
-              STATUS=$(curl -k -s -o /dev/null -w "%{http_code}" -H "Authorization: Bearer $EXTERNAL_ACCESS_TOKEN" "$BASE_URL/api/catalog/entities/by-name/User/default/$USER_NAME")
+              # This kind ingress is local; avoid relying on external nip.io DNS.
+              if ! STATUS=$(curl -k -sS --connect-timeout 5 --max-time 10 \
+                --resolve "backstage.127-0-0-1.nip.io:443:127.0.0.1" \
+                -o /dev/null -w "%{http_code}" \
+                -H "Authorization: Bearer $EXTERNAL_ACCESS_TOKEN" \
+                "$BASE_URL/api/catalog/entities/by-name/User/default/$USER_NAME"); then
+                MISSING_USERS+=("$USER_NAME")
+                echo "⏳ Connection to Backstage failed for $USER_NAME; retrying (${ELAPSED}s elapsed)"
+                continue
+              fi
 
               case "$STATUS" in
                 200)
@@ -963,4 +972,5 @@ jobs:
         env:
           GH_TOKEN: ${{ steps.repo-final-cleanup-token.outputs.token }}
         run: bash .github/log-github-rate-limit.sh after-cleanup
+
 
