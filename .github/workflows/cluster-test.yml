@@ -375,6 +375,30 @@ jobs:
             -f has_wiki=false
           echo "Repo created: https://github.com/${REPO_ORG}/${REPO_NAME}"
 
+      - name: Create installer repository token
+        id: repo-installer-token
+        uses: actions/create-github-app-token@v3
+        with:
+          client-id: ${{ vars.KUBRIX_CI_REPOS_APP_CLIENT_ID }}
+          private-key: ${{ secrets.KUBRIX_CI_REPOS_APP_PRIVATE_KEY }}
+          owner: kubriX-demo
+          repositories: kubrix-cluster-test-${{ github.run_id }}-${{ job.check_run_id }}
+          permission-contents: write
+          permission-workflows: write
+
+      - name: Create Backstage repository token
+        id: repo-backstage-token
+        uses: actions/create-github-app-token@v3
+        with:
+          client-id: ${{ vars.KUBRIX_CI_REPOS_APP_CLIENT_ID }}
+          private-key: ${{ secrets.KUBRIX_CI_REPOS_APP_PRIVATE_KEY }}
+          owner: kubriX-demo
+          permission-administration: write
+          permission-contents: write
+          permission-statuses: read
+          permission-pull-requests: write
+          permission-workflows: write
+
       - name: install kubriX stack
         env:
           KUBRIX_UPSTREAM_REPO: "https://github.com/${{ github.repository }}"
@@ -382,13 +406,13 @@ jobs:
           KUBRIX_UPSTREAM_REPO_PASSWORD: ${{ secrets.GITHUB_TOKEN }}
           KUBRIX_REPO: "https://github.com/kubriX-demo/kubrix-cluster-test-${{ github.run_id }}-${{ job.check_run_id }}"
           KUBRIX_REPO_BRANCH: "main"
-          KUBRIX_REPO_PASSWORD: ${{ secrets.KUBRIX_CUSTOMER_REPO_TOKEN }}
+          KUBRIX_REPO_PASSWORD: ${{ steps.repo-installer-token.outputs.token }}
           KUBRIX_REPO_USERNAME: "dummy"
           KUBRIX_INSTALL_DEBUG: "false"
           KUBRIX_SYNC_DEBUG: "true"
           KUBRIX_TARGET_TYPE: ${{ matrix.target-type }}
           KUBRIX_CLUSTER_TYPE: "kind"
-          KUBRIX_BACKSTAGE_GITHUB_TOKEN: ${{ secrets.KUBRIX_CUSTOMER_REPO_TOKEN }}
+          KUBRIX_BACKSTAGE_GITHUB_TOKEN: ${{ steps.repo-backstage-token.outputs.token }}
           KUBRIX_BOOTSTRAP_MAX_WAIT_TIME: ${{ vars.KUBRIX_BOOTSTRAP_MAX_WAIT_TIME }}
           PR_NUMBER: "${{ needs.changes.outputs.dockerImageChanges == 'true' && github.event.number || '' }}"
           TARGET_BRANCH: ${{ github.base_ref || github.ref_name }}
@@ -607,13 +631,23 @@ jobs:
           permission-contents: write
           permission-pull-requests: write
 
+      - name: Create ApplicationSet test token
+        id: appset-test-token
+        uses: actions/create-github-app-token@v3
+        with:
+          client-id: ${{ vars.KUBRIX_CI_REPOS_APP_CLIENT_ID }}
+          private-key: ${{ secrets.KUBRIX_CI_REPOS_APP_PRIVATE_KEY }}
+          owner: kubriX-demo
+          permission-contents: read
+          permission-pull-requests: read
+
       - name: testkube tests
         env:
           KUBRIX_TARGET_TYPE: ${{ matrix.target-type }}
           E2E_TEST_GH_USERNAME: ${{ secrets.E2E_TEST_GH_USERNAME }}
           E2E_TEST_GH_PASSWORD: ${{ secrets.E2E_TEST_GH_PASSWORD }}
           E2E_TEST_GITHUB_OTP: ${{ secrets.E2E_TEST_GITHUB_OTP }}
-          E2E_KUBRIX_ARGOCD_APPSET_TOKEN: ${{ secrets.E2E_KUBRIX_ARGOCD_APPSET_TOKEN }}
+          E2E_KUBRIX_ARGOCD_APPSET_TOKEN: ${{ steps.appset-test-token.outputs.token }}
           E2E_KUBRIX_KARGO_GIT_PASSWORD: ${{ steps.repo-test-token.outputs.token }}
           E2E_TEAM_ONBOARDING_TARGET_BRANCH: "main"
           E2E_MERGE_PR: "true"
