@@ -348,12 +348,21 @@ jobs:
           sudo dpkg -i k8sgpt_amd64.deb
           k8sgpt analyze
 
+      - name: Create repository lifecycle token
+        id: repo-create-token
+        uses: actions/create-github-app-token@v3
+        with:
+          client-id: ${{ vars.KUBRIX_CI_REPOS_APP_CLIENT_ID }}
+          private-key: ${{ secrets.KUBRIX_CI_REPOS_APP_PRIVATE_KEY }}
+          owner: kubriX-demo
+          permission-administration: write
+
       - name: create kubrix customer repo
         shell: bash
         env:
           REPO_ORG: 'kubriX-demo'
           REPO_NAME: "kubrix-cluster-test-${{ github.run_id }}-${{ job.check_run_id }}"
-          GH_TOKEN: ${{ secrets.KUBRIX_CUSTOMER_REPO_TOKEN }}
+          GH_TOKEN: ${{ steps.repo-create-token.outputs.token }}
           VIS: "private"
         run: |
           gh api \
@@ -499,10 +508,20 @@ jobs:
           echo "❌ Timed out after 5 minutes waiting for User entity."
           exit 1
 
+      - name: Create repository cleanup token
+        id: repo-cleanup-token
+        if: ${{ matrix.target-type == 'kind-portal' || matrix.target-type == 'kind-hub-prime' }}
+        uses: actions/create-github-app-token@v3
+        with:
+          client-id: ${{ vars.KUBRIX_CI_REPOS_APP_CLIENT_ID }}
+          private-key: ${{ secrets.KUBRIX_CI_REPOS_APP_PRIVATE_KEY }}
+          owner: kubriX-demo
+          permission-administration: write
+
       - name: Delete app-of-apps and kubrixBot app repo, if exists
         if: ${{ matrix.target-type  == 'kind-portal' || matrix.target-type  == 'kind-hub-prime' }}
         env:
-          KUBRIX_DELETE_E2E_TESTS_REPO_TOKEN: ${{ secrets.KUBRIX_DELETE_E2E_TESTS_REPO_TOKEN }}
+          KUBRIX_DELETE_E2E_TESTS_REPO_TOKEN: ${{ steps.repo-cleanup-token.outputs.token }}
           GITHUB_ORG: "kubriX-demo"
           GITHUB_API: "https://api.github.com"
         run: |
@@ -563,24 +582,6 @@ jobs:
           delete_repo_if_exists "${gitops_repo:-}"
           delete_repo_if_exists "${vcluster_repo:-}"
 
-      - name: add kubrixBot repo for team onboarding fork
-        env:
-          KUBRIXBOT_FORK_READ_TOKEN: ${{ secrets.KUBRIXBOT_FORK_READ_TOKEN }}
-          KUBRIX_FORK_REPO_NAME: "kubrix-cluster-test-${{ github.run_id }}-${{ job.check_run_id }}"
-        run: |
-          kubectl -n argocd apply -f - <<EOF
-          apiVersion: v1
-          kind: Secret
-          metadata:
-            name: kubrixbot-team-onboarding-fork-repo
-            labels:
-              argocd.argoproj.io/secret-type: repository
-          stringData:
-            type: git
-            url: https://github.com/kubrixBot/${KUBRIX_FORK_REPO_NAME}.git
-            username: kubrixBot
-            password: ${KUBRIXBOT_FORK_READ_TOKEN}
-          EOF
 
       # run testkube tests
       - uses: kubeshop/setup-testkube@v1
@@ -596,6 +597,16 @@ jobs:
      #     wait_interval_seconds: "10"
      #     post_unlock: "true"
     
+      - name: Create repository test token
+        id: repo-test-token
+        uses: actions/create-github-app-token@v3
+        with:
+          client-id: ${{ vars.KUBRIX_CI_REPOS_APP_CLIENT_ID }}
+          private-key: ${{ secrets.KUBRIX_CI_REPOS_APP_PRIVATE_KEY }}
+          owner: kubriX-demo
+          permission-contents: write
+          permission-pull-requests: write
+
       - name: testkube tests
         env:
           KUBRIX_TARGET_TYPE: ${{ matrix.target-type }}
@@ -603,7 +614,7 @@ jobs:
           E2E_TEST_GH_PASSWORD: ${{ secrets.E2E_TEST_GH_PASSWORD }}
           E2E_TEST_GITHUB_OTP: ${{ secrets.E2E_TEST_GITHUB_OTP }}
           E2E_KUBRIX_ARGOCD_APPSET_TOKEN: ${{ secrets.E2E_KUBRIX_ARGOCD_APPSET_TOKEN }}
-          E2E_KUBRIX_KARGO_GIT_PASSWORD: ${{ secrets.E2E_KUBRIX_KARGO_GIT_PASSWORD }}
+          E2E_KUBRIX_KARGO_GIT_PASSWORD: ${{ steps.repo-test-token.outputs.token }}
           E2E_TEAM_ONBOARDING_TARGET_BRANCH: "main"
           E2E_MERGE_PR: "true"
           E2E_KUBRIX_ORG: kubriX-demo
@@ -771,10 +782,20 @@ jobs:
           echo "describe all pods ====="
           kubectl describe pod -A
 
+      - name: Create final repository cleanup token
+        id: repo-final-cleanup-token
+        if: always()
+        uses: actions/create-github-app-token@v3
+        with:
+          client-id: ${{ vars.KUBRIX_CI_REPOS_APP_CLIENT_ID }}
+          private-key: ${{ secrets.KUBRIX_CI_REPOS_APP_PRIVATE_KEY }}
+          owner: kubriX-demo
+          permission-administration: write
+
       - name: Delete kubriX boostrap repo, if exists
         if: always()
         env:
-          KUBRIX_DELETE_E2E_TESTS_REPO_TOKEN: ${{ secrets.KUBRIX_DELETE_E2E_TESTS_REPO_TOKEN }}
+          KUBRIX_DELETE_E2E_TESTS_REPO_TOKEN: ${{ steps.repo-final-cleanup-token.outputs.token }}
           GITHUB_ORG: "kubriX-demo"
           GITHUB_API: "https://api.github.com"
           KUBRIX_REPO: "${{ github.run_id }}-${{ job.check_run_id }}"
