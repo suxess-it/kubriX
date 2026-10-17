@@ -1,30 +1,7 @@
-<h2>Image <code>docker.io/kubeshop/bitnami-mongodb:8.3.8</code></h2>
+<h2>Image <code>docker.io/kubeshop/bitnami-mongodb:8.3.11</code></h2>
 
-<h3>Target <code>docker.io/kubeshop/bitnami-mongodb:8.3.8 (ubuntu 24.04)</code></h3>
-<h4>Vulnerabilities (2)</h4>
-<table>
-    <tr>
-        <th>Package</th>
-        <th>ID</th>
-        <th>Severity</th>
-        <th>Installed Version</th>
-        <th>Fixed Version</th>
-    </tr>
-    <tr>
-        <td><code>libssl3t64</code></td>
-        <td>CVE-2026-84782</td>
-        <td>HIGH</td>
-        <td>3.0.13-0ubuntu3.12</td>
-        <td>3.0.13-0ubuntu3.16</td>
-    </tr>
-    <tr>
-        <td><code>openssl</code></td>
-        <td>CVE-2026-84782</td>
-        <td>HIGH</td>
-        <td>3.0.13-0ubuntu3.12</td>
-        <td>3.0.13-0ubuntu3.16</td>
-    </tr>
-</table>
+<h3>Target <code>docker.io/kubeshop/bitnami-mongodb:8.3.11 (ubuntu 24.04)</code></h3>
+<h4>No Vulnerabilities found</h4>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>Node.js</code></h3>
 <h4>Vulnerabilities (3)</h4>
@@ -60,10 +37,40 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>opt/bitnami/common/bin/render-template</code></h3>
-<h4>No Vulnerabilities found</h4>
+<h4>Vulnerabilities (3)</h4>
+<table>
+    <tr>
+        <th>Package</th>
+        <th>ID</th>
+        <th>Severity</th>
+        <th>Installed Version</th>
+        <th>Fixed Version</th>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-78667</td>
+        <td>HIGH</td>
+        <td>v1.26.8</td>
+        <td>1.26.9, 1.27.2</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-78669</td>
+        <td>HIGH</td>
+        <td>v1.26.8</td>
+        <td>1.26.9, 1.27.2</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-97031</td>
+        <td>HIGH</td>
+        <td>v1.26.8</td>
+        <td>1.26.9, 1.27.2</td>
+    </tr>
+</table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>opt/bitnami/mongodb/bin/bsondump</code></h3>
-<h4>Vulnerabilities (16)</h4>
+<h4>Vulnerabilities (20)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -178,16 +185,44 @@
         <td>0.56.0</td>
     </tr>
     <tr>
+        <td><code>golang.org/x/net</code></td>
+        <td>CVE-2026-78669</td>
+        <td>HIGH</td>
+        <td>v0.48.0</td>
+        <td>0.60.0</td>
+    </tr>
+    <tr>
         <td><code>golang.org/x/text</code></td>
         <td>CVE-2026-56852</td>
         <td>HIGH</td>
         <td>v0.33.0</td>
         <td>0.39.0</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-78667</td>
+        <td>HIGH</td>
+        <td>v1.26.8</td>
+        <td>1.26.9, 1.27.2</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-78669</td>
+        <td>HIGH</td>
+        <td>v1.26.8</td>
+        <td>1.26.9, 1.27.2</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-97031</td>
+        <td>HIGH</td>
+        <td>v1.26.8</td>
+        <td>1.26.9, 1.27.2</td>
     </tr>
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>opt/bitnami/mongodb/bin/mongodump</code></h3>
-<h4>Vulnerabilities (16)</h4>
+<h4>Vulnerabilities (20)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -302,16 +337,44 @@
         <td>0.56.0</td>
     </tr>
     <tr>
+        <td><code>golang.org/x/net</code></td>
+        <td>CVE-2026-78669</td>
+        <td>HIGH</td>
+        <td>v0.48.0</td>
+        <td>0.60.0</td>
+    </tr>
+    <tr>
         <td><code>golang.org/x/text</code></td>
         <td>CVE-2026-56852</td>
         <td>HIGH</td>
         <td>v0.33.0</td>
         <td>0.39.0</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-78667</td>
+        <td>HIGH</td>
+        <td>v1.26.8</td>
+        <td>1.26.9, 1.27.2</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-78669</td>
+        <td>HIGH</td>
+        <td>v1.26.8</td>
+        <td>1.26.9, 1.27.2</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-97031</td>
+        <td>HIGH</td>
+        <td>v1.26.8</td>
+        <td>1.26.9, 1.27.2</td>
     </tr>
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>opt/bitnami/mongodb/bin/mongoexport</code></h3>
-<h4>Vulnerabilities (16)</h4>
+<h4>Vulnerabilities (20)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -426,16 +489,44 @@
         <td>0.56.0</td>
     </tr>
     <tr>
+        <td><code>golang.org/x/net</code></td>
+        <td>CVE-2026-78669</td>
+        <td>HIGH</td>
+        <td>v0.48.0</td>
+        <td>0.60.0</td>
+    </tr>
+    <tr>
         <td><code>golang.org/x/text</code></td>
         <td>CVE-2026-56852</td>
         <td>HIGH</td>
         <td>v0.33.0</td>
         <td>0.39.0</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-78667</td>
+        <td>HIGH</td>
+        <td>v1.26.8</td>
+        <td>1.26.9, 1.27.2</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-78669</td>
+        <td>HIGH</td>
+        <td>v1.26.8</td>
+        <td>1.26.9, 1.27.2</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-97031</td>
+        <td>HIGH</td>
+        <td>v1.26.8</td>
+        <td>1.26.9, 1.27.2</td>
     </tr>
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>opt/bitnami/mongodb/bin/mongofiles</code></h3>
-<h4>Vulnerabilities (16)</h4>
+<h4>Vulnerabilities (20)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -550,16 +641,44 @@
         <td>0.56.0</td>
     </tr>
     <tr>
+        <td><code>golang.org/x/net</code></td>
+        <td>CVE-2026-78669</td>
+        <td>HIGH</td>
+        <td>v0.48.0</td>
+        <td>0.60.0</td>
+    </tr>
+    <tr>
         <td><code>golang.org/x/text</code></td>
         <td>CVE-2026-56852</td>
         <td>HIGH</td>
         <td>v0.33.0</td>
         <td>0.39.0</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-78667</td>
+        <td>HIGH</td>
+        <td>v1.26.8</td>
+        <td>1.26.9, 1.27.2</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-78669</td>
+        <td>HIGH</td>
+        <td>v1.26.8</td>
+        <td>1.26.9, 1.27.2</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-97031</td>
+        <td>HIGH</td>
+        <td>v1.26.8</td>
+        <td>1.26.9, 1.27.2</td>
     </tr>
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>opt/bitnami/mongodb/bin/mongoimport</code></h3>
-<h4>Vulnerabilities (16)</h4>
+<h4>Vulnerabilities (20)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -674,16 +793,44 @@
         <td>0.56.0</td>
     </tr>
     <tr>
+        <td><code>golang.org/x/net</code></td>
+        <td>CVE-2026-78669</td>
+        <td>HIGH</td>
+        <td>v0.48.0</td>
+        <td>0.60.0</td>
+    </tr>
+    <tr>
         <td><code>golang.org/x/text</code></td>
         <td>CVE-2026-56852</td>
         <td>HIGH</td>
         <td>v0.33.0</td>
         <td>0.39.0</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-78667</td>
+        <td>HIGH</td>
+        <td>v1.26.8</td>
+        <td>1.26.9, 1.27.2</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-78669</td>
+        <td>HIGH</td>
+        <td>v1.26.8</td>
+        <td>1.26.9, 1.27.2</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-97031</td>
+        <td>HIGH</td>
+        <td>v1.26.8</td>
+        <td>1.26.9, 1.27.2</td>
     </tr>
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>opt/bitnami/mongodb/bin/mongorestore</code></h3>
-<h4>Vulnerabilities (16)</h4>
+<h4>Vulnerabilities (20)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -798,16 +945,44 @@
         <td>0.56.0</td>
     </tr>
     <tr>
+        <td><code>golang.org/x/net</code></td>
+        <td>CVE-2026-78669</td>
+        <td>HIGH</td>
+        <td>v0.48.0</td>
+        <td>0.60.0</td>
+    </tr>
+    <tr>
         <td><code>golang.org/x/text</code></td>
         <td>CVE-2026-56852</td>
         <td>HIGH</td>
         <td>v0.33.0</td>
         <td>0.39.0</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-78667</td>
+        <td>HIGH</td>
+        <td>v1.26.8</td>
+        <td>1.26.9, 1.27.2</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-78669</td>
+        <td>HIGH</td>
+        <td>v1.26.8</td>
+        <td>1.26.9, 1.27.2</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-97031</td>
+        <td>HIGH</td>
+        <td>v1.26.8</td>
+        <td>1.26.9, 1.27.2</td>
     </tr>
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>opt/bitnami/mongodb/bin/mongostat</code></h3>
-<h4>Vulnerabilities (16)</h4>
+<h4>Vulnerabilities (20)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -922,16 +1097,44 @@
         <td>0.56.0</td>
     </tr>
     <tr>
+        <td><code>golang.org/x/net</code></td>
+        <td>CVE-2026-78669</td>
+        <td>HIGH</td>
+        <td>v0.48.0</td>
+        <td>0.60.0</td>
+    </tr>
+    <tr>
         <td><code>golang.org/x/text</code></td>
         <td>CVE-2026-56852</td>
         <td>HIGH</td>
         <td>v0.33.0</td>
         <td>0.39.0</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-78667</td>
+        <td>HIGH</td>
+        <td>v1.26.8</td>
+        <td>1.26.9, 1.27.2</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-78669</td>
+        <td>HIGH</td>
+        <td>v1.26.8</td>
+        <td>1.26.9, 1.27.2</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-97031</td>
+        <td>HIGH</td>
+        <td>v1.26.8</td>
+        <td>1.26.9, 1.27.2</td>
     </tr>
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>opt/bitnami/mongodb/bin/mongotop</code></h3>
-<h4>Vulnerabilities (16)</h4>
+<h4>Vulnerabilities (20)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -1046,16 +1249,44 @@
         <td>0.56.0</td>
     </tr>
     <tr>
+        <td><code>golang.org/x/net</code></td>
+        <td>CVE-2026-78669</td>
+        <td>HIGH</td>
+        <td>v0.48.0</td>
+        <td>0.60.0</td>
+    </tr>
+    <tr>
         <td><code>golang.org/x/text</code></td>
         <td>CVE-2026-56852</td>
         <td>HIGH</td>
         <td>v0.33.0</td>
         <td>0.39.0</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-78667</td>
+        <td>HIGH</td>
+        <td>v1.26.8</td>
+        <td>1.26.9, 1.27.2</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-78669</td>
+        <td>HIGH</td>
+        <td>v1.26.8</td>
+        <td>1.26.9, 1.27.2</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-97031</td>
+        <td>HIGH</td>
+        <td>v1.26.8</td>
+        <td>1.26.9, 1.27.2</td>
     </tr>
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>usr/bin/bsondump</code></h3>
-<h4>Vulnerabilities (16)</h4>
+<h4>Vulnerabilities (20)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -1170,16 +1401,44 @@
         <td>0.56.0</td>
     </tr>
     <tr>
+        <td><code>golang.org/x/net</code></td>
+        <td>CVE-2026-78669</td>
+        <td>HIGH</td>
+        <td>v0.48.0</td>
+        <td>0.60.0</td>
+    </tr>
+    <tr>
         <td><code>golang.org/x/text</code></td>
         <td>CVE-2026-56852</td>
         <td>HIGH</td>
         <td>v0.33.0</td>
         <td>0.39.0</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-78667</td>
+        <td>HIGH</td>
+        <td>v1.26.8</td>
+        <td>1.26.9, 1.27.2</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-78669</td>
+        <td>HIGH</td>
+        <td>v1.26.8</td>
+        <td>1.26.9, 1.27.2</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-97031</td>
+        <td>HIGH</td>
+        <td>v1.26.8</td>
+        <td>1.26.9, 1.27.2</td>
     </tr>
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>usr/bin/mongodump</code></h3>
-<h4>Vulnerabilities (16)</h4>
+<h4>Vulnerabilities (20)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -1294,16 +1553,44 @@
         <td>0.56.0</td>
     </tr>
     <tr>
+        <td><code>golang.org/x/net</code></td>
+        <td>CVE-2026-78669</td>
+        <td>HIGH</td>
+        <td>v0.48.0</td>
+        <td>0.60.0</td>
+    </tr>
+    <tr>
         <td><code>golang.org/x/text</code></td>
         <td>CVE-2026-56852</td>
         <td>HIGH</td>
         <td>v0.33.0</td>
         <td>0.39.0</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-78667</td>
+        <td>HIGH</td>
+        <td>v1.26.8</td>
+        <td>1.26.9, 1.27.2</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-78669</td>
+        <td>HIGH</td>
+        <td>v1.26.8</td>
+        <td>1.26.9, 1.27.2</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-97031</td>
+        <td>HIGH</td>
+        <td>v1.26.8</td>
+        <td>1.26.9, 1.27.2</td>
     </tr>
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>usr/bin/mongoexport</code></h3>
-<h4>Vulnerabilities (16)</h4>
+<h4>Vulnerabilities (20)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -1418,16 +1705,44 @@
         <td>0.56.0</td>
     </tr>
     <tr>
+        <td><code>golang.org/x/net</code></td>
+        <td>CVE-2026-78669</td>
+        <td>HIGH</td>
+        <td>v0.48.0</td>
+        <td>0.60.0</td>
+    </tr>
+    <tr>
         <td><code>golang.org/x/text</code></td>
         <td>CVE-2026-56852</td>
         <td>HIGH</td>
         <td>v0.33.0</td>
         <td>0.39.0</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-78667</td>
+        <td>HIGH</td>
+        <td>v1.26.8</td>
+        <td>1.26.9, 1.27.2</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-78669</td>
+        <td>HIGH</td>
+        <td>v1.26.8</td>
+        <td>1.26.9, 1.27.2</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-97031</td>
+        <td>HIGH</td>
+        <td>v1.26.8</td>
+        <td>1.26.9, 1.27.2</td>
     </tr>
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>usr/bin/mongofiles</code></h3>
-<h4>Vulnerabilities (16)</h4>
+<h4>Vulnerabilities (20)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -1542,16 +1857,44 @@
         <td>0.56.0</td>
     </tr>
     <tr>
+        <td><code>golang.org/x/net</code></td>
+        <td>CVE-2026-78669</td>
+        <td>HIGH</td>
+        <td>v0.48.0</td>
+        <td>0.60.0</td>
+    </tr>
+    <tr>
         <td><code>golang.org/x/text</code></td>
         <td>CVE-2026-56852</td>
         <td>HIGH</td>
         <td>v0.33.0</td>
         <td>0.39.0</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-78667</td>
+        <td>HIGH</td>
+        <td>v1.26.8</td>
+        <td>1.26.9, 1.27.2</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-78669</td>
+        <td>HIGH</td>
+        <td>v1.26.8</td>
+        <td>1.26.9, 1.27.2</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-97031</td>
+        <td>HIGH</td>
+        <td>v1.26.8</td>
+        <td>1.26.9, 1.27.2</td>
     </tr>
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>usr/bin/mongoimport</code></h3>
-<h4>Vulnerabilities (16)</h4>
+<h4>Vulnerabilities (20)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -1666,16 +2009,44 @@
         <td>0.56.0</td>
     </tr>
     <tr>
+        <td><code>golang.org/x/net</code></td>
+        <td>CVE-2026-78669</td>
+        <td>HIGH</td>
+        <td>v0.48.0</td>
+        <td>0.60.0</td>
+    </tr>
+    <tr>
         <td><code>golang.org/x/text</code></td>
         <td>CVE-2026-56852</td>
         <td>HIGH</td>
         <td>v0.33.0</td>
         <td>0.39.0</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-78667</td>
+        <td>HIGH</td>
+        <td>v1.26.8</td>
+        <td>1.26.9, 1.27.2</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-78669</td>
+        <td>HIGH</td>
+        <td>v1.26.8</td>
+        <td>1.26.9, 1.27.2</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-97031</td>
+        <td>HIGH</td>
+        <td>v1.26.8</td>
+        <td>1.26.9, 1.27.2</td>
     </tr>
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>usr/bin/mongorestore</code></h3>
-<h4>Vulnerabilities (16)</h4>
+<h4>Vulnerabilities (20)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -1790,16 +2161,44 @@
         <td>0.56.0</td>
     </tr>
     <tr>
+        <td><code>golang.org/x/net</code></td>
+        <td>CVE-2026-78669</td>
+        <td>HIGH</td>
+        <td>v0.48.0</td>
+        <td>0.60.0</td>
+    </tr>
+    <tr>
         <td><code>golang.org/x/text</code></td>
         <td>CVE-2026-56852</td>
         <td>HIGH</td>
         <td>v0.33.0</td>
         <td>0.39.0</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-78667</td>
+        <td>HIGH</td>
+        <td>v1.26.8</td>
+        <td>1.26.9, 1.27.2</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-78669</td>
+        <td>HIGH</td>
+        <td>v1.26.8</td>
+        <td>1.26.9, 1.27.2</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-97031</td>
+        <td>HIGH</td>
+        <td>v1.26.8</td>
+        <td>1.26.9, 1.27.2</td>
     </tr>
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>usr/bin/mongostat</code></h3>
-<h4>Vulnerabilities (16)</h4>
+<h4>Vulnerabilities (20)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -1914,16 +2313,44 @@
         <td>0.56.0</td>
     </tr>
     <tr>
+        <td><code>golang.org/x/net</code></td>
+        <td>CVE-2026-78669</td>
+        <td>HIGH</td>
+        <td>v0.48.0</td>
+        <td>0.60.0</td>
+    </tr>
+    <tr>
         <td><code>golang.org/x/text</code></td>
         <td>CVE-2026-56852</td>
         <td>HIGH</td>
         <td>v0.33.0</td>
         <td>0.39.0</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-78667</td>
+        <td>HIGH</td>
+        <td>v1.26.8</td>
+        <td>1.26.9, 1.27.2</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-78669</td>
+        <td>HIGH</td>
+        <td>v1.26.8</td>
+        <td>1.26.9, 1.27.2</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-97031</td>
+        <td>HIGH</td>
+        <td>v1.26.8</td>
+        <td>1.26.9, 1.27.2</td>
     </tr>
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>usr/bin/mongotop</code></h3>
-<h4>Vulnerabilities (16)</h4>
+<h4>Vulnerabilities (20)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -2038,112 +2465,49 @@
         <td>0.56.0</td>
     </tr>
     <tr>
+        <td><code>golang.org/x/net</code></td>
+        <td>CVE-2026-78669</td>
+        <td>HIGH</td>
+        <td>v0.48.0</td>
+        <td>0.60.0</td>
+    </tr>
+    <tr>
         <td><code>golang.org/x/text</code></td>
         <td>CVE-2026-56852</td>
         <td>HIGH</td>
         <td>v0.33.0</td>
         <td>0.39.0</td>
     </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-78667</td>
+        <td>HIGH</td>
+        <td>v1.26.8</td>
+        <td>1.26.9, 1.27.2</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-78669</td>
+        <td>HIGH</td>
+        <td>v1.26.8</td>
+        <td>1.26.9, 1.27.2</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-97031</td>
+        <td>HIGH</td>
+        <td>v1.26.8</td>
+        <td>1.26.9, 1.27.2</td>
+    </tr>
 </table>
 <h4>No Misconfigurations found</h4>
-<h2>Image <code>docker.io/kubeshop/testkube-api-server:2.14.0</code></h2>
+<h2>Image <code>docker.io/kubeshop/testkube-api-server:2.14.1</code></h2>
 
-<h3>Target <code>docker.io/kubeshop/testkube-api-server:2.14.0 (alpine 3.24.1)</code></h3>
-<h4>Vulnerabilities (11)</h4>
-<table>
-    <tr>
-        <th>Package</th>
-        <th>ID</th>
-        <th>Severity</th>
-        <th>Installed Version</th>
-        <th>Fixed Version</th>
-    </tr>
-    <tr>
-        <td><code>libcrypto3</code></td>
-        <td>CVE-2026-14456</td>
-        <td>HIGH</td>
-        <td>3.5.7-r0</td>
-        <td>3.5.8-r0</td>
-    </tr>
-    <tr>
-        <td><code>libexpat</code></td>
-        <td>CVE-2026-66046</td>
-        <td>HIGH</td>
-        <td>2.8.2-r0</td>
-        <td>2.8.4-r0</td>
-    </tr>
-    <tr>
-        <td><code>libexpat</code></td>
-        <td>CVE-2026-76641</td>
-        <td>HIGH</td>
-        <td>2.8.2-r0</td>
-        <td>2.8.4-r0</td>
-    </tr>
-    <tr>
-        <td><code>libexpat</code></td>
-        <td>CVE-2026-76956</td>
-        <td>HIGH</td>
-        <td>2.8.2-r0</td>
-        <td>2.8.4-r0</td>
-    </tr>
-    <tr>
-        <td><code>libexpat</code></td>
-        <td>CVE-2026-76957</td>
-        <td>HIGH</td>
-        <td>2.8.2-r0</td>
-        <td>2.8.4-r0</td>
-    </tr>
-    <tr>
-        <td><code>libexpat</code></td>
-        <td>CVE-2026-93990</td>
-        <td>HIGH</td>
-        <td>2.8.2-r0</td>
-        <td>2.8.5-r0</td>
-    </tr>
-    <tr>
-        <td><code>libssl3</code></td>
-        <td>CVE-2026-14456</td>
-        <td>HIGH</td>
-        <td>3.5.7-r0</td>
-        <td>3.5.8-r0</td>
-    </tr>
-    <tr>
-        <td><code>pcre2</code></td>
-        <td>CVE-2026-103111</td>
-        <td>HIGH</td>
-        <td>10.47-r1</td>
-        <td>10.49-r0</td>
-    </tr>
-    <tr>
-        <td><code>pcre2</code></td>
-        <td>CVE-2026-86145</td>
-        <td>HIGH</td>
-        <td>10.47-r1</td>
-        <td>10.48-r0</td>
-    </tr>
-    <tr>
-        <td><code>pcre2</code></td>
-        <td>CVE-2026-89157</td>
-        <td>HIGH</td>
-        <td>10.47-r1</td>
-        <td>10.48-r0</td>
-    </tr>
-    <tr>
-        <td><code>pcre2</code></td>
-        <td>CVE-2026-89161</td>
-        <td>HIGH</td>
-        <td>10.47-r1</td>
-        <td>10.48-r0</td>
-    </tr>
-</table>
-<h4>No Misconfigurations found</h4>
-<h3>Target <code>bin/app</code></h3>
+<h3>Target <code>docker.io/kubeshop/testkube-api-server:2.14.1 (alpine 3.24.2)</code></h3>
 <h4>No Vulnerabilities found</h4>
 <h4>No Misconfigurations found</h4>
-<h2>Image <code>docker.io/kubeshop/testkube-kubectl:1.36.3</code></h2>
-
-<h3>Target <code>docker.io/kubeshop/testkube-kubectl:1.36.3 (alpine 3.24.1)</code></h3>
-<h4>Vulnerabilities (2)</h4>
+<h3>Target <code>bin/app</code></h3>
+<h4>Vulnerabilities (4)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -2153,23 +2517,42 @@
         <th>Fixed Version</th>
     </tr>
     <tr>
-        <td><code>libcrypto3</code></td>
-        <td>CVE-2026-14456</td>
+        <td><code>golang.org/x/net</code></td>
+        <td>CVE-2026-78669</td>
         <td>HIGH</td>
-        <td>3.5.7-r0</td>
-        <td>3.5.8-r0</td>
+        <td>v0.58.0</td>
+        <td>0.60.0</td>
     </tr>
     <tr>
-        <td><code>libssl3</code></td>
-        <td>CVE-2026-14456</td>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-78667</td>
         <td>HIGH</td>
-        <td>3.5.7-r0</td>
-        <td>3.5.8-r0</td>
+        <td>v1.27.1</td>
+        <td>1.26.9, 1.27.2</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-78669</td>
+        <td>HIGH</td>
+        <td>v1.27.1</td>
+        <td>1.26.9, 1.27.2</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-97031</td>
+        <td>HIGH</td>
+        <td>v1.27.1</td>
+        <td>1.26.9, 1.27.2</td>
     </tr>
 </table>
 <h4>No Misconfigurations found</h4>
+<h2>Image <code>docker.io/kubeshop/testkube-kubectl:1.37.1</code></h2>
+
+<h3>Target <code>docker.io/kubeshop/testkube-kubectl:1.37.1 (alpine 3.24.2)</code></h3>
+<h4>No Vulnerabilities found</h4>
+<h4>No Misconfigurations found</h4>
 <h3>Target <code>usr/local/bin/kubectl</code></h3>
-<h4>Vulnerabilities (14)</h4>
+<h4>Vulnerabilities (4)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -2180,108 +2563,38 @@
     </tr>
     <tr>
         <td><code>golang.org/x/net</code></td>
-        <td>CVE-2026-25681</td>
+        <td>CVE-2026-78669</td>
         <td>HIGH</td>
-        <td>v0.49.0</td>
-        <td>0.55.0</td>
-    </tr>
-    <tr>
-        <td><code>golang.org/x/net</code></td>
-        <td>CVE-2026-27136</td>
-        <td>HIGH</td>
-        <td>v0.49.0</td>
-        <td>0.55.0</td>
-    </tr>
-    <tr>
-        <td><code>golang.org/x/net</code></td>
-        <td>CVE-2026-33814</td>
-        <td>HIGH</td>
-        <td>v0.49.0</td>
-        <td>0.53.0</td>
-    </tr>
-    <tr>
-        <td><code>golang.org/x/net</code></td>
-        <td>CVE-2026-39821</td>
-        <td>HIGH</td>
-        <td>v0.49.0</td>
-        <td>0.55.0</td>
-    </tr>
-    <tr>
-        <td><code>golang.org/x/net</code></td>
-        <td>CVE-2026-46600</td>
-        <td>HIGH</td>
-        <td>v0.49.0</td>
-        <td>0.56.0</td>
-    </tr>
-    <tr>
-        <td><code>golang.org/x/text</code></td>
-        <td>CVE-2026-56852</td>
-        <td>HIGH</td>
-        <td>v0.33.0</td>
-        <td>0.39.0</td>
+        <td>v0.57.0</td>
+        <td>0.60.0</td>
     </tr>
     <tr>
         <td><code>stdlib</code></td>
-        <td>CVE-2026-33818</td>
+        <td>CVE-2026-78667</td>
         <td>HIGH</td>
-        <td>v1.26.5</td>
-        <td>1.25.13, 1.26.6, 1.27.0-rc.3</td>
+        <td>v1.26.8</td>
+        <td>1.26.9, 1.27.2</td>
     </tr>
     <tr>
         <td><code>stdlib</code></td>
-        <td>CVE-2026-39821</td>
+        <td>CVE-2026-78669</td>
         <td>HIGH</td>
-        <td>v1.26.5</td>
-        <td>1.25.13, 1.26.6, 1.27.0-rc.3</td>
+        <td>v1.26.8</td>
+        <td>1.26.9, 1.27.2</td>
     </tr>
     <tr>
         <td><code>stdlib</code></td>
-        <td>CVE-2026-46600</td>
+        <td>CVE-2026-97031</td>
         <td>HIGH</td>
-        <td>v1.26.5</td>
-        <td>1.26.6, 1.27.0-rc.3</td>
-    </tr>
-    <tr>
-        <td><code>stdlib</code></td>
-        <td>CVE-2026-56853</td>
-        <td>HIGH</td>
-        <td>v1.26.5</td>
-        <td>1.25.13, 1.26.6, 1.27.0-rc.3</td>
-    </tr>
-    <tr>
-        <td><code>stdlib</code></td>
-        <td>CVE-2026-56858</td>
-        <td>HIGH</td>
-        <td>v1.26.5</td>
-        <td>1.25.13, 1.26.6, 1.27.0-rc.3</td>
-    </tr>
-    <tr>
-        <td><code>stdlib</code></td>
-        <td>CVE-2026-56859</td>
-        <td>HIGH</td>
-        <td>v1.26.5</td>
-        <td>1.25.13, 1.26.6, 1.27.0-rc.3</td>
-    </tr>
-    <tr>
-        <td><code>stdlib</code></td>
-        <td>CVE-2026-56860</td>
-        <td>HIGH</td>
-        <td>v1.26.5</td>
-        <td>1.25.13, 1.26.6, 1.27.0-rc.3</td>
-    </tr>
-    <tr>
-        <td><code>stdlib</code></td>
-        <td>CVE-2026-56862</td>
-        <td>HIGH</td>
-        <td>v1.26.5</td>
-        <td>1.25.13, 1.26.6, 1.27.0-rc.3</td>
+        <td>v1.26.8</td>
+        <td>1.26.9, 1.27.2</td>
     </tr>
 </table>
 <h4>No Misconfigurations found</h4>
 <h2>Image <code>docker.io/kubeshop/testkube-minio:2025.10</code></h2>
 
 <h3>Target <code>docker.io/kubeshop/testkube-minio:2025.10 (debian 12.14)</code></h3>
-<h4>Vulnerabilities (78)</h4>
+<h4>Vulnerabilities (86)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -2293,6 +2606,13 @@
     <tr>
         <td><code>bsdutils</code></td>
         <td>CVE-2026-53613</td>
+        <td>HIGH</td>
+        <td>1:2.38.1-5+deb12u3</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>bsdutils</code></td>
+        <td>CVE-2026-53615</td>
         <td>HIGH</td>
         <td>1:2.38.1-5+deb12u3</td>
         <td></td>
@@ -2390,6 +2710,13 @@
     </tr>
     <tr>
         <td><code>libblkid1</code></td>
+        <td>CVE-2026-53615</td>
+        <td>HIGH</td>
+        <td>2.38.1-5+deb12u3</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>libblkid1</code></td>
         <td>CVE-2026-76642</td>
         <td>HIGH</td>
         <td>2.38.1-5+deb12u3</td>
@@ -2474,6 +2801,13 @@
     </tr>
     <tr>
         <td><code>libmount1</code></td>
+        <td>CVE-2026-53615</td>
+        <td>HIGH</td>
+        <td>2.38.1-5+deb12u3</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>libmount1</code></td>
         <td>CVE-2026-76642</td>
         <td>HIGH</td>
         <td>2.38.1-5+deb12u3</td>
@@ -2538,6 +2872,13 @@
     <tr>
         <td><code>libsmartcols1</code></td>
         <td>CVE-2026-53613</td>
+        <td>HIGH</td>
+        <td>2.38.1-5+deb12u3</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>libsmartcols1</code></td>
+        <td>CVE-2026-53615</td>
         <td>HIGH</td>
         <td>2.38.1-5+deb12u3</td>
         <td></td>
@@ -2621,6 +2962,13 @@
     </tr>
     <tr>
         <td><code>libuuid1</code></td>
+        <td>CVE-2026-53615</td>
+        <td>HIGH</td>
+        <td>2.38.1-5+deb12u3</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>libuuid1</code></td>
         <td>CVE-2026-76642</td>
         <td>HIGH</td>
         <td>2.38.1-5+deb12u3</td>
@@ -2650,6 +2998,13 @@
     <tr>
         <td><code>mount</code></td>
         <td>CVE-2026-53613</td>
+        <td>HIGH</td>
+        <td>2.38.1-5+deb12u3</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>mount</code></td>
+        <td>CVE-2026-53615</td>
         <td>HIGH</td>
         <td>2.38.1-5+deb12u3</td>
         <td></td>
@@ -2708,49 +3063,49 @@
         <td>CVE-2026-13221</td>
         <td>CRITICAL</td>
         <td>5.36.0-7+deb12u3</td>
-        <td></td>
+        <td>5.36.0-7+deb12u4</td>
     </tr>
     <tr>
         <td><code>perl-base</code></td>
         <td>CVE-2026-42496</td>
         <td>CRITICAL</td>
         <td>5.36.0-7+deb12u3</td>
-        <td></td>
+        <td>5.36.0-7+deb12u4</td>
     </tr>
     <tr>
         <td><code>perl-base</code></td>
         <td>CVE-2026-8376</td>
         <td>CRITICAL</td>
         <td>5.36.0-7+deb12u3</td>
-        <td></td>
+        <td>5.36.0-7+deb12u4</td>
     </tr>
     <tr>
         <td><code>perl-base</code></td>
         <td>CVE-2026-42497</td>
         <td>HIGH</td>
         <td>5.36.0-7+deb12u3</td>
-        <td></td>
+        <td>5.36.0-7+deb12u4</td>
     </tr>
     <tr>
         <td><code>perl-base</code></td>
         <td>CVE-2026-48962</td>
         <td>HIGH</td>
         <td>5.36.0-7+deb12u3</td>
-        <td></td>
+        <td>5.36.0-7+deb12u4</td>
     </tr>
     <tr>
         <td><code>perl-base</code></td>
         <td>CVE-2026-57432</td>
         <td>HIGH</td>
         <td>5.36.0-7+deb12u3</td>
-        <td></td>
+        <td>5.36.0-7+deb12u4</td>
     </tr>
     <tr>
         <td><code>perl-base</code></td>
         <td>CVE-2026-57433</td>
         <td>HIGH</td>
         <td>5.36.0-7+deb12u3</td>
-        <td></td>
+        <td>5.36.0-7+deb12u4</td>
     </tr>
     <tr>
         <td><code>perl-base</code></td>
@@ -2762,6 +3117,13 @@
     <tr>
         <td><code>util-linux</code></td>
         <td>CVE-2026-53613</td>
+        <td>HIGH</td>
+        <td>2.38.1-5+deb12u3</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>util-linux</code></td>
+        <td>CVE-2026-53615</td>
         <td>HIGH</td>
         <td>2.38.1-5+deb12u3</td>
         <td></td>
@@ -2797,6 +3159,13 @@
     <tr>
         <td><code>util-linux-extra</code></td>
         <td>CVE-2026-53613</td>
+        <td>HIGH</td>
+        <td>2.38.1-5+deb12u3</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>util-linux-extra</code></td>
+        <td>CVE-2026-53615</td>
         <td>HIGH</td>
         <td>2.38.1-5+deb12u3</td>
         <td></td>
@@ -2839,7 +3208,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>opt/bitnami/common/bin/mc</code></h3>
-<h4>Vulnerabilities (43)</h4>
+<h4>Vulnerabilities (47)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -2966,6 +3335,13 @@
         <td>HIGH</td>
         <td>v0.48.0</td>
         <td>0.56.0</td>
+    </tr>
+    <tr>
+        <td><code>golang.org/x/net</code></td>
+        <td>CVE-2026-78669</td>
+        <td>HIGH</td>
+        <td>v0.48.0</td>
+        <td>0.60.0</td>
     </tr>
     <tr>
         <td><code>golang.org/x/text</code></td>
@@ -3149,10 +3525,31 @@
         <td>v1.26.0</td>
         <td>1.25.13, 1.26.6, 1.27.0-rc.3</td>
     </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-78667</td>
+        <td>HIGH</td>
+        <td>v1.26.0</td>
+        <td>1.26.9, 1.27.2</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-78669</td>
+        <td>HIGH</td>
+        <td>v1.26.0</td>
+        <td>1.26.9, 1.27.2</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-97031</td>
+        <td>HIGH</td>
+        <td>v1.26.0</td>
+        <td>1.26.9, 1.27.2</td>
+    </tr>
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>opt/bitnami/common/bin/minio</code></h3>
-<h4>Vulnerabilities (66)</h4>
+<h4>Vulnerabilities (70)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -3442,6 +3839,13 @@
         <td>0.56.0</td>
     </tr>
     <tr>
+        <td><code>golang.org/x/net</code></td>
+        <td>CVE-2026-78669</td>
+        <td>HIGH</td>
+        <td>v0.48.0</td>
+        <td>0.60.0</td>
+    </tr>
+    <tr>
         <td><code>golang.org/x/text</code></td>
         <td>CVE-2026-56852</td>
         <td>HIGH</td>
@@ -3623,10 +4027,31 @@
         <td>v1.26.0</td>
         <td>1.25.13, 1.26.6, 1.27.0-rc.3</td>
     </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-78667</td>
+        <td>HIGH</td>
+        <td>v1.26.0</td>
+        <td>1.26.9, 1.27.2</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-78669</td>
+        <td>HIGH</td>
+        <td>v1.26.0</td>
+        <td>1.26.9, 1.27.2</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-97031</td>
+        <td>HIGH</td>
+        <td>v1.26.0</td>
+        <td>1.26.9, 1.27.2</td>
+    </tr>
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>usr/local/bin/wait-for-port</code></h3>
-<h4>Vulnerabilities (22)</h4>
+<h4>Vulnerabilities (25)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -3789,6 +4214,27 @@
         <td>v1.25.0</td>
         <td>1.25.13, 1.26.6, 1.27.0-rc.3</td>
     </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-78667</td>
+        <td>HIGH</td>
+        <td>v1.25.0</td>
+        <td>1.26.9, 1.27.2</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-78669</td>
+        <td>HIGH</td>
+        <td>v1.25.0</td>
+        <td>1.26.9, 1.27.2</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-97031</td>
+        <td>HIGH</td>
+        <td>v1.25.0</td>
+        <td>1.26.9, 1.27.2</td>
+    </tr>
 </table>
 <h4>No Misconfigurations found</h4>
 <h2>Image <code>nats:2.15.0-alpine</code></h2>
@@ -3797,7 +4243,37 @@
 <h4>No Vulnerabilities found</h4>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>usr/local/bin/nats-server</code></h3>
-<h4>No Vulnerabilities found</h4>
+<h4>Vulnerabilities (3)</h4>
+<table>
+    <tr>
+        <th>Package</th>
+        <th>ID</th>
+        <th>Severity</th>
+        <th>Installed Version</th>
+        <th>Fixed Version</th>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-78667</td>
+        <td>HIGH</td>
+        <td>v1.27.1</td>
+        <td>1.26.9, 1.27.2</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-78669</td>
+        <td>HIGH</td>
+        <td>v1.27.1</td>
+        <td>1.26.9, 1.27.2</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-97031</td>
+        <td>HIGH</td>
+        <td>v1.27.1</td>
+        <td>1.26.9, 1.27.2</td>
+    </tr>
+</table>
 <h4>No Misconfigurations found</h4>
 <h2>Image <code>natsio/nats-server-config-reloader:0.24.0</code></h2>
 
@@ -3828,7 +4304,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>usr/local/bin/nats-server-config-reloader</code></h3>
-<h4>Vulnerabilities (8)</h4>
+<h4>Vulnerabilities (11)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -3892,6 +4368,27 @@
         <td>HIGH</td>
         <td>v1.26.5</td>
         <td>1.25.13, 1.26.6, 1.27.0-rc.3</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-78667</td>
+        <td>HIGH</td>
+        <td>v1.26.5</td>
+        <td>1.26.9, 1.27.2</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-78669</td>
+        <td>HIGH</td>
+        <td>v1.26.5</td>
+        <td>1.26.9, 1.27.2</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-97031</td>
+        <td>HIGH</td>
+        <td>v1.26.5</td>
+        <td>1.26.9, 1.27.2</td>
     </tr>
 </table>
 <h4>No Misconfigurations found</h4>
