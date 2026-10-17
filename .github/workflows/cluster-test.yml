@@ -495,14 +495,19 @@ jobs:
       - name: Wait for Backstage user entities
         if: ${{ matrix.target-type == 'kind-portal' || matrix.target-type == 'kind-delivery' || matrix.target-type == 'kind-hub-prime' }}
         env:
+          TARGET_TYPE: ${{ matrix.target-type }}
           BASE_URL: "https://backstage.127-0-0-1.nip.io"
         run: |
           MAX_SECONDS=300
           SLEEP_SECONDS=10
           ELAPSED=0
-          USERS=(kubrixBot demoadmin demoeditor demoviewer)
+          USERS=(demoadmin demoeditor demoviewer)
+          # Delivery does not run GitHub portal login tests or require the GitHub catalog user.
+          if [[ "$TARGET_TYPE" != "kind-delivery" ]]; then
+            USERS+=(kubrixBot)
+          fi
 
-          echo "Waiting for GitHub and Keycloak User entities (timeout: 5 minutes)..."
+          echo "Waiting for required Backstage User entities (timeout: 5 minutes)..."
 
           while [ "$ELAPSED" -lt "$MAX_SECONDS" ]; do
             # Re-read token each iteration in case ESO hasn't resolved the secret yet after the previous step
@@ -534,7 +539,7 @@ jobs:
             done
 
             if [ "${#MISSING_USERS[@]}" -eq 0 ]; then
-              echo "✅ All GitHub and Keycloak User entities are available!"
+              echo "✅ All required Backstage User entities are available!"
               exit 0
             fi
 
