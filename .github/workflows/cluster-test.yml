@@ -386,6 +386,18 @@ jobs:
           permission-contents: write
           permission-workflows: write
 
+      - name: Create Backstage repository token
+        id: repo-backstage-token
+        uses: actions/create-github-app-token@v3
+        with:
+          client-id: ${{ vars.KUBRIX_CI_REPOS_APP_CLIENT_ID }}
+          private-key: ${{ secrets.KUBRIX_CI_REPOS_APP_PRIVATE_KEY }}
+          owner: kubriX-demo
+          permission-administration: write
+          permission-contents: write
+          permission-pull-requests: write
+          permission-workflows: write
+
       - name: install kubriX stack
         env:
           KUBRIX_UPSTREAM_REPO: "https://github.com/${{ github.repository }}"
@@ -399,7 +411,7 @@ jobs:
           KUBRIX_SYNC_DEBUG: "true"
           KUBRIX_TARGET_TYPE: ${{ matrix.target-type }}
           KUBRIX_CLUSTER_TYPE: "kind"
-          KUBRIX_BACKSTAGE_GITHUB_TOKEN: ${{ secrets.KUBRIX_CUSTOMER_REPO_TOKEN }}
+          KUBRIX_BACKSTAGE_GITHUB_TOKEN: ${{ steps.repo-backstage-token.outputs.token }}
           KUBRIX_BOOTSTRAP_MAX_WAIT_TIME: ${{ vars.KUBRIX_BOOTSTRAP_MAX_WAIT_TIME }}
           PR_NUMBER: "${{ needs.changes.outputs.dockerImageChanges == 'true' && github.event.number || '' }}"
           TARGET_BRANCH: ${{ github.base_ref || github.ref_name }}
