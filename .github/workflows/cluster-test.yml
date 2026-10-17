@@ -18,6 +18,7 @@ on:
       - '.github/render-target-applications.sh'
       - '.github/tests/target-applications.sh'
       - '.github/tests/installer-sync-diagnostics.sh'
+      - '.github/log-github-rate-limit.sh'
       - 'bootstrap-app-kind*.yaml'
       - 'platform-apps/target-chart/values-customer.yaml'
       - 'platform-apps/target-chart/values-kind*'
@@ -39,6 +40,7 @@ on:
       - '.github/render-target-applications.sh'
       - '.github/tests/target-applications.sh'
       - '.github/tests/installer-sync-diagnostics.sh'
+      - '.github/log-github-rate-limit.sh'
       - 'bootstrap-app-kind*.yaml'
       - 'platform-apps/target-chart/values-customer.yaml'
       - 'platform-apps/target-chart/values-kind*'
@@ -95,6 +97,7 @@ jobs:
                - '.github/render-target-applications.sh'
                - '.github/tests/target-applications.sh'
                - '.github/tests/installer-sync-diagnostics.sh'
+               - '.github/log-github-rate-limit.sh'
                - 'bootstrap-app-kind*.yaml'
                - 'platform-apps/target-chart/values-customer.yaml'
                - 'platform-apps/target-chart/values-kind*'
@@ -399,6 +402,12 @@ jobs:
           permission-pull-requests: write
           permission-workflows: write
 
+      - name: Log GitHub API budget before installation
+        continue-on-error: true
+        env:
+          GH_TOKEN: ${{ steps.repo-backstage-token.outputs.token }}
+        run: bash .github/log-github-rate-limit.sh before-installation
+
       - name: install kubriX stack
         env:
           KUBRIX_UPSTREAM_REPO: "https://github.com/${{ github.repository }}"
@@ -641,6 +650,12 @@ jobs:
           permission-contents: read
           permission-pull-requests: read
 
+      - name: Log GitHub API budget before Testkube
+        continue-on-error: true
+        env:
+          GH_TOKEN: ${{ steps.appset-test-token.outputs.token }}
+        run: bash .github/log-github-rate-limit.sh before-testkube
+
       - name: testkube tests
         env:
           KUBRIX_TARGET_TYPE: ${{ matrix.target-type }}
@@ -737,6 +752,13 @@ jobs:
    #     with:
    #       mode: unlock
    #       key: default
+
+      - name: Log GitHub API budget after Testkube
+        if: ${{ always() && steps.repo-test-token.outputs.token != '' }}
+        continue-on-error: true
+        env:
+          GH_TOKEN: ${{ steps.repo-test-token.outputs.token }}
+        run: bash .github/log-github-rate-limit.sh after-testkube
 
       - name: Publish Playwright test summary
         if: always()
@@ -892,3 +914,11 @@ jobs:
           delete_repo_if_exists "${gitops_repo:-}"
           delete_repo_if_exists "${vcluster_repo:-}"
           delete_repo_if_exists "${kubrix_repo:-}"
+
+      - name: Log GitHub API budget after cleanup
+        if: ${{ always() && steps.repo-final-cleanup-token.outputs.token != '' }}
+        continue-on-error: true
+        env:
+          GH_TOKEN: ${{ steps.repo-final-cleanup-token.outputs.token }}
+        run: bash .github/log-github-rate-limit.sh after-cleanup
+
