@@ -54,7 +54,7 @@
 <h4>No Vulnerabilities found</h4>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>usr/local/bin/provider</code></h3>
-<h4>Vulnerabilities (4)</h4>
+<h4>Vulnerabilities (8)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -62,6 +62,34 @@
         <th>Severity</th>
         <th>Installed Version</th>
         <th>Fixed Version</th>
+    </tr>
+    <tr>
+        <td><code>github.com/getkin/kin-openapi</code></td>
+        <td>CVE-2026-100351</td>
+        <td>HIGH</td>
+        <td>v0.144.0</td>
+        <td>0.147.0</td>
+    </tr>
+    <tr>
+        <td><code>github.com/getkin/kin-openapi</code></td>
+        <td>CVE-2026-100352</td>
+        <td>HIGH</td>
+        <td>v0.144.0</td>
+        <td>0.148.0</td>
+    </tr>
+    <tr>
+        <td><code>github.com/getkin/kin-openapi</code></td>
+        <td>CVE-2026-100353</td>
+        <td>HIGH</td>
+        <td>v0.144.0</td>
+        <td>0.149.0</td>
+    </tr>
+    <tr>
+        <td><code>github.com/getkin/kin-openapi</code></td>
+        <td>CVE-2026-100354</td>
+        <td>HIGH</td>
+        <td>v0.144.0</td>
+        <td>0.149.0</td>
     </tr>
     <tr>
         <td><code>golang.org/x/net</code></td>

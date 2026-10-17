@@ -1,7 +1,7 @@
 <h2>Image <code>docker.io/dserio83/velero-api:0.3.1</code></h2>
 
 <h3>Target <code>docker.io/dserio83/velero-api:0.3.1 (debian 12.11)</code></h3>
-<h4>Vulnerabilities (211)</h4>
+<h4>Vulnerabilities (219)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -13,6 +13,13 @@
     <tr>
         <td><code>bsdutils</code></td>
         <td>CVE-2026-53613</td>
+        <td>HIGH</td>
+        <td>1:2.38.1-5+deb12u3</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>bsdutils</code></td>
+        <td>CVE-2026-53615</td>
         <td>HIGH</td>
         <td>1:2.38.1-5+deb12u3</td>
         <td></td>
@@ -139,6 +146,13 @@
     <tr>
         <td><code>libblkid1</code></td>
         <td>CVE-2026-53613</td>
+        <td>HIGH</td>
+        <td>2.38.1-5+deb12u3</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>libblkid1</code></td>
+        <td>CVE-2026-53615</td>
         <td>HIGH</td>
         <td>2.38.1-5+deb12u3</td>
         <td></td>
@@ -426,6 +440,13 @@
     <tr>
         <td><code>libmount1</code></td>
         <td>CVE-2026-53613</td>
+        <td>HIGH</td>
+        <td>2.38.1-5+deb12u3</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>libmount1</code></td>
+        <td>CVE-2026-53615</td>
         <td>HIGH</td>
         <td>2.38.1-5+deb12u3</td>
         <td></td>
@@ -754,6 +775,13 @@
     </tr>
     <tr>
         <td><code>libsmartcols1</code></td>
+        <td>CVE-2026-53615</td>
+        <td>HIGH</td>
+        <td>2.38.1-5+deb12u3</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>libsmartcols1</code></td>
         <td>CVE-2026-76642</td>
         <td>HIGH</td>
         <td>2.38.1-5+deb12u3</td>
@@ -915,6 +943,13 @@
     </tr>
     <tr>
         <td><code>libuuid1</code></td>
+        <td>CVE-2026-53615</td>
+        <td>HIGH</td>
+        <td>2.38.1-5+deb12u3</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>libuuid1</code></td>
         <td>CVE-2026-76642</td>
         <td>HIGH</td>
         <td>2.38.1-5+deb12u3</td>
@@ -944,6 +979,13 @@
     <tr>
         <td><code>mount</code></td>
         <td>CVE-2026-53613</td>
+        <td>HIGH</td>
+        <td>2.38.1-5+deb12u3</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>mount</code></td>
+        <td>CVE-2026-53615</td>
         <td>HIGH</td>
         <td>2.38.1-5+deb12u3</td>
         <td></td>
@@ -1419,6 +1461,13 @@
     </tr>
     <tr>
         <td><code>util-linux</code></td>
+        <td>CVE-2026-53615</td>
+        <td>HIGH</td>
+        <td>2.38.1-5+deb12u3</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>util-linux</code></td>
         <td>CVE-2026-76642</td>
         <td>HIGH</td>
         <td>2.38.1-5+deb12u3</td>
@@ -1448,6 +1497,13 @@
     <tr>
         <td><code>util-linux-extra</code></td>
         <td>CVE-2026-53613</td>
+        <td>HIGH</td>
+        <td>2.38.1-5+deb12u3</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>util-linux-extra</code></td>
+        <td>CVE-2026-53615</td>
         <td>HIGH</td>
         <td>2.38.1-5+deb12u3</td>
         <td></td>
@@ -2597,7 +2653,7 @@
 <h2>Image <code>docker.io/dserio83/velero-watchdog:0.1.8</code></h2>
 
 <h3>Target <code>docker.io/dserio83/velero-watchdog:0.1.8 (debian 12.10)</code></h3>
-<h4>Vulnerabilities (169)</h4>
+<h4>Vulnerabilities (177)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -2609,6 +2665,13 @@
     <tr>
         <td><code>bsdutils</code></td>
         <td>CVE-2026-53613</td>
+        <td>HIGH</td>
+        <td>1:2.38.1-5+deb12u3</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>bsdutils</code></td>
+        <td>CVE-2026-53615</td>
         <td>HIGH</td>
         <td>1:2.38.1-5+deb12u3</td>
         <td></td>
@@ -2735,6 +2798,13 @@
     <tr>
         <td><code>libblkid1</code></td>
         <td>CVE-2026-53613</td>
+        <td>HIGH</td>
+        <td>2.38.1-5+deb12u3</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>libblkid1</code></td>
+        <td>CVE-2026-53615</td>
         <td>HIGH</td>
         <td>2.38.1-5+deb12u3</td>
         <td></td>
@@ -3042,6 +3112,13 @@
     </tr>
     <tr>
         <td><code>libmount1</code></td>
+        <td>CVE-2026-53615</td>
+        <td>HIGH</td>
+        <td>2.38.1-5+deb12u3</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>libmount1</code></td>
         <td>CVE-2026-76642</td>
         <td>HIGH</td>
         <td>2.38.1-5+deb12u3</td>
@@ -3210,6 +3287,13 @@
     </tr>
     <tr>
         <td><code>libsmartcols1</code></td>
+        <td>CVE-2026-53615</td>
+        <td>HIGH</td>
+        <td>2.38.1-5+deb12u3</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>libsmartcols1</code></td>
         <td>CVE-2026-76642</td>
         <td>HIGH</td>
         <td>2.38.1-5+deb12u3</td>
@@ -3371,6 +3455,13 @@
     </tr>
     <tr>
         <td><code>libuuid1</code></td>
+        <td>CVE-2026-53615</td>
+        <td>HIGH</td>
+        <td>2.38.1-5+deb12u3</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>libuuid1</code></td>
         <td>CVE-2026-76642</td>
         <td>HIGH</td>
         <td>2.38.1-5+deb12u3</td>
@@ -3400,6 +3491,13 @@
     <tr>
         <td><code>mount</code></td>
         <td>CVE-2026-53613</td>
+        <td>HIGH</td>
+        <td>2.38.1-5+deb12u3</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>mount</code></td>
+        <td>CVE-2026-53615</td>
         <td>HIGH</td>
         <td>2.38.1-5+deb12u3</td>
         <td></td>
@@ -3707,6 +3805,13 @@
     </tr>
     <tr>
         <td><code>util-linux</code></td>
+        <td>CVE-2026-53615</td>
+        <td>HIGH</td>
+        <td>2.38.1-5+deb12u3</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>util-linux</code></td>
         <td>CVE-2026-76642</td>
         <td>HIGH</td>
         <td>2.38.1-5+deb12u3</td>
@@ -3736,6 +3841,13 @@
     <tr>
         <td><code>util-linux-extra</code></td>
         <td>CVE-2026-53613</td>
+        <td>HIGH</td>
+        <td>2.38.1-5+deb12u3</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>util-linux-extra</code></td>
+        <td>CVE-2026-53615</td>
         <td>HIGH</td>
         <td>2.38.1-5+deb12u3</td>
         <td></td>

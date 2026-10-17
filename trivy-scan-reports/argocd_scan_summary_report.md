@@ -1,6 +1,6 @@
-<h2>Image <code>ecr-public.aws.com/docker/library/redis:8.6.4-alpine</code></h2>
+<h2>Image <code>docker.io/library/redis:8.6.4-alpine</code></h2>
 
-<h3>Target <code>ecr-public.aws.com/docker/library/redis:8.6.4-alpine (alpine 3.23.5)</code></h3>
+<h3>Target <code>docker.io/library/redis:8.6.4-alpine (alpine 3.23.5)</code></h3>
 <h4>Vulnerabilities (8)</h4>
 <table>
     <tr>
