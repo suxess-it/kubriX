@@ -17,6 +17,8 @@ on:
       - 'platform-apps/target-chart/values-kubrix-default.yaml'
       - '.github/render-target-applications.sh'
       - '.github/tests/target-applications.sh'
+      - '.github/tests/installer-sync-diagnostics.sh'
+      - '.github/log-github-rate-limit.sh'
       - 'bootstrap-app-kind*.yaml'
       - 'platform-apps/target-chart/values-customer.yaml'
       - 'platform-apps/target-chart/values-kind*'
@@ -37,6 +39,8 @@ on:
       - 'platform-apps/target-chart/values-kubrix-default.yaml'
       - '.github/render-target-applications.sh'
       - '.github/tests/target-applications.sh'
+      - '.github/tests/installer-sync-diagnostics.sh'
+      - '.github/log-github-rate-limit.sh'
       - 'bootstrap-app-kind*.yaml'
       - 'platform-apps/target-chart/values-customer.yaml'
       - 'platform-apps/target-chart/values-kind*'
@@ -68,6 +72,8 @@ jobs:
       - uses: actions/checkout@v7
         with:
           fetch-depth: 0  # needed so the action can diff properly
+      - name: Test installer sync diagnostics
+        run: bash .github/tests/installer-sync-diagnostics.sh
       - id: filter
         uses: dorny/paths-filter@v4
         with:
@@ -90,6 +96,8 @@ jobs:
                - 'platform-apps/target-chart/values-kubrix-default.yaml'
                - '.github/render-target-applications.sh'
                - '.github/tests/target-applications.sh'
+               - '.github/tests/installer-sync-diagnostics.sh'
+               - '.github/log-github-rate-limit.sh'
                - 'bootstrap-app-kind*.yaml'
                - 'platform-apps/target-chart/values-customer.yaml'
                - 'platform-apps/target-chart/values-kind*'
@@ -310,11 +318,44 @@ jobs:
           echo "E2E_TEST_PR_NUMBER=${uid}" >> "$GITHUB_ENV"
           echo "E2E test identifier: ${uid}"
 
-      # free disk space, otherwise we often end with "no space left on device" during testkube tests
+      - name: Check available disk space
+        id: disk-space
+        shell: bash
+        run: |
+          # Initial threshold; before/after measurements below help validate headroom.
+          minimum_kib=$((60 * 1024 * 1024))
+          available_kib=$(df -Pk / | awk 'NR == 2 {print $4}')
+          df -h /
+          echo "Disk cleanup threshold: 60 GiB; available: ${available_kib} KiB"
+          if (( available_kib < minimum_kib )); then
+            echo "cleanup-required=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "cleanup-required=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      # Retain the existing low-space fallback instead of deleting SDKs on every run.
       - name: Free Disk Space (Ubuntu)
+        if: steps.disk-space.outputs.cleanup-required == 'true'
         uses: jlumbroso/free-disk-space@main
+
+      - name: Log disk space before installation
+        run: df -h /
       
-      - name: Create k8s Kind Cluster
+      # The action always registers cleanup; ignore_failed_clean only ignores errors.
+      # Run its exact creation script without a post-hook on disposable hosted VMs.
+      # Pinned to v1.15.1; keep this SHA in sync with the self-hosted action below.
+      - name: Create k8s Kind Cluster on GitHub-hosted runner
+        if: runner.environment == 'github-hosted'
+        shell: bash
+        run: |
+          curl -fsSL --retry 3 -o "$RUNNER_TEMP/kubrix-kind.sh" \
+            https://raw.githubusercontent.com/helm/kind-action/1544676c07bb3570fcb70166beaa07c4528fd4aa/kind.sh
+          bash "$RUNNER_TEMP/kubrix-kind.sh" \
+            --cluster-name kubrix-cluster \
+            --config "$GITHUB_WORKSPACE/.github/kind-config.yaml"
+
+      - name: Create k8s Kind Cluster on self-hosted runner
+        if: runner.environment != 'github-hosted'
         uses: helm/kind-action@v1.15.1
         with:
           cluster_name: kubrix-cluster
@@ -336,19 +377,21 @@ jobs:
             kind load docker-image "$img" --name kubrix-cluster
           done
     
-      - name: install k8sgpt
-        shell: bash
-        run: |
-          curl -LO https://github.com/k8sgpt-ai/k8sgpt/releases/download/v0.4.25/k8sgpt_amd64.deb
-          sudo dpkg -i k8sgpt_amd64.deb
-          k8sgpt analyze
+      - name: Create repository lifecycle token
+        id: repo-create-token
+        uses: actions/create-github-app-token@v3
+        with:
+          client-id: ${{ vars.KUBRIX_CI_REPOS_APP_CLIENT_ID }}
+          private-key: ${{ secrets.KUBRIX_CI_REPOS_APP_PRIVATE_KEY }}
+          owner: kubriX-demo
+          permission-administration: write
 
       - name: create kubrix customer repo
         shell: bash
         env:
           REPO_ORG: 'kubriX-demo'
           REPO_NAME: "kubrix-cluster-test-${{ github.run_id }}-${{ job.check_run_id }}"
-          GH_TOKEN: ${{ secrets.KUBRIX_CUSTOMER_REPO_TOKEN }}
+          GH_TOKEN: ${{ steps.repo-create-token.outputs.token }}
           VIS: "private"
         run: |
           gh api \
@@ -361,6 +404,36 @@ jobs:
             -f has_wiki=false
           echo "Repo created: https://github.com/${REPO_ORG}/${REPO_NAME}"
 
+      - name: Create installer repository token
+        id: repo-installer-token
+        uses: actions/create-github-app-token@v3
+        with:
+          client-id: ${{ vars.KUBRIX_CI_REPOS_APP_CLIENT_ID }}
+          private-key: ${{ secrets.KUBRIX_CI_REPOS_APP_PRIVATE_KEY }}
+          owner: kubriX-demo
+          repositories: kubrix-cluster-test-${{ github.run_id }}-${{ job.check_run_id }}
+          permission-contents: write
+          permission-workflows: write
+
+      - name: Create Backstage repository token
+        id: repo-backstage-token
+        uses: actions/create-github-app-token@v3
+        with:
+          client-id: ${{ vars.KUBRIX_CI_REPOS_APP_CLIENT_ID }}
+          private-key: ${{ secrets.KUBRIX_CI_REPOS_APP_PRIVATE_KEY }}
+          owner: kubriX-demo
+          permission-administration: write
+          permission-contents: write
+          permission-statuses: read
+          permission-pull-requests: write
+          permission-workflows: write
+
+      - name: Log GitHub API budget before installation
+        continue-on-error: true
+        env:
+          GH_TOKEN: ${{ steps.repo-backstage-token.outputs.token }}
+        run: bash .github/log-github-rate-limit.sh before-installation
+
       - name: install kubriX stack
         env:
           KUBRIX_UPSTREAM_REPO: "https://github.com/${{ github.repository }}"
@@ -368,12 +441,13 @@ jobs:
           KUBRIX_UPSTREAM_REPO_PASSWORD: ${{ secrets.GITHUB_TOKEN }}
           KUBRIX_REPO: "https://github.com/kubriX-demo/kubrix-cluster-test-${{ github.run_id }}-${{ job.check_run_id }}"
           KUBRIX_REPO_BRANCH: "main"
-          KUBRIX_REPO_PASSWORD: ${{ secrets.KUBRIX_CUSTOMER_REPO_TOKEN }}
+          KUBRIX_REPO_PASSWORD: ${{ steps.repo-installer-token.outputs.token }}
           KUBRIX_REPO_USERNAME: "dummy"
           KUBRIX_INSTALL_DEBUG: "false"
+          KUBRIX_SYNC_DEBUG: "true"
           KUBRIX_TARGET_TYPE: ${{ matrix.target-type }}
           KUBRIX_CLUSTER_TYPE: "kind"
-          KUBRIX_BACKSTAGE_GITHUB_TOKEN: ${{ secrets.KUBRIX_CUSTOMER_REPO_TOKEN }}
+          KUBRIX_BACKSTAGE_GITHUB_TOKEN: ${{ steps.repo-backstage-token.outputs.token }}
           KUBRIX_BOOTSTRAP_MAX_WAIT_TIME: ${{ vars.KUBRIX_BOOTSTRAP_MAX_WAIT_TIME }}
           PR_NUMBER: "${{ needs.changes.outputs.dockerImageChanges == 'true' && github.event.number || '' }}"
           TARGET_BRANCH: ${{ github.base_ref || github.ref_name }}
@@ -396,26 +470,10 @@ jobs:
             --from-literal KUBRIX_BOOTSTRAP_MAX_WAIT_TIME=${KUBRIX_BOOTSTRAP_MAX_WAIT_TIME} \
             --from-literal KUBRIX_BOOTSTRAP=true \
             --from-literal KUBRIX_INSTALLER=true \
+            --from-literal KUBRIX_SYNC_DEBUG=${KUBRIX_SYNC_DEBUG} \
             --from-literal KUBRIX_INSTALL_DEBUG=${KUBRIX_INSTALL_DEBUG}
           bash .github/install-kubriX-with-job.sh
 
-      - name: argocd show diff
-        continue-on-error: true
-        if: always()
-        env:
-          KUBRIX_TARGET_TYPE: ${{ matrix.target-type }}
-        shell: bash
-        run: |
-          argocd_apps=$(kubectl get applications -n argocd -o jsonpath='{range .items[?(@.metadata.name!="sx-bootstrap-app")]}{.metadata.name}{" "}{end}')
-          curl -kL -o argocd https://argocd.127-0-0-1.nip.io/download/argocd-linux-amd64
-          chmod u+x argocd
-          INITIAL_ARGOCD_PASSWORD=$( kubectl get secret -n argocd argocd-initial-admin-secret -o=jsonpath={'.data.password'} | base64 -d )
-          ./argocd login argocd.127-0-0-1.nip.io --grpc-web --insecure --username admin --password ${INITIAL_ARGOCD_PASSWORD}
-          for app in ${argocd_apps} ; do 
-            echo "$app diff" ;
-            ./argocd app diff $app --grpc-web ;
-          done         
-          
       - name: kubectl get applications
         if: always()
         shell: bash
@@ -423,12 +481,6 @@ jobs:
           kubectl get applications -n argocd
           kubectl get applications -n argocd -o yaml
           
-      - name: analyze with k8sgpt
-        if: always()
-        shell: bash
-        run: |
-          k8sgpt analyze
-
       - name: Update Openbao with GitHub OAuth credentials for Testkube tests
         if: ${{ matrix.target-type  == 'kind-portal' || matrix.target-type  == 'kind-hub-prime' }}
         env:
@@ -443,17 +495,22 @@ jobs:
           kubectl rollout restart deployment -n backstage sx-backstage
           kubectl rollout status deployment -n backstage sx-backstage
 
-      - name: Check if kubrixBot user entity is loaded in backstage
-        if: ${{ matrix.target-type  == 'kind-portal' || matrix.target-type  == 'kind-hub-prime' }}
+      - name: Wait for Backstage user entities
+        if: ${{ matrix.target-type == 'kind-portal' || matrix.target-type == 'kind-delivery' || matrix.target-type == 'kind-hub-prime' }}
         env:
+          TARGET_TYPE: ${{ matrix.target-type }}
           BASE_URL: "https://backstage.127-0-0-1.nip.io"
-          ENTITY_PATH: "/api/catalog/entities/by-name/User/default/kubrixBot"
         run: |
           MAX_SECONDS=300
           SLEEP_SECONDS=10
           ELAPSED=0
+          USERS=(demoadmin demoeditor demoviewer)
+          # Delivery does not run GitHub portal login tests or require the GitHub catalog user.
+          if [[ "$TARGET_TYPE" != "kind-delivery" ]]; then
+            USERS+=(kubrixBot)
+          fi
 
-          echo "Waiting for User entity User:default/kubrixBot (timeout: 5 minutes)..."
+          echo "Waiting for required Backstage User entities (timeout: 5 minutes)..."
 
           while [ "$ELAPSED" -lt "$MAX_SECONDS" ]; do
             # Re-read token each iteration in case ESO hasn't resolved the secret yet after the previous step
@@ -466,36 +523,50 @@ jobs:
               continue
             fi
 
-            STATUS=$(curl -k -s -o /dev/null -w "%{http_code}" -H "Authorization: Bearer $EXTERNAL_ACCESS_TOKEN" "$BASE_URL$ENTITY_PATH")
+            MISSING_USERS=()
+            for USER_NAME in "${USERS[@]}"; do
+              STATUS=$(curl -k -s -o /dev/null -w "%{http_code}" -H "Authorization: Bearer $EXTERNAL_ACCESS_TOKEN" "$BASE_URL/api/catalog/entities/by-name/User/default/$USER_NAME")
 
-            case "$STATUS" in
-              200)
-                echo "✅ User entity is available!"
-                exit 0
-                ;;
-              404)
-                echo "⏳ Not found yet... (${ELAPSED}s elapsed)"
-                ;;
-              401|403)
-                echo "❌ Auth error ($STATUS). Token rejected or insufficient RBAC."
-                exit 1
-                ;;
-              *)
-                echo "⚠️ Unexpected HTTP status: $STATUS"
-                ;;
-            esac
+              case "$STATUS" in
+                200)
+                  ;;
+                401|403)
+                  echo "❌ Auth error ($STATUS) for $USER_NAME. Token rejected or insufficient RBAC."
+                  exit 1
+                  ;;
+                *)
+                  MISSING_USERS+=("$USER_NAME")
+                  echo "⏳ User:default/$USER_NAME not ready (HTTP $STATUS, ${ELAPSED}s elapsed)"
+                  ;;
+              esac
+            done
+
+            if [ "${#MISSING_USERS[@]}" -eq 0 ]; then
+              echo "✅ All required Backstage User entities are available!"
+              exit 0
+            fi
 
             sleep "$SLEEP_SECONDS"
             ELAPSED=$((ELAPSED + SLEEP_SECONDS))
           done
 
-          echo "❌ Timed out after 5 minutes waiting for User entity."
+          echo "❌ Timed out after 5 minutes waiting for User entities."
           exit 1
+
+      - name: Create repository cleanup token
+        id: repo-cleanup-token
+        if: ${{ matrix.target-type == 'kind-portal' || matrix.target-type == 'kind-hub-prime' }}
+        uses: actions/create-github-app-token@v3
+        with:
+          client-id: ${{ vars.KUBRIX_CI_REPOS_APP_CLIENT_ID }}
+          private-key: ${{ secrets.KUBRIX_CI_REPOS_APP_PRIVATE_KEY }}
+          owner: kubriX-demo
+          permission-administration: write
 
       - name: Delete app-of-apps and kubrixBot app repo, if exists
         if: ${{ matrix.target-type  == 'kind-portal' || matrix.target-type  == 'kind-hub-prime' }}
         env:
-          KUBRIX_DELETE_E2E_TESTS_REPO_TOKEN: ${{ secrets.KUBRIX_DELETE_E2E_TESTS_REPO_TOKEN }}
+          KUBRIX_DELETE_E2E_TESTS_REPO_TOKEN: ${{ steps.repo-cleanup-token.outputs.token }}
           GITHUB_ORG: "kubriX-demo"
           GITHUB_API: "https://api.github.com"
         run: |
@@ -556,24 +627,6 @@ jobs:
           delete_repo_if_exists "${gitops_repo:-}"
           delete_repo_if_exists "${vcluster_repo:-}"
 
-      - name: add kubrixBot repo for team onboarding fork
-        env:
-          KUBRIXBOT_FORK_READ_TOKEN: ${{ secrets.KUBRIXBOT_FORK_READ_TOKEN }}
-          KUBRIX_FORK_REPO_NAME: "kubrix-cluster-test-${{ github.run_id }}-${{ job.check_run_id }}"
-        run: |
-          kubectl -n argocd apply -f - <<EOF
-          apiVersion: v1
-          kind: Secret
-          metadata:
-            name: kubrixbot-team-onboarding-fork-repo
-            labels:
-              argocd.argoproj.io/secret-type: repository
-          stringData:
-            type: git
-            url: https://github.com/kubrixBot/${KUBRIX_FORK_REPO_NAME}.git
-            username: kubrixBot
-            password: ${KUBRIXBOT_FORK_READ_TOKEN}
-          EOF
 
       # run testkube tests
       - uses: kubeshop/setup-testkube@v1
@@ -589,21 +642,46 @@ jobs:
      #     wait_interval_seconds: "10"
      #     post_unlock: "true"
     
+      - name: Create repository test token
+        id: repo-test-token
+        uses: actions/create-github-app-token@v3
+        with:
+          client-id: ${{ vars.KUBRIX_CI_REPOS_APP_CLIENT_ID }}
+          private-key: ${{ secrets.KUBRIX_CI_REPOS_APP_PRIVATE_KEY }}
+          owner: kubriX-demo
+          permission-contents: write
+          permission-pull-requests: write
+
+      - name: Create ApplicationSet test token
+        id: appset-test-token
+        uses: actions/create-github-app-token@v3
+        with:
+          client-id: ${{ vars.KUBRIX_CI_REPOS_APP_CLIENT_ID }}
+          private-key: ${{ secrets.KUBRIX_CI_REPOS_APP_PRIVATE_KEY }}
+          owner: kubriX-demo
+          permission-contents: read
+          permission-pull-requests: read
+
+      - name: Log GitHub API budget before Testkube
+        continue-on-error: true
+        env:
+          GH_TOKEN: ${{ steps.appset-test-token.outputs.token }}
+        run: bash .github/log-github-rate-limit.sh before-testkube
+
       - name: testkube tests
         env:
           KUBRIX_TARGET_TYPE: ${{ matrix.target-type }}
           E2E_TEST_GH_USERNAME: ${{ secrets.E2E_TEST_GH_USERNAME }}
           E2E_TEST_GH_PASSWORD: ${{ secrets.E2E_TEST_GH_PASSWORD }}
           E2E_TEST_GITHUB_OTP: ${{ secrets.E2E_TEST_GITHUB_OTP }}
-          E2E_KUBRIX_ARGOCD_APPSET_TOKEN: ${{ secrets.E2E_KUBRIX_ARGOCD_APPSET_TOKEN }}
-          E2E_KUBRIX_KARGO_GIT_PASSWORD: ${{ secrets.E2E_KUBRIX_KARGO_GIT_PASSWORD }}
+          E2E_KUBRIX_ARGOCD_APPSET_TOKEN: ${{ steps.appset-test-token.outputs.token }}
+          E2E_KUBRIX_KARGO_GIT_PASSWORD: ${{ steps.repo-test-token.outputs.token }}
           E2E_TEAM_ONBOARDING_TARGET_BRANCH: "main"
           E2E_MERGE_PR: "true"
           E2E_KUBRIX_ORG: kubriX-demo
           E2E_KUBRIX_REPO: kubrix-cluster-test-${{ github.run_id }}-${{ job.check_run_id }}
         run: |
           E2E_KEYCLOAK_DEMOADMIN_PASSWORD=$( kubectl get secret -n keycloak cp-keycloak-users-secret -o=jsonpath='{.data.demoadmin}'  | base64 -d )
-          kubectl get secret -n keycloak cp-keycloak-users-secret -o yaml
           data=$(kubectl get secret -n keycloak cp-keycloak-users-secret -o jsonpath='{.data}' 2>/dev/null)
 
           if [[ -z "$data" || "$data" == "{}" ]]; then
@@ -614,11 +692,8 @@ jobs:
             exit 1 # empty/missing
           fi
 
-          echo "${E2E_KEYCLOAK_DEMOADMIN_PASSWORD}"
           E2E_KEYCLOAK_DEMOVIEWER_PASSWORD=$( kubectl get secret -n keycloak cp-keycloak-users-secret -o=jsonpath='{.data.demoviewer}'  | base64 -d )
-          echo "${E2E_KEYCLOAK_DEMOVIEWER_PASSWORD}"
           E2E_KEYCLOAK_DEMOEDITOR_PASSWORD=$( kubectl get secret -n keycloak cp-keycloak-users-secret -o=jsonpath='{.data.demoeditor}'  | base64 -d )
-          echo "${E2E_KEYCLOAK_DEMOEDITOR_PASSWORD}"
           E2E_ARGOCD_ADMIN_PASSWORD=$( kubectl get secret -n argocd argocd-initial-admin-secret -o=jsonpath={'.data.password'} | base64 -d )
           E2E_ARGOCD_VERSION="v3.5"
           E2E_GRAFANA_ADMIN_PASSWORD=$( kubectl get secret -n grafana grafana-admin-secret -o=jsonpath='{.data.passwordKey}' | base64 -d )
@@ -690,6 +765,34 @@ jobs:
    #       mode: unlock
    #       key: default
 
+      - name: Log GitHub API budget after Testkube
+        if: ${{ always() && steps.repo-test-token.outputs.token != '' }}
+        continue-on-error: true
+        env:
+          GH_TOKEN: ${{ steps.repo-test-token.outputs.token }}
+        run: bash .github/log-github-rate-limit.sh after-testkube
+
+      - name: Log disk space after Testkube
+        if: always()
+        run: df -h /
+
+      - name: argocd show diff
+        continue-on-error: true
+        if: failure()
+        env:
+          KUBRIX_TARGET_TYPE: ${{ matrix.target-type }}
+        shell: bash
+        run: |
+          argocd_apps=$(kubectl get applications -n argocd -o jsonpath='{range .items[?(@.metadata.name!="sx-bootstrap-app")]}{.metadata.name}{" "}{end}')
+          curl -kL -o argocd https://argocd.127-0-0-1.nip.io/download/argocd-linux-amd64
+          chmod u+x argocd
+          INITIAL_ARGOCD_PASSWORD=$( kubectl get secret -n argocd argocd-initial-admin-secret -o=jsonpath={'.data.password'} | base64 -d )
+          ./argocd login argocd.127-0-0-1.nip.io --grpc-web --insecure --username admin --password ${INITIAL_ARGOCD_PASSWORD}
+          for app in ${argocd_apps} ; do
+            echo "$app diff" ;
+            ./argocd app diff $app --grpc-web || true
+          done
+
       - name: Publish Playwright test summary
         if: always()
         uses: mikepenz/action-junit-report@v6
@@ -752,8 +855,17 @@ jobs:
           echo "===== grafana-folder-adopter / keycloak-member-sync job pod logs ======"
           kubectl get pods -o name -n keycloak | { grep -E "grafana-folder-adopter|keycloak-member-sync" || true; } | xargs -I {} kubectl logs -n keycloak {} --all-containers=true || true
 
+      - name: install k8sgpt for failure diagnostics
+        if: failure()
+        continue-on-error: true
+        shell: bash
+        run: |
+          curl -fLO https://github.com/k8sgpt-ai/k8sgpt/releases/download/v0.4.25/k8sgpt_amd64.deb
+          sudo dpkg -i k8sgpt_amd64.deb
+
       - name: final analyzer with k8sgpt
-        if: always()
+        if: failure()
+        continue-on-error: true
         shell: bash
         run: |
           k8sgpt analyze
@@ -768,10 +880,20 @@ jobs:
           echo "describe all pods ====="
           kubectl describe pod -A
 
+      - name: Create final repository cleanup token
+        id: repo-final-cleanup-token
+        if: always()
+        uses: actions/create-github-app-token@v3
+        with:
+          client-id: ${{ vars.KUBRIX_CI_REPOS_APP_CLIENT_ID }}
+          private-key: ${{ secrets.KUBRIX_CI_REPOS_APP_PRIVATE_KEY }}
+          owner: kubriX-demo
+          permission-administration: write
+
       - name: Delete kubriX boostrap repo, if exists
         if: always()
         env:
-          KUBRIX_DELETE_E2E_TESTS_REPO_TOKEN: ${{ secrets.KUBRIX_DELETE_E2E_TESTS_REPO_TOKEN }}
+          KUBRIX_DELETE_E2E_TESTS_REPO_TOKEN: ${{ steps.repo-final-cleanup-token.outputs.token }}
           GITHUB_ORG: "kubriX-demo"
           GITHUB_API: "https://api.github.com"
           KUBRIX_REPO: "${{ github.run_id }}-${{ job.check_run_id }}"
@@ -834,3 +956,11 @@ jobs:
           delete_repo_if_exists "${gitops_repo:-}"
           delete_repo_if_exists "${vcluster_repo:-}"
           delete_repo_if_exists "${kubrix_repo:-}"
+
+      - name: Log GitHub API budget after cleanup
+        if: ${{ always() && steps.repo-final-cleanup-token.outputs.token != '' }}
+        continue-on-error: true
+        env:
+          GH_TOKEN: ${{ steps.repo-final-cleanup-token.outputs.token }}
+        run: bash .github/log-github-rate-limit.sh after-cleanup
+
