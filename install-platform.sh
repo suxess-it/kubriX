@@ -228,11 +228,32 @@ boostrap_check_downstream_repo_org() {
     local repo=$(echo $KUBRIX_REPO_URL | awk -F/ '{print $3}')
     # remove .git suffix if it exists
     repo=${repo%".git"}
-    local repo_json="$(curl -fsSL \
-    -H "Accept: application/vnd.github+json" \
-    -H "Authorization: Bearer ${KUBRIX_REPO_PASSWORD}" \
-    "https://api.github.com/repos/${owner}/${repo}")" \
-    || fail "prereq check failed: unable to read repository '${owner}/${repo}' from GitHub API"
+    local repo_json response_dir http_status curl_status=0
+    response_dir=$(mktemp -d) || fail "prereq check failed: unable to create GitHub API response directory"
+    # Disable xtrace around the authenticated request to keep the token out of logs.
+    http_status=$(
+      set +x
+      curl -sSL -D "$response_dir/headers" -o "$response_dir/body" -w '%{http_code}' \
+        -H "Accept: application/vnd.github+json" \
+        -H "Authorization: Bearer ${KUBRIX_REPO_PASSWORD}" \
+        "https://api.github.com/repos/${owner}/${repo}"
+    ) || curl_status=$?
+
+    if [[ "$curl_status" != "0" || "$http_status" != "200" ]]; then
+      printf 'GitHub repository API failed: HTTP %s, curl exit %s\n' "$http_status" "$curl_status" >&2
+      if [[ -f "$response_dir/headers" ]]; then
+        # Only log diagnostic response headers; never dump request credentials.
+        awk 'tolower($0) ~ /^(x-ratelimit-[^:]*|retry-after|x-github-request-id|x-accepted-github-permissions):/ { sub(/\r$/, ""); print }' "$response_dir/headers" >&2
+      fi
+      if [[ -s "$response_dir/body" ]]; then
+        jq -r '.message // "GitHub API returned no error message"' "$response_dir/body" >&2 \
+          || printf '%s\n' 'GitHub API returned a non-JSON response' >&2
+      fi
+      rm -rf "$response_dir"
+      fail "prereq check failed: unable to read repository '${owner}/${repo}' from GitHub API"
+    fi
+    repo_json=$(cat "$response_dir/body")
+    rm -rf "$response_dir"
 
     jq -e '.owner.type == "Organization"' >/dev/null <<<"$repo_json" \
     || fail "prereq check failed: repository '${owner}/${repo}' is not owned by an organization account"
