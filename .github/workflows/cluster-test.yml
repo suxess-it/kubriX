@@ -28,7 +28,7 @@ on:
       - '.github/install-kubriX-with-job.sh'
       - 'install-manifests.yaml'
   # PR tests are requested explicitly by adding the run-cluster-tests label.
-  # New commits only reset the required gate; a persistent label is not a trigger.
+  # Labeled Renovate PRs also test new commits/rebases automatically.
   pull_request:
     types: [opened, synchronize, reopened, labeled]
   # Allows you to run this workflow manually from the Actions tab
@@ -46,7 +46,12 @@ concurrency:
   
 jobs:
   changes:
-    if: github.event_name != 'pull_request' || (github.event.action == 'labeled' && github.event.label.name == 'run-cluster-tests')
+    if: >-
+      github.event_name != 'pull_request' ||
+      (github.event.action == 'labeled' && github.event.label.name == 'run-cluster-tests') ||
+      (github.event.action != 'labeled' &&
+       github.event.pull_request.user.login == 'renovate[bot]' &&
+       contains(github.event.pull_request.labels.*.name, 'run-cluster-tests'))
     runs-on: ubuntu-latest
     outputs:
       dockerImageChanges: ${{ steps.filter.outputs.dockerImageChanges }}

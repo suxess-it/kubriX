@@ -1,14 +1,20 @@
 # On-demand PR cluster tests
 
-Cluster tests for pull requests start only when the `run-cluster-tests` label is
-added. A request runs every existing profile listed in the repository variable
+Cluster tests for ordinary pull requests start only when the `run-cluster-tests`
+label is added. A request runs every existing profile listed in the repository variable
 `CLUSTER_TEST_TARGET_TYPES`. Installer builds remain conditional on installer
 changes. Installation and Testkube steps are unchanged.
 
-Opening, reopening, or pushing commits to a PR runs a small, failing
+Opening, reopening, or pushing commits to an ordinary PR runs a small, failing
 `Cluster Test Gate` check without starting cluster tests or installer builds.
 Add the label when the PR is ready to test. If it is already present, remove it
 and add it again. A new commit requires a new explicit test request.
+PRs authored by `renovate[bot]` with `run-cluster-tests` already present also
+start tests automatically when opened, reopened, or updated (including rebases).
+This uses the PR author, not the event actor, so a maintainer-triggered rebase of
+a Renovate PR is covered. Renovate PRs without the label remain manual. The future
+Renovate configuration decides which updates receive the label (for example,
+patch automerge PRs); this workflow does not infer update types or enable automerge.
 Unrelated labels neither satisfy the gate nor cancel running tests.
 The gate requires successful change detection, installer build job, and cluster
 matrix. Missing configuration, an empty matrix, cancellation, failure, or skipped
@@ -28,8 +34,8 @@ satisfy the PR gate; use the label for required PR validation.
 5. Keep the bypass list empty if tests must be mandatory even for administrators.
    The independent review ruleset may retain its admin review bypass.
 6. For validation against the latest base branch, enable **Require branches to be
-   up to date before merging**. Updating the PR then requires another manual test
-   request. Leaving this disabled saves runs but permits a tested PR to merge
+   up to date before merging**. Updating an ordinary PR then requires another
+   manual test request; labeled Renovate PRs retest automatically. Leaving this disabled saves runs but permits a tested PR to merge
    after the base branch has changed.
 
 Do not require the individual dynamic matrix jobs instead of the gate: GitHub
