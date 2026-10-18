@@ -1,24 +1,33 @@
 # On-demand PR cluster tests
 
-Cluster tests for ordinary pull requests start only when the `run-cluster-tests`
-label is added. A request runs every existing profile listed in the repository variable
+Every PR first gets a lightweight changed-file check. Cluster tests are required
+only when a changed file matches `clusterTestRequired` in `cluster-test.yml`.
+That filter exactly matches the former PR-trigger paths (also retained under the
+push trigger). If no matching files changed, `Cluster Test Gate` succeeds without
+an installer build or cluster test, even if the start label is present. A failed
+or missing path-check result blocks merging rather than assuming tests are optional.
+
+For relevant changes, ordinary PR cluster tests start only when the
+`run-cluster-tests` label is added. A request runs every existing profile listed in the repository variable
 `CLUSTER_TEST_TARGET_TYPES`. Installer builds remain conditional on installer
 changes. Installation and Testkube steps are unchanged.
 
-Opening, reopening, or pushing commits to an ordinary PR runs a small, failing
-`Cluster Test Gate` check without starting cluster tests or installer builds.
+Opening, reopening, or pushing commits to an ordinary PR with relevant changes
+runs change detection and a failing `Cluster Test Gate` check without starting
+cluster tests or installer builds.
 Add the label when the PR is ready to test. If it is already present, remove it
 and add it again. A new commit requires a new explicit test request.
 PRs authored by `renovate[bot]` with `run-cluster-tests` already present also
-start tests automatically when opened, reopened, or updated (including rebases).
+start required tests automatically when opened, reopened, or updated (including
+rebases). Irrelevant changes still skip cluster tests.
 This uses the PR author, not the event actor, so a maintainer-triggered rebase of
 a Renovate PR is covered. Renovate PRs without the label remain manual. The future
 Renovate configuration decides which updates receive the label (for example,
 patch automerge PRs); this workflow does not infer update types or enable automerge.
 Unrelated labels neither satisfy the gate nor cancel running tests.
 The gate requires successful change detection, installer build job, and cluster
-matrix. Missing configuration, an empty matrix, cancellation, failure, or skipped
-tests cannot satisfy it. A workflow_dispatch run is for diagnostics and does not
+matrix when tests are required. Missing configuration, an empty matrix,
+cancellation, failure, or skipped required tests cannot satisfy it. A workflow_dispatch run is for diagnostics and does not
 satisfy the PR gate; use the label for required PR validation.
 
 ## One-time repository setup
@@ -56,8 +65,11 @@ python .github/tests/cluster-test-gate.py
 git diff --check
 ```
 
-The regression test executes the gate's actual shell for all combinations of
+The regression tests verify path-list parity, the request policy, irrelevant-change
+handling, and the gate's actual shell for all combinations of
 successful, failed, cancelled, skipped, and missing dependency results.
 Live acceptance: confirm an unrequested PR is blocked, a requested successful
 matrix releases the gate, and a subsequent commit blocks it without starting
 cluster tests. Also confirm unrelated labels cannot release or cancel the gate.
+
+Also verify a documentation-only PR passes the gate without a label or cluster run.

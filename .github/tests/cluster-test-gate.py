@@ -20,12 +20,27 @@ class ClusterTestGate(unittest.TestCase):
         script = gate['steps'][0]['run']
         for results in itertools.product(['success', 'failure', 'cancelled', 'skipped', ''], repeat=3):
             with self.subTest(results=results):
-                env = dict(os.environ, CHANGES_RESULT=results[0], BUILD_RESULT=results[1], CLUSTER_RESULT=results[2])
+                env = dict(os.environ, TEST_REQUIRED='true', CHANGES_RESULT=results[0], BUILD_RESULT=results[1], CLUSTER_RESULT=results[2])
                 run = subprocess.run(['bash', '-e', '-c', script], env=env, capture_output=True)
                 self.assertEqual(run.returncode == 0, results == ('success',) * 3)
 
+    def test_irrelevant_changes_need_no_cluster_run(self):
+        gate = yaml.safe_load(WORKFLOW.read_text())['jobs']['cluster-test-gate']
+        for required, changes in itertools.product(['false', 'true', ''], ['success', 'failure', 'skipped']):
+            with self.subTest(required=required, changes=changes):
+                env = dict(os.environ, TEST_REQUIRED=required, CHANGES_RESULT=changes,
+                           BUILD_RESULT='skipped', CLUSTER_RESULT='skipped')
+                run = subprocess.run(['bash', '-e', '-c', gate['steps'][0]['run']], env=env, capture_output=True)
+                self.assertEqual(run.returncode == 0, required == 'false' and changes == 'success')
+
+    def test_required_paths_match_original_trigger(self):
+        workflow = yaml.load(WORKFLOW.read_text(), Loader=yaml.BaseLoader)
+        filter_step = next(step for step in workflow['jobs']['changes']['steps'] if step.get('id') == 'filter')
+        filters = yaml.safe_load(filter_step['with']['filters'])
+        self.assertEqual(filters['clusterTestRequired'], workflow['on']['push']['paths'])
+
     def test_request_policy(self):
-        expression = yaml.safe_load(WORKFLOW.read_text())['jobs']['changes']['if']
+        expression = yaml.safe_load(WORKFLOW.read_text())['jobs']['changes']['steps'][2]['if']
         expression = expression.replace('&&', ' and ').replace('||', ' or ')
         expression = expression.replace('github.event.pull_request.labels.*.name', 'labels')
         for author, labels, action, added_label in itertools.product(
