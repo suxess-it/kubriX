@@ -111,7 +111,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>go/bin/app</code></h3>
-<h4>Vulnerabilities (19)</h4>
+<h4>Vulnerabilities (20)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -140,6 +140,13 @@
         <td>HIGH</td>
         <td>v0.55.0</td>
         <td>0.60.0</td>
+    </tr>
+    <tr>
+        <td><code>golang.org/x/text</code></td>
+        <td>CVE-2026-56851</td>
+        <td>HIGH</td>
+        <td>v0.37.0</td>
+        <td>0.41.0</td>
     </tr>
     <tr>
         <td><code>golang.org/x/text</code></td>
@@ -620,7 +627,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>go/bin/app</code></h3>
-<h4>Vulnerabilities (53)</h4>
+<h4>Vulnerabilities (54)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -796,6 +803,13 @@
         <td>HIGH</td>
         <td>v0.42.0</td>
         <td>0.60.0</td>
+    </tr>
+    <tr>
+        <td><code>golang.org/x/text</code></td>
+        <td>CVE-2026-56851</td>
+        <td>HIGH</td>
+        <td>v0.27.0</td>
+        <td>0.41.0</td>
     </tr>
     <tr>
         <td><code>golang.org/x/text</code></td>
@@ -1005,7 +1019,7 @@
 <h2>Image <code>icr.io/kubecost/frontend:2.9.7</code></h2>
 
 <h3>Target <code>icr.io/kubecost/frontend:2.9.7 (redhat 9.8)</code></h3>
-<h4>Vulnerabilities (59)</h4>
+<h4>Vulnerabilities (65)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -1254,6 +1268,13 @@
     </tr>
     <tr>
         <td><code>nginx</code></td>
+        <td>CVE-2026-15176</td>
+        <td>HIGH</td>
+        <td>2:1.20.1-28.el9_8.2</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>nginx</code></td>
         <td>CVE-2026-42055</td>
         <td>HIGH</td>
         <td>2:1.20.1-28.el9_8.2</td>
@@ -1274,6 +1295,20 @@
         <td>2:1.20.1-28.el9_8.3</td>
     </tr>
     <tr>
+        <td><code>nginx</code></td>
+        <td>CVE-2026-97205</td>
+        <td>HIGH</td>
+        <td>2:1.20.1-28.el9_8.2</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>nginx-core</code></td>
+        <td>CVE-2026-15176</td>
+        <td>HIGH</td>
+        <td>2:1.20.1-28.el9_8.2</td>
+        <td></td>
+    </tr>
+    <tr>
         <td><code>nginx-core</code></td>
         <td>CVE-2026-42055</td>
         <td>HIGH</td>
@@ -1295,6 +1330,20 @@
         <td>2:1.20.1-28.el9_8.3</td>
     </tr>
     <tr>
+        <td><code>nginx-core</code></td>
+        <td>CVE-2026-97205</td>
+        <td>HIGH</td>
+        <td>2:1.20.1-28.el9_8.2</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>nginx-filesystem</code></td>
+        <td>CVE-2026-15176</td>
+        <td>HIGH</td>
+        <td>2:1.20.1-28.el9_8.2</td>
+        <td></td>
+    </tr>
+    <tr>
         <td><code>nginx-filesystem</code></td>
         <td>CVE-2026-42055</td>
         <td>HIGH</td>
@@ -1314,6 +1363,13 @@
         <td>HIGH</td>
         <td>2:1.20.1-28.el9_8.2</td>
         <td>2:1.20.1-28.el9_8.3</td>
+    </tr>
+    <tr>
+        <td><code>nginx-filesystem</code></td>
+        <td>CVE-2026-97205</td>
+        <td>HIGH</td>
+        <td>2:1.20.1-28.el9_8.2</td>
+        <td></td>
     </tr>
     <tr>
         <td><code>openssl</code></td>
@@ -2011,7 +2067,7 @@
 <h2>Image <code>quay.io/prometheus/prometheus:v3.9.1</code></h2>
 
 <h3>Target <code>bin/prometheus</code></h3>
-<h4>Vulnerabilities (50)</h4>
+<h4>Vulnerabilities (51)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -2166,6 +2222,13 @@
         <td>HIGH</td>
         <td>v0.48.0</td>
         <td>0.60.0</td>
+    </tr>
+    <tr>
+        <td><code>golang.org/x/text</code></td>
+        <td>CVE-2026-56851</td>
+        <td>HIGH</td>
+        <td>v0.32.0</td>
+        <td>0.41.0</td>
     </tr>
     <tr>
         <td><code>golang.org/x/text</code></td>
@@ -2373,7 +2436,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>bin/promtool</code></h3>
-<h4>Vulnerabilities (48)</h4>
+<h4>Vulnerabilities (49)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -2514,6 +2577,13 @@
         <td>HIGH</td>
         <td>v0.48.0</td>
         <td>0.60.0</td>
+    </tr>
+    <tr>
+        <td><code>golang.org/x/text</code></td>
+        <td>CVE-2026-56851</td>
+        <td>HIGH</td>
+        <td>v0.32.0</td>
+        <td>0.41.0</td>
     </tr>
     <tr>
         <td><code>golang.org/x/text</code></td>

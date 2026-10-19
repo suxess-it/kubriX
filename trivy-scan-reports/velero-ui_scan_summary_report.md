@@ -1546,7 +1546,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>Python</code></h3>
-<h4>Vulnerabilities (24)</h4>
+<h4>Vulnerabilities (26)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -1564,10 +1564,24 @@
     </tr>
     <tr>
         <td><code>aiohttp</code></td>
+        <td>CVE-2026-111064</td>
+        <td>HIGH</td>
+        <td>3.12.12</td>
+        <td>3.14.4</td>
+    </tr>
+    <tr>
+        <td><code>aiohttp</code></td>
         <td>CVE-2026-69244</td>
         <td>HIGH</td>
         <td>3.12.12</td>
         <td>3.14.3</td>
+    </tr>
+    <tr>
+        <td><code>aiohttp</code></td>
+        <td>GHSA-2g87-pp6c-29x5</td>
+        <td>HIGH</td>
+        <td>3.12.12</td>
+        <td>3.14.4</td>
     </tr>
     <tr>
         <td><code>anyio</code></td>
@@ -1726,7 +1740,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>usr/local/bin/kubectl</code></h3>
-<h4>Vulnerabilities (36)</h4>
+<h4>Vulnerabilities (37)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -1797,6 +1811,13 @@
         <td>HIGH</td>
         <td>v0.21.0</td>
         <td>0.27.0</td>
+    </tr>
+    <tr>
+        <td><code>golang.org/x/text</code></td>
+        <td>CVE-2026-56851</td>
+        <td>HIGH</td>
+        <td>v0.16.0</td>
+        <td>0.41.0</td>
     </tr>
     <tr>
         <td><code>golang.org/x/text</code></td>

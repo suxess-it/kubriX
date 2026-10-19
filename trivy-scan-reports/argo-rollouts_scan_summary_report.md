@@ -1,10 +1,10 @@
-<h2>Image <code>quay.io/argoproj/argo-rollouts:v1.10.0</code></h2>
+<h2>Image <code>quay.io/argoproj/argo-rollouts:v1.10.1</code></h2>
 
-<h3>Target <code>quay.io/argoproj/argo-rollouts:v1.10.0 (debian 12.15)</code></h3>
+<h3>Target <code>quay.io/argoproj/argo-rollouts:v1.10.1 (debian 12.15)</code></h3>
 <h4>No Vulnerabilities found</h4>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>bin/rollouts-controller</code></h3>
-<h4>Vulnerabilities (10)</h4>
+<h4>Vulnerabilities (8)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -36,6 +36,13 @@
     </tr>
     <tr>
         <td><code>golang.org/x/text</code></td>
+        <td>CVE-2026-56851</td>
+        <td>HIGH</td>
+        <td>v0.38.0</td>
+        <td>0.41.0</td>
+    </tr>
+    <tr>
+        <td><code>golang.org/x/text</code></td>
         <td>CVE-2026-56852</td>
         <td>HIGH</td>
         <td>v0.38.0</td>
@@ -61,27 +68,6 @@
         <td>HIGH</td>
         <td>v1.80.0</td>
         <td>1.82.1</td>
-    </tr>
-    <tr>
-        <td><code>stdlib</code></td>
-        <td>CVE-2026-78667</td>
-        <td>HIGH</td>
-        <td>v1.26.7</td>
-        <td>1.26.9, 1.27.2</td>
-    </tr>
-    <tr>
-        <td><code>stdlib</code></td>
-        <td>CVE-2026-78669</td>
-        <td>HIGH</td>
-        <td>v1.26.7</td>
-        <td>1.26.9, 1.27.2</td>
-    </tr>
-    <tr>
-        <td><code>stdlib</code></td>
-        <td>CVE-2026-97031</td>
-        <td>HIGH</td>
-        <td>v1.26.7</td>
-        <td>1.26.9, 1.27.2</td>
     </tr>
 </table>
 <h4>No Misconfigurations found</h4>
