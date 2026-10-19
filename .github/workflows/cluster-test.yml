@@ -341,21 +341,7 @@ jobs:
       - name: Log disk space before installation
         run: df -h /
       
-      # The action always registers cleanup; ignore_failed_clean only ignores errors.
-      # Run its exact creation script without a post-hook on disposable hosted VMs.
-      # Pinned to v1.15.1; keep this SHA in sync with the self-hosted action below.
-      - name: Create k8s Kind Cluster on GitHub-hosted runner
-        if: runner.environment == 'github-hosted'
-        shell: bash
-        run: |
-          curl -fsSL --retry 3 -o "$RUNNER_TEMP/kubrix-kind.sh" \
-            https://raw.githubusercontent.com/helm/kind-action/1544676c07bb3570fcb70166beaa07c4528fd4aa/kind.sh
-          bash "$RUNNER_TEMP/kubrix-kind.sh" \
-            --cluster-name kubrix-cluster \
-            --config "$GITHUB_WORKSPACE/.github/kind-config.yaml"
-
-      - name: Create k8s Kind Cluster on self-hosted runner
-        if: runner.environment != 'github-hosted'
+      - name: Create k8s Kind Cluster
         uses: helm/kind-action@v1.15.1
         with:
           cluster_name: kubrix-cluster
@@ -963,4 +949,3 @@ jobs:
         env:
           GH_TOKEN: ${{ steps.repo-final-cleanup-token.outputs.token }}
         run: bash .github/log-github-rate-limit.sh after-cleanup
-
