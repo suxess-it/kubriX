@@ -18,11 +18,6 @@ rm -f "$SBOM_DIR"/*
 
 # : > "$REPORT_TSV"
 
-# install trivy
-curl -L https://github.com/aquasecurity/trivy/releases/download/v0.69.2/trivy_0.69.2_Linux-64bit.tar.gz -o trivy.tar.gz
-tar -xzvf trivy.tar.gz trivy
-chmod u+x trivy
-
 # install parlay
 curl -L https://github.com/snyk/parlay/releases/download/v0.10.1/parlay_Linux_x86_64.tar.gz -o parlay.tar.gz
 tar -xzvf parlay.tar.gz parlay
