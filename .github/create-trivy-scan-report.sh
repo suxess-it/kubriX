@@ -4,11 +4,6 @@
 
 set -e
 
-# install trivy
-curl -L https://github.com/aquasecurity/trivy/releases/download/v0.69.2/trivy_0.69.2_Linux-64bit.tar.gz -o trivy.tar.gz
-tar -xzvf trivy.tar.gz trivy
-chmod u+x trivy
-
 # install helm images plugin
 helm plugin install https://github.com/nikhilsbhat/helm-images || true
 
@@ -32,7 +27,7 @@ for chart in $( ls -d */ | sed 's#/##' ); do
   > ../../trivy-scan-reports/${chart}_scan_summary_report.md
   for image in $(cat ../../trivy-scan-reports/${chart}/images.txt) ; do
     output_file=$( echo -n "${chart}_$( echo ${image} | awk -F/ '{print $NF}' )" )
-    ../../trivy image --scanners vuln --severity HIGH,CRITICAL -f template --template "@../../.github/trivy-scan-markdown.tpl" -o ../../trivy-scan-reports/${chart}/${output_file}.md ${image}
+    trivy image --scanners vuln --severity HIGH,CRITICAL -f template --template "@../../.github/trivy-scan-markdown.tpl" -o ../../trivy-scan-reports/${chart}/${output_file}.md ${image}
     printf '<h2>Image <code>%s</code></h2>\n' "${image}" >> ../../trivy-scan-reports/${chart}_scan_summary_report.md
     cat ../../trivy-scan-reports/${chart}/${output_file}.md >> ../../trivy-scan-reports/${chart}_scan_summary_report.md
   done
@@ -42,4 +37,3 @@ cd -
 if [[ -f .github/create-vulnerability-risk-assessment.py ]]; then
   .github/create-vulnerability-risk-assessment.py
 fi
-rm trivy trivy.tar.gz
