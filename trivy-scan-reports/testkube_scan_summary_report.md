@@ -2613,9 +2613,9 @@
     </tr>
 </table>
 <h4>No Misconfigurations found</h4>
-<h2>Image <code>docker.io/kubeshop/testkube-api-server:2.14.1</code></h2>
+<h2>Image <code>docker.io/kubeshop/testkube-api-server:2.14.2</code></h2>
 
-<h3>Target <code>docker.io/kubeshop/testkube-api-server:2.14.1 (alpine 3.24.2)</code></h3>
+<h3>Target <code>docker.io/kubeshop/testkube-api-server:2.14.2 (alpine 3.24.2)</code></h3>
 <h4>Vulnerabilities (1)</h4>
 <table>
     <tr>

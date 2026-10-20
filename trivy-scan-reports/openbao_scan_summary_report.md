@@ -48,55 +48,11 @@
     </tr>
 </table>
 <h4>No Misconfigurations found</h4>
-<h2>Image <code>xpkg.upbound.io/upbound/provider-vault:v4.0.5</code></h2>
+<h2>Image <code>xpkg.upbound.io/upbound/provider-vault:v4.0.6</code></h2>
 
-<h3>Target <code>xpkg.upbound.io/upbound/provider-vault:v4.0.5 (debian 12.7)</code></h3>
+<h3>Target <code>xpkg.upbound.io/upbound/provider-vault:v4.0.6 (debian 12.7)</code></h3>
 <h4>No Vulnerabilities found</h4>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>usr/local/bin/provider</code></h3>
-<h4>Vulnerabilities (5)</h4>
-<table>
-    <tr>
-        <th>Package</th>
-        <th>ID</th>
-        <th>Severity</th>
-        <th>Installed Version</th>
-        <th>Fixed Version</th>
-    </tr>
-    <tr>
-        <td><code>github.com/getkin/kin-openapi</code></td>
-        <td>CVE-2026-100349</td>
-        <td>HIGH</td>
-        <td>v0.144.0</td>
-        <td>0.146.0</td>
-    </tr>
-    <tr>
-        <td><code>github.com/getkin/kin-openapi</code></td>
-        <td>CVE-2026-100351</td>
-        <td>HIGH</td>
-        <td>v0.144.0</td>
-        <td>0.147.0</td>
-    </tr>
-    <tr>
-        <td><code>github.com/getkin/kin-openapi</code></td>
-        <td>CVE-2026-100352</td>
-        <td>HIGH</td>
-        <td>v0.144.0</td>
-        <td>0.148.0</td>
-    </tr>
-    <tr>
-        <td><code>github.com/getkin/kin-openapi</code></td>
-        <td>CVE-2026-100353</td>
-        <td>HIGH</td>
-        <td>v0.144.0</td>
-        <td>0.149.0</td>
-    </tr>
-    <tr>
-        <td><code>github.com/getkin/kin-openapi</code></td>
-        <td>CVE-2026-100354</td>
-        <td>HIGH</td>
-        <td>v0.144.0</td>
-        <td>0.149.0</td>
-    </tr>
-</table>
+<h4>No Vulnerabilities found</h4>
 <h4>No Misconfigurations found</h4>
