@@ -6,3 +6,9 @@ testkube:
     cliIngress:
       hosts:
         - testkube.127-0-0-1.nip.io
+  mongodb:
+    # Use per-thread caches on CI kernels rejected by MongoDB's rseq check.
+    # Temporary workaround: https://github.com/docker-library/mongo/issues/758
+    extraEnvVars:
+      - name: GLIBC_TUNABLES
+        value: "glibc.pthread.rseq=1"
