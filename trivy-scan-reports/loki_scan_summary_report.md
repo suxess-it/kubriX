@@ -4,7 +4,7 @@
 <h4>No Vulnerabilities found</h4>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>usr/bin/loki-canary</code></h3>
-<h4>Vulnerabilities (12)</h4>
+<h4>Vulnerabilities (13)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -19,6 +19,13 @@
         <td>HIGH</td>
         <td>v0.58.0</td>
         <td>0.60.0</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-111943</td>
+        <td>HIGH</td>
+        <td>v1.26.5</td>
+        <td>1.26.10, 1.27.3</td>
     </tr>
     <tr>
         <td><code>stdlib</code></td>
@@ -105,37 +112,7 @@
 <h4>No Vulnerabilities found</h4>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>usr/bin/helm-test</code></h3>
-<h4>Vulnerabilities (3)</h4>
-<table>
-    <tr>
-        <th>Package</th>
-        <th>ID</th>
-        <th>Severity</th>
-        <th>Installed Version</th>
-        <th>Fixed Version</th>
-    </tr>
-    <tr>
-        <td><code>stdlib</code></td>
-        <td>CVE-2026-78667</td>
-        <td>HIGH</td>
-        <td>v1.26.8</td>
-        <td>1.26.9, 1.27.2</td>
-    </tr>
-    <tr>
-        <td><code>stdlib</code></td>
-        <td>CVE-2026-78669</td>
-        <td>HIGH</td>
-        <td>v1.26.8</td>
-        <td>1.26.9, 1.27.2</td>
-    </tr>
-    <tr>
-        <td><code>stdlib</code></td>
-        <td>CVE-2026-97031</td>
-        <td>HIGH</td>
-        <td>v1.26.8</td>
-        <td>1.26.9, 1.27.2</td>
-    </tr>
-</table>
+<h4>No Vulnerabilities found</h4>
 <h4>No Misconfigurations found</h4>
 <h2>Image <code>docker.io/grafana/loki:3.7.8</code></h2>
 
@@ -143,7 +120,7 @@
 <h4>No Vulnerabilities found</h4>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>usr/bin/loki</code></h3>
-<h4>Vulnerabilities (4)</h4>
+<h4>Vulnerabilities (5)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -158,6 +135,13 @@
         <td>HIGH</td>
         <td>v0.58.0</td>
         <td>0.60.0</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-111943</td>
+        <td>HIGH</td>
+        <td>v1.26.6</td>
+        <td>1.26.10, 1.27.3</td>
     </tr>
     <tr>
         <td><code>stdlib</code></td>
@@ -188,7 +172,7 @@
 <h4>No Vulnerabilities found</h4>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>Python</code></h3>
-<h4>Vulnerabilities (4)</h4>
+<h4>Vulnerabilities (6)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -196,6 +180,20 @@
         <th>Severity</th>
         <th>Installed Version</th>
         <th>Fixed Version</th>
+    </tr>
+    <tr>
+        <td><code>certifi</code></td>
+        <td>GHSA-6q48-6c7w-9gw2</td>
+        <td>CRITICAL</td>
+        <td>2026.7.22</td>
+        <td>2026.10.19</td>
+    </tr>
+    <tr>
+        <td><code>certifi</code></td>
+        <td>GHSA-6q48-6c7w-9gw2</td>
+        <td>CRITICAL</td>
+        <td>2026.6.17</td>
+        <td>2026.10.19</td>
     </tr>
     <tr>
         <td><code>msgpack</code></td>
@@ -294,7 +292,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>usr/bin/mc</code></h3>
-<h4>Vulnerabilities (4)</h4>
+<h4>Vulnerabilities (5)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -309,6 +307,13 @@
         <td>HIGH</td>
         <td>v0.59.0</td>
         <td>0.60.0</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-111943</td>
+        <td>HIGH</td>
+        <td>v1.27.1</td>
+        <td>1.26.10, 1.27.3</td>
     </tr>
     <tr>
         <td><code>stdlib</code></td>
@@ -390,7 +395,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>usr/bin/mcli</code></h3>
-<h4>Vulnerabilities (4)</h4>
+<h4>Vulnerabilities (5)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -405,6 +410,13 @@
         <td>HIGH</td>
         <td>v0.58.0</td>
         <td>0.60.0</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-111943</td>
+        <td>HIGH</td>
+        <td>v1.27.1</td>
+        <td>1.26.10, 1.27.3</td>
     </tr>
     <tr>
         <td><code>stdlib</code></td>
@@ -430,7 +442,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>usr/bin/silo</code></h3>
-<h4>Vulnerabilities (15)</h4>
+<h4>Vulnerabilities (16)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -525,6 +537,13 @@
     </tr>
     <tr>
         <td><code>stdlib</code></td>
+        <td>CVE-2026-111943</td>
+        <td>HIGH</td>
+        <td>v1.27.1</td>
+        <td>1.26.10, 1.27.3</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
         <td>CVE-2026-78667</td>
         <td>HIGH</td>
         <td>v1.27.1</td>
@@ -549,7 +568,7 @@
 <h2>Image <code>docker.io/prom/memcached-exporter:v0.17.0</code></h2>
 
 <h3>Target <code>bin/memcached_exporter</code></h3>
-<h4>Vulnerabilities (6)</h4>
+<h4>Vulnerabilities (7)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -581,6 +600,13 @@
     </tr>
     <tr>
         <td><code>stdlib</code></td>
+        <td>CVE-2026-111943</td>
+        <td>HIGH</td>
+        <td>v1.26.6</td>
+        <td>1.26.10, 1.27.3</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
         <td>CVE-2026-78667</td>
         <td>HIGH</td>
         <td>v1.26.6</td>
@@ -608,5 +634,21 @@
 <h4>No Vulnerabilities found</h4>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>access-log-exporter</code></h3>
-<h4>No Vulnerabilities found</h4>
+<h4>Vulnerabilities (1)</h4>
+<table>
+    <tr>
+        <th>Package</th>
+        <th>ID</th>
+        <th>Severity</th>
+        <th>Installed Version</th>
+        <th>Fixed Version</th>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-111943</td>
+        <td>HIGH</td>
+        <td>v1.27.2</td>
+        <td>1.26.10, 1.27.3</td>
+    </tr>
+</table>
 <h4>No Misconfigurations found</h4>

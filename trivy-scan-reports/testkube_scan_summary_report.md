@@ -37,7 +37,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>opt/bitnami/common/bin/render-template</code></h3>
-<h4>Vulnerabilities (3)</h4>
+<h4>Vulnerabilities (4)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -45,6 +45,13 @@
         <th>Severity</th>
         <th>Installed Version</th>
         <th>Fixed Version</th>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-111943</td>
+        <td>HIGH</td>
+        <td>v1.26.8</td>
+        <td>1.26.10, 1.27.3</td>
     </tr>
     <tr>
         <td><code>stdlib</code></td>
@@ -70,7 +77,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>opt/bitnami/mongodb/bin/bsondump</code></h3>
-<h4>Vulnerabilities (21)</h4>
+<h4>Vulnerabilities (23)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -78,6 +85,13 @@
         <th>Severity</th>
         <th>Installed Version</th>
         <th>Fixed Version</th>
+    </tr>
+    <tr>
+        <td><code>github.com/klauspost/compress</code></td>
+        <td>CVE-2026-63209</td>
+        <td>HIGH</td>
+        <td>v1.17.8</td>
+        <td>1.18.7</td>
     </tr>
     <tr>
         <td><code>golang.org/x/crypto</code></td>
@@ -204,6 +218,13 @@
         <td>HIGH</td>
         <td>v0.33.0</td>
         <td>0.39.0</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-111943</td>
+        <td>HIGH</td>
+        <td>v1.26.8</td>
+        <td>1.26.10, 1.27.3</td>
     </tr>
     <tr>
         <td><code>stdlib</code></td>
@@ -229,7 +250,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>opt/bitnami/mongodb/bin/mongodump</code></h3>
-<h4>Vulnerabilities (21)</h4>
+<h4>Vulnerabilities (23)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -237,6 +258,13 @@
         <th>Severity</th>
         <th>Installed Version</th>
         <th>Fixed Version</th>
+    </tr>
+    <tr>
+        <td><code>github.com/klauspost/compress</code></td>
+        <td>CVE-2026-63209</td>
+        <td>HIGH</td>
+        <td>v1.17.8</td>
+        <td>1.18.7</td>
     </tr>
     <tr>
         <td><code>golang.org/x/crypto</code></td>
@@ -363,6 +391,13 @@
         <td>HIGH</td>
         <td>v0.33.0</td>
         <td>0.39.0</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-111943</td>
+        <td>HIGH</td>
+        <td>v1.26.8</td>
+        <td>1.26.10, 1.27.3</td>
     </tr>
     <tr>
         <td><code>stdlib</code></td>
@@ -388,7 +423,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>opt/bitnami/mongodb/bin/mongoexport</code></h3>
-<h4>Vulnerabilities (21)</h4>
+<h4>Vulnerabilities (23)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -396,6 +431,13 @@
         <th>Severity</th>
         <th>Installed Version</th>
         <th>Fixed Version</th>
+    </tr>
+    <tr>
+        <td><code>github.com/klauspost/compress</code></td>
+        <td>CVE-2026-63209</td>
+        <td>HIGH</td>
+        <td>v1.17.8</td>
+        <td>1.18.7</td>
     </tr>
     <tr>
         <td><code>golang.org/x/crypto</code></td>
@@ -522,6 +564,13 @@
         <td>HIGH</td>
         <td>v0.33.0</td>
         <td>0.39.0</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-111943</td>
+        <td>HIGH</td>
+        <td>v1.26.8</td>
+        <td>1.26.10, 1.27.3</td>
     </tr>
     <tr>
         <td><code>stdlib</code></td>
@@ -547,7 +596,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>opt/bitnami/mongodb/bin/mongofiles</code></h3>
-<h4>Vulnerabilities (21)</h4>
+<h4>Vulnerabilities (23)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -555,6 +604,13 @@
         <th>Severity</th>
         <th>Installed Version</th>
         <th>Fixed Version</th>
+    </tr>
+    <tr>
+        <td><code>github.com/klauspost/compress</code></td>
+        <td>CVE-2026-63209</td>
+        <td>HIGH</td>
+        <td>v1.17.8</td>
+        <td>1.18.7</td>
     </tr>
     <tr>
         <td><code>golang.org/x/crypto</code></td>
@@ -681,6 +737,13 @@
         <td>HIGH</td>
         <td>v0.33.0</td>
         <td>0.39.0</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-111943</td>
+        <td>HIGH</td>
+        <td>v1.26.8</td>
+        <td>1.26.10, 1.27.3</td>
     </tr>
     <tr>
         <td><code>stdlib</code></td>
@@ -706,7 +769,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>opt/bitnami/mongodb/bin/mongoimport</code></h3>
-<h4>Vulnerabilities (21)</h4>
+<h4>Vulnerabilities (23)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -714,6 +777,13 @@
         <th>Severity</th>
         <th>Installed Version</th>
         <th>Fixed Version</th>
+    </tr>
+    <tr>
+        <td><code>github.com/klauspost/compress</code></td>
+        <td>CVE-2026-63209</td>
+        <td>HIGH</td>
+        <td>v1.17.8</td>
+        <td>1.18.7</td>
     </tr>
     <tr>
         <td><code>golang.org/x/crypto</code></td>
@@ -840,6 +910,13 @@
         <td>HIGH</td>
         <td>v0.33.0</td>
         <td>0.39.0</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-111943</td>
+        <td>HIGH</td>
+        <td>v1.26.8</td>
+        <td>1.26.10, 1.27.3</td>
     </tr>
     <tr>
         <td><code>stdlib</code></td>
@@ -865,7 +942,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>opt/bitnami/mongodb/bin/mongorestore</code></h3>
-<h4>Vulnerabilities (21)</h4>
+<h4>Vulnerabilities (23)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -873,6 +950,13 @@
         <th>Severity</th>
         <th>Installed Version</th>
         <th>Fixed Version</th>
+    </tr>
+    <tr>
+        <td><code>github.com/klauspost/compress</code></td>
+        <td>CVE-2026-63209</td>
+        <td>HIGH</td>
+        <td>v1.17.8</td>
+        <td>1.18.7</td>
     </tr>
     <tr>
         <td><code>golang.org/x/crypto</code></td>
@@ -999,6 +1083,13 @@
         <td>HIGH</td>
         <td>v0.33.0</td>
         <td>0.39.0</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-111943</td>
+        <td>HIGH</td>
+        <td>v1.26.8</td>
+        <td>1.26.10, 1.27.3</td>
     </tr>
     <tr>
         <td><code>stdlib</code></td>
@@ -1024,7 +1115,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>opt/bitnami/mongodb/bin/mongostat</code></h3>
-<h4>Vulnerabilities (21)</h4>
+<h4>Vulnerabilities (23)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -1032,6 +1123,13 @@
         <th>Severity</th>
         <th>Installed Version</th>
         <th>Fixed Version</th>
+    </tr>
+    <tr>
+        <td><code>github.com/klauspost/compress</code></td>
+        <td>CVE-2026-63209</td>
+        <td>HIGH</td>
+        <td>v1.17.8</td>
+        <td>1.18.7</td>
     </tr>
     <tr>
         <td><code>golang.org/x/crypto</code></td>
@@ -1158,6 +1256,13 @@
         <td>HIGH</td>
         <td>v0.33.0</td>
         <td>0.39.0</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-111943</td>
+        <td>HIGH</td>
+        <td>v1.26.8</td>
+        <td>1.26.10, 1.27.3</td>
     </tr>
     <tr>
         <td><code>stdlib</code></td>
@@ -1183,7 +1288,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>opt/bitnami/mongodb/bin/mongotop</code></h3>
-<h4>Vulnerabilities (21)</h4>
+<h4>Vulnerabilities (23)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -1191,6 +1296,13 @@
         <th>Severity</th>
         <th>Installed Version</th>
         <th>Fixed Version</th>
+    </tr>
+    <tr>
+        <td><code>github.com/klauspost/compress</code></td>
+        <td>CVE-2026-63209</td>
+        <td>HIGH</td>
+        <td>v1.17.8</td>
+        <td>1.18.7</td>
     </tr>
     <tr>
         <td><code>golang.org/x/crypto</code></td>
@@ -1317,6 +1429,13 @@
         <td>HIGH</td>
         <td>v0.33.0</td>
         <td>0.39.0</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-111943</td>
+        <td>HIGH</td>
+        <td>v1.26.8</td>
+        <td>1.26.10, 1.27.3</td>
     </tr>
     <tr>
         <td><code>stdlib</code></td>
@@ -1342,7 +1461,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>usr/bin/bsondump</code></h3>
-<h4>Vulnerabilities (21)</h4>
+<h4>Vulnerabilities (23)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -1350,6 +1469,13 @@
         <th>Severity</th>
         <th>Installed Version</th>
         <th>Fixed Version</th>
+    </tr>
+    <tr>
+        <td><code>github.com/klauspost/compress</code></td>
+        <td>CVE-2026-63209</td>
+        <td>HIGH</td>
+        <td>v1.17.8</td>
+        <td>1.18.7</td>
     </tr>
     <tr>
         <td><code>golang.org/x/crypto</code></td>
@@ -1476,6 +1602,13 @@
         <td>HIGH</td>
         <td>v0.33.0</td>
         <td>0.39.0</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-111943</td>
+        <td>HIGH</td>
+        <td>v1.26.8</td>
+        <td>1.26.10, 1.27.3</td>
     </tr>
     <tr>
         <td><code>stdlib</code></td>
@@ -1501,7 +1634,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>usr/bin/mongodump</code></h3>
-<h4>Vulnerabilities (21)</h4>
+<h4>Vulnerabilities (23)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -1509,6 +1642,13 @@
         <th>Severity</th>
         <th>Installed Version</th>
         <th>Fixed Version</th>
+    </tr>
+    <tr>
+        <td><code>github.com/klauspost/compress</code></td>
+        <td>CVE-2026-63209</td>
+        <td>HIGH</td>
+        <td>v1.17.8</td>
+        <td>1.18.7</td>
     </tr>
     <tr>
         <td><code>golang.org/x/crypto</code></td>
@@ -1635,6 +1775,13 @@
         <td>HIGH</td>
         <td>v0.33.0</td>
         <td>0.39.0</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-111943</td>
+        <td>HIGH</td>
+        <td>v1.26.8</td>
+        <td>1.26.10, 1.27.3</td>
     </tr>
     <tr>
         <td><code>stdlib</code></td>
@@ -1660,7 +1807,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>usr/bin/mongoexport</code></h3>
-<h4>Vulnerabilities (21)</h4>
+<h4>Vulnerabilities (23)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -1668,6 +1815,13 @@
         <th>Severity</th>
         <th>Installed Version</th>
         <th>Fixed Version</th>
+    </tr>
+    <tr>
+        <td><code>github.com/klauspost/compress</code></td>
+        <td>CVE-2026-63209</td>
+        <td>HIGH</td>
+        <td>v1.17.8</td>
+        <td>1.18.7</td>
     </tr>
     <tr>
         <td><code>golang.org/x/crypto</code></td>
@@ -1794,6 +1948,13 @@
         <td>HIGH</td>
         <td>v0.33.0</td>
         <td>0.39.0</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-111943</td>
+        <td>HIGH</td>
+        <td>v1.26.8</td>
+        <td>1.26.10, 1.27.3</td>
     </tr>
     <tr>
         <td><code>stdlib</code></td>
@@ -1819,7 +1980,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>usr/bin/mongofiles</code></h3>
-<h4>Vulnerabilities (21)</h4>
+<h4>Vulnerabilities (23)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -1827,6 +1988,13 @@
         <th>Severity</th>
         <th>Installed Version</th>
         <th>Fixed Version</th>
+    </tr>
+    <tr>
+        <td><code>github.com/klauspost/compress</code></td>
+        <td>CVE-2026-63209</td>
+        <td>HIGH</td>
+        <td>v1.17.8</td>
+        <td>1.18.7</td>
     </tr>
     <tr>
         <td><code>golang.org/x/crypto</code></td>
@@ -1953,6 +2121,13 @@
         <td>HIGH</td>
         <td>v0.33.0</td>
         <td>0.39.0</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-111943</td>
+        <td>HIGH</td>
+        <td>v1.26.8</td>
+        <td>1.26.10, 1.27.3</td>
     </tr>
     <tr>
         <td><code>stdlib</code></td>
@@ -1978,7 +2153,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>usr/bin/mongoimport</code></h3>
-<h4>Vulnerabilities (21)</h4>
+<h4>Vulnerabilities (23)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -1986,6 +2161,13 @@
         <th>Severity</th>
         <th>Installed Version</th>
         <th>Fixed Version</th>
+    </tr>
+    <tr>
+        <td><code>github.com/klauspost/compress</code></td>
+        <td>CVE-2026-63209</td>
+        <td>HIGH</td>
+        <td>v1.17.8</td>
+        <td>1.18.7</td>
     </tr>
     <tr>
         <td><code>golang.org/x/crypto</code></td>
@@ -2112,6 +2294,13 @@
         <td>HIGH</td>
         <td>v0.33.0</td>
         <td>0.39.0</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-111943</td>
+        <td>HIGH</td>
+        <td>v1.26.8</td>
+        <td>1.26.10, 1.27.3</td>
     </tr>
     <tr>
         <td><code>stdlib</code></td>
@@ -2137,7 +2326,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>usr/bin/mongorestore</code></h3>
-<h4>Vulnerabilities (21)</h4>
+<h4>Vulnerabilities (23)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -2145,6 +2334,13 @@
         <th>Severity</th>
         <th>Installed Version</th>
         <th>Fixed Version</th>
+    </tr>
+    <tr>
+        <td><code>github.com/klauspost/compress</code></td>
+        <td>CVE-2026-63209</td>
+        <td>HIGH</td>
+        <td>v1.17.8</td>
+        <td>1.18.7</td>
     </tr>
     <tr>
         <td><code>golang.org/x/crypto</code></td>
@@ -2271,6 +2467,13 @@
         <td>HIGH</td>
         <td>v0.33.0</td>
         <td>0.39.0</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-111943</td>
+        <td>HIGH</td>
+        <td>v1.26.8</td>
+        <td>1.26.10, 1.27.3</td>
     </tr>
     <tr>
         <td><code>stdlib</code></td>
@@ -2296,7 +2499,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>usr/bin/mongostat</code></h3>
-<h4>Vulnerabilities (21)</h4>
+<h4>Vulnerabilities (23)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -2304,6 +2507,13 @@
         <th>Severity</th>
         <th>Installed Version</th>
         <th>Fixed Version</th>
+    </tr>
+    <tr>
+        <td><code>github.com/klauspost/compress</code></td>
+        <td>CVE-2026-63209</td>
+        <td>HIGH</td>
+        <td>v1.17.8</td>
+        <td>1.18.7</td>
     </tr>
     <tr>
         <td><code>golang.org/x/crypto</code></td>
@@ -2430,6 +2640,13 @@
         <td>HIGH</td>
         <td>v0.33.0</td>
         <td>0.39.0</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-111943</td>
+        <td>HIGH</td>
+        <td>v1.26.8</td>
+        <td>1.26.10, 1.27.3</td>
     </tr>
     <tr>
         <td><code>stdlib</code></td>
@@ -2455,7 +2672,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>usr/bin/mongotop</code></h3>
-<h4>Vulnerabilities (21)</h4>
+<h4>Vulnerabilities (23)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -2463,6 +2680,13 @@
         <th>Severity</th>
         <th>Installed Version</th>
         <th>Fixed Version</th>
+    </tr>
+    <tr>
+        <td><code>github.com/klauspost/compress</code></td>
+        <td>CVE-2026-63209</td>
+        <td>HIGH</td>
+        <td>v1.17.8</td>
+        <td>1.18.7</td>
     </tr>
     <tr>
         <td><code>golang.org/x/crypto</code></td>
@@ -2589,6 +2813,13 @@
         <td>HIGH</td>
         <td>v0.33.0</td>
         <td>0.39.0</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-111943</td>
+        <td>HIGH</td>
+        <td>v1.26.8</td>
+        <td>1.26.10, 1.27.3</td>
     </tr>
     <tr>
         <td><code>stdlib</code></td>
@@ -2635,7 +2866,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>bin/app</code></h3>
-<h4>Vulnerabilities (4)</h4>
+<h4>Vulnerabilities (5)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -2650,6 +2881,13 @@
         <td>HIGH</td>
         <td>v0.58.0</td>
         <td>0.60.0</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-111943</td>
+        <td>HIGH</td>
+        <td>v1.27.1</td>
+        <td>1.26.10, 1.27.3</td>
     </tr>
     <tr>
         <td><code>stdlib</code></td>
@@ -2680,7 +2918,7 @@
 <h4>No Vulnerabilities found</h4>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>usr/local/bin/kubectl</code></h3>
-<h4>Vulnerabilities (5)</h4>
+<h4>Vulnerabilities (6)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -2702,6 +2940,13 @@
         <td>HIGH</td>
         <td>v0.40.0</td>
         <td>0.41.0</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-111943</td>
+        <td>HIGH</td>
+        <td>v1.26.8</td>
+        <td>1.26.10, 1.27.3</td>
     </tr>
     <tr>
         <td><code>stdlib</code></td>
@@ -3357,7 +3602,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>opt/bitnami/common/bin/mc</code></h3>
-<h4>Vulnerabilities (48)</h4>
+<h4>Vulnerabilities (50)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -3365,6 +3610,13 @@
         <th>Severity</th>
         <th>Installed Version</th>
         <th>Fixed Version</th>
+    </tr>
+    <tr>
+        <td><code>github.com/klauspost/compress</code></td>
+        <td>CVE-2026-63209</td>
+        <td>HIGH</td>
+        <td>v1.18.0</td>
+        <td>1.18.7</td>
     </tr>
     <tr>
         <td><code>github.com/prometheus/prometheus</code></td>
@@ -3526,6 +3778,13 @@
         <td>HIGH</td>
         <td>v1.79.3</td>
         <td>1.82.1</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-111943</td>
+        <td>HIGH</td>
+        <td>v1.26.0</td>
+        <td>1.26.10, 1.27.3</td>
     </tr>
     <tr>
         <td><code>stdlib</code></td>
@@ -3705,7 +3964,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>opt/bitnami/common/bin/minio</code></h3>
-<h4>Vulnerabilities (71)</h4>
+<h4>Vulnerabilities (73)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -3741,6 +4000,13 @@
         <td>HIGH</td>
         <td>v4.1.3</td>
         <td>4.1.4</td>
+    </tr>
+    <tr>
+        <td><code>github.com/klauspost/compress</code></td>
+        <td>CVE-2026-63209</td>
+        <td>HIGH</td>
+        <td>v1.18.0</td>
+        <td>1.18.7</td>
     </tr>
     <tr>
         <td><code>github.com/minio/minio</code></td>
@@ -4038,6 +4304,13 @@
     </tr>
     <tr>
         <td><code>stdlib</code></td>
+        <td>CVE-2026-111943</td>
+        <td>HIGH</td>
+        <td>v1.26.0</td>
+        <td>1.26.10, 1.27.3</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
         <td>CVE-2026-25679</td>
         <td>HIGH</td>
         <td>v1.26.0</td>
@@ -4214,7 +4487,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>usr/local/bin/wait-for-port</code></h3>
-<h4>Vulnerabilities (25)</h4>
+<h4>Vulnerabilities (26)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -4243,6 +4516,13 @@
         <td>HIGH</td>
         <td>v1.25.0</td>
         <td>1.24.11, 1.25.5</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-111943</td>
+        <td>HIGH</td>
+        <td>v1.25.0</td>
+        <td>1.26.10, 1.27.3</td>
     </tr>
     <tr>
         <td><code>stdlib</code></td>
@@ -4406,7 +4686,7 @@
 <h4>No Vulnerabilities found</h4>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>usr/local/bin/nats-server</code></h3>
-<h4>Vulnerabilities (3)</h4>
+<h4>Vulnerabilities (4)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -4414,6 +4694,13 @@
         <th>Severity</th>
         <th>Installed Version</th>
         <th>Fixed Version</th>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-111943</td>
+        <td>HIGH</td>
+        <td>v1.27.1</td>
+        <td>1.26.10, 1.27.3</td>
     </tr>
     <tr>
         <td><code>stdlib</code></td>
@@ -4467,7 +4754,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>usr/local/bin/nats-server-config-reloader</code></h3>
-<h4>Vulnerabilities (11)</h4>
+<h4>Vulnerabilities (12)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -4475,6 +4762,13 @@
         <th>Severity</th>
         <th>Installed Version</th>
         <th>Fixed Version</th>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-111943</td>
+        <td>HIGH</td>
+        <td>v1.26.5</td>
+        <td>1.26.10, 1.27.3</td>
     </tr>
     <tr>
         <td><code>stdlib</code></td>

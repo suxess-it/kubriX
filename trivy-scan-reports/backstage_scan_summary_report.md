@@ -57,7 +57,7 @@
 <h2>Image <code>ghcr.io/suxess-it/sx-backstage:v1.51.2</code></h2>
 
 <h3>Target <code>ghcr.io/suxess-it/sx-backstage:v1.51.2 (wolfi 20230201)</code></h3>
-<h4>Vulnerabilities (13)</h4>
+<h4>Vulnerabilities (14)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -65,6 +65,13 @@
         <th>Severity</th>
         <th>Installed Version</th>
         <th>Fixed Version</th>
+    </tr>
+    <tr>
+        <td><code>ca-certificates-bundle</code></td>
+        <td>CVE-2026-111943</td>
+        <td>HIGH</td>
+        <td>20260413-r1</td>
+        <td>20260909-r3</td>
     </tr>
     <tr>
         <td><code>node-gyp</code></td>
@@ -160,7 +167,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>Node.js</code></h3>
-<h4>Vulnerabilities (277)</h4>
+<h4>Vulnerabilities (281)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -420,6 +427,20 @@
         <td>HIGH</td>
         <td>1.29.0</td>
         <td>1.31.0</td>
+    </tr>
+    <tr>
+        <td><code>@modelcontextprotocol/sdk</code></td>
+        <td>CVE-2026-111767</td>
+        <td>HIGH</td>
+        <td>1.29.0</td>
+        <td>1.32.0</td>
+    </tr>
+    <tr>
+        <td><code>@modelcontextprotocol/sdk</code></td>
+        <td>CVE-2026-111768</td>
+        <td>HIGH</td>
+        <td>1.29.0</td>
+        <td>1.32.0</td>
     </tr>
     <tr>
         <td><code>@opentelemetry/propagator-jaeger</code></td>
@@ -1008,6 +1029,20 @@
         <td>HIGH</td>
         <td>5.0.0</td>
         <td>5.0.2</td>
+    </tr>
+    <tr>
+        <td><code>markdown-it</code></td>
+        <td>CVE-2026-111758</td>
+        <td>HIGH</td>
+        <td>14.1.1</td>
+        <td>14.3.3, 15.0.3</td>
+    </tr>
+    <tr>
+        <td><code>markdown-it</code></td>
+        <td>CVE-2026-111759</td>
+        <td>HIGH</td>
+        <td>14.1.1</td>
+        <td>15.0.2, 14.3.2</td>
     </tr>
     <tr>
         <td><code>multer</code></td>
@@ -2111,7 +2146,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>Python</code></h3>
-<h4>Vulnerabilities (6)</h4>
+<h4>Vulnerabilities (8)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -2119,6 +2154,20 @@
         <th>Severity</th>
         <th>Installed Version</th>
         <th>Fixed Version</th>
+    </tr>
+    <tr>
+        <td><code>certifi</code></td>
+        <td>GHSA-6q48-6c7w-9gw2</td>
+        <td>CRITICAL</td>
+        <td>2026.7.22</td>
+        <td>2026.10.19</td>
+    </tr>
+    <tr>
+        <td><code>certifi</code></td>
+        <td>GHSA-6q48-6c7w-9gw2</td>
+        <td>CRITICAL</td>
+        <td>2026.6.17</td>
+        <td>2026.10.19</td>
     </tr>
     <tr>
         <td><code>msgpack</code></td>

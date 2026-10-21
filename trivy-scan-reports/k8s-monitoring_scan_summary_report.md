@@ -272,7 +272,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>usr/local/bin/helm-operator</code></h3>
-<h4>Vulnerabilities (22)</h4>
+<h4>Vulnerabilities (24)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -280,6 +280,13 @@
         <th>Severity</th>
         <th>Installed Version</th>
         <th>Fixed Version</th>
+    </tr>
+    <tr>
+        <td><code>github.com/klauspost/compress</code></td>
+        <td>CVE-2026-63209</td>
+        <td>HIGH</td>
+        <td>v1.18.4</td>
+        <td>1.18.7</td>
     </tr>
     <tr>
         <td><code>golang.org/x/crypto</code></td>
@@ -350,6 +357,13 @@
         <td>HIGH</td>
         <td>v2.6.0</td>
         <td>2.6.2</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-111943</td>
+        <td>HIGH</td>
+        <td>v1.26.4</td>
+        <td>1.26.10, 1.27.3</td>
     </tr>
     <tr>
         <td><code>stdlib</code></td>
@@ -704,7 +718,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>usr/bin/kubectl-1.29</code></h3>
-<h4>Vulnerabilities (36)</h4>
+<h4>Vulnerabilities (37)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -810,6 +824,13 @@
         <td>HIGH</td>
         <td>v1.23.6</td>
         <td>1.24.11, 1.25.5</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-111943</td>
+        <td>HIGH</td>
+        <td>v1.23.6</td>
+        <td>1.26.10, 1.27.3</td>
     </tr>
     <tr>
         <td><code>stdlib</code></td>
@@ -968,7 +989,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>usr/bin/kubectl-1.30</code></h3>
-<h4>Vulnerabilities (36)</h4>
+<h4>Vulnerabilities (37)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -1074,6 +1095,13 @@
         <td>HIGH</td>
         <td>v1.23.10</td>
         <td>1.24.11, 1.25.5</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-111943</td>
+        <td>HIGH</td>
+        <td>v1.23.10</td>
+        <td>1.26.10, 1.27.3</td>
     </tr>
     <tr>
         <td><code>stdlib</code></td>
@@ -1232,7 +1260,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>usr/bin/kubectl-1.31</code></h3>
-<h4>Vulnerabilities (36)</h4>
+<h4>Vulnerabilities (37)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -1338,6 +1366,13 @@
         <td>HIGH</td>
         <td>v1.24.9</td>
         <td>1.24.11, 1.25.5</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-111943</td>
+        <td>HIGH</td>
+        <td>v1.24.9</td>
+        <td>1.26.10, 1.27.3</td>
     </tr>
     <tr>
         <td><code>stdlib</code></td>
@@ -1496,7 +1531,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>usr/bin/kubectl-1.32</code></h3>
-<h4>Vulnerabilities (36)</h4>
+<h4>Vulnerabilities (37)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -1602,6 +1637,13 @@
         <td>HIGH</td>
         <td>v1.24.9</td>
         <td>1.24.11, 1.25.5</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-111943</td>
+        <td>HIGH</td>
+        <td>v1.24.9</td>
+        <td>1.26.10, 1.27.3</td>
     </tr>
     <tr>
         <td><code>stdlib</code></td>
@@ -1760,7 +1802,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>usr/bin/kubectl-1.33</code></h3>
-<h4>Vulnerabilities (34)</h4>
+<h4>Vulnerabilities (35)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -1852,6 +1894,13 @@
         <td>HIGH</td>
         <td>v1.24.9</td>
         <td>1.24.11, 1.25.5</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-111943</td>
+        <td>HIGH</td>
+        <td>v1.24.9</td>
+        <td>1.26.10, 1.27.3</td>
     </tr>
     <tr>
         <td><code>stdlib</code></td>
@@ -2010,7 +2059,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>usr/bin/kubectl-1.34</code></h3>
-<h4>Vulnerabilities (34)</h4>
+<h4>Vulnerabilities (35)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -2102,6 +2151,13 @@
         <td>HIGH</td>
         <td>v1.24.9</td>
         <td>1.24.11, 1.25.5</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-111943</td>
+        <td>HIGH</td>
+        <td>v1.24.9</td>
+        <td>1.26.10, 1.27.3</td>
     </tr>
     <tr>
         <td><code>stdlib</code></td>
@@ -2262,7 +2318,7 @@
 <h2>Image <code>quay.io/prometheus/node-exporter:v1.12.1</code></h2>
 
 <h3>Target <code>bin/node_exporter</code></h3>
-<h4>Vulnerabilities (14)</h4>
+<h4>Vulnerabilities (15)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -2291,6 +2347,13 @@
         <td>HIGH</td>
         <td>v0.40.0</td>
         <td>0.41.0</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-111943</td>
+        <td>HIGH</td>
+        <td>v1.26.5</td>
+        <td>1.26.10, 1.27.3</td>
     </tr>
     <tr>
         <td><code>stdlib</code></td>
@@ -2377,7 +2440,7 @@
 <h4>No Vulnerabilities found</h4>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>kube-state-metrics</code></h3>
-<h4>Vulnerabilities (9)</h4>
+<h4>Vulnerabilities (10)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -2427,6 +2490,13 @@
         <td>HIGH</td>
         <td>v1.79.3</td>
         <td>1.82.1</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-111943</td>
+        <td>HIGH</td>
+        <td>v1.26.6</td>
+        <td>1.26.10, 1.27.3</td>
     </tr>
     <tr>
         <td><code>stdlib</code></td>

@@ -1,7 +1,7 @@
 <h2>Image <code>quay.io/kubevirt/cdi-operator:v1.62.0</code></h2>
 
 <h3>Target <code>usr/bin/cdi-operator</code></h3>
-<h4>Vulnerabilities (25)</h4>
+<h4>Vulnerabilities (26)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -30,6 +30,13 @@
         <td>HIGH</td>
         <td>v1.23.6</td>
         <td>1.24.11, 1.25.5</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-111943</td>
+        <td>HIGH</td>
+        <td>v1.23.6</td>
+        <td>1.26.10, 1.27.3</td>
     </tr>
     <tr>
         <td><code>stdlib</code></td>
@@ -188,7 +195,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>usr/bin/csv-generator</code></h3>
-<h4>Vulnerabilities (25)</h4>
+<h4>Vulnerabilities (26)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -217,6 +224,13 @@
         <td>HIGH</td>
         <td>v1.23.6</td>
         <td>1.24.11, 1.25.5</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-111943</td>
+        <td>HIGH</td>
+        <td>v1.23.6</td>
+        <td>1.26.10, 1.27.3</td>
     </tr>
     <tr>
         <td><code>stdlib</code></td>
@@ -459,7 +473,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>usr/bin/csv-generator</code></h3>
-<h4>Vulnerabilities (25)</h4>
+<h4>Vulnerabilities (26)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -488,6 +502,13 @@
         <td>HIGH</td>
         <td>v1.23.4</td>
         <td>1.24.11, 1.25.5</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-111943</td>
+        <td>HIGH</td>
+        <td>v1.23.4</td>
+        <td>1.26.10, 1.27.3</td>
     </tr>
     <tr>
         <td><code>stdlib</code></td>
@@ -646,7 +667,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>usr/bin/virt-operator</code></h3>
-<h4>Vulnerabilities (25)</h4>
+<h4>Vulnerabilities (26)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -675,6 +696,13 @@
         <td>HIGH</td>
         <td>v1.23.4</td>
         <td>1.24.11, 1.25.5</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-111943</td>
+        <td>HIGH</td>
+        <td>v1.23.4</td>
+        <td>1.26.10, 1.27.3</td>
     </tr>
     <tr>
         <td><code>stdlib</code></td>
