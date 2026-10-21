@@ -34,9 +34,6 @@ else
 fi
 
 # install tools only when chart changes need inspection
-curl -L https://github.com/aquasecurity/trivy/releases/download/v0.69.2/trivy_0.69.2_Linux-64bit.tar.gz -o trivy.tar.gz
-tar -xzvf trivy.tar.gz trivy
-chmod u+x trivy
 helm plugin install https://github.com/nikhilsbhat/helm-images || true
 
 echo "charts which differ between main and PR:"
@@ -118,7 +115,7 @@ for chart in ${changed_images_charts}; do
 
       output_file="${chart}_$(echo "${image}" | awk -F/ '{print $NF}')"
 
-      ./trivy image \
+      trivy image \
         --scanners vuln \
         -f template \
         --template "@pr/.github/trivy-scan-markdown.tpl" \
