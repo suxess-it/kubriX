@@ -27,28 +27,10 @@ on:
       - '.github/workflows/create-kubrix-installer-image.yml'
       - '.github/install-kubriX-with-job.sh'
       - 'install-manifests.yaml'
+  # PR tests are requested explicitly by adding the run-cluster-tests label.
+  # Labeled Renovate PRs also test new commits/rebases automatically.
   pull_request:
-    types: [opened, synchronize]
-    paths:
-      - '.github/workflows/cluster-test.yml'
-      - '.github/kind-config.yaml'
-      - 'e2e-tests/**'
-      - 'platform-apps/charts/**'
-      - 'platform-apps/target-chart/templates/**'
-      - 'platform-apps/target-chart/values.yaml'
-      - 'platform-apps/target-chart/values-kubrix-default.yaml'
-      - '.github/render-target-applications.sh'
-      - '.github/tests/target-applications.sh'
-      - '.github/tests/installer-sync-diagnostics.sh'
-      - '.github/log-github-rate-limit.sh'
-      - 'bootstrap-app-kind*.yaml'
-      - 'platform-apps/target-chart/values-customer.yaml'
-      - 'platform-apps/target-chart/values-kind*'
-      - 'Dockerfile'
-      - 'install-platform.sh'
-      - '.github/workflows/create-kubrix-installer-image.yml'
-      - '.github/install-kubriX-with-job.sh'
-      - 'install-manifests.yaml'
+    types: [opened, synchronize, reopened, labeled]
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
   # Also run AFTER kubrix-installer build completes
@@ -57,29 +39,51 @@ on:
     types: [completed]
 
 concurrency:
-  group: ${{ github.workflow }}-${{ github.ref }}
+  # Unrelated labels must not cancel a requested cluster test run.
+  group: ${{ github.workflow }}-${{ github.event_name == 'pull_request' && github.event.action == 'labeled' && github.event.label.name != 'run-cluster-tests' && github.run_id || github.ref }}
   cancel-in-progress: true
 
   
 jobs:
   changes:
+    if: github.event_name != 'pull_request' || github.event.action != 'labeled' || github.event.label.name == 'run-cluster-tests'
     runs-on: ubuntu-latest
     outputs:
       dockerImageChanges: ${{ steps.filter.outputs.dockerImageChanges }}
       globalChanges: ${{ steps.filter.outputs.globalChanges }}
       targets: ${{ steps.select-targets.outputs.targets }}
+      clusterTestRequired: ${{ steps.filter.outputs.clusterTestRequired }}
+      requested: ${{ steps.request.outputs.requested }}
     steps:
       - uses: actions/checkout@v7
         with:
           fetch-depth: 0  # needed so the action can diff properly
-      - name: Test installer sync diagnostics
-        run: bash .github/tests/installer-sync-diagnostics.sh
       - id: filter
         uses: dorny/paths-filter@v4
         with:
           list-files: json
           # For PRs it compares base..head. For push it compares before..after.
           filters: |
+            clusterTestRequired:
+              - '.github/workflows/cluster-test.yml'
+              - '.github/kind-config.yaml'
+              - 'e2e-tests/**'
+              - 'platform-apps/charts/**'
+              - 'platform-apps/target-chart/templates/**'
+              - 'platform-apps/target-chart/values.yaml'
+              - 'platform-apps/target-chart/values-kubrix-default.yaml'
+              - '.github/render-target-applications.sh'
+              - '.github/tests/target-applications.sh'
+              - '.github/tests/installer-sync-diagnostics.sh'
+              - '.github/log-github-rate-limit.sh'
+              - 'bootstrap-app-kind*.yaml'
+              - 'platform-apps/target-chart/values-customer.yaml'
+              - 'platform-apps/target-chart/values-kind*'
+              - 'Dockerfile'
+              - 'install-platform.sh'
+              - '.github/workflows/create-kubrix-installer-image.yml'
+              - '.github/install-kubriX-with-job.sh'
+              - 'install-manifests.yaml'
             dockerImageChanges:
               - 'Dockerfile'
               - 'install-platform.sh'
@@ -105,9 +109,22 @@ jobs:
                - 'install-manifests.yaml'
                - 'install-platform.sh'
   
+      - id: request
+        if: >-
+          github.event_name != 'pull_request' ||
+          (github.event.action == 'labeled' && github.event.label.name == 'run-cluster-tests') ||
+          (github.event.action != 'labeled' &&
+           github.event.pull_request.user.login == 'renovate[bot]' &&
+           contains(github.event.pull_request.labels.*.name, 'run-cluster-tests'))
+        run: echo "requested=true" >> "$GITHUB_OUTPUT"
+
+      - name: Test installer sync diagnostics
+        if: (github.event_name != 'pull_request' || (steps.request.outputs.requested == 'true' && steps.filter.outputs.clusterTestRequired == 'true'))
+        run: bash .github/tests/installer-sync-diagnostics.sh
+
       - id: build-matrix-global
         name: Build global target matrix from changed files
-        if: steps.filter.outputs.globalChanges == 'true'
+        if: (steps.filter.outputs.globalChanges == 'true' || github.event_name == 'pull_request') && (github.event_name != 'pull_request' || (steps.request.outputs.requested == 'true' && steps.filter.outputs.clusterTestRequired == 'true'))
         shell: bash
         env:
           CLUSTER_TEST_TARGET_TYPES: ${{ vars.CLUSTER_TEST_TARGET_TYPES }}
@@ -131,7 +148,7 @@ jobs:
 
 
       - name: Install target rendering tools
-        if: steps.filter.outputs.appChanges == 'true' || steps.filter.outputs.globalChanges == 'true'
+        if: (steps.filter.outputs.appChanges == 'true' || steps.filter.outputs.globalChanges == 'true' || github.event_name == 'pull_request') && (github.event_name != 'pull_request' || (steps.request.outputs.requested == 'true' && steps.filter.outputs.clusterTestRequired == 'true'))
         run: |
           curl -fsSL https://get.helm.sh/helm-v3.19.2-linux-amd64.tar.gz | tar -xz
           sudo install linux-amd64/helm /usr/local/bin/helm
@@ -139,13 +156,13 @@ jobs:
           sudo install yq /usr/local/bin/yq
 
       - name: Test target application rendering
-        if: steps.filter.outputs.globalChanges == 'true'
+        if: (steps.filter.outputs.globalChanges == 'true') && (github.event_name != 'pull_request' || (steps.request.outputs.requested == 'true' && steps.filter.outputs.clusterTestRequired == 'true'))
         run: bash .github/tests/target-applications.sh
 
       # Derive app names from changed paths and check enabled, inherited applications.
       - id: build-matrix-app
         name: Build app target matrix from changed files
-        if: steps.filter.outputs.appChanges == 'true' && steps.filter.outputs.globalChanges == 'false'
+        if: (github.event_name != 'pull_request' && steps.filter.outputs.appChanges == 'true' && steps.filter.outputs.globalChanges == 'false') && (github.event_name != 'pull_request' || (steps.request.outputs.requested == 'true' && steps.filter.outputs.clusterTestRequired == 'true'))
         env:
           CLUSTER_TEST_TARGET_TYPES: ${{ vars.CLUSTER_TEST_TARGET_TYPES }}
         shell: bash
@@ -197,6 +214,7 @@ jobs:
 
       - name: Select final targets
         id: select-targets
+        if: (github.event_name != 'pull_request' || (steps.request.outputs.requested == 'true' && steps.filter.outputs.clusterTestRequired == 'true'))
         shell: bash
         run: |
           set -euo pipefail
@@ -219,7 +237,7 @@ jobs:
     # because checking it at job level skips the whole job
     # and then prevents create-cluster job from running
     needs: changes
-    if: ${{ github.repository == 'suxess-it/kubriX' || github.repository == 'suxess-it/kubriX-prime' }}
+    if: ${{ (github.repository == 'suxess-it/kubriX' || github.repository == 'suxess-it/kubriX-prime') && (github.event_name != 'pull_request' || (needs.changes.outputs.clusterTestRequired == 'true' && needs.changes.outputs.requested == 'true')) }}
     runs-on: ubuntu-latest
     timeout-minutes: 10
 
@@ -288,6 +306,8 @@ jobs:
       ${{
         (needs.create-kubrix-installer-image.result == 'success' ||
          needs.create-kubrix-installer-image.result == 'skipped') &&
+        needs.changes.outputs.targets != '' &&
+        needs.changes.outputs.targets != '[]' &&
         (github.event_name == 'pull_request' ||
          github.event_name == 'workflow_dispatch')
       }}
@@ -949,3 +969,32 @@ jobs:
         env:
           GH_TOKEN: ${{ steps.repo-final-cleanup-token.outputs.token }}
         run: bash .github/log-github-rate-limit.sh after-cleanup
+
+  cluster-test-gate:
+    # An unrelated label must not publish a skipped check with the required name.
+    name: ${{ (github.event_name == 'pull_request' && (github.event.action != 'labeled' || github.event.label.name == 'run-cluster-tests')) && 'Cluster Test Gate' || 'Cluster test request ignored' }}
+    if: ${{ always() && github.event_name == 'pull_request' && (github.event.action != 'labeled' || github.event.label.name == 'run-cluster-tests') }}
+    needs: [changes, create-kubrix-installer-image, create-cluster]
+    runs-on: ubuntu-latest
+    permissions: {}
+    steps:
+      - name: Require a successful requested cluster test
+        env:
+          TEST_REQUIRED: ${{ needs.changes.outputs.clusterTestRequired }}
+          CHANGES_RESULT: ${{ needs.changes.result }}
+          BUILD_RESULT: ${{ needs.create-kubrix-installer-image.result }}
+          CLUSTER_RESULT: ${{ needs.create-cluster.result }}
+        run: |
+          if [[ "$CHANGES_RESULT" != "success" ]]; then
+            echo "::error::Could not determine whether cluster tests are required."
+            exit 1
+          fi
+          if [[ "$TEST_REQUIRED" == "false" ]]; then
+            echo "No cluster-test-relevant files changed."
+            exit 0
+          fi
+          if [[ "$TEST_REQUIRED" != "true" || "$BUILD_RESULT" != "success" || "$CLUSTER_RESULT" != "success" ]]; then
+            echo "::error::Cluster tests have not succeeded for this PR revision. Add the run-cluster-tests label (remove it first if already present) to request a run."
+            exit 1
+          fi
+          echo "All configured cluster tests succeeded for this PR revision."
