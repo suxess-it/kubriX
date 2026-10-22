@@ -73,3 +73,24 @@ matrix releases the gate, and a subsequent commit blocks it without starting
 cluster tests. Also confirm unrelated labels cannot release or cancel the gate.
 
 Also verify a documentation-only PR passes the gate without a label or cluster run.
+
+
+## Automerging upstream sync PRs in prime
+
+In kubriX-prime, upstream sync PRs authored by `kubrix-ci-sync[bot]` on
+`sync-upstream-pr-*` branches also retest automatically on opening, reopening,
+and new commits when all three labels `upstream-sync`, `automerge`, and
+`run-cluster-tests` are present. Relevant-file filtering and the required gate
+still apply. Other sync PRs and backports remain manual.
+
+The prime sync workflow enables GitHub auto-merge for upstream PRs carrying
+`automerge`, using its existing sync App token. In prime, enable Allow auto-merge,
+require Cluster Test Gate, and grant the sync App a PR-only bypass exclusively
+in the review ruleset. Do not grant it a bypass of the required-check ruleset.
+Merge and sync this shared workflow change before enabling the prime sync change.
+
+This does not automatically update stale sync branches. With strict up-to-date
+checks, use Update branch when needed; that commit automatically requests new
+cluster tests for these opted-in sync PRs. Auto-merge remains subject to GitHub's
+repository rules and App permissions. Existing sync PRs are not retroactively
+modified unless their sync workflow is rerun successfully.
