@@ -49,13 +49,36 @@ class ClusterTestGate(unittest.TestCase):
             ['run-cluster-tests', 'unrelated'],
         ):
             with self.subTest(author=author, labels=labels, action=action, added_label=added_label):
-                github = SimpleNamespace(event_name='pull_request', event=SimpleNamespace(
+                github = SimpleNamespace(repository='suxess-it/kubriX', event_name='pull_request', event=SimpleNamespace(
                     action=action, label=SimpleNamespace(name=added_label),
                     pull_request=SimpleNamespace(user=SimpleNamespace(login=author))))
                 actual = eval('(' + expression + ')', {'__builtins__': {}}, {
                     'github': github, 'labels': labels, 'contains': lambda values, value: value in values})
                 expected = (added_label == 'run-cluster-tests' if action == 'labeled' else
                             author == 'renovate[bot]' and 'run-cluster-tests' in labels)
+                self.assertEqual(actual, expected)
+
+    def test_prime_sync_request_policy(self):
+        expression = yaml.safe_load(WORKFLOW.read_text())['jobs']['changes']['steps'][2]['if']
+        expression = expression.replace('&&', ' and ').replace('||', ' or ')
+        expression = expression.replace('github.event.pull_request.labels.*.name', 'labels')
+        for repo, author, branch, labels, action in itertools.product(
+            ['suxess-it/kubriX-prime', 'suxess-it/kubriX'],
+            ['kubrix-ci-sync[bot]', 'human'], ['sync-upstream-pr-123', 'backport-pr-123'],
+            [[], ['run-cluster-tests'], ['run-cluster-tests', 'upstream-sync'],
+             ['run-cluster-tests', 'upstream-sync', 'automerge']],
+            ['opened', 'reopened', 'synchronize', 'labeled'],
+        ):
+            with self.subTest(repo=repo, author=author, branch=branch, labels=labels, action=action):
+                github = SimpleNamespace(repository=repo, event_name='pull_request', event=SimpleNamespace(
+                    action=action, label=SimpleNamespace(name='unrelated'),
+                    pull_request=SimpleNamespace(user=SimpleNamespace(login=author), head=SimpleNamespace(ref=branch))))
+                actual = eval('(' + expression + ')', {'__builtins__': {}}, {
+                    'github': github, 'labels': labels, 'contains': lambda values, value: value in values,
+                    'startsWith': lambda value, prefix: value.startswith(prefix)})
+                expected = (repo == 'suxess-it/kubriX-prime' and author == 'kubrix-ci-sync[bot]' and
+                            branch == 'sync-upstream-pr-123' and action != 'labeled' and
+                            all(label in labels for label in ['run-cluster-tests', 'upstream-sync', 'automerge']))
                 self.assertEqual(actual, expected)
 
     def test_empty_target_matrix_cannot_satisfy_gate(self):
@@ -69,3 +92,4 @@ class ClusterTestGate(unittest.TestCase):
 
 if __name__ == '__main__':
     unittest.main()
+
