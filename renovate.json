@@ -43,6 +43,16 @@
   ],
   "packageRules": [
     {
+      "matchUpdateTypes": [
+        "minor",
+        "patch"
+      ],
+      "minimumReleaseAge": "3 days",
+      "rebaseWhen": "behind-base-branch",
+      "automerge": true,
+      "addLabels": ["automerge","run-cluster-tests"]
+    },
+    {
       "matchDatasources": [
         "helm",
         "docker"
