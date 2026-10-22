@@ -46,9 +46,19 @@ jobs:
 
           echo "payload_file=dispatch.json" >> "$GITHUB_OUTPUT"
 
+      - name: Create Prime dispatch token
+        id: dispatch-token
+        uses: actions/create-github-app-token@v3
+        with:
+          client-id: ${{ vars.KUBRIX_CI_SYNC_APP_CLIENT_ID }}
+          private-key: ${{ secrets.KUBRIX_CI_SYNC_APP_PRIVATE_KEY }}
+          owner: suxess-it
+          repositories: kubriX-prime
+          permission-contents: write
+
       - name: Send repository_dispatch to kubrix-prime
         env:
-          GH_TOKEN: ${{ secrets.KUBRIX_PRIME_DISPATCH_TOKEN }}
+          GH_TOKEN: ${{ steps.dispatch-token.outputs.token }}
         shell: bash
         run: |
           curl --fail-with-body -L \
