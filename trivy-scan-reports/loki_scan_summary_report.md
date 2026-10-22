@@ -1,110 +1,10 @@
-<h2>Image <code>docker.io/grafana/loki-canary:3.7.8</code></h2>
+<h2>Image <code>docker.io/grafana/loki-canary:3.7.9</code></h2>
 
-<h3>Target <code>docker.io/grafana/loki-canary:3.7.8 (debian 13.7)</code></h3>
+<h3>Target <code>docker.io/grafana/loki-canary:3.7.9 (debian 13.7)</code></h3>
 <h4>No Vulnerabilities found</h4>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>usr/bin/loki-canary</code></h3>
-<h4>Vulnerabilities (13)</h4>
-<table>
-    <tr>
-        <th>Package</th>
-        <th>ID</th>
-        <th>Severity</th>
-        <th>Installed Version</th>
-        <th>Fixed Version</th>
-    </tr>
-    <tr>
-        <td><code>golang.org/x/net</code></td>
-        <td>CVE-2026-78669</td>
-        <td>HIGH</td>
-        <td>v0.58.0</td>
-        <td>0.60.0</td>
-    </tr>
-    <tr>
-        <td><code>stdlib</code></td>
-        <td>CVE-2026-111943</td>
-        <td>HIGH</td>
-        <td>v1.26.5</td>
-        <td>1.26.10, 1.27.3</td>
-    </tr>
-    <tr>
-        <td><code>stdlib</code></td>
-        <td>CVE-2026-33818</td>
-        <td>HIGH</td>
-        <td>v1.26.5</td>
-        <td>1.25.13, 1.26.6, 1.27.0-rc.3</td>
-    </tr>
-    <tr>
-        <td><code>stdlib</code></td>
-        <td>CVE-2026-39821</td>
-        <td>HIGH</td>
-        <td>v1.26.5</td>
-        <td>1.25.13, 1.26.6, 1.27.0-rc.3</td>
-    </tr>
-    <tr>
-        <td><code>stdlib</code></td>
-        <td>CVE-2026-46600</td>
-        <td>HIGH</td>
-        <td>v1.26.5</td>
-        <td>1.26.6, 1.27.0-rc.3</td>
-    </tr>
-    <tr>
-        <td><code>stdlib</code></td>
-        <td>CVE-2026-56853</td>
-        <td>HIGH</td>
-        <td>v1.26.5</td>
-        <td>1.25.13, 1.26.6, 1.27.0-rc.3</td>
-    </tr>
-    <tr>
-        <td><code>stdlib</code></td>
-        <td>CVE-2026-56858</td>
-        <td>HIGH</td>
-        <td>v1.26.5</td>
-        <td>1.25.13, 1.26.6, 1.27.0-rc.3</td>
-    </tr>
-    <tr>
-        <td><code>stdlib</code></td>
-        <td>CVE-2026-56859</td>
-        <td>HIGH</td>
-        <td>v1.26.5</td>
-        <td>1.25.13, 1.26.6, 1.27.0-rc.3</td>
-    </tr>
-    <tr>
-        <td><code>stdlib</code></td>
-        <td>CVE-2026-56860</td>
-        <td>HIGH</td>
-        <td>v1.26.5</td>
-        <td>1.25.13, 1.26.6, 1.27.0-rc.3</td>
-    </tr>
-    <tr>
-        <td><code>stdlib</code></td>
-        <td>CVE-2026-56862</td>
-        <td>HIGH</td>
-        <td>v1.26.5</td>
-        <td>1.25.13, 1.26.6, 1.27.0-rc.3</td>
-    </tr>
-    <tr>
-        <td><code>stdlib</code></td>
-        <td>CVE-2026-78667</td>
-        <td>HIGH</td>
-        <td>v1.26.5</td>
-        <td>1.26.9, 1.27.2</td>
-    </tr>
-    <tr>
-        <td><code>stdlib</code></td>
-        <td>CVE-2026-78669</td>
-        <td>HIGH</td>
-        <td>v1.26.5</td>
-        <td>1.26.9, 1.27.2</td>
-    </tr>
-    <tr>
-        <td><code>stdlib</code></td>
-        <td>CVE-2026-97031</td>
-        <td>HIGH</td>
-        <td>v1.26.5</td>
-        <td>1.26.9, 1.27.2</td>
-    </tr>
-</table>
+<h4>No Vulnerabilities found</h4>
 <h4>No Misconfigurations found</h4>
 <h2>Image <code>docker.io/grafana/loki-helm-test:latest</code></h2>
 
@@ -114,57 +14,13 @@
 <h3>Target <code>usr/bin/helm-test</code></h3>
 <h4>No Vulnerabilities found</h4>
 <h4>No Misconfigurations found</h4>
-<h2>Image <code>docker.io/grafana/loki:3.7.8</code></h2>
+<h2>Image <code>docker.io/grafana/loki:3.7.9</code></h2>
 
-<h3>Target <code>docker.io/grafana/loki:3.7.8 (debian 13.7)</code></h3>
+<h3>Target <code>docker.io/grafana/loki:3.7.9 (debian 13.7)</code></h3>
 <h4>No Vulnerabilities found</h4>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>usr/bin/loki</code></h3>
-<h4>Vulnerabilities (5)</h4>
-<table>
-    <tr>
-        <th>Package</th>
-        <th>ID</th>
-        <th>Severity</th>
-        <th>Installed Version</th>
-        <th>Fixed Version</th>
-    </tr>
-    <tr>
-        <td><code>golang.org/x/net</code></td>
-        <td>CVE-2026-78669</td>
-        <td>HIGH</td>
-        <td>v0.58.0</td>
-        <td>0.60.0</td>
-    </tr>
-    <tr>
-        <td><code>stdlib</code></td>
-        <td>CVE-2026-111943</td>
-        <td>HIGH</td>
-        <td>v1.26.6</td>
-        <td>1.26.10, 1.27.3</td>
-    </tr>
-    <tr>
-        <td><code>stdlib</code></td>
-        <td>CVE-2026-78667</td>
-        <td>HIGH</td>
-        <td>v1.26.6</td>
-        <td>1.26.9, 1.27.2</td>
-    </tr>
-    <tr>
-        <td><code>stdlib</code></td>
-        <td>CVE-2026-78669</td>
-        <td>HIGH</td>
-        <td>v1.26.6</td>
-        <td>1.26.9, 1.27.2</td>
-    </tr>
-    <tr>
-        <td><code>stdlib</code></td>
-        <td>CVE-2026-97031</td>
-        <td>HIGH</td>
-        <td>v1.26.6</td>
-        <td>1.26.9, 1.27.2</td>
-    </tr>
-</table>
+<h4>No Vulnerabilities found</h4>
 <h4>No Misconfigurations found</h4>
 <h2>Image <code>docker.io/kiwigrid/k8s-sidecar:2.14.1</code></h2>
 
@@ -227,7 +83,7 @@
 <h4>No Misconfigurations found</h4>
 <h2>Image <code>docker.io/library/memcached:1.6.45-alpine</code></h2>
 
-<h3>Target <code>docker.io/library/memcached:1.6.45-alpine (alpine 3.24.2)</code></h3>
+<h3>Target <code>docker.io/library/memcached:1.6.45-alpine (alpine 3.24.3)</code></h3>
 <h4>No Vulnerabilities found</h4>
 <h4>No Misconfigurations found</h4>
 <h2>Image <code>docker.io/nginxinc/nginx-unprivileged:1.31-alpine</code></h2>

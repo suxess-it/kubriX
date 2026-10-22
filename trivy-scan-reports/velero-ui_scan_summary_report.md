@@ -295,7 +295,7 @@
         <td>CVE-2025-59375</td>
         <td>HIGH</td>
         <td>2.5.0-1+deb12u1</td>
-        <td>2.5.0-1+deb12u4</td>
+        <td>2.5.0-1+deb12u5</td>
     </tr>
     <tr>
         <td><code>libexpat1</code></td>
@@ -330,7 +330,7 @@
         <td>CVE-2026-77214</td>
         <td>HIGH</td>
         <td>2.5.0-1+deb12u1</td>
-        <td></td>
+        <td>2.5.0-1+deb12u5</td>
     </tr>
     <tr>
         <td><code>libexpat1</code></td>
@@ -2996,7 +2996,7 @@
         <td>CVE-2025-59375</td>
         <td>HIGH</td>
         <td>2.5.0-1+deb12u1</td>
-        <td>2.5.0-1+deb12u4</td>
+        <td>2.5.0-1+deb12u5</td>
     </tr>
     <tr>
         <td><code>libexpat1</code></td>
@@ -3031,7 +3031,7 @@
         <td>CVE-2026-77214</td>
         <td>HIGH</td>
         <td>2.5.0-1+deb12u1</td>
-        <td></td>
+        <td>2.5.0-1+deb12u5</td>
     </tr>
     <tr>
         <td><code>libexpat1</code></td>

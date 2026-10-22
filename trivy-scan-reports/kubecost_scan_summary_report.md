@@ -279,7 +279,7 @@
 <h2>Image <code>icr.io/kubecost/cost-model:2.9.7</code></h2>
 
 <h3>Target <code>icr.io/kubecost/cost-model:2.9.7 (redhat 9.8)</code></h3>
-<h4>Vulnerabilities (50)</h4>
+<h4>Vulnerabilities (51)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -294,6 +294,13 @@
         <td>HIGH</td>
         <td>2.3.1-4.el9</td>
         <td>2.4.0-1.el9_8</td>
+    </tr>
+    <tr>
+        <td><code>ca-certificates</code></td>
+        <td>CVE-2026-114406</td>
+        <td>CRITICAL</td>
+        <td>2025.2.80_v9.0.305-91.el9</td>
+        <td></td>
     </tr>
     <tr>
         <td><code>curl-minimal</code></td>
@@ -1047,7 +1054,7 @@
 <h2>Image <code>icr.io/kubecost/frontend:2.9.7</code></h2>
 
 <h3>Target <code>icr.io/kubecost/frontend:2.9.7 (redhat 9.8)</code></h3>
-<h4>Vulnerabilities (68)</h4>
+<h4>Vulnerabilities (69)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -1062,6 +1069,13 @@
         <td>HIGH</td>
         <td>2.3.1-4.el9</td>
         <td>2.4.0-1.el9_8</td>
+    </tr>
+    <tr>
+        <td><code>ca-certificates</code></td>
+        <td>CVE-2026-114406</td>
+        <td>CRITICAL</td>
+        <td>2025.2.80_v9.0.305-91.el9</td>
+        <td></td>
     </tr>
     <tr>
         <td><code>curl-minimal</code></td>
@@ -1537,7 +1551,7 @@
 <h2>Image <code>icr.io/kubecost/modeling:v0.1.34</code></h2>
 
 <h3>Target <code>icr.io/kubecost/modeling:v0.1.34 (redhat 9.7)</code></h3>
-<h4>Vulnerabilities (70)</h4>
+<h4>Vulnerabilities (71)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -1545,6 +1559,13 @@
         <th>Severity</th>
         <th>Installed Version</th>
         <th>Fixed Version</th>
+    </tr>
+    <tr>
+        <td><code>ca-certificates</code></td>
+        <td>CVE-2026-114406</td>
+        <td>CRITICAL</td>
+        <td>2024.2.69_v8.0.303-91.4.el9_4</td>
+        <td></td>
     </tr>
     <tr>
         <td><code>curl-minimal</code></td>

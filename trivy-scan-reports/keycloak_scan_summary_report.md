@@ -62,7 +62,37 @@
 <h2>Image <code>quay.io/keycloak/keycloak-operator:26.8.1</code></h2>
 
 <h3>Target <code>quay.io/keycloak/keycloak-operator:26.8.1 (redhat 9.8)</code></h3>
-<h4>No Vulnerabilities found</h4>
+<h4>Vulnerabilities (3)</h4>
+<table>
+    <tr>
+        <th>Package</th>
+        <th>ID</th>
+        <th>Severity</th>
+        <th>Installed Version</th>
+        <th>Fixed Version</th>
+    </tr>
+    <tr>
+        <td><code>ca-certificates</code></td>
+        <td>CVE-2026-114406</td>
+        <td>CRITICAL</td>
+        <td>2025.2.80_v9.0.305-91.el9</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>java-25-openjdk-crypto-adapter</code></td>
+        <td>CVE-2026-91415</td>
+        <td>HIGH</td>
+        <td>1:25.0.4.1.1-1.1.el9</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>java-25-openjdk-headless</code></td>
+        <td>CVE-2026-91415</td>
+        <td>HIGH</td>
+        <td>1:25.0.4.1.1-1.1.el9</td>
+        <td></td>
+    </tr>
+</table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>Java</code></h3>
 <h4>No Vulnerabilities found</h4>

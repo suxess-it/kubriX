@@ -1,7 +1,7 @@
 <h2>Image <code>ghcr.io/grafana/alloy-operator:1.13.0</code></h2>
 
 <h3>Target <code>ghcr.io/grafana/alloy-operator:1.13.0 (redhat 9.8)</code></h3>
-<h4>Vulnerabilities (37)</h4>
+<h4>Vulnerabilities (38)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -9,6 +9,13 @@
         <th>Severity</th>
         <th>Installed Version</th>
         <th>Fixed Version</th>
+    </tr>
+    <tr>
+        <td><code>ca-certificates</code></td>
+        <td>CVE-2026-114406</td>
+        <td>CRITICAL</td>
+        <td>2025.2.80_v9.0.305-91.el9</td>
+        <td></td>
     </tr>
     <tr>
         <td><code>curl-minimal</code></td>
