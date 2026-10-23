@@ -1,7 +1,7 @@
 <h2>Image <code>docker.io/dserio83/velero-api:0.3.1</code></h2>
 
 <h3>Target <code>docker.io/dserio83/velero-api:0.3.1 (debian 12.11)</code></h3>
-<h4>Vulnerabilities (219)</h4>
+<h4>Vulnerabilities (220)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -183,6 +183,13 @@
         <td>CVE-2026-78410</td>
         <td>HIGH</td>
         <td>2.38.1-5+deb12u3</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>libbrotli1</code></td>
+        <td>CVE-2026-111497</td>
+        <td>CRITICAL</td>
+        <td>1.0.9-2+b6</td>
         <td></td>
     </tr>
     <tr>
@@ -2088,7 +2095,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>Node.js</code></h3>
-<h4>Vulnerabilities (58)</h4>
+<h4>Vulnerabilities (60)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -2288,6 +2295,13 @@
     </tr>
     <tr>
         <td><code>next</code></td>
+        <td>GHSA-2464-fhr4-w9xw</td>
+        <td>CRITICAL</td>
+        <td>15.2.3</td>
+        <td>15.5.28, 16.4.1</td>
+    </tr>
+    <tr>
+        <td><code>next</code></td>
         <td>GHSA-2xp9-vwfh-vxw4</td>
         <td>CRITICAL</td>
         <td>15.2.3</td>
@@ -2348,6 +2362,13 @@
         <td>HIGH</td>
         <td>15.2.3</td>
         <td>15.5.21, 16.2.11</td>
+    </tr>
+    <tr>
+        <td><code>next</code></td>
+        <td>CVE-2026-94482</td>
+        <td>HIGH</td>
+        <td>15.2.3</td>
+        <td>15.5.28, 16.4.1</td>
     </tr>
     <tr>
         <td><code>next</code></td>
@@ -2702,7 +2723,7 @@
 <h2>Image <code>docker.io/dserio83/velero-watchdog:0.1.8</code></h2>
 
 <h3>Target <code>docker.io/dserio83/velero-watchdog:0.1.8 (debian 12.10)</code></h3>
-<h4>Vulnerabilities (177)</h4>
+<h4>Vulnerabilities (178)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -2884,6 +2905,13 @@
         <td>CVE-2026-78410</td>
         <td>HIGH</td>
         <td>2.38.1-5+deb12u3</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>libbrotli1</code></td>
+        <td>CVE-2026-111497</td>
+        <td>CRITICAL</td>
+        <td>1.0.9-2+b6</td>
         <td></td>
     </tr>
     <tr>

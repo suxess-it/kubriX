@@ -1,51 +1,7 @@
 <h2>Image <code>badouralix/curl-jq:alpine</code></h2>
 
-<h3>Target <code>badouralix/curl-jq:alpine (alpine 3.24.1)</code></h3>
-<h4>Vulnerabilities (5)</h4>
-<table>
-    <tr>
-        <th>Package</th>
-        <th>ID</th>
-        <th>Severity</th>
-        <th>Installed Version</th>
-        <th>Fixed Version</th>
-    </tr>
-    <tr>
-        <td><code>c-ares</code></td>
-        <td>CVE-2026-33630</td>
-        <td>HIGH</td>
-        <td>1.34.6-r0</td>
-        <td>1.34.8-r0</td>
-    </tr>
-    <tr>
-        <td><code>jq</code></td>
-        <td>CVE-2026-32316</td>
-        <td>HIGH</td>
-        <td>1.8.1-r0</td>
-        <td>1.8.2-r0</td>
-    </tr>
-    <tr>
-        <td><code>jq</code></td>
-        <td>CVE-2026-40164</td>
-        <td>HIGH</td>
-        <td>1.8.1-r0</td>
-        <td>1.8.2-r0</td>
-    </tr>
-    <tr>
-        <td><code>libcrypto3</code></td>
-        <td>CVE-2026-14456</td>
-        <td>HIGH</td>
-        <td>3.5.7-r0</td>
-        <td>3.5.8-r0</td>
-    </tr>
-    <tr>
-        <td><code>libssl3</code></td>
-        <td>CVE-2026-14456</td>
-        <td>HIGH</td>
-        <td>3.5.7-r0</td>
-        <td>3.5.8-r0</td>
-    </tr>
-</table>
+<h3>Target <code>badouralix/curl-jq:alpine (alpine 3.24.3)</code></h3>
+<h4>No Vulnerabilities found</h4>
 <h4>No Misconfigurations found</h4>
 <h2>Image <code>icr.io/ibm-finops/agent:v1.0.20</code></h2>
 
@@ -300,7 +256,7 @@
         <td>CVE-2026-114406</td>
         <td>CRITICAL</td>
         <td>2025.2.80_v9.0.305-91.el9</td>
-        <td></td>
+        <td>2026.2.92_v9.0.319-90.3.el9_8</td>
     </tr>
     <tr>
         <td><code>curl-minimal</code></td>
@@ -349,7 +305,7 @@
         <td>CVE-2026-77214</td>
         <td>HIGH</td>
         <td>2.5.0-6.el9_8.1</td>
-        <td></td>
+        <td>2.5.0-6.el9_8.7</td>
     </tr>
     <tr>
         <td><code>expat</code></td>
@@ -1075,7 +1031,7 @@
         <td>CVE-2026-114406</td>
         <td>CRITICAL</td>
         <td>2025.2.80_v9.0.305-91.el9</td>
-        <td></td>
+        <td>2026.2.92_v9.0.319-90.3.el9_8</td>
     </tr>
     <tr>
         <td><code>curl-minimal</code></td>
@@ -1124,7 +1080,7 @@
         <td>CVE-2026-77214</td>
         <td>HIGH</td>
         <td>2.5.0-6.el9_8.1</td>
-        <td></td>
+        <td>2.5.0-6.el9_8.7</td>
     </tr>
     <tr>
         <td><code>expat</code></td>
@@ -1565,7 +1521,7 @@
         <td>CVE-2026-114406</td>
         <td>CRITICAL</td>
         <td>2024.2.69_v8.0.303-91.4.el9_4</td>
-        <td></td>
+        <td>2026.2.92_v9.0.319-90.3.el9_8</td>
     </tr>
     <tr>
         <td><code>curl-minimal</code></td>
@@ -1621,7 +1577,7 @@
         <td>CVE-2026-77214</td>
         <td>HIGH</td>
         <td>2.5.0-5.el9_7.1</td>
-        <td></td>
+        <td>2.5.0-6.el9_8.7</td>
     </tr>
     <tr>
         <td><code>expat</code></td>

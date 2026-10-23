@@ -15,7 +15,7 @@
         <td>CVE-2026-114406</td>
         <td>CRITICAL</td>
         <td>2025.2.80_v9.0.305-91.el9</td>
-        <td></td>
+        <td>2026.2.92_v9.0.319-90.3.el9_8</td>
     </tr>
     <tr>
         <td><code>curl-minimal</code></td>
