@@ -10,6 +10,7 @@ on:
     branches: [ "main", "release-v*"]
     paths:
       - '.github/workflows/cluster-test.yml'
+      - '.github/workflows/request-cluster-tests.yml'
       - '.github/kind-config.yaml'
       - 'e2e-tests/**'
       - 'platform-apps/charts/**'
@@ -28,10 +29,10 @@ on:
       - '.github/workflows/create-kubrix-installer-image.yml'
       - '.github/install-kubriX-with-job.sh'
       - 'install-manifests.yaml'
-  # PR tests are requested explicitly by adding the run-cluster-tests label.
-  # Labeled Renovate PRs also test new commits/rebases automatically.
+  # Labels are routed by request-cluster-tests.yml. Keep PR checks on this
+  # workflow so unrelated labels cannot replace its check suite.
   pull_request:
-    types: [opened, synchronize, reopened, labeled]
+    types: [opened, synchronize, reopened]
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
   # Also run AFTER kubrix-installer build completes
@@ -40,14 +41,12 @@ on:
     types: [completed]
 
 concurrency:
-  # Unrelated labels must not cancel a requested cluster test run.
-  group: ${{ github.workflow }}-${{ github.event_name == 'pull_request' && github.event.action == 'labeled' && github.event.label.name != 'run-cluster-tests' && github.run_id || github.ref }}
+  group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
 
   
 jobs:
   changes:
-    if: github.event_name != 'pull_request' || github.event.action != 'labeled' || github.event.label.name == 'run-cluster-tests'
     runs-on: ubuntu-latest
     outputs:
       dockerImageChanges: ${{ steps.filter.outputs.dockerImageChanges }}
@@ -67,6 +66,7 @@ jobs:
           filters: |
             clusterTestRequired:
               - '.github/workflows/cluster-test.yml'
+              - '.github/workflows/request-cluster-tests.yml'
               - '.github/kind-config.yaml'
               - 'e2e-tests/**'
               - 'platform-apps/charts/**'
@@ -94,6 +94,7 @@ jobs:
             globalChanges:
                - 'Dockerfile'
                - '.github/workflows/cluster-test.yml'
+               - '.github/workflows/request-cluster-tests.yml'
                - '.github/kind-config.yaml'
                - 'e2e-tests/**'
                - 'platform-apps/target-chart/templates/**'
@@ -115,18 +116,36 @@ jobs:
         run: echo "No cluster-test-relevant files changed."
 
       - id: request
-        if: >-
-          github.event_name != 'pull_request' ||
-          (github.event.action == 'labeled' && github.event.label.name == 'run-cluster-tests') ||
-          (github.event.action != 'labeled' &&
-           contains(github.event.pull_request.labels.*.name, 'run-cluster-tests') &&
-           (github.event.pull_request.user.login == 'renovate[bot]' ||
-            (github.repository == 'suxess-it/kubriX-prime' &&
-             github.event.pull_request.user.login == 'kubrix-ci-sync[bot]' &&
-             startsWith(github.event.pull_request.head.ref, 'sync-upstream-pr-') &&
-             contains(github.event.pull_request.labels.*.name, 'upstream-sync') &&
-             contains(github.event.pull_request.labels.*.name, 'automerge'))))
-        run: echo "requested=true" >> "$GITHUB_OUTPUT"
+        name: Determine cluster test request
+        uses: actions/github-script@v7
+        env:
+          RUN_ATTEMPT: ${{ github.run_attempt }}
+        with:
+          script: |
+            const pr = context.payload.pull_request;
+            if (!pr) {
+              core.setOutput('requested', 'true');
+              return;
+            }
+            const { data: current } = await github.rest.pulls.get({
+              ...context.repo, pull_number: pr.number
+            });
+            if (current.state !== 'open' || current.head.sha !== pr.head.sha) {
+              core.setFailed('PR revision changed; a new PR workflow must evaluate it.');
+              return;
+            }
+            const labels = current.labels.map(label => label.name);
+            const syncBot = context.repo.owner === 'suxess-it' &&
+              context.repo.repo === 'kubriX-prime' &&
+              current.user.login === 'kubrix-ci-sync[bot]' &&
+              current.head.ref.startsWith('sync-upstream-pr-') &&
+              labels.includes('upstream-sync') && labels.includes('automerge');
+            const automated = current.user.login === 'renovate[bot]' || syncBot;
+            // A label request re-runs the existing pull_request run. Its original event
+            // payload is unchanged, so read current labels and the new run attempt.
+            const requested = labels.includes('run-cluster-tests') &&
+              (Number(process.env.RUN_ATTEMPT) > 1 || automated);
+            core.setOutput('requested', String(requested));
 
       - name: Test installer sync diagnostics
         if: (github.event_name != 'pull_request' || (steps.request.outputs.requested == 'true' && steps.filter.outputs.clusterTestRequired == 'true'))
@@ -981,7 +1000,7 @@ jobs:
         run: bash .github/log-github-rate-limit.sh after-cleanup
 
   cluster-test-gate:
-    # Always publish the same required name, including for unrelated labels.
+    # Only actual PR runs publish the required gate.
     # Run immediately so the gate remains visibly in progress during testing.
     name: Cluster Test Gate
     if: github.event_name == 'pull_request'
@@ -997,13 +1016,6 @@ jobs:
             const { owner, repo } = context.repo;
             const sha = context.payload.pull_request.head.sha;
             const currentRun = Number(context.runId);
-            const unrelatedLabel = context.payload.action === 'labeled' &&
-              context.payload.label.name !== 'run-cluster-tests';
-            const relevantTitle = title =>
-              title.startsWith('Cluster test: pull_request / ') &&
-              (!title.startsWith('Cluster test: pull_request / labeled / ') ||
-               title === 'Cluster test: pull_request / labeled / run-cluster-tests');
-            
             async function jobsFor(runId) {
               return github.paginate(github.rest.actions.listJobsForWorkflowRun, {
                 owner, repo, run_id: runId, filter: 'latest', per_page: 100
@@ -1031,22 +1043,7 @@ jobs:
             }
             
             for (let attempt = 0; attempt < 240; attempt++) {
-              let runId = currentRun;
-              if (unrelatedLabel) {
-                const runs = await github.paginate(github.rest.actions.listWorkflowRuns, {
-                  owner, repo, workflow_id: 'cluster-test.yml',
-                  head_sha: sha, event: 'pull_request', per_page: 100
-                });
-                const run = runs
-                  .filter(run => relevantTitle(run.display_title || ''))
-                  .sort((a, b) => b.id - a.id)[0];
-                if (!run) {
-                  // The PR-opened/request run may not be visible in the API yet.
-                  await new Promise(resolve => setTimeout(resolve, 30000));
-                  continue;
-                }
-                runId = run.id;
-              }
+              const runId = currentRun;
               const result = await evaluate(runId);
               if (result !== null) {
                 if (!result) {
