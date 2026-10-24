@@ -1000,60 +1000,29 @@ jobs:
         run: bash .github/log-github-rate-limit.sh after-cleanup
 
   cluster-test-gate:
-    # Only actual PR runs publish the required gate.
-    # Run immediately so the gate remains visibly in progress during testing.
     name: Cluster Test Gate
-    if: github.event_name == 'pull_request'
+    if: ${{ always() && github.event_name == 'pull_request' }}
+    needs: [changes, create-kubrix-installer-image, create-cluster]
     runs-on: ubuntu-latest
-    timeout-minutes: 125
-    permissions:
-      actions: read
+    permissions: {}
     steps:
-      - name: Wait for the cluster-test decision for this revision
-        uses: actions/github-script@v9
-        with:
-          script: |
-            const { owner, repo } = context.repo;
-            const sha = context.payload.pull_request.head.sha;
-            const currentRun = Number(context.runId);
-            async function jobsFor(runId) {
-              return github.paginate(github.rest.actions.listJobsForWorkflowRun, {
-                owner, repo, run_id: runId, filter: 'latest', per_page: 100
-              });
-            }
-            
-            async function evaluate(runId) {
-              const jobs = await jobsFor(runId);
-              const changes = jobs.find(job => job.name === 'changes');
-              if (!changes || changes.status !== 'completed') return null;
-              if (changes.conclusion !== 'success') return false;
-              const build = jobs.find(job => job.name === 'create-kubrix-installer-image');
-              const clusters = jobs.filter(job =>
-                job.name === 'create-cluster' || job.name.startsWith('create-cluster ('));
-              if (!build || !clusters.length ||
-                  build.status !== 'completed' ||
-                  clusters.some(job => job.status !== 'completed')) return null;
-              // The changes job reports whether testing is required. Read its explicit
-              // decision from the named decision step, rather than treating skipped tests
-              // as successful tests.
-              const decision = changes.steps?.find(step => step.name === 'Cluster test not required');
-              if (decision?.conclusion === 'success') return true;
-              return build.conclusion === 'success' &&
-                clusters.every(job => job.conclusion === 'success');
-            }
-            
-            for (let attempt = 0; attempt < 240; attempt++) {
-              const runId = currentRun;
-              const result = await evaluate(runId);
-              if (result !== null) {
-                if (!result) {
-                  core.setFailed('Cluster tests have not succeeded for this PR revision. Add run-cluster-tests (remove it first if present) to request a run.');
-                } else {
-                  core.info('Cluster test requirement satisfied for this PR revision.');
-                }
-                return;
-              }
-              core.info(`Waiting for cluster-test run ${runId} on ${sha}.`);
-              await new Promise(resolve => setTimeout(resolve, 30000));
-            }
-            core.setFailed('Timed out waiting for the cluster test result.');
+      - name: Require a successful cluster-test decision
+        env:
+          TEST_REQUIRED: ${{ needs.changes.outputs.clusterTestRequired }}
+          CHANGES_RESULT: ${{ needs.changes.result }}
+          BUILD_RESULT: ${{ needs.create-kubrix-installer-image.result }}
+          CLUSTER_RESULT: ${{ needs.create-cluster.result }}
+        run: |
+          if [[ "$CHANGES_RESULT" != "success" ]]; then
+            echo "::error::Could not determine whether cluster tests are required."
+            exit 1
+          fi
+          if [[ "$TEST_REQUIRED" == "false" ]]; then
+            echo "No cluster-test-relevant files changed."
+            exit 0
+          fi
+          if [[ "$TEST_REQUIRED" != "true" || "$BUILD_RESULT" != "success" || "$CLUSTER_RESULT" != "success" ]]; then
+            echo "::error::Cluster tests have not succeeded for this PR revision. Add run-cluster-tests (remove it first if present) to request a run."
+            exit 1
+          fi
+          echo "All configured cluster tests succeeded for this PR revision."
