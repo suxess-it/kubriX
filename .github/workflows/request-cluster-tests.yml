@@ -22,7 +22,7 @@ jobs:
     steps:
       # Trusted base-branch code only: never check out or execute PR contents here.
       - name: Re-run the current PR workflow
-        uses: actions/github-script@v7
+        uses: actions/github-script@v9
         with:
           script: |
             const { owner, repo } = context.repo;
