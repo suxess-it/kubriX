@@ -305,26 +305,10 @@
     </tr>
 </table>
 <h4>No Misconfigurations found</h4>
-<h2>Image <code>quay.io/argoproj/argocd:v3.5.5</code></h2>
+<h2>Image <code>quay.io/argoproj/argocd:v3.5.6</code></h2>
 
-<h3>Target <code>quay.io/argoproj/argocd:v3.5.5 (ubuntu 26.04)</code></h3>
-<h4>Vulnerabilities (1)</h4>
-<table>
-    <tr>
-        <th>Package</th>
-        <th>ID</th>
-        <th>Severity</th>
-        <th>Installed Version</th>
-        <th>Fixed Version</th>
-    </tr>
-    <tr>
-        <td><code>libcurl3t64-gnutls</code></td>
-        <td>CVE-2026-92392</td>
-        <td>HIGH</td>
-        <td>8.18.0-1ubuntu2.7</td>
-        <td>8.18.0-1ubuntu2.8</td>
-    </tr>
-</table>
+<h3>Target <code>quay.io/argoproj/argocd:v3.5.6 (ubuntu 26.04)</code></h3>
+<h4>No Vulnerabilities found</h4>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>usr/bin/pebble</code></h3>
 <h4>Vulnerabilities (26)</h4>
@@ -521,7 +505,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>usr/local/bin/argocd</code></h3>
-<h4>Vulnerabilities (3)</h4>
+<h4>Vulnerabilities (2)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -543,13 +527,6 @@
         <td>HIGH</td>
         <td>v0.59.0</td>
         <td>0.60.0</td>
-    </tr>
-    <tr>
-        <td><code>stdlib</code></td>
-        <td>CVE-2026-111943</td>
-        <td>HIGH</td>
-        <td>v1.26.9</td>
-        <td>1.26.10, 1.27.3</td>
     </tr>
 </table>
 <h4>No Misconfigurations found</h4>

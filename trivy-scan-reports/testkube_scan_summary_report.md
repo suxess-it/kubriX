@@ -2847,7 +2847,7 @@
 <h2>Image <code>docker.io/kubeshop/testkube-api-server:2.14.2</code></h2>
 
 <h3>Target <code>docker.io/kubeshop/testkube-api-server:2.14.2 (alpine 3.24.2)</code></h3>
-<h4>Vulnerabilities (1)</h4>
+<h4>Vulnerabilities (2)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -2855,6 +2855,13 @@
         <th>Severity</th>
         <th>Installed Version</th>
         <th>Fixed Version</th>
+    </tr>
+    <tr>
+        <td><code>brotli-libs</code></td>
+        <td>CVE-2026-111497</td>
+        <td>HIGH</td>
+        <td>1.2.0-r1</td>
+        <td>1.2.1-r0</td>
     </tr>
     <tr>
         <td><code>libexpat</code></td>
@@ -2915,7 +2922,23 @@
 <h2>Image <code>docker.io/kubeshop/testkube-kubectl:1.37.1</code></h2>
 
 <h3>Target <code>docker.io/kubeshop/testkube-kubectl:1.37.1 (alpine 3.24.2)</code></h3>
-<h4>No Vulnerabilities found</h4>
+<h4>Vulnerabilities (1)</h4>
+<table>
+    <tr>
+        <th>Package</th>
+        <th>ID</th>
+        <th>Severity</th>
+        <th>Installed Version</th>
+        <th>Fixed Version</th>
+    </tr>
+    <tr>
+        <td><code>brotli-libs</code></td>
+        <td>CVE-2026-111497</td>
+        <td>HIGH</td>
+        <td>1.2.0-r1</td>
+        <td>1.2.1-r0</td>
+    </tr>
+</table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>usr/local/bin/kubectl</code></h3>
 <h4>Vulnerabilities (6)</h4>
@@ -3133,9 +3156,9 @@
     <tr>
         <td><code>libbrotli1</code></td>
         <td>CVE-2026-111497</td>
-        <td>CRITICAL</td>
+        <td>HIGH</td>
         <td>1.0.9-2+b6</td>
-        <td></td>
+        <td>1.0.9-2+deb12u1</td>
     </tr>
     <tr>
         <td><code>libcurl4</code></td>

@@ -89,7 +89,23 @@
 <h2>Image <code>docker.io/nginxinc/nginx-unprivileged:1.31-alpine</code></h2>
 
 <h3>Target <code>docker.io/nginxinc/nginx-unprivileged:1.31-alpine (alpine 3.24.2)</code></h3>
-<h4>No Vulnerabilities found</h4>
+<h4>Vulnerabilities (1)</h4>
+<table>
+    <tr>
+        <th>Package</th>
+        <th>ID</th>
+        <th>Severity</th>
+        <th>Installed Version</th>
+        <th>Fixed Version</th>
+    </tr>
+    <tr>
+        <td><code>brotli-libs</code></td>
+        <td>CVE-2026-111497</td>
+        <td>HIGH</td>
+        <td>1.2.0-r1</td>
+        <td>1.2.1-r0</td>
+    </tr>
+</table>
 <h4>No Misconfigurations found</h4>
 <h2>Image <code>docker.io/pgsty/mc:RELEASE.2026-09-13T00-00-00Z</code></h2>
 
@@ -421,72 +437,14 @@
     </tr>
 </table>
 <h4>No Misconfigurations found</h4>
-<h2>Image <code>docker.io/prom/memcached-exporter:v0.17.0</code></h2>
+<h2>Image <code>docker.io/prom/memcached-exporter:v0.18.0</code></h2>
 
 <h3>Target <code>bin/memcached_exporter</code></h3>
-<h4>Vulnerabilities (7)</h4>
-<table>
-    <tr>
-        <th>Package</th>
-        <th>ID</th>
-        <th>Severity</th>
-        <th>Installed Version</th>
-        <th>Fixed Version</th>
-    </tr>
-    <tr>
-        <td><code>golang.org/x/crypto</code></td>
-        <td>CVE-2026-56854</td>
-        <td>HIGH</td>
-        <td>v0.54.0</td>
-        <td>0.55.0</td>
-    </tr>
-    <tr>
-        <td><code>golang.org/x/net</code></td>
-        <td>CVE-2026-78669</td>
-        <td>HIGH</td>
-        <td>v0.57.0</td>
-        <td>0.60.0</td>
-    </tr>
-    <tr>
-        <td><code>golang.org/x/text</code></td>
-        <td>CVE-2026-56851</td>
-        <td>HIGH</td>
-        <td>v0.40.0</td>
-        <td>0.41.0</td>
-    </tr>
-    <tr>
-        <td><code>stdlib</code></td>
-        <td>CVE-2026-111943</td>
-        <td>HIGH</td>
-        <td>v1.26.6</td>
-        <td>1.26.10, 1.27.3</td>
-    </tr>
-    <tr>
-        <td><code>stdlib</code></td>
-        <td>CVE-2026-78667</td>
-        <td>HIGH</td>
-        <td>v1.26.6</td>
-        <td>1.26.9, 1.27.2</td>
-    </tr>
-    <tr>
-        <td><code>stdlib</code></td>
-        <td>CVE-2026-78669</td>
-        <td>HIGH</td>
-        <td>v1.26.6</td>
-        <td>1.26.9, 1.27.2</td>
-    </tr>
-    <tr>
-        <td><code>stdlib</code></td>
-        <td>CVE-2026-97031</td>
-        <td>HIGH</td>
-        <td>v1.26.6</td>
-        <td>1.26.9, 1.27.2</td>
-    </tr>
-</table>
+<h4>No Vulnerabilities found</h4>
 <h4>No Misconfigurations found</h4>
-<h2>Image <code>ghcr.io/jkroepke/access-log-exporter:0.5.1</code></h2>
+<h2>Image <code>ghcr.io/jkroepke/access-log-exporter:0.5.2</code></h2>
 
-<h3>Target <code>ghcr.io/jkroepke/access-log-exporter:0.5.1 (debian 13.7)</code></h3>
+<h3>Target <code>ghcr.io/jkroepke/access-log-exporter:0.5.2 (debian 13.7)</code></h3>
 <h4>No Vulnerabilities found</h4>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>access-log-exporter</code></h3>

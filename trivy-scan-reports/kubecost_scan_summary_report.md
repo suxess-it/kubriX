@@ -235,7 +235,7 @@
 <h2>Image <code>icr.io/kubecost/cost-model:2.9.7</code></h2>
 
 <h3>Target <code>icr.io/kubecost/cost-model:2.9.7 (redhat 9.8)</code></h3>
-<h4>Vulnerabilities (51)</h4>
+<h4>Vulnerabilities (50)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -320,13 +320,6 @@
         <td>HIGH</td>
         <td>2.68.4-19.el9_8.1</td>
         <td>2.68.4-19.el9_8.2</td>
-    </tr>
-    <tr>
-        <td><code>gnutls</code></td>
-        <td>CVE-2026-88647</td>
-        <td>HIGH</td>
-        <td>3.8.10-4.el9_8</td>
-        <td></td>
     </tr>
     <tr>
         <td><code>libacl</code></td>
@@ -1010,7 +1003,7 @@
 <h2>Image <code>icr.io/kubecost/frontend:2.9.7</code></h2>
 
 <h3>Target <code>icr.io/kubecost/frontend:2.9.7 (redhat 9.8)</code></h3>
-<h4>Vulnerabilities (69)</h4>
+<h4>Vulnerabilities (68)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -1095,13 +1088,6 @@
         <td>HIGH</td>
         <td>2.68.4-19.el9_8.1</td>
         <td>2.68.4-19.el9_8.2</td>
-    </tr>
-    <tr>
-        <td><code>gnutls</code></td>
-        <td>CVE-2026-88647</td>
-        <td>HIGH</td>
-        <td>3.8.10-4.el9_8</td>
-        <td></td>
     </tr>
     <tr>
         <td><code>libacl</code></td>
@@ -1629,13 +1615,6 @@
         <td>3.8.10-4.el9_8</td>
     </tr>
     <tr>
-        <td><code>gnutls</code></td>
-        <td>CVE-2026-88647</td>
-        <td>HIGH</td>
-        <td>3.8.3-9.el9</td>
-        <td></td>
-    </tr>
-    <tr>
         <td><code>libacl</code></td>
         <td>CVE-2026-54369</td>
         <td>HIGH</td>
@@ -1991,6 +1970,13 @@
         <td>HIGH</td>
         <td>3.12.12-1.el9_7</td>
         <td>3.12.13-2.el9_8</td>
+    </tr>
+    <tr>
+        <td><code>python3.12-pip-wheel</code></td>
+        <td>CVE-2026-114613</td>
+        <td>HIGH</td>
+        <td>23.2.1-5.el9</td>
+        <td></td>
     </tr>
     <tr>
         <td><code>python3.12-pip-wheel</code></td>

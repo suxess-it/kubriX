@@ -135,7 +135,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>bin/komoplane</code></h3>
-<h4>Vulnerabilities (41)</h4>
+<h4>Vulnerabilities (44)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -160,10 +160,31 @@
     </tr>
     <tr>
         <td><code>github.com/labstack/echo/v4</code></td>
+        <td>GHSA-cxf3-9h37-7rr8</td>
+        <td>CRITICAL</td>
+        <td>v4.10.2</td>
+        <td>4.16.1</td>
+    </tr>
+    <tr>
+        <td><code>github.com/labstack/echo/v4</code></td>
         <td>CVE-2026-55677</td>
         <td>HIGH</td>
         <td>v4.10.2</td>
         <td>4.15.3</td>
+    </tr>
+    <tr>
+        <td><code>github.com/labstack/echo/v4</code></td>
+        <td>GHSA-f48p-c9v4-h7xv</td>
+        <td>HIGH</td>
+        <td>v4.10.2</td>
+        <td>4.16.1</td>
+    </tr>
+    <tr>
+        <td><code>github.com/labstack/echo/v4</code></td>
+        <td>GHSA-h7wr-284f-5qvc</td>
+        <td>HIGH</td>
+        <td>v4.10.2</td>
+        <td>4.16.1</td>
     </tr>
     <tr>
         <td><code>golang.org/x/crypto</code></td>

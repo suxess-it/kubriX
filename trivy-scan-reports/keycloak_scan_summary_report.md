@@ -57,7 +57,23 @@
 <h2>Image <code>curlimages/curl:latest</code></h2>
 
 <h3>Target <code>curlimages/curl:latest (alpine 3.24.2)</code></h3>
-<h4>No Vulnerabilities found</h4>
+<h4>Vulnerabilities (1)</h4>
+<table>
+    <tr>
+        <th>Package</th>
+        <th>ID</th>
+        <th>Severity</th>
+        <th>Installed Version</th>
+        <th>Fixed Version</th>
+    </tr>
+    <tr>
+        <td><code>brotli-libs</code></td>
+        <td>CVE-2026-111497</td>
+        <td>HIGH</td>
+        <td>1.2.0-r1</td>
+        <td>1.2.1-r0</td>
+    </tr>
+</table>
 <h4>No Misconfigurations found</h4>
 <h2>Image <code>quay.io/keycloak/keycloak-operator:26.8.1</code></h2>
 
@@ -74,7 +90,7 @@
     <tr>
         <td><code>java-25-openjdk-crypto-adapter</code></td>
         <td>CVE-2026-91403</td>
-        <td>CRITICAL</td>
+        <td>HIGH</td>
         <td>1:25.0.4.1.1-1.1.el9</td>
         <td></td>
     </tr>
@@ -88,7 +104,7 @@
     <tr>
         <td><code>java-25-openjdk-headless</code></td>
         <td>CVE-2026-91403</td>
-        <td>CRITICAL</td>
+        <td>HIGH</td>
         <td>1:25.0.4.1.1-1.1.el9</td>
         <td></td>
     </tr>

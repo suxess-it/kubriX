@@ -196,7 +196,7 @@
 <h2>Image <code>docker.io/nginxinc/nginx-unprivileged:1.29-alpine</code></h2>
 
 <h3>Target <code>docker.io/nginxinc/nginx-unprivileged:1.29-alpine (alpine 3.23.4)</code></h3>
-<h4>Vulnerabilities (44)</h4>
+<h4>Vulnerabilities (45)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -204,6 +204,13 @@
         <th>Severity</th>
         <th>Installed Version</th>
         <th>Fixed Version</th>
+    </tr>
+    <tr>
+        <td><code>brotli-libs</code></td>
+        <td>CVE-2026-111497</td>
+        <td>HIGH</td>
+        <td>1.2.0-r0</td>
+        <td>1.2.1-r0</td>
     </tr>
     <tr>
         <td><code>c-ares</code></td>

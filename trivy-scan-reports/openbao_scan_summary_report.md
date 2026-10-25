@@ -1,6 +1,6 @@
 <h2>Image <code>alpine/curl:latest</code></h2>
 
-<h3>Target <code>alpine/curl:latest (alpine 3.24.2)</code></h3>
+<h3>Target <code>alpine/curl:latest (alpine 3.24.3)</code></h3>
 <h4>No Vulnerabilities found</h4>
 <h4>No Misconfigurations found</h4>
 <h2>Image <code>quay.io/openbao/openbao:2.7.1</code></h2>
@@ -55,27 +55,11 @@
     </tr>
 </table>
 <h4>No Misconfigurations found</h4>
-<h2>Image <code>xpkg.upbound.io/upbound/provider-vault:v4.0.6</code></h2>
+<h2>Image <code>xpkg.upbound.io/upbound/provider-vault:v4.1.0</code></h2>
 
-<h3>Target <code>xpkg.upbound.io/upbound/provider-vault:v4.0.6 (debian 12.7)</code></h3>
+<h3>Target <code>xpkg.upbound.io/upbound/provider-vault:v4.1.0 (debian 12.7)</code></h3>
 <h4>No Vulnerabilities found</h4>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>usr/local/bin/provider</code></h3>
-<h4>Vulnerabilities (1)</h4>
-<table>
-    <tr>
-        <th>Package</th>
-        <th>ID</th>
-        <th>Severity</th>
-        <th>Installed Version</th>
-        <th>Fixed Version</th>
-    </tr>
-    <tr>
-        <td><code>stdlib</code></td>
-        <td>CVE-2026-111943</td>
-        <td>HIGH</td>
-        <td>v1.26.9</td>
-        <td>1.26.10, 1.27.3</td>
-    </tr>
-</table>
+<h4>No Vulnerabilities found</h4>
 <h4>No Misconfigurations found</h4>

@@ -188,9 +188,9 @@
     <tr>
         <td><code>libbrotli1</code></td>
         <td>CVE-2026-111497</td>
-        <td>CRITICAL</td>
+        <td>HIGH</td>
         <td>1.0.9-2+b6</td>
-        <td></td>
+        <td>1.0.9-2+deb12u1</td>
     </tr>
     <tr>
         <td><code>libcap2</code></td>
@@ -2910,9 +2910,9 @@
     <tr>
         <td><code>libbrotli1</code></td>
         <td>CVE-2026-111497</td>
-        <td>CRITICAL</td>
+        <td>HIGH</td>
         <td>1.0.9-2+b6</td>
-        <td></td>
+        <td>1.0.9-2+deb12u1</td>
     </tr>
     <tr>
         <td><code>libcap2</code></td>
