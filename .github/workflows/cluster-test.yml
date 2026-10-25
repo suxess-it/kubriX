@@ -908,6 +908,8 @@ jobs:
       # at the end get infos from all pods to identify OOMs or restarts
       - name: get and describe all pods
         if: always()
+        # Pods may disappear during test cleanup; diagnostics must not fail the job.
+        continue-on-error: true
         shell: bash
         run: |
           echo "===== get all pods ======"
