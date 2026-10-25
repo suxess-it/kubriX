@@ -1,0 +1,76 @@
+name: Cluster test label request
+run-name: 'Cluster test label: ${{ github.event.label.name }} / PR #${{ github.event.pull_request.number }}'
+
+on:
+  pull_request_target:
+    types: [labeled]
+
+permissions: {}
+
+concurrency:
+  group: cluster-test-label-${{ github.event.pull_request.number }}-${{ github.event.label.name }}
+  cancel-in-progress: false
+
+jobs:
+  request:
+    if: github.event.label.name == 'run-cluster-tests'
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    permissions:
+      actions: write
+      pull-requests: read
+    steps:
+      # Trusted base-branch code only: never check out or execute PR contents here.
+      - name: Re-run the current PR workflow
+        uses: actions/github-script@v9
+        with:
+          script: |
+            const { owner, repo } = context.repo;
+            const number = context.payload.pull_request.number;
+            const expectedSha = context.payload.pull_request.head.sha;
+            for (let attempt = 0; attempt < 60; attempt++) {
+              const { data: pr } = await github.rest.pulls.get({
+                owner, repo, pull_number: number
+              });
+              if (pr.state !== 'open' || pr.head.sha !== expectedSha ||
+                  !pr.labels.some(label => label.name === 'run-cluster-tests')) {
+                core.info('Request is stale, removed, or the PR is closed; nothing to run.');
+                return;
+              }
+              const runs = await github.paginate(github.rest.actions.listWorkflowRuns, {
+                owner, repo, workflow_id: 'cluster-test.yml',
+                head_sha: expectedSha, event: 'pull_request', per_page: 100
+              });
+              const run = runs
+                .filter(run => run.pull_requests.some(pr => pr.number === number))
+                .sort((a, b) => b.id - a.id)[0];
+              if (run) {
+                if (run.status === 'completed') {
+                  // Re-check the head after discovery so an update cannot route the
+                  // request to a previously current revision.
+                  const { data: latest } = await github.rest.pulls.get({
+                    owner, repo, pull_number: number
+                  });
+                  if (latest.head.sha !== expectedSha || latest.state !== 'open' ||
+                      !latest.labels.some(label => label.name === 'run-cluster-tests')) return;
+                  await github.rest.actions.reRunWorkflow({ owner, repo, run_id: run.id });
+                  core.info(`Requested PR test run ${run.id} again on ${expectedSha}.`);
+                  return;
+                }
+                const jobs = await github.paginate(github.rest.actions.listJobsForWorkflowRun, {
+                  owner, repo, run_id: run.id, filter: 'latest', per_page: 100
+                });
+                const runningTests = jobs.some(job =>
+                  (job.name === 'create-kubrix-installer-image' ||
+                   job.name.startsWith('create-cluster (')) &&
+                  (job.status === 'in_progress' || job.conclusion === 'success'));
+                if (runningTests) {
+                  core.info('The requested PR test is already running; no duplicate run needed.');
+                  return;
+                }
+              }
+              // Allow the original opened/synchronize run to finish its cheap decision
+              // before retrying it. Never cancel an active cluster test.
+              await new Promise(resolve => setTimeout(resolve, 10000));
+            }
+            core.setFailed('No completed PR workflow became available within ten minutes. Retry run-cluster-tests.');

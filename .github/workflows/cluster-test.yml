@@ -1,6 +1,7 @@
 # This is a basic workflow to help you get started with Actions
 
 name: kind
+run-name: 'Cluster test: ${{ github.event_name }} / ${{ github.event.action }} / ${{ github.event.label.name || github.ref_name }}'
 
 # Controls when the workflow will run
 on:
@@ -9,6 +10,7 @@ on:
     branches: [ "main", "release-v*"]
     paths:
       - '.github/workflows/cluster-test.yml'
+      - '.github/workflows/request-cluster-tests.yml'
       - '.github/kind-config.yaml'
       - 'e2e-tests/**'
       - 'platform-apps/charts/**'
@@ -27,10 +29,10 @@ on:
       - '.github/workflows/create-kubrix-installer-image.yml'
       - '.github/install-kubriX-with-job.sh'
       - 'install-manifests.yaml'
-  # PR tests are requested explicitly by adding the run-cluster-tests label.
-  # Labeled Renovate PRs also test new commits/rebases automatically.
+  # Labels are routed by request-cluster-tests.yml. Keep PR checks on this
+  # workflow so unrelated labels cannot replace its check suite.
   pull_request:
-    types: [opened, synchronize, reopened, labeled]
+    types: [opened, synchronize, reopened]
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
   # Also run AFTER kubrix-installer build completes
@@ -39,14 +41,12 @@ on:
     types: [completed]
 
 concurrency:
-  # Unrelated labels must not cancel a requested cluster test run.
-  group: ${{ github.workflow }}-${{ github.event_name == 'pull_request' && github.event.action == 'labeled' && github.event.label.name != 'run-cluster-tests' && github.run_id || github.ref }}
+  group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
 
   
 jobs:
   changes:
-    if: github.event_name != 'pull_request' || github.event.action != 'labeled' || github.event.label.name == 'run-cluster-tests'
     runs-on: ubuntu-latest
     outputs:
       dockerImageChanges: ${{ steps.filter.outputs.dockerImageChanges }}
@@ -66,6 +66,7 @@ jobs:
           filters: |
             clusterTestRequired:
               - '.github/workflows/cluster-test.yml'
+              - '.github/workflows/request-cluster-tests.yml'
               - '.github/kind-config.yaml'
               - 'e2e-tests/**'
               - 'platform-apps/charts/**'
@@ -93,6 +94,7 @@ jobs:
             globalChanges:
                - 'Dockerfile'
                - '.github/workflows/cluster-test.yml'
+               - '.github/workflows/request-cluster-tests.yml'
                - '.github/kind-config.yaml'
                - 'e2e-tests/**'
                - 'platform-apps/target-chart/templates/**'
@@ -109,19 +111,41 @@ jobs:
                - 'install-manifests.yaml'
                - 'install-platform.sh'
   
+      - name: Cluster test not required
+        if: github.event_name == 'pull_request' && steps.filter.outputs.clusterTestRequired == 'false'
+        run: echo "No cluster-test-relevant files changed."
+
       - id: request
-        if: >-
-          github.event_name != 'pull_request' ||
-          (github.event.action == 'labeled' && github.event.label.name == 'run-cluster-tests') ||
-          (github.event.action != 'labeled' &&
-           contains(github.event.pull_request.labels.*.name, 'run-cluster-tests') &&
-           (github.event.pull_request.user.login == 'renovate[bot]' ||
-            (github.repository == 'suxess-it/kubriX-prime' &&
-             github.event.pull_request.user.login == 'kubrix-ci-sync[bot]' &&
-             startsWith(github.event.pull_request.head.ref, 'sync-upstream-pr-') &&
-             contains(github.event.pull_request.labels.*.name, 'upstream-sync') &&
-             contains(github.event.pull_request.labels.*.name, 'automerge'))))
-        run: echo "requested=true" >> "$GITHUB_OUTPUT"
+        name: Determine cluster test request
+        uses: actions/github-script@v9
+        env:
+          RUN_ATTEMPT: ${{ github.run_attempt }}
+        with:
+          script: |
+            const pr = context.payload.pull_request;
+            if (!pr) {
+              core.setOutput('requested', 'true');
+              return;
+            }
+            const { data: current } = await github.rest.pulls.get({
+              ...context.repo, pull_number: pr.number
+            });
+            if (current.state !== 'open' || current.head.sha !== pr.head.sha) {
+              core.setFailed('PR revision changed; a new PR workflow must evaluate it.');
+              return;
+            }
+            const labels = current.labels.map(label => label.name);
+            const syncBot = context.repo.owner === 'suxess-it' &&
+              context.repo.repo === 'kubriX-prime' &&
+              current.user.login === 'kubrix-ci-sync[bot]' &&
+              current.head.ref.startsWith('sync-upstream-pr-') &&
+              labels.includes('upstream-sync') && labels.includes('automerge');
+            const automated = current.user.login === 'renovate[bot]' || syncBot;
+            // A label request re-runs the existing pull_request run. Its original event
+            // payload is unchanged, so read current labels and the new run attempt.
+            const requested = labels.includes('run-cluster-tests') &&
+              (Number(process.env.RUN_ATTEMPT) > 1 || automated);
+            core.setOutput('requested', String(requested));
 
       - name: Test installer sync diagnostics
         if: (github.event_name != 'pull_request' || (steps.request.outputs.requested == 'true' && steps.filter.outputs.clusterTestRequired == 'true'))
@@ -884,6 +908,8 @@ jobs:
       # at the end get infos from all pods to identify OOMs or restarts
       - name: get and describe all pods
         if: always()
+        # Pods may disappear during test cleanup; diagnostics must not fail the job.
+        continue-on-error: true
         shell: bash
         run: |
           echo "===== get all pods ======"
@@ -976,14 +1002,13 @@ jobs:
         run: bash .github/log-github-rate-limit.sh after-cleanup
 
   cluster-test-gate:
-    # An unrelated label must not publish a skipped check with the required name.
-    name: ${{ (github.event_name == 'pull_request' && (github.event.action != 'labeled' || github.event.label.name == 'run-cluster-tests')) && 'Cluster Test Gate' || 'Cluster test request ignored' }}
-    if: ${{ always() && github.event_name == 'pull_request' && (github.event.action != 'labeled' || github.event.label.name == 'run-cluster-tests') }}
+    name: Cluster Test Gate
+    if: ${{ always() && github.event_name == 'pull_request' }}
     needs: [changes, create-kubrix-installer-image, create-cluster]
     runs-on: ubuntu-latest
     permissions: {}
     steps:
-      - name: Require a successful requested cluster test
+      - name: Require a successful cluster-test decision
         env:
           TEST_REQUIRED: ${{ needs.changes.outputs.clusterTestRequired }}
           CHANGES_RESULT: ${{ needs.changes.result }}
@@ -999,8 +1024,7 @@ jobs:
             exit 0
           fi
           if [[ "$TEST_REQUIRED" != "true" || "$BUILD_RESULT" != "success" || "$CLUSTER_RESULT" != "success" ]]; then
-            echo "::error::Cluster tests have not succeeded for this PR revision. Add the run-cluster-tests label (remove it first if already present) to request a run."
+            echo "::error::Cluster tests have not succeeded for this PR revision. Add run-cluster-tests (remove it first if present) to request a run."
             exit 1
           fi
           echo "All configured cluster tests succeeded for this PR revision."
-

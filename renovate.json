@@ -48,7 +48,7 @@
         "patch"
       ],
       "minimumReleaseAge": "3 days",
-      "rebaseWhen": "behind-base-branch",
+      "rebaseWhen": "conflicted",
       "automerge": true,
       "addLabels": ["automerge","run-cluster-tests"]
     },
@@ -73,20 +73,10 @@
         "docker"
       ],
       "matchPackageNames": [
-        "ghcr.io/grafana-community/helm-charts/grafana"
+        "ghcr.io/grafana-community/helm-charts/**"
       ],
       "sourceUrl": "https://github.com/grafana-community/helm-charts",
-      "changelogUrl": "https://github.com/grafana-community/helm-charts/releases/tag/grafana-{{newVersion}}"
-    },
-    {
-      "matchDatasources": [
-        "helm"
-      ],
-      "matchPackageNames": [
-        "loki"
-      ],
-      "sourceUrl": "https://github.com/grafana/loki",
-      "changelogUrl": "https://github.com/grafana/loki/blob/helm-loki-{{newVersion}}/production/helm/loki/CHANGELOG.md"
+      "changelogUrl": "https://github.com/grafana-community/helm-charts/releases/tag/{{{replace '^.*/' '' depName}}}-{{newVersion}}"
     },
     {
       "matchDatasources": [
