@@ -1,7 +1,30 @@
 <h2>Image <code>badouralix/curl-jq:alpine</code></h2>
 
 <h3>Target <code>badouralix/curl-jq:alpine (alpine 3.24.3)</code></h3>
-<h4>No Vulnerabilities found</h4>
+<h4>Vulnerabilities (2)</h4>
+<table>
+    <tr>
+        <th>Package</th>
+        <th>ID</th>
+        <th>Severity</th>
+        <th>Installed Version</th>
+        <th>Fixed Version</th>
+    </tr>
+    <tr>
+        <td><code>curl</code></td>
+        <td>CVE-2026-92392</td>
+        <td>HIGH</td>
+        <td>8.22.0-r0</td>
+        <td>8.23.0-r0</td>
+    </tr>
+    <tr>
+        <td><code>libcurl</code></td>
+        <td>CVE-2026-92392</td>
+        <td>HIGH</td>
+        <td>8.22.0-r0</td>
+        <td>8.23.0-r0</td>
+    </tr>
+</table>
 <h4>No Misconfigurations found</h4>
 <h2>Image <code>icr.io/ibm-finops/agent:v1.0.20</code></h2>
 

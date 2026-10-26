@@ -918,7 +918,7 @@
         <td>CVE-2026-84782</td>
         <td>HIGH</td>
         <td>3.0.16-1~deb12u1</td>
-        <td></td>
+        <td>3.0.22-1~deb12u2</td>
     </tr>
     <tr>
         <td><code>libsystemd0</code></td>
@@ -1100,7 +1100,7 @@
         <td>CVE-2026-84782</td>
         <td>HIGH</td>
         <td>3.0.16-1~deb12u1</td>
-        <td></td>
+        <td>3.0.22-1~deb12u2</td>
     </tr>
     <tr>
         <td><code>perl</code></td>
@@ -3500,7 +3500,7 @@
         <td>CVE-2026-84782</td>
         <td>HIGH</td>
         <td>3.0.15-1~deb12u1</td>
-        <td></td>
+        <td>3.0.22-1~deb12u2</td>
     </tr>
     <tr>
         <td><code>libsystemd0</code></td>
@@ -3682,7 +3682,7 @@
         <td>CVE-2026-84782</td>
         <td>HIGH</td>
         <td>3.0.15-1~deb12u1</td>
-        <td></td>
+        <td>3.0.22-1~deb12u2</td>
     </tr>
     <tr>
         <td><code>perl</code></td>

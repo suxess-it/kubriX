@@ -89,7 +89,7 @@
 <h2>Image <code>docker.io/nginxinc/nginx-unprivileged:1.31-alpine</code></h2>
 
 <h3>Target <code>docker.io/nginxinc/nginx-unprivileged:1.31-alpine (alpine 3.24.2)</code></h3>
-<h4>Vulnerabilities (1)</h4>
+<h4>Vulnerabilities (3)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -104,6 +104,20 @@
         <td>HIGH</td>
         <td>1.2.0-r1</td>
         <td>1.2.1-r0</td>
+    </tr>
+    <tr>
+        <td><code>curl</code></td>
+        <td>CVE-2026-92392</td>
+        <td>HIGH</td>
+        <td>8.22.0-r0</td>
+        <td>8.23.0-r0</td>
+    </tr>
+    <tr>
+        <td><code>libcurl</code></td>
+        <td>CVE-2026-92392</td>
+        <td>HIGH</td>
+        <td>8.22.0-r0</td>
+        <td>8.23.0-r0</td>
     </tr>
 </table>
 <h4>No Misconfigurations found</h4>

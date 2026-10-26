@@ -196,7 +196,7 @@
 <h2>Image <code>docker.io/nginxinc/nginx-unprivileged:1.29-alpine</code></h2>
 
 <h3>Target <code>docker.io/nginxinc/nginx-unprivileged:1.29-alpine (alpine 3.23.4)</code></h3>
-<h4>Vulnerabilities (45)</h4>
+<h4>Vulnerabilities (47)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -284,6 +284,13 @@
     </tr>
     <tr>
         <td><code>curl</code></td>
+        <td>CVE-2026-92392</td>
+        <td>HIGH</td>
+        <td>8.17.0-r1</td>
+        <td>8.23.0-r0</td>
+    </tr>
+    <tr>
+        <td><code>curl</code></td>
         <td>CVE-2026-9547</td>
         <td>HIGH</td>
         <td>8.17.0-r1</td>
@@ -365,6 +372,13 @@
         <td>HIGH</td>
         <td>8.17.0-r1</td>
         <td>8.22.0-r0</td>
+    </tr>
+    <tr>
+        <td><code>libcurl</code></td>
+        <td>CVE-2026-92392</td>
+        <td>HIGH</td>
+        <td>8.17.0-r1</td>
+        <td>8.23.0-r0</td>
     </tr>
     <tr>
         <td><code>libcurl</code></td>

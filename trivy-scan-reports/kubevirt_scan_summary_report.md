@@ -468,7 +468,7 @@
         <td>CVE-2026-84782</td>
         <td>HIGH</td>
         <td>3.0.13-1~deb12u1</td>
-        <td></td>
+        <td>3.0.22-1~deb12u2</td>
     </tr>
 </table>
 <h4>No Misconfigurations found</h4>

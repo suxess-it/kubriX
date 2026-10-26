@@ -2847,7 +2847,7 @@
 <h2>Image <code>docker.io/kubeshop/testkube-api-server:2.14.2</code></h2>
 
 <h3>Target <code>docker.io/kubeshop/testkube-api-server:2.14.2 (alpine 3.24.2)</code></h3>
-<h4>Vulnerabilities (2)</h4>
+<h4>Vulnerabilities (3)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -2862,6 +2862,13 @@
         <td>HIGH</td>
         <td>1.2.0-r1</td>
         <td>1.2.1-r0</td>
+    </tr>
+    <tr>
+        <td><code>libcurl</code></td>
+        <td>CVE-2026-92392</td>
+        <td>HIGH</td>
+        <td>8.22.0-r0</td>
+        <td>8.23.0-r0</td>
     </tr>
     <tr>
         <td><code>libexpat</code></td>
@@ -2922,7 +2929,7 @@
 <h2>Image <code>docker.io/kubeshop/testkube-kubectl:1.37.1</code></h2>
 
 <h3>Target <code>docker.io/kubeshop/testkube-kubectl:1.37.1 (alpine 3.24.2)</code></h3>
-<h4>Vulnerabilities (1)</h4>
+<h4>Vulnerabilities (3)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -2937,6 +2944,20 @@
         <td>HIGH</td>
         <td>1.2.0-r1</td>
         <td>1.2.1-r0</td>
+    </tr>
+    <tr>
+        <td><code>curl</code></td>
+        <td>CVE-2026-92392</td>
+        <td>HIGH</td>
+        <td>8.22.0-r0</td>
+        <td>8.23.0-r0</td>
+    </tr>
+    <tr>
+        <td><code>libcurl</code></td>
+        <td>CVE-2026-92392</td>
+        <td>HIGH</td>
+        <td>8.22.0-r0</td>
+        <td>8.23.0-r0</td>
     </tr>
 </table>
 <h4>No Misconfigurations found</h4>
@@ -3354,7 +3375,7 @@
         <td>CVE-2026-84782</td>
         <td>HIGH</td>
         <td>3.0.20-1~deb12u2</td>
-        <td></td>
+        <td>3.0.22-1~deb12u2</td>
     </tr>
     <tr>
         <td><code>libsystemd0</code></td>
@@ -3480,7 +3501,7 @@
         <td>CVE-2026-84782</td>
         <td>HIGH</td>
         <td>3.0.20-1~deb12u2</td>
-        <td></td>
+        <td>3.0.22-1~deb12u2</td>
     </tr>
     <tr>
         <td><code>perl-base</code></td>
