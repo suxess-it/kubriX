@@ -2046,7 +2046,7 @@
         <td>GHSA-6q48-6c7w-9gw2</td>
         <td>CRITICAL</td>
         <td>2025.10.5</td>
-        <td>2026.10.19</td>
+        <td>2026.10.18</td>
     </tr>
     <tr>
         <td><code>jaraco.context</code></td>

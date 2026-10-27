@@ -1609,7 +1609,7 @@
         <td>GHSA-6q48-6c7w-9gw2</td>
         <td>CRITICAL</td>
         <td>2025.1.31</td>
-        <td>2026.10.19</td>
+        <td>2026.10.18</td>
     </tr>
     <tr>
         <td><code>ecdsa</code></td>
@@ -4002,7 +4002,7 @@
         <td>GHSA-6q48-6c7w-9gw2</td>
         <td>CRITICAL</td>
         <td>2025.1.31</td>
-        <td>2026.10.19</td>
+        <td>2026.10.18</td>
     </tr>
     <tr>
         <td><code>h11</code></td>

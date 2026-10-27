@@ -757,14 +757,14 @@
         <td>GHSA-6q48-6c7w-9gw2</td>
         <td>CRITICAL</td>
         <td>2026.7.22</td>
-        <td>2026.10.19</td>
+        <td>2026.10.18</td>
     </tr>
     <tr>
         <td><code>certifi</code></td>
         <td>GHSA-6q48-6c7w-9gw2</td>
         <td>CRITICAL</td>
         <td>2026.6.17</td>
-        <td>2026.10.19</td>
+        <td>2026.10.18</td>
     </tr>
     <tr>
         <td><code>msgpack</code></td>
