@@ -4015,7 +4015,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>opt/bitnami/common/bin/minio</code></h3>
-<h4>Vulnerabilities (73)</h4>
+<h4>Vulnerabilities (74)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -4044,6 +4044,13 @@
         <td>HIGH</td>
         <td>v1.1.1</td>
         <td>1.1.2</td>
+    </tr>
+    <tr>
+        <td><code>github.com/go-jose/go-jose/v4</code></td>
+        <td>CVE-2026-116587</td>
+        <td>HIGH</td>
+        <td>v4.1.3</td>
+        <td>4.1.6</td>
     </tr>
     <tr>
         <td><code>github.com/go-jose/go-jose/v4</code></td>

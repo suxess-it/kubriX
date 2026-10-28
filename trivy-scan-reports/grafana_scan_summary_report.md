@@ -45,7 +45,7 @@
 <h4>No Vulnerabilities found</h4>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>usr/share/grafana/bin/grafana</code></h3>
-<h4>Vulnerabilities (6)</h4>
+<h4>Vulnerabilities (7)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -88,6 +88,13 @@
         <td>HIGH</td>
         <td>v0.144.0</td>
         <td>0.149.0</td>
+    </tr>
+    <tr>
+        <td><code>github.com/go-jose/go-jose/v4</code></td>
+        <td>CVE-2026-116587</td>
+        <td>HIGH</td>
+        <td>v4.1.4</td>
+        <td>4.1.6</td>
     </tr>
     <tr>
         <td><code>stdlib</code></td>
@@ -743,7 +750,7 @@
 <h4>No Vulnerabilities found</h4>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>Python</code></h3>
-<h4>Vulnerabilities (6)</h4>
+<h4>Vulnerabilities (7)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -765,6 +772,13 @@
         <td>CRITICAL</td>
         <td>2026.6.17</td>
         <td>2026.10.18</td>
+    </tr>
+    <tr>
+        <td><code>msgpack</code></td>
+        <td>CVE-2026-114613</td>
+        <td>HIGH</td>
+        <td>1.1.2</td>
+        <td>1.2.3</td>
     </tr>
     <tr>
         <td><code>msgpack</code></td>

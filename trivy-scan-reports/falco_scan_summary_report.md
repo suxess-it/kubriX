@@ -952,7 +952,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>usr/bin/falcoctl</code></h3>
-<h4>Vulnerabilities (63)</h4>
+<h4>Vulnerabilities (64)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -981,6 +981,13 @@
         <td>HIGH</td>
         <td>v28.5.2+incompatible</td>
         <td></td>
+    </tr>
+    <tr>
+        <td><code>github.com/go-jose/go-jose/v4</code></td>
+        <td>CVE-2026-116587</td>
+        <td>HIGH</td>
+        <td>v4.1.3</td>
+        <td>4.1.6</td>
     </tr>
     <tr>
         <td><code>github.com/go-jose/go-jose/v4</code></td>
@@ -2003,7 +2010,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>app/falcosidekick</code></h3>
-<h4>Vulnerabilities (68)</h4>
+<h4>Vulnerabilities (69)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -2025,6 +2032,13 @@
         <td>HIGH</td>
         <td>v0.21.0</td>
         <td>0.24.0</td>
+    </tr>
+    <tr>
+        <td><code>github.com/go-jose/go-jose/v4</code></td>
+        <td>CVE-2026-116587</td>
+        <td>HIGH</td>
+        <td>v4.1.1</td>
+        <td>4.1.6</td>
     </tr>
     <tr>
         <td><code>github.com/go-jose/go-jose/v4</code></td>
