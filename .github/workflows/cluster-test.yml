@@ -412,6 +412,24 @@ jobs:
             kind load docker-image "$img" --name kubrix-cluster
           done
     
+      # The GitHub App token action retries quickly; wait out longer TLS outages first.
+      - name: Wait for GitHub API TLS connectivity
+        shell: bash
+        run: |
+          set -euo pipefail
+          for attempt in 1 2 3; do
+            if curl --silent --show-error --fail --connect-timeout 10 --max-time 20 \\
+              --output /dev/null https://api.github.com/rate_limit; then
+              echo "GitHub API connectivity OK (attempt ${attempt})"
+              exit 0
+            fi
+            if (( attempt == 3 )); then
+              echo "::error::GitHub API TLS connectivity unavailable after three attempts"
+              exit 1
+            fi
+            if (( attempt == 1 )); then sleep 15; else sleep 45; fi
+          done
+
       - name: Create repository lifecycle token
         id: repo-create-token
         uses: actions/create-github-app-token@v3
