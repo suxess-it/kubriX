@@ -108,7 +108,7 @@
     <tr>
         <td><code>brotli-libs</code></td>
         <td>CVE-2026-111497</td>
-        <td>HIGH</td>
+        <td>CRITICAL</td>
         <td>1.2.0-r1</td>
         <td>1.2.1-r0</td>
     </tr>

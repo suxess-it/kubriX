@@ -1,7 +1,23 @@
 <h2>Image <code>docker.io/kubeshop/bitnami-mongodb:8.3.11</code></h2>
 
 <h3>Target <code>docker.io/kubeshop/bitnami-mongodb:8.3.11 (ubuntu 24.04)</code></h3>
-<h4>No Vulnerabilities found</h4>
+<h4>Vulnerabilities (1)</h4>
+<table>
+    <tr>
+        <th>Package</th>
+        <th>ID</th>
+        <th>Severity</th>
+        <th>Installed Version</th>
+        <th>Fixed Version</th>
+    </tr>
+    <tr>
+        <td><code>libbrotli1</code></td>
+        <td>CVE-2026-111497</td>
+        <td>HIGH</td>
+        <td>1.1.0-2build2</td>
+        <td>1.1.0-2ubuntu0.1</td>
+    </tr>
+</table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>Node.js</code></h3>
 <h4>Vulnerabilities (3)</h4>
@@ -2859,7 +2875,7 @@
     <tr>
         <td><code>brotli-libs</code></td>
         <td>CVE-2026-111497</td>
-        <td>HIGH</td>
+        <td>CRITICAL</td>
         <td>1.2.0-r1</td>
         <td>1.2.1-r0</td>
     </tr>
@@ -2941,7 +2957,7 @@
     <tr>
         <td><code>brotli-libs</code></td>
         <td>CVE-2026-111497</td>
-        <td>HIGH</td>
+        <td>CRITICAL</td>
         <td>1.2.0-r1</td>
         <td>1.2.1-r0</td>
     </tr>
@@ -3177,7 +3193,7 @@
     <tr>
         <td><code>libbrotli1</code></td>
         <td>CVE-2026-111497</td>
-        <td>HIGH</td>
+        <td>CRITICAL</td>
         <td>1.0.9-2+b6</td>
         <td>1.0.9-2+deb12u1</td>
     </tr>

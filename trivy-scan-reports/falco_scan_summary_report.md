@@ -784,14 +784,14 @@
     <tr>
         <td><code>libbrotlicommon1</code></td>
         <td>CVE-2026-111497</td>
-        <td>HIGH</td>
+        <td>CRITICAL</td>
         <td>1.2.0-r2</td>
         <td>1.2.0-r7</td>
     </tr>
     <tr>
         <td><code>libbrotlidec1</code></td>
         <td>CVE-2026-111497</td>
-        <td>HIGH</td>
+        <td>CRITICAL</td>
         <td>1.2.0-r2</td>
         <td>1.2.0-r7</td>
     </tr>
@@ -1417,7 +1417,7 @@
 <h4>No Vulnerabilities found</h4>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>app/falcosidekick-ui</code></h3>
-<h4>Vulnerabilities (60)</h4>
+<h4>Vulnerabilities (61)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -1435,10 +1435,31 @@
     </tr>
     <tr>
         <td><code>github.com/labstack/echo/v4</code></td>
-        <td>GHSA-cxf3-9h37-7rr8</td>
+        <td>CVE-2026-118264</td>
         <td>CRITICAL</td>
         <td>v4.11.1</td>
         <td>4.16.1</td>
+    </tr>
+    <tr>
+        <td><code>github.com/labstack/echo/v4</code></td>
+        <td>CVE-2026-118260</td>
+        <td>HIGH</td>
+        <td>v4.11.1</td>
+        <td>4.16.1</td>
+    </tr>
+    <tr>
+        <td><code>github.com/labstack/echo/v4</code></td>
+        <td>CVE-2026-118261</td>
+        <td>HIGH</td>
+        <td>v4.11.1</td>
+        <td>4.16.1</td>
+    </tr>
+    <tr>
+        <td><code>github.com/labstack/echo/v4</code></td>
+        <td>CVE-2026-118650</td>
+        <td>HIGH</td>
+        <td>v4.11.1</td>
+        <td>4.16.0</td>
     </tr>
     <tr>
         <td><code>github.com/labstack/echo/v4</code></td>
@@ -1446,20 +1467,6 @@
         <td>HIGH</td>
         <td>v4.11.1</td>
         <td>4.15.3</td>
-    </tr>
-    <tr>
-        <td><code>github.com/labstack/echo/v4</code></td>
-        <td>GHSA-f48p-c9v4-h7xv</td>
-        <td>HIGH</td>
-        <td>v4.11.1</td>
-        <td>4.16.1</td>
-    </tr>
-    <tr>
-        <td><code>github.com/labstack/echo/v4</code></td>
-        <td>GHSA-h7wr-284f-5qvc</td>
-        <td>HIGH</td>
-        <td>v4.11.1</td>
-        <td>4.16.1</td>
     </tr>
     <tr>
         <td><code>golang.org/x/crypto</code></td>

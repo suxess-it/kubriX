@@ -188,7 +188,7 @@
     <tr>
         <td><code>libbrotli1</code></td>
         <td>CVE-2026-111497</td>
-        <td>HIGH</td>
+        <td>CRITICAL</td>
         <td>1.0.9-2+b6</td>
         <td>1.0.9-2+deb12u1</td>
     </tr>
@@ -2095,7 +2095,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>Node.js</code></h3>
-<h4>Vulnerabilities (60)</h4>
+<h4>Vulnerabilities (59)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -2222,13 +2222,6 @@
         <td>HIGH</td>
         <td>10.3.10</td>
         <td>11.1.0, 10.5.0</td>
-    </tr>
-    <tr>
-        <td><code>http-cache-semantics</code></td>
-        <td>CVE-2026-93748</td>
-        <td>HIGH</td>
-        <td>4.1.1</td>
-        <td></td>
     </tr>
     <tr>
         <td><code>ip</code></td>
@@ -2910,7 +2903,7 @@
     <tr>
         <td><code>libbrotli1</code></td>
         <td>CVE-2026-111497</td>
-        <td>HIGH</td>
+        <td>CRITICAL</td>
         <td>1.0.9-2+b6</td>
         <td>1.0.9-2+deb12u1</td>
     </tr>

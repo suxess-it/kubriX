@@ -27,21 +27,21 @@
     <tr>
         <td><code>libbrotlicommon1</code></td>
         <td>CVE-2026-111497</td>
-        <td>HIGH</td>
+        <td>CRITICAL</td>
         <td>1.2.0-r6</td>
         <td>1.2.0-r7</td>
     </tr>
     <tr>
         <td><code>libbrotlidec1</code></td>
         <td>CVE-2026-111497</td>
-        <td>HIGH</td>
+        <td>CRITICAL</td>
         <td>1.2.0-r6</td>
         <td>1.2.0-r7</td>
     </tr>
     <tr>
         <td><code>libbrotlienc1</code></td>
         <td>CVE-2026-111497</td>
-        <td>HIGH</td>
+        <td>CRITICAL</td>
         <td>1.2.0-r6</td>
         <td>1.2.0-r7</td>
     </tr>
