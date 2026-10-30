@@ -57,7 +57,7 @@
 <h2>Image <code>ghcr.io/suxess-it/sx-backstage:v1.51.2</code></h2>
 
 <h3>Target <code>ghcr.io/suxess-it/sx-backstage:v1.51.2 (wolfi 20230201)</code></h3>
-<h4>Vulnerabilities (27)</h4>
+<h4>Vulnerabilities (30)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -208,6 +208,13 @@
     </tr>
     <tr>
         <td><code>py3-pip-wheel</code></td>
+        <td>CVE-2026-114613</td>
+        <td>HIGH</td>
+        <td>26.2.1-r0</td>
+        <td>26.2.2-r1</td>
+    </tr>
+    <tr>
+        <td><code>py3-pip-wheel</code></td>
         <td>CVE-2026-97687</td>
         <td>HIGH</td>
         <td>26.2.1-r0</td>
@@ -222,6 +229,13 @@
     </tr>
     <tr>
         <td><code>py3.13-pip</code></td>
+        <td>CVE-2026-114613</td>
+        <td>HIGH</td>
+        <td>26.2.1-r0</td>
+        <td>26.2.2-r1</td>
+    </tr>
+    <tr>
+        <td><code>py3.13-pip</code></td>
         <td>CVE-2026-97687</td>
         <td>HIGH</td>
         <td>26.2.1-r0</td>
@@ -233,6 +247,13 @@
         <td>HIGH</td>
         <td>26.2.1-r0</td>
         <td>26.2.1-r2</td>
+    </tr>
+    <tr>
+        <td><code>py3.13-pip-base</code></td>
+        <td>CVE-2026-114613</td>
+        <td>HIGH</td>
+        <td>26.2.1-r0</td>
+        <td>26.2.2-r1</td>
     </tr>
     <tr>
         <td><code>py3.13-pip-base</code></td>

@@ -83,7 +83,7 @@
         <td>CVE-2026-91415</td>
         <td>HIGH</td>
         <td>1:25.0.4.1.1-1.1.el9</td>
-        <td></td>
+        <td>1:25.0.5.0.8-1.0.el9</td>
     </tr>
     <tr>
         <td><code>java-25-openjdk-headless</code></td>
@@ -97,7 +97,7 @@
         <td>CVE-2026-91415</td>
         <td>HIGH</td>
         <td>1:25.0.4.1.1-1.1.el9</td>
-        <td></td>
+        <td>1:25.0.5.0.8-1.0.el9</td>
     </tr>
 </table>
 <h4>No Misconfigurations found</h4>
