@@ -40,3 +40,35 @@ No organization permissions or webhook subscriptions are requested. Individual w
 Workflow definitions can remain identical between OSS and Prime; the repository variable and secret select the App. New credentials apply to newly started jobs, not tokens already issued to running jobs.
 
 Never commit private keys, client secrets, webhook secrets or access tokens. Store the private key only in the repository's Actions secret or your secret-management system. A manifest grants no access until the App is registered and its installation authorized.
+
+## Public OSS to Prime batch sync
+
+The [upstream sync](../workflows/sync-upstream.yaml) and
+[release-tag sync](../workflows/sync-release-tag.yaml) workflows support only
+`suxess-it/kubriX` → `suxess-it/kubriX-prime` (public source, private target).
+Their jobs are skipped in OSS and other repositories. This is separate from
+the per-PR `notify-kubrix-prime` / `sync-from-kubrix` flow.
+
+Use the existing sync App, installed on `suxess-it/kubriX-prime`, with Contents,
+Pull requests and Workflows read/write. In Prime, provide:
+
+- Actions variable `KUBRIX_CI_SYNC_APP_CLIENT_ID`.
+- Actions secret `KUBRIX_CI_SYNC_APP_PRIVATE_KEY` containing the PEM private key.
+
+The public OSS repository is fetched anonymously. The App token is generated
+for Prime only and used for cloning Prime, branch pushes and PR creation.
+Tokens stay in the process environment; remote URLs and persistent Git config
+contain no credentials. The token is revoked when the job ends.
+`SYNC_TOKEN`, `UPSTREAM_TOKEN` and the `UPSTREAM_REPO` variable are no longer used
+by these workflows. Private or customer-specific upstreams are not supported.
+
+`sync-upstream.yaml` runs manually. `sync-release-tag.yaml` keeps its daily
+18:01 UTC schedule and manual trigger, but its job runs only when the Prime
+Actions variable `SYNC_RELEASE_TAG` is `true`. Both create PRs against Prime
+`main`, using the existing `from-upstream` / `from-upstream-release` branches.
+Neither workflow merges a PR automatically. Existing update/tag selection and
+conflict behavior are unchanged.
+
+After propagation to the relevant branches, old PAT secrets can be removed
+from these workflows' configuration. Revoke a PAT only after checking any
+other consumers that may share its value.
