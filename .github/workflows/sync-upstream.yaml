@@ -7,30 +7,51 @@ on:
   # Allows manual workflow run (must in default branch to work)
   workflow_dispatch:
 
-# checkout is not done via checkout action because then 
-# using different tokens for upstream and current repo is not possible
+# Read the public OSS upstream anonymously; write only to Prime with an App token.
+permissions: {}
+
 jobs:
   build:
     runs-on: ubuntu-latest
-    if: ${{ vars.UPSTREAM_REPO != '' }}    
+    if: ${{ github.repository == 'suxess-it/kubriX-prime' }}
+    env:
+      UPSTREAM_REPO: suxess-it/kubriX
+      GIT_TERMINAL_PROMPT: "0"
+      GIT_CONFIG_COUNT: "2"
+      GIT_CONFIG_KEY_0: credential.helper
+      GIT_CONFIG_VALUE_0: ""
+      GIT_CONFIG_KEY_1: credential.https://github.com.helper
+      GIT_CONFIG_VALUE_1: >-
+        !f() { if [ "$1" = get ] && [ -n "$GIT_APP_TOKEN" ]; then printf 'username=x-access-token\npassword=%s\n' "$GIT_APP_TOKEN"; fi; }; f
     steps:
+      - name: Create Prime sync token
+        id: sync-token
+        uses: actions/create-github-app-token@v3
+        with:
+          client-id: ${{ vars.KUBRIX_CI_SYNC_APP_CLIENT_ID }}
+          private-key: ${{ secrets.KUBRIX_CI_SYNC_APP_PRIVATE_KEY }}
+          owner: suxess-it
+          repositories: kubriX-prime
+          permission-contents: write
+          permission-pull-requests: write
+          permission-workflows: write
+
       - name: checkout and fetch upstream commits
         shell: bash
         env:
-          SYNC_TOKEN: ${{ secrets.SYNC_TOKEN }}
-          UPSTREAM_TOKEN: ${{ secrets.UPSTREAM_TOKEN }}
-          UPSTREAM_REPO: ${{ vars.UPSTREAM_REPO }}
+          SYNC_APP_TOKEN: ${{ steps.sync-token.outputs.token }}
         run: |
-          git clone https://${SYNC_TOKEN}@github.com/${GITHUB_REPOSITORY}.git .
+          GIT_APP_TOKEN="$SYNC_APP_TOKEN" git clone "https://github.com/${GITHUB_REPOSITORY}.git" .
           git checkout main
-          git remote add upstream https://${UPSTREAM_TOKEN}@github.com/${UPSTREAM_REPO}.git
-          git fetch upstream
+          git remote add upstream "https://github.com/${UPSTREAM_REPO}.git"
+          GIT_APP_TOKEN="" git fetch upstream
           git switch -c from-upstream upstream/main
           
       - name: create PR
         shell: bash
         env:
-          GH_TOKEN: ${{ secrets.SYNC_TOKEN }}
+          GH_TOKEN: ${{ steps.sync-token.outputs.token }}
+          GIT_APP_TOKEN: ${{ steps.sync-token.outputs.token }}
         run: |
           git remote -v
           # check if from-upstream branch already exists and pull from it to get all new commits from origin (e.g. list-images or trivy-scan commits)
