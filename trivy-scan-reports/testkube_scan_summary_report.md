@@ -3034,7 +3034,7 @@
 <h2>Image <code>docker.io/kubeshop/testkube-minio:2025.10</code></h2>
 
 <h3>Target <code>docker.io/kubeshop/testkube-minio:2025.10 (debian 12.14)</code></h3>
-<h4>Vulnerabilities (89)</h4>
+<h4>Vulnerabilities (81)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -3067,13 +3067,6 @@
     <tr>
         <td><code>bsdutils</code></td>
         <td>CVE-2026-78408</td>
-        <td>HIGH</td>
-        <td>1:2.38.1-5+deb12u3</td>
-        <td></td>
-    </tr>
-    <tr>
-        <td><code>bsdutils</code></td>
-        <td>CVE-2026-78409</td>
         <td>HIGH</td>
         <td>1:2.38.1-5+deb12u3</td>
         <td></td>
@@ -3178,13 +3171,6 @@
     </tr>
     <tr>
         <td><code>libblkid1</code></td>
-        <td>CVE-2026-78409</td>
-        <td>HIGH</td>
-        <td>2.38.1-5+deb12u3</td>
-        <td></td>
-    </tr>
-    <tr>
-        <td><code>libblkid1</code></td>
         <td>CVE-2026-78410</td>
         <td>HIGH</td>
         <td>2.38.1-5+deb12u3</td>
@@ -3283,13 +3269,6 @@
     </tr>
     <tr>
         <td><code>libmount1</code></td>
-        <td>CVE-2026-78409</td>
-        <td>HIGH</td>
-        <td>2.38.1-5+deb12u3</td>
-        <td></td>
-    </tr>
-    <tr>
-        <td><code>libmount1</code></td>
         <td>CVE-2026-78410</td>
         <td>HIGH</td>
         <td>2.38.1-5+deb12u3</td>
@@ -3354,13 +3333,6 @@
     <tr>
         <td><code>libsmartcols1</code></td>
         <td>CVE-2026-78408</td>
-        <td>HIGH</td>
-        <td>2.38.1-5+deb12u3</td>
-        <td></td>
-    </tr>
-    <tr>
-        <td><code>libsmartcols1</code></td>
-        <td>CVE-2026-78409</td>
         <td>HIGH</td>
         <td>2.38.1-5+deb12u3</td>
         <td></td>
@@ -3444,13 +3416,6 @@
     </tr>
     <tr>
         <td><code>libuuid1</code></td>
-        <td>CVE-2026-78409</td>
-        <td>HIGH</td>
-        <td>2.38.1-5+deb12u3</td>
-        <td></td>
-    </tr>
-    <tr>
-        <td><code>libuuid1</code></td>
         <td>CVE-2026-78410</td>
         <td>HIGH</td>
         <td>2.38.1-5+deb12u3</td>
@@ -3480,13 +3445,6 @@
     <tr>
         <td><code>mount</code></td>
         <td>CVE-2026-78408</td>
-        <td>HIGH</td>
-        <td>2.38.1-5+deb12u3</td>
-        <td></td>
-    </tr>
-    <tr>
-        <td><code>mount</code></td>
-        <td>CVE-2026-78409</td>
         <td>HIGH</td>
         <td>2.38.1-5+deb12u3</td>
         <td></td>
@@ -3605,13 +3563,6 @@
     </tr>
     <tr>
         <td><code>util-linux</code></td>
-        <td>CVE-2026-78409</td>
-        <td>HIGH</td>
-        <td>2.38.1-5+deb12u3</td>
-        <td></td>
-    </tr>
-    <tr>
-        <td><code>util-linux</code></td>
         <td>CVE-2026-78410</td>
         <td>HIGH</td>
         <td>2.38.1-5+deb12u3</td>
@@ -3641,13 +3592,6 @@
     <tr>
         <td><code>util-linux-extra</code></td>
         <td>CVE-2026-78408</td>
-        <td>HIGH</td>
-        <td>2.38.1-5+deb12u3</td>
-        <td></td>
-    </tr>
-    <tr>
-        <td><code>util-linux-extra</code></td>
-        <td>CVE-2026-78409</td>
         <td>HIGH</td>
         <td>2.38.1-5+deb12u3</td>
         <td></td>

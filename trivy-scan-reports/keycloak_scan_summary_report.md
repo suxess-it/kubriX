@@ -75,29 +75,29 @@
         <td><code>java-25-openjdk-crypto-adapter</code></td>
         <td>CVE-2026-91403</td>
         <td>HIGH</td>
-        <td>1:25.0.4.1.1-1.1.el9</td>
-        <td></td>
-    </tr>
-    <tr>
-        <td><code>java-25-openjdk-crypto-adapter</code></td>
-        <td>CVE-2026-91415</td>
-        <td>HIGH</td>
-        <td>1:25.0.4.1.1-1.1.el9</td>
         <td>1:25.0.5.0.8-1.0.el9</td>
+        <td></td>
     </tr>
     <tr>
         <td><code>java-25-openjdk-headless</code></td>
         <td>CVE-2026-91403</td>
         <td>HIGH</td>
-        <td>1:25.0.4.1.1-1.1.el9</td>
+        <td>1:25.0.5.0.8-1.0.el9</td>
         <td></td>
     </tr>
     <tr>
-        <td><code>java-25-openjdk-headless</code></td>
-        <td>CVE-2026-91415</td>
+        <td><code>sqlite-libs</code></td>
+        <td>CVE-2026-119373</td>
         <td>HIGH</td>
-        <td>1:25.0.4.1.1-1.1.el9</td>
-        <td>1:25.0.5.0.8-1.0.el9</td>
+        <td>3.34.1-11.el9_8</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>sqlite-libs</code></td>
+        <td>CVE-2026-119586</td>
+        <td>HIGH</td>
+        <td>3.34.1-11.el9_8</td>
+        <td></td>
     </tr>
 </table>
 <h4>No Misconfigurations found</h4>

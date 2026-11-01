@@ -1,7 +1,7 @@
 <h2>Image <code>docker.io/dserio83/velero-api:0.3.1</code></h2>
 
 <h3>Target <code>docker.io/dserio83/velero-api:0.3.1 (debian 12.11)</code></h3>
-<h4>Vulnerabilities (220)</h4>
+<h4>Vulnerabilities (214)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -34,13 +34,6 @@
     <tr>
         <td><code>bsdutils</code></td>
         <td>CVE-2026-78408</td>
-        <td>HIGH</td>
-        <td>1:2.38.1-5+deb12u3</td>
-        <td></td>
-    </tr>
-    <tr>
-        <td><code>bsdutils</code></td>
-        <td>CVE-2026-78409</td>
         <td>HIGH</td>
         <td>1:2.38.1-5+deb12u3</td>
         <td></td>
@@ -167,13 +160,6 @@
     <tr>
         <td><code>libblkid1</code></td>
         <td>CVE-2026-78408</td>
-        <td>HIGH</td>
-        <td>2.38.1-5+deb12u3</td>
-        <td></td>
-    </tr>
-    <tr>
-        <td><code>libblkid1</code></td>
-        <td>CVE-2026-78409</td>
         <td>HIGH</td>
         <td>2.38.1-5+deb12u3</td>
         <td></td>
@@ -468,13 +454,6 @@
     <tr>
         <td><code>libmount1</code></td>
         <td>CVE-2026-78408</td>
-        <td>HIGH</td>
-        <td>2.38.1-5+deb12u3</td>
-        <td></td>
-    </tr>
-    <tr>
-        <td><code>libmount1</code></td>
-        <td>CVE-2026-78409</td>
         <td>HIGH</td>
         <td>2.38.1-5+deb12u3</td>
         <td></td>
@@ -803,13 +782,6 @@
     </tr>
     <tr>
         <td><code>libsmartcols1</code></td>
-        <td>CVE-2026-78409</td>
-        <td>HIGH</td>
-        <td>2.38.1-5+deb12u3</td>
-        <td></td>
-    </tr>
-    <tr>
-        <td><code>libsmartcols1</code></td>
         <td>CVE-2026-78410</td>
         <td>HIGH</td>
         <td>2.38.1-5+deb12u3</td>
@@ -839,6 +811,20 @@
     <tr>
         <td><code>libsqlite3-0</code></td>
         <td>CVE-2026-11824</td>
+        <td>HIGH</td>
+        <td>3.40.1-2+deb12u1</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>libsqlite3-0</code></td>
+        <td>CVE-2026-119373</td>
+        <td>HIGH</td>
+        <td>3.40.1-2+deb12u1</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>libsqlite3-0</code></td>
+        <td>CVE-2026-119586</td>
         <td>HIGH</td>
         <td>3.40.1-2+deb12u1</td>
         <td></td>
@@ -971,13 +957,6 @@
     </tr>
     <tr>
         <td><code>libuuid1</code></td>
-        <td>CVE-2026-78409</td>
-        <td>HIGH</td>
-        <td>2.38.1-5+deb12u3</td>
-        <td></td>
-    </tr>
-    <tr>
-        <td><code>libuuid1</code></td>
         <td>CVE-2026-78410</td>
         <td>HIGH</td>
         <td>2.38.1-5+deb12u3</td>
@@ -1007,13 +986,6 @@
     <tr>
         <td><code>mount</code></td>
         <td>CVE-2026-78408</td>
-        <td>HIGH</td>
-        <td>2.38.1-5+deb12u3</td>
-        <td></td>
-    </tr>
-    <tr>
-        <td><code>mount</code></td>
-        <td>CVE-2026-78409</td>
         <td>HIGH</td>
         <td>2.38.1-5+deb12u3</td>
         <td></td>
@@ -1489,13 +1461,6 @@
     </tr>
     <tr>
         <td><code>util-linux</code></td>
-        <td>CVE-2026-78409</td>
-        <td>HIGH</td>
-        <td>2.38.1-5+deb12u3</td>
-        <td></td>
-    </tr>
-    <tr>
-        <td><code>util-linux</code></td>
         <td>CVE-2026-78410</td>
         <td>HIGH</td>
         <td>2.38.1-5+deb12u3</td>
@@ -1531,13 +1496,6 @@
     </tr>
     <tr>
         <td><code>util-linux-extra</code></td>
-        <td>CVE-2026-78409</td>
-        <td>HIGH</td>
-        <td>2.38.1-5+deb12u3</td>
-        <td></td>
-    </tr>
-    <tr>
-        <td><code>util-linux-extra</code></td>
         <td>CVE-2026-78410</td>
         <td>HIGH</td>
         <td>2.38.1-5+deb12u3</td>
@@ -1553,7 +1511,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>Python</code></h3>
-<h4>Vulnerabilities (28)</h4>
+<h4>Vulnerabilities (33)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -1617,6 +1575,41 @@
         <td>HIGH</td>
         <td>0.19.0</td>
         <td></td>
+    </tr>
+    <tr>
+        <td><code>oauthlib</code></td>
+        <td>CVE-2026-118669</td>
+        <td>HIGH</td>
+        <td>3.2.2</td>
+        <td>4.0.0</td>
+    </tr>
+    <tr>
+        <td><code>pyasn1</code></td>
+        <td>CVE-2026-119194</td>
+        <td>HIGH</td>
+        <td>0.4.6</td>
+        <td>0.6.5</td>
+    </tr>
+    <tr>
+        <td><code>pyasn1</code></td>
+        <td>CVE-2026-119195</td>
+        <td>HIGH</td>
+        <td>0.4.6</td>
+        <td>0.6.5</td>
+    </tr>
+    <tr>
+        <td><code>pyasn1</code></td>
+        <td>CVE-2026-119196</td>
+        <td>HIGH</td>
+        <td>0.4.6</td>
+        <td>0.6.5</td>
+    </tr>
+    <tr>
+        <td><code>pyasn1</code></td>
+        <td>CVE-2026-119197</td>
+        <td>HIGH</td>
+        <td>0.4.6</td>
+        <td>0.6.5</td>
     </tr>
     <tr>
         <td><code>pyasn1</code></td>
@@ -2716,7 +2709,7 @@
 <h2>Image <code>docker.io/dserio83/velero-watchdog:0.1.8</code></h2>
 
 <h3>Target <code>docker.io/dserio83/velero-watchdog:0.1.8 (debian 12.10)</code></h3>
-<h4>Vulnerabilities (178)</h4>
+<h4>Vulnerabilities (172)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -2749,13 +2742,6 @@
     <tr>
         <td><code>bsdutils</code></td>
         <td>CVE-2026-78408</td>
-        <td>HIGH</td>
-        <td>1:2.38.1-5+deb12u3</td>
-        <td></td>
-    </tr>
-    <tr>
-        <td><code>bsdutils</code></td>
-        <td>CVE-2026-78409</td>
         <td>HIGH</td>
         <td>1:2.38.1-5+deb12u3</td>
         <td></td>
@@ -2882,13 +2868,6 @@
     <tr>
         <td><code>libblkid1</code></td>
         <td>CVE-2026-78408</td>
-        <td>HIGH</td>
-        <td>2.38.1-5+deb12u3</td>
-        <td></td>
-    </tr>
-    <tr>
-        <td><code>libblkid1</code></td>
-        <td>CVE-2026-78409</td>
         <td>HIGH</td>
         <td>2.38.1-5+deb12u3</td>
         <td></td>
@@ -3203,13 +3182,6 @@
     </tr>
     <tr>
         <td><code>libmount1</code></td>
-        <td>CVE-2026-78409</td>
-        <td>HIGH</td>
-        <td>2.38.1-5+deb12u3</td>
-        <td></td>
-    </tr>
-    <tr>
-        <td><code>libmount1</code></td>
         <td>CVE-2026-78410</td>
         <td>HIGH</td>
         <td>2.38.1-5+deb12u3</td>
@@ -3378,13 +3350,6 @@
     </tr>
     <tr>
         <td><code>libsmartcols1</code></td>
-        <td>CVE-2026-78409</td>
-        <td>HIGH</td>
-        <td>2.38.1-5+deb12u3</td>
-        <td></td>
-    </tr>
-    <tr>
-        <td><code>libsmartcols1</code></td>
         <td>CVE-2026-78410</td>
         <td>HIGH</td>
         <td>2.38.1-5+deb12u3</td>
@@ -3414,6 +3379,20 @@
     <tr>
         <td><code>libsqlite3-0</code></td>
         <td>CVE-2026-11824</td>
+        <td>HIGH</td>
+        <td>3.40.1-2+deb12u1</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>libsqlite3-0</code></td>
+        <td>CVE-2026-119373</td>
+        <td>HIGH</td>
+        <td>3.40.1-2+deb12u1</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>libsqlite3-0</code></td>
+        <td>CVE-2026-119586</td>
         <td>HIGH</td>
         <td>3.40.1-2+deb12u1</td>
         <td></td>
@@ -3546,13 +3525,6 @@
     </tr>
     <tr>
         <td><code>libuuid1</code></td>
-        <td>CVE-2026-78409</td>
-        <td>HIGH</td>
-        <td>2.38.1-5+deb12u3</td>
-        <td></td>
-    </tr>
-    <tr>
-        <td><code>libuuid1</code></td>
         <td>CVE-2026-78410</td>
         <td>HIGH</td>
         <td>2.38.1-5+deb12u3</td>
@@ -3582,13 +3554,6 @@
     <tr>
         <td><code>mount</code></td>
         <td>CVE-2026-78408</td>
-        <td>HIGH</td>
-        <td>2.38.1-5+deb12u3</td>
-        <td></td>
-    </tr>
-    <tr>
-        <td><code>mount</code></td>
-        <td>CVE-2026-78409</td>
         <td>HIGH</td>
         <td>2.38.1-5+deb12u3</td>
         <td></td>
@@ -3896,13 +3861,6 @@
     </tr>
     <tr>
         <td><code>util-linux</code></td>
-        <td>CVE-2026-78409</td>
-        <td>HIGH</td>
-        <td>2.38.1-5+deb12u3</td>
-        <td></td>
-    </tr>
-    <tr>
-        <td><code>util-linux</code></td>
         <td>CVE-2026-78410</td>
         <td>HIGH</td>
         <td>2.38.1-5+deb12u3</td>
@@ -3938,13 +3896,6 @@
     </tr>
     <tr>
         <td><code>util-linux-extra</code></td>
-        <td>CVE-2026-78409</td>
-        <td>HIGH</td>
-        <td>2.38.1-5+deb12u3</td>
-        <td></td>
-    </tr>
-    <tr>
-        <td><code>util-linux-extra</code></td>
         <td>CVE-2026-78410</td>
         <td>HIGH</td>
         <td>2.38.1-5+deb12u3</td>
@@ -3974,7 +3925,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>Python</code></h3>
-<h4>Vulnerabilities (20)</h4>
+<h4>Vulnerabilities (25)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -4003,6 +3954,41 @@
         <td>CRITICAL</td>
         <td>0.14.0</td>
         <td>0.16.0</td>
+    </tr>
+    <tr>
+        <td><code>oauthlib</code></td>
+        <td>CVE-2026-118669</td>
+        <td>HIGH</td>
+        <td>3.2.2</td>
+        <td>4.0.0</td>
+    </tr>
+    <tr>
+        <td><code>pyasn1</code></td>
+        <td>CVE-2026-119194</td>
+        <td>HIGH</td>
+        <td>0.6.1</td>
+        <td>0.6.5</td>
+    </tr>
+    <tr>
+        <td><code>pyasn1</code></td>
+        <td>CVE-2026-119195</td>
+        <td>HIGH</td>
+        <td>0.6.1</td>
+        <td>0.6.5</td>
+    </tr>
+    <tr>
+        <td><code>pyasn1</code></td>
+        <td>CVE-2026-119196</td>
+        <td>HIGH</td>
+        <td>0.6.1</td>
+        <td>0.6.5</td>
+    </tr>
+    <tr>
+        <td><code>pyasn1</code></td>
+        <td>CVE-2026-119197</td>
+        <td>HIGH</td>
+        <td>0.6.1</td>
+        <td>0.6.5</td>
     </tr>
     <tr>
         <td><code>pyasn1</code></td>

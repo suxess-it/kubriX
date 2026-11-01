@@ -1,7 +1,7 @@
 <h2>Image <code>ghcr.io/akuity/kargo:v1.12.4</code></h2>
 
 <h3>Target <code>ghcr.io/akuity/kargo:v1.12.4 (wolfi 20230201)</code></h3>
-<h4>Vulnerabilities (6)</h4>
+<h4>Vulnerabilities (8)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -12,8 +12,22 @@
     </tr>
     <tr>
         <td><code>ca-certificates</code></td>
+        <td>CVE-2026-91403</td>
+        <td>CRITICAL</td>
+        <td>20260909-r2</td>
+        <td>20260909-r3</td>
+    </tr>
+    <tr>
+        <td><code>ca-certificates</code></td>
         <td>CVE-2026-111943</td>
         <td>HIGH</td>
+        <td>20260909-r2</td>
+        <td>20260909-r3</td>
+    </tr>
+    <tr>
+        <td><code>ca-certificates-bundle</code></td>
+        <td>CVE-2026-91403</td>
+        <td>CRITICAL</td>
         <td>20260909-r2</td>
         <td>20260909-r3</td>
     </tr>

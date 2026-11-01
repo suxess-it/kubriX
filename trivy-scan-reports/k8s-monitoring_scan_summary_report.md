@@ -1,7 +1,7 @@
 <h2>Image <code>ghcr.io/grafana/alloy-operator:1.14.3</code></h2>
 
 <h3>Target <code>ghcr.io/grafana/alloy-operator:1.14.3 (redhat 9.8)</code></h3>
-<h4>Vulnerabilities (37)</h4>
+<h4>Vulnerabilities (40)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -51,6 +51,13 @@
         <td>HIGH</td>
         <td>2.68.4-19.el9_8.1</td>
         <td>2.68.4-19.el9_8.2</td>
+    </tr>
+    <tr>
+        <td><code>json-glib</code></td>
+        <td>CVE-2026-120194</td>
+        <td>HIGH</td>
+        <td>1.6.6-1.el9</td>
+        <td></td>
     </tr>
     <tr>
         <td><code>libacl</code></td>
@@ -268,6 +275,20 @@
         <td>HIGH</td>
         <td>3.34.1-10.el9_8</td>
         <td>3.34.1-11.el9_8</td>
+    </tr>
+    <tr>
+        <td><code>sqlite-libs</code></td>
+        <td>CVE-2026-119373</td>
+        <td>HIGH</td>
+        <td>3.34.1-10.el9_8</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>sqlite-libs</code></td>
+        <td>CVE-2026-119586</td>
+        <td>HIGH</td>
+        <td>3.34.1-10.el9_8</td>
+        <td></td>
     </tr>
 </table>
 <h4>No Misconfigurations found</h4>

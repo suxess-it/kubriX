@@ -716,7 +716,7 @@
 <h2>Image <code>docker.io/falcosecurity/falco:0.43.1</code></h2>
 
 <h3>Target <code>docker.io/falcosecurity/falco:0.43.1 (wolfi 20230201)</code></h3>
-<h4>Vulnerabilities (29)</h4>
+<h4>Vulnerabilities (31)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -755,8 +755,22 @@
     </tr>
     <tr>
         <td><code>ca-certificates</code></td>
+        <td>CVE-2026-91403</td>
+        <td>CRITICAL</td>
+        <td>20251003-r4</td>
+        <td>20260909-r3</td>
+    </tr>
+    <tr>
+        <td><code>ca-certificates</code></td>
         <td>CVE-2026-111943</td>
         <td>HIGH</td>
+        <td>20251003-r4</td>
+        <td>20260909-r3</td>
+    </tr>
+    <tr>
+        <td><code>ca-certificates-bundle</code></td>
+        <td>CVE-2026-91403</td>
+        <td>CRITICAL</td>
         <td>20251003-r4</td>
         <td>20260909-r3</td>
     </tr>
@@ -933,7 +947,7 @@
 <h2>Image <code>docker.io/falcosecurity/falcoctl:0.12.2</code></h2>
 
 <h3>Target <code>docker.io/falcosecurity/falcoctl:0.12.2 (wolfi 20230201)</code></h3>
-<h4>Vulnerabilities (1)</h4>
+<h4>Vulnerabilities (2)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -941,6 +955,13 @@
         <th>Severity</th>
         <th>Installed Version</th>
         <th>Fixed Version</th>
+    </tr>
+    <tr>
+        <td><code>ca-certificates-bundle</code></td>
+        <td>CVE-2026-91403</td>
+        <td>CRITICAL</td>
+        <td>20251003-r2</td>
+        <td>20260909-r3</td>
     </tr>
     <tr>
         <td><code>ca-certificates-bundle</code></td>

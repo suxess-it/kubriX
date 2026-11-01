@@ -1,7 +1,7 @@
 <h2>Image <code>quay.io/frrouting/frr:10.4.3</code></h2>
 
 <h3>Target <code>quay.io/frrouting/frr:10.4.3 (alpine 3.22.3)</code></h3>
-<h4>Vulnerabilities (87)</h4>
+<h4>Vulnerabilities (83)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -299,13 +299,6 @@
     </tr>
     <tr>
         <td><code>pyc</code></td>
-        <td>CVE-2026-115557</td>
-        <td>CRITICAL</td>
-        <td>3.12.12-r0</td>
-        <td>3.12.16-r0</td>
-    </tr>
-    <tr>
-        <td><code>pyc</code></td>
         <td>CVE-2026-11940</td>
         <td>HIGH</td>
         <td>3.12.12-r0</td>
@@ -373,13 +366,6 @@
         <td>HIGH</td>
         <td>3.12.12-r0</td>
         <td>3.12.15-r0</td>
-    </tr>
-    <tr>
-        <td><code>python3</code></td>
-        <td>CVE-2026-115557</td>
-        <td>CRITICAL</td>
-        <td>3.12.12-r0</td>
-        <td>3.12.16-r0</td>
     </tr>
     <tr>
         <td><code>python3</code></td>
@@ -453,13 +439,6 @@
     </tr>
     <tr>
         <td><code>python3-pyc</code></td>
-        <td>CVE-2026-115557</td>
-        <td>CRITICAL</td>
-        <td>3.12.12-r0</td>
-        <td>3.12.16-r0</td>
-    </tr>
-    <tr>
-        <td><code>python3-pyc</code></td>
         <td>CVE-2026-11940</td>
         <td>HIGH</td>
         <td>3.12.12-r0</td>
@@ -527,13 +506,6 @@
         <td>HIGH</td>
         <td>3.12.12-r0</td>
         <td>3.12.15-r0</td>
-    </tr>
-    <tr>
-        <td><code>python3-pycache-pyc0</code></td>
-        <td>CVE-2026-115557</td>
-        <td>CRITICAL</td>
-        <td>3.12.12-r0</td>
-        <td>3.12.16-r0</td>
     </tr>
     <tr>
         <td><code>python3-pycache-pyc0</code></td>
