@@ -410,7 +410,7 @@ PY_GIT_AUTH
 
 # OpenBao duplicate-group recovery must work without debug logging.
 (
-  source <(sed -n '/^read_openbao_group_for_recovery() (/,/^sync_debug_printf() {/p' install-platform.sh | sed '$d')
+  source ./openbao-group-recovery.sh
   recovery_dir=$(mktemp -d)
   trap 'rm -rf "$recovery_dir"' EXIT
   unset KUBRIX_SYNC_DEBUG KUBRIX_INSTALL_DEBUG
@@ -441,7 +441,7 @@ PY_GIT_AUTH
       jq -n --arg id "${live_id:-$group_id}" --arg name "${live_name:-editors}" --arg type "${live_type:-external}" '{data:{id:$id,name:$name,type:$type}}'
     elif [[ "$1" == patch ]]; then
       [[ "$mock_mode" != conflict ]] || return 1
-      [[ "$2 $3" == 'groups.identity.vault.upbound.io editors' ]] || return 1
+      [[ "$2 $3" == "groups.identity.vault.upbound.io ${live_name:-editors}" ]] || return 1
       local patch="${!#}"
       jq -e --arg id "$group_id" '
         .[0] == {op:"test",path:"/metadata/uid",value:"group-uid"}
@@ -515,6 +515,33 @@ PY_GIT_AUTH
   mv "$recovery_dir/group.json" "$recovery_dir/saved.json"
   recover_openbao_groups
   mv "$recovery_dir/saved.json" "$recovery_dir/group.json"
+
+  # A team group is only eligible when Argo CD tracks it for team onboarding.
+  reset_recovery
+  jq '.items[0] |= (.metadata.name="kubrixcontrol-viewers"
+    | .spec.forProvider.name="kubrixcontrol-viewers"
+    | .metadata.annotations["argocd.argoproj.io/tracking-id"]="sx-team-onboarding:identity.vault.upbound.io/Group:argocd/kubrixcontrol-viewers"
+    | .status.conditions |= map(if .message then .message |= gsub("editors";"kubrixcontrol-viewers") else . end))' \
+    "$recovery_dir/group.json" > "$recovery_dir/next.json"
+  mv "$recovery_dir/next.json" "$recovery_dir/group.json"
+  cp "$recovery_dir/group.json" "$recovery_dir/team.json"
+  live_name=kubrixcontrol-viewers
+  recover_openbao_groups sx-team-onboarding > "$recovery_dir/team-output"
+  [[ $(wc -l < "$recovery_dir/patches") == 1 ]]
+  recover_openbao_groups sx-team-onboarding >> "$recovery_dir/team-output"
+  [[ $(wc -l < "$recovery_dir/patches") == 1 ]]
+  for tracking in '' 'other-app:identity.vault.upbound.io/Group:argocd/kubrixcontrol-viewers'; do
+    openbao_adopted_groups=()
+    : > "$recovery_dir/patches"
+    jq --arg tracking "$tracking" '.items[0].metadata.annotations["argocd.argoproj.io/tracking-id"]=$tracking' \
+      "$recovery_dir/team.json" > "$recovery_dir/group.json"
+    if recover_openbao_groups sx-team-onboarding; then echo 'Adopted unrelated team group' >&2; exit 1; fi
+    [[ ! -s "$recovery_dir/patches" ]]
+  done
+  reset_recovery
+  cp "$recovery_dir/team.json" "$recovery_dir/group.json"
+  if recover_openbao_groups; then echo 'Installer adopted team group outside its scope' >&2; exit 1; fi
+  [[ ! -s "$recovery_dir/patches" ]]
 
   # Exercise the real wait-loop integration: defer the stuck-hook watchdog
   # while Crossplane observes the group, then resume failed-sync recovery.
