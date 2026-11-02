@@ -65,7 +65,7 @@ RUN curl -fsSL https://packages.buildkite.com/helm-linux/helm-debian/gpgkey | gp
 # Put the installer script into the image (Option A)
 WORKDIR /work
 # Make sure you include install-platform.sh in your build context (same folder as Dockerfile)
-COPY install-platform.sh /work/install-platform.sh
+COPY install-platform.sh openbao-group-recovery.sh /work/
 RUN chmod +x /work/install-platform.sh
 ENV KUBRIX_INSTALLER=true
 

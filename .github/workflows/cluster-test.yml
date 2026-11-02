@@ -26,6 +26,9 @@ on:
       - 'platform-apps/target-chart/values-kind*'
       - 'Dockerfile'
       - 'install-platform.sh'
+      - 'openbao-group-recovery.sh'
+      - '.github/watch-team-onboarding-recovery.sh'
+      - '.github/tests/team-onboarding-recovery.sh'
       - '.github/workflows/create-kubrix-installer-image.yml'
       - '.github/install-kubriX-with-job.sh'
       - 'install-manifests.yaml'
@@ -82,12 +85,16 @@ jobs:
               - 'platform-apps/target-chart/values-kind*'
               - 'Dockerfile'
               - 'install-platform.sh'
+              - 'openbao-group-recovery.sh'
+              - '.github/watch-team-onboarding-recovery.sh'
+              - '.github/tests/team-onboarding-recovery.sh'
               - '.github/workflows/create-kubrix-installer-image.yml'
               - '.github/install-kubriX-with-job.sh'
               - 'install-manifests.yaml'
             dockerImageChanges:
               - 'Dockerfile'
               - 'install-platform.sh'
+              - 'openbao-group-recovery.sh'
               - '.github/workflows/create-kubrix-installer-image.yml'
             appChanges:
               - 'platform-apps/charts/**'
@@ -110,6 +117,9 @@ jobs:
                - '.github/install-kubriX-with-job.sh'
                - 'install-manifests.yaml'
                - 'install-platform.sh'
+               - 'openbao-group-recovery.sh'
+               - '.github/watch-team-onboarding-recovery.sh'
+               - '.github/tests/team-onboarding-recovery.sh'
   
       - name: Cluster test not required
         if: github.event_name == 'pull_request' && steps.filter.outputs.clusterTestRequired == 'false'
@@ -150,6 +160,10 @@ jobs:
       - name: Test installer sync diagnostics
         if: (github.event_name != 'pull_request' || (steps.request.outputs.requested == 'true' && steps.filter.outputs.clusterTestRequired == 'true'))
         run: bash .github/tests/installer-sync-diagnostics.sh
+
+      - name: Test team onboarding recovery
+        if: (github.event_name != 'pull_request' || (steps.request.outputs.requested == 'true' && steps.filter.outputs.clusterTestRequired == 'true')) && hashFiles('.github/tests/team-onboarding-recovery.sh') != ''
+        run: bash .github/tests/team-onboarding-recovery.sh
 
       - id: build-matrix-global
         name: Build global target matrix from changed files
@@ -766,6 +780,19 @@ jobs:
               --variable E2E_KEYCLOAK_KUBRIXCONTROLEDITOR_PASSWORD=${E2E_KEYCLOAK_KUBRIXCONTROLEDITOR_PASSWORD}
               --variable E2E_KEYCLOAK_KUBRIXCONTROLADMIN_PASSWORD=${E2E_KEYCLOAK_KUBRIXCONTROLADMIN_PASSWORD}
             )
+          fi
+          # The runner already has cluster access; no extra permissions/tools in Playwright.
+          recovery_pid=""
+          stop_recovery() {
+            if [[ -n "$recovery_pid" ]]; then
+              kill "$recovery_pid" 2>/dev/null || true
+              wait "$recovery_pid" 2>/dev/null || true
+            fi
+          }
+          trap stop_recovery EXIT
+          if [[ "${KUBRIX_TARGET_TYPE}" == "kind-hub-prime" && -f .github/watch-team-onboarding-recovery.sh ]]; then
+            bash .github/watch-team-onboarding-recovery.sh &
+            recovery_pid=$!
           fi
           testkube run testworkflow -l type=${KUBRIX_TARGET_TYPE} \
             --variable E2E_TEST_GH_USERNAME=${E2E_TEST_GH_USERNAME} \
