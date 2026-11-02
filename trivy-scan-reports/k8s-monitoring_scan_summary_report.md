@@ -1,6 +1,6 @@
-<h2>Image <code>ghcr.io/grafana/alloy-operator:1.14.3</code></h2>
+<h2>Image <code>ghcr.io/grafana/alloy-operator:1.14.4</code></h2>
 
-<h3>Target <code>ghcr.io/grafana/alloy-operator:1.14.3 (redhat 9.8)</code></h3>
+<h3>Target <code>ghcr.io/grafana/alloy-operator:1.14.4 (redhat 9.8)</code></h3>
 <h4>Vulnerabilities (40)</h4>
 <table>
     <tr>
