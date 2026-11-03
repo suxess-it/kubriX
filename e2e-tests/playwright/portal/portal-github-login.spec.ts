@@ -2,9 +2,54 @@
 import { request, type Locator, type Page } from '@playwright/test';
 import { test, expect } from '../fixtures/github-auth';
 import path from 'path';
+import fs from 'fs';
+import { promoteCommit } from '../utils/kargo-promotion';
+
+// These tests form one onboarding/promotion flow; keep independent retries in source order.
+test.describe.configure({ mode: 'default' });
 
 const BASE_DOMAIN = process.env.E2E_BASE_DOMAIN ?? '127-0-0-1.nip.io';
 const authDir = path.join(__dirname, '../.auth');
+
+// Persist across Playwright worker restarts so retries use the commit created by this run.
+const changedCommitFile = path.join(authDir, `podtato-commit-${process.env.E2E_TEST_PR_NUMBER ?? 'local'}.json`);
+
+async function githubRevision() {
+  const prefix = process.env.E2E_TEST_PR_NUMBER ?? '';
+  const repo = `kubriX-demo/kubrix-a${prefix}-kubrixbot-app`;
+  const api = await request.newContext({
+    baseURL: 'https://api.github.com',
+    extraHTTPHeaders: {
+      Authorization: `Bearer ${process.env.E2E_KUBRIX_KARGO_GIT_PASSWORD!}`,
+      Accept: 'application/vnd.github+json',
+      'X-GitHub-Api-Version': '2022-11-28',
+    },
+  });
+  try {
+    const response = await api.get(`/repos/${repo}/commits/main`, { timeout: 15_000 });
+    expect(response.ok(), `Read ${repo} main: HTTP ${response.status()}`).toBeTruthy();
+    const { sha } = await response.json();
+    const values = await api.get(`/repos/${repo}/contents/values.yaml?ref=${sha}`, { timeout: 15_000 });
+    expect(values.ok(), `Read values.yaml at ${sha}: HTTP ${values.status()}`).toBeTruthy();
+    const { content } = await values.json();
+    return { sha: sha as string, values: Buffer.from(content, 'base64').toString('utf8') };
+  } finally {
+    await api.dispose();
+  }
+}
+
+async function waitForApplication(page: Page, appName: string) {
+  await expect.poll(async () => {
+    const response = await page.request.get(
+      `https://argocd.${BASE_DOMAIN}/api/v1/applications/${encodeURIComponent(appName)}?appNamespace=adn-kubrix`,
+      { timeout: 15_000 },
+    );
+    // ArgoCD also returns 403 while the ApplicationSet has not created the app yet.
+    if ([403, 404].includes(response.status())) return false;
+    expect(response.ok(), `Read Application ${appName}: HTTP ${response.status()}`).toBeTruthy();
+    return (await response.json()).metadata?.name === appName;
+  }, { timeout: 120_000, intervals: [1_000, 2_000, 5_000], message: `Waiting for Application ${appName}` }).toBe(true);
+}
 
 // ArgoCD Login
 async function loginAndGetAuthedContext() {
@@ -273,9 +318,10 @@ test("Multi-Stage-Kargo App Onboarding", { tag: ['@oss'] }, async ({ page }) => 
 test.describe("ArgoCD verify kubrixbot-app state", { tag: ['@oss'] }, () => {
   const argocdAuthFile = path.join(authDir, 'argocd.json');
   test.use({ storageState: argocdAuthFile });
-  test.setTimeout(180_000);
+  test.setTimeout(240_000);
   test('ArgoCD verify kubrixbot-app state', async ({ page }) => {
     const prefix = process.env.E2E_TEST_PR_NUMBER ?? '';
+    await waitForApplication(page, `kubrix-a${prefix}-kubrixbot-app`);
     await page.goto(`https://argocd.${BASE_DOMAIN}/applications/adn-kubrix/kubrix-a${prefix}-kubrixbot-app`);
     await expect(page.locator('#app').getByText('Synced', { exact: true }).nth(1)).toBeVisible({ timeout: 90_000 });
   });
@@ -284,51 +330,23 @@ test.describe("ArgoCD verify kubrixbot-app state", { tag: ['@oss'] }, () => {
 test.describe("Kargo GitOps Promotion - Going Live First time", { tag: ['@oss'] }, () => {
   const kargoAuthFile = path.join(authDir, 'kargo.json');
   test.use({ storageState: kargoAuthFile });
-  test.setTimeout(200_000);
-  // see https://github.com/akuity/kargo/issues/4956 for better curl/API support
+  test.setTimeout(540_000);
   test('Kargo GitOps Promotion - Promote to Test', async ({ page }) => {
     const prefix = process.env.E2E_TEST_PR_NUMBER ?? '';
-    await page.goto(`https://kargo.${BASE_DOMAIN}/project/kubrix-a${prefix}-kubrixbot-app-kargo-project`);
-    await page.getByRole('button', { name: 'Refresh' }).click();
-    // wait 10 seconds so freights are refreshed
-    await page.waitForTimeout(10_000);
-    await page.locator('[data-testid$="/test"]').locator('button.ant-dropdown-trigger').click();
-    await page.getByRole('menuitem', { name: 'Promote', exact: true }).locator('span').click();
-    await page.getByRole('button', { name: 'Select' }).first().click();
-    await page.getByRole('button', { name: 'Promote' }).click();
-    await expect(page.getByLabel('Promotion', { exact: true }).getByRole('rowgroup')).toContainText('Succeeded', { timeout: 60_000 });
-    await page.getByRole('button', { name: 'Close' }).click();
-    const testStage = page.locator('[data-testid$="/test"]');
-    await expect(testStage.getByText('Ready', { exact: true })).toBeVisible({ timeout: 120_000 });
-    await expect(testStage.getByText('Healthy', { exact: true })).toBeVisible({ timeout: 120_000 });
+    const sha = (await githubRevision()).sha;
+    await promoteCommit(page, BASE_DOMAIN, prefix, 'test', sha);
   });
 
   test('Kargo GitOps Promotion - Promote to QA', async ({ page }) => {
     const prefix = process.env.E2E_TEST_PR_NUMBER ?? '';
-    await page.goto(`https://kargo.${BASE_DOMAIN}/project/kubrix-a${prefix}-kubrixbot-app-kargo-project`);
-    await page.locator('[data-testid$="/qa"]').locator('button.ant-dropdown-trigger').click();
-    await page.getByRole('menuitem', { name: 'Promote', exact: true }).locator('span').click();
-    await page.getByRole('button', { name: 'Select' }).first().click();
-    await page.getByRole('button', { name: 'Promote' }).click();
-    await expect(page.getByLabel('Promotion', { exact: true }).getByRole('rowgroup')).toContainText('Succeeded', { timeout: 60_000 });
-    await page.getByRole('button', { name: 'Close' }).click();
-    const qaStage = page.locator('[data-testid$="/qa"]');
-    await expect(qaStage.getByText('Ready', { exact: true })).toBeVisible({ timeout: 120_000 });
-    await expect(qaStage.getByText('Healthy', { exact: true })).toBeVisible({ timeout: 120_000 });
+    const sha = (await githubRevision()).sha;
+    await promoteCommit(page, BASE_DOMAIN, prefix, 'qa', sha);
   });
 
   test('Kargo GitOps Promotion - Promote to Prod', async ({ page }) => {
     const prefix = process.env.E2E_TEST_PR_NUMBER ?? '';
-    await page.goto(`https://kargo.${BASE_DOMAIN}/project/kubrix-a${prefix}-kubrixbot-app-kargo-project`);
-    await page.locator('[data-testid$="/prod"]').locator('button.ant-dropdown-trigger').click();
-    await page.getByRole('menuitem', { name: 'Promote', exact: true }).locator('span').click();
-    await page.getByRole('button', { name: 'Select' }).first().click();
-    await page.getByRole('button', { name: 'Promote' }).click();
-    await expect(page.getByLabel('Promotion', { exact: true }).getByRole('rowgroup')).toContainText('Succeeded', { timeout: 60_000 });
-    await page.getByRole('button', { name: 'Close' }).click();
-    const prodStage = page.locator('[data-testid$="/prod"]');
-    await expect(prodStage.getByText('Ready', { exact: true })).toBeVisible({ timeout: 120_000 });
-    await expect(prodStage.getByText('Healthy', { exact: true })).toBeVisible({ timeout: 120_000 });
+    const sha = (await githubRevision()).sha;
+    await promoteCommit(page, BASE_DOMAIN, prefix, 'prod', sha);
   });
 });
 
@@ -441,6 +459,7 @@ test("Check kubrixbot-app in backstage", { tag: ['@oss'] }, async ({ page }) => 
 });
 
 test("Kargo GitOps Promotion - Change Podtato Head Hat Part Number", { tag: ['@oss'] }, async ({ page }) => {
+  test.setTimeout(90_000);
 
 const newValuesFileContent = `
 nameOverride: ""
@@ -568,6 +587,12 @@ tolerations: []
 
 affinity: {}
 `;
+  const existing = await githubRevision();
+  if (existing.values === newValuesFileContent) {
+    fs.mkdirSync(authDir, { recursive: true });
+    fs.writeFileSync(changedCommitFile, JSON.stringify({ sha: existing.sha }));
+    return;
+  }
   const prefix = process.env.E2E_TEST_PR_NUMBER ?? '';
   await page.goto(`https://github.com/kubriX-demo/kubrix-a${prefix}-kubrixbot-app/blob/main/values.yaml`)
   await page.waitForLoadState('domcontentloaded');
@@ -576,60 +601,35 @@ affinity: {}
   await page.getByRole('textbox', { name: 'Editing values.yaml file' }).fill(newValuesFileContent);
   await page.getByRole('button', { name: 'Commit changes...' }).click();
   await page.getByRole('button', { name: 'Commit changes', exact: true }).click();
+  let changed = existing;
+  await expect.poll(async () => {
+    changed = await githubRevision();
+    return changed.sha !== existing.sha && changed.values === newValuesFileContent;
+  }, { timeout: 30_000, message: 'Wait for the committed values.yaml and capture its exact SHA' }).toBe(true);
+  fs.mkdirSync(authDir, { recursive: true });
+  fs.writeFileSync(changedCommitFile, JSON.stringify({ sha: changed.sha }));
 });
 
 test.describe("Kargo GitOps Promotion - Promote Changes", { tag: ['@oss'] }, () => {
   const kargoAuthFile = path.join(authDir, 'kargo.json');
   test.use({ storageState: kargoAuthFile });
-  test.setTimeout(200_000);
-  // see https://github.com/akuity/kargo/issues/4956 for better curl/API support
+  test.setTimeout(540_000);
   test('Kargo GitOps Promotion - Promote Changes to Test', async ({ page }) => {
     const prefix = process.env.E2E_TEST_PR_NUMBER ?? '';
-    await page.goto(`https://kargo.${BASE_DOMAIN}/project/kubrix-a${prefix}-kubrixbot-app-kargo-project`);
-    await page.waitForLoadState('domcontentloaded');
-    await page.getByRole('button', { name: 'Refresh' }).click();
-    // load the site again to mitigate problem in https://github.com/akuity/kargo/issues/5932
-    await page.goto(`https://kargo.${BASE_DOMAIN}/project/kubrix-a${prefix}-kubrixbot-app-kargo-project`);
-    await page.waitForLoadState('domcontentloaded');
-    await page.locator('[data-testid$="/test"]').locator('button.ant-dropdown-trigger').click();
-    await page.waitForTimeout(5_000);
-    await page.getByRole('menuitem', { name: 'Promote', exact: true }).locator('span').click();
-    await page.waitForTimeout(5_000);
-    await page.getByRole('button', { name: 'Select' }).first().click();
-    await page.getByRole('button', { name: 'Promote' }).click();
-    await expect(page.getByLabel('Promotion', { exact: true }).getByRole('rowgroup')).toContainText('Succeeded', { timeout: 30_000 });
-    await page.getByRole('button', { name: 'Close' }).click();
-    const testStage = page.locator('[data-testid$="/test"]');
-    await expect(testStage.getByText('Ready', { exact: true })).toBeVisible({ timeout: 120_000 });
-    await expect(testStage.getByText('Healthy', { exact: true })).toBeVisible({ timeout: 120_000 });
+    const sha = JSON.parse(fs.readFileSync(changedCommitFile, 'utf8')).sha;
+    await promoteCommit(page, BASE_DOMAIN, prefix, 'test', sha);
   });
 
   test('Kargo GitOps Promotion - Promote Changes to QA', async ({ page }) => {
     const prefix = process.env.E2E_TEST_PR_NUMBER ?? '';
-    await page.goto(`https://kargo.${BASE_DOMAIN}/project/kubrix-a${prefix}-kubrixbot-app-kargo-project`);
-    await page.locator('[data-testid$="/qa"]').locator('button.ant-dropdown-trigger').click();
-    await page.getByRole('menuitem', { name: 'Promote', exact: true }).locator('span').click();
-    await page.getByRole('button', { name: 'Select' }).first().click();
-    await page.getByRole('button', { name: 'Promote' }).click();
-    await expect(page.getByLabel('Promotion', { exact: true }).getByRole('rowgroup')).toContainText('Succeeded', { timeout: 30_000 });
-    await page.getByRole('button', { name: 'Close' }).click();
-    const qaStage = page.locator('[data-testid$="/qa"]');
-    await expect(qaStage.getByText('Ready', { exact: true })).toBeVisible({ timeout: 120_000 });
-    await expect(qaStage.getByText('Healthy', { exact: true })).toBeVisible({ timeout: 120_000 });
+    const sha = JSON.parse(fs.readFileSync(changedCommitFile, 'utf8')).sha;
+    await promoteCommit(page, BASE_DOMAIN, prefix, 'qa', sha);
   });
 
   test('Kargo GitOps Promotion - Promote Changes to Prod', async ({ page }) => {
     const prefix = process.env.E2E_TEST_PR_NUMBER ?? '';
-    await page.goto(`https://kargo.${BASE_DOMAIN}/project/kubrix-a${prefix}-kubrixbot-app-kargo-project`);
-    await page.locator('[data-testid$="/prod"]').locator('button.ant-dropdown-trigger').click();
-    await page.getByRole('menuitem', { name: 'Promote', exact: true }).locator('span').click();
-    await page.getByRole('button', { name: 'Select' }).first().click();
-    await page.getByRole('button', { name: 'Promote' }).click();
-    await expect(page.getByLabel('Promotion', { exact: true }).getByRole('rowgroup')).toContainText('Succeeded', { timeout: 30_000 });
-    await page.getByRole('button', { name: 'Close' }).click();
-    const prodStage = page.locator('[data-testid$="/prod"]');
-    await expect(prodStage.getByText('Ready', { exact: true })).toBeVisible({ timeout: 120_000 });
-    await expect(prodStage.getByText('Healthy', { exact: true })).toBeVisible({ timeout: 120_000 });
+    const sha = JSON.parse(fs.readFileSync(changedCommitFile, 'utf8')).sha;
+    await promoteCommit(page, BASE_DOMAIN, prefix, 'prod', sha);
   });
 });
 
