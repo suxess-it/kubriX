@@ -318,7 +318,7 @@ test("Multi-Stage-Kargo App Onboarding", { tag: ['@oss'] }, async ({ page }) => 
 test.describe("ArgoCD verify kubrixbot-app state", { tag: ['@oss'] }, () => {
   const argocdAuthFile = path.join(authDir, 'argocd.json');
   test.use({ storageState: argocdAuthFile });
-  test.setTimeout(240_000);
+  test.setTimeout(180_000);
   test('ArgoCD verify kubrixbot-app state', async ({ page }) => {
     const prefix = process.env.E2E_TEST_PR_NUMBER ?? '';
     await waitForApplication(page, `kubrix-a${prefix}-kubrixbot-app`);
@@ -330,23 +330,23 @@ test.describe("ArgoCD verify kubrixbot-app state", { tag: ['@oss'] }, () => {
 test.describe("Kargo GitOps Promotion - Going Live First time", { tag: ['@oss'] }, () => {
   const kargoAuthFile = path.join(authDir, 'kargo.json');
   test.use({ storageState: kargoAuthFile });
-  test.setTimeout(540_000);
+  test.setTimeout(200_000);
   test('Kargo GitOps Promotion - Promote to Test', async ({ page }) => {
     const prefix = process.env.E2E_TEST_PR_NUMBER ?? '';
     const sha = (await githubRevision()).sha;
-    await promoteCommit(page, BASE_DOMAIN, prefix, 'test', sha);
+    await promoteCommit(page, BASE_DOMAIN, prefix, 'test', sha, 60_000);
   });
 
   test('Kargo GitOps Promotion - Promote to QA', async ({ page }) => {
     const prefix = process.env.E2E_TEST_PR_NUMBER ?? '';
     const sha = (await githubRevision()).sha;
-    await promoteCommit(page, BASE_DOMAIN, prefix, 'qa', sha);
+    await promoteCommit(page, BASE_DOMAIN, prefix, 'qa', sha, 60_000);
   });
 
   test('Kargo GitOps Promotion - Promote to Prod', async ({ page }) => {
     const prefix = process.env.E2E_TEST_PR_NUMBER ?? '';
     const sha = (await githubRevision()).sha;
-    await promoteCommit(page, BASE_DOMAIN, prefix, 'prod', sha);
+    await promoteCommit(page, BASE_DOMAIN, prefix, 'prod', sha, 60_000);
   });
 });
 
@@ -459,7 +459,6 @@ test("Check kubrixbot-app in backstage", { tag: ['@oss'] }, async ({ page }) => 
 });
 
 test("Kargo GitOps Promotion - Change Podtato Head Hat Part Number", { tag: ['@oss'] }, async ({ page }) => {
-  test.setTimeout(90_000);
 
 const newValuesFileContent = `
 nameOverride: ""
@@ -613,23 +612,23 @@ affinity: {}
 test.describe("Kargo GitOps Promotion - Promote Changes", { tag: ['@oss'] }, () => {
   const kargoAuthFile = path.join(authDir, 'kargo.json');
   test.use({ storageState: kargoAuthFile });
-  test.setTimeout(540_000);
+  test.setTimeout(200_000);
   test('Kargo GitOps Promotion - Promote Changes to Test', async ({ page }) => {
     const prefix = process.env.E2E_TEST_PR_NUMBER ?? '';
     const sha = JSON.parse(fs.readFileSync(changedCommitFile, 'utf8')).sha;
-    await promoteCommit(page, BASE_DOMAIN, prefix, 'test', sha);
+    await promoteCommit(page, BASE_DOMAIN, prefix, 'test', sha, 30_000);
   });
 
   test('Kargo GitOps Promotion - Promote Changes to QA', async ({ page }) => {
     const prefix = process.env.E2E_TEST_PR_NUMBER ?? '';
     const sha = JSON.parse(fs.readFileSync(changedCommitFile, 'utf8')).sha;
-    await promoteCommit(page, BASE_DOMAIN, prefix, 'qa', sha);
+    await promoteCommit(page, BASE_DOMAIN, prefix, 'qa', sha, 30_000);
   });
 
   test('Kargo GitOps Promotion - Promote Changes to Prod', async ({ page }) => {
     const prefix = process.env.E2E_TEST_PR_NUMBER ?? '';
     const sha = JSON.parse(fs.readFileSync(changedCommitFile, 'utf8')).sha;
-    await promoteCommit(page, BASE_DOMAIN, prefix, 'prod', sha);
+    await promoteCommit(page, BASE_DOMAIN, prefix, 'prod', sha, 30_000);
   });
 });
 
