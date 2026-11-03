@@ -1572,7 +1572,7 @@
 <h2>Image <code>icr.io/kubecost/modeling:v0.1.34</code></h2>
 
 <h3>Target <code>icr.io/kubecost/modeling:v0.1.34 (redhat 9.7)</code></h3>
-<h4>Vulnerabilities (74)</h4>
+<h4>Vulnerabilities (73)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -2056,13 +2056,6 @@
         <td>HIGH</td>
         <td>3.12.12-1.el9_7</td>
         <td>3.12.13-2.el9_8</td>
-    </tr>
-    <tr>
-        <td><code>python3.12-pip-wheel</code></td>
-        <td>CVE-2026-114613</td>
-        <td>HIGH</td>
-        <td>23.2.1-5.el9</td>
-        <td></td>
     </tr>
     <tr>
         <td><code>python3.12-pip-wheel</code></td>

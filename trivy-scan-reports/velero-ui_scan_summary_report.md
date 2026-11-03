@@ -1,7 +1,7 @@
 <h2>Image <code>docker.io/dserio83/velero-api:0.3.1</code></h2>
 
 <h3>Target <code>docker.io/dserio83/velero-api:0.3.1 (debian 12.11)</code></h3>
-<h4>Vulnerabilities (197)</h4>
+<h4>Vulnerabilities (199)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -261,6 +261,20 @@
         <td>HIGH</td>
         <td>2.5.0-1+deb12u1</td>
         <td>2.5.0-1+deb12u5</td>
+    </tr>
+    <tr>
+        <td><code>libexpat1</code></td>
+        <td>CVE-2026-117610</td>
+        <td>HIGH</td>
+        <td>2.5.0-1+deb12u1</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>libexpat1</code></td>
+        <td>CVE-2026-118370</td>
+        <td>HIGH</td>
+        <td>2.5.0-1+deb12u1</td>
+        <td></td>
     </tr>
     <tr>
         <td><code>libexpat1</code></td>
@@ -2590,7 +2604,7 @@
 <h2>Image <code>docker.io/dserio83/velero-watchdog:0.1.8</code></h2>
 
 <h3>Target <code>docker.io/dserio83/velero-watchdog:0.1.8 (debian 12.10)</code></h3>
-<h4>Vulnerabilities (155)</h4>
+<h4>Vulnerabilities (157)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -2850,6 +2864,20 @@
         <td>HIGH</td>
         <td>2.5.0-1+deb12u1</td>
         <td>2.5.0-1+deb12u5</td>
+    </tr>
+    <tr>
+        <td><code>libexpat1</code></td>
+        <td>CVE-2026-117610</td>
+        <td>HIGH</td>
+        <td>2.5.0-1+deb12u1</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>libexpat1</code></td>
+        <td>CVE-2026-118370</td>
+        <td>HIGH</td>
+        <td>2.5.0-1+deb12u1</td>
+        <td></td>
     </tr>
     <tr>
         <td><code>libexpat1</code></td>
