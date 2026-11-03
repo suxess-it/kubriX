@@ -39,7 +39,7 @@ export function stageHasFreight(stage: Stage, freight: string, repoURL: string, 
     item.name === freight && item.commits?.some(commit => commit.repoURL === repoURL && commit.id === sha));
 }
 
-export async function waitForPromotion(read: () => Promise<Promotion>, timeoutMs = 120_000) {
+export async function waitForPromotion(read: () => Promise<Promotion>, timeoutMs: number) {
   const deadline = Date.now() + timeoutMs;
   let promotion: Promotion;
   do {
@@ -51,7 +51,7 @@ export async function waitForPromotion(read: () => Promise<Promotion>, timeoutMs
   throw new Error(`Timed out waiting for promotion ${promotion.metadata.name}: ${JSON.stringify(promotion.status)}`);
 }
 
-export async function promoteCommit(page: Page, baseDomain: string, prefix: string, stage: string, sha: string) {
+export async function promoteCommit(page: Page, baseDomain: string, prefix: string, stage: string, sha: string, promotionTimeoutMs: number) {
   const project = `kubrix-a${prefix}-kubrixbot-app-kargo-project`;
   const repoURL = `https://github.com/kubriX-demo/kubrix-a${prefix}-kubrixbot-app`;
   const projectURL = `https://kargo.${baseDomain}/project/${project}`;
@@ -114,7 +114,7 @@ export async function promoteCommit(page: Page, baseDomain: string, prefix: stri
   expect(promotion!.spec.freight).toBe(freightName);
   const promotionName = promotion!.metadata.name;
   console.log(`Following promotion ${promotionName} for ${stage}: ${sha}`);
-  await waitForPromotion(() => get(`/promotions/${encodeURIComponent(promotionName)}`));
+  await waitForPromotion(() => get(`/promotions/${encodeURIComponent(promotionName)}`), promotionTimeoutMs);
 
   await expect.poll(async () => {
     const current: Stage = await get(`/stages/${stage}`);
