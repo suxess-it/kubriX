@@ -61,7 +61,7 @@ test('does not retry a terminal promotion failure', async () => {
     reads++;
     return { ...promotion('failed-promotion', 'test', 'new', 'Errored'),
       status: { phase: 'Errored', message: 'git push rejected' } };
-  })).rejects.toThrow(/failed-promotion.*git push rejected/);
+  }, 30_000)).rejects.toThrow(/failed-promotion.*git push rejected/);
   expect(reads).toBe(1);
 });
 
