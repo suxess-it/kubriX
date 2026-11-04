@@ -57,7 +57,7 @@
 <h2>Image <code>ghcr.io/suxess-it/sx-backstage:v1.51.2</code></h2>
 
 <h3>Target <code>ghcr.io/suxess-it/sx-backstage:v1.51.2 (wolfi 20230201)</code></h3>
-<h4>Vulnerabilities (34)</h4>
+<h4>Vulnerabilities (35)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -100,6 +100,13 @@
         <td>CRITICAL</td>
         <td>1.2.0-r3</td>
         <td>1.2.0-r7</td>
+    </tr>
+    <tr>
+        <td><code>libexpat1</code></td>
+        <td>CVE-2026-113351</td>
+        <td>HIGH</td>
+        <td>2.8.3-r0</td>
+        <td>2.10.0-r0</td>
     </tr>
     <tr>
         <td><code>node-gyp</code></td>
