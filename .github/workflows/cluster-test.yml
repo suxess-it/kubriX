@@ -405,7 +405,7 @@ jobs:
         run: df -h /
       
       - name: Create k8s Kind Cluster
-        uses: helm/kind-action@v1.15.1
+        uses: helm/kind-action@v1.15.2
         with:
           cluster_name: kubrix-cluster
           config: ${{ github.workspace }}/.github/kind-config.yaml
