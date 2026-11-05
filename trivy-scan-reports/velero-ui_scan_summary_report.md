@@ -1,7 +1,7 @@
 <h2>Image <code>docker.io/dserio83/velero-api:0.3.1</code></h2>
 
 <h3>Target <code>docker.io/dserio83/velero-api:0.3.1 (debian 12.11)</code></h3>
-<h4>Vulnerabilities (200)</h4>
+<h4>Vulnerabilities (203)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -9,6 +9,13 @@
         <th>Severity</th>
         <th>Installed Version</th>
         <th>Fixed Version</th>
+    </tr>
+    <tr>
+        <td><code>apt</code></td>
+        <td>CVE-2026-109518</td>
+        <td>HIGH</td>
+        <td>2.6.1</td>
+        <td>2.6.2</td>
     </tr>
     <tr>
         <td><code>bsdutils</code></td>
@@ -121,6 +128,13 @@
         <td>HIGH</td>
         <td>2.3.1-3</td>
         <td></td>
+    </tr>
+    <tr>
+        <td><code>libapt-pkg6.0</code></td>
+        <td>CVE-2026-109518</td>
+        <td>HIGH</td>
+        <td>2.6.1</td>
+        <td>2.6.2</td>
     </tr>
     <tr>
         <td><code>libblkid1</code></td>
@@ -1410,6 +1424,13 @@
         <td>1:1.2.13.dfsg-1</td>
         <td></td>
     </tr>
+    <tr>
+        <td><code>zlib1g</code></td>
+        <td>CVE-2026-76844</td>
+        <td>HIGH</td>
+        <td>1:1.2.13.dfsg-1</td>
+        <td></td>
+    </tr>
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>Python</code></h3>
@@ -2611,7 +2632,7 @@
 <h2>Image <code>docker.io/dserio83/velero-watchdog:0.1.8</code></h2>
 
 <h3>Target <code>docker.io/dserio83/velero-watchdog:0.1.8 (debian 12.10)</code></h3>
-<h4>Vulnerabilities (158)</h4>
+<h4>Vulnerabilities (161)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -2619,6 +2640,13 @@
         <th>Severity</th>
         <th>Installed Version</th>
         <th>Fixed Version</th>
+    </tr>
+    <tr>
+        <td><code>apt</code></td>
+        <td>CVE-2026-109518</td>
+        <td>HIGH</td>
+        <td>2.6.1</td>
+        <td>2.6.2</td>
     </tr>
     <tr>
         <td><code>bsdutils</code></td>
@@ -2731,6 +2759,13 @@
         <td>HIGH</td>
         <td>2.3.1-3</td>
         <td></td>
+    </tr>
+    <tr>
+        <td><code>libapt-pkg6.0</code></td>
+        <td>CVE-2026-109518</td>
+        <td>HIGH</td>
+        <td>2.6.1</td>
+        <td>2.6.2</td>
     </tr>
     <tr>
         <td><code>libblkid1</code></td>
@@ -3723,6 +3758,13 @@
         <td><code>zlib1g</code></td>
         <td>CVE-2023-45853</td>
         <td>CRITICAL</td>
+        <td>1:1.2.13.dfsg-1</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>zlib1g</code></td>
+        <td>CVE-2026-76844</td>
+        <td>HIGH</td>
         <td>1:1.2.13.dfsg-1</td>
         <td></td>
     </tr>

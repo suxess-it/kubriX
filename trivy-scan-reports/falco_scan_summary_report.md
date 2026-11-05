@@ -2559,7 +2559,7 @@
 <h2>Image <code>docker.io/redis/redis-stack:7.2.0-v11</code></h2>
 
 <h3>Target <code>docker.io/redis/redis-stack:7.2.0-v11 (ubuntu 22.04)</code></h3>
-<h4>Vulnerabilities (5)</h4>
+<h4>Vulnerabilities (7)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -2569,11 +2569,25 @@
         <th>Fixed Version</th>
     </tr>
     <tr>
+        <td><code>apt</code></td>
+        <td>CVE-2026-109518</td>
+        <td>HIGH</td>
+        <td>2.4.12</td>
+        <td>2.4.15ubuntu0.1</td>
+    </tr>
+    <tr>
         <td><code>gpgv</code></td>
         <td>CVE-2025-68973</td>
         <td>HIGH</td>
         <td>2.2.27-3ubuntu2.1</td>
         <td>2.2.27-3ubuntu2.5</td>
+    </tr>
+    <tr>
+        <td><code>libapt-pkg6.0</code></td>
+        <td>CVE-2026-109518</td>
+        <td>HIGH</td>
+        <td>2.4.12</td>
+        <td>2.4.15ubuntu0.1</td>
     </tr>
     <tr>
         <td><code>libssl-dev</code></td>
