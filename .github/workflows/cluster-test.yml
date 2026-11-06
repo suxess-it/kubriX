@@ -628,6 +628,13 @@ jobs:
 
             const { access_token: token } = await tokenResponse.json();
             const claims = JSON.parse(Buffer.from(token.split('.')[1], 'base64url'));
+            // Keycloak derives the Admin API audience from the frontend realm URL.
+            const expectedAudience = claims.iss.replace(/\/realms\/kubrix$/, '/admin/realms/kubrix');
+            const audiences = Array.isArray(claims.aud) ? claims.aud : [claims.aud];
+            const scopes = (claims.scope || '').split(' ');
+            console.log('Keycloak probe: token has expected admin API audience:',
+              expectedAudience !== claims.iss && audiences.includes(expectedAudience));
+            console.log('Keycloak probe: token has kc-admin-api scope:', scopes.includes('kc-admin-api'));
             const response = await fetch(baseUrl + '/admin/realms/kubrix/users/count', {
               ...options(),
               headers: { Authorization: 'Bearer ' + token },
