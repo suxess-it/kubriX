@@ -912,6 +912,8 @@ jobs:
           kubectl get pods -o name -n crossplane | xargs -I {} kubectl logs -n crossplane {} --all-containers=true
           kubectl get pods -o name -n traefik | xargs -I {} kubectl logs -n traefik {} --all-containers=true
           kubectl get pods -o name -n cnpg | xargs -I {} kubectl logs -n cnpg {} --all-containers=true
+          echo "===== Keycloak server logs ======"
+          kubectl logs -n keycloak statefulset/kubrix-keycloak --all-pods=true --timestamps=true || true
           echo "===== grafana-folder-adopter status configmap ======"
           kubectl get cm -n keycloak grafana-folder-adopter-status -o jsonpath='{.data}' | jq . || true
           echo "===== grafana-folder-adopter / keycloak-member-sync job pod logs ======"
