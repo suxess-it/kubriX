@@ -600,59 +600,6 @@ jobs:
           done
 
           echo "❌ Timed out after 5 minutes waiting for User entities."
-
-          # Probe from Backstage with the same Keycloak client and internal endpoint.
-          kubectl exec -i -n backstage deployment/sx-backstage -- node - <<'NODE' || true
-          const baseUrl = 'http://kubrix-keycloak-service.keycloak.svc.cluster.local:8080';
-          const realmUrl = baseUrl + '/realms/kubrix';
-          const options = () => ({ signal: AbortSignal.timeout(5000) });
-
-          async function probe() {
-            const secret = process.env.OIDC_CLIENTSECRET;
-            if (!secret) {
-              console.log('Keycloak probe: Backstage client secret unavailable');
-              return;
-            }
-
-            const tokenResponse = await fetch(realmUrl + '/protocol/openid-connect/token', {
-              ...options(),
-              method: 'POST',
-              body: new URLSearchParams({
-                grant_type: 'client_credentials',
-                client_id: 'backstage',
-                client_secret: secret,
-              }),
-            });
-            console.log('Keycloak probe: token endpoint HTTP', tokenResponse.status);
-            if (!tokenResponse.ok) return;
-
-            const { access_token: token } = await tokenResponse.json();
-            const claims = JSON.parse(Buffer.from(token.split('.')[1], 'base64url'));
-            // Keycloak derives the Admin API audience from the frontend realm URL.
-            const expectedAudience = claims.iss.replace(/\/realms\/kubrix$/, '/admin/realms/kubrix');
-            const audiences = Array.isArray(claims.aud) ? claims.aud : [claims.aud];
-            const scopes = (claims.scope || '').split(' ');
-            console.log('Keycloak probe: token has expected admin API audience:',
-              expectedAudience !== claims.iss && audiences.includes(expectedAudience));
-            console.log('Keycloak probe: token has kc-admin-api scope:', scopes.includes('kc-admin-api'));
-            const response = await fetch(baseUrl + '/admin/realms/kubrix/users/count', {
-              ...options(),
-              headers: { Authorization: 'Bearer ' + token },
-            });
-            const challenge = response.headers.get('www-authenticate') || '';
-            const error = challenge.match(/\berror="(invalid_token|insufficient_scope|invalid_request)"/)?.[1];
-            console.log('Keycloak probe: users/count HTTP', response.status,
-              'Bearer error:', error || 'unavailable');
-            console.log('Keycloak probe: token issuer matches internal realm URL:', claims.iss === realmUrl);
-            const discovery = await fetch(realmUrl + '/.well-known/openid-configuration', options());
-            if (discovery.ok) {
-              const { issuer } = await discovery.json();
-              console.log('Keycloak probe: token issuer matches discovery issuer:', claims.iss === issuer);
-            }
-          }
-
-          probe().catch(() => console.log('Keycloak probe: request or response processing failed'));
-          NODE
           exit 1
 
       - name: Create repository cleanup token
