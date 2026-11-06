@@ -73,17 +73,15 @@ spec:
     xaEnabled: false
   update:
     strategy: Auto
-  {{- if or .Values.keycloak.additionalOptions .Values.keycloak.ciHttpAccessLog }}
+  {{- if or .Values.keycloak.additionalOptions .Values.keycloak.httpAccessLog }}
   additionalOptions:
     {{- with .Values.keycloak.additionalOptions }}
     {{- toYaml . | nindent 4 }}
     {{- end }}
-    {{- if .Values.keycloak.ciHttpAccessLog }}
+    {{- if .Values.keycloak.httpAccessLog }}
     - name: http-access-log-enabled
       value: "true"
     - name: http-access-log-pattern
       value: "%t %m %U %s"
-    - name: http-access-log-exclude
-      value: '^(?!/admin/realms/).*'
     {{- end }}
   {{- end }}
