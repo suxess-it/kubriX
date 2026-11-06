@@ -1,7 +1,7 @@
 <h2>Image <code>docker.io/dserio83/velero-api:0.3.1</code></h2>
 
 <h3>Target <code>docker.io/dserio83/velero-api:0.3.1 (debian 12.11)</code></h3>
-<h4>Vulnerabilities (203)</h4>
+<h4>Vulnerabilities (207)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -279,6 +279,13 @@
     <tr>
         <td><code>libexpat1</code></td>
         <td>CVE-2026-113351</td>
+        <td>HIGH</td>
+        <td>2.5.0-1+deb12u1</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>libexpat1</code></td>
+        <td>CVE-2026-115506</td>
         <td>HIGH</td>
         <td>2.5.0-1+deb12u1</td>
         <td></td>
@@ -797,6 +804,20 @@
     <tr>
         <td><code>libsqlite3-0</code></td>
         <td>CVE-2026-119373</td>
+        <td>HIGH</td>
+        <td>3.40.1-2+deb12u1</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>libsqlite3-0</code></td>
+        <td>CVE-2026-119374</td>
+        <td>HIGH</td>
+        <td>3.40.1-2+deb12u1</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>libsqlite3-0</code></td>
+        <td>CVE-2026-119379</td>
         <td>HIGH</td>
         <td>3.40.1-2+deb12u1</td>
         <td></td>
@@ -1427,6 +1448,13 @@
     <tr>
         <td><code>zlib1g</code></td>
         <td>CVE-2026-76844</td>
+        <td>HIGH</td>
+        <td>1:1.2.13.dfsg-1</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>zlib1g</code></td>
+        <td>CVE-2026-85091</td>
         <td>HIGH</td>
         <td>1:1.2.13.dfsg-1</td>
         <td></td>
@@ -2632,7 +2660,7 @@
 <h2>Image <code>docker.io/dserio83/velero-watchdog:0.1.8</code></h2>
 
 <h3>Target <code>docker.io/dserio83/velero-watchdog:0.1.8 (debian 12.10)</code></h3>
-<h4>Vulnerabilities (161)</h4>
+<h4>Vulnerabilities (165)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -2910,6 +2938,13 @@
     <tr>
         <td><code>libexpat1</code></td>
         <td>CVE-2026-113351</td>
+        <td>HIGH</td>
+        <td>2.5.0-1+deb12u1</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>libexpat1</code></td>
+        <td>CVE-2026-115506</td>
         <td>HIGH</td>
         <td>2.5.0-1+deb12u1</td>
         <td></td>
@@ -3288,6 +3323,20 @@
     <tr>
         <td><code>libsqlite3-0</code></td>
         <td>CVE-2026-119373</td>
+        <td>HIGH</td>
+        <td>3.40.1-2+deb12u1</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>libsqlite3-0</code></td>
+        <td>CVE-2026-119374</td>
+        <td>HIGH</td>
+        <td>3.40.1-2+deb12u1</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>libsqlite3-0</code></td>
+        <td>CVE-2026-119379</td>
         <td>HIGH</td>
         <td>3.40.1-2+deb12u1</td>
         <td></td>
@@ -3764,6 +3813,13 @@
     <tr>
         <td><code>zlib1g</code></td>
         <td>CVE-2026-76844</td>
+        <td>HIGH</td>
+        <td>1:1.2.13.dfsg-1</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>zlib1g</code></td>
+        <td>CVE-2026-85091</td>
         <td>HIGH</td>
         <td>1:1.2.13.dfsg-1</td>
         <td></td>

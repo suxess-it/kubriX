@@ -4,7 +4,7 @@
 <h2>Image <code>komodorio/komoplane:0.2.1</code></h2>
 
 <h3>Target <code>komodorio/komoplane:0.2.1 (alpine 3.23.3)</code></h3>
-<h4>Vulnerabilities (17)</h4>
+<h4>Vulnerabilities (18)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -131,6 +131,13 @@
         <td>HIGH</td>
         <td>1.3.1-r2</td>
         <td>1.3.2-r0</td>
+    </tr>
+    <tr>
+        <td><code>zlib</code></td>
+        <td>CVE-2026-85091</td>
+        <td>HIGH</td>
+        <td>1.3.1-r2</td>
+        <td>1.3.2-r1</td>
     </tr>
 </table>
 <h4>No Misconfigurations found</h4>

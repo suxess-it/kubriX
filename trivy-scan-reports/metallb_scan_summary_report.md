@@ -1,7 +1,7 @@
 <h2>Image <code>quay.io/frrouting/frr:10.6.2</code></h2>
 
 <h3>Target <code>quay.io/frrouting/frr:10.6.2 (alpine 3.22.5)</code></h3>
-<h4>Vulnerabilities (39)</h4>
+<h4>Vulnerabilities (42)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -20,6 +20,13 @@
     <tr>
         <td><code>libexpat</code></td>
         <td>CVE-2026-113351</td>
+        <td>HIGH</td>
+        <td>2.8.3-r0</td>
+        <td>2.10.0-r0</td>
+    </tr>
+    <tr>
+        <td><code>libexpat</code></td>
+        <td>CVE-2026-115506</td>
         <td>HIGH</td>
         <td>2.8.3-r0</td>
         <td>2.10.0-r0</td>
@@ -283,6 +290,20 @@
         <td>3.12.14-r0</td>
         <td>3.12.15-r0</td>
     </tr>
+    <tr>
+        <td><code>zlib</code></td>
+        <td>CVE-2026-85091</td>
+        <td>HIGH</td>
+        <td>1.3.2-r0</td>
+        <td>1.3.2-r1</td>
+    </tr>
+    <tr>
+        <td><code>zlib-dev</code></td>
+        <td>CVE-2026-85091</td>
+        <td>HIGH</td>
+        <td>1.3.2-r0</td>
+        <td>1.3.2-r1</td>
+    </tr>
 </table>
 <h4>No Misconfigurations found</h4>
 <h2>Image <code>quay.io/metallb/controller:v0.16.2</code></h2>
@@ -312,7 +333,23 @@
 <h2>Image <code>quay.io/metallb/frr-k8s:v0.0.27</code></h2>
 
 <h3>Target <code>quay.io/metallb/frr-k8s:v0.0.27 (alpine 3.24.2)</code></h3>
-<h4>No Vulnerabilities found</h4>
+<h4>Vulnerabilities (1)</h4>
+<table>
+    <tr>
+        <th>Package</th>
+        <th>ID</th>
+        <th>Severity</th>
+        <th>Installed Version</th>
+        <th>Fixed Version</th>
+    </tr>
+    <tr>
+        <td><code>zlib</code></td>
+        <td>CVE-2026-85091</td>
+        <td>HIGH</td>
+        <td>1.3.2-r0</td>
+        <td>1.3.2-r1</td>
+    </tr>
+</table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>frr-k8s</code></h3>
 <h4>Vulnerabilities (6)</h4>

@@ -1,10 +1,10 @@
-<h2>Image <code>quay.io/argoproj/argo-rollouts:v1.10.1</code></h2>
+<h2>Image <code>quay.io/argoproj/argo-rollouts:v1.10.2</code></h2>
 
-<h3>Target <code>quay.io/argoproj/argo-rollouts:v1.10.1 (debian 12.15)</code></h3>
+<h3>Target <code>quay.io/argoproj/argo-rollouts:v1.10.2 (debian 12.15)</code></h3>
 <h4>No Vulnerabilities found</h4>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>bin/rollouts-controller</code></h3>
-<h4>Vulnerabilities (10)</h4>
+<h4>Vulnerabilities (9)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -75,13 +75,6 @@
         <td>HIGH</td>
         <td>v1.80.0</td>
         <td>1.82.1</td>
-    </tr>
-    <tr>
-        <td><code>stdlib</code></td>
-        <td>CVE-2026-111943</td>
-        <td>HIGH</td>
-        <td>v1.26.9</td>
-        <td>1.26.10, 1.27.3</td>
     </tr>
 </table>
 <h4>No Misconfigurations found</h4>

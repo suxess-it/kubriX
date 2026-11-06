@@ -1,7 +1,7 @@
 <h2>Image <code>docker.io/bats/bats:1.14.0</code></h2>
 
 <h3>Target <code>docker.io/bats/bats:1.14.0 (alpine 3.24.1)</code></h3>
-<h4>Vulnerabilities (10)</h4>
+<h4>Vulnerabilities (11)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -79,6 +79,13 @@
         <td>HIGH</td>
         <td>5.42.2-r0</td>
         <td>5.42.3-r0</td>
+    </tr>
+    <tr>
+        <td><code>zlib</code></td>
+        <td>CVE-2026-85091</td>
+        <td>HIGH</td>
+        <td>1.3.2-r0</td>
+        <td>1.3.2-r1</td>
     </tr>
 </table>
 <h4>No Misconfigurations found</h4>

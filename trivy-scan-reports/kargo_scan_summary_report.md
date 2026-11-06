@@ -1,7 +1,7 @@
 <h2>Image <code>ghcr.io/akuity/kargo:v1.12.5</code></h2>
 
 <h3>Target <code>ghcr.io/akuity/kargo:v1.12.5 (wolfi 20230201)</code></h3>
-<h4>Vulnerabilities (1)</h4>
+<h4>Vulnerabilities (2)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -13,6 +13,13 @@
     <tr>
         <td><code>libexpat1</code></td>
         <td>CVE-2026-113351</td>
+        <td>HIGH</td>
+        <td>2.9.0-r0</td>
+        <td>2.10.0-r0</td>
+    </tr>
+    <tr>
+        <td><code>libexpat1</code></td>
+        <td>CVE-2026-115506</td>
         <td>HIGH</td>
         <td>2.9.0-r0</td>
         <td>2.10.0-r0</td>

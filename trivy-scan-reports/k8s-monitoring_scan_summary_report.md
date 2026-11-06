@@ -475,7 +475,7 @@
 <h2>Image <code>ghcr.io/grafana/helm-chart-toolbox-kubectl:0.1.2</code></h2>
 
 <h3>Target <code>ghcr.io/grafana/helm-chart-toolbox-kubectl:0.1.2 (alpine 3.22.2)</code></h3>
-<h4>Vulnerabilities (36)</h4>
+<h4>Vulnerabilities (37)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -735,6 +735,13 @@
         <td>HIGH</td>
         <td>1.3.1-r2</td>
         <td>1.3.2-r0</td>
+    </tr>
+    <tr>
+        <td><code>zlib</code></td>
+        <td>CVE-2026-85091</td>
+        <td>HIGH</td>
+        <td>1.3.1-r2</td>
+        <td>1.3.2-r1</td>
     </tr>
 </table>
 <h4>No Misconfigurations found</h4>

@@ -57,7 +57,7 @@
 <h2>Image <code>ghcr.io/suxess-it/sx-backstage:v1.51.2</code></h2>
 
 <h3>Target <code>ghcr.io/suxess-it/sx-backstage:v1.51.2 (wolfi 20230201)</code></h3>
-<h4>Vulnerabilities (35)</h4>
+<h4>Vulnerabilities (37)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -104,6 +104,13 @@
     <tr>
         <td><code>libexpat1</code></td>
         <td>CVE-2026-113351</td>
+        <td>HIGH</td>
+        <td>2.8.3-r0</td>
+        <td>2.10.0-r0</td>
+    </tr>
+    <tr>
+        <td><code>libexpat1</code></td>
+        <td>CVE-2026-115506</td>
         <td>HIGH</td>
         <td>2.8.3-r0</td>
         <td>2.10.0-r0</td>
@@ -310,6 +317,13 @@
         <td>HIGH</td>
         <td>3.13.15-r1</td>
         <td>3.13.15_git20260912-r0</td>
+    </tr>
+    <tr>
+        <td><code>zlib</code></td>
+        <td>CVE-2026-85091</td>
+        <td>HIGH</td>
+        <td>1.3.2-r4</td>
+        <td>1.3.2.1_rc20260601-r0</td>
     </tr>
 </table>
 <h4>No Misconfigurations found</h4>

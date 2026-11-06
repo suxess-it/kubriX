@@ -25,10 +25,26 @@
 <h2>Image <code>docker.io/kiwigrid/k8s-sidecar:2.14.1</code></h2>
 
 <h3>Target <code>docker.io/kiwigrid/k8s-sidecar:2.14.1 (alpine 3.24.2)</code></h3>
-<h4>No Vulnerabilities found</h4>
+<h4>Vulnerabilities (1)</h4>
+<table>
+    <tr>
+        <th>Package</th>
+        <th>ID</th>
+        <th>Severity</th>
+        <th>Installed Version</th>
+        <th>Fixed Version</th>
+    </tr>
+    <tr>
+        <td><code>zlib</code></td>
+        <td>CVE-2026-85091</td>
+        <td>HIGH</td>
+        <td>1.3.2-r0</td>
+        <td>1.3.2-r1</td>
+    </tr>
+</table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>Python</code></h3>
-<h4>Vulnerabilities (7)</h4>
+<h4>Vulnerabilities (8)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -66,6 +82,13 @@
         <td>1.2.1</td>
     </tr>
     <tr>
+        <td><code>oauthlib</code></td>
+        <td>CVE-2026-49272</td>
+        <td>HIGH</td>
+        <td>4.0.0</td>
+        <td>4.0.1</td>
+    </tr>
+    <tr>
         <td><code>setuptools</code></td>
         <td>CVE-2025-47273</td>
         <td>HIGH</td>
@@ -90,13 +113,13 @@
 <h4>No Misconfigurations found</h4>
 <h2>Image <code>docker.io/library/memcached:1.6.45-alpine</code></h2>
 
-<h3>Target <code>docker.io/library/memcached:1.6.45-alpine (alpine 3.24.3)</code></h3>
+<h3>Target <code>docker.io/library/memcached:1.6.45-alpine (alpine 3.24.4)</code></h3>
 <h4>No Vulnerabilities found</h4>
 <h4>No Misconfigurations found</h4>
 <h2>Image <code>docker.io/nginxinc/nginx-unprivileged:1.31-alpine</code></h2>
 
 <h3>Target <code>docker.io/nginxinc/nginx-unprivileged:1.31-alpine (alpine 3.24.2)</code></h3>
-<h4>Vulnerabilities (6)</h4>
+<h4>Vulnerabilities (8)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -135,6 +158,13 @@
     </tr>
     <tr>
         <td><code>libexpat</code></td>
+        <td>CVE-2026-115506</td>
+        <td>HIGH</td>
+        <td>2.9.0-r0</td>
+        <td>2.10.0-r0</td>
+    </tr>
+    <tr>
+        <td><code>libexpat</code></td>
         <td>CVE-2026-117610</td>
         <td>HIGH</td>
         <td>2.9.0-r0</td>
@@ -146,6 +176,13 @@
         <td>HIGH</td>
         <td>2.9.0-r0</td>
         <td>2.10.0-r0</td>
+    </tr>
+    <tr>
+        <td><code>zlib</code></td>
+        <td>CVE-2026-85091</td>
+        <td>HIGH</td>
+        <td>1.3.2-r0</td>
+        <td>1.3.2-r1</td>
     </tr>
 </table>
 <h4>No Misconfigurations found</h4>

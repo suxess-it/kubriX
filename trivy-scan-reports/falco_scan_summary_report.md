@@ -716,7 +716,7 @@
 <h2>Image <code>docker.io/falcosecurity/falco:0.43.1</code></h2>
 
 <h3>Target <code>docker.io/falcosecurity/falco:0.43.1 (wolfi 20230201)</code></h3>
-<h4>Vulnerabilities (31)</h4>
+<h4>Vulnerabilities (32)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -941,6 +941,13 @@
         <td>HIGH</td>
         <td>3.6.1-r4</td>
         <td>3.6.3-r4</td>
+    </tr>
+    <tr>
+        <td><code>zlib</code></td>
+        <td>CVE-2026-85091</td>
+        <td>HIGH</td>
+        <td>1.3.2-r2</td>
+        <td>1.3.2.1_rc20260601-r0</td>
     </tr>
 </table>
 <h4>No Misconfigurations found</h4>
@@ -1879,7 +1886,7 @@
 <h2>Image <code>docker.io/falcosecurity/falcosidekick:2.32.0</code></h2>
 
 <h3>Target <code>docker.io/falcosecurity/falcosidekick:2.32.0 (alpine 3.22.1)</code></h3>
-<h4>Vulnerabilities (21)</h4>
+<h4>Vulnerabilities (22)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -2034,6 +2041,13 @@
         <td>HIGH</td>
         <td>1.3.1-r2</td>
         <td>1.3.2-r0</td>
+    </tr>
+    <tr>
+        <td><code>zlib</code></td>
+        <td>CVE-2026-85091</td>
+        <td>HIGH</td>
+        <td>1.3.1-r2</td>
+        <td>1.3.2-r1</td>
     </tr>
 </table>
 <h4>No Misconfigurations found</h4>

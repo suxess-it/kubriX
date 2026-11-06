@@ -59,9 +59,9 @@
 <h3>Target <code>curlimages/curl:latest (alpine 3.24.3)</code></h3>
 <h4>No Vulnerabilities found</h4>
 <h4>No Misconfigurations found</h4>
-<h2>Image <code>quay.io/keycloak/keycloak-operator:26.8.1</code></h2>
+<h2>Image <code>quay.io/keycloak/keycloak-operator:26.8.2</code></h2>
 
-<h3>Target <code>quay.io/keycloak/keycloak-operator:26.8.1 (redhat 9.8)</code></h3>
+<h3>Target <code>quay.io/keycloak/keycloak-operator:26.8.2 (redhat 9.8)</code></h3>
 <h4>Vulnerabilities (4)</h4>
 <table>
     <tr>
