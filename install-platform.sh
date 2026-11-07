@@ -418,9 +418,6 @@ backstage_token_dependencies_ready() {
 create_openbao_secrets_for_backstage() {
   echo "adding special configuration for sx-backstage"
 
-  # create an empty codespaces-secret secret because it is still needed for github codespaces and cannot configured optional in backstage
-  kubectl create secret generic -n backstage codespaces-secret --dry-run=client -o yaml | kubectl apply -f -
-
   # get openbao hostname and token for communicating with openbao via curl
   export VAULT_HOSTNAME=$(kubectl get ingress -o jsonpath='{.items[*].spec.rules[*].host}' -n openbao)
   export VAULT_TOKEN=$(kubectl get secret -n openbao openbao-init -o=jsonpath='{.data.root_token}'  | base64 -d)
@@ -1317,31 +1314,6 @@ if [[ $( echo $argocd_apps | grep sx-openbao ) ]] ; then
   fi
 fi
   
-# when we are in a github codespace, we need to add special backstage env variables
-if [[ "${CODESPACES:-}" == "true" ]]; then
-  if [[ $( echo $argocd_apps | grep sx-backstage ) ]] ; then
-
-    # delete secret if it already exists
-    if kubectl get secret -n backstage codespaces-secret > /dev/null 2>&1 ; then
-      kubectl delete secret -n backstage codespaces-secret
-    fi
-    
-    BACKSTAGE_CODESPACE_URL="https://${CODESPACE_NAME}-6691.${GITHUB_CODESPACES_PORT_FORWARDING_DOMAIN}"
-
-    kubectl create secret generic -n backstage codespaces-secret \
-    --from-literal=APP_CONFIG_app_baseUrl=${BACKSTAGE_CODESPACE_URL} \
-    --from-literal=APP_CONFIG_backend_baseUrl=${BACKSTAGE_CODESPACE_URL} \
-    --from-literal=APP_CONFIG_backend_cors_origin=${BACKSTAGE_CODESPACE_URL} \
-    --from-literal=APP_CONFIG_auth_provider_github_development_callbackUrl=${BACKSTAGE_CODESPACE_URL}/api/auth/github/handler/frame \
-    --dry-run=client -o yaml | kubectl apply -f -
-
-    kubectl rollout restart deployment sx-backstage -n backstage
-
-    # finally wait for backstage to be synced and healthy
-    wait_until_apps_synced_healthy "sx-backstage" "Synced" "Healthy" 600
-  fi
-fi
-
 # remove pushsecrets
 kubectl delete -f ./.secrets/secrettemp/pushsecrets.yaml
 
