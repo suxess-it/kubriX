@@ -6,7 +6,8 @@ export async function mergeKargoProductionPr(
   options: { allowNoChanges?: boolean } = {},
 ): Promise<void> {
   const prefix = process.env.E2E_TEST_PR_NUMBER;
-  if (!prefix || !/^[0-9]+$/.test(prefix)) {
+  // CI uses a SHA-256 prefix (hex); local runs may still use a numeric PR ID.
+  if (!prefix || !/^[0-9a-f]+$/.test(prefix)) {
     throw new Error('E2E_TEST_PR_NUMBER must identify the disposable demo repository');
   }
   const token = process.env.E2E_KUBRIX_KARGO_GIT_PASSWORD;
