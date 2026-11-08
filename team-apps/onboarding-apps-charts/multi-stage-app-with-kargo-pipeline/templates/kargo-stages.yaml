@@ -45,7 +45,6 @@ spec:
       - uses: git-open-pr
         as: open-pr
         config:
-          createTargetBranch: true
           repoURL: ${{`{{ vars.gitRepo }}`}}
           sourceBranch: ${{`{{ outputs.push.branch }}`}}
           targetBranch: stages/${{`{{ ctx.stage }}`}}
