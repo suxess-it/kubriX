@@ -67,6 +67,9 @@ export async function mergeKargoProductionPr(
     expect(merged.merged).toBe(true);
     expect(merged.sha).toBeTruthy();
     console.log(`Merged Kargo production PR #${pr.number} at ${merged.sha}`);
+    // Reconcile immediately instead of racing git-wait-for-pr's 30s polling interval.
+    await page.getByRole('dialog').filter({ hasText: 'Promotion -' })
+      .getByRole('button', { name: 'Refresh', exact: true }).click();
   } finally {
     await api.dispose();
   }
