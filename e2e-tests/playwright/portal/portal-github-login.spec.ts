@@ -1,4 +1,5 @@
 // @ts-check
+import { mergeKargoProductionPr } from '../utils/kargo-production-pr';
 import { request, type Locator, type Page } from '@playwright/test';
 import { test, expect } from '../fixtures/github-auth';
 import path from 'path';
@@ -324,6 +325,7 @@ test.describe("Kargo GitOps Promotion - Going Live First time", { tag: ['@oss'] 
     await page.getByRole('menuitem', { name: 'Promote', exact: true }).locator('span').click();
     await page.getByRole('button', { name: 'Select' }).first().click();
     await page.getByRole('button', { name: 'Promote' }).click();
+    await mergeKargoProductionPr(page, { allowNoChanges: true });
     await expect(page.getByLabel('Promotion', { exact: true }).getByRole('rowgroup')).toContainText('Succeeded', { timeout: 60_000 });
     await page.getByRole('button', { name: 'Close' }).click();
     const prodStage = page.locator('[data-testid$="/prod"]');
@@ -625,6 +627,7 @@ test.describe("Kargo GitOps Promotion - Promote Changes", { tag: ['@oss'] }, () 
     await page.getByRole('menuitem', { name: 'Promote', exact: true }).locator('span').click();
     await page.getByRole('button', { name: 'Select' }).first().click();
     await page.getByRole('button', { name: 'Promote' }).click();
+    await mergeKargoProductionPr(page);
     await expect(page.getByLabel('Promotion', { exact: true }).getByRole('rowgroup')).toContainText('Succeeded', { timeout: 30_000 });
     await page.getByRole('button', { name: 'Close' }).click();
     const prodStage = page.locator('[data-testid$="/prod"]');
@@ -690,4 +693,3 @@ test("Delete kubrixBot repos", { tag: ['@oss'] }, async ({ page }) => {
   await page.getByLabel(`Delete kubriX-demo/kubrix-a${teamRepoUID}-apps`).getByRole('button', { name: 'Delete this repository' }).click();
 
 });
-  

@@ -26,7 +26,7 @@ jobs:
       - name: create image json
         shell: bash
         run: |
-          helm plugin install https://github.com/nikhilsbhat/helm-images
+          helm plugin install https://github.com/nikhilsbhat/helm-images --version v0.1.8
           cd platform-apps/charts
           echo -n "" > image-list.json
           for chart in $( ls -d */ | sed 's#/##' ); do

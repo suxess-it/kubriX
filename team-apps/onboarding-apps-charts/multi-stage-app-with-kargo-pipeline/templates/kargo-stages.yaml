@@ -45,19 +45,17 @@ spec:
       - uses: git-open-pr
         as: open-pr
         config:
-          createTargetBranch: true
           repoURL: ${{`{{ vars.gitRepo }}`}}
           sourceBranch: ${{`{{ outputs.push.branch }}`}}
           targetBranch: stages/${{`{{ ctx.stage }}`}}
           title: push changes to ${{`{{ ctx.stage }}`}}
       - uses: git-wait-for-pr
+        if: ${{`{{ status('open-pr') != 'Skipped' }}`}}
         as: wait-for-pr
         config:
           prNumber: ${{`{{ outputs['open-pr'].pr.id }}`}}
           repoURL: ${{`{{ vars.gitRepo }}`}}
-        retry:
-          timeout: 48h0m0s
-          
+            
       {{- else }}
       - uses: git-push
         config:
@@ -72,7 +70,7 @@ spec:
             sources:
             - repoURL: ${{`{{ vars.gitRepo }}`}}
               {{- if .openPr }}
-              desiredRevision: ${{`{{ outputs['wait-for-pr'].commit }}`}}
+              desiredRevision: "${{`{{ status('open-pr') == 'Skipped' ? outputs.commit.commit : outputs['wait-for-pr'].commit }}`}}"
               {{- else }}
               desiredRevision: ${{`{{ outputs.commit.commit }}`}}
               {{- end }}

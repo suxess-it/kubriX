@@ -83,8 +83,6 @@ spec:
       input:
         url: ./kargo-gitops
         targetPath: ./kargo-gitops
-        copyWithoutTemplating: 
-          - .github/workflows/branch.yaml
         values:
           application_id: ${{ parameters.application_id }}
           description: ${{ parameters.description }}

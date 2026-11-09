@@ -34,7 +34,7 @@ else
 fi
 
 # install tools only when chart changes need inspection
-helm plugin install https://github.com/nikhilsbhat/helm-images || true
+helm plugin install https://github.com/nikhilsbhat/helm-images --version v0.1.8
 
 echo "charts which differ between main and PR:"
 echo "${changed_charts}"

@@ -20,6 +20,16 @@
     {
       "customType": "regex",
       "managerFilePatterns": [
+        "/^\\.github/.*\\.(sh|ya?ml)$/"
+      ],
+      "matchStrings": [
+        "helm plugin install https://github\\.com/(?<depName>nikhilsbhat/helm-images) --version (?<currentValue>v\\d+\\.\\d+\\.\\d+)"
+      ],
+      "datasourceTemplate": "github-releases"
+    },
+    {
+      "customType": "regex",
+      "managerFilePatterns": [
         "/^platform-apps/charts/openbao/[^/]+\\.yaml$/"
       ],
       "matchStrings": [
