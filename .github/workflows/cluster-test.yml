@@ -404,6 +404,15 @@ jobs:
       - name: Log disk space before installation
         run: df -h /
       
+      # Work around actions/runner-images#15108: Ubuntu 26.04 does not apply
+      # the image's configured inotify limits at boot.
+      - name: Restore inotify limits on GitHub runner
+        shell: bash
+        run: |
+          sudo sysctl -w \
+            fs.inotify.max_user_instances=1280 \
+            fs.inotify.max_user_watches=655360
+
       - name: Create k8s Kind Cluster
         uses: helm/kind-action@v1.15.2
         with:
@@ -426,6 +435,10 @@ jobs:
             kind load docker-image "$img" --name kubrix-cluster
           done
     
+      - name: Wait for GitHub API before create repository lifecycle token
+        shell: bash
+        run: bash .github/scripts/wait-for-github-api.sh
+
       - name: Create repository lifecycle token
         id: repo-create-token
         uses: actions/create-github-app-token@v3
@@ -453,6 +466,10 @@ jobs:
             -f has_wiki=false
           echo "Repo created: https://github.com/${REPO_ORG}/${REPO_NAME}"
 
+      - name: Wait for GitHub API before create installer repository token
+        shell: bash
+        run: bash .github/scripts/wait-for-github-api.sh
+
       - name: Create installer repository token
         id: repo-installer-token
         uses: actions/create-github-app-token@v3
@@ -463,6 +480,10 @@ jobs:
           repositories: kubrix-cluster-test-${{ github.run_id }}-${{ job.check_run_id }}
           permission-contents: write
           permission-workflows: write
+
+      - name: Wait for GitHub API before create backstage repository token
+        shell: bash
+        run: bash .github/scripts/wait-for-github-api.sh
 
       - name: Create Backstage repository token
         id: repo-backstage-token
@@ -602,6 +623,11 @@ jobs:
           echo "❌ Timed out after 5 minutes waiting for User entities."
           exit 1
 
+      - name: Wait for GitHub API before create repository cleanup token
+        if: ${{ matrix.target-type == 'kind-portal' || matrix.target-type == 'kind-hub-prime' }}
+        shell: bash
+        run: bash .github/scripts/wait-for-github-api.sh
+
       - name: Create repository cleanup token
         id: repo-cleanup-token
         if: ${{ matrix.target-type == 'kind-portal' || matrix.target-type == 'kind-hub-prime' }}
@@ -691,6 +717,10 @@ jobs:
      #     wait_interval_seconds: "10"
      #     post_unlock: "true"
     
+      - name: Wait for GitHub API before create repository test token
+        shell: bash
+        run: bash .github/scripts/wait-for-github-api.sh
+
       - name: Create repository test token
         id: repo-test-token
         uses: actions/create-github-app-token@v3
@@ -700,6 +730,10 @@ jobs:
           owner: kubriX-demo
           permission-contents: write
           permission-pull-requests: write
+
+      - name: Wait for GitHub API before create applicationset test token
+        shell: bash
+        run: bash .github/scripts/wait-for-github-api.sh
 
       - name: Create ApplicationSet test token
         id: appset-test-token
@@ -945,6 +979,11 @@ jobs:
           kubectl get pods -A
           echo "describe all pods ====="
           kubectl describe pod -A
+
+      - name: Wait for GitHub API before create final repository cleanup token
+        if: ${{ always() }}
+        shell: bash
+        run: bash .github/scripts/wait-for-github-api.sh
 
       - name: Create final repository cleanup token
         id: repo-final-cleanup-token
