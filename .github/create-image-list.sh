@@ -4,7 +4,7 @@
 
 set -e
 
-helm plugin install https://github.com/nikhilsbhat/helm-images --version v0.1.8
+helm plugin install https://github.com/nikhilsbhat/helm-images --version v0.1.8 --verify=false
 
 mkdir -p image-list
 
