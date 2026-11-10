@@ -5,7 +5,7 @@
 set -e
 
 # install helm images plugin
-helm plugin install https://github.com/nikhilsbhat/helm-images --version v0.1.8
+helm plugin install https://github.com/nikhilsbhat/helm-images --version v0.1.8 --verify=false
 
 mkdir -p trivy-scan-reports
 find trivy-scan-reports -maxdepth 1 -type f ! -name vulnerability-risk-assessment.md -delete
