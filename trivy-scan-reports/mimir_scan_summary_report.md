@@ -182,7 +182,7 @@
 <h2>Image <code>docker.io/nginxinc/nginx-unprivileged:1.29-alpine</code></h2>
 
 <h3>Target <code>docker.io/nginxinc/nginx-unprivileged:1.29-alpine (alpine 3.23.4)</code></h3>
-<h4>Vulnerabilities (54)</h4>
+<h4>Vulnerabilities (56)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -512,6 +512,20 @@
         <td>HIGH</td>
         <td>2.13.9-r0</td>
         <td>2.13.9-r1</td>
+    </tr>
+    <tr>
+        <td><code>libxslt</code></td>
+        <td>CVE-2026-87636</td>
+        <td>HIGH</td>
+        <td>1.1.43-r3</td>
+        <td>1.1.43-r4</td>
+    </tr>
+    <tr>
+        <td><code>libxslt</code></td>
+        <td>CVE-2026-9947</td>
+        <td>HIGH</td>
+        <td>1.1.43-r3</td>
+        <td>1.1.43-r4</td>
     </tr>
     <tr>
         <td><code>musl</code></td>

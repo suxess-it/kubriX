@@ -272,7 +272,7 @@
 <h2>Image <code>icr.io/kubecost/cost-model:2.9.7</code></h2>
 
 <h3>Target <code>icr.io/kubecost/cost-model:2.9.7 (redhat 9.8)</code></h3>
-<h4>Vulnerabilities (57)</h4>
+<h4>Vulnerabilities (70)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -366,17 +366,108 @@
         <td>2.68.4-19.el9_8.2</td>
     </tr>
     <tr>
-        <td><code>gnupg2</code></td>
-        <td>CVE-2026-118131</td>
-        <td>HIGH</td>
-        <td>2.3.3-5.el9_7</td>
-        <td></td>
-    </tr>
-    <tr>
         <td><code>json-glib</code></td>
         <td>CVE-2026-120194</td>
         <td>HIGH</td>
         <td>1.6.6-1.el9</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>krb5-libs</code></td>
+        <td>CVE-2026-107364</td>
+        <td>HIGH</td>
+        <td>1.21.1-10.el9_8</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>krb5-libs</code></td>
+        <td>CVE-2026-112315</td>
+        <td>HIGH</td>
+        <td>1.21.1-10.el9_8</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>krb5-libs</code></td>
+        <td>CVE-2026-112316</td>
+        <td>HIGH</td>
+        <td>1.21.1-10.el9_8</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>krb5-libs</code></td>
+        <td>CVE-2026-112317</td>
+        <td>HIGH</td>
+        <td>1.21.1-10.el9_8</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>krb5-libs</code></td>
+        <td>CVE-2026-112318</td>
+        <td>HIGH</td>
+        <td>1.21.1-10.el9_8</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>krb5-libs</code></td>
+        <td>CVE-2026-112319</td>
+        <td>HIGH</td>
+        <td>1.21.1-10.el9_8</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>krb5-libs</code></td>
+        <td>CVE-2026-112320</td>
+        <td>HIGH</td>
+        <td>1.21.1-10.el9_8</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>krb5-libs</code></td>
+        <td>CVE-2026-112321</td>
+        <td>HIGH</td>
+        <td>1.21.1-10.el9_8</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>krb5-libs</code></td>
+        <td>CVE-2026-112322</td>
+        <td>HIGH</td>
+        <td>1.21.1-10.el9_8</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>krb5-libs</code></td>
+        <td>CVE-2026-112323</td>
+        <td>HIGH</td>
+        <td>1.21.1-10.el9_8</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>krb5-libs</code></td>
+        <td>CVE-2026-118380</td>
+        <td>HIGH</td>
+        <td>1.21.1-10.el9_8</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>krb5-libs</code></td>
+        <td>CVE-2026-119079</td>
+        <td>HIGH</td>
+        <td>1.21.1-10.el9_8</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>krb5-libs</code></td>
+        <td>CVE-2026-71199</td>
+        <td>HIGH</td>
+        <td>1.21.1-10.el9_8</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>krb5-libs</code></td>
+        <td>CVE-2026-71200</td>
+        <td>HIGH</td>
+        <td>1.21.1-10.el9_8</td>
         <td></td>
     </tr>
     <tr>
@@ -391,7 +482,7 @@
         <td>CVE-2026-53613</td>
         <td>HIGH</td>
         <td>2.37.4-25.el9</td>
-        <td></td>
+        <td>2.37.4-28.el9_9</td>
     </tr>
     <tr>
         <td><code>libblkid</code></td>
@@ -475,7 +566,7 @@
         <td>CVE-2026-53613</td>
         <td>HIGH</td>
         <td>2.37.4-25.el9</td>
-        <td></td>
+        <td>2.37.4-28.el9_9</td>
     </tr>
     <tr>
         <td><code>libfdisk</code></td>
@@ -489,7 +580,7 @@
         <td>CVE-2026-53613</td>
         <td>HIGH</td>
         <td>2.37.4-25.el9</td>
-        <td></td>
+        <td>2.37.4-28.el9_9</td>
     </tr>
     <tr>
         <td><code>libmount</code></td>
@@ -503,7 +594,7 @@
         <td>CVE-2026-53613</td>
         <td>HIGH</td>
         <td>2.37.4-25.el9</td>
-        <td></td>
+        <td>2.37.4-28.el9_9</td>
     </tr>
     <tr>
         <td><code>libsmartcols</code></td>
@@ -517,7 +608,7 @@
         <td>CVE-2026-53613</td>
         <td>HIGH</td>
         <td>2.37.4-25.el9</td>
-        <td></td>
+        <td>2.37.4-28.el9_9</td>
     </tr>
     <tr>
         <td><code>libuuid</code></td>
@@ -657,7 +748,7 @@
         <td>CVE-2026-53613</td>
         <td>HIGH</td>
         <td>2.37.4-25.el9</td>
-        <td></td>
+        <td>2.37.4-28.el9_9</td>
     </tr>
     <tr>
         <td><code>util-linux</code></td>
@@ -671,7 +762,7 @@
         <td>CVE-2026-53613</td>
         <td>HIGH</td>
         <td>2.37.4-25.el9</td>
-        <td></td>
+        <td>2.37.4-28.el9_9</td>
     </tr>
     <tr>
         <td><code>util-linux-core</code></td>
@@ -1103,7 +1194,7 @@
 <h2>Image <code>icr.io/kubecost/frontend:2.9.7</code></h2>
 
 <h3>Target <code>icr.io/kubecost/frontend:2.9.7 (redhat 9.8)</code></h3>
-<h4>Vulnerabilities (78)</h4>
+<h4>Vulnerabilities (91)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -1197,17 +1288,108 @@
         <td>2.68.4-19.el9_8.2</td>
     </tr>
     <tr>
-        <td><code>gnupg2</code></td>
-        <td>CVE-2026-118131</td>
-        <td>HIGH</td>
-        <td>2.3.3-5.el9_7</td>
-        <td></td>
-    </tr>
-    <tr>
         <td><code>json-glib</code></td>
         <td>CVE-2026-120194</td>
         <td>HIGH</td>
         <td>1.6.6-1.el9</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>krb5-libs</code></td>
+        <td>CVE-2026-107364</td>
+        <td>HIGH</td>
+        <td>1.21.1-10.el9_8</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>krb5-libs</code></td>
+        <td>CVE-2026-112315</td>
+        <td>HIGH</td>
+        <td>1.21.1-10.el9_8</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>krb5-libs</code></td>
+        <td>CVE-2026-112316</td>
+        <td>HIGH</td>
+        <td>1.21.1-10.el9_8</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>krb5-libs</code></td>
+        <td>CVE-2026-112317</td>
+        <td>HIGH</td>
+        <td>1.21.1-10.el9_8</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>krb5-libs</code></td>
+        <td>CVE-2026-112318</td>
+        <td>HIGH</td>
+        <td>1.21.1-10.el9_8</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>krb5-libs</code></td>
+        <td>CVE-2026-112319</td>
+        <td>HIGH</td>
+        <td>1.21.1-10.el9_8</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>krb5-libs</code></td>
+        <td>CVE-2026-112320</td>
+        <td>HIGH</td>
+        <td>1.21.1-10.el9_8</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>krb5-libs</code></td>
+        <td>CVE-2026-112321</td>
+        <td>HIGH</td>
+        <td>1.21.1-10.el9_8</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>krb5-libs</code></td>
+        <td>CVE-2026-112322</td>
+        <td>HIGH</td>
+        <td>1.21.1-10.el9_8</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>krb5-libs</code></td>
+        <td>CVE-2026-112323</td>
+        <td>HIGH</td>
+        <td>1.21.1-10.el9_8</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>krb5-libs</code></td>
+        <td>CVE-2026-118380</td>
+        <td>HIGH</td>
+        <td>1.21.1-10.el9_8</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>krb5-libs</code></td>
+        <td>CVE-2026-119079</td>
+        <td>HIGH</td>
+        <td>1.21.1-10.el9_8</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>krb5-libs</code></td>
+        <td>CVE-2026-71199</td>
+        <td>HIGH</td>
+        <td>1.21.1-10.el9_8</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>krb5-libs</code></td>
+        <td>CVE-2026-71200</td>
+        <td>HIGH</td>
+        <td>1.21.1-10.el9_8</td>
         <td></td>
     </tr>
     <tr>
@@ -1222,7 +1404,7 @@
         <td>CVE-2026-53613</td>
         <td>HIGH</td>
         <td>2.37.4-25.el9</td>
-        <td></td>
+        <td>2.37.4-28.el9_9</td>
     </tr>
     <tr>
         <td><code>libblkid</code></td>
@@ -1306,7 +1488,7 @@
         <td>CVE-2026-53613</td>
         <td>HIGH</td>
         <td>2.37.4-25.el9</td>
-        <td></td>
+        <td>2.37.4-28.el9_9</td>
     </tr>
     <tr>
         <td><code>libfdisk</code></td>
@@ -1320,7 +1502,7 @@
         <td>CVE-2026-53613</td>
         <td>HIGH</td>
         <td>2.37.4-25.el9</td>
-        <td></td>
+        <td>2.37.4-28.el9_9</td>
     </tr>
     <tr>
         <td><code>libmount</code></td>
@@ -1334,7 +1516,7 @@
         <td>CVE-2026-53613</td>
         <td>HIGH</td>
         <td>2.37.4-25.el9</td>
-        <td></td>
+        <td>2.37.4-28.el9_9</td>
     </tr>
     <tr>
         <td><code>libsmartcols</code></td>
@@ -1348,7 +1530,7 @@
         <td>CVE-2026-53613</td>
         <td>HIGH</td>
         <td>2.37.4-25.el9</td>
-        <td></td>
+        <td>2.37.4-28.el9_9</td>
     </tr>
     <tr>
         <td><code>libuuid</code></td>
@@ -1635,7 +1817,7 @@
         <td>CVE-2026-53613</td>
         <td>HIGH</td>
         <td>2.37.4-25.el9</td>
-        <td></td>
+        <td>2.37.4-28.el9_9</td>
     </tr>
     <tr>
         <td><code>util-linux</code></td>
@@ -1649,7 +1831,7 @@
         <td>CVE-2026-53613</td>
         <td>HIGH</td>
         <td>2.37.4-25.el9</td>
-        <td></td>
+        <td>2.37.4-28.el9_9</td>
     </tr>
     <tr>
         <td><code>util-linux-core</code></td>
@@ -1663,7 +1845,7 @@
 <h2>Image <code>icr.io/kubecost/modeling:v0.1.34</code></h2>
 
 <h3>Target <code>icr.io/kubecost/modeling:v0.1.34 (redhat 9.7)</code></h3>
-<h4>Vulnerabilities (77)</h4>
+<h4>Vulnerabilities (90)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -1764,13 +1946,6 @@
         <td>2.3.3-5.el9_7</td>
     </tr>
     <tr>
-        <td><code>gnupg2</code></td>
-        <td>CVE-2026-118131</td>
-        <td>HIGH</td>
-        <td>2.3.3-4.el9</td>
-        <td></td>
-    </tr>
-    <tr>
         <td><code>gnutls</code></td>
         <td>CVE-2026-33845</td>
         <td>HIGH</td>
@@ -1806,6 +1981,104 @@
         <td></td>
     </tr>
     <tr>
+        <td><code>krb5-libs</code></td>
+        <td>CVE-2026-107364</td>
+        <td>HIGH</td>
+        <td>1.21.1-8.el9_6</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>krb5-libs</code></td>
+        <td>CVE-2026-112315</td>
+        <td>HIGH</td>
+        <td>1.21.1-8.el9_6</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>krb5-libs</code></td>
+        <td>CVE-2026-112316</td>
+        <td>HIGH</td>
+        <td>1.21.1-8.el9_6</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>krb5-libs</code></td>
+        <td>CVE-2026-112317</td>
+        <td>HIGH</td>
+        <td>1.21.1-8.el9_6</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>krb5-libs</code></td>
+        <td>CVE-2026-112318</td>
+        <td>HIGH</td>
+        <td>1.21.1-8.el9_6</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>krb5-libs</code></td>
+        <td>CVE-2026-112319</td>
+        <td>HIGH</td>
+        <td>1.21.1-8.el9_6</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>krb5-libs</code></td>
+        <td>CVE-2026-112320</td>
+        <td>HIGH</td>
+        <td>1.21.1-8.el9_6</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>krb5-libs</code></td>
+        <td>CVE-2026-112321</td>
+        <td>HIGH</td>
+        <td>1.21.1-8.el9_6</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>krb5-libs</code></td>
+        <td>CVE-2026-112322</td>
+        <td>HIGH</td>
+        <td>1.21.1-8.el9_6</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>krb5-libs</code></td>
+        <td>CVE-2026-112323</td>
+        <td>HIGH</td>
+        <td>1.21.1-8.el9_6</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>krb5-libs</code></td>
+        <td>CVE-2026-118380</td>
+        <td>HIGH</td>
+        <td>1.21.1-8.el9_6</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>krb5-libs</code></td>
+        <td>CVE-2026-119079</td>
+        <td>HIGH</td>
+        <td>1.21.1-8.el9_6</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>krb5-libs</code></td>
+        <td>CVE-2026-71199</td>
+        <td>HIGH</td>
+        <td>1.21.1-8.el9_6</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>krb5-libs</code></td>
+        <td>CVE-2026-71200</td>
+        <td>HIGH</td>
+        <td>1.21.1-8.el9_6</td>
+        <td></td>
+    </tr>
+    <tr>
         <td><code>libacl</code></td>
         <td>CVE-2026-54369</td>
         <td>HIGH</td>
@@ -1831,7 +2104,7 @@
         <td>CVE-2026-53613</td>
         <td>HIGH</td>
         <td>2.37.4-21.el9</td>
-        <td></td>
+        <td>2.37.4-28.el9_9</td>
     </tr>
     <tr>
         <td><code>libblkid</code></td>
@@ -1922,7 +2195,7 @@
         <td>CVE-2026-53613</td>
         <td>HIGH</td>
         <td>2.37.4-21.el9</td>
-        <td></td>
+        <td>2.37.4-28.el9_9</td>
     </tr>
     <tr>
         <td><code>libmount</code></td>
@@ -1943,7 +2216,7 @@
         <td>CVE-2026-53613</td>
         <td>HIGH</td>
         <td>2.37.4-21.el9</td>
-        <td></td>
+        <td>2.37.4-28.el9_9</td>
     </tr>
     <tr>
         <td><code>libsmartcols</code></td>
@@ -1957,7 +2230,7 @@
         <td>CVE-2026-53613</td>
         <td>HIGH</td>
         <td>2.37.4-21.el9</td>
-        <td></td>
+        <td>2.37.4-28.el9_9</td>
     </tr>
     <tr>
         <td><code>libuuid</code></td>

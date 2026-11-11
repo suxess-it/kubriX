@@ -328,7 +328,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>Node.js</code></h3>
-<h4>Vulnerabilities (358)</h4>
+<h4>Vulnerabilities (361)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -1087,6 +1087,13 @@
         <td>10.3.1</td>
     </tr>
     <tr>
+        <td><code>isomorphic-git</code></td>
+        <td>CVE-2026-63395</td>
+        <td>HIGH</td>
+        <td>1.37.5</td>
+        <td>1.38.6</td>
+    </tr>
+    <tr>
         <td><code>js-cookie</code></td>
         <td>CVE-2026-46625</td>
         <td>HIGH</td>
@@ -1299,6 +1306,20 @@
     <tr>
         <td><code>node-forge</code></td>
         <td>CVE-2026-119190</td>
+        <td>HIGH</td>
+        <td>1.4.0</td>
+        <td>1.4.1</td>
+    </tr>
+    <tr>
+        <td><code>node-forge</code></td>
+        <td>CVE-2026-119191</td>
+        <td>HIGH</td>
+        <td>1.4.0</td>
+        <td>1.4.1</td>
+    </tr>
+    <tr>
+        <td><code>node-forge</code></td>
+        <td>CVE-2026-119192</td>
         <td>HIGH</td>
         <td>1.4.0</td>
         <td>1.4.1</td>

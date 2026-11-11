@@ -1,7 +1,7 @@
 <h2>Image <code>docker.io/dserio83/velero-api:0.3.1</code></h2>
 
 <h3>Target <code>docker.io/dserio83/velero-api:0.3.1 (debian 12.11)</code></h3>
-<h4>Vulnerabilities (207)</h4>
+<h4>Vulnerabilities (263)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -383,6 +383,90 @@
     </tr>
     <tr>
         <td><code>libgssapi-krb5-2</code></td>
+        <td>CVE-2026-107364</td>
+        <td>HIGH</td>
+        <td>1.20.1-2+deb12u3</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>libgssapi-krb5-2</code></td>
+        <td>CVE-2026-112315</td>
+        <td>HIGH</td>
+        <td>1.20.1-2+deb12u3</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>libgssapi-krb5-2</code></td>
+        <td>CVE-2026-112316</td>
+        <td>HIGH</td>
+        <td>1.20.1-2+deb12u3</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>libgssapi-krb5-2</code></td>
+        <td>CVE-2026-112317</td>
+        <td>HIGH</td>
+        <td>1.20.1-2+deb12u3</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>libgssapi-krb5-2</code></td>
+        <td>CVE-2026-112318</td>
+        <td>HIGH</td>
+        <td>1.20.1-2+deb12u3</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>libgssapi-krb5-2</code></td>
+        <td>CVE-2026-112319</td>
+        <td>HIGH</td>
+        <td>1.20.1-2+deb12u3</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>libgssapi-krb5-2</code></td>
+        <td>CVE-2026-112320</td>
+        <td>HIGH</td>
+        <td>1.20.1-2+deb12u3</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>libgssapi-krb5-2</code></td>
+        <td>CVE-2026-112321</td>
+        <td>HIGH</td>
+        <td>1.20.1-2+deb12u3</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>libgssapi-krb5-2</code></td>
+        <td>CVE-2026-112322</td>
+        <td>HIGH</td>
+        <td>1.20.1-2+deb12u3</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>libgssapi-krb5-2</code></td>
+        <td>CVE-2026-112323</td>
+        <td>HIGH</td>
+        <td>1.20.1-2+deb12u3</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>libgssapi-krb5-2</code></td>
+        <td>CVE-2026-118380</td>
+        <td>HIGH</td>
+        <td>1.20.1-2+deb12u3</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>libgssapi-krb5-2</code></td>
+        <td>CVE-2026-119079</td>
+        <td>HIGH</td>
+        <td>1.20.1-2+deb12u3</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>libgssapi-krb5-2</code></td>
         <td>CVE-2026-40355</td>
         <td>HIGH</td>
         <td>1.20.1-2+deb12u3</td>
@@ -396,6 +480,104 @@
         <td>1.20.1-2+deb12u5</td>
     </tr>
     <tr>
+        <td><code>libgssapi-krb5-2</code></td>
+        <td>CVE-2026-71199</td>
+        <td>HIGH</td>
+        <td>1.20.1-2+deb12u3</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>libgssapi-krb5-2</code></td>
+        <td>CVE-2026-71200</td>
+        <td>HIGH</td>
+        <td>1.20.1-2+deb12u3</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>libk5crypto3</code></td>
+        <td>CVE-2026-107364</td>
+        <td>HIGH</td>
+        <td>1.20.1-2+deb12u3</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>libk5crypto3</code></td>
+        <td>CVE-2026-112315</td>
+        <td>HIGH</td>
+        <td>1.20.1-2+deb12u3</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>libk5crypto3</code></td>
+        <td>CVE-2026-112316</td>
+        <td>HIGH</td>
+        <td>1.20.1-2+deb12u3</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>libk5crypto3</code></td>
+        <td>CVE-2026-112317</td>
+        <td>HIGH</td>
+        <td>1.20.1-2+deb12u3</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>libk5crypto3</code></td>
+        <td>CVE-2026-112318</td>
+        <td>HIGH</td>
+        <td>1.20.1-2+deb12u3</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>libk5crypto3</code></td>
+        <td>CVE-2026-112319</td>
+        <td>HIGH</td>
+        <td>1.20.1-2+deb12u3</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>libk5crypto3</code></td>
+        <td>CVE-2026-112320</td>
+        <td>HIGH</td>
+        <td>1.20.1-2+deb12u3</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>libk5crypto3</code></td>
+        <td>CVE-2026-112321</td>
+        <td>HIGH</td>
+        <td>1.20.1-2+deb12u3</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>libk5crypto3</code></td>
+        <td>CVE-2026-112322</td>
+        <td>HIGH</td>
+        <td>1.20.1-2+deb12u3</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>libk5crypto3</code></td>
+        <td>CVE-2026-112323</td>
+        <td>HIGH</td>
+        <td>1.20.1-2+deb12u3</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>libk5crypto3</code></td>
+        <td>CVE-2026-118380</td>
+        <td>HIGH</td>
+        <td>1.20.1-2+deb12u3</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>libk5crypto3</code></td>
+        <td>CVE-2026-119079</td>
+        <td>HIGH</td>
+        <td>1.20.1-2+deb12u3</td>
+        <td></td>
+    </tr>
+    <tr>
         <td><code>libk5crypto3</code></td>
         <td>CVE-2026-40355</td>
         <td>HIGH</td>
@@ -408,6 +590,104 @@
         <td>HIGH</td>
         <td>1.20.1-2+deb12u3</td>
         <td>1.20.1-2+deb12u5</td>
+    </tr>
+    <tr>
+        <td><code>libk5crypto3</code></td>
+        <td>CVE-2026-71199</td>
+        <td>HIGH</td>
+        <td>1.20.1-2+deb12u3</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>libk5crypto3</code></td>
+        <td>CVE-2026-71200</td>
+        <td>HIGH</td>
+        <td>1.20.1-2+deb12u3</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>libkrb5-3</code></td>
+        <td>CVE-2026-107364</td>
+        <td>HIGH</td>
+        <td>1.20.1-2+deb12u3</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>libkrb5-3</code></td>
+        <td>CVE-2026-112315</td>
+        <td>HIGH</td>
+        <td>1.20.1-2+deb12u3</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>libkrb5-3</code></td>
+        <td>CVE-2026-112316</td>
+        <td>HIGH</td>
+        <td>1.20.1-2+deb12u3</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>libkrb5-3</code></td>
+        <td>CVE-2026-112317</td>
+        <td>HIGH</td>
+        <td>1.20.1-2+deb12u3</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>libkrb5-3</code></td>
+        <td>CVE-2026-112318</td>
+        <td>HIGH</td>
+        <td>1.20.1-2+deb12u3</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>libkrb5-3</code></td>
+        <td>CVE-2026-112319</td>
+        <td>HIGH</td>
+        <td>1.20.1-2+deb12u3</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>libkrb5-3</code></td>
+        <td>CVE-2026-112320</td>
+        <td>HIGH</td>
+        <td>1.20.1-2+deb12u3</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>libkrb5-3</code></td>
+        <td>CVE-2026-112321</td>
+        <td>HIGH</td>
+        <td>1.20.1-2+deb12u3</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>libkrb5-3</code></td>
+        <td>CVE-2026-112322</td>
+        <td>HIGH</td>
+        <td>1.20.1-2+deb12u3</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>libkrb5-3</code></td>
+        <td>CVE-2026-112323</td>
+        <td>HIGH</td>
+        <td>1.20.1-2+deb12u3</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>libkrb5-3</code></td>
+        <td>CVE-2026-118380</td>
+        <td>HIGH</td>
+        <td>1.20.1-2+deb12u3</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>libkrb5-3</code></td>
+        <td>CVE-2026-119079</td>
+        <td>HIGH</td>
+        <td>1.20.1-2+deb12u3</td>
+        <td></td>
     </tr>
     <tr>
         <td><code>libkrb5-3</code></td>
@@ -424,6 +704,104 @@
         <td>1.20.1-2+deb12u5</td>
     </tr>
     <tr>
+        <td><code>libkrb5-3</code></td>
+        <td>CVE-2026-71199</td>
+        <td>HIGH</td>
+        <td>1.20.1-2+deb12u3</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>libkrb5-3</code></td>
+        <td>CVE-2026-71200</td>
+        <td>HIGH</td>
+        <td>1.20.1-2+deb12u3</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>libkrb5support0</code></td>
+        <td>CVE-2026-107364</td>
+        <td>HIGH</td>
+        <td>1.20.1-2+deb12u3</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>libkrb5support0</code></td>
+        <td>CVE-2026-112315</td>
+        <td>HIGH</td>
+        <td>1.20.1-2+deb12u3</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>libkrb5support0</code></td>
+        <td>CVE-2026-112316</td>
+        <td>HIGH</td>
+        <td>1.20.1-2+deb12u3</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>libkrb5support0</code></td>
+        <td>CVE-2026-112317</td>
+        <td>HIGH</td>
+        <td>1.20.1-2+deb12u3</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>libkrb5support0</code></td>
+        <td>CVE-2026-112318</td>
+        <td>HIGH</td>
+        <td>1.20.1-2+deb12u3</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>libkrb5support0</code></td>
+        <td>CVE-2026-112319</td>
+        <td>HIGH</td>
+        <td>1.20.1-2+deb12u3</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>libkrb5support0</code></td>
+        <td>CVE-2026-112320</td>
+        <td>HIGH</td>
+        <td>1.20.1-2+deb12u3</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>libkrb5support0</code></td>
+        <td>CVE-2026-112321</td>
+        <td>HIGH</td>
+        <td>1.20.1-2+deb12u3</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>libkrb5support0</code></td>
+        <td>CVE-2026-112322</td>
+        <td>HIGH</td>
+        <td>1.20.1-2+deb12u3</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>libkrb5support0</code></td>
+        <td>CVE-2026-112323</td>
+        <td>HIGH</td>
+        <td>1.20.1-2+deb12u3</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>libkrb5support0</code></td>
+        <td>CVE-2026-118380</td>
+        <td>HIGH</td>
+        <td>1.20.1-2+deb12u3</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>libkrb5support0</code></td>
+        <td>CVE-2026-119079</td>
+        <td>HIGH</td>
+        <td>1.20.1-2+deb12u3</td>
+        <td></td>
+    </tr>
+    <tr>
         <td><code>libkrb5support0</code></td>
         <td>CVE-2026-40355</td>
         <td>HIGH</td>
@@ -436,6 +814,20 @@
         <td>HIGH</td>
         <td>1.20.1-2+deb12u3</td>
         <td>1.20.1-2+deb12u5</td>
+    </tr>
+    <tr>
+        <td><code>libkrb5support0</code></td>
+        <td>CVE-2026-71199</td>
+        <td>HIGH</td>
+        <td>1.20.1-2+deb12u3</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>libkrb5support0</code></td>
+        <td>CVE-2026-71200</td>
+        <td>HIGH</td>
+        <td>1.20.1-2+deb12u3</td>
+        <td></td>
     </tr>
     <tr>
         <td><code>libldap-2.5-0</code></td>
@@ -1494,17 +1886,17 @@
     </tr>
     <tr>
         <td><code>aiohttp</code></td>
+        <td>CVE-2026-123817</td>
+        <td>HIGH</td>
+        <td>3.12.12</td>
+        <td>3.14.4</td>
+    </tr>
+    <tr>
+        <td><code>aiohttp</code></td>
         <td>CVE-2026-69244</td>
         <td>HIGH</td>
         <td>3.12.12</td>
         <td>3.14.3</td>
-    </tr>
-    <tr>
-        <td><code>aiohttp</code></td>
-        <td>GHSA-2g87-pp6c-29x5</td>
-        <td>HIGH</td>
-        <td>3.12.12</td>
-        <td>3.14.4</td>
     </tr>
     <tr>
         <td><code>anyio</code></td>
@@ -2667,7 +3059,7 @@
 <h2>Image <code>docker.io/dserio83/velero-watchdog:0.1.8</code></h2>
 
 <h3>Target <code>docker.io/dserio83/velero-watchdog:0.1.8 (debian 12.10)</code></h3>
-<h4>Vulnerabilities (165)</h4>
+<h4>Vulnerabilities (221)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -3063,6 +3455,90 @@
     </tr>
     <tr>
         <td><code>libgssapi-krb5-2</code></td>
+        <td>CVE-2026-107364</td>
+        <td>HIGH</td>
+        <td>1.20.1-2+deb12u2</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>libgssapi-krb5-2</code></td>
+        <td>CVE-2026-112315</td>
+        <td>HIGH</td>
+        <td>1.20.1-2+deb12u2</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>libgssapi-krb5-2</code></td>
+        <td>CVE-2026-112316</td>
+        <td>HIGH</td>
+        <td>1.20.1-2+deb12u2</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>libgssapi-krb5-2</code></td>
+        <td>CVE-2026-112317</td>
+        <td>HIGH</td>
+        <td>1.20.1-2+deb12u2</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>libgssapi-krb5-2</code></td>
+        <td>CVE-2026-112318</td>
+        <td>HIGH</td>
+        <td>1.20.1-2+deb12u2</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>libgssapi-krb5-2</code></td>
+        <td>CVE-2026-112319</td>
+        <td>HIGH</td>
+        <td>1.20.1-2+deb12u2</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>libgssapi-krb5-2</code></td>
+        <td>CVE-2026-112320</td>
+        <td>HIGH</td>
+        <td>1.20.1-2+deb12u2</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>libgssapi-krb5-2</code></td>
+        <td>CVE-2026-112321</td>
+        <td>HIGH</td>
+        <td>1.20.1-2+deb12u2</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>libgssapi-krb5-2</code></td>
+        <td>CVE-2026-112322</td>
+        <td>HIGH</td>
+        <td>1.20.1-2+deb12u2</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>libgssapi-krb5-2</code></td>
+        <td>CVE-2026-112323</td>
+        <td>HIGH</td>
+        <td>1.20.1-2+deb12u2</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>libgssapi-krb5-2</code></td>
+        <td>CVE-2026-118380</td>
+        <td>HIGH</td>
+        <td>1.20.1-2+deb12u2</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>libgssapi-krb5-2</code></td>
+        <td>CVE-2026-119079</td>
+        <td>HIGH</td>
+        <td>1.20.1-2+deb12u2</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>libgssapi-krb5-2</code></td>
         <td>CVE-2026-40355</td>
         <td>HIGH</td>
         <td>1.20.1-2+deb12u2</td>
@@ -3076,6 +3552,104 @@
         <td>1.20.1-2+deb12u5</td>
     </tr>
     <tr>
+        <td><code>libgssapi-krb5-2</code></td>
+        <td>CVE-2026-71199</td>
+        <td>HIGH</td>
+        <td>1.20.1-2+deb12u2</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>libgssapi-krb5-2</code></td>
+        <td>CVE-2026-71200</td>
+        <td>HIGH</td>
+        <td>1.20.1-2+deb12u2</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>libk5crypto3</code></td>
+        <td>CVE-2026-107364</td>
+        <td>HIGH</td>
+        <td>1.20.1-2+deb12u2</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>libk5crypto3</code></td>
+        <td>CVE-2026-112315</td>
+        <td>HIGH</td>
+        <td>1.20.1-2+deb12u2</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>libk5crypto3</code></td>
+        <td>CVE-2026-112316</td>
+        <td>HIGH</td>
+        <td>1.20.1-2+deb12u2</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>libk5crypto3</code></td>
+        <td>CVE-2026-112317</td>
+        <td>HIGH</td>
+        <td>1.20.1-2+deb12u2</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>libk5crypto3</code></td>
+        <td>CVE-2026-112318</td>
+        <td>HIGH</td>
+        <td>1.20.1-2+deb12u2</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>libk5crypto3</code></td>
+        <td>CVE-2026-112319</td>
+        <td>HIGH</td>
+        <td>1.20.1-2+deb12u2</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>libk5crypto3</code></td>
+        <td>CVE-2026-112320</td>
+        <td>HIGH</td>
+        <td>1.20.1-2+deb12u2</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>libk5crypto3</code></td>
+        <td>CVE-2026-112321</td>
+        <td>HIGH</td>
+        <td>1.20.1-2+deb12u2</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>libk5crypto3</code></td>
+        <td>CVE-2026-112322</td>
+        <td>HIGH</td>
+        <td>1.20.1-2+deb12u2</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>libk5crypto3</code></td>
+        <td>CVE-2026-112323</td>
+        <td>HIGH</td>
+        <td>1.20.1-2+deb12u2</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>libk5crypto3</code></td>
+        <td>CVE-2026-118380</td>
+        <td>HIGH</td>
+        <td>1.20.1-2+deb12u2</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>libk5crypto3</code></td>
+        <td>CVE-2026-119079</td>
+        <td>HIGH</td>
+        <td>1.20.1-2+deb12u2</td>
+        <td></td>
+    </tr>
+    <tr>
         <td><code>libk5crypto3</code></td>
         <td>CVE-2026-40355</td>
         <td>HIGH</td>
@@ -3088,6 +3662,104 @@
         <td>HIGH</td>
         <td>1.20.1-2+deb12u2</td>
         <td>1.20.1-2+deb12u5</td>
+    </tr>
+    <tr>
+        <td><code>libk5crypto3</code></td>
+        <td>CVE-2026-71199</td>
+        <td>HIGH</td>
+        <td>1.20.1-2+deb12u2</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>libk5crypto3</code></td>
+        <td>CVE-2026-71200</td>
+        <td>HIGH</td>
+        <td>1.20.1-2+deb12u2</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>libkrb5-3</code></td>
+        <td>CVE-2026-107364</td>
+        <td>HIGH</td>
+        <td>1.20.1-2+deb12u2</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>libkrb5-3</code></td>
+        <td>CVE-2026-112315</td>
+        <td>HIGH</td>
+        <td>1.20.1-2+deb12u2</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>libkrb5-3</code></td>
+        <td>CVE-2026-112316</td>
+        <td>HIGH</td>
+        <td>1.20.1-2+deb12u2</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>libkrb5-3</code></td>
+        <td>CVE-2026-112317</td>
+        <td>HIGH</td>
+        <td>1.20.1-2+deb12u2</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>libkrb5-3</code></td>
+        <td>CVE-2026-112318</td>
+        <td>HIGH</td>
+        <td>1.20.1-2+deb12u2</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>libkrb5-3</code></td>
+        <td>CVE-2026-112319</td>
+        <td>HIGH</td>
+        <td>1.20.1-2+deb12u2</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>libkrb5-3</code></td>
+        <td>CVE-2026-112320</td>
+        <td>HIGH</td>
+        <td>1.20.1-2+deb12u2</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>libkrb5-3</code></td>
+        <td>CVE-2026-112321</td>
+        <td>HIGH</td>
+        <td>1.20.1-2+deb12u2</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>libkrb5-3</code></td>
+        <td>CVE-2026-112322</td>
+        <td>HIGH</td>
+        <td>1.20.1-2+deb12u2</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>libkrb5-3</code></td>
+        <td>CVE-2026-112323</td>
+        <td>HIGH</td>
+        <td>1.20.1-2+deb12u2</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>libkrb5-3</code></td>
+        <td>CVE-2026-118380</td>
+        <td>HIGH</td>
+        <td>1.20.1-2+deb12u2</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>libkrb5-3</code></td>
+        <td>CVE-2026-119079</td>
+        <td>HIGH</td>
+        <td>1.20.1-2+deb12u2</td>
+        <td></td>
     </tr>
     <tr>
         <td><code>libkrb5-3</code></td>
@@ -3104,6 +3776,104 @@
         <td>1.20.1-2+deb12u5</td>
     </tr>
     <tr>
+        <td><code>libkrb5-3</code></td>
+        <td>CVE-2026-71199</td>
+        <td>HIGH</td>
+        <td>1.20.1-2+deb12u2</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>libkrb5-3</code></td>
+        <td>CVE-2026-71200</td>
+        <td>HIGH</td>
+        <td>1.20.1-2+deb12u2</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>libkrb5support0</code></td>
+        <td>CVE-2026-107364</td>
+        <td>HIGH</td>
+        <td>1.20.1-2+deb12u2</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>libkrb5support0</code></td>
+        <td>CVE-2026-112315</td>
+        <td>HIGH</td>
+        <td>1.20.1-2+deb12u2</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>libkrb5support0</code></td>
+        <td>CVE-2026-112316</td>
+        <td>HIGH</td>
+        <td>1.20.1-2+deb12u2</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>libkrb5support0</code></td>
+        <td>CVE-2026-112317</td>
+        <td>HIGH</td>
+        <td>1.20.1-2+deb12u2</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>libkrb5support0</code></td>
+        <td>CVE-2026-112318</td>
+        <td>HIGH</td>
+        <td>1.20.1-2+deb12u2</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>libkrb5support0</code></td>
+        <td>CVE-2026-112319</td>
+        <td>HIGH</td>
+        <td>1.20.1-2+deb12u2</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>libkrb5support0</code></td>
+        <td>CVE-2026-112320</td>
+        <td>HIGH</td>
+        <td>1.20.1-2+deb12u2</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>libkrb5support0</code></td>
+        <td>CVE-2026-112321</td>
+        <td>HIGH</td>
+        <td>1.20.1-2+deb12u2</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>libkrb5support0</code></td>
+        <td>CVE-2026-112322</td>
+        <td>HIGH</td>
+        <td>1.20.1-2+deb12u2</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>libkrb5support0</code></td>
+        <td>CVE-2026-112323</td>
+        <td>HIGH</td>
+        <td>1.20.1-2+deb12u2</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>libkrb5support0</code></td>
+        <td>CVE-2026-118380</td>
+        <td>HIGH</td>
+        <td>1.20.1-2+deb12u2</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>libkrb5support0</code></td>
+        <td>CVE-2026-119079</td>
+        <td>HIGH</td>
+        <td>1.20.1-2+deb12u2</td>
+        <td></td>
+    </tr>
+    <tr>
         <td><code>libkrb5support0</code></td>
         <td>CVE-2026-40355</td>
         <td>HIGH</td>
@@ -3116,6 +3886,20 @@
         <td>HIGH</td>
         <td>1.20.1-2+deb12u2</td>
         <td>1.20.1-2+deb12u5</td>
+    </tr>
+    <tr>
+        <td><code>libkrb5support0</code></td>
+        <td>CVE-2026-71199</td>
+        <td>HIGH</td>
+        <td>1.20.1-2+deb12u2</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>libkrb5support0</code></td>
+        <td>CVE-2026-71200</td>
+        <td>HIGH</td>
+        <td>1.20.1-2+deb12u2</td>
+        <td></td>
     </tr>
     <tr>
         <td><code>libldap-2.5-0</code></td>
