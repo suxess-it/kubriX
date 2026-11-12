@@ -335,7 +335,7 @@
         <td>CVE-2026-66046</td>
         <td>HIGH</td>
         <td>2.5.0-6.el9_8.1</td>
-        <td>2.5.0-6.el9_8.5</td>
+        <td>2.5.0-9.el9_9.4</td>
     </tr>
     <tr>
         <td><code>expat</code></td>
@@ -349,14 +349,14 @@
         <td>CVE-2026-77214</td>
         <td>HIGH</td>
         <td>2.5.0-6.el9_8.1</td>
-        <td>2.5.0-6.el9_8.7</td>
+        <td>2.5.0-9.el9_9.4</td>
     </tr>
     <tr>
         <td><code>expat</code></td>
         <td>CVE-2026-93990</td>
         <td>HIGH</td>
         <td>2.5.0-6.el9_8.1</td>
-        <td>2.5.0-6.el9_8.5</td>
+        <td>2.5.0-9.el9_9.4</td>
     </tr>
     <tr>
         <td><code>glib2</code></td>
@@ -489,7 +489,7 @@
         <td>CVE-2026-53615</td>
         <td>HIGH</td>
         <td>2.37.4-25.el9</td>
-        <td></td>
+        <td>2.37.4-28.el9_9.1</td>
     </tr>
     <tr>
         <td><code>libcurl-minimal</code></td>
@@ -573,7 +573,7 @@
         <td>CVE-2026-53615</td>
         <td>HIGH</td>
         <td>2.37.4-25.el9</td>
-        <td></td>
+        <td>2.37.4-28.el9_9.1</td>
     </tr>
     <tr>
         <td><code>libmount</code></td>
@@ -587,7 +587,7 @@
         <td>CVE-2026-53615</td>
         <td>HIGH</td>
         <td>2.37.4-25.el9</td>
-        <td></td>
+        <td>2.37.4-28.el9_9.1</td>
     </tr>
     <tr>
         <td><code>libsmartcols</code></td>
@@ -601,7 +601,7 @@
         <td>CVE-2026-53615</td>
         <td>HIGH</td>
         <td>2.37.4-25.el9</td>
-        <td></td>
+        <td>2.37.4-28.el9_9.1</td>
     </tr>
     <tr>
         <td><code>libuuid</code></td>
@@ -615,21 +615,21 @@
         <td>CVE-2026-53615</td>
         <td>HIGH</td>
         <td>2.37.4-25.el9</td>
-        <td></td>
+        <td>2.37.4-28.el9_9.1</td>
     </tr>
     <tr>
         <td><code>libxml2</code></td>
         <td>CVE-2026-74860</td>
         <td>HIGH</td>
         <td>2.9.13-14.el9_7</td>
-        <td>2.9.13-14.el9_8.5</td>
+        <td>2.9.13-18.el9_9.1</td>
     </tr>
     <tr>
         <td><code>libxml2</code></td>
         <td>CVE-2026-86140</td>
         <td>HIGH</td>
         <td>2.9.13-14.el9_7</td>
-        <td>2.9.13-14.el9_8.5</td>
+        <td>2.9.13-18.el9_9.1</td>
     </tr>
     <tr>
         <td><code>openssl</code></td>
@@ -755,7 +755,7 @@
         <td>CVE-2026-53615</td>
         <td>HIGH</td>
         <td>2.37.4-25.el9</td>
-        <td></td>
+        <td>2.37.4-28.el9_9.1</td>
     </tr>
     <tr>
         <td><code>util-linux-core</code></td>
@@ -769,7 +769,7 @@
         <td>CVE-2026-53615</td>
         <td>HIGH</td>
         <td>2.37.4-25.el9</td>
-        <td></td>
+        <td>2.37.4-28.el9_9.1</td>
     </tr>
 </table>
 <h4>No Misconfigurations found</h4>
@@ -1194,7 +1194,7 @@
 <h2>Image <code>icr.io/kubecost/frontend:2.9.7</code></h2>
 
 <h3>Target <code>icr.io/kubecost/frontend:2.9.7 (redhat 9.8)</code></h3>
-<h4>Vulnerabilities (91)</h4>
+<h4>Vulnerabilities (100)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -1257,7 +1257,7 @@
         <td>CVE-2026-66046</td>
         <td>HIGH</td>
         <td>2.5.0-6.el9_8.1</td>
-        <td>2.5.0-6.el9_8.5</td>
+        <td>2.5.0-9.el9_9.4</td>
     </tr>
     <tr>
         <td><code>expat</code></td>
@@ -1271,14 +1271,14 @@
         <td>CVE-2026-77214</td>
         <td>HIGH</td>
         <td>2.5.0-6.el9_8.1</td>
-        <td>2.5.0-6.el9_8.7</td>
+        <td>2.5.0-9.el9_9.4</td>
     </tr>
     <tr>
         <td><code>expat</code></td>
         <td>CVE-2026-93990</td>
         <td>HIGH</td>
         <td>2.5.0-6.el9_8.1</td>
-        <td>2.5.0-6.el9_8.5</td>
+        <td>2.5.0-9.el9_9.4</td>
     </tr>
     <tr>
         <td><code>glib2</code></td>
@@ -1411,7 +1411,7 @@
         <td>CVE-2026-53615</td>
         <td>HIGH</td>
         <td>2.37.4-25.el9</td>
-        <td></td>
+        <td>2.37.4-28.el9_9.1</td>
     </tr>
     <tr>
         <td><code>libcurl-minimal</code></td>
@@ -1495,7 +1495,7 @@
         <td>CVE-2026-53615</td>
         <td>HIGH</td>
         <td>2.37.4-25.el9</td>
-        <td></td>
+        <td>2.37.4-28.el9_9.1</td>
     </tr>
     <tr>
         <td><code>libmount</code></td>
@@ -1509,7 +1509,7 @@
         <td>CVE-2026-53615</td>
         <td>HIGH</td>
         <td>2.37.4-25.el9</td>
-        <td></td>
+        <td>2.37.4-28.el9_9.1</td>
     </tr>
     <tr>
         <td><code>libsmartcols</code></td>
@@ -1523,7 +1523,7 @@
         <td>CVE-2026-53615</td>
         <td>HIGH</td>
         <td>2.37.4-25.el9</td>
-        <td></td>
+        <td>2.37.4-28.el9_9.1</td>
     </tr>
     <tr>
         <td><code>libuuid</code></td>
@@ -1537,28 +1537,49 @@
         <td>CVE-2026-53615</td>
         <td>HIGH</td>
         <td>2.37.4-25.el9</td>
-        <td></td>
+        <td>2.37.4-28.el9_9.1</td>
     </tr>
     <tr>
         <td><code>libxml2</code></td>
         <td>CVE-2026-74860</td>
         <td>HIGH</td>
         <td>2.9.13-14.el9_7</td>
-        <td>2.9.13-14.el9_8.5</td>
+        <td>2.9.13-18.el9_9.1</td>
     </tr>
     <tr>
         <td><code>libxml2</code></td>
         <td>CVE-2026-86140</td>
         <td>HIGH</td>
         <td>2.9.13-14.el9_7</td>
-        <td>2.9.13-14.el9_8.5</td>
+        <td>2.9.13-18.el9_9.1</td>
     </tr>
     <tr>
         <td><code>nginx</code></td>
         <td>CVE-2026-15176</td>
         <td>HIGH</td>
         <td>2:1.20.1-28.el9_8.2</td>
-        <td></td>
+        <td>2:1.20.1-32.el9_9.1</td>
+    </tr>
+    <tr>
+        <td><code>nginx</code></td>
+        <td>CVE-2026-27651</td>
+        <td>HIGH</td>
+        <td>2:1.20.1-28.el9_8.2</td>
+        <td>2:1.20.1-32.el9_9.1</td>
+    </tr>
+    <tr>
+        <td><code>nginx</code></td>
+        <td>CVE-2026-27654</td>
+        <td>HIGH</td>
+        <td>2:1.20.1-28.el9_8.2</td>
+        <td>2:1.20.1-32.el9_9.1</td>
+    </tr>
+    <tr>
+        <td><code>nginx</code></td>
+        <td>CVE-2026-27784</td>
+        <td>HIGH</td>
+        <td>2:1.20.1-28.el9_8.2</td>
+        <td>2:1.20.1-32.el9_9.1</td>
     </tr>
     <tr>
         <td><code>nginx</code></td>
@@ -1600,14 +1621,35 @@
         <td>CVE-2026-97205</td>
         <td>HIGH</td>
         <td>2:1.20.1-28.el9_8.2</td>
-        <td></td>
+        <td>2:1.20.1-32.el9_9.1</td>
     </tr>
     <tr>
         <td><code>nginx-core</code></td>
         <td>CVE-2026-15176</td>
         <td>HIGH</td>
         <td>2:1.20.1-28.el9_8.2</td>
-        <td></td>
+        <td>2:1.20.1-32.el9_9.1</td>
+    </tr>
+    <tr>
+        <td><code>nginx-core</code></td>
+        <td>CVE-2026-27651</td>
+        <td>HIGH</td>
+        <td>2:1.20.1-28.el9_8.2</td>
+        <td>2:1.20.1-32.el9_9.1</td>
+    </tr>
+    <tr>
+        <td><code>nginx-core</code></td>
+        <td>CVE-2026-27654</td>
+        <td>HIGH</td>
+        <td>2:1.20.1-28.el9_8.2</td>
+        <td>2:1.20.1-32.el9_9.1</td>
+    </tr>
+    <tr>
+        <td><code>nginx-core</code></td>
+        <td>CVE-2026-27784</td>
+        <td>HIGH</td>
+        <td>2:1.20.1-28.el9_8.2</td>
+        <td>2:1.20.1-32.el9_9.1</td>
     </tr>
     <tr>
         <td><code>nginx-core</code></td>
@@ -1649,14 +1691,35 @@
         <td>CVE-2026-97205</td>
         <td>HIGH</td>
         <td>2:1.20.1-28.el9_8.2</td>
-        <td></td>
+        <td>2:1.20.1-32.el9_9.1</td>
     </tr>
     <tr>
         <td><code>nginx-filesystem</code></td>
         <td>CVE-2026-15176</td>
         <td>HIGH</td>
         <td>2:1.20.1-28.el9_8.2</td>
-        <td></td>
+        <td>2:1.20.1-32.el9_9.1</td>
+    </tr>
+    <tr>
+        <td><code>nginx-filesystem</code></td>
+        <td>CVE-2026-27651</td>
+        <td>HIGH</td>
+        <td>2:1.20.1-28.el9_8.2</td>
+        <td>2:1.20.1-32.el9_9.1</td>
+    </tr>
+    <tr>
+        <td><code>nginx-filesystem</code></td>
+        <td>CVE-2026-27654</td>
+        <td>HIGH</td>
+        <td>2:1.20.1-28.el9_8.2</td>
+        <td>2:1.20.1-32.el9_9.1</td>
+    </tr>
+    <tr>
+        <td><code>nginx-filesystem</code></td>
+        <td>CVE-2026-27784</td>
+        <td>HIGH</td>
+        <td>2:1.20.1-28.el9_8.2</td>
+        <td>2:1.20.1-32.el9_9.1</td>
     </tr>
     <tr>
         <td><code>nginx-filesystem</code></td>
@@ -1698,7 +1761,7 @@
         <td>CVE-2026-97205</td>
         <td>HIGH</td>
         <td>2:1.20.1-28.el9_8.2</td>
-        <td></td>
+        <td>2:1.20.1-32.el9_9.1</td>
     </tr>
     <tr>
         <td><code>openssl</code></td>
@@ -1824,7 +1887,7 @@
         <td>CVE-2026-53615</td>
         <td>HIGH</td>
         <td>2.37.4-25.el9</td>
-        <td></td>
+        <td>2.37.4-28.el9_9.1</td>
     </tr>
     <tr>
         <td><code>util-linux-core</code></td>
@@ -1838,7 +1901,7 @@
         <td>CVE-2026-53615</td>
         <td>HIGH</td>
         <td>2.37.4-25.el9</td>
-        <td></td>
+        <td>2.37.4-28.el9_9.1</td>
     </tr>
 </table>
 <h4>No Misconfigurations found</h4>
@@ -1908,7 +1971,7 @@
         <td>CVE-2026-66046</td>
         <td>HIGH</td>
         <td>2.5.0-5.el9_7.1</td>
-        <td>2.5.0-6.el9_8.5</td>
+        <td>2.5.0-9.el9_9.4</td>
     </tr>
     <tr>
         <td><code>expat</code></td>
@@ -1922,14 +1985,14 @@
         <td>CVE-2026-77214</td>
         <td>HIGH</td>
         <td>2.5.0-5.el9_7.1</td>
-        <td>2.5.0-6.el9_8.7</td>
+        <td>2.5.0-9.el9_9.4</td>
     </tr>
     <tr>
         <td><code>expat</code></td>
         <td>CVE-2026-93990</td>
         <td>HIGH</td>
         <td>2.5.0-5.el9_7.1</td>
-        <td>2.5.0-6.el9_8.5</td>
+        <td>2.5.0-9.el9_9.4</td>
     </tr>
     <tr>
         <td><code>glib2</code></td>
@@ -2111,7 +2174,7 @@
         <td>CVE-2026-53615</td>
         <td>HIGH</td>
         <td>2.37.4-21.el9</td>
-        <td></td>
+        <td>2.37.4-28.el9_9.1</td>
     </tr>
     <tr>
         <td><code>libcap</code></td>
@@ -2202,7 +2265,7 @@
         <td>CVE-2026-53615</td>
         <td>HIGH</td>
         <td>2.37.4-21.el9</td>
-        <td></td>
+        <td>2.37.4-28.el9_9.1</td>
     </tr>
     <tr>
         <td><code>libnghttp2</code></td>
@@ -2223,7 +2286,7 @@
         <td>CVE-2026-53615</td>
         <td>HIGH</td>
         <td>2.37.4-21.el9</td>
-        <td></td>
+        <td>2.37.4-28.el9_9.1</td>
     </tr>
     <tr>
         <td><code>libuuid</code></td>
@@ -2237,21 +2300,21 @@
         <td>CVE-2026-53615</td>
         <td>HIGH</td>
         <td>2.37.4-21.el9</td>
-        <td></td>
+        <td>2.37.4-28.el9_9.1</td>
     </tr>
     <tr>
         <td><code>libxml2</code></td>
         <td>CVE-2026-74860</td>
         <td>HIGH</td>
         <td>2.9.13-14.el9_7</td>
-        <td>2.9.13-14.el9_8.5</td>
+        <td>2.9.13-18.el9_9.1</td>
     </tr>
     <tr>
         <td><code>libxml2</code></td>
         <td>CVE-2026-86140</td>
         <td>HIGH</td>
         <td>2.9.13-14.el9_7</td>
-        <td>2.9.13-14.el9_8.5</td>
+        <td>2.9.13-18.el9_9.1</td>
     </tr>
     <tr>
         <td><code>openssl-libs</code></td>

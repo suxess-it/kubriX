@@ -1,7 +1,7 @@
 <h2>Image <code>docker.io/dserio83/velero-api:0.3.1</code></h2>
 
 <h3>Target <code>docker.io/dserio83/velero-api:0.3.1 (debian 12.11)</code></h3>
-<h4>Vulnerabilities (263)</h4>
+<h4>Vulnerabilities (269)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -95,6 +95,27 @@
         <td>1:2.39.5-0+deb12u3</td>
     </tr>
     <tr>
+        <td><code>git</code></td>
+        <td>CVE-2026-105437</td>
+        <td>HIGH</td>
+        <td>1:2.39.5-0+deb12u2</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>git</code></td>
+        <td>CVE-2026-111760</td>
+        <td>HIGH</td>
+        <td>1:2.39.5-0+deb12u2</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>git</code></td>
+        <td>CVE-2026-114466</td>
+        <td>HIGH</td>
+        <td>1:2.39.5-0+deb12u2</td>
+        <td></td>
+    </tr>
+    <tr>
         <td><code>git-man</code></td>
         <td>CVE-2025-48384</td>
         <td>HIGH</td>
@@ -107,6 +128,27 @@
         <td>HIGH</td>
         <td>1:2.39.5-0+deb12u2</td>
         <td>1:2.39.5-0+deb12u3</td>
+    </tr>
+    <tr>
+        <td><code>git-man</code></td>
+        <td>CVE-2026-105437</td>
+        <td>HIGH</td>
+        <td>1:2.39.5-0+deb12u2</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>git-man</code></td>
+        <td>CVE-2026-111760</td>
+        <td>HIGH</td>
+        <td>1:2.39.5-0+deb12u2</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>git-man</code></td>
+        <td>CVE-2026-114466</td>
+        <td>HIGH</td>
+        <td>1:2.39.5-0+deb12u2</td>
+        <td></td>
     </tr>
     <tr>
         <td><code>gpgv</code></td>
@@ -3059,7 +3101,7 @@
 <h2>Image <code>docker.io/dserio83/velero-watchdog:0.1.8</code></h2>
 
 <h3>Target <code>docker.io/dserio83/velero-watchdog:0.1.8 (debian 12.10)</code></h3>
-<h4>Vulnerabilities (221)</h4>
+<h4>Vulnerabilities (227)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -3153,6 +3195,27 @@
         <td>1:2.39.5-0+deb12u3</td>
     </tr>
     <tr>
+        <td><code>git</code></td>
+        <td>CVE-2026-105437</td>
+        <td>HIGH</td>
+        <td>1:2.39.5-0+deb12u2</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>git</code></td>
+        <td>CVE-2026-111760</td>
+        <td>HIGH</td>
+        <td>1:2.39.5-0+deb12u2</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>git</code></td>
+        <td>CVE-2026-114466</td>
+        <td>HIGH</td>
+        <td>1:2.39.5-0+deb12u2</td>
+        <td></td>
+    </tr>
+    <tr>
         <td><code>git-man</code></td>
         <td>CVE-2025-48384</td>
         <td>HIGH</td>
@@ -3165,6 +3228,27 @@
         <td>HIGH</td>
         <td>1:2.39.5-0+deb12u2</td>
         <td>1:2.39.5-0+deb12u3</td>
+    </tr>
+    <tr>
+        <td><code>git-man</code></td>
+        <td>CVE-2026-105437</td>
+        <td>HIGH</td>
+        <td>1:2.39.5-0+deb12u2</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>git-man</code></td>
+        <td>CVE-2026-111760</td>
+        <td>HIGH</td>
+        <td>1:2.39.5-0+deb12u2</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>git-man</code></td>
+        <td>CVE-2026-114466</td>
+        <td>HIGH</td>
+        <td>1:2.39.5-0+deb12u2</td>
+        <td></td>
     </tr>
     <tr>
         <td><code>gpgv</code></td>

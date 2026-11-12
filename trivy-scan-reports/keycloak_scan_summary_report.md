@@ -294,7 +294,7 @@
 <h4>No Misconfigurations found</h4>
 <h2>Image <code>quay.io/keycloak/keycloak-operator:26.8.2</code></h2>
 
-<h3>Target <code>quay.io/keycloak/keycloak-operator:26.8.2 (redhat 9.8)</code></h3>
+<h3>Target <code>quay.io/keycloak/keycloak-operator:26.8.2 (redhat 9.9)</code></h3>
 <h4>Vulnerabilities (6)</h4>
 <table>
     <tr>

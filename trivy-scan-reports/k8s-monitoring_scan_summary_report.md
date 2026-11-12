@@ -176,7 +176,7 @@
         <td>CVE-2026-53615</td>
         <td>HIGH</td>
         <td>2.37.4-25.el9</td>
-        <td></td>
+        <td>2.37.4-28.el9_9.1</td>
     </tr>
     <tr>
         <td><code>libcurl-minimal</code></td>
@@ -260,7 +260,7 @@
         <td>CVE-2026-53615</td>
         <td>HIGH</td>
         <td>2.37.4-25.el9</td>
-        <td></td>
+        <td>2.37.4-28.el9_9.1</td>
     </tr>
     <tr>
         <td><code>libsmartcols</code></td>
@@ -274,7 +274,7 @@
         <td>CVE-2026-53615</td>
         <td>HIGH</td>
         <td>2.37.4-25.el9</td>
-        <td></td>
+        <td>2.37.4-28.el9_9.1</td>
     </tr>
     <tr>
         <td><code>libuuid</code></td>
@@ -288,21 +288,21 @@
         <td>CVE-2026-53615</td>
         <td>HIGH</td>
         <td>2.37.4-25.el9</td>
-        <td></td>
+        <td>2.37.4-28.el9_9.1</td>
     </tr>
     <tr>
         <td><code>libxml2</code></td>
         <td>CVE-2026-74860</td>
         <td>HIGH</td>
         <td>2.9.13-14.el9_8.1</td>
-        <td>2.9.13-14.el9_8.5</td>
+        <td>2.9.13-18.el9_9.1</td>
     </tr>
     <tr>
         <td><code>libxml2</code></td>
         <td>CVE-2026-86140</td>
         <td>HIGH</td>
         <td>2.9.13-14.el9_8.1</td>
-        <td>2.9.13-14.el9_8.5</td>
+        <td>2.9.13-18.el9_9.1</td>
     </tr>
     <tr>
         <td><code>openssl-libs</code></td>
