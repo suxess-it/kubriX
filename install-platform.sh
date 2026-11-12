@@ -433,7 +433,7 @@ create_openbao_secrets_for_backstage() {
 
   # Only contact Grafana when it is selected for installation.
   if [[ " $argocd_apps " == *" sx-grafana "* ]]; then
-    GRAFANA_HOSTNAME=$(kubectl get ingress -o jsonpath='{.items[*].spec.rules[*].host}' -n grafana)
+    GRAFANA_HOSTNAME=$(kubectl get ingress sx-grafana -o jsonpath='{.spec.rules[0].host}' -n grafana)
     test -n "$GRAFANA_HOSTNAME"
     # check if the grafana user/admin is stored in secret, or use default credentials
     if kubectl get secret grafana-admin-secret -n grafana &>/dev/null; then
@@ -445,8 +445,8 @@ create_openbao_secrets_for_backstage() {
       export GRAFANA_PASSWORD="prom-operator"
     fi
 
-    ID=$( curl -fkSs -X POST https://${GRAFANA_HOSTNAME}/api/serviceaccounts --user "${GRAFANA_USER}:${GRAFANA_PASSWORD}" -H "Content-Type: application/json" -d '{"name": "backstage","role": "Viewer","isDisabled": false}' | jq -er '.id | select(. != null)' )
-    GRAFANA_TOKEN=$(curl -fkSs -X POST https://${GRAFANA_HOSTNAME}/api/serviceaccounts/${ID}/tokens --user "${GRAFANA_USER}:${GRAFANA_PASSWORD}" -H "Content-Type: application/json" -d '{"name": "backstage"}' | jq -er '.key | select(type == "string" and length > 0)')
+    ID=$( curl -fkSs -X POST "https://${GRAFANA_HOSTNAME}/api/serviceaccounts" --user "${GRAFANA_USER}:${GRAFANA_PASSWORD}" -H "Content-Type: application/json" -d '{"name": "backstage","role": "Viewer","isDisabled": false}' | jq -er '.id | select(. != null)' )
+    GRAFANA_TOKEN=$(curl -fkSs -X POST "https://${GRAFANA_HOSTNAME}/api/serviceaccounts/${ID}/tokens" --user "${GRAFANA_USER}:${GRAFANA_PASSWORD}" -H "Content-Type: application/json" -d '{"name": "backstage"}' | jq -er '.key | select(type == "string" and length > 0)')
   else
     export GRAFANA_TOKEN="dummy"
   fi
