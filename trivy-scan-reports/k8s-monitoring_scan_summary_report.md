@@ -1,7 +1,7 @@
 <h2>Image <code>ghcr.io/grafana/alloy-operator:1.14.4</code></h2>
 
 <h3>Target <code>ghcr.io/grafana/alloy-operator:1.14.4 (redhat 9.8)</code></h3>
-<h4>Vulnerabilities (56)</h4>
+<h4>Vulnerabilities (57)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -400,6 +400,13 @@
         <td>CVE-2026-119586</td>
         <td>HIGH</td>
         <td>3.34.1-10.el9_8</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>zlib</code></td>
+        <td>CVE-2026-76844</td>
+        <td>HIGH</td>
+        <td>1.2.11-40.el9</td>
         <td></td>
     </tr>
 </table>

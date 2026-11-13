@@ -272,7 +272,7 @@
 <h2>Image <code>icr.io/kubecost/cost-model:2.9.7</code></h2>
 
 <h3>Target <code>icr.io/kubecost/cost-model:2.9.7 (redhat 9.8)</code></h3>
-<h4>Vulnerabilities (70)</h4>
+<h4>Vulnerabilities (71)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -770,6 +770,13 @@
         <td>HIGH</td>
         <td>2.37.4-25.el9</td>
         <td>2.37.4-28.el9_9.1</td>
+    </tr>
+    <tr>
+        <td><code>zlib</code></td>
+        <td>CVE-2026-76844</td>
+        <td>HIGH</td>
+        <td>1.2.11-40.el9</td>
+        <td></td>
     </tr>
 </table>
 <h4>No Misconfigurations found</h4>
@@ -1194,7 +1201,7 @@
 <h2>Image <code>icr.io/kubecost/frontend:2.9.7</code></h2>
 
 <h3>Target <code>icr.io/kubecost/frontend:2.9.7 (redhat 9.8)</code></h3>
-<h4>Vulnerabilities (100)</h4>
+<h4>Vulnerabilities (101)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -1903,12 +1910,19 @@
         <td>2.37.4-25.el9</td>
         <td>2.37.4-28.el9_9.1</td>
     </tr>
+    <tr>
+        <td><code>zlib</code></td>
+        <td>CVE-2026-76844</td>
+        <td>HIGH</td>
+        <td>1.2.11-40.el9</td>
+        <td></td>
+    </tr>
 </table>
 <h4>No Misconfigurations found</h4>
 <h2>Image <code>icr.io/kubecost/modeling:v0.1.34</code></h2>
 
 <h3>Target <code>icr.io/kubecost/modeling:v0.1.34 (redhat 9.7)</code></h3>
-<h4>Vulnerabilities (90)</h4>
+<h4>Vulnerabilities (91)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -2545,6 +2559,13 @@
         <td>CVE-2026-119586</td>
         <td>HIGH</td>
         <td>3.34.1-9.el9_7</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>zlib</code></td>
+        <td>CVE-2026-76844</td>
+        <td>HIGH</td>
+        <td>1.2.11-40.el9</td>
         <td></td>
     </tr>
 </table>

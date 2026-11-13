@@ -295,7 +295,7 @@
 <h2>Image <code>quay.io/keycloak/keycloak-operator:26.8.2</code></h2>
 
 <h3>Target <code>quay.io/keycloak/keycloak-operator:26.8.2 (redhat 9.9)</code></h3>
-<h4>Vulnerabilities (6)</h4>
+<h4>Vulnerabilities (7)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -344,6 +344,13 @@
         <td>CVE-2026-119586</td>
         <td>HIGH</td>
         <td>3.34.1-11.el9_8</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>zlib</code></td>
+        <td>CVE-2026-76844</td>
+        <td>HIGH</td>
+        <td>1.2.11-40.el9</td>
         <td></td>
     </tr>
 </table>

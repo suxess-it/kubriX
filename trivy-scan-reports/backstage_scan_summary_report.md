@@ -57,7 +57,7 @@
 <h2>Image <code>ghcr.io/suxess-it/sx-backstage:v1.51.2</code></h2>
 
 <h3>Target <code>ghcr.io/suxess-it/sx-backstage:v1.51.2 (wolfi 20230201)</code></h3>
-<h4>Vulnerabilities (37)</h4>
+<h4>Vulnerabilities (38)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -205,6 +205,13 @@
         <td>HIGH</td>
         <td>22.22.3-r1</td>
         <td>22.23.4-r0</td>
+    </tr>
+    <tr>
+        <td><code>nodejs-22</code></td>
+        <td>CVE-2026-123863</td>
+        <td>HIGH</td>
+        <td>22.22.3-r1</td>
+        <td>22.23.5-r0</td>
     </tr>
     <tr>
         <td><code>nodejs-22</code></td>
