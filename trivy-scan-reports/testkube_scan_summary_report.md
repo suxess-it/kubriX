@@ -2629,9 +2629,9 @@
     </tr>
 </table>
 <h4>No Misconfigurations found</h4>
-<h2>Image <code>docker.io/kubeshop/testkube-api-server:2.15.0</code></h2>
+<h2>Image <code>docker.io/kubeshop/testkube-api-server:2.15.2</code></h2>
 
-<h3>Target <code>docker.io/kubeshop/testkube-api-server:2.15.0 (alpine 3.24.3)</code></h3>
+<h3>Target <code>docker.io/kubeshop/testkube-api-server:2.15.2 (alpine 3.24.3)</code></h3>
 <h4>Vulnerabilities (10)</h4>
 <table>
     <tr>
@@ -2714,23 +2714,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>bin/app</code></h3>
-<h4>Vulnerabilities (1)</h4>
-<table>
-    <tr>
-        <th>Package</th>
-        <th>ID</th>
-        <th>Severity</th>
-        <th>Installed Version</th>
-        <th>Fixed Version</th>
-    </tr>
-    <tr>
-        <td><code>golang.org/x/net</code></td>
-        <td>CVE-2026-78661</td>
-        <td>HIGH</td>
-        <td>v0.60.0</td>
-        <td>0.62.0</td>
-    </tr>
-</table>
+<h4>No Vulnerabilities found</h4>
 <h4>No Misconfigurations found</h4>
 <h2>Image <code>docker.io/kubeshop/testkube-kubectl:1.37.1</code></h2>
 
@@ -2852,7 +2836,7 @@
 <h2>Image <code>docker.io/kubeshop/testkube-minio:2025.10</code></h2>
 
 <h3>Target <code>docker.io/kubeshop/testkube-minio:2025.10 (debian 12.14)</code></h3>
-<h4>Vulnerabilities (125)</h4>
+<h4>Vulnerabilities (129)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -3461,6 +3445,34 @@
         <td>CVE-2025-69720</td>
         <td>HIGH</td>
         <td>6.4-4</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>libpam-modules</code></td>
+        <td>CVE-2025-6020</td>
+        <td>HIGH</td>
+        <td>1.5.2-6+deb12u2</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>libpam-modules-bin</code></td>
+        <td>CVE-2025-6020</td>
+        <td>HIGH</td>
+        <td>1.5.2-6+deb12u2</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>libpam-runtime</code></td>
+        <td>CVE-2025-6020</td>
+        <td>HIGH</td>
+        <td>1.5.2-6+deb12u2</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>libpam0g</code></td>
+        <td>CVE-2025-6020</td>
+        <td>HIGH</td>
+        <td>1.5.2-6+deb12u2</td>
         <td></td>
     </tr>
     <tr>
