@@ -1,0 +1,52 @@
+---
+apiVersion: openidclient.keycloak.crossplane.io/v1alpha1
+kind: Client
+metadata:
+  name: oauth2-proxy
+  annotations:
+    argocd.argoproj.io/sync-wave: "2"
+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+spec:
+  deletionPolicy: Delete
+  forProvider:
+    accessType: CONFIDENTIAL
+    clientId: oauth2-proxy
+    name: oauth2-proxy
+    realmId: {{ .Values.kubrix.keycloak.realm.realmid }}
+    rootUrl: "https://auth{{ .Values.kubrix.keycloak.domainName }}"
+    directAccessGrantsEnabled: false
+    standardFlowEnabled: true
+    serviceAccountsEnabled: false
+    validRedirectUris:
+      - "https://auth{{ .Values.kubrix.keycloak.domainName }}/oauth2/callback"
+    clientSecretSecretRef:
+      key: oauth2-proxy
+      name: keycloak-client-credentials
+      namespace: {{ .Release.Namespace }}
+    loginTheme: keycloak.v2
+  providerConfigRef:
+    name: "{{ .Release.Name }}-config"
+---
+# oauth2-proxy (keycloak-oidc provider) requires its client id in the token audience
+apiVersion: client.keycloak.crossplane.io/v1alpha1
+kind: ProtocolMapper
+metadata:
+  name: oauth2-proxy-audience-mapper
+  annotations:
+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+    argocd.argoproj.io/sync-wave: "3"
+spec:
+  forProvider:
+    clientIdRef:
+      name: oauth2-proxy
+    realmIdRef:
+      name: {{ $.Values.kubrix.keycloak.realm.realmid }}
+    protocol: openid-connect
+    protocolMapper: oidc-audience-mapper
+    name: aud-mapper-oauth2-proxy
+    config:
+      "included.client.audience": "oauth2-proxy"
+      "id.token.claim": "true"
+      "access.token.claim": "true"
+  providerConfigRef:
+    name: "{{ .Release.Name }}-config"

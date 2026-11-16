@@ -1,0 +1,34 @@
+apiVersion: external-secrets.io/v1
+kind: ExternalSecret
+metadata:
+  name: oauth2-proxy-credentials
+  annotations:
+    argocd.argoproj.io/sync-wave: "-9"
+spec:
+  refreshInterval: 1m
+  secretStoreRef:
+    name: openbao-backend
+    kind: ClusterSecretStore
+  target:
+    name: oauth2-proxy-credentials
+    creationPolicy: Owner
+    template:
+      type: Opaque
+      engineVersion: v2
+      data:
+        client-id: oauth2-proxy
+        client-secret: "{{ `{{ .clientSecret }}` }}"
+        cookie-secret: "{{ `{{ .cookieSecret }}` }}"
+      metadata:
+        annotations:
+          argocd.argoproj.io/sync-wave: "-9"
+          kubrix.io/install: "false"
+  data:
+  - secretKey: clientSecret
+    remoteRef:
+      key: kubrix-kv/data/keycloak/oidc
+      property: oauth2-proxy
+  - secretKey: cookieSecret
+    remoteRef:
+      key: kubrix-kv/data/oauth2-proxy/base
+      property: cookie-secret
