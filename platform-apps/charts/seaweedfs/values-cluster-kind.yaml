@@ -1,0 +1,17 @@
+seaweed:
+  volume:
+    storage: 5Gi
+  admin:
+    ingress:
+      host: seaweedfs.127-0-0-1.nip.io
+      tls:
+        - secretName: seaweedfs-admin-tls
+          hosts:
+            - seaweedfs.127-0-0-1.nip.io
+  filer:
+    ingress:
+      host: seaweedfs-filer.127-0-0-1.nip.io
+      tls:
+        - secretName: seaweedfs-filer-tls
+          hosts:
+            - seaweedfs-filer.127-0-0-1.nip.io
