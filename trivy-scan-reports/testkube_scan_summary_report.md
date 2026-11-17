@@ -2836,7 +2836,7 @@
 <h2>Image <code>docker.io/kubeshop/testkube-minio:2025.10</code></h2>
 
 <h3>Target <code>docker.io/kubeshop/testkube-minio:2025.10 (debian 12.14)</code></h3>
-<h4>Vulnerabilities (129)</h4>
+<h4>Vulnerabilities (128)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -3731,13 +3731,6 @@
         <td><code>zlib1g</code></td>
         <td>CVE-2023-45853</td>
         <td>CRITICAL</td>
-        <td>1:1.2.13.dfsg-1</td>
-        <td></td>
-    </tr>
-    <tr>
-        <td><code>zlib1g</code></td>
-        <td>CVE-2026-76844</td>
-        <td>HIGH</td>
         <td>1:1.2.13.dfsg-1</td>
         <td></td>
     </tr>
