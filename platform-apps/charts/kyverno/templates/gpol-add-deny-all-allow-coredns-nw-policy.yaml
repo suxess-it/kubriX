@@ -1,5 +1,4 @@
 {{ if and .Values.kyvernoPolicies.createDenyAllAllowCoreDNSNetworkPolicy.enabled .Values.kyvernoPolicies.useCelPolicies }}
-{{- $dnsPort := .Values.kyvernoPolicies.createDenyAllAllowCoreDNSNetworkPolicy.dnsPort }}
 apiVersion: policies.kyverno.io/v1
 kind: GeneratingPolicy
 metadata:
@@ -31,29 +30,32 @@ spec:
   matchConditions:
   - name: exclude-namespaces
     expression: '!(object.metadata.name in {{ .Values.kyvernoPolicies.createDenyAllAllowCoreDNSNetworkPolicy.excludeNamespaces | toJson }})'
-  variables:
-  - name: networkPolicy
-    expression: >-
-      {
-        "apiVersion": dyn("networking.k8s.io/v1"),
-        "kind": dyn("NetworkPolicy"),
-        "metadata": dyn({"name": "default-deny-all-except-dns"}),
-        "spec": dyn({
-          "podSelector": dyn({}),
-          "policyTypes": dyn(["Ingress", "Egress"]),
-          "ingress": dyn([]),
-          "egress": dyn([{
-            "to": dyn([{
-              "namespaceSelector": {"matchLabels": {"kubernetes.io/metadata.name": "kube-system"}},
-              "podSelector": {"matchLabels": {"k8s-app": "kube-dns"}}
-            }]),
-            "ports": dyn([
-              {"port": dyn({{ $dnsPort }}), "protocol": dyn("UDP")},
-              {"port": dyn({{ $dnsPort }}), "protocol": dyn("TCP")}
-            ])
-          }])
-        })
-      }
   generate:
-  - expression: generator.Apply(object.metadata.name, [variables.networkPolicy])
+  - template:
+      interpolate: cel
+      value: |
+        apiVersion: networking.k8s.io/v1
+        kind: NetworkPolicy
+        metadata:
+          name: default-deny-all-except-dns
+          namespace: (( object.metadata.name ))
+        spec:
+          podSelector: {}
+          policyTypes:
+            - Ingress
+            - Egress
+          ingress: []
+          egress:
+            - to:
+              - namespaceSelector:
+                  matchLabels:
+                    kubernetes.io/metadata.name: kube-system
+                podSelector:
+                  matchLabels:
+                    k8s-app: kube-dns
+              ports:
+                - port: {{ .Values.kyvernoPolicies.createDenyAllAllowCoreDNSNetworkPolicy.dnsPort }}
+                  protocol: UDP
+                - port: {{ .Values.kyvernoPolicies.createDenyAllAllowCoreDNSNetworkPolicy.dnsPort }}
+                  protocol: TCP
 {{- end }}

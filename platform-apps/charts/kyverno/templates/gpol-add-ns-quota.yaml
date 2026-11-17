@@ -24,42 +24,38 @@ spec:
       apiVersions: ["v1"]
       operations: ["CREATE"]
       resources: ["namespaces"]
-  variables:
-  - name: resourceQuota
-    expression: >-
-      {
-        "apiVersion": dyn("v1"),
-        "kind": dyn("ResourceQuota"),
-        "metadata": dyn({
-          "name": dyn("default-resourcequota"),
-          "labels": dyn({"velero.io/exclude-from-backup": "true"})
-        }),
-        "spec": dyn({
-          "hard": {
-            "requests.cpu": "4",
-            "requests.memory": "16Gi",
-            "limits.cpu": "30",
-            "limits.memory": "64Gi"
-          }
-        })
-      }
-  - name: limitRange
-    expression: >-
-      {
-        "apiVersion": dyn("v1"),
-        "kind": dyn("LimitRange"),
-        "metadata": dyn({
-          "name": dyn("default-limitrange"),
-          "labels": dyn({"velero.io/exclude-from-backup": "true"})
-        }),
-        "spec": dyn({
-          "limits": [{
-            "type": dyn("Container"),
-            "default": dyn({"cpu": "500m", "memory": "1Gi"}),
-            "defaultRequest": dyn({"cpu": "200m", "memory": "256Mi"})
-          }]
-        })
-      }
   generate:
-  - expression: generator.Apply(object.metadata.name, [variables.resourceQuota, variables.limitRange])
+  - template:
+      interpolate: cel
+      value: |
+        apiVersion: v1
+        kind: ResourceQuota
+        metadata:
+          name: default-resourcequota
+          namespace: (( object.metadata.name ))
+          labels:
+            velero.io/exclude-from-backup: "true"
+        spec:
+          hard:
+            requests.cpu: '4'
+            requests.memory: '16Gi'
+            limits.cpu: '30'
+            limits.memory: '64Gi'
+        ---
+        apiVersion: v1
+        kind: LimitRange
+        metadata:
+          name: default-limitrange
+          namespace: (( object.metadata.name ))
+          labels:
+            velero.io/exclude-from-backup: "true"
+        spec:
+          limits:
+          - default:
+              cpu: 500m
+              memory: 1Gi
+            defaultRequest:
+              cpu: 200m
+              memory: 256Mi
+            type: Container
 {{- end }}

@@ -22,24 +22,21 @@ spec:
     objectSelector:
       matchLabels:
         kubrix.io/kyverno: kubevirt-rolebinding
-  variables:
-  - name: roleBinding
-    expression: >-
-      {
-        "apiVersion": dyn("rbac.authorization.k8s.io/v1"),
-        "kind": dyn("RoleBinding"),
-        "metadata": dyn({"name": "kubevirt-rolebinding-" + string(object.metadata.name)}),
-        "subjects": dyn([{
-          "kind": "ServiceAccount",
-          "name": "default",
-          "namespace": string(object.metadata.name)
-        }]),
-        "roleRef": dyn({
-          "kind": "ClusterRole",
-          "name": "kubevirt-datavolume-permission",
-          "apiGroup": "rbac.authorization.k8s.io"
-        })
-      }
   generate:
-  - expression: generator.Apply("kubevirt", [variables.roleBinding])
+  - template:
+      interpolate: cel
+      value: |
+        apiVersion: rbac.authorization.k8s.io/v1
+        kind: RoleBinding
+        metadata:
+          name: kubevirt-rolebinding-(( object.metadata.name ))
+          namespace: kubevirt
+        subjects:
+          - kind: ServiceAccount
+            name: default
+            namespace: (( object.metadata.name ))
+        roleRef:
+          kind: ClusterRole
+          name: kubevirt-datavolume-permission
+          apiGroup: rbac.authorization.k8s.io
 {{- end }}
