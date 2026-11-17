@@ -1,0 +1,45 @@
+{{ if and .Values.kyvernoPolicies.createKubevirtRolebinding.enabled .Values.kyvernoPolicies.useCelPolicies }}
+apiVersion: policies.kyverno.io/v1
+kind: GeneratingPolicy
+metadata:
+  name: policy-kubevirt-rolebinding
+  annotations:
+    policies.kyverno.io/title: Add RoleBinding
+    policies.kyverno.io/category: Multi-Tenancy
+    policies.kyverno.io/subject: Namespace, RoleBinding
+    policies.kyverno.io/description: >-
+      kubevirt template datavolume clone requires rolebinding for sa
+spec:
+  evaluation:
+    synchronize:
+      enabled: true
+  matchConstraints:
+    resourceRules:
+    - apiGroups: [""]
+      apiVersions: ["v1"]
+      operations: ["CREATE", "UPDATE"]
+      resources: ["namespaces"]
+    objectSelector:
+      matchLabels:
+        kubrix.io/kyverno: kubevirt-rolebinding
+  variables:
+  - name: roleBinding
+    expression: >-
+      {
+        "apiVersion": dyn("rbac.authorization.k8s.io/v1"),
+        "kind": dyn("RoleBinding"),
+        "metadata": dyn({"name": "kubevirt-rolebinding-" + string(object.metadata.name)}),
+        "subjects": dyn([{
+          "kind": "ServiceAccount",
+          "name": "default",
+          "namespace": string(object.metadata.name)
+        }]),
+        "roleRef": dyn({
+          "kind": "ClusterRole",
+          "name": "kubevirt-datavolume-permission",
+          "apiGroup": "rbac.authorization.k8s.io"
+        })
+      }
+  generate:
+  - expression: generator.Apply("kubevirt", [variables.roleBinding])
+{{- end }}

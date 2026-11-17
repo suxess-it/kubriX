@@ -1,5 +1,8 @@
 # per default no kyvernoPolicies get applied, add them in the list in your values files to enable them
 kyvernoPolicies:
+  # render policies.kyverno.io/v1 (CEL) policies instead of deprecated kyverno.io/v1 ClusterPolicies
+  useCelPolicies: false
+
   createDenyAllAllowCoreDNSNetworkPolicy:
     enabled: false
     excludeNamespaces:
