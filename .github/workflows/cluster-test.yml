@@ -30,7 +30,7 @@ on:
       - '.github/watch-team-onboarding-recovery.sh'
       - '.github/tests/team-onboarding-recovery.sh'
       - '.github/workflows/create-kubrix-installer-image.yml'
-      - '.github/install-kubriX-with-job.sh'
+      - '.github/actions/install-kubrix-cli/**'
       - 'install-manifests.yaml'
   # Labels are routed by request-cluster-tests.yml. Keep PR checks on this
   # workflow so unrelated labels cannot replace its check suite.
@@ -89,7 +89,7 @@ jobs:
               - '.github/watch-team-onboarding-recovery.sh'
               - '.github/tests/team-onboarding-recovery.sh'
               - '.github/workflows/create-kubrix-installer-image.yml'
-              - '.github/install-kubriX-with-job.sh'
+              - '.github/actions/install-kubrix-cli/**'
               - 'install-manifests.yaml'
             dockerImageChanges:
               - 'Dockerfile'
@@ -114,7 +114,7 @@ jobs:
                - 'bootstrap-app-kind*.yaml'
                - 'platform-apps/target-chart/values-customer.yaml'
                - 'platform-apps/target-chart/values-kind*'
-               - '.github/install-kubriX-with-job.sh'
+               - '.github/actions/install-kubrix-cli/**'
                - 'install-manifests.yaml'
                - 'install-platform.sh'
                - 'openbao-group-recovery.sh'
@@ -504,8 +504,13 @@ jobs:
           GH_TOKEN: ${{ steps.repo-backstage-token.outputs.token }}
         run: bash .github/log-github-rate-limit.sh before-installation
 
+      - name: install kubrix CLI
+        uses: ./.github/actions/install-kubrix-cli
+
       - name: install kubriX stack
         env:
+          KUBRIX_EXPERIMENTAL: "1"
+          KUBRIX_CONTEXT: kind-kubrix-cluster
           KUBRIX_UPSTREAM_REPO: "https://github.com/${{ github.repository }}"
           KUBRIX_UPSTREAM_BRANCH: ${{ github.head_ref || github.ref_name }}
           KUBRIX_UPSTREAM_REPO_PASSWORD: ${{ secrets.GITHUB_TOKEN }}
@@ -513,36 +518,17 @@ jobs:
           KUBRIX_REPO_BRANCH: "main"
           KUBRIX_REPO_PASSWORD: ${{ steps.repo-installer-token.outputs.token }}
           KUBRIX_REPO_USERNAME: "dummy"
+          KUBRIX_GIT_USER_NAME: "dummy"
           KUBRIX_INSTALL_DEBUG: "false"
           KUBRIX_SYNC_DEBUG: "true"
           KUBRIX_TARGET_TYPE: ${{ matrix.target-type }}
           KUBRIX_CLUSTER_TYPE: "kind"
           KUBRIX_BACKSTAGE_GITHUB_TOKEN: ${{ steps.repo-backstage-token.outputs.token }}
           KUBRIX_BOOTSTRAP_MAX_WAIT_TIME: ${{ vars.KUBRIX_BOOTSTRAP_MAX_WAIT_TIME }}
-          PR_NUMBER: "${{ needs.changes.outputs.dockerImageChanges == 'true' && github.event.number || '' }}"
-          TARGET_BRANCH: ${{ github.base_ref || github.ref_name }}
+          # The PR's installer image if this PR built one, else the target branch's; latest when neither exists.
+          KUBRIX_INSTALLER_TAG: "${{ needs.changes.outputs.dockerImageChanges == 'true' && github.event.number && format('pr-{0},', github.event.number) || '' }}${{ github.base_ref || github.ref_name }}"
         shell: bash
-        run: |
-          kubectl create ns kubrix-install
-          kubectl create secret generic kubrix-install-secrets -n kubrix-install \
-            --from-literal KUBRIX_UPSTREAM_REPO=${KUBRIX_UPSTREAM_REPO} \
-            --from-literal KUBRIX_UPSTREAM_BRANCH=${KUBRIX_UPSTREAM_BRANCH} \
-            --from-literal KUBRIX_UPSTREAM_REPO_PASSWORD=${KUBRIX_UPSTREAM_REPO_PASSWORD} \
-            --from-literal KUBRIX_REPO=${KUBRIX_REPO} \
-            --from-literal KUBRIX_REPO_BRANCH=${KUBRIX_REPO_BRANCH} \
-            --from-literal KUBRIX_REPO_PASSWORD=${KUBRIX_REPO_PASSWORD} \
-            --from-literal KUBRIX_REPO_USERNAME=${KUBRIX_REPO_USERNAME} \
-            --from-literal KUBRIX_TARGET_TYPE=${KUBRIX_TARGET_TYPE} \
-            --from-literal KUBRIX_CLUSTER_TYPE=${KUBRIX_CLUSTER_TYPE} \
-            --from-literal KUBRIX_DOMAIN="127-0-0-1.nip.io" \
-            --from-literal KUBRIX_DNS_PROVIDER="none" \
-            --from-literal KUBRIX_BACKSTAGE_GITHUB_TOKEN=${KUBRIX_BACKSTAGE_GITHUB_TOKEN} \
-            --from-literal KUBRIX_BOOTSTRAP_MAX_WAIT_TIME=${KUBRIX_BOOTSTRAP_MAX_WAIT_TIME} \
-            --from-literal KUBRIX_BOOTSTRAP=true \
-            --from-literal KUBRIX_INSTALLER=true \
-            --from-literal KUBRIX_SYNC_DEBUG=${KUBRIX_SYNC_DEBUG} \
-            --from-literal KUBRIX_INSTALL_DEBUG=${KUBRIX_INSTALL_DEBUG}
-          bash .github/install-kubriX-with-job.sh
+        run: kubrix install
 
       - name: kubectl get applications
         if: always()
