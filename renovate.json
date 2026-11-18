@@ -30,6 +30,17 @@
     {
       "customType": "regex",
       "managerFilePatterns": [
+        "/^\\.github/workflows/.*\\.ya?ml$/"
+      ],
+      "matchStrings": [
+        "CLI_VERSION: (?<currentValue>v\\d+\\.\\d+\\.\\d+)"
+      ],
+      "depNameTemplate": "suxess-it/kubrix-cli",
+      "datasourceTemplate": "github-releases"
+    },
+    {
+      "customType": "regex",
+      "managerFilePatterns": [
         "/^platform-apps/charts/openbao/[^/]+\\.yaml$/"
       ],
       "matchStrings": [
@@ -106,6 +117,12 @@
       ],
       "sourceUrl": "https://github.com/grafana/k8s-monitoring-helm",
       "sourceDirectory": "charts/k8s-monitoring"
+    },
+    {
+      "matchPackageNames": [
+        "suxess-it/kubrix-cli"
+      ],
+      "automerge": false
     },
     {
       "matchPackageNames": [
