@@ -60,13 +60,18 @@ for env in pr target; do
   popd >/dev/null
 done
 
-diff -U 4 -r out-default-values/target out-default-values/pr > out/default-values-diff.txt || true
-diff -U 4 -rN out/target out/pr > out/diff.txt || true
-
-# .github/gitops-diff-comments.py turns these into PR comments after all test cases are rendered.
+# .github/gitops-diff-comments.py turns these diffs into PR comments after all test cases are rendered.
 # Only non-empty diffs are kept, so no artifact is uploaded when nothing changed.
-for diffFile in out/diff.txt out/default-values-diff.txt; do
-  if [[ -s "${diffFile}" ]]; then
-    cp "${diffFile}" "comment-files/${testCase}/"
-  fi
+keepIfNotEmpty() {
+  [[ -s "$1" ]] || rm "$1"
+}
+
+diff -U 4 -r out-default-values/target out-default-values/pr > "comment-files/${testCase}/default-values-diff.txt" || true
+keepIfNotEmpty "comment-files/${testCase}/default-values-diff.txt"
+
+for chart in "${!APPS[@]}"; do
+  # a chart that exists on one side only is compared against an empty directory
+  mkdir -p "out/target/${chart}" "out/pr/${chart}"
+  diff -U 4 -rN "out/target/${chart}" "out/pr/${chart}" > "comment-files/${testCase}/${chart}.diff" || true
+  keepIfNotEmpty "comment-files/${testCase}/${chart}.diff"
 done

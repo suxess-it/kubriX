@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 """Turn the rendered GitOps diffs of all test cases into PR comment bodies.
 
-Reads <diff-dir>/<testCase>/diff.txt and default-values-diff.txt as written by
-create-pr-comment-file.sh (missing files mean no changes) and writes one Markdown
+Reads <diff-dir>/<testCase>/<chart>.diff and default-values-diff.txt as written
+by create-pr-comment-file.sh (missing files mean no changes) and writes one Markdown
 file per PR comment into the output directory: summary.md and, unless too many
 charts changed, one chart-<chart>.md per changed chart. The workflow creates, updates and deletes
 the PR comments to match these files.
@@ -200,7 +200,8 @@ def read_diffs(diff_dir):
     # The diff dir is missing when no test case uploaded an artifact.
     test_case_dirs = sorted(path for path in diff_dir.glob("*") if path.is_dir())
     for test_case_dir in test_case_dirs:
-        file_diffs += parse_diff(read_text_if_exists(test_case_dir / "diff.txt"))
+        for chart_diff in sorted(test_case_dir.glob("*.diff")):
+            file_diffs += parse_diff(chart_diff.read_text(encoding="utf-8"))
         if not default_values_diff:
             default_values_diff = read_text_if_exists(test_case_dir / "default-values-diff.txt")
     file_diffs.sort(key=by_chart_and_test_case)
