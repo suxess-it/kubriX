@@ -32,12 +32,12 @@ def file_diff(chart, test_case, path, added=(), removed=(), status="modified"):
     return "\n".join(lines) + "\n"
 
 
-def write_test_case(diff_dir, test_case, diff="", default_values_diff=""):
-    # Like create-pr-comment-file.sh, only keep non-empty diffs.
+def write_test_case(diff_dir, test_case, chart_diffs=None, default_values_diff=""):
+    # Like create-pr-comment-file.sh, write one file per chart and only keep non-empty diffs.
     directory = diff_dir / test_case
     directory.mkdir(parents=True)
-    if diff:
-        (directory / "diff.txt").write_text(diff, encoding="utf-8")
+    for chart, diff in (chart_diffs or {}).items():
+        (directory / f"{chart}.diff").write_text(diff, encoding="utf-8")
     if default_values_diff:
         (directory / "default-values-diff.txt").write_text(
             default_values_diff, encoding="utf-8"
@@ -84,14 +84,16 @@ class GitOpsDiffCommentsTest(unittest.TestCase):
         write_test_case(
             self.diff_dir,
             "default-kind",
-            file_diff("loki", "default-kind", "a.yaml", added=["x"])
-            + file_diff("mimir", "default-kind", "b.yaml", removed=["y"]),
+            {
+                "loki": file_diff("loki", "default-kind", "a.yaml", added=["x"]),
+                "mimir": file_diff("mimir", "default-kind", "b.yaml", removed=["y"]),
+            },
             default_values_diff="-old: value\n+new: value\n",
         )
         write_test_case(
             self.diff_dir,
             "default-aks-kind",
-            file_diff("loki", "default-aks-kind", "a.yaml", added=["x"]),
+            {"loki": file_diff("loki", "default-aks-kind", "a.yaml", added=["x"])},
             default_values_diff="-old: value\n+new: value\n",
         )
 
@@ -117,7 +119,7 @@ class GitOpsDiffCommentsTest(unittest.TestCase):
             file_diff("loki", "default-kind", f"file-{index}.yaml", added=big_lines)
             for index in range(10)
         )
-        write_test_case(self.diff_dir, "default-kind", diff)
+        write_test_case(self.diff_dir, "default-kind", {"loki": diff})
 
         comment = write_comments(self.diff_dir)["chart-loki"]
 
@@ -130,8 +132,8 @@ class GitOpsDiffCommentsTest(unittest.TestCase):
 
     def test_too_many_charts_only_writes_summary(self):
         charts = [f"chart{index:02d}" for index in range(gitops_diff_comments.MAX_CHART_COMMENTS + 1)]
-        diff = "".join(file_diff(chart, "default-kind", "a.yaml", added=["x"]) for chart in charts)
-        write_test_case(self.diff_dir, "default-kind", diff)
+        chart_diffs = {chart: file_diff(chart, "default-kind", "a.yaml", added=["x"]) for chart in charts}
+        write_test_case(self.diff_dir, "default-kind", chart_diffs)
 
         comments = write_comments(self.diff_dir)
 
@@ -168,7 +170,7 @@ class GitOpsDiffCommentsTest(unittest.TestCase):
         write_test_case(
             self.diff_dir,
             "default-kind",
-            file_diff("loki", "default-kind", "a.yaml", added=["x"]),
+            {"loki": file_diff("loki", "default-kind", "a.yaml", added=["x"])},
             default_values_diff=default_values_diff,
         )
 
