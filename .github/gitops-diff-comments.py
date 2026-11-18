@@ -2,9 +2,9 @@
 """Turn the rendered GitOps diffs of all test cases into PR comment bodies.
 
 Reads <diff-dir>/<testCase>/diff.txt and default-values-diff.txt as written by
-create-pr-comment-file.sh and writes one Markdown file per PR comment into the
-output directory: summary.md and, unless too many charts changed, one
-chart-<chart>.md per changed chart. The workflow creates, updates and deletes
+create-pr-comment-file.sh (missing files mean no changes) and writes one Markdown
+file per PR comment into the output directory: summary.md and, unless too many
+charts changed, one chart-<chart>.md per changed chart. The workflow creates, updates and deletes
 the PR comments to match these files.
 """
 
@@ -131,7 +131,12 @@ def render_summary_table(file_diffs):
 
 
 def render_summary(file_diffs, charts, default_values_diff, run_url):
-    parts = [marker("summary"), "### GitOps diff\n\n", render_summary_table(file_diffs)]
+    parts = [marker("summary"), "### GitOps diff\n\n"]
+    if not file_diffs and not default_values_diff:
+        parts.append("No changes in the rendered manifests or the default values.\n")
+        return "".join(parts)
+
+    parts.append(render_summary_table(file_diffs))
     if len(charts) > MAX_CHART_COMMENTS:
         parts.append(
             f"{len(charts)} charts changed, so their rendered diffs are not posted "
@@ -184,16 +189,20 @@ def render_chart_comment(chart, file_diffs, run_url):
     return "".join(parts)
 
 
+def read_text_if_exists(path):
+    return path.read_text(encoding="utf-8") if path.is_file() else ""
+
+
 def read_diffs(diff_dir):
     """Return the rendered file diffs of all test cases and the default values diff."""
     file_diffs = []
     default_values_diff = ""
-    for test_case_dir in sorted(path for path in diff_dir.iterdir() if path.is_dir()):
-        file_diffs += parse_diff((test_case_dir / "diff.txt").read_text(encoding="utf-8"))
+    # The diff dir is missing when no test case uploaded an artifact.
+    test_case_dirs = sorted(path for path in diff_dir.glob("*") if path.is_dir())
+    for test_case_dir in test_case_dirs:
+        file_diffs += parse_diff(read_text_if_exists(test_case_dir / "diff.txt"))
         if not default_values_diff:
-            default_values_diff = (test_case_dir / "default-values-diff.txt").read_text(
-                encoding="utf-8"
-            )
+            default_values_diff = read_text_if_exists(test_case_dir / "default-values-diff.txt")
     file_diffs.sort(key=by_chart_and_test_case)
     return file_diffs, default_values_diff
 
@@ -201,9 +210,6 @@ def read_diffs(diff_dir):
 def write_comments(diff_dir, output_dir, run_url):
     file_diffs, default_values_diff = read_diffs(diff_dir)
     output_dir.mkdir(parents=True, exist_ok=True)
-    if not file_diffs and not default_values_diff:
-        print("no changes, no comments to write")
-        return
 
     comments = {}
     charts = sorted({file_diff.chart for file_diff in file_diffs})
