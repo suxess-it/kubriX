@@ -46,6 +46,12 @@ applications:
     enabled: true
     annotations:
       argocd.argoproj.io/sync-wave: '-8'
+
+  seaweedfs:
+    enabled: true
+    annotations:
+      argocd.argoproj.io/sync-wave: '-8'
+
   argocd:
     enabled: true
     annotations:
@@ -73,6 +79,10 @@ applications:
       argocd.argoproj.io/compare-options: ServerSideDiff=true
     syncOptions:
     - ServerSideApply=true
+  oauth2-proxy:
+    enabled: true
+    annotations:
+      argocd.argoproj.io/sync-wave: '1'
   loki:
     enabled: false
     annotations:

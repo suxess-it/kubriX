@@ -1,0 +1,27 @@
+oauth2-proxy:
+  extraArgs:
+    oidc-issuer-url: https://keycloak.127-0-0-1.nip.io/realms/kubrix
+    redirect-url: https://auth.127-0-0-1.nip.io/oauth2/callback
+    cookie-domain: .127-0-0-1.nip.io
+    whitelist-domain: .127-0-0-1.nip.io
+    # trust the kind root CA for Keycloak OIDC discovery; the kind CA issuer (default-issuer)
+    # puts it as ca.crt into every certificate it issues, e.g. our own ingress certificate
+    provider-ca-file: /etc/kind-kubrix-cacert/ca.crt
+  extraVolumes:
+    - name: ca-cert
+      secret:
+        secretName: oauth2-proxy-tls
+        items:
+          - key: ca.crt
+            path: ca.crt
+  extraVolumeMounts:
+    - name: ca-cert
+      mountPath: /etc/kind-kubrix-cacert
+      readOnly: true
+  ingress:
+    hosts:
+      - auth.127-0-0-1.nip.io
+    tls:
+      - secretName: oauth2-proxy-tls
+        hosts:
+          - auth.127-0-0-1.nip.io

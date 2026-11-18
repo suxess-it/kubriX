@@ -77,6 +77,15 @@ secrets:
       # clientsecret for keycloak clients
       backstage: "dynamic:12:hex"
       openbao: "dynamic:12:hex"
+      oauth2-proxy: "dynamic:12:hex"
+  # oauth2-proxy cookie secret (must be 16, 24 or 32 bytes)
+  - application: "oauth2-proxy"
+    path: "oauth2-proxy/base"
+    namespace: "oauth2-proxy"
+    secretname: oauth2-proxy-credentials
+    secretType: "Opaque"
+    stringData:
+      cookie-secret: "dynamic:32:hex"
   # velero secrets
   - application: "velero"
     path: "velero/kubernetes"
