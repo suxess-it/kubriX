@@ -33,12 +33,15 @@ def file_diff(chart, test_case, path, added=(), removed=(), status="modified"):
 
 
 def write_test_case(diff_dir, test_case, diff="", default_values_diff=""):
+    # Like create-pr-comment-file.sh, only keep non-empty diffs.
     directory = diff_dir / test_case
     directory.mkdir(parents=True)
-    (directory / "diff.txt").write_text(diff, encoding="utf-8")
-    (directory / "default-values-diff.txt").write_text(
-        default_values_diff, encoding="utf-8"
-    )
+    if diff:
+        (directory / "diff.txt").write_text(diff, encoding="utf-8")
+    if default_values_diff:
+        (directory / "default-values-diff.txt").write_text(
+            default_values_diff, encoding="utf-8"
+        )
 
 
 def write_comments(diff_dir):
@@ -136,10 +139,20 @@ class GitOpsDiffCommentsTest(unittest.TestCase):
         self.assertIn("not posted as separate comments", comments["summary"])
         self.assertIn("`chart10`", comments["summary"])
 
-    def test_no_changes_writes_no_comments(self):
+    def test_no_changes_writes_summary_saying_so(self):
         write_test_case(self.diff_dir, "default-kind")
 
-        self.assertEqual(write_comments(self.diff_dir), {})
+        comments = write_comments(self.diff_dir)
+
+        self.assertEqual(list(comments), ["summary"])
+        self.assertIn("No changes in the rendered manifests or the default values.", comments["summary"])
+        self.assertNotIn(RUN_URL, comments["summary"])
+
+    def test_missing_diff_dir_means_no_changes(self):
+        comments = write_comments(self.diff_dir)
+
+        self.assertEqual(list(comments), ["summary"])
+        self.assertIn("No changes in the rendered manifests or the default values.", comments["summary"])
 
     def test_only_default_values_changed_writes_summary(self):
         write_test_case(self.diff_dir, "default-kind", default_values_diff="+new: value\n")

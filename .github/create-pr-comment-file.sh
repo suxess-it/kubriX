@@ -63,5 +63,10 @@ done
 diff -U 4 -r out-default-values/target out-default-values/pr > out/default-values-diff.txt || true
 diff -U 4 -rN out/target out/pr > out/diff.txt || true
 
-# .github/gitops-diff-comments.py turns these into PR comments after all test cases are rendered
-cp out/diff.txt out/default-values-diff.txt "comment-files/${testCase}/"
+# .github/gitops-diff-comments.py turns these into PR comments after all test cases are rendered.
+# Only non-empty diffs are kept, so no artifact is uploaded when nothing changed.
+for diffFile in out/diff.txt out/default-values-diff.txt; do
+  if [[ -s "${diffFile}" ]]; then
+    cp "${diffFile}" "comment-files/${testCase}/"
+  fi
+done

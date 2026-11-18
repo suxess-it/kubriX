@@ -53,6 +53,7 @@ jobs:
         with:
           name: comment-files-artifact-${{ matrix.testCase }}
           path: comment-files/
+          if-no-files-found: ignore
 
   comment:
     runs-on: ubuntu-latest
