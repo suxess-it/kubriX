@@ -89,51 +89,30 @@ changed_images_charts="$(
 echo "charts where images changed between PR and main:"
 echo "${changed_images_charts}"
 
-if [[ -z "${changed_images_charts}" ]]; then
-  echo "no image changes"
-  echo "CRITICAL_FIXED=false" >> "${GITHUB_ENV}"
-  echo "HIGH_FIXED=false" >> "${GITHUB_ENV}"
-  echo "CRITICAL_INTRODUCED=false" >> "${GITHUB_ENV}"
-  echo "HIGH_INTRODUCED=false" >> "${GITHUB_ENV}"
-
-  diff -U 4 -r out/target/scans out/pr/scans > out/scan-diff.txt || true
-  sed 's/DESCRIPTION_HERE/Changes Trivy Scan/g' pr/.github/pr-diff-template.txt > out/comment-diff-trivy-scan.txt
-  sed -e "/DIFF_HERE/{r out/scan-diff.txt" -e "d}" out/comment-diff-trivy-scan.txt > out/comment-diff-trivy-scan-result.txt
-  exit 0
-fi
-
-# create trivy scan reports per image to see if the scan reports changed
+# scan every image of the changed charts; trivy-scan-diff.py reads the image name
+# from each JSON report, so file names only need to be unique
+mkdir -p out/pr/scans out/target/scans
 for chart in ${changed_images_charts}; do
-  mkdir -p "out/pr/scans/${chart}"
-  mkdir -p "out/target/scans/${chart}"
-
   for env in pr target; do
+    mkdir -p "out/${env}/scans/${chart}"
+    report_number=0
     while IFS= read -r image; do
       [[ -z "${image}" ]] && continue
 
       echo "scanning image '${image}' for chart '${chart}'"
 
-      output_file="${chart}_$(echo "${image}" | awk -F/ '{print $NF}')"
-
+      report_number=$((report_number + 1))
       trivy image \
         --scanners vuln \
-        -f template \
-        --template "@pr/.github/trivy-scan-markdown.tpl" \
-        -o "out/${env}/scans/${chart}/${output_file}.md" \
+        -f json \
+        -o "out/${env}/scans/${chart}/${report_number}.json" \
         "${image}"
-
-      cat "out/${env}/scans/${chart}/${output_file}.md" >> "out/${env}/scans/${chart}/scan_summary.md"
-      rm "out/${env}/scans/${chart}/${output_file}.md"
     done < "out/${env}/${chart}-images.txt"
   done
 done
 
-diff -U 4 -r out/target/scans out/pr/scans > out/scan-diff.txt || true
-
-sed 's/DESCRIPTION_HERE/Changes Trivy Scan/g' pr/.github/pr-diff-template.txt > out/comment-diff-trivy-scan.txt
-sed -e "/DIFF_HERE/{r out/scan-diff.txt" -e "d}" out/comment-diff-trivy-scan.txt > out/comment-diff-trivy-scan-result.txt
-
 python3 "${script_dir}/trivy-scan-diff.py" \
   --target-dir out/target/scans \
   --pr-dir out/pr/scans \
-  --github-env "${GITHUB_ENV}"
+  --github-env "${GITHUB_ENV}" \
+  --comment-file out/comment-diff-trivy-scan-result.txt
