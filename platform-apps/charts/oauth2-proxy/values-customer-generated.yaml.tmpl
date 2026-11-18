@@ -1,0 +1,13 @@
+oauth2-proxy:
+  extraArgs:
+    oidc-issuer-url: https://keycloak.{{ .kubriX.domain }}/realms/kubrix
+    redirect-url: https://auth.{{ .kubriX.domain }}/oauth2/callback
+    cookie-domain: .{{ .kubriX.domain }}
+    whitelist-domain: .{{ .kubriX.domain }}
+  ingress:
+    hosts:
+      - auth.{{ .kubriX.domain }}
+    tls:
+      - secretName: oauth2-proxy-tls
+        hosts:
+          - auth.{{ .kubriX.domain }}

@@ -1,0 +1,23 @@
+# The admin server runs without its own authentication (see seaweed.admin.extraArgs),
+# so only Traefik (gated by oauth2-proxy) and SeaweedFS components may reach it.
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: seaweedfs-admin
+spec:
+  podSelector:
+    matchLabels:
+      app.kubernetes.io/component: admin
+      app.kubernetes.io/instance: seaweedfs
+  policyTypes:
+    - Ingress
+  ingress:
+    - from:
+        - namespaceSelector:
+            matchLabels:
+              kubernetes.io/metadata.name: traefik
+      ports:
+        - protocol: TCP
+          port: 23646
+    - from:
+        - podSelector: {}
