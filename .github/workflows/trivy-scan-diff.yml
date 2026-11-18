@@ -6,6 +6,7 @@ on:
     paths:
       - '.github/workflows/trivy-scan-diff.yml'
       - '.github/create-trivy-scan-diff.sh'
+      - '.github/trivy-scan-diff.py'
       - 'platform-apps/charts/**'
 
 permissions:
@@ -42,319 +43,37 @@ jobs:
         run: |
           bash pr/.github/create-trivy-scan-diff.sh
 
-      - name: Ensure label exists
-        if: env.CRITICAL_FIXED == 'true'
+      - name: Update CVE labels
         uses: actions/github-script@v9
         with:
           script: |
-            const labelName = "CVE critical fixed";
-
-            try {
-              await github.rest.issues.getLabel({
-                owner: context.repo.owner,
-                repo: context.repo.repo,
-                name: labelName,
-              });
-            } catch (e) {
-              if (e.status === 404) {
-                await github.rest.issues.createLabel({
-                  owner: context.repo.owner,
-                  repo: context.repo.repo,
-                  name: labelName,
-                  color: "0e8a16",
-                  description: "PR removes at least one critical CVE in Trivy diff",
-                });
-              } else {
-                throw e;
-              }
-            }
-
-      - name: Add PR label for fixed critical CVE
-        if: env.CRITICAL_FIXED == 'true'
-        uses: actions/github-script@v9
-        with:
-          script: |
-            const labelName = "CVE critical fixed";
+            const labels = [
+              { name: "CVE critical fixed", flag: "CRITICAL_FIXED", color: "0e8a16", description: "PR removes at least one critical CVE in Trivy diff" },
+              { name: "CVE high fixed", flag: "HIGH_FIXED", color: "fbca04", description: "PR removes at least one high CVE in Trivy diff" },
+              { name: "CVE critical introduced", flag: "CRITICAL_INTRODUCED", color: "b60205", description: "PR introduces at least one critical CVE in Trivy diff" },
+              { name: "CVE high introduced", flag: "HIGH_INTRODUCED", color: "d93f0b", description: "PR introduces at least one high CVE in Trivy diff" },
+            ];
+            const repo = { owner: context.repo.owner, repo: context.repo.repo };
             const issue_number = context.issue.number;
 
-            const labelsResp = await github.rest.issues.listLabelsOnIssue({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              issue_number,
-            });
-
-            const hasLabel = labelsResp.data.some(l => l.name === labelName);
-
-            if (!hasLabel) {
-              await github.rest.issues.addLabels({
-                owner: context.repo.owner,
-                repo: context.repo.repo,
-                issue_number,
-                labels: [labelName],
-              });
-              core.info(`Added label "${labelName}" to PR #${issue_number}`);
-            } else {
-              core.info(`Label "${labelName}" already present on PR #${issue_number}`);
-            }
-
-      - name: Remove PR label when no fixed critical CVE is present
-        if: env.CRITICAL_FIXED != 'true'
-        uses: actions/github-script@v9
-        with:
-          script: |
-            const labelName = "CVE critical fixed";
-            const issue_number = context.issue.number;
-
-            try {
-              await github.rest.issues.removeLabel({
-                owner: context.repo.owner,
-                repo: context.repo.repo,
-                issue_number,
-                name: labelName,
-              });
-              core.info(`Removed label "${labelName}" from PR #${issue_number}`);
-            } catch (e) {
-              if (e.status === 404) {
-                core.info(`Label "${labelName}" not present on PR #${issue_number}`);
+            for (const label of labels) {
+              if (process.env[label.flag] === "true") {
+                try {
+                  await github.rest.issues.getLabel({ ...repo, name: label.name });
+                } catch (e) {
+                  if (e.status !== 404) throw e;
+                  await github.rest.issues.createLabel({ ...repo, name: label.name, color: label.color, description: label.description });
+                }
+                await github.rest.issues.addLabels({ ...repo, issue_number, labels: [label.name] });
+                core.info(`Added label "${label.name}" to PR #${issue_number}`);
               } else {
-                throw e;
-              }
-            }
-
-      - name: Ensure HIGH label exists
-        if: env.HIGH_FIXED == 'true'
-        uses: actions/github-script@v9
-        with:
-          script: |
-            const labelName = "CVE high fixed";
-
-            try {
-              await github.rest.issues.getLabel({
-                owner: context.repo.owner,
-                repo: context.repo.repo,
-                name: labelName,
-              });
-            } catch (e) {
-              if (e.status === 404) {
-                await github.rest.issues.createLabel({
-                  owner: context.repo.owner,
-                  repo: context.repo.repo,
-                  name: labelName,
-                  color: "fbca04",
-                  description: "PR removes at least one high CVE in Trivy diff",
-                });
-              } else {
-                throw e;
-              }
-            }
-
-      - name: Add PR label for fixed high CVE
-        if: env.HIGH_FIXED == 'true'
-        uses: actions/github-script@v9
-        with:
-          script: |
-            const labelName = "CVE high fixed";
-            const issue_number = context.issue.number;
-
-            const labelsResp = await github.rest.issues.listLabelsOnIssue({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              issue_number,
-            });
-
-            const hasLabel = labelsResp.data.some(l => l.name === labelName);
-
-            if (!hasLabel) {
-              await github.rest.issues.addLabels({
-                owner: context.repo.owner,
-                repo: context.repo.repo,
-                issue_number,
-                labels: [labelName],
-              });
-              core.info(`Added label "${labelName}" to PR #${issue_number}`);
-            } else {
-              core.info(`Label "${labelName}" already present on PR #${issue_number}`);
-            }
-
-      - name: Remove PR label when no fixed high CVE is present
-        if: env.HIGH_FIXED != 'true'
-        uses: actions/github-script@v9
-        with:
-          script: |
-            const labelName = "CVE high fixed";
-            const issue_number = context.issue.number;
-
-            try {
-              await github.rest.issues.removeLabel({
-                owner: context.repo.owner,
-                repo: context.repo.repo,
-                issue_number,
-                name: labelName,
-              });
-              core.info(`Removed label "${labelName}" from PR #${issue_number}`);
-            } catch (e) {
-              if (e.status === 404) {
-                core.info(`Label "${labelName}" not present on PR #${issue_number}`);
-              } else {
-                throw e;
-              }
-            }
-
-      - name: Ensure introduced CRITICAL label exists
-        if: env.CRITICAL_INTRODUCED == 'true'
-        uses: actions/github-script@v9
-        with:
-          script: |
-            const labelName = "CVE critical introduced";
-
-            try {
-              await github.rest.issues.getLabel({
-                owner: context.repo.owner,
-                repo: context.repo.repo,
-                name: labelName,
-              });
-            } catch (e) {
-              if (e.status === 404) {
-                await github.rest.issues.createLabel({
-                  owner: context.repo.owner,
-                  repo: context.repo.repo,
-                  name: labelName,
-                  color: "b60205",
-                  description: "PR introduces at least one critical CVE in Trivy diff",
-                });
-              } else {
-                throw e;
-              }
-            }
-
-      - name: Add PR label for introduced critical CVE
-        if: env.CRITICAL_INTRODUCED == 'true'
-        uses: actions/github-script@v9
-        with:
-          script: |
-            const labelName = "CVE critical introduced";
-            const issue_number = context.issue.number;
-
-            const labelsResp = await github.rest.issues.listLabelsOnIssue({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              issue_number,
-            });
-
-            const hasLabel = labelsResp.data.some(l => l.name === labelName);
-
-            if (!hasLabel) {
-              await github.rest.issues.addLabels({
-                owner: context.repo.owner,
-                repo: context.repo.repo,
-                issue_number,
-                labels: [labelName],
-              });
-              core.info(`Added label "${labelName}" to PR #${issue_number}`);
-            } else {
-              core.info(`Label "${labelName}" already present on PR #${issue_number}`);
-            }
-
-      - name: Remove PR label when no introduced critical CVE is present
-        if: env.CRITICAL_INTRODUCED != 'true'
-        uses: actions/github-script@v9
-        with:
-          script: |
-            const labelName = "CVE critical introduced";
-            const issue_number = context.issue.number;
-
-            try {
-              await github.rest.issues.removeLabel({
-                owner: context.repo.owner,
-                repo: context.repo.repo,
-                issue_number,
-                name: labelName,
-              });
-              core.info(`Removed label "${labelName}" from PR #${issue_number}`);
-            } catch (e) {
-              if (e.status === 404) {
-                core.info(`Label "${labelName}" not present on PR #${issue_number}`);
-              } else {
-                throw e;
-              }
-            }
-
-      - name: Ensure introduced HIGH label exists
-        if: env.HIGH_INTRODUCED == 'true'
-        uses: actions/github-script@v9
-        with:
-          script: |
-            const labelName = "CVE high introduced";
-
-            try {
-              await github.rest.issues.getLabel({
-                owner: context.repo.owner,
-                repo: context.repo.repo,
-                name: labelName,
-              });
-            } catch (e) {
-              if (e.status === 404) {
-                await github.rest.issues.createLabel({
-                  owner: context.repo.owner,
-                  repo: context.repo.repo,
-                  name: labelName,
-                  color: "d93f0b",
-                  description: "PR introduces at least one high CVE in Trivy diff",
-                });
-              } else {
-                throw e;
-              }
-            }
-
-      - name: Add PR label for introduced high CVE
-        if: env.HIGH_INTRODUCED == 'true'
-        uses: actions/github-script@v9
-        with:
-          script: |
-            const labelName = "CVE high introduced";
-            const issue_number = context.issue.number;
-
-            const labelsResp = await github.rest.issues.listLabelsOnIssue({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              issue_number,
-            });
-
-            const hasLabel = labelsResp.data.some(l => l.name === labelName);
-
-            if (!hasLabel) {
-              await github.rest.issues.addLabels({
-                owner: context.repo.owner,
-                repo: context.repo.repo,
-                issue_number,
-                labels: [labelName],
-              });
-              core.info(`Added label "${labelName}" to PR #${issue_number}`);
-            } else {
-              core.info(`Label "${labelName}" already present on PR #${issue_number}`);
-            }
-
-      - name: Remove PR label when no introduced high CVE is present
-        if: env.HIGH_INTRODUCED != 'true'
-        uses: actions/github-script@v9
-        with:
-          script: |
-            const labelName = "CVE high introduced";
-            const issue_number = context.issue.number;
-
-            try {
-              await github.rest.issues.removeLabel({
-                owner: context.repo.owner,
-                repo: context.repo.repo,
-                issue_number,
-                name: labelName,
-              });
-              core.info(`Removed label "${labelName}" from PR #${issue_number}`);
-            } catch (e) {
-              if (e.status === 404) {
-                core.info(`Label "${labelName}" not present on PR #${issue_number}`);
-              } else {
-                throw e;
+                try {
+                  await github.rest.issues.removeLabel({ ...repo, issue_number, name: label.name });
+                  core.info(`Removed label "${label.name}" from PR #${issue_number}`);
+                } catch (e) {
+                  if (e.status !== 404) throw e;
+                  core.info(`Label "${label.name}" not present on PR #${issue_number}`);
+                }
               }
             }
 
@@ -365,3 +84,13 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           file-path: out/comment-diff-trivy-scan-result.txt
+          comment-tag: trivy-scan-diff
+
+      - name: Delete PR comment when charts no longer differ
+        if: env.CHANGES != 'true'
+        uses: thollander/actions-comment-pull-request@v3
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          comment-tag: trivy-scan-diff
+          mode: delete
