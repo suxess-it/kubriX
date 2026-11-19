@@ -7,6 +7,7 @@ on:
       - '.github/workflows/trivy-scan-diff.yml'
       - '.github/create-trivy-scan-diff.sh'
       - '.github/trivy-scan-diff.py'
+      - '.github/tests/test-trivy-scan-diff.py'
       - 'platform-apps/charts/**'
 
 permissions:
@@ -31,6 +32,9 @@ jobs:
           path: target
           fetch-depth: 0
           ref: ${{ github.event.pull_request.base.ref }}
+
+      - name: test trivy scan diff
+        run: python3 pr/.github/tests/test-trivy-scan-diff.py
 
       - name: Set up Trivy
         uses: aquasecurity/setup-trivy@81e514348e19b6112ce2a7e3ecbafe19c1e1f567 # v0.3.1
