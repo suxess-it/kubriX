@@ -5,7 +5,7 @@ import tempfile
 import unittest
 from pathlib import Path
 
-SCRIPT_PATH = Path(__file__).with_name("gitops-diff-comments.py")
+SCRIPT_PATH = Path(__file__).resolve().parents[1] / "gitops-diff-comments.py"
 SPEC = importlib.util.spec_from_file_location("gitops_diff_comments", SCRIPT_PATH)
 gitops_diff_comments = importlib.util.module_from_spec(SPEC)
 SPEC.loader.exec_module(gitops_diff_comments)

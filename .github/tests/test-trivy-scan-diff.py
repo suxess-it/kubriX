@@ -6,7 +6,7 @@ import tempfile
 import unittest
 from pathlib import Path
 
-SCRIPT_PATH = Path(__file__).with_name("trivy-scan-diff.py")
+SCRIPT_PATH = Path(__file__).resolve().parents[1] / "trivy-scan-diff.py"
 SPEC = importlib.util.spec_from_file_location("trivy_scan_diff", SCRIPT_PATH)
 trivy_scan_diff = importlib.util.module_from_spec(SPEC)
 SPEC.loader.exec_module(trivy_scan_diff)
