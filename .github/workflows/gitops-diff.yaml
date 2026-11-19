@@ -4,6 +4,8 @@ on:
     paths:
       - '.github/workflows/gitops-diff.yaml'
       - '.github/create-pr-comment-file.sh'
+      - '.github/gitops-diff-comments.py'
+      - '.github/tests/test-gitops-diff-comments.py'
       - 'platform-apps/charts/**'
       
 permissions:
@@ -70,6 +72,9 @@ jobs:
           pattern: comment-files-artifact-*
           path: comment-files/
           merge-multiple: true
+
+      - name: test comment formatter
+        run: python3 pr/.github/tests/test-gitops-diff-comments.py
 
       - name: create comment files
         shell: bash
