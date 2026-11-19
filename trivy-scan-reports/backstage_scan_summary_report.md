@@ -349,7 +349,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>Node.js</code></h3>
-<h4>Vulnerabilities (363)</h4>
+<h4>Vulnerabilities (361)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -1350,20 +1350,6 @@
         <td>CVE-2026-85393</td>
         <td>HIGH</td>
         <td>1.4.0</td>
-        <td></td>
-    </tr>
-    <tr>
-        <td><code>picomatch</code></td>
-        <td>CVE-2026-112366</td>
-        <td>HIGH</td>
-        <td>2.3.2</td>
-        <td></td>
-    </tr>
-    <tr>
-        <td><code>picomatch</code></td>
-        <td>CVE-2026-112366</td>
-        <td>HIGH</td>
-        <td>4.0.4</td>
         <td></td>
     </tr>
     <tr>

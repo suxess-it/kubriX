@@ -67,7 +67,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>opt/bitnami/common/bin/render-template</code></h3>
-<h4>Vulnerabilities (1)</h4>
+<h4>Vulnerabilities (2)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -82,11 +82,18 @@
         <td>HIGH</td>
         <td>v1.26.9</td>
         <td>1.26.10, 1.27.3</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-97054</td>
+        <td>HIGH</td>
+        <td>v1.26.9</td>
+        <td>1.26.11, 1.27.4</td>
     </tr>
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>opt/bitnami/mongodb/bin/bsondump</code></h3>
-<h4>Vulnerabilities (21)</h4>
+<h4>Vulnerabilities (22)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -241,11 +248,18 @@
         <td>HIGH</td>
         <td>v1.26.9</td>
         <td>1.26.10, 1.27.3</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-97054</td>
+        <td>HIGH</td>
+        <td>v1.26.9</td>
+        <td>1.26.11, 1.27.4</td>
     </tr>
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>opt/bitnami/mongodb/bin/mongodump</code></h3>
-<h4>Vulnerabilities (21)</h4>
+<h4>Vulnerabilities (22)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -400,11 +414,18 @@
         <td>HIGH</td>
         <td>v1.26.9</td>
         <td>1.26.10, 1.27.3</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-97054</td>
+        <td>HIGH</td>
+        <td>v1.26.9</td>
+        <td>1.26.11, 1.27.4</td>
     </tr>
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>opt/bitnami/mongodb/bin/mongoexport</code></h3>
-<h4>Vulnerabilities (21)</h4>
+<h4>Vulnerabilities (22)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -559,11 +580,18 @@
         <td>HIGH</td>
         <td>v1.26.9</td>
         <td>1.26.10, 1.27.3</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-97054</td>
+        <td>HIGH</td>
+        <td>v1.26.9</td>
+        <td>1.26.11, 1.27.4</td>
     </tr>
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>opt/bitnami/mongodb/bin/mongofiles</code></h3>
-<h4>Vulnerabilities (21)</h4>
+<h4>Vulnerabilities (22)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -718,11 +746,18 @@
         <td>HIGH</td>
         <td>v1.26.9</td>
         <td>1.26.10, 1.27.3</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-97054</td>
+        <td>HIGH</td>
+        <td>v1.26.9</td>
+        <td>1.26.11, 1.27.4</td>
     </tr>
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>opt/bitnami/mongodb/bin/mongoimport</code></h3>
-<h4>Vulnerabilities (21)</h4>
+<h4>Vulnerabilities (22)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -877,11 +912,18 @@
         <td>HIGH</td>
         <td>v1.26.9</td>
         <td>1.26.10, 1.27.3</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-97054</td>
+        <td>HIGH</td>
+        <td>v1.26.9</td>
+        <td>1.26.11, 1.27.4</td>
     </tr>
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>opt/bitnami/mongodb/bin/mongorestore</code></h3>
-<h4>Vulnerabilities (21)</h4>
+<h4>Vulnerabilities (22)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -1036,11 +1078,18 @@
         <td>HIGH</td>
         <td>v1.26.9</td>
         <td>1.26.10, 1.27.3</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-97054</td>
+        <td>HIGH</td>
+        <td>v1.26.9</td>
+        <td>1.26.11, 1.27.4</td>
     </tr>
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>opt/bitnami/mongodb/bin/mongostat</code></h3>
-<h4>Vulnerabilities (21)</h4>
+<h4>Vulnerabilities (22)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -1195,11 +1244,18 @@
         <td>HIGH</td>
         <td>v1.26.9</td>
         <td>1.26.10, 1.27.3</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-97054</td>
+        <td>HIGH</td>
+        <td>v1.26.9</td>
+        <td>1.26.11, 1.27.4</td>
     </tr>
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>opt/bitnami/mongodb/bin/mongotop</code></h3>
-<h4>Vulnerabilities (21)</h4>
+<h4>Vulnerabilities (22)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -1354,11 +1410,18 @@
         <td>HIGH</td>
         <td>v1.26.9</td>
         <td>1.26.10, 1.27.3</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-97054</td>
+        <td>HIGH</td>
+        <td>v1.26.9</td>
+        <td>1.26.11, 1.27.4</td>
     </tr>
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>usr/bin/bsondump</code></h3>
-<h4>Vulnerabilities (21)</h4>
+<h4>Vulnerabilities (22)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -1513,11 +1576,18 @@
         <td>HIGH</td>
         <td>v1.26.9</td>
         <td>1.26.10, 1.27.3</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-97054</td>
+        <td>HIGH</td>
+        <td>v1.26.9</td>
+        <td>1.26.11, 1.27.4</td>
     </tr>
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>usr/bin/mongodump</code></h3>
-<h4>Vulnerabilities (21)</h4>
+<h4>Vulnerabilities (22)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -1672,11 +1742,18 @@
         <td>HIGH</td>
         <td>v1.26.9</td>
         <td>1.26.10, 1.27.3</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-97054</td>
+        <td>HIGH</td>
+        <td>v1.26.9</td>
+        <td>1.26.11, 1.27.4</td>
     </tr>
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>usr/bin/mongoexport</code></h3>
-<h4>Vulnerabilities (21)</h4>
+<h4>Vulnerabilities (22)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -1831,11 +1908,18 @@
         <td>HIGH</td>
         <td>v1.26.9</td>
         <td>1.26.10, 1.27.3</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-97054</td>
+        <td>HIGH</td>
+        <td>v1.26.9</td>
+        <td>1.26.11, 1.27.4</td>
     </tr>
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>usr/bin/mongofiles</code></h3>
-<h4>Vulnerabilities (21)</h4>
+<h4>Vulnerabilities (22)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -1990,11 +2074,18 @@
         <td>HIGH</td>
         <td>v1.26.9</td>
         <td>1.26.10, 1.27.3</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-97054</td>
+        <td>HIGH</td>
+        <td>v1.26.9</td>
+        <td>1.26.11, 1.27.4</td>
     </tr>
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>usr/bin/mongoimport</code></h3>
-<h4>Vulnerabilities (21)</h4>
+<h4>Vulnerabilities (22)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -2149,11 +2240,18 @@
         <td>HIGH</td>
         <td>v1.26.9</td>
         <td>1.26.10, 1.27.3</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-97054</td>
+        <td>HIGH</td>
+        <td>v1.26.9</td>
+        <td>1.26.11, 1.27.4</td>
     </tr>
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>usr/bin/mongorestore</code></h3>
-<h4>Vulnerabilities (21)</h4>
+<h4>Vulnerabilities (22)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -2308,11 +2406,18 @@
         <td>HIGH</td>
         <td>v1.26.9</td>
         <td>1.26.10, 1.27.3</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-97054</td>
+        <td>HIGH</td>
+        <td>v1.26.9</td>
+        <td>1.26.11, 1.27.4</td>
     </tr>
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>usr/bin/mongostat</code></h3>
-<h4>Vulnerabilities (21)</h4>
+<h4>Vulnerabilities (22)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -2467,11 +2572,18 @@
         <td>HIGH</td>
         <td>v1.26.9</td>
         <td>1.26.10, 1.27.3</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-97054</td>
+        <td>HIGH</td>
+        <td>v1.26.9</td>
+        <td>1.26.11, 1.27.4</td>
     </tr>
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>usr/bin/mongotop</code></h3>
-<h4>Vulnerabilities (21)</h4>
+<h4>Vulnerabilities (22)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -2626,6 +2738,13 @@
         <td>HIGH</td>
         <td>v1.26.9</td>
         <td>1.26.10, 1.27.3</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-97054</td>
+        <td>HIGH</td>
+        <td>v1.26.9</td>
+        <td>1.26.11, 1.27.4</td>
     </tr>
 </table>
 <h4>No Misconfigurations found</h4>
@@ -2714,7 +2833,23 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>bin/app</code></h3>
-<h4>No Vulnerabilities found</h4>
+<h4>Vulnerabilities (1)</h4>
+<table>
+    <tr>
+        <th>Package</th>
+        <th>ID</th>
+        <th>Severity</th>
+        <th>Installed Version</th>
+        <th>Fixed Version</th>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-97054</td>
+        <td>HIGH</td>
+        <td>v1.27.3</td>
+        <td>1.26.11, 1.27.4</td>
+    </tr>
+</table>
 <h4>No Misconfigurations found</h4>
 <h2>Image <code>docker.io/kubeshop/testkube-kubectl:1.37.1</code></h2>
 
@@ -2773,7 +2908,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>usr/local/bin/kubectl</code></h3>
-<h4>Vulnerabilities (7)</h4>
+<h4>Vulnerabilities (8)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -2830,6 +2965,13 @@
         <td>HIGH</td>
         <td>v1.26.8</td>
         <td>1.26.9, 1.27.2</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-97054</td>
+        <td>HIGH</td>
+        <td>v1.26.8</td>
+        <td>1.26.11, 1.27.4</td>
     </tr>
 </table>
 <h4>No Misconfigurations found</h4>
@@ -3744,7 +3886,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>opt/bitnami/common/bin/mc</code></h3>
-<h4>Vulnerabilities (51)</h4>
+<h4>Vulnerabilities (52)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -4110,10 +4252,17 @@
         <td>v1.26.0</td>
         <td>1.26.9, 1.27.2</td>
     </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-97054</td>
+        <td>HIGH</td>
+        <td>v1.26.0</td>
+        <td>1.26.11, 1.27.4</td>
+    </tr>
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>opt/bitnami/common/bin/minio</code></h3>
-<h4>Vulnerabilities (75)</h4>
+<h4>Vulnerabilities (76)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -4647,10 +4796,17 @@
         <td>v1.26.0</td>
         <td>1.26.9, 1.27.2</td>
     </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-97054</td>
+        <td>HIGH</td>
+        <td>v1.26.0</td>
+        <td>1.26.11, 1.27.4</td>
+    </tr>
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>usr/local/bin/wait-for-port</code></h3>
-<h4>Vulnerabilities (26)</h4>
+<h4>Vulnerabilities (27)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -4841,6 +4997,13 @@
         <td>v1.25.0</td>
         <td>1.26.9, 1.27.2</td>
     </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-97054</td>
+        <td>HIGH</td>
+        <td>v1.25.0</td>
+        <td>1.26.11, 1.27.4</td>
+    </tr>
 </table>
 <h4>No Misconfigurations found</h4>
 <h2>Image <code>nats:2.15.2-alpine</code></h2>
@@ -4849,7 +5012,23 @@
 <h4>No Vulnerabilities found</h4>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>usr/local/bin/nats-server</code></h3>
-<h4>No Vulnerabilities found</h4>
+<h4>Vulnerabilities (1)</h4>
+<table>
+    <tr>
+        <th>Package</th>
+        <th>ID</th>
+        <th>Severity</th>
+        <th>Installed Version</th>
+        <th>Fixed Version</th>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-97054</td>
+        <td>HIGH</td>
+        <td>v1.27.3</td>
+        <td>1.26.11, 1.27.4</td>
+    </tr>
+</table>
 <h4>No Misconfigurations found</h4>
 <h2>Image <code>natsio/nats-server-config-reloader:0.25.0</code></h2>
 
@@ -4887,5 +5066,21 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>usr/local/bin/nats-server-config-reloader</code></h3>
-<h4>No Vulnerabilities found</h4>
+<h4>Vulnerabilities (1)</h4>
+<table>
+    <tr>
+        <th>Package</th>
+        <th>ID</th>
+        <th>Severity</th>
+        <th>Installed Version</th>
+        <th>Fixed Version</th>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-97054</td>
+        <td>HIGH</td>
+        <td>v1.27.3</td>
+        <td>1.26.11, 1.27.4</td>
+    </tr>
+</table>
 <h4>No Misconfigurations found</h4>
