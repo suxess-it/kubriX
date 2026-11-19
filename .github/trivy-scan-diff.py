@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 
 import argparse
+import json
 import re
-from html.parser import HTMLParser
 from pathlib import Path
 
 VULNERABILITY_ID_PATTERN = re.compile(
@@ -11,14 +11,20 @@ VULNERABILITY_ID_PATTERN = re.compile(
 )
 SEVERITIES = {"UNKNOWN", "LOW", "MEDIUM", "HIGH", "CRITICAL"}
 TABLE_SEVERITIES = ("CRITICAL", "HIGH")
+OTHER_SEVERITIES = ("MEDIUM", "LOW", "UNKNOWN")
+# stay below GitHub's comment size limit
+MAX_COMMENT_LENGTH = 60000
+# tables dropped in this order when the comment is too long;
+# the table of introduced CRITICAL/HIGH vulnerabilities is always kept
+OPTIONAL_TABLES = (
+    "Fixed MEDIUM/LOW/UNKNOWN vulnerabilities",
+    "Introduced MEDIUM/LOW/UNKNOWN vulnerabilities",
+    "Fixed CRITICAL/HIGH vulnerabilities",
+)
 
 
-def normalize_image(target):
-    match = re.match(r"(.+)\s+\([^)]+\)$", target)
-    if not match:
-        return None
-
-    image = match.group(1).split("@", 1)[0]
+def strip_image_tag(image):
+    image = image.split("@", 1)[0]
     last_slash = image.rfind("/")
     last_colon = image.rfind(":")
     if last_colon > last_slash:
@@ -26,91 +32,55 @@ def normalize_image(target):
     return image
 
 
-class TrivySummaryParser(HTMLParser):
-    def __init__(self, chart):
-        super().__init__(convert_charrefs=True)
-        self.chart = chart
-        self.image = ""
-        self.target = ""
-        self.vulnerabilities = set()
-        self._heading = None
-        self._heading_text = []
-        self._row = None
-        self._cell = None
+def parse_report(report, chart):
+    """Map each finding of a Trivy JSON image report to its installed and fixed versions.
 
-    def handle_starttag(self, tag, attrs):
-        if tag == "h3":
-            self._heading = tag
-            self._heading_text = []
-        elif tag == "tr":
-            self._row = []
-        elif tag == "td" and self._row is not None:
-            self._cell = []
-
-    def handle_data(self, data):
-        if self._heading is not None:
-            self._heading_text.append(data)
-        if self._cell is not None:
-            self._cell.append(data)
-
-    def handle_endtag(self, tag):
-        if tag == "h3" and self._heading is not None:
-            heading = " ".join("".join(self._heading_text).split())
-            if heading.startswith("Target "):
-                self.target = heading.removeprefix("Target ")
-                image = normalize_image(self.target)
-                if image is not None:
-                    self.image = image
-                    self.target = image
-            self._heading = None
-            self._heading_text = []
-        elif tag == "td" and self._cell is not None:
-            self._row.append(" ".join("".join(self._cell).split()))
-            self._cell = None
-        elif tag == "tr" and self._row is not None:
-            self._add_vulnerability(self._row)
-            self._row = None
-            self._cell = None
-
-    def _add_vulnerability(self, cells):
-        if len(cells) < 3:
-            return
-
-        vulnerability_id_match = VULNERABILITY_ID_PATTERN.fullmatch(cells[1])
-        severity = cells[2].upper()
-        if not vulnerability_id_match or severity not in SEVERITIES:
-            return
-
-        self.vulnerabilities.add(
-            (
-                self.chart,
-                self.image,
-                self.target,
-                cells[0],
+    The identity ignores image tag, OS version and installed version, so that
+    upgrading an image only shows vulnerabilities that really appear or disappear.
+    """
+    image = strip_image_tag(report.get("ArtifactName") or "")
+    vulnerabilities = {}
+    for result in report.get("Results") or []:
+        # the OS target contains image tag and OS version, e.g. "img:1.0 (alpine 3.20)"
+        target = "os" if result.get("Class") == "os-pkgs" else result.get("Target", "")
+        for vulnerability in result.get("Vulnerabilities") or []:
+            vulnerability_id_match = VULNERABILITY_ID_PATTERN.fullmatch(
+                vulnerability.get("VulnerabilityID", "")
+            )
+            severity = vulnerability.get("Severity", "").upper()
+            if not vulnerability_id_match or severity not in SEVERITIES:
+                continue
+            identity = (
+                chart,
+                image,
+                target,
+                vulnerability.get("PkgName", ""),
                 vulnerability_id_match.group(0).upper(),
                 severity,
             )
-        )
-
-
-def parse_summary(content, chart):
-    parser = TrivySummaryParser(chart)
-    parser.feed(content)
-    parser.close()
-    return parser.vulnerabilities
+            installed, fixed = vulnerabilities.setdefault(identity, (set(), set()))
+            installed.add(vulnerability.get("InstalledVersion") or "")
+            fixed.add(vulnerability.get("FixedVersion") or "")
+    return vulnerabilities
 
 
 def load_vulnerabilities(root):
-    vulnerabilities = set()
-    for summary in sorted(root.rglob("scan_summary.md")):
-        chart = summary.relative_to(root).parent.as_posix()
-        vulnerabilities.update(parse_summary(summary.read_text(encoding="utf-8"), chart))
+    vulnerabilities = {}
+    for report_file in sorted(root.rglob("*.json")):
+        chart = report_file.relative_to(root).parent.as_posix()
+        report = json.loads(report_file.read_text(encoding="utf-8"))
+        for identity, (installed, fixed) in parse_report(report, chart).items():
+            known_installed, known_fixed = vulnerabilities.setdefault(
+                identity, (set(), set())
+            )
+            known_installed.update(installed)
+            known_fixed.update(fixed)
     return vulnerabilities
 
 
 def compare_vulnerabilities(target, pr):
-    fixed = target - pr
-    introduced = pr - target
+    fixed = set(target) - set(pr)
+    introduced = set(pr) - set(target)
     return {
         "fixed_critical": {item for item in fixed if item[-1] == "CRITICAL"},
         "fixed_high": {item for item in fixed if item[-1] == "HIGH"},
@@ -173,6 +143,91 @@ def format_identity(identity):
     return f"{chart} | {context} | {target} | {package} | {vulnerability_id}"
 
 
+def markdown_cell(value):
+    return value.replace("|", "\\|").replace("<", "&lt;").replace(">", "&gt;")
+
+
+def format_findings_table(identities, details, severities):
+    severity_order = {severity: index for index, severity in enumerate(severities)}
+    lines = [
+        "| Severity | Chart | Image | Target | Package | ID | Installed | Fixed in |",
+        "|----------|-------|-------|--------|---------|----|-----------|----------|",
+    ]
+    for identity in sorted(
+        identities, key=lambda identity: (severity_order[identity[-1]], identity)
+    ):
+        chart, image, target, package, vulnerability_id, severity = identity
+        installed, fixed = details[identity]
+        fixed_versions = ", ".join(sorted(version for version in fixed if version))
+        cells = [
+            severity.title(),
+            chart,
+            image or "unknown image",
+            target,
+            package,
+            vulnerability_id,
+            ", ".join(sorted(version for version in installed if version)),
+            fixed_versions or "no fix available",
+        ]
+        lines.append("| " + " | ".join(markdown_cell(cell) for cell in cells) + " |")
+    return "\n".join(lines) + "\n"
+
+
+def format_comment_section(
+    title, identities, details, severities, collapsed, with_table
+):
+    heading = f"{title}: {len(identities)}"
+    if title.startswith("Introduced"):
+        fixable = sum(1 for identity in identities if any(details[identity][1]))
+        heading += f" ({fixable} fixable)"
+    if not identities:
+        return f"**{heading}**\n"
+    if not with_table:
+        return (
+            f"**{heading}** (table omitted to stay within GitHub's comment size "
+            "limit, see the workflow log)\n"
+        )
+    table = format_findings_table(identities, details, severities)
+    if collapsed:
+        return f"<details><summary>{heading}</summary>\n\n{table}\n</details>\n"
+    return f"**{heading}**\n\n{table}"
+
+
+def format_comment(target, pr, omitted_tables=()):
+    """PR comment listing where vulnerabilities are introduced or fixed."""
+    introduced = set(pr) - set(target)
+    fixed = set(target) - set(pr)
+    sections = ["### Trivy scan diff\n"]
+    for severities, collapsed in ((TABLE_SEVERITIES, False), (OTHER_SEVERITIES, True)):
+        label = "/".join(severities)
+        for title, identities, details, section_collapsed in (
+            (f"Introduced {label} vulnerabilities", introduced, pr, collapsed),
+            (f"Fixed {label} vulnerabilities", fixed, target, True),
+        ):
+            sections.append(
+                format_comment_section(
+                    title,
+                    {identity for identity in identities if identity[-1] in severities},
+                    details,
+                    severities,
+                    section_collapsed,
+                    title not in omitted_tables,
+                )
+            )
+    return "\n".join(sections)
+
+
+def format_limited_comment(target, pr):
+    omitted_tables = []
+    comment = format_comment(target, pr)
+    for title in OPTIONAL_TABLES:
+        if len(comment) <= MAX_COMMENT_LENGTH:
+            break
+        omitted_tables.append(title)
+        comment = format_comment(target, pr, omitted_tables)
+    return comment
+
+
 def print_findings(label, findings):
     print(f"{label}: {len(findings)}")
     for identity in sorted(findings):
@@ -201,6 +256,11 @@ def main():
         type=Path,
         help="write a changelog-ready table of fixed CRITICAL/HIGH CVEs and GHSAs",
     )
+    parser.add_argument(
+        "--comment-file",
+        type=Path,
+        help="write a PR comment listing introduced and fixed vulnerabilities",
+    )
     args = parser.parse_args()
 
     target = load_vulnerabilities(args.target_dir)
@@ -216,6 +276,12 @@ def main():
     )
     print_findings("Introduced HIGH vulnerabilities", findings["introduced_high"])
     write_flags(args.github_env, findings)
+    if args.comment_file:
+        comment = format_limited_comment(target, pr)
+        if comment != format_comment(target, pr):
+            print("PR comment was shortened, full comment:")
+            print(format_comment(target, pr))
+        args.comment_file.write_text(comment, encoding="utf-8")
     if args.fixed_cve_table:
         fixed = fixed_component_cves(target, pr)
         args.fixed_cve_table.write_text(
