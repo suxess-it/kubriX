@@ -1,0 +1,25 @@
+name: install kubrix CLI
+description: Installs the pinned kubrix CLI release, verified against the release checksums.
+
+runs:
+  using: composite
+  steps:
+    - name: install kubrix CLI
+      shell: bash
+      env:
+        CLI_VERSION: v0.1.6
+      run: |
+        case "$(uname -m)" in
+          x86_64) arch=x86_64 ;;
+          aarch64 | arm64) arch=arm64 ;;
+          *) echo "unsupported architecture $(uname -m)" >&2; exit 1 ;;
+        esac
+        archive="kubriX-cli_Linux_${arch}.tar.gz"
+        release="https://github.com/suxess-it/kubrix-cli/releases/download/${CLI_VERSION}"
+        cd "${RUNNER_TEMP}"
+        curl -fsSLO "${release}/${archive}"
+        curl -fsSLO "${release}/checksums.txt"
+        grep " ${archive}$" checksums.txt | sha256sum -c -
+        tar -xzf "${archive}" kubrix
+        sudo install kubrix /usr/local/bin/kubrix
+        kubrix --version

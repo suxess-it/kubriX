@@ -4,6 +4,8 @@ on:
     paths:
       - '.github/workflows/gitops-diff.yaml'
       - '.github/create-pr-comment-file.sh'
+      - '.github/gitops-diff-comments.py'
+      - '.github/tests/test-gitops-diff-comments.py'
       - 'platform-apps/charts/**'
       
 permissions:
@@ -11,6 +13,10 @@ permissions:
   pull-requests: write
 
 name: Diff GitOps
+
+concurrency:
+  group: gitops-diff-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
 
 jobs:
   diff:
@@ -36,9 +42,6 @@ jobs:
           filters: |
             appChanges:
               - 'platform-apps/charts/**'
-            globalChanges:
-              - '.github/workflows/gitops-diff.yaml'
-              - '.github/create-pr-comment-file.sh'
 
       - name: diff charts
         id: diffStep
@@ -52,80 +55,79 @@ jobs:
         with:
           name: comment-files-artifact-${{ matrix.testCase }}
           path: comment-files/
+          if-no-files-found: ignore
 
-  gen-matrix-from-artifact:
+  comment:
     runs-on: ubuntu-latest
     needs: diff
-    outputs:
-      matrix: ${{ steps.mk.outputs.matrix }}
-      default_values_matrix: ${{ steps.mk.outputs.default_values_matrix }}
     steps:
+      - name: Checkout PR
+        uses: actions/checkout@v7
+        with:
+          path: pr
+
       - name: Download artifact
         uses: actions/download-artifact@v8
         with:
           pattern: comment-files-artifact-*
           path: comment-files/
           merge-multiple: true
-      - id: mk
-        name: Create matrix JSON from files
+
+      - name: test comment formatter
+        run: python3 pr/.github/tests/test-gitops-diff-comments.py
+
+      - name: create comment files
         shell: bash
         run: |
-          # Collect file paths (null-delimited so spaces are safe)
-          mapfile -d '' files < <(find . -type f -name "comment-result*" -print0 | sort -z)
+          python3 pr/.github/gitops-diff-comments.py \
+            --diff-dir comment-files \
+            --output-dir out/comments \
+            --run-url "${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
 
-          # build: {"files":["path1","path2",...]}
-          json=$(printf '%s\0' "${files[@]}" \
-            | jq -R -s -c 'split("\u0000") | map(select(length > 0)) | {files:.}')
-
-          mapfile -d '' default_values_files < <(find . -type f -name "comment-default-values-result-*" -print0 | sort -z)
-          default_values_json=$(printf '%s\0' "${default_values_files[@]}" \
-            | jq -R -s -c 'split("\u0000") | map(select(length > 0)) | {files:.}')
-
-          echo "matrix=$json"
-          echo "matrix=$json" >> "$GITHUB_OUTPUT"
-          echo "default_values_matrix=$default_values_json"
-          echo "default_values_matrix=$default_values_json" >> "$GITHUB_OUTPUT"
-          
-  create-template-render-diff-comment:
-    needs: gen-matrix-from-artifact
-    runs-on: ubuntu-latest
-    if: ${{ fromJSON(needs.gen-matrix-from-artifact.outputs.matrix).files[0] }}
-    strategy:
-      matrix: ${{ fromJSON(needs.gen-matrix-from-artifact.outputs.matrix) }}
-      max-parallel: 1
-    steps:
-
-      - uses: actions/download-artifact@v8
+      - name: Sync PR comments
+        uses: actions/github-script@v9
         with:
-          pattern: comment-files-artifact-*
-          path: comment-files/
-          merge-multiple: true
+          script: |
+            const fs = require("fs");
+            const path = require("path");
 
-      - uses: thollander/actions-comment-pull-request@v3
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          file-path: ${{matrix.files}}
+            // Every comment starts with <!-- gitops-diff:<name> -->, where <name> is the
+            // comment file name without .md (see .github/gitops-diff-comments.py).
+            const markerPattern = /^<!-- gitops-diff:(\S+) -->/;
+            const commentDir = "out/comments";
+            const repo = { owner: context.repo.owner, repo: context.repo.repo };
+            const issue_number = context.issue.number;
 
+            const names = fs.readdirSync(commentDir)
+              .filter((file) => file.endsWith(".md"))
+              .map((file) => path.basename(file, ".md"))
+              .sort();
+            // Create the summary before the chart comments so that it is shown first.
+            const orderedNames = names.filter((name) => name === "summary")
+              .concat(names.filter((name) => name !== "summary"));
+            const wanted = new Map(
+              orderedNames.map((name) => [name, fs.readFileSync(path.join(commentDir, `${name}.md`), "utf8")])
+            );
 
-  create-default-value-diff-comment:
-    needs: gen-matrix-from-artifact
-    runs-on: ubuntu-latest
-    if: ${{ fromJSON(needs.gen-matrix-from-artifact.outputs.default_values_matrix).files[0] }}
-    strategy:
-      matrix: ${{ fromJSON(needs.gen-matrix-from-artifact.outputs.default_values_matrix) }}
-      max-parallel: 1
-    steps:
+            const comments = await github.paginate(github.rest.issues.listComments, { ...repo, issue_number, per_page: 100 });
+            for (const comment of comments) {
+              const match = comment.user?.login === "github-actions[bot]" && comment.body?.match(markerPattern);
+              if (!match) continue;
+              const name = match[1];
+              if (wanted.has(name)) {
+                const body = wanted.get(name);
+                if (comment.body !== body) {
+                  await github.rest.issues.updateComment({ ...repo, comment_id: comment.id, body });
+                  core.info(`Updated comment ${name}`);
+                }
+                wanted.delete(name);
+              } else {
+                await github.rest.issues.deleteComment({ ...repo, comment_id: comment.id });
+                core.info(`Deleted comment ${name}`);
+              }
+            }
 
-      - uses: actions/download-artifact@v8
-        with:
-          pattern: comment-files-artifact-*
-          path: comment-files/
-          merge-multiple: true
-
-      - name: PR comment default values with file
-        uses: thollander/actions-comment-pull-request@v3
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          file-path: ${{matrix.files}}
+            for (const [name, body] of wanted) {
+              await github.rest.issues.createComment({ ...repo, issue_number, body });
+              core.info(`Created comment ${name}`);
+            }
