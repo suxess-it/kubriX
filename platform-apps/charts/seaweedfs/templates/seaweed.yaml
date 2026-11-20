@@ -1,0 +1,38 @@
+apiVersion: seaweed.seaweedfs.com/v1
+kind: Seaweed
+metadata:
+  name: seaweedfs
+  annotations:
+    argocd.argoproj.io/sync-wave: "1"
+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+spec:
+  image: {{ .Values.seaweed.image }}
+  master:
+    replicas: 1
+    volumeSizeLimitMB: 1024
+  volume:
+    replicas: 1
+    requests:
+      storage: {{ .Values.seaweed.volume.storage }}
+  filer:
+    replicas: 1
+    # S3 gateway embedded in the filer; identities are managed via S3Identity/S3Credentials CRs
+    s3:
+      enabled: true
+    {{- with .Values.seaweed.filer.ingress }}
+    ingress:
+      {{- toYaml . | nindent 6 }}
+    {{- end }}
+    persistence:
+      enabled: true
+      resources:
+        requests:
+          storage: 1Gi
+    config: |
+      [leveldb2]
+      enabled = true
+      dir = "/data/filerldb2"
+  {{- with .Values.seaweed.admin }}
+  admin:
+    {{- toYaml . | nindent 4 }}
+  {{- end }}

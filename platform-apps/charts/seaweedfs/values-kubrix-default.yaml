@@ -1,0 +1,40 @@
+seaweedfs-operator:
+  webhook:
+    certManager:
+      # no issuerRef: the operator chart creates a self-signed Issuer for the in-cluster webhook certificate
+      enabled: true
+  serviceMonitor:
+    enabled: true
+
+seaweed:
+  image: chrislusf/seaweedfs:4.54
+  volume:
+    storage: 20Gi
+  # admin and filer UIs are exposed via the traefik ingress class and gated by
+  # the oauth2-forward-auth middleware (templates/oauth2-middleware.yaml)
+  admin:
+    # weed admin binds to loopback without an adminPassword; bind all interfaces so
+    # probes and the gated ingress can reach it. Access is limited by
+    # templates/admin-networkpolicy.yaml and the oauth2-forward-auth middleware.
+    extraArgs:
+      - -ip=0.0.0.0
+      - -allowInsecureBind
+    ingress:
+      enabled: true
+      className: traefik
+      annotations:
+        cert-manager.io/cluster-issuer: default-issuer
+        traefik.ingress.kubernetes.io/router.middlewares: seaweedfs-oauth2-forward-auth@kubernetescrd
+  filer:
+    ingress:
+      enabled: true
+      className: traefik
+      annotations:
+        cert-manager.io/cluster-issuer: default-issuer
+        traefik.ingress.kubernetes.io/router.middlewares: seaweedfs-oauth2-forward-auth@kubernetescrd
+
+
+# Namespaces allowed to create Bucket/S3Identity/S3Credentials CRs referencing this cluster
+consumers:
+  loki: {}
+  mimir: {}

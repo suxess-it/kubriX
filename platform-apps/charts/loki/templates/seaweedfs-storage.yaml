@@ -1,0 +1,77 @@
+{{- if .Values.seaweedfs.enabled }}
+{{- $cluster := .Values.seaweedfs.cluster }}
+apiVersion: seaweed.seaweedfs.com/v1
+kind: S3Identity
+metadata:
+  name: loki
+  annotations:
+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+spec:
+  name: loki
+  seaweedRef:
+    {{- toYaml $cluster | nindent 4 }}
+---
+apiVersion: seaweed.seaweedfs.com/v1
+kind: S3Credentials
+metadata:
+  name: loki
+  annotations:
+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+spec:
+  identityRef:
+    name: loki
+  seaweedRef:
+    {{- toYaml $cluster | nindent 4 }}
+  secretRef:
+    name: loki-s3-credentials
+    accessKeyField: ACCESSKEYID
+    secretKeyField: SECRETACCESSKEY
+
+---
+apiVersion: seaweed.seaweedfs.com/v1
+kind: S3Policy
+metadata:
+  name: loki-rw
+  annotations:
+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+spec:
+  seaweedRef:
+    {{- toYaml $cluster | nindent 4 }}
+  statements:
+    - effect: Allow
+      actions: ["s3:ListBucket", "s3:ListBucketMultipartUploads"]
+      resources: ["loki-chunks", "loki-ruler"]
+    - effect: Allow
+      actions: ["s3:GetObject", "s3:PutObject", "s3:PutObjectAcl", "s3:DeleteObject",
+                "s3:AbortMultipartUpload", "s3:ListMultipartUploadParts"]
+      resources: ["loki-chunks/*", "loki-ruler/*"]
+---
+apiVersion: seaweed.seaweedfs.com/v1
+kind: S3PolicyBinding
+metadata:
+  name: loki-rw
+  annotations:
+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+spec:
+  seaweedRef:
+    {{- toYaml $cluster | nindent 4 }}
+  policyRef:
+    name: loki-rw
+  subjects:
+    - kind: S3Identity
+      name: loki
+
+{{- range list "loki-chunks" "loki-ruler" }}
+---
+apiVersion: seaweed.seaweedfs.com/v1
+kind: Bucket
+metadata:
+  name: {{ . }}
+  annotations:
+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+spec:
+  name: {{ . }}
+  clusterRef:
+    {{- toYaml $cluster | nindent 4 }}
+{{- end }}
+{{- end }}

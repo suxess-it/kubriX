@@ -1,0 +1,36 @@
+oauth2-proxy:
+  # stable service name, referenced by Traefik ForwardAuth middlewares in other namespaces:
+  # http://oauth2-proxy.oauth2-proxy.svc.cluster.local/
+  fullnameOverride: oauth2-proxy
+
+  config:
+    # client-id, client-secret and cookie-secret, see templates/oauth2-proxy-es.yaml
+    existingSecret: oauth2-proxy-credentials
+    configFile: |-
+      provider = "keycloak-oidc"
+      email_domains = [ "*" ]
+      # ForwardAuth mode: authenticated requests get a 202, unauthenticated ones a redirect to Keycloak
+      upstreams = [ "static://202" ]
+      reverse_proxy = true
+      skip_provider_button = true
+      set_xauthrequest = true
+      code_challenge_method = "S256"
+      allowed_groups = [ "admins" ]
+
+  ingress:
+    enabled: true
+    className: nginx
+    pathType: Prefix
+    annotations:
+      cert-manager.io/cluster-issuer: default-issuer
+
+  metrics:
+    serviceMonitor:
+      enabled: true
+
+  resources:
+    requests:
+      cpu: 10m
+      memory: 32Mi
+    limits:
+      memory: 128Mi
