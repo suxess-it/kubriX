@@ -14,11 +14,11 @@
         <th>Fixed Version</th>
     </tr>
     <tr>
-        <td><code>stdlib</code></td>
-        <td>CVE-2026-97054</td>
+        <td><code>github.com/containerd/containerd/v2</code></td>
+        <td>CVE-2026-95839</td>
         <td>HIGH</td>
-        <td>v1.27.3</td>
-        <td>1.26.11, 1.27.4</td>
+        <td>v2.4.1</td>
+        <td>2.2.10, 2.3.7, 2.4.2</td>
     </tr>
 </table>
 <h4>No Misconfigurations found</h4>

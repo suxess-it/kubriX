@@ -1,7 +1,7 @@
 <h2>Image <code>docker.io/dserio83/velero-api:0.3.1</code></h2>
 
 <h3>Target <code>docker.io/dserio83/velero-api:0.3.1 (debian 12.11)</code></h3>
-<h4>Vulnerabilities (268)</h4>
+<h4>Vulnerabilities (264)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -1048,13 +1048,6 @@
     </tr>
     <tr>
         <td><code>libpython3.11-minimal</code></td>
-        <td>CVE-2026-11940</td>
-        <td>HIGH</td>
-        <td>3.11.2-6+deb12u6</td>
-        <td></td>
-    </tr>
-    <tr>
-        <td><code>libpython3.11-minimal</code></td>
         <td>CVE-2026-15308</td>
         <td>HIGH</td>
         <td>3.11.2-6+deb12u6</td>
@@ -1122,13 +1115,6 @@
         <td>HIGH</td>
         <td>3.11.2-6+deb12u6</td>
         <td>3.11.2-6+deb12u9</td>
-    </tr>
-    <tr>
-        <td><code>libpython3.11-stdlib</code></td>
-        <td>CVE-2026-11940</td>
-        <td>HIGH</td>
-        <td>3.11.2-6+deb12u6</td>
-        <td></td>
     </tr>
     <tr>
         <td><code>libpython3.11-stdlib</code></td>
@@ -1692,13 +1678,6 @@
     </tr>
     <tr>
         <td><code>python3.11</code></td>
-        <td>CVE-2026-11940</td>
-        <td>HIGH</td>
-        <td>3.11.2-6+deb12u6</td>
-        <td></td>
-    </tr>
-    <tr>
-        <td><code>python3.11</code></td>
         <td>CVE-2026-15308</td>
         <td>HIGH</td>
         <td>3.11.2-6+deb12u6</td>
@@ -1766,13 +1745,6 @@
         <td>HIGH</td>
         <td>3.11.2-6+deb12u6</td>
         <td>3.11.2-6+deb12u9</td>
-    </tr>
-    <tr>
-        <td><code>python3.11-minimal</code></td>
-        <td>CVE-2026-11940</td>
-        <td>HIGH</td>
-        <td>3.11.2-6+deb12u6</td>
-        <td></td>
     </tr>
     <tr>
         <td><code>python3.11-minimal</code></td>
@@ -2188,7 +2160,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>usr/local/bin/kubectl</code></h3>
-<h4>Vulnerabilities (40)</h4>
+<h4>Vulnerabilities (39)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -2469,13 +2441,6 @@
         <td>HIGH</td>
         <td>v1.22.5</td>
         <td>1.26.9, 1.27.2</td>
-    </tr>
-    <tr>
-        <td><code>stdlib</code></td>
-        <td>CVE-2026-97054</td>
-        <td>HIGH</td>
-        <td>v1.22.5</td>
-        <td>1.26.11, 1.27.4</td>
     </tr>
 </table>
 <h4>No Misconfigurations found</h4>
@@ -2961,7 +2926,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>app/node_modules/@esbuild/linux-x64/bin/esbuild</code></h3>
-<h4>Vulnerabilities (27)</h4>
+<h4>Vulnerabilities (26)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -3151,13 +3116,6 @@
         <td>HIGH</td>
         <td>v1.23.7</td>
         <td>1.26.9, 1.27.2</td>
-    </tr>
-    <tr>
-        <td><code>stdlib</code></td>
-        <td>CVE-2026-97054</td>
-        <td>HIGH</td>
-        <td>v1.23.7</td>
-        <td>1.26.11, 1.27.4</td>
     </tr>
 </table>
 <h4>No Misconfigurations found</h4>

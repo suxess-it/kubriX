@@ -3,13 +3,13 @@
 <h3>Target <code>alpine/curl:latest (alpine 3.24.4)</code></h3>
 <h4>No Vulnerabilities found</h4>
 <h4>No Misconfigurations found</h4>
-<h2>Image <code>quay.io/openbao/openbao:2.7.2</code></h2>
+<h2>Image <code>quay.io/openbao/openbao:2.7.3</code></h2>
 
-<h3>Target <code>quay.io/openbao/openbao:2.7.2 (alpine 3.24.3)</code></h3>
+<h3>Target <code>quay.io/openbao/openbao:2.7.3 (alpine 3.24.4)</code></h3>
 <h4>No Vulnerabilities found</h4>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>usr/bin/bao</code></h3>
-<h4>Vulnerabilities (4)</h4>
+<h4>Vulnerabilities (2)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -32,20 +32,6 @@
         <td>v4.1.4</td>
         <td>4.1.6</td>
     </tr>
-    <tr>
-        <td><code>golang.org/x/net</code></td>
-        <td>CVE-2026-78661</td>
-        <td>HIGH</td>
-        <td>v0.61.0</td>
-        <td>0.62.0</td>
-    </tr>
-    <tr>
-        <td><code>stdlib</code></td>
-        <td>CVE-2026-97054</td>
-        <td>HIGH</td>
-        <td>v1.27.3</td>
-        <td>1.26.11, 1.27.4</td>
-    </tr>
 </table>
 <h4>No Misconfigurations found</h4>
 <h2>Image <code>xpkg.upbound.io/upbound/provider-vault:v4.1.0</code></h2>
@@ -54,7 +40,7 @@
 <h4>No Vulnerabilities found</h4>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>usr/local/bin/provider</code></h3>
-<h4>Vulnerabilities (4)</h4>
+<h4>Vulnerabilities (3)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -83,13 +69,6 @@
         <td>HIGH</td>
         <td>v0.60.0</td>
         <td>0.62.0</td>
-    </tr>
-    <tr>
-        <td><code>stdlib</code></td>
-        <td>CVE-2026-97054</td>
-        <td>HIGH</td>
-        <td>v1.27.3</td>
-        <td>1.26.11, 1.27.4</td>
     </tr>
 </table>
 <h4>No Misconfigurations found</h4>
