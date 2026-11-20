@@ -1,0 +1,35 @@
+{{ if and .Values.kyvernoPolicies.createExcludeFromBackupLabel.enabled .Values.kyvernoPolicies.useCelPolicies }}
+apiVersion: policies.kyverno.io/v1
+kind: MutatingPolicy
+metadata:
+  name: add-labels-to-cm-velero
+  annotations:
+    policies.kyverno.io/title: Add Labels for velero exclude
+    policies.kyverno.io/category: kubrix
+    policies.kyverno.io/severity: low
+    policies.kyverno.io/subject: ConfigMap
+    policies.kyverno.io/description: >-
+      add exclude label velero.io/exclude-from-backup so that restore works without problems
+spec:
+  evaluation:
+    mutateExisting:
+      enabled: true
+  matchConstraints:
+    resourceRules:
+    - apiGroups: [""]
+      apiVersions: ["v1"]
+      operations: ["CREATE", "UPDATE"]
+      resources: ["configmaps"]
+  matchConditions:
+  - name: kube-root-ca
+    expression: object.metadata.name == "kube-root-ca.crt"
+  mutations:
+  - patchType: ApplyConfiguration
+    applyConfiguration:
+      expression: >-
+        Object{
+          metadata: Object.metadata{
+            labels: {"velero.io/exclude-from-backup": "true"}
+          }
+        }
+{{- end }}

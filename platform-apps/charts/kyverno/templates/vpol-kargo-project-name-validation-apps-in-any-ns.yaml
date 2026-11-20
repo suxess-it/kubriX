@@ -1,0 +1,45 @@
+{{ if and .Values.kyvernoPolicies.validateKargoProjectName.enabled .Values.kyvernoPolicies.useCelPolicies }}
+{{- if .Capabilities.APIVersions.Has "kargo.akuity.io/v1alpha1/Project" }}
+apiVersion: policies.kyverno.io/v1
+kind: ValidatingPolicy
+metadata:
+  name: kargo-project-name-validation-apps-in-any-ns
+  annotations:
+    argocd.argoproj.io/sync-wave: "1"
+    policies.kyverno.io/title: Kargo Project Name Validation
+    policies.kyverno.io/category: Kargo
+    policies.kyverno.io/severity: medium
+    policies.kyverno.io/subject: Kargo Project
+    policies.kyverno.io/description: >-
+      This policy checks if the Kargo Project Name matches with the allowed destinations
+      in the corresponding ArgoCD Project.
+      Since the kargo project automatically creates a corresponding namespace,
+      with this policy we can prevent that a namespace gets created
+      which doesn't match the allowed destinations of the argocd project.
+      It only works if argocd "application.resourceTrackingMethod: annotation" is set
+spec:
+  validationActions: [Deny]
+  matchConstraints:
+    resourceRules:
+    - apiGroups: ["kargo.akuity.io"]
+      apiVersions: ["*"]
+      operations: ["CREATE", "UPDATE"]
+      resources: ["projects"]
+  variables:
+  # tracking-id format: <app-namespace>_<app-name>:<group>/<kind>:<namespace>/<name>
+  - name: app
+    expression: object.metadata.annotations["argocd.argoproj.io/tracking-id"].split(":")[0].split("_")
+  - name: argocdProject
+    expression: resource.Get("argoproj.io/v1alpha1", "applications", variables.app[0], variables.app[1]).spec.project
+  - name: allowedDestinations
+    expression: >-
+      resource.Get("argoproj.io/v1alpha1", "appprojects", "argocd", variables.argocdProject)
+        .spec.destinations.map(d, d.namespace)
+  validations:
+  - expression: object.metadata.name in variables.allowedDestinations
+    messageExpression: >-
+      "Kargo project '" + object.metadata.name + "' doesn't match the allowed destinations '" +
+      variables.allowedDestinations.join(", ") + "' of the argocd project '" + variables.argocdProject +
+      "' referenced in application '" + variables.app[1] + "' in namespace '" + variables.app[0] + "'"
+{{- end }}
+{{- end }}
