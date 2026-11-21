@@ -57,7 +57,7 @@
 <h2>Image <code>ghcr.io/suxess-it/sx-backstage:v1.51.2</code></h2>
 
 <h3>Target <code>ghcr.io/suxess-it/sx-backstage:v1.51.2 (wolfi 20230201)</code></h3>
-<h4>Vulnerabilities (40)</h4>
+<h4>Vulnerabilities (38)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -324,20 +324,6 @@
         <td>HIGH</td>
         <td>3.13.15-r1</td>
         <td>3.13.15_git20260912-r0</td>
-    </tr>
-    <tr>
-        <td><code>python-3.14</code></td>
-        <td>CVE-2026-119170</td>
-        <td>HIGH</td>
-        <td>3.14.7-r1</td>
-        <td>3.14.10_git20261111-r0</td>
-    </tr>
-    <tr>
-        <td><code>python-3.14-base</code></td>
-        <td>CVE-2026-119170</td>
-        <td>HIGH</td>
-        <td>3.14.7-r1</td>
-        <td>3.14.10_git20261111-r0</td>
     </tr>
     <tr>
         <td><code>zlib</code></td>

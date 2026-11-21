@@ -4,7 +4,7 @@
 <h4>No Vulnerabilities found</h4>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>usr/bin/loki-canary</code></h3>
-<h4>Vulnerabilities (1)</h4>
+<h4>Vulnerabilities (2)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -19,6 +19,13 @@
         <td>HIGH</td>
         <td>v0.61.0</td>
         <td>0.62.0</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-97054</td>
+        <td>HIGH</td>
+        <td>v1.26.10</td>
+        <td>1.26.11, 1.27.4</td>
     </tr>
 </table>
 <h4>No Misconfigurations found</h4>
@@ -36,7 +43,7 @@
 <h4>No Vulnerabilities found</h4>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>usr/bin/loki</code></h3>
-<h4>Vulnerabilities (1)</h4>
+<h4>Vulnerabilities (2)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -51,6 +58,13 @@
         <td>HIGH</td>
         <td>v0.61.0</td>
         <td>0.62.0</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-97054</td>
+        <td>HIGH</td>
+        <td>v1.26.10</td>
+        <td>1.26.11, 1.27.4</td>
     </tr>
 </table>
 <h4>No Misconfigurations found</h4>
@@ -165,7 +179,7 @@
 <h2>Image <code>docker.io/nginxinc/nginx-unprivileged:1.31-alpine</code></h2>
 
 <h3>Target <code>docker.io/nginxinc/nginx-unprivileged:1.31-alpine (alpine 3.24.2)</code></h3>
-<h4>Vulnerabilities (13)</h4>
+<h4>Vulnerabilities (14)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -222,6 +236,13 @@
         <td>HIGH</td>
         <td>2.9.0-r0</td>
         <td>2.10.0-r0</td>
+    </tr>
+    <tr>
+        <td><code>libxml2</code></td>
+        <td>CVE-2026-86144</td>
+        <td>HIGH</td>
+        <td>2.13.9-r2</td>
+        <td>2.13.9-r3</td>
     </tr>
     <tr>
         <td><code>libxslt</code></td>
@@ -324,7 +345,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>usr/bin/mc</code></h3>
-<h4>Vulnerabilities (6)</h4>
+<h4>Vulnerabilities (7)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -374,6 +395,13 @@
         <td>HIGH</td>
         <td>v1.27.1</td>
         <td>1.26.9, 1.27.2</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-97054</td>
+        <td>HIGH</td>
+        <td>v1.27.1</td>
+        <td>1.26.11, 1.27.4</td>
     </tr>
 </table>
 <h4>No Misconfigurations found</h4>
@@ -434,7 +462,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>usr/bin/mcli</code></h3>
-<h4>Vulnerabilities (6)</h4>
+<h4>Vulnerabilities (7)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -485,10 +513,17 @@
         <td>v1.27.1</td>
         <td>1.26.9, 1.27.2</td>
     </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-97054</td>
+        <td>HIGH</td>
+        <td>v1.27.1</td>
+        <td>1.26.11, 1.27.4</td>
+    </tr>
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>usr/bin/silo</code></h3>
-<h4>Vulnerabilities (18)</h4>
+<h4>Vulnerabilities (19)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -623,12 +658,19 @@
         <td>v1.27.1</td>
         <td>1.26.9, 1.27.2</td>
     </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-97054</td>
+        <td>HIGH</td>
+        <td>v1.27.1</td>
+        <td>1.26.11, 1.27.4</td>
+    </tr>
 </table>
 <h4>No Misconfigurations found</h4>
 <h2>Image <code>docker.io/prom/memcached-exporter:v0.18.0</code></h2>
 
 <h3>Target <code>bin/memcached_exporter</code></h3>
-<h4>Vulnerabilities (1)</h4>
+<h4>Vulnerabilities (2)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -644,6 +686,13 @@
         <td>v0.61.0</td>
         <td>0.62.0</td>
     </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-97054</td>
+        <td>HIGH</td>
+        <td>v1.27.3</td>
+        <td>1.26.11, 1.27.4</td>
+    </tr>
 </table>
 <h4>No Misconfigurations found</h4>
 <h2>Image <code>ghcr.io/jkroepke/access-log-exporter:0.5.2</code></h2>
@@ -652,7 +701,7 @@
 <h4>No Vulnerabilities found</h4>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>access-log-exporter</code></h3>
-<h4>Vulnerabilities (1)</h4>
+<h4>Vulnerabilities (2)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -667,6 +716,13 @@
         <td>HIGH</td>
         <td>v1.27.2</td>
         <td>1.26.10, 1.27.3</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-97054</td>
+        <td>HIGH</td>
+        <td>v1.27.2</td>
+        <td>1.26.11, 1.27.4</td>
     </tr>
 </table>
 <h4>No Misconfigurations found</h4>
