@@ -99,6 +99,19 @@
       "changelogUrl": "https://github.com/grafana-community/helm-charts/releases/tag/{{{replace '^.*/' '' depName}}}-{{newVersion}}"
     },
     {
+      "matchManagers": [
+        "helmv3"
+      ],
+      "matchDatasources": [
+        "docker"
+      ],
+      "matchPackageNames": [
+        "ghcr.io/prometheus-community/charts/prometheus-blackbox-exporter"
+      ],
+      "sourceUrl": "https://github.com/prometheus-community/helm-charts",
+      "changelogUrl": "https://github.com/prometheus-community/helm-charts/releases/tag/{{depName}}-{{newVersion}}"
+    },
+    {
       "matchDatasources": [
         "helm"
       ],
