@@ -90,7 +90,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>go/bin/app</code></h3>
-<h4>Vulnerabilities (25)</h4>
+<h4>Vulnerabilities (24)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -266,13 +266,6 @@
         <td>HIGH</td>
         <td>v1.26.4</td>
         <td>1.26.9, 1.27.2</td>
-    </tr>
-    <tr>
-        <td><code>stdlib</code></td>
-        <td>CVE-2026-97054</td>
-        <td>HIGH</td>
-        <td>v1.26.4</td>
-        <td>1.26.11, 1.27.4</td>
     </tr>
 </table>
 <h4>No Misconfigurations found</h4>
@@ -788,7 +781,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>go/bin/app</code></h3>
-<h4>Vulnerabilities (60)</h4>
+<h4>Vulnerabilities (59)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -1209,13 +1202,6 @@
         <td>HIGH</td>
         <td>v1.24.11</td>
         <td>1.26.9, 1.27.2</td>
-    </tr>
-    <tr>
-        <td><code>stdlib</code></td>
-        <td>CVE-2026-97054</td>
-        <td>HIGH</td>
-        <td>v1.24.11</td>
-        <td>1.26.11, 1.27.4</td>
     </tr>
 </table>
 <h4>No Misconfigurations found</h4>
@@ -2767,7 +2753,7 @@
 <h2>Image <code>quay.io/prometheus/prometheus:v3.9.1</code></h2>
 
 <h3>Target <code>bin/prometheus</code></h3>
-<h4>Vulnerabilities (55)</h4>
+<h4>Vulnerabilities (54)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -3154,17 +3140,10 @@
         <td>v1.25.5</td>
         <td>1.26.9, 1.27.2</td>
     </tr>
-    <tr>
-        <td><code>stdlib</code></td>
-        <td>CVE-2026-97054</td>
-        <td>HIGH</td>
-        <td>v1.25.5</td>
-        <td>1.26.11, 1.27.4</td>
-    </tr>
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>bin/promtool</code></h3>
-<h4>Vulnerabilities (53)</h4>
+<h4>Vulnerabilities (52)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -3536,13 +3515,6 @@
         <td>HIGH</td>
         <td>v1.25.5</td>
         <td>1.26.9, 1.27.2</td>
-    </tr>
-    <tr>
-        <td><code>stdlib</code></td>
-        <td>CVE-2026-97054</td>
-        <td>HIGH</td>
-        <td>v1.25.5</td>
-        <td>1.26.11, 1.27.4</td>
     </tr>
 </table>
 <h4>No Misconfigurations found</h4>
