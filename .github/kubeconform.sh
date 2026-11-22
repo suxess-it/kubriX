@@ -49,11 +49,6 @@ for chart in ${!APPS[@]}; do
 
   # temporary exceptions if upstream projects have problems with conform APIs
   EXTRA_OPTS=""
-  # exception due to https://github.com/kubernetes-sigs/gateway-api/issues/4402
-  if [[ "${chart}" == "traefik" ]] ; then
-    EXTRA_OPTS="-skip CustomResourceDefinition"
-  fi
-
   # exception due to https://github.com/suxess-it/kubriX-prime/issues/970
   if [[ "${chart}" == "spoke-applications" ]] ; then
     continue
