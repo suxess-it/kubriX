@@ -351,9 +351,9 @@
 <h3>Target <code>Java</code></h3>
 <h4>No Vulnerabilities found</h4>
 <h4>No Misconfigurations found</h4>
-<h2>Image <code>xpkg.upbound.io/crossplane-contrib/provider-keycloak:v3.2.4</code></h2>
+<h2>Image <code>xpkg.upbound.io/crossplane-contrib/provider-keycloak:v3.3.0</code></h2>
 
-<h3>Target <code>xpkg.upbound.io/crossplane-contrib/provider-keycloak:v3.2.4 (debian 13.6)</code></h3>
+<h3>Target <code>xpkg.upbound.io/crossplane-contrib/provider-keycloak:v3.3.0 (debian 13.6)</code></h3>
 <h4>No Vulnerabilities found</h4>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>usr/local/bin/provider</code></h3>
