@@ -169,9 +169,11 @@ argo-cd:
           secretName: argocd-server-tls
     extensions:
       enabled: true
-      contents:
+      extensionList:
         - name: argo-rollouts
-          url: https://github.com/argoproj-labs/rollout-extension/releases/download/v0.3.6/extension.tar
+          env:
+            - name: EXTENSION_URL
+              value: https://github.com/argoproj-labs/rollout-extension/releases/download/v0.3.6/extension.tar
     metrics:
       enabled: true
       serviceMonitor:
