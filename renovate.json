@@ -60,6 +60,18 @@
       "datasourceTemplate": "npm",
       "versioningTemplate": "npm",
       "autoReplaceStringTemplate": "image: mcr.microsoft.com/playwright:v{{{newValue}}}"
+    },
+    {
+      "customType": "regex",
+      "managerFilePatterns": [
+        "platform-apps/charts/argocd/values-kubrix-default.yaml"
+      ],
+      "matchStrings": [
+        "url:[ \\t]+https://github\\.com/argoproj-labs/rollout-extension/releases/download/(?<currentValue>v\\d+\\.\\d+\\.\\d+)/extension\\.tar"
+      ],
+      "depNameTemplate": "argoproj-labs/rollout-extension",
+      "datasourceTemplate": "github-releases",
+      "versioningTemplate": "semver-coerced"
     }
   ],
   "packageRules": [
