@@ -391,7 +391,7 @@
 <h2>Image <code>quay.io/kubevirt/virt-operator:v1.5.0</code></h2>
 
 <h3>Target <code>quay.io/kubevirt/virt-operator:v1.5.0 (debian 12.6)</code></h3>
-<h4>Vulnerabilities (11)</h4>
+<h4>Vulnerabilities (10)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -427,13 +427,6 @@
         <td>HIGH</td>
         <td>3.0.13-1~deb12u1</td>
         <td>3.0.18-1~deb12u2</td>
-    </tr>
-    <tr>
-        <td><code>libssl3</code></td>
-        <td>CVE-2026-107494</td>
-        <td>HIGH</td>
-        <td>3.0.13-1~deb12u1</td>
-        <td></td>
     </tr>
     <tr>
         <td><code>libssl3</code></td>

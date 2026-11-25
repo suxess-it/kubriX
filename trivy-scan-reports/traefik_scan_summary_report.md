@@ -1,6 +1,6 @@
-<h2>Image <code>docker.io/traefik:v3.7.19</code></h2>
+<h2>Image <code>docker.io/traefik:v3.7.20</code></h2>
 
-<h3>Target <code>docker.io/traefik:v3.7.19 (alpine 3.24.4)</code></h3>
+<h3>Target <code>docker.io/traefik:v3.7.20 (alpine 3.24.4)</code></h3>
 <h4>No Vulnerabilities found</h4>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>usr/local/bin/traefik</code></h3>

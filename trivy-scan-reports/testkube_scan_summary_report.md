@@ -198,7 +198,7 @@
         <td>CVE-2026-39821</td>
         <td>HIGH</td>
         <td>v0.48.0</td>
-        <td>0.55.0</td>
+        <td>0.57.0</td>
     </tr>
     <tr>
         <td><code>golang.org/x/net</code></td>
@@ -357,7 +357,7 @@
         <td>CVE-2026-39821</td>
         <td>HIGH</td>
         <td>v0.48.0</td>
-        <td>0.55.0</td>
+        <td>0.57.0</td>
     </tr>
     <tr>
         <td><code>golang.org/x/net</code></td>
@@ -516,7 +516,7 @@
         <td>CVE-2026-39821</td>
         <td>HIGH</td>
         <td>v0.48.0</td>
-        <td>0.55.0</td>
+        <td>0.57.0</td>
     </tr>
     <tr>
         <td><code>golang.org/x/net</code></td>
@@ -675,7 +675,7 @@
         <td>CVE-2026-39821</td>
         <td>HIGH</td>
         <td>v0.48.0</td>
-        <td>0.55.0</td>
+        <td>0.57.0</td>
     </tr>
     <tr>
         <td><code>golang.org/x/net</code></td>
@@ -834,7 +834,7 @@
         <td>CVE-2026-39821</td>
         <td>HIGH</td>
         <td>v0.48.0</td>
-        <td>0.55.0</td>
+        <td>0.57.0</td>
     </tr>
     <tr>
         <td><code>golang.org/x/net</code></td>
@@ -993,7 +993,7 @@
         <td>CVE-2026-39821</td>
         <td>HIGH</td>
         <td>v0.48.0</td>
-        <td>0.55.0</td>
+        <td>0.57.0</td>
     </tr>
     <tr>
         <td><code>golang.org/x/net</code></td>
@@ -1152,7 +1152,7 @@
         <td>CVE-2026-39821</td>
         <td>HIGH</td>
         <td>v0.48.0</td>
-        <td>0.55.0</td>
+        <td>0.57.0</td>
     </tr>
     <tr>
         <td><code>golang.org/x/net</code></td>
@@ -1311,7 +1311,7 @@
         <td>CVE-2026-39821</td>
         <td>HIGH</td>
         <td>v0.48.0</td>
-        <td>0.55.0</td>
+        <td>0.57.0</td>
     </tr>
     <tr>
         <td><code>golang.org/x/net</code></td>
@@ -1470,7 +1470,7 @@
         <td>CVE-2026-39821</td>
         <td>HIGH</td>
         <td>v0.48.0</td>
-        <td>0.55.0</td>
+        <td>0.57.0</td>
     </tr>
     <tr>
         <td><code>golang.org/x/net</code></td>
@@ -1629,7 +1629,7 @@
         <td>CVE-2026-39821</td>
         <td>HIGH</td>
         <td>v0.48.0</td>
-        <td>0.55.0</td>
+        <td>0.57.0</td>
     </tr>
     <tr>
         <td><code>golang.org/x/net</code></td>
@@ -1788,7 +1788,7 @@
         <td>CVE-2026-39821</td>
         <td>HIGH</td>
         <td>v0.48.0</td>
-        <td>0.55.0</td>
+        <td>0.57.0</td>
     </tr>
     <tr>
         <td><code>golang.org/x/net</code></td>
@@ -1947,7 +1947,7 @@
         <td>CVE-2026-39821</td>
         <td>HIGH</td>
         <td>v0.48.0</td>
-        <td>0.55.0</td>
+        <td>0.57.0</td>
     </tr>
     <tr>
         <td><code>golang.org/x/net</code></td>
@@ -2106,7 +2106,7 @@
         <td>CVE-2026-39821</td>
         <td>HIGH</td>
         <td>v0.48.0</td>
-        <td>0.55.0</td>
+        <td>0.57.0</td>
     </tr>
     <tr>
         <td><code>golang.org/x/net</code></td>
@@ -2265,7 +2265,7 @@
         <td>CVE-2026-39821</td>
         <td>HIGH</td>
         <td>v0.48.0</td>
-        <td>0.55.0</td>
+        <td>0.57.0</td>
     </tr>
     <tr>
         <td><code>golang.org/x/net</code></td>
@@ -2424,7 +2424,7 @@
         <td>CVE-2026-39821</td>
         <td>HIGH</td>
         <td>v0.48.0</td>
-        <td>0.55.0</td>
+        <td>0.57.0</td>
     </tr>
     <tr>
         <td><code>golang.org/x/net</code></td>
@@ -2583,7 +2583,7 @@
         <td>CVE-2026-39821</td>
         <td>HIGH</td>
         <td>v0.48.0</td>
-        <td>0.55.0</td>
+        <td>0.57.0</td>
     </tr>
     <tr>
         <td><code>golang.org/x/net</code></td>
@@ -2629,89 +2629,10 @@
     </tr>
 </table>
 <h4>No Misconfigurations found</h4>
-<h2>Image <code>docker.io/kubeshop/testkube-api-server:2.15.2</code></h2>
+<h2>Image <code>docker.io/kubeshop/testkube-api-server:2.15.3</code></h2>
 
-<h3>Target <code>docker.io/kubeshop/testkube-api-server:2.15.2 (alpine 3.24.3)</code></h3>
-<h4>Vulnerabilities (10)</h4>
-<table>
-    <tr>
-        <th>Package</th>
-        <th>ID</th>
-        <th>Severity</th>
-        <th>Installed Version</th>
-        <th>Fixed Version</th>
-    </tr>
-    <tr>
-        <td><code>git</code></td>
-        <td>CVE-2026-105437</td>
-        <td>HIGH</td>
-        <td>2.54.0-r0</td>
-        <td>2.54.1-r0</td>
-    </tr>
-    <tr>
-        <td><code>git</code></td>
-        <td>CVE-2026-111760</td>
-        <td>HIGH</td>
-        <td>2.54.0-r0</td>
-        <td>2.54.1-r0</td>
-    </tr>
-    <tr>
-        <td><code>git</code></td>
-        <td>CVE-2026-114466</td>
-        <td>HIGH</td>
-        <td>2.54.0-r0</td>
-        <td>2.54.1-r0</td>
-    </tr>
-    <tr>
-        <td><code>git-init-template</code></td>
-        <td>CVE-2026-105437</td>
-        <td>HIGH</td>
-        <td>2.54.0-r0</td>
-        <td>2.54.1-r0</td>
-    </tr>
-    <tr>
-        <td><code>git-init-template</code></td>
-        <td>CVE-2026-111760</td>
-        <td>HIGH</td>
-        <td>2.54.0-r0</td>
-        <td>2.54.1-r0</td>
-    </tr>
-    <tr>
-        <td><code>git-init-template</code></td>
-        <td>CVE-2026-114466</td>
-        <td>HIGH</td>
-        <td>2.54.0-r0</td>
-        <td>2.54.1-r0</td>
-    </tr>
-    <tr>
-        <td><code>libexpat</code></td>
-        <td>CVE-2026-113351</td>
-        <td>HIGH</td>
-        <td>2.9.0-r0</td>
-        <td>2.10.0-r0</td>
-    </tr>
-    <tr>
-        <td><code>libexpat</code></td>
-        <td>CVE-2026-115506</td>
-        <td>HIGH</td>
-        <td>2.9.0-r0</td>
-        <td>2.10.0-r0</td>
-    </tr>
-    <tr>
-        <td><code>libexpat</code></td>
-        <td>CVE-2026-117610</td>
-        <td>HIGH</td>
-        <td>2.9.0-r0</td>
-        <td>2.10.0-r0</td>
-    </tr>
-    <tr>
-        <td><code>libexpat</code></td>
-        <td>CVE-2026-118370</td>
-        <td>HIGH</td>
-        <td>2.9.0-r0</td>
-        <td>2.10.0-r0</td>
-    </tr>
-</table>
+<h3>Target <code>docker.io/kubeshop/testkube-api-server:2.15.3 (alpine 3.24.3)</code></h3>
+<h4>No Vulnerabilities found</h4>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>bin/app</code></h3>
 <h4>No Vulnerabilities found</h4>
@@ -2836,7 +2757,7 @@
 <h2>Image <code>docker.io/kubeshop/testkube-minio:2025.10</code></h2>
 
 <h3>Target <code>docker.io/kubeshop/testkube-minio:2025.10 (debian 12.14)</code></h3>
-<h4>Vulnerabilities (130)</h4>
+<h4>Vulnerabilities (129)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -3540,13 +3461,6 @@
     </tr>
     <tr>
         <td><code>libssl3</code></td>
-        <td>CVE-2026-107494</td>
-        <td>HIGH</td>
-        <td>3.0.20-1~deb12u2</td>
-        <td></td>
-    </tr>
-    <tr>
-        <td><code>libssl3</code></td>
         <td>CVE-2026-84782</td>
         <td>HIGH</td>
         <td>3.0.20-1~deb12u2</td>
@@ -3595,6 +3509,13 @@
         <td></td>
     </tr>
     <tr>
+        <td><code>libzstd1</code></td>
+        <td>CVE-2026-124851</td>
+        <td>HIGH</td>
+        <td>1.5.4+dfsg2-5</td>
+        <td></td>
+    </tr>
+    <tr>
         <td><code>mount</code></td>
         <td>CVE-2026-53613</td>
         <td>HIGH</td>
@@ -3627,13 +3548,6 @@
         <td>CVE-2025-69720</td>
         <td>HIGH</td>
         <td>6.4-4</td>
-        <td></td>
-    </tr>
-    <tr>
-        <td><code>openssl</code></td>
-        <td>CVE-2026-107494</td>
-        <td>HIGH</td>
-        <td>3.0.20-1~deb12u2</td>
         <td></td>
     </tr>
     <tr>
@@ -3884,7 +3798,7 @@
         <td>CVE-2026-39821</td>
         <td>HIGH</td>
         <td>v0.48.0</td>
-        <td>0.55.0</td>
+        <td>0.57.0</td>
     </tr>
     <tr>
         <td><code>golang.org/x/net</code></td>
@@ -4421,7 +4335,7 @@
         <td>CVE-2026-39821</td>
         <td>HIGH</td>
         <td>v0.48.0</td>
-        <td>0.55.0</td>
+        <td>0.57.0</td>
     </tr>
     <tr>
         <td><code>golang.org/x/net</code></td>

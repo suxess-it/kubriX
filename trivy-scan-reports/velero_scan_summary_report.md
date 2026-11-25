@@ -27,7 +27,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>usr/bin/restic</code></h3>
-<h4>Vulnerabilities (23)</h4>
+<h4>Vulnerabilities (24)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -56,6 +56,13 @@
         <td>HIGH</td>
         <td>v0.52.0</td>
         <td>0.55.0</td>
+    </tr>
+    <tr>
+        <td><code>golang.org/x/net</code></td>
+        <td>CVE-2026-39821</td>
+        <td>HIGH</td>
+        <td>v0.55.0</td>
+        <td>0.57.0</td>
     </tr>
     <tr>
         <td><code>golang.org/x/net</code></td>
@@ -200,7 +207,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>velero</code></h3>
-<h4>Vulnerabilities (25)</h4>
+<h4>Vulnerabilities (26)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -243,6 +250,13 @@
         <td>HIGH</td>
         <td>v0.36.0</td>
         <td>0.40.0</td>
+    </tr>
+    <tr>
+        <td><code>golang.org/x/net</code></td>
+        <td>CVE-2026-39821</td>
+        <td>HIGH</td>
+        <td>v0.55.0</td>
+        <td>0.57.0</td>
     </tr>
     <tr>
         <td><code>golang.org/x/net</code></td>
@@ -626,7 +640,7 @@
         <td>CVE-2026-39821</td>
         <td>HIGH</td>
         <td>v0.37.0</td>
-        <td>0.55.0</td>
+        <td>0.57.0</td>
     </tr>
     <tr>
         <td><code>golang.org/x/net</code></td>
@@ -1086,7 +1100,7 @@
         <td>CVE-2026-39821</td>
         <td>HIGH</td>
         <td>v0.47.0</td>
-        <td>0.55.0</td>
+        <td>0.57.0</td>
     </tr>
     <tr>
         <td><code>golang.org/x/net</code></td>

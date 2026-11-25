@@ -310,7 +310,7 @@
         <td>CVE-2026-39821</td>
         <td>HIGH</td>
         <td>v0.47.0</td>
-        <td>0.55.0</td>
+        <td>0.57.0</td>
     </tr>
     <tr>
         <td><code>golang.org/x/net</code></td>
