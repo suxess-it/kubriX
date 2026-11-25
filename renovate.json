@@ -112,6 +112,30 @@
       "changelogUrl": "https://github.com/prometheus-community/helm-charts/releases/tag/{{depName}}-{{newVersion}}"
     },
     {
+      "matchManagers": [
+        "crossplane"
+      ],
+      "matchDatasources": [
+        "docker"
+      ],
+      "matchPackageNames": [
+        "xpkg.upbound.io/crossplane-contrib/provider-keycloak"
+      ],
+      "sourceUrl": "https://github.com/crossplane-contrib/provider-keycloak"
+    },
+    {
+      "matchManagers": [
+        "crossplane"
+      ],
+      "matchDatasources": [
+        "docker"
+      ],
+      "matchPackageNames": [
+        "xpkg.upbound.io/upbound/provider-vault"
+      ],
+      "sourceUrl": "https://github.com/upbound/provider-vault"
+    },
+    {
       "matchDatasources": [
         "helm"
       ],
