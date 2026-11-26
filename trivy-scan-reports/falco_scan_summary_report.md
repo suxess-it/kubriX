@@ -1900,7 +1900,7 @@
 <h2>Image <code>docker.io/falcosecurity/falcosidekick:2.32.0</code></h2>
 
 <h3>Target <code>docker.io/falcosecurity/falcosidekick:2.32.0 (alpine 3.22.1)</code></h3>
-<h4>Vulnerabilities (24)</h4>
+<h4>Vulnerabilities (26)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -1929,6 +1929,13 @@
         <td>HIGH</td>
         <td>3.5.1-r0</td>
         <td>3.5.5-r0</td>
+    </tr>
+    <tr>
+        <td><code>libcrypto3</code></td>
+        <td>CVE-2026-124709</td>
+        <td>HIGH</td>
+        <td>3.5.1-r0</td>
+        <td>3.5.9-r2</td>
     </tr>
     <tr>
         <td><code>libcrypto3</code></td>
@@ -1992,6 +1999,13 @@
         <td>HIGH</td>
         <td>3.5.1-r0</td>
         <td>3.5.5-r0</td>
+    </tr>
+    <tr>
+        <td><code>libssl3</code></td>
+        <td>CVE-2026-124709</td>
+        <td>HIGH</td>
+        <td>3.5.1-r0</td>
+        <td>3.5.9-r2</td>
     </tr>
     <tr>
         <td><code>libssl3</code></td>

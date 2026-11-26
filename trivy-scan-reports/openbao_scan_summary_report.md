@@ -34,13 +34,13 @@
     </tr>
 </table>
 <h4>No Misconfigurations found</h4>
-<h2>Image <code>xpkg.upbound.io/upbound/provider-vault:v4.1.0</code></h2>
+<h2>Image <code>xpkg.upbound.io/upbound/provider-vault:v4.1.1</code></h2>
 
-<h3>Target <code>xpkg.upbound.io/upbound/provider-vault:v4.1.0 (debian 12.7)</code></h3>
+<h3>Target <code>xpkg.upbound.io/upbound/provider-vault:v4.1.1 (debian 13.7)</code></h3>
 <h4>No Vulnerabilities found</h4>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>usr/local/bin/provider</code></h3>
-<h4>Vulnerabilities (3)</h4>
+<h4>Vulnerabilities (1)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -55,20 +55,6 @@
         <td>HIGH</td>
         <td>v3.0.5</td>
         <td></td>
-    </tr>
-    <tr>
-        <td><code>github.com/go-jose/go-jose/v4</code></td>
-        <td>CVE-2026-116587</td>
-        <td>HIGH</td>
-        <td>v4.1.4</td>
-        <td>4.1.6</td>
-    </tr>
-    <tr>
-        <td><code>golang.org/x/net</code></td>
-        <td>CVE-2026-78661</td>
-        <td>HIGH</td>
-        <td>v0.60.0</td>
-        <td>0.62.0</td>
     </tr>
 </table>
 <h4>No Misconfigurations found</h4>

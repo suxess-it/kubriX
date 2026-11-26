@@ -1,7 +1,7 @@
 <h2>Image <code>quay.io/frrouting/frr:10.6.2</code></h2>
 
 <h3>Target <code>quay.io/frrouting/frr:10.6.2 (alpine 3.22.5)</code></h3>
-<h4>Vulnerabilities (44)</h4>
+<h4>Vulnerabilities (46)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -9,6 +9,13 @@
         <th>Severity</th>
         <th>Installed Version</th>
         <th>Fixed Version</th>
+    </tr>
+    <tr>
+        <td><code>libcrypto3</code></td>
+        <td>CVE-2026-124709</td>
+        <td>HIGH</td>
+        <td>3.5.7-r0</td>
+        <td>3.5.9-r2</td>
     </tr>
     <tr>
         <td><code>libcrypto3</code></td>
@@ -142,6 +149,13 @@
         <td>HIGH</td>
         <td>10.46-r0</td>
         <td>10.46-r1</td>
+    </tr>
+    <tr>
+        <td><code>libssl3</code></td>
+        <td>CVE-2026-124709</td>
+        <td>HIGH</td>
+        <td>3.5.7-r0</td>
+        <td>3.5.9-r2</td>
     </tr>
     <tr>
         <td><code>libssl3</code></td>
