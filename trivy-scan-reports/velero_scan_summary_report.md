@@ -27,7 +27,7 @@
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>usr/bin/restic</code></h3>
-<h4>Vulnerabilities (14)</h4>
+<h4>Vulnerabilities (24)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -35,6 +35,20 @@
         <th>Severity</th>
         <th>Installed Version</th>
         <th>Fixed Version</th>
+    </tr>
+    <tr>
+        <td><code>github.com/go-jose/go-jose/v4</code></td>
+        <td>CVE-2026-116587</td>
+        <td>HIGH</td>
+        <td>v4.1.4</td>
+        <td>4.1.6</td>
+    </tr>
+    <tr>
+        <td><code>github.com/klauspost/compress</code></td>
+        <td>CVE-2026-63209</td>
+        <td>HIGH</td>
+        <td>v1.15.14</td>
+        <td>1.18.7</td>
     </tr>
     <tr>
         <td><code>golang.org/x/crypto</code></td>
@@ -45,10 +59,38 @@
     </tr>
     <tr>
         <td><code>golang.org/x/net</code></td>
+        <td>CVE-2026-39821</td>
+        <td>HIGH</td>
+        <td>v0.55.0</td>
+        <td>0.57.0</td>
+    </tr>
+    <tr>
+        <td><code>golang.org/x/net</code></td>
         <td>CVE-2026-46600</td>
         <td>HIGH</td>
         <td>v0.55.0</td>
         <td>0.56.0</td>
+    </tr>
+    <tr>
+        <td><code>golang.org/x/net</code></td>
+        <td>CVE-2026-78661</td>
+        <td>HIGH</td>
+        <td>v0.55.0</td>
+        <td>0.62.0</td>
+    </tr>
+    <tr>
+        <td><code>golang.org/x/net</code></td>
+        <td>CVE-2026-78669</td>
+        <td>HIGH</td>
+        <td>v0.55.0</td>
+        <td>0.60.0</td>
+    </tr>
+    <tr>
+        <td><code>golang.org/x/text</code></td>
+        <td>CVE-2026-56851</td>
+        <td>HIGH</td>
+        <td>v0.37.0</td>
+        <td>0.41.0</td>
     </tr>
     <tr>
         <td><code>golang.org/x/text</code></td>
@@ -77,6 +119,13 @@
         <td>HIGH</td>
         <td>v1.81.1</td>
         <td>1.82.1</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-111943</td>
+        <td>HIGH</td>
+        <td>v1.25.11</td>
+        <td>1.26.10, 1.27.3</td>
     </tr>
     <tr>
         <td><code>stdlib</code></td>
@@ -134,10 +183,31 @@
         <td>v1.25.11</td>
         <td>1.25.13, 1.26.6, 1.27.0-rc.3</td>
     </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-78667</td>
+        <td>HIGH</td>
+        <td>v1.25.11</td>
+        <td>1.26.9, 1.27.2</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-78669</td>
+        <td>HIGH</td>
+        <td>v1.25.11</td>
+        <td>1.26.9, 1.27.2</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-97031</td>
+        <td>HIGH</td>
+        <td>v1.25.11</td>
+        <td>1.26.9, 1.27.2</td>
+    </tr>
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>velero</code></h3>
-<h4>Vulnerabilities (16)</h4>
+<h4>Vulnerabilities (26)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -145,6 +215,20 @@
         <th>Severity</th>
         <th>Installed Version</th>
         <th>Fixed Version</th>
+    </tr>
+    <tr>
+        <td><code>github.com/go-jose/go-jose/v4</code></td>
+        <td>CVE-2026-116587</td>
+        <td>HIGH</td>
+        <td>v4.1.4</td>
+        <td>4.1.6</td>
+    </tr>
+    <tr>
+        <td><code>github.com/klauspost/compress</code></td>
+        <td>CVE-2026-63209</td>
+        <td>HIGH</td>
+        <td>v1.18.2</td>
+        <td>1.18.7</td>
     </tr>
     <tr>
         <td><code>golang.org/x/crypto</code></td>
@@ -169,10 +253,38 @@
     </tr>
     <tr>
         <td><code>golang.org/x/net</code></td>
+        <td>CVE-2026-39821</td>
+        <td>HIGH</td>
+        <td>v0.55.0</td>
+        <td>0.57.0</td>
+    </tr>
+    <tr>
+        <td><code>golang.org/x/net</code></td>
         <td>CVE-2026-46600</td>
         <td>HIGH</td>
         <td>v0.55.0</td>
         <td>0.56.0</td>
+    </tr>
+    <tr>
+        <td><code>golang.org/x/net</code></td>
+        <td>CVE-2026-78661</td>
+        <td>HIGH</td>
+        <td>v0.55.0</td>
+        <td>0.62.0</td>
+    </tr>
+    <tr>
+        <td><code>golang.org/x/net</code></td>
+        <td>CVE-2026-78669</td>
+        <td>HIGH</td>
+        <td>v0.55.0</td>
+        <td>0.60.0</td>
+    </tr>
+    <tr>
+        <td><code>golang.org/x/text</code></td>
+        <td>CVE-2026-56851</td>
+        <td>HIGH</td>
+        <td>v0.38.0</td>
+        <td>0.41.0</td>
     </tr>
     <tr>
         <td><code>golang.org/x/text</code></td>
@@ -204,6 +316,13 @@
     </tr>
     <tr>
         <td><code>stdlib</code></td>
+        <td>CVE-2026-111943</td>
+        <td>HIGH</td>
+        <td>v1.25.11</td>
+        <td>1.26.10, 1.27.3</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
         <td>CVE-2026-33818</td>
         <td>HIGH</td>
         <td>v1.25.11</td>
@@ -257,11 +376,32 @@
         <td>HIGH</td>
         <td>v1.25.11</td>
         <td>1.25.13, 1.26.6, 1.27.0-rc.3</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-78667</td>
+        <td>HIGH</td>
+        <td>v1.25.11</td>
+        <td>1.26.9, 1.27.2</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-78669</td>
+        <td>HIGH</td>
+        <td>v1.25.11</td>
+        <td>1.26.9, 1.27.2</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-97031</td>
+        <td>HIGH</td>
+        <td>v1.25.11</td>
+        <td>1.26.9, 1.27.2</td>
     </tr>
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>velero-helper</code></h3>
-<h4>Vulnerabilities (8)</h4>
+<h4>Vulnerabilities (12)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -269,6 +409,13 @@
         <th>Severity</th>
         <th>Installed Version</th>
         <th>Fixed Version</th>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-111943</td>
+        <td>HIGH</td>
+        <td>v1.25.11</td>
+        <td>1.26.10, 1.27.3</td>
     </tr>
     <tr>
         <td><code>stdlib</code></td>
@@ -325,11 +472,32 @@
         <td>HIGH</td>
         <td>v1.25.11</td>
         <td>1.25.13, 1.26.6, 1.27.0-rc.3</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-78667</td>
+        <td>HIGH</td>
+        <td>v1.25.11</td>
+        <td>1.26.9, 1.27.2</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-78669</td>
+        <td>HIGH</td>
+        <td>v1.25.11</td>
+        <td>1.26.9, 1.27.2</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-97031</td>
+        <td>HIGH</td>
+        <td>v1.25.11</td>
+        <td>1.26.9, 1.27.2</td>
     </tr>
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>velero-restore-helper</code></h3>
-<h4>Vulnerabilities (8)</h4>
+<h4>Vulnerabilities (12)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -337,6 +505,13 @@
         <th>Severity</th>
         <th>Installed Version</th>
         <th>Fixed Version</th>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-111943</td>
+        <td>HIGH</td>
+        <td>v1.25.11</td>
+        <td>1.26.10, 1.27.3</td>
     </tr>
     <tr>
         <td><code>stdlib</code></td>
@@ -393,6 +568,27 @@
         <td>HIGH</td>
         <td>v1.25.11</td>
         <td>1.25.13, 1.26.6, 1.27.0-rc.3</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-78667</td>
+        <td>HIGH</td>
+        <td>v1.25.11</td>
+        <td>1.26.9, 1.27.2</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-78669</td>
+        <td>HIGH</td>
+        <td>v1.25.11</td>
+        <td>1.26.9, 1.27.2</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-97031</td>
+        <td>HIGH</td>
+        <td>v1.25.11</td>
+        <td>1.26.9, 1.27.2</td>
     </tr>
 </table>
 <h4>No Misconfigurations found</h4>
@@ -402,7 +598,7 @@
 <h4>No Vulnerabilities found</h4>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>plugins/kubevirt-velero-plugin</code></h3>
-<h4>Vulnerabilities (32)</h4>
+<h4>Vulnerabilities (40)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -410,6 +606,13 @@
         <th>Severity</th>
         <th>Installed Version</th>
         <th>Fixed Version</th>
+    </tr>
+    <tr>
+        <td><code>github.com/klauspost/compress</code></td>
+        <td>CVE-2026-63209</td>
+        <td>HIGH</td>
+        <td>v1.17.11</td>
+        <td>1.18.7</td>
     </tr>
     <tr>
         <td><code>golang.org/x/net</code></td>
@@ -437,7 +640,7 @@
         <td>CVE-2026-39821</td>
         <td>HIGH</td>
         <td>v0.37.0</td>
-        <td>0.55.0</td>
+        <td>0.57.0</td>
     </tr>
     <tr>
         <td><code>golang.org/x/net</code></td>
@@ -445,6 +648,27 @@
         <td>HIGH</td>
         <td>v0.37.0</td>
         <td>0.56.0</td>
+    </tr>
+    <tr>
+        <td><code>golang.org/x/net</code></td>
+        <td>CVE-2026-78661</td>
+        <td>HIGH</td>
+        <td>v0.37.0</td>
+        <td>0.62.0</td>
+    </tr>
+    <tr>
+        <td><code>golang.org/x/net</code></td>
+        <td>CVE-2026-78669</td>
+        <td>HIGH</td>
+        <td>v0.37.0</td>
+        <td>0.60.0</td>
+    </tr>
+    <tr>
+        <td><code>golang.org/x/text</code></td>
+        <td>CVE-2026-56851</td>
+        <td>HIGH</td>
+        <td>v0.23.0</td>
+        <td>0.41.0</td>
     </tr>
     <tr>
         <td><code>golang.org/x/text</code></td>
@@ -504,6 +728,13 @@
     </tr>
     <tr>
         <td><code>stdlib</code></td>
+        <td>CVE-2026-111943</td>
+        <td>HIGH</td>
+        <td>v1.23.6</td>
+        <td>1.26.10, 1.27.3</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
         <td>CVE-2026-25679</td>
         <td>HIGH</td>
         <td>v1.23.6</td>
@@ -635,12 +866,33 @@
         <td>v1.23.6</td>
         <td>1.25.13, 1.26.6, 1.27.0-rc.3</td>
     </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-78667</td>
+        <td>HIGH</td>
+        <td>v1.23.6</td>
+        <td>1.26.9, 1.27.2</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-78669</td>
+        <td>HIGH</td>
+        <td>v1.23.6</td>
+        <td>1.26.9, 1.27.2</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-97031</td>
+        <td>HIGH</td>
+        <td>v1.23.6</td>
+        <td>1.26.9, 1.27.2</td>
+    </tr>
 </table>
 <h4>No Misconfigurations found</h4>
 <h2>Image <code>velero/velero-plugin-for-aws:v1.14.0</code></h2>
 
 <h3>Target <code>bin/cp-plugin</code></h3>
-<h4>Vulnerabilities (19)</h4>
+<h4>Vulnerabilities (23)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -651,6 +903,13 @@
     </tr>
     <tr>
         <td><code>stdlib</code></td>
+        <td>CVE-2026-111943</td>
+        <td>HIGH</td>
+        <td>v1.25.7</td>
+        <td>1.26.10, 1.27.3</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
         <td>CVE-2026-25679</td>
         <td>HIGH</td>
         <td>v1.25.7</td>
@@ -782,10 +1041,31 @@
         <td>v1.25.7</td>
         <td>1.25.13, 1.26.6, 1.27.0-rc.3</td>
     </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-78667</td>
+        <td>HIGH</td>
+        <td>v1.25.7</td>
+        <td>1.26.9, 1.27.2</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-78669</td>
+        <td>HIGH</td>
+        <td>v1.25.7</td>
+        <td>1.26.9, 1.27.2</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-97031</td>
+        <td>HIGH</td>
+        <td>v1.25.7</td>
+        <td>1.26.9, 1.27.2</td>
+    </tr>
 </table>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>plugins/velero-plugin-for-aws</code></h3>
-<h4>Vulnerabilities (29)</h4>
+<h4>Vulnerabilities (36)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -820,7 +1100,7 @@
         <td>CVE-2026-39821</td>
         <td>HIGH</td>
         <td>v0.47.0</td>
-        <td>0.55.0</td>
+        <td>0.57.0</td>
     </tr>
     <tr>
         <td><code>golang.org/x/net</code></td>
@@ -828,6 +1108,27 @@
         <td>HIGH</td>
         <td>v0.47.0</td>
         <td>0.56.0</td>
+    </tr>
+    <tr>
+        <td><code>golang.org/x/net</code></td>
+        <td>CVE-2026-78661</td>
+        <td>HIGH</td>
+        <td>v0.47.0</td>
+        <td>0.62.0</td>
+    </tr>
+    <tr>
+        <td><code>golang.org/x/net</code></td>
+        <td>CVE-2026-78669</td>
+        <td>HIGH</td>
+        <td>v0.47.0</td>
+        <td>0.60.0</td>
+    </tr>
+    <tr>
+        <td><code>golang.org/x/text</code></td>
+        <td>CVE-2026-56851</td>
+        <td>HIGH</td>
+        <td>v0.31.0</td>
+        <td>0.41.0</td>
     </tr>
     <tr>
         <td><code>golang.org/x/text</code></td>
@@ -866,6 +1167,13 @@
     </tr>
     <tr>
         <td><code>stdlib</code></td>
+        <td>CVE-2026-111943</td>
+        <td>HIGH</td>
+        <td>v1.25.7</td>
+        <td>1.26.10, 1.27.3</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
         <td>CVE-2026-25679</td>
         <td>HIGH</td>
         <td>v1.25.7</td>
@@ -996,6 +1304,27 @@
         <td>HIGH</td>
         <td>v1.25.7</td>
         <td>1.25.13, 1.26.6, 1.27.0-rc.3</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-78667</td>
+        <td>HIGH</td>
+        <td>v1.25.7</td>
+        <td>1.26.9, 1.27.2</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-78669</td>
+        <td>HIGH</td>
+        <td>v1.25.7</td>
+        <td>1.26.9, 1.27.2</td>
+    </tr>
+    <tr>
+        <td><code>stdlib</code></td>
+        <td>CVE-2026-97031</td>
+        <td>HIGH</td>
+        <td>v1.25.7</td>
+        <td>1.26.9, 1.27.2</td>
     </tr>
 </table>
 <h4>No Misconfigurations found</h4>
