@@ -1,0 +1,15 @@
+seaweed:
+  admin:
+    ingress:
+      host: seaweedfs.{{ .kubriX.domain }}
+      tls:
+        - secretName: seaweedfs-admin-tls
+          hosts:
+            - seaweedfs.{{ .kubriX.domain }}
+  filer:
+    ingress:
+      host: seaweedfs-filer.{{ .kubriX.domain }}
+      tls:
+        - secretName: seaweedfs-filer-tls
+          hosts:
+            - seaweedfs-filer.{{ .kubriX.domain }}

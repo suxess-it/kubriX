@@ -1,0 +1,32 @@
+{{- range $namespace, $_ := .Values.consumers }}
+---
+apiVersion: seaweed.seaweedfs.com/v1
+kind: ResourceReferenceGrant
+metadata:
+  name: {{ $namespace }}
+  annotations:
+    argocd.argoproj.io/sync-wave: "1"
+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+spec:
+  from:
+    - group: seaweed.seaweedfs.com
+      kind: Bucket
+      namespace: {{ $namespace }}
+    - group: seaweed.seaweedfs.com
+      kind: S3Identity
+      namespace: {{ $namespace }}
+    - group: seaweed.seaweedfs.com
+      kind: S3Credentials
+      namespace: {{ $namespace }}
+    - group: seaweed.seaweedfs.com
+      kind: S3Policy
+      namespace: {{ $namespace }}
+    - group: seaweed.seaweedfs.com
+      kind: S3PolicyBinding
+      namespace: {{ $namespace }}
+
+  to:
+    - group: seaweed.seaweedfs.com
+      kind: Seaweed
+      name: seaweedfs
+{{- end }}
