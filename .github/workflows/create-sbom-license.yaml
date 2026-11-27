@@ -13,9 +13,7 @@ jobs:
         uses: actions/checkout@v7
 
       - name: Set up Trivy
-        uses: aquasecurity/setup-trivy@81e514348e19b6112ce2a7e3ecbafe19c1e1f567 # v0.3.1
-        with:
-          version: v0.76.2
+        run: bash .github/install-trivy.sh
 
       - name: create image lists
         shell: bash
