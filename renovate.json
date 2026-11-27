@@ -41,6 +41,17 @@
     {
       "customType": "regex",
       "managerFilePatterns": [
+        "/^\\.github\\/install-trivy\\.sh$/"
+      ],
+      "matchStrings": [
+        "(?:^|\\r?\\n)version=(?<currentValue>v\\d+\\.\\d+\\.\\d+)(?:\\r?\\n|$)"
+      ],
+      "depNameTemplate": "aquasecurity/trivy",
+      "datasourceTemplate": "github-releases"
+    },
+    {
+      "customType": "regex",
+      "managerFilePatterns": [
         "/^platform-apps/charts/openbao/[^/]+\\.yaml$/"
       ],
       "matchStrings": [
