@@ -1,0 +1,24 @@
+{{- if not .Values.seaweedfs.enabled }}
+apiVersion: external-secrets.io/v1
+kind: ExternalSecret
+metadata:
+  name: mimir-s3-cert
+  namespace: mimir
+  annotations:
+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+spec:
+  refreshInterval: "15s"
+  secretStoreRef:
+    name: openbao-backend
+    kind: ClusterSecretStore
+  target:
+    name: mimir-s3-cert
+    template:
+      data:
+        ca.crt: "{{ `{{ .S3CERT }}` }}"
+  data:
+  - secretKey: S3CERT
+    remoteRef:
+      key: kubrix-kv/data/observability/s3
+      property: S3CERT
+{{- end }}

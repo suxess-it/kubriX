@@ -8,14 +8,14 @@ metadata:
 spec:
   image: {{ .Values.seaweed.image }}
   master:
-    replicas: 1
+    replicas: {{ .Values.seaweed.master.replicas }}
     volumeSizeLimitMB: 1024
   volume:
-    replicas: 1
+    replicas: {{ .Values.seaweed.volume.replicas }}
     requests:
       storage: {{ .Values.seaweed.volume.storage }}
   filer:
-    replicas: 1
+    replicas: {{ .Values.seaweed.filer.replicas }}
     # S3 gateway embedded in the filer; identities are managed via S3Identity/S3Credentials CRs
     s3:
       enabled: true

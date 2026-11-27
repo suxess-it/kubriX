@@ -64,7 +64,6 @@ for chart in ${!APPS[@]}; do
     ${EXTRA_OPTS} \
     -schema-location default \
     -schema-location "../../kubeconform-schemas/{{.Group}}/{{.ResourceKind}}_{{.ResourceAPIVersion}}.json" \
-    -schema-location "https://raw.githubusercontent.com/suxess-it/kubriX/main/kubeconform-schemas/{{.Group}}/{{.ResourceKind}}_{{.ResourceAPIVersion}}.json" \
     -schema-location "https://raw.githubusercontent.com/yannh/kubernetes-json-schema/master/{{.NormalizedKubernetesVersion}}/{{.ResourceKind}}.json" \
     -strict -kubernetes-version 1.31.0 -
 done

@@ -8,7 +8,10 @@ seaweedfs-operator:
 
 seaweed:
   image: chrislusf/seaweedfs:4.54
+  master:
+    replicas: 1
   volume:
+    replicas: 1
     storage: 20Gi
   # admin and filer UIs are exposed via the traefik ingress class and gated by
   # the oauth2-forward-auth middleware (templates/oauth2-middleware.yaml)
@@ -26,6 +29,7 @@ seaweed:
         cert-manager.io/cluster-issuer: default-issuer
         traefik.ingress.kubernetes.io/router.middlewares: seaweedfs-oauth2-forward-auth@kubernetescrd
   filer:
+    replicas: 1
     ingress:
       enabled: true
       className: traefik

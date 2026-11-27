@@ -1,0 +1,39 @@
+{{- if not .Values.seaweedfs.enabled }}
+apiVersion: external-secrets.io/v1
+kind: ExternalSecret
+metadata:
+  name: mimir-external-secret
+  namespace: mimir
+  annotations:
+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+spec:
+  refreshInterval: "15s"
+  secretStoreRef:
+    name: openbao-backend
+    kind: ClusterSecretStore
+  target:
+    name: mimir-s3-credentials
+    template:
+      data:
+        SECRETACCESSKEY: "{{ `{{ .SECRETACCESSKEY }}` }}"
+        ACCESSKEYID: "{{ `{{ .ACCESSKEYID }}` }}"
+        ENDPOINT: "{{ `{{ .ENDPOINT }}` }}"
+        BUCKETNAME: "{{ `{{ .BUCKETNAME }}` }}"
+  data:
+  - secretKey: ACCESSKEYID
+    remoteRef:
+      key: kubrix-kv/data/observability/s3
+      property: ACCESSKEYID
+  - secretKey: SECRETACCESSKEY
+    remoteRef:
+      key: kubrix-kv/data/observability/s3
+      property: SECRETACCESSKEY
+  - secretKey: ENDPOINT
+    remoteRef:
+      key: kubrix-kv/data/observability/s3
+      property: ENDPOINT
+  - secretKey: BUCKETNAME
+    remoteRef:
+      key: kubrix-kv/data/observability/s3
+      property: BUCKETNAME
+{{- end }}
