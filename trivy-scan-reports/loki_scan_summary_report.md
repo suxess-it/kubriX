@@ -24,7 +24,7 @@
 <h4>No Misconfigurations found</h4>
 <h2>Image <code>docker.io/grafana/loki-helm-test:latest</code></h2>
 
-<h3>Target <code>docker.io/grafana/loki-helm-test:latest (debian 13.7)</code></h3>
+<h3>Target <code>docker.io/grafana/loki-helm-test:latest (debian 13.8)</code></h3>
 <h4>No Vulnerabilities found</h4>
 <h4>No Misconfigurations found</h4>
 <h3>Target <code>usr/bin/helm-test</code></h3>
@@ -165,7 +165,7 @@
 <h2>Image <code>docker.io/nginxinc/nginx-unprivileged:1.31-alpine</code></h2>
 
 <h3>Target <code>docker.io/nginxinc/nginx-unprivileged:1.31-alpine (alpine 3.24.2)</code></h3>
-<h4>Vulnerabilities (14)</h4>
+<h4>Vulnerabilities (20)</h4>
 <table>
     <tr>
         <th>Package</th>
@@ -222,6 +222,48 @@
         <td>HIGH</td>
         <td>2.9.0-r0</td>
         <td>2.10.0-r0</td>
+    </tr>
+    <tr>
+        <td><code>libxml2</code></td>
+        <td>CVE-2026-11979</td>
+        <td>HIGH</td>
+        <td>2.13.9-r2</td>
+        <td>2.13.9-r5</td>
+    </tr>
+    <tr>
+        <td><code>libxml2</code></td>
+        <td>CVE-2026-86138</td>
+        <td>HIGH</td>
+        <td>2.13.9-r2</td>
+        <td>2.13.9-r4</td>
+    </tr>
+    <tr>
+        <td><code>libxml2</code></td>
+        <td>CVE-2026-86139</td>
+        <td>HIGH</td>
+        <td>2.13.9-r2</td>
+        <td>2.13.9-r4</td>
+    </tr>
+    <tr>
+        <td><code>libxml2</code></td>
+        <td>CVE-2026-86140</td>
+        <td>HIGH</td>
+        <td>2.13.9-r2</td>
+        <td>2.13.9-r4</td>
+    </tr>
+    <tr>
+        <td><code>libxml2</code></td>
+        <td>CVE-2026-86142</td>
+        <td>HIGH</td>
+        <td>2.13.9-r2</td>
+        <td>2.13.9-r4</td>
+    </tr>
+    <tr>
+        <td><code>libxml2</code></td>
+        <td>CVE-2026-86143</td>
+        <td>HIGH</td>
+        <td>2.13.9-r2</td>
+        <td>2.13.9-r4</td>
     </tr>
     <tr>
         <td><code>libxml2</code></td>

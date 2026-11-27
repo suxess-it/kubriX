@@ -918,28 +918,28 @@
         <td>CVE-2025-6020</td>
         <td>HIGH</td>
         <td>1.5.2-6+deb12u1</td>
-        <td></td>
+        <td>1.5.2-6+deb12u3</td>
     </tr>
     <tr>
         <td><code>libpam-modules-bin</code></td>
         <td>CVE-2025-6020</td>
         <td>HIGH</td>
         <td>1.5.2-6+deb12u1</td>
-        <td></td>
+        <td>1.5.2-6+deb12u3</td>
     </tr>
     <tr>
         <td><code>libpam-runtime</code></td>
         <td>CVE-2025-6020</td>
         <td>HIGH</td>
         <td>1.5.2-6+deb12u1</td>
-        <td></td>
+        <td>1.5.2-6+deb12u3</td>
     </tr>
     <tr>
         <td><code>libpam0g</code></td>
         <td>CVE-2025-6020</td>
         <td>HIGH</td>
         <td>1.5.2-6+deb12u1</td>
-        <td></td>
+        <td>1.5.2-6+deb12u3</td>
     </tr>
     <tr>
         <td><code>libpcre2-8-0</code></td>
@@ -4060,28 +4060,28 @@
         <td>CVE-2025-6020</td>
         <td>HIGH</td>
         <td>1.5.2-6+deb12u1</td>
-        <td></td>
+        <td>1.5.2-6+deb12u3</td>
     </tr>
     <tr>
         <td><code>libpam-modules-bin</code></td>
         <td>CVE-2025-6020</td>
         <td>HIGH</td>
         <td>1.5.2-6+deb12u1</td>
-        <td></td>
+        <td>1.5.2-6+deb12u3</td>
     </tr>
     <tr>
         <td><code>libpam-runtime</code></td>
         <td>CVE-2025-6020</td>
         <td>HIGH</td>
         <td>1.5.2-6+deb12u1</td>
-        <td></td>
+        <td>1.5.2-6+deb12u3</td>
     </tr>
     <tr>
         <td><code>libpam0g</code></td>
         <td>CVE-2025-6020</td>
         <td>HIGH</td>
         <td>1.5.2-6+deb12u1</td>
-        <td></td>
+        <td>1.5.2-6+deb12u3</td>
     </tr>
     <tr>
         <td><code>libpcre2-8-0</code></td>
